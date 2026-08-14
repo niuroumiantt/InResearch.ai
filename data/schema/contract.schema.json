@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "合同库记录（主键 = contract_id）：算力合同 / 租约 / PPA / 大额订单 / 融资",
+  "type": "object",
+  "required": ["contract_id", "type", "parties", "announced_date", "grade", "source_url", "verified_date"],
+  "properties": {
+    "contract_id": {"type": "string", "description": "如 openai-oracle-2025 / meta-entergy-ppa-2025"},
+    "type": {"type": "string", "enum": ["compute", "lease", "ppa", "equipment-order", "financing", "ma-deal"]},
+    "parties": {"type": "array", "minItems": 2, "items": {"type": "string"}, "description": "company_id 列表，买方在前"},
+    "site_ids": {"type": "array", "items": {"type": "string"}, "description": "关联项目（用于容量去重）"},
+    "value_usd_b": {"type": ["number", "null"], "description": "合同金额 $B"},
+    "capacity_it_mw": {"type": ["number", "null"], "description": "涉及 IT 容量（与项目库同一容量只算一次）"},
+    "term_years": {"type": ["number", "null"]},
+    "start_date": {"type": ["string", "null"]},
+    "announced_date": {"type": "string"},
+    "circular_flag": {"type": "boolean", "default": false, "description": "循环交易标记（供应商入股客户/互相采购）"},
+    "summary": {"type": "string"},
+    "grade": {"type": "string", "enum": ["regulatory", "company", "research", "media", "estimate"]},
+    "source_url": {"type": "string"},
+    "verified_date": {"type": "string"}
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "_note": "项目库（L0）。主键 site_id = 物理地点。以下为种子示范数据：数字取自公开报道、仅示意 schema 用法，正式使用前须逐条重新核验（对照核验台账迁入）。",
+  "records": [
+    {
+      "site_id": "us-tx-abilene",
+      "name": "Stargate Abilene (Lancium Clean Campus)",
+      "aliases": ["Project Ludicrous"],
+      "region": "north-america",
+      "country": "US",
+      "location": "Texas, Abilene",
+      "developer": ["crusoe", "oracle"],
+      "tenant": ["openai"],
+      "status": "L8",
+      "status_history": [
+        {"status": "L6", "date": "2024-06", "source_url": "https://www.crusoe.ai/newsroom"},
+        {"status": "L8", "date": "2025-09", "source_url": "https://openai.com/index/"}
+      ],
+      "capacity_it_mw": null,
+      "capacity_it_mw_by_status": {"L8": 200, "L6": 1000},
+      "capacity_facility_mw": 1200,
+      "power_status": "首期已通电，园区目标 1.2GW 设施功率",
+      "utility": "ERCOT",
+      "type": "neocloud",
+      "notes": "Stargate 首个旗舰园区；分期数字为媒体报道口径，待核验拆分",
+      "disputed": false,
+      "verified_date": "2026-08-14",
+      "sources": [
+        {"url": "https://openai.com/index/stargate", "grade": "company", "date": "2025", "note": "官方宣布"},
+        {"url": "https://www.datacenterdynamics.com/", "grade": "media", "date": "2025", "note": "分期容量报道"}
+      ]
+    },
+    {
+      "site_id": "us-la-richland",
+      "name": "Meta Hyperion",
+      "aliases": [],
+      "region": "north-america",
+      "country": "US",
+      "location": "Louisiana, Richland Parish",
+      "developer": ["meta"],
+      "tenant": ["meta"],
+      "status": "L6",
+      "status_history": [
+        {"status": "L2", "date": "2024-12", "source_url": "https://about.fb.com/news/"},
+        {"status": "L6", "date": "2025", "source_url": "https://about.fb.com/news/"}
+      ],
+      "capacity_it_mw": null,
+      "capacity_it_mw_by_status": {"L6": 2000, "L2": 3000},
+      "capacity_facility_mw": null,
+      "power_status": "Entergy 三座燃气电站配套获批",
+      "utility": "Entergy (MISO)",
+      "type": "hyperscaler-selfbuild",
+      "notes": "公司口径最终 5GW 目标；L6/L2 拆分为估算，待核验",
+      "disputed": false,
+      "verified_date": "2026-08-14",
+      "sources": [
+        {"url": "https://about.fb.com/news/", "grade": "company", "date": "2025", "note": "官宣"},
+        {"url": "https://www.entergynewsroom.com/", "grade": "company", "date": "2025", "note": "配套电源"}
+      ]
+    },
+    {
+      "site_id": "us-tn-memphis",
+      "name": "xAI Colossus",
+      "aliases": [],
+      "region": "north-america",
+      "country": "US",
+      "location": "Tennessee, Memphis",
+      "developer": ["xai"],
+      "tenant": ["xai"],
+      "status": "L8",
+      "status_history": [
+        {"status": "L8", "date": "2024-09", "source_url": "https://x.ai/"}
+      ],
+      "capacity_it_mw": 300,
+      "capacity_facility_mw": null,
+      "power_status": "MLGW 供电 + 现场燃气轮机（环保争议中）",
+      "utility": "TVA/MLGW",
+      "type": "ai-lab-selfbuild",
+      "notes": "容量为估算（媒体报道 GPU 数量推算存在口径问题，此处只记电力口径估算）",
+      "disputed": true,
+      "verified_date": "2026-08-14",
+      "sources": [
+        {"url": "https://x.ai/colossus", "grade": "company", "date": "2025", "note": "官方页面"},
+        {"url": "https://www.datacenterdynamics.com/", "grade": "estimate", "date": "2025", "note": "容量推算，假设：GPU数×单卡功耗×PUE，仅作参考不入聚合"}
+      ]
+    },
+    {
+      "site_id": "cn-hebei-zhangjiakou",
+      "name": "张家口数据中心集群（怀来等）",
+      "aliases": [],
+      "region": "china",
+      "country": "CN",
+      "location": "河北张家口",
+      "developer": ["multiple"],
+      "tenant": ["multiple"],
+      "status": "L8",
+      "status_history": [],
+      "capacity_it_mw": null,
+      "capacity_facility_mw": null,
+      "power_status": "东数西算京津冀枢纽节点",
+      "utility": "冀北电网",
+      "type": "aidc-cn",
+      "notes": "中国板块（M14）示例条目：集群级记录待拆分为具体园区；中外数据不混加",
+      "disputed": false,
+      "verified_date": "2026-08-14",
+      "sources": [
+        {"url": "https://www.ndrc.gov.cn/", "grade": "regulatory", "date": "2022", "note": "东数西算枢纽批复"}
+      ]
+    }
+  ]
+}

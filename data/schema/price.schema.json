@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "价格库记录（时间序列：series_id + as_of 唯一）",
+  "type": "object",
+  "required": ["series_id", "as_of", "value", "unit", "grade", "source_url"],
+  "properties": {
+    "series_id": {"type": "string", "description": "序列名，如 gpu-hourly-h100-spot / transformer-lead-time / price-per-mw-operational / benchmark-jll-global-gw"},
+    "category": {"type": "string", "enum": ["rent", "asset-deal", "gpu-rental", "used-gpu", "hardware", "lead-time", "token-price", "ppa", "labor", "credit-spread", "valuation", "benchmark"]},
+    "module": {"type": "string", "description": "归属模块，如 M13"},
+    "as_of": {"type": "string", "description": "YYYY-MM-DD 数据时点（不是录入日期）"},
+    "value": {"type": "number"},
+    "unit": {"type": "string", "description": "如 $/hr, 月, $M/MW, $/Mtok, bp"},
+    "region": {"type": ["string", "null"]},
+    "assumptions": {"type": ["string", "null"], "description": "grade=estimate 时必填：推导链条"},
+    "grade": {"type": "string", "enum": ["regulatory", "company", "research", "media", "estimate"]},
+    "source_url": {"type": "string"},
+    "note": {"type": "string"}
+  }
+}

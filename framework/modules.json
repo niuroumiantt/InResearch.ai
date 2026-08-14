@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "updated": "2026-08-14",
+  "note": "模块注册表：机器可读的 L2 层定义。与 framework/00_overview.md 保持同步。",
+  "dimensions": {
+    "physical": ["M01", "M02", "M03", "M04", "M05", "M06", "M07", "M08", "M09", "M10"],
+    "capital": ["M11"],
+    "economics": ["M12", "M13"],
+    "cross": ["M14"],
+    "synthesis": ["M15"]
+  },
+  "modules": [
+    {"id": "M01", "name": "市场规模与增长", "en": "Market Sizing", "tables": ["projects", "prices"], "update_freq": "quarterly", "source_questions": ["Q1"], "doc": "modules/M01_市场规模与增长.md"},
+    {"id": "M02", "name": "供给格局", "en": "Supply Landscape", "tables": ["projects", "companies"], "update_freq": "monthly", "source_questions": ["Q2", "Q3", "Q31"], "doc": "modules/M02_供给格局.md"},
+    {"id": "M03", "name": "需求格局", "en": "Demand Landscape", "tables": ["projects", "companies", "contracts"], "update_freq": "monthly", "source_questions": ["Q4", "Q5", "Q13"], "doc": "modules/M03_需求格局.md"},
+    {"id": "M04", "name": "电力与能源", "en": "Power & Energy", "tables": ["projects", "policies", "contracts"], "update_freq": "monthly", "source_questions": ["Q6", "Q7", "Q8", "Q9"], "doc": "modules/M04_电力与能源.md"},
+    {"id": "M05", "name": "土地与区域", "en": "Land & Regions", "tables": ["projects", "policies"], "update_freq": "quarterly", "source_questions": ["Q10", "Q11", "Q12"], "doc": "modules/M05_土地与区域.md"},
+    {"id": "M06", "name": "芯片与服务器", "en": "Chips & Servers", "tables": ["companies", "prices", "contracts"], "update_freq": "monthly", "source_questions": ["Q14", "Q15", "Q16", "Q17", "Q18", "Q19"], "doc": "modules/M06_芯片与服务器.md"},
+    {"id": "M07", "name": "网络与互联", "en": "Networking", "tables": ["companies", "prices", "projects"], "update_freq": "quarterly", "source_questions": ["Q25"], "doc": "modules/M07_网络与互联.md"},
+    {"id": "M08", "name": "散热与制冷", "en": "Cooling", "tables": ["companies", "prices"], "update_freq": "quarterly", "source_questions": ["Q20", "Q21", "Q22", "Q23", "Q24"], "doc": "modules/M08_散热与制冷.md"},
+    {"id": "M09", "name": "电气设备供应链", "en": "Electrical Equipment", "tables": ["companies", "prices"], "update_freq": "monthly", "source_questions": ["Q26", "Q27", "Q28", "Q29", "Q30"], "doc": "modules/M09_电气设备供应链.md"},
+    {"id": "M10", "name": "建设运营与人才", "en": "Construction & Ops", "tables": ["companies", "prices", "projects"], "update_freq": "quarterly", "source_questions": ["Q31"], "doc": "modules/M10_建设运营与人才.md"},
+    {"id": "M11", "name": "资本与金融", "en": "Capital Markets", "tables": ["companies", "prices", "contracts"], "update_freq": "monthly", "source_questions": ["Q33"], "doc": "modules/M11_资本与金融.md"},
+    {"id": "M12", "name": "需求侧经济学", "en": "Token Economics", "tables": ["prices", "companies"], "update_freq": "monthly", "source_questions": [], "doc": "modules/M12_需求侧经济学.md"},
+    {"id": "M13", "name": "有效算力与软件", "en": "Effective Compute", "tables": ["prices", "companies"], "update_freq": "quarterly", "source_questions": ["Q35"], "doc": "modules/M13_有效算力与软件.md"},
+    {"id": "M14", "name": "中国板块", "en": "China", "tables": ["projects", "companies", "policies", "prices"], "update_freq": "monthly", "source_questions": ["Q19", "Q32"], "doc": "modules/M14_中国板块.md"},
+    {"id": "M15", "name": "情景与监测", "en": "Scenarios & Monitoring", "tables": ["projects", "prices", "contracts", "policies"], "update_freq": "monthly", "source_questions": ["Q34", "Q35"], "doc": "modules/M15_情景与监测.md"}
+  ]
+}

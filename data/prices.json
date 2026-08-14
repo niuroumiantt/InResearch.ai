@@ -1,0 +1,8 @@
+{
+  "_note": "价格库（L0）。时间序列：series_id + as_of 唯一。种子数据为示范，数值取自公开报道区间，正式使用前须重新核验。",
+  "records": [
+    {"series_id": "transformer-lead-time", "category": "lead-time", "module": "M09", "as_of": "2026-06-30", "value": 30, "unit": "月", "region": "north-america", "assumptions": "多家媒体与财报电话会报道区间 24-40 月的中值", "grade": "estimate", "source_url": "https://www.woodmac.com/", "note": "大型电力变压器；对应指标 transformer_lead_time"},
+    {"series_id": "gpu-hourly-h100-spot", "category": "gpu-rental", "module": "M13", "as_of": "2026-07-31", "value": 2.0, "unit": "$/hr", "region": "global", "assumptions": "主要租赁平台公开报价均值粗估", "grade": "estimate", "source_url": "https://cloud-gpus.com/", "note": "H100 SXM 现货；对应指标 gpu_hourly_rate_spot；待建自动抓取"},
+    {"series_id": "benchmark-iea-global-consumption", "category": "benchmark", "module": "M01", "as_of": "2024-12-31", "value": 415, "unit": "TWh", "region": "global", "assumptions": null, "grade": "research", "source_url": "https://www.iea.org/reports/energy-and-ai", "note": "IEA Energy & AI：2024 全球数据中心用电量约 415TWh——用电量口径，不与容量混算"}
+  ]
+}

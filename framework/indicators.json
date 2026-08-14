@@ -1,0 +1,24 @@
+{
+  "version": "1.0",
+  "updated": "2026-08-14",
+  "note": "监测指标注册表（L4）。value/as_of 由数据更新时填写；threshold 方向见 direction 字段。状态由 pipeline/validate.py 计算：green/yellow/red/stale/no_data。",
+  "indicators": [
+    {"id": "global_operational_gw", "module": "M01", "name": "全球投运容量 (L8+)", "unit": "GW", "freq": "quarterly", "direction": "info", "yellow": null, "red": null, "value": null, "as_of": null, "source": "projects 表聚合"},
+    {"id": "pipeline_conversion_rate", "module": "M01", "name": "L2→L8 历史转化率", "unit": "%", "freq": "semiannual", "direction": "below", "yellow": 40, "red": 25, "value": null, "as_of": null, "source": "projects 表状态历史"},
+    {"id": "hyperscaler_lease_ratio", "module": "M02", "name": "超大规模厂租赁占新增比", "unit": "%", "freq": "quarterly", "direction": "info", "yellow": null, "red": null, "value": null, "as_of": null, "source": "财报+项目库"},
+    {"id": "capex_guidance_delta", "module": "M03", "name": "四大云厂Capex指引环比", "unit": "%", "freq": "quarterly", "direction": "below", "yellow": 0, "red": -10, "value": null, "as_of": null, "source": "财报电话会"},
+    {"id": "interconnection_queue_years", "module": "M04", "name": "重点电网并网等待", "unit": "年", "freq": "semiannual", "direction": "above", "yellow": 4, "red": 6, "value": null, "as_of": null, "source": "电网排队数据"},
+    {"id": "transformer_lead_time", "module": "M09", "name": "大型变压器交期", "unit": "月", "freq": "monthly", "direction": "above", "yellow": 24, "red": 36, "value": null, "as_of": null, "source": "渠道+财报电话会"},
+    {"id": "gas_turbine_backlog_years", "module": "M09", "name": "燃机订单簿", "unit": "年", "freq": "quarterly", "direction": "above", "yellow": 4, "red": 6, "value": null, "as_of": null, "source": "GEV/SE 财报"},
+    {"id": "liquid_cooling_penetration", "module": "M08", "name": "新建AI容量液冷渗透率", "unit": "%", "freq": "semiannual", "direction": "info", "yellow": null, "red": null, "value": null, "as_of": null, "source": "机构报告+渠道"},
+    {"id": "construction_duration_months", "module": "M10", "name": "开工→通电周期中位数", "unit": "月", "freq": "semiannual", "direction": "above", "yellow": 24, "red": 30, "value": null, "as_of": null, "source": "projects 表时间戳"},
+    {"id": "price_per_mw_operational", "module": "M11", "name": "运营资产每MW成交价", "unit": "$M/MW", "freq": "event", "direction": "info", "yellow": null, "red": null, "value": null, "as_of": null, "source": "M&A 交易记录"},
+    {"id": "gpu_abs_spread", "module": "M11", "name": "算力ABS发行利差", "unit": "bp", "freq": "monthly", "direction": "above", "yellow": 400, "red": 600, "value": null, "as_of": null, "source": "债券发行文件"},
+    {"id": "token_price_flagship", "module": "M12", "name": "旗舰模型API价格(输出)", "unit": "$/Mtok", "freq": "monthly", "direction": "info", "yellow": null, "red": null, "value": null, "as_of": null, "source": "各家定价页"},
+    {"id": "ai_revenue_capex_ratio", "module": "M12", "name": "AI收入/算力支出承诺比", "unit": "x", "freq": "quarterly", "direction": "below", "yellow": 0.3, "red": 0.15, "value": null, "as_of": null, "source": "公司披露+推算"},
+    {"id": "gpu_hourly_rate_spot", "module": "M13", "name": "旗舰GPU现货时租", "unit": "$/hr", "freq": "monthly", "direction": "info", "yellow": null, "red": null, "value": null, "as_of": null, "source": "租赁平台报价"},
+    {"id": "gpu_rate_term_spread", "module": "M13", "name": "现货vs长约价差", "unit": "%", "freq": "monthly", "direction": "below", "yellow": 0, "red": -15, "value": null, "as_of": null, "source": "租赁平台报价"},
+    {"id": "used_gpu_price_index", "module": "M13", "name": "二手GPU价格指数", "unit": "指数", "freq": "monthly", "direction": "below", "yellow": 80, "red": 60, "value": null, "as_of": null, "source": "二手市场报价"},
+    {"id": "aidc_utilization_channel", "module": "M14", "name": "智算中心利用率(渠道)", "unit": "%", "freq": "quarterly", "direction": "below", "yellow": 50, "red": 30, "value": null, "as_of": null, "source": "产业渠道"}
+  ]
+}

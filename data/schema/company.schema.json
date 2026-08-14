@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "公司库记录（主键 = company_id）",
+  "type": "object",
+  "required": ["company_id", "name", "roles", "verified_date"],
+  "properties": {
+    "company_id": {"type": "string", "description": "小写连字符，如 nvidia / coreweave / delta-electronics"},
+    "name": {"type": "string"},
+    "name_cn": {"type": "string"},
+    "ticker": {"type": ["string", "null"], "description": "交易所:代码，如 NASDAQ:NVDA；非上市为 null"},
+    "cik": {"type": ["string", "null"], "description": "SEC CIK 号（10位补零），用于 pipeline/fetch_sec.py"},
+    "roles": {"type": "array", "minItems": 1, "items": {"type": "string", "enum": ["hyperscaler", "colo", "neocloud", "ai-lab", "chip", "server-odm", "cooling", "electrical", "network", "construction", "utility", "capital", "platform", "other"]}, "description": "一家公司可有多角色（如 nvidia: chip+capital）"},
+    "modules": {"type": "array", "items": {"type": "string"}, "description": "关联模块 id 列表"},
+    "hq_country": {"type": "string"},
+    "profile": {"type": "string", "description": "一段话档案：在本行业的位置与关键事实"},
+    "ir_url": {"type": ["string", "null"]},
+    "verified_date": {"type": "string"}
+  }
+}
