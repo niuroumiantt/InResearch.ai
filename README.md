@@ -49,10 +49,15 @@ L0 数据层   data/ — 六张实体表（项目/公司/价格/政策/合同/�
 ## 本地运行
 
 ```bash
+python3 pipeline/verify.py          # 生成核验队列：今天该查什么（核验工作的固定入口）
 python3 pipeline/validate.py        # 校验所有数据文件（schema + 口径规则 + 保鲜度）
 python3 pipeline/fetch_sec.py       # 拉取跟踪公司的最新 SEC 文件列表
+python3 pipeline/fetch_news_signals.py  # 从 news 项目匹配实体相关新闻线索
 python3 -m http.server 8000         # 打开 http://localhost:8000 看仪表盘
 ```
+
+核验闭环：`verify.py 出队列 → 人工按链接核对 → 改数据/更新 verified_date → validate.py 把关 → commit 留痕`。
+详见 [pipeline/README.md](pipeline/README.md)。
 
 ## 与其他项目的关系
 

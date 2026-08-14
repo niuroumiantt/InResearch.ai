@@ -7,7 +7,23 @@
 | 脚本 | 档位 | 作用 |
 |---|---|---|
 | `validate.py` | — | 按口径手册校验六张表：主键、枚举、引用、保鲜度。**任何提交前先跑它** |
-| `fetch_sec.py` | 自动 | 拉取公司库中有 CIK 公司的 EDGAR 文件清单，原始数据存 `data/raw/sec/` |
+| `verify.py` | — | 生成核验队列 `reports/verify_queue.md`：按 P1/P2/P3 列出该重新查证的记录。**核验工作的固定入口** |
+| `fetch_sec.py` | 自动 | 拉取公司库中有 CIK 公司的 EDGAR 文件清单（含 20-F/6-K），原始数据存 `data/raw/sec/` |
+| `update_ciks.py` | 自动 | 用 SEC 官方映射表回填美股公司 CIK |
+| `fetch_news_signals.py` | 自动 | 消费 news 项目数据，按实体词条匹配出新闻线索 → `data/raw/news_signals/` |
+
+## 核验闭环（固定路径）
+
+```
+① python3 pipeline/verify.py          → 得到今天的核验清单（查什么、开哪个链接、改哪个字段）
+② 逐条打开来源核对                     → 有变化：改数据 + status_history + 来源
+                                        无变化：只更新 verified_date
+③ python3 pipeline/validate.py        → 合规把关
+④ git commit                          → 核验历史全部留痕（谁、何时、改了什么）
+```
+
+自动信号（fetch_sec / fetch_news_signals）发现的事件是**事件驱动核验**的触发器：
+看到相关 8-K/新闻 → 直接对该实体走 ②③④，不必等队列到期。
 
 ## 规划中（按路线图第二阶段）
 
