@@ -11,6 +11,7 @@
 | `fetch_sec.py` | 自动 | 拉取公司库中有 CIK 公司的 EDGAR 文件清单（含 20-F/6-K），原始数据存 `data/raw/sec/` |
 | `update_ciks.py` | 自动 | 用 SEC 官方映射表回填美股公司 CIK |
 | `fetch_news_signals.py` | 自动 | 消费 news 项目数据，按实体词条匹配出新闻线索 → `data/raw/news_signals/` |
+| `export.py` | — | **报告导出器**：从知识层汇编报告（全量/按模块），md + 可选 docx → `reports/output/` |
 
 ## 核验闭环（固定路径）
 
@@ -24,6 +25,14 @@
 
 自动信号（fetch_sec / fetch_news_signals）发现的事件是**事件驱动核验**的触发器：
 看到相关 8-K/新闻 → 直接对该实体走 ②③④，不必等队列到期。
+
+## 知识层闭环（研究结论的生命周期）
+
+```
+信号命中 Finding 的触发器 → 把该 Finding 状态改为 needs-review（verify.py 会列入 P1）
+→ 复核证据：结论变 → 修订正文（旧结论重要则 superseded 存档）；没变 → 更新修订日期回 current
+→ python3 pipeline/export.py 随时可从最新知识层导出报告
+```
 
 ## 规划中（按路线图第二阶段）
 

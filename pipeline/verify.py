@@ -77,6 +77,20 @@ def build_queue(show_all=False):
         if r.get("grade") == "estimate":
             add(2, "prices", rid, "estimate 级（带假设推算）", [r.get("source_url")], "寻找可替代的一手/研究级来源")
 
+    # 知识层：研究文档的 Finding 状态
+    import re
+    for rp in sorted((ROOT / "research").glob("M*.md")) if (ROOT / "research").exists() else []:
+        text = rp.read_text(encoding="utf-8")
+        for m in re.finditer(r"^##\s+(M\d+-F\d+)\s+(.*?)\s*(\{[^}]*\})?\s*\n-\s+\*\*状态\*\*：(\S+?)\s*｜\s*\*\*修订\*\*：(\S+)", text, re.M):
+            fid, ftitle, status, revised = m.group(1), m.group(2)[:30], m.group(4), m.group(5)
+            d = days_since(revised)
+            if status == "needs-review":
+                add(1, "research", fid, f"标记 needs-review（{ftitle}…）", [], f"复核证据后改回 current 或修订结论（{rp.name}）")
+            elif status == "stale" or (d is not None and d > 365):
+                add(1, "research", fid, f"研究结论 {d} 天未复核（{ftitle}…）", [], f"复核并更新修订日期（{rp.name}）")
+            elif show_all and d is not None and d > 300:
+                add(3, "research", fid, f"临近复核期（{d}/365 天）", [], f"顺手复核（{rp.name}）")
+
     # 合同库 / 政策库
     for r in load("contracts"):
         d = days_since(r.get("verified_date"))

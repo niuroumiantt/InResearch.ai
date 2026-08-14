@@ -75,6 +75,24 @@ def recent_sec_filings():
     return out
 
 
+def research_stats():
+    """知识层统计：各模块 Finding 数与状态分布。"""
+    import re
+    stats = {}
+    d = ROOT / "research"
+    for f in sorted(d.glob("M*.md")) if d.exists() else []:
+        text = f.read_text(encoding="utf-8")
+        statuses = re.findall(r"^-\s+\*\*状态\*\*：(\S+?)\s*｜", text, re.M)
+        ids = re.findall(r"^##\s+(M\d+)-F\d+", text, re.M)
+        if ids:
+            mid = ids[0]
+            stats[mid] = {"findings": len(ids), "needs_review": statuses.count("needs-review"),
+                          "stale": statuses.count("stale")}
+        else:
+            stats[f.stem] = {"findings": 0, "needs_review": 0, "stale": 0}
+    return stats
+
+
 def main():
     offline = "--offline" in sys.argv
     today = date.today().isoformat()
@@ -122,6 +140,7 @@ def main():
             "items": [{"table": q["table"], "id": q["id"], "reason": q["reason"]}
                       for q in queue if q["p"] == 1][:10],
         },
+        "research": research_stats(),
     }
     (ROOT / "data" / "brief.json").write_text(
         json.dumps(brief, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
