@@ -55,6 +55,24 @@
   .sig a { display: block; color: var(--muted); font-size: 11px; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .sig a:hover { color: var(--accent); }
   .err { color: var(--red); background: var(--card); border: 1px solid var(--red); border-radius: 10px; padding: 14px; margin-top: 20px; }
+  .tasks { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 8px; }
+  .task-btn { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px;
+    cursor: pointer; text-align: left; font: inherit; color: var(--text); transition: border-color .15s; }
+  .task-btn:hover { border-color: var(--accent); }
+  .task-btn.busy { opacity: .55; pointer-events: none; }
+  .task-btn b { display: block; font-size: 13px; }
+  .task-btn span { font-size: 11px; color: var(--muted); }
+  .console { background: #0d1117; color: #7ee787; border-radius: 10px; padding: 12px 14px; font: 11.5px/1.6 ui-monospace, Menlo, monospace;
+    max-height: 220px; overflow-y: auto; white-space: pre-wrap; margin-top: 10px; }
+  .pform { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 8px;
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+  .pform label { font-size: 11px; color: var(--muted); display: block; margin-bottom: 2px; }
+  .pform input, .pform select { width: 100%; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px;
+    background: var(--bg); color: var(--text); font: inherit; font-size: 12.5px; }
+  .pform .full { grid-column: 1 / -1; }
+  .pform button { grid-column: 1 / -1; padding: 9px; border: none; border-radius: 8px; background: var(--accent);
+    color: #fff; font: inherit; font-weight: 600; cursor: pointer; }
+  .pmsg { font-size: 12px; margin-top: 6px; }
   a { color: var(--accent); text-decoration: none; }
   .tablewrap { overflow-x: auto; }
 </style>
@@ -69,7 +87,36 @@
     <a href="doc.html?f=reports/verify_queue.md">核验队列</a> ·
     <a href="doc.html?f=reports/daily_brief.md">今日简报</a></div>
 
-  <div class="stats" id="stats"></div>
+  <h2>采集控制台</h2>
+  <div class="tasks" id="tasks"></div>
+  <pre class="console" id="console">后台就绪。点击任务运行，输出显示在这里；每个任务显示上次运行时间。</pre>
+
+  <h2>手动录入 — 价格 / 事件（渠道信息与季报数据的固定入口）</h2>
+  <form class="pform" id="pform" onsubmit="return false">
+    <div><label>序列 series_id *</label><input name="series_id" list="serieslist" placeholder="如 price-per-mw-operational" required><datalist id="serieslist"></datalist></div>
+    <div><label>类目 *</label><select name="category">
+      <option value="asset-deal">asset-deal 资产成交</option><option value="market">market 市场指标</option>
+      <option value="rent">rent 租金</option><option value="gpu-rental">gpu-rental 算力租价</option>
+      <option value="lead-time">lead-time 交期</option><option value="used-gpu">used-gpu 二手GPU</option>
+      <option value="token-price">token-price</option><option value="ppa">ppa 电价</option>
+      <option value="credit-spread">credit-spread 利差</option><option value="benchmark">benchmark 基准</option></select></div>
+    <div><label>模块 *</label><select name="module"><option>M11</option><option>M01</option><option>M04</option><option>M06</option><option>M08</option><option>M09</option><option>M12</option><option>M13</option><option>M14</option></select></div>
+    <div><label>数据时点 as_of *</label><input name="as_of" type="date" required></div>
+    <div><label>数值 *</label><input name="value" type="number" step="any" required></div>
+    <div><label>单位 *</label><input name="unit" placeholder="$M/MW · 月 · %" required></div>
+    <div><label>区域</label><input name="region" placeholder="north-america / cn / global"></div>
+    <div><label>来源等级 *</label><select name="grade">
+      <option value="company">S2 公司披露</option><option value="regulatory">S1 监管文件</option>
+      <option value="research">S3 权威第三方</option><option value="media">S4 媒体</option>
+      <option value="estimate">S5 推算/渠道</option></select></div>
+    <div class="full"><label>来源 URL *（渠道信息填 channel: 联系人/场合）</label><input name="source_url" required></div>
+    <div class="full"><label>假设/推导（estimate 级必填）</label><input name="assumptions"></div>
+    <div class="full"><label>备注</label><input name="note"></div>
+    <button id="psubmit">校验并入库（自动回填指标）</button>
+    <div class="pmsg full" id="pmsg"></div>
+  </form>
+
+  <div class="stats" id="stats" style="margin-top:24px"></div>
 
   <div id="briefSection" style="display:none">
     <h2>今日信号 <span id="briefDate" style="font-weight:400;color:var(--muted);font-size:13px"></span></h2>
@@ -227,6 +274,68 @@ function projectCapacity(p) {
     document.getElementById("error").innerHTML = `<div class="err">加载失败：${e.message}<br>请用 <code>python3 -m http.server 8000</code> 启动后访问（file:// 协议无法 fetch JSON）。</div>`;
   }
 })();
+</script>
+<script>
+// ── 管理后台：采集控制台 + 手动录入 ──
+const TASKS = [
+  ["collect", "每日流水线", "采集+简报+事件标记"],
+  ["news", "news 信号", "扫描新闻匹配实体"],
+  ["sec", "SEC EDGAR", "拉取监管文件"],
+  ["gpu", "GPU 租价", "vast.ai 现货中位数"],
+  ["indicators", "指标回填", "库内数据→指标值"],
+  ["verify", "核验队列", "生成待核清单"],
+  ["validate", "数据校验", "口径规则把关"],
+  ["export", "导出报告", "全量 md+docx"],
+  ["map", "Top10 地图", "html+pdf"],
+];
+const consoleEl = document.getElementById("console");
+function clog(s) { consoleEl.textContent += "\n" + s; consoleEl.scrollTop = consoleEl.scrollHeight; }
+
+async function refreshStatus() {
+  try {
+    const st = await (await fetch("/api/status")).json();
+    TASKS.forEach(([id]) => {
+      const el = document.getElementById("t-" + id);
+      if (el) el.querySelector(".last").textContent = st[id]?.running ? "运行中…" : (st[id]?.last ? "上次 " + st[id].last.slice(5, 16).replace("T", " ") : "未运行过");
+    });
+  } catch (e) {}
+}
+document.getElementById("tasks").innerHTML = TASKS.map(([id, name, desc]) =>
+  `<button class="task-btn" id="t-${id}" onclick="runTask('${id}')"><b>▶ ${name}</b><span>${desc}</span><br><span class="last"></span></button>`).join("");
+refreshStatus();
+
+async function runTask(id) {
+  const btn = document.getElementById("t-" + id);
+  btn.classList.add("busy");
+  clog(`\n$ ${id} 启动…`);
+  try {
+    const r = await (await fetch("/api/run", { method: "POST", body: JSON.stringify({ task: id }) })).json();
+    clog((r.ok ? "✔ " : "✘ ") + (r.name || id) + "\n" + (r.output || r.error || ""));
+  } catch (e) { clog("✘ 请求失败: " + e.message + "（确认由 pipeline/serve.py 提供服务）"); }
+  btn.classList.remove("busy");
+  refreshStatus();
+}
+
+// 录入表单：序列名自动补全 + 提交
+(async () => {
+  try {
+    const prices = await (await fetch("data/prices.json?t=" + Date.now())).json();
+    document.getElementById("serieslist").innerHTML =
+      [...new Set(prices.records.map(r => r.series_id))].map(s => `<option value="${s}">`).join("");
+  } catch (e) {}
+})();
+document.getElementById("psubmit").onclick = async () => {
+  const f = document.getElementById("pform");
+  const rec = Object.fromEntries(new FormData(f).entries());
+  const msg = document.getElementById("pmsg");
+  msg.textContent = "提交中…"; msg.style.color = "var(--muted)";
+  try {
+    const r = await (await fetch("/api/add-price", { method: "POST", body: JSON.stringify(rec) })).json();
+    msg.textContent = r.ok ? "✔ " + r.msg : "✘ " + r.error;
+    msg.style.color = r.ok ? "var(--green)" : "var(--red)";
+    if (r.ok) { f.reset(); clog("✔ 录入 " + rec.series_id + "@" + rec.as_of + " = " + rec.value + " " + rec.unit); }
+  } catch (e) { msg.textContent = "✘ " + e.message; msg.style.color = "var(--red)"; }
+};
 </script>
 </body>
 </html>

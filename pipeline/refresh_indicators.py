@@ -54,10 +54,18 @@ def main():
         ("transformer_lead_time", "transformer-lead-time"),
         ("gpu_hourly_rate_spot", "gpu-hourly-h100-spot"),
         ("token_price_flagship", "token-price-openai-flagship-output"),
+        ("vacancy_rate_na", "vacancy-rate-na"),
+        ("dc_rent_index_na", "dc-rent-index-na"),
     ]:
         v, asof = latest_price(prices, series)
         if v is not None:
             computed[ind_id] = (v, asof, f"prices:{series} 最新点")
+    # M11 运营资产每 MW 成交价（asset-deal 记录滚动中位数）
+    deals = [r["value"] for r in prices if r.get("category") == "asset-deal"]
+    if deals:
+        import statistics
+        computed["price_per_mw_operational"] = (round(statistics.median(deals), 1), TODAY,
+                                                f"prices 表 asset-deal 类 {len(deals)} 笔中位数")
     # M03 循环交易占比（金额加权）
     vals = [c for c in contracts if c.get("value_usd_b")]
     if vals:

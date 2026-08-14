@@ -17,6 +17,20 @@
       "as_of": null
     },
     {
+      "id": "dc_rent_index_na",
+      "module": "M01",
+      "name": "北美租金指数(2020=100)",
+      "unit": "",
+      "freq": "semiannual",
+      "direction": "info",
+      "yellow": null,
+      "red": null,
+      "source": "JLL 半年报告",
+      "value": 170,
+      "as_of": "2026-06-30",
+      "auto_note": "prices:dc-rent-index-na 最新点"
+    },
+    {
       "id": "global_operational_gw",
       "module": "M01",
       "name": "全球投运容量 (L8+)",
@@ -42,6 +56,20 @@
       "value": null,
       "as_of": null,
       "source": "projects 表状态历史"
+    },
+    {
+      "id": "vacancy_rate_na",
+      "module": "M01",
+      "name": "北美空置率",
+      "unit": "%",
+      "freq": "semiannual",
+      "direction": "above",
+      "yellow": 5,
+      "red": 10,
+      "source": "JLL 半年报告",
+      "value": 1.0,
+      "as_of": "2026-06-30",
+      "auto_note": "prices:vacancy-rate-na 最新点"
     },
     {
       "id": "hyperscaler_lease_ratio",
@@ -446,8 +474,8 @@
       "direction": "info",
       "yellow": null,
       "red": null,
-      "value": 2.0,
-      "as_of": "2026-07-31",
+      "value": 2.78,
+      "as_of": "2026-08-15",
       "source": "租赁平台报价",
       "auto_note": "prices:gpu-hourly-h100-spot 最新点"
     },

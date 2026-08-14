@@ -12,6 +12,10 @@
 | `update_ciks.py` | 自动 | 用 SEC 官方映射表回填美股公司 CIK |
 | `fetch_news_signals.py` | 自动 | 消费 news 项目数据，按实体词条匹配出新闻线索 → `data/raw/news_signals/` |
 | `export.py` | — | **报告导出器**：从知识层汇编报告（全量/按模块），md + 可选 docx → `reports/output/` |
+| `serve.py` | 常驻 | 本地服务器：静态站点 + 管理后台 API（任务白名单执行 / 价格人工录入含校验回滚）|
+| `fetch_gpu_prices.py` | 自动 | vast.ai 市场 H100/B200 现货租价中位数 → prices 时间序列（每日幂等）|
+| `refresh_indicators.py` | 自动 | 库内可计算指标回填（容量聚合/价格序列直通/合同聚合），collect 每日调用 |
+| `output_map.py` | 按需 | Top N 数据中心世界地图 → HTML + PDF（无头 Chrome 渲染）|
 
 ## 核验闭环（固定路径）
 

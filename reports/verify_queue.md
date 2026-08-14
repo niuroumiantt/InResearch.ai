@@ -1,14 +1,20 @@
 # 核验队列
 
-生成时间：2026-08-14 ｜ P1（必须处理）7 条 ｜ P2（补强来源）7 条
+生成时间：2026-08-15 ｜ P1（必须处理）9 条 ｜ P2（补强来源）7 条
 
 流程：打开来源链接核对 → 有变化改数据+来源，无变化只改 verified_date → `python3 pipeline/validate.py`
 
 ## P1
 
-- [ ] **prices / transformer-lead-time@2026-06-30** — 价格点已 45 天未更新（阈值 30）
+- [ ] **prices / dc-rent-index-na@2026-06-30** — 价格点已 46 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.jll.com/en-us/insights/market-dynamics/north-america-data-centers
+- [ ] **prices / transformer-lead-time@2026-06-30** — 价格点已 46 天未更新（阈值 30）
       动作：抓取/查询最新值，新增一条 as_of 记录
       来源：https://www.woodmac.com/
+- [ ] **prices / vacancy-rate-na@2026-06-30** — 价格点已 46 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.jll.com/en-us/newsroom/data-center-availability-crisis-deepens-as-vacancy-hits-historic-low
 - [ ] **research / M02-F7** — 标记 needs-review（Neocloud 把电力、芯片、网络、软件和资本组合成可用算…）
       动作：复核证据后改回 current 或修订结论（M02.md）
 - [ ] **research / M02-F8** — 标记 needs-review（Neocloud 是 Hyperscaler 的弹性层而非简…）
