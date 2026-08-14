@@ -41,6 +41,16 @@
   .fseg .lv { font-size: 10px; color: var(--muted); }
   .fseg .mw { font-size: 15px; font-weight: 700; }
   .note { color: var(--muted); font-size: 12px; margin-top: 6px; }
+  .brief-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px; }
+  .brief-col { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+  .brief-col h3 { font-size: 13px; margin-bottom: 8px; }
+  .bmeta { font-weight: 400; color: var(--muted); font-size: 11px; }
+  .sig { padding: 6px 0; border-bottom: 1px solid var(--line); font-size: 12px; }
+  .sig:last-child { border-bottom: none; }
+  .sig .ent { font-weight: 600; }
+  .sig .cnt { color: var(--muted); }
+  .sig a { display: block; color: var(--muted); font-size: 11px; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .sig a:hover { color: var(--accent); }
   .err { color: var(--red); background: var(--card); border: 1px solid var(--red); border-radius: 10px; padding: 14px; margin-top: 20px; }
   a { color: var(--accent); text-decoration: none; }
   .tablewrap { overflow-x: auto; }
@@ -52,6 +62,24 @@
   <div class="sub">数据中心研究数据枢纽 · 数据在变，框架不变 · <span id="updated"></span></div>
 
   <div class="stats" id="stats"></div>
+
+  <div id="briefSection" style="display:none">
+    <h2>今日信号 <span id="briefDate" style="font-weight:400;color:var(--muted);font-size:13px"></span></h2>
+    <div class="brief-grid">
+      <div class="brief-col">
+        <h3>📰 新闻信号 <span class="bmeta" id="newsMeta"></span></h3>
+        <div id="newsSignals"></div>
+      </div>
+      <div class="brief-col">
+        <h3>🏛️ SEC 文件（近7天）</h3>
+        <div id="secFilings"></div>
+      </div>
+      <div class="brief-col">
+        <h3>✅ 核验队列 <span class="bmeta" id="verifyMeta"></span></h3>
+        <div id="verifyItems"></div>
+      </div>
+    </div>
+  </div>
 
   <h2>项目漏斗（九级，按 IT 容量 MW 聚合，仅 L8+ 计入"现有规模"）</h2>
   <div class="funnel" id="funnel"></div>
@@ -107,6 +135,25 @@ function projectCapacity(p) {
       loadJSON("data/prices.json"), loadJSON("data/contracts.json"),
     ]);
     document.getElementById("updated").textContent = "框架 v" + mods.version + " · " + mods.updated;
+
+    // 今日信号（brief.json 由 pipeline/collect.py 生成；没有则隐藏该区块）
+    try {
+      const brief = await loadJSON("data/brief.json");
+      document.getElementById("briefSection").style.display = "";
+      document.getElementById("briefDate").textContent = brief.date + "（" + (brief.generated || "").slice(11, 16) + " 生成）";
+      document.getElementById("newsMeta").textContent = `扫描 ${brief.news.scanned_items} 条 / ${(brief.news.scanned_dates || []).length} 天`;
+      document.getElementById("newsSignals").innerHTML = brief.news.entities.slice(0, 8).map(e =>
+        `<div class="sig"><span class="ent">${e.name}</span> <span class="cnt">${e.count} 条</span>` +
+        e.top.slice(0, 2).map(t => `<a href="${t.url}" target="_blank">[${t.source}] ${t.title}</a>`).join("") + `</div>`).join("")
+        || '<div class="note">无信号</div>';
+      document.getElementById("secFilings").innerHTML = brief.sec.slice(0, 8).map(f =>
+        `<div class="sig"><span class="ent">${f.name}</span> <span class="cnt">${f.form} · ${f.date}</span>` +
+        `<a href="${f.url}" target="_blank">查看文件</a></div>`).join("") || '<div class="note">近 7 天无新文件</div>';
+      document.getElementById("verifyMeta").textContent = `P1 ${brief.verify.p1} 条 · P2 ${brief.verify.p2} 条`;
+      document.getElementById("verifyItems").innerHTML = brief.verify.items.slice(0, 8).map(q =>
+        `<div class="sig"><span class="ent">${q.table} / ${q.id}</span><div class="cnt">${q.reason}</div></div>`).join("")
+        || '<div class="note">P1 清零 🎉</div>';
+    } catch (e) { /* brief.json 缺失时隐藏区块 */ }
 
     // 统计行
     const stats = [

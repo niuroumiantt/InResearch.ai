@@ -1,0 +1,156 @@
+#!/usr/bin/env python3
+"""每日信号流水线总调度：一条命令跑完采集 → 汇总 → 简报。
+
+    python3 pipeline/collect.py             # 完整流程（联网采集 + 简报）
+    python3 pipeline/collect.py --offline   # 跳过联网采集，用已有原始数据出简报
+
+流程：
+  ① fetch_news_signals.py   news 项目 → 实体新闻线索
+  ② fetch_sec.py            EDGAR → 最新监管文件（失败不阻塞，用已有存档）
+  ③ verify.build_queue()    核验队列
+  ④ 汇总写出：
+       data/brief.json        仪表盘"今日信号"数据（进 git，页面可读）
+       reports/daily_brief.md 人读简报
+       reports/verify_queue.md 核验清单
+
+自动信号只产生线索，不写六张表（入库纪律见 pipeline/README.md）。
+"""
+import json
+import subprocess
+import sys
+from datetime import date, datetime, timedelta
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT / "pipeline"))
+import verify  # noqa: E402
+
+SEC_RECENT_DAYS = 7
+SEC_WATCH_FORMS = {"10-Q", "10-K", "8-K", "S-1", "424B5", "20-F", "6-K"}
+
+
+def run_step(name, args, timeout=180):
+    print(f"── {name}")
+    try:
+        r = subprocess.run([sys.executable] + args, cwd=ROOT, timeout=timeout,
+                           capture_output=True, text=True)
+        tail = (r.stdout or r.stderr).strip().splitlines()
+        for line in tail[-3:]:
+            print(f"   {line}")
+        return r.returncode == 0
+    except subprocess.TimeoutExpired:
+        print("   超时，跳过（用已有数据继续）")
+        return False
+
+
+def latest_news_signals():
+    d = ROOT / "data" / "raw" / "news_signals"
+    files = sorted(d.glob("*_signals.json"), reverse=True) if d.exists() else []
+    if not files:
+        return None
+    return json.loads(files[0].read_text(encoding="utf-8")), files[0].name[:10]
+
+
+def recent_sec_filings():
+    """从 data/raw/sec/ 存档解析近 N 天的关注文件。"""
+    cutoff = (date.today() - timedelta(days=SEC_RECENT_DAYS)).isoformat()
+    out = []
+    d = ROOT / "data" / "raw" / "sec"
+    for f in sorted(d.glob("*.json")) if d.exists() else []:
+        try:
+            data = json.loads(f.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            continue
+        cik = data.get("cik")
+        recent = data.get("filings", {}).get("recent", {})
+        forms, dates = recent.get("form", []), recent.get("filingDate", [])
+        accs, docs = recent.get("accessionNumber", []), recent.get("primaryDocument", [])
+        for i in range(len(forms)):
+            if forms[i] in SEC_WATCH_FORMS and dates[i] >= cutoff:
+                out.append({
+                    "company": f.stem, "date": dates[i], "form": forms[i],
+                    "url": f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{accs[i].replace('-', '')}/{docs[i]}",
+                })
+    out.sort(key=lambda x: x["date"], reverse=True)
+    return out
+
+
+def main():
+    offline = "--offline" in sys.argv
+    today = date.today().isoformat()
+    print(f"每日信号流水线 {today}")
+
+    if not offline:
+        run_step("① news 信号", ["pipeline/fetch_news_signals.py"])
+        run_step("② SEC EDGAR", ["pipeline/fetch_sec.py"], timeout=300)
+    else:
+        print("── offline 模式：跳过采集")
+
+    news, news_date = latest_news_signals() or ({}, None)
+    sec = recent_sec_filings()
+    queue = verify.build_queue()
+    counts = verify.write_markdown(queue)
+
+    # 公司名映射（简报里显示中文名）
+    companies = {c["company_id"]: c for c in verify.load("companies")}
+    projects = {p["site_id"]: p for p in verify.load("projects")}
+
+    def display(eid):
+        if eid in companies:
+            return companies[eid].get("name_cn") or companies[eid]["name"]
+        if eid in projects:
+            return projects[eid]["name"]
+        return eid
+
+    entities = sorted(news.get("signals", {}).items(), key=lambda kv: -len(kv[1]["hits"]))
+    brief = {
+        "generated": datetime.now().isoformat(timespec="seconds"),
+        "date": today,
+        "news": {
+            "signal_date": news_date,
+            "scanned_items": news.get("scanned_items", 0),
+            "scanned_dates": news.get("scanned_dates", []),
+            "entities": [
+                {"id": eid, "name": display(eid), "type": s["type"], "count": len(s["hits"]),
+                 "top": [{"title": h["title"], "source": h["source"], "url": h["url"]} for h in s["hits"][:3]]}
+                for eid, s in entities[:15]
+            ],
+        },
+        "sec": [{**f, "name": display(f["company"])} for f in sec[:20]],
+        "verify": {
+            "p1": counts[1], "p2": counts[2],
+            "items": [{"table": q["table"], "id": q["id"], "reason": q["reason"]}
+                      for q in queue if q["p"] == 1][:10],
+        },
+    }
+    (ROOT / "data" / "brief.json").write_text(
+        json.dumps(brief, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    # 人读简报
+    lines = [f"# 每日简报 {today}", ""]
+    lines.append(f"## 新闻信号（{news_date or '无数据'}，扫描 {brief['news']['scanned_items']} 条）")
+    lines.append("")
+    for e in brief["news"]["entities"][:10]:
+        lines.append(f"- **{e['name']}**（{e['count']} 条）")
+        for t in e["top"][:2]:
+            lines.append(f"  - [{t['source']}] [{t['title'][:70]}]({t['url']})")
+    lines.append("")
+    lines.append(f"## SEC 文件（近 {SEC_RECENT_DAYS} 天 {len(sec)} 份）")
+    lines.append("")
+    for f in brief["sec"]:
+        lines.append(f"- {f['date']} **{f['name']}** {f['form']} — [文件]({f['url']})")
+    lines.append("")
+    lines.append(f"## 核验队列：P1 {counts[1]} 条 ｜ P2 {counts[2]} 条（详见 verify_queue.md）")
+    lines.append("")
+    for q in brief["verify"]["items"]:
+        lines.append(f"- [ ] {q['table']} / {q['id']} — {q['reason']}")
+    (ROOT / "reports" / "daily_brief.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+    print(f"③ 核验队列  P1 {counts[1]} ｜ P2 {counts[2]}")
+    print(f"④ 简报已写出  data/brief.json ｜ reports/daily_brief.md")
+    print(f"   新闻信号 {len(brief['news']['entities'])} 实体 ｜ SEC 文件 {len(sec)} 份")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

@@ -2,7 +2,7 @@
 """核验队列生成器：扫描六张表，按优先级列出"今天该核验什么"。
 
 这是核验工作的固定入口（与 validate.py 分工：validate 管"数据合不合规"，
-verify 管"数据该不该重新查证"）。零依赖。
+verify 管"数据该不该重新查证"）。零依赖。collect.py 复用本模块的 build_queue()。
 
 用法：
     python3 pipeline/verify.py              # 生成队列 → reports/verify_queue.md + stdout 摘要
@@ -42,9 +42,9 @@ def load(name):
     return json.loads((DATA / f"{name}.json").read_text(encoding="utf-8"))["records"]
 
 
-def main():
-    show_all = "--all" in sys.argv
-    queue = []  # (priority, table, record_id, reason, urls, action)
+def build_queue(show_all=False):
+    """返回按优先级排序的核验队列：[{p, table, id, reason, urls, action}]"""
+    queue = []
 
     def add(prio, table, rid, reason, urls, action):
         queue.append({"p": prio, "table": table, "id": rid, "reason": reason,
@@ -90,8 +90,11 @@ def main():
             add(1, "policies", r["policy_id"], f"核验超期 {d} 天", [r.get("source_url")], "确认政策现行版本")
 
     queue.sort(key=lambda q: (q["p"], q["table"], q["id"]))
-    counts = {p: sum(1 for q in queue if q["p"] == p) for p in (1, 2, 3)}
+    return queue
 
+
+def write_markdown(queue, show_all=False):
+    counts = {p: sum(1 for q in queue if q["p"] == p) for p in (1, 2, 3)}
     lines = [
         "# 核验队列",
         "",
@@ -113,8 +116,14 @@ def main():
             for u in q["urls"][:3]:
                 lines.append(f"      来源：{u}")
         lines.append("")
-
     OUT.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    return counts
+
+
+def main():
+    show_all = "--all" in sys.argv
+    queue = build_queue(show_all)
+    counts = write_markdown(queue, show_all)
     print(f"P1 必须处理 {counts[1]} 条 ｜ P2 补强来源 {counts[2]} 条" + (f" ｜ P3 {counts[3]} 条" if show_all else ""))
     for q in [q for q in queue if q["p"] == 1][:10]:
         print(f"  P1  {q['table']:10s} {q['id']:28s} {q['reason']}")
