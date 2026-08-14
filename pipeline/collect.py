@@ -75,6 +75,43 @@ def recent_sec_filings():
     return out
 
 
+def mark_findings_needs_review(sec_filings):
+    """事件驱动核验联动：近 7 天有 10-Q/10-K/8-K 的实体，其触发器命中的 current Finding
+    自动标为 needs-review（进入 verify.py 的 P1 队列）。人工复核后改回 current。"""
+    import re
+    # 各实体最近一次硬信号（10-Q/10-K/8-K）的文件日期
+    hard = {}
+    for f in sec_filings:
+        if f["form"] in {"10-Q", "10-K", "8-K"}:
+            hard[f["company"]] = max(hard.get(f["company"], ""), f["date"])
+    marked = []
+    if not hard:
+        return marked
+    for rp in sorted((ROOT / "research").glob("M*.md")):
+        text = rp.read_text(encoding="utf-8")
+        out, changed = [], False
+        pending = None  # (fid, title) 等待其状态行
+        for line in text.split("\n"):
+            h = re.match(r"^##\s+(M\d+-F\d+)\s+(.*?)\s*(\{[^}]*\})?\s*$", line)
+            if h:
+                pending = (h.group(1), h.group(2))
+            elif pending and re.match(r"^-\s+\*\*状态\*\*：current\s*｜", line):
+                rev = re.search(r"\*\*修订\*\*：(\S+)", line)
+                revised = rev.group(1) if rev else ""
+                # 只对"信号晚于最后修订"的 Finding 标记——复核过的不重复打扰
+                hits = [c for c, d in hard.items() if f"entity:{c}" in line and d > revised]
+                if hits:
+                    line = line.replace("**状态**：current", "**状态**：needs-review", 1)
+                    marked.append({"finding": pending[0], "title": pending[1][:40],
+                                   "entities": hits, "file": rp.name})
+                    changed = True
+                pending = None
+            out.append(line)
+        if changed:
+            rp.write_text("\n".join(out), encoding="utf-8")
+    return marked
+
+
 def research_stats():
     """知识层统计：各模块 Finding 数与状态分布。"""
     import re
@@ -106,6 +143,7 @@ def main():
 
     news, news_date = latest_news_signals() or ({}, None)
     sec = recent_sec_filings()
+    marked = mark_findings_needs_review(sec)
     queue = verify.build_queue()
     counts = verify.write_markdown(queue)
 
@@ -141,6 +179,7 @@ def main():
                       for q in queue if q["p"] == 1][:10],
         },
         "research": research_stats(),
+        "review_marked": marked,
     }
     (ROOT / "data" / "brief.json").write_text(
         json.dumps(brief, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -165,6 +204,10 @@ def main():
         lines.append(f"- [ ] {q['table']} / {q['id']} — {q['reason']}")
     (ROOT / "reports" / "daily_brief.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
+    if marked:
+        print(f"◆ 事件驱动核验：{len(marked)} 条 Finding 因 SEC 信号标为 needs-review")
+        for m in marked:
+            print(f"    {m['finding']}  ←  {', '.join(m['entities'])}（{m['file']}）")
     print(f"③ 核验队列  P1 {counts[1]} ｜ P2 {counts[2]}")
     print(f"④ 简报已写出  data/brief.json ｜ reports/daily_brief.md")
     print(f"   新闻信号 {len(brief['news']['entities'])} 实体 ｜ SEC 文件 {len(sec)} 份")

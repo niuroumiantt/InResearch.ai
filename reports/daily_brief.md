@@ -20,6 +20,9 @@
 - **Meta**（112 条）
   - [adnews.com.au] [Agencies disable Meta's AI creative tools](https://www.adnews.com.au/news/agencies-disable-meta-s-ai-creative-tools)
   - [Louisiana Illuminator] [Meta wants to keep Hyperion data center details protected](https://lailluminator.com/2026/08/11/meta-wants-details-secret/)
+- **博通**（85 条）
+  - [MarketWatch] [Broadcom Inc. stock underperforms Tuesday when compared to competitors](https://www.marketwatch.com/data-news/broadcom-inc-stock-underperforms-tuesday-when-compared-to-competitors-ce9de2d5-500e901b2d2a?mod=goog_fin_scmw)
+  - [Moomoo] [博通期权聚焦：8月11日成交14.56万张，未平仓合约199.83万张](https://www.moomoo.com/hans/news/post/74512812/broadcom-options-spot-on-on-august-11th-145-6k-contracts)
 - **xAI**（79 条）
   - [Wowtale] [‘Own Your Intelligence’: xAI Co-Founder Babuschkin’s River AI Raises $](https://en.wowtale.net/2026/08/12/234693/)
   - [와우테일] [‘AI를 소유하라’…xAI 창업자 바부슈킨의 리버AI, 11억 달러 투자유치](https://wowtale.net/2026/08/12/262800/)
@@ -29,23 +32,30 @@
 - **谷歌**（68 条）
   - [El Ecosistema Startup] [Vulnerabilidad LLM 2026: 182 credenciales expuestas en APIs de OpenAI,](https://ecosistemastartup.com/vulnerabilidad-llm-2026-182-credenciales-expuestas-en-apis-de-openai-anthropic-y-google/)
   - [SiliconANGLE] [Google’s Gemini AI app passes 1 billion monthly active users](https://siliconangle.com/2026/08/11/googles-gemini-ai-app-passes-1-billion-monthly-active-users/)
-- **亚马逊**（61 条）
-  - [Newsquawk] [OpenAI and Amazon's (AMZN) AWS say they will expand their agreements t](https://www.newsquawk.com/headlines/openai-and-amazons-amzn-aws-say-they-will-expand-their-agreements-to-include-frontier-cyber-models-with-openai-bringing-daybreak-access-to-amazon-bedrock)
-  - [OpenAI] [Daybreak models are now available on AWS](https://openai.com/index/daybreak-models-are-now-available-on-aws/)
 
-## SEC 文件（近 7 天 10 份）
+## SEC 文件（近 7 天 14 份）
 
 - 2026-08-13 **超威** 424B5 — [文件](https://www.sec.gov/Archives/edgar/data/2488/000119312526348029/d173126d424b5.htm)
+- 2026-08-13 **Blue Owl** 424B5 — [文件](https://www.sec.gov/Archives/edgar/data/1823945/000119312526347343/d18998d424b5.htm)
 - 2026-08-13 **布鲁克菲尔德** 6-K — [文件](https://www.sec.gov/Archives/edgar/data/1001085/000117184326005474/f6k_081326.htm)
 - 2026-08-13 **万国数据** 6-K — [文件](https://www.sec.gov/Archives/edgar/data/1526125/000110465926095498/tm2621440d1_6k.htm)
+- 2026-08-12 **Blue Owl** 8-K — [文件](https://www.sec.gov/Archives/edgar/data/1823945/000119312526345635/d223714d8k.htm)
 - 2026-08-12 **CoreWeave** 10-Q — [文件](https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/crwv-20260630.htm)
 - 2026-08-12 **Nebius** 6-K — [文件](https://www.sec.gov/Archives/edgar/data/1513845/000110465926094844/nbis-20260812x6k.htm)
 - 2026-08-12 **Nebius** 6-K — [文件](https://www.sec.gov/Archives/edgar/data/1513845/000110465926094568/tm2622968d1_6k.htm)
+- 2026-08-11 **Blue Owl** 424B5 — [文件](https://www.sec.gov/Archives/edgar/data/1823945/000119312526343544/d18998d424b5.htm)
 - 2026-08-11 **CoreWeave** 8-K — [文件](https://www.sec.gov/Archives/edgar/data/1769628/000176962826000362/crwv-20260811.htm)
 - 2026-08-10 **谷歌** 8-K — [文件](https://www.sec.gov/Archives/edgar/data/1652044/000119312526342390/d171253d8k.htm)
 - 2026-08-10 **CoreWeave** 8-K — [文件](https://www.sec.gov/Archives/edgar/data/1769628/000176962826000357/crwv-20260807.htm)
 - 2026-08-07 **黑石** 10-Q — [文件](https://www.sec.gov/Archives/edgar/data/1393818/000119312526340208/d158269d10q.htm)
+- 2026-08-07 **天弘** 8-K — [文件](https://www.sec.gov/Archives/edgar/data/1030894/000110465926092676/tm2621135d2_8k.htm)
 
-## 核验队列：P1 1 条 ｜ P2 7 条（详见 verify_queue.md）
+## 核验队列：P1 7 条 ｜ P2 7 条（详见 verify_queue.md）
 
 - [ ] prices / transformer-lead-time@2026-06-30 — 价格点已 45 天未更新（阈值 30）
+- [ ] research / M02-F7 — 标记 needs-review（Neocloud 把电力、芯片、网络、软件和资本组合成可用算…）
+- [ ] research / M02-F8 — 标记 needs-review（Neocloud 是 Hyperscaler 的弹性层而非简…）
+- [ ] research / M02-F9 — 标记 needs-review（公开信息不足以算出四大厂统一的"自用/出租 MW 比例"，可…）
+- [ ] research / M03-F2 — 标记 needs-review（Anthropic 以 AWS 为主云与训练基础，Googl…）
+- [ ] research / M04-F2 — 标记 needs-review（核电分"现役共址/重启/SMR"三条时间表：重启本十年可供数…）
+- [ ] research / M15-F7 — 标记 needs-review（单指标会被宣传误导：三色判断要求至少三个同向信号，资本指标识…）

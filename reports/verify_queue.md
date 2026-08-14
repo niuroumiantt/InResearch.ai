@@ -1,6 +1,6 @@
 # 核验队列
 
-生成时间：2026-08-14 ｜ P1（必须处理）1 条 ｜ P2（补强来源）7 条
+生成时间：2026-08-14 ｜ P1（必须处理）7 条 ｜ P2（补强来源）7 条
 
 流程：打开来源链接核对 → 有变化改数据+来源，无变化只改 verified_date → `python3 pipeline/validate.py`
 
@@ -9,6 +9,18 @@
 - [ ] **prices / transformer-lead-time@2026-06-30** — 价格点已 45 天未更新（阈值 30）
       动作：抓取/查询最新值，新增一条 as_of 记录
       来源：https://www.woodmac.com/
+- [ ] **research / M02-F7** — 标记 needs-review（Neocloud 把电力、芯片、网络、软件和资本组合成可用算…）
+      动作：复核证据后改回 current 或修订结论（M02.md）
+- [ ] **research / M02-F8** — 标记 needs-review（Neocloud 是 Hyperscaler 的弹性层而非简…）
+      动作：复核证据后改回 current 或修订结论（M02.md）
+- [ ] **research / M02-F9** — 标记 needs-review（公开信息不足以算出四大厂统一的"自用/出租 MW 比例"，可…）
+      动作：复核证据后改回 current 或修订结论（M02.md）
+- [ ] **research / M03-F2** — 标记 needs-review（Anthropic 以 AWS 为主云与训练基础，Googl…）
+      动作：复核证据后改回 current 或修订结论（M03.md）
+- [ ] **research / M04-F2** — 标记 needs-review（核电分"现役共址/重启/SMR"三条时间表：重启本十年可供数…）
+      动作：复核证据后改回 current 或修订结论（M04.md）
+- [ ] **research / M15-F7** — 标记 needs-review（单指标会被宣传误导：三色判断要求至少三个同向信号，资本指标识…）
+      动作：复核证据后改回 current 或修订结论（M15.md）
 
 ## P2
 
