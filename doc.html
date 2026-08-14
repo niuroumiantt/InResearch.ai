@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文档 — Datacenter Hub</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #1a1d24; --muted: #6b7280;
+    --line: #e5e7eb; --accent: #2563eb;
+    --green: #16a34a; --yellow: #d97706; --red: #dc2626;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0f1115; --card: #171a21; --text: #e5e7eb; --muted: #9ca3af; --line: #262a33; --accent: #60a5fa; }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font: 15px/1.75 -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; padding: 24px 16px 80px; }
+  .wrap { max-width: 860px; margin: 0 auto; }
+  .crumb { font-size: 13px; margin-bottom: 16px; }
+  .crumb a { color: var(--accent); text-decoration: none; }
+  .crumb span { color: var(--muted); }
+  article { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 28px 32px; }
+  article h1 { font-size: 22px; margin: 0 0 16px; line-height: 1.4; }
+  article h2 { font-size: 17px; margin: 28px 0 10px; padding-top: 18px; border-top: 1px solid var(--line); line-height: 1.5; }
+  article h3 { font-size: 15px; margin: 18px 0 8px; }
+  article p { margin: 10px 0; }
+  article ul { margin: 8px 0 8px 22px; }
+  article ul ul { margin: 2px 0 2px 20px; }
+  article li { margin: 4px 0; }
+  article blockquote { border-left: 3px solid var(--accent); padding: 6px 14px; margin: 12px 0; color: var(--muted); background: color-mix(in srgb, var(--card) 70%, var(--bg)); border-radius: 0 8px 8px 0; }
+  article blockquote p { margin: 4px 0; }
+  article code { background: color-mix(in srgb, var(--card) 55%, var(--bg)); border: 1px solid var(--line); border-radius: 4px; padding: 1px 5px; font-size: 13px; font-family: ui-monospace, Menlo, monospace; }
+  article pre { background: color-mix(in srgb, var(--card) 55%, var(--bg)); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; overflow-x: auto; margin: 12px 0; }
+  article pre code { background: none; border: none; padding: 0; }
+  article a { color: var(--accent); text-decoration: none; word-break: break-all; }
+  article a:hover { text-decoration: underline; }
+  article hr { border: none; border-top: 1px solid var(--line); margin: 20px 0; }
+  .tablewrap { overflow-x: auto; margin: 12px 0; }
+  article table { border-collapse: collapse; width: 100%; font-size: 13px; }
+  article th, article td { border: 1px solid var(--line); padding: 6px 10px; text-align: left; vertical-align: top; }
+  article th { background: color-mix(in srgb, var(--card) 60%, var(--bg)); font-weight: 500; color: var(--muted); }
+  .qtag { display: inline-block; font-size: 11px; font-weight: 600; color: var(--accent); border: 1px solid var(--accent); border-radius: 9px; padding: 0 8px; margin-left: 8px; vertical-align: 2px; }
+  .st { display: inline-block; font-size: 11px; font-weight: 600; color: #fff; border-radius: 9px; padding: 0 8px; }
+  .st-current { background: var(--green); } .st-needs-review { background: var(--yellow); }
+  .st-stale { background: var(--red); } .st-superseded { background: var(--muted); }
+  .err { color: var(--red); background: var(--card); border: 1px solid var(--red); border-radius: 10px; padding: 14px; }
+  .toc { font-size: 13px; margin: 0 0 18px; padding: 12px 16px; background: color-mix(in srgb, var(--card) 70%, var(--bg)); border: 1px solid var(--line); border-radius: 10px; }
+  .toc a { display: block; color: var(--accent); text-decoration: none; padding: 2px 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="crumb"><a href="index.html">← 仪表盘</a> <span id="path"></span></div>
+  <div class="toc" id="toc" style="display:none"></div>
+  <article id="content">加载中…</article>
+</div>
+
+<script>
+function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+
+function inline(s) {
+  s = s.replace(/`([^`]+)`/g, (m, c) => "<code>" + c + "</code>");
+  s = s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+  s = s.replace(/(^|[^"=\]>])(https?:\/\/[^\s<）]+)/g, '$1<a href="$2" target="_blank">$2</a>');
+  s = s.replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>");
+  s = s.replace(/\{(Q\d+(?:[–\-、,\s]*Q?\d*)*|new)\}/g, '<span class="qtag">$1</span>');
+  s = s.replace(/(：|\uff1a)(current|needs-review|stale|superseded)\b/g, '：<span class="st st-$2">$2</span>');
+  return s;
+}
+
+function render(md) {
+  const lines = md.split("\n");
+  const out = [];
+  let i = 0, listStack = 0, para = [], quote = [];
+  const flushPara = () => { if (para.length) { out.push("<p>" + inline(para.join(" ")) + "</p>"); para = []; } };
+  const flushQuote = () => { if (quote.length) { out.push("<blockquote>" + quote.map(q => "<p>" + inline(q) + "</p>").join("") + "</blockquote>"); quote = []; } };
+  const closeLists = (to) => { while (listStack > to) { out.push("</ul>"); listStack--; } };
+
+  while (i < lines.length) {
+    let raw = lines[i];
+    let l = esc(raw);
+
+    if (/^```/.test(raw)) {
+      flushPara(); flushQuote(); closeLists(0);
+      const buf = []; i++;
+      while (i < lines.length && !/^```/.test(lines[i])) { buf.push(esc(lines[i])); i++; }
+      out.push("<pre><code>" + buf.join("\n") + "</code></pre>"); i++; continue;
+    }
+    if (/^\|/.test(raw)) {
+      flushPara(); flushQuote(); closeLists(0);
+      const rows = [];
+      while (i < lines.length && /^\|/.test(lines[i])) { rows.push(lines[i]); i++; }
+      const cells = r => r.replace(/^\||\|$/g, "").split("|").map(c => inline(esc(c.trim())));
+      let html = '<div class="tablewrap"><table><tr>' + cells(rows[0]).map(c => "<th>" + c + "</th>").join("") + "</tr>";
+      for (let r = 1; r < rows.length; r++) {
+        if (/^\|[\s:\-|]+\|$/.test(rows[r].replace(/\s/g, ""))) continue;
+        html += "<tr>" + cells(rows[r]).map(c => "<td>" + c + "</td>").join("") + "</tr>";
+      }
+      out.push(html + "</table></div>"); continue;
+    }
+    const h = raw.match(/^(#{1,3})\s+(.*)/);
+    if (h) {
+      flushPara(); flushQuote(); closeLists(0);
+      const lvl = h[1].length;
+      const id = "h" + i;
+      out.push(`<h${lvl} id="${id}">` + inline(esc(h[2])) + `</h${lvl}>`);
+      i++; continue;
+    }
+    if (/^>\s?/.test(raw)) { flushPara(); closeLists(0); quote.push(esc(raw.replace(/^>\s?/, ""))); i++; continue; }
+    const li = raw.match(/^(\s*)-\s+(.*)/);
+    if (li) {
+      flushPara(); flushQuote();
+      const depth = li[1].length >= 2 ? 2 : 1;
+      if (listStack < depth) { while (listStack < depth) { out.push("<ul>"); listStack++; } }
+      else closeLists(depth);
+      out.push("<li>" + inline(esc(li[2])) + "</li>"); i++; continue;
+    }
+    if (/^---+\s*$/.test(raw)) { flushPara(); flushQuote(); closeLists(0); out.push("<hr>"); i++; continue; }
+    if (raw.trim() === "") { flushPara(); flushQuote(); closeLists(0); i++; continue; }
+    closeLists(0); flushQuote(); para.push(l); i++;
+  }
+  flushPara(); flushQuote(); closeLists(0);
+  return out.join("\n");
+}
+
+(async () => {
+  const f = new URLSearchParams(location.search).get("f") || "research/M08.md";
+  if (!/^[\w\-/\u4e00-\u9fff.]+\.md$/.test(f)) {
+    document.getElementById("content").innerHTML = '<div class="err">非法路径</div>'; return;
+  }
+  document.getElementById("path").textContent = " / " + f;
+  try {
+    const r = await fetch(f);
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    const md = await r.text();
+    const html = render(md);
+    document.getElementById("content").innerHTML = html;
+    document.title = (md.match(/^#\s+(.*)$/m) || [, f])[1] + " — Datacenter Hub";
+    const hs = [...document.querySelectorAll("article h2")];
+    if (hs.length >= 3) {
+      const toc = document.getElementById("toc");
+      toc.innerHTML = hs.map(h => `<a href="#${h.id}">${h.textContent}</a>`).join("");
+      toc.style.display = "";
+    }
+  } catch (e) {
+    document.getElementById("content").innerHTML =
+      `<div class="err">加载失败：${e.message}<br>请用 <code>python3 -m http.server 8000</code> 启动后访问。</div>`;
+  }
+})();
+</script>
+</body>
+</html>
