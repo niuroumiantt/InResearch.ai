@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>工作台 — Datacenter Hub</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --text: #1a1d24; --muted: #6b7280;
+    --line: #e5e7eb; --accent: #2563eb;
+    --green: #16a34a; --yellow: #d97706; --red: #dc2626; --gray: #9ca3af;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0f1115; --card: #171a21; --text: #e5e7eb; --muted: #9ca3af; --line: #262a33; --accent: #60a5fa; }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font: 14px/1.6 -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; padding: 24px 16px 60px; }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  h1 { font-size: 22px; margin-bottom: 4px; }
+  .sub { color: var(--muted); margin-bottom: 24px; font-size: 13px; }
+  h2 { font-size: 16px; margin: 28px 0 12px; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+  .stat { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+  .stat .num { font-size: 24px; font-weight: 700; }
+  .stat .lbl { color: var(--muted); font-size: 12px; }
+  .modules { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+  .mod { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+  .mod .id { font-size: 11px; color: var(--accent); font-weight: 700; }
+  .mod .nm { font-weight: 600; margin: 2px 0; }
+  .mod .meta { font-size: 11px; color: var(--muted); }
+  .dim-tag { display: inline-block; font-size: 10px; padding: 1px 6px; border-radius: 8px; border: 1px solid var(--line); color: var(--muted); margin-left: 4px; }
+  .doclink { float: right; font-size: 11px; }
+  .doclink.muted { color: var(--muted); }
+  .sub a { color: var(--accent); text-decoration: none; }
+  table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); font-size: 13px; }
+  th { color: var(--muted); font-weight: 500; font-size: 12px; background: color-mix(in srgb, var(--card) 60%, var(--bg)); }
+  tr:last-child td { border-bottom: none; }
+  .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+  .g { background: var(--green); } .y { background: var(--yellow); } .r { background: var(--red); } .n { background: var(--gray); }
+  .badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 8px; border-radius: 9px; color: #fff; }
+  .funnel { display: flex; gap: 4px; margin: 8px 0 4px; flex-wrap: wrap; }
+  .fseg { flex: 1; min-width: 60px; text-align: center; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 8px 4px; }
+  .fseg .lv { font-size: 10px; color: var(--muted); }
+  .fseg .mw { font-size: 15px; font-weight: 700; }
+  .note { color: var(--muted); font-size: 12px; margin-top: 6px; }
+  .brief-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px; }
+  .brief-col { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+  .brief-col h3 { font-size: 13px; margin-bottom: 8px; }
+  .bmeta { font-weight: 400; color: var(--muted); font-size: 11px; }
+  .sig { padding: 6px 0; border-bottom: 1px solid var(--line); font-size: 12px; }
+  .sig:last-child { border-bottom: none; }
+  .sig .ent { font-weight: 600; }
+  .sig .cnt { color: var(--muted); }
+  .sig a { display: block; color: var(--muted); font-size: 11px; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .sig a:hover { color: var(--accent); }
+  .err { color: var(--red); background: var(--card); border: 1px solid var(--red); border-radius: 10px; padding: 14px; margin-top: 20px; }
+  a { color: var(--accent); text-decoration: none; }
+  .tablewrap { overflow-x: auto; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>工作台 <a href="index.html" style="font-size:13px;font-weight:400">← 返回报告</a></h1>
+  <div class="sub">数据中心研究数据枢纽 · 数据在变，框架不变 · <span id="updated"></span> ·
+    <a href="doc.html?f=framework/00_overview.md">框架总览</a> ·
+    <a href="doc.html?f=framework/01_data_standards.md">口径手册</a> ·
+    <a href="doc.html?f=framework/02_knowledge_format.md">知识格式</a> ·
+    <a href="doc.html?f=reports/verify_queue.md">核验队列</a> ·
+    <a href="doc.html?f=reports/daily_brief.md">今日简报</a></div>
+
+  <div class="stats" id="stats"></div>
+
+  <div id="briefSection" style="display:none">
+    <h2>今日信号 <span id="briefDate" style="font-weight:400;color:var(--muted);font-size:13px"></span></h2>
+    <div class="brief-grid">
+      <div class="brief-col">
+        <h3>📰 新闻信号 <span class="bmeta" id="newsMeta"></span></h3>
+        <div id="newsSignals"></div>
+      </div>
+      <div class="brief-col">
+        <h3>🏛️ SEC 文件（近7天）</h3>
+        <div id="secFilings"></div>
+      </div>
+      <div class="brief-col">
+        <h3>✅ 核验队列 <span class="bmeta" id="verifyMeta"></span></h3>
+        <div id="verifyItems"></div>
+      </div>
+    </div>
+  </div>
+
+  <h2>项目漏斗（九级，按 IT 容量 MW 聚合，仅 L8+ 计入"现有规模"）</h2>
+  <div class="funnel" id="funnel"></div>
+  <div class="note">口径：capacity_it_mw（含 by_status 拆分）；集群级/未填容量的记录不计入。规则见 framework/01_data_standards.md</div>
+
+  <h2>监测仪表盘（L4 · 红黄绿）</h2>
+  <div class="tablewrap"><table id="indicators"></table></div>
+
+  <h2>研究模块（L2 · 15 模块）</h2>
+  <div class="modules" id="modules"></div>
+
+  <h2>项目库（L0）</h2>
+  <div class="tablewrap"><table id="projects"></table></div>
+
+  <div class="note" style="margin-top:24px">
+    本页为静态视图：<code>python3 -m http.server 8000</code> 后打开。数据文件位于 <code>data/</code>，
+    框架文件位于 <code>framework/</code>。校验：<code>python3 pipeline/validate.py</code>
+  </div>
+  <div id="error"></div>
+</div>
+
+<script>
+const DIM_NAMES = { physical: "物理", capital: "资本", economics: "经济学", cross: "横切", synthesis: "综合" };
+
+async function loadJSON(path) {
+  const r = await fetch(path + "?t=" + Date.now(), { cache: "no-store" });
+  if (!r.ok) throw new Error(path + " → HTTP " + r.status);
+  return r.json();
+}
+
+function indicatorStatus(ind) {
+  if (ind.value === null || ind.value === undefined) return ["n", "待录入"];
+  const { direction, yellow, red, value } = ind;
+  if (direction === "info" || yellow === null) return ["g", "跟踪中"];
+  const worse = direction === "above" ? (v, t) => v >= t : (v, t) => v <= t;
+  if (red !== null && worse(value, red)) return ["r", "红"];
+  if (worse(value, yellow)) return ["y", "黄"];
+  return ["g", "绿"];
+}
+
+function projectCapacity(p) {
+  const by = {};
+  if (p.capacity_it_mw_by_status) Object.assign(by, p.capacity_it_mw_by_status);
+  else if (p.capacity_it_mw) by[p.status] = p.capacity_it_mw;
+  return by;
+}
+
+(async () => {
+  try {
+    const [mods, inds, projects, companies, prices, contracts] = await Promise.all([
+      loadJSON("framework/modules.json"), loadJSON("framework/indicators.json"),
+      loadJSON("data/projects.json"), loadJSON("data/companies.json"),
+      loadJSON("data/prices.json"), loadJSON("data/contracts.json"),
+    ]);
+    document.getElementById("updated").textContent = "框架 v" + mods.version + " · " + mods.updated;
+
+    // 今日信号（brief.json 由 pipeline/collect.py 生成；没有则隐藏该区块）
+    try {
+      const brief = await loadJSON("data/brief.json");
+      document.getElementById("briefSection").style.display = "";
+      document.getElementById("briefDate").textContent = brief.date + "（" + (brief.generated || "").slice(11, 16) + " 生成）";
+      document.getElementById("newsMeta").textContent = `扫描 ${brief.news.scanned_items} 条 / ${(brief.news.scanned_dates || []).length} 天`;
+      document.getElementById("newsSignals").innerHTML = brief.news.entities.slice(0, 8).map(e =>
+        `<div class="sig"><span class="ent">${e.name}</span> <span class="cnt">${e.count} 条</span>` +
+        e.top.slice(0, 2).map(t => `<a href="${t.url}" target="_blank">[${t.source}] ${t.title}</a>`).join("") + `</div>`).join("")
+        || '<div class="note">无信号</div>';
+      document.getElementById("secFilings").innerHTML = brief.sec.slice(0, 8).map(f =>
+        `<div class="sig"><span class="ent">${f.name}</span> <span class="cnt">${f.form} · ${f.date}</span>` +
+        `<a href="${f.url}" target="_blank">查看文件</a></div>`).join("") || '<div class="note">近 7 天无新文件</div>';
+      document.getElementById("verifyMeta").textContent = `P1 ${brief.verify.p1} 条 · P2 ${brief.verify.p2} 条`;
+      document.getElementById("verifyItems").innerHTML = brief.verify.items.slice(0, 8).map(q =>
+        `<div class="sig"><span class="ent">${q.table} / ${q.id}</span><div class="cnt">${q.reason}</div></div>`).join("")
+        || '<div class="note">P1 清零 🎉</div>';
+    } catch (e) { /* brief.json 缺失时隐藏区块 */ }
+
+    // 统计行
+    let totalFindings = 0;
+    try {
+      const rs = (await loadJSON("data/brief.json")).research || {};
+      totalFindings = Object.values(rs).reduce((a, s) => a + (s.findings || 0), 0);
+    } catch (e) {}
+    const stats = [
+      [totalFindings, "研究结论"], [projects.records.length, "项目"],
+      [companies.records.length, "公司"], [prices.records.length, "价格点"],
+      [contracts.records.length, "合同"], [mods.modules.length, "模块"],
+      [inds.indicators.length, "监测指标"],
+    ];
+    document.getElementById("stats").innerHTML = stats.map(
+      ([n, l]) => `<div class="stat"><div class="num">${n}</div><div class="lbl">${l}</div></div>`).join("");
+
+    // 漏斗
+    const funnel = Object.fromEntries(Array.from({length: 9}, (_, i) => ["L" + (i + 1), 0]));
+    projects.records.forEach(p => {
+      const by = projectCapacity(p);
+      for (const [lv, mw] of Object.entries(by)) if (funnel[lv] !== undefined) funnel[lv] += mw;
+    });
+    document.getElementById("funnel").innerHTML = Object.entries(funnel).map(
+      ([lv, mw]) => `<div class="fseg"><div class="lv">${lv}</div><div class="mw">${mw ? mw.toLocaleString() : "–"}</div></div>`).join("");
+
+    // 指标表
+    const it = ['<tr><th></th><th>指标</th><th>模块</th><th>当前值</th><th>时点</th><th>阈值(黄/红)</th><th>频率</th></tr>'];
+    inds.indicators.forEach(ind => {
+      const [cls, txt] = indicatorStatus(ind);
+      it.push(`<tr><td><span class="dot ${cls}"></span>${txt}</td><td>${ind.name}</td><td>${ind.module}</td>` +
+        `<td>${ind.value ?? "—"} ${ind.value != null ? ind.unit : ""}</td><td>${ind.as_of ?? "—"}</td>` +
+        `<td>${ind.yellow ?? "—"} / ${ind.red ?? "—"}</td><td>${ind.freq}</td></tr>`);
+    });
+    document.getElementById("indicators").innerHTML = it.join("");
+
+    // 模块卡片（研究文档状态来自 brief.research，collect.py 生成）
+    let rstats = {};
+    try { rstats = (await loadJSON("data/brief.json")).research || {}; } catch (e) {}
+    const dimOf = {};
+    for (const [dim, ids] of Object.entries(mods.dimensions)) ids.forEach(id => dimOf[id] = dim);
+    document.getElementById("modules").innerHTML = mods.modules.map(m => {
+      const rs = rstats[m.id];
+      const link = m.research
+        ? `<a class="doclink" href="doc.html?f=${m.research}">📄 ${rs ? rs.findings + " 条结论" : "研究文档"}${rs && rs.needs_review ? " ⚠️" + rs.needs_review : ""}</a>`
+        : `<span class="doclink muted">待迁入</span>`;
+      return `<div class="mod"><span class="id">${m.id}</span><span class="dim-tag">${DIM_NAMES[dimOf[m.id]] || ""}</span>` + link +
+        `<div class="nm">${m.name}</div><div class="meta">${m.en} · ${m.update_freq} · 表: ${m.tables.join(", ")}` +
+        `${m.source_questions.length ? " · " + m.source_questions.join(" ") : ""}</div></div>`;
+    }).join("");
+
+    // 项目表
+    const STATUS_COLOR = lv => +lv.slice(1) >= 8 ? "var(--green)" : +lv.slice(1) >= 6 ? "var(--yellow)" : "var(--gray)";
+    const pt = ['<tr><th>项目</th><th>地点</th><th>状态</th><th>IT容量(MW)</th><th>类型</th><th>核验日期</th></tr>'];
+    projects.records.forEach(p => {
+      const by = projectCapacity(p);
+      const capStr = Object.entries(by).map(([l, m]) => `${l}:${m}`).join(" ") || "—";
+      pt.push(`<tr><td>${p.name}${p.disputed ? " ⚠️" : ""}</td><td>${p.location}</td>` +
+        `<td><span class="badge" style="background:${STATUS_COLOR(p.status)}">${p.status}</span></td>` +
+        `<td>${capStr}</td><td>${p.type}</td><td>${p.verified_date}</td></tr>`);
+    });
+    document.getElementById("projects").innerHTML = pt.join("");
+  } catch (e) {
+    document.getElementById("error").innerHTML = `<div class="err">加载失败：${e.message}<br>请用 <code>python3 -m http.server 8000</code> 启动后访问（file:// 协议无法 fetch JSON）。</div>`;
+  }
+})();
+</script>
+</body>
+</html>

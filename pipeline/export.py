@@ -110,6 +110,12 @@ def main():
              ""]
     all_findings, warn_count, chapters = [], 0, 0
 
+    # 执行摘要（全量导出时置于篇首；专题导出跳过）
+    summary = RESEARCH / "SUMMARY.md"
+    if not selected and summary.exists():
+        body = re.sub(r"^#\s+.*\n", "", summary.read_text(encoding="utf-8"), count=1)
+        lines += ["## 执行摘要", "", body.strip(), ""]
+
     for m in mods:
         rp = m.get("research")
         if not rp or not (ROOT / rp).exists():
