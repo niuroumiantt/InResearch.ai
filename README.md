@@ -15,11 +15,15 @@
 
 ```
 L4 监测层   index.html 仪表盘 + framework/indicators.json 阈值预警
-L3 输出层   reports/ — PDF / PPT / Word / 公众号文章 / 数据切片（按需生成）
-L2 模块层   framework/modules/ — 15 个研究模块（只做"视图"，不存数据）
-L1 方法论层 framework/01_data_standards.md — 口径规则、九级漏斗、去重规则（不变的灵魂）
+L3 输出层   reports/ — 报告 = 从知识层按角度导出的产物（PDF / PPT / Word / 公众号）
+L2 模块层   framework/modules/（定义：问什么）+ research/（知识层：答什么——项目主体）
+L1 方法论层 framework/01_data_standards.md 口径规则 + 02_knowledge_format.md 知识格式
 L0 数据层   data/ — 六张实体表（项目/公司/价格/政策/合同/来源），实体为主键
 ```
+
+**知识层（`research/Mxx.md`）是项目的主体**：每模块一份活研究文档，由带状态和
+触发器的 Finding（结论+论证+证据+口径提醒）组成；35 问报告是其初始内容来源，
+信号管线驱动其持续修订，报告导出器从它按角度汇编产出物。
 
 ## 目录结构
 
@@ -29,6 +33,8 @@ L0 数据层   data/ — 六张实体表（项目/公司/价格/政策/合同/�
 | `framework/01_data_standards.md` | L1 | **口径与核验规则手册**（每条数据入库必须遵守） |
 | `framework/modules.json` | L2 | 模块注册表（机器可读：依赖表、更新频率、Q 映射） |
 | `framework/modules/M01–M15.md` | L2 | 各模块定义：核心问题、关键指标、数据依赖 |
+| `framework/02_knowledge_format.md` | L1 | 知识层格式规范（Finding 结构、状态机、触发器） |
+| `research/Mxx.md` | **L2 主体** | 模块研究文档：可独立更新的研究结论库 |
 | `framework/indicators.json` | L4 | 监测指标注册表（指标、阈值、红黄绿、来源、频率） |
 | `data/schema/*.schema.json` | L0 | 六张表的字段定义与约束 |
 | `data/projects.json` 等 | L0 | 实体数据（含种子数据，`verified` 标注核验状态） |
