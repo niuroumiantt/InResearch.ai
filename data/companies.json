@@ -1,18 +1,889 @@
 {
-  "_note": "公司库（L0）。种子数据：覆盖各角色至少一家作示范。cik 为 SEC EDGAR 检索用（10 位补零）；标 null 的待补。",
+  "_note": "公司库（L0）。迁移自《玩家清单》41 条（2026-07-23 核验）+ 项目开发商补录。芯片自研线（TPU/Trainium/Maia/MTIA/Jalapeño）并入母公司档案。cik 由 pipeline/update_ciks.py 按 ticker 自动回填；非美股为 null。",
   "records": [
-    {"company_id": "microsoft", "name": "Microsoft", "name_cn": "微软", "ticker": "NASDAQ:MSFT", "cik": "0000789019", "roles": ["hyperscaler"], "modules": ["M02", "M03"], "hq_country": "US", "profile": "四大云厂之一；自建+租赁双轨扩张，Fairwater 系列 AI 园区", "ir_url": "https://www.microsoft.com/en-us/investor", "verified_date": "2026-08-14"},
-    {"company_id": "nvidia", "name": "NVIDIA", "name_cn": "英伟达", "ticker": "NASDAQ:NVDA", "cik": "0001045810", "roles": ["chip", "capital"], "modules": ["M06", "M11"], "hq_country": "US", "profile": "AI 芯片主导者；同时以投资/预付深度介入客户资金链（循环交易观察对象）", "ir_url": "https://investor.nvidia.com", "verified_date": "2026-08-14"},
-    {"company_id": "oracle", "name": "Oracle", "name_cn": "甲骨文", "ticker": "NYSE:ORCL", "cik": "0001341439", "roles": ["hyperscaler"], "modules": ["M02", "M03"], "hq_country": "US", "profile": "OCI 以大额算力合同（Stargate）跃入第一梯队；RPO 是需求侧关键监测数", "ir_url": "https://investor.oracle.com", "verified_date": "2026-08-14"},
-    {"company_id": "openai", "name": "OpenAI", "name_cn": "OpenAI", "ticker": null, "cik": null, "roles": ["ai-lab"], "modules": ["M03", "M12"], "hq_country": "US", "profile": "最大单一算力需求方；Stargate 主导者；收入/支出比是 M12 核心监测对象", "ir_url": null, "verified_date": "2026-08-14"},
-    {"company_id": "coreweave", "name": "CoreWeave", "name_cn": "CoreWeave", "ticker": "NASDAQ:CRWV", "cik": null, "roles": ["neocloud"], "modules": ["M02", "M11", "M13"], "hq_country": "US", "profile": "Neocloud 龙头；GPU 抵押融资模式样本；cik 待补", "ir_url": "https://investors.coreweave.com", "verified_date": "2026-08-14"},
-    {"company_id": "crusoe", "name": "Crusoe", "name_cn": "Crusoe", "ticker": null, "cik": null, "roles": ["neocloud", "construction"], "modules": ["M02"], "hq_country": "US", "profile": "Stargate Abilene 开发商；能源优先选址模式", "ir_url": null, "verified_date": "2026-08-14"},
-    {"company_id": "meta", "name": "Meta", "name_cn": "Meta", "ticker": "NASDAQ:META", "cik": "0001326801", "roles": ["hyperscaler"], "modules": ["M02", "M03"], "hq_country": "US", "profile": "自建为主；Prometheus/Hyperion GW 级园区；帐篷式快建样本", "ir_url": "https://investor.atmeta.com", "verified_date": "2026-08-14"},
-    {"company_id": "xai", "name": "xAI", "name_cn": "xAI", "ticker": null, "cik": null, "roles": ["ai-lab"], "modules": ["M03"], "hq_country": "US", "profile": "Colossus 自建速度样本；自备电源激进路线", "ir_url": null, "verified_date": "2026-08-14"},
-    {"company_id": "digital-realty", "name": "Digital Realty", "name_cn": "数字房地产信托", "ticker": "NYSE:DLR", "cik": "0001297996", "roles": ["colo"], "modules": ["M02", "M11"], "hq_country": "US", "profile": "全球最大批发托管商之一；REIT 估值锚（M11 comps 表成员）", "ir_url": "https://investor.digitalrealty.com", "verified_date": "2026-08-14"},
-    {"company_id": "vertiv", "name": "Vertiv", "name_cn": "维谛技术", "ticker": "NYSE:VRT", "cik": null, "roles": ["cooling", "electrical"], "modules": ["M08", "M09", "M11"], "hq_country": "US", "profile": "散热+电源双线设备龙头；订单簿是行业景气度前瞻指标；cik 待补", "ir_url": "https://investors.vertiv.com", "verified_date": "2026-08-14"},
-    {"company_id": "delta-electronics", "name": "Delta Electronics", "name_cn": "台达电子", "ticker": "TWSE:2308", "cik": null, "roles": ["cooling", "electrical"], "modules": ["M08", "M09", "M14"], "hq_country": "TW", "profile": "电源/散热链亚洲主力；800V HVDC 生态关键玩家", "ir_url": "https://www.deltaww.com/en-US/investors", "verified_date": "2026-08-14"},
-    {"company_id": "ge-vernova", "name": "GE Vernova", "name_cn": "GE 弗诺瓦", "ticker": "NYSE:GEV", "cik": null, "roles": ["electrical", "utility"], "modules": ["M04", "M09"], "hq_country": "US", "profile": "燃气轮机三巨头之一；订单簿年数 = gas_turbine_backlog_years 指标来源；cik 待补", "ir_url": "https://www.gevernova.com/investors", "verified_date": "2026-08-14"},
-    {"company_id": "huawei", "name": "Huawei", "name_cn": "华为", "ticker": null, "cik": null, "roles": ["chip", "server-odm", "electrical"], "modules": ["M14"], "hq_country": "CN", "profile": "昇腾生态核心；国产算力链锚点（M14 第一观察对象）", "ir_url": null, "verified_date": "2026-08-14"}
+    {
+      "company_id": "microsoft",
+      "name": "Microsoft",
+      "name_cn": "微软",
+      "ticker": "NASDAQ:MSFT",
+      "cik": "0000789019",
+      "roles": [
+        "hyperscaler",
+        "chip"
+      ],
+      "modules": [
+        "M02",
+        "M03",
+        "M06"
+      ],
+      "hq_country": "US",
+      "profile": "2026自然年分析口径约1900亿美元capex（需拆分服务器/租赁/建筑）；Fairwater multi-gigawatt 跨州网络（威斯康星已上线）；Maia 200 已在 Iowa/Arizona 部署（30%性能/美元仅对自身机队）",
+      "ir_url": "https://www.microsoft.com/en-us/investor",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "amazon",
+      "name": "Amazon / AWS",
+      "name_cn": "亚马逊",
+      "ticker": "NASDAQ:AMZN",
+      "cik": "0001018724",
+      "roles": [
+        "hyperscaler",
+        "chip"
+      ],
+      "modules": [
+        "M02",
+        "M03",
+        "M06"
+      ],
+      "hq_country": "US",
+      "profile": "2026 capex约2000亿美元口径；Trainium2约140万颗落地（芯片数不折算MW）；Trainium3 GA、Trainium4预计2027；Project Rainier 5GW为协议上限非当前容量",
+      "ir_url": "https://ir.aboutamazon.com",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "alphabet-google",
+      "name": "Alphabet / Google",
+      "name_cn": "谷歌",
+      "ticker": "NASDAQ:GOOGL",
+      "cik": "0001652044",
+      "roles": [
+        "hyperscaler",
+        "chip"
+      ],
+      "modules": [
+        "M02",
+        "M03",
+        "M06"
+      ],
+      "hq_country": "US",
+      "profile": "2026 capex约1750—1850亿美元；TPU Ironwood GA、TPU8t/8i Coming soon（44% TCO非官方公开基准）；Visakhapatnam 印度 Mega AI Hub 计划",
+      "ir_url": "https://abc.xyz/investor/",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "meta",
+      "name": "Meta",
+      "name_cn": "Meta",
+      "ticker": "NASDAQ:META",
+      "cik": "0001326801",
+      "roles": [
+        "hyperscaler",
+        "chip"
+      ],
+      "modules": [
+        "M02",
+        "M03",
+        "M06"
+      ],
+      "hq_country": "US",
+      "profile": "2026 capex约1250—1450亿美元；Hyperion 5GW规划、Prometheus 1GW+；MTIA 现有推理部署与未来多代路线分开（Broadcom 合作）",
+      "ir_url": "https://investor.atmeta.com",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "oracle",
+      "name": "Oracle",
+      "name_cn": "甲骨文",
+      "ticker": "NYSE:ORCL",
+      "cik": "0001341439",
+      "roles": [
+        "hyperscaler"
+      ],
+      "modules": [
+        "M02",
+        "M03"
+      ],
+      "hq_country": "US",
+      "profile": "OCI 以大额算力合同（Stargate）跃入第一梯队；RPO 是需求侧关键监测数",
+      "ir_url": "https://investor.oracle.com",
+      "verified_date": "2026-08-14"
+    },
+    {
+      "company_id": "openai",
+      "name": "OpenAI",
+      "name_cn": "OpenAI",
+      "ticker": null,
+      "cik": null,
+      "roles": [
+        "ai-lab",
+        "chip"
+      ],
+      "modules": [
+        "M03",
+        "M06",
+        "M12"
+      ],
+      "hq_country": "US",
+      "profile": "最大单一算力需求方；Stargate 主导者；Jalapeño 首代推理芯片（Broadcom合作）目标2026年底初始部署，10GW为多年计划不计入当前容量",
+      "ir_url": null,
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "anthropic",
+      "name": "Anthropic",
+      "name_cn": "Anthropic",
+      "ticker": null,
+      "cik": null,
+      "roles": [
+        "ai-lab"
+      ],
+      "modules": [
+        "M03",
+        "M12"
+      ],
+      "hq_country": "US",
+      "profile": "多云算力策略：AWS Project Rainier（Trainium）+ 获得 xAI Colossus 1 容量 + Google TPU；收入/支出比是 M12 监测对象",
+      "ir_url": null,
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "xai",
+      "name": "SpaceXAI / xAI",
+      "name_cn": "xAI",
+      "ticker": null,
+      "cik": null,
+      "roles": [
+        "ai-lab"
+      ],
+      "modules": [
+        "M03"
+      ],
+      "hq_country": "US",
+      "profile": "Colossus 1 官方披露220,000+ GPU 运营；2025年末 I/II 超过100万 H100 等效（GPU等效与物理GPU数量必须分开）；总MW/GW未公开；已并入 SpaceXAI",
+      "ir_url": null,
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "equinix",
+      "name": "Equinix",
+      "name_cn": "易昆尼克斯",
+      "ticker": "NASDAQ:EQIX",
+      "cik": "0001101239",
+      "roles": [
+        "colo"
+      ],
+      "modules": [
+        "M02",
+        "M11"
+      ],
+      "hq_country": "US",
+      "profile": "零售托管/xScale：281座/77市场（公司口径）；Q1 2026约60%的最大交易与AI相关（60%不是全部业务占比）",
+      "ir_url": "https://investor.equinix.com",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "digital-realty",
+      "name": "Digital Realty",
+      "name_cn": "数字房地产信托",
+      "ticker": "NYSE:DLR",
+      "cik": "0001297996",
+      "roles": [
+        "colo"
+      ],
+      "modules": [
+        "M02",
+        "M11"
+      ],
+      "hq_country": "US",
+      "profile": "现有IT容量3.024GW、在建1.169GW、可开发约6.3GW（三层必须分列）；必须分 100% share 与 DLR share；REIT 估值锚",
+      "ir_url": "https://investor.digitalrealty.com",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "vantage",
+      "name": "Vantage Data Centers",
+      "name_cn": "Vantage",
+      "ticker": null,
+      "cik": null,
+      "roles": [
+        "colo"
+      ],
+      "modules": [
+        "M02"
+      ],
+      "hq_country": "US",
+      "profile": "BTS/批发：41园区、26市场、组合约9GW（运营+建设+规划混合口径，不可写成已运营IT负载）；Frontier 1.4GW 德州园区",
+      "ir_url": "https://vantage-dc.com/",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "qts",
+      "name": "QTS Data Centers",
+      "name_cn": "QTS",
+      "ticker": null,
+      "cik": null,
+      "roles": [
+        "colo"
+      ],
+      "modules": [
+        "M02"
+      ],
+      "hq_country": "US",
+      "profile": "BTS/批发：75+设施运营或开发中（混合口径）；暂不提供全球总MW；Blackstone 所有",
+      "ir_url": "https://www.qtsdatacenters.com/",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "cyrusone",
+      "name": "CyrusOne",
+      "name_cn": "CyrusOne",
+      "ticker": null,
+      "cik": null,
+      "roles": [
+        "colo"
+      ],
+      "modules": [
+        "M02"
+      ],
+      "hq_country": "US",
+      "profile": "60+运营设施、50+开发项目、官网1GW+电力容量（1GW+与德州1.1GW供电协议不能相加）；KKR/GIP 2022年150亿美元私有化",
+      "ir_url": "https://www.cyrusone.com/",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "stack-infrastructure",
+      "name": "STACK Infrastructure",
+      "name_cn": "STACK",
+      "ticker": null,
+      "cik": null,
+      "roles": [
+        "colo"
+      ],
+      "modules": [
+        "M02"
+      ],
+      "hq_country": "US",
+      "profile": "区域页面组合潜力至少约6.1GW（运营+开发+规划混合，需逐园区拆状态）；Stargate Doña Ana 开发商",
+      "ir_url": "https://www.stackinfra.com/",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "switch",
+      "name": "Switch",
+      "name_cn": "Switch",
+      "ticker": null,
+      "cik": null,
+      "roles": [
+        "colo"
+      ],
+      "modules": [
+        "M02"
+      ],
+      "hq_country": "US",
+      "profile": "园区运营商：Las Vegas 495MW、Grand Rapids 237MW、Atlanta 150MW+扩展潜力（完工潜力口径，使用当前园区页，不沿用旧总量）",
+      "ir_url": "https://www.switch.com/",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "coreweave",
+      "name": "CoreWeave",
+      "name_cn": "CoreWeave",
+      "ticker": "NASDAQ:CRWV",
+      "cik": "0001769628",
+      "roles": [
+        "neocloud"
+      ],
+      "modules": [
+        "M02",
+        "M11",
+        "M13"
+      ],
+      "hq_country": "US",
+      "profile": "Neocloud 龙头；backlog约668亿美元（合同积压非容量；不得写接近1000亿美元除非补官方更新）；GPU 抵押融资模式样本；Meta/Anthropic 合同",
+      "ir_url": "https://investors.coreweave.com",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "nebius",
+      "name": "Nebius",
+      "name_cn": "Nebius",
+      "ticker": "NASDAQ:NBIS",
+      "cik": "0001513845",
+      "roles": [
+        "neocloud"
+      ],
+      "modules": [
+        "M02",
+        "M11"
+      ],
+      "hq_country": "NL",
+      "profile": "已锁定/签约电力目标2.5GW，预计2026年底实际接电0.8—1.0GW（合同电力与接电分开）；Microsoft、Meta 合同",
+      "ir_url": "https://nebius.com/investors",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "crusoe",
+      "name": "Crusoe",
+      "name_cn": "Crusoe",
+      "ticker": null,
+      "cik": null,
+      "roles": [
+        "neocloud",
+        "construction"
+      ],
+      "modules": [
+        "M02",
+        "M04"
+      ],
+      "hq_country": "US",
+      "profile": "Stargate Abilene 开发方；4.5GW天然气为规划/锁定供能（非投运）；已退出 Project Jade",
+      "ir_url": null,
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "lambda",
+      "name": "Lambda",
+      "name_cn": "Lambda",
+      "ticker": null,
+      "cik": null,
+      "roles": [
+        "neocloud"
+      ],
+      "modules": [
+        "M02",
+        "M11",
+        "M13"
+      ],
+      "hq_country": "US",
+      "profile": "与Microsoft签署数十亿美元多年协议；2026年获得10亿美元信贷；产品覆盖5—75MW分布式站点；Kansas City 首期24MW、潜力100MW+需分阶段（GW级目标不等于已运营GW）",
+      "ir_url": "https://lambda.ai/",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "nxtra",
+      "name": "Nxtra by Airtel",
+      "name_cn": "Nxtra",
+      "ticker": null,
+      "cik": null,
+      "roles": [
+        "colo"
+      ],
+      "modules": [
+        "M02"
+      ],
+      "hq_country": "IN",
+      "profile": "印度：约300MW当前、目标1GW（目标不等于已建成）；14+大型+120+边缘设施；Alpha Wave/Carlyle 投资",
+      "ir_url": "https://www.nxtra.in/",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "ntt-data",
+      "name": "NTT DATA",
+      "name_cn": "NTT数据",
+      "ticker": "TYO:9613",
+      "cik": null,
+      "roles": [
+        "colo"
+      ],
+      "modules": [
+        "M02"
+      ],
+      "hq_country": "JP",
+      "profile": "全球/日本运营商；Keihanna OSK11 30MW 已运营（项目值不可外推全球总量）",
+      "ir_url": "https://www.nttdata.com/global/en/about-us/ir",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "kddi",
+      "name": "KDDI / Telehouse",
+      "name_cn": "KDDI",
+      "ticker": "TYO:9433",
+      "cik": null,
+      "roles": [
+        "colo"
+      ],
+      "modules": [
+        "M02"
+      ],
+      "hq_country": "JP",
+      "profile": "Osaka Sakai AI DC（GB200+直接液冷，2026-01运营）；Telehouse TOKYO Tama 5-2nd 18MW 在建（2027年秋开业）",
+      "ir_url": "https://www.kddi.com/english/corporate/ir/",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "scala",
+      "name": "Scala Data Centers",
+      "name_cn": "Scala",
+      "ticker": null,
+      "cik": null,
+      "roles": [
+        "colo"
+      ],
+      "modules": [
+        "M02"
+      ],
+      "hq_country": "BR",
+      "profile": "拉美：Tamboré 450MW规划、AI City首期54MW（分项目与阶段）；DigitalBridge 支持",
+      "ir_url": "https://scaladatacenters.com/",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "cirion",
+      "name": "Cirion Technologies",
+      "name_cn": "Cirion",
+      "ticker": null,
+      "cik": null,
+      "roles": [
+        "colo",
+        "network"
+      ],
+      "modules": [
+        "M02",
+        "M07"
+      ],
+      "hq_country": "MULTI",
+      "profile": "拉美运营商/网络：12主要DC、3在建、10 edge（160互联DC非自有设施）；Stonepeak 所有",
+      "ir_url": "https://www.ciriontechnologies.com/",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "digital-edge",
+      "name": "Digital Edge",
+      "name_cn": "Digital Edge",
+      "ticker": null,
+      "cik": null,
+      "roles": [
+        "colo"
+      ],
+      "modules": [
+        "M02"
+      ],
+      "hq_country": "SG",
+      "profile": "亚太9国平台；韩国 Bupyeong 96MW（36运营+60在建，历史120MW规划已废弃）、SEL5 Ansan 60MW已获电力；Stonepeak 支持",
+      "ir_url": "https://www.digitaledgedc.com/",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "stt-gdc",
+      "name": "STT GDC India",
+      "name_cn": "新电信数据中心（印度）",
+      "ticker": null,
+      "cik": null,
+      "roles": [
+        "colo"
+      ],
+      "modules": [
+        "M02"
+      ],
+      "hq_country": "IN",
+      "profile": "Chennai Siruseri 园区45MW（首期7.2MW运营）；Hyderabad 100MW 为 MoU/规划",
+      "ir_url": "https://www.sttelemediagdc.com/",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "odata",
+      "name": "ODATA (Aligned)",
+      "name_cn": "ODATA",
+      "ticker": null,
+      "cik": null,
+      "roles": [
+        "colo"
+      ],
+      "modules": [
+        "M02"
+      ],
+      "hq_country": "MX",
+      "profile": "QR03 Querétaro：200MW 园区供电通电（供电口径非IT满载），目标300MW；母公司 Aligned",
+      "ir_url": "https://aligneddc.com/",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "gds",
+      "name": "GDS Holdings",
+      "name_cn": "万国数据",
+      "ticker": "NASDAQ:GDS",
+      "cik": "0001526125",
+      "roles": [
+        "colo"
+      ],
+      "modules": [
+        "M02",
+        "M14"
+      ],
+      "hq_country": "CN",
+      "profile": "2026Q1在服面积674,269平米、利用率77.3%、在建118,411平米（按面积披露，不与VNET的MW直接排名；200MW为新增签约非新增投运）；持有DayOne少数股权",
+      "ir_url": "https://investors.gds-services.com",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "vnet",
+      "name": "VNET Group",
+      "name_cn": "世纪互联",
+      "ticker": "NASDAQ:VNET",
+      "cik": "0001508475",
+      "roles": [
+        "colo"
+      ],
+      "modules": [
+        "M02",
+        "M14"
+      ],
+      "hq_country": "CN",
+      "profile": "2026Q1批发在服907MW、在建516MW、客户使用687MW、利用率75.7%；零售50,170柜、利用率64.1%（批发MW与零售机柜必须分栏；承诺869MW不等于使用687MW）",
+      "ir_url": "https://ir.vnet.com",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "chindata",
+      "name": "秦淮数据 / Chindata (Wintrix)",
+      "name_cn": "秦淮数据",
+      "ticker": null,
+      "cik": null,
+      "roles": [
+        "colo"
+      ],
+      "modules": [
+        "M02",
+        "M14"
+      ],
+      "hq_country": "CN",
+      "profile": "公开容量主要停留在2023年（投运及在建近900MW），不能作为2026实时容量；2026年 HEC 牵头财团完成约40亿美元中国业务收购，需项目级刷新",
+      "ir_url": "https://www.chindatagroup.com/",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "nvidia",
+      "name": "NVIDIA",
+      "name_cn": "英伟达",
+      "ticker": "NASDAQ:NVDA",
+      "cik": "0001045810",
+      "roles": [
+        "chip",
+        "capital"
+      ],
+      "modules": [
+        "M06",
+        "M11"
+      ],
+      "hq_country": "US",
+      "profile": "GB300 NVL72 135kW TDP/155kW峰值（功率区分TDP、峰值、设施设计）；Vera Rubin 当前官方为NVL72；以投资/预付深度介入客户资金链（循环交易观察对象）",
+      "ir_url": "https://investor.nvidia.com",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "amd",
+      "name": "AMD",
+      "name_cn": "超威",
+      "ticker": "NASDAQ:AMD",
+      "cik": "0000002488",
+      "roles": [
+        "chip"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "hq_country": "US",
+      "profile": "MI355X 1400W TBP；Helios 整柜72颗MI455X，2026H2开始出货；与Microsoft/OpenAI/Meta的6GW协议均为多年里程碑（非当前部署）",
+      "ir_url": "https://ir.amd.com",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "schneider-electric",
+      "name": "Schneider Electric / Motivair",
+      "name_cn": "施耐德电气",
+      "ticker": "EPA:SU",
+      "cik": null,
+      "roles": [
+        "electrical",
+        "cooling"
+      ],
+      "modules": [
+        "M08",
+        "M09"
+      ],
+      "hq_country": "FR",
+      "profile": "Motivair 75%控股（剩余25%计划后续取得）；CDU单机2.5MW",
+      "ir_url": "https://www.se.com/ww/en/about-us/investor-relations/",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "eaton",
+      "name": "Eaton / Boyd Thermal",
+      "name_cn": "伊顿",
+      "ticker": "NYSE:ETN",
+      "cik": "0001551182",
+      "roles": [
+        "electrical",
+        "cooling"
+      ],
+      "modules": [
+        "M08",
+        "M09"
+      ],
+      "hq_country": "US",
+      "profile": "2026年3月完成95亿美元收购Boyd Thermal；Boyd预测2026销售17亿美元（预测销售不等于Eaton新增收入）",
+      "ir_url": "https://www.eaton.com/us/en-us/company/investor-relations.html",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "ecolab",
+      "name": "Ecolab / CoolIT",
+      "name_cn": "艺康",
+      "ticker": "NYSE:ECL",
+      "cik": "0000031462",
+      "roles": [
+        "cooling"
+      ],
+      "modules": [
+        "M08"
+      ],
+      "hq_country": "US",
+      "profile": "2026年7月完成约47.5亿美元收购CoolIT；CHx2000单机2MW（产能为公司披露，非交付量）；高科技业务目标2030年40亿美元",
+      "ir_url": "https://investor.ecolab.com",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "vertiv",
+      "name": "Vertiv / CoolTera",
+      "name_cn": "维谛技术",
+      "ticker": "NYSE:VRT",
+      "cik": "0001674101",
+      "roles": [
+        "cooling",
+        "electrical"
+      ],
+      "modules": [
+        "M08",
+        "M09",
+        "M11"
+      ],
+      "hq_country": "US",
+      "profile": "CoolTera 2023年末收购；CoolChip CDU最高2.3MW（集团订单不能全部归液冷）；订单簿是行业景气度前瞻指标",
+      "ir_url": "https://investors.vertiv.com",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "trane",
+      "name": "Trane Technologies / LiquidStack",
+      "name_cn": "特灵科技",
+      "ticker": "NYSE:TT",
+      "cik": "0001466258",
+      "roles": [
+        "cooling"
+      ],
+      "modules": [
+        "M08"
+      ],
+      "hq_country": "IE",
+      "profile": "2026年3月完成收购LiquidStack（浸没式先驱，保留品牌但母公司更新）",
+      "ir_url": "https://investors.tranetechnologies.com",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "delta-electronics",
+      "name": "Delta Electronics",
+      "name_cn": "台达电子",
+      "ticker": "TWSE:2308",
+      "cik": null,
+      "roles": [
+        "cooling",
+        "electrical"
+      ],
+      "modules": [
+        "M08",
+        "M09",
+        "M14"
+      ],
+      "hq_country": "TW",
+      "profile": "电源/散热链亚洲主力；800V HVDC 生态关键玩家",
+      "ir_url": "https://www.deltaww.com/en-US/investors",
+      "verified_date": "2026-08-14"
+    },
+    {
+      "company_id": "ge-vernova",
+      "name": "GE Vernova",
+      "name_cn": "GE 弗诺瓦",
+      "ticker": "NYSE:GEV",
+      "cik": "0001996810",
+      "roles": [
+        "electrical",
+        "utility"
+      ],
+      "modules": [
+        "M04",
+        "M09"
+      ],
+      "hq_country": "US",
+      "profile": "燃气轮机三巨头之一；订单簿年数 = gas_turbine_backlog_years 指标来源",
+      "ir_url": "https://www.gevernova.com/investors",
+      "verified_date": "2026-08-14"
+    },
+    {
+      "company_id": "blackstone",
+      "name": "Blackstone",
+      "name_cn": "黑石",
+      "ticker": "NYSE:BX",
+      "cik": "0001393818",
+      "roles": [
+        "capital"
+      ],
+      "modules": [
+        "M11"
+      ],
+      "hq_country": "US",
+      "profile": "2026年披露全球数据中心平台约1650亿美元、未来开发管道约1600亿美元、计划到2026年底投资或承诺约1000亿美元（平台/管道/已投资本不能混写）；QTS、AirTrunk、CoreWeave（AirTrunk 800MW+为客户承诺容量）",
+      "ir_url": "https://ir.blackstone.com",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "brookfield",
+      "name": "Brookfield",
+      "name_cn": "布鲁克菲尔德",
+      "ticker": "NYSE:BN",
+      "cik": "0001001085",
+      "roles": [
+        "capital"
+      ],
+      "modules": [
+        "M11"
+      ],
+      "hq_country": "CA",
+      "profile": "Compass 与 Data4 合计支持 1.6GW+ 合同容量和 3.5GW+ 开发潜力（开发潜力不等于在建或运营容量）",
+      "ir_url": "https://bn.brookfield.com",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "kkr",
+      "name": "KKR / GIP",
+      "name_cn": "KKR",
+      "ticker": "NYSE:KKR",
+      "cik": "0001404912",
+      "roles": [
+        "capital"
+      ],
+      "modules": [
+        "M11"
+      ],
+      "hq_country": "US",
+      "profile": "2022年联合GIP以150亿美元私有化CyrusOne（交易时约50座DC、约1GW电力容量——交易时点口径，不代表当前容量）",
+      "ir_url": "https://ir.kkr.com",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "mgx",
+      "name": "MGX",
+      "name_cn": "MGX",
+      "ticker": null,
+      "cik": null,
+      "roles": [
+        "capital"
+      ],
+      "modules": [
+        "M11"
+      ],
+      "hq_country": "AE",
+      "profile": "阿布扎比主权背景AI投资平台；MGX Fund I 最终关闭承诺规模490亿美元（基金规模不是已投入数据中心资本）；OpenAI、Anthropic、Khazna",
+      "ir_url": "https://www.mgx.ae/",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "pif-humain",
+      "name": "PIF / HUMAIN",
+      "name_cn": "沙特公共投资基金 / HUMAIN",
+      "ticker": null,
+      "cik": null,
+      "roles": [
+        "capital"
+      ],
+      "modules": [
+        "M11"
+      ],
+      "hq_country": "SA",
+      "profile": "PIF 创建 HUMAIN 并保持多数股权；与 Aramco 签署非约束性条款拟引入重要少数股东（交易未完成）；6.6GW、770亿美元只能作为管理层/媒体目标，不能写成官方批准规模",
+      "ir_url": "https://www.pif.gov.sa/",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "g42",
+      "name": "G42 / Khazna",
+      "name_cn": "G42",
+      "ticker": null,
+      "cik": null,
+      "roles": [
+        "colo",
+        "capital"
+      ],
+      "modules": [
+        "M02",
+        "M11"
+      ],
+      "hq_country": "AE",
+      "profile": "UAE-US AI Campus（5GW规划）牵头财团；Stargate UAE 开发方；Khazna 为其数据中心平台",
+      "ir_url": "https://www.g42.ai/",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "sb-energy",
+      "name": "SB Energy",
+      "name_cn": "SB Energy",
+      "ticker": null,
+      "cik": null,
+      "roles": [
+        "colo",
+        "utility"
+      ],
+      "modules": [
+        "M02",
+        "M04"
+      ],
+      "hq_country": "US",
+      "profile": "软银系能源开发商；Stargate Milam County 园区（规划约1.2GW）开发方",
+      "ir_url": null,
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "related-digital",
+      "name": "Related Digital",
+      "name_cn": "Related Digital",
+      "ticker": null,
+      "cik": null,
+      "roles": [
+        "colo"
+      ],
+      "modules": [
+        "M02"
+      ],
+      "hq_country": "US",
+      "profile": "地产商 Related 旗下数据中心平台；Stargate Saline Township 园区（规划约1.4GW）开发方",
+      "ir_url": null,
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "black-hills",
+      "name": "Black Hills Corp.",
+      "name_cn": "Black Hills",
+      "ticker": "NYSE:BKH",
+      "cik": "0001130464",
+      "roles": [
+        "utility"
+      ],
+      "modules": [
+        "M04"
+      ],
+      "hq_country": "US",
+      "profile": "怀俄明公用事业公司；Cheyenne 1.8GW 项目（Project Jade）供电方，目标2028年初开始供电",
+      "ir_url": "https://ir.blackhillscorp.com",
+      "verified_date": "2026-07-23"
+    },
+    {
+      "company_id": "huawei",
+      "name": "Huawei",
+      "name_cn": "华为",
+      "ticker": null,
+      "cik": null,
+      "roles": [
+        "chip",
+        "server-odm",
+        "electrical"
+      ],
+      "modules": [
+        "M14"
+      ],
+      "hq_country": "CN",
+      "profile": "昇腾生态核心；国产算力链锚点（M14 第一观察对象）",
+      "ir_url": null,
+      "verified_date": "2026-08-14"
+    }
   ]
 }

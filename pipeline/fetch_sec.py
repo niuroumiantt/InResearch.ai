@@ -21,7 +21,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 RAW = ROOT / "data" / "raw" / "sec"
 UA = "datacenter-hub research (niuroumiantt@gmail.com)"
-WATCH_FORMS = {"10-Q", "10-K", "8-K", "S-1", "424B5"}
+WATCH_FORMS = {"10-Q", "10-K", "8-K", "S-1", "424B5", "20-F", "6-K"}
 RECENT_DAYS = 90
 
 
