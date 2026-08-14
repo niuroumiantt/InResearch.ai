@@ -4,16 +4,37 @@
     {
       "site_id": "us-tx-abilene",
       "name": "Stargate Abilene (Lancium Clean Campus)",
-      "aliases": ["Project Ludicrous"],
-      "region": "north-america", "country": "US", "location": "Texas, Abilene",
-      "developer": ["crusoe"], "tenant": ["openai", "oracle"],
+      "aliases": [
+        "Project Ludicrous"
+      ],
+      "region": "north-america",
+      "country": "US",
+      "location": "Texas, Abilene",
+      "developer": [
+        "crusoe"
+      ],
+      "tenant": [
+        "openai",
+        "oracle"
+      ],
       "status": "L8",
       "status_history": [
-        {"status": "L6", "date": "2024-06", "source_url": "https://www.crusoe.ai/newsroom"},
-        {"status": "L8", "date": "2025", "source_url": "https://epoch.ai/publications/openai-stargate-where-the-us-sites-stand"}
+        {
+          "status": "L6",
+          "date": "2024-06",
+          "source_url": "https://www.crusoe.ai/newsroom"
+        },
+        {
+          "status": "L8",
+          "date": "2025",
+          "source_url": "https://epoch.ai/publications/openai-stargate-where-the-us-sites-stand"
+        }
       ],
       "capacity_it_mw": null,
-      "capacity_it_mw_by_status": {"L8": 421, "L6": 422},
+      "capacity_it_mw_by_status": {
+        "L8": 421,
+        "L6": 422
+      },
       "capacity_facility_mw": 1200,
       "power_status": "运营容量已形成；Crusoe 另锁定 4.5GW 天然气供能（规划口径）",
       "utility": "ERCOT",
@@ -22,149 +43,317 @@
       "disputed": false,
       "verified_date": "2026-07-23",
       "sources": [
-        {"url": "https://epoch.ai/publications/openai-stargate-where-the-us-sites-stand", "grade": "research", "date": "2026-07", "note": "Epoch AI 项目追踪"},
-        {"url": "https://www.datacenterfrontier.com/hyperscale/article/55276169/crusoe-adds-45-gw-natural-gas-to-fuel-ai-expands-abilene-data-center-to-12-gw", "grade": "media", "date": "2026", "note": "供能与园区扩展"}
-      ]
+        {
+          "url": "https://epoch.ai/publications/openai-stargate-where-the-us-sites-stand",
+          "grade": "research",
+          "date": "2026-07",
+          "note": "Epoch AI 项目追踪"
+        },
+        {
+          "url": "https://www.datacenterfrontier.com/hyperscale/article/55276169/crusoe-adds-45-gw-natural-gas-to-fuel-ai-expands-abilene-data-center-to-12-gw",
+          "grade": "media",
+          "date": "2026",
+          "note": "供能与园区扩展"
+        }
+      ],
+      "coordinates": "32.45,-99.73"
     },
     {
       "site_id": "us-tx-shackelford",
       "name": "Vantage Frontier (Shackelford County)",
-      "aliases": ["Frontier mega campus"],
-      "region": "north-america", "country": "US", "location": "Texas, Shackelford County",
-      "developer": ["vantage"], "tenant": ["openai"],
+      "aliases": [
+        "Frontier mega campus"
+      ],
+      "region": "north-america",
+      "country": "US",
+      "location": "Texas, Shackelford County",
+      "developer": [
+        "vantage"
+      ],
+      "tenant": [
+        "openai"
+      ],
       "status": "L6",
-      "status_history": [{"status": "L6", "date": "2025", "source_url": "https://vantage-dc.com/news/vantage-data-centers-unveils-plans-for-frontier-a-25b-mega-campus-in-texas-to-meet-unprecedented-ai-demand/"}],
+      "status_history": [
+        {
+          "status": "L6",
+          "date": "2025",
+          "source_url": "https://vantage-dc.com/news/vantage-data-centers-unveils-plans-for-frontier-a-25b-mega-campus-in-texas-to-meet-unprecedented-ai-demand/"
+        }
+      ],
       "capacity_it_mw": null,
-      "capacity_it_mw_by_status": {"L2": 1400},
+      "capacity_it_mw_by_status": {
+        "L2": 1400
+      },
       "capacity_facility_mw": null,
-      "power_status": null, "utility": "ERCOT",
+      "power_status": null,
+      "utility": "ERCOT",
       "type": "colo-wholesale",
       "notes": "台账#2：官方规划1.4GW、投资约250亿美元，首栋目标2026H2；在建中但分期容量未披露，全额记规划级。不能采用2.0GW扩展口径作为当前正式容量。租户为 Stargate 相关。",
       "disputed": false,
       "verified_date": "2026-07-23",
-      "sources": [{"url": "https://vantage-dc.com/news/vantage-data-centers-unveils-plans-for-frontier-a-25b-mega-campus-in-texas-to-meet-unprecedented-ai-demand/", "grade": "company", "date": "2025", "note": "官方公告"}]
+      "sources": [
+        {
+          "url": "https://vantage-dc.com/news/vantage-data-centers-unveils-plans-for-frontier-a-25b-mega-campus-in-texas-to-meet-unprecedented-ai-demand/",
+          "grade": "company",
+          "date": "2025",
+          "note": "官方公告"
+        }
+      ],
+      "coordinates": "32.74,-99.35"
     },
     {
       "site_id": "us-nm-dona-ana",
       "name": "Stargate Doña Ana County 园区",
       "aliases": [],
-      "region": "north-america", "country": "US", "location": "New Mexico, Doña Ana County",
-      "developer": ["stack-infrastructure"], "tenant": ["openai"],
+      "region": "north-america",
+      "country": "US",
+      "location": "New Mexico, Doña Ana County",
+      "developer": [
+        "stack-infrastructure"
+      ],
+      "tenant": [
+        "openai"
+      ],
       "status": "L3",
       "status_history": [],
       "capacity_it_mw": null,
-      "capacity_it_mw_by_status": {"L2": 2200},
+      "capacity_it_mw_by_status": {
+        "L2": 2200
+      },
       "capacity_facility_mw": null,
-      "power_status": null, "utility": null,
+      "power_status": null,
+      "utility": null,
       "type": "colo-wholesale",
       "notes": "台账#3：规划约2.2GW，早期建设/规划，基础设施推进，状态需按季刷新。不能计入已运营容量。证据等级B。",
       "disputed": false,
       "verified_date": "2026-07-23",
-      "sources": [{"url": "https://epoch.ai/publications/openai-stargate-where-the-us-sites-stand", "grade": "research", "date": "2026-07", "note": "Epoch AI 项目追踪"}]
+      "sources": [
+        {
+          "url": "https://epoch.ai/publications/openai-stargate-where-the-us-sites-stand",
+          "grade": "research",
+          "date": "2026-07",
+          "note": "Epoch AI 项目追踪"
+        }
+      ],
+      "coordinates": "32.32,-106.78"
     },
     {
       "site_id": "us-tx-milam",
       "name": "Stargate Milam County 园区",
       "aliases": [],
-      "region": "north-america", "country": "US", "location": "Texas, Milam County",
-      "developer": ["sb-energy"], "tenant": ["openai"],
+      "region": "north-america",
+      "country": "US",
+      "location": "Texas, Milam County",
+      "developer": [
+        "sb-energy"
+      ],
+      "tenant": [
+        "openai"
+      ],
       "status": "L6",
-      "status_history": [{"status": "L6", "date": "2026", "source_url": "https://epoch.ai/publications/openai-stargate-where-the-us-sites-stand"}],
+      "status_history": [
+        {
+          "status": "L6",
+          "date": "2026",
+          "source_url": "https://epoch.ai/publications/openai-stargate-where-the-us-sites-stand"
+        }
+      ],
       "capacity_it_mw": null,
-      "capacity_it_mw_by_status": {"L2": 1200},
+      "capacity_it_mw_by_status": {
+        "L2": 1200
+      },
       "capacity_facility_mw": null,
-      "power_status": null, "utility": "ERCOT",
+      "power_status": null,
+      "utility": "ERCOT",
       "type": "colo-wholesale",
       "notes": "台账#4：规划约1.2GW，已进入钢结构/施工阶段；分期容量未披露，全额记规划级。不能计入已运营容量。证据等级B。",
       "disputed": false,
       "verified_date": "2026-07-23",
-      "sources": [{"url": "https://epoch.ai/publications/openai-stargate-where-the-us-sites-stand", "grade": "research", "date": "2026-07", "note": "Epoch AI 项目追踪"}]
+      "sources": [
+        {
+          "url": "https://epoch.ai/publications/openai-stargate-where-the-us-sites-stand",
+          "grade": "research",
+          "date": "2026-07",
+          "note": "Epoch AI 项目追踪"
+        }
+      ],
+      "coordinates": "30.79,-96.98"
     },
     {
       "site_id": "us-wi-port-washington",
       "name": "Stargate Port Washington 园区",
       "aliases": [],
-      "region": "north-america", "country": "US", "location": "Wisconsin, Port Washington",
-      "developer": ["vantage"], "tenant": ["openai"],
+      "region": "north-america",
+      "country": "US",
+      "location": "Wisconsin, Port Washington",
+      "developer": [
+        "vantage"
+      ],
+      "tenant": [
+        "openai"
+      ],
       "status": "L6",
       "status_history": [],
       "capacity_it_mw": null,
-      "capacity_it_mw_by_status": {"L2": 1300},
+      "capacity_it_mw_by_status": {
+        "L2": 1300
+      },
       "capacity_facility_mw": null,
-      "power_status": null, "utility": null,
+      "power_status": null,
+      "utility": null,
       "type": "colo-wholesale",
       "notes": "台账#5：规划约1.3GW，基础施工阶段；分期容量未披露，全额记规划级。不能计入已运营容量。证据等级B。",
       "disputed": false,
       "verified_date": "2026-07-23",
-      "sources": [{"url": "https://epoch.ai/publications/openai-stargate-where-the-us-sites-stand", "grade": "research", "date": "2026-07", "note": "Epoch AI 项目追踪"}]
+      "sources": [
+        {
+          "url": "https://epoch.ai/publications/openai-stargate-where-the-us-sites-stand",
+          "grade": "research",
+          "date": "2026-07",
+          "note": "Epoch AI 项目追踪"
+        }
+      ],
+      "coordinates": "43.39,-87.88"
     },
     {
       "site_id": "us-mi-saline",
       "name": "Stargate Saline Township 园区",
       "aliases": [],
-      "region": "north-america", "country": "US", "location": "Michigan, Saline Township",
-      "developer": ["related-digital"], "tenant": ["openai"],
+      "region": "north-america",
+      "country": "US",
+      "location": "Michigan, Saline Township",
+      "developer": [
+        "related-digital"
+      ],
+      "tenant": [
+        "openai"
+      ],
       "status": "L6",
       "status_history": [],
       "capacity_it_mw": null,
-      "capacity_it_mw_by_status": {"L2": 1400},
+      "capacity_it_mw_by_status": {
+        "L2": 1400
+      },
       "capacity_facility_mw": null,
-      "power_status": null, "utility": null,
+      "power_status": null,
+      "utility": null,
       "type": "colo-wholesale",
       "notes": "台账#6：规划约1.4GW，基础施工阶段；分期容量未披露，全额记规划级。不能计入已运营容量。证据等级B。",
       "disputed": false,
       "verified_date": "2026-07-23",
-      "sources": [{"url": "https://epoch.ai/publications/openai-stargate-where-the-us-sites-stand", "grade": "research", "date": "2026-07", "note": "Epoch AI 项目追踪"}]
+      "sources": [
+        {
+          "url": "https://epoch.ai/publications/openai-stargate-where-the-us-sites-stand",
+          "grade": "research",
+          "date": "2026-07",
+          "note": "Epoch AI 项目追踪"
+        }
+      ],
+      "coordinates": "42.17,-83.78"
     },
     {
       "site_id": "ae-abudhabi-stargate-uae",
       "name": "Stargate UAE",
       "aliases": [],
-      "region": "mena", "country": "AE", "location": "Abu Dhabi",
-      "developer": ["g42"], "tenant": ["openai"],
+      "region": "mena",
+      "country": "AE",
+      "location": "Abu Dhabi",
+      "developer": [
+        "g42"
+      ],
+      "tenant": [
+        "openai"
+      ],
       "status": "L2",
       "status_history": [],
       "capacity_it_mw": null,
-      "capacity_it_mw_by_status": {"L2": 1000},
+      "capacity_it_mw_by_status": {
+        "L2": 1000
+      },
       "capacity_facility_mw": null,
-      "power_status": null, "utility": null,
+      "power_status": null,
+      "utility": null,
       "type": "sovereign",
       "notes": "台账#7：子项目规划约1GW，首期200MW为目标；属于 5GW UAE-US AI Campus 中的独立项目。不能把5GW园区全部计入Stargate UAE。开发方 G42/Khazna 等。",
       "disputed": false,
       "verified_date": "2026-07-23",
-      "sources": [{"url": "https://www.g42.ai/about", "grade": "company", "date": "2025", "note": "G42 官方"}]
+      "sources": [
+        {
+          "url": "https://www.g42.ai/about",
+          "grade": "company",
+          "date": "2025",
+          "note": "G42 官方"
+        }
+      ],
+      "coordinates": "24.50,54.37"
     },
     {
       "site_id": "ae-abudhabi-ai-campus",
       "name": "UAE-US AI Campus",
       "aliases": [],
-      "region": "mena", "country": "AE", "location": "Abu Dhabi",
-      "developer": ["g42"], "tenant": ["multiple"],
+      "region": "mena",
+      "country": "AE",
+      "location": "Abu Dhabi",
+      "developer": [
+        "g42"
+      ],
+      "tenant": [
+        "multiple"
+      ],
       "status": "L2",
       "status_history": [],
       "capacity_it_mw": null,
-      "capacity_it_mw_by_status": {"L2": 4000},
+      "capacity_it_mw_by_status": {
+        "L2": 4000
+      },
       "capacity_facility_mw": null,
-      "power_status": null, "utility": null,
+      "power_status": null,
+      "utility": null,
       "type": "sovereign",
       "notes": "台账#8：园区总规划5GW；其中 1GW 已单列为 Stargate UAE（ae-abudhabi-stargate-uae），本条记差额4GW以避免重复计入。完整投运表未披露，不能写成已运营5GW。",
       "disputed": false,
       "verified_date": "2026-07-23",
-      "sources": [{"url": "https://www.g42.ai/resources/news/g42-lead-consortium-us-partners-build-5gw-uae-us-ai-campus", "grade": "company", "date": "2025", "note": "G42 牵头财团官宣"}]
+      "sources": [
+        {
+          "url": "https://www.g42.ai/resources/news/g42-lead-consortium-us-partners-build-5gw-uae-us-ai-campus",
+          "grade": "company",
+          "date": "2025",
+          "note": "G42 牵头财团官宣"
+        }
+      ],
+      "coordinates": "24.43,54.45"
     },
     {
       "site_id": "us-la-richland",
       "name": "Meta Hyperion",
       "aliases": [],
-      "region": "north-america", "country": "US", "location": "Louisiana, Richland Parish",
-      "developer": ["meta"], "tenant": ["meta"],
+      "region": "north-america",
+      "country": "US",
+      "location": "Louisiana, Richland Parish",
+      "developer": [
+        "meta"
+      ],
+      "tenant": [
+        "meta"
+      ],
       "status": "L6",
       "status_history": [
-        {"status": "L2", "date": "2024-12", "source_url": "https://about.fb.com/news/"},
-        {"status": "L6", "date": "2025", "source_url": "https://about.fb.com/news/2026/04/infrastructure-explained-meta-data-centers/"}
+        {
+          "status": "L2",
+          "date": "2024-12",
+          "source_url": "https://about.fb.com/news/"
+        },
+        {
+          "status": "L6",
+          "date": "2025",
+          "source_url": "https://about.fb.com/news/2026/04/infrastructure-explained-meta-data-centers/"
+        }
       ],
       "capacity_it_mw": null,
-      "capacity_it_mw_by_status": {"L2": 5000},
+      "capacity_it_mw_by_status": {
+        "L2": 5000
+      },
       "capacity_facility_mw": null,
       "power_status": "Entergy 三座燃气电站配套获批",
       "utility": "Entergy (MISO)",
@@ -172,55 +361,123 @@
       "notes": "台账#9：规划5GW、投资超过500亿美元，官方确认大规模在建/扩张；分期容量未披露，全额记规划级。不能写成当前已运营5GW。",
       "disputed": false,
       "verified_date": "2026-07-23",
-      "sources": [{"url": "https://about.fb.com/news/2026/04/infrastructure-explained-meta-data-centers/", "grade": "company", "date": "2026-04", "note": "Meta 官方基础设施说明"}]
+      "sources": [
+        {
+          "url": "https://about.fb.com/news/2026/04/infrastructure-explained-meta-data-centers/",
+          "grade": "company",
+          "date": "2026-04",
+          "note": "Meta 官方基础设施说明"
+        }
+      ],
+      "coordinates": "32.40,-91.80"
     },
     {
       "site_id": "us-oh-new-albany",
       "name": "Meta Prometheus",
       "aliases": [],
-      "region": "north-america", "country": "US", "location": "Ohio, New Albany",
-      "developer": ["meta"], "tenant": ["meta"],
+      "region": "north-america",
+      "country": "US",
+      "location": "Ohio, New Albany",
+      "developer": [
+        "meta"
+      ],
+      "tenant": [
+        "meta"
+      ],
       "status": "L6",
       "status_history": [],
       "capacity_it_mw": null,
-      "capacity_it_mw_by_status": {"L2": 1000},
+      "capacity_it_mw_by_status": {
+        "L2": 1000
+      },
       "capacity_facility_mw": null,
-      "power_status": null, "utility": "AEP Ohio",
+      "power_status": null,
+      "utility": "AEP Ohio",
       "type": "hyperscaler-selfbuild",
       "notes": "台账#10：建成后1GW+，在建；容量获官方确认，明确投运日期仍需项目文件。不能写成已运营1GW。",
       "disputed": false,
       "verified_date": "2026-07-23",
-      "sources": [{"url": "https://about.fb.com/news/2026/04/infrastructure-explained-meta-data-centers/", "grade": "company", "date": "2026-04", "note": "Meta 官方基础设施说明"}]
+      "sources": [
+        {
+          "url": "https://about.fb.com/news/2026/04/infrastructure-explained-meta-data-centers/",
+          "grade": "company",
+          "date": "2026-04",
+          "note": "Meta 官方基础设施说明"
+        }
+      ],
+      "coordinates": "40.08,-82.80"
     },
     {
       "site_id": "us-wi-mount-pleasant",
       "name": "Microsoft Fairwater 网络（威斯康星/亚特兰大）",
-      "aliases": ["Fairwater AI superfactory"],
-      "region": "north-america", "country": "US", "location": "Wisconsin Mount Pleasant + Georgia Atlanta",
-      "developer": ["microsoft"], "tenant": ["microsoft"],
+      "aliases": [
+        "Fairwater AI superfactory"
+      ],
+      "region": "north-america",
+      "country": "US",
+      "location": "Wisconsin Mount Pleasant + Georgia Atlanta",
+      "developer": [
+        "microsoft"
+      ],
+      "tenant": [
+        "microsoft"
+      ],
       "status": "L8",
-      "status_history": [{"status": "L8", "date": "2026-04", "source_url": "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q3"}],
+      "status_history": [
+        {
+          "status": "L8",
+          "date": "2026-04",
+          "source_url": "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q3"
+        }
+      ],
       "capacity_it_mw": null,
       "capacity_it_mw_by_status": null,
       "capacity_facility_mw": null,
-      "power_status": null, "utility": "We Energies / Georgia Power",
+      "power_status": null,
+      "utility": "We Energies / Georgia Power",
       "type": "hyperscaler-selfbuild",
       "notes": "台账#11：官方称 multi-gigawatt 跨州 AI superfactory；威斯康星 Fairwater 已于2026年4月上线（FY26Q3 财报披露），亚特兰大及跨州组网仍在推进。精确总 GW 未披露，容量留空不入聚合；不能把整个网络统一写成在建。跨州网络暂用威斯康星主站做主键，后续拆分。",
       "disputed": false,
       "verified_date": "2026-07-23",
       "sources": [
-        {"url": "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q3", "grade": "company", "date": "2026-04", "note": "FY26Q3 财报"},
-        {"url": "https://news.microsoft.com/source/features/ai/from-wisconsin-to-atlanta-microsoft-connects-datacenters-to-build-its-first-ai-superfactory/", "grade": "company", "date": "2026", "note": "官方专题"}
+        {
+          "url": "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q3",
+          "grade": "company",
+          "date": "2026-04",
+          "note": "FY26Q3 财报"
+        },
+        {
+          "url": "https://news.microsoft.com/source/features/ai/from-wisconsin-to-atlanta-microsoft-connects-datacenters-to-build-its-first-ai-superfactory/",
+          "grade": "company",
+          "date": "2026",
+          "note": "官方专题"
+        }
       ]
     },
     {
       "site_id": "us-tn-memphis",
       "name": "xAI Colossus I / II",
-      "aliases": ["Colossus"],
-      "region": "north-america", "country": "US", "location": "Tennessee, Memphis",
-      "developer": ["xai"], "tenant": ["xai", "anthropic"],
+      "aliases": [
+        "Colossus"
+      ],
+      "region": "north-america",
+      "country": "US",
+      "location": "Tennessee, Memphis",
+      "developer": [
+        "xai"
+      ],
+      "tenant": [
+        "xai",
+        "anthropic"
+      ],
       "status": "L8",
-      "status_history": [{"status": "L8", "date": "2024-09", "source_url": "https://x.ai/news/series-e"}],
+      "status_history": [
+        {
+          "status": "L8",
+          "date": "2024-09",
+          "source_url": "https://x.ai/news/series-e"
+        }
+      ],
       "capacity_it_mw": null,
       "capacity_it_mw_by_status": null,
       "capacity_facility_mw": null,
@@ -231,18 +488,42 @@
       "disputed": false,
       "verified_date": "2026-07-23",
       "sources": [
-        {"url": "https://x.ai/news/anthropic-compute-partnership", "grade": "company", "date": "2026", "note": "xAI 官方"},
-        {"url": "https://memphistn.gov/codecrew-secures-1-million-from-anthropic-with-support-from-the-city-of-memphis-to-build-national-tech-education-headquarters-in-north-memphis/", "grade": "regulatory", "date": "2026", "note": "Memphis 市政府"}
-      ]
+        {
+          "url": "https://x.ai/news/anthropic-compute-partnership",
+          "grade": "company",
+          "date": "2026",
+          "note": "xAI 官方"
+        },
+        {
+          "url": "https://memphistn.gov/codecrew-secures-1-million-from-anthropic-with-support-from-the-city-of-memphis-to-build-national-tech-education-headquarters-in-north-memphis/",
+          "grade": "regulatory",
+          "date": "2026",
+          "note": "Memphis 市政府"
+        }
+      ],
+      "coordinates": "35.07,-90.01"
     },
     {
       "site_id": "us-wy-cheyenne-jade",
       "name": "Project Jade / Cheyenne 1.8GW 项目",
       "aliases": [],
-      "region": "north-america", "country": "US", "location": "Wyoming, Cheyenne (Laramie County)",
-      "developer": ["black-hills"], "tenant": ["multiple"],
+      "region": "north-america",
+      "country": "US",
+      "location": "Wyoming, Cheyenne (Laramie County)",
+      "developer": [
+        "black-hills"
+      ],
+      "tenant": [
+        "multiple"
+      ],
       "status": "L3",
-      "status_history": [{"status": "L3", "date": "2026-01", "source_url": "https://laramiecounty.legistar.com/LegislationDetail.aspx?GUID=1623FD5B-974F-4551-9E2F-53A415151CCE&ID=7792288"}],
+      "status_history": [
+        {
+          "status": "L3",
+          "date": "2026-01",
+          "source_url": "https://laramiecounty.legistar.com/LegislationDetail.aspx?GUID=1623FD5B-974F-4551-9E2F-53A415151CCE&ID=7792288"
+        }
+      ],
       "capacity_it_mw": null,
       "capacity_it_mw_by_status": null,
       "capacity_facility_mw": 1800,
@@ -253,70 +534,150 @@
       "disputed": false,
       "verified_date": "2026-07-23",
       "sources": [
-        {"url": "https://ir.blackhillscorp.com/news-releases/news-release-details/black-hills-corp-provides-update-18-gigawatt-project-cheyenne", "grade": "company", "date": "2026-06", "note": "公用事业公司公告"},
-        {"url": "https://laramiecounty.legistar.com/LegislationDetail.aspx?GUID=1623FD5B-974F-4551-9E2F-53A415151CCE&ID=7792288", "grade": "regulatory", "date": "2026-01", "note": "县政府批准记录"}
+        {
+          "url": "https://ir.blackhillscorp.com/news-releases/news-release-details/black-hills-corp-provides-update-18-gigawatt-project-cheyenne",
+          "grade": "company",
+          "date": "2026-06",
+          "note": "公用事业公司公告"
+        },
+        {
+          "url": "https://laramiecounty.legistar.com/LegislationDetail.aspx?GUID=1623FD5B-974F-4551-9E2F-53A415151CCE&ID=7792288",
+          "grade": "regulatory",
+          "date": "2026-01",
+          "note": "县政府批准记录"
+        }
       ]
     },
     {
       "site_id": "us-in-new-carlisle",
       "name": "Project Rainier (AWS)",
       "aliases": [],
-      "region": "north-america", "country": "US", "location": "Indiana, New Carlisle",
-      "developer": ["amazon"], "tenant": ["anthropic"],
+      "region": "north-america",
+      "country": "US",
+      "location": "Indiana, New Carlisle",
+      "developer": [
+        "amazon"
+      ],
+      "tenant": [
+        "anthropic"
+      ],
       "status": "L8",
-      "status_history": [{"status": "L8", "date": "2025", "source_url": "https://www.anthropic.com/news/anthropic-amazon-compute"}],
+      "status_history": [
+        {
+          "status": "L8",
+          "date": "2025",
+          "source_url": "https://www.anthropic.com/news/anthropic-amazon-compute"
+        }
+      ],
       "capacity_it_mw": null,
       "capacity_it_mw_by_status": null,
       "capacity_facility_mw": null,
-      "power_status": null, "utility": "AEP Indiana Michigan Power",
+      "power_status": null,
+      "utility": "AEP Indiana Michigan Power",
       "type": "hyperscaler-selfbuild",
       "notes": "台账#14：现有集群已运营（500,000+ 颗 Trainium2，芯片数不折算 MW，容量留空）；长期扩展最高 5GW 为协议上限，不能把 5GW 视为当前容量。",
       "disputed": false,
       "verified_date": "2026-07-23",
-      "sources": [{"url": "https://www.anthropic.com/news/anthropic-amazon-compute", "grade": "company", "date": "2025", "note": "Anthropic 官方"}]
+      "sources": [
+        {
+          "url": "https://www.anthropic.com/news/anthropic-amazon-compute",
+          "grade": "company",
+          "date": "2025",
+          "note": "Anthropic 官方"
+        }
+      ]
     },
     {
       "site_id": "jp-kyoto-keihanna",
       "name": "Keihanna OSK11 (NTT DATA)",
       "aliases": [],
-      "region": "apac", "country": "JP", "location": "京都/大阪圈 Keihanna",
-      "developer": ["ntt-data"], "tenant": ["multiple"],
+      "region": "apac",
+      "country": "JP",
+      "location": "京都/大阪圈 Keihanna",
+      "developer": [
+        "ntt-data"
+      ],
+      "tenant": [
+        "multiple"
+      ],
       "status": "L8",
-      "status_history": [{"status": "L8", "date": "2026-04", "source_url": "https://services.global.ntt/en-us/newsroom/ntt-data-opens-keihanna-data-center"}],
+      "status_history": [
+        {
+          "status": "L8",
+          "date": "2026-04",
+          "source_url": "https://services.global.ntt/en-us/newsroom/ntt-data-opens-keihanna-data-center"
+        }
+      ],
       "capacity_it_mw": 30,
       "capacity_it_mw_by_status": null,
       "capacity_facility_mw": null,
-      "power_status": null, "utility": null,
+      "power_status": null,
+      "utility": null,
       "type": "colo-wholesale",
       "notes": "台账#15：30MW IT，2026年4月开业。不能外推为 NTT 日本总容量。",
       "disputed": false,
       "verified_date": "2026-07-23",
-      "sources": [{"url": "https://services.global.ntt/en-us/newsroom/ntt-data-opens-keihanna-data-center", "grade": "company", "date": "2026-04", "note": "官方开业公告"}]
+      "sources": [
+        {
+          "url": "https://services.global.ntt/en-us/newsroom/ntt-data-opens-keihanna-data-center",
+          "grade": "company",
+          "date": "2026-04",
+          "note": "官方开业公告"
+        }
+      ]
     },
     {
       "site_id": "jp-osaka-sakai",
       "name": "Osaka Sakai AI Data Center (KDDI)",
       "aliases": [],
-      "region": "apac", "country": "JP", "location": "大阪 Sakai",
-      "developer": ["kddi"], "tenant": ["multiple"],
+      "region": "apac",
+      "country": "JP",
+      "location": "大阪 Sakai",
+      "developer": [
+        "kddi"
+      ],
+      "tenant": [
+        "multiple"
+      ],
       "status": "L8",
-      "status_history": [{"status": "L8", "date": "2026-01", "source_url": "https://newsroom.kddi.com/english/news/detail/kddi_nr-916_4323.html"}],
+      "status_history": [
+        {
+          "status": "L8",
+          "date": "2026-01",
+          "source_url": "https://newsroom.kddi.com/english/news/detail/kddi_nr-916_4323.html"
+        }
+      ],
       "capacity_it_mw": null,
       "capacity_it_mw_by_status": null,
       "capacity_facility_mw": null,
-      "power_status": null, "utility": null,
+      "power_status": null,
+      "utility": null,
       "type": "colo-wholesale",
       "notes": "台账#16：2026年1月运营，GB200 + 直接液冷；面积约57,000平方米，容量未披露。不能按面积/GPU型号推算 MW。",
       "disputed": false,
       "verified_date": "2026-07-23",
-      "sources": [{"url": "https://newsroom.kddi.com/english/news/detail/kddi_nr-916_4323.html", "grade": "company", "date": "2026-01", "note": "KDDI 官方"}]
+      "sources": [
+        {
+          "url": "https://newsroom.kddi.com/english/news/detail/kddi_nr-916_4323.html",
+          "grade": "company",
+          "date": "2026-01",
+          "note": "KDDI 官方"
+        }
+      ]
     },
     {
       "site_id": "jp-tokyo-tama",
       "name": "Telehouse TOKYO Tama 5-2nd",
       "aliases": [],
-      "region": "apac", "country": "JP", "location": "东京 Tama",
-      "developer": ["kddi"], "tenant": ["multiple"],
+      "region": "apac",
+      "country": "JP",
+      "location": "东京 Tama",
+      "developer": [
+        "kddi"
+      ],
+      "tenant": [
+        "multiple"
+      ],
       "status": "L6",
       "status_history": [],
       "capacity_it_mw": 18,
@@ -328,127 +689,262 @@
       "notes": "台账#17：18MW IT 在建，计划2027年秋开业。不能把区域100MW写成新楼IT容量。",
       "disputed": false,
       "verified_date": "2026-07-23",
-      "sources": [{"url": "https://biz.kddi.com/topics/2025/news/022/", "grade": "company", "date": "2025", "note": "KDDI Telehouse 官方"}]
+      "sources": [
+        {
+          "url": "https://biz.kddi.com/topics/2025/news/022/",
+          "grade": "company",
+          "date": "2025",
+          "note": "KDDI Telehouse 官方"
+        }
+      ]
     },
     {
       "site_id": "kr-incheon-bupyeong",
       "name": "Digital Edge Bupyeong Campus (SEL2/SEL3)",
       "aliases": [],
-      "region": "apac", "country": "KR", "location": "仁川 Bupyeong",
-      "developer": ["digital-edge"], "tenant": ["multiple"],
+      "region": "apac",
+      "country": "KR",
+      "location": "仁川 Bupyeong",
+      "developer": [
+        "digital-edge"
+      ],
+      "tenant": [
+        "multiple"
+      ],
       "status": "L8",
       "status_history": [
-        {"status": "L8", "date": "2024", "source_url": "https://www.digitaledgedc.com/products-services/data-centers/south-korea/"},
-        {"status": "L6", "date": "2025-05", "source_url": "https://www.digitaledgedc.com/resources/newsroom/digital-edge-secures-financing-to-complete-major-data-center-campus/"}
+        {
+          "status": "L8",
+          "date": "2024",
+          "source_url": "https://www.digitaledgedc.com/products-services/data-centers/south-korea/"
+        },
+        {
+          "status": "L6",
+          "date": "2025-05",
+          "source_url": "https://www.digitaledgedc.com/resources/newsroom/digital-edge-secures-financing-to-complete-major-data-center-campus/"
+        }
       ],
       "capacity_it_mw": null,
-      "capacity_it_mw_by_status": {"L8": 36, "L6": 60},
+      "capacity_it_mw_by_status": {
+        "L8": 36,
+        "L6": 60
+      },
       "capacity_facility_mw": null,
-      "power_status": null, "utility": null,
+      "power_status": null,
+      "utility": null,
       "type": "colo-wholesale",
       "notes": "台账#18：园区当前官方总容量96MW——SEL2 36MW 已运营（2024 RFS），SEL3 60MW 在建（2025-05 开工，计划 2027Q4 投运）。不能继续使用2022年最初120MW规划作为当前园区总量。合作方 SK ecoplant。",
       "disputed": false,
       "verified_date": "2026-07-23",
-      "sources": [{"url": "https://www.digitaledgedc.com/products-services/data-centers/south-korea/", "grade": "company", "date": "2026", "note": "官方园区页"}]
+      "sources": [
+        {
+          "url": "https://www.digitaledgedc.com/products-services/data-centers/south-korea/",
+          "grade": "company",
+          "date": "2026",
+          "note": "官方园区页"
+        }
+      ]
     },
     {
       "site_id": "in-portfolio-nxtra",
       "name": "Nxtra India 组合（14+ 大型 + 120+ 边缘设施）",
       "aliases": [],
-      "region": "apac", "country": "IN", "location": "印度多城（组合型记录）",
-      "developer": ["nxtra"], "tenant": ["multiple"],
+      "region": "apac",
+      "country": "IN",
+      "location": "印度多城（组合型记录）",
+      "developer": [
+        "nxtra"
+      ],
+      "tenant": [
+        "multiple"
+      ],
       "status": "L8",
       "status_history": [],
       "capacity_it_mw": null,
-      "capacity_it_mw_by_status": {"L8": 300, "L2": 700},
+      "capacity_it_mw_by_status": {
+        "L8": 300,
+        "L2": 700
+      },
       "capacity_facility_mw": null,
-      "power_status": null, "utility": null,
+      "power_status": null,
+      "utility": null,
       "type": "colo-wholesale",
       "notes": "台账#19：组合型记录（非单一物理地点，后续拆分为园区级）。当前约300MW 运营，长期目标 1GW（差额700记规划级）。不能把 1GW 目标视为已建成。",
       "disputed": false,
       "verified_date": "2026-07-23",
-      "sources": [{"url": "https://www.airtel.in/press-release/03-2026/airtel-announces-us1-billion-investment-in-nxtra-led-by-alpha-wave-global-and-existing-investor-carlyle-bharti-airtel-will-also-participate/", "grade": "company", "date": "2026-03", "note": "Airtel 官方"}]
+      "sources": [
+        {
+          "url": "https://www.airtel.in/press-release/03-2026/airtel-announces-us1-billion-investment-in-nxtra-led-by-alpha-wave-global-and-existing-investor-carlyle-bharti-airtel-will-also-participate/",
+          "grade": "company",
+          "date": "2026-03",
+          "note": "Airtel 官方"
+        }
+      ]
     },
     {
       "site_id": "in-chennai-siruseri",
       "name": "STT GDC Chennai Siruseri",
       "aliases": [],
-      "region": "apac", "country": "IN", "location": "金奈 Siruseri",
-      "developer": ["stt-gdc"], "tenant": ["multiple"],
+      "region": "apac",
+      "country": "IN",
+      "location": "金奈 Siruseri",
+      "developer": [
+        "stt-gdc"
+      ],
+      "tenant": [
+        "multiple"
+      ],
       "status": "L8",
       "status_history": [],
       "capacity_it_mw": null,
-      "capacity_it_mw_by_status": {"L8": 7.2, "L6": 37.8},
+      "capacity_it_mw_by_status": {
+        "L8": 7.2,
+        "L6": 37.8
+      },
       "capacity_facility_mw": null,
-      "power_status": null, "utility": null,
+      "power_status": null,
+      "utility": null,
       "type": "colo-wholesale",
       "notes": "台账#20：园区45MW，首期7.2MW已运营，其余分期交付（差额记L6）。不能把45MW全部视为运营。",
       "disputed": false,
       "verified_date": "2026-07-23",
-      "sources": [{"url": "https://www.sttelemediagdc.com/in-en/newsroom/stt-gdc-india-strengthens-its-market-presence-chennai-multi-campus-expansion-and-inr-4200", "grade": "company", "date": "2025", "note": "官方公告"}]
+      "sources": [
+        {
+          "url": "https://www.sttelemediagdc.com/in-en/newsroom/stt-gdc-india-strengthens-its-market-presence-chennai-multi-campus-expansion-and-inr-4200",
+          "grade": "company",
+          "date": "2025",
+          "note": "官方公告"
+        }
+      ]
     },
     {
       "site_id": "in-hyderabad-stt",
       "name": "STT GDC Hyderabad",
       "aliases": [],
-      "region": "apac", "country": "IN", "location": "海得拉巴",
-      "developer": ["stt-gdc"], "tenant": ["multiple"],
+      "region": "apac",
+      "country": "IN",
+      "location": "海得拉巴",
+      "developer": [
+        "stt-gdc"
+      ],
+      "tenant": [
+        "multiple"
+      ],
       "status": "L1",
       "status_history": [],
       "capacity_it_mw": null,
-      "capacity_it_mw_by_status": {"L1": 100},
+      "capacity_it_mw_by_status": {
+        "L1": 100
+      },
       "capacity_facility_mw": null,
-      "power_status": null, "utility": null,
+      "power_status": null,
+      "utility": null,
       "type": "colo-wholesale",
       "notes": "台账#21：目标100MW，MoU/规划阶段（州政府招商）。不能写成已开工/已运营100MW。",
       "disputed": false,
       "verified_date": "2026-07-23",
-      "sources": [{"url": "https://www.sttelemediagdc.com/newsroom/stt-gdc-india-signs-mou-telangana-government-investments-up-to-inr-3500-crore", "grade": "company", "date": "2025", "note": "MoU 公告"}]
+      "sources": [
+        {
+          "url": "https://www.sttelemediagdc.com/newsroom/stt-gdc-india-signs-mou-telangana-government-investments-up-to-inr-3500-crore",
+          "grade": "company",
+          "date": "2025",
+          "note": "MoU 公告"
+        }
+      ]
     },
     {
       "site_id": "in-visakhapatnam-hub",
       "name": "Visakhapatnam Mega AI Hub",
       "aliases": [],
-      "region": "apac", "country": "IN", "location": "维沙卡帕特南",
-      "developer": ["alphabet-google", "nxtra"], "tenant": ["alphabet-google"],
+      "region": "apac",
+      "country": "IN",
+      "location": "维沙卡帕特南",
+      "developer": [
+        "alphabet-google",
+        "nxtra"
+      ],
+      "tenant": [
+        "alphabet-google"
+      ],
       "status": "L2",
       "status_history": [],
       "capacity_it_mw": null,
       "capacity_it_mw_by_status": null,
       "capacity_facility_mw": null,
-      "power_status": null, "utility": null,
+      "power_status": null,
+      "utility": null,
       "type": "hyperscaler-selfbuild",
       "notes": "台账#22：约150亿美元、gigawatt-scale 长期计划（2026—2030 多年建设），具体 GW 未披露，容量留空。不能写成已开工1GW。合作方 Google / Airtel / AdaniConneX。",
       "disputed": false,
       "verified_date": "2026-07-23",
-      "sources": [{"url": "https://www.airtel.in/press-release/10-2025/airtel-partners-with-google-to-establish-indias-first-mega-ai-hub-and-data-center-in-visakhapatnam/", "grade": "company", "date": "2025-10", "note": "Airtel 官方"}]
+      "sources": [
+        {
+          "url": "https://www.airtel.in/press-release/10-2025/airtel-partners-with-google-to-establish-indias-first-mega-ai-hub-and-data-center-in-visakhapatnam/",
+          "grade": "company",
+          "date": "2025-10",
+          "note": "Airtel 官方"
+        }
+      ]
     },
     {
       "site_id": "br-sp-tambore",
       "name": "Scala Tamboré / AI City",
       "aliases": [],
-      "region": "latam", "country": "BR", "location": "圣保罗州 Tamboré",
-      "developer": ["scala"], "tenant": ["multiple"],
+      "region": "latam",
+      "country": "BR",
+      "location": "圣保罗州 Tamboré",
+      "developer": [
+        "scala"
+      ],
+      "tenant": [
+        "multiple"
+      ],
       "status": "L8",
       "status_history": [],
       "capacity_it_mw": null,
-      "capacity_it_mw_by_status": {"L8": 6, "L6": 54, "L2": 450},
+      "capacity_it_mw_by_status": {
+        "L8": 6,
+        "L6": 54,
+        "L2": 450
+      },
       "capacity_facility_mw": null,
-      "power_status": null, "utility": null,
+      "power_status": null,
+      "utility": null,
       "type": "colo-wholesale",
       "notes": "台账#23：不同项目和阶段并存——Tamboré 规划450MW（记L2）、AI City 首期54MW（记L6）、另有6MW单体已交付（记L8）。不能把 450+54+6MW 相加为运营新增。状态拆分为本库估算，待项目级核验。",
       "disputed": false,
       "verified_date": "2026-07-23",
-      "sources": [{"url": "https://scaladatacenters.com/en/about-us/", "grade": "company", "date": "2026", "note": "官方"}]
+      "sources": [
+        {
+          "url": "https://scaladatacenters.com/en/about-us/",
+          "grade": "company",
+          "date": "2026",
+          "note": "官方"
+        }
+      ],
+      "coordinates": "-23.50,-46.83"
     },
     {
       "site_id": "mx-queretaro-qr03",
       "name": "ODATA QR03",
       "aliases": [],
-      "region": "latam", "country": "MX", "location": "Querétaro",
-      "developer": ["odata"], "tenant": ["multiple"],
+      "region": "latam",
+      "country": "MX",
+      "location": "Querétaro",
+      "developer": [
+        "odata"
+      ],
+      "tenant": [
+        "multiple"
+      ],
       "status": "L5",
-      "status_history": [{"status": "L5", "date": "2025", "source_url": "https://aligneddc.com/press-release/odata-announces-energization-of-mexicos-largest-data-center-campus-solving-energy-scarcity-for-the-development-of-data-centers-in-queretaro/"}],
+      "status_history": [
+        {
+          "status": "L5",
+          "date": "2025",
+          "source_url": "https://aligneddc.com/press-release/odata-announces-energization-of-mexicos-largest-data-center-campus-solving-energy-scarcity-for-the-development-of-data-centers-in-queretaro/"
+        }
+      ],
       "capacity_it_mw": null,
       "capacity_it_mw_by_status": null,
       "capacity_facility_mw": 200,
@@ -458,36 +954,73 @@
       "notes": "台账#24：200MW 为园区级供电基础设施通电里程碑（记 capacity_facility），不能写成 200MW IT 已满载运营。母公司 Aligned。",
       "disputed": false,
       "verified_date": "2026-07-23",
-      "sources": [{"url": "https://aligneddc.com/press-release/odata-announces-energization-of-mexicos-largest-data-center-campus-solving-energy-scarcity-for-the-development-of-data-centers-in-queretaro/", "grade": "company", "date": "2025", "note": "官方公告"}]
+      "sources": [
+        {
+          "url": "https://aligneddc.com/press-release/odata-announces-energization-of-mexicos-largest-data-center-campus-solving-energy-scarcity-for-the-development-of-data-centers-in-queretaro/",
+          "grade": "company",
+          "date": "2025",
+          "note": "官方公告"
+        }
+      ]
     },
     {
       "site_id": "latam-portfolio-cirion",
       "name": "Cirion 区域组合（12 主要 DC + 3 在建 + 10 edge）",
       "aliases": [],
-      "region": "latam", "country": "MULTI", "location": "拉丁美洲多国（组合型记录）",
-      "developer": ["cirion"], "tenant": ["multiple"],
+      "region": "latam",
+      "country": "MULTI",
+      "location": "拉丁美洲多国（组合型记录）",
+      "developer": [
+        "cirion"
+      ],
+      "tenant": [
+        "multiple"
+      ],
       "status": "L8",
       "status_history": [],
       "capacity_it_mw": null,
       "capacity_it_mw_by_status": null,
       "capacity_facility_mw": null,
-      "power_status": null, "utility": null,
+      "power_status": null,
+      "utility": null,
       "type": "colo-wholesale",
       "notes": "台账#25：组合型记录（后续拆分园区级）。SAN2/LIM2 各 20MW+，RIO2 规划 60MW+；跨国区域平台。不能把 160 个互联 DC 写成自有设施。总容量未披露，留空。",
       "disputed": false,
       "verified_date": "2026-07-23",
-      "sources": [{"url": "https://press.ciriontechnologies.com/en/2025/08/21/data-center-buenos-aires-digital-transformation-argentina/", "grade": "company", "date": "2025-08", "note": "官方"}]
+      "sources": [
+        {
+          "url": "https://press.ciriontechnologies.com/en/2025/08/21/data-center-buenos-aires-digital-transformation-argentina/",
+          "grade": "company",
+          "date": "2025-08",
+          "note": "官方"
+        }
+      ]
     },
     {
       "site_id": "kr-ansan-sel5",
       "name": "Digital Edge SEL5 Ansan",
       "aliases": [],
-      "region": "apac", "country": "KR", "location": "安山",
-      "developer": ["digital-edge"], "tenant": ["multiple"],
+      "region": "apac",
+      "country": "KR",
+      "location": "安山",
+      "developer": [
+        "digital-edge"
+      ],
+      "tenant": [
+        "multiple"
+      ],
       "status": "L5",
-      "status_history": [{"status": "L5", "date": "2026-06", "source_url": "https://www.digitaledgedc.com/resources/newsroom/digital-edge-secures-power-60mw-ansan-data-center/"}],
+      "status_history": [
+        {
+          "status": "L5",
+          "date": "2026-06",
+          "source_url": "https://www.digitaledgedc.com/resources/newsroom/digital-edge-secures-power-60mw-ansan-data-center/"
+        }
+      ],
       "capacity_it_mw": null,
-      "capacity_it_mw_by_status": {"L5": 60},
+      "capacity_it_mw_by_status": {
+        "L5": 60
+      },
       "capacity_facility_mw": null,
       "power_status": "90MVA 供电协议；双 154kV 变电站；已供电土地（2026-06 取得）",
       "utility": null,
@@ -495,35 +1028,73 @@
       "notes": "台账#26：60MW IT，电力已落定（记L5），PUE 目标低于1.25。不能写成已开工或已运营60MW。",
       "disputed": false,
       "verified_date": "2026-07-23",
-      "sources": [{"url": "https://www.digitaledgedc.com/resources/newsroom/digital-edge-secures-power-60mw-ansan-data-center/", "grade": "company", "date": "2026-06", "note": "官方公告"}]
+      "sources": [
+        {
+          "url": "https://www.digitaledgedc.com/resources/newsroom/digital-edge-secures-power-60mw-ansan-data-center/",
+          "grade": "company",
+          "date": "2026-06",
+          "note": "官方公告"
+        }
+      ]
     },
     {
       "site_id": "us-wy-cheyenne-msft",
       "name": "Microsoft Cheyenne 扩建",
       "aliases": [],
-      "region": "north-america", "country": "US", "location": "Wyoming, Cheyenne",
-      "developer": ["microsoft"], "tenant": ["microsoft"],
+      "region": "north-america",
+      "country": "US",
+      "location": "Wyoming, Cheyenne",
+      "developer": [
+        "microsoft"
+      ],
+      "tenant": [
+        "microsoft"
+      ],
       "status": "L2",
-      "status_history": [{"status": "L2", "date": "2026-04", "source_url": "https://news.microsoft.com/source/2026/04/14/microsoft-announces-intent-to-expand-datacenter-operations-in-cheyenne-accelerating-innovation-and-economic-growth/"}],
+      "status_history": [
+        {
+          "status": "L2",
+          "date": "2026-04",
+          "source_url": "https://news.microsoft.com/source/2026/04/14/microsoft-announces-intent-to-expand-datacenter-operations-in-cheyenne-accelerating-innovation-and-economic-growth/"
+        }
+      ],
       "capacity_it_mw": null,
       "capacity_it_mw_by_status": null,
       "capacity_facility_mw": null,
-      "power_status": null, "utility": "Black Hills Corp.",
+      "power_status": null,
+      "utility": "Black Hills Corp.",
       "type": "hyperscaler-selfbuild",
       "notes": "台账#27：2026-04 宣布扩建意向，拟购约3,200英亩；容量未披露，不能根据土地面积推算 GW。现有 Cheyenne 设施已有运营许可（另行建档）。",
       "disputed": false,
       "verified_date": "2026-07-23",
       "sources": [
-        {"url": "https://news.microsoft.com/source/2026/04/14/microsoft-announces-intent-to-expand-datacenter-operations-in-cheyenne-accelerating-innovation-and-economic-growth/", "grade": "company", "date": "2026-04", "note": "官方"},
-        {"url": "https://content.govdelivery.com/accounts/WYDEQ/bulletins/404363d", "grade": "regulatory", "date": "2026", "note": "州环保部门"}
+        {
+          "url": "https://news.microsoft.com/source/2026/04/14/microsoft-announces-intent-to-expand-datacenter-operations-in-cheyenne-accelerating-innovation-and-economic-growth/",
+          "grade": "company",
+          "date": "2026-04",
+          "note": "官方"
+        },
+        {
+          "url": "https://content.govdelivery.com/accounts/WYDEQ/bulletins/404363d",
+          "grade": "regulatory",
+          "date": "2026",
+          "note": "州环保部门"
+        }
       ]
     },
     {
       "site_id": "cn-hebei-zhangjiakou",
       "name": "张家口数据中心集群（怀来等）",
       "aliases": [],
-      "region": "china", "country": "CN", "location": "河北张家口",
-      "developer": ["multiple"], "tenant": ["multiple"],
+      "region": "china",
+      "country": "CN",
+      "location": "河北张家口",
+      "developer": [
+        "multiple"
+      ],
+      "tenant": [
+        "multiple"
+      ],
       "status": "L8",
       "status_history": [],
       "capacity_it_mw": null,
@@ -535,7 +1106,14 @@
       "notes": "中国板块（M14）示例条目：集群级记录待拆分为具体园区；中外数据不混加",
       "disputed": false,
       "verified_date": "2026-08-14",
-      "sources": [{"url": "https://www.ndrc.gov.cn/", "grade": "regulatory", "date": "2022", "note": "东数西算枢纽批复"}]
+      "sources": [
+        {
+          "url": "https://www.ndrc.gov.cn/",
+          "grade": "regulatory",
+          "date": "2022",
+          "note": "东数西算枢纽批复"
+        }
+      ]
     }
   ]
 }
