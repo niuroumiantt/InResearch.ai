@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Datacenter Hub — BI 总览</title>
+<title>Datacenter Hub — 全球数据中心行业总览</title>
 <style>
   :root {
     --bg: #f2f4f7; --card: #ffffff; --text: #1a1d24; --muted: #6b7280;
@@ -19,28 +19,42 @@
   body { background: var(--bg); color: var(--text); font: 13.5px/1.6 -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; padding-bottom: 50px; }
   a { color: var(--accent); text-decoration: none; }
   .topbar { position: sticky; top: 0; background: var(--card); border-bottom: 1px solid var(--line);
-    display: flex; align-items: center; gap: 4px; padding: 0 18px; height: 46px; z-index: 10; }
+    display: flex; align-items: center; gap: 4px; padding: 0 18px; height: 46px; z-index: 20; }
   .topbar b { font-size: 15px; margin-right: 14px; }
   .tab { padding: 12px 14px; color: var(--muted); border-bottom: 2px solid transparent; }
   .tab.on { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
   .topbar .sp { flex: 1; }
-  .topbar .mini { font-size: 12px; color: var(--muted); }
-  .wrap { max-width: 1240px; margin: 18px auto 0; padding: 0 16px; }
-  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 12px; }
+  .live { font-size: 11.5px; color: var(--muted); }
+  .live i { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--green);
+    margin-right: 5px; animation: blink 2s ease-in-out infinite; }
+  @keyframes blink { 50% { opacity: .25; } }
+  .ticker { background: var(--card); border-bottom: 1px solid var(--line); overflow: hidden; height: 32px; position: relative; }
+  .ticker-inner { display: inline-block; white-space: nowrap; padding-left: 100%; line-height: 32px;
+    font-size: 12px; color: var(--muted); animation: scroll 90s linear infinite; }
+  .ticker:hover .ticker-inner { animation-play-state: paused; }
+  .ticker-inner b { color: var(--text); }
+  @keyframes scroll { to { transform: translateX(-100%); } }
+  .wrap { max-width: 1240px; margin: 16px auto 0; padding: 0 16px; }
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 12px; }
   .kpi { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
   .kpi .v { font-size: 23px; font-weight: 700; font-variant-numeric: tabular-nums; }
   .kpi .v small { font-size: 12px; font-weight: 400; color: var(--muted); }
   .kpi .l { color: var(--muted); font-size: 11.5px; margin-top: 1px; }
   .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px; }
   .board { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; overflow: hidden; }
-  .b12 { grid-column: span 12; } .b8 { grid-column: span 8; } .b6 { grid-column: span 6; }
-  .b4 { grid-column: span 4; }
-  @media (max-width: 980px) { .b8, .b6, .b4 { grid-column: span 12; } }
+  .b12 { grid-column: span 12; } .b6 { grid-column: span 6; } .b4 { grid-column: span 4; } .b3 { grid-column: span 3; }
+  @media (max-width: 980px) { .b6, .b4, .b3 { grid-column: span 12; } }
   .bh { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; }
   .bh h2 { font-size: 14px; }
-  .bh .src { font-size: 11px; color: var(--muted); }
   .bh .go { margin-left: auto; font-size: 11.5px; white-space: nowrap; }
   svg text { font-family: -apple-system, "PingFang SC", sans-serif; }
+  .metric { display: flex; align-items: baseline; gap: 7px; padding: 7px 0; border-bottom: 1px dashed var(--line); }
+  .metric:last-child { border-bottom: none; }
+  .metric .nm { color: var(--muted); font-size: 12px; flex: 1; }
+  .metric .val { font-weight: 700; font-size: 15px; font-variant-numeric: tabular-nums; }
+  .metric .val.na { color: var(--gray); font-weight: 400; font-size: 12px; }
+  .metric .asof { font-size: 10px; color: var(--gray); }
+  .sdot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; align-self: center; }
   table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
   th, td { text-align: left; padding: 5px 8px; border-bottom: 1px solid var(--line); }
   th { color: var(--muted); font-weight: 500; font-size: 11.5px; }
@@ -48,6 +62,15 @@
   td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
   .note { color: var(--muted); font-size: 11px; margin-top: 6px; }
   .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; }
+  #tip { position: fixed; background: var(--card); border: 1px solid var(--line); border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,.15); padding: 10px 12px; font-size: 12px; max-width: 280px;
+    pointer-events: none; z-index: 50; display: none; line-height: 1.7; }
+  #tip b { font-size: 13px; }
+  #tip .tl { color: var(--muted); }
+  circle.site { cursor: pointer; transition: fill-opacity .15s; }
+  circle.site:hover { fill-opacity: 1; }
+  circle.halo { transform-box: fill-box; transform-origin: center; animation: pulse 2.4s ease-out infinite; pointer-events: none; }
+  @keyframes pulse { 0% { transform: scale(1); opacity: .5; } 80% { transform: scale(2.1); opacity: 0; } 100% { opacity: 0; } }
   .err { color: var(--red); background: var(--card); border: 1px solid var(--red); border-radius: 10px; padding: 14px; margin-top: 16px; }
 </style>
 </head>
@@ -55,17 +78,19 @@
 <div class="topbar">
   <b>Datacenter Hub</b>
   <a class="tab on" href="index.html">总览</a>
-  <a class="tab" href="ops.html">工作台</a>
+  <a class="tab" href="ops.html">管理后台</a>
   <a class="tab" href="report.html">报告成稿</a>
   <span class="sp"></span>
-  <span class="mini" id="stamp"></span>
+  <span class="live" id="live"><i></i>连接中…</span>
   <a class="tab" href="doc.html?f=reports/HOW_TO_OUTPUT.md">按需输出 ↗</a>
 </div>
+<div class="ticker" id="ticker" style="display:none"><div class="ticker-inner" id="tickerInner"></div></div>
 <div class="wrap">
   <div class="kpis" id="kpis"></div>
   <div class="grid" id="grid"></div>
   <div id="error"></div>
 </div>
+<div id="tip"></div>
 
 <script>
 async function get(p) {
@@ -73,8 +98,8 @@ async function get(p) {
   if (!r.ok) throw new Error(p + " → HTTP " + r.status);
   return r.json();
 }
-const fmt = n => n >= 10000 ? (n / 1000).toFixed(1) + "GW" : Math.round(n).toLocaleString() + "MW";
-const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+const fmtMW = n => n >= 10000 ? (n / 1000).toFixed(1) + " GW" : Math.round(n).toLocaleString() + " MW";
+const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 
 function capBuckets(p) {
   let op = 0, bu = 0, pl = 0;
@@ -83,22 +108,39 @@ function capBuckets(p) {
   for (const [k, v] of Object.entries(p.capacity_it_mw_by_status || {})) put(k, v);
   return [op, bu, pl];
 }
+function indStatus(i) {
+  if (i.value == null) return "na";
+  if (i.direction === "info" || i.yellow == null) return "green";
+  const worse = i.direction === "above" ? (v, t) => v >= t : (v, t) => v <= t;
+  if (i.red != null && worse(i.value, i.red)) return "red";
+  return worse(i.value, i.yellow) ? "yellow" : "green";
+}
+const SCOLOR = { green: "var(--green)", yellow: "var(--yellow)", red: "var(--red)", na: "var(--line)" };
 
-function hbar(rows, colorFn, valFn, labFn, max) {
-  // rows → 水平条形图
+function countUp(el, target, suffix) {
+  const t0 = performance.now(), dur = 900, from = 0;
+  const isInt = Number.isInteger(target);
+  function tick(t) {
+    const k = Math.min(1, (t - t0) / dur), v = from + (target - from) * (1 - Math.pow(1 - k, 3));
+    el.textContent = (isInt ? Math.round(v).toLocaleString() : v.toFixed(1)) + suffix;
+    if (k < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+function hbar(rows, colorFn, valFn, labFn, tipFn) {
   const W = 520, LH = 24, L = 150;
-  max = max || Math.max(...rows.map(valFn), 1);
+  const max = Math.max(...rows.map(valFn), 1);
   let s = `<svg viewBox="0 0 ${W} ${rows.length * LH + 4}" width="100%">`;
   rows.forEach((r, i) => {
     const v = valFn(r), w = Math.max(2, v / max * (W - L - 70)), y = i * LH;
     s += `<text x="${L - 8}" y="${y + 16}" text-anchor="end" font-size="11.5" fill="var(--muted)">${labFn(r)}</text>
-          <rect x="${L}" y="${y + 5}" width="${w}" height="14" rx="3" fill="${colorFn(r)}"/>
-          <text x="${L + w + 6}" y="${y + 16}" font-size="11" fill="var(--text)">${typeof v === "number" ? v.toLocaleString() : v}</text>`;
+          <rect x="${L}" y="${y + 5}" width="${w}" height="14" rx="3" fill="${colorFn(r)}" ${tipFn ? `class="site" data-tip="${esc(tipFn(r))}"` : ""}/>
+          <text x="${L + w + 6}" y="${y + 16}" font-size="11" fill="var(--text)">${v.toLocaleString()}</text>`;
   });
   return s + "</svg>";
 }
-
-function stackbar(rows, keys, colors, labFn) {
+function stackbar(rows, keys, colors, labFn, tipFn) {
   const W = 520, LH = 26, L = 118;
   const max = Math.max(...rows.map(r => keys.reduce((a, k) => a + r[k], 0)), 1);
   let s = `<svg viewBox="0 0 ${W} ${rows.length * LH + 4}" width="100%">`;
@@ -107,77 +149,97 @@ function stackbar(rows, keys, colors, labFn) {
     s += `<text x="${L - 8}" y="${y + 17}" text-anchor="end" font-size="11.5" fill="var(--muted)">${labFn(r)}</text>`;
     keys.forEach((k, j) => {
       const w = r[k] / max * (W - L - 80);
-      if (w > 0.5) s += `<rect x="${x}" y="${y + 6}" width="${w}" height="14" fill="${colors[j]}"/>`;
+      if (w > 0.5) s += `<rect x="${x}" y="${y + 6}" width="${w}" height="14" fill="${colors[j]}" ${tipFn ? `class="site" data-tip="${esc(tipFn(r, k))}"` : ""}/>`;
       x += w;
     });
-    s += `<text x="${x + 6}" y="${y + 17}" font-size="11" fill="var(--text)">${fmt(keys.reduce((a, k) => a + r[k], 0))}</text>`;
+    s += `<text x="${x + 6}" y="${y + 17}" font-size="11" fill="var(--text)">${fmtMW(keys.reduce((a, k) => a + r[k], 0))}</text>`;
   });
   return s + "</svg>";
 }
 
-function donut(parts, size) {
-  const R = 52, C = 2 * Math.PI * R, total = parts.reduce((a, p) => a + p.v, 0) || 1;
-  let off = 0, s = `<svg viewBox="0 0 140 140" width="${size || 130}">`;
-  parts.forEach(p => {
-    const frac = p.v / total;
-    s += `<circle cx="70" cy="70" r="${R}" fill="none" stroke="${p.c}" stroke-width="20"
-      stroke-dasharray="${frac * C} ${C}" stroke-dashoffset="${-off * C}" transform="rotate(-90 70 70)"/>`;
-    off += frac;
-  });
-  s += `<text x="70" y="66" text-anchor="middle" font-size="20" font-weight="700" fill="var(--text)">${total}</text>
-        <text x="70" y="84" text-anchor="middle" font-size="10" fill="var(--muted)">合计</text></svg>`;
-  return s;
-}
-
-(async () => {
+let world = null;
+async function render() {
 try {
-  const [reg, inds, projects, companies, prices, contracts, world] = await Promise.all([
+  const [reg, inds, projectsDoc, companies, prices, contracts] = await Promise.all([
     get("framework/modules.json"), get("framework/indicators.json"), get("data/projects.json"),
-    get("data/companies.json"), get("data/prices.json"), get("data/contracts.json"), get("assets/world.geo.json")]);
+    get("data/companies.json"), get("data/prices.json"), get("data/contracts.json")]);
+  if (!world) world = await get("assets/world.geo.json");
   let brief = null; try { brief = await get("data/brief.json"); } catch (e) {}
+  const cname = Object.fromEntries(companies.records.map(c => [c.company_id, c.name_cn || c.name]));
+  const indBy = Object.fromEntries(inds.indicators.map(i => [i.id, i]));
 
-  const P = projects.records.filter(p => !p.site_id.includes("portfolio"));
+  // ── 跑马灯（行业动态）
+  if (brief?.news?.entities?.length) {
+    const items = [];
+    brief.news.entities.slice(0, 10).forEach(e => e.top.slice(0, 1).forEach(t =>
+      items.push(`<b>${esc(e.name)}</b>｜${esc(t.title)} <span style="color:var(--gray)">· ${esc(t.source)}</span>`)));
+    document.getElementById("tickerInner").innerHTML = items.join("　◆　");
+    document.getElementById("ticker").style.display = "";
+  }
+
+  // ── 聚合
+  const P = projectsDoc.records.filter(p => !p.site_id.includes("portfolio"));
   let OP = 0, BU = 0, PL = 0;
-  const funnel = Object.fromEntries(Array.from({length: 9}, (_, i) => ["L" + (i + 1), 0]));
+  const funnel = Object.fromEntries(Array.from({length: 9}, (_, i) => ["L" + (i + 1), { mw: 0, n: 0 }]));
   const regions = {};
   P.forEach(p => {
     const [o, b, l] = capBuckets(p); OP += o; BU += b; PL += l;
-    const reg = regions[p.region] = regions[p.region] || { op: 0, bu: 0, pl: 0 };
-    reg.op += o; reg.bu += b; reg.pl += l;
-    if (p.capacity_it_mw) funnel[p.status] += p.capacity_it_mw;
-    for (const [k, v] of Object.entries(p.capacity_it_mw_by_status || {})) funnel[k] += v;
+    const r = regions[p.region] = regions[p.region] || { op: 0, bu: 0, pl: 0, n: 0 };
+    r.op += o; r.bu += b; r.pl += l; r.n++;
+    const add = (k, v) => { funnel[k].mw += v; };
+    if (p.capacity_it_mw) add(p.status, p.capacity_it_mw);
+    for (const [k, v] of Object.entries(p.capacity_it_mw_by_status || {})) add(k, v);
+    funnel[p.status].n++;
   });
+  const istat = { green: 0, yellow: 0, red: 0, na: 0 };
+  inds.indicators.forEach(i => istat[indStatus(i)]++);
+  const iea = prices.records.find(r => r.series_id === "benchmark-iea-global-consumption");
+  const backlog = indBy.mega_contract_backlog?.value;
 
-  const rs = brief?.research || {};
-  const findings = Object.values(rs).reduce((a, s) => a + s.findings, 0);
-  const needsRev = Object.values(rs).reduce((a, s) => a + s.needs_review, 0);
-
-  // 指标状态
-  const istat = { green: 0, yellow: 0, red: 0, nodata: 0 };
-  inds.indicators.forEach(i => {
-    if (i.value == null) { istat.nodata++; return; }
-    if (i.direction === "info" || i.yellow == null) { istat.green++; return; }
-    const worse = i.direction === "above" ? (v, t) => v >= t : (v, t) => v <= t;
-    if (i.red != null && worse(i.value, i.red)) istat.red++;
-    else if (worse(i.value, i.yellow)) istat.yellow++; else istat.green++;
-  });
-
-  document.getElementById("stamp").textContent = "数据快照 " + (brief?.date || new Date().toISOString().slice(0, 10));
+  // ── KPI（数字滚动）
   document.getElementById("kpis").innerHTML = [
-    [fmt(OP), "运营容量 L8+（项目库）"],
-    [fmt(BU), "在建容量 L6–7"],
-    [fmt(PL), "规划容量 L1–5（不计入供给）"],
-    [`${findings} <small>⚠️${needsRev}</small>`, "研究结论 / 待复核"],
-    [companies.records.length, "跟踪公司"],
-    [`${istat.red}<small>红</small> ${istat.yellow}<small>黄</small>`, `预警指标（共 ${inds.indicators.length}）`],
-  ].map(([v, l]) => `<div class="kpi"><div class="v">${v}</div><div class="l">${l}</div></div>`).join("");
+    ["k-op", OP, " MW", "运营容量 L8+（项目库口径）"],
+    ["k-bu", BU, " MW", "在建容量 L6–7"],
+    ["k-pl", +(PL / 1000).toFixed(1), " GW", "规划容量 L1–5（不计入供给）"],
+    ["k-iea", iea ? iea.value : 0, " TWh", "全球用电 2024（IEA 基准）"],
+    ["k-bl", backlog || 0, " $B", "大额合同余额（种子样本）"],
+    [null, null, null, null],
+  ].filter(x => x[0]).map(([id, v, u, l]) =>
+    `<div class="kpi"><div class="v" id="${id}">0${u}</div><div class="l">${l}</div></div>`).join("") +
+    `<div class="kpi"><div class="v"><span style="color:${istat.red ? "var(--red)" : "var(--muted)"}">${istat.red}红</span>
+     <span style="color:${istat.yellow ? "var(--yellow)" : "var(--muted)"}">${istat.yellow}黄</span></div>
+     <div class="l">预警指标（${inds.indicators.length - istat.na} 有值 / 共 ${inds.indicators.length}）</div></div>`;
+  countUp(document.getElementById("k-op"), OP, " MW");
+  countUp(document.getElementById("k-bu"), BU, " MW");
+  countUp(document.getElementById("k-pl"), +(PL / 1000).toFixed(1), " GW");
+  if (iea) countUp(document.getElementById("k-iea"), iea.value, " TWh");
+  if (backlog) countUp(document.getElementById("k-bl"), backlog, " $B");
 
   const C = { op: "var(--green)", bu: "var(--yellow)", pl: "var(--gray)" };
   const boards = [];
 
-  // ① 全球布局地图
-  const LON0 = -170, LON1 = 180, LAT0 = -55, LAT1 = 72, MW = 1160, MH = MW * (LAT1 - LAT0) / (LON1 - LON0) * 1.25;
-  const xy = (lon, lat) => [(lon - LON0) / (LON1 - LON0) * MW, (LAT1 - lat) / (LAT1 - LAT0) * MH];
+  // ── 行业仪表盘（穷尽互斥：四维度 × 4 指标，注册表驱动）
+  const GROUPS = [
+    ["供给与市场", "report.html#ch-M01", ["global_operational_gw", "pipeline_conversion_rate", "hyperscaler_lease_ratio", "price_per_mw_operational"]],
+    ["电力与设备", "report.html#ch-M04", ["interconnection_queue_years", "ppa_price_index", "transformer_lead_time", "gas_turbine_backlog_years"]],
+    ["算力与技术", "report.html#ch-M06", ["gpu_lead_time", "rack_density_shipping", "liquid_cooling_penetration", "gpu_hourly_rate_spot"]],
+    ["需求与资本", "report.html#ch-M12", ["ai_revenue_capex_ratio", "token_price_flagship", "circular_deal_exposure", "aidc_utilization_channel"]],
+  ];
+  GROUPS.forEach(([title, go, ids]) => {
+    const rows = ids.map(id => indBy[id]).filter(Boolean).map(i => {
+      const st = indStatus(i);
+      return `<div class="metric" title="${esc(i.auto_note || i.source || "")}">
+        <span class="sdot" style="background:${SCOLOR[st]}"></span>
+        <span class="nm">${i.name}</span>
+        ${i.value != null ? `<span class="val">${i.value.toLocaleString()}<small style="font-size:10px;color:var(--muted)"> ${i.unit}</small></span><span class="asof">${(i.as_of || "").slice(2)}</span>`
+                          : `<span class="val na">待录入</span>`}</div>`;
+    }).join("");
+    boards.push(["b3", title, go, rows]);
+  });
+
+  // ── 全球布局地图（悬停钻取）
+  const LON0 = -170, LON1 = 180, LAT0 = -55, LAT1 = 72, MW_ = 1160, MH = MW_ * (LAT1 - LAT0) / (LON1 - LON0) * 1.25;
+  const xy = (lon, lat) => [(lon - LON0) / (LON1 - LON0) * MW_, (LAT1 - lat) / (LAT1 - LAT0) * MH];
   let land = "";
   world.features.forEach(f => {
     const polys = f.geometry.type === "MultiPolygon" ? f.geometry.coordinates : [f.geometry.coordinates];
@@ -194,92 +256,78 @@ try {
     if (!tot) return;
     const [la, lo] = p.coordinates.split(",").map(Number);
     const [x, y] = xy(lo, la);
-    const r = Math.max(4, Math.min(16, Math.sqrt(tot / 5000) * 16));
+    const r = Math.max(4.5, Math.min(16, Math.sqrt(tot / 5000) * 16));
     const c = o >= Math.max(b, l) ? C.op : (b >= l ? C.bu : C.pl);
-    dots += `<circle cx="${x}" cy="${y}" r="${r}" fill="${c}" fill-opacity=".72" stroke="var(--card)" stroke-width="1">
-      <title>${esc(p.name)} — ${fmt(tot)}（${p.status}）</title></circle>`;
+    const tip = `<b>${esc(p.name)}</b><br><span class="tl">${esc(p.location || "")} · 状态 ${p.status}</span><br>` +
+      `容量 <b>${fmtMW(tot)}</b>（运营 ${o} / 在建 ${b} / 规划 ${l}）<br>` +
+      (p.developer?.length ? `开发 ${p.developer.map(d => cname[d] || d).join("、")}<br>` : "") +
+      (p.tenant?.length ? `租户 ${p.tenant.map(d => cname[d] || d).join("、")}<br>` : "") +
+      `<span class="tl">核验 ${p.verified_date} · 点击进入区域章节</span>`;
+    if (b > Math.max(o, l)) dots += `<circle class="halo" cx="${x}" cy="${y}" r="${r}" fill="none" stroke="${c}" stroke-width="1.5"/>`;
+    dots += `<circle class="site" cx="${x}" cy="${y}" r="${r}" fill="${c}" fill-opacity=".75" stroke="var(--card)" stroke-width="1"
+      data-tip="${esc(tip)}" onclick="location.href='report.html#ch-M05'"/>`;
   });
-  boards.push(["b12", "全球项目布局", "data/projects.json · M05", "report.html#ch-M05",
-    `<svg viewBox="0 0 ${MW} ${MH.toFixed(0)}" width="100%">${land}${dots}</svg>
+  boards.push(["b12", "全球项目布局", "report.html#ch-M05",
+    `<svg viewBox="0 0 ${MW_} ${MH.toFixed(0)}" width="100%">${land}${dots}</svg>
      <div class="note"><span class="dot" style="background:var(--green)"></span>运营主导
-     <span class="dot" style="background:var(--yellow);margin-left:10px"></span>在建主导
-     <span class="dot" style="background:var(--gray);margin-left:10px"></span>规划主导 · 圆面积∝容量 · 悬停看详情 ·
-     按需导出：<code>python3 pipeline/output_map.py</code>（<a href="doc.html?f=reports/HOW_TO_OUTPUT.md">更多输出角度</a>）</div>`]);
+     <span class="dot" style="background:var(--yellow);margin-left:10px"></span>在建主导（脉动=施工中）
+     <span class="dot" style="background:var(--gray);margin-left:10px"></span>规划主导 · 圆面积∝容量 · 悬停看园区详情</div>`]);
 
-  // ② 九级漏斗
-  const frows = Object.entries(funnel).map(([k, v]) => ({ k, v }));
-  boards.push(["b6", "项目漏斗（IT 容量 MW × 九级状态）", "01_data_standards.md", "report.html#ch-M01",
-    hbar(frows, r => +r.k.slice(1) >= 8 ? C.op : +r.k.slice(1) >= 6 ? C.bu : C.pl, r => r.v,
-      r => r.k + " " + ["传闻", "官宣", "土地", "电力申请", "电力确定", "开工", "机电", "通电", "满载"][+r.k.slice(1) - 1]) +
-    `<div class="note">口径：仅 L8+ 计入当期供给；L4 以下汇总须乘历史转化率</div>`]);
-
-  // ③ 区域容量
+  // ── 漏斗 / 区域 / 开发商 / Token / 合同
+  const FN = ["传闻", "官宣", "土地", "电力申请", "电力确定", "开工", "机电", "通电", "满载"];
+  boards.push(["b6", "项目漏斗（IT 容量 MW × 九级状态）", "report.html#ch-M01",
+    hbar(Object.entries(funnel).map(([k, v]) => ({ k, ...v })),
+      r => +r.k.slice(1) >= 8 ? C.op : +r.k.slice(1) >= 6 ? C.bu : C.pl, r => r.mw,
+      r => r.k + " " + FN[+r.k.slice(1) - 1],
+      r => `<b>${r.k} ${FN[+r.k.slice(1) - 1]}</b><br>${fmtMW(r.mw)}<br><span class="tl">处于此状态的项目 ${r.n} 个</span>`) +
+    `<div class="note">仅 L8+ 计入当期供给；L4 以下汇总须乘历史转化率（口径手册）</div>`]);
   const rrows = Object.entries(regions).map(([k, v]) => ({ k, ...v })).sort((a, b) => (b.op + b.bu + b.pl) - (a.op + a.bu + a.pl));
-  boards.push(["b6", "区域容量结构", "projects · M05/M14", "report.html#ch-M05",
-    stackbar(rrows, ["op", "bu", "pl"], [C.op, C.bu, C.pl], r => r.k) +
+  const RN = { "north-america": "北美", "china": "中国", "mena": "中东北非", "apac": "亚太", "latam": "拉美", "europe": "欧洲", "india": "印度" };
+  boards.push(["b6", "区域容量结构", "report.html#ch-M05",
+    stackbar(rrows, ["op", "bu", "pl"], [C.op, C.bu, C.pl], r => RN[r.k] || r.k,
+      (r, k) => `<b>${RN[r.k] || r.k}</b><br>${{op: "运营", bu: "在建", pl: "规划"}[k]} ${fmtMW(r[k])}<br><span class="tl">项目 ${r.n} 个 · 合计 ${fmtMW(r.op + r.bu + r.pl)}</span>`) +
     `<div class="note">绿=运营 黄=在建 灰=规划 · 中国板块单列不与海外混加（M14）</div>`]);
-
-  // ④ 指标红绿灯
-  const alerts = inds.indicators.filter(i => i.value != null);
-  boards.push(["b4", "监测指标状态", "indicators.json · M15", "report.html#ch-M15",
-    `<div style="display:flex;gap:14px;align-items:center">` +
-    donut([{ v: istat.green, c: "var(--green)" }, { v: istat.yellow, c: "var(--yellow)" },
-           { v: istat.red, c: "var(--red)" }, { v: istat.nodata, c: "var(--line)" }]) +
-    `<div style="font-size:12px;line-height:2">
-      <span class="dot" style="background:var(--green)"></span>绿 ${istat.green}<br>
-      <span class="dot" style="background:var(--yellow)"></span>黄 ${istat.yellow}<br>
-      <span class="dot" style="background:var(--red)"></span>红 ${istat.red}<br>
-      <span class="dot" style="background:var(--line)"></span>待录入 ${istat.nodata}</div></div>
-    <div class="note">${alerts.length ? "有值指标：" + alerts.map(i => i.name + " " + i.value + i.unit).join("｜") : "指标数值化是当前数据层的主要缺口——见工作台核验队列"}</div>`]);
-
-  // ⑤ 知识层健康
-  const krows = reg.modules.filter(m => rs[m.id]).map(m => ({ m, s: rs[m.id] }));
-  boards.push(["b8", "知识层健康（各模块研究结论数 / ⚠️待复核）", "research/*.md", "report.html",
-    hbar(krows, r => r.s.needs_review ? "var(--yellow)" : "var(--accent)", r => r.s.findings,
-      r => `${r.m.id} ${r.m.name}${r.s.needs_review ? " ⚠️" + r.s.needs_review : ""}`) +
-    `<div class="note">黄色 = 含待复核结论的模块（SEC 信号触发，见工作台）· 点击右上进入对应章节</div>`]);
-
-  // ⑥ Token 价格
-  const tok = prices.records.filter(r => r.category === "token-price");
-  boards.push(["b4", "旗舰模型 API 价格（$/M tokens 输出）", "prices · M12", "report.html#ch-M12",
-    hbar(tok, () => "var(--accent)", r => r.value, r => r.series_id.split("-")[2]) +
-    `<div class="note">牌价≠实现价（缓存 0.1x/批处理 0.5x）· as_of ${tok[0]?.as_of || "—"}</div>`]);
-
-  // ⑦ 开发商管线 Top8
   const dev = {};
   P.forEach(p => (p.developer || []).forEach(d => {
     if (d === "multiple") return;
     const [o, b, l] = capBuckets(p); dev[d] = (dev[d] || 0) + o + b + l;
   }));
-  const drows = Object.entries(dev).map(([k, v]) => ({ k, v })).sort((a, b) => b.v - a.v).slice(0, 8);
-  const cname = Object.fromEntries(companies.records.map(c => [c.company_id, c.name_cn || c.name]));
-  boards.push(["b6", "开发商管线 Top 8（全状态合计 MW）", "projects · M02", "report.html#ch-M02",
-    hbar(drows, () => "var(--accent)", r => r.v, r => cname[r.k] || r.k) +
-    `<div class="note">全状态合计口径（含规划），非已运营规模——排名≠当前市场份额</div>`]);
+  boards.push(["b4", "开发商管线 Top 8（全状态 MW）", "report.html#ch-M02",
+    hbar(Object.entries(dev).map(([k, v]) => ({ k, v })).sort((a, b) => b.v - a.v).slice(0, 8),
+      () => "var(--accent)", r => r.v, r => cname[r.k] || r.k) +
+    `<div class="note">含规划口径，排名≠当前市场份额</div>`]);
+  const tok = prices.records.filter(r => r.category === "token-price");
+  boards.push(["b4", "旗舰模型 API 价格（$/M 输出）", "report.html#ch-M12",
+    hbar(tok, () => "var(--accent)", r => r.value, r => r.series_id.split("-")[2]) +
+    `<div class="note">牌价≠实现价（缓存 0.1x / 批处理 0.5x）· ${tok[0]?.as_of || ""}</div>`]);
+  boards.push(["b4", "大额合同（种子样本）", "report.html#ch-M11",
+    `<table><tr><th>双方</th><th class="num">$B</th><th>循环</th></tr>` +
+    contracts.records.map(c => `<tr><td>${c.parties.map(p => cname[p] || p).join(" ↔ ")}<div style="font-size:10px;color:var(--gray)">${c.type} · ${c.announced_date}</div></td>
+      <td class="num">${c.value_usd_b ?? "—"}</td><td>${c.circular_flag ? "⚠️" : "—"}</td></tr>`).join("") + `</table>
+    <div class="note">合同批量入库在路线图第二阶段</div>`]);
 
-  // ⑧ 今日信号
-  if (brief?.news?.entities?.length) {
-    boards.push(["b6", `今日信号 Top 实体（${brief.news.signal_date}，扫描 ${brief.news.scanned_items} 条）`, "collect.py", "ops.html",
-      hbar(brief.news.entities.slice(0, 8), () => "var(--accent)", e => e.count, e => e.name) +
-      `<div class="note">SEC 新文件 ${brief.sec?.length || 0} 份 · 核验队列 P1 ${brief.verify?.p1 || 0} 条 → <a href="ops.html">工作台处理</a></div>`]);
-  }
-
-  // ⑨ 大额合同
-  boards.push(["b12", "大额合同与资本事件", "contracts · M03/M11", "report.html#ch-M11",
-    `<table><tr><th>合同</th><th>类型</th><th>双方</th><th class="num">金额 ($B)</th><th class="num">容量 (MW)</th><th>宣布</th><th>循环交易</th></tr>` +
-    contracts.records.map(c => `<tr><td>${c.contract_id}</td><td>${c.type}</td>
-      <td>${c.parties.map(p => cname[p] || p).join(" ↔ ")}</td>
-      <td class="num">${c.value_usd_b ?? "—"}</td><td class="num">${c.capacity_it_mw ?? "—"}</td>
-      <td>${c.announced_date}</td><td>${c.circular_flag ? "⚠️ 是" : "否"}</td></tr>`).join("") +
-    `</table><div class="note">合同库仅 ${contracts.records.length} 条种子记录——大额合同批量入库在路线图第二阶段</div>`]);
-
-  document.getElementById("grid").innerHTML = boards.map(([cls, title, src, go, body]) =>
-    `<div class="board ${cls}"><div class="bh"><h2>${title}</h2><span class="src">${src}</span>
-     <a class="go" href="${go}">章节/详情 →</a></div>${body}</div>`).join("");
+  document.getElementById("grid").innerHTML = boards.map(([cls, title, go, body]) =>
+    `<div class="board ${cls}"><div class="bh"><h2>${title}</h2><a class="go" href="${go}">详情 →</a></div>${body}</div>`).join("");
+  document.getElementById("live").innerHTML = `<i></i>实时 · ${new Date().toTimeString().slice(0, 8)} 刷新`;
 } catch (e) {
   document.getElementById("error").innerHTML = `<div class="err">加载失败：${e.message}</div>`;
 }
-})();
+}
+
+// 悬停钻取 tooltip
+const tip = document.getElementById("tip");
+addEventListener("mousemove", e => {
+  const t = e.target.closest?.("[data-tip]");
+  if (t) {
+    tip.innerHTML = t.dataset.tip;
+    tip.style.display = "block";
+    tip.style.left = Math.min(e.clientX + 14, innerWidth - 300) + "px";
+    tip.style.top = Math.min(e.clientY + 14, innerHeight - 140) + "px";
+  } else tip.style.display = "none";
+});
+
+render();
+setInterval(render, 60000);  // 每分钟自动刷新
 </script>
 </body>
 </html>

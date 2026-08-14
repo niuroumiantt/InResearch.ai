@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "updated": "2026-08-14",
+  "updated": "2026-08-15",
   "note": "监测指标注册表（L4）。value/as_of 由数据更新时填写；threshold 方向见 direction 字段。状态由 pipeline/validate.py 计算：green/yellow/red/stale/no_data。",
   "indicators": [
     {
@@ -25,9 +25,10 @@
       "direction": "info",
       "yellow": null,
       "red": null,
-      "value": null,
-      "as_of": null,
-      "source": "projects 表聚合"
+      "value": 0.5,
+      "as_of": "2026-08-15",
+      "source": "projects 表聚合",
+      "auto_note": "projects 表 L8+ 聚合（库内口径，非全球普查）"
     },
     {
       "id": "pipeline_conversion_rate",
@@ -104,8 +105,9 @@
       "yellow": 30,
       "red": 50,
       "source": "contracts表 circular_flag 聚合",
-      "value": null,
-      "as_of": null
+      "value": 25.0,
+      "as_of": "2026-08-15",
+      "auto_note": "contracts 表金额加权（样本小，仅示意）"
     },
     {
       "id": "mega_contract_backlog",
@@ -117,8 +119,9 @@
       "yellow": null,
       "red": null,
       "source": "财报RPO+contracts表",
-      "value": null,
-      "as_of": null
+      "value": 400,
+      "as_of": "2026-08-15",
+      "auto_note": "contracts 表合计（种子样本）"
     },
     {
       "id": "btm_operational_mw",
@@ -324,9 +327,10 @@
       "direction": "above",
       "yellow": 24,
       "red": 36,
-      "value": null,
-      "as_of": null,
-      "source": "渠道+财报电话会"
+      "value": 30,
+      "as_of": "2026-06-30",
+      "source": "渠道+财报电话会",
+      "auto_note": "prices:transformer-lead-time 最新点"
     },
     {
       "id": "construction_duration_months",
@@ -428,9 +432,10 @@
       "direction": "info",
       "yellow": null,
       "red": null,
-      "value": null,
-      "as_of": null,
-      "source": "各家定价页"
+      "value": 30,
+      "as_of": "2026-08-14",
+      "source": "各家定价页",
+      "auto_note": "prices:token-price-openai-flagship-output 最新点"
     },
     {
       "id": "gpu_hourly_rate_spot",
@@ -441,9 +446,10 @@
       "direction": "info",
       "yellow": null,
       "red": null,
-      "value": null,
-      "as_of": null,
-      "source": "租赁平台报价"
+      "value": 2.0,
+      "as_of": "2026-07-31",
+      "source": "租赁平台报价",
+      "auto_note": "prices:gpu-hourly-h100-spot 最新点"
     },
     {
       "id": "gpu_rate_term_spread",

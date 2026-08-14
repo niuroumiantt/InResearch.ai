@@ -141,6 +141,8 @@ def main():
     else:
         print("── offline 模式：跳过采集")
 
+    run_step("②b 指标回填", ["pipeline/refresh_indicators.py"], timeout=30)
+
     news, news_date = latest_news_signals() or ({}, None)
     sec = recent_sec_filings()
     marked = mark_findings_needs_review(sec)
