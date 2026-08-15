@@ -1,6 +1,6 @@
 # 精读队列 — 该读什么
 
-生成时间：2026-08-15 ｜ 已打分 36 份 ｜ 已消化 8 份 ｜ 待消化 28 份
+生成时间：2026-08-15 ｜ 已打分 36 份 ｜ 已消化 11 份 ｜ 待消化 25 份
 
 消化 = 读进知识层出 Finding + 登记 data/sources.json（local_file 对上即出队）。
 节奏：每周至少 2 份 importance ≥ 8。
@@ -9,12 +9,6 @@
       docs/library/04_市场与研究/半导体与上游/FMS2025/INDA-302-1：UALink 200G 1.0 Specification Overview and Applications/8A_2025_UALink规范_UALink联盟.pdf
 - [ ] **8A** 8A_2025_算力能效危机_MPS.pdf ｜ MPS/DOE 2025 ｜ → 电力/能效/DOE政策
       docs/library/04_市场与研究/半导体与上游/FMS2025/SUST-203-1：Energy Efficiency/8A_2025_算力能效危机_MPS.pdf
-- [ ] **8A** 8A_2024_MI300X训练对比_SemiAnalysis.pdf ｜ SemiAnalysis 2024 ｜ → M04
-      docs/library/04_市场与研究/英文机构报告/Yole/8A_2024_MI300X训练对比_SemiAnalysis.pdf
-- [ ] **8A** 8A_2025_DRAM市场季报_TechInsights.pdf ｜ TechInsights 2025 ｜ → M06
-      docs/library/04_市场与研究/英文机构报告/Yole/8A_2025_DRAM市场季报_TechInsights.pdf
-- [ ] **8A** 8A_2025_下一代DRAM_Yole.pdf ｜ Yole 2025 ｜ → M06
-      docs/library/04_市场与研究/英文机构报告/Yole/8A_2025_下一代DRAM_Yole.pdf
 - [ ] **8A** 8A_2024_AI加速器市场_AMD.pdf ｜ AMD 2024 ｜ → AI芯片/市场规模/功率密度
       docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Keynotes/8A_2024_AI加速器市场_AMD.pdf
 - [ ] **8A** 8A_2024_Azure基建演进_Microsoft.pdf ｜ Microsoft 2024 ｜ → 超大规模云/AI集群
