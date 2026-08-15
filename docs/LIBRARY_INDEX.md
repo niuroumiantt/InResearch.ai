@@ -438,14 +438,14 @@
   - 2024 OCP Global Summit/Executive Sessions.zip（10.8MB）
   - 2024 OCP Global Summit/Expo. Hall Sessions.zip（7.0MB）
   - 2024 OCP Global Summit/Hardware Management.zip（7.9MB）
-  - 2024 OCP Global Summit/Keynotes/2024 OCP Global Summit Keynote - AMD.pdf（2.9MB）
   - 2024 OCP Global Summit/Keynotes/2024 OCP Global Summit Keynote - GEICO.pdf（7.2MB）
-  - 2024 OCP Global Summit/Keynotes/2024 OCP Global Summit Keynote - Google.pdf（23.2MB）
   - 2024 OCP Global Summit/Keynotes/2024 OCP Global Summit Keynote - Intel.pdf（4.6MB）
-  - 2024 OCP Global Summit/Keynotes/2024 OCP Global Summit Keynote - Meta.pdf（3.9MB）
-  - 2024 OCP Global Summit/Keynotes/2024 OCP Global Summit Keynote - Microsoft.pdf（65.9MB）
-  - 2024 OCP Global Summit/Keynotes/2024 OCP Global Summit Keynote - NVIDIA.pdf（3.5MB）
-  - 2024 OCP Global Summit/Keynotes/2024 OCP Global Summit Keynote - OCP.pdf（86.4MB）
+  - 2024 OCP Global Summit/Keynotes/7A_2024_OCP市场影响_OCP.pdf（86.4MB）
+  - 2024 OCP Global Summit/Keynotes/7A_2024_开放AI系统_Meta.pdf（3.9MB）
+  - 2024 OCP Global Summit/Keynotes/7A_2024_超大规模廿五年_Google.pdf（23.2MB）
+  - 2024 OCP Global Summit/Keynotes/8A_2024_AI加速器市场_AMD.pdf（2.9MB）
+  - 2024 OCP Global Summit/Keynotes/8A_2024_Azure基建演进_Microsoft.pdf（65.9MB）
+  - 2024 OCP Global Summit/Keynotes/9A_2024_GB200开放架构_NVIDIA.pdf（3.5MB）
   - 2024 OCP Global Summit/Networking.zip（14.0MB）
   - 2024 OCP Global Summit/Open Platform Firmware (OPF).zip（11.9MB）
   - 2024 OCP Global Summit/Rack & Power.zip（22.7MB）

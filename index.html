@@ -371,6 +371,11 @@ try {
     .map(([sid, name, color]) => ({ name, color, pts: bySeries[sid] }));
   if (capexSeries.length)
     cells.push(`<div class="histcell"><h3>四大厂年度 Capex（$B）　${capexSeries.map(s => `<span style="color:${s.color}">●${s.name}</span>`).join(" ")}</h3>${linechart(capexSeries, "$B")}</div>`);
+  const DELL = [["delloro-capex-top4-us-cloud", "Top4美国云", "var(--accent)"], ["delloro-capex-top3-china-cloud", "Top3中国云", "var(--red)"],
+                ["delloro-capex-ai-specialized", "AI专业云", "var(--yellow)"], ["delloro-capex-enterprise", "企业", "var(--gray)"]];
+  const dellSeries = DELL.filter(([sid]) => bySeries[sid]?.length >= 2).map(([sid, name, color]) => ({ name, color, pts: bySeries[sid] }));
+  if (dellSeries.length)
+    cells.push(`<div class="histcell"><h3>分客户段 Capex（$B，DellOro，26 起为预测）　${dellSeries.map(s => `<span style="color:${s.color}">●${s.name}</span>`).join(" ")}</h3>${linechart(dellSeries, "$B")}</div>`);
   if (cells.length)
     boards.push(["b12", "历史走势", "doc.html?f=reports/HOW_TO_OUTPUT.md", `<div class="histgrid">${cells.join("")}</div>
       <div class="note">时间序列随采集与容量考古持续加密；悬停数据点看时点与数值（prices 表）</div>`]);
