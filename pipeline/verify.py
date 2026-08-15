@@ -27,8 +27,33 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 OUT = ROOT / "reports" / "verify_queue.md"
 
-FRESH = {"project_late": 90, "project_early": 180, "price": 30, "default": 365}
+FRESH = {"project_late": 90, "project_early": 180, "default": 365}
 LOW_GRADES = {"media", "estimate"}
+
+# 价格序列保鲜阈值（天）：按更新频率区分。记录可用 frequency 字段显式声明，
+# 否则按 series_id 推断。年度序列给足财报披露滞后（一年 + 约 3 个月）。
+PRICE_FRESH = {"annual": 455, "quarterly": 150, "monthly": 45, "spot": 30, "default": 365}
+
+
+def price_series_freq(r):
+    """推断价格序列的更新频率：显式 frequency 字段优先，否则按 series_id 命名推断。"""
+    f = r.get("frequency")
+    if f in PRICE_FRESH:
+        return f
+    sid = r.get("series_id", "")
+    if "annual" in sid or sid.startswith("delloro-capex"):
+        return "annual"
+    if sid.startswith(("dc-rent", "vacancy-rate")):
+        return "quarterly"
+    if sid.startswith(("gpu-hourly", "token-price")):
+        return "quarterly"  # 牌价/现货：季度扫一遍已足够灵敏，日常变化走信号管线
+    if "lead-time" in sid or sid.startswith("construction-cost"):
+        return "quarterly"
+    return "default"
+
+
+def price_series_limit(r):
+    return PRICE_FRESH[price_series_freq(r)]
 
 
 def days_since(datestr):
@@ -68,14 +93,22 @@ def build_queue(show_all=False):
         elif len(r.get("sources", [])) == 1 and "regulatory" not in grades and "company" not in grades:
             add(2, "projects", rid, "单一来源且非一手", urls, "交叉验证，补第二来源")
 
-    # 价格库
+    # 价格库：保鲜度按"序列"判断——历史点是冻结存档，只看每条序列的最新点是否该续
+    latest = {}
     for r in load("prices"):
-        rid = f"{r['series_id']}@{r['as_of']}"
+        s = r["series_id"]
+        if s not in latest or str(r.get("as_of")) > str(latest[s].get("as_of")):
+            latest[s] = r
+    for s, r in sorted(latest.items()):
+        if r.get("category") == "benchmark":
+            continue  # 机构基准是一次性锚点，随机构新版报告更新，不按日历催
+        rid = f"{s}@{r['as_of']}"
+        limit = price_series_limit(r)
         d = days_since(r.get("as_of"))
-        if d is not None and d > FRESH["price"] and r.get("category") not in {"benchmark"}:
-            add(1, "prices", rid, f"价格点已 {d} 天未更新（阈值 {FRESH['price']}）", [r.get("source_url")], "抓取/查询最新值，新增一条 as_of 记录")
+        if d is not None and d > limit:
+            add(1, "prices", rid, f"序列最新点已 {d} 天（阈值 {limit}，按{price_series_freq(r)}频率）", [r.get("source_url")], "抓取/查询最新值，新增一条 as_of 记录")
         if r.get("grade") == "estimate":
-            add(2, "prices", rid, "estimate 级（带假设推算）", [r.get("source_url")], "寻找可替代的一手/研究级来源")
+            add(2, "prices", rid, "序列最新点为 estimate 级（带假设推算）", [r.get("source_url")], "寻找可替代的一手/研究级来源")
 
     # 知识层：研究文档的 Finding 状态
     import re
