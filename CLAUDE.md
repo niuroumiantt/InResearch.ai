@@ -30,3 +30,6 @@ python3 -m http.server 8000     # 本地看仪表盘
 
 - 云端会话网络策略屏蔽 sec.gov：update_ciks.py / fetch_sec.py 只能在用户本机（launchd）跑。
 - 研报库本体（docs/library/）不在 git 里，云端会话只能用 LIBRARY_SCORES.csv 的摘要工作。
+- 文献打分用 framework/04_reading_scoring_standard.md（标准 v2，七维度）；逐篇精读由本地
+  datacenter-reader 项目执行（计划与启动指令见 docs/local_reader/），批次产物回传
+  docs/inbox/scored_batches/ 与 digest_drafts/，云端会话负责审计合并与消化。
