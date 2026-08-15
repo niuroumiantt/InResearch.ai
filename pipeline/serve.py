@@ -32,6 +32,8 @@ TASKS = {
     "export":     ("导出全量报告（md+docx）", ["pipeline/export.py", "--docx"], 120),
     "map":        ("Top10 地图（html+pdf）", ["pipeline/output_map.py"], 90),
     "inbox":      ("扫描收件箱（docs/inbox）", ["pipeline/scan_inbox.py"], 30),
+    "reader":     ("启动本地精读会话（新 Terminal）", ["pipeline/launch_reader.py"], 30),
+    "queue":      ("生成精读队列", ["pipeline/reading_queue.py"], 30),
 }
 RUNNING = set()
 LOCK = threading.Lock()
