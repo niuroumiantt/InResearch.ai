@@ -1,6 +1,6 @@
-# 每日简报 2026-08-14
+# 每日简报 2026-08-15
 
-## 新闻信号（2026-08-14，扫描 9779 条）
+## 新闻信号（2026-08-15，扫描 9779 条）
 
 - **英伟达**（867 条）
   - [36 Kr] [英伟达信用风险指标回落，CEO澄清5000亿美元融资计划](https://36kr.com/newsflashes/3935750578732425?f=rss)
@@ -33,8 +33,9 @@
   - [El Ecosistema Startup] [Vulnerabilidad LLM 2026: 182 credenciales expuestas en APIs de OpenAI,](https://ecosistemastartup.com/vulnerabilidad-llm-2026-182-credenciales-expuestas-en-apis-de-openai-anthropic-y-google/)
   - [SiliconANGLE] [Google’s Gemini AI app passes 1 billion monthly active users](https://siliconangle.com/2026/08/11/googles-gemini-ai-app-passes-1-billion-monthly-active-users/)
 
-## SEC 文件（近 7 天 14 份）
+## SEC 文件（近 7 天 13 份）
 
+- 2026-08-14 **超威** 424B5 — [文件](https://www.sec.gov/Archives/edgar/data/2488/000119312526352628/d173126d424b5.htm)
 - 2026-08-13 **超威** 424B5 — [文件](https://www.sec.gov/Archives/edgar/data/2488/000119312526348029/d173126d424b5.htm)
 - 2026-08-13 **Blue Owl** 424B5 — [文件](https://www.sec.gov/Archives/edgar/data/1823945/000119312526347343/d18998d424b5.htm)
 - 2026-08-13 **布鲁克菲尔德** 6-K — [文件](https://www.sec.gov/Archives/edgar/data/1001085/000117184326005474/f6k_081326.htm)
@@ -47,12 +48,12 @@
 - 2026-08-11 **CoreWeave** 8-K — [文件](https://www.sec.gov/Archives/edgar/data/1769628/000176962826000362/crwv-20260811.htm)
 - 2026-08-10 **谷歌** 8-K — [文件](https://www.sec.gov/Archives/edgar/data/1652044/000119312526342390/d171253d8k.htm)
 - 2026-08-10 **CoreWeave** 8-K — [文件](https://www.sec.gov/Archives/edgar/data/1769628/000176962826000357/crwv-20260807.htm)
-- 2026-08-07 **黑石** 10-Q — [文件](https://www.sec.gov/Archives/edgar/data/1393818/000119312526340208/d158269d10q.htm)
-- 2026-08-07 **天弘** 8-K — [文件](https://www.sec.gov/Archives/edgar/data/1030894/000110465926092676/tm2621135d2_8k.htm)
 
-## 核验队列：P1 7 条 ｜ P2 7 条（详见 verify_queue.md）
+## 核验队列：P1 9 条 ｜ P2 28 条（详见 verify_queue.md）
 
-- [ ] prices / transformer-lead-time@2026-06-30 — 价格点已 45 天未更新（阈值 30）
+- [ ] prices / dc-rent-index-na@2026-06-30 — 价格点已 46 天未更新（阈值 30）
+- [ ] prices / transformer-lead-time@2026-06-30 — 价格点已 46 天未更新（阈值 30）
+- [ ] prices / vacancy-rate-na@2026-06-30 — 价格点已 46 天未更新（阈值 30）
 - [ ] research / M02-F7 — 标记 needs-review（Neocloud 把电力、芯片、网络、软件和资本组合成可用算…）
 - [ ] research / M02-F8 — 标记 needs-review（Neocloud 是 Hyperscaler 的弹性层而非简…）
 - [ ] research / M02-F9 — 标记 needs-review（公开信息不足以算出四大厂统一的"自用/出租 MW 比例"，可…）
