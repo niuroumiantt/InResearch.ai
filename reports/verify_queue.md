@@ -1,17 +1,161 @@
 # 核验队列
 
-生成时间：2026-08-15 ｜ P1（必须处理）9 条 ｜ P2（补强来源）28 条
+生成时间：2026-08-15 ｜ P1（必须处理）57 条 ｜ P2（补强来源）25 条
 
 流程：打开来源链接核对 → 有变化改数据+来源，无变化只改 verified_date → `python3 pipeline/validate.py`
 
 ## P1
 
+- [ ] **prices / capex-alphabet-annual@2019-12-31** — 价格点已 2419 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://data.sec.gov/api/xbrl/companyconcept/CIK0001652044/us-gaap/PaymentsToAcquirePropertyPlantAndEquipment.json
+- [ ] **prices / capex-alphabet-annual@2020-12-31** — 价格点已 2053 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://data.sec.gov/api/xbrl/companyconcept/CIK0001652044/us-gaap/PaymentsToAcquirePropertyPlantAndEquipment.json
+- [ ] **prices / capex-alphabet-annual@2021-12-31** — 价格点已 1688 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://data.sec.gov/api/xbrl/companyconcept/CIK0001652044/us-gaap/PaymentsToAcquirePropertyPlantAndEquipment.json
+- [ ] **prices / capex-alphabet-annual@2022-12-31** — 价格点已 1323 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://data.sec.gov/api/xbrl/companyconcept/CIK0001652044/us-gaap/PaymentsToAcquirePropertyPlantAndEquipment.json
+- [ ] **prices / capex-alphabet-annual@2023-12-31** — 价格点已 958 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://data.sec.gov/api/xbrl/companyconcept/CIK0001652044/us-gaap/PaymentsToAcquirePropertyPlantAndEquipment.json
+- [ ] **prices / capex-alphabet-annual@2024-12-31** — 价格点已 592 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://data.sec.gov/api/xbrl/companyconcept/CIK0001652044/us-gaap/PaymentsToAcquirePropertyPlantAndEquipment.json
+- [ ] **prices / capex-alphabet-annual@2025-12-31** — 价格点已 227 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://data.sec.gov/api/xbrl/companyconcept/CIK0001652044/us-gaap/PaymentsToAcquirePropertyPlantAndEquipment.json
+- [ ] **prices / capex-amazon-annual@2019-12-31** — 价格点已 2419 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://data.sec.gov/api/xbrl/companyconcept/CIK0001018724/us-gaap/PaymentsToAcquireProductiveAssets.json
+- [ ] **prices / capex-amazon-annual@2020-12-31** — 价格点已 2053 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://data.sec.gov/api/xbrl/companyconcept/CIK0001018724/us-gaap/PaymentsToAcquireProductiveAssets.json
+- [ ] **prices / capex-amazon-annual@2021-12-31** — 价格点已 1688 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://data.sec.gov/api/xbrl/companyconcept/CIK0001018724/us-gaap/PaymentsToAcquireProductiveAssets.json
+- [ ] **prices / capex-amazon-annual@2022-12-31** — 价格点已 1323 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://data.sec.gov/api/xbrl/companyconcept/CIK0001018724/us-gaap/PaymentsToAcquireProductiveAssets.json
+- [ ] **prices / capex-amazon-annual@2023-12-31** — 价格点已 958 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://data.sec.gov/api/xbrl/companyconcept/CIK0001018724/us-gaap/PaymentsToAcquireProductiveAssets.json
+- [ ] **prices / capex-amazon-annual@2024-12-31** — 价格点已 592 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://data.sec.gov/api/xbrl/companyconcept/CIK0001018724/us-gaap/PaymentsToAcquireProductiveAssets.json
+- [ ] **prices / capex-amazon-annual@2025-12-31** — 价格点已 227 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://data.sec.gov/api/xbrl/companyconcept/CIK0001018724/us-gaap/PaymentsToAcquireProductiveAssets.json
+- [ ] **prices / capex-meta-annual@2019-12-31** — 价格点已 2419 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://data.sec.gov/api/xbrl/companyconcept/CIK0001326801/us-gaap/PaymentsToAcquirePropertyPlantAndEquipment.json
+- [ ] **prices / capex-meta-annual@2020-12-31** — 价格点已 2053 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://data.sec.gov/api/xbrl/companyconcept/CIK0001326801/us-gaap/PaymentsToAcquirePropertyPlantAndEquipment.json
+- [ ] **prices / capex-meta-annual@2021-12-31** — 价格点已 1688 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://data.sec.gov/api/xbrl/companyconcept/CIK0001326801/us-gaap/PaymentsToAcquirePropertyPlantAndEquipment.json
+- [ ] **prices / capex-meta-annual@2022-12-31** — 价格点已 1323 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://data.sec.gov/api/xbrl/companyconcept/CIK0001326801/us-gaap/PaymentsToAcquirePropertyPlantAndEquipment.json
+- [ ] **prices / capex-meta-annual@2023-12-31** — 价格点已 958 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://data.sec.gov/api/xbrl/companyconcept/CIK0001326801/us-gaap/PaymentsToAcquirePropertyPlantAndEquipment.json
+- [ ] **prices / capex-meta-annual@2024-12-31** — 价格点已 592 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://data.sec.gov/api/xbrl/companyconcept/CIK0001326801/us-gaap/PaymentsToAcquirePropertyPlantAndEquipment.json
+- [ ] **prices / capex-meta-annual@2025-12-31** — 价格点已 227 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://data.sec.gov/api/xbrl/companyconcept/CIK0001326801/us-gaap/PaymentsToAcquirePropertyPlantAndEquipment.json
+- [ ] **prices / capex-microsoft-annual@2019-06-30** — 价格点已 2603 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://data.sec.gov/api/xbrl/companyconcept/CIK0000789019/us-gaap/PaymentsToAcquirePropertyPlantAndEquipment.json
+- [ ] **prices / capex-microsoft-annual@2020-06-30** — 价格点已 2237 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://data.sec.gov/api/xbrl/companyconcept/CIK0000789019/us-gaap/PaymentsToAcquirePropertyPlantAndEquipment.json
+- [ ] **prices / capex-microsoft-annual@2021-06-30** — 价格点已 1872 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://data.sec.gov/api/xbrl/companyconcept/CIK0000789019/us-gaap/PaymentsToAcquirePropertyPlantAndEquipment.json
+- [ ] **prices / capex-microsoft-annual@2022-06-30** — 价格点已 1507 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://data.sec.gov/api/xbrl/companyconcept/CIK0000789019/us-gaap/PaymentsToAcquirePropertyPlantAndEquipment.json
+- [ ] **prices / capex-microsoft-annual@2023-06-30** — 价格点已 1142 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://data.sec.gov/api/xbrl/companyconcept/CIK0000789019/us-gaap/PaymentsToAcquirePropertyPlantAndEquipment.json
+- [ ] **prices / capex-microsoft-annual@2024-06-30** — 价格点已 776 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://data.sec.gov/api/xbrl/companyconcept/CIK0000789019/us-gaap/PaymentsToAcquirePropertyPlantAndEquipment.json
+- [ ] **prices / capex-microsoft-annual@2025-06-30** — 价格点已 411 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://data.sec.gov/api/xbrl/companyconcept/CIK0000789019/us-gaap/PaymentsToAcquirePropertyPlantAndEquipment.json
+- [ ] **prices / dc-rent-index-na@2020-12-31** — 价格点已 2053 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.cbre.com/insights/reports/north-america-data-center-trends-h2-2021
+- [ ] **prices / dc-rent-index-na@2021-12-31** — 价格点已 1688 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.cbre.com/insights/reports/north-america-data-center-trends-h2-2021
+- [ ] **prices / dc-rent-index-na@2022-12-31** — 价格点已 1323 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.cbre.com/insights/reports/north-america-data-center-trends-h2-2022
+- [ ] **prices / dc-rent-index-na@2023-12-31** — 价格点已 958 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.cbre.com/insights/reports/north-america-data-center-trends-h2-2023
+- [ ] **prices / dc-rent-index-na@2024-12-31** — 价格点已 592 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.cbre.com/insights/reports/north-america-data-center-trends-h2-2024
+- [ ] **prices / dc-rent-index-na@2025-12-31** — 价格点已 227 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.cbre.com/insights/books/north-america-data-center-trends-h2-2025
 - [ ] **prices / dc-rent-index-na@2026-06-30** — 价格点已 46 天未更新（阈值 30）
       动作：抓取/查询最新值，新增一条 as_of 记录
       来源：https://www.jll.com/en-us/insights/market-dynamics/north-america-data-centers
+- [ ] **prices / gpu-hourly-h100-spot@2023-12-31** — 价格点已 958 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.silicondata.com/blog/h100-rental-price-over-time
+- [ ] **prices / gpu-hourly-h100-spot@2024-12-31** — 价格点已 592 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.silicondata.com/blog/h100-rental-price-over-time
+- [ ] **prices / gpu-hourly-h100-spot@2025-12-31** — 价格点已 227 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.silicondata.com/blog/h100-rental-price-over-time
+- [ ] **prices / token-price-openai-flagship-output@2023-03-14** — 价格点已 1250 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.cloudzero.com/blog/gpt-4-api-cost/
+- [ ] **prices / token-price-openai-flagship-output@2023-11-06** — 价格点已 1013 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.cnbc.com/2023/11/06/openai-announces-more-powerful-gpt-4-turbo-and-cuts-prices.html
+- [ ] **prices / token-price-openai-flagship-output@2024-05-13** — 价格点已 824 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://en.wikipedia.org/wiki/GPT-4o
+- [ ] **prices / token-price-openai-flagship-output@2024-08-06** — 价格点已 739 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://en.wikipedia.org/wiki/GPT-4o
+- [ ] **prices / token-price-openai-flagship-output@2025-04-14** — 价格点已 488 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://en.wikipedia.org/wiki/GPT-4.1
+- [ ] **prices / token-price-openai-flagship-output@2025-08-07** — 价格点已 373 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://en.wikipedia.org/wiki/GPT-5
 - [ ] **prices / transformer-lead-time@2026-06-30** — 价格点已 46 天未更新（阈值 30）
       动作：抓取/查询最新值，新增一条 as_of 记录
       来源：https://www.woodmac.com/
+- [ ] **prices / vacancy-rate-na@2021-12-31** — 价格点已 1688 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.cbre.com/insights/reports/north-america-data-center-trends-h2-2021
+- [ ] **prices / vacancy-rate-na@2022-12-31** — 价格点已 1323 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.cbre.com/insights/reports/north-america-data-center-trends-h2-2022
+- [ ] **prices / vacancy-rate-na@2023-12-31** — 价格点已 958 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.cbre.com/insights/reports/north-america-data-center-trends-h2-2023
+- [ ] **prices / vacancy-rate-na@2024-12-31** — 价格点已 592 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.cbre.com/insights/reports/north-america-data-center-trends-h2-2024
+- [ ] **prices / vacancy-rate-na@2025-12-31** — 价格点已 227 天未更新（阈值 30）
+      动作：抓取/查询最新值，新增一条 as_of 记录
+      来源：https://www.cbre.com/insights/books/north-america-data-center-trends-h2-2025
 - [ ] **prices / vacancy-rate-na@2026-06-30** — 价格点已 46 天未更新（阈值 30）
       动作：抓取/查询最新值，新增一条 as_of 记录
       来源：https://www.jll.com/en-us/newsroom/data-center-availability-crisis-deepens-as-vacancy-hits-historic-low
@@ -39,10 +183,11 @@
 - [ ] **prices / transformer-lead-time@2026-06-30** — estimate 级（带假设推算）
       动作：寻找可替代的一手/研究级来源
       来源：https://www.woodmac.com/
-- [ ] **projects / cn-gz-guian-tencent** — 仅有低级别来源（media）
+- [ ] **projects / cn-gz-guian-tencent** — 仅有低级别来源（estimate/media）
       动作：补一手来源（公司披露/监管文件）
       来源：https://www.scmp.com/tech/enterprises/article/2144088/tencent-builds-giant-bomb-shelter-remote-chinese-province-house
       来源：http://www.idcnova.com/html/1/59/153/702.html
+      来源：https://baike.baidu.com/item/%E8%85%BE%E8%AE%AF%E8%B4%B5%E5%AE%89%E4%B8%83%E6%98%9F%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83/22428602
 - [ ] **projects / cn-nm-ulanqab-alibaba** — 仅有低级别来源（media）
       动作：补一手来源（公司披露/监管文件）
       来源：https://baxtel.com/data-center/alibaba-ulanqab-campus
@@ -71,6 +216,7 @@
       动作：补一手来源（公司披露/监管文件）
       来源：https://www.computerweekly.com/news/366619270/South-Korea-plots-to-become-home-to-worlds-largest-AI-datacentre
       来源：https://datacentremagazine.com/articles/the-3gw-promise-south-koreas-mega-ai-data-centre-explained
+      来源：https://www.datacenterdynamics.com/en/news/fir-hills-inc-claims-it-plans-to-build-3gw-35bn-ai-data-center-in-south-korea/
 - [ ] **projects / mx-queretaro-aws** — 仅有低级别来源（media）
       动作：补一手来源（公司披露/监管文件）
       来源：https://press.aboutamazon.com/2025/1/aws-launches-infrastructure-region-in-mexico
@@ -79,10 +225,6 @@
       动作：补一手来源（公司披露/监管文件）
       来源：https://www.aztechcouncil.org/microsoft-buys-land-el-mirage-data-center/
       来源：https://www.areadevelopment.com/newsItems/8-1-2019/microsoft-data-centes-el-mirage-goodyear-arizona.shtml
-- [ ] **projects / us-az-goodyear** — 仅有低级别来源（media）
-      动作：补一手来源（公司披露/监管文件）
-      来源：https://www.datacenterdynamics.com/en/news/microsoft-purchases-100-acres-next-to-existing-data-center-campus-in-goodyear-arizona/
-      来源：https://www.blackridgeresearch.com/project-profiles/microsoft-goodyear-data-center-arizona-az-project-location-cost-storage-capacity-current-status-details
 - [ ] **projects / us-ga-atlanta-aws** — 仅有低级别来源（media）
       动作：补一手来源（公司披露/监管文件）
       来源：https://www.aboutamazon.com/news/aws/aws-investment-georgia-ai-cloud-infrastructure
@@ -97,18 +239,16 @@
 - [ ] **projects / us-nm-dona-ana** — 单一来源且非一手
       动作：交叉验证，补第二来源
       来源：https://epoch.ai/publications/openai-stargate-where-the-us-sites-stand
-- [ ] **projects / us-oh-columbus-aws** — 仅有低级别来源（media）
+- [ ] **projects / us-oh-columbus-aws** — 仅有低级别来源（estimate/media）
       动作：补一手来源（公司披露/监管文件）
       来源：https://www.datacenterdynamics.com/en/news/amazon-plans-five-building-data-center-campus-in-new-albany-ohio/
       来源：https://www.datacenterfrontier.com/site-selection/article/33011941/aws-readies-35b-for-5-more-ohio-data-centers-in-booming-columbus-suburb-new-albany
-- [ ] **projects / us-or-boardman-aws** — 仅有低级别来源（media）
+      来源：https://baxtel.com/data-center/aws-us-east-ohio
+- [ ] **projects / us-or-boardman-aws** — 仅有低级别来源（estimate/media）
       动作：补一手来源（公司披露/监管文件）
       来源：https://www.datacenterdynamics.com/en/news/aws-planning-at-least-four-more-data-centers-in-morrow-county-oregon/
       来源：https://www.opb.org/news/article/npr-amazon-to-expand-data-centers-in-northeastern-oregon-reaping-more-tax-breaks/
-- [ ] **projects / us-pa-salem-township-aws** — 仅有低级别来源（media）
-      动作：补一手来源（公司披露/监管文件）
-      来源：https://www.datacenterdynamics.com/en/news/aws-acquires-talens-nuclear-data-center-campus-in-pennsylvania/
-      来源：https://www.utilitydive.com/news/talen-amazon-aws-susquehanna-nuclear-data-centert/750440/
+      来源：https://www.umatillaelectric.com/about-us/2023-annual-report/
 - [ ] **projects / us-tx-castroville** — 仅有低级别来源（media）
       动作：补一手来源（公司披露/监管文件）
       来源：https://www.datacenterdynamics.com/en/news/microsoft-files-to-build-two-more-data-centers-in-san-antonio-texas/
@@ -116,14 +256,11 @@
 - [ ] **projects / us-tx-milam** — 单一来源且非一手
       动作：交叉验证，补第二来源
       来源：https://epoch.ai/publications/openai-stargate-where-the-us-sites-stand
-- [ ] **projects / us-va-ashburn-aws** — 仅有低级别来源（media）
+- [ ] **projects / us-va-ashburn-aws** — 仅有低级别来源（estimate/media）
       动作：补一手来源（公司披露/监管文件）
       来源：https://www.datacenterfrontier.com/cloud/article/11427911/aws-has-spent-35-billion-on-its-northern-virginia-data-centers
       来源：https://dgtlinfra.com/data-centers-virginia-ashburn-loudoun/
-- [ ] **projects / us-va-boydton** — 仅有低级别来源（media）
-      动作：补一手来源（公司披露/监管文件）
-      来源：https://www.datacenterdynamics.com/en/news/microsoft-to-add-21mw-at-virginia-data-center-site/
-      来源：https://www.datacenterknowledge.com/hyperscalers/microsoft-s-1-billion-data-center
+      来源：https://www.datacenterfrontier.com/cloud/article/11430945/amazon-approaches-1-gigawatt-of-cloud-capacity-in-virginia
 - [ ] **projects / us-va-dulles-digital** — 仅有低级别来源（media）
       动作：补一手来源（公司披露/监管文件）
       来源：https://www.datacenterdynamics.com/en/news/digital-realty-submits-plans-large-dulles-data-center-campus/

@@ -49,14 +49,15 @@
 - 2026-08-10 **谷歌** 8-K — [文件](https://www.sec.gov/Archives/edgar/data/1652044/000119312526342390/d171253d8k.htm)
 - 2026-08-10 **CoreWeave** 8-K — [文件](https://www.sec.gov/Archives/edgar/data/1769628/000176962826000357/crwv-20260807.htm)
 
-## 核验队列：P1 9 条 ｜ P2 28 条（详见 verify_queue.md）
+## 核验队列：P1 57 条 ｜ P2 25 条（详见 verify_queue.md）
 
-- [ ] prices / dc-rent-index-na@2026-06-30 — 价格点已 46 天未更新（阈值 30）
-- [ ] prices / transformer-lead-time@2026-06-30 — 价格点已 46 天未更新（阈值 30）
-- [ ] prices / vacancy-rate-na@2026-06-30 — 价格点已 46 天未更新（阈值 30）
-- [ ] research / M02-F7 — 标记 needs-review（Neocloud 把电力、芯片、网络、软件和资本组合成可用算…）
-- [ ] research / M02-F8 — 标记 needs-review（Neocloud 是 Hyperscaler 的弹性层而非简…）
-- [ ] research / M02-F9 — 标记 needs-review（公开信息不足以算出四大厂统一的"自用/出租 MW 比例"，可…）
-- [ ] research / M03-F2 — 标记 needs-review（Anthropic 以 AWS 为主云与训练基础，Googl…）
-- [ ] research / M04-F2 — 标记 needs-review（核电分"现役共址/重启/SMR"三条时间表：重启本十年可供数…）
-- [ ] research / M15-F7 — 标记 needs-review（单指标会被宣传误导：三色判断要求至少三个同向信号，资本指标识…）
+- [ ] prices / capex-alphabet-annual@2019-12-31 — 价格点已 2419 天未更新（阈值 30）
+- [ ] prices / capex-alphabet-annual@2020-12-31 — 价格点已 2053 天未更新（阈值 30）
+- [ ] prices / capex-alphabet-annual@2021-12-31 — 价格点已 1688 天未更新（阈值 30）
+- [ ] prices / capex-alphabet-annual@2022-12-31 — 价格点已 1323 天未更新（阈值 30）
+- [ ] prices / capex-alphabet-annual@2023-12-31 — 价格点已 958 天未更新（阈值 30）
+- [ ] prices / capex-alphabet-annual@2024-12-31 — 价格点已 592 天未更新（阈值 30）
+- [ ] prices / capex-alphabet-annual@2025-12-31 — 价格点已 227 天未更新（阈值 30）
+- [ ] prices / capex-amazon-annual@2019-12-31 — 价格点已 2419 天未更新（阈值 30）
+- [ ] prices / capex-amazon-annual@2020-12-31 — 价格点已 2053 天未更新（阈值 30）
+- [ ] prices / capex-amazon-annual@2021-12-31 — 价格点已 1688 天未更新（阈值 30）
