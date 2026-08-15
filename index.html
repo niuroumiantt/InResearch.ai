@@ -48,8 +48,11 @@
   .entry small { color: var(--muted); margin-left: 4px; }
   .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px; }
   .board { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; overflow: hidden; }
-  .b12 { grid-column: span 12; } .b6 { grid-column: span 6; } .b4 { grid-column: span 4; } .b3 { grid-column: span 3; }
-  @media (max-width: 980px) { .b6, .b4, .b3 { grid-column: span 12; } }
+  .b12 { grid-column: span 12; } .b8 { grid-column: span 8; } .b6 { grid-column: span 6; } .b4 { grid-column: span 4; } .b3 { grid-column: span 3; }
+  @media (max-width: 980px) { .b8, .b6, .b4, .b3 { grid-column: span 12; } }
+  .chip-sm { display: inline-block; font-size: 10.5px; border: 1px solid var(--line); border-radius: 10px;
+    padding: 0 8px; margin-left: 4px; color: var(--yellow); text-decoration: none; }
+  .chip-sm:hover { border-color: var(--yellow); }
   .bh { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; }
   .bh h2 { font-size: 14px; }
   .bh .go { margin-left: auto; font-size: 11.5px; white-space: nowrap; }
@@ -344,10 +347,18 @@ try {
     hbar(Object.entries(dev).map(([k, v]) => ({ k, v })).sort((a, b) => b.v - a.v).slice(0, 8),
       () => "var(--accent)", r => r.v, r => cname[r.k] || r.k) +
     `<div class="note">含规划口径，排名≠当前市场份额</div>`]);
-  const tok = prices.records.filter(r => r.category === "token-price");
-  boards.push(["b4", "旗舰模型 API 价格（$/M 输出）", "report.html#ch-M12",
-    hbar(tok, () => "var(--accent)", r => r.value, r => r.series_id.split("-")[2]) +
-    `<div class="note">牌价≠实现价（缓存 0.1x / 批处理 0.5x）· ${tok[0]?.as_of || ""}</div>`]);
+  // 每家只取最新牌价（历史点在下方"历史走势"里看曲线）
+  const tokLatest = {};
+  prices.records.filter(r => r.category === "token-price").forEach(r => {
+    if (!tokLatest[r.series_id] || r.as_of > tokLatest[r.series_id].as_of) tokLatest[r.series_id] = r;
+  });
+  const tok = Object.values(tokLatest).sort((a, b) => b.value - a.value);
+  const TOKNAME = { openai: "OpenAI", anthropic: "Anthropic", google: "Google" };
+  boards.push(["b4", "旗舰模型 API 价格（$/M 输出，当期牌价）", "report.html#ch-M12",
+    hbar(tok, () => "var(--accent)", r => r.value,
+      r => TOKNAME[r.series_id.split("-")[2]] || r.series_id.split("-")[2],
+      r => `<b>${TOKNAME[r.series_id.split("-")[2]] || ""} 旗舰输出价</b><br>${r.value} $/M tok · ${r.as_of}<br><span class="tl">${esc(r.note || "")}</span>`) +
+    `<div class="note">牌价≠实现价（缓存 0.1x / 批处理 0.5x）· 最新 ${tok.map(r => r.as_of).sort().pop() || ""}</div>`]);
   // ── 历史走势（时间序列，≥2 点的序列自动成线）
   const bySeries = {};
   prices.records.forEach(r => (bySeries[r.series_id] = bySeries[r.series_id] || []).push({ d: new Date(r.as_of), v: r.value }));
@@ -385,6 +396,25 @@ try {
     contracts.records.map(c => `<tr><td>${c.parties.map(p => cname[p] || p).join(" ↔ ")}<div style="font-size:10px;color:var(--gray)">${c.type} · ${c.announced_date}</div></td>
       <td class="num">${c.value_usd_b ?? "—"}</td><td>${c.circular_flag ? "⚠️" : "—"}</td></tr>`).join("") + `</table>
     <div class="note">合同批量入库在路线图第二阶段</div>`]);
+
+  // ── 研究工作台速览（brief.json 由 collect.py 每日生成）
+  if (brief?.verify) {
+    const res = brief.research || {};
+    const totF = Object.values(res).reduce((s, m) => s + (m.findings || 0), 0);
+    const totNR = Object.values(res).reduce((s, m) => s + (m.needs_review || 0), 0);
+    const nrMods = Object.entries(res).filter(([, m]) => m.needs_review > 0)
+      .map(([k, m]) => `<a class="chip-sm" href="doc.html?f=research/${k}.md">${k}×${m.needs_review}</a>`).join(" ");
+    const qi = (brief.verify.items || []).slice(0, 4).map(i =>
+      `<div style="font-size:11px;color:var(--gray);padding:2px 0">· ${esc(i.id)} — ${esc((i.reason || "").slice(0, 34))}</div>`).join("");
+    boards.push(["b8", "研究工作台 · 今天该干什么", "doc.html?f=reports/verify_queue.md",
+      `<div style="display:flex;gap:26px;flex-wrap:wrap;margin-bottom:6px">
+        <div><b style="font-size:20px;color:${brief.verify.p1 ? "var(--yellow)" : "var(--green)"}">${brief.verify.p1}</b> <span style="font-size:11px;color:var(--gray)">P1 必须处理</span></div>
+        <div><b style="font-size:20px">${brief.verify.p2}</b> <span style="font-size:11px;color:var(--gray)">P2 补强来源</span></div>
+        <div><b style="font-size:20px">${totF}</b> <span style="font-size:11px;color:var(--gray)">研究结论（15 模块）</span></div>
+        <div><b style="font-size:20px;color:${totNR ? "var(--yellow)" : "var(--green)"}">${totNR}</b> <span style="font-size:11px;color:var(--gray)">待复核 ${nrMods}</span></div>
+      </div>${qi}
+      <div class="note">核验队列 verify.py ｜ 精读队列 reading_queue.py ｜ 简报 ${brief.date || ""}</div>`]);
+  }
 
   document.getElementById("grid").innerHTML = boards.map(([cls, title, go, body]) =>
     `<div class="board ${cls}"><div class="bh"><h2>${title}</h2><a class="go" href="${go}">详情 →</a></div>${body}</div>`).join("");
