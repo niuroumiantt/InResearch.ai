@@ -67,6 +67,8 @@
   tr:last-child td { border-bottom: none; }
   td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
   .note { color: var(--muted); font-size: 11px; margin-top: 6px; }
+  .histgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(255px, 1fr)); gap: 14px; }
+  .histcell h3 { font-size: 12px; color: var(--muted); font-weight: 500; margin-bottom: 2px; }
   .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; }
   #tip { position: fixed; background: var(--card); border: 1px solid var(--line); border-radius: 8px;
     box-shadow: 0 4px 16px rgba(0,0,0,.15); padding: 10px 12px; font-size: 12px; max-width: 280px;
@@ -147,6 +149,33 @@ function hbar(rows, colorFn, valFn, labFn, tipFn) {
   });
   return s + "</svg>";
 }
+function linechart(seriesList, unit) {
+  // seriesList: [{name, color, pts:[{d:Date, v}]}] → 多线迷你图
+  const W = 340, H = 120, PL = 8, PR = 46, PT = 12, PB = 20;
+  const all = seriesList.flatMap(s => s.pts);
+  if (all.length < 2) return "";
+  const t0 = Math.min(...all.map(p => +p.d)), t1 = Math.max(...all.map(p => +p.d));
+  const v0 = Math.min(...all.map(p => p.v)), v1 = Math.max(...all.map(p => p.v));
+  const pad = (v1 - v0) * 0.12 || v1 * 0.1 || 1;
+  const X = d => PL + (+d - t0) / Math.max(1, t1 - t0) * (W - PL - PR);
+  const Y = v => PT + (1 - (v - (v0 - pad)) / ((v1 + pad) - (v0 - pad))) * (H - PT - PB);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%">`;
+  s += `<line x1="${PL}" y1="${H - PB}" x2="${W - PR}" y2="${H - PB}" stroke="var(--line)" stroke-width="0.7"/>`;
+  seriesList.forEach(sr => {
+    const pts = sr.pts.slice().sort((a, b) => a.d - b.d);
+    const path = pts.map(p => `${X(p.d).toFixed(1)},${Y(p.v).toFixed(1)}`).join(" ");
+    s += `<polyline points="${path}" fill="none" stroke="${sr.color}" stroke-width="1.8" stroke-linejoin="round"/>`;
+    pts.forEach(p => s += `<circle cx="${X(p.d).toFixed(1)}" cy="${Y(p.v).toFixed(1)}" r="2.4" fill="${sr.color}"
+      data-tip="${esc(`<b>${sr.name}</b><br>${p.d.toISOString().slice(0, 10)}：${p.v.toLocaleString()} ${unit}`)}" class="site"/>`);
+    const last = pts[pts.length - 1];
+    s += `<text x="${W - PR + 4}" y="${Y(last.v) + 4}" font-size="10.5" fill="${sr.color}" font-weight="600">${last.v >= 1000 ? (last.v / 1000).toFixed(1) + "k" : last.v}</text>`;
+  });
+  const d0 = new Date(t0), d1 = new Date(t1);
+  s += `<text x="${PL}" y="${H - 6}" font-size="9.5" fill="var(--muted)">${d0.getFullYear()}</text>
+        <text x="${W - PR}" y="${H - 6}" font-size="9.5" fill="var(--muted)" text-anchor="end">${d1.getFullYear() === d0.getFullYear() ? d1.toISOString().slice(5, 10) : d1.getFullYear()}</text>`;
+  return s + "</svg>";
+}
+
 function stackbar(rows, keys, colors, labFn, tipFn) {
   const W = 520, LH = 26, L = 118;
   const max = Math.max(...rows.map(r => keys.reduce((a, k) => a + r[k], 0)), 1);
@@ -318,6 +347,33 @@ try {
   boards.push(["b4", "旗舰模型 API 价格（$/M 输出）", "report.html#ch-M12",
     hbar(tok, () => "var(--accent)", r => r.value, r => r.series_id.split("-")[2]) +
     `<div class="note">牌价≠实现价（缓存 0.1x / 批处理 0.5x）· ${tok[0]?.as_of || ""}</div>`]);
+  // ── 历史走势（时间序列，≥2 点的序列自动成线）
+  const bySeries = {};
+  prices.records.forEach(r => (bySeries[r.series_id] = bySeries[r.series_id] || []).push({ d: new Date(r.as_of), v: r.value }));
+  const HIST = [
+    ["vacancy-rate-na", "北美空置率", "%", "var(--green)"],
+    ["dc-rent-index-na", "北美租金指数 (2020=100)", "", "var(--accent)"],
+    ["gpu-hourly-h100-spot", "H100 现货时租", "$/hr", "var(--yellow)"],
+    ["token-price-openai-flagship-output", "旗舰模型输出价（OpenAI 当期）", "$/M tok", "var(--red)"],
+    ["benchmark-iea-global-consumption", "全球数据中心用电（IEA）", "TWh", "var(--gray)"],
+    ["transformer-lead-time", "大型变压器交期", "月", "var(--yellow)"],
+  ];
+  const cells = [];
+  HIST.forEach(([sid, label, unit, color]) => {
+    const pts = bySeries[sid];
+    if (pts && pts.length >= 2)
+      cells.push(`<div class="histcell"><h3>${label}${unit ? `（${unit}）` : ""}</h3>${linechart([{ name: label, color, pts }], unit)}</div>`);
+  });
+  const CAPEX = [["capex-microsoft-annual", "微软", "var(--accent)"], ["capex-alphabet-annual", "谷歌", "var(--green)"],
+                 ["capex-amazon-annual", "亚马逊", "var(--yellow)"], ["capex-meta-annual", "Meta", "var(--red)"]];
+  const capexSeries = CAPEX.filter(([sid]) => bySeries[sid]?.length >= 2)
+    .map(([sid, name, color]) => ({ name, color, pts: bySeries[sid] }));
+  if (capexSeries.length)
+    cells.push(`<div class="histcell"><h3>四大厂年度 Capex（$B）　${capexSeries.map(s => `<span style="color:${s.color}">●${s.name}</span>`).join(" ")}</h3>${linechart(capexSeries, "$B")}</div>`);
+  if (cells.length)
+    boards.push(["b12", "历史走势", "doc.html?f=reports/HOW_TO_OUTPUT.md", `<div class="histgrid">${cells.join("")}</div>
+      <div class="note">时间序列随采集与容量考古持续加密；悬停数据点看时点与数值（prices 表）</div>`]);
+
   boards.push(["b4", "大额合同（种子样本）", "report.html#ch-M11",
     `<table><tr><th>双方</th><th class="num">$B</th><th>循环</th></tr>` +
     contracts.records.map(c => `<tr><td>${c.parties.map(p => cname[p] || p).join(" ↔ ")}<div style="font-size:10px;color:var(--gray)">${c.type} · ${c.announced_date}</div></td>

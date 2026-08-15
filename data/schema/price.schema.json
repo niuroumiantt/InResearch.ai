@@ -5,7 +5,7 @@
   "required": ["series_id", "as_of", "value", "unit", "grade", "source_url"],
   "properties": {
     "series_id": {"type": "string", "description": "序列名，如 gpu-hourly-h100-spot / transformer-lead-time / price-per-mw-operational / benchmark-jll-global-gw"},
-    "category": {"type": "string", "enum": ["rent", "market", "asset-deal", "gpu-rental", "used-gpu", "hardware", "lead-time", "token-price", "ppa", "labor", "credit-spread", "valuation", "benchmark"]},
+    "category": {"type": "string", "enum": ["rent", "market", "asset-deal", "gpu-rental", "used-gpu", "hardware", "lead-time", "token-price", "ppa", "labor", "credit-spread", "valuation", "benchmark", "capex"]},
     "module": {"type": "string", "description": "归属模块，如 M13"},
     "as_of": {"type": "string", "description": "YYYY-MM-DD 数据时点（不是录入日期）"},
     "value": {"type": "number"},
