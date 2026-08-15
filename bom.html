@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数据中心爆炸图 — Datacenter Hub</title>
+<style>
+  :root {
+    --bg: #f2f4f7; --card: #ffffff; --text: #1a1d24; --muted: #6b7280;
+    --line: #e5e7eb; --accent: #2563eb;
+    --green: #16a34a; --yellow: #d97706; --red: #dc2626; --purple: #7c3aed; --gray: #9ca3af;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0c0e12; --card: #171a21; --text: #e5e7eb; --muted: #9ca3af; --line: #262a33; --accent: #60a5fa; }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font: 13.5px/1.6 -apple-system, "PingFang SC", sans-serif; padding-bottom: 60px; }
+  a { color: var(--accent); text-decoration: none; }
+  .topbar { position: sticky; top: 0; background: var(--card); border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; gap: 4px; padding: 0 18px; height: 46px; z-index: 20; }
+  .topbar b { font-size: 15px; margin-right: 14px; }
+  .tab { padding: 12px 14px; color: var(--muted); border-bottom: 2px solid transparent; }
+  .tab.on { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+  .topbar .sp { flex: 1; }
+  .wrap { max-width: 1280px; margin: 18px auto 0; padding: 0 16px; display: flex; gap: 16px; }
+  .stage { flex: 1; min-width: 0; }
+  .stage h1 { font-size: 20px; margin-bottom: 2px; }
+  .sub { color: var(--muted); font-size: 12.5px; margin-bottom: 14px; }
+  .legend { font-size: 11.5px; color: var(--muted); margin-bottom: 14px; }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; vertical-align: -1px; margin: 0 4px 0 12px; }
+  .layer { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 14px 18px 16px; margin: 0 0 34px; box-shadow: 0 2px 8px rgba(0,0,0,.05); }
+  .layer::after { content: ""; position: absolute; left: 50%; bottom: -35px; height: 34px;
+    border-left: 2px dashed var(--gray); opacity: .55; }
+  .layer:last-child::after { display: none; }
+  .lh { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; }
+  .lh .lid { font-size: 11px; font-weight: 700; color: var(--accent); border: 1px solid var(--accent);
+    border-radius: 8px; padding: 0 8px; }
+  .lh b { font-size: 15px; }
+  .lh span { color: var(--muted); font-size: 11.5px; }
+  .parts { display: flex; flex-wrap: wrap; gap: 8px; }
+  .part { border: 1.5px solid; border-radius: 10px; padding: 7px 12px; cursor: pointer;
+    background: var(--bg); font-size: 12.5px; font-weight: 500; transition: transform .12s, box-shadow .12s; }
+  .part:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,.12); }
+  .part.sel { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .part small { display: block; font-weight: 400; font-size: 10.5px; color: var(--muted); }
+  /* 爆炸透视：层级越高越窄并右移，形成炸开的阶梯感 */
+  .layer[data-i="0"] { width: 100%; }
+  .layer[data-i="1"] { width: 94%; margin-left: 3%; }
+  .layer[data-i="2"] { width: 88%; margin-left: 6%; }
+  .layer[data-i="3"] { width: 82%; margin-left: 9%; }
+  .layer[data-i="4"] { width: 76%; margin-left: 12%; }
+  aside { width: 360px; flex-shrink: 0; position: sticky; top: 62px; align-self: flex-start;
+    max-height: calc(100vh - 80px); overflow-y: auto; }
+  .dossier { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+  .dossier h2 { font-size: 17px; margin-bottom: 2px; }
+  .dossier .meta { font-size: 11.5px; color: var(--muted); margin-bottom: 10px; }
+  .badge { display: inline-block; font-size: 10.5px; font-weight: 600; padding: 1px 9px; border-radius: 9px; color: #fff; }
+  .sec { margin-top: 14px; }
+  .sec h3 { font-size: 12px; color: var(--muted); font-weight: 500; margin-bottom: 6px; }
+  .chip { display: inline-block; border: 1px solid var(--line); border-radius: 14px; padding: 2px 10px;
+    font-size: 11.5px; margin: 0 4px 6px 0; color: var(--text); }
+  .chip:hover { border-color: var(--accent); color: var(--accent); }
+  .kv { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed var(--line); font-size: 12.5px; }
+  .kv:last-child { border-bottom: none; }
+  .kv b { font-variant-numeric: tabular-nums; }
+  .empty { color: var(--gray); font-size: 12px; }
+  @media (max-width: 980px) { .wrap { flex-direction: column; } aside { width: 100%; position: static; } }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <b>Datacenter Hub</b>
+  <a class="tab" href="index.html">总览</a>
+  <a class="tab on" href="bom.html">爆炸图</a>
+  <a class="tab" href="ops.html">管理后台</a>
+  <a class="tab" href="report.html">报告成稿</a>
+  <span class="sp"></span>
+  <a class="tab" href="doc.html?f=framework/03_bom_and_collaboration.md">设计文档 ↗</a>
+</div>
+<div class="wrap">
+  <div class="stage">
+    <h1>数据中心爆炸图 <span style="font-weight:400;font-size:13px;color:var(--muted)">v1 · 物理部件轴</span></h1>
+    <div class="sub">把一座数据中心按五层 BOM 炸开——每个部件都挂着它的研究模块、供应商、价格序列与监测指标。点击任意部件查看档案。</div>
+    <div class="legend">供应状态：<i style="background:var(--red)"></i>紧缺 <i style="background:var(--yellow)"></i>技术切换中
+      <i style="background:var(--green)"></i>成熟 <i style="background:var(--purple)"></i>新兴</div>
+    <div id="stack">加载中…</div>
+  </div>
+  <aside><div class="dossier" id="dossier">
+    <h2>选择一个部件</h2>
+    <div class="meta">左侧任意方块即是入口——从电网到冷板，28 个部件各有档案。</div>
+  </div></aside>
+</div>
+
+<script>
+async function get(p) {
+  const r = await fetch(p + "?t=" + Date.now(), { cache: "no-store" });
+  if (!r.ok) throw new Error(p + " → " + r.status);
+  return r.json();
+}
+const SC = { tight: "var(--red)", transition: "var(--yellow)", mature: "var(--green)", emerging: "var(--purple)" };
+const SN = { tight: "紧缺", transition: "技术切换中", mature: "成熟", emerging: "新兴" };
+const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+let BOM, CN = {}, PRICES = [], INDS = {}, MODNAME = {};
+
+(async () => {
+  const [bom, companies, prices, inds, reg] = await Promise.all([
+    get("framework/bom.json"), get("data/companies.json"), get("data/prices.json"),
+    get("framework/indicators.json"), get("framework/modules.json")]);
+  BOM = bom; PRICES = prices.records;
+  companies.records.forEach(c => CN[c.company_id] = c.name_cn || c.name);
+  inds.indicators.forEach(i => INDS[i.id] = i);
+  reg.modules.forEach(m => MODNAME[m.id] = m.name);
+
+  // 层从上到下 = L5 → L1（爆炸图：部件在最上，园区在最下）
+  const order = ["L5", "L4", "L3", "L2", "L1"];
+  document.getElementById("stack").innerHTML = order.map((lid, i) => {
+    const layer = bom.layers.find(l => l.id === lid);
+    const parts = bom.parts.filter(p => p.layer === lid);
+    return `<div class="layer" data-i="${i}">
+      <div class="lh"><span class="lid">${lid}</span><b>${layer.name}</b><span>${layer.desc}</span></div>
+      <div class="parts">${parts.map(p =>
+        `<div class="part" id="p-${p.id}" style="border-color:${SC[p.status]}" onclick="show('${p.id}')">
+          ${p.name}<small>${MODNAME[p.module] || p.module}</small></div>`).join("")}</div></div>`;
+  }).join("");
+
+  const first = location.hash.slice(1);
+  if (first && bom.parts.find(p => p.id === first)) show(first);
+})().catch(e => document.getElementById("stack").textContent = "加载失败：" + e.message);
+
+function latestSeries(sid) {
+  const pts = PRICES.filter(r => r.series_id === sid).sort((a, b) => a.as_of < b.as_of ? 1 : -1);
+  return pts[0];
+}
+
+function show(pid) {
+  const p = BOM.parts.find(x => x.id === pid);
+  if (!p) return;
+  document.querySelectorAll(".part").forEach(el => el.classList.remove("sel"));
+  document.getElementById("p-" + pid)?.classList.add("sel");
+  history.replaceState(null, "", "#" + pid);
+
+  let h = `<h2>${esc(p.name)}</h2>
+    <div class="meta">${p.layer} ${BOM.layers.find(l => l.id === p.layer).name} ·
+      <span class="badge" style="background:${SC[p.status]}">${SN[p.status]}</span></div>
+    <div style="font-size:13px">${esc(p.desc)}</div>`;
+
+  h += `<div class="sec"><h3>研究归属</h3>
+    <a class="chip" href="report.html#ch-${p.module}">📖 ${p.module} ${MODNAME[p.module] || ""} — 研究结论</a>
+    <a class="chip" href="doc.html?f=research/${p.module}.md">原文</a></div>`;
+
+  if (p.companies?.length)
+    h += `<div class="sec"><h3>关联公司（点击进档案）</h3>${p.companies.map(c =>
+      `<a class="chip" href="company.html?c=${c}">${CN[c] || c}</a>`).join("")}</div>`;
+
+  const rows = [];
+  (p.series || []).forEach(sid => {
+    const r = latestSeries(sid);
+    if (r) rows.push(`<div class="kv"><span>${sid}</span><b>${r.value.toLocaleString()} ${r.unit} <small style="color:var(--muted)">${r.as_of.slice(2)}</small></b></div>`);
+  });
+  (p.indicators || []).forEach(iid => {
+    const i = INDS[iid];
+    if (i) rows.push(`<div class="kv"><span>${i.name}</span><b>${i.value != null ? i.value.toLocaleString() + " " + i.unit : '<span class="empty">待录入</span>'}</b></div>`);
+  });
+  h += `<div class="sec"><h3>数据与指标</h3>${rows.join("") || '<div class="empty">该部件的量化序列待建——这就是下一个数据采集点</div>'}</div>`;
+  h += `<div class="sec"><h3>资料</h3><a class="chip" href="doc.html?f=docs/LIBRARY_INDEX.md">研报库检索</a>
+        <a class="chip" href="doc.html?f=docs/LIBRARY_SCORES.csv">精读打分清单</a></div>`;
+  document.getElementById("dossier").innerHTML = h;
+}
+</script>
+</body>
+</html>
