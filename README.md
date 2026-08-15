@@ -69,6 +69,7 @@ L0 数据层   data/ — 六张实体表（项目/公司/价格/政策/合同/�
 
 ```bash
 python3 pipeline/verify.py          # 生成核验队列：今天该查什么（核验工作的固定入口）
+python3 pipeline/reading_queue.py   # 生成精读队列：这周该读什么（已打分−已消化）
 python3 pipeline/validate.py        # 校验所有数据文件（schema + 口径规则 + 保鲜度）
 python3 pipeline/fetch_sec.py       # 拉取跟踪公司的最新 SEC 文件列表
 python3 pipeline/fetch_news_signals.py  # 从 news 项目匹配实体相关新闻线索
@@ -84,9 +85,18 @@ python3 -m http.server 8000         # 打开 http://localhost:8000 看仪表盘
   数据层的上游信号源；未来 `pipeline/` 可直接消费 news 的 `data/*.json` 做实体关联。
 - **公众号内容**：每次数据更新和模块分析都是选题弹药，同一份数据资产服务决策、融资、内容三线。
 
-## 路线图
+## 路线图（2026-08-15 对账刷新；总方向见 docs/DECISIONS.md）
 
 - [x] 第一阶段：立规矩——框架文档 + 口径手册 + 六表 schema + 种子数据 + 仪表盘骨架
-- [ ] 第二阶段：数据层做实——项目库从核验台账迁入；EDGAR/IR 自动采集跑通；接入 news 信源
-- [ ] 第三阶段：五个新模块首版研究（资本金融 → 中国 → Token 经济 → 有效算力 → 运营执行）
-- [ ] 第四阶段：输出管线——PDF/PPT/Word 模板化生成；季度更新节奏；仪表盘上线 VPS
+- [x] 第二阶段：数据层做实——项目库 120 条（台账迁入+全球补录）；CIK 真缺口清零；
+      news 信源桥接；EDGAR 采集脚本就绪（云端被屏蔽，须本机 launchd 跑）
+- [x] 第三阶段：五个新模块首版研究——M10-M15 全部有 Finding（全库 75 条），
+      薄弱模块（M10/M11/M13/M14）已各补量化专条
+- [x] 第三阶段半：知识运转机制——核验队列（verify.py）+ 精读队列（reading_queue.py）
+      双入口；9 分文献 8/8 消化；决策日志（docs/DECISIONS.md）防会话失忆
+- [ ] 第四阶段：team work 化——按模块分工给不同负责人，PR 提交 → 用户 merge 进 core
+      （CODEOWNERS 已铺底，待人员到位与分支协作规范细化）
+- [ ] 第五阶段：输出管线——PDF/PPT/Word 模板化生成（reports/templates 待做）；
+      季度更新节奏；仪表盘上线 VPS（wentian.ai）
+- [ ] 第六阶段：产品打磨——dashboard 美化整理；爆炸图交互升级
+      （漂亮的人机互动、快速进入待探索领域）
