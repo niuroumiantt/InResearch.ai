@@ -28,6 +28,20 @@
   .hud .stage { font-size: 11.5px; color: var(--accent); min-height: 18px; margin-top: 2px; }
   .hud button { margin-top: 8px; width: 100%; padding: 7px; border: none; border-radius: 8px;
     background: var(--accent); color: #0b0e14; font: inherit; font-weight: 700; cursor: pointer; }
+  .domrow { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+  .dchip { flex: 1 1 30%; text-align: center; padding: 5px 2px; border: 1px solid var(--line); border-radius: 8px;
+    font-size: 11.5px; cursor: pointer; color: var(--text); background: transparent; transition: all .15s; user-select: none; }
+  .dchip:hover { border-color: var(--accent); color: var(--accent); }
+  .dchip.on { background: var(--accent); color: #0b0e14; font-weight: 700; border-color: var(--accent); }
+  #domainParts { margin-top: 8px; max-height: 30vh; overflow-y: auto; }
+  #domainParts .pitem { display: flex; align-items: center; gap: 7px; padding: 4px 7px; border-radius: 7px;
+    font-size: 12px; cursor: pointer; }
+  #domainParts .pitem:hover { background: rgba(96,165,250,.12); color: var(--accent); }
+  #domainParts .dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+  #domainParts .lay { margin-left: auto; font-size: 10px; color: var(--muted); }
+  .spark-wrap { margin-top: 6px; }
+  .spark-wrap .sname { font-size: 10.5px; color: var(--muted); display: flex; justify-content: space-between; }
+  .spark-wrap .sname b { color: var(--text); }
   #dossier { position: fixed; right: 18px; top: 62px; bottom: 18px; width: 340px; z-index: 20;
     background: rgba(21,26,35,.93); border: 1px solid var(--line); border-radius: 14px; padding: 18px;
     overflow-y: auto; display: none; }
@@ -59,9 +73,11 @@
 <canvas id="c"></canvas>
 <div class="hud">
   <h1>数据中心拆解</h1>
-  <div class="m">拖动旋转 · 滚轮缩放 · 点击任何设备看研究档案</div>
+  <div class="m">拖动旋转 · 滚轮缩放 · 点击设备看档案 · 按 1-6 直达领域</div>
   <input type="range" id="explode" min="0" max="100" value="0">
   <div class="stage" id="stage">整机：一座 AI 数据中心</div>
+  <div class="domrow" id="domrow"></div>
+  <div id="domainParts"></div>
   <button id="play">▶ 自动拆解</button>
 </div>
 <div id="dossier"></div>
@@ -103,6 +119,7 @@ const dl2 = new THREE.DirectionalLight(0x88aaff, 0.4); dl2.position.set(-30, 20,
 scene.add(new THREE.GridHelper(160, 32, 0x233048, 0x141b29));
 
 const pickables = [];
+const decor = [];     // 无档案的装饰网格（LED 灯条等），领域模式下需要一同压暗
 const animated = [];  // {obj, home:Vector3, off:Vector3, t0, t1} —— slider 在 [t0,t1] 区间内驱动该位移
 function M(color, opt = {}) { return new THREE.MeshStandardMaterial({ color, roughness: 0.55, metalness: 0.15, ...opt }); }
 function box(w, h, d, color, x, y, z, partId, opt = {}) {
@@ -159,6 +176,7 @@ for (let r = 0; r < rackRows; r++) {
     const rack = box(2.1, 4.6, 1.6, isHero ? 0x2a3950 : 0x1c2431, x, 3.1, z, "rack-frame", { roughness: 0.4 });
     // 正面指示灯条
     const led = box(2.0, 4.3, 0.06, 0x0f172a, x, 3.1, z + 0.84, null, { emissive: 0x22c55e, emissiveIntensity: isHero ? 0.7 : 0.35 });
+    decor.push(led);
     // 行间散开
     const rowOff = (r - (rackRows - 1) / 2) * 3.2;
     explode(rack, 0, 0, rowOff, 0.3, 0.55);
@@ -288,6 +306,93 @@ document.getElementById("play").onclick = () => {
   })(t0);
 };
 
+/* ─────────── 领域导航：一键飞进想探索的领域 ─────────── */
+const PARTMESH = {};
+pickables.forEach(m => { (PARTMESH[m.userData.part] ||= []).push(m); });
+
+const DOMAINS = [
+  { key: "power",   icon: "⚡", name: "电力",   mods: ["M04", "M09"], t: 45,  cam: [72, 28, 14], tgt: [30, 3, 3] },
+  { key: "cooling", icon: "❄️", name: "散热",   mods: ["M08"],        t: 45,  cam: [-70, 26, 10], tgt: [-28, 3, 0] },
+  { key: "compute", icon: "🧠", name: "算力",   mods: ["M06"],        t: 100, cam: [13, 11, 40], tgt: [0, 5, 20] },
+  { key: "network", icon: "🔗", name: "网络",   mods: ["M07"],        t: 100, cam: [15, 17, 38], tgt: [0, 10, 20] },
+  { key: "campus",  icon: "🏗️", name: "园区楼宇", mods: ["M05", "M10"], t: 32, cam: [58, 44, 64], tgt: [0, 4, 0] },
+  { key: "dcim",    icon: "🖥️", name: "软件",   mods: ["M13"],        t: 55,  cam: [-42, 20, 26], tgt: [-22, 7, 4] },
+];
+DOMAINS.forEach(d => d.parts = BOM.parts.filter(p => d.mods.includes(p.module)));
+
+let camAnim = null;
+function flyTo(cam, tgt, dur = 1100) {
+  controls.autoRotate = false;
+  const c0 = camera.position.clone(), t0v = controls.target.clone();
+  const c1 = new THREE.Vector3(...cam), t1v = new THREE.Vector3(...tgt);
+  const start = performance.now();
+  camAnim && cancelAnimationFrame(camAnim.raf);
+  camAnim = {};
+  (function fly(now) {
+    const k = Math.min(1, (now - start) / dur), e = ease(k);
+    camera.position.lerpVectors(c0, c1, e);
+    controls.target.lerpVectors(t0v, t1v, e);
+    if (k < 1) camAnim.raf = requestAnimationFrame(fly); else camAnim = null;
+  })(start);
+}
+canvas.addEventListener("pointerdown", () => { camAnim && cancelAnimationFrame(camAnim.raf); camAnim = null; });
+
+function animSlider(to, dur = 1400) {
+  const from = +slider.value, start = performance.now();
+  (function step(now) {
+    const k = Math.min(1, (now - start) / dur);
+    slider.value = from + (to - from) * k;
+    apply();
+    if (k < 1) requestAnimationFrame(step);
+  })(start);
+}
+
+let activeDomain = null;
+function setDim(mesh, dim) {
+  const mat = mesh.material;
+  if (!mesh.userData.orig) mesh.userData.orig = { opacity: mat.opacity, transparent: mat.transparent, ei: mat.emissiveIntensity || 0 };
+  const o = mesh.userData.orig;
+  if (dim) { mat.transparent = true; mat.opacity = Math.min(o.opacity, 0.10); mat.emissiveIntensity = 0; }
+  else { mat.transparent = o.transparent; mat.opacity = o.opacity; mat.emissiveIntensity = o.ei; }
+}
+function clearDomain() {
+  activeDomain = null;
+  pickables.concat(decor).forEach(m => m.userData.orig && setDim(m, false));
+  document.querySelectorAll(".dchip").forEach(el => el.classList.remove("on"));
+  document.getElementById("domainParts").innerHTML = "";
+}
+function enterDomain(d) {
+  if (activeDomain === d.key) { clearDomain(); flyTo([46, 30, 52], [0, 6, 0]); return; }
+  clearDomain();
+  activeDomain = d.key;
+  document.getElementById(`dchip-${d.key}`).classList.add("on");
+  const ids = new Set(d.parts.map(p => p.id));
+  pickables.forEach(m => setDim(m, !ids.has(m.userData.part)));
+  decor.forEach(m => setDim(m, !ids.has("rack-frame") && !ids.has("server")));  // LED 随机柜/服务器所属领域
+  animSlider(d.t);
+  flyTo(d.cam, d.tgt);
+  document.getElementById("domainParts").innerHTML = d.parts.map(p =>
+    `<div class="pitem" data-part="${p.id}"><span class="dot" style="background:${SBADGE[p.status]}"></span>${esc(p.name)}<span class="lay">${p.layer}</span></div>`).join("");
+  document.querySelectorAll("#domainParts .pitem").forEach(el => el.onclick = () => {
+    const p = PART[el.dataset.part];
+    showDossier(p);
+    const meshes = PARTMESH[p.id];
+    if (meshes?.length) {
+      const wp = new THREE.Vector3(); meshes[0].getWorldPosition(wp);
+      flyTo([wp.x + 9, wp.y + 6, wp.z + 9], [wp.x, wp.y, wp.z], 900);
+    }
+  });
+}
+const domrow = document.getElementById("domrow");
+domrow.innerHTML = DOMAINS.map(d => `<div class="dchip" id="dchip-${d.key}">${d.icon} ${d.name}</div>`).join("");
+DOMAINS.forEach(d => document.getElementById(`dchip-${d.key}`).onclick = () => enterDomain(d));
+addEventListener("keydown", e => {
+  if (e.target.tagName === "INPUT") return;
+  const i = "123456".indexOf(e.key);
+  if (i >= 0) enterDomain(DOMAINS[i]);
+  if (e.key === "0" || e.key === "Escape") { clearDomain(); flyTo([46, 30, 52], [0, 6, 0]); }
+});
+
 /* ─────────── 交互与档案 ─────────── */
 const ray = new THREE.Raycaster(), mouse = new THREE.Vector2();
 const tip = document.getElementById("tip3d");
@@ -321,10 +426,37 @@ function latest(sid) {
   return pts[0];
 }
 const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+function sparkline(sid) {
+  const pts = prices.records.filter(r => r.series_id === sid && typeof r.value === "number")
+    .sort((a, b) => a.as_of < b.as_of ? -1 : 1);
+  if (pts.length < 3) return null;
+  const W = 292, H = 56, PX = 3, PY = 6;
+  const vs = pts.map(r => r.value);
+  const lo = Math.min(...vs), hi = Math.max(...vs), span = hi - lo || 1;
+  const X = i => PX + i / (pts.length - 1) * (W - 2 * PX);
+  const Y = v => H - PY - (v - lo) / span * (H - 2 * PY);
+  const line = pts.map((r, i) => `${i ? "L" : "M"}${X(i).toFixed(1)},${Y(r.value).toFixed(1)}`).join("");
+  const last = pts[pts.length - 1];
+  const hits = pts.map((r, i) =>
+    `<circle cx="${X(i).toFixed(1)}" cy="${Y(r.value).toFixed(1)}" r="9" fill="transparent" data-v="${r.value.toLocaleString()} ${esc(r.unit)}" data-d="${r.as_of}"/>`).join("");
+  return `<div class="spark-wrap">
+    <div class="sname"><span>${esc(sid)}</span><b>${last.value.toLocaleString()} ${esc(last.unit)}</b></div>
+    <svg class="spark" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" style="display:block">
+      <path d="${line}" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="${X(pts.length - 1).toFixed(1)}" cy="${Y(last.value).toFixed(1)}" r="3" fill="var(--accent)"/>
+      ${hits}
+    </svg>
+    <div class="sname"><span style="font-size:10px">${pts[0].as_of} → ${last.as_of}</span><span style="font-size:10px">区间 ${lo.toLocaleString()}–${hi.toLocaleString()}</span></div>
+  </div>`;
+}
 function showDossier(p) {
   const el = document.getElementById("dossier");
   let rows = [];
-  (p.series || []).forEach(sid => { const r = latest(sid); if (r) rows.push(`<div class="kv"><span>${sid}</span><b>${r.value.toLocaleString()} ${r.unit}</b></div>`); });
+  (p.series || []).forEach(sid => {
+    const sp = sparkline(sid);
+    if (sp) { rows.push(sp); return; }
+    const r = latest(sid); if (r) rows.push(`<div class="kv"><span>${sid}</span><b>${r.value.toLocaleString()} ${r.unit}</b></div>`);
+  });
   (p.indicators || []).forEach(iid => { const i = INDS[iid]; if (i) rows.push(`<div class="kv"><span>${i.name}</span><b>${i.value != null ? i.value.toLocaleString() + " " + i.unit : "待录入"}</b></div>`); });
   el.innerHTML = `<span class="close" onclick="this.parentElement.style.display='none'">✕</span>
     <h2>${esc(p.name)}</h2>
@@ -337,6 +469,18 @@ function showDossier(p) {
     <div class="sec"><h3>数据与指标</h3>${rows.join("") || '<div style="color:var(--muted);font-size:12px">量化序列待建——下一个采集点</div>'}</div>`;
   el.style.display = "block";
 }
+// sparkline 悬停读数（事件委托，一次绑定）
+const dossierEl = document.getElementById("dossier");
+dossierEl.addEventListener("pointermove", e => {
+  const c = e.target.closest("circle[data-v]");
+  if (c) {
+    tip.style.display = "block";
+    tip.style.left = Math.min(e.clientX + 12, innerWidth - 200) + "px";
+    tip.style.top = (e.clientY + 12) + "px";
+    tip.textContent = `${c.dataset.d} ｜ ${c.dataset.v}`;
+  } else if (tip.textContent.includes("｜")) tip.style.display = "none";
+});
+dossierEl.addEventListener("pointerleave", () => { if (tip.textContent.includes("｜")) tip.style.display = "none"; });
 
 function resize() {
   renderer.setSize(innerWidth, innerHeight);
