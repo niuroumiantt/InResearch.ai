@@ -85,3 +85,9 @@ NVIDIA 官方数字有三条系统性口径偏移（SemiAnalysis 命名为 Jense
    **系统性翻倍高估**。既有"芯片数不折算 MW"纪律扩展为：**封装数与裸片数必须分列**。
 
 来源：SemiAnalysis GTC 2025 评述（sources:semianalysis-gtc2025）。发布会季注意核对是否新增第四条。
+
+### 补充：厂商代际倍数的三级还原（同源规则，2026-08-15）
+
+引用任何厂商宣称的"X 倍提升"前做三级还原：① 剥离最优场景（厂商选定 benchmark）→
+② 对齐精度口径（FP4 对 FP8 的倍数一半来自精度）→ ③ 按硅面积归一化（芯片变大不是架构进步）。
+来源：SemiAnalysis Blackwell Perf/TCO 分析（sources:semianalysis-blackwell-tco-2024）。
