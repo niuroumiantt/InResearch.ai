@@ -819,6 +819,45 @@
       "grade": "research",
       "source_url": "https://www.iea.org/energy-system/buildings/data-centres-and-data-transmission-networks",
       "note": "另：IEA《Electricity 2024》曾给 2022=460 TWh（数据中心/AI/加密货币合并的更宽口径），为保序列口径一致未采用，仅此备注"
+    },
+    {
+      "series_id": "benchmark-delloro-dc-capex-2030",
+      "category": "capex",
+      "module": "M03",
+      "as_of": "2026-07-31",
+      "value": 3100,
+      "unit": "$B",
+      "region": "global",
+      "assumptions": "DellOro 2026-07 预测：2030 年全球 DC IT Capex（发布时点记录，目标年 2030）",
+      "grade": "research",
+      "source_url": "docs/library/04_市场与研究/英文机构报告/AQ458-2026年7月 Data Center IT Capex Forecast/9A_2026_IT资本开支预测_DellOro.pdf",
+      "note": "五年 CAGR 34%；付费报告内部引用"
+    },
+    {
+      "series_id": "benchmark-yole-gpu-revenue-2025",
+      "category": "benchmark",
+      "module": "M06",
+      "as_of": "2026-08-15",
+      "value": 191.8,
+      "unit": "$B",
+      "region": "global",
+      "assumptions": "Yole 2025 版预测：2025 年 GPU 收入",
+      "grade": "research",
+      "source_url": "docs/library/04_市场与研究/英文机构报告/Yole/9A_2025_生成式AI算力_Yole.pdf",
+      "note": "2028 峰值 $247.6B、ASIC 2030 $84.6B 见报告"
+    },
+    {
+      "series_id": "benchmark-semianalysis-100k-power",
+      "category": "benchmark",
+      "module": "M07",
+      "as_of": "2024-06-17",
+      "value": 150,
+      "unit": "MW",
+      "region": "global",
+      "assumptions": "10万卡 H100 集群关键 IT 电力下限（GPU 700W+配套~575W/卡+10%辅助）",
+      "grade": "research",
+      "source_url": "docs/library/04_市场与研究/SemiAnalysis合集/合集/9A_2024_10万卡集群_SemiAnalysis.pdf",
+      "note": "年耗电 1.59TWh；集群工程学锚点"
     }
   ]
 }
