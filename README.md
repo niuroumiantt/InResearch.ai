@@ -41,7 +41,9 @@ L0 数据层   data/ — 六张实体表（项目/公司/价格/政策/合同/�
 | `data/raw/` | L0 | 原始文献/公告存档（不进 git 的大文件另存） |
 | `pipeline/` | 采集 | 零依赖抓取与校验脚本（EDGAR 等） |
 | `reports/` | L3 | 输出模板与生成结果 |
-| `docs/source/` | 存档 | 原始 Q1–Q35 研究报告（本项目的知识起点） |
+| `docs/inbox/` | 投递口 | **有材料放这里**（Word/PDF/CAD/Excel 均可，不用分类改名），后台"扫描收件箱"按钮出清单，Claude 归类登记 |
+| `docs/source/` | 存档 | 本项目自产文档（Q&A 报告、台账等原件） |
+| `docs/library/` | 存档 | 第三方研报库（407+ 份，分类管理，不进 git；索引 `docs/LIBRARY_INDEX.md` 进 git） |
 | `index.html` | L4 | 单文件仪表盘：模块地图 + 项目库 + 监测指标 |
 
 ## 数据更新三档机制

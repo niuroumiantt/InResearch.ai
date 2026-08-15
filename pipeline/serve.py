@@ -31,6 +31,7 @@ TASKS = {
     "validate":   ("数据校验", ["pipeline/validate.py"], 30),
     "export":     ("导出全量报告（md+docx）", ["pipeline/export.py", "--docx"], 120),
     "map":        ("Top10 地图（html+pdf）", ["pipeline/output_map.py"], 90),
+    "inbox":      ("扫描收件箱（docs/inbox）", ["pipeline/scan_inbox.py"], 30),
 }
 RUNNING = set()
 LOCK = threading.Lock()
