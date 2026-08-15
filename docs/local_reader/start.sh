@@ -7,7 +7,9 @@ set -e
 REPO="$(cd "$(dirname "$0")/../.." && pwd)"
 
 echo "── 更新主仓库 ──"
-git -C "$REPO" pull --ff-only || echo "（pull 失败或有本地改动，继续用当前版本）"
+# 管线生成物（launchd 每日重新生成）若有本地改动，先还原再 pull，避免挡住合并
+git -C "$REPO" checkout -- data/brief.json reports/daily_brief.md reports/verify_queue.md reports/reading_queue.md 2>/dev/null || true
+git -C "$REPO" pull --ff-only || echo "（pull 失败或有未提交的手工改动，继续用当前版本；如需强制同步请先 git stash）"
 
 READER="$HOME/code/datacenter-reader"
 mkdir -p "$READER"
