@@ -1,14 +1,10 @@
 # 精读队列 — 该读什么
 
-生成时间：2026-08-15 ｜ 已打分 36 份 ｜ 已消化 6 份 ｜ 待消化 30 份
+生成时间：2026-08-15 ｜ 已打分 36 份 ｜ 已消化 8 份 ｜ 待消化 28 份
 
 消化 = 读进知识层出 Finding + 登记 data/sources.json（local_file 对上即出队）。
 节奏：每周至少 2 份 importance ≥ 8。
 
-- [ ] **9A** 9A_2026_IT资本开支数据表_DellOro.xlsx ｜ DellOro 2026 ｜ → M03
-      docs/library/04_市场与研究/英文机构报告/AQ458-2026年7月 Data Center IT Capex Forecast/9A_2026_IT资本开支数据表_DellOro.xlsx
-- [ ] **9A** 9A_2025_HBM技术路线图_KAIST.pdf ｜ KAIST 2025 ｜ → M06
-      docs/library/04_市场与研究/英文机构报告/Yole/9A_2025_HBM技术路线图_KAIST.pdf
 - [ ] **8A** 8A_2025_UALink规范_UALink联盟.pdf ｜ UALink联盟 2025 ｜ → GPU互连/网络
       docs/library/04_市场与研究/半导体与上游/FMS2025/INDA-302-1：UALink 200G 1.0 Specification Overview and Applications/8A_2025_UALink规范_UALink联盟.pdf
 - [ ] **8A** 8A_2025_算力能效危机_MPS.pdf ｜ MPS/DOE 2025 ｜ → 电力/能效/DOE政策
