@@ -1,8 +1,8 @@
 # 精读队列 — 该读什么
 
-生成时间：2026-08-16 ｜ 打分表 4954 份 ｜ 入队候选 1971 份 ｜ 已消化 68 份 ｜ 待消化 1903 份
+生成时间：2026-08-16 ｜ 打分表 5263 份 ｜ 入队候选 2060 份 ｜ 已消化 68 份 ｜ 待消化 1992 份
 
-阅读深度分布：半自动 2541、精读 1190、目录级 873、据实生成 350
+阅读深度分布：半自动 2849、精读 1191、目录级 873、据实生成 350
 入队规则：精读/据实生成全进；半自动仅 importance ≥ 6；目录级不进（`--all` 看全表）。
 
 消化 = 读进知识层出 Finding + 登记 data/sources.json（local_file 对上即出队）。
@@ -394,6 +394,110 @@
       docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼土建工程/B1通信机楼-±0.00以下土建工程/6A_2022_粤港澳通信机楼二期造价B1通信机楼-±0.00以下土建_中国移动广东公司.xlsx
 - [ ] **6A** 6A_2022_粤港澳通信机楼二期造价B3通信机楼-外墙工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
       docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼土建工程/B3通信机楼-外墙工程/6A_2022_粤港澳通信机楼二期造价B3通信机楼-外墙工程_中国移动广东公司.xlsx
+- [ ] **6A** 6A_2022_GoingVertical__SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M09/M05/M10 ｜ 半自动
+      docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2022_GoingVertical__SemiAnalysis.pdf
+- [ ] **6A** 6A_2010_QBCU0082010中国联_标准规范.doc ｜ 标准发布机构 2010 ｜ → M06/M13 ｜ 半自动
+      docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/运营商/6A_2010_QBCU0082010中国联_标准规范.doc
+- [ ] **6A** 6A_2025_MarvellsVision_SemiAnalysis.pdf ｜ SemiAnalysis 2025 ｜ → M09/M06/M10 ｜ 半自动
+      docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2025_MarvellsVision_SemiAnalysis.pdf
+- [ ] **6A** 6A_2003_GB109432003电力变_标准规范.pdf ｜ 标准发布机构 2003 ｜ → M10 ｜ 半自动
+      docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/供配电/电力变压器系列/6A_2003_GB109432003电力变_标准规范.pdf
+- [ ] **6A** 6A_2024_JefferiesLLC_T_SemiAnalysis.pdf ｜ SemiAnalysis 2024 ｜ → M09/M10/M07 ｜ 半自动
+      docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2024_JefferiesLLC_T_SemiAnalysis.pdf
+- [ ] **6A** 6A_2010_TIA_9422_20102_标准规范.pdf ｜ 标准发布机构 2010 ｜ → M06/M05/M07 ｜ 半自动
+      docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/国际标准/6A_2010_TIA_9422_20102_标准规范.pdf
+- [ ] **6A** 6A_2013_中国移动通信电源系统工程设计_标准规范.pdf ｜ 标准发布机构 2013 ｜ → M05/M09/M13 ｜ 半自动
+      docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/UPS相关规范/6A_2013_中国移动通信电源系统工程设计_标准规范.pdf
+- [ ] **6A** 6A_2012_JGJ2842012金融建筑_标准规范.pdf ｜ 标准发布机构 2012 ｜ → M13/M10/M09 ｜ 半自动
+      docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/金融行业/6A_2012_JGJ2842012金融建筑_标准规范.pdf
+- [ ] **6A** 6A_2008_中国移动通信企业标准通信用不_标准规范.pdf ｜ 标准发布机构 2008 ｜ → M13/M05/M04 ｜ 半自动
+      docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/UPS相关规范/6A_2008_中国移动通信企业标准通信用不_标准规范.pdf
+- [ ] **6A** 6A_2022_HybridBondingP_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M05/M09/M06 ｜ 半自动
+      docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2022_HybridBondingP_SemiAnalysis.pdf
+- [ ] **6A** 6A_2017_GB501742017数据中_标准规范.pdf ｜ 标准发布机构 2017 ｜ → M09/M05/M13 ｜ 半自动
+      docs/library/01_标准与规范/03 最新标准/6A_2017_GB501742017数据中_标准规范.pdf
+- [ ] **6A** 6A_2004_GB503432004建筑物_标准规范.pdf ｜ 标准发布机构 2004 ｜ → M10/M09 ｜ 半自动
+      docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/防雷与接地/6A_2004_GB503432004建筑物_标准规范.pdf
+- [ ] **6A** 6A_2009_中国电信QCT2171200_标准规范.pdf ｜ 标准发布机构 2009 ｜ → M09/M10/M04 ｜ 半自动
+      docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/运营商/6A_2009_中国电信QCT2171200_标准规范.pdf
+- [ ] **6A** 6A_2025_2025_2025年汽车低压_标准规范.pdf ｜ 标准发布机构 2025 ｜ → M09/M05/M04 ｜ 半自动
+      docs/library/01_标准与规范/6A_2025_2025_2025年汽车低压_标准规范.pdf
+- [ ] **6A** 6A_2005_GBT109442005电力_标准规范.pdf ｜ 标准发布机构 2005 ｜ → M10 ｜ 半自动
+      docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/供配电/电力变压器系列/6A_2005_GBT109442005电力_标准规范.pdf
+- [ ] **6A** 6A_2022_TSMC3nmFinFlex_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M09/M05/M06 ｜ 半自动
+      docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2022_TSMC3nmFinFlex_SemiAnalysis.pdf
+- [ ] **6A** 6A_2022_DeepSeek辩论中国在成_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M09/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2022_DeepSeek辩论中国在成_SemiAnalysis.pdf
+- [ ] **6A** 6A_2022_GB5021794电力工程电_标准规范.doc ｜ 标准发布机构 2022 ｜ → M10 ｜ 半自动
+      docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/供配电/6A_2022_GB5021794电力工程电_标准规范.doc
+- [ ] **6A** 6A_2011_2011_中国电信集团文件I_标准规范.pdf ｜ 标准发布机构 2011 ｜ → M09/M05/M10 ｜ 半自动
+      docs/library/01_标准与规范/6A_2011_2011_中国电信集团文件I_标准规范.pdf
+- [ ] **6A** 6A_2022_NvidiaAdaLovel_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M09/M06/M07 ｜ 半自动
+      docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2022_NvidiaAdaLovel_SemiAnalysis.pdf
+- [ ] **6A** 6A_2011_中国电信集团文件IDC机房设_标准规范.pdf ｜ 标准发布机构 2011 ｜ → M09/M05/M10 ｜ 半自动
+      docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/运营商/6A_2011_中国电信集团文件IDC机房设_标准规范.pdf
+- [ ] **6A** 6A_2008_2008_中国移动通信企业标_标准规范.pdf ｜ 标准发布机构 2008 ｜ → M13/M05/M04 ｜ 半自动
+      docs/library/01_标准与规范/6A_2008_2008_中国移动通信企业标_标准规范.pdf
+- [ ] **6A** 6A_2023_IntelGenAIForY_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M09/M06/M05 ｜ 半自动
+      docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2023_IntelGenAIForY_SemiAnalysis.pdf
+- [ ] **6A** 6A_2010_YDT21652010通信用_标准规范.pdf ｜ 标准发布机构 2010 ｜ → M05 ｜ 半自动
+      docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/UPS相关规范/6A_2010_YDT21652010通信用_标准规范.pdf
+- [ ] **6A** 6A_2022_美国ASHRAE数据中心热处_标准规范.doc ｜ 标准发布机构 2022 ｜ → M09/M05/M04 ｜ 半自动
+      docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/国际标准/6A_2022_美国ASHRAE数据中心热处_标准规范.doc
+- [ ] **6A** 6A_2018_中国信通院2018数据中心白_标准规范.pdf ｜ 标准发布机构 2018 ｜ → M04/M09/M13 ｜ 半自动
+      docs/library/01_标准与规范/03 最新标准/6A_2018_中国信通院2018数据中心白_标准规范.pdf
+- [ ] **6A** 6A_2022_TSMCs3nmConund_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M09/M06/M05 ｜ 半自动
+      docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2022_TSMCs3nmConund_SemiAnalysis.pdf
+- [ ] **6A** 6A_2018_YDT52392018模块化_标准规范.pdf ｜ 标准发布机构 2018 ｜ → M09/M04/M05 ｜ 半自动
+      docs/library/01_标准与规范/03 最新标准/6A_2018_YDT52392018模块化_标准规范.pdf
+- [ ] **6A** 6A_2022_Q3Semiconducto_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M09/M10 ｜ 半自动
+      docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2022_Q3Semiconducto_SemiAnalysis.pdf
+- [ ] **6A** 6A_2000_GB500571994200_标准规范.pdf ｜ 标准发布机构 2000 ｜ → M10 ｜ 半自动
+      docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/防雷与接地/6A_2000_GB500571994200_标准规范.pdf
+- [ ] **6A** 6A_2022_ClashoftheFoun_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M06/M09/M05 ｜ 半自动
+      docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2022_ClashoftheFoun_SemiAnalysis.pdf
+- [ ] **6A** 6A_2022_TIA942数据中心电信基础_标准规范.pdf ｜ 标准发布机构 2022 ｜ → M09/M04/M05 ｜ 半自动
+      docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/国际标准/6A_2022_TIA942数据中心电信基础_标准规范.pdf
+- [ ] **6A** 6A_2022_EUVRequirement_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M09/M06 ｜ 半自动
+      docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2022_EUVRequirement_SemiAnalysis.pdf
+- [ ] **6A** 6A_2022_MI300XvsH100vs_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M09/M10/M06 ｜ 半自动
+      docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2022_MI300XvsH100vs_SemiAnalysis.pdf
+- [ ] **6A** 6A_2025_2025_数据中心建设标准_标准规范.doc ｜ 标准发布机构 2025 ｜ → M06 ｜ 半自动
+      docs/library/01_标准与规范/6A_2025_2025_数据中心建设标准_标准规范.doc
+- [ ] **6A** 6A_2008_2008_GB5017420_标准规范.pdf ｜ 标准发布机构 2008 ｜ → M09/M05/M04 ｜ 半自动
+      docs/library/01_标准与规范/6A_2008_2008_GB5017420_标准规范.pdf
+- [ ] **6A** 6A_2022_Zen4c_AMDsResp_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M09/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2022_Zen4c_AMDsResp_SemiAnalysis.pdf
+- [ ] **6A** 6A_2022_ACenturyofMoor_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M09/M06/M05 ｜ 半自动
+      docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2022_ACenturyofMoor_SemiAnalysis.pdf
+- [ ] **6A** 6A_2008_2008_电子信息系统机房设_标准规范.doc ｜ 标准发布机构 2008 ｜ → M09/M05/M04 ｜ 半自动
+      docs/library/01_标准与规范/6A_2008_2008_电子信息系统机房设_标准规范.doc
+- [ ] **6A** 6A_2009_LEED_2009NC中文版_标准规范.pdf ｜ 标准发布机构 2009 ｜ → M10/M05/M04 ｜ 半自动
+      docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/国际标准/6A_2009_LEED_2009NC中文版_标准规范.pdf
+- [ ] **6A** 6A_2022_2022NANDProces_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M09/M10/M13 ｜ 半自动
+      docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2022_2022NANDProces_SemiAnalysis.pdf
+- [ ] **6A** 6A_2008_电子信息系统机房设计规GB5_标准规范.doc ｜ 标准发布机构 2008 ｜ → M09/M05/M04 ｜ 半自动
+      docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/国家标准/6A_2008_电子信息系统机房设计规GB5_标准规范.doc
+- [ ] **6A** 6A_2007_GB503112007综合布_标准规范.doc ｜ 标准发布机构 2007 ｜ → M09/M13/M04 ｜ 半自动
+      docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/弱电/6A_2007_GB503112007综合布_标准规范.doc
+- [ ] **6A** 6A_2002_GBT12706142002_标准规范.doc ｜ 标准发布机构 2002 ｜ → M10/M05 ｜ 半自动
+      docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/供配电/6A_2002_GBT12706142002_标准规范.doc
+- [ ] **6A** 6A_2022_IsIntelBack_Fo_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M09/M10/M13 ｜ 半自动
+      docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2022_IsIntelBack_Fo_SemiAnalysis.pdf
+- [ ] **6A** 6A_2025_Semianalysis最新_SemiAnalysis.pdf ｜ SemiAnalysis 2025 ｜ → M09/M10/M06 ｜ 半自动
+      docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2025_Semianalysis最新_SemiAnalysis.pdf
+- [ ] **6A** 6A_2009_2061_YDT206120_标准规范.pdf ｜ 标准发布机构 2009 ｜ → M09/M13 ｜ 半自动
+      docs/library/01_标准与规范/6A_2009_2061_YDT206120_标准规范.pdf
+- [ ] **6A** 6A_2009_YDT20612009工信部_标准规范.pdf ｜ 标准发布机构 2009 ｜ → M09/M13 ｜ 半自动
+      docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/制冷相关/6A_2009_YDT20612009工信部_标准规范.pdf
+- [ ] **6A** 6A_2022_MeteorLakeDieS_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M09/M06/M05 ｜ 半自动
+      docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2022_MeteorLakeDieS_SemiAnalysis.pdf
+- [ ] **6A** 6A_2009_中国电信2009553号数据_标准规范.pdf ｜ 标准发布机构 2009 ｜ → M09/M10/M04 ｜ 半自动
+      docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/运营商/6A_2009_中国电信2009553号数据_标准规范.pdf
+- [ ] **6A** 6A_2009_YD50392009通信工程_标准规范.pdf ｜ 标准发布机构 2009 ｜ → M10/M04/M05 ｜ 半自动
+      docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/机房环境/6A_2009_YD50392009通信工程_标准规范.pdf
+- [ ] **6A** 6A_2025_2025_TIA942数据中_标准规范.pdf ｜ 标准发布机构 2025 ｜ → M09/M04/M05 ｜ 半自动
+      docs/library/01_标准与规范/6A_2025_2025_TIA942数据中_标准规范.pdf
 - [ ] **6B** 6B_2022_壁仞规避管制_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M14 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/6B_2022_壁仞规避管制_SemiAnalysis.pdf
 - [ ] **6B** 6B_2023_亚马逊投资Anthropic_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M13/M06 ｜ 精读
@@ -836,6 +940,8 @@
       docs/library/05_数据中心设施/会议_OCP2026EMEA/2026 OCP EMEA Summit/AI Open Data Center/6B_2022_KeyPerformance_未署名.pdf
 - [ ] **6B** 6B_2022_7554AIinTransp_未署名.pdf ｜ 未署名 2022 ｜ → M06/M04/M13 ｜ 半自动
       docs/library/05_数据中心设施/会议_OCP2025/2025 OCP Global Summit/Edge/6B_2022_7554AIinTransp_未署名.pdf
+- [ ] **6B** 6B_2025_Vertiv一季度订单与积压_Jefferies.pdf ｜ Jefferies 2025 ｜ → M09/M02/M14 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/6B_2025_Vertiv一季度订单与积压_Jefferies.pdf
 - [ ] **6C** 6C_2024_全球封测市场_Technavio.pdf ｜ Technavio 2024 ｜ → M06 ｜ 精读
       docs/library/04_市场与研究/英文机构报告/Yole/6C_2024_全球封测市场_Technavio.pdf
 - [ ] **6C** 6C_2025_全球数据生成序列_FMS2025.pdf ｜ FMS2025 2025 ｜ → M15/M06 ｜ 精读
@@ -1696,6 +1802,78 @@
       docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2020/6C_2020_前瞻研究系列报告73继续看好_未署名.pdf
 - [ ] **6C** 6C_2022_通信设备数据中心专题研究二数_未署名.pdf ｜ 未署名 2022 ｜ → M01/M14/M13 ｜ 半自动
       docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2020/6C_2022_通信设备数据中心专题研究二数_未署名.pdf
+- [ ] **6C** 6C_2022_UBSLAM_Researc_未署名.pdf ｜ 未署名 2022 ｜ → M05/M09/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/6C_2022_UBSLAM_Researc_未署名.pdf
+- [ ] **6C** 6C_2022_UBSChina_Al_In_未署名.pdf ｜ 未署名 2022 ｜ → M05/M10/M09 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/6C_2022_UBSChina_Al_In_未署名.pdf
+- [ ] **6C** 6C_2022_JEFFLAM_Resear_未署名.pdf ｜ 未署名 2022 ｜ → M10/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/6C_2022_JEFFLAM_Resear_未署名.pdf
+- [ ] **6C** 6C_2022_JPMClean_Energ_未署名.pdf ｜ 未署名 2022 ｜ → M05/M06/M09 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250424/6C_2022_JPMClean_Energ_未署名.pdf
+- [ ] **6C** 6C_2022_CITIInnolight3_未署名.pdf ｜ 未署名 2022 ｜ → M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250424/6C_2022_CITIInnolight3_未署名.pdf
+- [ ] **6C** 6C_2022_HSBCVisual_Pho_未署名.pdf ｜ 未署名 2022 ｜ → M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250424/6C_2022_HSBCVisual_Pho_未署名.pdf
+- [ ] **6C** 6C_2022_GSGC_Tech_Dahu_未署名.pdf ｜ 未署名 2022 ｜ → M05/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/6C_2022_GSGC_Tech_Dahu_未署名.pdf
+- [ ] **6C** 6C_2022_UBSVertiv_Hold_未署名.pdf ｜ 未署名 2022 ｜ → M05/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/6C_2022_UBSVertiv_Hold_未署名.pdf
+- [ ] **6C** 6C_2022_JPMASEAN_Data__未署名.pdf ｜ 未署名 2022 ｜ → M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/6C_2022_JPMASEAN_Data__未署名.pdf
+- [ ] **6C** 6C_2022_GSVertiv_Holdi_未署名.pdf ｜ 未署名 2022 ｜ → M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/6C_2022_GSVertiv_Holdi_未署名.pdf
+- [ ] **6C** 6C_2022_JPMInternation_未署名.pdf ｜ 未署名 2022 ｜ → M05/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250424/6C_2022_JPMInternation_未署名.pdf
+- [ ] **6C** 6C_2022_MSSemiconducto_未署名.pdf ｜ 未署名 2022 ｜ → M09/M05/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250424/6C_2022_MSSemiconducto_未署名.pdf
+- [ ] **6C** 6C_2022_UBSVertiv_Hold_未署名_02.pdf ｜ 未署名 2022 ｜ → M05/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/6C_2022_UBSVertiv_Hold_未署名_02.pdf
+- [ ] **6C** 6C_2022_MSVisual_Photo_未署名.pdf ｜ 未署名 2022 ｜ → M05/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/6C_2022_MSVisual_Photo_未署名.pdf
+- [ ] **6C** 6C_2022_UBSAmphenol_Co_未署名.pdf ｜ 未署名 2022 ｜ → M05/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/6C_2022_UBSAmphenol_Co_未署名.pdf
+- [ ] **6C** 6C_2022_CITIChina_Auto_未署名.pdf ｜ 未署名 2022 ｜ → M05/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/6C_2022_CITIChina_Auto_未署名.pdf
+- [ ] **6C** 6C_2022_MSVisual_Photo_未署名_02.pdf ｜ 未署名 2022 ｜ → M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/6C_2022_MSVisual_Photo_未署名_02.pdf
+- [ ] **6C** 6C_2022_GSParade_Techn_未署名.pdf ｜ 未署名 2022 ｜ → M05/M09 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/6C_2022_GSParade_Techn_未署名.pdf
+- [ ] **6C** 6C_2022_CITIAccelink_T_未署名.pdf ｜ 未署名 2022 ｜ → M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/6C_2022_CITIAccelink_T_未署名.pdf
+- [ ] **6C** 6C_2022_UBSChinese_Int_未署名.pdf ｜ 未署名 2022 ｜ → M05/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/6C_2022_UBSChinese_Int_未署名.pdf
+- [ ] **6C** 6C_2022_JPMServiceNow__未署名.pdf ｜ 未署名 2022 ｜ → M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/6C_2022_JPMServiceNow__未署名.pdf
+- [ ] **6C** 6C_2022_UBSTE_Connecti_未署名.pdf ｜ 未署名 2022 ｜ → M05/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/6C_2022_UBSTE_Connecti_未署名.pdf
+- [ ] **6C** 6C_2022_GSGC_Tech_Dahu_未署名.pdf ｜ 未署名 2022 ｜ → M05/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250424/6C_2022_GSGC_Tech_Dahu_未署名.pdf
+- [ ] **6C** 6C_2022_CITIPegasystem_未署名.pdf ｜ 未署名 2022 ｜ → M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/6C_2022_CITIPegasystem_未署名.pdf
+- [ ] **6C** 6C_2022_MSWistron_Corp_未署名.pdf ｜ 未署名 2022 ｜ → M09/M05/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250424/6C_2022_MSWistron_Corp_未署名.pdf
+- [ ] **6C** 6C_2022_HSBCTE_Connect_未署名.pdf ｜ 未署名 2022 ｜ → M10/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/6C_2022_HSBCTE_Connect_未署名.pdf
+- [ ] **6C** 6C_2022_JPMUSTR_301_im_未署名.pdf ｜ 未署名 2022 ｜ → M06/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250424/6C_2022_JPMUSTR_301_im_未署名.pdf
+- [ ] **6C** 6C_2022_UBSParade_Tech_未署名.pdf ｜ 未署名 2022 ｜ → M05/M10/M09 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/6C_2022_UBSParade_Tech_未署名.pdf
+- [ ] **6C** 6C_2022_HSBCCH_Inspur__未署名.pdf ｜ 未署名 2022 ｜ → M09/M10/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/6C_2022_HSBCCH_Inspur__未署名.pdf
+- [ ] **6C** 6C_2022_MSClean_Techs__未署名.pdf ｜ 未署名 2022 ｜ → M06/M10/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/6C_2022_MSClean_Techs__未署名.pdf
+- [ ] **6C** 6C_2022_JPMVertiv_V_In_未署名.pdf ｜ 未署名 2022 ｜ → M05/M07 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/6C_2022_JPMVertiv_V_In_未署名.pdf
+- [ ] **6C** 6C_2022_CITITE_Connect_未署名.pdf ｜ 未署名 2022 ｜ → M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/6C_2022_CITITE_Connect_未署名.pdf
+- [ ] **6C** 6C_2022_MSSeagate_Tech_未署名.pdf ｜ 未署名 2022 ｜ → M10/M09/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/6C_2022_MSSeagate_Tech_未署名.pdf
+- [ ] **6C** 6C_2022_CITIVertiv_Hol_未署名.pdf ｜ 未署名 2022 ｜ → M05/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/6C_2022_CITIVertiv_Hol_未署名.pdf
+- [ ] **6C** 6C_2022_JPMVertiv_Copi_未署名.pdf ｜ 未署名 2022 ｜ → M07/M06/M09 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250424/6C_2022_JPMVertiv_Copi_未署名.pdf
+- [ ] **6C** 6C_2022_UBSTE_Connecti_未署名_02.pdf ｜ 未署名 2022 ｜ → M05/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/6C_2022_UBSTE_Connecti_未署名_02.pdf
 - [ ] **5A** 5A_2025_同态加密存内加速_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M07 ｜ 精读
       docs/library/04_市场与研究/半导体与上游/FMS2025/DSEC-201-1：Data Defense Advanced Protection Strategies and Compliance/5A_2025_同态加密存内加速_FMS2025.pdf
 - [ ] **5A** 5A_2025_闪存坏块二次利用_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M09 ｜ 精读

@@ -46,6 +46,27 @@
   .err { color: var(--red); background: var(--card); border: 1px solid var(--red); border-radius: 10px; padding: 14px; }
   .toc { font-size: 13px; margin: 0 0 18px; padding: 12px 16px; background: color-mix(in srgb, var(--card) 70%, var(--bg)); border: 1px solid var(--line); border-radius: 10px; }
   .toc a { display: block; color: var(--accent); text-decoration: none; padding: 2px 0; }
+  /* ── CSV 表格浏览器（打分表等） ── */
+  body.wide .wrap { max-width: 1240px; }
+  .ctl { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 14px; }
+  .ctl input, .ctl select { font: inherit; font-size: 13px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); color: var(--text); }
+  .ctl input[type=search] { flex: 1 1 240px; min-width: 180px; }
+  .ctl .count { font-size: 13px; color: var(--muted); margin-left: auto; white-space: nowrap; }
+  .sc { display: inline-block; min-width: 30px; text-align: center; font-weight: 600; font-size: 12px; color: #fff; border-radius: 6px; padding: 1px 6px; }
+  .sc9, .sc8 { background: var(--red); } .sc7 { background: var(--yellow); }
+  .sc6, .sc5 { background: var(--green); } .sc4, .sc3, .sc2, .sc1 { background: var(--muted); }
+  .dp { display: inline-block; font-size: 11px; border-radius: 9px; padding: 0 7px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+  .dp-精读, .dp-据实生成 { color: var(--green); border-color: var(--green); }
+  .dp-半自动 { color: var(--yellow); border-color: var(--yellow); }
+  .dp-目录级 { color: var(--muted); }
+  .fname { font-weight: 500; word-break: break-all; }
+  .fpath { font-size: 11px; color: var(--muted); word-break: break-all; margin-top: 2px; }
+  .sum { color: var(--muted); font-size: 12px; line-height: 1.6; }
+  .sum.clip { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; cursor: pointer; }
+  .pg { display: flex; gap: 8px; align-items: center; justify-content: center; margin-top: 16px; font-size: 13px; }
+  .pg button { font: inherit; font-size: 13px; padding: 5px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); color: var(--accent); cursor: pointer; }
+  .pg button:disabled { color: var(--muted); cursor: default; }
+  .note { font-size: 12px; color: var(--muted); margin-bottom: 12px; line-height: 1.7; }
 </style>
 </head>
 <body>
@@ -123,9 +144,125 @@ function render(md) {
   return out.join("\n");
 }
 
+/* ── CSV：打分表这类大表用可筛选表格渲染，不能当 markdown 塞进 <p> ── */
+function parseCSV(text) {
+  const rows = [];
+  let row = [], cell = "", q = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (q) {
+      if (c === '"') { if (text[i + 1] === '"') { cell += '"'; i++; } else q = false; }
+      else cell += c;
+    } else if (c === '"') q = true;
+    else if (c === ",") { row.push(cell); cell = ""; }
+    else if (c === "\n") { row.push(cell); rows.push(row); row = []; cell = ""; }
+    else if (c !== "\r") cell += c;
+  }
+  if (cell !== "" || row.length) { row.push(cell); rows.push(row); }
+  return rows;
+}
+
+const PAGE = 50;
+
+function renderCSV(text, f) {
+  const rows = parseCSV(text);
+  const head = rows.shift() || [];
+  const idx = Object.fromEntries(head.map((h, i) => [h, i]));
+  const has = k => idx[k] !== undefined;
+  const get = (r, k) => (has(k) ? (r[idx[k]] || "") : "");
+  const recs = rows.filter(r => r.length > 1);
+
+  // 打分表专用视图；其它 CSV 走通用表格
+  const scored = has("new_path") && has("importance");
+  const uniq = k => [...new Set(recs.map(r => get(r, k)).filter(Boolean))].sort();
+
+  document.body.classList.add("wide");
+  const art = document.getElementById("content");
+  const depths = has("depth") ? uniq("depth") : [];
+  const mods = scored ? [...new Set(recs.flatMap(r => get(r, "module").split("/")).map(s => s.trim()).filter(s => s && s !== "—"))].sort() : [];
+
+  art.innerHTML =
+    `<h1>${esc(f.split("/").pop())}</h1>` +
+    (has("depth")
+      ? `<div class="note"><b>depth = 阅读深度</b>，与分数正交：分数管「值不值钱」，depth 管「我们到底读没读过」。
+         <b>精读／据实生成</b>可直接引用；<b>半自动</b>须回原文复核后才能上证据链；<b>目录级</b>只作检索索引、不作证据。
+         四种深度永不混引（标准见 framework/04_reading_scoring_standard.md）。</div>`
+      : "") +
+    `<div class="ctl">
+       <input type="search" id="q" placeholder="搜索文件名／机构／摘要…">
+       ${scored ? `<select id="minimp">
+         <option value="0">全部分数</option><option value="9">仅 9 分（镇库）</option>
+         <option value="8">≥8（支柱）</option><option value="7">≥7（重要）</option>
+         <option value="5">≥5（有用及以上）</option></select>` : ""}
+       ${depths.length ? `<select id="fdepth"><option value="">全部深度</option>${depths.map(d => `<option>${esc(d)}</option>`).join("")}</select>` : ""}
+       ${mods.length ? `<select id="fmod"><option value="">全部模块</option>${mods.map(m => `<option>${esc(m)}</option>`).join("")}</select>` : ""}
+       <span class="count" id="cnt"></span>
+     </div>
+     <div class="tablewrap"><table id="tb"></table></div>
+     <div class="pg"><button id="prev">← 上一页</button><span id="pgn"></span><button id="next">下一页 →</button></div>`;
+
+  let page = 0, view = recs;
+
+  const draw = () => {
+    const total = Math.max(1, Math.ceil(view.length / PAGE));
+    page = Math.min(page, total - 1);
+    const slice = view.slice(page * PAGE, page * PAGE + PAGE);
+    const tb = document.getElementById("tb");
+    if (scored) {
+      tb.innerHTML =
+        `<tr><th style="width:52px">分</th><th style="width:34%">材料</th>` +
+        (has("depth") ? `<th style="width:72px">深度</th>` : "") +
+        `<th style="width:96px">模块</th><th style="width:110px">机构／年</th><th>摘要</th></tr>` +
+        slice.map(r => {
+          const imp = get(r, "importance"), p = get(r, "new_path");
+          return `<tr>
+            <td><span class="sc sc${esc(imp)}">${esc(imp + get(r, "confidence"))}</span></td>
+            <td><div class="fname">${esc(p.split("/").pop())}</div><div class="fpath">${esc(p)}</div></td>` +
+            (has("depth") ? `<td><span class="dp dp-${esc(get(r, "depth"))}">${esc(get(r, "depth"))}</span></td>` : "") +
+            `<td>${esc(get(r, "module"))}</td>
+            <td>${esc(get(r, "org"))}<div class="fpath">${esc(get(r, "year"))}</div></td>
+            <td><div class="sum clip" onclick="this.classList.toggle('clip')">${esc(get(r, "summary"))}</div></td>
+          </tr>`;
+        }).join("");
+    } else {
+      tb.innerHTML = `<tr>${head.map(h => `<th>${esc(h)}</th>`).join("")}</tr>` +
+        slice.map(r => `<tr>${head.map((_, i) => `<td>${esc(r[i] || "")}</td>`).join("")}</tr>`).join("");
+    }
+    document.getElementById("cnt").textContent = `${view.length} / ${recs.length} 条`;
+    document.getElementById("pgn").textContent = `第 ${page + 1} / ${total} 页`;
+    document.getElementById("prev").disabled = page === 0;
+    document.getElementById("next").disabled = page >= total - 1;
+  };
+
+  const apply = () => {
+    const q = (document.getElementById("q").value || "").trim().toLowerCase();
+    const mi = scored ? +(document.getElementById("minimp").value) : 0;
+    const dp = depths.length ? document.getElementById("fdepth").value : "";
+    const md = mods.length ? document.getElementById("fmod").value : "";
+    view = recs.filter(r => {
+      if (mi === 9 ? +get(r, "importance") !== 9 : mi && +get(r, "importance") < mi) return false;
+      if (dp && get(r, "depth") !== dp) return false;
+      if (md && !get(r, "module").split("/").map(s => s.trim()).includes(md)) return false;
+      if (q && !r.join(" ").toLowerCase().includes(q)) return false;
+      return true;
+    });
+    if (scored) view.sort((a, b) => (+get(b, "importance")) - (+get(a, "importance")) || get(a, "confidence").localeCompare(get(b, "confidence")));
+    page = 0; draw();
+  };
+
+  document.getElementById("q").oninput = apply;
+  if (scored) document.getElementById("minimp").onchange = apply;
+  if (depths.length) document.getElementById("fdepth").onchange = apply;
+  if (mods.length) document.getElementById("fmod").onchange = apply;
+  document.getElementById("prev").onclick = () => { page--; draw(); scrollTo(0, 0); };
+  document.getElementById("next").onclick = () => { page++; draw(); scrollTo(0, 0); };
+  apply();
+  document.title = f.split("/").pop() + " — Datacenter Hub";
+}
+
 (async () => {
   const f = new URLSearchParams(location.search).get("f") || "research/M08.md";
-  if (!/^[\w\-/\u4e00-\u9fff.]+\.md$/.test(f)) {
+  if (!/^[\w\-/\u4e00-\u9fff.]+\.(md|csv)$/.test(f) || f.includes("..")) {
     document.getElementById("content").innerHTML = '<div class="err">非法路径</div>'; return;
   }
   document.getElementById("path").textContent = " / " + f;
@@ -133,6 +270,7 @@ function render(md) {
     const r = await fetch(f + "?t=" + Date.now(), { cache: "no-store" });
     if (!r.ok) throw new Error("HTTP " + r.status);
     const md = await r.text();
+    if (f.endsWith(".csv")) { renderCSV(md, f); return; }
     const html = render(md);
     document.getElementById("content").innerHTML = html;
     document.title = (md.match(/^#\s+(.*)$/m) || [, f])[1] + " — Datacenter Hub";
