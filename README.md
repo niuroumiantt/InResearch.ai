@@ -94,8 +94,15 @@ python3 -m http.server 8000         # 打开 http://localhost:8000 看仪表盘
       薄弱模块（M10/M11/M13/M14）已各补量化专条
 - [x] 第三阶段半：知识运转机制——核验队列（verify.py）+ 精读队列（reading_queue.py）
       双入口；9 分文献 8/8 消化；决策日志（docs/DECISIONS.md）防会话失忆
+- [x] 第三阶段末：**研报库全库通读完结**（2026-08-16）——28,759 份触达率 100%，
+      打分表 4,954 行（新增 depth 阅读深度口径：精读 1,190 / 据实生成 350 /
+      半自动 2,541 / 目录级 873，四者永不混引）；知识层 131 条 Finding；
+      完结报告见 `docs/LIBRARY_REPORT.md`（含重构后的 orgchart、分类标准全文、
+      信源价值榜与各模块「接下来怎么用」）
 - [ ] 第四阶段：team work 化——按模块分工给不同负责人，PR 提交 → 用户 merge 进 core
       （CODEOWNERS 已铺底，待人员到位与分支协作规范细化）
+- [ ] 第四阶段半：全库通读的三个尾巴——151 份图片型 PDF 走视觉读；
+      T2 层 AI与算力 3,858 份（最大未读块）；SemiAnalysis 剩余 163 份（单位价值最高）
 - [ ] 第五阶段：输出管线——PDF/PPT/Word 模板化生成（reports/templates 待做）；
       季度更新节奏；仪表盘上线 VPS（wentian.ai）
 - [ ] 第六阶段：产品打磨——dashboard 美化整理；爆炸图交互升级
