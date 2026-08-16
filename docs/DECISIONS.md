@@ -31,6 +31,33 @@
 
 ## 会话决策记录（倒序）
 
+### 2026-08-16（会话续 21：batch_39 合并 + depth 下发本地 + 打分表终于打得开）
+
+**合并 batch_20260817_39**：309 行全部入表（SemiAnalysis 与券商研报），
+打分表 **4,954 → 5,263**。深度分布 精读 1,191 / 据实生成 350 / 半自动 2,849 / 目录级 873。
+本地会话在全库通读完结后没停，正在啃 FINAL_REPORT §5.2 列的「SemiAnalysis 剩余 163 份」。
+
+**depth 列下发本地**：`docs/local_reader/RUN_TO_COMPLETION.md` 增第十节，
+请本地产出批次 CSV 时直接带 depth 列（云端保留按 summary 文案自动判定作兜底）。
+并写明连带影响：`reading_queue.py` 现按 depth 过滤，半自动行仅 importance ≥ 6 才进队列，
+**所以半自动行的分数不再只是排序权重，它决定这份材料会不会被人再看一眼**。
+
+**修好一个坏链接（doc.html 支持 CSV）**：查看打分表增长影响时发现，
+`bom.html` 上的「精读打分清单」链接一直是坏的——`doc.html` 的路径守卫只放行 `.md`，
+点进去显示「非法路径」；即便放行，9.2MB CSV 当 markdown 塞进 `<p>` 也没法看。
+新增 RFC4180 的 `parseCSV` 与打分表专用 `renderCSV`：分数色标、depth 徽章、
+四个筛选器（搜索/分数档/深度/模块）、每页 50 行分页、摘要点击展开。
+**表头固定附 depth 口径说明**——让看表的人当场知道哪行能引、哪行必须回原文复核。
+
+关键校验：打分表里 **1,763 行 summary 含英文逗号**，按行 split 会全部错位；
+实测 parseCSV 解析 5,263 行耗时 766ms，行数、列宽、depth 分布、分数分布与 Python
+`csv` 模块**逐一对齐、0 行错列**。
+
+**一个环境观察（非本项目问题）**：2026-08-16 22:53 之后 GitHub Actions 停止为新提交
+创建 run（PR #28 的两个 commit 与一次 close/reopen 均未触发），最后一次成功 run 是
+main 的 b78dfd0。CI 的三条命令已在本地按原样跑过：
+`validate.py --strict` / `verify.py` / `refresh_indicators.py` **均 exit 0**。
+
 ### 2026-08-16（会话续 20：全库通读完结——batch_28~38 合并 + 新增 depth 口径 + FINAL_REPORT 归档）
 
 **背景**：用户睡前指令「让 terminal 持续工作，不要一段一段停下来，把所有文档按计划阅读完，
