@@ -1,183 +1,3816 @@
 # 精读队列 — 该读什么
 
-生成时间：2026-08-16 ｜ 已打分 143 份 ｜ 已消化 55 份 ｜ 待消化 88 份
+生成时间：2026-08-16 ｜ 打分表 4954 份 ｜ 入队候选 1971 份 ｜ 已消化 68 份 ｜ 待消化 1903 份
+
+阅读深度分布：半自动 2541、精读 1190、目录级 873、据实生成 350
+入队规则：精读/据实生成全进；半自动仅 importance ≥ 6；目录级不进（`--all` 看全表）。
 
 消化 = 读进知识层出 Finding + 登记 data/sources.json（local_file 对上即出队）。
 节奏：每周至少 2 份 importance ≥ 8。
 
-- [ ] **7A** 7A_2023_GPU云经济学_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M13
+- [ ] **8A** 8A_2016_华为永州1号楼建筑预算_永州开发投资.xls ｜ 永州市开发建设投资有限公司 2016 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/土建/1#数据中心/8A_2016_华为永州1号楼建筑预算_永州开发投资.xls
+- [ ] **8A** 8A_2022_移动粤港澳控制价编制说明_中国移动.doc ｜ 中国移动 2022 ｜ → M10/M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/8A_2022_移动粤港澳控制价编制说明_中国移动.doc
+- [ ] **8A** 8A_2023_芜湖联通智算中心环评_中国联通.pdf ｜ 中国联通芜湖市分公司 2023 ｜ → M14/M05/M09/M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算/8A_2023_芜湖联通智算中心环评_中国联通.pdf
+- [ ] **7A** 7A_2023_GPU云经济学_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M13 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/7A_2023_GPU云经济学_SemiAnalysis.pdf
-- [ ] **7A** 7A_2023_谷歌基建优势_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M06/M13
+- [ ] **7A** 7A_2023_谷歌基建优势_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M06/M13 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/7A_2023_谷歌基建优势_SemiAnalysis.pdf
-- [ ] **7A** 7A_2023_微软自研芯片_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M06/M09
+- [ ] **7A** 7A_2023_微软自研芯片_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M06/M09 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/7A_2023_微软自研芯片_SemiAnalysis.pdf
-- [ ] **7A** 7A_2023_芯片级供电竞争_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M09/M06
+- [ ] **7A** 7A_2023_芯片级供电竞争_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M09/M06 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/7A_2023_芯片级供电竞争_SemiAnalysis.pdf
-- [ ] **7A** 7A_2024_GB300与推理经济_SemiAnalysis.pdf ｜ SemiAnalysis 2024 ｜ → M06/M13
+- [ ] **7A** 7A_2024_GB300与推理经济_SemiAnalysis.pdf ｜ SemiAnalysis 2024 ｜ → M06/M13 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/7A_2024_GB300与推理经济_SemiAnalysis.pdf
-- [ ] **7A** 7A_2023_GPT4架构与推理约束_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M04/M13
+- [ ] **7A** 7A_2023_GPT4架构与推理约束_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M04/M13 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/7A_2023_GPT4架构与推理约束_SemiAnalysis.pdf
-- [ ] **7A** 7A_2023_CoWoS与HBM产能瓶颈_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M06/M07
+- [ ] **7A** 7A_2023_CoWoS与HBM产能瓶颈_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M06/M07 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/7A_2023_CoWoS与HBM产能瓶颈_SemiAnalysis.pdf
-- [ ] **7A** 7A_2023_AI服务器成本拆解_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M06/M13
+- [ ] **7A** 7A_2023_AI服务器成本拆解_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M06/M13 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/7A_2023_AI服务器成本拆解_SemiAnalysis.pdf
-- [ ] **7A** 7A_2024_亚马逊Trainium2_SemiAnalysis.pdf ｜ SemiAnalysis 2024 ｜ → M06/M07
+- [ ] **7A** 7A_2024_亚马逊Trainium2_SemiAnalysis.pdf ｜ SemiAnalysis 2024 ｜ → M06/M07 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/7A_2024_亚马逊Trainium2_SemiAnalysis.pdf
-- [ ] **7A** 7A_2023_博通TPU与网络业务_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M06/M07
+- [ ] **7A** 7A_2023_博通TPU与网络业务_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M06/M07 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/7A_2023_博通TPU与网络业务_SemiAnalysis.pdf
-- [ ] **7A** 7A_2025_AMD二次出发_SemiAnalysis.pdf ｜ SemiAnalysis 2025 ｜ → M06
+- [ ] **7A** 7A_2025_AMD二次出发_SemiAnalysis.pdf ｜ SemiAnalysis 2025 ｜ → M06 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/7A_2025_AMD二次出发_SemiAnalysis.pdf
-- [ ] **7A** 7A_2024_CXL在AI时代已死_SemiAnalysis.pdf ｜ SemiAnalysis 2024 ｜ → M06
+- [ ] **7A** 7A_2024_CXL在AI时代已死_SemiAnalysis.pdf ｜ SemiAnalysis 2024 ｜ → M06 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/7A_2024_CXL在AI时代已死_SemiAnalysis.pdf
-- [ ] **7A** 7A_2023_InfiniBand与以太网之争_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M07
+- [ ] **7A** 7A_2023_InfiniBand与以太网之争_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M07 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/7A_2023_InfiniBand与以太网之争_SemiAnalysis.pdf
-- [ ] **7A** 7A_2023_英伟达光模块攻势_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M07
+- [ ] **7A** 7A_2023_英伟达光模块攻势_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M07 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/7A_2023_英伟达光模块攻势_SemiAnalysis.pdf
-- [ ] **7A** 7A_2023_英伟达产能爬坡链条_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M06/M10
+- [ ] **7A** 7A_2023_英伟达产能爬坡链条_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M06/M10 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/7A_2023_英伟达产能爬坡链条_SemiAnalysis.pdf
-- [ ] **7A** 7A_2024_Blackwell返工与延期_SemiAnalysis.pdf ｜ SemiAnalysis 2024 ｜ → M06/M08
+- [ ] **7A** 7A_2024_Blackwell返工与延期_SemiAnalysis.pdf ｜ SemiAnalysis 2024 ｜ → M06/M08 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/7A_2024_Blackwell返工与延期_SemiAnalysis.pdf
-- [ ] **7A** 7A_2023_TPUv5e性价比_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M06/M13
+- [ ] **7A** 7A_2023_TPUv5e性价比_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M06/M13 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/7A_2023_TPUv5e性价比_SemiAnalysis.pdf
-- [ ] **7A** 7A_2023_搜索被颠覆的推理成本_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M13
+- [ ] **7A** 7A_2023_搜索被颠覆的推理成本_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M13 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/7A_2023_搜索被颠覆的推理成本_SemiAnalysis.pdf
-- [ ] **7A** 7A_2023_搜索架构与成本优化_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M13
+- [ ] **7A** 7A_2023_搜索架构与成本优化_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M13 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/7A_2023_搜索架构与成本优化_SemiAnalysis.pdf
-- [ ] **7A** 7A_2024_内存墙与DRAM未来_SemiAnalysis.pdf ｜ SemiAnalysis 2024 ｜ → M06
+- [ ] **7A** 7A_2024_内存墙与DRAM未来_SemiAnalysis.pdf ｜ SemiAnalysis 2024 ｜ → M06 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/7A_2024_内存墙与DRAM未来_SemiAnalysis.pdf
-- [ ] **7A** 7A_2023_晶圆战争与管制门槛_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M14
+- [ ] **7A** 7A_2023_晶圆战争与管制门槛_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M14 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/7A_2023_晶圆战争与管制门槛_SemiAnalysis.pdf
-- [ ] **7A** 7A_2024_量化与数字格式_SemiAnalysis.pdf ｜ SemiAnalysis 2024 ｜ → M06/M04
+- [ ] **7A** 7A_2024_量化与数字格式_SemiAnalysis.pdf ｜ SemiAnalysis 2024 ｜ → M06/M04 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/7A_2024_量化与数字格式_SemiAnalysis.pdf
-- [ ] **7B** 7B_2024_Blackwell成本与毛利_SemiAnalysis.pdf ｜ SemiAnalysis 2024 ｜ → M06
+- [ ] **7A** 7A_2016_华为永州1号楼装饰预算_永州开发投资.xls ｜ 永州市开发建设投资有限公司 2016 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/土建/1#数据中心/7A_2016_华为永州1号楼装饰预算_永州开发投资.xls
+- [ ] **7A** 7A_2016_华为永州土建控制价汇总_永州开发投资.xls ｜ 永州市开发建设投资有限公司 2016 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/土建/7A_2016_华为永州土建控制价汇总_永州开发投资.xls
+- [ ] **7A** 7A_2016_华为永州安装控制价汇总_永州开发投资.xls ｜ 永州市开发建设投资有限公司 2016 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/安装/7A_2016_华为永州安装控制价汇总_永州开发投资.xls
+- [ ] **7A** 7A_2016_华为永州1号楼安装汇总_永州开发投资.xls ｜ 永州市开发建设投资有限公司 2016 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/安装/1#安装工程/7A_2016_华为永州1号楼安装汇总_永州开发投资.xls
+- [ ] **7A** 7A_2016_华为永州消防水气灭预算_永州开发投资.xls ｜ 永州市开发建设投资有限公司 2016 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/安装/1#安装工程/消火栓及喷淋系统、气体灭火系统/7A_2016_华为永州消防水气灭预算_永州开发投资.xls
+- [ ] **7A** 7A_2019_移动南方基地通风空调控制价_中国移动.xlsx ｜ 中国移动 2019 ｜ → M02/M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/通风空调工程/[20.1栋]通风空调工程/7A_2019_移动南方基地通风空调控制价_中国移动.xlsx
+- [ ] **7A** 7A_2022_移动粤港澳机楼地上土建控制价_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼土建工程/B1通信机楼-±0.00以上土建工程/7A_2022_移动粤港澳机楼地上土建控制价_中国移动.xlsx
+- [ ] **7A** 7A_2022_移动粤港澳机楼地下土建控制价_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼土建工程/B1通信机楼-±0.00以下土建工程/7A_2022_移动粤港澳机楼地下土建控制价_中国移动.xlsx
+- [ ] **7A** 7A_2022_移动粤港澳B1机楼土建汇总_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼土建工程/7A_2022_移动粤港澳B1机楼土建汇总_中国移动.xlsx
+- [ ] **7A** 7A_2022_移动粤港澳B1机楼安装汇总_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼安装工程/7A_2022_移动粤港澳B1机楼安装汇总_中国移动.xlsx
+- [ ] **7A** 7A_2022_移动粤港澳B2机楼地上土建_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼土建工程/B2通信机楼-±0.00以上土建工程/7A_2022_移动粤港澳B2机楼地上土建_中国移动.xlsx
+- [ ] **7A** 7A_2022_移动粤港澳B2机楼土建汇总_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼土建工程/7A_2022_移动粤港澳B2机楼土建汇总_中国移动.xlsx
+- [ ] **7A** 7A_2022_移动粤港澳B2机楼安装汇总_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼安装工程/7A_2022_移动粤港澳B2机楼安装汇总_中国移动.xlsx
+- [ ] **7A** 7A_2022_移动粤港澳B3机楼地上土建_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼土建工程/B3通信机楼-±0.00以上土建工程/7A_2022_移动粤港澳B3机楼地上土建_中国移动.xlsx
+- [ ] **7A** 7A_2022_移动粤港澳B3机楼土建汇总_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼土建工程/7A_2022_移动粤港澳B3机楼土建汇总_中国移动.xlsx
+- [ ] **7A** 7A_2022_移动粤港澳B3机楼安装汇总_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼安装工程/7A_2022_移动粤港澳B3机楼安装汇总_中国移动.xlsx
+- [ ] **7A** 7A_2022_移动粤港澳其他费用汇总_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/其他费用/7A_2022_移动粤港澳其他费用汇总_中国移动.xlsx
+- [ ] **7A** 7A_2022_移动粤港澳室外工程汇总_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M05/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/7A_2022_移动粤港澳室外工程汇总_中国移动.xlsx
+- [ ] **7A** 7A_2023_智能计算中心创新发展指南_国家信息中心.pdf ｜ 国家信息中心 2023 ｜ → M14/M09/M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算/7A_2023_智能计算中心创新发展指南_国家信息中心.pdf
+- [ ] **7A** 7A_2022_粤港澳通信机楼二期控制价编制说明_中国移动广东公司.doc ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/7A_2022_粤港澳通信机楼二期控制价编制说明_中国移动广东公司.doc
+- [ ] **7B** 7B_2024_Blackwell成本与毛利_SemiAnalysis.pdf ｜ SemiAnalysis 2024 ｜ → M06 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/7B_2024_Blackwell成本与毛利_SemiAnalysis.pdf
-- [ ] **7B** 7B_2023_中国半导体突围_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M14
+- [ ] **7B** 7B_2023_中国半导体突围_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M14 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/7B_2023_中国半导体突围_SemiAnalysis.pdf
-- [ ] **7B** 7B_2023_英伟达中国特供芯片_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M14/M06
+- [ ] **7B** 7B_2023_英伟达中国特供芯片_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M14/M06 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/7B_2023_英伟达中国特供芯片_SemiAnalysis.pdf
-- [ ] **7B** 7B_2024_GB200供应链跟踪_MorganStanley.pdf ｜ Morgan Stanley 2024 ｜ → M06/M10
+- [ ] **7B** 7B_2024_GB200供应链跟踪_MorganStanley.pdf ｜ Morgan Stanley 2024 ｜ → M06/M10 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/7B_2024_GB200供应链跟踪_MorganStanley.pdf
-- [ ] **7B** 7B_2024_上调Blackwell产量预测_FubonResearch.pdf ｜ Fubon Research 2024 ｜ → M06/M07
+- [ ] **7B** 7B_2024_上调Blackwell产量预测_FubonResearch.pdf ｜ Fubon Research 2024 ｜ → M06/M07 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/7B_2024_上调Blackwell产量预测_FubonResearch.pdf
-- [ ] **7B** 7B_2022_光模块市场与技术_Yole.pdf ｜ Yole Group 2022 ｜ → M07
+- [ ] **7B** 7B_2022_光模块市场与技术_Yole.pdf ｜ Yole Group 2022 ｜ → M07 ｜ 精读
       docs/library/04_市场与研究/英文机构报告/Yole/7B_2022_光模块市场与技术_Yole.pdf
-- [ ] **6A** 6A_2023_谷歌光交换网络_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M07
+- [ ] **7B** 7B_2022_长江存储232层拆解_TechInsights.pdf ｜ TechInsights 2022 ｜ → M14/M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/TechInsights-17篇合集/7B_2022_长江存储232层拆解_TechInsights.pdf
+- [ ] **7B** 7B_2024_长江存储232层量产分析_TechInsights.pdf ｜ TechInsights 2024 ｜ → M14/M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/TechInsights-17篇合集/7B_2024_长江存储232层量产分析_TechInsights.pdf
+- [ ] **7B** 7B_2023_半导体技术趋势与材料_TechInsights.pdf ｜ TechInsights 2023 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/TechInsights-17篇合集/7B_2023_半导体技术趋势与材料_TechInsights.pdf
+- [ ] **7B** 7B_2025_搁浅内存与服务器成本_FMS2025.pdf ｜ FMS2025 2025 ｜ → M13/M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/CXLT-303-1：CXL and AI/7B_2025_搁浅内存与服务器成本_FMS2025.pdf
+- [ ] **7B** 7B_2025_AI网络成本与MoE瓶颈_FMS2025.pdf ｜ FMS2025 2025 ｜ → M07/M13 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/NETC-301-1：Networks and Links 1 Foundations/7B_2025_AI网络成本与MoE瓶颈_FMS2025.pdf
+- [ ] **7B** 7B_2025_Blackwell互连带宽拆解_FMS2025.pdf ｜ FMS2025 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/NETC-301-1：Networks and Links 1 Foundations/7B_2025_Blackwell互连带宽拆解_FMS2025.pdf
+- [ ] **7B** 7B_2025_存储介质TCO对照_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M09 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/BMKT-301-1：Memory Markets/7B_2025_存储介质TCO对照_FMS2025.pdf
+- [ ] **7B** 7B_2025_AI处理器算力增速_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M15 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DRAM-302-1：HBM DRAM's Bright Future/7B_2025_AI处理器算力增速_FMS2025.pdf
+- [ ] **7B** 7B_2025_存储市场预测的失准_FMS2025.pdf ｜ FMS2025 2025 ｜ → M15 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DRAM-302-1：HBM DRAM's Bright Future/7B_2025_存储市场预测的失准_FMS2025.pdf
+- [ ] **7B** 7B_2025_向量数据库容量换算_FMS2025.pdf ｜ FMS2025 2025 ｜ → M13 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/AIML-304-1：Panel Driving Interconnects Memory and Storage Fabrics for New AIML Workloads/7B_2025_向量数据库容量换算_FMS2025.pdf
+- [ ] **7B** 7B_2025_硬盘数据中心地位_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M15 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/BMKT-301-1：Memory Markets/7B_2025_硬盘数据中心地位_FMS2025.pdf
+- [ ] **7B** 7B_2025_活跃归档容量预测_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M09 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/COLD-102-1：Media and AI Exploring Innovation in Sustainable Long-Term Storage/7B_2025_活跃归档容量预测_FMS2025.pdf
+- [ ] **7B** 7B_2025_内存压缩降TCO_FMS2025.pdf ｜ FMS2025 2025 ｜ → M13/M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/CXLT-303-1：CXL and AI/7B_2025_内存压缩降TCO_FMS2025.pdf
+- [ ] **7B** 7B_2025_QLC功耗性能指引_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M09 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DCTR-102-1：Hyperscale Applications 2/7B_2025_QLC功耗性能指引_FMS2025.pdf
+- [ ] **7B** 7B_2025_内存条功耗对照表_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M09 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DRAM-303-1：High Performance DRAM Technology/7B_2025_内存条功耗对照表_FMS2025.pdf
+- [ ] **7B** 7B_2025_美国数据中心用电占比_FMS2025.pdf ｜ FMS2025 2025 ｜ → M09/M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/FARC-203-1：Flash Architectures and Provisioning/7B_2025_美国数据中心用电占比_FMS2025.pdf
+- [ ] **7B** 7B_2025_加速器互连对照表_FMS2025.pdf ｜ FMS2025 2025 ｜ → M04/M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/NETC-304-1：Networks and Links Advanced Topics/7B_2025_加速器互连对照表_FMS2025.pdf
+- [ ] **7B** 7B_2025_新型存储市场天花板_FMS2025.pdf ｜ FMS2025 2025 ｜ → M07/M15 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/OMEM-202-1：Emerging Memory Technologies/7B_2025_新型存储市场天花板_FMS2025.pdf
+- [ ] **7B** 7B_2025_超大规模存储供需口径_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M09/M13 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/QLCP-201-1：Multi-Level Cells Part 1/7B_2025_超大规模存储供需口径_FMS2025.pdf
+- [ ] **7B** 7B_2025_数据中心能耗构成_FMS2025.pdf ｜ FMS2025 2025 ｜ → M09/M02 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/SUST-203-1：Energy Efficiency/7B_2025_数据中心能耗构成_FMS2025.pdf
+- [ ] **7B** 7B_2025_全球数据中心电力预测_高盛.pdf ｜ 高盛 2025 ｜ → M09/M15 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/7B_2025_全球数据中心电力预测_高盛.pdf
+- [ ] **7B** 7B_2024_大陆先进封装产线_半导体综研.xlsx ｜ 半导体综研 2024 ｜ → M14/M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/封装测试/7B_2024_大陆先进封装产线_半导体综研.xlsx
+- [ ] **7B** 7B_2024_存储三大厂季度拆分_半导体综研.xlsx ｜ 半导体综研 2024 ｜ → M06/M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/1. 行业景气度研究/7B_2024_存储三大厂季度拆分_半导体综研.xlsx
+- [ ] **7B** 7B_2025_全球半导体销售分地区序列_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07/M14/M15 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/1. 行业景气度研究/7B_2025_全球半导体销售分地区序列_半导体综研.xlsx
+- [ ] **7B** 7B_2025_地勘报告01_工程档案.docx ｜ 工程项目档案 2025 ｜ → M05/M14 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2025.2 黄岩区大闸路以东、永丰路以北地块建设工程（电信置换项目）/地勘/7B_2025_地勘报告01_工程档案.docx
+- [ ] **7B** 7B_2024_机房工艺01_工程档案.xls ｜ 工程项目档案 2024 ｜ → M02/M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/忠县工艺/说明/7B_2024_机房工艺01_工程档案.xls
+- [ ] **7B** 7B_2019_负荷计算01_工程档案.docx ｜ 工程项目档案 2019 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/05空调专业/计算书/7B_2019_负荷计算01_工程档案.docx
+- [ ] **7B** 7B_2020_负荷计算01_工程档案.xls ｜ 工程项目档案 2020 ｜ → M02/M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1暖通0805/20200803大数据工业地块数据区1 暖通/3#楼/7B_2020_负荷计算01_工程档案.xls
+- [ ] **7B** 7B_2020_造价控制价01_工程档案.xlsx ｜ 工程项目档案 2020 ｜ → M10/M14 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.7福建广电网络莆田NGB业务中心（机房）/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单审核/7B_2020_造价控制价01_工程档案.xlsx
+- [ ] **7B** 7B_2024_液冷市场与功耗分解_Promersion.pdf ｜ Promersion/OCP 2024 ｜ → M02/M09/M15 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Immersion/7B_2024_液冷市场与功耗分解_Promersion.pdf
+- [ ] **7B** 7B_2024_两相制冷剂直接液冷实测_OCP.pdf ｜ OCP/ITherm 2024 ｜ → M02 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Liquid Cooling/7B_2024_两相制冷剂直接液冷实测_OCP.pdf
+- [ ] **7B** 7B_2024_冷板液冷机架水质规格_OCP.pdf ｜ OCP 2024 ｜ → M02/M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Liquid Cooling/7B_2024_冷板液冷机架水质规格_OCP.pdf
+- [ ] **7B** 7B_2024_超大规模绿色混凝土实测_四大厂.pdf ｜ AWS/Google/Meta/Microsoft 2024 ｜ → M10/M12/M05 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Data Center Facility (DCF)/7B_2024_超大规模绿色混凝土实测_四大厂.pdf
+- [ ] **7B** 7B_2024_ORv3高功率机架生态_Meta.pdf ｜ Meta/Rittal 2024 ｜ → M02/M09/M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Rack & Power/7B_2024_ORv3高功率机架生态_Meta.pdf
+- [ ] **7B** 7B_2024_下一代ORv3电源规格_OCP.pdf ｜ OCP/Meta 2024 ｜ → M09 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Rack & Power/7B_2024_下一代ORv3电源规格_OCP.pdf
+- [ ] **7B** 7B_2024_正负400Vdc机架供电_Google.pdf ｜ Google 2024 ｜ → M09/M02 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Rack & Power/7B_2024_正负400Vdc机架供电_Google.pdf
+- [ ] **7B** 7B_2024_液冷母排200kW机架_TE-Meta.pdf ｜ TE Connectivity/Meta 2024 ｜ → M02/M09 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Rack & Power/7B_2024_液冷母排200kW机架_TE-Meta.pdf
+- [ ] **7B** 7B_2024_数据中心能效变革面板_OCP.pdf ｜ Cadence/AMD/DOE 2024 ｜ → M02/M09/M12 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：Artificial Intelligence (AI)/7B_2024_数据中心能效变革面板_OCP.pdf
+- [ ] **7B** 7B_2024_大规模推理交付经济性_Ampere.pdf ｜ Ampere/Supermicro 2024 ｜ → M03/M09/M15 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：Artificial Intelligence (AI)/7B_2024_大规模推理交付经济性_Ampere.pdf
+- [ ] **7B** 7B_2024_液冷技术碳水能三方对比_OCP.pdf ｜ OCP 2024 ｜ → M12/M02 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Sustainability/7B_2024_液冷技术碳水能三方对比_OCP.pdf
+- [ ] **7B** 7B_2024_AI负载节点级功耗实测_OCP.pdf ｜ OCP 2024 ｜ → M09/M13 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Sustainability/7B_2024_AI负载节点级功耗实测_OCP.pdf
+- [ ] **7B** 7B_2024_AI时代数据中心可持续策略_Cato-ECL.pdf ｜ Cato/ECL 2024 ｜ → M09/M02/M05 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Sustainability/7B_2024_AI时代数据中心可持续策略_Cato-ECL.pdf
+- [ ] **7B** 7B_2024_ICT循环性碳核算重构_OCP.pdf ｜ OCP/Forward Insights 2024 ｜ → M06/M12 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Sustainability/7B_2024_ICT循环性碳核算重构_OCP.pdf
+- [ ] **7B** 7B_2024_OCP市场影响力研究_IDC.pdf ｜ IDC 2024 ｜ → M14/M03/M15 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：OCP Market Impact & Supply Chain/7B_2024_OCP市场影响力研究_IDC.pdf
+- [ ] **7B** 7B_2024_CXL可组合内存与NUMA跳数_OCP.pdf ｜ OCP 2024 ｜ → M13/M06 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Composable Memory Systems/7B_2024_CXL可组合内存与NUMA跳数_OCP.pdf
+- [ ] **7B** 7B_2024_超大规模内存扩展需求_Meta-Microsoft.pdf ｜ Meta/Microsoft 2024 ｜ → M06/M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Composable Memory Systems/7B_2024_超大规模内存扩展需求_Meta-Microsoft.pdf
+- [ ] **7B** 7B_2024_CXL内存超大规模部署经济性_OCP.pdf ｜ OCP 2024 ｜ → M06 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Composable Memory Systems/7B_2024_CXL内存超大规模部署经济性_OCP.pdf
+- [ ] **7B** 7B_2024_AI时代大容量存储连接演进_OCP.pdf ｜ Seagate/IDC 2024 ｜ → M06/M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Storage/7B_2024_AI时代大容量存储连接演进_OCP.pdf
+- [ ] **7B** 7B_2024_大容量存储技术突破_Seagate.pdf ｜ Seagate 2024 ｜ → M06/M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Storage/7B_2024_大容量存储技术突破_Seagate.pdf
+- [ ] **7B** 7B_2024_AI架构的Linux分布式数据标准_Hammerspace.pdf ｜ Hammerspace/LANL 2024 ｜ → M06/M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Storage/7B_2024_AI架构的Linux分布式数据标准_Hammerspace.pdf
+- [ ] **7B** 7B_2024_生成式AI光互连能效方案_InnoLight.pdf ｜ InnoLight 2024 ｜ → M04/M09 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：Photonics/7B_2024_生成式AI光互连能效方案_InnoLight.pdf
+- [ ] **7B** 7B_2024_大规模AI的光连接机遇_OCP.pdf ｜ Meta/OCP 2024 ｜ → M04/M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：Photonics/7B_2024_大规模AI的光连接机遇_OCP.pdf
+- [ ] **7B** 7B_2024_可持续光学与光模块功耗_Arista.pdf ｜ Arista 2024 ｜ → M09/M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：Photonics/7B_2024_可持续光学与光模块功耗_Arista.pdf
+- [ ] **7B** 7B_2024_大规模算力集群网络稳定性_阿里巴巴.pdf ｜ Alibaba 2024 ｜ → M10/M13 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Networking/7B_2024_大规模算力集群网络稳定性_阿里巴巴.pdf
+- [ ] **7B** 7B_2024_51.2T交换机液冷与机架功率序列_阿里.pdf ｜ Alibaba 2024 ｜ → M02/M09 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Networking/7B_2024_51.2T交换机液冷与机架功率序列_阿里.pdf
+- [ ] **7B** 7B_2024_AI网络遥测与掉队者定位_OCP.pdf ｜ OCP 2024 ｜ → M13/M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Networking/7B_2024_AI网络遥测与掉队者定位_OCP.pdf
+- [ ] **7B** 7B_2024_保险公司云回迁实证_GEICO.pdf ｜ GEICO 2024 ｜ → M15/M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Keynotes/7B_2024_保险公司云回迁实证_GEICO.pdf
+- [ ] **7B** 7B_2024_AI时代的开放生态_Google.pdf ｜ Google 2024 ｜ → M03/M09 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Executive Sessions/7B_2024_AI时代的开放生态_Google.pdf
+- [ ] **7B** 7B_2024_Yosemite_V4单路服务器_Meta.pdf ｜ Meta 2024 ｜ → M03/M06 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server/7B_2024_Yosemite_V4单路服务器_Meta.pdf
+- [ ] **7B** 7B_2024_GrandTeton平台ML加速器支持_Meta.pdf ｜ Meta 2024 ｜ → M03/M06 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：HPC_NIC_OAI/7B_2024_GrandTeton平台ML加速器支持_Meta.pdf
+- [ ] **7B** 7B_2023_智算中心供电架构优化_邮电设计技术.pdf ｜ 中国邮电产业设计咨询有限公司 2023 ｜ → M02/M14/M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算/7B_2023_智算中心供电架构优化_邮电设计技术.pdf
+- [ ] **7B** 7B_2023_AI大模型智算中心网络演进_中国移动研究院.pdf ｜ 中国移动通信研究院 2023 ｜ → M13/M04/M14 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算/7B_2023_AI大模型智算中心网络演进_中国移动研究院.pdf
+- [ ] **7C** 7C_2023_中国智算中心投建成本与格局_前瞻产业研究院.pdf ｜ 前瞻产业研究院 2023 ｜ → M14/M10/M15 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算/7C_2023_中国智算中心投建成本与格局_前瞻产业研究院.pdf
+- [ ] **7C** 7C_2024_智算中心分档投资与格局_未署名咨询机构.pdf ｜ 未署名咨询机构 2024 ｜ → M14/M10/M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算/7C_2024_智算中心分档投资与格局_未署名咨询机构.pdf
+- [ ] **7C** 7C_2020_新奥混合云与天津移动数据中心方案_联想.docx ｜ 联想 2020 ｜ → M05/M06/M13/M14 ｜ 精读
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/2020年3月更新/7C_2020_新奥混合云与天津移动数据中心方案_联想.docx
+- [ ] **6A** 6A_2023_谷歌光交换网络_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M07 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2023_谷歌光交换网络_SemiAnalysis.pdf
-- [ ] **6A** 6A_2024_NVL72光模块之辩_SemiAnalysis.pdf ｜ SemiAnalysis 2024 ｜ → M07
+- [ ] **6A** 6A_2024_NVL72光模块之辩_SemiAnalysis.pdf ｜ SemiAnalysis 2024 ｜ → M07 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2024_NVL72光模块之辩_SemiAnalysis.pdf
-- [ ] **6A** 6A_2024_Groq推理经济性_SemiAnalysis.pdf ｜ SemiAnalysis 2024 ｜ → M13
+- [ ] **6A** 6A_2024_Groq推理经济性_SemiAnalysis.pdf ｜ SemiAnalysis 2024 ｜ → M13 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2024_Groq推理经济性_SemiAnalysis.pdf
-- [ ] **6A** 6A_2023_推理逐底竞争_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M13
+- [ ] **6A** 6A_2023_推理逐底竞争_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M13 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2023_推理逐底竞争_SemiAnalysis.pdf
-- [ ] **6A** 6A_2023_CoWoS上游供应链_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M06
+- [ ] **6A** 6A_2023_CoWoS上游供应链_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M06 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2023_CoWoS上游供应链_SemiAnalysis.pdf
-- [ ] **6A** 6A_2022_Azure内存搁浅与池化_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M06/M13
+- [ ] **6A** 6A_2022_Azure内存搁浅与池化_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M06/M13 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2022_Azure内存搁浅与池化_SemiAnalysis.pdf
-- [ ] **6A** 6A_2024_AsteraLabs与互连市场_SemiAnalysis.pdf ｜ SemiAnalysis 2024 ｜ → M07
+- [ ] **6A** 6A_2024_AsteraLabs与互连市场_SemiAnalysis.pdf ｜ SemiAnalysis 2024 ｜ → M07 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2024_AsteraLabs与互连市场_SemiAnalysis.pdf
-- [ ] **6A** 6A_2022_中美技术管制总览_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M14
+- [ ] **6A** 6A_2022_中美技术管制总览_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M14 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2022_中美技术管制总览_SemiAnalysis.pdf
-- [ ] **6A** 6A_2023_MI300去泡沫_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M06
+- [ ] **6A** 6A_2023_MI300去泡沫_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M06 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2023_MI300去泡沫_SemiAnalysis.pdf
-- [ ] **6A** 6A_2023_CUDA护城河松动_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M06
+- [ ] **6A** 6A_2023_CUDA护城河松动_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M06 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2023_CUDA护城河松动_SemiAnalysis.pdf
-- [ ] **6A** 6A_2023_算力贫富分化_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M04/M13
+- [ ] **6A** 6A_2023_算力贫富分化_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M04/M13 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2023_算力贫富分化_SemiAnalysis.pdf
-- [ ] **6A** 6A_2023_英伟达碾压式路线图_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M06/M07
+- [ ] **6A** 6A_2023_英伟达碾压式路线图_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M06/M07 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2023_英伟达碾压式路线图_SemiAnalysis.pdf
-- [ ] **6A** 6A_2023_有源电缆与铜的极限_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M07
+- [ ] **6A** 6A_2023_有源电缆与铜的极限_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M07 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2023_有源电缆与铜的极限_SemiAnalysis.pdf
-- [ ] **6A** 6A_2023_稠密模型扩展之墙_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M04
+- [ ] **6A** 6A_2023_稠密模型扩展之墙_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M04 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2023_稠密模型扩展之墙_SemiAnalysis.pdf
-- [ ] **6A** 6A_2023_光刻管制的缺口_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M14
+- [ ] **6A** 6A_2023_光刻管制的缺口_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M14 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2023_光刻管制的缺口_SemiAnalysis.pdf
-- [ ] **6A** 6A_2023_半导体库存周期分析_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M15
+- [ ] **6A** 6A_2023_半导体库存周期分析_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M15 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2023_半导体库存周期分析_SemiAnalysis.pdf
-- [ ] **6A** 6A_2022_台积电资本开支下战书_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M06
+- [ ] **6A** 6A_2022_台积电资本开支下战书_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M06 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/6A_2022_台积电资本开支下战书_SemiAnalysis.pdf
-- [ ] **6B** 6B_2022_壁仞规避管制_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M14
+- [ ] **6A** 6A_2016_华为永州1号楼电气预算_永州开发投资.xls ｜ 永州市开发建设投资有限公司 2016 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/安装/1#安装工程/电气安装工程/6A_2016_华为永州1号楼电气预算_永州开发投资.xls
+- [ ] **6A** 6A_2016_华为永州消防报警预算_永州开发投资.xls ｜ 永州市开发建设投资有限公司 2016 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/安装/1#安装工程/消防报警工程/6A_2016_华为永州消防报警预算_永州开发投资.xls
+- [ ] **6A** 6A_2022_移动粤港澳机楼基坑支护控制价_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼土建工程/B1通信机楼-基坑支护及土方开挖工程/6A_2022_移动粤港澳机楼基坑支护控制价_中国移动.xlsx
+- [ ] **6A** 6A_2022_移动粤港澳机楼外墙控制价_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼土建工程/B1通信机楼-外墙工程/6A_2022_移动粤港澳机楼外墙控制价_中国移动.xlsx
+- [ ] **6A** 6A_2024_电信重庆四期设计技术要求_中国电信.pdf ｜ 中国电信 2024 ｜ → M02/M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.8 中国电信云计算重庆基地项目（四期）土建/造价类资料（全程免费，得来不易需要完成一些小任务）1/6A_2024_电信重庆四期设计技术要求_中国电信.pdf
+- [ ] **6A** 6A_2022_移动粤港澳B1机楼桩基础_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼土建工程/B1通信机楼-桩基础工程/6A_2022_移动粤港澳B1机楼桩基础_中国移动.xlsx
+- [ ] **6A** 6A_2022_移动粤港澳B1机楼智能化_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M13 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼安装工程/B1通信机楼-智能化工程/6A_2022_移动粤港澳B1机楼智能化_中国移动.xlsx
+- [ ] **6A** 6A_2022_移动粤港澳B1机楼消防报警_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼安装工程/B1通信机楼-消防报警工程/6A_2022_移动粤港澳B1机楼消防报警_中国移动.xlsx
+- [ ] **6A** 6A_2022_移动粤港澳B1机楼消防水_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼安装工程/B1通信机楼-消防管道及设备工程/6A_2022_移动粤港澳B1机楼消防水_中国移动.xlsx
+- [ ] **6A** 6A_2022_移动粤港澳B1机楼电气安装_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼安装工程/B1通信机楼-电气工程/6A_2022_移动粤港澳B1机楼电气安装_中国移动.xlsx
+- [ ] **6A** 6A_2022_移动粤港澳B1机楼通风防排烟_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼安装工程/B1通信机楼-通风和防排烟工程/6A_2022_移动粤港澳B1机楼通风防排烟_中国移动.xlsx
+- [ ] **6A** 6A_2022_移动粤港澳B2机楼地下土建_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼土建工程/B2通信机楼-±0.00以下土建工程/6A_2022_移动粤港澳B2机楼地下土建_中国移动.xlsx
+- [ ] **6A** 6A_2022_移动粤港澳B2机楼桩基础_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼土建工程/B2通信机楼-桩基础工程/6A_2022_移动粤港澳B2机楼桩基础_中国移动.xlsx
+- [ ] **6A** 6A_2022_移动粤港澳B2机楼智能化_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M13 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼安装工程/B2通信机楼-智能化工程/6A_2022_移动粤港澳B2机楼智能化_中国移动.xlsx
+- [ ] **6A** 6A_2022_移动粤港澳B2机楼消防报警_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼安装工程/B2通信机楼-消防报警工程/6A_2022_移动粤港澳B2机楼消防报警_中国移动.xlsx
+- [ ] **6A** 6A_2022_移动粤港澳B2机楼消防水_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼安装工程/B2通信机楼-消防管道及设备工程/6A_2022_移动粤港澳B2机楼消防水_中国移动.xlsx
+- [ ] **6A** 6A_2022_移动粤港澳B2机楼电气安装_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼安装工程/B2通信机楼-电气工程/6A_2022_移动粤港澳B2机楼电气安装_中国移动.xlsx
+- [ ] **6A** 6A_2022_移动粤港澳B2机楼通风防排烟_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼安装工程/B2通信机楼-通风和防排烟工程/6A_2022_移动粤港澳B2机楼通风防排烟_中国移动.xlsx
+- [ ] **6A** 6A_2022_移动粤港澳B3机楼地下土建_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼土建工程/B3通信机楼-±0.00以下土建工程/6A_2022_移动粤港澳B3机楼地下土建_中国移动.xlsx
+- [ ] **6A** 6A_2022_移动粤港澳B3机楼桩基础_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼土建工程/B3通信机楼-桩基础工程/6A_2022_移动粤港澳B3机楼桩基础_中国移动.xlsx
+- [ ] **6A** 6A_2022_移动粤港澳B3机楼智能化_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M13 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼安装工程/B3通信机楼-智能化工程/6A_2022_移动粤港澳B3机楼智能化_中国移动.xlsx
+- [ ] **6A** 6A_2022_移动粤港澳B3机楼消防报警_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼安装工程/B3通信机楼-消防报警工程/6A_2022_移动粤港澳B3机楼消防报警_中国移动.xlsx
+- [ ] **6A** 6A_2022_移动粤港澳B3机楼消防水_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼安装工程/B3通信机楼-消防管道及设备工程/6A_2022_移动粤港澳B3机楼消防水_中国移动.xlsx
+- [ ] **6A** 6A_2022_移动粤港澳B3机楼电气安装_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼安装工程/B3通信机楼-电气工程/6A_2022_移动粤港澳B3机楼电气安装_中国移动.xlsx
+- [ ] **6A** 6A_2022_移动粤港澳B3机楼通风防排烟_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼安装工程/B3通信机楼-通风和防排烟工程/6A_2022_移动粤港澳B3机楼通风防排烟_中国移动.xlsx
+- [ ] **6A** 6A_2022_移动粤港澳室外蓄冷罐基础_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/室外蓄冷罐基础工程/6A_2022_移动粤港澳室外蓄冷罐基础_中国移动.xlsx
+- [ ] **6A** 6A_2022_移动粤港澳室外钢平台_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/室外钢平台工程/6A_2022_移动粤港澳室外钢平台_中国移动.xlsx
+- [ ] **6A** 6A_2024_澜起科技半年报_澜起科技.pdf ｜ 澜起科技 2024 ｜ → M06/M04 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储企业24年报告/6A_2024_澜起科技半年报_澜起科技.pdf
+- [ ] **6A** 6A_2024_兆易创新半年报_兆易创新.pdf ｜ 兆易创新 2024 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储企业24年报告/6A_2024_兆易创新半年报_兆易创新.pdf
+- [ ] **6A** 6A_2024_江波龙半年报_江波龙.pdf ｜ 江波龙 2024 ｜ → M06/M14 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储企业24年报告/6A_2024_江波龙半年报_江波龙.pdf
+- [ ] **6A** 6A_2024_佰维存储半年报_佰维存储.pdf ｜ 佰维存储 2024 ｜ → M06/M14 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储企业24年报告/6A_2024_佰维存储半年报_佰维存储.pdf
+- [ ] **6A** 6A_2019_南方基地二期二阶段造价园林工程暂估价_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/园林工程暂估价/园林工程暂估价/6A_2019_南方基地二期二阶段造价园林工程暂估价_中国移动广东公司.xlsx
+- [ ] **6A** 6A_2019_南方基地二期二阶段造价[20.4栋]通风空调工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/通风空调工程/[20.4栋]通风空调工程/6A_2019_南方基地二期二阶段造价[20.4栋]通风空调工程_中国移动广东公司.xlsx
+- [ ] **6A** 6A_2019_南方基地二期二阶段造价[地下室]通风空调工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/通风空调工程/[地下室]通风空调工程/6A_2019_南方基地二期二阶段造价[地下室]通风空调工程_中国移动广东公司.xlsx
+- [ ] **6A** 6A_2019_南方基地二期二阶段造价智能化工程暂估价_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/智能化工程暂估价/智能化工程暂估价/6A_2019_南方基地二期二阶段造价智能化工程暂估价_中国移动广东公司.xlsx
+- [ ] **6A** 6A_2019_南方基地二期二阶段造价[地下室]电气工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/电气工程/[地下室]电气工程/6A_2019_南方基地二期二阶段造价[地下室]电气工程_中国移动广东公司.xlsx
+- [ ] **6A** 6A_2019_南方基地二期二阶段造价土方平衡_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/室外配套工程/土方平衡/6A_2019_南方基地二期二阶段造价土方平衡_中国移动广东公司.xlsx
+- [ ] **6A** 6A_2019_南方基地二期二阶段造价冷源系统工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/冷源系统工程/冷源系统工程/6A_2019_南方基地二期二阶段造价冷源系统工程_中国移动广东公司.xlsx
+- [ ] **6A** 6A_2019_南方基地二期二阶段造价±0.00以上土建工程-建筑工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/土建工程/±0.00以上土建工程-建筑工程（20.4栋）/6A_2019_南方基地二期二阶段造价±0.00以上土建工程-建筑工程_中国移动广东公司.xlsx
+- [ ] **6A** 6A_2019_南方基地二期二阶段造价±0.00以上土建工程-外立面工_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/土建工程/±0.00以上土建工程-外立面工程（20.4栋）/6A_2019_南方基地二期二阶段造价±0.00以上土建工程-外立面工_中国移动广东公司.xlsx
+- [ ] **6A** 6A_2019_南方基地二期二阶段造价±0.00以下土建工程-建筑工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/土建工程/±0.00以下土建工程-建筑工程/6A_2019_南方基地二期二阶段造价±0.00以下土建工程-建筑工程_中国移动广东公司.xlsx
+- [ ] **6A** 6A_2019_南方基地二期二阶段造价桩基工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/土建工程/桩基工程/6A_2019_南方基地二期二阶段造价桩基工程_中国移动广东公司.xlsx
+- [ ] **6A** 6A_2019_南方基地二期二阶段造价±0.00以上土建工程-建筑工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/土建工程/±0.00以上土建工程-建筑工程（20.2栋）/6A_2019_南方基地二期二阶段造价±0.00以上土建工程-建筑工程_中国移动广东公司.xlsx
+- [ ] **6A** 6A_2019_南方基地二期二阶段造价±0.00以上土建工程-外立面工_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/土建工程/±0.00以上土建工程-外立面工程（20.1栋）/6A_2019_南方基地二期二阶段造价±0.00以上土建工程-外立面工_中国移动广东公司.xlsx
+- [ ] **6A** 6A_2019_南方基地二期二阶段造价±0.00以下土建工程-装饰工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/土建工程/±0.00以下土建工程-装饰工程/6A_2019_南方基地二期二阶段造价±0.00以下土建工程-装饰工程_中国移动广东公司.xlsx
+- [ ] **6A** 6A_2019_南方基地二期二阶段造价基坑支护工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/土建工程/基坑支护工程/6A_2019_南方基地二期二阶段造价基坑支护工程_中国移动广东公司.xlsx
+- [ ] **6A** 6A_2019_南方基地二期二阶段造价±0.00以上土建工程-建筑工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/土建工程/±0.00以上土建工程-建筑工程（20.1栋）/6A_2019_南方基地二期二阶段造价±0.00以上土建工程-建筑工程_中国移动广东公司.xlsx
+- [ ] **6A** 6A_2019_南方基地二期二阶段造价±0.00以上土建工程-外立面工_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/土建工程/±0.00以上土建工程-外立面工程（20.2栋）/6A_2019_南方基地二期二阶段造价±0.00以上土建工程-外立面工_中国移动广东公司.xlsx
+- [ ] **6A** 6A_2019_南方基地二期二阶段造价[地下室]消防水灭火系统工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/消防工程/[地下室]消防水灭火系统工程/6A_2019_南方基地二期二阶段造价[地下室]消防水灭火系统工程_中国移动广东公司.xlsx
+- [ ] **6A** 6A_2019_南方基地二期二阶段造价总包管理服务费及甲供材料保管费_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/总包管理服务费及甲供材料保管费/总包管理服务费及甲供材料保管费/6A_2019_南方基地二期二阶段造价总包管理服务费及甲供材料保管费_中国移动广东公司.xlsx
+- [ ] **6A** 6A_2019_南方基地二期二阶段造价园建工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/室外工程/园建工程/6A_2019_南方基地二期二阶段造价园建工程_中国移动广东公司.xlsx
+- [ ] **6A** 6A_2019_南方基地二期二阶段造价装修精装修工程暂估价_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/精装修工程暂估价/装修精装修工程暂估价/6A_2019_南方基地二期二阶段造价装修精装修工程暂估价_中国移动广东公司.xlsx
+- [ ] **6A** 6A_2019_南方基地二期二阶段造价安装精装修工程暂估价_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/精装修工程暂估价/安装精装修工程暂估价/6A_2019_南方基地二期二阶段造价安装精装修工程暂估价_中国移动广东公司.xlsx
+- [ ] **6A** 6A_2022_六安电信造价信息化中心幕墙【装饰】_中国电信安徽公司.xls ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/1 六安电信信息化中心项目/2 六安电信信息化中心项目：信息化中心幕墙【装饰】/6A_2022_六安电信造价信息化中心幕墙【装饰】_中国电信安徽公司.xls
+- [ ] **6A** 6A_2022_六安电信造价信息化中心【安装】_中国电信安徽公司.xls ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/1 六安电信信息化中心项目/3 六安电信信息化中心项目：信息化中心【安装】/6A_2022_六安电信造价信息化中心【安装】_中国电信安徽公司.xls
+- [ ] **6A** 6A_2022_六安电信造价信息化中心【土建】_中国电信安徽公司.xls ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/1 六安电信信息化中心项目/1 六安电信信息化中心项目：信息化中心【土建】/6A_2022_六安电信造价信息化中心【土建】_中国电信安徽公司.xls
+- [ ] **6A** 6A_2022_六安电信造价云计算数据中心【安装】_中国电信安徽公司.xls ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/2 六安电信云计算数据中心项目/7 六安电信云计算数据中心项目：云计算数据中心【安装】/6A_2022_六安电信造价云计算数据中心【安装】_中国电信安徽公司.xls
+- [ ] **6A** 6A_2022_六安电信造价云计算数据中心【土建】_中国电信安徽公司.xls ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/2 六安电信云计算数据中心项目/5 六安电信云计算数据中心项目：云计算数据中心【土建】/6A_2022_六安电信造价云计算数据中心【土建】_中国电信安徽公司.xls
+- [ ] **6A** 6A_2022_粤港澳通信机楼二期造价B1通信机楼-±0.00以下土建_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼土建工程/B1通信机楼-±0.00以下土建工程/6A_2022_粤港澳通信机楼二期造价B1通信机楼-±0.00以下土建_中国移动广东公司.xlsx
+- [ ] **6A** 6A_2022_粤港澳通信机楼二期造价B3通信机楼-外墙工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼土建工程/B3通信机楼-外墙工程/6A_2022_粤港澳通信机楼二期造价B3通信机楼-外墙工程_中国移动广东公司.xlsx
+- [ ] **6B** 6B_2022_壁仞规避管制_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M14 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/6B_2022_壁仞规避管制_SemiAnalysis.pdf
-- [ ] **6B** 6B_2023_亚马逊投资Anthropic_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M13/M06
+- [ ] **6B** 6B_2023_亚马逊投资Anthropic_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M13/M06 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/6B_2023_亚马逊投资Anthropic_SemiAnalysis.pdf
-- [ ] **6B** 6B_2024_GB200板卡与MI300X供应_FubonResearch.pdf ｜ Fubon Research 2024 ｜ → M06/M10
+- [ ] **6B** 6B_2024_GB200板卡与MI300X供应_FubonResearch.pdf ｜ Fubon Research 2024 ｜ → M06/M10 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/6B_2024_GB200板卡与MI300X供应_FubonResearch.pdf
-- [ ] **6B** 6B_2024_英伟达中国收入_FinancialTimes.pdf ｜ Financial Times 2024 ｜ → M14
+- [ ] **6B** 6B_2024_英伟达中国收入_FinancialTimes.pdf ｜ Financial Times 2024 ｜ → M14 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/6B_2024_英伟达中国收入_FinancialTimes.pdf
-- [ ] **6B** 6B_2023_先进封装技术简报_TechInsights.pdf ｜ TechInsights 2023 ｜ → M06
+- [ ] **6B** 6B_2023_先进封装技术简报_TechInsights.pdf ｜ TechInsights 2023 ｜ → M06 ｜ 精读
       docs/library/04_市场与研究/英文机构报告/Yole/6B_2023_先进封装技术简报_TechInsights.pdf
-- [ ] **6B** 6B_2025_下一代AI存储架构_NVIDIA.pdf ｜ NVIDIA 2025 ｜ → M06/M13
+- [ ] **6B** 6B_2025_下一代AI存储架构_NVIDIA.pdf ｜ NVIDIA 2025 ｜ → M06/M13 ｜ 精读
       docs/library/04_市场与研究/英文机构报告/Yole/6B_2025_下一代AI存储架构_NVIDIA.pdf
-- [ ] **6B** 6B_2024_Blackwell平台介绍_NVIDIA.pdf ｜ NVIDIA 2024 ｜ → M06/M07
+- [ ] **6B** 6B_2024_Blackwell平台介绍_NVIDIA.pdf ｜ NVIDIA 2024 ｜ → M06/M07 ｜ 精读
       docs/library/04_市场与研究/英文机构报告/Yole/6B_2024_Blackwell平台介绍_NVIDIA.pdf
-- [ ] **6B** 6B_2025_大模型训练数据流_AMD.pdf ｜ AMD 2025 ｜ → M06/M13
+- [ ] **6B** 6B_2025_大模型训练数据流_AMD.pdf ｜ AMD 2025 ｜ → M06/M13 ｜ 精读
       docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/AI_ML/6B_2025_大模型训练数据流_AMD.pdf
-- [ ] **6B** 6B_2025_AI数据中心存储器件_Marvell.pdf ｜ Marvell 2025 ｜ → M06
+- [ ] **6B** 6B_2025_AI数据中心存储器件_Marvell.pdf ｜ Marvell 2025 ｜ → M06 ｜ 精读
       docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/AI_ML/6B_2025_AI数据中心存储器件_Marvell.pdf
-- [ ] **6B** 6B_2025_新一代AI应用存储影响_SNIA.pdf ｜ SNIA 2025 ｜ → M13/M06
+- [ ] **6B** 6B_2025_新一代AI应用存储影响_SNIA.pdf ｜ SNIA 2025 ｜ → M13/M06 ｜ 精读
       docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/AI_ML/6B_2025_新一代AI应用存储影响_SNIA.pdf
-- [ ] **6B** 6B_2025_解耦式KV存储_SNIA.pdf ｜ SNIA 2025 ｜ → M13
+- [ ] **6B** 6B_2025_解耦式KV存储_SNIA.pdf ｜ SNIA 2025 ｜ → M13 ｜ 精读
       docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/AI_ML/6B_2025_解耦式KV存储_SNIA.pdf
-- [ ] **6B** 6B_2025_MLPerf存储基准分析_SNIA.pdf ｜ SNIA 2025 ｜ → M13
+- [ ] **6B** 6B_2025_MLPerf存储基准分析_SNIA.pdf ｜ SNIA 2025 ｜ → M13 ｜ 精读
       docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/AI_ML/6B_2025_MLPerf存储基准分析_SNIA.pdf
-- [ ] **6B** 6B_2025_公有云AI存储_IBM.pdf ｜ IBM 2025 ｜ → M13
+- [ ] **6B** 6B_2025_公有云AI存储_IBM.pdf ｜ IBM 2025 ｜ → M13 ｜ 精读
       docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/AI_ML/6B_2025_公有云AI存储_IBM.pdf
-- [ ] **6B** 6B_2025_SNIA与OCP协作_SNIA.pdf ｜ SNIA 2025 ｜ → M10/M06
+- [ ] **6B** 6B_2025_SNIA与OCP协作_SNIA.pdf ｜ SNIA 2025 ｜ → M10/M06 ｜ 精读
       docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Keynote/6B_2025_SNIA与OCP协作_SNIA.pdf
-- [ ] **6B** 6B_2025_内存分层降本_SNIA.pdf ｜ SNIA 2025 ｜ → M06/M13
+- [ ] **6B** 6B_2025_内存分层降本_SNIA.pdf ｜ SNIA 2025 ｜ → M06/M13 ｜ 精读
       docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Magic Memory/6B_2025_内存分层降本_SNIA.pdf
-- [ ] **6B** 6B_2025_AI工厂可持续性_Cisco.pdf ｜ Cisco 2025 ｜ → M09/M08
+- [ ] **6B** 6B_2025_AI工厂可持续性_Cisco.pdf ｜ Cisco 2025 ｜ → M09/M08 ｜ 精读
       docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Sustainability & Green/6B_2025_AI工厂可持续性_Cisco.pdf
-- [ ] **6C** 6C_2024_全球封测市场_Technavio.pdf ｜ Technavio 2024 ｜ → M06
+- [ ] **6B** 6B_2025_Gen6NVMe存储演进_SNIA.pdf ｜ SNIA 2025 ｜ → M13/M09 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/AI_ML/6B_2025_Gen6NVMe存储演进_SNIA.pdf
+- [ ] **6B** 6B_2025_数据密集型推理实践_SNIA.pdf ｜ SNIA 2025 ｜ → M13 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Emerging Technologies/6B_2025_数据密集型推理实践_SNIA.pdf
+- [ ] **6B** 6B_2025_存储分层与成本优化_SNIA.pdf ｜ SNIA 2025 ｜ → M13 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Modeling & Simulation/6B_2025_存储分层与成本优化_SNIA.pdf
+- [ ] **6B** 6B_2025_叠瓦与热辅助磁记录_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Data Architecture_Storage Architecture/6B_2025_叠瓦与热辅助磁记录_SNIA.pdf
+- [ ] **6B** 6B_2025_处理器芯片的未来_Objective Analysis.pdf ｜ Objective Analysis 2025 ｜ → M06/M09 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Emerging Technologies/6B_2025_处理器芯片的未来_Objective Analysis.pdf
+- [ ] **6B** 6B_2025_RAG向量检索扩展_SNIA.pdf ｜ SNIA 2025 ｜ → M13 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/AI_ML/6B_2025_RAG向量检索扩展_SNIA.pdf
+- [ ] **6B** 6B_2025_云存储与RAG应用_SNIA.pdf ｜ SNIA 2025 ｜ → M13 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Cloud Storage/6B_2025_云存储与RAG应用_SNIA.pdf
+- [ ] **6B** 6B_2025_AI存储协议选型_SNIA.pdf ｜ SNIA 2025 ｜ → M13 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/File Systems & Protocols/6B_2025_AI存储协议选型_SNIA.pdf
+- [ ] **6B** 6B_2025_分布式文件系统元数据_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/File Systems & Protocols/6B_2025_分布式文件系统元数据_SNIA.pdf
+- [ ] **6B** 6B_2025_QLC缓存加速层方案_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Cloud Storage/6B_2025_QLC缓存加速层方案_SNIA.pdf
+- [ ] **6B** 6B_2025_图神经网络存储配置_SNIA.pdf ｜ SNIA 2025 ｜ → M06/M13 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/AI_ML/6B_2025_图神经网络存储配置_SNIA.pdf
+- [ ] **6B** 6B_2021_三星1z纳米LPDDR5拆解_TechInsights.pdf ｜ TechInsights 2021 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/TechInsights-17篇合集/6B_2021_三星1z纳米LPDDR5拆解_TechInsights.pdf
+- [ ] **6B** 6B_2021_美光1α纳米DRAM拆解_TechInsights.pdf ｜ TechInsights 2021 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/TechInsights-17篇合集/6B_2021_美光1α纳米DRAM拆解_TechInsights.pdf
+- [ ] **6B** 6B_2021_美光128层NAND拆解_TechInsights.pdf ｜ TechInsights 2021 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/TechInsights-17篇合集/6B_2021_美光128层NAND拆解_TechInsights.pdf
+- [ ] **6B** 6B_2021_美光176层NAND拆解_TechInsights.pdf ｜ TechInsights 2021 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/TechInsights-17篇合集/6B_2021_美光176层NAND拆解_TechInsights.pdf
+- [ ] **6B** 6B_2022_海力士176层NAND拆解_TechInsights.pdf ｜ TechInsights 2022 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/TechInsights-17篇合集/6B_2022_海力士176层NAND拆解_TechInsights.pdf
+- [ ] **6B** 6B_2023_3D NAND工艺展望_TechInsights.pdf ｜ TechInsights 2023 ｜ → M06/M14 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/TechInsights-17篇合集/6B_2023_3D NAND工艺展望_TechInsights.pdf
+- [ ] **6B** 6B_2025_半导体制造工艺简介_Micron.pdf ｜ Micron 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/6B_2025_半导体制造工艺简介_Micron.pdf
+- [ ] **6B** 6B_2025_CXL对GPU利用率的影响_FMS2025.pdf ｜ FMS2025 2025 ｜ → M13 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/CXLT-303-1：CXL and AI/6B_2025_CXL对GPU利用率的影响_FMS2025.pdf
+- [ ] **6B** 6B_2025_大容量SSD功耗与散热_FMS2025.pdf ｜ FMS2025 2025 ｜ → M09/M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DCTR-102-1：Hyperscale Applications 2/6B_2025_大容量SSD功耗与散热_FMS2025.pdf
+- [ ] **6B** 6B_2025_AI服务器机架配置_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M09 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/AIML-101-1：AI Techniques/6B_2025_AI服务器机架配置_FMS2025.pdf
+- [ ] **6B** 6B_2025_DRAM纠错开销_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DCTR-303-1：Data Center Memory and Storage Resilience/6B_2025_DRAM纠错开销_FMS2025.pdf
+- [ ] **6B** 6B_2025_DRAM行锤防护开销_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DRAM-203-1：DRAM Future Research/6B_2025_DRAM行锤防护开销_FMS2025.pdf
+- [ ] **6B** 6B_2025_AI存储市场预测_FMS2025.pdf ｜ FMS2025 2025 ｜ → M15/M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/AIML-302-1：Storage for AI Markets and Technologies/6B_2025_AI存储市场预测_FMS2025.pdf
+- [ ] **6B** 6B_2025_NAND市场增速与需求_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M15 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/AIML-302-1：Storage for AI Markets and Technologies/6B_2025_NAND市场增速与需求_FMS2025.pdf
+- [ ] **6B** 6B_2025_单服务器存储密度演进_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M09 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/AIML-303-1：Storage for AI Solutions/6B_2025_单服务器存储密度演进_FMS2025.pdf
+- [ ] **6B** 6B_2025_机械硬盘容量路线_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DCTR-303-1：Data Center Memory and Storage Resilience/6B_2025_机械硬盘容量路线_FMS2025.pdf
+- [ ] **6B** 6B_2025_CXL共享内存池实测_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/CXLT-302-1：CXL Pooling and Fabrics/6B_2025_CXL共享内存池实测_FMS2025.pdf
+- [ ] **6B** 6B_2025_CXL内存模组性能_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/CXLT-203-1：CXL Use Cases/6B_2025_CXL内存模组性能_FMS2025.pdf
+- [ ] **6B** 6B_2025_内存带宽分层图谱_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DRAM-303-1：High Performance DRAM Technology/6B_2025_内存带宽分层图谱_FMS2025.pdf
+- [ ] **6B** 6B_2025_LPDDR5X与DDR5带宽对比_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DRAM-303-1：High Performance DRAM Technology/6B_2025_LPDDR5X与DDR5带宽对比_FMS2025.pdf
+- [ ] **6B** 6B_2025_KV缓存命中率与LLM系统_FMS2025.pdf ｜ FMS2025 2025 ｜ → M13 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/AIML-201-1：Generative AI Part 1/6B_2025_KV缓存命中率与LLM系统_FMS2025.pdf
+- [ ] **6B** 6B_2025_训练检查点优化_FMS2025.pdf ｜ FMS2025 2025 ｜ → M13 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/AIML-201-1：Generative AI Part 1/6B_2025_训练检查点优化_FMS2025.pdf
+- [ ] **6B** 6B_2025_内存利用率与分层_FMS2025.pdf ｜ FMS2025 2025 ｜ → M13/M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/AIML-102-1：Storage for AI Applications/6B_2025_内存利用率与分层_FMS2025.pdf
+- [ ] **6B** 6B_2025_向量检索SSD实测_FMS2025.pdf ｜ FMS2025 2025 ｜ → M13 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/AIML-102-1：Storage for AI Applications/6B_2025_向量检索SSD实测_FMS2025.pdf
+- [ ] **6B** 6B_2025_DAOS高性能存储配置_FMS2025.pdf ｜ FMS2025 2025 ｜ → M13 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DCTR-304-1：High-Performance Storage for the Data Center/6B_2025_DAOS高性能存储配置_FMS2025.pdf
+- [ ] **6B** 6B_2025_存储结构带宽演进_FMS2025.pdf ｜ FMS2025 2025 ｜ → M07/M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DCTR-301-1：Enterprise Storage and SSD/6B_2025_存储结构带宽演进_FMS2025.pdf
+- [ ] **6B** 6B_2025_3D DRAM技术展望_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DRAM-301-1：3D DRAM Technology Now and Future/6B_2025_3D DRAM技术展望_FMS2025.pdf
+- [ ] **6B** 6B_2025_UCIe小芯片互连_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/CHIP-303-1：Navigating the Chiplet Revolution Applying EDA Insights into UCIe Standards/6B_2025_UCIe小芯片互连_FMS2025.pdf
+- [ ] **6B** 6B_2025_量化与封装高度优化_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/CHIP-202-1：Innovative Architectures and Emerging Opportunities UCIe Integration and Chiplet Advancements in Mobile and AI Systems/6B_2025_量化与封装高度优化_FMS2025.pdf
+- [ ] **6B** 6B_2025_DRAM裸片面积对照_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DRAM-304-1：DRAM and NAND Technology Deep Dive/6B_2025_DRAM裸片面积对照_FMS2025.pdf
+- [ ] **6B** 6B_2025_开放Scale-up互连_FMS2025.pdf ｜ FMS2025 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/NETC-304-1：Networks and Links Advanced Topics/6B_2025_开放Scale-up互连_FMS2025.pdf
+- [ ] **6B** 6B_2025_大容量SSD机架收敛_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M13 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/AIML-101-1：AI Techniques/6B_2025_大容量SSD机架收敛_FMS2025.pdf
+- [ ] **6B** 6B_2025_向量库存储基准_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M13 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/AIML-203-1：Storage for AI Benchmark and Test/6B_2025_向量库存储基准_FMS2025.pdf
+- [ ] **6B** 6B_2025_GPU本地盘共享层_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M09 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/AIML-303-1：Storage for AI Solutions/6B_2025_GPU本地盘共享层_FMS2025.pdf
+- [ ] **6B** 6B_2025_硬盘与固态成本差_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M15 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/COLD-102-1：Media and AI Exploring Innovation in Sustainable Long-Term Storage/6B_2025_硬盘与固态成本差_FMS2025.pdf
+- [ ] **6B** 7B_2025_闪存扩展推理实测_FMS2025.pdf ｜ FMS2025 2025 ｜ → M13/M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/COMP-101-1：Computational Storage Discussions and Explorations/7B_2025_闪存扩展推理实测_FMS2025.pdf
+- [ ] **6B** 6B_2025_大模型检查点开销_FMS2025.pdf ｜ FMS2025 2025 ｜ → M13/M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/COMP-102-1：Computational Storage Implementations and Ideas/6B_2025_大模型检查点开销_FMS2025.pdf
+- [ ] **6B** 6B_2025_存储卸载省CPU实测_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M13 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/COMP-102-1：Computational Storage Implementations and Ideas/6B_2025_存储卸载省CPU实测_FMS2025.pdf
+- [ ] **6B** 6B_2025_CXL内存扩展实测_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M13 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/CXLT-203-1：CXL Use Cases/6B_2025_CXL内存扩展实测_FMS2025.pdf
+- [ ] **6B** 6B_2025_Windows的CXL支持_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M15 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/CXLT-301-1：CXL Infrastructure/6B_2025_Windows的CXL支持_FMS2025.pdf
+- [ ] **6B** 6B_2025_共享内存文件系统_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M13 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/CXLT-302-1：CXL Pooling and Fabrics/6B_2025_共享内存文件系统_FMS2025.pdf
+- [ ] **6B** 6B_2025_CXL优化RAG推理_FMS2025.pdf ｜ FMS2025 2025 ｜ → M13/M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/CXLT-303-1：CXL and AI/6B_2025_CXL优化RAG推理_FMS2025.pdf
+- [ ] **6B** 6B_2025_QLC阵列RAID性能_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DCTR-303-1：Data Center Memory and Storage Resilience/6B_2025_QLC阵列RAID性能_FMS2025.pdf
+- [ ] **6B** 6B_2025_超算存储栈配置_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M13 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DCTR-304-1：High-Performance Storage for the Data Center/6B_2025_超算存储栈配置_FMS2025.pdf
+- [ ] **6B** 6B_2025_HBM与资本开支放缓_FMS2025.pdf ｜ FMS2025 2025 ｜ → M15/M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DRAM-302-1：HBM DRAM's Bright Future/6B_2025_HBM与资本开支放缓_FMS2025.pdf
+- [ ] **6B** 6B_2025_抗量子迁移时间表_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M15 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DSEC-304-1：Quantum Resilience The New Storage Security Frontier/6B_2025_抗量子迁移时间表_FMS2025.pdf
+- [ ] **6B** 6B_2025_数据放置降写放大_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M09 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/FARC-203-1：Flash Architectures and Provisioning/6B_2025_数据放置降写放大_FMS2025.pdf
+- [ ] **6B** 6B_2025_FDP产业采纳现状_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M13 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/FARC-203-1：Flash Architectures and Provisioning/6B_2025_FDP产业采纳现状_FMS2025.pdf
+- [ ] **6B** 6B_2025_PCIe代际路线图_FMS2025.pdf ｜ FMS2025 2025 ｜ → M04/M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/INDA-102-1：PCIe Technology in AIML Maintaining High-Speed Connectivity/6B_2025_PCIe代际路线图_FMS2025.pdf
+- [ ] **6B** 6B_2025_傲腾亏损与新型存储_FMS2025.pdf ｜ FMS2025 2025 ｜ → M07/M15 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/OMEM-201-1：Emerging Memory Architectural Advancements/6B_2025_傲腾亏损与新型存储_FMS2025.pdf
+- [ ] **6B** 6B_2025_PB级固态盘路线图_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/QLCP-201-1：Multi-Level Cells Part 1/6B_2025_PB级固态盘路线图_FMS2025.pdf
+- [ ] **6B** 6B_2025_盘内向量检索架构_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M13 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/SSDT-102-1：Flash and SSD Controller Technologies for AI/6B_2025_盘内向量检索架构_FMS2025.pdf
+- [ ] **6B** 6B_2025_PCIe代际IOPS上限_FMS2025.pdf ｜ FMS2025 2025 ｜ → M13/M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/SSDT-102-1：Flash and SSD Controller Technologies for AI/6B_2025_PCIe代际IOPS上限_FMS2025.pdf
+- [ ] **6B** 6B_2025_链路功耗占比实测_FMS2025.pdf ｜ FMS2025 2025 ｜ → M09/M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/SSDT-303-1：New Form Factors and Interfaces for SSDs/6B_2025_链路功耗占比实测_FMS2025.pdf
+- [ ] **6B** 6B_2025_数据巡检重建开销_FMS2025.pdf ｜ FMS2025 2025 ｜ → M10/M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/SSDT-304-1：Error Correction, Reliability, and Telemetry Techniques for SSDs/6B_2025_数据巡检重建开销_FMS2025.pdf
+- [ ] **6B** 6B_2025_HBM代际带宽序列_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/TEST-101-1：Performance/6B_2025_HBM代际带宽序列_FMS2025.pdf
+- [ ] **6B** 6B_2025_内存错误现场数据_FMS2025.pdf ｜ FMS2025 2025 ｜ → M10/M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/TEST-303-1：Simulation and Failure Analysis/6B_2025_内存错误现场数据_FMS2025.pdf
+- [ ] **6B** 6B_2023_低压开关技术要求_ODCC.pdf ｜ ODCC 2023 ｜ → M02/M06 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/02 数据中心白皮书（83份）/6B_2023_低压开关技术要求_ODCC.pdf
+- [ ] **6B** 6B_2025_前道设备供应商库_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07/M14 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/设备/6B_2025_前道设备供应商库_半导体综研.xlsx
+- [ ] **6B** 6B_2025_大陆测试产线库_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M14/M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/封装测试/6B_2025_大陆测试产线库_半导体综研.xlsx
+- [ ] **6B** 6B_2024_HBM代际规格对照_半导体综研.xlsx ｜ 半导体综研 2024 ｜ → M06/M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/5. 其它/HBM/6B_2024_HBM代际规格对照_半导体综研.xlsx
+- [ ] **6B** 6B_2024_SK海力士季度财务_半导体综研.xlsx ｜ 半导体综研 2024 ｜ → M06/M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/2. 企业财报数据/IDM/6B_2024_SK海力士季度财务_半导体综研.xlsx
+- [ ] **6B** 6B_2024_三星季度财务_半导体综研.xlsx ｜ 半导体综研 2024 ｜ → M06/M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/2. 企业财报数据/IDM/6B_2024_三星季度财务_半导体综研.xlsx
+- [ ] **6B** 6B_2024_中芯国际季度财务_半导体综研.xlsx ｜ 半导体综研 2024 ｜ → M14/M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/2. 企业财报数据/晶圆厂/6B_2024_中芯国际季度财务_半导体综研.xlsx
+- [ ] **6B** 6B_2024_台积电营收节点图表分析_半导体综研.xlsx ｜ 半导体综研 2024 ｜ → M07/M04 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/2. 企业财报数据/晶圆厂/6B_2024_台积电营收节点图表分析_半导体综研.xlsx
+- [ ] **6B** 6B_2025_A股半导体公司图谱_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M14/M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/5. 其它/6B_2025_A股半导体公司图谱_半导体综研.xlsx
+- [ ] **6B** 6B_2025_美光季度财务_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M06/M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/2. 企业财报数据/IDM/6B_2025_美光季度财务_半导体综研.xlsx
+- [ ] **6B** 6B_2024_代工三方财务对照_半导体综研.xlsx ｜ 半导体综研 2024 ｜ → M07/M14 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/1. 行业景气度研究/6B_2024_代工三方财务对照_半导体综研.xlsx
+- [ ] **6B** 6B_2025_台湾官方生产统计_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07/M14 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/1. 行业景气度研究/6B_2025_台湾官方生产统计_半导体综研.xlsx
+- [ ] **6B** 6B_2025_设备厂营收排名_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07/M14 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/1. 行业景气度研究/6B_2025_设备厂营收排名_半导体综研.xlsx
+- [ ] **6B** 6B_2024_机房工艺01_工程档案.doc ｜ 工程项目档案 2024 ｜ → M02/M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/忠县工艺/说明/6B_2024_机房工艺01_工程档案.doc
+- [ ] **6B** 6B_2019_负荷计算01_工程档案.xlsx ｜ 工程项目档案 2019 ｜ → M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.6 重庆有线水土综合枢纽基地建设项目/暖通/负荷、水力计算书/6B_2019_负荷计算01_工程档案.xlsx
+- [ ] **6B** 6B_2019_负荷计算02_工程档案.xls ｜ 工程项目档案 2019 ｜ → M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.6 重庆有线水土综合枢纽基地建设项目/暖通/负荷、水力计算书/6B_2019_负荷计算02_工程档案.xls
+- [ ] **6B** 6B_2019_负荷计算03_工程档案.xls ｜ 工程项目档案 2019 ｜ → M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.6 重庆有线水土综合枢纽基地建设项目/暖通/负荷、水力计算书/6B_2019_负荷计算03_工程档案.xls
+- [ ] **6B** 6B_2019_负荷计算01_工程档案.doc ｜ 工程项目档案 2019 ｜ → M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/05空调专业/计算书/附件一：逐时负荷计算书/6B_2019_负荷计算01_工程档案.doc
+- [ ] **6B** 6B_2019_负荷计算01_工程档案.doc ｜ 工程项目档案 2019 ｜ → M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/05空调专业/计算书/6B_2019_负荷计算01_工程档案.doc
+- [ ] **6B** 6B_2019_负荷计算02_工程档案.doc ｜ 工程项目档案 2019 ｜ → M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/05空调专业/计算书/6B_2019_负荷计算02_工程档案.doc
+- [ ] **6B** 6B_2019_负荷计算03_工程档案.doc ｜ 工程项目档案 2019 ｜ → M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/05空调专业/计算书/6B_2019_负荷计算03_工程档案.doc
+- [ ] **6B** 6B_2020_负荷计算01_工程档案.xlsx ｜ 工程项目档案 2020 ｜ → M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1暖通0805/20200803大数据工业地块数据区1 暖通/6B_2020_负荷计算01_工程档案.xlsx
+- [ ] **6B** 6B_2020_负荷计算01_工程档案.xls ｜ 工程项目档案 2020 ｜ → M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区2暖通0805/数据区2暖通0804/6B_2020_负荷计算01_工程档案.xls
+- [ ] **6B** 6B_2020_负荷计算01_工程档案.xls ｜ 工程项目档案 2020 ｜ → M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/示范基地暖通0805/示范基地暖通0804/6B_2020_负荷计算01_工程档案.xls
+- [ ] **6B** 6B_2020_负荷计算02_工程档案.xls ｜ 工程项目档案 2020 ｜ → M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/示范基地暖通0805/示范基地暖通0804/6B_2020_负荷计算02_工程档案.xls
+- [ ] **6B** 6B_2020_负荷计算03_工程档案.xls ｜ 工程项目档案 2020 ｜ → M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/示范基地暖通0805/示范基地暖通0804/6B_2020_负荷计算03_工程档案.xls
+- [ ] **6B** 6B_2019_造价控制价01_工程档案.xlsx ｜ 工程项目档案 2019 ｜ → M02/M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/通风空调工程/[20.2栋]通风空调工程/6B_2019_造价控制价01_工程档案.xlsx
+- [ ] **6B** 6B_2022_造价控制价01_工程档案.xlsx ｜ 工程项目档案 2022 ｜ → M10/M14 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/6B_2022_造价控制价01_工程档案.xlsx
+- [ ] **6B** 6B_2022_造价控制价02_工程档案.docx ｜ 工程项目档案 2022 ｜ → M10/M14 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/6B_2022_造价控制价02_工程档案.docx
+- [ ] **6B** 6B_2023_造价控制价01_工程档案.doc ｜ 工程项目档案 2023 ｜ → M10/M14 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2023.3  宁德市大数据产业园及基础配套设施项目（一期）IT云平台/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价/6B_2023_造价控制价01_工程档案.doc
+- [ ] **6B** 6B_2024_造价控制价01_工程档案.doc ｜ 工程项目档案 2024 ｜ → M10/M14 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.11 安庆高铁新区高光谱卫星数据中心及卫星制造产线项目工业厂房-1#厂房/造价类资料（全程免费，得来不易需要完成一些小任务）1/最高限价/6B_2024_造价控制价01_工程档案.doc
+- [ ] **6B** 6B_2024_ORv3浸没机架集成_Submer.pdf ｜ Submer/OCP 2024 ｜ → M02/M09 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Immersion/6B_2024_ORv3浸没机架集成_Submer.pdf
+- [ ] **6B** 6B_2024_浸没信号完整性_OCP.pdf ｜ FIT Foxconn/Intel 2024 ｜ → M04/M02 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Immersion/6B_2024_浸没信号完整性_OCP.pdf
+- [ ] **6B** 6B_2024_定向流对浸没系统平衡_GRC.pdf ｜ GRC/Intel 2024 ｜ → M02 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Immersion/6B_2024_定向流对浸没系统平衡_GRC.pdf
+- [ ] **6B** 6B_2024_单相浸没热性能实测_Lubrizol.pdf ｜ Lubrizol 2024 ｜ → M02 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Immersion/6B_2024_单相浸没热性能实测_Lubrizol.pdf
+- [ ] **6B** 6B_2024_浸没互连可靠性模型_Molex.pdf ｜ Molex 2024 ｜ → M02/M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Immersion/6B_2024_浸没互连可靠性模型_Molex.pdf
+- [ ] **6B** 6B_2024_浸没供电规格要求_OCP.pdf ｜ Submer/Murata 2024 ｜ → M02/M09 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Immersion/6B_2024_浸没供电规格要求_OCP.pdf
+- [ ] **6B** 6B_2024_单相浸没散热器实测_Intel.pdf ｜ Intel/GRC 2024 ｜ → M02 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Immersion/6B_2024_单相浸没散热器实测_Intel.pdf
+- [ ] **6B** 6B_2024_热回收政策强制比例_OCP.pdf ｜ OCP 2024 ｜ → M09/M12/M05 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Liquid Cooling/6B_2024_热回收政策强制比例_OCP.pdf
+- [ ] **6B** 6B_2024_CDU测试方法与额定_OCP.pdf ｜ OCP 2024 ｜ → M02 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Liquid Cooling/6B_2024_CDU测试方法与额定_OCP.pdf
+- [ ] **6B** 6B_2024_ORv3后门换热器接口_OCP.pdf ｜ OCP 2024 ｜ → M02 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Liquid Cooling/6B_2024_ORv3后门换热器接口_OCP.pdf
+- [ ] **6B** 6B_2024_热回收就绪度评估清单_OCP.pdf ｜ OCP 2024 ｜ → M12/M05/M02 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Liquid Cooling/6B_2024_热回收就绪度评估清单_OCP.pdf
+- [ ] **6B** 6B_2024_IEC62368液冷安全条款_OCP.pdf ｜ OCP/IEC 2024 ｜ → M02/M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Liquid Cooling/6B_2024_IEC62368液冷安全条款_OCP.pdf
+- [ ] **6B** 6B_2024_AALC边车冷却方案_OCP.pdf ｜ OCP 2024 ｜ → M02 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Liquid Cooling/6B_2024_AALC边车冷却方案_OCP.pdf
+- [ ] **6B** 6B_2024_液冷元件可靠性判据_OCP.pdf ｜ OCP 2024 ｜ → M02/M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Liquid Cooling/6B_2024_液冷元件可靠性判据_OCP.pdf
+- [ ] **6B** 6B_2024_冷板回路流速极限_OCP.pdf ｜ OCP 2024 ｜ → M02/M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Liquid Cooling/6B_2024_冷板回路流速极限_OCP.pdf
+- [ ] **6B** 6B_2024_液冷过滤等级要求_OCP.pdf ｜ OCP 2024 ｜ → M02/M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Liquid Cooling/6B_2024_液冷过滤等级要求_OCP.pdf
+- [ ] **6B** 6B_2024_托管商对齐超大规模标准_Aligned.pdf ｜ Aligned Data Centers 2024 ｜ → M05/M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Data Center Facility (DCF)/6B_2024_托管商对齐超大规模标准_Aligned.pdf
+- [ ] **6B** 6B_2024_机房物料搬运自动化_OCP.pdf ｜ OCP 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Data Center Facility (DCF)/6B_2024_机房物料搬运自动化_OCP.pdf
+- [ ] **6B** 6B_2024_直流AI设施模块化规范_OCP.pdf ｜ OCP 2024 ｜ → M02/M09 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Data Center Facility (DCF)/6B_2024_直流AI设施模块化规范_OCP.pdf
+- [ ] **6B** 6B_2024_机房机器人物理操作_OCP.pdf ｜ Google/Microsoft/Meta 2024 ｜ → M10/M06 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Data Center Facility (DCF)/6B_2024_机房机器人物理操作_OCP.pdf
+- [ ] **6B** 6B_2024_ORv3盲插快接更新_OCP.pdf ｜ OCP/Meta 2024 ｜ → M02 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Rack & Power/6B_2024_ORv3盲插快接更新_OCP.pdf
+- [ ] **6B** 6B_2024_盲插快接1OU流网研究_OCP.pdf ｜ OCP/Meta 2024 ｜ → M02 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Rack & Power/6B_2024_盲插快接1OU流网研究_OCP.pdf
+- [ ] **6B** 6B_2024_ORv3网络机架方案_Meta.pdf ｜ Meta 2024 ｜ → M04/M09 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Rack & Power/6B_2024_ORv3网络机架方案_Meta.pdf
+- [ ] **6B** 6B_2024_满配机架随机振动测试_Google.pdf ｜ Google 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Rack & Power/6B_2024_满配机架随机振动测试_Google.pdf
+- [ ] **6B** 6B_2024_UALink加速器互连_AMD.pdf ｜ AMD/UALink 2024 ｜ → M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：Artificial Intelligence (AI)/6B_2024_UALink加速器互连_AMD.pdf
+- [ ] **6B** 6B_2024_存内计算PIM推理_SKhynix.pdf ｜ SK hynix 2024 ｜ → M13/M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：Artificial Intelligence (AI)/6B_2024_存内计算PIM推理_SKhynix.pdf
+- [ ] **6B** 6B_2024_SpectrumX噪声邻居隔离_NVIDIA.pdf ｜ NVIDIA 2024 ｜ → M04/M13 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：Artificial Intelligence (AI)/6B_2024_SpectrumX噪声邻居隔离_NVIDIA.pdf
+- [ ] **6B** 6B_2024_AI高密度存储配置_Solidigm.pdf ｜ Solidigm 2024 ｜ → M06/M13 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：Artificial Intelligence (AI)/6B_2024_AI高密度存储配置_Solidigm.pdf
+- [ ] **6B** 6B_2024_深度学习低精度数据格式_OCP.pdf ｜ OCP/多厂商 2024 ｜ → M03/M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：Artificial Intelligence (AI)/6B_2024_深度学习低精度数据格式_OCP.pdf
+- [ ] **6B** 6B_2024_AI集群编排组网实践_OCP.pdf ｜ OCP/两家云商 2024 ｜ → M04/M13 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：Artificial Intelligence (AI)/6B_2024_AI集群编排组网实践_OCP.pdf
+- [ ] **6B** 6B_2024_FBOSS下一代AI网络_Meta.pdf ｜ Meta 2024 ｜ → M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：Artificial Intelligence (AI)/6B_2024_FBOSS下一代AI网络_Meta.pdf
+- [ ] **6B** 6B_2024_超以太网三层网络分级_UEC.pdf ｜ UEC/OCP 2024 ｜ → M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：Artificial Intelligence (AI)/6B_2024_超以太网三层网络分级_UEC.pdf
+- [ ] **6B** 6B_2024_Falcon可靠传输RDMA_Google.pdf ｜ Google/Intel 2024 ｜ → M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：Artificial Intelligence (AI)/6B_2024_Falcon可靠传输RDMA_Google.pdf
+- [ ] **6B** 6B_2024_僵尸数据中心与搁浅容量_Cadence.pdf ｜ Cadence 2024 ｜ → M13/M12 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：Artificial Intelligence (AI)/6B_2024_僵尸数据中心与搁浅容量_Cadence.pdf
+- [ ] **6B** 6B_2024_数据中心范围三减碳策略_施耐德-Meta.pdf ｜ Schneider Electric/Meta 2024 ｜ → M12 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Sustainability/6B_2024_数据中心范围三减碳策略_施耐德-Meta.pdf
+- [ ] **6B** 6B_2024_碳感知计算与边缘调度_Intel.pdf ｜ Intel 2024 ｜ → M09/M13/M12 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Sustainability/6B_2024_碳感知计算与边缘调度_Intel.pdf
+- [ ] **6B** 6B_2024_AI时代综合能效指标_Microsoft.pdf ｜ Microsoft 2024 ｜ → M02/M12 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Sustainability/6B_2024_AI时代综合能效指标_Microsoft.pdf
+- [ ] **6B** 6B_2024_数据中心效率指标与遥测_OCP.pdf ｜ OCP 2024 ｜ → M12/M13 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Sustainability/6B_2024_数据中心效率指标与遥测_OCP.pdf
+- [ ] **6B** 6B_2024_欧盟数据中心用电与数字孪生_EU.pdf ｜ EU项目 2024 ｜ → M09/M12 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Sustainability/6B_2024_欧盟数据中心用电与数字孪生_EU.pdf
+- [ ] **6B** 6B_2024_服务器生命周期碳效率对比_OCP.pdf ｜ OCP 2024 ｜ → M12 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Sustainability/6B_2024_服务器生命周期碳效率对比_OCP.pdf
+- [ ] **6B** 6B_2024_安全驱动存储循环利用_OCP.pdf ｜ OCP 2024 ｜ → M06/M12 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Sustainability/6B_2024_安全驱动存储循环利用_OCP.pdf
+- [ ] **6B** 6B_2024_机架搬运安全与人体工学_Jtec.pdf ｜ Jtec Industries 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：OCP Market Impact & Supply Chain/6B_2024_机架搬运安全与人体工学_Jtec.pdf
+- [ ] **6B** 6B_2024_巴西疫苗实验室开放硬件案例_OCP.pdf ｜ OCP/Butantan 2024 ｜ → M14/M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：OCP Market Impact & Supply Chain/6B_2024_巴西疫苗实验室开放硬件案例_OCP.pdf
+- [ ] **6B** 6B_2024_AI时代无碳计算_OCP.pdf ｜ OCP/iMasons 2024 ｜ → M09/M05 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：OCP Market Impact & Supply Chain/6B_2024_AI时代无碳计算_OCP.pdf
+- [ ] **6B** 6B_2024_NAND与DRAM数据中心趋势_Yole.pdf ｜ Yole Group 2024 ｜ → M06/M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：OCP Market Impact & Supply Chain/6B_2024_NAND与DRAM数据中心趋势_Yole.pdf
+- [ ] **6B** 6B_2024_开放芯粒经济壁垒_OCP.pdf ｜ OCP/ODSA 2024 ｜ → M03/M15 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Chiplets/6B_2024_开放芯粒经济壁垒_OCP.pdf
+- [ ] **6B** 6B_2024_芯粒与异构集成的系统影响_AMAT.pdf ｜ Applied Materials 2024 ｜ → M03/M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Chiplets/6B_2024_芯粒与异构集成的系统影响_AMAT.pdf
+- [ ] **6B** 6B_2024_芯粒电气接口性能指标_OCP.pdf ｜ OCP/ODSA 2024 ｜ → M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Chiplets/6B_2024_芯粒电气接口性能指标_OCP.pdf
+- [ ] **6B** 6B_2024_首款货架IO芯粒商业案例_Alphawave.pdf ｜ Alphawave Semi 2024 ｜ → M04/M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Chiplets/6B_2024_首款货架IO芯粒商业案例_Alphawave.pdf
+- [ ] **6B** 6B_2024_BoW物理层规范2.1_OCP.pdf ｜ OCP/ODSA 2024 ｜ → M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Chiplets/6B_2024_BoW物理层规范2.1_OCP.pdf
+- [ ] **6B** 6B_2024_存内计算推理芯粒_d-Matrix.pdf ｜ d-Matrix 2024 ｜ → M03/M13 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Chiplets/6B_2024_存内计算推理芯粒_d-Matrix.pdf
+- [ ] **6B** 6B_2024_内存喂养算力的系统配置_OCP.pdf ｜ IBM/OCP 2024 ｜ → M06/M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Composable Memory Systems/6B_2024_内存喂养算力的系统配置_OCP.pdf
+- [ ] **6B** 6B_2024_可组合内存性能基准定义_Uber.pdf ｜ Uber/MemVerge 2024 ｜ → M13/M06 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Composable Memory Systems/6B_2024_可组合内存性能基准定义_Uber.pdf
+- [ ] **6B** 6B_2024_CXL交换机可组合内存实测_H3.pdf ｜ H3 Platform 2024 ｜ → M13/M06 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Composable Memory Systems/6B_2024_CXL交换机可组合内存实测_H3.pdf
+- [ ] **6B** 6B_2024_三星近内存处理CMM-DC_Samsung.pdf ｜ Samsung 2024 ｜ → M13/M06 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Composable Memory Systems/6B_2024_三星近内存处理CMM-DC_Samsung.pdf
+- [ ] **6B** 6B_2024_CXL内存压缩带宽提升_OCP.pdf ｜ OCP 2024 ｜ → M06/M13 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Composable Memory Systems/6B_2024_CXL内存压缩带宽提升_OCP.pdf
+- [ ] **6B** 6B_2024_可组合内存用于存储密集负载_Uber.pdf ｜ Uber/Samsung 2024 ｜ → M13/M06 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Composable Memory Systems/6B_2024_可组合内存用于存储密集负载_Uber.pdf
+- [ ] **6B** 6B_2024_近数据处理编程实践_OCP.pdf ｜ OCP 2024 ｜ → M13/M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Composable Memory Systems/6B_2024_近数据处理编程实践_OCP.pdf
+- [ ] **6B** 6B_2024_CXL内存优化AI推理_OCP.pdf ｜ Supermicro/OCP 2024 ｜ → M13/M06 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Composable Memory Systems/6B_2024_CXL内存优化AI推理_OCP.pdf
+- [ ] **6B** 6B_2024_可组合内存接入AI与缓存服务_Meta.pdf ｜ Meta 2024 ｜ → M13/M06 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Composable Memory Systems/6B_2024_可组合内存接入AI与缓存服务_Meta.pdf
+- [ ] **6B** 6B_2024_OCP存储设备规范更新_OCP.pdf ｜ OCP 2024 ｜ → M06/M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Storage/6B_2024_OCP存储设备规范更新_OCP.pdf
+- [ ] **6B** 6B_2024_声学谐振器提升HDD性能_IEIT.pdf ｜ IEIT 2024 ｜ → M06/M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Storage/6B_2024_声学谐振器提升HDD性能_IEIT.pdf
+- [ ] **6B** 6B_2024_灵活数据放置FDP实测_OCP.pdf ｜ FADU/Phison 2024 ｜ → M06/M13 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Storage/6B_2024_灵活数据放置FDP实测_OCP.pdf
+- [ ] **6B** 6B_2024_大块尺寸助推大容量QLC_OCP.pdf ｜ OCP 2024 ｜ → M06 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Storage/6B_2024_大块尺寸助推大容量QLC_OCP.pdf
+- [ ] **6B** 6B_2024_DPU驱动的高性能数据中心存储_OCP.pdf ｜ NVIDIA/OCP 2024 ｜ → M06/M13 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Storage/6B_2024_DPU驱动的高性能数据中心存储_OCP.pdf
+- [ ] **6B** 6B_2024_共封装光学与硅光集成_Intel.pdf ｜ Intel 2024 ｜ → M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：Photonics/6B_2024_共封装光学与硅光集成_Intel.pdf
+- [ ] **6B** 6B_2024_共封装铜互连224G通道_Luxshare.pdf ｜ Luxshare 2024 ｜ → M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：Photonics/6B_2024_共封装铜互连224G通道_Luxshare.pdf
+- [ ] **6B** 6B_2024_51.2T共封装光学交换机_Broadcom.pdf ｜ Broadcom 2024 ｜ → M04/M09 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：Photonics/6B_2024_51.2T共封装光学交换机_Broadcom.pdf
+- [ ] **6B** 6B_2024_光模块功耗标准进展_OIF.pdf ｜ OIF/TE 2024 ｜ → M04/M09 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：Photonics/6B_2024_光模块功耗标准进展_OIF.pdf
+- [ ] **6B** 6B_2024_薄膜铌酸锂高速调制_OCP.pdf ｜ OCP 2024 ｜ → M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：Photonics/6B_2024_薄膜铌酸锂高速调制_OCP.pdf
+- [ ] **6B** 6B_2024_多平面Fabric路径利用优化_Broadcom.pdf ｜ Broadcom/ByteDance 2024 ｜ → M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Networking/6B_2024_多平面Fabric路径利用优化_Broadcom.pdf
+- [ ] **6B** 6B_2024_调度型以太网生产实践_OCP.pdf ｜ OCP 2024 ｜ → M04/M13 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Networking/6B_2024_调度型以太网生产实践_OCP.pdf
+- [ ] **6B** 6B_2024_阿里HPN大模型训练网络_阿里云.pdf ｜ Alibaba Cloud 2024 ｜ → M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Networking/6B_2024_阿里HPN大模型训练网络_阿里云.pdf
+- [ ] **6B** 6B_2024_大规模Fabric弹性实测_NVIDIA.pdf ｜ NVIDIA 2024 ｜ → M10/M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Networking/6B_2024_大规模Fabric弹性实测_NVIDIA.pdf
+- [ ] **6B** 6B_2024_Meta51.2T以太网交换机_Meta.pdf ｜ Meta 2024 ｜ → M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Networking/6B_2024_Meta51.2T以太网交换机_Meta.pdf
+- [ ] **6B** 6B_2024_CPO交换机与SONiC集成_OCP.pdf ｜ OCP/SONiC 2024 ｜ → M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Networking/6B_2024_CPO交换机与SONiC集成_OCP.pdf
+- [ ] **6B** 6B_2024_计算弹性与静默错误检测_OCP.pdf ｜ OCP 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Hardware Management/6B_2024_计算弹性与静默错误检测_OCP.pdf
+- [ ] **6B** 6B_2024_硬件故障管理项目进展_OCP.pdf ｜ OCP 2024 ｜ → M10/M06 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Hardware Management/6B_2024_硬件故障管理项目进展_OCP.pdf
+- [ ] **6B** 6B_2024_超大规模加速器管理规范_OCP.pdf ｜ OCP 2024 ｜ → M10/M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Hardware Management/6B_2024_超大规模加速器管理规范_OCP.pdf
+- [ ] **6B** 6B_2024_ARM定制芯片与开源固件_OCP.pdf ｜ Ampere/OCP 2024 ｜ → M03/M14 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Open Platform Firmware (OPF)/6B_2024_ARM定制芯片与开源固件_OCP.pdf
+- [ ] **6B** 6B_2024_coreboot在至强6平台推进_9elements.pdf ｜ 9elements/Intel 2024 ｜ → M10/M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Open Platform Firmware (OPF)/6B_2024_coreboot在至强6平台推进_9elements.pdf
+- [ ] **6B** 6B_2024_固件与内核更新节奏错配_OCP.pdf ｜ Intel/OCP 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Open Platform Firmware (OPF)/6B_2024_固件与内核更新节奏错配_OCP.pdf
+- [ ] **6B** 6B_2024_液冷AI机架集群蓝图_Supermicro.pdf ｜ Supermicro 2024 ｜ → M10/M14 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Executive Sessions/6B_2024_液冷AI机架集群蓝图_Supermicro.pdf
+- [ ] **6B** 6B_2024_存储安全与碳足迹_Seagate.pdf ｜ Seagate 2024 ｜ → M06/M12 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Expo. Hall Sessions/6B_2024_存储安全与碳足迹_Seagate.pdf
+- [ ] **6B** 6B_2024_MGX加速数据中心上市_NVIDIA.pdf ｜ NVIDIA 2024 ｜ → M09/M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server/6B_2024_MGX加速数据中心上市_NVIDIA.pdf
+- [ ] **6B** 6B_2024_AI加速器供电密度演进_OCP.pdf ｜ AMD/OCP 2024 ｜ → M09 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server/6B_2024_AI加速器供电密度演进_OCP.pdf
+- [ ] **6B** 6B_2024_垂直供电提升xPU性能_OCP.pdf ｜ OCP 2024 ｜ → M09 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server/6B_2024_垂直供电提升xPU性能_OCP.pdf
+- [ ] **6B** 6B_2024_下一代PCIe有源与无源线缆_OCP.pdf ｜ TE Connectivity/Molex 2024 ｜ → M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server/6B_2024_下一代PCIe有源与无源线缆_OCP.pdf
+- [ ] **6B** 6B_2024_模块化实现AI平台硬件复用_Meta.pdf ｜ Meta 2024 ｜ → M04/M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：HPC_NIC_OAI/6B_2024_模块化实现AI平台硬件复用_Meta.pdf
+- [ ] **6B** 6B_2024_ASIC仿真数字孪生平台_OCP.pdf ｜ OCP HPC 2024 ｜ → M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：HPC_NIC_OAI/6B_2024_ASIC仿真数字孪生平台_OCP.pdf
+- [ ] **6B** 6B_2024_MHS主板规范支持开放机架与48V_OCP.pdf ｜ OCP 2024 ｜ → M09/M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：MHS/6B_2024_MHS主板规范支持开放机架与48V_OCP.pdf
+- [ ] **6B** 6B_2024_开源测试与认证框架_Meta.pdf ｜ Meta 2024 ｜ → M10/M06 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Test & Validation/6B_2024_开源测试与认证框架_Meta.pdf
+- [ ] **6B** 6B_2024_AI_GPU系统可调试性实践_OCP.pdf ｜ OCP 2024 ｜ → M10/M13 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Test & Validation/6B_2024_AI_GPU系统可调试性实践_OCP.pdf
+- [ ] **6B** 6B_2024_AI对存储晶圆产能消耗测算_券商研究.pdf ｜ 券商研究所 2024 ｜ → M06/M03 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储市场/6B_2024_AI对存储晶圆产能消耗测算_券商研究.pdf
+- [ ] **6B** 6B_2024_城市级智算中心技术要求团标_北京电子商会.pdf ｜ 北京电子商会 2024 ｜ → M13/M14/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算/6B_2024_城市级智算中心技术要求团标_北京电子商会.pdf
+- [ ] **6B** 6B_2023_智算中心网络架构白皮书_长安汽车.pdf ｜ 重庆长安汽车 2023 ｜ → M04/M14 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算/6B_2023_智算中心网络架构白皮书_长安汽车.pdf
+- [ ] **6B** 6B_2023_全调度以太网GSE_中国移动.pdf ｜ 中国移动 2023 ｜ → M04/M13/M14 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算/6B_2023_全调度以太网GSE_中国移动.pdf
+- [ ] **6B** 6B_2022_面向智算的算力原生白皮书_中国移动研究院.pdf ｜ 中国移动通信研究院 2022 ｜ → M14/M13/M15 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算/6B_2022_面向智算的算力原生白皮书_中国移动研究院.pdf
+- [ ] **6B** 6B_2023_新型智算中心五维升级对照_中国移动研究院.pdf ｜ 中国移动研究院 2023 ｜ → M02/M04/M14 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算/6B_2023_新型智算中心五维升级对照_中国移动研究院.pdf
+- [ ] **6B** 6B_2023_智算赋能算网新应用白皮书_信通院腾讯云.pdf ｜ 中国信通院/腾讯云 2023 ｜ → M14/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算/6B_2023_智算赋能算网新应用白皮书_信通院腾讯云.pdf
+- [ ] **6B** 6B_2022_江南数据中心详勘报告_四川省地质工程勘察院.doc ｜ 四川省地质工程勘察院 2022 ｜ → M05/M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件二：详细勘察文件/6B_2022_江南数据中心详勘报告_四川省地质工程勘察院.doc
+- [ ] **6B** 6B_2022_7666Delta800VD_Delta.pdf.pdf ｜ Delta.pdf 2022 ｜ → M06/M04/M08 ｜ 半自动
+      docs/library/05_数据中心设施/会议_OCP2025/2025 OCP Global Summit/Executive Sessions/6B_2022_7666Delta800VD_Delta.pdf.pdf
+- [ ] **6B** 6B_2022_7589NotAllAIRa_QCT.pdf.pdf ｜ QCT.pdf 2022 ｜ → M06/M08/M04 ｜ 半自动
+      docs/library/05_数据中心设施/会议_OCP2025/2025 OCP Global Summit/Executive Sessions/6B_2022_7589NotAllAIRa_QCT.pdf.pdf
+- [ ] **6B** 6B_2022_7654RackPowerU_未署名.pdf ｜ 未署名 2022 ｜ → M04/M06/M13 ｜ 半自动
+      docs/library/05_数据中心设施/会议_OCP2025/2025 OCP Global Summit/Rack & Power/6B_2022_7654RackPowerU_未署名.pdf
+- [ ] **6B** 6B_2022_KeyPerformance_未署名.pdf ｜ 未署名 2022 ｜ → M04/M06/M13 ｜ 半自动
+      docs/library/05_数据中心设施/会议_OCP2026EMEA/2026 OCP EMEA Summit/AI Open Data Center/6B_2022_KeyPerformance_未署名.pdf
+- [ ] **6B** 6B_2022_7554AIinTransp_未署名.pdf ｜ 未署名 2022 ｜ → M06/M04/M13 ｜ 半自动
+      docs/library/05_数据中心设施/会议_OCP2025/2025 OCP Global Summit/Edge/6B_2022_7554AIinTransp_未署名.pdf
+- [ ] **6C** 6C_2024_全球封测市场_Technavio.pdf ｜ Technavio 2024 ｜ → M06 ｜ 精读
       docs/library/04_市场与研究/英文机构报告/Yole/6C_2024_全球封测市场_Technavio.pdf
-- [ ] **5B** 5B_2023_Meta服务器选型_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M06
+- [ ] **6C** 6C_2025_全球数据生成序列_FMS2025.pdf ｜ FMS2025 2025 ｜ → M15/M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/COLD-102-1：Media and AI Exploring Innovation in Sustainable Long-Term Storage/6C_2025_全球数据生成序列_FMS2025.pdf
+- [ ] **6C** 6C_2025_存储阵列每TB功耗_FMS2025.pdf ｜ FMS2025 2025 ｜ → M09/M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/SUST-303-1：Sustainable Data Centers/6C_2025_存储阵列每TB功耗_FMS2025.pdf
+- [ ] **6C** 6C_2014_深圳超算中心运营与定价_中国电子报.pdf ｜ 国家超级计算深圳中心 2014 ｜ → M10/M15/M14 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算/6C_2014_深圳超算中心运营与定价_中国电子报.pdf
+- [ ] **6C** 6C_2022_定制化IDC解决方案方案建议_未署名.xlsx ｜ 未署名 2022 ｜ → M06/M10/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/01 数据中心解决方案（283份）/���ƻ�IDC�������/定制化IDC解决方案/3 项目洽谈/3.2方案建议书/6C_2022_定制化IDC解决方案方案建议_未署名.xlsx
+- [ ] **6C** 6C_2019_精品港铁AFC云数据中心项目_未署名.docx ｜ 未署名 2019 ｜ → M06/M10/M13 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/2020年3月更新/6C_2019_精品港铁AFC云数据中心项目_未署名.docx
+- [ ] **6C** 6C_2019_中国IDC行业资讯大全201_未署名.pdf ｜ 未署名 2019 ｜ → M14/M06/M01 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/2020年3月更新/6C_2019_中国IDC行业资讯大全201_未署名.pdf
+- [ ] **6C** 6C_2022_企业数据中心设计建议方案_未署名.pdf ｜ 未署名 2022 ｜ → M06/M10/M05 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/2020年3月更新/6C_2022_企业数据中心设计建议方案_未署名.pdf
+- [ ] **6C** 6C_2022_华为云数据中心解决方案技术方_未署名.docx ｜ 未署名 2022 ｜ → M06/M10/M14 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/2020年3月更新/6C_2022_华为云数据中心解决方案技术方_未署名.docx
+- [ ] **6C** 6C_2022_华为数据中心解决方案典型工程_未署名.docx ｜ 未署名 2022 ｜ → M14/M06/M13 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/2020年3月更新/6C_2022_华为数据中心解决方案典型工程_未署名.docx
+- [ ] **6C** 6C_2022_叶辉增效降费共建绿色数据中心_未署名.pdf ｜ 未署名 2022 ｜ → M14/M06/M13 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/2020年3月更新/6C_2022_叶辉增效降费共建绿色数据中心_未署名.pdf
+- [ ] **6C** 6C_2022_定制化IDC解决方案方案建议_未署名.xlsx ｜ 未署名 2022 ｜ → M06/M10/M05 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/2020年3月更新/定制化IDC解决方案/3 项目洽谈/3.2方案建议书/6C_2022_定制化IDC解决方案方案建议_未署名.xlsx
+- [ ] **6C** 6C_2022_数据中心基础设施解决方案_未署名.doc ｜ 未署名 2022 ｜ → M06/M13/M05 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/2020年3月更新/6C_2022_数据中心基础设施解决方案_未署名.doc
+- [ ] **6C** 6C_2022_数据中心网络建设方案_未署名.docx ｜ 未署名 2022 ｜ → M06/M14/M01 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/2020年3月更新/6C_2022_数据中心网络建设方案_未署名.docx
+- [ ] **6C** 6C_2022_数据中心项目建设可行性研究报_未署名.doc ｜ 未署名 2022 ｜ → M05/M06/M14 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/2020年3月更新/6C_2022_数据中心项目建设可行性研究报_未署名.doc
+- [ ] **6C** 6C_2022_艾默生数据中心机房整体解决方_未署名.pptx ｜ 未署名 2022 ｜ → M06/M14/M13 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/2020年3月更新/6C_2022_艾默生数据中心机房整体解决方_未署名.pptx
+- [ ] **6C** 6C_2022_XXX云平台数据中心设计方案_未署名.pdf ｜ 未署名 2022 ｜ → M06/M10/M14 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/6C_2022_XXX云平台数据中心设计方案_未署名.pdf
+- [ ] **6C** 6C_2022_XX数据中心网络及安全方案建_未署名.doc ｜ 未署名 2022 ｜ → M06/M10/M13 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/6C_2022_XX数据中心网络及安全方案建_未署名.doc
+- [ ] **6C** 6C_2022_中国联通数据中心建设标准_未署名.pdf ｜ 未署名 2022 ｜ → M05/M14/M06 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/6C_2022_中国联通数据中心建设标准_未署名.pdf
+- [ ] **6C** 6C_2022_中国联通数据中心技术规范书_未署名.pdf ｜ 未署名 2022 ｜ → M14/M01/M10 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/6C_2022_中国联通数据中心技术规范书_未署名.pdf
+- [ ] **6C** 6C_2022_云数据中心解决方案技术方案_未署名.docx ｜ 未署名 2022 ｜ → M06/M10/M14 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/6C_2022_云数据中心解决方案技术方案_未署名.docx
+- [ ] **6C** 6C_2022_华为数据中心基础设施解决方案_未署名.pdf ｜ 未署名 2022 ｜ → M06/M14/M13 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/6C_2022_华为数据中心基础设施解决方案_未署名.pdf
+- [ ] **6C** 6C_2022_华为数据中心解决方案部署指南_未署名.pdf ｜ 未署名 2022 ｜ → M06/M05/M14 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/6C_2022_华为数据中心解决方案部署指南_未署名.pdf
+- [ ] **6C** 6C_2022_华为数据中心解决方案典型工程_未署名.docx ｜ 未署名 2022 ｜ → M14/M06/M13 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/6C_2022_华为数据中心解决方案典型工程_未署名.docx
+- [ ] **6C** 6C_2022_国家云计算XX数据中心建设方_未署名.doc ｜ 未署名 2022 ｜ → M06/M14/M01 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/6C_2022_国家云计算XX数据中心建设方_未署名.doc
+- [ ] **6C** 6C_2022_完整的IDC机房建设方案_未署名.pdf ｜ 未署名 2022 ｜ → M06/M14/M10 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/6C_2022_完整的IDC机房建设方案_未署名.pdf
+- [ ] **6C** 6C_2022_数据中心基础网络解决方案_未署名.pdf ｜ 未署名 2022 ｜ → M06/M14/M01 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/6C_2022_数据中心基础网络解决方案_未署名.pdf
+- [ ] **6C** 6C_2022_数据中心基础设施解决方案_未署名.doc ｜ 未署名 2022 ｜ → M06/M13/M05 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/6C_2022_数据中心基础设施解决方案_未署名.doc
+- [ ] **6C** 6C_2022_数据中心建设整体方案_未署名.doc ｜ 未署名 2022 ｜ → M06/M10/M05 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/6C_2022_数据中心建设整体方案_未署名.doc
+- [ ] **6C** 6C_2022_数据中心建设方案_未署名.docx ｜ 未署名 2022 ｜ → M06/M14/M01 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/6C_2022_数据中心建设方案_未署名.docx
+- [ ] **6C** 6C_2022_数据中心整体解决方案_未署名.pdf ｜ 未署名 2022 ｜ → M06/M05/M10 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/6C_2022_数据中心整体解决方案_未署名.pdf
+- [ ] **6C** 6C_2022_数据中心机房建设方案_未署名.docx ｜ 未署名 2022 ｜ → M10/M06/M14 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/6C_2022_数据中心机房建设方案_未署名.docx
+- [ ] **6C** 6C_2022_数据中心机房设计方案_未署名.doc ｜ 未署名 2022 ｜ → M06/M10/M05 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/6C_2022_数据中心机房设计方案_未署名.doc
+- [ ] **6C** 6C_2022_数据中心设备方案_未署名.doc ｜ 未署名 2022 ｜ → M06/M14/M10 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/6C_2022_数据中心设备方案_未署名.doc
+- [ ] **6C** 6C_2022_数据中心项目建设可行性研究报_未署名.doc ｜ 未署名 2022 ｜ → M05/M06/M14 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/6C_2022_数据中心项目建设可行性研究报_未署名.doc
+- [ ] **6C** 6C_2022_江森自控数据中心系统解决方案_未署名.pptx ｜ 未署名 2022 ｜ → M14/M13/M01 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/6C_2022_江森自控数据中心系统解决方案_未署名.pptx
+- [ ] **6C** 6C_2022_美国康普数据中心规划指南_未署名.pdf ｜ 未署名 2022 ｜ → M06/M14/M01 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/6C_2022_美国康普数据中心规划指南_未署名.pdf
+- [ ] **6C** 6C_2022_艾默生数据中心机房整体解决方_未署名.pptx ｜ 未署名 2022 ｜ → M06/M14/M13 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/6C_2022_艾默生数据中心机房整体解决方_未署名.pptx
+- [ ] **6C** 6C_2022_015数据中心机房建设方案_未署名.docx ｜ 未署名 2022 ｜ → M10/M06/M14 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/A2021-066机房建设方案/6C_2022_015数据中心机房建设方案_未署名.docx
+- [ ] **6C** 6C_2022_017数据中心机房整体解决方_未署名.pptx ｜ 未署名 2022 ｜ → M06/M14/M13 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/A2021-066机房建设方案/6C_2022_017数据中心机房整体解决方_未署名.pptx
+- [ ] **6C** 6C_2022_018数据中心机房建设方案_未署名.pdf ｜ 未署名 2022 ｜ → M10/M06/M14 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/A2021-066机房建设方案/6C_2022_018数据中心机房建设方案_未署名.pdf
+- [ ] **6C** 6C_2022_025数据中心机房规划方案_未署名.docx ｜ 未署名 2022 ｜ → M06/M05/M10 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/A2021-066机房建设方案/6C_2022_025数据中心机房规划方案_未署名.docx
+- [ ] **6C** 6C_2022_026数据中心机房建设方案_未署名.docx ｜ 未署名 2022 ｜ → M10/M06/M14 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/A2021-066机房建设方案/6C_2022_026数据中心机房建设方案_未署名.docx
+- [ ] **6C** 6C_2022_027数据中心机房设计方案_未署名.doc ｜ 未署名 2022 ｜ → M06/M10/M05 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/A2021-066机房建设方案/6C_2022_027数据中心机房设计方案_未署名.doc
+- [ ] **6C** 6C_2022_029IDC机房建设方案_未署名.pdf ｜ 未署名 2022 ｜ → M06/M14/M10 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/A2021-066机房建设方案/6C_2022_029IDC机房建设方案_未署名.pdf
+- [ ] **6C** 6C_2022_030综合布线及机房建设方案_未署名.doc ｜ 未署名 2022 ｜ → M06/M05/M10 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/A2021-066机房建设方案/6C_2022_030综合布线及机房建设方案_未署名.doc
+- [ ] **6C** 6C_2022_07弱电机房建设方案传统机房_未署名.pptx ｜ 未署名 2022 ｜ → M10/M14/M06 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/A2021-066机房建设方案/6C_2022_07弱电机房建设方案传统机房_未署名.pptx
+- [ ] **6C** 6C_2022_弱电系统成本_未署名.xls ｜ 未署名 2022 ｜ → M14/M10/M06 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/智能化弱电赠品/编号002弱电机房标书合同规范方案管理资料/工程用量算法/6C_2022_弱电系统成本_未署名.xls
+- [ ] **6C** 6C_2022_弱电系统概算_未署名.xls ｜ 未署名 2022 ｜ → M14/M10/M06 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/智能化弱电赠品/编号002弱电机房标书合同规范方案管理资料/工程用量算法/6C_2022_弱电系统概算_未署名.xls
+- [ ] **6C** 6C_2022_包7网络设备安装工程量报价清_未署名.xls ｜ 未署名 2022 ｜ → M06/M10 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/智能化弱电赠品/编号002弱电机房标书合同规范方案管理资料/已发图纸/工程量报价清单/6C_2022_包7网络设备安装工程量报价清_未署名.xls
+- [ ] **6C** 6C_2022_智能化弱电集成施工组织设计方_未署名.doc ｜ 未署名 2022 ｜ → M10/M14/M13 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/智能化弱电赠品/编号002弱电机房标书合同规范方案管理资料/已发图纸/6C_2022_智能化弱电集成施工组织设计方_未署名.doc
+- [ ] **6C** 6C_2022_一个详细的计算机机房设计方案_未署名.docx ｜ 未署名 2022 ｜ → M14/M10/M05 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/智能化弱电赠品/编号002弱电机房标书合同规范方案管理资料/弱电施工方案/6C_2022_一个详细的计算机机房设计方案_未署名.docx
+- [ ] **6C** 6C_2016_完整的弱电施工组织方案201_未署名.doc ｜ 未署名 2016 ｜ → M10/M06/M13 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/智能化弱电赠品/编号002弱电机房标书合同规范方案管理资料/弱电施工方案/6C_2016_完整的弱电施工组织方案201_未署名.doc
+- [ ] **6C** 6C_2022_智能化弱电集成施工组织设计方_未署名.doc ｜ 未署名 2022 ｜ → M10/M14/M13 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/智能化弱电赠品/编号002弱电机房标书合同规范方案管理资料/弱电施工方案/6C_2022_智能化弱电集成施工组织设计方_未署名.doc
+- [ ] **6C** 6C_2022_智能化弱电集成施工组织设计方_未署名_02.doc ｜ 未署名 2022 ｜ → M10/M14/M13 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/智能化弱电赠品/编号002弱电机房标书合同规范方案管理资料/弱电施工方案/6C_2022_智能化弱电集成施工组织设计方_未署名_02.doc
+- [ ] **6C** 6C_2022_机房_建设系统弱电智能化20_未署名.pptx ｜ 未署名 2022 ｜ → M06/M14/M05 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/智能化弱电赠品/编号002弱电机房标书合同规范方案管理资料/弱电施工方案/6C_2022_机房_建设系统弱电智能化20_未署名.pptx
+- [ ] **6C** 6C_2022_布线标识管理方案_未署名.docx ｜ 未署名 2022 ｜ → M14/M06/M10 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/智能化弱电赠品/编号002弱电机房标书合同规范方案管理资料/弱电标签标识规范/6C_2022_布线标识管理方案_未署名.docx
+- [ ] **6C** 6C_2022_设备资源机房标识规范_未署名.doc ｜ 未署名 2022 ｜ → M06/M14/M13 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/智能化弱电赠品/编号002弱电机房标书合同规范方案管理资料/弱电标签标识规范/6C_2022_设备资源机房标识规范_未署名.doc
+- [ ] **6C** 6C_2022_弱电工程施工流程和规范_未署名.doc ｜ 未署名 2022 ｜ → M10/M06/M14 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/智能化弱电赠品/编号002弱电机房标书合同规范方案管理资料/弱电规范/6C_2022_弱电工程施工流程和规范_未署名.doc
+- [ ] **6C** 6C_2022_弱电工程全套竣工资料_未署名.doc ｜ 未署名 2022 ｜ → M10/M06 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/智能化弱电赠品/编号002弱电机房标书合同规范方案管理资料/竣工验收资料/6C_2022_弱电工程全套竣工资料_未署名.doc
+- [ ] **6C** 6C_2022_弱电工程流程_未署名.doc ｜ 未署名 2022 ｜ → M10/M06/M14 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/智能化弱电赠品/编号002弱电机房标书合同规范方案管理资料/竣工验收资料/6C_2022_弱电工程流程_未署名.doc
+- [ ] **6C** 6C_2022_弱电工程表格大全_未署名.doc ｜ 未署名 2022 ｜ → M10/M06 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/智能化弱电赠品/编号002弱电机房标书合同规范方案管理资料/竣工验收资料/6C_2022_弱电工程表格大全_未署名.doc
+- [ ] **6C** 6C_2022_弱电机房工程施工技术方案_未署名.doc ｜ 未署名 2022 ｜ → M01/M10/M05 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/智能化弱电赠品/编号002弱电机房标书合同规范方案管理资料/竣工验收资料/6C_2022_弱电机房工程施工技术方案_未署名.doc
+- [ ] **6C** 6C_2022_弱电项目竣工资料定稿版_未署名.doc ｜ 未署名 2022 ｜ → M10/M06 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/智能化弱电赠品/编号002弱电机房标书合同规范方案管理资料/竣工验收资料/6C_2022_弱电项目竣工资料定稿版_未署名.doc
+- [ ] **6C** 6C_2022_弱电系统工程工作流程_未署名.doc ｜ 未署名 2022 ｜ → M10/M14/M06 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/智能化弱电赠品/编号002弱电机房标书合同规范方案管理资料/项目管理知识/6C_2022_弱电系统工程工作流程_未署名.doc
+- [ ] **6C** 6C_2022_楼宇对讲基础知识培训_未署名.doc ｜ 未署名 2022 ｜ → M14/M01/M10 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/智能化弱电赠品/编号004 安防对讲机报警楼宇门禁巡更等资料合集/楼宇对讲/6C_2022_楼宇对讲基础知识培训_未署名.doc
+- [ ] **6C** 6C_2022_深入浅出安防视频监控系统_未署名.pdf ｜ 未署名 2022 ｜ → M06/M01/M14 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/智能化弱电赠品/编号004 安防对讲机报警楼宇门禁巡更等资料合集/视频监控/6C_2022_深入浅出安防视频监控系统_未署名.pdf
+- [ ] **6C** 6C_2022_08_北美TIA942数据中_未署名.doc ｜ 未署名 2022 ｜ → M14/M06/M01 ｜ 半自动
+      docs/library/07_方案与模板/数据中心机房建设方案数据中心解决方案数据中心方案IDC数据中心/F-182：数据中心云平台解决方案/002 数据中心资料更新198份/云数据中心网络与设计视频152份含视频和文档/云数据中心网络与设计视频152份含视频和文档/课程资料/6C_2022_08_北美TIA942数据中_未署名.doc
+- [ ] **6C** 6C_2008_09_国标GB5017420_未署名.doc ｜ 未署名 2008 ｜ → M06/M14/M05 ｜ 半自动
+      docs/library/07_方案与模板/数据中心机房建设方案数据中心解决方案数据中心方案IDC数据中心/F-182：数据中心云平台解决方案/002 数据中心资料更新198份/云数据中心网络与设计视频152份含视频和文档/云数据中心网络与设计视频152份含视频和文档/课程资料/6C_2008_09_国标GB5017420_未署名.doc
+- [ ] **6C** 6C_2022_10_云计算数据中心网络技术_未署名.pdf ｜ 未署名 2022 ｜ → M06/M01/M14 ｜ 半自动
+      docs/library/07_方案与模板/数据中心机房建设方案数据中心解决方案数据中心方案IDC数据中心/F-182：数据中心云平台解决方案/002 数据中心资料更新198份/云数据中心网络与设计视频152份含视频和文档/云数据中心网络与设计视频152份含视频和文档/课程资料/6C_2022_10_云计算数据中心网络技术_未署名.pdf
+- [ ] **6C** 6C_2022_11_数据中心网络技术红宝书_未署名.pdf ｜ 未署名 2022 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/07_方案与模板/数据中心机房建设方案数据中心解决方案数据中心方案IDC数据中心/F-182：数据中心云平台解决方案/002 数据中心资料更新198份/云数据中心网络与设计视频152份含视频和文档/云数据中心网络与设计视频152份含视频和文档/课程资料/6C_2022_11_数据中心网络技术红宝书_未署名.pdf
+- [ ] **6C** 6C_2022_沃德思绿色数据中心解决方案_未署名.ppt ｜ 未署名 2022 ｜ → M06/M14 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/2020年3月更新/6C_2022_沃德思绿色数据中心解决方案_未署名.ppt
+- [ ] **6C** 6C_2022_运营商数据中心解决方案H3C_未署名.ppt ｜ 未署名 2022 ｜ → M06/M14/M13 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/2020年3月更新/6C_2022_运营商数据中心解决方案H3C_未署名.ppt
+- [ ] **6C** 6C_2022_阿尔西数据中心空调解决方案_未署名.ppt ｜ 未署名 2022 ｜ → M06/M14/M13 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/2020年3月更新/6C_2022_阿尔西数据中心空调解决方案_未署名.ppt
+- [ ] **6C** 6C_2022_沃德思绿色数据中心解决方案_未署名.ppt ｜ 未署名 2022 ｜ → M06/M14 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/6C_2022_沃德思绿色数据中心解决方案_未署名.ppt
+- [ ] **6C** 6C_2022_阿尔西数据中心空调解决方案_未署名.ppt ｜ 未署名 2022 ｜ → M06/M14/M13 ｜ 半自动
+      docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/6C_2022_阿尔西数据中心空调解决方案_未署名.ppt
+- [ ] **6C** 6C_2022_安全防范工程设计与施工技术讲_未署名.ppt ｜ 未署名 2022 ｜ → M10/M14/M01 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/智能化弱电赠品/编号004 安防对讲机报警楼宇门禁巡更等资料合集/安防基础知识/6C_2022_安全防范工程设计与施工技术讲_未署名.ppt
+- [ ] **6C** 6C_2022_安全防范工程设计与施工技术讲_未署名_02.ppt ｜ 未署名 2022 ｜ → M06/M10/M14 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/智能化弱电赠品/编号004 安防对讲机报警楼宇门禁巡更等资料合集/安防基础知识/6C_2022_安全防范工程设计与施工技术讲_未署名_02.ppt
+- [ ] **6C** 6C_2022_安全防范工程设计与施工技术讲_未署名_03.ppt ｜ 未署名 2022 ｜ → M10/M14 ｜ 半自动
+      docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/智能化弱电赠品/编号004 安防对讲机报警楼宇门禁巡更等资料合集/安防基础知识/6C_2022_安全防范工程设计与施工技术讲_未署名_03.ppt
+- [ ] **6C** 6C_2022_室内背景噪声计算分析报告_绿_未署名.doc ｜ 未署名 2022 ｜ → M14/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/附件三：施工图图纸/绿建和节能/运维楼绿建施工图/绿建分析报告/6C_2022_室内背景噪声计算分析报告_绿_未署名.doc
+- [ ] **6C** 6C_2025_20250105智算云平台发_未署名.pdf ｜ 未署名 2025 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/04 智算中心券商报告（330份）/2025/6C_2025_20250105智算云平台发_未署名.pdf
+- [ ] **6C** 6C_2025_20250106上海出台重磅_英伟达.pdf ｜ 英伟达 2025 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/04 智算中心券商报告（330份）/2025/6C_2025_20250106上海出台重磅_英伟达.pdf
+- [ ] **6C** 6C_2022_AIDC系列深度二_液冷行业_未署名.pdf ｜ 未署名 2022 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/04 智算中心券商报告（330份）/2025/6C_2022_AIDC系列深度二_液冷行业_未署名.pdf
+- [ ] **6C** 6C_2022_报告绿色算力投资手册_未署名.pdf ｜ 未署名 2022 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/04 智算中心券商报告（330份）/2025/6C_2022_报告绿色算力投资手册_未署名.pdf
+- [ ] **6C** 6C_2022_寒武破晓算力腾飞_中国移动.pdf ｜ 中国移动 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/04 智算中心券商报告（330份）/2025/6C_2022_寒武破晓算力腾飞_中国移动.pdf
+- [ ] **6C** 6C_2025_深度报告20250303算力_阿里.pdf ｜ 阿里 2025 ｜ → M06/M01/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/04 智算中心券商报告（330份）/2025/6C_2025_深度报告20250303算力_阿里.pdf
+- [ ] **6C** 6C_2022_电力设备行业深度报告高功率密_英伟达.pdf ｜ 英伟达 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/04 智算中心券商报告（330份）/2025/6C_2022_电力设备行业深度报告高功率密_英伟达.pdf
+- [ ] **6C** 6C_2022_AIDC时代液冷智算中心领军_未署名.pdf ｜ 未署名 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/04 智算中心券商报告（330份）/2024/6C_2022_AIDC时代液冷智算中心领军_未署名.pdf
+- [ ] **6C** 6C_2022_北交所公司深度报告算海计划共_未署名.pdf ｜ 未署名 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/04 智算中心券商报告（330份）/2024/6C_2022_北交所公司深度报告算海计划共_未署名.pdf
+- [ ] **6C** 6C_2024_深度报告20241231深度_未署名.pdf ｜ 未署名 2024 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/04 智算中心券商报告（330份）/2024/6C_2024_深度报告20241231深度_未署名.pdf
+- [ ] **6C** 6C_2022_通信行业深度报告深度拆解CP_未署名.pdf ｜ 未署名 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/04 智算中心券商报告（330份）/2024/6C_2022_通信行业深度报告深度拆解CP_未署名.pdf
+- [ ] **6C** 6C_2022_英特尔中国绿色数据中心创新实_ODCC.pdf ｜ ODCC 2022 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/01 智算中心解决方案（45份）/6C_2022_英特尔中国绿色数据中心创新实_ODCC.pdf
+- [ ] **6C** 6C_2024_2024亚太区智算中心液冷应_中国电信.pdf ｜ 中国电信 2024 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/02 智算中心白皮书（56份）/6C_2024_2024亚太区智算中心液冷应_中国电信.pdf
+- [ ] **6C** 6C_2024_2024年6G通感算智融合技_未署名.pdf ｜ 未署名 2024 ｜ → M01/M13/M06 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/02 智算中心白皮书（56份）/6C_2024_2024年6G通感算智融合技_未署名.pdf
+- [ ] **6C** 6C_2024_2024年智算中心基础设施演_华为.pdf ｜ 华为 2024 ｜ → M06/M01/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/02 智算中心白皮书（56份）/6C_2024_2024年智算中心基础设施演_华为.pdf
+- [ ] **6C** 6C_2025_2025年数字孪生与智能算法_未署名.pdf ｜ 未署名 2025 ｜ → M01/M05/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/02 智算中心白皮书（56份）/6C_2025_2025年数字孪生与智能算法_未署名.pdf
+- [ ] **6C** 6C_2024_中国智算中心AIDC产业发展_未署名.pdf ｜ 未署名 2024 ｜ → M06/M01/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/02 智算中心白皮书（56份）/6C_2024_中国智算中心AIDC产业发展_未署名.pdf
+- [ ] **6C** 6C_2022_绿色算力技术白皮书_ODCC.pdf ｜ ODCC 2022 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/02 智算中心白皮书（56份）/6C_2022_绿色算力技术白皮书_ODCC.pdf
+- [ ] **6C** 6C_2022_绿色节能液冷数据中心白皮书_未署名.pdf ｜ 未署名 2022 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/02 智算中心白皮书（56份）/6C_2022_绿色节能液冷数据中心白皮书_未署名.pdf
+- [ ] **6C** 6C_2022_金融业绿色数据中心白皮书_未署名.pdf ｜ 未署名 2022 ｜ → M13/M06/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/02 智算中心白皮书（56份）/6C_2022_金融业绿色数据中心白皮书_未署名.pdf
+- [ ] **6C** 6C_2022_零碳数据中心园区能碳管理系统_ODCC.pdf ｜ ODCC 2022 ｜ → M05/M10/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/02 智算中心白皮书（56份）/6C_2022_零碳数据中心园区能碳管理系统_ODCC.pdf
+- [ ] **6C** 6C_2024_2024年AI改变能源智算如_英伟达.pdf ｜ 英伟达 2024 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/03 智算中心行业深度报告（98份）/6C_2024_2024年AI改变能源智算如_英伟达.pdf
+- [ ] **6C** 6C_2024_2024年人工智能快速发展背_工信部.pdf ｜ 工信部 2024 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/03 智算中心行业深度报告（98份）/6C_2024_2024年人工智能快速发展背_工信部.pdf
+- [ ] **6C** 6C_2025_2025智算产业发展研究报告_工信部.pdf ｜ 工信部 2025 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/03 智算中心行业深度报告（98份）/6C_2025_2025智算产业发展研究报告_工信部.pdf
+- [ ] **6C** 6C_2022_AIDC深度报告_智能算力需_未署名.pdf ｜ 未署名 2022 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/03 智算中心行业深度报告（98份）/6C_2022_AIDC深度报告_智能算力需_未署名.pdf
+- [ ] **6C** 6C_2025_报告中国信通院绿色算力发展研_信通院.pdf ｜ 信通院 2025 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/03 智算中心行业深度报告（98份）/6C_2025_报告中国信通院绿色算力发展研_信通院.pdf
+- [ ] **6C** 6C_2024_报告中国信通院绿色算力技术创_信通院.pdf ｜ 信通院 2024 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/03 智算中心行业深度报告（98份）/6C_2024_报告中国信通院绿色算力技术创_信通院.pdf
+- [ ] **6C** 6C_2025_报告头豹2025年中国绿色算_头豹.pdf ｜ 头豹 2025 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/03 智算中心行业深度报告（98份）/6C_2025_报告头豹2025年中国绿色算_头豹.pdf
+- [ ] **6C** 6C_2022_报告算力与电力协同商业模式变_英伟达.pdf ｜ 英伟达 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/03 智算中心行业深度报告（98份）/6C_2022_报告算力与电力协同商业模式变_英伟达.pdf
+- [ ] **6C** 6C_2022_报告绿色电力与绿色算力协同发_未署名.pdf ｜ 未署名 2022 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/03 智算中心行业深度报告（98份）/6C_2022_报告绿色电力与绿色算力协同发_未署名.pdf
+- [ ] **6C** 6C_2024_中国算力基础设施2024案例_联想.pdf ｜ 联想 2024 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/03 智算中心行业深度报告（98份）/6C_2024_中国算力基础设施2024案例_联想.pdf
+- [ ] **6C** 6C_2022_新型智算中心拉动全球电力消耗_英伟达.pptx ｜ 英伟达 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/03 智算中心行业深度报告（98份）/6C_2022_新型智算中心拉动全球电力消耗_英伟达.pptx
+- [ ] **6C** 6C_2024_智算中心综合评价报告2024_未署名.pdf ｜ 未署名 2024 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/03 智算中心行业深度报告（98份）/6C_2024_智算中心综合评价报告2024_未署名.pdf
+- [ ] **6C** 6C_2023_服务器行业及招标近况更新之二_未署名.pdf ｜ 未署名 2023 ｜ → M06/M01/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/03 智算中心行业深度报告（98份）/6C_2023_服务器行业及招标近况更新之二_未署名.pdf
+- [ ] **6C** 6C_2025_算力电力协同发展研究报告20_国信.pdf ｜ 国信 2025 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/03 智算中心行业深度报告（98份）/6C_2025_算力电力协同发展研究报告20_国信.pdf
+- [ ] **6C** 6C_2025_2025中国算力基础设施案例_未署名.pdf ｜ 未署名 2025 ｜ → M06/M13/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/2026年更新/行业深度报告/6C_2025_2025中国算力基础设施案例_未署名.pdf
+- [ ] **6C** 6C_2026_2026年太空算力发展研究报_未署名.pdf ｜ 未署名 2026 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/2026年更新/行业深度报告/6C_2026_2026年太空算力发展研究报_未署名.pdf
+- [ ] **6C** 6C_2026_2026版中国移动云终端算力_中国移动.pdf ｜ 中国移动 2026 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/2026年更新/行业深度报告/6C_2026_2026版中国移动云终端算力_中国移动.pdf
+- [ ] **6C** 6C_2025_中国服务器操作系统行业发展与_未署名.pdf ｜ 未署名 2025 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/2026年更新/行业深度报告/6C_2025_中国服务器操作系统行业发展与_未署名.pdf
+- [ ] **6C** 6C_2024_国家及各省市算力基础设施产业_中国移动.pdf ｜ 中国移动 2024 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/2026年更新/行业深度报告/6C_2024_国家及各省市算力基础设施产业_中国移动.pdf
+- [ ] **6C** 6C_2026_20260429数据中心系列_未署名.pdf ｜ 未署名 2026 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/2026年更新/券商报告/6C_2026_20260429数据中心系列_未署名.pdf
+- [ ] **6C** 6C_2026_20260505算电协同从__未署名.pdf ｜ 未署名 2026 ｜ → M06/M01/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/2026年更新/券商报告/6C_2026_20260505算电协同从__未署名.pdf
+- [ ] **6C** 6C_2026_20260608策略深度报告_东吴证券.pdf ｜ 东吴证券 2026 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/2026年更新/券商报告/6C_2026_20260608策略深度报告_东吴证券.pdf
+- [ ] **6C** 6C_2022_AGENT加速有望驱动算力通_未署名.pdf ｜ 未署名 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/2026年更新/券商报告/6C_2022_AGENT加速有望驱动算力通_未署名.pdf
+- [ ] **6C** 6C_2022_AIDC与算力租赁专题算力需_未署名.pdf ｜ 未署名 2022 ｜ → M06/M01/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/2026年更新/券商报告/6C_2022_AIDC与算力租赁专题算力需_未署名.pdf
+- [ ] **6C** 6C_2022_AIDC冷水机组高景气_国产_未署名.pdf ｜ 未署名 2022 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/2026年更新/券商报告/6C_2022_AIDC冷水机组高景气_国产_未署名.pdf
+- [ ] **6C** 6C_2022_全球算力共振_AIDC大时代_未署名.pdf ｜ 未署名 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/2026年更新/券商报告/6C_2022_全球算力共振_AIDC大时代_未署名.pdf
+- [ ] **6C** 6C_2022_全链AI算力领军平台扬帆__未署名.pdf ｜ 未署名 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/2026年更新/券商报告/6C_2022_全链AI算力领军平台扬帆__未署名.pdf
+- [ ] **6C** 6C_2022_国产算力崛起内外双轮驱动下的_英伟达.pdf ｜ 英伟达 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/2026年更新/券商报告/6C_2022_国产算力崛起内外双轮驱动下的_英伟达.pdf
+- [ ] **6C** 6C_2022_国产算力调度运营的机会_英伟达.pdf ｜ 英伟达 2022 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/2026年更新/券商报告/6C_2022_国产算力调度运营的机会_英伟达.pdf
+- [ ] **6C** 6C_2022_太空光伏专题二市场篇通信奠基_未署名.pdf ｜ 未署名 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/2026年更新/券商报告/6C_2022_太空光伏专题二市场篇通信奠基_未署名.pdf
+- [ ] **6C** 6C_2022_建筑工程业AI算力持续高景气_未署名.pdf ｜ 未署名 2022 ｜ → M01/M06/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/2026年更新/券商报告/6C_2022_建筑工程业AI算力持续高景气_未署名.pdf
+- [ ] **6C** 6C_2022_液冷专题报告系列1_AIDC_未署名.pdf ｜ 未署名 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/2026年更新/券商报告/6C_2022_液冷专题报告系列1_AIDC_未署名.pdf
+- [ ] **6C** 6C_2026_深度报告20260528液冷_未署名.pdf ｜ 未署名 2026 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/2026年更新/券商报告/6C_2026_深度报告20260528液冷_未署名.pdf
+- [ ] **6C** 6C_2026_深度报告20260528国金_未署名.pdf ｜ 未署名 2026 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/2026年更新/券商报告/6C_2026_深度报告20260528国金_未署名.pdf
+- [ ] **6C** 6C_2025_电力设备行业2025年报及2_未署名.pdf ｜ 未署名 2025 ｜ → M14/M01/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/2026年更新/券商报告/6C_2025_电力设备行业2025年报及2_未署名.pdf
+- [ ] **6C** 6C_2022_电力设备行业系列报告_49__未署名.pdf ｜ 未署名 2022 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/2026年更新/券商报告/6C_2022_电力设备行业系列报告_49__未署名.pdf
+- [ ] **6C** 6C_2022_防务互连与驱动核心供应商AI_华为.pdf ｜ 华为 2022 ｜ → M01/M06/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/2026年更新/券商报告/6C_2022_防务互连与驱动核心供应商AI_华为.pdf
+- [ ] **6C** 6C_2022_Tolly2022数据中心自_华为.pdf ｜ 华为 2022 ｜ → M01/M10/M06 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2022/6C_2022_Tolly2022数据中心自_华为.pdf
+- [ ] **6C** 6C_2022_双碳背景下数据中心氢能应用的_阿里.pdf ｜ 阿里 2022 ｜ → M01/M05/M06 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2022/6C_2022_双碳背景下数据中心氢能应用的_阿里.pdf
+- [ ] **6C** 6C_2022_阿里云碳效能关于阿里云数据中_阿里.pdf ｜ 阿里 2022 ｜ → M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2022/6C_2022_阿里云碳效能关于阿里云数据中_阿里.pdf
+- [ ] **6C** 6C_2025_20250113能源专题研究_未署名.pdf ｜ 未署名 2025 ｜ → M01/M06/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2025/6C_2025_20250113能源专题研究_未署名.pdf
+- [ ] **6C** 6C_2025_20250122电力设备与新_未署名.pdf ｜ 未署名 2025 ｜ → M01/M06/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2025/6C_2025_20250122电力设备与新_未署名.pdf
+- [ ] **6C** 6C_2025_20250623华源证券RE_华源证券.pdf ｜ 华源证券 2025 ｜ → M01/M13/M06 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2025/6C_2025_20250623华源证券RE_华源证券.pdf
+- [ ] **6C** 6C_2025_2025年亚太地区数据中心建_未署名.pdf ｜ 未署名 2025 ｜ → M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2025/6C_2025_2025年亚太地区数据中心建_未署名.pdf
+- [ ] **6C** 6C_2025_2025年全球数据中心展望塑_未署名.pdf ｜ 未署名 2025 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2025/6C_2025_2025年全球数据中心展望塑_未署名.pdf
+- [ ] **6C** 6C_2022_AI数据中心电源行业报告HV_华为.pdf ｜ 华为 2022 ｜ → M01/M06/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2025/6C_2022_AI数据中心电源行业报告HV_华为.pdf
+- [ ] **6C** 6C_2022_Deepseek影响系列报告_未署名.pdf ｜ 未署名 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2025/6C_2022_Deepseek影响系列报告_未署名.pdf
+- [ ] **6C** 6C_2022_SAIHEAT算能运营商引领_未署名.pdf ｜ 未署名 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2025/6C_2022_SAIHEAT算能运营商引领_未署名.pdf
+- [ ] **6C** 6C_2022_为什么当前时点更应超配数据中_浪潮.pdf ｜ 浪潮 2022 ｜ → M01/M06/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2025/6C_2022_为什么当前时点更应超配数据中_浪潮.pdf
+- [ ] **6C** 6C_2024_华为数据中心2030报告20_华为.pdf ｜ 华为 2024 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2025/6C_2024_华为数据中心2030报告20_华为.pdf
+- [ ] **6C** 6C_2022_威腾电气数据中心母线龙头AI_未署名.pdf ｜ 未署名 2022 ｜ → M01/M06/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2025/6C_2022_威腾电气数据中心母线龙头AI_未署名.pdf
+- [ ] **6C** 6C_2021_广东省5G基站和数据中心总体_未署名.pdf ｜ 未署名 2021 ｜ → M14/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2025/6C_2021_广东省5G基站和数据中心总体_未署名.pdf
+- [ ] **6C** 6C_2022_数据中心供柴油系统技术报告_ODCC.pdf ｜ ODCC 2022 ｜ → M10/M05/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2025/6C_2022_数据中心供柴油系统技术报告_ODCC.pdf
+- [ ] **6C** 6C_2022_数据中心市场平衡前所未有的机_未署名.pdf ｜ 未署名 2022 ｜ → M01/M05/M06 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2025/6C_2022_数据中心市场平衡前所未有的机_未署名.pdf
+- [ ] **6C** 6C_2022_数据中心电力设备专题人工智能_未署名.pdf ｜ 未署名 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2025/6C_2022_数据中心电力设备专题人工智能_未署名.pdf
+- [ ] **6C** 6C_2024_数据中心行业投资与价值洞察2_国信.pdf ｜ 国信 2024 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2025/6C_2024_数据中心行业投资与价值洞察2_国信.pdf
+- [ ] **6C** 6C_2022_液冷龙头受益数据中心强劲热量_未署名.pdf ｜ 未署名 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2025/6C_2022_液冷龙头受益数据中心强劲热量_未署名.pdf
+- [ ] **6C** 6C_2025_深度报告20250206功率_英伟达.pdf ｜ 英伟达 2025 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2025/6C_2025_深度报告20250206功率_英伟达.pdf
+- [ ] **6C** 6C_2022_环保行业垃圾焚烧数据中心的盈_未署名.pdf ｜ 未署名 2022 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2025/6C_2022_环保行业垃圾焚烧数据中心的盈_未署名.pdf
+- [ ] **6C** 6C_2022_电力设备与新能源行业周观察固_未署名.pdf ｜ 未署名 2022 ｜ → M01/M14/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2025/6C_2022_电力设备与新能源行业周观察固_未署名.pdf
+- [ ] **6C** 6C_2022_电气设备行业AIDC电力设备_未署名.pdf ｜ 未署名 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2025/6C_2022_电气设备行业AIDC电力设备_未署名.pdf
+- [ ] **6C** 6C_2022_解耦算力发展与碳排放数据中心_阿里.pdf ｜ 阿里 2022 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2025/6C_2022_解耦算力发展与碳排放数据中心_阿里.pdf
+- [ ] **6C** 6C_2024_2024版数据中心2030_华为.pdf ｜ 华为 2024 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2024_2024版数据中心2030_华为.pdf
+- [ ] **6C** 6C_2024_20240317AI撬动数据_英伟达.pdf ｜ 英伟达 2024 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2024_20240317AI撬动数据_英伟达.pdf
+- [ ] **6C** 6C_2024_20240325数据中心产业_国信.pdf ｜ 国信 2024 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2024_20240325数据中心产业_国信.pdf
+- [ ] **6C** 6C_2024_20240514高增长AI算_华为.pdf ｜ 华为 2024 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2024_20240514高增长AI算_华为.pdf
+- [ ] **6C** 6C_2024_20241218国有数据中心_未署名.pdf ｜ 未署名 2024 ｜ → M01/M06/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2024_20241218国有数据中心_未署名.pdf
+- [ ] **6C** 6C_2024_2024中国绿色算力发展研究_国信.pdf ｜ 国信 2024 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2024_2024中国绿色算力发展研究_国信.pdf
+- [ ] **6C** 6C_2024_2024华为数字能源2030_华为.pdf ｜ 华为 2024 ｜ → M01/M10/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2024_2024华为数字能源2030_华为.pdf
+- [ ] **6C** 6C_2024_2024版数据存储2030_未署名.pdf ｜ 未署名 2024 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2024_2024版数据存储2030_未署名.pdf
+- [ ] **6C** 6C_2024_2024版数字能源2030构_未署名.pdf ｜ 未署名 2024 ｜ → M01/M10/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2024_2024版数字能源2030构_未署名.pdf
+- [ ] **6C** 6C_2022_AIGC行业深度报告16液冷_英伟达.pdf ｜ 英伟达 2022 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2022_AIGC行业深度报告16液冷_英伟达.pdf
+- [ ] **6C** 6C_2022_AI算力卖水人专题系列2芯片_曙光.pdf ｜ 曙光 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2022_AI算力卖水人专题系列2芯片_曙光.pdf
+- [ ] **6C** 6C_2022_MPO受益AI数据中心高带宽_浪潮.pdf ｜ 浪潮 2022 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2022_MPO受益AI数据中心高带宽_浪潮.pdf
+- [ ] **6C** 6C_2022_高盛人工智能数据中心的全球电_高盛.pdf ｜ 高盛 2022 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2022_高盛人工智能数据中心的全球电_高盛.pdf
+- [ ] **6C** 6C_2022_万司股份新三板公司研究报告专_未署名.pdf ｜ 未署名 2022 ｜ → M01/M10/M06 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2022_万司股份新三板公司研究报告专_未署名.pdf
+- [ ] **6C** 6C_2024_东盟在东盟建设下一代数据中心_未署名.pdf ｜ 未署名 2024 ｜ → M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2024_东盟在东盟建设下一代数据中心_未署名.pdf
+- [ ] **6C** 6C_2022_为智能赋能人工智能和数据中心_未署名.pdf ｜ 未署名 2022 ｜ → M13/M06/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2022_为智能赋能人工智能和数据中心_未署名.pdf
+- [ ] **6C** 6C_2022_从云计算看AI投资的ROI企_未署名.pdf ｜ 未署名 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2022_从云计算看AI投资的ROI企_未署名.pdf
+- [ ] **6C** 6C_2022_全球数据中心展望11页_2m_未署名.pdf ｜ 未署名 2022 ｜ → M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2022_全球数据中心展望11页_2m_未署名.pdf
+- [ ] **6C** 6C_2022_北交所科技新产业跟踪第十期A_英伟达.pdf ｜ 英伟达 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2022_北交所科技新产业跟踪第十期A_英伟达.pdf
+- [ ] **6C** 6C_2022_数据中心产业情报周刊AI产业_未署名.pdf ｜ 未署名 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2022_数据中心产业情报周刊AI产业_未署名.pdf
+- [ ] **6C** 6C_2022_数据中心产业情报周刊数据中心_中国电信.pdf ｜ 中国电信 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2022_数据中心产业情报周刊数据中心_中国电信.pdf
+- [ ] **6C** 6C_2022_数据中心产业情报周刊数据中心_中国移动.pdf ｜ 中国移动 2022 ｜ → M06/M01/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2022_数据中心产业情报周刊数据中心_中国移动.pdf
+- [ ] **6C** 6C_2023_智科咨询中国液冷数据中心市场_未署名.pdf ｜ 未署名 2023 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2023_智科咨询中国液冷数据中心市场_未署名.pdf
+- [ ] **6C** 6C_2024_深度报告20240409数据_未署名.pdf ｜ 未署名 2024 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2024_深度报告20240409数据_未署名.pdf
+- [ ] **6C** 6C_2024_深度报告20240412深耕_未署名.pdf ｜ 未署名 2024 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2024_深度报告20240412深耕_未署名.pdf
+- [ ] **6C** 6C_2024_深度报告20240612深度_未署名.pdf ｜ 未署名 2024 ｜ → M06/M01/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2024_深度报告20240612深度_未署名.pdf
+- [ ] **6C** 6C_2024_深度报告20240625国内_浪潮.pdf ｜ 浪潮 2024 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2024_深度报告20240625国内_浪潮.pdf
+- [ ] **6C** 6C_2024_深度报告20240826从数_未署名.pdf ｜ 未署名 2024 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2024_深度报告20240826从数_未署名.pdf
+- [ ] **6C** 6C_2024_深度报告20240903聚力_未署名.pdf ｜ 未署名 2024 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2024_深度报告20240903聚力_未署名.pdf
+- [ ] **6C** 6C_2024_深度报告20240906儒竞_未署名.pdf ｜ 未署名 2024 ｜ → M01/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2024_深度报告20240906儒竞_未署名.pdf
+- [ ] **6C** 6C_2023_中国信通院中国第三方数据中心_信通院.pdf ｜ 信通院 2023 ｜ → M01/M06/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2023/6C_2023_中国信通院中国第三方数据中心_信通院.pdf
+- [ ] **6C** 6C_2023_标准绿色数据中心评价规范DB_未署名.pdf ｜ 未署名 2023 ｜ → M10/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/03 数据中心标准及规范（149份）/6C_2023_标准绿色数据中心评价规范DB_未署名.pdf
+- [ ] **6C** 6C_2008_GB501742008电子信_未署名.pdf ｜ 未署名 2008 ｜ → M06/M01/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/03 数据中心标准及规范（149份）/国家标准/6C_2008_GB501742008电子信_未署名.pdf
+- [ ] **6C** 6C_2013_上海建规数据中心基础设施设计_未署名.pdf ｜ 未署名 2013 ｜ → M06/M05/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/03 数据中心标准及规范（149份）/地方/6C_2013_上海建规数据中心基础设施设计_未署名.pdf
+- [ ] **6C** 6C_2022_XX数据中心网络及安全方案建_未署名.doc ｜ 未署名 2022 ｜ → M06/M10/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/01 数据中心解决方案（283份）/6C_2022_XX数据中心网络及安全方案建_未署名.doc
+- [ ] **6C** 6C_2022_云计算数据中心网络技术_未署名.pdf ｜ 未署名 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/01 数据中心解决方案（283份）/6C_2022_云计算数据中心网络技术_未署名.pdf
+- [ ] **6C** 6C_2022_华为数据中心2030_华为.pdf ｜ 华为 2022 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/01 数据中心解决方案（283份）/6C_2022_华为数据中心2030_华为.pdf
+- [ ] **6C** 6C_2022_数据中心建设整体方案_未署名.doc ｜ 未署名 2022 ｜ → M06/M10/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/01 数据中心解决方案（283份）/6C_2022_数据中心建设整体方案_未署名.doc
+- [ ] **6C** 6C_2022_数据中心建设标准_未署名.doc ｜ 未署名 2022 ｜ → M06/M01/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/01 数据中心解决方案（283份）/6C_2022_数据中心建设标准_未署名.doc
+- [ ] **6C** 6C_2022_数据中心网络_未署名.pdf ｜ 未署名 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/01 数据中心解决方案（283份）/6C_2022_数据中心网络_未署名.pdf
+- [ ] **6C** 6C_2022_电子信息系统机房设计规_未署名.doc ｜ 未署名 2022 ｜ → M06/M05/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/01 数据中心解决方案（283份）/6C_2022_电子信息系统机房设计规_未署名.doc
+- [ ] **6C** 6C_2022_银行数据中心项目可行性研究报_未署名.docx ｜ 未署名 2022 ｜ → M05/M10/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/01 数据中心解决方案（283份）/6C_2022_银行数据中心项目可行性研究报_未署名.docx
+- [ ] **6C** 6C_2022_高校大数据中心建设规划方案_未署名.docx ｜ 未署名 2022 ｜ → M10/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/01 数据中心解决方案（283份）/6C_2022_高校大数据中心建设规划方案_未署名.docx
+- [ ] **6C** 6C_2021_2021低碳数据中心发展白皮_阿里.pdf ｜ 阿里 2021 ｜ → M13/M01/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/02 数据中心白皮书（83份）/6C_2021_2021低碳数据中心发展白皮_阿里.pdf
+- [ ] **6C** 6C_2023_2023数据中心自适应AI节_ODCC.pdf ｜ ODCC 2023 ｜ → M01/M13/M06 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/02 数据中心白皮书（83份）/6C_2023_2023数据中心自适应AI节_ODCC.pdf
+- [ ] **6C** 6C_2023_2023数据中心高性能网络拥_ODCC.pdf ｜ ODCC 2023 ｜ → M13/M06/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/02 数据中心白皮书（83份）/6C_2023_2023数据中心高性能网络拥_ODCC.pdf
+- [ ] **6C** 6C_2022_AIDC白皮书_华为.pdf ｜ 华为 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/02 数据中心白皮书（83份）/6C_2022_AIDC白皮书_华为.pdf
+- [ ] **6C** 6C_2023_IDC记忆科技2023年SS_未署名.pdf ｜ 未署名 2023 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/02 数据中心白皮书（83份）/6C_2023_IDC记忆科技2023年SS_未署名.pdf
+- [ ] **6C** 6C_2023_ODCC2023数据中心硬盘_ODCC.pdf ｜ ODCC 2023 ｜ → M01/M10/M06 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/02 数据中心白皮书（83份）/6C_2023_ODCC2023数据中心硬盘_ODCC.pdf
+- [ ] **6C** 6C_2023_ODCC2023数据中心绿色_ODCC.pdf ｜ ODCC 2023 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/02 数据中心白皮书（83份）/6C_2023_ODCC2023数据中心绿色_ODCC.pdf
+- [ ] **6C** 6C_2023_ODCC2023零碳数据中心_ODCC.pdf ｜ ODCC 2023 ｜ → M05/M10/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/02 数据中心白皮书（83份）/6C_2023_ODCC2023零碳数据中心_ODCC.pdf
+- [ ] **6C** 6C_2022_ZG数据中心产业宁夏发展白皮_华信咨询设计研究院.pdf ｜ 华信咨询设计研究院 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/02 数据中心白皮书（83份）/6C_2022_ZG数据中心产业宁夏发展白皮_华信咨询设计研究院.pdf
+- [ ] **6C** 6C_2022_中国信通院2022年数据中心_信通院.pdf ｜ 信通院 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/02 数据中心白皮书（83份）/6C_2022_中国信通院2022年数据中心_信通院.pdf
+- [ ] **6C** 6C_2022_中国计量科学研究院数据中心冷_未署名.pdf ｜ 未署名 2022 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/02 数据中心白皮书（83份）/6C_2022_中国计量科学研究院数据中心冷_未署名.pdf
+- [ ] **6C** 6C_2023_中国通服数字基建产业研究院中_未署名.pdf ｜ 未署名 2023 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/02 数据中心白皮书（83份）/6C_2023_中国通服数字基建产业研究院中_未署名.pdf
+- [ ] **6C** 6C_2023_北京金融科技产业联盟2023_未署名.pdf ｜ 未署名 2023 ｜ → M13/M06/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/02 数据中心白皮书（83份）/6C_2023_北京金融科技产业联盟2023_未署名.pdf
+- [ ] **6C** 6C_2022_华信咨询中国数据中心产业宁夏_未署名.pdf ｜ 未署名 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/02 数据中心白皮书（83份）/6C_2022_华信咨询中国数据中心产业宁夏_未署名.pdf
+- [ ] **6C** 6C_2023_开放数据中心委员会2023浸_开放数据中心委员会.pdf ｜ 开放数据中心委员会 2023 ｜ → M05/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/02 数据中心白皮书（83份）/6C_2023_开放数据中心委员会2023浸_开放数据中心委员会.pdf
+- [ ] **6C** 6C_2023_数据中心冷板式液冷测试验证技_未署名.pdf ｜ 未署名 2023 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/02 数据中心白皮书（83份）/6C_2023_数据中心冷板式液冷测试验证技_未署名.pdf
+- [ ] **6C** 6C_2022_数据中心白皮书2022年中国_信通院.pdf ｜ 信通院 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/02 数据中心白皮书（83份）/6C_2022_数据中心白皮书2022年中国_信通院.pdf
+- [ ] **6C** 6C_2023_零碳数据中心园区能碳管理系统_ODCC.pdf ｜ ODCC 2023 ｜ → M05/M10/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/02 数据中心白皮书（83份）/6C_2023_零碳数据中心园区能碳管理系统_ODCC.pdf
+- [ ] **6C** 6C_2023_2023年243页2023云_阿里.pdf ｜ 阿里 2023 ｜ → M13/M06/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/6C_2023_2023年243页2023云_阿里.pdf
+- [ ] **6C** 6C_2023_2023年24页AI算力行业_百度.pdf ｜ 百度 2023 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/6C_2023_2023年24页AI算力行业_百度.pdf
+- [ ] **6C** 6C_2023_2023年28页北交所行业主_未署名.pdf ｜ 未署名 2023 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/6C_2023_2023年28页北交所行业主_未署名.pdf
+- [ ] **6C** 6C_2023_2023年40页互联网行业智_国信.pdf ｜ 国信 2023 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/6C_2023_2023年40页互联网行业智_国信.pdf
+- [ ] **6C** 6C_2023_2023年40页北交所新股申_未署名.pdf ｜ 未署名 2023 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/6C_2023_2023年40页北交所新股申_未署名.pdf
+- [ ] **6C** 6C_2023_2023年47页通信行业用A_未署名.pdf ｜ 未署名 2023 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/6C_2023_2023年47页通信行业用A_未署名.pdf
+- [ ] **6C** 6C_2023_2023年48页计算机行业2_百度.pdf ｜ 百度 2023 ｜ → M06/M01/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/6C_2023_2023年48页计算机行业2_百度.pdf
+- [ ] **6C** 6C_2023_2023年54页智算产业发展_浪潮.pdf ｜ 浪潮 2023 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/6C_2023_2023年54页智算产业发展_浪潮.pdf
+- [ ] **6C** 6C_2024_2024年17页服务器行业及_未署名.pdf ｜ 未署名 2024 ｜ → M06/M01/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/6C_2024_2024年17页服务器行业及_未署名.pdf
+- [ ] **6C** 6C_2024_2024年244页智算时代的_阿里.pdf ｜ 阿里 2024 ｜ → M13/M06/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/6C_2024_2024年244页智算时代的_阿里.pdf
+- [ ] **6C** 6C_2024_2024年36页数据中心行业_中国电信.pdf ｜ 中国电信 2024 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/6C_2024_2024年36页数据中心行业_中国电信.pdf
+- [ ] **6C** 6C_2024_2024年58页计算机行业新_华为.pdf ｜ 华为 2024 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/6C_2024_2024年58页计算机行业新_华为.pdf
+- [ ] **6C** 6C_2024_2024年65页人工智能行业_未署名.pdf ｜ 未署名 2024 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/6C_2024_2024年65页人工智能行业_未署名.pdf
+- [ ] **6C** 6C_2024_2024年81页中国绿色算力_国信.pdf ｜ 国信 2024 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/6C_2024_2024年81页中国绿色算力_国信.pdf
+- [ ] **6C** 6C_2024_2024年81页温控行业报告_未署名.pdf ｜ 未署名 2024 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/6C_2024_2024年81页温控行业报告_未署名.pdf
+- [ ] **6C** 6C_2022_AI撬动数据中心液冷服务器渗_英伟达.pdf ｜ 英伟达 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/6C_2022_AI撬动数据中心液冷服务器渗_英伟达.pdf
+- [ ] **6C** 6C_2022_人工智能新型智算中心改造系列_华为.pdf ｜ 华为 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/6C_2022_人工智能新型智算中心改造系列_华为.pdf
+- [ ] **6C** 6C_2022_储能温控快速放量数据中心蓄势_华为.pdf ｜ 华为 2022 ｜ → M01/M14/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/6C_2022_储能温控快速放量数据中心蓄势_华为.pdf
+- [ ] **6C** 6C_2022_通信液冷温控智算中心的重要保_阿里.pdf ｜ 阿里 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/6C_2022_通信液冷温控智算中心的重要保_阿里.pdf
+- [ ] **6C** 6C_2025_20250217IDC人工智_未署名.pdf ｜ 未署名 2025 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/2025.2/6C_2025_20250217IDC人工智_未署名.pdf
+- [ ] **6C** 6C_2022_电力设备高功率密度智算数据中_英伟达.pdf ｜ 英伟达 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/2025.3/6C_2022_电力设备高功率密度智算数据中_英伟达.pdf
+- [ ] **6C** 6C_2024_202442科技行业前瞻专题_未署名.pdf ｜ 未署名 2024 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/2024年12月/6C_2024_202442科技行业前瞻专题_未署名.pdf
+- [ ] **6C** 6C_2022_100页WORD智算中心建设_未署名.docx ｜ 未署名 2022 ｜ → M10/M14/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2022_100页WORD智算中心建设_未署名.docx
+- [ ] **6C** 6C_2022_115页WORD市环保云计算_未署名.doc ｜ 未署名 2022 ｜ → M06/M01/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2022_115页WORD市环保云计算_未署名.doc
+- [ ] **6C** 6C_2022_130页浸没液冷数据中心规范_ODCC.pdf ｜ ODCC 2022 ｜ → M06/M10/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2022_130页浸没液冷数据中心规范_ODCC.pdf
+- [ ] **6C** 6C_2023_175页WORDF5G全光网_未署名.docx ｜ 未署名 2023 ｜ → M10/M06/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2023_175页WORDF5G全光网_未署名.docx
+- [ ] **6C** 6C_2022_180页WORD数据中心的服_NVIDIA.docx ｜ NVIDIA 2022 ｜ → M06/M13/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2022_180页WORD数据中心的服_NVIDIA.docx
+- [ ] **6C** 6C_2022_238页WORD数据中心机房_未署名.docx ｜ 未署名 2022 ｜ → M10/M06/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2022_238页WORD数据中心机房_未署名.docx
+- [ ] **6C** 6C_2022_343页WORD北京某数据中_未署名.doc ｜ 未署名 2022 ｜ → M10/M14/M06 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2022_343页WORD北京某数据中_未署名.doc
+- [ ] **6C** 6C_2022_37页数据中心算力碳效白皮书_ODCC.pdf ｜ ODCC 2022 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2022_37页数据中心算力碳效白皮书_ODCC.pdf
+- [ ] **6C** 6C_2022_37页新一代智能间接蒸发冷却_未署名.pdf ｜ 未署名 2022 ｜ → M13/M06/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2022_37页新一代智能间接蒸发冷却_未署名.pdf
+- [ ] **6C** 6C_2022_38页企业数据中心设计建议方_未署名.pdf ｜ 未署名 2022 ｜ → M06/M10/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2022_38页企业数据中心设计建议方_未署名.pdf
+- [ ] **6C** 6C_2022_39页上海数据中心建设导论_未署名.pdf ｜ 未署名 2022 ｜ → M06/M13/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2022_39页上海数据中心建设导论_未署名.pdf
+- [ ] **6C** 6C_2021_40页上海市数据中心建设导则_未署名.pdf ｜ 未署名 2021 ｜ → M06/M13/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2021_40页上海市数据中心建设导则_未署名.pdf
+- [ ] **6C** 6C_2022_40页新一代数据中心智能融合_华为.pdf ｜ 华为 2022 ｜ → M10/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2022_40页新一代数据中心智能融合_华为.pdf
+- [ ] **6C** 6C_2022_42页数据中心智能无损网络白_ODCC.pdf ｜ ODCC 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2022_42页数据中心智能无损网络白_ODCC.pdf
+- [ ] **6C** 6C_2022_46页数据中心白皮书信通院2_信通院.pdf ｜ 信通院 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2022_46页数据中心白皮书信通院2_信通院.pdf
+- [ ] **6C** 6C_2023_47页智算中心网络架构白皮书_百度.pdf ｜ 百度 2023 ｜ → M06/M01/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2023_47页智算中心网络架构白皮书_百度.pdf
+- [ ] **6C** 6C_2022_48页数据中心白皮书信通院2_信通院.pdf ｜ 信通院 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2022_48页数据中心白皮书信通院2_信通院.pdf
+- [ ] **6C** 6C_2022_54页中国数据中心能耗与可再_未署名.pdf ｜ 未署名 2022 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2022_54页中国数据中心能耗与可再_未署名.pdf
+- [ ] **6C** 6C_2023_54页智算产业发展白皮中国电_中国电信.pdf ｜ 中国电信 2023 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2023_54页智算产业发展白皮中国电_中国电信.pdf
+- [ ] **6C** 6C_2023_60页中国数据中心产业发展白_未署名.pdf ｜ 未署名 2023 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2023_60页中国数据中心产业发展白_未署名.pdf
+- [ ] **6C** 6C_2022_60页数据中心算力白皮书_ODCC.pdf ｜ ODCC 2022 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2022_60页数据中心算力白皮书_ODCC.pdf
+- [ ] **6C** 6C_2024_61页云计算白皮书信通院20_信通院.pdf ｜ 信通院 2024 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2024_61页云计算白皮书信通院20_信通院.pdf
+- [ ] **6C** 6C_2022_62页WORD数据中心建设整_未署名.doc ｜ 未署名 2022 ｜ → M06/M10/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2022_62页WORD数据中心建设整_未署名.doc
+- [ ] **6C** 6C_2022_63页WORD警务云灾备机房_未署名.docx ｜ 未署名 2022 ｜ → M06/M13/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2022_63页WORD警务云灾备机房_未署名.docx
+- [ ] **6C** 6C_2022_70页WORD数据中心网络及_未署名.doc ｜ 未署名 2022 ｜ → M06/M10/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2022_70页WORD数据中心网络及_未署名.doc
+- [ ] **6C** 6C_2022_70页WORD深信服数据中心_未署名.docx ｜ 未署名 2022 ｜ → M06/M10/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2022_70页WORD深信服数据中心_未署名.docx
+- [ ] **6C** 6C_2022_71页WORD中心机房建设项_未署名.docx ｜ 未署名 2022 ｜ → M06/M05/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2022_71页WORD中心机房建设项_未署名.docx
+- [ ] **6C** 6C_2022_77页粤港澳数据中心新基建发_未署名.pdf ｜ 未署名 2022 ｜ → M01/M06/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2022_77页粤港澳数据中心新基建发_未署名.pdf
+- [ ] **6C** 6C_2022_92页中国数据中心产业宁夏发_未署名.pdf ｜ 未署名 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2022_92页中国数据中心产业宁夏发_未署名.pdf
+- [ ] **6C** 6C_2024_93页华为云安全白皮书华为2_华为.pdf ｜ 华为 2024 ｜ → M10/M06/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2024_93页华为云安全白皮书华为2_华为.pdf
+- [ ] **6C** 6C_2022_95页WORD企业IDC统一_未署名.docx ｜ 未署名 2022 ｜ → M06/M10/M14 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2022_95页WORD企业IDC统一_未署名.docx
+- [ ] **6C** 6C_2022_98页WORD市智慧城市云公_未署名.doc ｜ 未署名 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/6C_2022_98页WORD市智慧城市云公_未署名.doc
+- [ ] **6C** 6C_2023_2023新型算力中心调研报告_益企研究院.pdf ｜ 益企研究院 2023 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/68 智算中心解决方案行业报告白皮书智能算力超算中心建设方案可研/02行业报告/6C_2023_2023新型算力中心调研报告_益企研究院.pdf
+- [ ] **6C** 6C_2023_2023智算中心网络架构白皮_百度.pdf ｜ 百度 2023 ｜ → M06/M01/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/68 智算中心解决方案行业报告白皮书智能算力超算中心建设方案可研/02行业报告/6C_2023_2023智算中心网络架构白皮_百度.pdf
+- [ ] **6C** 6C_2022_人工智能专题研究智算中心赋能_信通院.pdf ｜ 信通院 2022 ｜ → M06/M01/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/68 智算中心解决方案行业报告白皮书智能算力超算中心建设方案可研/02行业报告/6C_2022_人工智能专题研究智算中心赋能_信通院.pdf
+- [ ] **6C** 6C_2022_某区智算中心建设项目初步设计_未署名.docx ｜ 未署名 2022 ｜ → M10/M14/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/68 智算中心解决方案行业报告白皮书智能算力超算中心建设方案可研/01解决方案/6C_2022_某区智算中心建设项目初步设计_未署名.docx
+- [ ] **6C** 6C_2022_领跑100联想算力基础设施案_联想.pdf ｜ 联想 2022 ｜ → M06/M10/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/68 智算中心解决方案行业报告白皮书智能算力超算中心建设方案可研/01解决方案/6C_2022_领跑100联想算力基础设施案_联想.pdf
+- [ ] **6C** 6C_2022_20220424中国信通院数_信通院.pdf ｜ 信通院 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2022/6C_2022_20220424中国信通院数_信通院.pdf
+- [ ] **6C** 6C_2022_20220718国资背景第三_未署名.pdf ｜ 未署名 2022 ｜ → M01/M13/M06 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2022/6C_2022_20220718国资背景第三_未署名.pdf
+- [ ] **6C** 6C_2022_20220805数据中心浸没_赛迪.pdf ｜ 赛迪 2022 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2022/6C_2022_20220805数据中心浸没_赛迪.pdf
+- [ ] **6C** 6C_2022_20220922数据中心液冷_赛迪.pdf ｜ 赛迪 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2022/6C_2022_20220922数据中心液冷_赛迪.pdf
+- [ ] **6C** 6C_2022_20221025数据中心进入_华为.pdf ｜ 华为 2022 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2022/6C_2022_20221025数据中心进入_华为.pdf
+- [ ] **6C** 6C_2022_20221031数据中心算力_ODCC.pdf ｜ ODCC 2022 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2022/6C_2022_20221031数据中心算力_ODCC.pdf
+- [ ] **6C** 6C_2022_20221219液冷技术领先_曙光.pdf ｜ 曙光 2022 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2022/6C_2022_20221219液冷技术领先_曙光.pdf
+- [ ] **6C** 6C_2022_5G承载与数据中心光模块白皮_未署名.pdf ｜ 未署名 2022 ｜ → M06/M01/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2022/6C_2022_5G承载与数据中心光模块白皮_未署名.pdf
+- [ ] **6C** 6C_2022_ODCC数据中心抗震白皮书7_ODCC.pdf ｜ ODCC 2022 ｜ → M06/M01/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2022/6C_2022_ODCC数据中心抗震白皮书7_ODCC.pdf
+- [ ] **6C** 6C_2022_中国信通院数据中心白皮书20_信通院.pdf ｜ 信通院 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2022/6C_2022_中国信通院数据中心白皮书20_信通院.pdf
+- [ ] **6C** 6C_2022_中国大陆数据中心四大聚焦点2_未署名.pdf ｜ 未署名 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2022/6C_2022_中国大陆数据中心四大聚焦点2_未署名.pdf
+- [ ] **6C** 6C_2020_中国数据中心可再生能源应用发_中国电子学会.pdf ｜ 中国电子学会 2020 ｜ → M01/M05/M06 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2022/6C_2020_中国数据中心可再生能源应用发_中国电子学会.pdf
+- [ ] **6C** 6C_2022_华为数据中心能源白皮书新一代_华为.pdf ｜ 华为 2022 ｜ → M13/M06/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2022/6C_2022_华为数据中心能源白皮书新一代_华为.pdf
+- [ ] **6C** 6C_2022_广东省新型数据中心发展白皮书_未署名.pdf ｜ 未署名 2022 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2022/6C_2022_广东省新型数据中心发展白皮书_未署名.pdf
+- [ ] **6C** 6C_2022_开放数据中心委员会数据中心算_开放数据中心委员会.pdf ｜ 开放数据中心委员会 2022 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2022/6C_2022_开放数据中心委员会数据中心算_开放数据中心委员会.pdf
+- [ ] **6C** 6C_2022_数据中心白皮书2022年46_国信.pdf ｜ 国信 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2022/6C_2022_数据中心白皮书2022年46_国信.pdf
+- [ ] **6C** 6C_2022_数据中心能耗与可再生能源使用_绿色和平华北电力大学.pdf ｜ 绿色和平华北电力大学 2022 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2022/6C_2022_数据中心能耗与可再生能源使用_绿色和平华北电力大学.pdf
+- [ ] **6C** 6C_2022_数据中心节能改造与实践案例1_未署名.pdf ｜ 未署名 2022 ｜ → M13/M06/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2022/6C_2022_数据中心节能改造与实践案例1_未署名.pdf
+- [ ] **6C** 6C_2022_点亮绿色云端中国数据中心能耗_未署名.pdf ｜ 未署名 2022 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2022/6C_2022_点亮绿色云端中国数据中心能耗_未署名.pdf
+- [ ] **6C** 6C_2022_科技数据中心走进大海洋时代1_工信部.pdf ｜ 工信部 2022 ｜ → M01/M13/M06 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2022/6C_2022_科技数据中心走进大海洋时代1_工信部.pdf
+- [ ] **6C** 6C_2025_20250101企业数据中心_未署名.pdf ｜ 未署名 2025 ｜ → M06/M10/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20250101企业数据中心_未署名.pdf
+- [ ] **6C** 6C_2025_20250114开放数据中心_开放数据中心委员会.pdf ｜ 开放数据中心委员会 2025 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20250114开放数据中心_开放数据中心委员会.pdf
+- [ ] **6C** 6C_2025_20250121ODCC20_ODCC.pdf ｜ ODCC 2025 ｜ → M10/M05/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20250121ODCC20_ODCC.pdf
+- [ ] **6C** 6C_2025_202501242024数据_国信.pdf ｜ 国信 2025 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_202501242024数据_国信.pdf
+- [ ] **6C** 6C_2025_202502082025年全_未署名.pdf ｜ 未署名 2025 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_202502082025年全_未署名.pdf
+- [ ] **6C** 6C_2025_20250213浸没液冷数据_ODCC.pdf ｜ ODCC 2025 ｜ → M06/M10/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20250213浸没液冷数据_ODCC.pdf
+- [ ] **6C** 6C_2025_20250304中信期货De_中信.pdf ｜ 中信 2025 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20250304中信期货De_中信.pdf
+- [ ] **6C** 6C_2025_20250307COMMSC_未署名.pdf ｜ 未署名 2025 ｜ → M06/M01/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20250307COMMSC_未署名.pdf
+- [ ] **6C** 6C_2025_20250307美国康普公司_美国康普公司.pdf ｜ 美国康普公司 2025 ｜ → M06/M01/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20250307美国康普公司_美国康普公司.pdf
+- [ ] **6C** 6C_2025_20250319埃森哲202_未署名.pdf ｜ 未署名 2025 ｜ → M13/M06 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20250319埃森哲202_未署名.pdf
+- [ ] **6C** 6C_2025_202503262024年北_未署名.pdf ｜ 未署名 2025 ｜ → M01/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_202503262024年北_未署名.pdf
+- [ ] **6C** 6C_2025_20250326盈立证券SA_盈立证券.pdf ｜ 盈立证券 2025 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20250326盈立证券SA_盈立证券.pdf
+- [ ] **6C** 6C_2025_202503282025年亚_未署名.pdf ｜ 未署名 2025 ｜ → M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_202503282025年亚_未署名.pdf
+- [ ] **6C** 6C_2025_20250330高力国际美国_未署名.pdf ｜ 未署名 2025 ｜ → M01/M05/M06 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20250330高力国际美国_未署名.pdf
+- [ ] **6C** 6C_2025_20250402头豹研究院2_头豹.pdf ｜ 头豹 2025 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20250402头豹研究院2_头豹.pdf
+- [ ] **6C** 6C_2025_20250405数据中心的发_未署名.pdf ｜ 未署名 2025 ｜ → M06/M01/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20250405数据中心的发_未署名.pdf
+- [ ] **6C** 6C_2025_202504092025数据_未署名.pdf ｜ 未署名 2025 ｜ → M01/M05/M06 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_202504092025数据_未署名.pdf
+- [ ] **6C** 6C_2025_20250413NextG联_未署名.pdf ｜ 未署名 2025 ｜ → M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20250413NextG联_未署名.pdf
+- [ ] **6C** 6C_2025_20250701华源证券RE_华源证券.pdf ｜ 华源证券 2025 ｜ → M01/M13/M06 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20250701华源证券RE_华源证券.pdf
+- [ ] **6C** 6C_2025_20250905金科创新社2_未署名.pdf ｜ 未署名 2025 ｜ → M10/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20250905金科创新社2_未署名.pdf
+- [ ] **6C** 6C_2025_20250919伊顿2025_未署名.pdf ｜ 未署名 2025 ｜ → M06/M10/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20250919伊顿2025_未署名.pdf
+- [ ] **6C** 6C_2025_20250921华源证券奥美_华源证券.pdf ｜ 华源证券 2025 ｜ → M01/M14/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20250921华源证券奥美_华源证券.pdf
+- [ ] **6C** 6C_2025_20250926ODCC20_ODCC.pdf ｜ ODCC 2025 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20250926ODCC20_ODCC.pdf
+- [ ] **6C** 6C_2025_20250927ODCC开放_ODCC.pdf ｜ ODCC 2025 ｜ → M06/M10/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20250927ODCC开放_ODCC.pdf
+- [ ] **6C** 6C_2025_20250927ODCC开放_ODCC_02.pdf ｜ ODCC 2025 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20250927ODCC开放_ODCC_02.pdf
+- [ ] **6C** 6C_2025_20250927ODCC开放_ODCC_03.pdf ｜ ODCC 2025 ｜ → M06/M01/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20250927ODCC开放_ODCC_03.pdf
+- [ ] **6C** 6C_2025_20250927ODCC开放_ODCC_04.pdf ｜ ODCC 2025 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20250927ODCC开放_ODCC_04.pdf
+- [ ] **6C** 6C_2025_20250927ODCC开放_ODCC_05.pdf ｜ ODCC 2025 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20250927ODCC开放_ODCC_05.pdf
+- [ ] **6C** 6C_2025_20250927ODCC开放_ODCC_06.pdf ｜ ODCC 2025 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20250927ODCC开放_ODCC_06.pdf
+- [ ] **6C** 6C_2025_20250927国信化工数据_国信.pdf ｜ 国信 2025 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20250927国信化工数据_国信.pdf
+- [ ] **6C** 6C_2025_20251014数据中心的电_未署名.pdf ｜ 未署名 2025 ｜ → M13/M06 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20251014数据中心的电_未署名.pdf
+- [ ] **6C** 6C_2025_20251020高盛数据中心_高盛.pdf ｜ 高盛 2025 ｜ → M01/M10/M06 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20251020高盛数据中心_高盛.pdf
+- [ ] **6C** 6C_2025_20251027施耐德电气算_施耐德.pdf ｜ 施耐德 2025 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20251027施耐德电气算_施耐德.pdf
+- [ ] **6C** 6C_2025_202512122025年保_未署名.pdf ｜ 未署名 2025 ｜ → M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_202512122025年保_未署名.pdf
+- [ ] **6C** 6C_2025_20251219Mandal_未署名.pdf ｜ 未署名 2025 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20251219Mandal_未署名.pdf
+- [ ] **6C** 6C_2025_20251219中国通信工业_中国通信工业协会数据中心委员会.pdf ｜ 中国通信工业协会数据中心委员会 2025 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20251219中国通信工业_中国通信工业协会数据中心委员会.pdf
+- [ ] **6C** 6C_2025_20251219爱建证券爱建_爱建证券.pdf ｜ 爱建证券 2025 ｜ → M01/M14/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20251219爱建证券爱建_爱建证券.pdf
+- [ ] **6C** 6C_2025_20251222爱建证券SO_爱建证券.pdf ｜ 爱建证券 2025 ｜ → M01/M14/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20251222爱建证券SO_爱建证券.pdf
+- [ ] **6C** 6C_2025_20251227德国和中国的_未署名.pdf ｜ 未署名 2025 ｜ → M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_20251227德国和中国的_未署名.pdf
+- [ ] **6C** 6C_2025_2025年数据中心IDC标杆_未署名.pdf ｜ 未署名 2025 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_2025年数据中心IDC标杆_未署名.pdf
+- [ ] **6C** 6C_2025_2025年金融业新一代数据中_工信部.pdf ｜ 工信部 2025 ｜ → M10/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_2025年金融业新一代数据中_工信部.pdf
+- [ ] **6C** 6C_2022_华为AI数据中心参考设计61_华为.pdf ｜ 华为 2022 ｜ → M06/M05/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2022_华为AI数据中心参考设计61_华为.pdf
+- [ ] **6C** 6C_2022_电力AI系列报告二AI数据中_华为.pdf ｜ 华为 2022 ｜ → M01/M06/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2022_电力AI系列报告二AI数据中_华为.pdf
+- [ ] **6C** 6C_2024_20240101XX市环保云_未署名.doc ｜ 未署名 2024 ｜ → M06/M01/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2024_20240101XX市环保云_未署名.doc
+- [ ] **6C** 6C_2024_20240101XX轨道交通_未署名.doc ｜ 未署名 2024 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2024_20240101XX轨道交通_未署名.doc
+- [ ] **6C** 6C_2024_202403022024绿色_未署名.pdf ｜ 未署名 2024 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2024_202403022024绿色_未署名.pdf
+- [ ] **6C** 6C_2024_20240412中国银河曙光_曙光.pdf ｜ 曙光 2024 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2024_20240412中国银河曙光_曙光.pdf
+- [ ] **6C** 6C_2024_20240414首创证券英维_首创证券.pdf ｜ 首创证券 2024 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2024_20240414首创证券英维_首创证券.pdf
+- [ ] **6C** 6C_2024_20240501东盟在东盟建_未署名.pdf ｜ 未署名 2024 ｜ → M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2024_20240501东盟在东盟建_未署名.pdf
+- [ ] **6C** 6C_2024_20240523AI行业产业_华为.pdf ｜ 华为 2024 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2024_20240523AI行业产业_华为.pdf
+- [ ] **6C** 6C_2024_20240530数据中心液冷_华为.pdf ｜ 华为 2024 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2024_20240530数据中心液冷_华为.pdf
+- [ ] **6C** 6C_2024_20240605东盟能源中心_华为.pdf ｜ 华为 2024 ｜ → M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2024_20240605东盟能源中心_华为.pdf
+- [ ] **6C** 6C_2024_20240614智研咨询数据_中国电信.pdf ｜ 中国电信 2024 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2024_20240614智研咨询数据_中国电信.pdf
+- [ ] **6C** 6C_2024_20240702智研咨询数据_中国移动.pdf ｜ 中国移动 2024 ｜ → M06/M01/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2024_20240702智研咨询数据_中国移动.pdf
+- [ ] **6C** 6C_2024_20240710中邮证券液冷_中邮证券.pdf ｜ 中邮证券 2024 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2024_20240710中邮证券液冷_中邮证券.pdf
+- [ ] **6C** 6C_2024_20240716华福证券伊戈_华福证券.pdf ｜ 华福证券 2024 ｜ → M01/M05/M14 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2024_20240716华福证券伊戈_华福证券.pdf
+- [ ] **6C** 6C_2024_20240804智科咨询中国_未署名.pdf ｜ 未署名 2024 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2024_20240804智科咨询中国_未署名.pdf
+- [ ] **6C** 6C_2024_20240922华为数据中心_华为.pdf ｜ 华为 2024 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2024_20240922华为数据中心_华为.pdf
+- [ ] **6C** 6C_2024_20240926开放数据中心_开放数据中心委员会.pdf ｜ 开放数据中心委员会 2024 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2024_20240926开放数据中心_开放数据中心委员会.pdf
+- [ ] **6C** 6C_2024_20241010科技行业MP_浪潮.pdf ｜ 浪潮 2024 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2024_20241010科技行业MP_浪潮.pdf
+- [ ] **6C** 6C_2024_20241016益企研究院2_益企研究院.pdf ｜ 益企研究院 2024 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2024_20241016益企研究院2_益企研究院.pdf
+- [ ] **6C** 6C_2024_20241121RMI202_阿里.pdf ｜ 阿里 2024 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2024_20241121RMI202_阿里.pdf
+- [ ] **6C** 6C_2024_20241210欧盟联合研究_未署名.pdf ｜ 未署名 2024 ｜ → M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2024_20241210欧盟联合研究_未署名.pdf
+- [ ] **6C** 6C_2024_20241221戴德梁行首程_国信.pdf ｜ 国信 2024 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2024_20241221戴德梁行首程_国信.pdf
+- [ ] **6C** 6C_2024_20241222数据中心行业_国信.pdf ｜ 国信 2024 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2024_20241222数据中心行业_国信.pdf
+- [ ] **6C** 6C_2024_20241225首程控股数据_国信.pdf ｜ 国信 2024 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2024_20241225首程控股数据_国信.pdf
+- [ ] **6C** 6C_2024_20241229首程控股中联_国信.pdf ｜ 国信 2024 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2024_20241229首程控股中联_国信.pdf
+- [ ] **6C** 6C_2024_2024年数据中心供柴油系统_ODCC.pdf ｜ ODCC 2024 ｜ → M10/M05/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2024_2024年数据中心供柴油系统_ODCC.pdf
+- [ ] **6C** 6C_2023_北京软件和信息服务协会202_未署名.pdf ｜ 未署名 2023 ｜ → M10/M06/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2023_北京软件和信息服务协会202_未署名.pdf
+- [ ] **6C** 6C_2022_科技专题研究MPO受益AI数_浪潮.pdf ｜ 浪潮 2022 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2022_科技专题研究MPO受益AI数_浪潮.pdf
+- [ ] **6C** 6C_2022_通信行业Arista全球高速_浪潮.pdf ｜ 浪潮 2022 ｜ → M01/M06/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2022_通信行业Arista全球高速_浪潮.pdf
+- [ ] **6C** 6C_2024_首程控股2024年数据中心行_国信.pdf ｜ 国信 2024 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2024_首程控股2024年数据中心行_国信.pdf
+- [ ] **6C** 6C_2023_20230210华为数据中心_华为.pdf ｜ 华为 2023 ｜ → M01/M06/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023/6C_2023_20230210华为数据中心_华为.pdf
+- [ ] **6C** 6C_2023_20230213上海市数据中_未署名.pdf ｜ 未署名 2023 ｜ → M06/M13/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023/6C_2023_20230213上海市数据中_未署名.pdf
+- [ ] **6C** 6C_2023_202302232022大数_工信部.pdf ｜ 工信部 2023 ｜ → M01/M05/M14 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023/6C_2023_202302232022大数_工信部.pdf
+- [ ] **6C** 6C_2023_20230226055新一代_工信部.pdf ｜ 工信部 2023 ｜ → M10/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023/6C_2023_20230226055新一代_工信部.pdf
+- [ ] **6C** 6C_2023_20230302数据中心智能_ODCC.pdf ｜ ODCC 2023 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023/6C_2023_20230302数据中心智能_ODCC.pdf
+- [ ] **6C** 6C_2023_20230304数据中心算力_ODCC.pdf ｜ ODCC 2023 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023/6C_2023_20230304数据中心算力_ODCC.pdf
+- [ ] **6C** 6C_2023_20230320互联网数据中_申万.pdf ｜ 申万 2023 ｜ → M01/M06/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023/6C_2023_20230320互联网数据中_申万.pdf
+- [ ] **6C** 6C_2023_20230331开放数据中心_开放数据中心委员会.pdf ｜ 开放数据中心委员会 2023 ｜ → M06/M10/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023/6C_2023_20230331开放数据中心_开放数据中心委员会.pdf
+- [ ] **6C** 6C_2023_20230422数据中心液冷_曙光.pdf ｜ 曙光 2023 ｜ → M01/M14/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023/6C_2023_20230422数据中心液冷_曙光.pdf
+- [ ] **6C** 6C_2023_20230507中国通服数字_中国通服数字基建产业研究院.pdf ｜ 中国通服数字基建产业研究院 2023 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023/6C_2023_20230507中国通服数字_中国通服数字基建产业研究院.pdf
+- [ ] **6C** 6C_2023_20230613深耕数据中心_未署名.pdf ｜ 未署名 2023 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023/6C_2023_20230613深耕数据中心_未署名.pdf
+- [ ] **6C** 6C_2023_20230615安信证券朗威_安信证券.pdf ｜ 安信证券 2023 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023/6C_2023_20230615安信证券朗威_安信证券.pdf
+- [ ] **6C** 6C_2023_20230903北京金融科技_未署名.pdf ｜ 未署名 2023 ｜ → M13/M06/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023/6C_2023_20230903北京金融科技_未署名.pdf
+- [ ] **6C** 6C_2023_20230922数据中心液冷_NVIDIA.pdf ｜ NVIDIA 2023 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023/6C_2023_20230922数据中心液冷_NVIDIA.pdf
+- [ ] **6C** 6C_2023_20231023财信证券数据_财信证券.pdf ｜ 财信证券 2023 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023/6C_2023_20231023财信证券数据_财信证券.pdf
+- [ ] **6C** 6C_2023_IDC记忆科技2023年SS_未署名.pdf ｜ 未署名 2023 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023/6C_2023_IDC记忆科技2023年SS_未署名.pdf
+- [ ] **6C** 6C_2023_ODCC2023数据中心绿色_ODCC.pdf ｜ ODCC 2023 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023/6C_2023_ODCC2023数据中心绿色_ODCC.pdf
+- [ ] **6C** 6C_2023_ODCC2023数据中心自适_ODCC.pdf ｜ ODCC 2023 ｜ → M01/M13/M06 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023/6C_2023_ODCC2023数据中心自适_ODCC.pdf
+- [ ] **6C** 6C_2023_ODCC2023数据中心高性_ODCC.pdf ｜ ODCC 2023 ｜ → M13/M06/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023/6C_2023_ODCC2023数据中心高性_ODCC.pdf
+- [ ] **6C** 6C_2022_ODCC零碳数据中心园区能碳_ODCC.pdf ｜ ODCC 2022 ｜ → M05/M10/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023/6C_2022_ODCC零碳数据中心园区能碳_ODCC.pdf
+- [ ] **6C** 6C_2022_中国信通院中国第三方数据中心_信通院.pdf ｜ 信通院 2022 ｜ → M01/M06/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023/6C_2022_中国信通院中国第三方数据中心_信通院.pdf
+- [ ] **6C** 6C_2023_中国数据中心产业低碳发展实践_未署名.pdf ｜ 未署名 2023 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023/6C_2023_中国数据中心产业低碳发展实践_未署名.pdf
+- [ ] **6C** 6C_2022_中国计量科学研究院数据中心冷_未署名.pdf ｜ 未署名 2022 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023/6C_2022_中国计量科学研究院数据中心冷_未署名.pdf
+- [ ] **6C** 6C_2022_中国通服中国数据中心产业发展_未署名.pdf ｜ 未署名 2022 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023/6C_2022_中国通服中国数据中心产业发展_未署名.pdf
+- [ ] **6C** 6C_2022_华为数据中心203092页_华为.pdf ｜ 华为 2022 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023/6C_2022_华为数据中心203092页_华为.pdf
+- [ ] **6C** 6C_2023_华信咨询中国数据中心产业低碳_未署名.pdf ｜ 未署名 2023 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023/6C_2023_华信咨询中国数据中心产业低碳_未署名.pdf
+- [ ] **6C** 6C_2022_戴德梁行中国大陆数据中心四大_未署名.pdf ｜ 未署名 2022 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023/6C_2022_戴德梁行中国大陆数据中心四大_未署名.pdf
+- [ ] **6C** 6C_2022_数据中心低压开关技术白皮书1_ODCC.pdf ｜ ODCC 2022 ｜ → M10/M05/M06 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023/6C_2022_数据中心低压开关技术白皮书1_ODCC.pdf
+- [ ] **6C** 6C_2017_通信2017年日常报告云计算_百度.pdf ｜ 百度 2017 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2017/6C_2017_通信2017年日常报告云计算_百度.pdf
+- [ ] **6C** 6C_2026_20260117深企投202_未署名.pdf ｜ 未署名 2026 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2026/6C_2026_20260117深企投202_未署名.pdf
+- [ ] **6C** 6C_2026_20260122中国银河儒竞_未署名.pdf ｜ 未署名 2026 ｜ → M01/M13/M14 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2026/6C_2026_20260122中国银河儒竞_未署名.pdf
+- [ ] **6C** 6C_2026_20260204交银国际新能_未署名.pdf ｜ 未署名 2026 ｜ → M01/M06/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2026/6C_2026_20260204交银国际新能_未署名.pdf
+- [ ] **6C** 6C_2026_202602222026全球_未署名.pdf ｜ 未署名 2026 ｜ → M01/M06/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2026/6C_2026_202602222026全球_未署名.pdf
+- [ ] **6C** 6C_2026_20260226电力AI系列_未署名.pdf ｜ 未署名 2026 ｜ → M01/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2026/6C_2026_20260226电力AI系列_未署名.pdf
+- [ ] **6C** 6C_2026_20260227绿色数据中心_英伟达.pdf ｜ 英伟达 2026 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2026/6C_2026_20260227绿色数据中心_英伟达.pdf
+- [ ] **6C** 6C_2026_20260307美国电力行业_未署名.pdf ｜ 未署名 2026 ｜ → M01/M14/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2026/6C_2026_20260307美国电力行业_未署名.pdf
+- [ ] **6C** 6C_2026_20260330意毕泰咨询2_未署名.pdf ｜ 未署名 2026 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2026/6C_2026_20260330意毕泰咨询2_未署名.pdf
+- [ ] **6C** 6C_2026_20260430交银国际证券_交银国际证券.pdf ｜ 交银国际证券 2026 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2026/6C_2026_20260430交银国际证券_交银国际证券.pdf
+- [ ] **6C** 6C_2026_20260518北京理工大学_北京理工大学.pdf ｜ 北京理工大学 2026 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2026/6C_2026_20260518北京理工大学_北京理工大学.pdf
+- [ ] **6C** 6C_2026_20260518北京理工大学_北京理工大学_02.pdf ｜ 北京理工大学 2026 ｜ → M06/M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2026/6C_2026_20260518北京理工大学_北京理工大学_02.pdf
+- [ ] **6C** 6C_2026_20260605戴德梁行20_未署名.pdf ｜ 未署名 2026 ｜ → M13/M06 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2026/6C_2026_20260605戴德梁行20_未署名.pdf
+- [ ] **6C** 6C_2026_20260613世界银行云和_未署名.pdf ｜ 未署名 2026 ｜ → M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2026/6C_2026_20260613世界银行云和_未署名.pdf
+- [ ] **6C** 6C_2026_20260627伯恩斯坦数据_伯恩斯坦.pdf ｜ 伯恩斯坦 2026 ｜ → M01/M06/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2026/6C_2026_20260627伯恩斯坦数据_伯恩斯坦.pdf
+- [ ] **6C** 6C_2026_202606302025年亚_未署名.pdf ｜ 未署名 2026 ｜ → M13/M01 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2026/6C_2026_202606302025年亚_未署名.pdf
+- [ ] **6C** 6C_2026_20260709电力系列研究_信通院.pdf ｜ 信通院 2026 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2026/6C_2026_20260709电力系列研究_信通院.pdf
+- [ ] **6C** 6C_2021_20210208全球大型数据_未署名.pdf ｜ 未署名 2021 ｜ → M01/M14/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2021/6C_2021_20210208全球大型数据_未署名.pdf
+- [ ] **6C** 6C_2021_20211102数据中心核心_英伟达.pdf ｜ 英伟达 2021 ｜ → M06/M01/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2021/6C_2021_20211102数据中心核心_英伟达.pdf
+- [ ] **6C** 6C_2021_低碳数据中心发展白皮书202_阿里.pdf ｜ 阿里 2021 ｜ → M13/M01/M05 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2021/6C_2021_低碳数据中心发展白皮书202_阿里.pdf
+- [ ] **6C** 6C_2020_20200705为什么当前时_浪潮.pdf ｜ 浪潮 2020 ｜ → M01/M06/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2020/6C_2020_20200705为什么当前时_浪潮.pdf
+- [ ] **6C** 6C_2020_20200809谷底已过数据_中国移动.pdf ｜ 中国移动 2020 ｜ → M01/M06/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2020/6C_2020_20200809谷底已过数据_中国移动.pdf
+- [ ] **6C** 6C_2020_2020091320Q2中国_未署名.pdf ｜ 未署名 2020 ｜ → M01/M06/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2020/6C_2020_2020091320Q2中国_未署名.pdf
+- [ ] **6C** 6C_2020_20200920关注数据中心_华为.pdf ｜ 华为 2020 ｜ → M01/M06/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2020/6C_2020_20200920关注数据中心_华为.pdf
+- [ ] **6C** 6C_2022_TMT一周谈之通信二季度改善_华为.pdf ｜ 华为 2022 ｜ → M01/M14/M10 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2020/6C_2022_TMT一周谈之通信二季度改善_华为.pdf
+- [ ] **6C** 6C_2020_前瞻研究系列报告73继续看好_未署名.pdf ｜ 未署名 2020 ｜ → M01/M14/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2020/6C_2020_前瞻研究系列报告73继续看好_未署名.pdf
+- [ ] **6C** 6C_2022_通信设备数据中心专题研究二数_未署名.pdf ｜ 未署名 2022 ｜ → M01/M14/M13 ｜ 半自动
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2020/6C_2022_通信设备数据中心专题研究二数_未署名.pdf
+- [ ] **5A** 5A_2025_同态加密存内加速_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DSEC-201-1：Data Defense Advanced Protection Strategies and Compliance/5A_2025_同态加密存内加速_FMS2025.pdf
+- [ ] **5A** 5A_2025_闪存坏块二次利用_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M09 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/SSDT-304-1：Error Correction, Reliability, and Telemetry Techniques for SSDs/5A_2025_闪存坏块二次利用_FMS2025.pdf
+- [ ] **5A** 5A_2016_华为永州2号门卫建筑预算_永州开发投资.xls ｜ 永州市开发建设投资有限公司 2016 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/土建/2#主门卫/5A_2016_华为永州2号门卫建筑预算_永州开发投资.xls
+- [ ] **5A** 5A_2016_华为永州2号门卫装饰预算_永州开发投资.xls ｜ 永州市开发建设投资有限公司 2016 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/土建/2#主门卫/5A_2016_华为永州2号门卫装饰预算_永州开发投资.xls
+- [ ] **5A** 5A_2016_华为永州3号门卫建筑预算_永州开发投资.xls ｜ 永州市开发建设投资有限公司 2016 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/土建/3#次门卫/5A_2016_华为永州3号门卫建筑预算_永州开发投资.xls
+- [ ] **5A** 5A_2016_华为永州3号门卫装饰预算_永州开发投资.xls ｜ 永州市开发建设投资有限公司 2016 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/土建/3#次门卫/5A_2016_华为永州3号门卫装饰预算_永州开发投资.xls
+- [ ] **5A** 5A_2022_移动粤港澳B1机楼地下安装_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼安装工程/B1通信机楼-±0.00以下安装工程/5A_2022_移动粤港澳B1机楼地下安装_中国移动.xlsx
+- [ ] **5A** 5A_2022_移动粤港澳B1机楼抗震支吊架_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼安装工程/B1通信机楼-抗震支吊架工程/5A_2022_移动粤港澳B1机楼抗震支吊架_中国移动.xlsx
+- [ ] **5A** 5A_2022_移动粤港澳B1机楼电梯_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼安装工程/B1通信机楼-电梯工程/5A_2022_移动粤港澳B1机楼电梯_中国移动.xlsx
+- [ ] **5A** 5A_2022_移动粤港澳B1机楼给排水_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼安装工程/B1通信机楼-给排水工程/5A_2022_移动粤港澳B1机楼给排水_中国移动.xlsx
+- [ ] **5A** 5A_2022_移动粤港澳B2机楼基坑支护_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼土建工程/B2通信机楼-基坑支护及土方开挖工程/5A_2022_移动粤港澳B2机楼基坑支护_中国移动.xlsx
+- [ ] **5A** 5A_2022_移动粤港澳B2机楼外墙_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼土建工程/B2通信机楼-外墙工程/5A_2022_移动粤港澳B2机楼外墙_中国移动.xlsx
+- [ ] **5A** 5A_2022_移动粤港澳B2机楼地下安装_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼安装工程/B2通信机楼-±0.00以下安装工程/5A_2022_移动粤港澳B2机楼地下安装_中国移动.xlsx
+- [ ] **5A** 5A_2022_移动粤港澳B2机楼抗震支吊架_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼安装工程/B2通信机楼-抗震支吊架工程/5A_2022_移动粤港澳B2机楼抗震支吊架_中国移动.xlsx
+- [ ] **5A** 5A_2022_移动粤港澳B2机楼电梯_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼安装工程/B2通信机楼-电梯工程/5A_2022_移动粤港澳B2机楼电梯_中国移动.xlsx
+- [ ] **5A** 5A_2022_移动粤港澳B2机楼给排水_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼安装工程/B2通信机楼-给排水工程/5A_2022_移动粤港澳B2机楼给排水_中国移动.xlsx
+- [ ] **5A** 5A_2022_移动粤港澳B3机楼基坑支护_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼土建工程/B3通信机楼-基坑支护及土方开挖工程/5A_2022_移动粤港澳B3机楼基坑支护_中国移动.xlsx
+- [ ] **5A** 5A_2022_移动粤港澳B3机楼外墙_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼土建工程/B3通信机楼-外墙工程/5A_2022_移动粤港澳B3机楼外墙_中国移动.xlsx
+- [ ] **5A** 5A_2022_移动粤港澳B3机楼地下安装_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼安装工程/B3通信机楼-±0.00以下安装工程/5A_2022_移动粤港澳B3机楼地下安装_中国移动.xlsx
+- [ ] **5A** 5A_2022_移动粤港澳B3机楼抗震支吊架_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼安装工程/B3通信机楼-抗震支吊架工程/5A_2022_移动粤港澳B3机楼抗震支吊架_中国移动.xlsx
+- [ ] **5A** 5A_2022_移动粤港澳B3机楼电梯_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼安装工程/B3通信机楼-电梯工程/5A_2022_移动粤港澳B3机楼电梯_中国移动.xlsx
+- [ ] **5A** 5A_2022_移动粤港澳B3机楼给排水_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼安装工程/B3通信机楼-给排水工程/5A_2022_移动粤港澳B3机楼给排水_中国移动.xlsx
+- [ ] **5A** 5A_2022_移动粤港澳临水临电_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/其他费用/临水、临电工程/5A_2022_移动粤港澳临水临电_中国移动.xlsx
+- [ ] **5A** 5A_2022_移动粤港澳工程保险费_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/其他费用/工程保险费/5A_2022_移动粤港澳工程保险费_中国移动.xlsx
+- [ ] **5A** 5A_2022_移动粤港澳BIM技术应用费_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/其他费用/建筑信息模型（BIM）技术应用费用/5A_2022_移动粤港澳BIM技术应用费_中国移动.xlsx
+- [ ] **5A** 5A_2022_移动粤港澳甲供材料保管费_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/其他费用/甲供材料保管费/5A_2022_移动粤港澳甲供材料保管费_中国移动.xlsx
+- [ ] **5A** 5A_2022_移动粤港澳防疫费_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/其他费用/防疫费/5A_2022_移动粤港澳防疫费_中国移动.xlsx
+- [ ] **5A** 5A_2022_移动粤港澳室外场地_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/场地工程/5A_2022_移动粤港澳室外场地_中国移动.xlsx
+- [ ] **5A** 5A_2022_移动粤港澳室外油机基础_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/室外油机基础工程/5A_2022_移动粤港澳室外油机基础_中国移动.xlsx
+- [ ] **5A** 5A_2022_移动粤港澳室外油管沟_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/室外油管沟及散水暗沟工程/5A_2022_移动粤港澳室外油管沟_中国移动.xlsx
+- [ ] **5A** 5A_2022_移动粤港澳室外油罐土建_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/室外油罐土建工程/5A_2022_移动粤港澳室外油罐土建_中国移动.xlsx
+- [ ] **5A** 5A_2022_移动粤港澳室外油罐基坑支护_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/室外油罐基坑支护及土方开挖工程/5A_2022_移动粤港澳室外油罐基坑支护_中国移动.xlsx
+- [ ] **5A** 5A_2022_移动粤港澳室外油罐安装_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/室外油罐安装工程/5A_2022_移动粤港澳室外油罐安装_中国移动.xlsx
+- [ ] **5A** 5A_2022_移动粤港澳室外电气_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/室外电气工程/5A_2022_移动粤港澳室外电气_中国移动.xlsx
+- [ ] **5A** 5A_2022_移动粤港澳市政给水_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/市政给水工程/5A_2022_移动粤港澳市政给水_中国移动.xlsx
+- [ ] **5A** 5A_2024_聚辰股份半年报_聚辰股份.pdf ｜ 聚辰股份 2024 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储企业24年报告/5A_2024_聚辰股份半年报_聚辰股份.pdf
+- [ ] **5A** 5A_2024_普冉股份半年报_普冉股份.pdf ｜ 普冉股份 2024 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储企业24年报告/5A_2024_普冉股份半年报_普冉股份.pdf
+- [ ] **5A** 5A_2024_北京君正半年报_北京君正.pdf ｜ 北京君正 2024 ｜ → M06/M14 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储企业24年报告/5A_2024_北京君正半年报_北京君正.pdf
+- [ ] **5A** 5A_2024_复旦微电半年报_复旦微电.pdf ｜ 复旦微电 2024 ｜ → M06/M04 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储企业24年报告/5A_2024_复旦微电半年报_复旦微电.pdf
+- [ ] **5A** 5A_2024_恒烁股份半年报_恒烁股份.pdf ｜ 恒烁股份 2024 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储企业24年报告/5A_2024_恒烁股份半年报_恒烁股份.pdf
+- [ ] **5A** 5A_2024_同有科技半年报_同有科技.pdf ｜ 同有科技 2024 ｜ → M06/M14 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储企业24年报告/5A_2024_同有科技半年报_同有科技.pdf
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价白蚁防治工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/白蚁防治工程/白蚁防治工程/5A_2019_南方基地二期二阶段造价白蚁防治工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价[20.4栋]电梯工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/电梯工程/[20.4栋]电梯工程/5A_2019_南方基地二期二阶段造价[20.4栋]电梯工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价[20.2栋]电梯工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/电梯工程/[20.2栋]电梯工程/5A_2019_南方基地二期二阶段造价[20.2栋]电梯工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价[20.1栋]电梯工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/电梯工程/[20.1栋]电梯工程/5A_2019_南方基地二期二阶段造价[20.1栋]电梯工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价靠凌塘村侧排水管埋设涉及到的现状_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/凌塘村排水工程及相关拆除补偿/靠凌塘村侧排水管埋设涉及到的现状拆除及补偿项目/5A_2019_南方基地二期二阶段造价靠凌塘村侧排水管埋设涉及到的现状_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价凌塘村排水工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/凌塘村排水工程及相关拆除补偿/凌塘村排水工程/5A_2019_南方基地二期二阶段造价凌塘村排水工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价[20.1栋]电气工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/电气工程/[20.1栋]电气工程/5A_2019_南方基地二期二阶段造价[20.1栋]电气工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价室外电气工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/电气工程/室外电气工程/5A_2019_南方基地二期二阶段造价室外电气工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价[20.2栋]电气工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/电气工程/[20.2栋]电气工程/5A_2019_南方基地二期二阶段造价[20.2栋]电气工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价[20.4栋]电气工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/电气工程/[20.4栋]电气工程/5A_2019_南方基地二期二阶段造价[20.4栋]电气工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价[地下室]集中控制型消防应急照明_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/电气工程/[地下室]集中控制型消防应急照明和疏散指示系统/5A_2019_南方基地二期二阶段造价[地下室]集中控制型消防应急照明_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价[20.4栋]集中控制型消防应急_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/电气工程/[20.4栋]集中控制型消防应急照明和疏散指示系统/5A_2019_南方基地二期二阶段造价[20.4栋]集中控制型消防应急_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价[20.2栋]集中控制型消防应急_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/电气工程/[20.2栋]集中控制型消防应急照明和疏散指示系统/5A_2019_南方基地二期二阶段造价[20.2栋]集中控制型消防应急_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价[20.1栋]集中控制型消防应急_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/电气工程/[20.1栋]集中控制型消防应急照明和疏散指示系统/5A_2019_南方基地二期二阶段造价[20.1栋]集中控制型消防应急_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价房屋鉴定_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/房屋鉴定/房屋鉴定/5A_2019_南方基地二期二阶段造价房屋鉴定_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价门卫室安装工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/室外配套工程/门卫室安装工程/5A_2019_南方基地二期二阶段造价门卫室安装工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价临时围蔽工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/室外配套工程/临时围蔽工程/5A_2019_南方基地二期二阶段造价临时围蔽工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价燃气工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/室外配套工程/燃气工程/5A_2019_南方基地二期二阶段造价燃气工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价±0.00以上土建工程-建筑工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/室外配套工程/±0.00以上土建工程-建筑工程（门房A）/5A_2019_南方基地二期二阶段造价±0.00以上土建工程-建筑工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价发电机房配电工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/高低压配电工程/发电机房配电工程/5A_2019_南方基地二期二阶段造价发电机房配电工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价高低压配电工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/高低压配电工程/高低压配电工程/5A_2019_南方基地二期二阶段造价高低压配电工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价高低压配电-土建部分_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/高低压配电工程/高低压配电-土建部分/5A_2019_南方基地二期二阶段造价高低压配电-土建部分_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价±0.00以下土建工程-人防门_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/土建工程/±0.00以下土建工程-人防门/5A_2019_南方基地二期二阶段造价±0.00以下土建工程-人防门_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价[20.1栋]给排水工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/给排水工程/[20.1栋]给排水工程/5A_2019_南方基地二期二阶段造价[20.1栋]给排水工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价[20.4栋]给排水工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/给排水工程/[20.4栋]给排水工程/5A_2019_南方基地二期二阶段造价[20.4栋]给排水工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价雨水回用系统工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/给排水工程/雨水回用系统工程/5A_2019_南方基地二期二阶段造价雨水回用系统工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价直饮水系统工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/给排水工程/直饮水系统工程/5A_2019_南方基地二期二阶段造价直饮水系统工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价[20.2栋]给排水工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/给排水工程/[20.2栋]给排水工程/5A_2019_南方基地二期二阶段造价[20.2栋]给排水工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价[地下室]给排水工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/给排水工程/[地下室]给排水工程/5A_2019_南方基地二期二阶段造价[地下室]给排水工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价抗震支架工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/抗震支架工程/抗震支架工程/5A_2019_南方基地二期二阶段造价抗震支架工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价[20.2栋]火灾自动报警工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/消防工程/[20.2栋]火灾自动报警工程/5A_2019_南方基地二期二阶段造价[20.2栋]火灾自动报警工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价[20.4栋]消防水灭火系统工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/消防工程/[20.4栋]消防水灭火系统工程/5A_2019_南方基地二期二阶段造价[20.4栋]消防水灭火系统工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价[20.1栋]消防水灭火系统工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/消防工程/[20.1栋]消防水灭火系统工程/5A_2019_南方基地二期二阶段造价[20.1栋]消防水灭火系统工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价[20.4栋]火灾自动报警工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/消防工程/[20.4栋]火灾自动报警工程/5A_2019_南方基地二期二阶段造价[20.4栋]火灾自动报警工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价[20.2栋]消防水灭火系统工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/消防工程/[20.2栋]消防水灭火系统工程/5A_2019_南方基地二期二阶段造价[20.2栋]消防水灭火系统工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价[20.1栋]火灾自动报警工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/消防工程/[20.1栋]火灾自动报警工程/5A_2019_南方基地二期二阶段造价[20.1栋]火灾自动报警工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价[地下室]火灾自动报警工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/消防工程/[地下室]火灾自动报警工程/5A_2019_南方基地二期二阶段造价[地下室]火灾自动报警工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价[地下室]人防通风工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/地下室人防工程/[地下室]人防通风工程/5A_2019_南方基地二期二阶段造价[地下室]人防通风工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价[地下室]人防电气工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/地下室人防工程/[地下室]人防电气工程/5A_2019_南方基地二期二阶段造价[地下室]人防电气工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价[地下室]人防给排水工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/地下室人防工程/[地下室]人防给排水工程/5A_2019_南方基地二期二阶段造价[地下室]人防给排水工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价地下管线盲探_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/地下管线盲探/地下管线盲探/5A_2019_南方基地二期二阶段造价地下管线盲探_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价临时用水_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/临时用水/临时用水/5A_2019_南方基地二期二阶段造价临时用水_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价雨水收集池土建_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/室外工程/雨水收集池土建/5A_2019_南方基地二期二阶段造价雨水收集池土建_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价室外综合管网给排水工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/室外工程/室外综合管网给排水工程/5A_2019_南方基地二期二阶段造价室外综合管网给排水工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价消防水灭火系统工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/室外工程/消防水灭火系统工程/5A_2019_南方基地二期二阶段造价消防水灭火系统工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价室外雨水收集系统工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/室外工程/室外雨水收集系统工程/5A_2019_南方基地二期二阶段造价室外雨水收集系统工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价永久围墙工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/室外工程/永久围墙工程/5A_2019_南方基地二期二阶段造价永久围墙工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价发电机房柴油供油系统工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/室外工程/发电机房柴油供油系统工程/5A_2019_南方基地二期二阶段造价发电机房柴油供油系统工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期二阶段造价智能化工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/室外工程/智能化工程/5A_2019_南方基地二期二阶段造价智能化工程_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2019_南方基地二期招标工程量清单总表_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/5A_2019_南方基地二期招标工程量清单总表_中国移动广东公司.xlsx
+- [ ] **5A** 5A_2022_六安电信造价大型土石方_中国电信安徽公司.xls ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/1 六安电信信息化中心项目/4 六安电信信息化中心项目：大型土石方/5A_2022_六安电信造价大型土石方_中国电信安徽公司.xls
+- [ ] **5A** 5A_2022_六安电信造价大型土石方_中国电信安徽公司.xls ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/2 六安电信云计算数据中心项目/12 六安电信云计算数据中心项目：大型土石方/5A_2022_六安电信造价大型土石方_中国电信安徽公司.xls
+- [ ] **5A** 5A_2022_六安电信造价室外给排水【市政】_中国电信安徽公司.xls ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/2 六安电信云计算数据中心项目/11 六安电信云计算数据中心项目：室外给排水【市政】/5A_2022_六安电信造价室外给排水【市政】_中国电信安徽公司.xls
+- [ ] **5A** 5A_2022_六安电信造价室外电气【安装】_中国电信安徽公司.xls ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/2 六安电信云计算数据中心项目/10 六安电信云计算数据中心项目：室外电气【安装】/5A_2022_六安电信造价室外电气【安装】_中国电信安徽公司.xls
+- [ ] **5A** 5A_2022_六安电信造价室外景观【园林】_中国电信安徽公司.xls ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/2 六安电信云计算数据中心项目/8 六安电信云计算数据中心项目：室外景观【园林】/5A_2022_六安电信造价室外景观【园林】_中国电信安徽公司.xls
+- [ ] **5A** 5A_2022_六安电信造价云计算数据中心幕墙【装饰】_中国电信安徽公司.xls ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/2 六安电信云计算数据中心项目/6 六安电信云计算数据中心项目：云计算数据中心幕墙【装饰】/5A_2022_六安电信造价云计算数据中心幕墙【装饰】_中国电信安徽公司.xls
+- [ ] **5A** 5A_2022_六安电信造价室外绿化【园林】_中国电信安徽公司.xls ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/2 六安电信云计算数据中心项目/9 六安电信云计算数据中心项目：室外绿化【园林】/5A_2022_六安电信造价室外绿化【园林】_中国电信安徽公司.xls
+- [ ] **5A** 5A_2022_None造价1#厂房（专业土石方工程）_工程档案.xls ｜ 工程档案 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.11 安庆高铁新区高光谱卫星数据中心及卫星制造产线项目工业厂房-1#厂房/造价类资料（全程免费，得来不易需要完成一些小任务）1/最高限价/5A_2022_None造价1#厂房（专业土石方工程）_工程档案.xls
+- [ ] **5A** 5A_2022_六安电信最高限价通知_中国电信安徽公司.docx ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/5A_2022_六安电信最高限价通知_中国电信安徽公司.docx
+- [ ] **5A** 5A_2022_江南数据中心一期造价000以上土建工程室内装饰工_中国移动重庆公司.xlsx ｜ 中国移动重庆公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/造价类资料（全程免费，得来不易需要完成一些小任务）1/001答疑/清单问题8补图/5A_2022_江南数据中心一期造价000以上土建工程室内装饰工_中国移动重庆公司.xlsx
+- [ ] **5B** 5B_2023_Meta服务器选型_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M06 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/5B_2023_Meta服务器选型_SemiAnalysis.pdf
-- [ ] **5B** 5B_2022_Meta共封装光学_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M07/M09
+- [ ] **5B** 5B_2022_Meta共封装光学_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M07/M09 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/5B_2022_Meta共封装光学_SemiAnalysis.pdf
-- [ ] **5B** 5B_2023_特斯拉算力扩张_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M06/M13
+- [ ] **5B** 5B_2023_特斯拉算力扩张_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M06/M13 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/5B_2023_特斯拉算力扩张_SemiAnalysis.pdf
-- [ ] **5B** 5B_2021_亚马逊Graviton3_SemiAnalysis.pdf ｜ SemiAnalysis 2021 ｜ → M06
+- [ ] **5B** 5B_2021_亚马逊Graviton3_SemiAnalysis.pdf ｜ SemiAnalysis 2021 ｜ → M06 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/5B_2021_亚马逊Graviton3_SemiAnalysis.pdf
-- [ ] **5B** 5B_2022_AyarLabs共封装光学_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M07
+- [ ] **5B** 5B_2022_AyarLabs共封装光学_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M07 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/5B_2022_AyarLabs共封装光学_SemiAnalysis.pdf
-- [ ] **5B** 5B_2024_苹果AI策略_SemiAnalysis.pdf ｜ SemiAnalysis 2024 ｜ → M06
+- [ ] **5B** 5B_2024_苹果AI策略_SemiAnalysis.pdf ｜ SemiAnalysis 2024 ｜ → M06 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/5B_2024_苹果AI策略_SemiAnalysis.pdf
-- [ ] **5B** 5B_2021_长江存储技术突破_SemiAnalysis.pdf ｜ SemiAnalysis 2021 ｜ → M14
+- [ ] **5B** 5B_2021_长江存储技术突破_SemiAnalysis.pdf ｜ SemiAnalysis 2021 ｜ → M14 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/5B_2021_长江存储技术突破_SemiAnalysis.pdf
-- [ ] **5B** 5B_2021_安谋中国失控_SemiAnalysis.pdf ｜ SemiAnalysis 2021 ｜ → M14
+- [ ] **5B** 5B_2021_安谋中国失控_SemiAnalysis.pdf ｜ SemiAnalysis 2021 ｜ → M14 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/5B_2021_安谋中国失控_SemiAnalysis.pdf
-- [ ] **5B** 5B_2023_台积电的英雄式假设_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M06
+- [ ] **5B** 5B_2023_台积电的英雄式假设_SemiAnalysis.pdf ｜ SemiAnalysis 2023 ｜ → M06 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/5B_2023_台积电的英雄式假设_SemiAnalysis.pdf
-- [ ] **5B** 5B_2022_晶圆厂建设延期_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M06
+- [ ] **5B** 5B_2022_晶圆厂建设延期_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M06 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/5B_2022_晶圆厂建设延期_SemiAnalysis.pdf
-- [ ] **5B** 5B_2024_OpenAI自研芯片团队_SemiAnalysis.pdf ｜ SemiAnalysis 2024 ｜ → M06
+- [ ] **5B** 5B_2024_OpenAI自研芯片团队_SemiAnalysis.pdf ｜ SemiAnalysis 2024 ｜ → M06 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/5B_2024_OpenAI自研芯片团队_SemiAnalysis.pdf
-- [ ] **5B** 5B_2025_Storage.AI倡议_SNIA.pdf ｜ SNIA 2025 ｜ → M06
+- [ ] **5B** 5B_2025_Storage.AI倡议_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
       docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Keynote/5B_2025_Storage.AI倡议_SNIA.pdf
-- [ ] **5B** 5B_2025_QLC闪存价值最大化_SNIA.pdf ｜ SNIA 2025 ｜ → M06
+- [ ] **5B** 5B_2025_QLC闪存价值最大化_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
       docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Keynote/5B_2025_QLC闪存价值最大化_SNIA.pdf
-- [ ] **5B** 5B_2025_AI驱动的大容量存储演进_SNIA.pdf ｜ SNIA 2025 ｜ → M06
+- [ ] **5B** 5B_2025_AI驱动的大容量存储演进_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
       docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/AI_ML/5B_2025_AI驱动的大容量存储演进_SNIA.pdf
-- [ ] **5B** 5B_2025_超大规模机械硬盘创新_SNIA.pdf ｜ SNIA 2025 ｜ → M06
+- [ ] **5B** 5B_2025_超大规模机械硬盘创新_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
       docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Data Architecture_Storage Architecture/5B_2025_超大规模机械硬盘创新_SNIA.pdf
-- [ ] **5B** 5B_2025_CXL扩展内存方案_SNIA.pdf ｜ SNIA 2025 ｜ → M06
+- [ ] **5B** 5B_2025_CXL扩展内存方案_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
       docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Magic Memory/5B_2025_CXL扩展内存方案_SNIA.pdf
-- [ ] **5B** 5B_2025_Emerald能效规范更新_SNIA.pdf ｜ SNIA 2025 ｜ → M09
+- [ ] **5B** 5B_2025_Emerald能效规范更新_SNIA.pdf ｜ SNIA 2025 ｜ → M09 ｜ 精读
       docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Sustainability & Green/5B_2025_Emerald能效规范更新_SNIA.pdf
-- [ ] **5B** 5B_2025_AI存储通信性能评估_SNIA.pdf ｜ SNIA 2025 ｜ → M13
+- [ ] **5B** 5B_2025_AI存储通信性能评估_SNIA.pdf ｜ SNIA 2025 ｜ → M13 ｜ 精读
       docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/AI_ML/5B_2025_AI存储通信性能评估_SNIA.pdf
-- [ ] **5C** 5C_2022_中芯7nm量产_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M14
+- [ ] **5B** 5B_2025_信息银行构想_SNIA.pdf ｜ SNIA 2025 ｜ → M13 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Emerging Technologies/5B_2025_信息银行构想_SNIA.pdf
+- [ ] **5B** 5B_2025_存储总成本与性能_SNIA.pdf ｜ SNIA 2025 ｜ → M09 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Modeling & Simulation/5B_2025_存储总成本与性能_SNIA.pdf
+- [ ] **5B** 5B_2025_CXL加速RAG_SNIA.pdf ｜ SNIA 2025 ｜ → M06/M13 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Magic Memory/5B_2025_CXL加速RAG_SNIA.pdf
+- [ ] **5B** 5B_2025_AI存储入门_SNIA.pdf ｜ SNIA 2025 ｜ → M13 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/AI_ML/5B_2025_AI存储入门_SNIA.pdf
+- [ ] **5B** 5B_2025_AI时代存储再思考_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/AI_ML/5B_2025_AI时代存储再思考_SNIA.pdf
+- [ ] **5B** 5B_2025_统一知识平台_SNIA.pdf ｜ SNIA 2025 ｜ → M13 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Data Architecture_Storage Architecture/5B_2025_统一知识平台_SNIA.pdf
+- [ ] **5B** 5B_2025_硬盘每TB性能优化_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Data Architecture_Storage Architecture/5B_2025_硬盘每TB性能优化_SNIA.pdf
+- [ ] **5B** 5B_2025_SSD虚拟化与多租户_SNIA.pdf ｜ SNIA 2025 ｜ → M13 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Data Architecture_Storage Architecture/5B_2025_SSD虚拟化与多租户_SNIA.pdf
+- [ ] **5B** 5B_2025_分区XFS文件系统_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/File Systems & Protocols/5B_2025_分区XFS文件系统_SNIA.pdf
+- [ ] **5B** 5B_2025_EB级数据管理_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Cloud Storage/5B_2025_EB级数据管理_SNIA.pdf
+- [ ] **5B** 5B_2025_CXL用于存储的优势_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Magic Memory/5B_2025_CXL用于存储的优势_SNIA.pdf
+- [ ] **5B** 5B_2025_NVMe演进与高效存储_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/AI_ML/5B_2025_NVMe演进与高效存储_SNIA.pdf
+- [ ] **5B** 5B_2025_客户端缓存_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Data Architecture_Storage Architecture/5B_2025_客户端缓存_SNIA.pdf
+- [ ] **5B** 5B_2025_对象存储加速_SNIA.pdf ｜ SNIA 2025 ｜ → M13 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Cloud Storage/5B_2025_对象存储加速_SNIA.pdf
+- [ ] **5B** 5B_2025_存储人才与未来趋势_SNIA.pdf ｜ SNIA 2025 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Data Architecture_Storage Architecture/5B_2025_存储人才与未来趋势_SNIA.pdf
+- [ ] **5B** 5B_2025_CDMI标准化管理_SNIA.pdf ｜ SNIA 2025 ｜ → M13 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Cloud Storage/5B_2025_CDMI标准化管理_SNIA.pdf
+- [ ] **5B** 5B_2025_存储缺陷分诊自动化_SNIA.pdf ｜ SNIA 2025 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/AI_ML/5B_2025_存储缺陷分诊自动化_SNIA.pdf
+- [ ] **5B** 5B_2025_EDSFF形态之争_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Data Architecture_Storage Architecture/5B_2025_EDSFF形态之争_SNIA.pdf
+- [ ] **5B** 5B_2025_主机可寻址SLM_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Magic Memory/5B_2025_主机可寻址SLM_SNIA.pdf
+- [ ] **5B** 5B_2025_SSD预处理加速方法_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Solid State Storage Solutions/5B_2025_SSD预处理加速方法_SNIA.pdf
+- [ ] **5B** 5B_2025_famfs共享内存文件系统_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/File Systems & Protocols/5B_2025_famfs共享内存文件系统_SNIA.pdf
+- [ ] **5B** 5B_2025_CXL内存仿真_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Modeling & Simulation/5B_2025_CXL内存仿真_SNIA.pdf
+- [ ] **5B** 5B_2025_存储运维实战案例_SNIA.pdf ｜ SNIA 2025 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Cloud Storage/5B_2025_存储运维实战案例_SNIA.pdf
+- [ ] **5B** 5B_2025_零层存储激活_SNIA.pdf ｜ SNIA 2025 ｜ → M13 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/File Systems & Protocols/5B_2025_零层存储激活_SNIA.pdf
+- [ ] **5B** 5B_2017_三星64层V-NAND拆解_TechInsights.pdf ｜ TechInsights 2017 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/TechInsights-17篇合集/5B_2017_三星64层V-NAND拆解_TechInsights.pdf
+- [ ] **5B** 5B_2021_英特尔144层NAND拆解_TechInsights.pdf ｜ TechInsights 2021 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/TechInsights-17篇合集/5B_2021_英特尔144层NAND拆解_TechInsights.pdf
+- [ ] **5B** 5B_2025_GPU加速逆光刻_NVIDIA.pdf ｜ NVIDIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/5B_2025_GPU加速逆光刻_NVIDIA.pdf
+- [ ] **5B** 5B_2025_Windows存储多队列_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Data Architecture_Storage Architecture/5B_2025_Windows存储多队列_SNIA.pdf
+- [ ] **5B** 5B_2025_Windows下的CXL内存_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Magic Memory/5B_2025_Windows下的CXL内存_SNIA.pdf
+- [ ] **5B** 5B_2025_CXL生态创新_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Modeling & Simulation/5B_2025_CXL生态创新_SNIA.pdf
+- [ ] **5B** 5B_2025_SDXI数据搬移加速器_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Magic Memory/5B_2025_SDXI数据搬移加速器_SNIA.pdf
+- [ ] **5B** 5B_2025_SDXI与NVMe协同_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Magic Memory/5B_2025_SDXI与NVMe协同_SNIA.pdf
+- [ ] **5B** 5B_2025_无主分布式文件系统_Rubrik.pdf ｜ Rubrik 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/File Systems & Protocols/5B_2025_无主分布式文件系统_Rubrik.pdf
+- [ ] **5B** 5B_2025_eBPF常态化诊断_SNIA.pdf ｜ SNIA 2025 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/File Systems & Protocols/5B_2025_eBPF常态化诊断_SNIA.pdf
+- [ ] **5B** 5B_2025_OCP存储项目更新_SNIA.pdf ｜ SNIA 2025 ｜ → M10/M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Emerging Technologies/5B_2025_OCP存储项目更新_SNIA.pdf
+- [ ] **5B** 5B_2025_数据密集型客户方案_FMS2025.pdf ｜ FMS2025 2025 ｜ → M13 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/BMKT-202-1：Data Intensive Customer Solutions Customer Experience/5B_2025_数据密集型客户方案_FMS2025.pdf
+- [ ] **5B** 5B_2025_UCIe带宽密度目标_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/CHIP-303-1：Navigating the Chiplet Revolution Applying EDA Insights into UCIe Standards/5B_2025_UCIe带宽密度目标_FMS2025.pdf
+- [ ] **5B** 5B_2025_内存通道配置对照_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/CHIP-202-1：Innovative Architectures and Emerging Opportunities UCIe Integration and Chiplet Advancements in Mobile and AI Systems/5B_2025_内存通道配置对照_FMS2025.pdf
+- [ ] **5B** 5B_2025_CXL内存交织策略_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/CXLT-301-1：CXL Infrastructure/5B_2025_CXL内存交织策略_FMS2025.pdf
+- [ ] **5B** 5B_2025_DRAM与NVMe分层对照_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/CXLT-301-1：CXL Infrastructure/5B_2025_DRAM与NVMe分层对照_FMS2025.pdf
+- [ ] **5B** 5B_2025_SSD支撑的虚拟内存_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/CXLT-203-1：CXL Use Cases/5B_2025_SSD支撑的虚拟内存_FMS2025.pdf
+- [ ] **5B** 5B_2025_大容量DIMM与CXL对照_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/CXLT-203-1：CXL Use Cases/5B_2025_大容量DIMM与CXL对照_FMS2025.pdf
+- [ ] **5B** 5B_2025_超大容量SSD与单位换算_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/CXLT-203-1：CXL Use Cases/5B_2025_超大容量SSD与单位换算_FMS2025.pdf
+- [ ] **5B** 5B_2025_GPU规模扩展测试_FMS2025.pdf ｜ FMS2025 2025 ｜ → M13 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/AIML-202-1：Generative AI Part 2/5B_2025_GPU规模扩展测试_FMS2025.pdf
+- [ ] **5B** 5B_2025_读写带宽不对称_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/AIML-201-1：Generative AI Part 1/5B_2025_读写带宽不对称_FMS2025.pdf
+- [ ] **5B** 5B_2025_晶圆产能份额变化_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M14 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/BMKT-102-1：AI + Storage AI and the Enterprise Business/5B_2025_晶圆产能份额变化_FMS2025.pdf
+- [ ] **5B** 5B_2025_服务器盘位配置_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/BMKT-102-1：AI + Storage AI and the Enterprise Business/5B_2025_服务器盘位配置_FMS2025.pdf
+- [ ] **5B** 5B_2025_数据中心存储平台_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DCTR-304-1：High-Performance Storage for the Data Center/5B_2025_数据中心存储平台_FMS2025.pdf
+- [ ] **5B** 5B_2025_超大规模存储可用性_FMS2025.pdf ｜ FMS2025 2025 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DCTR-101-1：Hyperscale Applications 1/5B_2025_超大规模存储可用性_FMS2025.pdf
+- [ ] **5B** 5B_2025_DRAM调度策略研究_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DRAM-203-1：DRAM Future Research/5B_2025_DRAM调度策略研究_FMS2025.pdf
+- [ ] **5B** 5B_2025_DRAM时序余量研究_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DRAM-203-1：DRAM Future Research/5B_2025_DRAM时序余量研究_FMS2025.pdf
+- [ ] **5B** 5B_2025_加速器内存代际对照_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DRAM-304-1：DRAM and NAND Technology Deep Dive/5B_2025_加速器内存代际对照_FMS2025.pdf
+- [ ] **5B** 5B_2025_数据分析市场增速_FMS2025.pdf ｜ FMS2025 2025 ｜ → M15 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/AIML-301-1：Data Analytics/5B_2025_数据分析市场增速_FMS2025.pdf
+- [ ] **5B** 5B_2025_AI存储规模分档_FMS2025.pdf ｜ FMS2025 2025 ｜ → M13 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/AIML-102-1：Storage for AI Applications/5B_2025_AI存储规模分档_FMS2025.pdf
+- [ ] **5B** 5B_2025_CXL3.x协议开销_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/CXLT-304-1：CXL Verification/5B_2025_CXL3.x协议开销_FMS2025.pdf
+- [ ] **5B** 5B_2025_小芯片良率对照_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/CHIP-303-1：Navigating the Chiplet Revolution Applying EDA Insights into UCIe Standards/5B_2025_小芯片良率对照_FMS2025.pdf
+- [ ] **5B** 5B_2025_向量检索闪存加速_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M13 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/AIML-101-1：AI Techniques/5B_2025_向量检索闪存加速_FMS2025.pdf
+- [ ] **5B** 5B_2025_数据中心SSD质量体系_FMS2025.pdf ｜ FMS2025 2025 ｜ → M10/M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/AIML-301-1：Data Analytics/5B_2025_数据中心SSD质量体系_FMS2025.pdf
+- [ ] **5B** 5B_2025_存储市场分析师观点_FMS2025.pdf ｜ FMS2025 2025 ｜ → M15/M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/BMKT-101-1：Market Analyst Panel/5B_2025_存储市场分析师观点_FMS2025.pdf
+- [ ] **5B** 5B_2025_磁带与硬盘能耗比_FMS2025.pdf ｜ FMS2025 2025 ｜ → M09/M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/COLD-102-1：Media and AI Exploring Innovation in Sustainable Long-Term Storage/5B_2025_磁带与硬盘能耗比_FMS2025.pdf
+- [ ] **5B** 5B_2025_近数据处理降TCO_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M13 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/COMP-102-1：Computational Storage Implementations and Ideas/5B_2025_近数据处理降TCO_FMS2025.pdf
+- [ ] **5B** 5B_2025_存储运维AI自动化_FMS2025.pdf ｜ FMS2025 2025 ｜ → M10/M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/COMP-102-1：Computational Storage Implementations and Ideas/5B_2025_存储运维AI自动化_FMS2025.pdf
+- [ ] **5B** 5B_2025_存内分析下推架构_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M13 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/COMP-102-1：Computational Storage Implementations and Ideas/5B_2025_存内分析下推架构_FMS2025.pdf
+- [ ] **5B** 5B_2025_CXL计算型内存_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/CXLT-301-1：CXL Infrastructure/5B_2025_CXL计算型内存_FMS2025.pdf
+- [ ] **5B** 5B_2025_CXL故障处理实践_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M10 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/CXLT-304-1：CXL Verification/5B_2025_CXL故障处理实践_FMS2025.pdf
+- [ ] **5B** 5B_2025_虚拟机热迁移标准_FMS2025.pdf ｜ FMS2025 2025 ｜ → M13/M10 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DCTR-102-1：Hyperscale Applications 2/5B_2025_虚拟机热迁移标准_FMS2025.pdf
+- [ ] **5B** 5B_2025_IO虚拟化扩展上限_FMS2025.pdf ｜ FMS2025 2025 ｜ → M13/M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DCTR-301-1：Enterprise Storage and SSD/5B_2025_IO虚拟化扩展上限_FMS2025.pdf
+- [ ] **5B** 5B_2025_E2外形规格制定_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DCTR-302-1：Data Center High-Capacity SSDs/5B_2025_E2外形规格制定_FMS2025.pdf
+- [ ] **5B** 5B_2025_存储介质保持机理_FMS2025.pdf ｜ FMS2025 2025 ｜ → M07/M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DRAM-304-1：DRAM and NAND Technology Deep Dive/5B_2025_存储介质保持机理_FMS2025.pdf
+- [ ] **5B** 5B_2025_内存模块物料溯源_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M10 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DSEC-304-1：Quantum Resilience The New Storage Security Frontier/5B_2025_内存模块物料溯源_FMS2025.pdf
+- [ ] **5B** 5B_2025_后量子密码准备_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DSEC-304-1：Quantum Resilience The New Storage Security Frontier/5B_2025_后量子密码准备_FMS2025.pdf
+- [ ] **5B** 5B_2025_文件系统延寿实测_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M09 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/FARC-203-1：Flash Architectures and Provisioning/5B_2025_文件系统延寿实测_FMS2025.pdf
+- [ ] **5B** 5B_2025_存储栈省CPU实测_FMS2025.pdf ｜ FMS2025 2025 ｜ → M13/M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/NVME-302-1：NVMe New Features/5B_2025_存储栈省CPU实测_FMS2025.pdf
+- [ ] **5B** 5B_2025_阻变栅存储器件_FMS2025.pdf ｜ FMS2025 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/OMEM-202-1：Emerging Memory Technologies/5B_2025_阻变栅存储器件_FMS2025.pdf
+- [ ] **5B** 5B_2025_ReRAM车规认证_FMS2025.pdf ｜ FMS2025 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/OMEM-202-1：Emerging Memory Technologies/5B_2025_ReRAM车规认证_FMS2025.pdf
+- [ ] **5B** 5B_2025_开放存储标准主张_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M09 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/OPSW-301-1：Storage Ecosystem for AI/5B_2025_开放存储标准主张_FMS2025.pdf
+- [ ] **5B** 5B_2025_GPU直发存储IO_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M13 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/OPSW-301-1：Storage Ecosystem for AI/5B_2025_GPU直发存储IO_FMS2025.pdf
+- [ ] **5B** 5B_2025_分布式闪存控制器_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/SSDT-102-1：Flash and SSD Controller Technologies for AI/5B_2025_分布式闪存控制器_FMS2025.pdf
+- [ ] **5B** 5B_2025_无DRAM固态盘性能_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/SSDT-201-1：SSD Technologies for AI and the Data Center/5B_2025_无DRAM固态盘性能_FMS2025.pdf
+- [ ] **5B** 5B_2025_混合模式盘配比_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/SSDT-203-1：High Capacity SSDs and Optimizations for QLC Flash Storage/5B_2025_混合模式盘配比_FMS2025.pdf
+- [ ] **5B** 5B_2025_检查点体量换算_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M13 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/SSDT-302-1：AI Workloads and Data Placement Techniques/5B_2025_检查点体量换算_FMS2025.pdf
+- [ ] **5B** 5B_2025_FDP配置规范建议_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/SSDT-302-1：AI Workloads and Data Placement Techniques/5B_2025_FDP配置规范建议_FMS2025.pdf
+- [ ] **5B** 5B_2025_数据集管理冷热分离_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/SSDT-302-1：AI Workloads and Data Placement Techniques/5B_2025_数据集管理冷热分离_FMS2025.pdf
+- [ ] **5B** 5B_2025_盘位接口损耗预算_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/SSDT-303-1：New Form Factors and Interfaces for SSDs/5B_2025_盘位接口损耗预算_FMS2025.pdf
+- [ ] **5B** 5B_2025_固态盘功耗规范_FMS2025.pdf ｜ FMS2025 2025 ｜ → M09/M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/SSDT-303-1：New Form Factors and Interfaces for SSDs/5B_2025_固态盘功耗规范_FMS2025.pdf
+- [ ] **5B** 5B_2025_NVMe合规测试生态_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/SSDT-303-1：New Form Factors and Interfaces for SSDs/5B_2025_NVMe合规测试生态_FMS2025.pdf
+- [ ] **5B** 5B_2025_SLC低功耗解码器_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/SSDT-304-1：Error Correction, Reliability, and Telemetry Techniques for SSDs/5B_2025_SLC低功耗解码器_FMS2025.pdf
+- [ ] **5B** 5B_2025_PCIe功率突增测试_FMS2025.pdf ｜ FMS2025 2025 ｜ → M09/M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/TEST-101-1：Performance/5B_2025_PCIe功率突增测试_FMS2025.pdf
+- [ ] **5B** 5B_2022_智能网卡需求场景_ODCC.pdf ｜ ODCC 2022 ｜ → M06/M04 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/02 数据中心白皮书（83份）/5B_2022_智能网卡需求场景_ODCC.pdf
+- [ ] **5B** 5B_2025_末端配电母线方案_厂商联合.pdf ｜ 厂商联合 2025 ｜ → M02/M06 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/5B_2025_末端配电母线方案_厂商联合.pdf
+- [ ] **5B** 5B_2024_光刻机型号参数_半导体综研.xlsx ｜ 半导体综研 2024 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/设备/5B_2024_光刻机型号参数_半导体综研.xlsx
+- [ ] **5B** 5B_2025_EDA供应商与产品_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07/M14 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/软件IP/5B_2025_EDA供应商与产品_半导体综研.xlsx
+- [ ] **5B** 5B_2025_光刻胶产业链供应商_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07/M14 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/材料/5B_2025_光刻胶产业链供应商_半导体综研.xlsx
+- [ ] **5B** 5B_2025_半导体IP供应商_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07/M14 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/软件IP/5B_2025_半导体IP供应商_半导体综研.xlsx
+- [ ] **5B** 5B_2025_封装设备供应商库_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07/M14 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/设备/5B_2025_封装设备供应商库_半导体综研.xlsx
+- [ ] **5B** 5B_2025_掩模版产业链供应商_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/材料/5B_2025_掩模版产业链供应商_半导体综研.xlsx
+- [ ] **5B** 5B_2025_晶圆衬底设备供应商_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/设备/5B_2025_晶圆衬底设备供应商_半导体综研.xlsx
+- [ ] **5B** 5B_2025_检测量测设备库_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07/M14 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/设备/5B_2025_检测量测设备库_半导体综研.xlsx
+- [ ] **5B** 5B_2025_测试设备供应商_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07/M14 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/设备/5B_2025_测试设备供应商_半导体综研.xlsx
+- [ ] **5B** 5B_2025_硅晶圆产业链供应商_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07/M14 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/材料/5B_2025_硅晶圆产业链供应商_半导体综研.xlsx
+- [ ] **5B** 5B_2025_碳化硅产业链供应商_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/宽禁带/5B_2025_碳化硅产业链供应商_半导体综研.xlsx
+- [ ] **5B** 5B_2024_ASMPT季度财务_半导体综研.xlsx ｜ 半导体综研 2024 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/2. 企业财报数据/设备/5B_2024_ASMPT季度财务_半导体综研.xlsx
+- [ ] **5B** 5B_2024_SEMES季度财务_半导体综研.xlsx ｜ 半导体综研 2024 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/2. 企业财报数据/设备/5B_2024_SEMES季度财务_半导体综研.xlsx
+- [ ] **5B** 5B_2024_先进封装方案对照_半导体综研.xlsx ｜ 半导体综研 2024 ｜ → M07/M04 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/5. 其它/先进封装/5B_2024_先进封装方案对照_半导体综研.xlsx
+- [ ] **5B** 5B_2024_半导体进口HS码对照_半导体综研.xlsx ｜ 半导体综研 2024 ｜ → M14 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/5. 其它/5B_2024_半导体进口HS码对照_半导体综研.xlsx
+- [ ] **5B** 5B_2024_库力索法季度财务_半导体综研.xlsx ｜ 半导体综研 2024 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/2. 企业财报数据/设备/5B_2024_库力索法季度财务_半导体综研.xlsx
+- [ ] **5B** 5B_2024_应用材料季度财务_半导体综研.xlsx ｜ 半导体综研 2024 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/2. 企业财报数据/设备/5B_2024_应用材料季度财务_半导体综研.xlsx
+- [ ] **5B** 5B_2024_联电季度财务_半导体综研.xlsx ｜ 半导体综研 2024 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/2. 企业财报数据/晶圆厂/5B_2024_联电季度财务_半导体综研.xlsx
+- [ ] **5B** 5B_2024_英特尔季度财务_半导体综研.xlsx ｜ 半导体综研 2024 ｜ → M07/M04 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/2. 企业财报数据/IDM/5B_2024_英特尔季度财务_半导体综研.xlsx
+- [ ] **5B** 5B_2025_BE Semiconductor季度财务_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/2. 企业财报数据/设备/5B_2025_BE Semiconductor季度财务_半导体综研.xlsx
+- [ ] **5B** 5B_2025_东京电子季度财务_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/2. 企业财报数据/设备/5B_2025_东京电子季度财务_半导体综研.xlsx
+- [ ] **5B** 5B_2025_中微公司季度财务_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M14/M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/2. 企业财报数据/设备/5B_2025_中微公司季度财务_半导体综研.xlsx
+- [ ] **5B** 5B_2025_北方华创季度财务_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M14/M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/2. 企业财报数据/设备/5B_2025_北方华创季度财务_半导体综研.xlsx
+- [ ] **5B** 5B_2025_华峰测控季度财务_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M14/M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/2. 企业财报数据/设备/5B_2025_华峰测控季度财务_半导体综研.xlsx
+- [ ] **5B** 5B_2025_华海清科季度财务_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M14/M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/2. 企业财报数据/设备/5B_2025_华海清科季度财务_半导体综研.xlsx
+- [ ] **5B** 5B_2025_拓荆科技季度财务_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M14/M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/2. 企业财报数据/设备/5B_2025_拓荆科技季度财务_半导体综研.xlsx
+- [ ] **5B** 5B_2025_泛林集团季度财务_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/2. 企业财报数据/设备/5B_2025_泛林集团季度财务_半导体综研.xlsx
+- [ ] **5B** 5B_2025_泰瑞达季度财务_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/2. 企业财报数据/设备/5B_2025_泰瑞达季度财务_半导体综研.xlsx
+- [ ] **5B** 5B_2025_爱德万测试季度财务_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/2. 企业财报数据/设备/5B_2025_爱德万测试季度财务_半导体综研.xlsx
+- [ ] **5B** 5B_2025_盛美上海季度财务_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M14/M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/2. 企业财报数据/设备/5B_2025_盛美上海季度财务_半导体综研.xlsx
+- [ ] **5B** 5B_2025_科磊季度财务_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/2. 企业财报数据/设备/5B_2025_科磊季度财务_半导体综研.xlsx
+- [ ] **5B** 5B_2025_长川科技季度财务_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M14/M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/2. 企业财报数据/设备/5B_2025_长川科技季度财务_半导体综研.xlsx
+- [ ] **5B** 5B_2025_阿斯麦季度财务_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/2. 企业财报数据/设备/5B_2025_阿斯麦季度财务_半导体综研.xlsx
+- [ ] **5B** 5B_2022_混合键合技术方案_半导体综研.pdf ｜ 半导体综研 2022 ｜ → M07/M04 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/5. 其它/先进封装/5B_2022_混合键合技术方案_半导体综研.pdf
+- [ ] **5B** 5B_2024_全球硅晶圆工厂分布_半导体综研.pdf ｜ 半导体综研 2024 ｜ → M07/M14 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/5. 其它/大硅片行业报告/5B_2024_全球硅晶圆工厂分布_半导体综研.pdf
+- [ ] **5B** 5B_2024_硅晶圆供应商经营分析_半导体综研.pdf ｜ 半导体综研 2024 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/5. 其它/大硅片行业报告/5B_2024_硅晶圆供应商经营分析_半导体综研.pdf
+- [ ] **5B** 5B_2025_日本设备产值月报_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/1. 行业景气度研究/5B_2025_日本设备产值月报_半导体综研.xlsx
+- [ ] **5B** 5B_2023_半导体器件分类树_半导体综研.xmind ｜ 半导体综研 2023 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/5. 其它/半导体行业产品分类思维导图/5B_2023_半导体器件分类树_半导体综研.xmind
+- [ ] **5B** 5B_2023_半导体工序分类树_半导体综研.xmind ｜ 半导体综研 2023 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/5. 其它/半导体行业产品分类思维导图/5B_2023_半导体工序分类树_半导体综研.xmind
+- [ ] **5B** 5B_2023_半导体材料分类树_半导体综研.xmind ｜ 半导体综研 2023 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/5. 其它/半导体行业产品分类思维导图/5B_2023_半导体材料分类树_半导体综研.xmind
+- [ ] **5B** 5B_2023_半导体设备分类树_半导体综研.xmind ｜ 半导体综研 2023 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/5. 其它/半导体行业产品分类思维导图/5B_2023_半导体设备分类树_半导体综研.xmind
+- [ ] **5B** 5B_2018_地勘报告01_工程档案.doc ｜ 工程项目档案 2018 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2018.11 长寿物联网应用示范基地机房工程/地勘报告/5B_2018_地勘报告01_工程档案.doc
+- [ ] **5B** 5B_2018_地勘报告01_工程档案.doc ｜ 工程项目档案 2018 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2018.11 长寿物联网应用示范基地机房工程/地勘报告/附表附件/5B_2018_地勘报告01_工程档案.doc
+- [ ] **5B** 5B_2018_地勘报告02_工程档案.xls ｜ 工程项目档案 2018 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2018.11 长寿物联网应用示范基地机房工程/地勘报告/附表附件/5B_2018_地勘报告02_工程档案.xls
+- [ ] **5B** 5B_2018_地勘报告03_工程档案.xlsx ｜ 工程项目档案 2018 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2018.11 长寿物联网应用示范基地机房工程/地勘报告/附表附件/5B_2018_地勘报告03_工程档案.xlsx
+- [ ] **5B** 5B_2018_地勘报告04_工程档案.xls ｜ 工程项目档案 2018 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2018.11 长寿物联网应用示范基地机房工程/地勘报告/附表附件/5B_2018_地勘报告04_工程档案.xls
+- [ ] **5B** 5B_2018_地勘报告05_工程档案.doc ｜ 工程项目档案 2018 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2018.11 长寿物联网应用示范基地机房工程/地勘报告/附表附件/5B_2018_地勘报告05_工程档案.doc
+- [ ] **5B** 5B_2019_地勘报告01_工程档案.doc ｜ 工程项目档案 2019 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.6 重庆有线水土综合枢纽基地建设项目/地勘报告/5B_2019_地勘报告01_工程档案.doc
+- [ ] **5B** 5B_2019_地勘报告01_工程档案.doc ｜ 工程项目档案 2019 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7中国电信云计算重庆基地二期工程/岩土深基坑/基坑支护图纸/5B_2019_地勘报告01_工程档案.doc
+- [ ] **5B** 5B_2019_地勘报告02_工程档案.doc ｜ 工程项目档案 2019 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7中国电信云计算重庆基地二期工程/岩土深基坑/基坑支护图纸/5B_2019_地勘报告02_工程档案.doc
+- [ ] **5B** 5B_2020_地勘报告01_工程档案.doc ｜ 工程项目档案 2020 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区2建施0805/数据区2施工图/5B_2020_地勘报告01_工程档案.doc
+- [ ] **5B** 5B_2020_地勘报告02_工程档案.doc ｜ 工程项目档案 2020 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区2建施0805/数据区2施工图/5B_2020_地勘报告02_工程档案.doc
+- [ ] **5B** 5B_2021_地勘报告01_工程档案.xls ｜ 工程项目档案 2021 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2021.1 六安电信信息化中心和六安电信云计算数据中心项目/六安电信信息化中心六安电信云计算数据中心岩土工程勘察报告原版/图表/5B_2021_地勘报告01_工程档案.xls
+- [ ] **5B** 5B_2021_地勘报告02_工程档案.xls ｜ 工程项目档案 2021 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2021.1 六安电信信息化中心和六安电信云计算数据中心项目/六安电信信息化中心六安电信云计算数据中心岩土工程勘察报告原版/图表/5B_2021_地勘报告02_工程档案.xls
+- [ ] **5B** 5B_2021_地勘报告01_工程档案.doc ｜ 工程项目档案 2021 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2021.1 六安电信信息化中心和六安电信云计算数据中心项目/六安电信信息化中心六安电信云计算数据中心岩土工程勘察报告原版/5B_2021_地勘报告01_工程档案.doc
+- [ ] **5B** 5B_2021_地勘报告02_工程档案.doc ｜ 工程项目档案 2021 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2021.1 六安电信信息化中心和六安电信云计算数据中心项目/六安电信信息化中心六安电信云计算数据中心岩土工程勘察报告原版/5B_2021_地勘报告02_工程档案.doc
+- [ ] **5B** 5B_2024_地勘报告01_工程档案.docx ｜ 工程项目档案 2024 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.8 中国电信云计算重庆基地项目（四期）土建/附件二：地质勘查报告/5B_2024_地勘报告01_工程档案.docx
+- [ ] **5B** 5B_2025_地勘报告01_工程档案.doc ｜ 工程项目档案 2025 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2025.2 黄岩区大闸路以东、永丰路以北地块建设工程（电信置换项目）/地勘/5B_2025_地勘报告01_工程档案.doc
+- [ ] **5B** 5B_2025_地勘报告02_工程档案.xls ｜ 工程项目档案 2025 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2025.2 黄岩区大闸路以东、永丰路以北地块建设工程（电信置换项目）/地勘/5B_2025_地勘报告02_工程档案.xls
+- [ ] **5B** 5B_2025_地勘报告03_工程档案.xls ｜ 工程项目档案 2025 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2025.2 黄岩区大闸路以东、永丰路以北地块建设工程（电信置换项目）/地勘/5B_2025_地勘报告03_工程档案.xls
+- [ ] **5B** 5B_2025_地勘报告04_工程档案.xls ｜ 工程项目档案 2025 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2025.2 黄岩区大闸路以东、永丰路以北地块建设工程（电信置换项目）/地勘/5B_2025_地勘报告04_工程档案.xls
+- [ ] **5B** 5B_2025_地勘报告05_工程档案.xls ｜ 工程项目档案 2025 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2025.2 黄岩区大闸路以东、永丰路以北地块建设工程（电信置换项目）/地勘/5B_2025_地勘报告05_工程档案.xls
+- [ ] **5B** 5B_2018_工程量清单01_工程档案.docx ｜ 工程项目档案 2018 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2018.7中国移动（河北廊坊）数据中心二期工程/室外/廊坊二期数据中心（暖通）--最终版20180425/5B_2018_工程量清单01_工程档案.docx
+- [ ] **5B** 5B_2019_工程量清单01_工程档案.xlsx ｜ 工程项目档案 2019 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7中国电信云计算重庆基地二期工程/弱电/5B_2019_工程量清单01_工程档案.xlsx
+- [ ] **5B** 5B_2020_工程量清单01_工程档案.doc ｜ 工程项目档案 2020 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.7福建广电网络莆田NGB业务中心（机房）/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单审核/5B_2020_工程量清单01_工程档案.doc
+- [ ] **5B** 5B_2022_工程量清单01_工程档案.xlsx ｜ 工程项目档案 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/5B_2022_工程量清单01_工程档案.xlsx
+- [ ] **5B** 5B_2022_工程量清单01_工程档案.xlsx ｜ 工程项目档案 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外围墙工程/5B_2022_工程量清单01_工程档案.xlsx
+- [ ] **5B** 5B_2022_工程量清单01_工程档案.xlsx ｜ 工程项目档案 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外广场工程/5B_2022_工程量清单01_工程档案.xlsx
+- [ ] **5B** 5B_2022_工程量清单01_工程档案.xlsx ｜ 工程项目档案 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外排水排污工程/5B_2022_工程量清单01_工程档案.xlsx
+- [ ] **5B** 5B_2022_工程量清单01_工程档案.xlsx ｜ 工程项目档案 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外管线支架工程/5B_2022_工程量清单01_工程档案.xlsx
+- [ ] **5B** 5B_2022_工程量清单01_工程档案.xlsx ｜ 工程项目档案 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外绿化工程/5B_2022_工程量清单01_工程档案.xlsx
+- [ ] **5B** 5B_2023_工程量清单01_工程档案.xlsx ｜ 工程项目档案 2023 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2023.3  宁德市大数据产业园及基础配套设施项目（一期）IT云平台/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程量清单/5B_2023_工程量清单01_工程档案.xlsx
+- [ ] **5B** 5B_2023_工程量清单01_工程档案.docx ｜ 工程项目档案 2023 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2023.8中国电信浙江公司金华婺城数据中心项目/5B_2023_工程量清单01_工程档案.docx
+- [ ] **5B** 5B_2024_工程量清单01_工程档案.xlsx ｜ 工程项目档案 2024 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.2 国家工业信息安全发展研究中心•华南分中心星河东悦汇载体项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程量清单EX/5B_2024_工程量清单01_工程档案.xlsx
+- [ ] **5B** 5B_2025_工程量清单01_工程档案.doc ｜ 工程项目档案 2025 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2025.4 南安市供电公司备用调度指挥数据中心DF/造价类资料（全程免费，得来不易需要完成一些小任务）1/发网南安市供电公司备用调度指挥数据中心预算（发布1）/5B_2025_工程量清单01_工程档案.doc
+- [ ] **5B** 5B_2024_浸没流体氧化测试法_OCP.pdf ｜ OCP/Chevron Phillips 2024 ｜ → M02 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Immersion/5B_2024_浸没流体氧化测试法_OCP.pdf
+- [ ] **5B** 5B_2024_浸没元件热化学可靠性_Intel.pdf ｜ Intel 2024 ｜ → M02/M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Immersion/5B_2024_浸没元件热化学可靠性_Intel.pdf
+- [ ] **5B** 5B_2024_浸没方案委员会与FMEA_OCP.pdf ｜ Denvr Dataworks/OCP 2024 ｜ → M02/M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Immersion/5B_2024_浸没方案委员会与FMEA_OCP.pdf
+- [ ] **5B** 5B_2024_浸没需求文档演进_OCP.pdf ｜ Denvr Dataworks/OCP 2024 ｜ → M02/M15 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Immersion/5B_2024_浸没需求文档演进_OCP.pdf
+- [ ] **5B** 5B_2024_浸没流体认证门槛_Fuchs.pdf ｜ Fuchs 2024 ｜ → M02 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Immersion/5B_2024_浸没流体认证门槛_Fuchs.pdf
+- [ ] **5B** 5B_2024_芯片冷却液温度路线图_OCP.pdf ｜ OCP 2024 ｜ → M02/M09 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Liquid Cooling/5B_2024_芯片冷却液温度路线图_OCP.pdf
+- [ ] **5B** 5B_2024_OCP与ASHRAE协作路线_OCP.pdf ｜ NVIDIA/ASHRAE 2024 ｜ → M02 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Liquid Cooling/5B_2024_OCP与ASHRAE协作路线_OCP.pdf
+- [ ] **5B** 5B_2024_铝制换热器集成_OCP.pdf ｜ OCP 2024 ｜ → M02/M12 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Liquid Cooling/5B_2024_铝制换热器集成_OCP.pdf
+- [ ] **5B** 5B_2024_DLC就绪机架选型_OCP.pdf ｜ OCP/Rittal 2024 ｜ → M02/M09 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Rack & Power/5B_2024_DLC就绪机架选型_OCP.pdf
+- [ ] **5B** 5B_2024_AI集群以太网拥塞管理_OCP.pdf ｜ OCP 2024 ｜ → M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：Artificial Intelligence (AI)/5B_2024_AI集群以太网拥塞管理_OCP.pdf
+- [ ] **5B** 5B_2024_AI系统带外错误日志_Meta.pdf ｜ Meta 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：Artificial Intelligence (AI)/5B_2024_AI系统带外错误日志_Meta.pdf
+- [ ] **5B** 5B_2024_PCIe有源电缆扩展集群_OCP.pdf ｜ OCP 2024 ｜ → M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：Artificial Intelligence (AI)/5B_2024_PCIe有源电缆扩展集群_OCP.pdf
+- [ ] **5B** 5B_2024_ML软件生态演进_OCP.pdf ｜ Google/Meta 2024 ｜ → M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：Artificial Intelligence (AI)/5B_2024_ML软件生态演进_OCP.pdf
+- [ ] **5B** 5B_2024_规模化退役流程_OCP.pdf ｜ OCP 2024 ｜ → M12/M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Sustainability/5B_2024_规模化退役流程_OCP.pdf
+- [ ] **5B** 5B_2024_OPEA可持续生成式AI_Intel.pdf ｜ Intel/OPEA 2024 ｜ → M02/M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Sustainability/5B_2024_OPEA可持续生成式AI_Intel.pdf
+- [ ] **5B** 5B_2024_数据中心设备LCA品类规则_OCP.pdf ｜ OCP 2024 ｜ → M12 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Sustainability/5B_2024_数据中心设备LCA品类规则_OCP.pdf
+- [ ] **5B** 5B_2024_范围三联合工作流成果_OCP-iMasons.pdf ｜ OCP/iMasons 2024 ｜ → M12 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Sustainability/5B_2024_范围三联合工作流成果_OCP-iMasons.pdf
+- [ ] **5B** 5B_2024_解耦网络落地实践_ScottData.pdf ｜ Scott Data/IP Infusion 2024 ｜ → M04/M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：OCP Market Impact & Supply Chain/5B_2024_解耦网络落地实践_ScottData.pdf
+- [ ] **5B** 5B_2024_自研GPU服务器设计_Nebius.pdf ｜ Nebius AI 2024 ｜ → M03/M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：OCP Market Impact & Supply Chain/5B_2024_自研GPU服务器设计_Nebius.pdf
+- [ ] **5B** 5B_2024_AI芯粒组合视角_IBM.pdf ｜ IBM Research 2024 ｜ → M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Chiplets/5B_2024_AI芯粒组合视角_IBM.pdf
+- [ ] **5B** 5B_2024_HPC与AI的模块化路径_LBNL.pdf ｜ LBNL 2024 ｜ → M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Chiplets/5B_2024_HPC与AI的模块化路径_LBNL.pdf
+- [ ] **5B** 5B_2024_芯粒SiP测试挑战_OCP.pdf ｜ Synopsys/OCP 2024 ｜ → M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Chiplets/5B_2024_芯粒SiP测试挑战_OCP.pdf
+- [ ] **5B** 5B_2024_AMBA_CHI_C2C芯粒互操作_Arm.pdf ｜ Arm 2024 ｜ → M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Chiplets/5B_2024_AMBA_CHI_C2C芯粒互操作_Arm.pdf
+- [ ] **5B** 5B_2024_汽车芯粒良率对比_OCP.pdf ｜ OCP 2024 ｜ → M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Chiplets/5B_2024_汽车芯粒良率对比_OCP.pdf
+- [ ] **5B** 5B_2024_三维IC设计套件_OCP.pdf ｜ OCP/ODSA 2024 ｜ → M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Chiplets/5B_2024_三维IC设计套件_OCP.pdf
+- [ ] **5B** 5B_2024_多主机共享统一内存_OCP.pdf ｜ OCP 2024 ｜ → M13 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Composable Memory Systems/5B_2024_多主机共享统一内存_OCP.pdf
+- [ ] **5B** 5B_2024_SSD测试规范讨论_Microsoft.pdf ｜ Microsoft/SANBlaze 2024 ｜ → M06/M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Storage/5B_2024_SSD测试规范讨论_Microsoft.pdf
+- [ ] **5B** 5B_2024_SPDM存储绑定规范_OCP.pdf ｜ DMTF/OCP 2024 ｜ → M06 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Storage/5B_2024_SPDM存储绑定规范_OCP.pdf
+- [ ] **5B** 5B_2024_存储安全Caliptra与LOCK_OCP.pdf ｜ OCP/Caliptra 2024 ｜ → M06 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Storage/5B_2024_存储安全Caliptra与LOCK_OCP.pdf
+- [ ] **5B** 5B_2024_PCIe光互连实现_OCP.pdf ｜ OCP 2024 ｜ → M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：Photonics/5B_2024_PCIe光互连实现_OCP.pdf
+- [ ] **5B** 5B_2024_AI网络市场速率需求_OCP.pdf ｜ OCP 2024 ｜ → M04/M15 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：Photonics/5B_2024_AI网络市场速率需求_OCP.pdf
+- [ ] **5B** 5B_2024_AI集群丢包监控开放技术_OCP.pdf ｜ OCP 2024 ｜ → M04/M13 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Networking/5B_2024_AI集群丢包监控开放技术_OCP.pdf
+- [ ] **5B** 5B_2024_崩溃与运行时遥测标准化_OCP.pdf ｜ OCP/DMTF 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Hardware Management/5B_2024_崩溃与运行时遥测标准化_OCP.pdf
+- [ ] **5B** 5B_2024_基于模型的数据中心生命周期工程_OCP.pdf ｜ OCP 2024 ｜ → M10/M05 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Hardware Management/5B_2024_基于模型的数据中心生命周期工程_OCP.pdf
+- [ ] **5B** 5B_2024_硬件管理项目工作流总览_HPE.pdf ｜ HPE/OCP 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Hardware Management/5B_2024_硬件管理项目工作流总览_HPE.pdf
+- [ ] **5B** 5B_2024_AMD_openSIL平台落地_AMD.pdf ｜ AMD/Insyde 2024 ｜ → M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Open Platform Firmware (OPF)/5B_2024_AMD_openSIL平台落地_AMD.pdf
+- [ ] **5B** 5B_2024_无闪存服务器构建_OCP.pdf ｜ OCP 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Open Platform Firmware (OPF)/5B_2024_无闪存服务器构建_OCP.pdf
+- [ ] **5B** 5B_2024_生成式AI基础设施机架管理_OCP.pdf ｜ OCP 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Open Platform Firmware (OPF)/5B_2024_生成式AI基础设施机架管理_OCP.pdf
+- [ ] **5B** 5B_2024_SPDM授权规范_OCP.pdf ｜ DMTF/OCP 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Security/5B_2024_SPDM授权规范_OCP.pdf
+- [ ] **5B** 5B_2024_流式启动实现进展_OCP.pdf ｜ OCP 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Security/5B_2024_流式启动实现进展_OCP.pdf
+- [ ] **5B** 5B_2024_OCP_LOCK存储密钥管理_OCP.pdf ｜ OCP/Caliptra 2024 ｜ → M06/M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Security/5B_2024_OCP_LOCK存储密钥管理_OCP.pdf
+- [ ] **5B** 5B_2024_OpenTitan开源信任根进展_OCP.pdf ｜ OpenTitan/OCP 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Security/5B_2024_OpenTitan开源信任根进展_OCP.pdf
+- [ ] **5B** 5B_2024_Caliptra路线图与后量子_OCP.pdf ｜ OCP/Caliptra 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Security/5B_2024_Caliptra路线图与后量子_OCP.pdf
+- [ ] **5B** 5B_2024_桥接加速器侧信道防护_OCP.pdf ｜ OCP 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Security/5B_2024_桥接加速器侧信道防护_OCP.pdf
+- [ ] **5B** 5B_2024_精确时间能否提升AI效率_OCP.pdf ｜ OCP/Intel 2024 ｜ → M13 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Time Appliances Project (TAP)/5B_2024_精确时间能否提升AI效率_OCP.pdf
+- [ ] **5B** 5B_2024_低成本白兔网卡_OCP.pdf ｜ OCP 2024 ｜ → M13/M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Time Appliances Project (TAP)/5B_2024_低成本白兔网卡_OCP.pdf
+- [ ] **5B** 5B_2024_PTP网络安全攻击面_OCP.pdf ｜ Marist College/IBM 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Time Appliances Project (TAP)/5B_2024_PTP网络安全攻击面_OCP.pdf
+- [ ] **5B** 5B_2024_数据中心可信授时_OCP.pdf ｜ OCP 2024 ｜ → M05/M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Time Appliances Project (TAP)/5B_2024_数据中心可信授时_OCP.pdf
+- [ ] **5B** 5B_2024_5G与6G承载时间同步验证_OCP.pdf ｜ OCP 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Time Appliances Project (TAP)/5B_2024_5G与6G承载时间同步验证_OCP.pdf
+- [ ] **5B** 5B_2024_高速板对板连接器224G_Molex.pdf ｜ Molex 2024 ｜ → M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Expo. Hall Sessions/5B_2024_高速板对板连接器224G_Molex.pdf
+- [ ] **5B** 5B_2024_新兴数据中心方案_和硕.pdf ｜ PEGATRON 2024 ｜ → M14/M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Expo. Hall Sessions/5B_2024_新兴数据中心方案_和硕.pdf
+- [ ] **5B** 5B_2024_DPU实现可组合基础设施_OCP.pdf ｜ OCP 2024 ｜ → M13 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server/5B_2024_DPU实现可组合基础设施_OCP.pdf
+- [ ] **5B** 5B_2024_SIOV_R2虚拟化框架_OCP.pdf ｜ Intel/OCP 2024 ｜ → M13 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server/5B_2024_SIOV_R2虚拟化框架_OCP.pdf
+- [ ] **5B** 5B_2024_PCIe重定时器与线缆_OCP.pdf ｜ OCP 2024 ｜ → M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server/5B_2024_PCIe重定时器与线缆_OCP.pdf
+- [ ] **5B** 5B_2024_平台信任根模块接口设计_OCP.pdf ｜ OCP 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server/5B_2024_平台信任根模块接口设计_OCP.pdf
+- [ ] **5B** 5B_2024_OCP网卡双小型形状因子_OCP.pdf ｜ OCP 2024 ｜ → M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：HPC_NIC_OAI/5B_2024_OCP网卡双小型形状因子_OCP.pdf
+- [ ] **5B** 5B_2024_多租户可编程网卡架构_OCP.pdf ｜ OCP 2024 ｜ → M13/M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：HPC_NIC_OAI/5B_2024_多租户可编程网卡架构_OCP.pdf
+- [ ] **5B** 5B_2024_OCP网卡PCIe_Gen6支持_Dell.pdf ｜ Dell/OCP 2024 ｜ → M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：HPC_NIC_OAI/5B_2024_OCP网卡PCIe_Gen6支持_Dell.pdf
+- [ ] **5B** 5B_2024_DC-SCM管理模块规范更新_OCP.pdf ｜ OCP 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：MHS/5B_2024_DC-SCM管理模块规范更新_OCP.pdf
+- [ ] **5B** 5B_2024_DC-SCM_LTPI规范经验与挑战_OCP.pdf ｜ OCP 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：MHS/5B_2024_DC-SCM_LTPI规范经验与挑战_OCP.pdf
+- [ ] **5B** 5B_2024_MHS项目总览与48V支持_OCP.pdf ｜ OCP 2024 ｜ → M09 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：MHS/5B_2024_MHS项目总览与48V支持_OCP.pdf
+- [ ] **5B** 5B_2024_边缘服务器模块化硬件_OCP.pdf ｜ OCP 2024 ｜ → M05/M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：MHS/5B_2024_边缘服务器模块化硬件_OCP.pdf
+- [ ] **5B** 5B_2024_云到边缘模块设计OpenRAN_OCP.pdf ｜ MiTAC/OCP 2024 ｜ → M05/M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：OpenRAN/5B_2024_云到边缘模块设计OpenRAN_OCP.pdf
+- [ ] **5B** 5B_2024_线缆制造串扰与误码率_OCP.pdf ｜ OCP 2024 ｜ → M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Test & Validation/5B_2024_线缆制造串扰与误码率_OCP.pdf
+- [ ] **5B** 5B_2024_加速器可管理性合规工具_OCP.pdf ｜ OCP 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Test & Validation/5B_2024_加速器可管理性合规工具_OCP.pdf
+- [ ] **5B** 5B_2024_智算名义下的智慧文旅初设_脱敏招标件.pdf ｜ 未署名（脱敏招标件） 2024 ｜ → M14/M15 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算/5B_2024_智算名义下的智慧文旅初设_脱敏招标件.pdf
+- [ ] **5B** 5B_2011_厦门超算中心机房与资源_美亚柏科.pdf ｜ 厦门美亚柏科 2011 ｜ → M14/M02/M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算/5B_2011_厦门超算中心机房与资源_美亚柏科.pdf
+- [ ] **5B** 5B_2023_发展新型智算中心ODCC演讲_中国移动研究院.pdf ｜ 中国移动研究院 2023 ｜ → M14/M04 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算/5B_2023_发展新型智算中心ODCC演讲_中国移动研究院.pdf
+- [ ] **5B** 5B_2023_新型智算中心CXL互联探索_ODCC.pdf ｜ ODCC 2023 ｜ → M04/M06 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算/5B_2023_新型智算中心CXL互联探索_ODCC.pdf
+- [ ] **5B** 5B_2024_以太网物理层安全PHYSec白皮书_中国移动.pdf ｜ 中国移动 2024 ｜ → M04 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算/5B_2024_以太网物理层安全PHYSec白皮书_中国移动.pdf
+- [ ] **5B** 5B_2023_算力网络原创技术与NICC体系_中国移动.pdf ｜ 中国移动 2023 ｜ → M14/M04 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算/5B_2023_算力网络原创技术与NICC体系_中国移动.pdf
+- [ ] **5B** 5B_2022_江南数据中心勘探点数据表_四川省地质工程勘察院.xls ｜ 四川省地质工程勘察院 2022 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件二：详细勘察文件/5B_2022_江南数据中心勘探点数据表_四川省地质工程勘察院.xls
+- [ ] **5B** 5B_2024_衢州枢纽建筑设计说明一_中国移动设计院.pdf ｜ 中国移动设计院 2024 ｜ → M05/M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/5B_2024_衢州枢纽建筑设计说明一_中国移动设计院.pdf
+- [ ] **5B** 5B_2024_衢州枢纽建筑设计说明二_中国移动设计院.pdf ｜ 中国移动设计院 2024 ｜ → M05/M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/5B_2024_衢州枢纽建筑设计说明二_中国移动设计院.pdf
+- [ ] **5B** 5B_2024_衢州机房土建给排水施工图_中国移动设计院.pdf ｜ 中国移动设计院 2024 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/给排水/土建给排水机房水泵房(cad+PDF)/5B_2024_衢州机房土建给排水施工图_中国移动设计院.pdf
+- [ ] **5C** 5C_2022_中芯7nm量产_SemiAnalysis.pdf ｜ SemiAnalysis 2022 ｜ → M14 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/5C_2022_中芯7nm量产_SemiAnalysis.pdf
-- [ ] **4B** 4B_2021_中国碳化硅厂算不过账_SemiAnalysis.pdf ｜ SemiAnalysis 2021 ｜ → M14
+- [ ] **5C** 5C_2025_存储整合省电案例_FMS2025.pdf ｜ FMS2025 2025 ｜ → M09/M10 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/BMKT-202-1：Data Intensive Customer Solutions Customer Experience/5C_2025_存储整合省电案例_FMS2025.pdf
+- [ ] **5C** 5C_2025_网络安全人力缺口_FMS2025.pdf ｜ FMS2025 2025 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DSEC-201-1：Data Defense Advanced Protection Strategies and Compliance/5C_2025_网络安全人力缺口_FMS2025.pdf
+- [ ] **5C** 5C_2024_CXL近内存计算加速_OCP.pdf ｜ OCP 2024 ｜ → M13/M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Composable Memory Systems/5C_2024_CXL近内存计算加速_OCP.pdf
+- [ ] **5C** 5C_2024_K8s编排Fabric内存_SKhynix.pdf ｜ SK hynix/Jackrabbit Labs 2024 ｜ → M13 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Composable Memory Systems/5C_2024_K8s编排Fabric内存_SKhynix.pdf
+- [ ] **5C** 5C_2024_存储合约价季度跟踪_券商研究.pdf ｜ 券商研究所 2024 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储市场/5C_2024_存储合约价季度跟踪_券商研究.pdf
+- [ ] **5C** 5C_2024_HBM引领存力扩容_券商研究.pdf ｜ 券商研究所 2024 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储市场/5C_2024_HBM引领存力扩容_券商研究.pdf
+- [ ] **5C** 5C_2024_存储行业深度_中国银河证券.pdf ｜ 券商研究所 2024 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储市场/5C_2024_存储行业深度_中国银河证券.pdf
+- [ ] **5C** 5C_2024_存储板块跟踪十_券商研究.pdf ｜ 券商研究所 2024 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储市场/5C_2024_存储板块跟踪十_券商研究.pdf
+- [ ] **5C** 5C_2024_存储市场报告_山西证券.pdf ｜ 券商研究所 2024 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储市场/5C_2024_存储市场报告_山西证券.pdf
+- [ ] **5C** 5C_2024_国产存储供应链材料篇_券商研究.pdf ｜ 券商研究所 2024 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储市场/5C_2024_国产存储供应链材料篇_券商研究.pdf
+- [ ] **4A** 4A_2016_华为永州2号门卫安装汇总_永州开发投资.xls ｜ 永州市开发建设投资有限公司 2016 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/安装/2#安装工程/4A_2016_华为永州2号门卫安装汇总_永州开发投资.xls
+- [ ] **4A** 4A_2016_华为永州2号门卫电气预算_永州开发投资.xls ｜ 永州市开发建设投资有限公司 2016 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/安装/2#安装工程/电气安装工程/4A_2016_华为永州2号门卫电气预算_永州开发投资.xls
+- [ ] **4A** 4A_2016_华为永州2号门卫给排水预算_永州开发投资.xls ｜ 永州市开发建设投资有限公司 2016 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/安装/2#安装工程/给排水工程/4A_2016_华为永州2号门卫给排水预算_永州开发投资.xls
+- [ ] **4A** 4A_2016_华为永州3号门卫安装汇总_永州开发投资.xls ｜ 永州市开发建设投资有限公司 2016 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/安装/3#安装工程/4A_2016_华为永州3号门卫安装汇总_永州开发投资.xls
+- [ ] **4A** 4A_2016_华为永州3号门卫电气预算_永州开发投资.xls ｜ 永州市开发建设投资有限公司 2016 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/安装/3#安装工程/电气安装工程/4A_2016_华为永州3号门卫电气预算_永州开发投资.xls
+- [ ] **4A** 4A_2016_华为永州3号门卫给排水预算_永州开发投资.xls ｜ 永州市开发建设投资有限公司 2016 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/安装/3#安装工程/给排水工程/4A_2016_华为永州3号门卫给排水预算_永州开发投资.xls
+- [ ] **4A** 4A_2022_移动江南招标答疑结构_中国移动.doc ｜ 中国移动 2022 ｜ → M10/M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/造价类资料（全程免费，得来不易需要完成一些小任务）1/001答疑/4A_2022_移动江南招标答疑结构_中国移动.doc
+- [ ] **4A** 4A_2022_移动粤港澳地下管线探测费_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/其他费用/地下管线探测费/4A_2022_移动粤港澳地下管线探测费_中国移动.xlsx
+- [ ] **4A** 4A_2022_移动粤港澳房屋鉴定费_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/其他费用/房屋鉴定费/4A_2022_移动粤港澳房屋鉴定费_中国移动.xlsx
+- [ ] **4A** 4A_2022_移动粤港澳白蚁防治费_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/其他费用/白蚁防治费/4A_2022_移动粤港澳白蚁防治费_中国移动.xlsx
+- [ ] **4A** 4A_2022_移动粤港澳防火门检验费_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/其他费用/防火门检验试验费/4A_2022_移动粤港澳防火门检验费_中国移动.xlsx
+- [ ] **4A** 4A_2022_移动粤港澳原一期道路_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/原一期室外道路工程/4A_2022_移动粤港澳原一期道路_中国移动.xlsx
+- [ ] **4A** 4A_2022_移动粤港澳室外围墙_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/室外围墙工程/4A_2022_移动粤港澳室外围墙_中国移动.xlsx
+- [ ] **4A** 4A_2022_移动粤港澳室外广场_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/室外广场工程/4A_2022_移动粤港澳室外广场_中国移动.xlsx
+- [ ] **4A** 4A_2022_移动粤港澳室外挡土墙_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10/M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/室外挡土墙工程/4A_2022_移动粤港澳室外挡土墙_中国移动.xlsx
+- [ ] **4A** 4A_2022_移动粤港澳室外管线支架_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/室外管线支架工程/4A_2022_移动粤港澳室外管线支架_中国移动.xlsx
+- [ ] **4A** 4A_2022_移动粤港澳室外绿化_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/室外绿化工程/4A_2022_移动粤港澳室外绿化_中国移动.xlsx
+- [ ] **4A** 4A_2022_移动粤港澳室外道路_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/室外道路工程/4A_2022_移动粤港澳室外道路_中国移动.xlsx
+- [ ] **4A** 4A_2022_移动粤港澳门卫室土建_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/门卫室土建工程/4A_2022_移动粤港澳门卫室土建_中国移动.xlsx
+- [ ] **4A** 4A_2022_移动粤港澳门卫室安装_中国移动.xlsx ｜ 中国移动 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/门卫室安装工程/4A_2022_移动粤港澳门卫室安装_中国移动.xlsx
+- [ ] **4A** 4A_2024_康佳芯盈半年报_康佳集团.pdf ｜ 康佳芯盈 2024 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储企业24年报告/4A_2024_康佳芯盈半年报_康佳集团.pdf
+- [ ] **4A** 4A_2022_智算中心算力资源部署专利_浪潮.pdf ｜ 苏州浪潮智能科技 2022 ｜ → M13 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算/4A_2022_智算中心算力资源部署专利_浪潮.pdf
+- [ ] **4A** 4A_2022_六安电信工程量清单总说明_中国电信安徽公司.doc ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/4A_2022_六安电信工程量清单总说明_中国电信安徽公司.doc
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价白蚁防治工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/白蚁防治工程/白蚁防治工程/4A_2019_南方基地二期二阶段造价白蚁防治工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价204栋电梯工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/电梯工程/[20.4栋]电梯工程/4A_2019_南方基地二期二阶段造价204栋电梯工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价202栋电梯工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/电梯工程/[20.2栋]电梯工程/4A_2019_南方基地二期二阶段造价202栋电梯工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价201栋电梯工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/电梯工程/[20.1栋]电梯工程/4A_2019_南方基地二期二阶段造价201栋电梯工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价204栋通风空调工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/通风空调工程/[20.4栋]通风空调工程/4A_2019_南方基地二期二阶段造价204栋通风空调工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价202栋通风空调工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/通风空调工程/[20.2栋]通风空调工程/4A_2019_南方基地二期二阶段造价202栋通风空调工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价201栋通风空调工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/通风空调工程/[20.1栋]通风空调工程/4A_2019_南方基地二期二阶段造价201栋通风空调工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价地下室通风空调工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/通风空调工程/[地下室]通风空调工程/4A_2019_南方基地二期二阶段造价地下室通风空调工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价靠凌塘村侧排水管埋设涉及到的_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/凌塘村排水工程及相关拆除补偿/靠凌塘村侧排水管埋设涉及到的现状拆除及补偿项目/4A_2019_南方基地二期二阶段造价靠凌塘村侧排水管埋设涉及到的_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价凌塘村排水工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/凌塘村排水工程及相关拆除补偿/凌塘村排水工程/4A_2019_南方基地二期二阶段造价凌塘村排水工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价地下室电气工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/电气工程/[地下室]电气工程/4A_2019_南方基地二期二阶段造价地下室电气工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价201栋电气工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/电气工程/[20.1栋]电气工程/4A_2019_南方基地二期二阶段造价201栋电气工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价室外电气工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/电气工程/室外电气工程/4A_2019_南方基地二期二阶段造价室外电气工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价202栋电气工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/电气工程/[20.2栋]电气工程/4A_2019_南方基地二期二阶段造价202栋电气工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价204栋电气工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/电气工程/[20.4栋]电气工程/4A_2019_南方基地二期二阶段造价204栋电气工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价地下室集中控制型消防应急照明_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/电气工程/[地下室]集中控制型消防应急照明和疏散指示系统/4A_2019_南方基地二期二阶段造价地下室集中控制型消防应急照明_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价204栋集中控制型消防应急照_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/电气工程/[20.4栋]集中控制型消防应急照明和疏散指示系统/4A_2019_南方基地二期二阶段造价204栋集中控制型消防应急照_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价202栋集中控制型消防应急照_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/电气工程/[20.2栋]集中控制型消防应急照明和疏散指示系统/4A_2019_南方基地二期二阶段造价202栋集中控制型消防应急照_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价201栋集中控制型消防应急照_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/电气工程/[20.1栋]集中控制型消防应急照明和疏散指示系统/4A_2019_南方基地二期二阶段造价201栋集中控制型消防应急照_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价房屋鉴定_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/房屋鉴定/房屋鉴定/4A_2019_南方基地二期二阶段造价房屋鉴定_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价门卫室安装工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/室外配套工程/门卫室安装工程/4A_2019_南方基地二期二阶段造价门卫室安装工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价临时围蔽工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/室外配套工程/临时围蔽工程/4A_2019_南方基地二期二阶段造价临时围蔽工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价燃气工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/室外配套工程/燃气工程/4A_2019_南方基地二期二阶段造价燃气工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价000以上土建工程建筑工程门_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/室外配套工程/±0.00以上土建工程-建筑工程（门房A）/4A_2019_南方基地二期二阶段造价000以上土建工程建筑工程门_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价冷源系统工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/冷源系统工程/冷源系统工程/4A_2019_南方基地二期二阶段造价冷源系统工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价发电机房配电工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/高低压配电工程/发电机房配电工程/4A_2019_南方基地二期二阶段造价发电机房配电工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价高低压配电工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/高低压配电工程/高低压配电工程/4A_2019_南方基地二期二阶段造价高低压配电工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价高低压配电土建部分_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/高低压配电工程/高低压配电-土建部分/4A_2019_南方基地二期二阶段造价高低压配电土建部分_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价000以上土建工程建筑工程2_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/土建工程/±0.00以上土建工程-建筑工程（20.4栋）/4A_2019_南方基地二期二阶段造价000以上土建工程建筑工程2_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价000以下土建工程建筑工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/土建工程/±0.00以下土建工程-建筑工程/4A_2019_南方基地二期二阶段造价000以下土建工程建筑工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价000以下土建工程人防门_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/土建工程/±0.00以下土建工程-人防门/4A_2019_南方基地二期二阶段造价000以下土建工程人防门_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价桩基工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/土建工程/桩基工程/4A_2019_南方基地二期二阶段造价桩基工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价000以上土建工程建筑工程2_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/土建工程/±0.00以上土建工程-建筑工程（20.2栋）/4A_2019_南方基地二期二阶段造价000以上土建工程建筑工程2_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价000以下土建工程装饰工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/土建工程/±0.00以下土建工程-装饰工程/4A_2019_南方基地二期二阶段造价000以下土建工程装饰工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价基坑支护工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/土建工程/基坑支护工程/4A_2019_南方基地二期二阶段造价基坑支护工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价000以上土建工程建筑工程2_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/土建工程/±0.00以上土建工程-建筑工程（20.1栋）/4A_2019_南方基地二期二阶段造价000以上土建工程建筑工程2_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价201栋给排水工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/给排水工程/[20.1栋]给排水工程/4A_2019_南方基地二期二阶段造价201栋给排水工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价204栋给排水工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/给排水工程/[20.4栋]给排水工程/4A_2019_南方基地二期二阶段造价204栋给排水工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价雨水回用系统工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/给排水工程/雨水回用系统工程/4A_2019_南方基地二期二阶段造价雨水回用系统工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价直饮水系统工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/给排水工程/直饮水系统工程/4A_2019_南方基地二期二阶段造价直饮水系统工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价202栋给排水工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/给排水工程/[20.2栋]给排水工程/4A_2019_南方基地二期二阶段造价202栋给排水工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价地下室给排水工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/给排水工程/[地下室]给排水工程/4A_2019_南方基地二期二阶段造价地下室给排水工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价抗震支架工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/抗震支架工程/抗震支架工程/4A_2019_南方基地二期二阶段造价抗震支架工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价202栋火灾自动报警工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/消防工程/[20.2栋]火灾自动报警工程/4A_2019_南方基地二期二阶段造价202栋火灾自动报警工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价地下室消防水灭火系统工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/消防工程/[地下室]消防水灭火系统工程/4A_2019_南方基地二期二阶段造价地下室消防水灭火系统工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价204栋消防水灭火系统工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/消防工程/[20.4栋]消防水灭火系统工程/4A_2019_南方基地二期二阶段造价204栋消防水灭火系统工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价201栋消防水灭火系统工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/消防工程/[20.1栋]消防水灭火系统工程/4A_2019_南方基地二期二阶段造价201栋消防水灭火系统工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价204栋火灾自动报警工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/消防工程/[20.4栋]火灾自动报警工程/4A_2019_南方基地二期二阶段造价204栋火灾自动报警工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价202栋消防水灭火系统工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/消防工程/[20.2栋]消防水灭火系统工程/4A_2019_南方基地二期二阶段造价202栋消防水灭火系统工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价201栋火灾自动报警工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/消防工程/[20.1栋]火灾自动报警工程/4A_2019_南方基地二期二阶段造价201栋火灾自动报警工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价地下室火灾自动报警工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/消防工程/[地下室]火灾自动报警工程/4A_2019_南方基地二期二阶段造价地下室火灾自动报警工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价地下室人防通风工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/地下室人防工程/[地下室]人防通风工程/4A_2019_南方基地二期二阶段造价地下室人防通风工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价地下室人防电气工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/地下室人防工程/[地下室]人防电气工程/4A_2019_南方基地二期二阶段造价地下室人防电气工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价地下室人防给排水工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/地下室人防工程/[地下室]人防给排水工程/4A_2019_南方基地二期二阶段造价地下室人防给排水工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价地下管线盲探_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/地下管线盲探/地下管线盲探/4A_2019_南方基地二期二阶段造价地下管线盲探_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价临时用水_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/临时用水/临时用水/4A_2019_南方基地二期二阶段造价临时用水_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价雨水收集池土建_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/室外工程/雨水收集池土建/4A_2019_南方基地二期二阶段造价雨水收集池土建_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价室外综合管网给排水工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/室外工程/室外综合管网给排水工程/4A_2019_南方基地二期二阶段造价室外综合管网给排水工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价消防水灭火系统工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/室外工程/消防水灭火系统工程/4A_2019_南方基地二期二阶段造价消防水灭火系统工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价室外雨水收集系统工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/室外工程/室外雨水收集系统工程/4A_2019_南方基地二期二阶段造价室外雨水收集系统工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价园建工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/室外工程/园建工程/4A_2019_南方基地二期二阶段造价园建工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价永久围墙工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/室外工程/永久围墙工程/4A_2019_南方基地二期二阶段造价永久围墙工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价发电机房柴油供油系统工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/室外工程/发电机房柴油供油系统工程/4A_2019_南方基地二期二阶段造价发电机房柴油供油系统工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2019_南方基地二期二阶段造价智能化工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/室外工程/智能化工程/4A_2019_南方基地二期二阶段造价智能化工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2020_莆田NGB业务中心造价福建广电网络莆田NGB业务中_福建广电网络.xlsx ｜ 福建广电网络 2020 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.7福建广电网络莆田NGB业务中心（机房）/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单审核/4A_2020_莆田NGB业务中心造价福建广电网络莆田NGB业务中_福建广电网络.xlsx
+- [ ] **4A** 4A_2022_六安电信造价六安电信信息化中心项目信息化_中国电信安徽公司.xls ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【清单】/1 六安电信信息化中心项目/1 六安电信信息化中心项目：信息化中心【土建】/4A_2022_六安电信造价六安电信信息化中心项目信息化_中国电信安徽公司.xls
+- [ ] **4A** 4A_2022_六安电信造价六安电信云计算数据中心项目云_中国电信安徽公司.xls ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【清单】/2 六安电信云计算数据中心项目/5 六安电信云计算数据中心项目：云计算数据中心【土建】/4A_2022_六安电信造价六安电信云计算数据中心项目云_中国电信安徽公司.xls
+- [ ] **4A** 4A_2022_六安电信造价六安电信云计算数据中心项目室_中国电信安徽公司.xls ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【清单】/2 六安电信云计算数据中心项目/8 六安电信云计算数据中心项目：室外景观【园林】/4A_2022_六安电信造价六安电信云计算数据中心项目室_中国电信安徽公司.xls
+- [ ] **4A** 4A_2022_六安电信造价六安电信云计算数据中心项目室_中国电信安徽公司.xls ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【清单】/2 六安电信云计算数据中心项目/9 六安电信云计算数据中心项目：室外绿化【园林】/4A_2022_六安电信造价六安电信云计算数据中心项目室_中国电信安徽公司.xls
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B1通信机楼000以上土建工_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B1通信机楼土建工程/B1通信机楼-±0.00以上土建工程/4A_2022_粤港澳通信机楼二期造价B1通信机楼000以上土建工_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B1通信机楼000以下安装工_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B1通信机楼安装工程/B1通信机楼-±0.00以下安装工程/4A_2022_粤港澳通信机楼二期造价B1通信机楼000以下安装工_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B1通信机楼给排水工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B1通信机楼安装工程/B1通信机楼-给排水工程/4A_2022_粤港澳通信机楼二期造价B1通信机楼给排水工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B1通信机楼消防管道及设备工_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B1通信机楼安装工程/B1通信机楼-消防管道及设备工程/4A_2022_粤港澳通信机楼二期造价B1通信机楼消防管道及设备工_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B1通信机楼电气工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B1通信机楼安装工程/B1通信机楼-电气工程/4A_2022_粤港澳通信机楼二期造价B1通信机楼电气工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B1通信机楼抗震支吊架工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B1通信机楼安装工程/B1通信机楼-抗震支吊架工程/4A_2022_粤港澳通信机楼二期造价B1通信机楼抗震支吊架工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B1通信机楼通风和防排烟工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B1通信机楼安装工程/B1通信机楼-通风和防排烟工程/4A_2022_粤港澳通信机楼二期造价B1通信机楼通风和防排烟工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B1通信机楼消防报警工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B1通信机楼安装工程/B1通信机楼-消防报警工程/4A_2022_粤港澳通信机楼二期造价B1通信机楼消防报警工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B1通信机楼智能化工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B1通信机楼安装工程/B1通信机楼-智能化工程/4A_2022_粤港澳通信机楼二期造价B1通信机楼智能化工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B1通信机楼电梯工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B1通信机楼安装工程/B1通信机楼-电梯工程/4A_2022_粤港澳通信机楼二期造价B1通信机楼电梯工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B3通信机楼电气工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B3通信机楼安装工程/B3通信机楼-电气工程/4A_2022_粤港澳通信机楼二期造价B3通信机楼电气工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B3通信机楼通风和防排烟工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B3通信机楼安装工程/B3通信机楼-通风和防排烟工程/4A_2022_粤港澳通信机楼二期造价B3通信机楼通风和防排烟工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B3通信机楼电梯工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B3通信机楼安装工程/B3通信机楼-电梯工程/4A_2022_粤港澳通信机楼二期造价B3通信机楼电梯工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B3通信机楼消防管道及设备工_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B3通信机楼安装工程/B3通信机楼-消防管道及设备工程/4A_2022_粤港澳通信机楼二期造价B3通信机楼消防管道及设备工_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B3通信机楼智能化工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B3通信机楼安装工程/B3通信机楼-智能化工程/4A_2022_粤港澳通信机楼二期造价B3通信机楼智能化工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B3通信机楼抗震支吊架工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B3通信机楼安装工程/B3通信机楼-抗震支吊架工程/4A_2022_粤港澳通信机楼二期造价B3通信机楼抗震支吊架工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B3通信机楼消防报警工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B3通信机楼安装工程/B3通信机楼-消防报警工程/4A_2022_粤港澳通信机楼二期造价B3通信机楼消防报警工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B3通信机楼000以下安装工_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B3通信机楼安装工程/B3通信机楼-±0.00以下安装工程/4A_2022_粤港澳通信机楼二期造价B3通信机楼000以下安装工_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B3通信机楼给排水工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B3通信机楼安装工程/B3通信机楼-给排水工程/4A_2022_粤港澳通信机楼二期造价B3通信机楼给排水工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B2通信机楼000以上土建工_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B2通信机楼土建工程/B2通信机楼-±0.00以上土建工程/4A_2022_粤港澳通信机楼二期造价B2通信机楼000以上土建工_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B2通信机楼电气工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B2通信机楼安装工程/B2通信机楼-电气工程/4A_2022_粤港澳通信机楼二期造价B2通信机楼电气工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B2通信机楼智能化工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B2通信机楼安装工程/B2通信机楼-智能化工程/4A_2022_粤港澳通信机楼二期造价B2通信机楼智能化工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B2通信机楼消防报警工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B2通信机楼安装工程/B2通信机楼-消防报警工程/4A_2022_粤港澳通信机楼二期造价B2通信机楼消防报警工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B2通信机楼电梯工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B2通信机楼安装工程/B2通信机楼-电梯工程/4A_2022_粤港澳通信机楼二期造价B2通信机楼电梯工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B2通信机楼通风和防排烟工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B2通信机楼安装工程/B2通信机楼-通风和防排烟工程/4A_2022_粤港澳通信机楼二期造价B2通信机楼通风和防排烟工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B2通信机楼给排水工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B2通信机楼安装工程/B2通信机楼-给排水工程/4A_2022_粤港澳通信机楼二期造价B2通信机楼给排水工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B2通信机楼消防管道及设备工_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B2通信机楼安装工程/B2通信机楼-消防管道及设备工程/4A_2022_粤港澳通信机楼二期造价B2通信机楼消防管道及设备工_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B2通信机楼000以下安装工_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B2通信机楼安装工程/B2通信机楼-±0.00以下安装工程/4A_2022_粤港澳通信机楼二期造价B2通信机楼000以下安装工_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B2通信机楼抗震支吊架工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B2通信机楼安装工程/B2通信机楼-抗震支吊架工程/4A_2022_粤港澳通信机楼二期造价B2通信机楼抗震支吊架工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价B3通信机楼000以上土建工_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B3通信机楼土建工程/B3通信机楼-±0.00以上土建工程/4A_2022_粤港澳通信机楼二期造价B3通信机楼000以上土建工_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价室外电气工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外电气工程/4A_2022_粤港澳通信机楼二期造价室外电气工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价门卫室土建工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/门卫室土建工程/4A_2022_粤港澳通信机楼二期造价门卫室土建工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价门卫室安装工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/门卫室安装工程/4A_2022_粤港澳通信机楼二期造价门卫室安装工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价室外油罐安装工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外油罐安装工程/4A_2022_粤港澳通信机楼二期造价室外油罐安装工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价室外油罐安装工程_中国移动广东公司_02.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外油罐安装工程/4A_2022_粤港澳通信机楼二期造价室外油罐安装工程_中国移动广东公司_02.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价市政给水工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/市政给水工程/4A_2022_粤港澳通信机楼二期造价市政给水工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价室外排水排污工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外排水排污工程/4A_2022_粤港澳通信机楼二期造价室外排水排污工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价临水临电工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/其他费用/临水、临电工程/4A_2022_粤港澳通信机楼二期造价临水临电工程_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价房屋鉴定费_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/其他费用/房屋鉴定费/4A_2022_粤港澳通信机楼二期造价房屋鉴定费_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价白蚁防治费_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/其他费用/白蚁防治费/4A_2022_粤港澳通信机楼二期造价白蚁防治费_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价地下管线探测费_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/其他费用/地下管线探测费/4A_2022_粤港澳通信机楼二期造价地下管线探测费_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2022_粤港澳通信机楼二期造价建筑信息模型BIM技术应用费_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/其他费用/建筑信息模型（BIM）技术应用费用/4A_2022_粤港澳通信机楼二期造价建筑信息模型BIM技术应用费_中国移动广东公司.xlsx
+- [ ] **4A** 4A_2023_宁德大数据产业园一期造价宁德市大数据产业园及基础配套_工程档案.xlsx ｜ 工程档案 2023 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2023.3  宁德市大数据产业园及基础配套设施项目（一期）IT云平台/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价/4A_2023_宁德大数据产业园一期造价宁德市大数据产业园及基础配套_工程档案.xlsx
+- [ ] **4A** 4A_2023_定兴县公安机房造价机房土建_工程档案.xlsx ｜ 工程档案 2023 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2023.4 定兴县公安局智慧乡村、小区与指挥系统智慧化项目-机房/造价类资料（全程免费，得来不易需要完成一些小任务）1/定兴县公安局智慧乡村、小区与指挥系统智慧化项目-机房/定兴县公安局智慧乡村、小区与指挥系统智慧化项目/机房-土建/4A_2023_定兴县公安机房造价机房土建_工程档案.xlsx
+- [ ] **4A** 4A_2023_定兴县公安机房造价机房安装_工程档案.xlsx ｜ 工程档案 2023 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2023.4 定兴县公安局智慧乡村、小区与指挥系统智慧化项目-机房/造价类资料（全程免费，得来不易需要完成一些小任务）1/定兴县公安局智慧乡村、小区与指挥系统智慧化项目-机房/定兴县公安局智慧乡村、小区与指挥系统智慧化项目/机房-安装/4A_2023_定兴县公安机房造价机房安装_工程档案.xlsx
+- [ ] **4A** 4A_2024_南平延平通信枢纽楼造价中国移动福建南平延平通信枢纽_中国移动福建公司.xlsx ｜ 中国移动福建公司 2024 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.12 中国移动（福建南平）延平通信枢纽楼/造价类资料（全程免费，得来不易需要完成一些小任务）1/计价20241202 - 副本/计价20241202 - 副本/清单/4A_2024_南平延平通信枢纽楼造价中国移动福建南平延平通信枢纽_中国移动福建公司.xlsx
+- [ ] **4A** 4A_2024_南平延平通信枢纽楼造价中国移动福建南平延平通信枢纽_中国移动福建公司.xlsx ｜ 中国移动福建公司 2024 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.12 中国移动（福建南平）延平通信枢纽楼/造价类资料（全程免费，得来不易需要完成一些小任务）1/计价20241202 - 副本/计价20241202 - 副本/1控制价/4A_2024_南平延平通信枢纽楼造价中国移动福建南平延平通信枢纽_中国移动福建公司.xlsx
+- [ ] **4A** 4A_2024_国家工信安全华南分中心造价国家工业信息安全发展研究中心_工程档案.xlsx ｜ 工程档案 2024 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.2 国家工业信息安全发展研究中心•华南分中心星河东悦汇载体项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程量清单EX/4A_2024_国家工信安全华南分中心造价国家工业信息安全发展研究中心_工程档案.xlsx
+- [ ] **4A** 4A_2025_南安供电备用调度数据中心造价南安市供电公司备用调度指挥数_国网福建南安.xlsx ｜ 国网福建南安 2025 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2025.4 南安市供电公司备用调度指挥数据中心DF/造价类资料（全程免费，得来不易需要完成一些小任务）1/发网南安市供电公司备用调度指挥数据中心预算（发布1）/4A_2025_南安供电备用调度数据中心造价南安市供电公司备用调度指挥数_国网福建南安.xlsx
+- [ ] **4A** 4A_2025_南安供电备用调度数据中心造价南安市供电公司备用调度指挥数_国网福建南安_02.xlsx ｜ 国网福建南安 2025 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2025.4 南安市供电公司备用调度指挥数据中心DF/造价类资料（全程免费，得来不易需要完成一些小任务）1/发网南安市供电公司备用调度指挥数据中心预算（发布1）/4A_2025_南安供电备用调度数据中心造价南安市供电公司备用调度指挥数_国网福建南安_02.xlsx
+- [ ] **4B** 4B_2021_中国碳化硅厂算不过账_SemiAnalysis.pdf ｜ SemiAnalysis 2021 ｜ → M14 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/4B_2021_中国碳化硅厂算不过账_SemiAnalysis.pdf
-- [ ] **4B** 4B_2021_中国房地产与芯片需求_SemiAnalysis.pdf ｜ SemiAnalysis 2021 ｜ → M14
+- [ ] **4B** 4B_2021_中国房地产与芯片需求_SemiAnalysis.pdf ｜ SemiAnalysis 2021 ｜ → M14 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/4B_2021_中国房地产与芯片需求_SemiAnalysis.pdf
-- [ ] **4B** 4B_2021_英伟达盈利质量存疑_SemiAnalysis.pdf ｜ SemiAnalysis 2021 ｜ → M15
+- [ ] **4B** 4B_2021_英伟达盈利质量存疑_SemiAnalysis.pdf ｜ SemiAnalysis 2021 ｜ → M15 ｜ 精读
       docs/library/04_市场与研究/SemiAnalysis合集/合集/4B_2021_英伟达盈利质量存疑_SemiAnalysis.pdf
-- [ ] **4B** 4B_2025_PCIe7与448G通道_SNIA.pdf ｜ SNIA 2025 ｜ → M07
+- [ ] **4B** 4B_2025_PCIe7与448G通道_SNIA.pdf ｜ SNIA 2025 ｜ → M07 ｜ 精读
       docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/AI_ML/4B_2025_PCIe7与448G通道_SNIA.pdf
-- [ ] **4B** 4B_2025_数据中心可持续性_SNIA.pdf ｜ SNIA 2025 ｜ → M09
+- [ ] **4B** 4B_2025_数据中心可持续性_SNIA.pdf ｜ SNIA 2025 ｜ → M09 ｜ 精读
       docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Sustainability & Green/4B_2025_数据中心可持续性_SNIA.pdf
-- [ ] **3C** 3C_2025_存储融合_SNIA.pdf ｜ SNIA 2025 ｜ → M06
+- [ ] **4B** 4B_2025_游戏行业存储需求_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Emerging Technologies/4B_2025_游戏行业存储需求_SNIA.pdf
+- [ ] **4B** 4B_2025_Linux存储栈变更统计_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/File Systems & Protocols/4B_2025_Linux存储栈变更统计_SNIA.pdf
+- [ ] **4B** 4B_2021_三星45nm嵌入式NOR拆解_TechInsights.pdf ｜ TechInsights 2021 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/TechInsights-17篇合集/4B_2021_三星45nm嵌入式NOR拆解_TechInsights.pdf
+- [ ] **4B** 4B_2025_汽车半导体五大趋势_TechInsights.pdf ｜ TechInsights 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/TechInsights-17篇合集/4B_2025_汽车半导体五大趋势_TechInsights.pdf
+- [ ] **4B** 4B_2025_Samba企业就绪度_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/File Systems & Protocols/4B_2025_Samba企业就绪度_SNIA.pdf
+- [ ] **4B** 4B_2025_Samba新传输层_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/File Systems & Protocols/4B_2025_Samba新传输层_SNIA.pdf
+- [ ] **4B** 4B_2025_存储中消除NTLM_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/File Systems & Protocols/4B_2025_存储中消除NTLM_SNIA.pdf
+- [ ] **4B** 4B_2025_多协议存储治理_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/File Systems & Protocols/4B_2025_多协议存储治理_SNIA.pdf
+- [ ] **4B** 4B_2025_S3互操作性讨论_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Birds-of-a-Feather/4B_2025_S3互操作性讨论_SNIA.pdf
+- [ ] **4B** 4B_2025_S3兼容性测试_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Cloud Storage/4B_2025_S3兼容性测试_SNIA.pdf
+- [ ] **4B** 4B_2025_NVMe-oF认证机制_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Solid State Storage Solutions/4B_2025_NVMe-oF认证机制_SNIA.pdf
+- [ ] **4B** 4B_2025_SPDM安全协议更新_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Data Security/4B_2025_SPDM安全协议更新_SNIA.pdf
+- [ ] **4B** 4B_2025_汽车存储新趋势_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Data Security/4B_2025_汽车存储新趋势_SNIA.pdf
+- [ ] **4B** 4B_2025_Swordfish存储管理规范_SNIA.pdf ｜ SNIA 2025 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Management/4B_2025_Swordfish存储管理规范_SNIA.pdf
+- [ ] **4B** 4B_2025_Redfish存储管理_SNIA.pdf ｜ SNIA 2025 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Management/4B_2025_Redfish存储管理_SNIA.pdf
+- [ ] **4B** 4B_2025_Sunfish可组合基础设施管理_SNIA.pdf ｜ SNIA 2025 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Management/4B_2025_Sunfish可组合基础设施管理_SNIA.pdf
+- [ ] **4B** 4B_2025_NVMe主机侧管理_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Solid State Storage Solutions/4B_2025_NVMe主机侧管理_SNIA.pdf
+- [ ] **4B** 4B_2025_SSD信号完整性设计_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DCTR-301-1：Enterprise Storage and SSD/4B_2025_SSD信号完整性设计_FMS2025.pdf
+- [ ] **4B** 4B_2025_卫星SSD抗辐射设计_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/AERO-202-1：Aerospace and Outer Space Data/4B_2025_卫星SSD抗辐射设计_FMS2025.pdf
+- [ ] **4B** 4B_2025_航天SSD控制器容错_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/AERO-202-1：Aerospace and Outer Space Data/4B_2025_航天SSD控制器容错_FMS2025.pdf
+- [ ] **4B** 4B_2025_半导体人才管理系统_FMS2025.pdf ｜ FMS2025 2025 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/AIML-301-1：Data Analytics/4B_2025_半导体人才管理系统_FMS2025.pdf
+- [ ] **4B** 4B_2025_车规高耐久闪存_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/AUTO-101-1：Software Defined Vehicles/4B_2025_车规高耐久闪存_FMS2025.pdf
+- [ ] **4B** 4B_2025_车载NAND耐久要求_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/AUTO-101-1：Software Defined Vehicles/4B_2025_车载NAND耐久要求_FMS2025.pdf
+- [ ] **4B** 4B_2025_UFS接口速率演进_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/AUTO-101-1：Software Defined Vehicles/4B_2025_UFS接口速率演进_FMS2025.pdf
+- [ ] **4B** 4B_2025_UCIe多厂商互操作_FMS2025.pdf ｜ FMS2025 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/CHIP-303-1：Navigating the Chiplet Revolution Applying EDA Insights into UCIe Standards/4B_2025_UCIe多厂商互操作_FMS2025.pdf
+- [ ] **4B** 4B_2025_UCIe管理面架构_FMS2025.pdf ｜ FMS2025 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/CHIP-303-1：Navigating the Chiplet Revolution Applying EDA Insights into UCIe Standards/4B_2025_UCIe管理面架构_FMS2025.pdf
+- [ ] **4B** 4B_2025_计算型存储安全_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/COMP-101-1：Computational Storage Discussions and Explorations/4B_2025_计算型存储安全_FMS2025.pdf
+- [ ] **4B** 4B_2025_CXL加密验证方案_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/CXLT-304-1：CXL Verification/4B_2025_CXL加密验证方案_FMS2025.pdf
+- [ ] **4B** 4B_2025_内存总线IO接口_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DRAM-303-1：High Performance DRAM Technology/4B_2025_内存总线IO接口_FMS2025.pdf
+- [ ] **4B** 4B_2025_安全启动与证明_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DSEC-101-1：Hardware Trust Building Blocks for Secure Systems/4B_2025_安全启动与证明_FMS2025.pdf
+- [ ] **4B** 4B_2025_PCIe安全协议验证_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DSEC-101-1：Hardware Trust Building Blocks for Secure Systems/4B_2025_PCIe安全协议验证_FMS2025.pdf
+- [ ] **4B** 4B_2025_存储介质销毁合规_FMS2025.pdf ｜ FMS2025 2025 ｜ → M10/M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DSEC-201-1：Data Defense Advanced Protection Strategies and Compliance/4B_2025_存储介质销毁合规_FMS2025.pdf
+- [ ] **4B** 4B_2025_抗量子固态盘方案_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DSEC-304-1：Quantum Resilience The New Storage Security Frontier/4B_2025_抗量子固态盘方案_FMS2025.pdf
+- [ ] **4B** 4B_2025_手机QLC寿命余量_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/QLCP-304-1：Multi-Level Cells Part 2/4B_2025_手机QLC寿命余量_FMS2025.pdf
+- [ ] **4B** 4B_2025_QLC编程效率改善_FMS2025.pdf ｜ FMS2025 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/QLCP-304-1：Multi-Level Cells Part 2/4B_2025_QLC编程效率改善_FMS2025.pdf
+- [ ] **4B** 4B_2025_端侧AI存储能效_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/SSDT-201-1：SSD Technologies for AI and the Data Center/4B_2025_端侧AI存储能效_FMS2025.pdf
+- [ ] **4B** 4B_2025_视频录制数据放置_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/SSDT-302-1：AI Workloads and Data Placement Techniques/4B_2025_视频录制数据放置_FMS2025.pdf
+- [ ] **4B** 4B_2025_SLC低功耗解码器A_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/SSDT-304-1：Error Correction, Reliability, and Telemetry Techniques for SSDs/4B_2025_SLC低功耗解码器A_FMS2025.pdf
+- [ ] **4B** 4B_2025_SLC低功耗解码器B_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/SSDT-304-1：Error Correction, Reliability, and Telemetry Techniques for SSDs/4B_2025_SLC低功耗解码器B_FMS2025.pdf
+- [ ] **4B** 4B_2025_量子计算存储需求_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/SUST-203-1：Energy Efficiency/4B_2025_量子计算存储需求_FMS2025.pdf
+- [ ] **4B** 4B_2025_主机发起碎片整理_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/TEST-101-1：Performance/4B_2025_主机发起碎片整理_FMS2025.pdf
+- [ ] **4B** 4B_2025_CXL开源仿真验证_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/TEST-303-1：Simulation and Failure Analysis/4B_2025_CXL开源仿真验证_FMS2025.pdf
+- [ ] **4B** 4B_2025_存储测试智能分析_FMS2025.pdf ｜ FMS2025 2025 ｜ → M10/M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/TEST-303-1：Simulation and Failure Analysis/4B_2025_存储测试智能分析_FMS2025.pdf
+- [ ] **4B** 4B_2025_织构内存设备验证_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06/M04 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/TEST-303-1：Simulation and Failure Analysis/4B_2025_织构内存设备验证_FMS2025.pdf
+- [ ] **4B** 4B_2024_国产算力半年策略_中原证券.pdf ｜ 中原证券 2024 ｜ → M14/M15 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/4B_2024_国产算力半年策略_中原证券.pdf
+- [ ] **4B** 4B_2020_数据中心供需格局_华泰证券.pdf ｜ 华泰证券 2020 ｜ → M14/M15 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2020/4B_2020_数据中心供需格局_华泰证券.pdf
+- [ ] **4B** 4B_2025_CMP耗材供应商_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/材料/4B_2025_CMP耗材供应商_半导体综研.xlsx
+- [ ] **4B** 4B_2025_探针卡供应商_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/材料/4B_2025_探针卡供应商_半导体综研.xlsx
+- [ ] **4B** 4B_2025_晶圆厂CIM系统供应商_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/软件IP/4B_2025_晶圆厂CIM系统供应商_半导体综研.xlsx
+- [ ] **4B** 4B_2025_晶圆厂物流系统供应商_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/设备/4B_2025_晶圆厂物流系统供应商_半导体综研.xlsx
+- [ ] **4B** 4B_2025_晶圆操作部件供应商_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/设备零部件/4B_2025_晶圆操作部件供应商_半导体综研.xlsx
+- [ ] **4B** 4B_2025_有机封装材料供应商_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/材料/4B_2025_有机封装材料供应商_半导体综研.xlsx
+- [ ] **4B** 4B_2025_气路液路部件供应商_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/设备零部件/4B_2025_气路液路部件供应商_半导体综研.xlsx
+- [ ] **4B** 4B_2025_测试辅助设备供应商_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/设备/4B_2025_测试辅助设备供应商_半导体综研.xlsx
+- [ ] **4B** 4B_2025_湿化学品供应商_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/材料/4B_2025_湿化学品供应商_半导体综研.xlsx
+- [ ] **4B** 4B_2025_溅射靶材供应商_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/材料/4B_2025_溅射靶材供应商_半导体综研.xlsx
+- [ ] **4B** 4B_2025_滤芯与密封材料供应商_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/材料/4B_2025_滤芯与密封材料供应商_半导体综研.xlsx
+- [ ] **4B** 4B_2025_激光打标设备供应商_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/设备/4B_2025_激光打标设备供应商_半导体综研.xlsx
+- [ ] **4B** 4B_2025_特气与前驱体供应商_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/材料/4B_2025_特气与前驱体供应商_半导体综研.xlsx
+- [ ] **4B** 4B_2025_设备光源供应商_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/设备零部件/4B_2025_设备光源供应商_半导体综研.xlsx
+- [ ] **4B** 4B_2025_设备零部件供应商总表_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/设备零部件/4B_2025_设备零部件供应商总表_半导体综研.xlsx
+- [ ] **4B** 4B_2025_运动平台部件供应商_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/设备零部件/4B_2025_运动平台部件供应商_半导体综研.xlsx
+- [ ] **4B** 4B_2025_金属封装材料供应商_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/材料/4B_2025_金属封装材料供应商_半导体综研.xlsx
+- [ ] **4B** 4B_2025_陶瓷封装材料供应商_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/3. 企业产品数据/材料/4B_2025_陶瓷封装材料供应商_半导体综研.xlsx
+- [ ] **4B** 4B_2024_特气应用场景矩阵_半导体综研.xlsx ｜ 半导体综研 2024 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/5. 其它/4B_2024_特气应用场景矩阵_半导体综研.xlsx
+- [ ] **4B** 4B_2023_先进封装行业初探_半导体综研.pptx ｜ 半导体综研 2023 ｜ → M07/M04 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/23年景气度课程PPT/4B_2023_先进封装行业初探_半导体综研.pptx
+- [ ] **4B** 4B_2024_EDA与IP市场规模_半导体综研.pptx ｜ 半导体综研 2024 ｜ → M07/M14 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/半导体产业链概览系列课/4B_2024_EDA与IP市场规模_半导体综研.pptx
+- [ ] **4B** 4B_2024_半导体海外并购实务_半导体综研.pdf ｜ 半导体综研 2024 ｜ → M14/M15 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/其它课程资料/4B_2024_半导体海外并购实务_半导体综研.pdf
+- [ ] **4B** 4B_2024_国产DFT工具科普_半导体综研.pdf ｜ 半导体综研 2024 ｜ → M14/M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/其它课程资料/4B_2024_国产DFT工具科普_半导体综研.pdf
+- [ ] **4B** 4B_2024_景气度原理公开课_半导体综研.pdf ｜ 半导体综研 2024 ｜ → M07/M15 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/其它课程资料/4B_2024_景气度原理公开课_半导体综研.pdf
+- [ ] **4B** 4B_2024_景气度原理课件二_半导体综研.pptx ｜ 半导体综研 2024 ｜ → M07/M15 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/半导体产业链概览系列课/4B_2024_景气度原理课件二_半导体综研.pptx
+- [ ] **4B** 4B_2024_晶圆厂自动化系统概览_半导体综研.pptx ｜ 半导体综研 2024 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/半导体产业链概览系列课/4B_2024_晶圆厂自动化系统概览_半导体综研.pptx
+- [ ] **4B** 4B_2024_硅晶圆产业概览_半导体综研.pdf ｜ 半导体综研 2024 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/5. 其它/大硅片行业报告/4B_2024_硅晶圆产业概览_半导体综研.pdf
+- [ ] **4B** 4B_2024_硅晶圆发展历程_半导体综研.pdf ｜ 半导体综研 2024 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/5. 其它/大硅片行业报告/4B_2024_硅晶圆发展历程_半导体综研.pdf
+- [ ] **4B** 4B_2025_景气度原理课件一_半导体综研.pptx ｜ 半导体综研 2025 ｜ → M07/M15 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/半导体产业链概览系列课/4B_2025_景气度原理课件一_半导体综研.pptx
+- [ ] **4B** 4B_2023_CIM系统分类树_半导体综研.xmind ｜ 半导体综研 2023 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/5. 其它/半导体行业产品分类思维导图/4B_2023_CIM系统分类树_半导体综研.xmind
+- [ ] **4B** 4B_2023_EDA工具分类树_半导体综研.xmind ｜ 半导体综研 2023 ｜ → M07/M14 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/5. 其它/半导体行业产品分类思维导图/4B_2023_EDA工具分类树_半导体综研.xmind
+- [ ] **4B** 4B_2023_半导体IP分类树_半导体综研.xmind ｜ 半导体综研 2023 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/5. 其它/半导体行业产品分类思维导图/4B_2023_半导体IP分类树_半导体综研.xmind
+- [ ] **4B** 4B_2023_半导体业务模式分类树_半导体综研.xmind ｜ 半导体综研 2023 ｜ → M07/M14 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/5. 其它/半导体行业产品分类思维导图/4B_2023_半导体业务模式分类树_半导体综研.xmind
+- [ ] **4B** 4B_2024_存储行业报告合集包_半导体综研.zip ｜ 半导体综研 2024 ｜ → M06/M14 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/4B_2024_存储行业报告合集包_半导体综研.zip
+- [ ] **4B** 4B_2019_外审回复01_工程档案.doc ｜ 工程项目档案 2019 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.6 重庆有线水土综合枢纽基地建设项目/景观/4B_2019_外审回复01_工程档案.doc
+- [ ] **4B** 4B_2019_外审回复02_工程档案.doc ｜ 工程项目档案 2019 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.6 重庆有线水土综合枢纽基地建设项目/景观/4B_2019_外审回复02_工程档案.doc
+- [ ] **4B** 4B_2019_外审回复01_工程档案.docx ｜ 工程项目档案 2019 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.6 重庆有线水土综合枢纽基地建设项目/暖通/外审意见回复/4B_2019_外审回复01_工程档案.docx
+- [ ] **4B** 4B_2022_外审回复01_工程档案.doc ｜ 工程项目档案 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/01设计通知单/4B_2022_外审回复01_工程档案.doc
+- [ ] **4B** 4B_2022_外审回复02_工程档案.doc ｜ 工程项目档案 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/01设计通知单/4B_2022_外审回复02_工程档案.doc
+- [ ] **4B** 4B_2022_外审回复01_工程档案.doc ｜ 工程项目档案 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/景观/景观修改苗木表及种植图原发了配置表变更未补充平面布置图本次设计补上的---20230222/4B_2022_外审回复01_工程档案.doc
+- [ ] **4B** 4B_2022_外审回复01_工程档案.docx ｜ 工程项目档案 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/江南数据中心-消防审查专家意见 回复20230118/建筑专业消防审查意见修改图纸/4B_2022_外审回复01_工程档案.docx
+- [ ] **4B** 4B_2022_外审回复01_工程档案.docx ｜ 工程项目档案 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/江南数据中心-消防审查专家意见 回复20230118/暖通专业消防审查意见修改图纸/4B_2022_外审回复01_工程档案.docx
+- [ ] **4B** 4B_2022_外审回复01_工程档案.docx ｜ 工程项目档案 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/江南数据中心-消防审查专家意见 回复20230118/电气专业消防审查意见修改图纸/4B_2022_外审回复01_工程档案.docx
+- [ ] **4B** 4B_2022_外审回复01_工程档案.docx ｜ 工程项目档案 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/江南数据中心-消防审查专家意见 回复20230118/给排水专业消防审查意见修改图纸cad/4B_2022_外审回复01_工程档案.docx
+- [ ] **4B** 4B_2022_外审回复01_工程档案.doc ｜ 工程项目档案 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/江南数据中心-消防审查专家意见 回复20230118/4B_2022_外审回复01_工程档案.doc
+- [ ] **4B** 4B_2022_外审回复01_工程档案.doc ｜ 工程项目档案 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/造价类资料（全程免费，得来不易需要完成一些小任务）1/001答疑/4B_2022_外审回复01_工程档案.doc
+- [ ] **4B** 4B_2025_照明计算01_工程档案.xlsx ｜ 工程项目档案 2025 ｜ → M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2025.3 汶川县财政片区更新改造项目和阿坝州汶川县新型智慧城市建设项目(城市运营中心机房)/精装/4B_2025_照明计算01_工程档案.xlsx
+- [ ] **4B** 4B_2019_节能审查01_工程档案.docx ｜ 工程项目档案 2019 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.6 重庆有线水土综合枢纽基地建设项目/节能/4B_2019_节能审查01_工程档案.docx
+- [ ] **4B** 4B_2019_节能审查01_工程档案.doc ｜ 工程项目档案 2019 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.6 重庆有线水土综合枢纽基地建设项目/节能/外审意见及回复/4B_2019_节能审查01_工程档案.doc
+- [ ] **4B** 4B_2019_节能审查02_工程档案.doc ｜ 工程项目档案 2019 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.6 重庆有线水土综合枢纽基地建设项目/节能/外审意见及回复/4B_2019_节能审查02_工程档案.doc
+- [ ] **4B** 4B_2019_节能审查02_工程档案.doc ｜ 工程项目档案 2019 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.6 重庆有线水土综合枢纽基地建设项目/节能/4B_2019_节能审查02_工程档案.doc
+- [ ] **4B** 4B_2019_节能审查01_工程档案.doc ｜ 工程项目档案 2019 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.6 重庆有线水土综合枢纽基地建设项目/节能/模型及报告书/厂房模型及报告书+/4B_2019_节能审查01_工程档案.doc
+- [ ] **4B** 4B_2019_节能审查02_工程档案.doc ｜ 工程项目档案 2019 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.6 重庆有线水土综合枢纽基地建设项目/节能/模型及报告书/厂房模型及报告书+/4B_2019_节能审查02_工程档案.doc
+- [ ] **4B** 4B_2019_节能审查01_工程档案.doc ｜ 工程项目档案 2019 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.6 重庆有线水土综合枢纽基地建设项目/节能/模型及报告书/门卫模型及报告书+/4#/4B_2019_节能审查01_工程档案.doc
+- [ ] **4B** 4B_2019_节能审查02_工程档案.doc ｜ 工程项目档案 2019 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.6 重庆有线水土综合枢纽基地建设项目/节能/模型及报告书/门卫模型及报告书+/4#/4B_2019_节能审查02_工程档案.doc
+- [ ] **4B** 4B_2019_节能审查01_工程档案.doc ｜ 工程项目档案 2019 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.6 重庆有线水土综合枢纽基地建设项目/节能/模型及报告书/门卫模型及报告书+/5#/4B_2019_节能审查01_工程档案.doc
+- [ ] **4B** 4B_2019_节能审查01_工程档案.docx ｜ 工程项目档案 2019 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7中国电信云计算重庆基地二期工程/重庆二期节能/重庆二期节能-D栋/计算书/4B_2019_节能审查01_工程档案.docx
+- [ ] **4B** 4B_2019_节能审查01_工程档案.rtf ｜ 工程项目档案 2019 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7中国电信云计算重庆基地二期工程/重庆二期节能/重庆二期节能-F栋/计算书/4B_2019_节能审查01_工程档案.rtf
+- [ ] **4B** 4B_2019_节能审查02_工程档案.rtf ｜ 工程项目档案 2019 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7中国电信云计算重庆基地二期工程/重庆二期节能/重庆二期节能-F栋/计算书/4B_2019_节能审查02_工程档案.rtf
+- [ ] **4B** 4B_2019_节能审查01_工程档案.doc ｜ 工程项目档案 2019 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/01-建筑/节能报告/4B_2019_节能审查01_工程档案.doc
+- [ ] **4B** 4B_2019_节能审查02_工程档案.doc ｜ 工程项目档案 2019 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/01-建筑/节能报告/4B_2019_节能审查02_工程档案.doc
+- [ ] **4B** 4B_2019_节能审查03_工程档案.doc ｜ 工程项目档案 2019 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/01-建筑/节能报告/4B_2019_节能审查03_工程档案.doc
+- [ ] **4B** 4B_2019_节能审查01_工程档案.doc ｜ 工程项目档案 2019 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/05-电气/节能审查表+照明计算书/4B_2019_节能审查01_工程档案.doc
+- [ ] **4B** 4B_2019_节能审查02_工程档案.doc ｜ 工程项目档案 2019 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/05-电气/节能审查表+照明计算书/4B_2019_节能审查02_工程档案.doc
+- [ ] **4B** 4B_2021_节能审查01_工程档案.DOC ｜ 工程项目档案 2021 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2021.1 六安电信信息化中心和六安电信云计算数据中心项目/室外、幕墙图纸2022.2.13整理/指挥中心幕墙/4B_2021_节能审查01_工程档案.DOC
+- [ ] **4B** 4B_2022_节能审查01_工程档案.doc ｜ 工程项目档案 2022 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/4B_2022_节能审查01_工程档案.doc
+- [ ] **4B** 4B_2022_节能审查01_工程档案.doc ｜ 工程项目档案 2022 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/碳排放计算书/门卫1/4B_2022_节能审查01_工程档案.doc
+- [ ] **4B** 4B_2022_节能审查02_工程档案.doc ｜ 工程项目档案 2022 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/碳排放计算书/门卫1/4B_2022_节能审查02_工程档案.doc
+- [ ] **4B** 4B_2022_节能审查03_工程档案.doc ｜ 工程项目档案 2022 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/碳排放计算书/门卫1/4B_2022_节能审查03_工程档案.doc
+- [ ] **4B** 4B_2022_节能审查04_工程档案.doc ｜ 工程项目档案 2022 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/碳排放计算书/门卫1/4B_2022_节能审查04_工程档案.doc
+- [ ] **4B** 4B_2022_节能审查05_工程档案.doc ｜ 工程项目档案 2022 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/碳排放计算书/门卫1/4B_2022_节能审查05_工程档案.doc
+- [ ] **4B** 4B_2022_节能审查01_工程档案.doc ｜ 工程项目档案 2022 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/碳排放计算书/门卫2/4B_2022_节能审查01_工程档案.doc
+- [ ] **4B** 4B_2022_节能审查01_工程档案.doc ｜ 工程项目档案 2022 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/1#楼/1#楼/1#楼（维护支撑用房）-节能及绿建报告书汇总/4B_2022_节能审查01_工程档案.doc
+- [ ] **4B** 4B_2022_节能审查02_工程档案.doc ｜ 工程项目档案 2022 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/1#楼/1#楼/1#楼（维护支撑用房）-节能及绿建报告书汇总/4B_2022_节能审查02_工程档案.doc
+- [ ] **4B** 4B_2022_节能审查01_工程档案.doc ｜ 工程项目档案 2022 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/1#楼/1#楼/1#楼（维护支撑用房）-节能及绿建报告书汇总/建筑节能附录/4B_2022_节能审查01_工程档案.doc
+- [ ] **4B** 4B_2022_节能审查01_工程档案.doc ｜ 工程项目档案 2022 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/1#楼/1#楼地标验算/4B_2022_节能审查01_工程档案.doc
+- [ ] **4B** 4B_2022_节能审查02_工程档案.doc ｜ 工程项目档案 2022 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/1#楼/1#楼地标验算/4B_2022_节能审查02_工程档案.doc
+- [ ] **4B** 4B_2022_节能审查01_工程档案.doc ｜ 工程项目档案 2022 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/门卫2/门卫2/4B_2022_节能审查01_工程档案.doc
+- [ ] **4B** 4B_2022_节能审查02_工程档案.doc ｜ 工程项目档案 2022 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/门卫2/门卫2/4B_2022_节能审查02_工程档案.doc
+- [ ] **4B** 4B_2022_节能审查03_工程档案.doc ｜ 工程项目档案 2022 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/门卫2/门卫2/4B_2022_节能审查03_工程档案.doc
+- [ ] **4B** 4B_2022_节能审查04_工程档案.doc ｜ 工程项目档案 2022 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/门卫2/门卫2/4B_2022_节能审查04_工程档案.doc
+- [ ] **4B** 4B_2022_节能审查01_工程档案.doc ｜ 工程项目档案 2022 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/门卫2/门卫2地标验算/4B_2022_节能审查01_工程档案.doc
+- [ ] **4B** 4B_2022_节能审查02_工程档案.doc ｜ 工程项目档案 2022 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/门卫2/门卫2地标验算/4B_2022_节能审查02_工程档案.doc
+- [ ] **4B** 4B_2022_节能审查01_工程档案.doc ｜ 工程项目档案 2022 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 23#楼/中国移动成渝（重庆）江南数据中心建设项目一期土建工程-2#、3#楼意见回复/2#/4B_2022_节能审查01_工程档案.doc
+- [ ] **4B** 4B_2022_节能审查02_工程档案.doc ｜ 工程项目档案 2022 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 23#楼/中国移动成渝（重庆）江南数据中心建设项目一期土建工程-2#、3#楼意见回复/2#/4B_2022_节能审查02_工程档案.doc
+- [ ] **4B** 4B_2022_节能审查03_工程档案.doc ｜ 工程项目档案 2022 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 23#楼/中国移动成渝（重庆）江南数据中心建设项目一期土建工程-2#、3#楼意见回复/2#/4B_2022_节能审查03_工程档案.doc
+- [ ] **4B** 4B_2022_节能审查04_工程档案.doc ｜ 工程项目档案 2022 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 23#楼/中国移动成渝（重庆）江南数据中心建设项目一期土建工程-2#、3#楼意见回复/2#/4B_2022_节能审查04_工程档案.doc
+- [ ] **4B** 4B_2022_节能审查05_工程档案.doc ｜ 工程项目档案 2022 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 23#楼/中国移动成渝（重庆）江南数据中心建设项目一期土建工程-2#、3#楼意见回复/2#/4B_2022_节能审查05_工程档案.doc
+- [ ] **4B** 4B_2023_节能审查01_工程档案.docx ｜ 工程项目档案 2023 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2023.1广西桂北云计算产业园一期项目通信机楼土建工程/第一册 建筑专业设计2023.01.04/节能/4B_2023_节能审查01_工程档案.docx
+- [ ] **4B** 4B_2023_节能审查01_工程档案.docx ｜ 工程项目档案 2023 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2023.4 定兴县公安局智慧乡村、小区与指挥系统智慧化项目-机房/建筑/节能报告书/4B_2023_节能审查01_工程档案.docx
+- [ ] **4B** 4B_2023_节能审查02_工程档案.docx ｜ 工程项目档案 2023 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2023.4 定兴县公安局智慧乡村、小区与指挥系统智慧化项目-机房/建筑/节能报告书/4B_2023_节能审查02_工程档案.docx
+- [ ] **4B** 4B_2024_节能审查01_工程档案.doc ｜ 工程项目档案 2024 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/建筑节能/报告书/4B_2024_节能审查01_工程档案.doc
+- [ ] **4B** 4B_2024_节能审查02_工程档案.doc ｜ 工程项目档案 2024 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/建筑节能/报告书/4B_2024_节能审查02_工程档案.doc
+- [ ] **4B** 4B_2024_节能审查03_工程档案.doc ｜ 工程项目档案 2024 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/建筑节能/报告书/4B_2024_节能审查03_工程档案.doc
+- [ ] **4B** 4B_2024_节能审查04_工程档案.doc ｜ 工程项目档案 2024 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/建筑节能/报告书/4B_2024_节能审查04_工程档案.doc
+- [ ] **4B** 4B_2024_节能审查05_工程档案.doc ｜ 工程项目档案 2024 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/建筑节能/报告书/4B_2024_节能审查05_工程档案.doc
+- [ ] **4B** 4B_2024_节能审查06_工程档案.doc ｜ 工程项目档案 2024 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/建筑节能/报告书/4B_2024_节能审查06_工程档案.doc
+- [ ] **4B** 4B_2024_节能审查01_工程档案.txt ｜ 工程项目档案 2024 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/碳排放/中间文件/4B_2024_节能审查01_工程档案.txt
+- [ ] **4B** 4B_2024_节能审查02_工程档案.txt ｜ 工程项目档案 2024 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/碳排放/中间文件/4B_2024_节能审查02_工程档案.txt
+- [ ] **4B** 4B_2024_节能审查03_工程档案.txt ｜ 工程项目档案 2024 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/碳排放/中间文件/4B_2024_节能审查03_工程档案.txt
+- [ ] **4B** 4B_2024_节能审查01_工程档案.doc ｜ 工程项目档案 2024 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/碳排放/报告书/4B_2024_节能审查01_工程档案.doc
+- [ ] **4B** 4B_2024_节能审查02_工程档案.doc ｜ 工程项目档案 2024 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/碳排放/报告书/4B_2024_节能审查02_工程档案.doc
+- [ ] **4B** 4B_2024_节能审查01_工程档案.doc ｜ 工程项目档案 2024 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/节能/报告书/4B_2024_节能审查01_工程档案.doc
+- [ ] **4B** 4B_2024_节能审查02_工程档案.doc ｜ 工程项目档案 2024 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/节能/报告书/4B_2024_节能审查02_工程档案.doc
+- [ ] **4B** 4B_2024_节能审查03_工程档案.doc ｜ 工程项目档案 2024 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/节能/报告书/4B_2024_节能审查03_工程档案.doc
+- [ ] **4B** 4B_2024_节能审查04_工程档案.doc ｜ 工程项目档案 2024 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/节能/报告书/4B_2024_节能审查04_工程档案.doc
+- [ ] **4B** 4B_2024_节能审查05_工程档案.doc ｜ 工程项目档案 2024 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/节能/报告书/4B_2024_节能审查05_工程档案.doc
+- [ ] **4B** 4B_2024_节能审查01_工程档案.doc ｜ 工程项目档案 2024 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-节能及绿建报告书汇总/4B_2024_节能审查01_工程档案.doc
+- [ ] **4B** 4B_2024_节能审查02_工程档案.doc ｜ 工程项目档案 2024 ｜ → M02/M09 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-节能及绿建报告书汇总/4B_2024_节能审查02_工程档案.doc
+- [ ] **4B** 4B_2019_设计说明01_工程档案.doc ｜ 工程项目档案 2019 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/05空调专业/计算书/4B_2019_设计说明01_工程档案.doc
+- [ ] **4B** 4B_2019_设计说明01_工程档案.docx ｜ 工程项目档案 2019 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7中国电信云计算重庆基地二期工程/4B_2019_设计说明01_工程档案.docx
+- [ ] **4B** 4B_2022_设计说明01_工程档案.xlsx ｜ 工程项目档案 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/供油专项设计/4B_2022_设计说明01_工程档案.xlsx
+- [ ] **4B** 4B_2022_设计说明01_工程档案.doc ｜ 工程项目档案 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地基处理/4B_2022_设计说明01_工程档案.doc
+- [ ] **4B** 4B_2022_设计说明02_工程档案.doc ｜ 工程项目档案 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地基处理/4B_2022_设计说明02_工程档案.doc
+- [ ] **4B** 4B_2022_设计说明01_工程档案.docx ｜ 工程项目档案 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/基坑支护/4B_2022_设计说明01_工程档案.docx
+- [ ] **4B** 4B_2022_设计说明01_工程档案.docx ｜ 工程项目档案 2022 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/13消防专篇/4B_2022_设计说明01_工程档案.docx
+- [ ] **4B** 4B_2024_设计说明01_工程档案.docx ｜ 工程项目档案 2024 ｜ → M10/M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/附件三：施工图图纸/02-结构/4B_2024_设计说明01_工程档案.docx
+- [ ] **4B** 4B_2024_浸没流体指南框架_OCP.pdf ｜ Submer/OCP 2024 ｜ → M02 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Immersion/4B_2024_浸没流体指南框架_OCP.pdf
+- [ ] **4B** 4B_2024_浸没IT设备设计指南_OCP.pdf ｜ OCP/Unicom Engineering 2024 ｜ → M02 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Immersion/4B_2024_浸没IT设备设计指南_OCP.pdf
+- [ ] **4B** 4B_2024_浸没流体安全操作_OCP.pdf ｜ Chevron Phillips/OCP 2024 ｜ → M02/M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Immersion/4B_2024_浸没流体安全操作_OCP.pdf
+- [ ] **4B** 4B_2024_浸没流体循环经济_OCP.pdf ｜ BP Castrol/Chemours 2024 ｜ → M02/M12 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Immersion/4B_2024_浸没流体循环经济_OCP.pdf
+- [ ] **4B** 4B_2024_冷板子项目产出清单_OCP.pdf ｜ Dell/OCP 2024 ｜ → M02 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Liquid Cooling/4B_2024_冷板子项目产出清单_OCP.pdf
+- [ ] **4B** 4B_2024_热回收经济性工具_OCP.pdf ｜ OCP 2024 ｜ → M02/M12 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Liquid Cooling/4B_2024_热回收经济性工具_OCP.pdf
+- [ ] **4B** 4B_2024_门式换热器子项目进展_OCP.pdf ｜ OCP 2024 ｜ → M02 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Liquid Cooling/4B_2024_门式换热器子项目进展_OCP.pdf
+- [ ] **4B** 4B_2024_液冷设备Redfish模型_OCP.pdf ｜ OCP/DMTF 2024 ｜ → M02/M13 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Liquid Cooling/4B_2024_液冷设备Redfish模型_OCP.pdf
+- [ ] **4B** 4B_2024_模块化冷却交付实践_OCP.pdf ｜ OCP 2024 ｜ → M02/M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Data Center Facility (DCF)/4B_2024_模块化冷却交付实践_OCP.pdf
+- [ ] **4B** 4B_2024_开放系统AI战略倡议_OCP.pdf ｜ OCP/NVIDIA 2024 ｜ → M09/M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：Artificial Intelligence (AI)/4B_2024_开放系统AI战略倡议_OCP.pdf
+- [ ] **4B** 4B_2024_开放固件延长硬件寿命_9elements.pdf ｜ 9elements 2024 ｜ → M12/M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Sustainability/4B_2024_开放固件延长硬件寿命_9elements.pdf
+- [ ] **4B** 4B_2024_iMasons气候协定进展_iMasons.pdf ｜ iMasons 2024 ｜ → M12 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Sustainability/4B_2024_iMasons气候协定进展_iMasons.pdf
+- [ ] **4B** 4B_2024_OCP社区电商平台概念_OCP.pdf ｜ OCP 2024 ｜ → M10/M14 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：OCP Market Impact & Supply Chain/4B_2024_OCP社区电商平台概念_OCP.pdf
+- [ ] **4B** 4B_2024_开放标准网络迁移自动化_OCP.pdf ｜ OCP 2024 ｜ → M04/M14 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：OCP Market Impact & Supply Chain/4B_2024_开放标准网络迁移自动化_OCP.pdf
+- [ ] **4B** 4B_2024_芯粒技术民主化讨论_OCP.pdf ｜ OCP/ODSA 2024 ｜ → M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Chiplets/4B_2024_芯粒技术民主化讨论_OCP.pdf
+- [ ] **4B** 4B_2024_芯粒对AI与HPC系统影响讨论_OCP.pdf ｜ OCP 2024 ｜ → M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Chiplets/4B_2024_芯粒对AI与HPC系统影响讨论_OCP.pdf
+- [ ] **4B** 4B_2024_先进封装子项目启动_OCP.pdf ｜ OCP/ODSA 2024 ｜ → M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Chiplets/4B_2024_先进封装子项目启动_OCP.pdf
+- [ ] **4B** 4B_2024_可组合内存系统项目进展_OCP.pdf ｜ Intel/OCP 2024 ｜ → M06 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Composable Memory Systems/4B_2024_可组合内存系统项目进展_OCP.pdf
+- [ ] **4B** 4B_2024_可组合内存学术互动_OCP.pdf ｜ OCP/学术界 2024 ｜ → M06 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：Composable Memory Systems/4B_2024_可组合内存学术互动_OCP.pdf
+- [ ] **4B** 4B_2024_大规模存储机队管理_Meta.pdf ｜ Meta 2024 ｜ → M06/M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Storage/4B_2024_大规模存储机队管理_Meta.pdf
+- [ ] **4B** 4B_2024_存储轨道开场规范索引_OCP.pdf ｜ OCP 2024 ｜ → M06 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Storage/4B_2024_存储轨道开场规范索引_OCP.pdf
+- [ ] **4B** 4B_2024_辅助管理控制器互操作要求_OCP.pdf ｜ OCP 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Hardware Management/4B_2024_辅助管理控制器互操作要求_OCP.pdf
+- [ ] **4B** 4B_2024_OCP可管理性画像规范_OCP.pdf ｜ OCP 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Hardware Management/4B_2024_OCP可管理性画像规范_OCP.pdf
+- [ ] **4B** 4B_2024_NVMe控制器固件证明_OCP.pdf ｜ OCP 2024 ｜ → M06 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Security/4B_2024_NVMe控制器固件证明_OCP.pdf
+- [ ] **4B** 4B_2024_DPU机密计算扩展_OCP.pdf ｜ Intel/OCP 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Security/4B_2024_DPU机密计算扩展_OCP.pdf
+- [ ] **4B** 4B_2024_白兔长距链路不对称补偿_OCP.pdf ｜ OCP 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Time Appliances Project (TAP)/4B_2024_白兔长距链路不对称补偿_OCP.pdf
+- [ ] **4B** 4B_2024_点对点透明时钟链路时延测量_Meta.pdf ｜ Meta/Broadcom 2024 ｜ → M04 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Time Appliances Project (TAP)/4B_2024_点对点透明时钟链路时延测量_Meta.pdf
+- [ ] **4B** 4B_2024_IEEE_P1588.1数据中心PTP标准_OCP.pdf ｜ OCP/IEEE 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Time Appliances Project (TAP)/4B_2024_IEEE_P1588.1数据中心PTP标准_OCP.pdf
+- [ ] **4B** 4B_2024_嵌入式处理器PTM支持_OCP.pdf ｜ TI/OCP 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Time Appliances Project (TAP)/4B_2024_嵌入式处理器PTM支持_OCP.pdf
+- [ ] **4B** 4B_2024_数据中心无线时间同步_OCP.pdf ｜ OCP 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Time Appliances Project (TAP)/4B_2024_数据中心无线时间同步_OCP.pdf
+- [ ] **4B** 4B_2024_OCP网卡时间同步传播_Dell.pdf ｜ Dell/OCP 2024 ｜ → M04/M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Time Appliances Project (TAP)/4B_2024_OCP网卡时间同步传播_Dell.pdf
+- [ ] **4B** 4B_2024_数字锁相环精密频率测量_OCP.pdf ｜ OCP/Meta 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Time Appliances Project (TAP)/4B_2024_数字锁相环精密频率测量_OCP.pdf
+- [ ] **4B** 4B_2024_物联网软件无线电授时卡_OCP.pdf ｜ OCP 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Time Appliances Project (TAP)/4B_2024_物联网软件无线电授时卡_OCP.pdf
+- [ ] **4B** 4B_2024_英特尔主题演讲_Intel.pdf ｜ Intel 2024 ｜ → M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Keynotes/4B_2024_英特尔主题演讲_Intel.pdf
+- [ ] **4B** 4B_2024_AI时代大容量存储主题_Seagate.pdf ｜ Seagate 2024 ｜ → M06 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Executive Sessions/4B_2024_AI时代大容量存储主题_Seagate.pdf
+- [ ] **4B** 4B_2024_MHS外设带外管理演进_OCP.pdf ｜ OCP 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：MHS/4B_2024_MHS外设带外管理演进_OCP.pdf
+- [ ] **4B** 4B_2024_MHS模块化即插即用_OCP.pdf ｜ OCP 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：MHS/4B_2024_MHS模块化即插即用_OCP.pdf
+- [ ] **4B** 4B_2024_开放模块化与AI系统商洞察_HPE.pdf ｜ HPE/OCP 2024 ｜ → M10/M14 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Server：MHS/4B_2024_开放模块化与AI系统商洞察_HPE.pdf
+- [ ] **4B** 4B_2024_OpenRAN开放标准与开源_OCP.pdf ｜ OCP 2024 ｜ → M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：OpenRAN/4B_2024_OpenRAN开放标准与开源_OCP.pdf
+- [ ] **4B** 4B_2024_无线电抽象接口构建OpenRAN_LF.pdf ｜ LF Connectivity 2024 ｜ → M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：OpenRAN/4B_2024_无线电抽象接口构建OpenRAN_LF.pdf
+- [ ] **4B** 4B_2022_江南数据中心勘察大纲_四川省地质工程勘察院.doc ｜ 四川省地质工程勘察院 2022 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件二：详细勘察文件/4B_2022_江南数据中心勘察大纲_四川省地质工程勘察院.doc
+- [ ] **4B** 4B_2021_江南数据中心地下管线成果表_未署名测绘单位.xls ｜ 未署名测绘单位 2021 ｜ → M05/M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件五：地形图及管网图---20210805/重庆市勘测院勘察成果（光盘文件）---20210810/4B_2021_江南数据中心地下管线成果表_未署名测绘单位.xls
+- [ ] **4B** 4B_2021_江南地形测量与管线详查说明_未署名测绘单位.doc ｜ 未署名测绘单位 2021 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件五：地形图及管网图---20210805/重庆市勘测院勘察成果（光盘文件）---20210810/4B_2021_江南地形测量与管线详查说明_未署名测绘单位.doc
+- [ ] **4B** 4B_2019_来宾接入机房结构计算书_未署名设计单位.doc ｜ 未署名设计单位 2019 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/设计结果/4B_2019_来宾接入机房结构计算书_未署名设计单位.doc
+- [ ] **4B** 4B_2019_来宾地下水泵房结构计算书_未署名设计单位.doc ｜ 未署名设计单位 2019 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/设计结果/4B_2019_来宾地下水泵房结构计算书_未署名设计单位.doc
+- [ ] **4B** 4B_2019_来宾地下水泵房结构计算书副本_未署名设计单位.doc ｜ 未署名设计单位 2019 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/水泵房设计结果/设计结果/4B_2019_来宾地下水泵房结构计算书副本_未署名设计单位.doc
+- [ ] **4B** 4B_2024_衢州枢纽建筑设计说明三_中国移动设计院.pdf ｜ 中国移动设计院 2024 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/4B_2024_衢州枢纽建筑设计说明三_中国移动设计院.pdf
+- [ ] **4B** 4B_2024_衢州水池水泵房土建分册_中国移动设计院.pdf ｜ 中国移动设计院 2024 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/总图、水池水泵房、室外工程建筑部分/PDF/4B_2024_衢州水池水泵房土建分册_中国移动设计院.pdf
+- [ ] **4B** 4B_2016_长沙联通人防结构计算书_未署名设计单位.doc ｜ 未署名设计单位 2016 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2016.1 中国联通湖南长沙云计算中心一期IDC机房、动力中心、动力楼、通信枢纽楼建设工程/人防图纸/结构/7��22����ͨ�˷��ṹ��ɰ�/7月22号联通人防结构完成版/计算书/4B_2016_长沙联通人防结构计算书_未署名设计单位.doc
+- [ ] **4B** 4B_2019_南方基地BIM管线综合图纸目录_未署名设计单位.xlsx ｜ 未署名设计单位 2019 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/4B_2019_南方基地BIM管线综合图纸目录_未署名设计单位.xlsx
+- [ ] **4C** 4C_2025_主权AI云方案_FMS2025.pdf ｜ FMS2025 2025 ｜ → M03/M13 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/AIML-202-1：Generative AI Part 2/4C_2025_主权AI云方案_FMS2025.pdf
+- [ ] **4C** 4C_2025_陶瓷介质长期存储_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/COLD-102-1：Media and AI Exploring Innovation in Sustainable Long-Term Storage/4C_2025_陶瓷介质长期存储_FMS2025.pdf
+- [ ] **4C** 4C_2024_东芯股份研报_华金证券.pdf ｜ 华金证券 2024 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储企业24年报告/4C_2024_东芯股份研报_华金证券.pdf
+- [ ] **4C** 4C_2021_江波龙研报_天风证券.pdf ｜ 天风证券 2024 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储企业24年报告/4C_2021_江波龙研报_天风证券.pdf
+- [ ] **4C** 4C_2024_复旦微电研报_东方证券.pdf ｜ 东方证券 2024 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储企业24年报告/4C_2024_复旦微电研报_东方证券.pdf
+- [ ] **4C** 4C_2024_澜起科技研报_中泰证券.pdf ｜ 中泰证券 2024 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储企业24年报告/4C_2024_澜起科技研报_中泰证券.pdf
+- [ ] **4C** 4C_2023_同有科技研报_华鑫证券.pdf ｜ 华鑫证券 2024 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储企业24年报告/4C_2023_同有科技研报_华鑫证券.pdf
+- [ ] **4C** 4C_2024_普冉股份研报_天风证券.pdf ｜ 天风证券 2024 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储企业24年报告/4C_2024_普冉股份研报_天风证券.pdf
+- [ ] **4C** 4C_2024_兆易创新研报_华福证券.pdf ｜ 华福证券 2024 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储企业24年报告/4C_2024_兆易创新研报_华福证券.pdf
+- [ ] **4C** 4C_2021_北京君正研报_国联证券.pdf ｜ 国联证券 2024 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储企业24年报告/4C_2021_北京君正研报_国联证券.pdf
+- [ ] **4C** 4C_2024_佰维存储研报_东吴证券.pdf ｜ 东吴证券 2024 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储企业24年报告/4C_2024_佰维存储研报_东吴证券.pdf
+- [ ] **4C** 4C_2024_存储行业投资机会梳理_券商研究.pdf ｜ 券商研究所 2024 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储市场/4C_2024_存储行业投资机会梳理_券商研究.pdf
+- [ ] **4C** 4C_2024_存储板块跟踪九_券商研究.pdf ｜ 券商研究所 2024 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储市场/4C_2024_存储板块跟踪九_券商研究.pdf
+- [ ] **4C** 4C_2024_AIPC元年与存储景气_券商研究.pdf ｜ 券商研究所 2024 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储市场/4C_2024_AIPC元年与存储景气_券商研究.pdf
+- [ ] **4C** 4C_2024_存储行业技术路径与产业链_券商研究.pdf ｜ 券商研究所 2024 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储市场/4C_2024_存储行业技术路径与产业链_券商研究.pdf
+- [ ] **4C** 4C_2024_存储芯片周度跟踪_券商研究.pdf ｜ 券商研究所 2024 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储市场/4C_2024_存储芯片周度跟踪_券商研究.pdf
+- [ ] **4C** 4C_2024_存储复苏与MLCC跟踪_券商研究.pdf ｜ 券商研究所 2024 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储市场/4C_2024_存储复苏与MLCC跟踪_券商研究.pdf
+- [ ] **4C** 4C_2024_台积电指引与存储板块_券商研究.pdf ｜ 券商研究所 2024 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储市场/4C_2024_台积电指引与存储板块_券商研究.pdf
+- [ ] **4C** 4C_2024_智算与超算中心辨析_未署名.pdf ｜ 未署名 2024 ｜ → M14 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算/4C_2024_智算与超算中心辨析_未署名.pdf
+- [ ] **3A** 3A_2022_六安电信清单封面_中国电信安徽公司.docx ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/3A_2022_六安电信清单封面_中国电信安徽公司.docx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价园林工程暂估价_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/园林工程暂估价/园林工程暂估价/3A_2019_南方基地二期二阶段造价园林工程暂估价_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价智能化工程暂估价_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/智能化工程暂估价/智能化工程暂估价/3A_2019_南方基地二期二阶段造价智能化工程暂估价_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价000以上土建工程室内装饰工_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/室外配套工程/±0.00以上土建工程-室内装饰工程（门房A）/3A_2019_南方基地二期二阶段造价000以上土建工程室内装饰工_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价土方平衡_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/室外配套工程/土方平衡/3A_2019_南方基地二期二阶段造价土方平衡_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价000以上土建工程外立面工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/土建工程/±0.00以上土建工程-外立面工程（20.4栋）/3A_2019_南方基地二期二阶段造价000以上土建工程外立面工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价000以上土建工程外立面工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/土建工程/±0.00以上土建工程-外立面工程（20.1栋）/3A_2019_南方基地二期二阶段造价000以上土建工程外立面工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价000以上土建工程外立面工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/土建工程/±0.00以上土建工程-外立面工程（20.2栋）/3A_2019_南方基地二期二阶段造价000以上土建工程外立面工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价总包管理服务费及甲供材料保管_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/总包管理服务费及甲供材料保管费/总包管理服务费及甲供材料保管费/3A_2019_南方基地二期二阶段造价总包管理服务费及甲供材料保管_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价装修精装修工程暂估价_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/精装修工程暂估价/装修精装修工程暂估价/3A_2019_南方基地二期二阶段造价装修精装修工程暂估价_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价安装精装修工程暂估价_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/精装修工程暂估价/安装精装修工程暂估价/3A_2019_南方基地二期二阶段造价安装精装修工程暂估价_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价中国移动南方基地二期工程二阶_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/3A_2019_南方基地二期二阶段造价中国移动南方基地二期工程二阶_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价白蚁防治工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/白蚁防治工程/3A_2019_南方基地二期二阶段造价白蚁防治工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价电梯工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/电梯工程/3A_2019_南方基地二期二阶段造价电梯工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价通风空调工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/通风空调工程/3A_2019_南方基地二期二阶段造价通风空调工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价202栋通风空调工程_1_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/通风空调工程/[20.2栋]通风空调工程/3A_2019_南方基地二期二阶段造价202栋通风空调工程_1_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价202栋通风空调工程_2_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/通风空调工程/[20.2栋]通风空调工程/3A_2019_南方基地二期二阶段造价202栋通风空调工程_2_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价201栋通风空调工程_1_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/通风空调工程/[20.1栋]通风空调工程/3A_2019_南方基地二期二阶段造价201栋通风空调工程_1_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价201栋通风空调工程_2_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/通风空调工程/[20.1栋]通风空调工程/3A_2019_南方基地二期二阶段造价201栋通风空调工程_2_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价凌塘村排水工程及相关拆除补偿_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/凌塘村排水工程及相关拆除补偿/3A_2019_南方基地二期二阶段造价凌塘村排水工程及相关拆除补偿_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价电气工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/电气工程/3A_2019_南方基地二期二阶段造价电气工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价房屋鉴定_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/房屋鉴定/3A_2019_南方基地二期二阶段造价房屋鉴定_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价室外配套工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/室外配套工程/3A_2019_南方基地二期二阶段造价室外配套工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价冷源系统工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/冷源系统工程/3A_2019_南方基地二期二阶段造价冷源系统工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价高低压配电工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/高低压配电工程/3A_2019_南方基地二期二阶段造价高低压配电工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价土建工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/土建工程/3A_2019_南方基地二期二阶段造价土建工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价给排水工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/给排水工程/3A_2019_南方基地二期二阶段造价给排水工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价抗震支架工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/抗震支架工程/3A_2019_南方基地二期二阶段造价抗震支架工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价消防工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/消防工程/3A_2019_南方基地二期二阶段造价消防工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价地下室人防工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/地下室人防工程/3A_2019_南方基地二期二阶段造价地下室人防工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价地下管线盲探_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/地下管线盲探/3A_2019_南方基地二期二阶段造价地下管线盲探_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价临时用水_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/临时用水/3A_2019_南方基地二期二阶段造价临时用水_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_南方基地二期二阶段造价总包管理服务费及甲供材料保管_中国移动广东公司.xlsx ｜ 中国移动广东公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/总包管理服务费及甲供材料保管费/3A_2019_南方基地二期二阶段造价总包管理服务费及甲供材料保管_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2019_来宾接入机房造价来宾综合业务接入机房工程及室_中国移动广西公司.pdf ｜ 中国移动广西公司 2019 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2019_来宾接入机房造价来宾综合业务接入机房工程及室_中国移动广西公司.pdf
+- [ ] **3A** 3A_2020_大数据应用工厂造价7大数据应用工厂项目施工二标_工程档案.xls ｜ 工程档案 2020 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.4 大数据应用工厂项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2020_大数据应用工厂造价7大数据应用工厂项目施工二标_工程档案.xls
+- [ ] **3A** 3A_2020_大数据应用工厂造价重点评审清单大数据应用工厂二_工程档案.xlsx ｜ 工程档案 2020 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.4 大数据应用工厂项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2020_大数据应用工厂造价重点评审清单大数据应用工厂二_工程档案.xlsx
+- [ ] **3A** 3A_2020_大数据应用工厂造价8大数据应用工厂项目施工二标_工程档案.xls ｜ 工程档案 2020 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.4 大数据应用工厂项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2020_大数据应用工厂造价8大数据应用工厂项目施工二标_工程档案.xls
+- [ ] **3A** 3A_2020_大数据应用工厂造价6大数据应用工厂项目施工二标_工程档案.xls ｜ 工程档案 2020 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.4 大数据应用工厂项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2020_大数据应用工厂造价6大数据应用工厂项目施工二标_工程档案.xls
+- [ ] **3A** 3A_2020_大数据应用工厂造价1大数据应用工厂项目施工二标_工程档案.xls ｜ 工程档案 2020 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.4 大数据应用工厂项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2020_大数据应用工厂造价1大数据应用工厂项目施工二标_工程档案.xls
+- [ ] **3A** 3A_2020_大数据应用工厂造价2大数据应用工厂项目施工二标_工程档案.xls ｜ 工程档案 2020 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.4 大数据应用工厂项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2020_大数据应用工厂造价2大数据应用工厂项目施工二标_工程档案.xls
+- [ ] **3A** 3A_2020_大数据应用工厂造价9大数据应用工厂项目施工二标_工程档案.xls ｜ 工程档案 2020 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.4 大数据应用工厂项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2020_大数据应用工厂造价9大数据应用工厂项目施工二标_工程档案.xls
+- [ ] **3A** 3A_2020_大数据应用工厂造价5大数据应用工厂项目施工二标_工程档案.xls ｜ 工程档案 2020 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.4 大数据应用工厂项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2020_大数据应用工厂造价5大数据应用工厂项目施工二标_工程档案.xls
+- [ ] **3A** 3A_2020_莆田NGB业务中心造价建筑工程招标控制价编制说明_福建广电网络.doc ｜ 福建广电网络 2020 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.7福建广电网络莆田NGB业务中心（机房）/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单审核/3A_2020_莆田NGB业务中心造价建筑工程招标控制价编制说明_福建广电网络.doc
+- [ ] **3A** 3A_2022_六安电信造价六安电信信息化中心和六安电信_中国电信安徽公司.xls ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/3A_2022_六安电信造价六安电信信息化中心和六安电信_中国电信安徽公司.xls
+- [ ] **3A** 3A_2022_六安电信造价六安电信信息化中心项目_中国电信安徽公司.xls ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/1 六安电信信息化中心项目/3A_2022_六安电信造价六安电信信息化中心项目_中国电信安徽公司.xls
+- [ ] **3A** 3A_2022_六安电信造价六安电信云计算数据中心项目_中国电信安徽公司.xls ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/2 六安电信云计算数据中心项目/3A_2022_六安电信造价六安电信云计算数据中心项目_中国电信安徽公司.xls
+- [ ] **3A** 3A_2022_六安电信造价六安电信信息化中心项目信息化_中国电信安徽公司.xls ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【清单】/1 六安电信信息化中心项目/2 六安电信信息化中心项目：信息化中心幕墙【装饰】/3A_2022_六安电信造价六安电信信息化中心项目信息化_中国电信安徽公司.xls
+- [ ] **3A** 3A_2022_六安电信造价六安电信信息化中心项目信息化_中国电信安徽公司.xls ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【清单】/1 六安电信信息化中心项目/3 六安电信信息化中心项目：信息化中心【安装】/3A_2022_六安电信造价六安电信信息化中心项目信息化_中国电信安徽公司.xls
+- [ ] **3A** 3A_2022_六安电信造价六安电信信息化中心项目大型土_中国电信安徽公司.xls ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【清单】/1 六安电信信息化中心项目/4 六安电信信息化中心项目：大型土石方/3A_2022_六安电信造价六安电信信息化中心项目大型土_中国电信安徽公司.xls
+- [ ] **3A** 3A_2022_六安电信造价六安电信云计算数据中心项目大_中国电信安徽公司.xls ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【清单】/2 六安电信云计算数据中心项目/12 六安电信云计算数据中心项目：大型土石方/3A_2022_六安电信造价六安电信云计算数据中心项目大_中国电信安徽公司.xls
+- [ ] **3A** 3A_2022_六安电信造价六安电信云计算数据中心项目室_中国电信安徽公司.xls ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【清单】/2 六安电信云计算数据中心项目/11 六安电信云计算数据中心项目：室外给排水【市政】/3A_2022_六安电信造价六安电信云计算数据中心项目室_中国电信安徽公司.xls
+- [ ] **3A** 3A_2022_六安电信造价六安电信云计算数据中心项目室_中国电信安徽公司.xls ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【清单】/2 六安电信云计算数据中心项目/10 六安电信云计算数据中心项目：室外电气【安装】/3A_2022_六安电信造价六安电信云计算数据中心项目室_中国电信安徽公司.xls
+- [ ] **3A** 3A_2022_六安电信造价六安电信云计算数据中心项目云_中国电信安徽公司.xls ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【清单】/2 六安电信云计算数据中心项目/7 六安电信云计算数据中心项目：云计算数据中心【安装】/3A_2022_六安电信造价六安电信云计算数据中心项目云_中国电信安徽公司.xls
+- [ ] **3A** 3A_2022_六安电信造价六安电信云计算数据中心项目云_中国电信安徽公司.xls ｜ 中国电信安徽公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【清单】/2 六安电信云计算数据中心项目/6 六安电信云计算数据中心项目：云计算数据中心幕墙【装饰】/3A_2022_六安电信造价六安电信云计算数据中心项目云_中国电信安徽公司.xls
+- [ ] **3A** 3A_2022_江南数据中心一期造价工程量清单_中国移动重庆公司.pdf ｜ 中国移动重庆公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2022_江南数据中心一期造价工程量清单_中国移动重庆公司.pdf
+- [ ] **3A** 3A_2022_江南数据中心一期造价中国移动成渝重庆江南数据中心_中国移动重庆公司.doc ｜ 中国移动重庆公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/造价类资料（全程免费，得来不易需要完成一些小任务）1/001答疑/3A_2022_江南数据中心一期造价中国移动成渝重庆江南数据中心_中国移动重庆公司.doc
+- [ ] **3A** 3A_2022_江南数据中心一期造价中国移动成渝重庆江南数据中心_中国移动重庆公司_02.doc ｜ 中国移动重庆公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/造价类资料（全程免费，得来不易需要完成一些小任务）1/001答疑/3A_2022_江南数据中心一期造价中国移动成渝重庆江南数据中心_中国移动重庆公司_02.doc
+- [ ] **3A** 3A_2022_江南数据中心一期造价中国移动成渝重庆江南数据中心_中国移动重庆公司_03.doc ｜ 中国移动重庆公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/造价类资料（全程免费，得来不易需要完成一些小任务）1/001答疑/3A_2022_江南数据中心一期造价中国移动成渝重庆江南数据中心_中国移动重庆公司_03.doc
+- [ ] **3A** 3A_2022_江南数据中心一期造价中国移动成渝重庆江南数据中心_中国移动重庆公司.docx ｜ 中国移动重庆公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/造价类资料（全程免费，得来不易需要完成一些小任务）1/001答疑/3A_2022_江南数据中心一期造价中国移动成渝重庆江南数据中心_中国移动重庆公司.docx
+- [ ] **3A** 3A_2022_江南数据中心一期造价中国移动成渝重庆江南数据中心_中国移动重庆公司_04.doc ｜ 中国移动重庆公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/造价类资料（全程免费，得来不易需要完成一些小任务）1/001答疑/3A_2022_江南数据中心一期造价中国移动成渝重庆江南数据中心_中国移动重庆公司_04.doc
+- [ ] **3A** 3A_2022_江南数据中心一期造价中国移动成渝重庆江南数据中心_中国移动重庆公司_05.doc ｜ 中国移动重庆公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/造价类资料（全程免费，得来不易需要完成一些小任务）1/001答疑/3A_2022_江南数据中心一期造价中国移动成渝重庆江南数据中心_中国移动重庆公司_05.doc
+- [ ] **3A** 3A_2022_江南数据中心一期造价补充检查井结构详图_中国移动重庆公司.pdf ｜ 中国移动重庆公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/造价类资料（全程免费，得来不易需要完成一些小任务）1/001答疑/清单问题8补图/3A_2022_江南数据中心一期造价补充检查井结构详图_中国移动重庆公司.pdf
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价7电梯技术说明书_中国移动广东公司.docx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/技术条件/3A_2022_粤港澳通信机楼二期造价7电梯技术说明书_中国移动广东公司.docx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价2结构技术说明书_中国移动广东公司.docx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/技术条件/3A_2022_粤港澳通信机楼二期造价2结构技术说明书_中国移动广东公司.docx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价5消防通风技术说明书_中国移动广东公司.docx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/技术条件/3A_2022_粤港澳通信机楼二期造价5消防通风技术说明书_中国移动广东公司.docx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价4给排水技术说明书_中国移动广东公司.docx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/技术条件/3A_2022_粤港澳通信机楼二期造价4给排水技术说明书_中国移动广东公司.docx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价1建筑技术说明书_中国移动广东公司.docx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/技术条件/3A_2022_粤港澳通信机楼二期造价1建筑技术说明书_中国移动广东公司.docx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价中国移动粤港澳广州通信机楼二_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/3A_2022_粤港澳通信机楼二期造价中国移动粤港澳广州通信机楼二_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价B1通信机楼基坑支护及土方开_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B1通信机楼土建工程/B1通信机楼-基坑支护及土方开挖工程/3A_2022_粤港澳通信机楼二期造价B1通信机楼基坑支护及土方开_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价B1通信机楼000以下土建工_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B1通信机楼土建工程/B1通信机楼-±0.00以下土建工程/3A_2022_粤港澳通信机楼二期造价B1通信机楼000以下土建工_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价B1通信机楼桩基础工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B1通信机楼土建工程/B1通信机楼-桩基础工程/3A_2022_粤港澳通信机楼二期造价B1通信机楼桩基础工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价B1通信机楼外墙工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B1通信机楼土建工程/B1通信机楼-外墙工程/3A_2022_粤港澳通信机楼二期造价B1通信机楼外墙工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价B2通信机楼外墙工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B2通信机楼土建工程/B2通信机楼-外墙工程/3A_2022_粤港澳通信机楼二期造价B2通信机楼外墙工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价B2通信机楼基坑支护及土方开_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B2通信机楼土建工程/B2通信机楼-基坑支护及土方开挖工程/3A_2022_粤港澳通信机楼二期造价B2通信机楼基坑支护及土方开_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价B2通信机楼桩基础工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B2通信机楼土建工程/B2通信机楼-桩基础工程/3A_2022_粤港澳通信机楼二期造价B2通信机楼桩基础工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价B2通信机楼000以下土建工_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B2通信机楼土建工程/B2通信机楼-±0.00以下土建工程/3A_2022_粤港澳通信机楼二期造价B2通信机楼000以下土建工_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价B3通信机楼外墙工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B3通信机楼土建工程/B3通信机楼-外墙工程/3A_2022_粤港澳通信机楼二期造价B3通信机楼外墙工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价B3通信机楼000以下土建工_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B3通信机楼土建工程/B3通信机楼-±0.00以下土建工程/3A_2022_粤港澳通信机楼二期造价B3通信机楼000以下土建工_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价B3通信机楼基坑支护及土方开_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B3通信机楼土建工程/B3通信机楼-基坑支护及土方开挖工程/3A_2022_粤港澳通信机楼二期造价B3通信机楼基坑支护及土方开_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价B3通信机楼桩基础工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B3通信机楼土建工程/B3通信机楼-桩基础工程/3A_2022_粤港澳通信机楼二期造价B3通信机楼桩基础工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价室外道路工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外道路工程/3A_2022_粤港澳通信机楼二期造价室外道路工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价室外管线支架工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外管线支架工程/3A_2022_粤港澳通信机楼二期造价室外管线支架工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价室外围墙工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外围墙工程/3A_2022_粤港澳通信机楼二期造价室外围墙工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价室外围墙工程_中国移动广东公司_02.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外围墙工程/3A_2022_粤港澳通信机楼二期造价室外围墙工程_中国移动广东公司_02.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价室外挡土墙工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外挡土墙工程/3A_2022_粤港澳通信机楼二期造价室外挡土墙工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价室外油罐土建工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外油罐土建工程/3A_2022_粤港澳通信机楼二期造价室外油罐土建工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价室外油罐土建工程_中国移动广东公司_02.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外油罐土建工程/3A_2022_粤港澳通信机楼二期造价室外油罐土建工程_中国移动广东公司_02.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价室外绿化工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外绿化工程/3A_2022_粤港澳通信机楼二期造价室外绿化工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价室外油机基础工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外油机基础工程/3A_2022_粤港澳通信机楼二期造价室外油机基础工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价室外油机基础工程_中国移动广东公司_02.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外油机基础工程/3A_2022_粤港澳通信机楼二期造价室外油机基础工程_中国移动广东公司_02.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价室外油管沟及散水暗沟工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外油管沟及散水暗沟工程/3A_2022_粤港澳通信机楼二期造价室外油管沟及散水暗沟工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价室外油管沟及散水暗沟工程_中国移动广东公司_02.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外油管沟及散水暗沟工程/3A_2022_粤港澳通信机楼二期造价室外油管沟及散水暗沟工程_中国移动广东公司_02.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价室外钢平台工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外钢平台工程/3A_2022_粤港澳通信机楼二期造价室外钢平台工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价室外广场工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外广场工程/3A_2022_粤港澳通信机楼二期造价室外广场工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价室外油罐基坑支护及土方开挖工_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外油罐基坑支护及土方开挖工程/3A_2022_粤港澳通信机楼二期造价室外油罐基坑支护及土方开挖工_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价室外油罐基坑支护及土方开挖工_中国移动广东公司_02.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外油罐基坑支护及土方开挖工程/3A_2022_粤港澳通信机楼二期造价室外油罐基坑支护及土方开挖工_中国移动广东公司_02.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价原一期室外道路工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/原一期室外道路工程/3A_2022_粤港澳通信机楼二期造价原一期室外道路工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价原一期室外道路工程_中国移动广东公司_02.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/原一期室外道路工程/3A_2022_粤港澳通信机楼二期造价原一期室外道路工程_中国移动广东公司_02.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价场地工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/场地工程/3A_2022_粤港澳通信机楼二期造价场地工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价室外蓄冷罐基础工程_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外蓄冷罐基础工程/3A_2022_粤港澳通信机楼二期造价室外蓄冷罐基础工程_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价室外蓄冷罐基础工程_中国移动广东公司_02.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外蓄冷罐基础工程/3A_2022_粤港澳通信机楼二期造价室外蓄冷罐基础工程_中国移动广东公司_02.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价工程保险费_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/其他费用/工程保险费/3A_2022_粤港澳通信机楼二期造价工程保险费_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价防疫费_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/其他费用/防疫费/3A_2022_粤港澳通信机楼二期造价防疫费_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价防火门检验试验费_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/其他费用/防火门检验试验费/3A_2022_粤港澳通信机楼二期造价防火门检验试验费_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2022_粤港澳通信机楼二期造价甲供材料保管费_中国移动广东公司.xlsx ｜ 中国移动广东公司 2022 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/其他费用/甲供材料保管费/3A_2022_粤港澳通信机楼二期造价甲供材料保管费_中国移动广东公司.xlsx
+- [ ] **3A** 3A_2023_桂北云计算产业园一期造价预算_工程档案.pdf ｜ 工程档案 2023 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2023.1广西桂北云计算产业园一期项目通信机楼土建工程/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2023_桂北云计算产业园一期造价预算_工程档案.pdf
+- [ ] **3A** 3A_2023_宁德大数据产业园一期造价工程量清单编制说明1_工程档案.doc ｜ 工程档案 2023 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2023.3  宁德市大数据产业园及基础配套设施项目（一期）IT云平台/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程量清单/3A_2023_宁德大数据产业园一期造价工程量清单编制说明1_工程档案.doc
+- [ ] **3A** 3A_2023_宁德大数据产业园一期造价封面_工程档案.docx ｜ 工程档案 2023 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2023.3  宁德市大数据产业园及基础配套设施项目（一期）IT云平台/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价/3A_2023_宁德大数据产业园一期造价封面_工程档案.docx
+- [ ] **3A** 3A_2023_定兴县公安机房造价定兴县公安局智慧乡村小区与指_工程档案.xlsx ｜ 工程档案 2023 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2023.4 定兴县公安局智慧乡村、小区与指挥系统智慧化项目-机房/造价类资料（全程免费，得来不易需要完成一些小任务）1/定兴县公安局智慧乡村、小区与指挥系统智慧化项目-机房/3A_2023_定兴县公安机房造价定兴县公安局智慧乡村小区与指_工程档案.xlsx
+- [ ] **3A** 3A_2023_定兴县公安机房造价定兴县公安局智慧乡村小区与指_工程档案.xlsx ｜ 工程档案 2023 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2023.4 定兴县公安局智慧乡村、小区与指挥系统智慧化项目-机房/造价类资料（全程免费，得来不易需要完成一些小任务）1/定兴县公安局智慧乡村、小区与指挥系统智慧化项目-机房/定兴县公安局智慧乡村、小区与指挥系统智慧化项目/3A_2023_定兴县公安机房造价定兴县公安局智慧乡村小区与指_工程档案.xlsx
+- [ ] **3A** 3A_2024_安庆高光谱卫星数据中心造价设计单位回复_工程档案.docx ｜ 工程档案 2024 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.11 安庆高铁新区高光谱卫星数据中心及卫星制造产线项目工业厂房-1#厂房/造价类资料（全程免费，得来不易需要完成一些小任务）1/图纸答疑/3A_2024_安庆高光谱卫星数据中心造价设计单位回复_工程档案.docx
+- [ ] **3A** 3A_2024_安庆高光谱卫星数据中心造价建设单位回复_工程档案.docx ｜ 工程档案 2024 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.11 安庆高铁新区高光谱卫星数据中心及卫星制造产线项目工业厂房-1#厂房/造价类资料（全程免费，得来不易需要完成一些小任务）1/图纸答疑/3A_2024_安庆高光谱卫星数据中心造价建设单位回复_工程档案.docx
+- [ ] **3A** 3A_2024_南平延平通信枢纽楼造价有限空间风险源识别清单_中国移动福建公司.xlsx ｜ 中国移动福建公司 2024 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.12 中国移动（福建南平）延平通信枢纽楼/造价类资料（全程免费，得来不易需要完成一些小任务）1/计价20241202 - 副本/计价20241202 - 副本/3A_2024_南平延平通信枢纽楼造价有限空间风险源识别清单_中国移动福建公司.xlsx
+- [ ] **3A** 3A_2024_南平延平通信枢纽楼造价主要材料和设备项目与价格表_中国移动福建公司.xlsx ｜ 中国移动福建公司 2024 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.12 中国移动（福建南平）延平通信枢纽楼/造价类资料（全程免费，得来不易需要完成一些小任务）1/计价20241202 - 副本/计价20241202 - 副本/3A_2024_南平延平通信枢纽楼造价主要材料和设备项目与价格表_中国移动福建公司.xlsx
+- [ ] **3A** 3A_2024_南平延平通信枢纽楼造价2清单中国移动福建南平延平通_中国移动福建公司.doc ｜ 中国移动福建公司 2024 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.12 中国移动（福建南平）延平通信枢纽楼/造价类资料（全程免费，得来不易需要完成一些小任务）1/计价20241202 - 副本/计价20241202 - 副本/清单/3A_2024_南平延平通信枢纽楼造价2清单中国移动福建南平延平通_中国移动福建公司.doc
+- [ ] **3A** 3A_2024_南平延平通信枢纽楼造价2招标控制价中国移动福建南平_中国移动福建公司.doc ｜ 中国移动福建公司 2024 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.12 中国移动（福建南平）延平通信枢纽楼/造价类资料（全程免费，得来不易需要完成一些小任务）1/计价20241202 - 副本/计价20241202 - 副本/1控制价/3A_2024_南平延平通信枢纽楼造价2招标控制价中国移动福建南平_中国移动福建公司.doc
+- [ ] **3A** 3A_2024_茂名联通5G边缘计算中心造价一封面及汇总表招_中国联通广东公司.xlsx ｜ 中国联通广东公司 2024 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.12 中国联通茂名新建通信局房项目一期（中国联通茂名5G边缘计算中心（一期））初设深度/造价类资料（全程免费，得来不易需要完成一些小任务）1/附件1-工程量清单/中国联通茂名新建通信局房项目一期（中国联通茂名5G边缘计算中心（一期））工程总承包（EPC）项目--1控制价/3A_2024_茂名联通5G边缘计算中心造价一封面及汇总表招_中国联通广东公司.xlsx
+- [ ] **3A** 3A_2024_茂名联通5G边缘计算中心造价一封面及汇总表招_中国联通广东公司.xlsx ｜ 中国联通广东公司 2024 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.12 中国联通茂名新建通信局房项目一期（中国联通茂名5G边缘计算中心（一期））初设深度/造价类资料（全程免费，得来不易需要完成一些小任务）1/附件1-工程量清单/中国联通茂名新建通信局房项目一期（中国联通茂名5G边缘计算中心（一期））工程总承包（EPC）项目--1工程量清单/3A_2024_茂名联通5G边缘计算中心造价一封面及汇总表招_中国联通广东公司.xlsx
+- [ ] **3A** 3A_2024_国家工信安全华南分中心造价单项工程招标控制价汇总表_工程档案.xlsx ｜ 工程档案 2024 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.2 国家工业信息安全发展研究中心•华南分中心星河东悦汇载体项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程量清单EX/3A_2024_国家工信安全华南分中心造价单项工程招标控制价汇总表_工程档案.xlsx
+- [ ] **3A** 3A_2024_忠县生产调度用房造价工程量清单_中国移动重庆公司.pdf ｜ 中国移动重庆公司 2024 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2024_忠县生产调度用房造价工程量清单_中国移动重庆公司.pdf
+- [ ] **3A** 3A_2024_科学城运维楼造价工程量清单_中国电信重庆公司.pdf ｜ 中国电信重庆公司 2024 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2024_科学城运维楼造价工程量清单_中国电信重庆公司.pdf
+- [ ] **3A** 3A_2024_电信重庆基地四期造价附件一技术规范书汇总0716_中国电信重庆公司.pdf ｜ 中国电信重庆公司 2024 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.8 中国电信云计算重庆基地项目（四期）土建/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2024_电信重庆基地四期造价附件一技术规范书汇总0716_中国电信重庆公司.pdf
+- [ ] **3A** 3A_2024_电信重庆基地四期造价附件四主要设计技术要求1_中国电信重庆公司.pdf ｜ 中国电信重庆公司 2024 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.8 中国电信云计算重庆基地项目（四期）土建/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2024_电信重庆基地四期造价附件四主要设计技术要求1_中国电信重庆公司.pdf
+- [ ] **3A** 3A_2024_电信重庆基地四期造价附件八最高限价及安全文明施工_中国电信重庆公司.pdf ｜ 中国电信重庆公司 2024 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.8 中国电信云计算重庆基地项目（四期）土建/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2024_电信重庆基地四期造价附件八最高限价及安全文明施工_中国电信重庆公司.pdf
+- [ ] **3A** 3A_2024_电信重庆基地四期造价工程量清单_中国电信重庆公司.pdf ｜ 中国电信重庆公司 2024 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.8 中国电信云计算重庆基地项目（四期）土建/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2024_电信重庆基地四期造价工程量清单_中国电信重庆公司.pdf
+- [ ] **3A** 3A_2025_山东云中心省会经济圈分中心造价安装工程_工程档案.xlsx ｜ 工程档案 2025 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2025.3 全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号/造价类资料（全程免费，得来不易需要完成一些小任务）1/全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号楼总承包（续建）项目-清单/1a#地下室/安装工程/3A_2025_山东云中心省会经济圈分中心造价安装工程_工程档案.xlsx
+- [ ] **3A** 3A_2025_山东云中心省会经济圈分中心造价安装工程_工程档案.xlsx ｜ 工程档案 2025 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2025.3 全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号/造价类资料（全程免费，得来不易需要完成一些小任务）1/全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号楼总承包（续建）项目-清单/1#楼/安装工程/3A_2025_山东云中心省会经济圈分中心造价安装工程_工程档案.xlsx
+- [ ] **3A** 3A_2025_山东云中心省会经济圈分中心造价装饰工程_工程档案.xlsx ｜ 工程档案 2025 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2025.3 全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号/造价类资料（全程免费，得来不易需要完成一些小任务）1/全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号楼总承包（续建）项目-清单/1#楼/装饰工程/3A_2025_山东云中心省会经济圈分中心造价装饰工程_工程档案.xlsx
+- [ ] **3A** 3A_2025_山东云中心省会经济圈分中心造价安装工程_工程档案.xlsx ｜ 工程档案 2025 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2025.3 全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号/造价类资料（全程免费，得来不易需要完成一些小任务）1/全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号楼总承包（续建）项目-清单/2-B#/安装工程/3A_2025_山东云中心省会经济圈分中心造价安装工程_工程档案.xlsx
+- [ ] **3A** 3A_2025_山东云中心省会经济圈分中心造价建筑工程_工程档案.xlsx ｜ 工程档案 2025 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2025.3 全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号/造价类资料（全程免费，得来不易需要完成一些小任务）1/全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号楼总承包（续建）项目-清单/2-B#/建筑工程/3A_2025_山东云中心省会经济圈分中心造价建筑工程_工程档案.xlsx
+- [ ] **3A** 3A_2025_山东云中心省会经济圈分中心造价装饰工程_工程档案.xlsx ｜ 工程档案 2025 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2025.3 全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号/造价类资料（全程免费，得来不易需要完成一些小任务）1/全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号楼总承包（续建）项目-清单/2-B#/装饰工程/3A_2025_山东云中心省会经济圈分中心造价装饰工程_工程档案.xlsx
+- [ ] **3A** 3A_2025_山东云中心省会经济圈分中心造价安装工程_工程档案.xlsx ｜ 工程档案 2025 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2025.3 全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号/造价类资料（全程免费，得来不易需要完成一些小任务）1/全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号楼总承包（续建）项目-清单/2-A#/安装工程/3A_2025_山东云中心省会经济圈分中心造价安装工程_工程档案.xlsx
+- [ ] **3A** 3A_2025_山东云中心省会经济圈分中心造价建筑工程_工程档案.xlsx ｜ 工程档案 2025 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2025.3 全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号/造价类资料（全程免费，得来不易需要完成一些小任务）1/全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号楼总承包（续建）项目-清单/2-A#/建筑工程/3A_2025_山东云中心省会经济圈分中心造价建筑工程_工程档案.xlsx
+- [ ] **3A** 3A_2025_山东云中心省会经济圈分中心造价装饰工程_工程档案.xlsx ｜ 工程档案 2025 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2025.3 全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号/造价类资料（全程免费，得来不易需要完成一些小任务）1/全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号楼总承包（续建）项目-清单/2-A#/装饰工程/3A_2025_山东云中心省会经济圈分中心造价装饰工程_工程档案.xlsx
+- [ ] **3A** 3A_2025_山东云中心省会经济圈分中心造价零星工程_工程档案.xlsx ｜ 工程档案 2025 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2025.3 全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号/造价类资料（全程免费，得来不易需要完成一些小任务）1/全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号楼总承包（续建）项目-清单/2-A#/零星工程/3A_2025_山东云中心省会经济圈分中心造价零星工程_工程档案.xlsx
+- [ ] **3A** 3A_2025_山东云中心省会经济圈分中心造价建筑工程_工程档案.xlsx ｜ 工程档案 2025 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2025.3 全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号/造价类资料（全程免费，得来不易需要完成一些小任务）1/全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号楼总承包（续建）项目-清单/蓄冷罐基础/建筑工程/3A_2025_山东云中心省会经济圈分中心造价建筑工程_工程档案.xlsx
+- [ ] **3A** 3A_2025_南安供电备用调度数据中心造价3主要材料和设备项目与价格表_国网福建南安.xlsx ｜ 国网福建南安 2025 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2025.4 南安市供电公司备用调度指挥数据中心DF/造价类资料（全程免费，得来不易需要完成一些小任务）1/发网南安市供电公司备用调度指挥数据中心预算（发布1）/3A_2025_南安供电备用调度数据中心造价3主要材料和设备项目与价格表_国网福建南安.xlsx
+- [ ] **3A** 3A_2025_南安供电备用调度数据中心造价建筑工程招标控制价编制说明南_国网福建南安.doc ｜ 国网福建南安 2025 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2025.4 南安市供电公司备用调度指挥数据中心DF/造价类资料（全程免费，得来不易需要完成一些小任务）1/发网南安市供电公司备用调度指挥数据中心预算（发布1）/3A_2025_南安供电备用调度数据中心造价建筑工程招标控制价编制说明南_国网福建南安.doc
+- [ ] **3A** 3A_2025_成都华微数据机房造价清单_工程档案.pdf ｜ 工程档案 2025 ｜ → M10/M14 ｜ 据实生成
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2025.7 成都华微高端集成电路研发及产业基地数据机房项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2025_成都华微数据机房造价清单_工程档案.pdf
+- [ ] **3B** 3B_2025_太空存储器选型_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/AERO-202-1：Aerospace and Outer Space Data/3B_2025_太空存储器选型_FMS2025.pdf
+- [ ] **3B** 3B_2025_车规流程与ASPICE_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/AUTO-101-1：Software Defined Vehicles/3B_2025_车规流程与ASPICE_FMS2025.pdf
+- [ ] **3B** 3B_2025_文件系统未来形态_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/COMP-101-1：Computational Storage Discussions and Explorations/3B_2025_文件系统未来形态_FMS2025.pdf
+- [ ] **3B** 3B_2025_网络路由协议演示_FMS2025.pdf ｜ FMS2025 2025 ｜ → M04 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/NETC-304-1：Networks and Links Advanced Topics/3B_2025_网络路由协议演示_FMS2025.pdf
+- [ ] **3B** 3B_2025_AI基建优化圆桌_FMS2025.pdf ｜ FMS2025 2025 ｜ → M13 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/OPSW-302-1：Optimizing AI Infrastructure at Scale - a Panel/3B_2025_AI基建优化圆桌_FMS2025.pdf
+- [ ] **3B** 3B_2025_通信基金持仓统计_国泰海通.pdf ｜ 国泰海通证券 2025 ｜ → M15 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/2025.10/3B_2025_通信基金持仓统计_国泰海通.pdf
+- [ ] **3B** 3B_2026_海外算力周报不可提取_银河证券.pdf ｜ 银河证券 2026 ｜ → M15 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/2026.4/3B_2026_海外算力周报不可提取_银河证券.pdf
+- [ ] **3B** 3B_2023_通信行业周报_国信证券.pdf ｜ 国信证券 2023 ｜ → M15 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023/3B_2023_通信行业周报_国信证券.pdf
+- [ ] **3B** 3B_2024_南平枢纽海绵城市说明_中国移动.pdf ｜ 中国移动 2024 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3B_2024_南平枢纽海绵城市说明_中国移动.pdf
+- [ ] **3B** 3B_2019_南方基地给排水说明_中国移动.pdf ｜ 中国移动 2019 ｜ → M05/M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/03给排水专业/总包-PDF/3B_2019_南方基地给排水说明_中国移动.pdf
+- [ ] **3B** 3B_2025_常用汇率工具表_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/5. 其它/3B_2025_常用汇率工具表_半导体综研.xlsx
+- [ ] **3B** 3B_2023_EUV光刻机简介培训版_半导体综研.pptx ｜ 半导体综研 2023 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/5. 其它/光刻机培训资料/3B_2023_EUV光刻机简介培训版_半导体综研.pptx
+- [ ] **3B** 3B_2023_HBM学习笔记_半导体综研.pptx ｜ 半导体综研 2023 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/23年景气度课程PPT/3B_2023_HBM学习笔记_半导体综研.pptx
+- [ ] **3B** 3B_2023_光刻原理课程_半导体综研.pptx ｜ 半导体综研 2023 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/23年景气度课程PPT/3B_2023_光刻原理课程_半导体综研.pptx
+- [ ] **3B** 3B_2023_光刻机结构原理_半导体综研.pptx ｜ 半导体综研 2023 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/5. 其它/光刻机培训资料/3B_2023_光刻机结构原理_半导体综研.pptx
+- [ ] **3B** 3B_2023_制程节点命名辨析_半导体综研.pptx ｜ 半导体综研 2023 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/23年景气度课程PPT/3B_2023_制程节点命名辨析_半导体综研.pptx
+- [ ] **3B** 3B_2023_前道设备分类课程_半导体综研.pptx ｜ 半导体综研 2023 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/23年景气度课程PPT/3B_2023_前道设备分类课程_半导体综研.pptx
+- [ ] **3B** 3B_2023_半导体产业现状简介_半导体综研.pptx ｜ 半导体综研 2023 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/23年景气度课程PPT/3B_2023_半导体产业现状简介_半导体综研.pptx
+- [ ] **3B** 3B_2023_台积电财务解读_半导体综研.pptx ｜ 半导体综研 2023 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/23年景气度课程PPT/3B_2023_台积电财务解读_半导体综研.pptx
+- [ ] **3B** 3B_2023_器件市场周期性研究_半导体综研.pptx ｜ 半导体综研 2023 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/23年景气度课程PPT/3B_2023_器件市场周期性研究_半导体综研.pptx
+- [ ] **3B** 3B_2023_器件市场景气度原理_半导体综研.pptx ｜ 半导体综研 2023 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/23年景气度课程PPT/3B_2023_器件市场景气度原理_半导体综研.pptx
+- [ ] **3B** 3B_2023_大硅片市场课程_半导体综研.pptx ｜ 半导体综研 2023 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/23年景气度课程PPT/3B_2023_大硅片市场课程_半导体综研.pptx
+- [ ] **3B** 3B_2023_设备市场与供应商简介_半导体综研.pptx ｜ 半导体综研 2023 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/23年景气度课程PPT/3B_2023_设备市场与供应商简介_半导体综研.pptx
+- [ ] **3B** 3B_2023_设备市场数据分析_半导体综研.pptx ｜ 半导体综研 2023 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/23年景气度课程PPT/3B_2023_设备市场数据分析_半导体综研.pptx
+- [ ] **3B** 3B_2025_EUV光刻机简介VIP版_半导体综研.pptx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/半导体产业链概览系列课/3B_2025_EUV光刻机简介VIP版_半导体综研.pptx
+- [ ] **3B** 3B_2025_光刻原理简介VIP版_半导体综研.pptx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/半导体产业链概览系列课/3B_2025_光刻原理简介VIP版_半导体综研.pptx
+- [ ] **3B** 3B_2025_常用汇率工具表新版_半导体综研.xlsx ｜ 半导体综研 2025 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/1. 行业景气度研究/3B_2025_常用汇率工具表新版_半导体综研.xlsx
+- [ ] **3B** 3B_2025_干法刻蚀原理_半导体综研.pptx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/半导体产业链概览系列课/3B_2025_干法刻蚀原理_半导体综研.pptx
+- [ ] **3B** 3B_2025_芯片基础知识_半导体综研.pptx ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/半导体产业链概览系列课/3B_2025_芯片基础知识_半导体综研.pptx
+- [ ] **3B** 3B_2024_课程视频-EDA科普-国产DFT-助力_半导体综研.mp4 ｜ 半导体综研 2024 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/其它课程资料/3B_2024_课程视频-EDA科普-国产DFT-助力_半导体综研.mp4
+- [ ] **3B** 3B_2024_课程视频-半导体产业链概览-EDA-I_半导体综研.mp4 ｜ 半导体综研 2024 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/半导体产业链概览系列课/3B_2024_课程视频-半导体产业链概览-EDA-I_半导体综研.mp4
+- [ ] **3B** 3B_2024_课程视频-半导体产业链概览-自动化系统_半导体综研.mp4 ｜ 半导体综研 2024 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/半导体产业链概览系列课/3B_2024_课程视频-半导体产业链概览-自动化系统_半导体综研.mp4
+- [ ] **3B** 3B_2024_课程视频-半导体海外并购_韩利杰_半导体综研.mp4 ｜ 半导体综研 2024 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/其它课程资料/3B_2024_课程视频-半导体海外并购_韩利杰_半导体综研.mp4
+- [ ] **3B** 3B_2024_课程视频-特色公司成长分享_半导体综研.mp4 ｜ 半导体综研 2024 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/其它课程资料/3B_2024_课程视频-特色公司成长分享_半导体综研.mp4
+- [ ] **3B** 3B_2024_课程视频-芯片基础知识介绍(1)_半导体综研.mp4 ｜ 半导体综研 2024 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/半导体产业链概览系列课/3B_2024_课程视频-芯片基础知识介绍(1)_半导体综研.mp4
+- [ ] **3B** 3B_2025_课程视频-EUV光刻机简介01_半导体综研.mp4 ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/半导体产业链概览系列课/3B_2025_课程视频-EUV光刻机简介01_半导体综研.mp4
+- [ ] **3B** 3B_2025_课程视频-EUV光刻机简介02_半导体综研.mp4 ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/半导体产业链概览系列课/3B_2025_课程视频-EUV光刻机简介02_半导体综研.mp4
+- [ ] **3B** 3B_2025_课程视频-光刻原理简介_半导体综研.mp4 ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/半导体产业链概览系列课/3B_2025_课程视频-光刻原理简介_半导体综研.mp4
+- [ ] **3B** 3B_2025_课程视频-半导体行业景气度原理_1_半导体综研.mp4 ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/半导体产业链概览系列课/3B_2025_课程视频-半导体行业景气度原理_1_半导体综研.mp4
+- [ ] **3B** 3B_2025_课程视频-半导体行业景气度原理_2_半导体综研.mp4 ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/半导体产业链概览系列课/3B_2025_课程视频-半导体行业景气度原理_2_半导体综研.mp4
+- [ ] **3B** 3B_2025_课程视频-干法刻蚀原理简介_半导体综研.mp4 ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/半导体产业链概览系列课/3B_2025_课程视频-干法刻蚀原理简介_半导体综研.mp4
+- [ ] **3B** 3B_2025_课程视频-缺陷检测技术_半导体综研.mp4 ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/半导体产业链概览系列课/3B_2025_课程视频-缺陷检测技术_半导体综研.mp4
+- [ ] **3B** 3B_2025_课程视频-芯片基础知识介绍(2)_半导体综研.mp4 ｜ 半导体综研 2025 ｜ → M07 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/4. 线上课程资料/半导体产业链概览系列课/3B_2025_课程视频-芯片基础知识介绍(2)_半导体综研.mp4
+- [ ] **3B** 3B_2020_其它01_工程档案.xls ｜ 工程项目档案 2020 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.4 大数据应用工厂项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/3B_2020_其它01_工程档案.xls
+- [ ] **3B** 3B_2020_其它02_工程档案.xls ｜ 工程项目档案 2020 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.4 大数据应用工厂项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/3B_2020_其它02_工程档案.xls
+- [ ] **3B** 3B_2023_其它01_工程档案.xlsx ｜ 工程项目档案 2023 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2023.2 中国移动（济宁）数据中心/济宁数据中心室外工程图纸/工艺/中国移动山东公司（济宁）鲁西南数据中心进局通信管道单项工程施工图cad版/中国移动山东公司（济宁）鲁西南数据中心进局通信管道单项工程施工图cad版/3B_2023_其它01_工程档案.xlsx
+- [ ] **3B** 3B_2024_其它01_工程档案.docx ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/附件二：地质勘查报告/3B_2024_其它01_工程档案.docx
+- [ ] **3B** 3B_2024_其它01_工程档案.doc ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/3B_2024_其它01_工程档案.doc
+- [ ] **3B** 3B_2025_其它01_工程档案.doc ｜ 工程项目档案 2025 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2025.2 黄岩区大闸路以东、永丰路以北地块建设工程（电信置换项目）/3B_2025_其它01_工程档案.doc
+- [ ] **3B** 3B_2025_其它01_工程档案.doc ｜ 工程项目档案 2025 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2025.4 南安市供电公司备用调度指挥数据中心DF/3B_2025_其它01_工程档案.doc
+- [ ] **3B** 3B_2025_其它01_工程档案.xlsx ｜ 工程项目档案 2025 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2025.7 成都华微高端集成电路研发及产业基地数据机房项目/3B_2025_其它01_工程档案.xlsx
+- [ ] **3B** 3B_2019_分册目录01_工程档案.xlsx ｜ 工程项目档案 2019 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/目录/3B_2019_分册目录01_工程档案.xlsx
+- [ ] **3B** 3B_2019_分册目录02_工程档案.xlsx ｜ 工程项目档案 2019 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/目录/3B_2019_分册目录02_工程档案.xlsx
+- [ ] **3B** 3B_2019_分册目录03_工程档案.xlsx ｜ 工程项目档案 2019 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/目录/3B_2019_分册目录03_工程档案.xlsx
+- [ ] **3B** 3B_2019_分册目录04_工程档案.xlsx ｜ 工程项目档案 2019 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/目录/3B_2019_分册目录04_工程档案.xlsx
+- [ ] **3B** 3B_2019_分册目录05_工程档案.xlsx ｜ 工程项目档案 2019 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/目录/3B_2019_分册目录05_工程档案.xlsx
+- [ ] **3B** 3B_2019_分册目录06_工程档案.xlsx ｜ 工程项目档案 2019 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/目录/3B_2019_分册目录06_工程档案.xlsx
+- [ ] **3B** 3B_2019_分册目录07_工程档案.xlsx ｜ 工程项目档案 2019 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/目录/3B_2019_分册目录07_工程档案.xlsx
+- [ ] **3B** 3B_2019_分册目录08_工程档案.xlsx ｜ 工程项目档案 2019 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/目录/3B_2019_分册目录08_工程档案.xlsx
+- [ ] **3B** 3B_2019_分册目录09_工程档案.xlsx ｜ 工程项目档案 2019 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/目录/3B_2019_分册目录09_工程档案.xlsx
+- [ ] **3B** 3B_2019_分册目录10_工程档案.xlsx ｜ 工程项目档案 2019 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/目录/3B_2019_分册目录10_工程档案.xlsx
+- [ ] **3B** 3B_2019_分册目录11_工程档案.xlsx ｜ 工程项目档案 2019 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/目录/3B_2019_分册目录11_工程档案.xlsx
+- [ ] **3B** 3B_2019_幕墙计算01_工程档案.xlsx ｜ 工程项目档案 2019 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/目录/3B_2019_幕墙计算01_工程档案.xlsx
+- [ ] **3B** 3B_2019_幕墙计算01_工程档案.doc ｜ 工程项目档案 2019 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7中国电信云计算重庆基地二期工程/幕墙/中国电信云计算重庆基地二期幕墙施工图(晒蓝图版)2019.8.7/重庆电信二期计算书(打印一份A4)/3B_2019_幕墙计算01_工程档案.doc
+- [ ] **3B** 3B_2019_幕墙计算02_工程档案.DOC ｜ 工程项目档案 2019 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7中国电信云计算重庆基地二期工程/幕墙/中国电信云计算重庆基地二期幕墙施工图(晒蓝图版)2019.8.7/重庆电信二期计算书(打印一份A4)/3B_2019_幕墙计算02_工程档案.DOC
+- [ ] **3B** 3B_2019_幕墙计算03_工程档案.doc ｜ 工程项目档案 2019 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7中国电信云计算重庆基地二期工程/幕墙/中国电信云计算重庆基地二期幕墙施工图(晒蓝图版)2019.8.7/重庆电信二期计算书(打印一份A4)/3B_2019_幕墙计算03_工程档案.doc
+- [ ] **3B** 3B_2021_幕墙计算01_工程档案.doc ｜ 工程项目档案 2021 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2021.1 六安电信信息化中心和六安电信云计算数据中心项目/室外、幕墙图纸2022.2.13整理/指挥中心幕墙/3B_2021_幕墙计算01_工程档案.doc
+- [ ] **3B** 3B_2021_幕墙计算01_工程档案.doc ｜ 工程项目档案 2021 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2021.1 六安电信信息化中心和六安电信云计算数据中心项目/室外、幕墙图纸2022.2.13整理/数据中心幕墙/3B_2021_幕墙计算01_工程档案.doc
+- [ ] **3B** 3B_2022_幕墙计算01_工程档案.doc ｜ 工程项目档案 2022 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/幕墙工程/幕墙20221226CAD/中国移动成渝（重庆）江南数据中心建设项目一期--幕墙图纸/第一分册-1#楼/设计说明/3B_2022_幕墙计算01_工程档案.doc
+- [ ] **3B** 3B_2022_幕墙计算02_工程档案.doc ｜ 工程项目档案 2022 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/幕墙工程/幕墙20221226CAD/中国移动成渝（重庆）江南数据中心建设项目一期--幕墙图纸/第一分册-1#楼/设计说明/3B_2022_幕墙计算02_工程档案.doc
+- [ ] **3B** 3B_2024_幕墙计算01_工程档案.doc ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.12 中国移动（福建南平）延平通信枢纽楼/20241015（福建南平）延平通信枢纽楼幕墙施工图（根据审图意见修改）/3B_2024_幕墙计算01_工程档案.doc
+- [ ] **3B** 3B_2024_幕墙计算01_工程档案.rtf ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/附件三：施工图图纸/08-幕墙/3B_2024_幕墙计算01_工程档案.rtf
+- [ ] **3B** 3B_2024_幕墙计算01_工程档案.doc ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/幕墙/3B_2024_幕墙计算01_工程档案.doc
+- [ ] **3B** 3B_2024_海绵城市01_工程档案.docx ｜ 工程项目档案 2024 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/11  海绵/20240320移动忠县项目-海绵城市施工图/20240320移动忠县项目-海绵城市施工图/3B_2024_海绵城市01_工程档案.docx
+- [ ] **3B** 3B_2016_结构计算01_工程档案.doc ｜ 工程项目档案 2016 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2016.1 中国联通湖南长沙云计算中心一期IDC机房、动力中心、动力楼、通信枢纽楼建设工程/人防图纸/结构/7月22号联通人防结构完成版/7月22号联通人防结构完成版/计算书/3B_2016_结构计算01_工程档案.doc
+- [ ] **3B** 3B_2019_结构计算01_工程档案.xlsx ｜ 工程项目档案 2019 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/目录/3B_2019_结构计算01_工程档案.xlsx
+- [ ] **3B** 3B_2019_结构计算02_工程档案.xlsx ｜ 工程项目档案 2019 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.7 中国移动南方基地二期工程二阶段项目/目录/3B_2019_结构计算02_工程档案.xlsx
+- [ ] **3B** 3B_2020_结构计算01_工程档案.docx ｜ 工程项目档案 2020 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区2结施+计算书0805/数据区2结构+计算书0804/4#楼结构+计算书/4#楼计算书/3B_2020_结构计算01_工程档案.docx
+- [ ] **3B** 3B_2020_结构计算02_工程档案.xls ｜ 工程项目档案 2020 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区2结施+计算书0805/数据区2结构+计算书0804/4#楼结构+计算书/4#楼计算书/3B_2020_结构计算02_工程档案.xls
+- [ ] **3B** 3B_2020_结构计算01_工程档案.xls ｜ 工程项目档案 2020 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区2结施+计算书0805/数据区2结构+计算书0804/5#楼结构+计算书/5#计算书/5#楼上/基础/3B_2020_结构计算01_工程档案.xls
+- [ ] **3B** 3B_2020_结构计算02_工程档案.TXT ｜ 工程项目档案 2020 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区2结施+计算书0805/数据区2结构+计算书0804/5#楼结构+计算书/5#计算书/5#楼上/基础/3B_2020_结构计算02_工程档案.TXT
+- [ ] **3B** 3B_2020_结构计算01_工程档案.xls ｜ 工程项目档案 2020 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区2结施+计算书0805/数据区2结构+计算书0804/6#楼结构+计算书/6#楼计算书/基础/3B_2020_结构计算01_工程档案.xls
+- [ ] **3B** 3B_2020_结构计算01_工程档案.docx ｜ 工程项目档案 2020 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区2结施+计算书0805/数据区2结构+计算书0804/数据区2地下室结构+计算书/数据区2DXS计算书/3B_2020_结构计算01_工程档案.docx
+- [ ] **3B** 3B_2020_结构计算02_工程档案.xls ｜ 工程项目档案 2020 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区2结施+计算书0805/数据区2结构+计算书0804/数据区2地下室结构+计算书/数据区2DXS计算书/3B_2020_结构计算02_工程档案.xls
+- [ ] **3B** 3B_2020_结构计算01_工程档案.TXT ｜ 工程项目档案 2020 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/示范基地结施+计算书0805/工业1-示范基地结构+计算书0804/10#楼结施+计算书/10#计算书/10#基础/3B_2020_结构计算01_工程档案.TXT
+- [ ] **3B** 3B_2020_结构计算02_工程档案.txt ｜ 工程项目档案 2020 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/示范基地结施+计算书0805/工业1-示范基地结构+计算书0804/10#楼结施+计算书/10#计算书/10#基础/3B_2020_结构计算02_工程档案.txt
+- [ ] **3B** 3B_2020_结构计算03_工程档案.docx ｜ 工程项目档案 2020 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/示范基地结施+计算书0805/工业1-示范基地结构+计算书0804/10#楼结施+计算书/10#计算书/10#基础/3B_2020_结构计算03_工程档案.docx
+- [ ] **3B** 3B_2020_结构计算01_工程档案.xls ｜ 工程项目档案 2020 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/示范基地结施+计算书0805/工业1-示范基地结构+计算书0804/8.9#楼结构+计算书/8#楼/基础/3B_2020_结构计算01_工程档案.xls
+- [ ] **3B** 3B_2022_结构计算01_工程档案.doc ｜ 工程项目档案 2022 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/基坑支护/3B_2022_结构计算01_工程档案.doc
+- [ ] **3B** 3B_2024_结构计算01_工程档案.docx ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/基础冲切验算/3B_2024_结构计算01_工程档案.docx
+- [ ] **3B** 3B_2024_结构计算02_工程档案.docx ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/基础冲切验算/3B_2024_结构计算02_工程档案.docx
+- [ ] **3B** 3B_2024_结构计算03_工程档案.docx ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/基础冲切验算/3B_2024_结构计算03_工程档案.docx
+- [ ] **3B** 3B_2024_结构计算04_工程档案.docx ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/基础冲切验算/3B_2024_结构计算04_工程档案.docx
+- [ ] **3B** 3B_2024_结构计算01_工程档案.docx ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/3B_2024_结构计算01_工程档案.docx
+- [ ] **3B** 3B_2024_结构计算02_工程档案.docx ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/3B_2024_结构计算02_工程档案.docx
+- [ ] **3B** 3B_2024_结构计算01_工程档案.rtf ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/挡墙计算书/负一层~顶板挡墙/3B_2024_结构计算01_工程档案.rtf
+- [ ] **3B** 3B_2024_结构计算02_工程档案.rtf ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/挡墙计算书/负一层~顶板挡墙/3B_2024_结构计算02_工程档案.rtf
+- [ ] **3B** 3B_2024_结构计算03_工程档案.rtf ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/挡墙计算书/负一层~顶板挡墙/3B_2024_结构计算03_工程档案.rtf
+- [ ] **3B** 3B_2024_结构计算04_工程档案.rtf ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/挡墙计算书/负一层~顶板挡墙/3B_2024_结构计算04_工程档案.rtf
+- [ ] **3B** 3B_2024_结构计算05_工程档案.rtf ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/挡墙计算书/负一层~顶板挡墙/3B_2024_结构计算05_工程档案.rtf
+- [ ] **3B** 3B_2024_结构计算01_工程档案.rtf ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/挡墙计算书/负二层~负一层挡墙/3B_2024_结构计算01_工程档案.rtf
+- [ ] **3B** 3B_2024_结构计算02_工程档案.rtf ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/挡墙计算书/负二层~负一层挡墙/3B_2024_结构计算02_工程档案.rtf
+- [ ] **3B** 3B_2024_结构计算01_工程档案.docx ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/楼梯计算书/1#/3B_2024_结构计算01_工程档案.docx
+- [ ] **3B** 3B_2024_结构计算02_工程档案.docx ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/楼梯计算书/1#/3B_2024_结构计算02_工程档案.docx
+- [ ] **3B** 3B_2024_结构计算03_工程档案.docx ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/楼梯计算书/1#/3B_2024_结构计算03_工程档案.docx
+- [ ] **3B** 3B_2024_结构计算04_工程档案.docx ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/楼梯计算书/1#/3B_2024_结构计算04_工程档案.docx
+- [ ] **3B** 3B_2024_结构计算05_工程档案.docx ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/楼梯计算书/1#/3B_2024_结构计算05_工程档案.docx
+- [ ] **3B** 3B_2024_结构计算06_工程档案.docx ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/楼梯计算书/1#/3B_2024_结构计算06_工程档案.docx
+- [ ] **3B** 3B_2024_结构计算01_工程档案.docx ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/楼梯计算书/3#、4#/3B_2024_结构计算01_工程档案.docx
+- [ ] **3B** 3B_2024_结构计算01_工程档案.docx ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/08  装配式/3B_2024_结构计算01_工程档案.docx
+- [ ] **3B** 3B_2024_结构计算02_工程档案.docx ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/08  装配式/3B_2024_结构计算02_工程档案.docx
+- [ ] **3B** 3B_2024_结构计算01_工程档案.docx ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/12  边坡支护/3B_2024_结构计算01_工程档案.docx
+- [ ] **3B** 3B_2024_结构计算01_工程档案.xlsx ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/附件三：施工图图纸/00-室外工程/运维楼海绵城市/3B_2024_结构计算01_工程档案.xlsx
+- [ ] **3B** 3B_2019_不可提取01_工程档案.doc ｜ 工程项目档案 2019 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.6 重庆有线水土综合枢纽基地建设项目/节能/模型及报告书/门卫模型及报告书+/4#/3B_2019_不可提取01_工程档案.doc
+- [ ] **3B** 3B_2024_不可提取01_工程档案.txt ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/碳排放/中间文件/3B_2024_不可提取01_工程档案.txt
+- [ ] **3B** 3B_2024_不可提取02_工程档案.txt ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/碳排放/中间文件/3B_2024_不可提取02_工程档案.txt
+- [ ] **3B** 3B_2024_不可提取03_工程档案.txt ｜ 工程项目档案 2024 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/碳排放/中间文件/3B_2024_不可提取03_工程档案.txt
+- [ ] **3B** 3B_2025_不可提取01_工程档案.txt ｜ 工程项目档案 2025 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/10-PDF【20240918节能】-南安市供电公司备用调度指挥数据中心/3B_2025_不可提取01_工程档案.txt
+- [ ] **3B** 3B_2019_装修材料01_工程档案.docx ｜ 工程项目档案 2019 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.6 重庆有线水土综合枢纽基地建设项目/3B_2019_装修材料01_工程档案.docx
+- [ ] **3B** 3B_2022_装修材料01_工程档案.pptx ｜ 工程项目档案 2022 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/方案效果图---20220621/效果图/3B_2022_装修材料01_工程档案.pptx
+- [ ] **3B** 3B_2022_装修材料02_工程档案.xlsx ｜ 工程项目档案 2022 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/方案效果图---20220621/效果图/3B_2022_装修材料02_工程档案.xlsx
+- [ ] **3B** 3B_2022_装修材料03_工程档案.xlsx ｜ 工程项目档案 2022 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/方案效果图---20220621/效果图/3B_2022_装修材料03_工程档案.xlsx
+- [ ] **3B** 3B_2022_装修材料04_工程档案.xlsx ｜ 工程项目档案 2022 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/方案效果图---20220621/效果图/3B_2022_装修材料04_工程档案.xlsx
+- [ ] **3B** 3B_2022_装修材料05_工程档案.xlsx ｜ 工程项目档案 2022 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/方案效果图---20220621/效果图/3B_2022_装修材料05_工程档案.xlsx
+- [ ] **3B** 3B_2024_浸没可靠性委员会组建_OCP.pdf ｜ Intel/OCP 2024 ｜ → M02 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Immersion/3B_2024_浸没可靠性委员会组建_OCP.pdf
+- [ ] **3B** 3B_2024_液冷小车过渡方案_OCP.pdf ｜ OCP 2024 ｜ → M02 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Liquid Cooling/3B_2024_液冷小车过渡方案_OCP.pdf
+- [ ] **3B** 3B_2024_热回收参考设计进度_OCP.pdf ｜ Alfa Laval/OCP 2024 ｜ → M02/M12 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Cooling Environments：Liquid Cooling/3B_2024_热回收参考设计进度_OCP.pdf
+- [ ] **3B** 3B_2024_DCF可持续分组进展_OCP.pdf ｜ OCP 2024 ｜ → M12 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Data Center Facility (DCF)/3B_2024_DCF可持续分组进展_OCP.pdf
+- [ ] **3B** 3B_2024_AI系统集成方案概览_OCP.pdf ｜ OCP 2024 ｜ → M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：Artificial Intelligence (AI)/3B_2024_AI系统集成方案概览_OCP.pdf
+- [ ] **3B** 3B_2024_密度与AI开放系统_Dell.pdf ｜ Dell 2024 ｜ → M02/M03 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：Artificial Intelligence (AI)/3B_2024_密度与AI开放系统_Dell.pdf
+- [ ] **3B** 3B_2024_可持续指标应用面板_OCP.pdf ｜ OCP 2024 ｜ → M12 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Sustainability/3B_2024_可持续指标应用面板_OCP.pdf
+- [ ] **3B** 3B_2024_控温15度百条规则_OCP.pdf ｜ OCP 2024 ｜ → M12 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Sustainability/3B_2024_控温15度百条规则_OCP.pdf
+- [ ] **3B** 3B_2024_归一化碳性能指标_OCP.pdf ｜ OCP 2024 ｜ → M12 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Sustainability/3B_2024_归一化碳性能指标_OCP.pdf
+- [ ] **3B** 3B_2024_OCP在欧洲的采纳挑战_OCP.pdf ｜ OCP 2024 ｜ → M14 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Special Focus：OCP Market Impact & Supply Chain/3B_2024_OCP在欧洲的采纳挑战_OCP.pdf
+- [ ] **3B** 3B_2024_面向AI的存储概览_OCP.pdf ｜ OCP 2024 ｜ → M06 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Storage/3B_2024_面向AI的存储概览_OCP.pdf
+- [ ] **3B** 3B_2024_存储轨道收尾去重件_OCP.pdf ｜ OCP 2024 ｜ → M06 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Storage/3B_2024_存储轨道收尾去重件_OCP.pdf
+- [ ] **3B** 3B_2024_开放系统固件项目进展_OCP.pdf ｜ OCP 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Open Platform Firmware (OPF)/3B_2024_开放系统固件项目进展_OCP.pdf
+- [ ] **3B** 3B_2024_固件生命周期挑战面板_OCP.pdf ｜ OCP 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Open Platform Firmware (OPF)/3B_2024_固件生命周期挑战面板_OCP.pdf
+- [ ] **3B** 3B_2024_通用开放平台愿景_OCP.pdf ｜ OCP 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Open Platform Firmware (OPF)/3B_2024_通用开放平台愿景_OCP.pdf
+- [ ] **3B** 3B_2024_SPDM后量子密码面板_OCP.pdf ｜ OCP/DMTF 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Security/3B_2024_SPDM后量子密码面板_OCP.pdf
+- [ ] **3B** 3B_2024_设备到云供应链溯源_OCP.pdf ｜ OCP 2024 ｜ → M14/M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Security/3B_2024_设备到云供应链溯源_OCP.pdf
+- [ ] **3B** 3B_2024_AI热挑战主题演讲_Lenovo.pdf ｜ Lenovo 2024 ｜ → M02 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Executive Sessions/3B_2024_AI热挑战主题演讲_Lenovo.pdf
+- [ ] **3B** 3B_2024_开放诊断采纳社区更新_OCP.pdf ｜ OCP 2024 ｜ → M10 ｜ 精读
+      docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit/Test & Validation/3B_2024_开放诊断采纳社区更新_OCP.pdf
+- [ ] **3B** 3B_2024_东芯半导体半年报不可提取_东芯股份.pdf ｜ 东芯半导体 2024 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/2024存储报告/存储企业24年报告/3B_2024_东芯半导体半年报不可提取_东芯股份.pdf
+- [ ] **3B** 3B_2022_江南数据中心钻孔成果表_四川省地质工程勘察院.doc ｜ 四川省地质工程勘察院 2022 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件二：详细勘察文件/测量成果/3B_2022_江南数据中心钻孔成果表_四川省地质工程勘察院.doc
+- [ ] **3B** 3B_2022_江南数据中心放孔数据表_四川省地质工程勘察院.xlsx ｜ 四川省地质工程勘察院 2022 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件二：详细勘察文件/测量成果/3B_2022_江南数据中心放孔数据表_四川省地质工程勘察院.xlsx
+- [ ] **3B** 3B_2022_江南数据中心土石方技术小结_四川省地质工程勘察院.doc ｜ 四川省地质工程勘察院 2022 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件一：土石方测量/土石方测算---20220926/江南数据中心红线内土方/3B_2022_江南数据中心土石方技术小结_四川省地质工程勘察院.doc
+- [ ] **3B** 3B_2022_江南数据中心西侧边坡技术小结_四川省地质工程勘察院.doc ｜ 四川省地质工程勘察院 2022 ｜ → M05 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件一：土石方测量/土石方测算---20220926/江南数据中心西侧边坡/3B_2022_江南数据中心西侧边坡技术小结_四川省地质工程勘察院.doc
+- [ ] **3B** 3B_2019_来宾基础设计送审报告_未署名设计单位.docx ｜ 未署名设计单位 2019 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/3B_2019_来宾基础设计送审报告_未署名设计单位.docx
+- [ ] **3B** 3B_2019_来宾筏板基础设计送审报告_未署名设计单位.docx ｜ 未署名设计单位 2019 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/3B_2019_来宾筏板基础设计送审报告_未署名设计单位.docx
+- [ ] **3B** 3B_2024_衢州室外给排水图纸目录_中国移动设计院.pdf ｜ 中国移动设计院 2024 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/给排水/821-衢州-室外给排水施工图（CAD+PDF）/3B_2024_衢州室外给排水图纸目录_中国移动设计院.pdf
+- [ ] **3B** 3B_2024_科学城运维楼背景噪声报告_华信咨询设计院.doc ｜ 华信咨询设计院 2024 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/附件三：施工图图纸/绿建和节能/运维楼绿建施工图/绿建分析报告/3B_2024_科学城运维楼背景噪声报告_华信咨询设计院.doc
+- [ ] **3B** 3B_2024_科学城运维楼构件隔声报告_华信咨询设计院.doc ｜ 华信咨询设计院 2024 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/附件三：施工图图纸/绿建和节能/运维楼绿建施工图/绿建分析报告/3B_2024_科学城运维楼构件隔声报告_华信咨询设计院.doc
+- [ ] **3B** 3B_2024_科学城运维楼天然采光报告_华信咨询设计院.doc ｜ 华信咨询设计院 2024 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/附件三：施工图图纸/绿建和节能/运维楼绿建施工图/绿建分析报告/3B_2024_科学城运维楼天然采光报告_华信咨询设计院.doc
+- [ ] **3C** 3C_2025_存储融合_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
       docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Keynote/3C_2025_存储融合_SNIA.pdf
-- [ ] **3C** 3C_2025_颠覆GPU霸权座谈_SNIA.pdf ｜ SNIA 2025 ｜ → M06
+- [ ] **3C** 3C_2025_颠覆GPU霸权座谈_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
       docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Magic Memory/3C_2025_颠覆GPU霸权座谈_SNIA.pdf
+- [ ] **3C** 3C_2025_数据安全算法进展_SNIA.pdf ｜ SNIA 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/英文机构报告/Yole/SDC 2025/Data Security/3C_2025_数据安全算法进展_SNIA.pdf
+- [ ] **3C** 3C_2025_SSD硬件信任根_FMS2025.pdf ｜ FMS2025 2025 ｜ → M06 ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/FMS2025/DSEC-101-1：Hardware Trust Building Blocks for Secure Systems/3C_2025_SSD硬件信任根_FMS2025.pdf
+- [ ] **3C** 3C_2024_液冷方案词条_头豹研究院.pdf ｜ 头豹研究院 2024 ｜ → M02 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/3C_2024_液冷方案词条_头豹研究院.pdf
+- [ ] **3C** 3C_2022_移动粤港澳工程量清单计价文件_中国移动.COS ｜ 中国移动 2022 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/3C_2022_移动粤港澳工程量清单计价文件_中国移动.COS
+- [ ] **3C** 3C_2023_智算中心行业调研通稿_未署名.pdf ｜ 未署名 2023 ｜ → M14 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算/3C_2023_智算中心行业调研通稿_未署名.pdf
+- [ ] **3C** 3C_2024_智算供给格局空白模板_未署名.pdf ｜ 未署名 2024 ｜ → M14 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算/3C_2024_智算供给格局空白模板_未署名.pdf
+- [ ] **3C** 3C_2024_智算供给格局空白模板副本_未署名.pdf ｜ 未署名 2024 ｜ → M14 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算/3C_2024_智算供给格局空白模板副本_未署名.pdf
+- [ ] **3C** 3C_2024_超算中心运营管理模板课件_未署名.pdf ｜ 未署名 2024 ｜ → M10 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算/3C_2024_超算中心运营管理模板课件_未署名.pdf
+- [ ] **3C** 3C_2024_智算中心行业分析模板课件_未署名.pdf ｜ 未署名 2024 ｜ → M14 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算/3C_2024_智算中心行业分析模板课件_未署名.pdf
+- [ ] **3C** 3C_2024_超算中心网络建设模板课件_未署名.pdf ｜ 未署名 2024 ｜ → M04 ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算/3C_2024_超算中心网络建设模板课件_未署名.pdf
+- [ ] **2C** 2C_2025_三一重工机械研报_Jefferies.pdf ｜ Jefferies 2025 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250424/2C_2025_三一重工机械研报_Jefferies.pdf
+- [ ] **2C** 2C_2025_美国保险行业研报_UBS.pdf ｜ UBS 2025 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/知识星球/20250424/2C_2025_美国保险行业研报_UBS.pdf
+- [ ] **2C** 2C_2020_误入库的粮食ERP营销材料_浪潮云.pdf ｜ 浪潮云 2020 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算/2C_2020_误入库的粮食ERP营销材料_浪潮云.pdf
+- [ ] **1C** 1C_2025_误入库的校友访谈素材_半导体综研.zip ｜ 半导体综研 2025 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/1C_2025_误入库的校友访谈素材_半导体综研.zip
+- [ ] **1C** 1C_2016_解压密码获取途径说明_资料贩售方.txt ｜ 资料贩售方 2016 ｜ → — ｜ 精读
+      docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/【免费路径】重要，必看！解压密码获取途径说明/1C_2016_解压密码获取途径说明_资料贩售方.txt
