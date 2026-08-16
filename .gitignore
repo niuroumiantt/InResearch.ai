@@ -15,4 +15,11 @@ docs/inbox/scored_batches/*
 docs/inbox/digest_drafts/*
 !docs/inbox/digest_drafts/README.md
 !docs/inbox/digest_drafts/*.md
+# 第三类交付物：项目登记表（用户 2026-08-16 批复第 5 条授权新增）
+# 注意 docs/inbox/* 是黑名单式忽略，新增交付目录必须在这里显式放行，
+# 否则文件复制进去也永远推不到远端（2026-08-16 已踩过一次）。
+!docs/inbox/project_registry/
+docs/inbox/project_registry/*
+!docs/inbox/project_registry/README.md
+!docs/inbox/project_registry/*.csv
 待删除文件/
