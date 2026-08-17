@@ -25,8 +25,8 @@
 
 | 项 | 规格 | 说明 |
 |---|---|---|
-| EC2 | `t4g.medium`（2 vCPU Graviton / 4GB） | ARM：本项目无编译依赖，同价性能高约 20% |
-| EBS | 40GB gp3 | 仓库 60MB + 镜像 + 日志，余量充足 |
+| EC2 | **`t3.medium`（2 vCPU x86 / 4GB）** | **不用 ARM**：news 依赖 RSSHub 与 wewe-rss 两个第三方镜像，未验证它们发布 arm64 manifest。ARM 省约 20%（$35 账单上约 $6/月），**不值得为此在迁移里引入未知数**。全新项目 + 全部第一方镜像时才该考虑 ARM |
+| EBS | **50GB gp3** | datacenter 60MB + news 数据约 1GB/年 + RSSHub 镜像 1-2GB + 日志 |
 | S3 | 约 91GB（研报库本体） | **不放 EBS** |
 | CloudFront | 可选 | 实习生下载研报走它，出网比 S3 直出便宜 |
 
@@ -68,8 +68,9 @@ sudo dnf install -y docker git && sudo systemctl enable --now docker
 sudo usermod -aG docker ec2-user && newgrp docker
 # compose v2 插件
 mkdir -p ~/.docker/cli-plugins && curl -SL \
-  https://github.com/docker/compose/releases/latest/download/docker-compose-linux-aarch64 \
+  https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 \
   -o ~/.docker/cli-plugins/docker-compose && chmod +x ~/.docker/cli-plugins/docker-compose
+# ↑ x86 用 docker-compose-linux-x86_64；若改用 ARM 机型才换 aarch64
 
 # 1) 取仓库
 git clone https://github.com/niuroumiantt/datacenter.git && cd datacenter

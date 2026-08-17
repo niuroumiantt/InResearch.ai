@@ -2107,6 +2107,138 @@
       },
       "depth": "精读",
       "notes": "**同比增幅「超58%」，58 是下界**。**注意单位陷阱：北美四家是「亿美元」、国内三家是「亿元人民币」，两个 3600 量级的数看着接近，实际差约 7 倍汇率**，原文并排书写极易误读。口径为四家合计的公司整体 Capex，**含非数据中心投入**。配套：2025Q1 阿里资本开支增长 126.7%、腾讯同比增长 91%。"
+    },
+    {
+      "fact_id": "us-interconnect-queue-years-2025",
+      "metric_id": "interconnection_queue_years",
+      "entity": {
+        "type": "industry",
+        "id": "us-dc-clusters",
+        "label": "美国数据中心集群区域（弗吉尼亚等）"
+      },
+      "unit": "年",
+      "caliber": {
+        "stage": "未披露",
+        "region": "US"
+      },
+      "bound": "point",
+      "as_of": "2025",
+      "evidence": {
+        "source_id": "3ce0038c0358",
+        "locator": "华源证券《北交所科技成长产业跟踪第五十期》(2025-11-19)「美国作为全球最大的单一市场，2024年消耗量达到全球总量的45%(约180-190TWh)，导致弗吉尼亚州等集群区域的电网接入等待时间长达4-7年」",
+        "grade": "S4",
+        "originator": "IEA / BloombergNEF / SemiAnalysis / 中国储能网（原文并列标注四家，未指明该数具体归属）"
+      },
+      "depth": "精读",
+      "notes": "**区间值：原文即为 4-7 年，非点值。****范围是「弗吉尼亚州等集群区域」，不是全美平均**——集群区域是最拥堵的一端，取此值代表全美会高估。**未说明是「申请到获批」还是「申请到投运」，两者差异显著，已标 [未核]**；建议该指标加 stage 维度（获批/投运）。配套背景：美国 2024 年数据中心用电占全球 45%（180-190TWh），欧洲 15%（60-65TWh），中国 12%（50-55TWh），其他 28%（110-120TWh）。region=US-VA 及同类集群区域。",
+      "value": null,
+      "value_range": [
+        4,
+        7
+      ]
+    },
+    {
+      "fact_id": "pjm-dom-lmp-2025",
+      "metric_id": "nodal_lmp_price",
+      "entity": {
+        "type": "industry",
+        "id": "pjm-dom",
+        "label": "PJM-DOM 区域"
+      },
+      "unit": "美元/MWh",
+      "caliber": {
+        "price_type": "LMP 含拥堵费",
+        "node": "PJM-DOM",
+        "region": "US-PJM"
+      },
+      "bound": "point",
+      "as_of": "2025",
+      "evidence": {
+        "source_id": "4120bf6585f6",
+        "locator": "中泰证券《表后发电与挖矿转型加速之年：美国AI数据中心，基建缓慢，电从哪来？》(2026-03-14)「2023-2024年DOM平均电价稳定在$35-37/MWh区间…2025年电价突变，平均LMP飙升61%至$59.3/MWh」",
+        "grade": "S3",
+        "originator": "PJM（中泰证券整理）"
+      },
+      "depth": "精读",
+      "notes": "**这是节点边际电价（LMP）、含拥堵费，与 PPA 合约价和零售电价均不可互换**——PPA 是长约锁价、LMP 是市场出清价。**基期为 2023-2024 年的 $35-37/MWh 稳定区间，2025 年跃升 +61%。**同期**拥堵费占电价比重从 13% 升至 33%**，DOM（下游）与 AEP（上游）的拥堵费价差**从 $4.8/MWh 扩大至 $74.2/MWh**——报告据此判断输电瓶颈已成结构性定价因素。region=US-PJM/DOM，时点=2025 年均值。",
+      "value": 59.3
+    },
+    {
+      "fact_id": "pjm-dom-aep-congestion-spread-2025",
+      "metric_id": "congestion_price_spread",
+      "entity": {
+        "type": "industry",
+        "id": "pjm-dom-aep",
+        "label": "PJM DOM 对 AEP"
+      },
+      "unit": "美元/MWh",
+      "caliber": {
+        "pair": "PJM-DOM 对 PJM-AEP",
+        "region": "US-PJM"
+      },
+      "bound": "point",
+      "as_of": "2025",
+      "evidence": {
+        "source_id": "4120bf6585f6",
+        "locator": "同上报告「电力下游DOM与上游AEP区域拥堵费价差从$4.8/MWh扩至$74.2/MWh，输电瓶颈已演变为结构性定价因素」",
+        "grade": "S3",
+        "originator": "PJM（中泰证券整理）"
+      },
+      "depth": "精读",
+      "notes": "**价差不是电价本身**——衡量的是同一电网内上下游因输电阻塞造成的价格分化，**从 $4.8 扩到 $74.2 即扩大约 15 倍**。**这是比「排队 4-7 年」更适合做监测指标的读数：它是市场出清价的一部分、每日可得、可证伪**，而排队时长依赖口径定义且更新缓慢。region=US-PJM，基期未标明具体年份（对应 DOM 电价的 2023-2024 基期）。",
+      "value": 74.2
+    },
+    {
+      "fact_id": "us-load-growth-concentration-2025",
+      "metric_id": "load_growth_concentration",
+      "entity": {
+        "type": "industry",
+        "id": "us-grid",
+        "label": "美国电网（全国）"
+      },
+      "unit": "%",
+      "caliber": {
+        "scope": "五大电网区域",
+        "basis_type": "净增量占比",
+        "region": "US"
+      },
+      "bound": "point",
+      "as_of": "2025",
+      "evidence": {
+        "source_id": "4120bf6585f6",
+        "locator": "同上报告「2025年达432GW，同比增长3.3%，较2024年净增加13.65GW，净额同比增长19%，其中ERCOT+PJM+MISO+SPP+NYISO五大电网区域净增10.4GW，占全美总增量的76%（2024年仅57%）」",
+        "grade": "S3",
+        "originator": "（中泰证券整理，原始来源未在摘录段落中标明）"
+      },
+      "depth": "精读",
+      "notes": "**衡量的是负荷增量的地理集中度，不是存量占比**——2024 年为 57%，2025 年为 76%，**一年内跳升 19 个百分点**。分子=五大区域净增 10.4GW，分母=全美净增 13.65GW。全美 2025 年负荷 432GW（同比 +3.3%），净增量同比 +19%。分区增速：ERCOT +6%、SPP +5.2%、PJM +4.9%。region=US。",
+      "value": 76.0
+    },
+    {
+      "fact_id": "pjm-gas-queue-capacity-2026",
+      "metric_id": "interconnection_queue_capacity",
+      "entity": {
+        "type": "industry",
+        "id": "pjm-queue",
+        "label": "PJM 并网队列"
+      },
+      "unit": "GW",
+      "caliber": {
+        "stage": "已提交申请",
+        "tech": "燃气",
+        "region": "US-PJM"
+      },
+      "bound": "point",
+      "as_of": "2026",
+      "evidence": {
+        "source_id": "4120bf6585f6",
+        "locator": "同上报告「根据PJM数据，2020…252GW。若上述252GW全部建成，美国现有燃气机组将扩大约50%…签约的量为2.442GW，占比10.3%，剩余89.7%有望加速释放」",
+        "grade": "S3",
+        "originator": "PJM（中泰证券整理）"
+      },
+      "depth": "精读",
+      "notes": "**⚠ 这是队列申请量，不是在建量、更不是投产预测**。报告自身指出**已签约量仅 2.442GW、占比 10.3%**，即 89.7% 尚未签约。**美国并网队列的历史清退率很高，队列规模不可当作未来装机预测**——这与「在手订单 ≠ 数据中心需求」是同一类陷阱的不同形态。参照口径：若 252GW 全部建成，美国现有燃气机组将扩大约 50%（该比较可反推现有燃气装机约 500GW 量级）。region=US-PJM。",
+      "value": 252.0
     }
   ]
 }
