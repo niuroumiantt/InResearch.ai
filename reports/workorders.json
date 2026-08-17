@@ -25,6 +25,26 @@
    "pri": "P2",
    "mid": "M01",
    "name": "市场规模与增长",
+   "kind": "口径未定义",
+   "gap": "M01 有 **5/5 个监测指标**在 metrics.json 里没有口径定义",
+   "action": "**给所有者**：没有口径维度的指标，它的数无法判定可比性——两个不可比的值并列时没有任何机制会拦。逐个补 `caliber_dims` 到 framework/metrics.json，涉及：benchmark_spread、dc_rent_index_na、global_operational_gw、pipeline_conversion_rate、vacancy_rate_na",
+   "wid": "M01-80cf",
+   "key": "口径未定义"
+  },
+  {
+   "pri": "P2",
+   "mid": "M01",
+   "name": "市场规模与增长",
+   "kind": "事实层空白",
+   "gap": "指标 `dc_capacity_mw`（数据中心容量）已声明口径维度，但事实层一条数都没有",
+   "action": "去取数入 `data/facts.json`。口径维度已经定好，照着填即可；拿不到就如实回报——**留白是纪律**。",
+   "wid": "M01-5f95",
+   "key": "事实空白:dc_capacity_mw"
+  },
+  {
+   "pri": "P2",
+   "mid": "M01",
+   "name": "市场规模与增长",
    "kind": "信源未开口",
    "gap": "声明了跑口「JLL / CBRE / Cushman」（免费）但库内一份都没有——半年报免费",
    "action": "打通该渠道：先取一份最新的公开件验证格式与价值，再决定是否长期跟。每份填一行登记（{importance}{confidence}_{年份}_{主题}_{机构}），summary ≥200 字且**每个数字必须能在原文逐字查到**，查不到标 `[未核]`；库内已有的不计分（见附表查重）。",
@@ -83,26 +103,6 @@
   },
   {
    "pri": "P2",
-   "mid": "M01",
-   "name": "市场规模与增长",
-   "kind": "声明问题开放",
-   "gap": "中国分区域的容量口径",
-   "action": "这是 M01 在 modules.json 里声明为**开放**的问题（answered_by 为空）。答掉之后把 Finding 号回填进声明，工单自动消失。每份填一行登记（{importance}{confidence}_{年份}_{主题}_{机构}），summary ≥200 字且**每个数字必须能在原文逐字查到**，查不到标 `[未核]`；库内已有的不计分（见附表查重）。",
-   "wid": "M01-72eb",
-   "key": "问题:中国分区域的容量口径"
-  },
-  {
-   "pri": "P2",
-   "mid": "M01",
-   "name": "市场规模与增长",
-   "kind": "声明问题开放",
-   "gap": "全球在建管线的六级状态分布",
-   "action": "这是 M01 在 modules.json 里声明为**开放**的问题（answered_by 为空）。答掉之后把 Finding 号回填进声明，工单自动消失。每份填一行登记（{importance}{confidence}_{年份}_{主题}_{机构}），summary ≥200 字且**每个数字必须能在原文逐字查到**，查不到标 `[未核]`；库内已有的不计分（见附表查重）。",
-   "wid": "M01-edf3",
-   "key": "问题:全球在建管线的六级状态分布"
-  },
-  {
-   "pri": "P2",
    "mid": "M02",
    "name": "供给格局",
    "kind": "指标留白·库内抽取",
@@ -130,6 +130,16 @@
    "action": "**不用读任何文件**——这个数从我们自己的实体表算得出来。缺的是聚合代码，不是材料。 **但先看分母**：算它要 `projects.capacity_it_mw`，当前只有 **24/120（20%）** 条记录有这个字段。覆盖太薄，先补字段再算——现在算出来的数看着权威，实则悬空。 声明的来源是「projects 表聚合」。拿不到就如实回报拿不到——**留白是纪律，编一个数是事故**。",
    "wid": "M02-1372",
    "key": "指标:top10_pipeline_share"
+  },
+  {
+   "pri": "P2",
+   "mid": "M02",
+   "name": "供给格局",
+   "kind": "口径未定义",
+   "gap": "M02 有 **3/3 个监测指标**在 metrics.json 里没有口径定义",
+   "action": "**给所有者**：没有口径维度的指标，它的数无法判定可比性——两个不可比的值并列时没有任何机制会拦。逐个补 `caliber_dims` 到 framework/metrics.json，涉及：hyperscaler_lease_ratio、neocloud_funded_gw、top10_pipeline_share",
+   "wid": "M02-b67e",
+   "key": "口径未定义"
   },
   {
    "pri": "P2",
@@ -180,6 +190,16 @@
    "action": "库内很可能已经有原文——先在打分表里检索候选件，读原文抽数，不要先去外面找。 声明的来源是「财报电话会」。拿不到就如实回报拿不到——**留白是纪律，编一个数是事故**。",
    "wid": "M03-8180",
    "key": "指标:capex_guidance_delta"
+  },
+  {
+   "pri": "P2",
+   "mid": "M03",
+   "name": "需求格局",
+   "kind": "口径未定义",
+   "gap": "M03 有 **3/3 个监测指标**在 metrics.json 里没有口径定义",
+   "action": "**给所有者**：没有口径维度的指标，它的数无法判定可比性——两个不可比的值并列时没有任何机制会拦。逐个补 `caliber_dims` 到 framework/metrics.json，涉及：capex_guidance_delta、circular_deal_exposure、mega_contract_backlog",
+   "wid": "M03-a689",
+   "key": "口径未定义"
   },
   {
    "pri": "P2",
@@ -255,6 +275,16 @@
    "pri": "P2",
    "mid": "M04",
    "name": "电力与能源",
+   "kind": "口径未定义",
+   "gap": "M04 有 **3/3 个监测指标**在 metrics.json 里没有口径定义",
+   "action": "**给所有者**：没有口径维度的指标，它的数无法判定可比性——两个不可比的值并列时没有任何机制会拦。逐个补 `caliber_dims` 到 framework/metrics.json，涉及：btm_operational_mw、interconnection_queue_years、ppa_price_index",
+   "wid": "M04-0a8b",
+   "key": "口径未定义"
+  },
+  {
+   "pri": "P2",
+   "mid": "M04",
+   "name": "电力与能源",
    "kind": "信源未开口",
    "gap": "声明了跑口「EPRI」（免费）但库内一份都没有",
    "action": "打通该渠道：先取一份最新的公开件验证格式与价值，再决定是否长期跟。每份填一行登记（{importance}{confidence}_{年份}_{主题}_{机构}），summary ≥200 字且**每个数字必须能在原文逐字查到**，查不到标 `[未核]`；库内已有的不计分（见附表查重）。",
@@ -306,7 +336,7 @@
    "mid": "M04",
    "name": "电力与能源",
    "kind": "消化积压",
-   "gap": "M04 有 **725 份半自动 ≥6 分**未消化——缺的不是材料是精读",
+   "gap": "M04 有 **724 份半自动 ≥6 分**未消化——缺的不是材料是精读",
    "action": "**派消化不派采集**：回原文复核这些行，把够格的提级为精读并出 Finding。半自动行不复核不得上证据链。",
    "wid": "M04-70c9",
    "key": "消化积压"
@@ -350,6 +380,16 @@
    "action": "声明里的 source 写得太含糊，无法路由——先把 source 写清楚。 声明的来源是「新闻信号+人工核验」。拿不到就如实回报拿不到——**留白是纪律，编一个数是事故**。",
    "wid": "M05-b01b",
    "key": "指标:zoning_denial_count"
+  },
+  {
+   "pri": "P2",
+   "mid": "M05",
+   "name": "土地与区域",
+   "kind": "口径未定义",
+   "gap": "M05 有 **2/2 个监测指标**在 metrics.json 里没有口径定义",
+   "action": "**给所有者**：没有口径维度的指标，它的数无法判定可比性——两个不可比的值并列时没有任何机制会拦。逐个补 `caliber_dims` 到 framework/metrics.json，涉及：region_pipeline_share、zoning_denial_count",
+   "wid": "M05-b03d",
+   "key": "口径未定义"
   },
   {
    "pri": "P2",
@@ -455,6 +495,16 @@
    "pri": "P2",
    "mid": "M06",
    "name": "芯片与服务器",
+   "kind": "口径未定义",
+   "gap": "M06 有 **3/3 个监测指标**在 metrics.json 里没有口径定义",
+   "action": "**给所有者**：没有口径维度的指标，它的数无法判定可比性——两个不可比的值并列时没有任何机制会拦。逐个补 `caliber_dims` 到 framework/metrics.json，涉及：cowos_capacity_wpm、gpu_lead_time、rack_density_shipping",
+   "wid": "M06-1d0b",
+   "key": "口径未定义"
+  },
+  {
+   "pri": "P2",
+   "mid": "M06",
+   "name": "芯片与服务器",
    "kind": "信源未开口",
    "gap": "声明了跑口「Hot Chips / ISSCC / GTC」（会议）但库内一份都没有",
    "action": "打通该渠道：先取一份最新的公开件验证格式与价值，再决定是否长期跟。每份填一行登记（{importance}{confidence}_{年份}_{主题}_{机构}），summary ≥200 字且**每个数字必须能在原文逐字查到**，查不到标 `[未核]`；库内已有的不计分（见附表查重）。",
@@ -510,6 +560,16 @@
    "action": "库内多半没有——这是要新开渠道的，属于成员的采集工单。 声明的来源是「行业调研」。拿不到就如实回报拿不到——**留白是纪律，编一个数是事故**。",
    "wid": "M07-092a",
    "key": "指标:optics_800g_price"
+  },
+  {
+   "pri": "P2",
+   "mid": "M07",
+   "name": "网络与互联",
+   "kind": "口径未定义",
+   "gap": "M07 有 **2/2 个监测指标**在 metrics.json 里没有口径定义",
+   "action": "**给所有者**：没有口径维度的指标，它的数无法判定可比性——两个不可比的值并列时没有任何机制会拦。逐个补 `caliber_dims` 到 framework/metrics.json，涉及：ethernet_ai_share、optics_800g_price",
+   "wid": "M07-a3a2",
+   "key": "口径未定义"
   },
   {
    "pri": "P2",
@@ -590,6 +650,16 @@
    "action": "库内很可能已经有原文——先在打分表里检索候选件，读原文抽数，不要先去外面找。 声明的来源是「机构报告+渠道」。拿不到就如实回报拿不到——**留白是纪律，编一个数是事故**。",
    "wid": "M08-a6bd",
    "key": "指标:liquid_cooling_penetration"
+  },
+  {
+   "pri": "P2",
+   "mid": "M08",
+   "name": "散热与制冷",
+   "kind": "口径未定义",
+   "gap": "M08 有 **3/3 个监测指标**在 metrics.json 里没有口径定义",
+   "action": "**给所有者**：没有口径维度的指标，它的数无法判定可比性——两个不可比的值并列时没有任何机制会拦。逐个补 `caliber_dims` 到 framework/metrics.json，涉及：cdu_lead_time、cooling_capex_per_mw、liquid_cooling_penetration",
+   "wid": "M08-809a",
+   "key": "口径未定义"
   },
   {
    "pri": "P2",
@@ -685,6 +755,16 @@
    "pri": "P2",
    "mid": "M09",
    "name": "电气设备供应链",
+   "kind": "口径未定义",
+   "gap": "M09 有 **3/3 个监测指标**在 metrics.json 里没有口径定义",
+   "action": "**给所有者**：没有口径维度的指标，它的数无法判定可比性——两个不可比的值并列时没有任何机制会拦。逐个补 `caliber_dims` 到 framework/metrics.json，涉及：gas_turbine_backlog_years、genset_lead_time、transformer_lead_time",
+   "wid": "M09-84da",
+   "key": "口径未定义"
+  },
+  {
+   "pri": "P2",
+   "mid": "M09",
+   "name": "电气设备供应链",
    "kind": "信源未开口",
    "gap": "声明了跑口「Omdia」（付费）但库内一份都没有",
    "action": "打通该渠道：先取一份最新的公开件验证格式与价值，再决定是否长期跟。每份填一行登记（{importance}{confidence}_{年份}_{主题}_{机构}），summary ≥200 字且**每个数字必须能在原文逐字查到**，查不到标 `[未核]`；库内已有的不计分（见附表查重）。",
@@ -716,7 +796,7 @@
    "mid": "M09",
    "name": "电气设备供应链",
    "kind": "消化积压",
-   "gap": "M09 有 **864 份半自动 ≥6 分**未消化——缺的不是材料是精读",
+   "gap": "M09 有 **863 份半自动 ≥6 分**未消化——缺的不是材料是精读",
    "action": "**派消化不派采集**：回原文复核这些行，把够格的提级为精读并出 Finding。半自动行不复核不得上证据链。",
    "wid": "M09-efc1",
    "key": "消化积压"
@@ -760,6 +840,16 @@
    "action": "声明里的 source 写得太含糊，无法路由——先把 source 写清楚。 声明的来源是「招聘数据」。拿不到就如实回报拿不到——**留白是纪律，编一个数是事故**。",
    "wid": "M10-0965",
    "key": "指标:electrician_wage_premium"
+  },
+  {
+   "pri": "P2",
+   "mid": "M10",
+   "name": "建设运营与人才",
+   "kind": "口径未定义",
+   "gap": "M10 有 **2/2 个监测指标**在 metrics.json 里没有口径定义",
+   "action": "**给所有者**：没有口径维度的指标，它的数无法判定可比性——两个不可比的值并列时没有任何机制会拦。逐个补 `caliber_dims` 到 framework/metrics.json，涉及：construction_duration_months、electrician_wage_premium",
+   "wid": "M10-4a5e",
+   "key": "口径未定义"
   },
   {
    "pri": "P2",
@@ -836,7 +926,7 @@
    "mid": "M11",
    "name": "资本与金融",
    "kind": "弹药偏瘦",
-   "gap": "M11 弹药仅 9 份（阈值 60），但 ≥7 分有 7 份——有质缺量",
+   "gap": "M11 弹药仅 12 份（阈值 60），但 ≥7 分有 8 份——有质缺量",
    "action": "缺口猎人任务：中国信通院、数据中心公募REITs 发行文件与定期报告、算力ABS 募集说明书。每份填一行登记（{importance}{confidence}_{年份}_{主题}_{机构}），summary ≥200 字且**每个数字必须能在原文逐字查到**，查不到标 `[未核]`；库内已有的不计分（见附表查重）。",
    "wid": "M11-cc5c",
    "key": "弹药"
@@ -870,6 +960,16 @@
    "action": "库内多半没有——这是要新开渠道的，属于成员的采集工单。 声明的来源是「M&A 交易记录」。拿不到就如实回报拿不到——**留白是纪律，编一个数是事故**。",
    "wid": "M11-1baa",
    "key": "指标:price_per_mw_operational"
+  },
+  {
+   "pri": "P2",
+   "mid": "M11",
+   "name": "资本与金融",
+   "kind": "口径未定义",
+   "gap": "M11 有 **3/3 个监测指标**在 metrics.json 里没有口径定义",
+   "action": "**给所有者**：没有口径维度的指标，它的数无法判定可比性——两个不可比的值并列时没有任何机制会拦。逐个补 `caliber_dims` 到 framework/metrics.json，涉及：dc_reit_premium、gpu_abs_spread、price_per_mw_operational",
+   "wid": "M11-e01f",
+   "key": "口径未定义"
   },
   {
    "pri": "P2",
@@ -1005,6 +1105,16 @@
    "pri": "P2",
    "mid": "M12",
    "name": "需求侧经济学",
+   "kind": "口径未定义",
+   "gap": "M12 有 **3/3 个监测指标**在 metrics.json 里没有口径定义",
+   "action": "**给所有者**：没有口径维度的指标，它的数无法判定可比性——两个不可比的值并列时没有任何机制会拦。逐个补 `caliber_dims` 到 framework/metrics.json，涉及：ai_revenue_capex_ratio、inference_unit_margin、token_price_flagship",
+   "wid": "M12-102d",
+   "key": "口径未定义"
+  },
+  {
+   "pri": "P2",
+   "mid": "M12",
+   "name": "需求侧经济学",
    "kind": "信源未开口",
    "gap": "声明了跑口「Artificial Analysis」（免费）但库内一份都没有——价格基准",
    "action": "打通该渠道：先取一份最新的公开件验证格式与价值，再决定是否长期跟。每份填一行登记（{importance}{confidence}_{年份}_{主题}_{机构}），summary ≥200 字且**每个数字必须能在原文逐字查到**，查不到标 `[未核]`；库内已有的不计分（见附表查重）。",
@@ -1065,6 +1175,16 @@
    "pri": "P2",
    "mid": "M13",
    "name": "有效算力与软件",
+   "kind": "口径未定义",
+   "gap": "M13 有 **3/3 个监测指标**在 metrics.json 里没有口径定义",
+   "action": "**给所有者**：没有口径维度的指标，它的数无法判定可比性——两个不可比的值并列时没有任何机制会拦。逐个补 `caliber_dims` 到 framework/metrics.json，涉及：gpu_hourly_rate_spot、gpu_rate_term_spread、used_gpu_price_index",
+   "wid": "M13-8721",
+   "key": "口径未定义"
+  },
+  {
+   "pri": "P2",
+   "mid": "M13",
+   "name": "有效算力与软件",
    "kind": "信源未开口",
    "gap": "声明了跑口「MLCommons / MLPerf」（免费）但库内一份都没有——库内空白",
    "action": "打通该渠道：先取一份最新的公开件验证格式与价值，再决定是否长期跟。每份填一行登记（{importance}{confidence}_{年份}_{主题}_{机构}），summary ≥200 字且**每个数字必须能在原文逐字查到**，查不到标 `[未核]`；库内已有的不计分（见附表查重）。",
@@ -1076,7 +1196,7 @@
    "mid": "M13",
    "name": "有效算力与软件",
    "kind": "消化积压",
-   "gap": "M13 有 **810 份半自动 ≥6 分**未消化——缺的不是材料是精读",
+   "gap": "M13 有 **809 份半自动 ≥6 分**未消化——缺的不是材料是精读",
    "action": "**派消化不派采集**：回原文复核这些行，把够格的提级为精读并出 Finding。半自动行不复核不得上证据链。",
    "wid": "M13-853a",
    "key": "消化积压"
@@ -1140,6 +1260,16 @@
    "action": "库内多半没有——这是要新开渠道的，属于成员的采集工单。 声明的来源是「行业调研+渠道」。拿不到就如实回报拿不到——**留白是纪律，编一个数是事故**。",
    "wid": "M14-5044",
    "key": "指标:east_west_rack_rate"
+  },
+  {
+   "pri": "P2",
+   "mid": "M14",
+   "name": "中国板块",
+   "kind": "口径未定义",
+   "gap": "M14 有 **3/3 个监测指标**在 metrics.json 里没有口径定义",
+   "action": "**给所有者**：没有口径维度的指标，它的数无法判定可比性——两个不可比的值并列时没有任何机制会拦。逐个补 `caliber_dims` 到 framework/metrics.json，涉及：aidc_utilization_channel、domestic_gpu_shipment、east_west_rack_rate",
+   "wid": "M14-8707",
+   "key": "口径未定义"
   },
   {
    "pri": "P2",
@@ -1255,6 +1385,16 @@
    "pri": "P2",
    "mid": "M15",
    "name": "情景与监测",
+   "kind": "口径未定义",
+   "gap": "M15 有 **3/3 个监测指标**在 metrics.json 里没有口径定义",
+   "action": "**给所有者**：没有口径维度的指标，它的数无法判定可比性——两个不可比的值并列时没有任何机制会拦。逐个补 `caliber_dims` 到 framework/metrics.json，涉及：project_cancellation_count、capex_guidance_downgrade、gpu_spot_drawdown",
+   "wid": "M15-5a39",
+   "key": "口径未定义"
+  },
+  {
+   "pri": "P2",
+   "mid": "M15",
+   "name": "情景与监测",
    "kind": "信源未开口",
    "gap": "声明了跑口「唱空方券商研报」（免费）但库内一份都没有——T3 BROKER 桶 1,052 份专为此用，库内已有",
    "action": "打通该渠道：先取一份最新的公开件验证格式与价值，再决定是否长期跟。每份填一行登记（{importance}{confidence}_{年份}_{主题}_{机构}），summary ≥200 字且**每个数字必须能在原文逐字查到**，查不到标 `[未核]`；库内已有的不计分（见附表查重）。",
@@ -1303,29 +1443,11 @@
   }
  ],
  "module_stats": {
-  "M05": {
-   "ammo": 2110,
-   "high": 32,
-   "backlog": 872,
-   "findings": 13
-  },
-  "M08": {
-   "ammo": 232,
-   "high": 26,
-   "backlog": 2,
-   "findings": 8
-  },
-  "M11": {
-   "ammo": 9,
-   "high": 7,
-   "backlog": 3,
-   "findings": 3
-  },
-  "M15": {
-   "ammo": 45,
-   "high": 17,
-   "backlog": 0,
-   "findings": 9
+  "M04": {
+   "ammo": 4029,
+   "high": 28,
+   "backlog": 724,
+   "findings": 7
   },
   "M06": {
    "ammo": 3087,
@@ -1333,53 +1455,41 @@
    "backlog": 911,
    "findings": 13
   },
+  "M05": {
+   "ammo": 2109,
+   "high": 32,
+   "backlog": 872,
+   "findings": 13
+  },
+  "M02": {
+   "ammo": 218,
+   "high": 39,
+   "backlog": 1,
+   "findings": 11
+  },
   "M07": {
    "ammo": 261,
    "high": 38,
    "backlog": 33,
    "findings": 6
   },
-  "M12": {
-   "ammo": 43,
-   "high": 14,
+  "M15": {
+   "ammo": 45,
+   "high": 17,
    "backlog": 0,
-   "findings": 5
+   "findings": 9
   },
-  "M03": {
-   "ammo": 61,
-   "high": 18,
-   "backlog": 1,
-   "findings": 5
-  },
-  "M04": {
-   "ammo": 4032,
-   "high": 28,
-   "backlog": 725,
-   "findings": 7
+  "M08": {
+   "ammo": 232,
+   "high": 26,
+   "backlog": 2,
+   "findings": 8
   },
   "M09": {
-   "ammo": 4029,
+   "ammo": 4028,
    "high": 48,
-   "backlog": 864,
+   "backlog": 863,
    "findings": 12
-  },
-  "M14": {
-   "ammo": 2472,
-   "high": 28,
-   "backlog": 236,
-   "findings": 10
-  },
-  "M13": {
-   "ammo": 2417,
-   "high": 52,
-   "backlog": 810,
-   "findings": 6
-  },
-  "M01": {
-   "ammo": 1176,
-   "high": 4,
-   "backlog": 313,
-   "findings": 7
   },
   "M10": {
    "ammo": 3780,
@@ -1387,11 +1497,41 @@
    "backlog": 1082,
    "findings": 16
   },
-  "M02": {
-   "ammo": 217,
-   "high": 38,
+  "M13": {
+   "ammo": 2417,
+   "high": 53,
+   "backlog": 809,
+   "findings": 6
+  },
+  "M11": {
+   "ammo": 12,
+   "high": 8,
+   "backlog": 3,
+   "findings": 3
+  },
+  "M03": {
+   "ammo": 61,
+   "high": 18,
    "backlog": 1,
-   "findings": 11
+   "findings": 5
+  },
+  "M12": {
+   "ammo": 43,
+   "high": 14,
+   "backlog": 0,
+   "findings": 5
+  },
+  "M01": {
+   "ammo": 1176,
+   "high": 4,
+   "backlog": 313,
+   "findings": 7
+  },
+  "M14": {
+   "ammo": 2475,
+   "high": 29,
+   "backlog": 236,
+   "findings": 10
   }
  }
 }

@@ -12,6 +12,8 @@
   P1 弹药饥饿   ≥7 分材料为 0 或弹药过薄——只能靠新采集救
   P2 指标留白   indicators.json 里 value 为空——"留白即纪律"，但留白要有人去填
   P2 信源未开口 声明了跑口但库内一份都没有——渠道还没打通
+  P2 口径未定义 监测指标在 metrics.json 里没有对应定义——没有口径维度的数无法判定可比性
+  P2 事实层空白 指标定义了口径但一条事实都没有——声明了却没去取数
   P2 待审计     成员投递的行堆积——未审计的成员登记不能当已读用
   P3 消化积压   半自动行堆积——缺的不是材料是精读，派消化不派采集
   P3 鲜度逾期   Finding 处于 needs-review/stale——派核验
@@ -81,7 +83,9 @@ def load_state():
     sources = json.loads((ROOT / "data" / "sources.json").read_text(encoding="utf-8"))["records"]
     inds = json.loads((ROOT / "framework" / "indicators.json").read_text(encoding="utf-8"))["indicators"]
     mods = json.loads((ROOT / "framework" / "modules.json").read_text(encoding="utf-8"))["modules"]
-    return rows, sources, inds, mods
+    mets = json.loads((ROOT / "framework" / "metrics.json").read_text(encoding="utf-8"))["metrics"]
+    facts = json.loads((ROOT / "data" / "facts.json").read_text(encoding="utf-8"))["records"]
+    return rows, sources, inds, mods, mets, facts
 
 
 def module_keys(cell):
@@ -108,7 +112,14 @@ def org_seen(beat_org, known):
 
 
 def build(only=None):
-    rows, sources, inds, mods = load_state()
+    rows, sources, inds, mods, mets, facts = load_state()
+    met_by_mod = defaultdict(list)
+    for m in mets:
+        met_by_mod[m.get("module")].append(m)
+    fact_cnt = Counter(f["metric_id"] for f in facts)
+    # 指标是否已有口径定义：先按 id 直连，再退回按名称匹配（两套声明尚未打通）
+    met_ids = {m["metric_id"] for m in mets}
+    met_names = {m["name"] for m in mets}
     digested = {r.get("local_file") for r in sources if r.get("local_file")}
     known_orgs = {(r.get("org") or "").lower() for r in rows} | {(s.get("publisher") or "").lower() for s in sources}
     known_orgs = {o for o in known_orgs if o}
@@ -183,6 +194,27 @@ def build(only=None):
                 f"`{i['id']}` {i['name']}（单位 {i.get('unit') or '—'}，频率 {i.get('freq') or '—'}）",
                 f"{how}{extra} 声明的来源是「{i.get('source') or '未声明'}」。"
                 "拿不到就如实回报拿不到——**留白是纪律，编一个数是事故**。", key=f"指标:{i['id']}")
+
+        # P2 口径未定义——监测指标没有 metrics.json 里的口径维度声明
+        undef = [i for i in ind_by_mod.get(mid, [])
+                 if i["id"] not in met_ids and i["name"] not in met_names]
+        if undef:
+            add("P2", "口径未定义",
+                f"{mid} 有 **{len(undef)}/{len(ind_by_mod.get(mid, []))} 个监测指标**在 metrics.json 里没有口径定义",
+                "**给所有者**：没有口径维度的指标，它的数无法判定可比性——两个不可比的值并列时"
+                "没有任何机制会拦。逐个补 `caliber_dims` 到 framework/metrics.json，"
+                f"涉及：{'、'.join(i['id'] for i in undef[:6])}"
+                + ("…" if len(undef) > 6 else ""),
+                key="口径未定义")
+
+        # P2 事实层空白——口径定义了却没去取数
+        empty = [m for m in met_by_mod.get(mid, []) if fact_cnt[m["metric_id"]] == 0]
+        for m in empty:
+            add("P2", "事实层空白",
+                f"指标 `{m['metric_id']}`（{m['name']}）已声明口径维度，但事实层一条数都没有",
+                "去取数入 `data/facts.json`。口径维度已经定好，照着填即可；"
+                "拿不到就如实回报——**留白是纪律**。",
+                key=f"事实空白:{m['metric_id']}")
 
         # P2 信源未开口
         for b in beats:
