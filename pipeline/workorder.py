@@ -386,9 +386,11 @@ def main():
     orders, ammo, high, backlog = build(only)
     OUT.write_text(render(orders, ammo, high, backlog), encoding="utf-8")
 
+    # 必须 sorted：set 的迭代顺序随进程变（字符串哈希随机化），不排序的话
+    # 每跑一次 json 的 key 顺序就换一遍，git 每次都报几十行假改动，真改动被噪声盖住。
     stats = {m: {"ammo": ammo[m], "high": high[m], "backlog": backlog[m],
                  "findings": findings_state(m)[0]}
-             for m in {o["mid"] for o in orders}}
+             for m in sorted({o["mid"] for o in orders})}
     OUT_JSON.write_text(json.dumps(
         {"generated": date.today().isoformat(), "orders": orders, "module_stats": stats},
         ensure_ascii=False, indent=1), encoding="utf-8")
