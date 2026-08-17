@@ -1355,16 +1355,6 @@
    "pri": "P2",
    "mid": "M12",
    "name": "需求侧经济学",
-   "kind": "事实层空白",
-   "gap": "指标 `token_price_flagship`（旗舰模型 API 价格）已声明口径维度，但事实层一条数都没有",
-   "action": "去取数入 `data/facts.json`。口径维度已经定好，照着填即可；拿不到就如实回报——**留白是纪律**。",
-   "wid": "M12-aeca",
-   "key": "事实空白:token_price_flagship"
-  },
-  {
-   "pri": "P2",
-   "mid": "M12",
-   "name": "需求侧经济学",
    "kind": "信源未开口",
    "gap": "声明了跑口「Artificial Analysis」（免费）但库内一份都没有——价格基准",
    "action": "打通该渠道：先取一份最新的公开件验证格式与价值，再决定是否长期跟。每份填一行登记（{importance}{confidence}_{年份}_{主题}_{机构}），summary ≥200 字且**每个数字必须能在原文逐字查到**，查不到标 `[未核]`；库内已有的不计分（见附表查重）。",
@@ -1420,16 +1410,6 @@
    "action": "库内多半没有——这是要新开渠道的，属于成员的采集工单。 声明的来源是「二手市场报价」。拿不到就如实回报拿不到——**留白是纪律，编一个数是事故**。",
    "wid": "M13-1edc",
    "key": "指标:used_gpu_price_index"
-  },
-  {
-   "pri": "P2",
-   "mid": "M13",
-   "name": "有效算力与软件",
-   "kind": "事实层空白",
-   "gap": "指标 `gpu_hourly_rate_spot`（旗舰 GPU 时租）已声明口径维度，但事实层一条数都没有",
-   "action": "去取数入 `data/facts.json`。口径维度已经定好，照着填即可；拿不到就如实回报——**留白是纪律**。",
-   "wid": "M13-c538",
-   "key": "事实空白:gpu_hourly_rate_spot"
   },
   {
    "pri": "P2",
@@ -1753,35 +1733,59 @@
   }
  ],
  "module_stats": {
-  "M06": {
-   "ammo": 3087,
-   "high": 106,
-   "backlog": 911,
-   "findings": 13
+  "M07": {
+   "ammo": 261,
+   "high": 38,
+   "backlog": 33,
+   "findings": 6
   },
-  "M14": {
-   "ammo": 2475,
-   "high": 29,
-   "backlog": 236,
-   "findings": 10
-  },
-  "M11": {
-   "ammo": 12,
-   "high": 8,
-   "backlog": 3,
-   "findings": 3
-  },
-  "M03": {
-   "ammo": 61,
-   "high": 18,
-   "backlog": 1,
-   "findings": 5
+  "M13": {
+   "ammo": 2417,
+   "high": 53,
+   "backlog": 809,
+   "findings": 6
   },
   "M05": {
    "ammo": 2109,
    "high": 32,
    "backlog": 872,
    "findings": 13
+  },
+  "M15": {
+   "ammo": 45,
+   "high": 17,
+   "backlog": 0,
+   "findings": 9
+  },
+  "M02": {
+   "ammo": 218,
+   "high": 39,
+   "backlog": 1,
+   "findings": 11
+  },
+  "M04": {
+   "ammo": 4029,
+   "high": 28,
+   "backlog": 724,
+   "findings": 7
+  },
+  "M06": {
+   "ammo": 3087,
+   "high": 106,
+   "backlog": 911,
+   "findings": 13
+  },
+  "M08": {
+   "ammo": 232,
+   "high": 26,
+   "backlog": 2,
+   "findings": 8
+  },
+  "M11": {
+   "ammo": 12,
+   "high": 8,
+   "backlog": 3,
+   "findings": 3
   },
   "M10": {
    "ammo": 3780,
@@ -1795,41 +1799,11 @@
    "backlog": 0,
    "findings": 5
   },
-  "M13": {
-   "ammo": 2417,
-   "high": 53,
-   "backlog": 809,
-   "findings": 6
-  },
-  "M15": {
-   "ammo": 45,
-   "high": 17,
-   "backlog": 0,
-   "findings": 9
-  },
-  "M04": {
-   "ammo": 4029,
-   "high": 28,
-   "backlog": 724,
-   "findings": 7
-  },
-  "M08": {
-   "ammo": 232,
-   "high": 26,
-   "backlog": 2,
-   "findings": 8
-  },
-  "M09": {
-   "ammo": 4028,
-   "high": 48,
-   "backlog": 863,
-   "findings": 12
-  },
-  "M02": {
-   "ammo": 218,
-   "high": 39,
-   "backlog": 1,
-   "findings": 11
+  "M14": {
+   "ammo": 2475,
+   "high": 29,
+   "backlog": 236,
+   "findings": 10
   },
   "M01": {
    "ammo": 1176,
@@ -1837,11 +1811,17 @@
    "backlog": 313,
    "findings": 7
   },
-  "M07": {
-   "ammo": 261,
-   "high": 38,
-   "backlog": 33,
-   "findings": 6
+  "M09": {
+   "ammo": 4028,
+   "high": 48,
+   "backlog": 863,
+   "findings": 12
+  },
+  "M03": {
+   "ammo": 61,
+   "high": 18,
+   "backlog": 1,
+   "findings": 5
   }
  }
 }
