@@ -12,6 +12,7 @@ API（供 ops.html 管理后台调用）：
 
 安全：仅本机回环地址；任务白名单；录入走 validate.py 把关，失败自动回滚。
 """
+import os
 import json
 import subprocess
 import sys
@@ -180,8 +181,16 @@ class Handler(SimpleHTTPRequestHandler):
 
 def main():
     port = int(sys.argv[1]) if len(sys.argv) > 1 else 8000
-    srv = ThreadingHTTPServer(("127.0.0.1", port), Handler)
-    print(f"Datacenter Hub 服务运行于 http://localhost:{port}（静态 + 管理 API）")
+    # 默认仍只监听 127.0.0.1——**本脚本没有任何认证**，绑到 0.0.0.0 等于把含
+    # 招标控制价与业主商业信息的后台裸奔。容器化部署时用 HUB_HOST=0.0.0.0，
+    # 但那必须配合前置反代与身份验证（见 deploy/README.md），
+    # **不要只为了「能访问」就改这个变量**。
+    host = os.environ.get("HUB_HOST", "127.0.0.1")
+    srv = ThreadingHTTPServer((host, port), Handler)
+    where = "http://localhost:%d" % port if host == "127.0.0.1" else f"{host}:{port}"
+    print(f"Datacenter Hub 服务运行于 {where}（静态 + 管理 API）")
+    if host != "127.0.0.1":
+        print("⚠️  已绑定非本机地址且本服务无认证——**前面必须有反代 + 身份验证**")
     srv.serve_forever()
 
 
