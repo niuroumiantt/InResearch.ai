@@ -1718,6 +1718,107 @@
       },
       "depth": "精读",
       "notes": "**这是模型推算值不是观测事实，建议与 model_assumed_* 类指标同类处理，不要与 EIA/NERC 的备案数并列。**依赖三个假设：2030 年美国累计 AI 算力 153GW、尖峰负荷率 55-60%、AI 负荷均满功率运行。对照的观测侧是「2026-2030 年已备案新增装机累计不足 200GW、年均仅 50GW」——**两者相减得出的「年均 50GW 缺口」是模型结论而非观测事实**。存量参照：美国 2024 年底发电装机 1282GW、2025 年夏季尖峰负荷创新高 760GW。region=US。"
+    },
+    {
+      "fact_id": "openai-arr-202602",
+      "metric_id": "ai_lab_arr",
+      "entity": {
+        "type": "company",
+        "id": "openai",
+        "label": "OpenAI"
+      },
+      "value": 20.0,
+      "unit": "十亿美元",
+      "caliber": {
+        "revenue_basis": "ARR 年化运行率",
+        "region": "Global"
+      },
+      "bound": "point",
+      "as_of": "2026-02",
+      "derived": true,
+      "evidence": {
+        "source_id": "5308b6ce2990",
+        "locator": "PitchBook《人工智能巨头排名：前沿五强的新框架》(2026-03-19) 正文「versus OpenAI's 42x ($840 billion/$20 billion)」",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "notes": "**ARR = 年化运行率，由某月收入×12 推算，不是会计年度确认收入**——增长期公司的 ARR 显著高于当年实际收入，**用 ARR 算的倍数与用会计收入算的不可比**。本值由报告的估值/倍数反推得出（8,400 亿 ÷ 42 = 200 亿），非报告直接列示。时点=2026 年 2-3 月。**这是 M12 question 3 比值的分子，分母（算力承诺支出）本批未获得。**",
+      "derivation": "由报告的估值/倍数反推：8,400 亿美元 ÷ 42 = 200 亿美元。**精度受 42 这个两位有效数字限制，不应视为精确值。**"
+    },
+    {
+      "fact_id": "anthropic-arr-202602",
+      "metric_id": "ai_lab_arr",
+      "entity": {
+        "type": "company",
+        "id": "anthropic",
+        "label": "Anthropic"
+      },
+      "value": 14.0,
+      "unit": "十亿美元",
+      "caliber": {
+        "revenue_basis": "ARR 年化运行率",
+        "region": "Global"
+      },
+      "bound": "point",
+      "as_of": "2026-02",
+      "derived": false,
+      "evidence": {
+        "source_id": "5308b6ce2990",
+        "locator": "同上报告正文「Anthropic trades at 27.1x current ARR ($380 billion/$14 billion)」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**ARR 口径同上**（年化运行率，非会计收入）。由报告直接列示的除式给出。对照：估值 3,800 亿美元（2026-02-12 完成的 300 亿美元 G 轮 post-money）。另据同报告，Claude Code 单产品 ARR 已达 25 亿美元、企业用户占比较高。时点=2026-02。"
+    },
+    {
+      "fact_id": "openai-val-arr-202602",
+      "metric_id": "valuation_to_arr",
+      "entity": {
+        "type": "company",
+        "id": "openai",
+        "label": "OpenAI"
+      },
+      "value": 42.0,
+      "unit": "x",
+      "caliber": {
+        "valuation_basis": "一级市场 post-money",
+        "revenue_basis": "ARR 年化运行率",
+        "region": "Global"
+      },
+      "bound": "point",
+      "as_of": "2026-02",
+      "derived": false,
+      "evidence": {
+        "source_id": "5308b6ce2990",
+        "locator": "同上报告正文「versus OpenAI's 42x ($840 billion/$20 billion)—a premium for OpenAI that has inverted since its $110 billion round」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**分子是一级市场 post-money 估值（8,400 亿美元，反映 2026-02-27 完成的 1,100 亿美元轮，投资方含亚马逊 500 亿、英伟达 300 亿），不是可交易市值**——含优先清算权等条款，**与上市公司 P/S 放同一张表会系统性高估**。分母为 ARR（年化运行率）。对照组：Anthropic 27.1x。报告称 OpenAI 的溢价在 1,100 亿美元轮之后「反转」。"
+    },
+    {
+      "fact_id": "databricks-runrate-growth-202512",
+      "metric_id": "revenue_runrate_growth",
+      "entity": {
+        "type": "company",
+        "id": "databricks",
+        "label": "Databricks"
+      },
+      "value": 55.0,
+      "unit": "%",
+      "caliber": {
+        "region": "Global"
+      },
+      "bound": "lower",
+      "as_of": "2025-12",
+      "derived": false,
+      "evidence": {
+        "source_id": "5308b6ce2990",
+        "locator": "同上报告脚注 8「Databricks Grows >55% YoY, Surpasses $4.8B Revenue Run-Rate, and Is Raising >$4B Series L at $134B Valuation, Databricks, December 16, 2025」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**原文为「>55%」，55 是下界不是点值**。对应收入运行率超 48 亿美元（同为下界）。**这是公司自行公告的口径（Databricks 官方 2025-12-16），非第三方审计**。配套：累计募资 331 亿美元、资本效率比 0.16x（PitchBook 计算）、估值 1,340 亿美元（2026-02-09 L 轮，70 亿募资＝股权 50 亿＋债务 20 亿）。"
     }
   ]
 }
