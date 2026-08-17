@@ -19,6 +19,7 @@
 用法：
   python3 pipeline/facts.py                                  # 校验 + 全指标可比性分组
   python3 pipeline/facts.py dc_construction_cost_per_sqm     # 只看某指标
+  python3 pipeline/facts.py --public                         # 对外口径预览（区间+时效）
 零依赖。
 """
 import json
@@ -88,6 +89,32 @@ def validate(facts, metrics):
             err(f"facts[{fid}]: value 为 null 时必须在 notes 说明为何留白")
 
 
+def public_view(f, m, today_year=2026):
+    """对外呈现（2026-08-17 用户拍板的规则）。
+
+    三条：
+      1. **实体与项目名照实输出，不隐瞒** —— 都是真实 entity，遮遮掩掩反而不专业；
+      2. **涉及钱财的只给区间不给精确值** —— 精确的招标控制价既不合规也没必要；
+      3. **必须标明数据年份与距今年数** —— 这些本就是老数据，直接拿来用没有现实价值，
+         说清"引用的是某年的数据、大概在哪个区间"，既够用又诚实。
+    """
+    v = f.get("value")
+    band = m.get("public_band") or {}
+    step = band.get("step")
+    if v is None:
+        rng = "未披露（留白）"
+    elif step:
+        lo = int(v // step) * step
+        rng = f"{lo:,.0f}–{lo + step:,.0f}"
+    else:
+        rng = f"约 {v:,.0f}"
+    yr = str(f.get("as_of", ""))[:4]
+    age = (today_year - int(yr)) if yr.isdigit() else None
+    vintage = f"{yr} 年数据" + (f"，距今约 {age} 年" if age and age > 0 else "")
+    cal = "｜".join(f"{k}={v2}" for k, v2 in (f.get("caliber") or {}).items())
+    return f"{f['entity'].get('label','')}：**{rng} {f['unit']}**（{vintage}；口径：{cal}）"
+
+
 def caliber_key(f, m):
     return tuple(f["caliber"].get(d["id"], "?") for d in m["caliber_dims"])
 
@@ -129,7 +156,9 @@ def compare(facts, metrics, only=None):
 
 
 def main():
-    only = sys.argv[1] if len(sys.argv) > 1 else None
+    args = sys.argv[1:]
+    public = "--public" in args
+    only = next((a for a in args if not a.startswith("-")), None)
     facts, metrics = load()
     validate(facts, metrics)
 
@@ -141,10 +170,29 @@ def main():
     else:
         print("校验通过（0 errors）")
 
+    if public:
+        print("\n=== 对外口径预览 ===")
+        print("规则：实体与项目名照实；涉及钱财只给区间；必标数据年份与距今年数。")
+        by = defaultdict(list)
+        for f in facts:
+            by[f["metric_id"]].append(f)
+        for mid, fs in sorted(by.items()):
+            m = metrics.get(mid)
+            if not m or (only and mid != only):
+                continue
+            print(f"\n{m['name']}（{m['unit']}）")
+            for f in fs:
+                if f.get("derived"):
+                    continue          # 派生值不单独对外，避免同一笔钱出现两次
+                print("  · " + public_view(f, m))
+        print("\n（派生值已从对外视图剔除，避免同一笔钱以两种口径重复出现。）")
+        return 1 if errors else 0
+
     for l in compare(facts, metrics, only):
         print(l)
 
-    print("\n提示：🔒 = 敏感待判（业主商业信息），对外产出前须脱敏或聚合。")
+    print("\n提示：🔒 = 敏感（业主商业信息）。**内部全留全实名**——高敏感数据是内部信心与校验基线的来源；")
+    print("      对外走 --public：实名照旧，金额转区间并标明是哪年的老数据。")
     return 1 if errors else 0
 
 
