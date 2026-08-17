@@ -33,6 +33,41 @@ OUT = ROOT / "reports" / "workorders.md"
 AMMO_THIN = 60          # 弹药（非目录级）低于此值视为偏瘦
 DIGEST_BACKLOG = 40     # 半自动 ≥6 分未消化超过此值视为消化积压
 
+# 指标留白的三种取数路径——决定派给谁、怎么派。
+# 判据取自 indicators.json 的 source 字段（声明里已经写了从哪取，只是没人按它路由）。
+SOURCE_CLASS = [
+    (re.compile(r"projects\s*表|状态历史|表聚合|prices\.|benchmarks"), "内部聚合",
+     "**不用读任何文件**——这个数从我们自己的实体表算得出来。缺的是聚合代码，不是材料。"),
+    (re.compile(r"财报|10-K|电话会|公司披露|白皮书|规范|机构报告|公告"), "库内抽取",
+     "库内很可能已经有原文——先在打分表里检索候选件，读原文抽数，不要先去外面找。"),
+    (re.compile(r"渠道|调研|市场报价|租赁平台|二手|REIT|债券|M&A|排队数据|推算"), "外部采集",
+     "库内多半没有——这是要新开渠道的，属于成员的采集工单。"),
+]
+
+# 内部聚合类指标依赖的实体表字段——工单要报出分母，否则算出来的数看着权威实则悬空。
+FIELD_DEPS = {
+    "benchmark_spread": ("projects", "capacity_it_mw"),
+    "pipeline_conversion_rate": ("projects", "status_history"),
+    "top10_pipeline_share": ("projects", "capacity_it_mw"),
+    "region_pipeline_share": ("projects", "capacity_it_mw"),
+    "construction_duration_months": ("projects", "status_history"),
+}
+
+
+def classify_source(src):
+    for rx, cls, how in SOURCE_CLASS:
+        if rx.search(src or ""):
+            return cls, how
+    return "未分类", "声明里的 source 写得太含糊，无法路由——先把 source 写清楚。"
+
+
+def field_coverage(table, field):
+    """返回 (有该字段的条数, 总条数)。"""
+    recs = json.loads((ROOT / "data" / f"{table}.json").read_text(encoding="utf-8"))["records"]
+    ok = sum(1 for r in recs if r.get(field) not in (None, "", [], {}))
+    return ok, len(recs)
+
+
 ACCEPT = ("每份填一行登记（{importance}{confidence}_{年份}_{主题}_{机构}），"
           "summary ≥200 字且**每个数字必须能在原文逐字查到**，查不到标 `[未核]`；"
           "库内已有的不计分（见附表查重）。")
@@ -124,10 +159,20 @@ def build(only=None):
             add("P2", "弹药偏瘦", f"{mid} 弹药仅 {ammo[mid]} 份（阈值 {AMMO_THIN}），但 ≥7 分有 {high[mid]} 份——有质缺量",
                 f"缺口猎人任务：{src}。{ACCEPT}")
 
-        # P2 指标留白
+        # P2 指标留白——按声明的取数路径路由，三类派法完全不同
         for i in blank:
-            add("P2", "指标留白", f"`{i['id']}` {i['name']}（单位 {i.get('unit') or '—'}，频率 {i.get('freq') or '—'}）",
-                f"找到该指标的可溯源数值与口径说明。声明的来源是「{i.get('source') or '未声明'}」。"
+            cls, how = classify_source(i.get("source"))
+            extra = ""
+            if i["id"] in FIELD_DEPS:
+                tbl, fld = FIELD_DEPS[i["id"]]
+                ok, tot = field_coverage(tbl, fld)
+                pct = ok * 100 // tot if tot else 0
+                extra = (f" **但先看分母**：算它要 `{tbl}.{fld}`，当前只有 **{ok}/{tot}（{pct}%）** 条记录有这个字段。"
+                         + ("覆盖太薄，先补字段再算——现在算出来的数看着权威，实则悬空。"
+                            if pct < 50 else "覆盖够，可以算。"))
+            add("P2", f"指标留白·{cls}",
+                f"`{i['id']}` {i['name']}（单位 {i.get('unit') or '—'}，频率 {i.get('freq') or '—'}）",
+                f"{how}{extra} 声明的来源是「{i.get('source') or '未声明'}」。"
                 "拿不到就如实回报拿不到——**留白是纪律，编一个数是事故**。")
 
         # P2 信源未开口
