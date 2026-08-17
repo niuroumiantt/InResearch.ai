@@ -13,6 +13,7 @@
   5. 引用完整性：contracts.parties / projects.developer 引用的 company_id 是否存在
   6. 保鲜度：verified_date 超过阈值告警（L6-L9 项目 90 天，L3-L5 项目 180 天，价格 30 天）
 """
+import csv
 import json
 import re
 import sys
@@ -167,6 +168,26 @@ def main():
             for q in (re.findall(r"^\d+\.\s*(.+?)\s*$", sec.group(1), re.M) if sec else []):
                 if q not in decl.get(mid, []):
                     err(f"modules.json[{mid}]: 定义文件的核心问题未声明，工单生成器看不见它 —— 「{q[:40]}」")
+
+    # 打分表的 depth 不得与 summary 自述矛盾
+    # 由来（2026-08-17）：加 depth 列时，批次 CSV 还不带该列，云端只能按 summary 文案猜。
+    # 规则之一是「含 auto_batch → 半自动」，结果把**改判件**判反了——那几条 summary 里出现
+    # auto_batch，是在解释「原记录是 auto_batch 生成的、未精读，所以要改判」，
+    # 判定器把改判理由当成了自我描述。
+    # 代价不是标签难看：facts.py 只认「精读」与「据实生成」，**半自动不得进事实层**，
+    # 而误判的三份里就有 M11 REITs 事实的来源（信通院《算力中心创新融资研究报告》）。
+    # 现在批次显式带 depth 了，猜的通道理应不再使用；这道检查是防它悄悄复活。
+    scores = ROOT / "docs" / "LIBRARY_SCORES.csv"
+    if scores.exists():
+        csv.field_size_limit(10 ** 9)          # summary 很长，默认上限会抛异常
+        SELF_READ = ("逐份精读后的手工打分", "本条为逐份精读")
+        with scores.open(encoding="utf-8") as fh:
+            for row in csv.DictReader(fh):
+                s = row.get("summary") or ""
+                if row.get("depth") == "半自动" and any(k in s for k in SELF_READ):
+                    warn(f"LIBRARY_SCORES[{row['new_path'].split('/')[-1][:48]}]: "
+                         f"summary 自述「逐份精读」但 depth 标为半自动——"
+                         f"半自动不得进事实层，这条会被证据链拒收")
 
     # 汇总
     print(f"记录数: projects={len(projects)} companies={len(companies)} prices={len(prices)} "
