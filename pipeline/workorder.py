@@ -20,6 +20,7 @@
 零依赖。
 """
 import csv
+import hashlib
 import json
 import re
 import sys
@@ -29,6 +30,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "reports" / "workorders.md"
+OUT_JSON = ROOT / "reports" / "workorders.json"   # 给 team.html 等机器消费方
 
 AMMO_THIN = 60          # 弹药（非目录级）低于此值视为偏瘦
 DIGEST_BACKLOG = 40     # 半自动 ≥6 分未消化超过此值视为消化积压
@@ -134,18 +136,22 @@ def build(only=None):
         fc, nr, stale = findings_state(mid)
         blank = [i for i in ind_by_mod.get(mid, []) if i.get("value") is None]
 
-        def add(pri, kind, gap, action, extra=""):
-            orders.append(dict(pri=pri, mid=mid, name=name, kind=kind, gap=gap, action=action, extra=extra))
+        def add(pri, kind, gap, action, key):
+            """key 是**内容键**，决定工单号——必须与计数无关，否则弹药数一变工单号就变，
+            已 assign 出去的活会错位到别的任务上。"""
+            h = hashlib.sha1(f"{mid}|{key}".encode("utf-8")).hexdigest()[:4]
+            orders.append(dict(pri=pri, mid=mid, name=name, kind=kind, gap=gap,
+                               action=action, wid=f"{mid}-{h}", key=key))
 
         # P1 声明缺失
         if not beats:
             add("P1", "声明缺失",
                 f"{mid} 没有任何信源跑口声明——这就是它长不出弹药的原因（现有弹药 {ammo[mid]} 份）",
                 "**这条是给所有者的，不是给成员的**：先在 framework/modules.json 给本模块补 beats，"
-                "否则任何采集工单都无从下手（不知道该去哪找）。")
+                "否则任何采集工单都无从下手（不知道该去哪找）。", key="声明缺失:beats")
         if not ind_by_mod.get(mid):
             add("P1", "声明缺失", f"{mid} 在 indicators.json 里没有任何指标",
-                "**给所有者**：本模块无可监测量，看板上会是一片空白。先声明 2-3 个指标。")
+                "**给所有者**：本模块无可监测量，看板上会是一片空白。先声明 2-3 个指标。", key="声明缺失:indicators")
 
         # P1 弹药饥饿
         if beats and high[mid] == 0:
@@ -153,11 +159,11 @@ def build(only=None):
             add("P1", "弹药饥饿",
                 f"{mid} 弹药 {ammo[mid]} 份但 **≥7 分为 0**——有量无质，缺一手口径",
                 f"去 {src} 找**一手**材料（实测/官方规范/机构原始数据表），"
-                f"不要再收转述汇编。{ACCEPT}")
+                f"不要再收转述汇编。{ACCEPT}", key="弹药")
         elif beats and ammo[mid] < AMMO_THIN:
             src = "、".join(b["org"] for b in beats[:3])
             add("P2", "弹药偏瘦", f"{mid} 弹药仅 {ammo[mid]} 份（阈值 {AMMO_THIN}），但 ≥7 分有 {high[mid]} 份——有质缺量",
-                f"缺口猎人任务：{src}。{ACCEPT}")
+                f"缺口猎人任务：{src}。{ACCEPT}", key="弹药")
 
         # P2 指标留白——按声明的取数路径路由，三类派法完全不同
         for i in blank:
@@ -173,7 +179,7 @@ def build(only=None):
             add("P2", f"指标留白·{cls}",
                 f"`{i['id']}` {i['name']}（单位 {i.get('unit') or '—'}，频率 {i.get('freq') or '—'}）",
                 f"{how}{extra} 声明的来源是「{i.get('source') or '未声明'}」。"
-                "拿不到就如实回报拿不到——**留白是纪律，编一个数是事故**。")
+                "拿不到就如实回报拿不到——**留白是纪律，编一个数是事故**。", key=f"指标:{i['id']}")
 
         # P2 信源未开口
         for b in beats:
@@ -181,19 +187,19 @@ def build(only=None):
                 add("P2", "信源未开口",
                     f"声明了跑口「{b['org']}」（{b['channel']}）但库内一份都没有"
                     + (f"——{b['note']}" if b.get("note") else ""),
-                    f"打通该渠道：先取一份最新的公开件验证格式与价值，再决定是否长期跟。{ACCEPT}")
+                    f"打通该渠道：先取一份最新的公开件验证格式与价值，再决定是否长期跟。{ACCEPT}", key=f"信源:{b['org']}")
 
         # P3 消化积压
         if backlog[mid] >= DIGEST_BACKLOG:
             add("P3", "消化积压",
                 f"{mid} 有 **{backlog[mid]} 份半自动 ≥6 分**未消化——缺的不是材料是精读",
                 "**派消化不派采集**：回原文复核这些行，把够格的提级为精读并出 Finding。"
-                "半自动行不复核不得上证据链。")
+                "半自动行不复核不得上证据链。", key="消化积压")
 
         # P3 鲜度逾期
         if nr or stale:
             add("P3", "鲜度逾期", f"{mid} 有 {nr} 条 needs-review、{stale} 条 stale",
-                "跑 `python3 pipeline/verify.py` 取核验队列，按触发器找新证据复核。")
+                "跑 `python3 pipeline/verify.py` 取核验队列，按触发器找新证据复核。", key="鲜度")
 
         # 模块自身声明的开放问题（answered_by 为空 = 声明上仍开放）
         for q in m.get("questions", []):
@@ -203,7 +209,7 @@ def build(only=None):
                 q = q["q"]
             add("P2", "声明问题开放", q,
                 f"这是 {mid} 在 modules.json 里声明为**开放**的问题（answered_by 为空）。"
-                f"答掉之后把 Finding 号回填进声明，工单自动消失。{ACCEPT}")
+                f"答掉之后把 Finding 号回填进声明，工单自动消失。{ACCEPT}", key=f"问题:{q}")
 
     return orders, ammo, high, backlog
 
@@ -221,6 +227,8 @@ def render(orders, ammo, high, backlog):
         "",
         "> **本文件是生成物，不要手写。** 工单 = `framework/modules.json` 的模块声明 −"
         " 仓库现状（indicators / LIBRARY_SCORES / research / sources）。",
+        "> 工单号按**内容**哈希而非位置编号——队列重算后同一件事的号不变，"
+        "所以派出去的活不会错位到别的任务上。",
         "> 改工单的正确做法是改声明或改现状，然后重跑 `python3 pipeline/workorder.py`。",
         "",
         "优先级：**P1** 声明缺失与弹药饥饿（不补就长不出东西）｜"
@@ -243,8 +251,8 @@ def render(orders, ammo, high, backlog):
     for mid in sorted(by_mod):
         os_ = sorted(by_mod[mid], key=lambda o: pri_rank[o["pri"]])
         lines += [f"## {mid} {os_[0]['name']}", ""]
-        for n, o in enumerate(os_, 1):
-            lines += [f"### {o['pri']} · {o['kind']} · {mid}-W{n:02d}", "",
+        for o in os_:
+            lines += [f"### {o['pri']} · {o['kind']} · `{o['wid']}`", "",
                       f"**缺口**：{o['gap']}", "",
                       f"**动作**：{o['action']}", ""]
     return "\n".join(lines) + "\n"
@@ -255,11 +263,18 @@ def main():
     orders, ammo, high, backlog = build(only)
     OUT.write_text(render(orders, ammo, high, backlog), encoding="utf-8")
 
+    stats = {m: {"ammo": ammo[m], "high": high[m], "backlog": backlog[m],
+                 "findings": findings_state(m)[0]}
+             for m in {o["mid"] for o in orders}}
+    OUT_JSON.write_text(json.dumps(
+        {"generated": date.today().isoformat(), "orders": orders, "module_stats": stats},
+        ensure_ascii=False, indent=1), encoding="utf-8")
+
     c = Counter(o["pri"] for o in orders)
     print(f"工单 {len(orders)} 张｜P1 {c['P1']} P2 {c['P2']} P3 {c['P3']}")
     for o in [x for x in orders if x["pri"] == "P1"]:
         print(f"  P1 {o['mid']} {o['kind']}：{o['gap'][:60]}")
-    print(f"完整队列已写入 {OUT.relative_to(ROOT)}")
+    print(f"完整队列已写入 {OUT.relative_to(ROOT)} 与 {OUT_JSON.relative_to(ROOT)}")
     return 0
 
 

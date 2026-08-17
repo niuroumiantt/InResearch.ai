@@ -6,6 +6,8 @@
 API（供 ops.html 管理后台调用）：
   POST /api/run        {"task": "<名>"}         运行白名单内的管线脚本，返回输出
   POST /api/add-price  {价格记录字段}            人工录入价格/事件 → prices.json（先校验后落盘）
+  POST /api/assign     {workorder_id, assignee, status, due?, note?}
+                                                派工/改状态 → assignments.json（team.html 调用）
   GET  /api/status                              各任务上次运行时间（logs/ 时间戳）
 
 安全：仅本机回环地址；任务白名单；录入走 validate.py 把关，失败自动回滚。
@@ -34,7 +36,12 @@ TASKS = {
     "inbox":      ("扫描收件箱（docs/inbox）", ["pipeline/scan_inbox.py"], 30),
     "reader":     ("启动本地精读会话（新 Terminal）", ["pipeline/launch_reader.py"], 30),
     "queue":      ("生成精读队列", ["pipeline/reading_queue.py"], 30),
+    "workorder":  ("生成工单队列", ["pipeline/workorder.py"], 60),
+    "blindspot":  ("盲区体检", ["pipeline/blindspot.py"], 60),
+    "intake":     ("成员投递机检与分流", ["pipeline/intake.py"], 60),
+    "facts":      ("事实层校验与可比性", ["pipeline/facts.py"], 30),
 }
+ASSIGN_STATUSES = {"已派", "进行中", "已交付", "已合并", "已放弃"}
 RUNNING = set()
 LOCK = threading.Lock()
 
@@ -81,6 +88,8 @@ class Handler(SimpleHTTPRequestHandler):
             return self.api_run(payload)
         if self.path == "/api/add-price":
             return self.api_add_price(payload)
+        if self.path == "/api/assign":
+            return self.api_assign(payload)
         return self._json(404, {"ok": False, "error": "未知接口"})
 
     def api_run(self, payload):
@@ -130,6 +139,43 @@ class Handler(SimpleHTTPRequestHandler):
             return self._json(400, {"ok": False, "error": "校验未通过，已回滚：\n" + chk.stdout[-800:]})
         subprocess.run([PY, "pipeline/refresh_indicators.py"], cwd=ROOT, capture_output=True, timeout=30)
         return self._json(200, {"ok": True, "msg": f"已入库 {rec['series_id']}@{rec['as_of']} = {rec['value']} {rec['unit']}，指标已回填"})
+
+
+    def api_assign(self, rec):
+        """派工/改状态。工单号必须真实存在于当前队列——否则就是派了一件不存在的活。"""
+        wid = (rec.get("workorder_id") or "").strip()
+        status = (rec.get("status") or "").strip()
+        if not wid:
+            return self._json(400, {"ok": False, "error": "缺 workorder_id"})
+        if status and status not in ASSIGN_STATUSES:
+            return self._json(400, {"ok": False, "error": f"状态非法（合法：{'、'.join(sorted(ASSIGN_STATUSES))}）"})
+
+        wof = ROOT / "reports" / "workorders.json"
+        if not wof.exists():
+            return self._json(400, {"ok": False, "error": "工单队列尚未生成，先跑 workorder 任务"})
+        live = {o["wid"] for o in json.loads(wof.read_text(encoding="utf-8"))["orders"]}
+        if wid not in live:
+            return self._json(400, {"ok": False,
+                                    "error": f"{wid} 不在当前工单队列里——可能该缺口已被填上，工单自动消失了"})
+
+        p = ROOT / "data" / "assignments.json"
+        doc = json.loads(p.read_text(encoding="utf-8"))
+        row = next((r for r in doc["records"] if r["workorder_id"] == wid), None)
+        if row is None:
+            row = {"workorder_id": wid}
+            doc["records"].append(row)
+        for k in ("assignee", "status", "due", "note"):
+            if rec.get(k) is not None:
+                row[k] = rec[k]
+        row.setdefault("status", "已派")
+        row["updated"] = datetime.now().date().isoformat()
+        if not row.get("assigned"):
+            row["assigned"] = row["updated"]
+        if row.get("status") == "已放弃" and not row.get("note"):
+            return self._json(400, {"ok": False, "error": "标为已放弃必须写 note 说明原因——不写原因，下次还会重派同一件事"})
+        doc["updated"] = row["updated"]
+        p.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        return self._json(200, {"ok": True, "msg": f"{wid} → {row.get('assignee') or '未指定'}（{row['status']}）"})
 
 
 def main():
