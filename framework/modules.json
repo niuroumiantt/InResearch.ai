@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "updated": "2026-08-16",
-  "note": "模块声明（L1）。模块是声明不是代码——core 里不允许出现 if M07 这类分支。本文件声明每个模块要回答什么、由哪些信源跑口供养；现状由 indicators.json / LIBRARY_SCORES.csv / research/Mxx.md 提供；工单 = 声明 − 现状，由 pipeline/workorder.py 计算，任何人都不手写工单。",
+  "note": "模块声明（L1）。模块是声明不是代码——core 里不允许出现 if M07 这类分支。本文件声明每个模块要回答什么、由哪些信源跑口供养；现状由 indicators.json / LIBRARY_SCORES.csv / research/Mxx.md 提供；工单 = 声明 − 现状，由 pipeline/workorder.py 计算，任何人都不手写工单。 keywords 用于盲区体检（pipeline/blindspot.py）：检测「库里有、但分类器看不见」的材料。",
   "beat_channels": {
     "付费": "机构订阅，需采购预算",
     "免费": "公开可取，难在知道其重要",
@@ -10,154 +10,608 @@
   },
   "modules": [
     {
-      "id": "M01", "name": "市场规模与增长",
+      "id": "M01",
+      "name": "市场规模与增长",
       "beats": [
-        {"org": "JLL / CBRE / Cushman", "channel": "免费", "note": "半年报免费"},
-        {"org": "datacenterHawk", "channel": "付费"},
-        {"org": "DC Byte", "channel": "付费"},
-        {"org": "Synergy Research", "channel": "付费"},
-        {"org": "Structure Research", "channel": "付费", "note": "托管市场"}
+        {
+          "org": "JLL / CBRE / Cushman",
+          "channel": "免费",
+          "note": "半年报免费"
+        },
+        {
+          "org": "datacenterHawk",
+          "channel": "付费"
+        },
+        {
+          "org": "DC Byte",
+          "channel": "付费"
+        },
+        {
+          "org": "Synergy Research",
+          "channel": "付费"
+        },
+        {
+          "org": "Structure Research",
+          "channel": "付费",
+          "note": "托管市场"
+        }
       ],
-      "questions": ["中国分区域的容量口径", "全球在建管线的六级状态分布"]
+      "questions": [
+        "中国分区域的容量口径",
+        "全球在建管线的六级状态分布"
+      ],
+      "keywords": [
+        "市场规模",
+        "增长率",
+        "CAGR",
+        "容量预测",
+        "market size",
+        "forecast",
+        "总容量",
+        "在建容量"
+      ]
     },
     {
-      "id": "M02", "name": "供给格局",
+      "id": "M02",
+      "name": "供给格局",
       "beats": [
-        {"org": "Dell'Oro", "channel": "付费", "note": "IT Capex 季报"},
-        {"org": "Synergy Research", "channel": "付费"},
-        {"org": "超大规模厂 10-K / 财报电话会", "channel": "免费"}
+        {
+          "org": "Dell'Oro",
+          "channel": "付费",
+          "note": "IT Capex 季报"
+        },
+        {
+          "org": "Synergy Research",
+          "channel": "付费"
+        },
+        {
+          "org": "超大规模厂 10-K / 财报电话会",
+          "channel": "免费"
+        }
       ],
-      "questions": ["中国第三方 IDC 的容量三口径", "自建 vs 租赁的分界与占比"]
+      "questions": [
+        "中国第三方 IDC 的容量三口径",
+        "自建 vs 租赁的分界与占比"
+      ],
+      "keywords": [
+        "超大规模",
+        "hyperscaler",
+        "自建",
+        "租赁",
+        "colocation",
+        "批发型",
+        "第三方IDC",
+        "供给",
+        "开发商"
+      ]
     },
     {
-      "id": "M03", "name": "需求格局",
+      "id": "M03",
+      "name": "需求格局",
       "beats": [
-        {"org": "Dell'Oro", "channel": "付费", "note": "分客户段 capex 透视表，均分 9.0"},
-        {"org": "Synergy Research", "channel": "付费"},
-        {"org": "OCP 峰会 AI Clusters 分轨", "channel": "会议"}
+        {
+          "org": "Dell'Oro",
+          "channel": "付费",
+          "note": "分客户段 capex 透视表，均分 9.0"
+        },
+        {
+          "org": "Synergy Research",
+          "channel": "付费"
+        },
+        {
+          "org": "OCP 峰会 AI Clusters 分轨",
+          "channel": "会议"
+        }
       ],
-      "questions": ["推理侧的实际负载曲线", "训练与推理的容量分配比"]
+      "questions": [
+        "推理侧的实际负载曲线",
+        "训练与推理的容量分配比"
+      ],
+      "keywords": [
+        "资本开支",
+        "capex",
+        "需求侧",
+        "客户结构",
+        "云厂",
+        "订单",
+        "backlog",
+        "签约"
+      ]
     },
     {
-      "id": "M04", "name": "电力与能源",
+      "id": "M04",
+      "name": "电力与能源",
       "beats": [
-        {"org": "IEA", "channel": "免费"},
-        {"org": "EPRI", "channel": "免费"},
-        {"org": "Grid Strategies", "channel": "免费", "note": "并网排队"},
-        {"org": "Wood Mackenzie", "channel": "付费"},
-        {"org": "NERC / ISO 报告", "channel": "免费"},
-        {"org": "OCP 800VDC / ORv3 分轨", "channel": "会议"}
+        {
+          "org": "IEA",
+          "channel": "免费"
+        },
+        {
+          "org": "EPRI",
+          "channel": "免费"
+        },
+        {
+          "org": "Grid Strategies",
+          "channel": "免费",
+          "note": "并网排队"
+        },
+        {
+          "org": "Wood Mackenzie",
+          "channel": "付费"
+        },
+        {
+          "org": "NERC / ISO 报告",
+          "channel": "免费"
+        },
+        {
+          "org": "OCP 800VDC / ORv3 分轨",
+          "channel": "会议"
+        }
       ],
-      "questions": ["中国电价与并网时序", "并网排队时长的区域差异"]
+      "questions": [
+        "中国电价与并网时序",
+        "并网排队时长的区域差异"
+      ],
+      "keywords": [
+        "电力",
+        "用电",
+        "并网",
+        "PPA",
+        "变电",
+        "电价",
+        "核电",
+        "可再生",
+        "燃气",
+        "power grid",
+        "TWh",
+        "兆瓦"
+      ]
     },
     {
-      "id": "M05", "name": "土地与区域",
+      "id": "M05",
+      "name": "土地与区域",
       "beats": [
-        {"org": "JLL / CBRE / Cushman", "channel": "免费"},
-        {"org": "datacenterHawk", "channel": "付费"},
-        {"org": "DC Byte", "channel": "付费"},
-        {"org": "DCD / PTC", "channel": "会议"}
+        {
+          "org": "JLL / CBRE / Cushman",
+          "channel": "免费"
+        },
+        {
+          "org": "datacenterHawk",
+          "channel": "付费"
+        },
+        {
+          "org": "DC Byte",
+          "channel": "付费"
+        },
+        {
+          "org": "DCD / PTC",
+          "channel": "会议"
+        }
       ],
-      "questions": ["中国选址的电力可获得性", "防洪与地质口径（衢州/江南/芜湖三例已立）"]
+      "questions": [
+        "中国选址的电力可获得性",
+        "防洪与地质口径（衢州/江南/芜湖三例已立）"
+      ],
+      "keywords": [
+        "选址",
+        "土地",
+        "区域",
+        "园区",
+        "枢纽",
+        "东数西算",
+        "环评",
+        "siting",
+        "地质",
+        "防洪"
+      ]
     },
     {
-      "id": "M06", "name": "芯片与服务器",
+      "id": "M06",
+      "name": "芯片与服务器",
       "beats": [
-        {"org": "SemiAnalysis", "channel": "付费", "note": "全库高分件最大单一来源，但边际收益下降，建议由买合集转为按主题挑"},
-        {"org": "TechInsights", "channel": "付费", "note": "拆解与 DRAM 季报"},
-        {"org": "Yole", "channel": "付费", "note": "10 份出 8 份 ≥7，单份性价比最高"},
-        {"org": "TrendForce / DRAMeXchange", "channel": "付费"},
-        {"org": "Forward Insights", "channel": "付费", "note": "NAND 专门"},
-        {"org": "Objective Analysis", "channel": "付费"},
-        {"org": "Hot Chips / ISSCC / GTC", "channel": "会议"},
-        {"org": "FMS / China FMS", "channel": "会议"}
+        {
+          "org": "SemiAnalysis",
+          "channel": "付费",
+          "note": "全库高分件最大单一来源，但边际收益下降，建议由买合集转为按主题挑"
+        },
+        {
+          "org": "TechInsights",
+          "channel": "付费",
+          "note": "拆解与 DRAM 季报"
+        },
+        {
+          "org": "Yole",
+          "channel": "付费",
+          "note": "10 份出 8 份 ≥7，单份性价比最高"
+        },
+        {
+          "org": "TrendForce / DRAMeXchange",
+          "channel": "付费"
+        },
+        {
+          "org": "Forward Insights",
+          "channel": "付费",
+          "note": "NAND 专门"
+        },
+        {
+          "org": "Objective Analysis",
+          "channel": "付费"
+        },
+        {
+          "org": "Hot Chips / ISSCC / GTC",
+          "channel": "会议"
+        },
+        {
+          "org": "FMS / China FMS",
+          "channel": "会议"
+        }
       ],
-      "questions": ["国产芯片的实测数据", "机架级封装与 die 计数口径（黄氏算术三查）"]
+      "questions": [
+        "国产芯片的实测数据",
+        "机架级封装与 die 计数口径（黄氏算术三查）"
+      ],
+      "keywords": [
+        "GPU",
+        "HBM",
+        "DRAM",
+        "NAND",
+        "芯片",
+        "服务器",
+        "加速器",
+        "CoWoS",
+        "封装",
+        "内存",
+        "晶圆",
+        "机柜功率"
+      ]
     },
     {
-      "id": "M07", "name": "网络与互联",
+      "id": "M07",
+      "name": "网络与互联",
       "beats": [
-        {"org": "LightCounting", "channel": "付费", "note": "光模块专门，库内仍空白"},
-        {"org": "Dell'Oro", "channel": "付费", "note": "网络设备季报"},
-        {"org": "Yole", "channel": "付费", "note": "CPO 路线图"},
-        {"org": "OFC", "channel": "会议", "note": "光通信顶会"},
-        {"org": "Hot Interconnects", "channel": "会议"}
+        {
+          "org": "LightCounting",
+          "channel": "付费",
+          "note": "光模块专门，库内仍空白"
+        },
+        {
+          "org": "Dell'Oro",
+          "channel": "付费",
+          "note": "网络设备季报"
+        },
+        {
+          "org": "Yole",
+          "channel": "付费",
+          "note": "CPO 路线图"
+        },
+        {
+          "org": "OFC",
+          "channel": "会议",
+          "note": "光通信顶会"
+        },
+        {
+          "org": "Hot Interconnects",
+          "channel": "会议"
+        }
       ],
-      "questions": ["中国智算网络的实测", "800G/1.6T 光模块的量价曲线"]
+      "questions": [
+        "中国智算网络的实测",
+        "800G/1.6T 光模块的量价曲线"
+      ],
+      "keywords": [
+        "光模块",
+        "交换机",
+        "InfiniBand",
+        "以太网",
+        "NVLink",
+        "CPO",
+        "800G",
+        "互联",
+        "网络架构",
+        "光通信"
+      ]
     },
     {
-      "id": "M08", "name": "散热与制冷",
+      "id": "M08",
+      "name": "散热与制冷",
       "beats": [
-        {"org": "Dell'Oro", "channel": "付费", "note": "DC 物理基建季报"},
-        {"org": "Omdia", "channel": "付费", "note": "液冷追踪，库内空白"},
-        {"org": "Uptime Institute", "channel": "付费", "note": "库内空白"},
-        {"org": "ASHRAE TC9.9", "channel": "免费"},
-        {"org": "DCD 系列", "channel": "会议"},
-        {"org": "CDCC", "channel": "会议", "note": "中国"}
+        {
+          "org": "Dell'Oro",
+          "channel": "付费",
+          "note": "DC 物理基建季报"
+        },
+        {
+          "org": "Omdia",
+          "channel": "付费",
+          "note": "液冷追踪，库内空白"
+        },
+        {
+          "org": "Uptime Institute",
+          "channel": "付费",
+          "note": "库内空白"
+        },
+        {
+          "org": "ASHRAE TC9.9",
+          "channel": "免费"
+        },
+        {
+          "org": "DCD 系列",
+          "channel": "会议"
+        },
+        {
+          "org": "CDCC",
+          "channel": "会议",
+          "note": "中国"
+        }
       ],
-      "questions": ["液冷的运营期数据", "实际 PUE 时序而非设计值"]
+      "questions": [
+        "液冷的运营期数据",
+        "实际 PUE 时序而非设计值"
+      ],
+      "keywords": [
+        "液冷",
+        "制冷",
+        "冷却",
+        "PUE",
+        "空调",
+        "CDU",
+        "风冷",
+        "散热",
+        "冷板",
+        "浸没"
+      ]
     },
     {
-      "id": "M09", "name": "电气设备供应链",
+      "id": "M09",
+      "name": "电气设备供应链",
       "beats": [
-        {"org": "Dell'Oro", "channel": "付费"},
-        {"org": "Omdia", "channel": "付费"},
-        {"org": "Vertiv / Eaton / 施耐德 财报", "channel": "免费"},
-        {"org": "LBNL", "channel": "免费", "note": "美国 4.4% 口径即出自此"},
-        {"org": "FERC / EIA", "channel": "免费"}
+        {
+          "org": "Dell'Oro",
+          "channel": "付费"
+        },
+        {
+          "org": "Omdia",
+          "channel": "付费"
+        },
+        {
+          "org": "Vertiv / Eaton / 施耐德 财报",
+          "channel": "免费"
+        },
+        {
+          "org": "LBNL",
+          "channel": "免费",
+          "note": "美国 4.4% 口径即出自此"
+        },
+        {
+          "org": "FERC / EIA",
+          "channel": "免费"
+        }
       ],
-      "questions": ["中国电气设备的交期与价格", "变压器与开关柜的产能瓶颈"]
+      "questions": [
+        "中国电气设备的交期与价格",
+        "变压器与开关柜的产能瓶颈"
+      ],
+      "keywords": [
+        "变压器",
+        "柴发",
+        "柴油发电",
+        "UPS",
+        "配电",
+        "开关柜",
+        "母线",
+        "电气设备",
+        "交期",
+        "供应链"
+      ]
     },
     {
-      "id": "M10", "name": "建设运营与人才",
+      "id": "M10",
+      "name": "建设运营与人才",
       "beats": [
-        {"org": "中国工程项目档案", "channel": "一次性", "note": "40 个项目档案，读完即止，不可持续"},
-        {"org": "运营商集采公告", "channel": "免费", "note": "唯一可持续的中国造价口径"},
-        {"org": "Uptime Institute", "channel": "付费", "note": "运维人效与故障率"}
+        {
+          "org": "中国工程项目档案",
+          "channel": "一次性",
+          "note": "40 个项目档案，读完即止，不可持续"
+        },
+        {
+          "org": "运营商集采公告",
+          "channel": "免费",
+          "note": "唯一可持续的中国造价口径"
+        },
+        {
+          "org": "Uptime Institute",
+          "channel": "付费",
+          "note": "运维人效与故障率"
+        }
       ],
-      "questions": ["竣工结算价（全库为零）", "运维人员编制与人效", "上架率时序"]
+      "questions": [
+        "竣工结算价（全库为零）",
+        "运维人员编制与人效",
+        "上架率时序"
+      ],
+      "keywords": [
+        "造价",
+        "施工",
+        "总承包",
+        "运维",
+        "工期",
+        "招标",
+        "控制价",
+        "上架率",
+        "人效",
+        "建设周期"
+      ]
     },
     {
-      "id": "M11", "name": "资本与金融",
+      "id": "M11",
+      "name": "资本与金融",
       "beats": [],
-      "questions": ["融资结构与资本成本", "数据中心 REITs 的估值口径", "折旧年限与残值假设", "GPU 抵押融资"]
+      "questions": [
+        "融资结构与资本成本",
+        "数据中心 REITs 的估值口径",
+        "折旧年限与残值假设",
+        "GPU 抵押融资"
+      ],
+      "keywords": [
+        "REIT",
+        "融资",
+        "债券",
+        "ABS",
+        "折旧",
+        "资本成本",
+        "估值",
+        "并购",
+        "投资回收期",
+        "贷款",
+        "证券化",
+        "IRR",
+        "现金流",
+        "杠杆",
+        "流动比率"
+      ]
     },
     {
-      "id": "M12", "name": "需求侧经济学",
+      "id": "M12",
+      "name": "需求侧经济学",
       "beats": [
-        {"org": "Epoch AI", "channel": "免费"},
-        {"org": "Artificial Analysis", "channel": "免费", "note": "价格基准"},
-        {"org": "OCP Market Impact 分轨", "channel": "会议"}
+        {
+          "org": "Epoch AI",
+          "channel": "免费"
+        },
+        {
+          "org": "Artificial Analysis",
+          "channel": "免费",
+          "note": "价格基准"
+        },
+        {
+          "org": "OCP Market Impact 分轨",
+          "channel": "会议"
+        }
       ],
-      "questions": ["推理单位成本的实测", "token 价格的长期下行斜率"]
+      "questions": [
+        "推理单位成本的实测",
+        "token 价格的长期下行斜率"
+      ],
+      "keywords": [
+        "token",
+        "推理成本",
+        "单位成本",
+        "定价",
+        "毛利",
+        "经济性",
+        "每千token",
+        "单价"
+      ]
     },
     {
-      "id": "M13", "name": "有效算力与软件",
+      "id": "M13",
+      "name": "有效算力与软件",
       "beats": [
-        {"org": "SemiAnalysis", "channel": "付费", "note": "GPU 云经济学与评级体系"},
-        {"org": "MLCommons / MLPerf", "channel": "免费", "note": "库内空白"}
+        {
+          "org": "SemiAnalysis",
+          "channel": "付费",
+          "note": "GPU 云经济学与评级体系"
+        },
+        {
+          "org": "MLCommons / MLPerf",
+          "channel": "免费",
+          "note": "库内空白"
+        }
       ],
-      "questions": ["中国智算中心的真实利用率", "MFU 实测而非标称", "集群故障率与 checkpoint 开销"]
+      "questions": [
+        "中国智算中心的真实利用率",
+        "MFU 实测而非标称",
+        "集群故障率与 checkpoint 开销"
+      ],
+      "keywords": [
+        "利用率",
+        "MFU",
+        "算力",
+        "调度",
+        "集群",
+        "训练",
+        "推理",
+        "有效算力",
+        "软件栈",
+        "故障率",
+        "checkpoint"
+      ]
     },
     {
-      "id": "M14", "name": "中国板块",
+      "id": "M14",
+      "name": "中国板块",
       "beats": [
-        {"org": "信通院", "channel": "免费", "note": "白皮书"},
-        {"org": "ODCC", "channel": "会议", "note": "开放数据中心大会"},
-        {"org": "CDCC", "channel": "会议"},
-        {"org": "运营商集采公告", "channel": "免费", "note": "一手量价"},
-        {"org": "IDC 中国", "channel": "付费"},
-        {"org": "赛迪 CCID", "channel": "付费"}
+        {
+          "org": "信通院",
+          "channel": "免费",
+          "note": "白皮书"
+        },
+        {
+          "org": "ODCC",
+          "channel": "会议",
+          "note": "开放数据中心大会"
+        },
+        {
+          "org": "CDCC",
+          "channel": "会议"
+        },
+        {
+          "org": "运营商集采公告",
+          "channel": "免费",
+          "note": "一手量价"
+        },
+        {
+          "org": "IDC 中国",
+          "channel": "付费"
+        },
+        {
+          "org": "赛迪 CCID",
+          "channel": "付费"
+        }
       ],
-      "questions": ["机架出货与区域上架率的渠道数据", "智算规模两个口径差 49% 的归因"],
-      "note": "本模块按地域切，与其余十四个按层切，天然跨切——不建议单独派给一名成员，宜由所有者持有或作为横向口径审阅角色。"
+      "questions": [
+        "机架出货与区域上架率的渠道数据",
+        "智算规模两个口径差 49% 的归因"
+      ],
+      "note": "本模块按地域切，与其余十四个按层切，天然跨切——不建议单独派给一名成员，宜由所有者持有或作为横向口径审阅角色。",
+      "keywords": [
+        "信通院",
+        "ODCC",
+        "东数西算",
+        "国产芯片",
+        "中国移动",
+        "中国电信",
+        "中国联通",
+        "智算中心",
+        "赛迪",
+        "工信部",
+        "集采"
+      ]
     },
     {
-      "id": "M15", "name": "情景与监测",
+      "id": "M15",
+      "name": "情景与监测",
       "beats": [
-        {"org": "唱空方券商研报", "channel": "免费", "note": "T3 BROKER 桶 1,052 份专为此用"}
+        {
+          "org": "唱空方券商研报",
+          "channel": "免费",
+          "note": "T3 BROKER 桶 1,052 份专为此用"
+        }
       ],
-      "questions": ["中国侧的压力测试反方证据", "二手/退役市场：GPU 残值与退役处置（全库为零）"]
+      "questions": [
+        "中国侧的压力测试反方证据",
+        "二手/退役市场：GPU 残值与退役处置（全库为零）"
+      ],
+      "keywords": [
+        "情景",
+        "压力测试",
+        "泡沫",
+        "过剩",
+        "出口管制",
+        "唱空",
+        "下行风险",
+        "反面"
+      ]
     }
   ]
 }
