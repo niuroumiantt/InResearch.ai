@@ -22,6 +22,16 @@ docs/inbox/digest_drafts/*
 docs/inbox/project_registry/*
 !docs/inbox/project_registry/README.md
 !docs/inbox/project_registry/*.csv
+
+# 第四类交付物：事实候选（2026-08-17 新增）
+# 本地会话精读时产出的「事实候选」JSON：what/value/unit/locator/caliber_note，
+# 云端 pipeline/facts.py 负责映射 metric_id 后并入 data/facts.json。
+# 同样是黑名单加白名单放行——不在这里显式放行，复制进去 git status 完全看不到，
+# push 会「没有待提交的改动」正常退出，交付看起来成功但云端永远拿不到（已踩过两次）。
+!docs/inbox/facts_candidates/
+docs/inbox/facts_candidates/*
+!docs/inbox/facts_candidates/README.md
+!docs/inbox/facts_candidates/*.json
 待删除文件/
 
 # 加密压缩包待用户人工解压清单（RUN_TO_COMPLETION 第八节第 4 条）
