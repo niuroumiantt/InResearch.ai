@@ -47,7 +47,13 @@
   .st-进行中 { color: var(--yellow); border-color: var(--yellow); }
   .st-已交付, .st-已合并 { color: var(--green); border-color: var(--green); }
   .st-已放弃 { color: var(--muted); text-decoration: line-through; }
-  .gap { color: var(--muted); }
+  .gap { color: var(--muted); font-size: 12px; }
+  .brief { white-space: pre-line; line-height: 1.75; margin-bottom: 6px; }
+  .brief b { color: var(--text); }
+  tr.internal { opacity: .5; }
+  .badge-int { display:inline-block; font-size:10px; border:1px solid var(--line); border-radius:6px; padding:0 6px; color:var(--muted); }
+  details.raw { margin-top: 4px; }
+  details.raw summary { font-size: 11px; color: var(--muted); cursor: pointer; }
   button { font: inherit; font-size: 12px; padding: 4px 11px; border: 1px solid var(--line); border-radius: 7px; background: var(--card); color: var(--accent); cursor: pointer; }
   button:hover { border-color: var(--accent); }
   dialog { border: 1px solid var(--line); border-radius: 12px; background: var(--card); color: var(--text); padding: 20px 22px; max-width: 460px; width: 92%; }
@@ -74,6 +80,10 @@
   <div class="ctl">
     <input type="search" id="q" placeholder="搜索缺口／工单号／负责人…">
     <select id="fpri"><option value="">全部优先级</option><option>P1</option><option>P2</option><option>P3</option></select>
+    <select id="fscope">
+      <option value="assignable">只看可派给实习生的</option>
+      <option value="">全部（含内部任务）</option>
+    </select>
     <select id="fst"><option value="">全部状态</option><option value="未派">未派</option></select>
     <select id="fwho"><option value="">全部负责人</option></select>
     <span class="cnt" id="cnt"></span>
@@ -159,6 +169,8 @@ function draw() {
 
   const view = ORDERS.filter(o => {
     const a = ASSIGN[o.wid];
+    if (document.getElementById("fscope").value === "assignable"
+        && (o.brief || "").startsWith("【这条不派给实习生】")) return false;
     if (modFilter && o.mid !== modFilter) return false;
     if (fp && o.pri !== fp) return false;
     if (fs === "未派" ? a : fs && a?.status !== fs) return false;
@@ -170,14 +182,18 @@ function draw() {
   document.getElementById("cnt").textContent = `${view.length} / ${ORDERS.length} 张`;
   document.getElementById("tb").innerHTML =
     `<tr><th style="width:88px">工单号</th><th style="width:38px">级</th><th style="width:132px">类型</th>
-     <th>缺口</th><th style="width:96px">负责人</th><th style="width:74px">状态</th><th style="width:60px"></th></tr>` +
+     <th>任务说明</th><th style="width:96px">负责人</th><th style="width:74px">状态</th><th style="width:60px"></th></tr>` +
     view.map(o => {
       const a = ASSIGN[o.wid] || {};
-      return `<tr>
-        <td class="wid">${o.wid}</td>
+      const internal = (o.brief || "").startsWith("【这条不派给实习生】");
+      return `<tr class="${internal ? "internal" : ""}">
+        <td class="wid">${o.wid}${internal ? '<div class="badge-int">内部</div>' : ""}</td>
         <td><span class="pri ${o.pri}">${o.pri}</span></td>
         <td>${esc(o.kind)}</td>
-        <td class="gap">${esc(o.gap).slice(0, 150)}</td>
+        <td>${o.brief
+              ? `<div class="brief">${esc(o.brief).replace(/【(.+?)】/g, "<b>【$1】</b>")}</div>`
+              : `<div class="gap">${esc(o.gap)}</div>`}
+            <details class="raw"><summary>内部口径描述</summary><div class="gap">${esc(o.gap)}</div></details></td>
         <td>${esc(a.assignee || "")}</td>
         <td>${a.status ? `<span class="st st-${esc(a.status)}">${esc(a.status)}</span>` : ""}</td>
         <td><button data-w="${o.wid}">派工</button></td>
@@ -192,7 +208,9 @@ function openDlg(wid) {
   curWid = wid;
   const o = ORDERS.find(x => x.wid === wid), a = ASSIGN[wid] || {};
   document.getElementById("d-wid").textContent = `${wid}　${o.mid} ${o.name}`;
-  document.getElementById("d-gap").textContent = o.gap;
+  document.getElementById("d-gap").innerHTML = o.brief
+    ? `<div class="brief">${esc(o.brief).replace(/【(.+?)】/g, "<b>【$1】</b>")}</div>`
+    : esc(o.gap);
   document.getElementById("d-who").value = a.assignee || "";
   document.getElementById("d-st").value = a.status || "已派";
   document.getElementById("d-due").value = a.due || "";
@@ -221,7 +239,7 @@ document.getElementById("d-ok").onclick = async () => {
     msg.textContent = "写入失败（没连上本地服务器？）：" + e.message;
   }
 };
-["q", "fpri", "fst", "fwho"].forEach(id => {
+["q", "fpri", "fst", "fwho", "fscope"].forEach(id => {
   const el = document.getElementById(id);
   el.addEventListener(id === "q" ? "input" : "change", draw);
 });

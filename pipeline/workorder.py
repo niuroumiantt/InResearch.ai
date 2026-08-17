@@ -150,22 +150,22 @@ def build(only=None):
         fc, nr, stale = findings_state(mid)
         blank = [i for i in ind_by_mod.get(mid, []) if i.get("value") is None]
 
-        def add(pri, kind, gap, action, key):
+        def add(pri, kind, gap, action, key, brief=""):
             """key 是**内容键**，决定工单号——必须与计数无关，否则弹药数一变工单号就变，
             已 assign 出去的活会错位到别的任务上。"""
             h = hashlib.sha1(f"{mid}|{key}".encode("utf-8")).hexdigest()[:4]
             orders.append(dict(pri=pri, mid=mid, name=name, kind=kind, gap=gap,
-                               action=action, wid=f"{mid}-{h}", key=key))
+                               action=action, wid=f"{mid}-{h}", key=key, brief=brief))
 
         # P1 声明缺失
         if not beats:
             add("P1", "声明缺失",
                 f"{mid} 没有任何信源跑口声明——这就是它长不出弹药的原因（现有弹药 {ammo[mid]} 份）",
                 "**这条是给所有者的，不是给成员的**：先在 framework/modules.json 给本模块补 beats，"
-                "否则任何采集工单都无从下手（不知道该去哪找）。", key="声明缺失:beats")
+                "否则任何采集工单都无从下手（不知道该去哪找）。", key="声明缺失:beats", brief="【这条不派给实习生】给所有者的：需要先补模块声明，补完才能开出可执行的采集任务。")
         if not ind_by_mod.get(mid):
             add("P1", "声明缺失", f"{mid} 在 indicators.json 里没有任何指标",
-                "**给所有者**：本模块无可监测量，看板上会是一片空白。先声明 2-3 个指标。", key="声明缺失:indicators")
+                "**给所有者**：本模块无可监测量，看板上会是一片空白。先声明 2-3 个指标。", key="声明缺失:indicators", brief="【这条不派给实习生】给所有者的：需要先补模块声明，补完才能开出可执行的采集任务。")
 
         # P1 弹药饥饿
         if beats and high[mid] == 0:
@@ -173,11 +173,22 @@ def build(only=None):
             add("P1", "弹药饥饿",
                 f"{mid} 弹药 {ammo[mid]} 份但 **≥7 分为 0**——有量无质，缺一手口径",
                 f"去 {src} 找**一手**材料（实测/官方规范/机构原始数据表），"
-                f"不要再收转述汇编。{ACCEPT}", key="弹药")
+                f"不要再收转述汇编。{ACCEPT}", key="弹药",
+                brief=(f"【任务】「{name}」这个模块材料不少（{ammo[mid]} 份），但**全是二手汇编，"
+                       f"没有一份够硬的一手材料**。\n"
+                       f"【什么算一手】机构自己做的实测、官方发布的规范、机构原始数据表——"
+                       f"**不是**别人报告里转述的数字。\n"
+                       f"【去哪找】{src}\n"
+                       f"【怎么分辨】看这份材料里的数字有没有说明是怎么测出来/统计出来的。"
+                       f"说不清方法的，基本就是转述。"))
         elif beats and ammo[mid] < AMMO_THIN:
             src = "、".join(b["org"] for b in beats[:3])
             add("P2", "弹药偏瘦", f"{mid} 弹药仅 {ammo[mid]} 份（阈值 {AMMO_THIN}），但 ≥7 分有 {high[mid]} 份——有质缺量",
-                f"缺口猎人任务：{src}。{ACCEPT}", key="弹药")
+                f"缺口猎人任务：{src}。{ACCEPT}", key="弹药",
+                brief=(f"【任务】「{name}」这个模块材料太少（只有 {ammo[mid]} 份），需要补量。\n"
+                       f"【去哪找】{src}\n"
+                       f"【找什么】这些机构关于「{name}」的最新公开报告。\n"
+                       f"【交付】同投递单流程，每份都要能说出至少 3 个带页码的数字。"))
 
         # P2 指标留白——按声明的取数路径路由，三类派法完全不同
         for i in blank:
@@ -190,10 +201,32 @@ def build(only=None):
                 extra = (f" **但先看分母**：算它要 `{tbl}.{fld}`，当前只有 **{ok}/{tot}（{pct}%）** 条记录有这个字段。"
                          + ("覆盖太薄，先补字段再算——现在算出来的数看着权威，实则悬空。"
                             if pct < 50 else "覆盖够，可以算。"))
+            src_hint = i.get("source") or "未声明"
+            if cls == "内部聚合":
+                brief = (f"【这条不派给实习生】数就在我们自己的表里（{src_hint}），"
+                         f"只是没人写聚合代码去算。要算的是「{i['name']}」，单位 {i.get('unit') or '—'}。")
+            else:
+                # indicators.json 的 source 常常很含糊（如「电网排队数据」），
+                # 那不是一个「地方」——把本模块已声明、且带网址的免费跑口接上去当起点
+                free = [b for b in beats if b["channel"] in ("免费", "会议") and b.get("url")]
+                where = f"{src_hint}\n"
+                if free:
+                    where += "".join(f"　　· {b['org']}：{b['url']}\n　　　{b.get('find','')}\n"
+                                     for b in free[:3])
+                    where += "　　（以上是本模块已知的免费信源，先从这里找起）\n"
+                brief = (f"【任务】帮我们找一个数：**{i['name']}**，单位是 {i.get('unit') or '—'}。\n"
+                         f"【去哪找】{where}"
+                         f"【最重要的一点】找到之后**必须说清它是什么口径**——"
+                         f"比如「交期 12 个月」要写明是从下单到发货、还是到货进现场，这两个差好几个月；"
+                         f"「利用率 30%」要写明是机柜卖出去的比例、还是卡真的在跑的比例。"
+                         f"**说不清口径的数我们不能用。**\n"
+                         f"【还要记下】出自哪份文件的第几页、第几张表。\n"
+                         f"【找不到怎么办】直接回复「找不到」——**这也是有价值的结果，千万不要凑一个数**。")
             add("P2", f"指标留白·{cls}",
                 f"`{i['id']}` {i['name']}（单位 {i.get('unit') or '—'}，频率 {i.get('freq') or '—'}）",
-                f"{how}{extra} 声明的来源是「{i.get('source') or '未声明'}」。"
-                "拿不到就如实回报拿不到——**留白是纪律，编一个数是事故**。", key=f"指标:{i['id']}")
+                f"{how}{extra} 声明的来源是「{src_hint}」。"
+                "拿不到就如实回报拿不到——**留白是纪律，编一个数是事故**。",
+                key=f"指标:{i['id']}", brief=brief)
 
         # P2 口径未定义——监测指标没有 metrics.json 里的口径维度声明
         undef = [i for i in ind_by_mod.get(mid, [])
@@ -205,26 +238,58 @@ def build(only=None):
                 "没有任何机制会拦。逐个补 `caliber_dims` 到 framework/metrics.json，"
                 f"涉及：{'、'.join(i['id'] for i in undef[:6])}"
                 + ("…" if len(undef) > 6 else ""),
-                key="口径未定义")
+                key="口径未定义", brief="【这条不派给实习生】给所有者的：先定口径维度，否则采回来的数无法判断能不能比。")
 
         # P2 事实层空白——口径定义了却没去取数
         # 变量名不能用 m——外层 `for m in mods` 还要用它取 questions；
         # 这里曾因覆盖循环变量，导致 34 条「声明问题开放」工单静默消失
         empty = [x for x in met_by_mod.get(mid, []) if fact_cnt[x["metric_id"]] == 0]
         for met in empty:
+            dimtxt = "、".join(f"{dd['name']}（{'/'.join(dd['values'][:3])}…）"
+                              for dd in met["caliber_dims"] if dd["id"] != "region")
             add("P2", "事实层空白",
                 f"指标 `{met['metric_id']}`（{met['name']}）已声明口径维度，但事实层一条数都没有",
                 "去取数入 `data/facts.json`。口径维度已经定好，照着填即可；"
                 "拿不到就如实回报——**留白是纪律**。",
-                key=f"事实空白:{met['metric_id']}")
+                key=f"事实空白:{met['metric_id']}",
+                brief=(f"【任务】帮我们找一个数：**{met['name']}**，单位是 {met['unit']}。这个数我们一条都还没有。\n"
+                       f"【必须同时说清的口径】{dimtxt or '（见 framework/metrics.json）'}\n"
+                       f"【为什么这么啰嗦】同一个名字的指标，口径不同就是两个数，"
+                       f"混在一起比较会得出完全错误的结论。所以口径写不出来，这个数就用不了。\n"
+                       f"【还要记下】出自哪份文件的第几页。\n"
+                       f"【找不到就说找不到】不要凑数。"))
 
         # P2 信源未开口
         for b in beats:
-            if not org_seen(b["org"], known_orgs):
-                add("P2", "信源未开口",
-                    f"声明了跑口「{b['org']}」（{b['channel']}）但库内一份都没有"
-                    + (f"——{b['note']}" if b.get("note") else ""),
-                    f"打通该渠道：先取一份最新的公开件验证格式与价值，再决定是否长期跟。{ACCEPT}", key=f"信源:{b['org']}")
+            if org_seen(b["org"], known_orgs):
+                continue
+            paid = b["channel"] == "付费"
+            once = b["channel"] == "一次性"
+            if once:
+                brief = (f"【任务】不用外找——「{b['org']}」是我们已经拿到的一次性存量，读完即止。\n"
+                         f"【怎么做】{b.get('find') or '按现有流程读库内材料'}\n"
+                         f"【注意】这类不构成可持续跑口，读完这个模块就不会再有新料了。")
+            elif paid:
+                brief = (f"【任务】「{b['org']}」是**付费订阅**，先别自己去买。\n"
+                         f"【你可以做的】去 {b.get('url') or '其官网'} 看看有没有免费的摘要、样章、"
+                         f"或新闻稿里引用的关键数字，把能免费拿到的部分先带回来。\n"
+                         f"【找什么】{b.get('find') or '该机构的核心数据表'}\n"
+                         f"【出版节奏】{b.get('cadence') or '不定'}\n"
+                         f"【要不要买】这个由老板决定，你只需回报「免费能拿到多少」。")
+            else:
+                brief = (f"【任务】去把「{b['org']}」这个信源打通——我们一份都没有。\n"
+                         f"【去哪儿找】{b.get('url') or '（网址待补，先站内搜）'}\n"
+                         f"【找什么】{b.get('find') or '该机构最新的公开报告 PDF'}\n"
+                         f"【多久出一次】{b.get('cadence') or '不定'}\n"
+                         f"【怎么算做完】拿到 1 份最新的完整文件（PDF 优先），"
+                         f"并能说出里面至少 3 个带单位的数字、以及它们在第几页。\n"
+                         f"【交付】复制 docs/inbox/submissions/_template/ 建一个自己的目录，"
+                         f"按里面的 submission.json 填好，连同文件一起交。**填不出页码的数字不要写**。")
+            add("P2", "信源未开口",
+                f"声明了跑口「{b['org']}」（{b['channel']}）但库内一份都没有"
+                + (f"——{b['note']}" if b.get("note") else ""),
+                f"打通该渠道：先取一份最新的公开件验证格式与价值，再决定是否长期跟。{ACCEPT}",
+                key=f"信源:{b['org']}", brief=brief)
 
         # P2 成员投递待审计
         if unaudited[mid]:
@@ -239,12 +304,19 @@ def build(only=None):
             add("P3", "消化积压",
                 f"{mid} 有 **{backlog[mid]} 份半自动 ≥6 分**未消化——缺的不是材料是精读",
                 "**派消化不派采集**：回原文复核这些行，把够格的提级为精读并出 Finding。"
-                "半自动行不复核不得上证据链。", key="消化积压")
+                "半自动行不复核不得上证据链。", key="消化积压",
+                brief=(f"【任务】这个模块**不缺材料，缺的是有人真的去读**。库里有 {backlog[mid]} 份"
+                       f"关于「{name}」的材料，机器只扫了标题和数字行，没人正经读过。\n"
+                       f"【怎么做】打开 reports/reading_queue.md，找标着「半自动」的行，挑分数高的先读。\n"
+                       f"【读完要交什么】这份材料里有哪些带单位的数字、各自在第几页、"
+                       f"以及每个数字是什么口径。\n"
+                       f"【这类任务的价值】比出去找新材料高——新材料还要再读一遍，这些已经在手上了。"))
 
         # P3 鲜度逾期
         if nr or stale:
             add("P3", "鲜度逾期", f"{mid} 有 {nr} 条 needs-review、{stale} 条 stale",
-                "跑 `python3 pipeline/verify.py` 取核验队列，按触发器找新证据复核。", key="鲜度")
+                "跑 `python3 pipeline/verify.py` 取核验队列，按触发器找新证据复核。", key="鲜度",
+                brief="【这条不派给实习生】内部核验任务：既有结论到期需复核。")
 
         # 模块自身声明的开放问题（answered_by 为空 = 声明上仍开放）
         for q in m.get("questions", []):
@@ -254,7 +326,13 @@ def build(only=None):
                 q = q["q"]
             add("P2", "声明问题开放", q,
                 f"这是 {mid} 在 modules.json 里声明为**开放**的问题（answered_by 为空）。"
-                f"答掉之后把 Finding 号回填进声明，工单自动消失。{ACCEPT}", key=f"问题:{q}")
+                f"答掉之后把 Finding 号回填进声明，工单自动消失。{ACCEPT}", key=f"问题:{q}",
+                brief=(f"【任务】这是我们想搞清楚、但目前还没有答案的一个问题：\n"
+                       f"　　**{q}**\n"
+                       f"【你要做的】找能回答这个问题的材料——不需要你给结论，"
+                       f"**把能回答它的原始材料带回来就行**，结论我们来下。\n"
+                       f"【怎么算找对了】材料里有直接相关的数字或明确表述，而不只是泛泛提到这个话题。\n"
+                       f"【交付】同投递单流程；把你认为能回答问题的那几页标出来。"))
 
     return orders, ammo, high, backlog
 

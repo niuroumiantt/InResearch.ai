@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "updated": "2026-08-16",
-  "note": "模块声明（L1）。模块是声明不是代码——core 里不允许出现 if M07 这类分支。本文件声明每个模块要回答什么、由哪些信源跑口供养；现状由 indicators.json / LIBRARY_SCORES.csv / research/Mxx.md 提供；工单 = 声明 − 现状，由 pipeline/workorder.py 计算，任何人都不手写工单。 keywords 用于盲区体检（pipeline/blindspot.py）：检测「库里有、但分类器看不见」的材料。",
+  "note": "模块声明（L1）。模块是声明不是代码——core 里不允许出现 if M07 这类分支。本文件声明每个模块要回答什么、由哪些信源跑口供养；现状由 indicators.json / LIBRARY_SCORES.csv / research/Mxx.md 提供；工单 = 声明 − 现状，由 pipeline/workorder.py 计算，任何人都不手写工单。 keywords 用于盲区体检（pipeline/blindspot.py）：检测「库里有、但分类器看不见」的材料。\n\n信源跑口带 url/find/cadence 三个字段（2026-08-17 补）：派工给实习生时必须说清「去哪儿、找什么、多久出一次」，否则他无从下手。**不确定的网址不要编**，宁可只写检索路径。",
   "beat_channels": {
     "付费": "机构订阅，需采购预算",
     "免费": "公开可取，难在知道其重要",
@@ -16,24 +16,39 @@
         {
           "org": "JLL / CBRE / Cushman",
           "channel": "免费",
-          "note": "半年报免费"
+          "note": "半年报免费",
+          "url": "https://www.jll.com/en-us/insights ｜ https://www.cbre.com/insights",
+          "find": "**半年报是免费的**，搜「Data Center Report」直接下载 PDF",
+          "cadence": "半年"
         },
         {
           "org": "datacenterHawk",
-          "channel": "付费"
+          "channel": "付费",
+          "url": "https://www.datacenterhawk.com/",
+          "find": "北美市场空置率与租金",
+          "cadence": "季度"
         },
         {
           "org": "DC Byte",
-          "channel": "付费"
+          "channel": "付费",
+          "url": "https://www.dcbyte.com/",
+          "find": "全球在建与投运容量数据库",
+          "cadence": "持续"
         },
         {
           "org": "Synergy Research",
-          "channel": "付费"
+          "channel": "付费",
+          "url": "https://www.srgresearch.com/",
+          "find": "超大规模厂 capex 与容量份额",
+          "cadence": "季度"
         },
         {
           "org": "Structure Research",
           "channel": "付费",
-          "note": "托管市场"
+          "note": "托管市场",
+          "url": "https://www.structureresearch.net/",
+          "find": "托管与互联市场",
+          "cadence": "年度"
         }
       ],
       "questions": [
@@ -58,15 +73,24 @@
         {
           "org": "Dell'Oro",
           "channel": "付费",
-          "note": "IT Capex 季报"
+          "note": "IT Capex 季报",
+          "url": "https://www.delloro.com/",
+          "find": "**本库均分最高的信源**：分客户段 capex 透视表",
+          "cadence": "季度"
         },
         {
           "org": "Synergy Research",
-          "channel": "付费"
+          "channel": "付费",
+          "url": "https://www.srgresearch.com/",
+          "find": "超大规模厂 capex 与容量份额",
+          "cadence": "季度"
         },
         {
           "org": "超大规模厂 10-K / 财报电话会",
-          "channel": "免费"
+          "channel": "免费",
+          "url": "https://www.sec.gov/edgar/search/",
+          "find": "搜公司名 → 选 10-K/10-Q，看 capex 与 property/equipment 段；财报电话会文字稿在各公司 IR 页",
+          "cadence": "季度/年度"
         }
       ],
       "questions": [
@@ -92,15 +116,24 @@
         {
           "org": "Dell'Oro",
           "channel": "付费",
-          "note": "分客户段 capex 透视表，均分 9.0"
+          "note": "分客户段 capex 透视表，均分 9.0",
+          "url": "https://www.delloro.com/",
+          "find": "**本库均分最高的信源**：分客户段 capex 透视表",
+          "cadence": "季度"
         },
         {
           "org": "Synergy Research",
-          "channel": "付费"
+          "channel": "付费",
+          "url": "https://www.srgresearch.com/",
+          "find": "超大规模厂 capex 与容量份额",
+          "cadence": "季度"
         },
         {
           "org": "OCP 峰会 AI Clusters 分轨",
-          "channel": "会议"
+          "channel": "会议",
+          "url": "https://www.opencompute.org/summit",
+          "find": "峰会后进 Presentations 页，按分轨批量下载 PDF（免登录）",
+          "cadence": "每年 2 次：Global 秋季、EMEA 春季"
         }
       ],
       "questions": [
@@ -124,28 +157,46 @@
       "beats": [
         {
           "org": "IEA",
-          "channel": "免费"
+          "channel": "免费",
+          "url": "https://www.iea.org/reports",
+          "find": "搜「Electricity」与「Data Centres」，取最新年度电力报告",
+          "cadence": "年度"
         },
         {
           "org": "EPRI",
-          "channel": "免费"
+          "channel": "免费",
+          "url": "https://www.epri.com/research",
+          "find": "站内搜「data center」「load growth」，取白皮书 PDF",
+          "cadence": "不定期"
         },
         {
           "org": "Grid Strategies",
           "channel": "免费",
-          "note": "并网排队"
+          "note": "并网排队",
+          "url": "https://gridstrategiesllc.com/insights/",
+          "find": "「Strategic Industries Surging」系列报告 PDF（并网排队与负荷增长）",
+          "cadence": "年度"
         },
         {
           "org": "Wood Mackenzie",
-          "channel": "付费"
+          "channel": "付费",
+          "url": "https://www.woodmac.com/",
+          "find": "电力与 PPA 市场",
+          "cadence": "持续"
         },
         {
           "org": "NERC / ISO 报告",
-          "channel": "免费"
+          "channel": "免费",
+          "url": "https://www.nerc.com/pa/RAPA/ra/Pages/default.aspx",
+          "find": "Long-Term Reliability Assessment（LTRA）年报 PDF",
+          "cadence": "年度，通常 12 月"
         },
         {
           "org": "OCP 800VDC / ORv3 分轨",
-          "channel": "会议"
+          "channel": "会议",
+          "url": "https://www.opencompute.org/summit",
+          "find": "峰会后进 Presentations 页，按分轨批量下载 PDF（免登录）",
+          "cadence": "每年 2 次：Global 秋季、EMEA 春季"
         }
       ],
       "questions": [
@@ -173,19 +224,31 @@
       "beats": [
         {
           "org": "JLL / CBRE / Cushman",
-          "channel": "免费"
+          "channel": "免费",
+          "url": "https://www.jll.com/en-us/insights ｜ https://www.cbre.com/insights",
+          "find": "**半年报是免费的**，搜「Data Center Report」直接下载 PDF",
+          "cadence": "半年"
         },
         {
           "org": "datacenterHawk",
-          "channel": "付费"
+          "channel": "付费",
+          "url": "https://www.datacenterhawk.com/",
+          "find": "北美市场空置率与租金",
+          "cadence": "季度"
         },
         {
           "org": "DC Byte",
-          "channel": "付费"
+          "channel": "付费",
+          "url": "https://www.dcbyte.com/",
+          "find": "全球在建与投运容量数据库",
+          "cadence": "持续"
         },
         {
           "org": "DCD / PTC",
-          "channel": "会议"
+          "channel": "会议",
+          "url": "https://www.datacenterdynamics.com/en/",
+          "find": "新闻与白皮书；注册可下载部分行业报告",
+          "cadence": "持续"
         }
       ],
       "questions": [
@@ -212,38 +275,62 @@
         {
           "org": "SemiAnalysis",
           "channel": "付费",
-          "note": "全库高分件最大单一来源，但边际收益下降，建议由买合集转为按主题挑"
+          "note": "全库高分件最大单一来源，但边际收益下降，建议由买合集转为按主题挑",
+          "url": "https://semianalysis.com/",
+          "find": "按主题挑，不再买合集（边际收益已下降）",
+          "cadence": "持续"
         },
         {
           "org": "TechInsights",
           "channel": "付费",
-          "note": "拆解与 DRAM 季报"
+          "note": "拆解与 DRAM 季报",
+          "url": "https://www.techinsights.com/",
+          "find": "芯片拆解与 DRAM 季报",
+          "cadence": "季度"
         },
         {
           "org": "Yole",
           "channel": "付费",
-          "note": "10 份出 8 份 ≥7，单份性价比最高"
+          "note": "10 份出 8 份 ≥7，单份性价比最高",
+          "url": "https://www.yolegroup.com/",
+          "find": "HBM 与 CPO 路线图",
+          "cadence": "年度"
         },
         {
           "org": "TrendForce / DRAMeXchange",
-          "channel": "付费"
+          "channel": "付费",
+          "url": "https://www.trendforce.com/",
+          "find": "存储与面板价格",
+          "cadence": "月度/季度"
         },
         {
           "org": "Forward Insights",
           "channel": "付费",
-          "note": "NAND 专门"
+          "note": "NAND 专门",
+          "url": "https://forward-insights.com/",
+          "find": "NAND 专门",
+          "cadence": "季度"
         },
         {
           "org": "Objective Analysis",
-          "channel": "付费"
+          "channel": "付费",
+          "url": "https://objective-analysis.com/",
+          "find": "存储市场周期",
+          "cadence": "不定期"
         },
         {
           "org": "Hot Chips / ISSCC / GTC",
-          "channel": "会议"
+          "channel": "会议",
+          "url": "https://hotchips.org/archives/",
+          "find": "历届 archive 免费公开，取芯片架构与功耗 slides",
+          "cadence": "年度，8 月"
         },
         {
           "org": "FMS / China FMS",
-          "channel": "会议"
+          "channel": "会议",
+          "url": "https://www.flashmemorysummit.com/",
+          "find": "闪存与存储实测",
+          "cadence": "年度，8 月"
         }
       ],
       "questions": [
@@ -272,26 +359,41 @@
         {
           "org": "LightCounting",
           "channel": "付费",
-          "note": "光模块专门，库内仍空白"
+          "note": "光模块专门，库内仍空白",
+          "url": "https://www.lightcounting.com/",
+          "find": "光模块季度出货与价格报告",
+          "cadence": "季度"
         },
         {
           "org": "Dell'Oro",
           "channel": "付费",
-          "note": "网络设备季报"
+          "note": "网络设备季报",
+          "url": "https://www.delloro.com/",
+          "find": "**本库均分最高的信源**：分客户段 capex 透视表",
+          "cadence": "季度"
         },
         {
           "org": "Yole",
           "channel": "付费",
-          "note": "CPO 路线图"
+          "note": "CPO 路线图",
+          "url": "https://www.yolegroup.com/",
+          "find": "HBM 与 CPO 路线图",
+          "cadence": "年度"
         },
         {
           "org": "OFC",
           "channel": "会议",
-          "note": "光通信顶会"
+          "note": "光通信顶会",
+          "url": "https://www.ofcconference.org/",
+          "find": "会后 Technical Program 与展商白皮书；光模块量价数据多在此首发",
+          "cadence": "年度，3 月"
         },
         {
           "org": "Hot Interconnects",
-          "channel": "会议"
+          "channel": "会议",
+          "url": "http://www.hoti.org/",
+          "find": "会议 program 与 slides",
+          "cadence": "年度"
         }
       ],
       "questions": [
@@ -318,30 +420,48 @@
         {
           "org": "Dell'Oro",
           "channel": "付费",
-          "note": "DC 物理基建季报"
+          "note": "DC 物理基建季报",
+          "url": "https://www.delloro.com/",
+          "find": "**本库均分最高的信源**：分客户段 capex 透视表",
+          "cadence": "季度"
         },
         {
           "org": "Omdia",
           "channel": "付费",
-          "note": "液冷追踪，库内空白"
+          "note": "液冷追踪，库内空白",
+          "url": "https://omdia.tech.informa.com/",
+          "find": "数据中心物理基建与液冷追踪",
+          "cadence": "季度"
         },
         {
           "org": "Uptime Institute",
           "channel": "付费",
-          "note": "库内空白"
+          "note": "库内空白",
+          "url": "https://uptimeinstitute.com/resources",
+          "find": "Global Data Center Survey 年度调研（部分摘要免费）",
+          "cadence": "年度"
         },
         {
           "org": "ASHRAE TC9.9",
-          "channel": "免费"
+          "channel": "免费",
+          "url": "https://tc0909.ashraetcs.org/",
+          "find": "Thermal Guidelines 与 Liquid Cooling 相关技术公告",
+          "cadence": "不定期"
         },
         {
           "org": "DCD 系列",
-          "channel": "会议"
+          "channel": "会议",
+          "url": "https://www.datacenterdynamics.com/en/",
+          "find": "新闻与白皮书；注册可下载部分行业报告",
+          "cadence": "持续"
         },
         {
           "org": "CDCC",
           "channel": "会议",
-          "note": "中国"
+          "note": "中国",
+          "url": "https://www.cdccp.cn/",
+          "find": "中国数据中心工作组的年度调研与白皮书",
+          "cadence": "年度"
         }
       ],
       "questions": [
@@ -367,24 +487,39 @@
       "beats": [
         {
           "org": "Dell'Oro",
-          "channel": "付费"
+          "channel": "付费",
+          "url": "https://www.delloro.com/",
+          "find": "**本库均分最高的信源**：分客户段 capex 透视表",
+          "cadence": "季度"
         },
         {
           "org": "Omdia",
-          "channel": "付费"
+          "channel": "付费",
+          "url": "https://omdia.tech.informa.com/",
+          "find": "数据中心物理基建与液冷追踪",
+          "cadence": "季度"
         },
         {
           "org": "Vertiv / Eaton / 施耐德 财报",
-          "channel": "免费"
+          "channel": "免费",
+          "url": "https://investors.vertiv.com/ ｜ https://www.eaton.com/us/en-us/company/investor-relations.html",
+          "find": "季报与电话会里的 backlog（在手订单）与 lead time 表述",
+          "cadence": "季度"
         },
         {
           "org": "LBNL",
           "channel": "免费",
-          "note": "美国 4.4% 口径即出自此"
+          "note": "美国 4.4% 口径即出自此",
+          "url": "https://eta.lbl.gov/publications",
+          "find": "搜「Data Center Energy Usage Report」，下载最新一版 PDF 全文",
+          "cadence": "不定期，约 2-4 年一版"
         },
         {
           "org": "FERC / EIA",
-          "channel": "免费"
+          "channel": "免费",
+          "url": "https://www.eia.gov/electricity/data.php",
+          "find": "Electric Power Monthly 与州级发电/电价表（Excel 可直接下载）",
+          "cadence": "月度"
         }
       ],
       "questions": [
@@ -411,17 +546,26 @@
         {
           "org": "中国工程项目档案",
           "channel": "一次性",
-          "note": "40 个项目档案，读完即止，不可持续"
+          "note": "40 个项目档案，读完即止，不可持续",
+          "url": "—（一次性存量，已在库内）",
+          "find": "不需外找；这批读完即止，不构成可持续跑口",
+          "cadence": "—"
         },
         {
           "org": "运营商集采公告",
           "channel": "免费",
-          "note": "唯一可持续的中国造价口径"
+          "note": "唯一可持续的中国造价口径",
+          "url": "中国移动 https://b2b.10086.cn/ ｜ 中国电信 https://caigou.chinatelecom.com.cn/ ｜ 中国联通 https://cbss.chinaunicom.cn/",
+          "find": "搜「服务器」「机柜」「智算」集采/招标公告，看规模与中标价",
+          "cadence": "持续，事件驱动"
         },
         {
           "org": "Uptime Institute",
           "channel": "付费",
-          "note": "运维人效与故障率"
+          "note": "运维人效与故障率",
+          "url": "https://uptimeinstitute.com/resources",
+          "find": "Global Data Center Survey 年度调研（部分摘要免费）",
+          "cadence": "年度"
         }
       ],
       "questions": [
@@ -449,37 +593,58 @@
         {
           "org": "中国信通院",
           "channel": "免费",
-          "note": "《算力中心创新融资研究报告》已证 8A：投资回收期 8-10 年、三项目银行贷款占比 70%/70%/49%"
+          "note": "《算力中心创新融资研究报告》已证 8A：投资回收期 8-10 年、三项目银行贷款占比 70%/70%/49%",
+          "url": "http://www.caict.ac.cn/kxyj/qwfb/bps/",
+          "find": "白皮书栏目，搜「算力」「数据中心」「智能算力」",
+          "cadence": "持续，每年多份"
         },
         {
           "org": "数据中心公募REITs 发行文件与定期报告",
           "channel": "免费",
-          "note": "南方万国 508060.SH、南方润泽 180901.SZ，2025-08-08 首批上市；**中国数据中心第一次证券化，过程数据只此一次**，交易所公开披露"
+          "note": "南方万国 508060.SH、南方润泽 180901.SZ，2025-08-08 首批上市；**中国数据中心第一次证券化，过程数据只此一次**，交易所公开披露",
+          "url": "深交所 https://www.szse.cn/ ｜ 上交所 https://www.sse.com.cn/",
+          "find": "搜代码 508060（南方万国）、180901（南方润泽）→ 招募说明书、季报、年报",
+          "cadence": "季度"
         },
         {
           "org": "算力ABS 募集说明书",
           "channel": "免费",
-          "note": "交易所公开披露，是 gpu_abs_spread 指标的唯一一手来源"
+          "note": "交易所公开披露，是 gpu_abs_spread 指标的唯一一手来源",
+          "url": "深交所/上交所 固定收益产品页",
+          "find": "搜「算力」「智算」相关 ABS，下载募集说明书看分层与利差",
+          "cadence": "事件驱动"
         },
         {
           "org": "Digital Realty / Equinix / 万国数据 财报与 supplemental",
           "channel": "免费",
-          "note": "每 MW 成交价与折旧口径的公开对照组"
+          "note": "每 MW 成交价与折旧口径的公开对照组",
+          "url": "https://investor.digitalrealty.com/ ｜ https://investor.equinix.com/ ｜ https://investors.gds-services.com/",
+          "find": "季报的 Supplemental / Operating Data 附表（含每 MW 指标与上架率）",
+          "cadence": "季度"
         },
         {
           "org": "Green Street",
           "channel": "付费",
-          "note": "美国 REIT 研究标杆，NAV 溢价口径的行业基准"
+          "note": "美国 REIT 研究标杆，NAV 溢价口径的行业基准",
+          "url": "https://www.greenstreet.com/",
+          "find": "美国 REIT 的 NAV 与估值口径",
+          "cadence": "持续"
         },
         {
           "org": "穆迪 / 标普 / 惠誉 数据中心行业评级报告",
           "channel": "付费",
-          "note": "杠杆与偿债口径"
+          "note": "杠杆与偿债口径",
+          "url": "各评级机构官网",
+          "find": "数据中心行业评级方法论与展望报告",
+          "cadence": "年度"
         },
         {
           "org": "PitchBook / Preqin",
           "channel": "付费",
-          "note": "neocloud 与基建基金融资轮次"
+          "note": "neocloud 与基建基金融资轮次",
+          "url": "https://pitchbook.com/ ｜ https://www.preqin.com/",
+          "find": "neocloud 与基建基金融资轮次",
+          "cadence": "持续"
         }
       ],
       "questions": [
@@ -513,16 +678,25 @@
       "beats": [
         {
           "org": "Epoch AI",
-          "channel": "免费"
+          "channel": "免费",
+          "url": "https://epoch.ai/data",
+          "find": "Data 栏目的算力与模型规模数据集，可直接下 CSV",
+          "cadence": "持续更新"
         },
         {
           "org": "Artificial Analysis",
           "channel": "免费",
-          "note": "价格基准"
+          "note": "价格基准",
+          "url": "https://artificialanalysis.ai/",
+          "find": "各模型 API 价格与吞吐基准，页面可直接抄表",
+          "cadence": "持续更新"
         },
         {
           "org": "OCP Market Impact 分轨",
-          "channel": "会议"
+          "channel": "会议",
+          "url": "https://www.opencompute.org/summit",
+          "find": "峰会后进 Presentations 页，按分轨批量下载 PDF（免登录）",
+          "cadence": "每年 2 次：Global 秋季、EMEA 春季"
         }
       ],
       "questions": [
@@ -547,12 +721,18 @@
         {
           "org": "SemiAnalysis",
           "channel": "付费",
-          "note": "GPU 云经济学与评级体系"
+          "note": "GPU 云经济学与评级体系",
+          "url": "https://semianalysis.com/",
+          "find": "按主题挑，不再买合集（边际收益已下降）",
+          "cadence": "持续"
         },
         {
           "org": "MLCommons / MLPerf",
           "channel": "免费",
-          "note": "库内空白"
+          "note": "库内空白",
+          "url": "https://mlcommons.org/benchmarks/",
+          "find": "MLPerf Training / Inference 每轮结果表（可下载 CSV）",
+          "cadence": "半年一轮"
         }
       ],
       "questions": [
@@ -581,29 +761,47 @@
         {
           "org": "信通院",
           "channel": "免费",
-          "note": "白皮书"
+          "note": "白皮书",
+          "url": "http://www.caict.ac.cn/kxyj/qwfb/bps/",
+          "find": "白皮书栏目，搜「算力」「数据中心」「智能算力」",
+          "cadence": "持续，每年多份"
         },
         {
           "org": "ODCC",
           "channel": "会议",
-          "note": "开放数据中心大会"
+          "note": "开放数据中心大会",
+          "url": "http://www.odcc.org.cn/",
+          "find": "开放数据中心大会的白皮书与技术规范（免费下载）",
+          "cadence": "年度，通常 9 月"
         },
         {
           "org": "CDCC",
-          "channel": "会议"
+          "channel": "会议",
+          "url": "https://www.cdccp.cn/",
+          "find": "中国数据中心工作组的年度调研与白皮书",
+          "cadence": "年度"
         },
         {
           "org": "运营商集采公告",
           "channel": "免费",
-          "note": "一手量价"
+          "note": "一手量价",
+          "url": "中国移动 https://b2b.10086.cn/ ｜ 中国电信 https://caigou.chinatelecom.com.cn/ ｜ 中国联通 https://cbss.chinaunicom.cn/",
+          "find": "搜「服务器」「机柜」「智算」集采/招标公告，看规模与中标价",
+          "cadence": "持续，事件驱动"
         },
         {
           "org": "IDC 中国",
-          "channel": "付费"
+          "channel": "付费",
+          "url": "https://www.idc.com/cn",
+          "find": "中国加速卡与 IDC 市场份额",
+          "cadence": "季度"
         },
         {
           "org": "赛迪 CCID",
-          "channel": "付费"
+          "channel": "付费",
+          "url": "https://www.ccidgroup.com/",
+          "find": "中国智算中心与算力产业报告",
+          "cadence": "不定期"
         }
       ],
       "questions": [
@@ -632,22 +830,34 @@
         {
           "org": "唱空方券商研报",
           "channel": "免费",
-          "note": "T3 BROKER 桶 1,052 份专为此用，库内已有"
+          "note": "T3 BROKER 桶 1,052 份专为此用，库内已有",
+          "url": "库内已有，不用外找",
+          "find": "打开 reports/reading_queue.md，筛 T3 BROKER 桶（1,052 份）里唱空/风险提示类",
+          "cadence": "—"
         },
         {
           "org": "BIS Entity List / 商务部管制公告",
           "channel": "免费",
-          "note": "出口管制事件的一手来源"
+          "note": "出口管制事件的一手来源",
+          "url": "https://www.bis.doc.gov/index.php/policy-guidance/lists-of-parties-of-concern",
+          "find": "Entity List 更新公告；中方对应查商务部网站「出口管制」栏目",
+          "cadence": "事件驱动，随时"
         },
         {
           "org": "IEA / EPRI 低情景",
           "channel": "免费",
-          "note": "官方机构自己给的下行情景，比券商唱空更难被质疑"
+          "note": "官方机构自己给的下行情景，比券商唱空更难被质疑",
+          "url": "https://www.iea.org/reports",
+          "find": "搜「Electricity」与「Data Centres」，取最新年度电力报告",
+          "cadence": "年度"
         },
         {
           "org": "知名空头持仓披露（13F）",
           "channel": "免费",
-          "note": "反面证据的市场侧信号"
+          "note": "反面证据的市场侧信号",
+          "url": "https://www.sec.gov/edgar/search/",
+          "find": "按机构名搜 13F-HR，看是否持有数据中心/算力相关标的",
+          "cadence": "季度"
         }
       ],
       "questions": [
