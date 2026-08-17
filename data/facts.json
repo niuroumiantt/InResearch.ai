@@ -1973,6 +1973,140 @@
       },
       "depth": "精读",
       "notes": "**政策奖励的资格线，不是实际达成率**。适用范围限东部节点（长三角/粤港澳）。配套：西部节点（内蒙/宁夏/甘肃）强制采用间接蒸发冷却（原文称 PUE 可降至 1.2 以下，如阿里张北方案）。**这条与液冷门槛一起说明中国的制冷政策是分区差异化的，不存在全国统一门槛。**region=CN，时点=2026-02。"
+    },
+    {
+      "fact_id": "optics-800g-shipment-2026e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-800g",
+        "label": "全球 800G 光模块市场"
+      },
+      "value": 4000.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "800G",
+        "shipment_basis": "未披露",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "bound": "point",
+      "as_of": "2026E",
+      "evidence": {
+        "source_id": "4bfb99b51b23",
+        "locator": "国信证券《数据中心互联技术专题四》(2025-08-24) 正文「我们测算明年全球800G光模块有望达4000万只，1.6T光模块有望超过700万只」",
+        "grade": "S4",
+        "originator": "国信证券（自测算）"
+      },
+      "depth": "精读",
+      "notes": "**三处必须带的口径**：①**速率所指对象＝单模块**（按「只」计数），**不是交换机端口速率**——同期 Dell'Oro 说的「2025 年 AI 后端网络端口大部分达 800Gbps」是端口口径，一个端口可由多模块聚合，两者不可互证或并列；②**出货口径未说明**（厂商出货／渠道提货／终端安装三者数量与时点均不同），原文只写「出货」，标 [未核]；③**时点是相对表述换算而来**——原文写「明年」，报告发布于 2025-08-24，故指 2026 年。**来源归属：这是国信证券自己的测算（「我们测算」），不是 LightCounting**——原文四个数并排、只在后三个标了机构名，极易误引。配套：1.6T 光模块超 700 万只（同一测算）。"
+    },
+    {
+      "fact_id": "optics-1600g-shipment-2026e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-1600g",
+        "label": "全球 1.6T 光模块市场"
+      },
+      "value": 700.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "1.6T",
+        "shipment_basis": "未披露",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "bound": "lower",
+      "as_of": "2026E",
+      "evidence": {
+        "source_id": "4bfb99b51b23",
+        "locator": "同上，「1.6T光模块有望超过700万只」",
+        "grade": "S4",
+        "originator": "国信证券（自测算）"
+      },
+      "depth": "精读",
+      "notes": "**原文「超过」，700 是下界不是点值**。口径同上一条：单模块计数、出货口径未说明、时点为「明年」换算的 2026 年、来源为国信证券自测算而非第三方。**注意：同报告指出 400G/800G 需求并未因 1.6T 推出而萎缩、反而持续景气，故不可用本值倒推 800G 的衰退。**"
+    },
+    {
+      "fact_id": "ai-backend-port-speed-2025e",
+      "metric_id": "switch_port_speed",
+      "entity": {
+        "type": "industry",
+        "id": "ai-backend-network",
+        "label": "AI 后端网络交换机端口"
+      },
+      "value": 800.0,
+      "unit": "Gbps",
+      "caliber": {
+        "stat": "主流值/众数",
+        "network_scope": "AI 后端网络",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "bound": "point",
+      "as_of": "2025E",
+      "evidence": {
+        "source_id": "26647836c113",
+        "locator": "申万宏源《锐捷网络（301165）》(2025-12-19) 正文「据Dell'Oro Group预测，2025年AI后端网络部署的交换机端口大部分将达到800 Gbps，到2027年将达1600 Gbps，到2030年将达到3200 Gbps」",
+        "grade": "S3",
+        "originator": "Dell'Oro Group"
+      },
+      "depth": "精读",
+      "notes": "**这是交换机端口速率，不是光模块速率——与「800G 光模块」是两个不同的东西。**一个端口可由多个模块或多通道聚合而成，**两者数量级与含义都不同，绝不可放进同一条时序或互相印证**。口径为「大部分将达到」即众数/主流值，非平均值。序列：2025 年 800Gbps → 2027 年 1600Gbps → 2030 年 3200Gbps。**Dell'Oro 预测值，非实测。**region=Global。"
+    },
+    {
+      "fact_id": "ethernet-ib-crossover-2027e",
+      "metric_id": "ethernet_ib_crossover_year",
+      "entity": {
+        "type": "industry",
+        "id": "ai-backend-network",
+        "label": "AI 后端网络（全球）"
+      },
+      "value": 2027.0,
+      "unit": "年",
+      "caliber": {
+        "network_scope": "AI 后端网络",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "bound": "point",
+      "as_of": "2027E",
+      "evidence": {
+        "source_id": "26647836c113",
+        "locator": "申万宏源同上报告正文「Dell'Oro Group预测以太网在AI后端网络中的市场份额将在2027年超越InfiniBand；英伟达24年起亦开始销售以太网交换芯片/交换机，基于英伟达GPU的大型集群（如xAI的Colossus）也选择了以太网进行部署」",
+        "grade": "S3",
+        "originator": "Dell'Oro Group"
+      },
+      "depth": "精读",
+      "notes": "**这是交叉点年份，不是份额百分比**——原文只给交叉时点、未给具体占比，故无法为 ethernet_ai_share 填数值，只能记交叉年份。**Dell'Oro 预测值非实测。**口径限定为「AI 后端网络」（back-end network），**不含前端网络与通用数据中心网络**。行为证据（比预测更硬）：英伟达自 2024 年起自己也销售以太网交换芯片/交换机；基于英伟达 GPU 的 xAI Colossus 集群选择以太网部署。region=Global。"
+    },
+    {
+      "fact_id": "na-hyperscaler-capex-2025",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "industry",
+        "id": "na-hyperscalers",
+        "label": "北美四大云厂商（合计）"
+      },
+      "value": 3610.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "北美四家",
+        "basis": "实测",
+        "region": "US"
+      },
+      "bound": "point",
+      "as_of": "2025",
+      "evidence": {
+        "source_id": "4bfb99b51b23",
+        "locator": "国信证券同上报告正文「Meta四家厂商合计Capex增至3610亿美元，同比增幅超58%；国内字节、腾讯、阿里Capex有望超过3600亿元」",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "notes": "**同比增幅「超58%」，58 是下界**。**注意单位陷阱：北美四家是「亿美元」、国内三家是「亿元人民币」，两个 3600 量级的数看着接近，实际差约 7 倍汇率**，原文并排书写极易误读。口径为四家合计的公司整体 Capex，**含非数据中心投入**。配套：2025Q1 阿里资本开支增长 126.7%、腾讯同比增长 91%。"
     }
   ]
 }
