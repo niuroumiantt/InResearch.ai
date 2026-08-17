@@ -29,3 +29,13 @@ docs/inbox/project_registry/*
 docs/inbox/needs_password/*
 !docs/inbox/needs_password/README.md
 !docs/inbox/needs_password/*.csv
+
+# 成员投递口（团队化）：只放行结构化投递单与说明，**材料本体不进 git**
+# （二进制不进 git 的铁律不变；材料留在投递人本地或对象存储，投递单里给文件名）
+!docs/inbox/submissions/
+docs/inbox/submissions/*
+!docs/inbox/submissions/README.md
+!docs/inbox/submissions/*/
+docs/inbox/submissions/*/*
+!docs/inbox/submissions/*/submission.json
+!docs/inbox/submissions/*/notes.md

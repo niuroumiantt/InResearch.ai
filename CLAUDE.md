@@ -33,6 +33,8 @@
 - 知识层 research/Mxx.md 是项目主体；改数据必须过 `python3 pipeline/validate.py`（0 warnings 才算过）。
 - 零依赖：纯 Python 标准库，前端单文件 HTML，不引入 npm/pip 依赖；第三方库本地化到 assets/vendor。
 - 二进制不进 git；研报库只进索引和打分表。
+- **数据只留不删**（2026-08-17 用户拍板）：所有材料都有用，高敏感一手数据是校验外部信息的**内部基线**。
+- **对外三条**：实体与项目名照实不隐瞒；涉及钱财只给区间不给精确值并标明数据年份；不得原文直接外发。
 
 ## 常用命令
 
@@ -43,6 +45,8 @@ python3 pipeline/reading_queue.py  # 精读队列（该读什么文献）
 python3 pipeline/workorder.py      # 工单队列（每个模块下一步该做什么；= 声明 − 现状）
 python3 pipeline/blindspot.py      # 盲区体检（库里有但分类器看不见的材料）
 python3 pipeline/facts.py          # 事实层校验 + 可比性判定（口径不同的数拒绝并列）
+python3 pipeline/facts.py --public # 对外口径预览（实名照旧、金额转区间、标明是哪年的老数据）
+python3 pipeline/intake.py         # 成员投递机检与三档分流
 python3 -m http.server 8000     # 本地看仪表盘
 ```
 
