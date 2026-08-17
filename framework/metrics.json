@@ -2578,6 +2578,366 @@
         }
       ],
       "note": "电价是数据中心 OPEX 的第一项，但优惠价与目录价差异极大，**口径不写清就没有使用价值**。"
+    },
+    {
+      "metric_id": "domestic_ai_chip_share_value",
+      "name": "中国 AI 芯片国产化率（按金额）",
+      "unit": "%",
+      "module": "M14",
+      "caliber_dims": [
+        {
+          "id": "basis",
+          "name": "数值性质",
+          "values": [
+            "实测",
+            "测算",
+            "预测",
+            "模型假设"
+          ],
+          "note": "**测算/预测/假设不是实测**，混在一起就分不清哪个是发生过的事。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "**分母是市场规模（按金额），不是出货颗数。** 国产芯片 ASP 显著偏低，按颗数算出的国产化率会明显高于按金额——两个口径是两个指标，见 domestic_ai_chip_share_units（已声明，暂无数值）。"
+    },
+    {
+      "metric_id": "domestic_ai_chip_share_units",
+      "name": "中国 AI 芯片国产化率（按颗数）",
+      "unit": "%",
+      "module": "M14",
+      "caliber_dims": [
+        {
+          "id": "basis",
+          "name": "数值性质",
+          "values": [
+            "实测",
+            "测算",
+            "预测",
+            "模型假设"
+          ],
+          "note": "**测算/预测/假设不是实测**，混在一起就分不清哪个是发生过的事。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "按出货颗数的口径，**目前全库无数值**——留白是纪律，不许拿金额口径的数换算。"
+    },
+    {
+      "metric_id": "cn_ai_chip_demand",
+      "name": "中国 AI 芯片需求规模",
+      "unit": "亿美元",
+      "module": "M14",
+      "caliber_dims": [
+        {
+          "id": "scenario",
+          "name": "情景",
+          "values": [
+            "禁令前基准",
+            "禁令后实际",
+            "解禁情景"
+          ],
+          "note": "**情景基准不是实际发生值。** 报告在比较禁令/解禁两种情景，不带情景标签引用就会把预测当实况。"
+        },
+        {
+          "id": "basis",
+          "name": "数值性质",
+          "values": [
+            "实测",
+            "测算",
+            "预测",
+            "模型假设"
+          ],
+          "note": "**测算/预测/假设不是实测**，混在一起就分不清哪个是发生过的事。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "配套：报告估计 H20 禁令使 2025 年销售额减少约 168 亿美元。",
+      "public_band": {
+        "step": 50
+      }
+    },
+    {
+      "metric_id": "top4_h20_purchase_share",
+      "name": "四大互联网厂商占 H20 采购比例",
+      "unit": "%",
+      "module": "M14",
+      "caliber_dims": [
+        {
+          "id": "scope",
+          "name": "分母范围",
+          "values": [
+            "单一型号需求",
+            "中国全部 AI 芯片需求"
+          ],
+          "note": "**占 H20 单一型号 ≠ 占中国全部 AI 芯片需求**，分母差很多。"
+        },
+        {
+          "id": "method",
+          "name": "来源方法",
+          "values": [
+            "渠道调查",
+            "官方披露",
+            "财报推算"
+          ],
+          "note": "渠道调查未披露样本量与方法，等级不高于 S4。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ]
+    },
+    {
+      "metric_id": "chip_asp_discount",
+      "name": "芯片 ASP 相对对标型号的折让",
+      "unit": "%",
+      "module": "M14",
+      "caliber_dims": [
+        {
+          "id": "basis",
+          "name": "数值性质",
+          "values": [
+            "实测",
+            "测算",
+            "预测",
+            "模型假设"
+          ],
+          "note": "**测算/预测/假设不是实测**，混在一起就分不清哪个是发生过的事。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "B30 对 H20 折让约 50%、规格更低但 **ROI 相近**——**这条说明中国买方按 ROI 而非绝对性能决策**，比单看性能差距更能预测采购行为。"
+    },
+    {
+      "metric_id": "power_system_operation_fee",
+      "name": "电力系统运行费",
+      "unit": "元/kWh",
+      "module": "M14",
+      "caliber_dims": [
+        {
+          "id": "scope",
+          "name": "统计范围",
+          "values": [
+            "全国均值",
+            "分省"
+          ],
+          "note": "全国均值，各省差异未披露。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "**这是绿电直连政策力度的代理变量**：1192 号文规定自发自用电量暂免缴系统运行费，**费率越高、免征的经济价值越大**。一年内 0.027 → 0.067（+146%），力度同步放大；**退坡风险读同一个变量**——费率回落或免征调整，力度即衰减。注意它只是工商业电价五个构成之一，**不是全部电价**。"
+    },
+    {
+      "metric_id": "green_direct_dc_share",
+      "name": "数据中心占绿电直连项目比例",
+      "unit": "%",
+      "module": "M14",
+      "caliber_dims": [
+        {
+          "id": "denominator",
+          "name": "分母",
+          "values": [
+            "绿电直连项目装机",
+            "数据中心总量"
+          ],
+          "note": "分母是绿电直连项目，**不是数据中心总量**。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "同口径下绿色燃料 19%、冶金 17%、化工/新材料 16%。**688 号文（2026-05-20）已明确「优先向算力中心倾斜」，故该值是政策倾斜生效前的存量结构，预期上升。**"
+    },
+    {
+      "metric_id": "green_direct_capacity",
+      "name": "绿电直连已审批项目新能源装机规模",
+      "unit": "GW",
+      "module": "M14",
+      "caliber_dims": [
+        {
+          "id": "stat_basis",
+          "name": "统计口径",
+          "values": [
+            "对应新能源总装机",
+            "不完全统计合计"
+          ],
+          "note": "**同一份报告两处口径冲突**：99 个项目对 34.05GW、100 个项目对 26.11GW，项目数增而装机降。原文未说明差异，两处都标 [未核]，**引用任一必须注明出处段落与统计时点**。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ]
+    },
+    {
+      "metric_id": "green_direct_locked_price",
+      "name": "绿电直连锁定电价",
+      "unit": "元/kWh",
+      "module": "M14",
+      "caliber_dims": [
+        {
+          "id": "basis",
+          "name": "数值性质",
+          "values": [
+            "实测",
+            "测算",
+            "预测",
+            "模型假设"
+          ],
+          "note": "**测算/预测/假设不是实测**，混在一起就分不清哪个是发生过的事。"
+        },
+        {
+          "id": "region_case",
+          "name": "情景地域",
+          "values": [
+            "内蒙古",
+            "其他",
+            "未指明"
+          ]
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "**测算值不是实际执行电价**（基于内蒙古情景、年利用 2200 小时、配电网造价上浮 10% 的假设）。与同报告盈利模型里的「外购电价 0.32 元/kWh」是两个数，**不可混用**。"
+    },
+    {
+      "metric_id": "green_direct_self_use_power",
+      "name": "绿电直连项目年自发自用电量",
+      "unit": "亿千瓦时",
+      "module": "M14",
+      "caliber_dims": [
+        {
+          "id": "scope",
+          "name": "统计范围",
+          "values": [
+            "单项目",
+            "区域合计",
+            "全国"
+          ],
+          "note": "单一标杆项目非行业口径。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ]
+    },
+    {
+      "metric_id": "model_assumed_occupancy",
+      "name": "券商模型假设的上架率",
+      "unit": "%",
+      "module": "M15",
+      "caliber_dims": [
+        {
+          "id": "model_source",
+          "name": "模型出处",
+          "values": [
+            "券商",
+            "厂商",
+            "第三方咨询",
+            "自建"
+          ]
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "**这是「模型假设了什么」，不是「实际是什么」——故意与 dc_occupancy_rate（实测）用不同的 metric_id，两者永远不会被并列。** 收录假设值是为了给 M15 做压力测试：券商模型假设 90%，而信通院实测 2023 年底全国 66.7%，**该模型属乐观情景，其推出的 IRR 与回收期应据此打折**。乐观假设混进实测序列是最隐蔽的一类污染——它看起来就是一个正常的数。"
     }
   ]
 }
