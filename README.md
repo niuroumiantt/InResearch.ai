@@ -39,7 +39,10 @@ L0 数据层   data/ — 六张实体表（项目/公司/价格/政策/合同/�
 | `data/schema/*.schema.json` | L0 | 六张表的字段定义与约束 |
 | `data/projects.json` 等 | L0 | 实体数据（含种子数据，`verified` 标注核验状态） |
 | `data/raw/` | L0 | 原始文献/公告存档（不进 git 的大文件另存） |
-| `pipeline/` | 采集 | 零依赖抓取与校验脚本（EDGAR 等） |
+| `pipeline/` | 采集与队列 | 零依赖脚本：抓取、校验、四个队列（核验/精读/工单/盲区）、事实层、投递机检 |
+| `framework/modules.json` | L1 声明 | **模块是声明不是代码**：要回答什么问题、由哪些信源跑口供养、关键词 |
+| `framework/metrics.json` | L1 声明 | 指标定义与**口径维度**——可比性判定的唯一依据 |
+| `data/facts.json` | L0 事实层 | **core**：原子是「一个事实」= 指标 × 口径 × 时点 × 出处 |
 | `reports/` | L3 | 输出模板与生成结果 |
 | `docs/inbox/` | 投递口 | **有材料放这里**（Word/PDF/CAD/Excel 均可，不用分类改名），后台"扫描收件箱"按钮出清单，Claude 归类登记 |
 | `docs/source/` | 存档 | 本项目自产文档（Q&A 报告、台账等原件） |
@@ -67,14 +70,34 @@ L0 数据层   data/ — 六张实体表（项目/公司/价格/政策/合同/�
 
 ## 本地运行
 
+**四个队列脚本 = 四个「今天该干什么」的入口**，都是生成物，不手写：
+
 ```bash
-python3 pipeline/verify.py          # 生成核验队列：今天该查什么（核验工作的固定入口）
-python3 pipeline/reading_queue.py   # 生成精读队列：这周该读什么（已打分−已消化）
-python3 pipeline/validate.py        # 校验所有数据文件（schema + 口径规则 + 保鲜度）
-python3 pipeline/fetch_sec.py       # 拉取跟踪公司的最新 SEC 文件列表
-python3 pipeline/fetch_news_signals.py  # 从 news 项目匹配实体相关新闻线索
-python3 -m http.server 8000         # 打开 http://localhost:8000 看仪表盘
+python3 pipeline/verify.py          # 核验队列：哪些结论该复核了（按触发器）
+python3 pipeline/reading_queue.py   # 精读队列：这周该读什么（已打分 − 已消化）
+python3 pipeline/workorder.py       # 工单队列：每个模块下一步该做什么（= 声明 − 现状）
+python3 pipeline/blindspot.py       # 盲区体检：库里有、但分类器看不见的材料
 ```
+
+数据与投递：
+
+```bash
+python3 pipeline/validate.py        # 校验所有数据文件（schema + 口径规则 + 保鲜度）
+python3 pipeline/facts.py           # 事实层校验 + 可比性判定（口径不同的数拒绝并列）
+python3 pipeline/facts.py --public  # 对外口径预览（实名照旧、金额转区间、标明数据年份）
+python3 pipeline/intake.py          # 成员投递机检与三档分流
+python3 pipeline/intake.py --accept # 把过检的 B/C 档写成批次 CSV 走既有合并流程
+```
+
+采集与站点：
+
+```bash
+python3 pipeline/fetch_sec.py       # 拉取跟踪公司的最新 SEC 文件列表（须本机跑，云端被屏蔽）
+python3 pipeline/fetch_news_signals.py  # 从 news 项目匹配实体相关新闻线索
+python3 pipeline/serve.py           # 站点 + 管理 API（含派工 /api/assign）；launchd 已常驻
+```
+
+页面：`index.html` 仪表盘 ｜ `team.html` 团队看板与派工 ｜ `bom3d.html` 爆炸图 ｜ `doc.html` 文档与打分表浏览
 
 核验闭环：`verify.py 出队列 → 人工按链接核对 → 改数据/更新 verified_date → validate.py 把关 → commit 留痕`。
 详见 [pipeline/README.md](pipeline/README.md)。
@@ -95,10 +118,15 @@ python3 -m http.server 8000         # 打开 http://localhost:8000 看仪表盘
 - [x] 第三阶段半：知识运转机制——核验队列（verify.py）+ 精读队列（reading_queue.py）
       双入口；9 分文献 8/8 消化；决策日志（docs/DECISIONS.md）防会话失忆
 - [x] 第三阶段末：**研报库全库通读完结**（2026-08-16）——28,759 份触达率 100%，
-      打分表 4,954 行（新增 depth 阅读深度口径：精读 1,190 / 据实生成 350 /
-      半自动 2,541 / 目录级 873，四者永不混引）；知识层 131 条 Finding；
       完结报告见 `docs/LIBRARY_REPORT.md`（含重构后的 orgchart、分类标准全文、
       信源价值榜与各模块「接下来怎么用」）
+- [x] 第四阶段前置件（2026-08-17）：**声明式架构 + 事实层 + 团队化管线**
+      - 模块是声明，**工单 = 声明 − 现状**，由 `workorder.py` 生成，任何人不手写
+      - **事实层**（`metrics.json` + `facts.json` + `facts.py`）：原子从「一份文件」
+        变成「一个事实」；口径维度按指标声明，**口径不同的数拒绝并列**
+      - 阅读深度五档（精读/据实生成/半自动/目录级/成员精读）**永不混引**
+      - 投递契约 + 三档分流 + 派工看板（`team.html` + `/api/assign`）
+      - 盲区体检：找「库里有、但分类器看不见」的材料
 - [ ] 第四阶段：team work 化——按模块分工给不同负责人，PR 提交 → 用户 merge 进 core
       （CODEOWNERS 已铺底，待人员到位与分支协作规范细化）
 - [ ] 第四阶段半：全库通读的三个尾巴——151 份图片型 PDF 走视觉读；
