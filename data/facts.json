@@ -28,7 +28,8 @@
       "depth": "据实生成",
       "derived": false,
       "sensitive": true,
-      "notes": "12 份《单位工程最高投标限价汇总表》(D.3) 独立加总 79,483,818.90 元，与封面分文不差。不含 IT 设备与 UPS/柴发/冷机等机电主设备。"
+      "notes": "12 份《单位工程最高投标限价汇总表》(D.3) 独立加总 79,483,818.90 元，与封面分文不差。不含 IT 设备与 UPS/柴发/冷机等机电主设备。",
+      "bound": "point"
     },
     {
       "fact_id": "luan-ct-cost-shell-2022",
@@ -58,7 +59,8 @@
       ],
       "derivation": "施工总包 79,483,818.90 元剥离室外（园林 5,109,668.11 + 大型土石方 4,962,327.12 + 室外市政给排水 1,617,277.73 + 室外电气 386,468.68 = 12,075,741.64，占 15.2%）后 67,408,077.26 元，÷18,040 ㎡",
       "sensitive": true,
-      "notes": "剥室外是为了与 M10-F14 的广州本体口径对齐——不剥不可比。"
+      "notes": "剥室外是为了与 M10-F14 的广州本体口径对齐——不剥不可比。",
+      "bound": "point"
     },
     {
       "fact_id": "cmcc-gba-cost-shell-2022",
@@ -84,7 +86,8 @@
       "depth": "据实生成",
       "derived": false,
       "sensitive": true,
-      "notes": "见 M10-F14。土建 68.0% / 安装 20.7% / 室外 10.0%。"
+      "notes": "见 M10-F14。土建 68.0% / 安装 20.7% / 室外 10.0%。",
+      "bound": "point"
     },
     {
       "fact_id": "wuhu-unicom-invest-rack-2023",
@@ -111,7 +114,8 @@
       "derived": true,
       "derivation": "总投资 60 亿元 ÷ 10,000 架",
       "sensitive": false,
-      "notes": "**这条存在的意义之一是当反例**：它与上面三条差着一个数量级的内涵（含 IT 设备的项目总投资 vs 施工总包），metric_id 都不同，系统必须拒绝把它们并列。"
+      "notes": "**这条存在的意义之一是当反例**：它与上面三条差着一个数量级的内涵（含 IT 设备的项目总投资 vs 施工总包），metric_id 都不同，系统必须拒绝把它们并列。",
+      "bound": "point"
     },
     {
       "fact_id": "reit-runze-occupancy-2025",
@@ -136,7 +140,8 @@
       "depth": "精读",
       "derived": false,
       "sensitive": false,
-      "notes": "单个成熟 IDC 项目（廊坊润泽）2022-2025Q1 实际上架率，原文「超过99%」取下界。**不是行业均值**——同期廊坊市 IDC 市场整体上架率 81.3%、周边竞品 74%~85%。评估机构预期未来维持 95%~99%（剔除改造影响）。地域=中国河北廊坊。"
+      "notes": "单个成熟 IDC 项目（廊坊润泽）2022-2025Q1 实际上架率，原文「超过99%」取下界。**不是行业均值**——同期廊坊市 IDC 市场整体上架率 81.3%、周边竞品 74%~85%。评估机构预期未来维持 95%~99%（剔除改造影响）。地域=中国河北廊坊。",
+      "bound": "lower"
     },
     {
       "fact_id": "langfang-market-occupancy-2025",
@@ -161,7 +166,8 @@
       "depth": "精读",
       "derived": false,
       "sensitive": false,
-      "notes": "**区域市场口径**，非单项目。与上一条 99% 配对使用：两者差 17.7 个百分点，说明头部项目上架率不能代表区域平均。时点=2025Q1，地域=中国河北廊坊。"
+      "notes": "**区域市场口径**，非单项目。与上一条 99% 配对使用：两者差 17.7 个百分点，说明头部项目上架率不能代表区域平均。时点=2025Q1，地域=中国河北廊坊。",
+      "bound": "point"
     },
     {
       "fact_id": "runze-colo-price-2025",
@@ -187,7 +193,8 @@
       "depth": "精读",
       "derived": false,
       "sensitive": false,
-      "notes": "**按功率计价（元/月/kW）而非按机柜计价**，两种口径不可互换。合同期 2020-2034 固定单价、2035 年起预测年增 1%。高功率机柜约 1,149 元/月/kW。单一大客户长约，**不代表零售托管市场价**。地域=中国河北廊坊。"
+      "notes": "**按功率计价（元/月/kW）而非按机柜计价**，两种口径不可互换。合同期 2020-2034 固定单价、2035 年起预测年增 1%。高功率机柜约 1,149 元/月/kW。单一大客户长约，**不代表零售托管市场价**。地域=中国河北廊坊。",
+      "bound": "point"
     },
     {
       "fact_id": "runze-power-cost-share-2024",
@@ -212,7 +219,8 @@
       "depth": "精读",
       "derived": false,
       "sensitive": false,
-      "notes": "**营收口径的电费占比，不是成本口径**。序列 2022=40.75、2023=38.93、2024=42.75、2025Q1=39.79。受当地电价与上架率共同影响，**不同电价区不可平移**。地域=中国河北廊坊。"
+      "notes": "**营收口径的电费占比，不是成本口径**。序列 2022=40.75、2023=38.93、2024=42.75、2025Q1=39.79。受当地电价与上架率共同影响，**不同电价区不可平移**。地域=中国河北廊坊。",
+      "bound": "point"
     },
     {
       "fact_id": "runze-reit-price-2025",
@@ -237,7 +245,8 @@
       "depth": "精读",
       "derived": false,
       "sensitive": false,
-      "notes": "**最终定价**，位于询价区间 3.020~4.531 元/份上沿（顶格定价）。对应实募约 45 亿元；申万宏源同期载明**拟募集 37.75 亿元**为定价前口径，**引用募集规模必须标明拟募还是实募**。地域=中国。"
+      "notes": "**最终定价**，位于询价区间 3.020~4.531 元/份上沿（顶格定价）。对应实募约 45 亿元；申万宏源同期载明**拟募集 37.75 亿元**为定价前口径，**引用募集规模必须标明拟募还是实募**。地域=中国。",
+      "bound": "point"
     },
     {
       "fact_id": "gds-reit-subscription-2025",
@@ -262,7 +271,8 @@
       "depth": "精读",
       "derived": false,
       "sensitive": false,
-      "notes": "**公众发售阶段**口径，与询价（网下机构）阶段的认购倍数不同、不可混用。同批南方润泽为 317.95 倍。受发售规模与打新资金面共同影响，**不宜单独当作资产质量指标**。地域=中国。"
+      "notes": "**公众发售阶段**口径，与询价（网下机构）阶段的认购倍数不同、不可混用。同批南方润泽为 317.95 倍。受发售规模与打新资金面共同影响，**不宜单独当作资产质量指标**。地域=中国。",
+      "bound": "point"
     },
     {
       "fact_id": "dc-reit-yield-2025",
@@ -287,7 +297,8 @@
       "depth": "精读",
       "derived": false,
       "sensitive": false,
-      "notes": "**发行时预测值而非实现值**。2025=7.71%、2026=6.42%（逐年下降）。配套估值折现率 7.75%。分派率依赖可供分配金额假设，与上架率、电价、续约率强相关。地域=中国。"
+      "notes": "**发行时预测值而非实现值**。2025=7.71%、2026=6.42%（逐年下降）。配套估值折现率 7.75%。分派率依赖可供分配金额假设，与上架率、电价、续约率强相关。地域=中国。",
+      "bound": "point"
     },
     {
       "fact_id": "cn-dc-payback-2025",
@@ -312,7 +323,8 @@
       "depth": "精读",
       "derived": false,
       "sensitive": false,
-      "notes": "**区间值而非点值**。前提是设备寿命 5-50 年、需随技术迭代追加投入。**项目层口径，未说明是否含财务费用、是否税后**。地域=中国，时点=2025-08。"
+      "notes": "**区间值而非点值**。前提是设备寿命 5-50 年、需随技术迭代追加投入。**项目层口径，未说明是否含财务费用、是否税后**。地域=中国，时点=2025-08。",
+      "bound": "point"
     },
     {
       "fact_id": "cn-dc-loan-share-2025",
@@ -337,7 +349,8 @@
       "depth": "精读",
       "derived": false,
       "sensitive": false,
-      "notes": "**样本值不是行业均值**——第三个样本北京通州区人工智能智算中心（总投资43亿、自筹22亿、贷款21亿）为 49%。**三例均为「计划投资/拟投入」口径，不是实际放款**。地域=中国，时点=2025-08。"
+      "notes": "**样本值不是行业均值**——第三个样本北京通州区人工智能智算中心（总投资43亿、自筹22亿、贷款21亿）为 49%。**三例均为「计划投资/拟投入」口径，不是实际放款**。地域=中国，时点=2025-08。",
+      "bound": "point"
     },
     {
       "fact_id": "cn-rack-total-2025",
@@ -362,7 +375,8 @@
       "depth": "精读",
       "derived": false,
       "sensitive": false,
-      "notes": "**「标准机架」是折算口径，与「机柜数」不可直接互换**。配套智能算力 788 EFLOPS 为 **FP16 精度口径**，换精度不可比。时点=2025-06 底，地域=中国大陆。"
+      "notes": "**「标准机架」是折算口径，与「机柜数」不可直接互换**。配套智能算力 788 EFLOPS 为 **FP16 精度口径**，换精度不可比。时点=2025-06 底，地域=中国大陆。",
+      "bound": "point"
     },
     {
       "fact_id": "h100-spot-2023",
@@ -388,7 +402,8 @@
       "depth": "精读",
       "derived": false,
       "sensitive": false,
-      "notes": "短缺期峰值。与 2025 末 $1.96 同口径可比，三年降约 75%。"
+      "notes": "短缺期峰值。与 2025 末 $1.96 同口径可比，三年降约 75%。",
+      "bound": "point"
     },
     {
       "fact_id": "h100-spot-2024",
@@ -414,7 +429,8 @@
       "depth": "精读",
       "derived": false,
       "sensitive": false,
-      "notes": ""
+      "notes": "",
+      "bound": "point"
     },
     {
       "fact_id": "h100-spot-2025",
@@ -440,7 +456,8 @@
       "depth": "精读",
       "derived": false,
       "sensitive": false,
-      "notes": "降价主因是代际替代（B200 溢价 2-3 倍）而非需求崩塌。"
+      "notes": "降价主因是代际替代（B200 溢价 2-3 倍）而非需求崩塌。",
+      "bound": "point"
     },
     {
       "fact_id": "b200-spot-2026",
@@ -466,7 +483,8 @@
       "depth": "精读",
       "derived": false,
       "sensitive": false,
-      "notes": "同期 B200 on-demand 约 $4.50-7.00，本条取现货低位。"
+      "notes": "同期 B200 on-demand 约 $4.50-7.00，本条取现货低位。",
+      "bound": "point"
     },
     {
       "fact_id": "h100-term-2025",
@@ -492,7 +510,8 @@
       "depth": "精读",
       "derived": false,
       "sensitive": false,
-      "notes": "**低于同期现货 = 正常期限结构**；若出现现货低于长约的倒挂，才是 M13-F1 判别框架里的恐慌信号。"
+      "notes": "**低于同期现货 = 正常期限结构**；若出现现货低于长约的倒挂，才是 M13-F1 判别框架里的恐慌信号。",
+      "bound": "point"
     },
     {
       "fact_id": "gpt56-in-2026",
@@ -518,7 +537,8 @@
       "depth": "精读",
       "derived": false,
       "sensitive": false,
-      "notes": ""
+      "notes": "",
+      "bound": "point"
     },
     {
       "fact_id": "gpt56-out-2026",
@@ -544,7 +564,8 @@
       "depth": "精读",
       "derived": false,
       "sensitive": false,
-      "notes": ""
+      "notes": "",
+      "bound": "point"
     },
     {
       "fact_id": "fable5-out-2026",
@@ -570,7 +591,8 @@
       "depth": "精读",
       "derived": false,
       "sensitive": false,
-      "notes": ""
+      "notes": "",
+      "bound": "point"
     },
     {
       "fact_id": "gemini31-out-2026",
@@ -596,7 +618,8 @@
       "depth": "精读",
       "derived": false,
       "sensitive": false,
-      "notes": "Preview 定价，GA 时可能调整。"
+      "notes": "Preview 定价，GA 时可能调整。",
+      "bound": "point"
     },
     {
       "fact_id": "opus47-blended-2026",
@@ -622,7 +645,8 @@
       "depth": "精读",
       "derived": false,
       "sensitive": false,
-      "notes": "**这条存在的意义是当对照**：agent 任务输入/输出比约 300:1、缓存命中 90%+，绝大多数 tokens 落在 $0.50/M 缓存读取档。与上面的标准牌价**口径不同不可并列**——牌价 ≠ 实现价格，这是 M12 最容易出错的地方。"
+      "notes": "**这条存在的意义是当对照**：agent 任务输入/输出比约 300:1、缓存命中 90%+，绝大多数 tokens 落在 $0.50/M 缓存读取档。与上面的标准牌价**口径不同不可并列**——牌价 ≠ 实现价格，这是 M12 最容易出错的地方。",
+      "bound": "point"
     },
     {
       "fact_id": "rack-air-legacy-2026",
@@ -649,7 +673,8 @@
       "depth": "精读",
       "derived": false,
       "sensitive": false,
-      "notes": "原文为 5–10kW 区间，**取下界**（沿用本项目「区间取下界并注明」的惯例）。"
+      "notes": "原文为 5–10kW 区间，**取下界**（沿用本项目「区间取下界并注明」的惯例）。",
+      "bound": "lower"
     },
     {
       "fact_id": "rack-nvl72-2026",
@@ -676,7 +701,8 @@
       "depth": "精读",
       "derived": false,
       "sensitive": false,
-      "notes": "原文 120–140kW，**取下界**。与上一条传统风冷 5kW **差一个数量级**，靠 rack_type 维度隔开——这两个数放进同一个「机柜功率密度」序列会得出荒谬的均值。"
+      "notes": "原文 120–140kW，**取下界**。与上一条传统风冷 5kW **差一个数量级**，靠 rack_type 维度隔开——这两个数放进同一个「机柜功率密度」序列会得出荒谬的均值。",
+      "bound": "lower"
     },
     {
       "fact_id": "bloom-equinix-operational-2026",
@@ -702,7 +728,8 @@
       "depth": "精读",
       "derived": false,
       "sensitive": false,
-      "notes": "**只有这 75MW 计入当期供给**；另 30MW 在建（L6）不计——status 维度就是为挡这个而设。"
+      "notes": "**只有这 75MW 计入当期供给**；另 30MW 在建（L6）不计——status 维度就是为挡这个而设。",
+      "bound": "point"
     },
     {
       "fact_id": "bloom-equinix-construction-2026",
@@ -728,7 +755,270 @@
       "depth": "精读",
       "derived": false,
       "sensitive": false,
-      "notes": "在建容量，**不得计入当期供给**。"
+      "notes": "在建容量，**不得计入当期供给**。",
+      "bound": "point"
+    },
+    {
+      "fact_id": "cn-aidc-gpu-util-2024",
+      "metric_id": "gpu_utilization_rate",
+      "entity": {
+        "type": "market",
+        "id": "cn-aidc-gpu-util-2024",
+        "label": "中国智算中心 GPU 平均利用率"
+      },
+      "value": 30.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "行业平均",
+        "region": "CN"
+      },
+      "bound": "upper",
+      "as_of": "2024",
+      "evidence": {
+        "local_file": "",
+        "locator": "浪潮信息&中国信通院《2024人工智能算力高质量发展评估体系报告》正文 2.3.1 节「据公开数据统计，传统模式下的智算中心GPU利用率较低，平均数值低于30%」",
+        "grade": "S4"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "**这是「利用率」不是「上架率」——两者是两个东西，常被混用。**利用率 = 算力系统实际运行中的平均资源占用（如 IT 负载率、GPU 平均利用率），衡量「卖出去的算力真正在跑多少」；上架率 = 机架空间与电源插座的物理占用，衡量「机柜卖出去多少」。同报告载明 2023 年底全国上架率 66.7%，**两个数不可相互替代、更不可当作同一指标的不同时点值**。原文为「低于30%」，此处取上界 30 作为**上限**而非点值。为**行业平均**口径、传统（非优化）模式，且系「据公开数据统计」的转引、非本报告实测。地域=中国，时点≈2024。"
+    },
+    {
+      "fact_id": "cn-dc-occupancy-2023",
+      "metric_id": "dc_occupancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "cn-dc-occupancy-2023",
+        "label": "中国在用数据中心上架率"
+      },
+      "value": 66.7,
+      "unit": "%",
+      "caliber": {
+        "scope": "全国",
+        "region": "CN"
+      },
+      "bound": "point",
+      "as_of": "2023-12",
+      "evidence": {
+        "local_file": "",
+        "locator": "同上报告正文「据中国信通院统计，2023年底全国在用数据中心上架率为66.7%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "**物理层口径**：机架空间与电源插座的占用比例，**不反映服务器实际性能与负载**（报告原文即如此批评该指标）。与上一条 GPU 利用率 <30% 是**两个不同层面的指标，不可混用、不可相减**。由中国信通院统计，属一手统计口径。范围=全国在用数据中心（含通用与智算），时点=2023 年底，地域=中国大陆。"
+    },
+    {
+      "fact_id": "cn-llm-corp-gpu-util-2024",
+      "metric_id": "gpu_utilization_rate",
+      "entity": {
+        "type": "market",
+        "id": "cn-llm-corp-gpu-util-2024",
+        "label": "大模型企业 GPU 算力利用率"
+      },
+      "value": 50.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "企业自用集群",
+        "region": "CN"
+      },
+      "bound": "upper",
+      "as_of": "2024",
+      "evidence": {
+        "local_file": "",
+        "locator": "同上报告正文 1.2 节「据清华大学研究表明…很多大模型企业的GPU算力利用率低于50%」",
+        "grade": "S4"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "**取上界 50 作为上限而非点值**（原文「低于50%」）。口径为**大模型企业自用集群**，与「智算中心行业平均 <30%」「Google 云 25%」三者**口径互不相同（企业自用 / 行业平均 / 单一云厂商），不可相互替代或取平均**。归因为算力调度、系统架构、算法优化问题。系转引自清华大学研究、非本报告实测。地域=中国。"
+    },
+    {
+      "fact_id": "google-cloud-gpu-util-2022",
+      "metric_id": "gpu_utilization_rate",
+      "entity": {
+        "type": "market",
+        "id": "google-cloud-gpu-util-2022",
+        "label": "Google 云平均 GPU 利用率"
+      },
+      "value": 25.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一云厂商",
+        "region": "Global"
+      },
+      "bound": "point",
+      "as_of": "2022",
+      "evidence": {
+        "local_file": "",
+        "locator": "同上报告正文 2.3.1 节「英伟达GTC 2022公布数据显示Google云平均GPU利用率为25%」",
+        "grade": "S4"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "**单一云厂商口径**，非行业平均、非中国数据。转引自英伟达 GTC 2022 公布数据，**时点为 2022 年，已有两年以上时滞**，不宜与 2024 年的中国数字直接并列比较。地域=全球（Google 云）。"
+    },
+    {
+      "fact_id": "cn-aidc-compute-eff-2023",
+      "metric_id": "compute_efficiency",
+      "entity": {
+        "type": "market",
+        "id": "cn-aidc-compute-eff-2023",
+        "label": "中国在用算力中心平均算效"
+      },
+      "value": 11.8,
+      "unit": "GFLOPS/W",
+      "caliber": {
+        "basis": "理论",
+        "precision": "未说明",
+        "region": "CN"
+      },
+      "bound": "point",
+      "as_of": "2023-12",
+      "evidence": {
+        "local_file": "",
+        "locator": "同上报告正文 2.3.1 节「2023年年底，全国在用算力中心平均算效为11.8GFLOPS/W」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "**理论算效**口径 = 计算系统算力 ÷ 功率（每瓦功率所产生的算力），是**设计维度**指标、不是运行实测。未说明精度口径（FP16/FP32 等），换精度不可比，此点原文未交代。由中国信通院统计。范围=全国在用算力中心，时点=2023 年底，地域=中国大陆。"
+    },
+    {
+      "fact_id": "cn-realized-ratio-2024",
+      "metric_id": "realized_vs_theoretical_ratio",
+      "entity": {
+        "type": "market",
+        "id": "cn-realized-ratio-2024",
+        "label": "算力集群实测性能占理论性能比例"
+      },
+      "value": 10.0,
+      "unit": "%",
+      "caliber": {
+        "region": "CN"
+      },
+      "bound": "upper",
+      "as_of": "2024",
+      "evidence": {
+        "local_file": "",
+        "locator": "同上报告正文 2.3.1 节「算力集群实测性能和理论性能差距过大这一问题逐渐凸显，部分算力实测性能不足10%」",
+        "grade": "S4"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "**「部分算力」而非全部，取 10 为上限**（原文「不足10%」）。口径=实测性能 ÷ 理论性能，衡量硬件标称算力有多少能真正兑现，**与 GPU 利用率不是一回事**（后者衡量卡有没有在忙，前者衡量忙的时候效率如何）。地域=中国，时点≈2024。"
+    },
+    {
+      "fact_id": "cn-10k-cluster-mfu-2024",
+      "metric_id": "mfu_rate",
+      "entity": {
+        "type": "market",
+        "id": "cn-10k-cluster-mfu-2024",
+        "label": "万卡集群 MFU（模型算力利用率）"
+      },
+      "value": 40.0,
+      "unit": "%",
+      "caliber": {
+        "cluster_scale": "万卡",
+        "region": "CN"
+      },
+      "bound": "upper",
+      "as_of": "2024",
+      "evidence": {
+        "local_file": "",
+        "locator": "《从云计算看AI投资的ROI》正文「万卡集群MFU可达40%，GPU数量越少、MFU越高」",
+        "grade": "S4"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "**MFU = 模型实际达到的算力 ÷ 硬件理论峰值算力，是「有效算力」的核心指标，与「GPU 利用率」不同**——GPU 利用率高但 MFU 低意味着卡在忙却没干出有效计算。原文「可达40%」为**上界/最好情况**，且明确指出**规模越大 MFU 越低**（GPU 数量越少 MFU 越高），故 40% 是万卡级的乐观值、不可外推到更大集群。未说明模型、并行策略与精度，标 [未核]。"
+    },
+    {
+      "fact_id": "h100-listed-range-2024",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "market",
+        "id": "h100-listed-range-2024",
+        "label": "H100 GPU 小时租赁价格"
+      },
+      "value": null,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "公开挂牌",
+        "unit": "单卡",
+        "region": "Global"
+      },
+      "bound": "point",
+      "as_of": "2024",
+      "evidence": {
+        "local_file": "",
+        "locator": "同上报告正文「根据各厂商官网数据，H100的租赁价格从2$/h~13$/h不等，其中云服务大厂的算力租赁价格较为稳定」",
+        "grade": "S4"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "【单位已规范化：原候选写「美元/小时」，指标声明为 $/hr】**区间跨度 6.5 倍，且原文未说明区间两端各对应什么合约条件**（现货/长约/包年、是否含存储与网络、是否整机 8 卡折算），标 [未核]。数据来源为各厂商官网标价、非成交价。云服务大厂价格较稳定、区间两端多来自中小算力供应商。地域=全球，时点≈2024。"
+    },
+    {
+      "fact_id": "cn-cluster-fault-loc-2024",
+      "metric_id": "fault_localization_days",
+      "entity": {
+        "type": "market",
+        "id": "cn-cluster-fault-loc-2024",
+        "label": "超万卡集群硬件故障定位耗时"
+      },
+      "value": null,
+      "unit": "天",
+      "caliber": {
+        "cluster_scale": "超万卡",
+        "scope": "仅定位",
+        "region": "CN"
+      },
+      "bound": "point",
+      "as_of": "2024",
+      "evidence": {
+        "local_file": "",
+        "locator": "《面向超万卡集群的新型智算技术白皮书（2024年）》正文「业界典型硬件故障定位需1~2天」",
+        "grade": "S4"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "**「定位」耗时不含修复与恢复训练**，是有效算力被吃掉的一部分。为业界经验值、非某集群实测统计。配套定性关系：单集群 AI 加速卡从千级增长到万级，**故障范围扩大超过 10 倍**（定性放大关系，不是故障率数值）。地域=中国，时点=2024。"
+    },
+    {
+      "fact_id": "cn-checkpoint-req-2024",
+      "metric_id": "checkpoint_throughput",
+      "entity": {
+        "type": "market",
+        "id": "cn-checkpoint-req-2024",
+        "label": "大模型训练 checkpoint 读写吞吐需求"
+      },
+      "value": 10.0,
+      "unit": "TB/s",
+      "caliber": {
+        "side": "需求门槛",
+        "region": "CN"
+      },
+      "bound": "point",
+      "as_of": "2024",
+      "evidence": {
+        "local_file": "",
+        "locator": "同上白皮书正文「大模型的训练对checkpoint的读写吞吐性能更是要求高达10TB/s，现有智算存储系统…难以提供超万卡集群所需的10TB/S以上的数据吞吐性能」",
+        "grade": "S4"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "**需求侧门槛值而非实测供给**——原文明确指出现有智算存储系统达不到。checkpoint 读写是训练中断恢复的开销来源，直接吃掉有效算力。配套目标：存储集群 10TB/s 级聚合吞吐 + 亿级 IOPS + 99.9999% 可靠性，并使智能算力利用率提升 20% 以上（**目标值不是实测**）。地域=中国，时点=2024。"
     }
   ]
 }

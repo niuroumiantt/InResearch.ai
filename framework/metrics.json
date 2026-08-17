@@ -1997,6 +1997,192 @@
         }
       ],
       "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "gpu_utilization_rate",
+      "name": "GPU 平均利用率",
+      "unit": "%",
+      "module": "M13",
+      "caliber_dims": [
+        {
+          "id": "scope",
+          "name": "统计范围",
+          "values": [
+            "行业平均",
+            "单一云厂商",
+            "企业自用集群",
+            "单项目"
+          ],
+          "note": "行业平均 <30%、Google 云 25%、大模型企业自用 <50% 三者口径互不相同，**不可相互替代或取平均**。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "**三层是乘法关系不是替代关系**：上架 66.7% 的机房，卡的利用率可能只有 30%，这 30% 里有效计算又只占 40%。故拆成四个独立指标（dc_occupancy_rate / gpu_utilization_rate / mfu_rate / realized_vs_theoretical_ratio），**metric_id 不同就永远不会被并列**——这比在同一指标下加维度更硬。"
+    },
+    {
+      "metric_id": "mfu_rate",
+      "name": "MFU 模型算力利用率",
+      "unit": "%",
+      "module": "M13",
+      "caliber_dims": [
+        {
+          "id": "cluster_scale",
+          "name": "集群规模",
+          "values": [
+            "千卡",
+            "万卡",
+            "超万卡"
+          ],
+          "note": "规模越大 MFU 越低；不注明规模的 MFU 没有意义。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "MFU = 实际达到算力 ÷ 硬件理论峰值。**GPU 利用率高但 MFU 低 = 卡在忙却没干出有效计算**。"
+    },
+    {
+      "metric_id": "realized_vs_theoretical_ratio",
+      "name": "实测性能占理论性能比例",
+      "unit": "%",
+      "module": "M13",
+      "caliber_dims": [
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "衡量硬件标称算力有多少能兑现，**与 GPU 利用率不是一回事**——后者看卡忙不忙，前者看忙的时候效率如何。"
+    },
+    {
+      "metric_id": "compute_efficiency",
+      "name": "算力中心平均算效",
+      "unit": "GFLOPS/W",
+      "module": "M13",
+      "caliber_dims": [
+        {
+          "id": "basis",
+          "name": "口径",
+          "values": [
+            "理论",
+            "实测"
+          ],
+          "note": "理论算效是设计维度指标，不是运行实测。"
+        },
+        {
+          "id": "precision",
+          "name": "精度",
+          "values": [
+            "FP16",
+            "FP32",
+            "FP64",
+            "未说明"
+          ],
+          "note": "换精度不可比；很多中文材料不交代精度。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ]
+    },
+    {
+      "metric_id": "checkpoint_throughput",
+      "name": "训练 checkpoint 读写吞吐",
+      "unit": "TB/s",
+      "module": "M13",
+      "caliber_dims": [
+        {
+          "id": "side",
+          "name": "供需侧",
+          "values": [
+            "需求门槛",
+            "实测供给"
+          ],
+          "note": "需求门槛是「要达到多少」，实测供给是「现在有多少」——原文明确指出现有系统达不到。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ]
+    },
+    {
+      "metric_id": "fault_localization_days",
+      "name": "集群硬件故障定位耗时",
+      "unit": "天",
+      "module": "M13",
+      "caliber_dims": [
+        {
+          "id": "cluster_scale",
+          "name": "集群规模",
+          "values": [
+            "千卡",
+            "万卡",
+            "超万卡"
+          ]
+        },
+        {
+          "id": "scope",
+          "name": "计时范围",
+          "values": [
+            "仅定位",
+            "定位+修复",
+            "定位+修复+恢复训练"
+          ],
+          "note": "「定位」不含修复与恢复训练，三者耗时差很多。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ]
     }
   ]
 }
