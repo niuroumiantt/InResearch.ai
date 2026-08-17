@@ -24,6 +24,7 @@ python3 pipeline/validate.py    # 改完数据必跑
 python3 pipeline/verify.py      # 核验队列（今天该查什么）
 python3 pipeline/reading_queue.py  # 精读队列（该读什么文献）
 python3 pipeline/workorder.py      # 工单队列（每个模块下一步该做什么；= 声明 − 现状）
+python3 pipeline/blindspot.py      # 盲区体检（库里有但分类器看不见的材料）
 python3 -m http.server 8000     # 本地看仪表盘
 ```
 
