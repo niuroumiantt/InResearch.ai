@@ -1,0 +1,25 @@
+# 反向代理 + 自动 HTTPS。把 dc.example.com 换成真实域名。
+#
+# ⚠️ **认证不在这一层**。Caddy 只做 TLS 终止与反代；
+# 身份验证由 Cloudflare Access 在更前面完成（见 deploy/README.md）。
+# 如果你决定不用 Cloudflare，**必须**在这里加 basic_auth 或 forward_auth，
+# 否则后台是完全敞开的——serve.py 自身没有任何认证。
+
+dc.example.com {
+	encode gzip
+
+	# 只允许来自 Cloudflare 的回源。没有这一条，别人拿 IP 直连就绕过了 Access。
+	# 网段列表见 https://www.cloudflare.com/ips/ ，变化时需更新。
+	@not_cf not remote_ip 173.245.48.0/20 103.21.244.0/22 103.22.200.0/22 \
+		103.31.4.0/22 141.101.64.0/18 108.162.192.0/18 190.93.240.0/20 \
+		188.114.96.0/20 197.234.240.0/22 198.41.128.0/17 162.158.0.0/15 \
+		104.16.0.0/13 104.24.0.0/14 172.64.0.0/13 131.0.72.0/22
+	respond @not_cf 403
+
+	reverse_proxy hub:8000
+
+	log {
+		output file /data/access.log
+		format console
+	}
+}
