@@ -89,7 +89,13 @@ def validate(facts, metrics):
 
         if f.get("derived") and not f.get("derivation"):
             err(f"facts[{fid}]: derived=true 但没写 derivation（派生算法必须可复现）")
-        if f.get("value") is None and not f.get("notes"):
+        vr = f.get("value_range")
+        if vr is not None:
+            if f.get("value") is not None:
+                err(f"facts[{fid}]: value 与 value_range 只能填一个")
+            elif not (isinstance(vr, list) and len(vr) == 2 and vr[0] < vr[1]):
+                err(f"facts[{fid}]: value_range 必须是 [下界, 上界] 且下界小于上界")
+        elif f.get("value") is None and not f.get("notes"):
             err(f"facts[{fid}]: value 为 null 时必须在 notes 说明为何留白")
 
 
@@ -175,8 +181,14 @@ def compare(facts, metrics, only=None):
                 # value 允许为 null——「已知该指标存在但值未披露」是留白纪律的一部分，
                 # 渲染必须显式处理，不能崩（本行曾因未处理 None 报 TypeError）
                 b = BOUND_SIGN.get(f.get("bound", "point"), " ")
-                v = (f"{b}{fmt_value(f['value'], f.get('unit', '')):>9}" if f.get("value") is not None
-                     else f"{'留白':>9} ")
+                u = f.get("unit", "")
+                if f.get("value") is not None:
+                    v = f"{b}{fmt_value(f['value'], u):>9}"
+                elif f.get("value_range"):
+                    lo, hi = f["value_range"]
+                    v = f" {fmt_value(lo, u)}–{fmt_value(hi, u):<4}".rjust(10)
+                else:
+                    v = f"{'留白':>9} "
                 lines.append(f"     {s} {v} {f['unit']}  {f['entity'].get('label','')[:34]}{mark}")
 
         if len(groups) > 1:
