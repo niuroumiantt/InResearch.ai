@@ -14,6 +14,7 @@
   6. 保鲜度：verified_date 超过阈值告警（L6-L9 项目 90 天，L3-L5 项目 180 天，价格 30 天）
 """
 import json
+import re
 import sys
 from datetime import date, datetime
 from pathlib import Path
@@ -148,6 +149,24 @@ def main():
                 warn(f"contracts[{cid}]: 引用了不存在的 site_id: {s}")
         if r.get("grade") not in GRADES:
             err(f"contracts[{cid}]: grade 非法")
+
+    # 模块声明与模块定义文件不得分叉
+    # 由来（2026-08-17）：framework/modules/Mxx_*.md 的「核心问题」有 80 条，
+    # 而工单生成器读的 modules.json 只声明了 36 条——**44 条搭骨架时就想清楚的问题
+    # 从来没生成过工单，而且没有任何地方会报错**。与 indicators/metrics 那次分叉同类：
+    # 同一件事有两处声明，谁也不检查谁，久了必然只有一处是真的。
+    # 逐字比对（不做模糊匹配）：改了 .md 不同步 modules.json 就校验失败。
+    mods_json = ROOT / "framework" / "modules.json"
+    mods_dir = ROOT / "framework" / "modules"
+    if mods_json.exists() and mods_dir.is_dir():
+        decl = {m["id"]: m.get("questions") or []
+                for m in json.loads(mods_json.read_text(encoding="utf-8"))["modules"]}
+        for p in sorted(mods_dir.glob("M*.md")):
+            mid = p.name[:3]
+            sec = re.search(r"## 核心问题\n(.*?)(?=\n## |\Z)", p.read_text(encoding="utf-8"), re.S)
+            for q in (re.findall(r"^\d+\.\s*(.+?)\s*$", sec.group(1), re.M) if sec else []):
+                if q not in decl.get(mid, []):
+                    err(f"modules.json[{mid}]: 定义文件的核心问题未声明，工单生成器看不见它 —— 「{q[:40]}」")
 
     # 汇总
     print(f"记录数: projects={len(projects)} companies={len(companies)} prices={len(prices)} "
