@@ -2183,6 +2183,401 @@
           ]
         }
       ]
+    },
+    {
+      "metric_id": "racks_per_ops_staff",
+      "name": "运维人员人均管理机柜数",
+      "unit": "个机柜/人",
+      "module": "M10",
+      "caliber_dims": [
+        {
+          "id": "basis",
+          "name": "编制来源",
+          "values": [
+            "竣工实际在岗",
+            "可研规划定员",
+            "行业调研均值"
+          ],
+          "note": "可研规划定员是设计值不是实际在岗，两者不可混。"
+        },
+        {
+          "id": "scope",
+          "name": "统计范围",
+          "values": [
+            "行业平均",
+            "优选样本",
+            "单项目"
+          ],
+          "note": "「国外优秀数据中心人均上千个」是**优选样本**，与「国内平均 100 个」不对称，**10 倍这个倍数被不对称口径放大了**，不可当作中外真实差距。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "**「人效」在本库是两套互不相通的口径，故拆成不同 metric_id**：物理编制口径（racks_per_ops_staff，分母=运维人员）与财务人效口径（revenue_per_employee / net_profit_per_employee / labor_cost_per_employee，分母=全体员工，含销售研发管理）。**两者不可换算、不可互相印证**——报告的「技术人员占比 65.1%」未定义运维人员归入哪一类，所以连粗略反推都做不到。metric_id 不同就永远不会被并列，比在同一指标下加维度更硬。"
+    },
+    {
+      "metric_id": "ops_headcount_per_site",
+      "name": "单站点运维定员",
+      "unit": "人",
+      "module": "M10",
+      "caliber_dims": [
+        {
+          "id": "basis",
+          "name": "编制来源",
+          "values": [
+            "竣工实际在岗",
+            "可研规划定员"
+          ]
+        },
+        {
+          "id": "staff_scope",
+          "name": "计入人员",
+          "values": [
+            "仅运维",
+            "含行政与安保",
+            "全站员工"
+          ],
+          "note": "分母口径必须写明，否则与人均机柜数无法互算。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "绝对人数须与站点规模同时给出，单独一个「262 人」没有可比性。"
+    },
+    {
+      "metric_id": "revenue_per_employee",
+      "name": "人均营收",
+      "unit": "万元/人",
+      "module": "M10",
+      "caliber_dims": [
+        {
+          "id": "sample",
+          "name": "样本",
+          "values": [
+            "标杆上市企业",
+            "全行业",
+            "单一企业"
+          ],
+          "note": "「标杆上市企业」不等于全行业，样本偏向头部。"
+        },
+        {
+          "id": "denominator",
+          "name": "分母",
+          "values": [
+            "加权员工数",
+            "期末员工数"
+          ]
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "**「人效」在本库是两套互不相通的口径，故拆成不同 metric_id**：物理编制口径（racks_per_ops_staff，分母=运维人员）与财务人效口径（revenue_per_employee / net_profit_per_employee / labor_cost_per_employee，分母=全体员工，含销售研发管理）。**两者不可换算、不可互相印证**——报告的「技术人员占比 65.1%」未定义运维人员归入哪一类，所以连粗略反推都做不到。metric_id 不同就永远不会被并列，比在同一指标下加维度更硬。",
+      "public_band": {
+        "step": 50
+      }
+    },
+    {
+      "metric_id": "net_profit_per_employee",
+      "name": "人均净利",
+      "unit": "万元/人",
+      "module": "M10",
+      "caliber_dims": [
+        {
+          "id": "sample",
+          "name": "样本",
+          "values": [
+            "标杆上市企业",
+            "全行业",
+            "单一企业"
+          ]
+        },
+        {
+          "id": "denominator",
+          "name": "分母",
+          "values": [
+            "加权员工数",
+            "期末员工数"
+          ]
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "**「人效」在本库是两套互不相通的口径，故拆成不同 metric_id**：物理编制口径（racks_per_ops_staff，分母=运维人员）与财务人效口径（revenue_per_employee / net_profit_per_employee / labor_cost_per_employee，分母=全体员工，含销售研发管理）。**两者不可换算、不可互相印证**——报告的「技术人员占比 65.1%」未定义运维人员归入哪一类，所以连粗略反推都做不到。metric_id 不同就永远不会被并列，比在同一指标下加维度更硬。",
+      "public_band": {
+        "step": 10
+      }
+    },
+    {
+      "metric_id": "labor_cost_per_employee",
+      "name": "人均人工成本",
+      "unit": "万元/人",
+      "module": "M10",
+      "caliber_dims": [
+        {
+          "id": "cost_scope",
+          "name": "成本口径",
+          "values": [
+            "应付职工薪酬合计",
+            "仅薪酬"
+          ],
+          "note": "**含五险二金与福利的「人工成本」≠「薪酬」**（2024 年分别为 28.6 与 20 万元）。"
+        },
+        {
+          "id": "sample",
+          "name": "样本",
+          "values": [
+            "标杆上市企业",
+            "全行业",
+            "单一企业"
+          ]
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "**「人效」在本库是两套互不相通的口径，故拆成不同 metric_id**：物理编制口径（racks_per_ops_staff，分母=运维人员）与财务人效口径（revenue_per_employee / net_profit_per_employee / labor_cost_per_employee，分母=全体员工，含销售研发管理）。**两者不可换算、不可互相印证**——报告的「技术人员占比 65.1%」未定义运维人员归入哪一类，所以连粗略反推都做不到。metric_id 不同就永远不会被并列，比在同一指标下加维度更硬。 另：Digital Realty 与 Equinix 的对应值系估算（G&A 费用近似 / 部门口径），**不是披露值**。",
+      "public_band": {
+        "step": 5
+      }
+    },
+    {
+      "metric_id": "tech_staff_share",
+      "name": "技术人员占比",
+      "unit": "%",
+      "module": "M10",
+      "caliber_dims": [
+        {
+          "id": "taxonomy",
+          "name": "人员分类口径",
+          "values": [
+            "公司自定义",
+            "统一口径"
+          ],
+          "note": "**「技术人员」与「生产人员」的划分各家自定义，运维人员归入哪一类通常不披露**——这正是无法从财务侧反推物理编制的原因。"
+        },
+        {
+          "id": "sample",
+          "name": "样本",
+          "values": [
+            "标杆上市企业",
+            "全行业",
+            "单一企业"
+          ]
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ]
+    },
+    {
+      "metric_id": "sqm_per_rack",
+      "name": "主机房单机柜占用面积",
+      "unit": "㎡/架",
+      "module": "M10",
+      "caliber_dims": [
+        {
+          "id": "basis",
+          "name": "取值性质",
+          "values": [
+            "规范区间",
+            "设计取值",
+            "竣工实测"
+          ],
+          "note": "**设计取值不是实测**。规范给的是 2.0~4.0 ㎡/台 区间，取 3.0 是设计判断。"
+        },
+        {
+          "id": "area_scope",
+          "name": "面积范围",
+          "values": [
+            "主机房",
+            "含辅助与支持区",
+            "总建筑面积"
+          ],
+          "note": "主机房 → 含辅助支持区要乘 1.5~2.5 倍，→ 建筑面积再除使用系数，**每一步都是区间，链条越长误差越大，不可当精确换算用**。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ]
+    },
+    {
+      "metric_id": "labor_cost_to_net_profit",
+      "name": "人工成本占净利比率",
+      "unit": "%",
+      "module": "M11",
+      "caliber_dims": [
+        {
+          "id": "denominator",
+          "name": "分母",
+          "values": [
+            "净利润",
+            "毛利",
+            "EBITDA",
+            "营业收入"
+          ],
+          "note": "**四个分母是四个数**（2024 年分别为 113%/60%/77%/16.3%），**不可混用**。"
+        },
+        {
+          "id": "sample",
+          "name": "样本",
+          "values": [
+            "标杆上市企业",
+            "全行业",
+            "单一企业"
+          ]
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "占净利 >100% 意味着人工成本已超过净利润本身。与人均净利 -18.2% 互为印证，指向中国 IDC 盈利质量恶化——**这是 M11 的证据，不是 M10 的人效指标**。"
+    },
+    {
+      "metric_id": "liquid_cooling_econ_threshold",
+      "name": "液冷经济性适用门槛密度",
+      "unit": "kW/机柜",
+      "module": "M08",
+      "caliber_dims": [
+        {
+          "id": "tech",
+          "name": "液冷路线",
+          "values": [
+            "冷板式",
+            "浸没式"
+          ],
+          "note": "冷板 15、浸没 40，**两条路线的门槛不是一个数**。"
+        },
+        {
+          "id": "basis",
+          "name": "依据性质",
+          "values": [
+            "设计方判断",
+            "实测经济性测算",
+            "厂商宣称"
+          ],
+          "note": "**设计方判断不是测算结果**，引用时须标明。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "门槛值：单机柜密度低于此值时液冷不经济。**这是「什么密度以下不必上液冷」的数值锚点**，对渗透率预测是硬约束——大量 6-8kW 存量机房不在液冷市场里。"
+    },
+    {
+      "metric_id": "dc_incentive_power_price",
+      "name": "数据中心招商优惠电价",
+      "unit": "元/kWh",
+      "module": "M04",
+      "caliber_dims": [
+        {
+          "id": "price_type",
+          "name": "电价类型",
+          "values": [
+            "招商优惠价",
+            "一般工商业",
+            "大工业",
+            "市场化交易"
+          ],
+          "note": "**招商优惠价通常带规模门槛（如服务器 ≥10 万台且机架 ≥6000 个），不代表当地一般工商业电价**，不可拿来估算普通项目电费。"
+        },
+        {
+          "id": "region_known",
+          "name": "地域是否已知",
+          "values": [
+            "已知",
+            "原文脱敏"
+          ],
+          "note": "原文脱敏为「XX」的**不可锚定到具体省份**。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "电价是数据中心 OPEX 的第一项，但优惠价与目录价差异极大，**口径不写清就没有使用价值**。"
     }
   ]
 }

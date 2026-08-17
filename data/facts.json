@@ -1019,6 +1019,256 @@
       "derived": false,
       "sensitive": false,
       "notes": "**需求侧门槛值而非实测供给**——原文明确指出现有智算存储系统达不到。checkpoint 读写是训练中断恢复的开销来源，直接吃掉有效算力。配套目标：存储集群 10TB/s 级聚合吞吐 + 亿级 IOPS + 99.9999% 可靠性，并使智能算力利用率提升 20% 以上（**目标值不是实测**）。地域=中国，时点=2024。"
+    },
+    {
+      "fact_id": "caict-racks-per-ops-2018",
+      "metric_id": "racks_per_ops_staff",
+      "entity": {
+        "type": "industry",
+        "id": "cn-idc",
+        "label": "中国数据中心（行业平均）"
+      },
+      "value": 100.0,
+      "unit": "个机柜/人",
+      "caliber": {
+        "basis": "行业调研均值",
+        "scope": "行业平均",
+        "region": "CN"
+      },
+      "bound": "point",
+      "as_of": "2018",
+      "evidence": {
+        "source_id": "1e97edf1ae54",
+        "locator": "中国信通院《2018数据中心白皮书》正文「受数据中心管理平台、人员经验和运维水平等影响，国内运维人员人均管理100个机柜，国外优秀数据中心人均管理上千个机柜」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**分母是运维人员，不是全体员工**（与「人均营收」类指标的分母不同，不可换算）。**时点 2018 年，距今 7 年，DCIM 与自动化普及后应已改善，不可当作当前值**。对照项「国外优秀数据中心人均管理上千个机柜」是**优选样本非国外平均**，与「国内（平均）」不对称，**10 倍这个倍数被不对称口径放大了**。地域=中国。"
+    },
+    {
+      "fact_id": "bank-dc-ops-headcount-2022",
+      "metric_id": "ops_headcount_per_site",
+      "entity": {
+        "type": "project",
+        "id": "cn-bank-dc-redacted",
+        "label": "某银行数据中心（可研，所在地原文脱敏）"
+      },
+      "value": 262.0,
+      "unit": "人",
+      "caliber": {
+        "basis": "可研规划定员",
+        "staff_scope": "仅运维",
+        "region": "CN"
+      },
+      "bound": "point",
+      "as_of": "2022",
+      "evidence": {
+        "source_id": "d66ab28706e9",
+        "locator": "《银行数据中心项目可行性研究报告》正文「根据此类项目人员配置标准，本项目运维人员约262人。…按5㎡/人考虑，行政管理区面积约为1310平方米」",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "notes": "**可研阶段的规划定员，不是竣工后实际在岗人数**。对应规模为 1.85 万个 6kW 机柜，**可算出约 70.6 个机柜/人（计算值）**，与信通院 2018 年「国内人均 100 个机柜」同量级、略低。项目所在地文中脱敏为「XX」，**地域未知、标 [未核]**。分母口径=运维人员（不含行政与管理）。"
+    },
+    {
+      "fact_id": "cn-idc-rev-per-emp-2024",
+      "metric_id": "revenue_per_employee",
+      "entity": {
+        "type": "industry",
+        "id": "cn-idc-listed",
+        "label": "中国 IDC 标杆上市企业"
+      },
+      "value": 310.0,
+      "unit": "万元/人",
+      "caliber": {
+        "sample": "标杆上市企业",
+        "denominator": "加权员工数",
+        "region": "CN"
+      },
+      "bound": "point",
+      "as_of": "2024",
+      "evidence": {
+        "source_id": "ee554d1733e4",
+        "locator": "《2025年数据中心（IDC）标杆企业组织效能报告》E1 节「标杆企业人均营收310万元，同比上涨5.1%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**上市公司整体财务口径：营业收入 ÷ 加权员工数，分母是全体员工（含销售、研发、管理），不是运维人员**——与「人均管理机柜数」不可换算。样本=中国 IDC 标杆上市企业，非全行业。同比 +5.1%。时点=2024 财年，地域=中国。"
+    },
+    {
+      "fact_id": "cn-idc-np-per-emp-2024",
+      "metric_id": "net_profit_per_employee",
+      "entity": {
+        "type": "industry",
+        "id": "cn-idc-listed",
+        "label": "中国 IDC 标杆上市企业"
+      },
+      "value": 38.3,
+      "unit": "万元/人",
+      "caliber": {
+        "sample": "标杆上市企业",
+        "denominator": "加权员工数",
+        "region": "CN"
+      },
+      "bound": "point",
+      "as_of": "2024",
+      "evidence": {
+        "source_id": "ee554d1733e4",
+        "locator": "同上报告 E1 节「标杆企业人均净利38.3万元，同比暴跌18.2%，所有企业同比下滑均大于10%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "净利润 ÷ 加权员工数，分母同为全体员工。**同比 -18.2%，且所有样本企业同比下滑均大于 10%**，与人均营收 +5.1% 形成「规模提升、盈利承压」的剪刀差。时点=2024 财年，地域=中国。"
+    },
+    {
+      "fact_id": "cn-idc-labor-to-np-2024",
+      "metric_id": "labor_cost_to_net_profit",
+      "entity": {
+        "type": "industry",
+        "id": "cn-idc-listed",
+        "label": "中国 IDC 标杆上市企业"
+      },
+      "value": 113.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "净利润",
+        "sample": "标杆上市企业",
+        "region": "CN"
+      },
+      "bound": "point",
+      "as_of": "2024",
+      "evidence": {
+        "source_id": "ee554d1733e4",
+        "locator": "同上报告元效分析节「占净利比率达113%，同比+27.7%，表明人工成本对净利润的侵蚀程度较为严重」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**应付职工薪酬合计 ÷ 净利润，>100% 意味着人工成本已超过净利润本身**。配套：人工成本费用率 16.3%（占营收）、占毛利 60%、占 EBITDA 77%。四个比率分母不同（营收/毛利/EBITDA/净利），**不可混用**。时点=2024 财年，地域=中国。"
+    },
+    {
+      "fact_id": "cn-idc-labor-per-emp-2024",
+      "metric_id": "labor_cost_per_employee",
+      "entity": {
+        "type": "industry",
+        "id": "cn-idc-listed",
+        "label": "中国 IDC 标杆上市企业"
+      },
+      "value": 28.6,
+      "unit": "万元/人",
+      "caliber": {
+        "cost_scope": "应付职工薪酬合计",
+        "sample": "标杆上市企业",
+        "region": "CN"
+      },
+      "bound": "point",
+      "as_of": "2024",
+      "evidence": {
+        "source_id": "ee554d1733e4",
+        "locator": "同上报告 I2 节「标杆企业人均人工成本为28.6万元，同比微增1.1%，3年CAGR3.8%；标杆企业人均薪酬20万元，同比下降1.6%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "应付职工薪酬合计 ÷ 加权员工数，**含五险二金与福利，不等于人均薪酬（20 万元）**。人均五险二金 47,925 元（+14.7%）。样本内万国数据达 47.9 万元、远高于平均。**注意：Digital Realty 与 Equinix 的对应值系估算**（前者用 G&A 费用近似、后者用部门补偿成本 14.17 亿美元 + 重组员工成本 0.31 亿美元），**与中国企业实际披露值不可直接比较**。时点=2024 财年。"
+    },
+    {
+      "fact_id": "cn-idc-tech-share-2024",
+      "metric_id": "tech_staff_share",
+      "entity": {
+        "type": "industry",
+        "id": "cn-idc-listed",
+        "label": "中国 IDC 标杆上市企业"
+      },
+      "value": 65.1,
+      "unit": "%",
+      "caliber": {
+        "taxonomy": "公司自定义",
+        "sample": "标杆上市企业",
+        "region": "CN"
+      },
+      "bound": "point",
+      "as_of": "2024",
+      "evidence": {
+        "source_id": "ee554d1733e4",
+        "locator": "同上报告人才结构节「销售人员占比7.9%，技术人员占比65.1%，生产人员占比25%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**三类占比合计 98%**（余为管理等）。「技术人员」与「生产人员」的划分口径报告未给定义，**运维人员归入哪一类不明、标 [未核]**——这正是无法从本报告推出运维编制的原因。员工总数同比 +1%、3 年 CAGR 4.6%。时点=2024 财年，地域=中国。"
+    },
+    {
+      "fact_id": "liquid-cooling-threshold-coldplate-2022",
+      "metric_id": "liquid_cooling_econ_threshold",
+      "entity": {
+        "type": "technology",
+        "id": "liquid-cooling-coldplate",
+        "label": "冷板式液冷"
+      },
+      "value": 15.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "tech": "冷板式",
+        "basis": "设计方判断",
+        "region": "CN"
+      },
+      "bound": "lower",
+      "as_of": "2022",
+      "evidence": {
+        "source_id": "d66ab28706e9",
+        "locator": "《银行数据中心项目可行性研究报告》正文「液冷适用于高功率密度机柜（冷板式15kW以上，浸没式40kW以上才能体现其优势），本项目机柜功率密度规划为6kW」",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "notes": "**门槛值：单机柜功率密度低于此值时液冷不经济**。浸没式门槛为 40kW/机柜。这是设计方的判断依据、非实测经济性测算。该项目规划 6kW/机柜，故仅考虑试点或展示机房应用。原文并指出液冷「供应厂家选择范围小、投资造价居高不下」。时点=2022，地域=中国。"
+    },
+    {
+      "fact_id": "dc-incentive-power-price-2022",
+      "metric_id": "dc_incentive_power_price",
+      "entity": {
+        "type": "policy",
+        "id": "cn-dc-incentive-redacted",
+        "label": "某地大型数据中心招商政策（所在地脱敏）"
+      },
+      "value": 0.35,
+      "unit": "元/kWh",
+      "caliber": {
+        "price_type": "招商优惠价",
+        "region_known": "原文脱敏",
+        "region": "CN"
+      },
+      "bound": "point",
+      "as_of": "2022",
+      "evidence": {
+        "source_id": "d66ab28706e9",
+        "locator": "同上可研正文「根据《XX「强省会」招商引资若干政策措施》，XX直管区范围内大型数据中心（服务器10万台以上，机架6000个以上）实行0.35元/千瓦时的电价政策。水价：4.4元/吨（含1.4元污水处理费）」",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "notes": "**招商引资优惠电价，有规模门槛（服务器 ≥10 万台且机架 ≥6000 个），不代表当地一般工商业电价**。配套水价 4.4 元/吨（含 1.4 元污水处理费）。**项目所在地在原文中脱敏为「XX」，地域未知、标 [未核]，不可锚定到具体省份**。时点=2022。"
+    },
+    {
+      "fact_id": "sqm-per-rack-design-2022",
+      "metric_id": "sqm_per_rack",
+      "entity": {
+        "type": "project",
+        "id": "cn-bank-dc-redacted",
+        "label": "某银行数据中心（可研，设计取值）"
+      },
+      "value": 3.0,
+      "unit": "㎡/架",
+      "caliber": {
+        "basis": "设计取值",
+        "area_scope": "主机房",
+        "region": "CN"
+      },
+      "bound": "point",
+      "as_of": "2022",
+      "evidence": {
+        "source_id": "d66ab28706e9",
+        "locator": "同上可研正文「单台机柜（架）占用面积按照3㎡/架考虑，主机房面积需求约5.55万平方米」；并引规范「S——单台机柜（架）、大型电子信息设备和列头柜等设备占用面积，可取2.0～4.0（㎡/台）」",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "notes": "**取值 3.0 位于规范给定的 2.0~4.0 ㎡/台 区间中部**，是设计取值不是实测。配套换算链：1.85 万机柜 × 3㎡ = 5.55 万㎡ 主机房 → 辅助区+支持区取主机房 1.5 倍（规范允许 1.5~2.5 倍）= 8.33 万㎡ → 总使用面积 14.01 万㎡ → 建筑使用系数 75% → 建筑面积 ≥18.68 万㎡。**这条换算链可用于从机柜数反推建筑面积，但每一步的系数都是设计取值、有区间。**时点=2022，地域=中国。"
     }
   ]
 }
