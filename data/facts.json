@@ -1819,6 +1819,160 @@
       },
       "depth": "精读",
       "notes": "**原文为「>55%」，55 是下界不是点值**。对应收入运行率超 48 亿美元（同为下界）。**这是公司自行公告的口径（Databricks 官方 2025-12-16），非第三方审计**。配套：累计募资 331 亿美元、资本效率比 0.16x（PitchBook 计算）、估值 1,340 亿美元（2026-02-09 L 轮，70 亿募资＝股权 50 亿＋债务 20 亿）。"
+    },
+    {
+      "fact_id": "cn-lc-subsidy-threshold-coldplate-2026",
+      "metric_id": "liquid_cooling_policy_threshold",
+      "entity": {
+        "type": "policy",
+        "id": "cn-lc-retrofit-subsidy",
+        "label": "中国液冷改造补贴政策"
+      },
+      "value": 15.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "tech": "冷板式",
+        "policy_type": "补贴资格线",
+        "region_scope": "全国",
+        "region": "CN"
+      },
+      "bound": "lower",
+      "as_of": "2026-02",
+      "evidence": {
+        "source_id": "9a65c50de355",
+        "locator": "《绿色数据中心行业洞察：对算力行业的一点思考（2026）》(2026-02-27) 正文「液冷专项：单机柜液冷改造补贴5万元（限高密度区≥15kW机柜）」",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "notes": "**这是政策补贴的适用门槛（资格线），不是经济性门槛**——与本库已入库的「冷板式 15kW 以上才体现优势」（2022 年某银行可研，设计方判断）**数值相同但性质不同，不可合并成一条时序**。**两者一致这件事本身是结论：2022→2026 四年，冷板式的门槛量级未下移**，监管方认同同一水平。补贴额度为单机柜 5 万元。region=CN，时点=2026-02。"
+    },
+    {
+      "fact_id": "cn-lc-mandate-threshold-immersion-2026",
+      "metric_id": "liquid_cooling_policy_threshold",
+      "entity": {
+        "type": "policy",
+        "id": "cn-west-node-lc-mandate",
+        "label": "中国西部节点液冷强制政策"
+      },
+      "value": 30.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "tech": "浸没式",
+        "policy_type": "强制部署线",
+        "region_scope": "西部节点",
+        "region": "CN"
+      },
+      "bound": "lower",
+      "as_of": "2026-02",
+      "evidence": {
+        "source_id": "9a65c50de355",
+        "locator": "同上报告正文「西部节点（内蒙/宁夏/甘肃）…高密度智算集群（≥30kW/机柜）需部署单相浸没式液冷，补贴覆盖设备采购成本50%」",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "notes": "**政策强制线，不是经济性门槛**。对照：本库已入库的浸没式经济性门槛为 **40kW 以上**（2022 年某银行可研，设计方判断）。**政策强制线比经济性门槛低 10kW。****不能据此断言经济性门槛下移**——两者性质不同，可能是监管在推、也可能是经济性确实改善，**定案需要 2024-2026 年的经济性判断原文，本批未找到**。适用范围限西部节点（内蒙/宁夏/甘肃），补贴覆盖设备采购成本 50%。region=CN，时点=2026-02。"
+    },
+    {
+      "fact_id": "cn-hyperscale-pue-operating-2017",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "industry",
+        "id": "cn-hyperscale-dc-inuse",
+        "label": "中国在用超大型数据中心（全国平均）"
+      },
+      "value": 1.63,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "scale": "超大型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "bound": "point",
+      "as_of": "2017-12",
+      "evidence": {
+        "source_id": "1e97edf1ae54",
+        "locator": "中国信通院《2018数据中心白皮书》正文「截至2017年底，我国在用超大型数据中心平均运行PUE 1.63；大型数据中心平均1.54，最优水平达到1.2左右」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**这是「运行 PUE」不是「设计 PUE」——同一份报告同一时点给出的设计值是 1.41（在建超大型）**，**运行值比设计值高 0.22**。大型数据中心运行值 1.54、设计值 1.48，高 0.06。最优水平 1.2 左右。**本条的意义不在 2017 年的绝对值（已 8 年，不可当现值），而在于坐实「运行 PUE 系统性高于设计 PUE」这一结构性差距**——本库其它材料给出的 PUE 绝大多数是设计值或宣传值（1.05/1.076/1.1/1.15）。口径=在用超大型数据中心平均，region=CN，时点=2017 年底。"
+    },
+    {
+      "fact_id": "cn-hyperscale-pue-design-2017",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "industry",
+        "id": "cn-hyperscale-dc-building",
+        "label": "中国在建超大型数据中心（全国平均）"
+      },
+      "value": 1.41,
+      "unit": "比值",
+      "caliber": {
+        "basis": "设计值",
+        "scale": "超大型",
+        "period": "设计工况",
+        "region": "CN"
+      },
+      "bound": "point",
+      "as_of": "2017",
+      "evidence": {
+        "source_id": "1e97edf1ae54",
+        "locator": "同上白皮书「2017年在建超大型、大型数据中心平均设计PUE分别为1.41、1.48」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**设计 PUE，与上一条的运行 PUE 1.63 是同源同时点的配对值，专为对照而收**。**两者差 0.22，即设计值系统性低估运行能耗约 13%（计算值：0.22/1.63）**。对象为「在建」超大型数据中心（上一条为「在用」），**严格说样本不完全重合**，但同一份报告并列给出即为可比对照。大型对应值：设计 1.48 / 运行 1.54。region=CN，时点=2017。"
+    },
+    {
+      "fact_id": "cn-lc-rack-share-policy-2026",
+      "metric_id": "liquid_cooling_rack_share_policy",
+      "entity": {
+        "type": "policy",
+        "id": "cn-green-dc-policy",
+        "label": "中国绿色数据中心政策"
+      },
+      "value": 30.0,
+      "unit": "%",
+      "caliber": {
+        "policy_type": "准入门槛",
+        "paired_pue": "≤1.15",
+        "region": "CN"
+      },
+      "bound": "lower",
+      "as_of": "2026-02",
+      "evidence": {
+        "source_id": "9a65c50de355",
+        "locator": "《绿色数据中心行业洞察（2026）》正文「PUE≤1.15，液冷机柜占比≥30%，需配置智能配电系统实现…」及「年PUE不高于1.3，液冷机柜占比≥30%」",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "notes": "**政策要求的最低占比（准入/评级门槛），不是市场实际渗透率**——**切勿与 liquid_cooling_penetration 的实测值并列**。原文出现两档组合：「PUE≤1.15 + 液冷机柜占比≥30%」与「年 PUE 不高于 1.3 + 液冷机柜占比≥30%」，两档的 PUE 要求不同而液冷占比要求相同。region=CN，时点=2026-02。"
+    },
+    {
+      "fact_id": "cn-waste-heat-policy-2026",
+      "metric_id": "waste_heat_reuse_policy_threshold",
+      "entity": {
+        "type": "policy",
+        "id": "cn-east-node-waste-heat",
+        "label": "中国东部节点余热回收政策"
+      },
+      "value": 35.0,
+      "unit": "%",
+      "caliber": {
+        "policy_type": "碳汇奖励资格线",
+        "region_scope": "东部节点",
+        "region": "CN"
+      },
+      "bound": "lower",
+      "as_of": "2026-02",
+      "evidence": {
+        "source_id": "9a65c50de355",
+        "locator": "同上报告正文「东部节点（长三角/粤港澳）：需依赖『高效液冷+余热回收』…余热利用率≥35%可申请额外碳汇奖励」",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "notes": "**政策奖励的资格线，不是实际达成率**。适用范围限东部节点（长三角/粤港澳）。配套：西部节点（内蒙/宁夏/甘肃）强制采用间接蒸发冷却（原文称 PUE 可降至 1.2 以下，如阿里张北方案）。**这条与液冷门槛一起说明中国的制冷政策是分区差异化的，不存在全国统一门槛。**region=CN，时点=2026-02。"
     }
   ]
 }
