@@ -1,0 +1,68 @@
+{
+ "version": "0.1-candidates",
+ "produced": "2026-08-17",
+ "module_focus": "M02",
+ "note": "M02 供给格局。**本批最重要的不是任何单个数，而是一个方向组合**：微软与 Meta 2026Q1 单季资本开支都大幅低于市场预期（−9.60% / −25.93%），**但 Meta 同时上调全年指引、微软把原因明说成「融资租赁交付时间」**——**这指向交付时点推移而非需求转弱，与 M15-F12「约束在产能与交付」互证。****用单季 capex 不及预期论证 AI 需求见顶，是本轮最容易犯的错误。**另：CoreWeave 的两笔独立合同交叉验算出同一单价（2.256 百万美元/MW/年），按 11.3 第 10 条的精神，这类内部可验算的数比单点披露可靠——但它是电力容量租赁价，不含 IT 设备，与含服务的托管费不可比价。**未填的两个指标**：`hyperscaler_lease_ratio`（扫到的表述主语不明，不敢入库）、`top10_pipeline_share`（库内只有 2016 年数据，对当前管线无参考价值）。",
+ "records": [
+  {
+   "what": "微软 2026Q1 资本开支相对市场预期的偏离",
+   "value": -9.6,
+   "unit": "%",
+   "locator": "国信证券《2026Q1海外大厂CapEx和ROIC总结梳理》(2026-05-07)「2026Q1（FY26Q3）微软资本开支环比下降14.93%。微软本季度支出为319亿美元，低于预期的352.89亿美元」",
+   "originator": "微软财报 + 市场一致预期（国信证券整理）",
+   "caliber_note": "**计算值：(319 − 352.89) / 352.89 = −9.60%。****「预期」是市场一致预期（卖方共识），不是公司自身指引**——若 `capex_guidance_delta` 定义为「实际 vs 公司指引」，本条填不了，请按指标定义取舍。**时点陷阱：微软的「2026Q1」是其 FY26Q3，与 Meta 的自然季度不同，跨公司比较前必须对齐财年。****口径陷阱：319 亿是否含融资租赁原文未说明（标 [未核]），而这对微软很关键——其 25Q3 融资租赁曾达 111 亿美元、占当期资本开支 349 亿的 31.8%。**归因（原文）：云基础设施建设的正常波动 + 融资租赁交付时间的影响。",
+   "entity": "Microsoft",
+   "as_of": "2026-Q1",
+   "source_key": "988ce65aca2c",
+   "grade": "S3"
+  },
+  {
+   "what": "Meta 2026Q1 资本开支相对市场预期的偏离",
+   "value": -25.93,
+   "unit": "%",
+   "locator": "同上报告「2026Q1资本开支不及预期，26Q1包括融资租赁在内的资本支出为198.4亿美元，同比+44.92%，大幅低于预期的267.87亿美元。公司上调全年资本开支预期，预计2026年全年资本支出（包括融资租赁）将在1250到1450美元之间，较前值1150到1350亿美元略有上修」",
+   "originator": "Meta 财报 + 市场一致预期（国信证券整理）",
+   "caliber_note": "**计算值：(198.4 − 267.87) / 267.87 = −25.93%。含融资租赁（原文明确）。****关键在方向组合：单季实际低于预期 25.93%，但公司同时上调全年指引**（1,250-1,450 亿，前值 1,150-1,350 亿）——**这指向交付时点推移而非需求转弱**。同比仍 +44.92%。**不可用单季不及预期论证 AI 需求见顶。**原文「1250到1450美元之间」显为「亿美元」笔误。",
+   "entity": "Meta",
+   "as_of": "2026-Q1",
+   "source_key": "988ce65aca2c",
+   "grade": "S3"
+  },
+  {
+   "what": "微软资本开支中短寿命资产占比",
+   "value": 66.7,
+   "unit": "%",
+   "locator": "同上报告「其中大约三分之二的资本支出用于短寿命资产，主要是GPU和CPU」",
+   "originator": "微软（国信证券转述）",
+   "caliber_note": "**原文为「大约三分之二」，66.7 是换算值、非精确披露**。「短寿命资产」主要指 GPU 和 CPU，**与土建/机电等长寿命资产相对**。**这条对折旧假设很关键**：短寿命资产占三分之二意味着折旧年限假设的敏感性极高，可与 M11 的「固定资产 15 年直线折旧」类模型假设对照——**后者显然不适用于 GPU**。时点=2026Q1（微软 FY26Q3）。",
+   "entity": "Microsoft",
+   "as_of": "2026-Q1",
+   "source_key": "988ce65aca2c",
+   "grade": "S3"
+  },
+  {
+   "what": "CoreWeave 合同锁定电力容量",
+   "value": 1.7,
+   "unit": "GW",
+   "locator": "Barclays《CoreWeave Inc: New Power Capacity Contract》「we estimate that CoreWeave now has over 1.7GW of power under contract」",
+   "originator": "Barclays（估计值，非公司披露）",
+   "caliber_note": "**Barclays 估计值不是公司披露**，原文为「over 1.7GW」，**1.7 是下界**。口径=合同锁定的电力容量（power under contract），**不是已投运容量、也不是 IT 负载**。构成参照：与 Galaxy 的合同从 133MW 增至 393MW（行权 260MW 选择权）、自 S-1 以来累计增量约 470MW、Helios 数据中心另有 133MW。region=US 为主。",
+   "entity": "CoreWeave",
+   "as_of": "2025",
+   "source_key": "16e18851474b",
+   "grade": "S4"
+  },
+  {
+   "what": "AI 数据中心电力容量长约单价",
+   "value": 2.256,
+   "unit": "百万美元/MW/年",
+   "locator": "Barclays 同上报告：原合同「Terms of the original lease (133 MW) were noted to be 15 years, with Galaxy expecting to collect $4.5bn in revenue during that time」；新增部分「an additional $8.8bn in payments between the two firms as part of the new deal」（260MW）",
+   "originator": "Galaxy / CoreWeave 合同条款（Barclays 转述）",
+   "caliber_note": "**计算值，且由两笔独立合同交叉验算得出同一结果**：45 亿 ÷（133MW × 15 年）= 2.256；88 亿 ÷（260MW × 15 年）= 2.256。**两者完全一致说明单价口径稳定，不是凑数**。折合约 **188 美元/kW/月**（计算值）。**⚠ 这是「电力容量租赁」单价，不含 IT 设备、可能不含运维**——**与本库 M11 已入库的「IDC 普通机柜托管服务费 1,072 元/月/kW」（廊坊，含服务）不是同一商品，不可比价**。金额为 Galaxy 侧的预期收入（即 CoreWeave 侧的支出承诺），非已支付。合同期 15 年。region=US。",
+   "entity": "CoreWeave–Galaxy 电力容量合同",
+   "as_of": "2025",
+   "source_key": "16e18851474b",
+   "grade": "S3"
+  }
+ ]
+}
