@@ -32,6 +32,8 @@ FACTS = ROOT / "data" / "facts.json"
 METRICS = ROOT / "framework" / "metrics.json"
 
 FACT_DEPTHS = {"精读", "据实生成"}   # 半自动与目录级不得进事实层
+BOUNDS = {"point", "upper", "lower"}
+BOUND_SIGN = {"upper": "<", "lower": ">", "point": " "}
 GRADES = {"S1", "S2", "S3", "S4", "S5"}
 
 errors = []
@@ -74,6 +76,8 @@ def validate(facts, metrics):
             if k not in {d["id"] for d in m["caliber_dims"]}:
                 err(f"facts[{fid}]: 多余的口径维度 `{k}`（该指标未声明）")
 
+        if f.get("bound", "point") not in BOUNDS:
+            err(f"facts[{fid}]: bound 非法：{f.get('bound')}（须为 point/upper/lower）")
         if f.get("depth") not in FACT_DEPTHS:
             err(f"facts[{fid}]: depth={f.get('depth')} 不得进事实层（只收 精读/据实生成）")
 
@@ -108,6 +112,11 @@ def public_view(f, m, today_year=2026):
         rng = f"{lo:,.0f}–{lo + step:,.0f}"
     else:
         rng = f"约 {v:,.0f}"
+    bd = f.get("bound", "point")
+    if bd == "upper":
+        rng = f"不高于 {rng}"
+    elif bd == "lower":
+        rng = f"不低于 {rng}"
     yr = str(f.get("as_of", ""))[:4]
     age = (today_year - int(yr)) if yr.isdigit() else None
     vintage = f"{yr} 年数据" + (f"，距今约 {age} 年" if age and age > 0 else "")
@@ -145,7 +154,9 @@ def compare(facts, metrics, only=None):
                 s = "🔒" if f.get("sensitive") else "  "
                 # value 允许为 null——「已知该指标存在但值未披露」是留白纪律的一部分，
                 # 渲染必须显式处理，不能崩（本行曾因未处理 None 报 TypeError）
-                v = f"{f['value']:>10,.1f}" if f.get("value") is not None else f"{'留白':>9}"
+                b = BOUND_SIGN.get(f.get("bound", "point"), " ")
+                v = (f"{b}{f['value']:>9,.1f}" if f.get("value") is not None
+                     else f"{'留白':>9} ")
                 lines.append(f"     {s} {v} {f['unit']}  {f['entity'].get('label','')[:34]}{mark}")
 
         if len(groups) > 1:
