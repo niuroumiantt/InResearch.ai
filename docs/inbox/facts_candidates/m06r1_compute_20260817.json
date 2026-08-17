@@ -1,0 +1,68 @@
+{
+ "version": "0.1-candidates",
+ "produced": "2026-08-17",
+ "module_focus": "M06-1",
+ "note": "M06 第 1 轮（GPU/加速卡与先进封装）。**question 3「CoWoS/HBM 是不是下一个硬瓶颈」答案是「是」**：Bernstein 判断 2026 年 CoWoS 仍是关键瓶颈、台积电产能已全额预订、其 CoWoS 份额 >80%。**这与 M14 那批 Bernstein 对中国侧的判断（瓶颈在晶圆代工与 CoWoS 而非设计）是同一判断的两侧——中美两条链卡在同一个环节，建议并入 M15-F12。****一条纠正常见框架的观察**：2024 年约一半服务器 GPU 收入来自正在自研 ASIC 的超大规模厂商，**两条路线的此消彼长在同一批客户内部发生**，不能用客户群划分估份额。**两个空指标本轮仍未填**：`cowos_capacity_wpm`（报告只给增速与份额、无绝对 wpm，建议从 TrendForce/SemiAnalysis 取）、`gpu_lead_time`（全库扫描仅命中 2 条且均为 PCB 排产，真空白）。**建议 M06 所有数量类指标强制带「计数对象」维度（wafer/package/die/rack）**——本批已遇到两处单位不明（Bernstein 的「400 万片 ASIC」、Yole 的「Munits」）。",
+ "records": [
+  {
+   "what": "台积电 CoWoS 全球市场份额",
+   "value": 80.0,
+   "unit": "%",
+   "locator": "Bernstein《亚洲半导体与全球存储器：2026年仍以人工智能为核心》(2026-01-17)「加之安捷伦与亚速产能有限，意味着台积电在2026年仍将占据全球80%以上的CoWoS市场份额（基于我们的CoWoS/HBM模型）」",
+   "originator": "Bernstein 自建 CoWoS/HBM 模型（非第三方统计）",
+   "caliber_note": "**原文「80% 以上」，80 是下界不是点值**。**基于 Bernstein 自建模型的输出，非第三方统计机构数据。**时点为 2026 年预测。配套判断：台积电 **2026 年产能已全额预订、2027 年 N2 产能同样紧张**；报告明确称 **2026 年 CoWoS 仍将是关键瓶颈**。region=Global。",
+   "entity": "台积电（CoWoS）",
+   "as_of": "2026E",
+   "source_key": "cef1e3037863",
+   "grade": "S3"
+  },
+  {
+   "what": "CoWoS 出货量同比增速",
+   "value": 73.0,
+   "unit": "%",
+   "locator": "同上报告「我们预测CoWoS/HBM出货量将同比增长73%/90%，产能扩张应能创造投资机会」",
+   "originator": "Bernstein（预测）",
+   "caliber_note": "**这是出货量同比增速，不是产能增速**——在紧缺状态下产能与出货不等价（出货受产能约束但产能未必满产）。配对值：HBM 出货量同比 +90%。**`cowos_capacity_wpm`（万片/月）本条填不了**：报告只给增速与份额，未给绝对产能数值。时点=2026 年预测，region=Global。",
+   "entity": "全球 CoWoS 市场",
+   "as_of": "2026E",
+   "source_key": "cef1e3037863",
+   "grade": "S3"
+  },
+  {
+   "what": "AI ASIC 市场规模",
+   "value": 9.0,
+   "unit": "十亿美元",
+   "locator": "《Generative AI 2025: Computing AI Data Center》(Yole)「In 2024, AI ASIC revenue surged by +154% YoY to $9B, benefiting from increased internal deployments by major cloud providers」",
+   "originator": "Yole（行业访谈方法论）",
+   "caliber_note": "**金额口径，同比 +154%**。**与同报告的颗数口径（2024 年 360 万颗）不可互相换算得单价**——AI ASIC 内部 TPU 与其它产品的 ASP 差异极大。**Google TPU 约占 AI ASIC 市场的 50%。**对照其它 ASIC 品类：DPU 与网络 ASIC 2024 年 103 亿美元（+43%）；加密挖矿 ASIC 20 亿美元（+55%）。region=Global。",
+   "entity": "全球 AI ASIC 市场",
+   "as_of": "2024",
+   "source_key": "76c2994e3a50",
+   "grade": "S3"
+  },
+  {
+   "what": "AI ASIC 出货颗数",
+   "value": 3.6,
+   "unit": "百万颗",
+   "locator": "同上报告「AI ASICs are also growing strongly, from 3.6 Munits in 2024 up to 11 Munits by 2030, which represents a CAGR23-29 of 20.5%」",
+   "originator": "Yole（行业访谈方法论）",
+   "caliber_note": "**颗数口径（Munits），与金额口径（90 亿美元）不可互相换算得单价。**预测终点：2030 年 1,100 万颗。**⚠ 原文口径不一致：CAGR 标注为「23-29」但起止年份写作 2024→2030，已标 [未核]。****另需注意计数对象**：「units」是封装后芯片还是模组原文未说明——这是 M06 question 7 要防的 die 计数口径问题，建议该指标强制带「计数对象」维度。region=Global。",
+   "entity": "全球 AI ASIC 市场",
+   "as_of": "2024",
+   "source_key": "76c2994e3a50",
+   "grade": "S3"
+  },
+  {
+   "what": "自研 AI ASIC 的超大规模厂商占服务器 GPU 收入比例",
+   "value": 50.0,
+   "unit": "%",
+   "locator": "同上报告「In 2024, around half of server GPU revenues came from hyperscalers that are developing their own AI ASICs. We believe an increasingly larger share of…」",
+   "originator": "Yole（行业访谈方法论）",
+   "caliber_note": "**原文为「around half」，50 是约数。****这条的意义在结构而非数值：GPU 与 ASIC 的此消彼长发生在同一批客户的采购结构内部，而非不同客户之间**——常见的「GPU vs ASIC 谁赢」框架会误导，**不能用客户数或客户群划分来估两者份额走势**。分母=服务器 GPU 收入（2024 年），分子=正在自研 AI ASIC 的超大规模厂商贡献部分。region=Global。",
+   "entity": "全球服务器 GPU 市场",
+   "as_of": "2024",
+   "source_key": "76c2994e3a50",
+   "grade": "S3"
+  }
+ ]
+}
