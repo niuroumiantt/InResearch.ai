@@ -31,6 +31,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "reports" / "blindspot.md"
+OUT_JSON = ROOT / "reports" / "blindspot.json"   # 供仪表盘等机器消费方
 
 SUSPECT_RATIO = 3.0   # 强信号疑似/已命中 超过此倍数即报警
 MIN_SUSPECT = 30      # 强信号疑似数低于此值不报警（避免小样本噪声）
@@ -137,13 +138,19 @@ def main():
         mods = [m for m in mods if m["id"] == only]
     res = scan(rows, mods)
     OUT.write_text(render(res), encoding="utf-8")
+    OUT_JSON.write_text(json.dumps(
+        {"generated": date.today().isoformat(),
+         "modules": [{k: e[k] for k in ("mid", "name", "kws", "hit", "blind")}
+                     | {"ratio": (None if e["ratio"] in (None, float("inf")) else round(e["ratio"], 1)),
+                        "alarm": alarming(e)} for e in res]},
+        ensure_ascii=False, indent=1), encoding="utf-8")
 
     alarms = [e for e in res if alarming(e)]
     print(f"体检 {len(res)} 个模块｜报警 {len(alarms)} 个")
     for e in sorted(alarms, key=lambda x: -(x["ratio"] if x["ratio"] not in (None, float("inf")) else 1e9)):
         r = "—" if e["ratio"] is None else ("∞" if e["ratio"] == float("inf") else f"{e['ratio']:.1f}x")
         print(f"  ⚠️ {e['mid']} {e['name']}：已命中 {e['hit']}，疑似看不见 {e['blind']}（{r}）")
-    print(f"完整报告已写入 {OUT.relative_to(ROOT)}")
+    print(f"完整报告已写入 {OUT.relative_to(ROOT)} 与 {OUT_JSON.relative_to(ROOT)}")
     return 0
 
 
