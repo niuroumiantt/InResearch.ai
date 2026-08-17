@@ -623,6 +623,112 @@
       "derived": false,
       "sensitive": false,
       "notes": "**这条存在的意义是当对照**：agent 任务输入/输出比约 300:1、缓存命中 90%+，绝大多数 tokens 落在 $0.50/M 缓存读取档。与上面的标准牌价**口径不同不可并列**——牌价 ≠ 实现价格，这是 M12 最容易出错的地方。"
+    },
+    {
+      "fact_id": "rack-air-legacy-2026",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "component",
+        "id": "rack-air-legacy-2026",
+        "label": "传统风冷机柜"
+      },
+      "value": 5.0,
+      "unit": "kW",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "主流机型",
+        "power_basis": "设计功率",
+        "region": "Global"
+      },
+      "as_of": "2026-08",
+      "evidence": {
+        "local_file": "",
+        "locator": "research/M06.md M06-F? 功率密度段「传统 5–10kW 空气冷却柜并未消失」",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "原文为 5–10kW 区间，**取下界**（沿用本项目「区间取下界并注明」的惯例）。"
+    },
+    {
+      "fact_id": "rack-nvl72-2026",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "component",
+        "id": "rack-nvl72-2026",
+        "label": "NVL72 类整机柜系统"
+      },
+      "value": 120.0,
+      "unit": "kW",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "power_basis": "设计功率",
+        "region": "Global"
+      },
+      "as_of": "2026-08",
+      "evidence": {
+        "local_file": "",
+        "locator": "research/M06.md 功率密度段「NVL72 类系统已把设计带到约 120–140kW 级」",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "原文 120–140kW，**取下界**。与上一条传统风冷 5kW **差一个数量级**，靠 rack_type 维度隔开——这两个数放进同一个「机柜功率密度」序列会得出荒谬的均值。"
+    },
+    {
+      "fact_id": "bloom-equinix-operational-2026",
+      "metric_id": "btm_operational_mw",
+      "entity": {
+        "type": "component",
+        "id": "bloom-equinix-operational-2026",
+        "label": "Bloom × Equinix 燃料电池（已运行）"
+      },
+      "value": 75.0,
+      "unit": "MW",
+      "caliber": {
+        "power_type": "燃料电池",
+        "status": "L8",
+        "region": "US"
+      },
+      "as_of": "2026-08",
+      "evidence": {
+        "local_file": "",
+        "locator": "research/M04.md M04-F1 论证段「Bloom×Equinix 约 75MW 运行、30MW 在建」",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "**只有这 75MW 计入当期供给**；另 30MW 在建（L6）不计——status 维度就是为挡这个而设。"
+    },
+    {
+      "fact_id": "bloom-equinix-construction-2026",
+      "metric_id": "btm_operational_mw",
+      "entity": {
+        "type": "component",
+        "id": "bloom-equinix-construction-2026",
+        "label": "Bloom × Equinix 燃料电池（在建）"
+      },
+      "value": 30.0,
+      "unit": "MW",
+      "caliber": {
+        "power_type": "燃料电池",
+        "status": "L6",
+        "region": "US"
+      },
+      "as_of": "2026-08",
+      "evidence": {
+        "local_file": "",
+        "locator": "research/M04.md M04-F1 论证段「30MW 在建」",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "在建容量，**不得计入当期供给**。"
     }
   ]
 }
