@@ -405,6 +405,1586 @@
           ]
         }
       ]
+    },
+    {
+      "metric_id": "benchmark_spread",
+      "name": "自建聚合与第三方基准的偏差",
+      "unit": "%",
+      "module": "M01",
+      "caliber_dims": [
+        {
+          "id": "baseline",
+          "name": "对比基准",
+          "values": [
+            "第三方机构口径",
+            "官方披露口径"
+          ]
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "dc_rent_index_na",
+      "name": "数据中心租金指数",
+      "unit": "指数",
+      "module": "M01",
+      "caliber_dims": [
+        {
+          "id": "base_period",
+          "name": "基期",
+          "values": [
+            "2020=100",
+            "2015=100",
+            "其它"
+          ],
+          "note": "基期不同的指数不可直接比较，必须换算到同一基期。"
+        },
+        {
+          "id": "space_type",
+          "name": "计价对象",
+          "values": [
+            "按功率(kW)",
+            "按面积(㎡)"
+          ],
+          "note": "北美多按 kW 报价，中国多按机柜或面积——换算需知功率密度。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "global_operational_gw",
+      "name": "投运容量",
+      "unit": "GW",
+      "module": "M01",
+      "caliber_dims": [
+        {
+          "id": "capacity_type",
+          "name": "容量类型",
+          "values": [
+            "IT容量",
+            "设施容量",
+            "并网容量",
+            "签约容量"
+          ],
+          "note": "四种容量口径永不混加；设施容量通常为 IT 容量的 1.3-1.5 倍。"
+        },
+        {
+          "id": "status",
+          "name": "项目状态",
+          "values": [
+            "L1",
+            "L2",
+            "L3",
+            "L4",
+            "L5",
+            "L6",
+            "L7",
+            "L8",
+            "L9"
+          ],
+          "note": "**只有 L8+ 计入当期供给**；把在建容量加进当期供给是最常见的口径事故。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "pipeline_conversion_rate",
+      "name": "在建管线转化率",
+      "unit": "%",
+      "module": "M01",
+      "caliber_dims": [
+        {
+          "id": "from_to",
+          "name": "转化区间",
+          "values": [
+            "L2→L8",
+            "L5→L8",
+            "L6→L8"
+          ],
+          "note": "起点状态不同，转化率差异极大——从 L2 起算必然远低于从 L6 起算。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "vacancy_rate_na",
+      "name": "数据中心空置率",
+      "unit": "%",
+      "module": "M01",
+      "caliber_dims": [
+        {
+          "id": "scope",
+          "name": "统计范围",
+          "values": [
+            "单项目",
+            "区域市场",
+            "全国"
+          ]
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "hyperscaler_lease_ratio",
+      "name": "超大规模厂租赁占新增容量比",
+      "unit": "%",
+      "module": "M02",
+      "caliber_dims": [
+        {
+          "id": "denominator",
+          "name": "分母",
+          "values": [
+            "按容量",
+            "按项目数",
+            "按投资额"
+          ],
+          "note": "「前十大占比 40%」按容量算和按项目数算差很多——头部项目单体规模远大于长尾。"
+        },
+        {
+          "id": "capacity_type",
+          "name": "容量类型",
+          "values": [
+            "IT容量",
+            "设施容量",
+            "并网容量",
+            "签约容量"
+          ],
+          "note": "四种容量口径永不混加；设施容量通常为 IT 容量的 1.3-1.5 倍。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "neocloud_funded_gw",
+      "name": "Neocloud 已获融资容量",
+      "unit": "GW",
+      "module": "M02",
+      "caliber_dims": [
+        {
+          "id": "capacity_type",
+          "name": "容量类型",
+          "values": [
+            "IT容量",
+            "设施容量",
+            "并网容量",
+            "签约容量"
+          ],
+          "note": "四种容量口径永不混加；设施容量通常为 IT 容量的 1.3-1.5 倍。"
+        },
+        {
+          "id": "funding_stage",
+          "name": "融资阶段",
+          "values": [
+            "已宣布",
+            "已签约",
+            "已到账"
+          ],
+          "note": "「已获融资」三个阶段的水分差很大，宣布≠到账。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "top10_pipeline_share",
+      "name": "前十大开发商在建容量占比",
+      "unit": "%",
+      "module": "M02",
+      "caliber_dims": [
+        {
+          "id": "denominator",
+          "name": "分母",
+          "values": [
+            "按容量",
+            "按项目数",
+            "按投资额"
+          ],
+          "note": "「前十大占比 40%」按容量算和按项目数算差很多——头部项目单体规模远大于长尾。"
+        },
+        {
+          "id": "status",
+          "name": "项目状态",
+          "values": [
+            "L1",
+            "L2",
+            "L3",
+            "L4",
+            "L5",
+            "L6",
+            "L7",
+            "L8",
+            "L9"
+          ],
+          "note": "**只有 L8+ 计入当期供给**；把在建容量加进当期供给是最常见的口径事故。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "capex_guidance_delta",
+      "name": "云厂 Capex 指引环比变化",
+      "unit": "%",
+      "module": "M03",
+      "caliber_dims": [
+        {
+          "id": "scope",
+          "name": "口径范围",
+          "values": [
+            "全部capex",
+            "仅数据中心",
+            "仅AI相关"
+          ],
+          "note": "「capex 增长 50%」是全公司还是仅数据中心，含义完全不同。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "circular_deal_exposure",
+      "name": "循环交易占大额合同比",
+      "unit": "%",
+      "module": "M03",
+      "caliber_dims": [
+        {
+          "id": "definition",
+          "name": "循环交易定义",
+          "values": [
+            "双向投资+采购",
+            "仅股权关联",
+            "含供应商融资"
+          ],
+          "note": "循环交易没有公认定义，口径宽窄决定这个数是 5% 还是 30%。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "mega_contract_backlog",
+      "name": "大额合同未交付余额",
+      "unit": "$B",
+      "module": "M03",
+      "caliber_dims": [
+        {
+          "id": "recognition",
+          "name": "确认口径",
+          "values": [
+            "已签约总额",
+            "剩余履约义务(RPO)",
+            "已确认收入"
+          ],
+          "note": "RPO 与签约总额不是一回事——前者是会计口径，有确认规则。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "btm_operational_mw",
+      "name": "自备电源投运容量",
+      "unit": "MW",
+      "module": "M04",
+      "caliber_dims": [
+        {
+          "id": "power_type",
+          "name": "电源类型",
+          "values": [
+            "燃气",
+            "燃油",
+            "核能",
+            "可再生",
+            "混合"
+          ]
+        },
+        {
+          "id": "status",
+          "name": "项目状态",
+          "values": [
+            "L1",
+            "L2",
+            "L3",
+            "L4",
+            "L5",
+            "L6",
+            "L7",
+            "L8",
+            "L9"
+          ],
+          "note": "**只有 L8+ 计入当期供给**；把在建容量加进当期供给是最常见的口径事故。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "interconnection_queue_years",
+      "name": "并网等待时长",
+      "unit": "年",
+      "module": "M04",
+      "caliber_dims": [
+        {
+          "id": "stage",
+          "name": "计时起点",
+          "values": [
+            "提交申请到获批",
+            "提交申请到通电",
+            "获批到通电"
+          ],
+          "note": "并网排队的三段计时常被混用，差数年。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "ppa_price_index",
+      "name": "数据中心 PPA 价格",
+      "unit": "$/MWh",
+      "module": "M04",
+      "caliber_dims": [
+        {
+          "id": "price_type",
+          "name": "价格类型",
+          "values": [
+            "现货",
+            "长约",
+            "公开挂牌",
+            "实际成交"
+          ],
+          "note": "挂牌价与实际成交价常差一截；现货与长约更是两个市场。"
+        },
+        {
+          "id": "tenor",
+          "name": "合约期",
+          "values": [
+            "≤5年",
+            "5-10年",
+            ">10年"
+          ],
+          "note": "PPA 价格与合约期强相关，不注明期限的均价没有意义。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "region_pipeline_share",
+      "name": "各区域在建容量份额",
+      "unit": "%",
+      "module": "M05",
+      "caliber_dims": [
+        {
+          "id": "denominator",
+          "name": "分母",
+          "values": [
+            "按容量",
+            "按项目数",
+            "按投资额"
+          ],
+          "note": "「前十大占比 40%」按容量算和按项目数算差很多——头部项目单体规模远大于长尾。"
+        },
+        {
+          "id": "status",
+          "name": "项目状态",
+          "values": [
+            "L1",
+            "L2",
+            "L3",
+            "L4",
+            "L5",
+            "L6",
+            "L7",
+            "L8",
+            "L9"
+          ],
+          "note": "**只有 L8+ 计入当期供给**；把在建容量加进当期供给是最常见的口径事故。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "zoning_denial_count",
+      "name": "选址否决或延期事件数",
+      "unit": "件/季",
+      "module": "M05",
+      "caliber_dims": [
+        {
+          "id": "source_basis",
+          "name": "计数依据",
+          "values": [
+            "公开报道",
+            "官方公告",
+            "渠道汇总"
+          ],
+          "note": "靠公开报道计数会系统性低估——没上新闻的取消事件不会进统计。"
+        },
+        {
+          "id": "event_type",
+          "name": "事件类型",
+          "values": [
+            "否决",
+            "延期",
+            "否决+延期"
+          ]
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "cowos_capacity_wpm",
+      "name": "先进封装月产能",
+      "unit": "万片/月",
+      "module": "M06",
+      "caliber_dims": [
+        {
+          "id": "package_type",
+          "name": "封装类型",
+          "values": [
+            "CoWoS-S",
+            "CoWoS-L",
+            "CoWoS-R",
+            "全部CoWoS",
+            "含SoIC"
+          ],
+          "note": "代际不同产能不可直接相加；「CoWoS 产能」通常未说明是哪一种。"
+        },
+        {
+          "id": "basis",
+          "name": "口径",
+          "values": [
+            "名义产能",
+            "有效产出",
+            "第三方推算"
+          ],
+          "note": "台积电不披露分项产能，市面数字几乎全是第三方推算。"
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "gpu_lead_time",
+      "name": "旗舰 GPU 整机交付周期",
+      "unit": "月",
+      "module": "M06",
+      "caliber_dims": [
+        {
+          "id": "basis",
+          "name": "交期口径",
+          "values": [
+            "下单到发货",
+            "下单到交付现场",
+            "厂商公开报价"
+          ],
+          "note": "「交期 12 个月」从下单到发货、到交付现场是两个数，差数月；厂商公开报价往往是最乐观口径。"
+        },
+        {
+          "id": "form",
+          "name": "交付形态",
+          "values": [
+            "裸卡",
+            "整机",
+            "整机柜"
+          ],
+          "note": "裸卡与整机柜的交期差异来自系统集成与测试环节。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "rack_density_shipping",
+      "name": "出货机柜功率密度",
+      "unit": "kW",
+      "module": "M06",
+      "caliber_dims": [
+        {
+          "id": "stat",
+          "name": "统计量",
+          "values": [
+            "中位数",
+            "均值",
+            "主流机型",
+            "峰值"
+          ],
+          "note": "「机柜功率密度 130kW」多半是旗舰机型，不是出货中位数。"
+        },
+        {
+          "id": "power_basis",
+          "name": "功率口径",
+          "values": [
+            "设计功率",
+            "实际满载",
+            "铭牌值"
+          ]
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "ethernet_ai_share",
+      "name": "以太网在新建 AI 集群中的份额",
+      "unit": "%",
+      "module": "M07",
+      "caliber_dims": [
+        {
+          "id": "denominator",
+          "name": "分母",
+          "values": [
+            "按容量",
+            "按项目数",
+            "按投资额"
+          ],
+          "note": "「前十大占比 40%」按容量算和按项目数算差很多——头部项目单体规模远大于长尾。"
+        },
+        {
+          "id": "layer",
+          "name": "网络层",
+          "values": [
+            "后端(scale-out)",
+            "前端",
+            "全部"
+          ],
+          "note": "后端网络与前端网络的技术选型完全不同，混算无意义。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "optics_800g_price",
+      "name": "800G 光模块单价",
+      "unit": "$",
+      "module": "M07",
+      "caliber_dims": [
+        {
+          "id": "price_type",
+          "name": "价格类型",
+          "values": [
+            "现货",
+            "长约",
+            "公开挂牌",
+            "实际成交"
+          ],
+          "note": "挂牌价与实际成交价常差一截；现货与长约更是两个市场。"
+        },
+        {
+          "id": "reach",
+          "name": "传输距离",
+          "values": [
+            "DR/500m",
+            "FR/2km",
+            "LR/10km",
+            "多模SR"
+          ],
+          "note": "同为 800G，多模 SR 与相干长距差价可达十倍。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "cdu_lead_time",
+      "name": "CDU 交付周期",
+      "unit": "月",
+      "module": "M08",
+      "caliber_dims": [
+        {
+          "id": "basis",
+          "name": "交期口径",
+          "values": [
+            "下单到发货",
+            "下单到交付现场",
+            "厂商公开报价"
+          ],
+          "note": "「交期 12 个月」从下单到发货、到交付现场是两个数，差数月；厂商公开报价往往是最乐观口径。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "cooling_capex_per_mw",
+      "name": "散热单位投资",
+      "unit": "$M/MW",
+      "module": "M08",
+      "caliber_dims": [
+        {
+          "id": "scope",
+          "name": "包含范围",
+          "values": [
+            "仅末端",
+            "含冷源",
+            "含土建"
+          ],
+          "note": "含不含冷源（冷机/冷塔）差一倍以上。"
+        },
+        {
+          "id": "cooling_type",
+          "name": "制冷方式",
+          "values": [
+            "风冷",
+            "冷板液冷",
+            "浸没液冷",
+            "混合"
+          ]
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "liquid_cooling_penetration",
+      "name": "新建 AI 容量液冷渗透率",
+      "unit": "%",
+      "module": "M08",
+      "caliber_dims": [
+        {
+          "id": "denominator",
+          "name": "分母",
+          "values": [
+            "按容量",
+            "按项目数",
+            "按投资额"
+          ],
+          "note": "「前十大占比 40%」按容量算和按项目数算差很多——头部项目单体规模远大于长尾。"
+        },
+        {
+          "id": "cooling_type",
+          "name": "液冷类型",
+          "values": [
+            "冷板",
+            "浸没",
+            "全部液冷"
+          ]
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "gas_turbine_backlog_years",
+      "name": "燃机订单簿覆盖年数",
+      "unit": "年",
+      "module": "M09",
+      "caliber_dims": [
+        {
+          "id": "basis",
+          "name": "口径",
+          "values": [
+            "在手订单/年产能",
+            "在手订单/年交付"
+          ],
+          "note": "分母取产能还是取实际交付，结论差异明显。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "genset_lead_time",
+      "name": "大功率柴发交期",
+      "unit": "月",
+      "module": "M09",
+      "caliber_dims": [
+        {
+          "id": "basis",
+          "name": "交期口径",
+          "values": [
+            "下单到发货",
+            "下单到交付现场",
+            "厂商公开报价"
+          ],
+          "note": "「交期 12 个月」从下单到发货、到交付现场是两个数，差数月；厂商公开报价往往是最乐观口径。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "transformer_lead_time",
+      "name": "大型变压器交期",
+      "unit": "月",
+      "module": "M09",
+      "caliber_dims": [
+        {
+          "id": "basis",
+          "name": "交期口径",
+          "values": [
+            "下单到发货",
+            "下单到交付现场",
+            "厂商公开报价"
+          ],
+          "note": "「交期 12 个月」从下单到发货、到交付现场是两个数，差数月；厂商公开报价往往是最乐观口径。"
+        },
+        {
+          "id": "voltage",
+          "name": "电压等级",
+          "values": [
+            "≤35kV",
+            "35-110kV",
+            ">110kV"
+          ],
+          "note": "电压等级越高交期越长，不分等级的均值没有指导意义。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "construction_duration_months",
+      "name": "开工到通电周期",
+      "unit": "月",
+      "module": "M10",
+      "caliber_dims": [
+        {
+          "id": "stage",
+          "name": "计时区间",
+          "values": [
+            "开工到通电",
+            "拿地到通电",
+            "开工到交付"
+          ],
+          "note": "拿地到通电比开工到通电长得多，三种口径常被混用。"
+        },
+        {
+          "id": "stat",
+          "name": "统计量",
+          "values": [
+            "中位数",
+            "均值"
+          ]
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "electrician_wage_premium",
+      "name": "数据中心电工工资溢价",
+      "unit": "%",
+      "module": "M10",
+      "caliber_dims": [
+        {
+          "id": "baseline",
+          "name": "对比基准",
+          "values": [
+            "同地区建筑业均值",
+            "同地区制造业均值",
+            "全国电工均值"
+          ]
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "dc_reit_premium",
+      "name": "数据中心 REIT 相对 NAV 溢价",
+      "unit": "%",
+      "module": "M11",
+      "caliber_dims": [
+        {
+          "id": "nav_basis",
+          "name": "NAV 口径",
+          "values": [
+            "机构测算",
+            "公司披露",
+            "第三方评估"
+          ],
+          "note": "NAV 本身是估算，不同机构算法不同，溢价率随之不同。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "gpu_abs_spread",
+      "name": "算力 ABS 发行利差",
+      "unit": "bp",
+      "module": "M11",
+      "caliber_dims": [
+        {
+          "id": "benchmark",
+          "name": "基准利率",
+          "values": [
+            "同期国债",
+            "同评级信用债",
+            "SOFR/LPR"
+          ],
+          "note": "利差必须说明相对什么基准，否则数字无意义。"
+        },
+        {
+          "id": "tranche",
+          "name": "分层",
+          "values": [
+            "优先级",
+            "夹层",
+            "次级"
+          ]
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "price_per_mw_operational",
+      "name": "运营资产每 MW 成交价",
+      "unit": "$M/MW",
+      "module": "M11",
+      "caliber_dims": [
+        {
+          "id": "capacity_type",
+          "name": "容量类型",
+          "values": [
+            "IT容量",
+            "设施容量",
+            "并网容量",
+            "签约容量"
+          ],
+          "note": "四种容量口径永不混加；设施容量通常为 IT 容量的 1.3-1.5 倍。"
+        },
+        {
+          "id": "deal_type",
+          "name": "交易类型",
+          "values": [
+            "整体收购",
+            "少数股权",
+            "售后回租"
+          ],
+          "note": "少数股权成交价折算的每 MW 通常不能代表整体估值。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "ai_revenue_capex_ratio",
+      "name": "AI 收入与算力支出承诺比",
+      "unit": "x",
+      "module": "M12",
+      "caliber_dims": [
+        {
+          "id": "revenue_scope",
+          "name": "收入口径",
+          "values": [
+            "AI直接收入",
+            "含云基础设施",
+            "全公司"
+          ],
+          "note": "「AI 收入」几乎没有公司按同一口径披露，跨公司比较需极其小心。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "inference_unit_margin",
+      "name": "推理毛利估算",
+      "unit": "%",
+      "module": "M12",
+      "caliber_dims": [
+        {
+          "id": "cost_scope",
+          "name": "成本口径",
+          "values": [
+            "仅算力",
+            "含折旧",
+            "含研发摊销"
+          ],
+          "note": "含不含折旧决定这个数是正是负。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "token_price_flagship",
+      "name": "旗舰模型 API 价格",
+      "unit": "$/Mtok",
+      "module": "M12",
+      "caliber_dims": [
+        {
+          "id": "direction",
+          "name": "输入/输出",
+          "values": [
+            "输入",
+            "输出",
+            "混合"
+          ],
+          "note": "输入与输出定价常差 3-5 倍，不注明方向的「token 价格」不可用。"
+        },
+        {
+          "id": "tier",
+          "name": "档位",
+          "values": [
+            "标准",
+            "批量",
+            "缓存命中"
+          ]
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "gpu_hourly_rate_spot",
+      "name": "旗舰 GPU 时租",
+      "unit": "$/hr",
+      "module": "M13",
+      "caliber_dims": [
+        {
+          "id": "price_type",
+          "name": "价格类型",
+          "values": [
+            "现货",
+            "长约",
+            "公开挂牌",
+            "实际成交"
+          ],
+          "note": "挂牌价与实际成交价常差一截；现货与长约更是两个市场。"
+        },
+        {
+          "id": "unit",
+          "name": "计价单位",
+          "values": [
+            "单卡",
+            "整机8卡",
+            "整机柜"
+          ],
+          "note": "「$2/hr」是单卡还是整机，差 8 倍。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "gpu_rate_term_spread",
+      "name": "现货与长约价差",
+      "unit": "%",
+      "module": "M13",
+      "caliber_dims": [
+        {
+          "id": "tenor",
+          "name": "长约期限",
+          "values": [
+            "1年",
+            "3年",
+            "≥5年"
+          ]
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "used_gpu_price_index",
+      "name": "二手 GPU 价格指数",
+      "unit": "指数",
+      "module": "M13",
+      "caliber_dims": [
+        {
+          "id": "base_period",
+          "name": "基期",
+          "values": [
+            "发布价=100",
+            "2024=100",
+            "其它"
+          ]
+        },
+        {
+          "id": "condition",
+          "name": "成色",
+          "values": [
+            "整机拆机",
+            "散卡",
+            "含保修"
+          ]
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "aidc_utilization_channel",
+      "name": "智算中心利用率",
+      "unit": "%",
+      "module": "M14",
+      "caliber_dims": [
+        {
+          "id": "meaning",
+          "name": "利用率含义",
+          "values": [
+            "上架率(机柜售出)",
+            "算力利用率(实际在跑)",
+            "功率利用率"
+          ],
+          "note": "**上架率与算力利用率是两个东西**：前者是机柜卖出去多少，后者是卖出去的算力真正在跑多少。中文材料里「利用率」经常不区分，是 M14 最常见的口径陷阱。"
+        },
+        {
+          "id": "scope",
+          "name": "统计范围",
+          "values": [
+            "单项目",
+            "区域市场",
+            "全国"
+          ]
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "domestic_gpu_shipment",
+      "name": "国产 AI 芯片出货量",
+      "unit": "万颗/季",
+      "module": "M14",
+      "caliber_dims": [
+        {
+          "id": "counting",
+          "name": "计数口径",
+          "values": [
+            "die",
+            "封装体",
+            "整卡"
+          ],
+          "note": "die 数与封装体数不同（黄氏算术第三查）；整卡又可能含多颗。"
+        },
+        {
+          "id": "basis",
+          "name": "数据来源",
+          "values": [
+            "厂商披露",
+            "第三方推算",
+            "渠道调研"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "east_west_rack_rate",
+      "name": "西部枢纽上架率",
+      "unit": "%",
+      "module": "M14",
+      "caliber_dims": [
+        {
+          "id": "scope",
+          "name": "统计范围",
+          "values": [
+            "单项目",
+            "枢纽节点",
+            "全部西部枢纽"
+          ]
+        },
+        {
+          "id": "denominator",
+          "name": "分母",
+          "values": [
+            "按容量",
+            "按项目数",
+            "按投资额"
+          ],
+          "note": "「前十大占比 40%」按容量算和按项目数算差很多——头部项目单体规模远大于长尾。"
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "project_cancellation_count",
+      "name": "项目取消或延期事件数",
+      "unit": "件/季",
+      "module": "M15",
+      "caliber_dims": [
+        {
+          "id": "source_basis",
+          "name": "计数依据",
+          "values": [
+            "公开报道",
+            "官方公告",
+            "渠道汇总"
+          ],
+          "note": "靠公开报道计数会系统性低估——没上新闻的取消事件不会进统计。"
+        },
+        {
+          "id": "event_type",
+          "name": "事件类型",
+          "values": [
+            "取消",
+            "延期",
+            "缩规模",
+            "全部"
+          ]
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "capex_guidance_downgrade",
+      "name": "云厂 capex 指引下修次数",
+      "unit": "次/季",
+      "module": "M15",
+      "caliber_dims": [
+        {
+          "id": "scope",
+          "name": "统计范围",
+          "values": [
+            "四大云厂",
+            "含Neocloud",
+            "全部上市公司"
+          ]
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
+    },
+    {
+      "metric_id": "gpu_spot_drawdown",
+      "name": "GPU 现货价自高点回撤",
+      "unit": "%",
+      "module": "M15",
+      "caliber_dims": [
+        {
+          "id": "peak_basis",
+          "name": "高点基准",
+          "values": [
+            "历史最高",
+            "滚动12月最高"
+          ]
+        },
+        {
+          "id": "unit",
+          "name": "计价单位",
+          "values": [
+            "单卡",
+            "整机8卡",
+            "整机柜"
+          ]
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "note": "口径维度为 2026-08-17 云端起草，用户未逐条确认——每个维度都对应一个真实的混淆陷阱，划掉不需要的即可。"
     }
   ]
 }

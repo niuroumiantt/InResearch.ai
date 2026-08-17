@@ -208,13 +208,15 @@ def build(only=None):
                 key="口径未定义")
 
         # P2 事实层空白——口径定义了却没去取数
-        empty = [m for m in met_by_mod.get(mid, []) if fact_cnt[m["metric_id"]] == 0]
-        for m in empty:
+        # 变量名不能用 m——外层 `for m in mods` 还要用它取 questions；
+        # 这里曾因覆盖循环变量，导致 34 条「声明问题开放」工单静默消失
+        empty = [x for x in met_by_mod.get(mid, []) if fact_cnt[x["metric_id"]] == 0]
+        for met in empty:
             add("P2", "事实层空白",
-                f"指标 `{m['metric_id']}`（{m['name']}）已声明口径维度，但事实层一条数都没有",
+                f"指标 `{met['metric_id']}`（{met['name']}）已声明口径维度，但事实层一条数都没有",
                 "去取数入 `data/facts.json`。口径维度已经定好，照着填即可；"
                 "拿不到就如实回报——**留白是纪律**。",
-                key=f"事实空白:{m['metric_id']}")
+                key=f"事实空白:{met['metric_id']}")
 
         # P2 信源未开口
         for b in beats:
@@ -315,6 +317,10 @@ def main():
 
     c = Counter(o["pri"] for o in orders)
     print(f"工单 {len(orders)} 张｜P1 {c['P1']} P2 {c['P2']} P3 {c['P3']}")
+    # 按类型打印分布：整类工单静默消失过一次（循环变量被覆盖，34 条开放问题全丢），
+    # 只看总数看不出来——分布摆出来，某类掉到 0 就一眼可见
+    print("  类型分布：" + "｜".join(f"{k} {v}" for k, v in
+                                  Counter(o["kind"] for o in orders).most_common()))
     for o in [x for x in orders if x["pri"] == "P1"]:
         print(f"  P1 {o['mid']} {o['kind']}：{o['gap'][:60]}")
     print(f"完整队列已写入 {OUT.relative_to(ROOT)} 与 {OUT_JSON.relative_to(ROOT)}")
