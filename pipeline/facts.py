@@ -124,6 +124,21 @@ def public_view(f, m, today_year=2026):
     return f"{f['entity'].get('label','')}：**{rng} {f['unit']}**（{vintage}；口径：{cal}）"
 
 
+def fmt_value(v):
+    """按原值的小数位显示，不做统一四舍五入。
+
+    由来（2026-08-17）：原先固定 `.1f`，于是 PUE 1.63 与 1.41 显示成 1.6 与 1.4，
+    **而 PUE 这个域的差别恰恰在第二位小数上**——1.05 与 1.076 会双双显示成 1.1。
+    渲染层把区分度抹掉，等于事实层存得精确、读出来是糊的。
+    做法：整数不带小数点，其余保留原值实际的小数位（上限 4 位，防浮点尾巴）。
+    """
+    if isinstance(v, int) or (isinstance(v, float) and v.is_integer()):
+        return f"{int(v):,}"
+    s = f"{v:.4f}".rstrip("0")
+    dec = len(s.split(".")[1])
+    return f"{v:,.{dec}f}"
+
+
 def caliber_key(f, m):
     return tuple(f["caliber"].get(d["id"], "?") for d in m["caliber_dims"])
 
@@ -155,7 +170,7 @@ def compare(facts, metrics, only=None):
                 # value 允许为 null——「已知该指标存在但值未披露」是留白纪律的一部分，
                 # 渲染必须显式处理，不能崩（本行曾因未处理 None 报 TypeError）
                 b = BOUND_SIGN.get(f.get("bound", "point"), " ")
-                v = (f"{b}{f['value']:>9,.1f}" if f.get("value") is not None
+                v = (f"{b}{fmt_value(f['value']):>9}" if f.get("value") is not None
                      else f"{'留白':>9} ")
                 lines.append(f"     {s} {v} {f['unit']}  {f['entity'].get('label','')[:34]}{mark}")
 
