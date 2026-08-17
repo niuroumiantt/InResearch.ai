@@ -363,6 +363,266 @@
       "derived": false,
       "sensitive": false,
       "notes": "**「标准机架」是折算口径，与「机柜数」不可直接互换**。配套智能算力 788 EFLOPS 为 **FP16 精度口径**，换精度不可比。时点=2025-06 底，地域=中国大陆。"
+    },
+    {
+      "fact_id": "h100-spot-2023",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "component",
+        "id": "h100-spot-2023",
+        "label": "NVIDIA H100（现货）"
+      },
+      "value": 7.76,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "现货",
+        "unit": "单卡",
+        "region": "Global"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "local_file": "",
+        "locator": "research/M13.md M13-F2 结论段「H100 现货从 2023 短缺期 $7.76/hr」（本项目租价序列）",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "短缺期峰值。与 2025 末 $1.96 同口径可比，三年降约 75%。"
+    },
+    {
+      "fact_id": "h100-spot-2024",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "component",
+        "id": "h100-spot-2024",
+        "label": "NVIDIA H100（现货）"
+      },
+      "value": 2.85,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "现货",
+        "unit": "单卡",
+        "region": "Global"
+      },
+      "as_of": "2024-12",
+      "evidence": {
+        "local_file": "",
+        "locator": "research/M13.md M13-F2 结论段「2024 末 $2.85」",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": ""
+    },
+    {
+      "fact_id": "h100-spot-2025",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "component",
+        "id": "h100-spot-2025",
+        "label": "NVIDIA H100（现货）"
+      },
+      "value": 1.96,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "现货",
+        "unit": "单卡",
+        "region": "Global"
+      },
+      "as_of": "2025-12",
+      "evidence": {
+        "local_file": "",
+        "locator": "research/M13.md M13-F2 结论段「2025 末 $1.96」",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "降价主因是代际替代（B200 溢价 2-3 倍）而非需求崩塌。"
+    },
+    {
+      "fact_id": "b200-spot-2026",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "component",
+        "id": "b200-spot-2026",
+        "label": "NVIDIA B200（现货低位）"
+      },
+      "value": 2.12,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "现货",
+        "unit": "单卡",
+        "region": "Global"
+      },
+      "as_of": "2026-08",
+      "evidence": {
+        "local_file": "",
+        "locator": "research/M13.md M13-F2 结论段「B200…现货低至 $2.12」",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "同期 B200 on-demand 约 $4.50-7.00，本条取现货低位。"
+    },
+    {
+      "fact_id": "h100-term-2025",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "component",
+        "id": "h100-term-2025",
+        "label": "NVIDIA H100（1 年期合约）"
+      },
+      "value": 1.7,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "长约",
+        "unit": "单卡",
+        "region": "Global"
+      },
+      "as_of": "2025-10",
+      "evidence": {
+        "local_file": "",
+        "locator": "research/M13.md M13-F2 结论段「SemiAnalysis 1 年期合约指数 2025-10 约 $1.70/hr」",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "**低于同期现货 = 正常期限结构**；若出现现货低于长约的倒挂，才是 M13-F1 判别框架里的恐慌信号。"
+    },
+    {
+      "fact_id": "gpt56-in-2026",
+      "metric_id": "token_price_flagship",
+      "entity": {
+        "type": "component",
+        "id": "gpt56-in-2026",
+        "label": "OpenAI GPT-5.6 Sol"
+      },
+      "value": 5.0,
+      "unit": "$/Mtok",
+      "caliber": {
+        "direction": "输入",
+        "tier": "标准",
+        "region": "Global"
+      },
+      "as_of": "2026-08",
+      "evidence": {
+        "local_file": "",
+        "locator": "research/M12.md M12-F1 结论段「OpenAI GPT-5.6 Sol $5/$30」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": ""
+    },
+    {
+      "fact_id": "gpt56-out-2026",
+      "metric_id": "token_price_flagship",
+      "entity": {
+        "type": "component",
+        "id": "gpt56-out-2026",
+        "label": "OpenAI GPT-5.6 Sol"
+      },
+      "value": 30.0,
+      "unit": "$/Mtok",
+      "caliber": {
+        "direction": "输出",
+        "tier": "标准",
+        "region": "Global"
+      },
+      "as_of": "2026-08",
+      "evidence": {
+        "local_file": "",
+        "locator": "research/M12.md M12-F1 结论段「OpenAI GPT-5.6 Sol $5/$30」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": ""
+    },
+    {
+      "fact_id": "fable5-out-2026",
+      "metric_id": "token_price_flagship",
+      "entity": {
+        "type": "component",
+        "id": "fable5-out-2026",
+        "label": "Anthropic Claude Fable 5"
+      },
+      "value": 50.0,
+      "unit": "$/Mtok",
+      "caliber": {
+        "direction": "输出",
+        "tier": "标准",
+        "region": "Global"
+      },
+      "as_of": "2026-08",
+      "evidence": {
+        "local_file": "",
+        "locator": "research/M12.md M12-F1 结论段「Anthropic Claude Fable 5 $10/$50」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": ""
+    },
+    {
+      "fact_id": "gemini31-out-2026",
+      "metric_id": "token_price_flagship",
+      "entity": {
+        "type": "component",
+        "id": "gemini31-out-2026",
+        "label": "Google Gemini 3.1 Pro Preview"
+      },
+      "value": 12.0,
+      "unit": "$/Mtok",
+      "caliber": {
+        "direction": "输出",
+        "tier": "标准",
+        "region": "Global"
+      },
+      "as_of": "2026-08",
+      "evidence": {
+        "local_file": "",
+        "locator": "research/M12.md M12-F1 结论段「Google Gemini 3.1 Pro Preview $2/$12」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "Preview 定价，GA 时可能调整。"
+    },
+    {
+      "fact_id": "opus47-blended-2026",
+      "metric_id": "token_price_flagship",
+      "entity": {
+        "type": "component",
+        "id": "opus47-blended-2026",
+        "label": "Anthropic Claude Opus 4.7（agentic 实现价）"
+      },
+      "value": 0.99,
+      "unit": "$/Mtok",
+      "caliber": {
+        "direction": "混合",
+        "tier": "缓存命中",
+        "region": "Global"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "local_file": "",
+        "locator": "research/M12.md M12-F2 结论段「真实混合价格约 $0.99/M tokens，而牌价为 $5/$25」（SemiAnalysis 2026-05 推算）",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "**这条存在的意义是当对照**：agent 任务输入/输出比约 300:1、缓存命中 90%+，绝大多数 tokens 落在 $0.50/M 缓存读取档。与上面的标准牌价**口径不同不可并列**——牌价 ≠ 实现价格，这是 M12 最容易出错的地方。"
     }
   ]
 }
