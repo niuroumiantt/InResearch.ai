@@ -143,7 +143,10 @@ def compare(facts, metrics, only=None):
             for f in g:
                 mark = "（计算值）" if f.get("derived") else ""
                 s = "🔒" if f.get("sensitive") else "  "
-                lines.append(f"     {s} {f['value']:>10,.1f} {f['unit']}  {f['entity'].get('label','')[:34]}{mark}")
+                # value 允许为 null——「已知该指标存在但值未披露」是留白纪律的一部分，
+                # 渲染必须显式处理，不能崩（本行曾因未处理 None 报 TypeError）
+                v = f"{f['value']:>10,.1f}" if f.get("value") is not None else f"{'留白':>9}"
+                lines.append(f"     {s} {v} {f['unit']}  {f['entity'].get('label','')[:34]}{mark}")
 
         if len(groups) > 1:
             lines.append(f"  ⚠️ 本指标下有 {len(groups)} 个互不可比的口径组——**跨组并列即口径事故**：")

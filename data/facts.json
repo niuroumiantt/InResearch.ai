@@ -6,10 +6,18 @@
     {
       "fact_id": "luan-ct-cost-gc-2022",
       "metric_id": "dc_construction_cost_per_sqm",
-      "entity": {"type": "project", "id": "cn-ah-luan-ct", "label": "中国电信安徽六安信息化中心与云计算数据中心"},
+      "entity": {
+        "type": "project",
+        "id": "cn-ah-luan-ct",
+        "label": "中国电信安徽六安信息化中心与云计算数据中心"
+      },
       "value": 4406.0,
       "unit": "元/㎡",
-      "caliber": {"stage": "招标控制价", "scope": "施工总包", "region": "CN"},
+      "caliber": {
+        "stage": "招标控制价",
+        "scope": "施工总包",
+        "region": "CN"
+      },
       "as_of": "2022-01",
       "evidence": {
         "source_id": "chinatelecom-luan-cost-2022",
@@ -25,10 +33,18 @@
     {
       "fact_id": "luan-ct-cost-shell-2022",
       "metric_id": "dc_construction_cost_per_sqm",
-      "entity": {"type": "project", "id": "cn-ah-luan-ct", "label": "中国电信安徽六安信息化中心与云计算数据中心"},
+      "entity": {
+        "type": "project",
+        "id": "cn-ah-luan-ct",
+        "label": "中国电信安徽六安信息化中心与云计算数据中心"
+      },
       "value": 3736.6,
       "unit": "元/㎡",
-      "caliber": {"stage": "招标控制价", "scope": "土建本体", "region": "CN"},
+      "caliber": {
+        "stage": "招标控制价",
+        "scope": "土建本体",
+        "region": "CN"
+      },
       "as_of": "2022-01",
       "evidence": {
         "source_id": "chinatelecom-luan-cost-2022",
@@ -37,7 +53,9 @@
       },
       "depth": "据实生成",
       "derived": true,
-      "derived_from": ["luan-ct-cost-gc-2022"],
+      "derived_from": [
+        "luan-ct-cost-gc-2022"
+      ],
       "derivation": "施工总包 79,483,818.90 元剥离室外（园林 5,109,668.11 + 大型土石方 4,962,327.12 + 室外市政给排水 1,617,277.73 + 室外电气 386,468.68 = 12,075,741.64，占 15.2%）后 67,408,077.26 元，÷18,040 ㎡",
       "sensitive": true,
       "notes": "剥室外是为了与 M10-F14 的广州本体口径对齐——不剥不可比。"
@@ -45,10 +63,18 @@
     {
       "fact_id": "cmcc-gba-cost-shell-2022",
       "metric_id": "dc_construction_cost_per_sqm",
-      "entity": {"type": "project", "id": "cn-gd-gba-cmcc", "label": "中国移动粤港澳（广州）通信机楼二期"},
+      "entity": {
+        "type": "project",
+        "id": "cn-gd-gba-cmcc",
+        "label": "中国移动粤港澳（广州）通信机楼二期"
+      },
       "value": 3774.9,
       "unit": "元/㎡",
-      "caliber": {"stage": "招标控制价", "scope": "土建本体", "region": "CN"},
+      "caliber": {
+        "stage": "招标控制价",
+        "scope": "土建本体",
+        "region": "CN"
+      },
       "as_of": "2022-01",
       "evidence": {
         "source_id": "cmcc-gba-guangzhou-cost-2022",
@@ -63,10 +89,18 @@
     {
       "fact_id": "wuhu-unicom-invest-rack-2023",
       "metric_id": "dc_investment_per_rack",
-      "entity": {"type": "project", "id": "cn-ah-wuhu-unicom", "label": "中国联通芜湖智算中心"},
+      "entity": {
+        "type": "project",
+        "id": "cn-ah-wuhu-unicom",
+        "label": "中国联通芜湖智算中心"
+      },
       "value": 60.0,
       "unit": "万元/架",
-      "caliber": {"stage": "估算", "scope": "含IT设备的项目总投资", "region": "CN"},
+      "caliber": {
+        "stage": "估算",
+        "scope": "含IT设备的项目总投资",
+        "region": "CN"
+      },
       "as_of": "2023",
       "evidence": {
         "local_file": "docs/library/04_市场与研究/中文行业报告集/8A_2023_芜湖联通智算中心环评_中国联通.pdf",
@@ -78,6 +112,257 @@
       "derivation": "总投资 60 亿元 ÷ 10,000 架",
       "sensitive": false,
       "notes": "**这条存在的意义之一是当反例**：它与上面三条差着一个数量级的内涵（含 IT 设备的项目总投资 vs 施工总包），metric_id 都不同，系统必须拒绝把它们并列。"
+    },
+    {
+      "fact_id": "reit-runze-occupancy-2025",
+      "metric_id": "dc_occupancy_rate",
+      "entity": {
+        "type": "project",
+        "id": "cn-hb-langfang-runze",
+        "label": "南方润泽科技数据中心REIT底层项目（廊坊）"
+      },
+      "value": 99.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "单项目",
+        "region": "CN"
+      },
+      "as_of": "2025-03",
+      "evidence": {
+        "local_file": "",
+        "locator": "申万宏源《南方润泽科技数据中心REIT申购价值分析》(2025-07-12) 正文「上架率逾99%，租约长期稳定」段",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "单个成熟 IDC 项目（廊坊润泽）2022-2025Q1 实际上架率，原文「超过99%」取下界。**不是行业均值**——同期廊坊市 IDC 市场整体上架率 81.3%、周边竞品 74%~85%。评估机构预期未来维持 95%~99%（剔除改造影响）。地域=中国河北廊坊。"
+    },
+    {
+      "fact_id": "langfang-market-occupancy-2025",
+      "metric_id": "dc_occupancy_rate",
+      "entity": {
+        "type": "region",
+        "id": "cn-hb-langfang",
+        "label": "廊坊市IDC市场"
+      },
+      "value": 81.3,
+      "unit": "%",
+      "caliber": {
+        "scope": "区域市场",
+        "region": "CN"
+      },
+      "as_of": "2025-03",
+      "evidence": {
+        "local_file": "",
+        "locator": "同上报告正文「25Q1，廊坊市IDC市场整体上架率达到81.3%」",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "**区域市场口径**，非单项目。与上一条 99% 配对使用：两者差 17.7 个百分点，说明头部项目上架率不能代表区域平均。时点=2025Q1，地域=中国河北廊坊。"
+    },
+    {
+      "fact_id": "runze-colo-price-2025",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "project",
+        "id": "cn-hb-langfang-runze",
+        "label": "南方润泽科技数据中心REIT底层项目（廊坊）"
+      },
+      "value": 1072.0,
+      "unit": "元/月/kW",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "单一大客户长约",
+        "region": "CN"
+      },
+      "as_of": "2025-07",
+      "evidence": {
+        "local_file": "",
+        "locator": "同上报告正文「合同期内（20-34年），普通机柜的托管服务费单价为1,072元/月/kW」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "**按功率计价（元/月/kW）而非按机柜计价**，两种口径不可互换。合同期 2020-2034 固定单价、2035 年起预测年增 1%。高功率机柜约 1,149 元/月/kW。单一大客户长约，**不代表零售托管市场价**。地域=中国河北廊坊。"
+    },
+    {
+      "fact_id": "runze-power-cost-share-2024",
+      "metric_id": "power_cost_share",
+      "entity": {
+        "type": "project",
+        "id": "cn-hb-langfang-runze",
+        "label": "南方润泽科技数据中心REIT底层项目（廊坊）"
+      },
+      "value": 42.75,
+      "unit": "%",
+      "caliber": {
+        "denominator": "营业收入",
+        "region": "CN"
+      },
+      "as_of": "2024-12",
+      "evidence": {
+        "local_file": "",
+        "locator": "同上报告正文「22-25Q1电费占营收的比例分别为40.75%/38.93%/42.75%/39.79%」的 2024 年值",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "**营收口径的电费占比，不是成本口径**。序列 2022=40.75、2023=38.93、2024=42.75、2025Q1=39.79。受当地电价与上架率共同影响，**不同电价区不可平移**。地域=中国河北廊坊。"
+    },
+    {
+      "fact_id": "runze-reit-price-2025",
+      "metric_id": "reit_issue_price",
+      "entity": {
+        "type": "market",
+        "id": "southern-runze-reit",
+        "label": "南方润泽科技数据中心REIT(180901.SZ)"
+      },
+      "value": 4.5,
+      "unit": "元/份",
+      "caliber": {
+        "stage": "最终定价",
+        "region": "CN"
+      },
+      "as_of": "2025-07",
+      "evidence": {
+        "local_file": "",
+        "locator": "天风证券《周观REITs：南方润泽科技数据中心REIT获超百倍认购》(2025-07-06)「每份定价4.5元，总发行规模10亿份，预计募集资金总额约45亿元」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "**最终定价**，位于询价区间 3.020~4.531 元/份上沿（顶格定价）。对应实募约 45 亿元；申万宏源同期载明**拟募集 37.75 亿元**为定价前口径，**引用募集规模必须标明拟募还是实募**。地域=中国。"
+    },
+    {
+      "fact_id": "gds-reit-subscription-2025",
+      "metric_id": "reit_subscription_multiple",
+      "entity": {
+        "type": "market",
+        "id": "southern-vnet-reit",
+        "label": "南方万国数据中心REIT(508060.SH)"
+      },
+      "value": 455.03,
+      "unit": "倍",
+      "caliber": {
+        "stage": "公众发售资金覆盖",
+        "region": "CN"
+      },
+      "as_of": "2025-07",
+      "evidence": {
+        "local_file": "",
+        "locator": "天风证券《周观REITs：两单数据中心公募REITs公布公众认购比例》(2025-07-19)「认购资金覆盖倍数为455.03倍」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "**公众发售阶段**口径，与询价（网下机构）阶段的认购倍数不同、不可混用。同批南方润泽为 317.95 倍。受发售规模与打新资金面共同影响，**不宜单独当作资产质量指标**。地域=中国。"
+    },
+    {
+      "fact_id": "dc-reit-yield-2025",
+      "metric_id": "reit_distribution_yield",
+      "entity": {
+        "type": "market",
+        "id": "cn-dc-reit",
+        "label": "南方润泽科技数据中心REIT(180901.SZ)"
+      },
+      "value": 7.71,
+      "unit": "%",
+      "caliber": {
+        "basis": "发行时预测",
+        "region": "CN"
+      },
+      "as_of": "2025-07",
+      "evidence": {
+        "local_file": "",
+        "locator": "申万宏源同上报告「25/26年预测年化分派率7.71%/6.42%；估值折现率为7.75%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "**发行时预测值而非实现值**。2025=7.71%、2026=6.42%（逐年下降）。配套估值折现率 7.75%。分派率依赖可供分配金额假设，与上架率、电价、续约率强相关。地域=中国。"
+    },
+    {
+      "fact_id": "cn-dc-payback-2025",
+      "metric_id": "dc_payback_years",
+      "entity": {
+        "type": "market",
+        "id": "cn-compute-center",
+        "label": "中国算力中心（行业口径）"
+      },
+      "value": null,
+      "unit": "年",
+      "caliber": {
+        "scope": "项目层",
+        "region": "CN"
+      },
+      "as_of": "2025-08",
+      "evidence": {
+        "local_file": "",
+        "locator": "中国信通院《算力中心创新融资研究报告（2025年）》正文「项目投资回收期在8-10年」段",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "**区间值而非点值**。前提是设备寿命 5-50 年、需随技术迭代追加投入。**项目层口径，未说明是否含财务费用、是否税后**。地域=中国，时点=2025-08。"
+    },
+    {
+      "fact_id": "cn-dc-loan-share-2025",
+      "metric_id": "bank_loan_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-compute-center",
+        "label": "中国算力中心（三项目样本）"
+      },
+      "value": 70.0,
+      "unit": "%",
+      "caliber": {
+        "basis": "计划投资",
+        "region": "CN"
+      },
+      "as_of": "2025-08",
+      "evidence": {
+        "local_file": "",
+        "locator": "同上报告正文列举：中国移动呼和浩特算力基地（总投资23亿、贷款占比70%）、上海超级智算中心（总投入20亿、自筹6亿+贷款14亿）",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "**样本值不是行业均值**——第三个样本北京通州区人工智能智算中心（总投资43亿、自筹22亿、贷款21亿）为 49%。**三例均为「计划投资/拟投入」口径，不是实际放款**。地域=中国，时点=2025-08。"
+    },
+    {
+      "fact_id": "cn-rack-total-2025",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "value": 1085.0,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2025-06",
+      "evidence": {
+        "local_file": "",
+        "locator": "同上报告正文「截至2025年6月底，我国在用算力中心机架总规模达1085万标准机架，智能算力规模达788 EFLOPS(FP16)」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": false,
+      "notes": "**「标准机架」是折算口径，与「机柜数」不可直接互换**。配套智能算力 788 EFLOPS 为 **FP16 精度口径**，换精度不可比。时点=2025-06 底，地域=中国大陆。"
     }
   ]
 }

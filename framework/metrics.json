@@ -139,6 +139,272 @@
       "public_band": {
         "step": 50
       }
+    },
+    {
+      "metric_id": "dc_occupancy_rate",
+      "name": "数据中心上架率",
+      "unit": "%",
+      "module": "M13",
+      "caliber_dims": [
+        {
+          "id": "scope",
+          "name": "统计范围",
+          "values": [
+            "单项目",
+            "区域市场",
+            "全国"
+          ],
+          "note": "**头部单项目不能代表区域平均**：廊坊润泽 >99% 与同期廊坊市场整体 81.3% 差 17.7 个百分点。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ]
+    },
+    {
+      "metric_id": "colo_price_per_kw",
+      "name": "IDC 托管服务费单价",
+      "unit": "元/月/kW",
+      "module": "M12",
+      "caliber_dims": [
+        {
+          "id": "pricing_basis",
+          "name": "计价方式",
+          "values": [
+            "按功率",
+            "按机柜"
+          ],
+          "note": "两种计价口径不可互换——按机柜的单价随机柜功率密度浮动，按功率的不随。"
+        },
+        {
+          "id": "customer_type",
+          "name": "客户类型",
+          "values": [
+            "单一大客户长约",
+            "零售托管市场",
+            "批发"
+          ],
+          "note": "长约锁价与零售挂牌价不是一回事。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ]
+    },
+    {
+      "metric_id": "power_cost_share",
+      "name": "电费占比",
+      "unit": "%",
+      "module": "M12",
+      "caliber_dims": [
+        {
+          "id": "denominator",
+          "name": "分母",
+          "values": [
+            "营业收入",
+            "营业成本"
+          ],
+          "note": "营收口径与成本口径差异很大，混用会得出完全不同的结论。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ]
+    },
+    {
+      "metric_id": "reit_issue_price",
+      "name": "数据中心 REIT 发行定价",
+      "unit": "元/份",
+      "module": "M11",
+      "caliber_dims": [
+        {
+          "id": "stage",
+          "name": "定价阶段",
+          "values": [
+            "询价区间下沿",
+            "询价区间上沿",
+            "最终定价"
+          ]
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ],
+      "public_band": {
+        "step": 0.5
+      }
+    },
+    {
+      "metric_id": "reit_subscription_multiple",
+      "name": "REIT 认购倍数",
+      "unit": "倍",
+      "module": "M11",
+      "caliber_dims": [
+        {
+          "id": "stage",
+          "name": "认购阶段",
+          "values": [
+            "网下询价",
+            "公众发售资金覆盖"
+          ],
+          "note": "两个阶段的倍数不可混用；且受打新资金面影响，**不宜单独当资产质量指标**。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ]
+    },
+    {
+      "metric_id": "reit_distribution_yield",
+      "name": "REIT 年化分派率",
+      "unit": "%",
+      "module": "M11",
+      "caliber_dims": [
+        {
+          "id": "basis",
+          "name": "口径",
+          "values": [
+            "发行时预测",
+            "实现值"
+          ],
+          "note": "预测值依赖可供分配金额假设，与上架率、电价、续约率强相关。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ]
+    },
+    {
+      "metric_id": "dc_payback_years",
+      "name": "算力中心投资回收期",
+      "unit": "年",
+      "module": "M11",
+      "caliber_dims": [
+        {
+          "id": "scope",
+          "name": "口径范围",
+          "values": [
+            "项目层",
+            "含财务费用",
+            "税后"
+          ]
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ]
+    },
+    {
+      "metric_id": "bank_loan_share",
+      "name": "银行贷款占总投资比例",
+      "unit": "%",
+      "module": "M11",
+      "caliber_dims": [
+        {
+          "id": "basis",
+          "name": "口径",
+          "values": [
+            "计划投资",
+            "实际放款"
+          ],
+          "note": "「拟投入」不等于实际放款——三例样本 70%/70%/49% 全部是计划口径。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ]
+    },
+    {
+      "metric_id": "dc_rack_total",
+      "name": "在用算力中心机架总规模",
+      "unit": "万标准机架",
+      "module": "M14",
+      "caliber_dims": [
+        {
+          "id": "counting",
+          "name": "计数口径",
+          "values": [
+            "标准机架折算",
+            "物理机柜"
+          ],
+          "note": "「标准机架」是按功率折算的口径，与物理机柜数不可直接互换。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global"
+          ]
+        }
+      ]
     }
   ]
 }
