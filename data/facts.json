@@ -1269,6 +1269,273 @@
       },
       "depth": "精读",
       "notes": "**取值 3.0 位于规范给定的 2.0~4.0 ㎡/台 区间中部**，是设计取值不是实测。配套换算链：1.85 万机柜 × 3㎡ = 5.55 万㎡ 主机房 → 辅助区+支持区取主机房 1.5 倍（规范允许 1.5~2.5 倍）= 8.33 万㎡ → 总使用面积 14.01 万㎡ → 建筑使用系数 75% → 建筑面积 ≥18.68 万㎡。**这条换算链可用于从机柜数反推建筑面积，但每一步的系数都是设计取值、有区间。**时点=2022，地域=中国。"
+    },
+    {
+      "fact_id": "cn-domestic-chip-share-2023",
+      "metric_id": "domestic_ai_chip_share_value",
+      "entity": {
+        "type": "industry",
+        "id": "cn-ai-chip",
+        "label": "中国 AI 芯片市场"
+      },
+      "value": 17.0,
+      "unit": "%",
+      "caliber": {
+        "basis": "实测",
+        "region": "CN"
+      },
+      "bound": "point",
+      "as_of": "2023",
+      "evidence": {
+        "source_id": "6ec1c951f732",
+        "locator": "Bernstein《China AI: Sizing the AI chip supply and demand in China》(2025-07-17) 正文「We project that the localization ratio of China's AI chip market will surge from 17% in 2023 to 55% by 2027」",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "notes": "**2023 年为历史值；同句的 2027 年 55% 是 Bernstein 预测、不是实测，两者不可并为一条时序**。**分母是中国 AI 芯片市场规模（按金额），不是出货颗数**——按金额与按颗数的国产化率会因国产芯片 ASP 显著偏低而差异很大。驱动因素原文归为本地芯片性能提升与 DeepSeek 之后国内 7nm 产能快速扩张。地域=中国。"
+    },
+    {
+      "fact_id": "cn-ai-chip-demand-2025-preban",
+      "metric_id": "cn_ai_chip_demand",
+      "entity": {
+        "type": "industry",
+        "id": "cn-ai-chip",
+        "label": "中国 AI 芯片市场"
+      },
+      "value": 395.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scenario": "禁令前基准",
+        "basis": "预测",
+        "region": "CN"
+      },
+      "bound": "point",
+      "as_of": "2025",
+      "evidence": {
+        "source_id": "6ec1c951f732",
+        "locator": "同上报告正文「Prior to the initial ban on H20 chips in China, we projected that China's AI chip demand in CY25 would reach $39.5 bn, with 37% from domestic vendors」",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "notes": "**这是「H20 初始禁令前」的基准预测，不是实际发生值**——报告全篇在比较禁令/解禁两种情景，**引用必须带情景标签**。同句给出国内供应商占 37%（同为禁令前基准）。CY25 = 2025 自然年。配套：报告估计禁令使 2025 年 H20 销售额减少约 168 亿美元。地域=中国。"
+    },
+    {
+      "fact_id": "top4-h20-share-2024",
+      "metric_id": "top4_h20_purchase_share",
+      "entity": {
+        "type": "industry",
+        "id": "cn-h20",
+        "label": "中国 H20 采购市场"
+      },
+      "value": 80.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一型号需求",
+        "method": "渠道调查",
+        "region": "CN"
+      },
+      "bound": "lower",
+      "as_of": "2024",
+      "evidence": {
+        "source_id": "6ec1c951f732",
+        "locator": "同上报告正文「our channel checks show ByteDance, Alibaba, Tencent, Baidu are the top purchasers of H20 chips in China (Exhibit 4), accounting for 80%+ of its total demand in 2024」",
+        "grade": "S4"
+      },
+      "depth": "精读",
+      "notes": "**原文为「80%+」，80 是下界不是点值**。口径=字节跳动/阿里巴巴/腾讯/百度四家合计占 **H20 单一型号**在中国总需求的比例，**不是占中国全部 AI 芯片需求的比例**。数据来源为 Bernstein 自有渠道调查（channel checks），**未披露样本量与方法**。时点=2024。"
+    },
+    {
+      "fact_id": "b30-vs-h20-asp-discount-2025",
+      "metric_id": "chip_asp_discount",
+      "entity": {
+        "type": "industry",
+        "id": "nvidia-b30-h20",
+        "label": "NVIDIA B30 对 H20"
+      },
+      "value": 50.0,
+      "unit": "%",
+      "caliber": {
+        "basis": "实测",
+        "region": "CN"
+      },
+      "bound": "point",
+      "as_of": "2025",
+      "evidence": {
+        "source_id": "6ec1c951f732",
+        "locator": "同上报告正文「the B30 chip…featuring lower specs, ~50% lower ASP lead to similar ROI vs H20」",
+        "grade": "S4"
+      },
+      "depth": "精读",
+      "notes": "**约数（~50%）**。含义是 B30 规格较低但 ASP 低约 50%，**结果是 ROI 与 H20 相近**——这条的价值在于说明中国买方按 ROI 而非绝对性能决策。ASP=平均售价。时点=2025 年中。"
+    },
+    {
+      "fact_id": "cn-power-system-fee-202606",
+      "metric_id": "power_system_operation_fee",
+      "entity": {
+        "type": "industry",
+        "id": "cn-power",
+        "label": "中国电力系统"
+      },
+      "value": 0.067,
+      "unit": "元/kWh",
+      "caliber": {
+        "scope": "全国均值",
+        "region": "CN"
+      },
+      "bound": "point",
+      "as_of": "2026-06",
+      "evidence": {
+        "source_id": "5c0b81789c3a",
+        "locator": "华创证券《电力+系列研究（三）：绿电直联与数据中心的经济账怎么算》(2026-07-09) 正文「2025年6月全国系统运行费均值为0.027元/kwh，至2026年6月已升至0.067元/kwh，同比大幅增长146%」",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "notes": "**这是绿电直连政策工具力度的量化锚**：1192 号文规定绿电直连自发自用电量**暂免缴纳系统运行费**，故该费率越高、免征的经济价值越大。**一年内从 0.027 升至 0.067、同比 +146%**。口径=全国均值，**各省差异未披露**。系统运行费是工商业电价五个构成部分之一，**不是全部电价**。时点=2026-06。"
+    },
+    {
+      "fact_id": "green-direct-dc-share-2026",
+      "metric_id": "green_direct_dc_share",
+      "entity": {
+        "type": "industry",
+        "id": "cn-green-direct",
+        "label": "中国绿电直连项目"
+      },
+      "value": 8.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "绿电直连项目装机",
+        "region": "CN"
+      },
+      "bound": "point",
+      "as_of": "2026",
+      "evidence": {
+        "source_id": "5c0b81789c3a",
+        "locator": "同上报告目录及正文「落地情况：已有百个项目完成审批，数据中心占比约8%」",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "notes": "**分母是绿电直连项目（按装机规模占比），不是数据中心总量**。同口径下绿色燃料占 19%、冶金工业 17%、化工/新材料 16%。**注意：688 号文（2026-05-20）已明确「优先向算力中心倾斜」，故该 8% 是政策倾斜生效前的存量结构，预期会上升**。时点=2026 年中，地域=中国。"
+    },
+    {
+      "fact_id": "green-direct-locked-price-nm-2026",
+      "metric_id": "green_direct_locked_price",
+      "entity": {
+        "type": "industry",
+        "id": "cn-green-direct",
+        "label": "绿电直连（内蒙古测算情景）"
+      },
+      "value": 0.289,
+      "unit": "元/kWh",
+      "caliber": {
+        "basis": "测算",
+        "region_case": "内蒙古",
+        "region": "CN"
+      },
+      "bound": "point",
+      "as_of": "2026",
+      "evidence": {
+        "source_id": "5c0b81789c3a",
+        "locator": "同上报告正文「绿电直连项目年利用小时数可维持2200小时、电价可锁定至0.289元/千瓦时，年均营业收入回升至1.60亿元」",
+        "grade": "S4"
+      },
+      "depth": "精读",
+      "notes": "**测算值不是实际执行电价**，基于内蒙古情景、年利用小时数 2200 小时的假设，并假设新增配电网建设使单位造价上浮 10%。**与同报告数据中心盈利模型里的「外购电价 0.32 元/kWh」是两个不同的数**（前者绿电直连锁定价、后者外购假设价），不可混用。地域=内蒙古情景，时点=2026。"
+    },
+    {
+      "fact_id": "broker-model-assumed-occupancy-2026",
+      "metric_id": "model_assumed_occupancy",
+      "entity": {
+        "type": "industry",
+        "id": "cn-broker-dc-model",
+        "label": "券商数据中心盈利模型"
+      },
+      "value": 90.0,
+      "unit": "%",
+      "caliber": {
+        "model_source": "券商",
+        "region": "CN"
+      },
+      "bound": "point",
+      "as_of": "2026",
+      "evidence": {
+        "source_id": "5c0b81789c3a",
+        "locator": "同上报告正文数据中心盈利模型假设「…（含电力）、上架率90%、PUE取1.2、外购电价0.32元/kWh、总投资240亿元、资本金比例30%、固定资产15年直线折旧摊销、其他运营成本按营收8%计提」",
+        "grade": "S4"
+      },
+      "depth": "精读",
+      "notes": "**这是模型假设值，不是实测上架率**，收录它是为了留下「券商模型用什么假设」的证据。**与本库已入库的实测值差距很大**：中国信通院统计 2023 年底全国在用数据中心上架率为 66.7%。**90% vs 66.7% 意味着该盈利模型属乐观情景**，其推出的 IRR 与回收期应据此打折。配套假设：PUE 1.2、总投资 240 亿元、资本金比例 30%、15 年直线折旧、其他运营成本按营收 8% 计提。"
+    },
+    {
+      "fact_id": "wulanchabu-green-direct-power-2026",
+      "metric_id": "green_direct_self_use_power",
+      "entity": {
+        "type": "project",
+        "id": "cn-nm-wulanchabu-green-direct",
+        "label": "内蒙古乌兰察布数据中心绿电直连项目"
+      },
+      "value": 8.5,
+      "unit": "亿千瓦时",
+      "caliber": {
+        "scope": "单项目",
+        "region": "CN"
+      },
+      "bound": "point",
+      "as_of": "2026",
+      "evidence": {
+        "source_id": "5c0b81789c3a",
+        "locator": "同上报告正文「内蒙古乌兰察布建设全国首个数据中心绿电直连项目，配套新能源规模34.5万千瓦，新能源年自发自用电量8.5亿千瓦时」",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "notes": "**单一标杆项目，非行业口径**。配套新能源规模 34.5 万千瓦（=0.345GW）。由 8.5 亿 kWh ÷ 34.5 万 kW ≈ **2,464 小时年利用小时数（计算值）**，略高于同报告测算情景用的 2200 小时。地域=内蒙古乌兰察布，时点≈2026。"
+    },
+    {
+      "fact_id": "green-direct-capacity-202604",
+      "metric_id": "green_direct_capacity",
+      "entity": {
+        "type": "industry",
+        "id": "cn-green-direct",
+        "label": "中国绿电直连项目（已审批）"
+      },
+      "value": 34.05,
+      "unit": "GW",
+      "caliber": {
+        "stat_basis": "对应新能源总装机",
+        "region": "CN"
+      },
+      "bound": "point",
+      "as_of": "2026-04",
+      "evidence": {
+        "source_id": "5c0b81789c3a",
+        "locator": "同上报告两处：「截至2026年4月，已有99个绿电直连项目完成审批，对应新能源总装机规模34.05GW」与「截至2026年5月，全国已完成审批的绿电直联项目达100个，新能源装机规模合计约26.11GW（不完全统计）」",
+        "grade": "S4"
+      },
+      "depth": "精读",
+      "notes": "**报告内部口径冲突，故记为区间而非点值**：项目数从 99 增至 100，装机规模却从 34.05GW 降至 26.11GW。推测前者为「对应新能源总装机规模」（含配套）、后者为「不完全统计的新能源装机合计」，**但原文未说明差异，标 [未核]。引用任一必须注明出处段落与统计时点。**配套展望：若扩容至约 60GW，理论上可覆盖增量新能源消纳缺口。地域=中国。\n\n**⚠ 与本库另一条冲突**：green-direct-capacity-202605（26.11GW，2026-05，不完全统计）。原文未说明差异，两条均标 [未核]，引用必须注明出处段落与统计时点。"
+    },
+    {
+      "fact_id": "green-direct-capacity-202605",
+      "metric_id": "green_direct_capacity",
+      "entity": {
+        "type": "industry",
+        "id": "cn-green-direct",
+        "label": "中国绿电直连项目（已审批）"
+      },
+      "value": 26.11,
+      "unit": "GW",
+      "caliber": {
+        "stat_basis": "不完全统计合计",
+        "region": "CN"
+      },
+      "bound": "point",
+      "as_of": "2026-05",
+      "evidence": {
+        "source_id": "5c0b81789c3a",
+        "locator": "同上报告两处：「截至2026年4月，已有99个绿电直连项目完成审批，对应新能源总装机规模34.05GW」与「截至2026年5月，全国已完成审批的绿电直联项目达100个，新能源装机规模合计约26.11GW（不完全统计）」",
+        "grade": "S4"
+      },
+      "depth": "精读",
+      "notes": "**报告内部口径冲突，故记为区间而非点值**：项目数从 99 增至 100，装机规模却从 34.05GW 降至 26.11GW。推测前者为「对应新能源总装机规模」（含配套）、后者为「不完全统计的新能源装机合计」，**但原文未说明差异，标 [未核]。引用任一必须注明出处段落与统计时点。**配套展望：若扩容至约 60GW，理论上可覆盖增量新能源消纳缺口。地域=中国。\n\n**⚠ 与本库另一条冲突**：green-direct-capacity-202604（34.05GW，2026-04，对应新能源总装机）。原文未说明差异，两条均标 [未核]，引用必须注明出处段落与统计时点。"
     }
   ]
 }
