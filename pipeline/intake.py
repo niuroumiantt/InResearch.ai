@@ -20,21 +20,33 @@
 
 退回理由取小枚举并写进结果，便于回流给成员——**退回不给理由，成员下次照犯**。
 
+回流不另开写库路径：`--accept` 把过机检的 B/C 档写成**标准批次 CSV**，
+走本地精读会话已经跑了 50+ 批的那条既有合并流程。A 档留给所有者人工过目，不自动入库。
+
+成员登记的行 depth 标 **`成员精读`**——他确实读了，但**尚未经我们审计**。
+它可以进精读队列（等着被审），但**不得进事实层**，与「半自动」同理：
+不是不信任，是不宣称我们没做过的核实。审计通过后由所有者提级为「精读」。
+
 用法：
   python3 pipeline/intake.py                       # 扫 docs/inbox/submissions/ 全部
   python3 pipeline/intake.py <投递目录>            # 只看一个
+  python3 pipeline/intake.py --accept              # 把 B/C 档写成批次 CSV（A 档不自动入库）
 零依赖。
 """
 import csv
 import json
 import re
 import sys
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SUBS = ROOT / "docs" / "inbox" / "submissions"
 SCORES = ROOT / "docs" / "LIBRARY_SCORES.csv"
 OUT = ROOT / "reports" / "intake_review.md"
+BATCHES = ROOT / "docs" / "inbox" / "scored_batches"
+BATCH_FIELDS = ["new_path", "old_name", "importance", "confidence", "year", "org",
+                "module", "summary", "scored", "depth"]
 
 VALID_MODULES = {f"M{i:02d}" for i in range(1, 16)}
 MIN_SUMMARY = 200
@@ -118,8 +130,62 @@ def tier(it, bad):
     return "C"
 
 
+def safe(s, n):
+    """生成的文件名要进账本，先洗掉分隔符与全角括号，避免账本里出现难查难引的名字。"""
+    s = re.sub(r"[\\/:*?\"<>|（）()\[\]{}]", "", str(s)).strip()
+    return re.sub(r"\s+", "", s)[:n] or "未署名"
+
+
+def to_batch_rows(items, today):
+    """把过机检的投递转成标准批次行——复用既有合并流程，不另开写库路径。"""
+    rows = []
+    for who, wo, it, bad, warn, d in items:
+        name = (f"{it['claimed_importance']}{it['confidence']}_{it['year']}"
+                f"_{safe(it['title'], 12)}_{safe(it['org'], 10)}")
+        ext = Path(it["file"]).suffix or ".pdf"
+        nums = "；".join(
+            f"{n.get('what')}={n.get('value')}{n.get('unit')}（{n.get('locator')}"
+            + (f"｜口径 {n['caliber_note']}" if n.get("caliber_note") else "") + "）"
+            for n in (it.get("key_numbers") or []))
+        summary = it["summary"]
+        if nums:
+            summary += f" **可落库数字**：{nums}"
+        summary += (f" 【成员投递·{who}"
+                    + (f"·回应工单 {wo}" if wo else "·自主发现")
+                    + "】本行由成员登记，**尚未经我们审计**，不得直接上证据链。")
+        if it.get("sensitive"):
+            summary = "【敏感待判】" + summary
+        rows.append({
+            "new_path": f"docs/library/_submissions/{who}/{name}{ext}",
+            "old_name": it["file"],
+            "importance": str(it["claimed_importance"]),
+            "confidence": it["confidence"],
+            "year": str(it["year"]),
+            "org": it["org"],
+            "module": "/".join(it["modules"]),
+            "summary": summary,
+            "scored": today,
+            "depth": "成员精读",
+        })
+    return rows
+
+
+def hit_rates(buckets):
+    """成员命中率——用户定的 KPI 是命中率不是投递量。"""
+    tally = {}
+    for t, items in buckets.items():
+        for who, *_ in items:
+            r = tally.setdefault(who, {"总": 0, "过": 0})
+            r["总"] += 1
+            if t != "退回":
+                r["过"] += 1
+    return tally
+
+
 def main():
-    target = sys.argv[1] if len(sys.argv) > 1 else None
+    argv = [a for a in sys.argv[1:] if not a.startswith("-")]
+    accept = "--accept" in sys.argv
+    target = argv[0] if argv else None
     if not SUBS.exists():
         print(f"投递目录不存在：{SUBS.relative_to(ROOT)}（还没有成员投递）")
         return 0
@@ -185,6 +251,29 @@ def main():
     print(f"  🔴 需你批 {len(buckets['A'])}｜模型批 {len(buckets['B'])}｜自动入库 {len(buckets['C'])}")
     for who, wo, it, bad, warn, d in buckets["退回"]:
         print(f"  ↩️ {it.get('title','?')[:40]}：{'；'.join(REJECT.get(b, b) for b in bad)}")
+    rates = hit_rates(buckets)
+    if rates:
+        print("  命中率（KPI）：" + "｜".join(
+            f"{w} {v['过']}/{v['总']}（{v['过']*100//v['总']}%）" for w, v in sorted(rates.items())))
+
+    if accept:
+        promo = buckets["B"] + buckets["C"]
+        if not promo:
+            print("没有可自动入库的 B/C 档投递。")
+        else:
+            today = date.today().isoformat()
+            rows = to_batch_rows(promo, today)
+            BATCHES.mkdir(parents=True, exist_ok=True)
+            who = safe(promo[0][0], 20)
+            f = BATCHES / f"batch_sub_{today.replace('-', '')}_{who}.csv"
+            with f.open("w", encoding="utf-8", newline="") as fh:
+                w = csv.DictWriter(fh, fieldnames=BATCH_FIELDS)
+                w.writeheader(); w.writerows(rows)
+            print(f"已写出批次 {f.relative_to(ROOT)}（{len(rows)} 行，depth=成员精读）")
+            print("  → 走既有合并流程入表；**A 档不自动入库**，等你过目。")
+    elif buckets["B"] or buckets["C"]:
+        print(f"  提示：{len(buckets['B']) + len(buckets['C'])} 件 B/C 档可自动入库，加 --accept 生成批次。")
+
     print(f"完整审阅卡已写入 {OUT.relative_to(ROOT)}")
     return 0
 

@@ -12,6 +12,7 @@
   P1 弹药饥饿   ≥7 分材料为 0 或弹药过薄——只能靠新采集救
   P2 指标留白   indicators.json 里 value 为空——"留白即纪律"，但留白要有人去填
   P2 信源未开口 声明了跑口但库内一份都没有——渠道还没打通
+  P2 待审计     成员投递的行堆积——未审计的成员登记不能当已读用
   P3 消化积压   半自动行堆积——缺的不是材料是精读，派消化不派采集
   P3 鲜度逾期   Finding 处于 needs-review/stale——派核验
 
@@ -112,7 +113,7 @@ def build(only=None):
     known_orgs = {(r.get("org") or "").lower() for r in rows} | {(s.get("publisher") or "").lower() for s in sources}
     known_orgs = {o for o in known_orgs if o}
 
-    ammo, high, backlog = Counter(), Counter(), Counter()
+    ammo, high, backlog, unaudited = Counter(), Counter(), Counter(), Counter()
     for r in rows:
         if r.get("depth") == "目录级":
             continue
@@ -122,6 +123,8 @@ def build(only=None):
                 high[m] += 1
             if r.get("depth") == "半自动" and int(r["importance"]) >= 6 and r["new_path"] not in digested:
                 backlog[m] += 1
+            if r.get("depth") == "成员精读":
+                unaudited[m] += 1
 
     ind_by_mod = defaultdict(list)
     for i in inds:
@@ -188,6 +191,14 @@ def build(only=None):
                     f"声明了跑口「{b['org']}」（{b['channel']}）但库内一份都没有"
                     + (f"——{b['note']}" if b.get("note") else ""),
                     f"打通该渠道：先取一份最新的公开件验证格式与价值，再决定是否长期跟。{ACCEPT}", key=f"信源:{b['org']}")
+
+        # P2 成员投递待审计
+        if unaudited[mid]:
+            add("P2", "待审计",
+                f"{mid} 有 **{unaudited[mid]} 行成员投递**尚未审计",
+                "成员读过并按契约登记了，但我们没核过。**未审计的登记不能当已读用**——"
+                "抽查其 key_number 能否回原文对上，通过则提级为「精读」，不通过退回并记入该成员命中率。",
+                key="待审计")
 
         # P3 消化积压
         if backlog[mid] >= DIGEST_BACKLOG:
