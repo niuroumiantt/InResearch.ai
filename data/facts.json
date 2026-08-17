@@ -29,7 +29,8 @@
       "derived": false,
       "sensitive": true,
       "notes": "12 份《单位工程最高投标限价汇总表》(D.3) 独立加总 79,483,818.90 元，与封面分文不差。不含 IT 设备与 UPS/柴发/冷机等机电主设备。",
-      "bound": "point"
+      "bound": "point",
+      "corroboration": "已交叉验证"
     },
     {
       "fact_id": "luan-ct-cost-shell-2022",
@@ -657,7 +658,7 @@
         "label": "传统风冷机柜"
       },
       "value": 5.0,
-      "unit": "kW",
+      "unit": "kW/机柜",
       "caliber": {
         "rack_type": "传统风冷",
         "stat": "主流机型",
@@ -685,7 +686,7 @@
         "label": "NVL72 类整机柜系统"
       },
       "value": 120.0,
-      "unit": "kW",
+      "unit": "kW/机柜",
       "caliber": {
         "rack_type": "整机柜系统(NVL类)",
         "stat": "主流机型",
@@ -2096,7 +2097,8 @@
       "caliber": {
         "scope": "北美四家",
         "basis": "实测",
-        "region": "US"
+        "region": "US",
+        "vintage": "实际发生"
       },
       "bound": "point",
       "as_of": "2025",
@@ -2239,6 +2241,895 @@
       "depth": "精读",
       "notes": "**⚠ 这是队列申请量，不是在建量、更不是投产预测**。报告自身指出**已签约量仅 2.442GW、占比 10.3%**，即 89.7% 尚未签约。**美国并网队列的历史清退率很高，队列规模不可当作未来装机预测**——这与「在手订单 ≠ 数据中心需求」是同一类陷阱的不同形态。参照口径：若 252GW 全部建成，美国现有燃气机组将扩大约 50%（该比较可反推现有燃气装机约 500GW 量级）。region=US-PJM。",
       "value": 252.0
+    },
+    {
+      "fact_id": "global-it-load-2023",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "industry",
+        "id": "global-dc",
+        "label": "全球数据中心"
+      },
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "IT 负载",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "bound": "point",
+      "as_of": "2023",
+      "evidence": {
+        "source_id": "87c58da354a6",
+        "locator": "国信证券《盛弘股份》(2025-02-19)「根据Semi Analysis的预测，全球数据中心IT负载规模将从2023年的约49GW增长至2026年的96GW，其中90%的增长来自AI算力需求。2028年，全球数据中心累计负载将超过140GW，2023-2028年CAGR高达23%-25%」",
+        "grade": "S4",
+        "originator": "Semi Analysis（国信证券转引）"
+      },
+      "depth": "精读",
+      "notes": "**「IT 负载」是 IT 侧功率口径，不等于数据中心总用电功率（需乘 PUE），也不等于并网容量**——与本库 M04 的电源/电网侧 GW（如美国 2025 年负荷 432GW、PJM 队列 252GW）**不可直接比较或相加**。同一预测序列的其余点位：2026 年 96GW、2028 年超 140GW（下界），CAGR 23%-25%。「90% 增长来自 AI」为**增量口径不是存量口径**。**本条为转引，正式引用应回到 Semi Analysis 原报告。**region=Global。",
+      "value": 49.0
+    },
+    {
+      "fact_id": "low-vacancy-markets-2026",
+      "metric_id": "low_vacancy_market_count",
+      "entity": {
+        "type": "industry",
+        "id": "global-dc-markets",
+        "label": "全球主要市场（97 个）"
+      },
+      "unit": "个",
+      "caliber": {
+        "threshold": "<5%",
+        "universe": "全球主要市场",
+        "region": "Global"
+      },
+      "bound": "point",
+      "as_of": "2026",
+      "evidence": {
+        "source_id": "e24f98981216",
+        "locator": "交银国际《数据中心系列研究（2）》(2026-04-30)「全球97个主要市场中有20个市场的空置率极低，并低于5%（当中7个市场的空置率低于1%）」",
+        "grade": "S4",
+        "originator": "（原文未标明统计机构）"
+      },
+      "depth": "精读",
+      "notes": "**分母是「全球 97 个主要市场」，其划分标准与统计机构原文未给出，已标 [未核]**。更极端的一档：其中 7 个市场空置率低于 1%。**⚠ 必须与同报告的另一句配对读：「并非所有运营中的数据中心都有足够容量满足单个设施内 20MW 以上的需求，大体量项目容量依然不足」——总量空置与「大单可承接容量」是两回事，只看空置率会低估紧张程度。**region=Global。",
+      "value": 20.0,
+      "corroboration": "孤证已知"
+    },
+    {
+      "fact_id": "singapore-vacancy-2026",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "industry",
+        "id": "sg-dc",
+        "label": "新加坡数据中心市场"
+      },
+      "unit": "%",
+      "caliber": {
+        "scope": "单一市场",
+        "region": "SG"
+      },
+      "bound": "point",
+      "as_of": "2026",
+      "evidence": {
+        "source_id": "e24f98981216",
+        "locator": "同上报告「目前，新加坡的整体空置率仅为2%，市场整体处于低位，租金溢价维持在区域内的平均30%以上，市场供不应求」",
+        "grade": "S4",
+        "originator": "（原文未标明统计机构）"
+      },
+      "depth": "精读",
+      "notes": "**单一市场口径**。成因原文归为「政府的环境和可持续发展法规导致新增机房供应有限」（本库另有记载：新加坡 2021 年暂停数据中心项目审批、2022 年有选择恢复）。**配套价格信号：租金溢价维持在区域内平均 30% 以上**——空置率与租金溢价同向印证供不应求。对照同报告其它市场：首尔约 700MW 装机、空置率 <10%；另一市场 Q1 整体空置率 13%。region=SG。",
+      "value": 2.0
+    },
+    {
+      "fact_id": "seoul-capacity-2026",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "industry",
+        "id": "kr-seoul-dc",
+        "label": "首尔数据中心市场"
+      },
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "KR"
+      },
+      "bound": "point",
+      "as_of": "2026",
+      "evidence": {
+        "source_id": "e24f98981216",
+        "locator": "同上报告「首尔是韩国最大的数据中心市场，拥有约700MW的装机容量。尽管新增供应量显著，但市场需求依然旺盛，空置率相对较低，低于10%」",
+        "grade": "S4",
+        "originator": "（原文未标明统计机构）"
+      },
+      "depth": "精读",
+      "notes": "**「装机容量」口径原文未说明是 IT 负载还是设施总容量，已标 [未核]**——这是 M01 question 5 的典型难点：同为 MW/GW，IT 负载与设施容量差一个 PUE。配套：空置率 <10%；政府对土地和电力的规划政策较严，迫使开发商转向首尔以外。region=KR-首尔。",
+      "value": 700.0
+    },
+    {
+      "fact_id": "msft-capex-vs-consensus-2026q1",
+      "metric_id": "capex_vs_consensus_delta",
+      "entity": {
+        "type": "company",
+        "id": "microsoft",
+        "label": "微软"
+      },
+      "unit": "%",
+      "caliber": {
+        "benchmark": "卖方一致预期",
+        "lease_treatment": "未披露",
+        "fiscal_align": "公司财季",
+        "region": "US"
+      },
+      "bound": "point",
+      "as_of": "2026-Q1",
+      "evidence": {
+        "source_id": "988ce65aca2c",
+        "locator": "国信证券《2026Q1海外大厂CapEx和ROIC总结梳理》(2026-05-07)「2026Q1（FY26Q3）微软资本开支环比下降14.93%。微软本季度支出为319亿美元，低于预期的352.89亿美元」",
+        "grade": "S3",
+        "originator": "微软财报 + 市场一致预期（国信证券整理）"
+      },
+      "depth": "精读",
+      "notes": "**计算值：(319 − 352.89) / 352.89 = −9.60%。****「预期」是市场一致预期（卖方共识），不是公司自身指引**——若 `capex_guidance_delta` 定义为「实际 vs 公司指引」，本条填不了，请按指标定义取舍。**时点陷阱：微软的「2026Q1」是其 FY26Q3，与 Meta 的自然季度不同，跨公司比较前必须对齐财年。****口径陷阱：319 亿是否含融资租赁原文未说明（标 [未核]），而这对微软很关键——其 25Q3 融资租赁曾达 111 亿美元、占当期资本开支 349 亿的 31.8%。**归因（原文）：云基础设施建设的正常波动 + 融资租赁交付时间的影响。",
+      "value": -9.6,
+      "derived": true,
+      "derivation": "**计算值：(319 − 352.89) / 352.89 = −9.60%。****「预期」是市场一致预期（卖方共识），不是公司自身指引**——若 `capex_guidance_delta` 定义为「实际 vs 公司指引」，本条填不了，请按指标定义取舍。**时点陷阱：微软的「2026Q1」是其 FY26Q3，与 Meta 的自然季度不同，跨公司比较前必须对齐财年。****口径陷阱：319 亿是"
+    },
+    {
+      "fact_id": "meta-capex-vs-consensus-2026q1",
+      "metric_id": "capex_vs_consensus_delta",
+      "entity": {
+        "type": "company",
+        "id": "meta",
+        "label": "Meta"
+      },
+      "unit": "%",
+      "caliber": {
+        "benchmark": "卖方一致预期",
+        "lease_treatment": "含融资租赁",
+        "fiscal_align": "自然季",
+        "region": "US"
+      },
+      "bound": "point",
+      "as_of": "2026-Q1",
+      "evidence": {
+        "source_id": "988ce65aca2c",
+        "locator": "同上报告「2026Q1资本开支不及预期，26Q1包括融资租赁在内的资本支出为198.4亿美元，同比+44.92%，大幅低于预期的267.87亿美元。公司上调全年资本开支预期，预计2026年全年资本支出（包括融资租赁）将在1250到1450美元之间，较前值1150到1350亿美元略有上修」",
+        "grade": "S3",
+        "originator": "Meta 财报 + 市场一致预期（国信证券整理）"
+      },
+      "depth": "精读",
+      "notes": "**计算值：(198.4 − 267.87) / 267.87 = −25.93%。含融资租赁（原文明确）。****关键在方向组合：单季实际低于预期 25.93%，但公司同时上调全年指引**（1,250-1,450 亿，前值 1,150-1,350 亿）——**这指向交付时点推移而非需求转弱**。同比仍 +44.92%。**不可用单季不及预期论证 AI 需求见顶。**原文「1250到1450美元之间」显为「亿美元」笔误。",
+      "value": -25.93,
+      "derived": true,
+      "derivation": "**计算值：(198.4 − 267.87) / 267.87 = −25.93%。含融资租赁（原文明确）。****关键在方向组合：单季实际低于预期 25.93%，但公司同时上调全年指引**（1,250-1,450 亿，前值 1,150-1,350 亿）——**这指向交付时点推移而非需求转弱**。同比仍 +44.92%。**不可用单季不及预期论证 AI 需求见顶。**原文「1250到1450美元之"
+    },
+    {
+      "fact_id": "msft-short-lived-share-2026q1",
+      "metric_id": "short_lived_asset_share",
+      "entity": {
+        "type": "company",
+        "id": "microsoft",
+        "label": "微软"
+      },
+      "unit": "%",
+      "caliber": {
+        "definition": "GPU/CPU 等算力设备",
+        "region": "US"
+      },
+      "bound": "point",
+      "as_of": "2026-Q1",
+      "evidence": {
+        "source_id": "988ce65aca2c",
+        "locator": "同上报告「其中大约三分之二的资本支出用于短寿命资产，主要是GPU和CPU」",
+        "grade": "S3",
+        "originator": "微软（国信证券转述）"
+      },
+      "depth": "精读",
+      "notes": "**原文为「大约三分之二」，66.7 是换算值、非精确披露**。「短寿命资产」主要指 GPU 和 CPU，**与土建/机电等长寿命资产相对**。**这条对折旧假设很关键**：短寿命资产占三分之二意味着折旧年限假设的敏感性极高，可与 M11 的「固定资产 15 年直线折旧」类模型假设对照——**后者显然不适用于 GPU**。时点=2026Q1（微软 FY26Q3）。",
+      "value": 66.7,
+      "derived": true,
+      "derivation": "**原文为「大约三分之二」，66.7 是换算值、非精确披露**。「短寿命资产」主要指 GPU 和 CPU，**与土建/机电等长寿命资产相对**。**这条对折旧假设很关键**：短寿命资产占三分之二意味着折旧年限假设的敏感性极高，可与 M11 的「固定资产 15 年直线折旧」类模型假设对照——**后者显然不适用于 GPU**。时点=2026Q1（微软 FY26Q3）。"
+    },
+    {
+      "fact_id": "coreweave-contracted-power-2025",
+      "metric_id": "contracted_power_capacity",
+      "entity": {
+        "type": "company",
+        "id": "coreweave",
+        "label": "CoreWeave"
+      },
+      "unit": "GW",
+      "caliber": {
+        "capacity_type": "合同锁定电力",
+        "basis": "券商测算",
+        "region": "US"
+      },
+      "bound": "lower",
+      "as_of": "2025",
+      "evidence": {
+        "source_id": "16e18851474b",
+        "locator": "Barclays《CoreWeave Inc: New Power Capacity Contract》「we estimate that CoreWeave now has over 1.7GW of power under contract」",
+        "grade": "S4",
+        "originator": "Barclays（估计值，非公司披露）"
+      },
+      "depth": "精读",
+      "notes": "**Barclays 估计值不是公司披露**，原文为「over 1.7GW」，**1.7 是下界**。口径=合同锁定的电力容量（power under contract），**不是已投运容量、也不是 IT 负载**。构成参照：与 Galaxy 的合同从 133MW 增至 393MW（行权 260MW 选择权）、自 S-1 以来累计增量约 470MW、Helios 数据中心另有 133MW。region=US 为主。",
+      "value": 1.7
+    },
+    {
+      "fact_id": "ai-dc-power-lease-price-2025",
+      "metric_id": "power_capacity_lease_price",
+      "entity": {
+        "type": "industry",
+        "id": "ai-dc-power-lease",
+        "label": "AI 数据中心电力容量长约"
+      },
+      "unit": "百万美元/MW/年",
+      "caliber": {
+        "inclusion": "仅电力容量",
+        "tenor": "10-15 年",
+        "region": "US"
+      },
+      "bound": "point",
+      "as_of": "2025",
+      "evidence": {
+        "source_id": "16e18851474b",
+        "locator": "Barclays 同上报告：原合同「Terms of the original lease (133 MW) were noted to be 15 years, with Galaxy expecting to collect $4.5bn in revenue during that time」；新增部分「an additional $8.8bn in payments between the two firms as part of the new deal」（260MW）",
+        "grade": "S3",
+        "originator": "Galaxy / CoreWeave 合同条款（Barclays 转述）"
+      },
+      "depth": "精读",
+      "notes": "**计算值，且由两笔独立合同交叉验算得出同一结果**：45 亿 ÷（133MW × 15 年）= 2.256；88 亿 ÷（260MW × 15 年）= 2.256。**两者完全一致说明单价口径稳定，不是凑数**。折合约 **188 美元/kW/月**（计算值）。**⚠ 这是「电力容量租赁」单价，不含 IT 设备、可能不含运维**——**与本库 M11 已入库的「IDC 普通机柜托管服务费 1,072 元/月/kW」（廊坊，含服务）不是同一商品，不可比价**。金额为 Galaxy 侧的预期收入（即 CoreWeave 侧的支出承诺），非已支付。合同期 15 年。region=US。",
+      "value": 2.256,
+      "derived": true,
+      "derivation": "**计算值，且由两笔独立合同交叉验算得出同一结果**：45 亿 ÷（133MW × 15 年）= 2.256；88 亿 ÷（260MW × 15 年）= 2.256。**两者完全一致说明单价口径稳定，不是凑数**。折合约 **188 美元/kW/月**（计算值）。**⚠ 这是「电力容量租赁」单价，不含 IT 设备、可能不含运维**——**与本库 M11 已入库的「IDC 普通机柜托管服务费 1,0",
+      "corroboration": "已交叉验证"
+    },
+    {
+      "fact_id": "big4-capex-2025e-consensus-202404",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "industry",
+        "id": "na-hyperscalers",
+        "label": "北美四大云厂商（合计）"
+      },
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "北美四家",
+        "basis": "卖方一致预期",
+        "vintage": "2024-04 快照",
+        "region": "US"
+      },
+      "bound": "point",
+      "as_of": "2025E@2024-04",
+      "evidence": {
+        "source_id": "af352d4d8e60",
+        "locator": "《海外科技CY24Q1财报点评》(2024)「根据彭博一致预期，2024年四大云厂商资本开支达1893亿美元，同比+35%；25年达2049亿美元，同比+8%」",
+        "grade": "S4",
+        "originator": "彭博一致预期（Bloomberg consensus，券商转述）"
+      },
+      "depth": "精读",
+      "notes": "**这是预测值不是实际值，且是预测的「时点快照」**——收录它的唯一目的是与后一时点的同口径预测对照。对象=亚马逊/谷歌/微软/Meta 四家合计。配套：同来源对 2024 年的预期为 1,893 亿美元（+35%）。**与 2025-08 时点的 3,610 亿美元（CSP 厂商自身指引口径）配对可得上修 +76%，但两者不同源（卖方共识 vs 公司指引），属「不同时点不同来源对同一年的预测差」，不等于「指引 vs 实际执行」。**",
+      "value": 2049.0
+    },
+    {
+      "fact_id": "big4-capex-2025e-guidance-202508",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "industry",
+        "id": "na-hyperscalers",
+        "label": "北美四大云厂商（合计）"
+      },
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "北美四家",
+        "basis": "厂商指引",
+        "vintage": "2025-08 快照",
+        "region": "US"
+      },
+      "bound": "lower",
+      "as_of": "2025E@2025-08",
+      "evidence": {
+        "source_id": "4bfb99b51b23",
+        "locator": "国信证券《数据中心互联技术专题四》(2025-08-24)「根据CSP厂商的Capex指引，预计2025年，海外亚马逊、谷歌、微软、Meta四家厂商合计Capex增至3610亿美元，同比增幅超58%」",
+        "grade": "S3",
+        "originator": "亚马逊/谷歌/微软/Meta 的 Capex 指引（国信证券整理）"
+      },
+      "depth": "精读",
+      "notes": "**公司指引口径，与上一条的卖方一致预期口径不同源**。对象为同样四家、同样 2025 年。同比增幅「超 58%」为下界。**与 2024-04 时点的 2,049 亿对照，一年半内上修 +76%。****注意同段落的单位陷阱**：原文紧接着写「国内字节、腾讯、阿里 Capex 有望超过 3600 亿元」，两个 3600 量级的数并排但一个是美元、一个是人民币，差约 7 倍。",
+      "value": 3610.0
+    },
+    {
+      "fact_id": "gds-contract-to-fullload-2025q1",
+      "metric_id": "contract_to_full_load_months",
+      "entity": {
+        "type": "company",
+        "id": "gds",
+        "label": "万国数据"
+      },
+      "unit": "月",
+      "caliber": {
+        "stage": "签约到满载",
+        "basis": "合同约定",
+        "region": "CN"
+      },
+      "bound": "point",
+      "as_of": "2025-Q1",
+      "evidence": {
+        "source_id": "e917d9cb53b9",
+        "locator": "申万宏源《万国数据-SW(9698.HK)》(2025-09-26)「25Q1 152MW订单签订…（覆盖廊坊与常熟，廊坊约75.8MW），约定『6个月交付+6个月上满』」",
+        "grade": "S3",
+        "originator": "万国数据（申万宏源整理）"
+      },
+      "depth": "精读",
+      "notes": "**合同约定值不是实测达成值**。拆解为交付 6 个月 + 上满 6 个月 = 12 个月。**这是本库第一条「签约到满载」的周期口径**，是把订单量换算成实际上架/用电的关键系数。样本为单笔 152MW 订单（廊坊约 75.8MW + 常熟），**非公司平均、非行业平均**。region=CN。",
+      "value": 12.0
+    },
+    {
+      "fact_id": "gds-contracted-capacity-2025q2",
+      "metric_id": "contracted_capacity_mw",
+      "entity": {
+        "type": "company",
+        "id": "gds",
+        "label": "万国数据"
+      },
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "含客户订单",
+        "region": "CN"
+      },
+      "bound": "point",
+      "as_of": "2025-Q2",
+      "evidence": {
+        "source_id": "e917d9cb53b9",
+        "locator": "同上报告「截至25Q2已有785MW包含客户订单，我们认为公司预期的『27年前订单超1GW』有望提前完成」",
+        "grade": "S3",
+        "originator": "万国数据（申万宏源整理）"
+      },
+      "depth": "精读",
+      "notes": "**「包含客户订单」的容量口径，不是已交付容量也不是已上架容量**——分母是公司约 1.5GW 的数据中心资源（在建 + 储备）。对照：截至 25H1 公司共 1,326MW IT 功率（总量口径）；境内在建 379MW + 储备约 900MW；另一处表述为在建 224MW、在建+储备超 1,200MW，**两处在建数不同口径（是否含境外）原文未说明，标 [未核]**。公司目标为 27 年前订单超 1GW。region=CN。",
+      "value": 785.0
+    },
+    {
+      "fact_id": "cn-top-idc-annual-delivery-2025e",
+      "metric_id": "annual_delivery_capacity",
+      "entity": {
+        "type": "industry",
+        "id": "cn-top-idc",
+        "label": "中国头部 IDC"
+      },
+      "unit": "MW/年",
+      "caliber": {
+        "scope": "单一头部企业",
+        "basis": "券商测算",
+        "region": "CN"
+      },
+      "bound": "point",
+      "as_of": "2025-2027E",
+      "evidence": {
+        "source_id": "e917d9cb53b9",
+        "locator": "同上报告「预计25-27年使用面积增加对应每年200-300MW交付量级。结合新交付数据中心较快上架节奏，预计上架率将逐年提升至80%以上」",
+        "grade": "S4",
+        "originator": "申万宏源（券商测算）"
+      },
+      "depth": "精读",
+      "notes": "**券商预测值不是历史实绩**，且为原文自身给出的区间（200-300MW/年），非同源冲突。口径=使用面积增加对应的交付量级，覆盖 2025-2027 年。**同句的「上架率提升至 80% 以上」是单一头部企业的券商预测，与本库信通院实测的全国平均 66.7%（2023 年底）不是同一口径，不可并列或相减。**region=CN。",
+      "value": null,
+      "value_range": [
+        200,
+        300
+      ]
+    },
+    {
+      "fact_id": "cn-wue-limit-scarce-2023",
+      "metric_id": "dc_wue_limit",
+      "entity": {
+        "type": "policy",
+        "id": "cn-wue-policy",
+        "label": "中国数据中心 WUE 限值要求"
+      },
+      "unit": "L/kWh",
+      "caliber": {
+        "water_zone": "缺水区",
+        "limit_type": "政策限值",
+        "region": "CN"
+      },
+      "bound": "upper",
+      "as_of": "2023",
+      "evidence": {
+        "source_id": "da31732c34a1",
+        "locator": "华为《数据中心能源十大趋势白皮书》(2023)「在具体WUE指标上，要求丰水区小于1.4L/kWh，缺水区小于0.8L/kWh」",
+        "grade": "S4",
+        "originator": "（原文表述为「要求」，未标明政策文号与发布方）"
+      },
+      "depth": "精读",
+      "notes": "**这是限值（上限）不是实测值**。配对值：丰水区 <1.4 L/kWh，**缺水区限值仅为丰水区的 57%**。**「丰水区／缺水区」的划分标准原文未给出，无法判断某具体城市属哪一类，已标 [未核]。****单位换算提醒：1 m³/MWh = 1 L/kWh**，库内另有「WUE 中位值 2.2 m³/MWh」（中位实测）与「自用数据中心 WUE 限额建议不大于 1.6 L/kWh」（建议限额）——**三者分别是政策要求／中位实测／建议限额，单位可比但性质不同，不可并列。**region=CN。",
+      "value": 0.8
+    },
+    {
+      "fact_id": "sichuan-occupancy-threshold-2025",
+      "metric_id": "occupancy_policy_threshold",
+      "entity": {
+        "type": "policy",
+        "id": "sichuan-dc-plan",
+        "label": "四川省数据中心规划"
+      },
+      "unit": "%",
+      "caliber": {
+        "scope": "区域内平均",
+        "policy_type": "准入门槛",
+        "region": "CN"
+      },
+      "bound": "lower",
+      "as_of": "2025目标",
+      "evidence": {
+        "source_id": "abf27ab90b97",
+        "locator": "《AIGC行业深度报告（16）：液冷》引四川省规划「除天府数据中心集群外，区域内平均上架率未达到60%、平均PUE值未达到1.3及以下的，原则上不得新建数据中心」",
+        "grade": "S4",
+        "originator": "四川省相关规划文件（券商报告转引，原文未给文号与全称）"
+      },
+      "depth": "精读",
+      "notes": "**这是「区域内平均上架率」的行政准入门槛，不是任何实测值**。**约束对象是整个区域而非单个项目——新进入者会被同区域既有项目的闲置拖累。**配套门槛：区域内平均 PUE 需达 1.3 及以下；天府数据中心集群除外。**⚠ 与本库其它三个上架率口径均不可混用**：全国在用平均 66.7%（信通院实测，2023 年底）、单项目 >99%（南方润泽）与区域市场 81.3%（廊坊，2025Q1）、企业预测 80%+（万国数据）。「原则上」是行政表述、留有例外空间。region=CN-四川。",
+      "value": 60.0
+    },
+    {
+      "fact_id": "sichuan-pue-threshold-cluster-2025",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "sichuan-dc-plan",
+        "label": "四川省集群起步区"
+      },
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "bound": "upper",
+      "as_of": "2025目标",
+      "evidence": {
+        "source_id": "abf27ab90b97",
+        "locator": "同上「到2025年，电能利用效率（PUE）不高于1.3。集群起步区内PUE不高于1.25」",
+        "grade": "S4",
+        "originator": "四川省相关规划文件（券商报告转引）"
+      },
+      "depth": "精读",
+      "notes": "**政策限值不是实测 PUE**——按 M08 已立的 PUE 指标 basis 维度，此处应取「政策限值」。两档：全省到 2025 年 PUE ≤1.3；**集群起步区内 ≤1.25**（更严）。**与本库信通院实测的运行 PUE 1.63（超大型，2017 年底）差距很大**，但时点相差 8 年且一个是限值一个是实测，**不可直接相减得出「达标难度」**。region=CN-四川。",
+      "value": 1.25
+    },
+    {
+      "fact_id": "tsmc-cowos-share-2026e",
+      "metric_id": "cowos_market_share",
+      "entity": {
+        "type": "company",
+        "id": "tsmc",
+        "label": "台积电"
+      },
+      "unit": "%",
+      "caliber": {
+        "vendor": "台积电",
+        "basis": "模型输出",
+        "region": "Global"
+      },
+      "bound": "lower",
+      "as_of": "2026E",
+      "evidence": {
+        "source_id": "cef1e3037863",
+        "locator": "Bernstein《亚洲半导体与全球存储器：2026年仍以人工智能为核心》(2026-01-17)「加之安捷伦与亚速产能有限，意味着台积电在2026年仍将占据全球80%以上的CoWoS市场份额（基于我们的CoWoS/HBM模型）」",
+        "grade": "S3",
+        "originator": "Bernstein 自建 CoWoS/HBM 模型（非第三方统计）"
+      },
+      "depth": "精读",
+      "notes": "**原文「80% 以上」，80 是下界不是点值**。**基于 Bernstein 自建模型的输出，非第三方统计机构数据。**时点为 2026 年预测。配套判断：台积电 **2026 年产能已全额预订、2027 年 N2 产能同样紧张**；报告明确称 **2026 年 CoWoS 仍将是关键瓶颈**。region=Global。",
+      "value": 80.0
+    },
+    {
+      "fact_id": "cowos-shipment-growth-2026e",
+      "metric_id": "cowos_shipment_growth",
+      "entity": {
+        "type": "industry",
+        "id": "cowos",
+        "label": "CoWoS 先进封装"
+      },
+      "unit": "%",
+      "caliber": {
+        "measure": "出货量",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "bound": "point",
+      "as_of": "2026E",
+      "evidence": {
+        "source_id": "cef1e3037863",
+        "locator": "同上报告「我们预测CoWoS/HBM出货量将同比增长73%/90%，产能扩张应能创造投资机会」",
+        "grade": "S3",
+        "originator": "Bernstein（预测）"
+      },
+      "depth": "精读",
+      "notes": "**这是出货量同比增速，不是产能增速**——在紧缺状态下产能与出货不等价（出货受产能约束但产能未必满产）。配对值：HBM 出货量同比 +90%。**`cowos_capacity_wpm`（万片/月）本条填不了**：报告只给增速与份额，未给绝对产能数值。时点=2026 年预测，region=Global。",
+      "value": 73.0
+    },
+    {
+      "fact_id": "ai-asic-market-size-2024",
+      "metric_id": "ai_asic_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "ai-asic",
+        "label": "AI ASIC 市场"
+      },
+      "unit": "十亿美元",
+      "caliber": {
+        "scope": "AI ASIC",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "bound": "point",
+      "as_of": "2024",
+      "evidence": {
+        "source_id": "76c2994e3a50",
+        "locator": "《Generative AI 2025: Computing AI Data Center》(Yole)「In 2024, AI ASIC revenue surged by +154% YoY to $9B, benefiting from increased internal deployments by major cloud providers」",
+        "grade": "S3",
+        "originator": "Yole（行业访谈方法论）"
+      },
+      "depth": "精读",
+      "notes": "**金额口径，同比 +154%**。**与同报告的颗数口径（2024 年 360 万颗）不可互相换算得单价**——AI ASIC 内部 TPU 与其它产品的 ASP 差异极大。**Google TPU 约占 AI ASIC 市场的 50%。**对照其它 ASIC 品类：DPU 与网络 ASIC 2024 年 103 亿美元（+43%）；加密挖矿 ASIC 20 亿美元（+55%）。region=Global。",
+      "value": 9.0
+    },
+    {
+      "fact_id": "ai-asic-units-2024",
+      "metric_id": "ai_asic_shipment_units",
+      "entity": {
+        "type": "industry",
+        "id": "ai-asic",
+        "label": "AI ASIC 市场"
+      },
+      "unit": "百万颗",
+      "caliber": {
+        "counting": "未披露",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "bound": "point",
+      "as_of": "2024",
+      "evidence": {
+        "source_id": "76c2994e3a50",
+        "locator": "同上报告「AI ASICs are also growing strongly, from 3.6 Munits in 2024 up to 11 Munits by 2030, which represents a CAGR23-29 of 20.5%」",
+        "grade": "S3",
+        "originator": "Yole（行业访谈方法论）"
+      },
+      "depth": "精读",
+      "notes": "**颗数口径（Munits），与金额口径（90 亿美元）不可互相换算得单价。**预测终点：2030 年 1,100 万颗。**⚠ 原文口径不一致：CAGR 标注为「23-29」但起止年份写作 2024→2030，已标 [未核]。****另需注意计数对象**：「units」是封装后芯片还是模组原文未说明——这是 M06 question 7 要防的 die 计数口径问题，建议该指标强制带「计数对象」维度。region=Global。",
+      "value": 3.6
+    },
+    {
+      "fact_id": "self-asic-gpu-revenue-share-2024",
+      "metric_id": "self_asic_hyperscaler_gpu_share",
+      "entity": {
+        "type": "industry",
+        "id": "server-gpu",
+        "label": "服务器 GPU 市场"
+      },
+      "unit": "%",
+      "caliber": {
+        "basis": "实测",
+        "region": "Global"
+      },
+      "bound": "point",
+      "as_of": "2024",
+      "evidence": {
+        "source_id": "76c2994e3a50",
+        "locator": "同上报告「In 2024, around half of server GPU revenues came from hyperscalers that are developing their own AI ASICs. We believe an increasingly larger share of…」",
+        "grade": "S3",
+        "originator": "Yole（行业访谈方法论）"
+      },
+      "depth": "精读",
+      "notes": "**原文为「around half」，50 是约数。****这条的意义在结构而非数值：GPU 与 ASIC 的此消彼长发生在同一批客户的采购结构内部，而非不同客户之间**——常见的「GPU vs ASIC 谁赢」框架会误导，**不能用客户数或客户群划分来估两者份额走势**。分母=服务器 GPU 收入（2024 年），分子=正在自研 AI ASIC 的超大规模厂商贡献部分。region=Global。",
+      "value": 50.0
+    },
+    {
+      "fact_id": "hbm-bit-growth-2026e",
+      "metric_id": "hbm_bit_shipment_growth",
+      "entity": {
+        "type": "industry",
+        "id": "hbm",
+        "label": "HBM 市场"
+      },
+      "unit": "%",
+      "caliber": {
+        "measure": "位出货量",
+        "basis": "模型输出",
+        "region": "Global"
+      },
+      "bound": "point",
+      "as_of": "2026E",
+      "evidence": {
+        "source_id": "cef1e3037863",
+        "locator": "Bernstein《亚洲半导体与全球存储器：2026年仍以人工智能为核心》(2026-01-17)「鉴于新宣布的人工智能项目以及Nvidia激进的人工智能营收目标，我们现将HBM位出货量增长模型设定为2026年增长100%，2027年再增长35%」",
+        "grade": "S3",
+        "originator": "Bernstein（自建模型预测）"
+      },
+      "depth": "精读",
+      "notes": "**位出货量（bit shipment）口径，不是颗数也不是金额**——HBM 单颗容量在升级，位出货翻番不等于颗数翻番。**2026 年 +100%、2027 年再 +35%**，为同一模型的连续两年预测。配套判断：HBM 价格基本稳定；HBM4 预计 2026 上半年量产并形成价格溢价；**2026 年 HBM3E 市场份额仍将高于 HBM4**。region=Global。",
+      "value": 100.0
+    },
+    {
+      "fact_id": "dram-asp-qoq-2025q1e",
+      "metric_id": "dram_asp_change",
+      "entity": {
+        "type": "industry",
+        "id": "dram",
+        "label": "DRAM 市场"
+      },
+      "unit": "%",
+      "caliber": {
+        "period_basis": "环比 QoQ",
+        "product": "传统 DRAM",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "bound": "point",
+      "as_of": "2025-Q1E",
+      "evidence": {
+        "source_id": "cef1e3037863",
+        "locator": "同上报告「我们预测2025年第一季度DRAM平均售价将环比增长20-25%，主要受传统DRAM价格上涨驱动（见图表22），但近期数据显示存在上行风险」",
+        "grade": "S3",
+        "originator": "Bernstein（预测）"
+      },
+      "depth": "精读",
+      "notes": "**环比（QoQ）口径不是同比**，且为原文自身给出的区间（非同源冲突）。驱动因素原文归为**传统 DRAM 价格上涨**（非 HBM）。报告并称近期数据显示存在上行风险。**周期判断（必须一并引用）：DRAM 价格将从 2026 年初持续上涨（AI 需求激增 + 产能扩张需要时间），但预测 2027 年进入下行周期、幅度较温和**（2026 下半年供应进入市场、2027 年更多供应）。另称 DRAM 现货价格已上涨超过 4 倍。region=Global。",
+      "value": null,
+      "value_range": [
+        20,
+        25
+      ]
+    },
+    {
+      "fact_id": "hdd-market-size-growth-2024",
+      "metric_id": "hdd_market_size_growth",
+      "entity": {
+        "type": "industry",
+        "id": "hdd",
+        "label": "HDD 市场"
+      },
+      "unit": "%",
+      "caliber": {
+        "measure": "金额",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "bound": "point",
+      "as_of": "2024",
+      "evidence": {
+        "source_id": "ffee8ad88518",
+        "locator": "国信证券《人工智能存储系列报告一》(2025-12-11)「根据IDC披露数据，2024年全球HDD行业市场规模为180.3亿美元，同比+44.4%；全球HDD出货量为1.24亿颗，同比+1.1%」",
+        "grade": "S3",
+        "originator": "IDC（国信证券转引）"
+      },
+      "depth": "精读",
+      "notes": "**⚠ 金额口径 +44.4%，而同期出货量口径仅 +1.1%——量几乎不增而金额大增。****增长完全由涨价与容量结构升级驱动，不是台数放量。只看市场规模会误读成出货爆发。****这与 M07 的「800G 光模块出货量」口径问题同源：金额与数量口径在紧缺期会严重背离，两者必须分别建指标。**2024 年绝对值 180.3 亿美元、出货 1.24 亿颗。region=Global。",
+      "value": 44.4
+    },
+    {
+      "fact_id": "hdd-top2-share-2024",
+      "metric_id": "hdd_top2_share",
+      "entity": {
+        "type": "industry",
+        "id": "hdd",
+        "label": "HDD 市场"
+      },
+      "unit": "%",
+      "caliber": {
+        "measure": "未披露",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "bound": "point",
+      "as_of": "2024",
+      "evidence": {
+        "source_id": "ffee8ad88518",
+        "locator": "同上报告「根据IDC披露数据，2024年，希捷、西部数据、东芝市占率分别为40.8%、40.0%、19.2%，其中希捷、西部数据市占率合计达80.8%」",
+        "grade": "S3",
+        "originator": "IDC（国信证券转引）"
+      },
+      "depth": "精读",
+      "notes": "**⚠ 原文未说明是出货量口径还是金额口径，已标 [未核]**——在同期量价严重背离（金额 +44.4% vs 出货 +1.1%）的情况下，两种口径的份额可能差别很大。三家合计 100%（40.8+40.0+19.2），即该统计将 HDD 市场视为三家垄断。region=Global。",
+      "value": 80.8
+    },
+    {
+      "fact_id": "h100-system-memory-2025",
+      "metric_id": "server_system_memory",
+      "entity": {
+        "type": "product",
+        "id": "h100-server",
+        "label": "H100 服务器"
+      },
+      "unit": "TB",
+      "caliber": {
+        "config": "标称配置",
+        "memory_type": "系统内存 DRAM",
+        "region": "Global"
+      },
+      "bound": "point",
+      "as_of": "2025",
+      "evidence": {
+        "source_id": "ffee8ad88518",
+        "locator": "同上报告「以英特尔Sapphire Rapids为例，单颗CPU支持8个内存通道，每通道支持2个DIMM；英伟达H100单台服务器配置两颗CPU，共计32个DIMM插槽，配置32个64GB DRAM（共计2TB）作为系统内存」",
+        "grade": "S3",
+        "originator": "国信证券（据公开配置整理）"
+      },
+      "depth": "精读",
+      "notes": "**标称配置不是实际部署**——同报告的 DGX B200 主板 DRAM 为 2TB 且注明「可拓展至 4TB」，**用于反推总需求时必须说明取哪一档**。口径=系统内存（DRAM），**不含 HBM**（H100 单颗 HBM3 为 96GB：6 颗堆栈 × 8 层 × 2GB）。配套：DGX B200（8 卡）本地 SSD 8×3.84TB = 30.72TB。**这类单机 BOM 是把「出货多少卡」换算成「需要多少 DRAM/NAND」的桥。**",
+      "value": 2.0
+    },
+    {
+      "fact_id": "nand-demand-inference-2026e",
+      "metric_id": "nand_demand_ai",
+      "entity": {
+        "type": "industry",
+        "id": "nand",
+        "label": "NAND 市场"
+      },
+      "unit": "EB",
+      "caliber": {
+        "workload": "仅推理",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "bound": "point",
+      "as_of": "2026E",
+      "evidence": {
+        "source_id": "ffee8ad88518",
+        "locator": "同上报告「根据我们测算结果，2026年AI推理对DRAM、NAND需求分别为23.0EB、593.5EB，短期供不应求，存储价格有望持续提升」",
+        "grade": "S4",
+        "originator": "国信证券（自建模型测算）"
+      },
+      "depth": "精读",
+      "notes": "**券商自建模型的测算值，非实测也非厂商指引**。配对值：DRAM 需求 23.0EB。**口径限定为「AI 推理」，不含训练、不含非 AI 负载**——这是分母极窄的一个数，**不可当作 NAND 总需求**。NAND 需求是 DRAM 的约 25.8 倍（计算值），反映推理侧对容量而非带宽的偏好。region=Global。",
+      "value": 593.5,
+      "derived": true,
+      "derivation": "**券商自建模型的测算值，非实测也非厂商指引**。配对值：DRAM 需求 23.0EB。**口径限定为「AI 推理」，不含训练、不含非 AI 负载**——这是分母极窄的一个数，**不可当作 NAND 总需求**。NAND 需求是 DRAM 的约 25.8 倍（计算值），反映推理侧对容量而非带宽的偏好。region=Global。"
+    },
+    {
+      "fact_id": "gb200-nvl72-power-density-2024",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "gb200-nvl72",
+        "label": "GB200 NVL72"
+      },
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "power_basis": "实际功率密度",
+        "region": "Global"
+      },
+      "bound": "point",
+      "as_of": "2024",
+      "evidence": {
+        "source_id": "baa1da2480af",
+        "locator": "SemiAnalysis《Nvidia's Blackwell Reworked - Shipment Delays》「The 72 GPU rack has a power density of ~125 kW per rack despite the standard for most datacenter deployments being at ~12kW to ~20kW a rack」",
+        "grade": "S2",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "notes": "**basis = 实际功率密度（power density），不是 TDP。****⚠ 同一产品库内有三个数、口径各异，绝不可混用或取平均**：①本条 ~125kW（power density，SemiAnalysis）；②**140kW（明确标注为热设计功耗 TDP）**；③120kW（某券商称「液冷机柜功率密度高达 120kW」，**未标口径**）。**TDP 是热设计上限、power density 是实际功率密度，两者天然不等。****建议 `rack_density_shipping` 强制带 basis 维度（TDP/实际功率密度/设计值/标称）。**对比基准（同源）：**大多数数据中心部署的标准是 ~12kW 到 ~20kW/机柜，125kW 是其 6-10 倍。**",
+      "value": 125.0
+    },
+    {
+      "fact_id": "gb200-nvl72-tdp-2026",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "gb200-nvl72",
+        "label": "GB200 NVL72"
+      },
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "power_basis": "TDP 热设计功耗",
+        "region": "Global"
+      },
+      "bound": "point",
+      "as_of": "2026",
+      "evidence": {
+        "source_id": "9a65c50de355",
+        "locator": "《绿色数据中心行业洞察（2026）》(2026-02-27)「单颗Blackwell GPU功耗突破1000W，GB200 NVL72整机柜热设计功耗(TDP)高达140kW」",
+        "grade": "S4",
+        "originator": "（原文未标明数据来源）"
+      },
+      "depth": "精读",
+      "notes": "**basis = 热设计功耗（TDP），是散热设计上限、不是实际运行功率密度。****与 SemiAnalysis 的 ~125kW（实际功率密度）是两个口径，不可合并成一条时序或取平均。**配套：单颗 Blackwell GPU 功耗突破 1000W。**这两个数并存正是 M06 question 4 的口径陷阱：机柜功率演进曲线若混用 TDP 与实测，会凭空多出十几 kW 的「增长」。**",
+      "value": 140.0,
+      "corroboration": "孤证已知"
+    },
+    {
+      "fact_id": "traditional-rack-density-2024",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "industry",
+        "id": "traditional-dc",
+        "label": "传统数据中心机柜"
+      },
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "市场普遍水平",
+        "power_basis": "未披露",
+        "region": "Global"
+      },
+      "bound": "point",
+      "as_of": "2024",
+      "evidence": {
+        "source_id": "baa1da2480af",
+        "locator": "SemiAnalysis 同上报告「despite the standard for most datacenter deployments being at ~12kW to ~20kW a rack」",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "notes": "**原文自身给出的区间（非同源冲突），且为约数（~）。****这是理解 M08/M09 传导压力的量级锚**：GB200 NVL72 的 ~125kW 是它的 **6-10 倍**。口径为「大多数数据中心部署」的普遍水平，非某一市场统计。**可与本库 M11 的中国口径对照**：某银行数据中心可研规划 6kW/机柜、中国存量机柜 4-6kW 占 48%、6-8kW 占 34%——**中国存量密度显著低于此区间**。",
+      "value": null,
+      "value_range": [
+        12,
+        20
+      ]
+    },
+    {
+      "fact_id": "ascend-910b-shipment-2025e",
+      "metric_id": "domestic_gpu_shipment",
+      "entity": {
+        "type": "company",
+        "id": "huawei",
+        "label": "华为昇腾 910B"
+      },
+      "unit": "万颗",
+      "caliber": {
+        "period": "年",
+        "counting": "未披露",
+        "basis": "第三方推算"
+      },
+      "bound": "point",
+      "as_of": "2025E",
+      "evidence": {
+        "source_id": "9a65c50de355",
+        "locator": "《绿色数据中心行业洞察（2026）》「国产芯片产能瓶颈：华为昇腾910B 2025年预计出货70万颗，但仍需3年才能填补市场缺口」",
+        "grade": "S4",
+        "originator": "（原文未标明数据来源）"
+      },
+      "depth": "精读",
+      "notes": "**预计值不是实际出货**。**「颗」的计数对象未说明（芯片 die 还是加速卡模组），已标 [未核]**——同一颗 910B 若按 die 计与按卡计可能差一倍。配套判断：「仍需 3 年才能填补市场缺口」——**缺口的分母（市场需求总量）原文未给，无法验算。****可与 M14 的 Bernstein「中国 AI 芯片国产化率 2027 年达 55%」参照，但那是按金额的份额、本条是颗数，两者不可换算。**region=CN。",
+      "value": 70.0,
+      "corroboration": "孤证已知"
+    },
+    {
+      "fact_id": "wiwynn-odm-revenue-growth-202506",
+      "metric_id": "odm_revenue_growth",
+      "entity": {
+        "type": "company",
+        "id": "wiwynn",
+        "label": "纬颖"
+      },
+      "unit": "%",
+      "caliber": {
+        "period_basis": "同比 YoY",
+        "frequency": "月度自结",
+        "region": "APAC"
+      },
+      "bound": "point",
+      "as_of": "2025-06",
+      "evidence": {
+        "source_id": "034949ba2a14",
+        "locator": "申万宏源《电子行业25年6月台股电子板块景气跟踪》(2025-07-13)「AI业务营收占比较高的纬创、广达、纬颖6月营收分别+135.6%/70.6%/179.0%、均达历史新高或次高水平」",
+        "grade": "S3",
+        "originator": "台股月营收自结数（申万宏源整理）"
+      },
+      "depth": "精读",
+      "notes": "**台股月营收是未经审计的自结数、新台币计价**，汇率波动影响同比读数。同批：纬创 +135.6%、广达 +70.6%。**⚠ 同段落内同比与环比混用**——「鸿海 6 月仅 AI 领域业务营收环比增长」是环比，上述三家是同比，**引用须逐条核对基准**。**单月数据波动大，不宜用单月同比推断年度趋势**；其价值在于台股月营收比季报早一到两个月，是全球 AI 服务器供应链最高频的公开信号。",
+      "value": 179.0
     }
   ]
 }

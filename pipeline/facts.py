@@ -35,6 +35,7 @@ FACT_DEPTHS = {"精读", "据实生成"}   # 半自动与目录级不得进事�
 BOUNDS = {"point", "upper", "lower"}
 BOUND_SIGN = {"upper": "<", "lower": ">", "point": " "}
 GRADES = {"S1", "S2", "S3", "S4", "S5"}
+CORROB = {"待交叉验证", "已交叉验证", "孤证已知"}   # 缺省即「待交叉验证」
 
 errors = []
 
@@ -86,6 +87,9 @@ def validate(facts, metrics):
             err(f"facts[{fid}]: 证据等级非法：{ev.get('grade')}")
         if not ev.get("locator"):
             err(f"facts[{fid}]: 缺 locator——**要能让人翻回原文核对那一个数**")
+
+        if f.get("corroboration") and f["corroboration"] not in CORROB:
+            err(f"facts[{fid}]: corroboration 取值非法：{f['corroboration']}｜合法值 {sorted(CORROB)}")
 
         if f.get("derived") and not f.get("derivation"):
             err(f"facts[{fid}]: derived=true 但没写 derivation（派生算法必须可复现）")
@@ -177,6 +181,9 @@ def compare(facts, metrics, only=None):
             lines.append(f"  [{cal}]  可比组，{len(g)} 条")
             for f in g:
                 mark = "（计算值）" if f.get("derived") else ""
+                # 「已交叉验证」才是可以拿去推算的；其余默认待验证
+                c = f.get("corroboration", "待交叉验证")
+                mark += {"已交叉验证": " ✓双源", "孤证已知": " ⚠孤证"}.get(c, " ·待验")
                 s = "🔒" if f.get("sensitive") else "  "
                 # value 允许为 null——「已知该指标存在但值未披露」是留白纪律的一部分，
                 # 渲染必须显式处理，不能崩（本行曾因未处理 None 报 TypeError）
