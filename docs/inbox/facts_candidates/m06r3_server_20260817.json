@@ -1,0 +1,72 @@
+{
+ "version": "0.1-candidates",
+ "produced": "2026-08-17",
+ "module_focus": "M06-3",
+ "note": "M06 第 3 轮（整机柜/服务器与国产链），**本阶段最后一轮**。**最重要的发现是一处「假可比」**：GB200 NVL72 的整机柜功率在库内有三个数——**~125kW（实际功率密度，SemiAnalysis）、140kW（明确标注 TDP）、120kW（未标口径）**。**TDP 与实际功率密度天然不等，三者不可混用或取平均**；**建议 `rack_density_shipping` 强制带 basis 维度**，否则机柜功率演进曲线会混入口径差、凭空多出十几 kW。另收了一个有用的量级锚：**传统数据中心标准 ~12-20kW/机柜，GB200 NVL72 是其 6-10 倍**，而中国存量机柜 4-6kW 占 48%——**中国存量密度显著低于全球普遍水平**。国产链：昇腾 910B 2025 年预计出货 70 万颗（计数对象未明，已标 [未核]）。",
+ "records": [
+  {
+   "what": "GB200 NVL72 整机柜功率密度",
+   "value": 125.0,
+   "unit": "kW/机柜",
+   "locator": "SemiAnalysis《Nvidia's Blackwell Reworked - Shipment Delays》「The 72 GPU rack has a power density of ~125 kW per rack despite the standard for most datacenter deployments being at ~12kW to ~20kW a rack」",
+   "originator": "SemiAnalysis",
+   "caliber_note": "**basis = 实际功率密度（power density），不是 TDP。****⚠ 同一产品库内有三个数、口径各异，绝不可混用或取平均**：①本条 ~125kW（power density，SemiAnalysis）；②**140kW（明确标注为热设计功耗 TDP）**；③120kW（某券商称「液冷机柜功率密度高达 120kW」，**未标口径**）。**TDP 是热设计上限、power density 是实际功率密度，两者天然不等。****建议 `rack_density_shipping` 强制带 basis 维度（TDP/实际功率密度/设计值/标称）。**对比基准（同源）：**大多数数据中心部署的标准是 ~12kW 到 ~20kW/机柜，125kW 是其 6-10 倍。**",
+   "entity": "NVIDIA GB200 NVL72",
+   "as_of": "2024",
+   "source_key": "baa1da2480af",
+   "grade": "S2"
+  },
+  {
+   "what": "GB200 NVL72 整机柜热设计功耗（TDP）",
+   "value": 140.0,
+   "unit": "kW/机柜",
+   "locator": "《绿色数据中心行业洞察（2026）》(2026-02-27)「单颗Blackwell GPU功耗突破1000W，GB200 NVL72整机柜热设计功耗(TDP)高达140kW」",
+   "originator": "（原文未标明数据来源）",
+   "caliber_note": "**basis = 热设计功耗（TDP），是散热设计上限、不是实际运行功率密度。****与 SemiAnalysis 的 ~125kW（实际功率密度）是两个口径，不可合并成一条时序或取平均。**配套：单颗 Blackwell GPU 功耗突破 1000W。**这两个数并存正是 M06 question 4 的口径陷阱：机柜功率演进曲线若混用 TDP 与实测，会凭空多出十几 kW 的「增长」。**",
+   "entity": "NVIDIA GB200 NVL72",
+   "as_of": "2026",
+   "source_key": "9a65c50de355",
+   "grade": "S4"
+  },
+  {
+   "what": "传统数据中心标准机柜功率密度",
+   "value": null,
+   "value_range": [
+    12,
+    20
+   ],
+   "unit": "kW/机柜",
+   "locator": "SemiAnalysis 同上报告「despite the standard for most datacenter deployments being at ~12kW to ~20kW a rack」",
+   "originator": "SemiAnalysis",
+   "caliber_note": "**原文自身给出的区间（非同源冲突），且为约数（~）。****这是理解 M08/M09 传导压力的量级锚**：GB200 NVL72 的 ~125kW 是它的 **6-10 倍**。口径为「大多数数据中心部署」的普遍水平，非某一市场统计。**可与本库 M11 的中国口径对照**：某银行数据中心可研规划 6kW/机柜、中国存量机柜 4-6kW 占 48%、6-8kW 占 34%——**中国存量密度显著低于此区间**。",
+   "entity": "传统数据中心（全球普遍水平）",
+   "as_of": "2024",
+   "source_key": "baa1da2480af",
+   "grade": "S3"
+  },
+  {
+   "what": "华为昇腾 910B 年出货量",
+   "value": 70.0,
+   "unit": "万颗",
+   "locator": "《绿色数据中心行业洞察（2026）》「国产芯片产能瓶颈：华为昇腾910B 2025年预计出货70万颗，但仍需3年才能填补市场缺口」",
+   "originator": "（原文未标明数据来源）",
+   "caliber_note": "**预计值不是实际出货**。**「颗」的计数对象未说明（芯片 die 还是加速卡模组），已标 [未核]**——同一颗 910B 若按 die 计与按卡计可能差一倍。配套判断：「仍需 3 年才能填补市场缺口」——**缺口的分母（市场需求总量）原文未给，无法验算。****可与 M14 的 Bernstein「中国 AI 芯片国产化率 2027 年达 55%」参照，但那是按金额的份额、本条是颗数，两者不可换算。**region=CN。",
+   "entity": "华为昇腾 910B",
+   "as_of": "2025E",
+   "source_key": "9a65c50de355",
+   "grade": "S4"
+  },
+  {
+   "what": "AI 服务器 ODM 月度营收同比增速（纬颖）",
+   "value": 179.0,
+   "unit": "%",
+   "locator": "申万宏源《电子行业25年6月台股电子板块景气跟踪》(2025-07-13)「AI业务营收占比较高的纬创、广达、纬颖6月营收分别+135.6%/70.6%/179.0%、均达历史新高或次高水平」",
+   "originator": "台股月营收自结数（申万宏源整理）",
+   "caliber_note": "**台股月营收是未经审计的自结数、新台币计价**，汇率波动影响同比读数。同批：纬创 +135.6%、广达 +70.6%。**⚠ 同段落内同比与环比混用**——「鸿海 6 月仅 AI 领域业务营收环比增长」是环比，上述三家是同比，**引用须逐条核对基准**。**单月数据波动大，不宜用单月同比推断年度趋势**；其价值在于台股月营收比季报早一到两个月，是全球 AI 服务器供应链最高频的公开信号。",
+   "entity": "纬颖科技（Wiwynn）",
+   "as_of": "2025-06",
+   "source_key": "034949ba2a14",
+   "grade": "S3"
+  }
+ ]
+}
