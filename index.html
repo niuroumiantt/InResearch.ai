@@ -416,6 +416,35 @@ try {
       <div class="note">核验队列 verify.py ｜ 精读队列 reading_queue.py ｜ 简报 ${brief.date || ""}</div>`]);
   }
 
+  // ── 研究核心 · 事实层与工单（新机制的仪表盘出口；机制看不见就等于不存在）
+  const [facts, mets, wos, blind] = await Promise.all([
+    get("data/facts.json").catch(() => null),
+    get("framework/metrics.json").catch(() => null),
+    get("reports/workorders.json").catch(() => null),
+    get("reports/blindspot.json").catch(() => null),
+  ]);
+  if (facts && mets) {
+    const nf = facts.records.length, nm = mets.metrics.length;
+    const filled = new Set(facts.records.map(f => f.metric_id)).size;
+    const bounded = facts.records.filter(f => (f.bound || "point") !== "point").length;
+    const sens = facts.records.filter(f => f.sensitive).length;
+    const p1 = wos ? wos.orders.filter(o => o.pri === "P1").length : 0;
+    const alarms = blind ? blind.modules.filter(m => m.alarm) : [];
+    const kinds = wos ? Object.entries(wos.orders.reduce((a, o) =>
+      (a[o.kind] = (a[o.kind] || 0) + 1, a), {})).sort((x, y) => y[1] - x[1]).slice(0, 4) : [];
+    boards.push(["b8", "研究核心 · 事实层与工单", "team.html",
+      `<div style="display:flex;gap:26px;flex-wrap:wrap;margin-bottom:8px">
+        <div><b style="font-size:20px">${nf}</b> <span style="font-size:11px;color:var(--gray)">条事实（${filled}/${nm} 个指标已有数）</span></div>
+        <div><b style="font-size:20px">${wos ? wos.orders.length : "—"}</b> <span style="font-size:11px;color:var(--gray)">张工单 ｜ P1 <b style="color:${p1 ? "var(--yellow)" : "var(--green)"}">${p1}</b></span></div>
+        <div><b style="font-size:20px;color:${alarms.length ? "var(--yellow)" : "var(--green)"}">${alarms.length}</b> <span style="font-size:11px;color:var(--gray)">模块盲区报警</span></div>
+      </div>
+      <div style="font-size:11px;color:var(--gray);padding:2px 0">
+        缺口：${kinds.map(([k, v]) => `${esc(k)} ${v}`).join(" ｜ ") || "—"}</div>
+      <div style="font-size:11px;color:var(--gray);padding:2px 0">
+        盲区：${alarms.map(m => `<a class="chip-sm" href="doc.html?f=reports/blindspot.md">${m.mid} ${m.ratio}×</a>`).join(" ") || "无"}</div>
+      <div class="note">事实层原子 = 指标 × 口径 × 时点 × 出处；其中 ${bounded} 条为边界值（非点值）、${sens} 条敏感（对外须转区间）。工单 = 声明 − 现状，不手写。</div>`]);
+  }
+
   document.getElementById("grid").innerHTML = boards.map(([cls, title, go, body]) =>
     `<div class="board ${cls}"><div class="bh"><h2>${title}</h2><a class="go" href="${go}">详情 →</a></div>${body}</div>`).join("");
   document.getElementById("live").innerHTML = `<i></i>实时 · ${new Date().toTimeString().slice(0, 8)} 刷新`;
