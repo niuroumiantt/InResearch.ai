@@ -1,0 +1,83 @@
+{
+  "version": "0.1-draft",
+  "updated": "2026-08-17",
+  "note": "事实层种子。只收 depth 为「精读」或「据实生成」的数——半自动与目录级的行留在 LIBRARY_SCORES.csv 里当索引，不进这张表。首批四条全部来自已立 Finding（M10-F14/F16、M14 芜湖环评），每个数都可回原文逐行核对。",
+  "records": [
+    {
+      "fact_id": "luan-ct-cost-gc-2022",
+      "metric_id": "dc_construction_cost_per_sqm",
+      "entity": {"type": "project", "id": "cn-ah-luan-ct", "label": "中国电信安徽六安信息化中心与云计算数据中心"},
+      "value": 4406.0,
+      "unit": "元/㎡",
+      "caliber": {"stage": "招标控制价", "scope": "施工总包", "region": "CN"},
+      "as_of": "2022-01",
+      "evidence": {
+        "source_id": "chinatelecom-luan-cost-2022",
+        "local_file": "docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/8A_2022_六安电信数据中心最高投标限价总说明_中国电信安徽公司.doc",
+        "locator": "封面限价 79,483,818.90 元；工程概况段建筑面积 9,840+8,200=18,040 ㎡",
+        "grade": "S2"
+      },
+      "depth": "据实生成",
+      "derived": false,
+      "sensitive": true,
+      "notes": "12 份《单位工程最高投标限价汇总表》(D.3) 独立加总 79,483,818.90 元，与封面分文不差。不含 IT 设备与 UPS/柴发/冷机等机电主设备。"
+    },
+    {
+      "fact_id": "luan-ct-cost-shell-2022",
+      "metric_id": "dc_construction_cost_per_sqm",
+      "entity": {"type": "project", "id": "cn-ah-luan-ct", "label": "中国电信安徽六安信息化中心与云计算数据中心"},
+      "value": 3736.6,
+      "unit": "元/㎡",
+      "caliber": {"stage": "招标控制价", "scope": "土建本体", "region": "CN"},
+      "as_of": "2022-01",
+      "evidence": {
+        "source_id": "chinatelecom-luan-cost-2022",
+        "locator": "同上，分部构成：土建 40,271,633.63 + 幕墙装饰 14,504,496.64 + 安装本体 12,631,946.99",
+        "grade": "S2"
+      },
+      "depth": "据实生成",
+      "derived": true,
+      "derived_from": ["luan-ct-cost-gc-2022"],
+      "derivation": "施工总包 79,483,818.90 元剥离室外（园林 5,109,668.11 + 大型土石方 4,962,327.12 + 室外市政给排水 1,617,277.73 + 室外电气 386,468.68 = 12,075,741.64，占 15.2%）后 67,408,077.26 元，÷18,040 ㎡",
+      "sensitive": true,
+      "notes": "剥室外是为了与 M10-F14 的广州本体口径对齐——不剥不可比。"
+    },
+    {
+      "fact_id": "cmcc-gba-cost-shell-2022",
+      "metric_id": "dc_construction_cost_per_sqm",
+      "entity": {"type": "project", "id": "cn-gd-gba-cmcc", "label": "中国移动粤港澳（广州）通信机楼二期"},
+      "value": 3774.9,
+      "unit": "元/㎡",
+      "caliber": {"stage": "招标控制价", "scope": "土建本体", "region": "CN"},
+      "as_of": "2022-01",
+      "evidence": {
+        "source_id": "cmcc-gba-guangzhou-cost-2022",
+        "locator": "项目招标控制价总表；控制价 3.259 亿元 / 建面 76,597 ㎡；三栋楼离散度 <3.5%",
+        "grade": "S2"
+      },
+      "depth": "据实生成",
+      "derived": false,
+      "sensitive": true,
+      "notes": "见 M10-F14。土建 68.0% / 安装 20.7% / 室外 10.0%。"
+    },
+    {
+      "fact_id": "wuhu-unicom-invest-rack-2023",
+      "metric_id": "dc_investment_per_rack",
+      "entity": {"type": "project", "id": "cn-ah-wuhu-unicom", "label": "中国联通芜湖智算中心"},
+      "value": 60.0,
+      "unit": "万元/架",
+      "caliber": {"stage": "估算", "scope": "含IT设备的项目总投资", "region": "CN"},
+      "as_of": "2023",
+      "evidence": {
+        "local_file": "docs/library/04_市场与研究/中文行业报告集/8A_2023_芜湖联通智算中心环评_中国联通.pdf",
+        "locator": "环评报告项目概况：总投资 60 亿元、10,000 架",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "总投资 60 亿元 ÷ 10,000 架",
+      "sensitive": false,
+      "notes": "**这条存在的意义之一是当反例**：它与上面三条差着一个数量级的内涵（含 IT 设备的项目总投资 vs 施工总包），metric_id 都不同，系统必须拒绝把它们并列。"
+    }
+  ]
+}

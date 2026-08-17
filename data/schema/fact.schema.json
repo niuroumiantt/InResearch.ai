@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "事实层记录（主键 = fact_id）——core 的原子",
+  "description": "一条事实 = 某指标 × 某口径 × 某时点 × 某出处的一个数。与 LIBRARY_SCORES.csv 的区别：那张表的原子是一份文件（目录），这张表的原子是一个数（数据库）。",
+  "type": "object",
+  "required": ["fact_id", "metric_id", "value", "unit", "caliber", "as_of", "evidence", "depth"],
+  "properties": {
+    "fact_id": {"type": "string", "description": "小写连字符，如 luan-ct-cost-total-2022"},
+    "metric_id": {"type": "string", "description": "必须存在于 framework/metrics.json"},
+    "entity": {
+      "type": "object",
+      "description": "这个数是关于谁的",
+      "properties": {
+        "type": {"type": "string", "enum": ["project", "company", "region", "component", "market"]},
+        "id": {"type": "string", "description": "对应 projects.site_id / companies.company_id 等；无对应实体时用自由文本"},
+        "label": {"type": "string"}
+      }
+    },
+    "value": {"type": ["number", "null"], "description": "null = 已知该指标存在但值未披露——留白即纪律，不许推算填充"},
+    "unit": {"type": "string", "description": "必须与 metrics.json 声明的 unit 一致"},
+    "caliber": {
+      "type": "object",
+      "description": "口径。**metrics.json 为该指标声明的每个 caliber_dim 都必须在此有取值**，缺一即校验不过。这是可比性判定的唯一依据。",
+      "additionalProperties": {"type": "string"}
+    },
+    "as_of": {"type": "string", "description": "YYYY / YYYY-MM / YYYY-MM-DD"},
+    "evidence": {
+      "type": "object",
+      "required": ["grade"],
+      "properties": {
+        "source_id": {"type": "string", "description": "对应 data/sources.json"},
+        "local_file": {"type": "string", "description": "库内路径，便于回原文查"},
+        "locator": {"type": "string", "description": "页码/表号/段落——**要能让人翻回去核对那一个数**"},
+        "grade": {"type": "string", "enum": ["S1", "S2", "S3", "S4", "S5"], "description": "S1 官方原始披露 / S2 一手文件 / S3 方法论可考的机构测算 / S4 转述 / S5 无法溯源"}
+      }
+    },
+    "depth": {
+      "type": "string",
+      "enum": ["精读", "据实生成", "半自动", "目录级"],
+      "description": "沿用打分表的阅读深度口径。**半自动与目录级的数不得直接进事实层**——事实层只收精读与据实生成，这是事实层与目录层的分界线。"
+    },
+    "derived": {"type": "boolean", "default": false, "description": "true = 计算值（如剥离室外后的本体单方）。派生值必须写清算法与被减项。"},
+    "derived_from": {"type": "array", "items": {"type": "string"}, "description": "派生所依据的 fact_id 列表"},
+    "derivation": {"type": "string", "description": "派生算法的一句话说明"},
+    "sensitive": {"type": "boolean", "default": false, "description": "true = 【敏感待判】，对外产出前须脱敏或聚合（如运营商真实招标控制价）"},
+    "notes": {"type": "string"}
+  }
+}
