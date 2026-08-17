@@ -59,7 +59,8 @@ python3 pipeline/workorder.py      # 工单队列（每个模块下一步该做�
 python3 pipeline/blindspot.py      # 盲区体检（库里有但分类器看不见的材料）
 python3 pipeline/facts.py          # 事实层校验 + 可比性判定（口径不同的数拒绝并列）
 python3 pipeline/facts.py --public # 对外口径预览（实名照旧、金额转区间、标明是哪年的老数据）
-python3 pipeline/intake.py         # 成员投递机检与三档分流
+python3 pipeline/intake.py         # 成员投递机检与三档分流（A 人批/B 模型批抽 10%/C 自动）
+python3 pipeline/intake.py --selftest  # 自检：冲突升档与模板排除是否还生效
 python3 -m http.server 8000     # 本地看仪表盘
 ```
 
