@@ -96,9 +96,10 @@ class Handler(SimpleHTTPRequestHandler):
     # 静态文件服务（translate_path）会先 unquote 路径再找文件；闸门若拿原始
     # 字符串做子串/前缀判断，/data/users%2Ejson、/assets/%2E%2E/data/… 这类
     # 编码或穿越变体就能穿过封锁。一切基于路径的允许/拒绝判断都必须用这里
-    # 解码 + normpath 归一化之后的路径。
+    # 解码 + 反斜杠归一 + normpath 之后的路径。
     def _norm_path(self):
-        return posixpath.normpath(unquote(urlsplit(self.path).path))
+        return posixpath.normpath(
+            unquote(urlsplit(self.path).path).replace("\\", "/"))
 
     # ── 认证闸门 ─────────────────────────────────────────
     # 返回 None 表示本请求已被闸门处理完（重定向/拒绝），调用方应直接 return；
@@ -107,9 +108,11 @@ class Handler(SimpleHTTPRequestHandler):
     def _gate(self):
         if not AUTH_ON:
             return ""
-        # 密钥与用户表即使登录后也永远不可经 HTTP 取到（纵深防御）
-        npath = self._norm_path()
-        if "/.hub_secret" in npath or "/users.json" in npath:
+        # 密钥与用户表即使登录后也永远不可经 HTTP 取到（纵深防御）。
+        # 判解码归一化后的路径（见 _norm_path），并转小写——本机 launchd 部署跑在
+        # macOS 上，文件系统大小写不敏感，/DATA/USERS.JSON 一样能取到文件。
+        low = self._norm_path().lower()
+        if "/.hub_secret" in low or "/users.json" in low:
             self._json(404, {"ok": False, "error": "not found"})
             return None
         user = auth.session_user(self.headers.get("Cookie"))

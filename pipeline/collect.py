@@ -26,6 +26,14 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "pipeline"))
 import verify  # noqa: E402
 
+
+def atomic_write(path: Path, text: str):
+    """先写同目录临时文件再 os.replace 原子换名——写到一半被 kill 也不会截断原文。
+    这对 research/Mxx.md 尤其重要：那是唯一被代码自动改写的知识层原文。"""
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text(text, encoding="utf-8")
+    os.replace(tmp, path)
+
 SEC_RECENT_DAYS = 7
 SEC_WATCH_FORMS = {"10-Q", "10-K", "8-K", "S-1", "424B5", "20-F", "6-K"}
 
@@ -109,11 +117,7 @@ def mark_findings_needs_review(sec_filings):
                 pending = None
             out.append(line)
         if changed:
-            # 原子回写：这是唯一自动改知识层原文的代码，直接 write_text 写一半
-            # 被 kill（launchd 超时、断电）会把 Finding 文件截断
-            tmp = rp.with_name(rp.name + ".tmp")
-            tmp.write_text("\n".join(out), encoding="utf-8")
-            os.replace(tmp, rp)
+            atomic_write(rp, "\n".join(out))
     return marked
 
 
@@ -188,8 +192,8 @@ def main():
         "research": research_stats(),
         "review_marked": marked,
     }
-    (ROOT / "data" / "brief.json").write_text(
-        json.dumps(brief, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    atomic_write(ROOT / "data" / "brief.json",
+                 json.dumps(brief, ensure_ascii=False, indent=2) + "\n")
 
     # 人读简报
     lines = [f"# 每日简报 {today}", ""]
@@ -209,7 +213,7 @@ def main():
     lines.append("")
     for q in brief["verify"]["items"]:
         lines.append(f"- [ ] {q['table']} / {q['id']} — {q['reason']}")
-    (ROOT / "reports" / "daily_brief.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    atomic_write(ROOT / "reports" / "daily_brief.md", "\n".join(lines) + "\n")
 
     if marked:
         print(f"◆ 事件驱动核验：{len(marked)} 条 Finding 因 SEC 信号标为 needs-review")

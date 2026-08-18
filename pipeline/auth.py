@@ -249,14 +249,14 @@ def reset_password(name: str, password: str | None = None):
 
 # ── 登录限速 ────────────────────────────────────────────────
 
-FAIL_MAX_IPS = 4096   # _fails 表上界：满了先清过期、再挤最老——保内存优先于精确限速
-
-
 def client_ip(handler) -> str:
     # 取**末项**不取首项：首项是客户端自己可以伪造的（curl -H 'X-Forwarded-For: 随机'
     # 每次换一个就绕过限速），末项才是最近一跳可信反代追加/重写的真实来源
     xff = handler.headers.get("X-Forwarded-For", "")
     return (xff.split(",")[-1].strip() or handler.client_address[0])
+
+
+FAIL_TABLE_MAX = 4096   # 限速表条目上界：伪造海量 XFF 时防慢速内存耗尽
 
 
 def throttled(ip: str) -> bool:
@@ -267,12 +267,12 @@ def throttled(ip: str) -> bool:
 
 def record_fail(ip: str):
     now = time.time()
-    if ip not in _fails and len(_fails) >= FAIL_MAX_IPS:
-        for k in [k for k, v in _fails.items()
-                  if not any(now - t < FAIL_WINDOW for t in v)]:
+    # 表满时先清掉窗口外的过期条目；仍满则丢最旧的一条，保证有界
+    if len(_fails) >= FAIL_TABLE_MAX and ip not in _fails:
+        for k in [k for k, v in _fails.items() if all(now - t >= FAIL_WINDOW for t in v)]:
             del _fails[k]
-        while len(_fails) >= FAIL_MAX_IPS:
-            _fails.pop(next(iter(_fails)))
+        if len(_fails) >= FAIL_TABLE_MAX:
+            del _fails[min(_fails, key=lambda k: max(_fails[k]))]
     # 每 IP 只留最近 FAIL_LIMIT 条就够判限速——列表同样不许无界长
     _fails[ip] = (_fails.get(ip, []) + [now])[-FAIL_LIMIT:]
 
