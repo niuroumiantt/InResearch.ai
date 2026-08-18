@@ -1006,7 +1006,7 @@ function showDossier(p) {
     const r = latest(sid); if (r) rows.push(`<div class="kv"><span>${sid}</span><b>${r.value.toLocaleString()} ${r.unit}</b></div>`);
   });
   (p.indicators || []).forEach(iid => { const i = INDS[iid]; if (i) rows.push(`<div class="kv"><span>${i.name}</span><b>${i.value != null ? i.value.toLocaleString() + " " + i.unit : "待录入"}</b></div>`); });
-  const deep = ["rack-frame", "server", "network-switch", "power-shelf", "manifold", "gpu", "cpu", "hbm", "nic", "psu", "coldplate", "storage"].includes(p.id)
+  const deep = ["rack-frame", "server", "network-switch", "power-shelf", "manifold", "gpu", "cpu", "hbm", "nic", "psu", "coldplate", "ssd", "dram"].includes(p.id)
     ? `<a class="chip" href="rack3d.html?x=100#${p.id}">🔬 上机柜拆解台看结构</a>` : "";
   el.innerHTML = `<span class="close" onclick="this.parentElement.style.display='none'">✕</span>
     <h2>${esc(p.name)}</h2>

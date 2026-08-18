@@ -8,14 +8,26 @@
 |---|---|---|
 | `validate.py` | — | 按口径手册校验六张表：主键、枚举、引用、保鲜度。**任何提交前先跑它** |
 | `verify.py` | — | 生成核验队列 `reports/verify_queue.md`：按 P1/P2/P3 列出该重新查证的记录。**核验工作的固定入口** |
-| `fetch_sec.py` | 自动 | 拉取公司库中有 CIK 公司的 EDGAR 文件清单（含 20-F/6-K），原始数据存 `data/raw/sec/` |
-| `update_ciks.py` | 自动 | 用 SEC 官方映射表回填美股公司 CIK |
+| `collect.py` | 自动 | 每日流水线总调度：采集 → 核验队列 → 简报（brief.json / daily_brief.md）+ 事件驱动 needs-review 标记 |
+| `fetch_sec.py` | 自动 | 拉取公司库中有 CIK 公司的 EDGAR 文件清单（含 20-F/6-K），原始数据存 `data/raw/sec/`。**仅本机**（云端网络策略屏蔽 sec.gov）|
+| `update_ciks.py` | 自动 | 用 SEC 官方映射表回填美股公司 CIK。**仅本机**（同上）|
 | `fetch_news_signals.py` | 自动 | 消费 news 项目数据，按实体词条匹配出新闻线索 → `data/raw/news_signals/` |
-| `export.py` | — | **报告导出器**：从知识层汇编报告（全量/按模块），md + 可选 docx → `reports/output/` |
-| `serve.py` | 常驻 | 本地服务器：静态站点 + 管理后台 API（任务白名单执行 / 价格人工录入含校验回滚）|
 | `fetch_gpu_prices.py` | 自动 | vast.ai 市场 H100/B200 现货租价中位数 → prices 时间序列（每日幂等）|
 | `refresh_indicators.py` | 自动 | 库内可计算指标回填（容量聚合/价格序列直通/合同聚合），collect 每日调用 |
-| `output_map.py` | 按需 | Top N 数据中心世界地图 → HTML + PDF（无头 Chrome 渲染）|
+| `export.py` | — | **报告导出器**：从知识层汇编报告（全量/按模块），md + 可选 docx → `reports/output/` |
+| `serve.py` | 常驻 | 服务器：静态站点 + 登录认证（auth.py）+ 管理后台 API（任务白名单执行 / 价格人工录入含校验回滚 / 派工）|
+| `auth.py` | 模块 | 登录认证与限速（PBKDF2 + HMAC 会话 cookie），serve.py 与 users.py 共用；非独立命令 |
+| `users.py` | 按需 | 用户 CRUD 命令行（加/删/改角色/重置密码），与管理后台 API 同一套规则 |
+| `workorder.py` | 按需 | 工单队列 = 声明 − 现状：每个模块下一步该做什么 → `reports/workorders.json` |
+| `blindspot.py` | 按需 | 盲区体检：库里有但分类器看不见的材料 |
+| `intake.py` | 按需 | 成员投递机检与三档分流（A 人批 / B 模型批抽 10% / C 自动）；`--selftest` 自检 |
+| `facts.py` | 按需 | 事实层校验 + 可比性判定；`--public` 对外口径预览 |
+| `scan_inbox.py` | 按需 | 扫描收件箱 docs/inbox 新材料 |
+| `reading_queue.py` | 按需 | 精读队列 = 已打分 − 已消化，该读什么 |
+| `launch_reader.py` | 按需 | 开新 Terminal 启动本地精读会话。**仅本机**（macOS 专用路径，服务器上必失败）|
+| `output_map.py` | 按需 | Top N 数据中心世界地图 → HTML + PDF。**PDF 仅本机**（无头 Chrome 渲染）|
+| `build_library_index.py` | 按需 | 重建研报库索引 docs/LIBRARY_INDEX.md。**仅本机**（库本体不进 git）|
+| `fix_stale_paths.py` | 按需 | 修打分表死路径：按文件名在库内重定位，唯一匹配才改写。**仅本机**（同上）|
 
 ## 核验闭环（固定路径）
 
@@ -38,14 +50,12 @@
 → python3 pipeline/export.py 随时可从最新知识层导出报告
 ```
 
-## 规划中（按路线图第二阶段）
+## 规划中
 
-- `fetch_news_signals.py`：消费 news 项目的 `data/*.json`，按公司/项目名匹配出实体相关新闻，
-  生成"待核验线索"清单（不直接入库——自动信号，人工核验，才能写库）
-- `fetch_gpu_prices.py`：抓取主要 GPU 租赁平台公开报价 → `prices` 表 `gpu-hourly-*` 序列
 - `fetch_ir_events.py`：监控重点公司 IR 页面的财报/公告发布
-- `refresh_indicators.py`：从六张表计算可自动化的指标（如 L8+ 聚合、建设周期中位数），
-  写回 `framework/indicators.json` 的 value/as_of
+
+（2026-08-18 卫生审计：原列此处的 fetch_news_signals / fetch_gpu_prices /
+refresh_indicators 三个早已实现，已并入上表。）
 
 ## 入库纪律
 

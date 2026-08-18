@@ -28,7 +28,9 @@ def main():
             continue
         n, g = dirstat(top)
         total_n += n; total_g += g
-        lines.append(f"## {top.name} → {MAP.get(top.name, '')}（{n} 份 / {g:.1f}GB）")
+        # Mxx_ 目录名自带模块归属，无需 MAP；MAP 只服务尚存的旧编号目录
+        m = MAP.get(top.name)
+        lines.append(f"## {top.name}{' → ' + m if m else ''}（{n} 份 / {g:.1f}GB）")
         lines.append("")
         for sub in sorted(top.iterdir()):
             if sub.is_dir():

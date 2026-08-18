@@ -1,3 +1,6 @@
+# ⚠️ 历史参考——现网 Caddy 配置在 niuroumiantt/infra 仓库的 inresearch-host/Caddyfile
+# （无 Cloudflare 前置，XFF 重写用 {remote_host}）。改现网去改那边，别改这份。
+#
 # 反向代理 + 自动 HTTPS。把 dc.example.com 换成真实域名。
 #
 # ⚠️ **认证不在这一层**。Caddy 只做 TLS 终止与反代；

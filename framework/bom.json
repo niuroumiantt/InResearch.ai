@@ -1,42 +1,799 @@
 {
-  "version": "1.0",
-  "updated": "2026-08-15",
-  "note": "数据中心爆炸图 BOM（物理部件轴）。每个部件挂接：研究模块 / 关联公司 / 价格序列 / 状态。设计见 framework/03_bom_and_collaboration.md。status: mature 成熟 | tight 紧缺 | transition 技术切换中 | emerging 新兴。",
+  "version": "1.1",
+  "updated": "2026-08-18",
+  "note": "数据中心爆炸图 BOM（物理部件轴）。每个部件挂接：研究模块 / 关联公司 / 价格序列 / 状态。设计见 framework/03_bom_and_collaboration.md。status: mature 成熟 | tight 紧缺 | transition 技术切换中 | emerging 新兴。 v1.1（2026-08-18）：对齐产品研究目录（docs/inbox/inresearch-alignment/），新增14部件节点、删 storage（拆为 ssd/hdd/storage-array）、hbm 公司勘误、按 data/products.json 回填 companies。",
   "layers": [
-    {"id": "L1", "name": "园区层", "en": "Campus", "desc": "电从哪来、水从哪来、地在哪里——项目能否存在的先决条件"},
-    {"id": "L2", "name": "建筑层", "en": "Building", "desc": "把设备罩起来的壳与安全体系"},
-    {"id": "L3", "name": "机房层", "en": "Data Hall", "desc": "白空间：配电、散热、监控的战场"},
-    {"id": "L4", "name": "机柜层", "en": "Rack", "desc": "算力的物理单元，功率密度革命的现场"},
-    {"id": "L5", "name": "部件层", "en": "Component", "desc": "芯片到冷板——供应链博弈的最深处"}
+    {
+      "id": "L1",
+      "name": "园区层",
+      "en": "Campus",
+      "desc": "电从哪来、水从哪来、地在哪里——项目能否存在的先决条件"
+    },
+    {
+      "id": "L2",
+      "name": "建筑层",
+      "en": "Building",
+      "desc": "把设备罩起来的壳与安全体系"
+    },
+    {
+      "id": "L3",
+      "name": "机房层",
+      "en": "Data Hall",
+      "desc": "白空间：配电、散热、监控的战场"
+    },
+    {
+      "id": "L4",
+      "name": "机柜层",
+      "en": "Rack",
+      "desc": "算力的物理单元，功率密度革命的现场"
+    },
+    {
+      "id": "L5",
+      "name": "部件层",
+      "en": "Component",
+      "desc": "芯片到冷板——供应链博弈的最深处"
+    }
   ],
   "parts": [
-    {"id": "grid", "layer": "L1", "name": "电网接入与并网", "module": "M04", "companies": ["aep", "constellation-energy"], "series": [], "indicators": ["interconnection_queue_years"], "status": "tight", "desc": "并网排队与输电升级——2026 年新项目的第一约束；ERCOT 排队超 225GW（含大量重复申请）"},
-    {"id": "substation", "layer": "L1", "name": "变电站与大型变压器", "module": "M09", "companies": ["hitachi-energy", "siemens-energy", "hyosung", "ge-vernova"], "series": ["transformer-lead-time"], "indicators": ["transformer_lead_time"], "status": "tight", "desc": "大型变压器交期最高 4 年，全行业最诚实的供需温度计"},
-    {"id": "prime-power", "layer": "L1", "name": "主用自备电源", "module": "M04", "companies": ["ge-vernova", "siemens-energy", "mitsubishi-power", "bloom-energy", "wartsila"], "series": [], "indicators": ["gas_turbine_backlog_years", "btm_operational_mw"], "status": "tight", "desc": "燃机订单簿 ≥125GW vs 年产能 ~20GW；燃料电池 55 天交付成为桥接方案"},
-    {"id": "backup-power", "layer": "L1", "name": "备用电源（柴发）", "module": "M09", "companies": ["caterpillar", "cummins", "rolls-royce"], "series": [], "indicators": ["genset_lead_time"], "status": "tight", "desc": "从静态保险变成动态电力系统组件；排放许可是隐性约束"},
-    {"id": "bess", "layer": "L1", "name": "储能/BESS", "module": "M04", "companies": [], "series": [], "indicators": [], "status": "emerging", "desc": "跨越发电机启动间隙、抑制 AI 负载功率阶跃——角色从可选变必需"},
-    {"id": "water", "layer": "L1", "name": "水源与水权", "module": "M08", "companies": ["ecolab"], "series": [], "indicators": [], "status": "tight", "desc": "WUE 与流域水压力决定冷却路线；零水冷却以 PUE 为代价"},
-    {"id": "land", "layer": "L1", "name": "土地与选址", "module": "M05", "companies": [], "series": [], "indicators": ["region_pipeline_share", "zoning_denial_count"], "status": "mature", "desc": "time-to-power 已取代地价成为第一选址因子；社区反弹上升"},
-    {"id": "shell", "layer": "L2", "name": "楼宇结构与土建", "module": "M10", "companies": [], "series": [], "indicators": ["construction_duration_months"], "status": "tight", "desc": "预制化/模块化压缩周期；电气技工短缺是执行瓶颈"},
-    {"id": "fire", "layer": "L2", "name": "消防与安防", "module": "M10", "companies": [], "series": [], "indicators": [], "status": "mature", "desc": "锂电池储能与液冷带来新消防规范议题"},
-    {"id": "ups", "layer": "L3", "name": "UPS 与短时储能", "module": "M09", "companies": ["schneider-electric", "eaton", "vertiv", "abb", "delta-electronics"], "series": [], "indicators": [], "status": "mature", "desc": "AI 负载秒级波动重塑 UPS/BBU/超级电容组合"},
-    {"id": "power-dist", "layer": "L3", "name": "配电（母线/PDU/开关柜）", "module": "M09", "companies": ["vertiv", "eaton", "schneider-electric", "abb"], "series": [], "indicators": [], "status": "tight", "desc": "认证柜型与工厂槽位是交付约束；800V HVDC 架构切换在即"},
-    {"id": "room-cooling", "layer": "L3", "name": "机房空气系统（CRAH/风墙）", "module": "M08", "companies": ["vertiv", "munters", "johnson-controls", "modine-airedale"], "series": [], "indicators": [], "status": "mature", "desc": "液冷时代空气系统不消失——冷板留下 10-30% 余热仍走空气"},
-    {"id": "cdu", "layer": "L3", "name": "CDU 与液冷分配", "module": "M08", "companies": ["coolit-systems", "vertiv", "schneider-electric", "munters", "johnson-controls", "modine-airedale"], "series": [], "indicators": ["cdu_lead_time"], "status": "transition", "desc": "MW 级 CDU 已量产（2-10MW+ 平台），TCS/FWS 双环路的可用性边界"},
-    {"id": "heat-reject", "layer": "L3", "name": "冷机与室外排热", "module": "M08", "companies": ["johnson-controls", "trane", "munters", "modine-airedale"], "series": [], "indicators": [], "status": "mature", "desc": "干冷/蒸发/冷机组合由气候与水价值决定——没有全球最优解"},
-    {"id": "dcim", "layer": "L3", "name": "DCIM 与运维软件", "module": "M13", "companies": ["schneider-electric", "vertiv"], "series": [], "indicators": [], "status": "mature", "desc": "从设施监控走向算力利用率优化——物理 GW 到经济 GW 的转化层"},
-    {"id": "rack-frame", "layer": "L4", "name": "机柜与结构（ORV3）", "module": "M06", "companies": ["celestica", "delta-electronics"], "series": [], "indicators": ["rack_density_shipping"], "status": "transition", "desc": "5-10kW → 130kW（GB200 NVL72）→ 600kW-1MW 路线图，机柜正变成'整机产品'"},
-    {"id": "server", "layer": "L4", "name": "AI 服务器/整机", "module": "M06", "companies": ["celestica", "huawei"], "series": [], "indicators": ["gpu_lead_time"], "status": "tight", "desc": "ODM 直供模式主导 AI 服务器；集成交付能力即壁垒"},
-    {"id": "network-switch", "layer": "L4", "name": "交换机与互联", "module": "M07", "companies": ["broadcom", "celestica", "nvidia"], "series": [], "indicators": ["ethernet_ai_share"], "status": "transition", "desc": "InfiniBand vs 以太网(UEC)之争；scale-up 域扩大改写拓扑"},
-    {"id": "manifold", "layer": "L4", "name": "歧管与快接（液冷管路）", "module": "M08", "companies": ["coolit-systems", "vertiv"], "series": [], "indicators": [], "status": "tight", "desc": "快接头/软管/水质是液冷可用性的隐形风险点"},
-    {"id": "power-shelf", "layer": "L4", "name": "机柜电源（Power Shelf/BBU）", "module": "M09", "companies": ["delta-electronics"], "series": [], "indicators": [], "status": "transition", "desc": "800V HVDC + 机柜级储能重构供电末端；台达系核心地盘"},
-    {"id": "gpu", "layer": "L5", "name": "GPU/AI ASIC", "module": "M06", "companies": ["nvidia", "amd", "broadcom", "alphabet-google", "amazon", "openai"], "series": ["gpu-hourly-h100-spot", "gpu-hourly-b200-spot"], "indicators": ["gpu_hourly_rate_spot", "gpu_rate_term_spread"], "status": "tight", "desc": "GPU 收入 2025 ~$191.8B、2028 峰值 ~$247.6B（Yole）；ASIC 2030 ~$84.6B——供应商集中度即行业风险"},
-    {"id": "cpu", "layer": "L5", "name": "CPU", "module": "M06", "companies": ["amd", "nvidia"], "series": [], "indicators": [], "status": "mature", "desc": "Grace/自研 Arm 侵蚀 x86；头节点与推理仍是 CPU 战场"},
-    {"id": "hbm", "layer": "L5", "name": "HBM/内存", "module": "M06", "companies": ["nvidia", "amd"], "series": [], "indicators": ["cowos_capacity_wpm"], "status": "tight", "desc": "HBM4(2026)→HBM8(2038) 路线图（KAIST）；容量与带宽是 AI 算力的第一瓶颈"},
-    {"id": "nic", "layer": "L5", "name": "NIC/DPU", "module": "M07", "companies": ["nvidia", "broadcom"], "series": [], "indicators": [], "status": "mature", "desc": "每 GPU 配套一张 400/800G 网卡——数量与 GPU 同步放大"},
-    {"id": "optics", "layer": "L5", "name": "光模块/CPO", "module": "M07", "companies": ["broadcom", "celestica"], "series": [], "indicators": ["optics_800g_price"], "status": "transition", "desc": "800G→1.6T 迭代 + CPO 2024-2035 渗透曲线（Yole）——密度与功耗逼出共封装"},
-    {"id": "coldplate", "layer": "L5", "name": "冷板", "module": "M08", "companies": ["coolit-systems", "motivair", "zutacore", "accelsius"], "series": [], "indicators": ["liquid_cooling_penetration"], "status": "transition", "desc": "入液热捕获率 70-90%；GPU/OEM 认证是专业厂商的护城河"},
-    {"id": "psu", "layer": "L5", "name": "电源模块（PSU）", "module": "M09", "companies": ["delta-electronics"], "series": [], "indicators": [], "status": "mature", "desc": "钛金效率与功率密度竞赛；PDU+PSU 市场独立成研究对象"},
-    {"id": "storage", "layer": "L5", "name": "存储（NAND/HDD）", "module": "M06", "companies": [], "series": [], "indicators": [], "status": "mature", "desc": "AI 数据管道推高近线存储需求；QLC 大容量盘进入超大规模"}
+    {
+      "id": "grid",
+      "layer": "L1",
+      "name": "电网接入与并网",
+      "module": "M04",
+      "companies": [
+        "aep",
+        "constellation-energy"
+      ],
+      "series": [],
+      "indicators": [
+        "interconnection_queue_years"
+      ],
+      "status": "tight",
+      "desc": "并网排队与输电升级——2026 年新项目的第一约束；ERCOT 排队超 225GW（含大量重复申请）"
+    },
+    {
+      "id": "substation",
+      "layer": "L1",
+      "name": "变电站与大型变压器",
+      "module": "M09",
+      "companies": [
+        "hitachi-energy",
+        "siemens-energy",
+        "hyosung",
+        "ge-vernova",
+        "cn-dry-transformer-group",
+        "hitachi-energy-siemens-energy-hyosung-ge-vernova"
+      ],
+      "series": [
+        "transformer-lead-time"
+      ],
+      "indicators": [
+        "transformer_lead_time"
+      ],
+      "status": "tight",
+      "desc": "大型变压器交期最高 4 年，全行业最诚实的供需温度计"
+    },
+    {
+      "id": "prime-power",
+      "layer": "L1",
+      "name": "主用自备电源",
+      "module": "M04",
+      "companies": [
+        "ge-vernova",
+        "siemens-energy",
+        "mitsubishi-power",
+        "bloom-energy",
+        "wartsila",
+        "ge-vernova-siemens-energy-mitsubishi-power"
+      ],
+      "series": [],
+      "indicators": [
+        "gas_turbine_backlog_years",
+        "btm_operational_mw"
+      ],
+      "status": "tight",
+      "desc": "燃机订单簿 ≥125GW vs 年产能 ~20GW；燃料电池 55 天交付成为桥接方案"
+    },
+    {
+      "id": "backup-power",
+      "layer": "L1",
+      "name": "备用电源（柴发）",
+      "module": "M09",
+      "companies": [
+        "caterpillar",
+        "cummins",
+        "rolls-royce",
+        "rolls-royce-mtu-kohler",
+        "cn-genset-group"
+      ],
+      "series": [],
+      "indicators": [
+        "genset_lead_time"
+      ],
+      "status": "tight",
+      "desc": "从静态保险变成动态电力系统组件；排放许可是隐性约束"
+    },
+    {
+      "id": "bess",
+      "layer": "L1",
+      "name": "储能/BESS",
+      "module": "M04",
+      "companies": [
+        "smartli-vertiv",
+        "tesla-energy-catl-fluence"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "emerging",
+      "desc": "跨越发电机启动间隙、抑制 AI 负载功率阶跃——角色从可选变必需"
+    },
+    {
+      "id": "water",
+      "layer": "L1",
+      "name": "水源与水权",
+      "module": "M08",
+      "companies": [
+        "ecolab",
+        "ecolab-veolia"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "tight",
+      "desc": "WUE 与流域水压力决定冷却路线；零水冷却以 PUE 为代价"
+    },
+    {
+      "id": "land",
+      "layer": "L1",
+      "name": "土地与选址",
+      "module": "M05",
+      "companies": [],
+      "series": [],
+      "indicators": [
+        "region_pipeline_share",
+        "zoning_denial_count"
+      ],
+      "status": "mature",
+      "desc": "time-to-power 已取代地价成为第一选址因子；社区反弹上升"
+    },
+    {
+      "id": "shell",
+      "layer": "L2",
+      "name": "楼宇结构与土建",
+      "module": "M10",
+      "companies": [],
+      "series": [],
+      "indicators": [
+        "construction_duration_months"
+      ],
+      "status": "tight",
+      "desc": "预制化/模块化压缩周期；电气技工短缺是执行瓶颈"
+    },
+    {
+      "id": "fire",
+      "layer": "L2",
+      "name": "消防与安防",
+      "module": "M10",
+      "companies": [
+        "vesda",
+        "cn-security-group"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "mature",
+      "desc": "锂电池储能与液冷带来新消防规范议题"
+    },
+    {
+      "id": "ups",
+      "layer": "L3",
+      "name": "UPS 与短时储能",
+      "module": "M09",
+      "companies": [
+        "schneider-electric",
+        "eaton",
+        "vertiv",
+        "abb",
+        "delta-electronics",
+        "siemens",
+        "huawei-digital-power",
+        "east"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "mature",
+      "desc": "AI 负载秒级波动重塑 UPS/BBU/超级电容组合"
+    },
+    {
+      "id": "power-dist",
+      "layer": "L3",
+      "name": "配电（母线/PDU/开关柜）",
+      "module": "M09",
+      "companies": [
+        "vertiv",
+        "eaton",
+        "schneider-electric",
+        "abb",
+        "zhongheng-electric"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "tight",
+      "desc": "认证柜型与工厂槽位是交付约束；800V HVDC 架构切换在即"
+    },
+    {
+      "id": "room-cooling",
+      "layer": "L3",
+      "name": "机房空气系统（CRAH/风墙）",
+      "module": "M08",
+      "companies": [
+        "vertiv",
+        "munters",
+        "johnson-controls",
+        "modine-airedale",
+        "stulz"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "mature",
+      "desc": "液冷时代空气系统不消失——冷板留下 10-30% 余热仍走空气"
+    },
+    {
+      "id": "cdu",
+      "layer": "L3",
+      "name": "CDU 与液冷分配",
+      "module": "M08",
+      "companies": [
+        "coolit-systems",
+        "vertiv",
+        "schneider-electric",
+        "munters",
+        "johnson-controls",
+        "modine-airedale",
+        "motivair-by-schneider",
+        "boyd",
+        "nvent",
+        "envicool",
+        "shenling",
+        "goaland",
+        "cn-cooling-group"
+      ],
+      "series": [],
+      "indicators": [
+        "cdu_lead_time"
+      ],
+      "status": "transition",
+      "desc": "MW 级 CDU 已量产（2-10MW+ 平台），TCS/FWS 双环路的可用性边界"
+    },
+    {
+      "id": "heat-reject",
+      "layer": "L3",
+      "name": "冷机与室外排热",
+      "module": "M08",
+      "companies": [
+        "johnson-controls",
+        "trane",
+        "munters",
+        "modine-airedale",
+        "johnson-controls-trane-carrier-modine"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "mature",
+      "desc": "干冷/蒸发/冷机组合由气候与水价值决定——没有全球最优解"
+    },
+    {
+      "id": "dcim",
+      "layer": "L3",
+      "name": "DCIM 与运维软件",
+      "module": "M13",
+      "companies": [
+        "schneider-electric",
+        "vertiv",
+        "schneider-ecostruxure-it",
+        "vertiv-environet",
+        "sunbird-dctrack-nlyte",
+        "neteco",
+        "vertiv-avocent-legrand-raritan",
+        "cn-inspection-robot-group"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "mature",
+      "desc": "从设施监控走向算力利用率优化——物理 GW 到经济 GW 的转化层"
+    },
+    {
+      "id": "rack-frame",
+      "layer": "L4",
+      "name": "机柜与结构（ORV3）",
+      "module": "M06",
+      "companies": [
+        "celestica",
+        "delta-electronics",
+        "open-compute-project",
+        "rittal",
+        "legrand",
+        "panduit",
+        "cn-rack-group"
+      ],
+      "series": [],
+      "indicators": [
+        "rack_density_shipping"
+      ],
+      "status": "transition",
+      "desc": "5-10kW → 130kW（GB200 NVL72）→ 600kW-1MW 路线图，机柜正变成'整机产品'"
+    },
+    {
+      "id": "server",
+      "layer": "L4",
+      "name": "AI 服务器/整机",
+      "module": "M06",
+      "companies": [
+        "celestica",
+        "huawei",
+        "dell-technologies",
+        "hpe",
+        "lenovo",
+        "supermicro",
+        "inspur",
+        "h3c",
+        "xfusion",
+        "nettrix",
+        "sugon",
+        "huawei-atlas",
+        "zte",
+        "fiberhome",
+        "gigabyte",
+        "asus",
+        "foxconn-industrial-internet",
+        "quanta-qct",
+        "wiwynn",
+        "inventec-pegatron-mitac-compal",
+        "cn-kunpeng-feiteng-server-group"
+      ],
+      "series": [],
+      "indicators": [
+        "gpu_lead_time"
+      ],
+      "status": "tight",
+      "desc": "ODM 直供模式主导 AI 服务器；集成交付能力即壁垒"
+    },
+    {
+      "id": "network-switch",
+      "layer": "L4",
+      "name": "交换机与互联",
+      "module": "M07",
+      "companies": [
+        "broadcom",
+        "celestica",
+        "nvidia",
+        "nvidia-networking",
+        "arista-networks",
+        "cisco",
+        "juniper",
+        "huawei-cloudengine",
+        "h3c",
+        "ruijie",
+        "zte",
+        "celestica-edgecore-ufispace"
+      ],
+      "series": [],
+      "indicators": [
+        "ethernet_ai_share"
+      ],
+      "status": "transition",
+      "desc": "InfiniBand vs 以太网(UEC)之争；scale-up 域扩大改写拓扑"
+    },
+    {
+      "id": "manifold",
+      "layer": "L4",
+      "name": "歧管与快接（液冷管路）",
+      "module": "M08",
+      "companies": [
+        "coolit-systems",
+        "vertiv",
+        "staubli-cpc-parker-danfoss"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "tight",
+      "desc": "快接头/软管/水质是液冷可用性的隐形风险点"
+    },
+    {
+      "id": "power-shelf",
+      "layer": "L4",
+      "name": "机柜电源（Power Shelf/BBU）",
+      "module": "M09",
+      "companies": [
+        "delta-electronics",
+        "liteon-advanced-energy",
+        "smartli-vertiv"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "transition",
+      "desc": "800V HVDC + 机柜级储能重构供电末端；台达系核心地盘"
+    },
+    {
+      "id": "gpu",
+      "layer": "L5",
+      "name": "GPU/AI ASIC",
+      "module": "M06",
+      "companies": [
+        "nvidia",
+        "amd",
+        "broadcom",
+        "alphabet-google",
+        "amazon",
+        "openai",
+        "amd-instinct",
+        "intel-gaudi",
+        "huawei-ascend",
+        "cambricon",
+        "hygon-dcu",
+        "biren",
+        "moore-threads",
+        "metax",
+        "iluvatar-corex",
+        "enflame",
+        "cerebras-groq-sambanova-tenstorrent",
+        "google-tpu-aws-trainium-ms-maia-meta-mtia"
+      ],
+      "series": [
+        "gpu-hourly-h100-spot",
+        "gpu-hourly-b200-spot"
+      ],
+      "indicators": [
+        "gpu_hourly_rate_spot",
+        "gpu_rate_term_spread"
+      ],
+      "status": "tight",
+      "desc": "GPU 收入 2025 ~$191.8B、2028 峰值 ~$247.6B（Yole）；ASIC 2030 ~$84.6B——供应商集中度即行业风险"
+    },
+    {
+      "id": "cpu",
+      "layer": "L5",
+      "name": "CPU",
+      "module": "M06",
+      "companies": [
+        "amd",
+        "nvidia",
+        "intel",
+        "ampere-computing",
+        "arm",
+        "huawei-kunpeng",
+        "hygon",
+        "phytium",
+        "loongson",
+        "zhaoxin"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "mature",
+      "desc": "Grace/自研 Arm 侵蚀 x86；头节点与推理仍是 CPU 战场"
+    },
+    {
+      "id": "hbm",
+      "layer": "L5",
+      "name": "HBM/内存",
+      "module": "M06",
+      "companies": [
+        "samsung",
+        "sk-hynix",
+        "micron",
+        "cxmt"
+      ],
+      "series": [],
+      "indicators": [
+        "cowos_capacity_wpm"
+      ],
+      "status": "tight",
+      "desc": "HBM4(2026)→HBM8(2038) 路线图（KAIST）；容量与带宽是 AI 算力的第一瓶颈"
+    },
+    {
+      "id": "nic",
+      "layer": "L5",
+      "name": "NIC/DPU",
+      "module": "M07",
+      "companies": [
+        "nvidia",
+        "broadcom",
+        "amd-pensando",
+        "intel-ethernet",
+        "cn-dpu-group"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "mature",
+      "desc": "每 GPU 配套一张 400/800G 网卡——数量与 GPU 同步放大"
+    },
+    {
+      "id": "optics",
+      "layer": "L5",
+      "name": "光模块/CPO",
+      "module": "M07",
+      "companies": [
+        "broadcom",
+        "celestica",
+        "innolight",
+        "eoptolink",
+        "coherent",
+        "accelink",
+        "hg-genuine",
+        "cn-optics-group",
+        "tfc-optics",
+        "lumentum"
+      ],
+      "series": [],
+      "indicators": [
+        "optics_800g_price"
+      ],
+      "status": "transition",
+      "desc": "800G→1.6T 迭代 + CPO 2024-2035 渗透曲线（Yole）——密度与功耗逼出共封装"
+    },
+    {
+      "id": "coldplate",
+      "layer": "L5",
+      "name": "冷板",
+      "module": "M08",
+      "companies": [
+        "coolit-systems",
+        "motivair",
+        "zutacore",
+        "accelsius",
+        "zutacore-accelsius"
+      ],
+      "series": [],
+      "indicators": [
+        "liquid_cooling_penetration"
+      ],
+      "status": "transition",
+      "desc": "入液热捕获率 70-90%；GPU/OEM 认证是专业厂商的护城河"
+    },
+    {
+      "id": "psu",
+      "layer": "L5",
+      "name": "电源模块（PSU）",
+      "module": "M09",
+      "companies": [
+        "delta-electronics",
+        "liteon-advanced-energy"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "mature",
+      "desc": "钛金效率与功率密度竞赛；PDU+PSU 市场独立成研究对象"
+    },
+    {
+      "id": "fpga",
+      "layer": "L5",
+      "name": "FPGA/异构加速",
+      "module": "M06",
+      "companies": [
+        "amd-xilinx-alveo-altera-agilex"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "mature",
+      "desc": "FPGA 与异构加速卡——推理与网络卸载的第二战场"
+    },
+    {
+      "id": "interconnect-chip",
+      "layer": "L5",
+      "name": "互联与接口芯片（Retimer/CXL/PCIe Switch/BMC）",
+      "module": "M06",
+      "companies": [
+        "broadcom",
+        "montage",
+        "astera-labs",
+        "rambus-microchip-marvell",
+        "aspeed",
+        "infineon-mps-renesas-adi-ti"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "mature",
+      "desc": "Retimer/CXL/PCIe Switch/BMC——服务器内互联与管理的隐形层"
+    },
+    {
+      "id": "dram",
+      "layer": "L5",
+      "name": "DRAM模组（RDIMM/MRDIMM/CXL）",
+      "module": "M06",
+      "companies": [
+        "samsung",
+        "sk-hynix",
+        "micron",
+        "cxmt",
+        "samsung-cmm-micron-cz120-mxc-smart-modular"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "tight",
+      "desc": "从现有hbm节点拆分：服务器内存与HBM供需周期不同步，价格序列应分开"
+    },
+    {
+      "id": "ssd",
+      "layer": "L5",
+      "name": "企业级SSD/NAND",
+      "module": "M06",
+      "companies": [
+        "samsung",
+        "kioxia",
+        "solidigm",
+        "micron",
+        "sandisk",
+        "ymtc",
+        "unionmemory",
+        "dapustor",
+        "longsys",
+        "biwin",
+        "kingston",
+        "smi-phison-maxio-innogrit"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "tight",
+      "desc": "从现有storage节点拆分"
+    },
+    {
+      "id": "hdd",
+      "layer": "L5",
+      "name": "近线HDD",
+      "module": "M06",
+      "companies": [
+        "seagate",
+        "western-digital",
+        "toshiba-electronic-devices"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "tight",
+      "desc": "从现有storage节点拆分；建议拆分后删除storage节点"
+    },
+    {
+      "id": "storage-array",
+      "layer": "L4",
+      "name": "存储系统/阵列",
+      "module": "M06",
+      "companies": [
+        "huawei-oceanstor",
+        "dell",
+        "netapp",
+        "pure-storage",
+        "hpe",
+        "ibm",
+        "hitachi-vantara",
+        "ieit-storage",
+        "h3c-unistor",
+        "sugon-parastor",
+        "macrosan",
+        "xsky",
+        "sandstone",
+        "yanrong",
+        "ddn",
+        "vast-data",
+        "weka",
+        "hammerspace",
+        "cohesity-veritas-commvault-aishu",
+        "ibm-quantum-spectralogic",
+        "minio-cloudian-ceph"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "mature",
+      "desc": "存储系统与阵列——AI 数据管道的容量层与并行文件系统"
+    },
+    {
+      "id": "switch-asic",
+      "layer": "L5",
+      "name": "交换芯片",
+      "module": "M07",
+      "companies": [
+        "broadcom",
+        "marvell",
+        "centec"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "tight",
+      "desc": "从network-switch中拆出芯片层（Broadcom/Marvell/盛科）"
+    },
+    {
+      "id": "copper-interconnect",
+      "layer": "L4",
+      "name": "高速铜互联（DAC/AEC/背板）",
+      "module": "M07",
+      "companies": [
+        "credo",
+        "amphenol-luxshare-molex-te-connectivity"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "tight",
+      "desc": "DAC/AEC/背板铜互联——机柜内短距连接对光的替代"
+    },
+    {
+      "id": "cabling",
+      "layer": "L3",
+      "name": "结构化布线与光纤",
+      "module": "M07",
+      "companies": [
+        "corning",
+        "commscope",
+        "yofc"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "mature",
+      "desc": "结构化布线与光纤——机房的神经末梢"
+    },
+    {
+      "id": "coolant",
+      "layer": "L4",
+      "name": "冷却液/工质",
+      "module": "M08",
+      "companies": [
+        "chemours"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "mature",
+      "desc": "冷却液与工质——液冷环路的化学约束"
+    },
+    {
+      "id": "immersion",
+      "layer": "L3",
+      "name": "浸没式液冷",
+      "module": "M08",
+      "companies": [
+        "liquidstack-submer-grc",
+        "sugon-dcu"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "emerging",
+      "desc": "浸没式液冷——冷板之外的另一条技术路线"
+    },
+    {
+      "id": "fan-vc",
+      "layer": "L5",
+      "name": "风扇/VC/散热模组",
+      "module": "M08",
+      "companies": [
+        "nidec-ebm-papst-avc-auras"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "mature",
+      "desc": "风扇/VC/均热板散热模组——风冷末端与混合散热的常青件"
+    },
+    {
+      "id": "leak-detection",
+      "layer": "L3",
+      "name": "漏液检测",
+      "module": "M08",
+      "companies": [
+        "ttk-rle-nvent"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "tight",
+      "desc": "漏液检测——液冷进机房后的新增安全层"
+    },
+    {
+      "id": "modular-dc",
+      "layer": "L3",
+      "name": "微模块/预制化",
+      "module": "M09",
+      "companies": [
+        "schneider-electric-apc",
+        "kehua",
+        "kstar",
+        "fusionmodule-smartaisle-ecostruxure-pod-wisemdc"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "mature",
+      "desc": "微模块与预制化——交付周期压缩的主要手段"
+    }
   ]
 }

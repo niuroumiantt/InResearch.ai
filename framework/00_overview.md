@@ -65,5 +65,13 @@
 
 ### 变更日志
 
+- 2026-08-18 bom v1.1：与产品研究目录项目对齐（对齐包 docs/inbox/inresearch-alignment/）。
+  ① bom.json 新增 14 部件节点（dram/ssd/hdd/storage-array/switch-asic/copper-interconnect/
+  cabling/coolant/immersion/fan-vc/leak-detection/modular-dc/fpga/interconnect-chip），
+  删除 storage 节点（拆为 ssd/hdd/storage-array）；② hbm 公司勘误：原挂 nvidia/amd 是用户
+  不是制造商，改挂 samsung/sk-hynix/micron/cxmt；③ 全部节点按 data/products.json 聚合回填
+  companies。理由：对方项目按供应链轴建产品 spec 库，爆炸图"部件→厂商→产品→资料"下钻
+  需要部件粒度与其 9 环节对齐；两项目仅靠 company_id + bom_part_id 锚定（bom.json 为
+  bom_part_id 唯一定义源）。模块边界不变，15 模块 MECE 骨架不动。
 - 2026-08-14 v1.0：初版 15 模块，基于 Q1–Q35 报告（8 个物理模块）+ 五个补强维度
   （资本、中国、Token 经济、有效算力、运营执行）+ 网络独立成模块。

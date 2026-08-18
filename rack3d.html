@@ -538,7 +538,7 @@ mobo.add(moboPcb);
   mk(mobo, B(0.3, 0.14, 0.34), M(0xcfd6e2, { metalness: .9, roughness: .2 }), dx, 0.14, 0.75).userData.part = "nic";
 });
 const nvme = mk(mobo, B(1.0, 0.16, 0.6), M(0x232c3d, { metalness: .4 }), 0, 0.1, 0.9);
-nvme.userData.part = "storage";
+nvme.userData.part = "ssd";
 tag(mobo, null); mobo.traverse(m => { if (m.isMesh && m.userData.part) pickables.push(m); });
 mobo.traverse(m => { if (m.isMesh) { m.castShadow = m.receiveShadow = true; } });
 explode(mobo, 0, 0.15, 0, 0.66, 0.8);
