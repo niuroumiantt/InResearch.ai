@@ -21,6 +21,7 @@ import threading
 from datetime import datetime
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+from urllib.parse import unquote
 
 ROOT = Path(__file__).resolve().parent.parent
 PY = sys.executable
@@ -97,8 +98,12 @@ class Handler(SimpleHTTPRequestHandler):
     def _gate(self):
         if not AUTH_ON:
             return ""
-        # 密钥与用户表即使登录后也永远不可经 HTTP 取到（纵深防御）
-        if "/.hub_secret" in self.path or "/users.json" in self.path:
+        # 密钥与用户表即使登录后也永远不可经 HTTP 取到（纵深防御）。
+        # 关键：静态服务会先 unquote 再落盘取文件，所以封锁也必须对**解码后**的路径判——
+        # 否则 /data/users%2Ejson 不含字面 "/users.json" 就能穿过封锁取到全部密码哈希。
+        decoded = unquote(self.path.split("?")[0]).replace("\\", "/")
+        low = decoded.lower()
+        if "/.hub_secret" in low or "/users.json" in low:
             self._json(404, {"ok": False, "error": "not found"})
             return None
         user = auth.session_user(self.headers.get("Cookie"))
