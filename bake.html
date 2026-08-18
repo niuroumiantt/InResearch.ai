@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>部件渲染烘焙台（内部工具）</title>
+<style>
+  html, body { margin: 0; height: 100%; background: transparent; overflow: hidden; }
+  #c { display: block; width: 100vw; height: 100vh; }
+</style>
+</head>
+<body>
+<!-- 内部工具：?part=<key> 渲染单个部件为透明底高清图，无头浏览器截图后存 assets/renders/。
+     不进导航。可用 key 见下方 BUILDERS。 -->
+<canvas id="c"></canvas>
+<script type="importmap">{"imports": {"three": "./assets/vendor/three.module.js"}}</script>
+<script type="module">
+import * as THREE from "three";
+import { EXRLoader } from "./assets/vendor/EXRLoader.js";
+
+const canvas = document.getElementById("c");
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(devicePixelRatio);
+renderer.setClearColor(0x000000, 0);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 0.88;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(32, 1, 0.01, 200);
+
+scene.add(new THREE.HemisphereLight(0x9db4d8, 0x11151d, 0.55));
+const dl = new THREE.DirectionalLight(0xfff2e0, 2.6);
+dl.position.set(5, 9, 6);
+dl.castShadow = true;
+dl.shadow.mapSize.set(2048, 2048);
+dl.shadow.bias = -0.0004; dl.shadow.radius = 6;
+scene.add(dl);
+const rim = new THREE.DirectionalLight(0x6f9fff, 1.0); rim.position.set(-6, 4, -5); scene.add(rim);
+const fill = new THREE.DirectionalLight(0xcfe0ff, 0.5); fill.position.set(2, 2, 8); scene.add(fill);
+
+/* ── 程序化纹理（与 rack3d 同源精简版）── */
+function ctex(w, h, draw, repX = 1, repY = 1) {
+  const cv = document.createElement("canvas"); cv.width = w; cv.height = h;
+  draw(cv.getContext("2d"), w, h);
+  const t = new THREE.CanvasTexture(cv);
+  t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 16;
+  if (repX !== 1 || repY !== 1) { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(repX, repY); }
+  return t;
+}
+const rnd = (() => { let s = 7; return () => (s = s * 16807 % 2147483647) / 2147483647; })();
+const TEX = {
+  copperFins: ctex(256, 128, (g, w, h) => {
+    g.fillStyle = "#7c4f27"; g.fillRect(0, 0, w, h);
+    for (let x = 0; x < w; x += 8) {
+      g.fillStyle = "#d09250"; g.fillRect(x, 2, 4, h - 4);
+      g.fillStyle = "#4e3018"; g.fillRect(x + 4, 2, 3, h - 4);
+    }
+  }, 2, 1),
+  pcb: ctex(512, 512, (g, w, h) => {
+    g.fillStyle = "#0e3a28"; g.fillRect(0, 0, w, h);
+    g.strokeStyle = "rgba(210,255,225,.25)"; g.lineWidth = 2;
+    for (let i = 0; i < 90; i++) {
+      g.beginPath();
+      let x = rnd() * w, y = rnd() * h;
+      g.moveTo(x, y);
+      for (let k = 0; k < 3; k++) { rnd() > .5 ? x = rnd() * w : y = rnd() * h; g.lineTo(x, y); }
+      g.stroke();
+    }
+    g.fillStyle = "#c9a227";
+    for (let i = 0; i < 140; i++) g.fillRect(rnd() * w, rnd() * h, 4, 4);
+    g.fillStyle = "#12161f";
+    for (let i = 0; i < 24; i++) g.fillRect(rnd() * (w - 40), rnd() * (h - 26), 40, 26);
+  }),
+  die: ctex(256, 256, (g, w, h) => {
+    const gr = g.createLinearGradient(0, 0, w, h);
+    gr.addColorStop(0, "#4a3a86"); gr.addColorStop(.35, "#2d7a63"); gr.addColorStop(.65, "#86436b"); gr.addColorStop(1, "#37477e");
+    g.fillStyle = gr; g.fillRect(0, 0, w, h);
+    g.strokeStyle = "rgba(255,255,255,.22)";
+    for (let i = 16; i < w; i += 16) { g.strokeRect(i, 0, 1, h); g.strokeRect(0, i, w, 1); }
+    g.strokeStyle = "rgba(255,255,255,.55)"; g.lineWidth = 2; g.strokeRect(w * .3, h * .3, w * .4, h * .4);
+  }),
+  dimm: ctex(256, 48, (g, w, h) => {
+    g.fillStyle = "#0f3d2a"; g.fillRect(0, 0, w, h);
+    g.fillStyle = "#12161f";
+    for (let x = 8; x < w - 20; x += 30) g.fillRect(x, 8, 22, h - 20);
+    g.fillStyle = "#c9a227"; g.fillRect(0, h - 8, w, 6);
+  }),
+  perf: ctex(128, 128, (g, w, h) => {
+    g.fillStyle = "#222936"; g.fillRect(0, 0, w, h);
+    g.fillStyle = "#0d1119";
+    for (let y = 8; y < h; y += 16) for (let x = 8 + (y % 32 ? 8 : 0); x < w; x += 16) {
+      g.beginPath(); g.arc(x, y, 4.4, 0, 7); g.fill();
+    }
+  }, 2, 2),
+  sledFace: ctex(512, 96, (g, w, h) => {
+    g.fillStyle = "#1c2739"; g.fillRect(0, 0, w, h);
+    g.fillStyle = "#39445c"; g.fillRect(4, 8, 20, h - 16); g.fillRect(w - 24, 8, 20, h - 16);
+    for (let x = 40; x < w - 140; x += 48) {
+      g.fillStyle = "#0d1119"; g.fillRect(x, 12, 40, h - 24);
+      g.fillStyle = "#22303f"; g.fillRect(x + 4, 16, 32, 10);
+      g.fillStyle = rnd() > .3 ? "#22c55e" : "#1a2333"; g.fillRect(x + 30, h - 26, 6, 6);
+    }
+    for (let x = w - 132; x < w - 36; x += 14) { g.fillStyle = "#0a0e15"; g.fillRect(x, 16, 8, h - 32); }
+    g.fillStyle = "#3b82f6"; g.fillRect(w - 32, 12, 6, 6);
+    g.fillStyle = "#f59e0b"; g.fillRect(w - 32, 24, 6, 6);
+  }),
+  fanFrame: ctex(128, 128, (g, w, h) => {
+    g.fillStyle = "#141922"; g.fillRect(0, 0, w, h);
+    g.strokeStyle = "#2c3850"; g.lineWidth = 6; g.strokeRect(4, 4, w - 8, h - 8);
+    g.fillStyle = "#0a0d13"; g.beginPath(); g.arc(w / 2, h / 2, 52, 0, 7); g.fill();
+  }),
+  ports: ctex(512, 64, (g, w, h) => {
+    g.fillStyle = "#0f1626"; g.fillRect(0, 0, w, h);
+    for (let x = 12; x < w - 24; x += 20) {
+      g.fillStyle = "#1e293b"; g.fillRect(x, 12, 16, 16); g.fillRect(x, 36, 16, 16);
+      if (rnd() > .35) { g.fillStyle = "#38bdf8"; g.fillRect(x + 4, 16, 8, 8); }
+      if (rnd() > .5) { g.fillStyle = "#22c55e"; g.fillRect(x + 4, 40, 8, 8); }
+    }
+  }),
+};
+
+function M(color, opt = {}) {
+  return new THREE.MeshStandardMaterial({ color, roughness: 0.5, metalness: 0.25, envMapIntensity: 0.55, ...opt });
+}
+const B = (w, h, d) => new THREE.BoxGeometry(w, h, d);
+function rboxGeo(w, h, d, r = 0.04) {
+  const hw = Math.max(0.005, w / 2 - r), hd = Math.max(0.005, d / 2 - r);
+  const s = new THREE.Shape();
+  s.absarc(hw, hd, r, 0, Math.PI / 2);
+  s.absarc(-hw, hd, r, Math.PI / 2, Math.PI);
+  s.absarc(-hw, -hd, r, Math.PI, Math.PI * 1.5);
+  s.absarc(hw, -hd, r, Math.PI * 1.5, Math.PI * 2);
+  const g = new THREE.ExtrudeGeometry(s, { depth: Math.max(0.005, h - 2 * r), bevelEnabled: true, bevelSegments: 3, bevelSize: r * 0.9, bevelThickness: r });
+  g.center(); g.rotateX(-Math.PI / 2);
+  return g;
+}
+function mk(parent, geo, mat, x = 0, y = 0, z = 0) {
+  const m = new THREE.Mesh(geo, mat);
+  m.position.set(x, y, z);
+  parent.add(m);
+  return m;
+}
+
+/* ── 部件建造器：每个返回一个 Group ── */
+function gpuUnit(scaleHBM = 1) {
+  const u = new THREE.Group();
+  const pkg = new THREE.Mesh(B(0.4, 0.05, 0.4),
+    [M(0x151a24), M(0x151a24), new THREE.MeshStandardMaterial({ map: TEX.die, metalness: .55, roughness: .18, envMapIntensity: 1.4 }), M(0x151a24), M(0x151a24), M(0x151a24)]);
+  pkg.position.y = 0.03; u.add(pkg);
+  [[-0.26, 0], [0.26, 0], [0, -0.26], [0, 0.26]].forEach(([hx, hz]) => {
+    mk(u, B(0.12 * scaleHBM, 0.07, 0.12 * scaleHBM), M(0x8b93a8, { metalness: .5, roughness: .35 }), hx, 0.035, hz);
+  });
+  return u;
+}
+const BUILDERS = {
+  chassis() {   // 机箱与盖板
+    const g = new THREE.Group();
+    const body = new THREE.Mesh(B(2.3, 0.74, 3.6),
+      [M(0x2b3852, { metalness: .5, roughness: .38 }), M(0x2b3852, { metalness: .5, roughness: .38 }),
+       M(0x232e45, { metalness: .5, roughness: .4 }), M(0x1c2536),
+       new THREE.MeshStandardMaterial({ map: TEX.sledFace, roughness: .5, emissive: 0xffffff, emissiveMap: TEX.sledFace, emissiveIntensity: .55 }),
+       M(0x1c2536)]);
+    g.add(body);
+    const lid = mk(g, B(2.28, 0.05, 3.55), M(0x36476b, { metalness: .65, roughness: .28 }), -0.5, 0.85, -0.2);
+    lid.rotation.z = 0.12;
+    return g;
+  },
+  fans() {      // 风扇墙
+    const g = new THREE.Group();
+    for (let k = 0; k < 4; k++) {
+      const fx = -1.05 + k * 0.7;
+      mk(g, B(0.62, 0.62, 0.5),
+        [M(0x141922), M(0x141922), M(0x141922), M(0x141922),
+         new THREE.MeshStandardMaterial({ map: TEX.fanFrame, roughness: .6 }), M(0x141922)], fx, 0, 0);
+      const rotor = new THREE.Group(); rotor.position.set(fx, 0, 0.27); g.add(rotor);
+      for (let b = 0; b < 5; b++) {
+        const blade = mk(rotor, B(0.24, 0.05, 0.02), M(0x4a5568, { metalness: .3, roughness: .5 }));
+        blade.position.set(0.14 * Math.cos(b / 5 * Math.PI * 2 + k), 0.14 * Math.sin(b / 5 * Math.PI * 2 + k), 0);
+        blade.rotation.z = b / 5 * Math.PI * 2 + 0.6 + k;
+      }
+      mk(rotor, new THREE.CylinderGeometry(0.075, 0.075, 0.06, 16), M(0x59627a)).rotation.x = Math.PI / 2;
+    }
+    return g;
+  },
+  coldplate() { // 冷板
+    const g = new THREE.Group();
+    mk(g, rboxGeo(2.4, 0.14, 1.7, 0.05), M(0xb87333, { metalness: .88, roughness: .26 }));
+    const f = new THREE.Mesh(B(2.1, 0.16, 1.45),
+      [M(0x8a5a2e, { metalness: .7 }), M(0x8a5a2e, { metalness: .7 }),
+       new THREE.MeshStandardMaterial({ map: TEX.copperFins, metalness: .72, roughness: .4 }),
+       M(0x8a5a2e, { metalness: .7 }), M(0x8a5a2e, { metalness: .7 }), M(0x8a5a2e, { metalness: .7 })]);
+    f.position.y = 0.15; g.add(f);
+    [-0.5, 0.5].forEach(x => {
+      const p = mk(g, new THREE.CylinderGeometry(0.09, 0.09, 0.8, 16), M(0xd9dee6, { metalness: .92, roughness: .2 }), x, 0.16, -1.1);
+      p.rotation.x = Math.PI / 2;
+      mk(g, new THREE.CylinderGeometry(0.13, 0.13, 0.18, 16), M(0xb9c2cf, { metalness: .9, roughness: .25 }), x, 0.16, -1.45).rotation.x = Math.PI / 2;
+    });
+    return g;
+  },
+  "gpu-board"() { // GPU 基板 8×GPU+HBM
+    const g = new THREE.Group();
+    const pcbM = new THREE.Mesh(B(2.6, 0.07, 1.8),
+      [M(0x0e3a28), M(0x0e3a28), new THREE.MeshStandardMaterial({ map: TEX.pcb, roughness: .72 }), M(0x0e3a28), M(0x0e3a28), M(0x0e3a28)]);
+    g.add(pcbM);
+    for (let k = 0; k < 8; k++) {
+      const u = gpuUnit();
+      u.position.set(-0.95 + (k % 4) * 0.63, 0.06, k < 4 ? -0.45 : 0.45);
+      g.add(u);
+    }
+    return g;
+  },
+  hbm() {       // GPU 封装特写：中央 die + 8 HBM 堆栈
+    const g = new THREE.Group();
+    const sub = new THREE.Mesh(B(1.9, 0.08, 1.9),
+      [M(0x14532d), M(0x14532d), new THREE.MeshStandardMaterial({ map: TEX.pcb, roughness: .68 }), M(0x14532d), M(0x14532d), M(0x14532d)]);
+    g.add(sub);
+    const die = new THREE.Mesh(B(0.72, 0.09, 0.72),
+      [M(0x1a1f2b), M(0x1a1f2b), new THREE.MeshStandardMaterial({ map: TEX.die, metalness: .6, roughness: .15, envMapIntensity: 1.5 }), M(0x1a1f2b), M(0x1a1f2b), M(0x1a1f2b)]);
+    die.position.y = 0.085; g.add(die);
+    for (let i = 0; i < 8; i++) {
+      const a = [[-0.62, -0.5], [-0.62, 0], [-0.62, 0.5], [0.62, -0.5], [0.62, 0], [0.62, 0.5], [0, -0.62], [0, 0.62]][i];
+      const st = new THREE.Group(); st.position.set(a[0], 0.045, a[1]); g.add(st);
+      for (let l = 0; l < 4; l++)
+        mk(st, rboxGeo(0.34 - l * 0.008, 0.035, 0.4 - l * 0.008, 0.02), M(l % 2 ? 0xa78bfa : 0x7c6bd8, { metalness: .4, roughness: .35, emissive: 0xa78bfa, emissiveIntensity: .1 }), 0, l * 0.045, 0);
+    }
+    return g;
+  },
+  mobo() {      // 主板：双 CPU + DIMM + OCP
+    const g = new THREE.Group();
+    const pcbM = new THREE.Mesh(B(2.5, 0.06, 2.6),
+      [M(0x0e3a28), M(0x0e3a28), new THREE.MeshStandardMaterial({ map: TEX.pcb, roughness: .72 }), M(0x0e3a28), M(0x0e3a28), M(0x0e3a28)]);
+    g.add(pcbM);
+    [-0.6, 0.6].forEach(dx => {
+      mk(g, B(0.46, 0.05, 0.46), M(0x1a1f2b, { metalness: .5 }), dx, 0.05, -0.6);
+      mk(g, B(0.54, 0.34, 0.54), new THREE.MeshStandardMaterial({ map: TEX.copperFins, metalness: .62, roughness: .38 }), dx, 0.25, -0.6);
+      for (let d = 0; d < 4; d++) {
+        const dm = new THREE.Mesh(B(0.05, 0.34, 0.8),
+          [M(0x0f3d2a), M(0x0f3d2a), M(0x0f3d2a), M(0x0f3d2a),
+           new THREE.MeshStandardMaterial({ map: TEX.dimm, roughness: .5 }), M(0x0f3d2a)]);
+        dm.position.set(dx + (d < 2 ? -0.42 - d * 0.1 : 0.42 + (d - 2) * 0.1), 0.2, -0.6);
+        g.add(dm);
+      }
+    });
+    mk(g, B(1.1, 0.18, 0.66), M(0x232c3d, { metalness: .4 }), 0, 0.1, 0.9);
+    [-0.85, 0.85].forEach(dx => mk(g, B(0.5, 0.1, 0.7), M(0x0f3d2a), dx, 0.07, 0.55));
+    return g;
+  },
+  nic() {       // NIC/光：PCB + 双光笼
+    const g = new THREE.Group();
+    const pcbM = new THREE.Mesh(B(1.9, 0.07, 1.25),
+      [M(0x0e3a28), M(0x0e3a28), new THREE.MeshStandardMaterial({ map: TEX.pcb, roughness: .72 }), M(0x0e3a28), M(0x0e3a28), M(0x0e3a28)]);
+    g.add(pcbM);
+    mk(g, rboxGeo(0.62, 0.16, 0.5, 0.04), M(0x2b3444, { metalness: .5 }), -0.38, 0.12, 0);
+    mk(g, rboxGeo(0.42, 0.2, 0.62, 0.04), M(0xcfd6e2, { metalness: .92, roughness: .18 }), 0.55, 0.13, -0.2);
+    mk(g, rboxGeo(0.42, 0.2, 0.62, 0.04), M(0xcfd6e2, { metalness: .92, roughness: .18 }), 0.55, 0.13, 0.42);
+    const face = new THREE.Mesh(B(1.86, 0.24, 0.06),
+      [M(0x0f1626), M(0x0f1626), M(0x0f1626), M(0x0f1626),
+       new THREE.MeshStandardMaterial({ map: TEX.ports, roughness: .4, emissive: 0xffffff, emissiveMap: TEX.ports, emissiveIntensity: .7 }), M(0x0f1626)]);
+    face.position.set(0, 0.14, 0.68); g.add(face);
+    return g;
+  },
+  psu() {       // 电源对
+    const g = new THREE.Group();
+    [-0.62, 0.62].forEach(dx => {
+      mk(g, B(1.05, 0.55, 1.05),
+        [M(0x8a95a8, { metalness: .6, roughness: .35 }), M(0x8a95a8, { metalness: .6, roughness: .35 }),
+         M(0x9aa5b8, { metalness: .6, roughness: .38 }), M(0x6b7688),
+         M(0x39404d, { map: TEX.perf }), M(0x39404d, { map: TEX.perf })], dx, 0, 0);
+      mk(g, rboxGeo(0.34, 0.18, 0.1, 0.03), M(0x10151f), dx + 0.2, 0.05, 0.58);
+      mk(g, B(0.06, 0.06, 0.02), M(0x22c55e, { emissive: 0x22c55e, emissiveIntensity: 1.6 }), dx - 0.3, 0.16, 0.54);
+    });
+    return g;
+  },
+  ssd() {       // NVMe 存储笼 + 抽出的盘
+    const g = new THREE.Group();
+    const cage = new THREE.Mesh(B(1.8, 0.5, 1.1),
+      [M(0x232c3d, { metalness: .45 }), M(0x232c3d, { metalness: .45 }), M(0x2b3548, { metalness: .45 }), M(0x1a2230),
+       new THREE.MeshStandardMaterial({ map: TEX.sledFace, roughness: .5, emissive: 0xffffff, emissiveMap: TEX.sledFace, emissiveIntensity: .5 }), M(0x1a2230)]);
+    g.add(cage);
+    for (let i = 0; i < 3; i++) {
+      const d = mk(g, rboxGeo(0.24, 0.36, 0.9, 0.03), M(0x39445c, { metalness: .5, roughness: .4 }), -0.55 + i * 0.32, 0.12, 0.75 + i * 0.16);
+      mk(g, B(0.2, 0.04, 0.04), M(0x22c55e, { emissive: 0x22c55e, emissiveIntensity: 1.2 }), -0.55 + i * 0.32, 0.32, 1.18 + i * 0.16);
+    }
+    return g;
+  },
+};
+
+/* ── 装配与相机 ── */
+const key = new URLSearchParams(location.search).get("part") || "gpu-board";
+const build = BUILDERS[key] || BUILDERS["gpu-board"];
+const obj = build();
+obj.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+scene.add(obj);
+
+// 落地软阴影（透明底上只留影子）
+const bb0 = new THREE.Box3().setFromObject(obj);
+const shadowPlane = new THREE.Mesh(new THREE.PlaneGeometry(30, 30), new THREE.ShadowMaterial({ opacity: 0.28 }));
+shadowPlane.rotation.x = -Math.PI / 2;
+shadowPlane.position.y = bb0.min.y - 0.02;
+shadowPlane.receiveShadow = true;
+scene.add(shadowPlane);
+
+const c0 = bb0.getCenter(new THREE.Vector3()), s0 = bb0.getSize(new THREE.Vector3());
+obj.position.sub(c0); shadowPlane.position.y -= c0.y;
+const rad = Math.max(s0.x, s0.y, s0.z) * 0.5;
+camera.position.set(rad * 1.9, rad * 1.5, rad * 2.5);
+camera.lookAt(0, -rad * 0.06, 0);
+dl.shadow.camera.left = -rad * 3; dl.shadow.camera.right = rad * 3;
+dl.shadow.camera.top = rad * 3; dl.shadow.camera.bottom = -rad * 3;
+dl.shadow.camera.far = rad * 20;
+dl.shadow.camera.updateProjectionMatrix();
+
+new EXRLoader().load("assets/hdri/studio.exr", tex => {
+  tex.mapping = THREE.EquirectangularReflectionMapping;
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromEquirectangular(tex).texture;
+  pmrem.dispose(); tex.dispose();
+}, undefined, () => {});
+
+function resize() {
+  renderer.setSize(innerWidth, innerHeight);
+  camera.aspect = innerWidth / innerHeight;
+  camera.updateProjectionMatrix();
+}
+addEventListener("resize", resize); resize();
+(function loop() { requestAnimationFrame(loop); renderer.render(scene, camera); })();
+</script>
+</body>
+</html>

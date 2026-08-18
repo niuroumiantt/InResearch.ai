@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一张图拆解 AI 服务器 — Datacenter Hub</title>
+<style>
+  :root {
+    --bg: #eef1f6; --card: #ffffff; --text: #16202e; --muted: #64748b;
+    --line: #e2e8f0; --accent: #2563eb; --accent2: #1d4ed8;
+    --green: #16a34a; --yellow: #d97706; --red: #dc2626; --purple: #7c3aed;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0c0e12; --card: #171a21; --text: #e5e7eb; --muted: #9ca3af; --line: #262a33; --accent: #60a5fa; --accent2: #3b82f6; }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font: 14px/1.65 -apple-system, "PingFang SC", sans-serif; }
+  a { color: var(--accent); text-decoration: none; }
+  .topbar { position: sticky; top: 0; background: var(--card); border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; gap: 4px; padding: 0 18px; height: 46px; z-index: 20; }
+  .topbar b { font-size: 15px; margin-right: 14px; }
+  .tab { padding: 12px 14px; color: var(--muted); border-bottom: 2px solid transparent; }
+  .tab.on { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+  .topbar .sp { flex: 1; }
+
+  .poster { max-width: 1180px; margin: 26px auto 60px; background: var(--card);
+    border: 1px solid var(--line); border-radius: 22px; padding: 44px 48px 36px;
+    box-shadow: 0 18px 60px rgba(15,30,60,.10); }
+  .ph h1 { font-size: 40px; letter-spacing: 1px; line-height: 1.2; }
+  .ph h1 em { font-style: normal; color: var(--accent); }
+  .ph .tag { display: inline-block; margin-top: 6px; font-size: 14px; color: var(--accent2);
+    border: 1.5px solid var(--accent2); border-radius: 20px; padding: 2px 14px; font-weight: 600; }
+  .ph .brand { float: right; font-weight: 800; font-size: 20px; color: var(--accent); margin-top: 8px; }
+  .ph .sub2 { color: var(--muted); font-size: 12.5px; margin-top: 8px; }
+  .rule { height: 3px; background: linear-gradient(90deg, var(--accent), transparent); border-radius: 2px; margin: 16px 0 8px; }
+
+  .row { display: grid; grid-template-columns: minmax(0, 56%) minmax(0, 1fr); gap: 0 8px; align-items: center; }
+  .row .img { position: relative; }
+  .row .img img { display: block; width: 100%; height: auto; filter: drop-shadow(0 14px 20px rgba(15,30,60,.14)); }
+  /* 层叠：每行向上咬合并交替横移，形成连续爆炸柱 */
+  .row + .row { margin-top: -110px; }
+  .row:nth-child(odd) .img { transform: translateX(-2%); }
+  .row:nth-child(even) .img { transform: translateX(4%); }
+  .callout { position: relative; padding: 10px 0 10px 26px; }
+  .callout::before { content: ""; position: absolute; left: -46px; top: 50%; width: 60px; border-top: 2px dashed var(--accent);
+    opacity: .5; }
+  .co { display: flex; align-items: center; gap: 10px; }
+  .co .num { width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #fff; flex: none;
+    display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;
+    box-shadow: 0 3px 8px rgba(37,99,235,.4); }
+  .co b { font-size: 17px; color: var(--accent2); }
+  .co .en { color: var(--muted); font-size: 11px; letter-spacing: .3px; }
+  .callout ul { margin: 6px 0 6px 42px; padding: 0; list-style: none; }
+  .callout li { font-size: 12.5px; color: var(--text); padding-left: 14px; position: relative; }
+  .callout li::before { content: "•"; color: var(--accent); position: absolute; left: 0; font-weight: 700; }
+  .callout .links { margin-left: 42px; }
+  .callout .links a { font-size: 11px; border: 1px solid var(--line); border-radius: 12px; padding: 1px 9px; margin-right: 5px;
+    color: var(--muted); }
+  .callout .links a:hover { border-color: var(--accent); color: var(--accent); }
+  .st { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-left: 8px; vertical-align: 1px; }
+
+  .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 26px; }
+  .tile { border: 1.5px solid var(--accent); border-radius: 14px; padding: 12px 14px; background: color-mix(in srgb, var(--accent) 4%, var(--card)); }
+  .tile .ti { font-weight: 700; color: var(--accent2); font-size: 13.5px; }
+  .tile .tv { font-size: 20px; font-weight: 800; margin: 2px 0; font-variant-numeric: tabular-nums; }
+  .tile .td { font-size: 11px; color: var(--muted); line-height: 1.5; }
+  .foot { margin-top: 18px; font-size: 11px; color: var(--muted); border-top: 1px dashed var(--line); padding-top: 10px; }
+  @media (max-width: 900px) {
+    .poster { padding: 24px 18px; }
+    .row { grid-template-columns: 1fr; }
+    .row + .row { margin-top: -30px; }
+    .callout::before { display: none; }
+    .tiles { grid-template-columns: 1fr 1fr; }
+    .ph h1 { font-size: 28px; }
+  }
+  @media print { .topbar { display: none; } body { background: #fff; } .poster { box-shadow: none; border: none; } }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <b>Datacenter Hub</b>
+  <a class="tab" href="index.html">总览</a>
+  <a class="tab" href="bom.html">爆炸图 2D</a>
+  <a class="tab" href="bom3d.html">爆炸图 3D</a>
+  <a class="tab" href="rack3d.html">机柜拆解台</a>
+  <a class="tab on" href="poster.html">拆解海报</a>
+  <a class="tab" href="report.html">报告成稿</a>
+  <span class="sp"></span>
+</div>
+
+<div class="poster">
+  <div class="ph">
+    <span class="brand">Datacenter Hub</span>
+    <h1>一张图拆解 <em>AI 服务器</em></h1>
+    <span class="tag">AI 服务器拆解示意图（从机箱到 HBM）</span>
+    <div class="sub2">每一层都挂着研究档案——点编号词条进部件档案，看供应商、价格序列与监测指标。</div>
+    <div class="rule"></div>
+  </div>
+
+  <div id="stack">
+    <!-- 行由 JS 生成：图片 + 编号标注 -->
+  </div>
+
+  <div class="tiles" id="tiles"></div>
+
+  <div class="foot">注：本图为通用 AI 服务器（ORV3/HGX 形态）结构示意，由本项目 3D 场景自渲染，非特定厂商产品；
+    各层要点为结构性描述，量化口径以部件档案与数据层为准。渲染资产：assets/renders/（自有版权）。</div>
+</div>
+
+<script>
+async function get(p) {
+  const r = await fetch(p + "?t=" + Date.now(), { cache: "no-store" });
+  if (!r.ok) throw new Error(p + " → " + r.status);
+  return r.json();
+}
+const SC = { tight: "var(--red)", transition: "var(--yellow)", mature: "var(--green)", emerging: "var(--purple)" };
+const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+
+/* 九层：图片 ←→ BOM 部件 ←→ 结构要点（非量化，量化走档案） */
+const LAYERS = [
+  { img: "chassis", num: 1, name: "机箱与盖板", en: "Chassis & Lid", part: "server",
+    pts: ["整机结构与风道骨架", "前面板：盘位 / 把手 / 状态灯", "ODM 直供模式的交付载体"] },
+  { img: "fans", num: 2, name: "风扇墙", en: "Fan Wall", part: "fan-vc",
+    pts: ["热插拔对转风扇模组", "液冷时代仍负责残余风冷", "转速由 BMC 遥测闭环"] },
+  { img: "coldplate", num: 3, name: "冷板", en: "Cold Plate", part: "coldplate",
+    pts: ["铜基微通道直触芯片", "快接头对接机柜歧管", "GPU/OEM 认证是护城河"] },
+  { img: "gpu-board", num: 4, name: "GPU 基板", en: "GPU Baseboard", part: "gpu",
+    pts: ["8×GPU 高密互联在板", "供电与互联的功率密度极限", "供应商集中度即行业风险"] },
+  { img: "hbm", num: 5, name: "HBM 显存堆栈", en: "HBM Stacks", part: "hbm",
+    pts: ["计算 die 周围多堆栈封装", "容量与带宽是算力第一瓶颈", "先进封装（CoWoS 类）承载"] },
+  { img: "mobo", num: 6, name: "主板与内存", en: "Motherboard", part: "cpu",
+    pts: ["双 CPU + 多通道 DIMM 阵列", "头节点与推理的 CPU 战场", "BMC/管理面在此落位"] },
+  { img: "nic", num: 7, name: "NIC / 光互联", en: "NIC & Optics", part: "nic",
+    pts: ["每 GPU 配套高速网卡", "光笼对接光模块/CPO 演进", "数量随 GPU 同步放大"] },
+  { img: "psu", num: 8, name: "电源模块", en: "PSU", part: "psu",
+    pts: ["钛金效率与功率密度竞赛", "对接机柜电源架/直流母排", "冗余与热插拔设计"] },
+  { img: "ssd", num: 9, name: "存储", en: "NVMe Storage", part: "ssd",
+    pts: ["NVMe 盘位与背板", "AI 数据管道推高近线需求", "QLC 大容量盘进入超大规模"] },
+];
+
+(async () => {
+  let PART = {};
+  try {
+    const bom = await get("framework/bom.json");
+    bom.parts.forEach(p => PART[p.id] = p);
+  } catch (e) { /* 数据不可达时海报仍完整渲染 */ }
+
+  document.getElementById("stack").innerHTML = LAYERS.map(L => {
+    const p = PART[L.part];
+    const dot = p ? `<span class="st" style="background:${SC[p.status]}" title="供应状态"></span>` : "";
+    return `<div class="row">
+      <div class="img"><img src="assets/renders/${L.img}.png" alt="${esc(L.name)}" loading="lazy"></div>
+      <div class="callout">
+        <div class="co"><span class="num">${L.num}</span><b>${esc(L.name)}</b><span class="en">${esc(L.en)}</span>${dot}</div>
+        <ul>${L.pts.map(t => `<li>${esc(t)}</li>`).join("")}</ul>
+        <div class="links">
+          <a href="bom.html#${L.part}">📖 部件档案</a>
+          <a href="rack3d.html?x=100#${L.part}">🔬 3D 拆解</a>
+        </div>
+      </div>
+    </div>`;
+  }).join("");
+
+  /* 数据瓷砖：全部取自数据层，缺数标"待录入"——不造数 */
+  try {
+    const [prices, inds] = await Promise.all([get("data/prices.json"), get("framework/indicators.json")]);
+    const IND = {}; inds.indicators.forEach(i => IND[i.id] = i);
+    const latest = sid => prices.records.filter(r => r.series_id === sid)
+      .sort((a, b) => a.as_of < b.as_of ? 1 : -1)[0];
+    const fmtI = (id, fallbackName) => {
+      const i = IND[id];
+      return { name: i?.name || fallbackName, v: i && i.value != null ? `${i.value.toLocaleString()} ${i.unit}` : "待录入", d: i?.as_of || "" };
+    };
+    const g = latest("gpu-hourly-h100-spot");
+    const tiles = [
+      { icon: "⚡", ti: "旗舰 GPU 现货时租", tv: g ? `${g.value} ${g.unit}` : "待录入", td: g ? `H100 spot · ${g.as_of}` : "gpu-hourly-h100-spot" },
+      (x => ({ icon: "🕰", ti: "大型变压器交期", tv: x.v, td: x.d || "全行业最诚实的供需温度计" }))(fmtI("transformer_lead_time", "变压器交期")),
+      (x => ({ icon: "❄️", ti: "液冷渗透率", tv: x.v, td: x.d || "冷板入液热捕获 70-90%" }))(fmtI("liquid_cooling_penetration", "液冷渗透率")),
+      (x => ({ icon: "🏭", ti: "CoWoS 产能", tv: x.v, td: x.d || "先进封装约束 HBM 供给" }))(fmtI("cowos_capacity_wpm", "CoWoS 产能")),
+    ];
+    document.getElementById("tiles").innerHTML = tiles.map(t =>
+      `<div class="tile"><div class="ti">${t.icon} ${esc(t.ti)}</div><div class="tv">${esc(t.tv)}</div><div class="td">${esc(t.td)}</div></div>`).join("");
+  } catch (e) { document.getElementById("tiles").style.display = "none"; }
+})();
+</script>
+</body>
+</html>
