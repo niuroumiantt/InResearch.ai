@@ -9,9 +9,16 @@
     --bg: #f2f4f7; --card: #ffffff; --text: #1a1d24; --muted: #6b7280;
     --line: #e5e7eb; --accent: #2563eb;
     --green: #16a34a; --yellow: #d97706; --red: #dc2626; --purple: #7c3aed; --gray: #9ca3af;
+    --slab-top: #fdfefe; --slab-front: #d7dfeb; --slab-right: #c3cddd; --slab-line: #b9c6d8;
+    --box-top: #eef2f8; --box-front: #c8d2e0; --box-right: #aab7c9; --box-line: #8fa0b5;
+    --axis: #94a3b8;
   }
   @media (prefers-color-scheme: dark) {
-    :root { --bg: #0c0e12; --card: #171a21; --text: #e5e7eb; --muted: #9ca3af; --line: #262a33; --accent: #60a5fa; }
+    :root { --bg: #0c0e12; --card: #171a21; --text: #e5e7eb; --muted: #9ca3af; --line: #262a33; --accent: #60a5fa;
+      --slab-top: #232b3a; --slab-front: #161c28; --slab-right: #10151f; --slab-line: #33405a;
+      --box-top: #3a4658; --box-front: #232c3b; --box-right: #1a212d; --box-line: #4d5c73;
+      --axis: #475569;
+    }
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { background: var(--bg); color: var(--text); font: 13.5px/1.6 -apple-system, "PingFang SC", sans-serif; padding-bottom: 60px; }
@@ -22,34 +29,52 @@
   .tab { padding: 12px 14px; color: var(--muted); border-bottom: 2px solid transparent; }
   .tab.on { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
   .topbar .sp { flex: 1; }
-  .wrap { max-width: 1280px; margin: 18px auto 0; padding: 0 16px; display: flex; gap: 16px; }
+  .wrap { max-width: 1360px; margin: 18px auto 0; padding: 0 16px; display: flex; gap: 16px; }
   .stage { flex: 1; min-width: 0; }
-  .stage h1 { font-size: 20px; margin-bottom: 2px; }
-  .sub { color: var(--muted); font-size: 12.5px; margin-bottom: 14px; }
-  .legend { font-size: 11.5px; color: var(--muted); margin-bottom: 14px; }
+  .stage h1 { font-size: 26px; letter-spacing: .5px; }
+  .stage h1 em { font-style: normal; color: var(--accent); }
+  .sub { color: var(--muted); font-size: 12.5px; margin: 2px 0 10px; }
+  .legend { font-size: 11.5px; color: var(--muted); margin-bottom: 16px; display: flex; align-items: center; flex-wrap: wrap; gap: 2px; }
   .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; vertical-align: -1px; margin: 0 4px 0 12px; }
-  .layer { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 14px;
-    padding: 14px 18px 16px; margin: 0 0 34px; box-shadow: 0 2px 8px rgba(0,0,0,.05); }
-  .layer::after { content: ""; position: absolute; left: 50%; bottom: -35px; height: 34px;
-    border-left: 2px dashed var(--gray); opacity: .55; }
-  .layer:last-child::after { display: none; }
-  .lh { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; }
-  .lh .lid { font-size: 11px; font-weight: 700; color: var(--accent); border: 1px solid var(--accent);
-    border-radius: 8px; padding: 0 8px; }
-  .lh b { font-size: 15px; }
-  .lh span { color: var(--muted); font-size: 11.5px; }
-  .parts { display: flex; flex-wrap: wrap; gap: 8px; }
-  .part { border: 1.5px solid; border-radius: 10px; padding: 7px 12px; cursor: pointer;
-    background: var(--bg); font-size: 12.5px; font-weight: 500; transition: transform .12s, box-shadow .12s; }
-  .part:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,.12); }
-  .part.sel { outline: 2px solid var(--accent); outline-offset: 2px; }
-  .part small { display: block; font-weight: 400; font-size: 10.5px; color: var(--muted); }
-  /* 爆炸透视：层级越高越窄并右移，形成炸开的阶梯感 */
-  .layer[data-i="0"] { width: 100%; }
-  .layer[data-i="1"] { width: 94%; margin-left: 3%; }
-  .layer[data-i="2"] { width: 88%; margin-left: 6%; }
-  .layer[data-i="3"] { width: 82%; margin-left: 9%; }
-  .layer[data-i="4"] { width: 76%; margin-left: 12%; }
+  .legend .go3d { margin-left: auto; font-size: 12px; border: 1px solid var(--accent); border-radius: 16px; padding: 2px 12px; }
+
+  /* ── 爆炸堆叠：每层一行 = [等轴测平台] [引线] [编号标注] ── */
+  #stack { position: relative; }
+  #stack .axis { position: absolute; left: 30%; top: 10px; bottom: 24px; width: 0;
+    border-left: 2px dashed var(--axis); opacity: .5; z-index: 0; }
+  .lrow { position: relative; display: grid; grid-template-columns: minmax(0, 58%) 26px minmax(0, 1fr);
+    align-items: center; margin-bottom: 10px; z-index: 1; }
+  .lrow .slab { min-width: 0; }
+  .lrow svg { display: block; width: 100%; height: auto; }
+  .lrow .lead { border-top: 2px dotted var(--axis); opacity: .7; position: relative; }
+  .lrow .lead::after { content: ""; position: absolute; right: -1px; top: -4px; width: 7px; height: 7px;
+    border-radius: 50%; background: var(--accent); }
+  .callout { background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 12px 16px; box-shadow: 0 2px 10px rgba(15,30,60,.06); }
+  .callout .ch { display: flex; align-items: center; gap: 10px; }
+  .callout .num { width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: #fff;
+    font-weight: 800; font-size: 15px; display: flex; align-items: center; justify-content: center; flex: none;
+    box-shadow: 0 2px 6px rgba(37,99,235,.35); }
+  .callout .ch b { font-size: 15.5px; color: var(--accent); }
+  .callout .ch .en { color: var(--muted); font-size: 11px; letter-spacing: .4px; }
+  .callout .cd { font-size: 11.5px; color: var(--muted); margin: 4px 0 8px 40px; }
+  .callout .plist { display: flex; flex-wrap: wrap; gap: 5px; margin-left: 40px; }
+  .pchip { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); border-radius: 14px;
+    padding: 2px 10px; font-size: 11.5px; cursor: pointer; background: var(--bg); transition: all .13s; }
+  .pchip i { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+  .pchip:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+  .pchip.sel { border-color: var(--accent); color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); font-weight: 600; }
+
+  /* SVG 部件盒 */
+  .pbox { cursor: pointer; transition: transform .15s; }
+  .pbox:hover { transform: translateY(-5px); }
+  .pbox:hover .pname { fill: var(--accent); font-weight: 700; }
+  .pbox.sel .ptop { fill: color-mix(in srgb, var(--accent) 30%, var(--box-top)); }
+  .pbox.sel .pname { fill: var(--accent); font-weight: 700; }
+  .pname { fill: var(--text); font-size: 12.5px; font-family: inherit;
+    paint-order: stroke; stroke: var(--card); stroke-width: 3.5px; stroke-linejoin: round; }
+  .lname { fill: var(--muted); font-size: 12px; font-family: inherit; letter-spacing: 1px; }
+
   aside { width: 360px; flex-shrink: 0; position: sticky; top: 62px; align-self: flex-start;
     max-height: calc(100vh - 80px); overflow-y: auto; }
   .dossier { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
@@ -65,15 +90,20 @@
   .kv:last-child { border-bottom: none; }
   .kv b { font-variant-numeric: tabular-nums; }
   .empty { color: var(--gray); font-size: 12px; }
-  @media (max-width: 980px) { .wrap { flex-direction: column; } aside { width: 100%; position: static; } }
+  @media (max-width: 1080px) {
+    .wrap { flex-direction: column; } aside { width: 100%; position: static; }
+    .lrow { grid-template-columns: 1fr; }
+    .lrow .lead { display: none; }
+    #stack .axis { display: none; }
+  }
 </style>
 </head>
 <body>
 <div class="topbar">
   <b>Datacenter Hub</b>
   <a class="tab" href="index.html">总览</a>
-  <a class="tab on" href="bom.html">爆炸图</a>
-  <a class="tab" href="bom3d.html">3D 版</a>
+  <a class="tab on" href="bom.html">爆炸图 2D</a>
+  <a class="tab" href="bom3d.html">爆炸图 3D</a>
   <a class="tab" href="ops.html">管理后台</a>
   <a class="tab" href="report.html">报告成稿</a>
   <span class="sp"></span>
@@ -81,10 +111,11 @@
 </div>
 <div class="wrap">
   <div class="stage">
-    <h1>数据中心爆炸图 <span style="font-weight:400;font-size:13px;color:var(--muted)">v1 · 物理部件轴</span></h1>
-    <div class="sub">把一座数据中心按五层 BOM 炸开——每个部件都挂着它的研究模块、供应商、价格序列与监测指标。点击任意部件查看档案。</div>
+    <h1>一张图拆解 <em>AI 数据中心</em></h1>
+    <div class="sub">按五层 BOM 从部件炸到园区——每个部件都挂着它的研究模块、供应商、价格序列与监测指标。点击任意部件或词条查看档案。</div>
     <div class="legend">供应状态：<i style="background:var(--red)"></i>紧缺 <i style="background:var(--yellow)"></i>技术切换中
-      <i style="background:var(--green)"></i>成熟 <i style="background:var(--purple)"></i>新兴</div>
+      <i style="background:var(--green)"></i>成熟 <i style="background:var(--purple)"></i>新兴
+      <a class="go3d" href="bom3d.html">🧊 进入 3D 立体拆解 →</a></div>
     <div id="stack">加载中…</div>
   </div>
   <aside><div class="dossier" id="dossier">
@@ -104,6 +135,64 @@ const SN = { tight: "紧缺", transition: "技术切换中", mature: "成熟", e
 const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
 let BOM, CN = {}, PRICES = [], INDS = {}, MODNAME = {};
 
+/* ── 等轴测投影：plan(x,y) + 高 z → 屏幕 ── */
+const CX = Math.cos(Math.PI / 6), SY = 0.5;
+const P = (x, y, z = 0) => [(x - y) * CX, (x + y) * SY - z];
+const pt = a => a.map(v => v.toFixed(1)).join(",");
+function poly(pts, fill, stroke, extra = "") {
+  return `<path d="M${pts.map(pt).join("L")}Z" fill="${fill}" ${stroke ? `stroke="${stroke}" stroke-width="1"` : ""} ${extra}/>`;
+}
+/* 部件盒：三个可见面 + 状态色顶檐 + 名签 */
+function isoBox(px, py, w, d, h, part) {
+  const c = SC[part.status];
+  const T = [P(px, py, h), P(px + w, py, h), P(px + w, py + d, h), P(px, py + d, h)];
+  const R = [P(px + w, py, h), P(px + w, py + d, h), P(px + w, py + d, 0), P(px + w, py, 0)];
+  const F = [P(px, py + d, h), P(px + w, py + d, h), P(px + w, py + d, 0), P(px, py + d, 0)];
+  // 顶檐：沿前缘的状态色条
+  const lipW = 7;
+  const L = [P(px, py + d - lipW, h), P(px + w, py + d - lipW, h), P(px + w, py + d, h), P(px, py + d, h)];
+  const lab = P(px + w / 2, py + d, 0);
+  const shd = P(px + w / 2 + 6, py + d / 2 + 6, 0);
+  return `<g class="pbox" data-part="${part.id}">
+    <ellipse cx="${shd[0].toFixed(1)}" cy="${shd[1].toFixed(1)}" rx="${w * .62}" ry="${d * .3}" fill="rgba(10,20,40,.13)"/>
+    ${poly(F, "var(--box-front)", "var(--box-line)")}
+    ${poly(R, "var(--box-right)", "var(--box-line)")}
+    ${poly(T, "var(--box-top)", "var(--box-line)", 'class="ptop"')}
+    ${poly(L, c)}
+    <text class="pname" x="${lab[0].toFixed(1)}" y="${(lab[1] + 16).toFixed(1)}" text-anchor="middle">${esc(part.name)}</text>
+  </g>`;
+}
+/* 一层平台 + 其上部件 */
+function isoSlab(layer, parts, idx) {
+  const n = parts.length;
+  const cols = Math.min(4, Math.max(2, Math.ceil(n / 2)));
+  const rows = Math.ceil(n / cols);
+  const CW = 128, CD = 152, M = 46;
+  const W = cols * CW + M, D = rows * CD + M * 0.9, T = 16;
+  const corners = [P(0, 0, 0), P(W, 0, 0), P(W, D, 0), P(0, D, 0)];
+  const Fr = [P(0, D, 0), P(W, D, 0), P(W, D, -T), P(0, D, -T)];
+  const Rt = [P(W, 0, 0), P(W, D, 0), P(W, D, -T), P(W, 0, -T)];
+  let inner = poly(Fr, "var(--slab-front)", "var(--slab-line)") + poly(Rt, "var(--slab-right)", "var(--slab-line)")
+    + poly(corners, "var(--slab-top)", "var(--slab-line)");
+  // 平台网格线（淡）
+  for (let gx = CW; gx < W - M / 2; gx += CW) inner += poly([P(gx, 4, 0.1), P(gx, D - 4, 0.1), P(gx, D - 4, 0.1), P(gx, 4, 0.1)], "none", "var(--slab-line)", 'opacity=".35" stroke-dasharray="3 4"');
+  // 层名刻在平台左前侧
+  const tag = P(-4, D + 2, -2);
+  inner += `<text class="lname" x="${tag[0].toFixed(1)}" y="${(tag[1] + 12).toFixed(1)}" text-anchor="end">${layer.id} ${layer.en.toUpperCase()}</text>`;
+  parts.forEach((p, i) => {
+    const col = i % cols, row = Math.floor(i / cols);
+    const px = M / 2 + col * CW + (row % 2) * 14, py = M / 2 + row * CD;
+    inner += isoBox(px, py, 86, 56, 26, p);
+  });
+  // 视窗测算
+  const xs = [], ys = [];
+  [[0, 0, 40], [W, 0, 40], [W, D, -T - 4], [0, D, -T - 4]].forEach(([x, y, z]) => { const s = P(x, y, z); xs.push(s[0]); ys.push(s[1]); });
+  const minX = Math.min(...xs) - 150, maxX = Math.max(...xs) + 16;
+  const minY = Math.min(...ys) - 14, maxY = Math.max(...ys) + 34;
+  return `<svg viewBox="${minX.toFixed(0)} ${minY.toFixed(0)} ${(maxX - minX).toFixed(0)} ${(maxY - minY).toFixed(0)}"
+    role="img" aria-label="${layer.name}">${inner}</svg>`;
+}
+
 (async () => {
   const [bom, companies, prices, inds, reg] = await Promise.all([
     get("framework/bom.json"), get("data/companies.json"), get("data/prices.json"),
@@ -113,17 +202,25 @@ let BOM, CN = {}, PRICES = [], INDS = {}, MODNAME = {};
   inds.indicators.forEach(i => INDS[i.id] = i);
   reg.modules.forEach(m => MODNAME[m.id] = m.name);
 
-  // 层从上到下 = L5 → L1（爆炸图：部件在最上，园区在最下）
+  // 层从上到下 = L5 → L1（部件在最上，园区在最下），编号 1-5 = 拆解次序
   const order = ["L5", "L4", "L3", "L2", "L1"];
-  document.getElementById("stack").innerHTML = order.map((lid, i) => {
+  document.getElementById("stack").innerHTML = '<div class="axis"></div>' + order.map((lid, i) => {
     const layer = bom.layers.find(l => l.id === lid);
     const parts = bom.parts.filter(p => p.layer === lid);
-    return `<div class="layer" data-i="${i}">
-      <div class="lh"><span class="lid">${lid}</span><b>${layer.name}</b><span>${layer.desc}</span></div>
-      <div class="parts">${parts.map(p =>
-        `<div class="part" id="p-${p.id}" style="border-color:${SC[p.status]}" onclick="show('${p.id}')">
-          ${p.name}<small>${MODNAME[p.module] || p.module}</small></div>`).join("")}</div></div>`;
+    return `<div class="lrow" style="margin-left:${i * 1.5}%">
+      <div class="slab">${isoSlab(layer, parts, i)}</div>
+      <div class="lead"></div>
+      <div class="callout">
+        <div class="ch"><span class="num">${i + 1}</span><b>${layer.name}</b><span class="en">${layer.en}</span></div>
+        <div class="cd">${esc(layer.desc)}</div>
+        <div class="plist">${parts.map(p =>
+          `<span class="pchip" data-part="${p.id}" id="c-${p.id}"><i style="background:${SC[p.status]}"></i>${esc(p.name)}</span>`).join("")}</div>
+      </div>
+    </div>`;
   }).join("");
+
+  document.querySelectorAll("[data-part]").forEach(el =>
+    el.addEventListener("click", () => show(el.dataset.part)));
 
   const first = location.hash.slice(1);
   if (first && bom.parts.find(p => p.id === first)) show(first);
@@ -137,8 +234,8 @@ function latestSeries(sid) {
 function show(pid) {
   const p = BOM.parts.find(x => x.id === pid);
   if (!p) return;
-  document.querySelectorAll(".part").forEach(el => el.classList.remove("sel"));
-  document.getElementById("p-" + pid)?.classList.add("sel");
+  document.querySelectorAll(".pbox.sel, .pchip.sel").forEach(el => el.classList.remove("sel"));
+  document.querySelectorAll(`[data-part="${pid}"]`).forEach(el => el.classList.add("sel"));
   history.replaceState(null, "", "#" + pid);
 
   let h = `<h2>${esc(p.name)}</h2>
