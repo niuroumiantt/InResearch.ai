@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>产品资料采集看板 — Datacenter Hub</title>
 <style>
+  /* 设计基调：直角矩形，科技感；全站禁用圆角 */
   :root {
     --bg: #f2f4f7; --card: #ffffff; --text: #1a1d24; --muted: #6b7280;
     --line: #e5e7eb; --accent: #2563eb;
@@ -16,7 +17,7 @@
     :root { --bg: #0c0e12; --card: #171a21; --text: #e5e7eb; --muted: #9ca3af; --line: #262a33; --accent: #60a5fa;
       --green-bg: #14321f; --yellow-bg: #33290f; --red-bg: #351a1a; --blue-bg: #16263c; --gray-bg: #21242c; --p2: #3a4150; }
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; }
   body { background: var(--bg); color: var(--text); font: 13px/1.5 -apple-system, "PingFang SC", sans-serif; padding-bottom: 60px; }
   a { color: var(--accent); text-decoration: none; }
   .topbar { position: sticky; top: 0; background: var(--card); border-bottom: 1px solid var(--line);
@@ -27,71 +28,78 @@
   .topbar .sp { flex: 1; }
   .wrap { max-width: 1280px; margin: 14px auto 0; padding: 0 16px; }
 
-  /* ── 顶条：标题 + KPI + 筛选，一屏压缩 ── */
   .head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 14px; margin-bottom: 4px; }
   .head h1 { font-size: 19px; } .head h1 em { font-style: normal; color: var(--accent); }
   .kpis { display: flex; flex-wrap: wrap; gap: 0 18px; font-size: 12.5px; color: var(--muted); }
   .kpis b { font-size: 15px; color: var(--text); margin-right: 2px; }
   .kpis .warn b { color: var(--yellow); } .kpis .gap b { color: var(--red); }
-  .bar-row { display: flex; align-items: center; gap: 10px; margin: 8px 0 10px; }
+  .bar-row { display: flex; align-items: center; gap: 10px; margin: 8px 0 10px; flex-wrap: wrap; }
   .filters { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; flex: 1; }
   .filters select, .filters input { background: var(--card); color: var(--text); border: 1px solid var(--line);
-    border-radius: 7px; padding: 4px 8px; font-size: 12px; }
+    padding: 4px 8px; font-size: 12px; }
   .filters input { min-width: 180px; }
   .filters label { font-size: 12px; color: var(--muted); white-space: nowrap; }
   .legend { font-size: 11.5px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-  .legend i { display: inline-block; width: 9px; height: 9px; border-radius: 3px; margin-right: 4px; vertical-align: -1px; }
-  .legend .pdot { width: 4px; height: 12px; border-radius: 2px; }
+  .legend i { display: inline-block; width: 9px; height: 9px; margin-right: 4px; vertical-align: -1px; }
+  .legend .pdot { width: 4px; height: 12px; }
 
-  /* ── 环节区块（对应爆炸图“层”）── */
-  .seg { background: var(--card); border: 1px solid var(--line); border-radius: 11px; margin-bottom: 10px; overflow: hidden; }
+  .seg { background: var(--card); border: 1px solid var(--line); margin-bottom: 10px; }
   .seg > header { display: flex; align-items: center; gap: 10px; padding: 7px 14px; border-bottom: 1px solid var(--line); }
   .seg > header b { font-size: 13.5px; }
   .seg > header .mini { color: var(--muted); font-size: 11.5px; }
-  .seg .prog { width: 90px; height: 6px; border-radius: 3px; background: var(--gray-bg); overflow: hidden; display: flex; }
+  .seg .prog { width: 90px; height: 6px; background: var(--gray-bg); overflow: hidden; display: flex; }
   .seg .prog i { display: block; height: 100%; }
-  .seg > header .sp { flex: 1; }
   .catrow { display: grid; grid-template-columns: 118px 1fr; border-bottom: 1px dashed var(--line); }
   .catrow:last-child { border-bottom: none; }
-  .catrow .cat { padding: 6px 10px; font-size: 11.5px; color: var(--muted); border-right: 1px solid var(--line);
-    display: flex; align-items: flex-start; line-height: 1.35; padding-top: 9px; }
+  .catrow .cat { padding: 9px 10px 6px; font-size: 11.5px; color: var(--muted); border-right: 1px solid var(--line); line-height: 1.35; }
   .chips { padding: 5px 8px; display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
 
-  /* ── 公司色块：背景=采集状态，左竖条=优先级，角标=文档/缺口 ── */
   .co { position: relative; display: inline-flex; align-items: center; gap: 5px; padding: 3px 8px 3px 9px;
-    border: 1px solid var(--line); border-left: 3px solid var(--p2); border-radius: 7px;
+    border: 1px solid var(--line); border-left: 3px solid var(--p2);
     font-size: 12px; cursor: pointer; background: var(--card); line-height: 1.4; }
   .co:hover { border-color: var(--accent); }
   .co.p0 { border-left-color: var(--p0); font-weight: 600; }
   .co.p1 { border-left-color: var(--p1); }
   .co.st-part { background: var(--yellow-bg); }
   .co.st-core { background: var(--green-bg); }
-  .co .b { font-size: 10.5px; border-radius: 8px; padding: 0 5px; line-height: 15px; }
+  .co .b { font-size: 10.5px; padding: 0 5px; line-height: 15px; }
   .co .bd { background: var(--blue-bg); color: var(--accent); }
   .co .bg { background: var(--red-bg); color: var(--red); }
   .co .bm { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow); }
   .co.sel { outline: 2px solid var(--accent); }
 
-  /* ── 档案卡（点击色块展开，同爆炸图部件卡）── */
-  .detail { grid-column: 1 / -1; background: var(--gray-bg); border-top: 1px solid var(--line); padding: 10px 14px; font-size: 12.5px; }
-  .detail .t { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: baseline; margin-bottom: 6px; }
-  .detail .t b { font-size: 13.5px; }
-  .detail .t span { color: var(--muted); font-size: 11.5px; }
-  .models span { display: inline-block; margin: 1px 4px 1px 0; padding: 1px 7px; border-radius: 8px; font-size: 11.5px; }
-  .m-ok { background: var(--green-bg); color: var(--green); }
-  .m-no { background: var(--red-bg); color: var(--red); }
-  .doclist { margin-top: 6px; border-top: 1px dashed var(--line); padding-top: 6px; }
-  .doclist div { padding: 2px 0; }
-  .chip { display: inline-block; padding: 0 7px; border-radius: 9px; font-size: 11px; line-height: 17px; margin-right: 4px; }
+  /* ── 档案卡：公司级 / 型号级 两层 ── */
+  .detail { grid-column: 1 / -1; background: var(--gray-bg); border-top: 1px solid var(--line); font-size: 12.5px; }
+  .dtabs { display: flex; flex-wrap: wrap; gap: 0; border-bottom: 1px solid var(--line); background: var(--card); }
+  .dtab { padding: 5px 12px; font-size: 12px; cursor: pointer; border-right: 1px solid var(--line); color: var(--muted); }
+  .dtab:hover { color: var(--accent); }
+  .dtab.on { background: var(--gray-bg); color: var(--text); font-weight: 600; border-bottom: 2px solid var(--accent); }
+  .dtab.gap { color: var(--red); }
+  .dtab.has { color: var(--green); }
+  .dtab.on.gap, .dtab.on.has { color: var(--text); }
+  .pane { padding: 10px 14px; }
+  .pane .t { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: baseline; margin-bottom: 6px; }
+  .pane .t b { font-size: 13.5px; }
+  .pane .t span { color: var(--muted); font-size: 11.5px; }
+  .profile { border: 1px solid var(--line); background: var(--card); padding: 8px 10px; margin: 6px 0; line-height: 1.6; }
+  .profile .ph { color: var(--muted); font-style: italic; }
+  .sect { margin-top: 8px; }
+  .sect > .sh { font-size: 11.5px; color: var(--muted); border-bottom: 1px dashed var(--line); padding-bottom: 2px; margin-bottom: 4px; }
+  .doclist div.dr { padding: 2px 0; display: flex; gap: 6px; align-items: baseline; flex-wrap: wrap; }
+  .chip { display: inline-block; padding: 0 7px; font-size: 11px; line-height: 17px; }
   .c-green { background: var(--green-bg); color: var(--green); }
   .c-yellow { background: var(--yellow-bg); color: var(--yellow); }
   .c-red { background: var(--red-bg); color: var(--red); }
   .c-blue { background: var(--blue-bg); color: var(--accent); }
   .c-gray { background: var(--gray-bg); color: var(--muted); border: 1px solid var(--line); }
-  .path { font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: var(--muted); cursor: copy; }
-  .path:hover { color: var(--accent); }
+  .loc { font-size: 11px; border: 1px solid var(--line); padding: 0 6px; line-height: 17px; cursor: pointer; color: var(--muted); background: var(--card); }
+  .loc:hover { color: var(--accent); border-color: var(--accent); }
+  .models span { display: inline-block; margin: 1px 4px 1px 0; padding: 1px 7px; font-size: 11.5px; cursor: pointer; }
+  .m-ok { background: var(--green-bg); color: var(--green); }
+  .m-no { background: var(--red-bg); color: var(--red); }
+  .models span:hover { outline: 1px solid var(--accent); }
   .foot { color: var(--muted); font-size: 11.5px; margin-top: 14px; line-height: 1.7; }
-  .err { background: var(--red-bg); color: var(--red); padding: 14px 18px; border-radius: 10px; margin: 20px 0; }
+  .err { background: var(--red-bg); color: var(--red); padding: 14px 18px; margin: 20px 0; }
 </style>
 </head>
 <body>
@@ -110,6 +118,10 @@
   <div class="foot" id="foot"></div>
 </div>
 <script>
+// 资料库同机部署（Mac mini 上由 Hub 静态代理 library/）后，把它设为 "/library/" 前缀，
+// 届时“本地”按钮直接打开文件；为空时按钮为复制绝对路径。
+const LIB_BASE = "";
+const LIB_LOCAL_ROOT = "/Users/yidian/codelocal/dc-product-library/";
 const DOC_STATUS = { pending:["待下载","c-gray"], downloaded:["已下载","c-blue"],
   needs_manual:["需人工","c-yellow"], verified:["已核验","c-green"], superseded:["已过版","c-gray"] };
 const norm = s => (s||"").toLowerCase().replace(/[^a-z0-9]/g,"");
@@ -130,12 +142,25 @@ function modelTokens(str){
   }).filter(t=>t.length>1&&t.length<40
     &&!/^(第|全|各|其他|新一?代|主流|重点)/.test(t)&&/[A-Za-z0-9]{2}/.test(t));
 }
+function locBtn(d){
+  if(LIB_BASE) return `<a class="loc" href="${LIB_BASE+encodeURI(d.file_path.replace(/^library\//,""))}" target="_blank">本地 ⧉</a>`;
+  return `<span class="loc" title="复制本地绝对路径（访达 ⌘⇧G 粘贴直达）"
+    onclick="event.stopPropagation();navigator.clipboard.writeText('${LIB_LOCAL_ROOT+d.file_path}');this.textContent='已复制 ✓'">本地 ⧉</span>`;
+}
+function docRow(d){
+  const dl=(d.status==="downloaded"||d.status==="verified");
+  return `<div class="dr"><span class="chip ${DOC_STATUS[d.status][1]}">${DOC_STATUS[d.status][0]}</span>
+    <b>${d.doc_type}</b><span>${d.title}</span>
+    <a href="${d.source_url}" target="_blank">来源↗</a>${dl?locBtn(d):""}</div>`;
+}
 async function main(){
   const app=document.getElementById("app");
-  let prods, lib;
+  let prods, lib, comps={};
   try{
     prods=(await (await fetch("/docs/inbox/inresearch-alignment/products.json")).json()).records;
     lib=(await (await fetch("/docs/inbox/inresearch-alignment/library_index.json")).json()).records;
+    try{ (await (await fetch("/docs/inbox/inresearch-alignment/companies_patch.json")).json()).records
+         .forEach(c=>comps[c.company_id]=c); }catch(e){}
   }catch(e){
     app.innerHTML=`<div class="err">数据加载失败：${e}。确认 docs/inbox/inresearch-alignment/ 下有 products.json 与 library_index.json。</div>`;
     return;
@@ -143,12 +168,15 @@ async function main(){
   const docsByKey={};
   lib.forEach(d=>{ const k=d.company_id+"|"+norm(d.product_line);
     (docsByKey[k]=docsByKey[k]||[]).push(d); });
-  prods.forEach(p=>{
+  prods.forEach((p,i)=>{
+    p._key=i+"";
     p._docs=docsByKey[p.company_id+"|"+norm(p.product_line)]||[];
     p._tokens=modelTokens(p.representative_models);
-    const models=p._docs.map(d=>norm2(d.model));
     p._cover=p._tokens.map(t=>{const t2=norm2(t);
-      return {t, ok:models.some(m=>m===t2||m.split("-").includes(t2)||(t2.includes("-")&&("-"+m+"-").includes("-"+t2+"-")))};});
+      const exact=p._docs.filter(d=>norm2(d.model)===t2);
+      const rel=p._docs.filter(d=>{const m2=norm2(d.model);
+        return m2!==t2&&("-"+m2+"-").includes("-"+t2+"-");});
+      return {t, exact, rel, ok:exact.length+rel.length>0};});
     p._gaps=p._cover.filter(c=>!c.ok).length;
     p._manual=p._docs.filter(d=>d.status==="needs_manual").length;
     const types=new Set(p._docs.filter(d=>d.status!=="superseded").map(d=>d.doc_type));
@@ -184,11 +212,10 @@ async function main(){
       <span><i class="pdot" style="background:var(--p0)"></i>P0</span>
       <span><i class="pdot" style="background:var(--p1)"></i>P1</span>
       <span><i class="pdot" style="background:var(--p2)"></i>P2</span>
-      <span>角标：<span class="chip c-blue" style="padding:0 5px">n</span>文档数 <span class="chip c-red" style="padding:0 5px">n</span>缺口 <span class="chip c-yellow" style="padding:0 5px">!</span>需人工</span>
     </div>
   </div>
   <div id="list"></div>`;
-  let selKey=null;
+  let selKey=null, selTab="__co";
   function coChip(p){
     const badges=[
       p._docs.length?`<span class="b bd">${p._docs.length}</span>`:"",
@@ -198,21 +225,39 @@ async function main(){
     return `<span class="co p${p.priority[1]} st-${p._state} ${selKey===p._key?"sel":""}" data-k="${p._key}"
       title="${p.company_en} · ${p.product_line} · ${p.priority}">${name}${badges}</span>`;
   }
-  function detailHTML(p){
-    return `<div class="detail">
-      <div class="t"><b>${p.company_cn} ${p.company_en}</b>
+  function companyPane(p){
+    const c=comps[p.company_id]||{};
+    const lineDocs=p._docs.filter(d=>norm2(d.model)==="line");
+    const profile=c.profile
+      ?`<div class="profile">${c.profile}</div>`
+      :`<div class="profile"><span class="ph">公司画像待接入 — 计划信源（公开）：官网 About / IR 页、最新年报与季报、财报电话会纪要。接入后此处显示营收结构、产能与渠道要点。</span></div>`;
+    return `<div class="t"><b>${p.company_cn} ${p.company_en}</b>
         <span>${p.product_line} · ${p.category} · BOM: ${p.bom_parts.join(", ")} · ${p.priority} · ${p.hq}</span>
-        <a href="https://${p.website.split(" ")[0]}" target="_blank">${p.website}</a></div>
-      <div class="models">${p._cover.map(c=>`<span class="${c.ok?"m-ok":"m-no"}">${c.t}</span>`).join("")}</div>
-      ${p.note?`<div style="color:var(--muted);font-size:11.5px;margin-top:4px">${p.note}</div>`:""}
-      <div class="doclist">${p._docs.length? p._docs.map(d=>
-        `<div><span class="chip ${DOC_STATUS[d.status][1]}">${DOC_STATUS[d.status][0]}</span><b>${d.doc_type}</b>
-         ${d.title} <a href="${d.source_url}" target="_blank">来源↗</a>
-         <span class="path" title="点击复制本地路径" onclick="event.stopPropagation();navigator.clipboard.writeText('${d.file_path}');this.textContent='已复制✓'">${d.file_path.split("/").slice(-1)[0]}</span></div>`).join("")
-       :`<span style="color:var(--muted)">尚未登记任何资料 — 待采集</span>`}</div>
-    </div>`;
+        <a href="https://${p.website.split(" ")[0]}" target="_blank">${p.website}</a>
+        ${c.ir_url?`<a href="${c.ir_url}" target="_blank">IR ↗</a>`:""}</div>
+      ${profile}
+      <div class="sect"><div class="sh">型号覆盖 — 点击型号进入产品级（绿=有资料 红=缺口）</div>
+        <div class="models">${p._cover.map(c2=>`<span class="${c2.ok?"m-ok":"m-no"}" data-t="${c2.t}">${c2.t}</span>`).join("")}</div></div>
+      ${lineDocs.length?`<div class="sect"><div class="sh">产品线级资料（brochure / 白皮书等）</div>
+        <div class="doclist">${lineDocs.map(docRow).join("")}</div></div>`:""}
+      ${p.note?`<div class="sect"><div class="sh">采集备注</div><div style="color:var(--muted)">${p.note}</div></div>`:""}`;
   }
-  prods.forEach((p,i)=>p._key=i+"");
+  function modelPane(p, tok){
+    const cv=p._cover.find(c=>c.t===tok)||{exact:[],rel:[]};
+    return `<div class="t"><b>${tok}</b><span>${p.company_cn} ${p.company_en} · ${p.product_line}</span>
+        <span>专属 ${cv.exact.length} · 涉及 ${cv.rel.length}</span></div>
+      <div class="sect"><div class="sh">专属资料 — 只讲 ${tok} 的</div>
+        <div class="doclist">${cv.exact.length?cv.exact.map(docRow).join(""):`<span style="color:var(--muted)">暂无 — 缺口</span>`}</div></div>
+      <div class="sect"><div class="sh">涉及资料 — 内容包含 ${tok} 的（整机/平台/参考架构等）</div>
+        <div class="doclist">${cv.rel.length?cv.rel.map(docRow).join(""):`<span style="color:var(--muted)">暂无</span>`}</div></div>`;
+  }
+  function detailHTML(p){
+    const tabs=`<div class="dtabs">
+      <span class="dtab ${selTab==="__co"?"on":""}" data-t="__co">公司档案</span>
+      ${p._cover.map(c=>`<span class="dtab ${selTab===c.t?"on":""} ${c.ok?"has":"gap"}" data-t="${c.t}">${c.t}</span>`).join("")}</div>`;
+    const pane=selTab==="__co"?companyPane(p):modelPane(p,selTab);
+    return `<div class="detail">${tabs}<div class="pane">${pane}</div></div>`;
+  }
   function render(){
     const pri=fPri.value, stf=fSt.value, q=norm(fQ.value), gap=fGap.checked, hasdoc=fDoc.checked;
     const keep=p=>(!pri||p.priority===pri)&&(!stf||p._state===stf)
@@ -239,15 +284,18 @@ async function main(){
       list.appendChild(el);
     });
     list.querySelectorAll(".co").forEach(ch=>ch.onclick=()=>{
-      selKey=(selKey===ch.dataset.k)?null:ch.dataset.k; render();
+      if(selKey===ch.dataset.k){ selKey=null; } else { selKey=ch.dataset.k; selTab="__co"; }
+      render();
     });
+    list.querySelectorAll(".dtab").forEach(t=>t.onclick=()=>{ selTab=t.dataset.t; render(); });
+    list.querySelectorAll(".models span[data-t]").forEach(m=>m.onclick=()=>{ selTab=m.dataset.t; render(); });
   }
   ["fPri","fSt","fQ","fGap","fDoc"].forEach(id=>document.getElementById(id).oninput=render);
   render();
   document.getElementById("foot").innerHTML=
-    `与《数据中心上下游产品研究目录 v2.xlsx》同构：环节=区块 · 产品大类=行 · 公司=色块（背景=采集状态，左竖条=优先级）。`+
-    `点击色块展开档案卡：型号覆盖（红=计划内无资料）+ 已登记文档（来源链接 / 点击文件名复制本地路径）。`+
-    `资料本体存于采集端本地 dc-product-library/library/（未来 Mac mini 常驻）；台账经 docs/inbox/inresearch-alignment/ 投递更新。`;
+    `与《数据中心上下游产品研究目录 v2.xlsx》同构：环节=区块 · 产品大类=行 · 公司=色块（背景=状态，左竖条=优先级；角标 蓝=文档数 红=缺口 黄!=需人工）。`+
+    `点击色块 → 公司档案（画像+型号覆盖）；点击型号 → 产品级资料（专属/涉及分列）。`+
+    `“本地 ⧉”当前为复制路径（访达 ⌘⇧G 粘贴直达）；资料库随 Hub 同机部署（Mac mini）后将改为直接打开。`;
 }
 main();
 </script>
