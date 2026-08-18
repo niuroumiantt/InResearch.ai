@@ -11,11 +11,12 @@
     --line: #e5e7eb; --accent: #2563eb;
     --green: #16a34a; --yellow: #d97706; --red: #dc2626; --gray: #9ca3af;
     --green-bg: #dcfce7; --yellow-bg: #fef3c7; --red-bg: #fee2e2; --blue-bg: #dbeafe; --gray-bg: #f3f4f6;
-    --p0: #dc2626; --p1: #2563eb; --p2: #b9c0cc;
+    --ink: #1a1d24; --p1bar: #94a3b8;
   }
   @media (prefers-color-scheme: dark) {
     :root { --bg: #0c0e12; --card: #171a21; --text: #e5e7eb; --muted: #9ca3af; --line: #262a33; --accent: #60a5fa;
-      --green-bg: #14321f; --yellow-bg: #33290f; --red-bg: #351a1a; --blue-bg: #16263c; --gray-bg: #21242c; --p2: #3a4150; }
+      --green-bg: #14321f; --yellow-bg: #33290f; --red-bg: #351a1a; --blue-bg: #16263c; --gray-bg: #21242c;
+      --ink: #e5e7eb; --p1bar: #4b5a6e; }
   }
   * { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; }
   body { background: var(--bg); color: var(--text); font: 13px/1.5 -apple-system, "PingFang SC", sans-serif; padding-bottom: 60px; }
@@ -54,29 +55,30 @@
   .catrow .cat { padding: 9px 10px 6px; font-size: 11.5px; color: var(--muted); border-right: 1px solid var(--line); line-height: 1.35; }
   .chips { padding: 5px 8px; display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
 
-  .co { position: relative; display: inline-flex; align-items: center; gap: 5px; padding: 3px 8px 3px 9px;
-    border: 1px solid var(--line); border-left: 3px solid var(--p2);
+  /* 色彩纪律：红=缺口，黄=进行中/需人工，绿=达标，蓝=选中/动作；优先级用墨色竖条（P0粗/P1细/P2无），不占用警示色 */
+  .co { position: relative; display: inline-flex; align-items: center; gap: 5px; padding: 3px 8px;
+    border: 1px solid var(--line); border-left: 3px solid transparent;
     font-size: 12px; cursor: pointer; background: var(--card); line-height: 1.4; }
   .co:hover { border-color: var(--accent); }
-  .co.p0 { border-left-color: var(--p0); font-weight: 600; }
-  .co.p1 { border-left-color: var(--p1); }
+  .co.p0 { border-left-color: var(--ink); font-weight: 600; }
+  .co.p1 { border-left-color: var(--p1bar); }
   .co.st-part { background: var(--yellow-bg); }
   .co.st-core { background: var(--green-bg); }
-  .co .b { font-size: 10.5px; padding: 0 5px; line-height: 15px; }
-  .co .bd { background: var(--blue-bg); color: var(--accent); }
+  .co .b { font-size: 10.5px; padding: 0 4px; line-height: 15px; }
+  .co .bd { color: var(--muted); border: 1px solid var(--line); background: var(--card); }
   .co .bg { background: var(--red-bg); color: var(--red); }
-  .co .bm { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow); }
+  .co .bm { color: var(--yellow); }
   .co.sel { outline: 2px solid var(--accent); }
 
   /* ── 档案卡：公司级 / 型号级 两层 ── */
   .detail { grid-column: 1 / -1; background: var(--gray-bg); border-top: 1px solid var(--line); font-size: 12.5px; }
   .dtabs { display: flex; flex-wrap: wrap; gap: 0; border-bottom: 1px solid var(--line); background: var(--card); }
-  .dtab { padding: 5px 12px; font-size: 12px; cursor: pointer; border-right: 1px solid var(--line); color: var(--muted); }
+  .dtab { padding: 5px 12px; font-size: 12px; cursor: pointer; border-right: 1px solid var(--line); color: var(--muted);
+    display: inline-flex; align-items: center; gap: 5px; }
   .dtab:hover { color: var(--accent); }
   .dtab.on { background: var(--gray-bg); color: var(--text); font-weight: 600; border-bottom: 2px solid var(--accent); }
-  .dtab.gap { color: var(--red); }
-  .dtab.has { color: var(--green); }
-  .dtab.on.gap, .dtab.on.has { color: var(--text); }
+  .cnt { font-size: 10.5px; line-height: 15px; padding: 0 4px; background: var(--green-bg); color: var(--green); }
+  .cnt.zero { background: var(--red-bg); color: var(--red); }
   .pane { padding: 10px 14px; }
   .pane .t { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: baseline; margin-bottom: 6px; }
   .pane .t b { font-size: 13.5px; }
@@ -94,10 +96,12 @@
   .c-gray { background: var(--gray-bg); color: var(--muted); border: 1px solid var(--line); }
   .loc { font-size: 11px; border: 1px solid var(--line); padding: 0 6px; line-height: 17px; cursor: pointer; color: var(--muted); background: var(--card); }
   .loc:hover { color: var(--accent); border-color: var(--accent); }
-  .models span { display: inline-block; margin: 1px 4px 1px 0; padding: 1px 7px; font-size: 11.5px; cursor: pointer; }
-  .m-ok { background: var(--green-bg); color: var(--green); }
-  .m-no { background: var(--red-bg); color: var(--red); }
-  .models span:hover { outline: 1px solid var(--accent); }
+  .models span { display: inline-flex; align-items: center; gap: 5px; margin: 1px 4px 1px 0; padding: 1px 7px;
+    font-size: 11.5px; cursor: pointer; border: 1px solid var(--line); background: var(--card); color: var(--text); }
+  .models span b { font-size: 10.5px; padding: 0 4px; line-height: 15px; font-weight: 600; }
+  .m-ok b { background: var(--green-bg); color: var(--green); }
+  .m-no b { background: var(--red-bg); color: var(--red); }
+  .models span:hover { border-color: var(--accent); }
   .foot { color: var(--muted); font-size: 11.5px; margin-top: 14px; line-height: 1.7; }
   .err { background: var(--red-bg); color: var(--red); padding: 14px 18px; margin: 20px 0; }
 </style>
@@ -209,9 +213,9 @@ async function main(){
       <span><i style="background:var(--card);border:1px solid var(--line)"></i>未启动</span>
       <span><i style="background:var(--yellow-bg)"></i>进行中</span>
       <span><i style="background:var(--green-bg)"></i>核心达标</span>
-      <span><i class="pdot" style="background:var(--p0)"></i>P0</span>
-      <span><i class="pdot" style="background:var(--p1)"></i>P1</span>
-      <span><i class="pdot" style="background:var(--p2)"></i>P2</span>
+      <span><i class="pdot" style="background:var(--ink)"></i>P0</span>
+      <span><i class="pdot" style="background:var(--p1bar)"></i>P1</span>
+      <span>角标：文档数（<span class="cnt" style="vertical-align:1px">n</span>有 <span class="cnt zero" style="vertical-align:1px">0</span>缺）</span>
     </div>
   </div>
   <div id="list"></div>`;
@@ -236,8 +240,8 @@ async function main(){
         <a href="https://${p.website.split(" ")[0]}" target="_blank">${p.website}</a>
         ${c.ir_url?`<a href="${c.ir_url}" target="_blank">IR ↗</a>`:""}</div>
       ${profile}
-      <div class="sect"><div class="sh">型号覆盖 — 点击型号进入产品级（绿=有资料 红=缺口）</div>
-        <div class="models">${p._cover.map(c2=>`<span class="${c2.ok?"m-ok":"m-no"}" data-t="${c2.t}">${c2.t}</span>`).join("")}</div></div>
+      <div class="sect"><div class="sh">型号覆盖 — 角标为该型号文档数（专属+涉及），点击进入产品级</div>
+        <div class="models">${p._cover.map(c2=>`<span class="${c2.ok?"m-ok":"m-no"}" data-t="${c2.t}">${c2.t}<b>${c2.exact.length+c2.rel.length}</b></span>`).join("")}</div></div>
       ${lineDocs.length?`<div class="sect"><div class="sh">产品线级资料（brochure / 白皮书等）</div>
         <div class="doclist">${lineDocs.map(docRow).join("")}</div></div>`:""}
       ${p.note?`<div class="sect"><div class="sh">采集备注</div><div style="color:var(--muted)">${p.note}</div></div>`:""}`;
@@ -254,7 +258,8 @@ async function main(){
   function detailHTML(p){
     const tabs=`<div class="dtabs">
       <span class="dtab ${selTab==="__co"?"on":""}" data-t="__co">公司档案</span>
-      ${p._cover.map(c=>`<span class="dtab ${selTab===c.t?"on":""} ${c.ok?"has":"gap"}" data-t="${c.t}">${c.t}</span>`).join("")}</div>`;
+      ${p._cover.map(c=>{const n=c.exact.length+c.rel.length;
+        return `<span class="dtab ${selTab===c.t?"on":""}" data-t="${c.t}">${c.t}<span class="cnt ${n?"":"zero"}">${n}</span></span>`;}).join("")}</div>`;
     const pane=selTab==="__co"?companyPane(p):modelPane(p,selTab);
     return `<div class="detail">${tabs}<div class="pane">${pane}</div></div>`;
   }
