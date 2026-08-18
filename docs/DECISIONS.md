@@ -31,7 +31,7 @@
 
 | # | 交付物 | 说明 | 交付日 |
 |---|---|---|---|
-| C4 | **项目全景审读报告 `docs/PROJECT_PANORAMA.md`** 及其第六节优化次序：~~P0 安全修复~~（✅ 08-18 已做，#70 主修 + #71 补强，见会话续 41/42）→ P1 卫生债（Finding 编号重复/SUMMARY 滞后/索引过期）→ P2 代码收敛（common.py、打分表分页）→ P3 业务主线（M11 补厚、23 条复核、实体表补字段、导出管线、团队化通水） | 代码与业务双视角 A-to-Z 审读的结论。**不否决即按此次序在后续会话执行** | 08-18 |
+| C4 | **项目全景审读报告 `docs/PROJECT_PANORAMA.md`** 及其第六节优化次序：~~P0 安全修复~~（✅ 08-18 完成并上线，#70+#71+infra#10，见会话续 41/42）→ ~~P1 卫生债~~（✅ 08-18 云端部分完成，见会话续 43；**剩两件本机作业**：`build_library_index.py` 重建索引、`fix_stale_paths.py --apply` 修死路径）→ P2 代码收敛（common.py、打分表分页）【未认领】→ P3 业务主线（M11 补厚、23 条复核、实体表补字段、导出管线、团队化通水）【未认领】 | 代码与业务双视角 A-to-Z 审读的结论。**不否决即按此次序在后续会话执行**。多会话并行请先把对应档标【已认领 @会话】再动手（会话续 42 撞车教训） | 08-18 |
 
 C1、C2、C3 已于 2026-08-17 一并批复（用户原话「好的。就按照你的来」），
 见下方「审阅三档分流（C3）」与正文。
@@ -92,6 +92,41 @@ C1、C2、C3 已于 2026-08-17 一并批复（用户原话「好的。就按照�
 - **二进制不进 git**：研报库本体留本地，索引（LIBRARY_INDEX.md）和打分（LIBRARY_SCORES.csv）进 git。
 
 ## 会话决策记录（倒序）
+
+### 2026-08-18（会话续 43：P1 卫生债云端部分落地；P0 部署实测确认）
+
+**P0 收官确认（现网实测）**：13:12 主仓修复合并 → 13:13 autopull 自动重建 dchub →
+13:23 用户合并 infra#10 → 13:26 autopull 检测 Caddyfile 变化自动重建 caddy。
+caddy 容器内 grep 实证新配置生效。经验教训一条：**单文件 bind mount 的配置，
+`exec reload` 读的是旧 inode，必须重建容器**——autopull 已内置此逻辑，infra 的
+PR 描述里那句「可 exec caddy reload」不可信。残余改进项（infra 仓库）：autopull
+重建 caddy 前没有 validate 闸门，配置写坏会带倒六个站。
+
+**P1 卫生债（用户说「请继续」，按 C4 次序执行；云端能做的全部完成）**：
+1. **Finding 编号修复**：后现重复条改新号——M07 第二个 F5→**F7**（800G 双义）、
+   第二个 F6→**F8**（以太网 vs IB）、M08 第二个 F8→**F10**（运行 vs 设计 PUE），
+   各带勘误行；外部引用（brief.json/verify_queue）均指向首现条，不受影响。
+   M04-F8、M12-F6 确认为跳号（从未使用），文末加「编号说明」留痕，空号不回填。
+2. **SUMMARY.md 版本口径**：头部改为如实声明——十条判断提炼于 68 条时点，现 150 条
+   （current 127/needs-review 23）、82 条未参与提炼；经抽查十条判断与新增结论无直接
+   冲突（其中两条被 M08-F7、M13-F6 强化）；**实质重炼列入 P3**，完成前按 08-15 版读。
+3. **LIBRARY_INDEX.md**：顶部加过期横幅（旧结构 17,843 份 vs 现 28,759）；
+   build_library_index.py 修表头（Mxx 目录不再挂空映射）。**重建须本机跑**。
+4. **死路径**：新增 `pipeline/fix_stale_paths.py`（本机专用）——按文件名在库内重定位，
+   **唯一匹配才改写、行永不删、零命中与多命中进报告人工裁**。云端实测 809 行
+   老前缀（07_/05_/04_ 为主，771 行目录级），但 02_/03_ 目录按 B2 仍实存，
+   **云端无库本体、不猜路径**，改写全部交本机磁盘实测。
+5. **README/ops 同步**：pipeline/README 现有脚本表从 10 补到 22 个（全部实际脚本），
+   「规划中」清掉三个早已实现的；标出 5 个仅本机可跑的（sec/update_ciks/reader/
+   map-PDF/index/fix_stale_paths）。ops.html 补 workorder/blindspot/intake/facts
+   四个任务按钮，reader/map 标注「仅本机」。
+6. **死代码**：删 bom3d.html 从未 add 进场景的 lot Mesh；deploy/ 三处过时标注——
+   README 与 Caddyfile 标「已被 infra 仓库取代」，Dockerfile 改掉「认证由
+   Cloudflare Access 负责」的过时注释（认证已内置 serve.py）。
+
+**待本机执行的两件作业**（本机会话开场读到这里就跑）：
+`python3 pipeline/build_library_index.py` 与
+`python3 pipeline/fix_stale_paths.py`（先干跑看报告，再 `--apply`，然后 validate）。
 
 ### 2026-08-18（会话续 42：P0 补强 #71——两会话撞车后收窄为差量）
 

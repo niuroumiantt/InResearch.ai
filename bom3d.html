@@ -265,8 +265,6 @@ label("散热 COOLING", -FW / 2 - 12, 8, 0, 1.0, "#8fd6a5");
 // 南侧：水罐
 const wt = cyl(1.4, 3.4, 0x7fb3d8, -8, 2.1, FD / 2 + 7, "water");
 explode(wt, 0, 0, 6, 0.15, 0.42);
-// 地块外圈示意
-const lot = new THREE.Mesh(new THREE.RingGeometry(0.1, 0.4, 4), M(0x39445a));
 label("园区 · 土地与电网", 0, 0.6, FD / 2 + 14, 0.85, "#7d8aa3");
 box(80, 0.15, 52, 0x121826, 0, 0.05, 0, "land", { roughness: 1 });
 
