@@ -154,6 +154,10 @@ class Handler(SimpleHTTPRequestHandler):
             return self._html(200, auth.LOGIN_PAGE)
         if self.path == "/logout":
             return self._redirect("/login", [("Set-Cookie", auth.clear_cookie())])
+        if self.path == "/account":
+            if not user:                   # 本地模式没有身份，改密无从谈起
+                return self._redirect("/")
+            return self._html(200, auth.PASSWD_PAGE)
         if self.path == "/api/whoami":
             return self._json(200, {"ok": True, "user": user or "(本地模式)"})
         if self.path == "/api/status":
@@ -180,9 +184,27 @@ class Handler(SimpleHTTPRequestHandler):
             return self.api_run(payload)
         if self.path == "/api/add-price":
             return self.api_add_price(payload)
+        if self.path == "/api/passwd":
+            return self.api_passwd(payload, user)
         if self.path == "/api/assign":
             return self.api_assign(payload, by=user)
         return self._json(404, {"ok": False, "error": "未知接口"})
+
+    def api_passwd(self, payload, user):
+        """登录用户自助改密。必须验旧密码——cookie 被顺走 ≠ 知道密码，
+        没有这道验证，捡到会话的人可以改掉密码把真主人锁在门外。"""
+        if not user:
+            return self._json(400, {"ok": False, "error": "本地模式无需密码"})
+        old_pw = payload.get("old_password") or ""
+        new_pw = payload.get("new_password") or ""
+        if len(new_pw) < 8:
+            return self._json(400, {"ok": False, "error": "新密码至少 8 位"})
+        if not auth.verify_password(user, old_pw):
+            auth.record_fail(auth.client_ip(self))   # 猜旧密码与猜登录同罪，计入限速
+            return self._json(401, {"ok": False, "error": "当前密码不对"})
+        auth.set_password(user, new_pw)
+        log_run("auth", f"改密成功 {user} @ {auth.client_ip(self)}")
+        return self._json(200, {"ok": True})
 
     def api_run(self, payload):
         task = payload.get("task")
