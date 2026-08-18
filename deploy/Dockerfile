@@ -6,8 +6,8 @@ FROM python:3.12-slim
 WORKDIR /app
 COPY . /app
 
-# 容器内需要绑 0.0.0.0 才能被反代访问；**认证由前置的 Caddy + Cloudflare Access 负责**，
-# serve.py 自身没有任何认证（见 pipeline/serve.py main() 的注释）。
+# 容器内需要绑 0.0.0.0 才能被反代访问；绑非本机地址时 serve.py **自动强制开启内置
+# 登录认证**（auth.py，2026-08-18 起），失败模式是锁死不是敞开；前置 Caddy 只做 TLS 与分流。
 ENV HUB_HOST=0.0.0.0 \
     PYTHONUNBUFFERED=1
 

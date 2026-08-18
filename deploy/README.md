@@ -1,5 +1,11 @@
 # 部署手册 —— AWS 新加坡（ap-southeast-1）
 
+> ⚠️ **本手册已被实际部署取代**（2026-08-18 标注）：现网跑在 Lightsail 单机上，
+> 由 **niuroumiantt/infra** 仓库的 `inresearch-host/` 统辖（六域名 Caddy 分流、
+> autopull 两分钟自动上站、Caddyfile 变更自动重建容器）。**改现网配置去改 infra 仓库**；
+> 本目录保留 Dockerfile（infra compose 仍引用）与本手册的容量测算依据，
+> 其余（Caddyfile、Cloudflare Access 方案）仅作历史参考。
+
 > 实习生主要在新加坡（2026-08-17 用户确认），故选 `ap-southeast-1`：
 > 完整功能区、**不需要 ICP 备案**、对东南亚延迟低，对中国大陆访问也是标准折中。
 
