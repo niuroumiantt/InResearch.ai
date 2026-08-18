@@ -1,117 +1,68 @@
 #!/usr/bin/env python3
-"""Hub 用户管理 CLI——加用户的唯一入口，网页端没有也不会有注册。
+"""Hub 用户管理 CLI——与网页管理后台（ops.html「用户与权限」区）共用 auth.py 的同一套入口。
 
-服务器上的用法（容器内跑，users.json 在挂载卷里、容器重建不丢）：
+日常加人**建议直接用网页后台**（admin 登录 → 工作台 → 用户与权限）。
+本 CLI 是兜底：admin 自己忘了密码、或网页不可用时，SSH 上来救场：
 
-    docker compose exec dchub python3 pipeline/users.py add yidian
-    docker compose exec dchub python3 pipeline/users.py add intern-zhang
-    docker compose exec dchub python3 pipeline/users.py list
-    docker compose exec dchub python3 pipeline/users.py passwd intern-zhang
-    docker compose exec dchub python3 pipeline/users.py remove intern-zhang
+    docker compose exec dchub python3 pipeline/users.py add admin
+    docker compose exec dchub python3 pipeline/users.py passwd admin
+    docker compose exec dchub python3 pipeline/users.py rename old-name new-name
+    docker compose exec dchub python3 pipeline/users.py role <用户名> <角色>
+    docker compose exec dchub python3 pipeline/users.py list / remove <用户名>
 
-- `add` 不带 --password 时自动生成 16 位随机密码并**只打印这一次**——抄下来发给使用者。
-- 密码只存 PBKDF2 哈希；`remove` 立即生效（已发的会话 cookie 下一次请求即失效）。
-- ⚠️ data/users.json 不进 git。**它只活在服务器上，重装机器前记得单独备份**
-  ——丢了不致命（重新 add 即可），但所有人要重新拿密码。
-
+规则（实现全在 auth.py，此处只是壳）：首个用户强制 admin；其余默认 intern；
+最后一个 admin 不可降级/删除；密码只显示一次；data/users.json 不进 git。
 零依赖。
 """
 import argparse
-import re
-import secrets
 import sys
-from datetime import date
 
-from auth import load_users, save_users, hash_password, set_password, USERS_FILE
-
-NAME_RE = re.compile(r"^[a-z0-9][a-z0-9_.-]{1,30}$")
+import auth
 
 
-def cmd_add(args):
-    users = load_users()
-    if args.username in users:
-        sys.exit(f"✗ 用户已存在：{args.username}（改密码用 passwd）")
-    if not NAME_RE.fullmatch(args.username):
-        sys.exit("✗ 用户名须为小写字母/数字开头，2-31 位，可含 _ . -")
-    pw = args.password or secrets.token_urlsafe(12)
-    # 首个用户必为 admin（否则系统里永远没有管理员）；其余默认 intern——
-    # **权限从最小给起**，member/admin 都要显式指定。
-    role = "admin" if not users else (args.role or "intern")
-    salt = secrets.token_bytes(16).hex()
-    users[args.username] = {"salt": salt, "hash": hash_password(pw, salt),
-                            "role": role, "created": date.today().isoformat()}
-    save_users(users)
-    print(f"✓ 已添加 {args.username}（角色：{role}）")
-    if role == "admin" and not args.role:
-        print("  （首个用户自动设为 admin）")
-    if not args.password:
-        print(f"  初始密码（只显示这一次，抄给使用者）：{pw}")
-
-
-def cmd_passwd(args):
-    users = load_users()
-    if args.username not in users:
-        sys.exit(f"✗ 用户不存在：{args.username}")
-    pw = args.password or secrets.token_urlsafe(12)
-    set_password(args.username, pw)
-    print(f"✓ 已重置 {args.username} 的密码")
-    if not args.password:
-        print(f"  新密码（只显示这一次）：{pw}")
-
-
-def cmd_remove(args):
-    users = load_users()
-    if args.username not in users:
-        sys.exit(f"✗ 用户不存在：{args.username}")
-    del users[args.username]
-    save_users(users)
-    print(f"✓ 已删除 {args.username}（其会话下一次请求即失效）")
-
-
-def cmd_role(args):
-    from auth import ROLES
-    users = load_users()
-    if args.username not in users:
-        sys.exit(f"✗ 用户不存在：{args.username}")
-    if args.role not in ROLES:
-        sys.exit(f"✗ 角色须为 {'/'.join(ROLES)}")
-    admins = [n for n, u in users.items() if u.get("role", "member") == "admin"]
-    if users[args.username].get("role") == "admin" and args.role != "admin" and admins == [args.username]:
-        sys.exit("✗ 这是最后一个 admin，降级会让系统没有管理员——先给别人升 admin")
-    users[args.username]["role"] = args.role
-    save_users(users)
-    print(f"✓ {args.username} → {args.role}（其已发会话下一次请求即按新角色生效）")
-
-
-def cmd_list(_):
-    users = load_users()
-    if not users:
-        print(f"（无用户。文件位置：{USERS_FILE}）")
-        return
-    for name, u in sorted(users.items()):
-        print(f"  {name:24} {u.get('role', 'member'):8} 创建于 {u.get('created', '?')}")
-    print(f"共 {len(users)} 人")
+def _out(ok, msg, pw=None):
+    if not ok:
+        sys.exit(f"✗ {msg}")
+    print(f"✓ {msg}")
+    if pw:
+        print(f"  密码（只显示这一次，抄给使用者）：{pw}")
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Hub 用户管理（无注册，仅此入口）")
+    ap = argparse.ArgumentParser(description="Hub 用户管理（无注册；与网页后台同一套规则）")
     sub = ap.add_subparsers(dest="cmd", required=True)
-    for c, fn, with_pw in (("add", cmd_add, True), ("passwd", cmd_passwd, True),
-                           ("remove", cmd_remove, False), ("list", cmd_list, False),
-                           ("role", cmd_role, False)):
-        p = sub.add_parser(c)
+    for c in ("add", "passwd", "remove", "list", "role", "rename"):
+        sp = sub.add_parser(c)
         if c != "list":
-            p.add_argument("username")
+            sp.add_argument("username")
         if c == "add":
-            p.add_argument("--role", choices=["admin", "member", "intern"],
-                           help="缺省 intern（首个用户强制 admin）")
+            sp.add_argument("--role", choices=list(auth.ROLES), help="缺省 intern（首个用户强制 admin）")
         if c == "role":
-            p.add_argument("role", help="admin / member / intern")
-        if with_pw:
-            p.add_argument("--password", help="不给则自动生成随机密码并打印一次")
-        p.set_defaults(fn=fn)
-    args = ap.parse_args()
-    args.fn(args)
+            sp.add_argument("role", help="/".join(auth.ROLES))
+        if c == "rename":
+            sp.add_argument("new_name")
+        if c in ("add", "passwd"):
+            sp.add_argument("--password", help="不给则自动生成随机密码并打印一次")
+    a = ap.parse_args()
+
+    if a.cmd == "add":
+        _out(*auth.add_user(a.username, a.password, a.role))
+    elif a.cmd == "passwd":
+        _out(*auth.reset_password(a.username, a.password))
+    elif a.cmd == "remove":
+        _out(*auth.remove_user(a.username))
+    elif a.cmd == "role":
+        _out(*auth.set_role(a.username, a.role))
+    elif a.cmd == "rename":
+        _out(*auth.rename_user(a.username, a.new_name))
+    else:
+        users = auth.load_users()
+        if not users:
+            print(f"（无用户。文件位置：{auth.USERS_FILE}）")
+            return
+        for name, u in sorted(users.items()):
+            print(f"  {name:24} {u.get('role', 'member'):8} 创建于 {u.get('created', '?')}")
+        print(f"共 {len(users)} 人")
 
 
 if __name__ == "__main__":
