@@ -14,6 +14,7 @@ API（供 ops.html 管理后台调用）：
 """
 import os
 import json
+import auth
 import subprocess
 import sys
 import threading
@@ -54,6 +55,9 @@ def log_run(task, output):
         f"[{datetime.now().isoformat(timespec='seconds')}]\n{output}\n", encoding="utf-8")
 
 
+AUTH_ON = False   # main() 按绑定地址决定；127.0.0.1 本地用法永远不要求登录
+
+
 class Handler(SimpleHTTPRequestHandler):
     def __init__(self, *a, **kw):
         super().__init__(*a, directory=str(ROOT), **kw)
@@ -69,7 +73,89 @@ class Handler(SimpleHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
 
+    def _html(self, code, html, extra_headers=()):
+        body = html.encode()
+        self.send_response(code)
+        self.send_header("Content-Type", "text/html; charset=utf-8")
+        self.send_header("Content-Length", str(len(body)))
+        for k, v in extra_headers:
+            self.send_header(k, v)
+        self.end_headers()
+        self.wfile.write(body)
+
+    def _redirect(self, to, extra_headers=()):
+        self.send_response(302)
+        self.send_header("Location", to)
+        for k, v in extra_headers:
+            self.send_header(k, v)
+        self.end_headers()
+
+    # ── 认证闸门 ─────────────────────────────────────────
+    # 返回 None 表示本请求已被闸门处理完（重定向/拒绝），调用方应直接 return；
+    # 返回用户名或 "" 表示放行。**除 /login 与 /api/login 外一切路径都过闸**，
+    # 包括静态文件——账本、事实层、打分表全在静态目录里，漏一条路径等于没锁门。
+    def _gate(self):
+        if not AUTH_ON:
+            return ""
+        # 密钥与用户表即使登录后也永远不可经 HTTP 取到（纵深防御）
+        if "/.hub_secret" in self.path or "/users.json" in self.path:
+            self._json(404, {"ok": False, "error": "not found"})
+            return None
+        user = auth.session_user(self.headers.get("Cookie"))
+        if user:
+            return user
+        if self.path == "/login" or self.path == "/api/login":
+            return ""
+        if self.path.startswith("/api/"):
+            self._json(401, {"ok": False, "error": "未登录"})
+        else:
+            self._redirect("/login")
+        return None
+
+    def api_login(self, payload):
+        ip = auth.client_ip(self)
+        if auth.throttled(ip):
+            return self._json(429, {"ok": False, "error": "尝试过于频繁，5 分钟后再试"})
+        username = (payload.get("username") or "").strip()
+        password = payload.get("password") or ""
+        if not auth.load_users():
+            return self._json(503, {"ok": False, "error":
+                "尚未创建任何用户——在服务器上运行 "
+                "`docker compose exec dchub python3 pipeline/users.py add <用户名>`"})
+        if auth.verify_password(username, password):
+            log_run("auth", f"登录成功 {username} @ {ip}")
+            return self._login_ok(username)
+        auth.record_fail(ip)
+        log_run("auth", f"登录失败 {username or '(空)'} @ {ip}")
+        return self._json(401, {"ok": False, "error": "用户名或密码不对"})
+
+    def _login_ok(self, username):
+        body = json.dumps({"ok": True, "user": username}, ensure_ascii=False).encode()
+        self.send_response(200)
+        self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Content-Length", str(len(body)))
+        self.send_header("Set-Cookie", auth.make_cookie(username))
+        self.end_headers()
+        self.wfile.write(body)
+
+    def do_HEAD(self):
+        # SimpleHTTPRequestHandler 自带 HEAD 支持——不过闸的话可以用 HEAD 探文件存在与大小
+        if self._gate() is None:
+            return
+        return super().do_HEAD()
+
     def do_GET(self):
+        user = self._gate()
+        if user is None:
+            return
+        if self.path == "/login":
+            if user:                       # 已登录还访问登录页 → 回首页
+                return self._redirect("/")
+            return self._html(200, auth.LOGIN_PAGE)
+        if self.path == "/logout":
+            return self._redirect("/login", [("Set-Cookie", auth.clear_cookie())])
+        if self.path == "/api/whoami":
+            return self._json(200, {"ok": True, "user": user or "(本地模式)"})
         if self.path == "/api/status":
             st = {}
             for t in TASKS:
@@ -80,17 +166,22 @@ class Handler(SimpleHTTPRequestHandler):
         return super().do_GET()
 
     def do_POST(self):
+        user = self._gate()
+        if user is None:
+            return
         try:
             n = int(self.headers.get("Content-Length", 0))
             payload = json.loads(self.rfile.read(n).decode() or "{}")
         except (ValueError, json.JSONDecodeError):
             return self._json(400, {"ok": False, "error": "请求体不是合法 JSON"})
+        if self.path == "/api/login":
+            return self.api_login(payload)
         if self.path == "/api/run":
             return self.api_run(payload)
         if self.path == "/api/add-price":
             return self.api_add_price(payload)
         if self.path == "/api/assign":
-            return self.api_assign(payload)
+            return self.api_assign(payload, by=user)
         return self._json(404, {"ok": False, "error": "未知接口"})
 
     def api_run(self, payload):
@@ -142,7 +233,7 @@ class Handler(SimpleHTTPRequestHandler):
         return self._json(200, {"ok": True, "msg": f"已入库 {rec['series_id']}@{rec['as_of']} = {rec['value']} {rec['unit']}，指标已回填"})
 
 
-    def api_assign(self, rec):
+    def api_assign(self, rec, by=""):
         """派工/改状态。工单号必须真实存在于当前队列——否则就是派了一件不存在的活。"""
         wid = (rec.get("workorder_id") or "").strip()
         status = (rec.get("status") or "").strip()
@@ -170,6 +261,8 @@ class Handler(SimpleHTTPRequestHandler):
                 row[k] = rec[k]
         row.setdefault("status", "已派")
         row["updated"] = datetime.now().date().isoformat()
+        if by:
+            row["by"] = by          # 谁派的工——登录后自动带上，审计用
         if not row.get("assigned"):
             row["assigned"] = row["updated"]
         if row.get("status") == "已放弃" and not row.get("note"):
@@ -186,11 +279,19 @@ def main():
     # 但那必须配合前置反代与身份验证（见 deploy/README.md），
     # **不要只为了「能访问」就改这个变量**。
     host = os.environ.get("HUB_HOST", "127.0.0.1")
+    # 登录认证：绑非本机地址时强制开启（HUB_AUTH=off 可显式关，仅限调试）；
+    # 本地 127.0.0.1 单人用法永远不要求登录，行为与从前一样。
+    global AUTH_ON
+    AUTH_ON = {"on": True, "off": False}.get(
+        os.environ.get("HUB_AUTH", "").lower(), host != "127.0.0.1")
     srv = ThreadingHTTPServer((host, port), Handler)
     where = "http://localhost:%d" % port if host == "127.0.0.1" else f"{host}:{port}"
-    print(f"Datacenter Hub 服务运行于 {where}（静态 + 管理 API）")
-    if host != "127.0.0.1":
-        print("⚠️  已绑定非本机地址且本服务无认证——**前面必须有反代 + 身份验证**")
+    print(f"Datacenter Hub 服务运行于 {where}（静态 + 管理 API）"
+          f"｜登录认证 {'开' if AUTH_ON else '关'}")
+    if AUTH_ON and not auth.load_users():
+        print("⚠️  认证已开但还没有用户——先跑 `python3 pipeline/users.py add <用户名>`")
+    if host != "127.0.0.1" and not AUTH_ON:
+        print("⚠️  绑定了非本机地址且认证被显式关闭——确认前面有反代级认证再这么跑")
     srv.serve_forever()
 
 
