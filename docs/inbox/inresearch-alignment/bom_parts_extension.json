@@ -1,0 +1,107 @@
+{
+ "_note": "建议在 framework/bom.json 新增的14个部件节点（走框架变更流程：00_overview.md记变更日志）。另建议修正现有节点公司挂接：hbm应挂samsung/sk-hynix/micron（当前挂的是用户nvidia/amd）；storage/ups/optics节点公司缺失或不全，以products.json为准回填。",
+ "proposed_parts": [
+  {
+   "id": "fpga",
+   "layer": "L5",
+   "name": "FPGA/异构加速",
+   "module": "M06",
+   "status": "mature"
+  },
+  {
+   "id": "interconnect-chip",
+   "layer": "L5",
+   "name": "互联与接口芯片（Retimer/CXL/PCIe Switch/BMC）",
+   "module": "M06",
+   "status": "mature"
+  },
+  {
+   "id": "dram",
+   "layer": "L5",
+   "name": "DRAM模组（RDIMM/MRDIMM/CXL）",
+   "module": "M06",
+   "status": "tight",
+   "desc": "从现有hbm节点拆分：服务器内存与HBM供需周期不同步，价格序列应分开"
+  },
+  {
+   "id": "ssd",
+   "layer": "L5",
+   "name": "企业级SSD/NAND",
+   "module": "M06",
+   "status": "tight",
+   "desc": "从现有storage节点拆分"
+  },
+  {
+   "id": "hdd",
+   "layer": "L5",
+   "name": "近线HDD",
+   "module": "M06",
+   "status": "tight",
+   "desc": "从现有storage节点拆分；建议拆分后删除storage节点"
+  },
+  {
+   "id": "storage-array",
+   "layer": "L4",
+   "name": "存储系统/阵列",
+   "module": "M06",
+   "status": "mature"
+  },
+  {
+   "id": "switch-asic",
+   "layer": "L5",
+   "name": "交换芯片",
+   "module": "M07",
+   "status": "tight",
+   "desc": "从network-switch中拆出芯片层（Broadcom/Marvell/盛科）"
+  },
+  {
+   "id": "copper-interconnect",
+   "layer": "L4",
+   "name": "高速铜互联（DAC/AEC/背板）",
+   "module": "M07",
+   "status": "tight"
+  },
+  {
+   "id": "cabling",
+   "layer": "L3",
+   "name": "结构化布线与光纤",
+   "module": "M07",
+   "status": "mature"
+  },
+  {
+   "id": "coolant",
+   "layer": "L4",
+   "name": "冷却液/工质",
+   "module": "M08",
+   "status": "mature"
+  },
+  {
+   "id": "immersion",
+   "layer": "L3",
+   "name": "浸没式液冷",
+   "module": "M08",
+   "status": "emerging"
+  },
+  {
+   "id": "fan-vc",
+   "layer": "L5",
+   "name": "风扇/VC/散热模组",
+   "module": "M08",
+   "status": "mature"
+  },
+  {
+   "id": "leak-detection",
+   "layer": "L3",
+   "name": "漏液检测",
+   "module": "M08",
+   "status": "tight"
+  },
+  {
+   "id": "modular-dc",
+   "layer": "L3",
+   "name": "微模块/预制化",
+   "module": "M09",
+   "status": "mature"
+  }
+ ]
+}
