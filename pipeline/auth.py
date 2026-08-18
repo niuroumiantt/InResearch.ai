@@ -157,6 +157,91 @@ def user_role(username: str) -> str:
     return r if r in ROLES else "member"
 
 
+# ── 用户 CRUD（CLI 与管理后台 API 的共用入口，规则只写一处）──
+
+NAME_RE_STR = r"^[a-z0-9][a-z0-9_.-]{1,30}$"
+
+
+def _validate_name(name: str):
+    import re
+    if not re.fullmatch(NAME_RE_STR, name or ""):
+        return "用户名须为小写字母/数字开头，2-31 位，可含 _ . -"
+    return None
+
+
+def add_user(name: str, password: str | None = None, role: str | None = None):
+    """返回 (ok, 提示或错误, 明文密码或 None)。密码只在这一次返回，之后只有哈希。"""
+    import secrets as _s
+    from datetime import date as _d
+    users = load_users()
+    if name in users:
+        return False, f"用户已存在：{name}", None
+    err = _validate_name(name)
+    if err:
+        return False, err, None
+    pw = password or _s.token_urlsafe(12)
+    # 首个用户必为 admin（否则系统里永远没有管理员）；其余默认 intern——权限从最小给起
+    r = "admin" if not users else (role or "intern")
+    if r not in ROLES:
+        return False, f"角色须为 {'/'.join(ROLES)}", None
+    salt = _s.token_bytes(16).hex()
+    users[name] = {"salt": salt, "hash": hash_password(pw, salt),
+                   "role": r, "created": _d.today().isoformat()}
+    save_users(users)
+    return True, f"已添加 {name}（角色：{r}）", pw
+
+
+def remove_user(name: str):
+    users = load_users()
+    if name not in users:
+        return False, f"用户不存在：{name}"
+    admins = [n for n, u in users.items() if u.get("role", "member") == "admin"]
+    if users[name].get("role") == "admin" and admins == [name]:
+        return False, "这是最后一个 admin，删掉会让系统没有管理员"
+    del users[name]
+    save_users(users)
+    return True, f"已删除 {name}（其会话下一次请求即失效）"
+
+
+def set_role(name: str, role: str):
+    users = load_users()
+    if name not in users:
+        return False, f"用户不存在：{name}"
+    if role not in ROLES:
+        return False, f"角色须为 {'/'.join(ROLES)}"
+    admins = [n for n, u in users.items() if u.get("role", "member") == "admin"]
+    if users[name].get("role") == "admin" and role != "admin" and admins == [name]:
+        return False, "这是最后一个 admin，降级会让系统没有管理员——先给别人升 admin"
+    users[name]["role"] = role
+    save_users(users)
+    return True, f"{name} → {role}（即时生效）"
+
+
+def rename_user(old: str, new: str):
+    """改用户名。旧名的会话 cookie 随之失效（cookie 里是名字），需用新名重登。"""
+    users = load_users()
+    if old not in users:
+        return False, f"用户不存在：{old}"
+    if new in users:
+        return False, f"新用户名已被占用：{new}"
+    err = _validate_name(new)
+    if err:
+        return False, err
+    users[new] = users.pop(old)
+    save_users(users)
+    return True, f"{old} → {new}（旧名会话已失效，需用新名重新登录）"
+
+
+def reset_password(name: str, password: str | None = None):
+    """返回 (ok, 提示, 明文新密码或 None)。"""
+    import secrets as _s
+    if name not in load_users():
+        return False, f"用户不存在：{name}", None
+    pw = password or _s.token_urlsafe(12)
+    set_password(name, pw)
+    return True, f"已重置 {name} 的密码", pw
+
+
 # ── 登录限速 ────────────────────────────────────────────────
 
 def client_ip(handler) -> str:

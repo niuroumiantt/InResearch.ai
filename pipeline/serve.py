@@ -168,6 +168,13 @@ class Handler(SimpleHTTPRequestHandler):
         if self.path == "/api/whoami":
             return self._json(200, {"ok": True, "user": user or "(本地模式)",
                                     "role": auth.user_role(user) if user else "admin"})
+        if self.path == "/api/users":
+            if user and auth.user_role(user) != "admin":
+                return self._json(403, {"ok": False, "error": "用户管理仅限 admin"})
+            users = auth.load_users()
+            return self._json(200, {"ok": True, "users": [
+                {"name": n, "role": u.get("role", "member"), "created": u.get("created", "?")}
+                for n, u in sorted(users.items())]})
         if self.path == "/api/status":
             st = {}
             for t in TASKS:
@@ -199,6 +206,10 @@ class Handler(SimpleHTTPRequestHandler):
             if role == "intern":
                 return self._json(403, {"ok": False, "error": "录入数据需要内部成员权限"})
             return self.api_add_price(payload)
+        if self.path == "/api/users":
+            if user and role != "admin":
+                return self._json(403, {"ok": False, "error": "用户管理仅限 admin"})
+            return self.api_users(payload, by=user)
         if self.path == "/api/passwd":
             return self.api_passwd(payload, user)
         if self.path == "/api/assign":
@@ -220,6 +231,43 @@ class Handler(SimpleHTTPRequestHandler):
         auth.set_password(user, new_pw)
         log_run("auth", f"改密成功 {user} @ {auth.client_ip(self)}")
         return self._json(200, {"ok": True})
+
+    def api_users(self, payload, by=""):
+        """管理后台的用户管理（仅 admin，路由层已拦）。
+        add / reset 会把明文密码返回**这一次**——前端一次性展示，之后只有哈希。"""
+        action = payload.get("action")
+        name = (payload.get("username") or "").strip()
+        if action == "add":
+            ok, msg, pw = auth.add_user(name, payload.get("password") or None,
+                                        payload.get("role") or None)
+            if ok:
+                log_run("auth", f"加用户 {name} by {by or '(本地)'}")
+            return self._json(200 if ok else 400, {"ok": ok, "msg" if ok else "error": msg,
+                                                   **({"password": pw} if ok else {})})
+        if action == "remove":
+            if name == by:
+                return self._json(400, {"ok": False, "error": "不能删除自己——请让另一位 admin 操作"})
+            ok, msg = auth.remove_user(name)
+            if ok:
+                log_run("auth", f"删用户 {name} by {by or '(本地)'}")
+            return self._json(200 if ok else 400, {"ok": ok, "msg" if ok else "error": msg})
+        if action == "role":
+            ok, msg = auth.set_role(name, payload.get("role") or "")
+            if ok:
+                log_run("auth", f"改角色 {name}→{payload.get('role')} by {by or '(本地)'}")
+            return self._json(200 if ok else 400, {"ok": ok, "msg" if ok else "error": msg})
+        if action == "rename":
+            ok, msg = auth.rename_user(name, (payload.get("new_name") or "").strip())
+            if ok:
+                log_run("auth", f"改名 {name}→{payload.get('new_name')} by {by or '(本地)'}")
+            return self._json(200 if ok else 400, {"ok": ok, "msg" if ok else "error": msg})
+        if action == "reset":
+            ok, msg, pw = auth.reset_password(name, payload.get("password") or None)
+            if ok:
+                log_run("auth", f"重置密码 {name} by {by or '(本地)'}")
+            return self._json(200 if ok else 400, {"ok": ok, "msg" if ok else "error": msg,
+                                                   **({"password": pw} if ok else {})})
+        return self._json(400, {"ok": False, "error": f"未知 action：{action}"})
 
     def api_run(self, payload):
         task = payload.get("task")
