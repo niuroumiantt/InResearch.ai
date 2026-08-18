@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "产品目录记录（复合主键 = company_id + product_line）",
+  "description": "来源：产品研究目录项目（供应链轴），对齐包 docs/inbox/inresearch-alignment/。两项目仅靠 company_id 与 bom_parts 两个 ID 锚定；spec 资料本体在对方 library/，本库按 library_path 引用。每次对方目录版本更新整文件替换。",
+  "type": "object",
+  "required": ["company_id", "product_line", "bom_parts", "module", "status", "priority", "library_path"],
+  "properties": {
+    "company_id": {"type": "string", "description": "外键 → data/companies.json"},
+    "company_en": {"type": "string"},
+    "company_cn": {"type": "string"},
+    "is_group": {"type": "boolean", "description": "true = 厂商组（多家公司一条记录）"},
+    "hq": {"type": "string"},
+    "segment": {"type": "string", "description": "对方项目的供应链环节名（9 环节之一）"},
+    "sheet": {"type": "string", "description": "对方 Excel 源表名，如 3-算力芯片与核心器件"},
+    "category": {"type": "string"},
+    "product_line": {"type": "string"},
+    "representative_models": {"type": "string"},
+    "bom_layer": {"type": "string", "enum": ["L1", "L2", "L3", "L4", "L5"]},
+    "bom_parts": {"type": "array", "minItems": 1, "items": {"type": "string"}, "description": "外键 → framework/bom.json parts[].id（爆炸图锚点）"},
+    "module": {"type": "string", "description": "关联研究模块 Mxx"},
+    "status": {"type": "string", "enum": ["mature", "tight", "transition", "emerging"], "description": "与 bom.json 同口径"},
+    "priority": {"type": "string", "enum": ["P0", "P1", "P2"], "description": "对方爬取建档优先级；P0 首批 90 天"},
+    "spec_fields": {"type": "string", "description": "该产品线要建档的 spec 字段清单（人读）"},
+    "website": {"type": "string"},
+    "note": {"type": "string"},
+    "library_path": {"type": "string", "description": "对方 library/ 落盘路径前缀；本体不在本仓库"}
+  }
+}

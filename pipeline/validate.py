@@ -151,6 +151,47 @@ def main():
         if r.get("grade") not in GRADES:
             err(f"contracts[{cid}]: grade 非法")
 
+    # 产品目录与爆炸图 BOM 的引用完整性
+    # 由来（2026-08-18）：产品研究目录项目对齐落库（docs/inbox/inresearch-alignment/），
+    # 两项目仅靠 company_id + bom_part_id 两个 ID 锚定；锚点断了对齐就断了，所以必须校验。
+    # 顺带发现 bom.json 的 companies 此前从没人检查——coldplate 挂着的 motivair
+    # 在 companies.json 里根本不存在，爆炸图上点开就是死链。
+    bom_path = ROOT / "framework" / "bom.json"
+    bom_part_ids = set()
+    if bom_path.exists():
+        bom = json.loads(bom_path.read_text(encoding="utf-8"))
+        layer_ids = {ly["id"] for ly in bom.get("layers", [])}
+        bom_part_ids = {p["id"] for p in bom.get("parts", [])}
+        if len(bom_part_ids) != len(bom.get("parts", [])):
+            err("bom.json: 部件 id 重复")
+        for p in bom.get("parts", []):
+            if p.get("layer") not in layer_ids:
+                err(f"bom[{p['id']}]: layer 非法: {p.get('layer')}")
+            for c in p.get("companies", []):
+                if c not in comp_by_id:
+                    err(f"bom[{p['id']}]: 引用了不存在的 company_id: {c}")
+
+    prod_status = {"mature", "tight", "transition", "emerging"}
+    products = load("products") if (DATA / "products.json").exists() else []
+    prod_keys = set()
+    for r in products:
+        rid = f"{r.get('company_id')}/{r.get('product_line')}"
+        k = (r.get("company_id"), r.get("product_line"))
+        if k in prod_keys:
+            err(f"products: 公司+产品线重复 {rid}")
+        prod_keys.add(k)
+        if r.get("company_id") not in comp_by_id:
+            err(f"products[{rid}]: 引用了不存在的 company_id")
+        for part in r.get("bom_parts", []) or [None]:
+            if bom_part_ids and part not in bom_part_ids:
+                err(f"products[{rid}]: 引用了不存在的 bom_part: {part}")
+        if r.get("status") not in prod_status:
+            err(f"products[{rid}]: status 非法（须 mature/tight/transition/emerging）: {r.get('status')}")
+        if r.get("priority") not in {"P0", "P1", "P2"}:
+            err(f"products[{rid}]: priority 非法: {r.get('priority')}")
+        if not r.get("library_path"):
+            err(f"products[{rid}]: 缺 library_path（对方资料库锚点）")
+
     # 模块声明与模块定义文件不得分叉
     # 由来（2026-08-17）：framework/modules/Mxx_*.md 的「核心问题」有 80 条，
     # 而工单生成器读的 modules.json 只声明了 36 条——**44 条搭骨架时就想清楚的问题
@@ -191,7 +232,8 @@ def main():
 
     # 汇总
     print(f"记录数: projects={len(projects)} companies={len(companies)} prices={len(prices)} "
-          f"policies={len(policies)} contracts={len(contracts)} sources={len(sources)}")
+          f"policies={len(policies)} contracts={len(contracts)} sources={len(sources)} "
+          f"products={len(products)} bom_parts={len(bom_part_ids)}")
     for m in errors:
         print(f"  ERROR {m}")
     for m in warns:

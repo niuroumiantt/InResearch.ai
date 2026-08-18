@@ -9,11 +9,13 @@
     "name_cn": {"type": "string"},
     "ticker": {"type": ["string", "null"], "description": "交易所:代码，如 NASDAQ:NVDA；非上市为 null"},
     "cik": {"type": ["string", "null"], "description": "SEC CIK 号（10位补零），用于 pipeline/fetch_sec.py"},
-    "roles": {"type": "array", "minItems": 1, "items": {"type": "string", "enum": ["hyperscaler", "colo", "neocloud", "ai-lab", "chip", "server-odm", "cooling", "electrical", "network", "construction", "utility", "capital", "platform", "other"]}, "description": "一家公司可有多角色（如 nvidia: chip+capital）"},
+    "roles": {"type": "array", "minItems": 1, "items": {"type": "string", "enum": ["hyperscaler", "colo", "neocloud", "ai-lab", "chip", "server-odm", "storage", "cooling", "electrical", "network", "facility", "construction", "utility", "capital", "platform", "sovereign", "other"]}, "description": "一家公司可有多角色（如 nvidia: chip+capital）。storage/facility 于 2026-08-18 随产品目录对齐新增；sovereign 为既有数据补登枚举。9 环节→roles 映射表见 DECISIONS 2026-08-18"},
     "modules": {"type": "array", "items": {"type": "string"}, "description": "关联模块 id 列表"},
     "hq_country": {"type": "string"},
-    "profile": {"type": "string", "description": "一段话档案：在本行业的位置与关键事实"},
+    "is_group": {"type": "boolean", "description": "true = 合并采集的厂商组（多家公司一条记录，name 内以 / 分隔），来自产品研究目录"},
+    "website": {"type": ["string", "null"], "description": "官网域名（产品资料入口），来自产品研究目录"},
+    "profile": {"type": ["string", "null"], "description": "一段话档案：在本行业的位置与关键事实"},
     "ir_url": {"type": ["string", "null"]},
-    "verified_date": {"type": "string"}
+    "verified_date": {"type": ["string", "null"], "description": "null = 待核验（进 verify.py 队列），产品目录合并进来的新公司初始即 null"}
   }
 }

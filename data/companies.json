@@ -1,1677 +1,4625 @@
 {
-  "_note": "公司库（L0）。迁移自《玩家清单》41 条（2026-07-23 核验）+ 项目开发商补录。芯片自研线（TPU/Trainium/Maia/MTIA/Jalapeño）并入母公司档案。cik 由 pipeline/update_ciks.py 按 ticker 自动回填；非美股为 null。",
-  "records": [
-    {
-      "company_id": "microsoft",
-      "name": "Microsoft",
-      "name_cn": "微软",
-      "ticker": "NASDAQ:MSFT",
-      "cik": "0000789019",
-      "roles": [
-        "hyperscaler",
-        "chip"
-      ],
-      "modules": [
-        "M02",
-        "M03",
-        "M06"
-      ],
-      "hq_country": "US",
-      "profile": "2026自然年分析口径约1900亿美元capex（需拆分服务器/租赁/建筑）；Fairwater multi-gigawatt 跨州网络（威斯康星已上线）；Maia 200 已在 Iowa/Arizona 部署（30%性能/美元仅对自身机队）；AI 超算跃迁：1万V100(2020)→14400 H100(2023)→等效30倍(2024-05)，60+区域300+DC（Azure 战略 VP 口径）",
-      "ir_url": "https://www.microsoft.com/en-us/investor",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "amazon",
-      "name": "Amazon / AWS",
-      "name_cn": "亚马逊",
-      "ticker": "NASDAQ:AMZN",
-      "cik": "0001018724",
-      "roles": [
-        "hyperscaler",
-        "chip"
-      ],
-      "modules": [
-        "M02",
-        "M03",
-        "M06"
-      ],
-      "hq_country": "US",
-      "profile": "2026 capex约2000亿美元口径；Trainium2约140万颗落地（芯片数不折算MW）；Trainium3 GA、Trainium4预计2027；Project Rainier 5GW为协议上限非当前容量",
-      "ir_url": "https://ir.aboutamazon.com",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "alphabet-google",
-      "name": "Alphabet / Google",
-      "name_cn": "谷歌",
-      "ticker": "NASDAQ:GOOGL",
-      "cik": "0001652044",
-      "roles": [
-        "hyperscaler",
-        "chip"
-      ],
-      "modules": [
-        "M02",
-        "M03",
-        "M06"
-      ],
-      "hq_country": "US",
-      "profile": "2026 capex约1750—1850亿美元；TPU Ironwood GA、TPU8t/8i Coming soon（44% TCO非官方公开基准）；Visakhapatnam 印度 Mega AI Hub 计划",
-      "ir_url": "https://abc.xyz/investor/",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "meta",
-      "name": "Meta",
-      "name_cn": "Meta",
-      "ticker": "NASDAQ:META",
-      "cik": "0001326801",
-      "roles": [
-        "hyperscaler",
-        "chip"
-      ],
-      "modules": [
-        "M02",
-        "M03",
-        "M06"
-      ],
-      "hq_country": "US",
-      "profile": "2026 capex约1250—1450亿美元；Hyperion 5GW规划、Prometheus 1GW+；MTIA 现有推理部署与未来多代路线分开（Broadcom 合作）",
-      "ir_url": "https://investor.atmeta.com",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "oracle",
-      "name": "Oracle",
-      "name_cn": "甲骨文",
-      "ticker": "NYSE:ORCL",
-      "cik": "0001341439",
-      "roles": [
-        "hyperscaler"
-      ],
-      "modules": [
-        "M02",
-        "M03"
-      ],
-      "hq_country": "US",
-      "profile": "OCI 以大额算力合同（Stargate）跃入第一梯队；RPO 是需求侧关键监测数",
-      "ir_url": "https://investor.oracle.com",
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "openai",
-      "name": "OpenAI",
-      "name_cn": "OpenAI",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "ai-lab",
-        "chip"
-      ],
-      "modules": [
-        "M03",
-        "M06",
-        "M12"
-      ],
-      "hq_country": "US",
-      "profile": "最大单一算力需求方；Stargate 主导者；Jalapeño 首代推理芯片（Broadcom合作）目标2026年底初始部署，10GW为多年计划不计入当前容量",
-      "ir_url": null,
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "anthropic",
-      "name": "Anthropic",
-      "name_cn": "Anthropic",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "ai-lab"
-      ],
-      "modules": [
-        "M03",
-        "M12"
-      ],
-      "hq_country": "US",
-      "profile": "多云算力策略：AWS Project Rainier（Trainium）+ 获得 xAI Colossus 1 容量 + Google TPU；收入/支出比是 M12 监测对象",
-      "ir_url": null,
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "xai",
-      "name": "SpaceXAI / xAI",
-      "name_cn": "xAI",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "ai-lab"
-      ],
-      "modules": [
-        "M03"
-      ],
-      "hq_country": "US",
-      "profile": "Colossus 1 官方披露220,000+ GPU 运营；2025年末 I/II 超过100万 H100 等效（GPU等效与物理GPU数量必须分开）；总MW/GW未公开；已并入 SpaceXAI",
-      "ir_url": null,
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "equinix",
-      "name": "Equinix",
-      "name_cn": "易昆尼克斯",
-      "ticker": "NASDAQ:EQIX",
-      "cik": "0001101239",
-      "roles": [
-        "colo"
-      ],
-      "modules": [
-        "M02",
-        "M11"
-      ],
-      "hq_country": "US",
-      "profile": "零售托管/xScale：281座/77市场（公司口径）；Q1 2026约60%的最大交易与AI相关（60%不是全部业务占比）",
-      "ir_url": "https://investor.equinix.com",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "digital-realty",
-      "name": "Digital Realty",
-      "name_cn": "数字房地产信托",
-      "ticker": "NYSE:DLR",
-      "cik": "0001297996",
-      "roles": [
-        "colo"
-      ],
-      "modules": [
-        "M02",
-        "M11"
-      ],
-      "hq_country": "US",
-      "profile": "现有IT容量3.024GW、在建1.169GW、可开发约6.3GW（三层必须分列）；必须分 100% share 与 DLR share；REIT 估值锚",
-      "ir_url": "https://investor.digitalrealty.com",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "vantage",
-      "name": "Vantage Data Centers",
-      "name_cn": "Vantage",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "colo"
-      ],
-      "modules": [
-        "M02"
-      ],
-      "hq_country": "US",
-      "profile": "BTS/批发：41园区、26市场、组合约9GW（运营+建设+规划混合口径，不可写成已运营IT负载）；Frontier 1.4GW 德州园区",
-      "ir_url": "https://vantage-dc.com/",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "qts",
-      "name": "QTS Data Centers",
-      "name_cn": "QTS",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "colo"
-      ],
-      "modules": [
-        "M02"
-      ],
-      "hq_country": "US",
-      "profile": "BTS/批发：75+设施运营或开发中（混合口径）；暂不提供全球总MW；Blackstone 所有",
-      "ir_url": "https://www.qtsdatacenters.com/",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "cyrusone",
-      "name": "CyrusOne",
-      "name_cn": "CyrusOne",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "colo"
-      ],
-      "modules": [
-        "M02"
-      ],
-      "hq_country": "US",
-      "profile": "60+运营设施、50+开发项目、官网1GW+电力容量（1GW+与德州1.1GW供电协议不能相加）；KKR/GIP 2022年150亿美元私有化",
-      "ir_url": "https://www.cyrusone.com/",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "stack-infrastructure",
-      "name": "STACK Infrastructure",
-      "name_cn": "STACK",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "colo"
-      ],
-      "modules": [
-        "M02"
-      ],
-      "hq_country": "US",
-      "profile": "区域页面组合潜力至少约6.1GW（运营+开发+规划混合，需逐园区拆状态）；Stargate Doña Ana 开发商",
-      "ir_url": "https://www.stackinfra.com/",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "switch",
-      "name": "Switch",
-      "name_cn": "Switch",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "colo"
-      ],
-      "modules": [
-        "M02"
-      ],
-      "hq_country": "US",
-      "profile": "园区运营商：Las Vegas 495MW、Grand Rapids 237MW、Atlanta 150MW+扩展潜力（完工潜力口径，使用当前园区页，不沿用旧总量）",
-      "ir_url": "https://www.switch.com/",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "coreweave",
-      "name": "CoreWeave",
-      "name_cn": "CoreWeave",
-      "ticker": "NASDAQ:CRWV",
-      "cik": "0001769628",
-      "roles": [
-        "neocloud"
-      ],
-      "modules": [
-        "M02",
-        "M11",
-        "M13"
-      ],
-      "hq_country": "US",
-      "profile": "Neocloud 龙头；口径分层（2026Q2，2026-08-14 核验）：活跃功率 1.5GW（年底目标>1.85GW）、收入积压 1,040 亿美元（不含 Q3 新增超 250 亿；RPO 与积压是两个口径）、总债务约 350 亿美元、Q2 收入 25.75 亿（+112%）/净亏损 6.26 亿——收入翻倍与亏损扩大并行，M11 期限错配第一样本",
-      "ir_url": "https://investors.coreweave.com",
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "nebius",
-      "name": "Nebius",
-      "name_cn": "Nebius",
-      "ticker": "NASDAQ:NBIS",
-      "cik": "0001513845",
-      "roles": [
-        "neocloud"
-      ],
-      "modules": [
-        "M02",
-        "M11"
-      ],
-      "hq_country": "NL",
-      "profile": "已锁定/签约电力目标2.5GW，预计2026年底实际接电0.8—1.0GW（合同电力与接电分开）；Microsoft、Meta 合同",
-      "ir_url": "https://nebius.com/investors",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "crusoe",
-      "name": "Crusoe",
-      "name_cn": "Crusoe",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "neocloud",
-        "construction"
-      ],
-      "modules": [
-        "M02",
-        "M04"
-      ],
-      "hq_country": "US",
-      "profile": "Stargate Abilene 开发方；4.5GW天然气为规划/锁定供能（非投运）；已退出 Project Jade",
-      "ir_url": null,
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "lambda",
-      "name": "Lambda",
-      "name_cn": "Lambda",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "neocloud"
-      ],
-      "modules": [
-        "M02",
-        "M11",
-        "M13"
-      ],
-      "hq_country": "US",
-      "profile": "与Microsoft签署数十亿美元多年协议；2026年获得10亿美元信贷；产品覆盖5—75MW分布式站点；Kansas City 首期24MW、潜力100MW+需分阶段（GW级目标不等于已运营GW）",
-      "ir_url": "https://lambda.ai/",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "nxtra",
-      "name": "Nxtra by Airtel",
-      "name_cn": "Nxtra",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "colo"
-      ],
-      "modules": [
-        "M02"
-      ],
-      "hq_country": "IN",
-      "profile": "印度：约300MW当前、目标1GW（目标不等于已建成）；14+大型+120+边缘设施；Alpha Wave/Carlyle 投资",
-      "ir_url": "https://www.nxtra.in/",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "ntt-data",
-      "name": "NTT DATA",
-      "name_cn": "NTT数据",
-      "ticker": "TYO:9613",
-      "cik": null,
-      "roles": [
-        "colo"
-      ],
-      "modules": [
-        "M02"
-      ],
-      "hq_country": "JP",
-      "profile": "全球/日本运营商；Keihanna OSK11 30MW 已运营（项目值不可外推全球总量）",
-      "ir_url": "https://www.nttdata.com/global/en/about-us/ir",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "kddi",
-      "name": "KDDI / Telehouse",
-      "name_cn": "KDDI",
-      "ticker": "TYO:9433",
-      "cik": null,
-      "roles": [
-        "colo"
-      ],
-      "modules": [
-        "M02"
-      ],
-      "hq_country": "JP",
-      "profile": "Osaka Sakai AI DC（GB200+直接液冷，2026-01运营）；Telehouse TOKYO Tama 5-2nd 18MW 在建（2027年秋开业）",
-      "ir_url": "https://www.kddi.com/english/corporate/ir/",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "scala",
-      "name": "Scala Data Centers",
-      "name_cn": "Scala",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "colo"
-      ],
-      "modules": [
-        "M02"
-      ],
-      "hq_country": "BR",
-      "profile": "拉美：Tamboré 450MW规划、AI City首期54MW（分项目与阶段）；DigitalBridge 支持",
-      "ir_url": "https://scaladatacenters.com/",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "cirion",
-      "name": "Cirion Technologies",
-      "name_cn": "Cirion",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "colo",
-        "network"
-      ],
-      "modules": [
-        "M02",
-        "M07"
-      ],
-      "hq_country": "MULTI",
-      "profile": "拉美运营商/网络：12主要DC、3在建、10 edge（160互联DC非自有设施）；Stonepeak 所有",
-      "ir_url": "https://www.ciriontechnologies.com/",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "digital-edge",
-      "name": "Digital Edge",
-      "name_cn": "Digital Edge",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "colo"
-      ],
-      "modules": [
-        "M02"
-      ],
-      "hq_country": "SG",
-      "profile": "亚太9国平台；韩国 Bupyeong 96MW（36运营+60在建，历史120MW规划已废弃）、SEL5 Ansan 60MW已获电力；Stonepeak 支持",
-      "ir_url": "https://www.digitaledgedc.com/",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "stt-gdc",
-      "name": "STT GDC India",
-      "name_cn": "新电信数据中心（印度）",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "colo"
-      ],
-      "modules": [
-        "M02"
-      ],
-      "hq_country": "IN",
-      "profile": "Chennai Siruseri 园区45MW（首期7.2MW运营）；Hyderabad 100MW 为 MoU/规划",
-      "ir_url": "https://www.sttelemediagdc.com/",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "odata",
-      "name": "ODATA (Aligned)",
-      "name_cn": "ODATA",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "colo"
-      ],
-      "modules": [
-        "M02"
-      ],
-      "hq_country": "MX",
-      "profile": "QR03 Querétaro：200MW 园区供电通电（供电口径非IT满载），目标300MW；母公司 Aligned",
-      "ir_url": "https://aligneddc.com/",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "gds",
-      "name": "GDS Holdings",
-      "name_cn": "万国数据",
-      "ticker": "NASDAQ:GDS",
-      "cik": "0001526125",
-      "roles": [
-        "colo"
-      ],
-      "modules": [
-        "M02",
-        "M14"
-      ],
-      "hq_country": "CN",
-      "profile": "2026Q1在服面积674,269平米、利用率77.3%、在建118,411平米（按面积披露，不与VNET的MW直接排名；200MW为新增签约非新增投运）；持有DayOne少数股权",
-      "ir_url": "https://investors.gds-services.com",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "vnet",
-      "name": "VNET Group",
-      "name_cn": "世纪互联",
-      "ticker": "NASDAQ:VNET",
-      "cik": "0001508475",
-      "roles": [
-        "colo"
-      ],
-      "modules": [
-        "M02",
-        "M14"
-      ],
-      "hq_country": "CN",
-      "profile": "2026Q1批发在服907MW、在建516MW、客户使用687MW、利用率75.7%；零售50,170柜、利用率64.1%（批发MW与零售机柜必须分栏；承诺869MW不等于使用687MW）",
-      "ir_url": "https://ir.vnet.com",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "chindata",
-      "name": "秦淮数据 / Chindata (Wintrix)",
-      "name_cn": "秦淮数据",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "colo"
-      ],
-      "modules": [
-        "M02",
-        "M14"
-      ],
-      "hq_country": "CN",
-      "profile": "公开容量主要停留在2023年（投运及在建近900MW），不能作为2026实时容量；2026年 HEC 牵头财团完成约40亿美元中国业务收购，需项目级刷新",
-      "ir_url": "https://www.chindatagroup.com/",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "nvidia",
-      "name": "NVIDIA",
-      "name_cn": "英伟达",
-      "ticker": "NASDAQ:NVDA",
-      "cik": "0001045810",
-      "roles": [
-        "chip",
-        "capital"
-      ],
-      "modules": [
-        "M06",
-        "M11"
-      ],
-      "hq_country": "US",
-      "profile": "GB300 NVL72 135kW TDP/155kW峰值（功率区分TDP、峰值、设施设计）；Vera Rubin 当前官方为NVL72；以投资/预付深度介入客户资金链（循环交易观察对象）",
-      "ir_url": "https://investor.nvidia.com",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "amd",
-      "name": "AMD",
-      "name_cn": "超威",
-      "ticker": "NASDAQ:AMD",
-      "cik": "0000002488",
-      "roles": [
-        "chip"
-      ],
-      "modules": [
-        "M06"
-      ],
-      "hq_country": "US",
-      "profile": "MI355X 1400W TBP；Helios 整柜72颗MI455X，2026H2开始出货；与Microsoft/OpenAI/Meta的6GW协议均为多年里程碑（非当前部署）",
-      "ir_url": "https://ir.amd.com",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "schneider-electric",
-      "name": "Schneider Electric / Motivair",
-      "name_cn": "施耐德电气",
-      "ticker": "EPA:SU",
-      "cik": null,
-      "roles": [
-        "electrical",
-        "cooling"
-      ],
-      "modules": [
-        "M08",
-        "M09"
-      ],
-      "hq_country": "FR",
-      "profile": "Motivair 75%控股（剩余25%计划后续取得）；CDU单机2.5MW",
-      "ir_url": "https://www.se.com/ww/en/about-us/investor-relations/",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "eaton",
-      "name": "Eaton / Boyd Thermal",
-      "name_cn": "伊顿",
-      "ticker": "NYSE:ETN",
-      "cik": "0001551182",
-      "roles": [
-        "electrical",
-        "cooling"
-      ],
-      "modules": [
-        "M08",
-        "M09"
-      ],
-      "hq_country": "US",
-      "profile": "2026年3月完成95亿美元收购Boyd Thermal；Boyd预测2026销售17亿美元（预测销售不等于Eaton新增收入）",
-      "ir_url": "https://www.eaton.com/us/en-us/company/investor-relations.html",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "ecolab",
-      "name": "Ecolab / CoolIT",
-      "name_cn": "艺康",
-      "ticker": "NYSE:ECL",
-      "cik": "0000031462",
-      "roles": [
-        "cooling"
-      ],
-      "modules": [
-        "M08"
-      ],
-      "hq_country": "US",
-      "profile": "2026年7月完成约47.5亿美元收购CoolIT；CHx2000单机2MW（产能为公司披露，非交付量）；高科技业务目标2030年40亿美元",
-      "ir_url": "https://investor.ecolab.com",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "vertiv",
-      "name": "Vertiv / CoolTera",
-      "name_cn": "维谛技术",
-      "ticker": "NYSE:VRT",
-      "cik": "0001674101",
-      "roles": [
-        "cooling",
-        "electrical"
-      ],
-      "modules": [
-        "M08",
-        "M09",
-        "M11"
-      ],
-      "hq_country": "US",
-      "profile": "CoolTera 2023年末收购；CoolChip CDU最高2.3MW（集团订单不能全部归液冷）；订单簿是行业景气度前瞻指标",
-      "ir_url": "https://investors.vertiv.com",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "trane",
-      "name": "Trane Technologies / LiquidStack",
-      "name_cn": "特灵科技",
-      "ticker": "NYSE:TT",
-      "cik": "0001466258",
-      "roles": [
-        "cooling"
-      ],
-      "modules": [
-        "M08"
-      ],
-      "hq_country": "IE",
-      "profile": "2026年3月完成收购LiquidStack（浸没式先驱，保留品牌但母公司更新）",
-      "ir_url": "https://investors.tranetechnologies.com",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "delta-electronics",
-      "name": "Delta Electronics",
-      "name_cn": "台达电子",
-      "ticker": "TWSE:2308",
-      "cik": null,
-      "roles": [
-        "cooling",
-        "electrical"
-      ],
-      "modules": [
-        "M08",
-        "M09",
-        "M14"
-      ],
-      "hq_country": "TW",
-      "profile": "电源/散热链亚洲主力；800V HVDC 生态关键玩家",
-      "ir_url": "https://www.deltaww.com/en-US/investors",
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "ge-vernova",
-      "name": "GE Vernova",
-      "name_cn": "GE 弗诺瓦",
-      "ticker": "NYSE:GEV",
-      "cik": "0001996810",
-      "roles": [
-        "electrical",
-        "utility"
-      ],
-      "modules": [
-        "M04",
-        "M09"
-      ],
-      "hq_country": "US",
-      "profile": "燃气轮机三巨头之一；订单簿年数 = gas_turbine_backlog_years 指标来源",
-      "ir_url": "https://www.gevernova.com/investors",
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "blackstone",
-      "name": "Blackstone",
-      "name_cn": "黑石",
-      "ticker": "NYSE:BX",
-      "cik": "0001393818",
-      "roles": [
-        "capital"
-      ],
-      "modules": [
-        "M11"
-      ],
-      "hq_country": "US",
-      "profile": "2026年披露全球数据中心平台约1650亿美元、未来开发管道约1600亿美元、计划到2026年底投资或承诺约1000亿美元（平台/管道/已投资本不能混写）；QTS、AirTrunk、CoreWeave（AirTrunk 800MW+为客户承诺容量）",
-      "ir_url": "https://ir.blackstone.com",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "brookfield",
-      "name": "Brookfield",
-      "name_cn": "布鲁克菲尔德",
-      "ticker": "NYSE:BN",
-      "cik": "0001001085",
-      "roles": [
-        "capital"
-      ],
-      "modules": [
-        "M11"
-      ],
-      "hq_country": "CA",
-      "profile": "Compass 与 Data4 合计支持 1.6GW+ 合同容量和 3.5GW+ 开发潜力（开发潜力不等于在建或运营容量）",
-      "ir_url": "https://bn.brookfield.com",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "kkr",
-      "name": "KKR / GIP",
-      "name_cn": "KKR",
-      "ticker": "NYSE:KKR",
-      "cik": "0001404912",
-      "roles": [
-        "capital"
-      ],
-      "modules": [
-        "M11"
-      ],
-      "hq_country": "US",
-      "profile": "2022年联合GIP以150亿美元私有化CyrusOne（交易时约50座DC、约1GW电力容量——交易时点口径，不代表当前容量）",
-      "ir_url": "https://ir.kkr.com",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "mgx",
-      "name": "MGX",
-      "name_cn": "MGX",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "capital"
-      ],
-      "modules": [
-        "M11"
-      ],
-      "hq_country": "AE",
-      "profile": "阿布扎比主权背景AI投资平台；MGX Fund I 最终关闭承诺规模490亿美元（基金规模不是已投入数据中心资本）；OpenAI、Anthropic、Khazna",
-      "ir_url": "https://www.mgx.ae/",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "pif-humain",
-      "name": "PIF / HUMAIN",
-      "name_cn": "沙特公共投资基金 / HUMAIN",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "capital"
-      ],
-      "modules": [
-        "M11"
-      ],
-      "hq_country": "SA",
-      "profile": "PIF 创建 HUMAIN 并保持多数股权；与 Aramco 签署非约束性条款拟引入重要少数股东（交易未完成）；6.6GW、770亿美元只能作为管理层/媒体目标，不能写成官方批准规模",
-      "ir_url": "https://www.pif.gov.sa/",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "g42",
-      "name": "G42 / Khazna",
-      "name_cn": "G42",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "colo",
-        "capital"
-      ],
-      "modules": [
-        "M02",
-        "M11"
-      ],
-      "hq_country": "AE",
-      "profile": "UAE-US AI Campus（5GW规划）牵头财团；Stargate UAE 开发方；Khazna 为其数据中心平台",
-      "ir_url": "https://www.g42.ai/",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "sb-energy",
-      "name": "SB Energy",
-      "name_cn": "SB Energy",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "colo",
-        "utility"
-      ],
-      "modules": [
-        "M02",
-        "M04"
-      ],
-      "hq_country": "US",
-      "profile": "软银系能源开发商；Stargate Milam County 园区（规划约1.2GW）开发方",
-      "ir_url": null,
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "related-digital",
-      "name": "Related Digital",
-      "name_cn": "Related Digital",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "colo"
-      ],
-      "modules": [
-        "M02"
-      ],
-      "hq_country": "US",
-      "profile": "地产商 Related 旗下数据中心平台；Stargate Saline Township 园区（规划约1.4GW）开发方",
-      "ir_url": null,
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "black-hills",
-      "name": "Black Hills Corp.",
-      "name_cn": "Black Hills",
-      "ticker": "NYSE:BKH",
-      "cik": "0001130464",
-      "roles": [
-        "utility"
-      ],
-      "modules": [
-        "M04"
-      ],
-      "hq_country": "US",
-      "profile": "怀俄明公用事业公司；Cheyenne 1.8GW 项目（Project Jade）供电方，目标2028年初开始供电",
-      "ir_url": "https://ir.blackhillscorp.com",
-      "verified_date": "2026-07-23"
-    },
-    {
-      "company_id": "huawei",
-      "name": "Huawei",
-      "name_cn": "华为",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "chip",
-        "server-odm",
-        "electrical"
-      ],
-      "modules": [
-        "M14"
-      ],
-      "hq_country": "CN",
-      "profile": "昇腾生态核心；国产算力链锚点（M14 第一观察对象）",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "coolit-systems",
-      "name": "CoolIT Systems",
-      "name_cn": "CoolIT",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "cooling"
-      ],
-      "modules": [
-        "M08"
-      ],
-      "hq_country": "CA",
-      "profile": "冷板/CDU 专业厂商，CHx2000 2MW 已量产全球出货；靠近服务器接口是壁垒",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "grc-cooling",
-      "name": "GRC (Green Revolution Cooling)",
-      "name_cn": "GRC",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "cooling"
-      ],
-      "modules": [
-        "M08"
-      ],
-      "hq_country": "US",
-      "profile": "单相浸没式代表厂商，ICEraQ 系列",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "submer",
-      "name": "Submer",
-      "name_cn": "Submer",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "cooling"
-      ],
-      "modules": [
-        "M08"
-      ],
-      "hq_country": "ES",
-      "profile": "浸没式液冷厂商",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "accelsius",
-      "name": "Accelsius",
-      "name_cn": "Accelsius",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "cooling"
-      ],
-      "modules": [
-        "M08"
-      ],
-      "hq_country": "US",
-      "profile": "两相直接到芯片液冷；2025 年获 Johnson Controls 投资",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "zutacore",
-      "name": "ZutaCore",
-      "name_cn": "ZutaCore",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "cooling"
-      ],
-      "modules": [
-        "M08"
-      ],
-      "hq_country": "IL",
-      "profile": "两相直接到芯片液冷；与 Munters 战略联盟",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "johnson-controls",
-      "name": "Johnson Controls",
-      "name_cn": "江森自控",
-      "ticker": "NYSE:JCI",
-      "cik": "0000833444",
-      "roles": [
-        "cooling",
-        "electrical"
-      ],
-      "modules": [
-        "M08",
-        "M09"
-      ],
-      "hq_country": "IE",
-      "profile": "York 冷机 + Silent-Aire CDU（500kW-10MW+）+ 楼宇服务；投资 Accelsius 布局两相",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "modine-airedale",
-      "name": "Modine / Airedale",
-      "name_cn": "摩丁制造",
-      "ticker": "NYSE:MOD",
-      "cik": "0000067347",
-      "roles": [
-        "cooling"
-      ],
-      "modules": [
-        "M08"
-      ],
-      "hq_country": "US",
-      "profile": "Airedale CDU 400kW-2MW；2025 年披露 1.8 亿美元数据中心冷却订单",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "munters",
-      "name": "Munters",
-      "name_cn": "蒙特",
-      "ticker": "STO:MTRS",
-      "cik": null,
-      "roles": [
-        "cooling"
-      ],
-      "modules": [
-        "M08"
-      ],
-      "hq_country": "SE",
-      "profile": "LCX CDU 500kW-1.5MW；Virginia/Texas 扩产近 70 万平方英尺；与 ZutaCore 联盟",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "hitachi-energy",
-      "name": "Hitachi Energy",
-      "name_cn": "日立能源",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "electrical"
-      ],
-      "modules": [
-        "M09"
-      ],
-      "hq_country": "CH",
-      "profile": "高压变电/大型变压器主力供应商",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "siemens-energy",
-      "name": "Siemens Energy",
-      "name_cn": "西门子能源",
-      "ticker": "ETR:ENR",
-      "cik": null,
-      "roles": [
-        "electrical",
-        "utility"
-      ],
-      "modules": [
-        "M04",
-        "M09"
-      ],
-      "hq_country": "DE",
-      "profile": "燃气轮机三巨头之一 + 高压设备；订单簿是行业景气前瞻",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "abb",
-      "name": "ABB",
-      "name_cn": "ABB",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "electrical"
-      ],
-      "modules": [
-        "M09"
-      ],
-      "hq_country": "CH",
-      "profile": "中低压配电、UPS、电气化系统",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "caterpillar",
-      "name": "Caterpillar",
-      "name_cn": "卡特彼勒",
-      "ticker": "NYSE:CAT",
-      "cik": "0000018230",
-      "roles": [
-        "electrical"
-      ],
-      "modules": [
-        "M09"
-      ],
-      "hq_country": "US",
-      "profile": "备用柴发主力供应商",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "cummins",
-      "name": "Cummins",
-      "name_cn": "康明斯",
-      "ticker": "NYSE:CMI",
-      "cik": "0000026172",
-      "roles": [
-        "electrical"
-      ],
-      "modules": [
-        "M09"
-      ],
-      "hq_country": "US",
-      "profile": "备用柴发主力供应商",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "rolls-royce",
-      "name": "Rolls-Royce (mtu)",
-      "name_cn": "罗尔斯-罗伊斯",
-      "ticker": "LON:RR",
-      "cik": null,
-      "roles": [
-        "electrical"
-      ],
-      "modules": [
-        "M09"
-      ],
-      "hq_country": "GB",
-      "profile": "mtu 品牌大功率柴发/燃气机组",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "wartsila",
-      "name": "Wärtsilä",
-      "name_cn": "瓦锡兰",
-      "ticker": "HEL:WRT1V",
-      "cik": null,
-      "roles": [
-        "electrical",
-        "utility"
-      ],
-      "modules": [
-        "M04",
-        "M09"
-      ],
-      "hq_country": "FI",
-      "profile": "燃气内燃机组，主用电源方案参与者",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "hyosung",
-      "name": "Hyosung Heavy Industries",
-      "name_cn": "晓星重工",
-      "ticker": "KRX:298040",
-      "cik": null,
-      "roles": [
-        "electrical"
-      ],
-      "modules": [
-        "M09"
-      ],
-      "hq_country": "KR",
-      "profile": "大型变压器供应商（对美出口主力之一）",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "mitsubishi-power",
-      "name": "Mitsubishi Power (MHI)",
-      "name_cn": "三菱重工电力",
-      "ticker": "TYO:7011",
-      "cik": null,
-      "roles": [
-        "electrical",
-        "utility"
-      ],
-      "modules": [
-        "M04",
-        "M09"
-      ],
-      "hq_country": "JP",
-      "profile": "燃气轮机三巨头之一",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "blue-owl",
-      "name": "Blue Owl Capital",
-      "name_cn": "Blue Owl",
-      "ticker": "NYSE:OWL",
-      "cik": "0001823945",
-      "roles": [
-        "capital"
-      ],
-      "modules": [
-        "M02",
-        "M11"
-      ],
-      "hq_country": "US",
-      "profile": "数据中心开发资本方（净租赁/合资结构，Stargate 相关融资参与方）",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "primary-digital",
-      "name": "Primary Digital Infrastructure",
-      "name_cn": "Primary Digital",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "capital",
-        "colo"
-      ],
-      "modules": [
-        "M02"
-      ],
-      "hq_country": "US",
-      "profile": "数据中心基础设施开发/投资方",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "lancium",
-      "name": "Lancium",
-      "name_cn": "Lancium",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "colo",
-        "utility"
-      ],
-      "modules": [
-        "M02",
-        "M04"
-      ],
-      "hq_country": "US",
-      "profile": "Abilene Clean Campus 土地与电力方，能源优先园区模式",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "airtrunk",
-      "name": "AirTrunk",
-      "name_cn": "AirTrunk",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "colo"
-      ],
-      "modules": [
-        "M02",
-        "M05"
-      ],
-      "hq_country": "AU",
-      "profile": "亚太超大规模托管商（Blackstone 2024 年 240 亿澳元收购）",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "dayone",
-      "name": "DayOne Data Centers",
-      "name_cn": "DayOne",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "colo"
-      ],
-      "modules": [
-        "M02",
-        "M05"
-      ],
-      "hq_country": "SG",
-      "profile": "GDS 国际业务分拆，东南亚/柔佛主力开发商",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "datavolt",
-      "name": "DataVolt",
-      "name_cn": "DataVolt",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "colo",
-        "sovereign"
-      ],
-      "modules": [
-        "M02",
-        "M05"
-      ],
-      "hq_country": "SA",
-      "profile": "沙特数据中心开发商（主权项目载体）",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "celestica",
-      "name": "Celestica",
-      "name_cn": "天弘",
-      "ticker": "NYSE:CLS",
-      "cik": "0001030894",
-      "roles": [
-        "server-odm",
-        "network"
-      ],
-      "modules": [
-        "M06",
-        "M07"
-      ],
-      "hq_country": "CA",
-      "profile": "ODM/网络设备制造，AI 服务器与交换机代工",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "broadcom",
-      "name": "Broadcom",
-      "name_cn": "博通",
-      "ticker": "NASDAQ:AVGO",
-      "cik": "0001730168",
-      "roles": [
-        "chip",
-        "network"
-      ],
-      "modules": [
-        "M06",
-        "M07"
-      ],
-      "hq_country": "US",
-      "profile": "自研 ASIC 合作核心（TPU/MTIA/OpenAI 芯片）+ 网络交换芯片主导者",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "bloom-energy",
-      "name": "Bloom Energy",
-      "name_cn": "Bloom Energy",
-      "ticker": "NYSE:BE",
-      "cik": "0001664703",
-      "roles": [
-        "utility"
-      ],
-      "modules": [
-        "M04"
-      ],
-      "hq_country": "US",
-      "profile": "燃料电池现场供电方案",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "constellation-energy",
-      "name": "Constellation Energy",
-      "name_cn": "星座能源",
-      "ticker": "NASDAQ:CEG",
-      "cik": "0001868275",
-      "roles": [
-        "utility"
-      ],
-      "modules": [
-        "M04"
-      ],
-      "hq_country": "US",
-      "profile": "美国最大核电运营商；Three Mile Island/Crane 重启与微软 PPA",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "energy-northwest",
-      "name": "Energy Northwest",
-      "name_cn": "Energy Northwest",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "utility"
-      ],
-      "modules": [
-        "M04"
-      ],
-      "hq_country": "US",
-      "profile": "美国西北公用事业联合体，SMR（X-energy）项目主体",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "kairos-power",
-      "name": "Kairos Power",
-      "name_cn": "Kairos Power",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "utility"
-      ],
-      "modules": [
-        "M04"
-      ],
-      "hq_country": "US",
-      "profile": "SMR 开发商（谷歌采购协议）",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "aep",
-      "name": "American Electric Power",
-      "name_cn": "美国电力",
-      "ticker": "NASDAQ:AEP",
-      "cik": "0000004904",
-      "roles": [
-        "utility"
-      ],
-      "modules": [
-        "M04"
-      ],
-      "hq_country": "US",
-      "profile": "覆盖俄亥俄等数据中心热点区的输配电公用事业",
-      "ir_url": null,
-      "verified_date": "2026-08-14"
-    },
-    {
-      "company_id": "alibaba",
-      "name": "Alibaba Cloud",
-      "name_cn": "阿里云",
-      "ticker": "NYSE:BABA",
-      "cik": "0001577552",
-      "roles": [
-        "hyperscaler"
-      ],
-      "modules": [
-        "M14"
-      ],
-      "hq_country": "CN",
-      "profile": "中国最大云厂商；张北/乌兰察布等大型自建园区；SEC 20-F 申报主体（CIK 0001577552）",
-      "ir_url": null,
-      "verified_date": "2026-08-15"
-    },
-    {
-      "company_id": "tencent",
-      "name": "Tencent Cloud",
-      "name_cn": "腾讯云",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "hyperscaler"
-      ],
-      "modules": [
-        "M14"
-      ],
-      "hq_country": "CN",
-      "profile": "腾讯云；贵安七星洞等大型自建园区",
-      "ir_url": null,
-      "verified_date": "2026-08-15"
-    },
-    {
-      "company_id": "bytedance",
-      "name": "ByteDance",
-      "name_cn": "字节跳动",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "hyperscaler",
-        "ai-lab"
-      ],
-      "modules": [
-        "M14"
-      ],
-      "hq_country": "CN",
-      "profile": "抖音/豆包算力需求方；国内大型租赁+自建，海外东南亚扩张",
-      "ir_url": null,
-      "verified_date": "2026-08-15"
-    },
-    {
-      "company_id": "reliance",
-      "name": "Reliance Industries",
-      "name_cn": "信实工业",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "colo",
-        "sovereign"
-      ],
-      "modules": [
-        "M02"
-      ],
-      "hq_country": "IN",
-      "profile": "Jamnagar 千兆瓦级 AI 园区计划（与 NVIDIA 合作）",
-      "ir_url": null,
-      "verified_date": "2026-08-15"
-    },
-    {
-      "company_id": "fluidstack",
-      "name": "Fluidstack",
-      "name_cn": "Fluidstack",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "neocloud"
-      ],
-      "modules": [
-        "M02"
-      ],
-      "hq_country": "GB",
-      "profile": "AI 云平台；法国 Mistral/Eclairion 等 GW 级项目关联方",
-      "ir_url": null,
-      "verified_date": "2026-08-15"
-    },
-    {
-      "company_id": "mistral-ai",
-      "name": "Mistral AI",
-      "name_cn": "Mistral AI",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "ai-lab"
-      ],
-      "modules": [
-        "M03"
-      ],
-      "hq_country": "FR",
-      "profile": "欧洲头部 AI 实验室；法国 Essonne 园区算力锚定方",
-      "ir_url": null,
-      "verified_date": "2026-08-15"
-    },
-    {
-      "company_id": "eclairion",
-      "name": "Eclairion",
-      "name_cn": "Eclairion",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "colo"
-      ],
-      "modules": [
-        "M02"
-      ],
-      "hq_country": "FR",
-      "profile": "法国模块化数据中心开发商",
-      "ir_url": null,
-      "verified_date": "2026-08-15"
-    },
-    {
-      "company_id": "nscale",
-      "name": "Nscale",
-      "name_cn": "Nscale",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "neocloud"
-      ],
-      "modules": [
-        "M02"
-      ],
-      "hq_country": "GB",
-      "profile": "欧洲 Neocloud；挪威 Glomfjord 等站点，微软/OpenAI 合作",
-      "ir_url": null,
-      "verified_date": "2026-08-15"
-    },
-    {
-      "company_id": "aker",
-      "name": "Aker",
-      "name_cn": "Aker",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "capital"
-      ],
-      "modules": [
-        "M02"
-      ],
-      "hq_country": "NO",
-      "profile": "挪威工业集团；Narvik 数据中心合资（与 Nscale/OpenAI Stargate Norway）",
-      "ir_url": null,
-      "verified_date": "2026-08-15"
-    },
-    {
-      "company_id": "neom",
-      "name": "NEOM",
-      "name_cn": "NEOM",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "sovereign"
-      ],
-      "modules": [
-        "M05"
-      ],
-      "hq_country": "SA",
-      "profile": "沙特新城主体；Oxagon DataVolt 园区所在",
-      "ir_url": null,
-      "verified_date": "2026-08-15"
-    },
-    {
-      "company_id": "dataone",
-      "name": "DataOne",
-      "name_cn": "DataOne",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "colo"
-      ],
-      "modules": [
-        "M02"
-      ],
-      "hq_country": "SG",
-      "profile": "亚太数据中心开发商",
-      "ir_url": null,
-      "verified_date": "2026-08-15"
-    },
-    {
-      "company_id": "stock-farm-road",
-      "name": "Stock Farm Road",
-      "name_cn": "Stock Farm Road",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "capital"
-      ],
-      "modules": [
-        "M02"
-      ],
-      "hq_country": "US",
-      "profile": "韩国全南 GW 级项目开发方（LG 关联）",
-      "ir_url": null,
-      "verified_date": "2026-08-15"
-    },
-    {
-      "company_id": "blackrock",
-      "name": "BlackRock (AIP)",
-      "name_cn": "贝莱德",
-      "ticker": "NYSE:BLK",
-      "cik": "0002012383",
-      "roles": [
-        "capital"
-      ],
-      "modules": [
-        "M11"
-      ],
-      "hq_country": "US",
-      "profile": "AI 基础设施伙伴基金（AIP/GAIIP）主导方之一；2023 重组后现行申报主体为新母公司 BlackRock, Inc.（CIK 0002012383），老实体 0001364742 已改名 BlackRock Finance",
-      "ir_url": null,
-      "verified_date": "2026-08-15"
-    },
-    {
-      "company_id": "turner-construction",
-      "name": "Turner Construction",
-      "name_cn": "特纳建筑",
-      "ticker": null,
-      "cik": null,
-      "roles": [
-        "construction"
-      ],
-      "modules": [
-        "M10"
-      ],
-      "hq_country": "US",
-      "profile": "全美收入第一总包（2025 收入 $29.2B、+40%）；积压 2026Q1 $48.9B，数据中心约占 37%；母公司为德国 Hochtief（ACS 集团），美股无独立上市",
-      "ir_url": "https://www.turnerconstruction.com",
-      "verified_date": "2026-08-15"
-    },
-    {
-      "company_id": "cambricon",
-      "name": "Cambricon",
-      "name_cn": "寒武纪",
-      "ticker": "SSE:688256",
-      "cik": null,
-      "roles": [
-        "chip"
-      ],
-      "modules": [
-        "M14",
-        "M06"
-      ],
-      "hq_country": "CN",
-      "profile": "国产 AI 芯片第二（2025 出货约 26.5 万颗、市占 6.6%）；至 2026-02 累计交付 47 万颗，2026Q1 首次季度盈利约 10 亿元；科创板上市，A 股披露为一手信源",
-      "ir_url": "https://www.cambricon.com/investor",
-      "verified_date": "2026-08-15"
-    }
-  ]
+ "_note": "公司库（L0）。迁移自《玩家清单》41 条（2026-07-23 核验）+ 项目开发商补录。芯片自研线（TPU/Trainium/Maia/MTIA/Jalapeño）并入母公司档案。cik 由 pipeline/update_ciks.py 按 ticker 自动回填；非美股为 null。 2026-08-18 合并产品研究目录 companies_patch（对齐包 docs/inbox/inresearch-alignment/）：verified_date=null 的为待核验新公司；roles 由 9 环节映射为枚举（映射表见 DECISIONS 2026-08-18）。",
+ "records": [
+  {
+   "company_id": "microsoft",
+   "name": "Microsoft",
+   "name_cn": "微软",
+   "ticker": "NASDAQ:MSFT",
+   "cik": "0000789019",
+   "roles": [
+    "hyperscaler",
+    "chip"
+   ],
+   "modules": [
+    "M02",
+    "M03",
+    "M06"
+   ],
+   "hq_country": "US",
+   "profile": "2026自然年分析口径约1900亿美元capex（需拆分服务器/租赁/建筑）；Fairwater multi-gigawatt 跨州网络（威斯康星已上线）；Maia 200 已在 Iowa/Arizona 部署（30%性能/美元仅对自身机队）；AI 超算跃迁：1万V100(2020)→14400 H100(2023)→等效30倍(2024-05)，60+区域300+DC（Azure 战略 VP 口径）",
+   "ir_url": "https://www.microsoft.com/en-us/investor",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "amazon",
+   "name": "Amazon / AWS",
+   "name_cn": "亚马逊",
+   "ticker": "NASDAQ:AMZN",
+   "cik": "0001018724",
+   "roles": [
+    "hyperscaler",
+    "chip"
+   ],
+   "modules": [
+    "M02",
+    "M03",
+    "M06"
+   ],
+   "hq_country": "US",
+   "profile": "2026 capex约2000亿美元口径；Trainium2约140万颗落地（芯片数不折算MW）；Trainium3 GA、Trainium4预计2027；Project Rainier 5GW为协议上限非当前容量",
+   "ir_url": "https://ir.aboutamazon.com",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "alphabet-google",
+   "name": "Alphabet / Google",
+   "name_cn": "谷歌",
+   "ticker": "NASDAQ:GOOGL",
+   "cik": "0001652044",
+   "roles": [
+    "hyperscaler",
+    "chip"
+   ],
+   "modules": [
+    "M02",
+    "M03",
+    "M06"
+   ],
+   "hq_country": "US",
+   "profile": "2026 capex约1750—1850亿美元；TPU Ironwood GA、TPU8t/8i Coming soon（44% TCO非官方公开基准）；Visakhapatnam 印度 Mega AI Hub 计划",
+   "ir_url": "https://abc.xyz/investor/",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "meta",
+   "name": "Meta",
+   "name_cn": "Meta",
+   "ticker": "NASDAQ:META",
+   "cik": "0001326801",
+   "roles": [
+    "hyperscaler",
+    "chip"
+   ],
+   "modules": [
+    "M02",
+    "M03",
+    "M06"
+   ],
+   "hq_country": "US",
+   "profile": "2026 capex约1250—1450亿美元；Hyperion 5GW规划、Prometheus 1GW+；MTIA 现有推理部署与未来多代路线分开（Broadcom 合作）",
+   "ir_url": "https://investor.atmeta.com",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "oracle",
+   "name": "Oracle",
+   "name_cn": "甲骨文",
+   "ticker": "NYSE:ORCL",
+   "cik": "0001341439",
+   "roles": [
+    "hyperscaler"
+   ],
+   "modules": [
+    "M02",
+    "M03"
+   ],
+   "hq_country": "US",
+   "profile": "OCI 以大额算力合同（Stargate）跃入第一梯队；RPO 是需求侧关键监测数",
+   "ir_url": "https://investor.oracle.com",
+   "verified_date": "2026-08-14"
+  },
+  {
+   "company_id": "openai",
+   "name": "OpenAI",
+   "name_cn": "OpenAI",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "ai-lab",
+    "chip"
+   ],
+   "modules": [
+    "M03",
+    "M06",
+    "M12"
+   ],
+   "hq_country": "US",
+   "profile": "最大单一算力需求方；Stargate 主导者；Jalapeño 首代推理芯片（Broadcom合作）目标2026年底初始部署，10GW为多年计划不计入当前容量",
+   "ir_url": null,
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "anthropic",
+   "name": "Anthropic",
+   "name_cn": "Anthropic",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "ai-lab"
+   ],
+   "modules": [
+    "M03",
+    "M12"
+   ],
+   "hq_country": "US",
+   "profile": "多云算力策略：AWS Project Rainier（Trainium）+ 获得 xAI Colossus 1 容量 + Google TPU；收入/支出比是 M12 监测对象",
+   "ir_url": null,
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "xai",
+   "name": "SpaceXAI / xAI",
+   "name_cn": "xAI",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "ai-lab"
+   ],
+   "modules": [
+    "M03"
+   ],
+   "hq_country": "US",
+   "profile": "Colossus 1 官方披露220,000+ GPU 运营；2025年末 I/II 超过100万 H100 等效（GPU等效与物理GPU数量必须分开）；总MW/GW未公开；已并入 SpaceXAI",
+   "ir_url": null,
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "equinix",
+   "name": "Equinix",
+   "name_cn": "易昆尼克斯",
+   "ticker": "NASDAQ:EQIX",
+   "cik": "0001101239",
+   "roles": [
+    "colo"
+   ],
+   "modules": [
+    "M02",
+    "M11"
+   ],
+   "hq_country": "US",
+   "profile": "零售托管/xScale：281座/77市场（公司口径）；Q1 2026约60%的最大交易与AI相关（60%不是全部业务占比）",
+   "ir_url": "https://investor.equinix.com",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "digital-realty",
+   "name": "Digital Realty",
+   "name_cn": "数字房地产信托",
+   "ticker": "NYSE:DLR",
+   "cik": "0001297996",
+   "roles": [
+    "colo"
+   ],
+   "modules": [
+    "M02",
+    "M11"
+   ],
+   "hq_country": "US",
+   "profile": "现有IT容量3.024GW、在建1.169GW、可开发约6.3GW（三层必须分列）；必须分 100% share 与 DLR share；REIT 估值锚",
+   "ir_url": "https://investor.digitalrealty.com",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "vantage",
+   "name": "Vantage Data Centers",
+   "name_cn": "Vantage",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "colo"
+   ],
+   "modules": [
+    "M02"
+   ],
+   "hq_country": "US",
+   "profile": "BTS/批发：41园区、26市场、组合约9GW（运营+建设+规划混合口径，不可写成已运营IT负载）；Frontier 1.4GW 德州园区",
+   "ir_url": "https://vantage-dc.com/",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "qts",
+   "name": "QTS Data Centers",
+   "name_cn": "QTS",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "colo"
+   ],
+   "modules": [
+    "M02"
+   ],
+   "hq_country": "US",
+   "profile": "BTS/批发：75+设施运营或开发中（混合口径）；暂不提供全球总MW；Blackstone 所有",
+   "ir_url": "https://www.qtsdatacenters.com/",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "cyrusone",
+   "name": "CyrusOne",
+   "name_cn": "CyrusOne",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "colo"
+   ],
+   "modules": [
+    "M02"
+   ],
+   "hq_country": "US",
+   "profile": "60+运营设施、50+开发项目、官网1GW+电力容量（1GW+与德州1.1GW供电协议不能相加）；KKR/GIP 2022年150亿美元私有化",
+   "ir_url": "https://www.cyrusone.com/",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "stack-infrastructure",
+   "name": "STACK Infrastructure",
+   "name_cn": "STACK",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "colo"
+   ],
+   "modules": [
+    "M02"
+   ],
+   "hq_country": "US",
+   "profile": "区域页面组合潜力至少约6.1GW（运营+开发+规划混合，需逐园区拆状态）；Stargate Doña Ana 开发商",
+   "ir_url": "https://www.stackinfra.com/",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "switch",
+   "name": "Switch",
+   "name_cn": "Switch",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "colo"
+   ],
+   "modules": [
+    "M02"
+   ],
+   "hq_country": "US",
+   "profile": "园区运营商：Las Vegas 495MW、Grand Rapids 237MW、Atlanta 150MW+扩展潜力（完工潜力口径，使用当前园区页，不沿用旧总量）",
+   "ir_url": "https://www.switch.com/",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "coreweave",
+   "name": "CoreWeave",
+   "name_cn": "CoreWeave",
+   "ticker": "NASDAQ:CRWV",
+   "cik": "0001769628",
+   "roles": [
+    "neocloud"
+   ],
+   "modules": [
+    "M02",
+    "M11",
+    "M13"
+   ],
+   "hq_country": "US",
+   "profile": "Neocloud 龙头；口径分层（2026Q2，2026-08-14 核验）：活跃功率 1.5GW（年底目标>1.85GW）、收入积压 1,040 亿美元（不含 Q3 新增超 250 亿；RPO 与积压是两个口径）、总债务约 350 亿美元、Q2 收入 25.75 亿（+112%）/净亏损 6.26 亿——收入翻倍与亏损扩大并行，M11 期限错配第一样本",
+   "ir_url": "https://investors.coreweave.com",
+   "verified_date": "2026-08-14"
+  },
+  {
+   "company_id": "nebius",
+   "name": "Nebius",
+   "name_cn": "Nebius",
+   "ticker": "NASDAQ:NBIS",
+   "cik": "0001513845",
+   "roles": [
+    "neocloud"
+   ],
+   "modules": [
+    "M02",
+    "M11"
+   ],
+   "hq_country": "NL",
+   "profile": "已锁定/签约电力目标2.5GW，预计2026年底实际接电0.8—1.0GW（合同电力与接电分开）；Microsoft、Meta 合同",
+   "ir_url": "https://nebius.com/investors",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "crusoe",
+   "name": "Crusoe",
+   "name_cn": "Crusoe",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "neocloud",
+    "construction"
+   ],
+   "modules": [
+    "M02",
+    "M04"
+   ],
+   "hq_country": "US",
+   "profile": "Stargate Abilene 开发方；4.5GW天然气为规划/锁定供能（非投运）；已退出 Project Jade",
+   "ir_url": null,
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "lambda",
+   "name": "Lambda",
+   "name_cn": "Lambda",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "neocloud"
+   ],
+   "modules": [
+    "M02",
+    "M11",
+    "M13"
+   ],
+   "hq_country": "US",
+   "profile": "与Microsoft签署数十亿美元多年协议；2026年获得10亿美元信贷；产品覆盖5—75MW分布式站点；Kansas City 首期24MW、潜力100MW+需分阶段（GW级目标不等于已运营GW）",
+   "ir_url": "https://lambda.ai/",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "nxtra",
+   "name": "Nxtra by Airtel",
+   "name_cn": "Nxtra",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "colo"
+   ],
+   "modules": [
+    "M02"
+   ],
+   "hq_country": "IN",
+   "profile": "印度：约300MW当前、目标1GW（目标不等于已建成）；14+大型+120+边缘设施；Alpha Wave/Carlyle 投资",
+   "ir_url": "https://www.nxtra.in/",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "ntt-data",
+   "name": "NTT DATA",
+   "name_cn": "NTT数据",
+   "ticker": "TYO:9613",
+   "cik": null,
+   "roles": [
+    "colo"
+   ],
+   "modules": [
+    "M02"
+   ],
+   "hq_country": "JP",
+   "profile": "全球/日本运营商；Keihanna OSK11 30MW 已运营（项目值不可外推全球总量）",
+   "ir_url": "https://www.nttdata.com/global/en/about-us/ir",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "kddi",
+   "name": "KDDI / Telehouse",
+   "name_cn": "KDDI",
+   "ticker": "TYO:9433",
+   "cik": null,
+   "roles": [
+    "colo"
+   ],
+   "modules": [
+    "M02"
+   ],
+   "hq_country": "JP",
+   "profile": "Osaka Sakai AI DC（GB200+直接液冷，2026-01运营）；Telehouse TOKYO Tama 5-2nd 18MW 在建（2027年秋开业）",
+   "ir_url": "https://www.kddi.com/english/corporate/ir/",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "scala",
+   "name": "Scala Data Centers",
+   "name_cn": "Scala",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "colo"
+   ],
+   "modules": [
+    "M02"
+   ],
+   "hq_country": "BR",
+   "profile": "拉美：Tamboré 450MW规划、AI City首期54MW（分项目与阶段）；DigitalBridge 支持",
+   "ir_url": "https://scaladatacenters.com/",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "cirion",
+   "name": "Cirion Technologies",
+   "name_cn": "Cirion",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "colo",
+    "network"
+   ],
+   "modules": [
+    "M02",
+    "M07"
+   ],
+   "hq_country": "MULTI",
+   "profile": "拉美运营商/网络：12主要DC、3在建、10 edge（160互联DC非自有设施）；Stonepeak 所有",
+   "ir_url": "https://www.ciriontechnologies.com/",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "digital-edge",
+   "name": "Digital Edge",
+   "name_cn": "Digital Edge",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "colo"
+   ],
+   "modules": [
+    "M02"
+   ],
+   "hq_country": "SG",
+   "profile": "亚太9国平台；韩国 Bupyeong 96MW（36运营+60在建，历史120MW规划已废弃）、SEL5 Ansan 60MW已获电力；Stonepeak 支持",
+   "ir_url": "https://www.digitaledgedc.com/",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "stt-gdc",
+   "name": "STT GDC India",
+   "name_cn": "新电信数据中心（印度）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "colo"
+   ],
+   "modules": [
+    "M02"
+   ],
+   "hq_country": "IN",
+   "profile": "Chennai Siruseri 园区45MW（首期7.2MW运营）；Hyderabad 100MW 为 MoU/规划",
+   "ir_url": "https://www.sttelemediagdc.com/",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "odata",
+   "name": "ODATA (Aligned)",
+   "name_cn": "ODATA",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "colo"
+   ],
+   "modules": [
+    "M02"
+   ],
+   "hq_country": "MX",
+   "profile": "QR03 Querétaro：200MW 园区供电通电（供电口径非IT满载），目标300MW；母公司 Aligned",
+   "ir_url": "https://aligneddc.com/",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "gds",
+   "name": "GDS Holdings",
+   "name_cn": "万国数据",
+   "ticker": "NASDAQ:GDS",
+   "cik": "0001526125",
+   "roles": [
+    "colo"
+   ],
+   "modules": [
+    "M02",
+    "M14"
+   ],
+   "hq_country": "CN",
+   "profile": "2026Q1在服面积674,269平米、利用率77.3%、在建118,411平米（按面积披露，不与VNET的MW直接排名；200MW为新增签约非新增投运）；持有DayOne少数股权",
+   "ir_url": "https://investors.gds-services.com",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "vnet",
+   "name": "VNET Group",
+   "name_cn": "世纪互联",
+   "ticker": "NASDAQ:VNET",
+   "cik": "0001508475",
+   "roles": [
+    "colo"
+   ],
+   "modules": [
+    "M02",
+    "M14"
+   ],
+   "hq_country": "CN",
+   "profile": "2026Q1批发在服907MW、在建516MW、客户使用687MW、利用率75.7%；零售50,170柜、利用率64.1%（批发MW与零售机柜必须分栏；承诺869MW不等于使用687MW）",
+   "ir_url": "https://ir.vnet.com",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "chindata",
+   "name": "秦淮数据 / Chindata (Wintrix)",
+   "name_cn": "秦淮数据",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "colo"
+   ],
+   "modules": [
+    "M02",
+    "M14"
+   ],
+   "hq_country": "CN",
+   "profile": "公开容量主要停留在2023年（投运及在建近900MW），不能作为2026实时容量；2026年 HEC 牵头财团完成约40亿美元中国业务收购，需项目级刷新",
+   "ir_url": "https://www.chindatagroup.com/",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "nvidia",
+   "name": "NVIDIA",
+   "name_cn": "英伟达",
+   "ticker": "NASDAQ:NVDA",
+   "cik": "0001045810",
+   "roles": [
+    "chip",
+    "capital",
+    "network"
+   ],
+   "modules": [
+    "M06",
+    "M11",
+    "M07"
+   ],
+   "hq_country": "US",
+   "profile": "GB300 NVL72 135kW TDP/155kW峰值（功率区分TDP、峰值、设施设计）；Vera Rubin 当前官方为NVL72；以投资/预付深度介入客户资金链（循环交易观察对象）",
+   "ir_url": "https://investor.nvidia.com",
+   "verified_date": "2026-07-23",
+   "website": "nvidia.com"
+  },
+  {
+   "company_id": "amd",
+   "name": "AMD",
+   "name_cn": "超威",
+   "ticker": "NASDAQ:AMD",
+   "cik": "0000002488",
+   "roles": [
+    "chip"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "US",
+   "profile": "MI355X 1400W TBP；Helios 整柜72颗MI455X，2026H2开始出货；与Microsoft/OpenAI/Meta的6GW协议均为多年里程碑（非当前部署）",
+   "ir_url": "https://ir.amd.com",
+   "verified_date": "2026-07-23",
+   "website": "amd.com"
+  },
+  {
+   "company_id": "schneider-electric",
+   "name": "Schneider Electric / Motivair",
+   "name_cn": "施耐德电气",
+   "ticker": "EPA:SU",
+   "cik": null,
+   "roles": [
+    "electrical",
+    "cooling"
+   ],
+   "modules": [
+    "M08",
+    "M09"
+   ],
+   "hq_country": "FR",
+   "profile": "Motivair 75%控股（剩余25%计划后续取得）；CDU单机2.5MW",
+   "ir_url": "https://www.se.com/ww/en/about-us/investor-relations/",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "eaton",
+   "name": "Eaton / Boyd Thermal",
+   "name_cn": "伊顿",
+   "ticker": "NYSE:ETN",
+   "cik": "0001551182",
+   "roles": [
+    "electrical",
+    "cooling"
+   ],
+   "modules": [
+    "M08",
+    "M09"
+   ],
+   "hq_country": "US",
+   "profile": "2026年3月完成95亿美元收购Boyd Thermal；Boyd预测2026销售17亿美元（预测销售不等于Eaton新增收入）",
+   "ir_url": "https://www.eaton.com/us/en-us/company/investor-relations.html",
+   "verified_date": "2026-07-23",
+   "website": "eaton.com"
+  },
+  {
+   "company_id": "ecolab",
+   "name": "Ecolab / CoolIT",
+   "name_cn": "艺康",
+   "ticker": "NYSE:ECL",
+   "cik": "0000031462",
+   "roles": [
+    "cooling"
+   ],
+   "modules": [
+    "M08"
+   ],
+   "hq_country": "US",
+   "profile": "2026年7月完成约47.5亿美元收购CoolIT；CHx2000单机2MW（产能为公司披露，非交付量）；高科技业务目标2030年40亿美元",
+   "ir_url": "https://investor.ecolab.com",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "vertiv",
+   "name": "Vertiv / CoolTera",
+   "name_cn": "维谛技术",
+   "ticker": "NYSE:VRT",
+   "cik": "0001674101",
+   "roles": [
+    "cooling",
+    "electrical"
+   ],
+   "modules": [
+    "M08",
+    "M09",
+    "M11"
+   ],
+   "hq_country": "US",
+   "profile": "CoolTera 2023年末收购；CoolChip CDU最高2.3MW（集团订单不能全部归液冷）；订单簿是行业景气度前瞻指标",
+   "ir_url": "https://investors.vertiv.com",
+   "verified_date": "2026-07-23",
+   "website": "vertiv.com"
+  },
+  {
+   "company_id": "trane",
+   "name": "Trane Technologies / LiquidStack",
+   "name_cn": "特灵科技",
+   "ticker": "NYSE:TT",
+   "cik": "0001466258",
+   "roles": [
+    "cooling"
+   ],
+   "modules": [
+    "M08"
+   ],
+   "hq_country": "IE",
+   "profile": "2026年3月完成收购LiquidStack（浸没式先驱，保留品牌但母公司更新）",
+   "ir_url": "https://investors.tranetechnologies.com",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "delta-electronics",
+   "name": "Delta Electronics",
+   "name_cn": "台达电子",
+   "ticker": "TWSE:2308",
+   "cik": null,
+   "roles": [
+    "cooling",
+    "electrical"
+   ],
+   "modules": [
+    "M08",
+    "M09",
+    "M14"
+   ],
+   "hq_country": "TW",
+   "profile": "电源/散热链亚洲主力；800V HVDC 生态关键玩家",
+   "ir_url": "https://www.deltaww.com/en-US/investors",
+   "verified_date": "2026-08-14",
+   "website": "deltaww.com"
+  },
+  {
+   "company_id": "ge-vernova",
+   "name": "GE Vernova",
+   "name_cn": "GE 弗诺瓦",
+   "ticker": "NYSE:GEV",
+   "cik": "0001996810",
+   "roles": [
+    "electrical",
+    "utility"
+   ],
+   "modules": [
+    "M04",
+    "M09"
+   ],
+   "hq_country": "US",
+   "profile": "燃气轮机三巨头之一；订单簿年数 = gas_turbine_backlog_years 指标来源",
+   "ir_url": "https://www.gevernova.com/investors",
+   "verified_date": "2026-08-14"
+  },
+  {
+   "company_id": "blackstone",
+   "name": "Blackstone",
+   "name_cn": "黑石",
+   "ticker": "NYSE:BX",
+   "cik": "0001393818",
+   "roles": [
+    "capital"
+   ],
+   "modules": [
+    "M11"
+   ],
+   "hq_country": "US",
+   "profile": "2026年披露全球数据中心平台约1650亿美元、未来开发管道约1600亿美元、计划到2026年底投资或承诺约1000亿美元（平台/管道/已投资本不能混写）；QTS、AirTrunk、CoreWeave（AirTrunk 800MW+为客户承诺容量）",
+   "ir_url": "https://ir.blackstone.com",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "brookfield",
+   "name": "Brookfield",
+   "name_cn": "布鲁克菲尔德",
+   "ticker": "NYSE:BN",
+   "cik": "0001001085",
+   "roles": [
+    "capital"
+   ],
+   "modules": [
+    "M11"
+   ],
+   "hq_country": "CA",
+   "profile": "Compass 与 Data4 合计支持 1.6GW+ 合同容量和 3.5GW+ 开发潜力（开发潜力不等于在建或运营容量）",
+   "ir_url": "https://bn.brookfield.com",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "kkr",
+   "name": "KKR / GIP",
+   "name_cn": "KKR",
+   "ticker": "NYSE:KKR",
+   "cik": "0001404912",
+   "roles": [
+    "capital"
+   ],
+   "modules": [
+    "M11"
+   ],
+   "hq_country": "US",
+   "profile": "2022年联合GIP以150亿美元私有化CyrusOne（交易时约50座DC、约1GW电力容量——交易时点口径，不代表当前容量）",
+   "ir_url": "https://ir.kkr.com",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "mgx",
+   "name": "MGX",
+   "name_cn": "MGX",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "capital"
+   ],
+   "modules": [
+    "M11"
+   ],
+   "hq_country": "AE",
+   "profile": "阿布扎比主权背景AI投资平台；MGX Fund I 最终关闭承诺规模490亿美元（基金规模不是已投入数据中心资本）；OpenAI、Anthropic、Khazna",
+   "ir_url": "https://www.mgx.ae/",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "pif-humain",
+   "name": "PIF / HUMAIN",
+   "name_cn": "沙特公共投资基金 / HUMAIN",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "capital"
+   ],
+   "modules": [
+    "M11"
+   ],
+   "hq_country": "SA",
+   "profile": "PIF 创建 HUMAIN 并保持多数股权；与 Aramco 签署非约束性条款拟引入重要少数股东（交易未完成）；6.6GW、770亿美元只能作为管理层/媒体目标，不能写成官方批准规模",
+   "ir_url": "https://www.pif.gov.sa/",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "g42",
+   "name": "G42 / Khazna",
+   "name_cn": "G42",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "colo",
+    "capital"
+   ],
+   "modules": [
+    "M02",
+    "M11"
+   ],
+   "hq_country": "AE",
+   "profile": "UAE-US AI Campus（5GW规划）牵头财团；Stargate UAE 开发方；Khazna 为其数据中心平台",
+   "ir_url": "https://www.g42.ai/",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "sb-energy",
+   "name": "SB Energy",
+   "name_cn": "SB Energy",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "colo",
+    "utility"
+   ],
+   "modules": [
+    "M02",
+    "M04"
+   ],
+   "hq_country": "US",
+   "profile": "软银系能源开发商；Stargate Milam County 园区（规划约1.2GW）开发方",
+   "ir_url": null,
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "related-digital",
+   "name": "Related Digital",
+   "name_cn": "Related Digital",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "colo"
+   ],
+   "modules": [
+    "M02"
+   ],
+   "hq_country": "US",
+   "profile": "地产商 Related 旗下数据中心平台；Stargate Saline Township 园区（规划约1.4GW）开发方",
+   "ir_url": null,
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "black-hills",
+   "name": "Black Hills Corp.",
+   "name_cn": "Black Hills",
+   "ticker": "NYSE:BKH",
+   "cik": "0001130464",
+   "roles": [
+    "utility"
+   ],
+   "modules": [
+    "M04"
+   ],
+   "hq_country": "US",
+   "profile": "怀俄明公用事业公司；Cheyenne 1.8GW 项目（Project Jade）供电方，目标2028年初开始供电",
+   "ir_url": "https://ir.blackhillscorp.com",
+   "verified_date": "2026-07-23"
+  },
+  {
+   "company_id": "huawei",
+   "name": "Huawei",
+   "name_cn": "华为",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "chip",
+    "server-odm",
+    "electrical"
+   ],
+   "modules": [
+    "M14"
+   ],
+   "hq_country": "CN",
+   "profile": "昇腾生态核心；国产算力链锚点（M14 第一观察对象）",
+   "ir_url": null,
+   "verified_date": "2026-08-14"
+  },
+  {
+   "company_id": "coolit-systems",
+   "name": "CoolIT Systems",
+   "name_cn": "CoolIT",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "cooling"
+   ],
+   "modules": [
+    "M08"
+   ],
+   "hq_country": "CA",
+   "profile": "冷板/CDU 专业厂商，CHx2000 2MW 已量产全球出货；靠近服务器接口是壁垒",
+   "ir_url": null,
+   "verified_date": "2026-08-14",
+   "website": "coolitsystems.com"
+  },
+  {
+   "company_id": "grc-cooling",
+   "name": "GRC (Green Revolution Cooling)",
+   "name_cn": "GRC",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "cooling"
+   ],
+   "modules": [
+    "M08"
+   ],
+   "hq_country": "US",
+   "profile": "单相浸没式代表厂商，ICEraQ 系列",
+   "ir_url": null,
+   "verified_date": "2026-08-14"
+  },
+  {
+   "company_id": "submer",
+   "name": "Submer",
+   "name_cn": "Submer",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "cooling"
+   ],
+   "modules": [
+    "M08"
+   ],
+   "hq_country": "ES",
+   "profile": "浸没式液冷厂商",
+   "ir_url": null,
+   "verified_date": "2026-08-14"
+  },
+  {
+   "company_id": "accelsius",
+   "name": "Accelsius",
+   "name_cn": "Accelsius",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "cooling"
+   ],
+   "modules": [
+    "M08"
+   ],
+   "hq_country": "US",
+   "profile": "两相直接到芯片液冷；2025 年获 Johnson Controls 投资",
+   "ir_url": null,
+   "verified_date": "2026-08-14"
+  },
+  {
+   "company_id": "zutacore",
+   "name": "ZutaCore",
+   "name_cn": "ZutaCore",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "cooling"
+   ],
+   "modules": [
+    "M08"
+   ],
+   "hq_country": "IL",
+   "profile": "两相直接到芯片液冷；与 Munters 战略联盟",
+   "ir_url": null,
+   "verified_date": "2026-08-14"
+  },
+  {
+   "company_id": "johnson-controls",
+   "name": "Johnson Controls",
+   "name_cn": "江森自控",
+   "ticker": "NYSE:JCI",
+   "cik": "0000833444",
+   "roles": [
+    "cooling",
+    "electrical"
+   ],
+   "modules": [
+    "M08",
+    "M09"
+   ],
+   "hq_country": "IE",
+   "profile": "York 冷机 + Silent-Aire CDU（500kW-10MW+）+ 楼宇服务；投资 Accelsius 布局两相",
+   "ir_url": null,
+   "verified_date": "2026-08-14"
+  },
+  {
+   "company_id": "modine-airedale",
+   "name": "Modine / Airedale",
+   "name_cn": "摩丁制造",
+   "ticker": "NYSE:MOD",
+   "cik": "0000067347",
+   "roles": [
+    "cooling"
+   ],
+   "modules": [
+    "M08"
+   ],
+   "hq_country": "US",
+   "profile": "Airedale CDU 400kW-2MW；2025 年披露 1.8 亿美元数据中心冷却订单",
+   "ir_url": null,
+   "verified_date": "2026-08-14"
+  },
+  {
+   "company_id": "munters",
+   "name": "Munters",
+   "name_cn": "蒙特",
+   "ticker": "STO:MTRS",
+   "cik": null,
+   "roles": [
+    "cooling"
+   ],
+   "modules": [
+    "M08"
+   ],
+   "hq_country": "SE",
+   "profile": "LCX CDU 500kW-1.5MW；Virginia/Texas 扩产近 70 万平方英尺；与 ZutaCore 联盟",
+   "ir_url": null,
+   "verified_date": "2026-08-14",
+   "website": "munters.com"
+  },
+  {
+   "company_id": "hitachi-energy",
+   "name": "Hitachi Energy",
+   "name_cn": "日立能源",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "electrical"
+   ],
+   "modules": [
+    "M09"
+   ],
+   "hq_country": "CH",
+   "profile": "高压变电/大型变压器主力供应商",
+   "ir_url": null,
+   "verified_date": "2026-08-14"
+  },
+  {
+   "company_id": "siemens-energy",
+   "name": "Siemens Energy",
+   "name_cn": "西门子能源",
+   "ticker": "ETR:ENR",
+   "cik": null,
+   "roles": [
+    "electrical",
+    "utility"
+   ],
+   "modules": [
+    "M04",
+    "M09"
+   ],
+   "hq_country": "DE",
+   "profile": "燃气轮机三巨头之一 + 高压设备；订单簿是行业景气前瞻",
+   "ir_url": null,
+   "verified_date": "2026-08-14"
+  },
+  {
+   "company_id": "abb",
+   "name": "ABB",
+   "name_cn": "ABB",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "electrical"
+   ],
+   "modules": [
+    "M09"
+   ],
+   "hq_country": "CH",
+   "profile": "中低压配电、UPS、电气化系统",
+   "ir_url": null,
+   "verified_date": "2026-08-14",
+   "website": "abb.com"
+  },
+  {
+   "company_id": "caterpillar",
+   "name": "Caterpillar",
+   "name_cn": "卡特彼勒",
+   "ticker": "NYSE:CAT",
+   "cik": "0000018230",
+   "roles": [
+    "electrical"
+   ],
+   "modules": [
+    "M09"
+   ],
+   "hq_country": "US",
+   "profile": "备用柴发主力供应商",
+   "ir_url": null,
+   "verified_date": "2026-08-14",
+   "website": "cat.com"
+  },
+  {
+   "company_id": "cummins",
+   "name": "Cummins",
+   "name_cn": "康明斯",
+   "ticker": "NYSE:CMI",
+   "cik": "0000026172",
+   "roles": [
+    "electrical"
+   ],
+   "modules": [
+    "M09"
+   ],
+   "hq_country": "US",
+   "profile": "备用柴发主力供应商",
+   "ir_url": null,
+   "verified_date": "2026-08-14",
+   "website": "cummins.com"
+  },
+  {
+   "company_id": "rolls-royce",
+   "name": "Rolls-Royce (mtu)",
+   "name_cn": "罗尔斯-罗伊斯",
+   "ticker": "LON:RR",
+   "cik": null,
+   "roles": [
+    "electrical"
+   ],
+   "modules": [
+    "M09"
+   ],
+   "hq_country": "GB",
+   "profile": "mtu 品牌大功率柴发/燃气机组",
+   "ir_url": null,
+   "verified_date": "2026-08-14"
+  },
+  {
+   "company_id": "wartsila",
+   "name": "Wärtsilä",
+   "name_cn": "瓦锡兰",
+   "ticker": "HEL:WRT1V",
+   "cik": null,
+   "roles": [
+    "electrical",
+    "utility"
+   ],
+   "modules": [
+    "M04",
+    "M09"
+   ],
+   "hq_country": "FI",
+   "profile": "燃气内燃机组，主用电源方案参与者",
+   "ir_url": null,
+   "verified_date": "2026-08-14"
+  },
+  {
+   "company_id": "hyosung",
+   "name": "Hyosung Heavy Industries",
+   "name_cn": "晓星重工",
+   "ticker": "KRX:298040",
+   "cik": null,
+   "roles": [
+    "electrical"
+   ],
+   "modules": [
+    "M09"
+   ],
+   "hq_country": "KR",
+   "profile": "大型变压器供应商（对美出口主力之一）",
+   "ir_url": null,
+   "verified_date": "2026-08-14"
+  },
+  {
+   "company_id": "mitsubishi-power",
+   "name": "Mitsubishi Power (MHI)",
+   "name_cn": "三菱重工电力",
+   "ticker": "TYO:7011",
+   "cik": null,
+   "roles": [
+    "electrical",
+    "utility"
+   ],
+   "modules": [
+    "M04",
+    "M09"
+   ],
+   "hq_country": "JP",
+   "profile": "燃气轮机三巨头之一",
+   "ir_url": null,
+   "verified_date": "2026-08-14"
+  },
+  {
+   "company_id": "blue-owl",
+   "name": "Blue Owl Capital",
+   "name_cn": "Blue Owl",
+   "ticker": "NYSE:OWL",
+   "cik": "0001823945",
+   "roles": [
+    "capital"
+   ],
+   "modules": [
+    "M02",
+    "M11"
+   ],
+   "hq_country": "US",
+   "profile": "数据中心开发资本方（净租赁/合资结构，Stargate 相关融资参与方）",
+   "ir_url": null,
+   "verified_date": "2026-08-14"
+  },
+  {
+   "company_id": "primary-digital",
+   "name": "Primary Digital Infrastructure",
+   "name_cn": "Primary Digital",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "capital",
+    "colo"
+   ],
+   "modules": [
+    "M02"
+   ],
+   "hq_country": "US",
+   "profile": "数据中心基础设施开发/投资方",
+   "ir_url": null,
+   "verified_date": "2026-08-14"
+  },
+  {
+   "company_id": "lancium",
+   "name": "Lancium",
+   "name_cn": "Lancium",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "colo",
+    "utility"
+   ],
+   "modules": [
+    "M02",
+    "M04"
+   ],
+   "hq_country": "US",
+   "profile": "Abilene Clean Campus 土地与电力方，能源优先园区模式",
+   "ir_url": null,
+   "verified_date": "2026-08-14"
+  },
+  {
+   "company_id": "airtrunk",
+   "name": "AirTrunk",
+   "name_cn": "AirTrunk",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "colo"
+   ],
+   "modules": [
+    "M02",
+    "M05"
+   ],
+   "hq_country": "AU",
+   "profile": "亚太超大规模托管商（Blackstone 2024 年 240 亿澳元收购）",
+   "ir_url": null,
+   "verified_date": "2026-08-14"
+  },
+  {
+   "company_id": "dayone",
+   "name": "DayOne Data Centers",
+   "name_cn": "DayOne",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "colo"
+   ],
+   "modules": [
+    "M02",
+    "M05"
+   ],
+   "hq_country": "SG",
+   "profile": "GDS 国际业务分拆，东南亚/柔佛主力开发商",
+   "ir_url": null,
+   "verified_date": "2026-08-14"
+  },
+  {
+   "company_id": "datavolt",
+   "name": "DataVolt",
+   "name_cn": "DataVolt",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "colo",
+    "sovereign"
+   ],
+   "modules": [
+    "M02",
+    "M05"
+   ],
+   "hq_country": "SA",
+   "profile": "沙特数据中心开发商（主权项目载体）",
+   "ir_url": null,
+   "verified_date": "2026-08-14"
+  },
+  {
+   "company_id": "celestica",
+   "name": "Celestica",
+   "name_cn": "天弘",
+   "ticker": "NYSE:CLS",
+   "cik": "0001030894",
+   "roles": [
+    "server-odm",
+    "network"
+   ],
+   "modules": [
+    "M06",
+    "M07"
+   ],
+   "hq_country": "CA",
+   "profile": "ODM/网络设备制造，AI 服务器与交换机代工",
+   "ir_url": null,
+   "verified_date": "2026-08-14"
+  },
+  {
+   "company_id": "broadcom",
+   "name": "Broadcom",
+   "name_cn": "博通",
+   "ticker": "NASDAQ:AVGO",
+   "cik": "0001730168",
+   "roles": [
+    "chip",
+    "network"
+   ],
+   "modules": [
+    "M06",
+    "M07"
+   ],
+   "hq_country": "US",
+   "profile": "自研 ASIC 合作核心（TPU/MTIA/OpenAI 芯片）+ 网络交换芯片主导者",
+   "ir_url": null,
+   "verified_date": "2026-08-14",
+   "website": "broadcom.com"
+  },
+  {
+   "company_id": "bloom-energy",
+   "name": "Bloom Energy",
+   "name_cn": "Bloom Energy",
+   "ticker": "NYSE:BE",
+   "cik": "0001664703",
+   "roles": [
+    "utility",
+    "electrical"
+   ],
+   "modules": [
+    "M04",
+    "M09"
+   ],
+   "hq_country": "US",
+   "profile": "燃料电池现场供电方案",
+   "ir_url": null,
+   "verified_date": "2026-08-14",
+   "website": "bloomenergy.com"
+  },
+  {
+   "company_id": "constellation-energy",
+   "name": "Constellation Energy",
+   "name_cn": "星座能源",
+   "ticker": "NASDAQ:CEG",
+   "cik": "0001868275",
+   "roles": [
+    "utility"
+   ],
+   "modules": [
+    "M04"
+   ],
+   "hq_country": "US",
+   "profile": "美国最大核电运营商；Three Mile Island/Crane 重启与微软 PPA",
+   "ir_url": null,
+   "verified_date": "2026-08-14"
+  },
+  {
+   "company_id": "energy-northwest",
+   "name": "Energy Northwest",
+   "name_cn": "Energy Northwest",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "utility"
+   ],
+   "modules": [
+    "M04"
+   ],
+   "hq_country": "US",
+   "profile": "美国西北公用事业联合体，SMR（X-energy）项目主体",
+   "ir_url": null,
+   "verified_date": "2026-08-14"
+  },
+  {
+   "company_id": "kairos-power",
+   "name": "Kairos Power",
+   "name_cn": "Kairos Power",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "utility"
+   ],
+   "modules": [
+    "M04"
+   ],
+   "hq_country": "US",
+   "profile": "SMR 开发商（谷歌采购协议）",
+   "ir_url": null,
+   "verified_date": "2026-08-14"
+  },
+  {
+   "company_id": "aep",
+   "name": "American Electric Power",
+   "name_cn": "美国电力",
+   "ticker": "NASDAQ:AEP",
+   "cik": "0000004904",
+   "roles": [
+    "utility"
+   ],
+   "modules": [
+    "M04"
+   ],
+   "hq_country": "US",
+   "profile": "覆盖俄亥俄等数据中心热点区的输配电公用事业",
+   "ir_url": null,
+   "verified_date": "2026-08-14"
+  },
+  {
+   "company_id": "alibaba",
+   "name": "Alibaba Cloud",
+   "name_cn": "阿里云",
+   "ticker": "NYSE:BABA",
+   "cik": "0001577552",
+   "roles": [
+    "hyperscaler"
+   ],
+   "modules": [
+    "M14"
+   ],
+   "hq_country": "CN",
+   "profile": "中国最大云厂商；张北/乌兰察布等大型自建园区；SEC 20-F 申报主体（CIK 0001577552）",
+   "ir_url": null,
+   "verified_date": "2026-08-15"
+  },
+  {
+   "company_id": "tencent",
+   "name": "Tencent Cloud",
+   "name_cn": "腾讯云",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "hyperscaler"
+   ],
+   "modules": [
+    "M14"
+   ],
+   "hq_country": "CN",
+   "profile": "腾讯云；贵安七星洞等大型自建园区",
+   "ir_url": null,
+   "verified_date": "2026-08-15"
+  },
+  {
+   "company_id": "bytedance",
+   "name": "ByteDance",
+   "name_cn": "字节跳动",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "hyperscaler",
+    "ai-lab"
+   ],
+   "modules": [
+    "M14"
+   ],
+   "hq_country": "CN",
+   "profile": "抖音/豆包算力需求方；国内大型租赁+自建，海外东南亚扩张",
+   "ir_url": null,
+   "verified_date": "2026-08-15"
+  },
+  {
+   "company_id": "reliance",
+   "name": "Reliance Industries",
+   "name_cn": "信实工业",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "colo",
+    "sovereign"
+   ],
+   "modules": [
+    "M02"
+   ],
+   "hq_country": "IN",
+   "profile": "Jamnagar 千兆瓦级 AI 园区计划（与 NVIDIA 合作）",
+   "ir_url": null,
+   "verified_date": "2026-08-15"
+  },
+  {
+   "company_id": "fluidstack",
+   "name": "Fluidstack",
+   "name_cn": "Fluidstack",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "neocloud"
+   ],
+   "modules": [
+    "M02"
+   ],
+   "hq_country": "GB",
+   "profile": "AI 云平台；法国 Mistral/Eclairion 等 GW 级项目关联方",
+   "ir_url": null,
+   "verified_date": "2026-08-15"
+  },
+  {
+   "company_id": "mistral-ai",
+   "name": "Mistral AI",
+   "name_cn": "Mistral AI",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "ai-lab"
+   ],
+   "modules": [
+    "M03"
+   ],
+   "hq_country": "FR",
+   "profile": "欧洲头部 AI 实验室；法国 Essonne 园区算力锚定方",
+   "ir_url": null,
+   "verified_date": "2026-08-15"
+  },
+  {
+   "company_id": "eclairion",
+   "name": "Eclairion",
+   "name_cn": "Eclairion",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "colo"
+   ],
+   "modules": [
+    "M02"
+   ],
+   "hq_country": "FR",
+   "profile": "法国模块化数据中心开发商",
+   "ir_url": null,
+   "verified_date": "2026-08-15"
+  },
+  {
+   "company_id": "nscale",
+   "name": "Nscale",
+   "name_cn": "Nscale",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "neocloud"
+   ],
+   "modules": [
+    "M02"
+   ],
+   "hq_country": "GB",
+   "profile": "欧洲 Neocloud；挪威 Glomfjord 等站点，微软/OpenAI 合作",
+   "ir_url": null,
+   "verified_date": "2026-08-15"
+  },
+  {
+   "company_id": "aker",
+   "name": "Aker",
+   "name_cn": "Aker",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "capital"
+   ],
+   "modules": [
+    "M02"
+   ],
+   "hq_country": "NO",
+   "profile": "挪威工业集团；Narvik 数据中心合资（与 Nscale/OpenAI Stargate Norway）",
+   "ir_url": null,
+   "verified_date": "2026-08-15"
+  },
+  {
+   "company_id": "neom",
+   "name": "NEOM",
+   "name_cn": "NEOM",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "sovereign"
+   ],
+   "modules": [
+    "M05"
+   ],
+   "hq_country": "SA",
+   "profile": "沙特新城主体；Oxagon DataVolt 园区所在",
+   "ir_url": null,
+   "verified_date": "2026-08-15"
+  },
+  {
+   "company_id": "dataone",
+   "name": "DataOne",
+   "name_cn": "DataOne",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "colo"
+   ],
+   "modules": [
+    "M02"
+   ],
+   "hq_country": "SG",
+   "profile": "亚太数据中心开发商",
+   "ir_url": null,
+   "verified_date": "2026-08-15"
+  },
+  {
+   "company_id": "stock-farm-road",
+   "name": "Stock Farm Road",
+   "name_cn": "Stock Farm Road",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "capital"
+   ],
+   "modules": [
+    "M02"
+   ],
+   "hq_country": "US",
+   "profile": "韩国全南 GW 级项目开发方（LG 关联）",
+   "ir_url": null,
+   "verified_date": "2026-08-15"
+  },
+  {
+   "company_id": "blackrock",
+   "name": "BlackRock (AIP)",
+   "name_cn": "贝莱德",
+   "ticker": "NYSE:BLK",
+   "cik": "0002012383",
+   "roles": [
+    "capital"
+   ],
+   "modules": [
+    "M11"
+   ],
+   "hq_country": "US",
+   "profile": "AI 基础设施伙伴基金（AIP/GAIIP）主导方之一；2023 重组后现行申报主体为新母公司 BlackRock, Inc.（CIK 0002012383），老实体 0001364742 已改名 BlackRock Finance",
+   "ir_url": null,
+   "verified_date": "2026-08-15"
+  },
+  {
+   "company_id": "turner-construction",
+   "name": "Turner Construction",
+   "name_cn": "特纳建筑",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "construction"
+   ],
+   "modules": [
+    "M10"
+   ],
+   "hq_country": "US",
+   "profile": "全美收入第一总包（2025 收入 $29.2B、+40%）；积压 2026Q1 $48.9B，数据中心约占 37%；母公司为德国 Hochtief（ACS 集团），美股无独立上市",
+   "ir_url": "https://www.turnerconstruction.com",
+   "verified_date": "2026-08-15"
+  },
+  {
+   "company_id": "cambricon",
+   "name": "Cambricon",
+   "name_cn": "寒武纪",
+   "ticker": "SSE:688256",
+   "cik": null,
+   "roles": [
+    "chip"
+   ],
+   "modules": [
+    "M14",
+    "M06"
+   ],
+   "hq_country": "CN",
+   "profile": "国产 AI 芯片第二（2025 出货约 26.5 万颗、市占 6.6%）；至 2026-02 累计交付 47 万颗，2026Q1 首次季度盈利约 10 亿元；科创板上市，A 股披露为一手信源",
+   "ir_url": "https://www.cambricon.com/investor",
+   "verified_date": "2026-08-15",
+   "website": "cambricon.com"
+  },
+  {
+   "company_id": "intel",
+   "name": "Intel",
+   "name_cn": "英特尔",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "chip"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "intel.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "ampere-computing",
+   "name": "Ampere Computing",
+   "name_cn": "安晶科技",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "chip"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "amperecomputing.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "arm",
+   "name": "Arm",
+   "name_cn": "安谋",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "chip"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "英国",
+   "is_group": false,
+   "website": "arm.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "huawei-kunpeng",
+   "name": "Huawei Kunpeng",
+   "name_cn": "华为（鲲鹏）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "chip"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "hikunpeng.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "hygon",
+   "name": "Hygon",
+   "name_cn": "海光信息",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "chip"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "hygon.cn",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "phytium",
+   "name": "Phytium",
+   "name_cn": "飞腾",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "chip"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "phytium.com.cn",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "loongson",
+   "name": "Loongson",
+   "name_cn": "龙芯中科",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "chip"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "loongson.cn",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "zhaoxin",
+   "name": "Zhaoxin",
+   "name_cn": "兆芯",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "chip"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "zhaoxin.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "amd-instinct",
+   "name": "AMD Instinct",
+   "name_cn": "超威半导体",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "chip"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "amd.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "intel-gaudi",
+   "name": "Intel Gaudi",
+   "name_cn": "英特尔",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "chip"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "intel.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "huawei-ascend",
+   "name": "Huawei Ascend",
+   "name_cn": "华为（昇腾）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "chip"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "hiascend.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "hygon-dcu",
+   "name": "Hygon DCU",
+   "name_cn": "海光信息",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "chip"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "hygon.cn",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "biren",
+   "name": "Biren",
+   "name_cn": "壁仞科技",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "chip"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "birentech.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "moore-threads",
+   "name": "Moore Threads",
+   "name_cn": "摩尔线程",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "chip"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "mthreads.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "metax",
+   "name": "MetaX",
+   "name_cn": "沐曦",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "chip"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "metax-tech.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "iluvatar-corex",
+   "name": "Iluvatar CoreX",
+   "name_cn": "天数智芯",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "chip"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "iluvatar.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "enflame",
+   "name": "Enflame",
+   "name_cn": "燧原科技",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "chip"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "enflame-tech.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "cerebras-groq-sambanova-tenstorrent",
+   "name": "Cerebras / Groq / SambaNova / Tenstorrent",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "chip"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "美国等",
+   "is_group": true,
+   "website": "cerebras.ai 等",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "google-tpu-aws-trainium-ms-maia-meta-mtia",
+   "name": "Google TPU / AWS Trainium / MS Maia / Meta MTIA",
+   "name_cn": "（自研）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "chip"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "美国",
+   "is_group": true,
+   "website": "cloud.google.com 等",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "amd-xilinx-alveo-altera-agilex",
+   "name": "AMD-Xilinx Alveo / Altera Agilex",
+   "name_cn": "（两家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "chip"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "美国",
+   "is_group": true,
+   "website": "amd.com / altera.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "montage",
+   "name": "Montage",
+   "name_cn": "澜起科技",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "chip"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "montage-tech.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "astera-labs",
+   "name": "Astera Labs",
+   "name_cn": "阿斯特拉实验室",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "chip"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "asteralabs.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "rambus-microchip-marvell",
+   "name": "Rambus / Microchip(Flashtec·Switchtec) / Marvell(Bravera)",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "chip"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "美国",
+   "is_group": true,
+   "website": "rambus.com 等",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "aspeed",
+   "name": "ASPEED",
+   "name_cn": "信骅科技",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "chip"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国台湾",
+   "is_group": false,
+   "website": "aspeedtech.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "infineon-mps-renesas-adi-ti",
+   "name": "Infineon / MPS / Renesas / ADI / TI",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "chip"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "欧美",
+   "is_group": true,
+   "website": "infineon.com 等",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "dell-technologies",
+   "name": "Dell Technologies",
+   "name_cn": "戴尔",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "server-odm"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "dell.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "hpe",
+   "name": "HPE",
+   "name_cn": "慧与",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "server-odm",
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "hpe.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "lenovo",
+   "name": "Lenovo",
+   "name_cn": "联想",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "server-odm"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "lenovo.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "supermicro",
+   "name": "Supermicro",
+   "name_cn": "超微",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "server-odm"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "supermicro.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "inspur",
+   "name": "Inspur (IEIT Systems)",
+   "name_cn": "浪潮信息",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "server-odm"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "ieisystem.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "h3c",
+   "name": "H3C",
+   "name_cn": "新华三",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "network",
+    "server-odm"
+   ],
+   "modules": [
+    "M06",
+    "M07"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "h3c.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "xfusion",
+   "name": "xFusion",
+   "name_cn": "超聚变",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "server-odm"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "xfusion.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "nettrix",
+   "name": "Nettrix",
+   "name_cn": "宁畅",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "server-odm"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "nettrix.com.cn",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "sugon",
+   "name": "Sugon",
+   "name_cn": "中科曙光",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "server-odm"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "sugon.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "huawei-atlas",
+   "name": "Huawei Atlas",
+   "name_cn": "华为",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "server-odm"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "huawei.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "zte",
+   "name": "ZTE",
+   "name_cn": "中兴通讯",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "network",
+    "server-odm"
+   ],
+   "modules": [
+    "M06",
+    "M07"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "zte.com.cn",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "fiberhome",
+   "name": "FiberHome",
+   "name_cn": "烽火通信",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "server-odm"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "fiberhome.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "gigabyte",
+   "name": "GIGABYTE",
+   "name_cn": "技嘉",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "server-odm"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国台湾",
+   "is_group": false,
+   "website": "gigabyte.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "asus",
+   "name": "ASUS",
+   "name_cn": "华硕",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "server-odm"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国台湾",
+   "is_group": false,
+   "website": "servers.asus.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "foxconn-industrial-internet",
+   "name": "Foxconn Industrial Internet",
+   "name_cn": "工业富联",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "server-odm"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "fii-foxconn.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "quanta-qct",
+   "name": "Quanta / QCT",
+   "name_cn": "广达（云达）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "server-odm"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国台湾",
+   "is_group": true,
+   "website": "qct.io",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "wiwynn",
+   "name": "Wiwynn",
+   "name_cn": "纬颖",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "server-odm"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国台湾",
+   "is_group": false,
+   "website": "wiwynn.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "inventec-pegatron-mitac-compal",
+   "name": "Inventec英业达 / Pegatron和硕 / MiTAC神达(含TYAN) / Compal仁宝",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "server-odm"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国台湾",
+   "is_group": true,
+   "website": "各家官网",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "open-compute-project",
+   "name": "Open Compute Project",
+   "name_cn": "OCP社区",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "server-odm"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "全球",
+   "is_group": false,
+   "website": "opencompute.org",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "cn-kunpeng-feiteng-server-group",
+   "name": "长城 / 宝德 / 神州鲲泰 / 湘江鲲鹏 / 超越申泰 / 黄河",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "server-odm"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": true,
+   "website": "各家官网",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "samsung",
+   "name": "Samsung",
+   "name_cn": "三星电子",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "韩国",
+   "is_group": false,
+   "website": "semiconductor.samsung.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "sk-hynix",
+   "name": "SK hynix",
+   "name_cn": "SK海力士",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "韩国",
+   "is_group": false,
+   "website": "skhynix.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "micron",
+   "name": "Micron",
+   "name_cn": "美光",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "micron.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "cxmt",
+   "name": "CXMT",
+   "name_cn": "长鑫存储",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "cxmt.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "kioxia",
+   "name": "Kioxia",
+   "name_cn": "铠侠",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "日本",
+   "is_group": false,
+   "website": "kioxia.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "solidigm",
+   "name": "Solidigm (SK hynix)",
+   "name_cn": "Solidigm（SK海力士旗下）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "solidigm.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "sandisk",
+   "name": "SanDisk",
+   "name_cn": "闪迪",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "sandisk.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "ymtc",
+   "name": "YMTC",
+   "name_cn": "长江存储",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "ymtc.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "seagate",
+   "name": "Seagate",
+   "name_cn": "希捷",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "seagate.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "western-digital",
+   "name": "Western Digital",
+   "name_cn": "西部数据",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "westerndigital.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "toshiba-electronic-devices",
+   "name": "Toshiba Electronic Devices",
+   "name_cn": "东芝电子",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "日本",
+   "is_group": false,
+   "website": "toshiba-storage.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "unionmemory",
+   "name": "UnionMemory",
+   "name_cn": "忆联",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "unionmem.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "dapustor",
+   "name": "DapuStor",
+   "name_cn": "大普微",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "dapustor.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "longsys",
+   "name": "Longsys",
+   "name_cn": "江波龙",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "longsys.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "biwin",
+   "name": "Biwin",
+   "name_cn": "佰维存储",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "biwin.com.cn",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "kingston",
+   "name": "Kingston",
+   "name_cn": "金士顿",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "kingston.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "smi-phison-maxio-innogrit",
+   "name": "慧荣SMI / 群联Phison / 联芸Maxio / 英韧InnoGrit / 得一微",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "两岸",
+   "is_group": true,
+   "website": "siliconmotion.com 等",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "samsung-cmm-micron-cz120-mxc-smart-modular",
+   "name": "Samsung CMM / Micron CZ120 / 澜起MXC / SMART Modular",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "多国",
+   "is_group": true,
+   "website": "各家官网",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "huawei-oceanstor",
+   "name": "Huawei OceanStor",
+   "name_cn": "华为",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "e.huawei.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "dell",
+   "name": "Dell",
+   "name_cn": "戴尔",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "dell.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "netapp",
+   "name": "NetApp",
+   "name_cn": "NetApp",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "netapp.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "pure-storage",
+   "name": "Pure Storage",
+   "name_cn": "Pure Storage",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "purestorage.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "ibm",
+   "name": "IBM",
+   "name_cn": "IBM",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "ibm.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "hitachi-vantara",
+   "name": "Hitachi Vantara",
+   "name_cn": "日立",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "日本",
+   "is_group": false,
+   "website": "hitachivantara.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "ieit-storage",
+   "name": "IEIT Storage",
+   "name_cn": "浪潮存储",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "ieisystem.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "h3c-unistor",
+   "name": "H3C UniStor",
+   "name_cn": "新华三",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "h3c.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "sugon-parastor",
+   "name": "Sugon ParaStor",
+   "name_cn": "中科曙光（曙光存储）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "sugon.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "macrosan",
+   "name": "MacroSAN",
+   "name_cn": "宏杉科技",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "macrosan.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "xsky",
+   "name": "XSKY",
+   "name_cn": "星辰天合",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "xsky.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "sandstone",
+   "name": "SandStone",
+   "name_cn": "杉岩数据",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "szsandstone.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "yanrong",
+   "name": "YanRong",
+   "name_cn": "焱融科技",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "yanrongyun.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "ddn",
+   "name": "DDN",
+   "name_cn": "DDN",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "ddn.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "vast-data",
+   "name": "VAST Data",
+   "name_cn": "VAST Data",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "vastdata.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "weka",
+   "name": "WEKA",
+   "name_cn": "WEKA",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "weka.io",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "hammerspace",
+   "name": "Hammerspace",
+   "name_cn": "Hammerspace",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "hammerspace.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "cohesity-veritas-commvault-aishu",
+   "name": "Cohesity-Veritas / Commvault / 爱数AISHU / 鼎甲",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "多国",
+   "is_group": true,
+   "website": "各家官网",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "ibm-quantum-spectralogic",
+   "name": "IBM / Quantum / SpectraLogic",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "美国",
+   "is_group": true,
+   "website": "各家官网",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "minio-cloudian-ceph",
+   "name": "MinIO(AIStor) / Cloudian / Ceph生态",
+   "name_cn": "MinIO等",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "storage"
+   ],
+   "modules": [
+    "M06"
+   ],
+   "hq_country": "美国等",
+   "is_group": true,
+   "website": "min.io 等",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "marvell",
+   "name": "Marvell",
+   "name_cn": "迈威尔",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "network"
+   ],
+   "modules": [
+    "M07"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "marvell.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "centec",
+   "name": "Centec",
+   "name_cn": "盛科通信",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "network"
+   ],
+   "modules": [
+    "M07"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "centec.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "nvidia-networking",
+   "name": "NVIDIA Networking",
+   "name_cn": "英伟达",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "network"
+   ],
+   "modules": [
+    "M07"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "nvidia.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "arista-networks",
+   "name": "Arista Networks",
+   "name_cn": "Arista",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "network"
+   ],
+   "modules": [
+    "M07"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "arista.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "cisco",
+   "name": "Cisco",
+   "name_cn": "思科",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "network"
+   ],
+   "modules": [
+    "M07"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "cisco.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "juniper",
+   "name": "Juniper (HPE)",
+   "name_cn": "瞻博（慧与）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "network"
+   ],
+   "modules": [
+    "M07"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "juniper.net",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "huawei-cloudengine",
+   "name": "Huawei CloudEngine",
+   "name_cn": "华为",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "network"
+   ],
+   "modules": [
+    "M07"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "e.huawei.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "ruijie",
+   "name": "Ruijie",
+   "name_cn": "锐捷网络",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "network"
+   ],
+   "modules": [
+    "M07"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "ruijie.com.cn",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "celestica-edgecore-ufispace",
+   "name": "Celestica / Edgecore(Accton) / UfiSpace",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "network"
+   ],
+   "modules": [
+    "M07"
+   ],
+   "hq_country": "多国",
+   "is_group": true,
+   "website": "celestica.com 等",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "amd-pensando",
+   "name": "AMD Pensando",
+   "name_cn": "超威半导体",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "network"
+   ],
+   "modules": [
+    "M07"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "amd.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "intel-ethernet",
+   "name": "Intel Ethernet",
+   "name_cn": "英特尔",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "network"
+   ],
+   "modules": [
+    "M07"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "intel.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "cn-dpu-group",
+   "name": "中科驭数 / 云豹智能 / 大禹智芯",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "network"
+   ],
+   "modules": [
+    "M07"
+   ],
+   "hq_country": "中国",
+   "is_group": true,
+   "website": "yusur.tech 等",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "innolight",
+   "name": "Innolight",
+   "name_cn": "中际旭创",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "network"
+   ],
+   "modules": [
+    "M07"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "innolight.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "eoptolink",
+   "name": "Eoptolink",
+   "name_cn": "新易盛",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "network"
+   ],
+   "modules": [
+    "M07"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "eoptolink.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "coherent",
+   "name": "Coherent",
+   "name_cn": "Coherent",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "network"
+   ],
+   "modules": [
+    "M07"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "coherent.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "accelink",
+   "name": "Accelink",
+   "name_cn": "光迅科技",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "network"
+   ],
+   "modules": [
+    "M07"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "accelink.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "hg-genuine",
+   "name": "HG Genuine",
+   "name_cn": "华工正源",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "network"
+   ],
+   "modules": [
+    "M07"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "hggenuine.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "cn-optics-group",
+   "name": "索尔思 / 海信宽带 / 剑桥科技 / 铭普",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "network"
+   ],
+   "modules": [
+    "M07"
+   ],
+   "hq_country": "中国",
+   "is_group": true,
+   "website": "各家官网",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "tfc-optics",
+   "name": "TFC Optics",
+   "name_cn": "天孚通信",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "network"
+   ],
+   "modules": [
+    "M07"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "tfcoptics.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "lumentum",
+   "name": "Lumentum / 源杰科技",
+   "name_cn": "Lumentum等",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "network"
+   ],
+   "modules": [
+    "M07"
+   ],
+   "hq_country": "美国/中国",
+   "is_group": true,
+   "website": "lumentum.com 等",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "credo",
+   "name": "Credo",
+   "name_cn": "Credo",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "network"
+   ],
+   "modules": [
+    "M07"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "credosemi.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "amphenol-luxshare-molex-te-connectivity",
+   "name": "安费诺Amphenol / 立讯精密Luxshare / Molex / TE Connectivity",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "network"
+   ],
+   "modules": [
+    "M07"
+   ],
+   "hq_country": "多国",
+   "is_group": true,
+   "website": "amphenol-cs.com 等",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "schneider-electric-apc",
+   "name": "Schneider Electric / APC",
+   "name_cn": "施耐德电气",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "electrical"
+   ],
+   "modules": [
+    "M09"
+   ],
+   "hq_country": "法国",
+   "is_group": true,
+   "website": "se.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "siemens",
+   "name": "Siemens",
+   "name_cn": "西门子",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "electrical"
+   ],
+   "modules": [
+    "M09"
+   ],
+   "hq_country": "德国",
+   "is_group": false,
+   "website": "siemens.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "huawei-digital-power",
+   "name": "Huawei Digital Power",
+   "name_cn": "华为数字能源",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "electrical"
+   ],
+   "modules": [
+    "M09"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "digitalpower.huawei.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "kehua",
+   "name": "Kehua",
+   "name_cn": "科华数能",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "electrical"
+   ],
+   "modules": [
+    "M09"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "kehua.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "kstar",
+   "name": "Kstar",
+   "name_cn": "科士达",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "electrical"
+   ],
+   "modules": [
+    "M09"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "kstar.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "zhongheng-electric",
+   "name": "Zhongheng Electric",
+   "name_cn": "中恒电气",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "electrical"
+   ],
+   "modules": [
+    "M09"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "zhonghen.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "east",
+   "name": "EAST",
+   "name_cn": "易事特",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "electrical"
+   ],
+   "modules": [
+    "M09"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "eastups.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "liteon-advanced-energy",
+   "name": "台达 / 光宝LiteOn / 群光电能 / Advanced Energy / 麦格米特 / 欧陆通",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "electrical"
+   ],
+   "modules": [
+    "M09"
+   ],
+   "hq_country": "多国",
+   "is_group": true,
+   "website": "各家官网",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "smartli-vertiv",
+   "name": "华为SmartLi / Vertiv / 宁德时代 / 双登 / 南都电源",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "electrical"
+   ],
+   "modules": [
+    "M09"
+   ],
+   "hq_country": "中国等",
+   "is_group": true,
+   "website": "各家官网",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "rolls-royce-mtu-kohler",
+   "name": "Rolls-Royce mtu / Kohler / 三菱重工",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "electrical"
+   ],
+   "modules": [
+    "M09"
+   ],
+   "hq_country": "欧美日",
+   "is_group": true,
+   "website": "mtu-solutions.com 等",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "cn-genset-group",
+   "name": "潍柴 / 玉柴 / 科泰电源",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "electrical"
+   ],
+   "modules": [
+    "M09"
+   ],
+   "hq_country": "中国",
+   "is_group": true,
+   "website": "各家官网",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "cn-dry-transformer-group",
+   "name": "金盘科技 / 特锐德 / 白云电器",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "electrical"
+   ],
+   "modules": [
+    "M09"
+   ],
+   "hq_country": "中国",
+   "is_group": true,
+   "website": "各家官网",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "ge-vernova-siemens-energy-mitsubishi-power",
+   "name": "GE Vernova / Siemens Energy / Mitsubishi Power",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "electrical"
+   ],
+   "modules": [
+    "M09"
+   ],
+   "hq_country": "美/欧/日",
+   "is_group": true,
+   "website": "gevernova.com 等",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "hitachi-energy-siemens-energy-hyosung-ge-vernova",
+   "name": "Hitachi Energy日立能源 / Siemens Energy / Hyosung晓星 / GE Vernova",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "electrical"
+   ],
+   "modules": [
+    "M09"
+   ],
+   "hq_country": "多国",
+   "is_group": true,
+   "website": "hitachienergy.com 等",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "tesla-energy-catl-fluence",
+   "name": "Tesla Energy / 阳光电源 / CATL / Fluence",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "electrical"
+   ],
+   "modules": [
+    "M09"
+   ],
+   "hq_country": "多国",
+   "is_group": true,
+   "website": "各家官网",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "motivair-by-schneider",
+   "name": "Motivair by Schneider",
+   "name_cn": "Motivair（施耐德）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "cooling"
+   ],
+   "modules": [
+    "M08"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "motivaircorp.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "boyd",
+   "name": "Boyd",
+   "name_cn": "Boyd",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "cooling"
+   ],
+   "modules": [
+    "M08"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "boydcorp.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "nvent",
+   "name": "nVent",
+   "name_cn": "nVent",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "cooling"
+   ],
+   "modules": [
+    "M08"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "nvent.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "liquidstack-submer-grc",
+   "name": "LiquidStack / Submer / GRC",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "cooling"
+   ],
+   "modules": [
+    "M08"
+   ],
+   "hq_country": "多国",
+   "is_group": true,
+   "website": "liquidstack.com 等",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "zutacore-accelsius",
+   "name": "ZutaCore / Accelsius",
+   "name_cn": "（两家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "cooling"
+   ],
+   "modules": [
+    "M08"
+   ],
+   "hq_country": "以色列/美国",
+   "is_group": true,
+   "website": "zutacore.com 等",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "envicool",
+   "name": "Envicool",
+   "name_cn": "英维克",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "cooling"
+   ],
+   "modules": [
+    "M08"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "envicool.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "shenling",
+   "name": "Shenling",
+   "name_cn": "申菱环境",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "cooling"
+   ],
+   "modules": [
+    "M08"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "shenling.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "goaland",
+   "name": "Goaland",
+   "name_cn": "高澜股份",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "cooling"
+   ],
+   "modules": [
+    "M08"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "goaland.com.cn",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "sugon-dcu",
+   "name": "Sugon DCU",
+   "name_cn": "曙光数创",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "cooling"
+   ],
+   "modules": [
+    "M08"
+   ],
+   "hq_country": "中国",
+   "is_group": false,
+   "website": "sugon-dcu.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "cn-cooling-group",
+   "name": "同飞股份 / 佳力图 / 依米康 / 海悟",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "cooling"
+   ],
+   "modules": [
+    "M08"
+   ],
+   "hq_country": "中国",
+   "is_group": true,
+   "website": "各家官网",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "stulz",
+   "name": "Stulz",
+   "name_cn": "世图兹",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "cooling"
+   ],
+   "modules": [
+    "M08"
+   ],
+   "hq_country": "德国",
+   "is_group": false,
+   "website": "stulz.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "staubli-cpc-parker-danfoss",
+   "name": "史陶比尔Staubli / CPC / Parker / Danfoss / 中航光电",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "cooling"
+   ],
+   "modules": [
+    "M08"
+   ],
+   "hq_country": "多国",
+   "is_group": true,
+   "website": "staubli.com 等",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "chemours",
+   "name": "Chemours / 壳牌 / 埃克森美孚 / 中石化润滑油",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "cooling"
+   ],
+   "modules": [
+    "M08"
+   ],
+   "hq_country": "多国",
+   "is_group": true,
+   "website": "各家官网",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "nidec-ebm-papst-avc-auras",
+   "name": "台达 / Nidec / ebm-papst / 奇鋐AVC / 双鸿Auras",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "cooling"
+   ],
+   "modules": [
+    "M08"
+   ],
+   "hq_country": "多国",
+   "is_group": true,
+   "website": "各家官网",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "johnson-controls-trane-carrier-modine",
+   "name": "Johnson Controls江森自控(York) / Trane特灵 / Carrier开利 / Modine(Airedale)",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "cooling"
+   ],
+   "modules": [
+    "M08"
+   ],
+   "hq_country": "美国等",
+   "is_group": true,
+   "website": "johnsoncontrols.com 等",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "ecolab-veolia",
+   "name": "Ecolab(Nalco) / Veolia",
+   "name_cn": "（两家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "cooling"
+   ],
+   "modules": [
+    "M08"
+   ],
+   "hq_country": "美国/法国",
+   "is_group": true,
+   "website": "ecolab.com 等",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "rittal",
+   "name": "Rittal",
+   "name_cn": "威图",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "facility"
+   ],
+   "modules": [
+    "M10"
+   ],
+   "hq_country": "德国",
+   "is_group": false,
+   "website": "rittal.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "legrand",
+   "name": "Legrand",
+   "name_cn": "罗格朗",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "facility"
+   ],
+   "modules": [
+    "M10"
+   ],
+   "hq_country": "法国",
+   "is_group": false,
+   "website": "legrand.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "panduit",
+   "name": "Panduit",
+   "name_cn": "泛达",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "facility"
+   ],
+   "modules": [
+    "M10"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "panduit.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "fusionmodule-smartaisle-ecostruxure-pod-wisemdc",
+   "name": "华为FusionModule / 维谛SmartAisle / 施耐德EcoStruxure Pod / 科华WiseMDC",
+   "name_cn": "（交叉引用）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "facility"
+   ],
+   "modules": [
+    "M10"
+   ],
+   "hq_country": "多国",
+   "is_group": true,
+   "website": "见供配电表",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "cn-rack-group",
+   "name": "图腾 / 一舟 / 威腾电气",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "facility"
+   ],
+   "modules": [
+    "M10"
+   ],
+   "hq_country": "中国",
+   "is_group": true,
+   "website": "各家官网",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "corning",
+   "name": "Corning",
+   "name_cn": "康宁",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "facility"
+   ],
+   "modules": [
+    "M10"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "corning.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "commscope",
+   "name": "CommScope",
+   "name_cn": "康普",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "facility"
+   ],
+   "modules": [
+    "M10"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "commscope.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "yofc",
+   "name": "长飞YOFC / 亨通 / 中天 / 烽火线缆",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "facility"
+   ],
+   "modules": [
+    "M10"
+   ],
+   "hq_country": "中国",
+   "is_group": true,
+   "website": "各家官网",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "vesda",
+   "name": "气体灭火（七氟丙烷/全氟己酮）+ VESDA极早期探测(Honeywell Xtralis)",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "facility"
+   ],
+   "modules": [
+    "M10"
+   ],
+   "hq_country": "多国",
+   "is_group": true,
+   "website": "各家官网",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "cn-security-group",
+   "name": "海康威视 / 大华",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "facility"
+   ],
+   "modules": [
+    "M10"
+   ],
+   "hq_country": "中国",
+   "is_group": true,
+   "website": "hikvision.com 等",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "schneider-ecostruxure-it",
+   "name": "Schneider EcoStruxure IT",
+   "name_cn": "施耐德",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "platform"
+   ],
+   "modules": [
+    "M13"
+   ],
+   "hq_country": "法国",
+   "is_group": false,
+   "website": "se.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "vertiv-environet",
+   "name": "Vertiv Environet",
+   "name_cn": "维谛",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "platform"
+   ],
+   "modules": [
+    "M13"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "vertiv.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "sunbird-dctrack-nlyte",
+   "name": "Sunbird dcTrack / Nlyte",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "platform"
+   ],
+   "modules": [
+    "M13"
+   ],
+   "hq_country": "美国",
+   "is_group": true,
+   "website": "sunbirddcim.com 等",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "neteco",
+   "name": "华为NetEco / 共济科技 / 迈世 / 大榕树",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "platform"
+   ],
+   "modules": [
+    "M13"
+   ],
+   "hq_country": "中国",
+   "is_group": true,
+   "website": "各家官网",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "vertiv-avocent-legrand-raritan",
+   "name": "Vertiv Avocent / Legrand Raritan",
+   "name_cn": "（两家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "platform"
+   ],
+   "modules": [
+    "M13"
+   ],
+   "hq_country": "美国",
+   "is_group": true,
+   "website": "vertiv.com 等",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "ttk-rle-nvent",
+   "name": "TTK / RLE / nVent / 国产（周立功等）",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "platform"
+   ],
+   "modules": [
+    "M13"
+   ],
+   "hq_country": "多国",
+   "is_group": true,
+   "website": "各家官网",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "cn-inspection-robot-group",
+   "name": "国自机器人 / 优必选等",
+   "name_cn": "（多家）",
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "platform"
+   ],
+   "modules": [
+    "M13"
+   ],
+   "hq_country": "中国",
+   "is_group": true,
+   "website": "各家官网",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  },
+  {
+   "company_id": "motivair",
+   "name": "Motivair",
+   "name_cn": null,
+   "ticker": null,
+   "cik": null,
+   "roles": [
+    "cooling"
+   ],
+   "modules": [
+    "M08"
+   ],
+   "hq_country": "美国",
+   "is_group": false,
+   "website": "motivaircorp.com",
+   "profile": null,
+   "ir_url": null,
+   "verified_date": null
+  }
+ ]
 }

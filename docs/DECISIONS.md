@@ -26,6 +26,7 @@
 | B2 | `02_制冷与供配电/`（13 份）与 `03_云计算/`（36 份）名存实亡，**暂不处理** | 目录重组本就推迟到全库打分完成后一次性做，现在动等于提前返工 | 08-17 |
 | B3 | 打分表**暂不拆表**（现 13,663 行 / 26MB / 浏览器解析 2.2s） | 能用；且拆表会改动本地投递与合并流程，等本地 A 阶段跑完再一次性做，避免中途换轨 | 08-17 |
 | B4 | 本机自动同步开**自动推送**：每 30 分钟，改动过 `validate.py --strict` 才 commit+push（只动 main；冲突不自动裁决） | 用户要「本地更新网站能自动爬取」；validate 闸门保铁律，站点在登录后面、都是内部人。不想自动推就把 sync plist 里的 `--push` 参数删掉 | 08-18 |
+| B5 | 产品目录对齐落库的三处代放决断：① 对方 9 环节中文 roles **映射**成本库英文枚举（映射表见会话续 45）；② 对齐包里 9 条塌缩成 `group` 的厂商组 ID **本库单方面改名**（映射表见会话续 45，**须回传对方项目同步改**，否则 ID 锚点断裂）；③ bom coldplate 悬空引用 motivair 补最小档案（待核验） | ① companies.json 的 roles 枚举是既有词表，环节粒度在 products.json 里没丢；② 9 条同 ID 违反主键唯一，不改无法入库；③ 新增的 bom↔companies 引用校验逼出的既有死链 | 08-18 |
 
 ### C. 云端已交付，请用户否决或点头（不否决就按此跑）
 
@@ -92,6 +93,47 @@ C1、C2、C3 已于 2026-08-17 一并批复（用户原话「好的。就按照�
 - **二进制不进 git**：研报库本体留本地，索引（LIBRARY_INDEX.md）和打分（LIBRARY_SCORES.csv）进 git。
 
 ## 会话决策记录（倒序）
+
+### 2026-08-18（会话续 45：产品研究目录项目对齐落库——bom v1.1 / companies 合并 / products 新表）
+
+**背景**：用户在另一个项目（数据中心产品 spec 研究，供应链轴：9 环节×公司×产品线×spec）
+建了分类标准并准备爬取官方产品资料，投递对齐包到 `docs/inbox/inresearch-alignment/`
+（ALIGNMENT.md + products.json 175 条 + companies_patch.json + bom_parts_extension.json）。
+**两项目分工**：对方管资料搜集与 spec 字段库（library/ 本体留在对方项目），本库管价格序列、
+交期指标、研究结论；**锚点只有 company_id + bom_part_id 两个 ID**（bom.json 为
+bom_part_id 唯一定义源）。对方每次目录更新重新投递 products.json 整文件替换；
+爬完交 library_index.json（清单+URL+日期），爆炸图最深处链到对方文件。
+
+**本次落库（用户明确指令执行）**：
+1. **bom.json v1.0→v1.1**：+14 节点（dram/ssd/hdd/storage-array/switch-asic/
+   copper-interconnect/cabling/coolant/immersion/fan-vc/leak-detection/modular-dc/
+   fpga/interconnect-chip）；删 storage（拆为 ssd/hdd/storage-array，全库检索无其他引用）；
+   hbm 公司勘误（nvidia/amd 是用户不是制造商→samsung/sk-hynix/micron/cxmt）；
+   全部节点按 products.json 聚合回填 companies。变更日志记在 00_overview.md。
+2. **companies.json 94→248**：+154 新公司（verified_date=null 待核验），13 家既有公司
+   仅追加 roles/modules/website、已核验字段不动。
+3. **data/products.json 新表**（175 条，P0=34/P1=73/P2=68）+ `data/schema/products.schema.json`；
+   schema/company.schema.json 同步扩枚举、加 is_group/website 字段。
+4. **validate.py 新增**：products 复合主键唯一、company_id/bom_parts 引用闭合、枚举检查；
+   bom.json companies 引用闭合（此前无人检查，当场逼出 coldplate→motivair 死链）。
+   校验 0 warnings 通过；bom.html/bom3d.html 本地实测渲染正常（bom.html 写死的
+   「28 个部件」改 41）。
+
+**云端代放决断（B5，请复核）**：
+- **9 环节→roles 枚举映射**：算力芯片与核心器件→chip｜服务器与整机→server-odm｜
+  存储介质与部件、存储系统与数据管理→storage（新枚举）｜网络与光互联→network｜
+  供配电→electrical｜散热与液冷→cooling｜机柜布线与物理设施→facility（新枚举）｜
+  DCIM与运维配套→platform。环节原文粒度保留在 products.json 的 segment 字段，没丢。
+  另把既有数据已在用、schema 漏登的 sovereign 补进枚举。
+- **9 条 `group` 厂商组改名**（对方导出 bug：中文组名 kebab 化塌缩；**须回传对方**）：
+  长城/宝德/神州鲲泰/湘江鲲鹏/超越申泰/黄河→`cn-kunpeng-feiteng-server-group`｜
+  中科驭数/云豹智能/大禹智芯→`cn-dpu-group`｜索尔思/海信宽带/剑桥科技/铭普→`cn-optics-group`｜
+  潍柴/玉柴/科泰电源→`cn-genset-group`｜金盘科技/特锐德/白云电器→`cn-dry-transformer-group`｜
+  同飞股份/佳力图/依米康/海悟→`cn-cooling-group`｜图腾/一舟/威腾电气→`cn-rack-group`｜
+  海康威视/大华→`cn-security-group`｜国自机器人/优必选等→`cn-inspection-robot-group`
+- **motivair 补档**：coldplate 节点挂着但公司表从来没有，补最小记录（cooling/M08/待核验）。
+- 对齐包原件照收进 git 留痕（.gitignore 显式放行），落库副本才做上述修正——原件不改。
+- 顺手账：companies_patch 自述 160 条实为 166 条（含 9 条 group）——已回报对方核对导出。
 
 ### 2026-08-18（会话续 44：P1 卫生债云端部分落地；P0 部署实测确认）
 
