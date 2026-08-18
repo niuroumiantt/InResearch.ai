@@ -1,6 +1,6 @@
 #!/bin/bash
-# 一键启动本地精读会话（datacenter-reader）。
-# 用法：bash /Users/yidian/code/datacenter/docs/local_reader/start.sh
+# 一键启动本地精读会话（精读工作区在主文件夹的 reader/ 子目录，不进 git）。
+# 用法：bash ~/code/inresearch.ai/docs/local_reader/start.sh
 # 或在管理后台（ops.html）点"🚀 启动精读"按钮（经 launch_reader.py 在新 Terminal 打开）。
 set -e
 
@@ -14,7 +14,7 @@ git -C "$REPO" checkout -- \
   framework/indicators.json 2>/dev/null || true
 git -C "$REPO" pull --ff-only || echo "（pull 失败或有未提交的手工改动，继续用当前版本；如需强制同步请先 git stash）"
 
-READER="$HOME/code/datacenter-reader"
+READER="$REPO/reader"
 mkdir -p "$READER"
 cd "$READER"
 

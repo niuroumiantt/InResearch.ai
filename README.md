@@ -57,12 +57,16 @@ L0 数据层   data/ — 六张实体表（项目/公司/价格/政策/合同/�
 | 半自动 | JLL/C&W/机构报告、财报电话会 | 监控发布页 → AI 提取 → 人工确认入库 | 季度 |
 | 手动核验 | 项目状态变更（通电/开工/取消）、产业渠道信息 | 人工录入（独家价值最高） | 事件驱动 |
 
-## 常驻服务（macOS launchd，已安装）
+## 常驻服务（macOS launchd，装法见 docs/local_setup/）
+
+本机唯一项目文件夹 `~/code/inresearch.ai/`（精读工作区在其 `reader/` 子目录，不进 git）。
+一次性安装/迁移：`bash docs/local_setup/setup.sh`。
 
 | 服务 | 作用 | 管理 |
 |---|---|---|
-| `com.datacenterhub.server` | 常驻网页服务器：http://localhost:8000 开机自启、崩溃自动拉起 | `launchctl unload ~/Library/LaunchAgents/com.datacenterhub.server.plist` 停用 |
-| `com.datacenterhub.collect` | 每天 08:00 自动跑 `collect.py`（采集+简报+事件驱动标记） | 同上，文件名换 collect；日志在 `logs/` |
+| `com.inresearch.server` | 常驻网页服务器：http://localhost:8000 开机自启、崩溃自动拉起 | `launchctl unload ~/Library/LaunchAgents/com.inresearch.server.plist` 停用 |
+| `com.inresearch.collect` | 每天 08:00 跑 `collect.py`（采集+简报+事件驱动标记），完了立即推送上站 | 同上，文件名换 collect；日志在 `logs/` |
+| `com.inresearch.sync` | 每 30 分钟双向同步：拉 GitHub 最新；本机改动过 `validate.py --strict` 才自动推送，服务器 autopull 2 分钟内上线 | 同上，文件名换 sync；日志 `logs/sync.log` |
 
 **事件驱动核验联动**：collect.py 发现某实体近 7 天有 10-Q/10-K/8-K，自动把触发器挂着
 该实体的 current Finding 标为 needs-review（进 P1 队列、仪表盘模块卡片显示 ⚠️）；

@@ -25,6 +25,7 @@
 | B1 | 40 条中国工程档案**不并入** `projects.json`，改为独立索引 `docs/CN_PROJECT_ARCHIVES.csv` | projects.json 的 status 必填 L1-L9，这批从无官方投运披露；编状态即违反"未披露不许推算"，且会污染仪表盘供给口径 | 08-16 |
 | B2 | `02_制冷与供配电/`（13 份）与 `03_云计算/`（36 份）名存实亡，**暂不处理** | 目录重组本就推迟到全库打分完成后一次性做，现在动等于提前返工 | 08-17 |
 | B3 | 打分表**暂不拆表**（现 13,663 行 / 26MB / 浏览器解析 2.2s） | 能用；且拆表会改动本地投递与合并流程，等本地 A 阶段跑完再一次性做，避免中途换轨 | 08-17 |
+| B4 | 本机自动同步开**自动推送**：每 30 分钟，改动过 `validate.py --strict` 才 commit+push（只动 main；冲突不自动裁决） | 用户要「本地更新网站能自动爬取」；validate 闸门保铁律，站点在登录后面、都是内部人。不想自动推就把 sync plist 里的 `--push` 参数删掉 | 08-18 |
 
 ### C. 云端已交付，请用户否决或点头（不否决就按此跑）
 
@@ -87,6 +88,25 @@
 - **二进制不进 git**：研报库本体留本地，索引（LIBRARY_INDEX.md）和打分（LIBRARY_SCORES.csv）进 git。
 
 ## 会话决策记录（倒序）
+
+### 2026-08-18（会话续 39：本机文件夹归一 ~/code/inresearch.ai，双向自动同步上线）
+
+**用户拍板**：本地 `~/code/datacenter` 与 `~/code/datacenter-reader` 两个文件夹合成一个
+`~/code/inresearch.ai/`；要保证本地永远有 GitHub 最新内容，且本地更新能自动到网站。
+
+**实现（`docs/local_setup/`，一条命令迁移）**：`setup.sh` 幂等完成
+文件夹归一（reader 迁为主文件夹 `reader/` 子目录，gitignore 不进 git；91GB 库随文件夹平移不重传）、
+git 远端指向改名后的 InResearch.ai、旧 launchd（com.datacenterhub.*）退役、
+新三件套 com.inresearch.{server,collect,sync} 上岗。
+
+**同步链路**：本机 ⇄ GitHub ⇄ 服务器 autopull。sync 每 30 分钟
+`pull --rebase --autostash` 保本地最新；`--push` 模式下本机改动过
+`validate.py --strict` 才 commit+push（云端判断 B4，请复核）——校验不过留在本地记日志，
+冲突不自动裁决，只动 main。collect 每日 08:00 采集完立即推送，简报当天上站。
+
+**配套**：仓库里所有写死旧路径的引用改毕（start.sh 的 READER、KICKOFF_PROMPT、
+RUN_TO_COMPLETION、README 常驻服务表、CLAUDE.md 环境注意）。
+start.sh 的 REPO 本就按脚本自身位置推导，迁移后无需改动即可用。
 
 ### 2026-08-18（会话续 38：管理后台重做——用户管理进网页，CLI 降为兜底）
 
