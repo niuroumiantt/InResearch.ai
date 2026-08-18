@@ -8,15 +8,16 @@
   :root {
     --bg: #f2f4f7; --card: #ffffff; --text: #1a1d24; --muted: #6b7280;
     --line: #e5e7eb; --accent: #2563eb;
-    --green: #16a34a; --yellow: #d97706; --red: #dc2626; --purple: #7c3aed; --gray: #9ca3af;
+    --green: #16a34a; --yellow: #d97706; --red: #dc2626; --gray: #9ca3af;
     --green-bg: #dcfce7; --yellow-bg: #fef3c7; --red-bg: #fee2e2; --blue-bg: #dbeafe; --gray-bg: #f3f4f6;
+    --p0: #dc2626; --p1: #2563eb; --p2: #b9c0cc;
   }
   @media (prefers-color-scheme: dark) {
     :root { --bg: #0c0e12; --card: #171a21; --text: #e5e7eb; --muted: #9ca3af; --line: #262a33; --accent: #60a5fa;
-      --green-bg: #14321f; --yellow-bg: #33290f; --red-bg: #351a1a; --blue-bg: #16263c; --gray-bg: #21242c; }
+      --green-bg: #14321f; --yellow-bg: #33290f; --red-bg: #351a1a; --blue-bg: #16263c; --gray-bg: #21242c; --p2: #3a4150; }
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--bg); color: var(--text); font: 13.5px/1.6 -apple-system, "PingFang SC", sans-serif; padding-bottom: 60px; }
+  body { background: var(--bg); color: var(--text); font: 13px/1.5 -apple-system, "PingFang SC", sans-serif; padding-bottom: 60px; }
   a { color: var(--accent); text-decoration: none; }
   .topbar { position: sticky; top: 0; background: var(--card); border-bottom: 1px solid var(--line);
     display: flex; align-items: center; gap: 4px; padding: 0 18px; height: 46px; z-index: 20; }
@@ -24,44 +25,72 @@
   .tab { padding: 12px 14px; color: var(--muted); border-bottom: 2px solid transparent; }
   .tab.on { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
   .topbar .sp { flex: 1; }
-  .wrap { max-width: 1360px; margin: 18px auto 0; padding: 0 16px; }
-  h1 { font-size: 24px; } h1 em { font-style: normal; color: var(--accent); }
-  .sub { color: var(--muted); font-size: 12.5px; margin: 2px 0 14px; }
-  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 16px; }
-  .kpi { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
-  .kpi .n { font-size: 22px; font-weight: 700; } .kpi .l { font-size: 11.5px; color: var(--muted); }
-  .kpi .n small { font-size: 12px; font-weight: 400; color: var(--muted); }
-  .bar { display: flex; height: 8px; border-radius: 4px; overflow: hidden; margin: 12px 0 4px; border: 1px solid var(--line); }
-  .bar i { display: block; }
-  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; align-items: center; }
+  .wrap { max-width: 1280px; margin: 14px auto 0; padding: 0 16px; }
+
+  /* ── 顶条：标题 + KPI + 筛选，一屏压缩 ── */
+  .head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 14px; margin-bottom: 4px; }
+  .head h1 { font-size: 19px; } .head h1 em { font-style: normal; color: var(--accent); }
+  .kpis { display: flex; flex-wrap: wrap; gap: 0 18px; font-size: 12.5px; color: var(--muted); }
+  .kpis b { font-size: 15px; color: var(--text); margin-right: 2px; }
+  .kpis .warn b { color: var(--yellow); } .kpis .gap b { color: var(--red); }
+  .bar-row { display: flex; align-items: center; gap: 10px; margin: 8px 0 10px; }
+  .filters { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; flex: 1; }
   .filters select, .filters input { background: var(--card); color: var(--text); border: 1px solid var(--line);
-    border-radius: 8px; padding: 5px 9px; font-size: 12.5px; }
-  .filters input { min-width: 220px; }
-  .chip { display: inline-block; padding: 0 8px; border-radius: 10px; font-size: 11px; line-height: 18px; white-space: nowrap; }
+    border-radius: 7px; padding: 4px 8px; font-size: 12px; }
+  .filters input { min-width: 180px; }
+  .filters label { font-size: 12px; color: var(--muted); white-space: nowrap; }
+  .legend { font-size: 11.5px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .legend i { display: inline-block; width: 9px; height: 9px; border-radius: 3px; margin-right: 4px; vertical-align: -1px; }
+  .legend .pdot { width: 4px; height: 12px; border-radius: 2px; }
+
+  /* ── 环节区块（对应爆炸图“层”）── */
+  .seg { background: var(--card); border: 1px solid var(--line); border-radius: 11px; margin-bottom: 10px; overflow: hidden; }
+  .seg > header { display: flex; align-items: center; gap: 10px; padding: 7px 14px; border-bottom: 1px solid var(--line); }
+  .seg > header b { font-size: 13.5px; }
+  .seg > header .mini { color: var(--muted); font-size: 11.5px; }
+  .seg .prog { width: 90px; height: 6px; border-radius: 3px; background: var(--gray-bg); overflow: hidden; display: flex; }
+  .seg .prog i { display: block; height: 100%; }
+  .seg > header .sp { flex: 1; }
+  .catrow { display: grid; grid-template-columns: 118px 1fr; border-bottom: 1px dashed var(--line); }
+  .catrow:last-child { border-bottom: none; }
+  .catrow .cat { padding: 6px 10px; font-size: 11.5px; color: var(--muted); border-right: 1px solid var(--line);
+    display: flex; align-items: flex-start; line-height: 1.35; padding-top: 9px; }
+  .chips { padding: 5px 8px; display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+
+  /* ── 公司色块：背景=采集状态，左竖条=优先级，角标=文档/缺口 ── */
+  .co { position: relative; display: inline-flex; align-items: center; gap: 5px; padding: 3px 8px 3px 9px;
+    border: 1px solid var(--line); border-left: 3px solid var(--p2); border-radius: 7px;
+    font-size: 12px; cursor: pointer; background: var(--card); line-height: 1.4; }
+  .co:hover { border-color: var(--accent); }
+  .co.p0 { border-left-color: var(--p0); font-weight: 600; }
+  .co.p1 { border-left-color: var(--p1); }
+  .co.st-part { background: var(--yellow-bg); }
+  .co.st-core { background: var(--green-bg); }
+  .co .b { font-size: 10.5px; border-radius: 8px; padding: 0 5px; line-height: 15px; }
+  .co .bd { background: var(--blue-bg); color: var(--accent); }
+  .co .bg { background: var(--red-bg); color: var(--red); }
+  .co .bm { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow); }
+  .co.sel { outline: 2px solid var(--accent); }
+
+  /* ── 档案卡（点击色块展开，同爆炸图部件卡）── */
+  .detail { grid-column: 1 / -1; background: var(--gray-bg); border-top: 1px solid var(--line); padding: 10px 14px; font-size: 12.5px; }
+  .detail .t { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: baseline; margin-bottom: 6px; }
+  .detail .t b { font-size: 13.5px; }
+  .detail .t span { color: var(--muted); font-size: 11.5px; }
+  .models span { display: inline-block; margin: 1px 4px 1px 0; padding: 1px 7px; border-radius: 8px; font-size: 11.5px; }
+  .m-ok { background: var(--green-bg); color: var(--green); }
+  .m-no { background: var(--red-bg); color: var(--red); }
+  .doclist { margin-top: 6px; border-top: 1px dashed var(--line); padding-top: 6px; }
+  .doclist div { padding: 2px 0; }
+  .chip { display: inline-block; padding: 0 7px; border-radius: 9px; font-size: 11px; line-height: 17px; margin-right: 4px; }
   .c-green { background: var(--green-bg); color: var(--green); }
   .c-yellow { background: var(--yellow-bg); color: var(--yellow); }
   .c-red { background: var(--red-bg); color: var(--red); }
   .c-blue { background: var(--blue-bg); color: var(--accent); }
-  .c-gray { background: var(--gray-bg); color: var(--muted); }
-  .seg { background: var(--card); border: 1px solid var(--line); border-radius: 12px; margin-bottom: 14px; overflow: hidden; }
-  .seg > header { display: flex; align-items: center; gap: 10px; padding: 10px 16px; cursor: pointer; }
-  .seg > header:hover { background: var(--gray-bg); }
-  .seg > header b { font-size: 14.5px; }
-  .seg > header .mini { color: var(--muted); font-size: 12px; }
-  .seg > header .sp { flex: 1; }
-  table { width: 100%; border-collapse: collapse; }
-  th { text-align: left; font-size: 11.5px; color: var(--muted); font-weight: 500; padding: 6px 10px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-  td { padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
-  tr.rowmain:hover { background: var(--gray-bg); cursor: pointer; }
-  tr:last-child td { border-bottom: none; }
-  .models span { display: inline-block; margin: 1px 3px 1px 0; padding: 0 6px; border-radius: 8px; font-size: 11px; line-height: 17px; }
-  .m-ok { background: var(--green-bg); color: var(--green); }
-  .m-no { background: var(--red-bg); color: var(--red); }
-  .docs { background: var(--gray-bg); }
-  .docs td { padding: 4px 10px 4px 34px; font-size: 12px; border-bottom: 1px dashed var(--line); }
-  .docs .path { font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: var(--muted); cursor: copy; }
-  .docs .path:hover { color: var(--accent); }
-  .foot { color: var(--muted); font-size: 11.5px; margin-top: 18px; line-height: 1.8; }
+  .c-gray { background: var(--gray-bg); color: var(--muted); border: 1px solid var(--line); }
+  .path { font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: var(--muted); cursor: copy; }
+  .path:hover { color: var(--accent); }
+  .foot { color: var(--muted); font-size: 11.5px; margin-top: 14px; line-height: 1.7; }
   .err { background: var(--red-bg); color: var(--red); padding: 14px 18px; border-radius: 10px; margin: 20px 0; }
 </style>
 </head>
@@ -77,9 +106,6 @@
   <a class="tab" href="/doc.html?f=docs/inbox/inresearch-alignment/ALIGNMENT.md">对齐方案 ↗</a>
 </div>
 <div class="wrap">
-  <h1>产品资料采集看板 <em>admin/product</em></h1>
-  <div class="sub">供应链轴：环节 → 公司×产品线 → 型号 → 官方资料。数据源：<code>products.json</code>（计划）×
-    <code>library_index.json</code>(采集台账)。<b>红色型号 = 计划内但一份资料都没有</b> — 缺口比成果更重要。</div>
   <div id="app">加载中…</div>
   <div class="foot" id="foot"></div>
 </div>
@@ -87,11 +113,11 @@
 const DOC_STATUS = { pending:["待下载","c-gray"], downloaded:["已下载","c-blue"],
   needs_manual:["需人工","c-yellow"], verified:["已核验","c-green"], superseded:["已过版","c-gray"] };
 const norm = s => (s||"").toLowerCase().replace(/[^a-z0-9]/g,"");
+const norm2 = s => (s||"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
 function modelTokens(str){
   const cjk=/[一-鿿]/;
   return (str||"").replace(/[（(][^）)]*[）)]/g,"").split(/[、;；]/).flatMap(t=>{
     t=t.trim(); if(!t) return [];
-    // 仅当各段都以字母/数字开头时才按 / 展开（避免切碎中文描述）
     if(t.includes("/") && t.length<40 && t.split("/").every(x=>/^[A-Za-z0-9]/.test(x.trim()))){
       const parts=t.split("/").map(x=>x.trim());
       const tail=(parts[parts.length-1].match(/\s+(.+)$/)||[])[1]||"";
@@ -99,12 +125,10 @@ function modelTokens(str){
     }
     return [t];
   }).map(t=>{
-    // 以字母/数字开头的型号，剪掉从第一个中文字符起的描述尾巴：GB300中的Grace → GB300
     if(/^[A-Za-z0-9]/.test(t)){ const m=t.search(cjk); if(m>1) t=t.slice(0,m).trim(); }
     return t;
   }).filter(t=>t.length>1&&t.length<40
-    &&!/^(第|全|各|其他|新一?代|主流|重点)/.test(t)          // 纯描述词开头的丢弃
-    &&/[A-Za-z0-9]{2}/.test(t));                              // 必须含型号特征（连续字母数字）
+    &&!/^(第|全|各|其他|新一?代|主流|重点)/.test(t)&&/[A-Za-z0-9]{2}/.test(t));
 }
 async function main(){
   const app=document.getElementById("app");
@@ -122,81 +146,108 @@ async function main(){
   prods.forEach(p=>{
     p._docs=docsByKey[p.company_id+"|"+norm(p.product_line)]||[];
     p._tokens=modelTokens(p.representative_models);
-    const norm2=s=>(s||"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
     const models=p._docs.map(d=>norm2(d.model));
-    // 精确到分段边界：H200 匹配 HGX-H200 但不匹配 GH200；B200 不蹭 GB200
     p._cover=p._tokens.map(t=>{const t2=norm2(t);
       return {t, ok:models.some(m=>m===t2||m.split("-").includes(t2)||(t2.includes("-")&&("-"+m+"-").includes("-"+t2+"-")))};});
+    p._gaps=p._cover.filter(c=>!c.ok).length;
+    p._manual=p._docs.filter(d=>d.status==="needs_manual").length;
     const types=new Set(p._docs.filter(d=>d.status!=="superseded").map(d=>d.doc_type));
-    p._coreOk=types.has("DS")&&( ["PB","BR","WEB"].some(x=>types.has(x)) );
+    p._coreOk=types.has("DS")&&["PB","BR","WEB"].some(x=>types.has(x));
     p._state=p._docs.length===0?"none":(p._coreOk?"core":"part");
   });
-  const st={ none:["未启动","c-gray"], part:["进行中","c-yellow"], core:["核心达标","c-green"] };
   const segs=[...new Set(prods.map(p=>p.sheet))];
-  const nDocs=lib.length, byS={};
-  lib.forEach(d=>byS[d.status]=(byS[d.status]||0)+1);
+  const byS={}; lib.forEach(d=>byS[d.status]=(byS[d.status]||0)+1);
   const p0=prods.filter(p=>p.priority==="P0");
-  const kpi=`
-  <div class="cards">
-    <div class="kpi"><div class="n">${prods.length}</div><div class="l">作业单元（公司×产品线）</div></div>
-    <div class="kpi"><div class="n">${p0.length} <small>/ 启动 ${p0.filter(p=>p._state!=="none").length} / 达标 ${p0.filter(p=>p._state==="core").length}</small></div><div class="l">P0 进度</div></div>
-    <div class="kpi"><div class="n">${nDocs}</div><div class="l">已登记文档</div></div>
-    <div class="kpi"><div class="n">${byS.verified||0} <small>核验</small> ${byS.downloaded||0} <small>已下</small></div><div class="l">落盘情况</div></div>
-    <div class="kpi"><div class="n" style="color:var(--yellow)">${byS.needs_manual||0}</div><div class="l">需人工处理</div></div>
-    <div class="kpi"><div class="n" style="color:var(--red)">${prods.reduce((a,p)=>a+p._cover.filter(c=>!c.ok).length,0)}</div><div class="l">计划内无资料型号（缺口）</div></div>
+  app.innerHTML=`
+  <div class="head">
+    <h1>产品资料采集看板 <em>admin/product</em></h1>
+    <div class="kpis">
+      <span><b>${prods.length}</b>作业单元</span>
+      <span>P0 <b>${p0.length}</b>· 启动 <b>${p0.filter(p=>p._state!=="none").length}</b>· 达标 <b>${p0.filter(p=>p._state==="core").length}</b></span>
+      <span>文档 <b>${lib.length}</b>· 核验 <b>${byS.verified||0}</b></span>
+      <span class="warn">需人工 <b>${byS.needs_manual||0}</b></span>
+      <span class="gap">缺口型号 <b>${prods.reduce((a,p)=>a+p._gaps,0)}</b></span>
+    </div>
   </div>
-  <div class="filters">
-    <select id="fSeg"><option value="">全部环节</option>${segs.map(s=>`<option>${s}</option>`).join("")}</select>
-    <select id="fPri"><option value="">全部优先级</option><option>P0</option><option>P1</option><option>P2</option></select>
-    <select id="fSt"><option value="">全部状态</option><option value="none">未启动</option><option value="part">进行中</option><option value="core">核心达标</option></select>
-    <input id="fQ" placeholder="搜公司 / 产品线 / 型号…">
-    <label style="font-size:12px;color:var(--muted)"><input type="checkbox" id="fGap"> 只看有缺口的</label>
+  <div class="bar-row">
+    <div class="filters">
+      <select id="fPri"><option value="">优先级</option><option>P0</option><option>P1</option><option>P2</option></select>
+      <select id="fSt"><option value="">状态</option><option value="none">未启动</option><option value="part">进行中</option><option value="core">核心达标</option></select>
+      <input id="fQ" placeholder="搜公司 / 产品线 / 型号…">
+      <label><input type="checkbox" id="fGap"> 只看有缺口</label>
+      <label><input type="checkbox" id="fDoc"> 只看有资料</label>
+    </div>
+    <div class="legend">
+      <span><i style="background:var(--card);border:1px solid var(--line)"></i>未启动</span>
+      <span><i style="background:var(--yellow-bg)"></i>进行中</span>
+      <span><i style="background:var(--green-bg)"></i>核心达标</span>
+      <span><i class="pdot" style="background:var(--p0)"></i>P0</span>
+      <span><i class="pdot" style="background:var(--p1)"></i>P1</span>
+      <span><i class="pdot" style="background:var(--p2)"></i>P2</span>
+      <span>角标：<span class="chip c-blue" style="padding:0 5px">n</span>文档数 <span class="chip c-red" style="padding:0 5px">n</span>缺口 <span class="chip c-yellow" style="padding:0 5px">!</span>需人工</span>
+    </div>
   </div>
   <div id="list"></div>`;
-  app.innerHTML=kpi;
+  let selKey=null;
+  function coChip(p){
+    const badges=[
+      p._docs.length?`<span class="b bd">${p._docs.length}</span>`:"",
+      p._state!=="none"&&p._gaps?`<span class="b bg">${p._gaps}</span>`:"",
+      p._manual?`<span class="b bm">!</span>`:""].join("");
+    const name=(p.company_cn&&p.company_cn.length<=10&&!p.company_cn.startsWith("（"))?p.company_cn:p.company_en;
+    return `<span class="co p${p.priority[1]} st-${p._state} ${selKey===p._key?"sel":""}" data-k="${p._key}"
+      title="${p.company_en} · ${p.product_line} · ${p.priority}">${name}${badges}</span>`;
+  }
+  function detailHTML(p){
+    return `<div class="detail">
+      <div class="t"><b>${p.company_cn} ${p.company_en}</b>
+        <span>${p.product_line} · ${p.category} · BOM: ${p.bom_parts.join(", ")} · ${p.priority} · ${p.hq}</span>
+        <a href="https://${p.website.split(" ")[0]}" target="_blank">${p.website}</a></div>
+      <div class="models">${p._cover.map(c=>`<span class="${c.ok?"m-ok":"m-no"}">${c.t}</span>`).join("")}</div>
+      ${p.note?`<div style="color:var(--muted);font-size:11.5px;margin-top:4px">${p.note}</div>`:""}
+      <div class="doclist">${p._docs.length? p._docs.map(d=>
+        `<div><span class="chip ${DOC_STATUS[d.status][1]}">${DOC_STATUS[d.status][0]}</span><b>${d.doc_type}</b>
+         ${d.title} <a href="${d.source_url}" target="_blank">来源↗</a>
+         <span class="path" title="点击复制本地路径" onclick="event.stopPropagation();navigator.clipboard.writeText('${d.file_path}');this.textContent='已复制✓'">${d.file_path.split("/").slice(-1)[0]}</span></div>`).join("")
+       :`<span style="color:var(--muted)">尚未登记任何资料 — 待采集</span>`}</div>
+    </div>`;
+  }
+  prods.forEach((p,i)=>p._key=i+"");
   function render(){
-    const seg=fSeg.value, pri=fPri.value, stf=fSt.value, q=norm(fQ.value), gap=fGap.checked;
-    const list=document.getElementById("list");
-    list.innerHTML="";
-    segs.filter(s=>!seg||s===seg).forEach(s=>{
-      const rows=prods.filter(p=>p.sheet===s)
-        .filter(p=>!pri||p.priority===pri).filter(p=>!stf||p._state===stf)
-        .filter(p=>!gap||p._cover.some(c=>!c.ok))
-        .filter(p=>!q||norm(p.company_en+p.company_cn+p.product_line+p.representative_models).includes(q));
+    const pri=fPri.value, stf=fSt.value, q=norm(fQ.value), gap=fGap.checked, hasdoc=fDoc.checked;
+    const keep=p=>(!pri||p.priority===pri)&&(!stf||p._state===stf)
+      &&(!gap||p._gaps>0)&&(!hasdoc||p._docs.length>0)
+      &&(!q||norm(p.company_en+p.company_cn+p.product_line+p.category+p.representative_models).includes(q));
+    const list=document.getElementById("list"); list.innerHTML="";
+    segs.forEach(s=>{
+      const rows=prods.filter(p=>p.sheet===s&&keep(p));
       if(!rows.length) return;
-      const started=rows.filter(p=>p._state!=="none").length;
+      const all=prods.filter(p=>p.sheet===s);
+      const nCore=all.filter(p=>p._state==="core").length, nPart=all.filter(p=>p._state==="part").length;
+      const cats=[...new Set(rows.map(p=>p.category))];
       const el=document.createElement("div"); el.className="seg";
-      el.innerHTML=`<header><b>${s}</b><span class="mini">${rows.length} 条 · 已启动 ${started}</span><span class="sp"></span>
-        <span class="mini">▼</span></header>
-        <div class="body"><table><tr><th style="width:120px">公司</th><th style="width:130px">产品线</th><th style="width:46px">优先级</th>
-        <th style="width:76px">状态</th><th>型号覆盖（绿=有资料 红=缺）</th><th style="width:150px">文档</th></tr>${
-        rows.map((p,i)=>`<tr class="rowmain" data-k="${p.company_id}|${p.product_line}">
-          <td><b>${p.company_cn||p.company_en}</b><div style="color:var(--muted);font-size:11px">${p.company_en}</div></td>
-          <td>${p.product_line}<div style="color:var(--muted);font-size:11px">${p.bom_parts.join(" · ")}</div></td>
-          <td>${p.priority==="P0"?'<span class="chip c-red">P0</span>':p.priority==="P1"?'<span class="chip c-blue">P1</span>':'<span class="chip c-gray">P2</span>'}</td>
-          <td><span class="chip ${st[p._state][1]}">${st[p._state][0]}</span></td>
-          <td class="models">${p._cover.map(c=>`<span class="${c.ok?"m-ok":"m-no"}">${c.t}</span>`).join("")}</td>
-          <td>${p._docs.length? Object.entries(p._docs.reduce((a,d)=>(a[d.status]=(a[d.status]||0)+1,a),{}))
-              .map(([k,v])=>`<span class="chip ${DOC_STATUS[k][1]}">${DOC_STATUS[k][0]} ${v}</span>`).join(" "):'<span class="chip c-gray">0 份</span>'}</td>
-        </tr>${p._docs.length?`<tr class="docs" style="display:none" data-for="${p.company_id}|${p.product_line}"><td colspan="6">${
-          p._docs.map(d=>`<div>【${DOC_STATUS[d.status][0]}】<b>${d.doc_type}</b> ${d.title}
-            <a href="${d.source_url}" target="_blank">来源↗</a>
-            <span class="path" title="点击复制本地路径" onclick="navigator.clipboard.writeText('${d.file_path}');this.textContent='已复制✓'">${d.file_path}</span></div>`).join("")
-        }</td></tr>`:""}`).join("")}</table></div>`;
+      el.innerHTML=`<header><b>${s}</b>
+        <span class="mini">${all.length} 单元 · 达标 ${nCore} · 进行中 ${nPart} · 缺口 ${all.reduce((a,p)=>a+p._gaps,0)}</span>
+        <div class="prog"><i style="width:${nCore/all.length*100}%;background:var(--green)"></i><i style="width:${nPart/all.length*100}%;background:var(--yellow)"></i></div>
+        <span class="sp"></span></header>` +
+        cats.map(c=>{
+          const cs=rows.filter(p=>p.category===c);
+          const sel=cs.find(p=>p._key===selKey);
+          return `<div class="catrow"><div class="cat">${c}</div><div class="chips">${cs.map(coChip).join("")}</div>
+            ${sel?detailHTML(sel):""}</div>`;
+        }).join("");
       list.appendChild(el);
-      el.querySelector("header").onclick=()=>{const b=el.querySelector(".body");b.style.display=b.style.display==="none"?"":"none";};
     });
-    list.querySelectorAll("tr.rowmain").forEach(tr=>tr.onclick=()=>{
-      const d=list.querySelector(`tr.docs[data-for="${tr.dataset.k}"]`);
-      if(d) d.style.display=d.style.display==="none"?"":"none";
+    list.querySelectorAll(".co").forEach(ch=>ch.onclick=()=>{
+      selKey=(selKey===ch.dataset.k)?null:ch.dataset.k; render();
     });
   }
-  ["fSeg","fPri","fSt","fQ","fGap"].forEach(id=>document.getElementById(id).oninput=render);
+  ["fPri","fSt","fQ","fGap","fDoc"].forEach(id=>document.getElementById(id).oninput=render);
   render();
   document.getElementById("foot").innerHTML=
-    `资料本体存于采集端本地 <code>dc-product-library/library/</code>（未来 Mac mini 常驻），本页只展示台账；点击文档行的路径可复制。`+
-    `台账更新流程：采集端跑完 fetch → 导出 library_index.json → 投递至 docs/inbox/inresearch-alignment/ 。`+
-    ` 型号覆盖为字符串匹配的近似判断，以台账为准。`;
+    `与《数据中心上下游产品研究目录 v2.xlsx》同构：环节=区块 · 产品大类=行 · 公司=色块（背景=采集状态，左竖条=优先级）。`+
+    `点击色块展开档案卡：型号覆盖（红=计划内无资料）+ 已登记文档（来源链接 / 点击文件名复制本地路径）。`+
+    `资料本体存于采集端本地 dc-product-library/library/（未来 Mac mini 常驻）；台账经 docs/inbox/inresearch-alignment/ 投递更新。`;
 }
 main();
 </script>
