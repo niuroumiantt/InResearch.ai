@@ -16,7 +16,12 @@ dc.example.com {
 		104.16.0.0/13 104.24.0.0/14 172.64.0.0/13 131.0.72.0/22
 	respond @not_cf 403
 
-	reverse_proxy hub:8000
+	# 重写而非追加 X-Forwarded-For：登录限速按此头认 IP，放任客户端自带的伪造项
+	# 混进来，5 次/5 分钟的限速就形同虚设。回源已被上面的白名单限定只来自
+	# Cloudflare，故 CF-Connecting-IP 可信；万一缺失则头为空，serve.py 退回直连地址。
+	reverse_proxy hub:8000 {
+		header_up X-Forwarded-For {header.CF-Connecting-IP}
+	}
 
 	log {
 		output file /data/access.log
