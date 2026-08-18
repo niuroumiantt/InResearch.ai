@@ -22,7 +22,7 @@ import secrets
 import sys
 from datetime import date
 
-from auth import load_users, save_users, hash_password, USERS_FILE
+from auth import load_users, save_users, hash_password, set_password, USERS_FILE
 
 NAME_RE = re.compile(r"^[a-z0-9][a-z0-9_.-]{1,30}$")
 
@@ -48,9 +48,7 @@ def cmd_passwd(args):
     if args.username not in users:
         sys.exit(f"✗ 用户不存在：{args.username}")
     pw = args.password or secrets.token_urlsafe(12)
-    salt = secrets.token_bytes(16).hex()
-    users[args.username].update(salt=salt, hash=hash_password(pw, salt))
-    save_users(users)
+    set_password(args.username, pw)
     print(f"✓ 已重置 {args.username} 的密码")
     if not args.password:
         print(f"  新密码（只显示这一次）：{pw}")

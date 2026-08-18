@@ -127,6 +127,18 @@ def session_user(cookie_header: str | None) -> str | None:
     return username
 
 
+def set_password(username: str, new_password: str) -> bool:
+    """改指定用户的密码；用户不存在返回 False。CLI 与自助改密共用此入口。"""
+    import secrets as _s
+    users = load_users()
+    if username not in users:
+        return False
+    salt = _s.token_bytes(16).hex()
+    users[username].update(salt=salt, hash=hash_password(new_password, salt))
+    save_users(users)
+    return True
+
+
 # ── 登录限速 ────────────────────────────────────────────────
 
 def client_ip(handler) -> str:
@@ -184,5 +196,48 @@ async function go(e){e.preventDefault();
   const d=await r.json();
   if(d.ok){location.href='/';}
   else{document.getElementById('err').textContent=d.error||'登录失败';}
+  return false;}
+</script></body></html>"""
+
+
+PASSWD_PAGE = """<!doctype html><html lang="zh"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>修改密码 · Inresearch Hub</title><style>
+  :root{color-scheme:light dark}
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+       font:15px/1.6 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+       background:#0f1419;color:#e6e6e6}
+  form{background:#1a2129;border:1px solid #2c3844;border-radius:12px;
+       padding:36px 40px;width:300px}
+  h1{font-size:17px;margin:0 0 22px;font-weight:600}
+  label{display:block;font-size:12.5px;color:#8a97a5;margin:14px 0 4px}
+  input{width:100%;box-sizing:border-box;padding:9px 11px;border-radius:8px;
+        border:1px solid #2c3844;background:#0f1419;color:#e6e6e6;font-size:14px}
+  input:focus{outline:none;border-color:#4a90d9}
+  button{width:100%;margin-top:22px;padding:10px;border:0;border-radius:8px;
+         background:#2f6db8;color:#fff;font-size:14px;cursor:pointer}
+  .msg{margin-top:14px;font-size:12.5px;min-height:1.2em}
+  .msg.err{color:#e07b7b}.msg.ok{color:#7bc98a}
+  a{color:#6aa3d8;font-size:12px;display:block;text-align:center;margin-top:16px}
+</style></head><body>
+<form onsubmit="return go(event)">
+  <h1>修改密码</h1>
+  <label>当前密码</label><input id="old" type="password" autocomplete="current-password" autofocus>
+  <label>新密码（至少 8 位）</label><input id="n1" type="password" autocomplete="new-password">
+  <label>再输一遍</label><input id="n2" type="password" autocomplete="new-password">
+  <button>确认修改</button>
+  <div class="msg" id="msg"></div>
+  <a href="/">← 返回首页</a>
+</form>
+<script>
+async function go(e){e.preventDefault();
+  const m=document.getElementById('msg');
+  const n1=document.getElementById('n1').value,n2=document.getElementById('n2').value;
+  if(n1!==n2){m.className='msg err';m.textContent='两次输入的新密码不一致';return false;}
+  const r=await fetch('/api/passwd',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({old_password:document.getElementById('old').value,new_password:n1})});
+  const d=await r.json();
+  m.className='msg '+(d.ok?'ok':'err');
+  m.textContent=d.ok?'已修改。下次登录用新密码。':(d.error||'失败');
   return false;}
 </script></body></html>"""
