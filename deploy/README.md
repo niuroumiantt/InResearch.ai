@@ -43,22 +43,31 @@
 注意**出网流量费**：S3 直出约 $0.09–0.12/GB。若实习生频繁下载，这块会超过存储费。
 对策：走 CloudFront，或按工单取指定文件、不做批量同步。
 
-## 三、认证 —— 上线前必须解决的那一件事
+## 三、认证 —— 内置登录（2026-08-18 起）
 
-`pipeline/serve.py` **没有任何认证**。它原本是本地单人工具，默认只监听 `127.0.0.1`。
-容器里用 `HUB_HOST=0.0.0.0` 放开是为了让反代能访问，
-**不是说它可以直接见公网**——后台里有招标控制价与业主商业信息。
+`serve.py` 自带登录认证：**绑非本机地址（容器里 HUB_HOST=0.0.0.0）自动强制开启**，
+本地 127.0.0.1 用法不要求登录、行为与从前一样。纯标准库实现（PBKDF2 + HMAC 会话 cookie），
+**无注册入口**——用户只能由管理员在服务器后台添加：
 
-**推荐：Cloudflare Access**（零代码改动）
+```bash
+docker compose exec dchub python3 pipeline/users.py add <用户名>   # 自动生成密码并打印一次
+docker compose exec dchub python3 pipeline/users.py list
+docker compose exec dchub python3 pipeline/users.py passwd <用户名>
+docker compose exec dchub python3 pipeline/users.py remove <用户名>  # 立即踢掉其会话
+```
 
-1. 域名接入 Cloudflare，A 记录指向 EC2 弹性 IP，开橙云（代理）；
-2. Zero Trust → Access → 添加 Application，指向该域名；
-3. 策略按邮箱或邮箱域放行实习生，登录走 Google/GitHub；
-4. `Caddyfile` 里已限制**只接受 Cloudflare 回源网段**——没有这条，
-   别人拿 IP 直连就绕过了 Access。
+要点：
+- `data/users.json`（密码哈希）与 `data/.hub_secret`（会话密钥）**不进 git**，
+  只活在服务器挂载卷里；**重装机器前单独备份**，丢了不致命但所有人要重新拿密码。
+- 除 `/login` 与 `/api/login` 外**一切路径都过闸**，含静态文件与 HEAD 请求；
+  用户表与密钥即使登录后也取不到（404）。
+- 同一 IP 5 分钟内失败 5 次锁 5 分钟；登录成败记 `logs/task_auth.log`。
+- 会话 7 天；派工 API 自动记录操作人（`assignments.json` 的 `by` 字段）。
+- 实际部署形态见 `niuroumiantt/infra`（Caddy 按域名分流 + autopull push 即部署）。
+  内置登录上线后，infra Caddyfile 里的 basic_auth 可以撤掉——**顺序：先建至少一个用户
+  并验证能登录，再撤**。失败模式是「锁死」而非「敞开」（没有用户时登录接口返回 503 指引）。
 
-替代方案：Tailscale（更封闭，实习生要装客户端）；自建 OIDC（要动代码，
-且会破坏「零依赖」铁律，不推荐）。
+若将来想再加一层（如 Cloudflare Access），与内置登录不冲突，叠加即可。
 
 ## 四、部署步骤
 
