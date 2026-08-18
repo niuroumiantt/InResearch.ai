@@ -85,6 +85,8 @@ import { EffectComposer } from "./assets/vendor/EffectComposer.js";
 import { RenderPass } from "./assets/vendor/RenderPass.js";
 import { UnrealBloomPass } from "./assets/vendor/UnrealBloomPass.js";
 import { OutputPass } from "./assets/vendor/OutputPass.js";
+import { EXRLoader } from "./assets/vendor/EXRLoader.js";
+import { GLTFLoader } from "./assets/vendor/GLTFLoader.js";
 
 const get = async p => (await fetch(p + "?t=" + Date.now())).json();
 const [BOM, companies, prices, inds, reg] = await Promise.all([
@@ -103,7 +105,7 @@ const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.24;
+renderer.toneMappingExposure = 1.0;
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
@@ -120,12 +122,12 @@ canvas.addEventListener("pointerdown", () => controls.autoRotate = false, { once
 
 const composer = new EffectComposer(renderer);
 composer.addPass(new RenderPass(scene, camera));
-const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.26, 0.6, 0.9);
+const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.22, 0.55, 0.92);
 composer.addPass(bloom);
 composer.addPass(new OutputPass());
 
-/* 摄影棚环境（PMREM）+ 渐变背景 */
-{
+/* 环境光照：真 HDR（Poly Haven CC0，assets/hdri/studio.exr）；加载失败回退程序化摄影棚 */
+function proceduralEnv() {
   const env = new THREE.Scene();
   env.add(new THREE.Mesh(new THREE.BoxGeometry(60, 60, 60),
     new THREE.MeshBasicMaterial({ side: THREE.BackSide, color: 0x2a3242 })));
@@ -142,6 +144,13 @@ composer.addPass(new OutputPass());
   scene.environment = pmrem.fromScene(env, 0.04).texture;
   pmrem.dispose();
 }
+new EXRLoader().load("assets/hdri/studio.exr", tex => {
+  tex.mapping = THREE.EquirectangularReflectionMapping;
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromEquirectangular(tex).texture;
+  pmrem.dispose(); tex.dispose();
+  if (typeof iScene !== "undefined" && iScene) iScene.environment = scene.environment;
+}, undefined, () => proceduralEnv());
 {
   const cv = document.createElement("canvas"); cv.width = 8; cv.height = 256;
   const g = cv.getContext("2d");
@@ -796,6 +805,21 @@ const clock = new THREE.Clock();
 // #<part-id> 深链：bom3d 档案里的"上拆解台看结构"落点（放最后：依赖上面全部初始化完成）
 { const pid = location.hash.slice(1);
   if (PART[pid]) { controls.autoRotate = false; showDossier(PART[pid]); } }
+
+/* GLB 模型槽（A3 方案①）：assets/models/manifest.json 登记的模型自动装载 */
+fetch("assets/models/manifest.json?t=" + Date.now()).then(r => r.ok ? r.json() : null).then(mf => {
+  (mf?.models || []).filter(m => m.page === "rack3d" && m.file).forEach(m => {
+    new GLTFLoader().load("assets/models/" + m.file, g => {
+      const o = g.scene;
+      o.traverse(x => { if (x.isMesh) { x.castShadow = x.receiveShadow = true; } });
+      o.position.set(...(m.position || [0, 0, 0]));
+      o.scale.setScalar(m.scale || 1);
+      o.rotation.y = m.rotationY || 0;
+      scene.add(o);
+      if (m.hideRack) rack.visible = false;
+    });
+  });
+}).catch(() => {});
 </script>
 </body>
 </html>
