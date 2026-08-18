@@ -110,7 +110,7 @@ docs/library/_pending/                           # 尚未打分的存量，保�
 
 ## 九、新增语料口：docs/raw material（2026-08-16 用户投递）
 
-1. 用户持续往 `/Users/yidian/code/datacenter/docs/raw material/` 投放新材料
+1. 用户持续往 `~/code/inresearch.ai/docs/raw material/` 投放新材料
    （多为免费渠道的高价值件——难在知道其重要，不在获取）。
 2. **处理时机**：现有 T1-T4 全部触达后作为 T5 层处理；此后**每次会话开工先扫描
    该目录**，有新文件即优先入队（新料鲜度高，先处理）。

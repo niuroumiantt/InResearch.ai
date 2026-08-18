@@ -1,13 +1,13 @@
 # 本地项目启动指令（复制给本地模型/本地 Claude Code 即可开工）
 
-> 用法：在本机新建目录（如 ~/code/datacenter-reader），把下面整段作为首条指令发给本地会话。
-> 本地会话需要能读 ~/code/datacenter/docs/library/ 与主仓库的两个标准文件。
+> 用法：工作目录是主文件夹的 reader/ 子目录（~/code/inresearch.ai/reader，不进 git），把下面整段作为首条指令发给本地会话。
+> 本地会话需要能读 ~/code/inresearch.ai/docs/library/ 与主仓库的两个标准文件。
 
 ---
 
 你是 datacenter-reader 项目的执行者。这是一个独立的本地流水线项目，目标：把
-`~/code/datacenter/docs/library/`（17,843 份行业材料）逐份读取、打分、重命名归类，
-并为高分材料产出消化草稿。主研究项目在 `~/code/datacenter/`（git 仓库），你的产出
+`~/code/inresearch.ai/docs/library/`（17,843 份行业材料）逐份读取、打分、重命名归类，
+并为高分材料产出消化草稿。主研究项目在 `~/code/inresearch.ai/`（git 仓库），你的产出
 以批次文件形式交回该仓库，**不要直接修改主仓库的 LIBRARY_SCORES.csv 和 research/**。
 
 ## 开工前必读（主仓库内）

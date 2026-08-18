@@ -66,6 +66,9 @@ python3 -m http.server 8000     # 本地看仪表盘
 
 ## 环境注意
 
+- 用户本机唯一项目文件夹 `~/code/inresearch.ai/`（2026-08-18 归一；精读工作区在其
+  `reader/` 子目录，不进 git）。本机 launchd 三件套与双向同步见 `docs/local_setup/`：
+  本机每 30 分钟自动 pull + 过 validate 的改动自动 push，服务器 autopull 接力上站。
 - 云端会话网络策略屏蔽 sec.gov：update_ciks.py / fetch_sec.py 只能在用户本机（launchd）跑。
 - 研报库本体（docs/library/）不在 git 里，云端会话只能用 LIBRARY_SCORES.csv 的摘要工作。
 - 文献打分用 framework/04_reading_scoring_standard.md（标准 v2，七维度）；逐篇精读由本地
