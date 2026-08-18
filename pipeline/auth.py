@@ -18,6 +18,10 @@
 
 零依赖。
 """
+# macOS 系统 /usr/bin/python3 是 3.9：`str | None` 标注在 3.10 前不能求值，
+# 本机 launchd 常驻就靠系统 Python 跑，这行让标注延迟求值以兼容
+from __future__ import annotations
+
 import base64
 import hashlib
 import hmac
