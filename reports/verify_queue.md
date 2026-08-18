@@ -1,8 +1,57 @@
 # 核验队列
 
-生成时间：2026-08-17 ｜ P1（必须处理）0 条 ｜ P2（补强来源）24 条
+生成时间：2026-08-18 ｜ P1（必须处理）23 条 ｜ P2（补强来源）24 条
 
 流程：打开来源链接核对 → 有变化改数据+来源，无变化只改 verified_date → `python3 pipeline/validate.py`
+
+## P1
+
+- [ ] **research / M02-F10** — 标记 needs-review（GPU 机架 130kW 但行平均只有 62kW——AI 机…）
+      动作：复核证据后改回 current 或修订结论（M02.md）
+- [ ] **research / M06-F1** — 标记 needs-review（GB200/GB300 NVL72 是当前可采购代际，比较单…）
+      动作：复核证据后改回 current 或修订结论（M06.md）
+- [ ] **research / M06-F11** — 标记 needs-review（B300 以牺牲 FP64 换 FP4/FP6：数据中心 G…）
+      动作：复核证据后改回 current 或修订结论（M06.md）
+- [ ] **research / M06-F2** — 标记 needs-review（AMD 已从单卡竞争转向 Helios 机架级开放方案；Me…）
+      动作：复核证据后改回 current 或修订结论（M06.md）
+- [ ] **research / M06-F3** — 标记 needs-review（云内 ASIC 与定制芯片分流稳定大批量负载，但不构成对 N…）
+      动作：复核证据后改回 current 或修订结论（M06.md）
+- [ ] **research / M06-F4** — 标记 needs-review（机柜功率从 5–10kW 跃升到 130kW 级，来自"单芯…）
+      动作：复核证据后改回 current 或修订结论（M06.md）
+- [ ] **research / M06-F5** — 标记 needs-review（电流是低压配电的物理瓶颈，800VDC 的动因是降电流；高密…）
+      动作：复核证据后改回 current 或修订结论（M06.md）
+- [ ] **research / M06-F6** — 标记 needs-review（处理器市场三年翻倍超 $350B：GPU 2028 见顶 $…）
+      动作：复核证据后改回 current 或修订结论（M06.md）
+- [ ] **research / M06-F7** — 标记 needs-review（HBM 已成 DRAM 增长引擎：2024 $17.4B(+…）
+      动作：复核证据后改回 current 或修订结论（M06.md）
+- [ ] **research / M06-F8** — 标记 needs-review（HBM 挤出效应有硬数据了：占 DRAM 营收 19%→33…）
+      动作：复核证据后改回 current 或修订结论（M06.md）
+- [ ] **research / M06-F9** — 标记 needs-review（MI300X 五个月实测：纸面规格全面领先、实测训练吞吐仍输…）
+      动作：复核证据后改回 current 或修订结论（M06.md）
+- [ ] **research / M07-F1** — 标记 needs-review（AI 集群网络不会单一"通吃"：NVLink 管 scale…）
+      动作：复核证据后改回 current 或修订结论（M07.md）
+- [ ] **research / M07-F3** — 标记 needs-review（网络与 800VDC 供电最终在"每个 token 的设施成…）
+      动作：复核证据后改回 current 或修订结论（M07.md）
+- [ ] **research / M07-F5** — 标记 needs-review（CPO 从技术选项变成市场主线：scale-out/scal…）
+      动作：复核证据后改回 current 或修订结论（M07.md）
+- [ ] **research / M07-F6** — 标记 needs-review（UALink 1.0 落地：scale-up 域出现 NVL…）
+      动作：复核证据后改回 current 或修订结论（M07.md）
+- [ ] **research / M08-F1** — 标记 needs-review（混合冷却是 AI 机柜的实际常态，路径选择由机柜功率分布决定…）
+      动作：复核证据后改回 current 或修订结论（M08.md）
+- [ ] **research / M08-F6** — 标记 needs-review（GB200 NVL72 捐入 OCP：整机柜液冷从定制工程变…）
+      动作：复核证据后改回 current 或修订结论（M08.md）
+- [ ] **research / M08-F7** — 标记 needs-review（液冷的真实驱动力是 scale-up 域的 TCO，不是能效…）
+      动作：复核证据后改回 current 或修订结论（M08.md）
+- [ ] **research / M09-F9** — 标记 needs-review（机架功率 250kW→500kW→1MW，且能效改进跑不赢规…）
+      动作：复核证据后改回 current 或修订结论（M09.md）
+- [ ] **research / M11-F3** — 标记 needs-review（循环交易已成体系：芯片商投资客户→客户买芯片→计为需求，NV…）
+      动作：复核证据后改回 current 或修订结论（M11.md）
+- [ ] **research / M13-F4** — 标记 needs-review（算力租价由「每有效 PFLOP 小时成本」与「每百万 tok…）
+      动作：复核证据后改回 current 或修订结论（M13.md）
+- [ ] **research / M13-F6** — 标记 needs-review（B200 在典型 AI 负载下利用率不足 10%，瓶颈是内存…）
+      动作：复核证据后改回 current 或修订结论（M13.md）
+- [ ] **research / M15-F2** — 标记 needs-review（GPU 瓶颈没有消失而是变为"代际组合能否兑现"；施工与融资…）
+      动作：复核证据后改回 current 或修订结论（M15.md）
 
 ## P2
 
