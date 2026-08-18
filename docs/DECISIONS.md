@@ -31,7 +31,7 @@
 
 | # | 交付物 | 说明 | 交付日 |
 |---|---|---|---|
-| C4 | **项目全景审读报告 `docs/PROJECT_PANORAMA.md`** 及其第六节优化次序：P0 安全修复（serve.py URL 编码绕过等 3 项）→ P1 卫生债（Finding 编号重复/SUMMARY 滞后/索引过期）→ P2 代码收敛（common.py、打分表分页）→ P3 业务主线（M11 补厚、23 条复核、实体表补字段、导出管线、团队化通水） | 代码与业务双视角 A-to-Z 审读的结论。**不否决即按此次序在后续会话执行**；报告本身只做观察，本轮未改任何代码与数据 | 08-18 |
+| C4 | **项目全景审读报告 `docs/PROJECT_PANORAMA.md`** 及其第六节优化次序：P0 安全修复（serve.py URL 编码绕过等 3 项）→ P1 卫生债（Finding 编号重复/SUMMARY 滞后/索引过期）→ P2 代码收敛（common.py、打分表分页）→ P3 业务主线（M11 补厚、23 条复核、实体表补字段、导出管线、团队化通水） | 代码与业务双视角 A-to-Z 审读的结论。**不否决即按此次序在后续会话执行**。进度：**P0 三项已于 08-18 修复**（见会话续 41），P1 起待继续 | 08-18 |
 
 C1、C2、C3 已于 2026-08-17 一并批复（用户原话「好的。就按照你的来」），
 见下方「审阅三档分流（C3）」与正文。
@@ -92,6 +92,31 @@ C1、C2、C3 已于 2026-08-17 一并批复（用户原话「好的。就按照�
 - **二进制不进 git**：研报库本体留本地，索引（LIBRARY_INDEX.md）和打分（LIBRARY_SCORES.csv）进 git。
 
 ## 会话决策记录（倒序）
+
+### 2026-08-18（会话续 41：P0 安全修复三项落地——按 C4 次序开工）
+
+**背景**：C4 全景审读的优化次序未被否决，用户明确说「这个请你继续」，按 P0 先行。
+
+**改动（四个文件，全部实测验证）**：
+1. **serve.py URL 编码绕过（高危）**：新增 `_norm_path()`（unquote + normpath），
+   敏感文件封锁与实习生白名单一律改判**解码归一化后**的路径。实测
+   `/data/users%2Ejson`、`/data%2Fusers.json`、`/assets/%2E%2E/data/users.json`、
+   `/data/%2Ehub_secret` 等六个变体全部 404，正常页面行为不变。
+2. **顺手堵同族漏洞（云端判断，请复核）**：`do_HEAD` 此前不做实习生白名单检查，
+   实习生可用 HEAD 探任意封锁文件的存在与大小——与 GET 同闸了。
+3. **登录限速两处**：`client_ip` 改取 XFF **末项**（首项客户端可伪造，末项才是
+   可信反代看到的真实来源）；Caddyfile 的 reverse_proxy 增加
+   `header_up X-Forwarded-For {header.CF-Connecting-IP}` 整头重写（回源已限定
+   Cloudflare 白名单，此头可信）。`_fails` 表加上界 4096 个 IP（满了先清过期再挤
+   最老），单 IP 列表也只留最近 5 条。
+4. **collect.py 回写原子化**：research/Mxx.md 状态翻转改临时文件 + `os.replace`，
+   写一半被 kill 不再截断 Finding 文件。
+
+**验证**：py_compile 三文件通过；auth 限速单测通过（末项取值/上界/限速逻辑）；
+起 HUB_AUTH=on 实测六变体封锁；`validate.py` 0 warnings；`intake.py --selftest` 过。
+
+**注意**：Caddyfile 改动需服务器重建 Caddy 容器才生效；serve.py/auth.py 改动需重启
+hub 进程（服务器 autopull 后自动重启与否取决于部署方式，值得看一眼）。
 
 ### 2026-08-18（会话续 40：A-to-Z 全景审读交付——代码与业务双视角，五张图）
 

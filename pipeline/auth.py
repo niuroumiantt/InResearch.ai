@@ -10,9 +10,10 @@
 - **会话**：HMAC-SHA256 签名的 cookie（`用户名:过期时间:签名`），密钥首次运行自动生成到
   `data/.hub_secret`（同样不进 git）。无服务端会话表——重启不踢人，签名自足验证。
   有效期 7 天；改密码不会使已发会话失效（要踢人就删用户或换 `.hub_secret`）。
-- **限速**：同一 IP 在 5 分钟内失败 5 次即拒绝 5 分钟。IP 取 X-Forwarded-For 首项
-  （本服务只应躲在 Caddy 后面，该头由 Caddy 设置）。内存态，重启清零——够用，
-  这是内部工具不是银行。
+- **限速**：同一 IP 在 5 分钟内失败 5 次即拒绝 5 分钟。IP 取 X-Forwarded-For **末项**
+  ——首项是客户端可以随便填的，末项才是最近一跳可信反代（Caddy）看到的真实来源；
+  Caddyfile 里同时把该头重写为 CF-Connecting-IP，双保险。表有上界防内存耗尽。
+  内存态，重启清零——够用，这是内部工具不是银行。
 - **何时启用**：绑 127.0.0.1（本地单人用法）不启用，行为与从前完全一样；
   绑其它地址（容器里 HUB_HOST=0.0.0.0）强制启用。可用 HUB_AUTH=on/off 显式覆盖。
 
@@ -248,9 +249,14 @@ def reset_password(name: str, password: str | None = None):
 
 # ── 登录限速 ────────────────────────────────────────────────
 
+FAIL_MAX_IPS = 4096   # _fails 表上界：满了先清过期、再挤最老——保内存优先于精确限速
+
+
 def client_ip(handler) -> str:
+    # 取**末项**不取首项：首项是客户端自己可以伪造的（curl -H 'X-Forwarded-For: 随机'
+    # 每次换一个就绕过限速），末项才是最近一跳可信反代追加/重写的真实来源
     xff = handler.headers.get("X-Forwarded-For", "")
-    return (xff.split(",")[0].strip() or handler.client_address[0])
+    return (xff.split(",")[-1].strip() or handler.client_address[0])
 
 
 def throttled(ip: str) -> bool:
@@ -260,7 +266,15 @@ def throttled(ip: str) -> bool:
 
 
 def record_fail(ip: str):
-    _fails.setdefault(ip, []).append(time.time())
+    now = time.time()
+    if ip not in _fails and len(_fails) >= FAIL_MAX_IPS:
+        for k in [k for k, v in _fails.items()
+                  if not any(now - t < FAIL_WINDOW for t in v)]:
+            del _fails[k]
+        while len(_fails) >= FAIL_MAX_IPS:
+            _fails.pop(next(iter(_fails)))
+    # 每 IP 只留最近 FAIL_LIMIT 条就够判限速——列表同样不许无界长
+    _fails[ip] = (_fails.get(ip, []) + [now])[-FAIL_LIMIT:]
 
 
 # ── 登录页 ──────────────────────────────────────────────────

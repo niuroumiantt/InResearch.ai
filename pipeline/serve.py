@@ -15,12 +15,14 @@ API（供 ops.html 管理后台调用）：
 import os
 import json
 import auth
+import posixpath
 import subprocess
 import sys
 import threading
 from datetime import datetime
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parent.parent
 PY = sys.executable
@@ -90,6 +92,14 @@ class Handler(SimpleHTTPRequestHandler):
             self.send_header(k, v)
         self.end_headers()
 
+    # ── 路径归一化 ───────────────────────────────────────
+    # 静态文件服务（translate_path）会先 unquote 路径再找文件；闸门若拿原始
+    # 字符串做子串/前缀判断，/data/users%2Ejson、/assets/%2E%2E/data/… 这类
+    # 编码或穿越变体就能穿过封锁。一切基于路径的允许/拒绝判断都必须用这里
+    # 解码 + normpath 归一化之后的路径。
+    def _norm_path(self):
+        return posixpath.normpath(unquote(urlsplit(self.path).path))
+
     # ── 认证闸门 ─────────────────────────────────────────
     # 返回 None 表示本请求已被闸门处理完（重定向/拒绝），调用方应直接 return；
     # 返回用户名或 "" 表示放行。**除 /login 与 /api/login 外一切路径都过闸**，
@@ -98,7 +108,8 @@ class Handler(SimpleHTTPRequestHandler):
         if not AUTH_ON:
             return ""
         # 密钥与用户表即使登录后也永远不可经 HTTP 取到（纵深防御）
-        if "/.hub_secret" in self.path or "/users.json" in self.path:
+        npath = self._norm_path()
+        if "/.hub_secret" in npath or "/users.json" in npath:
             self._json(404, {"ok": False, "error": "not found"})
             return None
         user = auth.session_user(self.headers.get("Cookie"))
@@ -138,10 +149,19 @@ class Handler(SimpleHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
 
+    def _intern_allowed(self, path):
+        return any(path == a or (a.endswith("/") and path.startswith(a))
+                   for a in auth.INTERN_GET_ALLOW)
+
     def do_HEAD(self):
         # SimpleHTTPRequestHandler 自带 HEAD 支持——不过闸的话可以用 HEAD 探文件存在与大小
-        if self._gate() is None:
+        user = self._gate()
+        if user is None:
             return
+        # 实习生白名单对 HEAD 同样生效——不然可用 HEAD 探封锁文件的存在与大小
+        if user and auth.user_role(user) == "intern" \
+                and not self._intern_allowed(self._norm_path()):
+            return self._html(403, auth.FORBIDDEN_PAGE)
         return super().do_HEAD()
 
     def do_GET(self):
@@ -149,11 +169,10 @@ class Handler(SimpleHTTPRequestHandler):
         if user is None:
             return
         if user and auth.user_role(user) == "intern":
-            path = self.path.split("?")[0]
+            path = self._norm_path()
             if path in ("/", "/index.html"):
                 return self._redirect("/team.html")     # 实习生的首页就是工单板
-            if not any(path == a or (a.endswith("/") and path.startswith(a))
-                       for a in auth.INTERN_GET_ALLOW):
+            if not self._intern_allowed(path):
                 return self._html(403, auth.FORBIDDEN_PAGE)
         if self.path == "/login":
             if user:                       # 已登录还访问登录页 → 回首页

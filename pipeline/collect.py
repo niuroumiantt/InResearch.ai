@@ -16,6 +16,7 @@
 自动信号只产生线索，不写六张表（入库纪律见 pipeline/README.md）。
 """
 import json
+import os
 import subprocess
 import sys
 from datetime import date, datetime, timedelta
@@ -108,7 +109,11 @@ def mark_findings_needs_review(sec_filings):
                 pending = None
             out.append(line)
         if changed:
-            rp.write_text("\n".join(out), encoding="utf-8")
+            # 原子回写：这是唯一自动改知识层原文的代码，直接 write_text 写一半
+            # 被 kill（launchd 超时、断电）会把 Finding 文件截断
+            tmp = rp.with_name(rp.name + ".tmp")
+            tmp.write_text("\n".join(out), encoding="utf-8")
+            os.replace(tmp, rp)
     return marked
 
 
