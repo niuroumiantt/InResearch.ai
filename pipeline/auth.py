@@ -139,6 +139,24 @@ def set_password(username: str, new_password: str) -> bool:
     return True
 
 
+ROLES = ("admin", "member", "intern")
+
+# 实习生白名单（默认拒绝）。为什么不是黑名单：打分表的 summary 里就有招标控制价
+# 数字——敏感的不只是标了 sensitive 的事实记录，账本本身就是。逐条拉黑必漏，
+# **漏一条路径等于没锁门**；白名单只放行工单系统，其余一概 403。
+INTERN_GET_ALLOW = ("/team.html", "/reports/workorders.json", "/data/assignments.json",
+                    "/api/status", "/api/whoami", "/account", "/login", "/logout",
+                    "/assets/", "/favicon")
+INTERN_POST_ALLOW = ("/api/login", "/api/passwd", "/api/assign")
+
+
+def user_role(username: str) -> str:
+    """缺 role 的老用户按 member 算（内部人，但不给 admin——权限只显式给）。"""
+    u = load_users().get(username) or {}
+    r = u.get("role", "member")
+    return r if r in ROLES else "member"
+
+
 # ── 登录限速 ────────────────────────────────────────────────
 
 def client_ip(handler) -> str:
@@ -241,3 +259,22 @@ async function go(e){e.preventDefault();
   m.textContent=d.ok?'已修改。下次登录用新密码。':(d.error||'失败');
   return false;}
 </script></body></html>"""
+
+
+FORBIDDEN_PAGE = """<!doctype html><html lang="zh"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>无权访问 · Inresearch Hub</title><style>
+  :root{color-scheme:light dark}
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+       font:15px/1.6 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+       background:#0f1419;color:#e6e6e6}
+  div{background:#1a2129;border:1px solid #2c3844;border-radius:12px;
+      padding:36px 40px;width:320px;text-align:center}
+  h1{font-size:16px;margin:0 0 10px}
+  p{color:#8a97a5;font-size:13px;margin:0 0 20px}
+  a{color:#6aa3d8;font-size:13px}
+</style></head><body><div>
+<h1>这一页不在你的权限里</h1>
+<p>你的账号是实习生角色，可访问工单系统。<br>如需更多权限，请联系管理员。</p>
+<a href="/team.html">→ 去工单板</a>
+</div></body></html>"""

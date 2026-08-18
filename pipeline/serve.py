@@ -148,6 +148,13 @@ class Handler(SimpleHTTPRequestHandler):
         user = self._gate()
         if user is None:
             return
+        if user and auth.user_role(user) == "intern":
+            path = self.path.split("?")[0]
+            if path in ("/", "/index.html"):
+                return self._redirect("/team.html")     # 实习生的首页就是工单板
+            if not any(path == a or (a.endswith("/") and path.startswith(a))
+                       for a in auth.INTERN_GET_ALLOW):
+                return self._html(403, auth.FORBIDDEN_PAGE)
         if self.path == "/login":
             if user:                       # 已登录还访问登录页 → 回首页
                 return self._redirect("/")
@@ -159,7 +166,8 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._redirect("/")
             return self._html(200, auth.PASSWD_PAGE)
         if self.path == "/api/whoami":
-            return self._json(200, {"ok": True, "user": user or "(本地模式)"})
+            return self._json(200, {"ok": True, "user": user or "(本地模式)",
+                                    "role": auth.user_role(user) if user else "admin"})
         if self.path == "/api/status":
             st = {}
             for t in TASKS:
@@ -178,11 +186,18 @@ class Handler(SimpleHTTPRequestHandler):
             payload = json.loads(self.rfile.read(n).decode() or "{}")
         except (ValueError, json.JSONDecodeError):
             return self._json(400, {"ok": False, "error": "请求体不是合法 JSON"})
+        role = auth.user_role(user) if user else "admin"   # 本地模式视同 admin
         if self.path == "/api/login":
             return self.api_login(payload)
+        if user and role == "intern" and self.path not in auth.INTERN_POST_ALLOW:
+            return self._json(403, {"ok": False, "error": "该操作需要内部成员权限"})
         if self.path == "/api/run":
+            if role != "admin":
+                return self._json(403, {"ok": False, "error": "跑管线任务仅限 admin"})
             return self.api_run(payload)
         if self.path == "/api/add-price":
+            if role == "intern":
+                return self._json(403, {"ok": False, "error": "录入数据需要内部成员权限"})
             return self.api_add_price(payload)
         if self.path == "/api/passwd":
             return self.api_passwd(payload, user)

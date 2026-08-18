@@ -50,11 +50,27 @@
 **无注册入口**——用户只能由管理员在服务器后台添加：
 
 ```bash
-docker compose exec dchub python3 pipeline/users.py add <用户名>   # 自动生成密码并打印一次
+docker compose exec dchub python3 pipeline/users.py add admin            # 首个用户自动 admin
+docker compose exec dchub python3 pipeline/users.py add intern-zhang     # 之后默认 intern
+docker compose exec dchub python3 pipeline/users.py add lao --role member
+docker compose exec dchub python3 pipeline/users.py role <用户名> <角色>  # 改角色（最后一个 admin 不可降级）
 docker compose exec dchub python3 pipeline/users.py list
 docker compose exec dchub python3 pipeline/users.py passwd <用户名>
-docker compose exec dchub python3 pipeline/users.py remove <用户名>  # 立即踢掉其会话
+docker compose exec dchub python3 pipeline/users.py remove <用户名>       # 立即踢掉其会话
 ```
+
+**三个角色（2026-08-18 云端设计，用户委托）**：
+
+| 角色 | 能看 | 能做 |
+|---|---|---|
+| `admin` | 一切 | 跑管线、录价格、派工、（CLI）用户管理 |
+| `member` | 一切（含 sensitive——高敏感数据是内部信心的来源） | 录价格、派工；不可跑管线 |
+| `intern` | **白名单**：仅工单系统（team.html + 工单/派工数据）+ 自助改密 | 认领/更新工单 |
+
+实习生用白名单而非黑名单：打分表 summary 里就有招标控制价数字——敏感的不只是
+标了 sensitive 的记录，账本本身就是。**漏一条路径等于没锁门。**
+实习生登录后访问根路径自动落到工单板；越权访问看到 403 提示页。
+登录后任何人都可在 `/account` 自助改密（须验旧密码）。
 
 要点：
 - `data/users.json`（密码哈希）与 `data/.hub_secret`（会话密钥）**不进 git**，
