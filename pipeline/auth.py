@@ -253,6 +253,9 @@ def client_ip(handler) -> str:
     return (xff.split(",")[0].strip() or handler.client_address[0])
 
 
+FAIL_TABLE_MAX = 4096   # 限速表条目上界：伪造海量 XFF 时防慢速内存耗尽
+
+
 def throttled(ip: str) -> bool:
     now = time.time()
     _fails[ip] = [t for t in _fails.get(ip, []) if now - t < FAIL_WINDOW]
@@ -260,7 +263,14 @@ def throttled(ip: str) -> bool:
 
 
 def record_fail(ip: str):
-    _fails.setdefault(ip, []).append(time.time())
+    now = time.time()
+    # 表满时先清掉窗口外的过期条目；仍满则丢最旧的一条，保证有界
+    if len(_fails) >= FAIL_TABLE_MAX and ip not in _fails:
+        for k in [k for k, v in _fails.items() if all(now - t >= FAIL_WINDOW for t in v)]:
+            del _fails[k]
+        if len(_fails) >= FAIL_TABLE_MAX:
+            del _fails[min(_fails, key=lambda k: max(_fails[k]))]
+    _fails.setdefault(ip, []).append(now)
 
 
 # ── 登录页 ──────────────────────────────────────────────────

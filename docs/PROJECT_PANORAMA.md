@@ -249,10 +249,10 @@ bom3d.html:269 的 `lot` Mesh 创建后从未 add（确定死代码）；serve.p
 
 **发现一个真实可利用漏洞与三个薄弱点**（按严重度）：
 
-1. **【高】敏感文件封锁可被 URL 编码绕过**（serve.py:101）：黑名单是对**未解码**路径做子串匹配，而静态服务会先 unquote。`/data/users%2Ejson` 不含字面 `"/users.json"`，可穿过封锁——**member 角色可借此取到全部密码哈希与会话密钥**。修法：unquote + normpath 后再判。几行改动。
-2. **【中】登录限速可被 X-Forwarded-For 伪造绕过**：client_ip 信任 XFF 首项，而 Caddyfile 只做回源白名单、未重写 XFF——伪造随机首项即可绕过 5 次/5 分钟限速。
-3. **【中】`_fails` 限速表无上界**：配合上一条可造成慢速内存耗尽。
-4. **【中】collect.py 回写 research/Mxx.md 非原子写**：这是唯一自动改知识层原文的代码，写入中途被 kill 会截断 Finding 文件。应改临时文件 + `os.replace`。
+1. **【高·✅已修 08-18】敏感文件封锁可被 URL 编码绕过**（serve.py `_gate`）：黑名单是对**未解码**路径做子串匹配，而静态服务会先 unquote。`/data/users%2Ejson` 不含字面 `"/users.json"`，可穿过封锁——**member 角色可借此取到全部密码哈希与会话密钥**。已改为 unquote + 归一 + 转小写后再判，8 用例测试全过。
+2. **【中·⏳待 infra】登录限速可被 X-Forwarded-For 伪造绕过**：client_ip 信任 XFF 首项，而 Caddyfile 只做回源白名单、未重写 XFF——伪造随机首项即可绕过 5 次/5 分钟限速。**根治在网关层**：Caddy 须 `header_up X-Forwarded-For {remote_host}` 覆盖客户端伪造值（代码侧无法辨真伪 IP）。留给 infra 仓库会话。
+3. **【中·✅已修 08-18】`_fails` 限速表无上界**：已加 `FAIL_TABLE_MAX=4096`，满表清过期 + 丢最旧，伪造海量 XFF 也不再慢速耗内存。
+4. **【中·✅已修 08-18】collect.py 回写 research/Mxx.md 非原子写**：这是唯一自动改知识层原文的代码，写入中途被 kill 会截断 Finding 文件。已改 `atomic_write`（临时文件 + `os.replace`），brief.json/daily_brief.md 一并覆盖。
 
 ### 4.5 性能
 
