@@ -1,6 +1,13 @@
 # ⚠️ 历史参考——现网 Caddy 配置在 niuroumiantt/infra 仓库的 inresearch-host/Caddyfile
 # （无 Cloudflare 前置，XFF 重写用 {remote_host}）。改现网去改那边，别改这份。
 #
+# ⚠️ 历史，勿用（2026-08-19 六站合并迁移后作废）
+# 生产的 Caddy 配置在 infra 仓库 `inresearch-host/`，一份 Caddyfile 给六站分流。
+# 且本文件两处前提已不成立：① inresearch.ai 的 DNS 在 Lightsail 不在 Cloudflare
+# （故「只放 Cloudflare 回源」不适用）；② serve.py 现已自带内置登录（auth.py，
+# 2026-08-18 起），认证不再依赖 Cloudflare Access。真源见 infra `docs/environment.md`。
+#
+# ── 以下为历史内容 ──
 # 反向代理 + 自动 HTTPS。把 dc.example.com 换成真实域名。
 #
 # ⚠️ **认证不在这一层**。Caddy 只做 TLS 终止与反代；
