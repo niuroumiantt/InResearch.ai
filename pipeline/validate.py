@@ -192,6 +192,54 @@ def main():
         if not r.get("library_path"):
             err(f"products[{rid}]: 缺 library_path（对方资料库锚点）")
 
+    # 产品资料库：作业计划与落盘索引（2026-08-19 新增）
+    # 由来：资料本体在本机外置卷上、云端永远看不见，**索引与计划表就是唯一能被校验的部分**。
+    # 不检查的话，company_id 写错、file_path 跑出 library/ 之外、同一份资料两个 doc_id，
+    # 都要等到本机点开「本地 ⧉」404 才发现。
+    plan_path = DATA / "product_docs_plan.csv"
+    doc_types = {"DS", "PB", "BR", "WEB", "RA", "UM", "WP"}
+    doc_status = {"todo", "downloaded", "needs_manual", "verified", "superseded"}
+    plan_n = 0
+    if plan_path.exists():
+        seen_rows = set()
+        with plan_path.open(encoding="utf-8", newline="") as fh:
+            for row in csv.DictReader(fh):
+                plan_n += 1
+                rid = f"{row.get('company_id')}/{row.get('product_line')}/{row.get('model')}/{row.get('doc_type')}"
+                if row.get("company_id") not in comp_by_id:
+                    err(f"product_docs_plan[{rid}]: 引用了不存在的 company_id")
+                if row.get("doc_type") not in doc_types:
+                    err(f"product_docs_plan[{rid}]: doc_type 非法: {row.get('doc_type')}")
+                if row.get("status") not in doc_status:
+                    err(f"product_docs_plan[{rid}]: status 非法: {row.get('status')}")
+                if rid in seen_rows:
+                    err(f"product_docs_plan: 作业行重复 {rid}")
+                seen_rows.add(rid)
+
+    plib_path = DATA / "product_library_index.json"
+    plib = []
+    if plib_path.exists():
+        plib = json.loads(plib_path.read_text(encoding="utf-8")).get("records", [])
+        seen_ids, seen_paths = set(), set()
+        for r in plib:
+            rid = r.get("doc_id") or "(无 doc_id)"
+            if rid in seen_ids:
+                err(f"product_library_index: doc_id 重复 {rid}")
+            seen_ids.add(rid)
+            if r.get("company_id") not in comp_by_id:
+                err(f"product_library_index[{rid}]: 引用了不存在的 company_id: {r.get('company_id')}")
+            fp = r.get("file_path") or ""
+            if not fp.startswith("library/") or ".." in fp:
+                err(f"product_library_index[{rid}]: file_path 必须在 library/ 之内: {fp}")
+            if fp in seen_paths:
+                err(f"product_library_index[{rid}]: file_path 与前面的记录撞了: {fp}")
+            seen_paths.add(fp)
+            if r.get("status") not in doc_status:
+                err(f"product_library_index[{rid}]: status 非法: {r.get('status')}")
+            if r.get("status") in {"downloaded", "verified"} \
+                    and not re.fullmatch(r"[0-9a-f]{64}", r.get("sha256") or ""):
+                err(f"product_library_index[{rid}]: 已落盘却没有合法 sha256——文件换了没人知道")
+
     # 模块声明与模块定义文件不得分叉
     # 由来（2026-08-17）：framework/modules/Mxx_*.md 的「核心问题」有 80 条，
     # 而工单生成器读的 modules.json 只声明了 36 条——**44 条搭骨架时就想清楚的问题
@@ -233,7 +281,8 @@ def main():
     # 汇总
     print(f"记录数: projects={len(projects)} companies={len(companies)} prices={len(prices)} "
           f"policies={len(policies)} contracts={len(contracts)} sources={len(sources)} "
-          f"products={len(products)} bom_parts={len(bom_part_ids)}")
+          f"products={len(products)} bom_parts={len(bom_part_ids)} "
+          f"product_docs_plan={plan_n} product_library={len(plib)}")
     for m in errors:
         print(f"  ERROR {m}")
     for m in warns:

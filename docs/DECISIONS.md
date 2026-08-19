@@ -40,6 +40,7 @@ A1、A2 已于 2026-08-17 批复，见正文「数据留存与对外呈现规则
 | B3 | 打分表**暂不拆表**（现 13,663 行 / 26MB / 浏览器解析 2.2s） | 能用；且拆表会改动本地投递与合并流程，等本地 A 阶段跑完再一次性做，避免中途换轨 | 08-17 |
 | B4 | 本机自动同步开**自动推送**：每 30 分钟，改动过 `validate.py --strict` 才 commit+push（只动 main；冲突不自动裁决） | 用户要「本地更新网站能自动爬取」；validate 闸门保铁律，站点在登录后面、都是内部人。不想自动推就把 sync plist 里的 `--push` 参数删掉 | 08-18 |
 | B5 | 产品目录对齐落库的三处代放决断：① 对方 9 环节中文 roles **映射**成本库英文枚举（映射表见会话续 45）；② 对齐包里 9 条塌缩成 `group` 的厂商组 ID **本库单方面改名**（映射表见会话续 45，**须回传对方项目同步改**，否则 ID 锚点断裂）；③ bom coldplate 悬空引用 motivair 补最小档案（待核验） | ① companies.json 的 roles 枚举是既有词表，环节粒度在 products.json 里没丢；② 9 条同 ID 违反主键唯一，不改无法入库；③ 新增的 bom↔companies 引用校验逼出的既有死链 | 08-18 |
+| B6 | 产品资料库的四处代放决断：① 索引主权移交本库 `data/product_library_index.json`（对齐包那份降为兜底，不合并）；② 文件名沿用现存双下划线式 `nvidia__h200__DS__vNA__nd__en.pdf`（非 ALIGNMENT.md 正文写的短式）；③ 试爬两段式 `fetch --stage-only` → 人看过 → `adopt` 入库；④ 两机只留 Mac mini 一台自动推送 | ① 从现在起资料是我们自己下的，索引就是本库数据层；② 6 条现存记录已是该格式，且文件拖出目录仍自解释；③ 用户明说现在是早期试错，先爬看看行不行——没看过的不许进库；④ 两台同推 main 冲突不自动裁决，会互相顶住且无人知道哪台为真 | 08-19 |
 
 ### C. 云端已交付，请用户否决或点头（不否决就按此跑）
 
@@ -63,6 +64,9 @@ C1、C2、C3 已于 2026-08-17 一并批复（用户原话「好的。就按照�
 | D3 | `python3 pipeline/update_ciks.py` + `fetch_sec.py` | 云端网络策略屏蔽 sec.gov | **积压变大**：公司表 94→248，现仅 34 家填了 cik |
 | D4 | 下载 CC0 机柜/服务器 `.glb` 放 `assets/models/` 并登记 `manifest.json` | Sketchfab 等站点要登录下载，云端够不到 | 待做（A3 方案①的最后一公里，续 47 交办） |
 | D5 | 把 `docs/inbox/inresearch-alignment/GROUP_ID_RENAMES.md` 转给产品目录项目 | 跨项目沟通只有人能做；对方不改则下次整文件替换会把塌缩 ID 带回来 | 待做（续 48 生成回传件） |
+| D6 | 产品资料库建库：`python3 pipeline/product_library.py setup --volume "<外置卷名>"`，再 `plan` → `fetch --stage-only` 试爬 | 外置卷与下载都在 Mac mini 上；云端容器临时、二进制不进 git | 待做（续 49 交办，工具已备） |
+| D7 | 研报库 `docs/library/`（91GB）从 MacBook 迁入 Mac mini；**MacBook 的 sync 去掉 `--push` 或 unload** | 物理拷盘只有人能做；两台都自动推同一个 main 会互相顶住 | 待做（续 49，用户已提出要搬） |
+| D8 | 迁完立刻跑 `build_library_index.py`（D1）与 `fix_stale_paths.py`（D2） | 这两件本来就卡在「库本体只在时常离线的 MacBook 上」 | 待做（D7 完成后即可解锁） |
 
 ---
 
@@ -120,6 +124,51 @@ C1、C2、C3 已于 2026-08-17 一并批复（用户原话「好的。就按照�
 - **二进制不进 git**：研报库本体留本地，索引（LIBRARY_INDEX.md）和打分（LIBRARY_SCORES.csv）进 git。
 
 ## 会话决策记录（倒序）
+
+### 2026-08-19（会话续 49：产品资料库落点——Mac mini 定为主力机，本体落外置卷）
+
+**用户拍板三条**：① 产品资料库根目录放**外置卷**；② 首批范围**全量 175 单元**；
+③ 抓不到的记 `needs_manual` 等人工，**不替他决定要不要注册厂商账号**。
+
+**用户补充的两条事实，改变了方案重心**：
+- **Mac mini 是 24 小时不关机的主力下载机；91GB 研报库现在在时常离线的 MacBook 上。**
+  用户问要不要把研报库也搬过来统一。**云端答：该搬，而且是搬不是复制成两份**——
+  D1（重建索引，现 17,843 vs 实存 28,759）与 D2（修 809 行死路径）本来就卡在
+  「库本体只在离线机器上」；两台各存一份则 `LIBRARY_SCORES.csv` 的上万行路径只能对上一份，
+  **两份就是两个真相**。MacBook 那份按「数据只留不删」保留为冷备，但不再是工作副本。
+- 用户问「手动复制的材料 + GitHub 上的内容统一放本地文件夹是否更好」。**答：对，但要分三层**——
+  仓库本体（git 管，文本）／研报库 `docs/library/`（不进 git，**相对位置不能变**，
+  否则 `LIBRARY_SCORES.csv` 与 `sources.json` 又要来一轮 `fix_stale_paths`）／
+  产品资料库 `product/` → 外置卷软链。
+
+**用户追问的一条，答案要说准（续 49 补）**：用户问"如果大家都远程通过 GitHub 提 PR、
+不通过本地文件提交，就没问题对吧"。**对，而且这两件事不是一回事**——
+多人走 PR 完全没问题，冲突在 PR 里显式暴露、有人 review；有问题的只是
+**两台机器同时跑无人值守的自动推送**：`sync.sh --push` 是 `git add -A` + 直提 **main**，
+绕过 PR 与 review，入账的是"工作区当时的样子"**包括删除**（拖走一个目录、拷贝没拷完、
+rebase 中断留下半截状态，30 分钟后都会被原样提交并在 2 分钟内上线）。
+所以规则是**「只有一台机器开自动推送」，不是「只有一个人能提交」**。
+用户确认整个文件夹从 MacBook 拷到 Mac mini 的 **`~/code/inresearch.ai/`（路径两台一致）**——
+正确，plist 与脚本里的路径因此一个字都不用改，这是 08-18 归一的红利。
+迁移步骤与三步收尾写进 `docs/local_setup/README.md`。
+
+**本轮交付（云端能做的部分全做完了，下载本身只能本机跑）**：
+1. `pipeline/product_library.py`：setup（`--path` 内置盘真目录／`--volume` 外置卷+软链，
+   **卷没挂载直接拒绝写入**）／plan（801 行作业计划）／
+   fetch（含 `--dry-run` 与 `--stage-only` 试爬）／adopt（人工文件归位）／status（`--verify` 逐份核哈希）。
+2. `data/product_docs_plan.csv`：451 型号 DS + 175 产品线 ×（BR/WEB）。`source_url` 留空即"还没查到"，**不许猜链接**。
+3. `admin/product/index.html`：`LIB_LOCAL_ROOT` 从已失效的 `~/codelocal/dc-product-library/`（08-18 归一前的老路径，
+   复制出来粘进访达就是 404）改为 `~/code/inresearch.ai/product/`；`LIB_BASE` 设为 `/product/library/`，
+   「本地 ⧉」由复制路径升级成点开即看，另留「路径」按钮给服务器侧；数据源改读 `data/`。
+4. `pipeline/build_library_index.py` **加闸门**：库不在/卷没挂/软链悬空时中止。
+   **这是本轮顺手堵掉的一个真雷**——原逻辑会正常退出并写出一份 0 份的 `LIBRARY_INDEX.md`，
+   sync 再推上站，等于一次没插盘就把全库清单抹了。云端跑一次即复现。
+5. `pipeline/validate.py` 增产品资料库校验（doc_id 唯一、company_id 引用、file_path 必须在 `library/` 内、
+   已落盘必须有合法 sha256）；`.gitignore` 放行 `/product` 软链不进 git（各机器卷不同，进 git 就是死链）。
+
+**未解**：用户提到的库体量写作「981GB」，与记录在案的 91GB 差一个数量级，已请其确认——
+外置卷选型按大的那个准备不吃亏。
+
 
 ### 2026-08-18（会话续 48：并行会话关停后的交接盘点——补三个会掉的缺口）
 

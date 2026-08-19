@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 """重建研报库索引 docs/LIBRARY_INDEX.md：小目录逐文件列出，大目录（>80 文件）记摘要。零依赖。"""
+import os
+import sys
 from datetime import date
 from pathlib import Path
 
@@ -13,12 +15,31 @@ MAP = {"01_标准与规范": "M01/M05", "02_制冷与供配电": "M08/M09", "03_
        "08_培训与课件": "运维知识/M10", "90_待分类": "待归类"}
 
 
+def guard():
+    """库本体不在就中止——**绝不把索引重建成空的**。
+
+    由来（2026-08-19 用户决定把研报库迁到 Mac mini，且库可能落在外置卷上）：
+    本脚本原样跑在「目录不存在 / 外置卷没挂载 / 软链悬空」的机器上，会正常退出并写出
+    一份 0 份的 LIBRARY_INDEX.md，sync 再把它推上站——**一次没插盘就把全库清单抹了**。
+    """
+    if not LIB.exists():
+        sys.exit(f"研报库不在 {LIB}（外置卷没挂载？软链悬空？）——拒绝重建索引，"
+                 f"否则会把 LIBRARY_INDEX.md 写成空的。")
+    real = Path(os.path.realpath(LIB))
+    parts = real.parts
+    if len(parts) > 2 and parts[1] == "Volumes" and not os.path.ismount(str(Path("/") / parts[1] / parts[2])):
+        sys.exit(f"研报库指向未挂载的卷 {parts[2]}——拒绝重建索引。")
+    if not any(p.is_dir() for p in LIB.iterdir()):
+        sys.exit(f"{LIB} 是空的——拒绝重建索引（真要清空请手工删 LIBRARY_INDEX.md）。")
+
+
 def dirstat(d):
     files = [f for f in d.rglob("*") if f.is_file() and not f.name.startswith(".")]
     return len(files), sum(f.stat().st_size for f in files) / 1e9
 
 
 def main():
+    guard()
     lines = ["# 第三方研报库索引 — docs/library/", "",
              "> 二进制不进 git；本索引进 git 作全量清单。大目录（>80 文件）仅记摘要，明细可用",
              "> `find docs/library/<目录> -type f` 查看。精读打分清单见 docs/LIBRARY_SCORES.csv。", ""]
