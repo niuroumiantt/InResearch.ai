@@ -55,9 +55,17 @@ bash docs/local_setup/sync.sh --push   # 拉取 + 推送（同自动逻辑）
 在 Mac mini 上拉（拉取式，MacBook 中途睡眠也能续传）：
 
 ```bash
-mkdir -p ~/code && rsync -aHh --info=progress2 --exclude 'logs/' \
-  <MacBook主机名或IP>:~/code/inresearch.ai/  ~/code/inresearch.ai/
+mkdir -p ~/code
+rsync -a --partial --progress --exclude 'logs/' \
+  yidian@ai.local:~/code/inresearch.ai/  ~/code/inresearch.ai/
 ```
+
+前提：MacBook 上开着**远程登录**（系统设置 → 通用 → 共享 → 远程登录）。
+**末尾两个 `/` 都不能少**，少了会多套一层目录。中途 MacBook 睡了就断，
+**重跑同一条命令即续传**（`--partial` 保留半截文件）。91GB 走 Wi-Fi 很慢，有网线插网线。
+
+macOS 14+ 自带的是功能有限的 `openrsync`，报不认识的参数就 `brew install rsync`，
+改用 `/opt/homebrew/bin/rsync` 跑同一条命令。
 
 Finder 直接拖整个文件夹也行——但**要确认隐藏的 `.git/` 和 91GB 的 `docs/library/` 都跟着过来了**
 （`.git` 没过来 = 拿到的是一堆文件不是仓库；`docs/library/` 是 gitignore 的，git 永远不会替你搬它）。
@@ -153,6 +161,10 @@ MacBook 保留只读拉取（`sync.sh` 不带 `--push`）随便看、随便本�
 真要从 MacBook 改东西，就和其他人一样走分支 + PR。
 
 ## 两台机器的分工（2026-08-19 用户拍板）
+
+**两台机器的名字**（用户 08-19 确认，写死在这里省得每个新会话再问）：
+**`hermes` = Mac mini（主力机）**、**`ai` = MacBook（用户 `yidian`）**；
+局域网互访用 `hermes.local` / `ai.local`。
 
 **Mac mini = 主力机**：24 小时不关机，是唯一的自动同步机与下载机；launchd 三件套跑在它上面。
 **MacBook** 降为移动办公机——研报库 `docs/library/` 迁到 Mac mini（原件留作冷备，

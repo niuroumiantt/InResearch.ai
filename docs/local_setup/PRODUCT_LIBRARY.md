@@ -6,7 +6,7 @@
 
 ## 一、两台机器的分工（这是本次变更的重心）
 
-| | Mac mini | MacBook |
+| | Mac mini（`hermes`） | MacBook（`ai`，用户 `yidian`） |
 |---|---|---|
 | 角色 | **主力机**：24 小时不关机，唯一自动同步与下载机 | 移动办公，时常不在线 |
 | launchd 三件套 | 全开（server / collect / sync `--push`） | **必须关掉 sync 的 `--push`**，或整个 unload |

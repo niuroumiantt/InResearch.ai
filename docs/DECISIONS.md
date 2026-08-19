@@ -169,6 +169,11 @@ README、CLAUDE.md 与两机分工表已改为「两个服务都停或都去 `--
 另：给用户的命令行里不要带 `#` 注释——zsh 交互模式默认不认，会把注释当参数传下去
 （用户实跑时 grep 就报了三行 No such file）。
 
+**机器名（用户 08-19 确认）**：**`hermes` = Mac mini（主力机）**，
+**`ai` = MacBook（用户 `yidian`）**。当天已在 MacBook 上执行
+`launchctl bootout` + `disable` 停掉 sync 与 collect，并从两个 plist 删掉 `--push`
+（`print-disabled` 两条 disabled、`grep -c -- --push` 两个 0，已实测确认）。
+
 **本轮交付（云端能做的部分全做完了，下载本身只能本机跑）**：
 1. `pipeline/product_library.py`：setup（`--path` 内置盘真目录／`--volume` 外置卷+软链，
    **卷没挂载直接拒绝写入**）／plan（801 行作业计划）／
