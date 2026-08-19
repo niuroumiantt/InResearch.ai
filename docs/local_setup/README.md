@@ -68,9 +68,39 @@ Finder 直接拖整个文件夹也行——但**要确认隐藏的 `.git/` 和 9
 cd ~/code/inresearch.ai
 git status && git pull origin main        # 1. 确认在 main、工作区干净，拉一次最新
 bash docs/local_setup/setup.sh            # 2. 装 launchd 三件套（幂等，重复跑安全）
-# 3. 回 MacBook：停掉它的自动推送
+# 3. 回 MacBook：停掉它的自动推送 —— **两个服务都要停，不是一个**
 launchctl unload ~/Library/LaunchAgents/com.inresearch.sync.plist
+launchctl unload ~/Library/LaunchAgents/com.inresearch.collect.plist
 ```
+
+**为什么是两个**：`sync` 每 30 分钟跑 `sync.sh --push`；`collect` 每日 08:00 采集完
+**也会接一句 `sync.sh --push`**（原意是让当天简报立刻上站）。只停 sync 的话，
+MacBook 每天早上 8 点照样会 `git add -A` 直推 main —— 每天一次比每半小时一次更阴，
+因为你不会在旁边看着。
+
+本地站点 `com.inresearch.server`（localhost:8000）**不用停**：它只读不推，留着随时看仪表盘。
+
+想在 MacBook 上看最新内容，手动拉一次即可（不带 `--push` 就永远不会推）：
+
+```bash
+cd ~/code/inresearch.ai && bash docs/local_setup/sync.sh
+```
+
+要保留「每 30 分钟自动拉取但不推」，就把两个 plist 里的 `--push` 摘掉再 unload/load：
+
+```bash
+sed -i '' '/<string>--push<\/string>/d' ~/Library/LaunchAgents/com.inresearch.sync.plist
+sed -i '' 's| docs/local_setup/sync.sh --push| docs/local_setup/sync.sh|' \
+  ~/Library/LaunchAgents/com.inresearch.collect.plist
+for L in com.inresearch.sync com.inresearch.collect; do
+  launchctl unload ~/Library/LaunchAgents/$L.plist 2>/dev/null
+  launchctl load   ~/Library/LaunchAgents/$L.plist
+done
+grep -c -- --push ~/Library/LaunchAgents/com.inresearch.{sync,collect}.plist   # 两行都该是 0
+```
+
+⚠️ **`setup.sh` 会把三件套原样重装回来（带 `--push`）。装完主力机之后，
+别再在 MacBook 上跑那个脚本** —— 它是给主力机用的。
 
 第 3 步为什么不能省，见下节。
 
@@ -94,7 +124,8 @@ MacBook 保留只读拉取（`sync.sh` 不带 `--push`）随便看、随便本�
 
 **Mac mini = 主力机**：24 小时不关机，是唯一的自动同步机与下载机；launchd 三件套跑在它上面。
 **MacBook** 降为移动办公机——研报库 `docs/library/` 迁到 Mac mini（原件留作冷备，
-按「数据只留不删」不删），且 **MacBook 上的 sync 必须去掉 `--push` 或整个 unload**：
+按「数据只留不删」不删），且 **MacBook 上的 `sync` 与 `collect` 两个服务都必须停掉
+或去掉 `--push`**（会推的是这两个，不只 sync）：
 两台都自动推同一个 main，冲突不自动裁决只会互相顶住，而且没人知道哪台是真的。
 
 产品官方资料库（`/admin/product/` 看板那套）落在 Mac mini 的外置卷上，
