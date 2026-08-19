@@ -152,6 +152,12 @@ rebase 中断留下半截状态，30 分钟后都会被原样提交并在 2 分�
 正确，plist 与脚本里的路径因此一个字都不用改，这是 08-18 归一的红利。
 迁移步骤与三步收尾写进 `docs/local_setup/README.md`。
 
+**补正（同日，#77 合并后）**：上一版只说「MacBook 关掉 sync 的 `--push`」——**漏了 collect**。
+`com.inresearch.collect` 每日 08:00 采集完也会接一句 `sync.sh --push`，只停 sync 的话
+MacBook 每天早上照样 `git add -A` 直推 main，**而且每天一次比每半小时一次更阴——没人在旁边看着**。
+README、CLAUDE.md 与两机分工表已改为「两个服务都停或都去 `--push`」，并写明
+`setup.sh` 会把三件套原样重装回来（带 `--push`），装完主力机后别再在 MacBook 上跑它。
+
 **本轮交付（云端能做的部分全做完了，下载本身只能本机跑）**：
 1. `pipeline/product_library.py`：setup（`--path` 内置盘真目录／`--volume` 外置卷+软链，
    **卷没挂载直接拒绝写入**）／plan（801 行作业计划）／

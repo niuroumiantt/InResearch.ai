@@ -71,7 +71,7 @@ python3 -m http.server 8000     # 本地看仪表盘
 
 - 用户本机唯一项目文件夹 `~/code/inresearch.ai/`（2026-08-18 归一；精读工作区在其
   `reader/` 子目录，不进 git）。**Mac mini 是主力机**（2026-08-19）：24 小时不关机，
-  唯一的自动同步机与下载机；MacBook 降为移动办公机，其 sync 不得带 `--push`。
+  唯一的自动同步机与下载机；MacBook 降为移动办公机，其 `sync` 与 `collect` 两个服务都不得带 `--push`（会推的是这两个）。
   产品官方资料库落在 Mac mini 外置卷上，仓库内软链 `product/` 指过去（不进 git），
   采集用 `pipeline/product_library.py`，落点与流程见 `docs/local_setup/PRODUCT_LIBRARY.md`。本机 launchd 三件套与双向同步见 `docs/local_setup/`：
   本机每 30 分钟自动 pull + 过 validate 的改动自动 push，服务器 autopull 接力上站。
