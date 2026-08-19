@@ -79,3 +79,9 @@ reader/
 docs/inbox/inresearch-alignment/*
 !docs/inbox/inresearch-alignment/*.md
 !docs/inbox/inresearch-alignment/*.json
+
+# 产品官方资料库（2026-08-19 用户拍板：Mac mini 为主力下载机，本体落外置卷）
+# 仓库里只有一个软链 product → /Volumes/<卷>/inresearch-product/；
+# **软链本身也不进 git**——每台机器挂的卷不一样，进了 git 在别的机器上就是悬空死链。
+# 索引在 data/product_library_index.json（文本，进 git），本体永不进 git。
+/product

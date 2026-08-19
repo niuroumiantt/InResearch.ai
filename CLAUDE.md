@@ -63,13 +63,17 @@ python3 pipeline/facts.py          # 事实层校验 + 可比性判定（口径�
 python3 pipeline/facts.py --public # 对外口径预览（实名照旧、金额转区间、标明是哪年的老数据）
 python3 pipeline/intake.py         # 成员投递机检与三档分流（A 人批/B 模型批抽 10%/C 自动）
 python3 pipeline/intake.py --selftest  # 自检：冲突升档与模板排除是否还生效
+python3 pipeline/product_library.py status --verify  # 产品资料库体检（本机；plan/fetch/adopt 同一脚本）
 python3 -m http.server 8000     # 本地看仪表盘
 ```
 
 ## 环境注意
 
 - 用户本机唯一项目文件夹 `~/code/inresearch.ai/`（2026-08-18 归一；精读工作区在其
-  `reader/` 子目录，不进 git）。本机 launchd 三件套与双向同步见 `docs/local_setup/`：
+  `reader/` 子目录，不进 git）。**Mac mini 是主力机**（2026-08-19）：24 小时不关机，
+  唯一的自动同步机与下载机；MacBook 降为移动办公机，其 sync 不得带 `--push`。
+  产品官方资料库落在 Mac mini 外置卷上，仓库内软链 `product/` 指过去（不进 git），
+  采集用 `pipeline/product_library.py`，落点与流程见 `docs/local_setup/PRODUCT_LIBRARY.md`。本机 launchd 三件套与双向同步见 `docs/local_setup/`：
   本机每 30 分钟自动 pull + 过 validate 的改动自动 push，服务器 autopull 接力上站。
 - 云端会话网络策略屏蔽 sec.gov：update_ciks.py / fetch_sec.py 只能在用户本机（launchd）跑。
 - 研报库本体（docs/library/）不在 git 里，云端会话只能用 LIBRARY_SCORES.csv 的摘要工作。

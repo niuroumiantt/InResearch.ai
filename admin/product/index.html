@@ -122,10 +122,13 @@
   <div class="foot" id="foot"></div>
 </div>
 <script>
-// 资料库同机部署（Mac mini 上由 Hub 静态代理 library/）后，把它设为 "/library/" 前缀，
-// 届时“本地”按钮直接打开文件；为空时按钮为复制绝对路径。
-const LIB_BASE = "";
-const LIB_LOCAL_ROOT = "/Users/yidian/codelocal/dc-product-library/";
+// 落点（2026-08-19 用户拍板）：Mac mini 为 24 小时主力下载机；资料本体在外置卷上，
+// 仓库里用软链 product 指过去 —— 路径常量因此不随卷名变，换盘只重做软链。
+//   ~/code/inresearch.ai/product  →  /Volumes/<卷>/inresearch-product/
+// serve.py 以仓库根作静态根，所以 /product/library/… 直接可开；服务器上没有这个软链，
+// 那边点“本地”会 404，用旁边的“路径”按钮复制绝对路径到访达（⌘⇧G）。
+const LIB_BASE = "/product/library/";
+const LIB_LOCAL_ROOT = "/Users/yidian/code/inresearch.ai/product/";
 const DOC_STATUS = { pending:["待下载","c-gray"], downloaded:["已下载","c-blue"],
   needs_manual:["需人工","c-yellow"], verified:["已核验","c-green"], superseded:["已过版","c-gray"] };
 const norm = s => (s||"").toLowerCase().replace(/[^a-z0-9]/g,"");
@@ -147,9 +150,11 @@ function modelTokens(str){
     &&!/^(第|全|各|其他|新一?代|主流|重点)/.test(t)&&/[A-Za-z0-9]{2}/.test(t));
 }
 function locBtn(d){
-  if(LIB_BASE) return `<a class="loc" href="${LIB_BASE+encodeURI(d.file_path.replace(/^library\//,""))}" target="_blank">本地 ⧉</a>`;
-  return `<span class="loc" title="复制本地绝对路径（访达 ⌘⇧G 粘贴直达）"
-    onclick="event.stopPropagation();navigator.clipboard.writeText('${LIB_LOCAL_ROOT+d.file_path}');this.textContent='已复制 ✓'">本地 ⧉</span>`;
+  const abs=LIB_LOCAL_ROOT+d.file_path;
+  const open=LIB_BASE?`<a class="loc" href="${LIB_BASE+encodeURI(d.file_path.replace(/^library\//,""))}"
+      target="_blank" title="本机 Hub 直接打开（外置卷需已挂载）">本地 ⧉</a>`:"";
+  return open+`<span class="loc" title="复制绝对路径：${abs}（访达 ⌘⇧G 粘贴直达）"
+    onclick="event.stopPropagation();navigator.clipboard.writeText('${abs}');this.textContent='已复制 ✓'">路径</span>`;
 }
 function docRow(d){
   const dl=(d.status==="downloaded"||d.status==="verified");
@@ -161,12 +166,18 @@ async function main(){
   const app=document.getElementById("app");
   let prods, lib, comps={};
   try{
-    prods=(await (await fetch("/docs/inbox/inresearch-alignment/products.json")).json()).records;
-    lib=(await (await fetch("/docs/inbox/inresearch-alignment/library_index.json")).json()).records;
+    prods=(await (await fetch("/data/products.json")).json()).records;
+    // 索引主权（2026-08-19）：自采资料的索引是本库自己的数据层 data/product_library_index.json；
+    // 对齐包里那份是对方交付的原件，只在我们还没开始采集时兜底，不双份合并（会重复计数）。
+    lib=[];
+    try{ lib=(await (await fetch("/data/product_library_index.json")).json()).records||[]; }catch(e){}
+    if(!lib.length){
+      try{ lib=(await (await fetch("/docs/inbox/inresearch-alignment/library_index.json")).json()).records||[]; }catch(e){}
+    }
     try{ (await (await fetch("/docs/inbox/inresearch-alignment/companies_patch.json")).json()).records
          .forEach(c=>comps[c.company_id]=c); }catch(e){}
   }catch(e){
-    app.innerHTML=`<div class="err">数据加载失败：${e}。确认 docs/inbox/inresearch-alignment/ 下有 products.json 与 library_index.json。</div>`;
+    app.innerHTML=`<div class="err">数据加载失败：${e}。确认 data/products.json 存在（索引 data/product_library_index.json 可以还没有）。</div>`;
     return;
   }
   const docsByKey={};
@@ -300,7 +311,9 @@ async function main(){
   document.getElementById("foot").innerHTML=
     `与《数据中心上下游产品研究目录 v2.xlsx》同构：环节=区块 · 产品大类=行 · 公司=色块（背景=状态，左竖条=优先级；角标 蓝=文档数 红=缺口 黄!=需人工）。`+
     `点击色块 → 公司档案（画像+型号覆盖）；点击型号 → 产品级资料（专属/涉及分列）。`+
-    `“本地 ⧉”当前为复制路径（访达 ⌘⇧G 粘贴直达）；资料库随 Hub 同机部署（Mac mini）后将改为直接打开。`;
+    `资料本体在 Mac mini 的外置卷上（仓库内软链 <code>product/</code> 指过去，不进 git）：`+
+    `“本地 ⧉”由本机 Hub 直接打开，“路径”复制绝对路径给访达（⌘⇧G）。`+
+    `采集用 <code>python3 pipeline/product_library.py</code>（plan → fetch --stage-only 试爬 → adopt 入库）。`;
 }
 main();
 </script>

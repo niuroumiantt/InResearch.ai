@@ -47,6 +47,17 @@ bash docs/local_setup/sync.sh          # 只拉取
 bash docs/local_setup/sync.sh --push   # 拉取 + 推送（同自动逻辑）
 ```
 
+## 两台机器的分工（2026-08-19 用户拍板）
+
+**Mac mini = 主力机**：24 小时不关机，是唯一的自动同步机与下载机；launchd 三件套跑在它上面。
+**MacBook** 降为移动办公机——研报库 `docs/library/` 迁到 Mac mini（原件留作冷备，
+按「数据只留不删」不删），且 **MacBook 上的 sync 必须去掉 `--push` 或整个 unload**：
+两台都自动推同一个 main，冲突不自动裁决只会互相顶住，而且没人知道哪台是真的。
+
+产品官方资料库（`/admin/product/` 看板那套）落在 Mac mini 的外置卷上，
+仓库里只有一个软链 `product/` 指过去 —— 落点、命令与试爬流程见
+[`PRODUCT_LIBRARY.md`](PRODUCT_LIBRARY.md)。
+
 ## 注意
 
 - 自动同步**只动 main 分支**：本机切到别的分支时 sync 自动跳过，不添乱。
