@@ -158,6 +158,13 @@ MacBook 每天早上照样 `git add -A` 直推 main，**而且每天一次比每
 README、CLAUDE.md 与两机分工表已改为「两个服务都停或都去 `--push`」，并写明
 `setup.sh` 会把三件套原样重装回来（带 `--push`），装完主力机后别再在 MacBook 上跑它。
 
+**再补正（同日，用户实跑后暴露）**：给 MacBook 的停服务命令写的是 `launchctl unload`，
+**漏了 `-w`**。不带 `-w` 只停到下次登录——launchd 在登录时会把 `~/Library/LaunchAgents/`
+里的 plist 原样加载回来，**MacBook 又开始自动推，而人以为早就停了**。已改为 `unload -w`，
+并补了第二道保险（直接从两个 plist 里删掉 `--push`），停服务与去参数两道都上。
+另：给用户的命令行里不要带 `#` 注释——zsh 交互模式默认不认，会把注释当参数传下去
+（用户实跑时 grep 就报了三行 No such file）。
+
 **本轮交付（云端能做的部分全做完了，下载本身只能本机跑）**：
 1. `pipeline/product_library.py`：setup（`--path` 内置盘真目录／`--volume` 外置卷+软链，
    **卷没挂载直接拒绝写入**）／plan（801 行作业计划）／

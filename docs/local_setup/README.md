@@ -68,10 +68,17 @@ Finder 直接拖整个文件夹也行——但**要确认隐藏的 `.git/` 和 9
 cd ~/code/inresearch.ai
 git status && git pull origin main        # 1. 确认在 main、工作区干净，拉一次最新
 bash docs/local_setup/setup.sh            # 2. 装 launchd 三件套（幂等，重复跑安全）
-# 3. 回 MacBook：停掉它的自动推送 —— **两个服务都要停，不是一个**
-launchctl unload ~/Library/LaunchAgents/com.inresearch.sync.plist
-launchctl unload ~/Library/LaunchAgents/com.inresearch.collect.plist
+# 3. 回 MacBook：停掉它的自动推送 —— **两个服务都要停，且必须带 -w**
+launchctl unload -w ~/Library/LaunchAgents/com.inresearch.sync.plist
+launchctl unload -w ~/Library/LaunchAgents/com.inresearch.collect.plist
+launchctl list | grep inresearch          # 预期只剩 com.inresearch.server
 ```
+
+**`-w` 不能省**：不带 `-w` 的 `unload` 只停到下次登录——launchd 在登录时会把
+`~/Library/LaunchAgents/` 里的 plist 原样加载回来，MacBook 于是又开始自动推了，
+而你以为早就停了。`-w` 把 Disabled 标记写进 launchd 数据库，重启后依然是停的。
+
+（命令里别带注释：zsh 交互模式默认不认 `#`，会把注释当成参数传给 grep。）
 
 **为什么是两个**：`sync` 每 30 分钟跑 `sync.sh --push`；`collect` 每日 08:00 采集完
 **也会接一句 `sync.sh --push`**（原意是让当天简报立刻上站）。只停 sync 的话，
@@ -86,17 +93,24 @@ MacBook 每天早上 8 点照样会 `git add -A` 直推 main —— 每天一次
 cd ~/code/inresearch.ai && bash docs/local_setup/sync.sh
 ```
 
-要保留「每 30 分钟自动拉取但不推」，就把两个 plist 里的 `--push` 摘掉再 unload/load：
+**再加一道保险（推荐）**：即使哪天 plist 被重新加载，也让它推不出去——把两个 plist 里的
+`--push` 直接删掉。「停服务」与「去掉推送参数」两道都上，重启也不会翻车：
 
 ```bash
 sed -i '' '/<string>--push<\/string>/d' ~/Library/LaunchAgents/com.inresearch.sync.plist
 sed -i '' 's| docs/local_setup/sync.sh --push| docs/local_setup/sync.sh|' \
   ~/Library/LaunchAgents/com.inresearch.collect.plist
+grep -c -- --push ~/Library/LaunchAgents/com.inresearch.sync.plist \
+                  ~/Library/LaunchAgents/com.inresearch.collect.plist   # 两行都该是 :0
+```
+
+要保留「每 30 分钟自动拉取但不推」，就在摘掉 `--push` 后重新 unload/load：
+
+```bash
 for L in com.inresearch.sync com.inresearch.collect; do
   launchctl unload ~/Library/LaunchAgents/$L.plist 2>/dev/null
   launchctl load   ~/Library/LaunchAgents/$L.plist
 done
-grep -c -- --push ~/Library/LaunchAgents/com.inresearch.{sync,collect}.plist   # 两行都该是 0
 ```
 
 ⚠️ **`setup.sh` 会把三件套原样重装回来（带 `--push`）。装完主力机之后，
