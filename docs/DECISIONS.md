@@ -160,7 +160,11 @@ README、CLAUDE.md 与两机分工表已改为「两个服务都停或都去 `--
 
 **再补正（同日，用户实跑后暴露）**：给 MacBook 的停服务命令写的是 `launchctl unload`，
 **漏了 `-w`**。不带 `-w` 只停到下次登录——launchd 在登录时会把 `~/Library/LaunchAgents/`
-里的 plist 原样加载回来，**MacBook 又开始自动推，而人以为早就停了**。已改为 `unload -w`，
+里的 plist 原样加载回来，**MacBook 又开始自动推，而人以为早就停了**。先改成 `unload -w`，**用户实跑又发现 `-w` 也不可靠**：
+`-w` 的禁用标记只在 unload 成功时才写，而对已经停了的服务再 unload 会失败
+（`Unload failed: 5: Input/output error`），标记没写进去——看起来停了、重启后又回来。
+最终改用 `launchctl bootout` + `launchctl disable`（与服务当前是否在跑无关，落 override 数据库），
+判据看 `print-disabled` 的输出而不是命令报没报错。
 并补了第二道保险（直接从两个 plist 里删掉 `--push`），停服务与去参数两道都上。
 另：给用户的命令行里不要带 `#` 注释——zsh 交互模式默认不认，会把注释当参数传下去
 （用户实跑时 grep 就报了三行 No such file）。

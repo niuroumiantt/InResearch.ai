@@ -68,15 +68,33 @@ Finder 直接拖整个文件夹也行——但**要确认隐藏的 `.git/` 和 9
 cd ~/code/inresearch.ai
 git status && git pull origin main        # 1. 确认在 main、工作区干净，拉一次最新
 bash docs/local_setup/setup.sh            # 2. 装 launchd 三件套（幂等，重复跑安全）
-# 3. 回 MacBook：停掉它的自动推送 —— **两个服务都要停，且必须带 -w**
-launchctl unload -w ~/Library/LaunchAgents/com.inresearch.sync.plist
-launchctl unload -w ~/Library/LaunchAgents/com.inresearch.collect.plist
-launchctl list | grep inresearch          # 预期只剩 com.inresearch.server
+# 3. 回 MacBook：停掉它的自动推送 —— 两个服务都要停，而且要「重启后依然停」
 ```
 
-**`-w` 不能省**：不带 `-w` 的 `unload` 只停到下次登录——launchd 在登录时会把
-`~/Library/LaunchAgents/` 里的 plist 原样加载回来，MacBook 于是又开始自动推了，
-而你以为早就停了。`-w` 把 Disabled 标记写进 launchd 数据库，重启后依然是停的。
+```bash
+U=$(id -u)
+for L in com.inresearch.sync com.inresearch.collect; do
+  launchctl bootout  gui/$U/$L 2>/dev/null
+  launchctl disable  gui/$U/$L
+done
+launchctl print-disabled gui/$U | grep inresearch
+launchctl list | grep inresearch
+```
+
+**看 `print-disabled` 的输出，别看命令有没有报错**。预期：
+
+```
+"com.inresearch.sync" => disabled
+"com.inresearch.collect" => disabled
+```
+
+`launchctl list` 那行应只剩 `com.inresearch.server`。`bootout` 报错可以无视——
+服务本来就没在跑时它就会报错。
+
+**为什么不用 `launchctl unload -w`**：`-w` 的禁用标记是在 unload 成功时才写的，
+而对一个**已经停了**的服务再 unload 会失败（`Unload failed: 5: Input/output error`），
+标记于是没写进去——**看起来停了，重启后又自己回来**。2026-08-19 实跑正好撞上这个。
+`disable` 是独立命令，与服务当前是否在跑无关，落的是 override 数据库。
 
 （命令里别带注释：zsh 交互模式默认不认 `#`，会把注释当成参数传给 grep。）
 
