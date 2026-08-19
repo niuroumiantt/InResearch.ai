@@ -29,7 +29,9 @@ main，冲突不自动裁决只会中止，久了两边都推不上去，而且�
                         └── _needs_manual/ ← 登录墙 / 验证码 / 拿到的是 HTML
 ```
 
-- **为什么走软链**：卷名进不了代码。页面常量 `LIB_LOCAL_ROOT` / `LIB_BASE` 只认
+- **内置盘装得下就别用外置卷**：`--path ~/code/inresearch.ai/product` 建成真目录，
+  少一层软链，盘拔了也不会断；日后不够用了再 `setup --volume` 迁过去，页面常量不用动。
+- **为什么外置卷要走软链**：卷名进不了代码。页面常量 `LIB_LOCAL_ROOT` / `LIB_BASE` 只认
   `product/`，换盘只需重跑 `setup`，索引一行都不用改。
 - **外置卷没挂载时所有写操作直接中止**。原因：macOS 会在内置盘上凭空造出
   `/Volumes/<卷名>/…`，文件看着写成功了，卷挂回来就"消失"。同一个理由，
@@ -40,8 +42,9 @@ main，冲突不自动裁决只会中止，久了两边都推不上去，而且�
 ## 三、命令
 
 ```bash
-# 一次性：建库并做软链（卷没挂会直接报错并列出当前挂着的卷）
-python3 pipeline/product_library.py setup --volume "外置卷名"
+# 一次性建库，两种落点二选一：
+python3 pipeline/product_library.py setup --path ~/code/inresearch.ai/product   # 内置盘装得下（推荐，少一层软链）
+python3 pipeline/product_library.py setup --volume "外置卷名"                    # 内置盘装不下，落外置卷并做软链
 
 # 生成/刷新作业计划（只补不覆盖，已填的 source_url 不会被抹掉）
 python3 pipeline/product_library.py plan                 # 全量 175 单元 → 801 行

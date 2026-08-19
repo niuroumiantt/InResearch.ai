@@ -141,8 +141,20 @@ C1、C2、C3 已于 2026-08-17 一并批复（用户原话「好的。就按照�
   否则 `LIBRARY_SCORES.csv` 与 `sources.json` 又要来一轮 `fix_stale_paths`）／
   产品资料库 `product/` → 外置卷软链。
 
+**用户追问的一条，答案要说准（续 49 补）**：用户问"如果大家都远程通过 GitHub 提 PR、
+不通过本地文件提交，就没问题对吧"。**对，而且这两件事不是一回事**——
+多人走 PR 完全没问题，冲突在 PR 里显式暴露、有人 review；有问题的只是
+**两台机器同时跑无人值守的自动推送**：`sync.sh --push` 是 `git add -A` + 直提 **main**，
+绕过 PR 与 review，入账的是"工作区当时的样子"**包括删除**（拖走一个目录、拷贝没拷完、
+rebase 中断留下半截状态，30 分钟后都会被原样提交并在 2 分钟内上线）。
+所以规则是**「只有一台机器开自动推送」，不是「只有一个人能提交」**。
+用户确认整个文件夹从 MacBook 拷到 Mac mini 的 **`~/code/inresearch.ai/`（路径两台一致）**——
+正确，plist 与脚本里的路径因此一个字都不用改，这是 08-18 归一的红利。
+迁移步骤与三步收尾写进 `docs/local_setup/README.md`。
+
 **本轮交付（云端能做的部分全做完了，下载本身只能本机跑）**：
-1. `pipeline/product_library.py`：setup（建库+软链，**卷没挂载直接拒绝写入**）／plan（801 行作业计划）／
+1. `pipeline/product_library.py`：setup（`--path` 内置盘真目录／`--volume` 外置卷+软链，
+   **卷没挂载直接拒绝写入**）／plan（801 行作业计划）／
    fetch（含 `--dry-run` 与 `--stage-only` 试爬）／adopt（人工文件归位）／status（`--verify` 逐份核哈希）。
 2. `data/product_docs_plan.csv`：451 型号 DS + 175 产品线 ×（BR/WEB）。`source_url` 留空即"还没查到"，**不许猜链接**。
 3. `admin/product/index.html`：`LIB_LOCAL_ROOT` 从已失效的 `~/codelocal/dc-product-library/`（08-18 归一前的老路径，

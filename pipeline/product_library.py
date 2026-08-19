@@ -10,7 +10,8 @@
                                                 └── _needs_manual/  登录墙/验证码/许可不明
 
 用法：
-    python3 pipeline/product_library.py setup --volume "外置卷名" [--dir inresearch-product]
+    python3 pipeline/product_library.py setup --path ~/code/inresearch.ai/product   # 内置盘
+    python3 pipeline/product_library.py setup --volume "外置卷名"                     # 外置卷（做软链）
     python3 pipeline/product_library.py plan  [--priority P0,P1]     # 生成/刷新作业计划（不覆盖已填 URL）
     python3 pipeline/product_library.py fetch [--dry-run] [--limit N] [--priority P0] [--retry]
     python3 pipeline/product_library.py adopt [--row KEY --file 路径]  # 人工下的文件归位
@@ -431,33 +432,51 @@ def cmd_status(args):
 # ── 初始化 ───────────────────────────────────────────────────────────────
 
 def cmd_setup(args):
-    vol = Path("/Volumes") / args.volume
-    if not os.path.ismount(str(vol)):
-        avail = ", ".join(sorted(p.name for p in Path("/Volumes").glob("*"))) or "（一个都没有）"
-        sys.exit(f"卷 {vol} 没挂载。当前挂着的卷：{avail}")
-    target = vol / args.dir
+    """建库。两种落点，二选一：
+
+        --volume "外置卷名"   → /Volumes/<卷>/<dir>/，仓库内做软链 product 指过去
+        --path ~/某个目录     → 直接用该目录；若它就是仓库内的 product/，则建成真目录不做软链
+
+    内置盘装得下就用 --path（少一层软链，卷拔了也不会断）；装不下再用 --volume。
+    """
+    if bool(args.volume) == bool(args.path):
+        sys.exit("--volume 与 --path 二选一（内置盘用 --path，外置卷用 --volume）")
+    if args.volume:
+        vol = Path("/Volumes") / args.volume
+        if not os.path.ismount(str(vol)):
+            avail = ", ".join(sorted(p.name for p in Path("/Volumes").glob("*"))) or "（一个都没有）"
+            sys.exit(f"卷 {vol} 没挂载。当前挂着的卷：{avail}")
+        target = vol / args.dir
+    else:
+        target = Path(os.path.expanduser(args.path)).resolve()
+
     for sub in ("library", "_inbox", "_needs_manual"):
         (target / sub).mkdir(parents=True, exist_ok=True)
     (target / "README.txt").write_text(
         "InResearch.ai 产品官方资料库（datasheet / product brief / 参考架构 / 手册）。\n"
         "索引在仓库 data/product_library_index.json；本目录只放文件本体，不进 git。\n"
         "由 pipeline/product_library.py 维护，请勿手工重命名——文件名是索引的锚点。\n", encoding="utf-8")
-    if LINK.is_symlink() or LINK.exists():
+
+    in_repo = LINK.exists() and not LINK.is_symlink() and target == LINK.resolve()
+    if in_repo:
+        print(f"库根 {target}（仓库内真目录，不做软链）")
+    else:
         if LINK.is_symlink():
             LINK.unlink()
-        else:
+        elif LINK.exists():
             sys.exit(f"{LINK} 已存在且不是软链——先自行处理，不替你删。")
-    LINK.symlink_to(target)
-    print(f"库根 {target}\n软链 {LINK} → {target}")
-    print("页面常量已按此路径写死（admin/product/index.html）；换盘只需重跑本命令。")
+        LINK.symlink_to(target)
+        print(f"库根 {target}\n软链 {LINK} → {target}")
+    print("页面常量按 product/ 写死（admin/product/index.html）；换盘/换位置只需重跑本命令。")
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
-    s = sub.add_parser("setup", help="在外置卷建库并做软链")
-    s.add_argument("--volume", required=True, help="外置卷名（/Volumes 下的目录名）")
-    s.add_argument("--dir", default="inresearch-product", help="卷内目录名")
+    s = sub.add_parser("setup", help="建库（内置盘 --path 或外置卷 --volume）")
+    s.add_argument("--volume", help="外置卷名（/Volumes 下的目录名）")
+    s.add_argument("--path", help="直接指定目录，如 ~/code/inresearch.ai/product")
+    s.add_argument("--dir", default="inresearch-product", help="卷内目录名（配 --volume 用）")
     s.set_defaults(func=cmd_setup)
     s = sub.add_parser("plan", help="从 products.json 生成/刷新作业计划")
     s.add_argument("--priority", help="只铺某些优先级，如 P0 或 P0,P1")
