@@ -62,6 +62,18 @@
   .insp { margin: 8px 0 4px; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: #0d1119; }
   .insp canvas { display: block; width: 100%; height: 190px; cursor: grab; touch-action: none; }
   .insp .ihint { font-size: 10.5px; color: var(--muted); text-align: center; padding: 3px 0 5px; }
+  /* 下钻链条：数据中心 › 机柜 › GPU 服务器 ›…（配置见 assets/levels.json）*/
+  .drill { position: fixed; top: 54px; left: 50%; transform: translateX(-50%); z-index: 25;
+    display: flex; align-items: center; gap: 2px; background: rgba(17,22,31,.9);
+    border: 1px solid var(--line); border-radius: 20px; padding: 4px 6px;
+    backdrop-filter: blur(8px); box-shadow: 0 6px 22px rgba(0,0,0,.4); font-size: 12px; }
+  .drill a, .drill span { padding: 3px 11px; border-radius: 14px; color: var(--muted);
+    text-decoration: none; white-space: nowrap; }
+  .drill a:hover { background: rgba(96,165,250,.15); color: var(--accent); }
+  .drill .on { background: var(--accent); color: #0b0e14; font-weight: 700; }
+  .drill .soon { opacity: .45; cursor: default; }
+  .drill .sep { padding: 0 1px; color: var(--line); }
+  @media (max-width: 900px) { .drill { display: none; } }
 </style>
 </head>
 <body>
@@ -1083,6 +1095,23 @@ fetch("assets/models/manifest.json?t=" + Date.now()).then(r => r.ok ? r.json() :
       scene.add(o);
     }, undefined, err => console.error(`[模型] ${m.file} 加载失败`, err));
   });
+}).catch(() => {});
+
+/* ── 下钻链条：一份配置驱动，加设备只需改 assets/levels.json ── */
+fetch("assets/levels.json?t=" + Date.now()).then(r => r.ok ? r.json() : null).then(cfg => {
+  if (!cfg?.levels) return;
+  const here = location.pathname.split("/").pop() || "index.html";
+  const bar = document.createElement("div");
+  bar.className = "drill";
+  bar.innerHTML = cfg.levels.map((L, i) => {
+    const cur = L.page.split("?")[0] === here && L.id !== "server";
+    const sep = i ? '<span class="sep">›</span>' : "";
+    const tip = `${L.name} · ${L.desc}` + (L.status === "planned" ? "（规划中）" : "");
+    if (L.status === "planned" || !L.page)
+      return `${sep}<span class="soon" title="${tip}">${L.icon} ${L.name}</span>`;
+    return `${sep}<a href="${L.page}" class="${cur ? "on" : ""}" title="${tip}">${L.icon} ${L.name}</a>`;
+  }).join("");
+  document.body.appendChild(bar);
 }).catch(() => {});
 </script>
 </body>
