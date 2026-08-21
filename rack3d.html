@@ -288,6 +288,20 @@ const pickables = [];
 const animated = [];
 const spinners = [];   // 旋转风扇叶
 const pulsers = [];    // 呼吸 LED
+/* 真实设备面板贴图（NetBox devicetype-library，CC0；来源见 assets/panels/README.md）
+   加载失败自动退回程序化面板，不阻塞渲染 */
+const texLoader = new THREE.TextureLoader();
+function panel(name, fallback) {
+  const t = texLoader.load(`assets/panels/${name}.png`, undefined, undefined,
+    () => console.warn(`[面板] ${name}.png 缺失，用程序化面板兜底`));
+  t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
+  return t;
+}
+const PANEL = {
+  server: panel("server_nvme"), hero: panel("server_gpu"),
+  storage: panel("server_storage"), tor: panel("switch_tor"), ib: panel("switch_ib"),
+};
+
 function matsOf(o) { return Array.isArray(o.material) ? o.material : [o.material]; }
 function M(color, opt = {}) {
   return new THREE.MeshStandardMaterial({ color, roughness: 0.5, metalness: 0.25, envMapIntensity: 0.9, ...opt });
@@ -446,7 +460,8 @@ for (let i = 0; i < 2; i++) {
   sw.position.set(0, uy(21 + i * 1.2), 0.3);
   sw.add(new THREE.Mesh(B(RW - 0.7, u * 0.95, RD - 2.2),
     [M(0x1d4ed8, { roughness: .4 }), M(0x1d4ed8, { roughness: .4 }), M(0x16327f), M(0x16327f),
-     new THREE.MeshStandardMaterial({ map: TEX.ports, roughness: .4, emissive: 0xffffff, emissiveMap: TEX.ports, emissiveIntensity: .8 }),
+     new THREE.MeshStandardMaterial({ map: i === 0 ? PANEL.tor : PANEL.ib, roughness: .5, metalness: .15,
+       emissive: 0xffffff, emissiveMap: i === 0 ? PANEL.tor : PANEL.ib, emissiveIntensity: .28 }),
      M(0x16327f)]));
   tag(sw, "network-switch");
   explode(sw, 0, 2.6 + i * 0.9, 1.2, 0.2, 0.34);
@@ -463,7 +478,8 @@ for (let i = 0; i < 8; i++) {
   const chassis = new THREE.Mesh(B(RW - 0.7, u * 1.75, RD - 2.0),
     [M(0x2b3852, { metalness: .5, roughness: .38 }), M(0x2b3852, { metalness: .5, roughness: .38 }),
      M(0x232e45, { metalness: .5, roughness: .4 }), M(0x1c2536),
-     new THREE.MeshStandardMaterial({ map: TEX.sledFace(hero), roughness: .5, emissive: 0xffffff, emissiveMap: TEX.sledFace(hero), emissiveIntensity: .5 }),
+     new THREE.MeshStandardMaterial({ map: hero ? PANEL.hero : (i === 7 ? PANEL.storage : PANEL.server), roughness: .55, metalness: .15,
+       emissive: 0xffffff, emissiveMap: hero ? PANEL.hero : (i === 7 ? PANEL.storage : PANEL.server), emissiveIntensity: .2 }),
      M(0x1c2536)]);
   sled.userData.chassis = chassis;
   sled.add(chassis);
@@ -807,18 +823,34 @@ const clock = new THREE.Clock();
 { const pid = location.hash.slice(1);
   if (PART[pid]) { controls.autoRotate = false; showDossier(PART[pid]); } }
 
-/* GLB 模型槽（A3 方案①）：assets/models/manifest.json 登记的模型自动装载 */
+/* GLB 模型槽（A3 方案①）：assets/models/manifest.json 登记的模型自动装载
+   scale 省略或写 "auto" 时自动适配：按包围盒缩放到 fitHeight（默认整柜高），并落地居中 */
 fetch("assets/models/manifest.json?t=" + Date.now()).then(r => r.ok ? r.json() : null).then(mf => {
   (mf?.models || []).filter(m => m.page === "rack3d" && m.file).forEach(m => {
     new GLTFLoader().load("assets/models/" + m.file, g => {
       const o = g.scene;
       o.traverse(x => { if (x.isMesh) { x.castShadow = x.receiveShadow = true; } });
-      o.position.set(...(m.position || [0, 0, 0]));
-      o.scale.setScalar(m.scale || 1);
       o.rotation.y = m.rotationY || 0;
+      const auto = (m.scale === undefined || m.scale === null || m.scale === "auto");
+      if (auto) {
+        // 自动适配：无论模型用米/厘米/英寸建模，都缩到目标高度并坐在地面上
+        const bb = new THREE.Box3().setFromObject(o);
+        const size = bb.getSize(new THREE.Vector3());
+        const target = m.fitHeight || (RH + 0.7);         // 默认与整柜等高
+        const k = size.y > 1e-6 ? target / size.y : 1;
+        o.scale.setScalar(k);
+        const bb2 = new THREE.Box3().setFromObject(o);
+        const c2 = bb2.getCenter(new THREE.Vector3());
+        o.position.set(-c2.x, -bb2.min.y, -c2.z);          // 居中 + 落地
+        if (m.position) o.position.add(new THREE.Vector3(...m.position));
+        console.info(`[模型] ${m.file} 自动适配：原高 ${size.y.toFixed(2)} → 缩放 ${k.toFixed(4)}`);
+      } else {
+        o.scale.setScalar(m.scale);
+        o.position.set(...(m.position || [0, 0, 0]));
+      }
       scene.add(o);
       if (m.hideRack) rack.visible = false;
-    });
+    }, undefined, err => console.error(`[模型] ${m.file} 加载失败`, err));
   });
 }).catch(() => {});
 </script>
