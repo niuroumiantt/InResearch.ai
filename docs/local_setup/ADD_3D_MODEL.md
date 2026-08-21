@@ -140,3 +140,35 @@ git add assets/models/ && git commit -m "3D 模型入库：机柜（CC0）" && g
 - **CC-BY 的模型要署名**：`license` 字段写全 `CC-BY（作者名）`，对外导出图注要带上。
 - **别下 "editorial use only" 或 "no derivatives" 的**，我们要商用+改造，许可不合。
 - 模型是二进制，进 git 是 A3 方案①放开的例外——**≤10MB、来源许可登记齐全**这两条不能破。
+
+---
+
+## 附：Sketchfab 下载框里选哪个？
+
+模型页点 Download 会列出四种，**选 `GLB`（Converted format）**：
+
+| 格式 | 选不选 | 为什么 |
+|---|---|---|
+| **GLB** | ✅ **选这个** | 单文件，几何+贴图全打包，页面直接能用 |
+| glTF | ❌ | 散件（scene.gltf + .bin + textures/），还得转 |
+| obj | ❌ | 原始格式，页面加载不了 |
+| usdz | ❌ | 苹果 AR 格式，页面加载不了 |
+
+旁边的 `Texture size` 选 **1k** 就够（2k/4k 会让文件超过 10MB 线）。
+
+## 附：用脚本自动下（批量加模型时省事）
+
+`pipeline/fetch_sketchfab.py` 走官方 API，一条命令完成下载+转格式+登记，
+**license 与 source 从 API 原样带回，不用手填**：
+
+```bash
+export SKETCHFAB_TOKEN=你的令牌      # 取令牌：Sketchfab → Settings → Password & API → API Token
+python3 pipeline/fetch_sketchfab.py "https://sketchfab.com/3d-models/xxx-<uid>" --hide-rack
+```
+
+它会先查许可，**不在白名单（CC0 / Public Domain / CC Attribution）就拒绝下载**——
+未知或禁改的许可不进库，这条纪律由脚本把关，不靠人记。
+包里若是散件 glTF，脚本用内置的纯 Python 打包器转成单文件 .glb（已实测：
+外部 .bin 几何与外部 PNG 贴图都能正确内嵌）。
+
+一次性的：`--name` 指定文件名、`--page bom3d` 放到全景页、`--force-license` 强行放行（自担）。
