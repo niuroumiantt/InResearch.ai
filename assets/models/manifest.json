@@ -1,4 +1,12 @@
 {
   "note": "GLB 模型登记表（A3 批复方案①）。把 .glb 放进本目录、在此登记一条，rack3d/bom3d 自动加载。必填：file 文件名 | page（rack3d 或 bom3d）| source 下载页 URL | license 许可。选填：scale（留空=自动适配尺寸，推荐）| fitHeight 目标高度 | position [x,y,z] 微调偏移 | rotationY 弧度 | hideRack true 时用模型替换程序化机柜（仅 rack3d）。放完先跑 python3 pipeline/check_models.py 自检。详细步骤见 docs/local_setup/ADD_3D_MODEL.md",
-  "models": []
+  "models": [
+    {
+      "file": "server_v2_console.glb",
+      "page": "rack3d",
+      "hideRack": true,
+      "source": "https://sketchfab.com/3d-models/server-v2-console-f24594ece9634cec9c1210c041838371",
+      "license": "CC Attribution（作者：FlevasGR）"
+    }
+  ]
 }
