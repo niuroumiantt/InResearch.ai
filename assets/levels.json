@@ -1,0 +1,16 @@
+{
+  "note": "3D 可视化四级下钻链（2026-08-21 用户拍板，见 DECISIONS 会话续 50）。加一级设备只需在此加一条 + 建对应页面，各页的下钻条自动出现新条目。status: live 已上线 | building 在建 | planned 规划中。",
+  "levels": [
+    { "id": "dc", "icon": "🏢", "name": "数据中心", "en": "Data Center", "page": "bom3d.html",
+      "desc": "园区 → 建筑 → 机房 → 机柜列", "status": "live" },
+    { "id": "rack", "icon": "🗄️", "name": "机柜", "en": "Rack", "page": "rack3d.html",
+      "desc": "外板 → 电源架 → 液冷歧管 → 计算托盘", "status": "live" },
+    { "id": "server", "icon": "🧠", "name": "GPU 服务器", "en": "GPU Server", "page": "rack3d.html?x=70",
+      "desc": "风扇墙 → 主板 → GPU 基板 → 冷板 → HBM", "status": "live",
+      "note": "现嵌在机柜拆解台末段（滑杆 70% 之后），后续独立成页" },
+    { "id": "storage", "icon": "💾", "name": "存储", "en": "Storage", "page": "",
+      "desc": "盘位背板 → NVMe/HDD → RAID 卡", "status": "planned" },
+    { "id": "switch", "icon": "🔗", "name": "交换机", "en": "Switch", "page": "",
+      "desc": "端口面板 → 交换芯片 → 光模块笼", "status": "planned" }
+  ]
+}
