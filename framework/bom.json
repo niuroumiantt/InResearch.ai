@@ -1,7 +1,7 @@
 {
-  "version": "1.1",
-  "updated": "2026-08-18",
-  "note": "数据中心爆炸图 BOM（物理部件轴）。每个部件挂接：研究模块 / 关联公司 / 价格序列 / 状态。设计见 framework/03_bom_and_collaboration.md。status: mature 成熟 | tight 紧缺 | transition 技术切换中 | emerging 新兴。 v1.1（2026-08-18）：对齐产品研究目录（docs/inbox/inresearch-alignment/），新增14部件节点、删 storage（拆为 ssd/hdd/storage-array）、hbm 公司勘误、按 data/products.json 回填 companies。",
+  "version": "1.2",
+  "updated": "2026-08-26",
+  "note": "数据中心爆炸图 BOM（物理部件轴）。每个部件挂接：研究模块 / 关联公司 / 价格序列 / 状态。设计见 framework/03_bom_and_collaboration.md。status: mature 成熟 | tight 紧缺 | transition 技术切换中 | emerging 新兴。 v1.1（2026-08-18）：对齐产品研究目录（docs/inbox/inresearch-alignment/），新增14部件节点、删 storage（拆为 ssd/hdd/storage-array）、hbm 公司勘误、按 data/products.json 回填 companies。 v1.2（2026-08-26 用户批复）：补 5 节点（network-access/fuel-supply/sidecar-hx/vrm/connector）；新增可选字段 upstream（部件档案的上游供应链，替代为上游设独立节点——先进封装/基板按此挂在 gpu 下）；非物理维度（价格/资本/政策）一律走部件档案承载，不进 3D。",
   "layers": [
     {
       "id": "L1",
@@ -446,6 +446,12 @@
         "gpu_rate_term_spread"
       ],
       "status": "tight",
+      "upstream": [
+        "先进封装 CoWoS/SoIC（台积电/日月光/Amkor）",
+        "ABF 载板（欣兴/揖斐电/AT&S/南亚电路）",
+        "晶圆代工先进制程（台积电）",
+        "HBM 堆叠（见 hbm 节点）"
+      ],
       "desc": "GPU 收入 2025 ~$191.8B、2028 峰值 ~$247.6B（Yole）；ASIC 2030 ~$84.6B——供应商集中度即行业风险"
     },
     {
@@ -794,6 +800,71 @@
       "indicators": [],
       "status": "mature",
       "desc": "微模块与预制化——交付周期压缩的主要手段"
+    },
+    {
+      "id": "network-access",
+      "layer": "L1",
+      "name": "园区网络接入",
+      "module": "M07",
+      "companies": [],
+      "series": [],
+      "indicators": [],
+      "status": "tight",
+      "desc": "长途光纤/暗光纤/骨干互联与 IXP——选址三要素「电、水、网」的网；跨园区训练互联的先决条件。运营商（Zayo/Lumen 类）待补公司档案"
+    },
+    {
+      "id": "fuel-supply",
+      "layer": "L1",
+      "name": "燃料供给",
+      "module": "M04",
+      "companies": [],
+      "series": [],
+      "indicators": [],
+      "status": "tight",
+      "desc": "天然气管线容量与柴油储运——自备/备用电源的真实约束常在燃料物流而非机组本身。管线公司待补档案"
+    },
+    {
+      "id": "sidecar-hx",
+      "layer": "L4",
+      "name": "Sidecar/后门热交换器",
+      "module": "M08",
+      "companies": [
+        "nvent",
+        "motivair",
+        "coolit-systems",
+        "boyd"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "transition",
+      "desc": "机柜级液-气热交换（sidecar/RDHx）——NVL72 时代介于 CDU 与机柜之间的新层级，此前两头都不算它"
+    },
+    {
+      "id": "vrm",
+      "layer": "L5",
+      "name": "板级供电（VRM/Power Stage）",
+      "module": "M09",
+      "companies": [
+        "infineon-mps-renesas-adi-ti",
+        "delta-electronics"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "tight",
+      "desc": "GPU 千瓦时代的板级供电——垂直供电（VPD）与电源级密度是 psu 之外独立的瓶颈件"
+    },
+    {
+      "id": "connector",
+      "layer": "L5",
+      "name": "高速连接器",
+      "module": "M07",
+      "companies": [
+        "amphenol-luxshare-molex-te-connectivity"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "tight",
+      "desc": "背板/面板/电源高速连接器——铜互联线缆之外独立的一门生意，随速率代际量价齐升"
     }
   ]
 }

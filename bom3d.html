@@ -40,6 +40,10 @@
   #domainParts .pitem:hover { background: rgba(96,165,250,.12); color: var(--accent); }
   #domainParts .dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
   #domainParts .lay { margin-left: auto; font-size: 10px; color: var(--muted); }
+  #domainParts .covb { font-size: 9.5px; padding: 1px 5px; border-radius: 6px; color: #0b0e14; font-weight: 700; flex: none; }
+  #domainParts .nm { font-size: 9.5px; color: var(--muted); border: 1px dashed var(--line); border-radius: 6px; padding: 0 4px; flex: none; }
+  #covLegend { display: none; gap: 8px; margin-top: 6px; font-size: 10.5px; color: var(--muted); align-items: center; }
+  #covLegend i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 3px; vertical-align: -1px; }
   .spark-wrap { margin-top: 6px; }
   .spark-wrap .sname { font-size: 10.5px; color: var(--muted); display: flex; justify-content: space-between; }
   .spark-wrap .sname b { color: var(--text); }
@@ -96,6 +100,8 @@
   <input type="range" id="explode" min="0" max="100" value="0">
   <div class="stage" id="stage">整机：一座 AI 数据中心</div>
   <div class="domrow" id="domrow"></div>
+  <div class="dchip" id="covChip" style="margin-top:8px" title="按数据完整度给部件着色（公司/产品/序列/指标四维）——空白部件一眼可见，就是采集缺口">📊 数据覆盖热图</div>
+  <div id="covLegend"><span><i style="background:#ef4444"></i>0/4</span><span><i style="background:#f59e0b"></i>1</span><span><i style="background:#eab308"></i>2</span><span><i style="background:#84cc16"></i>3</span><span><i style="background:#22c55e"></i>4 全</span></div>
   <div id="domainParts"></div>
   <button id="play">▶ 自动拆解</button>
   <a href="rack3d.html"><button style="background:transparent;border:1px solid var(--line);color:var(--text);font-weight:500">🔬 进入机柜拆解台 →</button></a>
@@ -115,13 +121,26 @@ import { EXRLoader } from "./assets/vendor/EXRLoader.js";
 import { GLTFLoader } from "./assets/vendor/GLTFLoader.js";
 
 const get = async p => (await fetch(p + "?t=" + Date.now())).json();
-const [BOM, companies, prices, inds, reg] = await Promise.all([
+const [BOM, companies, prices, inds, reg, products] = await Promise.all([
   get("framework/bom.json"), get("data/companies.json"), get("data/prices.json"),
-  get("framework/indicators.json"), get("framework/modules.json")]);
+  get("framework/indicators.json"), get("framework/modules.json"), get("data/products.json")]);
+// 工单队列是生成物，可能不存在——拿不到就不显示工单数，页面照常
+const workorders = await fetch("reports/workorders.json?t=" + Date.now()).then(r => r.ok ? r.json() : null).catch(() => null);
 const CN = {}; companies.records.forEach(c => CN[c.company_id] = c.name_cn || c.name);
 const INDS = {}; inds.indicators.forEach(i => INDS[i.id] = i);
 const MODNAME = {}; reg.modules.forEach(m => MODNAME[m.id] = m.name);
 const PART = {}; BOM.parts.forEach(p => PART[p.id] = p);
+const PRODCOUNT = {}; (products.records || []).forEach(r => (r.bom_parts || []).forEach(bp => PRODCOUNT[bp] = (PRODCOUNT[bp] || 0) + 1));
+const WOCOUNT = {}; (workorders?.orders || []).forEach(o => WOCOUNT[o.mid] = (WOCOUNT[o.mid] || 0) + 1);
+/* 数据覆盖四维：公司/产品/价格序列/已录值指标——覆盖度热图与档案卡共用同一套口径 */
+const COVC = ["#ef4444", "#f59e0b", "#eab308", "#84cc16", "#22c55e"];
+const covDims = p => [
+  ["公司", (p.companies || []).length],
+  ["产品", PRODCOUNT[p.id] || 0],
+  ["序列", (p.series || []).length],
+  ["指标", (p.indicators || []).filter(i => INDS[i] && INDS[i].value != null).length],
+];
+const covScore = p => covDims(p).filter(d => d[1] > 0).length;
 const SN = { tight: "紧缺", transition: "技术切换中", mature: "成熟", emerging: "新兴" };
 const SBADGE = { tight: "#ef4444", transition: "#f59e0b", mature: "#22c55e", emerging: "#a78bfa" };
 
@@ -792,6 +811,29 @@ document.getElementById("play").onclick = () => {
 const PARTMESH = {};
 pickables.forEach(m => { (PARTMESH[m.userData.part] ||= []).push(m); });
 
+/* ─────────── 数据覆盖热图（2026-08-26 用户批复）：爆炸图同时是盲区仪表盘 ───────────
+   开启时按 covScore 换成纯色材质（每网格独立克隆，不动原材质、不与 hover/dim 共享状态），
+   关闭即换回。装饰件不在 pickables 里，保持原样作对比。 */
+let covOn = false;
+function covToggle() {
+  covOn = !covOn;
+  document.getElementById("covChip").classList.toggle("on", covOn);
+  document.getElementById("covLegend").style.display = covOn ? "flex" : "none";
+  if (covOn && activeDomain) clearDomain();
+  pickables.forEach(m => {
+    if (covOn) {
+      if (!m.userData.covMat) {
+        const c = COVC[covScore(PART[m.userData.part] || {})];
+        // land/shell 是整场级大件，实色会把全屏染成一种颜色——降透明度当背景，小部件才读得出来
+        const bg = m.userData.part === "land" || m.userData.part === "shell";
+        m.userData.covMat = new THREE.MeshStandardMaterial({ color: c, roughness: .55, metalness: .1, emissive: new THREE.Color(c), emissiveIntensity: .18, transparent: bg, opacity: bg ? 0.22 : 1 });
+      }
+      if (!m.userData.covPrev) { m.userData.covPrev = m.material; m.material = m.userData.covMat; }
+    } else if (m.userData.covPrev) { m.material = m.userData.covPrev; delete m.userData.covPrev; }
+  });
+}
+document.getElementById("covChip").onclick = covToggle;
+
 const DOMAINS = [
   { key: "power",   icon: "⚡", name: "电力",   mods: ["M04", "M09"], t: 45,  cam: [72, 28, 14], tgt: [30, 3, 3] },
   { key: "cooling", icon: "❄️", name: "散热",   mods: ["M08"],        t: 45,  cam: [-70, 26, 10], tgt: [-28, 3, 0] },
@@ -846,6 +888,7 @@ function clearDomain() {
   document.getElementById("domainParts").innerHTML = "";
 }
 function enterDomain(d) {
+  if (covOn) covToggle();   // 热图与领域高亮不叠加：材质状态互斥，先退热图
   if (activeDomain === d.key) { clearDomain(); flyTo([46, 30, 52], [0, 6, 0]); return; }
   clearDomain();
   activeDomain = d.key;
@@ -856,7 +899,7 @@ function enterDomain(d) {
   animSlider(d.t);
   flyTo(d.cam, d.tgt);
   document.getElementById("domainParts").innerHTML = d.parts.map(p =>
-    `<div class="pitem" data-part="${p.id}"><span class="dot" style="background:${SBADGE[p.status]}"></span>${esc(p.name)}<span class="lay">${p.layer}</span></div>`).join("");
+    `<div class="pitem" data-part="${p.id}"><span class="dot" style="background:${SBADGE[p.status]}"></span>${esc(p.name)}<span class="covb" style="background:${COVC[covScore(p)]}" title="数据覆盖 ${covScore(p)}/4（公司/产品/序列/指标）">${covScore(p)}/4</span>${PARTMESH[p.id] ? "" : '<span class="nm" title="场景中尚无 3D 造型——点击直接看档案">未建模</span>'}<span class="lay">${p.layer}</span></div>`).join("");
   document.querySelectorAll("#domainParts .pitem").forEach(el => el.onclick = () => {
     const p = PART[el.dataset.part];
     showDossier(p);
@@ -1022,14 +1065,18 @@ function showDossier(p) {
   (p.indicators || []).forEach(iid => { const i = INDS[iid]; if (i) rows.push(`<div class="kv"><span>${i.name}</span><b>${i.value != null ? i.value.toLocaleString() + " " + i.unit : "待录入"}</b></div>`); });
   const deep = ["rack-frame", "server", "network-switch", "power-shelf", "manifold", "gpu", "cpu", "hbm", "nic", "psu", "coldplate", "ssd", "dram"].includes(p.id)
     ? `<a class="chip" href="rack3d.html?x=100#${p.id}">🔬 上机柜拆解台看结构</a>` : "";
+  const dims = covDims(p), score = covScore(p);
   el.innerHTML = `<span class="close" onclick="this.parentElement.style.display='none'">✕</span>
     <h2>${esc(p.name)}</h2>
     <div class="meta">${p.layer} ${BOM.layers.find(l => l.id === p.layer)?.name || ""} ·
-      <span class="badge" style="background:${SBADGE[p.status]}">${SN[p.status]}</span></div>
+      <span class="badge" style="background:${SBADGE[p.status]}">${SN[p.status]}</span>${PARTMESH[p.id] ? "" : ' <span class="badge" style="background:#64748b" title="场景中尚无 3D 造型">未建模</span>'}</div>
     <div class="insp" id="inspSlot" style="display:none"><div class="ihint">🔄 拖动旋转 · 单独查看该部件</div></div>
     <div style="font-size:12.5px">${esc(p.desc)}</div>
+    <div class="sec"><h3>数据覆盖 <span style="color:${COVC[score]}">${score}/4</span></h3><div style="display:flex;gap:5px;flex-wrap:wrap">${dims.map(([n, v]) =>
+      `<span class="chip" style="cursor:default${v ? "" : ";opacity:.45"}">${n} ${v || "空"}</span>`).join("")}</div></div>
     <div class="sec"><h3>研究归属</h3><a class="chip" href="report.html#ch-${p.module}">📖 ${p.module} ${MODNAME[p.module] || ""}</a>
-      <a class="chip" href="doc.html?f=research/${p.module}.md">原文</a>${deep}</div>
+      <a class="chip" href="doc.html?f=research/${p.module}.md">原文</a>${WOCOUNT[p.module] ? `<a class="chip" href="doc.html?f=reports/workorders.md" title="该模块的采集缺口清单——爆炸图空白处的派工入口">📋 模块工单 ${WOCOUNT[p.module]} 张</a>` : ""}${deep}</div>
+    ${p.upstream?.length ? `<div class="sec"><h3>上游供应链</h3>${p.upstream.map(u => `<span class="chip" style="cursor:default">${esc(u)}</span>`).join("")}</div>` : ""}
     ${p.companies?.length ? `<div class="sec"><h3>关联公司</h3>${p.companies.map(c => `<a class="chip" href="company.html?c=${c}">${CN[c] || c}</a>`).join("")}</div>` : ""}
     <div class="sec"><h3>数据与指标</h3>${rows.join("") || '<div style="color:var(--muted);font-size:12px">量化序列待建——下一个采集点</div>'}</div>`;
   if (buildInspector(p.id)) {
@@ -1066,7 +1113,8 @@ addEventListener("resize", resize); resize();
   const d = DOMAINS.find(x => x.key === q.get("d"));
   if (d) { controls.autoRotate = false; enterDomain(d); }
   const p = PART[q.get("p")];
-  if (p) { controls.autoRotate = false; showDossier(p); } }
+  if (p) { controls.autoRotate = false; showDossier(p); }
+  if (q.get("cov") === "1" && !covOn) { controls.autoRotate = false; covToggle(); } }
 
 /* GLB 模型槽（A3 方案①）：assets/models/manifest.json 登记的模型自动装载
    scale 省略或写 "auto" 时自动适配：按包围盒缩放到 fitHeight（默认单机柜高 4.6），并落地居中 */
