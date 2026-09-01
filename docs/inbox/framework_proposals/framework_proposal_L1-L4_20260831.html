@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数据中心全行业研究框架 · L1–L4 价值链分层架构</title>
+<style>
+  :root {
+    --ink: #1a2330;
+    --ink-soft: #46505e;
+    --ink-faint: #7c8490;
+    --paper: #fafaf8;
+    --band: #f0efe9;
+    --navy: #2c3e50;
+    --navy-deep: #223141;
+    --rust: #b3542e;
+    --hairline: #d9d5ca;
+    --hairline-dark: #b9b4a6;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 1440px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 34px 44px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  /* ============ 页眉 ============ */
+  header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 14px;
+  }
+  .h-left .kicker {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--rust);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .h-left h1 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    line-height: 1.2;
+  }
+  .h-left h1 span { color: var(--ink-faint); font-weight: 400; }
+  .h-left .sub {
+    margin-top: 6px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    letter-spacing: 0.5px;
+  }
+  .h-right {
+    text-align: right;
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    line-height: 1.9;
+    flex: none;
+    padding-left: 30px;
+  }
+  .h-right b { color: var(--ink-soft); font-weight: 600; }
+
+  /* ============ 主体：侧箭头 + 分层 ============ */
+  .board {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 44px 1fr 44px;
+    gap: 10px;
+    min-height: 0;
+  }
+  .rail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border: 1px solid var(--hairline);
+    background: #fff;
+    padding: 14px 0;
+  }
+  .rail .cap {
+    writing-mode: vertical-rl;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--ink-soft);
+  }
+  .rail .cap small {
+    font-weight: 400;
+    color: var(--ink-faint);
+    letter-spacing: 1px;
+    font-size: 10px;
+  }
+  .rail .arrow { color: var(--rust); font-size: 20px; font-weight: 800; }
+
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 0;
+  }
+
+  /* ============ 分层带 ============ */
+  .layer {
+    display: grid;
+    grid-template-columns: 172px 1fr;
+    border: 1.2px solid var(--navy);
+    background: #fff;
+    flex: 1;
+    min-height: 0;
+  }
+  .layer .lab {
+    background: var(--navy);
+    color: #fff;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+  }
+  .layer .lab .no {
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+  .layer .lab .nm {
+    font-size: 14.5px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+  }
+  .layer .lab .q {
+    font-size: 10.5px;
+    color: #c9cfd8;
+    line-height: 1.5;
+    border-top: 1px solid rgba(255,255,255,.25);
+    padding-top: 5px;
+  }
+  .layer .lab .q b { color: #f0b79d; font-weight: 600; }
+
+  /* 层高度配比：L4 内容最多，L3 最少 */
+  .l4 { flex: 1.45; }
+  .l3 { flex: 0.92; }
+  .l2 { flex: 1.08; }
+  .l1 { flex: 1.05; }
+
+  .layer .body {
+    display: grid;
+    min-height: 0;
+  }
+  .cell {
+    padding: 10px 14px;
+    border-right: 1px solid var(--hairline);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    min-width: 0;
+  }
+  .cell:last-child { border-right: none; }
+  .cell .t {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+    flex-wrap: wrap;
+  }
+  .cell .t .en {
+    font-size: 9.5px;
+    color: var(--ink-faint);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+  .cell .d {
+    font-size: 11px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .cell .s {
+    font-size: 10.5px;
+    color: var(--ink-faint);
+    line-height: 1.5;
+    border-top: 1px dashed var(--hairline-dark);
+    padding-top: 3px;
+  }
+  .cell .s b { color: var(--rust); font-weight: 600; }
+
+  /* 层内分栏布局 */
+  .l4 .body { grid-template-columns: 1.05fr 1.15fr 1.05fr 1.15fr; }
+  .l3 .body { grid-template-columns: 0.9fr 1.55fr 1.55fr; }
+  .l2 .body { grid-template-columns: 1fr 1fr 1fr 1.2fr; }
+  .l1 .body { grid-template-columns: 1.15fr 1.25fr 1fr; }
+
+  /* L4 顶部观察条 */
+  .observe {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--band);
+    border-bottom: 1px solid var(--hairline);
+    padding: 6px 14px;
+    font-size: 10.5px;
+    color: var(--ink-soft);
+    letter-spacing: 0.5px;
+  }
+  .observe b { color: var(--ink); font-weight: 700; }
+  .observe .tagline { color: var(--ink-faint); }
+
+  /* 层间传导注 */
+  .hinge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    font-size: 10.5px;
+    color: var(--ink-faint);
+    letter-spacing: 1px;
+    padding: 1px 0;
+  }
+  .hinge .arr { color: var(--rust); font-weight: 700; }
+  .hinge .ln { width: 60px; border-top: 1px solid var(--hairline-dark); }
+
+  /* ============ 底部：切面 + 公司库 ============ */
+  footer {
+    display: grid;
+    grid-template-columns: 2.1fr 1fr;
+    gap: 10px;
+  }
+  .xcut, .corplib {
+    border: 1px dashed var(--hairline-dark);
+    background: #fff;
+    padding: 10px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    justify-content: center;
+  }
+  .box-h {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    color: var(--ink);
+  }
+  .box-h span { color: var(--rust); }
+  .xcut .items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .xcut .items .it {
+    font-size: 11px;
+    color: var(--ink-soft);
+    border: 1px solid var(--hairline);
+    background: var(--paper);
+    padding: 3px 10px;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  .xcut .items .it b { color: var(--ink); font-weight: 600; }
+  .corplib .d {
+    font-size: 11px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+  .corplib .d b { color: var(--ink); }
+
+  .footnote {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--ink-faint);
+    letter-spacing: 1px;
+    border-top: 1px solid var(--hairline);
+    padding-top: 8px;
+  }
+
+  @media (max-width: 1100px) {
+    .page { padding: 22px 18px; }
+    .layer { grid-template-columns: 130px 1fr; }
+    .l4 .body, .l3 .body, .l2 .body, .l1 .body { grid-template-columns: 1fr 1fr; }
+    .observe { grid-column: 1 / -1; }
+    footer { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="h-left">
+      <div class="kicker">INRESEARCH HUB · DATA CENTER RESEARCH FRAMEWORK</div>
+      <h1>数据中心全行业研究框架 <span>· L1–L4 价值链分层架构</span></h1>
+      <div class="sub">以价值链递进为主轴 · 每个实体只有一个归属 · 切面带横切观察 · 公司研究独立成库</div>
+    </div>
+    <div class="h-right">
+      <div>架构版式：<b>单页总览</b></div>
+      <div>日期：<b>2026-08-31</b></div>
+    </div>
+  </header>
+
+  <div class="board">
+    <!-- 左轨：需求传导 -->
+    <div class="rail">
+      <span class="cap">需求传导 <small>L4 → L3 → L2 → L1</small></span>
+      <span class="arrow">↓</span>
+      <span class="cap"><small>模型与token需求 → 服务器采购 → 硬件订单 → 机房与电力建设</small></span>
+    </div>
+
+    <!-- 分层主体 -->
+    <div class="stack">
+
+      <!-- L4 -->
+      <section class="layer l4">
+        <div class="lab">
+          <div class="no">L4</div>
+          <div class="nm">算力服务层</div>
+          <div class="q">核心问题<br><b>消耗多少算力</b></div>
+        </div>
+        <div class="body">
+          <div class="observe">
+            <b>AI 应用（需求观察哨）</b>
+            <span class="tagline">不独立建课题体系——只看什么应用在消耗 token，作为 L4 需求研究的输入</span>
+          </div>
+          <div class="cell">
+            <div class="t">模型训练 <span class="en">Foundation Models</span></div>
+            <div class="d">基础模型自研：OpenAI · Anthropic · 月之暗面 · 智谱 · DeepSeek</div>
+            <div class="s">硬件关联最强——<b>训练集群的需求画像源头</b>（规模 / 组网 / HBM配比）</div>
+          </div>
+          <div class="cell">
+            <div class="t">推理与 Token 服务 <span class="en">MaaS</span></div>
+            <div class="d">自训自营 API · 开源模型部署商，按 token 计费</div>
+            <div class="s">可自持、<b>也可纯租 L3 算力</b>——推理集群配置画像（显存带宽优先）</div>
+          </div>
+          <div class="cell">
+            <div class="t">分发与中转 <span class="en">Distribution</span></div>
+            <div class="d">API 聚合 / 路由 / 网关 · 云厂商模型市场</div>
+            <div class="s">轻资产不采购——定位<b>需求放大器与价格信号观测站</b></div>
+          </div>
+          <div class="cell">
+            <div class="t">平台与工具软件 <span class="en">AI Infra SW</span></div>
+            <div class="d">MLOps · 向量数据库 · 推理框架 · 数据平台 · Agent 框架</div>
+            <div class="s"><b>算力效率变量</b>——决定同样的卡产出多少 token，硬件需求的对冲项</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="hinge"><span class="ln"></span>消耗算力（自持或租用）<span class="arr">↓</span> 驱动采购<span class="ln"></span></div>
+
+      <!-- L3 -->
+      <section class="layer l3">
+        <div class="lab">
+          <div class="no">L3</div>
+          <div class="nm">算力资产层</div>
+          <div class="q">核心问题<br><b>买多少服务器</b></div>
+        </div>
+        <div class="body">
+          <div class="cell">
+            <div class="t">持有行为 <span class="en">判据</span></div>
+            <div class="d">直接持有服务器资产＝<b>硬件公司的直接客户</b></div>
+            <div class="s">采购 · 组网 · 运维 · 残值——两类模式共享同一套硬件研究问题</div>
+          </div>
+          <div class="cell">
+            <div class="t">出租型 <span class="en">卖机时</span></div>
+            <div class="d">裸金属 · GPU 实例 · 算力租赁 · Neocloud</div>
+            <div class="s">研究焦点：<b>租金周期 / 利用率 / 融资结构 / 二手残值</b></div>
+          </div>
+          <div class="cell">
+            <div class="t">自用型 <span class="en">内部消化</span></div>
+            <div class="d">CSP 自持 · 大模型厂商自持集群 · 政企自建</div>
+            <div class="s">研究焦点：<b>CAPEX 节奏 / 集群架构演进 / 自研芯片替代</b></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="hinge"><span class="ln"></span>向 L2 买服务器 <span class="arr">↓</span> 向 L1 租机柜<span class="ln"></span></div>
+
+      <!-- L2 -->
+      <section class="layer l2">
+        <div class="lab">
+          <div class="no">L2</div>
+          <div class="nm">硬件层</div>
+          <div class="q">核心问题<br><b>买什么硬件</b></div>
+        </div>
+        <div class="body">
+          <div class="cell">
+            <div class="t">算力 <span class="en">Compute</span></div>
+            <div class="d">GPU · AI 服务器 · CPU · DPU</div>
+            <div class="s">软件子模块：<b>驱动 / 编译器 / 集群调度</b></div>
+          </div>
+          <div class="cell">
+            <div class="t">存储 <span class="en">Storage</span></div>
+            <div class="d">SSD · HDD · HBM · 内存</div>
+            <div class="s">软件子模块：<b>分布式存储 / 数据服务</b></div>
+          </div>
+          <div class="cell">
+            <div class="t">网络 <span class="en">Network</span></div>
+            <div class="d">光模块 · 交换机 · 高速线缆 · DCI（DC间）</div>
+            <div class="s">软件子模块：<b>SDN / SONiC / NMS</b></div>
+          </div>
+          <div class="cell">
+            <div class="t">机电配套 <span class="en">Facility Equipment</span></div>
+            <div class="d">机柜 · 供配电（UPS/HVDC/PDU）· 液冷散热 · 精密空调 · 预制化模块</div>
+            <div class="s">软件子模块：<b>DCIM / 动环 / 能耗管理</b>　▏功耗密度演进 <b>驱动</b>机电，机电能力 <b>约束</b>部署上限</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="hinge"><span class="ln"></span>机房与电力需求 <span class="arr">↓</span> 资源获取与建设<span class="ln"></span></div>
+
+      <!-- L1 -->
+      <section class="layer l1">
+        <div class="lab">
+          <div class="no">L1</div>
+          <div class="nm">运营与资源层</div>
+          <div class="q">核心问题<br><b>建多少机房</b></div>
+        </div>
+        <div class="body">
+          <div class="cell">
+            <div class="t">运营与托管 <span class="en">Operations</span></div>
+            <div class="d">机柜租赁（零售 / 批发 / 定制）· 托管 · 增值服务 · AIOps 运维</div>
+            <div class="s">关键主体：<b>谁能拿地拿电，谁来运营</b>——上架率 · 租金 · 客户结构</div>
+          </div>
+          <div class="cell">
+            <div class="t">资源与能源 <span class="en">Power & Land</span></div>
+            <div class="d">土地 · 电力配额 · 电网接入 · 变电站 · PPA/绿电 · 储能 · 柴发（供电配套）</div>
+            <div class="s">运营商的<b>核心能力层</b>——稀缺许可资源：电网接入排队 · 能耗指标</div>
+          </div>
+          <div class="cell">
+            <div class="t">基建供应链 <span class="en">上游维度</span></div>
+            <div class="d">土建 · EPC 总包 · 楼宇消防与配套</div>
+            <div class="s">运营商的<b>外包供应商</b>——不作独立行业，归入本层供应格局研究</div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- 右轨：瓶颈约束 -->
+    <div class="rail">
+      <span class="cap"><small>电力资源 → 供电散热 → 组网运维 → 算力效率</small></span>
+      <span class="arrow">↑</span>
+      <span class="cap">瓶颈约束 <small>L1 → L2 → L3 → L4</small></span>
+    </div>
+  </div>
+
+  <footer>
+    <div class="xcut">
+      <div class="box-h">横切切面 <span>／</span> 标签体系（贯穿各层，不构成独立行业）</div>
+      <div class="items">
+        <span class="it"><b>部署位置</b>　核心 / 边缘 / DC间</span>
+        <span class="it"><b>安全与合规</b>　按对象所属层挂接</span>
+        <span class="it"><b>ESG 与绿色</b>　PUE · 绿电 · 碳足迹</span>
+        <span class="it"><b>国产替代</b>　逐域标准化评分</span>
+        <span class="it"><b>生命周期</b>　改造 / 退役 / 二手流通</span>
+        <span class="it"><b>投融资与 REITs</b>　底层资产分型</span>
+      </div>
+    </div>
+    <div class="corplib">
+      <div class="box-h">公司研究库 <span>／</span> 独立成库</div>
+      <div class="d">一行一公司 · <b>层级 × 分域 × 切面多标签</b>——跨层公司（华为 / 阿里云 / 运营商）不重复落格，课题从公司维度派生</div>
+    </div>
+  </footer>
+
+  <div class="footnote">
+    <span>INRESEARCH HUB · 数据中心全行业研究框架</span>
+    <span>L1 运营与资源 ／ L2 硬件 ／ L3 算力资产 ／ L4 算力服务</span>
+  </div>
+
+</div>
+</body>
+</html>
