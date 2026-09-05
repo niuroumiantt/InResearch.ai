@@ -146,6 +146,17 @@ CI 里对应那一步删除，README 顶部改为「本库不保留任何针对 
 （很可能是 sync 服务每 30 分钟自动产生的），两边历史分叉。处置见当轮回复；
 原则是**先看本机那几笔提交是什么再决定**，不盲目 reset。
 
+**m5m 分叉的实情与两个连带发现（09-05）**：m5m 上 `git stash -u && git reset --hard origin/main`
+报「No local changes to save」并顺利对齐，本机无未提交改动；是否曾有独有提交尚待
+`git log --oneline origin/main..main@{1}` 复核（reflog 里还在，没丢）。连带发现：
+① **打分表带 NUL 字节**——`docs/LIBRARY_SCORES.csv`（27,260 个）与 15 份 scored_batches CSV
+里残留 PDF 抽文本时带出的 `\0`。Python 3.11+ 的 csv 模块容忍（CI 与云端一直绿），
+但 m5m 系统自带 Python 3.9 直接抛 `line contains NUL`，**本机 validate 永远过不了，
+sync 服务也就永远推不上去**。本轮把 NUL 逐字节剔除（行数 13,663 逐表核对不变，不是删数据），
+云端 validate/reading_queue/blindspot/intake 全过。
+② **zsh 交互式不认行内 `#` 注释**——云端给的命令带 `# 说明`，m5m 的 zsh 把 `#` 当参数，
+`git log` 与 `head` 都报错。**规则：贴给用户的命令块里不写行内注释，说明放在代码块外。**
+
 **用户指出的工作纠错（09-05，适用于所有会话）：给命令必须先说清在哪台机器的哪个 terminal 跑。**
 用户贴来的 terminal 输出都带提示符（`m5@m5m`、`hermes@macmini` 等），机器名一直在那里。
 本轮云端把 m5m 贴来的分叉日志当成 Mac mini（hermes）的问题写处置，接着 hermes 贴来干净的结果
