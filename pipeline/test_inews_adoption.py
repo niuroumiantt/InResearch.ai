@@ -140,11 +140,12 @@ class TestPackageValidation(unittest.TestCase):
 class TestProductsStayIndependent(unittest.TestCase):
     """目录层面的独立性 —— 两个产品不得互相 import。"""
 
-    PRODUCTS = HERE.parent.parent
+    # 2026-09-05 仓库恢复扁平结构: 本仓库根就是 inresearch 产品本身。
+    REPO = HERE.parent
 
     def test_inresearch_does_not_import_inews_code(self):
         offenders = []
-        for path in (self.PRODUCTS / "inresearch").rglob("*.py"):
+        for path in self.REPO.rglob("*.py"):
             text = path.read_text(encoding="utf-8", errors="replace")
             for line in text.splitlines():
                 stripped = line.strip()
@@ -161,9 +162,10 @@ class TestProductsStayIndependent(unittest.TestCase):
         2026-09-05 起 inews 在它自己的仓库(niuroumiantt/inews.today),本仓库不再
         保留副本 —— 目录不存在本身就是「不共用」的证据。
         """
-        self.assertFalse((self.PRODUCTS / "inews").exists())
-        self.assertTrue((self.PRODUCTS / "inresearch" / "pipeline" / "auth.py").is_file())
-        self.assertTrue((self.PRODUCTS / "inresearch" / "pipeline" / "users.py").is_file())
+        self.assertFalse((self.REPO / "products").exists())
+        self.assertFalse((self.REPO / "inews").exists())
+        self.assertTrue((self.REPO / "pipeline" / "auth.py").is_file())
+        self.assertTrue((self.REPO / "pipeline" / "users.py").is_file())
 
 
 if __name__ == "__main__":

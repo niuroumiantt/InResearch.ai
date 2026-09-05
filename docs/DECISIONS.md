@@ -7,7 +7,7 @@
 > ⚠️ 2026-08-15 之前的条目是从 commit 历史**反推**的，聊天中的细节要求已不可恢复；
 > 如有重要遗漏，请用户直接在下方补记或在会话中口述补登。
 
-## 待拍板（未决）— 开场必读必报，2026-08-31 更新
+## 待拍板（未决）— 开场必读必报，2026-09-05 更新
 
 > 规则见根目录 CLAUDE.md「人机互动协议」：**用户没明确拒绝 ≠ 同意，等于他没看到。**
 > 本区的每一条，会话开工时必须主动顶到回复开头提醒，不得埋在末尾。
@@ -22,6 +22,11 @@
 （现名与九级漏斗 L1–L9、3D 下钻 L1–L4 三重撞名）、投融资与中国板块不随切面降级
 （M11/M14 保持一等公民）。**替换还是并用、编号改不改，只有用户能定**——
 未拍板前公司库不加层字段、框架文件不动。
+
+**A6（09-05 新增，云端提出）：inews 内容采用接口留还是删。** 现状：`pipeline/inews_adoption.py`
+与 19 项测试保留在库里（#89 用户批复保留），但库内**没有任何调用方**，也没有 inews 内容包
+真正流入过；它是「两个产品唯一允许的连接」的占位实现。留＝将来接 inews 新闻时省一轮；
+删＝inresearch 彻底不知道 inews 存在，「纯粹」到底。**云端不替用户定，未拍板前保留。**
 
 **A4（08-18 新增，生产风险，只有用户能推动）：infra 仓库的 autopull 重建 caddy 前没有
 validate 闸门。** 现状：autopull 检测到 Caddyfile 变化就重建 caddy 容器（这个逻辑是对的，
@@ -132,6 +137,56 @@ C1、C2、C3 已于 2026-08-17 一并批复（用户原话「好的。就按照�
 - **二进制不进 git**：研报库本体留本地，索引（LIBRARY_INDEX.md）和打分（LIBRARY_SCORES.csv）进 git。
 
 ## 会话决策记录（倒序）
+
+### 2026-09-05（会话续 54：撤销 S2 产品拆分——inews.today 全部移出，仓库恢复扁平结构）
+
+**用户要求（原话要点）**：项目文件夹「有些奇怪」，把不相关的 inews.today 全部移出去或删除，
+**保持 inresearch.ai 这个项目的独立与纯粹**；同时审阅代码有无混淆冗余、文件是否完整、
+目前进度与下一步。
+
+**背景**：当日 12:17 合并的 #88（S2）把 `niuroumiantt/inews.today@cdf8612` 整仓复制进
+`products/inews/`，并把本项目全部下沉到 `products/inresearch/`。**该决定未登记在本文件**
+（用户未拍板），且本机 launchd、`deploy/Dockerfile`、`docs/local_setup/` 全部仍指着扁平
+结构——S2 一合并，本机同步与容器 `CMD python3 pipeline/serve.py` 实际已断。
+
+**本轮处置（用户拍板的方向，路径细节为云端判断，请复核）**：
+1. `products/inresearch/*` 全部 `git mv` 回仓库根（git 识别为 rename，历史保留）；
+   `products/`（含 inews 全部 ~180 个文件与 `products/README.md`）整目录删除。
+   inews.today 在其自己的仓库里有完整历史，本库不留副本。
+2. **内容采用接口保留**（`pipeline/inews_adoption.py` + 19 项测试，随目录搬回 `pipeline/`，
+   CI 步骤照跑）。本轮最初打算连它一起删；但同日稍晚用户合并的 #89（另一会话：
+   「inews 回到它自己的仓库」）明确保留了它并写明「两者唯一的连接是内容接口，契约在
+   inews.today 仓库根目录 `CONTENT_INTERFACE.md`」——这是用户刚批过的口径，云端不越权
+   改。**删不删由用户定（见下方待拍板 A6）。** 测试里两处目录断言已改成扁平结构。
+3. `.github/workflows/validate.yml` 与 `README.md` 还原到 S2 之前版本，只在 README 顶部
+   保留 #89 那段「inews 在自己仓库、本库不留副本」的说明（改成扁平路径）。
+   与 #89 的冲突（README、workflow、`products/README.md`、adoption 两文件）本轮合并解决：
+   #89 删 inews 副本但保留 `products/inresearch/` 嵌套，本轮在其基础上再拉平。
+4. 校验：`validate.py --strict` 0 warnings、`verify.py`、`refresh_indicators.py`、
+   `intake.py --selftest` 全过；全库 grep 无 `products/`、`inews` 残留
+   （唯一命中是打分表迁移 CSV 里一张腾讯图片文件名 `inews.gtimg.com`，是数据不是代码）。
+
+**保留并说明**：`pipeline/fetch_news_signals.py`、`deploy/docker-compose.yml` 的 `news`
+服务引用的是**姊妹项目 `niuroumiantt/news` 的数据目录**（上游信号源，README「与其他项目
+的关系」一节自 2026-08 起就有），不是 inews.today 的代码——未动。若用户认为 news 与
+inews.today 是同一条线、也要断，请明示。
+
+**代码审阅结论（同轮，只审不改，请复核后决定是否认领 C4-P2）**：
+- 文件完整：README / pipeline/README / docs/local_setup 相对链接、assets/vendor 与 renders
+  引用全部命中，无断链；`pipeline/README.md`「规划中」的 `fetch_ir_events.py` 是规划项不是死链。
+- 冗余（PANORAMA C4-P2 早已诊断，仍未认领）：无 `pipeline/common.py`；`ROOT` 定义重复
+  23 处、`load()` 读表 4 份同源实现 + 裸读 ~15 处、`days_since` 逐字重复、`modules.json`
+  加载 4 处、`LIBRARY_SCORES.csv` 读取 6 处、原子写只有 collect.py 一处。
+- 命名混淆：`bom.html`(2D)/`bom3d.html`(3D)/`rack3d.html`(机柜下钻) 未体现维度层级；
+  `poster.html`(服务器拆解海报) 与 `framework_poster.html`(模块地图) 只共享一个词；
+  `report.html`(前端活文档) 与 `reports/`(生成物) 同名不同物；`output_map.py` 更像 export_map。
+- 孤儿页：`bake.html`、`framework_poster.html` 无任何导航入口（均为有意交付：续 48、续 53），
+  `compare_models.py` 是本机选型工具（#85），零站内引用属正常，**不删**。
+- 可移植性：`output_map.py:23` 硬编码 macOS Chrome 路径，容器内必降级。
+
+**否决记录**：「一仓两产品（products/ 平行目录）」方案由本轮用户否决；
+infra 仓库 `hosts/apps.json` 若已按 `products/inresearch` 配 paths 映射，需同步改回
+（云端权限只到本仓库，见 A4 同类情况）。
 
 ### 2026-08-31（会话续 53：L1–L4 价值链框架提案评审——只评不动，登记 A5 待拍板）
 
