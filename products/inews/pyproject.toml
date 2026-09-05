@@ -1,0 +1,27 @@
+[project]
+name = "inews"
+version = "0.1.0"
+description = "在你订阅的私站里按关键词爬取文章,生成可读的静态站点"
+requires-python = ">=3.11"
+dependencies = [
+    "beautifulsoup4>=4.12,<5.0",
+    "trafilatura>=1.9,<2.0",
+    "playwright>=1.49,<2.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+inews = "inews.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["inews*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

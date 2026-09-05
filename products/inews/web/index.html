@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>inews.today · AI 新闻时间线</title>
+<meta name="description" content="按文章真实发布时间倒序的 AI 新闻时间线，标题中文呈现，来源域名持续评分。">
+<link rel="icon" href="/brand/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="inews.today · AI 新闻时间线">
+<meta property="og:image" content="/brand/inews-og-card.svg">
+<link rel="stylesheet" href="/sd-ui-kit.css">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body class="sd">
+<header class="sd-console">
+  <a class="sd-console__brand" href="#" data-tab="timeline">
+    <img src="/brand/header-mark.svg" width="22" height="22" alt="" class="sd-console__logo">
+    INEWS.TODAY<span class="sd-console__tag" id="build">—</span>
+  </a>
+
+  <nav class="sd-tabs" id="tabs">
+    <button data-tab="timeline" aria-current="page">时间线</button>
+    <!-- 原文库是 Python 订阅采集器生成的静态产出，不是本站 SPA 的一个
+         面板,所以用 a 不用 button —— 写成 button 的话 app.js 会把它当成一个不存在的
+         面板去切,点了没反应。每个库一条直达的路,不做二级菜单 ——
+         多一次点击就不是最优路径。
+         9-02 站长:「让这些文章暂时不对外,对外的只有快讯」—— 入口挂 data-staff,
+         未登录不可见,auth.js 按角色统一开关;页面本身再由本站 requireStaff 拦住,
+         藏入口只是减少误入,服务端鉴权才是真正的门。 -->
+    <a href="/rawarticle/ft/index.html" data-staff hidden>原文库·FT</a>
+    <a href="/rawarticle/bloomberg/index.html" data-staff hidden>原文库·Bloomberg</a>
+    <a href="/rawarticle/cnbc/index.html" data-staff hidden>原文库·CNBC</a>
+    <a href="/rawarticle/wsj/index.html" data-staff hidden>原文库·WSJ</a>
+    <a href="/rawarticle/reuters/index.html" data-staff hidden>原文库·Reuters</a>
+    <a href="/rawarticle/axios/index.html" data-staff hidden>原文库·Axios</a>
+    <a href="/rawarticle/dashboard/" data-staff hidden>原文库·Dashboard</a>
+    <button data-tab="dashboard" data-staff hidden>分析</button>
+    <button data-tab="admin" data-staff hidden>账号</button>
+  </nav>
+
+  <!-- 管理处：登录状态、以及所有分析/管理入口都收在这里 -->
+  <div class="sd-console__right">
+    <span class="sd-console__meta" id="status">…</span>
+    <div class="sd-menu" id="account">
+      <button class="sd-menu__btn" id="account-btn" aria-expanded="false" aria-haspopup="true">管理 ▾</button>
+      <div class="sd-menu__pop" id="account-pop" hidden>
+        <div class="sd-menu__who" id="account-who">未登录</div>
+        <div class="sd-menu__group" data-staff hidden>
+          <button data-tab="dashboard">分析 · 内容/来源/抓取/车道</button>
+          <button data-tab="admin">账号管理 · 审计日志</button>
+          <button id="menu-translate">补译标题</button>
+          <!-- 各来源保留独立清单与正文，运行数据只进统一后台。 -->
+          <a href="/rawarticle/dashboard/">统一原文库 Dashboard ↗</a>
+        </div>
+        <div class="sd-menu__group">
+          <button id="menu-login">登录</button>
+          <button id="menu-register" hidden>注册</button>
+          <button id="menu-password" hidden>修改密码</button>
+          <button id="menu-logout" hidden>退出登录</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="sd-frame">
+  <!-- 读者视角的门面:品牌口号 + 利益点。车道/评分/RSS 是实现细节,
+       属于分析页,不在读者面前念说明书。 -->
+  <div class="sd-kicker">
+    <span><span class="sd-live"></span>INEWS.TODAY · AI 新闻雷达</span>
+    <span id="kicker-right">—</span>
+  </div>
+
+  <section class="sd-hero">
+    <div>
+      <h1>iNews<br><i class="sd-outline">Today</i></h1>
+      <p><b>抓得快，看得准。</b>全球 AI 新闻，分钟级追踪，标题统一中文、原文随时可核对。
+         同一事件自动合并只留首发，按价值分层标注「必读」——只读值得读的。</p>
+    </div>
+    <div class="sd-clock">
+      <span>最新一条</span>
+      <strong id="clock-latest">—</strong>
+      <small id="clock-sub">—</small>
+    </div>
+  </section>
+
+  <section id="timeline">
+    <!-- 整站登录模式下的登录墙。单独一个容器，不能靠清空 #timeline 来画 ——
+         那样会连筛选条和 #rows 一起删掉，登录成功后就没有地方渲染了。 -->
+    <div id="timeline-gate" class="sd-hide"></div>
+    <!-- 读者控件只有两行(2026-08-31 大扫除:语言/来源/合并转载/显示原文/
+         自动刷新/价值档 全部删除或默认化):
+         第一行 分类模块条 —— 点击即筛,每格带今日条数;
+         第二行 站内搜索(独占,醒目) + 地区。 -->
+    <div id="controls">
+      <div class="sd-genrebar" id="genrebar"></div>
+      <div class="sd-searchrow">
+        <input id="q" type="search" placeholder="🔍 站内搜索：输入关键词，中文或原文标题都能搜">
+        <select id="region">
+          <option value="">全部地区</option>
+          <option value="us">美国</option>
+          <option value="cn">中国</option>
+          <option value="eu">欧洲</option>
+          <option value="jk">日韩</option>
+          <option value="me">中东</option>
+          <option value="sea">东南亚</option>
+          <option value="other">其他</option>
+        </select>
+      </div>
+    </div>
+    <div class="sd-stream">
+      <div class="sd-stream__head">
+        <span>时间 / 来源 / 标题</span>
+        <span id="stream-count">—</span>
+      </div>
+      <div id="rows"></div>
+    </div>
+  </section>
+
+  <section id="dashboard" class="sd-hide"></section>
+  <section id="admin" class="sd-hide"></section>
+</main>
+
+<!-- 登录 / 注册 / 找回密码 -->
+<div class="sd-modal sd-hide" id="modal">
+  <form class="sd-modal__box" id="auth-form" autocomplete="on">
+    <div class="sd-modal__head">
+      <strong id="auth-title">登录管理处</strong>
+      <button type="button" class="sd-modal__x" id="auth-close" aria-label="关闭">×</button>
+    </div>
+    <div class="sd-modal__body" id="auth-fields"></div>
+    <div class="sd-modal__msg" id="auth-msg"></div>
+    <div class="sd-modal__foot">
+      <button type="button" class="sd-link-btn" id="auth-alt"></button>
+      <button type="submit" class="sd-primary" id="auth-submit">登录</button>
+    </div>
+  </form>
+</div>
+
+<script src="/app.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Signal Desk UI Kit</title>
+  <link rel="stylesheet" href="signal-desk-ui-kit.css">
+</head>
+<body class="sd">
+  <main class="sd-frame">
+    <header class="sd-console">
+      <div class="sd-console__brand">YOUR PRODUCT <b class="sd-console__tag">INTERNAL</b></div>
+      <nav class="sd-tabs" aria-label="主导航">
+        <a href="#" aria-current="page">主交付</a><a href="#">分析版</a><a href="#">来源</a>
+      </nav>
+      <div class="sd-console__meta">UPDATED · 2026-08-17 09:00</div>
+    </header>
+
+    <div class="sd-kicker"><span><i class="sd-live"></i>SIGNAL EDITORIAL CONSOLE</span><span>DESIGN KIT · v1</span></div>
+    <section class="sd-hero">
+      <div>
+        <h1>把复杂信息<br><em class="sd-outline">变成信号</em></h1>
+        <p>这套视觉语言把编辑部的清晰层级、工业操作台的状态感和高密度数据界面合在一起。它适合情报、研究、运营、监控与内部工作台。</p>
+      </div>
+      <aside class="sd-clock"><span>DESIGN PRINCIPLE</span><strong>DATA FIRST · DECORATION LAST</strong><small>温暖纸张 / 硬边网格 / 荧光信号</small></aside>
+    </section>
+
+    <section class="sd-dashboard">
+      <div class="sd-dashboard__head"><span>SYSTEM DASHBOARD / 状态总览</span><em>ALL SYSTEMS LEGIBLE</em></div>
+      <div class="sd-metrics">
+        <div class="sd-metric"><strong>50</strong><span>OBSERVED</span></div>
+        <div class="sd-metric"><strong>42</strong><span>AUTOMATED</span></div>
+        <div class="sd-metric"><strong>8</strong><span>TBD</span></div>
+        <div class="sd-metric"><strong>97%</strong><span>HEALTH</span></div>
+      </div>
+    </section>
+
+    <section class="sd-controls">
+      <button aria-pressed="true">时间线</button><input aria-label="搜索" placeholder="搜索标题、摘要或来源…"><select aria-label="来源"><option>所有来源</option></select>
+    </section>
+
+    <section class="sd-stream">
+      <div class="sd-stream__head"><span>LATEST SIGNALS · SHANGHAI TIME</span><span>002 RESULTS</span></div>
+      <article class="sd-row">
+        <time class="sd-time" datetime="2026-08-17T08:42:17+08:00"><span>发布时间</span>2026-08-17<br>08:42:17</time>
+        <div class="sd-source">Example Media<small>example.com</small></div>
+        <div class="sd-story"><span class="sd-badge sd-badge--acid">进入分析版</span><a href="#">真正重要的信息标题保持清晰、紧凑、可以快速扫描</a><p>摘要用来补充上下文，不抢夺标题层级；状态颜色必须表达业务意义。 <a class="sd-link" href="#">查看原文 ↗</a></p></div>
+        <div class="sd-rank">001</div>
+      </article>
+      <article class="sd-row">
+        <time class="sd-time" datetime="2026-08-17T08:36:04+08:00"><span>首次抓取</span>2026-08-17<br>08:36:04</time>
+        <div class="sd-source">Raw Source<small>source.dev</small></div>
+        <div class="sd-story sd-story--excluded"><span class="sd-badge sd-badge--alert">未进入分析版</span><a href="#">被规则排除的信息仍然保留，但用删除线表达处理结果</a><p>删除线不是装饰，而是让 RAW 与精选版之间的关系一眼可见。 <a class="sd-link" href="#">查看原文 ↗</a></p></div>
+        <div class="sd-rank">002</div>
+      </article>
+    </section>
+
+    <section class="sd-section">
+      <div class="sd-kicker"><span>SEMANTIC CARDS</span><span>NO DECORATIVE SHADOWS</span></div>
+      <div class="sd-card-grid">
+        <article class="sd-card"><div class="sd-card__head"><div class="sd-mark">OK</div><div><h3>正常运行</h3><small>production.route</small></div><b>24</b></div><p>卡片的边框、数字和状态比装饰更重要。</p><div class="sd-card__badges"><span class="sd-badge sd-badge--ok">技术可用</span><span class="sd-badge sd-badge--ok">内容新鲜</span></div></article>
+        <article class="sd-card"><div class="sd-card__head"><div class="sd-mark">OBS</div><div><h3>路线观察</h3><small>candidate.route</small></div><b>05</b></div><p>琥珀色用于需要关注、但并非故障的状态。</p><div class="sd-card__badges"><span class="sd-badge sd-badge--warn">观察中</span><span class="sd-badge sd-badge--acid">有信号</span></div></article>
+        <article class="sd-card"><div class="sd-card__head"><div class="sd-mark">TBD</div><div><h3>暂不处理</h3><small>future.route</small></div><b>08</b></div><p>灰色代表明确的产品边界，不伪装成失败。</p><div class="sd-card__badges"><span class="sd-badge sd-badge--muted">TBD</span><span class="sd-badge sd-badge--alert">未接入</span></div></article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

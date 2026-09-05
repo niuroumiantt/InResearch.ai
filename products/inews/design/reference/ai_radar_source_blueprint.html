@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 快讯雷达｜信息源与抓取蓝图</title>
+  <style>
+    :root{
+      --paper:#f5f2e9;--card:#fffdf7;--ink:#101719;--muted:#647072;--line:#cdd1c9;
+      --acid:#d7ff19;--black:#101719;--red:#e53935;--blue:#165dff;--amber:#9a6500;
+      --green:#087a55;--violet:#6941c6;--soft:#ebece6
+    }
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.55 system-ui,-apple-system,"Segoe UI","PingFang SC",sans-serif}
+    a{color:#075fc7;text-decoration:none}a:hover{text-decoration:underline}
+    .console{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:22px;padding:9px 24px;background:var(--black);color:#fff;border-bottom:3px solid var(--acid);font:700 10px ui-monospace,SFMono-Regular,monospace;letter-spacing:.08em}
+    .console .live{white-space:nowrap}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:7px}.internal{margin-left:7px;background:var(--acid);color:#111;padding:3px 5px;font-size:8px}
+    .nav{display:flex;gap:2px;overflow:auto;flex:1}.nav a{padding:6px 9px;color:#bec6c4;white-space:nowrap}.nav a:hover{color:#111;background:var(--acid);text-decoration:none}.asof{color:#9aa5a3;white-space:nowrap}
+    .wrap{max-width:1480px;margin:auto;padding:24px 24px 70px}.hero{border-top:1px solid var(--ink);border-bottom:4px solid var(--ink);padding:24px 0 20px;display:grid;grid-template-columns:1.5fr .8fr;gap:35px}
+    .eyebrow{font:800 11px ui-monospace,monospace;letter-spacing:.16em;color:var(--muted)}h1{font:900 clamp(34px,6vw,78px)/.95 Impact,"Arial Narrow",sans-serif;letter-spacing:-.02em;margin:14px 0 12px;text-transform:uppercase}.hero p{max-width:820px;font-size:17px;margin:0;color:#3e494a}
+    .decision{align-self:end;background:var(--acid);padding:18px;border:1px solid #9caf00}.decision b{display:block;font:900 16px ui-monospace,monospace;margin-bottom:7px}.decision code{font-size:12px;word-break:break-word}
+    .metrics{display:grid;grid-template-columns:repeat(7,1fr);border:1px solid var(--line);border-top:0;background:var(--card)}.metric{padding:14px;border-right:1px solid var(--line)}.metric:last-child{border:0}.metric strong{display:block;font:900 27px/1 ui-monospace,monospace}.metric span{display:block;color:var(--muted);font:700 9px ui-monospace,monospace;margin-top:7px;text-transform:uppercase}
+    section{scroll-margin-top:58px;margin-top:34px}.sectionHead{display:flex;justify-content:space-between;gap:20px;align-items:end;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:14px}.sectionHead h2{margin:0;font-size:24px}.sectionHead p{margin:0;max-width:760px;color:var(--muted);text-align:right}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.card{background:var(--card);border:1px solid var(--line);padding:16px}.card h3{margin:0 0 9px;font-size:15px}.card p{margin:6px 0;color:#455052}.card ul{padding-left:18px;margin:8px 0}.card li{margin:5px 0}
+    .pipeline{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}.step{position:relative;background:var(--black);color:#fff;padding:14px;min-height:108px}.step:not(:last-child):after{content:"→";position:absolute;right:-11px;top:40%;z-index:2;color:var(--acid);font-size:22px}.step b{display:block;color:var(--acid);font:900 20px ui-monospace,monospace}.step span{font-size:12px;color:#d0d7d5}
+    .callout{border-left:6px solid var(--acid);background:#171f20;color:#eef3f1;padding:15px 18px;margin-top:12px}.callout strong{color:var(--acid)}
+    .codebar{background:#111;color:#e9f0ee;padding:13px 15px;font:12px/1.65 ui-monospace,SFMono-Regular,monospace;overflow:auto;white-space:pre-wrap}.codebar em{color:var(--acid);font-style:normal}
+    table{width:100%;border-collapse:collapse;background:var(--card)}th,td{padding:9px 10px;border:1px solid var(--line);vertical-align:top;text-align:left}th{position:sticky;top:40px;background:#e7e9e2;z-index:3;font:800 10px ui-monospace,monospace;letter-spacing:.05em}td{font-size:12px}.tableWrap{overflow:auto;border:1px solid var(--line)}.tableWrap table{min-width:1180px}.domain{color:var(--muted);font:11px ui-monospace,monospace}.route{display:inline-block;border-radius:999px;padding:2px 8px;font:800 10px ui-monospace,monospace;white-space:nowrap}.A{color:#075a42;background:#dff6ec}.AQ{color:#6941c6;background:#eee8ff}.B{color:#165dff;background:#e8efff}.C{color:#8a5b00;background:#fff1cc}.D{color:#a61b15;background:#fee9e7}
+    .tools{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.tools input,.tools select{border:1px solid var(--line);background:#fff;padding:9px 10px;min-width:170px}.tools input{flex:1}.legend{display:flex;gap:8px;flex-wrap:wrap;margin:9px 0;color:var(--muted);font-size:12px}
+    .taxonomy{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.tax{background:var(--card);border:1px solid var(--line);padding:14px}.tax b{font:900 13px ui-monospace,monospace}.tax strong{display:block;font-size:16px;margin:4px 0}.tax p{margin:0;color:#526061;font-size:12px}.tax .code{float:right;background:var(--acid);padding:2px 5px}
+    .score{display:grid;grid-template-columns:1fr 1fr;gap:12px}.positive{border-top:5px solid var(--green)}.negative{border-top:5px solid var(--red)}.scoreline{display:flex;justify-content:space-between;border-bottom:1px dotted var(--line);padding:6px 0}.scoreline:last-child{border:0}.scoreline b{font:800 12px ui-monospace,monospace}
+    .thresholds{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.threshold{padding:12px;border:1px solid var(--line);background:var(--card)}.threshold strong{font:900 20px ui-monospace,monospace;display:block}.green{border-top:5px solid var(--green)}.amber{border-top:5px solid #dda500}.gray{border-top:5px solid #7b8587}
+    .roadmap{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.phase{border-top:6px solid var(--ink);background:var(--card);padding:15px}.phase b{font:900 20px ui-monospace,monospace}.phase h3{margin:7px 0}.phase ul{margin:7px 0;padding-left:17px}.phase li{margin:5px 0}
+    .foot{margin-top:35px;border-top:1px solid var(--ink);padding-top:12px;color:var(--muted);font-size:12px}
+    @media(max-width:1000px){.metrics{grid-template-columns:repeat(4,1fr)}.metric:nth-child(4){border-right:0}.hero,.grid2{grid-template-columns:1fr}.pipeline{grid-template-columns:repeat(3,1fr)}.taxonomy{grid-template-columns:repeat(2,1fr)}.roadmap{grid-template-columns:repeat(2,1fr)}.asof{display:none}}
+    @media(max-width:620px){.console{padding:8px 12px}.nav{display:none}.wrap{padding:18px 12px 50px}.metrics{grid-template-columns:repeat(2,1fr)}.metric:nth-child(even){border-right:0}.hero{padding-top:15px}.grid3,.score,.thresholds{grid-template-columns:1fr}.pipeline{grid-template-columns:1fr}.step:not(:last-child):after{content:"↓";right:12px;top:auto;bottom:-17px}.taxonomy,.roadmap{grid-template-columns:1fr}.sectionHead{display:block}.sectionHead p{text-align:left;margin-top:5px}}
+    @media print{.console,.tools{display:none}.wrap{max-width:none;padding:0}.tableWrap{overflow:visible}th{position:static}section{break-inside:avoid}.hero{margin-top:0}}
+  </style>
+</head>
+<body>
+  <nav class="console">
+    <div class="live"><span class="dot"></span>INEWS AI RADAR <span class="internal">BLUEPRINT</span></div>
+    <div class="nav">
+      <a href="#decision">架构结论</a><a href="#sources">50站点路由</a><a href="#coverage">穷尽信息源</a><a href="#taxonomy">MECE分类</a><a href="#filter">过滤与去重</a><a href="#roadmap">落地顺序</a>
+    </div>
+    <div class="asof">VERIFIED · 2026-08-16</div>
+  </nav>
+
+  <main class="wrap">
+    <header class="hero">
+      <div>
+        <div class="eyebrow">SOURCE INTELLIGENCE / ACQUISITION / RELEVANCE / EVENT CLUSTERING</div>
+        <h1>AI 快讯雷达<br>信息源与抓取蓝图</h1>
+        <p>后台保留宽口径采集与审计，前台只发布高置信 AI 事件。不是再写一套爬虫，而是在同一条采集管线中增加来源路由、AI 相关性、互斥主分类、事件去重和热点排序。</p>
+      </div>
+      <aside class="decision">
+        <b>核心决策 / ONE PIPELINE, TWO VIEWS</b>
+        <code>宽抓取 → 规范化 → AI 判定 → MECE 分类 → 事件聚类 → 后台全量 / 前台 AI-only</code>
+      </aside>
+    </header>
+
+    <div class="metrics">
+      <div class="metric"><strong>183</strong><span>核心产品代码行</span></div>
+      <div class="metric"><strong>46</strong><span>RSS 抓取器代码行</span></div>
+      <div class="metric"><strong>50</strong><span>已核验媒体来源</span></div>
+      <div class="metric"><strong>8</strong><span>明确 AI 专门 Feed</span></div>
+      <div class="metric"><strong>6</strong><span>AI Feed 待健康检查</span></div>
+      <div class="metric"><strong>609</strong><span>当前文章快照</span></div>
+      <div class="metric"><strong>518</strong><span>当前含摘要文章</span></div>
+    </div>
+
+    <section id="decision">
+      <div class="sectionHead"><h2>01 / 当前验证了什么</h2><p>现有原型已经证明“多站 RSS 标题雷达”可行，但还没有证明“AI 快讯雷达”可行；缺少的不是第二套抓取代码，而是采集后的判断与质量控制层。</p></div>
+      <div class="grid3">
+        <article class="card"><h3>代码体量</h3><p><b>183 行 / 37.8 KB</b>是真正与产品直接相关的实现：114 行界面、46 行抓取器、23 行定时更新。加上构建与运行配置为 436 行；连同未使用脚手架、旧测试和示例共 748 行。</p><p>部分界面文件被压成很少的物理行，因此同时看字节数比只看行数更准确。</p></article>
+        <article class="card"><h3>当前运行状态</h3><p>34 个硬编码 feed；最近快照 33 个成功、1 个 403，得到 609 篇文章、31 个实际出稿域名，其中 518 篇有摘要。</p><p>每源最多取 35 条，只保留 14 天、总量最多 700 条。</p></article>
+        <article class="card"><h3>为什么有的没有摘要</h3><p>RSS 发布者决定是否输出 <code>description</code>、<code>summary</code> 或正文；付费站常只给标题或截断内容。当前解析器只读取几个常见字段并截到 280 字，因此“无摘要”多数是上游 feed 能力差异，不一定是抓取失败。</p></article>
+      </div>
+      <div class="callout"><strong>当前最重要的事实：</strong>首页虽然以 AI 为叙事，但数据尚未执行 AI 相关性过滤；而且 34 个实际抓取源与 50 个审计源分开维护，已经出现“双重真相”。</div>
+    </section>
+
+    <section>
+      <div class="sectionHead"><h2>02 / 一条管线，两种视图</h2><p>“抓什么”和“展示什么”分开。抓取层宽，发布层严；后台可以看到所有候选、失败原因与评分，前台只拿经过筛选的事件视图。</p></div>
+      <div class="pipeline">
+        <div class="step"><b>01</b><strong>来源注册表</strong><br><span>50 家媒体 + 一手源；记录 RSS、栏目页、语言、权限与覆盖类别</span></div>
+        <div class="step"><b>02</b><strong>统一采集</strong><br><span>AI RSS、栏目 RSS、综合 RSS、Sitemap、HTML、授权渠道</span></div>
+        <div class="step"><b>03</b><strong>规范化</strong><br><span>正确日期、canonical URL、实体别名、语言与原始字段</span></div>
+        <div class="step"><b>04</b><strong>AI 判定</strong><br><span>来源置信 + 标题/摘要/栏目证据 + 负面规则</span></div>
+        <div class="step"><b>05</b><strong>分类与聚类</strong><br><span>一个主分类、多维标签；跨站合并成独立事件</span></div>
+        <div class="step"><b>06</b><strong>两个投影</strong><br><span>后台：全量与复核；前台：AI-only 快讯与热点事件</span></div>
+      </div>
+      <div class="codebar"><em>每篇文章新增字段：</em> aiRelevant · aiScore · matchReasons · classifierVersion · primaryCategory · secondaryTags · canonicalUrl · eventId · fetchMethod</div>
+    </section>
+
+    <section id="sources">
+      <div class="sectionHead"><h2>03 / 50 家媒体的最佳 AI 抓取路由</h2><p>每个来源只归入一个主路由：A 明确 AI RSS；A? 候选 AI 标签 feed；B 科技/行业栏目 RSS；C 综合或高相关 RSS 后过滤；D 无可靠公开 RSS，走官方栏目页、邮件或授权。</p></div>
+      <div class="legend"><span class="route A">A · AI RSS</span><span class="route AQ">A? · 待复测</span><span class="route B">B · 栏目 RSS</span><span class="route C">C · 综合 RSS</span><span class="route D">D · HTML / 授权</span></div>
+      <div class="tools"><input id="sourceSearch" placeholder="搜索站点、域名、定位、备注"><select id="routeFilter"><option value="">全部路由</option><option value="A">A · AI RSS</option><option value="A?">A? · 待复测</option><option value="B">B · 栏目 RSS</option><option value="C">C · 综合 RSS</option><option value="D">D · HTML / 授权</option></select><select id="batchFilter"><option value="">全部批次</option><option>现有13家</option><option>第一批</option><option>第二批</option><option>第三批</option></select></div>
+      <div class="tableWrap"><table><thead><tr><th>#</th><th>来源 / 定位</th><th>批次</th><th>路由</th><th>最佳官方入口 / RSS</th><th>生产抓取备注</th></tr></thead><tbody id="sourceRows"></tbody></table></div>
+    </section>
+
+    <section id="coverage">
+      <div class="sectionHead"><h2>04 / 如何做到“穷尽”：媒体之外的六类一手源</h2><p>现有 50 家媒体只解决了新闻发现层。完整性检查单位应是“主分类 × 地区 × 来源角色”；每个关键格至少有一手源、专业媒体和综合/本地媒体各一个。</p></div>
+      <div class="grid3">
+        <article class="card"><h3>① 模型与软件发布</h3><p>公司博客、开发者文档、API changelog、模型卡、GitHub Release、Hugging Face 模型仓库。</p><p><b>种子源：</b>OpenAI、Anthropic、Google DeepMind、Meta AI、Microsoft、xAI、Mistral、Cohere、Hugging Face；DeepSeek、Qwen、百度、腾讯、字节、智谱、月之暗面、MiniMax。</p></article>
+        <article class="card"><h3>② 芯片、制造与供应链</h3><p>产品发布、技术博客、IR/财报、代工与存储厂新闻室、设备商订单与监管披露。</p><p><b>种子源：</b>NVIDIA、AMD、Intel、Arm、Broadcom、Marvell、TSMC、Samsung、SK hynix、Micron、ASML、Applied Materials、Lam、KLA、Synopsys、Cadence。</p></article>
+        <article class="card"><h3>③ 云、数据中心与能源</h3><p>云服务更新、区域扩建、PPA/电力合同、规划许可、环境评估、电网接入、冷却与设备发布。</p><p><b>种子源：</b>AWS、Azure、Google Cloud、Oracle、CoreWeave、Equinix、Digital Realty、Vertiv、Schneider；地方规划与公用事业监管文件。</p></article>
+        <article class="card"><h3>④ 政策、法律与标准</h3><p>官方公报、法案文本、监管决定、法院文件、出口管制、政府采购、标准与测评。</p><p><b>种子源：</b>Federal Register、BIS、NIST、FTC、DOJ、SEC；欧盟委员会/议会/理事会；英国 DSIT/CMA/ICO/AISI；中国 CAC/MIIT/SAMR；日本 METI/MIC；韩国 MSIT。</p></article>
+        <article class="card"><h3>⑤ 研究、安全与开源</h3><p>论文预印本、会议论文、数据集、基准、安全通告、漏洞库、代码与权重更新。</p><p><b>种子源：</b>arXiv cs.AI/cs.CL/cs.LG/cs.CV/cs.RO/cs.CR，NeurIPS、ICML、ICLR、ACL、CVPR、USENIX；GitHub、Hugging Face、安全实验室。</p></article>
+        <article class="card"><h3>⑥ 公司、资本与产业采用</h3><p>交易所公告、SEC EDGAR、公司 IR、业绩会材料、融资公告、招投标与客户案例；再用媒体确认独立性。</p><p><b>种子源：</b>上市公司 IR/监管文件、创业公司新闻室、主要 VC portfolio/news、政府采购与行业主管部门公告。</p></article>
+      </div>
+      <div class="callout"><strong>覆盖规则：</strong>软件/模型重点覆盖美国、中国、欧洲和开源社区；半导体重点覆盖美国、台湾、韩国、日本、欧洲；数据中心覆盖北美、欧洲、中国、东南亚和中东；政策覆盖美国、欧盟、中国、英国与主要区域监管机构。</div>
+    </section>
+
+    <section id="taxonomy">
+      <div class="sectionHead"><h2>05 / “穷尽且互斥”的 AI 内容分类</h2><p>每篇文章只能有一个主分类，依据是“这篇新闻最新改变的事实是什么”；跨界信息进入多值标签。热点不是分类，而是动态分数。</p></div>
+      <div class="taxonomy">
+        <article class="tax"><span class="code">SW</span><b>01</b><strong>模型、软件与应用</strong><p>模型/API/权重、Agent、开发工具、企业与消费者应用。</p></article>
+        <article class="tax"><span class="code">HW</span><b>02</b><strong>芯片与硬件</strong><p>GPU、ASIC、NPU、HBM、存储、互连、服务器、制造、封装、EDA。</p></article>
+        <article class="tax"><span class="code">INFRA</span><b>03</b><strong>数据中心、云、能源</strong><p>GPU 云、集群、机房、电力、电网、核能、PPA、液冷与运营。</p></article>
+        <article class="tax"><span class="code">CORP</span><b>04</b><strong>公司与资本</strong><p>融资、估值、并购、IPO、财报、组织、人事与战略合作。</p></article>
+        <article class="tax"><span class="code">GOV</span><b>05</b><strong>政策、法律与地缘</strong><p>监管、版权、隐私、诉讼、出口限制、制裁、补贴与国家战略。</p></article>
+        <article class="tax"><span class="code">RISK</span><b>06</b><strong>研究、安全与可信 AI</strong><p>论文、数据集、基准、对齐、攻击、越狱、泄漏、深伪与滥用。</p></article>
+        <article class="tax"><span class="code">ADOPT</span><b>07</b><strong>行业采用与社会影响</strong><p>医疗、金融、制造、教育、国防等部署，以及就业和生产率。</p></article>
+        <article class="tax"><span class="code">SCM</span><b>08</b><strong>市场与供应链</strong><p>需求、价格、出货、库存、订单、产能、良率、交期与市场份额。</p></article>
+      </div>
+      <div class="card" style="margin-top:10px"><h3>互斥判定优先顺序</h3><div class="codebar">政府/法院正式动作 → <em>GOV</em>　｜　融资/并购/财报/治理 → <em>CORP</em>　｜　价格/出货/短缺/产能 → <em>SCM</em>　｜　云/机房/电力/冷却建设运营 → <em>INFRA</em>　｜　芯片/存储/服务器技术 → <em>HW</em>　｜　模型/API/应用发布 → <em>SW</em>　｜　论文/评测/安全事故 → <em>RISK</em>　｜　行业部署/社会结果 → <em>ADOPT</em></div></div>
+    </section>
+
+    <section id="filter">
+      <div class="sectionHead"><h2>06 / AI 过滤：不是搜索“AI”两个字</h2><p>必须覆盖没有写 AI 的专用实体与基础设施信号，例如 Blackwell、Claude、GB200、HBM3E、CoWoS；同时排除 Air India、Adobe Illustrator 等歧义。</p></div>
+      <div class="score">
+        <article class="card positive"><h3>正向证据</h3><div class="scoreline"><span>标题含强 AI 锚点</span><b>+50</b></div><div class="scoreline"><span>标题含 AI 专用产品/部件 + 事件词</span><b>+35</b></div><div class="scoreline"><span>摘要含强 AI 锚点</span><b>+25</b></div><div class="scoreline"><span>核验过的官方 AI 专题 feed</span><b>+25</b></div><div class="scoreline"><span>URL / category 明确为 AI</span><b>+20</b></div><div class="scoreline"><span>GB200 / HBM3E / CoWoS 等专用信号</span><b>+15</b></div><div class="scoreline"><span>两个字段独立提供 AI 证据</span><b>+10</b></div></article>
+        <article class="card negative"><h3>负向证据</h3><div class="scoreline"><span>Air India、禽流感、人工授精、.ai 文件等硬歧义</span><b>−80</b></div><div class="scoreline"><span>AI 只出现在导航、标签模板、推荐区</span><b>−40</b></div><div class="scoreline"><span>仅通用芯片/云/电力/数据中心，无 AI 因果</span><b>−30</b></div><div class="scoreline"><span>泛营销表达，无具体产品、技术或事件</span><b>−25</b></div><div class="scoreline"><span>游戏 GPU、加密挖矿、普通芯片且无 AI 负载</span><b>排除</b></div><div class="scoreline"><span>促销、导购、招聘、重复转载</span><b>降质</b></div></article>
+      </div>
+      <div class="thresholds"><div class="threshold green"><strong>≥ 60</strong>前台自动发布</div><div class="threshold amber"><strong>40–59</strong>后台待复核</div><div class="threshold gray"><strong>&lt; 40</strong>不进入 AI 雷达</div></div>
+      <div class="grid2" style="margin-top:12px">
+        <article class="card"><h3>关键词应是分层本体</h3><p><b>强锚点：</b>人工智能、生成式 AI、LLM、大模型、基础模型、多模态、Agent、推理模型、训练/推理、RAG、AGI。</p><p><b>实体别名：</b>GPT、Claude、Gemini、Llama、Qwen、DeepSeek、Mistral、Grok、Copilot、Sora 等，并维护中英文公司/人物别名。</p><p><b>生态词：</b>GPU、HBM、ASIC、NPU、CoWoS、CXL、液冷、PPA、出口管制、基准、越狱、融资、产能、良率等；生态词单独出现不能自动判 AI。</p></article>
+        <article class="card"><h3>事件去重与热点</h3><p>原始文章永不删除；先规范 canonical URL 与标题，再按 72 小时时窗、关键实体和语义相似度聚合为一个事件。前台显示事件卡，展开可看多家报道和更新。</p><p><b>热点分：</b>35% 报道增速 + 25% 独立域名数 + 20% 来源权威度 + 10% 跨地区/语言传播 + 10% 新颖度。</p><p>Dashboard 的“不重复主题”建议改名为“独立事件数”，更准确、可审计。</p></article>
+      </div>
+    </section>
+
+    <section id="roadmap">
+      <div class="sectionHead"><h2>07 / 推荐落地顺序</h2><p>先把现有 609 篇跑通透明规则并人工抽检，再扩充来源；这样可以先知道误判和漏抓发生在哪里。</p></div>
+      <div class="roadmap">
+        <article class="phase"><b>01</b><h3>建立唯一来源注册表</h3><ul><li>合并 34 抓取源与 50 审计源</li><li>记录 AI RSS、分类 RSS、HTML 入口、权限、语言</li><li>后台审计页由注册表自动生成</li></ul></article>
+        <article class="phase"><b>02</b><h3>修正采集基础</h3><ul><li>换可靠 XML 解析器</li><li>缺失日期不得伪装成当前时间</li><li>canonical URL、重试、退避、条件请求</li><li>先筛选再做总量截断</li></ul></article>
+        <article class="phase"><b>03</b><h3>上线 AI 规则 v1</h3><ul><li>先接 8 条明确 AI feed</li><li>6 条候选 feed 做 200/XML/新鲜度检查</li><li>给 609 篇评分、分类、抽样复核</li><li>形成误判词与漏抓词库</li></ul></article>
+        <article class="phase"><b>04</b><h3>前后台安全分流</h3><ul><li>后台保留全量与待复核</li><li>前台只读取 AI-only 事件数据</li><li>热点、时间线、域名/企业/分类排序</li><li>上线精确率、漏抓率、延迟监控</li></ul></article>
+      </div>
+      <div class="callout"><strong>数据安全：</strong>当前 <code>public/data/feed.json</code> 公开了后台全量数据。“INTERNAL”标签不是权限控制。发布前应把全量数据移到私有存储或服务端受保护入口，公开目录只留下 AI-only 投影。</div>
+    </section>
+
+    <section>
+      <div class="sectionHead"><h2>08 / 来源注册表与质量指标</h2><p>用配置而不是代码硬编码站点；每次核验和抓取结果都回写健康状态，避免 RSS 改版后静默漏抓。</p></div>
+      <div class="grid2">
+        <article class="card"><h3>来源字段</h3><div class="codebar">sourceId · name · domain · sourceRole · region · language
+coverageCategories · aiLandingUrl · fetchMode · officialFeedUrl
+aiOnly · filterThreshold · requiresAuth · paywall · robotsNotes
+lastVerifiedAt · lastSuccessAt · expectedCadence · errorRate</div></article>
+        <article class="card"><h3>Dashboard 指标</h3><div class="codebar">活跃来源数 · 24h 候选文章 · AI 通过率 · 待复核数
+独立事件数 · 摘要覆盖率 · 抓取中位延迟 · 事件重复率
+独家事件率 · 各分类/地区覆盖率 · 每周基准事件漏抓率
+单域名占比 · Feed 新鲜度 · HTTP/XML/日期异常</div></article>
+      </div>
+    </section>
+
+    <footer class="foot">核验口径：只把官方站点、官方帮助页、官方域名或官方发布平台的 feed 计为官方 RSS；第三方聚合 feed 仅可用于发现，不能标记为官方。候选 WordPress/Ghost 标签 feed 在投入生产前必须同时通过 HTTP 200、XML 可解析、最近发布日期合理三项健康检查。站点权限、robots.txt、条款和付费墙策略可能变化，需持续复核。</footer>
+  </main>
+
+  <script>
+    const S = [
+      [1,"Financial Times","ft.com","全球商业、资本与政策","现有13家","D","https://www.ft.com/artificial-intelligence","AI 栏目；公开 RSS 需 Feed Key/授权，不把非公开授权源当直接 RSS。"],
+      [2,"Bloomberg","bloomberg.com","商业首发、公司与资本市场","现有13家","D","https://www.bloomberg.com/authors/AWOWHOIGgDM/rachel-metz","无公开 AI 专题 RSS；可关注 AI 记者作者流并以官方栏目/授权补充。"],
+      [3,"The Wall Street Journal","wsj.com","美国商业、芯片与科技公司","现有13家","B","https://feeds.a.dj.com/rss/RSSWSJD.xml","官方科技 RSS；正文常付费，标题摘要后做 AI 过滤。"],
+      [4,"BBC","bbc.com","全球公共事件与政策","现有13家","B","https://feeds.bbci.co.uk/news/technology/rss.xml","官方 Technology RSS；没有独立 AI feed。"],
+      [5,"The New York Times","nytimes.com","AI 社会影响、政策与调查","现有13家","A","https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/spotlight/artificial-intelligence/rss.xml","官方 AI collection RSS；可用 Technology RSS 做漏抓补充。"],
+      [6,"The Economist","economist.com","趋势判断与全球视角","现有13家","B","https://www.economist.com/science-and-technology/rss.xml","Science & Technology RSS；正文付费，需二次过滤。"],
+      [7,"CNN","cnn.com","美国与全球突发","现有13家","D","https://www.cnn.com/world/artificial-intelligence","历史科技 RSS 不稳定；用官方 AI 专题 HTML / Sitemap。"],
+      [8,"Reuters","reuters.com","可靠的事件确认源","现有13家","D","https://www.reuters.com/technology/artificial-intelligence/","无可靠公开 RSS；官方 AI 栏目或 Reuters Connect/授权。"],
+      [9,"The Information","theinformation.com","硅谷公司内幕与独家","现有13家","D","https://www.theinformation.com/","强付费墙；登录态、邮件简报或授权，不绕过访问控制。"],
+      [10,"Nikkei Asia","asia.nikkei.com","日本及亚洲供应链","现有13家","C","https://asia.nikkei.com/rss/feed/nar","官方综合 RSS；结合 AI、芯片、数据中心和公司词典。"],
+      [11,"Le Monde","lemonde.fr","法国、欧洲政策与社会","现有13家","B","https://www.lemonde.fr/pixels/rss_full.xml","Pixels 科技栏目 RSS；维护法语关键词。"],
+      [12,"Handelsblatt","handelsblatt.com","德国工业、能源与商业","现有13家","B","https://feeds.cms.handelsblatt.com/technologie","官方 Technologie RSS；KI 专题暂无独立 feed。"],
+      [13,"The Washington Post","washingtonpost.com","美国政策、调查与科技","现有13家","B","https://feeds.washingtonpost.com/rss/business/technology","官方 Technology RSS；再做 AI 语义过滤。"],
+      [14,"SemiAnalysis","semianalysis.com","GPU、HBM、ASIC、AI 云、数据中心","第一批","C","https://semianalysis.com/feed/","不是纯 AI，但相关密度极高，可设置较低阈值。"],
+      [15,"DIGITIMES","digitimes.com","台湾及亚洲半导体供应链","第一批","D","https://www.digitimes.com/","未确认稳定公开 RSS；AI/半导体/服务器栏目 HTML 或授权，注意订阅与反爬。"],
+      [16,"TrendForce","trendforce.com","DRAM、NAND、HBM、价格与产能","第一批","D","https://www.trendforce.com/research/category/Emerging%20Technologies/Cloud%20_%20Edge%20Computing/6?page=1","RSS Subscription 端点未稳定解析；先用研究分类/Press Center HTML。"],
+      [17,"EE Times","eetimes.com","电子与半导体工程产业","第一批","A?","https://www.eetimes.com/tag/artificial-intelligence-2/feed/","官方 WordPress AI 标签候选 feed；上线前复测 XML 与新鲜度，综合 feed 回退。"],
+      [18,"Data Center Dynamics","datacenterdynamics.com","数据中心、电力、散热、投资","第一批","C","https://www.datacenterdynamics.com/en/rss/","官方综合 RSS + AI tag/语义过滤。"],
+      [19,"Blocks & Files","blocksandfiles.com","SSD、HDD、NAND、AI 存储","第一批","C","https://blocksandfiles.com/feed/","综合 feed 相关度高；AI/ML 栏目可用于标签校验。"],
+      [20,"The Next Platform","nextplatform.com","HPC、GPU 集群、网络与 AI 基础设施","第一批","A?","https://www.nextplatform.com/tag/ai/feed/","WordPress AI 标签候选；综合 feed 作为回退。"],
+      [21,"Caixin Global","caixinglobal.com","中国商业、科技和产业政策","第一批","D","https://en.caixin.com/","无公开 RSS；官方栏目、站内搜索、简报或授权。"],
+      [22,"SCMP","scmp.com","中国科技、香港和亚洲","第一批","B","https://www.scmp.com/rss","接 Tech / China Tech / Innovation 官方 RSS，再监控 AI topic。"],
+      [23,"Platformer","platformer.news","大型科技平台、AI 与政策独家","第一批","C","https://www.platformer.news/feed","官方综合 feed，AI 密度高但仍需过滤。"],
+      [24,"Stratechery","stratechery.com","科技战略与商业模式","第一批","C","https://stratechery.com/feed/","综合 feed + AI & Machine Learning topic；付费内容多为摘要。"],
+      [25,"Newcomer","newcomer.co","AI 创业公司和风险投资首发","第一批","C","https://www.newcomer.co/feed","AI/VC 密度高，但仍含非 AI 融资。"],
+      [26,"POLITICO US","politico.com","美国 AI 监管与政策","第一批","C","https://www.politico.com/rss/politicopicks.xml","综合/政策 RSS + AI 监管词典；生产端可能遇到 403。"],
+      [27,"POLITICO Europe","politico.eu","欧盟 AI 法案与数字政策","第一批","C","https://www.politico.eu/feed/","综合 RSS + 数字政策词典；AI: Decoded 邮件补充。"],
+      [28,"Business Insider","businessinsider.com","大型科技公司内部消息","第一批","C","https://www.businessinsider.com/rss","官方 Atom + AI 公司、人物、产品词典。"],
+      [29,"MIT Technology Review","technologyreview.com","AI 研究、技术影响与政策","第二批","A","https://www.technologyreview.com/topic/artificial-intelligence/feed/","官方 AI 专门 RSS，优先接入。"],
+      [30,"WIRED","wired.com","AI、科技公司、社会与安全","第二批","A","https://www.wired.com/feed/tag/ai/latest/rss","官方 AI RSS，已确认 XML。"],
+      [31,"Ars Technica","arstechnica.com","模型、软件、芯片和技术细节","第二批","A","https://arstechnica.com/ai/feed/","AI 专门 feed；部分请求可能 403，需规范 User-Agent、限频和退避。"],
+      [32,"The Verge","theverge.com","AI 产品与大型科技公司","第二批","A","https://www.theverge.com/rss/ai-artificial-intelligence/index.xml","官方 AI RSS，已确认 XML。"],
+      [33,"TechCrunch","techcrunch.com","AI 创业、融资、产品发布","第二批","A","https://techcrunch.com/category/artificial-intelligence/feed/","官方 AI RSS，已确认 XML。"],
+      [34,"The Register","theregister.com","企业 IT、云、芯片和基础设施","第二批","A","https://api.theregister.com/api/v1/article?limit=25&orderBy=published&query=tag%3A%22ai+and+ml%22&remapper=rss&site_id=2","官方 feed 目录明确列出 AI+ML，端点已确认 XML。"],
+      [35,"404 Media","404media.co","AI 滥用、网络安全、隐私调查","第二批","A?","https://www.404media.co/tag/artificial-intelligence/rss/","Ghost AI tag 候选 feed；标签不够全面，应同时接综合 RSS。"],
+      [36,"Semafor","semafor.com","全球政治、商业与科技首发","第二批","C","https://www.semafor.com/rss.xml","官方综合 RSS + Technology/AI 语义过滤。"],
+      [37,"Axios","axios.com","结构化的政策和商业消息","第二批","C","https://www.axios.com/feeds/feed.rss","AI 栏目无公开 feed；综合 RSS + 栏目 URL/标签过滤。"],
+      [38,"Rest of World","restofworld.org","美国之外的科技产业变化","第二批","A?","https://restofworld.org/tag/artificial-intelligence/feed/","WordPress AI tag 候选；综合 latest RSS 回退。"],
+      [39,"Pulse by Maeil Business","pulse.mk.co.kr","韩国商业、三星、SK hynix","第二批","D","https://pulse.mk.co.kr/","无公开 RSS；低频栏目 HTML，重点实体 Samsung、SK hynix、HBM、AI server。"],
+      [40,"Korea JoongAng Daily","koreajoongangdaily.com","韩国本地产业与政策","第二批","D","https://koreajoongangdaily.joins.com/","无公开 RSS；Business/Industry/Tech 栏目 HTML 或站内接口。"],
+      [41,"Tom’s Hardware","tomshardware.com","GPU、CPU、内存与硬件动态","第三批","A","https://www.tomshardware.com/feeds/tag/artificial-intelligence","官方 AI feed；另接 GPU/Memory 类别防止基础设施漏抓。"],
+      [42,"ServeTheHome","servethehome.com","服务器、网络和数据中心硬件","第三批","A?","https://www.servethehome.com/category/ai/feed/","WordPress AI 分类候选；综合 feed 回退。"],
+      [43,"MLex Market Insight","mlexmarketinsight.com","AI 监管、竞争法和数字市场","第三批","D","https://www.mlexmarketinsight.com/","专业订阅；优先邮件 alert/授权接口，不绕过付费墙。"],
+      [44,"The Times","thetimes.com","英国商业、政策和科技调查","第三批","D","https://www.thetimes.com/","无现役公开 RSS；科技/AI 栏目、简报或合规登录态监控。"],
+      [45,"CNBC","cnbc.com","公司高管访谈、财报与市场快讯","第三批","B","https://www.cnbc.com/id/19854910/device/rss/rss.html","官方 Technology RSS + AI 页面；CDN 可能 403。"],
+      [46,"The Japan Times","japantimes.co.jp","日本政策、产业与社会","第三批","A?","https://www.japantimes.co.jp/tag/artificial-intelligence/feed/","标签 feed 候选；综合 RSS 回退。"],
+      [47,"Channel NewsAsia","channelnewsasia.com","东南亚科技和区域政策","第三批","C","https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml","公开 RSS 偏综合；按 topic、URL、标题摘要过滤。"],
+      [48,"Australian Financial Review","afr.com","澳大利亚商业、数据中心和能源","第三批","D","https://www.afr.com/technology","无公开 RSS；Technology/AI 栏目、简报或授权。"],
+      [49,"Les Echos","lesechos.fr","法国商业、科技和产业政策","第三批","B","https://services.lesechos.fr/rss/les-echos-tech-medias.xml","Tech-Médias RSS；部分地区/CDN 403，需法语词典与 HTML 回退。"],
+      [50,"Il Sole 24 Ore","ilsole24ore.com","意大利与欧洲商业、工业和政策","第三批","D","https://www.ilsole24ore.com/","旧 RSS 多 404；科技/AI 专题 HTML、Sitemap 与意大利语词典。"]
+    ];
+    const esc = s => String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    function drawSources(){
+      const q=sourceSearch.value.trim().toLowerCase(), route=routeFilter.value, batch=batchFilter.value;
+      const rows=S.filter(r=>(!q||r.join(' ').toLowerCase().includes(q))&&(!route||r[5]===route)&&(!batch||r[4]===batch));
+      sourceRows.innerHTML=rows.map(r=>`<tr><td>${r[0]}</td><td><strong>${esc(r[1])}</strong><div class="domain">${esc(r[2])}</div><div>${esc(r[3])}</div></td><td>${esc(r[4])}</td><td><span class="route ${r[5]==='A?'?'AQ':r[5]}">${esc(r[5])}</span></td><td><a href="${esc(r[6])}" target="_blank" rel="noopener">${esc(r[6])}</a></td><td>${esc(r[7])}</td></tr>`).join('') || '<tr><td colspan="6">没有匹配结果</td></tr>';
+    }
+    sourceSearch.oninput=drawSources;routeFilter.onchange=drawSources;batchFilter.onchange=drawSources;drawSources();
+  </script>
+</body>
+</html>
