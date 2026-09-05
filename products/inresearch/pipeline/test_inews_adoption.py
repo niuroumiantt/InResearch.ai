@@ -156,9 +156,14 @@ class TestProductsStayIndependent(unittest.TestCase):
         self.assertEqual(offenders, [], f"研究侧直接导入了 inews 的代码: {offenders}")
 
     def test_each_product_has_its_own_identity_implementation(self):
-        """手册: 不建统一账号中心。两个产品各自有一套, 就是这个意思。"""
-        self.assertTrue((self.PRODUCTS / "inews" / "src" / "auth" / "store.js").is_file())
+        """手册: 不建统一账号中心。两个产品各自有一套, 就是这个意思。
+
+        2026-09-05 起 inews 在它自己的仓库(niuroumiantt/inews.today),本仓库不再
+        保留副本 —— 目录不存在本身就是「不共用」的证据。
+        """
+        self.assertFalse((self.PRODUCTS / "inews").exists())
         self.assertTrue((self.PRODUCTS / "inresearch" / "pipeline" / "auth.py").is_file())
+        self.assertTrue((self.PRODUCTS / "inresearch" / "pipeline" / "users.py").is_file())
 
 
 if __name__ == "__main__":

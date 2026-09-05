@@ -1,29 +1,18 @@
-# products/ —— 两个独立的研究业务产品
+# products/ —— inresearch 产品
 
-按收敛方案，本仓库承载 **inews** 与 **inresearch** 两个**平行产品**。
-它们共用一个仓库，但**不共用身份、会员、数据库或发布**。
+本目录只有一个产品：`inresearch/`（inresearch.ai，Python 标准库，身份实现在
+`pipeline/auth.py`、`pipeline/users.py`）。
 
-| 目录 | 域名 | 技术栈 | 身份实现 |
-|---|---|---|---|
-| `inews/` | inews.today | Node.js + Python 采集 | `src/auth/`（crypto/gate/routes/schema/smtp/store） |
-| `inresearch/` | inresearch.ai | Python 标准库 | `pipeline/auth.py`、`pipeline/users.py` |
+inews.today 曾在 2026-09-05 被复制到本目录下的 `inews/` 作为「平行产品」，同日站长
+决定两个产品完全分开：inews 回到它自己的仓库
+[niuroumiantt/inews.today](https://github.com/niuroumiantt/inews.today)，本目录不再保留副本。
+infra 的 `hosts/apps.json` 里 inews 也不再指向本仓库。
 
-## 独立到什么程度
-
-手册第 1 节第 2 条：**不建设统一账号中心，不按邮箱自动关联身份，
-不靠跨系统账号同步脚本维持权限正确性。**
-
-- 两套用户库、两套会话、两套会员、两套停用与授权，各自管理。
-- 同一个人在两边分别注册或分别接受邀请。
-- 在一边停用某人，**不会**影响另一边——这是设计，不是缺陷。
-- 两个产品各自独立发布：改 `products/inews/` 不会重建 inresearch，
-  反之亦然（见 infra 仓库 `hosts/apps.json` 的 `paths` 映射）。
-
-## 唯一允许的连接：内容接口
+## 与 inews 唯一允许的连接：内容接口
 
 inresearch **采用** inews 的内容，但这是内容的流动，不是身份的流动。
 
-- 契约：[`inews/CONTENT_INTERFACE.md`](inews/CONTENT_INTERFACE.md)
+- 契约：inews.today 仓库根目录的 `CONTENT_INTERFACE.md`（由内容提供方维护）
 - 采用方实现：[`inresearch/pipeline/inews_adoption.py`](inresearch/pipeline/inews_adoption.py)
 - 验收：`inresearch/pipeline/test_inews_adoption.py`（19 项）
 

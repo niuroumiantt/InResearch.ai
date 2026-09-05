@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """采用 inews 的内容包 —— 两个平行产品之间唯一允许的通路。
 
-契约见 `products/inews/CONTENT_INTERFACE.md`。这里实现采用方那一半:
+契约见 inews.today 仓库根目录的 `CONTENT_INTERFACE.md`
+(https://github.com/niuroumiantt/inews.today/blob/main/CONTENT_INTERFACE.md)。这里实现采用方那一半:
 校验内容包、拒绝任何夹带身份的包、按固定版本记录采用。
 
 为什么要有这一层, 而不是让 inresearch 直接读 inews 的库:

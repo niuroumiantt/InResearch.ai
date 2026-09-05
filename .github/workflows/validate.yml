@@ -6,8 +6,7 @@ on:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    # 产品拆分后脚本在 products/inresearch/ 下。这些校验只属于 inresearch 产品,
-    # 改 products/inews/ 不该触发它们(按应用发布的同一条边界,见 infra 的 hosts/apps.json)。
+    # 脚本在 products/inresearch/ 下。inews.today 在它自己的仓库,不在这里。
     defaults:
       run:
         working-directory: products/inresearch
@@ -22,7 +21,7 @@ jobs:
       - name: 指标回填可运行
         run: python3 pipeline/refresh_indicators.py
       - name: inews 内容接口 —— 身份不得跨产品流动
-        # 两个产品共用仓库但不共用身份。这一步红了就说明内容包能夹带
+        # 两个产品各自仓库、不共用身份。这一步红了就说明内容包能夹带
         # user/email/member/session 之类字段进研究侧,或者版本钉死失效了。
         working-directory: products/inresearch/pipeline
         run: python3 -m unittest test_inews_adoption -v
