@@ -16,8 +16,3 @@ jobs:
         run: python3 pipeline/verify.py
       - name: 指标回填可运行
         run: python3 pipeline/refresh_indicators.py
-      - name: inews 内容接口 —— 身份不得跨产品流动
-        # inews.today 在它自己的仓库,不共用身份。这一步红了就说明内容包能夹带
-        # user/email/member/session 之类字段进研究侧,或者版本钉死失效了。
-        working-directory: pipeline
-        run: python3 -m unittest test_inews_adoption -v

@@ -2,9 +2,8 @@
 
 本仓库只承载 **inresearch.ai** 一个产品，代码就在仓库根。inews.today 是另一个独立产品，
 代码在它自己的仓库 [niuroumiantt/inews.today](https://github.com/niuroumiantt/inews.today)
-（2026-09-05 用户决定：两个产品完全分开，各自仓库、各自发布，本库不留副本）。
-两者唯一的连接是单向、不传递身份的内容接口：契约在 inews.today 仓库根目录的
-`CONTENT_INTERFACE.md`，采用方实现 `pipeline/inews_adoption.py`，验收 `pipeline/test_inews_adoption.py`。
+（2026-09-05 用户决定：两个产品完全分开，各自仓库、各自发布，本库不留副本，
+也不保留任何针对 inews 的接口代码——本库不知道 inews 存在）。
 
 ---
 
