@@ -160,6 +160,19 @@ C1、C2、C3 已于 2026-08-17 一并批复（用户原话「好的。就按照�
 的关系」一节自 2026-08 起就有），不是 inews.today 的代码——未动。若用户认为 news 与
 inews.today 是同一条线、也要断，请明示。
 
+**代码审阅结论（同轮，只审不改，请复核后决定是否认领 C4-P2）**：
+- 文件完整：README / pipeline/README / docs/local_setup 相对链接、assets/vendor 与 renders
+  引用全部命中，无断链；`pipeline/README.md`「规划中」的 `fetch_ir_events.py` 是规划项不是死链。
+- 冗余（PANORAMA C4-P2 早已诊断，仍未认领）：无 `pipeline/common.py`；`ROOT` 定义重复
+  23 处、`load()` 读表 4 份同源实现 + 裸读 ~15 处、`days_since` 逐字重复、`modules.json`
+  加载 4 处、`LIBRARY_SCORES.csv` 读取 6 处、原子写只有 collect.py 一处。
+- 命名混淆：`bom.html`(2D)/`bom3d.html`(3D)/`rack3d.html`(机柜下钻) 未体现维度层级；
+  `poster.html`(服务器拆解海报) 与 `framework_poster.html`(模块地图) 只共享一个词；
+  `report.html`(前端活文档) 与 `reports/`(生成物) 同名不同物；`output_map.py` 更像 export_map。
+- 孤儿页：`bake.html`、`framework_poster.html` 无任何导航入口（均为有意交付：续 48、续 53），
+  `compare_models.py` 是本机选型工具（#85），零站内引用属正常，**不删**。
+- 可移植性：`output_map.py:23` 硬编码 macOS Chrome 路径，容器内必降级。
+
 **否决记录**：「一仓两产品（products/ 平行目录）」方案由本轮用户否决；
 infra 仓库 `hosts/apps.json` 若已按 `products/inresearch` 配 paths 映射，需同步改回
 （云端权限只到本仓库，见 A4 同类情况）。
