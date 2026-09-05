@@ -1,0 +1,26 @@
+{
+  "name": "inews.today",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "AI news timeline aggregator built on Google News RSS shards",
+  "engines": {
+    "node": ">=22.16"
+  },
+  "scripts": {
+    "start": "node --no-warnings src/cli.js serve",
+    "collect": "node --no-warnings src/cli.js collect",
+    "rescore": "node --no-warnings src/cli.js rescore",
+    "test": "node --no-warnings --test test/*.test.js",
+    "test:subscriptions": ".venv/bin/python -m pytest -q",
+    "test:all": "npm test && npm run test:subscriptions",
+    "subscriptions": ".venv/bin/python -m inews",
+    "subscriptions:serve": ".venv/bin/python -m inews --serve",
+    "subscriptions:render": ".venv/bin/python -m inews --render-only",
+    "recheck": "node --no-warnings src/cli.js recheck",
+    "translate": "node --no-warnings src/cli.js translate",
+    "bench:translate": "node --no-warnings scripts/bench-translate.js",
+    "debug": "node --no-warnings src/cli.js debug",
+    "demo": "INEWS_DB_PATH=data/demo.sqlite3 node --no-warnings scripts/seed-demo.js && INEWS_DB_PATH=data/demo.sqlite3 INEWS_DISABLE_COLLECTOR=1 npm start"
+  }
+}

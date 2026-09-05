@@ -1,3 +1,12 @@
+# InResearch.ai —— 研究业务承载库
+
+本仓库承载**两个独立的平行产品**：`products/inews/`（inews.today）与
+`products/inresearch/`（inresearch.ai）。它们共用仓库，但身份、会员、数据与发布
+各自独立；唯一的连接是单向、不传递身份的内容接口。
+先读 [`products/README.md`](products/README.md)。
+
+---
+
 # Datacenter Hub — 全球数据中心研究数据枢纽
 
 一个**可持续、可更新**的数据中心行业研究项目。报告只是输出载体之一；

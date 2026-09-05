@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  本机监听:让清单页上的「抓一轮」按钮真的能按。装法和每小时那个一样,
+  `tools/install_hourly.sh` 会和全部正文站的固定错峰任务一起装上
+  (路径都会自动填成你这份 checkout)。
+
+  它只绑 127.0.0.1、只认写死的 POST 动作表、只认放行表里的来源(见 inews/serve.py
+  开头)。**它自己不抓** —— 只是把 tools/hourly.sh 启动起来。
+
+  KeepAlive:这东西的价值就在于「你想按的时候它在」。崩了要自己起来,
+  否则按钮会在某一天变成「点了没反应」,而没有人会发现。
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>today.inews.collector.serve</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/hermes/code/inews/.venv/bin/inews</string>
+    <string>--serve</string>
+  </array>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>KeepAlive</key>
+  <true/>
+  <key>WorkingDirectory</key>
+  <string>/Users/hermes/code/inews</string>
+  <key>StandardOutPath</key>
+  <string>/Users/hermes/code/inews/out/serve.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/hermes/code/inews/out/serve.err.log</string>
+  <key>ProcessType</key>
+  <string>Background</string>
+</dict>
+</plist>

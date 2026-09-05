@@ -1,0 +1,608 @@
+[
+ {
+  "id": "openai-blog",
+  "url": "https://openai.com/news/rss.xml",
+  "domain": "openai.com",
+  "angle": "models",
+  "lane": "warm",
+  "boost": 3,
+  "why": "OpenAI 官方新闻"
+ },
+ {
+  "id": "deepmind-blog",
+  "url": "https://deepmind.google/blog/rss.xml",
+  "domain": "deepmind.google",
+  "angle": "models",
+  "lane": "warm",
+  "boost": 3,
+  "why": "Google DeepMind 官方博客"
+ },
+ {
+  "id": "google-ai-blog",
+  "url": "https://blog.google/technology/ai/rss/",
+  "domain": "blog.google",
+  "angle": "models",
+  "lane": "warm",
+  "boost": 3,
+  "why": "Google 官方 AI 频道"
+ },
+ {
+  "id": "meta-newsroom",
+  "url": "https://about.fb.com/news/feed/",
+  "domain": "meta.com",
+  "angle": "models",
+  "lane": "warm",
+  "boost": 2,
+  "why": "Meta 官方 newsroom(全公司宽口)"
+ },
+ {
+  "id": "microsoft-source",
+  "url": "https://news.microsoft.com/source/feed/",
+  "domain": "microsoft.com",
+  "angle": "apps",
+  "lane": "warm",
+  "boost": 2,
+  "why": "微软官方新闻(全公司宽口)"
+ },
+ {
+  "id": "nvidia-blog",
+  "url": "https://blogs.nvidia.com/feed/",
+  "domain": "nvidia.com",
+  "angle": "chips",
+  "lane": "warm",
+  "boost": 3,
+  "why": "NVIDIA 官方博客"
+ },
+ {
+  "id": "aws-ml-blog",
+  "url": "https://aws.amazon.com/blogs/machine-learning/feed/",
+  "domain": "amazon.com",
+  "angle": "apps",
+  "lane": "cold",
+  "boost": 3,
+  "why": "AWS 官方 ML 博客"
+ },
+ {
+  "id": "google-cloud-blog",
+  "url": "https://cloudblog.withgoogle.com/rss/",
+  "domain": "withgoogle.com",
+  "angle": "infra",
+  "lane": "cold",
+  "boost": 2,
+  "why": "Google Cloud 官方博客(宽口)"
+ },
+ {
+  "id": "hf-blog",
+  "url": "https://huggingface.co/blog/feed.xml",
+  "domain": "huggingface.co",
+  "angle": "models",
+  "lane": "warm",
+  "boost": 3,
+  "why": "Hugging Face 官方博客"
+ },
+ {
+  "id": "github-blog",
+  "url": "https://github.blog/feed/",
+  "domain": "github.blog",
+  "angle": "apps",
+  "lane": "cold",
+  "boost": 2,
+  "why": "GitHub 官方博客(宽口)"
+ },
+ {
+  "id": "cloudflare-blog",
+  "url": "https://blog.cloudflare.com/rss/",
+  "domain": "cloudflare.com",
+  "angle": "infra",
+  "lane": "cold",
+  "boost": 2,
+  "why": "Cloudflare 官方博客(宽口)"
+ },
+ {
+  "id": "databricks-blog",
+  "url": "https://www.databricks.com/feed",
+  "domain": "databricks.com",
+  "angle": "apps",
+  "lane": "cold",
+  "boost": 2,
+  "why": "Databricks 官方博客"
+ },
+ {
+  "id": "skhynix-news",
+  "url": "https://news.skhynix.com/feed/",
+  "domain": "skhynix.com",
+  "angle": "chips",
+  "lane": "cold",
+  "boost": 3,
+  "why": "SK 海力士官方 newsroom"
+ },
+ {
+  "id": "mlcommons",
+  "url": "https://mlcommons.org/feed/",
+  "domain": "mlcommons.org",
+  "angle": "research",
+  "lane": "cold",
+  "boost": 3,
+  "why": "MLPerf 基准官方"
+ },
+ {
+  "id": "arcprize",
+  "url": "https://arcprize.org/feed.xml",
+  "domain": "arcprize.org",
+  "angle": "research",
+  "lane": "cold",
+  "boost": 3,
+  "why": "ARC Prize 官方"
+ },
+ {
+  "id": "uk-gov-ai-news",
+  "url": "https://www.gov.uk/search/news-and-communications.atom?topic%5B%5D=7a4fba0a-f8d5-4aed-9d73-8a455c6ba7ac",
+  "domain": "gov.uk",
+  "angle": "policy",
+  "lane": "warm",
+  "boost": 2,
+  "why": "英国政府 AI 主题新闻(Atom)"
+ },
+ {
+  "id": "uk-aisi",
+  "url": "https://www.gov.uk/government/organisations/ai-safety-institute.atom",
+  "domain": "gov.uk",
+  "angle": "safety",
+  "lane": "cold",
+  "boost": 3,
+  "why": "英国 AI 安全研究所(Atom)"
+ },
+ {
+  "id": "ftc-press",
+  "url": "https://www.ftc.gov/feeds/press-release.xml",
+  "domain": "ftc.gov",
+  "angle": "policy",
+  "lane": "warm",
+  "boost": 2,
+  "why": "FTC 官方新闻稿(宽口)"
+ },
+ {
+  "id": "ustr-press",
+  "url": "https://ustr.gov/rss.xml",
+  "domain": "ustr.gov",
+  "angle": "policy",
+  "lane": "cold",
+  "boost": 2,
+  "why": "USTR 关税/出口管制(宽口)"
+ },
+ {
+  "id": "us-doe",
+  "url": "https://www.energy.gov/rss/articles.xml",
+  "domain": "energy.gov",
+  "angle": "infra",
+  "lane": "cold",
+  "boost": 1,
+  "why": "美国能源部(很宽口,只给+1)"
+ },
+ {
+  "id": "eia-today-in-energy",
+  "url": "https://www.eia.gov/rss/todayinenergy.xml",
+  "domain": "eia.gov",
+  "angle": "infra",
+  "lane": "cold",
+  "boost": 1,
+  "why": "EIA 能源数据(很宽口,只给+1)"
+ },
+ {
+  "id": "cset-georgetown",
+  "url": "https://cset.georgetown.edu/feed/",
+  "domain": "georgetown.edu",
+  "angle": "policy",
+  "lane": "cold",
+  "boost": 3,
+  "why": "乔治城 CSET 智库"
+ },
+ {
+  "id": "ai-incident-db",
+  "url": "https://incidentdatabase.ai/rss.xml",
+  "domain": "incidentdatabase.ai",
+  "angle": "safety",
+  "lane": "cold",
+  "boost": 3,
+  "why": "AI 事故数据库官方"
+ },
+ {
+  "id": "mit-tr-ai",
+  "url": "https://www.technologyreview.com/topic/artificial-intelligence/feed",
+  "domain": "technologyreview.com",
+  "angle": "research",
+  "lane": "warm",
+  "boost": 3,
+  "why": "MIT 科技评论 AI 分版"
+ },
+ {
+  "id": "ieee-spectrum-ai",
+  "url": "https://spectrum.ieee.org/feeds/topic/artificial-intelligence.rss",
+  "domain": "spectrum.ieee.org",
+  "angle": "research",
+  "lane": "warm",
+  "boost": 3,
+  "why": "IEEE Spectrum AI 分版"
+ },
+ {
+  "id": "semianalysis",
+  "url": "https://semianalysis.com/feed/",
+  "domain": "semianalysis.com",
+  "angle": "chips",
+  "lane": "warm",
+  "boost": 3,
+  "why": "顶级芯片/算力分析"
+ },
+ {
+  "id": "uptime-journal",
+  "url": "https://journal.uptimeinstitute.com/feed/",
+  "domain": "uptimeinstitute.com",
+  "angle": "infra",
+  "lane": "cold",
+  "boost": 2,
+  "why": "Uptime Institute 数据中心机构"
+ },
+ {
+  "id": "qbitai",
+  "url": "https://www.qbitai.com/feed",
+  "domain": "qbitai.com",
+  "angle": "models",
+  "lane": "warm",
+  "boost": 3,
+  "why": "量子位,中文 AI 垂直媒体"
+ },
+ {
+  "id": "cxl-consortium",
+  "url": "https://computeexpresslink.org/feed/",
+  "domain": "computeexpresslink.org",
+  "angle": "chips",
+  "lane": "cold",
+  "boost": 3,
+  "why": "CXL 标准联盟官方"
+ },
+ {
+  "id": "ualink-consortium",
+  "url": "https://ualinkconsortium.org/feed/",
+  "domain": "ualinkconsortium.org",
+  "angle": "infra",
+  "lane": "cold",
+  "boost": 3,
+  "why": "UALink 互连标准联盟官方"
+ },
+ {
+  "id": "ultraethernet",
+  "url": "https://ultraethernet.org/feed/",
+  "domain": "ultraethernet.org",
+  "angle": "infra",
+  "lane": "cold",
+  "boost": 3,
+  "why": "Ultra Ethernet 联盟官方"
+ },
+ {
+  "id": "hpcwire",
+  "url": "https://www.hpcwire.com/feed/",
+  "domain": "hpcwire.com",
+  "angle": "infra",
+  "lane": "warm",
+  "boost": 1,
+  "why": "HPC/AI 算力垂直媒体"
+ },
+ {
+  "id": "nextplatform",
+  "url": "https://www.nextplatform.com/feed/",
+  "domain": "nextplatform.com",
+  "angle": "infra",
+  "lane": "warm",
+  "boost": 1,
+  "why": "数据中心体系结构深度"
+ },
+ {
+  "id": "servethehome",
+  "url": "https://www.servethehome.com/feed/",
+  "domain": "servethehome.com",
+  "angle": "infra",
+  "lane": "cold",
+  "boost": 1,
+  "why": "服务器硬件评测"
+ },
+ {
+  "id": "blocksandfiles",
+  "url": "https://blocksandfiles.com/feed/",
+  "domain": "blocksandfiles.com",
+  "angle": "chips",
+  "lane": "cold",
+  "boost": 1,
+  "why": "存储行业垂直"
+ },
+ {
+  "id": "tomshardware",
+  "url": "https://www.tomshardware.com/feeds/all",
+  "domain": "tomshardware.com",
+  "angle": "chips",
+  "lane": "cold",
+  "boost": 0,
+  "why": "硬件大站(噪音多,纯词法过滤)"
+ },
+ {
+  "id": "wccftech",
+  "url": "https://wccftech.com/feed/",
+  "domain": "wccftech.com",
+  "angle": "chips",
+  "lane": "cold",
+  "boost": 0,
+  "why": "硬件爆料站(纯词法过滤)"
+ },
+ {
+  "id": "videocardz",
+  "url": "https://videocardz.com/feed",
+  "domain": "videocardz.com",
+  "angle": "chips",
+  "lane": "cold",
+  "boost": 0,
+  "why": "GPU 爆料(纯词法过滤)"
+ },
+ {
+  "id": "theelec",
+  "url": "https://www.theelec.kr/rss/allArticle.xml",
+  "domain": "theelec.kr",
+  "angle": "chips",
+  "lane": "warm",
+  "boost": 1,
+  "why": "韩国半导体一手媒体",
+  "locale": "ko-KR"
+ },
+ {
+  "id": "eetimes-jp",
+  "url": "https://rss.itmedia.co.jp/rss/2.0/eetimes.xml",
+  "domain": "itmedia.co.jp",
+  "angle": "chips",
+  "lane": "cold",
+  "boost": 1,
+  "why": "日本半导体媒体",
+  "locale": "ja-JP"
+ },
+ {
+  "id": "technews-tw",
+  "url": "https://technews.tw/feed/",
+  "domain": "technews.tw",
+  "angle": "chips",
+  "lane": "cold",
+  "boost": 0,
+  "why": "台湾科技新报(纯词法过滤)",
+  "locale": "zh-TW"
+ },
+ {
+  "id": "techcrunch",
+  "url": "https://techcrunch.com/feed/",
+  "domain": "techcrunch.com",
+  "angle": "money",
+  "lane": "cold",
+  "boost": 0,
+  "why": "创投大站(纯词法过滤)"
+ },
+ {
+  "id": "theverge",
+  "url": "https://www.theverge.com/rss/index.xml",
+  "domain": "theverge.com",
+  "angle": "apps",
+  "lane": "cold",
+  "boost": 0,
+  "why": "消费科技大站(纯词法过滤)"
+ },
+ {
+  "id": "arstechnica",
+  "url": "https://feeds.arstechnica.com/arstechnica/index",
+  "domain": "arstechnica.com",
+  "angle": "research",
+  "lane": "cold",
+  "boost": 0,
+  "why": "深度科技报道(纯词法过滤)"
+ },
+ {
+  "id": "venturebeat",
+  "url": "https://venturebeat.com/feed/",
+  "domain": "venturebeat.com",
+  "angle": "apps",
+  "lane": "cold",
+  "boost": 0,
+  "why": "企业 AI 报道多(纯词法过滤)"
+ },
+ {
+  "id": "kr36",
+  "url": "https://36kr.com/feed",
+  "domain": "36kr.com",
+  "angle": "money",
+  "lane": "cold",
+  "boost": 0,
+  "why": "36氪(纯词法过滤)",
+  "locale": "zh-CN"
+ },
+ {
+  "id": "ithome-cn",
+  "url": "https://www.ithome.com/rss/",
+  "domain": "ithome.com",
+  "angle": "apps",
+  "lane": "cold",
+  "boost": 0,
+  "why": "IT之家(纯词法过滤)",
+  "locale": "zh-CN"
+ },
+ {
+  "id": "techmeme-live",
+  "url": "https://www.techmeme.com/feed.xml",
+  "format": "techmeme-rss",
+  "domain": "techmeme.com",
+  "angle": "models",
+  "lane": "warm",
+  "boost": 0,
+  "editorialSource": "techmeme",
+  "editorialPolicy": "techmeme-ai",
+  "why": "Techmeme 编辑快讯增量：取原文链接，只收 AI 核心事件"
+ },
+ {
+  "id": "techmeme-river",
+  "url": "https://www.techmeme.com/river",
+  "format": "techmeme-river",
+  "domain": "techmeme.com",
+  "angle": "models",
+  "lane": "cold",
+  "boost": 0,
+  "editorialSource": "techmeme",
+  "editorialPolicy": "techmeme-ai",
+  "why": "Techmeme River 五日回填与漏项修复：与 RSS 按 pml 去重"
+ },
+ {
+  "id": "solidot",
+  "url": "https://www.solidot.org/index.rss",
+  "domain": "solidot.org",
+  "angle": "research",
+  "lane": "cold",
+  "boost": 0,
+  "why": "奇客(纯词法过滤)",
+  "locale": "zh-CN"
+ },
+ {
+  "id": "simonwillison",
+  "url": "https://simonwillison.net/atom/everything/",
+  "domain": "simonwillison.net",
+  "angle": "models",
+  "lane": "warm",
+  "boost": 3,
+  "why": "Simon Willison(Atom),LLM 工具一线"
+ },
+ {
+  "id": "interconnects",
+  "url": "https://www.interconnects.ai/feed",
+  "domain": "interconnects.ai",
+  "angle": "models",
+  "lane": "cold",
+  "boost": 3,
+  "why": "Nathan Lambert,RLHF/开源模型"
+ },
+ {
+  "id": "importai",
+  "url": "https://importai.substack.com/feed",
+  "domain": "importai.substack.com",
+  "angle": "policy",
+  "lane": "cold",
+  "boost": 3,
+  "why": "Jack Clark(Anthropic),政策+研究周报"
+ },
+ {
+  "id": "chinai",
+  "url": "https://chinai.substack.com/feed",
+  "domain": "chinai.substack.com",
+  "angle": "policy",
+  "lane": "cold",
+  "boost": 3,
+  "why": "中国 AI 政策翻译与分析"
+ },
+ {
+  "id": "chinatalk",
+  "url": "https://www.chinatalk.media/feed",
+  "domain": "chinatalk.media",
+  "angle": "policy",
+  "lane": "cold",
+  "boost": 3,
+  "why": "中美科技政策深度"
+ },
+ {
+  "id": "fabricatedknowledge",
+  "url": "https://www.fabricatedknowledge.com/feed",
+  "domain": "fabricatedknowledge.com",
+  "angle": "chips",
+  "lane": "cold",
+  "boost": 3,
+  "why": "半导体行业分析"
+ },
+ {
+  "id": "morethanmoore",
+  "url": "https://morethanmoore.substack.com/feed",
+  "domain": "morethanmoore.substack.com",
+  "angle": "chips",
+  "lane": "cold",
+  "boost": 3,
+  "why": "Ian Cutress,芯片深度"
+ },
+ {
+  "id": "chipletter",
+  "url": "https://thechipletter.substack.com/feed",
+  "domain": "thechipletter.substack.com",
+  "angle": "chips",
+  "lane": "cold",
+  "boost": 3,
+  "why": "芯片史与产业"
+ },
+ {
+  "id": "stratechery",
+  "url": "https://stratechery.com/feed/",
+  "domain": "stratechery.com",
+  "angle": "money",
+  "lane": "cold",
+  "boost": 2,
+  "why": "Ben Thompson,科技战略"
+ },
+ {
+  "id": "latentspace",
+  "url": "https://www.latent.space/feed",
+  "domain": "latent.space",
+  "angle": "apps",
+  "lane": "cold",
+  "boost": 3,
+  "why": "AI 工程师社区播客/文章"
+ },
+ {
+  "id": "aheadofai",
+  "url": "https://magazine.sebastianraschka.com/feed",
+  "domain": "sebastianraschka.com",
+  "angle": "research",
+  "lane": "cold",
+  "boost": 3,
+  "why": "Sebastian Raschka,LLM 研究综述"
+ },
+ {
+  "id": "thezvi",
+  "url": "https://thezvi.substack.com/feed",
+  "domain": "thezvi.substack.com",
+  "angle": "safety",
+  "lane": "cold",
+  "boost": 3,
+  "why": "Zvi,AI 进展与安全周报"
+ },
+ {
+  "id": "oneusefulthing",
+  "url": "https://www.oneusefulthing.org/feed",
+  "domain": "oneusefulthing.org",
+  "angle": "apps",
+  "lane": "cold",
+  "boost": 3,
+  "why": "Ethan Mollick,AI 应用实践"
+ },
+ {
+  "id": "dwarkesh",
+  "url": "https://www.dwarkesh.com/feed",
+  "domain": "dwarkesh.com",
+  "angle": "people",
+  "lane": "cold",
+  "boost": 3,
+  "why": "Dwarkesh 播客,实验室高管深访"
+ },
+ {
+  "id": "hn-frontpage",
+  "url": "https://hnrss.org/frontpage",
+  "domain": "ycombinator.com",
+  "angle": "research",
+  "lane": "cold",
+  "boost": 0,
+  "why": "Hacker News 首页(试点,纯词法过滤)"
+ },
+ {
+  "id": "r-localllama",
+  "url": "https://www.reddit.com/r/LocalLLaMA/.rss",
+  "domain": "reddit.com",
+  "angle": "models",
+  "lane": "cold",
+  "boost": 0,
+  "why": "r/LocalLLaMA(Atom,试点)"
+ }
+]

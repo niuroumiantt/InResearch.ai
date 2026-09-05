@@ -1,0 +1,452 @@
+/* inews.today 品牌层 —— 叠在 sd-ui-kit.css 之上。
+   按 SIGNAL_DESK_UI_GUIDE「如何复用」：kit 原样引入不修改,
+   品牌差异走 token 覆盖,只有 kit 没覆盖到的组件才在这里新增。 */
+
+.sd {
+  /* 语义沿用 kit：酸绿=当前态/通过门禁, 绿=正常, 琥珀=观察, 红=排除 */
+  --sd-paper: #f3f0e8;
+}
+
+/* ---- 页签用按钮而非链接(单页切换),视觉与 .sd-tabs a 保持一致 ---- */
+.sd-tabs button {
+  padding: 8px 12px; border-left: 1px solid #354042;
+  background: none; color: #c3ccca; cursor: pointer;
+  font: 700 10px/1.2 var(--sd-mono); letter-spacing: .06em;
+}
+.sd-tabs button:last-child { border-right: 1px solid #354042; }
+.sd-tabs button[aria-current="page"], .sd-tabs button:hover { background: var(--sd-acid); color: #111; }
+
+/* ---- 控制条：kit 的三列不够放我们的七个筛选器 ---- */
+.sd-controls--wide { grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); }
+.sd-controls label {
+  display: flex; align-items: center; gap: 6px; padding: 0 4px;
+  color: #d8ded9; font: 700 9px var(--sd-mono); letter-spacing: .06em; white-space: nowrap;
+}
+.sd-controls input[type="checkbox"] { width: 13px; height: 13px; accent-color: var(--sd-acid); }
+
+/* ---- 时间线改版(2026-08-31 站长):标题在左、来源靠右、序号列取消,
+   标签跟在标题右侧同一行,第一枚是内容分类(彩色)。 ---- */
+/* 三档断点(2026-08-31 站长半屏浏览时掉进手机布局 —— "手机"门槛降到真手机):
+   ≥1000   宽桌面:120px 时间 | 标题 | 172px 来源
+   641-999 半屏/窄桌面:同样三列,各列收紧,不再掉进手机堆叠
+   ≤640    真手机:标题优先,域名降为第二行小字 */
+@media (min-width: 641px) {
+  .sd-row { grid-template-columns: 88px minmax(0, 1fr) 150px; --tl-rail: 94px; }
+  /* kit 在 ≤800 会把 source 定位到标题上方(col2/row1) —— 641-800 区间
+     必须显式钉回三列各就各位,否则域名压在标题头上,就是"排版乱了"。 */
+  .sd-time { grid-column: 1; grid-row: auto; }
+  .sd-story { grid-column: 2; grid-row: auto; }
+  .sd-source--right { grid-column: 3; grid-row: auto; text-align: right; }
+  .sd-sub { margin-left: 115px; }
+}
+@media (min-width: 1000px) {
+  .sd-row { grid-template-columns: 96px minmax(0, 1fr) 172px; --tl-rail: 102px; }
+  .sd-sub { margin-left: 123px; }
+}
+@media (max-width: 640px) {
+  .sd-row { grid-template-columns: 56px 1fr; gap: 4px 10px; --tl-rail: 61px; }
+  .sd-time { grid-column: 1; grid-row: 1 / span 2; }
+  .sd-story { grid-column: 2; grid-row: 1; }
+  .sd-source--right {
+    grid-column: 2; grid-row: 2; text-align: left;
+    font-size: 11px; font-weight: 700; color: var(--sd-muted);
+  }
+  .sd-source--right small { display: inline; margin-left: 8px; }
+}
+.sd-rank { display: none; }
+
+/* ---- 时间轴移轴(2026-08-31,站长要求对齐 yidian):时间靠最左,
+   虚线放在时间与标题「中间」。kit 原生把点+实线贴在时间列左缘 —— 撤掉;
+   改为每行 ::before 在两列间隙正中画一段虚线,行行首尾相接成连续轴;
+   ::after 是节点:60 分钟内的实心酸绿,更早的空心 —— 点的疏密即推送节奏。 */
+.sd-time { padding-left: 0; padding-right: 12px; text-align: right; color: #16365c; }
+.sd-time span { color: #83887f; }
+.sd-time::before, .sd-time::after { display: none; }
+
+/* ---- 标题为王(2026-08-31 站长要求):行内除标题外一律降两号 ----
+   时刻深蓝、相对时间灰(上面两条);徽章/分类胶囊/域名/延迟全部缩小,
+   不与标题争眼。html 上关掉 iOS 对小字的自动放大 —— 不关的话,
+   手机上这些 8-9px 的小字会被系统膨胀回去,怎么调都"显得大"。 */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+/* 标题别贴着轴:虚线到标题留 ~20px 呼吸位(站长 2026-08-31 实机反馈)。 */
+.sd-row .sd-story { padding-left: 14px; }
+.sd-story .sd-badge { font-size: 8px; padding: 2px 6px; }
+.sd-story .sd-cat--tag { font-size: 8px; padding: 2px 6px 2px 5px; }
+.sd-source { font-size: 10px; }
+.sd-source small { font-size: 9px; }
+/* 手机上域名行在标题正下方 —— 跟着标题一起右移,保持左缘对齐 */
+@media (max-width: 640px) { .sd-source--right { font-size: 9px; padding-left: 14px; } }
+.sd-row { position: relative; }
+.sd-row::before {
+  content: ""; position: absolute; top: 0; bottom: -1px; left: var(--tl-rail, 91px);
+  border-left: 1px dashed var(--sd-line-strong);
+}
+.sd-row:last-child::before { bottom: 0; }
+.sd-row::after {
+  content: ""; position: absolute; top: 12px; left: calc(var(--tl-rail, 91px) - 3px);
+  width: 7px; height: 7px; border-radius: 50%; box-sizing: border-box;
+  background: var(--sd-paper); border: 1px solid var(--sd-muted); z-index: 1;
+}
+.sd-row--hot::after { background: var(--sd-acid); border-color: var(--sd-ink); }
+.sd-story__head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 7px; }
+/* 标题颜色只编码重要性，不编码分类：深红=必读，深蓝=可读。徽章保留文字，
+   因此色觉差异不是理解等级的唯一线索。 */
+.sd-story--v3 .sd-story__head > a { color: #9f2f22; font-weight: 820; }
+.sd-story--v2 .sd-story__head > a { color: #174f78; }
+.sd-story--excluded .sd-story__head > a { color: var(--sd-excluded); }
+.sd-source--right a { color: inherit; text-decoration: none; }
+.sd-source--right a:hover { text-decoration: underline; }
+/* 徽章补两个色:蓝=原创媒体(primary),紫=官方/通稿(wire) —— 每类标签一色 */
+.sd-badge--info { background: #e2edfb; color: #1c5cab; }
+.sd-badge--violet { background: #eae6f7; color: #4a3aa7; }
+/* 时间线里的分类标签:胶囊形,和徽章一个身量,色块+中文名。
+   它是按钮 —— 点一下就按这个分类筛,悬停给出手势反馈。 */
+.sd-cat--tag {
+  padding: 3px 8px 3px 6px; border-radius: 999px; background: var(--sd-surface);
+  border: 1px solid var(--sd-line); font-size: 9px; letter-spacing: .02em;
+  cursor: pointer; font-family: var(--sd-mono); font-weight: 700;
+}
+.sd-cat--tag:hover { border-color: var(--sd-ink); background: var(--sd-acid); }
+
+/* ---- 读者控件两行(2026-08-31 大改版) ----
+   第一行 分类模块条:点击即筛,每格带今日条数 —— 它同时就是当日概览。
+   第二行 站内搜索独占 + 地区。深底容器沿用原筛选条的視覺。 */
+#controls {
+  position: sticky; top: 47px; z-index: 8;
+  padding: 10px 12px; background: var(--sd-console);
+  display: grid; gap: 8px;
+}
+@media (max-width: 800px) { #controls { position: static; } }
+
+.sd-genrebar { display: flex; flex-wrap: wrap; gap: 6px; }
+.sd-genre-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 6px 10px; border: 1px solid #3d4749; background: #1b2225;
+  color: #e8ece9; cursor: pointer; font: 700 11px var(--sd-sans);
+}
+.sd-genre-pill i { width: 8px; height: 8px; flex: none; }
+.sd-genre-pill em {
+  font: 800 10px var(--sd-mono); font-style: normal; color: #aab6b0;
+}
+.sd-genre-pill:hover { border-color: var(--sd-acid); }
+.sd-genre-pill.is-on { background: var(--sd-acid); color: #111; border-color: var(--sd-acid); }
+.sd-genre-pill.is-on em { color: #2c3400; }
+
+.sd-searchrow { display: grid; grid-template-columns: 1fr 130px; gap: 8px; }
+#q {
+  width: 100%; padding: 11px 13px; background: #fff;
+  border: 2px solid var(--sd-acid); font: 700 14px var(--sd-sans);
+}
+#q:focus { outline: 3px solid var(--sd-acid); outline-offset: 1px; }
+#q::placeholder { color: #79837d; font-weight: 600; }
+#region {
+  padding: 0 10px; border: 1px solid #3d4749; background: #1b2225;
+  color: #e8ece9; font: 700 12px var(--sd-sans);
+}
+
+/* ---- 时间线：抓取延迟是本产品的核心指标,给它固定位置 ---- */
+.sd-lag { color: var(--sd-muted); font: 700 9px var(--sd-mono); letter-spacing: .06em; }
+.sd-lag--slow { color: var(--sd-warn); }
+.sd-story__meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 5px; }
+.sd-daysep {
+  margin: 22px 0 0; padding: 7px 0; border-bottom: 1px solid var(--sd-ink);
+  font: 800 10px var(--sd-mono); letter-spacing: .16em;
+}
+/* 展开的转载来源：缩进一层,不重复时间线节点 */
+.sd-sub { margin: 0 0 8px 191px; border-left: 2px solid var(--sd-line-strong); }
+.sd-sub div { display: flex; gap: 10px; align-items: baseline; padding: 5px 0 5px 12px; border-bottom: 1px solid var(--sd-line); }
+.sd-sub a { font-size: 13px; font-weight: 700; text-decoration: none; }
+.sd-sub a:hover { text-decoration: underline; }
+.sd-dup { cursor: pointer; border: 0; background: #edf0f4; }
+
+/* ---- 表格：kit 没有表格组件,按硬边网格的原则新增 ---- */
+.sd-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.sd-table th, .sd-table td { padding: 6px 9px; border-bottom: 1px solid var(--sd-line); text-align: left; }
+.sd-table th {
+  border-bottom: 1px solid var(--sd-ink); color: var(--sd-muted);
+  font: 800 9px var(--sd-mono); letter-spacing: .1em; text-transform: uppercase;
+}
+.sd-table td.num, .sd-table th.num { text-align: right; font-family: var(--sd-mono); }
+.sd-table tbody tr:hover { background: var(--sd-surface); }
+
+/* ---- 说明块：解释每张表量什么、怎么读 ---- */
+.sd-note {
+  margin-top: 10px; padding: 9px 0 2px 12px;
+  border-left: 2px solid var(--sd-line-strong);
+  color: var(--sd-muted); font-size: 11.5px; line-height: 1.62;
+}
+.sd-note p { margin: 0 0 6px; }
+.sd-note p:last-child { margin-bottom: 0; }
+.sd-note b { color: var(--sd-ink); }
+.sd-note code { padding: 0 3px; border: 1px solid var(--sd-line); background: var(--sd-surface); font: 700 10.5px var(--sd-mono); }
+.sd-note .hl { border-left: 2px solid var(--sd-acid); margin-left: -12px; padding-left: 10px; color: var(--sd-ink); }
+
+/* ---- 条形分布：数值 + 硬边条,零圆角 ---- */
+.sd-bars { display: flex; flex-direction: column; gap: 4px; }
+.sd-bars > div { display: grid; grid-template-columns: 84px 1fr 92px; gap: 10px; align-items: center; font: 700 11px var(--sd-mono); }
+.sd-bar { height: 13px; background: var(--sd-panel); border: 1px solid var(--sd-line); }
+.sd-bar > i { display: block; height: 100%; background: var(--sd-data); }
+.sd-bar > i.acid { background: var(--sd-acid); }
+.sd-bar > i.dim { background: var(--sd-line-strong); }
+.sd-bars .val { color: var(--sd-muted); text-align: right; font-size: 10px; }
+
+/* ---- 小时柱图 ---- */
+.sd-spark { display: flex; align-items: flex-end; gap: 2px; height: 68px; border-bottom: 1px solid var(--sd-ink); }
+.sd-spark > i { flex: 1 1 0; max-width: 44px; min-height: 1px; background: var(--sd-data); display: flex; align-items: flex-end; }
+.sd-spark > i > b { display: block; width: 100%; background: var(--sd-alert); }
+
+/* ---- 行内百分比条 ---- */
+.sd-pct { display: inline-flex; gap: 6px; align-items: center; justify-content: flex-end; font-family: var(--sd-mono); }
+.sd-pct .sd-bar { width: 48px; height: 5px; }
+
+/* ---- 样本列表：复核低分/边界条目 ---- */
+.sd-samples > div { display: flex; gap: 9px; align-items: baseline; padding: 5px 0; border-bottom: 1px solid var(--sd-line); font-size: 12.5px; }
+.sd-samples > div:last-child { border-bottom: 0; }
+.sd-samples .t { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.sd-hide { display: none !important; }
+.sd-empty { padding: 44px 0; color: var(--sd-muted); text-align: center; font: 700 11px var(--sd-mono); letter-spacing: .1em; }
+.sd-cell { display: inline-block; max-width: 430px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; vertical-align: middle; }
+.sd-q { font: 700 10.5px var(--sd-mono); padding: 1px 4px; border: 1px solid var(--sd-line); background: var(--sd-surface); }
+
+/* ---- 中文排版修正 ----
+   kit 的 h1 用 line-height:.8 + letter-spacing:-.07em,那是为拉丁字母设计的:
+   小写字母有下伸部,负行高刚好收紧。中日韩字形是满高方块,0.8 倍行高会直接
+   让两行叠在一起,负字距也会让笔画粘连。这是排版事实,不是品牌偏好。
+
+   1.28 是量出来的:回退字体里中日韩字形的墨迹会超出 em 框,行高等于字号
+   (1.02)时实测重叠 10px,1.15 在 900 字重下两行仍会贴到一起。 */
+/* 品牌标改回拉丁(iNews / Today):kit 的紧凑负行高本来就是为拉丁设计的,
+   0.92 让描边 Today 紧贴实心 iNews,是海报感而不是叠压(中文时代的行高
+   hack 就此退役)。 */
+.sd-hero h1 { line-height: .92; letter-spacing: -.04em; }
+.sd-hero p b { color: var(--sd-ink); }
+
+/* kit 的 .sd-metrics 是固定 4 列。总览有 6 张卡,4 列会折成 4+2 并且
+   第二行没有上边框、最后一张的右边框也断了。按张数选列数,边框补齐。 */
+.sd-metrics--3up { grid-template-columns: repeat(3, 1fr); }
+.sd-metrics--3up .sd-metric:nth-child(3n) { border-right: 0; }
+.sd-metrics--3up .sd-metric:nth-child(n + 4) { border-top: 1px solid var(--sd-line-strong); }
+@media (max-width: 800px) {
+  .sd-metrics--3up { grid-template-columns: repeat(2, 1fr); }
+  .sd-metrics--3up .sd-metric:nth-child(3n) { border-right: 1px solid var(--sd-line-strong); }
+  .sd-metrics--3up .sd-metric:nth-child(2n) { border-right: 0; }
+  .sd-metrics--3up .sd-metric:nth-child(n + 3) { border-top: 1px solid var(--sd-line-strong); }
+}
+
+/* ---- 页眉右侧「管理处」----
+   登录状态和所有分析/管理入口收在一个下拉里：时间线是公开页面,
+   Dashboard / 规则演化 / 账号管理都要求管理员登录,散在页面各处会让
+   未登录访客不断撞见 403。 */
+.sd-console__brand { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
+.sd-console__brand::before { display: none; }          /* 红点换成品牌标记 */
+.sd-console__logo { display: block; }
+.sd-console__right { display: flex; align-items: center; justify-content: flex-end; gap: 12px; }
+
+.sd-menu { position: relative; }
+.sd-menu__btn {
+  padding: 7px 11px; border: 1px solid #3d4749; background: #1b2225; color: #e8ece9;
+  cursor: pointer; font: 800 10px var(--sd-mono); letter-spacing: .08em;
+}
+.sd-menu__btn:hover, .sd-menu__btn[aria-expanded="true"] { background: var(--sd-acid); color: #111; border-color: var(--sd-acid); }
+.sd-menu__btn--in { border-color: var(--sd-acid); color: var(--sd-acid); }
+.sd-menu__pop {
+  position: absolute; right: 0; top: calc(100% + 7px); z-index: 20; min-width: 236px;
+  border: 1px solid var(--sd-ink); background: var(--sd-surface);
+  box-shadow: 6px 6px 0 #151c1f22;
+}
+.sd-menu__who {
+  padding: 9px 12px; border-bottom: 1px solid var(--sd-ink);
+  color: var(--sd-muted); font: 800 9px var(--sd-mono); letter-spacing: .08em;
+}
+.sd-menu__who b { display: block; margin-bottom: 3px; color: var(--sd-ink); font-size: 11px; letter-spacing: 0; }
+.sd-menu__group { border-bottom: 1px solid var(--sd-line); }
+.sd-menu__group:last-child { border-bottom: 0; }
+.sd-menu__group button {
+  display: block; width: 100%; padding: 9px 12px; border: 0; background: none;
+  color: var(--sd-ink); cursor: pointer; text-align: left; font: 700 11px var(--sd-sans);
+}
+.sd-menu__group button:hover { background: var(--sd-acid); }
+/* 菜单里也有纯链接(原文库后台是另一份静态产出,只能用 a 跳):
+   长相与 button 完全一致,点它的人不该被迫分辨「这条是面板还是页面」。
+   不写 width:100% —— a 是 content-box,加了反而会被 padding 撑出横向滚动。 */
+.sd-menu__group a {
+  display: block; padding: 9px 12px; color: var(--sd-ink); text-decoration: none;
+  text-align: left; font: 700 11px var(--sd-sans);
+}
+.sd-menu__group a:hover { background: var(--sd-acid); }
+/* display:block 会盖掉浏览器给 [hidden] 的 display:none —— 不补这条,
+   登录后菜单里还会留着「登录 / 注册」。 */
+.sd-menu__group button[hidden] { display: none; }
+
+/* ---- 中文标题 + 原文 ----
+   机器翻译是线索不是引文,所以原标题永远可以调出来核对。 */
+.sd-story__src { margin: 3px 0 0; color: #6b7477; font-size: 11px; line-height: 1.35; }
+.sd-story__src[hidden] { display: none; }
+.sd-story--mt a::after {
+  content: "译"; margin-left: 6px; padding: 0 3px; border: 1px solid var(--sd-line-strong);
+  color: var(--sd-muted); font: 700 8px var(--sd-mono); vertical-align: 2px;
+}
+
+/* ---- 登录弹窗 ---- */
+.sd-modal { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; background: #151c1fbb; }
+.sd-modal__box { width: min(400px, calc(100vw - 32px)); border: 1px solid var(--sd-ink); background: var(--sd-surface); }
+.sd-modal__head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 11px 14px; border-bottom: 1px solid var(--sd-ink);
+  background: var(--sd-console); color: #f7f7f2; font: 800 11px var(--sd-mono); letter-spacing: .1em;
+}
+.sd-modal__x { border: 0; background: none; color: #f7f7f2; cursor: pointer; font-size: 18px; line-height: 1; }
+.sd-modal__body { padding: 14px; }
+.sd-modal__body label { display: block; margin-bottom: 11px; }
+.sd-modal__body span { display: block; margin-bottom: 4px; color: var(--sd-muted); font: 800 9px var(--sd-mono); letter-spacing: .08em; }
+.sd-modal__body input {
+  width: 100%; padding: 9px 10px; border: 1px solid var(--sd-line-strong);
+  background: #fff; font: 600 13px var(--sd-sans);
+}
+.sd-modal__body input:focus { outline: 2px solid var(--sd-acid); outline-offset: -2px; }
+.sd-modal__row { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: end; }
+.sd-modal__row button {
+  padding: 9px 11px; border: 1px solid var(--sd-ink); background: var(--sd-panel);
+  cursor: pointer; font: 800 10px var(--sd-mono); white-space: nowrap;
+}
+.sd-modal__row button:disabled { opacity: .5; cursor: default; }
+.sd-modal__msg { padding: 0 14px; color: var(--sd-alert); font-size: 11.5px; line-height: 1.5; min-height: 18px; }
+.sd-modal__msg.ok { color: var(--sd-ok); }
+.sd-modal__foot { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 14px; }
+.sd-primary { padding: 10px 20px; border: 0; background: var(--sd-ink); color: var(--sd-acid); cursor: pointer; font: 800 11px var(--sd-mono); letter-spacing: .1em; }
+.sd-primary:disabled { opacity: .6; cursor: default; }
+.sd-link-btn { border: 0; background: none; color: var(--sd-link); cursor: pointer; font: 700 11px var(--sd-sans); text-decoration: underline; }
+
+/* ---- 需要登录时的占位 ---- */
+.sd-gate { padding: 60px 0; text-align: center; }
+.sd-gate h2 { margin: 0 0 8px; font-size: 20px; }
+.sd-gate p { margin: 0 0 18px; color: var(--sd-muted); font-size: 13px; }
+
+/* ---- 首屏：原来的 hero 把时间线压到了一屏半以下 ----
+   标题保留,但字号和留白收紧,让第一条新闻在首屏就能看到。 */
+.sd-hero { padding: 22px 0 18px; gap: 28px; }
+.sd-hero h1 { font-size: clamp(40px, 5vw, 66px); }
+.sd-hero p { margin-top: 14px; font-size: 13px; }
+.sd-clock { padding: 10px 0 10px 20px; }
+
+body[data-tab]:not([data-tab="timeline"]) .sd-hero { display: none; }
+body[data-tab]:not([data-tab="timeline"]) .sd-kicker { margin-bottom: 18px; }
+
+/* 筛选条跟随滚动：时间线很长,滚到第 200 条还想换筛选不该滚回顶部 */
+.sd-controls--wide { position: sticky; top: 47px; z-index: 8; }
+
+@media (max-width: 800px) {
+  .sd-console__right { justify-content: space-between; }
+  .sd-console__meta { display: block; }
+  .sd-controls--wide { position: static; }
+}
+
+/* ================= 分析中心（单页 dashboard） =================
+   角度 = 固定配色,颜色跟着角度走,全页一致(条形、色块、表格里都是同一个色)。
+   配色经 CVD 校验(邻对 ΔE≥8);三个浅色(aqua/yellow/magenta)对白底不足 3:1,
+   规则是它们出现的地方必须带文字标签 —— 本页所有色块都带标签,满足。 */
+.sd {
+  --cat-models: #2a78d6; --cat-chips: #eb6834; --cat-money: #1baf7a;
+  --cat-apps: #eda100; --cat-research: #e87ba4; --cat-infra: #008300;
+  --cat-policy: #4a3aa7; --cat-safety: #e34948; --cat-other: #6d7578;
+  /* 单系列数量条/柱的默认色:墨黑大色块又重又丑(站长原话「纯黑色的条很难看」),
+     换成校验过的序列蓝。语义色(酸绿=过闸,琥珀=警,灰=弃)不受影响。 */
+  --sd-data: #2a78d6;
+}
+
+/* 超宽屏(2K+):分析页容器放宽、栅格升三栏 —— 1440 框在 2500px 屏上
+   两侧大片空白、两栏被拉稀,是「桌面设计不行」的体感来源。 */
+body[data-tab="dashboard"] .sd-frame, body[data-tab="admin"] .sd-frame { max-width: 1800px; }
+@media (min-width: 1600px) {
+  .sd-grid2 { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* 两栏网格：信息密度翻倍;窄屏回落单栏。.sd-span2 让重要板块横贯整行 ——
+   板块大小服务于信息量,不强求整齐。 */
+.sd-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: stretch; margin-top: 14px; }
+.sd-grid2 > .sd-dashboard { margin: 0; }
+.sd-grid2 > .sd-span2 { grid-column: 1 / -1; }
+/* 同一行的两块底边对齐:面板拉成弹性列,正文吃掉多余高度 —— 参差的底边
+   是"排版不整洁"观感的第一来源。 */
+.sd-grid2 .sd-dashboard { display: flex; flex-direction: column; }
+.sd-grid2 .sd-dashboard > .sd-panelbody { flex: 1; }
+@media (max-width: 960px) { .sd-grid2 { grid-template-columns: 1fr; } }
+
+/* 每个板块脚下的两行说明:第一行讲"这是什么、怎么来",
+   酸绿行讲"你要做的" —— 任务感,不是装饰。 */
+.sd-note--tight { margin-top: 9px; padding: 5px 0 2px 10px; font-size: 11px; line-height: 1.55; }
+.sd-note--tight p { margin: 0 0 3px; }
+
+/* 页内导航：一页很长,四个锚点直达 */
+.sd-toc { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.sd-toc a {
+  padding: 5px 10px; border: 1px solid var(--sd-ink); background: var(--sd-surface);
+  color: var(--sd-ink); text-decoration: none; font: 800 10px var(--sd-mono); letter-spacing: .08em;
+}
+.sd-toc a:hover { background: var(--sd-acid); }
+
+/* 角度色块：色 + 文字,颜色永远不单独承载身份 */
+.sd-cat { display: inline-flex; align-items: center; gap: 5px; font: 700 11px var(--sd-mono); white-space: nowrap; }
+.sd-cat i { width: 9px; height: 9px; flex: none; background: var(--cat-other); }
+
+/* 条形分布的宽标签变体：域名/角度名比 84px 长 */
+.sd-bars--wide > div { grid-template-columns: 150px 1fr 110px; }
+.sd-bars .sd-rankn { color: var(--sd-muted); font-size: 9px; margin-right: 4px; }
+
+/* 紧凑内联统计行(面板头下的一行小数字) */
+.sd-minirow { display: flex; flex-wrap: wrap; gap: 14px; padding: 8px 0 10px; font: 700 10px var(--sd-mono); color: var(--sd-muted); }
+.sd-minirow b { color: var(--sd-ink); font-size: 12px; margin-right: 3px; }
+
+/* 面板正文的统一内边距(panel() 里原来是行内样式,挪进类里) */
+.sd-panelbody { padding: 12px 14px; }
+.sd-dashboard { background: var(--sd-surface); }
+
+/* 车道徽章沿用 sd-badge;调档流水里的方向箭头 */
+.sd-dir-up { color: var(--sd-ok); font-weight: 800; }
+.sd-dir-down { color: var(--sd-warn); font-weight: 800; }
+
+/* 柱图下沿的首尾刻度：悬浮提示之外,轴上也得读得出时间范围 */
+.sd-spark-x { display: flex; justify-content: space-between; margin-top: 3px; font: 700 9px var(--sd-mono); color: var(--sd-muted); }
+
+/* 柱图的数量级刻度线:虚线画在整数位(2,000/4,000…),数字标右端 ——
+   悬停之外,一眼读得出柱子的绝对量级。 */
+.sd-sparkwrap { position: relative; padding-top: 12px; }
+.sd-sparkwrap .sd-spark { position: relative; z-index: 1; }
+.sd-spark-gl { position: absolute; left: 0; right: 0; z-index: 0; border-top: 1px dashed var(--sd-line-strong); }
+.sd-spark-gl > span {
+  position: absolute; right: 0; top: -12px; padding-left: 5px;
+  font: 700 9px var(--sd-mono); color: var(--sd-muted); background: var(--sd-surface);
+}
+
+/* ---- 升降档标尺：x=实测产出(条/轮), 色带=判据区间, 三行=当前车道, 点=shard ---- */
+.sd-scale { margin-top: 8px; font: 700 10px var(--sd-mono); }
+.sd-scale__band { display: flex; gap: 2px; height: 13px; }
+.sd-scale__band i { display: block; height: 100%; background: var(--sd-panel); }
+.sd-scale__ticks { position: relative; height: 14px; color: var(--sd-muted); font-size: 9px; }
+.sd-scale__ticks span { position: absolute; transform: translateX(-50%); }
+.sd-scale__rows { border: 1px solid var(--sd-line); border-top: 0; background: var(--sd-surface); }
+.sd-scale__row { position: relative; height: 24px; border-bottom: 1px solid var(--sd-line); }
+.sd-scale__row:last-child { border-bottom: 0; }
+.sd-scale__row > b { position: absolute; left: 6px; top: 50%; transform: translateY(-50%); color: var(--sd-muted); font-size: 9px; letter-spacing: .08em; }
+.sd-scale__dot { position: absolute; top: 50%; width: 9px; height: 9px; transform: translate(-50%, -50%); border: 2px solid var(--sd-surface); box-sizing: content-box; }
+/* 规则要点：一句话一枚硬边小票 */
+.sd-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.sd-chips span { padding: 3px 7px; border: 1px solid var(--sd-line-strong); background: var(--sd-panel); font: 700 10px var(--sd-mono); }
+
+/* ---- 采集流水线：静态结构(格子)+动态数字(24h 实测),箭头下是转化率 ---- */
+.sd-flow { display: flex; flex-wrap: wrap; gap: 4px 0; align-items: stretch; }
+.sd-flow__box {
+  flex: 1 1 110px; min-width: 106px; padding: 8px 10px;
+  border: 1px solid var(--sd-ink); background: var(--sd-surface);
+}
+.sd-flow__box > b { display: block; font: 800 17px var(--sd-mono); }
+.sd-flow__box > span { display: block; margin-top: 1px; color: var(--sd-muted); font: 800 8.5px var(--sd-mono); letter-spacing: .07em; text-transform: uppercase; }
+.sd-flow__box > small { display: block; margin-top: 4px; color: var(--sd-muted); font: 700 9.5px var(--sd-mono); line-height: 1.5; }
+.sd-flow__box--acid { background: var(--sd-acid); }
+.sd-flow__box--acid > span, .sd-flow__box--acid > small { color: #2c3400; }
+.sd-flow__arrow {
+  flex: 0 0 34px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  font: 800 12px var(--sd-mono); color: var(--sd-muted);
+}
+.sd-flow__arrow small { font-size: 8.5px; }
