@@ -1,9 +1,11 @@
 # InResearch.ai —— 研究业务承载库
 
-本仓库承载**两个独立的平行产品**：`products/inews/`（inews.today）与
-`products/inresearch/`（inresearch.ai）。它们共用仓库，但身份、会员、数据与发布
-各自独立；唯一的连接是单向、不传递身份的内容接口。
-先读 [`products/README.md`](products/README.md)。
+本仓库只承载 **inresearch.ai** 一个产品（`products/inresearch/`）。
+inews.today 是另一个独立产品，代码在它自己的仓库
+[niuroumiantt/inews.today](https://github.com/niuroumiantt/inews.today)，两个仓库没有任何重合目录
+（2026-09-05 站长决定：两个产品完全分开，各自仓库、各自发布）。
+两者唯一的连接是单向、不传递身份的内容接口，契约在 inews.today 仓库根目录的
+`CONTENT_INTERFACE.md`，采用方实现见 [`products/README.md`](products/README.md)。
 
 ---
 
