@@ -133,6 +133,37 @@ C1、C2、C3 已于 2026-08-17 一并批复（用户原话「好的。就按照�
 
 ## 会话决策记录（倒序）
 
+### 2026-09-05（会话续 54：撤销 S2 产品拆分——inews.today 全部移出，仓库恢复扁平结构）
+
+**用户要求（原话要点）**：项目文件夹「有些奇怪」，把不相关的 inews.today 全部移出去或删除，
+**保持 inresearch.ai 这个项目的独立与纯粹**；同时审阅代码有无混淆冗余、文件是否完整、
+目前进度与下一步。
+
+**背景**：当日 12:17 合并的 #88（S2）把 `niuroumiantt/inews.today@cdf8612` 整仓复制进
+`products/inews/`，并把本项目全部下沉到 `products/inresearch/`。**该决定未登记在本文件**
+（用户未拍板），且本机 launchd、`deploy/Dockerfile`、`docs/local_setup/` 全部仍指着扁平
+结构——S2 一合并，本机同步与容器 `CMD python3 pipeline/serve.py` 实际已断。
+
+**本轮处置（用户拍板的方向，路径细节为云端判断，请复核）**：
+1. `products/inresearch/*` 全部 `git mv` 回仓库根（git 识别为 rename，历史保留）；
+   `products/`（含 inews 全部 ~180 个文件与 `products/README.md`）整目录删除。
+   inews.today 在其自己的仓库里有完整历史，本库不留副本。
+2. 删除两个产品间唯一的耦合点 `pipeline/inews_adoption.py` 与
+   `pipeline/test_inews_adoption.py`（「内容采用」接口只为 inews 存在）。
+3. `.github/workflows/validate.yml` 与 `README.md` 还原到 S2 之前版本。
+4. 校验：`validate.py --strict` 0 warnings、`verify.py`、`refresh_indicators.py`、
+   `intake.py --selftest` 全过；全库 grep 无 `products/`、`inews` 残留
+   （唯一命中是打分表迁移 CSV 里一张腾讯图片文件名 `inews.gtimg.com`，是数据不是代码）。
+
+**保留并说明**：`pipeline/fetch_news_signals.py`、`deploy/docker-compose.yml` 的 `news`
+服务引用的是**姊妹项目 `niuroumiantt/news` 的数据目录**（上游信号源，README「与其他项目
+的关系」一节自 2026-08 起就有），不是 inews.today 的代码——未动。若用户认为 news 与
+inews.today 是同一条线、也要断，请明示。
+
+**否决记录**：「一仓两产品（products/ 平行目录）」方案由本轮用户否决；
+infra 仓库 `hosts/apps.json` 若已按 `products/inresearch` 配 paths 映射，需同步改回
+（云端权限只到本仓库，见 A4 同类情况）。
+
 ### 2026-08-31（会话续 53：L1–L4 价值链框架提案评审——只评不动，登记 A5 待拍板）
 
 **用户提交**单页研究框架图「数据中心全行业研究框架 · L1–L4 价值链分层架构」：
