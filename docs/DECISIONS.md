@@ -7,7 +7,7 @@
 > ⚠️ 2026-08-15 之前的条目是从 commit 历史**反推**的，聊天中的细节要求已不可恢复；
 > 如有重要遗漏，请用户直接在下方补记或在会话中口述补登。
 
-## 待拍板（未决）— 开场必读必报，2026-08-31 更新
+## 待拍板（未决）— 开场必读必报，2026-09-05 更新
 
 > 规则见根目录 CLAUDE.md「人机互动协议」：**用户没明确拒绝 ≠ 同意，等于他没看到。**
 > 本区的每一条，会话开工时必须主动顶到回复开头提醒，不得埋在末尾。
@@ -22,6 +22,11 @@
 （现名与九级漏斗 L1–L9、3D 下钻 L1–L4 三重撞名）、投融资与中国板块不随切面降级
 （M11/M14 保持一等公民）。**替换还是并用、编号改不改，只有用户能定**——
 未拍板前公司库不加层字段、框架文件不动。
+
+**A6（09-05 新增，云端提出）：inews 内容采用接口留还是删。** 现状：`pipeline/inews_adoption.py`
+与 19 项测试保留在库里（#89 用户批复保留），但库内**没有任何调用方**，也没有 inews 内容包
+真正流入过；它是「两个产品唯一允许的连接」的占位实现。留＝将来接 inews 新闻时省一轮；
+删＝inresearch 彻底不知道 inews 存在，「纯粹」到底。**云端不替用户定，未拍板前保留。**
 
 **A4（08-18 新增，生产风险，只有用户能推动）：infra 仓库的 autopull 重建 caddy 前没有
 validate 闸门。** 现状：autopull 检测到 Caddyfile 变化就重建 caddy 容器（这个逻辑是对的，
@@ -148,9 +153,15 @@ C1、C2、C3 已于 2026-08-17 一并批复（用户原话「好的。就按照�
 1. `products/inresearch/*` 全部 `git mv` 回仓库根（git 识别为 rename，历史保留）；
    `products/`（含 inews 全部 ~180 个文件与 `products/README.md`）整目录删除。
    inews.today 在其自己的仓库里有完整历史，本库不留副本。
-2. 删除两个产品间唯一的耦合点 `pipeline/inews_adoption.py` 与
-   `pipeline/test_inews_adoption.py`（「内容采用」接口只为 inews 存在）。
-3. `.github/workflows/validate.yml` 与 `README.md` 还原到 S2 之前版本。
+2. **内容采用接口保留**（`pipeline/inews_adoption.py` + 19 项测试，随目录搬回 `pipeline/`，
+   CI 步骤照跑）。本轮最初打算连它一起删；但同日稍晚用户合并的 #89（另一会话：
+   「inews 回到它自己的仓库」）明确保留了它并写明「两者唯一的连接是内容接口，契约在
+   inews.today 仓库根目录 `CONTENT_INTERFACE.md`」——这是用户刚批过的口径，云端不越权
+   改。**删不删由用户定（见下方待拍板 A6）。** 测试里两处目录断言已改成扁平结构。
+3. `.github/workflows/validate.yml` 与 `README.md` 还原到 S2 之前版本，只在 README 顶部
+   保留 #89 那段「inews 在自己仓库、本库不留副本」的说明（改成扁平路径）。
+   与 #89 的冲突（README、workflow、`products/README.md`、adoption 两文件）本轮合并解决：
+   #89 删 inews 副本但保留 `products/inresearch/` 嵌套，本轮在其基础上再拉平。
 4. 校验：`validate.py --strict` 0 warnings、`verify.py`、`refresh_indicators.py`、
    `intake.py --selftest` 全过；全库 grep 无 `products/`、`inews` 残留
    （唯一命中是打分表迁移 CSV 里一张腾讯图片文件名 `inews.gtimg.com`，是数据不是代码）。
