@@ -12,7 +12,7 @@ if (host) {
       const r = await fetch('/api/research', {cache:'no-store'});
       if (!r.ok) throw new Error('HTTP '+r.status);
       const data = await r.json(); const feed = data.reader?.acquisition?.news_feed;
-      if (!feed) {meta.textContent = '等待 Spark 新闻同步 · 新闻标题线索不等于已核验结论'; list.replaceChildren();return;}
+      if (!feed || ['awaiting_sync','not_initialized'].includes(feed.status)) {meta.textContent = '等待 Spark 新闻同步 · 新闻标题线索不等于已核验结论'; list.replaceChildren();return;}
       const age = Date.now()-Date.parse(feed.exported_at || '');
       const stale = !Number.isFinite(age) || age > 2*3600000 || data.reader?.stale;
       meta.textContent = `来源 inews.today · ${feed.status !== 'success' ? '同步异常，保留上次结果' : stale ? '同步延迟' : '已同步'} · ${date(feed.exported_at)}${feed.truncated ? ' · 有界窗口，非全部新闻' : ''} · 标题线索，待核验`;
