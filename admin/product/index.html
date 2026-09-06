@@ -1,24 +1,15 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light">
 <head>
+<script src="/assets/site-skin.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>产品资料采集看板 — Datacenter Hub</title>
 <style>
-  /* 设计基调：直角矩形，科技感；全站禁用圆角 */
-  :root {
-    --bg: #f2f4f7; --card: #ffffff; --text: #1a1d24; --muted: #6b7280;
-    --line: #e5e7eb; --accent: #2563eb;
-    --green: #16a34a; --yellow: #d97706; --red: #dc2626; --gray: #9ca3af;
-    --green-bg: #dcfce7; --yellow-bg: #fef3c7; --red-bg: #fee2e2; --blue-bg: #dbeafe; --gray-bg: #f3f4f6;
-    --ink: #1a1d24; --p1bar: #94a3b8;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg: #0c0e12; --card: #171a21; --text: #e5e7eb; --muted: #9ca3af; --line: #262a33; --accent: #60a5fa;
-      --green-bg: #14321f; --yellow-bg: #33290f; --red-bg: #351a1a; --blue-bg: #16263c; --gray-bg: #21242c;
-      --ink: #e5e7eb; --p1bar: #4b5a6e; }
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; }
+  /* 视觉规范统一由 assets/site-skin.css 提供。 */
+
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   body { background: var(--bg); color: var(--text); font: 13px/1.5 -apple-system, "PingFang SC", sans-serif; padding-bottom: 60px; }
   a { color: var(--accent); text-decoration: none; }
   .topbar { position: sticky; top: 0; background: var(--card); border-bottom: 1px solid var(--line);
@@ -38,7 +29,9 @@
   .filters { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; flex: 1; }
   .filters select, .filters input { background: var(--card); color: var(--text); border: 1px solid var(--line);
     padding: 4px 8px; font-size: 12px; }
-  .filters input { min-width: 180px; }
+  .filters input:not([type=checkbox]) { min-width: 180px; }
+  .filters label { display: inline-flex; align-items: center; gap: 4px; }
+  .filters input[type=checkbox] { min-width: 0; width: 14px; height: 14px; padding: 0; }
   .filters label { font-size: 12px; color: var(--muted); white-space: nowrap; }
   .legend { font-size: 11.5px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
   .legend i { display: inline-block; width: 9px; height: 9px; margin-right: 4px; vertical-align: -1px; }
@@ -105,6 +98,7 @@
   .foot { color: var(--muted); font-size: 11.5px; margin-top: 14px; line-height: 1.7; }
   .err { background: var(--red-bg); color: var(--red); padding: 14px 18px; margin: 20px 0; }
 </style>
+<link rel="stylesheet" href="/assets/site-skin.css">
 </head>
 <body>
 <div class="topbar">

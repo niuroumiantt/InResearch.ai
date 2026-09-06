@@ -116,7 +116,7 @@ class Handler(SimpleHTTPRequestHandler):
 
     # ── 认证闸门 ─────────────────────────────────────────
     # 返回 None 表示本请求已被闸门处理完（重定向/拒绝），调用方应直接 return；
-    # 返回用户名或 "" 表示放行。**除 /login 与 /api/login 外一切路径都过闸**，
+    # 返回用户名或 "" 表示放行。仅登录入口与两份纯外观资源公开，
     # 包括静态文件——账本、事实层、打分表全在静态目录里，漏一条路径等于没锁门。
     def _gate(self):
         low = self._norm_path().lower()
@@ -132,6 +132,8 @@ class Handler(SimpleHTTPRequestHandler):
         if "/.hub_secret" in low or "/users.json" in low:
             self._json(404, {"ok": False, "error": "not found"})
             return None
+        if self._norm_path() in {"/assets/site-skin.js", "/assets/site-skin.css"}:
+            return ""
         user = auth.session_user(self.headers.get("Cookie"))
         if user:
             return user

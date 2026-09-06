@@ -1,19 +1,17 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light">
 <head>
+<script src="/assets/site-skin.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="assets/research.css">
 <title>机柜拆解台 — Datacenter Hub</title>
 <style>
-  :root {
-    --bg: #0b0e14; --card: #151a23; --text: #e5e7eb; --muted: #9ca3af; --line: #262d3a; --accent: #60a5fa;
-    --green: #22c55e; --yellow: #f59e0b; --red: #ef4444; --purple: #a78bfa;
-  }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { background: var(--bg); color: var(--text); font: 13.5px/1.6 -apple-system, "PingFang SC", sans-serif; overflow: hidden; }
   a { color: var(--accent); text-decoration: none; }
-  .topbar { position: fixed; top: 0; left: 0; right: 0; height: 46px; background: rgba(21,26,35,.9);
+  .topbar { position: fixed; top: 0; left: 0; right: 0; height: 46px; background: var(--ui-surface);
     backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); display: flex; align-items: center;
     gap: 4px; padding: 0 18px; z-index: 30; }
   .topbar b { font-size: 15px; margin-right: 14px; }
@@ -21,33 +19,33 @@
   .tab.on { color: var(--accent); font-weight: 600; }
   .topbar .sp { flex: 1; }
   #c { position: fixed; inset: 0; }
-  .hud { position: fixed; left: 18px; bottom: 18px; z-index: 20; background: rgba(17,22,31,.88);
-    border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; width: 300px;
+  .hud { position: fixed; left: 18px; bottom: 18px; z-index: 20; background: var(--ui-surface);
+    border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 12px 16px; width: 300px;
     box-shadow: 0 12px 40px rgba(0,0,0,.45); }
   .hud h1 { font-size: 15px; margin-bottom: 2px; }
   .hud .m { color: var(--muted); font-size: 11.5px; }
   .hud input[type=range] { width: 100%; margin-top: 10px; accent-color: var(--accent); }
   .hud .stage { font-size: 11.5px; color: var(--accent); min-height: 18px; margin-top: 2px; }
-  .hud button { margin-top: 8px; width: 100%; padding: 7px; border: none; border-radius: 8px;
+  .hud button { margin-top: 8px; width: 100%; padding: 7px; border: none; border-radius: var(--ui-radius);
     background: var(--accent); color: #0b0e14; font: inherit; font-weight: 700; cursor: pointer; }
   .hud .ghost { background: transparent; border: 1px solid var(--line); color: var(--text); font-weight: 500; }
-  #tip3d { position: fixed; pointer-events: none; z-index: 40; background: rgba(17,22,31,.95);
-    border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; font-size: 12px; display: none; }
+  #tip3d { position: fixed; pointer-events: none; z-index: 40; background: var(--ui-surface);
+    border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 6px 10px; font-size: 12px; display: none; }
   #dossier { position: fixed; right: 18px; top: 62px; bottom: 18px; width: 340px; z-index: 20;
-    background: rgba(17,22,31,.93); border: 1px solid var(--line); border-radius: 14px; padding: 18px;
+    background: var(--ui-surface); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 18px;
     overflow-y: auto; display: none; box-shadow: 0 12px 40px rgba(0,0,0,.45); }
   #dossier h2 { font-size: 16px; margin-bottom: 2px; }
   #dossier .meta { font-size: 11.5px; color: var(--muted); margin-bottom: 10px; }
-  .badge { display: inline-block; font-size: 10.5px; font-weight: 600; padding: 1px 9px; border-radius: 9px; color: #fff; }
+  .badge { display: inline-block; font-size: 10.5px; font-weight: 600; padding: 1px 9px; border-radius: var(--ui-radius); color: #fff; }
   .sec { margin-top: 12px; }
   .sec h3 { font-size: 11.5px; color: var(--muted); font-weight: 500; margin-bottom: 5px; }
-  .chip { display: inline-block; border: 1px solid var(--line); border-radius: 14px; padding: 2px 10px;
+  .chip { display: inline-block; border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 2px 10px;
     font-size: 11.5px; margin: 0 4px 6px 0; color: var(--text); }
   .chip:hover { border-color: var(--accent); color: var(--accent); }
   .kv { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px dashed var(--line); font-size: 12px; }
   .kv:last-child { border-bottom: none; }
   .close { float: right; cursor: pointer; color: var(--muted); font-size: 16px; }
-  .insp { margin: 8px 0 4px; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: #0d1119; }
+  .insp { margin: 8px 0 4px; border: 1px solid var(--line); border-radius: var(--ui-radius); overflow: hidden; background: var(--ui-surface); }
   .insp canvas { display: block; width: 100%; height: 190px; cursor: grab; touch-action: none; }
   .insp .ihint { font-size: 10.5px; color: var(--muted); text-align: center; padding: 3px 0 5px; }
   .spark-wrap { margin-top: 6px; }
@@ -55,10 +53,10 @@
   .spark-wrap .sname b { color: var(--text); }
   /* 下钻链条：数据中心 › 机柜 › GPU 服务器 ›…（配置见 assets/levels.json）*/
   .drill { position: fixed; top: 54px; left: 50%; transform: translateX(-50%); z-index: 25;
-    display: flex; align-items: center; gap: 2px; background: rgba(17,22,31,.9);
-    border: 1px solid var(--line); border-radius: 20px; padding: 4px 6px;
+    display: flex; align-items: center; gap: 2px; background: var(--ui-surface);
+    border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 4px 6px;
     backdrop-filter: blur(8px); box-shadow: 0 6px 22px rgba(0,0,0,.4); font-size: 12px; }
-  .drill a, .drill span { padding: 3px 11px; border-radius: 14px; color: var(--muted);
+  .drill a, .drill span { padding: 3px 11px; border-radius: var(--ui-radius); color: var(--muted);
     text-decoration: none; white-space: nowrap; }
   .drill a:hover { background: rgba(96,165,250,.15); color: var(--accent); }
   .drill .on { background: var(--accent); color: #0b0e14; font-weight: 700; }
@@ -83,6 +81,7 @@
   }
 
 </style>
+<link rel="stylesheet" href="/assets/site-skin.css">
 </head>
 <body>
 <div class="topbar">
@@ -145,6 +144,14 @@ renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
 const scene = new THREE.Scene();
+// Appearance changes preserve the current camera, selected object and materials.
+function syncSceneAppearance() {
+  scene.background = new THREE.Color(window.InresearchUI.scenePalette().background);
+  if (scene.fog) scene.fog.color.copy(scene.background);
+}
+window.addEventListener('inresearch:appearance', syncSceneAppearance);
+syncSceneAppearance();
+
 const camera = new THREE.PerspectiveCamera(40, 1, 0.05, 300);
 camera.position.set(13, 8.5, 16);
 const controls = new OrbitControls(camera, canvas);
@@ -186,17 +193,7 @@ new EXRLoader().load("assets/hdri/studio.exr", tex => {
   pmrem.dispose(); tex.dispose();
   if (typeof iScene !== "undefined" && iScene) iScene.environment = scene.environment;
 }, undefined, () => proceduralEnv());
-{
-  const cv = document.createElement("canvas"); cv.width = 8; cv.height = 256;
-  const g = cv.getContext("2d");
-  const gr = g.createLinearGradient(0, 0, 0, 256);
-  gr.addColorStop(0, "#1b2334"); gr.addColorStop(.55, "#0d1119"); gr.addColorStop(1, "#07090e");
-  g.fillStyle = gr; g.fillRect(0, 0, 8, 256);
-  const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace;
-  const dome = new THREE.Mesh(new THREE.SphereGeometry(120, 32, 20),
-    new THREE.MeshBasicMaterial({ map: t, side: THREE.BackSide, fog: false }));
-  scene.add(dome);
-}
+// Background is supplied by the shared appearance palette; lighting remains physical.
 
 scene.add(new THREE.HemisphereLight(0x8fa8cc, 0x0a0e15, 0.7));
 const dl = new THREE.DirectionalLight(0xfff2e0, 2.4);

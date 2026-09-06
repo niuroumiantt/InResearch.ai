@@ -149,7 +149,7 @@ ROLES = ("admin", "member", "intern")
 # 实习生白名单（默认拒绝）。为什么不是黑名单：打分表的 summary 里就有招标控制价
 # 数字——敏感的不只是标了 sensitive 的事实记录，账本本身就是。逐条拉黑必漏，
 # **漏一条路径等于没锁门**；白名单只放行工单系统，其余一概 403。
-INTERN_GET_ALLOW = ("/team.html", "/reports/workorders.json", "/data/assignments.json",
+INTERN_GET_ALLOW = ("/assets/site-skin.js", "/assets/site-skin.css", "/team.html", "/reports/workorders.json", "/data/assignments.json",
                     "/api/status", "/api/whoami", "/account", "/login", "/logout",
                     "/assets/", "/favicon")
 INTERN_POST_ALLOW = ("/api/login", "/api/passwd", "/api/assign")
@@ -279,27 +279,26 @@ def record_fail(ip: str):
 
 # ── 登录页 ──────────────────────────────────────────────────
 
-LOGIN_PAGE = """<!doctype html><html lang="zh"><head><meta charset="utf-8">
+LOGIN_PAGE = """<!doctype html><html lang="zh" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light"><head><script src="/assets/site-skin.js"></script><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Inresearch Hub · 登录</title><style>
-  :root{color-scheme:light dark}
   body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
        font:15px/1.6 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
-       background:#0f1419;color:#e6e6e6}
-  form{background:#1a2129;border:1px solid #2c3844;border-radius:12px;
+       background:var(--ui-bg);color:var(--ui-ink)}
+  form{background:var(--ui-surface);border:1px solid var(--ui-line);border-radius:12px;
        padding:36px 40px;width:300px}
   h1{font-size:17px;margin:0 0 4px;font-weight:600}
-  p.sub{margin:0 0 22px;color:#8a97a5;font-size:12.5px}
-  label{display:block;font-size:12.5px;color:#8a97a5;margin:14px 0 4px}
+  p.sub{margin:0 0 22px;color:var(--ui-muted);font-size:12.5px}
+  label{display:block;font-size:12.5px;color:var(--ui-muted);margin:14px 0 4px}
   input{width:100%;box-sizing:border-box;padding:9px 11px;border-radius:8px;
-        border:1px solid #2c3844;background:#0f1419;color:#e6e6e6;font-size:14px}
-  input:focus{outline:none;border-color:#4a90d9}
+        border:1px solid var(--ui-line);background:var(--ui-bg);color:var(--ui-ink);font-size:14px}
+  input:focus{outline:none;border-color:var(--ui-accent)}
   button{width:100%;margin-top:22px;padding:10px;border:0;border-radius:8px;
-         background:#2f6db8;color:#fff;font-size:14px;cursor:pointer}
-  button:hover{background:#3a7cc9}
-  .err{margin-top:14px;color:#e07b7b;font-size:12.5px;min-height:1.2em}
-  .note{margin-top:18px;color:#5c6a78;font-size:11.5px;text-align:center}
-</style></head><body>
+         background:var(--ui-accent);color:var(--ui-on-accent);font-size:14px;cursor:pointer}
+  button:hover{background:var(--ui-accent)}
+  .err{margin-top:14px;color:var(--ui-red);font-size:12.5px;min-height:1.2em}
+  .note{margin-top:18px;color:var(--ui-muted);font-size:11.5px;text-align:center}
+</style><link rel="stylesheet" href="/assets/site-skin.css"></head><body class="ui-auth">
 <form onsubmit="return go(event)">
   <h1>Inresearch Hub</h1>
   <p class="sub">数据中心研究 · 内部系统</p>
@@ -321,26 +320,25 @@ async function go(e){e.preventDefault();
 </script></body></html>"""
 
 
-PASSWD_PAGE = """<!doctype html><html lang="zh"><head><meta charset="utf-8">
+PASSWD_PAGE = """<!doctype html><html lang="zh" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light"><head><script src="/assets/site-skin.js"></script><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>修改密码 · Inresearch Hub</title><style>
-  :root{color-scheme:light dark}
   body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
        font:15px/1.6 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
-       background:#0f1419;color:#e6e6e6}
-  form{background:#1a2129;border:1px solid #2c3844;border-radius:12px;
+       background:var(--ui-bg);color:var(--ui-ink)}
+  form{background:var(--ui-surface);border:1px solid var(--ui-line);border-radius:12px;
        padding:36px 40px;width:300px}
   h1{font-size:17px;margin:0 0 22px;font-weight:600}
-  label{display:block;font-size:12.5px;color:#8a97a5;margin:14px 0 4px}
+  label{display:block;font-size:12.5px;color:var(--ui-muted);margin:14px 0 4px}
   input{width:100%;box-sizing:border-box;padding:9px 11px;border-radius:8px;
-        border:1px solid #2c3844;background:#0f1419;color:#e6e6e6;font-size:14px}
-  input:focus{outline:none;border-color:#4a90d9}
+        border:1px solid var(--ui-line);background:var(--ui-bg);color:var(--ui-ink);font-size:14px}
+  input:focus{outline:none;border-color:var(--ui-accent)}
   button{width:100%;margin-top:22px;padding:10px;border:0;border-radius:8px;
-         background:#2f6db8;color:#fff;font-size:14px;cursor:pointer}
+         background:var(--ui-accent);color:var(--ui-on-accent);font-size:14px;cursor:pointer}
   .msg{margin-top:14px;font-size:12.5px;min-height:1.2em}
-  .msg.err{color:#e07b7b}.msg.ok{color:#7bc98a}
-  a{color:#6aa3d8;font-size:12px;display:block;text-align:center;margin-top:16px}
-</style></head><body>
+  .msg.err{color:var(--ui-red)}.msg.ok{color:var(--ui-green)}
+  a{color:var(--ui-accent);font-size:12px;display:block;text-align:center;margin-top:16px}
+</style><link rel="stylesheet" href="/assets/site-skin.css"></head><body class="ui-auth">
 <form onsubmit="return go(event)">
   <h1>修改密码</h1>
   <label>当前密码</label><input id="old" type="password" autocomplete="current-password" autofocus>
@@ -364,19 +362,18 @@ async function go(e){e.preventDefault();
 </script></body></html>"""
 
 
-FORBIDDEN_PAGE = """<!doctype html><html lang="zh"><head><meta charset="utf-8">
+FORBIDDEN_PAGE = """<!doctype html><html lang="zh" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light"><head><script src="/assets/site-skin.js"></script><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>无权访问 · Inresearch Hub</title><style>
-  :root{color-scheme:light dark}
   body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
        font:15px/1.6 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
-       background:#0f1419;color:#e6e6e6}
-  div{background:#1a2129;border:1px solid #2c3844;border-radius:12px;
+       background:var(--ui-bg);color:var(--ui-ink)}
+  .ui-auth-message{background:var(--ui-surface);border:1px solid var(--ui-line);border-radius:12px;
       padding:36px 40px;width:320px;text-align:center}
   h1{font-size:16px;margin:0 0 10px}
-  p{color:#8a97a5;font-size:13px;margin:0 0 20px}
-  a{color:#6aa3d8;font-size:13px}
-</style></head><body><div>
+  p{color:var(--ui-muted);font-size:13px;margin:0 0 20px}
+  a{color:var(--ui-accent);font-size:13px}
+</style><link rel="stylesheet" href="/assets/site-skin.css"></head><body class="ui-auth"><div class="ui-auth-message">
 <h1>这一页不在你的权限里</h1>
 <p>你的账号是实习生角色，可访问工单系统。<br>如需更多权限，请联系管理员。</p>
 <a href="/team.html">→ 去工单板</a>

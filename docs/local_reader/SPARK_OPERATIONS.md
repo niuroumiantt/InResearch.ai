@@ -22,6 +22,44 @@
 | `~/.local/state/inresearch.ai/status.json` | 可重建健康快照；日志在用户 journal；锁位于 catalog，避免更换 state 路径绕过单 worker |
 | `~/.config/inresearch.ai/reader.env` | 本机私有配置，0600；凭据不可打印或提交 |
 
+
+## 从 Mac 批量上传（执行机器必须是 Mac）
+
+2026-09-06 批次源目录已由用户在 `m4@m4m` 终端确认：`/Users/m4/Downloads/所有raw materials`，约 267GB，含多级子文件夹。Spark 地址为 `spark@100.73.13.53`。后续批次采用新的批次名，不复用已开放的目录。
+
+在**存文件的 Mac**按 Command + 空格，搜索“终端”，打开新窗口。提示符应为 `m4@m4m`；`spark@dgx` 表示仍在 Spark，不能运行 Mac 上传命令。`caffeinate` 是 macOS 的防休眠工具，不在 Spark 安装。
+
+先确认源路径并建立隐藏暂存目录：
+
+```bash
+ls -ld "/Users/m4/Downloads/所有raw materials"
+ssh spark@100.73.13.53 'mkdir -p /home/spark/.local/share/inresearch.ai/raw-materials/.m4-20260906.partial'
+```
+
+仍在 Mac 终端上传，源路径末尾斜杠表示传目录内容，保留所有子目录。目录在隐藏暂存区，reader 不会提前读取。输入 SSH 密码时屏幕不显示字符。
+
+```bash
+caffeinate -i rsync -rtvh --progress --partial \
+  "/Users/m4/Downloads/所有raw materials/" \
+  spark@100.73.13.53:/home/spark/.local/share/inresearch.ai/raw-materials/.m4-20260906.partial/
+```
+
+Mac 保持接电、联网、不合盖。中断后重复同一命令续传；不使用 `--delete` 或删除源文件。成功退出后校验全部文件内容，校验可能较慢：
+
+```bash
+caffeinate -i rsync -rcn --out-format='%i %n' \
+  "/Users/m4/Downloads/所有raw materials/" \
+  spark@100.73.13.53:/home/spark/.local/share/inresearch.ai/raw-materials/.m4-20260906.partial/
+```
+
+仅在校验退出成功、没有差异输出且源目录已停止改动时，才开放本批次：
+
+```bash
+ssh spark@100.73.13.53 'cd /home/spark/.local/share/inresearch.ai/raw-materials && test ! -e m4-20260906 && mv -T .m4-20260906.partial m4-20260906'
+```
+
+开放后阅读服务会处理稳定文件。Mac 原始资料继续保留；上传成功不等于已阅读，更不等于 C3 已采用。
+
 `doc_id = doc-<完整 SHA256>`。相同字节只读一次，多个来源各有 source 记录。同一路径重新投递保留新的来源记录与 `version_seq/previous_doc_id`；路径改名不换内容身份。不同文件名与同名不同内容不会互相覆盖。完整阅读且 library 操作 committed 后，仍匹配登记签名与 SHA 的 raw 接收副本会先改名至隐藏隔离位置，核对移动后字节，再移至永久 `intake-receipts/received/`。这使处理后的文件退出 raw，**不会删除原件或接收副本**。同路径已被新投料替换时跳过旧来源搬运；隔离后发生变化则原样恢复，若原路径又有新文件则两份都保留并转 needs_review。每次操作持久记录，崩溃恢复不覆盖新投料。raw 为空仍不能证明全库阅读或采用完成，须查台账、coverage 与异常状态。相同字节再次投递只增加来源与接收归档任务，不再次调用模型。原件与 receipts 都在同盘，尚不等于异机备份。
 
 `report.json` 包含 `doc_id/content_sha256`、执行与注册表版本、实际模型记录、`coverage`、候选对象/问题、逐条 evidence 与 claims。evidence 有原文短引文、页码、块号和哈希；每条 claim 独立映射注册对象/问题，不把整篇主题套到所有引文上。所有产物固定 `acceptance=candidate`。`coverage.complete=true` 只表示所有提取正文分块已经处理、页数/块数/字数对齐；不证明图表、数字解释或结论正确，不触发 C3 采用，也不自动关闭问题。
