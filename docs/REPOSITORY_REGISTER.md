@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `pipeline/governance.py --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.06.2。
+> GENERATED · 由 `pipeline/governance.py --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.06.3。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：405。
+在册文件：412。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,15 +15,15 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 12 |
-| 历史快照 | 35 |
-| 运行代码 | 54 |
-| 现行规范 | 8 |
-| 项目配置 | 27 |
+| 历史快照 | 36 |
+| 运行代码 | 56 |
+| 现行规范 | 9 |
+| 项目配置 | 28 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 25 |
-| 配套说明 | 29 |
-| 测试 | 9 |
+| 配套说明 | 30 |
+| 测试 | 10 |
 
 ## 在册记录集合
 
@@ -169,7 +169,7 @@
 | `docs/reviews/2026-09-06/evidence/runtime.json` | limits | 3 |
 | `framework/bom.json` | layers | 5 |
 | `framework/bom.json` | parts | 46 |
-| `framework/current_state.json` | policies | 16 |
+| `framework/current_state.json` | policies | 18 |
 | `framework/current_state.json` | entrypoints | 4 |
 | `framework/current_state.json` | retired_entrypoints | 3 |
 | `framework/current_state.json` | known_retired_patterns | 11 |
@@ -306,6 +306,7 @@
 | [docs/LIBRARY_SCORES.csv](LIBRARY_SCORES.csv) | 在册数据/索引 |
 | [docs/PROJECT_PANORAMA.md](PROJECT_PANORAMA.md) | 现行入口 |
 | [docs/REPOSITORY_REGISTER.md](REPOSITORY_REGISTER.md) | 生成物 |
+| [docs/archive/2026-09-06/ACQUISITION_LEGACY.md](archive/2026-09-06/ACQUISITION_LEGACY.md) | 历史快照 |
 | [docs/archive/2026-09-06/CLAUDE.md](archive/2026-09-06/CLAUDE.md) | 历史快照 |
 | [docs/archive/2026-09-06/README.md](archive/2026-09-06/README.md) | 历史快照 |
 | [docs/archive/2026-09-06/UI_BEFORE_SKINS.md](archive/2026-09-06/UI_BEFORE_SKINS.md) | 历史快照 |
@@ -468,6 +469,7 @@
 | [docs/intern/BATCH01_A_product_links.md](intern/BATCH01_A_product_links.md) | 历史快照 |
 | [docs/intern/BATCH01_B_gpu_rental_snapshot.md](intern/BATCH01_B_gpu_rental_snapshot.md) | 历史快照 |
 | [docs/intern/BATCH01_C_m11_abs_presales.md](intern/BATCH01_C_m11_abs_presales.md) | 历史快照 |
+| [docs/local_reader/ACQUISITION_OPERATIONS.md](local_reader/ACQUISITION_OPERATIONS.md) | 配套说明 |
 | [docs/local_reader/CONTINUOUS_READER_DESIGN.md](local_reader/CONTINUOUS_READER_DESIGN.md) | 已退役入口 |
 | [docs/local_reader/KICKOFF_PROMPT.md](local_reader/KICKOFF_PROMPT.md) | 已退役入口 |
 | [docs/local_reader/PROJECT_BRIEF.md](local_reader/PROJECT_BRIEF.md) | 配套说明 |
@@ -509,6 +511,7 @@
 | [framework/04_reading_scoring_standard.md](../framework/04_reading_scoring_standard.md) | 现行规范 |
 | [framework/05_interface_system.md](../framework/05_interface_system.md) | 现行规范 |
 | [framework/05_source_map.md](../framework/05_source_map.md) | 配套说明 |
+| [framework/06_acquisition.md](../framework/06_acquisition.md) | 现行规范 |
 | [framework/CURRENT.md](../framework/CURRENT.md) | 现行规范 |
 | `framework/bom.json` | 项目配置 |
 | `framework/current_state.json` | 项目配置 |
@@ -539,6 +542,7 @@
 | `index.html` | 运行代码 |
 | `ops.html` | 运行代码 |
 | [pipeline/README.md](../pipeline/README.md) | 配套说明 |
+| `pipeline/acquisition.py` | 运行代码 |
 | `pipeline/auth.py` | 运行代码 |
 | `pipeline/blindspot.py` | 运行代码 |
 | `pipeline/build_library_index.py` | 运行代码 |
@@ -556,6 +560,7 @@
 | `pipeline/fix_stale_paths.py` | 运行代码 |
 | `pipeline/governance.py` | 运行代码 |
 | `pipeline/intake.py` | 运行代码 |
+| `pipeline/launch_acquisition.py` | 运行代码 |
 | `pipeline/launch_reader.py` | 运行代码 |
 | `pipeline/output_map.py` | 运行代码 |
 | `pipeline/product_library.py` | 运行代码 |
@@ -566,6 +571,7 @@
 | `pipeline/research_navigation.py` | 运行代码 |
 | `pipeline/scan_inbox.py` | 运行代码 |
 | `pipeline/serve.py` | 运行代码 |
+| `pipeline/test_acquisition.py` | 测试 |
 | `pipeline/test_catalog_bridge.py` | 测试 |
 | `pipeline/test_continuous_reader.py` | 测试 |
 | `pipeline/test_display_regressions.py` | 测试 |
@@ -610,5 +616,6 @@
 | [research/M14.md](../research/M14.md) | 兼容研究记录 |
 | [research/M15.md](../research/M15.md) | 兼容研究记录 |
 | [research/SUMMARY.md](../research/SUMMARY.md) | 兼容研究记录 |
+| `scripts/export_inews_research.cjs` | 项目配置 |
 | `team.html` | 运行代码 |
 | `tests/ui_skin.cjs` | 项目配置 |

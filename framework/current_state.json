@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.06.2",
+  "version": "2026.09.06.3",
   "effective_at": "2026-09-06",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -229,6 +229,42 @@
         "interface-legacy"
       ],
       "reason": "用户要求可切换的完整视觉风格，folk 以细线直角参考为准；替代逐页色板和仅换色的旧解释。"
+    },
+    {
+      "id": "acquisition-legacy",
+      "topic": "acquisition",
+      "status": "superseded",
+      "source": "docs/archive/2026-09-06/ACQUISITION_LEGACY.md",
+      "scope": "project",
+      "superseded_by": "acquisition-20260906",
+      "supersedes": []
+    },
+    {
+      "id": "acquisition-20260906",
+      "topic": "acquisition",
+      "status": "current",
+      "source": "framework/06_acquisition.md",
+      "scope": "project",
+      "effective_at": "2026-09-06",
+      "implementations": [
+        "pipeline/acquisition.py",
+        "pipeline/fetch_news_signals.py",
+        "pipeline/fetch_sec.py",
+        "pipeline/fetch_gpu_prices.py",
+        "pipeline/collect.py",
+        "pipeline/launch_acquisition.py",
+        "pipeline/publish_reader.py",
+        "pipeline/research.py",
+        "pipeline/serve.py",
+        "pipeline/test_acquisition.py",
+        "scripts/export_inews_research.cjs",
+        "ops.html",
+        "docs/local_reader/ACQUISITION_OPERATIONS.md"
+      ],
+      "supersedes": [
+        "acquisition-legacy"
+      ],
+      "reason": "采用跨 inews/SEC/GPU 的 Spark 采集架构，替代旧目录桥接和自动直写价格；分阶段实施。"
     }
   ],
   "entrypoints": [

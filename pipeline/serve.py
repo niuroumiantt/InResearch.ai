@@ -32,10 +32,10 @@ ROOT = Path(__file__).resolve().parent.parent
 PY = sys.executable
 
 TASKS = {
-    "collect":    ("每日流水线（采集+简报+标记）", ["pipeline/collect.py"], 600),
-    "news":       ("news 信号桥接", ["pipeline/fetch_news_signals.py"], 120),
-    "sec":        ("SEC EDGAR 采集", ["pipeline/fetch_sec.py"], 300),
-    "gpu":        ("GPU 租价采集（vast.ai）", ["pipeline/fetch_gpu_prices.py"], 90),
+    "collect":    ("兼容历史简报", ["pipeline/collect.py", "--offline"], 600),
+    "news":       ("inews 采集状态", ["pipeline/launch_acquisition.py", "inews"], 30),
+    "sec":        ("SEC 采集状态", ["pipeline/launch_acquisition.py", "sec"], 30),
+    "gpu":        ("GPU 采集状态", ["pipeline/launch_acquisition.py", "gpu"], 30),
     "indicators": ("指标回填", ["pipeline/refresh_indicators.py"], 30),
     "verify":     ("生成核验队列", ["pipeline/verify.py"], 30),
     "validate":   ("数据校验", ["pipeline/validate.py"], 30),

@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.06.2",
+  "version": "2026.09.06.3",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -66,8 +66,8 @@
     {
       "path": "README.md",
       "role": "supporting_document",
-      "bytes": 10255,
-      "sha256": "9ddf243f347fb356b205ade4f1fdb271e609292f9657e358b557caa0aade6078",
+      "bytes": 10220,
+      "sha256": "23574afb0d9f9f4ca2dda8c380bb37edca12cf8048177172cdf2856f3d123230",
       "collections": []
     },
     {
@@ -845,8 +845,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 3348,
-      "sha256": "3a3ea5cea8b5eb878db5ab399ec2cd8f39a181d7bd358b06acfc7900b3181090",
+      "bytes": 3861,
+      "sha256": "44519a57057c255f6ce252b6ae375b44d3375cc266557fb446179971f60e51c9",
       "collections": []
     },
     {
@@ -897,6 +897,13 @@
     {
       "path": "docs/REPOSITORY_REGISTER.md",
       "role": "generated"
+    },
+    {
+      "path": "docs/archive/2026-09-06/ACQUISITION_LEGACY.md",
+      "role": "historical",
+      "bytes": 757,
+      "sha256": "2ed929dbf94a0262d15ec5c85346ba279ba6b809964027444f6f3395cf65eb87",
+      "collections": []
     },
     {
       "path": "docs/archive/2026-09-06/CLAUDE.md",
@@ -3450,6 +3457,13 @@
       "collections": []
     },
     {
+      "path": "docs/local_reader/ACQUISITION_OPERATIONS.md",
+      "role": "supporting_document",
+      "bytes": 1992,
+      "sha256": "d8443803d61f5286985fd61cdb4956aae9a5f87b1bd7eacf692ac6e37a27aa35",
+      "collections": []
+    },
+    {
       "path": "docs/local_reader/CONTINUOUS_READER_DESIGN.md",
       "role": "retired_entrypoint",
       "bytes": 415,
@@ -3760,10 +3774,17 @@
       "collections": []
     },
     {
+      "path": "framework/06_acquisition.md",
+      "role": "normative",
+      "bytes": 10717,
+      "sha256": "2f0ac51744e690e3c5f25c4e7333d8447e626a825803a8ad3decea21abd199eb",
+      "collections": []
+    },
+    {
       "path": "framework/CURRENT.md",
       "role": "normative",
-      "bytes": 3757,
-      "sha256": "71e8bb5f4b94d23029fa24684b10d024b437c3dc8656af0e79ae58009fda76d0",
+      "bytes": 3875,
+      "sha256": "4739c5abafaf906cf55dc470f80360ecf46a5e4bc109eb7db249bdd1af694443",
       "collections": []
     },
     {
@@ -3785,12 +3806,12 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 7956,
-      "sha256": "e5f835df126cda7fa63a58f86b7904d720fedce7fee8cb3f6f7a0a1b2a3d582a",
+      "bytes": 9147,
+      "sha256": "934998679e4e60e9343ffdfd96c3f1ae9ade5ea4c0c13a34b3f528f6bb2d511c",
       "collections": [
         {
           "name": "policies",
-          "count": 16
+          "count": 18
         },
         {
           "name": "entrypoints",
@@ -4036,15 +4057,22 @@
     {
       "path": "ops.html",
       "role": "implementation",
-      "bytes": 26886,
-      "sha256": "cb91761da6f0b75678a3c329569b681de5a84043fe1e846a56c64a6ef702c3c9",
+      "bytes": 27199,
+      "sha256": "6b546dfb8b0eb8640f805646dfcfaabe6640d2d38bca0d43b85ed800667ae8c1",
       "collections": []
     },
     {
       "path": "pipeline/README.md",
       "role": "supporting_document",
-      "bytes": 4541,
-      "sha256": "536a6d4e18d2ca1de67c108d0ab5d0f4f0a4e77e178af51cada3939fcbce7a08",
+      "bytes": 4703,
+      "sha256": "9a818ceb9e95cae3ba9fa6f458b6e2e529241b3e4557fdaabb692d4d748f4b96",
+      "collections": []
+    },
+    {
+      "path": "pipeline/acquisition.py",
+      "role": "implementation",
+      "bytes": 14890,
+      "sha256": "590d32ba1f106e051f0476bcae271cf82b466dcc9cbb5302aa1b5257221469ed",
       "collections": []
     },
     {
@@ -4078,8 +4106,8 @@
     {
       "path": "pipeline/collect.py",
       "role": "implementation",
-      "bytes": 9628,
-      "sha256": "c128c686de8d4c167770311747f0d4cabd55fe4269d339af576e81e04589bddd",
+      "bytes": 8923,
+      "sha256": "2f3d9e95e5357945adb01dee7bba369b4b652b6058a2cb49c59a031617f284f9",
       "collections": []
     },
     {
@@ -4120,22 +4148,22 @@
     {
       "path": "pipeline/fetch_gpu_prices.py",
       "role": "implementation",
-      "bytes": 2867,
-      "sha256": "208d020bece45d85160ce5be1fdc91baea60d9d5e73e7625a5af4d81a045a521",
+      "bytes": 383,
+      "sha256": "3401ea731d7b8b4b084b0088c984d699dd44fc572ec6af55982e4283ef4c9e11",
       "collections": []
     },
     {
       "path": "pipeline/fetch_news_signals.py",
       "role": "implementation",
-      "bytes": 5191,
-      "sha256": "ebe0819dce69a5ec3fc91e356f1ca8956f4f93cd2112ef402ddc6d97de946f58",
+      "bytes": 2188,
+      "sha256": "33e712da59fd6bba638026402c95aec53dffacb96373a67221132c87b06e16f0",
       "collections": []
     },
     {
       "path": "pipeline/fetch_sec.py",
       "role": "implementation",
-      "bytes": 2816,
-      "sha256": "fffea050835c181735df933ac26ba9bf7b915ea6c7ff32a21055cff289a561f5",
+      "bytes": 444,
+      "sha256": "26dfdebdc7130a055257ccd6f097e1aad7203fb66358958704dc3a389d09130f",
       "collections": []
     },
     {
@@ -4167,6 +4195,13 @@
       "collections": []
     },
     {
+      "path": "pipeline/launch_acquisition.py",
+      "role": "implementation",
+      "bytes": 899,
+      "sha256": "1b82420fb21ca5456fcb90d4b898b7cce6334657c59dd4446ff6c5367dd0e269",
+      "collections": []
+    },
+    {
       "path": "pipeline/launch_reader.py",
       "role": "implementation",
       "bytes": 513,
@@ -4190,8 +4225,8 @@
     {
       "path": "pipeline/publish_reader.py",
       "role": "implementation",
-      "bytes": 3664,
-      "sha256": "99f4cc2d7e95164ea5182b25b72c46ebede6edad2b9b00c76e1488164912254b",
+      "bytes": 3767,
+      "sha256": "91e5b2dafb4d995a4bf0374ca3462f96098b972a489540ea7b476251c14a828e",
       "collections": []
     },
     {
@@ -4211,8 +4246,8 @@
     {
       "path": "pipeline/research.py",
       "role": "implementation",
-      "bytes": 27093,
-      "sha256": "79cfdad16ea0a6003d3133b7ca3c53d09b08f131805d47cb62c6423f88435720",
+      "bytes": 27108,
+      "sha256": "4221189fe4763acd79bacc9c9e1b4b0db0e53dc6f41f162c2b030594a43ebb3b",
       "collections": []
     },
     {
@@ -4232,8 +4267,15 @@
     {
       "path": "pipeline/serve.py",
       "role": "implementation",
-      "bytes": 25177,
-      "sha256": "eccfa5b152786f5daca774c578cd7d671e610a0e05d5ac48a9c979a960d340c3",
+      "bytes": 25187,
+      "sha256": "ffe66c215606313355982187e1bf2b947fe28ddfcc5278cc42af9b6d309903fb",
+      "collections": []
+    },
+    {
+      "path": "pipeline/test_acquisition.py",
+      "role": "test",
+      "bytes": 5540,
+      "sha256": "783f051f906c24834398a725f12f99f182a3a0192bdd1cc2860f3fc140370476",
       "collections": []
     },
     {
@@ -4601,8 +4643,8 @@
     {
       "path": "research/M13.md",
       "role": "research_record",
-      "bytes": 23184,
-      "sha256": "66eec0c969fc5dc6fd488957d998033f139c01b6536aee2572c060d8fbf62ea4",
+      "bytes": 23281,
+      "sha256": "d1e8361e18794799f8af96e7cccec8bf8ac81066c339008781c04dc622d35284",
       "collections": [
         {
           "name": "Finding",
@@ -4645,6 +4687,13 @@
       "collections": []
     },
     {
+      "path": "scripts/export_inews_research.cjs",
+      "role": "project_config",
+      "bytes": 1013,
+      "sha256": "e44a85fce278ac1b855f8deba0a0bdd906daf8d9a3a503c3db24cb1308b55881",
+      "collections": []
+    },
+    {
       "path": "team.html",
       "role": "implementation",
       "bytes": 14249,
@@ -4654,8 +4703,8 @@
     {
       "path": "tests/ui_skin.cjs",
       "role": "project_config",
-      "bytes": 5992,
-      "sha256": "11fd3194166f663b7fd5cd83c99ae8fe90324e4d58da23ddeb33c43a9870a814",
+      "bytes": 6252,
+      "sha256": "61dd7c5027060f90c89f5b0a6d4e2175d9f2f7fbe2857af6d52d33dc90ac10e7",
       "collections": []
     }
   ],
@@ -4665,14 +4714,14 @@
     "design_reference": 1,
     "entrypoint": 4,
     "generated": 12,
-    "historical": 35,
-    "implementation": 54,
-    "normative": 8,
-    "project_config": 27,
+    "historical": 36,
+    "implementation": 56,
+    "normative": 9,
+    "project_config": 28,
     "research_record": 16,
     "retired_entrypoint": 3,
     "source_record": 25,
-    "supporting_document": 29,
-    "test": 9
+    "supporting_document": 30,
+    "test": 10
   }
 }

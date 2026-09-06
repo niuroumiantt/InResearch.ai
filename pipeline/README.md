@@ -2,17 +2,21 @@
 
 零依赖 Python（与 news 项目同基因）。所有脚本从仓库根目录运行。
 
+现行采集、存储和翻译方案见 [06 采集规范](../framework/06_acquisition.md)。采集在 Spark 执行；旧简报日期不能代替采集状态。
+
 ## 现有脚本
 
 | 脚本 | 档位 | 作用 |
 |---|---|---|
+| `acquisition.py` | 第一阶段 | 永久台账、新闻投影、SEC 主文件、GPU 原始快照与候选统计 |
+| `launch_acquisition.py` | 只读 | 查询 Spark 采集摘要 |
 | `validate.py` | — | 按口径手册校验六张表：主键、枚举、引用、保鲜度。**任何提交前先跑它** |
 | `verify.py` | — | 生成核验队列 `reports/verify_queue.md`：按 P1/P2/P3 列出该重新查证的记录。**核验工作的固定入口** |
-| `collect.py` | 自动 | 每日流水线总调度：采集 → 核验队列 → 简报（brief.json / daily_brief.md）+ 事件驱动 needs-review 标记 |
-| `fetch_sec.py` | 自动 | 拉取公司库中有 CIK 公司的 EDGAR 文件清单（含 20-F/6-K），原始数据存 `data/raw/sec/`。**仅本机**（云端网络策略屏蔽 sec.gov）|
+| `collect.py` | 兼容 | 只汇总历史缓存，不联网；不能代表当前采集状态 |
+| `fetch_sec.py` | 兼容 | 转交 Spark acquisition.py；有界抓取主文件并存永久采集台账 |
 | `update_ciks.py` | 自动 | 用 SEC 官方映射表回填美股公司 CIK。**仅本机**（同上）|
-| `fetch_news_signals.py` | 自动 | 消费 news 项目数据，按实体词条匹配出新闻线索 → `data/raw/news_signals/` |
-| `fetch_gpu_prices.py` | 自动 | vast.ai 市场 H100/B200 现货租价中位数 → prices 时间序列（每日幂等）|
+| `fetch_news_signals.py` | 兼容 | 仅接收 inews 显式新闻投影 --input；旧 news/data 协议退役 |
+| `fetch_gpu_prices.py` | 兼容 | Vast 按需报价候选快照；需要私有凭据，不再写 prices.json |
 | `refresh_indicators.py` | 自动 | 库内可计算指标回填（容量聚合/价格序列直通/合同聚合），collect 每日调用 |
 | `export.py` | — | **报告导出器**：从知识层汇编报告（全量/按模块），md + 可选 docx → `reports/output/` |
 | `serve.py` | 常驻 | 服务器：静态站点 + 登录认证（auth.py）+ 管理后台 API（任务白名单执行 / 价格人工录入含校验回滚 / 派工）|
