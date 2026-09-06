@@ -1,5 +1,15 @@
 # CLAUDE.md — 会话协议（每个会话自动加载）
 
+## 2026-09-06 已生效研究基准（优先于下方旧架构/环境描述）
+
+用户已采用 [全行业研究架构 v2](docs/reviews/2026-09-06/RESEARCH_ARCHITECTURE_V2.md)，并授权实施。正式规范见 `framework/00_overview.md`、`03_bom_and_collaboration.md`、`04_reading_scoring_standard.md` 与 `docs/local_reader/RUN_TO_COMPLETION.md`。已批准工作不再逐批确认；实际部署完成度以代码/验收/运行记录为准。
+
+- 15 模块为兼容研究视角与维护入口；按对象/关系/配置实行局部 MECE，任何模块均可有来源、版本与依赖地引用其他模块结论。
+- 行业专家能力覆盖原理、接口、性能、可靠性、生命周期、供应链、商业与需求；数字事实和非数字原理/规范/机制/反例均有可回原文的证据。
+- Spark 持续接收原件，27B 粗读后每篇独立文章完整深读；低分只排先后。depth 只依据执行与覆盖，不从摘要、路径、rescore 或批次默认猜。
+- 文档/版本/哈希定义身份；原名、旧路径、评分历史保留；目录和显示名是视图。原件/原包只留不删，不能随任务 TTL 清理。
+- 阅读、质量、候选核验与 C3 采用分别记账，现行口径与 A 档人审不放宽；旧独立 reader 启动与筛除/删除协议已废止。
+
 ## 人机互动协议（2026-08-17 用户拍板，最高优先级，所有窗口适用）
 
 **用户没有明确拒绝 ≠ 同意，等于「他没看到」。** 用户同时在处理多条线，
@@ -44,7 +54,7 @@
 - 四种口径（GW/TWh/美元/需求模型）永不混加；只有 L8+ 通电投运计入当期供给。
 - 官方未披露的容量**不许推算**——留白是纪律不是缺口；理由写进 notes。
 - 知识层 research/Mxx.md 是项目主体；改数据必须过 `python3 pipeline/validate.py`（0 warnings 才算过）。
-- 零依赖：纯 Python 标准库，前端单文件 HTML，不引入 npm/pip 依赖；第三方库本地化到 assets/vendor。
+- 核心运行维持标准库优先，前端第三方库本地化；文档/PDF 构建可使用独立工具环境，不给生产核心增加文档依赖。
 - 二进制不进 git；研报库只进索引和打分表。**例外（2026-08-18 用户批 A3 方案①）**：
   3D 可视化资产（assets/models/ 的 .glb、assets/hdri/ 的 .hdr/.exr）允许进 git，
   单文件 ≤10MB 量级，来源与许可必须登记在同目录 README/manifest——未知许可不进库。
@@ -67,17 +77,9 @@ python3 pipeline/product_library.py status --verify  # 产品资料库体检（�
 python3 -m http.server 8000     # 本地看仪表盘
 ```
 
-## 环境注意
+## 环境与运行状态
 
-- 用户本机唯一项目文件夹 `~/code/inresearch.ai/`（2026-08-18 归一；精读工作区在其
-  `reader/` 子目录，不进 git）。**Mac mini（主机名 `hermes`）是主力机**（2026-08-19）：24 小时不关机，
-  唯一的自动同步机与下载机；MacBook（主机名 `ai`，用户 `yidian`）降为移动办公机，其 `sync` 与 `collect`
-  两个服务都不得带 `--push`（会推的是这两个），2026-08-19 已在本机 disable。
-  产品官方资料库落在 Mac mini 外置卷上，仓库内软链 `product/` 指过去（不进 git），
-  采集用 `pipeline/product_library.py`，落点与流程见 `docs/local_setup/PRODUCT_LIBRARY.md`。本机 launchd 三件套与双向同步见 `docs/local_setup/`：
-  本机每 30 分钟自动 pull + 过 validate 的改动自动 push，服务器 autopull 接力上站。
-- 云端会话网络策略屏蔽 sec.gov：update_ciks.py / fetch_sec.py 只能在用户本机（launchd）跑。
-- 研报库本体（docs/library/）不在 git 里，云端会话只能用 LIBRARY_SCORES.csv 的摘要工作。
-- 文献打分用 framework/04_reading_scoring_standard.md（标准 v2，七维度）；逐篇精读由本地
-  datacenter-reader 项目执行（计划与启动指令见 docs/local_reader/），批次产物回传
-  docs/inbox/scored_batches/ 与 digest_drafts/，云端会话负责审计合并与消化。
+- 源码常驻 `~/code/inresearch.ai/`，并行工作树 `~/.worktrees/inresearch.ai/<任务>/`。资料放 `~/.local/share/inresearch.ai/`，状态日志放 `~/.local/state/inresearch.ai/`；旧 reader/library/product 路径可能有唯一资料，先盘点用途和引用，不搬删。
+- Spark 为已采用的持续资料处理节点；infra 负责模型与通用能力，其他主机服务不顺手迁移。实际源码、数据落点、服务健康和推送权限以当前部署记录为准，不能照搬 2026-08 Mac mini 主力/三项 launchd 已运行的历史叙述。
+- 原件、阅读成果、台账与 PDF 不进 Git；云端可用索引找资料，但原文未可回查时不能只凭摘要完成研究采用。
+- 当前入口是 `docs/local_reader/PROJECT_BRIEF.md` 与 `RUN_TO_COMPLETION.md`。历史 `start.sh`/`KICKOFF_PROMPT.md` 不得作为新常驻 reader 的启动指令；命令以实际实现和服务手册为准。

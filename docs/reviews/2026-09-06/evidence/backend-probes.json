@@ -1,0 +1,115 @@
+{
+  "ext_html": "TypeError: 'in <string>' requires string as left operand, not bytes",
+  "ext_txt": "TypeError: 'in <string>' requires string as left operand, not bytes",
+  "ext_pdf": ".pdf",
+  "adopt": {
+    "plan_status": "todo",
+    "plan_doc_id": "",
+    "index_count": 1
+  },
+  "rate_limit": {
+    "configured_max": 4096,
+    "actual": 4116
+  },
+  "price_concurrency": {
+    "http_responses": [
+      200,
+      200
+    ],
+    "stored_count": 1
+  },
+  "assign_any": {
+    "response": [
+      [
+        200,
+        {
+          "ok": true,
+          "msg": "M11-test → intern-test（已合并）"
+        }
+      ]
+    ],
+    "stored": {
+      "records": [
+        {
+          "workorder_id": "M11-test",
+          "assignee": "intern-test",
+          "status": "已合并",
+          "updated": "2026-09-06",
+          "by": "intern-test",
+          "assigned": "2026-09-06"
+        }
+      ],
+      "updated": "2026-09-06"
+    }
+  },
+  "public_ranges": [
+    {
+      "fact_id": "us-interconnect-queue-years-2025",
+      "range": [
+        4,
+        7
+      ],
+      "public": "美国数据中心集群区域（弗吉尼亚等）：**未披露（留白） 年**（2025 年数据，距今约 1 年；口径：stage=未披露｜region=US）"
+    },
+    {
+      "fact_id": "cn-top-idc-annual-delivery-2025e",
+      "range": [
+        200,
+        300
+      ],
+      "public": "中国头部 IDC：**未披露（留白） MW/年**（2025 年数据，距今约 1 年；口径：scope=单一头部企业｜basis=券商测算｜region=CN）"
+    },
+    {
+      "fact_id": "dram-asp-qoq-2025q1e",
+      "range": [
+        20,
+        25
+      ],
+      "public": "DRAM 市场：**未披露（留白） %**（2025 年数据，距今约 1 年；口径：period_basis=环比 QoQ｜product=传统 DRAM｜basis=预测｜region=Global）"
+    },
+    {
+      "fact_id": "traditional-rack-density-2024",
+      "range": [
+        12,
+        20
+      ],
+      "public": "传统数据中心机柜：**未披露（留白） kW/机柜**（2024 年数据，距今约 2 年；口径：rack_type=传统风冷｜stat=市场普遍水平｜power_basis=未披露｜region=Global）"
+    }
+  ],
+  "public_precision": [
+    {
+      "fact_id": "cn-hyperscale-pue-operating-2017",
+      "value": 1.63,
+      "public": "中国在用超大型数据中心（全国平均）：**约 2 比值**（2017 年数据，距今约 9 年；口径：basis=运行值｜scale=超大型｜period=年均｜region=CN）"
+    },
+    {
+      "fact_id": "cn-hyperscale-pue-design-2017",
+      "value": 1.41,
+      "public": "中国在建超大型数据中心（全国平均）：**约 1 比值**（2017 年数据，距今约 9 年；口径：basis=设计值｜scale=超大型｜period=设计工况｜region=CN）"
+    },
+    {
+      "fact_id": "sichuan-pue-threshold-cluster-2025",
+      "value": 1.25,
+      "public": "四川省集群起步区：**不高于 约 1 比值**（2025 年数据，距今约 1 年；口径：basis=政策限值｜scale=未分档｜period=年均｜region=CN）"
+    }
+  ],
+  "validator_nan": {
+    "exit_code": 0,
+    "errors": [],
+    "warnings": []
+  },
+  "facts_bad_value": {
+    "errors": []
+  },
+  "collect_steps": [
+    [
+      "pipeline/fetch_news_signals.py"
+    ],
+    [
+      "pipeline/fetch_sec.py"
+    ],
+    [
+      "pipeline/refresh_indicators.py"
+    ]
+  ]
+}

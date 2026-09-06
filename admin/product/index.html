@@ -133,6 +133,16 @@ const DOC_STATUS = { pending:["待下载","c-gray"], downloaded:["已下载","c-
   needs_manual:["需人工","c-yellow"], verified:["已核验","c-green"], superseded:["已过版","c-gray"] };
 const norm = s => (s||"").toLowerCase().replace(/[^a-z0-9]/g,"");
 const norm2 = s => (s||"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+// 搜索和产品线/型号匹配分开，避免中文被旧 ASCII 键规范化成空查询。
+const searchNorm = s => String(s ?? "").normalize("NFKC").toLowerCase().replace(/[^\p{L}\p{N}]/gu,"");
+const searchTokens = s => String(s ?? "").normalize("NFKC").toLowerCase().match(/[\p{L}\p{N}]+/gu) || [];
+function productMatchesQuery(p, query){
+  if(!String(query ?? "").trim()) return true;
+  const terms=searchTokens(query);
+  if(!terms.length) return false;
+  const text=searchNorm([p.company_en,p.company_cn,p.product_line,p.category,p.representative_models].filter(Boolean).join(" "));
+  return terms.every(term=>text.includes(term));
+}
 function modelTokens(str){
   const cjk=/[一-鿿]/;
   return (str||"").replace(/[（(][^）)]*[）)]/g,"").split(/[、;；]/).flatMap(t=>{
@@ -275,10 +285,10 @@ async function main(){
     return `<div class="detail">${tabs}<div class="pane">${pane}</div></div>`;
   }
   function render(){
-    const pri=fPri.value, stf=fSt.value, q=norm(fQ.value), gap=fGap.checked, hasdoc=fDoc.checked;
+    const pri=fPri.value, stf=fSt.value, q=fQ.value, gap=fGap.checked, hasdoc=fDoc.checked;
     const keep=p=>(!pri||p.priority===pri)&&(!stf||p._state===stf)
       &&(!gap||p._gaps>0)&&(!hasdoc||p._docs.length>0)
-      &&(!q||norm(p.company_en+p.company_cn+p.product_line+p.category+p.representative_models).includes(q));
+      &&productMatchesQuery(p,q);
     const list=document.getElementById("list"); list.innerHTML="";
     segs.forEach(s=>{
       const rows=prods.filter(p=>p.sheet===s&&keep(p));

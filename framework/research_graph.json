@@ -1,0 +1,2789 @@
+{
+  "version": "2.0.0",
+  "updated": "2026-09-06",
+  "views": [
+    {
+      "id": "P",
+      "name": "物理与空间",
+      "description": "空间包含与装配拆解分别建模；类型不等于真实资产。"
+    },
+    {
+      "id": "F",
+      "name": "系统与接口",
+      "description": "电、热、水、数据、控制、安全的跨层连接。"
+    },
+    {
+      "id": "V",
+      "name": "产业与交易",
+      "description": "资源运营、硬件供销、算力持有变现流转；公司可有多个角色。"
+    },
+    {
+      "id": "D",
+      "name": "需求与工作负载",
+      "description": "从应用到模型、运行工程及基础要素，包含非 AI 负载。"
+    },
+    {
+      "id": "R",
+      "name": "问题与证据",
+      "description": "从问题到原文证据、陈述、回答与可验收任务。"
+    }
+  ],
+  "objects": [
+    {
+      "id": "scope:M01",
+      "name": "市场规模与增长",
+      "kind": "research_scope",
+      "views": [
+        "R"
+      ],
+      "modules": [
+        "M01"
+      ],
+      "representation": "conceptual",
+      "description": "兼容模块的研究范围，不是物理部件或公司的唯一归属。",
+      "aliases": [
+        "M01"
+      ]
+    },
+    {
+      "id": "scope:M02",
+      "name": "供给格局",
+      "kind": "research_scope",
+      "views": [
+        "R"
+      ],
+      "modules": [
+        "M02"
+      ],
+      "representation": "conceptual",
+      "description": "兼容模块的研究范围，不是物理部件或公司的唯一归属。",
+      "aliases": [
+        "M02"
+      ]
+    },
+    {
+      "id": "scope:M03",
+      "name": "需求格局",
+      "kind": "research_scope",
+      "views": [
+        "R"
+      ],
+      "modules": [
+        "M03"
+      ],
+      "representation": "conceptual",
+      "description": "兼容模块的研究范围，不是物理部件或公司的唯一归属。",
+      "aliases": [
+        "M03"
+      ]
+    },
+    {
+      "id": "scope:M04",
+      "name": "电力与能源",
+      "kind": "research_scope",
+      "views": [
+        "R"
+      ],
+      "modules": [
+        "M04"
+      ],
+      "representation": "conceptual",
+      "description": "兼容模块的研究范围，不是物理部件或公司的唯一归属。",
+      "aliases": [
+        "M04"
+      ]
+    },
+    {
+      "id": "scope:M05",
+      "name": "土地与区域",
+      "kind": "research_scope",
+      "views": [
+        "R"
+      ],
+      "modules": [
+        "M05"
+      ],
+      "representation": "conceptual",
+      "description": "兼容模块的研究范围，不是物理部件或公司的唯一归属。",
+      "aliases": [
+        "M05"
+      ]
+    },
+    {
+      "id": "scope:M06",
+      "name": "芯片与服务器",
+      "kind": "research_scope",
+      "views": [
+        "R"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "description": "兼容模块的研究范围，不是物理部件或公司的唯一归属。",
+      "aliases": [
+        "M06"
+      ]
+    },
+    {
+      "id": "scope:M07",
+      "name": "网络与互联",
+      "kind": "research_scope",
+      "views": [
+        "R"
+      ],
+      "modules": [
+        "M07"
+      ],
+      "representation": "conceptual",
+      "description": "兼容模块的研究范围，不是物理部件或公司的唯一归属。",
+      "aliases": [
+        "M07"
+      ]
+    },
+    {
+      "id": "scope:M08",
+      "name": "散热与制冷",
+      "kind": "research_scope",
+      "views": [
+        "R"
+      ],
+      "modules": [
+        "M08"
+      ],
+      "representation": "conceptual",
+      "description": "兼容模块的研究范围，不是物理部件或公司的唯一归属。",
+      "aliases": [
+        "M08"
+      ]
+    },
+    {
+      "id": "scope:M09",
+      "name": "电气设备供应链",
+      "kind": "research_scope",
+      "views": [
+        "R"
+      ],
+      "modules": [
+        "M09"
+      ],
+      "representation": "conceptual",
+      "description": "兼容模块的研究范围，不是物理部件或公司的唯一归属。",
+      "aliases": [
+        "M09"
+      ]
+    },
+    {
+      "id": "scope:M10",
+      "name": "建设运营与人才",
+      "kind": "research_scope",
+      "views": [
+        "R"
+      ],
+      "modules": [
+        "M10"
+      ],
+      "representation": "conceptual",
+      "description": "兼容模块的研究范围，不是物理部件或公司的唯一归属。",
+      "aliases": [
+        "M10"
+      ]
+    },
+    {
+      "id": "scope:M11",
+      "name": "资本与金融",
+      "kind": "research_scope",
+      "views": [
+        "R"
+      ],
+      "modules": [
+        "M11"
+      ],
+      "representation": "conceptual",
+      "description": "兼容模块的研究范围，不是物理部件或公司的唯一归属。",
+      "aliases": [
+        "M11"
+      ]
+    },
+    {
+      "id": "scope:M12",
+      "name": "需求侧经济学",
+      "kind": "research_scope",
+      "views": [
+        "R"
+      ],
+      "modules": [
+        "M12"
+      ],
+      "representation": "conceptual",
+      "description": "兼容模块的研究范围，不是物理部件或公司的唯一归属。",
+      "aliases": [
+        "M12"
+      ]
+    },
+    {
+      "id": "scope:M13",
+      "name": "有效算力与软件",
+      "kind": "research_scope",
+      "views": [
+        "R"
+      ],
+      "modules": [
+        "M13"
+      ],
+      "representation": "conceptual",
+      "description": "兼容模块的研究范围，不是物理部件或公司的唯一归属。",
+      "aliases": [
+        "M13"
+      ]
+    },
+    {
+      "id": "scope:M14",
+      "name": "中国板块",
+      "kind": "research_scope",
+      "views": [
+        "R"
+      ],
+      "modules": [
+        "M14"
+      ],
+      "representation": "conceptual",
+      "description": "兼容模块的研究范围，不是物理部件或公司的唯一归属。",
+      "aliases": [
+        "M14"
+      ]
+    },
+    {
+      "id": "scope:M15",
+      "name": "情景与监测",
+      "kind": "research_scope",
+      "views": [
+        "R"
+      ],
+      "modules": [
+        "M15"
+      ],
+      "representation": "conceptual",
+      "description": "兼容模块的研究范围，不是物理部件或公司的唯一归属。",
+      "aliases": [
+        "M15"
+      ]
+    },
+    {
+      "id": "part:grid",
+      "name": "电网接入与并网",
+      "kind": "resource",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M04"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "grid",
+      "description": "并网排队与输电升级——2026 年新项目的第一约束；ERCOT 排队超 225GW（含大量重复申请）",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "power grid",
+        "grid connection",
+        "interconnection queue"
+      ]
+    },
+    {
+      "id": "part:substation",
+      "name": "变电站与大型变压器",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M09"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "substation",
+      "description": "大型变压器交期最高 4 年，全行业最诚实的供需温度计",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "substation",
+        "transformer"
+      ]
+    },
+    {
+      "id": "part:prime-power",
+      "name": "主用自备电源",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M04"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "prime-power",
+      "description": "燃机订单簿 ≥125GW vs 年产能 ~20GW；燃料电池 55 天交付成为桥接方案",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "prime power",
+        "behind the meter",
+        "gas turbine"
+      ]
+    },
+    {
+      "id": "part:backup-power",
+      "name": "备用电源（柴发）",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M09"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "backup-power",
+      "description": "从静态保险变成动态电力系统组件；排放许可是隐性约束",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "backup power",
+        "diesel generator",
+        "genset"
+      ]
+    },
+    {
+      "id": "part:bess",
+      "name": "储能/BESS",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M04"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "bess",
+      "description": "跨越发电机启动间隙、抑制 AI 负载功率阶跃——角色从可选变必需",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "battery energy storage",
+        "BESS"
+      ]
+    },
+    {
+      "id": "part:water",
+      "name": "水源与水权",
+      "kind": "resource",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M08"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "water",
+      "description": "WUE 与流域水压力决定冷却路线；零水冷却以 PUE 为代价",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "water supply",
+        "water rights"
+      ]
+    },
+    {
+      "id": "part:land",
+      "name": "土地与选址",
+      "kind": "resource",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M05"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "land",
+      "description": "time-to-power 已取代地价成为第一选址因子；社区反弹上升",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "land",
+        "site selection",
+        "siting"
+      ]
+    },
+    {
+      "id": "part:shell",
+      "name": "楼宇结构与土建",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M10"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "shell",
+      "description": "预制化/模块化压缩周期；电气技工短缺是执行瓶颈",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "building shell",
+        "civil works"
+      ]
+    },
+    {
+      "id": "part:fire",
+      "name": "消防与安防",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M10"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "fire",
+      "description": "锂电池储能与液冷带来新消防规范议题",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "fire protection",
+        "fire suppression",
+        "security"
+      ]
+    },
+    {
+      "id": "part:ups",
+      "name": "UPS 与短时储能",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M09"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "ups",
+      "description": "AI 负载秒级波动重塑 UPS/BBU/超级电容组合",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "uninterruptible power supply",
+        "UPS"
+      ]
+    },
+    {
+      "id": "part:power-dist",
+      "name": "配电（母线/PDU/开关柜）",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M09"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "power-dist",
+      "description": "认证柜型与工厂槽位是交付约束；800V HVDC 架构切换在即",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "power distribution",
+        "busway",
+        "PDU",
+        "switchgear"
+      ]
+    },
+    {
+      "id": "part:room-cooling",
+      "name": "机房空气系统（CRAH/风墙）",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M08"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "room-cooling",
+      "description": "液冷时代空气系统不消失——冷板留下 10-30% 余热仍走空气",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "CRAH",
+        "CRAC",
+        "air cooling",
+        "fan wall"
+      ]
+    },
+    {
+      "id": "part:cdu",
+      "name": "CDU 与液冷分配",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M08"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "cdu",
+      "description": "MW 级 CDU 已量产（2-10MW+ 平台），TCS/FWS 双环路的可用性边界",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "coolant distribution unit",
+        "CDU"
+      ]
+    },
+    {
+      "id": "part:heat-reject",
+      "name": "冷机与室外排热",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M08"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "heat-reject",
+      "description": "干冷/蒸发/冷机组合由气候与水价值决定——没有全球最优解",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "heat rejection",
+        "chiller",
+        "cooling tower",
+        "dry cooler"
+      ]
+    },
+    {
+      "id": "part:dcim",
+      "name": "DCIM 与运维软件",
+      "kind": "software",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M13"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "dcim",
+      "description": "从设施监控走向算力利用率优化——物理 GW 到经济 GW 的转化层",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "data center infrastructure management",
+        "DCIM"
+      ]
+    },
+    {
+      "id": "part:rack-frame",
+      "name": "机柜与结构（ORV3）",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "rack-frame",
+      "description": "5-10kW → 130kW（GB200 NVL72）→ 600kW-1MW 路线图，机柜正变成'整机产品'",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "rack enclosure",
+        "rack frame",
+        "open rack"
+      ]
+    },
+    {
+      "id": "part:server",
+      "name": "AI 服务器/整机",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "server",
+      "description": "ODM 直供模式主导 AI 服务器；集成交付能力即壁垒",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "server",
+        "compute tray",
+        "GPU server"
+      ]
+    },
+    {
+      "id": "part:network-switch",
+      "name": "交换机与互联",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M07"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "network-switch",
+      "description": "InfiniBand vs 以太网(UEC)之争；scale-up 域扩大改写拓扑",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "network switch",
+        "InfiniBand",
+        "Ethernet switch"
+      ]
+    },
+    {
+      "id": "part:manifold",
+      "name": "歧管与快接（液冷管路）",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M08"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "manifold",
+      "description": "快接头/软管/水质是液冷可用性的隐形风险点",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "manifold",
+        "quick disconnect",
+        "liquid cooling piping"
+      ]
+    },
+    {
+      "id": "part:power-shelf",
+      "name": "机柜电源（Power Shelf/BBU）",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M09"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "power-shelf",
+      "description": "800V HVDC + 机柜级储能重构供电末端；台达系核心地盘",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "power shelf",
+        "BBU"
+      ]
+    },
+    {
+      "id": "part:gpu",
+      "name": "GPU/AI ASIC",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "gpu",
+      "description": "GPU 收入 2025 ~$191.8B、2028 峰值 ~$247.6B（Yole）；ASIC 2030 ~$84.6B——供应商集中度即行业风险",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "GPU",
+        "AI accelerator",
+        "ASIC"
+      ]
+    },
+    {
+      "id": "part:cpu",
+      "name": "CPU",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "cpu",
+      "description": "Grace/自研 Arm 侵蚀 x86；头节点与推理仍是 CPU 战场",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "CPU",
+        "processor"
+      ]
+    },
+    {
+      "id": "part:hbm",
+      "name": "HBM/内存",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "hbm",
+      "description": "HBM4(2026)→HBM8(2038) 路线图（KAIST）；容量与带宽是 AI 算力的第一瓶颈",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "HBM",
+        "high bandwidth memory"
+      ]
+    },
+    {
+      "id": "part:nic",
+      "name": "NIC/DPU",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M07"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "nic",
+      "description": "每 GPU 配套一张 400/800G 网卡——数量与 GPU 同步放大",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "network interface card",
+        "NIC",
+        "DPU"
+      ]
+    },
+    {
+      "id": "part:optics",
+      "name": "光模块/CPO",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M07"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "optics",
+      "description": "800G→1.6T 迭代 + CPO 2024-2035 渗透曲线（Yole）——密度与功耗逼出共封装",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "optical transceiver",
+        "CPO",
+        "co-packaged optics"
+      ]
+    },
+    {
+      "id": "part:coldplate",
+      "name": "冷板",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M08"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "coldplate",
+      "description": "入液热捕获率 70-90%；GPU/OEM 认证是专业厂商的护城河",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "cold plate",
+        "coldplate",
+        "direct to chip",
+        "D2C"
+      ]
+    },
+    {
+      "id": "part:psu",
+      "name": "电源模块（PSU）",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M09"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "psu",
+      "description": "钛金效率与功率密度竞赛；PDU+PSU 市场独立成研究对象",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "power supply unit",
+        "PSU"
+      ]
+    },
+    {
+      "id": "part:fpga",
+      "name": "FPGA/异构加速",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "fpga",
+      "description": "FPGA 与异构加速卡——推理与网络卸载的第二战场",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "FPGA",
+        "heterogeneous accelerator"
+      ]
+    },
+    {
+      "id": "part:interconnect-chip",
+      "name": "互联与接口芯片（Retimer/CXL/PCIe Switch/BMC）",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "interconnect-chip",
+      "description": "Retimer/CXL/PCIe Switch/BMC——服务器内互联与管理的隐形层",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "retimer",
+        "CXL",
+        "PCIe switch",
+        "BMC"
+      ]
+    },
+    {
+      "id": "part:dram",
+      "name": "DRAM模组（RDIMM/MRDIMM/CXL）",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "dram",
+      "description": "从现有hbm节点拆分：服务器内存与HBM供需周期不同步，价格序列应分开",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "DRAM",
+        "DIMM",
+        "RDIMM",
+        "MRDIMM"
+      ]
+    },
+    {
+      "id": "part:ssd",
+      "name": "企业级SSD/NAND",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "ssd",
+      "description": "从现有storage节点拆分",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "solid state drive",
+        "SSD",
+        "NAND"
+      ]
+    },
+    {
+      "id": "part:hdd",
+      "name": "近线HDD",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "hdd",
+      "description": "从现有storage节点拆分；建议拆分后删除storage节点",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "hard disk drive",
+        "HDD"
+      ]
+    },
+    {
+      "id": "part:storage-array",
+      "name": "存储系统/阵列",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "storage-array",
+      "description": "存储系统与阵列——AI 数据管道的容量层与并行文件系统",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "storage array",
+        "storage system"
+      ]
+    },
+    {
+      "id": "part:switch-asic",
+      "name": "交换芯片",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M07"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "switch-asic",
+      "description": "从network-switch中拆出芯片层（Broadcom/Marvell/盛科）",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "switch ASIC",
+        "switch silicon"
+      ]
+    },
+    {
+      "id": "part:copper-interconnect",
+      "name": "高速铜互联（DAC/AEC/背板）",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M07"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "copper-interconnect",
+      "description": "DAC/AEC/背板铜互联——机柜内短距连接对光的替代",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "copper interconnect",
+        "DAC",
+        "AEC",
+        "backplane"
+      ]
+    },
+    {
+      "id": "part:cabling",
+      "name": "结构化布线与光纤",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M07"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "cabling",
+      "description": "结构化布线与光纤——机房的神经末梢",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "structured cabling",
+        "fiber cabling"
+      ]
+    },
+    {
+      "id": "part:coolant",
+      "name": "冷却液/工质",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M08"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "coolant",
+      "description": "冷却液与工质——液冷环路的化学约束",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "coolant",
+        "dielectric fluid"
+      ]
+    },
+    {
+      "id": "part:immersion",
+      "name": "浸没式液冷",
+      "kind": "technology",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M08"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "immersion",
+      "description": "浸没式液冷——冷板之外的另一条技术路线",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "immersion cooling"
+      ]
+    },
+    {
+      "id": "part:fan-vc",
+      "name": "风扇/VC/散热模组",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M08"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "fan-vc",
+      "description": "风扇/VC/均热板散热模组——风冷末端与混合散热的常青件",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "fan",
+        "vapor chamber",
+        "heat sink"
+      ]
+    },
+    {
+      "id": "part:leak-detection",
+      "name": "漏液检测",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M08"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "leak-detection",
+      "description": "漏液检测——液冷进机房后的新增安全层",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "leak detection"
+      ]
+    },
+    {
+      "id": "part:modular-dc",
+      "name": "微模块/预制化",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M09"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "modular-dc",
+      "description": "微模块与预制化——交付周期压缩的主要手段",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "modular data center",
+        "prefabricated"
+      ]
+    },
+    {
+      "id": "part:network-access",
+      "name": "园区网络接入",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M07"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "network-access",
+      "description": "长途光纤/暗光纤/骨干互联与 IXP——选址三要素「电、水、网」的网；跨园区训练互联的先决条件。运营商（Zayo/Lumen 类）待补公司档案",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "network access",
+        "campus network"
+      ]
+    },
+    {
+      "id": "part:fuel-supply",
+      "name": "燃料供给",
+      "kind": "resource",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M04"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "fuel-supply",
+      "description": "天然气管线容量与柴油储运——自备/备用电源的真实约束常在燃料物流而非机组本身。管线公司待补档案",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "fuel supply",
+        "natural gas supply"
+      ]
+    },
+    {
+      "id": "part:sidecar-hx",
+      "name": "Sidecar/后门热交换器",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M08"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "sidecar-hx",
+      "description": "机柜级液-气热交换（sidecar/RDHx）——NVL72 时代介于 CDU 与机柜之间的新层级，此前两头都不算它",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "rear door heat exchanger",
+        "RDHx",
+        "sidecar"
+      ]
+    },
+    {
+      "id": "part:vrm",
+      "name": "板级供电（VRM/Power Stage）",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M09"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "vrm",
+      "description": "GPU 千瓦时代的板级供电——垂直供电（VPD）与电源级密度是 psu 之外独立的瓶颈件",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "voltage regulator module",
+        "VRM",
+        "power stage"
+      ]
+    },
+    {
+      "id": "part:connector",
+      "name": "高速连接器",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M07"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "connector",
+      "description": "背板/面板/电源高速连接器——铜互联线缆之外独立的一门生意，随速率代际量价齐升",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [
+        "high speed connector",
+        "connector"
+      ]
+    },
+    {
+      "id": "space:site",
+      "name": "园区类型",
+      "kind": "space_type",
+      "views": [
+        "P",
+        "F"
+      ],
+      "modules": [],
+      "representation": "conceptual",
+      "description": "概念空间模板，未登记真实项目资产。",
+      "aliases": [
+        "site"
+      ]
+    },
+    {
+      "id": "space:building",
+      "name": "建筑类型",
+      "kind": "space_type",
+      "views": [
+        "P",
+        "F"
+      ],
+      "modules": [],
+      "representation": "conceptual",
+      "description": "概念空间模板，未登记真实项目资产。",
+      "aliases": [
+        "building"
+      ]
+    },
+    {
+      "id": "space:hall",
+      "name": "数据机房类型",
+      "kind": "space_type",
+      "views": [
+        "P",
+        "F"
+      ],
+      "modules": [],
+      "representation": "conceptual",
+      "description": "概念空间模板，未登记真实项目资产。",
+      "aliases": [
+        "hall"
+      ]
+    },
+    {
+      "id": "space:row",
+      "name": "机柜列类型",
+      "kind": "space_type",
+      "views": [
+        "P",
+        "F"
+      ],
+      "modules": [],
+      "representation": "conceptual",
+      "description": "概念空间模板，未登记真实项目资产。",
+      "aliases": [
+        "row"
+      ]
+    },
+    {
+      "id": "system:power",
+      "name": "供配电系统",
+      "kind": "functional_system",
+      "views": [
+        "F",
+        "R"
+      ],
+      "modules": [],
+      "representation": "conceptual",
+      "aliases": [
+        "power"
+      ]
+    },
+    {
+      "id": "system:thermal",
+      "name": "散热与水系统",
+      "kind": "functional_system",
+      "views": [
+        "F",
+        "R"
+      ],
+      "modules": [],
+      "representation": "conceptual",
+      "aliases": [
+        "thermal"
+      ]
+    },
+    {
+      "id": "system:compute",
+      "name": "计算与存储系统",
+      "kind": "functional_system",
+      "views": [
+        "F",
+        "R"
+      ],
+      "modules": [],
+      "representation": "conceptual",
+      "aliases": [
+        "compute"
+      ]
+    },
+    {
+      "id": "system:network",
+      "name": "数据与互联系统",
+      "kind": "functional_system",
+      "views": [
+        "F",
+        "R"
+      ],
+      "modules": [],
+      "representation": "conceptual",
+      "aliases": [
+        "network"
+      ]
+    },
+    {
+      "id": "system:control",
+      "name": "控制与监测系统",
+      "kind": "functional_system",
+      "views": [
+        "F",
+        "R"
+      ],
+      "modules": [],
+      "representation": "conceptual",
+      "aliases": [
+        "control"
+      ]
+    },
+    {
+      "id": "system:safety",
+      "name": "建筑安全与维护系统",
+      "kind": "functional_system",
+      "views": [
+        "F",
+        "R"
+      ],
+      "modules": [],
+      "representation": "conceptual",
+      "aliases": [
+        "safety"
+      ]
+    },
+    {
+      "id": "activity:V1",
+      "name": "资源、建设与运营",
+      "kind": "activity_scope",
+      "views": [
+        "V",
+        "R"
+      ],
+      "modules": [
+        "M04",
+        "M05",
+        "M10"
+      ],
+      "representation": "conceptual",
+      "description": "分类对象是有边界的经济活动；产权、运营方、使用方、付款方分别记录。",
+      "aliases": [
+        "V1"
+      ]
+    },
+    {
+      "id": "activity:V2",
+      "name": "硬件制造、集成与分销",
+      "kind": "activity_scope",
+      "views": [
+        "V",
+        "R"
+      ],
+      "modules": [
+        "M06",
+        "M07",
+        "M08",
+        "M09"
+      ],
+      "representation": "conceptual",
+      "description": "分类对象是有边界的经济活动；产权、运营方、使用方、付款方分别记录。",
+      "aliases": [
+        "V2"
+      ]
+    },
+    {
+      "id": "activity:V3",
+      "name": "算力资产持有、变现与流转",
+      "kind": "activity_scope",
+      "views": [
+        "V",
+        "R"
+      ],
+      "modules": [
+        "M02",
+        "M03",
+        "M11",
+        "M12"
+      ],
+      "representation": "conceptual",
+      "description": "分类对象是有边界的经济活动；产权、运营方、使用方、付款方分别记录。",
+      "aliases": [
+        "V3"
+      ]
+    },
+    {
+      "id": "demand:D1",
+      "name": "生产要素：算力、数据、人才、资本",
+      "kind": "demand_scope",
+      "views": [
+        "D",
+        "R"
+      ],
+      "modules": [
+        "M03",
+        "M11"
+      ],
+      "representation": "conceptual",
+      "aliases": [
+        "D1"
+      ]
+    },
+    {
+      "id": "demand:D2",
+      "name": "模型与权重产品",
+      "kind": "demand_scope",
+      "views": [
+        "D",
+        "R"
+      ],
+      "modules": [
+        "M13"
+      ],
+      "representation": "conceptual",
+      "aliases": [
+        "D2"
+      ]
+    },
+    {
+      "id": "demand:D3",
+      "name": "部署推理、工具链与 Token 服务",
+      "kind": "demand_scope",
+      "views": [
+        "D",
+        "R"
+      ],
+      "modules": [
+        "M12",
+        "M13"
+      ],
+      "representation": "conceptual",
+      "aliases": [
+        "D3"
+      ]
+    },
+    {
+      "id": "demand:D4",
+      "name": "应用、Agent 与终端需求",
+      "kind": "demand_scope",
+      "views": [
+        "D",
+        "R"
+      ],
+      "modules": [
+        "M03",
+        "M12"
+      ],
+      "representation": "conceptual",
+      "aliases": [
+        "D4"
+      ]
+    },
+    {
+      "id": "workload:training",
+      "name": "AI 训练",
+      "kind": "workload_type",
+      "views": [
+        "D",
+        "F",
+        "R"
+      ],
+      "modules": [
+        "M03",
+        "M12",
+        "M13"
+      ],
+      "representation": "conceptual",
+      "aliases": [
+        "training"
+      ]
+    },
+    {
+      "id": "workload:inference",
+      "name": "AI 推理",
+      "kind": "workload_type",
+      "views": [
+        "D",
+        "F",
+        "R"
+      ],
+      "modules": [
+        "M03",
+        "M12",
+        "M13"
+      ],
+      "representation": "conceptual",
+      "aliases": [
+        "inference"
+      ]
+    },
+    {
+      "id": "workload:enterprise",
+      "name": "企业 IT 与通用云",
+      "kind": "workload_type",
+      "views": [
+        "D",
+        "F",
+        "R"
+      ],
+      "modules": [
+        "M03",
+        "M12",
+        "M13"
+      ],
+      "representation": "conceptual",
+      "aliases": [
+        "enterprise"
+      ]
+    },
+    {
+      "id": "workload:hpc",
+      "name": "科学计算与 HPC",
+      "kind": "workload_type",
+      "views": [
+        "D",
+        "F",
+        "R"
+      ],
+      "modules": [
+        "M03",
+        "M12",
+        "M13"
+      ],
+      "representation": "conceptual",
+      "aliases": [
+        "hpc"
+      ]
+    },
+    {
+      "id": "workload:storage",
+      "name": "存储与数据服务",
+      "kind": "workload_type",
+      "views": [
+        "D",
+        "F",
+        "R"
+      ],
+      "modules": [
+        "M03",
+        "M12",
+        "M13"
+      ],
+      "representation": "conceptual",
+      "aliases": [
+        "storage"
+      ]
+    },
+    {
+      "id": "workload:edge",
+      "name": "边缘与时延敏感业务",
+      "kind": "workload_type",
+      "views": [
+        "D",
+        "F",
+        "R"
+      ],
+      "modules": [
+        "M03",
+        "M12",
+        "M13"
+      ],
+      "representation": "conceptual",
+      "aliases": [
+        "edge"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "id": "research_scope:part:grid>scope:M04",
+      "type": "research_scope",
+      "source": "part:grid",
+      "target": "scope:M04",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:substation>scope:M09",
+      "type": "research_scope",
+      "source": "part:substation",
+      "target": "scope:M09",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:prime-power>scope:M04",
+      "type": "research_scope",
+      "source": "part:prime-power",
+      "target": "scope:M04",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:backup-power>scope:M09",
+      "type": "research_scope",
+      "source": "part:backup-power",
+      "target": "scope:M09",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:bess>scope:M04",
+      "type": "research_scope",
+      "source": "part:bess",
+      "target": "scope:M04",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:water>scope:M08",
+      "type": "research_scope",
+      "source": "part:water",
+      "target": "scope:M08",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:land>scope:M05",
+      "type": "research_scope",
+      "source": "part:land",
+      "target": "scope:M05",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:shell>scope:M10",
+      "type": "research_scope",
+      "source": "part:shell",
+      "target": "scope:M10",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:fire>scope:M10",
+      "type": "research_scope",
+      "source": "part:fire",
+      "target": "scope:M10",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:ups>scope:M09",
+      "type": "research_scope",
+      "source": "part:ups",
+      "target": "scope:M09",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:power-dist>scope:M09",
+      "type": "research_scope",
+      "source": "part:power-dist",
+      "target": "scope:M09",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:room-cooling>scope:M08",
+      "type": "research_scope",
+      "source": "part:room-cooling",
+      "target": "scope:M08",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:cdu>scope:M08",
+      "type": "research_scope",
+      "source": "part:cdu",
+      "target": "scope:M08",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:heat-reject>scope:M08",
+      "type": "research_scope",
+      "source": "part:heat-reject",
+      "target": "scope:M08",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:dcim>scope:M13",
+      "type": "research_scope",
+      "source": "part:dcim",
+      "target": "scope:M13",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:rack-frame>scope:M06",
+      "type": "research_scope",
+      "source": "part:rack-frame",
+      "target": "scope:M06",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:server>scope:M06",
+      "type": "research_scope",
+      "source": "part:server",
+      "target": "scope:M06",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:network-switch>scope:M07",
+      "type": "research_scope",
+      "source": "part:network-switch",
+      "target": "scope:M07",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:manifold>scope:M08",
+      "type": "research_scope",
+      "source": "part:manifold",
+      "target": "scope:M08",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:power-shelf>scope:M09",
+      "type": "research_scope",
+      "source": "part:power-shelf",
+      "target": "scope:M09",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:gpu>scope:M06",
+      "type": "research_scope",
+      "source": "part:gpu",
+      "target": "scope:M06",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:cpu>scope:M06",
+      "type": "research_scope",
+      "source": "part:cpu",
+      "target": "scope:M06",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:hbm>scope:M06",
+      "type": "research_scope",
+      "source": "part:hbm",
+      "target": "scope:M06",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:nic>scope:M07",
+      "type": "research_scope",
+      "source": "part:nic",
+      "target": "scope:M07",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:optics>scope:M07",
+      "type": "research_scope",
+      "source": "part:optics",
+      "target": "scope:M07",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:coldplate>scope:M08",
+      "type": "research_scope",
+      "source": "part:coldplate",
+      "target": "scope:M08",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:psu>scope:M09",
+      "type": "research_scope",
+      "source": "part:psu",
+      "target": "scope:M09",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:fpga>scope:M06",
+      "type": "research_scope",
+      "source": "part:fpga",
+      "target": "scope:M06",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:interconnect-chip>scope:M06",
+      "type": "research_scope",
+      "source": "part:interconnect-chip",
+      "target": "scope:M06",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:dram>scope:M06",
+      "type": "research_scope",
+      "source": "part:dram",
+      "target": "scope:M06",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:ssd>scope:M06",
+      "type": "research_scope",
+      "source": "part:ssd",
+      "target": "scope:M06",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:hdd>scope:M06",
+      "type": "research_scope",
+      "source": "part:hdd",
+      "target": "scope:M06",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:storage-array>scope:M06",
+      "type": "research_scope",
+      "source": "part:storage-array",
+      "target": "scope:M06",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:switch-asic>scope:M07",
+      "type": "research_scope",
+      "source": "part:switch-asic",
+      "target": "scope:M07",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:copper-interconnect>scope:M07",
+      "type": "research_scope",
+      "source": "part:copper-interconnect",
+      "target": "scope:M07",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:cabling>scope:M07",
+      "type": "research_scope",
+      "source": "part:cabling",
+      "target": "scope:M07",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:coolant>scope:M08",
+      "type": "research_scope",
+      "source": "part:coolant",
+      "target": "scope:M08",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:immersion>scope:M08",
+      "type": "research_scope",
+      "source": "part:immersion",
+      "target": "scope:M08",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:fan-vc>scope:M08",
+      "type": "research_scope",
+      "source": "part:fan-vc",
+      "target": "scope:M08",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:leak-detection>scope:M08",
+      "type": "research_scope",
+      "source": "part:leak-detection",
+      "target": "scope:M08",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:modular-dc>scope:M09",
+      "type": "research_scope",
+      "source": "part:modular-dc",
+      "target": "scope:M09",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:network-access>scope:M07",
+      "type": "research_scope",
+      "source": "part:network-access",
+      "target": "scope:M07",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:fuel-supply>scope:M04",
+      "type": "research_scope",
+      "source": "part:fuel-supply",
+      "target": "scope:M04",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:sidecar-hx>scope:M08",
+      "type": "research_scope",
+      "source": "part:sidecar-hx",
+      "target": "scope:M08",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:vrm>scope:M09",
+      "type": "research_scope",
+      "source": "part:vrm",
+      "target": "scope:M09",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:connector>scope:M07",
+      "type": "research_scope",
+      "source": "part:connector",
+      "target": "scope:M07",
+      "representation": "conceptual"
+    },
+    {
+      "id": "located_in:space:building>space:site",
+      "type": "located_in",
+      "source": "space:building",
+      "target": "space:site",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2"
+    },
+    {
+      "id": "located_in:space:hall>space:building",
+      "type": "located_in",
+      "source": "space:hall",
+      "target": "space:building",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2"
+    },
+    {
+      "id": "located_in:space:row>space:hall",
+      "type": "located_in",
+      "source": "space:row",
+      "target": "space:hall",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2"
+    },
+    {
+      "id": "located_in:part:rack-frame>space:row",
+      "type": "located_in",
+      "source": "part:rack-frame",
+      "target": "space:row",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2"
+    },
+    {
+      "id": "part_of:part:server>part:rack-frame",
+      "type": "part_of",
+      "source": "part:server",
+      "target": "part:rack-frame",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2",
+      "note": "概念装配示例；具体型号与数量须单独取证。"
+    },
+    {
+      "id": "part_of:part:gpu>part:server",
+      "type": "part_of",
+      "source": "part:gpu",
+      "target": "part:server",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2",
+      "note": "概念装配示例；具体型号与数量须单独取证。"
+    },
+    {
+      "id": "part_of:part:cpu>part:server",
+      "type": "part_of",
+      "source": "part:cpu",
+      "target": "part:server",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2",
+      "note": "概念装配示例；具体型号与数量须单独取证。"
+    },
+    {
+      "id": "part_of:part:hbm>part:gpu",
+      "type": "part_of",
+      "source": "part:hbm",
+      "target": "part:gpu",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2",
+      "note": "概念装配示例；具体型号与数量须单独取证。"
+    },
+    {
+      "id": "part_of:part:dram>part:server",
+      "type": "part_of",
+      "source": "part:dram",
+      "target": "part:server",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2",
+      "note": "概念装配示例；具体型号与数量须单独取证。"
+    },
+    {
+      "id": "part_of:part:ssd>part:server",
+      "type": "part_of",
+      "source": "part:ssd",
+      "target": "part:server",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2",
+      "note": "概念装配示例；具体型号与数量须单独取证。"
+    },
+    {
+      "id": "part_of:part:nic>part:server",
+      "type": "part_of",
+      "source": "part:nic",
+      "target": "part:server",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2",
+      "note": "概念装配示例；具体型号与数量须单独取证。"
+    },
+    {
+      "id": "part_of:part:psu>part:server",
+      "type": "part_of",
+      "source": "part:psu",
+      "target": "part:server",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2",
+      "note": "概念装配示例；具体型号与数量须单独取证。"
+    },
+    {
+      "id": "part_of:part:coldplate>part:server",
+      "type": "part_of",
+      "source": "part:coldplate",
+      "target": "part:server",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2",
+      "note": "概念装配示例；具体型号与数量须单独取证。"
+    },
+    {
+      "id": "part_of:part:vrm>part:server",
+      "type": "part_of",
+      "source": "part:vrm",
+      "target": "part:server",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2",
+      "note": "概念装配示例；具体型号与数量须单独取证。"
+    },
+    {
+      "id": "part_of:part:power-shelf>part:rack-frame",
+      "type": "part_of",
+      "source": "part:power-shelf",
+      "target": "part:rack-frame",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2",
+      "note": "概念装配示例；具体型号与数量须单独取证。"
+    },
+    {
+      "id": "part_of:part:manifold>part:rack-frame",
+      "type": "part_of",
+      "source": "part:manifold",
+      "target": "part:rack-frame",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2",
+      "note": "概念装配示例；具体型号与数量须单独取证。"
+    },
+    {
+      "id": "part_of:part:switch-asic>part:network-switch",
+      "type": "part_of",
+      "source": "part:switch-asic",
+      "target": "part:network-switch",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2",
+      "note": "概念装配示例；具体型号与数量须单独取证。"
+    },
+    {
+      "id": "member_of_system:part:grid>system:power",
+      "type": "member_of_system",
+      "source": "part:grid",
+      "target": "system:power",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:substation>system:power",
+      "type": "member_of_system",
+      "source": "part:substation",
+      "target": "system:power",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:prime-power>system:power",
+      "type": "member_of_system",
+      "source": "part:prime-power",
+      "target": "system:power",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:backup-power>system:power",
+      "type": "member_of_system",
+      "source": "part:backup-power",
+      "target": "system:power",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:bess>system:power",
+      "type": "member_of_system",
+      "source": "part:bess",
+      "target": "system:power",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:ups>system:power",
+      "type": "member_of_system",
+      "source": "part:ups",
+      "target": "system:power",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:power-dist>system:power",
+      "type": "member_of_system",
+      "source": "part:power-dist",
+      "target": "system:power",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:power-shelf>system:power",
+      "type": "member_of_system",
+      "source": "part:power-shelf",
+      "target": "system:power",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:psu>system:power",
+      "type": "member_of_system",
+      "source": "part:psu",
+      "target": "system:power",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:vrm>system:power",
+      "type": "member_of_system",
+      "source": "part:vrm",
+      "target": "system:power",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:fuel-supply>system:power",
+      "type": "member_of_system",
+      "source": "part:fuel-supply",
+      "target": "system:power",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:water>system:thermal",
+      "type": "member_of_system",
+      "source": "part:water",
+      "target": "system:thermal",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:room-cooling>system:thermal",
+      "type": "member_of_system",
+      "source": "part:room-cooling",
+      "target": "system:thermal",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:cdu>system:thermal",
+      "type": "member_of_system",
+      "source": "part:cdu",
+      "target": "system:thermal",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:heat-reject>system:thermal",
+      "type": "member_of_system",
+      "source": "part:heat-reject",
+      "target": "system:thermal",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:manifold>system:thermal",
+      "type": "member_of_system",
+      "source": "part:manifold",
+      "target": "system:thermal",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:coldplate>system:thermal",
+      "type": "member_of_system",
+      "source": "part:coldplate",
+      "target": "system:thermal",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:coolant>system:thermal",
+      "type": "member_of_system",
+      "source": "part:coolant",
+      "target": "system:thermal",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:immersion>system:thermal",
+      "type": "member_of_system",
+      "source": "part:immersion",
+      "target": "system:thermal",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:fan-vc>system:thermal",
+      "type": "member_of_system",
+      "source": "part:fan-vc",
+      "target": "system:thermal",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:leak-detection>system:thermal",
+      "type": "member_of_system",
+      "source": "part:leak-detection",
+      "target": "system:thermal",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:sidecar-hx>system:thermal",
+      "type": "member_of_system",
+      "source": "part:sidecar-hx",
+      "target": "system:thermal",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:rack-frame>system:compute",
+      "type": "member_of_system",
+      "source": "part:rack-frame",
+      "target": "system:compute",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:server>system:compute",
+      "type": "member_of_system",
+      "source": "part:server",
+      "target": "system:compute",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:gpu>system:compute",
+      "type": "member_of_system",
+      "source": "part:gpu",
+      "target": "system:compute",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:cpu>system:compute",
+      "type": "member_of_system",
+      "source": "part:cpu",
+      "target": "system:compute",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:hbm>system:compute",
+      "type": "member_of_system",
+      "source": "part:hbm",
+      "target": "system:compute",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:dram>system:compute",
+      "type": "member_of_system",
+      "source": "part:dram",
+      "target": "system:compute",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:ssd>system:compute",
+      "type": "member_of_system",
+      "source": "part:ssd",
+      "target": "system:compute",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:hdd>system:compute",
+      "type": "member_of_system",
+      "source": "part:hdd",
+      "target": "system:compute",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:storage-array>system:compute",
+      "type": "member_of_system",
+      "source": "part:storage-array",
+      "target": "system:compute",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:fpga>system:compute",
+      "type": "member_of_system",
+      "source": "part:fpga",
+      "target": "system:compute",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:interconnect-chip>system:compute",
+      "type": "member_of_system",
+      "source": "part:interconnect-chip",
+      "target": "system:compute",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:network-access>system:network",
+      "type": "member_of_system",
+      "source": "part:network-access",
+      "target": "system:network",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:network-switch>system:network",
+      "type": "member_of_system",
+      "source": "part:network-switch",
+      "target": "system:network",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:nic>system:network",
+      "type": "member_of_system",
+      "source": "part:nic",
+      "target": "system:network",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:optics>system:network",
+      "type": "member_of_system",
+      "source": "part:optics",
+      "target": "system:network",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:switch-asic>system:network",
+      "type": "member_of_system",
+      "source": "part:switch-asic",
+      "target": "system:network",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:copper-interconnect>system:network",
+      "type": "member_of_system",
+      "source": "part:copper-interconnect",
+      "target": "system:network",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:cabling>system:network",
+      "type": "member_of_system",
+      "source": "part:cabling",
+      "target": "system:network",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:connector>system:network",
+      "type": "member_of_system",
+      "source": "part:connector",
+      "target": "system:network",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:dcim>system:control",
+      "type": "member_of_system",
+      "source": "part:dcim",
+      "target": "system:control",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:leak-detection>system:control",
+      "type": "member_of_system",
+      "source": "part:leak-detection",
+      "target": "system:control",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:land>system:safety",
+      "type": "member_of_system",
+      "source": "part:land",
+      "target": "system:safety",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:shell>system:safety",
+      "type": "member_of_system",
+      "source": "part:shell",
+      "target": "system:safety",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:fire>system:safety",
+      "type": "member_of_system",
+      "source": "part:fire",
+      "target": "system:safety",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:modular-dc>system:safety",
+      "type": "member_of_system",
+      "source": "part:modular-dc",
+      "target": "system:safety",
+      "representation": "conceptual"
+    },
+    {
+      "id": "powers:part:grid>part:substation",
+      "type": "powers",
+      "source": "part:grid",
+      "target": "part:substation",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2",
+      "note": "研究示意链，拓扑与冗余方案须以实物设计为准。"
+    },
+    {
+      "id": "powers:part:substation>part:power-dist",
+      "type": "powers",
+      "source": "part:substation",
+      "target": "part:power-dist",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2",
+      "note": "研究示意链，拓扑与冗余方案须以实物设计为准。"
+    },
+    {
+      "id": "powers:part:power-dist>part:ups",
+      "type": "powers",
+      "source": "part:power-dist",
+      "target": "part:ups",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2",
+      "note": "研究示意链，拓扑与冗余方案须以实物设计为准。"
+    },
+    {
+      "id": "powers:part:ups>part:power-shelf",
+      "type": "powers",
+      "source": "part:ups",
+      "target": "part:power-shelf",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2",
+      "note": "研究示意链，拓扑与冗余方案须以实物设计为准。"
+    },
+    {
+      "id": "powers:part:power-shelf>part:psu",
+      "type": "powers",
+      "source": "part:power-shelf",
+      "target": "part:psu",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2",
+      "note": "研究示意链，拓扑与冗余方案须以实物设计为准。"
+    },
+    {
+      "id": "powers:part:psu>part:vrm",
+      "type": "powers",
+      "source": "part:psu",
+      "target": "part:vrm",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2",
+      "note": "研究示意链，拓扑与冗余方案须以实物设计为准。"
+    },
+    {
+      "id": "powers:part:vrm>part:gpu",
+      "type": "powers",
+      "source": "part:vrm",
+      "target": "part:gpu",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2",
+      "note": "研究示意链，拓扑与冗余方案须以实物设计为准。"
+    },
+    {
+      "id": "transfers_heat_to:part:gpu>part:coldplate",
+      "type": "transfers_heat_to",
+      "source": "part:gpu",
+      "target": "part:coldplate",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2",
+      "note": "研究示意链，拓扑与冗余方案须以实物设计为准。"
+    },
+    {
+      "id": "transfers_heat_to:part:coldplate>part:manifold",
+      "type": "transfers_heat_to",
+      "source": "part:coldplate",
+      "target": "part:manifold",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2",
+      "note": "研究示意链，拓扑与冗余方案须以实物设计为准。"
+    },
+    {
+      "id": "transfers_heat_to:part:manifold>part:cdu",
+      "type": "transfers_heat_to",
+      "source": "part:manifold",
+      "target": "part:cdu",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2",
+      "note": "研究示意链，拓扑与冗余方案须以实物设计为准。"
+    },
+    {
+      "id": "transfers_heat_to:part:cdu>part:heat-reject",
+      "type": "transfers_heat_to",
+      "source": "part:cdu",
+      "target": "part:heat-reject",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2",
+      "note": "研究示意链，拓扑与冗余方案须以实物设计为准。"
+    },
+    {
+      "id": "requires:workload:training>system:compute",
+      "type": "requires",
+      "source": "workload:training",
+      "target": "system:compute",
+      "representation": "conceptual"
+    },
+    {
+      "id": "requires:workload:training>system:network",
+      "type": "requires",
+      "source": "workload:training",
+      "target": "system:network",
+      "representation": "conceptual"
+    },
+    {
+      "id": "requires:workload:inference>system:compute",
+      "type": "requires",
+      "source": "workload:inference",
+      "target": "system:compute",
+      "representation": "conceptual"
+    },
+    {
+      "id": "requires:workload:inference>system:network",
+      "type": "requires",
+      "source": "workload:inference",
+      "target": "system:network",
+      "representation": "conceptual"
+    },
+    {
+      "id": "requires:workload:enterprise>system:compute",
+      "type": "requires",
+      "source": "workload:enterprise",
+      "target": "system:compute",
+      "representation": "conceptual"
+    },
+    {
+      "id": "requires:workload:enterprise>system:network",
+      "type": "requires",
+      "source": "workload:enterprise",
+      "target": "system:network",
+      "representation": "conceptual"
+    },
+    {
+      "id": "requires:workload:hpc>system:compute",
+      "type": "requires",
+      "source": "workload:hpc",
+      "target": "system:compute",
+      "representation": "conceptual"
+    },
+    {
+      "id": "requires:workload:hpc>system:network",
+      "type": "requires",
+      "source": "workload:hpc",
+      "target": "system:network",
+      "representation": "conceptual"
+    },
+    {
+      "id": "requires:workload:storage>system:compute",
+      "type": "requires",
+      "source": "workload:storage",
+      "target": "system:compute",
+      "representation": "conceptual"
+    },
+    {
+      "id": "requires:workload:storage>system:network",
+      "type": "requires",
+      "source": "workload:storage",
+      "target": "system:network",
+      "representation": "conceptual"
+    },
+    {
+      "id": "requires:workload:edge>system:compute",
+      "type": "requires",
+      "source": "workload:edge",
+      "target": "system:compute",
+      "representation": "conceptual"
+    },
+    {
+      "id": "requires:workload:edge>system:network",
+      "type": "requires",
+      "source": "workload:edge",
+      "target": "system:network",
+      "representation": "conceptual"
+    },
+    {
+      "id": "demand_transmission:demand:D4>demand:D3",
+      "type": "demand_transmission",
+      "source": "demand:D4",
+      "target": "demand:D3",
+      "representation": "conceptual",
+      "note": "需求传导研究假设；系数和时滞须独立取证。"
+    },
+    {
+      "id": "demand_transmission:demand:D3>demand:D2",
+      "type": "demand_transmission",
+      "source": "demand:D3",
+      "target": "demand:D2",
+      "representation": "conceptual",
+      "note": "需求传导研究假设；系数和时滞须独立取证。"
+    },
+    {
+      "id": "demand_transmission:demand:D2>demand:D1",
+      "type": "demand_transmission",
+      "source": "demand:D2",
+      "target": "demand:D1",
+      "representation": "conceptual",
+      "note": "需求传导研究假设；系数和时滞须独立取证。"
+    },
+    {
+      "id": "demand_transmission:demand:D1>activity:V3",
+      "type": "demand_transmission",
+      "source": "demand:D1",
+      "target": "activity:V3",
+      "representation": "conceptual",
+      "note": "需求传导研究假设；系数和时滞须独立取证。"
+    },
+    {
+      "id": "demand_transmission:activity:V3>activity:V2",
+      "type": "demand_transmission",
+      "source": "activity:V3",
+      "target": "activity:V2",
+      "representation": "conceptual",
+      "note": "需求传导研究假设；系数和时滞须独立取证。"
+    },
+    {
+      "id": "demand_transmission:activity:V2>activity:V1",
+      "type": "demand_transmission",
+      "source": "activity:V2",
+      "target": "activity:V1",
+      "representation": "conceptual",
+      "note": "需求传导研究假设；系数和时滞须独立取证。"
+    }
+  ],
+  "policy": {
+    "containment_types": [
+      "located_in",
+      "part_of"
+    ],
+    "representation": [
+      "conceptual",
+      "reference",
+      "actual"
+    ],
+    "mece": "限定范围和同一分解轴；跨轴用有类型关系，未知项保留。",
+    "actual_assets": "目前无经核验的真实场址配置；现有 3D 为概念模板。"
+  }
+}

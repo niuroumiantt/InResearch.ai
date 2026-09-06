@@ -1,0 +1,136 @@
+{
+  "observed_date": "2026-09-06",
+  "timezone": "Asia/Shanghai",
+  "window_local": "09:57–10:01",
+  "baseline_sha": "af50de902e43b930b0be560debe233521c71ae75",
+  "tracked_files": 332,
+  "self_owned_python_files": 26,
+  "self_owned_python_lines": 4875,
+  "product_and_tool_html_files": 14,
+  "product_and_tool_html_lines": 5858,
+  "archived_proposal_html_files": 1,
+  "github": {
+    "open_pull_requests": 0,
+    "open_issues": 0,
+    "head_ci": "success",
+    "head_run_url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/33980468323"
+  },
+  "production": {
+    "hostname_alias": "inresearch",
+    "deployed_sha": "af50de902e43b930b0be560debe233521c71ae75",
+    "infra_sha": "4cd32b2",
+    "timer_active_state": "active",
+    "timer_sub_state": "waiting",
+    "last_service_exit_code": 0,
+    "last_trigger_utc": "2026-09-06 01:57:25 UTC",
+    "container_health": "healthy",
+    "root_http_status": 302,
+    "root_location": "/login",
+    "source_hash_matches_local": [
+      "pipeline/serve.py",
+      "index.html"
+    ],
+    "data_counts": {
+      "facts": 119,
+      "projects": 120,
+      "assignments": 0
+    },
+    "product_library_index_exists": false,
+    "caddy_validate_preflight_present": true,
+    "caddy_fault_injection_performed": false,
+    "docker_build_context": "/srv/inresearch.ai",
+    "dockerfile": "deploy/Dockerfile",
+    "auth_files_present_in_build_context": [
+      "data/users.json",
+      "data/.hub_secret"
+    ],
+    "secrets_content_read": false,
+    "image_layers_inspected": false,
+    "external_leak_confirmed": false
+  },
+  "macmini": {
+    "hostname": "macmini",
+    "login_user": "hermes",
+    "source_sha": "af50de9",
+    "library_path": "/Users/hermes/code/inresearch.ai/docs/library",
+    "library_file_count": 7029,
+    "library_logical_bytes": 31687334896,
+    "library_major_extensions": {
+      ".pdf": 5902,
+      ".txt": 312,
+      ".pptx": 182,
+      ".mht": 173,
+      ".doc": 167,
+      ".ppt": 110,
+      ".docx": 101,
+      ".xlsx": 34,
+      ".xls": 31
+    },
+    "reader_file_count": 0,
+    "product_path_exists": false,
+    "product_library_index_exists": false,
+    "com_inresearch_launch_agents_found": false,
+    "com_inresearch_launch_daemons_found": false,
+    "scope_limit": "Only the named project paths and standard launchd plist locations were checked; other disks, MacBook, backups, differently named services and schedulers were not inventoried."
+  },
+  "m5": {
+    "project_library_exists": false,
+    "project_reader_exists": false,
+    "project_product_exists": false,
+    "port_8000_belongs_to": "existing OA development server, not touched",
+    "review_static_port": 18765,
+    "prepared_download_directory": "/Users/m5/.local/share/inresearch.ai/downloads"
+  },
+  "browser": {
+    "tested": [
+      "index.html",
+      "bom.html",
+      "bom3d.html",
+      "rack3d.html",
+      "admin/product/index.html"
+    ],
+    "three_d_rendered": true,
+    "three_d_console_errors_seen": 0,
+    "chinese_search_all_cards_remain": true,
+    "mobile_tested": false,
+    "dom_xss_browser_executed": false
+  },
+  "limits": [
+    "Inventory differences do not establish data loss.",
+    "Website and deployment health do not prove research collection freshness.",
+    "Primary research claims were not externally reverified."
+  ],
+  "user_clarification": {
+    "source": "百度网盘",
+    "statement": "用户确认资料已暂时移到别处，文件都存在百度网盘",
+    "interpretation": "迁移位置待登记，不认定缺失"
+  },
+  "spark": {
+    "hostname": "dgx",
+    "user": "spark",
+    "architecture": "aarch64",
+    "root_disk_size_df": "3.7T",
+    "used_df": "103G",
+    "available_df": "3.4T",
+    "memory_total": "121Gi",
+    "memory_available_observed": "61Gi",
+    "ollama": "active/running",
+    "installed_tools": [
+      "pdftotext",
+      "libreoffice",
+      "rsync"
+    ],
+    "models": [
+      "qwen3.8:27b-translate",
+      "qwen3-embedding:0.6b",
+      "qwen3-vl:8b",
+      "qwen3.8:27b",
+      "qwen3:30b-a3b",
+      "qwen3:8b"
+    ],
+    "prepared_empty_directory": "/home/spark/.local/share/inresearch.ai/library",
+    "directory_mode": "0700",
+    "data_transferred": false,
+    "baidu_arm64_client_verified": false
+  }
+}

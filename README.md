@@ -18,9 +18,11 @@
 
 ## 核心思想
 
-> **数据在变，框架不变。**
-> 研究框架（模块划分 + 口径规则 + 监测指标）是穷尽且互斥的稳定骨架；
-> 数据层持续流入并按规则打标入库；输出层随时按最新数据生成报告。
+> **身份稳定，问题与证据持续更新，框架有版本地演进。**
+> 2026-09-06 用户采用 [全行业研究架构 v2](docs/reviews/2026-09-06/RESEARCH_ARCHITECTURE_V2.md) 作为实施基准。
+> 物理/空间、系统/接口、产业/交易、需求/负载、问题/证据共享知识底座；15 模块保留兼容导航与维护分工。
+
+目标是能解释原理、比较方案、验证数据、诊断系统与交付判断的行业专家能力。200GW 和投资周期是专题。局部 MECE、稳定对象/版本/问题 ID、可追溯跨模块引用，以及数字与非数字证据共同支撑研究；原件和现行口径/C3 采用要求保持。
 
 ```
 L4 监测层   index.html 仪表盘 + framework/indicators.json 阈值预警
@@ -38,7 +40,7 @@ L0 数据层   data/ — 六张实体表（项目/公司/价格/政策/合同/�
 
 | 路径 | 层 | 作用 |
 |---|---|---|
-| `framework/00_overview.md` | L1-L2 | 研究框架总览：15 模块的 MECE 地图与逻辑 |
+| `framework/00_overview.md` | L1-L2 | 全行业五视角、局部 MECE 与 15 模块兼容映射 |
 | `framework/01_data_standards.md` | L1 | **口径与核验规则手册**（每条数据入库必须遵守） |
 | `framework/modules.json` | L2 | 模块注册表（机器可读：依赖表、更新频率、Q 映射） |
 | `framework/modules/M01–M15.md` | L2 | 各模块定义：核心问题、关键指标、数据依赖 |
@@ -55,7 +57,7 @@ L0 数据层   data/ — 六张实体表（项目/公司/价格/政策/合同/�
 | `reports/` | L3 | 输出模板与生成结果 |
 | `docs/inbox/` | 投递口 | **有材料放这里**（Word/PDF/CAD/Excel 均可，不用分类改名），后台"扫描收件箱"按钮出清单，Claude 归类登记 |
 | `docs/source/` | 存档 | 本项目自产文档（Q&A 报告、台账等原件） |
-| `docs/library/` | 存档 | 第三方研报库（407+ 份，分类管理，不进 git；索引 `docs/LIBRARY_INDEX.md` 进 git） |
+| `docs/library/` | 存档 | 第三方研报库兼容入口（当前存量以实盘台账为准；原件不进 Git） |
 | `index.html` | L4 | 单文件仪表盘：模块地图 + 项目库 + 监测指标 |
 
 ## 数据更新三档机制
@@ -66,20 +68,17 @@ L0 数据层   data/ — 六张实体表（项目/公司/价格/政策/合同/�
 | 半自动 | JLL/C&W/机构报告、财报电话会 | 监控发布页 → AI 提取 → 人工确认入库 | 季度 |
 | 手动核验 | 项目状态变更（通电/开工/取消）、产业渠道信息 | 人工录入（独家价值最高） | 事件驱动 |
 
-## 常驻服务（macOS launchd，装法见 docs/local_setup/）
+## Spark 持续阅读与运行边界
 
-本机唯一项目文件夹 `~/code/inresearch.ai/`（精读工作区在其 `reader/` 子目录，不进 git）。
-一次性安装/迁移：`bash docs/local_setup/setup.sh`。
+当前规则见 [阅读标准 v3](framework/04_reading_scoring_standard.md)、[项目目标](docs/local_reader/PROJECT_BRIEF.md) 与 [执行协议](docs/local_reader/RUN_TO_COMPLETION.md)。用户已批准常驻模式；服务是否实际启动、版本与健康以部署记录和台账为准。
 
-| 服务 | 作用 | 管理 |
-|---|---|---|
-| `com.inresearch.server` | 常驻网页服务器：http://localhost:8000 开机自启、崩溃自动拉起 | `launchctl unload ~/Library/LaunchAgents/com.inresearch.server.plist` 停用 |
-| `com.inresearch.collect` | 每天 08:00 跑 `collect.py`（采集+简报+事件驱动标记），完了立即推送上站 | 同上，文件名换 collect；日志在 `logs/` |
-| `com.inresearch.sync` | 每 30 分钟双向同步：拉 GitHub 最新；本机改动过 `validate.py --strict` 才自动推送，服务器 autopull 2 分钟内上线 | 同上，文件名换 sync；日志 `logs/sync.log` |
+`raw-materials → 原件/版本登记 → 27B 粗读 → 每篇深读 → 原文核验与候选 → C3 采用 → 节点/问题/Finding/交付`。
 
-**事件驱动核验联动**：collect.py 发现某实体近 7 天有 10-Q/10-K/8-K，自动把触发器挂着
-该实体的 current Finding 标为 needs-review（进 P1 队列、仪表盘模块卡片显示 ⚠️）；
-人工复核后改回 current 并更新修订日期即不再重复标记。
+框架缺口也生成搜集、访谈、实测与复核任务。低分不淘汰，depth 不靠摘要猜；原理/规范/接口/失败案例与数字同样可进入证据链。阅读完成、整理、核验和采用分别计量，存在 sources 路径不代表已消化。
+
+源码放 `~/code/inresearch.ai/`；Spark 原件、台账和成果放 `/home/spark/.local/share/inresearch.ai/`，日志与运行状态放 `/home/spark/.local/state/inresearch.ai/`。原件哈希与文档版本定身份，目录/分数/显示名可变，历史信息保留；资料和数据库不进 Git、不因去重或解压自动删除。
+
+历史 macOS `docs/local_setup/` 为旧环境安装资料，不能据此认定 launchd 已在运行或直接重建自动推送；旧独立 reader `start.sh` 与启动提示词不适用新常驻流程。实际入口与命令以当前实现和部署记录为准。
 
 ## 本地运行
 
@@ -87,7 +86,7 @@ L0 数据层   data/ — 六张实体表（项目/公司/价格/政策/合同/�
 
 ```bash
 python3 pipeline/verify.py          # 核验队列：哪些结论该复核了（按触发器）
-python3 pipeline/reading_queue.py   # 精读队列：这周该读什么（已打分 − 已消化）
+python3 pipeline/reading_queue.py   # 阅读队列兼容入口；完成以执行/覆盖台账为准
 python3 pipeline/workorder.py       # 工单队列：每个模块下一步该做什么（= 声明 − 现状）
 python3 pipeline/blindspot.py       # 盲区体检：库里有、但分类器看不见的材料
 ```
@@ -107,7 +106,7 @@ python3 pipeline/intake.py --accept # 把过检的 B/C 档写成批次 CSV 走�
 ```bash
 python3 pipeline/fetch_sec.py       # 拉取跟踪公司的最新 SEC 文件列表（须本机跑，云端被屏蔽）
 python3 pipeline/fetch_news_signals.py  # 从 news 项目匹配实体相关新闻线索
-python3 pipeline/serve.py           # 站点 + 管理 API（含派工 /api/assign）；launchd 已常驻
+python3 pipeline/serve.py           # 站点 + 管理 API（含派工 /api/assign）；运行状态另查
 ```
 
 页面：`index.html` 仪表盘 ｜ `team.html` 团队看板与派工 ｜ `bom3d.html` 爆炸图 ｜ `doc.html` 文档与打分表浏览
@@ -121,30 +120,40 @@ python3 pipeline/serve.py           # 站点 + 管理 API（含派工 /api/assig
   数据层的上游信号源；未来 `pipeline/` 可直接消费 news 的 `data/*.json` 做实体关联。
 - **公众号内容**：每次数据更新和模块分析都是选题弹药，同一份数据资产服务决策、融资、内容三线。
 
-## 路线图（2026-08-15 对账刷新；总方向见 docs/DECISIONS.md）
+## 当前实施与验收
 
-- [x] 第一阶段：立规矩——框架文档 + 口径手册 + 六表 schema + 种子数据 + 仪表盘骨架
-- [x] 第二阶段：数据层做实——项目库 120 条（台账迁入+全球补录）；CIK 真缺口清零；
-      news 信源桥接；EDGAR 采集脚本就绪（云端被屏蔽，须本机 launchd 跑）
-- [x] 第三阶段：五个新模块首版研究——M10-M15 全部有 Finding（全库 75 条），
-      薄弱模块（M10/M11/M13/M14）已各补量化专条
-- [x] 第三阶段半：知识运转机制——核验队列（verify.py）+ 精读队列（reading_queue.py）
-      双入口；9 分文献 8/8 消化；决策日志（docs/DECISIONS.md）防会话失忆
-- [x] 第三阶段末：**研报库全库通读完结**（2026-08-16）——28,759 份触达率 100%，
-      完结报告见 `docs/LIBRARY_REPORT.md`（含重构后的 orgchart、分类标准全文、
-      信源价值榜与各模块「接下来怎么用」）
-- [x] 第四阶段前置件（2026-08-17）：**声明式架构 + 事实层 + 团队化管线**
-      - 模块是声明，**工单 = 声明 − 现状**，由 `workorder.py` 生成，任何人不手写
-      - **事实层**（`metrics.json` + `facts.json` + `facts.py`）：原子从「一份文件」
-        变成「一个事实」；口径维度按指标声明，**口径不同的数拒绝并列**
-      - 阅读深度五档（精读/据实生成/半自动/目录级/成员精读）**永不混引**
-      - 投递契约 + 三档分流 + 派工看板（`team.html` + `/api/assign`）
-      - 盲区体检：找「库里有、但分类器看不见」的材料
-- [ ] 第四阶段：team work 化——按模块分工给不同负责人，PR 提交 → 用户 merge 进 core
-      （CODEOWNERS 已铺底，待人员到位与分支协作规范细化）
-- [ ] 第四阶段半：全库通读的三个尾巴——151 份图片型 PDF 走视觉读；
-      T2 层 AI与算力 3,858 份（最大未读块）；SemiAnalysis 剩余 163 份（单位价值最高）
-- [ ] 第五阶段：输出管线——PDF/PPT/Word 模板化生成（reports/templates 待做）；
-      季度更新节奏；仪表盘上线 VPS（wentian.ai）
-- [ ] 第六阶段：产品打磨——dashboard 美化整理；爆炸图交互升级
-      （漂亮的人机互动、快速进入待探索领域）
+架构依据、局部 MECE、节点契约和全量深读标准已采用；逐项实现稳定身份、非数字证据、问题任务、持久台账与常驻处理。先以有原文的一条贯通案例验证两向流程、覆盖、恢复与反证回流，再扩大到供配电、网络、存储、软件及历史原件。PDF 等交付放本机 artifacts，不提交二进制。
+
+进度分别报告对象覆盖、原文证据、问题验证、阅读履约和应用/交付能力，按 scope_version 冻结分母；关键未知不得用文件量掩盖。实现、迁移和服务状态以最新验证记录为准。
+
+## 历史路线图（2026-08 快照，不是当前完成状态）
+
+历史“全库触达/通读完成”不等于按当前标准全部深读，也不能证明原件现存位置；以下数字保留历史语境，当前以盘点和阅读台账为准。
+
+> ## 路线图（2026-08-15 对账刷新；总方向见 docs/DECISIONS.md）
+>
+> - [x] 第一阶段：立规矩——框架文档 + 口径手册 + 六表 schema + 种子数据 + 仪表盘骨架
+> - [x] 第二阶段：数据层做实——项目库 120 条（台账迁入+全球补录）；CIK 真缺口清零；
+>       news 信源桥接；EDGAR 采集脚本就绪（云端被屏蔽，须本机 launchd 跑）
+> - [x] 第三阶段：五个新模块首版研究——M10-M15 全部有 Finding（全库 75 条），
+>       薄弱模块（M10/M11/M13/M14）已各补量化专条
+> - [x] 第三阶段半：知识运转机制——核验队列（verify.py）+ 精读队列（reading_queue.py）
+>       双入口；9 分文献 8/8 消化；决策日志（docs/DECISIONS.md）防会话失忆
+> - [x] 第三阶段末：**研报库全库通读完结**（2026-08-16）——28,759 份触达率 100%，
+>       完结报告见 `docs/LIBRARY_REPORT.md`（含重构后的 orgchart、分类标准全文、
+>       信源价值榜与各模块「接下来怎么用」）
+> - [x] 第四阶段前置件（2026-08-17）：**声明式架构 + 事实层 + 团队化管线**
+>       - 模块是声明，**工单 = 声明 − 现状**，由 `workorder.py` 生成，任何人不手写
+>       - **事实层**（`metrics.json` + `facts.json` + `facts.py`）：原子从「一份文件」
+>         变成「一个事实」；口径维度按指标声明，**口径不同的数拒绝并列**
+>       - 阅读深度五档（精读/据实生成/半自动/目录级/成员精读）**永不混引**
+>       - 投递契约 + 三档分流 + 派工看板（`team.html` + `/api/assign`）
+>       - 盲区体检：找「库里有、但分类器看不见」的材料
+> - [ ] 第四阶段：team work 化——按模块分工给不同负责人，PR 提交 → 用户 merge 进 core
+>       （CODEOWNERS 已铺底，待人员到位与分支协作规范细化）
+> - [ ] 第四阶段半：全库通读的三个尾巴——151 份图片型 PDF 走视觉读；
+>       T2 层 AI与算力 3,858 份（最大未读块）；SemiAnalysis 剩余 163 份（单位价值最高）
+> - [ ] 第五阶段：输出管线——PDF/PPT/Word 模板化生成（reports/templates 待做）；
+>       季度更新节奏；仪表盘上线 VPS（wentian.ai）
+> - [ ] 第六阶段：产品打磨——dashboard 美化整理；爆炸图交互升级
+>       （漂亮的人机互动、快速进入待探索领域）

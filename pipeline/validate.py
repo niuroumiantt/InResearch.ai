@@ -15,6 +15,7 @@
 """
 import csv
 import json
+import math
 import re
 import sys
 from datetime import date, datetime
@@ -136,7 +137,7 @@ def main():
             err(f"prices[{rid}]: estimate 级必须写 assumptions（推导链条）")
         if r.get("grade") not in GRADES:
             err(f"prices[{rid}]: grade 非法")
-        if not isinstance(r.get("value"), (int, float)):
+        if isinstance(r.get("value"), bool) or not isinstance(r.get("value"), (int, float)) or not math.isfinite(r["value"]):
             err(f"prices[{rid}]: value 必须是数字")
 
     # 合同库规则

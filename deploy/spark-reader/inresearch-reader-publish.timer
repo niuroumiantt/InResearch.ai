@@ -1,0 +1,11 @@
+[Unit]
+Description=Refresh the research website from the Spark ledger every five minutes
+
+[Timer]
+OnBootSec=90
+OnUnitActiveSec=5min
+AccuracySec=15
+Unit=inresearch-reader-publish.service
+
+[Install]
+WantedBy=timers.target

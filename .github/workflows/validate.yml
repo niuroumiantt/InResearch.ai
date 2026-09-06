@@ -16,3 +16,7 @@ jobs:
         run: python3 pipeline/verify.py
       - name: 指标回填可运行
         run: python3 pipeline/refresh_indicators.py
+      - name: Research registry and continuous reader contracts
+        run: |
+          python3 pipeline/research.py
+          python3 -m unittest discover -s pipeline -p "test_*.py"

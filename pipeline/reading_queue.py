@@ -1,31 +1,13 @@
 #!/usr/bin/env python3
-"""精读队列生成器：已打分但未消化的文献，按重要性排序——"这周该读什么"。
+"""逐篇阅读队列。分数只影响优先级；目录索引不是独立文章。
 
-机制（与 verify.py 的核验队列平行）：
-  已打分 = 在 docs/LIBRARY_SCORES.csv 里（importance 1-9 × confidence A-C）
-  已消化 = 其 new_path 出现在 data/sources.json 某条记录的 local_file 字段
-           （消化 = 读进知识层出 Finding + 登记来源，见 docs/DECISIONS.md）
-  精读队列 = 已打分 − 已消化，importance 降序
-
-depth 口径过滤（2026-08-16 全库通读后新增）：打分表混装四种阅读深度，
-不能一股脑排进精读队列——
-  精读/据实生成 → 可直接进队列（原文已读或每个数字可逐行回查）
-  成员精读      → 全进且排最前——**等的是审计不是消化**，压着不审等于把未核实的内容
-                  留在库里冒充已读
-  半自动        → 只有 importance ≥ 6 才进队列（auto_batch 上限封 6，
-                  分数是保守初值，需回原文复核才能上引证据链）
-  目录级        → 一律不进队列（一行覆盖一个目录，是检索索引不是材料）
-`--all` 可绕过过滤看全表。
-
-节奏约定：每周至少消化 2 份 importance ≥ 8 的文献；打分本身由"扫描收件箱→
-粗读打分"流程持续供给（LIBRARY_SCORES.csv 追加行）。
-
-用法：python3 pipeline/reading_queue.py    # 队列 → reports/reading_queue.md + stdout
-零依赖。
+深读完成仅由稳定 doc_id 和完整覆盖率证明，旧来源登记/摘要/路径不能代替。
+Spark 永久队列还负责公平调度、重试与阻塞状态，本脚本是旧打分表的迁移视图。
 """
 import csv
 import json
 import sys
+import research
 from collections import Counter
 from datetime import date
 from pathlib import Path
@@ -38,12 +20,14 @@ OUT = ROOT / "reports" / "reading_queue.md"
 
 def eligible(row):
     """按阅读深度决定该行是否有资格进精读队列。"""
-    depth = row.get("depth") or "精读"
-    if depth == "目录级":
-        return False
-    if depth == "半自动":
-        return int(row["importance"]) >= 6
-    return True
+    return row.get("depth") != "目录级"
+
+
+def proven_complete(row, documents):
+    doc_id = row.get('doc_id')
+    return bool(doc_id and any(d.get('doc_id', d.get('id')) == doc_id
+        and research.coverage_complete(d)
+        for d in documents))
 
 
 def audit_pending(row):
@@ -53,10 +37,10 @@ def audit_pending(row):
 
 def main():
     show_all = "--all" in sys.argv
-    digested = {r.get("local_file") for r in json.loads(SOURCES.read_text(encoding="utf-8"))["records"] if r.get("local_file")}
+    documents = research.build_snapshot(ROOT)["knowledge"]["documents"]
     rows = list(csv.DictReader(SCORES.open(encoding="utf-8")))
     pool = rows if show_all else [r for r in rows if eligible(r)]
-    queue = [r for r in pool if r["new_path"] not in digested]
+    queue = [r for r in pool if not proven_complete(r, documents)]
     queue.sort(key=lambda r: (not audit_pending(r), -int(r["importance"]), r["confidence"]))
 
     by_depth = Counter(r.get("depth") or "精读" for r in rows)
@@ -67,9 +51,9 @@ def main():
         f"｜ 已消化 {len(pool) - len(queue)} 份 ｜ 待消化 {len(queue)} 份",
         "",
         "阅读深度分布：" + "、".join(f"{k} {v}" for k, v in by_depth.most_common()),
-        "入队规则：**成员精读全进且排最前（等的是审计）**；精读/据实生成全进；半自动仅 importance ≥ 6；目录级不进（`--all` 看全表）。",
+        "入队规则：每篇独立文章都精读；分数只影响优先级；目录索引单列。旧表未建立内容身份和覆盖记录的材料保持待核。",
         "",
-        "消化 = 读进知识层出 Finding + 登记 data/sources.json（local_file 对上即出队）。",
+        "出阅读队列须稳定 doc_id 与完整页/分块覆盖；审核采用另行记录。登记来源或路径匹配不代表已精读。",
         "节奏：每周至少 2 份 importance ≥ 8。",
         "",
     ]

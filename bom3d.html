@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="assets/research.css">
 <title>三维爆炸图 — Datacenter Hub</title>
 <style>
   :root {
@@ -78,12 +79,30 @@
   .drill .soon { opacity: .45; cursor: default; }
   .drill .sep { padding: 0 1px; color: var(--line); }
   @media (max-width: 900px) { .drill { display: none; } }
+
+  .topbar { overflow-x: auto; white-space: nowrap; }
+  .topbar .tab { flex: none; }
+  .close { border: 0; background: transparent; padding: 0 2px; }
+  .hud { max-height: calc(100dvh - 122px); overflow-y: auto; }
+  #dossier .sec .kv { gap: 12px; overflow-wrap: anywhere; }
+  @media (max-width: 700px) {
+    .topbar { height: 46px; padding: 0 10px; gap: 0; }
+    .topbar b { font-size: 12px; margin-right: 6px; }
+    .topbar .tab { font-size: 11px; padding: 12px 9px; }
+    .hud { left: 10px; right: 10px; bottom: 10px; width: auto; padding: 10px 12px; max-height: 37dvh; }
+    .hud h1 { font-size: 13px; }
+    #domainParts { max-height: 15dvh; }
+    #dossier { left: 10px; right: 10px; top: 55px; bottom: 10px; width: auto; padding: 14px; z-index: 28; }
+    .insp canvas { height: 160px; }
+  }
+
 </style>
 </head>
 <body>
 <div class="topbar">
   <b>Datacenter Hub</b>
   <a class="tab" href="index.html">总览</a>
+  <a class="tab" href="research.html">研究工作台</a>
   <a class="tab" href="bom.html">爆炸图 2D</a>
   <a class="tab on" href="bom3d.html">爆炸图 3D</a>
   <a class="tab" href="rack3d.html">机柜拆解台</a>
@@ -97,11 +116,12 @@
 <div class="hud">
   <h1>数据中心拆解</h1>
   <div class="m">拖动旋转 · 滚轮缩放 · 点击设备看档案 · 按 1-6 直达领域</div>
-  <input type="range" id="explode" min="0" max="100" value="0">
-  <div class="stage" id="stage">整机：一座 AI 数据中心</div>
+  <div class="m rg-concept-note">概念示意 · 现场安装与尺寸未知 · 点击节点追溯证据</div>
+  <input aria-label="爆炸拆解进度" type="range" id="explode" min="0" max="100" value="0">
+  <div class="stage" id="stage">概念全景：AI 数据中心</div>
   <div class="domrow" id="domrow"></div>
-  <div class="dchip" id="covChip" style="margin-top:8px" title="按数据完整度给部件着色（公司/产品/序列/指标四维）——空白部件一眼可见，就是采集缺口">📊 数据覆盖热图</div>
-  <div id="covLegend"><span><i style="background:#ef4444"></i>0/4</span><span><i style="background:#f59e0b"></i>1</span><span><i style="background:#eab308"></i>2</span><span><i style="background:#84cc16"></i>3</span><span><i style="background:#22c55e"></i>4 全</span></div>
+  <div class="dchip" id="covChip" style="margin-top:8px" title="类别索引丰富度：公司/产品/序列/指标四维；不代表节点证据或现场核实">📊 类别索引热图</div>
+  <div id="covLegend"><span><i style="background:#ef4444"></i>0/4</span><span><i style="background:#f59e0b"></i>1</span><span><i style="background:#eab308"></i>2</span><span><i style="background:#84cc16"></i>3</span><span><i style="background:#22c55e"></i>4 类</span></div>
   <div id="domainParts"></div>
   <button id="play">▶ 自动拆解</button>
   <a href="rack3d.html"><button style="background:transparent;border:1px solid var(--line);color:var(--text);font-weight:500">🔬 进入机柜拆解台 →</button></a>
@@ -112,6 +132,7 @@
 <script type="importmap">{"imports": {"three": "./assets/vendor/three.module.js"}}</script>
 <script type="module">
 import * as THREE from "three";
+import { mountNodeResearch, bindResearchMeshNodes, installStageControl, safeURL } from "./assets/research-graph.js";
 import { OrbitControls } from "./assets/vendor/OrbitControls.js";
 import { EffectComposer } from "./assets/vendor/EffectComposer.js";
 import { RenderPass } from "./assets/vendor/RenderPass.js";
@@ -124,14 +145,11 @@ const get = async p => (await fetch(p + "?t=" + Date.now())).json();
 const [BOM, companies, prices, inds, reg, products] = await Promise.all([
   get("framework/bom.json"), get("data/companies.json"), get("data/prices.json"),
   get("framework/indicators.json"), get("framework/modules.json"), get("data/products.json")]);
-// 工单队列是生成物，可能不存在——拿不到就不显示工单数，页面照常
-const workorders = await fetch("reports/workorders.json?t=" + Date.now()).then(r => r.ok ? r.json() : null).catch(() => null);
 const CN = {}; companies.records.forEach(c => CN[c.company_id] = c.name_cn || c.name);
 const INDS = {}; inds.indicators.forEach(i => INDS[i.id] = i);
 const MODNAME = {}; reg.modules.forEach(m => MODNAME[m.id] = m.name);
 const PART = {}; BOM.parts.forEach(p => PART[p.id] = p);
 const PRODCOUNT = {}; (products.records || []).forEach(r => (r.bom_parts || []).forEach(bp => PRODCOUNT[bp] = (PRODCOUNT[bp] || 0) + 1));
-const WOCOUNT = {}; (workorders?.orders || []).forEach(o => WOCOUNT[o.mid] = (WOCOUNT[o.mid] || 0) + 1);
 /* 数据覆盖四维：公司/产品/价格序列/已录值指标——覆盖度热图与档案卡共用同一套口径 */
 const COVC = ["#ef4444", "#f59e0b", "#eab308", "#84cc16", "#22c55e"];
 const covDims = p => [
@@ -772,29 +790,34 @@ label("园区 · 土地与电网", 0, 0.8, FD / 2 + 14, 0.85, "#7d8aa3");
 
 /* ─────────── 分解阶段说明 ─────────── */
 const STAGES = [
-  [0.00, "整机：一座 AI 数据中心"],
+  [0.00, "概念全景：AI 数据中心"],
   [0.05, "① 掀开屋顶与幕墙——看见白空间"],
   [0.30, "② 机电分离：风墙/CDU/UPS/母线各就各位"],
   [0.50, "③ 机柜列拉开，明星机柜出列"],
   [0.68, "④ 抽出服务器与交换机"],
   [0.84, "⑤ 服务器拆到底：冷板/GPU/HBM/NIC/电源"],
 ];
+bindResearchMeshNodes(pickables);
 const stageEl = document.getElementById("stage");
 const slider = document.getElementById("explode");
 function ease(x) { return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2; }
 function apply() {
   const t = slider.value / 100;
+  const poses = new Map();
   animated.forEach(a => {
+    if (!poses.has(a.obj)) poses.set(a.obj, a.home.clone());
     const k = a.t1 <= a.t0 ? 1 : Math.min(1, Math.max(0, (t - a.t0) / (a.t1 - a.t0)));
-    const e = ease(k);
-    a.obj.position.set(a.home.x + a.off.x * e, a.home.y + a.off.y * e, a.home.z + a.off.z * e);
+    poses.get(a.obj).addScaledVector(a.off, ease(k));
     if (a.showAfter !== undefined) a.obj.visible = t >= a.showAfter;
   });
+  poses.forEach((position, obj) => obj.position.copy(position));
   let s = STAGES[0][1];
   STAGES.forEach(([th, txt]) => { if (t >= th) s = txt; });
   stageEl.textContent = s;
+  syncStageControl();
 }
 slider.addEventListener("input", apply);
+const syncStageControl = installStageControl(STAGES, slider, apply);
 { const x = new URLSearchParams(location.search).get("x"); if (x !== null) slider.value = Math.max(0, Math.min(100, +x || 0)); }
 apply();
 document.getElementById("play").onclick = () => {
@@ -965,7 +988,7 @@ function latest(sid) {
   const pts = prices.records.filter(r => r.series_id === sid).sort((a, b) => a.as_of < b.as_of ? 1 : -1);
   return pts[0];
 }
-const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+const esc = s => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 function sparkline(sid) {
   const pts = prices.records.filter(r => r.series_id === sid && typeof r.value === "number")
     .sort((a, b) => a.as_of < b.as_of ? -1 : 1);
@@ -978,7 +1001,7 @@ function sparkline(sid) {
   const line = pts.map((r, i) => `${i ? "L" : "M"}${X(i).toFixed(1)},${Y(r.value).toFixed(1)}`).join("");
   const last = pts[pts.length - 1];
   const hits = pts.map((r, i) =>
-    `<circle cx="${X(i).toFixed(1)}" cy="${Y(r.value).toFixed(1)}" r="9" fill="transparent" data-v="${r.value.toLocaleString()} ${esc(r.unit)}" data-d="${r.as_of}"/>`).join("");
+    `<circle cx="${X(i).toFixed(1)}" cy="${Y(r.value).toFixed(1)}" r="9" fill="transparent" data-v="${r.value.toLocaleString()} ${esc(r.unit)}" data-d="${esc(r.as_of)}"/>`).join("");
   return `<div class="spark-wrap">
     <div class="sname"><span>${esc(sid)}</span><b>${last.value.toLocaleString()} ${esc(last.unit)}</b></div>
     <svg class="spark" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" style="display:block">
@@ -986,7 +1009,7 @@ function sparkline(sid) {
       <circle cx="${X(pts.length - 1).toFixed(1)}" cy="${Y(last.value).toFixed(1)}" r="3" fill="var(--accent)"/>
       ${hits}
     </svg>
-    <div class="sname"><span style="font-size:10px">${pts[0].as_of} → ${last.as_of}</span><span style="font-size:10px">区间 ${lo.toLocaleString()}–${hi.toLocaleString()}</span></div>
+    <div class="sname"><span style="font-size:10px">${esc(pts[0].as_of)} → ${esc(last.as_of)}</span><span style="font-size:10px">区间 ${lo.toLocaleString()}–${hi.toLocaleString()}</span></div>
   </div>`;
 }
 /* ── 部件旋转查看器：档案内单独渲染该部件，可拖动 360° 查看 ── */
@@ -1029,7 +1052,12 @@ function buildInspector(pid) {
   iVisible = false;
   if (!meshes?.length) return false;
   if (!iRen) initInspector();
-  while (iGroup.children.length) iGroup.remove(iGroup.children[0]);
+  while (iGroup.children.length) {
+    const old = iGroup.children[0];
+    (Array.isArray(old.material) ? old.material : [old.material]).filter(Boolean).forEach(m => m.dispose());
+    iGroup.remove(old);
+  }
+  iGroup.position.set(0, 0, 0);
   meshes.forEach(src => {
     src.updateWorldMatrix(true, false);
     const mat = Array.isArray(src.material) ? src.material.map(cloneMatForInspect) : cloneMatForInspect(src.material);
@@ -1054,38 +1082,75 @@ function inspectTick() {
   iRen.render(iScene, iCam);
 }
 
+function dossierNode(tag, text, className) {
+  const actual = document.createElement(tag);
+  if (text !== undefined) actual.textContent = text;
+  if (className) actual.className = className;
+  return actual;
+}
+function dossierLink(text, href) {
+  const a = dossierNode("a", text, "chip");
+  const valid = safeURL(href);
+  if (valid) a.href = valid;
+  return a;
+}
 function showDossier(p) {
   const el = document.getElementById("dossier");
-  let rows = [];
+  el.replaceChildren();
+  const close = dossierNode("button", "✕", "close");
+  close.type = "button"; close.setAttribute("aria-label", "关闭部件档案");
+  close.addEventListener("click", () => { el.style.display = "none"; iVisible = false; });
+  el.append(close, dossierNode("h2", p.name));
+  const meta = dossierNode("div", [p.layer, BOM.layers.find(l => l.id === p.layer)?.name || ""].join(" "), "meta");
+  const badge = dossierNode("span", "产业状态：" + (SN[p.status] || "未知"), "badge");
+  badge.style.background = SBADGE[p.status] || "#64748b";
+  meta.append(" · ", badge); el.append(meta);
+  el.append(dossierNode("p", "概念示意 · 类别级研究锚点。形状、数量、尺寸不代表真实现场配置。", "rg-concept-note"));
+  const research = document.createElement("div"); el.append(research);
+  mountNodeResearch(research, "part:" + p.id);
+  const slot = dossierNode("div", undefined, "insp");
+  slot.id = "inspSlot"; slot.style.display = "none";
+  slot.append(dossierNode("div", "概念部件预览 · 拖动旋转", "ihint")); el.append(slot);
+  el.append(dossierNode("div", p.desc || "说明待补充"));
+  const links = dossierNode("div", undefined, "sec");
+  links.append(dossierNode("h3", "参考研究与结构"));
+  links.append(dossierLink("研究模块 " + p.module + " " + (MODNAME[p.module] || ""), "report.html#ch-" + encodeURIComponent(p.module)));
+  links.append(dossierLink("模块原文", "doc.html?f=" + encodeURIComponent("research/" + p.module + ".md")));
+  if (location.pathname.endsWith("bom3d.html") && ["rack-frame", "server", "network-switch", "power-shelf", "manifold", "gpu", "cpu", "hbm", "dram", "nic", "psu", "coldplate", "ssd"].includes(p.id))
+    links.append(dossierLink("继续拆解机柜 →", "rack3d.html?x=100&node=" + encodeURIComponent("part:" + p.id) + "#" + encodeURIComponent(p.id)));
+  if (location.pathname.endsWith("rack3d.html"))
+    links.append(dossierLink("返回园区定位", "bom3d.html?" + new URLSearchParams({ p: p.id, node: "part:" + p.id })));
+  el.append(links);
+  if (p.upstream?.length) {
+    const upstream = dossierNode("div", undefined, "sec"); upstream.append(dossierNode("h3", "上游研究主题"));
+    p.upstream.forEach(u => upstream.append(dossierNode("span", u, "chip"))); el.append(upstream);
+  }
+  if (p.companies?.length) {
+    const companies = dossierNode("div", undefined, "sec"); companies.append(dossierNode("h3", "类别关联公司 · 不代表现场供应商"));
+    p.companies.forEach(c => companies.append(dossierLink(CN[c] || c, "company.html?c=" + encodeURIComponent(c)))); el.append(companies);
+  }
+  const metrics = dossierNode("div", undefined, "sec"); metrics.append(dossierNode("h3", "类别数据与指标 · 按原记录时点"));
+  let n = 0;
   (p.series || []).forEach(sid => {
     const sp = sparkline(sid);
-    if (sp) { rows.push(sp); return; }
-    const r = latest(sid); if (r) rows.push(`<div class="kv"><span>${sid}</span><b>${r.value.toLocaleString()} ${r.unit}</b></div>`);
+    if (sp) { const wrap = document.createElement("div"); wrap.innerHTML = sp; metrics.append(wrap); n++; return; }
+    const r = latest(sid); if (!r) return;
+    const row = dossierNode("div", undefined, "kv");
+    row.append(dossierNode("span", sid + (r.as_of ? " · " + r.as_of : "")), dossierNode("b", r.value == null ? "未知" : String(r.value) + " " + (r.unit || "")));
+    metrics.append(row); n++;
   });
-  (p.indicators || []).forEach(iid => { const i = INDS[iid]; if (i) rows.push(`<div class="kv"><span>${i.name}</span><b>${i.value != null ? i.value.toLocaleString() + " " + i.unit : "待录入"}</b></div>`); });
-  const deep = ["rack-frame", "server", "network-switch", "power-shelf", "manifold", "gpu", "cpu", "hbm", "nic", "psu", "coldplate", "ssd", "dram"].includes(p.id)
-    ? `<a class="chip" href="rack3d.html?x=100#${p.id}">🔬 上机柜拆解台看结构</a>` : "";
-  const dims = covDims(p), score = covScore(p);
-  el.innerHTML = `<span class="close" onclick="this.parentElement.style.display='none'">✕</span>
-    <h2>${esc(p.name)}</h2>
-    <div class="meta">${p.layer} ${BOM.layers.find(l => l.id === p.layer)?.name || ""} ·
-      <span class="badge" style="background:${SBADGE[p.status]}">${SN[p.status]}</span>${PARTMESH[p.id] ? "" : ' <span class="badge" style="background:#64748b" title="场景中尚无 3D 造型">未建模</span>'}</div>
-    <div class="insp" id="inspSlot" style="display:none"><div class="ihint">🔄 拖动旋转 · 单独查看该部件</div></div>
-    <div style="font-size:12.5px">${esc(p.desc)}</div>
-    <div class="sec"><h3>数据覆盖 <span style="color:${COVC[score]}">${score}/4</span></h3><div style="display:flex;gap:5px;flex-wrap:wrap">${dims.map(([n, v]) =>
-      `<span class="chip" style="cursor:default${v ? "" : ";opacity:.45"}">${n} ${v || "空"}</span>`).join("")}</div></div>
-    <div class="sec"><h3>研究归属</h3><a class="chip" href="report.html#ch-${p.module}">📖 ${p.module} ${MODNAME[p.module] || ""}</a>
-      <a class="chip" href="doc.html?f=research/${p.module}.md">原文</a>${WOCOUNT[p.module] ? `<a class="chip" href="doc.html?f=reports/workorders.md" title="该模块的采集缺口清单——爆炸图空白处的派工入口">📋 模块工单 ${WOCOUNT[p.module]} 张</a>` : ""}${deep}</div>
-    ${p.upstream?.length ? `<div class="sec"><h3>上游供应链</h3>${p.upstream.map(u => `<span class="chip" style="cursor:default">${esc(u)}</span>`).join("")}</div>` : ""}
-    ${p.companies?.length ? `<div class="sec"><h3>关联公司</h3>${p.companies.map(c => `<a class="chip" href="company.html?c=${c}">${CN[c] || c}</a>`).join("")}</div>` : ""}
-    <div class="sec"><h3>数据与指标</h3>${rows.join("") || '<div style="color:var(--muted);font-size:12px">量化序列待建——下一个采集点</div>'}</div>`;
-  if (buildInspector(p.id)) {
-    const slot = document.getElementById("inspSlot");
-    slot.style.display = "block";
-    slot.insertBefore(iCv, slot.firstChild);
-  }
+  (p.indicators || []).forEach(iid => {
+    const i = INDS[iid]; if (!i) return;
+    const row = dossierNode("div", undefined, "kv");
+    row.append(dossierNode("span", i.name + (i.as_of ? " · " + i.as_of : "")), dossierNode("b", i.value == null ? "未披露 / 待核实" : String(i.value) + " " + (i.unit || "")));
+    metrics.append(row); n++;
+  });
+  if (!n) metrics.append(dossierNode("div", "当前没有量化数据。非数字陈述与未知见节点研究。", "meta"));
+  el.append(metrics);
+  if (buildInspector(p.id)) { slot.style.display = "block"; slot.insertBefore(iCv, slot.firstChild); }
   el.style.display = "block";
 }
+
 // sparkline 悬停读数（事件委托，一次绑定）
 const dossierEl = document.getElementById("dossier");
 dossierEl.addEventListener("pointermove", e => {
@@ -1103,6 +1168,7 @@ function resize() {
   renderer.setSize(innerWidth, innerHeight);
   composer.setSize(innerWidth, innerHeight);
   camera.aspect = innerWidth / innerHeight;
+  camera.zoom = Math.min(1, Math.max(0.35, camera.aspect / 0.9));
   camera.updateProjectionMatrix();
 }
 addEventListener("resize", resize); resize();
@@ -1112,7 +1178,8 @@ addEventListener("resize", resize); resize();
 { const q = new URLSearchParams(location.search);
   const d = DOMAINS.find(x => x.key === q.get("d"));
   if (d) { controls.autoRotate = false; enterDomain(d); }
-  const p = PART[q.get("p")];
+  const nodePart = (q.get("node") || "").replace(/^part:/, "");
+  const p = PART[q.get("p") || nodePart];
   if (p) { controls.autoRotate = false; showDossier(p); }
   if (q.get("cov") === "1" && !covOn) { controls.autoRotate = false; covToggle(); } }
 
@@ -1151,14 +1218,15 @@ fetch("assets/levels.json?t=" + Date.now()).then(r => r.ok ? r.json() : null).th
   const here = location.pathname.split("/").pop() || "index.html";
   const bar = document.createElement("div");
   bar.className = "drill";
-  bar.innerHTML = cfg.levels.map((L, i) => {
-    const cur = L.page.split("?")[0] === here && L.id !== "server";
-    const sep = i ? '<span class="sep">›</span>' : "";
-    const tip = `${L.name} · ${L.desc}` + (L.status === "planned" ? "（规划中）" : "");
-    if (L.status === "planned" || !L.page)
-      return `${sep}<span class="soon" title="${tip}">${L.icon} ${L.name}</span>`;
-    return `${sep}<a href="${L.page}" class="${cur ? "on" : ""}" title="${tip}">${L.icon} ${L.name}</a>`;
-  }).join("");
+  cfg.levels.forEach((L, i) => {
+    if (i) bar.appendChild(dossierNode("span", "›", "sep"));
+    const cur = String(L.page || "").split("?")[0] === here && L.id !== "server";
+    const active = L.status !== "planned" && L.page && safeURL(L.page);
+    const node = dossierNode(active ? "a" : "span", (L.icon || "") + " " + L.name, active ? (cur ? "on" : "") : "soon");
+    node.title = L.name + " · " + (L.desc || "") + (L.status === "planned" ? "（规划中）" : "");
+    if (active) node.href = safeURL(L.page);
+    bar.appendChild(node);
+  });
   document.body.appendChild(bar);
 }).catch(() => {});
 </script>

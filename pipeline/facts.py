@@ -25,6 +25,7 @@
 import json
 import sys
 from collections import defaultdict
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -103,7 +104,7 @@ def validate(facts, metrics):
             err(f"facts[{fid}]: value 为 null 时必须在 notes 说明为何留白")
 
 
-def public_view(f, m, today_year=2026):
+def public_view(f, m, today_year=None):
     """对外呈现（2026-08-17 用户拍板的规则）。
 
     三条：
@@ -113,21 +114,29 @@ def public_view(f, m, today_year=2026):
          说清"引用的是某年的数据、大概在哪个区间"，既够用又诚实。
     """
     v = f.get("value")
+    value_range = f.get("value_range")
+    unit = f.get("unit", "")
     band = m.get("public_band") or {}
     step = band.get("step")
-    if v is None:
+    # 已披露区间与未披露是两种状态；沿用内部显示精度，不另行取整。
+    if value_range is not None:
+        lo, hi = value_range
+        rng = f"{fmt_value(lo, unit)}–{fmt_value(hi, unit)}"
+    elif v is None:
         rng = "未披露（留白）"
     elif step:
         lo = int(v // step) * step
-        rng = f"{lo:,.0f}–{lo + step:,.0f}"
+        rng = f"{fmt_value(lo, unit)}–{fmt_value(lo + step, unit)}"
     else:
-        rng = f"约 {v:,.0f}"
+        rng = fmt_value(v, unit)
     bd = f.get("bound", "point")
     if bd == "upper":
         rng = f"不高于 {rng}"
     elif bd == "lower":
         rng = f"不低于 {rng}"
     yr = str(f.get("as_of", ""))[:4]
+    if today_year is None:
+        today_year = date.today().year
     age = (today_year - int(yr)) if yr.isdigit() else None
     vintage = f"{yr} 年数据" + (f"，距今约 {age} 年" if age and age > 0 else "")
     cal = "｜".join(f"{k}={v2}" for k, v2 in (f.get("caliber") or {}).items())

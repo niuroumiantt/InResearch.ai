@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>研究工作台 — Datacenter Hub</title>
+<link rel="stylesheet" href="assets/research.css">
+</head>
+<body class="research-app">
+<header class="rg-topbar">
+  <a class="rg-brand" href="index.html">Datacenter Hub <span>研究工作台</span></a>
+  <nav aria-label="主导航"><a href="index.html">总览</a><a href="bom3d.html">园区 3D</a><a href="rack3d.html">机柜拆解</a><a href="admin/product/">产品资料</a><a href="ops.html">管理后台</a></nav>
+</header>
+<main id="researchApp">
+  <section class="rg-intro">
+    <div><div class="rg-eyebrow">RESEARCH WORKSPACE</div><h1>从对象出发，追到证据</h1><p>在物理结构、系统连接、产业角色和需求之间切换。每条结论都有出处，每处未知都有去向。</p></div>
+    <div id="researchSummary" class="rg-summary" aria-live="polite"></div>
+  </section>
+  <div id="researchStatus" class="rg-status" role="status">正在连接研究服务…</div>
+  <nav id="researchViews" class="rg-views" aria-label="研究视角"></nav>
+  <div class="rg-workspace">
+    <aside class="rg-sidebar" aria-label="对象目录">
+      <label for="researchSearch">查找对象</label>
+      <input id="researchSearch" type="search" placeholder="搜索名称、ID、模块或中文关键词" autocomplete="off">
+      <label class="rg-sr-only" for="researchKind">对象类型</label>
+      <select id="researchKind"><option value="">所有对象类型</option></select>
+      <div id="researchListCount" class="rg-list-count"></div>
+      <div id="researchObjects" class="rg-object-list"></div>
+    </aside>
+    <article id="researchDetail" class="rg-detail" aria-live="polite"><div class="rg-empty">正在载入对象、关系和研究问题…</div></article>
+  </div>
+</main>
+<noscript><p>研究工作台需要启用 JavaScript。可先从 <a href="report.html">研究报告</a> 阅读。</p></noscript>
+<script type="module" src="assets/research-graph.js"></script>
+</body>
+</html>
