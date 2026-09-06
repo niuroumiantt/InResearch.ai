@@ -16,7 +16,7 @@
 ## 已完成验证
 
 - 严格校验：0 error、0 warning；对象/问题引用校验通过。
-- 新增 57 项回归测试通过，含真实本地 HTTP、并发写、恢复、文件变更、原件保留与坏快照降级。
+- 新增 59 项回归测试通过，含真实本地 HTTP、并发写、恢复、文件变更、原件保留与坏快照降级。
 - 桌面与 390×844 手机浏览器实测：中文搜索、节点切换、冷板/DRAM 深链、3D 拆解阶段、断网错误态；两个 3D 控制台无 JS 错误。
 - 导出实际生成 15 章、150 条既有 Finding，其中 23 条明确带待复核警示。
 - 正式架构 PDF：12 页，334 个内容单元完整保留；全部页面视觉检查通过。文件在 `~/.local/share/inresearch.ai/artifacts/research-architecture-v2.pdf`，生成脚本入 Git，PDF 不入源码。
@@ -27,7 +27,15 @@
 
 ## 部署对账
 
-生产部署与常驻服务验证在发布完成后补记于本节；以 Git SHA、systemd 状态、主站同步时间和真实模型测试为准，不能仅以本地测试通过宣称上线。
+首次上线于 2026-09-06 03:39 UTC 完成部署提交：应用 `470889e681c8e173277b230d00b5c943faf001c2`（PR #94）、infra `a6791ebc45b5fba2f7beaaf656982123294580aa`（PR #110），整体发布 ID `7197dec85cf39fa1d8ac58af316e2286a0c84bf0`。正式部署服务 Result=success、ExecMainStatus=0，应用 deployed marker 与 Git HEAD 一致。
+
+- 生产认证访问：`/research.html`、`/bom3d.html`、`/rack3d.html`、`/api/research` 均 HTTP 200；API 实测 84 对象、415 问题、564 任务。原账号和数据保留。
+- Spark：`~/code/inresearch.ai` 为经 GitHub SHA 对账的 Git checkout；`inresearch-reader.service` active/running，`inresearch-reader-publish.timer` active/enabled，`Linger=yes`。实际启用 27B/32768 与 `qwen3-vl:8b` OCR。重启服务后仍 active，台账 integrity_check=ok。
+- 主站收到真实 Spark 快照，首次核对 received_at=`2026-09-06T03:38:30.637893+00:00`，reader=idle、production documents=0。合成测试全部在 /tmp 隔离，未上传为研究资料。
+- 新镜像在不挂载运行卷的隔离检查中确认没有 `.git`、用户表、会话密钥、reader token 或运行快照。
+- 上线前原数据/报告备份：服务器 `/srv/inresearch-backups/inresearch.ai/architecture-v2-before-20260906.tar.gz`，root-only。Spark 私有同步 token 在 state 目录与主站 data 目录，未进 Git、镜像或报告。
+
+上线后补充发布器配置读取回归：发布状态须反映 worker 环境里的 OCR/backend；worker 停止时不能继续报告健康 idle。此补丁与部署记录随同发布。最新 checkout SHA 分别通过网站服务器和 Spark 的 `git rev-parse HEAD` 对账，避免文档为记录自身提交造成循环更新。
 
 ## 后续研究与容量边界
 

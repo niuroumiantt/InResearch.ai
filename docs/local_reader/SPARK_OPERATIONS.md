@@ -124,3 +124,19 @@ python3 -m unittest discover -s pipeline -p test_continuous_reader.py -v
 ```
 
 测试只在系统临时目录通过注入模型验证状态与证据契约，不提供生产 fake 参数。真实推理和实际部署需单独验收并留存运行记录。
+
+## 已部署发布器与后续源码更新
+
+2026-09-06 已在真实 Spark 启用 reader、`Linger=yes`、`qwen3-vl:8b` OCR 和五分钟发布器。主站实际收到候选快照；验收版本与边界见 `docs/reviews/2026-09-06/IMPLEMENTATION.md`。生产目录等待用户投料，测试文档不入生产库。
+
+发布器定义在 `deploy/spark-reader/inresearch-reader-publish.service` 与 `.timer`。它加载 `~/.config/inresearch.ai/reader.env` 和 `publish.env`，使用 `~/.local/state/inresearch.ai/reader-sync.token`（0600）向 HTTPS 主站提交候选。主站 token 文件为 `/srv/inresearch.ai/data/.reader_sync_token`，与用户登录权限分离。配置 `READER_RELEASE` 记录本次已安装的 Git SHA，源码更新后同步修改并重启 reader；不能仅修改这个标签冒充发布。
+
+```bash
+systemctl --user status inresearch-reader-publish.timer --no-pager
+systemctl --user start inresearch-reader-publish.service
+cat ~/.local/state/inresearch.ai/publish-status.json
+```
+
+首次源码由 m5 对 GitHub main 核对 SHA 后以 Git bundle 传入，在规范目录初始化完整 Git checkout。Spark 没有保存通用 GitHub token；后续可从已认证 m5 生成 main 的 bundle，传到 Spark 并 fetch。更新前核对当前源码无未提交/未跟踪文件，停止 reader，在 main 上 `git merge --ff-only` 已验证远端 SHA，再安装版本化 units、更新 release 配置并重启。不要 reset/stash/覆盖 dirty 工作区，也不要 rsync 覆盖正在执行的源码。
+
+主站按 infra 的正式整体发布流程跟随 GitHub main；不能为提速旁路其部署锁、数据库保护或发布提交。Web 快照是派生副本，不代替 Spark 永久台账和原件备份。
