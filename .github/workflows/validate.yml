@@ -10,6 +10,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
+      - name: 现行规则与在册文件检查
+        run: python3 pipeline/governance.py --check
       - name: 口径与数据校验
         run: python3 pipeline/validate.py --strict
       - name: 核验队列可生成

@@ -333,7 +333,7 @@ try {
       r => +r.k.slice(1) >= 8 ? C.op : +r.k.slice(1) >= 6 ? C.bu : C.pl, r => r.mw,
       r => r.k + " " + FN[+r.k.slice(1) - 1],
       r => `<b>${r.k} ${FN[+r.k.slice(1) - 1]}</b><br>${fmtMW(r.mw)}<br><span class="tl">处于此状态的项目 ${r.n} 个</span>`) +
-    `<div class="note">仅 L8+ 计入当期供给；L4 以下汇总须乘历史转化率（口径手册）</div>`]);
+    `<div class="note">仅 L8+ 计入当期供给；早期披露容量与情景预测分列（口径手册）</div>`]);
   const rrows = Object.entries(regions).map(([k, v]) => ({ k, ...v })).sort((a, b) => (b.op + b.bu + b.pl) - (a.op + a.bu + a.pl));
   const RN = { "north-america": "北美", "china": "中国", "mena": "中东北非", "apac": "亚太", "latam": "拉美", "europe": "欧洲", "india": "印度" };
   boards.push(["b6", "区域容量结构", "report.html#ch-M05",

@@ -1,0 +1,606 @@
+# 在册源码与记录清单
+
+> GENERATED · 由 `pipeline/governance.py --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.06.1。
+
+现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
+
+范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
+
+在册文件：398。
+
+| 身份 | 文件数 |
+|---|---|
+| 静态资源 | 37 |
+| 候选与外部输入 | 145 |
+| 已采用设计依据 | 1 |
+| 现行入口 | 4 |
+| 生成物 | 12 |
+| 历史快照 | 34 |
+| 运行代码 | 52 |
+| 现行规范 | 7 |
+| 项目配置 | 25 |
+| 兼容研究记录 | 16 |
+| 已退役入口 | 3 |
+| 在册数据/索引 | 25 |
+| 配套说明 | 29 |
+| 测试 | 8 |
+
+## 在册记录集合
+
+| 文件 | 集合 | 条数 |
+|---|---|---|
+| `.claude/launch.json` | configurations | 1 |
+| `assets/levels.json` | levels | 5 |
+| `assets/models/manifest.json` | models | 1 |
+| `assets/world.geo.json` | features | 180 |
+| `data/assignments.json` | statuses | 5 |
+| `data/assignments.json` | records | 0 |
+| `data/brief.json` | sec | 16 |
+| `data/brief.json` | review_marked | 23 |
+| `data/companies.json` | records | 248 |
+| `data/contracts.json` | records | 2 |
+| `data/facts.json` | records | 119 |
+| `data/policies.json` | records | 2 |
+| `data/prices.json` | records | 207 |
+| `data/product_docs_plan.csv` | rows | 801 |
+| `data/products.json` | records | 175 |
+| `data/projects.json` | records | 120 |
+| `data/research_knowledge.json` | documents | 0 |
+| `data/research_knowledge.json` | evidence | 0 |
+| `data/research_knowledge.json` | statements | 0 |
+| `data/research_knowledge.json` | answers | 0 |
+| `data/schema/company.schema.json` | required | 4 |
+| `data/schema/contract.schema.json` | required | 7 |
+| `data/schema/fact.schema.json` | required | 8 |
+| `data/schema/policy.schema.json` | required | 7 |
+| `data/schema/price.schema.json` | required | 6 |
+| `data/schema/products.schema.json` | required | 7 |
+| `data/schema/project.schema.json` | required | 7 |
+| `data/schema/source.schema.json` | required | 5 |
+| `data/schema/submission.schema.json` | required | 4 |
+| `data/sources.json` | records | 74 |
+| `docs/CN_PROJECT_ARCHIVES.csv` | rows | 40 |
+| `docs/LIBRARY_SCORES.csv` | rows | 13664 |
+| `docs/inbox/facts_candidates/m01_market_20260817.json` | records | 4 |
+| `docs/inbox/facts_candidates/m02_supply_20260817.json` | records | 5 |
+| `docs/inbox/facts_candidates/m03_demand_20260817.json` | records | 5 |
+| `docs/inbox/facts_candidates/m04_power_20260817.json` | records | 5 |
+| `docs/inbox/facts_candidates/m05_siting_20260817.json` | records | 3 |
+| `docs/inbox/facts_candidates/m06r1_compute_20260817.json` | records | 5 |
+| `docs/inbox/facts_candidates/m06r2_memory_20260817.json` | records | 6 |
+| `docs/inbox/facts_candidates/m06r3_server_20260817.json` | records | 5 |
+| `docs/inbox/facts_candidates/m07_network_20260817.json` | records | 5 |
+| `docs/inbox/facts_candidates/m08_cooling_20260817.json` | records | 6 |
+| `docs/inbox/facts_candidates/m09_supplychain_20260817.json` | records | 10 |
+| `docs/inbox/facts_candidates/m10_ops_20260817.json` | records | 10 |
+| `docs/inbox/facts_candidates/m11_reits_20260817.json` | records | 10 |
+| `docs/inbox/facts_candidates/m12_tokenecon_20260817.json` | records | 4 |
+| `docs/inbox/facts_candidates/m13_utilization_20260817.json` | records | 10 |
+| `docs/inbox/facts_candidates/m14_china_20260817.json` | records | 10 |
+| `docs/inbox/facts_candidates/m15_scenario_20260817.json` | records | 7 |
+| `docs/inbox/framework_proposals/2026-09-06-attachments.json` | files | 2 |
+| `docs/inbox/inresearch-alignment/bom_parts_extension.json` | proposed_parts | 14 |
+| `docs/inbox/inresearch-alignment/companies_patch.json` | records | 166 |
+| `docs/inbox/inresearch-alignment/library_index.json` | records | 6 |
+| `docs/inbox/inresearch-alignment/products.json` | records | 175 |
+| `docs/inbox/needs_password/needs_password_20260816.csv` | rows | 362 |
+| `docs/inbox/path_migrations/migration_20260818_01.csv` | rows | 28751 |
+| `docs/inbox/scored_batches/batch_20260815_01.csv` | rows | 5 |
+| `docs/inbox/scored_batches/batch_20260815_02.csv` | rows | 26 |
+| `docs/inbox/scored_batches/batch_20260815_03.csv` | rows | 24 |
+| `docs/inbox/scored_batches/batch_20260816_01.csv` | rows | 24 |
+| `docs/inbox/scored_batches/batch_20260816_02.csv` | rows | 28 |
+| `docs/inbox/scored_batches/batch_20260816_03.csv` | rows | 41 |
+| `docs/inbox/scored_batches/batch_20260816_04.csv` | rows | 37 |
+| `docs/inbox/scored_batches/batch_20260816_05.csv` | rows | 53 |
+| `docs/inbox/scored_batches/batch_20260816_06.csv` | rows | 36 |
+| `docs/inbox/scored_batches/batch_20260816_07.csv` | rows | 36 |
+| `docs/inbox/scored_batches/batch_20260816_08.csv` | rows | 36 |
+| `docs/inbox/scored_batches/batch_20260816_09.csv` | rows | 15 |
+| `docs/inbox/scored_batches/batch_20260816_10.csv` | rows | 34 |
+| `docs/inbox/scored_batches/batch_20260816_11.csv` | rows | 32 |
+| `docs/inbox/scored_batches/batch_20260816_12.csv` | rows | 37 |
+| `docs/inbox/scored_batches/batch_20260816_13.csv` | rows | 24 |
+| `docs/inbox/scored_batches/batch_20260816_14.csv` | rows | 75 |
+| `docs/inbox/scored_batches/batch_20260816_15.csv` | rows | 74 |
+| `docs/inbox/scored_batches/batch_20260816_16.csv` | rows | 74 |
+| `docs/inbox/scored_batches/batch_20260816_17.csv` | rows | 55 |
+| `docs/inbox/scored_batches/batch_20260816_18.csv` | rows | 50 |
+| `docs/inbox/scored_batches/batch_20260816_19.csv` | rows | 58 |
+| `docs/inbox/scored_batches/batch_20260816_20.csv` | rows | 50 |
+| `docs/inbox/scored_batches/batch_20260816_21.csv` | rows | 40 |
+| `docs/inbox/scored_batches/batch_20260816_22.csv` | rows | 26 |
+| `docs/inbox/scored_batches/batch_20260816_23.csv` | rows | 65 |
+| `docs/inbox/scored_batches/batch_20260816_24.csv` | rows | 13 |
+| `docs/inbox/scored_batches/batch_20260816_25.csv` | rows | 35 |
+| `docs/inbox/scored_batches/batch_20260816_26.csv` | rows | 28 |
+| `docs/inbox/scored_batches/batch_20260816_27.csv` | rows | 31 |
+| `docs/inbox/scored_batches/batch_20260816_28.csv` | rows | 72 |
+| `docs/inbox/scored_batches/batch_20260816_29.csv` | rows | 20 |
+| `docs/inbox/scored_batches/batch_20260816_30.csv` | rows | 258 |
+| `docs/inbox/scored_batches/batch_20260816_31.csv` | rows | 346 |
+| `docs/inbox/scored_batches/batch_20260816_32.csv` | rows | 60 |
+| `docs/inbox/scored_batches/batch_20260816_33.csv` | rows | 164 |
+| `docs/inbox/scored_batches/batch_20260816_34.csv` | rows | 500 |
+| `docs/inbox/scored_batches/batch_20260816_35.csv` | rows | 500 |
+| `docs/inbox/scored_batches/batch_20260816_36.csv` | rows | 488 |
+| `docs/inbox/scored_batches/batch_20260816_37.csv` | rows | 648 |
+| `docs/inbox/scored_batches/batch_20260816_38.csv` | rows | 745 |
+| `docs/inbox/scored_batches/batch_20260817_39.csv` | rows | 309 |
+| `docs/inbox/scored_batches/batch_20260817_40.csv` | rows | 700 |
+| `docs/inbox/scored_batches/batch_20260817_41.csv` | rows | 700 |
+| `docs/inbox/scored_batches/batch_20260817_42.csv` | rows | 700 |
+| `docs/inbox/scored_batches/batch_20260817_43.csv` | rows | 700 |
+| `docs/inbox/scored_batches/batch_20260817_44.csv` | rows | 700 |
+| `docs/inbox/scored_batches/batch_20260817_45.csv` | rows | 700 |
+| `docs/inbox/scored_batches/batch_20260817_46.csv` | rows | 700 |
+| `docs/inbox/scored_batches/batch_20260817_47.csv` | rows | 700 |
+| `docs/inbox/scored_batches/batch_20260817_48.csv` | rows | 700 |
+| `docs/inbox/scored_batches/batch_20260817_49.csv` | rows | 700 |
+| `docs/inbox/scored_batches/batch_20260817_50.csv` | rows | 700 |
+| `docs/inbox/scored_batches/batch_20260817_51.csv` | rows | 556 |
+| `docs/inbox/scored_batches/batch_20260817_52.csv` | rows | 241 |
+| `docs/inbox/scored_batches/batch_20260817_53.csv` | rows | 3 |
+| `docs/inbox/scored_batches/batch_20260817_54.csv` | rows | 359 |
+| `docs/inbox/scored_batches/batch_20260817_55.csv` | rows | 1 |
+| `docs/inbox/scored_batches/batch_20260817_56.csv` | rows | 3 |
+| `docs/inbox/scored_batches/batch_20260817_57.csv` | rows | 3 |
+| `docs/inbox/scored_batches/batch_20260817_58.csv` | rows | 3 |
+| `docs/inbox/scored_batches/batch_20260817_59.csv` | rows | 3 |
+| `docs/inbox/scored_batches/batch_20260817_60.csv` | rows | 2 |
+| `docs/inbox/scored_batches/batch_20260817_61.csv` | rows | 1 |
+| `docs/inbox/scored_batches/batch_20260817_62.csv` | rows | 1 |
+| `docs/inbox/scored_batches/batch_20260817_63.csv` | rows | 1 |
+| `docs/inbox/scored_batches/batch_20260817_64.csv` | rows | 2 |
+| `docs/inbox/scored_batches/batch_20260817_65.csv` | rows | 2 |
+| `docs/inbox/scored_batches/batch_20260817_66.csv` | rows | 2 |
+| `docs/inbox/scored_batches/batch_20260817_67.csv` | rows | 2 |
+| `docs/inbox/scored_batches/batch_20260817_68.csv` | rows | 2 |
+| `docs/inbox/scored_batches/batch_20260817_69.csv` | rows | 2 |
+| `docs/inbox/scored_batches/batch_20260817_70.csv` | rows | 2 |
+| `docs/inbox/scored_batches/batch_20260817_71.csv` | rows | 1 |
+| `docs/inbox/scored_batches/batch_20260817_72.csv` | rows | 1 |
+| `docs/inbox/submissions/_selftest/submission.json` | items | 2 |
+| `docs/inbox/submissions/_template/submission.json` | items | 1 |
+| `docs/reviews/2026-09-06/evidence/backend-probes.json` | public_ranges | 4 |
+| `docs/reviews/2026-09-06/evidence/backend-probes.json` | public_precision | 3 |
+| `docs/reviews/2026-09-06/evidence/backend-probes.json` | collect_steps | 3 |
+| `docs/reviews/2026-09-06/evidence/http-probes.json` | items | 4 |
+| `docs/reviews/2026-09-06/evidence/runtime.json` | limits | 3 |
+| `framework/bom.json` | layers | 5 |
+| `framework/bom.json` | parts | 46 |
+| `framework/current_state.json` | policies | 14 |
+| `framework/current_state.json` | entrypoints | 4 |
+| `framework/current_state.json` | retired_entrypoints | 3 |
+| `framework/current_state.json` | known_retired_patterns | 11 |
+| `framework/data_contract.json` | source_grades | 5 |
+| `framework/data_contract.json` | project_statuses | 9 |
+| `framework/data_contract.json` | current_supply_statuses | 2 |
+| `framework/data_contract.json` | price_frequency_rules | 4 |
+| `framework/indicators.json` | indicators | 44 |
+| `framework/metrics.json` | metrics | 124 |
+| `framework/modules.json` | modules | 15 |
+| `framework/research_graph.json` | views | 5 |
+| `framework/research_graph.json` | objects | 84 |
+| `framework/research_graph.json` | relations | 139 |
+| `framework/research_questions.json` | records | 415 |
+| `reports/blindspot.json` | modules | 15 |
+| `reports/workorders.json` | orders | 564 |
+| `research/M01.md` | Finding | 7 |
+| `research/M02.md` | Finding | 13 |
+| `research/M03.md` | Finding | 5 |
+| `research/M04.md` | Finding | 9 |
+| `research/M05.md` | Finding | 14 |
+| `research/M06.md` | Finding | 16 |
+| `research/M07.md` | Finding | 8 |
+| `research/M08.md` | Finding | 10 |
+| `research/M09.md` | Finding | 12 |
+| `research/M10.md` | Finding | 18 |
+| `research/M11.md` | Finding | 3 |
+| `research/M12.md` | Finding | 6 |
+| `research/M13.md` | Finding | 6 |
+| `research/M14.md` | Finding | 11 |
+| `research/M15.md` | Finding | 12 |
+
+## 全部文件
+
+| 路径 | 身份 |
+|---|---|
+| `.claude/launch.json` | 项目配置 |
+| `.claude/settings.local.json` | 项目配置 |
+| `.dockerignore` | 项目配置 |
+| `.github/CODEOWNERS` | 项目配置 |
+| `.github/workflows/validate.yml` | 项目配置 |
+| `.gitignore` | 项目配置 |
+| [AGENTS.md](../AGENTS.md) | 现行入口 |
+| [CLAUDE.md](../CLAUDE.md) | 现行入口 |
+| [README.md](../README.md) | 配套说明 |
+| `admin/product/index.html` | 运行代码 |
+| [assets/hdri/README.md](../assets/hdri/README.md) | 配套说明 |
+| `assets/hdri/lab.exr` | 静态资源 |
+| `assets/hdri/studio.exr` | 静态资源 |
+| `assets/hdri/warehouse.exr` | 静态资源 |
+| `assets/levels.json` | 静态资源 |
+| [assets/models/README.md](../assets/models/README.md) | 配套说明 |
+| `assets/models/manifest.json` | 静态资源 |
+| `assets/models/server_v2_console.glb` | 静态资源 |
+| [assets/panels/README.md](../assets/panels/README.md) | 配套说明 |
+| `assets/panels/server_gpu.png` | 静态资源 |
+| `assets/panels/server_nvme.png` | 静态资源 |
+| `assets/panels/server_storage.png` | 静态资源 |
+| `assets/panels/switch_ib.png` | 静态资源 |
+| `assets/panels/switch_tor.png` | 静态资源 |
+| [assets/renders/README.md](../assets/renders/README.md) | 配套说明 |
+| `assets/renders/chassis.png` | 静态资源 |
+| `assets/renders/coldplate.png` | 静态资源 |
+| `assets/renders/fans.png` | 静态资源 |
+| `assets/renders/gpu-board.png` | 静态资源 |
+| `assets/renders/hbm.png` | 静态资源 |
+| `assets/renders/mobo.png` | 静态资源 |
+| `assets/renders/nic.png` | 静态资源 |
+| `assets/renders/psu.png` | 静态资源 |
+| `assets/renders/ssd.png` | 静态资源 |
+| `assets/research-graph.js` | 运行代码 |
+| `assets/research.css` | 运行代码 |
+| `assets/vendor/BufferGeometryUtils.js` | 静态资源 |
+| `assets/vendor/CopyShader.js` | 静态资源 |
+| `assets/vendor/EXRLoader.js` | 静态资源 |
+| `assets/vendor/EffectComposer.js` | 静态资源 |
+| `assets/vendor/GLTFLoader.js` | 静态资源 |
+| `assets/vendor/LuminosityHighPassShader.js` | 静态资源 |
+| `assets/vendor/MaskPass.js` | 静态资源 |
+| `assets/vendor/OrbitControls.js` | 静态资源 |
+| `assets/vendor/OutputPass.js` | 静态资源 |
+| `assets/vendor/OutputShader.js` | 静态资源 |
+| `assets/vendor/Pass.js` | 静态资源 |
+| `assets/vendor/RenderPass.js` | 静态资源 |
+| `assets/vendor/ShaderPass.js` | 静态资源 |
+| `assets/vendor/UnrealBloomPass.js` | 静态资源 |
+| `assets/vendor/fflate.module.js` | 静态资源 |
+| `assets/vendor/three.module.js` | 静态资源 |
+| `assets/world.geo.json` | 静态资源 |
+| `bake.html` | 运行代码 |
+| `bom.html` | 运行代码 |
+| `bom3d.html` | 运行代码 |
+| `company.html` | 运行代码 |
+| `compare.html` | 运行代码 |
+| `data/assignments.json` | 在册数据/索引 |
+| `data/brief.json` | 在册数据/索引 |
+| `data/companies.json` | 在册数据/索引 |
+| `data/contracts.json` | 在册数据/索引 |
+| `data/facts.json` | 在册数据/索引 |
+| `data/policies.json` | 在册数据/索引 |
+| `data/prices.json` | 在册数据/索引 |
+| [data/product_docs_plan.csv](../data/product_docs_plan.csv) | 在册数据/索引 |
+| `data/products.json` | 在册数据/索引 |
+| `data/projects.json` | 在册数据/索引 |
+| `data/research_knowledge.json` | 在册数据/索引 |
+| `data/schema/company.schema.json` | 在册数据/索引 |
+| `data/schema/contract.schema.json` | 在册数据/索引 |
+| `data/schema/fact.schema.json` | 在册数据/索引 |
+| `data/schema/policy.schema.json` | 在册数据/索引 |
+| `data/schema/price.schema.json` | 在册数据/索引 |
+| `data/schema/products.schema.json` | 在册数据/索引 |
+| `data/schema/project.schema.json` | 在册数据/索引 |
+| `data/schema/source.schema.json` | 在册数据/索引 |
+| `data/schema/submission.schema.json` | 在册数据/索引 |
+| `data/sources.json` | 在册数据/索引 |
+| `deploy/Caddyfile` | 项目配置 |
+| `deploy/Dockerfile` | 项目配置 |
+| [deploy/README.md](../deploy/README.md) | 配套说明 |
+| `deploy/docker-compose.yml` | 项目配置 |
+| `deploy/spark-reader/inresearch-reader-publish.service` | 项目配置 |
+| `deploy/spark-reader/inresearch-reader-publish.timer` | 项目配置 |
+| `deploy/spark-reader/inresearch-reader.service` | 项目配置 |
+| `deploy/spark-reader/install.sh` | 运行代码 |
+| `deploy/spark-reader/reader.env.example` | 项目配置 |
+| `doc.html` | 运行代码 |
+| [docs/CN_PROJECT_ARCHIVES.csv](CN_PROJECT_ARCHIVES.csv) | 在册数据/索引 |
+| [docs/DATA_SOURCING.md](DATA_SOURCING.md) | 配套说明 |
+| [docs/DECISIONS.md](DECISIONS.md) | 现行入口 |
+| [docs/LIBRARY_INDEX.md](LIBRARY_INDEX.md) | 在册数据/索引 |
+| [docs/LIBRARY_REPORT.md](LIBRARY_REPORT.md) | 在册数据/索引 |
+| [docs/LIBRARY_SCORES.csv](LIBRARY_SCORES.csv) | 在册数据/索引 |
+| [docs/PROJECT_PANORAMA.md](PROJECT_PANORAMA.md) | 现行入口 |
+| [docs/REPOSITORY_REGISTER.md](REPOSITORY_REGISTER.md) | 生成物 |
+| [docs/archive/2026-09-06/CLAUDE.md](archive/2026-09-06/CLAUDE.md) | 历史快照 |
+| [docs/archive/2026-09-06/README.md](archive/2026-09-06/README.md) | 历史快照 |
+| [docs/archive/2026-09-06/docs__DECISIONS.md](archive/2026-09-06/docs__DECISIONS.md) | 历史快照 |
+| [docs/archive/2026-09-06/docs__PROJECT_PANORAMA.md](archive/2026-09-06/docs__PROJECT_PANORAMA.md) | 历史快照 |
+| [docs/archive/2026-09-06/docs__local_reader__CONTINUOUS_READER_DESIGN.md](archive/2026-09-06/docs__local_reader__CONTINUOUS_READER_DESIGN.md) | 历史快照 |
+| [docs/archive/2026-09-06/docs__local_reader__KICKOFF_PROMPT.md](archive/2026-09-06/docs__local_reader__KICKOFF_PROMPT.md) | 历史快照 |
+| [docs/archive/2026-09-06/docs__local_reader__PROJECT_BRIEF.md](archive/2026-09-06/docs__local_reader__PROJECT_BRIEF.md) | 历史快照 |
+| [docs/archive/2026-09-06/docs__local_reader__RUN_TO_COMPLETION.md](archive/2026-09-06/docs__local_reader__RUN_TO_COMPLETION.md) | 历史快照 |
+| [docs/archive/2026-09-06/docs__local_setup__PRODUCT_LIBRARY.md](archive/2026-09-06/docs__local_setup__PRODUCT_LIBRARY.md) | 历史快照 |
+| [docs/archive/2026-09-06/docs__local_setup__README.md](archive/2026-09-06/docs__local_setup__README.md) | 历史快照 |
+| [docs/archive/2026-09-06/docs__local_setup__setup.sh.md](archive/2026-09-06/docs__local_setup__setup.sh.md) | 历史快照 |
+| [docs/archive/2026-09-06/framework__01_data_standards.md](archive/2026-09-06/framework__01_data_standards.md) | 历史快照 |
+| [docs/archive/2026-09-06/framework__02_knowledge_format.md](archive/2026-09-06/framework__02_knowledge_format.md) | 历史快照 |
+| [docs/inbox/PHASE2_REPORT.md](inbox/PHASE2_REPORT.md) | 候选与外部输入 |
+| [docs/inbox/README.md](inbox/README.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/7B_人工智能算力高质量发展评估体系_浪潮信息中国信通院.md](inbox/digest_drafts/7B_人工智能算力高质量发展评估体系_浪潮信息中国信通院.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/8A_2026年AI供应链瓶颈与CoWoS产能分配_伯恩斯坦.md](inbox/digest_drafts/8A_2026年AI供应链瓶颈与CoWoS产能分配_伯恩斯坦.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/8A_AI扩散出口管制_SemiAnalysis.md](inbox/digest_drafts/8A_AI扩散出口管制_SemiAnalysis.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/8A_AI数据中心电力困局_SemiAnalysis.md](inbox/digest_drafts/8A_AI数据中心电力困局_SemiAnalysis.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/8A_Blackwell性能TCO_SemiAnalysis.md](inbox/digest_drafts/8A_Blackwell性能TCO_SemiAnalysis.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/8A_DeepSeek成本辩论_SemiAnalysis.md](inbox/digest_drafts/8A_DeepSeek成本辩论_SemiAnalysis.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/8A_GPU云评级体系_SemiAnalysis.md](inbox/digest_drafts/8A_GPU云评级体系_SemiAnalysis.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/8A_GTC2025与黄氏算术_SemiAnalysis.md](inbox/digest_drafts/8A_GTC2025与黄氏算术_SemiAnalysis.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/8A_中国AI芯片供需与出口管制测算_伯恩斯坦.md](inbox/digest_drafts/8A_中国AI芯片供需与出口管制测算_伯恩斯坦.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/8A_关税与设备供应链_SemiAnalysis.md](inbox/digest_drafts/8A_关税与设备供应链_SemiAnalysis.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/8A_华为晶圆厂网络_SemiAnalysis.md](inbox/digest_drafts/8A_华为晶圆厂网络_SemiAnalysis.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/8A_华为永州1号楼建筑预算_永州开发投资.md](inbox/digest_drafts/8A_华为永州1号楼建筑预算_永州开发投资.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/8A_戴尔如何击败超微_SemiAnalysis.md](inbox/digest_drafts/8A_戴尔如何击败超微_SemiAnalysis.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/8A_扩展律与推理基建_SemiAnalysis.md](inbox/digest_drafts/8A_扩展律与推理基建_SemiAnalysis.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/8A_数据中心制冷系统_SemiAnalysis.md](inbox/digest_drafts/8A_数据中心制冷系统_SemiAnalysis.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/8A_星际之门合资拆解_SemiAnalysis.md](inbox/digest_drafts/8A_星际之门合资拆解_SemiAnalysis.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/8A_移动粤港澳控制价编制说明_中国移动.md](inbox/digest_drafts/8A_移动粤港澳控制价编制说明_中国移动.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/8A_移动粤港澳项目招标控制价总表_中国移动.md](inbox/digest_drafts/8A_移动粤港澳项目招标控制价总表_中国移动.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/8A_算力中心创新融资研究报告_中国信通院.md](inbox/digest_drafts/8A_算力中心创新融资研究报告_中国信通院.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/8A_芜湖联通智算中心环评_中国联通.md](inbox/digest_drafts/8A_芜湖联通智算中心环评_中国联通.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/8A_跨数据中心训练_SemiAnalysis.md](inbox/digest_drafts/8A_跨数据中心训练_SemiAnalysis.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/8B_2026Q1海外大厂CapEx与ROIC核验_国信证券.md](inbox/digest_drafts/8B_2026Q1海外大厂CapEx与ROIC核验_国信证券.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/8B_AI对机架与机房的指数级需求_NVIDIA-Google.md](inbox/digest_drafts/8B_AI对机架与机房的指数级需求_NVIDIA-Google.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/8B_GB200机房设计指导_NVIDIA.md](inbox/digest_drafts/8B_GB200机房设计指导_NVIDIA.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/8B_云端算力芯片全指标_半导体综研.md](inbox/digest_drafts/8B_云端算力芯片全指标_半导体综研.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/8B_内存带宽墙与B200利用率_Eliyan.md](inbox/digest_drafts/8B_内存带宽墙与B200利用率_Eliyan.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/8B_台积电节点与应用收入_半导体综研.md](inbox/digest_drafts/8B_台积电节点与应用收入_半导体综研.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/8B_美国电网拥堵与DOM电价结构性上涨_中泰证券.md](inbox/digest_drafts/8B_美国电网拥堵与DOM电价结构性上涨_中泰证券.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/9A_GPU云运营手册_SemiAnalysis.md](inbox/digest_drafts/9A_GPU云运营手册_SemiAnalysis.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/9A_数据中心电气系统_SemiAnalysis.md](inbox/digest_drafts/9A_数据中心电气系统_SemiAnalysis.md) | 候选与外部输入 |
+| [docs/inbox/digest_drafts/README.md](inbox/digest_drafts/README.md) | 候选与外部输入 |
+| [docs/inbox/facts_candidates/README.md](inbox/facts_candidates/README.md) | 候选与外部输入 |
+| `docs/inbox/facts_candidates/m01_market_20260817.json` | 候选与外部输入 |
+| `docs/inbox/facts_candidates/m02_supply_20260817.json` | 候选与外部输入 |
+| `docs/inbox/facts_candidates/m03_demand_20260817.json` | 候选与外部输入 |
+| `docs/inbox/facts_candidates/m04_power_20260817.json` | 候选与外部输入 |
+| `docs/inbox/facts_candidates/m05_siting_20260817.json` | 候选与外部输入 |
+| `docs/inbox/facts_candidates/m06r1_compute_20260817.json` | 候选与外部输入 |
+| `docs/inbox/facts_candidates/m06r2_memory_20260817.json` | 候选与外部输入 |
+| `docs/inbox/facts_candidates/m06r3_server_20260817.json` | 候选与外部输入 |
+| `docs/inbox/facts_candidates/m07_network_20260817.json` | 候选与外部输入 |
+| `docs/inbox/facts_candidates/m08_cooling_20260817.json` | 候选与外部输入 |
+| `docs/inbox/facts_candidates/m09_supplychain_20260817.json` | 候选与外部输入 |
+| `docs/inbox/facts_candidates/m10_ops_20260817.json` | 候选与外部输入 |
+| `docs/inbox/facts_candidates/m11_reits_20260817.json` | 候选与外部输入 |
+| `docs/inbox/facts_candidates/m12_tokenecon_20260817.json` | 候选与外部输入 |
+| `docs/inbox/facts_candidates/m13_utilization_20260817.json` | 候选与外部输入 |
+| `docs/inbox/facts_candidates/m14_china_20260817.json` | 候选与外部输入 |
+| `docs/inbox/facts_candidates/m15_scenario_20260817.json` | 候选与外部输入 |
+| `docs/inbox/framework_proposals/2026-09-06-attachments.json` | 候选与外部输入 |
+| [docs/inbox/framework_proposals/README.md](inbox/framework_proposals/README.md) | 候选与外部输入 |
+| `docs/inbox/framework_proposals/framework_proposal_L1-L4_20260831.html` | 候选与外部输入 |
+| [docs/inbox/inresearch-alignment/ALIGNMENT.md](inbox/inresearch-alignment/ALIGNMENT.md) | 候选与外部输入 |
+| [docs/inbox/inresearch-alignment/GROUP_ID_RENAMES.md](inbox/inresearch-alignment/GROUP_ID_RENAMES.md) | 候选与外部输入 |
+| `docs/inbox/inresearch-alignment/bom_parts_extension.json` | 候选与外部输入 |
+| `docs/inbox/inresearch-alignment/companies_patch.json` | 候选与外部输入 |
+| `docs/inbox/inresearch-alignment/library_index.json` | 候选与外部输入 |
+| `docs/inbox/inresearch-alignment/products.json` | 候选与外部输入 |
+| [docs/inbox/needs_password/README.md](inbox/needs_password/README.md) | 候选与外部输入 |
+| [docs/inbox/needs_password/needs_password_20260816.csv](inbox/needs_password/needs_password_20260816.csv) | 候选与外部输入 |
+| [docs/inbox/path_migrations/README.md](inbox/path_migrations/README.md) | 候选与外部输入 |
+| `docs/inbox/path_migrations/cache_key_remap_20260818.json` | 候选与外部输入 |
+| [docs/inbox/path_migrations/migration_20260818_01.csv](inbox/path_migrations/migration_20260818_01.csv) | 候选与外部输入 |
+| [docs/inbox/project_registry/README.md](inbox/project_registry/README.md) | 候选与外部输入 |
+| [docs/inbox/scored_batches/README.md](inbox/scored_batches/README.md) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260815_01.csv](inbox/scored_batches/batch_20260815_01.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260815_02.csv](inbox/scored_batches/batch_20260815_02.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260815_03.csv](inbox/scored_batches/batch_20260815_03.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_01.csv](inbox/scored_batches/batch_20260816_01.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_02.csv](inbox/scored_batches/batch_20260816_02.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_03.csv](inbox/scored_batches/batch_20260816_03.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_04.csv](inbox/scored_batches/batch_20260816_04.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_05.csv](inbox/scored_batches/batch_20260816_05.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_06.csv](inbox/scored_batches/batch_20260816_06.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_07.csv](inbox/scored_batches/batch_20260816_07.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_08.csv](inbox/scored_batches/batch_20260816_08.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_09.csv](inbox/scored_batches/batch_20260816_09.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_10.csv](inbox/scored_batches/batch_20260816_10.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_11.csv](inbox/scored_batches/batch_20260816_11.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_12.csv](inbox/scored_batches/batch_20260816_12.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_13.csv](inbox/scored_batches/batch_20260816_13.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_14.csv](inbox/scored_batches/batch_20260816_14.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_15.csv](inbox/scored_batches/batch_20260816_15.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_16.csv](inbox/scored_batches/batch_20260816_16.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_17.csv](inbox/scored_batches/batch_20260816_17.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_18.csv](inbox/scored_batches/batch_20260816_18.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_19.csv](inbox/scored_batches/batch_20260816_19.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_20.csv](inbox/scored_batches/batch_20260816_20.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_21.csv](inbox/scored_batches/batch_20260816_21.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_22.csv](inbox/scored_batches/batch_20260816_22.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_23.csv](inbox/scored_batches/batch_20260816_23.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_24.csv](inbox/scored_batches/batch_20260816_24.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_25.csv](inbox/scored_batches/batch_20260816_25.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_26.csv](inbox/scored_batches/batch_20260816_26.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_27.csv](inbox/scored_batches/batch_20260816_27.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_28.csv](inbox/scored_batches/batch_20260816_28.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_29.csv](inbox/scored_batches/batch_20260816_29.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_30.csv](inbox/scored_batches/batch_20260816_30.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_31.csv](inbox/scored_batches/batch_20260816_31.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_32.csv](inbox/scored_batches/batch_20260816_32.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_33.csv](inbox/scored_batches/batch_20260816_33.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_34.csv](inbox/scored_batches/batch_20260816_34.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_35.csv](inbox/scored_batches/batch_20260816_35.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_36.csv](inbox/scored_batches/batch_20260816_36.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_37.csv](inbox/scored_batches/batch_20260816_37.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260816_38.csv](inbox/scored_batches/batch_20260816_38.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_39.csv](inbox/scored_batches/batch_20260817_39.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_40.csv](inbox/scored_batches/batch_20260817_40.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_41.csv](inbox/scored_batches/batch_20260817_41.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_42.csv](inbox/scored_batches/batch_20260817_42.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_43.csv](inbox/scored_batches/batch_20260817_43.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_44.csv](inbox/scored_batches/batch_20260817_44.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_45.csv](inbox/scored_batches/batch_20260817_45.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_46.csv](inbox/scored_batches/batch_20260817_46.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_47.csv](inbox/scored_batches/batch_20260817_47.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_48.csv](inbox/scored_batches/batch_20260817_48.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_49.csv](inbox/scored_batches/batch_20260817_49.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_50.csv](inbox/scored_batches/batch_20260817_50.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_51.csv](inbox/scored_batches/batch_20260817_51.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_52.csv](inbox/scored_batches/batch_20260817_52.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_53.csv](inbox/scored_batches/batch_20260817_53.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_54.csv](inbox/scored_batches/batch_20260817_54.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_55.csv](inbox/scored_batches/batch_20260817_55.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_56.csv](inbox/scored_batches/batch_20260817_56.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_57.csv](inbox/scored_batches/batch_20260817_57.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_58.csv](inbox/scored_batches/batch_20260817_58.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_59.csv](inbox/scored_batches/batch_20260817_59.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_60.csv](inbox/scored_batches/batch_20260817_60.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_61.csv](inbox/scored_batches/batch_20260817_61.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_62.csv](inbox/scored_batches/batch_20260817_62.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_63.csv](inbox/scored_batches/batch_20260817_63.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_64.csv](inbox/scored_batches/batch_20260817_64.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_65.csv](inbox/scored_batches/batch_20260817_65.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_66.csv](inbox/scored_batches/batch_20260817_66.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_67.csv](inbox/scored_batches/batch_20260817_67.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_68.csv](inbox/scored_batches/batch_20260817_68.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_69.csv](inbox/scored_batches/batch_20260817_69.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_70.csv](inbox/scored_batches/batch_20260817_70.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_71.csv](inbox/scored_batches/batch_20260817_71.csv) | 候选与外部输入 |
+| [docs/inbox/scored_batches/batch_20260817_72.csv](inbox/scored_batches/batch_20260817_72.csv) | 候选与外部输入 |
+| [docs/inbox/submissions/README.md](inbox/submissions/README.md) | 候选与外部输入 |
+| `docs/inbox/submissions/_selftest/submission.json` | 候选与外部输入 |
+| `docs/inbox/submissions/_template/submission.json` | 候选与外部输入 |
+| [docs/intern/BATCH01_A_product_links.md](intern/BATCH01_A_product_links.md) | 历史快照 |
+| [docs/intern/BATCH01_B_gpu_rental_snapshot.md](intern/BATCH01_B_gpu_rental_snapshot.md) | 历史快照 |
+| [docs/intern/BATCH01_C_m11_abs_presales.md](intern/BATCH01_C_m11_abs_presales.md) | 历史快照 |
+| [docs/local_reader/CONTINUOUS_READER_DESIGN.md](local_reader/CONTINUOUS_READER_DESIGN.md) | 已退役入口 |
+| [docs/local_reader/KICKOFF_PROMPT.md](local_reader/KICKOFF_PROMPT.md) | 已退役入口 |
+| [docs/local_reader/PROJECT_BRIEF.md](local_reader/PROJECT_BRIEF.md) | 配套说明 |
+| [docs/local_reader/RUN_TO_COMPLETION.md](local_reader/RUN_TO_COMPLETION.md) | 配套说明 |
+| [docs/local_reader/SPARK_OPERATIONS.md](local_reader/SPARK_OPERATIONS.md) | 现行规范 |
+| `docs/local_reader/start.sh` | 运行代码 |
+| [docs/local_setup/ADD_3D_MODEL.md](local_setup/ADD_3D_MODEL.md) | 配套说明 |
+| [docs/local_setup/PRODUCT_LIBRARY.md](local_setup/PRODUCT_LIBRARY.md) | 配套说明 |
+| [docs/local_setup/README.md](local_setup/README.md) | 配套说明 |
+| `docs/local_setup/setup.sh` | 已退役入口 |
+| `docs/local_setup/sync.sh` | 运行代码 |
+| [docs/reviews/2026-09-06/CURRENT_BASELINE_ALIGNMENT.md](reviews/2026-09-06/CURRENT_BASELINE_ALIGNMENT.md) | 历史快照 |
+| [docs/reviews/2026-09-06/IMPLEMENTATION.md](reviews/2026-09-06/IMPLEMENTATION.md) | 历史快照 |
+| [docs/reviews/2026-09-06/RESEARCH_ARCHITECTURE_V2.md](reviews/2026-09-06/RESEARCH_ARCHITECTURE_V2.md) | 已采用设计依据 |
+| [docs/reviews/2026-09-06/REVIEW.md](reviews/2026-09-06/REVIEW.md) | 历史快照 |
+| [docs/reviews/2026-09-06/architecture-physical.md](reviews/2026-09-06/architecture-physical.md) | 历史快照 |
+| [docs/reviews/2026-09-06/architecture-research.md](reviews/2026-09-06/architecture-research.md) | 历史快照 |
+| [docs/reviews/2026-09-06/architecture-valuechain.md](reviews/2026-09-06/architecture-valuechain.md) | 历史快照 |
+| [docs/reviews/2026-09-06/architecture-verification.md](reviews/2026-09-06/architecture-verification.md) | 历史快照 |
+| [docs/reviews/2026-09-06/backend.md](reviews/2026-09-06/backend.md) | 历史快照 |
+| `docs/reviews/2026-09-06/build_architecture_pdf.py` | 历史快照 |
+| `docs/reviews/2026-09-06/evidence/backend-probes.json` | 历史快照 |
+| `docs/reviews/2026-09-06/evidence/http-probes.json` | 历史快照 |
+| `docs/reviews/2026-09-06/evidence/research-stats.json` | 历史快照 |
+| `docs/reviews/2026-09-06/evidence/runtime.json` | 历史快照 |
+| `docs/reviews/2026-09-06/evidence/sync-probes.json` | 历史快照 |
+| [docs/reviews/2026-09-06/evidence/verification.md](reviews/2026-09-06/evidence/verification.md) | 历史快照 |
+| [docs/reviews/2026-09-06/frontend.md](reviews/2026-09-06/frontend.md) | 历史快照 |
+| [docs/reviews/2026-09-06/research.md](reviews/2026-09-06/research.md) | 历史快照 |
+| [docs/reviews/2026-09-06/spark-storage.md](reviews/2026-09-06/spark-storage.md) | 历史快照 |
+| `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
+| `docs/source/全球数据中心行业深度研究Q&A总报告_Q1-Q35_v1.0(2).docx` | 项目配置 |
+| `docs/source/全球数据中心行业现状_参考初稿版式v0.2_信源追溯版_2026-07-23.docx` | 项目配置 |
+| `docs/source/全球数据中心行业现状_参考初稿版式v0.2_信源追溯版_2026-07-23.pdf` | 项目配置 |
+| [framework/00_overview.md](../framework/00_overview.md) | 现行规范 |
+| [framework/01_data_standards.md](../framework/01_data_standards.md) | 现行规范 |
+| [framework/02_knowledge_format.md](../framework/02_knowledge_format.md) | 现行规范 |
+| [framework/03_bom_and_collaboration.md](../framework/03_bom_and_collaboration.md) | 现行规范 |
+| [framework/04_reading_scoring_standard.md](../framework/04_reading_scoring_standard.md) | 现行规范 |
+| [framework/05_source_map.md](../framework/05_source_map.md) | 配套说明 |
+| [framework/CURRENT.md](../framework/CURRENT.md) | 现行规范 |
+| `framework/bom.json` | 项目配置 |
+| `framework/current_state.json` | 项目配置 |
+| `framework/data_contract.json` | 项目配置 |
+| `framework/indicators.json` | 项目配置 |
+| `framework/metrics.json` | 项目配置 |
+| `framework/modules.json` | 项目配置 |
+| [framework/modules/M01_市场规模与增长.md](../framework/modules/M01_市场规模与增长.md) | 配套说明 |
+| [framework/modules/M02_供给格局.md](../framework/modules/M02_供给格局.md) | 配套说明 |
+| [framework/modules/M03_需求格局.md](../framework/modules/M03_需求格局.md) | 配套说明 |
+| [framework/modules/M04_电力与能源.md](../framework/modules/M04_电力与能源.md) | 配套说明 |
+| [framework/modules/M05_土地与区域.md](../framework/modules/M05_土地与区域.md) | 配套说明 |
+| [framework/modules/M06_芯片与服务器.md](../framework/modules/M06_芯片与服务器.md) | 配套说明 |
+| [framework/modules/M07_网络与互联.md](../framework/modules/M07_网络与互联.md) | 配套说明 |
+| [framework/modules/M08_散热与制冷.md](../framework/modules/M08_散热与制冷.md) | 配套说明 |
+| [framework/modules/M09_电气设备供应链.md](../framework/modules/M09_电气设备供应链.md) | 配套说明 |
+| [framework/modules/M10_建设运营与人才.md](../framework/modules/M10_建设运营与人才.md) | 配套说明 |
+| [framework/modules/M11_资本与金融.md](../framework/modules/M11_资本与金融.md) | 配套说明 |
+| [framework/modules/M12_需求侧经济学.md](../framework/modules/M12_需求侧经济学.md) | 配套说明 |
+| [framework/modules/M13_有效算力与软件.md](../framework/modules/M13_有效算力与软件.md) | 配套说明 |
+| [framework/modules/M14_中国板块.md](../framework/modules/M14_中国板块.md) | 配套说明 |
+| [framework/modules/M15_情景与监测.md](../framework/modules/M15_情景与监测.md) | 配套说明 |
+| `framework/repository_manifest.json` | 生成物 |
+| `framework/research_graph.json` | 项目配置 |
+| `framework/research_questions.json` | 项目配置 |
+| `framework_poster.html` | 运行代码 |
+| `index.html` | 运行代码 |
+| `ops.html` | 运行代码 |
+| [pipeline/README.md](../pipeline/README.md) | 配套说明 |
+| `pipeline/auth.py` | 运行代码 |
+| `pipeline/blindspot.py` | 运行代码 |
+| `pipeline/build_library_index.py` | 运行代码 |
+| `pipeline/check_models.py` | 运行代码 |
+| `pipeline/collect.py` | 运行代码 |
+| `pipeline/compare_models.py` | 运行代码 |
+| `pipeline/continuous_reader.py` | 运行代码 |
+| `pipeline/data_policy.py` | 运行代码 |
+| `pipeline/export.py` | 运行代码 |
+| `pipeline/facts.py` | 运行代码 |
+| `pipeline/fetch_gpu_prices.py` | 运行代码 |
+| `pipeline/fetch_news_signals.py` | 运行代码 |
+| `pipeline/fetch_sec.py` | 运行代码 |
+| `pipeline/fetch_sketchfab.py` | 运行代码 |
+| `pipeline/fix_stale_paths.py` | 运行代码 |
+| `pipeline/governance.py` | 运行代码 |
+| `pipeline/intake.py` | 运行代码 |
+| `pipeline/launch_reader.py` | 运行代码 |
+| `pipeline/output_map.py` | 运行代码 |
+| `pipeline/product_library.py` | 运行代码 |
+| `pipeline/publish_reader.py` | 运行代码 |
+| `pipeline/reading_queue.py` | 运行代码 |
+| `pipeline/refresh_indicators.py` | 运行代码 |
+| `pipeline/research.py` | 运行代码 |
+| `pipeline/research_navigation.py` | 运行代码 |
+| `pipeline/scan_inbox.py` | 运行代码 |
+| `pipeline/serve.py` | 运行代码 |
+| `pipeline/test_catalog_bridge.py` | 测试 |
+| `pipeline/test_continuous_reader.py` | 测试 |
+| `pipeline/test_display_regressions.py` | 测试 |
+| `pipeline/test_governance.py` | 测试 |
+| `pipeline/test_product_library.py` | 测试 |
+| `pipeline/test_publish_reader.py` | 测试 |
+| `pipeline/test_research.py` | 测试 |
+| `pipeline/test_research_navigation.py` | 测试 |
+| `pipeline/update_ciks.py` | 运行代码 |
+| `pipeline/users.py` | 运行代码 |
+| `pipeline/validate.py` | 运行代码 |
+| `pipeline/verify.py` | 运行代码 |
+| `pipeline/workorder.py` | 运行代码 |
+| `poster.html` | 运行代码 |
+| `rack3d.html` | 运行代码 |
+| `report.html` | 运行代码 |
+| [reports/HOW_TO_OUTPUT.md](../reports/HOW_TO_OUTPUT.md) | 生成物 |
+| `reports/blindspot.json` | 生成物 |
+| [reports/blindspot.md](../reports/blindspot.md) | 生成物 |
+| [reports/daily_brief.md](../reports/daily_brief.md) | 生成物 |
+| [reports/intake_review.md](../reports/intake_review.md) | 生成物 |
+| [reports/reading_queue.md](../reports/reading_queue.md) | 生成物 |
+| [reports/templates/README.md](../reports/templates/README.md) | 生成物 |
+| [reports/verify_queue.md](../reports/verify_queue.md) | 生成物 |
+| `reports/workorders.json` | 生成物 |
+| [reports/workorders.md](../reports/workorders.md) | 生成物 |
+| `research.html` | 运行代码 |
+| [research/M01.md](../research/M01.md) | 兼容研究记录 |
+| [research/M02.md](../research/M02.md) | 兼容研究记录 |
+| [research/M03.md](../research/M03.md) | 兼容研究记录 |
+| [research/M04.md](../research/M04.md) | 兼容研究记录 |
+| [research/M05.md](../research/M05.md) | 兼容研究记录 |
+| [research/M06.md](../research/M06.md) | 兼容研究记录 |
+| [research/M07.md](../research/M07.md) | 兼容研究记录 |
+| [research/M08.md](../research/M08.md) | 兼容研究记录 |
+| [research/M09.md](../research/M09.md) | 兼容研究记录 |
+| [research/M10.md](../research/M10.md) | 兼容研究记录 |
+| [research/M11.md](../research/M11.md) | 兼容研究记录 |
+| [research/M12.md](../research/M12.md) | 兼容研究记录 |
+| [research/M13.md](../research/M13.md) | 兼容研究记录 |
+| [research/M14.md](../research/M14.md) | 兼容研究记录 |
+| [research/M15.md](../research/M15.md) | 兼容研究记录 |
+| [research/SUMMARY.md](../research/SUMMARY.md) | 兼容研究记录 |
+| `team.html` | 运行代码 |
