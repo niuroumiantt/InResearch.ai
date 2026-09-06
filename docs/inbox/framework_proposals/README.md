@@ -6,3 +6,4 @@
 | 文件 | 日期 | 状态 |
 |---|---|---|
 | framework_proposal_L1-L4_20260831.html | 2026-08-31 | 待拍板（A5），评审见会话续 53 |
+| 2026-09-06-attachments.json | 2026-09-06 | 新DC三层与LLM四层原图的本机归档路径、哈希；原图不进Git；对齐草案见docs/reviews/2026-09-06/RESEARCH_ARCHITECTURE_V2.md，A5进入整体重设计 |
