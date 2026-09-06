@@ -39,7 +39,12 @@ def feed(root, limit=80):
         ids = set(current['guids'])
         result.update(exported_at=current['exported_at'], truncated=current.get('truncated',False))
         selected = []
-        for row in con.execute("SELECT id,url,title,metadata FROM items WHERE source='inews'"):
+        rows=[]
+        keys=list(ids)
+        for offset in range(0,len(keys),500):
+            batch=keys[offset:offset+500]
+            rows.extend(con.execute("SELECT id,url,title,metadata FROM items WHERE source='inews' AND source_key IN ("+','.join('?' for _ in batch)+")",batch).fetchall())
+        for row in rows:
             meta = json.loads(row['metadata'])
             if meta.get('guid') not in ids: continue
             category = classify(meta)
