@@ -79,4 +79,26 @@ def validate_navigation(graph):
         duplicates = sorted(oid for oid, n in occurrences.items() if n > 1)
         if view != 'F' and duplicates:
             errors.append(f'navigation {view}: duplicate browse locations {duplicates}')
+    if 'hardware_domains' in graph:
+        domains = graph['hardware_domains']
+        occurrences = Counter()
+        for domain in domains:
+            if domain.get('node_id') not in objects:
+                errors.append('hardware domain has unknown root')
+            for oid in domain.get('object_ids', []):
+                occurrences[oid] += 1
+                if oid not in objects:
+                    errors.append('hardware domain has unknown object ' + oid)
+        expected = {o['id'] for o in objects.values() if o['id'].startswith('part:')}
+        if expected - occurrences.keys():
+            errors.append('hardware domains omit hardware objects')
+        if any(n > 1 for n in occurrences.values()):
+            errors.append('hardware domains have duplicate primary membership')
+        for obj in objects.values():
+            for section in obj.get('research_sections', []):
+                if not set(section.get('object_ids', [])) <= objects.keys():
+                    errors.append('research section has unknown target')
+        for mapping in graph.get('catalog_topic_mappings', []):
+            if not set(mapping.get('object_ids', [])) <= objects.keys():
+                errors.append('catalog topic mapping has unknown target')
     return errors

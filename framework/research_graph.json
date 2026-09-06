@@ -1,5 +1,5 @@
 {
-  "version": "2.0.0",
+  "version": "2.1.0",
   "updated": "2026-09-06",
   "views": [
     {
@@ -291,7 +291,8 @@
         "power grid",
         "grid connection",
         "interconnection queue"
-      ]
+      ],
+      "ecosystem_id": "power"
     },
     {
       "id": "part:substation",
@@ -314,7 +315,8 @@
       "aliases": [
         "substation",
         "transformer"
-      ]
+      ],
+      "ecosystem_id": "power"
     },
     {
       "id": "part:prime-power",
@@ -338,7 +340,8 @@
         "prime power",
         "behind the meter",
         "gas turbine"
-      ]
+      ],
+      "ecosystem_id": "power"
     },
     {
       "id": "part:backup-power",
@@ -362,7 +365,8 @@
         "backup power",
         "diesel generator",
         "genset"
-      ]
+      ],
+      "ecosystem_id": "power"
     },
     {
       "id": "part:bess",
@@ -385,7 +389,8 @@
       "aliases": [
         "battery energy storage",
         "BESS"
-      ]
+      ],
+      "ecosystem_id": "power"
     },
     {
       "id": "part:water",
@@ -408,7 +413,8 @@
       "aliases": [
         "water supply",
         "water rights"
-      ]
+      ],
+      "ecosystem_id": "thermal"
     },
     {
       "id": "part:land",
@@ -432,7 +438,8 @@
         "land",
         "site selection",
         "siting"
-      ]
+      ],
+      "ecosystem_id": "facility"
     },
     {
       "id": "part:shell",
@@ -455,7 +462,8 @@
       "aliases": [
         "building shell",
         "civil works"
-      ]
+      ],
+      "ecosystem_id": "facility"
     },
     {
       "id": "part:fire",
@@ -479,7 +487,8 @@
         "fire protection",
         "fire suppression",
         "security"
-      ]
+      ],
+      "ecosystem_id": "facility"
     },
     {
       "id": "part:ups",
@@ -502,7 +511,8 @@
       "aliases": [
         "uninterruptible power supply",
         "UPS"
-      ]
+      ],
+      "ecosystem_id": "power"
     },
     {
       "id": "part:power-dist",
@@ -527,7 +537,8 @@
         "busway",
         "PDU",
         "switchgear"
-      ]
+      ],
+      "ecosystem_id": "power"
     },
     {
       "id": "part:room-cooling",
@@ -552,7 +563,8 @@
         "CRAC",
         "air cooling",
         "fan wall"
-      ]
+      ],
+      "ecosystem_id": "thermal"
     },
     {
       "id": "part:cdu",
@@ -575,7 +587,8 @@
       "aliases": [
         "coolant distribution unit",
         "CDU"
-      ]
+      ],
+      "ecosystem_id": "thermal"
     },
     {
       "id": "part:heat-reject",
@@ -600,7 +613,8 @@
         "chiller",
         "cooling tower",
         "dry cooler"
-      ]
+      ],
+      "ecosystem_id": "thermal"
     },
     {
       "id": "part:dcim",
@@ -623,7 +637,8 @@
       "aliases": [
         "data center infrastructure management",
         "DCIM"
-      ]
+      ],
+      "ecosystem_id": "control"
     },
     {
       "id": "part:rack-frame",
@@ -647,7 +662,8 @@
         "rack enclosure",
         "rack frame",
         "open rack"
-      ]
+      ],
+      "ecosystem_id": "facility"
     },
     {
       "id": "part:server",
@@ -671,7 +687,8 @@
         "server",
         "compute tray",
         "GPU server"
-      ]
+      ],
+      "ecosystem_id": "compute"
     },
     {
       "id": "part:network-switch",
@@ -695,7 +712,8 @@
         "network switch",
         "InfiniBand",
         "Ethernet switch"
-      ]
+      ],
+      "ecosystem_id": "network"
     },
     {
       "id": "part:manifold",
@@ -719,7 +737,8 @@
         "manifold",
         "quick disconnect",
         "liquid cooling piping"
-      ]
+      ],
+      "ecosystem_id": "thermal"
     },
     {
       "id": "part:power-shelf",
@@ -742,11 +761,12 @@
       "aliases": [
         "power shelf",
         "BBU"
-      ]
+      ],
+      "ecosystem_id": "power"
     },
     {
       "id": "part:gpu",
-      "name": "GPU/AI ASIC",
+      "name": "GPU 与 AI 加速器",
       "kind": "component_type",
       "views": [
         "P",
@@ -759,14 +779,41 @@
       ],
       "representation": "conceptual",
       "legacy_bom_id": "gpu",
-      "description": "GPU 收入 2025 ~$191.8B、2028 峰值 ~$247.6B（Yole）；ASIC 2030 ~$84.6B——供应商集中度即行业风险",
+      "description": "GPU 与专用 AI 加速器的兼容入口。按产品类别、厂商架构与平台内存组织继续研究。",
       "evidence_status": "unverified",
       "configuration_id": null,
       "aliases": [
         "GPU",
         "AI accelerator",
         "ASIC"
-      ]
+      ],
+      "research_sections": [
+        {
+          "title": "产品类别",
+          "object_ids": [
+            "part:gpu-device",
+            "part:ai-asic"
+          ]
+        },
+        {
+          "title": "厂商架构",
+          "object_ids": [
+            "arch:nvidia-gpu",
+            "arch:amd-gpu",
+            "arch:other-gpu"
+          ]
+        },
+        {
+          "title": "平台内存研究",
+          "object_ids": [
+            "tech:gpu-memory",
+            "part:hbm",
+            "part:gddr",
+            "part:lpddr"
+          ]
+        }
+      ],
+      "ecosystem_id": "compute"
     },
     {
       "id": "part:cpu",
@@ -783,17 +830,29 @@
       ],
       "representation": "conceptual",
       "legacy_bom_id": "cpu",
-      "description": "Grace/自研 Arm 侵蚀 x86；头节点与推理仍是 CPU 战场",
+      "description": "以指令集架构、厂商产品与软件生态为当前研究深度；不默认展开内部电路。",
       "evidence_status": "unverified",
       "configuration_id": null,
       "aliases": [
         "CPU",
         "processor"
-      ]
+      ],
+      "research_sections": [
+        {
+          "title": "指令集架构",
+          "object_ids": [
+            "arch:x86",
+            "arch:arm",
+            "arch:risc-v",
+            "arch:other-cpu"
+          ]
+        }
+      ],
+      "ecosystem_id": "compute"
     },
     {
       "id": "part:hbm",
-      "name": "HBM/内存",
+      "name": "HBM 高带宽内存",
       "kind": "component_type",
       "views": [
         "P",
@@ -806,13 +865,14 @@
       ],
       "representation": "conceptual",
       "legacy_bom_id": "hbm",
-      "description": "HBM4(2026)→HBM8(2038) 路线图（KAIST）；容量与带宽是 AI 算力的第一瓶颈",
+      "description": "独立研究 HBM 的技术代际、封装接口、供应与经济性，并通过具体配置关联 GPU 或其他加速器。",
       "evidence_status": "unverified",
       "configuration_id": null,
       "aliases": [
         "HBM",
         "high bandwidth memory"
-      ]
+      ],
+      "ecosystem_id": "memory"
     },
     {
       "id": "part:nic",
@@ -836,7 +896,8 @@
         "network interface card",
         "NIC",
         "DPU"
-      ]
+      ],
+      "ecosystem_id": "network"
     },
     {
       "id": "part:optics",
@@ -860,7 +921,8 @@
         "optical transceiver",
         "CPO",
         "co-packaged optics"
-      ]
+      ],
+      "ecosystem_id": "network"
     },
     {
       "id": "part:coldplate",
@@ -885,7 +947,8 @@
         "coldplate",
         "direct to chip",
         "D2C"
-      ]
+      ],
+      "ecosystem_id": "thermal"
     },
     {
       "id": "part:psu",
@@ -908,7 +971,8 @@
       "aliases": [
         "power supply unit",
         "PSU"
-      ]
+      ],
+      "ecosystem_id": "power"
     },
     {
       "id": "part:fpga",
@@ -931,7 +995,8 @@
       "aliases": [
         "FPGA",
         "heterogeneous accelerator"
-      ]
+      ],
+      "ecosystem_id": "compute"
     },
     {
       "id": "part:interconnect-chip",
@@ -956,7 +1021,8 @@
         "CXL",
         "PCIe switch",
         "BMC"
-      ]
+      ],
+      "ecosystem_id": "network"
     },
     {
       "id": "part:dram",
@@ -981,11 +1047,12 @@
         "DIMM",
         "RDIMM",
         "MRDIMM"
-      ]
+      ],
+      "ecosystem_id": "memory"
     },
     {
       "id": "part:ssd",
-      "name": "企业级SSD/NAND",
+      "name": "SSD / NAND 历史合并入口",
       "kind": "component_type",
       "views": [
         "P",
@@ -998,14 +1065,26 @@
       ],
       "representation": "conceptual",
       "legacy_bom_id": "ssd",
-      "description": "从现有storage节点拆分",
+      "description": "保留原合并节点及其问题、证据与 3D 链接。新研究进入 SSD 整盘、NAND 或控制器；旧记录未经逐项核对不自动转移。",
       "evidence_status": "unverified",
       "configuration_id": null,
       "aliases": [
-        "solid state drive",
+        "企业级SSD/NAND",
         "SSD",
         "NAND"
-      ]
+      ],
+      "legacy_scope": true,
+      "research_sections": [
+        {
+          "title": "分开进入新研究",
+          "object_ids": [
+            "part:ssd-drive",
+            "part:nand",
+            "part:ssd-controller"
+          ]
+        }
+      ],
+      "ecosystem_id": "storage"
     },
     {
       "id": "part:hdd",
@@ -1028,7 +1107,8 @@
       "aliases": [
         "hard disk drive",
         "HDD"
-      ]
+      ],
+      "ecosystem_id": "storage"
     },
     {
       "id": "part:storage-array",
@@ -1051,7 +1131,8 @@
       "aliases": [
         "storage array",
         "storage system"
-      ]
+      ],
+      "ecosystem_id": "storage"
     },
     {
       "id": "part:switch-asic",
@@ -1074,7 +1155,8 @@
       "aliases": [
         "switch ASIC",
         "switch silicon"
-      ]
+      ],
+      "ecosystem_id": "network"
     },
     {
       "id": "part:copper-interconnect",
@@ -1099,7 +1181,8 @@
         "DAC",
         "AEC",
         "backplane"
-      ]
+      ],
+      "ecosystem_id": "network"
     },
     {
       "id": "part:cabling",
@@ -1122,7 +1205,8 @@
       "aliases": [
         "structured cabling",
         "fiber cabling"
-      ]
+      ],
+      "ecosystem_id": "network"
     },
     {
       "id": "part:coolant",
@@ -1145,7 +1229,8 @@
       "aliases": [
         "coolant",
         "dielectric fluid"
-      ]
+      ],
+      "ecosystem_id": "thermal"
     },
     {
       "id": "part:immersion",
@@ -1167,7 +1252,8 @@
       "configuration_id": null,
       "aliases": [
         "immersion cooling"
-      ]
+      ],
+      "ecosystem_id": "thermal"
     },
     {
       "id": "part:fan-vc",
@@ -1191,7 +1277,8 @@
         "fan",
         "vapor chamber",
         "heat sink"
-      ]
+      ],
+      "ecosystem_id": "thermal"
     },
     {
       "id": "part:leak-detection",
@@ -1213,7 +1300,8 @@
       "configuration_id": null,
       "aliases": [
         "leak detection"
-      ]
+      ],
+      "ecosystem_id": "thermal"
     },
     {
       "id": "part:modular-dc",
@@ -1236,7 +1324,8 @@
       "aliases": [
         "modular data center",
         "prefabricated"
-      ]
+      ],
+      "ecosystem_id": "facility"
     },
     {
       "id": "part:network-access",
@@ -1259,7 +1348,8 @@
       "aliases": [
         "network access",
         "campus network"
-      ]
+      ],
+      "ecosystem_id": "network"
     },
     {
       "id": "part:fuel-supply",
@@ -1282,7 +1372,8 @@
       "aliases": [
         "fuel supply",
         "natural gas supply"
-      ]
+      ],
+      "ecosystem_id": "power"
     },
     {
       "id": "part:sidecar-hx",
@@ -1306,7 +1397,8 @@
         "rear door heat exchanger",
         "RDHx",
         "sidecar"
-      ]
+      ],
+      "ecosystem_id": "thermal"
     },
     {
       "id": "part:vrm",
@@ -1330,7 +1422,8 @@
         "voltage regulator module",
         "VRM",
         "power stage"
-      ]
+      ],
+      "ecosystem_id": "power"
     },
     {
       "id": "part:connector",
@@ -1353,7 +1446,8 @@
       "aliases": [
         "high speed connector",
         "connector"
-      ]
+      ],
+      "ecosystem_id": "network"
     },
     {
       "id": "space:site",
@@ -1742,6 +1836,817 @@
       "aliases": [
         "edge"
       ]
+    },
+    {
+      "id": "part:ssd-drive",
+      "name": "SSD 固态硬盘",
+      "description": "以整盘产品为研究边界，区分企业级与消费级。向下研究控制器、固件和 NAND；容量、性能及寿命须注明型号与工况。",
+      "kind": "component_type",
+      "views": [
+        "R",
+        "V",
+        "P"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "research_sections": [
+        {
+          "title": "产品内部研究",
+          "object_ids": [
+            "part:ssd-controller",
+            "software:ssd-firmware",
+            "part:nand"
+          ]
+        },
+        {
+          "title": "接口与部署",
+          "object_ids": [
+            "tech:storage-protocol",
+            "tech:storage-access"
+          ]
+        },
+        {
+          "title": "系统与相关产品",
+          "object_ids": [
+            "part:storage-array",
+            "part:hdd"
+          ]
+        }
+      ],
+      "ecosystem_id": "storage",
+      "background_sources": [
+        "https://www.snia.org/education/what-is-ssd"
+      ]
+    },
+    {
+      "id": "part:nand",
+      "name": "NAND 闪存",
+      "description": "独立研究存储介质与产业：单元类型、层数、工艺、供给、价格和终端用途。NAND 总市场不能直接当作企业级 SSD 市场。",
+      "kind": "component_type",
+      "views": [
+        "R",
+        "V",
+        "P"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "research_sections": [
+        {
+          "title": "技术分解",
+          "object_ids": [
+            "tech:nand-cell",
+            "tech:nand-process"
+          ]
+        },
+        {
+          "title": "用途与协同",
+          "object_ids": [
+            "part:ssd-drive",
+            "part:ssd-controller"
+          ]
+        }
+      ],
+      "ecosystem_id": "storage",
+      "background_sources": [
+        "https://www.snia.org/education/what-is-ssd"
+      ]
+    },
+    {
+      "id": "part:ssd-controller",
+      "name": "SSD 控制器",
+      "description": "控制与管理芯片，不是存储介质；研究主机接口、闪存通道、纠错、固件协同和供应商。",
+      "kind": "component_type",
+      "views": [
+        "R",
+        "V",
+        "P"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "ecosystem_id": "storage"
+    },
+    {
+      "id": "part:lpddr",
+      "name": "LPDDR 内存",
+      "description": "低功耗 DRAM 技术。研究 CPU 配套及统一内存等用途；不能默认属于 GPU 封装或与 HBM 相加。",
+      "kind": "component_type",
+      "views": [
+        "R",
+        "V",
+        "P"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "ecosystem_id": "memory",
+      "background_sources": [
+        "https://docs.nvidia.com/dccpu/grace-perf-tuning-guide/index.html"
+      ]
+    },
+    {
+      "id": "part:gddr",
+      "name": "GDDR 显存",
+      "description": "独立的内存技术与产业话题。研究 GPU 配套、带宽、容量和板级实现；具体兼容性以型号材料为准。",
+      "kind": "component_type",
+      "views": [
+        "R",
+        "V",
+        "P"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "ecosystem_id": "memory"
+    },
+    {
+      "id": "part:gpu-device",
+      "name": "GPU 产品",
+      "description": "按架构、厂商、型号和平台组织研究；把 GPU 芯片、加速卡与整机分开，内存通过具体配置关系连接。",
+      "kind": "component_type",
+      "views": [
+        "R",
+        "V",
+        "P"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "research_sections": [
+        {
+          "title": "厂商架构",
+          "object_ids": [
+            "arch:nvidia-gpu",
+            "arch:amd-gpu",
+            "arch:other-gpu"
+          ]
+        },
+        {
+          "title": "内存与平台",
+          "object_ids": [
+            "tech:gpu-memory",
+            "part:hbm",
+            "part:gddr",
+            "part:lpddr"
+          ]
+        }
+      ],
+      "ecosystem_id": "compute"
+    },
+    {
+      "id": "part:ai-asic",
+      "name": "专用 AI 加速器",
+      "description": "与 GPU 分开研究的专用加速产品；比较软件栈、算子、负载与部署，不把所有 AI 芯片称为 GPU。",
+      "kind": "component_type",
+      "views": [
+        "R",
+        "V",
+        "P"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "ecosystem_id": "compute"
+    },
+    {
+      "id": "arch:x86",
+      "name": "x86 指令集架构",
+      "description": "研究指令集与软件生态、CPU 产品及应用适配；本阶段不展开微架构内部电路。",
+      "kind": "technology",
+      "views": [
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "ecosystem_id": "compute"
+    },
+    {
+      "id": "arch:arm",
+      "name": "Arm 指令集架构",
+      "description": "研究指令集、授权/IP 生态、CPU 产品与应用适配；IP 供应商与成品 CPU 厂商分开。",
+      "kind": "technology",
+      "views": [
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "ecosystem_id": "compute"
+    },
+    {
+      "id": "arch:risc-v",
+      "name": "RISC-V 指令集架构",
+      "description": "研究开放指令集、扩展、软件支持与 CPU 产品；指令集不是具体处理器型号。",
+      "kind": "technology",
+      "views": [
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "ecosystem_id": "compute",
+      "background_sources": [
+        "https://riscv.org/specifications/ratified/"
+      ]
+    },
+    {
+      "id": "arch:other-cpu",
+      "name": "其他 CPU 指令集",
+      "description": "保留 LoongArch 等既有产品的研究入口，不将 x86、Arm、RISC-V 误称为全部 CPU 架构。",
+      "kind": "technology",
+      "views": [
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "ecosystem_id": "compute"
+    },
+    {
+      "id": "arch:nvidia-gpu",
+      "name": "NVIDIA GPU 架构",
+      "description": "沿 NVIDIA 架构官方文档研究各代计算、内存与互联设计，型号资料与架构资料分别登记。",
+      "kind": "technology",
+      "views": [
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "ecosystem_id": "compute",
+      "research_sections": [
+        {
+          "title": "架构家族（持续补充）",
+          "object_ids": [
+            "arch:hopper",
+            "arch:blackwell"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arch:amd-gpu",
+      "name": "AMD GPU 架构",
+      "description": "区分 CDNA、RDNA 架构家族及具体代际，比较对应负载、软件和内存设计。",
+      "kind": "technology",
+      "views": [
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "ecosystem_id": "compute",
+      "background_sources": [
+        "https://rocmdocs.amd.com/en/latest/conceptual/gpu-arch.html"
+      ],
+      "research_sections": [
+        {
+          "title": "架构家族",
+          "object_ids": [
+            "arch:cdna",
+            "arch:rdna"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arch:other-gpu",
+      "name": "其他 GPU 架构",
+      "description": "研究 Intel 及其他厂商公开架构；缺公开证据时保留未知，不按型号名称推测架构。",
+      "kind": "technology",
+      "views": [
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "ecosystem_id": "compute"
+    },
+    {
+      "id": "tech:nand-cell",
+      "name": "NAND 单元类型",
+      "description": "按每单元存储位数研究 SLC、MLC、TLC、QLC 等；不与层数、制造厂商混成一个互斥分类。",
+      "kind": "technology",
+      "views": [
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "ecosystem_id": "storage"
+    },
+    {
+      "id": "tech:nand-process",
+      "name": "NAND 工艺与制造",
+      "description": "研究平面/3D、层数、堆叠、晶圆制造与良率，区分技术路线和已量产事实。",
+      "kind": "technology",
+      "views": [
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "ecosystem_id": "storage"
+    },
+    {
+      "id": "software:ssd-firmware",
+      "name": "SSD 固件与 FTL",
+      "description": "研究地址映射、垃圾回收、磨损均衡、纠错协同与升级；具体实现需按型号与版本核实。",
+      "kind": "software",
+      "views": [
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "ecosystem_id": "storage"
+    },
+    {
+      "id": "software:storage",
+      "name": "存储软件与数据服务",
+      "description": "覆盖文件/块/对象服务、文件系统、分布式与软件定义存储、数据保护；这些是不同维度，不强行互斥。",
+      "kind": "software",
+      "views": [
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "ecosystem_id": "storage"
+    },
+    {
+      "id": "tech:storage-access",
+      "name": "存储访问与部署方式",
+      "description": "分别研究块/文件/对象访问方式，以及本地/网络/分布式部署；不要混成同一分类轴。",
+      "kind": "technology",
+      "views": [
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "ecosystem_id": "storage"
+    },
+    {
+      "id": "tech:storage-protocol",
+      "name": "存储协议与接口",
+      "description": "区分接口、协议和外形规格；研究 NVMe、SAS/SATA 及存储网络等连接条件。",
+      "kind": "technology",
+      "views": [
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "ecosystem_id": "storage"
+    },
+    {
+      "id": "tech:gpu-memory",
+      "name": "GPU 平台内存组织",
+      "description": "比较 GPU 本地内存、CPU 内存和统一内存；HBM/GDDR/LPDDR 按具体系统关系关联，不作为所有 GPU 的固定子件。",
+      "kind": "technology",
+      "views": [
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "research_sections": [
+        {
+          "title": "独立内存技术",
+          "object_ids": [
+            "part:hbm",
+            "part:gddr",
+            "part:lpddr",
+            "part:dram"
+          ]
+        },
+        {
+          "title": "平台对象",
+          "object_ids": [
+            "part:gpu-device",
+            "part:cpu"
+          ]
+        }
+      ],
+      "ecosystem_id": "compute"
+    },
+    {
+      "id": "ecosystem:storage",
+      "name": "存储生态",
+      "description": "从数据服务与软件，到存储系统、SSD/HDD，再到控制器、固件与 NAND；各层级共享来源，不混合市场口径。",
+      "kind": "research_scope",
+      "views": [
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "research_sections": [
+        {
+          "title": "软件与数据服务",
+          "object_ids": [
+            "software:storage",
+            "tech:storage-access"
+          ]
+        },
+        {
+          "title": "系统与整盘产品",
+          "object_ids": [
+            "part:storage-array",
+            "part:ssd-drive",
+            "part:hdd"
+          ]
+        },
+        {
+          "title": "SSD 内部研究",
+          "object_ids": [
+            "part:ssd-controller",
+            "software:ssd-firmware",
+            "part:nand"
+          ]
+        },
+        {
+          "title": "连接与兼容",
+          "object_ids": [
+            "tech:storage-protocol"
+          ]
+        },
+        {
+          "title": "历史记录",
+          "object_ids": [
+            "part:ssd"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ecosystem:compute",
+      "name": "计算与加速",
+      "description": "CPU 按指令集与产品研究，GPU 按厂商架构与内存配置研究；不同产品采用不同展开深度。",
+      "kind": "research_scope",
+      "views": [
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "research_sections": [
+        {
+          "title": "研究入口",
+          "object_ids": [
+            "part:cpu",
+            "part:gpu",
+            "part:gpu-device",
+            "part:ai-asic",
+            "part:fpga",
+            "part:server",
+            "arch:x86",
+            "arch:arm",
+            "arch:risc-v",
+            "arch:other-cpu",
+            "arch:nvidia-gpu",
+            "arch:amd-gpu",
+            "arch:other-gpu",
+            "tech:gpu-memory"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ecosystem:memory",
+      "name": "内存生态",
+      "description": "按产品类别、功能接口、厂商方案和运行条件研究；目前保留主要产品深度，有明确问题时再向下展开。",
+      "kind": "research_scope",
+      "views": [
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "research_sections": [
+        {
+          "title": "研究入口",
+          "object_ids": [
+            "part:hbm",
+            "part:dram",
+            "part:lpddr",
+            "part:gddr"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ecosystem:network",
+      "name": "网络与互联",
+      "description": "按产品类别、功能接口、厂商方案和运行条件研究；目前保留主要产品深度，有明确问题时再向下展开。",
+      "kind": "research_scope",
+      "views": [
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M07"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "research_sections": [
+        {
+          "title": "研究入口",
+          "object_ids": [
+            "part:nic",
+            "part:optics",
+            "part:interconnect-chip",
+            "part:switch-asic",
+            "part:connector",
+            "part:network-switch",
+            "part:copper-interconnect",
+            "part:cabling",
+            "part:network-access"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ecosystem:power",
+      "name": "电力与供配电",
+      "description": "按产品类别、功能接口、厂商方案和运行条件研究；目前保留主要产品深度，有明确问题时再向下展开。",
+      "kind": "research_scope",
+      "views": [
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M09"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "research_sections": [
+        {
+          "title": "研究入口",
+          "object_ids": [
+            "part:grid",
+            "part:substation",
+            "part:prime-power",
+            "part:backup-power",
+            "part:bess",
+            "part:ups",
+            "part:power-dist",
+            "part:power-shelf",
+            "part:psu",
+            "part:vrm",
+            "part:fuel-supply"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ecosystem:thermal",
+      "name": "冷却与热管理",
+      "description": "按产品类别、功能接口、厂商方案和运行条件研究；目前保留主要产品深度，有明确问题时再向下展开。",
+      "kind": "research_scope",
+      "views": [
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M08"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "research_sections": [
+        {
+          "title": "研究入口",
+          "object_ids": [
+            "part:water",
+            "part:room-cooling",
+            "part:cdu",
+            "part:heat-reject",
+            "part:manifold",
+            "part:coldplate",
+            "part:coolant",
+            "part:immersion",
+            "part:fan-vc",
+            "part:leak-detection",
+            "part:sidecar-hx"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ecosystem:facility",
+      "name": "设施与机柜",
+      "description": "按产品类别、功能接口、厂商方案和运行条件研究；目前保留主要产品深度，有明确问题时再向下展开。",
+      "kind": "research_scope",
+      "views": [
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M10"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "research_sections": [
+        {
+          "title": "研究入口",
+          "object_ids": [
+            "part:land",
+            "part:shell",
+            "part:fire",
+            "part:rack-frame",
+            "part:modular-dc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ecosystem:control",
+      "name": "控制与运维",
+      "description": "按产品类别、功能接口、厂商方案和运行条件研究；目前保留主要产品深度，有明确问题时再向下展开。",
+      "kind": "research_scope",
+      "views": [
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M10"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "research_sections": [
+        {
+          "title": "研究入口",
+          "object_ids": [
+            "part:dcim"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arch:hopper",
+      "name": "NVIDIA Hopper",
+      "description": "研究 Hopper 的计算、内存与互联设计，型号及平台配置分别核验。",
+      "kind": "technology",
+      "views": [
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "ecosystem_id": "compute"
+    },
+    {
+      "id": "arch:blackwell",
+      "name": "NVIDIA Blackwell",
+      "description": "研究 Blackwell 架构及不同产品实现；CPU、GPU 和整机命名不能互换。",
+      "kind": "technology",
+      "views": [
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "ecosystem_id": "compute"
+    },
+    {
+      "id": "arch:cdna",
+      "name": "AMD CDNA",
+      "description": "研究 CDNA 架构家族及代际差异；不按厂商名称推定所有产品采用同一架构。",
+      "kind": "technology",
+      "views": [
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "ecosystem_id": "compute"
+    },
+    {
+      "id": "arch:rdna",
+      "name": "AMD RDNA",
+      "description": "研究 RDNA 架构家族及适用负载，与 CDNA 分开比较。",
+      "kind": "technology",
+      "views": [
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "evidence_status": "unverified",
+      "aliases": [],
+      "ecosystem_id": "compute"
     }
   ],
   "relations": [
@@ -2790,7 +3695,7 @@
     "mece": "限定范围和同一分解轴；跨轴用有类型关系，未知项保留。",
     "actual_assets": "目前无经核验的真实场址配置；现有 3D 为概念模板。"
   },
-  "navigation_version": "1.0.0",
+  "navigation_version": "2026-09-06.2",
   "navigation_note": "浏览分组沿用 BOM 的主要研究尺度，并在层内按设备类别组织；不表示真实安装位置、装配或公司唯一角色。空间、装配和系统事实以带类型关系及其证据为准。P 内每对象有一个导航位置；F 可在多个系统下引用同一对象，分组计数不可相加。设施配套中的软件和工质分别保留对象类型。",
   "navigation": {
     "P": [
@@ -2962,7 +3867,9 @@
             "object_ids": [
               "part:gpu",
               "part:cpu",
-              "part:fpga"
+              "part:fpga",
+              "part:gpu-device",
+              "part:ai-asic"
             ],
             "children": []
           },
@@ -2973,7 +3880,12 @@
               "part:hbm",
               "part:dram",
               "part:ssd",
-              "part:hdd"
+              "part:hdd",
+              "part:ssd-drive",
+              "part:nand",
+              "part:ssd-controller",
+              "part:lpddr",
+              "part:gddr"
             ],
             "children": []
           },
@@ -3409,6 +4321,102 @@
             ]
           }
         ]
+      },
+      {
+        "id": "v-ecosystem-topics",
+        "label": "产品生态与技术话题",
+        "object_ids": [],
+        "children": [
+          {
+            "id": "v-topics-storage",
+            "label": "存储生态",
+            "object_ids": [
+              "ecosystem:storage",
+              "part:ssd-drive",
+              "part:nand",
+              "part:ssd-controller",
+              "software:ssd-firmware",
+              "software:storage",
+              "tech:storage-access",
+              "tech:storage-protocol",
+              "tech:nand-cell",
+              "tech:nand-process"
+            ],
+            "children": []
+          },
+          {
+            "id": "v-topics-compute",
+            "label": "计算与加速",
+            "object_ids": [
+              "ecosystem:compute",
+              "part:gpu-device",
+              "part:ai-asic",
+              "arch:x86",
+              "arch:arm",
+              "arch:risc-v",
+              "arch:other-cpu",
+              "arch:nvidia-gpu",
+              "arch:amd-gpu",
+              "arch:other-gpu",
+              "tech:gpu-memory",
+              "arch:hopper",
+              "arch:blackwell",
+              "arch:cdna",
+              "arch:rdna"
+            ],
+            "children": []
+          },
+          {
+            "id": "v-topics-memory",
+            "label": "内存生态",
+            "object_ids": [
+              "ecosystem:memory",
+              "part:lpddr",
+              "part:gddr"
+            ],
+            "children": []
+          },
+          {
+            "id": "v-topics-network",
+            "label": "网络与互联",
+            "object_ids": [
+              "ecosystem:network"
+            ],
+            "children": []
+          },
+          {
+            "id": "v-topics-power",
+            "label": "电力与供配电",
+            "object_ids": [
+              "ecosystem:power"
+            ],
+            "children": []
+          },
+          {
+            "id": "v-topics-thermal",
+            "label": "冷却与热管理",
+            "object_ids": [
+              "ecosystem:thermal"
+            ],
+            "children": []
+          },
+          {
+            "id": "v-topics-facility",
+            "label": "设施与机柜",
+            "object_ids": [
+              "ecosystem:facility"
+            ],
+            "children": []
+          },
+          {
+            "id": "v-topics-control",
+            "label": "控制与运维",
+            "object_ids": [
+              "ecosystem:control"
+            ],
+            "children": []
+          }
+        ]
       }
     ],
     "D": [
@@ -3791,7 +4799,563 @@
             ]
           }
         ]
+      },
+      {
+        "id": "r-ecosystem-topics",
+        "label": "产品生态与技术话题",
+        "object_ids": [],
+        "children": [
+          {
+            "id": "r-topics-storage",
+            "label": "存储生态",
+            "object_ids": [
+              "ecosystem:storage",
+              "part:ssd-drive",
+              "part:nand",
+              "part:ssd-controller",
+              "software:ssd-firmware",
+              "software:storage",
+              "tech:storage-access",
+              "tech:storage-protocol",
+              "tech:nand-cell",
+              "tech:nand-process"
+            ],
+            "children": []
+          },
+          {
+            "id": "r-topics-compute",
+            "label": "计算与加速",
+            "object_ids": [
+              "ecosystem:compute",
+              "part:gpu-device",
+              "part:ai-asic",
+              "arch:x86",
+              "arch:arm",
+              "arch:risc-v",
+              "arch:other-cpu",
+              "arch:nvidia-gpu",
+              "arch:amd-gpu",
+              "arch:other-gpu",
+              "tech:gpu-memory",
+              "arch:hopper",
+              "arch:blackwell",
+              "arch:cdna",
+              "arch:rdna"
+            ],
+            "children": []
+          },
+          {
+            "id": "r-topics-memory",
+            "label": "内存生态",
+            "object_ids": [
+              "ecosystem:memory",
+              "part:lpddr",
+              "part:gddr"
+            ],
+            "children": []
+          },
+          {
+            "id": "r-topics-network",
+            "label": "网络与互联",
+            "object_ids": [
+              "ecosystem:network"
+            ],
+            "children": []
+          },
+          {
+            "id": "r-topics-power",
+            "label": "电力与供配电",
+            "object_ids": [
+              "ecosystem:power"
+            ],
+            "children": []
+          },
+          {
+            "id": "r-topics-thermal",
+            "label": "冷却与热管理",
+            "object_ids": [
+              "ecosystem:thermal"
+            ],
+            "children": []
+          },
+          {
+            "id": "r-topics-facility",
+            "label": "设施与机柜",
+            "object_ids": [
+              "ecosystem:facility"
+            ],
+            "children": []
+          },
+          {
+            "id": "r-topics-control",
+            "label": "控制与运维",
+            "object_ids": [
+              "ecosystem:control"
+            ],
+            "children": []
+          }
+        ]
       }
     ]
-  }
+  },
+  "hardware_domains": [
+    {
+      "id": "storage",
+      "name": "存储生态",
+      "node_id": "ecosystem:storage",
+      "object_ids": [
+        "part:ssd",
+        "part:ssd-drive",
+        "part:nand",
+        "part:ssd-controller",
+        "part:hdd",
+        "part:storage-array",
+        "software:ssd-firmware",
+        "software:storage",
+        "tech:storage-access",
+        "tech:storage-protocol",
+        "tech:nand-cell",
+        "tech:nand-process"
+      ]
+    },
+    {
+      "id": "compute",
+      "name": "计算与加速",
+      "node_id": "ecosystem:compute",
+      "object_ids": [
+        "part:cpu",
+        "part:gpu",
+        "part:gpu-device",
+        "part:ai-asic",
+        "part:fpga",
+        "part:server",
+        "arch:x86",
+        "arch:arm",
+        "arch:risc-v",
+        "arch:other-cpu",
+        "arch:nvidia-gpu",
+        "arch:amd-gpu",
+        "arch:other-gpu",
+        "tech:gpu-memory",
+        "arch:hopper",
+        "arch:blackwell",
+        "arch:cdna",
+        "arch:rdna"
+      ]
+    },
+    {
+      "id": "memory",
+      "name": "内存生态",
+      "node_id": "ecosystem:memory",
+      "object_ids": [
+        "part:hbm",
+        "part:dram",
+        "part:lpddr",
+        "part:gddr"
+      ]
+    },
+    {
+      "id": "network",
+      "name": "网络与互联",
+      "node_id": "ecosystem:network",
+      "object_ids": [
+        "part:nic",
+        "part:optics",
+        "part:interconnect-chip",
+        "part:switch-asic",
+        "part:connector",
+        "part:network-switch",
+        "part:copper-interconnect",
+        "part:cabling",
+        "part:network-access"
+      ]
+    },
+    {
+      "id": "power",
+      "name": "电力与供配电",
+      "node_id": "ecosystem:power",
+      "object_ids": [
+        "part:grid",
+        "part:substation",
+        "part:prime-power",
+        "part:backup-power",
+        "part:bess",
+        "part:ups",
+        "part:power-dist",
+        "part:power-shelf",
+        "part:psu",
+        "part:vrm",
+        "part:fuel-supply"
+      ]
+    },
+    {
+      "id": "thermal",
+      "name": "冷却与热管理",
+      "node_id": "ecosystem:thermal",
+      "object_ids": [
+        "part:water",
+        "part:room-cooling",
+        "part:cdu",
+        "part:heat-reject",
+        "part:manifold",
+        "part:coldplate",
+        "part:coolant",
+        "part:immersion",
+        "part:fan-vc",
+        "part:leak-detection",
+        "part:sidecar-hx"
+      ]
+    },
+    {
+      "id": "facility",
+      "name": "设施与机柜",
+      "node_id": "ecosystem:facility",
+      "object_ids": [
+        "part:land",
+        "part:shell",
+        "part:fire",
+        "part:rack-frame",
+        "part:modular-dc"
+      ]
+    },
+    {
+      "id": "control",
+      "name": "控制与运维",
+      "node_id": "ecosystem:control",
+      "object_ids": [
+        "part:dcim"
+      ]
+    }
+  ],
+  "catalog_topic_mappings": [
+    {
+      "company_id": "intel",
+      "product_line": "x86服务器CPU",
+      "object_ids": [
+        "arch:x86"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "amd",
+      "product_line": "x86服务器CPU",
+      "object_ids": [
+        "arch:x86"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "nvidia",
+      "product_line": "Arm服务器CPU",
+      "object_ids": [
+        "arch:arm"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "ampere-computing",
+      "product_line": "Arm服务器CPU",
+      "object_ids": [
+        "arch:arm"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "arm",
+      "product_line": "Arm IP与CSS",
+      "object_ids": [
+        "arch:arm"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "huawei-kunpeng",
+      "product_line": "国产CPU（Arm）",
+      "object_ids": [
+        "arch:arm"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "hygon",
+      "product_line": "国产CPU（x86授权）",
+      "object_ids": [
+        "arch:x86"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "phytium",
+      "product_line": "国产CPU（Arm）",
+      "object_ids": [
+        "arch:arm"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "loongson",
+      "product_line": "国产CPU（自主指令）",
+      "object_ids": [
+        "arch:other-cpu"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "zhaoxin",
+      "product_line": "国产CPU（x86授权）",
+      "object_ids": [
+        "arch:x86"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "nvidia",
+      "product_line": "训练/推理GPU",
+      "object_ids": [
+        "part:gpu-device",
+        "arch:nvidia-gpu"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "amd-instinct",
+      "product_line": "训练/推理GPU",
+      "object_ids": [
+        "part:gpu-device",
+        "arch:amd-gpu"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "intel-gaudi",
+      "product_line": "训练/推理加速卡",
+      "object_ids": [
+        "part:ai-asic"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "huawei-ascend",
+      "product_line": "国产AI芯片",
+      "object_ids": [
+        "part:ai-asic"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "cambricon",
+      "product_line": "国产AI芯片",
+      "object_ids": [
+        "part:ai-asic"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "hygon-dcu",
+      "product_line": "国产GPU（GPGPU）",
+      "object_ids": [
+        "part:gpu-device",
+        "arch:other-gpu"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "biren",
+      "product_line": "国产GPU",
+      "object_ids": [
+        "part:gpu-device",
+        "arch:other-gpu"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "moore-threads",
+      "product_line": "国产GPU",
+      "object_ids": [
+        "part:gpu-device",
+        "arch:other-gpu"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "metax",
+      "product_line": "国产GPU",
+      "object_ids": [
+        "part:gpu-device",
+        "arch:other-gpu"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "iluvatar-corex",
+      "product_line": "国产GPU",
+      "object_ids": [
+        "part:gpu-device",
+        "arch:other-gpu"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "enflame",
+      "product_line": "国产AI芯片",
+      "object_ids": [
+        "part:ai-asic"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "cerebras-groq-sambanova-tenstorrent",
+      "product_line": "海外新兴AI芯片",
+      "object_ids": [
+        "part:ai-asic"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "google-tpu-aws-trainium-ms-maia-meta-mtia",
+      "product_line": "云厂商自研加速器",
+      "object_ids": [
+        "part:ai-asic"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "samsung",
+      "product_line": "企业级SSD",
+      "object_ids": [
+        "part:ssd-drive"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "kioxia",
+      "product_line": "企业级SSD",
+      "object_ids": [
+        "part:ssd-drive",
+        "part:nand"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "solidigm",
+      "product_line": "企业级SSD",
+      "object_ids": [
+        "part:ssd-drive"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "micron",
+      "product_line": "企业级SSD",
+      "object_ids": [
+        "part:ssd-drive"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "sandisk",
+      "product_line": "NAND与SSD",
+      "object_ids": [
+        "part:ssd-drive",
+        "part:nand"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "ymtc",
+      "product_line": "国产NAND/eSSD",
+      "object_ids": [
+        "part:ssd-drive",
+        "part:nand"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "unionmemory",
+      "product_line": "国产企业级SSD",
+      "object_ids": [
+        "part:ssd-drive"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "dapustor",
+      "product_line": "国产企业级SSD",
+      "object_ids": [
+        "part:ssd-drive"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "longsys",
+      "product_line": "存储模组厂",
+      "object_ids": [
+        "part:ssd-drive"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "biwin",
+      "product_line": "存储模组厂",
+      "object_ids": [
+        "part:ssd-drive"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "kingston",
+      "product_line": "第三方模组/内存",
+      "object_ids": [
+        "part:ssd-drive"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    },
+    {
+      "company_id": "smi-phison-maxio-innogrit",
+      "product_line": "SSD主控芯片",
+      "object_ids": [
+        "part:ssd-controller"
+      ],
+      "basis": "existing_catalog_labels_not_verified_specs"
+    }
+  ],
+  "research_topics": [
+    {
+      "id": "T01",
+      "name": "定义与边界"
+    },
+    {
+      "id": "T02",
+      "name": "结构与技术"
+    },
+    {
+      "id": "T03",
+      "name": "应用与需求"
+    },
+    {
+      "id": "T04",
+      "name": "性能与选型"
+    },
+    {
+      "id": "T05",
+      "name": "市场规模与周期"
+    },
+    {
+      "id": "T06",
+      "name": "生产与供应链"
+    },
+    {
+      "id": "T07",
+      "name": "厂商与竞争"
+    },
+    {
+      "id": "T08",
+      "name": "价格、成本与商业"
+    },
+    {
+      "id": "T09",
+      "name": "部署、运维与约束"
+    }
+  ],
+  "hardware_note": "生态目录是研究入口，不表示实际装配。每个产品有一个主生态，跨生态通过研究关系引用。"
 }
