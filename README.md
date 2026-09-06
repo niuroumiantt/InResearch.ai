@@ -112,8 +112,8 @@ python3 pipeline/intake.py --accept # 把过检的 B/C 档写成批次 CSV 走�
 采集与站点：
 
 ```bash
-python3 pipeline/fetch_sec.py       # 拉取跟踪公司的最新 SEC 文件列表（须本机跑，云端被屏蔽）
-python3 pipeline/fetch_news_signals.py  # 从 news 项目匹配实体相关新闻线索
+python3 pipeline/acquisition.py sec --company nvidia --limit 1  # Spark: bounded originals
+python3 pipeline/acquisition.py news --input /path/to/inews-research-export.json
 python3 pipeline/serve.py           # 站点 + 管理 API（含派工 /api/assign）；运行状态另查
 ```
 

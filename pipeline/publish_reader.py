@@ -46,6 +46,8 @@ def main():
             payload['reader']['status'] = 'degraded'
             payload['reader'].setdefault('recent_failures', []).append({'error_code': 'worker_service_inactive'})
         payload['reader']['release'] = os.environ.get('READER_RELEASE', 'unknown')
+        import acquisition
+        payload['reader']['acquisition'] = acquisition.summary(reader.data)
         body = encoded(payload).encode('utf-8')
         if len(body) > 64 * 1024 * 1024:
             raise ValueError('snapshot exceeds receiver limit; incremental export is required')

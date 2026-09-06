@@ -110,7 +110,8 @@
     改名后旧名的登录立即失效，须用新名重登；最后一个 admin 不可降级或删除。</div>
   </section>
 
-  <h2>采集控制台</h2>
+  <h2>采集与运行控制台</h2>
+  <p class="meta">采集在 Spark 执行，三个来源按钮查询同步状态。<a href="doc.html?f=framework/06_acquisition.md">采集、翻译与阶段计划 →</a></p>
   <div class="tasks" id="tasks"></div>
   <pre class="console" id="console">后台就绪。点击任务运行，输出显示在这里；每个任务显示上次运行时间。</pre>
 
@@ -339,15 +340,16 @@ function projectCapacity(p) {
     let rstats = {};
     try { rstats = (await loadJSON("data/brief.json")).research || {}; } catch (e) {}
     const dimOf = {};
-    for (const [dim, ids] of Object.entries(mods.dimensions)) ids.forEach(id => dimOf[id] = dim);
+    for (const [dim, ids] of Object.entries(mods.dimensions || {})) ids.forEach(id => dimOf[id] = dim);
     document.getElementById("modules").innerHTML = mods.modules.map(m => {
       const rs = rstats[m.id];
-      const link = m.research
-        ? `<a class="doclink" href="doc.html?f=${m.research}">📄 ${rs ? rs.findings + " 条结论" : "研究文档"}${rs && rs.needs_review ? " ⚠️" + rs.needs_review : ""}</a>`
+      const researchPath = m.research || `research/${m.id}.md`;
+      const link = researchPath
+        ? `<a class="doclink" href="doc.html?f=${researchPath}">📄 ${rs ? rs.findings + " 条结论" : "研究文档"}${rs && rs.needs_review ? " ⚠️" + rs.needs_review : ""}</a>`
         : `<span class="doclink muted">待迁入</span>`;
       return `<div class="mod"><span class="id">${m.id}</span><span class="dim-tag">${DIM_NAMES[dimOf[m.id]] || ""}</span>` + link +
-        `<div class="nm">${m.name}</div><div class="meta">${m.en} · ${m.update_freq} · 表: ${m.tables.join(", ")}` +
-        `${m.source_questions.length ? " · " + m.source_questions.join(" ") : ""}</div></div>`;
+        `<div class="nm">${m.name}</div><div class="meta">${(m.beats || []).length} 个信源跑口 · ${(m.questions || []).length} 个模块问题` +
+        `</div></div>`;
     }).join("");
 
     // 项目表
@@ -362,17 +364,17 @@ function projectCapacity(p) {
     });
     document.getElementById("projects").innerHTML = pt.join("");
   } catch (e) {
-    document.getElementById("error").innerHTML = `<div class="err">加载失败：${e.message}<br>请用 <code>python3 -m http.server 8000</code> 启动后访问（file:// 协议无法 fetch JSON）。</div>`;
+    document.getElementById("error").innerHTML = `<div class="err">加载失败：${e.message}<br>请刷新页面；若仍失败，请保留错误信息。此页需要应用服务提供数据与管理 API。</div>`;
   }
 })();
 </script>
 <script>
 // ── 管理后台：采集控制台 + 手动录入 ──
 const TASKS = [
-  ["collect", "每日流水线", "采集+简报+事件标记"],
-  ["news", "news 信号", "扫描新闻匹配实体"],
-  ["sec", "SEC EDGAR", "拉取监管文件"],
-  ["gpu", "GPU 租价", "vast.ai 现货中位数"],
+  ["collect", "兼容简报", "仅汇总历史缓存，不触发采集"],
+  ["news", "inews 采集状态", "Spark 新闻线索台账；不是全文"],
+  ["sec", "SEC 采集状态", "Spark 披露清单与原件；不自动采用"],
+  ["gpu", "GPU 采集状态", "按需报价快照；不写正式价格表"],
   ["indicators", "指标回填", "库内数据→指标值"],
   ["verify", "核验队列", "生成待核清单"],
   ["queue", "精读队列", "已打分−已消化，该读什么"],

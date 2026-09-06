@@ -21,6 +21,7 @@ const dir = process.env.UI_QA_DIR;
    const query = file==='research.html'?'?node=part:gpu&view=P&tab=tasks':file==='doc.html'?'?f=framework/05_interface_system.md':'';
    await page.goto(base+'/'+file+query); await page.locator('#ui-skinbar').waitFor();
    if(file==='research.html') await page.locator('.rg-node h2').waitFor();
+   if(file==='ops.html'){await page.locator('#modules .mod').first().waitFor();assert.equal(await page.locator('#modules .mod').count(),15);assert.equal(await page.locator('#error').textContent(),'');assert.ok(await page.locator('#projects tr').count()>100);}
    const settledUrl=page.url();
    for (const skin of ['folk','attio']) for (const mode of ['light','dark']) {
      await page.getByRole('button',{name:skin==='folk'?'folk':'Attio',exact:true}).click();

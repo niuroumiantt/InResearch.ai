@@ -1,19 +1,6 @@
 #!/usr/bin/env python3
-"""每日信号流水线总调度：一条命令跑完采集 → 汇总 → 简报。
-
-    python3 pipeline/collect.py             # 完整流程（联网采集 + 简报）
-    python3 pipeline/collect.py --offline   # 跳过联网采集，用已有原始数据出简报
-
-流程：
-  ① fetch_news_signals.py   news 项目 → 实体新闻线索
-  ② fetch_sec.py            EDGAR → 最新监管文件（失败不阻塞，用已有存档）
-  ③ verify.build_queue()    核验队列
-  ④ 汇总写出：
-       data/brief.json        仪表盘"今日信号"数据（进 git，页面可读）
-       reports/daily_brief.md 人读简报
-       reports/verify_queue.md 核验清单
-
-自动信号只产生线索，不写六张表（入库纪律见 pipeline/README.md）。
+"""Historical cache briefing only. Network acquisition runs on Spark via acquisition.py.
+Current policy: framework/06_acquisition.md. Cached data is not live collection status.
 """
 import json
 import os
@@ -144,11 +131,7 @@ def main():
     today = date.today().isoformat()
     print(f"每日信号流水线 {today}")
 
-    if not offline:
-        run_step("① news 信号", ["pipeline/fetch_news_signals.py"])
-        run_step("② SEC EDGAR", ["pipeline/fetch_sec.py"], timeout=300)
-    else:
-        print("── offline 模式：跳过采集")
+    print("兼容简报：使用历史缓存；联网采集改用 Spark acquisition.py，见 framework/06_acquisition.md")
 
     run_step("②b 指标回填", ["pipeline/refresh_indicators.py"], timeout=30)
 

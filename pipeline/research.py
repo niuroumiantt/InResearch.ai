@@ -235,7 +235,7 @@ def candidate_snapshot(payload, graph, questions):
     # It is a derived health snapshot, never an instruction or source of authority.
     reader = {k: v for k, v in reader.items() if k in (
         'generated', 'counts', 'stage_counts', 'oldest_pending', 'recent_failures',
-        'backend', 'model', 'roots', 'status', 'release')}
+        'backend', 'model', 'roots', 'status', 'release', 'acquisition')}
     return dict(graph_version=graph['version'], questions_version=questions['version'], generated=generated,
                 received_at=datetime.now(timezone.utc).isoformat(), knowledge=result, reader=reader)
 
