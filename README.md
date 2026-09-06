@@ -12,9 +12,11 @@
 一个**可持续、可更新**的数据中心行业研究项目。报告只是输出载体之一；
 真正的资产是三层：**数据积累（越久越值钱）+ 方法论体系（口径纪律）+ 多形态输出能力**。
 
-设计基因与 [news](https://github.com/niuroumiantt/news) 项目一致：
-零依赖 Python、JSON 数据层、Markdown 框架层、单文件 HTML 页面，
-未来可与 news 共用信源管道和 VPS 部署体系（wentian.ai）。
+实现使用 Python 标准库、JSON/SQLite 数据层、Markdown 方法论和网页视图。
+生产环境以 infra 的环境事实表为准；原件与持续阅读在 Spark，研究网站在 inresearch.ai。
+
+2026-09-06 已上线[五视角研究工作台](https://inresearch.ai/research.html)，两个 3D 已接入节点问题与证据。
+Spark 常驻 reader 与五分钟候选同步已启动。版本、测试和真实资料边界见[实施记录](docs/reviews/2026-09-06/IMPLEMENTATION.md)。
 
 ## 核心思想
 
@@ -41,6 +43,10 @@ L0 数据层   data/ — 六张实体表（项目/公司/价格/政策/合同/�
 | 路径 | 层 | 作用 |
 |---|---|---|
 | `framework/00_overview.md` | L1-L2 | 全行业五视角、局部 MECE 与 15 模块兼容映射 |
+| `framework/research_graph.json` | 对象/关系 | 84 个对象、139 条有类型关系及中英文别名 |
+| `framework/research_questions.json` | 问题 | 415 个稳定问题、对象绑定、验收和证据要求 |
+| `data/research_knowledge.json` | 正式证据 | 文档、证据、陈述与采用回答；运行候选另存非 Git 快照 |
+| `research.html` | 研究工作台 | 按节点查看关系、问题、材料、证据与任务 |
 | `framework/01_data_standards.md` | L1 | **口径与核验规则手册**（每条数据入库必须遵守） |
 | `framework/modules.json` | L2 | 模块注册表（机器可读：依赖表、更新频率、Q 映射） |
 | `framework/modules/M01–M15.md` | L2 | 各模块定义：核心问题、关键指标、数据依赖 |
@@ -49,13 +55,13 @@ L0 数据层   data/ — 六张实体表（项目/公司/价格/政策/合同/�
 | `framework/indicators.json` | L4 | 监测指标注册表（指标、阈值、红黄绿、来源、频率） |
 | `data/schema/*.schema.json` | L0 | 六张表的字段定义与约束 |
 | `data/projects.json` 等 | L0 | 实体数据（含种子数据，`verified` 标注核验状态） |
-| `data/raw/` | L0 | 原始文献/公告存档（不进 git 的大文件另存） |
+| Spark `~/.local/share/inresearch.ai/` | 永久资料 | 接收、原件、来源版本、分块阅读、候选、台账与可回滚目录 |
 | `pipeline/` | 采集与队列 | 零依赖脚本：抓取、校验、四个队列（核验/精读/工单/盲区）、事实层、投递机检 |
 | `framework/modules.json` | L1 声明 | **模块是声明不是代码**：要回答什么问题、由哪些信源跑口供养、关键词 |
 | `framework/metrics.json` | L1 声明 | 指标定义与**口径维度**——可比性判定的唯一依据 |
 | `data/facts.json` | L0 事实层 | **core**：原子是「一个事实」= 指标 × 口径 × 时点 × 出处 |
 | `reports/` | L3 | 输出模板与生成结果 |
-| `docs/inbox/` | 投递口 | **有材料放这里**（Word/PDF/CAD/Excel 均可，不用分类改名），后台"扫描收件箱"按钮出清单，Claude 归类登记 |
+| `docs/inbox/` | 协作兼容入口 | 人员提交与旧流程登记；持续模型阅读向 Spark 的 `raw-materials/` 投料 |
 | `docs/source/` | 存档 | 本项目自产文档（Q&A 报告、台账等原件） |
 | `docs/library/` | 存档 | 第三方研报库兼容入口（当前存量以实盘台账为准；原件不进 Git） |
 | `index.html` | L4 | 单文件仪表盘：模块地图 + 项目库 + 监测指标 |
@@ -70,7 +76,7 @@ L0 数据层   data/ — 六张实体表（项目/公司/价格/政策/合同/�
 
 ## Spark 持续阅读与运行边界
 
-当前规则见 [阅读标准 v3](framework/04_reading_scoring_standard.md)、[项目目标](docs/local_reader/PROJECT_BRIEF.md) 与 [执行协议](docs/local_reader/RUN_TO_COMPLETION.md)。用户已批准常驻模式；服务是否实际启动、版本与健康以部署记录和台账为准。
+当前规则见 [阅读标准 v3](framework/04_reading_scoring_standard.md)、[项目目标](docs/local_reader/PROJECT_BRIEF.md) 与 [执行协议](docs/local_reader/RUN_TO_COMPLETION.md)。用户已批准且已部署常驻模式；实际版本、健康与阅读数量以[实施记录](docs/reviews/2026-09-06/IMPLEMENTATION.md)及台账为准。
 
 `raw-materials → 原件/版本登记 → 27B 粗读 → 每篇深读 → 原文核验与候选 → C3 采用 → 节点/问题/Finding/交付`。
 
