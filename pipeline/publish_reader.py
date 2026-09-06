@@ -9,7 +9,7 @@ import subprocess
 import urllib.request
 from urllib.parse import urlsplit
 
-from continuous_reader import Reader, encoded, atomic_json, now_iso
+from continuous_reader import Reader, ModelClient, MODEL, encoded, atomic_json, now_iso
 
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -29,7 +29,11 @@ def main():
     token = token_path.read_text().strip()
     if len(token) < 32:
         raise ValueError('publisher token is not configured')
-    reader = Reader(data_root=os.environ.get('READER_DATA_ROOT'), state_root=state,
+    model = ModelClient(backend=os.environ.get('READER_BACKEND', 'ollama'),
+                        url=os.environ.get('READER_URL', 'http://127.0.0.1:11434'),
+                        model=os.environ.get('READER_MODEL', MODEL),
+                        ocr_model=os.environ.get('READER_OCR_MODEL', ''))
+    reader = Reader(model=model, data_root=os.environ.get('READER_DATA_ROOT'), state_root=state,
                     repo_root=os.environ.get('READER_REPO_ROOT')).initialize()
     try:
         # Pin one SQLite snapshot while assembling references across tables.
