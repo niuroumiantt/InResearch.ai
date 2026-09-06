@@ -6,13 +6,17 @@ No original documents or runtime credentials are served by this module.
 """
 import argparse
 import copy
+import csv
 import hashlib
 import json
 import os
 import tempfile
 import re
+import unicodedata
+from urllib.parse import urlencode, urlsplit
 from datetime import datetime, timezone
 from pathlib import Path
+from research_navigation import validate_navigation
 
 ROOT = Path(__file__).resolve().parent.parent
 COLLECTIONS = ('documents', 'evidence', 'statements', 'answers')
@@ -101,6 +105,7 @@ def atomic_json(path, data):
 
 def validate(graph, questions, knowledge):
     errors = []
+    errors.extend(validate_navigation(graph))
     def index(rows, name):
         found = {}
         for row in rows:
@@ -250,6 +255,180 @@ def merge_knowledge(curated, candidates):
     return result
 
 
+def catalog_id(kind, *identity):
+    """Chinese product-line text is part of identity; never slug it into an empty key."""
+    raw = json.dumps(identity, ensure_ascii=False, separators=(',', ':')).encode('utf-8')
+    return kind + ':' + hashlib.sha256(raw).hexdigest()
+
+
+def build_catalog(root, graph):
+    """Project existing catalog metadata without promoting it to research evidence.
+
+    Product rows remain product lines. Plans and historical index records keep their
+    own statuses; neither a path nor an old 'verified' label proves availability now.
+    """
+    root = Path(root)
+    product_path = 'data/products.json'
+    company_path = 'data/companies.json'
+    plan_path = 'data/product_docs_plan.csv'
+    primary_index = 'data/product_library_index.json'
+    fallback_index = 'docs/inbox/inresearch-alignment/library_index.json'
+    product_rows = read_json(root / product_path, {'records': []})['records']
+    company_rows = read_json(root / company_path, {'records': []})['records']
+    indexed = read_json(root / primary_index, {'records': []}).get('records', [])
+    index_path = primary_index
+    if not indexed:
+        index_path = fallback_index
+        indexed = read_json(root / fallback_index, {'records': []}).get('records', [])
+    plans = []
+    if (root / plan_path).exists():
+        with (root / plan_path).open(encoding='utf-8-sig', newline='') as fh:
+            plans = list(csv.DictReader(fh))
+    objects = {row['id']: row for row in graph.get('objects', [])}
+    parents = {}
+    for relation in graph.get('relations', []):
+        # Do not walk requires/demand_transmission or attach by module membership.
+        if relation.get('type') in ('part_of', 'located_in', 'member_of_system'):
+            parents.setdefault(relation['source'], set()).add(relation['target'])
+
+    def strings(value):
+        if isinstance(value, str):
+            return [value] if value else []
+        return [x for x in (value or []) if isinstance(x, str) and x]
+
+    def mapping(row):
+        parts = sorted(set(strings(row.get('bom_parts')) + strings(row.get('bom_part'))))
+        mapped = sorted({'part:' + part for part in parts if 'part:' + part in objects})
+        unresolved = sorted(set(parts) - {oid[5:] for oid in mapped})
+        related, pending = set(mapped), list(mapped)
+        while pending:
+            for target in parents.get(pending.pop(), set()):
+                node = objects.get(target, {})
+                # Ancestors are navigation context, not actual facility installations.
+                if target not in related and node and not target.startswith(('workload:', 'demand:', 'activity:')):
+                    related.add(target)
+                    pending.append(target)
+        return dict(object_ids=mapped, related_object_ids=sorted(related), unmapped_bom_parts=unresolved,
+                    mapping_basis='explicit_bom' if mapped else 'unmapped',
+                    mapping_status='needs_review' if unresolved or not mapped else 'registered_bom')
+
+    def normalized(value):
+        return ''.join(c for c in unicodedata.normalize('NFKC', str(value or '')).casefold() if c.isalnum())
+
+    def web_url(value):
+        value = str(value or '').strip()
+        # A website field may contain explanatory prose; do not invent a link from it.
+        if not value or any(c.isspace() for c in value):
+            return None
+        if '://' not in value and ':' in value.split('/', 1)[0]:
+            return None
+        candidate = value if '://' in value else 'https://' + value
+        try:
+            parsed = urlsplit(candidate)
+            parsed.port  # Reject malformed authority rather than guessing a website.
+            if parsed.scheme not in ('http', 'https') or not parsed.hostname or parsed.username or parsed.password:
+                return None
+            # Host-only prose (e.g. 各家官网) also encodes as IDNA, so IDNA alone
+            # is insufficient. Require a public-style dotted domain, not an IP or
+            # local hostname. Chinese domain labels and suffixes remain supported.
+            hostname = parsed.hostname.encode('idna').decode('ascii').rstrip('.')
+            labels = hostname.split('.')
+            if len(labels) < 2 or len(hostname) > 253 or labels[-1].isdigit():
+                return None
+            if any(not re.fullmatch(r'[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?', label, re.I) for label in labels):
+                return None
+            return candidate
+        except (ValueError, UnicodeError):
+            return None
+
+    products, exact, aliases = [], {}, {}
+    for row in product_rows:
+        company, line = row['company_id'], row['product_line']
+        pid = catalog_id('product-line', company, line)
+        entry = dict(copy.deepcopy(row), id=pid, kind='product_line', identity_kind='product_line',
+                     company_catalog_id='company:' + company, **mapping(row),
+                     catalog_node_ids=['activity:V2'] if 'activity:V2' in objects else [],
+                     catalog_node_basis='catalog_navigation_only', source_url=web_url(row.get('website')),
+                     source_path=product_path, source_record=copy.deepcopy(row),
+                     verification_status='registry_only', document_ids=[], plan_ids=[], models=[],
+                     admin_url='/admin/product/?' + urlencode({'company': company, 'line': line}))
+        products.append(entry)
+        exact.setdefault((company, line), []).append(pid)
+        aliases.setdefault((company, normalized(line)), []).append(pid)
+    product_by_id = {row['id']: row for row in products}
+
+    def match_product(row):
+        key = (row.get('company_id'), row.get('product_line', ''))
+        found = exact.get(key, [])
+        if len(found) == 1:
+            return found, 'exact_company_and_product_line'
+        found = aliases.get((key[0], normalized(key[1])), [])
+        # Legacy slash-to-hyphen paths may match, but ambiguous normalization never does.
+        return (found, 'unique_normalized_product_line') if len(found) == 1 else ([], 'unmatched_or_ambiguous')
+
+    documents, document_ids = [], set()
+    for kind, rows, source in (('indexed_document', indexed, index_path), ('document_plan', plans, plan_path)):
+        for row in rows:
+            identity = [row.get('company_id'), row.get('product_line'), row.get('model'), row.get('doc_type')]
+            did = catalog_id('catalog-document' if kind == 'indexed_document' else 'catalog-plan', source,
+                             row.get('doc_id') if kind == 'indexed_document' and row.get('doc_id') else identity)
+            if did in document_ids:
+                # Preserve unexpected distinct source variants without conflating their status.
+                did = catalog_id('catalog-duplicate', did, row)
+                if did in document_ids:
+                    continue
+            document_ids.add(did)
+            pids, basis = match_product(row)
+            entry = dict(copy.deepcopy(row), id=did, kind=kind, product_ids=pids, **mapping(row),
+                         product_match_basis=basis, source_path=source, source_record=copy.deepcopy(row),
+                         status=row.get('status') or 'unknown',
+                         source_url=row.get('source_url') or None,
+                         registered_status=row.get('status') or 'unknown',
+                         verification_status='planned_only' if kind == 'document_plan' else 'historical_index_metadata',
+                         current_availability='not_checked', acceptance='catalog_metadata',
+                         content_sha256=row.get('sha256'), linked_document_ids=[])
+            documents.append(entry)
+            for pid in pids:
+                product_by_id[pid]['plan_ids' if kind == 'document_plan' else 'document_ids'].append(did)
+    indexes = [row for row in documents if row['kind'] == 'indexed_document']
+    for row in documents:
+        if row['kind'] != 'document_plan':
+            continue
+        explicit = bool(row.get('doc_id'))
+        row['document_link_basis'] = 'explicit_doc_id' if explicit else 'model_and_type_candidates'
+        row['linked_document_ids'] = [item['id'] for item in indexes if set(item['product_ids']) & set(row['product_ids'])
+                                     and (item.get('doc_id') == row['doc_id'] if explicit else
+                                          (normalized(item.get('model')) == normalized(row.get('model'))
+                                           and item.get('doc_type') == row.get('doc_type')))]
+    for product in products:
+        model_labels = {}
+        for doc in documents:
+            label = doc.get('model')
+            if product['id'] not in doc['product_ids'] or not label or str(label).casefold() == 'line':
+                continue
+            model = model_labels.setdefault(label, dict(id=catalog_id('model-label', product['id'], label), label=label,
+                        identity_kind='registered_model_label', document_ids=[], plan_ids=[]))
+            model['plan_ids' if doc['kind'] == 'document_plan' else 'document_ids'].append(doc['id'])
+        product['models'] = list(model_labels.values())
+    companies = []
+    company_registry = {row['company_id']: row for row in company_rows}
+    for cid in sorted({row['company_id'] for row in products}):
+        linked = [row for row in products if row['company_id'] == cid]
+        original = company_registry.get(cid)
+        row = copy.deepcopy(original) if original else {'company_id': cid, 'name': linked[0].get('company_en', cid), 'name_cn': linked[0].get('company_cn')}
+        companies.append(dict(row, id='company:' + cid, product_ids=[p['id'] for p in linked],
+                              object_ids=sorted({oid for p in linked for oid in p['object_ids']}),
+                              source_path=company_path if original else product_path, source_record=copy.deepcopy(original or linked[0]['source_record']),
+                              verification_status='registry_only', source_url=web_url(row.get('website')) or web_url(row.get('ir_url')),
+                              admin_url='/admin/product/?' + urlencode({'company': cid})))
+    return dict(schema_version=1, products=products, companies=companies, documents=documents,
+                sources=dict(products=product_path, companies=company_path, plans=plan_path, index=index_path,
+                             index_selection='primary' if index_path == primary_index else 'alignment_fallback'),
+                counts=dict(product_lines=len(products), companies=len(companies), plans=len(plans), indexed_documents=len(indexed)),
+                status='ready', acceptance='catalog_metadata',
+                note='登记产品线、型号标签、计划与历史资料索引；不代表 SKU、当前文件可用、全文已读或研究已采用。')
+
+
 def build_snapshot(root=ROOT):
     graph = read_json(root / 'framework/research_graph.json')
     questions = read_json(root / 'framework/research_questions.json')
@@ -290,7 +469,8 @@ def build_snapshot(root=ROOT):
             reader['stale'] = age > 900
         except (ValueError, TypeError):
             reader['stale'] = True
-    return dict(graph=graph, questions=questions, knowledge=knowledge, tasks=tasks, reader=reader)
+    return dict(graph=graph, questions=questions, knowledge=knowledge, tasks=tasks, reader=reader,
+                catalog=build_catalog(root, graph))
 
 
 def main():

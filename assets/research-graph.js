@@ -137,6 +137,12 @@ export function buildResearchIndex(data) {
   const questions = list(data.questions), knowledge = data.knowledge || {};
   const documents = list(knowledge.documents), evidence = list(knowledge.evidence);
   const statements = list(knowledge.statements), answers = list(knowledge.answers), tasks = list(data.tasks);
+  // Catalog registration is a separate layer, never evidence or installed assets.
+  const catalog = data.catalog || {}, products = list(catalog.products);
+  const catalogDocuments = list(catalog.documents), companies = list(catalog.companies);
+  const catalogDocumentById = new Map(catalogDocuments.map(d => [recId(d), d]));
+  const companyById = new Map();
+  companies.forEach(c => fieldRefs(c, ["id", "company_id"]).forEach(id => companyById.set(id, c)));
   const byId = new Map(objects.map(o => [o.id, o]));
   const evidenceById = new Map(evidence.map(e => [recId(e), e]));
   const documentById = new Map();
@@ -164,7 +170,25 @@ export function buildResearchIndex(data) {
       tasks: tasks.filter(directOrQuestion), relations: rs };
   }
   return { objects, relations, questions, documents, evidence, statements, answers, tasks,
-    byId, evidenceById, documentById, adjacency, forNode };
+    byId, evidenceById, documentById, adjacency, forNode,
+    catalog, products, catalogDocuments, catalogDocumentById, companies, companyById };
+}
+export function catalogForNode(index, node, view = "P") {
+  if (!node || /demand|workload|application/.test(node.kind || "") || /^(demand|workload):/.test(node.id))
+    return { products: [], basis: "demand", direct: 0 };
+  const basis = node.id === "activity:V2" ? "directory"
+    : /system/.test(node.kind || "") || view === "F" ? "context" : "explicit";
+  const field = basis === "directory" ? "catalog_node_ids" : basis === "context" ? "related_object_ids" : "object_ids";
+  const products = index.products.filter(p => strings(p[field]).includes(node.id));
+  return { products, basis, direct: products.filter(p => strings(p.object_ids).includes(node.id)).length };
+}
+export function catalogMatchesQuery(product, query) {
+  const terms = normalize(query).match(/[\p{L}\p{N}]+/gu) || [];
+  if (!normalize(query)) return true;
+  if (!terms.length) return false;
+  const text = normalize([product.company_cn, product.company_en, product.company_id, product.product_line,
+    product.category, product.representative_models, ...list(product.models).map(m => m.label)].filter(present).join(" "));
+  return terms.every(term => text.includes(term));
 }
 function viewOfRelation(r) {
   const explicit = strings(r.views || r.view_ids || r.view);
@@ -175,15 +199,51 @@ function viewOfRelation(r) {
   if (/research|question|evidence|support|contradict/.test(r.type)) return ["R"];
   return ["P"];
 }
-function objectViews(o, index) {
+export function objectViews(o, index) {
   const direct = strings(o.views || o.view_ids || o.view);
   const via = (index.adjacency.get(o.id) || []).flatMap(viewOfRelation);
   const qv = index.questions.filter(q => refs(q).includes(o.id)).flatMap(q => strings(q.views));
-  if (direct.length) return new Set([...direct, "R"]);
+  if (direct.length) return new Set(direct);
   const kind = String(o.kind || "");
   const base = /system/.test(kind) ? "F" : /company|role|industry|value|supplier/.test(kind) ? "V"
     : /demand|workload|application|model|service/.test(kind) ? "D" : /research|question/.test(kind) ? "R" : "P";
   return new Set([base, ...via, ...qv, "R"]);
+}
+export function navigationForView(index, graph, view) {
+  const allowed = new Set(index.objects.filter(o => objectViews(o, index).has(view)).map(o => o.id));
+  const covered = new Set();
+  function clean(group, path) {
+    const ids = [...new Set(strings(group.object_ids))].filter(id => allowed.has(id));
+    ids.forEach(id => covered.add(id));
+    const children = list(group.children).map((child, i) => clean(child, path + ":" + i)).filter(Boolean);
+    return ids.length || children.length ? { id: group.id || path, label: group.label || "浏览分组", object_ids: ids, children } : null;
+  }
+  const groups = list(graph.navigation?.[view]).map((group, i) => clean(group, view + ":" + i)).filter(Boolean);
+  const rest = index.objects.filter(o => allowed.has(o.id) && !covered.has(o.id));
+  for (const kind of [...new Set(rest.map(o => o.kind || "unknown"))]) groups.push({
+    id: view + ":fallback:" + kind, label: typeText(kind),
+    object_ids: rest.filter(o => (o.kind || "unknown") === kind).map(o => o.id), children: []
+  });
+  return groups;
+}
+export function navigationPaths(groups, objectId, path = []) {
+  return groups.flatMap(group => {
+    const next = [...path, group];
+    return [...(group.object_ids.includes(objectId) ? [next] : []), ...navigationPaths(group.children, objectId, next)];
+  });
+}
+export function filterNavigation(groups, index, query = "", kind = "", parentMatch = false) {
+  const term = normalize(query);
+  return groups.map(group => {
+    const groupMatch = parentMatch || Boolean(term && normalize(group.label).includes(term));
+    const ids = group.object_ids.filter(id => {
+      const o = index.byId.get(id);
+      return o && (!kind || (o.kind || "unknown") === kind) && (!term || groupMatch ||
+        normalize([o.name, o.id, o.description, o.legacy_bom_id, ...strings(o.aliases), ...strings(o.modules)].join(" ")).includes(term));
+    });
+    const children = filterNavigation(group.children, index, query, kind, groupMatch);
+    return ids.length || children.length ? { ...group, object_ids: ids, children } : null;
+  }).filter(Boolean);
 }
 function evidenceList(card, row, index) {
   const ids = fieldRefs(row, ["evidence_id", "evidence_ids"]);
@@ -306,10 +366,11 @@ async function startWorkbench() {
   const objectsEl = document.getElementById("researchObjects");
   const params = new URLSearchParams(location.search);
   const state = { view: Object.hasOwn(VIEW_INFO, params.get("view")) ? params.get("view") : "P",
-    selected: params.get("node") || "", tab: params.get("tab") || "relations", trail: [] };
+    selected: params.get("node") || "", tab: params.get("tab") || "relations", trail: [],
+    expanded: new Map(), productQuery: "", productCompany: "", productLimit: 24 };
   search.value = params.get("q") || "";
   let index, data;
-  const tabInfo = { relations: "对象关系", questions: "研究问题", materials: "材料与证据", statements: "陈述与回答", tasks: "缺口任务" };
+  const tabInfo = { relations: "对象关系", products: "产品与厂商", questions: "研究问题", materials: "材料与证据", statements: "陈述与回答", tasks: "缺口任务" };
   if (!Object.hasOwn(tabInfo, state.tab)) state.tab = "relations";
   function saveURL() {
     const q = new URLSearchParams({ node: state.selected, view: state.view, tab: state.tab });
@@ -319,13 +380,24 @@ async function startWorkbench() {
   function choose(id, track = true) {
     if (track && state.selected && state.selected !== id) state.trail = [...state.trail, state.selected].slice(-6);
     state.selected = id;
+    state.productQuery = ""; state.productCompany = ""; state.productLimit = 24;
+    expandSelected();
     renderObjects(); renderDetail(); saveURL();
+  }
+  function currentNavigation() { return navigationForView(index, data.graph, state.view); }
+  function expandSelected() {
+    for (const path of navigationPaths(currentNavigation(), state.selected))
+      path.forEach(group => state.expanded.set(state.view + ":" + group.id, true));
+  }
+  function openNode(id, view, tab = "products") {
+    state.view = view; state.tab = tab; kindSelect.value = ""; search.value = "";
+    renderViews(); renderKinds(); choose(id);
   }
   function inView(o) { return objectViews(o, index).has(state.view); }
   function renderViews() {
     const nav = document.getElementById("researchViews"); nav.replaceChildren();
     for (const [id, [name, description]] of Object.entries(VIEW_INFO)) {
-      const b = button("", () => { state.view = id; kindSelect.value = ""; renderViews(); renderKinds(); renderObjects(); renderDetail(); saveURL(); }, "rg-view" + (state.view === id ? " active" : ""));
+      const b = button("", () => { state.view = id; kindSelect.value = ""; expandSelected(); renderViews(); renderKinds(); renderObjects(); renderDetail(); saveURL(); }, "rg-view" + (state.view === id ? " active" : ""));
       b.setAttribute("aria-pressed", String(state.view === id));
       b.append(element("b", "", id + " · " + name), element("small", "", description)); nav.append(b);
     }
@@ -339,17 +411,121 @@ async function startWorkbench() {
     kindSelect.value = current;
   }
   function renderObjects() {
-    const term = normalize(search.value);
-    const visible = index.objects.filter(inView).filter(o => !kindSelect.value || (o.kind || "unknown") === kindSelect.value)
-      .filter(o => !term || normalize([o.name, o.id, o.description, o.legacy_bom_id, ...strings(o.modules)].join(" ")).includes(term));
-    document.getElementById("researchListCount").textContent = VIEW_INFO[state.view][0] + " · " + visible.length + " 个对象";
+    const groups = filterNavigation(currentNavigation(), index, search.value, kindSelect.value);
+    const idsIn = group => [...group.object_ids, ...group.children.flatMap(idsIn)];
+    const visible = new Set(groups.flatMap(idsIn));
+    document.getElementById("researchListCount").textContent = VIEW_INFO[state.view][0] + " · " + visible.size + " 个对象";
+    document.getElementById("researchNavigationNote").textContent = "浏览分组 · 不代表现场安装关系";
+    document.getElementById("researchNavigationNote").title = data.graph.navigation_note || "";
+    const controls = document.getElementById("researchTreeControls"); controls.replaceChildren();
+    for (const [name, value] of [["全部展开", true], ["全部收起", false]]) controls.append(button(name, () => {
+      const set = rows => rows.forEach(g => { state.expanded.set(state.view + ":" + g.id, value); set(g.children); });
+      set(currentNavigation());
+      if (!value) { search.value = ""; kindSelect.value = ""; saveURL(); }
+      renderObjects();
+    }));
     objectsEl.replaceChildren();
-    for (const o of visible) {
-      const b = button("", () => choose(o.id), "rg-object" + (o.id === state.selected ? " active" : ""));
-      b.setAttribute("aria-current", o.id === state.selected ? "true" : "false");
-      b.append(element("strong", "", o.name), element("small", "", typeText(o.kind) + " · " + o.id)); objectsEl.append(b);
+    function renderGroup(group) {
+      const box = element("details", "rg-tree-group"), key = state.view + ":" + group.id;
+      box.open = Boolean(normalize(search.value) || kindSelect.value || state.expanded.get(key));
+      box.addEventListener("toggle", () => { if (box.isConnected && !normalize(search.value) && !kindSelect.value) state.expanded.set(key, box.open); });
+      const summary = element("summary");
+      summary.append(element("span", "", group.label), element("small", "", String(new Set(idsIn(group)).size)));
+      box.append(summary);
+      const contents = element("div", "rg-tree-children");
+      for (const id of group.object_ids) {
+        const o = index.byId.get(id);
+        const b = button("", () => choose(id), "rg-object" + (id === state.selected ? " active" : ""));
+        b.dataset.nodeId = id;
+        b.setAttribute("aria-current", id === state.selected ? "true" : "false");
+        b.append(element("strong", "", o.name), element("small", "", typeText(o.kind) + " · " + id)); contents.append(b);
+      }
+      group.children.forEach(child => contents.append(renderGroup(child)));
+      box.append(contents); return box;
     }
-    if (!visible.length) objectsEl.append(element("p", "rg-empty", "没有匹配对象。可清空搜索或切换视角。"));
+    groups.forEach(group => objectsEl.append(renderGroup(group)));
+    if (!visible.size) objectsEl.append(element("p", "rg-empty", "没有匹配对象。可清空搜索或切换视角。"));
+  }
+  function renderCatalog(section, node) {
+    const selection = catalogForNode(index, node, state.view);
+    const intro = element("div", "rg-catalog-note");
+    intro.append(element("p", "", "部件类别 → 厂商产品线 → 登记型号标签 → 实际资产。这里接入的是产品线目录；型号规格、当前材料可用性与现场实装仍需核实。"));
+    if (selection.basis === "demand") {
+      intro.append(element("p", "", "当前是需求／工作负载对象。硬件产品不会仅因同模块而挂入此节点；请从物理部件、功能系统或制造目录浏览，再用证据建立需求与产品的关系。"));
+      const actions = element("div", "rg-node-actions");
+      const physicalEntry = node.id === "workload:storage" ? ["part:storage-array", "P", "P · 存储部件产品"] : ["space:site", "P", "P · 按设备类别找产品"];
+      for (const [id, view, text] of [physicalEntry, ["system:compute", "F", "F · 计算系统产品"], ["activity:V2", "V", "V · 全部产品线与厂商"]])
+        if (index.byId.has(id)) actions.append(button(text, () => openNode(id, view)));
+      intro.append(actions); section.append(intro); return;
+    }
+    const description = selection.basis === "directory" ? "制造活动下的产品目录入口。此处收录不表示厂商只属于这一产业活动。"
+      : selection.basis === "context" ? "按显式 BOM 映射及概念图的装配、空间、系统成员关系查找。这里的相关产品不代表已安装、兼容或已选型。"
+      : "按此对象 ID 的显式 BOM 映射查找产品线；不按模块推断产品归属。";
+    intro.append(element("p", "", description)); section.append(intro);
+    if (!Object.hasOwn(data, "catalog")) { section.append(element("div", "rg-empty", "产品目录尚未由研究服务提供。"), link("打开原产品采集库", "admin/product/")); return; }
+    const products = selection.products, filters = element("div", "rg-catalog-filters");
+    const input = element("input"); input.type = "search"; input.placeholder = "搜索厂商、产品线、型号标签（支持中文）";
+    input.setAttribute("aria-label", "搜索关联产品线"); input.value = state.productQuery;
+    const select = element("select"); select.setAttribute("aria-label", "按厂商筛选产品线");
+    select.append(element("option", "", "全部厂商／厂商组")); select.firstChild.value = "";
+    const companyIds = [...new Set(products.map(p => p.company_id))];
+    companyIds.forEach(id => { const p = products.find(p => p.company_id === id), c = index.companyById.get(id);
+      const option = element("option", "", (p.company_cn || p.company_en || id) + (c?.is_group ? "（厂商组）" : "")); option.value = id; select.append(option); });
+    if (!companyIds.includes(state.productCompany)) state.productCompany = "";
+    select.value = state.productCompany; filters.append(input, select); section.append(filters);
+    const count = element("p", "rg-caption"), cards = element("div", "rg-cards rg-two-col"), more = element("div", "rg-node-actions");
+    section.append(count, cards, more);
+    function renderProduct(product) {
+      const card = element("div", "rg-card rg-product-card"), company = index.companyById.get(product.company_id);
+      const indexed = strings(product.document_ids).map(id => index.catalogDocumentById.get(id)).filter(d => d?.kind === "indexed_document");
+      const plans = strings(product.plan_ids).map(id => index.catalogDocumentById.get(id)).filter(d => d?.kind === "document_plan");
+      const mapped = strings(product.object_ids), unknown = strings(product.unmapped_bom_parts);
+      const badges = element("div", "rg-chips"); badges.append(chip("厂商产品线"), chip("目录登记 · 待核实", "gold"));
+      if (company?.is_group) badges.append(chip("厂商组"));
+      card.append(badges, element("h4", "", product.product_line), element("p", "", [product.company_cn, product.company_en].filter(present).join(" · ")));
+      card.append(fields([["产品类别", product.category], ["原始型号参考", product.representative_models],
+        ["材料登记", indexed.length + " 条历史索引 · " + plans.length + " 项采集计划"],
+        ["当前材料", "文件可用性未检查；计划不计为下载或证据"], ["实际资产", "未登记现场安装"]]));
+      const mappings = element("div", "rg-product-mappings");
+      mappings.append(element("span", "rg-muted", "显式 BOM 映射："));
+      mapped.forEach(id => mappings.append(button(index.byId.get(id)?.name || id, () => openNode(id, "P"))));
+      if (!mapped.length) mappings.append(chip("尚无对象映射", "gold"));
+      if (unknown.length) mappings.append(chip("待核对映射：" + unknown.join("、"), "gold"));
+      card.append(mappings);
+      if (list(product.models).length) {
+        const models = element("details", "rg-product-records"); models.append(element("summary", "", "登记型号标签 " + product.models.length + " · 身份与规格待核实"));
+        const entries = element("ul"); list(product.models).forEach(m => entries.append(element("li", "", m.label + " · 历史索引 " + strings(m.document_ids).length + " · 采集计划 " + strings(m.plan_ids).length)));
+        models.append(entries); card.append(models);
+      }
+      if (indexed.length || plans.length) {
+        const records = element("details", "rg-product-records"); records.append(element("summary", "", "查看材料登记与采集计划"));
+        for (const doc of [...indexed, ...plans]) {
+          const row = element("div", "rg-catalog-document");
+          row.append(element("strong", "", (doc.kind === "document_plan" ? "采集计划 · " : "历史索引 · ") + (doc.title || [doc.model, doc.doc_type].filter(present).join(" · ") || doc.id)));
+          row.append(element("p", "rg-muted", "原记录状态：" + statusText(doc.status) + "；当前文件可用性未检查。"));
+          if (doc.file_path || doc.source_path) row.append(element("p", "rg-muted", "登记定位：" + (doc.file_path || doc.source_path)));
+          if (doc.source_url || doc.url || doc.reader_url) row.append(link("登记来源", doc.reader_url || doc.url || doc.source_url));
+          records.append(row);
+        }
+        card.append(records);
+      }
+      const actions = element("div", "rg-node-actions"); actions.append(link("打开此产品线采集档案", product.admin_url || "admin/product/?" + new URLSearchParams({ company: product.company_id, line: product.product_line })));
+      if (company?.admin_url) actions.append(link(company.is_group ? "查看厂商组产品线" : "查看厂商产品线", company.admin_url));
+      if (product.source_url) actions.append(link("厂商来源", product.source_url));
+      card.append(actions); return card;
+    }
+    function renderResults() {
+      const rows = products.filter(p => (!state.productCompany || p.company_id === state.productCompany) && catalogMatchesQuery(p, state.productQuery));
+      count.textContent = "当前匹配 " + rows.length + " / " + products.length + " 条产品线 · " + new Set(rows.map(p => p.company_id)).size + " 家厂商／厂商组。计划与历史索引不会计入上方证据数。";
+      cards.replaceChildren(); rows.slice(0, state.productLimit).forEach(p => cards.append(renderProduct(p)));
+      if (!rows.length) cards.append(element("div", "rg-empty", products.length ? "没有匹配的产品线，请调整搜索或厂商筛选。" : "尚无此对象的显式产品映射。可在制造目录查看全库，或从左侧部件进入产品线；未映射不等于没有供应商。"));
+      more.replaceChildren();
+      if (rows.length > state.productLimit) more.append(button("再显示 24 条（剩余 " + (rows.length - state.productLimit) + "）", () => { state.productLimit += 24; renderResults(); }));
+      more.append(button("查看全部产品线与厂商", () => openNode("activity:V2", "V")), link("产品采集库", "admin/product/"));
+    }
+    input.addEventListener("input", () => { state.productQuery = input.value; state.productLimit = 24; renderResults(); });
+    select.addEventListener("change", () => { state.productCompany = select.value; state.productLimit = 24; renderResults(); });
+    renderResults();
   }
   function renderRelations(section, linked, o) {
     const all = linked.relations;
@@ -391,6 +567,14 @@ async function startWorkbench() {
       return;
     }
     const linked = index.forNode(o.id);
+    const productSelection = catalogForNode(index, o, state.view);
+    const paths = navigationPaths(currentNavigation(), o.id);
+    if (paths.length) {
+      const breadcrumb = element("nav", "rg-breadcrumb"); breadcrumb.setAttribute("aria-label", "浏览分组路径");
+      breadcrumb.textContent = "浏览分组：" + [VIEW_INFO[state.view][0], ...paths[0].map(group => group.label), o.name].join(" / ");
+      if (paths.length > 1) breadcrumb.append(element("span", "rg-muted", " · 另有 " + (paths.length - 1) + " 条导航路径"));
+      detail.append(breadcrumb);
+    }
     if (state.trail.length) {
       const trail = element("nav", "rg-path"); trail.setAttribute("aria-label", "浏览足迹");
       trail.append(element("span", "rg-muted", "浏览足迹"));
@@ -412,17 +596,19 @@ async function startWorkbench() {
       chip(linked.evidence.length + " 条证据"), chip(linked.tasks.length + " 个关联任务"));
     head.append(counts);
     const actions = element("div", "rg-node-actions");
+    actions.append(button("产品与厂商 · " + productSelection.products.length + " 条产品线", () => { state.tab = "products"; renderDetail(); saveURL(); }));
     if (o.legacy_bom_id) {
       actions.append(link("园区 3D 定位", "bom3d.html?" + new URLSearchParams({ p: o.legacy_bom_id, node: o.id })));
       actions.append(link("机柜参考拆解", "rack3d.html?x=100&node=" + encodeURIComponent(o.id) + "#" + encodeURIComponent(o.legacy_bom_id)));
     }
     actions.append(button("复制节点链接", async () => {
-      try { await navigator.clipboard.writeText(location.href); actions.querySelector("button").textContent = "链接已复制"; }
-      catch { actions.querySelector("button").textContent = "可复制浏览器地址"; }
+      try { await navigator.clipboard.writeText(location.href); copyButton.textContent = "链接已复制"; }
+      catch { copyButton.textContent = "可复制浏览器地址"; }
     }));
+    const copyButton = actions.lastElementChild;
     head.append(actions); detail.append(head);
     const nav = element("nav", "rg-detail-tabs"); nav.setAttribute("aria-label", "节点研究内容");
-    const countsByTab = { relations: linked.relations.length, questions: linked.questions.length, materials: linked.documents.length + linked.evidence.length,
+    const countsByTab = { relations: linked.relations.length, products: productSelection.products.length, questions: linked.questions.length, materials: linked.documents.length + linked.evidence.length,
       statements: linked.statements.length + linked.answers.length, tasks: linked.tasks.length };
     for (const [id, label] of Object.entries(tabInfo)) {
       const b = button(label + " " + countsByTab[id], () => { state.tab = id; renderDetail(); saveURL(); }, "rg-detail-tab" + (state.tab === id ? " active" : ""));
@@ -432,6 +618,7 @@ async function startWorkbench() {
     const section = element("section", "rg-section");
     section.append(element("h3", "", tabInfo[state.tab]));
     if (state.tab === "relations") renderRelations(section, linked, o);
+    else if (state.tab === "products") renderCatalog(section, o);
     else {
       let records, empty;
       if (state.tab === "questions") {
@@ -478,7 +665,11 @@ async function startWorkbench() {
       for (const [value, label] of [[index.objects.length, "研究对象"], [index.questions.length, "问题"], [index.evidence.length, "证据"], [index.tasks.length, "任务"]]) {
         const stat = element("div", "rg-stat"); stat.append(element("b", "", String(value)), element("span", "", label)); summary.append(stat);
       }
+      const catalogEntry = document.getElementById("researchCatalog"); catalogEntry.replaceChildren();
+      catalogEntry.append(button("产品目录 · " + index.products.length + " 条产品线", () => openNode("activity:V2", "V")));
+      catalogEntry.append(element("span", "rg-muted", index.companies.length + " 家厂商／厂商组 · 通过 P 部件、F 系统与 V 制造目录查找；材料状态单列"), link("产品采集库 ↗", "admin/product/"));
       if (!state.selected) state.selected = (state.view === "P" && index.byId.has("space:site")) ? "space:site" : index.objects.find(o => inView(o))?.id || index.objects[0]?.id || "";
+      expandSelected();
       renderViews(); renderKinds(); renderObjects(); renderDetail(); saveURL();
     } catch (error) {
       index = null;
@@ -486,6 +677,9 @@ async function startWorkbench() {
       objectsEl.replaceChildren();
       document.getElementById("researchViews").replaceChildren();
       document.getElementById("researchSummary").replaceChildren();
+      document.getElementById("researchCatalog").replaceChildren();
+      document.getElementById("researchTreeControls").replaceChildren();
+      document.getElementById("researchNavigationNote").textContent = "";
       document.getElementById("researchListCount").textContent = "研究数据未载入";
       status.className = "rg-status error";
       status.replaceChildren(element("span", "", "研究服务未连接。" + (error.name === "AbortError" ? "请求超时。" : error.message)));
