@@ -58,12 +58,14 @@ def validate_navigation(graph):
                         errors.append(f'navigation {view}: unknown object {oid}')
                         continue
                     occurrences[oid] += 1
+                    if objects[oid].get('navigation_hidden'):
+                        errors.append('hidden object must not appear in navigation')
                     if view not in objects[oid].get('views', []):
                         errors.append(f'navigation {view}: object outside declared view {oid}')
                 if 'system_id' in group:
                     sid = group['system_id']
                     expected_members = {r['source'] for r in graph.get('relations', [])
-                                        if r.get('type') == 'member_of_system' and r.get('target') == sid}
+                                        if r.get('type') == 'member_of_system' and r.get('target') == sid and not objects.get(r['source'], {}).get('navigation_hidden')}
                     if (view != 'F' or not isinstance(sid, str) or sid not in objects
                             or objects[sid].get('kind') != 'functional_system' or refs != [sid]
                             or descendant_refs(group.get('children', [])) != expected_members):
@@ -71,7 +73,7 @@ def validate_navigation(graph):
                 walk(group.get('children', []), depth + 1)
 
         walk(roots)
-        expected = {oid for oid, o in objects.items() if view in o.get('views', [])}
+        expected = {oid for oid, o in objects.items() if view in o.get('views', []) and not o.get('navigation_hidden')}
         missing = expected - set(occurrences)
         if missing:
             errors.append(f'navigation {view}: unplaced objects {sorted(missing)}')
@@ -79,6 +81,11 @@ def validate_navigation(graph):
         duplicates = sorted(oid for oid, n in occurrences.items() if n > 1)
         if view != 'F' and duplicates:
             errors.append(f'navigation {view}: duplicate browse locations {duplicates}')
+    for obj in objects.values():
+        if obj.get('navigation_hidden'):
+            target = objects.get(obj.get('redirect_to'))
+            if not target or target.get('navigation_hidden') or target['id'] == obj['id']:
+                errors.append('hidden object requires a live, direct redirect')
     if 'hardware_domains' in graph:
         domains = graph['hardware_domains']
         occurrences = Counter()
@@ -89,7 +96,7 @@ def validate_navigation(graph):
                 occurrences[oid] += 1
                 if oid not in objects:
                     errors.append('hardware domain has unknown object ' + oid)
-        expected = {o['id'] for o in objects.values() if o['id'].startswith('part:')}
+        expected = {o['id'] for o in objects.values() if o['id'].startswith('part:') and not o.get('navigation_hidden')}
         if expected - occurrences.keys():
             errors.append('hardware domains omit hardware objects')
         if any(n > 1 for n in occurrences.values()):

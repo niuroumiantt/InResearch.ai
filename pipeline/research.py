@@ -301,8 +301,11 @@ def build_catalog(root, graph):
         mapped = sorted({'part:' + part for part in parts if 'part:' + part in objects})
         for extra in graph.get('catalog_topic_mappings', []):
             if (row.get('company_id'), row.get('product_line')) == (extra['company_id'], extra['product_line']):
+                if 'part:ssd-controller' in extra['object_ids'] and 'part:ssd-drive' not in extra['object_ids']:
+                    mapped = [oid for oid in mapped if oid != 'part:ssd']
                 mapped = sorted(set(mapped) | set(extra['object_ids']))
-        unresolved = sorted(set(parts) - {oid[5:] for oid in mapped if oid.startswith('part:')})
+        unresolved = sorted(part for part in parts if 'part:' + part not in objects)
+        mapped = sorted({objects[oid].get('redirect_to', oid) for oid in mapped})
         related, pending = set(mapped), list(mapped)
         while pending:
             for target in parents.get(pending.pop(), set()):

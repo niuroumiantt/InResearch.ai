@@ -120,17 +120,22 @@ def import_news(c,payload,question=None):
     if payload.get('schema')!='inews-research-signals-v1' or not isinstance(payload.get('articles'),list):raise ValueError('invalid_news_export')
     if len(payload['articles'])>10000:raise ValueError('news_batch_too_large')
     from fetch_news_signals import build_terms,AMBIGUOUS,CONTEXT
+    from datacenter_news import classify
     terms=build_terms();count=0
     for row in payload['articles']:
         title=row.get('title',''); text=title+' '+(row.get('title_zh') or '')
         if not isinstance(title,str) or not row.get('guid') or not row.get('url'):raise ValueError('invalid_news_row')
         matches=sorted({eid for eid,_,term,pat in terms if pat.search(text) and (term.lower() not in AMBIGUOUS or CONTEXT.search(text))})
         # Industry keywords also retain supply-chain leads without a known company match.
-        if not matches and not CONTEXT.search(text):continue
+        if not matches and not CONTEXT.search(text) and not classify(row):continue
         allowed={key:row.get(key) for key in ('id','guid','url','title','title_zh','title_zh_profile','domain','publisher','published_at','first_seen_at','lang','cluster_id','relevance','genre')}
         meta={**allowed,'matched_entity_ids':matches,'match_status':'candidate','content_scope':'headline_only','exported_at':payload.get('exported_at'),'export_truncated':payload.get('truncated',False)}
         ident=c.item('inews',row['guid'],'news_lead',row['url'],title,meta,question=question)
         c.archive(ident,encoded(allowed),'.json',{'method':'inews_metadata_export','schema':payload['schema']});count+=1
+    # Commit the current bounded visibility window only after the whole import succeeds.
+    from continuous_reader import atomic_json
+    atomic_json(c.home/'news-window.json', {'exported_at':payload.get('exported_at'),
+        'truncated':payload.get('truncated',False), 'guids':[r['guid'] for r in payload['articles']]})
     return count
 
 def sec(c,company,limit=1,question=None):
@@ -195,7 +200,8 @@ def summary(root):
             row=con.execute('SELECT started,finished,status,count,error_code FROM runs WHERE source=? ORDER BY id DESC LIMIT 1',(source,)).fetchone()
             sources[source]={'items':con.execute('SELECT count(*) FROM items WHERE source=?',(source,)).fetchone()[0],
                 'last_run':dict(row) if row else None}
-        return {'status':'phase1','sources':sources,'note':'采集原件与线索；尚未开启周期采集、全文翻译或自动采用。'}
+        from datacenter_news import feed
+        return {'status':'candidate_acquisition','sources':sources,'news_feed':feed(root),'note':'新闻标题线索；全文翻译、SEC/GPU 周期采集与自动采用尚未开启。'}
     finally:con.close()
 
 def main():

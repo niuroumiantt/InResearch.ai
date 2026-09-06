@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.06.4",
+  "version": "2026.09.06.5",
   "effective_at": "2026-09-06",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -259,12 +259,21 @@
         "pipeline/test_acquisition.py",
         "scripts/export_inews_research.cjs",
         "ops.html",
-        "docs/local_reader/ACQUISITION_OPERATIONS.md"
+        "docs/local_reader/ACQUISITION_OPERATIONS.md",
+        "pipeline/datacenter_news.py",
+        "pipeline/sync_datacenter_news.py",
+        "pipeline/backup_acquisition.py",
+        "pipeline/test_datacenter_news.py",
+        "assets/datacenter-news.js",
+        "assets/datacenter-news.css",
+        "deploy/spark-reader/inresearch-news.service",
+        "deploy/spark-reader/inresearch-news.timer",
+        "index.html"
       ],
       "supersedes": [
         "acquisition-legacy"
       ],
-      "reason": "采用跨 inews/SEC/GPU 的 Spark 采集架构，替代旧目录桥接和自动直写价格；分阶段实施。"
+      "reason": "数据中心新闻专属窗口与小时同步替代旧 brief 新闻展示；其他采集/全文仍按阶段推进。"
     },
     {
       "id": "product-ecosystems-20260906",
@@ -282,10 +291,12 @@
         "index.html",
         "admin/product/index.html",
         "bom3d.html",
-        "rack3d.html"
+        "rack3d.html",
+        "assets/object-network.js",
+        "pipeline/continuous_reader.py"
       ],
       "supersedes": [],
-      "reason": "用户采用产品生态与非等深细分；替代架构总览及对象契约中相关混合分类，保留旧身份。"
+      "reason": "用户采用产品生态与非等深细分，并要求点击对象重新居中的关系图及最终图形交付；替代默认文字总览入口，保留旧 tab 与对象身份。 隐藏历史合并入口并解析旧链接，旧问题经明确范围修订保留身份。"
     }
   ],
   "entrypoints": [

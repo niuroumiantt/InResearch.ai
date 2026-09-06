@@ -407,7 +407,7 @@ class Reader:
                 value = read_json(p)
                 if not isinstance(value.get(records), list):
                     continue
-                out[target] = value[records]
+                out[target] = [r for r in value[records] if not (target == "objects" and r.get("navigation_hidden"))]
                 out[version] = value.get("version")
             except (OSError, ValueError, AttributeError):
                 continue

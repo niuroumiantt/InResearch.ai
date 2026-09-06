@@ -69,8 +69,8 @@ ssh spark@100.73.13.53 'cd /home/spark/.local/share/inresearch.ai/raw-materials 
 ```json
 {
   "schema_version": 1,
-  "graph_version": "2.1.0",
-  "questions_version": "2.1.0",
+  "graph_version": "2.1.1",
+  "questions_version": "2.1.1",
   "knowledge": {"documents": [], "evidence": [], "statements": [], "answers": []},
   "reader": {"generated": "ISO8601", "status": "idle", "counts": {}, "stage_counts": []},
   "acceptance": "candidate"

@@ -19,9 +19,9 @@ class ResearchNavigationTests(unittest.TestCase):
         def ids(groups):
             return [oid for g in groups for oid in g['object_ids'] + ids(g['children'])]
         physical = ids(self.graph['navigation']['P'])
-        self.assertEqual(set(physical), {o["id"] for o in self.graph["objects"] if "P" in o.get("views", [])})
+        self.assertEqual(set(physical), {o["id"] for o in self.graph["objects"] if "P" in o.get("views", []) and not o.get("navigation_hidden")})
         self.assertTrue(all(x.startswith(('part:', 'space:')) for x in physical))
-        self.assertEqual(len(ids(self.graph['navigation']['R'])), len(self.graph['objects']))
+        self.assertEqual(len(ids(self.graph['navigation']['R'])), len([o for o in self.graph['objects'] if not o.get('navigation_hidden')]))
 
     def test_new_or_deleted_object_cannot_silently_disappear(self):
         g = copy.deepcopy(self.graph)
@@ -75,3 +75,15 @@ class HardwareEcosystemTests(unittest.TestCase):
         self.assertFalse(any(r['type'] == 'part_of' and r['target'] == 'part:gpu-device' for r in edges))
         ids = {o['id'] for o in self.graph['objects']}
         self.assertTrue({'part:ssd','part:ssd-drive','part:nand','part:ssd-controller'} <= ids)
+
+
+class RetiredObjectTests(unittest.TestCase):
+    def test_legacy_ssd_is_hidden_and_redirects_to_live_identity(self):
+        graph = json.loads((Path(__file__).resolve().parents[1] / 'framework/research_graph.json').read_text())
+        old = next(o for o in graph['objects'] if o['id'] == 'part:ssd')
+        self.assertTrue(old['navigation_hidden'])
+        self.assertEqual(old['redirect_to'], 'part:ssd-drive')
+        graph['navigation']['P'][0]['object_ids'].append('part:ssd')
+        self.assertTrue(any('hidden object' in e for e in validate_navigation(graph)))
+        old['redirect_to'] = 'part:ssd'
+        self.assertTrue(any('direct redirect' in e for e in validate_navigation(graph)))
