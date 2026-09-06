@@ -27,7 +27,7 @@ function download(blob,name) {const url=URL.createObjectURL(blob),a=document.cre
 const button=(name,fn)=>{const b=document.createElement('button');b.type='button';b.textContent=name;b.addEventListener('click',fn);return b;};
 const short=(s,n)=>Array.from(s).slice(0,n).join('')+(Array.from(s).length>n?'…':'');
 
-export function mountObjectNetwork(host,{graph,centerId,onNavigate,onTopic,onBack,canBack,labelRelation=s=>s}) {
+export function mountObjectNetwork(host,{graph,centerId,onNavigate,onTopic,onBack,canBack,labelRelation=s=>s,vendorsForNode=()=>[],onVendor=()=>{}}) {
   let mode='all',page=0,zoom=1;
   const tools=document.createElement('div');tools.className='rg-node-actions';
   const select=document.createElement('select');select.setAttribute('aria-label','图谱关系筛选');
@@ -39,7 +39,29 @@ export function mountObjectNetwork(host,{graph,centerId,onNavigate,onTopic,onBac
   const pager=document.createElement('div');pager.className='rg-node-actions';
   const facts=document.createElement('details');facts.className='rg-network-edges';const summary=document.createElement('summary');summary.textContent='本图关系与出处';facts.append(summary);const edgeList=document.createElement('ul');facts.append(edgeList);
   const legend=document.createElement('p');legend.className='rg-caption';legend.textContent='箭头表示记录方向。虚线为研究外延；实线为已登记关系，登记不等于已核实。点击对象切换中心；点击研究角度查看对应问题。';
-  host.append(tools,status,canvas,pager,legend,facts);
+  host.classList.add('rg-network-host');
+  const popup=document.createElement('div');popup.className='rg-network-vendors';popup.hidden=true;popup.setAttribute('role','dialog');popup.setAttribute('aria-label','产品厂商入口');
+  let closeTimer,anchor,suppressFocus=false;
+  function hideVendors(){clearTimeout(closeTimer);popup.hidden=true;if(anchor)anchor.setAttribute('aria-expanded','false');}
+  function laterHide(){clearTimeout(closeTimer);closeTimer=setTimeout(()=>{if(!popup.contains(document.activeElement))hideVendors();},250);}
+  function showVendors(n,group,focus=false){
+    const vendors=vendorsForNode(n.id);if(!vendors.length)return;
+    clearTimeout(closeTimer);if(anchor && anchor!==group)anchor.setAttribute('aria-expanded','false');anchor=group;group.setAttribute('aria-expanded','true');
+    const title=document.createElement('strong');title.textContent=n.name+' · 厂商';
+    const choices=document.createElement('div');choices.className='rg-node-actions';
+    for(const v of vendors)choices.append(button(v.name,()=>{hideVendors();onVendor(n.id,v.id);}));
+    const note=document.createElement('small');note.textContent='按产品目录关联，点击查看该厂商产品线。';
+    popup.replaceChildren(title,choices,note,button('关闭厂商入口',()=>{hideVendors();suppressFocus=true;group.focus({preventScroll:true});}));popup.hidden=false;
+    const r=group.getBoundingClientRect(),h=host.getBoundingClientRect();
+    const left=Math.max(0,Math.min(r.left-h.left,host.clientWidth-popup.offsetWidth));
+    popup.style.left=left+'px';popup.style.top=(r.bottom-h.top+4)+'px';
+    if(focus)choices.querySelector('button')?.focus({preventScroll:true});
+  }
+  popup.addEventListener('pointerenter',()=>clearTimeout(closeTimer));popup.addEventListener('pointerleave',laterHide);
+  popup.addEventListener('focusout',()=>setTimeout(()=>{if(!popup.contains(document.activeElement)&&document.activeElement!==anchor)hideVendors();},0));
+  host.addEventListener('keydown',e=>{if(e.key==='Escape'&&!popup.hidden){e.preventDefault();const inside=popup.contains(document.activeElement);hideVendors();if(inside&&anchor){suppressFocus=true;anchor.focus({preventScroll:true});}}});
+  canvas.addEventListener('scroll',()=>{if(!popup.contains(document.activeElement))hideVendors();});
+  host.append(tools,status,canvas,popup,pager,legend,facts);
   let svg,visibleEdges=[],visibleNodes=[],network;
   const baseName=()=>new Date().toISOString().slice(0,10)+'_'+centerId.replace(/[^\p{L}\p{N}._-]/gu,'-')+'_研究图谱';
   function exportSVG(){
@@ -54,6 +76,7 @@ export function mountObjectNetwork(host,{graph,centerId,onNavigate,onTopic,onBac
   function applyZoom(){if(svg){svg.style.width=(zoom*100)+'%';svg.style.minWidth=(zoom*760)+'px';}}
   function resize(f){zoom=Math.max(.5,Math.min(3,zoom*f));applyZoom();}
   function draw(){
+    hideVendors();
     network=objectNetwork(graph,centerId,mode);const {center,nodes,edges}=network;if(!center)return;
     const pages=Math.max(1,Math.ceil(nodes.length/12));page=Math.min(page,pages-1);
     visibleNodes=nodes.slice(page*12,page*12+12);const visible=new Set([centerId,...visibleNodes.map(n=>n.id)]);visibleEdges=edges.filter(e=>visible.has(e.source)&&visible.has(e.target));
@@ -77,11 +100,26 @@ export function mountObjectNetwork(host,{graph,centerId,onNavigate,onTopic,onBac
       svg.append(svgEl('rect',{x:tx-72,y:ty-12,width:144,height:21,rx:3,class:'rg-network-label-bg'}),svgEl('text',{x:tx,y:ty+3,'text-anchor':'middle',class:'rg-network-label'},label));
     }
     const addNode=(n,centerNode=false)=>{
+      let moreTrigger;
       const pos=positions.get(n.id),group=svgEl('g',{transform:`translate(${pos.x},${pos.y})`,class:'rg-network-node'+(centerNode?' rg-network-center':''),tabindex:0,role:'button','aria-label':centerNode?'当前中心：'+n.name:n.topic_id?'研究角度：'+n.name:'以 '+n.name+' 为中心','data-node-id':n.id});
       group.append(svgEl('title',{},n.name+'\n'+n.id),svgEl('rect',{x:centerNode?-105:-84,y:-34,width:centerNode?210:168,height:68,style:'rx:var(--ui-radius,10px)'}));
       const chars=Array.from(n.name),cut=Math.ceil(Math.min(chars.length,24)/2),lines=chars.length>11?[chars.slice(0,cut).join(''),short(chars.slice(cut).join(''),12)]:[n.name];
       lines.forEach((line,i)=>group.append(svgEl('text',{x:0,y:(lines.length>1?-5:2)+i*19,'text-anchor':'middle',class:'rg-network-node-name'},line)));
-      const activate=()=>{if(centerNode)return;if(n.topic_id)onTopic(n.topic_id);else onNavigate(n.id);};group.addEventListener('click',activate);group.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activate();}});svg.append(group);
+      const vendors=vendorsForNode(n.id);
+      if(vendors.length){
+        group.setAttribute('aria-haspopup','dialog');group.setAttribute('aria-expanded','false');
+        group.addEventListener('pointerenter',()=>showVendors(n,group));group.addEventListener('pointerleave',laterHide);
+        group.addEventListener('focus',()=>{if(suppressFocus){suppressFocus=false;return;}showVendors(n,group);});
+        group.addEventListener('keydown',e=>{if(e.key==='ArrowDown'){e.preventDefault();showVendors(n,group,true);}});
+        // Separate touch target: tapping the product continues to navigate.
+        const more=svgEl('g',{class:'rg-network-vendor-trigger',role:'button',tabindex:0,'aria-label':'查看 '+n.name+' 厂商'});
+        const right=centerNode?105:84;
+        more.append(svgEl('rect',{x:right-32,y:14,width:30,height:20,rx:3}),svgEl('text',{x:right-17,y:29,'text-anchor':'middle'},'⋯'));
+        more.addEventListener('click',e=>{e.stopPropagation();showVendors(n,group,true);});
+        more.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();showVendors(n,group,true);}});
+        more.setAttribute('transform',`translate(${pos.x},${pos.y})`);more.addEventListener('pointerenter',()=>clearTimeout(closeTimer));moreTrigger=more;
+      }
+      const activate=()=>{hideVendors();if(centerNode)return;if(n.topic_id)onTopic(n.topic_id);else onNavigate(n.id);};group.addEventListener('click',activate);group.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activate();}});svg.append(group);if(moreTrigger)svg.append(moreTrigger);
     };
     visibleNodes.forEach(n=>addNode(n));addNode(center,true);canvas.replaceChildren(svg);applyZoom();
     pager.replaceChildren();if(pages>1){const prev=button('上一页',()=>{page--;draw();});prev.disabled=page===0;const next=button('下一页',()=>{page++;draw();});next.disabled=page===pages-1;pager.append(prev,next);}

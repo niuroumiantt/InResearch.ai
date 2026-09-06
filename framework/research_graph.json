@@ -1,5 +1,5 @@
 {
-  "version": "2.1.1",
+  "version": "2.1.2",
   "updated": "2026-09-06",
   "views": [
     {
@@ -1156,7 +1156,7 @@
       ],
       "representation": "conceptual",
       "legacy_bom_id": "hdd",
-      "description": "从现有storage节点拆分；建议拆分后删除storage节点",
+      "description": "以近线 HDD 整盘为独立研究对象，研究容量与记录技术、接口、性能、可靠性、功耗与单位容量成本；区分具体型号、工况和统计期间。厂商、行业报告、材料与证据均归入此页面。",
       "evidence_status": "unverified",
       "configuration_id": null,
       "aliases": [
@@ -1164,7 +1164,22 @@
         "HDD"
       ],
       "ecosystem_id": "storage",
-      "research_sections": []
+      "research_sections": [
+        {
+          "title": "系统与部署",
+          "object_ids": [
+            "part:storage-array",
+            "tech:storage-protocol",
+            "tech:storage-access"
+          ]
+        },
+        {
+          "title": "相关产品与替代方案",
+          "object_ids": [
+            "part:ssd-drive"
+          ]
+        }
+      ]
     },
     {
       "id": "part:storage-array",
