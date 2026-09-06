@@ -1,0 +1,821 @@
+{
+  "audit": {
+    "date": "2026-09-06",
+    "repository": "/Users/m5/code/inresearch.ai",
+    "scope": "当前工作树中的元数据与内部一致性；未外部验证行业结论",
+    "counting": "按JSON数组元素/CSV逻辑行/研究二级标题Mxx-Fn计数，目录行不视为实际文件数"
+  },
+  "tables": {
+    "assignments": 0,
+    "sources": 74,
+    "policies": 2,
+    "prices": 207,
+    "projects": 120,
+    "contracts": 2,
+    "companies": 248,
+    "products": 175,
+    "facts": 119
+  },
+  "facts": {
+    "total": 119,
+    "non_null_value": 112,
+    "value_ranges": 4,
+    "missing_value_no_range": 3,
+    "unique_metric_ids": 88,
+    "metric_definition_total": 124,
+    "grade": {
+      "S2": 31,
+      "S3": 56,
+      "S4": 32
+    },
+    "depth": {
+      "据实生成": 3,
+      "精读": 116
+    },
+    "by_module": {
+      "M10": 11,
+      "M13": 17,
+      "M12": 10,
+      "M11": 7,
+      "M14": 12,
+      "M06": 17,
+      "M04": 8,
+      "M08": 8,
+      "M15": 2,
+      "M09": 6,
+      "M07": 4,
+      "M03": 6,
+      "M01": 4,
+      "M02": 5,
+      "M05": 2
+    },
+    "corroboration": {
+      "已交叉验证": 2,
+      "缺省=待交叉验证": 114,
+      "孤证已知": 3
+    },
+    "derived_true": 11,
+    "derived_with_derived_from": 1,
+    "all_have_locator": true,
+    "source_id_present": 84,
+    "source_id_registered": 3,
+    "source_id_unregistered": 81,
+    "source_id_unregistered_without_local_file": 81,
+    "locator_self_references_research": 14,
+    "sensitive_true": 3,
+    "provenance_limit": "有locator不等于来源可机读解析或原文已核实；registered=source_id精确存在data/sources.json，非全局可追溯性结论"
+  },
+  "findings": {
+    "total": 150,
+    "unique_ids": 150,
+    "status": {
+      "current": 127,
+      "needs-review": 23
+    },
+    "revised_dates": {
+      "2026-08-14": 62,
+      "2026-08-15": 45,
+      "2026-08-16": 24,
+      "2026-08-17": 19
+    },
+    "by_module": {
+      "M01": {
+        "count": 7,
+        "status": {
+          "current": 7
+        }
+      },
+      "M02": {
+        "count": 13,
+        "status": {
+          "current": 12,
+          "needs-review": 1
+        }
+      },
+      "M03": {
+        "count": 5,
+        "status": {
+          "current": 5
+        }
+      },
+      "M04": {
+        "count": 9,
+        "status": {
+          "current": 9
+        }
+      },
+      "M05": {
+        "count": 14,
+        "status": {
+          "current": 14
+        }
+      },
+      "M06": {
+        "count": 16,
+        "status": {
+          "needs-review": 10,
+          "current": 6
+        }
+      },
+      "M07": {
+        "count": 8,
+        "status": {
+          "needs-review": 4,
+          "current": 4
+        }
+      },
+      "M08": {
+        "count": 10,
+        "status": {
+          "needs-review": 3,
+          "current": 7
+        }
+      },
+      "M09": {
+        "count": 12,
+        "status": {
+          "current": 11,
+          "needs-review": 1
+        }
+      },
+      "M10": {
+        "count": 18,
+        "status": {
+          "current": 18
+        }
+      },
+      "M11": {
+        "count": 3,
+        "status": {
+          "current": 2,
+          "needs-review": 1
+        }
+      },
+      "M12": {
+        "count": 6,
+        "status": {
+          "current": 6
+        }
+      },
+      "M13": {
+        "count": 6,
+        "status": {
+          "current": 4,
+          "needs-review": 2
+        }
+      },
+      "M14": {
+        "count": 11,
+        "status": {
+          "current": 11
+        }
+      },
+      "M15": {
+        "count": 12,
+        "status": {
+          "current": 11,
+          "needs-review": 1
+        }
+      }
+    }
+  },
+  "projects": {
+    "total": 120,
+    "status": {
+      "L8": 83,
+      "L6": 16,
+      "L3": 3,
+      "L2": 9,
+      "L1": 1,
+      "L5": 8
+    },
+    "region": {
+      "north-america": 69,
+      "mena": 3,
+      "apac": 16,
+      "latam": 6,
+      "china": 4,
+      "europe": 17,
+      "india": 5
+    },
+    "field_coverage": {
+      "capacity_it_mw": 24,
+      "capacity_facility_mw": 23,
+      "capacity_it_mw_by_status": 17,
+      "status_history": 14,
+      "coordinates": 104,
+      "power_status": 8,
+      "utility": 11,
+      "tenant": 112,
+      "developer": 120
+    },
+    "L8_with_non_null_it_capacity": 16,
+    "capacity_coverage_combined": {
+      "definition": "capacity_it_mw非null，或capacity_it_mw_by_status非空；这两组当前互斥，聚合/覆盖率必须同时考虑",
+      "single_value_records": 24,
+      "by_status_records": 17,
+      "overlap_records": 0,
+      "either_form_records": 41,
+      "either_form_pct": 34.2,
+      "L8plus_total": 83,
+      "L8plus_either_form_records": 21,
+      "L8plus_either_form_pct": 25.3,
+      "portfolio_exclusions": [
+        "in-portfolio-nxtra"
+      ],
+      "single_site_known_records_excluding_portfolio": 40
+    }
+  },
+  "companies": {
+    "field_coverage": {
+      "ticker": 45,
+      "cik": 34,
+      "verified_date": 94,
+      "ir_url": 44,
+      "profile": 94
+    },
+    "verified_dates": {
+      "2026-07-23": 44,
+      "2026-08-14": 35,
+      "2026-08-15": 15,
+      "None": 154
+    }
+  },
+  "indicators": {
+    "total": 44,
+    "non_null_value": 8,
+    "valid_metric_id": 43,
+    "filled": [
+      {
+        "id": "dc_rent_index_na",
+        "name": "北美租金指数(2020=100)",
+        "value": 170,
+        "as_of": "2026-06-30",
+        "source": "JLL 半年报告",
+        "auto_note": "prices:dc-rent-index-na 最新点"
+      },
+      {
+        "id": "global_operational_gw",
+        "name": "全球投运容量 (L8+)",
+        "value": 5.92,
+        "as_of": "2026-08-31",
+        "source": "projects 表聚合",
+        "auto_note": "projects 表 L8+ 聚合（库内口径，非全球普查）"
+      },
+      {
+        "id": "vacancy_rate_na",
+        "name": "北美空置率",
+        "value": 1.0,
+        "as_of": "2026-06-30",
+        "source": "JLL 半年报告",
+        "auto_note": "prices:vacancy-rate-na 最新点"
+      },
+      {
+        "id": "circular_deal_exposure",
+        "name": "循环交易占大额合同比",
+        "value": 25.0,
+        "as_of": "2026-08-31",
+        "source": "contracts表 circular_flag 聚合",
+        "auto_note": "contracts 表金额加权（样本小，仅示意）"
+      },
+      {
+        "id": "mega_contract_backlog",
+        "name": "大额合同未交付余额",
+        "value": 400,
+        "as_of": "2026-08-31",
+        "source": "财报RPO+contracts表",
+        "auto_note": "contracts 表合计（种子样本）"
+      },
+      {
+        "id": "transformer_lead_time",
+        "name": "大型变压器交期",
+        "value": 30,
+        "as_of": "2026-06-30",
+        "source": "渠道+财报电话会",
+        "auto_note": "prices:transformer-lead-time 最新点"
+      },
+      {
+        "id": "token_price_flagship",
+        "name": "旗舰模型API价格(输出)",
+        "value": 30,
+        "as_of": "2026-08-14",
+        "source": "各家定价页",
+        "auto_note": "prices:token-price-openai-flagship-output 最新点"
+      },
+      {
+        "id": "gpu_hourly_rate_spot",
+        "name": "旗舰GPU现货时租",
+        "value": 2.78,
+        "as_of": "2026-08-15",
+        "source": "租赁平台报价",
+        "auto_note": "prices:gpu-hourly-h100-spot 最新点"
+      }
+    ]
+  },
+  "bom": {
+    "total": 46,
+    "field_coverage": {
+      "companies": 42,
+      "series": 2,
+      "indicators": 14,
+      "findings": 0
+    },
+    "parts_covered_by_products": 38
+  },
+  "prices": {
+    "total": 207,
+    "series": 34,
+    "future_as_of_count": 60,
+    "first_as_of": "2018-12-31",
+    "last_as_of": "2030-12-31"
+  },
+  "library_metadata": {
+    "rows": 13663,
+    "unique_new_path": 13617,
+    "unique_pair_new_path_old_name": 13663,
+    "depth": {
+      "精读": 1204,
+      "目录级": 1007,
+      "据实生成": 350,
+      "半自动": 11102
+    },
+    "importance_ge7": 175,
+    "scored_dates": {
+      "2026-08-15": 91,
+      "2026-08-16": 4869,
+      "2026-08-17": 8703
+    },
+    "local_library_path_exists": false,
+    "local_referenced_file_paths_existing": 0,
+    "limit": "仅当前工作区路径检查，不能推断跨机器资料丢失；Mac mini库存由父任务另行盘点"
+  },
+  "sources": {
+    "total": 74,
+    "with_local_file": 72,
+    "local_file_exists_in_workspace": 4
+  },
+  "questions": {
+    "total": 116,
+    "with_answered_by": 0
+  },
+  "generated_reports": {
+    "data/brief.json": "2026-08-18T08:01:12",
+    "reports/workorders.json": "2026-08-26",
+    "reports/blindspot.json": "2026-08-18"
+  },
+  "identifiers": {
+    "companies": {
+      "key": [
+        "company_id"
+      ],
+      "unique": 248,
+      "duplicate_keys": []
+    },
+    "projects": {
+      "key": [
+        "site_id"
+      ],
+      "unique": 120,
+      "duplicate_keys": []
+    },
+    "products": {
+      "key": [
+        "company_id",
+        "product_line"
+      ],
+      "unique": 175,
+      "duplicate_keys": []
+    },
+    "prices": {
+      "key": [
+        "series_id",
+        "as_of"
+      ],
+      "unique": 207,
+      "duplicate_keys": []
+    },
+    "contracts": {
+      "key": [
+        "contract_id"
+      ],
+      "unique": 2,
+      "duplicate_keys": []
+    },
+    "policies": {
+      "key": [
+        "policy_id"
+      ],
+      "unique": 2,
+      "duplicate_keys": []
+    },
+    "facts": {
+      "key": [
+        "fact_id"
+      ],
+      "unique": 119,
+      "duplicate_keys": []
+    },
+    "sources": {
+      "key": [
+        "source_id"
+      ],
+      "unique": 74,
+      "duplicate_keys": []
+    }
+  },
+  "trigger_reference_audit": {
+    "entity": {
+      "unregistered_occurrences": 16,
+      "affected_findings": 14,
+      "distinct_references": 10,
+      "records": [
+        {
+          "finding": "M05-F13",
+          "reference": "google",
+          "file": "/Users/m5/code/inresearch.ai/research/M05.md",
+          "line": 215
+        },
+        {
+          "finding": "M06-F16",
+          "reference": "tsmc",
+          "file": "/Users/m5/code/inresearch.ai/research/M06.md",
+          "line": 403
+        },
+        {
+          "finding": "M08-F2",
+          "reference": "ocp",
+          "file": "/Users/m5/code/inresearch.ai/research/M08.md",
+          "line": 22
+        },
+        {
+          "finding": "M09-F5",
+          "reference": "schneider",
+          "file": "/Users/m5/code/inresearch.ai/research/M09.md",
+          "line": 60
+        },
+        {
+          "finding": "M09-F7",
+          "reference": "google",
+          "file": "/Users/m5/code/inresearch.ai/research/M09.md",
+          "line": 106
+        },
+        {
+          "finding": "M09-F9",
+          "reference": "google",
+          "file": "/Users/m5/code/inresearch.ai/research/M09.md",
+          "line": 141
+        },
+        {
+          "finding": "M10-F12",
+          "reference": "china_mobile",
+          "file": "/Users/m5/code/inresearch.ai/research/M10.md",
+          "line": 212
+        },
+        {
+          "finding": "M10-F14",
+          "reference": "china_mobile",
+          "file": "/Users/m5/code/inresearch.ai/research/M10.md",
+          "line": 241
+        },
+        {
+          "finding": "M10-F15",
+          "reference": "china_mobile",
+          "file": "/Users/m5/code/inresearch.ai/research/M10.md",
+          "line": 264
+        },
+        {
+          "finding": "M10-F16",
+          "reference": "china_telecom",
+          "file": "/Users/m5/code/inresearch.ai/research/M10.md",
+          "line": 278
+        },
+        {
+          "finding": "M10-F16",
+          "reference": "china_mobile",
+          "file": "/Users/m5/code/inresearch.ai/research/M10.md",
+          "line": 278
+        },
+        {
+          "finding": "M14-F4",
+          "reference": "smic",
+          "file": "/Users/m5/code/inresearch.ai/research/M14.md",
+          "line": 58
+        },
+        {
+          "finding": "M14-F6",
+          "reference": "deepseek",
+          "file": "/Users/m5/code/inresearch.ai/research/M14.md",
+          "line": 102
+        },
+        {
+          "finding": "M14-F6",
+          "reference": "high-flyer",
+          "file": "/Users/m5/code/inresearch.ai/research/M14.md",
+          "line": 102
+        },
+        {
+          "finding": "M14-F7",
+          "reference": "smic",
+          "file": "/Users/m5/code/inresearch.ai/research/M14.md",
+          "line": 124
+        },
+        {
+          "finding": "M14-F9",
+          "reference": "china-unicom",
+          "file": "/Users/m5/code/inresearch.ai/research/M14.md",
+          "line": 220
+        }
+      ],
+      "limit": "entity与companies注册表比对；部分是组织类实体未在公司表，或指标metrics未注册为indicator，并不全部是拼写错误"
+    },
+    "indicators": {
+      "unregistered_occurrences": 43,
+      "affected_findings": 42,
+      "distinct_references": 32,
+      "records": [
+        {
+          "finding": "M02-F10",
+          "reference": "rack_power_kw",
+          "file": "/Users/m5/code/inresearch.ai/research/M02.md",
+          "line": 159
+        },
+        {
+          "finding": "M02-F11",
+          "reference": "coolant_temp_c",
+          "file": "/Users/m5/code/inresearch.ai/research/M02.md",
+          "line": 178
+        },
+        {
+          "finding": "M02-F12",
+          "reference": "capex_vs_consensus_delta",
+          "file": "/Users/m5/code/inresearch.ai/research/M02.md",
+          "line": 197
+        },
+        {
+          "finding": "M02-F13",
+          "reference": "power_capacity_lease_price",
+          "file": "/Users/m5/code/inresearch.ai/research/M02.md",
+          "line": 222
+        },
+        {
+          "finding": "M04-F9",
+          "reference": "congestion_price_spread",
+          "file": "/Users/m5/code/inresearch.ai/research/M04.md",
+          "line": 127
+        },
+        {
+          "finding": "M04-F10",
+          "reference": "congestion_price_spread",
+          "file": "/Users/m5/code/inresearch.ai/research/M04.md",
+          "line": 166
+        },
+        {
+          "finding": "M05-F9",
+          "reference": "campus_power_mw",
+          "file": "/Users/m5/code/inresearch.ai/research/M05.md",
+          "line": 138
+        },
+        {
+          "finding": "M05-F11",
+          "reference": "china_dc_capacity",
+          "file": "/Users/m5/code/inresearch.ai/research/M05.md",
+          "line": 172
+        },
+        {
+          "finding": "M05-F12",
+          "reference": "campus_power_mw",
+          "file": "/Users/m5/code/inresearch.ai/research/M05.md",
+          "line": 191
+        },
+        {
+          "finding": "M05-F13",
+          "reference": "campus_power_mw",
+          "file": "/Users/m5/code/inresearch.ai/research/M05.md",
+          "line": 215
+        },
+        {
+          "finding": "M05-F14",
+          "reference": "dc_wue_limit",
+          "file": "/Users/m5/code/inresearch.ai/research/M05.md",
+          "line": 241
+        },
+        {
+          "finding": "M06-F14",
+          "reference": "hdd_market_size_growth",
+          "file": "/Users/m5/code/inresearch.ai/research/M06.md",
+          "line": 361
+        },
+        {
+          "finding": "M06-F16",
+          "reference": "cowos_market_share",
+          "file": "/Users/m5/code/inresearch.ai/research/M06.md",
+          "line": 403
+        },
+        {
+          "finding": "M07-F7",
+          "reference": "optics_module_shipment",
+          "file": "/Users/m5/code/inresearch.ai/research/M07.md",
+          "line": 90
+        },
+        {
+          "finding": "M07-F8",
+          "reference": "ethernet_ib_crossover_year",
+          "file": "/Users/m5/code/inresearch.ai/research/M07.md",
+          "line": 130
+        },
+        {
+          "finding": "M08-F10",
+          "reference": "dc_pue",
+          "file": "/Users/m5/code/inresearch.ai/research/M08.md",
+          "line": 140
+        },
+        {
+          "finding": "M08-F9",
+          "reference": "liquid_cooling_policy_threshold",
+          "file": "/Users/m5/code/inresearch.ai/research/M08.md",
+          "line": 174
+        },
+        {
+          "finding": "M09-F5",
+          "reference": "capex_per_mw",
+          "file": "/Users/m5/code/inresearch.ai/research/M09.md",
+          "line": 60
+        },
+        {
+          "finding": "M09-F6",
+          "reference": "dc_critical_it_power",
+          "file": "/Users/m5/code/inresearch.ai/research/M09.md",
+          "line": 86
+        },
+        {
+          "finding": "M09-F8",
+          "reference": "rack_power_kw",
+          "file": "/Users/m5/code/inresearch.ai/research/M09.md",
+          "line": 121
+        },
+        {
+          "finding": "M09-F9",
+          "reference": "rack_power_kw",
+          "file": "/Users/m5/code/inresearch.ai/research/M09.md",
+          "line": 141
+        },
+        {
+          "finding": "M09-F10",
+          "reference": "rack_power_kw",
+          "file": "/Users/m5/code/inresearch.ai/research/M09.md",
+          "line": 161
+        },
+        {
+          "finding": "M09-F11",
+          "reference": "rack_power_kw",
+          "file": "/Users/m5/code/inresearch.ai/research/M09.md",
+          "line": 177
+        },
+        {
+          "finding": "M09-F12",
+          "reference": "dc_power_breakdown",
+          "file": "/Users/m5/code/inresearch.ai/research/M09.md",
+          "line": 192
+        },
+        {
+          "finding": "M10-F3",
+          "reference": "cluster_mtbf",
+          "file": "/Users/m5/code/inresearch.ai/research/M10.md",
+          "line": 42
+        },
+        {
+          "finding": "M10-F5",
+          "reference": "capex_per_mw",
+          "file": "/Users/m5/code/inresearch.ai/research/M10.md",
+          "line": 75
+        },
+        {
+          "finding": "M10-F6",
+          "reference": "neocloud_debt_rate",
+          "file": "/Users/m5/code/inresearch.ai/research/M10.md",
+          "line": 97
+        },
+        {
+          "finding": "M10-F8",
+          "reference": "dc_construction_cost_cny",
+          "file": "/Users/m5/code/inresearch.ai/research/M10.md",
+          "line": 134
+        },
+        {
+          "finding": "M10-F14",
+          "reference": "dc_construction_cost_cny",
+          "file": "/Users/m5/code/inresearch.ai/research/M10.md",
+          "line": 241
+        },
+        {
+          "finding": "M10-F17",
+          "reference": "racks_per_ops_staff",
+          "file": "/Users/m5/code/inresearch.ai/research/M10.md",
+          "line": 301
+        },
+        {
+          "finding": "M10-F18",
+          "reference": "liquid_cooling_econ_threshold",
+          "file": "/Users/m5/code/inresearch.ai/research/M10.md",
+          "line": 338
+        },
+        {
+          "finding": "M12-F7",
+          "reference": "valuation_to_arr",
+          "file": "/Users/m5/code/inresearch.ai/research/M12.md",
+          "line": 91
+        },
+        {
+          "finding": "M13-F3",
+          "reference": "gpu_rental_price",
+          "file": "/Users/m5/code/inresearch.ai/research/M13.md",
+          "line": 44
+        },
+        {
+          "finding": "M13-F3",
+          "reference": "colo_price_kw_month",
+          "file": "/Users/m5/code/inresearch.ai/research/M13.md",
+          "line": 44
+        },
+        {
+          "finding": "M13-F4",
+          "reference": "gpu_rental_price",
+          "file": "/Users/m5/code/inresearch.ai/research/M13.md",
+          "line": 66
+        },
+        {
+          "finding": "M13-F6",
+          "reference": "gpu_utilization",
+          "file": "/Users/m5/code/inresearch.ai/research/M13.md",
+          "line": 98
+        },
+        {
+          "finding": "M14-F4",
+          "reference": "china_ai_compute",
+          "file": "/Users/m5/code/inresearch.ai/research/M14.md",
+          "line": 58
+        },
+        {
+          "finding": "M14-F6",
+          "reference": "china_ai_compute",
+          "file": "/Users/m5/code/inresearch.ai/research/M14.md",
+          "line": 102
+        },
+        {
+          "finding": "M14-F7",
+          "reference": "wfe_spend",
+          "file": "/Users/m5/code/inresearch.ai/research/M14.md",
+          "line": 124
+        },
+        {
+          "finding": "M14-F9",
+          "reference": "china_dc_capex",
+          "file": "/Users/m5/code/inresearch.ai/research/M14.md",
+          "line": 220
+        },
+        {
+          "finding": "M14-F11",
+          "reference": "power_system_operation_fee",
+          "file": "/Users/m5/code/inresearch.ai/research/M14.md",
+          "line": 344
+        },
+        {
+          "finding": "M15-F9",
+          "reference": "hyperscaler_capex",
+          "file": "/Users/m5/code/inresearch.ai/research/M15.md",
+          "line": 135
+        },
+        {
+          "finding": "M15-F11",
+          "reference": "model_assumed_occupancy",
+          "file": "/Users/m5/code/inresearch.ai/research/M15.md",
+          "line": 180
+        }
+      ],
+      "limit": "entity与companies注册表比对；部分是组织类实体未在公司表，或指标metrics未注册为indicator，并不全部是拼写错误"
+    }
+  },
+  "verify_runtime": {
+    "date": "2026-09-06",
+    "P1": 23,
+    "P2": 24,
+    "by_table": {
+      "research": 23,
+      "contracts": 1,
+      "prices": 1,
+      "projects": 22
+    }
+  },
+  "export_backend_confirmation": {
+    "source": "父任务后端实测确认",
+    "chapters": 0,
+    "findings": 0,
+    "exit_code": 0,
+    "cause": "export.py读取modules.research/doc，但当前模块声明没有对应字段",
+    "status": "confirmed"
+  },
+  "user_clarification": {
+    "files_stored_in": "百度网盘",
+    "local_inventory_difference": "用户已说明临时迁出，不是缺失"
+  }
+}
