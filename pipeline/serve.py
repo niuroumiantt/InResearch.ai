@@ -15,6 +15,10 @@ API（供 ops.html 管理后台调用）：
 import os
 import json
 import auth
+import hmac
+import math
+import research
+from functools import wraps
 import posixpath
 import subprocess
 import sys
@@ -38,7 +42,7 @@ TASKS = {
     "export":     ("导出全量报告（md+docx）", ["pipeline/export.py", "--docx"], 120),
     "map":        ("Top10 地图（html+pdf）", ["pipeline/output_map.py"], 90),
     "inbox":      ("扫描收件箱（docs/inbox）", ["pipeline/scan_inbox.py"], 30),
-    "reader":     ("启动本地精读会话（新 Terminal）", ["pipeline/launch_reader.py"], 30),
+    "reader":     ("Spark 常驻阅读状态", ["pipeline/launch_reader.py"], 30),
     "queue":      ("生成精读队列", ["pipeline/reading_queue.py"], 30),
     "workorder":  ("生成工单队列", ["pipeline/workorder.py"], 60),
     "blindspot":  ("盲区体检", ["pipeline/blindspot.py"], 60),
@@ -48,6 +52,15 @@ TASKS = {
 ASSIGN_STATUSES = {"已派", "进行中", "已交付", "已合并", "已放弃"}
 RUNNING = set()
 LOCK = threading.Lock()
+MUTATION_LOCK = threading.RLock()
+
+
+def serialized_write(fn):
+    @wraps(fn)
+    def wrapped(*args, **kwargs):
+        with MUTATION_LOCK:
+            return fn(*args, **kwargs)
+    return wrapped
 
 
 def log_run(task, output):
@@ -106,6 +119,10 @@ class Handler(SimpleHTTPRequestHandler):
     # 返回用户名或 "" 表示放行。**除 /login 与 /api/login 外一切路径都过闸**，
     # 包括静态文件——账本、事实层、打分表全在静态目录里，漏一条路径等于没锁门。
     def _gate(self):
+        low = self._norm_path().lower()
+        if any(p.startswith('.') for p in low.split('/') if p) or low.endswith('/users.json') or low == '/data/research_runtime.json':
+            self._json(404, {"ok": False, "error": "not found"})
+            return None
         if not AUTH_ON:
             return ""
         # 密钥与用户表即使登录后也永远不可经 HTTP 取到（纵深防御）。
@@ -204,15 +221,26 @@ class Handler(SimpleHTTPRequestHandler):
                 st[t] = {"last": datetime.fromtimestamp(f.stat().st_mtime).isoformat(timespec="minutes")
                          if f.exists() else None, "running": t in RUNNING}
             return self._json(200, st)
+        if urlsplit(self.path).path == "/api/research":
+            try:
+                return self._json(200, research.build_snapshot(ROOT))
+            except (ValueError, TypeError, KeyError, OSError) as e:
+                return self._json(503, {"ok": False, "error": "研究索引暂不可用", "detail": str(e)[:300]})
         return super().do_GET()
 
     def do_POST(self):
+        if self.path == "/api/reader-snapshot":
+            return self.api_reader_snapshot()
         user = self._gate()
         if user is None:
             return
         try:
             n = int(self.headers.get("Content-Length", 0))
+            if n < 0 or n > 1024 * 1024:
+                return self._json(413, {"ok": False, "error": "请求过大"})
             payload = json.loads(self.rfile.read(n).decode() or "{}")
+            if not isinstance(payload, dict):
+                raise ValueError('object required')
         except (ValueError, json.JSONDecodeError):
             return self._json(400, {"ok": False, "error": "请求体不是合法 JSON"})
         role = auth.user_role(user) if user else "admin"   # 本地模式视同 admin
@@ -237,6 +265,34 @@ class Handler(SimpleHTTPRequestHandler):
         if self.path == "/api/assign":
             return self.api_assign(payload, by=user)
         return self._json(404, {"ok": False, "error": "未知接口"})
+
+    @serialized_write
+    def api_reader_snapshot(self):
+        token_path = Path(os.environ.get('INRESEARCH_READER_TOKEN_FILE', ROOT / 'data/.reader_sync_token'))
+        try:
+            token = token_path.read_text().strip()
+        except OSError:
+            return self._json(503, {"ok": False, "error": "reader receiver is not configured"})
+        supplied = self.headers.get('Authorization', '').removeprefix('Bearer ')
+        if len(token) < 32 or not hmac.compare_digest(token, supplied):
+            return self._json(401, {"ok": False, "error": "invalid reader credential"})
+        try:
+            size = int(self.headers.get('Content-Length', 0))
+            if size <= 0 or size > 64 * 1024 * 1024:
+                return self._json(413, {"ok": False, "error": "snapshot must be 1 byte to 64 MiB"})
+            payload = json.loads(self.rfile.read(size))
+            snapshot = research.candidate_snapshot(payload,
+                research.read_json(ROOT / 'framework/research_graph.json'),
+                research.read_json(ROOT / 'framework/research_questions.json'))
+            research.merge_knowledge(research.read_json(ROOT / 'data/research_knowledge.json'), snapshot['knowledge'])
+            destination = Path(os.environ.get('INRESEARCH_READER_SNAPSHOT', ROOT / 'data/research_runtime.json'))
+            previous = research.read_json(destination, {})
+            if previous.get('generated') and research.parse_time(snapshot['generated']) <= research.parse_time(previous['generated']):
+                return self._json(409, {"ok": False, "error": "stale or repeated snapshot"})
+            research.atomic_json(destination, snapshot)
+        except (ValueError, TypeError, KeyError, AttributeError) as e:
+            return self._json(400, {"ok": False, "error": str(e)[:500]})
+        return self._json(200, {"ok": True, "received_at": snapshot['received_at'], "documents": len(snapshot['knowledge']['documents'])})
 
     def api_passwd(self, payload, user):
         """登录用户自助改密。必须验旧密码——cookie 被顺走 ≠ 知道密码，
@@ -291,6 +347,7 @@ class Handler(SimpleHTTPRequestHandler):
                                                    **({"password": pw} if ok else {})})
         return self._json(400, {"ok": False, "error": f"未知 action：{action}"})
 
+    @serialized_write
     def api_run(self, payload):
         task = payload.get("task")
         if task not in TASKS:
@@ -310,6 +367,7 @@ class Handler(SimpleHTTPRequestHandler):
         finally:
             RUNNING.discard(task)
 
+    @serialized_write
     def api_add_price(self, rec):
         required = ["series_id", "as_of", "value", "unit", "grade", "source_url", "category", "module"]
         missing = [k for k in required if rec.get(k) in (None, "")]
@@ -317,6 +375,8 @@ class Handler(SimpleHTTPRequestHandler):
             return self._json(400, {"ok": False, "error": "缺少字段: " + ", ".join(missing)})
         try:
             rec["value"] = float(rec["value"])
+            if not math.isfinite(rec['value']):
+                raise ValueError('non-finite')
         except (TypeError, ValueError):
             return self._json(400, {"ok": False, "error": "value 必须是数字"})
         if rec["grade"] == "estimate" and not rec.get("assumptions"):
@@ -331,15 +391,16 @@ class Handler(SimpleHTTPRequestHandler):
         if any(r["series_id"] == rec["series_id"] and r["as_of"] == rec["as_of"] for r in doc["records"]):
             return self._json(409, {"ok": False, "error": "该序列在此时点已有记录（series_id + as_of 唯一）"})
         doc["records"].append(rec)
-        p.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        research.atomic_json(p, doc)
         chk = subprocess.run([PY, "pipeline/validate.py"], cwd=ROOT, capture_output=True, text=True, timeout=30)
         if chk.returncode != 0:
-            p.write_text(backup, encoding="utf-8")  # 回滚
+            research.atomic_json(p, json.loads(backup))
             return self._json(400, {"ok": False, "error": "校验未通过，已回滚：\n" + chk.stdout[-800:]})
         subprocess.run([PY, "pipeline/refresh_indicators.py"], cwd=ROOT, capture_output=True, timeout=30)
         return self._json(200, {"ok": True, "msg": f"已入库 {rec['series_id']}@{rec['as_of']} = {rec['value']} {rec['unit']}，指标已回填"})
 
 
+    @serialized_write
     def api_assign(self, rec, by=""):
         """派工/改状态。工单号必须真实存在于当前队列——否则就是派了一件不存在的活。"""
         wid = (rec.get("workorder_id") or "").strip()
@@ -360,6 +421,11 @@ class Handler(SimpleHTTPRequestHandler):
         p = ROOT / "data" / "assignments.json"
         doc = json.loads(p.read_text(encoding="utf-8"))
         row = next((r for r in doc["records"] if r["workorder_id"] == wid), None)
+        if by and auth.user_role(by) == 'intern':
+            if not row or row.get('assignee') != by or rec.get('assignee', by) != by:
+                return self._json(403, {"ok": False, "error": "只能更新分配给自己的工单"})
+            if status not in ('进行中', '已交付'):
+                return self._json(403, {"ok": False, "error": "实习生可提交交付，采用与合并由内部审核"})
         if row is None:
             row = {"workorder_id": wid}
             doc["records"].append(row)
@@ -375,7 +441,7 @@ class Handler(SimpleHTTPRequestHandler):
         if row.get("status") == "已放弃" and not row.get("note"):
             return self._json(400, {"ok": False, "error": "标为已放弃必须写 note 说明原因——不写原因，下次还会重派同一件事"})
         doc["updated"] = row["updated"]
-        p.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        research.atomic_json(p, doc)
         return self._json(200, {"ok": True, "msg": f"{wid} → {row.get('assignee') or '未指定'}（{row['status']}）"})
 
 

@@ -117,7 +117,7 @@ def main():
         lines += ["## 执行摘要", "", body.strip(), ""]
 
     for m in mods:
-        rp = m.get("research")
+        rp = m.get("research") or f"research/{m['id']}.md"
         if not rp or not (ROOT / rp).exists():
             continue
         findings = parse_findings((ROOT / rp).read_text(encoding="utf-8"))
@@ -125,7 +125,8 @@ def main():
             continue
         chapters += 1
         lines.append(f"## {m['id']} {m['name']}")
-        pos = module_position(m["doc"])
+        definitions = list((ROOT / "framework/modules").glob(m["id"] + "_*.md"))
+        pos = module_position(m.get("doc") or str(definitions[0].relative_to(ROOT / "framework"))) if definitions else ""
         if pos:
             lines.append("")
             lines.append("> " + pos.replace("\n", " "))
@@ -142,6 +143,10 @@ def main():
             lines.append("")
             all_findings.append(f)
 
+    if not chapters:
+        print("导出失败：没有可导出的研究章节", file=sys.stderr)
+        return 1
+
     # 附录：来源清单
     sources = collect_sources(all_findings)
     lines += ["## 附录：来源清单", ""]
@@ -153,7 +158,7 @@ def main():
     md_path = OUT_DIR / f"{today}_{safe}.md"
     md_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"导出 {chapters} 章 ｜ {len(all_findings)} 条 Finding（{warn_count} 条带警示）｜ {len(sources)} 个来源")
-    print(f"→ {md_path.relative_to(ROOT)}")
+    print(f"→ {md_path}")
 
     if want_docx:
         try:
@@ -163,7 +168,7 @@ def main():
             return 0
         docx_path = md_path.with_suffix(".docx")
         write_docx("\n".join(lines), docx_path)
-        print(f"→ {docx_path.relative_to(ROOT)}")
+        print(f"→ {docx_path}")
     return 0
 
 

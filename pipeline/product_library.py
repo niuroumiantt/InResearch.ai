@@ -206,10 +206,11 @@ def sha256_of(path):
 
 
 def ext_of(path, ctype):
-    head = open(path, "rb").read(5)
+    with open(path, "rb") as fh:
+        head = fh.read(5)
     if head.startswith(b"%PDF"):
         return ".pdf"
-    if b"html" in (ctype or "").lower() or head[:1] == b"<":
+    if "html" in (ctype or "").lower() or head[:1] == b"<":
         return ".html"
     return {"application/zip": ".zip", "text/plain": ".txt"}.get((ctype or "").split(";")[0], ".bin")
 
@@ -354,8 +355,8 @@ def cmd_adopt(args):
        裸跑                                                    扫 _inbox/，按同名 .meta.json 侧车归位"""
     root = store_root()
     lib, inbox, manual = dirs(root)
-    rows = {rowkey(r): r for r in load_plan()}
     all_rows = load_plan()
+    rows = {rowkey(r): r for r in all_rows}
     doc = load_index()
     jobs = []
     if args.row:

@@ -1,0 +1,126 @@
+# Spark 持续 reader 运行手册
+
+本手册对应 `pipeline/continuous_reader.py`，不是旧 reader 脚本的启动说明。实现为 Python 标准库、SQLite 与单 worker；部署、实际 27B 验收及同步状态由当次部署记录说明。代码通过隔离故障测试不等于 Spark 已完成部署。
+
+## 数据落点与交付契约
+
+以 Spark 实际登录用户的家目录为基准：
+
+| 路径 | 用途与保留规则 |
+|---|---|
+| `~/code/inresearch.ai` | 源码与只读研究注册表；运行原文、数据库与凭据不进 Git |
+| `~/.local/share/inresearch.ai/raw-materials/` | 持续投料；建议上传临时 `.partial` 文件，完整传输后在同目录原子改名 |
+| `~/.local/share/inresearch.ai/originals/<sha前2位>/<sha>/<原名安全副本>` | 只读原件副本，完整 SHA256 定义内容身份；原始文件名另存台账 |
+| `~/.local/share/inresearch.ai/catalog/catalog.sqlite` | 永久文档、每次投递、版本、任务与操作台账；不可当作缓存清理 |
+| `~/.local/share/inresearch.ai/extracted/<doc_id>/` | 逐页提取、OCR 双读记录、无损分块；永久保留 |
+| `~/.local/share/inresearch.ai/artifacts/<doc_id>/` | 注册表快照、执行配方、粗读、每块深读、逐级综合与报告；永久保留 |
+| `~/.local/share/inresearch.ai/intake-receipts/received/` | 已处理 raw 接收副本永久保留；与 originals 分离，来源操作可追溯 |
+| `~/.local/share/inresearch.ai/library/` | 分类与规范名的符号链接视图；原件身份不随改名变化；可回滚、可重建 |
+| `~/.local/share/inresearch.ai/candidates/mapping-proposals.json` | 导出时生成的未映射/注册表已变更提案；不自动新增正式对象 |
+| `~/.local/state/inresearch.ai/status.json` | 可重建健康快照；日志在用户 journal；锁位于 catalog，避免更换 state 路径绕过单 worker |
+| `~/.config/inresearch.ai/reader.env` | 本机私有配置，0600；凭据不可打印或提交 |
+
+`doc_id = doc-<完整 SHA256>`。相同字节只读一次，多个来源各有 source 记录。同一路径重新投递保留新的来源记录与 `version_seq/previous_doc_id`；路径改名不换内容身份。不同文件名与同名不同内容不会互相覆盖。完整阅读且 library 操作 committed 后，仍匹配登记签名与 SHA 的 raw 接收副本会先改名至隐藏隔离位置，核对移动后字节，再移至永久 `intake-receipts/received/`。这使处理后的文件退出 raw，**不会删除原件或接收副本**。同路径已被新投料替换时跳过旧来源搬运；隔离后发生变化则原样恢复，若原路径又有新文件则两份都保留并转 needs_review。每次操作持久记录，崩溃恢复不覆盖新投料。raw 为空仍不能证明全库阅读或采用完成，须查台账、coverage 与异常状态。相同字节再次投递只增加来源与接收归档任务，不再次调用模型。原件与 receipts 都在同盘，尚不等于异机备份。
+
+`report.json` 包含 `doc_id/content_sha256`、执行与注册表版本、实际模型记录、`coverage`、候选对象/问题、逐条 evidence 与 claims。evidence 有原文短引文、页码、块号和哈希；每条 claim 独立映射注册对象/问题，不把整篇主题套到所有引文上。所有产物固定 `acceptance=candidate`。`coverage.complete=true` 只表示所有提取正文分块已经处理、页数/块数/字数对齐；不证明图表、数字解释或结论正确，不触发 C3 采用，也不自动关闭问题。
+
+`export --dest /路径/snapshot.json` 原子生成主站接收契约：
+
+```json
+{
+  "schema_version": 1,
+  "graph_version": "2.0.0",
+  "questions_version": "2.0.0",
+  "knowledge": {"documents": [], "evidence": [], "statements": [], "answers": []},
+  "reader": {"generated": "ISO8601", "status": "idle", "counts": {}, "stage_counts": []},
+  "acceptance": "candidate"
+}
+```
+
+每行有稳定 `id` 与 candidate 状态；evidence 的 `document_id` 指向 documents，并含 `page_index/locator`；statement 引用 evidence。`answers` 暂为空，综合摘要不冒充问题答案。导出按**当前部署注册表**过滤映射，原阅读报告仍保留当时版本；未知映射写入提案，不伪造 ID，不阻塞整批本地导出。若注册表尚未安装，阅读可继续产生待映射候选，Web 同步须等版本对齐。指定目录作为 export 目标时则逐 doc_id 导出报告、manifest 与 status。原件不会随快照上传；主站只保存可重建派生数据，发布器由独立脚本和用户服务维护。
+
+## 首次安装与真模型 smoke
+
+先确保规范源码已落在 `~/code/inresearch.ai`；Python 3.9+，Linux 用户 systemd。PDF 工具需要 Poppler 的 `pdftotext/pdfinfo/pdfimages/pdftoppm`。27B 推理使用显式 Ollama loopback 配置，或已配置鉴权的 infra gateway `brain` 路由；响应必须报告 `qwen3.8:27b`，否则阻塞。不会使用测试模型兜底。
+
+```bash
+python3 ~/code/inresearch.ai/pipeline/continuous_reader.py init
+bash ~/code/inresearch.ai/deploy/spark-reader/install.sh
+```
+
+安装器创建不存在的配置文件、运行目录并安装启用用户 unit；不默认启动。配置已有时原样保留。修改本机 `reader.env` 后再运行 `systemctl --user start inresearch-reader.service`；以后更新用 `restart`。不要把 env 内容贴入日志。用户退出后继续运行需要该用户 `Linger=yes`；可用 `loginctl show-user "$USER" -p Linger` 只读检查，由部署任务处理是否启用。
+
+真模型 smoke 使用**系统临时目录**，不会混入正式来源台账：
+
+```bash
+reader_smoke="$(mktemp -d -t inresearch-reader-smoke.XXXXXX)"
+python3 ~/code/inresearch.ai/pipeline/continuous_reader.py \
+  --data-root "$reader_smoke/data" --state-root "$reader_smoke/state" \
+  --stable-seconds 0 init
+printf '%s\n' '服务器由处理器、内存、存储及网络接口组成。运行需要供电与散热。' \
+  > "$reader_smoke/data/raw-materials/smoke.txt"
+python3 ~/code/inresearch.ai/pipeline/continuous_reader.py \
+  --data-root "$reader_smoke/data" --state-root "$reader_smoke/state" \
+  --stable-seconds 0 run --once
+python3 ~/code/inresearch.ai/pipeline/continuous_reader.py \
+  --data-root "$reader_smoke/data" --state-root "$reader_smoke/state" \
+  export --dest "$reader_smoke/snapshot.json"
+```
+
+这个短 txt 只产生一块，依次 3 次真实 27B 调用（粗读、块深读、综合）及 6 个任务（包括接收副本归档）；冷加载时间由模型服务决定。默认每次 HTTP 900 秒，模型输出受结构化 JSON 与引文校验；有限重试可能使一次 smoke 保持 pending/failed，应检查真实错误码，不能把退出命令当完成证明。验收需看到 `counts.complete=1`、成对 coverage 相等、candidate 输出与实际 model。随后加文本 PDF、扫描 PDF 小样本验证实际 Poppler/OCR 环境。
+
+正式单块最多 6000 字符且最多 12000 UTF-8 字节，页内分块不丢字符；ID 候选上下文限 4800 字节；综合批次约 15000 字节并分层缩减，输入/输出均留上下文余量。没有通过扩大 32768 上限偷换模型配置。HTTP 调用时不持有 SQLite 写事务，因此发布器可读取快照。
+
+## 日常运行与恢复
+
+```bash
+systemctl --user status inresearch-reader.service --no-pager
+journalctl --user -u inresearch-reader.service -n 40 --no-pager
+python3 ~/code/inresearch.ai/pipeline/continuous_reader.py status
+```
+
+状态为 `idle/running/degraded`，另列每阶段数量、最老等待任务和错误码。`idle` 可能有退避中的重试或等待稳定的新文件，不能解释为全库已读完。状态中不记录模型响应正文、HTTP 凭据或异常响应体。
+
+每轮最多入库 32 个稳定文件，扫描默认间隔 10 秒；文件须在连续扫描中稳定至少 60 秒。忽略 partial/隐藏文件及符号链接，入库读取前后检查 stat，并重新核对哈希；跨目录路径不允许逃出管理根目录。写原件后模型失败只重试阅读，不反复归档。原件复制与台账之间中断后，下次按内容寻址核对再登记；不会覆盖同名资料。
+
+任务至少一次执行：领取即记录 attempts，进程中断后 running 回到 pending；已经原子写入的块/综合 checkpoint 可直接复用。模型响应尚未持久化时中断，恢复后该块可能再次推理。每任务最多 3 次，退避 30/60/120 秒；达到上限进入 failed，不无限压住队列。不可提取、路径/哈希不安全和 OCR 缺失进入 blocked。任一正文块未成功就不会综合为完成；其他文档继续处理。每 4 次调度至少 1 次取最老可运行任务，低分只影响先后。
+
+重试或回滚需先停 worker，避免修改其运行中状态：
+
+```bash
+systemctl --user stop inresearch-reader.service
+python3 ~/code/inresearch.ai/pipeline/continuous_reader.py retry --doc-id doc-完整哈希
+python3 ~/code/inresearch.ai/pipeline/continuous_reader.py rollback --doc-id doc-完整哈希
+systemctl --user start inresearch-reader.service
+```
+
+`retry` 不带 doc-id 会重试全部 failed/blocked，仅在已修复原因时使用。`rollback` 只移除台账中与原件相符的 library 符号链接，不删除原件、raw、阅读结果或来源链；已回滚的操作不会在启动时自动重建。崩溃前处于 prepared 的改名，或正常 committed 但丢失的视图，可从操作台账恢复。目标被用户文件占用/指向别处时转 needs_review，绝不覆盖。修正占位冲突后可 retry organize 任务。
+
+执行配方冻结 27B backend/model/context、分块和注册表快照。切换 backend/阅读模型或升级不兼容配方会阻塞旧任务，不能用普通 retry 掩盖；需另行设计保留旧产物的重新处理版本。可在同一配方追加已明确配置的 OCR 能力，逐页记录实际视觉模型，retry 从已保存页继续。
+
+## 格式与质量边界
+
+- `.txt/.md/.csv/.tsv` 支持 UTF-8/UTF-8 BOM；其他编码或二进制内容明确阻塞。
+- PDF 逐页提取；空文本、坏字符或检测到大型栅格图像的页走 OCR。OCR 未配置、不可读、双读空白判断或数字不一致时阻塞。启用例如 `READER_OCR_MODEL=qwen3-vl:8b` 前应核对实际安装模型；当前实现使用两次视觉提取，保存两份文本和模型记录。双读一致不是正确性证明。矢量图表、复杂排版与文字层质量仍须审阅，不能把处理覆盖率当视觉语义验收。
+- `.docx/.pptx/.xlsx`、旧 Office、压缩包与其他格式目前为明确 unsupported。原包仍安全入库保留，不假称已深读。经批准转换/拆包后可投递独立文本/PDF，并另行登记父包关系；当前版本不自动拆包，也不声称已把复合 PDF 分成独立文章。
+- 本服务提供候选阅读与粗分，不执行文件里出现的指令，不运行文档宏，也不自动修改 core facts。深读输出仅从已提供正文引用证据；所有正文块都送入模型，但摘要与候选引用不能替代原文复核。
+
+## 备份与恢复验证
+
+14 天基础设施任务队列不是本服务的档案层。catalog、originals、intake-receipts、artifacts 与 extracted 均无自动 TTL。本版 backup 使用 SQLite 在线快照，复制该快照引用的原件、接收副本、隔离保留件与成果，输出 SHA256 清单；未完成备份保留 `backup.partial.json`，不能作为完整恢复点。建议以同一用户权限写入独立磁盘/另一机器，执行后验证清单，再登记其物理位置；同盘备份不抵御整盘故障。
+
+```bash
+python3 ~/code/inresearch.ai/pipeline/continuous_reader.py backup --dest /已准备好的独立存储/reader-20260906
+```
+
+目标必须不存在且在运行 data/state 之外。备份包含已登记原件；尚未稳定/入库的 raw 投料不包含在 catalog 备份中，投料来源应继续保留或单独备份。不要直接复制运行中的 `catalog.sqlite` 而漏掉 WAL。
+
+恢复先停止 worker 和发布器，在**新的空目录**校验 manifest 的 catalog/file 哈希；将备份根 `catalog.sqlite` 放入新根 `catalog/catalog.sqlite`，将 originals/intake-receipts/artifacts/extracted 及清单中接收隔离件保持相对路径复制，初始化新 state。以相同 backend/model 和源码配方启动：running 任务重领，prepared 接收归档/视图操作恢复，缺失的 committed library 链接重建；来源根路径由新 data 根重定位。读完的原件不应重新投递来代替恢复 catalog。恢复 smoke 完成、文档/来源数和哈希对账后再安排正式路径切换，旧数据及失败备份保留。自动恢复 CLI、跨模型重新处理与独立文章拆分尚未实现，不能在验收报告中记为完成。
+
+测试命令：
+
+```bash
+python3 -m unittest discover -s pipeline -p test_continuous_reader.py -v
+```
+
+测试只在系统临时目录通过注入模型验证状态与证据契约，不提供生产 fake 参数。真实推理和实际部署需单独验收并留存运行记录。

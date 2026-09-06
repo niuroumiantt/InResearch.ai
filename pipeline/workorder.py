@@ -27,6 +27,8 @@ import hashlib
 import json
 import re
 import sys
+import research
+from reading_queue import proven_complete
 from collections import Counter, defaultdict
 from datetime import date
 from pathlib import Path
@@ -120,7 +122,7 @@ def build(only=None):
     # 指标是否已有口径定义：先按 id 直连，再退回按名称匹配（两套声明尚未打通）
     met_ids = {m["metric_id"] for m in mets}
     met_names = {m["name"] for m in mets}
-    digested = {r.get("local_file") for r in sources if r.get("local_file")}
+    documents = research.build_snapshot(ROOT)["knowledge"]["documents"]
     known_orgs = {(r.get("org") or "").lower() for r in rows} | {(s.get("publisher") or "").lower() for s in sources}
     known_orgs = {o for o in known_orgs if o}
 
@@ -132,7 +134,7 @@ def build(only=None):
             ammo[m] += 1
             if int(r["importance"]) >= 7:
                 high[m] += 1
-            if r.get("depth") == "半自动" and int(r["importance"]) >= 6 and r["new_path"] not in digested:
+            if not proven_complete(r, documents):
                 backlog[m] += 1
             if r.get("depth") == "成员精读":
                 unaudited[m] += 1
@@ -188,7 +190,7 @@ def build(only=None):
                 brief=(f"【任务】「{name}」这个模块材料太少（只有 {ammo[mid]} 份），需要补量。\n"
                        f"【去哪找】{src}\n"
                        f"【找什么】这些机构关于「{name}」的最新公开报告。\n"
-                       f"【交付】同投递单流程，每份都要能说出至少 3 个带页码的数字。"))
+                       f"【交付】同投递单流程，每份至少定位与问题相关的原文证据；定义、机制、边界和反例也可交付。"))
 
         # P2 指标留白——按声明的取数路径路由，三类派法完全不同
         for i in blank:
@@ -307,8 +309,8 @@ def build(only=None):
                 "半自动行不复核不得上证据链。", key="消化积压",
                 brief=(f"【任务】这个模块**不缺材料，缺的是有人真的去读**。库里有 {backlog[mid]} 份"
                        f"关于「{name}」的材料，机器只扫了标题和数字行，没人正经读过。\n"
-                       f"【怎么做】打开 reports/reading_queue.md，找标着「半自动」的行，挑分数高的先读。\n"
-                       f"【读完要交什么】这份材料里有哪些带单位的数字、各自在第几页、"
+                       f"【怎么做】打开 reports/reading_queue.md，按稳定内容身份核对原文，分数高的优先，但每篇都须读完。\n"
+                       f"【读完要交什么】这份材料里有哪些数字、定义、机制与反例、各自在第几页、"
                        f"以及每个数字是什么口径。\n"
                        f"【这类任务的价值】比出去找新材料高——新材料还要再读一遍，这些已经在手上了。"))
 
@@ -318,21 +320,14 @@ def build(only=None):
                 "跑 `python3 pipeline/verify.py` 取核验队列，按触发器找新证据复核。", key="鲜度",
                 brief="【这条不派给实习生】内部核验任务：既有结论到期需复核。")
 
-        # 模块自身声明的开放问题（answered_by 为空 = 声明上仍开放）
-        for q in m.get("questions", []):
-            if isinstance(q, dict):
-                if q.get("answered_by"):
-                    continue          # 已链到 Finding，声明上已闭合
-                q = q["q"]
-            add("P2", "声明问题开放", q,
-                f"这是 {mid} 在 modules.json 里声明为**开放**的问题（answered_by 为空）。"
-                f"答掉之后把 Finding 号回填进声明，工单自动消失。{ACCEPT}", key=f"问题:{q}",
-                brief=(f"【任务】这是我们想搞清楚、但目前还没有答案的一个问题：\n"
-                       f"　　**{q}**\n"
-                       f"【你要做的】找能回答这个问题的材料——不需要你给结论，"
-                       f"**把能回答它的原始材料带回来就行**，结论我们来下。\n"
-                       f"【怎么算找对了】材料里有直接相关的数字或明确表述，而不只是泛泛提到这个话题。\n"
-                       f"【交付】同投递单流程；把你认为能回答问题的那几页标出来。"))
+    questions = research.read_json(ROOT / 'framework/research_questions.json')
+    knowledge = research.read_json(ROOT / 'data/research_knowledge.json')
+    names = {m['id']: m['name'] for m in mods}
+    for task in research.question_tasks(questions, knowledge):
+        if only and task['mid'] != only:
+            continue
+        task['name'] = names[task['mid']]
+        orders.append(task)
 
     return orders, ammo, high, backlog
 

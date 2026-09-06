@@ -1,3 +1,5 @@
+> **历史入口已废止（2026-09-06）。不要执行下文旧批次指令。** 现行永久 worker 见 `SPARK_OPERATIONS.md`、`PROJECT_BRIEF.md`，所有独立文章均须深读，原件与账本永久保留。以下仅留作历史记录。
+
 # 本地项目启动指令（复制给本地模型/本地 Claude Code 即可开工）
 
 > 用法：工作目录是主文件夹的 reader/ 子目录（~/code/inresearch.ai/reader，不进 git），把下面整段作为首条指令发给本地会话。
