@@ -1361,7 +1361,8 @@
       "kind": "space_type",
       "views": [
         "P",
-        "F"
+        "F",
+        "R"
       ],
       "modules": [],
       "representation": "conceptual",
@@ -1376,7 +1377,8 @@
       "kind": "space_type",
       "views": [
         "P",
-        "F"
+        "F",
+        "R"
       ],
       "modules": [],
       "representation": "conceptual",
@@ -1391,7 +1393,8 @@
       "kind": "space_type",
       "views": [
         "P",
-        "F"
+        "F",
+        "R"
       ],
       "modules": [],
       "representation": "conceptual",
@@ -1406,7 +1409,8 @@
       "kind": "space_type",
       "views": [
         "P",
-        "F"
+        "F",
+        "R"
       ],
       "modules": [],
       "representation": "conceptual",
@@ -2785,5 +2789,1009 @@
     ],
     "mece": "限定范围和同一分解轴；跨轴用有类型关系，未知项保留。",
     "actual_assets": "目前无经核验的真实场址配置；现有 3D 为概念模板。"
+  },
+  "navigation_version": "1.0.0",
+  "navigation_note": "浏览分组沿用 BOM 的主要研究尺度，并在层内按设备类别组织；不表示真实安装位置、装配或公司唯一角色。空间、装配和系统事实以带类型关系及其证据为准。P 内每对象有一个导航位置；F 可在多个系统下引用同一对象，分组计数不可相加。设施配套中的软件和工质分别保留对象类型。",
+  "navigation": {
+    "P": [
+      {
+        "id": "p-site",
+        "label": "园区与资源接入",
+        "object_ids": [
+          "space:site"
+        ],
+        "children": [
+          {
+            "id": "p-site-boundary",
+            "label": "选址与外部接口",
+            "object_ids": [
+              "part:land",
+              "part:grid",
+              "part:water",
+              "part:network-access",
+              "part:fuel-supply"
+            ],
+            "children": []
+          },
+          {
+            "id": "p-site-power",
+            "label": "园区电源设施",
+            "object_ids": [
+              "part:substation",
+              "part:prime-power",
+              "part:backup-power",
+              "part:bess"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "p-building",
+        "label": "建筑与安全",
+        "object_ids": [
+          "space:building"
+        ],
+        "children": [
+          {
+            "id": "p-building-structure",
+            "label": "结构与安全设施",
+            "object_ids": [
+              "part:shell",
+              "part:fire"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "p-hall",
+        "label": "机房与设施",
+        "object_ids": [
+          "space:hall"
+        ],
+        "children": [
+          {
+            "id": "p-hall-modular",
+            "label": "模块化设施",
+            "object_ids": [
+              "part:modular-dc"
+            ],
+            "children": []
+          },
+          {
+            "id": "p-hall-power",
+            "label": "供配电设备",
+            "object_ids": [
+              "part:ups",
+              "part:power-dist"
+            ],
+            "children": []
+          },
+          {
+            "id": "p-hall-thermal",
+            "label": "冷却与排热设备",
+            "object_ids": [
+              "part:room-cooling",
+              "part:cdu",
+              "part:heat-reject",
+              "part:immersion"
+            ],
+            "children": []
+          },
+          {
+            "id": "p-hall-cabling",
+            "label": "机房布线",
+            "object_ids": [
+              "part:cabling"
+            ],
+            "children": []
+          },
+          {
+            "id": "p-hall-control",
+            "label": "监测与运维配套（含软件）",
+            "object_ids": [
+              "part:dcim",
+              "part:leak-detection"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "p-rack",
+        "label": "机柜与整机",
+        "object_ids": [
+          "space:row"
+        ],
+        "children": [
+          {
+            "id": "p-rack-structure",
+            "label": "机柜结构",
+            "object_ids": [
+              "part:rack-frame"
+            ],
+            "children": []
+          },
+          {
+            "id": "p-rack-equipment",
+            "label": "服务器、网络与存储整机",
+            "object_ids": [
+              "part:server",
+              "part:network-switch",
+              "part:storage-array"
+            ],
+            "children": []
+          },
+          {
+            "id": "p-rack-power",
+            "label": "机柜供电",
+            "object_ids": [
+              "part:power-shelf"
+            ],
+            "children": []
+          },
+          {
+            "id": "p-rack-thermal",
+            "label": "机柜液冷与工质",
+            "object_ids": [
+              "part:manifold",
+              "part:sidecar-hx",
+              "part:coolant"
+            ],
+            "children": []
+          },
+          {
+            "id": "p-rack-interconnect",
+            "label": "机柜互联",
+            "object_ids": [
+              "part:copper-interconnect"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "p-components",
+        "label": "内部部件",
+        "object_ids": [],
+        "children": [
+          {
+            "id": "p-components-compute",
+            "label": "计算与加速芯片",
+            "object_ids": [
+              "part:gpu",
+              "part:cpu",
+              "part:fpga"
+            ],
+            "children": []
+          },
+          {
+            "id": "p-components-memory",
+            "label": "内存与存储",
+            "object_ids": [
+              "part:hbm",
+              "part:dram",
+              "part:ssd",
+              "part:hdd"
+            ],
+            "children": []
+          },
+          {
+            "id": "p-components-network",
+            "label": "网络、接口与连接器",
+            "object_ids": [
+              "part:nic",
+              "part:optics",
+              "part:interconnect-chip",
+              "part:switch-asic",
+              "part:connector"
+            ],
+            "children": []
+          },
+          {
+            "id": "p-components-power",
+            "label": "电源与板级供电",
+            "object_ids": [
+              "part:psu",
+              "part:vrm"
+            ],
+            "children": []
+          },
+          {
+            "id": "p-components-thermal",
+            "label": "散热部件",
+            "object_ids": [
+              "part:coldplate",
+              "part:fan-vc"
+            ],
+            "children": []
+          }
+        ]
+      }
+    ],
+    "F": [
+      {
+        "id": "f-power",
+        "label": "供配电系统",
+        "object_ids": [
+          "system:power"
+        ],
+        "children": [
+          {
+            "id": "f-power-members",
+            "label": "已关联的系统成员",
+            "object_ids": [
+              "part:grid",
+              "part:substation",
+              "part:prime-power",
+              "part:backup-power",
+              "part:bess",
+              "part:ups",
+              "part:power-dist",
+              "part:power-shelf",
+              "part:psu",
+              "part:vrm",
+              "part:fuel-supply"
+            ],
+            "children": []
+          }
+        ],
+        "system_id": "system:power"
+      },
+      {
+        "id": "f-thermal",
+        "label": "散热与水系统",
+        "object_ids": [
+          "system:thermal"
+        ],
+        "children": [
+          {
+            "id": "f-thermal-members",
+            "label": "已关联的系统成员",
+            "object_ids": [
+              "part:water",
+              "part:room-cooling",
+              "part:cdu",
+              "part:heat-reject",
+              "part:manifold",
+              "part:coldplate",
+              "part:coolant",
+              "part:immersion",
+              "part:fan-vc",
+              "part:leak-detection",
+              "part:sidecar-hx"
+            ],
+            "children": []
+          }
+        ],
+        "system_id": "system:thermal"
+      },
+      {
+        "id": "f-compute",
+        "label": "计算与存储系统",
+        "object_ids": [
+          "system:compute"
+        ],
+        "children": [
+          {
+            "id": "f-compute-members",
+            "label": "已关联的系统成员",
+            "object_ids": [
+              "part:rack-frame",
+              "part:server",
+              "part:gpu",
+              "part:cpu",
+              "part:hbm",
+              "part:dram",
+              "part:ssd",
+              "part:hdd",
+              "part:storage-array",
+              "part:fpga",
+              "part:interconnect-chip"
+            ],
+            "children": []
+          }
+        ],
+        "system_id": "system:compute"
+      },
+      {
+        "id": "f-network",
+        "label": "数据与互联系统",
+        "object_ids": [
+          "system:network"
+        ],
+        "children": [
+          {
+            "id": "f-network-members",
+            "label": "已关联的系统成员",
+            "object_ids": [
+              "part:network-access",
+              "part:network-switch",
+              "part:nic",
+              "part:optics",
+              "part:switch-asic",
+              "part:copper-interconnect",
+              "part:cabling",
+              "part:connector"
+            ],
+            "children": []
+          }
+        ],
+        "system_id": "system:network"
+      },
+      {
+        "id": "f-control",
+        "label": "控制与监测系统",
+        "object_ids": [
+          "system:control"
+        ],
+        "children": [
+          {
+            "id": "f-control-members",
+            "label": "已关联的系统成员",
+            "object_ids": [
+              "part:dcim",
+              "part:leak-detection"
+            ],
+            "children": []
+          }
+        ],
+        "system_id": "system:control"
+      },
+      {
+        "id": "f-safety",
+        "label": "建筑安全与维护系统",
+        "object_ids": [
+          "system:safety"
+        ],
+        "children": [
+          {
+            "id": "f-safety-members",
+            "label": "已关联的系统成员",
+            "object_ids": [
+              "part:land",
+              "part:shell",
+              "part:fire",
+              "part:modular-dc"
+            ],
+            "children": []
+          }
+        ],
+        "system_id": "system:safety"
+      },
+      {
+        "id": "f-spaces",
+        "label": "空间边界",
+        "object_ids": [
+          "space:site",
+          "space:building",
+          "space:hall",
+          "space:row"
+        ],
+        "children": []
+      },
+      {
+        "id": "f-workloads",
+        "label": "工作负载上下文",
+        "object_ids": [
+          "workload:training",
+          "workload:inference",
+          "workload:enterprise",
+          "workload:hpc",
+          "workload:storage",
+          "workload:edge"
+        ],
+        "children": []
+      }
+    ],
+    "V": [
+      {
+        "id": "v-activities",
+        "label": "产业活动",
+        "object_ids": [
+          "activity:V1",
+          "activity:V2",
+          "activity:V3"
+        ],
+        "children": []
+      },
+      {
+        "id": "v-catalog",
+        "label": "硬件与配套目录（跨角色参考）",
+        "object_ids": [],
+        "children": [
+          {
+            "id": "v-p-site",
+            "label": "园区与资源接入",
+            "object_ids": [],
+            "children": [
+              {
+                "id": "v-p-site-boundary",
+                "label": "选址与外部接口",
+                "object_ids": [
+                  "part:land",
+                  "part:grid",
+                  "part:water",
+                  "part:network-access",
+                  "part:fuel-supply"
+                ],
+                "children": []
+              },
+              {
+                "id": "v-p-site-power",
+                "label": "园区电源设施",
+                "object_ids": [
+                  "part:substation",
+                  "part:prime-power",
+                  "part:backup-power",
+                  "part:bess"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "v-p-building",
+            "label": "建筑与安全",
+            "object_ids": [],
+            "children": [
+              {
+                "id": "v-p-building-structure",
+                "label": "结构与安全设施",
+                "object_ids": [
+                  "part:shell",
+                  "part:fire"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "v-p-hall",
+            "label": "机房与设施",
+            "object_ids": [],
+            "children": [
+              {
+                "id": "v-p-hall-modular",
+                "label": "模块化设施",
+                "object_ids": [
+                  "part:modular-dc"
+                ],
+                "children": []
+              },
+              {
+                "id": "v-p-hall-power",
+                "label": "供配电设备",
+                "object_ids": [
+                  "part:ups",
+                  "part:power-dist"
+                ],
+                "children": []
+              },
+              {
+                "id": "v-p-hall-thermal",
+                "label": "冷却与排热设备",
+                "object_ids": [
+                  "part:room-cooling",
+                  "part:cdu",
+                  "part:heat-reject",
+                  "part:immersion"
+                ],
+                "children": []
+              },
+              {
+                "id": "v-p-hall-cabling",
+                "label": "机房布线",
+                "object_ids": [
+                  "part:cabling"
+                ],
+                "children": []
+              },
+              {
+                "id": "v-p-hall-control",
+                "label": "监测与运维配套（含软件）",
+                "object_ids": [
+                  "part:dcim",
+                  "part:leak-detection"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "v-p-rack",
+            "label": "机柜与整机",
+            "object_ids": [],
+            "children": [
+              {
+                "id": "v-p-rack-structure",
+                "label": "机柜结构",
+                "object_ids": [
+                  "part:rack-frame"
+                ],
+                "children": []
+              },
+              {
+                "id": "v-p-rack-equipment",
+                "label": "服务器、网络与存储整机",
+                "object_ids": [
+                  "part:server",
+                  "part:network-switch",
+                  "part:storage-array"
+                ],
+                "children": []
+              },
+              {
+                "id": "v-p-rack-power",
+                "label": "机柜供电",
+                "object_ids": [
+                  "part:power-shelf"
+                ],
+                "children": []
+              },
+              {
+                "id": "v-p-rack-thermal",
+                "label": "机柜液冷与工质",
+                "object_ids": [
+                  "part:manifold",
+                  "part:sidecar-hx",
+                  "part:coolant"
+                ],
+                "children": []
+              },
+              {
+                "id": "v-p-rack-interconnect",
+                "label": "机柜互联",
+                "object_ids": [
+                  "part:copper-interconnect"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "v-p-components",
+            "label": "内部部件",
+            "object_ids": [],
+            "children": [
+              {
+                "id": "v-p-components-compute",
+                "label": "计算与加速芯片",
+                "object_ids": [
+                  "part:gpu",
+                  "part:cpu",
+                  "part:fpga"
+                ],
+                "children": []
+              },
+              {
+                "id": "v-p-components-memory",
+                "label": "内存与存储",
+                "object_ids": [
+                  "part:hbm",
+                  "part:dram",
+                  "part:ssd",
+                  "part:hdd"
+                ],
+                "children": []
+              },
+              {
+                "id": "v-p-components-network",
+                "label": "网络、接口与连接器",
+                "object_ids": [
+                  "part:nic",
+                  "part:optics",
+                  "part:interconnect-chip",
+                  "part:switch-asic",
+                  "part:connector"
+                ],
+                "children": []
+              },
+              {
+                "id": "v-p-components-power",
+                "label": "电源与板级供电",
+                "object_ids": [
+                  "part:psu",
+                  "part:vrm"
+                ],
+                "children": []
+              },
+              {
+                "id": "v-p-components-thermal",
+                "label": "散热部件",
+                "object_ids": [
+                  "part:coldplate",
+                  "part:fan-vc"
+                ],
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "D": [
+      {
+        "id": "d-chain",
+        "label": "需求传导层次",
+        "object_ids": [
+          "demand:D4",
+          "demand:D3",
+          "demand:D2",
+          "demand:D1"
+        ],
+        "children": []
+      },
+      {
+        "id": "d-workloads",
+        "label": "工作负载",
+        "object_ids": [],
+        "children": [
+          {
+            "id": "d-workloads-ai",
+            "label": "AI 工作负载",
+            "object_ids": [
+              "workload:training",
+              "workload:inference"
+            ],
+            "children": []
+          },
+          {
+            "id": "d-workloads-other",
+            "label": "通用、科学计算与数据业务",
+            "object_ids": [
+              "workload:enterprise",
+              "workload:hpc",
+              "workload:storage",
+              "workload:edge"
+            ],
+            "children": []
+          }
+        ]
+      }
+    ],
+    "R": [
+      {
+        "id": "r-scopes",
+        "label": "行业研究专题",
+        "object_ids": [],
+        "children": [
+          {
+            "id": "r-market",
+            "label": "市场、供给与需求",
+            "object_ids": [
+              "scope:M01",
+              "scope:M02",
+              "scope:M03"
+            ],
+            "children": []
+          },
+          {
+            "id": "r-engineering",
+            "label": "资源、工程与供应链",
+            "object_ids": [
+              "scope:M04",
+              "scope:M05",
+              "scope:M06",
+              "scope:M07",
+              "scope:M08",
+              "scope:M09",
+              "scope:M10"
+            ],
+            "children": []
+          },
+          {
+            "id": "r-economics",
+            "label": "资本、经济与软件",
+            "object_ids": [
+              "scope:M11",
+              "scope:M12",
+              "scope:M13"
+            ],
+            "children": []
+          },
+          {
+            "id": "r-crosscutting",
+            "label": "区域与情景",
+            "object_ids": [
+              "scope:M14",
+              "scope:M15"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "r-physical",
+        "label": "物理对象与设施配套",
+        "object_ids": [],
+        "children": [
+          {
+            "id": "r-p-site",
+            "label": "园区与资源接入",
+            "object_ids": [
+              "space:site"
+            ],
+            "children": [
+              {
+                "id": "r-p-site-boundary",
+                "label": "选址与外部接口",
+                "object_ids": [
+                  "part:land",
+                  "part:grid",
+                  "part:water",
+                  "part:network-access",
+                  "part:fuel-supply"
+                ],
+                "children": []
+              },
+              {
+                "id": "r-p-site-power",
+                "label": "园区电源设施",
+                "object_ids": [
+                  "part:substation",
+                  "part:prime-power",
+                  "part:backup-power",
+                  "part:bess"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "r-p-building",
+            "label": "建筑与安全",
+            "object_ids": [
+              "space:building"
+            ],
+            "children": [
+              {
+                "id": "r-p-building-structure",
+                "label": "结构与安全设施",
+                "object_ids": [
+                  "part:shell",
+                  "part:fire"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "r-p-hall",
+            "label": "机房与设施",
+            "object_ids": [
+              "space:hall"
+            ],
+            "children": [
+              {
+                "id": "r-p-hall-modular",
+                "label": "模块化设施",
+                "object_ids": [
+                  "part:modular-dc"
+                ],
+                "children": []
+              },
+              {
+                "id": "r-p-hall-power",
+                "label": "供配电设备",
+                "object_ids": [
+                  "part:ups",
+                  "part:power-dist"
+                ],
+                "children": []
+              },
+              {
+                "id": "r-p-hall-thermal",
+                "label": "冷却与排热设备",
+                "object_ids": [
+                  "part:room-cooling",
+                  "part:cdu",
+                  "part:heat-reject",
+                  "part:immersion"
+                ],
+                "children": []
+              },
+              {
+                "id": "r-p-hall-cabling",
+                "label": "机房布线",
+                "object_ids": [
+                  "part:cabling"
+                ],
+                "children": []
+              },
+              {
+                "id": "r-p-hall-control",
+                "label": "监测与运维配套（含软件）",
+                "object_ids": [
+                  "part:dcim",
+                  "part:leak-detection"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "r-p-rack",
+            "label": "机柜与整机",
+            "object_ids": [
+              "space:row"
+            ],
+            "children": [
+              {
+                "id": "r-p-rack-structure",
+                "label": "机柜结构",
+                "object_ids": [
+                  "part:rack-frame"
+                ],
+                "children": []
+              },
+              {
+                "id": "r-p-rack-equipment",
+                "label": "服务器、网络与存储整机",
+                "object_ids": [
+                  "part:server",
+                  "part:network-switch",
+                  "part:storage-array"
+                ],
+                "children": []
+              },
+              {
+                "id": "r-p-rack-power",
+                "label": "机柜供电",
+                "object_ids": [
+                  "part:power-shelf"
+                ],
+                "children": []
+              },
+              {
+                "id": "r-p-rack-thermal",
+                "label": "机柜液冷与工质",
+                "object_ids": [
+                  "part:manifold",
+                  "part:sidecar-hx",
+                  "part:coolant"
+                ],
+                "children": []
+              },
+              {
+                "id": "r-p-rack-interconnect",
+                "label": "机柜互联",
+                "object_ids": [
+                  "part:copper-interconnect"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "r-p-components",
+            "label": "内部部件",
+            "object_ids": [],
+            "children": [
+              {
+                "id": "r-p-components-compute",
+                "label": "计算与加速芯片",
+                "object_ids": [
+                  "part:gpu",
+                  "part:cpu",
+                  "part:fpga"
+                ],
+                "children": []
+              },
+              {
+                "id": "r-p-components-memory",
+                "label": "内存与存储",
+                "object_ids": [
+                  "part:hbm",
+                  "part:dram",
+                  "part:ssd",
+                  "part:hdd"
+                ],
+                "children": []
+              },
+              {
+                "id": "r-p-components-network",
+                "label": "网络、接口与连接器",
+                "object_ids": [
+                  "part:nic",
+                  "part:optics",
+                  "part:interconnect-chip",
+                  "part:switch-asic",
+                  "part:connector"
+                ],
+                "children": []
+              },
+              {
+                "id": "r-p-components-power",
+                "label": "电源与板级供电",
+                "object_ids": [
+                  "part:psu",
+                  "part:vrm"
+                ],
+                "children": []
+              },
+              {
+                "id": "r-p-components-thermal",
+                "label": "散热部件",
+                "object_ids": [
+                  "part:coldplate",
+                  "part:fan-vc"
+                ],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "r-systems",
+        "label": "功能系统",
+        "object_ids": [
+          "system:power",
+          "system:thermal",
+          "system:compute",
+          "system:network",
+          "system:control",
+          "system:safety"
+        ],
+        "children": []
+      },
+      {
+        "id": "r-activities",
+        "label": "产业活动",
+        "object_ids": [
+          "activity:V1",
+          "activity:V2",
+          "activity:V3"
+        ],
+        "children": []
+      },
+      {
+        "id": "r-demand",
+        "label": "需求与工作负载",
+        "object_ids": [],
+        "children": [
+          {
+            "id": "r-d-chain",
+            "label": "需求传导层次",
+            "object_ids": [
+              "demand:D4",
+              "demand:D3",
+              "demand:D2",
+              "demand:D1"
+            ],
+            "children": []
+          },
+          {
+            "id": "r-d-workloads",
+            "label": "工作负载",
+            "object_ids": [],
+            "children": [
+              {
+                "id": "r-d-workloads-ai",
+                "label": "AI 工作负载",
+                "object_ids": [
+                  "workload:training",
+                  "workload:inference"
+                ],
+                "children": []
+              },
+              {
+                "id": "r-d-workloads-other",
+                "label": "通用、科学计算与数据业务",
+                "object_ids": [
+                  "workload:enterprise",
+                  "workload:hpc",
+                  "workload:storage",
+                  "workload:edge"
+                ],
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
 }

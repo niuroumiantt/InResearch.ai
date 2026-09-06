@@ -46,7 +46,7 @@ L0 数据层   data/ — 六张实体表（项目/公司/价格/政策/合同/�
 | `framework/research_graph.json` | 对象/关系 | 84 个对象、139 条有类型关系及中英文别名 |
 | `framework/research_questions.json` | 问题 | 415 个稳定问题、对象绑定、验收和证据要求 |
 | `data/research_knowledge.json` | 正式证据 | 文档、证据、陈述与采用回答；运行候选另存非 Git 快照 |
-| `research.html` | 研究工作台 | 按节点查看关系、问题、材料、证据与任务 |
+| `research.html` | 研究工作台 | 五视角分层目录；按节点查看产品与厂商、关系、问题、材料、证据与任务 |
 | `framework/01_data_standards.md` | L1 | **口径与核验规则手册**（每条数据入库必须遵守） |
 | `framework/modules.json` | L2 | 模块注册表（机器可读：依赖表、更新频率、Q 映射） |
 | `framework/modules/M01–M15.md` | L2 | 各模块定义：核心问题、关键指标、数据依赖 |
