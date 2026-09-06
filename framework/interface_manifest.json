@@ -1,0 +1,30 @@
+{
+  "version": "1.0.0",
+  "static_pages": [
+    "index.html",
+    "research.html",
+    "admin/product/index.html",
+    "doc.html",
+    "bom3d.html",
+    "rack3d.html",
+    "bom.html",
+    "company.html",
+    "compare.html",
+    "ops.html",
+    "team.html",
+    "report.html"
+  ],
+  "dynamic_pages": {
+    "pipeline/auth.py": [
+      "LOGIN_PAGE",
+      "PASSWD_PAGE",
+      "FORBIDDEN_PAGE"
+    ]
+  },
+  "excluded_pages": {
+    "poster.html": "固定版式的打印交付物",
+    "framework_poster.html": "固定版式的框架海报",
+    "bake.html": "开发用模型烘焙工具",
+    "docs/inbox/framework_proposals/framework_proposal_L1-L4_20260831.html": "未采用的外部提案原件"
+  }
+}

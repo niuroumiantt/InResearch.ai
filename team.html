@@ -1,18 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light">
 <head>
+<script src="/assets/site-skin.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>团队看板 — Datacenter Hub</title>
 <style>
-  :root {
-    --bg: #f7f8fa; --card: #ffffff; --text: #1a1d24; --muted: #6b7280;
-    --line: #e5e7eb; --accent: #2563eb;
-    --green: #16a34a; --yellow: #d97706; --red: #dc2626;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg: #0f1115; --card: #171a21; --text: #e5e7eb; --muted: #9ca3af; --line: #262a33; --accent: #60a5fa; }
-  }
+
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { background: var(--bg); color: var(--text); font: 15px/1.7 -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; padding: 24px 16px 80px; }
   .wrap { max-width: 1240px; margin: 0 auto; }
@@ -20,29 +15,29 @@
   .crumb a { color: var(--accent); text-decoration: none; }
   h1 { font-size: 22px; margin-bottom: 6px; }
   .sub { color: var(--muted); font-size: 13px; margin-bottom: 18px; }
-  .banner { background: var(--card); border: 1px solid var(--line); border-left: 3px solid var(--yellow); border-radius: 0 10px 10px 0; padding: 10px 14px; font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+  .banner { background: var(--card); border: 1px solid var(--line); border-left: 3px solid var(--yellow); border-radius: var(--ui-radius); padding: 10px 14px; font-size: 13px; color: var(--muted); margin-bottom: 16px; }
   .tot { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
-  .tot div { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 16px; }
+  .tot div { background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 10px 16px; }
   .tot b { display: block; font-size: 21px; line-height: 1.3; }
   .tot span { font-size: 12px; color: var(--muted); }
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); gap: 10px; margin-bottom: 22px; }
-  .mod { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; cursor: pointer; }
+  .mod { background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 10px 12px; cursor: pointer; }
   .mod:hover { border-color: var(--accent); }
   .mod.on { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; }
   .mod h3 { font-size: 13px; margin-bottom: 6px; font-weight: 600; }
   .mod .kv { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); }
   .mod .kv b { color: var(--text); font-weight: 600; }
   .ctl { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; }
-  .ctl input, .ctl select { font: inherit; font-size: 13px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); color: var(--text); }
+  .ctl input, .ctl select { font: inherit; font-size: 13px; padding: 6px 10px; border: 1px solid var(--line); border-radius: var(--ui-radius); background: var(--card); color: var(--text); }
   .ctl input[type=search] { flex: 1 1 220px; }
   .ctl .cnt { margin-left: auto; font-size: 13px; color: var(--muted); }
   table { border-collapse: collapse; width: 100%; font-size: 13px; background: var(--card); }
   th, td { border: 1px solid var(--line); padding: 7px 10px; text-align: left; vertical-align: top; }
   th { background: color-mix(in srgb, var(--card) 60%, var(--bg)); font-weight: 500; color: var(--muted); position: sticky; top: 0; }
   .wid { font-family: ui-monospace, Menlo, monospace; font-size: 12px; white-space: nowrap; }
-  .pri { display: inline-block; font-size: 11px; font-weight: 700; color: #fff; border-radius: 6px; padding: 1px 7px; }
+  .pri { display: inline-block; font-size: 11px; font-weight: 700; color: #fff; border-radius: var(--ui-radius); padding: 1px 7px; }
   .P1 { background: var(--red); } .P2 { background: var(--yellow); } .P3 { background: var(--muted); }
-  .st { display: inline-block; font-size: 11px; border-radius: 9px; padding: 0 8px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+  .st { display: inline-block; font-size: 11px; border-radius: var(--ui-radius); padding: 0 8px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
   .st-已派 { color: var(--accent); border-color: var(--accent); }
   .st-进行中 { color: var(--yellow); border-color: var(--yellow); }
   .st-已交付, .st-已合并 { color: var(--green); border-color: var(--green); }
@@ -51,23 +46,24 @@
   .brief { white-space: pre-line; line-height: 1.75; margin-bottom: 6px; }
   .brief b { color: var(--text); }
   tr.internal { opacity: .5; }
-  .badge-int { display:inline-block; font-size:10px; border:1px solid var(--line); border-radius:6px; padding:0 6px; color:var(--muted); }
+  .badge-int { display:inline-block; font-size:10px; border:1px solid var(--line); border-radius: var(--ui-radius); padding:0 6px; color:var(--muted); }
   details.raw { margin-top: 4px; }
   details.raw summary { font-size: 11px; color: var(--muted); cursor: pointer; }
-  button { font: inherit; font-size: 12px; padding: 4px 11px; border: 1px solid var(--line); border-radius: 7px; background: var(--card); color: var(--accent); cursor: pointer; }
+  button { font: inherit; font-size: 12px; padding: 4px 11px; border: 1px solid var(--line); border-radius: var(--ui-radius); background: var(--card); color: var(--accent); cursor: pointer; }
   button:hover { border-color: var(--accent); }
-  dialog { border: 1px solid var(--line); border-radius: 12px; background: var(--card); color: var(--text); padding: 20px 22px; max-width: 460px; width: 92%; }
+  dialog { border: 1px solid var(--line); border-radius: var(--ui-radius); background: var(--card); color: var(--text); padding: 20px 22px; max-width: 460px; width: 92%; }
   dialog::backdrop { background: rgba(0,0,0,.45); }
   dialog h3 { font-size: 16px; margin-bottom: 4px; }
   dialog .g { color: var(--muted); font-size: 12px; margin-bottom: 14px; }
   dialog label { display: block; font-size: 12px; color: var(--muted); margin: 10px 0 4px; }
-  dialog input, dialog select { width: 100%; font: inherit; font-size: 13px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--text); }
+  dialog input, dialog select { width: 100%; font: inherit; font-size: 13px; padding: 6px 10px; border: 1px solid var(--line); border-radius: var(--ui-radius); background: var(--bg); color: var(--text); }
   dialog .row { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; }
   .msg { font-size: 12px; margin-top: 10px; }
   .msg.ok { color: var(--green); } .msg.no { color: var(--red); }
 </style>
+<link rel="stylesheet" href="/assets/site-skin.css">
 </head>
-<body>
+<body style="--ui-page-inset:24px">
 <div class="wrap">
   <div class="crumb"><a href="index.html">← 仪表盘</a> <span>/ 团队看板</span></div>
   <h1>团队看板</h1>

@@ -1,18 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light">
 <head>
+<script src="/assets/site-skin.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>工作台 — Datacenter Hub</title>
 <style>
-  :root {
-    --bg: #f7f8fa; --card: #ffffff; --text: #1a1d24; --muted: #6b7280;
-    --line: #e5e7eb; --accent: #2563eb;
-    --green: #16a34a; --yellow: #d97706; --red: #dc2626; --gray: #9ca3af;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg: #0f1115; --card: #171a21; --text: #e5e7eb; --muted: #9ca3af; --line: #262a33; --accent: #60a5fa; }
-  }
+
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { background: var(--bg); color: var(--text); font: 14px/1.6 -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; padding: 24px 16px 60px; }
   .wrap { max-width: 1100px; margin: 0 auto; }
@@ -20,32 +15,32 @@
   .sub { color: var(--muted); margin-bottom: 24px; font-size: 13px; }
   h2 { font-size: 16px; margin: 28px 0 12px; }
   .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
-  .stat { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+  .stat { background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 14px 16px; }
   .stat .num { font-size: 24px; font-weight: 700; }
   .stat .lbl { color: var(--muted); font-size: 12px; }
   .modules { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
-  .mod { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+  .mod { background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 12px 14px; }
   .mod .id { font-size: 11px; color: var(--accent); font-weight: 700; }
   .mod .nm { font-weight: 600; margin: 2px 0; }
   .mod .meta { font-size: 11px; color: var(--muted); }
-  .dim-tag { display: inline-block; font-size: 10px; padding: 1px 6px; border-radius: 8px; border: 1px solid var(--line); color: var(--muted); margin-left: 4px; }
+  .dim-tag { display: inline-block; font-size: 10px; padding: 1px 6px; border-radius: var(--ui-radius); border: 1px solid var(--line); color: var(--muted); margin-left: 4px; }
   .doclink { float: right; font-size: 11px; }
   .doclink.muted { color: var(--muted); }
   .sub a { color: var(--accent); text-decoration: none; }
-  table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); overflow: hidden; }
   th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); font-size: 13px; }
   th { color: var(--muted); font-weight: 500; font-size: 12px; background: color-mix(in srgb, var(--card) 60%, var(--bg)); }
   tr:last-child td { border-bottom: none; }
   .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
   .g { background: var(--green); } .y { background: var(--yellow); } .r { background: var(--red); } .n { background: var(--gray); }
-  .badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 8px; border-radius: 9px; color: #fff; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 8px; border-radius: var(--ui-radius); color: #fff; }
   .funnel { display: flex; gap: 4px; margin: 8px 0 4px; flex-wrap: wrap; }
-  .fseg { flex: 1; min-width: 60px; text-align: center; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 8px 4px; }
+  .fseg { flex: 1; min-width: 60px; text-align: center; background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 8px 4px; }
   .fseg .lv { font-size: 10px; color: var(--muted); }
   .fseg .mw { font-size: 15px; font-weight: 700; }
   .note { color: var(--muted); font-size: 12px; margin-top: 6px; }
   .brief-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px; }
-  .brief-col { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+  .brief-col { background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 12px 14px; }
   .brief-col h3 { font-size: 13px; margin-bottom: 8px; }
   .bmeta { font-weight: 400; color: var(--muted); font-size: 11px; }
   .sig { padding: 6px 0; border-bottom: 1px solid var(--line); font-size: 12px; }
@@ -54,30 +49,31 @@
   .sig .cnt { color: var(--muted); }
   .sig a { display: block; color: var(--muted); font-size: 11px; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .sig a:hover { color: var(--accent); }
-  .err { color: var(--red); background: var(--card); border: 1px solid var(--red); border-radius: 10px; padding: 14px; margin-top: 20px; }
+  .err { color: var(--red); background: var(--card); border: 1px solid var(--red); border-radius: var(--ui-radius); padding: 14px; margin-top: 20px; }
   .tasks { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 8px; }
-  .task-btn { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px;
+  .task-btn { background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 10px 12px;
     cursor: pointer; text-align: left; font: inherit; color: var(--text); transition: border-color .15s; }
   .task-btn:hover { border-color: var(--accent); }
   .task-btn.busy { opacity: .55; pointer-events: none; }
   .task-btn b { display: block; font-size: 13px; }
   .task-btn span { font-size: 11px; color: var(--muted); }
-  .console { background: #0d1117; color: #7ee787; border-radius: 10px; padding: 12px 14px; font: 11.5px/1.6 ui-monospace, Menlo, monospace;
+  .console { background: #0d1117; color: #7ee787; border-radius: var(--ui-radius); padding: 12px 14px; font: 11.5px/1.6 ui-monospace, Menlo, monospace;
     max-height: 220px; overflow-y: auto; white-space: pre-wrap; margin-top: 10px; }
   .pform { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 8px;
-    background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 14px; }
   .pform label { font-size: 11px; color: var(--muted); display: block; margin-bottom: 2px; }
-  .pform input, .pform select { width: 100%; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px;
+  .pform input, .pform select { width: 100%; padding: 6px 8px; border: 1px solid var(--line); border-radius: var(--ui-radius);
     background: var(--bg); color: var(--text); font: inherit; font-size: 12.5px; }
   .pform .full { grid-column: 1 / -1; }
-  .pform button { grid-column: 1 / -1; padding: 9px; border: none; border-radius: 8px; background: var(--accent);
+  .pform button { grid-column: 1 / -1; padding: 9px; border: none; border-radius: var(--ui-radius); background: var(--accent);
     color: #fff; font: inherit; font-weight: 600; cursor: pointer; }
   .pmsg { font-size: 12px; margin-top: 6px; }
   a { color: var(--accent); text-decoration: none; }
   .tablewrap { overflow-x: auto; }
 </style>
+<link rel="stylesheet" href="/assets/site-skin.css">
 </head>
-<body>
+<body style="--ui-page-inset:24px">
 <div class="wrap">
   <h1>工作台 <a href="index.html" style="font-size:13px;font-weight:400">← 总览</a>
     <span id="whoami" style="float:right;font-size:12px;font-weight:400;color:var(--muted)"></span> <a href="bom.html" style="font-size:13px;font-weight:400">爆炸图</a> <a href="report.html" style="font-size:13px;font-weight:400">报告成稿 →</a></h1>
@@ -90,23 +86,23 @@
 
   <section id="usersSec" style="display:none">
   <h2>用户与权限 <span style="font-weight:400;font-size:12px;color:var(--muted)">仅 admin 可见 · 无注册，只能在这里加人</span></h2>
-  <div id="pwReveal" style="display:none;background:var(--card);border:1px solid var(--yellow);border-radius:10px;padding:12px 14px;margin-bottom:10px;font-size:13px">
+  <div id="pwReveal" style="display:none;background:var(--card);border:1px solid var(--yellow);border-radius: var(--ui-radius);padding:12px 14px;margin-bottom:10px;font-size:13px">
     <b id="pwUser"></b> 的密码（<b>只显示这一次</b>，抄给使用者）：
     <code id="pwText" style="font-size:14px;user-select:all"></code>
-    <button onclick="copyPw()" style="margin-left:8px;font-size:12px;padding:2px 10px;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--text);cursor:pointer">复制</button>
+    <button onclick="copyPw()" style="margin-left:8px;font-size:12px;padding:2px 10px;border-radius: var(--ui-radius);border:1px solid var(--line);background:var(--card);color:var(--text);cursor:pointer">复制</button>
     <span id="pwCopied" style="color:var(--green);font-size:12px"></span>
   </div>
   <table id="usersTable"><thead><tr>
     <th>用户名</th><th>角色</th><th>创建于</th><th style="text-align:right">操作</th>
   </tr></thead><tbody></tbody></table>
   <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;align-items:center">
-    <input id="nuName" placeholder="新用户名（小写字母/数字）" style="flex:1;min-width:160px;padding:8px 11px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--text)">
-    <select id="nuRole" style="padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--text)">
+    <input id="nuName" placeholder="新用户名（小写字母/数字）" style="flex:1;min-width:160px;padding:8px 11px;border-radius: var(--ui-radius);border:1px solid var(--line);background:var(--card);color:var(--text)">
+    <select id="nuRole" style="padding:8px;border-radius: var(--ui-radius);border:1px solid var(--line);background:var(--card);color:var(--text)">
       <option value="intern">intern · 只见工单板</option>
       <option value="member">member · 看全量可录入</option>
       <option value="admin">admin · 全部权限</option>
     </select>
-    <button onclick="addUser()" style="padding:8px 18px;border-radius:8px;border:0;background:var(--accent);color:#fff;cursor:pointer">添加用户</button>
+    <button onclick="addUser()" style="padding:8px 18px;border-radius: var(--ui-radius);border:0;background:var(--accent);color:var(--ui-on-accent);cursor:pointer">添加用户</button>
   </div>
   <div id="usersMsg" style="font-size:12.5px;margin-top:8px;min-height:1.2em"></div>
   <div style="font-size:11.5px;color:var(--muted);margin-top:4px">
@@ -201,7 +197,7 @@ async function loadUsers(){
   const tb=document.querySelector("#usersTable tbody");
   tb.innerHTML=d.users.map(u=>`<tr>
     <td><b>${u.name}</b>${u.name===ME.user?' <span style="color:var(--muted);font-size:11px">(我)</span>':''}</td>
-    <td><select onchange="setRole('${u.name}',this.value,this)" style="padding:3px 6px;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--text)">
+    <td><select onchange="setRole('${u.name}',this.value,this)" style="padding:3px 6px;border-radius: var(--ui-radius);border:1px solid var(--line);background:var(--card);color:var(--text)">
       ${["intern","member","admin"].map(r=>`<option value="${r}"${r===u.role?" selected":""}>${r}</option>`).join("")}
     </select></td>
     <td style="color:var(--muted)">${u.created}</td>

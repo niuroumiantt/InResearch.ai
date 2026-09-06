@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.06.1",
+  "version": "2026.09.06.2",
   "effective_at": "2026-09-06",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -198,6 +198,37 @@
         "change_management-legacy"
       ],
       "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。"
+    },
+    {
+      "id": "interface-legacy",
+      "topic": "interface",
+      "status": "superseded",
+      "source": "docs/archive/2026-09-06/UI_BEFORE_SKINS.md",
+      "scope": "project",
+      "superseded_by": "interface-20260906",
+      "supersedes": []
+    },
+    {
+      "id": "interface-20260906",
+      "topic": "interface",
+      "status": "current",
+      "source": "framework/05_interface_system.md",
+      "scope": "project",
+      "effective_at": "2026-09-06",
+      "implementations": [
+        "assets/site-skin.js",
+        "assets/site-skin.css",
+        "assets/research.css",
+        "framework/interface_manifest.json",
+        "pipeline/auth.py",
+        "pipeline/serve.py",
+        "pipeline/test_interface_system.py",
+        "tests/ui_skin.cjs"
+      ],
+      "supersedes": [
+        "interface-legacy"
+      ],
+      "reason": "用户要求可切换的完整视觉风格，folk 以细线直角参考为准；替代逐页色板和仅换色的旧解释。"
     }
   ],
   "entrypoints": [

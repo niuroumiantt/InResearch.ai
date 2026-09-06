@@ -1,20 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light">
 <head>
+<script src="/assets/site-skin.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Datacenter Hub — 全球数据中心行业总览</title>
 <style>
-  :root {
-    --bg: #f2f4f7; --card: #ffffff; --text: #1a1d24; --muted: #6b7280;
-    --line: #e5e7eb; --accent: #2563eb;
-    --green: #16a34a; --yellow: #d97706; --red: #dc2626; --gray: #9ca3af;
-    --map-land: #e2e8f0; --map-line: #cbd5e1;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg: #0c0e12; --card: #171a21; --text: #e5e7eb; --muted: #9ca3af; --line: #262a33;
-            --accent: #60a5fa; --map-land: #232936; --map-line: #333c4d; }
-  }
+
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { background: var(--bg); color: var(--text); font: 13.5px/1.6 -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; padding-bottom: 50px; }
   a { color: var(--accent); text-decoration: none; }
@@ -36,21 +29,21 @@
   @keyframes scroll { to { transform: translateX(-100%); } }
   .wrap { max-width: 1240px; margin: 16px auto 0; padding: 0 16px; }
   .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 12px; }
-  .kpi { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+  .kpi { background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 12px 14px; }
   .kpi .v { font-size: 23px; font-weight: 700; font-variant-numeric: tabular-nums; }
   .kpi .v small { font-size: 12px; font-weight: 400; color: var(--muted); }
   .kpi .l { color: var(--muted); font-size: 11.5px; margin-top: 1px; }
   .entries { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; align-items: center; }
   .entries .lbl { font-size: 12px; color: var(--muted); }
-  .entry { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 5px 14px;
+  .entry { background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 5px 14px;
     font-size: 12.5px; color: var(--text); transition: border-color .15s; }
   .entry:hover { border-color: var(--accent); color: var(--accent); }
   .entry small { color: var(--muted); margin-left: 4px; }
   .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px; }
-  .board { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; overflow: hidden; }
+  .board { background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 14px 16px; overflow: hidden; }
   .b12 { grid-column: span 12; } .b8 { grid-column: span 8; } .b6 { grid-column: span 6; } .b4 { grid-column: span 4; } .b3 { grid-column: span 3; }
   @media (max-width: 980px) { .b8, .b6, .b4, .b3 { grid-column: span 12; } }
-  .chip-sm { display: inline-block; font-size: 10.5px; border: 1px solid var(--line); border-radius: 10px;
+  .chip-sm { display: inline-block; font-size: 10.5px; border: 1px solid var(--line); border-radius: var(--ui-radius);
     padding: 0 8px; margin-left: 4px; color: var(--yellow); text-decoration: none; }
   .chip-sm:hover { border-color: var(--yellow); }
   .bh { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; }
@@ -73,7 +66,7 @@
   .histgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(255px, 1fr)); gap: 14px; }
   .histcell h3 { font-size: 12px; color: var(--muted); font-weight: 500; margin-bottom: 2px; }
   .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; }
-  #tip { position: fixed; background: var(--card); border: 1px solid var(--line); border-radius: 8px;
+  #tip { position: fixed; background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius);
     box-shadow: 0 4px 16px rgba(0,0,0,.15); padding: 10px 12px; font-size: 12px; max-width: 280px;
     pointer-events: none; z-index: 50; display: none; line-height: 1.7; }
   #tip b { font-size: 13px; }
@@ -82,8 +75,9 @@
   circle.site:hover { fill-opacity: 1; }
   circle.halo { transform-box: fill-box; transform-origin: center; animation: pulse 2.4s ease-out infinite; pointer-events: none; }
   @keyframes pulse { 0% { transform: scale(1); opacity: .5; } 80% { transform: scale(2.1); opacity: 0; } 100% { opacity: 0; } }
-  .err { color: var(--red); background: var(--card); border: 1px solid var(--red); border-radius: 10px; padding: 14px; margin-top: 16px; }
+  .err { color: var(--red); background: var(--card); border: 1px solid var(--red); border-radius: var(--ui-radius); padding: 14px; margin-top: 16px; }
 </style>
+<link rel="stylesheet" href="/assets/site-skin.css">
 </head>
 <body>
 <div class="topbar">
