@@ -452,7 +452,7 @@ class Reader:
                 if digest_file(target) != sha:
                     raise IntegrityError()
             else:
-                os.replace(str(tmp), str(target))
+                durable_rename(tmp, target)
                 os.chmod(target, 0o400)
             snapshot = self.snapshot() if not existing else None
             recipe = digest_bytes(encoded({"version": RECIPE_VERSION, "model": self.model.identity,
@@ -638,24 +638,58 @@ class Reader:
 
     def _context(self, doc, text):
         snapshot = read_json(self.artifact_path(doc["doc_id"], "context.json"))
-        # Show bounded candidate IDs. Missing/unshown relationships remain unmapped.
-        ranked = []
-        for kind, rows in (("object", snapshot["objects"]), ("question", snapshot["questions"])):
-            for row in rows:
-                if not isinstance(row, dict) or not isinstance(row.get("id"), str):
-                    continue
-                name = str(row.get("name") or row.get("text") or "")[:100]
-                words = re.findall(r"[a-zA-Z]{3,}|[\u4e00-\u9fff]{2,4}", name.lower())
-                score = sum(w in text.lower() for w in words)
-                ranked.append((score, kind, {"id": row["id"], "name": name}))
-        result = {"objects": [], "questions": []}
-        for _, kind, row in sorted(ranked, key=lambda x: (-x[0], x[2]["id"])):
-            key = "objects" if kind == "object" else "questions"
-            candidate = {k: list(v) for k, v in result.items()}
-            candidate[key].append(row)
-            if len(encoded(candidate).encode()) > 4800:
+        # Separate budgets prevent hundreds of questions from displacing all objects.
+        # Retrieval hints propose candidates, never establish a document/claim mapping.
+        lower = text.lower()
+        compact = re.sub(r"[^a-z0-9\u4e00-\u9fff]", "", lower)
+
+        def lexical(row):
+            name = str(row.get("name") or row.get("text") or "")[:100]
+            aliases = row.get("aliases", [])
+            if not isinstance(aliases, list):
+                aliases = [aliases] if isinstance(aliases, str) else []
+            aliases = [a[:100] for a in aliases if isinstance(a, str)][:12]
+            score = 0
+            for phrase in set([name] + aliases):
+                normalized = re.sub(r"[^a-z0-9\u4e00-\u9fff]", "", phrase.lower())
+                if len(normalized) >= 2 and normalized in compact:
+                    score += 8
+            # IDs bridge e.g. part:coldplate to 'cold plate' without a synonym API.
+            identifier = row["id"].split(":", 1)[-1].lower()
+            for word in set(re.findall(r"[a-z]{3,}", identifier)) - {"obj", "part", "object", "question"}:
+                if word in compact:
+                    score += 4
+            for word in set(re.findall(r"[a-z]{3,}|[\u4e00-\u9fff]{2,4}", " ".join([name] + aliases).lower())):
+                if word in lower:
+                    score += 1
+            return score, name, aliases
+
+        object_scores, ranked_objects = {}, []
+        for row in snapshot["objects"]:
+            if not isinstance(row, dict) or not isinstance(row.get("id"), str):
                 continue
-            result = candidate
+            score, name, aliases = lexical(row)
+            object_scores[row["id"]] = score
+            candidate = {"id": row["id"], "name": name, "match": "lexical" if score else "needs_review"}
+            if aliases:
+                candidate["aliases"] = aliases[:4]
+            ranked_objects.append((score, candidate))
+        ranked_questions = []
+        for row in snapshot["questions"]:
+            if not isinstance(row, dict) or not isinstance(row.get("id"), str):
+                continue
+            score, name, _ = lexical(row)
+            related = max([object_scores.get(oid, 0) for oid in row.get("object_ids", [])] or [0])
+            boost = 12 + min(related, 20) if related >= 4 else 0
+            ranked_questions.append((score + boost, {"id": row["id"], "name": name,
+                                      "match": "related_object" if boost else ("lexical" if score else "needs_review")}))
+        result = {"objects": [], "questions": []}
+        for key, rows, budget in (("objects", ranked_objects, 2200), ("questions", ranked_questions, 2500)):
+            for _, row in sorted(rows, key=lambda pair: (-pair[0], pair[1]["id"])):
+                if len(encoded(result[key] + [row]).encode()) <= budget:
+                    result[key].append(row)
+        if len(encoded(result).encode()) > 4800:
+            raise IntegrityError()
         return result
 
     def _ids(self, result, context):

@@ -467,6 +467,42 @@ class ReaderTests(unittest.TestCase):
         self.assertEqual(doc["original_name"], name)
         self.assertLessEqual(len(Path(doc["original_rel"]).name.encode()), 255)
 
+    def test_english_cold_plate_retrieves_object_and_related_questions(self):
+        framework = self.base / "repo/framework"
+        framework.mkdir(parents=True)
+        objects = [{"id": "part:coldplate", "name": "冷板", "aliases": ["cold plate", "direct-to-chip liquid cooling"]}]
+        objects += [{"id": "part:other%03d" % i, "name": "其他对象%d" % i} for i in range(60)]
+        questions = [{"id": "M01-Q%03d" % i, "text": "无关的一般研究问题%d" % i, "object_ids": ["part:other000"]} for i in range(200)]
+        questions.append({"id": "OBJ-coldplate-performance", "text": "冷板性能如何验证？", "object_ids": ["part:coldplate"]})
+        cr.atomic_json(framework / "research_graph.json", {"version": "2.0.0", "objects": objects})
+        cr.atomic_json(framework / "research_questions.json", {"version": "2.0.0", "records": questions})
+        doc = self.register(text="A copper cold plate transfers heat to circulating coolant.")
+        context = self.reader._context(doc, "A copper cold plate transfers heat to circulating coolant.")
+        self.assertEqual(context["objects"][0]["id"], "part:coldplate")
+        self.assertEqual(context["questions"][0]["id"], "OBJ-coldplate-performance")
+        self.assertEqual(context["questions"][0]["match"], "related_object")
+        self.assertLessEqual(len(cr.encoded(context).encode()), 4800)
+        # ID English words still bridge the spaced compound without aliases.
+        path = self.reader.artifact_path(doc["doc_id"], "context.json")
+        snapshot = cr.read_json(path)
+        snapshot["objects"][0].pop("aliases")
+        cr.atomic_json(path, snapshot)
+        context = self.reader._context(doc, "A cold plate transfers heat.")
+        self.assertEqual(context["objects"][0]["id"], "part:coldplate")
+
+    def test_zero_match_context_reserves_room_for_objects(self):
+        framework = self.base / "repo/framework"
+        framework.mkdir(parents=True)
+        cr.atomic_json(framework / "research_graph.json", {"version": "2.0.0", "objects": [{"id": "part:cooling", "name": "冷却对象"}]})
+        cr.atomic_json(framework / "research_questions.json", {"version": "2.0.0", "records": [
+            {"id": "M01-Q%03d" % i, "text": "一般研究问题%d" % i} for i in range(500)]})
+        doc = self.register(text="zzzzz")
+        context = self.reader._context(doc, "zzzzz")
+        self.assertEqual(context["objects"][0]["id"], "part:cooling")
+        self.assertTrue(context["questions"])
+        self.assertTrue(all(row["match"] == "needs_review" for rows in context.values() for row in rows))
+        self.assertLessEqual(len(cr.encoded(context).encode()), 4800)
+
     def test_oldest_job_receives_one_in_four_slots(self):
         self.register("old.txt", "旧资料")
         old = self.first_doc()["doc_id"]
