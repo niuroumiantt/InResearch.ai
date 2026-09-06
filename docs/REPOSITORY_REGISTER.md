@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：412。
+在册文件：413。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,7 +15,7 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 12 |
-| 历史快照 | 36 |
+| 历史快照 | 37 |
 | 运行代码 | 56 |
 | 现行规范 | 9 |
 | 项目配置 | 28 |
@@ -481,6 +481,7 @@
 | [docs/local_setup/README.md](local_setup/README.md) | 配套说明 |
 | `docs/local_setup/setup.sh` | 已退役入口 |
 | `docs/local_setup/sync.sh` | 运行代码 |
+| [docs/reviews/2026-09-06/2026-09-06_NODE_RESEARCH_OVERVIEW_PROPOSAL.md](reviews/2026-09-06/2026-09-06_NODE_RESEARCH_OVERVIEW_PROPOSAL.md) | 历史快照 |
 | [docs/reviews/2026-09-06/CURRENT_BASELINE_ALIGNMENT.md](reviews/2026-09-06/CURRENT_BASELINE_ALIGNMENT.md) | 历史快照 |
 | [docs/reviews/2026-09-06/IMPLEMENTATION.md](reviews/2026-09-06/IMPLEMENTATION.md) | 历史快照 |
 | [docs/reviews/2026-09-06/RESEARCH_ARCHITECTURE_V2.md](reviews/2026-09-06/RESEARCH_ARCHITECTURE_V2.md) | 已采用设计依据 |
