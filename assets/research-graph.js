@@ -374,7 +374,7 @@ async function startWorkbench() {
     selected: params.get("node") || "", tab: params.get("tab") || "network", trail: [],
     networkHistory: [], topicFilter: params.get("topic") || "", expanded: new Map(), productQuery: "", productCompany: params.get("company") || "", productLimit: 24 };
   search.value = params.get("q") || "";
-  let index, data;
+  let index, data, disposeNetwork=()=>{};
   const tabInfo = { network: "研究图谱", overview: "产品与行业总览", relations: "对象关系", products: "产品与厂商", questions: "研究问题", materials: "材料与证据", statements: "陈述与回答", tasks: "缺口任务" };
   if (!Object.hasOwn(tabInfo, state.tab)) state.tab = "network";
   function saveURL() {
@@ -603,6 +603,7 @@ async function startWorkbench() {
     }
   }
   function renderDetail() {
+    disposeNetwork();disposeNetwork=()=>{};
     detail.replaceChildren();
     const o = index.byId.get(state.selected);
     if (!o) {
@@ -660,7 +661,7 @@ async function startWorkbench() {
     detail.append(nav);
     const section = element("section", "rg-section");
     section.append(element("h3", "", tabInfo[state.tab]));
-    if (state.tab === "network") mountObjectNetwork(section, {graph:data.graph, centerId:o.id, labelRelation:relText,
+    if (state.tab === "network") disposeNetwork=mountObjectNetwork(section, {graph:data.graph, centerId:o.id, labelRelation:relText,
       canBack:state.networkHistory.length > 0,
       vendorsForNode:id=>[...new Map(index.products.filter(p=>strings(p.object_ids).includes(id)).map(p=>[p.company_id,{id:p.company_id,name:p.company_cn || p.company_en || p.company_id}])).values()],
       onVendor:(id,company)=>{state.networkHistory.push(o.id);openNode(id,"R","products");state.productCompany=company;renderDetail();saveURL();document.querySelector('.rg-product-card')?.focus({preventScroll:true});},

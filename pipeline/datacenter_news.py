@@ -57,7 +57,7 @@ def feed(root, limit=80):
             if not isinstance(stamp,(int,float)) or not time.time()*1000-7*86400000 <= stamp <= time.time()*1000+300000: continue
             selected.append({'id':row['id'], 'url':row['url'], 'title':row['title'],
                 'title_zh':meta.get('title_zh'), 'translation_profile':meta.get('title_zh_profile'),
-                'publisher':meta.get('publisher') or meta.get('domain'), 'published_at':stamp,
+                'domain':meta.get('domain'), 'publisher':meta.get('publisher') or meta.get('domain'), 'published_at':stamp,
                 'category':category, 'cluster_id':meta.get('cluster_id')})
         seen = set()
         for item in sorted(selected,key=lambda r:r['published_at'],reverse=True):

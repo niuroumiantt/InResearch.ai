@@ -44,6 +44,25 @@ export function mountObjectNetwork(host,{graph,centerId,onNavigate,onTopic,onBac
   let closeTimer,anchor,suppressFocus=false;
   function hideVendors(){clearTimeout(closeTimer);popup.hidden=true;if(anchor)anchor.setAttribute('aria-expanded','false');}
   function laterHide(){clearTimeout(closeTimer);closeTimer=setTimeout(()=>{if(!popup.contains(document.activeElement))hideVendors();},250);}
+  const events=new AbortController();
+  function positionVendors(){
+    if(popup.hidden||!anchor?.isConnected)return;
+    const vv=window.visualViewport,margin=8,left=(vv?.offsetLeft||0)+margin,viewportTop=vv?.offsetTop||0;
+    const width=vv?.width||innerWidth,height=vv?.height||innerHeight,right=left+width-2*margin,bottom=viewportTop+height-margin;
+    const bar=document.getElementById('ui-skinbar')?.getBoundingClientRect();
+    const top=Math.max(viewportTop+margin,bar&&bar.bottom>viewportTop&&bar.top<bottom?bar.bottom+margin:0);
+    const r=anchor.getBoundingClientRect();
+    if(r.bottom<top||r.top>bottom||r.right<left||r.left>right){hideVendors();return;}
+    popup.style.maxWidth=Math.max(1,width-2*margin)+'px';popup.style.maxHeight=Math.min(440,Math.max(1,bottom-top))+'px';
+    const box=popup.getBoundingClientRect();
+    const y=r.bottom+4+box.height<=bottom?r.bottom+4:r.top-box.height-4;
+    popup.style.left=Math.max(left,Math.min(r.left,right-box.width))+'px';
+    popup.style.top=Math.max(top,Math.min(y,bottom-box.height))+'px';
+  }
+  const track={capture:true,passive:true,signal:events.signal};
+  window.addEventListener('scroll',positionVendors,track);window.addEventListener('resize',positionVendors,track);
+  window.visualViewport?.addEventListener('resize',positionVendors,track);window.visualViewport?.addEventListener('scroll',positionVendors,track);
+  window.addEventListener('pointerdown',e=>{if(!popup.hidden&&!popup.contains(e.target)&&!anchor?.contains(e.target)&&!e.target.closest?.('.rg-network-vendor-trigger'))hideVendors();},{signal:events.signal});
   function showVendors(n,group,focus=false){
     const vendors=vendorsForNode(n.id);if(!vendors.length)return;
     clearTimeout(closeTimer);if(anchor && anchor!==group)anchor.setAttribute('aria-expanded','false');anchor=group;group.setAttribute('aria-expanded','true');
@@ -51,15 +70,12 @@ export function mountObjectNetwork(host,{graph,centerId,onNavigate,onTopic,onBac
     for(const v of vendors)choices.append(button(v.name,()=>{hideVendors();onVendor(n.id,v.id);}));
     const close=button('×',()=>{hideVendors();suppressFocus=true;group.focus({preventScroll:true});});close.className='rg-vendor-close';close.setAttribute('aria-label','关闭厂商入口');
     popup.replaceChildren(close,choices);popup.hidden=false;
-    const r=group.getBoundingClientRect(),h=host.getBoundingClientRect();
-    const left=Math.max(0,Math.min(r.left-h.left,host.clientWidth-popup.offsetWidth));
-    popup.style.left=left+'px';popup.style.top=(r.bottom-h.top+4)+'px';
+    positionVendors();
     if(focus)choices.querySelector('button')?.focus({preventScroll:true});
   }
   popup.addEventListener('pointerenter',()=>clearTimeout(closeTimer));popup.addEventListener('pointerleave',laterHide);
   popup.addEventListener('focusout',()=>setTimeout(()=>{if(!popup.contains(document.activeElement)&&document.activeElement!==anchor)hideVendors();},0));
   host.addEventListener('keydown',e=>{if(e.key==='Escape'&&!popup.hidden){e.preventDefault();const inside=popup.contains(document.activeElement);hideVendors();if(inside&&anchor){suppressFocus=true;anchor.focus({preventScroll:true});}}});
-  canvas.addEventListener('scroll',()=>{if(!popup.contains(document.activeElement))hideVendors();});
   host.append(tools,status,canvas,popup,pager,legend,facts);
   let svg,visibleEdges=[],visibleNodes=[],network;
   const baseName=()=>new Date().toISOString().slice(0,10)+'_'+centerId.replace(/[^\p{L}\p{N}._-]/gu,'-')+'_研究图谱';
@@ -67,12 +83,12 @@ export function mountObjectNetwork(host,{graph,centerId,onNavigate,onTopic,onBac
     const copy=svg.cloneNode(true);copy.setAttribute('width','1000');copy.setAttribute('height','700');copy.removeAttribute('style');
     // Resolve active Attio/folk colours for a self-contained shareable image.
     const originals=[svg,...svg.querySelectorAll('*')],clones=[copy,...copy.querySelectorAll('*')];
-    originals.forEach((el,i)=>{const cs=getComputedStyle(el);for(const key of ['fill','stroke','stroke-width','stroke-dasharray','font-family','font-size','font-weight','rx'])clones[i].style.setProperty(key,cs.getPropertyValue(key));});
+    originals.forEach((el,i)=>{const cs=getComputedStyle(el);for(const key of ['fill','stroke','stroke-width','stroke-dasharray','font-family','font-size','font-weight','rx','vector-effect'])clones[i].style.setProperty(key,cs.getPropertyValue(key));});
     const meta=svgEl('metadata',{},JSON.stringify({graph_version:graph.version,center_id:centerId,mode,page:page+1,partial:visibleNodes.length<network.nodes.length,generated_at:new Date().toISOString(),nodes:visibleNodes,edges:visibleEdges}));copy.prepend(meta);
     download(new Blob([new XMLSerializer().serializeToString(copy)],{type:'image/svg+xml'}),baseName()+'.svg');
   }
   tools.append(button('导出本页 SVG',exportSVG),button('导出关系 JSON',()=>download(new Blob([JSON.stringify({graph_version:graph.version,center_id:centerId,mode,generated_at:new Date().toISOString(),...network},null,2)],{type:'application/json'}),baseName()+'.json')));
-  function applyZoom(){if(svg){svg.style.width=(zoom*100)+'%';svg.style.minWidth=(zoom*760)+'px';}}
+  function applyZoom(){if(svg){svg.style.width=(zoom*100)+'%';svg.style.minWidth=(zoom*760)+'px';positionVendors();}}
   function resize(f){zoom=Math.max(.5,Math.min(3,zoom*f));applyZoom();}
   function draw(){
     hideVendors();
@@ -81,7 +97,6 @@ export function mountObjectNetwork(host,{graph,centerId,onNavigate,onTopic,onBac
     visibleNodes=nodes.slice(page*12,page*12+12);const visible=new Set([centerId,...visibleNodes.map(n=>n.id)]);visibleEdges=edges.filter(e=>visible.has(e.source)&&visible.has(e.target));
     status.textContent=`中心：${center.name} · ${nodes.length} 个相邻对象/主题 · 第 ${page+1}/${pages} 页（每页最多 12 个）`;
     svg=svgEl('svg',{viewBox:'0 0 1000 700',role:'group','aria-label':center.name+' 研究关系图','data-center-id':centerId});
-    svg.append(svgEl('title',{},center.name+'：点击相邻对象重新居中'));
     const defs=svgEl('defs');const marker=svgEl('marker',{id:'network-arrow',viewBox:'0 0 10 10',refX:9,refY:5,markerWidth:6,markerHeight:6,orient:'auto-start-reverse'});marker.append(svgEl('path',{d:'M 0 0 L 10 5 L 0 10 z',class:'rg-network-arrow'}));defs.append(marker);svg.append(defs,svgEl('rect',{width:1000,height:700,class:'rg-network-background'}));
     svg.append(svgEl('text',{x:24,y:28,class:'rg-network-caption'},short(center.name,35)+' · 研究图谱 · '+graph.version));
     svg.append(svgEl('text',{x:24,y:675,class:'rg-network-caption'},`第 ${page+1}/${pages} 页 · 虚线：研究外延；实线：登记关系（非核验结论）`));
@@ -126,5 +141,5 @@ export function mountObjectNetwork(host,{graph,centerId,onNavigate,onTopic,onBac
     if(!nodes.length){const empty=document.createElement('p');empty.className='rg-caption';empty.textContent='尚无相邻对象记录。可切换到“九个研究角度”；无连线不代表无关系。';pager.append(empty);}
   }
   select.addEventListener('change',()=>{mode=select.value;page=0;draw();});draw();
-  return ()=>{};
+  return ()=>{events.abort();clearTimeout(closeTimer);popup.remove();};
 }
