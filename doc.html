@@ -71,7 +71,8 @@
 </head>
 <body>
 <div class="wrap">
-  <div class="crumb"><a href="index.html">← 仪表盘</a> <span id="path"></span></div>
+  <div class="crumb"><a href="index.html">← 仪表盘</a> <span id="path"></span> · <a href="doc.html?f=framework/CURRENT.md">现行基准</a></div>
+  <div class="toc" id="identity" role="status">正在核对文档身份…</div>
   <div class="toc" id="toc" style="display:none"></div>
   <article id="content">加载中…</article>
 </div>
@@ -185,8 +186,8 @@ function renderCSV(text, f) {
     `<h1>${esc(f.split("/").pop())}</h1>` +
     (has("depth")
       ? `<div class="note"><b>depth = 阅读深度</b>，与分数正交：分数管「值不值钱」，depth 管「我们到底读没读过」。
-         <b>精读／据实生成</b>可直接引用；<b>半自动</b>须回原文复核后才能上证据链；<b>目录级</b>只作检索索引、不作证据。
-         四种深度永不混引（标准见 framework/04_reading_scoring_standard.md）。</div>`
+         阅读标签不代表证据已被采用；引用仍须具备原文定位、适用范围并通过 C3 审核。<b>目录级</b>只作检索索引，局部阅读不能冒充全文精读。
+         <a href="doc.html?f=framework/04_reading_scoring_standard.md">查看现行阅读标准</a>。</div>`
       : "") +
     `<div class="ctl">
        <input type="search" id="q" placeholder="搜索文件名／机构／摘要…">
@@ -260,12 +261,45 @@ function renderCSV(text, f) {
   document.title = f.split("/").pop() + " — Datacenter Hub";
 }
 
+function documentLink(href, source, base = location.href) {
+  if (href.startsWith("#")) return href;
+  const url = new URL(href, new URL(source, base));
+  if (!["http:", "https:"].includes(url.protocol)) return null;
+  if (url.origin === new URL(base).origin && /\.(md|csv)$/.test(url.pathname)) {
+    return new URL("doc.html?f=" + encodeURIComponent(decodeURIComponent(url.pathname.replace(/^\//, ""))), base).href;
+  }
+  return url.href;
+}
+
+async function showIdentity(f) {
+  const box = document.getElementById("identity");
+  const labels = {
+    normative: "现行规范", entrypoint: "现行入口", historical: "历史快照 · 不作为当前执行指令",
+    retired_entrypoint: "已退役入口 · 请使用现行基准", design_reference: "已采用设计依据 · 后续执行以现行基准为准",
+    candidate: "候选与外部输入 · 尚未采用", research_record: "兼容研究记录 · 引用前核对证据与状态",
+    source_record: "在册数据或索引 · 不代表已核验", supporting_document: "配套说明 · 以现行规范为准",
+    generated: "生成清单或报告"
+  };
+  try {
+    const response = await fetch("framework/repository_manifest.json", {cache: "no-store"});
+    if (!response.ok) throw new Error("manifest unavailable");
+    const manifest = await response.json();
+    const row = manifest.files.find(item => item.path === f);
+    box.textContent = (row ? (labels[row.role] || "在册文件") : "未在清单中登记 · 身份未核对") + " · 基准 " + manifest.version + " · ";
+  } catch (_) { box.textContent = "清单加载失败 · 文档身份未核对 · "; }
+  const link = document.createElement("a");
+  link.href = "doc.html?f=docs/REPOSITORY_REGISTER.md";
+  link.textContent = "查看在册源码与记录";
+  box.append(link);
+}
+
 (async () => {
   const f = new URLSearchParams(location.search).get("f") || "research/M08.md";
   if (!/^[\w\-/\u4e00-\u9fff.]+\.(md|csv)$/.test(f) || f.includes("..")) {
     document.getElementById("content").innerHTML = '<div class="err">非法路径</div>'; return;
   }
   document.getElementById("path").textContent = " / " + f;
+  await showIdentity(f);
   try {
     const r = await fetch(f + "?t=" + Date.now(), { cache: "no-store" });
     if (!r.ok) throw new Error("HTTP " + r.status);
@@ -273,6 +307,13 @@ function renderCSV(text, f) {
     if (f.endsWith(".csv")) { renderCSV(md, f); return; }
     const html = render(md);
     document.getElementById("content").innerHTML = html;
+    document.querySelectorAll("article a").forEach(link => {
+      try {
+        const href = documentLink(link.getAttribute("href"), f);
+        if (href) { link.href = href; link.removeAttribute("target"); }
+        else link.removeAttribute("href");
+      } catch (_) { link.removeAttribute("href"); }
+    });
     document.title = (md.match(/^#\s+(.*)$/m) || [, f])[1] + " — Datacenter Hub";
     const hs = [...document.querySelectorAll("article h2")];
     if (hs.length >= 3) {
@@ -282,7 +323,7 @@ function renderCSV(text, f) {
     }
   } catch (e) {
     document.getElementById("content").innerHTML =
-      `<div class="err">加载失败：${e.message}<br>请用 <code>python3 -m http.server 8000</code> 启动后访问。</div>`;
+      `<div class="err">加载失败：${e.message}<br>请用 <code>python3 pipeline/serve.py</code> 启动后访问。</div>`;
   }
 })();
 </script>

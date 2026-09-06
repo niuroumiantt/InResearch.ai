@@ -1,0 +1,227 @@
+{
+  "version": "2026.09.06.1",
+  "effective_at": "2026-09-06",
+  "scope": "tracked project source and records; external/runtime materials excluded",
+  "policies": [
+    {
+      "id": "architecture-legacy",
+      "topic": "architecture",
+      "status": "superseded",
+      "source": "docs/archive/2026-09-06/docs__PROJECT_PANORAMA.md",
+      "scope": "project",
+      "superseded_by": "architecture-20260906",
+      "supersedes": []
+    },
+    {
+      "id": "architecture-20260906",
+      "topic": "architecture",
+      "status": "current",
+      "scope": "project",
+      "effective_at": "2026-09-06",
+      "source": "framework/00_overview.md",
+      "implementations": [
+        "framework/research_graph.json",
+        "framework/research_questions.json",
+        "assets/research-graph.js",
+        "framework/modules/M15_情景与监测.md",
+        "framework_poster.html"
+      ],
+      "supersedes": [
+        "architecture-legacy"
+      ],
+      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。"
+    },
+    {
+      "id": "data-legacy",
+      "topic": "data",
+      "status": "superseded",
+      "source": "docs/archive/2026-09-06/framework__01_data_standards.md",
+      "scope": "project",
+      "superseded_by": "data-20260906",
+      "supersedes": []
+    },
+    {
+      "id": "data-20260906",
+      "topic": "data",
+      "status": "current",
+      "scope": "project",
+      "effective_at": "2026-09-06",
+      "source": "framework/01_data_standards.md",
+      "implementations": [
+        "framework/data_contract.json",
+        "pipeline/data_policy.py",
+        "pipeline/validate.py",
+        "pipeline/verify.py",
+        "pipeline/facts.py",
+        "pipeline/research.py",
+        "index.html"
+      ],
+      "supersedes": [
+        "data-legacy"
+      ],
+      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。"
+    },
+    {
+      "id": "knowledge-legacy",
+      "topic": "knowledge",
+      "status": "superseded",
+      "source": "docs/archive/2026-09-06/framework__02_knowledge_format.md",
+      "scope": "project",
+      "superseded_by": "knowledge-20260906",
+      "supersedes": []
+    },
+    {
+      "id": "knowledge-20260906",
+      "topic": "knowledge",
+      "status": "current",
+      "scope": "project",
+      "effective_at": "2026-09-06",
+      "source": "framework/02_knowledge_format.md",
+      "implementations": [
+        "pipeline/research.py",
+        "pipeline/export.py",
+        "pipeline/intake.py",
+        "data/research_knowledge.json"
+      ],
+      "supersedes": [
+        "knowledge-legacy"
+      ],
+      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。"
+    },
+    {
+      "id": "products-legacy",
+      "topic": "products",
+      "status": "superseded",
+      "source": "docs/archive/2026-09-06/docs__local_setup__PRODUCT_LIBRARY.md",
+      "scope": "project",
+      "superseded_by": "products-20260906",
+      "supersedes": []
+    },
+    {
+      "id": "products-20260906",
+      "topic": "products",
+      "status": "current",
+      "scope": "project",
+      "effective_at": "2026-09-06",
+      "source": "framework/03_bom_and_collaboration.md",
+      "implementations": [
+        "pipeline/research.py",
+        "admin/product/index.html",
+        "bom3d.html",
+        "rack3d.html"
+      ],
+      "supersedes": [
+        "products-legacy"
+      ],
+      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。"
+    },
+    {
+      "id": "reading-legacy",
+      "topic": "reading",
+      "status": "superseded",
+      "source": "docs/archive/2026-09-06/docs__local_reader__PROJECT_BRIEF.md",
+      "scope": "project",
+      "superseded_by": "reading-20260906",
+      "supersedes": []
+    },
+    {
+      "id": "reading-20260906",
+      "topic": "reading",
+      "status": "current",
+      "scope": "project",
+      "effective_at": "2026-09-06",
+      "source": "framework/04_reading_scoring_standard.md",
+      "implementations": [
+        "pipeline/continuous_reader.py",
+        "pipeline/reading_queue.py",
+        "doc.html",
+        "docs/local_reader/PROJECT_BRIEF.md",
+        "docs/local_reader/RUN_TO_COMPLETION.md"
+      ],
+      "supersedes": [
+        "reading-legacy"
+      ],
+      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。"
+    },
+    {
+      "id": "operations-legacy",
+      "topic": "operations",
+      "status": "superseded",
+      "source": "docs/archive/2026-09-06/docs__local_setup__README.md",
+      "scope": "project",
+      "superseded_by": "operations-20260906",
+      "supersedes": []
+    },
+    {
+      "id": "operations-20260906",
+      "topic": "operations",
+      "status": "current",
+      "scope": "project",
+      "effective_at": "2026-09-06",
+      "source": "docs/local_reader/SPARK_OPERATIONS.md",
+      "implementations": [
+        "docs/local_setup/sync.sh",
+        "docs/local_setup/setup.sh",
+        "pipeline/publish_reader.py",
+        "deploy/spark-reader/inresearch-reader.service",
+        "docs/local_setup/README.md"
+      ],
+      "supersedes": [
+        "operations-legacy"
+      ],
+      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。"
+    },
+    {
+      "id": "change_management-legacy",
+      "topic": "change_management",
+      "status": "superseded",
+      "source": "docs/archive/2026-09-06/docs__DECISIONS.md",
+      "scope": "project",
+      "superseded_by": "change_management-20260906",
+      "supersedes": []
+    },
+    {
+      "id": "change_management-20260906",
+      "topic": "change_management",
+      "status": "current",
+      "scope": "project",
+      "effective_at": "2026-09-06",
+      "source": "framework/CURRENT.md",
+      "implementations": [
+        "AGENTS.md",
+        "CLAUDE.md",
+        "pipeline/governance.py",
+        ".github/workflows/validate.yml",
+        "doc.html"
+      ],
+      "supersedes": [
+        "change_management-legacy"
+      ],
+      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。"
+    }
+  ],
+  "entrypoints": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "docs/DECISIONS.md",
+    "docs/PROJECT_PANORAMA.md"
+  ],
+  "retired_entrypoints": [
+    "docs/local_reader/KICKOFF_PROMPT.md",
+    "docs/local_reader/CONTINUOUS_READER_DESIGN.md",
+    "docs/local_setup/setup.sh"
+  ],
+  "known_retired_patterns": [
+    "数据在变[，,、 ]*框架不变",
+    "唯一允许跨模块引用",
+    "唯一跨模块引用",
+    "每个事实只归属一个模块",
+    "15[ -]*模块[ ]*MECE",
+    "L4\\s*以下[^\\n<]{0,20}(?:必乘|须乘|必须乘以)",
+    "高级别覆盖低级别",
+    "算力除以\\s*2",
+    "带宽除以\\s*2",
+    "精读／据实生成</b>可直接引用",
+    "pull --rebase --autostash"
+  ]
+}

@@ -1,5 +1,7 @@
 # Spark 持续 reader 运行手册
 
+> CURRENT · 2026-09-06。规则归属与替代关系见 framework/CURRENT.md。
+
 本手册对应 `pipeline/continuous_reader.py`，不是旧 reader 脚本的启动说明。实现为 Python 标准库、SQLite 与单 worker；部署、实际 27B 验收及同步状态由当次部署记录说明。代码通过隔离故障测试不等于 Spark 已完成部署。
 
 ## 数据落点与交付契约

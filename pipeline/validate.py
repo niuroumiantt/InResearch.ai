@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """数据校验器：按 framework/01_data_standards.md 的规则检查 data/ 下六张表。
 
-零依赖（仅标准库），与 news 项目同基因。用法：
+机器规则来自 framework/data_contract.json；语义规则见口径手册。用法：
     python3 pipeline/validate.py            # 校验全部，退出码非 0 表示有 ERROR
     python3 pipeline/validate.py --strict   # WARN 也算失败
 
@@ -11,7 +11,7 @@
   3. 状态枚举：项目 status 必须是 L1-L9
   4. 去重：主键唯一（site_id / company_id / 序列+时点 等）
   5. 引用完整性：contracts.parties / projects.developer 引用的 company_id 是否存在
-  6. 保鲜度：verified_date 超过阈值告警（L6-L9 项目 90 天，L3-L5 项目 180 天，价格 30 天）
+  6. 保鲜度：verified_date 超过阈值告警（L6-L9 项目 90 天，L3-L5 项目 180 天，价格按序列频率）
 """
 import csv
 import json
@@ -24,9 +24,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 
-STATUS_LEVELS = {f"L{i}" for i in range(1, 10)}
-GRADES = {"regulatory", "company", "research", "media", "estimate"}
-FRESH_DAYS = {"project_late": 90, "project_early": 180, "price": 30, "default": 365}
+from data_policy import STATUS_LEVELS, SOURCE_GRADES as GRADES, FRESH_DAYS
 
 errors, warns = [], []
 

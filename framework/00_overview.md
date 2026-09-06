@@ -1,6 +1,8 @@
 # 研究框架总览 v2 - 全行业研究与兼容模块
 
-> 2026-09-06 用户采用生效。完整依据：[研究架构 v2](../docs/reviews/2026-09-06/RESEARCH_ARCHITECTURE_V2.md)。本文件替代旧“15 模块永久 MECE、仅 M15 可跨模块引用”的规则；代码与服务是否已部署须另查验收记录。
+> CURRENT · 2026-09-06。规则归属与替代关系见 framework/CURRENT.md。
+
+> 2026-09-06 用户采用生效。完整依据：[研究架构 v2](../docs/reviews/2026-09-06/RESEARCH_ARCHITECTURE_V2.md)。本文件定义当前的五视角与局部划分；代码与服务是否已部署须另查验收记录。
 
 当前机器执行入口：`research_graph.json`（对象与有类型关系）、`research_questions.json`（稳定问题与验收）、`data/research_knowledge.json`（正式文档/证据/陈述/回答）。Spark 结果进入候选快照，不能自动改写正式采用记录。研究工作台为 `research.html`，两个 3D 使用同一节点 ID；旧模块文件与 Finding 按兼容视图保留。
 
@@ -79,16 +81,5 @@ P 的浏览目录按园区与资源接入、建筑与安全、机房与设施、
 
 新词先判断别名、型号、实例、关系或方案条件，再考虑新增类别。边界变更须有理由、来源、受影响问题/对象、旧新 ID 映射、版本、生效日期与复核记录；正式声明与实现同步，不能在单次阅读中无记录造目录。旧资料身份与阅读结果保留。
 
-## 历史与变更记录
 
-- 2026-09-06 用户采用 v2：五视角、局部 MECE、跨模块可追溯引用、数字/非数字证据与双向研究生效；保留旧模块 ID 和现行口径/C3。
-- 2026-08-18 bom v1.1：与产品研究目录项目对齐（对齐包 docs/inbox/inresearch-alignment/）。
-  ① bom.json 新增 14 部件节点（dram/ssd/hdd/storage-array/switch-asic/copper-interconnect/
-  cabling/coolant/immersion/fan-vc/leak-detection/modular-dc/fpga/interconnect-chip），
-  删除 storage 节点（拆为 ssd/hdd/storage-array）；② hbm 公司勘误：原挂 nvidia/amd 是用户
-  不是制造商，改挂 samsung/sk-hynix/micron/cxmt；③ 全部节点按 data/products.json 聚合回填
-  companies。理由：对方项目按供应链轴建产品 spec 库，爆炸图"部件→厂商→产品→资料"下钻
-  需要部件粒度与其 9 环节对齐；两项目仅靠 company_id + bom_part_id 锚定（bom.json 为
-  bom_part_id 唯一定义源）。模块边界不变，15 模块 MECE 骨架不动。
-- 2026-08-14 v1.0：初版 15 模块，基于 Q1–Q35 报告（8 个物理模块）+ 五个补强维度
-  （资本、中国、Token 经济、有效算力、运营执行）+ 网络独立成模块。
+历史沿革见 `docs/archive/`；当前规则归属与替代记录见 [CURRENT](CURRENT.md)。

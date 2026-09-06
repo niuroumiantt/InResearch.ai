@@ -1,3 +1,5 @@
+> HISTORICAL — 历史快照，不作为当前指令。现行入口为 framework/CURRENT.md。
+
 # InResearch.ai —— 数据中心研究产品
 
 本仓库只承载 **inresearch.ai** 一个产品，代码就在仓库根。inews.today 是另一个独立产品，
@@ -18,8 +20,6 @@
 2026-09-06 已上线[五视角研究工作台](https://inresearch.ai/research.html)，两个 3D 已接入节点问题与证据。
 Spark 常驻 reader 与五分钟候选同步已启动。版本、测试和真实资料边界见[实施记录](docs/reviews/2026-09-06/IMPLEMENTATION.md)。
 
-当前规则入口：[CURRENT](framework/CURRENT.md) · [在册清单](docs/REPOSITORY_REGISTER.md)；更新性决策须同步规范、源码和清单，旧执行正文已归档。
-
 ## 核心思想
 
 > **身份稳定，问题与证据持续更新，框架有版本地演进。**
@@ -31,7 +31,7 @@ Spark 常驻 reader 与五分钟候选同步已启动。版本、测试和真实
 ```
 L4 监测层   index.html 仪表盘 + framework/indicators.json 阈值预警
 L3 输出层   reports/ — 报告 = 从知识层按角度导出的产物（PDF / PPT / Word / 公众号）
-L2 模块层   framework/modules/（定义：问什么）+ research/（兼容 Finding 与模块报告）
+L2 模块层   framework/modules/（定义：问什么）+ research/（知识层：答什么——项目主体）
 L1 方法论层 framework/01_data_standards.md 口径规则 + 02_knowledge_format.md 知识格式
 L0 数据层   data/ — 六张实体表（项目/公司/价格/政策/合同/来源），实体为主键
 ```
@@ -134,5 +134,34 @@ python3 pipeline/serve.py           # 站点 + 管理 API（含派工 /api/assig
 
 进度分别报告对象覆盖、原文证据、问题验证、阅读履约和应用/交付能力，按 scope_version 冻结分母；关键未知不得用文件量掩盖。实现、迁移和服务状态以最新验证记录为准。
 
+## 历史路线图（2026-08 快照，不是当前完成状态）
 
-历史路线图见 `docs/archive/2026-09-06/README.md`，不表示当前完成状态。
+历史“全库触达/通读完成”不等于按当前标准全部深读，也不能证明原件现存位置；以下数字保留历史语境，当前以盘点和阅读台账为准。
+
+> ## 路线图（2026-08-15 对账刷新；总方向见 docs/DECISIONS.md）
+>
+> - [x] 第一阶段：立规矩——框架文档 + 口径手册 + 六表 schema + 种子数据 + 仪表盘骨架
+> - [x] 第二阶段：数据层做实——项目库 120 条（台账迁入+全球补录）；CIK 真缺口清零；
+>       news 信源桥接；EDGAR 采集脚本就绪（云端被屏蔽，须本机 launchd 跑）
+> - [x] 第三阶段：五个新模块首版研究——M10-M15 全部有 Finding（全库 75 条），
+>       薄弱模块（M10/M11/M13/M14）已各补量化专条
+> - [x] 第三阶段半：知识运转机制——核验队列（verify.py）+ 精读队列（reading_queue.py）
+>       双入口；9 分文献 8/8 消化；决策日志（docs/DECISIONS.md）防会话失忆
+> - [x] 第三阶段末：**研报库全库通读完结**（2026-08-16）——28,759 份触达率 100%，
+>       完结报告见 `docs/LIBRARY_REPORT.md`（含重构后的 orgchart、分类标准全文、
+>       信源价值榜与各模块「接下来怎么用」）
+> - [x] 第四阶段前置件（2026-08-17）：**声明式架构 + 事实层 + 团队化管线**
+>       - 模块是声明，**工单 = 声明 − 现状**，由 `workorder.py` 生成，任何人不手写
+>       - **事实层**（`metrics.json` + `facts.json` + `facts.py`）：原子从「一份文件」
+>         变成「一个事实」；口径维度按指标声明，**口径不同的数拒绝并列**
+>       - 阅读深度五档（精读/据实生成/半自动/目录级/成员精读）**永不混引**
+>       - 投递契约 + 三档分流 + 派工看板（`team.html` + `/api/assign`）
+>       - 盲区体检：找「库里有、但分类器看不见」的材料
+> - [ ] 第四阶段：team work 化——按模块分工给不同负责人，PR 提交 → 用户 merge 进 core
+>       （CODEOWNERS 已铺底，待人员到位与分支协作规范细化）
+> - [ ] 第四阶段半：全库通读的三个尾巴——151 份图片型 PDF 走视觉读；
+>       T2 层 AI与算力 3,858 份（最大未读块）；SemiAnalysis 剩余 163 份（单位价值最高）
+> - [ ] 第五阶段：输出管线——PDF/PPT/Word 模板化生成（reports/templates 待做）；
+>       季度更新节奏；仪表盘上线 VPS（wentian.ai）
+> - [ ] 第六阶段：产品打磨——dashboard 美化整理；爆炸图交互升级
+>       （漂亮的人机互动、快速进入待探索领域）

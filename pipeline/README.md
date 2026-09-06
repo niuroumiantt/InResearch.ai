@@ -23,8 +23,8 @@
 | `intake.py` | 按需 | 成员投递机检与三档分流（A 人批 / B 模型批抽 10% / C 自动）；`--selftest` 自检 |
 | `facts.py` | 按需 | 事实层校验 + 可比性判定；`--public` 对外口径预览 |
 | `scan_inbox.py` | 按需 | 扫描收件箱 docs/inbox 新材料 |
-| `reading_queue.py` | 按需 | 精读队列 = 已打分 − 已消化，该读什么 |
-| `launch_reader.py` | 按需 | 开新 Terminal 启动本地精读会话。**仅本机**（macOS 专用路径，服务器上必失败）|
+| `reading_queue.py` | 按需 | 旧评分账本的迁移队列；只排序，不豁免逐篇深读 |
+| `launch_reader.py` | 按需 | 查询 Spark 常驻阅读状态；启动和守护见 SPARK_OPERATIONS.md|
 | `output_map.py` | 按需 | Top N 数据中心世界地图 → HTML + PDF。**PDF 仅本机**（无头 Chrome 渲染）|
 | `build_library_index.py` | 按需 | 重建研报库索引 docs/LIBRARY_INDEX.md。**仅本机**（库本体不进 git）|
 | `fix_stale_paths.py` | 按需 | 修打分表死路径：按文件名在库内重定位，唯一匹配才改写。**仅本机**（同上）|

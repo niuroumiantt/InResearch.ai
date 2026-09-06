@@ -1,5 +1,7 @@
 # 文献阅读、评分与采用标准 v3
 
+> CURRENT · 2026-09-06。规则归属与替代关系见 framework/CURRENT.md。
+
 > 2026-09-06 用户采用生效。依据：[研究架构 v2](../docs/reviews/2026-09-06/RESEARCH_ARCHITECTURE_V2.md)；常驻执行见 [RUN_TO_COMPLETION](../docs/local_reader/RUN_TO_COMPLETION.md)。本标准替代 v2 的低分过滤、凭摘要判 depth、分数驱动物理改名与“精读即可直接引用”规则。现行口径和 C3 采用门槛不变。
 
 ## 1. 所有独立文章都深读

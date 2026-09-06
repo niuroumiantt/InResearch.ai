@@ -9,13 +9,13 @@ verify 管"数据该不该重新查证"）。零依赖。collect.py 复用本模
     python3 pipeline/verify.py --all        # 包含 P3（未到期但临近的记录）
 
 优先级规则：
-  P1  争议记录（disputed）；核验超期的记录（项目 L6-L9 超90天 / L1-L5 超180天 / 价格超30天）
+  P1  争议记录（disputed）；核验超期的记录（项目 L6-L9 超90天 / L1-L5 超180天 / 价格按声明频率）
   P2  仅有 media/estimate 级来源的记录；单一来源且级别低于 research 的记录
   P3  距离超期不足 20% 余量的记录（--all 时显示）
 
 核验动作（对每条队列项）：
   1. 打开记录列出的 source_url，核对关键数字/状态是否仍然成立
-  2. 有变化 → 更新字段 + status_history + 换/增来源；无变化 → 仅更新 verified_date
+  2. 有变化 → 保留前版与 status_history，核对冲突后新增来源/修订字段；无变化 → 仅更新 verified_date
   3. 保存后运行 python3 pipeline/validate.py 把关
 """
 import json
@@ -27,33 +27,9 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 OUT = ROOT / "reports" / "verify_queue.md"
 
-FRESH = {"project_late": 90, "project_early": 180, "default": 365}
+from data_policy import FRESH_DAYS as FRESH, PRICE_FRESH, price_series_freq, price_series_limit
+
 LOW_GRADES = {"media", "estimate"}
-
-# 价格序列保鲜阈值（天）：按更新频率区分。记录可用 frequency 字段显式声明，
-# 否则按 series_id 推断。年度序列给足财报披露滞后（一年 + 约 3 个月）。
-PRICE_FRESH = {"annual": 455, "quarterly": 150, "monthly": 45, "spot": 30, "default": 365}
-
-
-def price_series_freq(r):
-    """推断价格序列的更新频率：显式 frequency 字段优先，否则按 series_id 命名推断。"""
-    f = r.get("frequency")
-    if f in PRICE_FRESH:
-        return f
-    sid = r.get("series_id", "")
-    if "annual" in sid or sid.startswith("delloro-capex"):
-        return "annual"
-    if sid.startswith(("dc-rent", "vacancy-rate")):
-        return "quarterly"
-    if sid.startswith(("gpu-hourly", "token-price")):
-        return "quarterly"  # 牌价/现货：季度扫一遍已足够灵敏，日常变化走信号管线
-    if "lead-time" in sid or sid.startswith("construction-cost"):
-        return "quarterly"
-    return "default"
-
-
-def price_series_limit(r):
-    return PRICE_FRESH[price_series_freq(r)]
 
 
 def days_since(datestr):

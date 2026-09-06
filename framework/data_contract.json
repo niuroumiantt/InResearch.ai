@@ -1,0 +1,19 @@
+{
+  "version": "2.0.0",
+  "effective_at": "2026-09-06",
+  "source_grades": ["regulatory", "company", "research", "media", "estimate"],
+  "project_statuses": ["L1", "L2", "L3", "L4", "L5", "L6", "L7", "L8", "L9"],
+  "current_supply_statuses": ["L8", "L9"],
+  "fresh_days": {"project_late": 90, "project_early": 180, "price": 30, "default": 365},
+  "price_fresh_days": {"annual": 455, "quarterly": 150, "monthly": 45, "spot": 30, "default": 365},
+  "price_frequency_rules": [
+    {"contains": "annual", "frequency": "annual"},
+    {"prefixes": ["delloro-capex"], "frequency": "annual"},
+    {"prefixes": ["dc-rent", "vacancy-rate", "gpu-hourly", "token-price", "construction-cost"], "frequency": "quarterly"},
+    {"contains": "lead-time", "frequency": "quarterly"}
+  ],
+  "conflict_policy": "retain_sources_compare_scope_and_review",
+  "universal_vendor_divisor": null,
+  "early_capacity_policy": "raw_disclosures_and_scenario_estimates_separate",
+  "reader_acceptance": "candidate_only"
+}

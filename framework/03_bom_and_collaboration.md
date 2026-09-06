@@ -1,5 +1,7 @@
 # 物理模型、研究关系与协作 v2
 
+> CURRENT · 2026-09-06。规则归属与替代关系见 framework/CURRENT.md。
+
 > 2026-09-06 用户采用生效。依据：[研究架构 v2](../docs/reviews/2026-09-06/RESEARCH_ARCHITECTURE_V2.md)。旧五层 BOM 保留兼容身份，不能作为空间、装配、供应链与商业活动的唯一分类。
 
 ## 模型表达
