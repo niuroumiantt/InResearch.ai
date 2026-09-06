@@ -421,6 +421,8 @@ class Reader:
 
     def _register(self, source, rel, sig):
         # Stage the bytes first, then verify source metadata before archiving them.
+        if shutil.disk_usage(self.data).free < source.stat().st_size + 128 * 1024 * 1024:
+            raise Blocked("insufficient_archive_space")
         staging = private_dir(safe_path(self.data, "originals/.receiving"))
         fd, temp_name = tempfile.mkstemp(prefix="incoming-", suffix=".partial", dir=str(staging))
         tmp = Path(temp_name)
@@ -975,7 +977,7 @@ class Reader:
         with self.transaction():
             n = int(self.conn.execute("SELECT value FROM meta WHERE key='dispatch_count'").fetchone()[0])
             # Every fourth dispatch serves the oldest eligible job, independently of new priorities.
-            order = "j.created,j.job_id" if n % 4 == 0 else "d.priority DESC,j.created,j.job_id"
+            order = "j.created,j.doc_id,j.chunk,j.job_id" if n % 4 == 0 else "d.priority DESC,j.created,j.doc_id,j.chunk,j.job_id"
             row = self.conn.execute("SELECT j.* FROM jobs j JOIN documents d USING(doc_id) WHERE j.state='pending' AND j.available<=? AND d.state NOT IN ('blocked','failed') ORDER BY " + order + " LIMIT 1", (self.clock(),)).fetchone()
             if not row:
                 return None

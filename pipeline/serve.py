@@ -273,8 +273,9 @@ class Handler(SimpleHTTPRequestHandler):
             token = token_path.read_text().strip()
         except OSError:
             return self._json(503, {"ok": False, "error": "reader receiver is not configured"})
-        supplied = self.headers.get('Authorization', '').removeprefix('Bearer ')
-        if len(token) < 32 or not hmac.compare_digest(token, supplied):
+        authorization = self.headers.get('Authorization', '')
+        supplied = authorization.removeprefix('Bearer ')
+        if not authorization.startswith('Bearer ') or len(token) < 32 or not hmac.compare_digest(token.encode(), supplied.encode()):
             return self._json(401, {"ok": False, "error": "invalid reader credential"})
         try:
             size = int(self.headers.get('Content-Length', 0))

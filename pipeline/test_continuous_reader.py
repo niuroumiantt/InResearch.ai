@@ -4,6 +4,7 @@ import contextlib
 import io
 import json
 from pathlib import Path
+import shutil
 import sqlite3
 import tempfile
 import unittest
@@ -417,6 +418,54 @@ class ReaderTests(unittest.TestCase):
         self.assertEqual(self.reader.status()["documents_total"], 1)
         self.assertEqual(self.reader.status()["sources_total"], 2)
         self.assertEqual(self.reader.conn.execute("SELECT COUNT(*) FROM intake_operations WHERE state='committed'").fetchone()[0], 2)
+
+    def test_long_document_hierarchical_synthesis_covers_all_chunks(self):
+        self.reader.chunk_chars = 100
+        text = "服务器数据与完整注释。" * 1600
+        self.put(text=text)
+        self.run_reader()
+        doc = self.first_doc()
+        report = cr.read_json(self.reader.artifact_path(doc["doc_id"], "report.json"))
+        self.assertEqual(report["coverage"]["characters_read"], len(text))
+        self.assertTrue(report["coverage"]["complete"])
+        self.assertGreater(sum(stage == "synthesize" for stage, _ in self.model.calls), 1)
+        levels = list(self.reader.artifact_path(doc["doc_id"], "synthesis").glob("l001-*.json"))
+        self.assertTrue(levels)
+        chunks = [payload["chunk_index"] for stage, payload in self.model.calls if stage == "read"]
+        self.assertEqual(chunks, list(range(len(chunks))))
+
+    def test_backup_restores_catalog_and_views_under_new_root(self):
+        self.put()
+        self.run_reader()
+        backup = self.base / "restore-backup"
+        self.reader.backup(backup)
+        restored_root = self.base / "restored-data"
+        (restored_root / "catalog").mkdir(parents=True)
+        shutil.copyfile(str(backup / "catalog.sqlite"), str(restored_root / "catalog/catalog.sqlite"))
+        for row in cr.read_json(backup / "manifest.json")["files"]:
+            target = restored_root / row["path"]
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(str(backup / row["path"]), str(target))
+        restored = cr.Reader(restored_root, self.base / "restored-state", self.base / "repo", self.model, 0, 200, self.clock).initialize()
+        try:
+            with restored.worker_session():
+                pass
+            doc = restored.doc(self.first_doc()["doc_id"])
+            self.assertTrue((restored_root / doc["library_rel"]).is_symlink())
+            self.assertEqual((restored_root / doc["library_rel"]).resolve(), (restored_root / doc["original_rel"]).resolve())
+            self.assertEqual(restored.status()["counts"], {"complete": 1})
+            self.assertEqual(restored.status()["sources_total"], 1)
+        finally:
+            restored.close()
+
+    def test_long_unicode_filename_remains_within_filesystem_limits(self):
+        name = "非常长的研究资料名称" * 7 + ".txt"
+        self.put(name, "名称测试")
+        self.run_reader()
+        doc = self.first_doc()
+        self.assertEqual(doc["state"], "complete")
+        self.assertEqual(doc["original_name"], name)
+        self.assertLessEqual(len(Path(doc["original_rel"]).name.encode()), 255)
 
     def test_oldest_job_receives_one_in_four_slots(self):
         self.register("old.txt", "旧资料")

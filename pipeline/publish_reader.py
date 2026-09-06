@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 import stat
 import sys
+import subprocess
 import urllib.request
 from urllib.parse import urlsplit
 
@@ -35,6 +36,11 @@ def main():
         reader.conn.execute('BEGIN')
         payload = reader.export_snapshot()
         reader.conn.execute('COMMIT')
+        worker = subprocess.run(['systemctl', '--user', 'is-active', 'inresearch-reader.service'],
+                                capture_output=True, text=True, timeout=10)
+        if worker.returncode:
+            payload['reader']['status'] = 'degraded'
+            payload['reader'].setdefault('recent_failures', []).append({'error_code': 'worker_service_inactive'})
         payload['reader']['release'] = os.environ.get('READER_RELEASE', 'unknown')
         body = encoded(payload).encode('utf-8')
         if len(body) > 64 * 1024 * 1024:
