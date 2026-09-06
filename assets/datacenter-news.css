@@ -8,3 +8,5 @@
 .dc-news-content{position:relative;padding:8px 0 14px 16px;border-left:1px solid var(--line);min-width:0}
 .dc-news-content::before{content:'';position:absolute;left:-3px;top:17px;width:5px;height:5px;border-radius:50%;background:var(--muted)}
 .dc-news article a{display:block;color:var(--text);font-size:14px;line-height:1.65;overflow-wrap:anywhere}.dc-news article small{display:block;margin-top:4px}.dc-news a:hover{text-decoration:underline}.dc-news-list:focus-visible{outline:2px solid var(--text);outline-offset:3px}
+
+.dc-news article+article .dc-news-content::after{content:"";position:absolute;top:0;left:16px;right:0;height:1px;background:var(--line);opacity:.25;pointer-events:none}
