@@ -47,11 +47,10 @@ export function mountObjectNetwork(host,{graph,centerId,onNavigate,onTopic,onBac
   function showVendors(n,group,focus=false){
     const vendors=vendorsForNode(n.id);if(!vendors.length)return;
     clearTimeout(closeTimer);if(anchor && anchor!==group)anchor.setAttribute('aria-expanded','false');anchor=group;group.setAttribute('aria-expanded','true');
-    const title=document.createElement('strong');title.textContent=n.name+' · 厂商';
-    const choices=document.createElement('div');choices.className='rg-node-actions';
+    const choices=document.createElement('div');choices.className='rg-vendor-names';
     for(const v of vendors)choices.append(button(v.name,()=>{hideVendors();onVendor(n.id,v.id);}));
-    const note=document.createElement('small');note.textContent='按产品目录关联，点击查看该厂商产品线。';
-    popup.replaceChildren(title,choices,note,button('关闭厂商入口',()=>{hideVendors();suppressFocus=true;group.focus({preventScroll:true});}));popup.hidden=false;
+    const close=button('×',()=>{hideVendors();suppressFocus=true;group.focus({preventScroll:true});});close.className='rg-vendor-close';close.setAttribute('aria-label','关闭厂商入口');
+    popup.replaceChildren(close,choices);popup.hidden=false;
     const r=group.getBoundingClientRect(),h=host.getBoundingClientRect();
     const left=Math.max(0,Math.min(r.left-h.left,host.clientWidth-popup.offsetWidth));
     popup.style.left=left+'px';popup.style.top=(r.bottom-h.top+4)+'px';
@@ -102,7 +101,7 @@ export function mountObjectNetwork(host,{graph,centerId,onNavigate,onTopic,onBac
     const addNode=(n,centerNode=false)=>{
       let moreTrigger;
       const pos=positions.get(n.id),group=svgEl('g',{transform:`translate(${pos.x},${pos.y})`,class:'rg-network-node'+(centerNode?' rg-network-center':''),tabindex:0,role:'button','aria-label':centerNode?'当前中心：'+n.name:n.topic_id?'研究角度：'+n.name:'以 '+n.name+' 为中心','data-node-id':n.id});
-      group.append(svgEl('title',{},n.name+'\n'+n.id),svgEl('rect',{x:centerNode?-105:-84,y:-34,width:centerNode?210:168,height:68,style:'rx:var(--ui-radius,10px)'}));
+      group.append(svgEl('rect',{x:centerNode?-105:-84,y:-34,width:centerNode?210:168,height:68,style:'rx:var(--ui-radius,10px)'}));
       const chars=Array.from(n.name),cut=Math.ceil(Math.min(chars.length,24)/2),lines=chars.length>11?[chars.slice(0,cut).join(''),short(chars.slice(cut).join(''),12)]:[n.name];
       lines.forEach((line,i)=>group.append(svgEl('text',{x:0,y:(lines.length>1?-5:2)+i*19,'text-anchor':'middle',class:'rg-network-node-name'},line)));
       const vendors=vendorsForNode(n.id);
