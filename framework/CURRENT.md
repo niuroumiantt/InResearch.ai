@@ -1,6 +1,6 @@
 # 当前研究与执行基准
 
-> CURRENT · 基准版本 2026.09.06.3 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
+> CURRENT · 基准版本 2026.09.06.4 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
 
 ## 从哪里读当前规则
 
@@ -12,6 +12,7 @@
 | 3D 与产品映射 | [03 对象与协作](03_bom_and_collaboration.md) | 稳定部件 ID、产品线目录、空间/装配/系统关系 |
 | 全文阅读与采用 | [04 阅读标准](04_reading_scoring_standard.md) | Spark 执行协议及 continuous_reader.py |
 | 全站界面与换肤 | [05 界面规范](05_interface_system.md) | site-skin.js / CSS、interface_manifest.json |
+| 产品生态与总览 | [07 产品生态规范](07_product_ecosystems.md) | 生态/技术入口、九主题、厂商索引及旧 ID 映射 |
 | 采集与翻译 | [06 采集规范](06_acquisition.md) | acquisition.py、inews 显式投影、Spark 采集台账 |
 | 运行与部署 | [Spark 操作手册](../docs/local_reader/SPARK_OPERATIONS.md) | deploy/spark-reader/；本地开发见 docs/local_setup/README.md |
 | 规则替代与在册管理 | 本页 | current_state.json、repository_manifest.json、governance.py |
@@ -39,3 +40,5 @@
 - 旧决策、旧全景和旧 reader 指令已移入 `docs/archive/2026-09-06/`。原路径保留当前说明或转向，避免旧链接继续发出操作指令。
 - 在册清单覆盖 Git 源码与记录；不枚举百度网盘、Spark 原件、运行数据库、密钥或本机忽略文件。Spark 资料以内容身份和 SQLite 台账计量，网页候选以收到的快照计量，不能拿源码行数代替。
 - 12 页架构 PDF 是已采用设计的交付快照；持续变更的执行规则以这里登记的现行文档为准。
+
+主规范保留稳定文件名及最后更新日期；新讨论/评审/交付快照文件名以日期开头，必要时加时间。当前状态决定执行依据，日期不授予覆盖权。

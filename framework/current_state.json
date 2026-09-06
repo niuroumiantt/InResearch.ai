@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.06.3",
+  "version": "2026.09.06.4",
   "effective_at": "2026-09-06",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -265,6 +265,27 @@
         "acquisition-legacy"
       ],
       "reason": "采用跨 inews/SEC/GPU 的 Spark 采集架构，替代旧目录桥接和自动直写价格；分阶段实施。"
+    },
+    {
+      "id": "product-ecosystems-20260906",
+      "topic": "product-ecosystems",
+      "status": "current",
+      "scope": "project",
+      "effective_at": "2026-09-06",
+      "source": "framework/07_product_ecosystems.md",
+      "implementations": [
+        "framework/research_graph.json",
+        "framework/research_questions.json",
+        "assets/research-graph.js",
+        "pipeline/research.py",
+        "pipeline/research_navigation.py",
+        "index.html",
+        "admin/product/index.html",
+        "bom3d.html",
+        "rack3d.html"
+      ],
+      "supersedes": [],
+      "reason": "用户采用产品生态与非等深细分；替代架构总览及对象契约中相关混合分类，保留旧身份。"
     }
   ],
   "entrypoints": [

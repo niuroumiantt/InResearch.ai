@@ -299,7 +299,10 @@ def build_catalog(root, graph):
     def mapping(row):
         parts = sorted(set(strings(row.get('bom_parts')) + strings(row.get('bom_part'))))
         mapped = sorted({'part:' + part for part in parts if 'part:' + part in objects})
-        unresolved = sorted(set(parts) - {oid[5:] for oid in mapped})
+        for extra in graph.get('catalog_topic_mappings', []):
+            if (row.get('company_id'), row.get('product_line')) == (extra['company_id'], extra['product_line']):
+                mapped = sorted(set(mapped) | set(extra['object_ids']))
+        unresolved = sorted(set(parts) - {oid[5:] for oid in mapped if oid.startswith('part:')})
         related, pending = set(mapped), list(mapped)
         while pending:
             for target in parents.get(pending.pop(), set()):
@@ -308,6 +311,9 @@ def build_catalog(root, graph):
                 if target not in related and node and not target.startswith(('workload:', 'demand:', 'activity:')):
                     related.add(target)
                     pending.append(target)
+        for domain in graph.get('hardware_domains', []):
+            if set(mapped) & set(domain['object_ids']):
+                related.add(domain['node_id'])
         return dict(object_ids=mapped, related_object_ids=sorted(related), unmapped_bom_parts=unresolved,
                     mapping_basis='explicit_bom' if mapped else 'unmapped',
                     mapping_status='needs_review' if unresolved or not mapped else 'registered_bom')

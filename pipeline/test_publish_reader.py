@@ -39,7 +39,7 @@ class PublisherTests(unittest.TestCase):
         snapshot = self.publish()
         self.assertEqual('qwen3-vl:8b', snapshot['reader']['backend']['ocr_model'])
         self.assertEqual('qwen3.8:27b', snapshot['reader']['backend']['model'])
-        self.assertEqual('2.0.0', snapshot['graph_version'])
+        self.assertEqual(json.loads((Path(__file__).resolve().parents[1] / 'framework/research_graph.json').read_text())['version'], snapshot['graph_version'])
         self.assertEqual([], snapshot['knowledge']['answers'])
 
     def test_stopped_worker_is_not_reported_as_healthy_idle(self):

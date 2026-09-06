@@ -19,7 +19,7 @@ class ResearchNavigationTests(unittest.TestCase):
         def ids(groups):
             return [oid for g in groups for oid in g['object_ids'] + ids(g['children'])]
         physical = ids(self.graph['navigation']['P'])
-        self.assertEqual(len(physical), 50)
+        self.assertEqual(set(physical), {o["id"] for o in self.graph["objects"] if "P" in o.get("views", [])})
         self.assertTrue(all(x.startswith(('part:', 'space:')) for x in physical))
         self.assertEqual(len(ids(self.graph['navigation']['R'])), len(self.graph['objects']))
 
@@ -55,3 +55,23 @@ class ResearchNavigationTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+class HardwareEcosystemTests(unittest.TestCase):
+    def setUp(self):
+        self.graph = json.loads((Path(__file__).resolve().parents[1] / 'framework/research_graph.json').read_text())
+
+    def test_every_hardware_has_one_primary_ecosystem(self):
+        self.assertEqual(validate_navigation(self.graph), [])
+        self.graph['hardware_domains'][0]['object_ids'].append('part:cpu')
+        self.assertTrue(any('duplicate primary' in e for e in validate_navigation(self.graph)))
+
+    def test_deleted_drilldown_target_is_rejected(self):
+        node = next(o for o in self.graph['objects'] if o['id'] == 'part:cpu')
+        node['research_sections'][0]['object_ids'].append('arch:missing')
+        self.assertTrue(any('unknown target' in e for e in validate_navigation(self.graph)))
+
+    def test_memory_topics_are_not_universal_gpu_assembly_claims(self):
+        edges = [r for r in self.graph['relations'] if r['source'] in ('part:lpddr', 'part:gddr')]
+        self.assertFalse(any(r['type'] == 'part_of' and r['target'] == 'part:gpu-device' for r in edges))
+        ids = {o['id'] for o in self.graph['objects']}
+        self.assertTrue({'part:ssd','part:ssd-drive','part:nand','part:ssd-controller'} <= ids)
