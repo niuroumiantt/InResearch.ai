@@ -372,7 +372,7 @@ async function startWorkbench() {
   const params = new URLSearchParams(location.search);
   const state = { view: Object.hasOwn(VIEW_INFO, params.get("view")) ? params.get("view") : "P",
     selected: params.get("node") || "", tab: params.get("tab") || "network", trail: [],
-    networkHistory: [], topicFilter: params.get("topic") || "", expanded: new Map(), productQuery: "", productCompany: "", productLimit: 24 };
+    networkHistory: [], topicFilter: params.get("topic") || "", expanded: new Map(), productQuery: "", productCompany: params.get("company") || "", productLimit: 24 };
   search.value = params.get("q") || "";
   let index, data;
   const tabInfo = { network: "研究图谱", overview: "产品与行业总览", relations: "对象关系", products: "产品与厂商", questions: "研究问题", materials: "材料与证据", statements: "陈述与回答", tasks: "缺口任务" };
@@ -380,6 +380,7 @@ async function startWorkbench() {
   function saveURL() {
     const q = new URLSearchParams({ node: state.selected, view: state.view, tab: state.tab });
     if (search.value) q.set("q", search.value);
+    if (state.tab === "products" && state.productCompany) q.set("company", state.productCompany);
     if (state.tab === "questions" && state.topicFilter) q.set("topic", state.topicFilter);
     history.replaceState(null, "", location.pathname + "?" + q.toString());
   }
@@ -540,8 +541,8 @@ async function startWorkbench() {
       if (rows.length > state.productLimit) more.append(button("再显示 24 条（剩余 " + (rows.length - state.productLimit) + "）", () => { state.productLimit += 24; renderResults(); }));
       more.append(button("查看全部产品线与厂商", () => openNode("activity:V2", "V")), link("产品采集库", "admin/product/"));
     }
-    input.addEventListener("input", () => { state.productQuery = input.value; state.productLimit = 24; renderResults(); });
-    select.addEventListener("change", () => { state.productCompany = select.value; state.productLimit = 24; renderResults(); });
+    input.addEventListener("input", () => { state.productQuery = input.value; state.productLimit = 24; renderResults(); saveURL(); });
+    select.addEventListener("change", () => { state.productCompany = select.value; state.productLimit = 24; renderResults(); saveURL(); });
     renderResults();
   }
   function renderOverview(section, linked, o) {
@@ -661,6 +662,8 @@ async function startWorkbench() {
     section.append(element("h3", "", tabInfo[state.tab]));
     if (state.tab === "network") mountObjectNetwork(section, {graph:data.graph, centerId:o.id, labelRelation:relText,
       canBack:state.networkHistory.length > 0,
+      vendorsForNode:id=>[...new Map(index.products.filter(p=>strings(p.object_ids).includes(id)).map(p=>[p.company_id,{id:p.company_id,name:p.company_cn || p.company_en || p.company_id}])).values()],
+      onVendor:(id,company)=>{state.networkHistory.push(o.id);openNode(id,"R","products");state.productCompany=company;renderDetail();saveURL();document.querySelector('.rg-product-card')?.focus({preventScroll:true});},
       onBack:()=>{const id=state.networkHistory.pop();if(id)openNode(id,"R","network");},
       onNavigate:id=>{state.networkHistory.push(o.id);openNode(id,"R","network");document.querySelector('.rg-network-center')?.focus({preventScroll:true});},
       onTopic:id=>{state.topicFilter=id;state.tab="questions";renderDetail();saveURL();}
