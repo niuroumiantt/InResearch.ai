@@ -62,14 +62,15 @@
       const button = document.createElement('button'); button.type = 'button'; button.dataset.uiChoice = value;
       button.textContent = label; button.addEventListener('click', () => setPreference({skin: value})); group.append(button);
     }
-    bar.append(group);
+    const controls = document.createElement('div'); controls.className = 'ui-appearance-controls';
+    controls.append(group); bar.append(controls);
     const label = document.createElement('label'); label.htmlFor = 'ui-appearance'; label.textContent = '外观';
     const select = document.createElement('select'); select.id = 'ui-appearance';
     for (const [value, text] of [['light', '浅色'], ['dark', '深色'], ['system', '跟随系统']]) {
       const option = document.createElement('option'); option.value = value; option.textContent = text; select.append(option);
     }
-    select.addEventListener('change', () => setPreference({mode: select.value})); label.append(select); bar.append(label);
-    const note = document.createElement('span'); note.id = 'ui-save-status'; note.setAttribute('role', 'status'); bar.append(note);
+    select.addEventListener('change', () => setPreference({mode: select.value})); label.append(select); controls.append(label);
+    const note = document.createElement('span'); note.id = 'ui-save-status'; note.setAttribute('role', 'status'); controls.append(note);
     const docs = document.createElement('a'); docs.className = 'ui-standard'; docs.href = '/doc.html?f=framework/05_interface_system.md'; docs.textContent = '界面规范'; bar.append(docs);
     document.body.prepend(bar);
     const measure = () => root.style.setProperty('--ui-bar-height', Math.ceil(bar.getBoundingClientRect().height) + 'px');
