@@ -7,15 +7,19 @@ from pathlib import Path
 
 POLICY = 'datacenter-headline-v1'
 DIRECT = re.compile(r"data[ -]?cent(?:er|re)s?|colocation|hyperscal(?:e|er)|数据中心|资料中心|數據中心|智算中心|算力中心|机房|機房", re.I)
-INFRA = re.compile(r"enterprise ssd|server (?:cpu|gpu|rack|memory)|gpu cluster|ai server|hbm[0-9e]*|infiniband|nvlink|cpo|co-packaged optics|800g|1\.6t|coolant distribution unit|direct.to.chip|液冷|冷板|企业级.?ssd|伺服器|服务器|光模块|算力租赁|算力基建|供配电", re.I)
+INFRA = re.compile(r"enterprise ssd|server (?:cpu|gpu|rack|memory)|gpu cluster|ai server|infiniband|nvlink|cpo|co-packaged optics|800g|1\.6t|coolant distribution unit|direct.to.chip|液冷|冷板|企业级.?ssd|伺服器|服务器|光模块|算力租赁|算力基建|供配电", re.I)
 CONTEXT = re.compile(r"server|gpu|compute|rack|hyperscal|data[ -]?cent|ai infrastructure|服务器|机柜|算力|数据中心|智算", re.I)
 SUPPLY = re.compile(r"nand|dram|ssd|controller|power|grid|substation|cooling|ppa|transformer|电网|变电|供电|储能|冷却|控制器|存储", re.I)
+MEMORY = re.compile(r'memory|wafer|semiconductor|dram|gpu|chip|stack|内存|記憶體|存储|芯片|晶圆|運算|运算|堆叠|堆疊', re.I)
+HBM_MODEL = re.compile(r'(?<![a-z0-9])hbm[2-9][a-z0-9]*(?![a-z0-9])', re.I)
+HBM = re.compile(r'(?<![a-z0-9])hbm(?![a-z0-9])', re.I)
 NOISE = re.compile(r"gaming|geforce|playstation|xbox|smartphone|游戏|手机|笔记本|stocks to buy|price target|股价|目标价", re.I)
 
 def classify(row):
     text = str(row.get('title') or '') + ' ' + str(row.get('title_zh') or '')
     if DIRECT.search(text): return '数据中心建设与运营'
     if NOISE.search(text): return None
+    if HBM_MODEL.search(text) or (HBM.search(text) and MEMORY.search(text)): return '数据中心内存供应链'
     if INFRA.search(text): return '数据中心硬件与基础设施'
     if SUPPLY.search(text) and CONTEXT.search(text): return '数据中心供应链'
     return None

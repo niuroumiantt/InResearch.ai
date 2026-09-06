@@ -15,7 +15,7 @@ if (host) {
       if (!feed || ['awaiting_sync','not_initialized'].includes(feed.status)) {meta.textContent = '等待 Spark 新闻同步 · 新闻标题线索不等于已核验结论'; list.replaceChildren();return;}
       const age = Date.now()-Date.parse(feed.exported_at || '');
       const stale = !Number.isFinite(age) || age > 2*3600000 || data.reader?.stale;
-      meta.textContent = `来源 inews.today · ${feed.status !== 'success' ? '同步异常，保留上次结果' : stale ? '同步延迟' : '已同步'} · ${date(feed.exported_at)}${feed.truncated ? ' · 有界窗口，非全部新闻' : ''} · 标题线索，待核验`;
+      meta.textContent = `来源 inews.today · ${feed.status === 'running' ? '同步中，展示上次结果' : feed.status !== 'success' ? '同步异常，保留上次结果' : stale ? '同步延迟' : '已同步'} · ${date(feed.exported_at)}${feed.truncated ? ' · 有界窗口，非全部新闻' : ''} · 标题线索，待核验`;
       const rows = [];
       for (const item of (feed.items || []).slice(0,80)) {
         let url; try {url=new URL(item.url);} catch {continue;}

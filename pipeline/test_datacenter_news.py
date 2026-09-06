@@ -8,7 +8,7 @@ class DatacenterNewsTest(unittest.TestCase):
     def test_boundary(self):
         for title in ['New data centre approved without AI tenant','企业级 SSD 需求增长','NAND demand driven by servers','HBM4 production expands','800G optics demand']:
             self.assertTrue(classify({'title':title}),title)
-        for title in ['OpenAI releases new chatbot','Nvidia stock price target raised','Samsung smartphone NAND launch','SSD gaming sale','Arm launches mobile CPU']:
+        for title in ['OpenAI releases new chatbot','Nvidia stock price target raised','Samsung smartphone NAND launch','SSD gaming sale','Arm launches mobile CPU','HBM Nigeria commissions high-capacity CNG station in Cross River, targets 250 trucks daily']:
             self.assertFalse(classify({'title':title}),title)
     def test_window_withdrawal_and_cluster(self):
         with tempfile.TemporaryDirectory() as root:
