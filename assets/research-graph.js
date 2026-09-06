@@ -1,3 +1,4 @@
+import { mountObjectNetwork } from "./object-network.js";
 /* Shared, read-only research UI. Identity comes from the API; no module-wide
    task counts or marketing documents are promoted to object-level evidence. */
 const VIEW_INFO = {
@@ -76,7 +77,7 @@ function element(tag, cls, text) {
 function button(text, fn, cls = "rg-button") {
   const el = element("button", cls, text); el.type = "button"; el.addEventListener("click", fn); return el;
 }
-export function researchHref(id, view = "P", tab = "overview") {
+export function researchHref(id, view = "P", tab = "network") {
   const q = new URLSearchParams({ node: id, view, tab });
   return "research.html?" + q.toString();
 }
@@ -134,7 +135,9 @@ export async function loadResearch({ refresh = false } = {}) {
   return pendingResearch;
 }
 export function buildResearchIndex(data) {
-  const objects = list(data.graph?.objects), relations = list(data.graph?.relations);
+  const objects = list(data.graph?.objects);
+  const hidden = new Set(objects.filter(o => o.navigation_hidden).map(o => o.id));
+  const relations = list(data.graph?.relations).filter(r => !hidden.has(r.source) && !hidden.has(r.target));
   const questions = list(data.questions), knowledge = data.knowledge || {};
   const documents = list(knowledge.documents), evidence = list(knowledge.evidence);
   const statements = list(knowledge.statements), answers = list(knowledge.answers), tasks = list(data.tasks);
@@ -201,6 +204,7 @@ function viewOfRelation(r) {
   return ["P"];
 }
 export function objectViews(o, index) {
+  if (o.navigation_hidden) return new Set();
   const direct = strings(o.views || o.view_ids || o.view);
   const via = (index.adjacency.get(o.id) || []).flatMap(viewOfRelation);
   const qv = index.questions.filter(q => refs(q).includes(o.id)).flatMap(q => strings(q.views));
@@ -314,18 +318,18 @@ export function mountNodeResearch(container, nodeId) {
   const body = element("div"); body.append(element("p", "", "正在读取这个节点的研究记录…")); container.append(body);
   loadResearch().then(data => {
     if (!container.isConnected || container.dataset.nodeId !== nodeId) return;
-    const index = buildResearchIndex(data), object = index.byId.get(nodeId);
+    const index = buildResearchIndex(data); const resolvedId = index.byId.get(nodeId)?.redirect_to || nodeId; const object = index.byId.get(resolvedId);
     body.replaceChildren();
     if (!object) { body.append(element("p", "", "此类别尚未映射到研究对象。打开工作台查看已有对象。")); return; }
-    const linked = index.forNode(nodeId);
+    const linked = index.forNode(resolvedId);
     const status = element("div", "rg-chips"); status.style.marginTop = "10px";
     status.append(chip(linked.questions.length + " 个问题"), chip(linked.evidence.length + " 条证据"), chip(linked.tasks.length + " 个关联任务"));
     body.append(status);
     if (!linked.evidence.length) body.append(element("p", "", "尚无精确关联证据。公司、产品和模块资料数量不代表该节点已核实。"));
     const neighbors = element("div", "rg-3d-neighbors");
     for (const r of linked.relations.slice(0, 5)) {
-      const other = r.source === nodeId ? r.target : r.source;
-      const direction = r.source === nodeId ? " → " : " ← ";
+      const other = r.source === resolvedId ? r.target : r.source;
+      const direction = r.source === resolvedId ? " → " : " ← ";
       neighbors.append(link(relText(r.type) + direction + (index.byId.get(other)?.name || other),
         researchHref(other, viewOfRelation(r)[0]), ""));
     }
@@ -367,20 +371,21 @@ async function startWorkbench() {
   const objectsEl = document.getElementById("researchObjects");
   const params = new URLSearchParams(location.search);
   const state = { view: Object.hasOwn(VIEW_INFO, params.get("view")) ? params.get("view") : "P",
-    selected: params.get("node") || "", tab: params.get("tab") || "overview", trail: [],
-    expanded: new Map(), productQuery: "", productCompany: "", productLimit: 24 };
+    selected: params.get("node") || "", tab: params.get("tab") || "network", trail: [],
+    networkHistory: [], topicFilter: params.get("topic") || "", expanded: new Map(), productQuery: "", productCompany: "", productLimit: 24 };
   search.value = params.get("q") || "";
   let index, data;
-  const tabInfo = { overview: "产品与行业总览", relations: "对象关系", products: "产品与厂商", questions: "研究问题", materials: "材料与证据", statements: "陈述与回答", tasks: "缺口任务" };
-  if (!Object.hasOwn(tabInfo, state.tab)) state.tab = "overview";
+  const tabInfo = { network: "研究图谱", overview: "产品与行业总览", relations: "对象关系", products: "产品与厂商", questions: "研究问题", materials: "材料与证据", statements: "陈述与回答", tasks: "缺口任务" };
+  if (!Object.hasOwn(tabInfo, state.tab)) state.tab = "network";
   function saveURL() {
     const q = new URLSearchParams({ node: state.selected, view: state.view, tab: state.tab });
     if (search.value) q.set("q", search.value);
+    if (state.tab === "questions" && state.topicFilter) q.set("topic", state.topicFilter);
     history.replaceState(null, "", location.pathname + "?" + q.toString());
   }
   function choose(id, track = true) {
     if (track && state.selected && state.selected !== id) state.trail = [...state.trail, state.selected].slice(-6);
-    state.selected = id;
+    state.selected = index.byId.get(id)?.redirect_to || id; state.topicFilter = "";
     state.productQuery = ""; state.productCompany = ""; state.productLimit = 24;
     expandSelected();
     renderObjects(); renderDetail(); saveURL();
@@ -549,7 +554,7 @@ async function startWorkbench() {
     for (const group of groups) {
       const box = element("div", "rg-card rg-overview-group"); box.append(element("h4", "", group.title));
       const links = element("div", "rg-node-actions");
-      for (const id of strings(group.object_ids)) { const target = index.byId.get(id); if (target) links.append(button(target.name, () => openNode(id, "R", "overview"))); }
+      for (const id of strings(group.object_ids)) { const target = index.byId.get(id); if (target) links.append(button(target.name, () => openNode(id, "R", "network"))); }
       box.append(links); section.append(box);
     }
     if (!groups.length) section.append(element("p", "", "当前以定义、主要方案与产品资料为研究入口；有明确问题和材料后再扩展下一层。"));
@@ -645,7 +650,7 @@ async function startWorkbench() {
     const copyButton = actions.lastElementChild;
     head.append(actions); detail.append(head);
     const nav = element("nav", "rg-detail-tabs"); nav.setAttribute("aria-label", "节点研究内容");
-    const countsByTab = { overview: null, relations: linked.relations.length, products: productSelection.products.length, questions: linked.questions.length, materials: linked.documents.length + linked.evidence.length,
+    const countsByTab = { network: null, overview: null, relations: linked.relations.length, products: productSelection.products.length, questions: linked.questions.length, materials: linked.documents.length + linked.evidence.length,
       statements: linked.statements.length + linked.answers.length, tasks: linked.tasks.length };
     for (const [id, label] of Object.entries(tabInfo)) {
       const b = button(label + (countsByTab[id] === null ? "" : " " + countsByTab[id]), () => { state.tab = id; renderDetail(); saveURL(); }, "rg-detail-tab" + (state.tab === id ? " active" : ""));
@@ -654,14 +659,24 @@ async function startWorkbench() {
     detail.append(nav);
     const section = element("section", "rg-section");
     section.append(element("h3", "", tabInfo[state.tab]));
-    if (state.tab === "overview") renderOverview(section, linked, o);
+    if (state.tab === "network") mountObjectNetwork(section, {graph:data.graph, centerId:o.id, labelRelation:relText,
+      canBack:state.networkHistory.length > 0,
+      onBack:()=>{const id=state.networkHistory.pop();if(id)openNode(id,"R","network");},
+      onNavigate:id=>{state.networkHistory.push(o.id);openNode(id,"R","network");document.querySelector('.rg-network-center')?.focus({preventScroll:true});},
+      onTopic:id=>{state.topicFilter=id;state.tab="questions";renderDetail();saveURL();}
+    });
+    else if (state.tab === "overview") renderOverview(section, linked, o);
     else if (state.tab === "relations") renderRelations(section, linked, o);
     else if (state.tab === "products") renderCatalog(section, o);
     else {
       let records, empty;
       if (state.tab === "questions") {
         section.append(element("p", "rg-caption", "问题通过对象 ID 关联。验收条件说明什么证据足以回答它。"));
-        records = linked.questions.map(r => [r, "问题"]); empty = "此对象尚无关联研究问题。";
+        if (state.topicFilter) {
+          const topic=list(data.graph.research_topics).find(t=>t.id===state.topicFilter);
+          section.append(element("p","rg-caption","当前研究角度："+(topic?.name||state.topicFilter)),button("显示全部问题",()=>{state.topicFilter="";renderDetail();saveURL();}));
+        }
+        records = linked.questions.filter(r=>!state.topicFilter||r.topic_id===state.topicFilter).map(r => [r, "问题"]); empty = state.topicFilter ? "此角度尚无已分类问题；历史未分类问题仍保留在全部问题中。" : "此对象尚无关联研究问题。";
       } else if (state.tab === "materials") {
         section.append(element("p", "rg-caption", "材料是原文件；证据是可定位的内容。已有材料不等于规格或现场安装已核实。"));
         records = [...linked.evidence.map(r => [r, "证据"]), ...linked.documents.map(r => [r, "材料"])];
@@ -700,7 +715,7 @@ async function startWorkbench() {
       }
       status.append(button("刷新", () => load(true)));
       const summary = document.getElementById("researchSummary"); summary.replaceChildren();
-      for (const [value, label] of [[index.objects.length, "研究对象"], [index.questions.length, "问题"], [index.evidence.length, "证据"], [index.tasks.length, "任务"]]) {
+      for (const [value, label] of [[index.objects.filter(o => !o.navigation_hidden).length, "研究对象"], [index.questions.length, "问题"], [index.evidence.length, "证据"], [index.tasks.length, "任务"]]) {
         const stat = element("div", "rg-stat"); stat.append(element("b", "", String(value)), element("span", "", label)); summary.append(stat);
       }
       const catalogEntry = document.getElementById("researchCatalog"); catalogEntry.replaceChildren();
@@ -713,6 +728,7 @@ async function startWorkbench() {
       for (const domain of list(data.graph.hardware_domains)) entries.append(button(domain.name, () => openNode(domain.node_id, "R", "overview")));
       hardware.append(entries);
       if (!state.selected) state.selected = (state.view === "P" && index.byId.has("space:site")) ? "space:site" : index.objects.find(o => inView(o))?.id || index.objects[0]?.id || "";
+      state.selected = index.byId.get(state.selected)?.redirect_to || state.selected;
       expandSelected();
       renderViews(); renderKinds(); renderObjects(); renderDetail(); saveURL();
     } catch (error) {

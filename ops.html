@@ -72,6 +72,8 @@
   .tablewrap { overflow-x: auto; }
 </style>
 <link rel="stylesheet" href="/assets/site-skin.css">
+<link rel="stylesheet" href="assets/datacenter-news.css">
+<script type="module" src="assets/datacenter-news.js"></script>
 </head>
 <body style="--ui-page-inset:24px">
 <div class="wrap">
@@ -142,12 +144,12 @@
 
   <div class="stats" id="stats" style="margin-top:24px"></div>
 
+  <section class="dc-news" data-datacenter-news aria-label="数据中心新闻"></section>
   <div id="briefSection" style="display:none">
     <h2>今日信号 <span id="briefDate" style="font-weight:400;color:var(--muted);font-size:13px"></span></h2>
     <div class="brief-grid">
       <div class="brief-col">
-        <h3>📰 新闻信号 <span class="bmeta" id="newsMeta"></span></h3>
-        <div id="newsSignals"></div>
+        <div class="note">数据中心新闻见上方实时新闻区域。以下 SEC / 核验为历史简报。</div>
       </div>
       <div class="brief-col">
         <h3>🏛️ SEC 文件（近7天）</h3>
@@ -288,11 +290,6 @@ function projectCapacity(p) {
       const brief = await loadJSON("data/brief.json");
       document.getElementById("briefSection").style.display = "";
       document.getElementById("briefDate").textContent = brief.date + "（" + (brief.generated || "").slice(11, 16) + " 生成）";
-      document.getElementById("newsMeta").textContent = `扫描 ${brief.news.scanned_items} 条 / ${(brief.news.scanned_dates || []).length} 天`;
-      document.getElementById("newsSignals").innerHTML = brief.news.entities.slice(0, 8).map(e =>
-        `<div class="sig"><span class="ent">${e.name}</span> <span class="cnt">${e.count} 条</span>` +
-        e.top.slice(0, 2).map(t => `<a href="${t.url}" target="_blank">[${t.source}] ${t.title}</a>`).join("") + `</div>`).join("")
-        || '<div class="note">无信号</div>';
       document.getElementById("secFilings").innerHTML = brief.sec.slice(0, 8).map(f =>
         `<div class="sig"><span class="ent">${f.name}</span> <span class="cnt">${f.form} · ${f.date}</span>` +
         `<a href="${f.url}" target="_blank">查看文件</a></div>`).join("") || '<div class="note">近 7 天无新文件</div>';

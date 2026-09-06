@@ -1,6 +1,6 @@
-# Spark 采集操作（第一阶段）
+# Spark 采集操作
 
-现行规范：[06 采集与翻译](../../framework/06_acquisition.md)。运行数据不进 Git；本阶段不安装周期采集/翻译 worker。
+现行规范：[06 采集与翻译](../../framework/06_acquisition.md)。运行数据不进 Git；新闻标题投影每小时同步；SEC/GPU 和全文翻译不自动调度。
 
 在 Spark 的 `~/code/inresearch.ai` 执行：
 
@@ -19,4 +19,10 @@ GPU 官方搜索需要私有 `VAST_API_KEY`，只放本机私有环境文件/秘
 
 网页“inews / SEC / GPU 采集状态”只读取 Spark 随 reader 发布的摘要。显示的是来源项总数及最近运行，不是全文数、阅读数或采用数。不存在后台采集服务时，不把按钮命名为“启动连续采集”。
 
-`acquisition/catalog.sqlite` 与 `acquisition/blobs` 应纳入异机备份方案。第一阶段不会改动现有 reader 的数据库备份规则，因此原有 reader 备份并不自动覆盖新采集目录；下一阶段上线周期采集前必须补齐备份及恢复验证。
+`acquisition/catalog.sqlite` 与 `acquisition/blobs` 应纳入异机备份方案。第一阶段不会改动现有 reader 的数据库备份规则，因此原有 reader 备份并不自动覆盖新采集目录；新闻定时上线前使用 `backup_acquisition.py --dest /新的备份目录` 在线备份台账与引用原件，校验 SQLite 与 SHA256，再复制至异机并复核清单。此工具不删除旧备份；异机长期轮转与统一备份调度仍须落实。
+
+## 新闻定时同步
+
+部署 `deploy/spark-reader/inresearch-news.service` 和 `.timer` 至 `~/.config/systemd/user/`，执行 `systemctl --user daemon-reload` 与 `systemctl --user enable --now inresearch-news.timer`。上线前先执行服务一次，确认上游接口可用、台账成功、备份可恢复，再启用定时。Spark 现有 reader-publish 每五分钟发布至网站。
+
+`python3 pipeline/sync_datacenter_news.py` 可手动重试。失败记录在 acquisition runs，旧窗口保持；不触碰用户仍在传输的 raw-materials 隐藏目录。首页的同步时间代表完整窗口抓取时间，不能用网页刷新时间冒充。

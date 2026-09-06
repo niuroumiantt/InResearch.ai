@@ -1,5 +1,5 @@
 {
-  "version": "2.1.0",
+  "version": "2.1.1",
   "updated": "2026-09-06",
   "records": [
     {
@@ -5741,9 +5741,9 @@
     {
       "id": "OBJ-ssd-definition",
       "module_id": "M06",
-      "text": "企业级SSD/NAND：定义、组成与边界是什么？哪些对象不属于它？",
+      "text": "企业级 SSD：定义、组成与边界是什么？哪些对象不属于它？",
       "object_ids": [
-        "part:ssd"
+        "part:ssd-drive"
       ],
       "views": [
         "R",
@@ -5758,14 +5758,23 @@
         "scope",
         "composition"
       ],
-      "origin": "object-decomposition"
+      "origin": "object-decomposition",
+      "scope_revision": {
+        "at": "2026-09-06",
+        "previous_object_ids": [
+          "part:ssd"
+        ],
+        "previous_text": "企业级SSD/NAND：定义、组成与边界是什么？哪些对象不属于它？",
+        "reason": "人工核对为原企业级 SSD 产品问题；原混合标签拆分，无正式采用证据被转移。"
+      },
+      "topic_id": "T01"
     },
     {
       "id": "OBJ-ssd-interfaces",
       "module_id": "M06",
-      "text": "企业级SSD/NAND：输入、输出、接口与上下游依赖是什么？哪些条件限制互换？",
+      "text": "企业级 SSD：输入、输出、接口与上下游依赖是什么？哪些条件限制互换？",
       "object_ids": [
-        "part:ssd"
+        "part:ssd-drive"
       ],
       "views": [
         "R",
@@ -5780,14 +5789,23 @@
         "units",
         "conditions"
       ],
-      "origin": "object-decomposition"
+      "origin": "object-decomposition",
+      "scope_revision": {
+        "at": "2026-09-06",
+        "previous_object_ids": [
+          "part:ssd"
+        ],
+        "previous_text": "企业级SSD/NAND：输入、输出、接口与上下游依赖是什么？哪些条件限制互换？",
+        "reason": "人工核对为原企业级 SSD 产品问题；原混合标签拆分，无正式采用证据被转移。"
+      },
+      "topic_id": "T02"
     },
     {
       "id": "OBJ-ssd-performance",
       "module_id": "M06",
-      "text": "企业级SSD/NAND：关键性能、可靠性与失效机制如何测量？结论在哪些工况失效？",
+      "text": "企业级 SSD：关键性能、可靠性与失效机制如何测量？结论在哪些工况失效？",
       "object_ids": [
-        "part:ssd"
+        "part:ssd-drive"
       ],
       "views": [
         "R",
@@ -5802,14 +5820,23 @@
         "operating_conditions",
         "counterevidence"
       ],
-      "origin": "object-decomposition"
+      "origin": "object-decomposition",
+      "scope_revision": {
+        "at": "2026-09-06",
+        "previous_object_ids": [
+          "part:ssd"
+        ],
+        "previous_text": "企业级SSD/NAND：关键性能、可靠性与失效机制如何测量？结论在哪些工况失效？",
+        "reason": "人工核对为原企业级 SSD 产品问题；原混合标签拆分，无正式采用证据被转移。"
+      },
+      "topic_id": "T04"
     },
     {
       "id": "OBJ-ssd-alternatives",
       "module_id": "M06",
-      "text": "企业级SSD/NAND：有哪些替代方案？在同一口径下性能、成本和约束如何比较？",
+      "text": "企业级 SSD：有哪些替代方案？在同一口径下性能、成本和约束如何比较？",
       "object_ids": [
-        "part:ssd"
+        "part:ssd-drive"
       ],
       "views": [
         "R",
@@ -5824,14 +5851,23 @@
         "comparable_scope",
         "tradeoffs"
       ],
-      "origin": "object-decomposition"
+      "origin": "object-decomposition",
+      "scope_revision": {
+        "at": "2026-09-06",
+        "previous_object_ids": [
+          "part:ssd"
+        ],
+        "previous_text": "企业级SSD/NAND：有哪些替代方案？在同一口径下性能、成本和约束如何比较？",
+        "reason": "人工核对为原企业级 SSD 产品问题；原混合标签拆分，无正式采用证据被转移。"
+      },
+      "topic_id": "T04"
     },
     {
       "id": "OBJ-ssd-supply",
       "module_id": "M06",
-      "text": "企业级SSD/NAND：价值如何形成？供应商、制造或交付环节、交期及生命周期成本如何分解？",
+      "text": "企业级 SSD：价值如何形成？供应商、制造或交付环节、交期及生命周期成本如何分解？",
       "object_ids": [
-        "part:ssd"
+        "part:ssd-drive"
       ],
       "views": [
         "R",
@@ -5846,7 +5882,16 @@
         "cost_boundary",
         "time_region"
       ],
-      "origin": "object-decomposition"
+      "origin": "object-decomposition",
+      "scope_revision": {
+        "at": "2026-09-06",
+        "previous_object_ids": [
+          "part:ssd"
+        ],
+        "previous_text": "企业级SSD/NAND：价值如何形成？供应商、制造或交付环节、交期及生命周期成本如何分解？",
+        "reason": "人工核对为原企业级 SSD 产品问题；原混合标签拆分，无正式采用证据被转移。"
+      },
+      "topic_id": "T06"
     },
     {
       "id": "OBJ-hdd-definition",
@@ -9570,6 +9615,27 @@
       "views": [
         "R"
       ]
+    },
+    {
+      "id": "Q-SCOPE-part-ssd-board",
+      "object_ids": [
+        "part:ssd-board"
+      ],
+      "text": "SSD 电路板与板级器件：组成、功能及不同型号的配置差异是什么？",
+      "status": "open",
+      "topic_id": "T02",
+      "module_id": "M06",
+      "origin": "ecosystem-scope",
+      "views": [
+        "R"
+      ],
+      "evidence_requirements": [
+        "primary_source",
+        "locator",
+        "scope",
+        "counterevidence"
+      ],
+      "acceptance": "提供具体型号及拆解或官方材料定位；未知单列，经 C3 核验后采用。"
     }
   ],
   "policy": "ID 固定；旧问题文本与 modules.json 逐字校验。对象专属问题不通过同模块材料或父节点材料自动关闭。"

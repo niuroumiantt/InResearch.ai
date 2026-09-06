@@ -45,8 +45,8 @@ L0 数据层   data/ — 六张实体表（项目/公司/价格/政策/合同/�
 | 路径 | 层 | 作用 |
 |---|---|---|
 | `framework/00_overview.md` | L1-L2 | 全行业五视角、局部 MECE 与 15 模块兼容映射 |
-| `framework/research_graph.json` | 对象/关系 | 117 个对象、139 条有类型关系、八个产品生态及技术话题入口 |
-| `framework/research_questions.json` | 问题 | 448 个稳定问题、对象绑定、验收和证据要求 |
+| `framework/research_graph.json` | 对象/关系 | 现行对象、有类型关系、八个产品生态及后台兼容身份 |
+| `framework/research_questions.json` | 问题 | 449 个稳定问题、对象绑定、验收和证据要求 |
 | `data/research_knowledge.json` | 正式证据 | 文档、证据、陈述与采用回答；运行候选另存非 Git 快照 |
 | `research.html` | 研究工作台 | 五视角分层目录；按节点查看产品与厂商、关系、问题、材料、证据与任务 |
 | `framework/01_data_standards.md` | L1 | **口径与核验规则手册**（每条数据入库必须遵守） |

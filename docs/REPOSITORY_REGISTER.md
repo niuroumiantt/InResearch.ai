@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `pipeline/governance.py --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.06.4。
+> GENERATED · 由 `pipeline/governance.py --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.06.5。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：414。
+在册文件：425。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 12 |
 | 历史快照 | 36 |
-| 运行代码 | 56 |
+| 运行代码 | 62 |
 | 现行规范 | 10 |
-| 项目配置 | 29 |
+| 项目配置 | 33 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 25 |
 | 配套说明 | 30 |
-| 测试 | 10 |
+| 测试 | 11 |
 
 ## 在册记录集合
 
@@ -182,12 +182,12 @@
 | `framework/metrics.json` | metrics | 124 |
 | `framework/modules.json` | modules | 15 |
 | `framework/research_graph.json` | views | 5 |
-| `framework/research_graph.json` | objects | 117 |
-| `framework/research_graph.json` | relations | 139 |
+| `framework/research_graph.json` | objects | 118 |
+| `framework/research_graph.json` | relations | 142 |
 | `framework/research_graph.json` | hardware_domains | 8 |
 | `framework/research_graph.json` | catalog_topic_mappings | 35 |
 | `framework/research_graph.json` | research_topics | 9 |
-| `framework/research_questions.json` | records | 448 |
+| `framework/research_questions.json` | records | 449 |
 | `reports/blindspot.json` | modules | 15 |
 | `reports/workorders.json` | orders | 564 |
 | `research/M01.md` | Finding | 7 |
@@ -220,6 +220,8 @@
 | [CLAUDE.md](../CLAUDE.md) | 现行入口 |
 | [README.md](../README.md) | 配套说明 |
 | `admin/product/index.html` | 运行代码 |
+| `assets/datacenter-news.css` | 运行代码 |
+| `assets/datacenter-news.js` | 运行代码 |
 | [assets/hdri/README.md](../assets/hdri/README.md) | 配套说明 |
 | `assets/hdri/lab.exr` | 静态资源 |
 | `assets/hdri/studio.exr` | 静态资源 |
@@ -228,6 +230,7 @@
 | [assets/models/README.md](../assets/models/README.md) | 配套说明 |
 | `assets/models/manifest.json` | 静态资源 |
 | `assets/models/server_v2_console.glb` | 静态资源 |
+| `assets/object-network.js` | 运行代码 |
 | [assets/panels/README.md](../assets/panels/README.md) | 配套说明 |
 | `assets/panels/server_gpu.png` | 静态资源 |
 | `assets/panels/server_nvme.png` | 静态资源 |
@@ -295,6 +298,8 @@
 | `deploy/Dockerfile` | 项目配置 |
 | [deploy/README.md](../deploy/README.md) | 配套说明 |
 | `deploy/docker-compose.yml` | 项目配置 |
+| `deploy/spark-reader/inresearch-news.service` | 项目配置 |
+| `deploy/spark-reader/inresearch-news.timer` | 项目配置 |
 | `deploy/spark-reader/inresearch-reader-publish.service` | 项目配置 |
 | `deploy/spark-reader/inresearch-reader-publish.timer` | 项目配置 |
 | `deploy/spark-reader/inresearch-reader.service` | 项目配置 |
@@ -548,6 +553,7 @@
 | [pipeline/README.md](../pipeline/README.md) | 配套说明 |
 | `pipeline/acquisition.py` | 运行代码 |
 | `pipeline/auth.py` | 运行代码 |
+| `pipeline/backup_acquisition.py` | 运行代码 |
 | `pipeline/blindspot.py` | 运行代码 |
 | `pipeline/build_library_index.py` | 运行代码 |
 | `pipeline/check_models.py` | 运行代码 |
@@ -555,6 +561,7 @@
 | `pipeline/compare_models.py` | 运行代码 |
 | `pipeline/continuous_reader.py` | 运行代码 |
 | `pipeline/data_policy.py` | 运行代码 |
+| `pipeline/datacenter_news.py` | 运行代码 |
 | `pipeline/export.py` | 运行代码 |
 | `pipeline/facts.py` | 运行代码 |
 | `pipeline/fetch_gpu_prices.py` | 运行代码 |
@@ -575,9 +582,11 @@
 | `pipeline/research_navigation.py` | 运行代码 |
 | `pipeline/scan_inbox.py` | 运行代码 |
 | `pipeline/serve.py` | 运行代码 |
+| `pipeline/sync_datacenter_news.py` | 运行代码 |
 | `pipeline/test_acquisition.py` | 测试 |
 | `pipeline/test_catalog_bridge.py` | 测试 |
 | `pipeline/test_continuous_reader.py` | 测试 |
+| `pipeline/test_datacenter_news.py` | 测试 |
 | `pipeline/test_display_regressions.py` | 测试 |
 | `pipeline/test_governance.py` | 测试 |
 | `pipeline/test_interface_system.py` | 测试 |
@@ -622,5 +631,7 @@
 | [research/SUMMARY.md](../research/SUMMARY.md) | 兼容研究记录 |
 | `scripts/export_inews_research.cjs` | 项目配置 |
 | `team.html` | 运行代码 |
+| `tests/datacenter_news.cjs` | 项目配置 |
 | `tests/hardware_ecosystems.cjs` | 项目配置 |
+| `tests/object_network.cjs` | 项目配置 |
 | `tests/ui_skin.cjs` | 项目配置 |
