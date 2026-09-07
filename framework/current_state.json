@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.07.1",
+  "version": "2026.09.07.2",
   "effective_at": "2026-09-07",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -248,7 +248,7 @@
       "status": "current",
       "source": "framework/06_acquisition.md",
       "scope": "project",
-      "effective_at": "2026-09-06",
+      "effective_at": "2026-09-07",
       "implementations": [
         "pipeline/acquisition.py",
         "pipeline/fetch_news_signals.py",
@@ -271,12 +271,13 @@
         "assets/datacenter-news.css",
         "deploy/spark-reader/inresearch-news.service",
         "deploy/spark-reader/inresearch-news.timer",
-        "index.html"
+        "index.html",
+        "pipeline/test_news_projection.py"
       ],
       "supersedes": [
         "acquisition-legacy"
       ],
-      "reason": "数据中心新闻专属窗口与小时同步替代旧 brief 新闻展示；其他采集/全文仍按阶段推进。"
+      "reason": "用户统一产业生态新闻归 iNews、专业原件归 inresearch；经固定来源验证的专属投影替代重复下游词法筛选，文件导入仍保守，截断保留完整窗口。"
     },
     {
       "id": "product-ecosystems-20260906",

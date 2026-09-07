@@ -5,6 +5,7 @@ Run on Spark: --data-root ~/.local/share/inresearch.ai <command>.
 The separate ledger owns discovery/acquisition; catalog/catalog.sqlite owns reading.
 """
 import argparse
+from dataclasses import dataclass, field
 from datetime import datetime, timezone
 import hashlib
 import json
@@ -22,6 +23,24 @@ from urllib.error import HTTPError
 
 ROOT = Path(__file__).resolve().parent.parent
 SOURCES = ('inews', 'sec', 'gpu')
+INEWS_DATACENTER_URL = 'https://inews.today/api/feeds/datacenter'
+_DIRECT_FEED_PROOF = object()
+
+
+@dataclass(frozen=True)
+class VerifiedNewsProjection:
+    """In-process result of the fixed HTTPS feed fetch, never a JSON authority flag."""
+    payload_json: bytes
+    proof: object = field(repr=False)
+
+
+def trusted_news_selection(metadata):
+    selection = metadata.get('upstream_selection')
+    return (isinstance(selection, dict)
+            and selection.get('url') == INEWS_DATACENTER_URL
+            and selection.get('schema_version') == 1
+            and selection.get('verification') == 'direct_https_feed_v1')
+
 SCHEMA = '''
 CREATE TABLE IF NOT EXISTS items (
  id TEXT PRIMARY KEY, source TEXT NOT NULL, source_key TEXT NOT NULL, kind TEXT NOT NULL,
@@ -117,6 +136,11 @@ def export_news(db_path,days=7,limit=2000):
     finally:con.close()
 
 def import_news(c,payload,question=None):
+    verified = isinstance(payload, VerifiedNewsProjection)
+    if verified:
+        if payload.proof is not _DIRECT_FEED_PROOF:
+            raise ValueError('unverified_news_projection')
+        payload = json.loads(payload.payload_json)
     if payload.get('schema')!='inews-research-signals-v1' or not isinstance(payload.get('articles'),list):raise ValueError('invalid_news_export')
     if len(payload['articles'])>10000:raise ValueError('news_batch_too_large')
     from fetch_news_signals import build_terms,AMBIGUOUS,CONTEXT
@@ -127,11 +151,22 @@ def import_news(c,payload,question=None):
         if not isinstance(title,str) or not row.get('guid') or not row.get('url'):raise ValueError('invalid_news_row')
         matches=sorted({eid for eid,_,term,pat in terms if pat.search(text) and (term.lower() not in AMBIGUOUS or CONTEXT.search(text))})
         # Industry keywords also retain supply-chain leads without a known company match.
-        if not matches and not CONTEXT.search(text) and not classify(row):continue
+        if not verified and not matches and not CONTEXT.search(text) and not classify(row):continue
         allowed={key:row.get(key) for key in ('id','guid','url','title','title_zh','title_zh_profile','domain','publisher','published_at','first_seen_at','lang','cluster_id','relevance','genre')}
+        if verified:
+            allowed['topics'] = row['topics']
         meta={**allowed,'matched_entity_ids':matches,'match_status':'candidate','content_scope':'headline_only','exported_at':payload.get('exported_at'),'export_truncated':payload.get('truncated',False)}
+        if verified:
+            meta['upstream_selection'] = {
+                'url': INEWS_DATACENTER_URL, 'schema_version': 1,
+                'verification': 'direct_https_feed_v1',
+                'window': payload['upstream_window'],
+                'verified_at': payload['exported_at'],
+            }
         ident=c.item('inews',row['guid'],'news_lead',row['url'],title,meta,question=question)
-        c.archive(ident,encoded(allowed),'.json',{'method':'inews_metadata_export','schema':payload['schema']});count+=1
+        request={'method':'inews_metadata_export','schema':payload['schema']}
+        if verified:request['upstream_selection']=meta['upstream_selection']
+        c.archive(ident,encoded(allowed),'.json',request);count+=1
     # Commit the current bounded visibility window only after the whole import succeeds.
     from continuous_reader import atomic_json
     atomic_json(c.home/'news-window.json', {'exported_at':payload.get('exported_at'),
