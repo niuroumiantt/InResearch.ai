@@ -132,7 +132,7 @@ class Handler(SimpleHTTPRequestHandler):
         if "/.hub_secret" in low or "/users.json" in low:
             self._json(404, {"ok": False, "error": "not found"})
             return None
-        if self._norm_path() in {"/assets/site-skin.js", "/assets/site-skin.css"}:
+        if self._norm_path() in {"/assets/site-skin.js", "/assets/site-skin.css", "/assets/InterVariable.woff2", "/assets/Inter-LICENSE.txt"}:
             return ""
         user = auth.session_user(self.headers.get("Cookie"))
         if user:

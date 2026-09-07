@@ -369,6 +369,9 @@ async function startWorkbench() {
   const search = document.getElementById("researchSearch");
   const kindSelect = document.getElementById("researchKind");
   const objectsEl = document.getElementById("researchObjects");
+  const phoneLayout = matchMedia("(max-width:700px)");
+  const compactPanels = () => root.querySelectorAll(".rg-workbench-overview,.rg-object-picker").forEach(panel => { panel.open = !phoneLayout.matches; });
+  compactPanels(); phoneLayout.addEventListener("change", compactPanels);
   const params = new URLSearchParams(location.search);
   const state = { view: Object.hasOwn(VIEW_INFO, params.get("view")) ? params.get("view") : "P",
     selected: params.get("node") || "", tab: params.get("tab") || "network", trail: [],
@@ -390,6 +393,7 @@ async function startWorkbench() {
     state.productQuery = ""; state.productCompany = ""; state.productLimit = 24;
     expandSelected();
     renderObjects(); renderDetail(); saveURL();
+    if (phoneLayout.matches) root.querySelector(".rg-object-picker").open = false;
   }
   function currentNavigation() { return navigationForView(index, data.graph, state.view); }
   function expandSelected() {
@@ -651,6 +655,25 @@ async function startWorkbench() {
     }));
     const copyButton = actions.lastElementChild;
     head.append(actions); detail.append(head);
+    // One object, three practical questions. Each action retains its object and view.
+    const flow = element("nav", "rg-case-flow"); flow.setAttribute("aria-label", "当前对象研究流程");
+    const steps = [
+      ["已知什么", linked.statements.length + linked.answers.length
+        ? `${linked.statements.length} 条陈述 · ${linked.answers.length} 条回答，仍需结合各条证据判断。`
+        : "尚无关联陈述或回答；当前对象的背景说明不代表已核实。", "查看陈述与回答", "statements"],
+      ["此前做了什么", `${linked.documents.length} 份材料 · ${linked.evidence.length} 条证据，沿记录查看原件和来源。`, "查看材料与证据", "materials"],
+      ["现在做哪一步", linked.tasks.length
+        ? `${linked.tasks.length} 个关联任务，打开后按任务状态继续处理。`
+        : linked.questions.length ? `${linked.questions.length} 个研究问题，选择一个问题核对证据缺口。` : "尚无关联任务或问题，可以先核对已有材料。",
+        linked.tasks.length ? "继续处理任务" : linked.questions.length ? "查看研究问题" : "核对已有材料",
+        linked.tasks.length ? "tasks" : linked.questions.length ? "questions" : "materials"],
+    ];
+    steps.forEach(([heading, text, label, tab], i) => {
+      const step = element("section", "rg-case-step" + (i === 2 ? " rg-case-next" : ""));
+      const action = button(label, () => { state.tab = tab; renderDetail(); saveURL(); detail.querySelector(".rg-section")?.scrollIntoView({block:"start"}); });
+      step.append(element("h3", "", heading), element("p", "", text), action); flow.append(step);
+    });
+    detail.append(flow);
     const nav = element("nav", "rg-detail-tabs"); nav.setAttribute("aria-label", "节点研究内容");
     const countsByTab = { network: null, overview: null, relations: linked.relations.length, products: productSelection.products.length, questions: linked.questions.length, materials: linked.documents.length + linked.evidence.length,
       statements: linked.statements.length + linked.answers.length, tasks: linked.tasks.length };
