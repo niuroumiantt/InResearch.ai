@@ -29,9 +29,9 @@ const dir = process.env.UI_QA_DIR;
      const state=await measure(); assert.equal(state.skin,skin);assert.equal(state.theme,mode);assert.equal(state.bar,1);
      const url=page.url();assert.equal(url,settledUrl);
      const geometry=await page.evaluate(()=>({radius:getComputedStyle(document.querySelector('.board,.rg-node,.hud,.card,.kpi')||document.documentElement).borderRadius,icon:getComputedStyle(document.querySelector('.ui-icon-'+(document.documentElement.dataset.uiSkin==='folk'?'attio':'folk'))).display}));
-     if (['index.html','research.html','bom3d.html','rack3d.html'].includes(file)) assert.equal(geometry.radius,skin==='folk'?'0px':'10px',file+' panel geometry');
+     if (['index.html','research.html','bom3d.html','rack3d.html'].includes(file)) assert.equal(geometry.radius,skin==='folk'?'0px':'8px',file+' panel geometry');
      assert.equal(geometry.icon,'none');
-     const expected=skin==='folk'?(mode==='light'?'rgb(250, 249, 246)':'rgb(25, 26, 24)'):(mode==='light'?'rgb(246, 247, 250)':'rgb(17, 21, 28)');assert.equal(state.bg,expected);
+     const expected=skin==='folk'?(mode==='light'?'rgb(250, 249, 246)':'rgb(27, 28, 25)'):(mode==='light'?'rgb(247, 248, 250)':'rgb(21, 24, 30)');assert.equal(state.bg,expected);
      if(dir && ['index.html','research.html','admin/product/index.html','doc.html','bom3d.html','rack3d.html'].includes(file) && mode==='light'){
        await page.waitForTimeout(file.includes('3d')?2200:200);
        await page.screenshot({path:path.join(dir,file.replaceAll('/','-')+'-'+skin+'.png')});
@@ -48,6 +48,13 @@ const dir = process.env.UI_QA_DIR;
  }
  await page.goto(base+'/research.html?node=part:gpu&view=P&tab=tasks');
  await page.locator('.rg-node h2').waitFor();
+ assert.equal(await page.locator('.rg-case-step').count(),3);
+ await page.getByRole('button',{name:'查看陈述与回答',exact:true}).click();
+ assert.equal(new URL(page.url()).searchParams.get('node'),'part:gpu');
+ assert.equal(new URL(page.url()).searchParams.get('view'),'P');
+ assert.equal(new URL(page.url()).searchParams.get('tab'),'statements');
+ await page.getByRole('button',{name:'继续处理任务',exact:true}).click();
+ assert.equal(new URL(page.url()).searchParams.get('tab'),'tasks');
  const before=await page.locator('.rg-node').textContent();const url=page.url();
  await page.getByRole('button',{name:'folk',exact:true}).click();await page.locator('#ui-appearance').selectOption('light');
  assert.equal(await page.locator('.rg-node').textContent(),before);assert.equal(page.url(),url);

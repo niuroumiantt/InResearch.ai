@@ -14,15 +14,19 @@
   <nav aria-label="主导航"><a href="index.html">总览</a><a href="bom3d.html">园区 3D</a><a href="rack3d.html">机柜拆解</a><a href="admin/product/">产品资料</a><a href="ops.html">管理后台</a></nav>
 </header>
 <main id="researchApp">
+  <details class="rg-workbench-overview" open>
+    <summary>工作台概览与产品入口</summary>
   <section class="rg-intro">
     <div><div class="rg-eyebrow">RESEARCH WORKSPACE</div><h1>从对象出发，追到证据</h1><p>在物理结构、系统连接、产业角色和需求之间切换。每条结论都有出处，每处未知都有去向。</p></div>
     <div id="researchSummary" class="rg-summary" aria-live="polite"></div>
   </section>
   <div id="researchStatus" class="rg-status" role="status">正在连接研究服务…</div>
   <div id="researchCatalog" class="rg-catalog-entry"></div>
+  </details>
   <nav id="researchViews" class="rg-views" aria-label="研究视角"></nav>
   <div class="rg-workspace">
     <aside class="rg-sidebar" aria-label="对象目录">
+      <details class="rg-object-picker" open><summary>查找或切换对象</summary>
       <label for="researchSearch">查找对象</label>
       <input id="researchSearch" type="search" placeholder="搜索名称、ID、模块或中文关键词" autocomplete="off">
       <label class="rg-sr-only" for="researchKind">对象类型</label>
@@ -31,6 +35,7 @@
       <div id="researchTreeControls" class="rg-tree-controls"></div>
       <p id="researchNavigationNote" class="rg-navigation-note"></p>
       <div id="researchObjects" class="rg-object-list"></div>
+      </details>
     </aside>
     <article id="researchDetail" class="rg-detail" aria-live="polite"><div class="rg-empty">正在载入对象、关系和研究问题…</div></article>
   </div>

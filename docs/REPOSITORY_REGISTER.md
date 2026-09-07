@@ -1,16 +1,16 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `pipeline/governance.py --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.06.11。
+> GENERATED · 由 `pipeline/governance.py --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.07.1。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：426。
+在册文件：428。
 
 | 身份 | 文件数 |
 |---|---|
-| 静态资源 | 37 |
+| 静态资源 | 39 |
 | 候选与外部输入 | 145 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
@@ -220,6 +220,8 @@
 | [CLAUDE.md](../CLAUDE.md) | 现行入口 |
 | [README.md](../README.md) | 配套说明 |
 | `admin/product/index.html` | 运行代码 |
+| `assets/Inter-LICENSE.txt` | 静态资源 |
+| `assets/InterVariable.woff2` | 静态资源 |
 | `assets/datacenter-news.css` | 运行代码 |
 | `assets/datacenter-news.js` | 运行代码 |
 | [assets/hdri/README.md](../assets/hdri/README.md) | 配套说明 |

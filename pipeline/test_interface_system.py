@@ -37,6 +37,7 @@ class InterfaceContractTests(unittest.TestCase):
             thread.start()
             try:
                 cases={'/assets/site-skin.css':200,'/assets/site-skin.js?v=1':200,
+                       '/assets/InterVariable.woff2':200,'/assets/Inter-LICENSE.txt':200,'/assets/other.woff2':302,
                        '/login':200,'/assets/research.css':302,'/framework/research_graph.json':302,
                        '/api/research':401,'/data/users.json':404,'/assets/.hub_secret':404,
                        '/assets/site-skin.css/../../data/research_runtime.json':404}
