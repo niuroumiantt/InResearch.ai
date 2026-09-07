@@ -80,6 +80,9 @@
     document.querySelectorAll('.topbar a, .rg-topbar nav a').forEach(link => {
       try { if (!link.querySelector('.ui-icon')) link.prepend(icon(routeIcon(new URL(link.href).pathname))); } catch (_) { /* no link mutation */ }
     });
+    const phone = matchMedia('(max-width:700px)');
+    const compact = () => document.querySelectorAll('.ui-mobile-overview').forEach(panel => { panel.open = !phone.matches; });
+    compact(); phone.addEventListener('change', compact);
     apply();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount, {once: true}); else mount();

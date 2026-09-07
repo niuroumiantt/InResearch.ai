@@ -211,3 +211,18 @@ html[data-ui-skin] .metric .val.na{color:var(--ui-muted);font-weight:400}
  html[data-ui-skin] .rg-topbar nav{flex-wrap:nowrap;overflow:auto;width:100%;font-size:12px;padding-bottom:4px}
  .rg-case-step p{max-width:44em}
 }
+
+html[data-ui-skin] td button{white-space:nowrap}
+.ui-mobile-overview>summary{display:none}
+@media(max-width:700px){
+ .ui-mobile-overview>summary{display:list-item;padding:12px 0;color:var(--ui-ink);cursor:pointer}
+ .ui-mobile-overview{margin-bottom:16px;border-block:1px solid var(--ui-line)}
+ .ui-mobile-overview[open] .grid{margin-top:12px}
+ .ui-task-table,.ui-task-table tbody{display:block;width:100%}
+ .ui-task-table tr{display:flex;flex-wrap:wrap;gap:8px 12px;padding:14px 0;border-bottom:1px solid var(--ui-frame)}
+ .ui-task-table tr:first-child{display:none}
+ .ui-task-table td{display:block;border:0;padding:0;min-width:0}
+ .ui-task-table td:nth-child(4){width:100%;order:2;overflow-wrap:anywhere}
+ .ui-task-table td:last-child{margin-left:auto}
+ .ui-task-table td button{min-height:34px}
+}
