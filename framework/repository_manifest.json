@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.07.1",
+  "version": "2026.09.07.2",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -894,8 +894,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 8367,
-      "sha256": "e736fc0316977eeadcf1d9d32d1aa044daaaf65695c160971241ed6d0ec1e95b",
+      "bytes": 9165,
+      "sha256": "69114a16c34639fce917bd20dd351c4bcea6b01a157d80d59f41664660018437",
       "collections": []
     },
     {
@@ -3508,8 +3508,8 @@
     {
       "path": "docs/local_reader/ACQUISITION_OPERATIONS.md",
       "role": "supporting_document",
-      "bytes": 2855,
-      "sha256": "3110e08167e143f05ea5ac9c70cbd3ac26b0b8e9bbf82eaaa1df3674497a566d",
+      "bytes": 3502,
+      "sha256": "87cd34e95b14eb8569d7071116a5a6e837813d05f25f0ea232ae3dd40d65ee0c",
       "collections": []
     },
     {
@@ -3825,8 +3825,8 @@
     {
       "path": "framework/06_acquisition.md",
       "role": "normative",
-      "bytes": 14475,
-      "sha256": "23a5e55faff47c85ba2521031e46bf6746ed6214bcbc9edbb1210cd0b419f672",
+      "bytes": 15546,
+      "sha256": "528c46ac69e6939d9fbbcf6e96ad124afcebe179f22541309b12365c9d8ae9d4",
       "collections": []
     },
     {
@@ -3839,8 +3839,8 @@
     {
       "path": "framework/CURRENT.md",
       "role": "normative",
-      "bytes": 4230,
-      "sha256": "6fd3f623e0bd1ebcd6fa8cc037311498666e4bcc95a3a6fb9acf538b0d872176",
+      "bytes": 4229,
+      "sha256": "ad8745c4aaf213dcf2a97ab91d8bb6c3141d57818b91b3480245f09741db6721",
       "collections": []
     },
     {
@@ -3862,8 +3862,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 10483,
-      "sha256": "512aef0dc5bc77365151d561c5ddd118d3887d4e52e1b040fa4c1a9e870b99eb",
+      "bytes": 10602,
+      "sha256": "ac0bba3210f39854474aac8f3853d3dfff28a50e1d7528095d0f6f66c02df555",
       "collections": [
         {
           "name": "policies",
@@ -4139,8 +4139,8 @@
     {
       "path": "pipeline/acquisition.py",
       "role": "implementation",
-      "bytes": 15361,
-      "sha256": "8c7674d43426f72884879c32a2bb32e623962f3ac1b0b406d19f42a21b9bd64a",
+      "bytes": 16755,
+      "sha256": "fa50ba33da9b2bd437f9e2cf8f5fbd4f340f1730344c742b30d0fbad18bf183e",
       "collections": []
     },
     {
@@ -4209,8 +4209,8 @@
     {
       "path": "pipeline/datacenter_news.py",
       "role": "implementation",
-      "bytes": 4403,
-      "sha256": "ba0c52847aa48ac2f28ce169376022800718fc6c4ece9f329b68fce998718e23",
+      "bytes": 4783,
+      "sha256": "1d6506bb45cb5d9b8482dc4ada20eeee0999774f781579e6830477e18dd7ff4e",
       "collections": []
     },
     {
@@ -4356,8 +4356,8 @@
     {
       "path": "pipeline/sync_datacenter_news.py",
       "role": "implementation",
-      "bytes": 2267,
-      "sha256": "a7bdcbc7b7fd4bf4a0c837e07da3d1bec713c8ccac655378c049379cff2d13c2",
+      "bytes": 5580,
+      "sha256": "7ed2060bd9780fc431708066391a74ba050c9a8c0dd2dc1d34e466dd1a2ab76b",
       "collections": []
     },
     {
@@ -4407,6 +4407,13 @@
       "role": "test",
       "bytes": 3002,
       "sha256": "7758ac3ae4d8b294c5e12f70d1b47f60e84a6df20ebdec27100819f5244b3f57",
+      "collections": []
+    },
+    {
+      "path": "pipeline/test_news_projection.py",
+      "role": "test",
+      "bytes": 7721,
+      "sha256": "74e9d9afa371c0fdfdf1316bedb6ad0f5aa274e15cd2cd74a05c197dad763f60",
       "collections": []
     },
     {
@@ -4846,6 +4853,6 @@
     "retired_entrypoint": 3,
     "source_record": 25,
     "supporting_document": 30,
-    "test": 11
+    "test": 12
   }
 }

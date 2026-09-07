@@ -5,7 +5,7 @@ import sqlite3
 import time
 from pathlib import Path
 
-POLICY = 'datacenter-headline-v1'
+POLICY = 'datacenter-headline-v2'
 DIRECT = re.compile(r"data[ -]?cent(?:er|re)s?|colocation|hyperscal(?:e|er)|数据中心|资料中心|數據中心|智算中心|算力中心|机房|機房", re.I)
 INFRA = re.compile(r"enterprise ssd|server (?:cpu|gpu|rack|memory)|gpu cluster|ai server|infiniband|nvlink|cpo|co-packaged optics|800g|1\.6t|coolant distribution unit|direct.to.chip|液冷|冷板|企业级.?ssd|伺服器|服务器|光模块|算力租赁|算力基建|供配电", re.I)
 CONTEXT = re.compile(r"server|gpu|compute|rack|hyperscal|data[ -]?cent|ai infrastructure|服务器|机柜|算力|数据中心|智算", re.I)
@@ -51,14 +51,19 @@ def feed(root, limit=80):
         for row in rows:
             meta = json.loads(row['metadata'])
             if meta.get('guid') not in ids: continue
-            category = classify(meta)
+            # Only our fixed-origin fetch can create this ledger provenance.
+            # File imports discard provenance flags and retain the legacy filter.
+            from acquisition import trusted_news_selection
+            trusted = trusted_news_selection(meta)
+            category = '数据中心产业新闻' if trusted else classify(meta)
             if not category: continue
             stamp = meta.get('published_at') or meta.get('first_seen_at') or 0
             if not isinstance(stamp,(int,float)) or not time.time()*1000-7*86400000 <= stamp <= time.time()*1000+300000: continue
             selected.append({'id':row['id'], 'url':row['url'], 'title':row['title'],
                 'title_zh':meta.get('title_zh'), 'translation_profile':meta.get('title_zh_profile'),
                 'domain':meta.get('domain'), 'publisher':meta.get('publisher') or meta.get('domain'), 'published_at':stamp,
-                'category':category, 'cluster_id':meta.get('cluster_id')})
+                'category':category, 'cluster_id':meta.get('cluster_id'),
+                'topics':meta.get('topics', []) if trusted else []})
         seen = set()
         for item in sorted(selected,key=lambda r:r['published_at'],reverse=True):
             key = item['cluster_id'] or item['url']
