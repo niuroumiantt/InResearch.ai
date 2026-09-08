@@ -50,7 +50,11 @@ def main():
             if count != item['size'] or digest.hexdigest() != item['sha256']:
                 raise ValueError('checksum mismatch')
             os.replace(folder / 'original.partial', target)
-        if hashlib.file_digest(target.open('rb'), 'sha256').hexdigest() != item['sha256']:
+        digest = hashlib.sha256()
+        with target.open('rb') as stored:
+            for chunk in iter(lambda: stored.read(1024 * 1024), b''):
+                digest.update(chunk)
+        if digest.hexdigest() != item['sha256']:
             raise ValueError('archive checksum mismatch')
         atomic(folder / 'receipt.json', item)
         # A durable marker prevents re-delivery after reader moved the input.
