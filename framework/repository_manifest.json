@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.07.2",
+  "version": "2026.09.08.1",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -144,6 +144,13 @@
           "count": 5
         }
       ]
+    },
+    {
+      "path": "assets/materials.js",
+      "role": "implementation",
+      "bytes": 3095,
+      "sha256": "55d1d9294c3099adc0057f324520cb4b1fa8886df8b445ecc9b08534a5ad42bf",
+      "collections": []
     },
     {
       "path": "assets/models/README.md",
@@ -314,8 +321,8 @@
     {
       "path": "assets/site-skin.js",
       "role": "implementation",
-      "bytes": 7603,
-      "sha256": "f9fb022a8df85d439506f3d21669df964fdf7ca24e0dc7920778dd60869171be",
+      "bytes": 7766,
+      "sha256": "e5f30b383aaf51973bfeede89610e0c57c1a6654b084d1e5e13131d9dc831f6c",
       "collections": []
     },
     {
@@ -795,6 +802,20 @@
       "collections": []
     },
     {
+      "path": "deploy/spark-reader/inresearch-material-intake.service",
+      "role": "project_config",
+      "bytes": 273,
+      "sha256": "7bb15d273773c70489333a229d5f4b756e17ef5f2ab3927abcdc9f09e249d996",
+      "collections": []
+    },
+    {
+      "path": "deploy/spark-reader/inresearch-material-intake.timer",
+      "role": "project_config",
+      "bytes": 156,
+      "sha256": "bb15ed2c25e85e9ec8fc7ea04d0aaebc2aac477d006b7de333b44f87fab087dd",
+      "collections": []
+    },
+    {
       "path": "deploy/spark-reader/inresearch-news.service",
       "role": "project_config",
       "bytes": 394,
@@ -894,8 +915,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 9165,
-      "sha256": "69114a16c34639fce917bd20dd351c4bcea6b01a157d80d59f41664660018437",
+      "bytes": 9400,
+      "sha256": "e99761bcd582c7c1640f87fad516e2d7bde3e9872936558c3fac13c8c3e8810e",
       "collections": []
     },
     {
@@ -3825,8 +3846,8 @@
     {
       "path": "framework/06_acquisition.md",
       "role": "normative",
-      "bytes": 15546,
-      "sha256": "528c46ac69e6939d9fbbcf6e96ad124afcebe179f22541309b12365c9d8ae9d4",
+      "bytes": 16655,
+      "sha256": "bb33428e46eb5bf648d7913a3d514f45734b1067fafab359dcde2bb31c8f716f",
       "collections": []
     },
     {
@@ -3840,7 +3861,7 @@
       "path": "framework/CURRENT.md",
       "role": "normative",
       "bytes": 4229,
-      "sha256": "ad8745c4aaf213dcf2a97ab91d8bb6c3141d57818b91b3480245f09741db6721",
+      "sha256": "e027d1822d9a3abddbf533004b16ac0bb791a42b4709c0548d96c394f134c19c",
       "collections": []
     },
     {
@@ -3862,8 +3883,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 10602,
-      "sha256": "ac0bba3210f39854474aac8f3853d3dfff28a50e1d7528095d0f6f66c02df555",
+      "bytes": 10680,
+      "sha256": "6fff60fb411c6617669edcd3ab5ddaa448896c52f303aace317e88b9541e14a6",
       "collections": [
         {
           "name": "policies",
@@ -3922,12 +3943,12 @@
     {
       "path": "framework/interface_manifest.json",
       "role": "project_config",
-      "bytes": 701,
-      "sha256": "e3612c302bdf62b2505f981c7d63eca7851dc36b2670b0a5b1a541af1160d92a",
+      "bytes": 723,
+      "sha256": "de872a11933bd0effc4273f09ccd770d6051a062e4e154b2d2a6b59bb9b57e53",
       "collections": [
         {
           "name": "static_pages",
-          "count": 12
+          "count": 13
         }
       ]
     },
@@ -4123,6 +4144,13 @@
       "collections": []
     },
     {
+      "path": "materials.html",
+      "role": "implementation",
+      "bytes": 3011,
+      "sha256": "21abc570f8faee0b619673cc0867595c76267874de8893b720a43f77afd74f43",
+      "collections": []
+    },
+    {
       "path": "ops.html",
       "role": "implementation",
       "bytes": 26726,
@@ -4291,6 +4319,13 @@
       "collections": []
     },
     {
+      "path": "pipeline/material_intake.py",
+      "role": "implementation",
+      "bytes": 2613,
+      "sha256": "bc81b6afb10daf62a041298a73901026cdfe49544fa1e020e06c3fb4a7da69ba",
+      "collections": []
+    },
+    {
       "path": "pipeline/output_map.py",
       "role": "implementation",
       "bytes": 7620,
@@ -4309,6 +4344,13 @@
       "role": "implementation",
       "bytes": 3767,
       "sha256": "91e5b2dafb4d995a4bf0374ca3462f96098b972a489540ea7b476251c14a828e",
+      "collections": []
+    },
+    {
+      "path": "pipeline/pull_materials.py",
+      "role": "implementation",
+      "bytes": 3307,
+      "sha256": "1596e2d455ab192ecb16621ad0d0b2a0010ac16997236fed3d72e7544d176715",
       "collections": []
     },
     {
@@ -4349,8 +4391,8 @@
     {
       "path": "pipeline/serve.py",
       "role": "implementation",
-      "bytes": 25247,
-      "sha256": "501ac6660e15c409622c32d06c3f374cb5d32fcaf246b3b72e14daaba2c3cbdd",
+      "bytes": 28464,
+      "sha256": "c5ffe850bb1a170b3ca3c4b190eb996ee204daa690abba7ba75fa8dcc68f5c6f",
       "collections": []
     },
     {
@@ -4407,6 +4449,13 @@
       "role": "test",
       "bytes": 3002,
       "sha256": "7758ac3ae4d8b294c5e12f70d1b47f60e84a6df20ebdec27100819f5244b3f57",
+      "collections": []
+    },
+    {
+      "path": "pipeline/test_material_intake.py",
+      "role": "test",
+      "bytes": 1315,
+      "sha256": "d1bf38340921039d4bc42c81f4f5a626e9ca7e2cb7de2d8907009a4800feee54",
       "collections": []
     },
     {
@@ -4846,13 +4895,13 @@
     "entrypoint": 4,
     "generated": 12,
     "historical": 36,
-    "implementation": 62,
+    "implementation": 66,
     "normative": 10,
-    "project_config": 34,
+    "project_config": 36,
     "research_record": 16,
     "retired_entrypoint": 3,
     "source_record": 25,
     "supporting_document": 30,
-    "test": 12
+    "test": 13
   }
 }

@@ -15,6 +15,7 @@ API（供 ops.html 管理后台调用）：
 import os
 import json
 import auth
+import material_intake
 import hmac
 import math
 import research
@@ -186,7 +187,37 @@ class Handler(SimpleHTTPRequestHandler):
             return self._html(403, auth.FORBIDDEN_PAGE)
         return super().do_HEAD()
 
+    def intake_worker(self):
+        token_path = Path(os.environ.get('INRESEARCH_READER_TOKEN_FILE', ROOT / 'data/.reader_sync_token'))
+        try:
+            token = token_path.read_text().strip()
+        except OSError:
+            token = ''
+        supplied = self.headers.get('Authorization', '').removeprefix('Bearer ')
+        if len(token) < 32 or not hmac.compare_digest(token.encode(), supplied.encode()):
+            self._json(401, {'ok': False, 'error': 'invalid credential'})
+            return False
+        return True
+
     def do_GET(self):
+        if self.path.startswith('/api/intake-worker/'):
+            if not self.intake_worker():
+                return
+            if self.path == '/api/intake-worker/pending':
+                return self._json(200, {'items': [r for r in material_intake.records() if r['status'] == 'queued'][:20]})
+            try:
+                key = self.path.removeprefix('/api/intake-worker/content/')
+                path = material_intake.record_path(key) / 'content'
+                self.send_response(200)
+                self.send_header('Content-Type', 'application/octet-stream')
+                self.send_header('Content-Length', str(path.stat().st_size))
+                self.end_headers()
+                with path.open('rb') as f:
+                    import shutil
+                    shutil.copyfileobj(f, self.wfile)
+                return
+            except (ValueError, OSError):
+                return self._json(404, {'ok': False})
         user = self._gate()
         if user is None:
             return
@@ -216,6 +247,8 @@ class Handler(SimpleHTTPRequestHandler):
             return self._json(200, {"ok": True, "users": [
                 {"name": n, "role": u.get("role", "member"), "created": u.get("created", "?")}
                 for n, u in sorted(users.items())]})
+        if self.path == "/api/materials":
+            return self._json(200, {"items": material_intake.records()[:200]})
         if self.path == "/api/status":
             st = {}
             for t in TASKS:
@@ -231,6 +264,35 @@ class Handler(SimpleHTTPRequestHandler):
         return super().do_GET()
 
     def do_POST(self):
+        if self.path == '/api/intake-worker/ack':
+            if not self.intake_worker():
+                return
+            try:
+                size = int(self.headers.get('Content-Length', 0))
+                if not 0 < size < 4096:
+                    raise ValueError('invalid size')
+                payload = json.loads(self.rfile.read(size))
+                material_intake.acknowledge(payload['id'], payload['sha256'])
+                return self._json(200, {'ok': True})
+            except (ValueError, KeyError, OSError):
+                return self._json(400, {'ok': False})
+        if self.path == '/api/materials':
+            user = self._gate()
+            if user is None:
+                return
+            if user and auth.user_role(user) == 'intern':
+                return self._json(403, {'ok': False, 'error': '需要内部成员权限'})
+            if self.headers.get('X-Requested-With') != 'material-intake':
+                return self._json(403, {'ok': False, 'error': 'invalid request'})
+            try:
+                size = int(self.headers.get('Content-Length', 0))
+                metadata = json.loads(unquote(self.headers.get('X-Material-Metadata', '{}')))
+                if not isinstance(metadata, dict):
+                    raise ValueError('invalid metadata')
+                result = material_intake.receive(self.rfile, size, metadata, user or 'local')
+                return self._json(201, {'ok': True, 'item': result})
+            except (ValueError, OSError) as exc:
+                return self._json(400, {'ok': False, 'error': str(exc)[:200]})
         if self.path == "/api/reader-snapshot":
             return self.api_reader_snapshot()
         user = self._gate()

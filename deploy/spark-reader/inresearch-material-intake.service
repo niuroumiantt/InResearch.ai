@@ -1,0 +1,10 @@
+[Unit]
+Description=Archive website research submissions on Spark
+After=network-online.target
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 %h/.local/share/inresearch.ai/intake-service/pull_materials.py
+UMask=0077
+NoNewPrivileges=yes
+PrivateTmp=yes
+TimeoutStartSec=1800
