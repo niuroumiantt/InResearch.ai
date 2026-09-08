@@ -25,7 +25,7 @@
 
 ## 从 Mac 批量上传（执行机器必须是 Mac）
 
-2026-09-06 批次源目录已由用户在 `m4@m4m` 终端确认：`/Users/m4/Downloads/所有raw materials`，约 267GB，含多级子文件夹。Spark 地址为 `spark@100.73.13.53`。后续批次采用新的批次名，不复用已开放的目录。
+2026-09-06 批次源目录已由用户在 `m4@m4m` 终端确认：`/Users/m4/Downloads/所有raw materials`，约 267GB，含多级子文件夹。Spark 地址为 `spark@100.100.1.2`（tailnet；2026-09-08 infra 重新编号，旧 `100.73.13.53` 已作废，见 infra `docs/network-addressing.md`）。三台 Mac 若已跑过 infra 的 `bootstrap_mac.sh`，`ssh spark` 别名即指向该地址，家中有线直连可用 `spark-lan`（`192.168.50.2`）。后续批次采用新的批次名，不复用已开放的目录。
 
 在**存文件的 Mac**按 Command + 空格，搜索“终端”，打开新窗口。提示符应为 `m4@m4m`；`spark@dgx` 表示仍在 Spark，不能运行 Mac 上传命令。`caffeinate` 是 macOS 的防休眠工具，不在 Spark 安装。
 
@@ -33,7 +33,7 @@
 
 ```bash
 ls -ld "/Users/m4/Downloads/所有raw materials"
-ssh spark@100.73.13.53 'mkdir -p /home/spark/.local/share/inresearch.ai/raw-materials/.m4-20260906.partial'
+ssh spark@100.100.1.2 'mkdir -p /home/spark/.local/share/inresearch.ai/raw-materials/.m4-20260906.partial'
 ```
 
 仍在 Mac 终端上传，源路径末尾斜杠表示传目录内容，保留所有子目录。目录在隐藏暂存区，reader 不会提前读取。输入 SSH 密码时屏幕不显示字符。
@@ -41,7 +41,7 @@ ssh spark@100.73.13.53 'mkdir -p /home/spark/.local/share/inresearch.ai/raw-mate
 ```bash
 caffeinate -i rsync -rtvh --progress --partial \
   "/Users/m4/Downloads/所有raw materials/" \
-  spark@100.73.13.53:/home/spark/.local/share/inresearch.ai/raw-materials/.m4-20260906.partial/
+  spark@100.100.1.2:/home/spark/.local/share/inresearch.ai/raw-materials/.m4-20260906.partial/
 ```
 
 Mac 保持接电、联网、不合盖。中断后重复同一命令续传；不使用 `--delete` 或删除源文件。成功退出后校验全部文件内容，校验可能较慢：
@@ -49,13 +49,13 @@ Mac 保持接电、联网、不合盖。中断后重复同一命令续传；不�
 ```bash
 caffeinate -i rsync -rcn --out-format='%i %n' \
   "/Users/m4/Downloads/所有raw materials/" \
-  spark@100.73.13.53:/home/spark/.local/share/inresearch.ai/raw-materials/.m4-20260906.partial/
+  spark@100.100.1.2:/home/spark/.local/share/inresearch.ai/raw-materials/.m4-20260906.partial/
 ```
 
 仅在校验退出成功、没有差异输出且源目录已停止改动时，才开放本批次：
 
 ```bash
-ssh spark@100.73.13.53 'cd /home/spark/.local/share/inresearch.ai/raw-materials && test ! -e m4-20260906 && mv -T .m4-20260906.partial m4-20260906'
+ssh spark@100.100.1.2 'cd /home/spark/.local/share/inresearch.ai/raw-materials && test ! -e m4-20260906 && mv -T .m4-20260906.partial m4-20260906'
 ```
 
 开放后阅读服务会处理稳定文件。Mac 原始资料继续保留；上传成功不等于已阅读，更不等于 C3 已采用。
