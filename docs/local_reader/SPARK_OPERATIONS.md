@@ -141,6 +141,7 @@ systemctl --user start inresearch-reader.service
 ## 格式与质量边界
 
 - `.txt/.md/.csv/.tsv` 支持 UTF-8/UTF-8 BOM；其他编码或二进制内容明确阻塞。
+- **OCR 排后、限量、不读图纸（2026-09-08 起）**。同一文档首次遇到需要 OCR 的页时不立即 OCR，而是把该文档优先级降为 `1` 并退回队列（`ocr_deferred_behind_text_documents`，不计尝试次数，默认 `READER_OCR_DEFER_SECONDS=300` 秒后可再领取），让有文字层的文档先读完；已抽取的文字页保留缓存。每篇文档 OCR 页数上限 `READER_OCR_MAX_PAGES`（默认 20），超出即阻塞 `ocr_page_budget_exceeded`，放大预算后 `retry` 从已存页继续。页幅短边 ≥ `READER_LARGE_FORMAT_POINTS`（默认 1150 pt，即 A2 及以上）的栅格页判为图纸，不送 OCR，阻塞 `large_format_page_requires_drawing_workflow`，原件照旧保留，等专门的图纸流程。视觉模型返回无法解析的输出按页面属性处理，阻塞 `ocr_output_invalid`，不再重渲染重读三次。这四条的依据：2026-09-06 批次两天只抽取成功 99 篇，时间全耗在 391 份 A0/A1 施工图的双读 OCR 与重试上。
 - PDF 逐页提取；空文本、坏字符或检测到大型栅格图像的页走 OCR。OCR 未配置、不可读、双读空白判断或数字不一致时阻塞。启用例如 `READER_OCR_MODEL=qwen3-vl:8b` 前应核对实际安装模型；当前实现使用两次视觉提取，保存两份文本和模型记录。双读一致不是正确性证明。矢量图表、复杂排版与文字层质量仍须审阅，不能把处理覆盖率当视觉语义验收。
 - `.docx/.pptx/.xlsx`、旧 Office、压缩包与其他格式目前为明确 unsupported。原包仍安全入库保留，不假称已深读。经批准转换/拆包后可投递独立文本/PDF，并另行登记父包关系；当前版本不自动拆包，也不声称已把复合 PDF 分成独立文章。
 - 本服务提供候选阅读与粗分，不执行文件里出现的指令，不运行文档宏，也不自动修改 core facts。深读输出仅从已提供正文引用证据；所有正文块都送入模型，但摘要与候选引用不能替代原文复核。

@@ -262,10 +262,87 @@ class ReaderTests(unittest.TestCase):
             return "Pages: 1\n" if args[0] == "pdfinfo" else ""
         with mock.patch.object(cr.shutil, "which", return_value="/fake/tool"), mock.patch.object(self.reader, "_command", side_effect=fake_command):
             self.run_reader()
+            # First encounter of an OCR page steps aside without spending an attempt.
+            self.assertEqual(self.first_doc()["error_code"], "ocr_deferred_behind_text_documents")
+            self.assertEqual(self.model.ocr.call_count, 0)
+            self.clock.advance(cr.OCR_DEFER_SECONDS + 1)
+            self.run_reader()
         self.assertEqual(self.first_doc()["state"], "complete")
         self.assertEqual(self.model.ocr.call_count, 2)
         page = cr.read_json(self.reader.data / "extracted" / self.first_doc()["doc_id"] / "pages/000001.json")
         self.assertEqual(page["text_second_pass"], "扫描正文 300 W")
+
+    def ocr_ready(self, **ocr_kwargs):
+        self.model.ocr_model = "qwen3-vl:8b"
+        self.model.ocr = mock.Mock(**(ocr_kwargs or {"return_value": {"text": "扫描正文 300 W", "blank": False, "unreadable": False,
+                                                                     "_model": {"actual": "qwen3-vl:8b"}}}))
+
+    def test_scanned_pdf_defers_behind_text_documents(self):
+        self.ocr_ready()
+        self.put("scan.pdf", "%PDF-test-scanned-page")
+        self.reader.scan()
+        self.clock.advance(5)
+        self.put("later.txt")
+        self.reader.scan()
+        def fake_command(args, timeout):
+            return "Pages: 1\n" if args[0] == "pdfinfo" else ""
+        with mock.patch.object(cr.shutil, "which", return_value="/fake/tool"), mock.patch.object(self.reader, "_command", side_effect=fake_command):
+            self.run_reader()
+            docs = {d["suffix"]: dict(d) for d in self.reader.conn.execute("SELECT * FROM documents")}
+            self.assertEqual(docs[".txt"]["state"], "complete")
+            self.assertEqual((docs[".pdf"]["state"], docs[".pdf"]["error_code"], docs[".pdf"]["priority"]),
+                             ("queued", "ocr_deferred_behind_text_documents", cr.OCR_DEFERRED_PRIORITY))
+            job = self.reader.conn.execute("SELECT attempts,state FROM jobs WHERE doc_id=? AND stage='extract'", (docs[".pdf"]["doc_id"],)).fetchone()
+            self.assertEqual(tuple(job), (0, "pending"))
+            self.clock.advance(cr.OCR_DEFER_SECONDS + 1)
+            self.run_reader()
+        docs = {d["suffix"]: dict(d) for d in self.reader.conn.execute("SELECT * FROM documents")}
+        self.assertEqual(docs[".pdf"]["state"], "complete")
+        self.assertEqual(self.model.ocr.call_count, 2)
+
+    def test_ocr_page_budget_blocks_without_fake_coverage(self):
+        self.ocr_ready()
+        self.reader.ocr_max_pages = 1
+        self.register("scan.pdf", "%PDF-test-two-scanned-pages")
+        def fake_command(args, timeout):
+            return "Pages: 2\n" if args[0] == "pdfinfo" else ""
+        with mock.patch.object(cr.shutil, "which", return_value="/fake/tool"), mock.patch.object(self.reader, "_command", side_effect=fake_command):
+            self.run_reader()
+            self.clock.advance(cr.OCR_DEFER_SECONDS + 1)
+            self.run_reader()
+        doc = self.first_doc()
+        self.assertEqual((doc["state"], doc["error_code"]), ("blocked", "ocr_page_budget_exceeded"))
+        self.assertEqual(self.model.ocr.call_count, 2)
+        self.assertIsNone(doc["report_rel"])
+
+    def test_large_format_page_blocks_before_any_ocr(self):
+        self.ocr_ready()
+        doc = self.register("drawing.pdf", "%PDF-test-a1-drawing")
+        self.reader.conn.execute("UPDATE documents SET priority=?", (cr.OCR_DEFERRED_PRIORITY,))
+        self.reader.conn.commit()
+        def fake_command(args, timeout):
+            if args[0] == "pdfinfo" and "-f" in args:
+                return "Page    1 size: 2384 x 1684 pts (A1)\n"
+            return "Pages: 1\n" if args[0] == "pdfinfo" else ""
+        with mock.patch.object(cr.shutil, "which", return_value="/fake/tool"), mock.patch.object(self.reader, "_command", side_effect=fake_command):
+            self.run_reader()
+        doc = self.first_doc()
+        self.assertEqual((doc["state"], doc["error_code"]), ("blocked", "large_format_page_requires_drawing_workflow"))
+        self.assertEqual(self.model.ocr.call_count, 0)
+
+    def test_ocr_invalid_output_blocks_once_instead_of_three_retries(self):
+        self.ocr_ready(side_effect=cr.ModelOutputError())
+        self.register("scan.pdf", "%PDF-test-scanned-page")
+        self.reader.conn.execute("UPDATE documents SET priority=?", (cr.OCR_DEFERRED_PRIORITY,))
+        self.reader.conn.commit()
+        def fake_command(args, timeout):
+            return "Pages: 1\n" if args[0] == "pdfinfo" else ""
+        with mock.patch.object(cr.shutil, "which", return_value="/fake/tool"), mock.patch.object(self.reader, "_command", side_effect=fake_command):
+            self.run_reader()
+        doc = self.first_doc()
+        self.assertEqual((doc["state"], doc["error_code"]), ("blocked", "ocr_output_invalid"))
+        self.assertEqual(self.model.ocr.call_count, 1)
+        self.assertEqual(self.reader.conn.execute("SELECT attempts FROM jobs WHERE stage='extract'").fetchone()[0], 1)
 
     def test_ocr_disagreement_blocks(self):
         self.model.ocr_model = "qwen3-vl:8b"
