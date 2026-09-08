@@ -56,13 +56,14 @@
 **无注册入口**——用户只能由管理员在服务器后台添加：
 
 ```bash
-docker compose exec dchub python3 pipeline/users.py add admin            # 首个用户自动 admin
-docker compose exec dchub python3 pipeline/users.py add intern-zhang     # 之后默认 intern
-docker compose exec dchub python3 pipeline/users.py add lao --role member
-docker compose exec dchub python3 pipeline/users.py role <用户名> <角色>  # 改角色（最后一个 admin 不可降级）
-docker compose exec dchub python3 pipeline/users.py list
-docker compose exec dchub python3 pipeline/users.py passwd <用户名>
-docker compose exec dchub python3 pipeline/users.py remove <用户名>       # 立即踢掉其会话
+# 容器名以 `sudo docker ps` 为准；2026-09-08 生产主机上是 inresearch-host-inresearch-1（旧文档写的 dchub 早已不存在）
+sudo docker exec inresearch-host-inresearch-1 python3 pipeline/users.py add admin            # 首个用户自动 admin
+sudo docker exec inresearch-host-inresearch-1 python3 pipeline/users.py add intern-zhang     # 之后默认 intern
+sudo docker exec inresearch-host-inresearch-1 python3 pipeline/users.py add lao --role member
+sudo docker exec inresearch-host-inresearch-1 python3 pipeline/users.py role <用户名> <角色>  # 改角色（最后一个 admin 不可降级）
+sudo docker exec inresearch-host-inresearch-1 python3 pipeline/users.py list
+sudo docker exec inresearch-host-inresearch-1 python3 pipeline/users.py passwd <用户名>
+sudo docker exec inresearch-host-inresearch-1 python3 pipeline/users.py remove <用户名>       # 立即踢掉其会话
 ```
 
 **三个角色（2026-08-18 云端设计，用户委托）**：
