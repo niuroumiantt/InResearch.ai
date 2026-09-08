@@ -31,6 +31,13 @@ MODEL = "qwen3.8:27b"
 CONTEXT = 32768
 MAX_RESPONSE = 4 * 1024 * 1024
 PARTIAL_SUFFIXES = (".part", ".partial", ".tmp", ".crdownload", ".download", ".filepart")
+# OCR is the expensive path (render + two vision passes per page). Scanned documents
+# are read after text-layer documents, capped per document, and large-format pages
+# (engineering drawings) are left to a dedicated drawing workflow instead of OCR.
+OCR_DEFERRED_PRIORITY = 1
+OCR_MAX_PAGES = int(os.environ.get("READER_OCR_MAX_PAGES", "20"))
+OCR_DEFER_SECONDS = float(os.environ.get("READER_OCR_DEFER_SECONDS", "300"))
+LARGE_FORMAT_POINTS = float(os.environ.get("READER_LARGE_FORMAT_POINTS", "1150"))  # short side >= A2
 MODULES = {"M%02d" % i for i in range(1, 16)}
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS documents (
@@ -79,6 +86,13 @@ class ReaderError(Exception):
 
 
 class Blocked(ReaderError):
+    def __init__(self, code):
+        self.code = code
+
+
+class Deferred(ReaderError):
+    """Not a failure: the job goes back to pending without spending an attempt."""
+
     def __init__(self, code):
         self.code = code
 
@@ -328,6 +342,7 @@ class Reader:
         self.repo = Path(repo_root or Path(__file__).resolve().parent.parent).expanduser().resolve()
         self.model = model or ModelClient()
         self.stable_seconds, self.chunk_chars, self.clock = stable_seconds, chunk_chars, clock
+        self.ocr_max_pages, self.ocr_defer_seconds, self.large_format_points = OCR_MAX_PAGES, OCR_DEFER_SECONDS, LARGE_FORMAT_POINTS
         if stable_seconds < 0 or not 1 <= chunk_chars <= 6000:
             raise ValueError("invalid scan stability or chunk size")
         self.conn = None
@@ -564,17 +579,29 @@ class Reader:
                 if len(cols) >= 5 and cols[0].isdigit() and cols[3].isdigit() and cols[4].isdigit():
                     if int(cols[3]) >= 400 and int(cols[4]) >= 400:
                         image_pages.add(int(cols[0]))
+            ocr_pages = 0
             for i in range(1, int(m.group(1)) + 1):
                 page_file = safe_path(self.data, "extracted/%s/pages/%06d.json" % (doc["doc_id"], i))
                 if page_file.exists():
                     page = read_json(page_file)
                     if page.get("source_sha256") != doc["sha256"]:
                         raise IntegrityError()
+                    if page.get("method") == "vision_ocr_double_pass":
+                        ocr_pages += 1
                 else:
                     text = self._command(["pdftotext", "-f", str(i), "-l", str(i), "-layout", "-enc", "UTF-8", str(source), "-"], timeout=90).replace("\f", "")
                     page = {"page_index": i, "text": text, "method": "pdftotext", "source_sha256": doc["sha256"]}
                     # Pages without text must take the pixel route or remain blocked.
                     if not text.strip() or "\ufffd" in text or i in image_pages:
+                        if getattr(self.model, "ocr_model", "") and doc["priority"] != OCR_DEFERRED_PRIORITY:
+                            # First OCR need of this document: step aside so text-layer
+                            # documents are read first. Text pages extracted so far stay cached.
+                            self.conn.execute("UPDATE documents SET priority=? WHERE doc_id=?", (OCR_DEFERRED_PRIORITY, doc["doc_id"]))
+                            self.conn.commit()
+                            raise Deferred("ocr_deferred_behind_text_documents")
+                        ocr_pages += 1
+                        if ocr_pages > self.ocr_max_pages:
+                            raise Blocked("ocr_page_budget_exceeded")
                         page.update(self._ocr_page(doc, source, i))
                     atomic_json(page_file, page)
                 texts.append(page["text"])
@@ -615,11 +642,21 @@ class Reader:
             raise Blocked("scanned_page_requires_ocr")
         if not shutil.which("pdftoppm"):
             raise Blocked("pdf_render_tool_missing")
+        size = re.search(r"^Page\s+%d\s+size:\s*([\d.]+) x ([\d.]+) pts" % i, self._command(["pdfinfo", "-f", str(i), "-l", str(i), str(source)], timeout=60), re.M)
+        if size and min(float(size.group(1)), float(size.group(2))) >= self.large_format_points:
+            # A2 and larger raster pages are drawings, not prose: a vision OCR pass returns
+            # noise or invalid JSON and burned days of worker time. Keep the bytes, block.
+            raise Blocked("large_format_page_requires_drawing_workflow")
         with tempfile.TemporaryDirectory(prefix="reader-ocr-") as td:
             base = Path(td) / "page"
             self._command(["pdftoppm", "-f", str(i), "-l", str(i), "-singlefile", "-scale-to", "1800", "-png", str(source), str(base)], 90)
             image = base.with_suffix(".png")
-            first, second = self.model.ocr(image), self.model.ocr(image)
+            try:
+                first, second = self.model.ocr(image), self.model.ocr(image)
+            except ModelOutputError:
+                # Unparseable vision output is a property of the page, not a transient
+                # failure: block once instead of re-rendering and re-reading three times.
+                raise Blocked("ocr_output_invalid")
         for out in (first, second):
             if not isinstance(out.get("text"), str) or not isinstance(out.get("blank"), bool) or out.get("unreadable") is not False:
                 raise Blocked("ocr_page_unreadable")
@@ -1074,6 +1111,15 @@ class Reader:
         except (ReaderError, OSError, ValueError, KeyError, IndexError, TypeError, subprocess.SubprocessError) as exc:
             error = exc
         code = error.code if isinstance(error, ReaderError) else type(error).__name__
+        if isinstance(error, Deferred):
+            with self.transaction():
+                cur = self.conn.execute("UPDATE jobs SET state='pending',attempts=attempts-1,available=?,error_code=? WHERE job_id=? AND state='running' AND attempts=?",
+                                        (self.clock() + self.ocr_defer_seconds, code, job["job_id"], job["attempts"]))
+                if cur.rowcount != 1:
+                    raise IntegrityError()
+                self.conn.execute("UPDATE documents SET state='queued',error_code=?,updated=? WHERE doc_id=?", (code, self.clock(), doc["doc_id"]))
+            self.write_status()
+            return "deferred"
         blocked = isinstance(error, (Blocked, UnsafePath, IntegrityError))
         terminal = blocked or job["attempts"] >= job["max_attempts"]
         state = "blocked" if blocked else ("failed" if terminal else "pending")
