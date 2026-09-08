@@ -57,6 +57,7 @@
     const bar = document.createElement('div'); bar.id = 'ui-skinbar'; bar.setAttribute('role', 'region'); bar.setAttribute('aria-label', '全站外观');
     const brand = document.createElement('a'); brand.href = '/index.html'; brand.className = 'ui-home'; brand.append(icon('home'), document.createTextNode('inresearch.ai'));
     bar.append(brand);
+    const inbox = document.createElement('a'); inbox.href = '/materials.html'; inbox.className = 'ui-home'; inbox.textContent = '资料提交'; bar.append(inbox);
     const group = document.createElement('div'); group.className = 'ui-skin-choices'; group.setAttribute('role', 'group'); group.setAttribute('aria-label', '视觉风格');
     for (const [value, label] of [['attio', 'Attio'], ['folk', 'folk']]) {
       const button = document.createElement('button'); button.type = 'button'; button.dataset.uiChoice = value;

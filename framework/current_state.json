@@ -1,6 +1,6 @@
 {
-  "version": "2026.09.07.2",
-  "effective_at": "2026-09-07",
+  "version": "2026.09.08.1",
+  "effective_at": "2026-09-08",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
     {
@@ -272,12 +272,17 @@
         "deploy/spark-reader/inresearch-news.service",
         "deploy/spark-reader/inresearch-news.timer",
         "index.html",
-        "pipeline/test_news_projection.py"
+        "pipeline/test_news_projection.py",
+        "pipeline/material_intake.py",
+        "pipeline/pull_materials.py",
+        "materials.html",
+        "assets/materials.js",
+        "pipeline/test_material_intake.py"
       ],
       "supersedes": [
         "acquisition-legacy"
       ],
-      "reason": "用户统一产业生态新闻归 iNews、专业原件归 inresearch；经固定来源验证的专属投影替代重复下游词法筛选，文件导入仍保守，截断保留完整窗口。"
+      "reason": "Supplement website intake and verified Spark archival; preserve existing reader boundaries."
     },
     {
       "id": "product-ecosystems-20260906",

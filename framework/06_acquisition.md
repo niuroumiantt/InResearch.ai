@@ -136,3 +136,11 @@ Spark `inresearch-news.timer` 每小时拉取七天窗口，每页100条、最�
 - 27B 计算资源沿用 infra 的共享调度：inews 的翻译与 inresearch 的深读是不同任务，不各自无限并发。研究侧仍按对象、问题、证据与 C3 采用闭环运行。
 
 先验证少量可访问来源的原文、提取、翻译、版本同步和站内阅读，再扩大持续抓取；付费或受限来源按实际授权访问，不绕过限制。具体机器接口和全文范围需与 inews 现有正文能力核对后实施。
+
+## 网站资料收件箱（2026-09-08 补充）
+
+全站资料提交入口 materials.html 接收粘贴文字、截图和多种文件，每份最多 64 MiB。私有持久队列为 data/.material-intake，生产路径 /srv/inresearch.ai/data/.material-intake；不进 Git、不提供静态下载。完整接收后登记 SHA256、来源、话题、备注和提交者。原文及备注是研究输入，不授予操作权限。
+
+Spark 每分钟以 reader 专用凭据经 HTTPS 拉取，校验大小和哈希，永久保存至 ~/.local/share/inresearch.ai/web-submissions/<submission_id>/original，元数据保存为 receipt.json，再将原名副本投递 raw-materials/web-<submission_id>/。回执仅表示 Spark 已归档，不等于已阅读或正式采用；Office 和压缩包能力仍按阅读标准。离线时保留网站队列，不自动删除。大批量仍按 Spark 手册直传，以上副本不代替独立备份。
+
+接收服务 deploy/spark-reader/inresearch-material-intake.* 使用按发布版本安装在 Spark intake-service 目录的两个 Python 文件，不覆盖现有阅读器源码。

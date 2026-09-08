@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `pipeline/governance.py --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.07.2。
+> GENERATED · 由 `pipeline/governance.py --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.08.1。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：429。
+在册文件：436。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 12 |
 | 历史快照 | 36 |
-| 运行代码 | 62 |
+| 运行代码 | 66 |
 | 现行规范 | 10 |
-| 项目配置 | 34 |
+| 项目配置 | 36 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 25 |
 | 配套说明 | 30 |
-| 测试 | 12 |
+| 测试 | 13 |
 
 ## 在册记录集合
 
@@ -178,7 +178,7 @@
 | `framework/data_contract.json` | current_supply_statuses | 2 |
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
-| `framework/interface_manifest.json` | static_pages | 12 |
+| `framework/interface_manifest.json` | static_pages | 13 |
 | `framework/metrics.json` | metrics | 124 |
 | `framework/modules.json` | modules | 15 |
 | `framework/research_graph.json` | views | 5 |
@@ -229,6 +229,7 @@
 | `assets/hdri/studio.exr` | 静态资源 |
 | `assets/hdri/warehouse.exr` | 静态资源 |
 | `assets/levels.json` | 静态资源 |
+| `assets/materials.js` | 运行代码 |
 | [assets/models/README.md](../assets/models/README.md) | 配套说明 |
 | `assets/models/manifest.json` | 静态资源 |
 | `assets/models/server_v2_console.glb` | 静态资源 |
@@ -300,6 +301,8 @@
 | `deploy/Dockerfile` | 项目配置 |
 | [deploy/README.md](../deploy/README.md) | 配套说明 |
 | `deploy/docker-compose.yml` | 项目配置 |
+| `deploy/spark-reader/inresearch-material-intake.service` | 项目配置 |
+| `deploy/spark-reader/inresearch-material-intake.timer` | 项目配置 |
 | `deploy/spark-reader/inresearch-news.service` | 项目配置 |
 | `deploy/spark-reader/inresearch-news.timer` | 项目配置 |
 | `deploy/spark-reader/inresearch-reader-publish.service` | 项目配置 |
@@ -551,6 +554,7 @@
 | `framework/research_questions.json` | 项目配置 |
 | `framework_poster.html` | 运行代码 |
 | `index.html` | 运行代码 |
+| `materials.html` | 运行代码 |
 | `ops.html` | 运行代码 |
 | [pipeline/README.md](../pipeline/README.md) | 配套说明 |
 | `pipeline/acquisition.py` | 运行代码 |
@@ -575,9 +579,11 @@
 | `pipeline/intake.py` | 运行代码 |
 | `pipeline/launch_acquisition.py` | 运行代码 |
 | `pipeline/launch_reader.py` | 运行代码 |
+| `pipeline/material_intake.py` | 运行代码 |
 | `pipeline/output_map.py` | 运行代码 |
 | `pipeline/product_library.py` | 运行代码 |
 | `pipeline/publish_reader.py` | 运行代码 |
+| `pipeline/pull_materials.py` | 运行代码 |
 | `pipeline/reading_queue.py` | 运行代码 |
 | `pipeline/refresh_indicators.py` | 运行代码 |
 | `pipeline/research.py` | 运行代码 |
@@ -592,6 +598,7 @@
 | `pipeline/test_display_regressions.py` | 测试 |
 | `pipeline/test_governance.py` | 测试 |
 | `pipeline/test_interface_system.py` | 测试 |
+| `pipeline/test_material_intake.py` | 测试 |
 | `pipeline/test_news_projection.py` | 测试 |
 | `pipeline/test_product_library.py` | 测试 |
 | `pipeline/test_publish_reader.py` | 测试 |
