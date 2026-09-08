@@ -4,11 +4,11 @@
 日常加人**建议直接用网页后台**（admin 登录 → 工作台 → 用户与权限）。
 本 CLI 是兜底：admin 自己忘了密码、或网页不可用时，SSH 上来救场：
 
-    docker compose exec dchub python3 pipeline/users.py add admin
-    docker compose exec dchub python3 pipeline/users.py passwd admin
-    docker compose exec dchub python3 pipeline/users.py rename old-name new-name
-    docker compose exec dchub python3 pipeline/users.py role <用户名> <角色>
-    docker compose exec dchub python3 pipeline/users.py list / remove <用户名>
+    sudo docker exec inresearch-host-inresearch-1 python3 pipeline/users.py add admin
+    sudo docker exec inresearch-host-inresearch-1 python3 pipeline/users.py passwd admin
+    sudo docker exec inresearch-host-inresearch-1 python3 pipeline/users.py rename old-name new-name
+    sudo docker exec inresearch-host-inresearch-1 python3 pipeline/users.py role <用户名> <角色>
+    sudo docker exec inresearch-host-inresearch-1 python3 pipeline/users.py list / remove <用户名>
 
 规则（实现全在 auth.py，此处只是壳）：首个用户强制 admin；其余默认 intern；
 最后一个 admin 不可降级/删除；密码只显示一次；data/users.json 不进 git。
