@@ -2,6 +2,10 @@
 
 > CURRENT · 2026-09-06。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-08：Spark 工作区未提交改动入库——M4 分担 OCR 契约与视觉模型关思考
+
+部署 #113 时发现 Spark `~/code/inresearch.ai` 有 27 行未提交改动：① `_ocr_page` 先查 `offload/m4/results/<doc_id>/pages/N.json`，M4 在本机做视觉双读、Spark 只按内容哈希校验后采用，M4 永不写台账；② 视觉请求加 `think=false`，回复正文为空时接受 thinking 字段里的 JSON（部分 Qwen 视觉构建把 JSON 放进 thinking，这可能是 `model_output_invalid` 的一部分成因）。按「不覆盖脏工作区」原则原样入库，并补一条：有 M4 结果的页不走 #113 的排后与本地预算，否则分担形同虚设。M4 侧生产结果的脚本不在本仓库，待其作者提交。Spark 本机那份改动保留在分支 `spark/m4-ocr-offload-wip` 直到与 main 核对一致后删除。
+
 ## 2026-09-08：reader 抽取吞吐——OCR 排后、限量、不读图纸
 
 Spark 实机核对：`m4-20260906` 批次已于 09-06 开放，登记 18,658 篇；两天抽取成功 99 篇、深读 8 篇，状态 degraded。台账显示有文字层的 PDF 抽取以秒计，时间全耗在 391 份 A0/A1 施工图上：每页渲染后视觉模型读两遍，返回非法 JSON 即 `model_output_invalid`，每篇重试三次才判失败。用户批复执行三项：① 首次遇到 OCR 页的文档降优先级退回队列，文字层文档先读；② 每篇 OCR 页数上限（默认 20）；③ A2 及以上栅格页判为图纸不送 OCR。另把视觉模型非法输出改为一次性阻塞。全部阻塞项保留原件、可 `retry`。实现在 `continuous_reader.py`，规则写入 Spark 操作手册「格式与质量边界」；Spark 上按手册更新源码并重启服务后生效，本条不代表已部署。
