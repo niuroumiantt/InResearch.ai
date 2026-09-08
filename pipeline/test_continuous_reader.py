@@ -606,6 +606,64 @@ class ReaderTests(unittest.TestCase):
             with self.assertRaises(cr.ModelError):
                 client.generate("synthesize", {"sections": []})
 
+    def offload_result(self, doc, i=1, **override):
+        result = {"doc_id": doc["doc_id"], "content_sha256": doc["sha256"], "page_index": i,
+                  "method": "m4_vision_ocr_double_pass", "text": "M4 读出 300 W", "text_second_pass": "M4 读出 300 W",
+                  "ocr_model": {"actual": "qwen3-vl:8b", "host": "m4"}, "blank": False, "unreadable": False,
+                  "verification": "candidate_ocr_agreement_not_accuracy_certification", **override}
+        cr.atomic_json(self.reader.data / ("offload/m4/results/%s/pages/%06d.json" % (doc["doc_id"], i)), result)
+
+    def test_m4_offload_result_is_used_without_local_ocr_deferral_or_budget(self):
+        self.ocr_ready()
+        self.reader.ocr_max_pages = 0
+        doc = self.register("scan.pdf", "%PDF-test-scanned-page")
+        self.offload_result(doc)
+        def fake_command(args, timeout):
+            return "Pages: 1\n" if args[0] == "pdfinfo" else ""
+        with mock.patch.object(cr.shutil, "which", return_value="/fake/tool"), mock.patch.object(self.reader, "_command", side_effect=fake_command):
+            self.run_reader()
+        doc = self.first_doc()
+        self.assertEqual(doc["state"], "complete")
+        self.assertEqual(self.model.ocr.call_count, 0)
+        page = cr.read_json(self.reader.data / "extracted" / doc["doc_id"] / "pages/000001.json")
+        self.assertEqual((page["method"], page["text"]), ("m4_vision_ocr_double_pass", "M4 读出 300 W"))
+
+    def test_m4_offload_result_bound_to_content_hash_and_agreement(self):
+        self.ocr_ready()
+        doc = self.register("scan.pdf", "%PDF-test-scanned-page")
+        source = self.reader.data / doc["original_rel"]
+        with mock.patch.object(cr.shutil, "which", return_value="/fake/tool"), mock.patch.object(self.reader, "_command", return_value=""):
+            self.offload_result(doc, content_sha256="0" * 64)
+            with self.assertRaises(cr.IntegrityError):
+                self.reader._ocr_page(doc, source, 1)
+            self.offload_result(doc, text_second_pass="M4 读出 800 W")
+            with self.assertRaises(cr.Blocked) as exc:
+                self.reader._ocr_page(doc, source, 1)
+            self.assertEqual(exc.exception.code, "m4_offload_numbers_disagree")
+        self.assertEqual(self.model.ocr.call_count, 0)
+
+    def test_ollama_vision_request_disables_thinking_and_accepts_json_from_thinking(self):
+        client = cr.ModelClient(timeout=1, ocr_model="qwen3-vl:8b")
+        seen = {}
+        class Response:
+            def __init__(self, body):
+                self.body = body
+            def __enter__(self):
+                return self
+            def __exit__(self, *args):
+                return False
+            def read(self, n):
+                return self.body
+        def fake_urlopen(req, timeout):
+            seen["body"] = json.loads(req.data)
+            return Response(json.dumps({"model": "qwen3-vl:8b", "message": {"content": "", "thinking": '{"text":"页面文字 12 kW","blank":false,"unreadable":false}'}}).encode())
+        image = self.base / "page.png"
+        image.write_bytes(b"png")
+        with mock.patch.object(cr.urllib.request, "urlopen", side_effect=fake_urlopen):
+            out = client.ocr(image)
+        self.assertIs(seen["body"]["think"], False)
+        self.assertEqual((out["text"], out["blank"], out["unreadable"]), ("页面文字 12 kW", False, False))
+
 
 if __name__ == "__main__":
     unittest.main()
