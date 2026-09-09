@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `pipeline/governance.py --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.08.1。
+> GENERATED · 由 `pipeline/governance.py --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.09.1。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：436。
+在册文件：439。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 12 |
 | 历史快照 | 36 |
-| 运行代码 | 66 |
-| 现行规范 | 10 |
+| 运行代码 | 67 |
+| 现行规范 | 11 |
 | 项目配置 | 36 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 25 |
 | 配套说明 | 30 |
-| 测试 | 13 |
+| 测试 | 14 |
 
 ## 在册记录集合
 
@@ -169,7 +169,7 @@
 | `docs/reviews/2026-09-06/evidence/runtime.json` | limits | 3 |
 | `framework/bom.json` | layers | 5 |
 | `framework/bom.json` | parts | 46 |
-| `framework/current_state.json` | policies | 19 |
+| `framework/current_state.json` | policies | 20 |
 | `framework/current_state.json` | entrypoints | 4 |
 | `framework/current_state.json` | retired_entrypoints | 3 |
 | `framework/current_state.json` | known_retired_patterns | 11 |
@@ -317,6 +317,7 @@
 | [docs/LIBRARY_INDEX.md](LIBRARY_INDEX.md) | 在册数据/索引 |
 | [docs/LIBRARY_REPORT.md](LIBRARY_REPORT.md) | 在册数据/索引 |
 | [docs/LIBRARY_SCORES.csv](LIBRARY_SCORES.csv) | 在册数据/索引 |
+| [docs/M4_TRIAGE_TASK.md](M4_TRIAGE_TASK.md) | 现行规范 |
 | [docs/PROJECT_PANORAMA.md](PROJECT_PANORAMA.md) | 现行入口 |
 | [docs/REPOSITORY_REGISTER.md](REPOSITORY_REGISTER.md) | 生成物 |
 | [docs/archive/2026-09-06/ACQUISITION_LEGACY.md](archive/2026-09-06/ACQUISITION_LEGACY.md) | 历史快照 |
@@ -579,6 +580,7 @@
 | `pipeline/intake.py` | 运行代码 |
 | `pipeline/launch_acquisition.py` | 运行代码 |
 | `pipeline/launch_reader.py` | 运行代码 |
+| `pipeline/m4_triage.py` | 运行代码 |
 | `pipeline/material_intake.py` | 运行代码 |
 | `pipeline/output_map.py` | 运行代码 |
 | `pipeline/product_library.py` | 运行代码 |
@@ -598,6 +600,7 @@
 | `pipeline/test_display_regressions.py` | 测试 |
 | `pipeline/test_governance.py` | 测试 |
 | `pipeline/test_interface_system.py` | 测试 |
+| `pipeline/test_m4_triage.py` | 测试 |
 | `pipeline/test_material_intake.py` | 测试 |
 | `pipeline/test_news_projection.py` | 测试 |
 | `pipeline/test_product_library.py` | 测试 |

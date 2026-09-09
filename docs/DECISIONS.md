@@ -2,6 +2,14 @@
 
 > CURRENT · 2026-09-06。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-09：采用 M4 本机资料分类与命名任务（方案一），先交付全量清单
+
+用户 2026-09-09 采用此前一直是草案的 M4 任务卡：M4 本机对 `/Users/m4/Downloads/所有raw materials`（87,501 个文件、251 GB）逐个阅读打分、归类、改名移动，对照表以 SHA-256 为唯一键，完成后交给 Spark 依表整理副本。文档入库为 `docs/M4_TRIAGE_TASK.md`，在 `framework/current_state.json` 以 `reading-m4-triage-20260909` 登记，scope 取 `m4-triage`。该 scope 只覆盖 M4 本机原件，替代 04 阅读标准 §5（新增 score 10–0 主分，importance 由 `max(1, round(score*0.9))` 换算）与 §6（原件随评分改名移动，以操作日志和 SHA-256 保证可逆）。Spark 的 project 范围阅读规则和 originals 不可变不受影响，两条现行政策并存于不同 scope。
+
+主判模型按任务卡 §8 定为 Claude Opus 5 批量 API，本机 qwen3:8b 只作第二意见；L1 预览文本会离开本机发送到 Anthropic API，这是采用该方案的已知代价。
+
+**本次只实现第一步**：`pipeline/m4_triage.py` 的 `inventory` 与 `summary`，做全量 SHA-256、按后缀与路径的 L0 分桶、字节相同副本的重复检测。工具只读，拒绝把输出写进源目录，不改名、不移动、不删除；追加式 JSONL 支持中断续跑；符号链接只登记不跟随。L1 预览、Opus 5 打分、对照表、改名移动与 Spark 侧 apply-triage 全部未实现，任务卡 §0 逐项标注状态。改名移动的授权要等实现并通过 50 份小样验收后另行取得，本条不代表已获得。
+
 ## 2026-09-09：reader 单进程内多线程处理任务
 
 阅读吞吐受限于串行等待模型返回：一个任务领一次、读一次、等一次，GPU 空转。改为「队列所有权不变、进程内多线程」：仍只有一个进程持 catalog 锁（中断回收与对账仍只做一次，第二个进程照旧 `another_worker_owns_queue`），进程内按 `READER_WORKERS`（默认 1，上限 16，或 `--workers N`）起若干工作线程。每线程一条 SQLite 连接，领取仍走 `BEGIN IMMEDIATE`，同一任务不会被领两次；扫描与入库仍留在持锁线程，保持单写入者；`--once` 排空要等所有线程都空闲才收工，因为在跑的任务还会派生下一阶段；任一线程异常停下整个 run 并上抛。默认值 1 表示行为与改动前一致，本条不代表 Spark 已重启生效。
