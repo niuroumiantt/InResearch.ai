@@ -1,8 +1,15 @@
 #!/usr/bin/env python3
-"""Persistent, single-worker research reader. Source bytes and candidate artifacts never expire.
+"""Persistent research reader; one queue owner, optionally several worker threads. Source bytes and candidate artifacts never expire.
 
 No core facts are written. Production inference uses an explicitly configured Ollama
 model or gateway route; tests inject a Python model object instead of a fake CLI mode.
+
+One process owns the queue (an exclusive lock on the catalog), so interrupted-job
+recovery and reconciliation still happen exactly once. Inside that process the
+worker loop may run in several threads: each thread owns its own SQLite connection
+and claims its own job, and SQLite's BEGIN IMMEDIATE keeps a job from being claimed
+twice. Throughput past a couple of threads needs the Ollama server to serve requests
+in parallel (OLLAMA_NUM_PARALLEL); otherwise the requests only queue there instead.
 """
 from __future__ import annotations
 
@@ -21,6 +28,7 @@ import sqlite3
 import subprocess
 import sys
 import tempfile
+import threading
 import time
 import urllib.error
 import urllib.parse
@@ -38,6 +46,7 @@ OCR_DEFERRED_PRIORITY = 1
 OCR_MAX_PAGES = int(os.environ.get("READER_OCR_MAX_PAGES", "20"))
 OCR_DEFER_SECONDS = float(os.environ.get("READER_OCR_DEFER_SECONDS", "300"))
 LARGE_FORMAT_POINTS = float(os.environ.get("READER_LARGE_FORMAT_POINTS", "1150"))  # short side >= A2
+MAX_WORKERS = 16
 MODULES = {"M%02d" % i for i in range(1, 16)}
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS documents (
@@ -352,7 +361,10 @@ class Reader:
         self.ocr_max_pages, self.ocr_defer_seconds, self.large_format_points = OCR_MAX_PAGES, OCR_DEFER_SECONDS, LARGE_FORMAT_POINTS
         if stable_seconds < 0 or not 1 <= chunk_chars <= 6000:
             raise ValueError("invalid scan stability or chunk size")
-        self.conn = None
+        self._db = None
+        self._local = threading.local()
+        self._conns = []
+        self._conns_lock = threading.Lock()
 
     def initialize(self):
         for p in (self.data, self.state):
@@ -363,19 +375,46 @@ class Reader:
         fd = os.open(str(db), os.O_CREAT | os.O_RDWR, 0o600)
         os.fchmod(fd, 0o600)
         os.close(fd)
-        self.conn = sqlite3.connect(str(db), timeout=30, isolation_level=None)
-        self.conn.row_factory = sqlite3.Row
-        self.conn.execute("PRAGMA journal_mode=WAL")
-        self.conn.execute("PRAGMA synchronous=FULL")
-        self.conn.execute("PRAGMA foreign_keys=ON")
+        self._db = db
         self.conn.executescript(SCHEMA)
         self.conn.execute("INSERT OR IGNORE INTO meta VALUES ('dispatch_count','0')")
         return self
 
+    @property
+    def conn(self):
+        """One connection per thread. Sharing one across threads is unsupported by
+        sqlite3 and would interleave two threads' BEGIN IMMEDIATE on one handle."""
+        conn = getattr(self._local, "conn", None)
+        if conn is None:
+            if self._db is None:
+                return None
+            conn = sqlite3.connect(str(self._db), timeout=30, isolation_level=None)
+            conn.row_factory = sqlite3.Row
+            conn.execute("PRAGMA journal_mode=WAL")
+            conn.execute("PRAGMA synchronous=FULL")
+            conn.execute("PRAGMA foreign_keys=ON")
+            conn.execute("PRAGMA busy_timeout=30000")
+            self._local.conn = conn
+            with self._conns_lock:
+                self._conns.append(conn)
+        return conn
+
+    def _close_thread(self):
+        conn = getattr(self._local, "conn", None)
+        if conn is not None:
+            self._local.conn = None
+            with self._conns_lock:
+                if conn in self._conns:
+                    self._conns.remove(conn)
+            conn.close()
+
     def close(self):
-        if self.conn:
-            self.conn.close()
-            self.conn = None
+        with self._conns_lock:
+            conns, self._conns = self._conns, []
+        for conn in conns:
+            conn.close()
+        self._local = threading.local()
+        self._db = None
 
     @contextmanager
     def transaction(self):
@@ -1203,28 +1242,84 @@ class Reader:
         atomic_json(safe_path(self.state, "status.json"), status)
         return status
 
-    def run(self, once=False, max_jobs=None, poll_seconds=10):
-        processed = 0
-        next_scan = 0
-        with self.worker_session():
-            while True:
-                if time.monotonic() >= next_scan:
-                    self.scan()
-                    next_scan = time.monotonic() + poll_seconds
-                job = self.claim()
-                if job:
+    def run(self, once=False, max_jobs=None, poll_seconds=10, workers=1):
+        """One process owns the queue; `workers` threads claim and process jobs.
+
+        Scanning stays on the owning thread so intake keeps its single writer.
+        A worker's failure stops the others and is re-raised, as it would have
+        ended the single-threaded loop."""
+        if not isinstance(workers, int) or isinstance(workers, bool) or not 1 <= workers <= MAX_WORKERS:
+            raise ValueError("workers must be an integer 1..%d" % MAX_WORKERS)
+        counter = {"processed": 0, "idle": 0, "error": None}
+        guard = threading.Lock()
+        stop = threading.Event()
+
+        def exhausted():
+            return max_jobs is not None and counter["processed"] >= max_jobs
+
+        def loop():
+            try:
+                while not stop.is_set():
+                    with guard:
+                        if exhausted():
+                            stop.set()
+                            break
+                    # BEGIN IMMEDIATE inside claim() serializes the claim, so two
+                    # threads never take the same job.
+                    job = self.claim()
+                    if job is None:
+                        self.write_status()
+                        with guard:
+                            counter["idle"] += 1
+                            # A running job still enqueues its next stage, so an
+                            # empty queue only ends the drain once every worker
+                            # is idle.
+                            drained = counter["idle"] >= workers
+                        if once and drained:
+                            stop.set()
+                            break
+                        stop.wait(0.05 if once else poll_seconds)
+                        with guard:
+                            counter["idle"] -= 1
+                        continue
                     self.write_status()
                     outcome = self.process(job)
-                    print(encoded({"at": now_iso(), "doc_id": job["doc_id"], "stage": job["stage"], "chunk": job["chunk"], "outcome": outcome}), flush=True)
-                    processed += 1
-                    if max_jobs is not None and processed >= max_jobs:
-                        break
+                    print(encoded({"at": now_iso(), "doc_id": job["doc_id"], "stage": job["stage"],
+                                   "chunk": job["chunk"], "outcome": outcome}), flush=True)
+                    with guard:
+                        counter["processed"] += 1
+                        if exhausted():
+                            stop.set()
+            except BaseException as exc:  # noqa: BLE001 - reported to the owning thread
+                with guard:
+                    if counter["error"] is None:
+                        counter["error"] = exc
+                stop.set()
+            finally:
+                self._close_thread()
+
+        with self.worker_session():
+            self.scan()
+            threads = [threading.Thread(target=loop, name="reader-worker-%d" % i, daemon=True)
+                       for i in range(workers)]
+            for thread in threads:
+                thread.start()
+            try:
+                if once:
+                    # Workers stop themselves once the queue drains; setting the
+                    # stop flag here would end them before they claim anything.
+                    for thread in threads:
+                        thread.join()
                 else:
-                    self.write_status()
-                    if once:
-                        break
-                    time.sleep(poll_seconds)
-        return {"processed": processed, **self.write_status()}
+                    while not stop.wait(poll_seconds):
+                        self.scan()
+            finally:
+                stop.set()
+                for thread in threads:
+                    thread.join()
+            if counter["error"] is not None:
+                raise counter["error"]
+        return {"processed": counter["processed"], **self.write_status()}
 
     def export(self, dest):
         dest = Path(dest).expanduser().resolve()
@@ -1370,6 +1465,9 @@ def main(argv=None):
     run = sub.add_parser("run")
     run.add_argument("--once", action="store_true", help="drain eligible jobs; future retries remain pending")
     run.add_argument("--max-jobs", type=int)
+    run.add_argument("--workers", type=int, default=int(os.environ.get("READER_WORKERS", "1")),
+                     help="worker threads in this process (1..%d); the Ollama server must be "
+                          "configured for parallel requests for more than one to help" % MAX_WORKERS)
     retry = sub.add_parser("retry")
     retry.add_argument("--doc-id")
     rollback = sub.add_parser("rollback")
@@ -1384,7 +1482,7 @@ def main(argv=None):
     reader = Reader(args.data_root, args.state_root, args.repo_root, model, args.stable_seconds).initialize()
     try:
         if args.command == "run":
-            result = reader.run(args.once, args.max_jobs)
+            result = reader.run(args.once, args.max_jobs, workers=args.workers)
         elif args.command == "scan":
             with reader.worker_session():
                 result = reader.scan()
