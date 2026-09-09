@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.08.1",
+  "version": "2026.09.09.1",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -915,8 +915,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 12941,
-      "sha256": "cf077ff4bc88cba955ae4bb329cc5593396b0d125c51951f53ba675f74114cdd",
+      "bytes": 14576,
+      "sha256": "5122014550a777a1f9d86105ef91c6dfe08d0c8c77a9ea7e5de59e410567a273",
       "collections": []
     },
     {
@@ -956,6 +956,13 @@
           ]
         }
       ]
+    },
+    {
+      "path": "docs/M4_TRIAGE_TASK.md",
+      "role": "normative",
+      "bytes": 10859,
+      "sha256": "7cfb8ab85e645fd671a0369f7fbee9c902c1722f8cb36f22bc08611f7d680bfb",
+      "collections": []
     },
     {
       "path": "docs/PROJECT_PANORAMA.md",
@@ -3883,12 +3890,12 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 10680,
-      "sha256": "6fff60fb411c6617669edcd3ab5ddaa448896c52f303aace317e88b9541e14a6",
+      "bytes": 11408,
+      "sha256": "9dae965ebca44be81430b8a0dc2c48dd19156195a8dfd2b9f900ac489f66b0ce",
       "collections": [
         {
           "name": "policies",
-          "count": 19
+          "count": 20
         },
         {
           "name": "entrypoints",
@@ -4319,6 +4326,13 @@
       "collections": []
     },
     {
+      "path": "pipeline/m4_triage.py",
+      "role": "implementation",
+      "bytes": 10122,
+      "sha256": "5c3e4b91e6a172caa6c6af50a24d746c5efed5291e441b681af691e008029fb1",
+      "collections": []
+    },
+    {
       "path": "pipeline/material_intake.py",
       "role": "implementation",
       "bytes": 2613,
@@ -4449,6 +4463,13 @@
       "role": "test",
       "bytes": 3002,
       "sha256": "7758ac3ae4d8b294c5e12f70d1b47f60e84a6df20ebdec27100819f5244b3f57",
+      "collections": []
+    },
+    {
+      "path": "pipeline/test_m4_triage.py",
+      "role": "test",
+      "bytes": 5580,
+      "sha256": "930078f311abf128f3377eee617952435b124aa8ba6bc5a1b7c7ec3996eca20a",
       "collections": []
     },
     {
@@ -4895,13 +4916,13 @@
     "entrypoint": 4,
     "generated": 12,
     "historical": 36,
-    "implementation": 66,
-    "normative": 10,
+    "implementation": 67,
+    "normative": 11,
     "project_config": 36,
     "research_record": 16,
     "retired_entrypoint": 3,
     "source_record": 25,
     "supporting_document": 30,
-    "test": 13
+    "test": 14
   }
 }

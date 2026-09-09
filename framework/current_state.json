@@ -1,6 +1,6 @@
 {
-  "version": "2026.09.08.1",
-  "effective_at": "2026-09-08",
+  "version": "2026.09.09.1",
+  "effective_at": "2026-09-09",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
     {
@@ -142,6 +142,19 @@
         "reading-legacy"
       ],
       "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。"
+    },
+    {
+      "id": "reading-m4-triage-20260909",
+      "topic": "reading",
+      "status": "current",
+      "scope": "m4-triage",
+      "effective_at": "2026-09-09",
+      "source": "docs/M4_TRIAGE_TASK.md",
+      "implementations": [
+        "pipeline/m4_triage.py"
+      ],
+      "supersedes": [],
+      "reason": "用户 2026-09-09 采用 M4 本机资料分类与命名任务。仅在 m4-triage 范围内替代 04 阅读标准 §5（新增 score 10-0 主分，importance 由其换算）与 §6（M4 本机原件随评分改名移动，以操作日志和 SHA-256 保证可逆）；Spark 的 project 范围阅读规则与 originals 不可变不受影响。当前只实现全量清单一步，改名移动尚未实现。"
     },
     {
       "id": "operations-legacy",
