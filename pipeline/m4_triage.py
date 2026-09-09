@@ -89,6 +89,45 @@ def walk(root: Path):
             yield Path(dirpath, name)
 
 
+ROW_KEYS = {"sha256", "size_bytes", "suffix", "original_rel", "original_name",
+            "l0_bucket", "route"}
+
+
+def foreign_row(row):
+    """True when a row was not written by this tool's inventory format."""
+    if not isinstance(row, dict):
+        return True
+    if "error" in row:
+        return "original_rel" not in row
+    return not ROW_KEYS.issubset(row)
+
+
+def check_format(out_file: Path):
+    """Refuse to append to an inventory another tool wrote.
+
+    Appending would silently mix two schemas in one file: resume cannot match
+    the other tool's rows, so every file is hashed again, and `summary` then
+    reads rows whose fields it does not know."""
+    if not out_file.exists():
+        return
+    with out_file.open(encoding="utf-8") as handle:
+        for number, line in enumerate(handle, 1):
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                row = json.loads(line)
+            except ValueError:
+                continue  # a torn final line from a killed run
+            if foreign_row(row):
+                raise SystemExit(
+                    "%s line %d was written in a different format; its keys are %s.\n"
+                    "Another inventory tool owns this file. Move it aside or pass a "
+                    "different --out-dir instead of mixing two formats in one file."
+                    % (out_file, number, sorted(row) if isinstance(row, dict) else type(row).__name__))
+            return  # the first readable row settles the format
+
+
 def load_done(out_file: Path) -> set[str]:
     """Relative paths already recorded, so an interrupted run resumes."""
     done = set()
@@ -116,6 +155,7 @@ def inventory(root: Path, out_dir: Path, workers: int, limit=None):
         pass
     out_dir.mkdir(parents=True, exist_ok=True)
     out_file = out_dir / "inventory.jsonl"
+    check_format(out_file)
     done = load_done(out_file)
     started = time.monotonic()
     lock = threading.Lock()
@@ -187,6 +227,10 @@ def summary(out_dir: Path):
             except ValueError:
                 continue
             rows += 1
+            if foreign_row(row):
+                # Never crash on a row this tool did not write; report it instead.
+                errors["row_format_unrecognized"] += 1
+                continue
             if "error" in row:
                 errors[row["error"]] += 1
                 continue

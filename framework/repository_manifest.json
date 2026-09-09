@@ -3555,6 +3555,34 @@
       "collections": []
     },
     {
+      "path": "docs/local_reader/M4_LOCAL_READER.md",
+      "role": "supporting_document",
+      "bytes": 1647,
+      "sha256": "c541c580d0030c4c8fa425fd0dad7d7d47592ec1ab832873a1886055d171be7b",
+      "collections": []
+    },
+    {
+      "path": "docs/local_reader/M4_PREFLIGHT.md",
+      "role": "supporting_document",
+      "bytes": 1325,
+      "sha256": "8c653d1b07b5e2bc9d7182ece60a104f52c61f5d6f7efec2c54ac66cf08671e4",
+      "collections": []
+    },
+    {
+      "path": "docs/local_reader/M4_TRIAGE_RUNBOOK.md",
+      "role": "supporting_document",
+      "bytes": 4355,
+      "sha256": "e1c908f75e440bc6b86cda5ee58b1ec7e312bc76bd95a0b5c100ef04b9bed4e3",
+      "collections": []
+    },
+    {
+      "path": "docs/local_reader/M4_TRIAGE_TASK.md",
+      "role": "supporting_document",
+      "bytes": 8813,
+      "sha256": "c8ac38609707a33c760cb9f490fc23599c948b09d3e6dfcbb0015ab3a36de0bd",
+      "collections": []
+    },
+    {
       "path": "docs/local_reader/PROJECT_BRIEF.md",
       "role": "supporting_document",
       "bytes": 2624,
@@ -4326,10 +4354,73 @@
       "collections": []
     },
     {
+      "path": "pipeline/m4_inventory.py",
+      "role": "implementation",
+      "bytes": 2529,
+      "sha256": "aefa6cf60935bbf3f683e858d0776aa50d66dba155a8718e3747e67bdb5c82da",
+      "collections": []
+    },
+    {
+      "path": "pipeline/m4_local_reader.py",
+      "role": "implementation",
+      "bytes": 6487,
+      "sha256": "c9761874ec16b78a00993d26ec827ff1801545f92ae3ae14d68be6a689500a35",
+      "collections": []
+    },
+    {
+      "path": "pipeline/m4_offload_worker.py",
+      "role": "implementation",
+      "bytes": 6767,
+      "sha256": "91f8079fda2eb8891a8a9f861c63926139840e2478261a7649159caf97ae03f5",
+      "collections": []
+    },
+    {
+      "path": "pipeline/m4_preflight.py",
+      "role": "implementation",
+      "bytes": 5285,
+      "sha256": "5fc0447ce7f15328122b203e6226634219f22395c6844115f4ca2737f6201259",
+      "collections": []
+    },
+    {
       "path": "pipeline/m4_triage.py",
       "role": "implementation",
-      "bytes": 10122,
-      "sha256": "5c3e4b91e6a172caa6c6af50a24d746c5efed5291e441b681af691e008029fb1",
+      "bytes": 11889,
+      "sha256": "36e055157278c9b320cbb7e045f64ab0104a00900c31aeadfc9f81a8ec305a14",
+      "collections": []
+    },
+    {
+      "path": "pipeline/m4_triage_apply.py",
+      "role": "implementation",
+      "bytes": 7382,
+      "sha256": "0a33fcfd7ce28e445057753396c15f7349fa53f6f169063329dc2f0bd1bb9b38",
+      "collections": []
+    },
+    {
+      "path": "pipeline/m4_triage_extract.py",
+      "role": "implementation",
+      "bytes": 9541,
+      "sha256": "63ffd69381cbe9cf2dc08c686f00d368dbd03e8f6be2cd6318af8b94455aa320",
+      "collections": []
+    },
+    {
+      "path": "pipeline/m4_triage_l1.py",
+      "role": "implementation",
+      "bytes": 22950,
+      "sha256": "bd352354394cffb5dc64238e87fecc7f4f1db39d1b1327b68680708ad215ef21",
+      "collections": []
+    },
+    {
+      "path": "pipeline/m4_triage_local.py",
+      "role": "implementation",
+      "bytes": 7464,
+      "sha256": "272bf451784066e909c235fb3394f534cbc1589e308fe5f5fcc899fc0843a10e",
+      "collections": []
+    },
+    {
+      "path": "pipeline/m4_triage_pack.py",
+      "role": "implementation",
+      "bytes": 9281,
+      "sha256": "ff1edf9fc2ffdd886399cc6682f9bca9cd849fa1b9c60309d83e78bcaf9b140e",
       "collections": []
     },
     {
@@ -4468,8 +4559,8 @@
     {
       "path": "pipeline/test_m4_triage.py",
       "role": "test",
-      "bytes": 5580,
-      "sha256": "930078f311abf128f3377eee617952435b124aa8ba6bc5a1b7c7ec3996eca20a",
+      "bytes": 6779,
+      "sha256": "2a51bfa131d63946d86a12834e2665f3bf377b48f6a32c24d99cf3a923296c6e",
       "collections": []
     },
     {
@@ -4916,13 +5007,13 @@
     "entrypoint": 4,
     "generated": 12,
     "historical": 36,
-    "implementation": 67,
+    "implementation": 76,
     "normative": 11,
     "project_config": 36,
     "research_record": 16,
     "retired_entrypoint": 3,
     "source_record": 25,
-    "supporting_document": 30,
+    "supporting_document": 34,
     "test": 14
   }
 }
