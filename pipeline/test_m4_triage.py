@@ -118,6 +118,29 @@ class InventoryTests(unittest.TestCase):
         self.assertEqual(result["errors"], 1)
         self.assertEqual(self.rows()[0]["error"], "PermissionError")
 
+    def test_inventory_written_by_another_tool_is_not_appended_to(self):
+        # A different tool's inventory at the same path: appending would mix two
+        # schemas, re-hash everything, and break the summary.
+        self.put("a.pdf")
+        self.out.mkdir(parents=True)
+        (self.out / "inventory.jsonl").write_text(
+            json.dumps({"sha256": "0" * 64, "path": "a.pdf", "bytes": 7}) + "\n",
+            encoding="utf-8")
+        with self.assertRaises(SystemExit) as caught:
+            self.run_inventory()
+        self.assertIn("different format", str(caught.exception))
+        # The foreign file is left exactly as it was.
+        self.assertEqual(len((self.out / "inventory.jsonl").read_text().splitlines()), 1)
+
+    def test_summary_reports_unrecognized_rows_instead_of_crashing(self):
+        self.put("a.pdf")
+        self.run_inventory()
+        with (self.out / "inventory.jsonl").open("a", encoding="utf-8") as handle:
+            handle.write(json.dumps({"sha256": "0" * 64, "path": "b.pdf"}) + "\n")
+        report = mt.summary(self.out)
+        self.assertEqual(report["errors"]["row_format_unrecognized"], 1)
+        self.assertEqual(report["unique_sha256"], 1)
+
     def test_missing_root_and_bad_worker_count_are_rejected(self):
         with self.assertRaises(SystemExit):
             mt.inventory(self.base / "absent", self.out, 2)
