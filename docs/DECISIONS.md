@@ -2,6 +2,12 @@
 
 > CURRENT · 2026-09-06。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-09：reader 单进程内多线程处理任务
+
+阅读吞吐受限于串行等待模型返回：一个任务领一次、读一次、等一次，GPU 空转。改为「队列所有权不变、进程内多线程」：仍只有一个进程持 catalog 锁（中断回收与对账仍只做一次，第二个进程照旧 `another_worker_owns_queue`），进程内按 `READER_WORKERS`（默认 1，上限 16，或 `--workers N`）起若干工作线程。每线程一条 SQLite 连接，领取仍走 `BEGIN IMMEDIATE`，同一任务不会被领两次；扫描与入库仍留在持锁线程，保持单写入者；`--once` 排空要等所有线程都空闲才收工，因为在跑的任务还会派生下一阶段；任一线程异常停下整个 run 并上抛。默认值 1 表示行为与改动前一致，本条不代表 Spark 已重启生效。
+
+**这不会自动变快**：Ollama 默认串行应答，服务端须设 `OLLAMA_NUM_PARALLEL` 不小于线程数，且「并发数 × num_ctx」的 KV 缓存要放得进显存，否则只是把排队从客户端挪到服务端，或触发模型换出更慢。27B/32k 下先从 2 起步实测。规则写入 Spark 操作手册「并发与吞吐」。
+
 ## 2026-09-08：Spark 工作区未提交改动入库——M4 分担 OCR 契约与视觉模型关思考
 
 部署 #113 时发现 Spark `~/code/inresearch.ai` 有 27 行未提交改动：① `_ocr_page` 先查 `offload/m4/results/<doc_id>/pages/N.json`，M4 在本机做视觉双读、Spark 只按内容哈希校验后采用，M4 永不写台账；② 视觉请求加 `think=false`，回复正文为空时接受 thinking 字段里的 JSON（部分 Qwen 视觉构建把 JSON 放进 thinking，这可能是 `model_output_invalid` 的一部分成因）。按「不覆盖脏工作区」原则原样入库，并补一条：有 M4 结果的页不走 #113 的排后与本地预算，否则分担形同虚设。M4 侧生产结果的脚本不在本仓库，待其作者提交。Spark 本机那份改动保留在分支 `spark/m4-ocr-offload-wip` 直到与 main 核对一致后删除。

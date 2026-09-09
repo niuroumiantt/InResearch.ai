@@ -665,5 +665,33 @@ class ReaderTests(unittest.TestCase):
         self.assertEqual((out["text"], out["blank"], out["unreadable"]), ("页面文字 12 kW", False, False))
 
 
+class WorkerThreadTests(ReaderTests):
+    """Several worker threads in one process must reach the single-worker result."""
+
+    def test_parallel_workers_complete_every_document_without_double_claim(self):
+        self.install_registry()
+        for i in range(6):
+            self.put("paper-%d.txt" % i, "服务器功率为 %d0 W。\n这是完整正文与注释。\n" % (i + 3))
+        result = self.run_reader(workers=4)
+        states = [row[0] for row in self.reader.conn.execute("SELECT state FROM documents")]
+        self.assertEqual(states, ["complete"] * 6)
+        jobs = list(self.reader.conn.execute("SELECT state,attempts FROM jobs"))
+        self.assertTrue(all(job["state"] == "succeeded" for job in jobs))
+        # A job claimed twice would show a second attempt.
+        self.assertTrue(all(job["attempts"] == 1 for job in jobs))
+        self.assertEqual(result["processed"], len(jobs))
+
+    def test_worker_count_is_bounded(self):
+        for workers in (0, -1, cr.MAX_WORKERS + 1, 1.5, True):
+            with self.assertRaises(ValueError):
+                self.reader.run(once=True, workers=workers)
+
+    def test_worker_failure_stops_the_run(self):
+        self.register()
+        self.reader.process = lambda job: (_ for _ in ()).throw(RuntimeError("worker crash"))
+        with self.assertRaises(RuntimeError):
+            self.run_reader(workers=3)
+
+
 if __name__ == "__main__":
     unittest.main()

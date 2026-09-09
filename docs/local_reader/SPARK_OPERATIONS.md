@@ -2,7 +2,7 @@
 
 > CURRENT · 2026-09-06。规则归属与替代关系见 framework/CURRENT.md。
 
-本手册对应 `pipeline/continuous_reader.py`，不是旧 reader 脚本的启动说明。实现为 Python 标准库、SQLite 与单 worker；部署、实际 27B 验收及同步状态由当次部署记录说明。代码通过隔离故障测试不等于 Spark 已完成部署。
+本手册对应 `pipeline/continuous_reader.py`，不是旧 reader 脚本的启动说明。实现为 Python 标准库、SQLite 与单一队列持有进程（该进程内可开多个工作线程，见「并发与吞吐」）；部署、实际 27B 验收及同步状态由当次部署记录说明。代码通过隔离故障测试不等于 Spark 已完成部署。
 
 ## 数据落点与交付契约
 
@@ -19,7 +19,7 @@
 | `~/.local/share/inresearch.ai/intake-receipts/received/` | 已处理 raw 接收副本永久保留；与 originals 分离，来源操作可追溯 |
 | `~/.local/share/inresearch.ai/library/` | 分类与规范名的符号链接视图；原件身份不随改名变化；可回滚、可重建 |
 | `~/.local/share/inresearch.ai/candidates/mapping-proposals.json` | 导出时生成的未映射/注册表已变更提案；不自动新增正式对象 |
-| `~/.local/state/inresearch.ai/status.json` | 可重建健康快照；日志在用户 journal；锁位于 catalog，避免更换 state 路径绕过单 worker |
+| `~/.local/state/inresearch.ai/status.json` | 可重建健康快照；日志在用户 journal；锁位于 catalog，避免更换 state 路径绕过唯一队列持有者 |
 | `~/.config/inresearch.ai/reader.env` | 本机私有配置，0600；凭据不可打印或提交 |
 
 
@@ -137,6 +137,19 @@ systemctl --user start inresearch-reader.service
 `retry` 不带 doc-id 会重试全部 failed/blocked，仅在已修复原因时使用。`rollback` 只移除台账中与原件相符的 library 符号链接，不删除原件、raw、阅读结果或来源链；已回滚的操作不会在启动时自动重建。崩溃前处于 prepared 的改名，或正常 committed 但丢失的视图，可从操作台账恢复。目标被用户文件占用/指向别处时转 needs_review，绝不覆盖。修正占位冲突后可 retry organize 任务。
 
 执行配方冻结 27B backend/model/context、分块和注册表快照。切换 backend/阅读模型或升级不兼容配方会阻塞旧任务，不能用普通 retry 掩盖；需另行设计保留旧产物的重新处理版本。可在同一配方追加已明确配置的 OCR 能力，逐页记录实际视觉模型，retry 从已保存页继续。
+
+## 并发与吞吐
+
+- **队列所有权不变**：仍然只有一个进程持有 catalog 锁，中断任务回收与对账仍只发生一次；第二个进程照旧报 `another_worker_owns_queue`。多线程只发生在这一个进程内部。
+- `READER_WORKERS`（默认 `1`，上限 16）设定该进程内的工作线程数。每个线程持有自己的 SQLite 连接，领取任务用 `BEGIN IMMEDIATE`，同一任务不会被领两次；`--workers N` 可在命令行覆盖。扫描与入库仍留在持锁线程，保持单写入者。
+- **改大线程数之前先放开 Ollama 服务端**。Ollama 默认串行处理请求，客户端并发只会堆在服务端队列里。需在 Ollama 服务上设 `OLLAMA_NUM_PARALLEL` 不小于 `READER_WORKERS`，并确认「并发请求数 × `num_ctx`」的 KV 缓存仍放得进显存，否则会触发换出，反而更慢。27B、32k 上下文下先从 2 起步，用 `ollama ps` 与 `status.json` 的处理速率核对后再加。
+- 任一线程抛出未预期异常会停下整个 run 并向上抛出，与原先单线程一致，不会留下半跑状态。
+
+修改后需重启服务生效：
+
+```bash
+systemctl --user restart inresearch-reader.service
+```
 
 ## 格式与质量边界
 
