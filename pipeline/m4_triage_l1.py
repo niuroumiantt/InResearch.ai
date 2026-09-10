@@ -303,7 +303,7 @@ def prepare(item: dict) -> dict:
         # A Visio binary has no text stream at all: the extractor reports the
         # streams it did find and will report the same ones every future run.
         # Re-queueing it just spends another pass to reach the same filename.
-        no_text = 'no known stream' in str(meta.get('extract_error') or '')
+        no_text = bool(meta.get('no_text_layer'))
         cat = '_no_text_layer' if no_text else ('_ocr_candidate' if suffix == '.pdf' else '_format_review')
         rec.update({'level': 'n', 'category': cat, 'needs_model': not no_text, 'preview': text, 'meta': meta})
     else:

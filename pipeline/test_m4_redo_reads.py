@@ -148,6 +148,19 @@ class NoTextLayerTests(unittest.TestCase):
     def test_a_flagged_file_leaves_the_redo_queue(self):
         self.assertTrue(PK.opened_and_empty({'meta': {'no_text_layer': True}}))
 
+    def test_the_flag_alone_decides_regardless_of_the_wording(self):
+        """The verdict must not depend on matching prose in extract_error.
+
+        Two rounds of merges have already put the string match back; a test
+        that only ever passes a bare flag cannot tell the implementations
+        apart, because both accept it.  This one changes the wording, so a
+        reader that greps the message fails here.
+        """
+        reworded = {'meta': {'no_text_layer': True,
+                             'extract_error': 'OLE2 container has no text stream'}}
+        self.assertTrue(PK.opened_and_empty(reworded),
+                        'the verdict is being read out of the error message')
+
     def test_a_file_never_opened_stays_in_the_queue(self):
         self.assertFalse(PK.opened_and_empty({'meta': {}}))
         self.assertFalse(PK.opened_and_empty({}))
