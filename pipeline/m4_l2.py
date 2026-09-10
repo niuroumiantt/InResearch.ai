@@ -438,6 +438,9 @@ def cmd_record(a):
 def cmd_queue(a):
     pool = eligible(a.min_score)
     by_module = Counter(r.get('category') for r in pool)
+    metrics = load_metrics()
+    covered = Counter(metrics.get(f['metric_id'], {}).get('module')
+                      for f in load_facts()['records'])
     excluded = sum(1 for r in all_results().values()
                    if (r.get('score') or 0) >= a.min_score
                    and r.get('status') == 'ok' and self_authored(r))
@@ -447,9 +450,16 @@ def cmd_queue(a):
                       'mb': round(sum(r.get('size', 0) for r in pool) / 1e6)},
                      ensure_ascii=False))
     for module, n in by_module.most_common():
-        print('  %-8s %d' % (module, n))
+        print('  %-8s 待读 %-4d 已有事实 %d' % (module, n, covered.get(module, 0)))
+    # The reading order turns on how many facts a module already has, so print
+    # that alongside each row.  With only the score shown, a queue ordered by
+    # coverage is indistinguishable from one ordered by score, and nobody can
+    # tell whether the ordering did anything.
     for row in pool[:a.show]:
-        print('  %s %s' % (row.get('score'), (row.get('proposed_name') or row.get('rel', ''))[:90]))
+        module = row.get('category') or '?'
+        print('  %-5s 已有事实 %-3d %2s 分  %s' % (
+            module, covered.get(module, 0), row.get('score'),
+            (row.get('proposed_name') or row.get('rel', ''))[:80]))
 
 
 def cmd_status(a):
