@@ -14,7 +14,7 @@ Modes:
   collect                   fetch finished batches into l1_results.jsonl
 """
 from __future__ import annotations
-import argparse, hashlib, json, os, random, re, subprocess, sys, time, zipfile
+import argparse, hashlib, json, os, random, re, subprocess, sys, threading, time, zipfile
 from pathlib import Path
 
 import m4_paths
@@ -236,6 +236,7 @@ def done_keys() -> set:
 
 
 _moved: dict | None = None
+_moved_lock = threading.Lock()
 
 
 def moved_index() -> dict:
@@ -251,14 +252,22 @@ def moved_index() -> dict:
     """
     global _moved
     if _moved is None:
-        _moved = {}
-        if MOVES.exists():
-            with MOVES.open(encoding='utf-8') as fh:
-                for line in fh:
-                    try: r = json.loads(line)
-                    except ValueError: continue
-                    if r.get('ok') and r.get('event') == 'move' and r.get('to'):
-                        _moved[r['sha256']] = r['to']
+        # Publish only once the index is complete.  pack runs prepare() on a
+        # thread pool: a half-filled dict assigned to the global early is
+        # visible to the other threads, which then miss, fall back to the dead
+        # source path, and silently produce empty previews for whatever had not
+        # been read yet.
+        with _moved_lock:
+            if _moved is None:
+                index: dict = {}
+                if MOVES.exists():
+                    with MOVES.open(encoding='utf-8') as fh:
+                        for line in fh:
+                            try: r = json.loads(line)
+                            except ValueError: continue
+                            if r.get('ok') and r.get('event') == 'move' and r.get('to'):
+                                index[r['sha256']] = r['to']
+                _moved = index
     return _moved
 
 
@@ -294,7 +303,7 @@ def prepare(item: dict) -> dict:
         # A Visio binary has no text stream at all: the extractor reports the
         # streams it did find and will report the same ones every future run.
         # Re-queueing it just spends another pass to reach the same filename.
-        no_text = bool(meta.get('no_text_layer'))
+        no_text = 'no known stream' in str(meta.get('extract_error') or '')
         cat = '_no_text_layer' if no_text else ('_ocr_candidate' if suffix == '.pdf' else '_format_review')
         rec.update({'level': 'n', 'category': cat, 'needs_model': not no_text, 'preview': text, 'meta': meta})
     else:
