@@ -8,9 +8,14 @@ the small model inherits the calibration rather than inventing its own.
 
   calibrate --limit N   re-score files already scored in-session, report agreement
   run [--limit N]       score pending files
+
+`run --workers N` keeps N requests in flight. The local server answers them in
+parallel only when it is started with OLLAMA_NUM_PARALLEL >= N; otherwise the
+extra requests just queue there and nothing gets faster.
 """
 from __future__ import annotations
-import argparse, json, random, re, sys, time, urllib.request
+import argparse, json, random, re, sys, threading, time, urllib.request
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -18,6 +23,7 @@ import m4_triage_l1 as L1
 import m4_triage_pack as PK
 
 MODEL = 'qwen3:8b'
+MAX_WORKERS = 16
 ENDPOINT = 'http://127.0.0.1:11434/api/chat'
 FEWSHOT = 8
 
@@ -112,31 +118,82 @@ def cmd_calibrate(a):
 
 
 def cmd_run(a):
-    system = system_prompt(); n = 0; err = 0; t0 = time.time()
+    """Score pending files, `a.workers` model requests in flight.
+
+    Rows are appended under a lock, so an interrupted run keeps every row it
+    already wrote and `pending()` skips them next time.  `--limit` still counts
+    only files that reach the model: a file whose preview needs no model is
+    written without spending the budget, and once the budget is gone the
+    remaining files are left pending rather than written half-judged."""
+    if not isinstance(a.workers, int) or not 1 <= a.workers <= MAX_WORKERS:
+        raise SystemExit('workers must be 1..%d' % MAX_WORKERS)
+    system = system_prompt()
+    items = PK.pending()
+    counts = {'scored': 0, 'errors': 0, 'no_model': 0, 'dispatched': 0}
+    guard = threading.Lock()
+    t0 = time.time()
+
     with L1.RESULTS.open('a', encoding='utf-8') as f:
-        for item in PK.pending():
-            if a.limit and n + err >= a.limit: break
+        def emit(row, key):
+            with guard:
+                f.write(json.dumps(row, ensure_ascii=False) + '\n')
+                counts[key] += 1
+                judged = counts['scored'] + counts['errors']
+                if key != 'no_model' and judged % 25 == 0:
+                    f.flush()
+                    print(json.dumps({'done': counts['scored'], 'errors': counts['errors'],
+                                      'sec_per_file': round((time.time() - t0) / judged, 1)}), flush=True)
+
+        def budget_gone():
+            with guard:
+                return bool(a.limit) and counts['dispatched'] >= a.limit
+
+        def take_slot():
+            """Reserve the budget before the call, not after it returns: several
+            threads would otherwise all pass the check while none has finished."""
+            with guard:
+                if a.limit and counts['dispatched'] >= a.limit:
+                    return False
+                counts['dispatched'] += 1
+                return True
+
+        def work(item):
+            if budget_gone():
+                return
             rec = L1.prepare(item)
             if not rec['needs_model']:
-                o = L1.finalize(rec, None, None, None); o['proposed_name'] = L1.proposed_name(o)
-                f.write(json.dumps(o, ensure_ascii=False) + '\n'); continue
-            try: v = judge(rec, system)
+                o = L1.finalize(rec, None, None, None)
+                o['proposed_name'] = L1.proposed_name(o)
+                emit(o, 'no_model')
+                return
+            if not take_slot():  # the preview may have taken a while
+                return
+            try:
+                v = judge(rec, system)
             except Exception as exc:
                 o = L1.finalize(rec, None, None, 'local_model:' + str(exc)[:80])
-                o['proposed_name'] = L1.proposed_name(o); f.write(json.dumps(o, ensure_ascii=False) + '\n')
-                err += 1; continue
+                o['proposed_name'] = L1.proposed_name(o)
+                emit(o, 'errors')
+                return
             o = L1.finalize(rec, v, {'judge': MODEL}, None)
             o['proposed_name'] = L1.proposed_name(o); o['model'] = MODEL
-            f.write(json.dumps(o, ensure_ascii=False) + '\n'); n += 1
-            if n % 25 == 0:
-                f.flush(); print(json.dumps({'done': n, 'errors': err, 'sec_per_file': round((time.time() - t0) / n, 1)}), flush=True)
-    print(json.dumps({'scored': n, 'errors': err, 'sec_per_file': round((time.time() - t0) / max(n, 1), 1)}))
+            emit(o, 'scored')
+
+        with ThreadPoolExecutor(a.workers) as ex:
+            list(ex.map(work, items))
+
+    judged = counts['scored'] + counts['errors']
+    print(json.dumps({'scored': counts['scored'], 'errors': counts['errors'],
+                      'no_model': counts['no_model'], 'workers': a.workers,
+                      'sec_per_file': round((time.time() - t0) / max(judged, 1), 1)}))
 
 
 def main():
     ap = argparse.ArgumentParser(); s = ap.add_subparsers(dest='cmd', required=True)
     c = s.add_parser('calibrate'); c.add_argument('--limit', type=int, default=25)
     r = s.add_parser('run'); r.add_argument('--limit', type=int, default=0)
+    r.add_argument('--workers', type=int, default=1,
+                   help='model requests in flight (1..%d); needs OLLAMA_NUM_PARALLEL >= this on the server' % MAX_WORKERS)
     a = ap.parse_args()
     {'calibrate': cmd_calibrate, 'run': cmd_run}[a.cmd](a)
 
