@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：460。
+在册文件：462。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 12 |
 | 历史快照 | 36 |
-| 运行代码 | 78 |
+| 运行代码 | 79 |
 | 现行规范 | 11 |
 | 项目配置 | 36 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 25 |
 | 配套说明 | 34 |
-| 测试 | 20 |
+| 测试 | 21 |
 
 ## 在册记录集合
 
@@ -586,6 +586,7 @@
 | `pipeline/launch_reader.py` | 运行代码 |
 | `pipeline/m4_inventory.py` | 运行代码 |
 | `pipeline/m4_local_reader.py` | 运行代码 |
+| `pipeline/m4_office_text.py` | 运行代码 |
 | `pipeline/m4_offload_worker.py` | 运行代码 |
 | `pipeline/m4_paths.py` | 运行代码 |
 | `pipeline/m4_preflight.py` | 运行代码 |
@@ -615,6 +616,7 @@
 | `pipeline/test_display_regressions.py` | 测试 |
 | `pipeline/test_governance.py` | 测试 |
 | `pipeline/test_interface_system.py` | 测试 |
+| `pipeline/test_m4_office_text.py` | 测试 |
 | `pipeline/test_m4_paths.py` | 测试 |
 | `pipeline/test_m4_triage.py` | 测试 |
 | `pipeline/test_m4_triage_apply.py` | 测试 |

@@ -125,6 +125,61 @@ scp mapping.jsonl spark-lan:/tmp/
 ssh spark-lan python3 ~/code/inresearch.ai/pipeline/continuous_reader.py apply-triage /tmp/mapping.jsonl --dry-run
 ```
 
+## 修正：未读文件保留原始目录
+
+第一遍归档时，未读文件（图纸、图片、衍生产物）只按文件名命名，父目录全部丢弃。
+结果是广州项目和深圳项目的 `一层平面图.dwg` 并排躺在 `_drawings_unread/` 里，
+除了 SHA 前 16 位没有任何东西能区分它们。
+
+现在未读文件保留来源目录树：
+
+```
+_drawings_unread/数据中心报告购买/01 解决方案/2019中国移动广州IDC/4 投标/图纸/__n_一层平面图__6dbed65c.dwg
+```
+
+打过分的文件仍然平铺——它们的文件名里已经有分数、年份、机构、标题。
+
+路径过长时从中间删段，保留最外层（哪批资料）和最内层（哪个项目、哪个子目录），
+并留下可见的 `__` 标记，不静默丢弃。
+
+### 把已经归档的文件搬到正确位置
+
+```
+$PY $S/m4_triage_apply.py restage plan     # 只读，先看会动多少
+$PY $S/m4_triage_apply.py restage apply
+$PY $S/m4_triage_apply.py restage revert
+```
+
+`restage` 从 `moves.jsonl` 回放出每个文件的当前位置，按现行规则重算目标，
+只搬位置不对的。已经在正确位置的不动，重复执行收敛到 0。
+
+## 修正：Excel / PPT 不再只看文件名
+
+第一遍把 `.xlsx .xls .ppt .et .wps .dps .vsdx .vsd` 全部路由到 `_office_pending`，
+一个字都不抽，模型收到的原话是"没有可提取的文本，只能根据文件名和路径判断"。
+于是一份 11 张表的 Dell'Oro 资本开支预测工作簿拿了 8 分，而它的散文版摘要 PDF 拿了 9 分。
+
+`m4_office_text.py` 用纯标准库读这两类容器（按魔数判断，不看后缀，因为
+`.et/.wps` 两种格式都有人用）：
+
+| 容器 | 格式 | 抽取内容 |
+|---|---|---|
+| `PK\x03\x04` | OOXML zip | 工作表名 + 共享字符串 / 内联字符串 |
+| `\xd0\xcf\x11\xe0` | OLE2 复合文档 | BIFF 的 SST 与工作表名；PPT 的文本原子 |
+
+iWork（`.numbers .pages .key`）和 `.mpp` 仍然没有标准库读法，继续按文件名判断。
+
+### 重判当初盲打分的文件
+
+```
+$PY $S/m4_triage_pack.py pack --redo --limit 200
+# 判完照常 record，新行会覆盖旧行（load_results 取每个 sha 的最后一行）
+$PY $S/m4_triage_pack.py record --verdicts verdicts.txt
+```
+
+`--redo` 只挑「上一次结果是 level n、而现在能打开」的文件，不会把已经读过内容的重排一遍。
+重判完记得再跑一次 `restage`，让分数变化反映到文件名上。
+
 ## 换一个语料跑（NAS、移动硬盘、另一个文件夹）
 
 三个环境变量决定一次运行读哪里、写哪里、把账记在哪里。不设就是原来的 M4 语料，行为完全不变。

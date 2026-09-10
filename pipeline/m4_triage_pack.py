@@ -17,6 +17,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 import m4_triage_l1 as L1
+import m4_office_text
 
 BATCH_DIR = L1.DATA / 'batches'
 PREVIEW_CHARS = 400
@@ -42,9 +43,37 @@ def priority(rel: str):
     return (rank, rel)
 
 
-def pending():
-    done = L1.done_keys()
-    items = [i for i in L1.load_inventory() if i['sha256'] not in done]
+def last_results() -> dict:
+    """The newest row per file: record appends, so the last one wins."""
+    last = {}
+    if L1.RESULTS.exists():
+        with L1.RESULTS.open(encoding='utf-8') as fh:
+            for line in fh:
+                try: r = json.loads(line)
+                except ValueError: continue
+                if 'sha256' in r: last[r['sha256']] = r
+    return last
+
+
+def blind_scored() -> set:
+    """Files judged on their filename alone that can now actually be opened.
+
+    The first pass routed .xlsx / .xls / .ppt to _office_pending and never
+    opened them, so a workbook of forecast data was scored from its name while
+    its prose summary was scored from its text.  These are the ones worth
+    asking again about.
+    """
+    return {sha for sha, r in last_results().items()
+            if r.get('level') == 'n' and r.get('suffix') in m4_office_text.SUPPORTED}
+
+
+def pending(redo=False):
+    if redo:
+        wanted = blind_scored()
+        items = [i for i in L1.load_inventory() if i['sha256'] in wanted]
+    else:
+        done = L1.done_keys()
+        items = [i for i in L1.load_inventory() if i['sha256'] not in done]
     return sorted(items, key=lambda i: priority(i['rel']))
 
 
@@ -69,7 +98,7 @@ def cmd_pack(a):
         raise SystemExit('workers must be 1..%d' % MAX_WORKERS)
     BATCH_DIR.mkdir(parents=True, exist_ok=True)
     out = []; l0 = 0; failed = []
-    items = pending()
+    items = pending(getattr(a, 'redo', False))
     position = 0
     with L1.RESULTS.open('a', encoding='utf-8') as f:
         while len(out) < a.limit and position < len(items):
@@ -381,6 +410,8 @@ def cmd_status(a):
 def main():
     ap = argparse.ArgumentParser(); s = ap.add_subparsers(dest='cmd', required=True)
     p = s.add_parser('pack'); p.add_argument('--limit', type=int, default=40); p.add_argument('--out')
+    p.add_argument('--redo', action='store_true',
+                   help='re-queue files scored from their filename alone that can now be opened')
     p.add_argument('--workers', type=int, default=4,
                    help='preview extractions in parallel (1..%d); local CPU work, no model' % MAX_WORKERS)
     r = s.add_parser('record'); r.add_argument('--verdicts', required=True); r.add_argument('--batch'); r.add_argument('--digests', action='store_true')
