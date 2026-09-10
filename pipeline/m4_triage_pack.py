@@ -79,16 +79,15 @@ def opened_and_empty(r: dict) -> bool:
     _office_pending, or it was read back through a stale path - so it still
     owes us a look.  A transient failure (the file was not where the inventory
     said) is also worth retrying.  Sheet counts, text atom counts, or a
-    permanent no-text-layer verdict all mean the answer will not change.
+    permanent "no known stream" verdict all mean the answer will not change.
     """
     meta = r.get('meta') or {}
     if not meta:
         return False
-    if meta.get('no_text_layer'):
-        return True
-    # Any other error is transient - a stale path, a truncated download - and
-    # the file still owes us a look.
-    return not meta.get('extract_error')
+    err = str(meta.get('extract_error') or '')
+    if err and 'no known stream' not in err:
+        return False
+    return True
 
 
 def pending(redo=False):
