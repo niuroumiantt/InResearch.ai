@@ -144,6 +144,18 @@ class OleFile:
         return b''
 
 
+def no_text_layer(reason: str) -> tuple[str, dict]:
+    """The container opened fine but holds no text stream, and never will.
+
+    Callers use the flag to drop a file out of the re-read queue.  It exists
+    as one helper rather than a literal at each exit because forgetting it
+    reads as a transient failure: the file goes back in the queue, comes out
+    identical, and goes back again.  A 37 MB .ppt did exactly that until
+    somebody noticed the queue would not drain.
+    """
+    return '', {'no_text_layer': True, 'extract_error': reason}
+
+
 # --------------------------------------------------------------------------
 # BIFF (.xls)
 # --------------------------------------------------------------------------
@@ -234,7 +246,7 @@ def xls_text(raw: bytes) -> tuple[str, dict]:
     ole = OleFile(raw)
     book = ole.stream('Workbook', 'Book')
     if not book:
-        return '', {'extract_error': 'no Workbook stream'}
+        return no_text_layer('no Workbook stream')
     sheets, strings = [], []
     records = list(biff_records(book))
     for i, (rec, payload) in enumerate(records):
@@ -300,8 +312,7 @@ def ppt_text(raw: bytes) -> tuple[str, dict]:
     if not doc:
         # Same permanent verdict as a Visio binary: the stream the text lives in
         # is simply not in this file, so a later re-read finds the same nothing.
-        return '', {'no_text_layer': True,
-                    'extract_error': 'no PowerPoint Document stream'}
+        return no_text_layer('no PowerPoint Document stream')
     parts = []
     for rec_type, payload in ppt_atoms(doc):
         if rec_type == TEXT_BYTES_ATOM:
@@ -391,8 +402,8 @@ def extract(path: Path) -> tuple[str, dict]:
             # A Visio binary carries no text stream at all.  Callers decide
             # whether to re-read a file later, and that decision must not rest
             # on matching the prose below - hence the flag.
-            return '', {'no_text_layer': True,
-                        'extract_error': 'OLE2 with no known stream: ' + ','.join(sorted(names))[:80]}
+            return no_text_layer(
+                'OLE2 with no known stream: ' + ','.join(sorted(names))[:80])
         return '', {'extract_error': 'unrecognised container'}
     except Exception as exc:
         return '', {'extract_error': type(exc).__name__ + ': ' + str(exc)[:120]}
