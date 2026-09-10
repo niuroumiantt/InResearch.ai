@@ -125,6 +125,37 @@ scp mapping.jsonl spark-lan:/tmp/
 ssh spark-lan python3 ~/code/inresearch.ai/pipeline/continuous_reader.py apply-triage /tmp/mapping.jsonl --dry-run
 ```
 
+## 换一个语料跑（NAS、移动硬盘、另一个文件夹）
+
+三个环境变量决定一次运行读哪里、写哪里、把账记在哪里。不设就是原来的 M4 语料，行为完全不变。
+
+```
+export INRESEARCH_SOURCE=/Volumes/NAS/研究资料          # 只读，永不修改
+export INRESEARCH_LIBRARY=/Volumes/NAS/研究资料库       # 归档目标
+export INRESEARCH_DATASET=nas                          # 这批语料的账本名
+```
+
+`INRESEARCH_DATASET` 是最要紧的一个。清单、L1 结果、移动日志都放在它下面：
+
+```
+~/.local/share/inresearch.ai/{dataset}/inventory.jsonl
+~/.local/share/inresearch.ai/{dataset}/l1_results.jsonl
+~/.local/state/inresearch.ai/{dataset}/moves.jsonl
+```
+
+**不改这个名字就去跑第二批语料，新的清单会追加进第一批的账本**，之后每个阶段都会读错。
+名字必须是单个路径段，带斜杠会被直接拒绝。
+
+两条硬约束：
+
+1. **source 和 library 必须在同一个卷上。** 移动走的是 `os.rename`，跨文件系统会失败。
+   `apply` 在动第一个文件之前就检查，不合格直接退出，不会先写几万条错误再让你发现。
+   NAS 上就把资料库建在同一个共享里，别一个在 NAS 一个在本机。
+2. **账本留在本机**，不要放到 NAS 上。多台机器同时写同一个 jsonl 会串行破坏。
+
+顺序和本机一样：inventory → l1 → apply。网络盘上做 SHA-256 要把每个文件完整读一遍，
+按千兆网估算大约 100 GB/小时，先用 `--limit` 跑一小批确认再放全量。
+
 ## 中途换模型
 
 本手册的所有命令与状态都在磁盘上，与会话无关。换模型后，新会话读本手册和任务卡即可接手；

@@ -10,7 +10,9 @@ import argparse, hashlib, json, os, sys, time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
-SOURCE = Path('/Users/m4/Downloads/所有raw materials')
+import m4_paths
+
+SOURCE = m4_paths.source()
 OUT = Path.home() / '.local/share/inresearch.ai/m4-triage/inventory.jsonl'
 
 def sha256(path: Path) -> str:
