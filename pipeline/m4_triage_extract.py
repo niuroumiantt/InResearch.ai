@@ -9,11 +9,13 @@ The verbatim quote is what makes the output checkable - the scorer reads the
 document's own words, not the small model's interpretation of them.
 
   test   --limit N   run on already-scored files and show the digests
-  run    [--limit N] extract for pending files into digests.jsonl
+  run    [--limit N] [--workers N] extract for pending files into digests.jsonl
   pack   --limit N   emit digests as a compact batch for the scorer
 """
 from __future__ import annotations
 import argparse, json, re, sys, time, urllib.request
+import threading
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -21,6 +23,7 @@ import m4_triage_l1 as L1
 import m4_triage_pack as PK
 
 MODEL = 'qwen3:8b'
+MAX_WORKERS = 16
 ENDPOINT = 'http://127.0.0.1:11434/api/chat'
 DIGESTS = L1.DATA / 'digests.jsonl'
 
@@ -114,7 +117,17 @@ def cmd_test(a):
 
 
 def cmd_run(a):
-    done = done_digests(); n = 0; err = 0; t0 = time.time()
+    """Extract digests, `a.workers` model requests in flight.
+
+    Sharding still partitions work across processes; workers add concurrency
+    inside one process, so `--shard 0/2 --workers 4` keeps eight requests in
+    flight from two processes.  The local server answers them in parallel only
+    when it is started with OLLAMA_NUM_PARALLEL at least that high."""
+    workers = getattr(a, 'workers', None)
+    workers = 1 if workers is None else workers
+    if not isinstance(workers, int) or not 1 <= workers <= MAX_WORKERS:
+        raise SystemExit('workers must be 1..%d' % MAX_WORKERS)
+    done = done_digests(); t0 = time.time()
     DIGESTS.parent.mkdir(parents=True, exist_ok=True)
     # Sharding lets several workers run against one ollama instance without
     # coordinating: each takes every Nth pending file by a stable hash of its
@@ -123,27 +136,56 @@ def cmd_run(a):
     if a.shard:
         shard, shards = (int(x) for x in a.shard.split('/'))
     out = DIGESTS if shards == 1 else DIGESTS.with_name('digests.part%d.jsonl' % shard)
+    counts = {'n': 0, 'err': 0, 'dispatched': 0}
+    guard = threading.Lock()
+    mine = [i for i in PK.pending()
+            if i['sha256'] not in done
+            and (shards == 1 or int(i['sha256'][:8], 16) % shards == shard)]
+
     with out.open('a', encoding='utf-8') as f, L1.RESULTS.open('a', encoding='utf-8') as rf:
-        for item in PK.pending():
-            if item['sha256'] in done: continue
-            if shards > 1 and int(item['sha256'][:8], 16) % shards != shard: continue
-            if a.limit and n + err >= a.limit: break
+        def take_slot():
+            # Reserve before the call: several threads would otherwise pass the
+            # limit check together while none of them has finished.
+            with guard:
+                if a.limit and counts['dispatched'] >= a.limit:
+                    return False
+                counts['dispatched'] += 1
+                return True
+
+        def work(item):
+            if a.limit and counts['dispatched'] >= a.limit:
+                return
             rec = L1.prepare(item)
             if not rec['needs_model']:
                 o = L1.finalize(rec, None, None, None); o['proposed_name'] = L1.proposed_name(o)
-                rf.write(json.dumps(o, ensure_ascii=False) + '\n'); continue
-            try: d = extract(rec)
+                with guard:
+                    rf.write(json.dumps(o, ensure_ascii=False) + '\n')
+                return
+            if not take_slot():
+                return
+            failed = False
+            try:
+                d = extract(rec)
             except Exception as exc:
+                failed = True
                 d = {'sha256': rec['sha256'], 'rel': rec['rel'], 'suffix': rec['suffix'], 'size': rec['size'],
                      'level': rec['level'], 'pages': rec['meta'].get('pages'), 'error': str(exc)[:100],
                      'title': Path(rec['rel']).stem[:60], 'org': '未知', 'year': '未知', 'doc_type': 'other',
                      'subject': '', 'quote': PK.clean_preview(rec['preview'])[:60], 'quote_verified': False,
                      'has_numbers': False, 'extractor': MODEL}
-                err += 1
-            f.write(json.dumps(d, ensure_ascii=False) + '\n'); n += 1
-            if n % 50 == 0:
-                f.flush(); print(json.dumps({'done': n, 'errors': err, 'sec': round((time.time() - t0) / n, 1)}), flush=True)
-    print(json.dumps({'extracted': n, 'errors': err, 'sec_per_file': round((time.time() - t0) / max(n, 1), 1)}))
+            with guard:
+                f.write(json.dumps(d, ensure_ascii=False) + '\n')
+                counts['n'] += 1
+                counts['err'] += failed
+                if counts['n'] % 50 == 0:
+                    f.flush()
+                    print(json.dumps({'done': counts['n'], 'errors': counts['err'],
+                                      'sec': round((time.time() - t0) / counts['n'], 1)}), flush=True)
+
+        with ThreadPoolExecutor(workers) as ex:
+            list(ex.map(work, mine))
+    print(json.dumps({'extracted': counts['n'], 'errors': counts['err'], 'workers': workers,
+                      'sec_per_file': round((time.time() - t0) / max(counts['n'], 1), 1)}))
 
 
 def cmd_pack(a):
@@ -176,6 +218,8 @@ def main():
     ap = argparse.ArgumentParser(); s = ap.add_subparsers(dest='cmd', required=True)
     t = s.add_parser('test'); t.add_argument('--limit', type=int, default=12)
     r = s.add_parser('run'); r.add_argument('--limit', type=int, default=0); r.add_argument('--shard')
+    r.add_argument('--workers', type=int, default=1,
+                   help='model requests in flight (1..%d); needs OLLAMA_NUM_PARALLEL >= this' % MAX_WORKERS)
     p = s.add_parser('pack'); p.add_argument('--limit', type=int, default=200)
     a = ap.parse_args()
     {'test': cmd_test, 'run': cmd_run, 'pack': cmd_pack}[a.cmd](a)

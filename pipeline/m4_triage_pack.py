@@ -130,13 +130,57 @@ def cmd_record(a):
     print(json.dumps({'recorded': n, 'rejected': bad, 'total_scored': len(L1.done_keys())}, ensure_ascii=False))
 
 
-def cmd_status(a):
-    """Progress plus an ETA measured from the digest file's own age.
+IDLE_GAP_SECONDS = 300.0
 
-    The rate is observed, not assumed: total digests divided by how long the
-    first digest file has existed.  That keeps the estimate honest across
-    restarts and worker-count changes.
+
+def working_rate(stamps, idle_gap=IDLE_GAP_SECONDS):
+    """Files per minute while extraction was actually running.
+
+    Dividing by the age of the digest file counts every hour the machine sat
+    idle between sessions, which made the ETA wrong by an order of magnitude
+    (0.7/min and 343 hours remaining, measured over a night nothing ran).  Sum
+    only the gaps between consecutive digests that look like work, and divide
+    the files that produced them.  Returns None when there is nothing to
+    measure, so the caller can say so instead of inventing a number.
     """
+    stamps = sorted(s for s in stamps if s is not None)
+    if len(stamps) < 2:
+        return None
+    active = 0.0
+    counted = 0
+    for before, after in zip(stamps, stamps[1:]):
+        gap = after - before
+        if 0 <= gap <= idle_gap:
+            active += gap
+            counted += 1
+    if not counted or active <= 0:
+        return None
+    return counted / (active / 60)
+
+
+def digest_stamps(paths):
+    """Epoch seconds of each digest row that carries an `at` field."""
+    import calendar, time as _time
+    out = []
+    for path in paths:
+        if not path.exists():
+            continue
+        for line in path.open(encoding='utf-8'):
+            try:
+                at = json.loads(line).get('at')
+            except ValueError:
+                continue
+            if not at:
+                continue
+            try:
+                out.append(calendar.timegm(_time.strptime(at, '%Y-%m-%dT%H:%M:%SZ')))
+            except ValueError:
+                continue
+    return out
+
+
+def cmd_status(a):
+    """Progress plus an ETA measured from how fast extraction actually runs."""
     import collections, glob, time
     from pathlib import Path
     cat = collections.Counter(); sc = collections.Counter(); n = 0
@@ -152,12 +196,15 @@ def cmd_status(a):
     auto = len(items) - len(scored) - need
     digests = [Path(L1.DATA / 'digests.jsonl')] + [Path(p) for p in sorted(glob.glob(str(L1.DATA / 'digests.part*.jsonl')))]
     total = sum(sum(1 for _ in p.open(encoding='utf-8')) for p in digests if p.exists())
-    first = min((p.stat().st_birthtime for p in digests if p.exists()), default=time.time())
-    minutes = max((time.time() - first) / 60, 1)
-    rate = total / minutes
+    rate = working_rate(digest_stamps(digests))
+    basis = '运行中实测'
+    if rate is None:  # older digests carry no timestamp
+        first = min((p.stat().st_birthtime for p in digests if p.exists()), default=time.time())
+        rate = total / max((time.time() - first) / 60, 1)
+        basis = '挂钟含空闲，偏低'
     print(json.dumps({'唯一文件': len(items), '已打分': len(scored), '剩余': len(items) - len(scored),
                       '需抽取打分': need, '自动归类': auto, '已抽取': total,
-                      '抽取速率_每分钟': round(rate, 1),
+                      '抽取速率_每分钟': round(rate, 1), '速率口径': basis,
                       '预计剩余小时': round(need / rate / 60, 1) if rate else None}, ensure_ascii=False))
     for k, v in cat.most_common(10): print(f'  {v:7d}  {k}')
     if sc: print('分数分布: ' + json.dumps({str(k): sc[k] for k in sorted(sc, reverse=True)}))
