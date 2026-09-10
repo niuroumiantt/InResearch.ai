@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Contract tests for digest extraction concurrency and the throughput measure."""
+from contextlib import redirect_stdout
 import calendar
+import io
 import json
 from pathlib import Path
 import sys
@@ -229,3 +231,48 @@ class PackTests(unittest.TestCase):
         for workers in (0, -1, PK.MAX_WORKERS + 1):
             with self.assertRaises(SystemExit):
                 self.run_pack(self.items(2), limit=1, workers=workers)
+
+
+
+class PackRemainingTests(unittest.TestCase):
+    """The remaining count must be measured with the queue that was packed."""
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix="m4-remaining-test-")
+        base = Path(self.temp.name)
+        self.results = base / "l1_results.jsonl"
+        self.results.write_text("", encoding="utf-8")
+        self._saved = (L1.RESULTS, PK.BATCH_DIR, PK.pending, L1.prepare,
+                       L1.finalize, L1.proposed_name)
+        L1.RESULTS = self.results
+        PK.BATCH_DIR = base / "batches"
+        L1.prepare = lambda item: {"sha256": item["sha256"], "rel": item["rel"],
+                                   "suffix": ".xlsx", "size": 10, "preview": "text here",
+                                   "meta": {}, "level": "p", "needs_model": True}
+        L1.finalize = lambda rec, v, j, e: {"sha256": rec["sha256"], "rel": rec["rel"]}
+        L1.proposed_name = lambda row: "n.xlsx"
+
+    def tearDown(self):
+        (L1.RESULTS, PK.BATCH_DIR, PK.pending, L1.prepare,
+         L1.finalize, L1.proposed_name) = self._saved
+        self.temp.cleanup()
+
+    def report(self, limit, redo):
+        out = io.StringIO()
+        with redirect_stdout(out):
+            PK.cmd_pack(types.SimpleNamespace(limit=limit, workers=2, out=None, redo=redo))
+        return json.loads(out.getvalue().splitlines()[0])
+
+    def test_redo_remaining_counts_the_redo_queue(self):
+        """Every redo file is already scored, so the plain queue reports zero."""
+        redo_items = [{"sha256": "%064x" % i, "rel": "f%d.xlsx" % i} for i in range(10)]
+        PK.pending = lambda redo=False: list(redo_items) if redo else []
+        report = self.report(limit=4, redo=True)
+        self.assertEqual(report["packed"], 4)
+        self.assertEqual(report["remaining_after"], 6)
+
+    def test_the_plain_queue_still_reports_its_own_remainder(self):
+        items = [{"sha256": "%064x" % i, "rel": "f%d.xlsx" % i} for i in range(7)]
+        PK.pending = lambda redo=False: [] if redo else list(items)
+        report = self.report(limit=3, redo=False)
+        self.assertEqual(report["remaining_after"], 4)

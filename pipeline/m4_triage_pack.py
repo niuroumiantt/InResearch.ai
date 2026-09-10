@@ -98,7 +98,8 @@ def cmd_pack(a):
         raise SystemExit('workers must be 1..%d' % MAX_WORKERS)
     BATCH_DIR.mkdir(parents=True, exist_ok=True)
     out = []; l0 = 0; failed = []
-    items = pending(getattr(a, 'redo', False))
+    redo = getattr(a, 'redo', False)
+    items = pending(redo)
     position = 0
     with L1.RESULTS.open('a', encoding='utf-8') as f:
         while len(out) < a.limit and position < len(items):
@@ -128,7 +129,10 @@ def cmd_pack(a):
     (BATCH_DIR / 'batch.json').write_text(json.dumps(out, ensure_ascii=False), encoding='utf-8')
     print(json.dumps({'packed': len(out), 'l0_auto_written': l0, 'workers': workers,
                       'preview_failed': len(failed), 'file': str(path),
-                      'remaining_after': len(pending()) - len(out)}, ensure_ascii=False))
+                      # recomputed with the same selector: asking the plain
+                      # queue how much redo work is left reports every scored
+                      # file as done and lands on a negative remainder
+                      'remaining_after': len(pending(redo)) - len(out)}, ensure_ascii=False))
     for problem in failed[:5]:
         print(json.dumps(problem, ensure_ascii=False))
 
