@@ -131,21 +131,38 @@ def desired_destination(res: dict) -> str | None:
     return str(Path(cat) / name) if name else None
 
 
-def current_locations() -> dict:
-    """Where each file actually is now, replayed from the ledger."""
-    where = {}
+def ledger_rows():
     if not MOVES.exists():
-        return where
+        return
     with MOVES.open(encoding='utf-8') as fh:
         for line in fh:
-            try: r = json.loads(line)
+            try: yield json.loads(line)
             except ValueError: continue
-            if not r.get('ok'): continue
-            if r.get('event') == 'move':
-                where[r['sha256']] = r['to']
-            elif r.get('event') == 'revert':
-                where.pop(r['sha256'], None)   # back in the source tree
-    return where
+
+
+def final_locations() -> dict:
+    """Source path -> where that file is now, by replaying the whole ledger.
+
+    Keyed by path, not by content hash.  Duplicate copies share one sha256
+    but are separate files with separate destinations, so a sha-keyed replay
+    reports only whichever of them moved last and silently loses the others.
+
+    Each row's `from` is either a source path or a place an earlier row put
+    the file, so following the chain gives every file's origin and its
+    current home; a revert that lands a file back at its origin drops out.
+    """
+    origin_of = {}                      # current place -> where it started
+    for row in ledger_rows():
+        if not row.get('ok'):
+            continue
+        src, dst = row.get('from'), row.get('to')
+        if not src or not dst:
+            continue
+        origin = origin_of.pop(src, src)
+        if origin == dst:
+            continue                    # reverted all the way back
+        origin_of[dst] = origin
+    return {origin: place for place, origin in origin_of.items()}
 
 
 def plan_library():
@@ -175,15 +192,18 @@ def plan_restage():
     results = load_results()
     if not results:
         sys.exit('no L1 results yet: run m4_triage_l1.py first')
-    where = current_locations(); by_sha = load_inventory(); moves = []
+    placed = final_locations(); by_sha = load_inventory(); moves = []
     for sha, res in results.items():
-        now_at = where.get(sha)
+        rows = by_sha.get(sha)
+        if not rows: continue
+        # The same copy plan_library filed, so restage follows that one file.
+        keep = sorted(rows, key=lambda r: keep_rank(r['rel']))[0]
+        now_at = placed.get(keep['rel'])
         if not now_at: continue
         dest = desired_destination(res)
         if not dest or dest == now_at: continue
-        rows = by_sha.get(sha)
         moves.append({'sha256': sha, 'from': now_at, 'to': dest, 'from_root': 'library',
-                      'size': rows[0]['size'] if rows else 0, 'stage': 'restage',
+                      'size': keep['size'], 'stage': 'restage',
                       'score': res.get('score'), 'level': res.get('level')})
     return moves
 
