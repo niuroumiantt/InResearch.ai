@@ -217,5 +217,42 @@ class RecordTests(unittest.TestCase):
         self.assertIn('c' * 64, L2.READ_LOG.read_text(encoding='utf-8'))
 
 
+
+
+class SelfAuthoredTests(unittest.TestCase):
+    """Reading our own output back as evidence double-counts the facts in it.
+
+    A summary this project wrote was derived from the fact layer.  Feed it to
+    L2 and those facts are recorded a second time, now carrying a grade and a
+    locator, so a lone claim starts looking corroborated by an independent
+    source.  The real queue surfaced three such files at the top - M05.md,
+    M15.md and SUMMARY.md, all judged 8 - precisely because the thin modules
+    sort first.
+    """
+
+    def test_our_own_org_label_is_excluded(self):
+        for org in ('本项目', '内部研究', 'inresearch.ai'):
+            self.assertTrue(L2.self_authored({'org': org, 'rel': 'a/b.md'}), org)
+
+    def test_whitespace_around_the_label_does_not_smuggle_it_through(self):
+        self.assertTrue(L2.self_authored({'org': '  本项目 ', 'rel': 'a/b.md'}))
+
+    def test_our_own_output_directories_are_excluded(self):
+        for rel in ('docs/SUMMARY.md', 'data/facts.json', 'framework/metrics.json',
+                    'reports/verify_queue.md', '要删/reader/cache.txt'):
+            self.assertTrue(L2.self_authored({'org': '某机构', 'rel': rel}), rel)
+
+    def test_a_real_source_is_not_excluded(self):
+        for row in ({'org': 'Dell\'Oro Group', 'rel': '报告/capex.pdf'},
+                    {'org': '国际能源署', 'rel': '数据中心报告购买/iea.pdf'},
+                    {'org': None, 'rel': 'raw/x.xlsx'},
+                    {}):
+            self.assertFalse(L2.self_authored(row), row)
+
+    def test_a_directory_that_merely_starts_similarly_is_kept(self):
+        self.assertFalse(L2.self_authored({'org': 'X', 'rel': 'documentation/x.pdf'}))
+        self.assertFalse(L2.self_authored({'org': 'X', 'rel': 'database报告/x.pdf'}))
+
+
 if __name__ == '__main__':
     unittest.main()

@@ -85,6 +85,18 @@ def load_facts() -> dict:
 # what to read
 # --------------------------------------------------------------------------
 
+def all_results() -> dict:
+    """Newest verdict per file: record appends, so the last row wins."""
+    rows = {}
+    if L1.RESULTS.exists():
+        with L1.RESULTS.open(encoding='utf-8') as fh:
+            for line in fh:
+                try: r = json.loads(line)
+                except ValueError: continue
+                if 'sha256' in r: rows[r['sha256']] = r
+    return rows
+
+
 def read_documents() -> set:
     """Documents already given a full read, so pack advances instead of looping."""
     done = set()
@@ -96,6 +108,21 @@ def read_documents() -> set:
     return done
 
 
+# Our own output is not a source.  A summary this project wrote was derived
+# from facts; reading it back as evidence records those facts a second time,
+# now wearing a grade and a locator so they look like independent support.
+# That is the hardest kind of error to spot later and the most damaging: it
+# turns one observation into two and makes a lone claim look corroborated.
+SELF_AUTHORED_ORGS = {'本项目', 'inresearch', 'inresearch.ai', '内部研究'}
+SELF_AUTHORED_PREFIXES = ('要删/reader/', 'docs/', 'data/', 'framework/', 'reports/')
+
+
+def self_authored(row: dict) -> bool:
+    if str(row.get('org') or '').strip() in SELF_AUTHORED_ORGS:
+        return True
+    return str(row.get('rel') or '').startswith(SELF_AUTHORED_PREFIXES)
+
+
 def eligible(min_score=MIN_SCORE) -> list[dict]:
     """Judged documents worth a full read, best first, least-read module first.
 
@@ -104,18 +131,13 @@ def eligible(min_score=MIN_SCORE) -> list[dict]:
     answers, and a fact layer that is deep in M10 and empty everywhere else
     cannot close questions anywhere else.
     """
-    rows = {}
-    if L1.RESULTS.exists():
-        with L1.RESULTS.open(encoding='utf-8') as fh:
-            for line in fh:
-                try: r = json.loads(line)
-                except ValueError: continue
-                if 'sha256' in r: rows[r['sha256']] = r
-    done =read_documents()
+    rows = all_results()
+    done = read_documents()
     picked = [r for r in rows.values()
               if (r.get('score') or 0) >= min_score
               and r.get('status') == 'ok'
-              and r['sha256'] not in done]
+              and r['sha256'] not in done
+              and not self_authored(r)]
     # Least-covered module first, then highest score.  Fifteen modules each owe
     # answers; a fact layer deep in M10 and empty elsewhere closes nothing
     # elsewhere, so breadth comes before one more document from a rich module.
@@ -416,8 +438,12 @@ def cmd_record(a):
 def cmd_queue(a):
     pool = eligible(a.min_score)
     by_module = Counter(r.get('category') for r in pool)
+    excluded = sum(1 for r in all_results().values()
+                   if (r.get('score') or 0) >= a.min_score
+                   and r.get('status') == 'ok' and self_authored(r))
     print(json.dumps({'eligible_unread': len(pool), 'min_score': a.min_score,
                       'already_read': len(read_documents()),
+                      'self_authored_excluded': excluded,
                       'mb': round(sum(r.get('size', 0) for r in pool) / 1e6)},
                      ensure_ascii=False))
     for module, n in by_module.most_common():
