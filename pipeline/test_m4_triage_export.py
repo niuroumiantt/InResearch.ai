@@ -217,5 +217,56 @@ class ExportTests(unittest.TestCase):
         self.assertEqual(rows[0]['title'], '某报告')
 
 
+
+    def test_duplicates_survive_an_inventory_that_no_longer_lists_them(self):
+        """The real failure: 51,457 copies vanished from the mapping.
+
+        The duplicates stage moves extra copies out of the source tree, so a
+        rescanned inventory lists only what stayed.  Looking each origin up in
+        that inventory drops every duplicate on the floor.
+        """
+        sha = self.sha(20)
+        self.seed(
+            # Only the surviving copy is inventoried, exactly as after a rescan.
+            inventory=[{'sha256': sha, 'rel': 'a/keep.pdf', 'size': 10}],
+            results=[{'sha256': sha, 'status': 'ok', 'level': 'p',
+                      'category': 'M10', 'score': 9}],
+            ledger=self.moved(sha, 'b/copy.pdf', '_to_delete/duplicates/x/c.pdf', 'duplicates')
+                   + self.moved(sha, 'a/keep.pdf', 'M10/09p_keep.pdf'))
+        report = json.loads(self.run_cli('export', '--out', str(self.mapping)))
+        self.assertEqual(report['files'], 2, 'the duplicate was dropped')
+        self.assertEqual(report.get('no_hash_in_ledger', 0), 0)
+        _, rows = EX.load_mapping(self.mapping)
+        by_stage = {r['stage']: r for r in rows}
+        self.assertEqual(set(by_stage), {'library', 'duplicates'})
+        self.assertEqual(by_stage['duplicates']['sha256'], sha,
+                         'the hash must come from the ledger, not the inventory')
+        self.assertNotIn('score', by_stage['duplicates'])
+        self.assertEqual(by_stage['library']['score'], 9)
+
+    def test_a_zero_scored_file_is_not_labelled_a_duplicate(self):
+        """_to_delete/unrelated is a verdict, not a content duplicate."""
+        sha = self.sha(21)
+        self.seed(inventory=[{'sha256': sha, 'rel': 'a/junk.pdf', 'size': 4}],
+                  results=[{'sha256': sha, 'status': 'ok', 'level': 'p',
+                            'category': '_to_delete/unrelated', 'score': 0}],
+                  ledger=self.moved(sha, 'a/junk.pdf', '_to_delete/unrelated/junk.pdf'))
+        report = json.loads(self.run_cli('export', '--out', str(self.mapping)))
+        self.assertEqual(report.get('duplicates', 0), 0)
+        self.assertEqual(report['library'], 1)
+        _, rows = EX.load_mapping(self.mapping)
+        self.assertEqual(rows[0]['score'], 0, 'a zero verdict still travels')
+
+    def test_the_stage_kept_is_the_original_decision_not_the_last_rename(self):
+        sha = self.sha(22)
+        self.seed(inventory=[{'sha256': sha, 'rel': 'a/x.dwg', 'size': 4}],
+                  ledger=self.moved(sha, 'a/x.dwg', '_drawings_unread/__n_x.dwg')
+                         + self.moved(sha, '_drawings_unread/__n_x.dwg',
+                                      '_drawings_unread/p/__n_p_x.dwg', 'restage'))
+        report = json.loads(self.run_cli('export', '--out', str(self.mapping)))
+        self.assertEqual(report['library'], 1)
+        self.assertEqual(report.get('restage', 0), 0)
+
+
 if __name__ == '__main__':
     unittest.main()

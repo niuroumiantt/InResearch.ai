@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：464。
+在册文件：465。
 
 | 身份 | 文件数 |
 |---|---|
@@ -23,7 +23,7 @@
 | 已退役入口 | 3 |
 | 在册数据/索引 | 25 |
 | 配套说明 | 34 |
-| 测试 | 22 |
+| 测试 | 23 |
 
 ## 在册记录集合
 
@@ -632,6 +632,7 @@
 | `pipeline/test_publish_reader.py` | 测试 |
 | `pipeline/test_research.py` | 测试 |
 | `pipeline/test_research_navigation.py` | 测试 |
+| `pipeline/test_suite_integrity.py` | 测试 |
 | `pipeline/update_ciks.py` | 运行代码 |
 | `pipeline/users.py` | 运行代码 |
 | `pipeline/validate.py` | 运行代码 |

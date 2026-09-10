@@ -179,8 +179,6 @@ class ApplyTests(unittest.TestCase):
             self.assertTrue((self.source / rel).is_file(), "%s never came back" % rel)
 
 
-if __name__ == "__main__":
-    unittest.main()
 
 
 class SourceDirTests(unittest.TestCase):
@@ -443,3 +441,7 @@ class UnreadNameTests(unittest.TestCase):
         self.assertEqual(L1.pick_project(['短', '很长的目录名称在这里', '叶一', '叶二']),
                          '很长的目录名称在这里')
         self.assertEqual(L1.pick_project([]), '')
+
+
+if __name__ == '__main__':
+    unittest.main()

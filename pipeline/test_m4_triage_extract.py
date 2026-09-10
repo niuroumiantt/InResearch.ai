@@ -147,8 +147,6 @@ class ExtractRunTests(unittest.TestCase):
                 self.run_cmd(self.items(1), workers=workers)
 
 
-if __name__ == "__main__":
-    unittest.main()
 
 
 class PackTests(unittest.TestCase):
@@ -276,3 +274,7 @@ class PackRemainingTests(unittest.TestCase):
         PK.pending = lambda redo=False: [] if redo else list(items)
         report = self.report(limit=3, redo=False)
         self.assertEqual(report["remaining_after"], 4)
+
+
+if __name__ == '__main__':
+    unittest.main()
