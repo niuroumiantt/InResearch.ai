@@ -53,8 +53,6 @@ class ResearchNavigationTests(unittest.TestCase):
         self.assertTrue(any('system members must match' in x for x in validate_navigation(g)))
 
 
-if __name__ == '__main__':
-    unittest.main()
 
 class HardwareEcosystemTests(unittest.TestCase):
     def setUp(self):
@@ -87,3 +85,7 @@ class RetiredObjectTests(unittest.TestCase):
         self.assertTrue(any('hidden object' in e for e in validate_navigation(graph)))
         old['redirect_to'] = 'part:ssd'
         self.assertTrue(any('direct redirect' in e for e in validate_navigation(graph)))
+
+
+if __name__ == '__main__':
+    unittest.main()

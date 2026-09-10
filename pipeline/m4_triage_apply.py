@@ -140,29 +140,45 @@ def ledger_rows():
             except ValueError: continue
 
 
-def final_locations() -> dict:
-    """Source path -> where that file is now, by replaying the whole ledger.
+def final_records() -> dict:
+    """Source path -> {to, sha256, stage, size}, replayed from the whole ledger.
 
     Keyed by path, not by content hash.  Duplicate copies share one sha256
     but are separate files with separate destinations, so a sha-keyed replay
     reports only whichever of them moved last and silently loses the others.
 
     Each row's `from` is either a source path or a place an earlier row put
-    the file, so following the chain gives every file's origin and its
-    current home; a revert that lands a file back at its origin drops out.
+    the file, so following the chain gives every file's origin and its current
+    home; a revert that lands a file back at its origin drops out.
+
+    The hash and the stage are taken from the ledger rather than looked up in
+    the inventory: once the duplicates stage moves a copy out of the source
+    tree, a rescanned inventory no longer lists it, and joining on the
+    inventory would silently drop every duplicate.  The stage kept is the
+    first one, which records what was decided about the file - later rows are
+    renames, and would relabel everything "restage".
     """
-    origin_of = {}                      # current place -> where it started
+    at = {}                             # current place -> the file's record
     for row in ledger_rows():
         if not row.get('ok'):
             continue
         src, dst = row.get('from'), row.get('to')
         if not src or not dst:
             continue
-        origin = origin_of.pop(src, src)
-        if origin == dst:
+        record = at.pop(src, None)
+        if record is None:
+            record = {'origin': src, 'sha256': row.get('sha256'),
+                      'stage': row.get('stage'), 'size': row.get('size', 0)}
+        if record['origin'] == dst:
             continue                    # reverted all the way back
-        origin_of[dst] = origin
-    return {origin: place for place, origin in origin_of.items()}
+        record = {**record, 'to': dst}
+        at[dst] = record
+    return {record['origin']: record for record in at.values()}
+
+
+def final_locations() -> dict:
+    """Source path -> where that file is now."""
+    return {origin: record['to'] for origin, record in final_records().items()}
 
 
 def plan_library():

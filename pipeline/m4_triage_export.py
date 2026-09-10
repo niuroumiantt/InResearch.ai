@@ -45,28 +45,19 @@ VERDICT_FIELDS = ('score', 'module', 'doc_type', 'year', 'org', 'title',
 
 
 def build_rows() -> tuple[list[dict], dict]:
-    placed = APPLY.final_locations()
+    placed = APPLY.final_records()
     results = APPLY.load_results()
-    by_sha = APPLY.load_inventory()
-    size_of, sha_of = {}, {}
-    for sha, rows in by_sha.items():
-        for row in rows:
-            size_of[row['rel']] = row['size']
-            sha_of[row['rel']] = sha
 
     out, stats = [], Counter()
-    for origin, place in sorted(placed.items()):
-        sha = sha_of.get(origin)
-        if sha is None:
-            stats['origin_not_in_inventory'] += 1
-            continue
-        record = {'sha256': sha, 'from': origin, 'to': place,
-                  'size': size_of.get(origin, 0),
-                  'stage': 'library' if not place.startswith('_to_delete/') else 'duplicates'}
-        res = results.get(sha)
+    for origin in sorted(placed):
+        moved = placed[origin]
+        stage = moved.get('stage') or 'library'
+        record = {'sha256': moved.get('sha256'), 'from': origin, 'to': moved['to'],
+                  'size': moved.get('size', 0), 'stage': stage}
         # The judgement rides with the copy that was filed, not with the
-        # duplicates that were set aside, so Spark scores each file once.
-        if res and not place.startswith('_to_delete/'):
+        # duplicates that were set aside, so each file is scored once.
+        res = results.get(moved.get('sha256')) if stage != 'duplicates' else None
+        if res:
             record['status'] = res.get('status')
             record['level'] = res.get('level')
             record['category'] = res.get('category')
@@ -74,11 +65,12 @@ def build_rows() -> tuple[list[dict], dict]:
                 if res.get(field) is not None:
                     record[field] = res[field]
         out.append(record)
-        stats[record['stage']] += 1
+        stats[stage] += 1
+        if record['sha256'] is None:
+            stats['no_hash_in_ledger'] += 1
 
-    unplaced = [sha for sha in by_sha if not any(
-        placed.get(r['rel']) for r in by_sha[sha])]
-    stats['never_moved'] = len(unplaced)
+    inventoried = {row['rel'] for rows in APPLY.load_inventory().values() for row in rows}
+    stats['never_moved'] = len(inventoried - set(placed))
     return out, stats
 
 
