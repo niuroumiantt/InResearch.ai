@@ -5,12 +5,13 @@ No API key and no network: the preview extraction runs locally, the judgement is
 made by the Claude Code session reading the packed batch, and `record` writes
 those verdicts back into the same l1_results.jsonl the API path would produce.
 
-  pack   --limit N [--out FILE]   write the next N unscored files as a batch
+  pack   --limit N [--workers N] [--out FILE]   write the next N unscored files
   record --verdicts FILE          append verdicts to l1_results.jsonl
   status                          progress by category and score
 """
 from __future__ import annotations
 import argparse, json, re, sys
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -18,6 +19,7 @@ import m4_triage_l1 as L1
 
 BATCH_DIR = L1.DATA / 'batches'
 PREVIEW_CHARS = 400
+MAX_WORKERS = 16
 
 # Word/PowerPoint field codes and table-of-contents scaffolding carry no meaning
 # but eat most of a short preview, so they are stripped before truncation.
@@ -45,20 +47,46 @@ def pending():
     return sorted(items, key=lambda i: priority(i['rel']))
 
 
+def prepared(item):
+    """L1.prepare, but a file that cannot be previewed does not kill the batch."""
+    try:
+        return L1.prepare(item), None
+    except Exception as exc:  # noqa: BLE001 - reported per file, batch continues
+        return None, {'rel': item.get('rel'), 'error': str(exc)[:100]}
+
+
 def cmd_pack(a):
+    """Pack the next unscored files, extracting previews `a.workers` at a time.
+
+    Preview extraction is local CPU work (pdftotext and friends), not a model
+    call, but one file at a time still makes a 200-file batch a wait.  Files are
+    prepared in priority order a chunk at a time, so which files land in the
+    batch does not depend on how many threads ran."""
+    workers = getattr(a, 'workers', None)
+    workers = 4 if workers is None else workers
+    if not isinstance(workers, int) or not 1 <= workers <= MAX_WORKERS:
+        raise SystemExit('workers must be 1..%d' % MAX_WORKERS)
     BATCH_DIR.mkdir(parents=True, exist_ok=True)
-    out = []; l0 = 0
+    out = []; l0 = 0; failed = []
+    items = pending()
+    position = 0
     with L1.RESULTS.open('a', encoding='utf-8') as f:
-        for item in pending():
-            if len(out) >= a.limit: break
-            rec = L1.prepare(item)
-            if not rec['needs_model']:
-                o = L1.finalize(rec, None, None, None); o['proposed_name'] = L1.proposed_name(o)
-                f.write(json.dumps(o, ensure_ascii=False) + '\n'); l0 += 1; continue
-            text = clean_preview(rec['preview'])[:PREVIEW_CHARS]
-            out.append({'id': rec['sha256'][:12], 'path': rec['rel'], 'suffix': rec['suffix'],
-                        'kb': round(rec['size'] / 1024), **({'pages': rec['meta']['pages']} if rec['meta'].get('pages') else {}),
-                        'level': rec['level'], 'preview': text})
+        while len(out) < a.limit and position < len(items):
+            chunk = items[position:position + max(a.limit, 1)]
+            position += len(chunk)
+            with ThreadPoolExecutor(workers) as pool:
+                results = list(pool.map(prepared, chunk))  # map keeps chunk order
+            for rec, problem in results:
+                if len(out) >= a.limit: break
+                if problem is not None:
+                    failed.append(problem); continue
+                if not rec['needs_model']:
+                    o = L1.finalize(rec, None, None, None); o['proposed_name'] = L1.proposed_name(o)
+                    f.write(json.dumps(o, ensure_ascii=False) + '\n'); l0 += 1; continue
+                text = clean_preview(rec['preview'])[:PREVIEW_CHARS]
+                out.append({'id': rec['sha256'][:12], 'path': rec['rel'], 'suffix': rec['suffix'],
+                            'kb': round(rec['size'] / 1024), **({'pages': rec['meta']['pages']} if rec['meta'].get('pages') else {}),
+                            'level': rec['level'], 'preview': text})
     path = Path(a.out) if a.out else BATCH_DIR / 'batch.txt'
     # One pipe-delimited line per file.  JSON key names cost more than the data
     # they label at this volume, and the batch is read once by one reader.
@@ -68,8 +96,11 @@ def cmd_pack(a):
                                o['level'], o['path'], o['preview'].replace('|', '/')]))
     path.write_text('\n'.join(lines), encoding='utf-8')
     (BATCH_DIR / 'batch.json').write_text(json.dumps(out, ensure_ascii=False), encoding='utf-8')
-    print(json.dumps({'packed': len(out), 'l0_auto_written': l0, 'file': str(path),
+    print(json.dumps({'packed': len(out), 'l0_auto_written': l0, 'workers': workers,
+                      'preview_failed': len(failed), 'file': str(path),
                       'remaining_after': len(pending()) - len(out)}, ensure_ascii=False))
+    for problem in failed[:5]:
+        print(json.dumps(problem, ensure_ascii=False))
 
 
 FIELDS = ('id', 'score', 'module', 'doc_type', 'year', 'org', 'title', 'keep_original_name', 'confidence', 'rationale')
@@ -213,6 +244,8 @@ def cmd_status(a):
 def main():
     ap = argparse.ArgumentParser(); s = ap.add_subparsers(dest='cmd', required=True)
     p = s.add_parser('pack'); p.add_argument('--limit', type=int, default=40); p.add_argument('--out')
+    p.add_argument('--workers', type=int, default=4,
+                   help='preview extractions in parallel (1..%d); local CPU work, no model' % MAX_WORKERS)
     r = s.add_parser('record'); r.add_argument('--verdicts', required=True); r.add_argument('--batch'); r.add_argument('--digests', action='store_true')
     s.add_parser('status')
     a = ap.parse_args()
