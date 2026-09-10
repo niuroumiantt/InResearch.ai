@@ -256,7 +256,9 @@ def digest_stamps(paths):
     for path in paths:
         if not path.exists():
             continue
-        for line in path.open(encoding='utf-8'):
+        with path.open(encoding='utf-8') as fh:
+            lines = fh.readlines()
+        for line in lines:
             try:
                 at = json.loads(line).get('at')
             except ValueError:
@@ -317,7 +319,9 @@ def scored_rows():
     rows = []
     if not L1.RESULTS.exists():
         return rows
-    for line in L1.RESULTS.open(encoding='utf-8'):
+    with L1.RESULTS.open(encoding='utf-8') as fh:
+        lines = fh.readlines()
+    for line in lines:
         try:
             row = json.loads(line)
         except ValueError:
@@ -410,19 +414,27 @@ def cmd_status(a):
     """Progress plus an ETA measured from how fast extraction actually runs."""
     import collections, glob, time
     from pathlib import Path
-    cat = collections.Counter(); sc = collections.Counter(); n = 0
+    # One row per file, not per line.  record appends, so a re-judged file
+    # keeps its superseded rows: counting lines reports the old score and the
+    # old category alongside the current ones.  773 files were re-judged in the
+    # Office pass, which put six extra documents in the 8-and-above bucket that
+    # no longer belong there and inflated every category the re-read moved.
+    rows = last_results()
+    cat = collections.Counter(r.get('category') for r in rows.values())
+    sc = collections.Counter(r['score'] for r in rows.values() if r.get('score') is not None)
+    superseded = 0
     if L1.RESULTS.exists():
-        for line in L1.RESULTS.open(encoding='utf-8'):
-            try: r = json.loads(line)
-            except ValueError: continue
-            n += 1; cat[r.get('category')] += 1
-            if r.get('score') is not None: sc[r['score']] += 1
+        with L1.RESULTS.open(encoding='utf-8') as fh:
+            superseded = sum(1 for _ in fh) - len(rows)
     scored = L1.done_keys(); items = L1.load_inventory()
     need = sum(1 for i in items if i['sha256'] not in scored and not i['all_excluded']
                and L1.route(i['suffix']) in ('text', '_office_pending', '_archive_review', '_format_review'))
     auto = len(items) - len(scored) - need
     digests = [Path(L1.DATA / 'digests.jsonl')] + [Path(p) for p in sorted(glob.glob(str(L1.DATA / 'digests.part*.jsonl')))]
-    total = sum(sum(1 for _ in p.open(encoding='utf-8')) for p in digests if p.exists())
+    def count_lines(path):
+        with path.open(encoding='utf-8') as fh:
+            return sum(1 for _ in fh)
+    total = sum(count_lines(p) for p in digests if p.exists())
     rate = working_rate(digest_stamps(digests))
     basis = '运行中实测'
     if rate is None:  # older digests carry no timestamp
@@ -432,7 +444,8 @@ def cmd_status(a):
     print(json.dumps({'唯一文件': len(items), '已打分': len(scored), '剩余': len(items) - len(scored),
                       '需抽取打分': need, '自动归类': auto, '已抽取': total,
                       '抽取速率_每分钟': round(rate, 1), '速率口径': basis,
-                      '预计剩余小时': round(need / rate / 60, 1) if rate else None}, ensure_ascii=False))
+                      '预计剩余小时': round(need / rate / 60, 1) if rate else None,
+                      '被覆盖的旧判定行': superseded}, ensure_ascii=False))
     for k, v in cat.most_common(10): print(f'  {v:7d}  {k}')
     if sc: print('分数分布: ' + json.dumps({str(k): sc[k] for k in sorted(sc, reverse=True)}))
 

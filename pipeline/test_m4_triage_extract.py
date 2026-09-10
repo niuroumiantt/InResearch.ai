@@ -276,5 +276,73 @@ class PackRemainingTests(unittest.TestCase):
         self.assertEqual(report["remaining_after"], 4)
 
 
+
+
+class StatusCountsTests(unittest.TestCase):
+    """A re-judged file must be counted once, at its current score.
+
+    record appends, so l1_results.jsonl keeps every superseded row.  Counting
+    lines reported the old score beside the new one: after the Office re-read
+    put 773 files through a second judgement, the 8-and-above bucket read 288
+    when the true figure was 282, and every category the re-read moved was
+    inflated by its own stale row.
+    """
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix="m4-status-test-")
+        base = Path(self.temp.name)
+        self.results = base / "l1_results.jsonl"
+        self._saved = (L1.RESULTS, L1.DATA, L1.load_inventory, L1.done_keys, L1.route)
+        L1.RESULTS = self.results
+        L1.DATA = base
+        L1.load_inventory = lambda: [{"sha256": "%064x" % i, "suffix": ".pdf",
+                                      "all_excluded": False} for i in range(3)]
+        L1.done_keys = lambda: {"%064x" % i for i in range(3)}
+        L1.route = lambda suffix: "text"
+
+    def tearDown(self):
+        (L1.RESULTS, L1.DATA, L1.load_inventory, L1.done_keys, L1.route) = self._saved
+        self.temp.cleanup()
+
+    def write(self, rows):
+        self.results.write_text(
+            "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8")
+
+    def status(self):
+        out = io.StringIO()
+        with redirect_stdout(out):
+            PK.cmd_status(types.SimpleNamespace())
+        lines = out.getvalue().splitlines()
+        head = json.loads(lines[0])
+        scores = json.loads(lines[-1].split(": ", 1)[1]) if "分数分布" in lines[-1] else {}
+        return head, scores, lines
+
+    def test_a_superseded_score_is_not_counted_again(self):
+        sha = "%064x" % 0
+        self.write([
+            {"sha256": sha, "score": 9, "category": "M10", "status": "ok"},   # old
+            {"sha256": sha, "score": 3, "category": "M03", "status": "ok"},   # current
+        ])
+        head, scores, lines = self.status()
+        self.assertEqual(scores, {"3": 1}, "the old score was counted alongside the new one")
+        self.assertEqual(head["被覆盖的旧判定行"], 1)
+        self.assertTrue(any("M03" in line for line in lines))
+        self.assertFalse(any("M10" in line for line in lines),
+                         "the old category was counted too")
+
+    def test_files_judged_once_are_unaffected(self):
+        self.write([{"sha256": "%064x" % i, "score": 8, "category": "M06", "status": "ok"}
+                    for i in range(3)])
+        head, scores, _ = self.status()
+        self.assertEqual(scores, {"8": 3})
+        self.assertEqual(head["被覆盖的旧判定行"], 0)
+
+    def test_a_file_without_a_score_is_left_out_of_the_distribution(self):
+        self.write([{"sha256": "%064x" % 0, "category": "_drawings_unread", "status": "l0"},
+                    {"sha256": "%064x" % 1, "score": 7, "category": "M04", "status": "ok"}])
+        _, scores, _ = self.status()
+        self.assertEqual(scores, {"7": 1})
+
+
 if __name__ == '__main__':
     unittest.main()
