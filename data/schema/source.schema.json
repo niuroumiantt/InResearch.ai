@@ -2,17 +2,70 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "文献库记录（主键 = source_id）：研报/公告/新闻的原文存档索引",
   "type": "object",
-  "required": ["source_id", "title", "url", "grade", "added_date"],
+  "required": [
+    "source_id",
+    "title",
+    "url",
+    "grade",
+    "added_date"
+  ],
   "properties": {
-    "source_id": {"type": "string", "description": "如 iea-energy-ai-2025 / jll-dc-outlook-2026h1"},
-    "title": {"type": "string"},
-    "publisher": {"type": "string"},
-    "url": {"type": "string"},
-    "grade": {"type": "string", "enum": ["regulatory", "company", "research", "media", "estimate"]},
-    "published_date": {"type": ["string", "null"]},
-    "added_date": {"type": "string"},
-    "local_file": {"type": ["string", "null"], "description": "data/raw/ 下的存档路径（大文件不进 git）"},
-    "modules": {"type": "array", "items": {"type": "string"}},
-    "key_facts": {"type": "array", "items": {"type": "string"}, "description": "从该文献提取入库的事实摘要（record_id 引用）"}
+    "source_id": {
+      "type": "string",
+      "description": "如 iea-energy-ai-2025 / jll-dc-outlook-2026h1"
+    },
+    "title": {
+      "type": "string"
+    },
+    "publisher": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "grade": {
+      "type": "string",
+      "enum": [
+        "regulatory",
+        "company",
+        "research",
+        "media",
+        "estimate"
+      ]
+    },
+    "published_date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "added_date": {
+      "type": "string"
+    },
+    "local_file": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "data/raw/ 下的存档路径（大文件不进 git）"
+    },
+    "modules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "key_facts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "从该文献提取入库的事实摘要（record_id 引用）"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "这份来源文件的内容哈希，跨机器、跨归档布局都不变。"
+    }
   }
 }

@@ -336,5 +336,46 @@ class DispatchTests(unittest.TestCase):
         self.assertIn('extract_error', meta)
 
 
+
+
+class PptMasterTests(unittest.TestCase):
+    """Template boilerplate crowds out the slides it is printed behind."""
+
+    def deck(self, atoms):
+        return build_ole({'PowerPoint Document': b''.join(atoms)})
+
+    def slide_text(self, text):
+        return ppt_atom(O.TEXT_CHARS_ATOM, text.encode('utf-16-le'))
+
+    def test_master_placeholder_text_is_not_collected(self):
+        raw = self.deck([
+            ppt_atom(0x03F8, self.slide_text('单击此处编辑母版标题样式'), container=True),
+            ppt_atom(0x03EE, self.slide_text('模块化数据中心交付方案'), container=True),
+        ])
+        text, _ = O.ppt_text(raw)
+        self.assertIn('模块化数据中心交付方案', text)
+        self.assertNotIn('母版标题样式', text, 'the template text crowded the preview')
+
+    def test_handout_text_is_not_collected(self):
+        raw = self.deck([
+            ppt_atom(0x0FC9, self.slide_text('讲义页眉'), container=True),
+            ppt_atom(0x03EE, self.slide_text('机柜功率密度'), container=True),
+        ])
+        text, _ = O.ppt_text(raw)
+        self.assertIn('机柜功率密度', text)
+        self.assertNotIn('讲义页眉', text)
+
+    def test_a_deck_that_is_only_a_master_yields_nothing(self):
+        raw = self.deck([ppt_atom(0x03F8, self.slide_text('单击此处编辑母版'), container=True)])
+        text, _ = O.ppt_text(raw)
+        self.assertEqual(text, '')
+
+    def test_ordinary_slides_are_unaffected(self):
+        raw = self.deck([self.slide_text('第一页'), self.slide_text('第二页')])
+        text, _ = O.ppt_text(raw)
+        self.assertIn('第一页', text)
+        self.assertIn('第二页', text)
+
+
 if __name__ == '__main__':
     unittest.main()

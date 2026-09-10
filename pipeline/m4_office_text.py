@@ -265,6 +265,16 @@ TEXT_CHARS_ATOM = 0x0FA0      # UTF-16LE
 TEXT_BYTES_ATOM = 0x0FA8      # one byte per char, high byte implied zero
 CSTRING_ATOM = 0x0FBA         # UTF-16LE, used for titles and notes
 
+# A deck's master and handout carry the template's placeholder text - "单击此处
+# 编辑母版标题样式" and friends - which says nothing about this deck and is
+# repeated once per layout.  Collected indiscriminately it can fill a preview
+# window before the first real slide, which is what made a 1200-character
+# budget come back full of boilerplate.
+SKIP_CONTAINERS = {
+    0x03F8,   # MainMaster
+    0x0FC9,   # Handout
+}
+
 
 def ppt_atoms(data: bytes, depth: int = 0):
     """Yield (type, payload), descending into container records."""
@@ -274,6 +284,9 @@ def ppt_atoms(data: bytes, depth: int = 0):
         pos += 8
         if rec_len > len(data) - pos: break
         payload = data[pos:pos + rec_len]
+        if rec_type in SKIP_CONTAINERS:
+            pos += rec_len
+            continue
         if (ver_inst & 0x0F) == 0x0F and depth < 12:
             yield from ppt_atoms(payload, depth + 1)
         else:
