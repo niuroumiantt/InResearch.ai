@@ -73,7 +73,7 @@ def build_ole(streams: dict[str, bytes]) -> bytes:
     mini_fat = [ENDOFCHAIN] * n_mini
     for name, data in small.items():
         first = mini_at[name]
-        used = max(1, -(-len(data) // MINI))
+        used = -(-len(data) // MINI)      # an empty stream occupies no sector
         for i in range(used):
             mini_fat[first + i] = ENDOFCHAIN if i == used - 1 else first + i + 1
 
@@ -375,6 +375,59 @@ class PptMasterTests(unittest.TestCase):
         text, _ = O.ppt_text(raw)
         self.assertIn('第一页', text)
         self.assertIn('第二页', text)
+
+
+class PermanentFailureTests(unittest.TestCase):
+    """Every "the container is fine but has no text" exit must say so.
+
+    Three of these exist and only one was flagged, so the other two read as
+    transient: the file returned to the re-read queue, came out identical, and
+    went back again.  A 37 MB .ppt looped that way until the queue visibly
+    refused to drain, and the .xls twin was still unflagged after the .ppt was
+    fixed.  Enumerating them here is the point - a fourth exit that forgets
+    the flag fails this test rather than a production run.
+    """
+
+    def containers(self):
+        """Each case: an OLE file whose named stream exists but is empty."""
+        return {
+            'xls': build_ole({'Workbook': b''}),
+            'ppt': build_ole({'PowerPoint Document': b''}),
+            'unknown': build_ole({'VisioDocument': b'x' * 100}),
+        }
+
+    def test_every_permanent_failure_sets_the_flag(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            for name, raw in self.containers().items():
+                path = Path(tmp) / (name + '.bin')
+                path.write_bytes(raw)
+                _, meta = O.extract(path)
+                self.assertTrue(meta.get('no_text_layer'),
+                                '%s reports a permanent failure as transient: %r' % (name, meta))
+                self.assertTrue(meta.get('extract_error'),
+                                '%s gives no reason' % name)
+
+    def test_a_transient_failure_is_not_flagged(self):
+        """A file that is not there may be there next time; do not give up."""
+        _, meta = O.extract(Path('/nonexistent/never-written.xlsx'))
+        self.assertFalse(meta.get('no_text_layer'), meta)
+        self.assertIn('extract_error', meta)
+
+    def test_a_readable_workbook_is_not_flagged(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / 'real.xlsx'
+            with zipfile.ZipFile(path, 'w') as z:
+                z.writestr('xl/workbook.xml', '<workbook><sheet name="数据"/></workbook>')
+                z.writestr('xl/sharedStrings.xml', '<sst><si><t>合计</t></si></sst>')
+            text, meta = O.extract(path)
+            self.assertIn('合计', text)
+            self.assertFalse(meta.get('no_text_layer'), meta)
+
+    def test_the_helper_is_what_produces_the_flag(self):
+        text, meta = O.no_text_layer('某种原因')
+        self.assertEqual(text, '')
+        self.assertTrue(meta['no_text_layer'])
+        self.assertEqual(meta['extract_error'], '某种原因')
 
 
 if __name__ == '__main__':
