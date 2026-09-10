@@ -8,6 +8,7 @@ those verdicts back into the same l1_results.jsonl the API path would produce.
   pack   --limit N [--workers N] [--out FILE]   write the next N unscored files
   record --verdicts FILE          append verdicts to l1_results.jsonl
   status                          progress by category and score
+  versions [--min-score N]        report same-report-different-date groups
 """
 from __future__ import annotations
 import argparse, json, re, sys
@@ -210,6 +211,94 @@ def digest_stamps(paths):
     return out
 
 
+# A report issued repeatedly (weekly, monthly, a re-upload days later) lands as
+# several files with different bytes, so SHA-256 dedup never sees them.  In two
+# measured batches of 50 and 100 they were 12% and ~20% of the files.
+DATE_PREFIX = re.compile(r'^\s*(?:20\d{6}|20\d{2}[-_.]?\d{2}[-_.]?\d{2})[-_\s]*')
+VERSION_TAIL = re.compile(r'[\(（]\s*\d+\s*页\s*[\)）]|[\(（]\s*\d+\s*[\)）]|\s*[-_]\s*(?:重复版|副本|copy)\s*$', re.I)
+PUNCT = re.compile(r'[\s·・:：,，。.、\-_()（）\[\]【】/\\|"“”\'‘’]+')
+# The judge sometimes prefixes the publisher's desk onto the title of one issue
+# of a report and not another ("国信化工·数据中心…" vs "数据中心…").  The org is
+# already part of the key, so a short leading desk name only splits the group.
+# Only the interpunct marks a desk: a colon is ordinary title punctuation, and
+# stripping on it eats real content ("AI 数据中心：规模扩展与架构演进").
+LEAD_DESK = re.compile(r'^[^·・]{1,10}[·・]')
+
+
+def title_key(title: str, org: str) -> str:
+    """A stable key for 'the same report'.
+
+    Only the judged title and org are used: the filename carries a publication
+    date and a page count that differ between versions of one report, and the
+    preview differs too because the re-issue is re-typeset.
+    """
+    text = DATE_PREFIX.sub('', str(title or ''))
+    stripped = LEAD_DESK.sub('', text, count=1)
+    if len(stripped) >= 8:  # never strip away most of a short title
+        text = stripped
+    text = VERSION_TAIL.sub('', text)
+    text = PUNCT.sub('', text).lower()
+    return (PUNCT.sub('', str(org or '')).lower() + '|' + text)[:120]
+
+
+def scored_rows():
+    rows = []
+    if not L1.RESULTS.exists():
+        return rows
+    for line in L1.RESULTS.open(encoding='utf-8'):
+        try:
+            row = json.loads(line)
+        except ValueError:
+            continue
+        if row.get('status') == 'ok' and row.get('title'):
+            rows.append(row)
+    return rows
+
+
+def version_groups(rows, min_score=0):
+    """Group judged rows that look like one report issued more than once.
+
+    The keeper is the fullest copy: most pages, then largest file, then the
+    path outside the excluded trees, then the longest path for stability.
+    Nothing is moved or deleted; this only reports.
+    """
+    groups = {}
+    for row in rows:
+        if (row.get('score') or 0) < min_score:
+            continue
+        groups.setdefault(title_key(row.get('title'), row.get('org')), []).append(row)
+
+    def rank(row):
+        pages = (row.get('meta') or {}).get('pages') or 0
+        excluded = 1 if str(row.get('rel', '')).startswith('要删/') else 0
+        return (excluded, -pages, -(row.get('size') or 0), row.get('rel') or '')
+
+    out = []
+    for key, members in groups.items():
+        if len(members) < 2:
+            continue
+        members = sorted(members, key=rank)
+        out.append({'key': key, 'keep': members[0], 'extra': members[1:]})
+    return sorted(out, key=lambda g: -len(g['extra']))
+
+
+def cmd_versions(a):
+    rows = scored_rows()
+    groups = version_groups(rows, a.min_score)
+    extra = sum(len(g['extra']) for g in groups)
+    wasted = sum(sum(m.get('size') or 0 for m in g['extra']) for g in groups)
+    print(json.dumps({'judged_rows': len(rows), 'version_groups': len(groups),
+                      'extra_copies': extra,
+                      'share_of_judged': round(extra / len(rows), 3) if rows else 0,
+                      'extra_bytes': wasted}, ensure_ascii=False))
+    for group in groups[:a.show]:
+        keep = group['keep']
+        print('%d 份 · %s · %s' % (len(group['extra']) + 1, keep.get('org') or '未知', keep.get('title') or ''))
+        print('   保留 %s' % (keep.get('rel') or ''))
+        for member in group['extra']:
+            print('   重复 %s' % (member.get('rel') or ''))
+
+
 def cmd_status(a):
     """Progress plus an ETA measured from how fast extraction actually runs."""
     import collections, glob, time
@@ -248,8 +337,10 @@ def main():
                    help='preview extractions in parallel (1..%d); local CPU work, no model' % MAX_WORKERS)
     r = s.add_parser('record'); r.add_argument('--verdicts', required=True); r.add_argument('--batch'); r.add_argument('--digests', action='store_true')
     s.add_parser('status')
+    v = s.add_parser('versions'); v.add_argument('--min-score', type=int, default=0)
+    v.add_argument('--show', type=int, default=15, help='groups to print in full')
     a = ap.parse_args()
-    {'pack': cmd_pack, 'record': cmd_record, 'status': cmd_status}[a.cmd](a)
+    {'pack': cmd_pack, 'record': cmd_record, 'status': cmd_status, 'versions': cmd_versions}[a.cmd](a)
 
 
 if __name__ == '__main__':
