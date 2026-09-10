@@ -211,34 +211,47 @@ def digest_stamps(paths):
     return out
 
 
-# A report issued repeatedly (weekly, monthly, a re-upload days later) lands as
-# several files with different bytes, so SHA-256 dedup never sees them.  In two
-# measured batches of 50 and 100 they were 12% and ~20% of the files.
+# A report issued repeatedly (weekly, a re-upload days later) lands as several
+# files with different bytes, so SHA-256 dedup never sees them.  Matching the
+# judged title exactly does not find them either: four copies of one report were
+# titled four different ways.  The filename is the stabler signal, but only
+# fuzzily -- the same report arrives as
+#   20250925-国信证券-化工行业·数据中心及AI服务器液冷冷却液行业分析框架(40页).pdf
+#   20251003-国信证券：行业分析框架：国信化工：数据中心及AI服务器液冷冷却液(40页).pdf
+# so names are compared by character-trigram overlap.  Measured on real files:
+# copies of one report score 0.48 to 0.95, unrelated files at most 0.35, so 0.45
+# sits in the gap with margin on both sides.
+SIM_THRESHOLD = 0.45
+GRAM = 3
+# A trigram in more than this share of names ("数据中心" and friends) says nothing
+# about which report a file is, and indexing it would compare everything to
+# everything.  The floor matters: on a small set the share alone drops to two or
+# three rows and discards the very features that identify a report.
+COMMON_GRAM_SHARE = 0.10
+COMMON_GRAM_FLOOR = 200
 DATE_PREFIX = re.compile(r'^\s*(?:20\d{6}|20\d{2}[-_.]?\d{2}[-_.]?\d{2})[-_\s]*')
-VERSION_TAIL = re.compile(r'[\(（]\s*\d+\s*页\s*[\)）]|[\(（]\s*\d+\s*[\)）]|\s*[-_]\s*(?:重复版|副本|copy)\s*$', re.I)
-PUNCT = re.compile(r'[\s·・:：,，。.、\-_()（）\[\]【】/\\|"“”\'‘’]+')
-# The judge sometimes prefixes the publisher's desk onto the title of one issue
-# of a report and not another ("国信化工·数据中心…" vs "数据中心…").  The org is
-# already part of the key, so a short leading desk name only splits the group.
-# Only the interpunct marks a desk: a colon is ordinary title punctuation, and
-# stripping on it eats real content ("AI 数据中心：规模扩展与架构演进").
-LEAD_DESK = re.compile(r'^[^·・]{1,10}[·・]')
+PAGE_TAIL = re.compile(r'[\(（]\s*\d+\s*页\s*[\)）]|[\(（]\s*(?:重复版|副本|copy|\d+)\s*[\)）]', re.I)
+PUNCT = re.compile(r'[\s·・:：,，。.、\-_()（）\[\]【】/\\|"“”\'‘’&]+')
 
 
-def title_key(title: str, org: str) -> str:
-    """A stable key for 'the same report'.
+def name_key(rel: str) -> str:
+    """Normalise a filename to what stays the same across issues of one report."""
+    stem = Path(str(rel or '')).stem
+    stem = DATE_PREFIX.sub('', stem)
+    stem = PAGE_TAIL.sub('', stem)
+    return PUNCT.sub('', stem).lower()
 
-    Only the judged title and org are used: the filename carries a publication
-    date and a page count that differ between versions of one report, and the
-    preview differs too because the re-issue is re-typeset.
-    """
-    text = DATE_PREFIX.sub('', str(title or ''))
-    stripped = LEAD_DESK.sub('', text, count=1)
-    if len(stripped) >= 8:  # never strip away most of a short title
-        text = stripped
-    text = VERSION_TAIL.sub('', text)
-    text = PUNCT.sub('', text).lower()
-    return (PUNCT.sub('', str(org or '')).lower() + '|' + text)[:120]
+
+def trigrams(text: str) -> set:
+    if len(text) <= GRAM:
+        return {text} if text else set()
+    return {text[i:i + GRAM] for i in range(len(text) - GRAM + 1)}
+
+
+def similarity(left: set, right: set) -> float:
+    if not left or not right:
+        return 0.0
+    return len(left & right) / len(left | right)
 
 
 def scored_rows():
@@ -250,50 +263,85 @@ def scored_rows():
             row = json.loads(line)
         except ValueError:
             continue
-        if row.get('status') == 'ok' and row.get('title'):
+        if row.get('status') == 'ok' and row.get('rel'):
             rows.append(row)
     return rows
 
 
-def version_groups(rows, min_score=0):
-    """Group judged rows that look like one report issued more than once.
+def version_groups(rows, min_score=0, threshold=SIM_THRESHOLD):
+    """Cluster rows whose filenames say they are the same report issued twice.
 
-    The keeper is the fullest copy: most pages, then largest file, then the
-    path outside the excluded trees, then the longest path for stability.
-    Nothing is moved or deleted; this only reports.
+    Candidates come from an inverted trigram index rather than comparing every
+    pair, so this stays usable on tens of thousands of rows.  Nothing is moved
+    or deleted; this only reports.
     """
-    groups = {}
-    for row in rows:
-        if (row.get('score') or 0) < min_score:
-            continue
-        groups.setdefault(title_key(row.get('title'), row.get('org')), []).append(row)
+    import collections
+    items = [r for r in rows if (r.get('score') or 0) >= min_score]
+    names = [name_key(r.get('rel')) for r in items]
+    grams = [trigrams(n) for n in names]
 
-    def rank(row):
+    index = collections.defaultdict(list)
+    for position, gset in enumerate(grams):
+        for gram in gset:
+            index[gram].append(position)
+    cap = max(COMMON_GRAM_FLOOR, int(len(items) * COMMON_GRAM_SHARE))
+    index = {gram: rows_ for gram, rows_ in index.items() if len(rows_) <= cap}
+
+    parent = list(range(len(items)))
+
+    def find(i):
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+
+    def union(i, j):
+        a, b = find(i), find(j)
+        if a != b:
+            parent[b] = a
+
+    for position, gset in enumerate(grams):
+        shared = collections.Counter()
+        for gram in gset:
+            for other in index.get(gram, ()):
+                if other > position:
+                    shared[other] += 1
+        need = max(1, int(len(gset) * threshold * 0.5))
+        for other, count in shared.items():
+            if count >= need and similarity(gset, grams[other]) >= threshold:
+                union(position, other)
+
+    def rank(position):
+        row = items[position]
         pages = (row.get('meta') or {}).get('pages') or 0
         excluded = 1 if str(row.get('rel', '')).startswith('要删/') else 0
         return (excluded, -pages, -(row.get('size') or 0), row.get('rel') or '')
 
+    clusters = collections.defaultdict(list)
+    for position in range(len(items)):
+        clusters[find(position)].append(position)
+
     out = []
-    for key, members in groups.items():
+    for members in clusters.values():
         if len(members) < 2:
             continue
         members = sorted(members, key=rank)
-        out.append({'key': key, 'keep': members[0], 'extra': members[1:]})
+        out.append({'keep': items[members[0]], 'extra': [items[m] for m in members[1:]]})
     return sorted(out, key=lambda g: -len(g['extra']))
 
 
 def cmd_versions(a):
     rows = scored_rows()
-    groups = version_groups(rows, a.min_score)
+    groups = version_groups(rows, a.min_score, a.threshold)
     extra = sum(len(g['extra']) for g in groups)
     wasted = sum(sum(m.get('size') or 0 for m in g['extra']) for g in groups)
-    print(json.dumps({'judged_rows': len(rows), 'version_groups': len(groups),
-                      'extra_copies': extra,
+    print(json.dumps({'judged_rows': len(rows), 'threshold': a.threshold,
+                      'version_groups': len(groups), 'extra_copies': extra,
                       'share_of_judged': round(extra / len(rows), 3) if rows else 0,
                       'extra_bytes': wasted}, ensure_ascii=False))
     for group in groups[:a.show]:
         keep = group['keep']
-        print('%d 份 · %s · %s' % (len(group['extra']) + 1, keep.get('org') or '未知', keep.get('title') or ''))
+        print('%d 份 · %s' % (len(group['extra']) + 1, Path(keep.get('rel') or '').name))
         print('   保留 %s' % (keep.get('rel') or ''))
         for member in group['extra']:
             print('   重复 %s' % (member.get('rel') or ''))
@@ -339,6 +387,8 @@ def main():
     s.add_parser('status')
     v = s.add_parser('versions'); v.add_argument('--min-score', type=int, default=0)
     v.add_argument('--show', type=int, default=15, help='groups to print in full')
+    v.add_argument('--threshold', type=float, default=SIM_THRESHOLD,
+                   help='filename similarity to call two files one report (0..1)')
     a = ap.parse_args()
     {'pack': cmd_pack, 'record': cmd_record, 'status': cmd_status, 'versions': cmd_versions}[a.cmd](a)
 

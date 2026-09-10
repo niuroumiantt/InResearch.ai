@@ -15,7 +15,7 @@ already exists is skipped and reported.
 """
 from __future__ import annotations
 import argparse, json, os, shutil, sys, time
-from collections import defaultdict
+from collections import Counter, defaultdict
 from pathlib import Path
 
 SOURCE = Path('/Users/m4/Downloads/所有raw materials')
@@ -47,31 +47,39 @@ def keep_rank(rel: str):
 
 def load_inventory():
     by_sha = defaultdict(list)
-    for line in INVENTORY.open(encoding='utf-8'):
-        try: r = json.loads(line)
-        except ValueError: continue
-        if 'sha256' in r: by_sha[r['sha256']].append(r)
+    with INVENTORY.open(encoding='utf-8') as fh:
+        for line in fh:
+            try: r = json.loads(line)
+            except ValueError: continue
+            if 'sha256' in r: by_sha[r['sha256']].append(r)
     return by_sha
 
 
 def load_results():
     out = {}
     if RESULTS.exists():
-        for line in RESULTS.open(encoding='utf-8'):
-            try: r = json.loads(line); out[r['sha256']] = r
-            except (ValueError, KeyError): pass
+        with RESULTS.open(encoding='utf-8') as fh:
+            for line in fh:
+                try: r = json.loads(line); out[r['sha256']] = r
+                except (ValueError, KeyError): pass
     return out
+
+
+def category_of(mv):
+    """Top-level destination directory: the module code, or a _bucket."""
+    return mv['to'].split('/')[0]
 
 
 def applied_sources():
     """Destinations already reached, so apply is idempotent and resumable."""
     done = set()
     if MOVES.exists():
-        for line in MOVES.open(encoding='utf-8'):
-            try: r = json.loads(line)
-            except ValueError: continue
-            if r.get('event') == 'move' and r.get('ok'):
-                done.add(r['from'])
+        with MOVES.open(encoding='utf-8') as fh:
+            for line in fh:
+                try: r = json.loads(line)
+                except ValueError: continue
+                if r.get('event') == 'move' and r.get('ok'):
+                    done.add(r['from'])
     return done
 
 
@@ -118,9 +126,18 @@ def plan_library():
 
 
 def do_apply(moves, dry):
-    STATE.mkdir(parents=True, exist_ok=True)
+    """Shared by plan and apply, so the dry run counts exactly what apply does.
+
+    A dry run touches nothing: no state directory, no ledger, no filesystem
+    change.  It returns the same four counters apply reports plus the
+    destination breakdown, which is what lets the plan be reconciled against
+    the L0/L1 tallies before thirty-five thousand files move.
+    """
+    if not dry:
+        STATE.mkdir(parents=True, exist_ok=True)
     done = applied_sources()
     n = skipped = missing = collided = 0
+    by_category = Counter()
     log = None if dry else MOVES.open('a', encoding='utf-8')
     for mv in moves:
         src = SOURCE / mv['from']
@@ -128,7 +145,7 @@ def do_apply(moves, dry):
         if not src.is_file(): missing += 1; continue
         dst = LIBRARY / mv['to']
         if dst.exists(): collided += 1; continue
-        if dry: n += 1; continue
+        if dry: n += 1; by_category[category_of(mv)] += 1; continue
         rec = {'event': 'move', 'at': now(), **mv, 'ok': False}
         log.write(json.dumps(rec, ensure_ascii=False) + '\n'); log.flush()
         try:
@@ -138,15 +155,18 @@ def do_apply(moves, dry):
         except OSError as exc:
             rec['error'] = str(exc)[:200]
         log.write(json.dumps(rec, ensure_ascii=False) + '\n'); log.flush()
-        if rec['ok']: n += 1
+        if rec['ok']: n += 1; by_category[category_of(mv)] += 1
     if log: log.close()
-    print(json.dumps({'moved' if not dry else 'would_move': n, 'already_done': skipped,
-                      'source_missing': missing, 'destination_exists': collided}, ensure_ascii=False))
+    counts = {'moved' if not dry else 'would_move': n, 'already_done': skipped,
+              'source_missing': missing, 'destination_exists': collided}
+    print(json.dumps(counts, ensure_ascii=False))
+    return counts, by_category
 
 
 def do_revert(stage):
     if not MOVES.exists(): sys.exit('no move log')
-    rows = [json.loads(l) for l in MOVES.open(encoding='utf-8')]
+    with MOVES.open(encoding='utf-8') as fh:
+        rows = [json.loads(l) for l in fh]
     back = [r for r in rows if r.get('event') == 'move' and r.get('ok') and (not stage or r.get('stage') == stage)]
     n = 0
     with MOVES.open('a', encoding='utf-8') as log:
@@ -173,6 +193,10 @@ def main():
     if a.action == 'plan':
         gb = sum(m['size'] for m in moves) / 1e9
         print(json.dumps({'stage': a.stage, 'moves': len(moves), 'gb': round(gb, 1)}, ensure_ascii=False))
+        # The same code path apply takes, so the plan cannot disagree with it.
+        _, by_category = do_apply(moves, dry=True)
+        for name, count in by_category.most_common():
+            print('  %-30s %d' % (name, count))
         for m in moves[:a.show]:
             print('  ' + m['from'][-80:] + '\n    -> ' + m['to'][:100] + ('\n    保留: ' + m['keep'][-80:] if 'keep' in m else ''))
         return
