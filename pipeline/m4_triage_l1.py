@@ -293,6 +293,7 @@ def clean(s: str, n: int) -> str:
 
 MAX_SEGMENT = 60
 MAX_DIR_CHARS = 200
+MAX_NAME_BYTES = 200      # macOS allows 255 per component; leave headroom
 
 
 def clean_segment(s: str) -> str:
@@ -329,11 +330,70 @@ def source_dir(rel: str) -> str:
     return '/'.join(head + ['__'] + tail)
 
 
+def fit_bytes(s: str, budget: int) -> str:
+    """Trim to a byte budget without splitting a character."""
+    if budget <= 0:
+        return ''
+    raw = s.encode('utf-8')
+    if len(raw) <= budget:
+        return s
+    return raw[:budget].decode('utf-8', 'ignore').strip(' ._-')
+
+
+DATE_PREFIX = re.compile(r'^((?:19|20)\d{2}(?:[.\-年]\d{1,2})?)[.\s]*(.*)$')
+
+
+def split_date_prefix(tag: str) -> tuple[str, str]:
+    match = DATE_PREFIX.match(tag)
+    return (match.group(1), match.group(2).strip()) if match else ('', tag)
+
+
+def context_tags(rel: str, stem: str) -> list[str]:
+    """Folders that identify a file whose own name does not.
+
+    Keeping the source tree is not enough on its own: the moment a drawing is
+    mailed or copied out of it, WPJW2.dwg is anonymous again.  So the folders
+    that carry the identity travel in the name too - the project, just inside
+    the collection root, plus the innermost two, which say which building and
+    which drawing set.
+
+    A folder already spelled out in the filename is skipped, so a file that
+    was named well to begin with is not made to repeat itself.
+    """
+    parts = [p for p in (clean_segment(x) for x in Path(rel).parent.parts) if p]
+    picks = (parts[1:2] if len(parts) >= 2 else parts[:1]) + parts[-2:]
+    tags = []
+    for part in picks:
+        # Project folders are usually dated - "2019.7 中国移动南方基地二期工程".
+        # When the filename already spells the project out, the date is the
+        # only part still worth carrying, or the name says everything twice.
+        stamp, rest = split_date_prefix(part)
+        if rest and rest in stem:
+            part = stamp
+        if not part or part in tags or part in stem:
+            continue
+        tags.append(part)
+    return tags
+
+
+def unread_name(out: dict) -> str:
+    """Name for a file nothing has read: the folders that identify it, then it."""
+    stem = clean(Path(out['rel']).stem, 90)
+    tail = '__%s%s' % (out['sha256'][:16], out['suffix'])
+    budget = MAX_NAME_BYTES - len('__n_') - len(tail.encode('utf-8'))
+    # The original name keeps a reserved slice; the folder context takes what
+    # is left, so a long project name can never squeeze the filename out.
+    reserved = min(len(stem.encode('utf-8')), 80)
+    context = fit_bytes('_'.join(context_tags(out['rel'], stem)), budget - reserved - 1)
+    stem = fit_bytes(stem, budget - len(context.encode('utf-8')) - 1)
+    return '__n_%s%s%s' % (context + '_' if context else '', stem, tail)
+
+
 def proposed_name(out: dict) -> str:
     """Filename per task card §6.  Computed for review only; nothing is renamed here."""
     stem = Path(out['rel']).stem
     if out.get('status') != 'ok':
-        name = f"__n_{clean(stem, 90)}__{out['sha256'][:16]}{out['suffix']}"
+        name = unread_name(out)
         parent = source_dir(out['rel'])
         return f'{parent}/{name}' if parent else name
     score = '%02d' % out['score'] if out['score_status'] != 'provisional_name_only' else '__'
