@@ -15,6 +15,8 @@ from contextlib import redirect_stdout
 from pathlib import Path
 import sys
 import tempfile
+import threading
+import time
 import types
 import unittest
 import zipfile
@@ -198,6 +200,104 @@ class PreviewBudgetTests(unittest.TestCase):
 
     def test_the_wider_window_is_actually_wider(self):
         self.assertGreater(PK.OFFICE_PREVIEW_CHARS, PK.PREVIEW_CHARS)
+
+
+class SlowLines:
+    """A ledger that yields one line at a time, slowly and on purpose."""
+
+    def __init__(self, lines, delay):
+        self.lines, self.delay = lines, delay
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc):
+        return False
+
+    def __iter__(self):
+        for line in self.lines:
+            time.sleep(self.delay)
+            yield line
+
+
+class SlowLedger:
+    """Stands in for the moves.jsonl Path, widening the build window."""
+
+    def __init__(self, rows, delay=0.0004):
+        self.lines = [json.dumps(r, ensure_ascii=False) for r in rows]
+        self.delay = delay
+
+    def exists(self):
+        return True
+
+    def open(self, encoding=None):
+        return SlowLines(self.lines, self.delay)
+
+
+class MovedIndexConcurrencyTests(unittest.TestCase):
+    """pack builds previews on a thread pool; a half-built index is invisible.
+
+    The first version assigned the empty dict to the global and filled it
+    afterwards, so every other thread saw "not None", took the partial index,
+    missed, fell back to the path the file had already left, and produced an
+    empty preview without raising.  On the real corpus the same command
+    returned 118 to 174 previews out of 200, differing run to run - which is
+    why single-threaded tests, including the ones added with the fix itself,
+    all passed.
+    """
+
+    ROWS = 400
+    WORKERS = 8
+
+    def setUp(self):
+        self._saved = (L1.MOVES, L1._moved)
+        L1.MOVES = SlowLedger([
+            # Zero-padded, not left-justified: '1'.ljust(64,'0') and
+            # '10'.ljust(64,'0') are the same string, so the keys collide.
+            {'event': 'move', 'sha256': '%064x' % i,
+             'from': 'raw/f%d.pdf' % i, 'to': 'M10/f%d.pdf' % i, 'ok': True}
+            for i in range(self.ROWS)])
+        L1._moved = None
+
+    def tearDown(self):
+        L1.MOVES, L1._moved = self._saved
+
+    def test_every_thread_sees_a_complete_index(self):
+        seen, errors = [], []
+        barrier = threading.Barrier(self.WORKERS)
+
+        def worker():
+            try:
+                barrier.wait(timeout=5)
+                seen.append(len(L1.moved_index()))
+            except Exception as exc:            # noqa: BLE001 - reported below
+                errors.append(repr(exc))
+
+        threads = [threading.Thread(target=worker) for _ in range(self.WORKERS)]
+        for t in threads: t.start()
+        for t in threads: t.join(timeout=30)
+
+        self.assertEqual(errors, [])
+        self.assertEqual(len(seen), self.WORKERS)
+        self.assertEqual(set(seen), {self.ROWS},
+                         'a thread took a half-built index: %s' % sorted(set(seen)))
+
+    def test_the_index_is_built_once_not_once_per_thread(self):
+        builds = []
+        original = SlowLedger.open
+
+        def counting_open(ledger, encoding=None):
+            builds.append(1)
+            return original(ledger, encoding)
+
+        SlowLedger.open = counting_open
+        try:
+            threads = [threading.Thread(target=L1.moved_index) for _ in range(self.WORKERS)]
+            for t in threads: t.start()
+            for t in threads: t.join(timeout=30)
+        finally:
+            SlowLedger.open = original
+        self.assertEqual(sum(builds), 1, 'the ledger was re-read per thread')
 
 
 if __name__ == '__main__':
