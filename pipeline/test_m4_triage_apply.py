@@ -412,3 +412,34 @@ class UnreadNameTests(unittest.TestCase):
         self.assertEqual(L1.split_date_prefix('2019.7 中国移动'), ('2019.7', '中国移动'))
         self.assertEqual(L1.split_date_prefix('2024.12 某项目'), ('2024.12', '某项目'))
         self.assertEqual(L1.split_date_prefix('图纸'), ('', '图纸'))
+
+    def test_the_project_is_found_below_a_numbered_section(self):
+        """Taking "the second segment" picked the section and dropped the job."""
+        produced = self.name('数据中心报告购买/01 解决方案(1)/2019中国移动定制化IDC解决方案/'
+                             '4 投标/4.1标书引导模板/中国移动IDC资质 ISO20000.jpg')
+        self.assertIn('2019中国移动定制化IDC解决方案', produced)
+        self.assertNotIn('01 解决方案', produced)
+        self.assertIn('4.1标书引导模板', produced, 'the innermost folders still travel')
+
+    def test_the_dated_project_wins_over_a_dated_collection_root(self):
+        produced = self.name('42套数据中心IDC机房楼机房2024 —2025/'
+                             '2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/'
+                             '结施/结构/5#楼结构/5#计算书/5#楼上/截面/WPJW2.dwg')
+        self.assertIn('2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）', produced)
+        self.assertNotIn('42套', produced)
+
+    def test_a_shallow_tree_still_finds_its_project(self):
+        produced = self.name('报告/2019广州IDC/图纸/一层平面图.dwg')
+        self.assertIn('2019广州IDC', produced)
+
+    def test_without_a_year_the_longest_outer_folder_stands_in(self):
+        produced = self.name('资料/某集合名称较长/子目录/图纸/剖面.dwg')
+        self.assertIn('某集合名称较长', produced)
+        self.assertIn('图纸', produced)
+
+    def test_pick_project_prefers_a_year(self):
+        self.assertEqual(L1.pick_project(['报告', '01 方案', '2019某项目', '投标', '模板']),
+                         '2019某项目')
+        self.assertEqual(L1.pick_project(['短', '很长的目录名称在这里', '叶一', '叶二']),
+                         '很长的目录名称在这里')
+        self.assertEqual(L1.pick_project([]), '')
