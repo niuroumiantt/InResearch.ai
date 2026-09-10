@@ -372,7 +372,11 @@ def extract(path: Path) -> tuple[str, dict]:
                 return xls_text(raw)
             if 'powerpoint document' in names:
                 return ppt_text(raw)
-            return '', {'extract_error': 'OLE2 with no known stream: ' + ','.join(sorted(names))[:80]}
+            # A Visio binary carries no text stream at all.  Callers decide
+            # whether to re-read a file later, and that decision must not rest
+            # on matching the prose below - hence the flag.
+            return '', {'no_text_layer': True,
+                        'extract_error': 'OLE2 with no known stream: ' + ','.join(sorted(names))[:80]}
         return '', {'extract_error': 'unrecognised container'}
     except Exception as exc:
         return '', {'extract_error': type(exc).__name__ + ': ' + str(exc)[:120]}
