@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：462。
+在册文件：464。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 12 |
 | 历史快照 | 36 |
-| 运行代码 | 79 |
+| 运行代码 | 80 |
 | 现行规范 | 11 |
 | 项目配置 | 36 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 25 |
 | 配套说明 | 34 |
-| 测试 | 21 |
+| 测试 | 22 |
 
 ## 在册记录集合
 
@@ -592,6 +592,7 @@
 | `pipeline/m4_preflight.py` | 运行代码 |
 | `pipeline/m4_triage.py` | 运行代码 |
 | `pipeline/m4_triage_apply.py` | 运行代码 |
+| `pipeline/m4_triage_export.py` | 运行代码 |
 | `pipeline/m4_triage_extract.py` | 运行代码 |
 | `pipeline/m4_triage_l1.py` | 运行代码 |
 | `pipeline/m4_triage_local.py` | 运行代码 |
@@ -620,6 +621,7 @@
 | `pipeline/test_m4_paths.py` | 测试 |
 | `pipeline/test_m4_triage.py` | 测试 |
 | `pipeline/test_m4_triage_apply.py` | 测试 |
+| `pipeline/test_m4_triage_export.py` | 测试 |
 | `pipeline/test_m4_triage_extract.py` | 测试 |
 | `pipeline/test_m4_triage_local.py` | 测试 |
 | `pipeline/test_m4_triage_report.py` | 测试 |

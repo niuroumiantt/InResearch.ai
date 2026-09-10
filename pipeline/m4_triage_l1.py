@@ -204,7 +204,9 @@ def load_inventory() -> list[dict]:
     file that also exists as a real original is judged on that copy.
     """
     by_sha: dict[str, dict] = {}
-    for line in INVENTORY.open(encoding='utf-8'):
+    with INVENTORY.open(encoding='utf-8') as fh:
+        inventory_lines = fh.readlines()
+    for line in inventory_lines:
         try: r = json.loads(line)
         except ValueError: continue
         if 'sha256' not in r: continue
@@ -224,9 +226,10 @@ def load_inventory() -> list[dict]:
 def done_keys() -> set:
     keys = set()
     if RESULTS.exists():
-        for line in RESULTS.open(encoding='utf-8'):
-            try: r = json.loads(line); keys.add(r['sha256'])
-            except (ValueError, KeyError): pass
+        with RESULTS.open(encoding='utf-8') as fh:
+            for line in fh:
+                try: r = json.loads(line); keys.add(r['sha256'])
+                except (ValueError, KeyError): pass
     return keys
 
 

@@ -117,13 +117,51 @@ $PY $S/m4_triage_apply.py library revert
 
 只对 L1 得分 ≥7 的文件做，按章节切块，Opus 5，覆盖暂定分。
 
-## 阶段 5 · 交给 Spark（待写）
+## 阶段 5 · 交给 Spark
+
+语料原本在 Spark 上，M4 只是因为 Spark 离线才代做。M4 的全部决定——去重移动、
+归档、三轮重命名、16,020 条判定——只存在于 M4 的账本里。没有导出，两台机器
+对账就只能删掉 Spark 那份重跑一遍。
+
+**M4 上导出：**
 
 ```
-$PY $S/m4_triage_export.py > mapping.jsonl
-scp mapping.jsonl spark-lan:/tmp/
-ssh spark-lan python3 ~/code/inresearch.ai/pipeline/continuous_reader.py apply-triage /tmp/mapping.jsonl --dry-run
+$PY $S/m4_triage_export.py export --out ~/mapping.jsonl
+scp ~/mapping.jsonl spark-lan:/tmp/
 ```
+
+`mapping.jsonl` 一行一个物理文件：`sha256 / from（原始相对路径）/ to（最终位置）/
+stage`，归档的那一份还带判定（分数、模块、年份、机构、标题、置信、理由）。
+被判为重复而搁置的副本不带判定，避免同一份内容被记两次分。
+
+**Spark 上先清点自己的树，再核对，最后执行：**
+
+```
+export INRESEARCH_SOURCE=/path/to/spark/所有raw materials
+export INRESEARCH_LIBRARY=/path/to/spark/inresearch资料库
+export INRESEARCH_DATASET=spark
+
+$PY $S/m4_inventory.py                                    # Spark 自己算 SHA-256
+$PY $S/m4_triage_export.py verify --mapping /tmp/mapping.jsonl
+$PY $S/m4_triage_export.py import-verdicts --mapping /tmp/mapping.jsonl
+$PY $S/m4_triage_export.py apply --mapping /tmp/mapping.jsonl            # 只计划
+$PY $S/m4_triage_export.py apply --mapping /tmp/mapping.jsonl --commit   # 真的移动
+```
+
+**按内容匹配，不按路径。** 两棵树是同一批语料的副本，但没有任何机制保证路径
+一致；有人手工改过的目录名只有 SHA-256 还认得。`verify` 报告三个数：
+
+| 字段 | 含义 | 期望 |
+|---|---|---|
+| `matched` | 两边都有 | 越接近 mapping 总数越好 |
+| `missing_here` | mapping 里有、本机没有 | 0；不为 0 说明两份语料确实不同 |
+| `extra_here` | 本机有、mapping 里没有 | 0；不为 0 说明有文件没被判过 |
+
+`missing_here` 或 `extra_here` 不为 0 时**不要直接 apply**，先弄清差异从哪来。
+
+`import-verdicts` 把判定写进 Spark 的 `l1_results.jsonl`，幂等，重复执行不会写重。
+重判 16,020 份要再花 31.7 小时模型时间，而且判出来的标题和已经落盘的文件名不会
+一致，所以判定必须随对照表走，不能重算。
 
 ## 修正：未读文件保留原始目录
 
