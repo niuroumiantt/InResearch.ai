@@ -18,10 +18,12 @@ import argparse, json, os, shutil, sys, time
 from collections import Counter, defaultdict
 from pathlib import Path
 
-SOURCE = Path('/Users/m4/Downloads/所有raw materials')
-LIBRARY = Path('/Users/m4/Downloads/inresearch资料库')
-DATA = Path.home() / '.local/share/inresearch.ai/m4-triage'
-STATE = Path.home() / '.local/state/inresearch.ai/m4-triage'
+import m4_paths
+
+SOURCE = m4_paths.source()
+LIBRARY = m4_paths.library()
+DATA = m4_paths.data()
+STATE = m4_paths.state()
 INVENTORY = DATA / 'inventory.jsonl'
 RESULTS = DATA / 'l1_results.jsonl'
 MOVES = STATE / 'moves.jsonl'
@@ -134,6 +136,9 @@ def do_apply(moves, dry):
     the L0/L1 tallies before thirty-five thousand files move.
     """
     if not dry:
+        # os.rename cannot cross a filesystem boundary; fail before the first
+        # move rather than after thirty-five thousand EXDEV errors.
+        m4_paths.require_same_volume(SOURCE, LIBRARY)
         STATE.mkdir(parents=True, exist_ok=True)
     done = applied_sources()
     n = skipped = missing = collided = 0

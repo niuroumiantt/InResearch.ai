@@ -17,10 +17,12 @@ from __future__ import annotations
 import argparse, hashlib, json, os, random, re, subprocess, sys, time, zipfile
 from pathlib import Path
 
-SOURCE = Path('/Users/m4/Downloads/所有raw materials')
+import m4_paths
+
+SOURCE = m4_paths.source()
 REPO = Path('/Users/m4/code/inresearch.ai')
-DATA = Path.home() / '.local/share/inresearch.ai/m4-triage'
-STATE = Path.home() / '.local/state/inresearch.ai/m4-triage'
+DATA = m4_paths.data()
+STATE = m4_paths.state()
 INVENTORY = DATA / 'inventory.jsonl'
 RESULTS = DATA / 'l1_results.jsonl'
 BATCHES = DATA / 'l1_batches.jsonl'
