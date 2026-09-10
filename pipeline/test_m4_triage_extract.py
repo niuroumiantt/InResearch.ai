@@ -147,3 +147,85 @@ class ExtractRunTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class PackTests(unittest.TestCase):
+    """Preview extraction runs in parallel without changing which files are picked."""
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix="m4-pack-test-")
+        base = Path(self.temp.name)
+        self.results = base / "l1_results.jsonl"
+        self.results.write_text("", encoding="utf-8")
+        self.peak = self.live = 0
+        self.guard = threading.Lock()
+        self._saved = (L1.RESULTS, PK.BATCH_DIR, PK.pending, L1.prepare,
+                       L1.finalize, L1.proposed_name)
+        L1.RESULTS = self.results
+        PK.BATCH_DIR = base / "batches"
+        L1.prepare = self.fake_prepare
+        L1.finalize = lambda rec, v, j, e: {"sha256": rec["sha256"], "rel": rec["rel"]}
+        L1.proposed_name = lambda row: "n.pdf"
+
+    def tearDown(self):
+        (L1.RESULTS, PK.BATCH_DIR, PK.pending, L1.prepare,
+         L1.finalize, L1.proposed_name) = self._saved
+        self.temp.cleanup()
+
+    def fake_prepare(self, item):
+        if item.get("boom"):
+            raise RuntimeError("pdftotext failed")
+        with self.guard:
+            self.live += 1
+            self.peak = max(self.peak, self.live)
+        try:
+            time.sleep(0.02)
+            return {"sha256": item["sha256"], "rel": item["rel"], "suffix": ".pdf",
+                    "size": 2048, "preview": "preview " + item["rel"], "meta": {},
+                    "level": "p", "needs_model": item.get("needs_model", True)}
+        finally:
+            with self.guard:
+                self.live -= 1
+
+    def items(self, n, **extra):
+        return [{"sha256": "%064x" % i, "rel": "f%d.pdf" % i, **extra} for i in range(1, n + 1)]
+
+    def run_pack(self, items, limit=5, workers=4):
+        PK.pending = lambda: list(items)
+        PK.cmd_pack(types.SimpleNamespace(limit=limit, workers=workers, out=None))
+        text = (PK.BATCH_DIR / "batch.txt").read_text(encoding="utf-8")
+        return [line for line in text.splitlines() if line and not line.startswith("#")]
+
+    def test_batch_holds_the_first_files_in_priority_order(self):
+        lines = self.run_pack(self.items(20), limit=5, workers=4)
+        self.assertEqual(len(lines), 5)
+        self.assertEqual([line.split("|")[5] for line in lines],
+                         ["f1.pdf", "f2.pdf", "f3.pdf", "f4.pdf", "f5.pdf"])
+
+    def test_thread_count_does_not_change_the_selection(self):
+        one = self.run_pack(self.items(20), limit=5, workers=1)
+        eight = self.run_pack(self.items(20), limit=5, workers=8)
+        self.assertEqual(one, eight)
+
+    def test_previews_are_extracted_in_parallel(self):
+        self.run_pack(self.items(20), limit=8, workers=4)
+        self.assertGreater(self.peak, 1)
+        self.assertLessEqual(self.peak, 4)
+
+    def test_an_unreadable_file_does_not_kill_the_batch(self):
+        items = self.items(3) + [{"sha256": "f" * 64, "rel": "bad.pdf", "boom": True}] + self.items(3)
+        lines = self.run_pack(items, limit=5, workers=4)
+        self.assertEqual(len(lines), 5)
+        self.assertNotIn("bad.pdf", "\n".join(lines))
+
+    def test_files_needing_no_model_are_written_and_do_not_fill_the_batch(self):
+        items = self.items(3, needs_model=False) + self.items(4)
+        lines = self.run_pack(items, limit=4, workers=4)
+        self.assertEqual(len(lines), 4)
+        written = [x for x in self.results.read_text(encoding="utf-8").splitlines() if x.strip()]
+        self.assertEqual(len(written), 3)
+
+    def test_worker_count_is_bounded(self):
+        for workers in (0, -1, PK.MAX_WORKERS + 1):
+            with self.assertRaises(SystemExit):
+                self.run_pack(self.items(2), limit=1, workers=workers)
