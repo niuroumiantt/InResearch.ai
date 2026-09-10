@@ -21,6 +21,10 @@ import m4_office_text
 
 BATCH_DIR = L1.DATA / 'batches'
 PREVIEW_CHARS = 400
+# A workbook opens with its sheet names - eleven of them on a forecast model -
+# so a 400-character window can close before the first row of data.  Office
+# formats get a wider one; PDFs and plain text still lead with their title.
+OFFICE_PREVIEW_CHARS = 1200
 MAX_WORKERS = 16
 
 # Word/PowerPoint field codes and table-of-contents scaffolding carry no meaning
@@ -64,7 +68,27 @@ def blind_scored() -> set:
     asking again about.
     """
     return {sha for sha, r in last_results().items()
-            if r.get('level') == 'n' and r.get('suffix') in m4_office_text.SUPPORTED}
+            if r.get('level') == 'n' and r.get('suffix') in m4_office_text.SUPPORTED
+            and not opened_and_empty(r)}
+
+
+def opened_and_empty(r: dict) -> bool:
+    """True when the extractor really ran on this file and found no text.
+
+    Empty meta means the file was never opened - the first pass routed it to
+    _office_pending, or it was read back through a stale path - so it still
+    owes us a look.  A transient failure (the file was not where the inventory
+    said) is also worth retrying.  Sheet counts, text atom counts, or a
+    permanent no-text-layer verdict all mean the answer will not change.
+    """
+    meta = r.get('meta') or {}
+    if not meta:
+        return False
+    if meta.get('no_text_layer'):
+        return True
+    # Any other error is transient - a stale path, a truncated download - and
+    # the file still owes us a look.
+    return not meta.get('extract_error')
 
 
 def pending(redo=False):
@@ -114,10 +138,11 @@ def cmd_pack(a):
                 if not rec['needs_model']:
                     o = L1.finalize(rec, None, None, None); o['proposed_name'] = L1.proposed_name(o)
                     f.write(json.dumps(o, ensure_ascii=False) + '\n'); l0 += 1; continue
-                text = clean_preview(rec['preview'])[:PREVIEW_CHARS]
+                budget = OFFICE_PREVIEW_CHARS if rec['suffix'] in m4_office_text.SUPPORTED else PREVIEW_CHARS
+                text = clean_preview(rec['preview'])[:budget]
                 out.append({'id': rec['sha256'][:12], 'path': rec['rel'], 'suffix': rec['suffix'],
                             'kb': round(rec['size'] / 1024), **({'pages': rec['meta']['pages']} if rec['meta'].get('pages') else {}),
-                            'level': rec['level'], 'preview': text})
+                            'level': rec['level'], 'preview': text, 'meta': rec['meta']})
     path = Path(a.out) if a.out else BATCH_DIR / 'batch.txt'
     # One pipe-delimited line per file.  JSON key names cost more than the data
     # they label at this volume, and the batch is read once by one reader.
@@ -173,7 +198,8 @@ def cmd_record(a):
     for b in raw:
         key = b.get('id') or b['sha256'][:12]
         batch[key] = {'path': b.get('path') or b['rel'], 'level': b['level'],
-                      'preview': b.get('preview', b.get('quote', ''))}
+                      'preview': b.get('preview', b.get('quote', '')),
+                      'meta': b.get('meta') or {}}
     inv = {i['sha256'][:12]: i for i in L1.load_inventory()}
     n = bad = 0
     with L1.RESULTS.open('a', encoding='utf-8') as f:
@@ -182,7 +208,7 @@ def cmd_record(a):
             if not b or not item: bad += 1; continue
             rec = {'sha256': item['sha256'], 'rel': b['path'], 'suffix': item['suffix'], 'size': item['size'],
                    'task_version': L1.TASK_VERSION, 'level': b['level'], 'category': None,
-                   'preview': b['preview'], 'meta': {}, 'paths': item['paths'], 'copies': item['copies']}
+                   'preview': b['preview'], 'meta': b['meta'], 'paths': item['paths'], 'copies': item['copies']}
             parsed = {k: v[k] for k in ('score', 'module', 'title', 'org', 'year', 'keep_original_name',
                                         'doc_type', 'language', 'rationale', 'evidence', 'confidence') if k in v}
             for k, d in (('language', '未知'), ('evidence', ''), ('doc_type', 'other'), ('confidence', 'medium'),
