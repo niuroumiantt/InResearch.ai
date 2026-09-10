@@ -21,12 +21,14 @@ import m4_paths
 import m4_office_text
 
 SOURCE = m4_paths.source()
+LIBRARY = m4_paths.library()
 REPO = Path('/Users/m4/code/inresearch.ai')
 DATA = m4_paths.data()
 STATE = m4_paths.state()
 INVENTORY = DATA / 'inventory.jsonl'
 RESULTS = DATA / 'l1_results.jsonl'
 BATCHES = DATA / 'l1_batches.jsonl'
+MOVES = STATE / 'moves.jsonl'
 MODEL = 'claude-opus-5'
 MAX_PREVIEW_CHARS = 6000
 TASK_VERSION = 'l1-2026-09-09a'
@@ -233,6 +235,46 @@ def done_keys() -> set:
     return keys
 
 
+_moved: dict | None = None
+
+
+def moved_index() -> dict:
+    """sha256 -> the file's current path inside the library, from the move ledger.
+
+    A finalised corpus no longer has its files where the inventory says: the
+    move step renamed each one into LIBRARY/<category>/.  Re-reading a file we
+    already scored (pack --redo) therefore has to follow the ledger, or every
+    preview comes back empty and the re-read silently degrades into a second
+    filename-only pass.  Files may move more than once (restage), so the last
+    successful move wins.  Built once, and only when a stale path is actually
+    hit, so a fresh corpus pays nothing.
+    """
+    global _moved
+    if _moved is None:
+        _moved = {}
+        if MOVES.exists():
+            with MOVES.open(encoding='utf-8') as fh:
+                for line in fh:
+                    try: r = json.loads(line)
+                    except ValueError: continue
+                    if r.get('ok') and r.get('event') == 'move' and r.get('to'):
+                        _moved[r['sha256']] = r['to']
+    return _moved
+
+
+def readable_path(item: dict) -> tuple[Path, bool]:
+    """Where this file can be read right now, and whether it had been moved."""
+    src = SOURCE / item['rel']
+    if src.exists():
+        return src, False
+    dest = moved_index().get(item['sha256'])
+    if dest:
+        moved = LIBRARY / dest
+        if moved.exists():
+            return moved, True
+    return src, False  # keep the source path so the failure names what we looked for
+
+
 def prepare(item: dict) -> dict:
     """Extract preview and decide L0 vs L1.  Returns a record without model output."""
     suffix = item['suffix']; r = route(suffix)
@@ -244,7 +286,9 @@ def prepare(item: dict) -> dict:
     if r != 'text':
         rec.update({'level': 'n', 'category': r, 'needs_model': r in {'_office_pending', '_archive_review', '_format_review'}, 'preview': '', 'meta': {}})
         return rec
-    text, meta = extract_preview(SOURCE / item['rel'], suffix)
+    path, from_library = readable_path(item)
+    text, meta = extract_preview(path, suffix)
+    if from_library: meta['read_from'] = 'library'
     text = re.sub(r'[ \t]+', ' ', text); text = re.sub(r'\n{3,}', '\n\n', text).strip()
     if len(text) < 200:
         rec.update({'level': 'n', 'category': '_ocr_candidate' if suffix == '.pdf' else '_format_review', 'needs_model': True, 'preview': text, 'meta': meta})
