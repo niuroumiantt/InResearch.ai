@@ -348,6 +348,26 @@ def split_date_prefix(tag: str) -> tuple[str, str]:
     return (match.group(1), match.group(2).strip()) if match else ('', tag)
 
 
+YEAR = re.compile(r'(?:19|20)\d{2}')
+
+
+def pick_project(parts: list[str]) -> str:
+    """The folder that names the job.
+
+    Position is not a reliable guide.  One collection puts the project
+    directly under its root; another buries it under a numbered section, so
+    taking "the second segment" picks 01 解决方案(1) and drops
+    2019中国移动定制化IDC解决方案 entirely.  A four-digit year is what
+    actually marks a project folder here; failing that the longest
+    non-innermost segment wins, since generic section names are short.
+    """
+    dated = [p for p in parts if YEAR.search(p)]
+    if dated:
+        return max(dated, key=len)
+    outer = parts[:-2] or parts[:1]
+    return max(outer, key=len) if outer else ''
+
+
 def context_tags(rel: str, stem: str) -> list[str]:
     """Folders that identify a file whose own name does not.
 
@@ -361,7 +381,7 @@ def context_tags(rel: str, stem: str) -> list[str]:
     was named well to begin with is not made to repeat itself.
     """
     parts = [p for p in (clean_segment(x) for x in Path(rel).parent.parts) if p]
-    picks = (parts[1:2] if len(parts) >= 2 else parts[:1]) + parts[-2:]
+    picks = [pick_project(parts)] + parts[-2:]
     tags = []
     for part in picks:
         # Project folders are usually dated - "2019.7 中国移动南方基地二期工程".
