@@ -95,7 +95,7 @@ class ExtractRunTests(unittest.TestCase):
         return self.digests.with_name("digests.part%d.jsonl" % index)
 
     def run_cmd(self, items, workers=1, limit=0, shard=None):
-        PK.pending = lambda: list(items)
+        PK.pending = lambda redo=False: list(items)
         EX.cmd_run(types.SimpleNamespace(workers=workers, limit=limit, shard=shard))
         path = self.out_path(shard)
         text = path.read_text(encoding="utf-8") if path.exists() else ""
@@ -191,7 +191,7 @@ class PackTests(unittest.TestCase):
         return [{"sha256": "%064x" % i, "rel": "f%d.pdf" % i, **extra} for i in range(1, n + 1)]
 
     def run_pack(self, items, limit=5, workers=4):
-        PK.pending = lambda: list(items)
+        PK.pending = lambda redo=False: list(items)
         PK.cmd_pack(types.SimpleNamespace(limit=limit, workers=workers, out=None))
         text = (PK.BATCH_DIR / "batch.txt").read_text(encoding="utf-8")
         return [line for line in text.splitlines() if line and not line.startswith("#")]

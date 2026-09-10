@@ -18,6 +18,7 @@ import argparse, hashlib, json, os, random, re, subprocess, sys, time, zipfile
 from pathlib import Path
 
 import m4_paths
+import m4_office_text
 
 SOURCE = m4_paths.source()
 REPO = Path('/Users/m4/code/inresearch.ai')
@@ -30,11 +31,13 @@ MODEL = 'claude-opus-5'
 MAX_PREVIEW_CHARS = 6000
 TASK_VERSION = 'l1-2026-09-09a'
 
-TEXT_SUFFIXES = {'.pdf', '.txt', '.md', '.csv', '.docx', '.doc', '.rtf', '.pptx', '.html', '.htm', '.json', '.xml'}
+TEXT_SUFFIXES = {'.pdf', '.txt', '.md', '.csv', '.docx', '.doc', '.rtf', '.pptx', '.html', '.htm', '.json', '.xml',
+                 '.xlsx', '.xlsm', '.xltx', '.xls', '.ppt', '.et', '.wps', '.dps', '.vsdx', '.vsd'}
 DRAWING_SUFFIXES = {'.dwg', '.dxf', '.dwf', '.dwy', '.dws', '.dwt', '.bak', '.skp', '.rvt', '.rfa', '.ifc', '.3ds', '.max', '.obj', '.fbx', '.stl', '.step', '.stp', '.igs', '.iges', '.nwd', '.nwc', '.pln', '.plt'}
 ASSET_SUFFIXES = {'.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tif', '.tiff', '.heic', '.webp', '.svg', '.psd', '.ai', '.mp4', '.mov', '.avi', '.mp3', '.wav', '.ttf', '.otf', '.ico', '.icns'}
 JUNK_SUFFIXES = {'.log', '.tmp', '.ds_store', '.ini', '.db', '.lnk', '.url', '.plist', '.crdownload', '.part', '.partial', '.dat', '.out', '.yg', '.err', '.bak1'}
-OFFICE_PENDING = {'.xlsx', '.xls', '.ppt', '.et', '.wps', '.dps', '.numbers', '.pages', '.key', '.vsd', '.vsdx', '.mpp'}
+# iWork and MS Project: still no stdlib reader, so still judged on the name.
+OFFICE_PENDING = {'.numbers', '.pages', '.key', '.mpp'}
 ARCHIVE_SUFFIXES = {'.zip', '.rar', '.7z', '.tar', '.gz', '.bz2', '.xz', '.iso', '.dmg', '.exe', '.msi', '.pkg', '.apk'}
 
 # Derived artifacts of the previous pipeline run: text caches, batch spools and
@@ -107,6 +110,8 @@ def extract_preview(path: Path, suffix: str) -> tuple[str, dict]:
                     if total > MAX_PREVIEW_CHARS * 2: break
                 if suffix == '.pptx': meta['slides'] = len([n for n in z.namelist() if n.startswith('ppt/slides/slide')])
                 return '\n'.join(parts), meta
+        if suffix in m4_office_text.SUPPORTED:
+            return m4_office_text.extract(path)
         if suffix in {'.doc', '.rtf'}:
             out = run(['textutil', '-convert', 'txt', '-stdout', str(path)], 90).stdout
             return out.decode('utf-8', 'ignore'), meta
@@ -286,11 +291,51 @@ def clean(s: str, n: int) -> str:
     return (s[:n]).strip(' ._-') or '未知'
 
 
+MAX_SEGMENT = 60
+MAX_DIR_CHARS = 200
+
+
+def clean_segment(s: str) -> str:
+    s = re.sub(r'[\\/:*?"<>|\r\n\t]+', ' ', s or '').strip(' ._-')
+    return re.sub(r'\s+', ' ', s)[:MAX_SEGMENT].strip(' ._-')
+
+
+def source_dir(rel: str) -> str:
+    """The source folders a file sat in, cleaned segment by segment.
+
+    An unread file's own name is often not enough to identify it: a drawing
+    called 一层平面图.dwg means nothing once it is separated from the project
+    folder naming the city it belongs to, and a flat bucket would put every
+    project's copy of that name side by side.  So unread files keep their tree.
+
+    A path too long for the filesystem drops segments from the middle, where
+    the least identifying ones live, and leaves a marker so the elision is
+    visible rather than silent.
+    """
+    parts = [p for p in (clean_segment(x) for x in Path(rel).parent.parts) if p]
+    if not parts:
+        return ''
+    width = lambda ps: sum(len(x) + 1 for x in ps)
+    if len(parts) <= 4 or width(parts) <= MAX_DIR_CHARS:
+        return '/'.join(parts)
+    # Keep the outermost folder, which says which collection this came from,
+    # and the innermost ones, which say which project and which subfolder.
+    # Drop from between them, shrinking the tail until it fits - never by
+    # removing segments in place, which can loop forever once the marker
+    # itself lands on the position being removed.
+    head, tail = parts[:1], parts[-3:]
+    while len(tail) > 1 and width(head + ['__'] + tail) > MAX_DIR_CHARS:
+        tail = tail[1:]
+    return '/'.join(head + ['__'] + tail)
+
+
 def proposed_name(out: dict) -> str:
     """Filename per task card §6.  Computed for review only; nothing is renamed here."""
     stem = Path(out['rel']).stem
     if out.get('status') != 'ok':
-        return f"__n_{clean(stem, 90)}__{out['sha256'][:16]}{out['suffix']}"
+        name = f"__n_{clean(stem, 90)}__{out['sha256'][:16]}{out['suffix']}"
+        parent = source_dir(out['rel'])
+        return f'{parent}/{name}' if parent else name
     score = '%02d' % out['score'] if out['score_status'] != 'provisional_name_only' else '__'
     level = out['level']
     title = clean(stem, 55) if out.get('keep_original_name') else clean(out.get('title', ''), 55)

@@ -19,6 +19,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 import m4_paths
+import m4_triage_l1
 
 SOURCE = m4_paths.source()
 LIBRARY = m4_paths.library()
@@ -67,6 +68,11 @@ def load_results():
     return out
 
 
+def root_of(mv) -> Path:
+    """A restage move starts inside the library; every other one in the source."""
+    return LIBRARY if mv.get('from_root') == 'library' else SOURCE
+
+
 def category_of(mv):
     """Top-level destination directory: the module code, or a _bucket."""
     return mv['to'].split('/')[0]
@@ -110,6 +116,38 @@ def plan_duplicates():
     return moves
 
 
+def desired_destination(res: dict) -> str | None:
+    """Where the current rules say this file belongs.
+
+    Recomputed from m4_triage_l1 rather than read from the stored
+    proposed_name, so a naming rule that changes takes effect everywhere at
+    once instead of leaving the library half on the old scheme.
+    """
+    cat = res.get('category') or '_review'
+    try:
+        name = m4_triage_l1.proposed_name(res)
+    except Exception:
+        name = res.get('proposed_name')
+    return str(Path(cat) / name) if name else None
+
+
+def current_locations() -> dict:
+    """Where each file actually is now, replayed from the ledger."""
+    where = {}
+    if not MOVES.exists():
+        return where
+    with MOVES.open(encoding='utf-8') as fh:
+        for line in fh:
+            try: r = json.loads(line)
+            except ValueError: continue
+            if not r.get('ok'): continue
+            if r.get('event') == 'move':
+                where[r['sha256']] = r['to']
+            elif r.get('event') == 'revert':
+                where.pop(r['sha256'], None)   # back in the source tree
+    return where
+
+
 def plan_library():
     results = load_results()
     if not results:
@@ -119,10 +157,33 @@ def plan_library():
         rows = by_sha.get(sha)
         if not rows: continue
         keep = sorted(rows, key=lambda r: keep_rank(r['rel']))[0]
-        cat = res.get('category') or '_review'
-        name = res.get('proposed_name')
-        if not name: continue
-        moves.append({'sha256': sha, 'from': keep['rel'], 'to': str(Path(cat) / name), 'size': keep['size'], 'stage': 'library',
+        dest = desired_destination(res)
+        if not dest: continue
+        moves.append({'sha256': sha, 'from': keep['rel'], 'to': dest, 'size': keep['size'], 'stage': 'library',
+                      'score': res.get('score'), 'level': res.get('level')})
+    return moves
+
+
+def plan_restage():
+    """Re-file what is already in the library, when the rules have moved on.
+
+    Needed because the first library pass flattened unread files to their
+    basename: two projects' 一层平面图.dwg landed side by side in one bucket
+    with nothing but a hash to tell them apart.  Restage puts each back under
+    the folders it came from.  Files never filed are left to `library apply`.
+    """
+    results = load_results()
+    if not results:
+        sys.exit('no L1 results yet: run m4_triage_l1.py first')
+    where = current_locations(); by_sha = load_inventory(); moves = []
+    for sha, res in results.items():
+        now_at = where.get(sha)
+        if not now_at: continue
+        dest = desired_destination(res)
+        if not dest or dest == now_at: continue
+        rows = by_sha.get(sha)
+        moves.append({'sha256': sha, 'from': now_at, 'to': dest, 'from_root': 'library',
+                      'size': rows[0]['size'] if rows else 0, 'stage': 'restage',
                       'score': res.get('score'), 'level': res.get('level')})
     return moves
 
@@ -145,7 +206,7 @@ def do_apply(moves, dry):
     by_category = Counter()
     log = None if dry else MOVES.open('a', encoding='utf-8')
     for mv in moves:
-        src = SOURCE / mv['from']
+        src = root_of(mv) / mv['from']
         if mv['from'] in done: skipped += 1; continue
         if not src.is_file(): missing += 1; continue
         dst = LIBRARY / mv['to']
@@ -176,7 +237,7 @@ def do_revert(stage):
     n = 0
     with MOVES.open('a', encoding='utf-8') as log:
         for r in reversed(back):
-            src = LIBRARY / r['to']; dst = SOURCE / r['from']
+            src = LIBRARY / r['to']; dst = root_of(r) / r['from']
             if not src.is_file() or dst.exists(): continue
             dst.parent.mkdir(parents=True, exist_ok=True)
             os.rename(src, dst); n += 1
@@ -186,14 +247,15 @@ def do_revert(stage):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('stage', choices=['duplicates', 'library'])
+    ap.add_argument('stage', choices=['duplicates', 'library', 'restage'])
     ap.add_argument('action', choices=['plan', 'apply', 'revert'])
     ap.add_argument('--limit', type=int, default=0)
     ap.add_argument('--show', type=int, default=15)
     a = ap.parse_args()
     if a.action == 'revert':
         return do_revert(a.stage)
-    moves = plan_duplicates() if a.stage == 'duplicates' else plan_library()
+    moves = {'duplicates': plan_duplicates, 'library': plan_library,
+             'restage': plan_restage}[a.stage]()
     if a.limit: moves = moves[:a.limit]
     if a.action == 'plan':
         gb = sum(m['size'] for m in moves) / 1e9
