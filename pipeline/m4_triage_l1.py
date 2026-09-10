@@ -291,7 +291,12 @@ def prepare(item: dict) -> dict:
     if from_library: meta['read_from'] = 'library'
     text = re.sub(r'[ \t]+', ' ', text); text = re.sub(r'\n{3,}', '\n\n', text).strip()
     if len(text) < 200:
-        rec.update({'level': 'n', 'category': '_ocr_candidate' if suffix == '.pdf' else '_format_review', 'needs_model': True, 'preview': text, 'meta': meta})
+        # A Visio binary has no text stream at all: the extractor reports the
+        # streams it did find and will report the same ones every future run.
+        # Re-queueing it just spends another pass to reach the same filename.
+        no_text = 'no known stream' in str(meta.get('extract_error') or '')
+        cat = '_no_text_layer' if no_text else ('_ocr_candidate' if suffix == '.pdf' else '_format_review')
+        rec.update({'level': 'n', 'category': cat, 'needs_model': not no_text, 'preview': text, 'meta': meta})
     else:
         rec.update({'level': 'p', 'category': None, 'needs_model': True, 'preview': text[:MAX_PREVIEW_CHARS], 'meta': meta})
     return rec
