@@ -298,7 +298,10 @@ def ppt_text(raw: bytes) -> tuple[str, dict]:
     ole = OleFile(raw)
     doc = ole.stream('PowerPoint Document', 'PP97_DUALSTORAGE')
     if not doc:
-        return '', {'extract_error': 'no PowerPoint Document stream'}
+        # Same permanent verdict as a Visio binary: the stream the text lives in
+        # is simply not in this file, so a later re-read finds the same nothing.
+        return '', {'no_text_layer': True,
+                    'extract_error': 'no PowerPoint Document stream'}
     parts = []
     for rec_type, payload in ppt_atoms(doc):
         if rec_type == TEXT_BYTES_ATOM:
