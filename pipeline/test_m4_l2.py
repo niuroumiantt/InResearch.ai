@@ -39,6 +39,7 @@ def fact(**over):
     base = {
         'fact_id': 'luan-ct-cost-gc-2022',
         'metric_id': 'dc_construction_cost_per_sqm',
+        'entity': {'type': 'project', 'id': 'cn-ah-luan-ct', 'label': '六安 CT'},
         'value': 4406.0, 'unit': '元/㎡',
         'caliber': {'stage': '招标控制价', 'scope': '施工总包'},
         'as_of': '2022-01',
@@ -49,8 +50,15 @@ def fact(**over):
     return base
 
 
-def problems(f, seen=None):
-    return L2.check_fact(f, METRICS, seen if seen is not None else set())
+def other(**over):
+    """A fact about a different site, so it is a different claim."""
+    over.setdefault('entity', {'type': 'project', 'id': 'cn-gd-gz-dc', 'label': '广州'})
+    over.setdefault('fact_id', 'gz-dc-cost-gc-2022')
+    return fact(**over)
+
+
+def problems(f, seen=None, claims=None):
+    return L2.check_fact(f, METRICS, seen if seen is not None else set(), claims)
 
 
 class ValidatorTests(unittest.TestCase):
@@ -184,18 +192,18 @@ class RecordTests(unittest.TestCase):
         return json.loads(out.getvalue().splitlines()[0])
 
     def test_a_good_batch_lands(self):
-        report = self.record([fact(), fact(fact_id='second-fact')])
+        report = self.record([fact(), other()])
         self.assertEqual(report['accepted'], 2)
         stored = json.loads(self.facts.read_text(encoding='utf-8'))['records']
         self.assertEqual(len(stored), 2)
 
     def test_one_bad_fact_holds_the_whole_batch(self):
-        report = self.record([fact(), fact(fact_id='bad', unit='wrong')])
+        report = self.record([fact(), other(fact_id='bad', unit='wrong')])
         self.assertEqual(report['accepted'], 0)
         self.assertEqual(json.loads(self.facts.read_text(encoding='utf-8'))['records'], [])
 
     def test_partial_takes_the_good_ones(self):
-        report = self.record([fact(), fact(fact_id='bad', unit='wrong')], partial=True)
+        report = self.record([fact(), other(fact_id='bad', unit='wrong')], partial=True)
         self.assertEqual(report['accepted'], 1)
         self.assertEqual(report['rejected'], 1)
 
@@ -209,6 +217,23 @@ class RecordTests(unittest.TestCase):
         rows = [json.loads(l) for l in L2.READ_LOG.read_text(encoding='utf-8').splitlines()]
         self.assertEqual(rows[0]['sha256'], 'b' * 64)
         self.assertEqual(rows[0]['facts'], 1)
+
+    def test_two_bare_forecasts_of_one_year_do_not_both_land(self):
+        """The wiring, not just the rule: record must build and keep the index."""
+        report = self.record([fact(fact_id='idc-2023e-a', as_of='2023E'),
+                              fact(fact_id='idc-2023e-b', as_of='2023E', value=99.0)])
+        self.assertEqual(report['accepted'], 0)
+
+    def test_the_index_survives_between_runs(self):
+        self.record([fact(fact_id='idc-2023e-a', as_of='2023E')])
+        report = self.record([fact(fact_id='idc-2023e-b', as_of='2023E', value=99.0)])
+        self.assertEqual(report['accepted'], 0)
+
+    def test_the_same_year_at_two_vintages_both_land(self):
+        self.record([fact(fact_id='idc-2023e-at-2019', as_of='2023E@2019-01')])
+        report = self.record([fact(fact_id='idc-2023e-at-2021',
+                                   as_of='2023E@2021-06', value=99.0)])
+        self.assertEqual(report['accepted'], 1)
 
     def test_a_document_with_no_facts_still_counts_as_read(self):
         """Zero facts is a legitimate outcome; inventing one is not."""
@@ -252,6 +277,273 @@ class SelfAuthoredTests(unittest.TestCase):
     def test_a_directory_that_merely_starts_similarly_is_kept(self):
         self.assertFalse(L2.self_authored({'org': 'X', 'rel': 'documentation/x.pdf'}))
         self.assertFalse(L2.self_authored({'org': 'X', 'rel': 'database报告/x.pdf'}))
+
+
+class ClaimIdentityTests(unittest.TestCase):
+    """Two records are the same claim when metric, entity, date and caliber match.
+
+    The rule was read off the existing fact layer, not invented for it: all 119
+    records index without a single collision, and the pairs that look like
+    duplicates - 4406 against 3736.6 元/㎡ for one project in one month, 5.00
+    against 6.54 backlog years in one quarter - are separated by caliber, which
+    is exactly what caliber is for.
+    """
+
+    def setUp(self):
+        self.claims = {}
+
+    def add(self, f):
+        """What cmd_record does on acceptance."""
+        self.claims[L2.claim_key(f)] = f['fact_id']
+        key = L2.forecast_key(f)
+        if key is not None:
+            self.claims.setdefault(key, f['fact_id'])
+
+    def test_the_same_claim_under_a_new_id_is_refused(self):
+        self.add(fact())
+        bad = problems(fact(fact_id='same-thing-again'), claims=self.claims)
+        self.assertTrue(any('同口径同时点已有一条' in p for p in bad), bad)
+
+    def test_the_same_metric_and_date_in_another_caliber_is_a_different_claim(self):
+        """4406 元/㎡ 施工总包 and 3736.6 土建本体 are both true of one month."""
+        self.add(fact())
+        shell = fact(fact_id='luan-ct-cost-shell-2022', value=3736.6,
+                     caliber={'stage': '招标控制价', 'scope': '土建本体'})
+        self.assertEqual(problems(shell, claims=self.claims), [])
+
+    def test_a_different_entity_is_a_different_claim(self):
+        self.add(fact())
+        self.assertEqual(problems(other(), claims=self.claims), [])
+
+    def test_two_forecasts_of_one_year_without_vintages_collide(self):
+        """IDC's successive revisions: same metric, same year, one bare 2023E."""
+        self.add(fact(fact_id='idc-2023e-first', as_of='2023E'))
+        bad = problems(fact(fact_id='idc-2023e-second', as_of='2023E', value=99.0),
+                       claims=self.claims)
+        self.assertTrue(any('带上做出时点' in p for p in bad), bad)
+        self.assertTrue(any('再预测不构成交叉验证' in p for p in bad), bad)
+
+    def test_vintages_tell_the_two_revisions_apart(self):
+        first = fact(fact_id='idc-2023e-at-2019', as_of='2023E@2019-01')
+        self.assertEqual(problems(first, claims=self.claims), [])
+        self.add(first)
+        second = fact(fact_id='idc-2023e-at-2021', as_of='2023E@2021-06', value=99.0)
+        self.assertEqual(problems(second, claims=self.claims), [])
+
+    def test_one_forecast_on_its_own_needs_no_vintage(self):
+        self.assertEqual(problems(fact(fact_id='lone-2026e', as_of='2026E'),
+                                  claims=self.claims), [])
+
+    def test_the_check_is_off_when_no_index_is_passed(self):
+        """The old two-argument call still means what it meant."""
+        self.assertEqual(problems(fact()), [])
+
+    def test_the_existing_fact_layer_indexes_without_collision(self):
+        store = json.loads((Path(L2.__file__).resolve().parent.parent /
+                            'data/facts.json').read_text(encoding='utf-8'))
+        records = store['records']
+        self.assertGreater(len(records), 100)
+        claims = {}
+        for f in records:
+            key, forecast = L2.claim_key(f), L2.forecast_key(f)
+            self.assertNotIn(key, claims, f['fact_id'])
+            if forecast is not None and '@' not in f['as_of']:
+                self.assertNotIn(forecast, claims, f['fact_id'])
+            claims[key] = f['fact_id']
+            if forecast is not None:
+                claims.setdefault(forecast, f['fact_id'])
+
+
+L1_ROW = {
+    'sha256': 'd' * 64, 'rel': '报告/未命名表格.xlsx', 'suffix': '.xlsx',
+    'status': 'ok', 'score': 9, 'score_status': 'scored', 'level': 'p',
+    'category': 'M10', 'org': '未知', 'year': '未知', 'title': '机柜功率密度测算',
+    'keep_original_name': False, 'size': 4096,
+}
+
+
+class AttributionTests(unittest.TestCase):
+    """A 9-point workbook whose publisher never reached the preview.
+
+    L1 judges on the first 6000 characters, and a spreadsheet's first 6000
+    characters are column headers.  So the files scored highest on their
+    numbers are the ones most likely to carry 未知 as their publisher - and an
+    unattributed number cannot honestly be graded as first-hand.
+    """
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-attr-')
+        self.results = Path(self.temp.name) / 'l1_results.jsonl'
+        self.results.write_text(json.dumps(L1_ROW, ensure_ascii=False) + '\n',
+                                encoding='utf-8')
+        self._saved = L2.L1.RESULTS
+        L2.L1.RESULTS = self.results
+
+    def tearDown(self):
+        L2.L1.RESULTS = self._saved
+        self.temp.cleanup()
+
+    def attribute(self, **over):
+        args = {'sha': 'd' * 8, 'org': None, 'unrecoverable': False, 'year': None,
+                'title': None, 'evidence': '封面右下角'}
+        args.update(over)
+        out = io.StringIO()
+        with redirect_stdout(out):
+            L2.cmd_attribute(type('A', (), args))
+        return json.loads(out.getvalue())
+
+    def rows(self):
+        return [json.loads(l) for l in
+                self.results.read_text(encoding='utf-8').splitlines()]
+
+    def test_an_unknown_publisher_is_asked_for(self):
+        self.assertEqual(L2.unattributed(L1_ROW), ['org', 'year'])
+
+    def test_a_named_publisher_is_not_asked_for(self):
+        self.assertEqual(L2.unattributed({**L1_ROW, 'org': 'IDC', 'year': '2024'}), [])
+
+    def test_an_empty_string_counts_as_unknown(self):
+        self.assertIn('org', L2.unattributed({**L1_ROW, 'org': '  '}))
+
+    def test_the_publisher_lands_in_the_new_filename(self):
+        report = self.attribute(org='IDC', year='2024')
+        self.assertIn('IDC', report['now'])
+        self.assertIn('2024', report['now'])
+        self.assertNotIn('IDC', report['was'] or '')
+
+    def test_the_old_verdict_is_superseded_not_erased(self):
+        self.attribute(org='IDC', year='2024')
+        rows = self.rows()
+        self.assertEqual(len(rows), 2)
+        self.assertEqual(rows[0]['org'], '未知')
+        self.assertEqual(rows[1]['org'], 'IDC')
+        self.assertEqual(rows[1]['attributed']['was']['org'], '未知')
+        self.assertEqual(rows[1]['attributed']['evidence'], '封面右下角')
+
+    def test_saying_there_is_nothing_to_find_stops_the_asking(self):
+        self.attribute(unrecoverable=True, evidence='封面/页眉/版权页均无署名')
+        row = self.rows()[-1]
+        self.assertTrue(row['org_unrecoverable'])
+        self.assertEqual(L2.unattributed(row), [])
+
+    def test_a_publisher_and_a_shrug_cannot_both_be_given(self):
+        with self.assertRaises(SystemExit):
+            self.attribute(org='IDC', unrecoverable=True)
+
+    def test_one_of_the_two_must_be_given(self):
+        with self.assertRaises(SystemExit):
+            self.attribute()
+
+    def test_a_year_that_is_not_a_year_is_refused(self):
+        with self.assertRaises(SystemExit):
+            self.attribute(org='IDC', year='2024年')
+
+    def test_an_ambiguous_sha_prefix_is_refused(self):
+        with self.assertRaises(SystemExit):
+            self.attribute(sha='e' * 8, org='IDC')
+
+    def test_nothing_is_renamed_here(self):
+        report = self.attribute(org='IDC', year='2024')
+        self.assertIn('restage', report['renamed_by'])
+
+    def pack(self, row):
+        """cmd_pack with the filesystem and the model stubbed out."""
+        saved = (L2.eligible, L2.full_text, L2.L1.readable_path,
+                 L2.load_metrics, L2.load_questions, L2.load_facts, L2.PACKET_DIR)
+        L2.eligible = lambda min_score=8: [row]
+        L2.full_text = lambda path, suffix: ('第一页正文\n\n[p.2] 第二页', {'pages': 2})
+        L2.L1.readable_path = lambda r: (Path('/nonexistent'), False)
+        L2.load_metrics = lambda: METRICS
+        L2.load_questions = lambda: {}
+        L2.load_facts = lambda: {'records': []}
+        L2.PACKET_DIR = Path(self.temp.name) / 'packets'
+        try:
+            out = io.StringIO()
+            with redirect_stdout(out):
+                L2.cmd_pack(type('A', (), {'sha': None, 'min_score': 8}))
+            report = json.loads(out.getvalue())
+            brief = (L2.PACKET_DIR / row['sha256'][:16] / 'brief.md').read_text(encoding='utf-8')
+        finally:
+            (L2.eligible, L2.full_text, L2.L1.readable_path, L2.load_metrics,
+             L2.load_questions, L2.load_facts, L2.PACKET_DIR) = saved
+        return report, brief
+
+    def test_the_packet_asks_for_the_publisher(self):
+        """The section has to reach the brief, not merely exist in the module."""
+        report, brief = self.pack(L1_ROW)
+        self.assertEqual(report['unattributed'], ['org', 'year'])
+        self.assertIn('这份文件的出处，L1 没认出来', brief)
+        self.assertIn('attribute --sha ' + L1_ROW['sha256'][:16], brief)
+
+    def test_an_attributed_document_is_not_asked_again(self):
+        report, brief = self.pack({**L1_ROW, 'org': 'IDC', 'year': '2024'})
+        self.assertIsNone(report['unattributed'])
+        self.assertNotIn('L1 没认出来', brief)
+        self.assertIn('## 你要产出什么', brief)
+
+
+class QueueOutputTests(unittest.TestCase):
+    """The queue has to print the argument the next command takes.
+
+    `pack` addresses a document by hash.  A queue listing only names sends you
+    hunting for the hash of the row you just decided to read - and the name is
+    truncated, so the hash inside it may not even be there.
+    """
+
+    grep = None
+
+    def queue(self, rows, grep=None):
+        self.grep = grep
+        saved = (L2.eligible, L2.load_metrics, L2.load_facts,
+                 L2.all_results, L2.read_documents)
+        L2.eligible = lambda min_score=8: rows
+        L2.load_metrics = lambda: METRICS
+        L2.load_facts = lambda: {'records': []}
+        L2.all_results = lambda: {r['sha256']: r for r in rows}
+        L2.read_documents = lambda: set()
+        try:
+            out = io.StringIO()
+            with redirect_stdout(out):
+                L2.cmd_queue(type('A', (), {'min_score': 8, 'show': 5,
+                                            'grep': self.grep}))
+        finally:
+            (L2.eligible, L2.load_metrics, L2.load_facts,
+             L2.all_results, L2.read_documents) = saved
+        return out.getvalue()
+
+    def test_each_row_carries_the_hash_pack_needs(self):
+        text = self.queue([L1_ROW])
+        self.assertIn(L1_ROW['sha256'][:16], text.splitlines()[-1])
+
+    def test_an_unattributed_document_is_marked_in_the_list(self):
+        self.assertIn('出处未知', self.queue([L1_ROW]))
+        self.assertNotIn('出处未知',
+                         self.queue([{**L1_ROW, 'org': 'IDC', 'year': '2024'}]))
+
+    def test_grep_finds_one_document_in_a_long_queue(self):
+        """The reading order is by coverage, so the row you want is anywhere."""
+        rows = [{**L1_ROW, 'sha256': '%064x' % i,
+                 'proposed_name': '09p_2022_某院_机房工程 %d.pdf' % i} for i in range(30)]
+        rows.append({**L1_ROW, 'sha256': 'f' * 64,
+                     'proposed_name': '09p_2022_某院_忠县通信机房 工艺对土建要求表.xlsx'})
+        text = self.queue(rows, grep='忠县')
+        self.assertIn('匹配「忠县」1 条（共 31 条待读）', text)
+        self.assertIn('f' * 16, text)
+        self.assertNotIn('机房工程 3.pdf', text)
+
+    def test_grep_matches_the_original_path_too(self):
+        row = {**L1_ROW, 'rel': '设计院图纸/忠县/要求表.xlsx', 'proposed_name': '09p_x.xlsx'}
+        self.assertIn(row['sha256'][:16], self.queue([row], grep='忠县'))
+
+    def test_without_grep_nothing_is_filtered_and_nothing_is_announced(self):
+        text = self.queue([L1_ROW])
+        self.assertNotIn('匹配', text)
+        self.assertIn(L1_ROW['sha256'][:16], text)
+
+    def test_the_header_counts_the_gap(self):
+        report = json.loads(self.queue([L1_ROW]).splitlines()[0])
+        self.assertEqual(report['unattributed'], 1)
+        self.assertEqual(report['eligible_unread'], 1)
 
 
 if __name__ == '__main__':

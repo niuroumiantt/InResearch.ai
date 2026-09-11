@@ -11,6 +11,7 @@ fact layer is a fact.
   queue                 which documents are eligible and unread
   pack   [--sha S]      write a reading packet for one document
   record --facts F      validate against the contract and append
+  attribute --sha S     put back a publisher L1 could not see in a preview
   status                progress
 
 The packet carries three things, because a reader needs all three to produce a
@@ -58,6 +59,8 @@ CORROBORATION = ('待交叉验证', '已交叉验证', '孤证已知')
 #                  different claims and must not be averaged together
 AS_OF = re.compile(r'^\d{4}(-\d{4}|-\d{2}(-\d{2})?|-Q[1-4]E?)?(E|目标)?(@\d{4}-\d{2})?$')
 FACT_ID = re.compile(r'^[a-z0-9]+(-[a-z0-9]+)*$')
+UNKNOWN = '未知'            # what L1 writes when the preview never named a publisher
+YEAR = re.compile(r'^\d{4}$')
 
 
 def now():
@@ -121,6 +124,22 @@ def self_authored(row: dict) -> bool:
     if str(row.get('org') or '').strip() in SELF_AUTHORED_ORGS:
         return True
     return str(row.get('rel') or '').startswith(SELF_AUTHORED_PREFIXES)
+
+
+def unattributed(row: dict) -> list[str]:
+    """Which identifying fields L1 left as 未知, once, in one place.
+
+    A preview is 6000 characters off the front of a file, and a spreadsheet的
+    front is column headers.  So the workbooks that scored 9 and 10 on the
+    strength of their numbers are exactly the ones whose publisher never made
+    it into the preview - and a number whose publisher is unknown cannot be
+    graded as first-hand.  L2 reads the whole document, so L2 is where this
+    gets fixed.
+    """
+    if row.get('org_unrecoverable'):
+        return []          # already looked for it and said so; stop asking
+    return [field for field in ('org', 'year')
+            if str(row.get(field) or UNKNOWN).strip() in ('', UNKNOWN)]
 
 
 def eligible(min_score=MIN_SCORE) -> list[dict]:
@@ -229,6 +248,34 @@ def question_menu(module: str, questions: dict, limit=25) -> str:
     return '\n'.join('  - %s %s' % (q['id'], q['text']) for q in rows)
 
 
+ATTRIBUTION_ASK = """## 这份文件的出处，L1 没认出来
+
+当前记录：机构「{org}」，年份「{year}」。L1 判的时候只看到 {preview} 字预览，
+你看到的是全文——顺手把出处找回来。通常写在这些地方之一：封面、页眉页脚、
+版权页、免责声明、图表下方的「数据来源 / Source」、末页联系方式。
+
+找到了：
+
+```
+python3 pipeline/m4_l2.py attribute --sha {sha16} --org "IDC" --year 2024 \\
+    --evidence "封面右下：IDC China, March 2024"
+```
+
+全文翻完确实没有：
+
+```
+python3 pipeline/m4_l2.py attribute --sha {sha16} --unrecoverable \\
+    --evidence "封面/页眉页脚/版权页/图表来源/末页均无机构名"
+```
+
+`--evidence` 是必填的：出处得有出处，否则只是换了个人猜。
+
+出处不明不妨碍你记事实，但它压着 `evidence.grade`——不知道是谁说的，就不能
+按一手资料记。改名由 restage 统一执行，这条命令只改判定，不动文件。
+
+"""
+
+
 PACKET_HEAD = """# L2 精读包
 
 文件：{name}
@@ -237,7 +284,7 @@ sha256：{sha}
 
 正文见同目录 text.md（{n_chunks} 段，共 {chars} 字）。
 
-## 你要产出什么
+{attribution}## 你要产出什么
 
 **不是读后感，是记录。** 每读到一个可核验的数，写一条 fact。读不到数就写零条——
 零条是合法结果，编一条不是。
@@ -309,7 +356,11 @@ def cmd_pack(a):
     out.mkdir(parents=True, exist_ok=True)
     (out / 'text.md').write_text(text, encoding='utf-8')
     module = row.get('category') or row.get('module') or 'unknown'
+    missing = unattributed(row)
     (out / 'brief.md').write_text(PACKET_HEAD.format(
+        attribution=ATTRIBUTION_ASK.format(
+            org=row.get('org') or UNKNOWN, year=row.get('year') or UNKNOWN,
+            preview=L1.MAX_PREVIEW_CHARS, sha16=row['sha256'][:16]) if missing else '',
         name=Path(row.get('rel', '')).name, sha=row['sha256'], module=module,
         score=row.get('score'), kb=round(row.get('size', 0) / 1024),
         pages='    页数：%s' % meta['pages'] if meta.get('pages') else '',
@@ -319,6 +370,7 @@ def cmd_pack(a):
     print(json.dumps({'packed': 1, 'sha256': row['sha256'], 'module': module,
                       'score': row.get('score'), 'chars': len(text), 'chunks': len(pieces),
                       'read_from': 'library' if from_library else 'source',
+                      'unattributed': missing or None,
                       'brief': str(out / 'brief.md'), 'text': str(out / 'text.md'),
                       **{k: v for k, v in meta.items() if k != 'extract_error'}},
                      ensure_ascii=False))
@@ -328,7 +380,51 @@ def cmd_pack(a):
 # validation - the contract is worthless unless something enforces it
 # --------------------------------------------------------------------------
 
-def check_fact(fact: dict, metrics: dict, seen: set) -> list[str]:
+def claim_key(fact: dict) -> tuple:
+    """What makes two records the same claim: metric, entity, date, caliber.
+
+    Caliber belongs in the key because it is the thing that makes two numbers
+    different rather than contradictory.  The store already holds 4406 元/㎡
+    and 3736.6 元/㎡ for one project in one month - 施工总包 against 土建本体 -
+    and 5.00 against 6.54 backlog years in one quarter, one over capacity and
+    one over deliveries.  Keyed without caliber those read as duplicates; keyed
+    with it they are what they are, two calibers of one thing.
+    """
+    caliber = fact.get('caliber')
+    dims = (tuple(sorted((k, str(v)) for k, v in caliber.items()))
+            if isinstance(caliber, dict) else ())
+    return ('claim', fact.get('metric_id'), (fact.get('entity') or {}).get('id'),
+            str(fact.get('as_of') or ''), dims)
+
+
+def forecast_key(fact: dict) -> tuple | None:
+    """The same claim with the vintage stripped off - forecasts only.
+
+    Two forecasts of one year made a year apart are two claims about the same
+    future, not one claim recorded twice.  Stored as a bare 2025E they collide,
+    and whoever reads them later sees one metric carrying two values and
+    averages them.  The vintage is the only thing that separates them, which is
+    why a forecast that collides without one is refused.
+    """
+    as_of = str(fact.get('as_of') or '')
+    if 'E' not in as_of:
+        return None
+    _, metric, entity, _, dims = claim_key(fact)
+    return ('forecast', metric, entity, as_of.split('@')[0], dims)
+
+
+def index_claims(records: list[dict]) -> dict:
+    """claim/forecast key -> the fact_id already holding it."""
+    claims = {}
+    for f in records:
+        claims[claim_key(f)] = f.get('fact_id')
+        key = forecast_key(f)
+        if key is not None:
+            claims.setdefault(key, f.get('fact_id'))
+    return claims
+
+
+def check_fact(fact: dict, metrics: dict, seen: set, claims: dict | None = None) -> list[str]:
     bad = []
     fid = fact.get('fact_id')
     if not fid or not FACT_ID.match(str(fid)):
@@ -386,6 +482,21 @@ def check_fact(fact: dict, metrics: dict, seen: set) -> list[str]:
         bad.append('corroboration 必须是 %s' % ' / '.join(CORROBORATION))
     if fact.get('derived') and not str(fact.get('notes') or '').strip():
         bad.append('derived 为真时必须在 notes 里写清算法与被减项')
+
+    if claims is not None:
+        key = forecast_key(fact)
+        if key is not None and '@' not in str(fact.get('as_of') or ''):
+            prior = claims.get(key)
+            if prior:
+                bad.append('同一年份的预测已有一条 %s——若是同一个数，属重复录入；'
+                           '若是不同时点做出的两次预测，两条都要写成 2025E@2024-04 '
+                           '的形式带上做出时点，否则它们会被平均到一起。'
+                           '同一家自己的再预测不构成交叉验证。' % prior)
+        else:
+            prior = claims.get(claim_key(fact))
+            if prior:
+                bad.append('同口径同时点已有一条 %s——要么是重复录入，'
+                           '要么少了一个把两者区分开的口径维度' % prior)
     return bad
 
 
@@ -396,14 +507,19 @@ def cmd_record(a):
         incoming = incoming.get('records') or incoming.get('facts') or [incoming]
     store = load_facts()
     seen = {f['fact_id'] for f in store['records']}
+    claims = index_claims(store['records'])
 
     accepted, rejected = [], []
     for fact in incoming:
-        problems = check_fact(fact, metrics, seen)
+        problems = check_fact(fact, metrics, seen, claims)
         if problems:
             rejected.append({'fact_id': fact.get('fact_id'), 'problems': problems})
             continue
         seen.add(fact['fact_id'])
+        claims[claim_key(fact)] = fact['fact_id']
+        key = forecast_key(fact)
+        if key is not None:
+            claims.setdefault(key, fact['fact_id'])
         accepted.append(fact)
 
     if rejected and not a.partial:
@@ -435,6 +551,53 @@ def cmd_record(a):
             print('     - ' + p)
 
 
+def cmd_attribute(a):
+    """Append a corrected L1 verdict.  Nothing is renamed here; restage does that.
+
+    Appending rather than rewriting keeps the superseded verdict readable: the
+    whole triage ledger works this way, last row wins, and the record of what
+    the preview thought stays next to what the full text turned out to say.
+    """
+    matches = [r for sha, r in all_results().items() if sha.startswith(a.sha)]
+    if len(matches) != 1:
+        sys.exit('sha 前缀 %r 匹配到 %d 条判定，要正好一条' % (a.sha, len(matches)))
+    row = dict(matches[0])
+    if bool(a.org) == bool(a.unrecoverable):
+        sys.exit('要么给出 --org，要么用 --unrecoverable 说明全文翻完确实没有——不能都给，也不能都不给')
+    if a.year and not YEAR.match(a.year):
+        sys.exit('--year 要是四位数字：%r' % a.year)
+
+    was = {'org': row.get('org'), 'year': row.get('year'), 'proposed_name': row.get('proposed_name')}
+    if a.org:
+        row['org'] = a.org
+    else:
+        row['org_unrecoverable'] = True
+    if a.year:
+        row['year'] = a.year
+    if a.title:
+        row['title'] = a.title
+        row['keep_original_name'] = False
+    row['attributed'] = {'at': now(), 'by': 'l2-full-text', 'evidence': a.evidence, 'was': was}
+    row['proposed_name'] = L1.proposed_name(row)
+
+    with L1.RESULTS.open('a', encoding='utf-8') as fh:
+        fh.write(json.dumps(row, ensure_ascii=False) + '\n')
+    print(json.dumps({'sha256': row['sha256'], 'org': row.get('org'), 'year': row.get('year'),
+                      'org_unrecoverable': bool(row.get('org_unrecoverable')),
+                      'was': was['proposed_name'], 'now': row['proposed_name'],
+                      'renamed_by': '改名不在这一步；跑 m4_triage_apply.py restage plan 复核后再 apply'
+                      if row['proposed_name'] != was['proposed_name'] else '文件名不变'},
+                     ensure_ascii=False))
+
+
+def matches(row: dict, needle: str | None) -> bool:
+    if not needle:
+        return True
+    hay = '%s %s %s' % (row.get('proposed_name') or '', row.get('rel') or '',
+                        row.get('title') or '')
+    return needle.lower() in hay.lower()
+
+
 def cmd_queue(a):
     pool = eligible(a.min_score)
     by_module = Counter(r.get('category') for r in pool)
@@ -447,6 +610,7 @@ def cmd_queue(a):
     print(json.dumps({'eligible_unread': len(pool), 'min_score': a.min_score,
                       'already_read': len(read_documents()),
                       'self_authored_excluded': excluded,
+                      'unattributed': sum(1 for r in pool if unattributed(r)),
                       'mb': round(sum(r.get('size', 0) for r in pool) / 1e6)},
                      ensure_ascii=False))
     for module, n in by_module.most_common():
@@ -455,11 +619,23 @@ def cmd_queue(a):
     # that alongside each row.  With only the score shown, a queue ordered by
     # coverage is indistinguishable from one ordered by score, and nobody can
     # tell whether the ordering did anything.
-    for row in pool[:a.show]:
+    # The sha leads, because it is the argument the next command takes: pack
+    # addresses a document by hash, and a queue that prints only names makes
+    # you go hunting for the one thing you need to act on the row you just read.
+    #
+    # And --grep, because the reading order is by module coverage: the document
+    # you mean to read next can sit two hundred rows down a list that is not
+    # sorted by anything you can guess.  Reading one named document should not
+    # require paging through the whole queue to find its hash.
+    shown = [r for r in pool if matches(r, a.grep)]
+    if a.grep:
+        print('  匹配「%s」%d 条（共 %d 条待读）' % (a.grep, len(shown), len(pool)))
+    for row in shown[:a.show]:
         module = row.get('category') or '?'
-        print('  %-5s 已有事实 %-3d %2s 分  %s' % (
-            module, covered.get(module, 0), row.get('score'),
-            (row.get('proposed_name') or row.get('rel', ''))[:80]))
+        print('  %s  %-5s 已有事实 %-3d %2s 分 %s %s' % (
+            row['sha256'][:16], module, covered.get(module, 0), row.get('score'),
+            '出处未知' if unattributed(row) else '    ',
+            (row.get('proposed_name') or row.get('rel', ''))[:64]))
 
 
 def cmd_status(a):
@@ -486,14 +662,23 @@ def main():
     sub = ap.add_subparsers(dest='cmd', required=True)
     q = sub.add_parser('queue'); q.add_argument('--min-score', type=int, default=MIN_SCORE)
     q.add_argument('--show', type=int, default=15)
+    q.add_argument('--grep', help='只列名字或路径里含这个词的')
     p = sub.add_parser('pack'); p.add_argument('--sha'); p.add_argument('--min-score', type=int, default=MIN_SCORE)
     r = sub.add_parser('record'); r.add_argument('--facts', required=True)
     r.add_argument('--doc', help='读完的文件 sha256，写进已读账本')
     r.add_argument('--partial', action='store_true', help='收下通过校验的，跳过不通过的')
     r.add_argument('--show', type=int, default=10)
+    t = sub.add_parser('attribute', help='把 L1 从预览里没看出来的出处补回判定')
+    t.add_argument('--sha', required=True, help='文件 sha256，前缀即可')
+    t.add_argument('--org', help='读全文找到的机构名')
+    t.add_argument('--unrecoverable', action='store_true', help='全文翻完确实没有署名')
+    t.add_argument('--year', help='四位数字')
+    t.add_argument('--title', help='顺带修正标题')
+    t.add_argument('--evidence', required=True, help='在哪一页哪一处看到的——出处得有出处')
     s = sub.add_parser('status')
     a = ap.parse_args()
-    {'queue': cmd_queue, 'pack': cmd_pack, 'record': cmd_record, 'status': cmd_status}[a.cmd](a)
+    {'queue': cmd_queue, 'pack': cmd_pack, 'record': cmd_record,
+     'attribute': cmd_attribute, 'status': cmd_status}[a.cmd](a)
 
 
 if __name__ == '__main__':
