@@ -459,7 +459,7 @@ class AttributionTests(unittest.TestCase):
         """cmd_pack with the filesystem and the model stubbed out."""
         saved = (L2.eligible, L2.full_text, L2.L1.readable_path,
                  L2.load_metrics, L2.load_questions, L2.load_facts, L2.PACKET_DIR)
-        L2.eligible = lambda min_score=8, include_read=False: [row]
+        L2.eligible = lambda min_score=8, include_read=False, since=0: [row]
         L2.full_text = lambda path, suffix: ('第一页正文\n\n[p.2] 第二页',
                                             meta if meta is not None else {'pages': 2})
         L2.L1.readable_path = lambda r: (Path('/nonexistent'), False)
@@ -471,7 +471,7 @@ class AttributionTests(unittest.TestCase):
             out = io.StringIO()
             with redirect_stdout(out):
                 L2.cmd_pack(type('A', (), {'sha': None, 'min_score': 8,
-                                           'again': False}))
+                                           'again': False, 'since': 0}))
             report = json.loads(out.getvalue())
             brief = (L2.PACKET_DIR / row['sha256'][:16] / 'brief.md').read_text(encoding='utf-8')
         finally:
@@ -521,7 +521,7 @@ class QueueOutputTests(unittest.TestCase):
         self.grep = grep
         saved = (L2.eligible, L2.load_metrics, L2.load_facts,
                  L2.all_results, L2.read_documents)
-        L2.eligible = lambda min_score=8: rows
+        L2.eligible = lambda min_score=8, include_read=False, since=0: rows
         L2.load_metrics = lambda: METRICS
         L2.load_facts = lambda: {'records': []}
         L2.all_results = lambda: {r['sha256']: r for r in rows}
@@ -530,7 +530,7 @@ class QueueOutputTests(unittest.TestCase):
             out = io.StringIO()
             with redirect_stdout(out):
                 L2.cmd_queue(type('A', (), {'min_score': 8, 'show': 5,
-                                            'grep': self.grep}))
+                                            'grep': self.grep, 'since': 0}))
         finally:
             (L2.eligible, L2.load_metrics, L2.load_facts,
              L2.all_results, L2.read_documents) = saved
@@ -740,7 +740,7 @@ class RestrictionTests(unittest.TestCase):
         self.flag(confidential=True)
         out = io.StringIO()
         with redirect_stdout(out):
-            L2.cmd_queue(type('A', (), {'min_score': 8, 'show': 5, 'grep': None}))
+            L2.cmd_queue(type('A', (), {'min_score': 8, 'show': 5, 'grep': None, 'since': 0}))
         self.assertEqual(json.loads(out.getvalue().splitlines()[0])['restricted_excluded'], 1)
 
 
@@ -762,6 +762,81 @@ class UnrecoverableScopeTests(unittest.TestCase):
     def test_a_field_that_is_present_is_not_reported_either_way(self):
         row = {**L1_ROW, 'org': 'IDC', 'org_unrecoverable': True}
         self.assertEqual(L2.unattributed(row), ['year'])
+
+
+class RecencyTests(unittest.TestCase):
+    """A 2016 工程量清单 and a 2026 预测 at the same score are not equally useful.
+
+    The first re-judged batch was one 2016 project forty files deep, and the
+    reading order - module coverage, then score - had no idea.
+    """
+
+    def row(self, sha, year, score=9, module='M10', name=None):
+        return {**L1_ROW, 'sha256': sha, 'score': score, 'category': module,
+                'year': year, 'proposed_name': name or '%02d_%s_x.xlsx' % (score, year)}
+
+    def order(self, rows, **kw):
+        saved = (L2.all_results, L2.read_documents, L2.load_facts, L2.load_metrics)
+        L2.all_results = lambda: {r['sha256']: r for r in rows}
+        L2.read_documents = lambda: set()
+        L2.load_facts = lambda: {'records': []}
+        L2.load_metrics = lambda: METRICS
+        try:
+            return [r['sha256'] for r in L2.eligible(8, **kw)]
+        finally:
+            (L2.all_results, L2.read_documents, L2.load_facts, L2.load_metrics) = saved
+
+    def test_the_newer_document_comes_first(self):
+        old = self.row('1' + 'a' * 63, '2016')
+        new = self.row('2' + 'a' * 63, '2026')
+        self.assertEqual(self.order([old, new])[0], new['sha256'])
+
+    def test_score_still_outranks_recency(self):
+        """Recency breaks ties; it does not promote a weaker document."""
+        strong_old = self.row('1' + 'a' * 63, '2016', score=10)
+        weak_new = self.row('2' + 'a' * 63, '2026', score=8)
+        self.assertEqual(self.order([strong_old, weak_new])[0], strong_old['sha256'])
+
+    def test_a_document_with_no_year_sorts_with_the_oldest(self):
+        """It cannot claim to be current; `attribute` is how it moves up."""
+        undated = self.row('1' + 'a' * 63, '未知', name='09p_未知_x.xlsx')
+        dated = self.row('2' + 'a' * 63, '2016')
+        self.assertEqual(self.order([undated, dated])[0], dated['sha256'])
+
+    def test_since_drops_everything_older(self):
+        old = self.row('1' + 'a' * 63, '2016')
+        new = self.row('2' + 'a' * 63, '2024')
+        self.assertEqual(self.order([old, new], since=2020), [new['sha256']])
+
+    def test_the_year_is_taken_from_the_name_when_the_field_is_blank(self):
+        row = {**L1_ROW, 'year': '未知',
+               'proposed_name': '09p_2023_IDC_Global DataSphere__abc.xlsx'}
+        self.assertEqual(L2.document_year(row), 2023)
+
+    def test_a_year_that_is_not_a_year_is_not_read_as_one(self):
+        row = {**L1_ROW, 'year': '未知', 'proposed_name': 'x.xlsx', 'rel': 'a/b.xlsx'}
+        self.assertEqual(L2.document_year(row), 0)
+
+    def test_a_declared_year_beats_a_number_in_the_path(self):
+        row = {**L1_ROW, 'year': '2025', 'rel': '2016工程/x.xlsx'}
+        self.assertEqual(L2.document_year(row), 2025)
+
+
+class ConfidentialScopeTests(unittest.TestCase):
+    """A machine footer reading Confidential is boilerplate here, not a restriction.
+
+    Most vendor decks in this corpus carry one.  Gating on the word would take
+    most of the library out of the fact layer and buy nothing.  The flag is for
+    an explicit restriction naming a recipient, and only a person sets it.
+    """
+
+    def test_nothing_is_flagged_automatically(self):
+        self.assertEqual(L2.restricted(L1_ROW), [])
+
+    def test_the_wording_says_what_the_flag_is_for(self):
+        text = L2.RESTRICTIONS['confidential']
+        self.assertIn('限定收件方', text)
+        self.assertIn('不是泛用的机密页脚', text)
 
 if __name__ == '__main__':
     unittest.main()

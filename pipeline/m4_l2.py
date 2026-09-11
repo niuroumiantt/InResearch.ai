@@ -135,8 +135,13 @@ def self_authored(row: dict) -> bool:
 # Neither is a judgement about quality: both documents below scored 8 or
 # better precisely because they carry real first-hand numbers.
 RESTRICTIONS = {
-    'confidential': '文件自称机密或限制分发——把它的数字转写进事实层，'
-                    '等于替它转发一遍，而事实层是要拿出去引用的',
+    # NOT for the word "Confidential" on its own.  In this corpus a machine
+    # footer reading 机密 / Confidential is boilerplate - most vendor decks
+    # carry one - and gating on it would exclude most of the library for no
+    # gain.  This flag is for an explicit restriction naming a recipient:
+    # "Confidential for X Corp. / Not to be distributed".  Nothing sets it
+    # automatically; a person decides, per file, and says where they saw it.
+    'confidential': '文件写明限定收件方且不得分发——不是泛用的机密页脚',
     'pii': '含个人信息（姓名、电话、邮箱、职级）或内网地址，'
            '这些不该出现在任何被引用的产物里',
 }
@@ -189,7 +194,24 @@ def gap_label(row: dict) -> str:
     return '年份未知' if 'year' in missing else '    '
 
 
-def eligible(min_score=MIN_SCORE, include_read=False) -> list[dict]:
+YEAR4 = re.compile(r'(19|20)\d{2}')
+
+
+def document_year(row: dict) -> int:
+    """The document's year, or 0 when it never said.
+
+    Unknown sorts with the oldest rather than the newest: a document that will
+    not say when it was written cannot claim to be current, and the way to move
+    it up the queue is to find the year, which `attribute` exists for.
+    """
+    for field in ('year', 'proposed_name', 'rel'):
+        found = YEAR4.search(str(row.get(field) or ''))
+        if found:
+            return int(found.group(0))
+    return 0
+
+
+def eligible(min_score=MIN_SCORE, include_read=False, since=0) -> list[dict]:
     """Judged documents worth a full read, best first, least-read module first.
 
     Ordering by module coverage rather than by score alone keeps one prolific
@@ -204,15 +226,21 @@ def eligible(min_score=MIN_SCORE, include_read=False) -> list[dict]:
               and r.get('status') == 'ok'
               and (include_read or r['sha256'] not in done)
               and not self_authored(r)
-              and not restricted(r)]
+              and not restricted(r)
+              and (not since or document_year(r) >= since)]
     # Least-covered module first, then highest score.  Fifteen modules each owe
     # answers; a fact layer deep in M10 and empty elsewhere closes nothing
     # elsewhere, so breadth comes before one more document from a rich module.
     metrics = load_metrics()
     covered = Counter(metrics.get(f['metric_id'], {}).get('module')
                       for f in load_facts()['records'])
+    # Coverage first, then score, then recency.  Age is in the key because a
+    # 2016 工程量清单 and a 2026 预测 at the same score are not equally worth
+    # reading now: the first batch of re-judged tables was one 2016 project
+    # forty files deep, and nothing in the ordering knew that.
     return sorted(picked, key=lambda r: (covered.get(r.get('category'), 0),
-                                         -(r.get('score') or 0), r.get('rel', '')))
+                                         -(r.get('score') or 0),
+                                         -document_year(r), r.get('rel', '')))
 
 
 # --------------------------------------------------------------------------
@@ -392,7 +420,7 @@ def cmd_pack(a):
     # again.  It takes a --sha so it can only ever reopen the one you name.
     if a.again and not a.sha:
         sys.exit('--again 要跟 --sha：它重开的是你指名的那一份，不是队列里的下一份')
-    pool = eligible(a.min_score, include_read=a.again)
+    pool = eligible(a.min_score, include_read=a.again, since=a.since)
     if a.sha:
         pool = [r for r in pool if r['sha256'].startswith(a.sha)]
     if not pool:
@@ -706,7 +734,7 @@ def cmd_flag(a):
 
 
 def cmd_queue(a):
-    pool = eligible(a.min_score)
+    pool = eligible(a.min_score, since=a.since)
     by_module = Counter(r.get('category') for r in pool)
     metrics = load_metrics()
     covered = Counter(metrics.get(f['metric_id'], {}).get('module')
@@ -718,6 +746,7 @@ def cmd_queue(a):
                       'already_read': len(read_documents()),
                       'self_authored_excluded': excluded,
                       'unattributed': sum(1 for r in pool if unattributed(r)),
+                      **({'since': a.since} if a.since else {}),
                       'restricted_excluded': sum(1 for r in all_results().values()
                                                  if (r.get('score') or 0) >= a.min_score
                                                  and r.get('status') == 'ok'
@@ -743,10 +772,11 @@ def cmd_queue(a):
         print('  匹配「%s」%d 条（共 %d 条待读）' % (a.grep, len(shown), len(pool)))
     for row in shown[:a.show]:
         module = row.get('category') or '?'
-        print('  %s  %-5s 已有事实 %-3d %2s 分 %s %s' % (
+        year = document_year(row)
+        print('  %s  %-5s 已有事实 %-3d %2s 分 %s %s %s' % (
             row['sha256'][:16], module, covered.get(module, 0), row.get('score'),
-            gap_label(row),
-            (row.get('proposed_name') or row.get('rel', ''))[:64]))
+            '%4d' % year if year else '  ??', gap_label(row),
+            (row.get('proposed_name') or row.get('rel', ''))[:58]))
 
 
 def cmd_status(a):
@@ -772,10 +802,12 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.split('\n')[0])
     sub = ap.add_subparsers(dest='cmd', required=True)
     q = sub.add_parser('queue'); q.add_argument('--min-score', type=int, default=MIN_SCORE)
+    q.add_argument('--since', type=int, default=0, help='只看这一年及以后的文件')
     q.add_argument('--show', type=int, default=15)
     q.add_argument('--grep', help='只列名字或路径里含这个词的')
     p = sub.add_parser('pack'); p.add_argument('--sha'); p.add_argument('--min-score', type=int, default=MIN_SCORE)
     p.add_argument('--again', action='store_true', help='重开一份已记入已读的文件，须同时给 --sha')
+    p.add_argument('--since', type=int, default=0, help='只取这一年及以后的文件')
     r = sub.add_parser('record'); r.add_argument('--facts', required=True)
     r.add_argument('--doc', help='读完的文件 sha256，写进已读账本')
     r.add_argument('--partial', action='store_true', help='收下通过校验的，跳过不通过的')
