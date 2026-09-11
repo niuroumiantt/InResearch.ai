@@ -450,7 +450,7 @@ class AttributionTests(unittest.TestCase):
         """cmd_pack with the filesystem and the model stubbed out."""
         saved = (L2.eligible, L2.full_text, L2.L1.readable_path,
                  L2.load_metrics, L2.load_questions, L2.load_facts, L2.PACKET_DIR)
-        L2.eligible = lambda min_score=8: [row]
+        L2.eligible = lambda min_score=8, include_read=False: [row]
         L2.full_text = lambda path, suffix: ('第一页正文\n\n[p.2] 第二页', {'pages': 2})
         L2.L1.readable_path = lambda r: (Path('/nonexistent'), False)
         L2.load_metrics = lambda: METRICS
@@ -460,7 +460,8 @@ class AttributionTests(unittest.TestCase):
         try:
             out = io.StringIO()
             with redirect_stdout(out):
-                L2.cmd_pack(type('A', (), {'sha': None, 'min_score': 8}))
+                L2.cmd_pack(type('A', (), {'sha': None, 'min_score': 8,
+                                           'again': False}))
             report = json.loads(out.getvalue())
             brief = (L2.PACKET_DIR / row['sha256'][:16] / 'brief.md').read_text(encoding='utf-8')
         finally:
@@ -520,6 +521,13 @@ class QueueOutputTests(unittest.TestCase):
         self.assertNotIn('出处未知',
                          self.queue([{**L1_ROW, 'org': 'IDC', 'year': '2024'}]))
 
+    def test_a_known_publisher_with_no_year_is_not_called_unattributed(self):
+        """09p_未知_中国移动_忠县… has a publisher; only its year is missing."""
+        row = {**L1_ROW, 'org': '中国移动', 'year': '未知'}
+        text = self.queue([row])
+        self.assertIn('年份未知', text)
+        self.assertNotIn('出处未知', text)
+
     def test_grep_finds_one_document_in_a_long_queue(self):
         """The reading order is by coverage, so the row you want is anywhere."""
         rows = [{**L1_ROW, 'sha256': '%064x' % i,
@@ -544,6 +552,82 @@ class QueueOutputTests(unittest.TestCase):
         report = json.loads(self.queue([L1_ROW]).splitlines()[0])
         self.assertEqual(report['unattributed'], 1)
         self.assertEqual(report['eligible_unread'], 1)
+
+
+class EmptyBatchTests(unittest.TestCase):
+    """Zero facts is legal.  An unwritten facts.json is not, and they printed alike.
+
+    The first real run recorded `{"accepted": 0, "rejected": 0}` against a
+    10-point workbook and marked it read for good.  The file on disk turned out
+    to hold `[]` - which says nothing about whether anyone read the document.
+    """
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-empty-')
+        base = Path(self.temp.name)
+        self.facts = base / 'facts.json'
+        self.facts.write_text(json.dumps({'version': '0.1', 'records': []}),
+                              encoding='utf-8')
+        self._saved = (L2.FACTS, L2.READ_LOG, L2.load_metrics)
+        L2.FACTS, L2.READ_LOG, L2.load_metrics = self.facts, base / 'read.jsonl', lambda: METRICS
+
+    def tearDown(self):
+        (L2.FACTS, L2.READ_LOG, L2.load_metrics) = self._saved
+        self.temp.cleanup()
+
+    def record(self, incoming, doc=None):
+        path = Path(self.temp.name) / 'incoming.json'
+        path.write_text(json.dumps(incoming, ensure_ascii=False), encoding='utf-8')
+        out = io.StringIO()
+        with redirect_stdout(out):
+            L2.cmd_record(type('A', (), {'facts': str(path), 'doc': doc,
+                                         'partial': False, 'show': 5}))
+        return json.loads(out.getvalue().splitlines()[0])
+
+    def test_an_empty_batch_says_so_and_says_how_to_reopen(self):
+        report = self.record([], doc='e' * 64)
+        self.assertEqual(report['incoming'], 0)
+        self.assertIn('pack --again', report['note'])
+
+    def test_a_batch_that_lands_carries_no_such_note(self):
+        report = self.record([fact()])
+        self.assertEqual(report['incoming'], 1)
+        self.assertNotIn('note', report)
+
+    def test_a_batch_that_is_wholly_rejected_is_not_called_empty(self):
+        """Nothing landed either way, but the reasons are opposite."""
+        report = self.record([fact(unit='wrong')])
+        self.assertEqual(report['incoming'], 1)
+        self.assertIn('全有或全无', report['note'])
+        self.assertNotIn('pack --again', report['note'])
+
+
+class PackAgainTests(unittest.TestCase):
+    """A document marked read by accident could never be packed again."""
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-again-')
+        self._saved = (L2.read_documents, L2.all_results, L2.load_facts, L2.load_metrics)
+        L2.read_documents = lambda: {L1_ROW['sha256']}
+        L2.all_results = lambda: {L1_ROW['sha256']: L1_ROW}
+        L2.load_facts = lambda: {'records': []}
+        L2.load_metrics = lambda: METRICS
+
+    def tearDown(self):
+        (L2.read_documents, L2.all_results, L2.load_facts, L2.load_metrics) = self._saved
+        self.temp.cleanup()
+
+    def test_a_read_document_is_out_of_the_queue(self):
+        self.assertEqual(L2.eligible(8), [])
+
+    def test_and_can_be_reopened_on_purpose(self):
+        self.assertEqual([r['sha256'] for r in L2.eligible(8, include_read=True)],
+                         [L1_ROW['sha256']])
+
+    def test_reopening_requires_naming_the_document(self):
+        """Without --sha it would reopen whatever sorts first, which is not the ask."""
+        with self.assertRaises(SystemExit):
+            L2.cmd_pack(type('A', (), {'sha': None, 'min_score': 8, 'again': True}))
 
 
 if __name__ == '__main__':

@@ -142,7 +142,22 @@ def unattributed(row: dict) -> list[str]:
             if str(row.get(field) or UNKNOWN).strip() in ('', UNKNOWN)]
 
 
-def eligible(min_score=MIN_SCORE) -> list[dict]:
+def gap_label(row: dict) -> str:
+    """Name the field that is actually missing.
+
+    The first version printed 出处未知 whenever either field was blank, so
+    「09p_未知_中国移动_忠县…」 - publisher known, year not - was labelled as
+    having no provenance at all.  A marker that misreports which half is
+    missing is worse than no marker: it sends you looking for something the
+    row already has.
+    """
+    missing = unattributed(row)
+    if 'org' in missing:
+        return '出处未知'
+    return '年份未知' if 'year' in missing else '    '
+
+
+def eligible(min_score=MIN_SCORE, include_read=False) -> list[dict]:
     """Judged documents worth a full read, best first, least-read module first.
 
     Ordering by module coverage rather than by score alone keeps one prolific
@@ -155,7 +170,7 @@ def eligible(min_score=MIN_SCORE) -> list[dict]:
     picked = [r for r in rows.values()
               if (r.get('score') or 0) >= min_score
               and r.get('status') == 'ok'
-              and r['sha256'] not in done
+              and (include_read or r['sha256'] not in done)
               and not self_authored(r)]
     # Least-covered module first, then highest score.  Fifteen modules each owe
     # answers; a fact layer deep in M10 and empty elsewhere closes nothing
@@ -338,11 +353,19 @@ sha256：{sha}
 
 def cmd_pack(a):
     metrics, questions = load_metrics(), load_questions()
-    pool = eligible(a.min_score)
+    # --again exists because the read ledger is append-only and pack skips what
+    # it holds: a document marked read by accident - an empty facts.json, a
+    # batch recorded against the wrong sha - could otherwise never be packed
+    # again.  It takes a --sha so it can only ever reopen the one you name.
+    if a.again and not a.sha:
+        sys.exit('--again 要跟 --sha：它重开的是你指名的那一份，不是队列里的下一份')
+    pool = eligible(a.min_score, include_read=a.again)
     if a.sha:
         pool = [r for r in pool if r['sha256'].startswith(a.sha)]
     if not pool:
-        print(json.dumps({'packed': 0, 'reason': '没有符合条件且未读的文件'}, ensure_ascii=False))
+        print(json.dumps({'packed': 0, 'reason': '没有符合条件且未读的文件'
+                          if not a.again else '没有匹配这个 sha 的判定'},
+                         ensure_ascii=False))
         return
     row = pool[0]
     path, from_library = L1.readable_path(row)
@@ -371,6 +394,7 @@ def cmd_pack(a):
                       'score': row.get('score'), 'chars': len(text), 'chunks': len(pieces),
                       'read_from': 'library' if from_library else 'source',
                       'unattributed': missing or None,
+                      'again': True if a.again and row['sha256'] in read_documents() else None,
                       'brief': str(out / 'brief.md'), 'text': str(out / 'text.md'),
                       **{k: v for k, v in meta.items() if k != 'extract_error'}},
                      ensure_ascii=False))
@@ -523,7 +547,8 @@ def cmd_record(a):
         accepted.append(fact)
 
     if rejected and not a.partial:
-        print(json.dumps({'accepted': 0, 'rejected': len(rejected),
+        print(json.dumps({'incoming': len(incoming), 'accepted': 0,
+                          'rejected': len(rejected),
                           'note': '默认全有或全无；确认要收下通过的那些请加 --partial'},
                          ensure_ascii=False))
         for r in rejected[:a.show]:
@@ -543,8 +568,16 @@ def cmd_record(a):
         with READ_LOG.open('a', encoding='utf-8') as fh:
             fh.write(json.dumps({'sha256': a.doc, 'at': now(),
                                  'facts': len(accepted)}, ensure_ascii=False) + '\n')
-    print(json.dumps({'accepted': len(accepted), 'rejected': len(rejected),
-                      'facts_total': len(store['records'])}, ensure_ascii=False))
+    # Zero facts is a legal outcome and always was.  But zero facts and an
+    # unwritten facts.json print the same line, and --doc has by then marked a
+    # document read for good - so say which one this was.
+    print(json.dumps({'incoming': len(incoming), 'accepted': len(accepted),
+                      'rejected': len(rejected), 'facts_total': len(store['records']),
+                      **({'note': 'facts.json 解析出 0 条。读不出数是合法结果；'
+                                  '但若不该是 0，先确认文件真的写出来了——'
+                                  '这一份已按 --doc 记入已读，重开要用 pack --again --sha'}
+                         if not incoming else {})},
+                     ensure_ascii=False))
     for r in rejected[:a.show]:
         print('  %s' % r['fact_id'])
         for p in r['problems']:
@@ -634,7 +667,7 @@ def cmd_queue(a):
         module = row.get('category') or '?'
         print('  %s  %-5s 已有事实 %-3d %2s 分 %s %s' % (
             row['sha256'][:16], module, covered.get(module, 0), row.get('score'),
-            '出处未知' if unattributed(row) else '    ',
+            gap_label(row),
             (row.get('proposed_name') or row.get('rel', ''))[:64]))
 
 
@@ -664,6 +697,7 @@ def main():
     q.add_argument('--show', type=int, default=15)
     q.add_argument('--grep', help='只列名字或路径里含这个词的')
     p = sub.add_parser('pack'); p.add_argument('--sha'); p.add_argument('--min-score', type=int, default=MIN_SCORE)
+    p.add_argument('--again', action='store_true', help='重开一份已记入已读的文件，须同时给 --sha')
     r = sub.add_parser('record'); r.add_argument('--facts', required=True)
     r.add_argument('--doc', help='读完的文件 sha256，写进已读账本')
     r.add_argument('--partial', action='store_true', help='收下通过校验的，跳过不通过的')
