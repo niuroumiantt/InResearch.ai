@@ -9,6 +9,7 @@ framework/metrics.json too.
 """
 import io
 import json
+import re
 from contextlib import redirect_stdout
 from pathlib import Path
 import sys
@@ -837,6 +838,67 @@ class ConfidentialScopeTests(unittest.TestCase):
         text = L2.RESTRICTIONS['confidential']
         self.assertIn('限定收件方', text)
         self.assertIn('不是泛用的机密页脚', text)
+
+
+# The fact layer as it actually stands, not a fixture of it.  Every other test
+# here builds its own metrics and its own facts; this one reads the two files
+# the project ships, because a contract change that invalidates recorded data
+# is a real event and nothing was watching for it.
+#
+# 119 facts were recorded before evidence.sha256 became required.  The contract
+# is not relaxed for them - they simply owe it, and this number is the debt.
+# Pay one back and this test goes red, which is the point: the debt must not
+# change quietly in either direction.
+PROVENANCE_DEBT = 119
+
+# Facts cite a source_id, and most of those ids name no row in sources.json.
+# check_fact cannot see this - it never reads sources.json - so it is pinned
+# here instead, where it stays visible until someone decides what to do.
+DANGLING_SOURCE_IDS = 27
+
+
+class LiveFactLayerTests(unittest.TestCase):
+    def setUp(self):
+        self.repo = Path(L2.__file__).resolve().parent.parent
+        self.metrics = L2.load_metrics()
+        self.records = L2.load_facts()['records']
+
+    def test_every_recorded_fact_satisfies_the_current_menu(self):
+        """Adding a caliber dimension to a metric invalidates facts that lack it."""
+        seen, failures = set(), {}
+        for fact in self.records:
+            problems = [p for p in L2.check_fact(fact, self.metrics, seen)
+                        if 'sha256' not in p]
+            if problems:
+                failures[fact['fact_id']] = problems
+            seen.add(fact['fact_id'])
+        self.assertEqual(failures, {})
+
+    def test_the_hash_debt_is_exactly_what_is_owed(self):
+        owing = [f['fact_id'] for f in self.records
+                 if not re.fullmatch(r'[0-9a-f]{64}',
+                                     str((f.get('evidence') or {}).get('sha256') or ''))]
+        self.assertEqual(len(owing), PROVENANCE_DEBT,
+                         '溯源债务变了。补回来了就把 PROVENANCE_DEBT 改小；'
+                         '涨了说明有新事实绕过了 evidence.sha256')
+
+    def test_no_new_fact_may_join_the_debt(self):
+        """The contract itself never bends: a hashless fact is refused on record."""
+        naked = fact(evidence={'locator': '第 3 页', 'grade': 'S2'})
+        self.assertTrue(any('sha256' in p for p in problems(naked)))
+
+    def test_the_dangling_source_references_are_pinned(self):
+        doc = json.loads((self.repo / 'data/sources.json').read_text(encoding='utf-8'))
+        rows = doc if isinstance(doc, list) else (doc.get('sources') or doc.get('records'))
+        known = {s.get('source_id') for s in rows if isinstance(s, dict)}
+        cited = {(f.get('evidence') or {}).get('source_id') for f in self.records} - {None}
+        self.assertEqual(len(cited - known), DANGLING_SOURCE_IDS,
+                         '悬空的 source_id 数量变了——补上了就把 DANGLING_SOURCE_IDS 改小')
+
+    def test_the_menu_and_the_facts_agree_on_module(self):
+        """A fact's module comes from its metric; an unknown metric has no module."""
+        for fact_row in self.records:
+            self.assertIn(fact_row['metric_id'], self.metrics, fact_row['fact_id'])
 
 if __name__ == '__main__':
     unittest.main()
