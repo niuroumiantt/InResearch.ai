@@ -97,7 +97,7 @@ class ExtractRunTests(unittest.TestCase):
         return self.digests.with_name("digests.part%d.jsonl" % index)
 
     def run_cmd(self, items, workers=1, limit=0, shard=None):
-        PK.pending = lambda redo=False: list(items)
+        PK.pending = lambda cohort='new', shas=None: list(items)
         EX.cmd_run(types.SimpleNamespace(workers=workers, limit=limit, shard=shard))
         path = self.out_path(shard)
         text = path.read_text(encoding="utf-8") if path.exists() else ""
@@ -191,7 +191,7 @@ class PackTests(unittest.TestCase):
         return [{"sha256": "%064x" % i, "rel": "f%d.pdf" % i, **extra} for i in range(1, n + 1)]
 
     def run_pack(self, items, limit=5, workers=4):
-        PK.pending = lambda redo=False: list(items)
+        PK.pending = lambda cohort='new', shas=None: list(items)
         PK.cmd_pack(types.SimpleNamespace(limit=limit, workers=workers, out=None))
         text = (PK.BATCH_DIR / "batch.txt").read_text(encoding="utf-8")
         return [line for line in text.splitlines() if line and not line.startswith("#")]
@@ -259,32 +259,32 @@ class PackRemainingTests(unittest.TestCase):
         out = io.StringIO()
         with redirect_stdout(out):
             PK.cmd_pack(types.SimpleNamespace(limit=limit, workers=2, out=None,
-                                              redo=redo, cohort=cohort))
+                                              redo=redo, cohort=cohort, sha=None))
         return json.loads(out.getvalue().splitlines()[0])
 
     def test_redo_remaining_counts_the_redo_queue(self):
         """Every redo file is already scored, so the plain queue reports zero."""
         redo_items = [{"sha256": "%064x" % i, "rel": "f%d.xlsx" % i} for i in range(10)]
-        PK.pending = lambda cohort='new': list(redo_items) if cohort == 'blind' else []
+        PK.pending = lambda cohort='new', shas=None: list(redo_items) if cohort == 'blind' else []
         report = self.report(limit=4, cohort='blind')
         self.assertEqual(report["packed"], 4)
         self.assertEqual(report["remaining_after"], 6)
 
     def test_the_plain_queue_still_reports_its_own_remainder(self):
         items = [{"sha256": "%064x" % i, "rel": "f%d.xlsx" % i} for i in range(7)]
-        PK.pending = lambda cohort='new': list(items) if cohort == 'new' else []
+        PK.pending = lambda cohort='new', shas=None: list(items) if cohort == 'new' else []
         report = self.report(limit=3)
         self.assertEqual(report["remaining_after"], 4)
 
     def test_the_old_redo_flag_still_means_the_blind_cohort(self):
         """--redo predates --cohort and is still what the runbooks say."""
         items = [{"sha256": "%064x" % i, "rel": "f%d.xlsx" % i} for i in range(5)]
-        PK.pending = lambda cohort='new': list(items) if cohort == 'blind' else []
+        PK.pending = lambda cohort='new', shas=None: list(items) if cohort == 'blind' else []
         report = self.report(limit=2, redo=True)
         self.assertEqual((report["cohort"], report["packed"]), ('blind', 2))
 
     def test_an_unknown_cohort_is_refused_rather_than_silently_emptied(self):
-        PK.pending = lambda cohort='new': []
+        PK.pending = lambda cohort='new', shas=None: []
         with self.assertRaises(SystemExit):
             self.report(limit=1, cohort='typo')
 
@@ -419,12 +419,12 @@ class CellsCohortTests(unittest.TestCase):
         L1.prepare = lambda item: {'sha256': sha, 'rel': 'a/x.xlsx', 'suffix': '.xlsx',
                                    'size': 10, 'preview': '一些表头', 'meta': meta,
                                    'level': 'p', 'needs_model': True}
-        PK.pending = lambda cohort='new': (
+        PK.pending = lambda cohort='new', shas=None: (
             [{'sha256': sha, 'rel': 'a/x.xlsx'}] if cohort == 'cells' else [])
         out = io.StringIO()
         with redirect_stdout(out):
             PK.cmd_pack(types.SimpleNamespace(limit=limit, workers=1, out=None,
-                                              redo=False, cohort='cells'))
+                                              redo=False, cohort='cells', sha=None))
         return json.loads(out.getvalue().splitlines()[0])
 
     def test_a_workbook_with_cells_is_packed_for_judging(self):
@@ -484,7 +484,7 @@ class RepeatedPackTests(unittest.TestCase):
         # wrong.  Two earlier fixtures in this repo were bitten the same way.
         self.items = [{'sha256': '%03d' % i + 'a' * 61, 'rel': 'f%d.xlsx' % i}
                       for i in range(10)]
-        PK.pending = lambda cohort='new': list(self.items) if cohort == 'cells' else []
+        PK.pending = lambda cohort='new', shas=None: list(self.items) if cohort == 'cells' else []
 
     def tearDown(self):
         (L1.RESULTS, PK.BATCH_DIR, PK.pending, L1.prepare,
@@ -495,7 +495,7 @@ class RepeatedPackTests(unittest.TestCase):
         out = io.StringIO()
         with redirect_stdout(out):
             PK.cmd_pack(types.SimpleNamespace(limit=limit, workers=1, out=None,
-                                              redo=False, cohort='cells'))
+                                              redo=False, cohort='cells', sha=None))
         return json.loads(out.getvalue().splitlines()[0])
 
     def test_the_first_pack_says_nothing_about_repeats(self):
@@ -590,6 +590,77 @@ class PartialRecordTests(unittest.TestCase):
         for r in rows:
             newest[r['sha256']] = r
         self.assertEqual(len(newest), 5)
+
+
+class NamedRejudgeTests(unittest.TestCase):
+    """The way back when a later batch shows an earlier verdict was wrong.
+
+    Round two of the re-judge caught round one calling an AMD platform 国产化,
+    one round after that verdict was recorded.  Every selector here answers
+    "what is owed"; none of them could answer "this one, again".
+    """
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix='m4-named-')
+        base = Path(self.temp.name)
+        self.results = base / 'l1_results.jsonl'
+        self._saved = (L1.RESULTS, PK.BATCH_DIR, L1.load_inventory, L1.prepare,
+                       L1.finalize, L1.proposed_name)
+        L1.RESULTS = self.results
+        PK.BATCH_DIR = base / 'batches'
+        self.shas = ['%03d' % i + 'c' * 61 for i in range(4)]
+        self.results.write_text('\n'.join(json.dumps(
+            {'sha256': sha, 'rel': 'f%d.xlsx' % i, 'suffix': '.xlsx', 'score': 6,
+             'status': 'ok', 'meta': {'cells': 9}})
+            for i, sha in enumerate(self.shas)) + '\n', encoding='utf-8')
+        L1.load_inventory = lambda: [{'sha256': sha, 'rel': 'f%d.xlsx' % i,
+                                      'suffix': '.xlsx', 'size': 10,
+                                      'paths': ['f%d.xlsx' % i], 'copies': 1}
+                                     for i, sha in enumerate(self.shas)]
+        L1.prepare = lambda item: {'sha256': item['sha256'], 'rel': item['rel'],
+                                   'suffix': '.xlsx', 'size': 10, 'preview': '表头',
+                                   'meta': {'cells': 9}, 'level': 'p', 'needs_model': True}
+
+    def tearDown(self):
+        (L1.RESULTS, PK.BATCH_DIR, L1.load_inventory, L1.prepare,
+         L1.finalize, L1.proposed_name) = self._saved
+        self.temp.cleanup()
+
+    def pack(self, sha=None, cohort='cells'):
+        out = io.StringIO()
+        with redirect_stdout(out):
+            PK.cmd_pack(types.SimpleNamespace(limit=50, workers=1, out=None,
+                                              redo=False, cohort=cohort, sha=sha))
+        return json.loads(out.getvalue().splitlines()[0])
+
+    def ids(self):
+        rows = json.loads((PK.BATCH_DIR / 'batch.json').read_text(encoding='utf-8'))
+        return sorted(r['id'] for r in rows)
+
+    def test_one_named_file_is_packed_alone(self):
+        report = self.pack(sha=self.shas[2][:6])
+        self.assertEqual(report['packed'], 1)
+        self.assertEqual(self.ids(), [self.shas[2][:12]])
+
+    def test_several_can_be_named_at_once(self):
+        self.pack(sha='%s,%s' % (self.shas[0][:6], self.shas[3][:6]))
+        self.assertEqual(self.ids(), sorted([self.shas[0][:12], self.shas[3][:12]]))
+
+    def test_an_already_recorded_file_is_reachable(self):
+        """Every one of these has a verdict; the cohort selectors would skip it."""
+        self.assertEqual(self.pack(sha=self.shas[1][:6])['packed'], 1)
+
+    def test_an_ambiguous_prefix_is_refused(self):
+        with self.assertRaises(SystemExit):
+            self.pack(sha='0')
+
+    def test_a_prefix_matching_nothing_is_refused(self):
+        with self.assertRaises(SystemExit):
+            self.pack(sha='zzz')
+
+    def test_without_sha_the_cohort_still_decides(self):
+        report = self.pack(cohort='new')
+        self.assertEqual(report['packed'], 0)      # every file already judged
 
 if __name__ == '__main__':
     unittest.main()

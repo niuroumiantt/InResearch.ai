@@ -123,6 +123,27 @@ def opened_and_empty(r: dict) -> bool:
     return not meta.get('extract_error')
 
 
+def named(prefixes: list[str]) -> list[dict]:
+    """The files these sha prefixes point at, whatever cohort they are in.
+
+    The way out when a later batch shows an earlier verdict was wrong: the
+    judging session caught itself calling an AMD platform 国产化 one round
+    after recording it, and nothing could reopen that one file.  Every other
+    selector here answers "what is owed"; this one answers "this one, again".
+    """
+    rows = last_results()
+    picked, missing = {}, []
+    for prefix in prefixes:
+        hits = [sha for sha in rows if sha.startswith(prefix)]
+        if len(hits) != 1:
+            missing.append('%s 匹配到 %d 条判定' % (prefix, len(hits)))
+            continue
+        picked[hits[0]] = True
+    if missing:
+        raise SystemExit('每个 --sha 前缀要正好匹配一条：' + '；'.join(missing))
+    return picked
+
+
 COHORTS = {
     'new': None,                       # never judged
     'blind': blind_scored,             # judged from the filename alone
@@ -130,7 +151,11 @@ COHORTS = {
 }
 
 
-def pending(cohort='new'):
+def pending(cohort='new', shas=None):
+    if shas:
+        wanted = named(shas)
+        return sorted((i for i in L1.load_inventory() if i['sha256'] in wanted),
+                      key=lambda i: priority(i['rel']))
     select = COHORTS[cohort]
     if select is None:
         done = L1.done_keys()
@@ -178,7 +203,8 @@ def cmd_pack(a):
     cohort = getattr(a, 'cohort', None) or ('blind' if getattr(a, 'redo', False) else 'new')
     if cohort not in COHORTS:
         raise SystemExit('cohort must be one of %s' % ' / '.join(COHORTS))
-    items = pending(cohort)
+    shas = [x.strip() for x in (getattr(a, 'sha', None) or '').split(',') if x.strip()]
+    items = pending(cohort, shas)
     position = 0
     with L1.RESULTS.open('a', encoding='utf-8') as f:
         while len(out) < a.limit and position < len(items):
@@ -240,7 +266,7 @@ def cmd_pack(a):
                       # recomputed with the same selector: asking the plain
                       # queue how much redo work is left reports every scored
                       # file as done and lands on a negative remainder
-                      'remaining_after': len(pending(cohort)) - len(out)}, ensure_ascii=False))
+                      'remaining_after': len(pending(cohort, shas)) - len(out)}, ensure_ascii=False))
     for problem in failed[:5]:
         print(json.dumps(problem, ensure_ascii=False))
 
@@ -558,6 +584,7 @@ def main():
                    help='等同 --cohort blind：重排只看文件名判过、现在能打开的文件')
     p.add_argument('--cohort', choices=sorted(COHORTS),
                    help='new=未判过 / blind=只看文件名判过的 / cells=在读不到单元格时判过的表格')
+    p.add_argument('--sha', help='重判指定的这几份（sha 前缀，逗号分隔），不论属于哪个批次')
     p.add_argument('--workers', type=int, default=4,
                    help='preview extractions in parallel (1..%d); local CPU work, no model' % MAX_WORKERS)
     r = s.add_parser('record'); r.add_argument('--verdicts', required=True); r.add_argument('--batch'); r.add_argument('--digests', action='store_true')
