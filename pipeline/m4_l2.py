@@ -611,11 +611,15 @@ def cmd_queue(a):
     # that alongside each row.  With only the score shown, a queue ordered by
     # coverage is indistinguishable from one ordered by score, and nobody can
     # tell whether the ordering did anything.
+    # The sha leads, because it is the argument the next command takes: pack
+    # addresses a document by hash, and a queue that prints only names makes
+    # you go hunting for the one thing you need to act on the row you just read.
     for row in pool[:a.show]:
         module = row.get('category') or '?'
-        print('  %-5s 已有事实 %-3d %2s 分  %s' % (
-            module, covered.get(module, 0), row.get('score'),
-            (row.get('proposed_name') or row.get('rel', ''))[:80]))
+        print('  %s  %-5s 已有事实 %-3d %2s 分 %s %s' % (
+            row['sha256'][:16], module, covered.get(module, 0), row.get('score'),
+            '出处未知' if unattributed(row) else '    ',
+            (row.get('proposed_name') or row.get('rel', ''))[:64]))
 
 
 def cmd_status(a):

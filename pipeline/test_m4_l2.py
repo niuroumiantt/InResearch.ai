@@ -482,5 +482,45 @@ class AttributionTests(unittest.TestCase):
         self.assertIn('## 你要产出什么', brief)
 
 
+class QueueOutputTests(unittest.TestCase):
+    """The queue has to print the argument the next command takes.
+
+    `pack` addresses a document by hash.  A queue listing only names sends you
+    hunting for the hash of the row you just decided to read - and the name is
+    truncated, so the hash inside it may not even be there.
+    """
+
+    def queue(self, rows):
+        saved = (L2.eligible, L2.load_metrics, L2.load_facts,
+                 L2.all_results, L2.read_documents)
+        L2.eligible = lambda min_score=8: rows
+        L2.load_metrics = lambda: METRICS
+        L2.load_facts = lambda: {'records': []}
+        L2.all_results = lambda: {r['sha256']: r for r in rows}
+        L2.read_documents = lambda: set()
+        try:
+            out = io.StringIO()
+            with redirect_stdout(out):
+                L2.cmd_queue(type('A', (), {'min_score': 8, 'show': 5}))
+        finally:
+            (L2.eligible, L2.load_metrics, L2.load_facts,
+             L2.all_results, L2.read_documents) = saved
+        return out.getvalue()
+
+    def test_each_row_carries_the_hash_pack_needs(self):
+        text = self.queue([L1_ROW])
+        self.assertIn(L1_ROW['sha256'][:16], text.splitlines()[-1])
+
+    def test_an_unattributed_document_is_marked_in_the_list(self):
+        self.assertIn('出处未知', self.queue([L1_ROW]))
+        self.assertNotIn('出处未知',
+                         self.queue([{**L1_ROW, 'org': 'IDC', 'year': '2024'}]))
+
+    def test_the_header_counts_the_gap(self):
+        report = json.loads(self.queue([L1_ROW]).splitlines()[0])
+        self.assertEqual(report['unattributed'], 1)
+        self.assertEqual(report['eligible_unread'], 1)
+
+
 if __name__ == '__main__':
     unittest.main()
