@@ -12,6 +12,7 @@ fact layer is a fact.
   pack   [--sha S]      write a reading packet for one document
   record --facts F      validate against the contract and append
   attribute --sha S     put back a publisher L1 could not see in a preview
+  flag --sha S          keep a document out of the fact layer, with the reason
   status                progress
 
 The packet carries three things, because a reader needs all three to produce a
@@ -130,6 +131,34 @@ def self_authored(row: dict) -> bool:
     return str(row.get('rel') or '').startswith(SELF_AUTHORED_PREFIXES)
 
 
+# Two reasons a document stays out of the fact layer whatever it scored.
+# Neither is a judgement about quality: both documents below scored 8 or
+# better precisely because they carry real first-hand numbers.
+RESTRICTIONS = {
+    # NOT for the word "Confidential" on its own.  In this corpus a machine
+    # footer reading 机密 / Confidential is boilerplate - most vendor decks
+    # carry one - and gating on it would exclude most of the library for no
+    # gain.  This flag is for an explicit restriction naming a recipient:
+    # "Confidential for X Corp. / Not to be distributed".  Nothing sets it
+    # automatically; a person decides, per file, and says where they saw it.
+    'confidential': '文件写明限定收件方且不得分发——不是泛用的机密页脚',
+    'pii': '含个人信息（姓名、电话、邮箱、职级）或内网地址，'
+           '这些不该出现在任何被引用的产物里',
+}
+
+
+def restricted(row: dict) -> list[str]:
+    """Why this document must not reach the fact layer, if it must not.
+
+    The gate exists because score and admissibility are different questions.
+    A quarterly that says "Confidential / Not to be distributed" on its cover
+    is exactly the kind of first-hand source L1 scores 8, and scoring it 8 is
+    correct - it is a real document and the library should know it is there.
+    What it must not do is flow through L2 into facts that get quoted.
+    """
+    return [name for name in RESTRICTIONS if row.get(name)]
+
+
 def unattributed(row: dict) -> list[str]:
     """Which identifying fields L1 left as 未知, once, in one place.
 
@@ -140,10 +169,14 @@ def unattributed(row: dict) -> list[str]:
     graded as first-hand.  L2 reads the whole document, so L2 is where this
     gets fixed.
     """
+    missing = [field for field in ('org', 'year')
+               if str(row.get(field) or UNKNOWN).strip() in ('', UNKNOWN)]
+    # Saying the publisher cannot be found silences the publisher ask, not the
+    # year one: they are looked for in different places and found separately.
+    searched = set(row.get('unrecoverable') or ())
     if row.get('org_unrecoverable'):
-        return []          # already looked for it and said so; stop asking
-    return [field for field in ('org', 'year')
-            if str(row.get(field) or UNKNOWN).strip() in ('', UNKNOWN)]
+        searched.add('org')
+    return [field for field in missing if field not in searched]
 
 
 def gap_label(row: dict) -> str:
@@ -161,7 +194,24 @@ def gap_label(row: dict) -> str:
     return '年份未知' if 'year' in missing else '    '
 
 
-def eligible(min_score=MIN_SCORE, include_read=False) -> list[dict]:
+YEAR4 = re.compile(r'(19|20)\d{2}')
+
+
+def document_year(row: dict) -> int:
+    """The document's year, or 0 when it never said.
+
+    Unknown sorts with the oldest rather than the newest: a document that will
+    not say when it was written cannot claim to be current, and the way to move
+    it up the queue is to find the year, which `attribute` exists for.
+    """
+    for field in ('year', 'proposed_name', 'rel'):
+        found = YEAR4.search(str(row.get(field) or ''))
+        if found:
+            return int(found.group(0))
+    return 0
+
+
+def eligible(min_score=MIN_SCORE, include_read=False, since=0) -> list[dict]:
     """Judged documents worth a full read, best first, least-read module first.
 
     Ordering by module coverage rather than by score alone keeps one prolific
@@ -175,15 +225,22 @@ def eligible(min_score=MIN_SCORE, include_read=False) -> list[dict]:
               if (r.get('score') or 0) >= min_score
               and r.get('status') == 'ok'
               and (include_read or r['sha256'] not in done)
-              and not self_authored(r)]
+              and not self_authored(r)
+              and not restricted(r)
+              and (not since or document_year(r) >= since)]
     # Least-covered module first, then highest score.  Fifteen modules each owe
     # answers; a fact layer deep in M10 and empty elsewhere closes nothing
     # elsewhere, so breadth comes before one more document from a rich module.
     metrics = load_metrics()
     covered = Counter(metrics.get(f['metric_id'], {}).get('module')
                       for f in load_facts()['records'])
+    # Coverage first, then score, then recency.  Age is in the key because a
+    # 2016 工程量清单 and a 2026 预测 at the same score are not equally worth
+    # reading now: the first batch of re-judged tables was one 2016 project
+    # forty files deep, and nothing in the ordering knew that.
     return sorted(picked, key=lambda r: (covered.get(r.get('category'), 0),
-                                         -(r.get('score') or 0), r.get('rel', '')))
+                                         -(r.get('score') or 0),
+                                         -document_year(r), r.get('rel', '')))
 
 
 # --------------------------------------------------------------------------
@@ -363,7 +420,7 @@ def cmd_pack(a):
     # again.  It takes a --sha so it can only ever reopen the one you name.
     if a.again and not a.sha:
         sys.exit('--again 要跟 --sha：它重开的是你指名的那一份，不是队列里的下一份')
-    pool = eligible(a.min_score, include_read=a.again)
+    pool = eligible(a.min_score, include_read=a.again, since=a.since)
     if a.sha:
         pool = [r for r in pool if r['sha256'].startswith(a.sha)]
     if not pool:
@@ -610,10 +667,15 @@ def cmd_attribute(a):
     was = {'org': row.get('org'), 'year': row.get('year'), 'proposed_name': row.get('proposed_name')}
     if a.org:
         row['org'] = a.org
-    else:
-        row['org_unrecoverable'] = True
     if a.year:
         row['year'] = a.year
+    if a.unrecoverable:
+        # Everything still unknown after reading the whole document was looked
+        # for and is not there.  Declaring it per field rather than as one flag
+        # matters: 忠县's workbook names 中国移动 on its cover and no year
+        # anywhere, so its publisher is known and its year is genuinely absent.
+        row['unrecoverable'] = sorted(set(row.get('unrecoverable') or ())
+                                      | set(unattributed(row)))
     if a.title:
         row['title'] = a.title
         row['keep_original_name'] = False
@@ -623,7 +685,7 @@ def cmd_attribute(a):
     with L1.RESULTS.open('a', encoding='utf-8') as fh:
         fh.write(json.dumps(row, ensure_ascii=False) + '\n')
     print(json.dumps({'sha256': row['sha256'], 'org': row.get('org'), 'year': row.get('year'),
-                      'org_unrecoverable': bool(row.get('org_unrecoverable')),
+                      'unrecoverable': row.get('unrecoverable') or [],
                       'was': was['proposed_name'], 'now': row['proposed_name'],
                       'renamed_by': '改名不在这一步；跑 m4_triage_apply.py restage plan 复核后再 apply'
                       if row['proposed_name'] != was['proposed_name'] else '文件名不变'},
@@ -638,8 +700,41 @@ def matches(row: dict, needle: str | None) -> bool:
     return needle.lower() in hay.lower()
 
 
+def cmd_flag(a):
+    """Mark a document as one the fact layer must not draw from.
+
+    Appended as a superseding verdict, like every other correction here: the
+    score stays, the file stays, the name stays.  Only L2 admission changes.
+    """
+    matches = [r for sha, r in all_results().items() if sha.startswith(a.sha)]
+    if len(matches) != 1:
+        sys.exit('sha 前缀 %r 匹配到 %d 条判定，要正好一条' % (a.sha, len(matches)))
+    names = [n for n in RESTRICTIONS if getattr(a, n)]
+    if not names:
+        sys.exit('要给出至少一个：%s' % ' / '.join('--' + n for n in RESTRICTIONS))
+    row = dict(matches[0])
+    was = restricted(row)
+    for name in names:
+        if a.clear:
+            row.pop(name, None)
+        else:
+            row[name] = True
+    row.setdefault('flagged', []).append(
+        {'at': now(), 'fields': names, 'clear': bool(a.clear), 'evidence': a.evidence})
+
+    with L1.RESULTS.open('a', encoding='utf-8') as fh:
+        fh.write(json.dumps(row, ensure_ascii=False) + '\n')
+    now_set = restricted(row)
+    print(json.dumps({'sha256': row['sha256'], 'score': row.get('score'),
+                      'was': was, 'now': now_set,
+                      'reasons': [RESTRICTIONS[n] for n in now_set],
+                      'effect': '已排除在 L2 精读队列之外；文件与分数都不变'
+                      if now_set else '限制已解除，重新进入 L2 队列'},
+                     ensure_ascii=False))
+
+
 def cmd_queue(a):
-    pool = eligible(a.min_score)
+    pool = eligible(a.min_score, since=a.since)
     by_module = Counter(r.get('category') for r in pool)
     metrics = load_metrics()
     covered = Counter(metrics.get(f['metric_id'], {}).get('module')
@@ -651,6 +746,11 @@ def cmd_queue(a):
                       'already_read': len(read_documents()),
                       'self_authored_excluded': excluded,
                       'unattributed': sum(1 for r in pool if unattributed(r)),
+                      **({'since': a.since} if a.since else {}),
+                      'restricted_excluded': sum(1 for r in all_results().values()
+                                                 if (r.get('score') or 0) >= a.min_score
+                                                 and r.get('status') == 'ok'
+                                                 and restricted(r)),
                       'mb': round(sum(r.get('size', 0) for r in pool) / 1e6)},
                      ensure_ascii=False))
     for module, n in by_module.most_common():
@@ -672,10 +772,11 @@ def cmd_queue(a):
         print('  匹配「%s」%d 条（共 %d 条待读）' % (a.grep, len(shown), len(pool)))
     for row in shown[:a.show]:
         module = row.get('category') or '?'
-        print('  %s  %-5s 已有事实 %-3d %2s 分 %s %s' % (
+        year = document_year(row)
+        print('  %s  %-5s 已有事实 %-3d %2s 分 %s %s %s' % (
             row['sha256'][:16], module, covered.get(module, 0), row.get('score'),
-            gap_label(row),
-            (row.get('proposed_name') or row.get('rel', ''))[:64]))
+            '%4d' % year if year else '  ??', gap_label(row),
+            (row.get('proposed_name') or row.get('rel', ''))[:58]))
 
 
 def cmd_status(a):
@@ -701,10 +802,12 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.split('\n')[0])
     sub = ap.add_subparsers(dest='cmd', required=True)
     q = sub.add_parser('queue'); q.add_argument('--min-score', type=int, default=MIN_SCORE)
+    q.add_argument('--since', type=int, default=0, help='只看这一年及以后的文件')
     q.add_argument('--show', type=int, default=15)
     q.add_argument('--grep', help='只列名字或路径里含这个词的')
     p = sub.add_parser('pack'); p.add_argument('--sha'); p.add_argument('--min-score', type=int, default=MIN_SCORE)
     p.add_argument('--again', action='store_true', help='重开一份已记入已读的文件，须同时给 --sha')
+    p.add_argument('--since', type=int, default=0, help='只取这一年及以后的文件')
     r = sub.add_parser('record'); r.add_argument('--facts', required=True)
     r.add_argument('--doc', help='读完的文件 sha256，写进已读账本')
     r.add_argument('--partial', action='store_true', help='收下通过校验的，跳过不通过的')
@@ -716,10 +819,16 @@ def main():
     t.add_argument('--year', help='四位数字')
     t.add_argument('--title', help='顺带修正标题')
     t.add_argument('--evidence', required=True, help='在哪一页哪一处看到的——出处得有出处')
+    fl = sub.add_parser('flag', help='把一份文件挡在事实层之外，并记下理由')
+    fl.add_argument('--sha', required=True, help='文件 sha256，前缀即可')
+    fl.add_argument('--confidential', action='store_true', help='文件自称机密或限制分发')
+    fl.add_argument('--pii', action='store_true', help='含个人信息或内网地址')
+    fl.add_argument('--clear', action='store_true', help='解除该标记')
+    fl.add_argument('--evidence', required=True, help='在哪一页哪一处看到的')
     s = sub.add_parser('status')
     a = ap.parse_args()
     {'queue': cmd_queue, 'pack': cmd_pack, 'record': cmd_record,
-     'attribute': cmd_attribute, 'status': cmd_status}[a.cmd](a)
+     'attribute': cmd_attribute, 'flag': cmd_flag, 'status': cmd_status}[a.cmd](a)
 
 
 if __name__ == '__main__':

@@ -422,10 +422,18 @@ class AttributionTests(unittest.TestCase):
         self.assertEqual(rows[1]['attributed']['evidence'], '封面右下角')
 
     def test_saying_there_is_nothing_to_find_stops_the_asking(self):
+        """Both fields were unknown when it was declared, so both were searched."""
         self.attribute(unrecoverable=True, evidence='封面/页眉/版权页均无署名')
         row = self.rows()[-1]
-        self.assertTrue(row['org_unrecoverable'])
+        self.assertEqual(row['unrecoverable'], ['org', 'year'])
         self.assertEqual(L2.unattributed(row), [])
+
+    def test_a_year_given_alongside_is_not_declared_missing(self):
+        """忠县's shape: the publisher is on the cover, the year is nowhere."""
+        self.attribute(unrecoverable=True, year='2024', evidence='无署名，年份取自封面')
+        row = self.rows()[-1]
+        self.assertEqual(row['unrecoverable'], ['org'])
+        self.assertEqual(row['year'], '2024')
 
     def test_a_publisher_and_a_shrug_cannot_both_be_given(self):
         with self.assertRaises(SystemExit):
@@ -451,7 +459,7 @@ class AttributionTests(unittest.TestCase):
         """cmd_pack with the filesystem and the model stubbed out."""
         saved = (L2.eligible, L2.full_text, L2.L1.readable_path,
                  L2.load_metrics, L2.load_questions, L2.load_facts, L2.PACKET_DIR)
-        L2.eligible = lambda min_score=8, include_read=False: [row]
+        L2.eligible = lambda min_score=8, include_read=False, since=0: [row]
         L2.full_text = lambda path, suffix: ('第一页正文\n\n[p.2] 第二页',
                                             meta if meta is not None else {'pages': 2})
         L2.L1.readable_path = lambda r: (Path('/nonexistent'), False)
@@ -463,7 +471,7 @@ class AttributionTests(unittest.TestCase):
             out = io.StringIO()
             with redirect_stdout(out):
                 L2.cmd_pack(type('A', (), {'sha': None, 'min_score': 8,
-                                           'again': False}))
+                                           'again': False, 'since': 0}))
             report = json.loads(out.getvalue())
             brief = (L2.PACKET_DIR / row['sha256'][:16] / 'brief.md').read_text(encoding='utf-8')
         finally:
@@ -513,7 +521,7 @@ class QueueOutputTests(unittest.TestCase):
         self.grep = grep
         saved = (L2.eligible, L2.load_metrics, L2.load_facts,
                  L2.all_results, L2.read_documents)
-        L2.eligible = lambda min_score=8: rows
+        L2.eligible = lambda min_score=8, include_read=False, since=0: rows
         L2.load_metrics = lambda: METRICS
         L2.load_facts = lambda: {'records': []}
         L2.all_results = lambda: {r['sha256']: r for r in rows}
@@ -522,7 +530,7 @@ class QueueOutputTests(unittest.TestCase):
             out = io.StringIO()
             with redirect_stdout(out):
                 L2.cmd_queue(type('A', (), {'min_score': 8, 'show': 5,
-                                            'grep': self.grep}))
+                                            'grep': self.grep, 'since': 0}))
         finally:
             (L2.eligible, L2.load_metrics, L2.load_facts,
              L2.all_results, L2.read_documents) = saved
@@ -645,6 +653,190 @@ class PackAgainTests(unittest.TestCase):
         with self.assertRaises(SystemExit):
             L2.cmd_pack(type('A', (), {'sha': None, 'min_score': 8, 'again': True}))
 
+
+
+class RestrictionTests(unittest.TestCase):
+    """Score and admissibility are different questions.
+
+    The first re-judged batch surfaced a quarterly whose cover reads
+    "Confidential for Western Digital Corp. / Not to be distributed".  It
+    scored 8, and 8 is right - it is a real first-hand source and the library
+    should know it is there.  What it must not do is flow through L2 into
+    facts that get quoted, which at 8 points it otherwise would, near the
+    front of the queue.
+    """
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-flag-')
+        self.results = Path(self.temp.name) / 'l1_results.jsonl'
+        self.results.write_text(json.dumps(
+            {**L1_ROW, 'org': 'Forward Insights', 'year': '2025'},
+            ensure_ascii=False) + '\n', encoding='utf-8')
+        self._saved = (L2.L1.RESULTS, L2.load_metrics, L2.load_facts, L2.read_documents)
+        L2.L1.RESULTS = self.results
+        L2.load_metrics = lambda: METRICS
+        L2.load_facts = lambda: {'records': []}
+        L2.read_documents = lambda: set()
+
+    def tearDown(self):
+        (L2.L1.RESULTS, L2.load_metrics, L2.load_facts, L2.read_documents) = self._saved
+        self.temp.cleanup()
+
+    def flag(self, **over):
+        args = {'sha': L1_ROW['sha256'][:8], 'confidential': False, 'pii': False,
+                'clear': False, 'evidence': '封面：Not to be distributed'}
+        args.update(over)
+        out = io.StringIO()
+        with redirect_stdout(out):
+            L2.cmd_flag(type('A', (), args))
+        return json.loads(out.getvalue())
+
+    def rows(self):
+        return [json.loads(l) for l in
+                self.results.read_text(encoding='utf-8').splitlines()]
+
+    def test_an_unflagged_document_is_in_the_queue(self):
+        self.assertEqual([r['sha256'] for r in L2.eligible(8)], [L1_ROW['sha256']])
+
+    def test_flagging_it_takes_it_out(self):
+        report = self.flag(confidential=True)
+        self.assertEqual(report['now'], ['confidential'])
+        self.assertEqual(L2.eligible(8), [])
+
+    def test_the_score_and_the_file_are_untouched(self):
+        self.flag(confidential=True)
+        row = self.rows()[-1]
+        self.assertEqual(row['score'], L1_ROW['score'])
+        self.assertEqual(row['rel'], L1_ROW['rel'])
+        self.assertIn('分数都不变', self.flag(pii=True)['effect'])
+
+    def test_the_reason_travels_with_the_flag(self):
+        self.flag(confidential=True)
+        row = self.rows()[-1]
+        self.assertEqual(row['flagged'][0]['evidence'], '封面：Not to be distributed')
+        self.assertEqual(row['flagged'][0]['fields'], ['confidential'])
+
+    def test_personal_information_is_the_other_gate(self):
+        self.flag(pii=True)
+        self.assertEqual(L2.eligible(8), [])
+
+    def test_a_flag_can_be_lifted(self):
+        self.flag(confidential=True)
+        report = self.flag(confidential=True, clear=True, evidence='看错了，封面无此字样')
+        self.assertEqual(report['now'], [])
+        self.assertEqual(len(L2.eligible(8)), 1)
+
+    def test_lifting_one_flag_leaves_the_other(self):
+        self.flag(confidential=True)
+        self.flag(pii=True)
+        self.flag(confidential=True, clear=True, evidence='机密那条看错了')
+        self.assertEqual(L2.eligible(8), [])
+
+    def test_a_flag_with_no_field_named_is_refused(self):
+        with self.assertRaises(SystemExit):
+            self.flag()
+
+    def test_the_queue_counts_what_it_excluded(self):
+        self.flag(confidential=True)
+        out = io.StringIO()
+        with redirect_stdout(out):
+            L2.cmd_queue(type('A', (), {'min_score': 8, 'show': 5, 'grep': None, 'since': 0}))
+        self.assertEqual(json.loads(out.getvalue().splitlines()[0])['restricted_excluded'], 1)
+
+
+class UnrecoverableScopeTests(unittest.TestCase):
+    """Saying the publisher cannot be found must not silence the year ask.
+
+    They are looked for in different places and found separately: 忠县's
+    workbook names 中国移动 on its cover and no year anywhere.
+    """
+
+    def test_an_unrecoverable_publisher_still_leaves_the_year_asked(self):
+        row = {**L1_ROW, 'org_unrecoverable': True}
+        self.assertEqual(L2.unattributed(row), ['year'])
+
+    def test_both_can_be_declared_unrecoverable(self):
+        row = {**L1_ROW, 'unrecoverable': ['org', 'year']}
+        self.assertEqual(L2.unattributed(row), [])
+
+    def test_a_field_that_is_present_is_not_reported_either_way(self):
+        row = {**L1_ROW, 'org': 'IDC', 'org_unrecoverable': True}
+        self.assertEqual(L2.unattributed(row), ['year'])
+
+
+class RecencyTests(unittest.TestCase):
+    """A 2016 工程量清单 and a 2026 预测 at the same score are not equally useful.
+
+    The first re-judged batch was one 2016 project forty files deep, and the
+    reading order - module coverage, then score - had no idea.
+    """
+
+    def row(self, sha, year, score=9, module='M10', name=None):
+        return {**L1_ROW, 'sha256': sha, 'score': score, 'category': module,
+                'year': year, 'proposed_name': name or '%02d_%s_x.xlsx' % (score, year)}
+
+    def order(self, rows, **kw):
+        saved = (L2.all_results, L2.read_documents, L2.load_facts, L2.load_metrics)
+        L2.all_results = lambda: {r['sha256']: r for r in rows}
+        L2.read_documents = lambda: set()
+        L2.load_facts = lambda: {'records': []}
+        L2.load_metrics = lambda: METRICS
+        try:
+            return [r['sha256'] for r in L2.eligible(8, **kw)]
+        finally:
+            (L2.all_results, L2.read_documents, L2.load_facts, L2.load_metrics) = saved
+
+    def test_the_newer_document_comes_first(self):
+        old = self.row('1' + 'a' * 63, '2016')
+        new = self.row('2' + 'a' * 63, '2026')
+        self.assertEqual(self.order([old, new])[0], new['sha256'])
+
+    def test_score_still_outranks_recency(self):
+        """Recency breaks ties; it does not promote a weaker document."""
+        strong_old = self.row('1' + 'a' * 63, '2016', score=10)
+        weak_new = self.row('2' + 'a' * 63, '2026', score=8)
+        self.assertEqual(self.order([strong_old, weak_new])[0], strong_old['sha256'])
+
+    def test_a_document_with_no_year_sorts_with_the_oldest(self):
+        """It cannot claim to be current; `attribute` is how it moves up."""
+        undated = self.row('1' + 'a' * 63, '未知', name='09p_未知_x.xlsx')
+        dated = self.row('2' + 'a' * 63, '2016')
+        self.assertEqual(self.order([undated, dated])[0], dated['sha256'])
+
+    def test_since_drops_everything_older(self):
+        old = self.row('1' + 'a' * 63, '2016')
+        new = self.row('2' + 'a' * 63, '2024')
+        self.assertEqual(self.order([old, new], since=2020), [new['sha256']])
+
+    def test_the_year_is_taken_from_the_name_when_the_field_is_blank(self):
+        row = {**L1_ROW, 'year': '未知',
+               'proposed_name': '09p_2023_IDC_Global DataSphere__abc.xlsx'}
+        self.assertEqual(L2.document_year(row), 2023)
+
+    def test_a_year_that_is_not_a_year_is_not_read_as_one(self):
+        row = {**L1_ROW, 'year': '未知', 'proposed_name': 'x.xlsx', 'rel': 'a/b.xlsx'}
+        self.assertEqual(L2.document_year(row), 0)
+
+    def test_a_declared_year_beats_a_number_in_the_path(self):
+        row = {**L1_ROW, 'year': '2025', 'rel': '2016工程/x.xlsx'}
+        self.assertEqual(L2.document_year(row), 2025)
+
+
+class ConfidentialScopeTests(unittest.TestCase):
+    """A machine footer reading Confidential is boilerplate here, not a restriction.
+
+    Most vendor decks in this corpus carry one.  Gating on the word would take
+    most of the library out of the fact layer and buy nothing.  The flag is for
+    an explicit restriction naming a recipient, and only a person sets it.
+    """
+
+    def test_nothing_is_flagged_automatically(self):
+        self.assertEqual(L2.restricted(L1_ROW), [])
+
+    def test_the_wording_says_what_the_flag_is_for(self):
+        text = L2.RESTRICTIONS['confidential']
+        self.assertIn('限定收件方', text)
+        self.assertIn('不是泛用的机密页脚', text)
 
 if __name__ == '__main__':
     unittest.main()
