@@ -12,6 +12,7 @@ fact layer is a fact.
   pack   [--sha S]      write a reading packet for one document
   record --facts F      validate against the contract and append
   attribute --sha S     put back a publisher L1 could not see in a preview
+  flag --sha S          keep a document out of the fact layer, with the reason
   status                progress
 
 The packet carries three things, because a reader needs all three to produce a
@@ -130,6 +131,29 @@ def self_authored(row: dict) -> bool:
     return str(row.get('rel') or '').startswith(SELF_AUTHORED_PREFIXES)
 
 
+# Two reasons a document stays out of the fact layer whatever it scored.
+# Neither is a judgement about quality: both documents below scored 8 or
+# better precisely because they carry real first-hand numbers.
+RESTRICTIONS = {
+    'confidential': '文件自称机密或限制分发——把它的数字转写进事实层，'
+                    '等于替它转发一遍，而事实层是要拿出去引用的',
+    'pii': '含个人信息（姓名、电话、邮箱、职级）或内网地址，'
+           '这些不该出现在任何被引用的产物里',
+}
+
+
+def restricted(row: dict) -> list[str]:
+    """Why this document must not reach the fact layer, if it must not.
+
+    The gate exists because score and admissibility are different questions.
+    A quarterly that says "Confidential / Not to be distributed" on its cover
+    is exactly the kind of first-hand source L1 scores 8, and scoring it 8 is
+    correct - it is a real document and the library should know it is there.
+    What it must not do is flow through L2 into facts that get quoted.
+    """
+    return [name for name in RESTRICTIONS if row.get(name)]
+
+
 def unattributed(row: dict) -> list[str]:
     """Which identifying fields L1 left as 未知, once, in one place.
 
@@ -140,10 +164,14 @@ def unattributed(row: dict) -> list[str]:
     graded as first-hand.  L2 reads the whole document, so L2 is where this
     gets fixed.
     """
+    missing = [field for field in ('org', 'year')
+               if str(row.get(field) or UNKNOWN).strip() in ('', UNKNOWN)]
+    # Saying the publisher cannot be found silences the publisher ask, not the
+    # year one: they are looked for in different places and found separately.
+    searched = set(row.get('unrecoverable') or ())
     if row.get('org_unrecoverable'):
-        return []          # already looked for it and said so; stop asking
-    return [field for field in ('org', 'year')
-            if str(row.get(field) or UNKNOWN).strip() in ('', UNKNOWN)]
+        searched.add('org')
+    return [field for field in missing if field not in searched]
 
 
 def gap_label(row: dict) -> str:
@@ -175,7 +203,8 @@ def eligible(min_score=MIN_SCORE, include_read=False) -> list[dict]:
               if (r.get('score') or 0) >= min_score
               and r.get('status') == 'ok'
               and (include_read or r['sha256'] not in done)
-              and not self_authored(r)]
+              and not self_authored(r)
+              and not restricted(r)]
     # Least-covered module first, then highest score.  Fifteen modules each owe
     # answers; a fact layer deep in M10 and empty elsewhere closes nothing
     # elsewhere, so breadth comes before one more document from a rich module.
@@ -610,10 +639,15 @@ def cmd_attribute(a):
     was = {'org': row.get('org'), 'year': row.get('year'), 'proposed_name': row.get('proposed_name')}
     if a.org:
         row['org'] = a.org
-    else:
-        row['org_unrecoverable'] = True
     if a.year:
         row['year'] = a.year
+    if a.unrecoverable:
+        # Everything still unknown after reading the whole document was looked
+        # for and is not there.  Declaring it per field rather than as one flag
+        # matters: 忠县's workbook names 中国移动 on its cover and no year
+        # anywhere, so its publisher is known and its year is genuinely absent.
+        row['unrecoverable'] = sorted(set(row.get('unrecoverable') or ())
+                                      | set(unattributed(row)))
     if a.title:
         row['title'] = a.title
         row['keep_original_name'] = False
@@ -623,7 +657,7 @@ def cmd_attribute(a):
     with L1.RESULTS.open('a', encoding='utf-8') as fh:
         fh.write(json.dumps(row, ensure_ascii=False) + '\n')
     print(json.dumps({'sha256': row['sha256'], 'org': row.get('org'), 'year': row.get('year'),
-                      'org_unrecoverable': bool(row.get('org_unrecoverable')),
+                      'unrecoverable': row.get('unrecoverable') or [],
                       'was': was['proposed_name'], 'now': row['proposed_name'],
                       'renamed_by': '改名不在这一步；跑 m4_triage_apply.py restage plan 复核后再 apply'
                       if row['proposed_name'] != was['proposed_name'] else '文件名不变'},
@@ -636,6 +670,39 @@ def matches(row: dict, needle: str | None) -> bool:
     hay = '%s %s %s' % (row.get('proposed_name') or '', row.get('rel') or '',
                         row.get('title') or '')
     return needle.lower() in hay.lower()
+
+
+def cmd_flag(a):
+    """Mark a document as one the fact layer must not draw from.
+
+    Appended as a superseding verdict, like every other correction here: the
+    score stays, the file stays, the name stays.  Only L2 admission changes.
+    """
+    matches = [r for sha, r in all_results().items() if sha.startswith(a.sha)]
+    if len(matches) != 1:
+        sys.exit('sha 前缀 %r 匹配到 %d 条判定，要正好一条' % (a.sha, len(matches)))
+    names = [n for n in RESTRICTIONS if getattr(a, n)]
+    if not names:
+        sys.exit('要给出至少一个：%s' % ' / '.join('--' + n for n in RESTRICTIONS))
+    row = dict(matches[0])
+    was = restricted(row)
+    for name in names:
+        if a.clear:
+            row.pop(name, None)
+        else:
+            row[name] = True
+    row.setdefault('flagged', []).append(
+        {'at': now(), 'fields': names, 'clear': bool(a.clear), 'evidence': a.evidence})
+
+    with L1.RESULTS.open('a', encoding='utf-8') as fh:
+        fh.write(json.dumps(row, ensure_ascii=False) + '\n')
+    now_set = restricted(row)
+    print(json.dumps({'sha256': row['sha256'], 'score': row.get('score'),
+                      'was': was, 'now': now_set,
+                      'reasons': [RESTRICTIONS[n] for n in now_set],
+                      'effect': '已排除在 L2 精读队列之外；文件与分数都不变'
+                      if now_set else '限制已解除，重新进入 L2 队列'},
+                     ensure_ascii=False))
 
 
 def cmd_queue(a):
@@ -651,6 +718,10 @@ def cmd_queue(a):
                       'already_read': len(read_documents()),
                       'self_authored_excluded': excluded,
                       'unattributed': sum(1 for r in pool if unattributed(r)),
+                      'restricted_excluded': sum(1 for r in all_results().values()
+                                                 if (r.get('score') or 0) >= a.min_score
+                                                 and r.get('status') == 'ok'
+                                                 and restricted(r)),
                       'mb': round(sum(r.get('size', 0) for r in pool) / 1e6)},
                      ensure_ascii=False))
     for module, n in by_module.most_common():
@@ -716,10 +787,16 @@ def main():
     t.add_argument('--year', help='四位数字')
     t.add_argument('--title', help='顺带修正标题')
     t.add_argument('--evidence', required=True, help='在哪一页哪一处看到的——出处得有出处')
+    fl = sub.add_parser('flag', help='把一份文件挡在事实层之外，并记下理由')
+    fl.add_argument('--sha', required=True, help='文件 sha256，前缀即可')
+    fl.add_argument('--confidential', action='store_true', help='文件自称机密或限制分发')
+    fl.add_argument('--pii', action='store_true', help='含个人信息或内网地址')
+    fl.add_argument('--clear', action='store_true', help='解除该标记')
+    fl.add_argument('--evidence', required=True, help='在哪一页哪一处看到的')
     s = sub.add_parser('status')
     a = ap.parse_args()
     {'queue': cmd_queue, 'pack': cmd_pack, 'record': cmd_record,
-     'attribute': cmd_attribute, 'status': cmd_status}[a.cmd](a)
+     'attribute': cmd_attribute, 'flag': cmd_flag, 'status': cmd_status}[a.cmd](a)
 
 
 if __name__ == '__main__':
