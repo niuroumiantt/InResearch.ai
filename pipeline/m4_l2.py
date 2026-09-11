@@ -44,6 +44,10 @@ PACKET_DIR = m4_paths.data() / 'l2'
 
 MIN_SCORE = 8
 CHUNK_CHARS = 15000
+# L1's budget is a preview's; L2's is the document's.  A workbook cut at
+# twenty thousand characters is read as though its last surviving row were its
+# last row, and the facts drawn from it would be silently partial.
+FULL_TEXT_CHARS = 600000
 GRADES = ('S1', 'S2', 'S3', 'S4', 'S5')
 DEPTHS = ('精读', '据实生成')          # 半自动 and 目录级 never reach the fact layer
 BOUNDS = ('point', 'upper', 'lower')
@@ -207,9 +211,9 @@ def full_text(path: Path, suffix: str) -> tuple[str, dict]:
         if suffix == '.pdf':
             return pdf_text(path)
         if suffix in m4_office_text.SUPPORTED:
-            return m4_office_text.extract(path)
+            return m4_office_text.extract(path, FULL_TEXT_CHARS)
         if suffix in {'.docx', '.pptx'}:
-            return m4_office_text.ooxml_text(path)
+            return m4_office_text.ooxml_text(path, FULL_TEXT_CHARS)
         if suffix in {'.txt', '.md', '.csv', '.json', '.xml', '.html', '.htm'}:
             raw = path.read_bytes()
             for enc in ('utf-8', 'gb18030', 'utf-16'):
@@ -297,7 +301,7 @@ PACKET_HEAD = """# L2 精读包
 sha256：{sha}
 模块：{module}    L1 分数：{score}    大小：{kb} KB{pages}
 
-正文见同目录 text.md（{n_chunks} 段，共 {chars} 字）。
+正文见同目录 text.md（{n_chunks} 段，共 {chars} 字）。{truncated}
 
 {attribution}## 你要产出什么
 
@@ -388,6 +392,9 @@ def cmd_pack(a):
         score=row.get('score'), kb=round(row.get('size', 0) / 1024),
         pages='    页数：%s' % meta['pages'] if meta.get('pages') else '',
         n_chunks=len(pieces), chars=len(text),
+        truncated='\n\n**注意：正文被字数上限截断了，这不是全文。**'
+                  '不要把最后一行当作表格的最后一行，也不要据此说「全表只有这些」。'
+                  if meta.get('truncated') else '',
         metrics=metric_menu(module, metrics),
         questions=question_menu(module, questions)), encoding='utf-8')
     print(json.dumps({'packed': 1, 'sha256': row['sha256'], 'module': module,

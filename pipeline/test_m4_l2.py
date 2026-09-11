@@ -17,6 +17,7 @@ import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import m4_l2 as L2
+import m4_office_text
 
 METRICS = {
     'dc_construction_cost_per_sqm': {
@@ -446,12 +447,13 @@ class AttributionTests(unittest.TestCase):
         report = self.attribute(org='IDC', year='2024')
         self.assertIn('restage', report['renamed_by'])
 
-    def pack(self, row):
+    def pack(self, row, meta=None):
         """cmd_pack with the filesystem and the model stubbed out."""
         saved = (L2.eligible, L2.full_text, L2.L1.readable_path,
                  L2.load_metrics, L2.load_questions, L2.load_facts, L2.PACKET_DIR)
         L2.eligible = lambda min_score=8, include_read=False: [row]
-        L2.full_text = lambda path, suffix: ('第一页正文\n\n[p.2] 第二页', {'pages': 2})
+        L2.full_text = lambda path, suffix: ('第一页正文\n\n[p.2] 第二页',
+                                            meta if meta is not None else {'pages': 2})
         L2.L1.readable_path = lambda r: (Path('/nonexistent'), False)
         L2.load_metrics = lambda: METRICS
         L2.load_questions = lambda: {}
@@ -475,6 +477,20 @@ class AttributionTests(unittest.TestCase):
         self.assertEqual(report['unattributed'], ['org', 'year'])
         self.assertIn('这份文件的出处，L1 没认出来', brief)
         self.assertIn('attribute --sha ' + L1_ROW['sha256'][:16], brief)
+
+    def test_a_truncated_document_says_so_in_its_own_packet(self):
+        """A reader who thinks they saw the whole sheet reports the last row as the last."""
+        _, brief = self.pack(L1_ROW, meta={'truncated': True})
+        self.assertIn('不是全文', brief)
+        self.assertIn('不要把最后一行当作表格的最后一行', brief)
+
+    def test_a_whole_document_carries_no_such_warning(self):
+        _, brief = self.pack(L1_ROW, meta={'pages': 2})
+        self.assertNotIn('不是全文', brief)
+
+    def test_l2_asks_for_far_more_than_a_preview(self):
+        """L1 judges from a preview; L2 records numbers and needs the document."""
+        self.assertGreater(L2.FULL_TEXT_CHARS, 20 * m4_office_text.MAX_CHARS)
 
     def test_an_attributed_document_is_not_asked_again(self):
         report, brief = self.pack({**L1_ROW, 'org': 'IDC', 'year': '2024'})
