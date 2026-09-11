@@ -517,5 +517,79 @@ class RepeatedPackTests(unittest.TestCase):
         self.assertEqual(second['与上一批重复'], 2)
         self.assertNotIn('note', second)
 
+
+class PartialRecordTests(unittest.TestCase):
+    """A verdicts file still being written reads exactly like a finished one.
+
+    The judging session appends as it goes.  Recording against it mid-write
+    printed {"recorded": 28, "rejected": 0} - nothing wrong with any row, and
+    no sign that 172 of the batch were simply not in the file yet.
+    """
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix='m4-partial-')
+        base = Path(self.temp.name)
+        self.results = base / 'l1_results.jsonl'
+        self.results.write_text('', encoding='utf-8')
+        self.batch_dir = base / 'batches'
+        self.batch_dir.mkdir()
+        self._saved = (L1.RESULTS, PK.BATCH_DIR, L1.load_inventory,
+                       L1.finalize, L1.proposed_name)
+        L1.RESULTS = self.results
+        PK.BATCH_DIR = self.batch_dir
+        # Ids are sha256[:12], so the hashes must differ in their first twelve.
+        self.shas = ['%03d' % i + 'b' * 61 for i in range(5)]
+        L1.load_inventory = lambda: [{'sha256': sha, 'rel': 'f%d.xlsx' % i,
+                                      'suffix': '.xlsx', 'size': 10,
+                                      'paths': ['f%d.xlsx' % i], 'copies': 1}
+                                     for i, sha in enumerate(self.shas)]
+        L1.finalize = lambda rec, parsed, judge, err: {**rec, **parsed}
+        L1.proposed_name = lambda row: 'n.xlsx'
+        (self.batch_dir / 'batch.json').write_text(json.dumps(
+            [{'id': sha[:12], 'path': 'f%d.xlsx' % i, 'level': 'p',
+              'preview': '表头', 'meta': {'cells': 9}}
+             for i, sha in enumerate(self.shas)]), encoding='utf-8')
+
+    def tearDown(self):
+        (L1.RESULTS, PK.BATCH_DIR, L1.load_inventory,
+         L1.finalize, L1.proposed_name) = self._saved
+        self.temp.cleanup()
+
+    def record(self, count):
+        path = Path(self.temp.name) / 'verdicts.txt'
+        path.write_text('\n'.join(
+            '%s|6|M10|dataset|2016|某院|表 %d|1|h|理由' % (self.shas[i][:12], i)
+            for i in range(count)), encoding='utf-8')
+        out = io.StringIO()
+        with redirect_stdout(out):
+            PK.cmd_record(types.SimpleNamespace(verdicts=str(path), batch=None,
+                                                digests=False))
+        return json.loads(out.getvalue().splitlines()[0])
+
+    def test_a_partly_written_file_says_how_much_is_missing(self):
+        report = self.record(2)
+        self.assertEqual((report['recorded'], report['rejected']), (2, 0))
+        self.assertEqual(report['batch_size'], 5)
+        self.assertEqual(report['未判的'], 3)
+        self.assertIn('record', report['note'])
+
+    def test_a_complete_batch_carries_no_warning(self):
+        report = self.record(5)
+        self.assertEqual(report['recorded'], 5)
+        self.assertNotIn('未判的', report)
+        self.assertNotIn('note', report)
+
+    def test_recording_the_same_file_again_is_safe(self):
+        """The fix for a partial record is to re-run it, so it must be idempotent."""
+        self.record(2)
+        report = self.record(5)
+        self.assertEqual(report['recorded'], 5)
+        rows = [json.loads(l) for l in self.results.read_text(encoding='utf-8').splitlines()]
+        self.assertEqual(len(rows), 7)              # 2 superseded + 5 current
+        newest = {}
+        for r in rows:
+            newest[r['sha256']] = r
+        self.assertEqual(len(newest), 5)
+
 if __name__ == '__main__':
     unittest.main()
