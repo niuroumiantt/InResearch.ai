@@ -5,13 +5,13 @@ No API key and no network: the preview extraction runs locally, the judgement is
 made by the Claude Code session reading the packed batch, and `record` writes
 those verdicts back into the same l1_results.jsonl the API path would produce.
 
-  pack   --limit N [--workers N] [--out FILE]   write the next N unscored files
+  pack   --limit N [--workers N] [--cohort C]   write the next N files to judge
   record --verdicts FILE          append verdicts to l1_results.jsonl
   status                          progress by category and score
   versions [--min-score N]        report same-report-different-date groups
 """
 from __future__ import annotations
-import argparse, json, re, sys
+import argparse, json, re, sys, time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
@@ -30,6 +30,10 @@ MAX_WORKERS = 16
 # Word/PowerPoint field codes and table-of-contents scaffolding carry no meaning
 # but eat most of a short preview, so they are stripped before truncation.
 NOISE = re.compile(r'(HYPERLINK|PAGEREF|TOC)\s+\\?[A-Za-z]?[^ ]*|_Toc\d+|style\.visibility|ppt_[xy]|\\[hzou]\b|EMBED [A-Za-z.0-9]+')
+
+
+def now() -> str:
+    return time.strftime('%Y-%m-%dT%H:%M:%S%z')
 
 
 def clean_preview(text: str) -> str:
@@ -72,6 +76,34 @@ def blind_scored() -> set:
             and not opened_and_empty(r)}
 
 
+# The spreadsheet half of TEXT_SUFFIXES.  A .ppt is an Office file too but its
+# reader never lost anything, so it does not belong in this cohort.
+SPREADSHEETS = {'.xlsx', '.xlsm', '.xltx', '.xls', '.et'}
+
+
+def judged_without_cells() -> set:
+    """Workbooks whose verdict was made before a cell could be read.
+
+    Both spreadsheet readers returned labels only - sheet names and the string
+    table, no values, no rows, no columns - so every score on a workbook came
+    from its headers.  A stored meta carrying no `cells` count is exactly such
+    a verdict, which makes the cohort self-describing: nothing needs to
+    remember when the extractor changed.
+    """
+    return {sha for sha, r in last_results().items()
+            if r.get('suffix') in SPREADSHEETS
+            and 'cells' not in (r.get('meta') or {})}
+
+
+def nothing_new(meta: dict) -> bool:
+    """Re-read cleanly and still holds no cell: this preview cannot change.
+
+    A chart-only workbook is the honest case.  Distinguishing it from a failed
+    read matters, because a failure is worth retrying and this is not.
+    """
+    return meta.get('cells') == 0 and not meta.get('extract_error')
+
+
 def opened_and_empty(r: dict) -> bool:
     """True when the extractor really ran on this file and found no text.
 
@@ -91,13 +123,21 @@ def opened_and_empty(r: dict) -> bool:
     return not meta.get('extract_error')
 
 
-def pending(redo=False):
-    if redo:
-        wanted = blind_scored()
-        items = [i for i in L1.load_inventory() if i['sha256'] in wanted]
-    else:
+COHORTS = {
+    'new': None,                       # never judged
+    'blind': blind_scored,             # judged from the filename alone
+    'cells': judged_without_cells,     # judged before the reader saw a value
+}
+
+
+def pending(cohort='new'):
+    select = COHORTS[cohort]
+    if select is None:
         done = L1.done_keys()
         items = [i for i in L1.load_inventory() if i['sha256'] not in done]
+    else:
+        wanted = select()
+        items = [i for i in L1.load_inventory() if i['sha256'] in wanted]
     return sorted(items, key=lambda i: priority(i['rel']))
 
 
@@ -121,9 +161,11 @@ def cmd_pack(a):
     if not isinstance(workers, int) or not 1 <= workers <= MAX_WORKERS:
         raise SystemExit('workers must be 1..%d' % MAX_WORKERS)
     BATCH_DIR.mkdir(parents=True, exist_ok=True)
-    out = []; l0 = 0; failed = []
-    redo = getattr(a, 'redo', False)
-    items = pending(redo)
+    out = []; l0 = 0; failed = []; unchanged = 0
+    cohort = getattr(a, 'cohort', None) or ('blind' if getattr(a, 'redo', False) else 'new')
+    if cohort not in COHORTS:
+        raise SystemExit('cohort must be one of %s' % ' / '.join(COHORTS))
+    items = pending(cohort)
     position = 0
     with L1.RESULTS.open('a', encoding='utf-8') as f:
         while len(out) < a.limit and position < len(items):
@@ -138,6 +180,23 @@ def cmd_pack(a):
                 if not rec['needs_model']:
                     o = L1.finalize(rec, None, None, None); o['proposed_name'] = L1.proposed_name(o)
                     f.write(json.dumps(o, ensure_ascii=False) + '\n'); l0 += 1; continue
+                if cohort == 'cells' and nothing_new(rec['meta']):
+                    # Re-read and there is still nothing to see.  Spending a
+                    # judgement here buys nothing, but leaving the row alone
+                    # leaves it at the head of the cohort for every future
+                    # pack - the queue would never drain.  So carry the old
+                    # verdict forward with the fresh meta attached, which both
+                    # records that the re-read happened and takes the file out
+                    # of the cohort by its own definition.
+                    prior = last_results().get(rec['sha256'])
+                    if prior:
+                        row = {**prior, 'meta': rec['meta'],
+                               'rechecked': {'at': now(), 'cohort': cohort,
+                                             'verdict': 'unchanged',
+                                             'reason': '重新抽取后仍无单元格，预览不会变'}}
+                        f.write(json.dumps(row, ensure_ascii=False) + '\n')
+                        unchanged += 1
+                        continue
                 budget = OFFICE_PREVIEW_CHARS if rec['suffix'] in m4_office_text.SUPPORTED else PREVIEW_CHARS
                 text = clean_preview(rec['preview'])[:budget]
                 out.append({'id': rec['sha256'][:12], 'path': rec['rel'], 'suffix': rec['suffix'],
@@ -153,11 +212,12 @@ def cmd_pack(a):
     path.write_text('\n'.join(lines), encoding='utf-8')
     (BATCH_DIR / 'batch.json').write_text(json.dumps(out, ensure_ascii=False), encoding='utf-8')
     print(json.dumps({'packed': len(out), 'l0_auto_written': l0, 'workers': workers,
+                      'cohort': cohort, 'unchanged_carried_forward': unchanged,
                       'preview_failed': len(failed), 'file': str(path),
                       # recomputed with the same selector: asking the plain
                       # queue how much redo work is left reports every scored
                       # file as done and lands on a negative remainder
-                      'remaining_after': len(pending(redo)) - len(out)}, ensure_ascii=False))
+                      'remaining_after': len(pending(cohort)) - len(out)}, ensure_ascii=False))
     for problem in failed[:5]:
         print(json.dumps(problem, ensure_ascii=False))
 
@@ -445,7 +505,13 @@ def cmd_status(a):
                       '需抽取打分': need, '自动归类': auto, '已抽取': total,
                       '抽取速率_每分钟': round(rate, 1), '速率口径': basis,
                       '预计剩余小时': round(need / rate / 60, 1) if rate else None,
-                      '被覆盖的旧判定行': superseded}, ensure_ascii=False))
+                      '被覆盖的旧判定行': superseded,
+                      # Two cohorts that are not "unscored" but are not done
+                      # either.  Without a number here the only way to learn
+                      # how much re-judging is owed is to run a pack.
+                      '待重判_只看过文件名': len(blind_scored()),
+                      '待重判_读不到单元格时判的表格': len(judged_without_cells())},
+                     ensure_ascii=False))
     for k, v in cat.most_common(10): print(f'  {v:7d}  {k}')
     if sc: print('分数分布: ' + json.dumps({str(k): sc[k] for k in sorted(sc, reverse=True)}))
 
@@ -454,7 +520,9 @@ def main():
     ap = argparse.ArgumentParser(); s = ap.add_subparsers(dest='cmd', required=True)
     p = s.add_parser('pack'); p.add_argument('--limit', type=int, default=40); p.add_argument('--out')
     p.add_argument('--redo', action='store_true',
-                   help='re-queue files scored from their filename alone that can now be opened')
+                   help='等同 --cohort blind：重排只看文件名判过、现在能打开的文件')
+    p.add_argument('--cohort', choices=sorted(COHORTS),
+                   help='new=未判过 / blind=只看文件名判过的 / cells=在读不到单元格时判过的表格')
     p.add_argument('--workers', type=int, default=4,
                    help='preview extractions in parallel (1..%d); local CPU work, no model' % MAX_WORKERS)
     r = s.add_parser('record'); r.add_argument('--verdicts', required=True); r.add_argument('--batch'); r.add_argument('--digests', action='store_true')

@@ -255,25 +255,38 @@ class PackRemainingTests(unittest.TestCase):
          L1.finalize, L1.proposed_name) = self._saved
         self.temp.cleanup()
 
-    def report(self, limit, redo):
+    def report(self, limit, cohort=None, redo=False):
         out = io.StringIO()
         with redirect_stdout(out):
-            PK.cmd_pack(types.SimpleNamespace(limit=limit, workers=2, out=None, redo=redo))
+            PK.cmd_pack(types.SimpleNamespace(limit=limit, workers=2, out=None,
+                                              redo=redo, cohort=cohort))
         return json.loads(out.getvalue().splitlines()[0])
 
     def test_redo_remaining_counts_the_redo_queue(self):
         """Every redo file is already scored, so the plain queue reports zero."""
         redo_items = [{"sha256": "%064x" % i, "rel": "f%d.xlsx" % i} for i in range(10)]
-        PK.pending = lambda redo=False: list(redo_items) if redo else []
-        report = self.report(limit=4, redo=True)
+        PK.pending = lambda cohort='new': list(redo_items) if cohort == 'blind' else []
+        report = self.report(limit=4, cohort='blind')
         self.assertEqual(report["packed"], 4)
         self.assertEqual(report["remaining_after"], 6)
 
     def test_the_plain_queue_still_reports_its_own_remainder(self):
         items = [{"sha256": "%064x" % i, "rel": "f%d.xlsx" % i} for i in range(7)]
-        PK.pending = lambda redo=False: [] if redo else list(items)
-        report = self.report(limit=3, redo=False)
+        PK.pending = lambda cohort='new': list(items) if cohort == 'new' else []
+        report = self.report(limit=3)
         self.assertEqual(report["remaining_after"], 4)
+
+    def test_the_old_redo_flag_still_means_the_blind_cohort(self):
+        """--redo predates --cohort and is still what the runbooks say."""
+        items = [{"sha256": "%064x" % i, "rel": "f%d.xlsx" % i} for i in range(5)]
+        PK.pending = lambda cohort='new': list(items) if cohort == 'blind' else []
+        report = self.report(limit=2, redo=True)
+        self.assertEqual((report["cohort"], report["packed"]), ('blind', 2))
+
+    def test_an_unknown_cohort_is_refused_rather_than_silently_emptied(self):
+        PK.pending = lambda cohort='new': []
+        with self.assertRaises(SystemExit):
+            self.report(limit=1, cohort='typo')
 
 
 
@@ -343,6 +356,106 @@ class StatusCountsTests(unittest.TestCase):
         _, scores, _ = self.status()
         self.assertEqual(scores, {"7": 1})
 
+
+
+class CellsCohortTests(unittest.TestCase):
+    """Workbooks judged while the reader could not see a single value.
+
+    Both spreadsheet readers returned labels only until the extractor was
+    fixed, so every score on a workbook came from its headers.  The cohort is
+    defined by the evidence rather than by a date: a stored meta with no
+    `cells` count is a verdict made before a cell could be read.
+    """
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix='m4-cells-')
+        self.results = Path(self.temp.name) / 'l1_results.jsonl'
+        self._saved = (L1.RESULTS, PK.BATCH_DIR, PK.pending, L1.prepare,
+                       L1.finalize, L1.proposed_name)
+        L1.RESULTS = self.results
+        PK.BATCH_DIR = Path(self.temp.name) / 'batches'
+
+    def tearDown(self):
+        (L1.RESULTS, PK.BATCH_DIR, PK.pending, L1.prepare,
+         L1.finalize, L1.proposed_name) = self._saved
+        self.temp.cleanup()
+
+    def write(self, rows):
+        self.results.write_text(
+            '\n'.join(json.dumps(r, ensure_ascii=False) for r in rows) + '\n',
+            encoding='utf-8')
+
+    def row(self, sha, suffix='.xlsx', meta=None, **over):
+        return {'sha256': sha, 'rel': 'a/%s%s' % (sha[:6], suffix), 'suffix': suffix,
+                'score': 6, 'status': 'ok', 'meta': {'sheets': 2, 'shared_strings': 40}
+                if meta is None else meta, **over}
+
+    def test_a_workbook_judged_before_the_fix_is_in_the_cohort(self):
+        self.write([self.row('a' * 64)])
+        self.assertEqual(PK.judged_without_cells(), {'a' * 64})
+
+    def test_a_workbook_judged_after_the_fix_is_not(self):
+        self.write([self.row('b' * 64, meta={'sheets': 1, 'cells': 0})])
+        self.assertEqual(PK.judged_without_cells(), set())
+
+    def test_documents_that_never_lost_anything_are_left_alone(self):
+        """A .pdf and a .ppt were always read whole; only spreadsheets regressed."""
+        self.write([self.row('c' * 64, suffix='.pdf'),
+                    self.row('d' * 64, suffix='.ppt'),
+                    self.row('e' * 64, suffix='.docx')])
+        self.assertEqual(PK.judged_without_cells(), set())
+
+    def test_the_newest_row_decides(self):
+        """record appends; a file already re-judged must not come back."""
+        self.write([self.row('f' * 64),
+                    self.row('f' * 64, meta={'sheets': 1, 'cells': 12})])
+        self.assertEqual(PK.judged_without_cells(), set())
+
+    # -- the queue has to drain -------------------------------------------
+
+    def pack(self, meta, limit=5):
+        sha = 'a' * 64
+        self.write([self.row(sha, score=6, org='某院')])
+        L1.prepare = lambda item: {'sha256': sha, 'rel': 'a/x.xlsx', 'suffix': '.xlsx',
+                                   'size': 10, 'preview': '一些表头', 'meta': meta,
+                                   'level': 'p', 'needs_model': True}
+        PK.pending = lambda cohort='new': (
+            [{'sha256': sha, 'rel': 'a/x.xlsx'}] if cohort == 'cells' else [])
+        out = io.StringIO()
+        with redirect_stdout(out):
+            PK.cmd_pack(types.SimpleNamespace(limit=limit, workers=1, out=None,
+                                              redo=False, cohort='cells'))
+        return json.loads(out.getvalue().splitlines()[0])
+
+    def test_a_workbook_with_cells_is_packed_for_judging(self):
+        report = self.pack({'sheets': 1, 'cells': 124})
+        self.assertEqual(report['packed'], 1)
+        self.assertEqual(report['unchanged_carried_forward'], 0)
+
+    def test_a_workbook_that_still_has_no_cells_is_not_judged_again(self):
+        report = self.pack({'sheets': 1, 'cells': 0})
+        self.assertEqual(report['packed'], 0)
+        self.assertEqual(report['unchanged_carried_forward'], 1)
+
+    def test_and_it_leaves_the_cohort_so_the_queue_drains(self):
+        """Otherwise it sits at the head of every future pack, forever."""
+        self.pack({'sheets': 1, 'cells': 0})
+        self.assertEqual(PK.judged_without_cells(), set())
+
+    def test_the_carried_row_keeps_the_old_verdict_and_says_why(self):
+        self.pack({'sheets': 1, 'cells': 0})
+        rows = [json.loads(l) for l in self.results.read_text(encoding='utf-8').splitlines()]
+        self.assertEqual(len(rows), 2)
+        self.assertEqual(rows[1]['score'], 6)            # unchanged, not re-scored
+        self.assertEqual(rows[1]['org'], '某院')
+        self.assertEqual(rows[1]['rechecked']['verdict'], 'unchanged')
+        self.assertEqual(rows[1]['meta']['cells'], 0)
+
+    def test_a_failed_read_is_retried_rather_than_written_off(self):
+        """A stale path is transient; a chart-only workbook is not."""
+        report = self.pack({'extract_error': 'FileNotFoundError: ...'})
+        self.assertEqual(report['unchanged_carried_forward'], 0)
+        self.assertEqual(report['packed'], 1)
 
 if __name__ == '__main__':
     unittest.main()
