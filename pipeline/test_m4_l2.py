@@ -490,7 +490,10 @@ class QueueOutputTests(unittest.TestCase):
     truncated, so the hash inside it may not even be there.
     """
 
-    def queue(self, rows):
+    grep = None
+
+    def queue(self, rows, grep=None):
+        self.grep = grep
         saved = (L2.eligible, L2.load_metrics, L2.load_facts,
                  L2.all_results, L2.read_documents)
         L2.eligible = lambda min_score=8: rows
@@ -501,7 +504,8 @@ class QueueOutputTests(unittest.TestCase):
         try:
             out = io.StringIO()
             with redirect_stdout(out):
-                L2.cmd_queue(type('A', (), {'min_score': 8, 'show': 5}))
+                L2.cmd_queue(type('A', (), {'min_score': 8, 'show': 5,
+                                            'grep': self.grep}))
         finally:
             (L2.eligible, L2.load_metrics, L2.load_facts,
              L2.all_results, L2.read_documents) = saved
@@ -515,6 +519,26 @@ class QueueOutputTests(unittest.TestCase):
         self.assertIn('出处未知', self.queue([L1_ROW]))
         self.assertNotIn('出处未知',
                          self.queue([{**L1_ROW, 'org': 'IDC', 'year': '2024'}]))
+
+    def test_grep_finds_one_document_in_a_long_queue(self):
+        """The reading order is by coverage, so the row you want is anywhere."""
+        rows = [{**L1_ROW, 'sha256': '%064x' % i,
+                 'proposed_name': '09p_2022_某院_机房工程 %d.pdf' % i} for i in range(30)]
+        rows.append({**L1_ROW, 'sha256': 'f' * 64,
+                     'proposed_name': '09p_2022_某院_忠县通信机房 工艺对土建要求表.xlsx'})
+        text = self.queue(rows, grep='忠县')
+        self.assertIn('匹配「忠县」1 条（共 31 条待读）', text)
+        self.assertIn('f' * 16, text)
+        self.assertNotIn('机房工程 3.pdf', text)
+
+    def test_grep_matches_the_original_path_too(self):
+        row = {**L1_ROW, 'rel': '设计院图纸/忠县/要求表.xlsx', 'proposed_name': '09p_x.xlsx'}
+        self.assertIn(row['sha256'][:16], self.queue([row], grep='忠县'))
+
+    def test_without_grep_nothing_is_filtered_and_nothing_is_announced(self):
+        text = self.queue([L1_ROW])
+        self.assertNotIn('匹配', text)
+        self.assertIn(L1_ROW['sha256'][:16], text)
 
     def test_the_header_counts_the_gap(self):
         report = json.loads(self.queue([L1_ROW]).splitlines()[0])

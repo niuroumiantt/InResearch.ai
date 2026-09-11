@@ -590,6 +590,14 @@ def cmd_attribute(a):
                      ensure_ascii=False))
 
 
+def matches(row: dict, needle: str | None) -> bool:
+    if not needle:
+        return True
+    hay = '%s %s %s' % (row.get('proposed_name') or '', row.get('rel') or '',
+                        row.get('title') or '')
+    return needle.lower() in hay.lower()
+
+
 def cmd_queue(a):
     pool = eligible(a.min_score)
     by_module = Counter(r.get('category') for r in pool)
@@ -614,7 +622,15 @@ def cmd_queue(a):
     # The sha leads, because it is the argument the next command takes: pack
     # addresses a document by hash, and a queue that prints only names makes
     # you go hunting for the one thing you need to act on the row you just read.
-    for row in pool[:a.show]:
+    #
+    # And --grep, because the reading order is by module coverage: the document
+    # you mean to read next can sit two hundred rows down a list that is not
+    # sorted by anything you can guess.  Reading one named document should not
+    # require paging through the whole queue to find its hash.
+    shown = [r for r in pool if matches(r, a.grep)]
+    if a.grep:
+        print('  匹配「%s」%d 条（共 %d 条待读）' % (a.grep, len(shown), len(pool)))
+    for row in shown[:a.show]:
         module = row.get('category') or '?'
         print('  %s  %-5s 已有事实 %-3d %2s 分 %s %s' % (
             row['sha256'][:16], module, covered.get(module, 0), row.get('score'),
@@ -646,6 +662,7 @@ def main():
     sub = ap.add_subparsers(dest='cmd', required=True)
     q = sub.add_parser('queue'); q.add_argument('--min-score', type=int, default=MIN_SCORE)
     q.add_argument('--show', type=int, default=15)
+    q.add_argument('--grep', help='只列名字或路径里含这个词的')
     p = sub.add_parser('pack'); p.add_argument('--sha'); p.add_argument('--min-score', type=int, default=MIN_SCORE)
     r = sub.add_parser('record'); r.add_argument('--facts', required=True)
     r.add_argument('--doc', help='读完的文件 sha256，写进已读账本')
