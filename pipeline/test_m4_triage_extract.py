@@ -457,5 +457,65 @@ class CellsCohortTests(unittest.TestCase):
         self.assertEqual(report['unchanged_carried_forward'], 0)
         self.assertEqual(report['packed'], 1)
 
+
+class RepeatedPackTests(unittest.TestCase):
+    """Packing twice without recording rebuilds the same batch, silently.
+
+    A file leaves its cohort when `record` writes a verdict, not when `pack`
+    writes the batch.  Run four times in a row, pack printed four identical
+    lines - packed 200, remaining_after 560 - and nothing had advanced.
+    """
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix='m4-repeat-')
+        base = Path(self.temp.name)
+        self.results = base / 'l1_results.jsonl'
+        self.results.write_text('', encoding='utf-8')
+        self._saved = (L1.RESULTS, PK.BATCH_DIR, PK.pending, L1.prepare,
+                       L1.finalize, L1.proposed_name)
+        L1.RESULTS = self.results
+        PK.BATCH_DIR = base / 'batches'
+        L1.prepare = lambda item: {'sha256': item['sha256'], 'rel': item['rel'],
+                                   'suffix': '.xlsx', 'size': 10, 'preview': '表头',
+                                   'meta': {'cells': 9}, 'level': 'p', 'needs_model': True}
+        # The batch id is sha256[:12], so the hashes have to differ in their
+        # FIRST twelve characters.  '%064x' % i pads on the left: f0 through f3
+        # all carry the id '000000000000' and every overlap count comes out
+        # wrong.  Two earlier fixtures in this repo were bitten the same way.
+        self.items = [{'sha256': '%03d' % i + 'a' * 61, 'rel': 'f%d.xlsx' % i}
+                      for i in range(10)]
+        PK.pending = lambda cohort='new': list(self.items) if cohort == 'cells' else []
+
+    def tearDown(self):
+        (L1.RESULTS, PK.BATCH_DIR, PK.pending, L1.prepare,
+         L1.finalize, L1.proposed_name) = self._saved
+        self.temp.cleanup()
+
+    def pack(self, limit=4):
+        out = io.StringIO()
+        with redirect_stdout(out):
+            PK.cmd_pack(types.SimpleNamespace(limit=limit, workers=1, out=None,
+                                              redo=False, cohort='cells'))
+        return json.loads(out.getvalue().splitlines()[0])
+
+    def test_the_first_pack_says_nothing_about_repeats(self):
+        first = self.pack()
+        self.assertEqual(first['packed'], 4)
+        self.assertNotIn('与上一批重复', first)
+
+    def test_the_second_pack_says_it_is_the_same_batch(self):
+        self.pack()
+        second = self.pack()
+        self.assertEqual(second['与上一批重复'], 4)
+        self.assertIn('record', second['note'])
+
+    def test_a_partly_overlapping_batch_reports_the_overlap_without_the_note(self):
+        """Still worth showing, but it is not the stuck case."""
+        self.pack(limit=4)
+        self.items = self.items[2:]          # the first two got recorded
+        second = self.pack(limit=4)
+        self.assertEqual(second['与上一批重复'], 2)
+        self.assertNotIn('note', second)
+
 if __name__ == '__main__':
     unittest.main()
