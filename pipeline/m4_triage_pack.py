@@ -141,6 +141,19 @@ def pending(cohort='new'):
     return sorted(items, key=lambda i: priority(i['rel']))
 
 
+def overlap_with_previous(batch: list[dict]) -> int:
+    """How many of these files were already in the batch sitting on disk."""
+    previous = BATCH_DIR / 'batch.json'
+    if not previous.exists() or not batch:
+        return 0
+    try:
+        rows = json.loads(previous.read_text(encoding='utf-8'))
+    except (ValueError, OSError):
+        return 0
+    seen = {r.get('id') for r in rows}
+    return sum(1 for b in batch if b['id'] in seen)
+
+
 def prepared(item):
     """L1.prepare, but a file that cannot be previewed does not kill the batch."""
     try:
@@ -202,6 +215,11 @@ def cmd_pack(a):
                 out.append({'id': rec['sha256'][:12], 'path': rec['rel'], 'suffix': rec['suffix'],
                             'kb': round(rec['size'] / 1024), **({'pages': rec['meta']['pages']} if rec['meta'].get('pages') else {}),
                             'level': rec['level'], 'preview': text, 'meta': rec['meta']})
+    # A file leaves its cohort when `record` writes a verdict, not when pack
+    # writes the batch.  So packing twice without recording in between builds
+    # the same batch again, and every counter says the same thing it said the
+    # first time - four identical lines and no way to tell nothing advanced.
+    repeat = overlap_with_previous(out)
     path = Path(a.out) if a.out else BATCH_DIR / 'batch.txt'
     # One pipe-delimited line per file.  JSON key names cost more than the data
     # they label at this volume, and the batch is read once by one reader.
@@ -213,6 +231,11 @@ def cmd_pack(a):
     (BATCH_DIR / 'batch.json').write_text(json.dumps(out, ensure_ascii=False), encoding='utf-8')
     print(json.dumps({'packed': len(out), 'l0_auto_written': l0, 'workers': workers,
                       'cohort': cohort, 'unchanged_carried_forward': unchanged,
+                      **({'与上一批重复': repeat,
+                          'note': '上一批还没 record，这次打包的是同一批文件。'
+                                  '先判 batch.txt 再 record --verdicts，队列才会往前走'}
+                         if repeat and repeat == len(out) else
+                         {'与上一批重复': repeat} if repeat else {}),
                       'preview_failed': len(failed), 'file': str(path),
                       # recomputed with the same selector: asking the plain
                       # queue how much redo work is left reports every scored
