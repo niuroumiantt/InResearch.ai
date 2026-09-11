@@ -430,5 +430,224 @@ class PermanentFailureTests(unittest.TestCase):
         self.assertEqual(meta['extract_error'], '某种原因')
 
 
+
+# --------------------------------------------------------------------------
+# cells
+# --------------------------------------------------------------------------
+
+def bof(sheet=True):
+    return biff(O.BOF, struct.pack('<HH', 0x0600, 0x0010 if sheet else 0x0005))
+
+
+def number(row, col, value, xf=0):
+    return biff(O.NUMBER_REC, struct.pack('<HHH', row, col, xf) + struct.pack('<d', value))
+
+
+def rk(row, col, bits, xf=0):
+    return biff(O.RK_REC, struct.pack('<HHHI', row, col, xf, bits))
+
+
+def labelsst(row, col, index, xf=0):
+    return biff(O.LABELSST, struct.pack('<HHHI', row, col, xf, index))
+
+
+def xf_record(fmt_id):
+    return biff(O.XF_REC, struct.pack('<HH', 0, fmt_id) + b'\x00' * 16)
+
+
+def fmt_record(fmt_id, code):
+    return biff(O.FORMAT_REC, struct.pack('<H', fmt_id)
+                + struct.pack('<HB', len(code), 0x01) + code.encode('utf-16-le'))
+
+
+class NumberRenderingTests(unittest.TestCase):
+    def test_a_whole_number_loses_its_decimal_point(self):
+        self.assertEqual(O.number_text(4406.0, False), '4406')
+
+    def test_binary_noise_is_trimmed_but_the_value_is_not_rounded_away(self):
+        self.assertEqual(O.number_text(0.5800000000000001, False), '0.58')
+        self.assertEqual(O.number_text(3736.6, False), '3736.6')
+
+    def test_a_serial_under_the_phantom_leap_day_stays_a_number(self):
+        """Serial 60 is Excel's 1900-02-29, which never existed."""
+        self.assertIsNone(O.serial_to_iso(60))
+        self.assertEqual(O.number_text(60.0, True), '60')
+
+    def test_a_dated_serial_becomes_a_date(self):
+        self.assertEqual(O.number_text(45292.0, True), '2024-01-01')
+
+    def test_a_number_is_only_a_date_when_its_format_says_so(self):
+        self.assertEqual(O.number_text(45292.0, False), '45292')
+
+    def test_a_currency_format_with_a_quoted_suffix_is_not_a_date(self):
+        """0.00"元" contains no date code; the quoted text is not one either."""
+        self.assertFalse(O.is_date_format('0.00"元"', 176))
+        self.assertTrue(O.is_date_format('yyyy"年"m"月"', 177))
+
+    def test_builtin_date_ids_need_no_format_string(self):
+        self.assertTrue(O.is_date_format(None, 14))
+        self.assertFalse(O.is_date_format(None, 0))
+
+    def test_columns_past_z(self):
+        self.assertEqual([O.col_index('A1'), O.col_index('Z9'), O.col_index('AB3')],
+                         [0, 25, 27])
+
+
+class XlsxCellTests(unittest.TestCase):
+    """The regression that mattered: numbers, and where they sat."""
+
+    def make(self, sheet, shared=None, styles=None, sheets=('Sheet1',)):
+        tmp = tempfile.NamedTemporaryFile(suffix='.xlsx', delete=False)
+        wb = '<workbook>' + ''.join('<sheet name="%s"/>' % n for n in sheets) + '</workbook>'
+        with zipfile.ZipFile(tmp.name, 'w') as z:
+            z.writestr('xl/workbook.xml', wb)
+            if shared is not None:
+                z.writestr('xl/sharedStrings.xml', '<sst>%s</sst>' % ''.join(shared))
+            if styles is not None:
+                z.writestr('xl/styles.xml', styles)
+            for i, body in enumerate(sheet if isinstance(sheet, list) else [sheet]):
+                z.writestr('xl/worksheets/sheet%d.xml' % (i + 1), body)
+        return Path(tmp.name)
+
+    def read(self, **kw):
+        p = self.make(**kw)
+        try:
+            return O.extract(p)
+        finally:
+            p.unlink()
+
+    def test_a_number_reaches_the_text_at_all(self):
+        """Before this, every numeric cell in the corpus was silently dropped."""
+        text, meta = self.read(sheet='<worksheet><sheetData><row r="7">'
+                                     '<c r="A7" t="s"><v>0</v></c>'
+                                     '<c r="B7"><v>4406</v></c>'
+                                     '</row></sheetData></worksheet>',
+                               shared=['<si><t>楼面荷载</t></si>'])
+        self.assertIn('楼面荷载\t4406', text)
+        self.assertEqual(meta['cells'], 2)
+
+    def test_a_gap_is_kept_so_a_value_stays_under_its_header(self):
+        text, _ = self.read(sheet='<worksheet><sheetData><row r="3">'
+                                  '<c r="A3"><v>1</v></c><c r="D3"><v>2</v></c>'
+                                  '</row></sheetData></worksheet>')
+        self.assertIn('3\t1\t\t\t2', text)
+
+    def test_rich_text_does_not_shift_the_shared_string_index(self):
+        """Two <t> runs in one <si> are one string, not two."""
+        text, _ = self.read(
+            sheet='<worksheet><sheetData><row r="1">'
+                  '<c r="A1" t="s"><v>1</v></c></row></sheetData></worksheet>',
+            shared=['<si><r><t>机柜</t></r><r><t>功率</t></r></si>', '<si><t>第二条</t></si>'])
+        self.assertIn('第二条', text)
+        self.assertNotIn('机柜', text)
+
+    def test_a_dated_cell_is_rendered_as_a_date(self):
+        styles = ('<styleSheet><numFmts><numFmt numFmtId="176" formatCode="yyyy-mm-dd"/>'
+                  '</numFmts><cellXfs><xf numFmtId="0"/><xf numFmtId="176"/></cellXfs>'
+                  '</styleSheet>')
+        text, _ = self.read(sheet='<worksheet><sheetData><row r="1">'
+                                  '<c r="A1" s="1"><v>45292</v></c>'
+                                  '<c r="B1" s="0"><v>45292</v></c>'
+                                  '</row></sheetData></worksheet>', styles=styles)
+        self.assertIn('2024-01-01\t45292', text)
+
+    def test_formula_results_and_booleans_come_through(self):
+        text, _ = self.read(sheet='<worksheet><sheetData><row r="2">'
+                                  '<c r="A2"><f>SUM(B:B)</f><v>1234.5</v></c>'
+                                  '<c r="B2" t="str"><v>合计</v></c>'
+                                  '<c r="C2" t="b"><v>1</v></c>'
+                                  '</row></sheetData></worksheet>')
+        self.assertIn('1234.5\t合计\tTRUE', text)
+
+    def test_each_sheet_is_labelled(self):
+        text, _ = self.read(
+            sheet=['<worksheet><sheetData><row r="1"><c r="A1"><v>1</v></c></row></sheetData></worksheet>',
+                   '<worksheet><sheetData><row r="1"><c r="A1"><v>2</v></c></row></sheetData></worksheet>'],
+            sheets=('造价汇总', '分项明细'))
+        self.assertIn('== 工作表: 造价汇总 ==', text)
+        self.assertIn('== 工作表: 分项明细 ==', text)
+
+    def test_a_sheet_with_no_addressable_cells_still_yields_its_labels(self):
+        text, _ = self.read(sheet='<worksheet/>', shared=['<si><t>只有图表</t></si>'])
+        self.assertIn('只有图表', text)
+
+
+class XlsCellTests(unittest.TestCase):
+    def book(self, records):
+        return build_ole({'Workbook': b''.join(records)})
+
+    def test_a_number_record_reaches_the_text(self):
+        """Before this, every numeric cell in every .xls was silently dropped."""
+        text, meta = O.xls_text(self.book([
+            boundsheet('工艺要求'), bof(sheet=False), bof(), number(6, 1, 8.0)]))
+        self.assertIn('8', text)
+        self.assertEqual(meta['cells'], 1)
+
+    def test_a_label_and_its_number_land_side_by_side(self):
+        text, _ = O.xls_text(self.book([
+            boundsheet('工艺要求'), sst(['楼面荷载 kN/㎡']), bof(sheet=False), bof(),
+            labelsst(6, 0, 0), number(6, 1, 8.0)]))
+        self.assertIn('楼面荷载 kN/㎡\t8', text)
+
+    def test_rk_encodings_all_decode(self):
+        cases = {(100 << 2) | 0x02: '100',            # integer
+                 (12345 << 2) | 0x03: '123.45',       # integer, divided by 100
+                 struct.unpack('<I', struct.pack('<d', 2.5)[4:])[0] & 0xFFFFFFFC: '2.5'}
+        for bits, want in cases.items():
+            text, _ = O.xls_text(self.book([boundsheet('S'), bof(sheet=False),
+                                            bof(), rk(0, 0, bits)]))
+            self.assertIn(want, text, hex(bits))
+
+    def test_a_negative_rk_integer_keeps_its_sign(self):
+        bits = ((-37 & 0x3FFFFFFF) << 2) | 0x02
+        text, _ = O.xls_text(self.book([boundsheet('S'), bof(sheet=False),
+                                        bof(), rk(0, 0, bits)]))
+        self.assertIn('-37', text)
+
+    def test_a_mulrk_span_fills_consecutive_columns(self):
+        body = struct.pack('<HH', 4, 2)                       # row 4, first col 2
+        for value in (10, 20, 30):
+            body += struct.pack('<HI', 0, (value << 2) | 0x02)
+        body += struct.pack('<H', 4)                          # last col
+        text, meta = O.xls_text(self.book([boundsheet('S'), bof(sheet=False), bof(),
+                                           biff(O.MULRK_REC, body)]))
+        self.assertIn('10\t20\t30', text)
+        self.assertEqual(meta['cells'], 3)
+
+    def test_a_formula_keeps_its_cached_number(self):
+        payload = struct.pack('<HHH', 1, 1, 0) + struct.pack('<d', 79483818.9)
+        text, _ = O.xls_text(self.book([boundsheet('S'), bof(sheet=False), bof(),
+                                        biff(O.FORMULA_REC, payload)]))
+        self.assertIn('79483818.9', text)
+
+    def test_a_formula_with_a_string_result_takes_the_following_record(self):
+        payload = (struct.pack('<HHH', 1, 1, 0) + b'\x00' * 6 + b'\xff\xff')
+        follow = struct.pack('<HB', 3, 0x01) + '招标价'.encode('utf-16-le')
+        text, _ = O.xls_text(self.book([boundsheet('S'), bof(sheet=False), bof(),
+                                        biff(O.FORMULA_REC, payload),
+                                        biff(O.STRING_REC, follow)]))
+        self.assertIn('招标价', text)
+
+    def test_a_dated_cell_uses_its_format_record(self):
+        raw = self.book([boundsheet('S'), fmt_record(176, 'yyyy-mm-dd'),
+                         xf_record(0), xf_record(176),
+                         bof(sheet=False), bof(),
+                         number(0, 0, 45292.0, xf=1), number(0, 1, 45292.0, xf=0)])
+        text, _ = O.xls_text(raw)
+        self.assertIn('2024-01-01\t45292', text)
+
+    def test_cells_land_under_the_sheet_they_belong_to(self):
+        raw = self.book([boundsheet('第一张'), boundsheet('第二张'), bof(sheet=False),
+                         bof(), number(0, 0, 11.0),
+                         bof(), number(0, 0, 22.0)])
+        text, _ = O.xls_text(raw)
+        first, second = text.index('第一张 '), text.index('== 工作表: 第二张 ==')
+        self.assertLess(text.index('11'), second)
+        self.assertGreater(text.index('22'), second)
+
+    def test_a_workbook_with_only_a_string_table_still_yields_it(self):
+        text, _ = O.xls_text(self.book([boundsheet('S'), sst(['只有标签'])]))
+        self.assertIn('只有标签', text)
+
 if __name__ == '__main__':
     unittest.main()
