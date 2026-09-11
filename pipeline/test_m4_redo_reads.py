@@ -198,7 +198,7 @@ class PreviewBudgetTests(unittest.TestCase):
 
     def packed(self, suffix):
         items = [{'sha256': '%064x' % 1, 'rel': 'f' + suffix, 'suffix': suffix}]
-        PK.pending = lambda redo=False: list(items)
+        PK.pending = lambda cohort='new', shas=None: list(items)
         out = io.StringIO()
         with redirect_stdout(out):
             PK.cmd_pack(types.SimpleNamespace(limit=1, workers=1, out=None, redo=True))
