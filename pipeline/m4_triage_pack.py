@@ -301,7 +301,19 @@ def cmd_record(a):
             out = L1.finalize(rec, parsed, {'judge': 'claude-code-session'}, None)
             out['proposed_name'] = L1.proposed_name(out); out['model'] = 'claude-code-session'
             f.write(json.dumps(out, ensure_ascii=False) + '\n'); n += 1
-    print(json.dumps({'recorded': n, 'rejected': bad, 'total_scored': len(L1.done_keys())}, ensure_ascii=False))
+    # A verdicts file still being written reads like a finished one: 28 rows
+    # recorded, nothing rejected, and the line is indistinguishable from a
+    # complete batch of 200.  The batch size is known here, so say when the
+    # two disagree.  Recording part of a batch is legitimate - the rest stays
+    # in the cohort and can be recorded later - it just must not be silent.
+    short = len(batch) - n
+    print(json.dumps({'recorded': n, 'rejected': bad, 'batch_size': len(batch),
+                      **({'未判的': short,
+                          'note': '批次里还有 %d 份没有判定。如果判定文件还在写，'
+                                  '等它写完再对同一个文件跑一次 record——已录的会以'
+                                  '相同内容重录，不影响结果' % short}
+                         if short > 0 else {}),
+                      'total_scored': len(L1.done_keys())}, ensure_ascii=False))
 
 
 IDLE_GAP_SECONDS = 300.0
