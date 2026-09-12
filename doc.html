@@ -4,7 +4,7 @@
 <script src="/assets/site-skin.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>文档 — Datacenter Hub</title>
+<title>文档 — inresearch.ai</title>
 <style>
 
 
@@ -254,7 +254,7 @@ function renderCSV(text, f) {
   document.getElementById("prev").onclick = () => { page--; draw(); scrollTo(0, 0); };
   document.getElementById("next").onclick = () => { page++; draw(); scrollTo(0, 0); };
   apply();
-  document.title = f.split("/").pop() + " — Datacenter Hub";
+  document.title = f.split("/").pop() + " — inresearch.ai";
 }
 
 function documentLink(href, source, base = location.href) {
@@ -310,7 +310,7 @@ async function showIdentity(f) {
         else link.removeAttribute("href");
       } catch (_) { link.removeAttribute("href"); }
     });
-    document.title = (md.match(/^#\s+(.*)$/m) || [, f])[1] + " — Datacenter Hub";
+    document.title = (md.match(/^#\s+(.*)$/m) || [, f])[1] + " — inresearch.ai";
     const hs = [...document.querySelectorAll("article h2")];
     if (hs.length >= 3) {
       const toc = document.getElementById("toc");

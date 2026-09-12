@@ -4,7 +4,7 @@
 <script src="/assets/site-skin.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>全球数据中心研究（活文档）— Datacenter Hub</title>
+<title>全球数据中心研究（活文档）— inresearch.ai</title>
 <style>
 
 
@@ -25,7 +25,7 @@
   nav.toc a.on { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
   main { flex: 1; min-width: 0; }
   .page-doc { background: var(--page); border: 1px solid var(--line); border-radius: var(--ui-radius);
-    box-shadow: 0 1px 6px rgba(0,0,0,.06); padding: 44px 68px; margin-bottom: 22px; }
+    box-shadow: 0 1px 6px rgba(0,0,0,.06); padding: 44px 68px; margin-bottom: 22px; overflow-wrap:anywhere; }
   .page-doc.cover-page { padding: 60px 68px; }
   .cover { text-align: center; border-bottom: 2px solid var(--text); margin-bottom: 40px; padding-bottom: 28px; }
   .cover h1 { font-size: 30px; letter-spacing: 2px; margin-bottom: 14px; }
@@ -59,7 +59,7 @@
   .open-q h3 { font-size: 15px; margin: 20px 0 6px; }
   .err { color: var(--red); padding: 20px; }
   code { font-family: ui-monospace, Menlo, monospace; font-size: 13px; background: var(--bg); padding: 1px 5px; border-radius: var(--ui-radius); }
-  @media (max-width: 900px) { nav.toc { display: none; } .page-doc { padding: 32px 22px; } }
+  @media (max-width: 900px) { nav.toc { display: none; } .page-doc { padding: 24px 16px; } }
   @media print {
     .topbar, nav.toc { display: none; }
     body { background: #fff; } .layout { margin: 0; }
@@ -70,9 +70,9 @@
 </head>
 <body>
 <div class="topbar">
-  <b>Datacenter Hub</b><span style="color:var(--muted)">全球数据中心研究 · 活文档</span>
+  <span style="color:var(--muted)">全球数据中心研究 · 活文档</span>
   <span class="sp"></span>
-  <a href="index.html">总览</a> <a href="bom.html">爆炸图</a> <a href="ops.html">工作台</a> <b style="color:var(--accent)">报告成稿</b>
+   <a href="bom.html">爆炸图</a>  <b style="color:var(--accent)">报告成稿</b>
   <a href="doc.html?f=framework/01_data_standards.md">口径手册</a>
   <a href="doc.html?f=reports/verify_queue.md">核验队列</a>
   <a href="https://github.com/niuroumiantt/datacenter" target="_blank">GitHub</a>

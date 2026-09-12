@@ -4,7 +4,7 @@
 <script src="/assets/site-skin.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>公司档案 — Datacenter Hub</title>
+<title>公司档案 — inresearch.ai</title>
 <style>
 
 
@@ -26,11 +26,11 @@
   .kpi { background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 11px 14px; }
   .kpi .v { font-size: 21px; font-weight: 700; }
   .kpi .l { color: var(--muted); font-size: 11.5px; }
-  .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px; }
-  .board { background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 14px 16px; }
+  .grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 12px; }
+  .board { min-width:0; background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 14px 16px; }
   .b12 { grid-column: span 12; } .b6 { grid-column: span 6; }
   @media (max-width: 980px) { .b6 { grid-column: span 12; } }
-  .bh { display: flex; align-items: baseline; margin-bottom: 8px; }
+  .bh { display: flex; align-items: baseline; flex-wrap:wrap; gap:8px; margin-bottom: 8px; }
   .bh h2 { font-size: 14px; }
   .bh .go { margin-left: auto; font-size: 11.5px; }
   table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
@@ -51,10 +51,7 @@
 </head>
 <body>
 <div class="topbar">
-  <b>Datacenter Hub</b>
-  <a class="tab" href="index.html">总览</a> <a class="tab" href="bom.html">爆炸图</a>
-  <a class="tab" href="ops.html">管理后台</a>
-  <a class="tab" href="report.html">报告成稿</a>
+   <a class="tab" href="bom.html">爆炸图</a>
   <span class="sp"></span>
   <select class="switcher" id="switcher" onchange="location='company.html?c='+this.value"></select>
 </div>
@@ -87,7 +84,7 @@ try {
   let brief = null; try { brief = await get("data/brief.json"); } catch (e) {}
   const c = companies.records.find(x => x.company_id === cid);
   if (!c) throw new Error("公司不存在: " + cid);
-  document.title = c.name + " — Datacenter Hub";
+  document.title = c.name + " — inresearch.ai";
   const cname = Object.fromEntries(companies.records.map(x => [x.company_id, x.name_cn || x.name]));
 
   // 公司切换器（按角色排序，hyperscaler/ai-lab/neocloud 优先）
@@ -173,6 +170,8 @@ try {
   }).join("");
 
   const news = brief?.news?.entities?.find(e => e.id === cid);
+  const newsDates = (brief?.news?.scanned_dates || []).filter(d => /^\d{4}-\d{2}-\d{2}$/.test(d)).sort();
+  const newsDate = newsDates.length ? `${newsDates[0]}—${newsDates.at(-1)}` : '窗口日期未知';
 
   document.getElementById("root").innerHTML = `
     <div class="head"><h1>${c.name}</h1><span style="color:var(--muted)">${c.name_cn || ""}</span>
@@ -187,22 +186,22 @@ try {
       <div class="kpi"><div class="v">${BU ? fmtMW(BU) : "—"}</div><div class="l">在建 L6–7</div></div>
       <div class="kpi"><div class="v">${PL ? fmtMW(PL) : "—"}</div><div class="l">规划 L1–5</div></div>
       <div class="kpi"><div class="v">${myContracts.length}</div><div class="l">关联合同</div></div>
-      <div class="kpi"><div class="v">${news ? news.count : 0}</div><div class="l">近 3 天新闻信号</div></div>
+      <div class="kpi"><div class="v">${news ? news.count : '—'}</div><div class="l">历史新闻信号 · ${esc(newsDate)}</div></div>
     </div>
     <div class="grid">
       <div class="board b12"><div class="bh"><h2>全球布局</h2><span class="note" style="margin:0 0 0 10px">绿 运营 · 黄 在建 · 灰 规划 · 虚线圈=容量未披露</span></div>
         <svg viewBox="0 0 ${MW_} ${MH.toFixed(0)}" width="100%">${land}${dots}</svg></div>
       <div class="board b12"><div class="bh"><h2>园区清单（${mine.length}）</h2></div>
-        <table><tr><th>园区</th><th>状态</th><th>合计容量</th><th>运/建/规</th><th>关系</th><th>核验</th><th>来源</th></tr>${projRows || "<tr><td colspan=7>暂无关联项目——等待补录或在后台登记</td></tr>"}</table>
+        <div class="ui-table-scroll" tabindex="0" role="region" aria-label="Table"><table><tr><th>园区</th><th>状态</th><th>合计容量</th><th>运/建/规</th><th>关系</th><th>核验</th><th>来源</th></tr>${projRows || "<tr><td colspan=7>暂无关联项目——等待补录或在后台登记</td></tr>"}</table></div>
         <div class="note">容量口径：IT 负载 MW；未披露 ≠ 不存在——hyperscaler 大多不公布单园区容量</div></div>
       <div class="board b6"><div class="bh"><h2>关联合同</h2></div>
-        ${myContracts.length ? `<table><tr><th>合同</th><th>类型</th><th>$B</th><th>循环</th></tr>` +
+        ${myContracts.length ? `<div class="ui-table-scroll" tabindex="0" role="region" aria-label="Table"><table><tr><th>合同</th><th>类型</th><th>$B</th><th>循环</th></tr>` +
           myContracts.map(x => `<tr><td>${x.contract_id}<div style="font-size:10px;color:var(--gray)">${x.parties.map(p => cname[p] || p).join(" ↔ ")}</div></td>
-          <td>${x.type}</td><td>${x.value_usd_b ?? "—"}</td><td>${x.circular_flag ? "⚠️" : "—"}</td></tr>`).join("") + "</table>" : '<div class="note">暂无</div>'}
-        ${secRows ? `<div class="bh" style="margin-top:14px"><h2>最新 SEC 文件</h2></div><table><tr><th>日期</th><th>类型</th><th></th></tr>${secRows}</table>` : ""}</div>
+          <td>${x.type}</td><td>${x.value_usd_b ?? "—"}</td><td>${x.circular_flag ? "⚠️" : "—"}</td></tr>`).join("") + "</table></div>" : '<div class="note">暂无</div>'}
+        ${secRows ? `<div class="bh" style="margin-top:14px"><h2>最新 SEC 文件</h2></div><div class="ui-table-scroll" tabindex="0" role="region" aria-label="Table"><table><tr><th>日期</th><th>类型</th><th></th></tr>${secRows}</table></div>` : ""}</div>
       <div class="board b6"><div class="bh"><h2>研究结论提及（${mentions.length}）</h2><a class="go" href="report.html">全文 →</a></div>
         ${mentions.length ? mentions.map(m => `<div class="sig"><a href="report.html#${m.id}">【${m.mod}】${esc(m.title)}</a></div>`).join("") : '<div class="note">暂无</div>'}
-        ${news ? `<div class="bh" style="margin-top:14px"><h2>最新信号</h2></div>` +
+        ${news ? `<div class="bh" style="margin-top:14px"><h2>历史信号 · ${esc(newsDate)}</h2></div>` +
           news.top.map(t => `<div class="sig">${esc(t.title)}<a href="${t.url}" target="_blank">${esc(t.source)}</a></div>`).join("") : ""}</div>
     </div>`;
 } catch (e) {

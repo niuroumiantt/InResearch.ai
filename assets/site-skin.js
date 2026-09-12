@@ -1,4 +1,4 @@
-/* Shared appearance only: never reload data or remount application content. */
+/* Shared navigation and appearance; preserve each page's business state. */
 (() => {
   'use strict';
   const root = document.documentElement;
@@ -52,12 +52,39 @@
     el.innerHTML = '<g class="ui-icon-attio">' + icons[name][0] + '</g><g class="ui-icon-folk">' + icons[name][1] + '</g>';
     return el;
   }
+  function navigation() {
+    const nav = document.createElement('nav');
+    nav.className = 'ui-navigation'; nav.setAttribute('aria-label', '全站导航');
+    const page = location.pathname;
+    const section = /team/.test(page) ? 'tasks' : /materials/.test(page) ? 'materials' :
+      /report/.test(page) ? 'reports' : /ops|compare/.test(page) ? 'admin' :
+      /research|bom|rack|company|product/.test(page) ? 'research' : 'overview';
+    const links = [
+      ['overview', '总览', '/index.html'], ['research', '研究', '/research.html'],
+      ['materials', '资料', '/materials.html'], ['tasks', '任务', '/team.html'],
+      ['reports', '成果', '/report.html'], ['admin', '管理', '/ops.html']
+    ];
+    function render(role) {
+      nav.replaceChildren();
+      for (const [id, label, href] of links) {
+        if (id === 'admin' && role !== 'admin' || role === 'intern' && id !== 'tasks') continue;
+        const link = document.createElement('a');
+        link.href = href; link.textContent = label;
+        if (id === section) link.setAttribute('aria-current', 'page');
+        nav.append(link);
+      }
+    }
+    render('member');
+    fetch('/api/whoami').then(response => response.ok ? response.json() : null)
+      .then(user => { if (user?.role) render(user.role); }).catch(() => {});
+    return nav;
+  }
   function mount() {
     if (document.getElementById('ui-skinbar')) return;
     const bar = document.createElement('div'); bar.id = 'ui-skinbar'; bar.setAttribute('role', 'region'); bar.setAttribute('aria-label', '全站外观');
     const brand = document.createElement('a'); brand.href = '/index.html'; brand.className = 'ui-home'; brand.append(icon('home'), document.createTextNode('inresearch.ai'));
     bar.append(brand);
-    const inbox = document.createElement('a'); inbox.href = '/materials.html'; inbox.className = 'ui-home'; inbox.textContent = '资料提交'; bar.append(inbox);
+    if (!document.body.classList.contains('ui-auth')) bar.append(navigation());
     const group = document.createElement('div'); group.className = 'ui-skin-choices'; group.setAttribute('role', 'group'); group.setAttribute('aria-label', '视觉风格');
     for (const [value, label] of [['attio', 'Attio'], ['folk', 'folk']]) {
       const button = document.createElement('button'); button.type = 'button'; button.dataset.uiChoice = value;
@@ -72,7 +99,6 @@
     }
     select.addEventListener('change', () => setPreference({mode: select.value})); label.append(select); controls.append(label);
     const note = document.createElement('span'); note.id = 'ui-save-status'; note.setAttribute('role', 'status'); controls.append(note);
-    const docs = document.createElement('a'); docs.className = 'ui-standard'; docs.href = '/doc.html?f=framework/05_interface_system.md'; docs.textContent = '界面规范'; bar.append(docs);
     document.body.prepend(bar);
     const measure = () => root.style.setProperty('--ui-bar-height', Math.ceil(bar.getBoundingClientRect().height) + 'px');
     if (window.ResizeObserver) new ResizeObserver(measure).observe(bar);
@@ -82,7 +108,15 @@
       try { if (!link.querySelector('.ui-icon')) link.prepend(icon(routeIcon(new URL(link.href).pathname))); } catch (_) { /* no link mutation */ }
     });
     const phone = matchMedia('(max-width:700px)');
-    const compact = () => document.querySelectorAll('.ui-mobile-overview').forEach(panel => { panel.open = !phone.matches; });
+    const hud = document.querySelector('.hud');
+    if (hud) {
+      const controls = document.createElement('details'); controls.className = 'ui-viewer-controls';
+      const summary = document.createElement('summary'); summary.textContent = hud.querySelector('h1')?.textContent || '场景控制';
+      summary.setAttribute('aria-label', '展开或收起场景控制');
+      const content = document.createElement('div');
+      content.append(...hud.childNodes); controls.append(summary, content); hud.append(controls);
+    }
+    const compact = () => document.querySelectorAll('.ui-mobile-overview,.ui-viewer-controls').forEach(panel => { panel.open = !phone.matches; });
     compact(); phone.addEventListener('change', compact);
     apply();
   }

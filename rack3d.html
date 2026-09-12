@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="assets/research.css">
-<title>机柜拆解台 — Datacenter Hub</title>
+<title>机柜拆解台 — inresearch.ai</title>
 <style>
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -27,7 +27,7 @@
   .hud input[type=range] { width: 100%; margin-top: 10px; accent-color: var(--accent); }
   .hud .stage { font-size: 11.5px; color: var(--accent); min-height: 18px; margin-top: 2px; }
   .hud button { margin-top: 8px; width: 100%; padding: 7px; border: none; border-radius: var(--ui-radius);
-    background: var(--accent); color: #0b0e14; font: inherit; font-weight: 700; cursor: pointer; }
+    background: var(--accent); color: var(--ui-on-accent); font: inherit; font-weight: 700; cursor: pointer; }
   .hud .ghost { background: transparent; border: 1px solid var(--line); color: var(--text); font-weight: 500; }
   #tip3d { position: fixed; pointer-events: none; z-index: 40; background: var(--ui-surface);
     border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 6px 10px; font-size: 12px; display: none; }
@@ -59,7 +59,7 @@
   .drill a, .drill span { padding: 3px 11px; border-radius: var(--ui-radius); color: var(--muted);
     text-decoration: none; white-space: nowrap; }
   .drill a:hover { background: rgba(96,165,250,.15); color: var(--accent); }
-  .drill .on { background: var(--accent); color: #0b0e14; font-weight: 700; }
+  .drill .on { background: var(--accent); color: var(--ui-on-accent); font-weight: 700; }
   .drill .soon { opacity: .45; cursor: default; }
   .drill .sep { padding: 0 1px; color: var(--line); }
   @media (max-width: 900px) { .drill { display: none; } }
@@ -85,17 +85,10 @@
 </head>
 <body>
 <div class="topbar">
-  <b>Datacenter Hub</b>
-  <a class="tab" href="index.html">总览</a>
-  <a class="tab" href="research.html">研究工作台</a>
   <a class="tab" href="/research.html?node=ecosystem%3Astorage&amp;view=R&amp;tab=overview">产品生态</a>
   <a class="tab" href="bom.html">爆炸图 2D</a>
   <a class="tab" href="bom3d.html">爆炸图 3D</a>
   <a class="tab on" href="rack3d.html">机柜拆解台</a>
-  <a class="tab" href="poster.html">拆解海报</a>
-  <a class="tab" href="compare.html">模型选型</a>
-  <a class="tab" href="ops.html">管理后台</a>
-  <a class="tab" href="report.html">报告成稿</a>
   <span class="sp"></span>
 </div>
 <canvas id="c"></canvas>
@@ -160,7 +153,7 @@ controls.enableDamping = true;
 controls.target.set(0, 4.6, 0);
 controls.maxPolarAngle = Math.PI / 2 + 0.05;
 controls.minDistance = 4; controls.maxDistance = 60;
-controls.autoRotate = true; controls.autoRotateSpeed = 0.4;
+controls.autoRotate = !matchMedia('(prefers-reduced-motion: reduce)').matches; controls.autoRotateSpeed = 0.4;
 canvas.addEventListener("pointerdown", () => controls.autoRotate = false, { once: true });
 
 const composer = new EffectComposer(renderer);
@@ -711,7 +704,7 @@ addEventListener("pointermove", e => {
   } else { tip.style.display = "none"; canvas.style.cursor = "grab"; }
 });
 addEventListener("click", e => {
-  if (e.target.closest("#dossier") || e.target.closest(".hud") || e.target.closest(".topbar")) return;
+  if (e.target.closest("#dossier") || e.target.closest(".hud") || e.target.closest(".topbar,#ui-skinbar")) return;
   const o = pick(e);
   if (o?.userData.part && PART[o.userData.part]) showDossier(PART[o.userData.part]);
 });

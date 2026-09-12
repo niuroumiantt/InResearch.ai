@@ -319,7 +319,7 @@ def record_fail(ip: str):
 
 LOGIN_PAGE = """<!doctype html><html lang="zh" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light"><head><script src="/assets/site-skin.js"></script><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Inresearch Hub · 登录</title><style>
+<title>inresearch.ai · 登录</title><style>
   body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
        font:15px/1.6 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
        background:var(--ui-bg);color:var(--ui-ink)}
@@ -338,10 +338,10 @@ LOGIN_PAGE = """<!doctype html><html lang="zh" data-ui-skin="folk" data-ui-theme
   .note{margin-top:18px;color:var(--ui-muted);font-size:11.5px;text-align:center}
 </style><link rel="stylesheet" href="/assets/site-skin.css"></head><body class="ui-auth">
 <form onsubmit="return go(event)">
-  <h1>Inresearch Hub</h1>
+  <h1>inresearch.ai</h1>
   <p class="sub">数据中心研究 · 内部系统</p>
-  <label>用户名</label><input id="u" autocomplete="username" autofocus>
-  <label>密码</label><input id="p" type="password" autocomplete="current-password">
+  <label for="u">用户名</label><input id="u" autocomplete="username" autofocus>
+  <label for="p">密码</label><input id="p" type="password" autocomplete="current-password">
   <button>登录</button>
   <div class="err" id="err"></div>
   <div class="note">账号由管理员分配，本系统不提供注册</div>
@@ -360,7 +360,7 @@ async function go(e){e.preventDefault();
 
 PASSWD_PAGE = """<!doctype html><html lang="zh" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light"><head><script src="/assets/site-skin.js"></script><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>修改密码 · Inresearch Hub</title><style>
+<title>修改密码 · inresearch.ai</title><style>
   body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
        font:15px/1.6 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
        background:var(--ui-bg);color:var(--ui-ink)}
@@ -379,9 +379,9 @@ PASSWD_PAGE = """<!doctype html><html lang="zh" data-ui-skin="folk" data-ui-them
 </style><link rel="stylesheet" href="/assets/site-skin.css"></head><body class="ui-auth">
 <form onsubmit="return go(event)">
   <h1>修改密码</h1>
-  <label>当前密码</label><input id="old" type="password" autocomplete="current-password" autofocus>
-  <label>新密码（至少 8 位）</label><input id="n1" type="password" autocomplete="new-password">
-  <label>再输一遍</label><input id="n2" type="password" autocomplete="new-password">
+  <label for="old">当前密码</label><input id="old" type="password" autocomplete="current-password" autofocus>
+  <label for="n1">新密码（至少 8 位）</label><input id="n1" type="password" autocomplete="new-password">
+  <label for="n2">再输一遍</label><input id="n2" type="password" autocomplete="new-password">
   <button>确认修改</button>
   <div class="msg" id="msg"></div>
   <a href="/">← 返回首页</a>
@@ -402,7 +402,7 @@ async function go(e){e.preventDefault();
 
 FORBIDDEN_PAGE = """<!doctype html><html lang="zh" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light"><head><script src="/assets/site-skin.js"></script><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>无权访问 · Inresearch Hub</title><style>
+<title>无权访问 · inresearch.ai</title><style>
   body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
        font:15px/1.6 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
        background:var(--ui-bg);color:var(--ui-ink)}

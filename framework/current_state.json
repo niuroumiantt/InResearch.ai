@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.12.3",
+  "version": "2026.09.12.4",
   "effective_at": "2026-09-12",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -234,7 +234,7 @@
       "status": "current",
       "source": "framework/05_interface_system.md",
       "scope": "project",
-      "effective_at": "2026-09-07",
+      "effective_at": "2026-09-12",
       "implementations": [
         "assets/site-skin.js",
         "assets/site-skin.css",
@@ -246,12 +246,19 @@
         "tests/ui_skin.cjs",
         "assets/InterVariable.woff2",
         "assets/Inter-LICENSE.txt",
-        "assets/research-graph.js"
+        "assets/research-graph.js",
+        "tests/run_browser.cjs",
+        "tests/research_delivery.cjs",
+        "tests/auth_appearance.cjs",
+        ".github/workflows/validate.yml",
+        "company.html",
+        "materials.html",
+        "report.html"
       ],
       "supersedes": [
         "interface-legacy"
       ],
-      "reason": "用户确认一件事的流程与两套独立视觉语言；替代统一深线和零面板间距，采用 infra 共享基础及对象三步入口。"
+      "reason": "统一全站一级导航，保留页面局部操作；删除失效 folk 规则，修正控件对比与手机溢出，补全浏览器 CI 和内容验收。"
     },
     {
       "id": "acquisition-legacy",

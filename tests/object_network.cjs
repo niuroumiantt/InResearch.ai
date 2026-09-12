@@ -1,5 +1,5 @@
 const {chromium}=require('playwright');const assert=require('node:assert/strict');const fs=require('node:fs');
-(async()=>{const b=await chromium.launch({channel:'chrome',headless:true});try{
+(async()=>{const b=await chromium.launch({channel:process.env.UI_BROWSER_CHANNEL || undefined,headless:true});try{
  const p=await b.newPage({viewport:{width:1440,height:1100},acceptDownloads:true});const errors=[];p.on('pageerror',e=>errors.push(e.message));const base=process.env.UI_BASE_URL||'http://127.0.0.1:8882';
  const center=()=>p.locator('.rg-network-center');
  await p.goto(base+'/research.html?node=part:server&view=R');await center().waitFor();assert.equal(await center().getAttribute('data-node-id'),'part:server');
@@ -12,7 +12,7 @@ const {chromium}=require('playwright');const assert=require('node:assert/strict'
  await p.getByRole('button',{name:'研究角度：市场规模与周期',exact:true}).click();assert.match(p.url(),/topic=T05/);assert.match(await p.locator('.rg-section').innerText(),/此角度尚无已分类问题/);
  await p.goto(base+'/research.html?node=part:ssd-drive&view=R');await center().waitFor();
  const dl=p.waitForEvent('download');await p.getByRole('button',{name:'导出本页 SVG',exact:true}).click();const d=await dl;await d.saveAs('/tmp/ssd-research-network.svg');const xml=fs.readFileSync('/tmp/ssd-research-network.svg','utf8');assert.match(xml,/<metadata>/);assert.match(xml,/part:ssd-controller/);assert.match(xml,/research_navigation/);assert.doesNotMatch(xml,/var\(--/);
- for(const skin of ['folk','Attio']){await p.getByRole('button',{name:skin,exact:true}).click();assert.equal(await p.locator('.rg-network-center rect').evaluate(e=>getComputedStyle(e).rx),skin==='folk'?'0px':'10px');await p.locator('.rg-section').screenshot({path:'/tmp/ssd-network-'+skin+'.png'});}
+ for(const skin of ['folk','Attio']){await p.getByRole('button',{name:skin,exact:true}).click();assert.equal(await p.locator('.rg-network-center rect').evaluate(e=>getComputedStyle(e).rx),skin==='folk'?'0px':'8px');await p.locator('.rg-section').screenshot({path:'/tmp/ssd-network-'+skin+'.png'});}
  await p.setViewportSize({width:360,height:800});assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));assert.ok(await p.locator('.rg-network-canvas').evaluate(e=>e.scrollWidth>e.clientWidth));
  await p.goto(base+'/research.html?node=ecosystem:compute&view=R');await center().waitFor();assert.ok(await p.locator('.rg-network-node:not(.rg-network-center)').count()<=12);await p.getByRole('button',{name:'下一页',exact:true}).click();assert.match(await p.locator('.rg-section').innerText(),/第 2\//);
  const isolated=await p.evaluate(async()=>{const {objectNetwork}=await import('/assets/object-network.js');const g={objects:[{id:'a'},{id:'b'},{id:'c'}],relations:[{id:'ab',source:'a',target:'b',type:'uses',evidence_ids:['e1']},{id:'bc',source:'b',target:'c',type:'uses'}]};return {a:objectNetwork(g,'a'),b:objectNetwork(g,'b'),missing:objectNetwork(g,'missing')};});

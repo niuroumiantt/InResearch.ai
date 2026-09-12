@@ -1,5 +1,5 @@
 const assert=require('node:assert/strict');const {chromium}=require('playwright');
-(async()=>{const browser=await chromium.launch({channel:'chrome',headless:true});try{
+(async()=>{const browser=await chromium.launch({channel:process.env.UI_BROWSER_CHANNEL || undefined,headless:true});try{
 const page=await browser.newPage({viewport:{width:1440,height:1000}});const errors=[];page.on('pageerror',e=>errors.push(e.message));const base=process.env.UI_BASE_URL||'http://127.0.0.1:8883';
 const start=()=>page.goto(base+'/research.html?node=part:ssd-drive&view=R&tab=network');
 await start();const node=()=>page.locator('.rg-network-node[data-node-id="part:hdd"]');const popup=()=>page.getByRole('dialog',{name:'产品厂商入口'});
