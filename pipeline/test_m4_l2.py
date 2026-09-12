@@ -963,5 +963,57 @@ class LiveMenuTests(unittest.TestCase):
         self.assertIn('Hyperscalers', segment['values'])
         self.assertIn('不可与它的成分项一起加总', segment['note'])
 
+
+class CorrectedNoteTests(unittest.TestCase):
+    """Three口径 statements that were wrong, each caught by arithmetic.
+
+    The first versions were written by copying: one from the workbook's own
+    NOTES page, one from a spoken summary, one from assuming a column header
+    meant what it said.  None had been checked against the numbers, and all
+    three were wrong.  These tests pin the corrections so they cannot drift
+    back to the plausible-sounding version.
+    """
+
+    def setUp(self):
+        self.metrics = L2.load_metrics()
+
+    def test_the_shipment_column_must_be_divided_by_a_thousand(self):
+        """Units (000's) holds unit counts, not thousands - the header lies twice."""
+        note = self.metrics['server_unit_shipments']['note']
+        self.assertIn('除以 1000', note)
+        self.assertIn('6,022.49', note)             # the check that proved it
+        self.assertNotIn('不需要换算', note)
+
+    def test_hyperscalers_is_three_segments_not_five(self):
+        segment = next(d for d in self.metrics['dc_it_capex']['caliber_dims']
+                       if d['id'] == 'segment')
+        self.assertIn('就这三项', segment['note'])
+        self.assertIn('2,459.05', segment['note'])  # 1993.23 + 339.65 + 126.18
+        self.assertNotIn('AI Model Builders + Rest of Cloud', segment['note'])
+
+    def test_the_regions_add_up_and_the_note_says_so(self):
+        """The workbook's NOTES claim a containment its own pivot contradicts."""
+        for mid in ('dc_it_capex', 'server_mfg_revenue', 'server_unit_shipments',
+                    'server_asp'):
+            note = next(d for d in self.metrics[mid]['caliber_dims']
+                        if d['id'] == 'region')['note']
+            self.assertIn('六行互斥', note, mid)
+            self.assertIn('以数据为准', note, mid)
+
+    def test_storage_is_admitted_and_the_ampersand_is_the_row_label(self):
+        for mid in ('server_mfg_revenue', 'server_unit_shipments', 'server_asp'):
+            values = next(d for d in self.metrics[mid]['caliber_dims']
+                          if d['id'] == 'server_class')['values']
+            self.assertIn('Storage Systems', values, mid)
+            self.assertIn('General-Purpose & Other', values, mid)
+            self.assertNotIn('General-Purpose and Other', values, mid)
+
+    def test_the_unverified_storage_splits_stay_out_of_the_enum(self):
+        """Named in the workbook, hierarchy unchecked - so not invented into place."""
+        dim = next(d for d in self.metrics['server_asp']['caliber_dims']
+                   if d['id'] == 'server_class')
+        self.assertNotIn('All Flash Arrays', dim['values'])
+        self.assertIn('尚未校验', dim['note'])
+
 if __name__ == '__main__':
     unittest.main()
