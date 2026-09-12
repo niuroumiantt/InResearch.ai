@@ -309,11 +309,36 @@ def metric_menu(module: str, metrics: dict) -> str:
     lines = []
     for m in rows:
         lines.append('### %s — %s（单位 %s）' % (m['metric_id'], m.get('name', ''), m.get('unit', '')))
+        # The metric's own note carries the traps that span its dimensions - a
+        # column header that lies about its unit, two metrics that must never
+        # be plotted as one series.  It was defined and then never shown to the
+        # one person who needs it.
+        if m.get('note'):
+            lines.append('  ' + m['note'].replace('\n', '\n  '))
         for dim in m.get('caliber_dims', []):
             lines.append('  - caliber.%s（%s）取值：%s' % (
                 dim['id'], dim.get('name', ''), ' / '.join(dim.get('values', []) or ['自由文本'])))
             if dim.get('note'):
                 lines.append('    注意：' + dim['note'])
+    return '\n'.join(lines)
+
+
+def other_modules_index(module: str, metrics: dict) -> str:
+    """Every other module's metrics, by id only.
+
+    A document belongs to one module; its numbers do not.  The Dell'Oro capex
+    workbook is filed under M01 and carries server shipments and ASPs, which
+    live in M06 - shown only its own module's menu, a reader would record the
+    capex and drop the rest for want of a metric that exists.
+    """
+    rows = [m for m in metrics.values() if m.get('module') != module]
+    if not rows:
+        return ''
+    lines = []
+    for mod in sorted({m.get('module') for m in rows}):
+        names = ['%-30s %s（%s）' % (m['metric_id'], m.get('name', ''), m.get('unit', ''))
+                 for m in rows if m.get('module') == mod]
+        lines.append('%s: %s' % (mod, '\n     '.join(names)))
     return '\n'.join(lines)
 
 
@@ -404,6 +429,13 @@ sha256：{sha}
 
 {metrics}
 
+## 其他模块的指标（只给编号）
+
+一份文件的数据不会只属于一个模块。下面这些不展开口径——**要用哪一个，就去
+`framework/metrics.json` 查它完整的 caliber 维度再写**，凭名字猜口径必错。
+
+{others}
+
 ## 本模块仍未回答的研究问题
 
 读的时候留意这些；能被这份文件回答的，在 notes 里注明问题号。
@@ -453,6 +485,7 @@ def cmd_pack(a):
                   '不要把最后一行当作表格的最后一行，也不要据此说「全表只有这些」。'
                   if meta.get('truncated') else '',
         metrics=metric_menu(module, metrics),
+        others=other_modules_index(module, metrics),
         questions=question_menu(module, questions)), encoding='utf-8')
     print(json.dumps({'packed': 1, 'sha256': row['sha256'], 'module': module,
                       'score': row.get('score'), 'chars': len(text), 'chunks': len(pieces),

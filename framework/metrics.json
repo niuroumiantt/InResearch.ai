@@ -1,6 +1,6 @@
 {
   "version": "0.1-draft",
-  "updated": "2026-09-11",
+  "updated": "2026-09-12",
   "note": "指标定义（L1）。事实层的原子是「一个事实」而非「一份文件」；本文件声明每个指标**有哪些口径维度**，data/facts.json 的每条事实必须把这些维度填满。\n\n关键设计：口径维度是**按指标声明**的，不是全局一张枚举表——造价的口径维度是「阶段×范围」，容量的是「状态×容量类型」，两者不通用。由此可以机械判定可比性：两条事实可比 ⟺ metric_id 相同 且 全部 caliber 维度取值相同。\n\n这条「会拒绝」的能力是本项目区别于通用 RAG 的地方：它不是知道得多，是知道什么时候不能把两个数放在一起。\n\n对外呈现（2026-08-17 用户拍板）：实体与项目名**照实输出不隐瞒**；**涉及钱财的只给区间不给精确值**，且必须标明数据年份与距今年数——因为这些本就是老数据，精确值对外没有现实价值，给区间既够用又不失礼。区间宽度由各指标的 public_band.step 声明。\n\n**口径维度只放「测的是什么」，不放「我们多信它」（2026-08-17 云端定）**：来源性质（公司公告/第三方/反推）、是否审计、精度——这些属于 evidence.grade 与 derived/derivation，**放进 caliber 会制造假的不可比**。实例：OpenAI ARR 20B（由倍数反推）与 Anthropic ARR 14B（第三方报告）本是同一份报告同一时点的两个 ARR、完全可比，因把 source_type 塞进 caliber 而被判不可比——**假不可比与假可比一样有害，它把真实存在的对比藏起来了。**",
   "metrics": [
     {
@@ -3584,7 +3584,7 @@
           ]
         }
       ],
-      "note": "**单位陷阱**：本指标单位固定为亿美元。国内厂商常以「亿元人民币」表述，「北美四家 3610 亿美元」与「国内三家 3600 亿元」两个数看着接近，**实际差约 7 倍汇率**，原文并排书写极易误读。人民币口径的数须换算后入库并标 derived + 汇率与日期，或另立指标。"
+      "note": "**单位陷阱**：本指标单位固定为亿美元。国内厂商常以「亿元人民币」表述，「北美四家 3610 亿美元」与「国内三家 3600 亿元」两个数看着接近，**实际差约 7 倍汇率**，原文并排书写极易误读。人民币口径的数须换算后入库并标 derived + 汇率与日期，或另立指标。\n\n**只算公司整体 Capex。** 只算数据中心那部分的口径见 dc_it_capex——同一批四家 2025 年两个指标分别是 3,610（本指标，厂商指引）与 3,511 亿美元（dc_it_capex，Dell'Oro），差的是口径不是修正，不可当同一序列的前后两点。"
     },
     {
       "metric_id": "nodal_lmp_price",
@@ -5224,6 +5224,169 @@
       ],
       "public_band": {
         "step": 0.5
+      }
+    },
+    {
+      "metric_id": "dc_it_capex",
+      "name": "数据中心 IT 资本开支",
+      "unit": "亿美元",
+      "module": "M01",
+      "caliber_dims": [
+        {
+          "id": "segment",
+          "name": "客户分部",
+          "values": [
+            "Top 4 US Cloud",
+            "Top 3 China Cloud",
+            "Other Major Cloud",
+            "AI Model Builders",
+            "Neocloud",
+            "Rest of Cloud",
+            "Colocation",
+            "Telco",
+            "Enterprise",
+            "Hyperscalers",
+            "AI-specialized Cloud",
+            "Total"
+          ],
+          "note": "原文分部名，一字未改。**前九项是叶子，后两项是汇总**：Hyperscalers = Top 4 US Cloud + Top 3 China Cloud + Other Major Cloud + AI Model Builders + Rest of Cloud；AI-specialized Cloud = AI Model Builders + Neocloud。**汇总项不可与它的成分项一起加总**，否则同一笔钱数两遍。另有一处原表自身的口径不对称：Top 4 US Cloud 含 Storage Systems，Top 3 China Cloud 不含——这两个分部的技术覆盖不一样，直接比会偏。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "Asia Pacific",
+            "Asia Pacific excl. China",
+            "CALA",
+            "China",
+            "EMEA",
+            "North America",
+            "Total"
+          ],
+          "note": "原文地域名，一字未改。**Asia Pacific = Asia Pacific excl. China + China**，三者同时出现在 enum 里是因为原表就这么切，但它们不互斥，不能一起加总。"
+        },
+        {
+          "id": "technology",
+          "name": "技术分类",
+          "values": [
+            "DCPI & Other DC",
+            "Network Infrastructure",
+            "Servers",
+            "Storage Systems",
+            "Total"
+          ],
+          "note": "原文技术分类名，一字未改。四项互斥且加总等于 Total。AI Networking Switch 曾归在 DCPI & Other DC 下，2026-07 版重分类进 Network Infrastructure，跨版本对照这一项要留意。"
+        }
+      ],
+      "note": "只算数据中心 IT 资本开支（含土地、土建、网络、存储），**与 hyperscaler_capex_total 的「公司整体 Capex」不是一回事**——2025 年同一批四家（Amazon / Google / Meta / Microsoft）本指标是 3,511 亿美元、那个指标的厂商指引是 3,610 亿美元，差的 2.7% 不是修正而是口径。两个数放进同一个序列会被读成「指引小幅下修」。刻意分成两个 metric_id 而不是加一维，就是为了让它们永远不会被并排比较。\n\n**表头单位与实际数值不符**：原表列头写 Capex ($M) / MFG Revenue ($M)，而单元格里是原始美元——2018 年 Total 是 180,773,661,069，即 1,807.7 亿美元，不是 1,807.7 亿百万美元。按表头乘 1e6 会错一百万倍。入库时除以 1e8 转成亿美元，并在 notes 里注明这一步。\n\n**供给侧与需求侧是同一个总量的两种切法，不是两个独立估计**——2014–2030 逐年加总差值为零。两边的数互相印证不构成交叉验证，corroboration 只能写「孤证已知」或「待交叉验证」。\n\n**排除项未披露**：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内没有任何排除项说明。「含什么」可据实记，「不含什么」一律标未披露，不推。",
+      "public_band": {
+        "step": 100
+      }
+    },
+    {
+      "metric_id": "server_mfg_revenue",
+      "name": "服务器厂商收入",
+      "unit": "亿美元",
+      "module": "M06",
+      "caliber_dims": [
+        {
+          "id": "server_class",
+          "name": "服务器类别",
+          "values": [
+            "Accelerated/High-End",
+            "General-Purpose and Other",
+            "All Servers"
+          ],
+          "note": "原文定义：Accelerated/High-End 指带训练能力加速器的服务器，自 2020 年开始单独追踪；General-Purpose and Other 是其余全部。2020 年之前没有这个切分，跨年序列在 2020 处断裂。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "Asia Pacific",
+            "Asia Pacific excl. China",
+            "CALA",
+            "China",
+            "EMEA",
+            "North America",
+            "Total"
+          ],
+          "note": "原文地域名，一字未改。**Asia Pacific = Asia Pacific excl. China + China**，三者同时出现在 enum 里是因为原表就这么切，但它们不互斥，不能一起加总。"
+        }
+      ],
+      "note": "**表头单位与实际数值不符**：原表列头写 Capex ($M) / MFG Revenue ($M)，而单元格里是原始美元——2018 年 Total 是 180,773,661,069，即 1,807.7 亿美元，不是 1,807.7 亿百万美元。按表头乘 1e6 会错一百万倍。入库时除以 1e8 转成亿美元，并在 notes 里注明这一步。\n\n**供给侧与需求侧是同一个总量的两种切法，不是两个独立估计**——2014–2030 逐年加总差值为零。两边的数互相印证不构成交叉验证，corroboration 只能写「孤证已知」或「待交叉验证」。",
+      "public_band": {
+        "step": 50
+      }
+    },
+    {
+      "metric_id": "server_unit_shipments",
+      "name": "服务器出货量",
+      "unit": "千台",
+      "module": "M06",
+      "caliber_dims": [
+        {
+          "id": "server_class",
+          "name": "服务器类别",
+          "values": [
+            "Accelerated/High-End",
+            "General-Purpose and Other",
+            "All Servers"
+          ]
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "Asia Pacific",
+            "Asia Pacific excl. China",
+            "CALA",
+            "China",
+            "EMEA",
+            "North America",
+            "Total"
+          ],
+          "note": "原文地域名，一字未改。**Asia Pacific = Asia Pacific excl. China + China**，三者同时出现在 enum 里是因为原表就这么切，但它们不互斥，不能一起加总。"
+        }
+      ],
+      "note": "原表列头 Units (000's)，单位就是千台，这一列不需要换算。**只有服务器有台数**：Storage Systems / All Flash Arrays / Disk and Hybrid Arrays 整列为空（原表注 \"Units are not available for Storage Systems.\"），需求侧 Colocation 的台数也为空。这些是 value: null 的正当场合——未披露就留白，不要用金额除以 ASP 反推。",
+      "public_band": {
+        "step": 100
+      }
+    },
+    {
+      "metric_id": "server_asp",
+      "name": "服务器平均售价",
+      "unit": "美元/台",
+      "module": "M06",
+      "caliber_dims": [
+        {
+          "id": "server_class",
+          "name": "服务器类别",
+          "values": [
+            "Accelerated/High-End",
+            "General-Purpose and Other",
+            "All Servers"
+          ]
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "Asia Pacific",
+            "Asia Pacific excl. China",
+            "CALA",
+            "China",
+            "EMEA",
+            "North America",
+            "Total"
+          ],
+          "note": "原文地域名，一字未改。**Asia Pacific = Asia Pacific excl. China + China**，三者同时出现在 enum 里是因为原表就这么切，但它们不互斥，不能一起加总。"
+        }
+      ],
+      "note": "原表列头 Unit ASP ($)，值就是美元，**这一列的表头与数值一致**（2018 年 Servers 是 6,022 美元/台），与金额列的单位陷阱不同，不要一并换算。",
+      "public_band": {
+        "step": 500
       }
     }
   ]
