@@ -5249,7 +5249,7 @@
             "AI-specialized Cloud",
             "Total"
           ],
-          "note": "原文分部名，一字未改。**前九项是叶子，后两项是汇总**：Hyperscalers = Top 4 US Cloud + Top 3 China Cloud + Other Major Cloud + AI Model Builders + Rest of Cloud；AI-specialized Cloud = AI Model Builders + Neocloud。**汇总项不可与它的成分项一起加总**，否则同一笔钱数两遍。另有一处原表自身的口径不对称：Top 4 US Cloud 含 Storage Systems，Top 3 China Cloud 不含——这两个分部的技术覆盖不一样，直接比会偏。"
+          "note": "原文分部名，一字未改。**前九项是叶子，后两项是汇总**：**Hyperscalers = Top 4 US Cloud + Top 3 China Cloud + Other Major Cloud，就这三项**——校验 2024 年：1,993.23 + 339.65 + 126.18 = 2,459.05，与 Hyperscalers 行分文不差；把 Rest of Cloud 与 AI Model Builders 也加进去，2030E 会多出 2,448.6 亿美元。AI-specialized Cloud = AI Model Builders + Neocloud。九个叶子加总等于 Total（2018 / 2024 / 2026 / 2030 差值均为 0）。**汇总项不可与它的成分项一起加总**，否则同一笔钱数两遍。\n\n另有一处原表自身的口径不对称：Top 4 US Cloud 含 Storage Systems，Top 3 China Cloud 不含——这两个分部的技术覆盖不一样，直接比会偏。"
         },
         {
           "id": "region",
@@ -5263,7 +5263,7 @@
             "North America",
             "Total"
           ],
-          "note": "原文地域名，一字未改。**Asia Pacific = Asia Pacific excl. China + China**，三者同时出现在 enum 里是因为原表就这么切，但它们不互斥，不能一起加总。"
+          "note": "原文地域名，一字未改。**六行互斥，逐年加总等于 Total（差值 0），可以一起加总。**\n\n原表 NOTES 印着 Asia Pacific = Asia Pacific excl. China + China，**但透视表里的数据不是这样**：2026E 的 Asia Pacific 只有 84.75 亿美元，而 China 1,620.85 + Asia Pacific excl. China 937.28 = 2,558.13。这里的 Asia Pacific 是一个残差桶（亚太中另两项都不覆盖的部分）。**以数据为准，不以原表声明为准**——照声明写会挡住一个真实可用的加总，那是这份契约自己说的「假不可比」。"
         },
         {
           "id": "technology",
@@ -5294,10 +5294,11 @@
           "name": "服务器类别",
           "values": [
             "Accelerated/High-End",
-            "General-Purpose and Other",
-            "All Servers"
+            "General-Purpose & Other",
+            "All Servers",
+            "Storage Systems"
           ],
-          "note": "原文定义：Accelerated/High-End 指带训练能力加速器的服务器，自 2020 年开始单独追踪；General-Purpose and Other 是其余全部。2020 年之前没有这个切分，跨年序列在 2020 处断裂。"
+          "note": "取值用原表**数据行**的写法：General-Purpose **&** Other。原表散文注释里写作 \"General-Purpose and Other\"，两处拼法不同，以数据行为准。\n\n这一维实际覆盖服务器与存储两类产品——Storage Systems 是四个技术分类之一，有金额也有 ASP，只是没有台数。原表另有 All Flash Arrays 与 Disk and Hybrid Arrays，**它们与 Storage Systems 的层级关系尚未校验**，暂不入枚举；真要用时先算一遍加总再补。\n\nAccelerated/High-End 指带训练能力加速器的服务器，自 2020 年开始单独追踪；2020 年之前没有这个切分，跨年序列在 2020 处断裂。"
         },
         {
           "id": "region",
@@ -5311,7 +5312,7 @@
             "North America",
             "Total"
           ],
-          "note": "原文地域名，一字未改。**Asia Pacific = Asia Pacific excl. China + China**，三者同时出现在 enum 里是因为原表就这么切，但它们不互斥，不能一起加总。"
+          "note": "原文地域名，一字未改。**六行互斥，逐年加总等于 Total（差值 0），可以一起加总。**\n\n原表 NOTES 印着 Asia Pacific = Asia Pacific excl. China + China，**但透视表里的数据不是这样**：2026E 的 Asia Pacific 只有 84.75 亿美元，而 China 1,620.85 + Asia Pacific excl. China 937.28 = 2,558.13。这里的 Asia Pacific 是一个残差桶（亚太中另两项都不覆盖的部分）。**以数据为准，不以原表声明为准**——照声明写会挡住一个真实可用的加总，那是这份契约自己说的「假不可比」。"
         }
       ],
       "note": "**表头单位与实际数值不符**：原表列头写 Capex ($M) / MFG Revenue ($M)，而单元格里是原始美元——2018 年 Total 是 180,773,661,069，即 1,807.7 亿美元，不是 1,807.7 亿百万美元。按表头乘 1e6 会错一百万倍。入库时除以 1e8 转成亿美元，并在 notes 里注明这一步。\n\n**供给侧与需求侧是同一个总量的两种切法，不是两个独立估计**——2014–2030 逐年加总差值为零。两边的数互相印证不构成交叉验证，corroboration 只能写「孤证已知」或「待交叉验证」。",
@@ -5330,9 +5331,11 @@
           "name": "服务器类别",
           "values": [
             "Accelerated/High-End",
-            "General-Purpose and Other",
-            "All Servers"
-          ]
+            "General-Purpose & Other",
+            "All Servers",
+            "Storage Systems"
+          ],
+          "note": "取值用原表**数据行**的写法：General-Purpose **&** Other。原表散文注释里写作 \"General-Purpose and Other\"，两处拼法不同，以数据行为准。\n\n这一维实际覆盖服务器与存储两类产品——Storage Systems 是四个技术分类之一，有金额也有 ASP，只是没有台数。原表另有 All Flash Arrays 与 Disk and Hybrid Arrays，**它们与 Storage Systems 的层级关系尚未校验**，暂不入枚举；真要用时先算一遍加总再补。\n\nAccelerated/High-End 指带训练能力加速器的服务器，自 2020 年开始单独追踪；2020 年之前没有这个切分，跨年序列在 2020 处断裂。"
         },
         {
           "id": "region",
@@ -5346,10 +5349,10 @@
             "North America",
             "Total"
           ],
-          "note": "原文地域名，一字未改。**Asia Pacific = Asia Pacific excl. China + China**，三者同时出现在 enum 里是因为原表就这么切，但它们不互斥，不能一起加总。"
+          "note": "原文地域名，一字未改。**六行互斥，逐年加总等于 Total（差值 0），可以一起加总。**\n\n原表 NOTES 印着 Asia Pacific = Asia Pacific excl. China + China，**但透视表里的数据不是这样**：2026E 的 Asia Pacific 只有 84.75 亿美元，而 China 1,620.85 + Asia Pacific excl. China 937.28 = 2,558.13。这里的 Asia Pacific 是一个残差桶（亚太中另两项都不覆盖的部分）。**以数据为准，不以原表声明为准**——照声明写会挡住一个真实可用的加总，那是这份契约自己说的「假不可比」。"
         }
       ],
-      "note": "原表列头 Units (000's)，单位就是千台，这一列不需要换算。**只有服务器有台数**：Storage Systems / All Flash Arrays / Disk and Hybrid Arrays 整列为空（原表注 \"Units are not available for Storage Systems.\"），需求侧 Colocation 的台数也为空。这些是 value: null 的正当场合——未披露就留白，不要用金额除以 ASP 反推。",
+      "note": "**单元格存的是台数原值，不是千台。入库要除以 1000。**列头写 Units (000's)，但和金额列一样，表头与数值不符——校验：2018 年 Servers 金额 76,209,380,265 美元 ÷ 台数 12,654,132.8 = 6,022.49，与同表 Unit ASP 行的 6,022.489 分毫不差；若直接当千台入库，会得出 2018 年全球出货 126.5 亿台服务器，大一千倍。\n\n**只有服务器有台数**：Storage Systems / All Flash Arrays / Disk and Hybrid Arrays 整列为空（原表注 \"Units are not available for Storage Systems.\"），需求侧 Colocation 的台数也为空。这些是 value: null 的正当场合——未披露就留白，不要用金额除以 ASP 反推。\n\n**这条口径由数据校验得出，不是照抄原表声明。**凡是断言加总或换算关系的 note，都要附得出它的算式——本指标三条 note 的第一版全部写错，就是因为一处照抄了原表 NOTES、一处照抄了口头描述、一处想当然，没有一条自己算过。",
       "public_band": {
         "step": 100
       }
@@ -5365,9 +5368,11 @@
           "name": "服务器类别",
           "values": [
             "Accelerated/High-End",
-            "General-Purpose and Other",
-            "All Servers"
-          ]
+            "General-Purpose & Other",
+            "All Servers",
+            "Storage Systems"
+          ],
+          "note": "取值用原表**数据行**的写法：General-Purpose **&** Other。原表散文注释里写作 \"General-Purpose and Other\"，两处拼法不同，以数据行为准。\n\n这一维实际覆盖服务器与存储两类产品——Storage Systems 是四个技术分类之一，有金额也有 ASP，只是没有台数。原表另有 All Flash Arrays 与 Disk and Hybrid Arrays，**它们与 Storage Systems 的层级关系尚未校验**，暂不入枚举；真要用时先算一遍加总再补。\n\nAccelerated/High-End 指带训练能力加速器的服务器，自 2020 年开始单独追踪；2020 年之前没有这个切分，跨年序列在 2020 处断裂。"
         },
         {
           "id": "region",
@@ -5381,7 +5386,7 @@
             "North America",
             "Total"
           ],
-          "note": "原文地域名，一字未改。**Asia Pacific = Asia Pacific excl. China + China**，三者同时出现在 enum 里是因为原表就这么切，但它们不互斥，不能一起加总。"
+          "note": "原文地域名，一字未改。**六行互斥，逐年加总等于 Total（差值 0），可以一起加总。**\n\n原表 NOTES 印着 Asia Pacific = Asia Pacific excl. China + China，**但透视表里的数据不是这样**：2026E 的 Asia Pacific 只有 84.75 亿美元，而 China 1,620.85 + Asia Pacific excl. China 937.28 = 2,558.13。这里的 Asia Pacific 是一个残差桶（亚太中另两项都不覆盖的部分）。**以数据为准，不以原表声明为准**——照声明写会挡住一个真实可用的加总，那是这份契约自己说的「假不可比」。"
         }
       ],
       "note": "原表列头 Unit ASP ($)，值就是美元，**这一列的表头与数值一致**（2018 年 Servers 是 6,022 美元/台），与金额列的单位陷阱不同，不要一并换算。",
