@@ -1679,7 +1679,7 @@ class M05M09MenuTests(unittest.TestCase):
 
     def test_the_spec_must_reach_the_notes(self):
         note = self.metrics['equipment_unit_price']['note']
-        self.assertIn('规格必须进 notes', note)
+        self.assertIn('规格进 spec 维，同时写进 notes', note)
         self.assertIn('1800kW 与 400kW 差一个数量级', note)
 
     def test_all_in_price_is_not_the_bare_equipment_price(self):
@@ -2588,6 +2588,188 @@ class SameOriginTests(unittest.TestCase):
                              'data/schema/fact.schema.json').read_text(encoding='utf-8'))
         self.assertIn('从这两份文件本身分不出来',
                       schema['properties']['corroboration']['description'])
+
+#: 出现在 note 里就该真的存在的维名——「spec 维」曾经只在 note 里存在过。
+KNOWN_DIM_NAMES = {'spec', 'sub_trade', 'option', 'bucket', 'scenario',
+                   'tier', 'customer', 'region', 'measure', 'basis'}
+
+
+class FreeTextDimensionTests(unittest.TestCase):
+    """有些口径维本来就是开放的，我上一版用占位值和 note 假装它是枚举。
+
+    三处同一个错，都是 M4 在真语料上撞出来的：
+      equipment_unit_price 的 note 写着「规格写进 spec 维」，而那一维根本不存在——
+        同一份清单里 ≥600kVA 与 ≥200kVA 两台 UPS 撞同一个 claim_key；
+      investor_survey_share.option 与 investor_composition_share.bucket
+        的取值是一个占位词「见 notes」，同一题的两个选项同样撞键。
+
+    占位值比不填更糟：不填会被 check_fact 当场拒掉，占位值会静悄悄地
+    把两条数并成一条。
+    """
+
+    def setUp(self):
+        self.metrics = L2.load_metrics()
+
+    def dim(self, mid, did):
+        return next(d for d in self.metrics[mid]['caliber_dims'] if d['id'] == did)
+
+    # -- 契约层 -----------------------------------------------------------
+    def test_a_free_text_value_is_accepted(self):
+        """换一个从没出现过的规格串照样收——枚举做不到这件事。"""
+        metrics, store = L2.load_metrics(), L2.load_facts()
+        probe = json.loads(json.dumps(
+            next(f for f in store['records']
+                 if f['metric_id'] == 'equipment_unit_price')))
+        probe['fact_id'] = 'probe-new-spec'
+        probe['caliber']['spec'] = '风冷冷水机组，制冷量≥350kW，COP≥3.2'
+        self.assertEqual(L2.check_fact(probe, metrics, set(), None), [])
+
+    def test_a_placeholder_is_refused_with_the_reason(self):
+        d = self.dim('equipment_unit_price', 'spec')
+        self.assertTrue(d.get('free_text'))
+        for junk in ('见 notes', '同上', '待补', 'N/A', '—'):
+            self.assertIn(junk, L2.PLACEHOLDER_VALUES)
+
+    def test_the_refusal_says_what_the_dimension_is_for(self):
+        metrics = L2.load_metrics()
+        store = L2.load_facts()
+        probe = json.loads(json.dumps(
+            next(f for f in store['records']
+                 if f['metric_id'] == 'equipment_unit_price')))
+        probe['fact_id'] = 'probe-placeholder'
+        probe['caliber']['spec'] = '见 notes'
+        bad = L2.check_fact(probe, metrics, set(), None)
+        self.assertTrue(any('占位词不是取值' in p for p in bad), bad)
+        self.assertTrue(any('把两条数区分开' in p for p in bad), bad)
+
+    def test_blank_and_missing_are_both_refused(self):
+        metrics, store = L2.load_metrics(), L2.load_facts()
+        base = next(f for f in store['records']
+                    if f['metric_id'] == 'equipment_unit_price')
+        blank = json.loads(json.dumps(base)); blank['fact_id'] = 'p1'
+        blank['caliber']['spec'] = '   '
+        self.assertTrue(any('不能留空' in p
+                            for p in L2.check_fact(blank, metrics, set(), None)))
+        gone = json.loads(json.dumps(base)); gone['fact_id'] = 'p2'
+        del gone['caliber']['spec']
+        self.assertTrue(any('缺 spec' in p
+                            for p in L2.check_fact(gone, metrics, set(), None)))
+
+    # -- 三处占位都清掉了 --------------------------------------------------
+    def test_no_dimension_anywhere_still_holds_a_placeholder(self):
+        for mid, metric in self.metrics.items():
+            for d in metric.get('caliber_dims', []):
+                for value in d.get('values') or ():
+                    self.assertNotIn(str(value), L2.PLACEHOLDER_VALUES, (mid, d['id']))
+
+    def test_every_dimension_is_either_an_enum_or_free_text(self):
+        """两者都不是的维，check_fact 会放行任何字符串——等于没有约束。"""
+        for mid, metric in self.metrics.items():
+            for d in metric.get('caliber_dims', []):
+                self.assertTrue(d.get('values') or d.get('free_text'), (mid, d['id']))
+
+    def test_the_three_free_text_dimensions_are_declared_as_such(self):
+        for mid, did in (('equipment_unit_price', 'spec'),
+                         ('cost_share_by_trade', 'sub_trade'),
+                         ('investor_survey_share', 'option'),
+                         ('investor_composition_share', 'bucket')):
+            d = self.dim(mid, did)
+            self.assertTrue(d.get('free_text'), (mid, did))
+            self.assertNotIn('values', d, (mid, did))
+
+    def test_no_note_promises_a_dimension_that_does_not_exist(self):
+        """equipment_unit_price 的 note 曾许诺过一个不存在的 spec 维。"""
+        import re
+        for mid, metric in self.metrics.items():
+            declared = {d['id'] for d in metric.get('caliber_dims', [])}
+            text = (metric.get('note') or '') + ''.join(
+                d.get('note', '') for d in metric.get('caliber_dims', []))
+            # 只找「把东西放进某维」这种许诺句式。说「没有 region 维」是在
+            # 解释缺席，不是许诺存在——第一版正则把那种也算进来了。
+            for named in re.findall(
+                    r'(?:写进|填进|填|记进|记入|放进|进)\s*([a-z][a-z_]{2,})\s*维', text):
+                if named in KNOWN_DIM_NAMES:
+                    self.assertIn(named, declared, (mid, named))
+
+    # -- 撞键真的解开了 ----------------------------------------------------
+    def test_two_specs_of_one_equipment_no_longer_collide(self):
+        store = L2.load_facts()
+        keys, seen = [], {}
+        for f in store['records']:
+            if f['metric_id'] != 'equipment_unit_price':
+                continue
+            key = L2.claim_key(f)
+            self.assertNotIn(key, seen, (f['fact_id'], seen.get(key)))
+            seen[key] = f['fact_id']
+            keys.append(key)
+        self.assertGreater(len(keys), 4)
+
+    def test_each_spec_came_from_its_own_locator(self):
+        """回填不是照 fact_id 猜的：每条的规格都写在它自己的 locator 里。"""
+        store = L2.load_facts()
+        rows = [f for f in store['records']
+                if f['metric_id'] == 'equipment_unit_price']
+        self.assertTrue(rows)
+        for f in rows:
+            spec = f['caliber']['spec']
+            self.assertIn('规格描述：', f['evidence']['locator'], f['fact_id'])
+            self.assertIn(spec, f['evidence']['locator'], f['fact_id'])
+
+
+class AsymmetricDimensionTests(unittest.TestCase):
+    """容量侧有 product_category、金额侧没有——我上一版留下的不对称。
+
+    后果不是少一维那么轻：IDC 存储表的品类金额被 claim_key 判成与同
+    storage_scope 的合计重复，实测挡下 5 条。
+    """
+
+    def setUp(self):
+        self.metrics = L2.load_metrics()
+
+    def values(self, mid, did):
+        return next(d for d in self.metrics[mid]['caliber_dims']
+                    if d['id'] == did)['values']
+
+    def test_both_sides_now_carry_the_same_categories(self):
+        capacity = self.values('storage_capacity_shipped', 'product_category')
+        revenue = self.values('server_mfg_revenue', 'product_category')
+        for v in capacity:
+            self.assertIn(v, revenue, v)
+
+    def test_the_revenue_side_also_needs_a_non_storage_escape(self):
+        """金额侧还装着服务器行，容量侧不装。"""
+        self.assertIn('不适用（非存储口径）',
+                      self.values('server_mfg_revenue', 'product_category'))
+        self.assertNotIn('不适用（非存储口径）',
+                         self.values('storage_capacity_shipped', 'product_category'))
+
+    def test_the_note_carries_the_arithmetic_that_explains_the_gap(self):
+        """这一维正是「IDC 与 Dell'Oro 差好几倍」的出处所在。"""
+        note = next(d for d in self.metrics['server_mfg_revenue']['caliber_dims']
+                    if d['id'] == 'product_category')['note']
+        self.assertIn('185.14', note)
+        self.assertIn('77.83', note)
+        self.assertIn('185.14 ÷ 77.83 = 2.38', note)
+        self.assertAlmostEqual(185.14 / 77.83, 2.38, places=2)
+
+    def test_the_backfill_split_storage_rows_from_server_rows(self):
+        store = L2.load_facts()
+        rows = [f for f in store['records']
+                if f['metric_id'] == 'server_mfg_revenue']
+        self.assertTrue(rows)
+        for f in rows:
+            got = f['caliber']['product_category']
+            if f['caliber']['server_class'] == 'Storage Systems':
+                self.assertNotEqual(got, '不适用（非存储口径）', f['fact_id'])
+            else:
+                self.assertEqual(got, '不适用（非存储口径）', f['fact_id'])
+
+    def test_sub_trade_keeps_the_original_line_items(self):
+        d = next(x for x in self.metrics['cost_share_by_trade']['caliber_dims']
+                 if x['id'] == 'sub_trade')
+        self.assertTrue(d.get('free_text'))
+        self.assertIn('原始分项结构就此丢失', d['note'])
+        self.assertIn('分项与合计不可一起加总', d['note'])
 
 
 if __name__ == '__main__':
