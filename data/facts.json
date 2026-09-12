@@ -7410,6 +7410,2413 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "区间上界，下界见 big3-dc-order-share-2026-low。口径说明同下界条。**这个上界与 GEV 前瞻的「约三分之一」量级一致**，可作为该指标未来一年的观察靶点。"
+    },
+    {
+      "fact_id": "citi-aug25-price-1600g-eml",
+      "metric_id": "optics_module_price",
+      "entity": {
+        "type": "product",
+        "id": "optics-1600g-eml",
+        "label": "1.6T 光模块（EML 方案）"
+      },
+      "value": 1200.0,
+      "unit": "美元/只",
+      "caliber": {
+        "speed": "1.6T",
+        "optical_scheme": "EML",
+        "price_type": "券商假设",
+        "reach": "未注明",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「EML vs SiPh」第 3 行列名「1.6T EML」，第 4 行 ASP，单元格 B4 = 1200",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**price_type=券商假设**：这是花旗成本模型里用的 ASP，不是市场报价也不是成交价。 **同速率两个方案差 200 美元（EML 1200 / SiPh 1000，硅光低 17%）**，这是方案差不是价格波动，单独引用其一会误判价格走势。原文把硅光写作 SiPh (4 CW Laser)，四路连续波激光器方案。 reach 未注明：ASP 行没说传输距离；同表规格行显示 1.6T EML 为 2000m、1.6T SiPh 为 500m，**即这两个价格对应的传输距离本就不同**，见 citi-aug25-reach-* 四条。 **原表没有年份**：「EML vs SiPh」整张表只有方案与规格，没写对应哪一年。本条按报告发布年 2025 记，**不要当作 2025 年的实际成交或实际成本**——它是花旗成本模型里的一组假设。 **载体是他人转录的 Excel，不是花旗原报告**（工作表 Source 写明 Source:Citi / Date:2025.08.13）；数字表为手工转录，转录误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-price-1600g-siph",
+      "metric_id": "optics_module_price",
+      "entity": {
+        "type": "product",
+        "id": "optics-1600g-siph",
+        "label": "1.6T 光模块（SiPh 方案）"
+      },
+      "value": 1000.0,
+      "unit": "美元/只",
+      "caliber": {
+        "speed": "1.6T",
+        "optical_scheme": "SiPh",
+        "price_type": "券商假设",
+        "reach": "未注明",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「EML vs SiPh」第 3 行列名「1.6T SiPh (4 CW Laser)」，第 4 行 ASP，单元格 C4 = 1000",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**price_type=券商假设**：这是花旗成本模型里用的 ASP，不是市场报价也不是成交价。 **同速率两个方案差 200 美元（EML 1200 / SiPh 1000，硅光低 17%）**，这是方案差不是价格波动，单独引用其一会误判价格走势。原文把硅光写作 SiPh (4 CW Laser)，四路连续波激光器方案。 reach 未注明：ASP 行没说传输距离；同表规格行显示 1.6T EML 为 2000m、1.6T SiPh 为 500m，**即这两个价格对应的传输距离本就不同**，见 citi-aug25-reach-* 四条。 **原表没有年份**：「EML vs SiPh」整张表只有方案与规格，没写对应哪一年。本条按报告发布年 2025 记，**不要当作 2025 年的实际成交或实际成本**——它是花旗成本模型里的一组假设。 **载体是他人转录的 Excel，不是花旗原报告**（工作表 Source 写明 Source:Citi / Date:2025.08.13）；数字表为手工转录，转录误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-cost-1600g-eml-bom",
+      "metric_id": "optics_module_unit_cost",
+      "entity": {
+        "type": "product",
+        "id": "optics-1600g-eml",
+        "label": "1.6T 光模块（EML 方案）"
+      },
+      "value": 493.0,
+      "unit": "美元/只",
+      "caliber": {
+        "speed": "1.6T",
+        "optical_scheme": "EML",
+        "cost_scope": "BOM 成本",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「EML vs SiPh」第 3 行列名「1.6T EML」，第 5 行 Cost，单元格 B5 = 493",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这一维极易读反**：原表第 6 行表头写「Total Cost (70% = BOM Cost)」，意思是 BOM 占全成本七成，**所以第 5 行的 Cost 才是 BOM 成本、第 6 行才是全成本**。校验：493 = 704 × 0.7。读反会把毛利率算高一截。 本条是BOM 成本。同方案另一口径见 citi-aug25-cost-1600g-eml-total。 **硅光的成本优势比价格优势大**：全成本 EML 704 vs SiPh 499（低 29%），而 ASP 只低 17%，差额落在毛利率上（41% vs 50%）。 **原表没有年份**：「EML vs SiPh」整张表只有方案与规格，没写对应哪一年。本条按报告发布年 2025 记，**不要当作 2025 年的实际成交或实际成本**——它是花旗成本模型里的一组假设。 **载体是他人转录的 Excel，不是花旗原报告**（工作表 Source 写明 Source:Citi / Date:2025.08.13）；数字表为手工转录，转录误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-cost-1600g-siph-bom",
+      "metric_id": "optics_module_unit_cost",
+      "entity": {
+        "type": "product",
+        "id": "optics-1600g-siph",
+        "label": "1.6T 光模块（SiPh 方案）"
+      },
+      "value": 349.0,
+      "unit": "美元/只",
+      "caliber": {
+        "speed": "1.6T",
+        "optical_scheme": "SiPh",
+        "cost_scope": "BOM 成本",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「EML vs SiPh」第 3 行列名「1.6T SiPh (4 CW Laser)」，第 5 行 Cost，单元格 C5 = 349",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这一维极易读反**：原表第 6 行表头写「Total Cost (70% = BOM Cost)」，意思是 BOM 占全成本七成，**所以第 5 行的 Cost 才是 BOM 成本、第 6 行才是全成本**。校验：493 = 704 × 0.7。读反会把毛利率算高一截。 本条是BOM 成本。同方案另一口径见 citi-aug25-cost-1600g-siph-total。 **硅光的成本优势比价格优势大**：全成本 EML 704 vs SiPh 499（低 29%），而 ASP 只低 17%，差额落在毛利率上（41% vs 50%）。 **原表没有年份**：「EML vs SiPh」整张表只有方案与规格，没写对应哪一年。本条按报告发布年 2025 记，**不要当作 2025 年的实际成交或实际成本**——它是花旗成本模型里的一组假设。 **载体是他人转录的 Excel，不是花旗原报告**（工作表 Source 写明 Source:Citi / Date:2025.08.13）；数字表为手工转录，转录误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-cost-1600g-eml-total",
+      "metric_id": "optics_module_unit_cost",
+      "entity": {
+        "type": "product",
+        "id": "optics-1600g-eml",
+        "label": "1.6T 光模块（EML 方案）"
+      },
+      "value": 704.0,
+      "unit": "美元/只",
+      "caliber": {
+        "speed": "1.6T",
+        "optical_scheme": "EML",
+        "cost_scope": "全成本",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「EML vs SiPh」第 3 行列名「1.6T EML」，第 6 行 Total Cost (70% = BOM Cost)，单元格 B6 = 704",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这一维极易读反**：原表第 6 行表头写「Total Cost (70% = BOM Cost)」，意思是 BOM 占全成本七成，**所以第 5 行的 Cost 才是 BOM 成本、第 6 行才是全成本**。校验：493 = 704 × 0.7。读反会把毛利率算高一截。 本条是全成本。同方案另一口径见 citi-aug25-cost-1600g-eml-bom。 **硅光的成本优势比价格优势大**：全成本 EML 704 vs SiPh 499（低 29%），而 ASP 只低 17%，差额落在毛利率上（41% vs 50%）。 **原表没有年份**：「EML vs SiPh」整张表只有方案与规格，没写对应哪一年。本条按报告发布年 2025 记，**不要当作 2025 年的实际成交或实际成本**——它是花旗成本模型里的一组假设。 **载体是他人转录的 Excel，不是花旗原报告**（工作表 Source 写明 Source:Citi / Date:2025.08.13）；数字表为手工转录，转录误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-cost-1600g-siph-total",
+      "metric_id": "optics_module_unit_cost",
+      "entity": {
+        "type": "product",
+        "id": "optics-1600g-siph",
+        "label": "1.6T 光模块（SiPh 方案）"
+      },
+      "value": 499.0,
+      "unit": "美元/只",
+      "caliber": {
+        "speed": "1.6T",
+        "optical_scheme": "SiPh",
+        "cost_scope": "全成本",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「EML vs SiPh」第 3 行列名「1.6T SiPh (4 CW Laser)」，第 6 行 Total Cost (70% = BOM Cost)，单元格 C6 = 499",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这一维极易读反**：原表第 6 行表头写「Total Cost (70% = BOM Cost)」，意思是 BOM 占全成本七成，**所以第 5 行的 Cost 才是 BOM 成本、第 6 行才是全成本**。校验：493 = 704 × 0.7。读反会把毛利率算高一截。 本条是全成本。同方案另一口径见 citi-aug25-cost-1600g-siph-bom。 **硅光的成本优势比价格优势大**：全成本 EML 704 vs SiPh 499（低 29%），而 ASP 只低 17%，差额落在毛利率上（41% vs 50%）。 **原表没有年份**：「EML vs SiPh」整张表只有方案与规格，没写对应哪一年。本条按报告发布年 2025 记，**不要当作 2025 年的实际成交或实际成本**——它是花旗成本模型里的一组假设。 **载体是他人转录的 Excel，不是花旗原报告**（工作表 Source 写明 Source:Citi / Date:2025.08.13）；数字表为手工转录，转录误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-gm-1600g-eml",
+      "metric_id": "optics_gross_margin",
+      "entity": {
+        "type": "product",
+        "id": "optics-1600g-eml",
+        "label": "1.6T 光模块（EML 方案）"
+      },
+      "value": 41.0,
+      "unit": "%",
+      "caliber": {
+        "margin_level": "产品级",
+        "speed": "1.6T",
+        "optical_scheme": "EML",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「EML vs SiPh」第 8 行 Gross Margin，1.6T EML 列 = 0.41",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**产品级，不是公司级**：同一份文件里中际旭创 2026E 公司综合毛利率为 44.8%，与这里的 1.6T 产品毛利率不是一回事，中间隔着产品结构与非光模块业务。 口径自洽：ASP 1200 − 全成本 704 = 毛利 496，毛利率 41%（原表第 7 行 Gross Profit 给的正是 496）。 **硅光毛利率高 9 个百分点**，是这份报告推荐硅光路线的核心算式。 **原表没有年份**：「EML vs SiPh」整张表只有方案与规格，没写对应哪一年。本条按报告发布年 2025 记，**不要当作 2025 年的实际成交或实际成本**——它是花旗成本模型里的一组假设。 **载体是他人转录的 Excel，不是花旗原报告**（工作表 Source 写明 Source:Citi / Date:2025.08.13）；数字表为手工转录，转录误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-gm-1600g-siph",
+      "metric_id": "optics_gross_margin",
+      "entity": {
+        "type": "product",
+        "id": "optics-1600g-siph",
+        "label": "1.6T 光模块（SiPh 方案）"
+      },
+      "value": 50.0,
+      "unit": "%",
+      "caliber": {
+        "margin_level": "产品级",
+        "speed": "1.6T",
+        "optical_scheme": "SiPh",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「EML vs SiPh」第 8 行 Gross Margin，1.6T SiPh 列 = 0.5",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**产品级，不是公司级**：同一份文件里中际旭创 2026E 公司综合毛利率为 44.8%，与这里的 1.6T 产品毛利率不是一回事，中间隔着产品结构与非光模块业务。 口径自洽：ASP 1000 − 全成本 499 = 毛利 501，毛利率 50%（原表第 7 行 Gross Profit 给的正是 501）。 **硅光毛利率高 9 个百分点**，是这份报告推荐硅光路线的核心算式。 **原表没有年份**：「EML vs SiPh」整张表只有方案与规格，没写对应哪一年。本条按报告发布年 2025 记，**不要当作 2025 年的实际成交或实际成本**——它是花旗成本模型里的一组假设。 **载体是他人转录的 Excel，不是花旗原报告**（工作表 Source 写明 Source:Citi / Date:2025.08.13）；数字表为手工转录，转录误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-power-800g-eml",
+      "metric_id": "optics_module_power",
+      "entity": {
+        "type": "product",
+        "id": "optics-800g-eml",
+        "label": "800G 光模块（EML 方案）"
+      },
+      "value": 13.0,
+      "unit": "W",
+      "caliber": {
+        "speed": "800G",
+        "optical_scheme": "EML",
+        "power_stat": "典型值",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「EML vs SiPh」第 11 行 Spec 块，第 12 行列名「800G EML」，第 13 行 Power Consumption (W)，单元格 B13 = 「13W」",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**不带 optical_scheme 的功耗数没有意义**：800G 上 EML 13W 对硅光 8.5-11W，硅光省 15-35%；1.6T 上 EML 23W 对硅光 20W，只省 13%——**速率越高硅光的功耗优势越小**，这是原表四个数放在一起才看得出来的。 power_stat=典型值：原表只写 Power Consumption (W) 未说明是典型值还是最大值，按规格对比表的常规读作典型值，标 [未核]。 **原表没有年份**：「EML vs SiPh」整张表只有方案与规格，没写对应哪一年。本条按报告发布年 2025 记，**不要当作 2025 年的实际成交或实际成本**——它是花旗成本模型里的一组假设。 **载体是他人转录的 Excel，不是花旗原报告**（工作表 Source 写明 Source:Citi / Date:2025.08.13）；数字表为手工转录，转录误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-power-1600g-eml",
+      "metric_id": "optics_module_power",
+      "entity": {
+        "type": "product",
+        "id": "optics-166t-eml",
+        "label": "1.6T 光模块（EML 方案）"
+      },
+      "value": 23.0,
+      "unit": "W",
+      "caliber": {
+        "speed": "1.6T",
+        "optical_scheme": "EML",
+        "power_stat": "典型值",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「EML vs SiPh」第 11 行 Spec 块，第 12 行列名「1.6T EML」，第 13 行 Power Consumption (W)，单元格 D13 = 「23W」",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**不带 optical_scheme 的功耗数没有意义**：800G 上 EML 13W 对硅光 8.5-11W，硅光省 15-35%；1.6T 上 EML 23W 对硅光 20W，只省 13%——**速率越高硅光的功耗优势越小**，这是原表四个数放在一起才看得出来的。 power_stat=典型值：原表只写 Power Consumption (W) 未说明是典型值还是最大值，按规格对比表的常规读作典型值，标 [未核]。 **原表没有年份**：「EML vs SiPh」整张表只有方案与规格，没写对应哪一年。本条按报告发布年 2025 记，**不要当作 2025 年的实际成交或实际成本**——它是花旗成本模型里的一组假设。 **载体是他人转录的 Excel，不是花旗原报告**（工作表 Source 写明 Source:Citi / Date:2025.08.13）；数字表为手工转录，转录误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-power-1600g-siph",
+      "metric_id": "optics_module_power",
+      "entity": {
+        "type": "product",
+        "id": "optics-166t-siph",
+        "label": "1.6T 光模块（SiPh 方案）"
+      },
+      "value": 20.0,
+      "unit": "W",
+      "caliber": {
+        "speed": "1.6T",
+        "optical_scheme": "SiPh",
+        "power_stat": "典型值",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「EML vs SiPh」第 11 行 Spec 块，第 12 行列名「1.6T SiPh」，第 13 行 Power Consumption (W)，单元格 E13 = 「20W」",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**不带 optical_scheme 的功耗数没有意义**：800G 上 EML 13W 对硅光 8.5-11W，硅光省 15-35%；1.6T 上 EML 23W 对硅光 20W，只省 13%——**速率越高硅光的功耗优势越小**，这是原表四个数放在一起才看得出来的。 power_stat=典型值：原表只写 Power Consumption (W) 未说明是典型值还是最大值，按规格对比表的常规读作典型值，标 [未核]。 **原表没有年份**：「EML vs SiPh」整张表只有方案与规格，没写对应哪一年。本条按报告发布年 2025 记，**不要当作 2025 年的实际成交或实际成本**——它是花旗成本模型里的一组假设。 **载体是他人转录的 Excel，不是花旗原报告**（工作表 Source 写明 Source:Citi / Date:2025.08.13）；数字表为手工转录，转录误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-power-800g-siph-low",
+      "metric_id": "optics_module_power",
+      "entity": {
+        "type": "product",
+        "id": "optics-800g-siph",
+        "label": "800G 光模块（SiPh 方案）"
+      },
+      "value": 8.5,
+      "unit": "W",
+      "caliber": {
+        "speed": "800G",
+        "optical_scheme": "SiPh",
+        "power_stat": "区间",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「EML vs SiPh」第 11 行 Spec 块，第 12 行列名「800G SiPh」，第 13 行 Power Consumption (W)，单元格 C13 = 「8.5W-11W」",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**不带 optical_scheme 的功耗数没有意义**：800G 上 EML 13W 对硅光 8.5-11W，硅光省 15-35%；1.6T 上 EML 23W 对硅光 20W，只省 13%——**速率越高硅光的功耗优势越小**，这是原表四个数放在一起才看得出来的。 **原文是区间 8.5W-11W**，按菜单要求记成上下界两条（power_stat=区间），另一端见 citi-aug25-power-800g-siph-high。 **原表没有年份**：「EML vs SiPh」整张表只有方案与规格，没写对应哪一年。本条按报告发布年 2025 记，**不要当作 2025 年的实际成交或实际成本**——它是花旗成本模型里的一组假设。 **载体是他人转录的 Excel，不是花旗原报告**（工作表 Source 写明 Source:Citi / Date:2025.08.13）；数字表为手工转录，转录误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-power-800g-siph-high",
+      "metric_id": "optics_module_power",
+      "entity": {
+        "type": "product",
+        "id": "optics-800g-siph",
+        "label": "800G 光模块（SiPh 方案）"
+      },
+      "value": 11.0,
+      "unit": "W",
+      "caliber": {
+        "speed": "800G",
+        "optical_scheme": "SiPh",
+        "power_stat": "区间",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「EML vs SiPh」第 11 行 Spec 块，第 12 行列名「800G SiPh」，第 13 行 Power Consumption (W)，单元格 C13 = 「8.5W-11W」",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**不带 optical_scheme 的功耗数没有意义**：800G 上 EML 13W 对硅光 8.5-11W，硅光省 15-35%；1.6T 上 EML 23W 对硅光 20W，只省 13%——**速率越高硅光的功耗优势越小**，这是原表四个数放在一起才看得出来的。 **原文是区间 8.5W-11W**，按菜单要求记成上下界两条（power_stat=区间），另一端见 citi-aug25-power-800g-siph-low。 **原表没有年份**：「EML vs SiPh」整张表只有方案与规格，没写对应哪一年。本条按报告发布年 2025 记，**不要当作 2025 年的实际成交或实际成本**——它是花旗成本模型里的一组假设。 **载体是他人转录的 Excel，不是花旗原报告**（工作表 Source 写明 Source:Citi / Date:2025.08.13）；数字表为手工转录，转录误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-reach-800g-eml",
+      "metric_id": "optics_module_reach",
+      "entity": {
+        "type": "product",
+        "id": "optics-800g-eml",
+        "label": "800G 光模块（EML 方案）"
+      },
+      "value": 2000.0,
+      "unit": "m",
+      "caliber": {
+        "speed": "800G",
+        "optical_scheme": "EML",
+        "reach_stat": "标称最大",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「EML vs SiPh」第 11 行 Spec 块，第 12 行列名「800G EML」，第 14 行 Distance，单元格 B14 = 「2000m」",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是方案的射程差，不是同一产品的两个档**：两个速率上 EML 都是 2000m、硅光都是 500m，**即硅光的价格与功耗优势是用四分之一的传输距离换来的**——只比价格不比射程会得出错误结论。 对应 optics_module_price.reach 的档位：2000m ≈ FR/2km，500m ≈ DR/500m。 reach_stat=标称最大：规格对比表给的是标称能力，非实测，标 [未核]。 **原表没有年份**：「EML vs SiPh」整张表只有方案与规格，没写对应哪一年。本条按报告发布年 2025 记，**不要当作 2025 年的实际成交或实际成本**——它是花旗成本模型里的一组假设。 **载体是他人转录的 Excel，不是花旗原报告**（工作表 Source 写明 Source:Citi / Date:2025.08.13）；数字表为手工转录，转录误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-reach-800g-siph",
+      "metric_id": "optics_module_reach",
+      "entity": {
+        "type": "product",
+        "id": "optics-800g-siph",
+        "label": "800G 光模块（SiPh 方案）"
+      },
+      "value": 500.0,
+      "unit": "m",
+      "caliber": {
+        "speed": "800G",
+        "optical_scheme": "SiPh",
+        "reach_stat": "标称最大",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「EML vs SiPh」第 11 行 Spec 块，第 12 行列名「800G SiPh」，第 14 行 Distance，单元格 C14 = 「500m」",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是方案的射程差，不是同一产品的两个档**：两个速率上 EML 都是 2000m、硅光都是 500m，**即硅光的价格与功耗优势是用四分之一的传输距离换来的**——只比价格不比射程会得出错误结论。 对应 optics_module_price.reach 的档位：2000m ≈ FR/2km，500m ≈ DR/500m。 reach_stat=标称最大：规格对比表给的是标称能力，非实测，标 [未核]。 **原表没有年份**：「EML vs SiPh」整张表只有方案与规格，没写对应哪一年。本条按报告发布年 2025 记，**不要当作 2025 年的实际成交或实际成本**——它是花旗成本模型里的一组假设。 **载体是他人转录的 Excel，不是花旗原报告**（工作表 Source 写明 Source:Citi / Date:2025.08.13）；数字表为手工转录，转录误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-reach-1600g-eml",
+      "metric_id": "optics_module_reach",
+      "entity": {
+        "type": "product",
+        "id": "optics-1600g-eml",
+        "label": "1.6T 光模块（EML 方案）"
+      },
+      "value": 2000.0,
+      "unit": "m",
+      "caliber": {
+        "speed": "1.6T",
+        "optical_scheme": "EML",
+        "reach_stat": "标称最大",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「EML vs SiPh」第 11 行 Spec 块，第 12 行列名「1.6T EML」，第 14 行 Distance，单元格 D14 = 「2000m」",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是方案的射程差，不是同一产品的两个档**：两个速率上 EML 都是 2000m、硅光都是 500m，**即硅光的价格与功耗优势是用四分之一的传输距离换来的**——只比价格不比射程会得出错误结论。 对应 optics_module_price.reach 的档位：2000m ≈ FR/2km，500m ≈ DR/500m。 reach_stat=标称最大：规格对比表给的是标称能力，非实测，标 [未核]。 **原表没有年份**：「EML vs SiPh」整张表只有方案与规格，没写对应哪一年。本条按报告发布年 2025 记，**不要当作 2025 年的实际成交或实际成本**——它是花旗成本模型里的一组假设。 **载体是他人转录的 Excel，不是花旗原报告**（工作表 Source 写明 Source:Citi / Date:2025.08.13）；数字表为手工转录，转录误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-reach-1600g-siph",
+      "metric_id": "optics_module_reach",
+      "entity": {
+        "type": "product",
+        "id": "optics-1600g-siph",
+        "label": "1.6T 光模块（SiPh 方案）"
+      },
+      "value": 500.0,
+      "unit": "m",
+      "caliber": {
+        "speed": "1.6T",
+        "optical_scheme": "SiPh",
+        "reach_stat": "标称最大",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「EML vs SiPh」第 11 行 Spec 块，第 12 行列名「1.6T SiPh」，第 14 行 Distance，单元格 E14 = 「500m」",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是方案的射程差，不是同一产品的两个档**：两个速率上 EML 都是 2000m、硅光都是 500m，**即硅光的价格与功耗优势是用四分之一的传输距离换来的**——只比价格不比射程会得出错误结论。 对应 optics_module_price.reach 的档位：2000m ≈ FR/2km，500m ≈ DR/500m。 reach_stat=标称最大：规格对比表给的是标称能力，非实测，标 [未核]。 **原表没有年份**：「EML vs SiPh」整张表只有方案与规格，没写对应哪一年。本条按报告发布年 2025 记，**不要当作 2025 年的实际成交或实际成本**——它是花旗成本模型里的一组假设。 **载体是他人转录的 Excel，不是花旗原报告**（工作表 Source 写明 Source:Citi / Date:2025.08.13）；数字表为手工转录，转录误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-aec-2025e",
+      "metric_id": "aec_shipment",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 10.0,
+      "unit": "万只",
+      "caliber": {
+        "speed": "400G/800G 合并档",
+        "basis": "券商测算",
+        "customer": "未拆分",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」第 17 行列名「400G/800G AEC(kUnits)」，第 18 行「2025E」，单元格 E18 = 100",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 kUnit ÷ 10 = 万只。 **速率是原文就合并报的「400G/800G」**，不能拆成两档，也不能与任何单档相加。 **AEC 是有源电缆不是光模块**：配图图例把 400G/800G AEC 与三档 Transceiver 并列为独立品类，两者是替代关系——把 AEC 加进光模块出货曲线，会把替代读成增长。 三年 10 → 30 → 45 万只，增速快于该公司同期 400G 光模块的萎缩（450 → 60 → 6 万只）。 **载体是他人转录的 Excel，不是花旗原报告**（工作表 Source 写明 Source:Citi / Date:2025.08.13）；数字表为手工转录，转录误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-aec-2026e",
+      "metric_id": "aec_shipment",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 30.0,
+      "unit": "万只",
+      "caliber": {
+        "speed": "400G/800G 合并档",
+        "basis": "券商测算",
+        "customer": "未拆分",
+        "region": "Global"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」第 17 行列名「400G/800G AEC(kUnits)」，第 19 行「2026E」，单元格 E19 = 300",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 kUnit ÷ 10 = 万只。 **速率是原文就合并报的「400G/800G」**，不能拆成两档，也不能与任何单档相加。 **AEC 是有源电缆不是光模块**：配图图例把 400G/800G AEC 与三档 Transceiver 并列为独立品类，两者是替代关系——把 AEC 加进光模块出货曲线，会把替代读成增长。 三年 10 → 30 → 45 万只，增速快于该公司同期 400G 光模块的萎缩（450 → 60 → 6 万只）。 **载体是他人转录的 Excel，不是花旗原报告**（工作表 Source 写明 Source:Citi / Date:2025.08.13）；数字表为手工转录，转录误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-aec-2027e",
+      "metric_id": "aec_shipment",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 45.0,
+      "unit": "万只",
+      "caliber": {
+        "speed": "400G/800G 合并档",
+        "basis": "券商测算",
+        "customer": "未拆分",
+        "region": "Global"
+      },
+      "as_of": "2027E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」第 17 行列名「400G/800G AEC(kUnits)」，第 20 行「2027E」，单元格 E20 = 450",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 kUnit ÷ 10 = 万只。 **速率是原文就合并报的「400G/800G」**，不能拆成两档，也不能与任何单档相加。 **AEC 是有源电缆不是光模块**：配图图例把 400G/800G AEC 与三档 Transceiver 并列为独立品类，两者是替代关系——把 AEC 加进光模块出货曲线，会把替代读成增长。 三年 10 → 30 → 45 万只，增速快于该公司同期 400G 光模块的萎缩（450 → 60 → 6 万只）。 **载体是他人转录的 Excel，不是花旗原报告**（工作表 Source 写明 Source:Citi / Date:2025.08.13）；数字表为手工转录，转录误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-tfc-engine-800g-2024",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "company",
+        "id": "tfc-optics",
+        "label": "天孚通信"
+      },
+      "value": 65.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "product_form": "光引擎",
+        "speed": "800G",
+        "shipment_basis": "厂商出货",
+        "basis": "券商测算",
+        "customer": "未拆分",
+        "region": "Global"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「天孚」第 17 行「出货量统计」，第 18 行列名「800G (kUnits)」，第 19 行「2024」，单元格 B19 = 650",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**product_form=光引擎，不是光模块**：配图图例写的是 800G / 1.6T Optical Engines，而中际旭创与新易盛那两张图写的是 Optical Transceiver。光引擎是模块的上游部件，一只模块可含多个，**放进同一条出货曲线会把部件和成品混算**。 单位换算：原表 kUnit ÷ 10 = 万只。 2024 年无 E 后缀，是花旗给的实绩年；其余为预测，已带 @2025-08 时点。 **天孚的结构转换极快**：800G 光引擎 2024 年 65 万只，2025 年反而降到 30 万只，而 1.6T 从 1 万只跳到 80 万只——**总量几乎没变，全是结构切换**，只看单一速率会得出相反结论。 **载体是他人转录的 Excel，不是花旗原报告**（工作表 Source 写明 Source:Citi / Date:2025.08.13）；数字表为手工转录，转录误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-tfc-engine-1600g-2024",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "company",
+        "id": "tfc-optics",
+        "label": "天孚通信"
+      },
+      "value": 1.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "product_form": "光引擎",
+        "speed": "1.6T",
+        "shipment_basis": "厂商出货",
+        "basis": "券商测算",
+        "customer": "未拆分",
+        "region": "Global"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「天孚」第 17 行「出货量统计」，第 18 行列名「1.6T (kUnits)」，第 19 行「2024」，单元格 C19 = 10",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**product_form=光引擎，不是光模块**：配图图例写的是 800G / 1.6T Optical Engines，而中际旭创与新易盛那两张图写的是 Optical Transceiver。光引擎是模块的上游部件，一只模块可含多个，**放进同一条出货曲线会把部件和成品混算**。 单位换算：原表 kUnit ÷ 10 = 万只。 2024 年无 E 后缀，是花旗给的实绩年；其余为预测，已带 @2025-08 时点。 **天孚的结构转换极快**：800G 光引擎 2024 年 65 万只，2025 年反而降到 30 万只，而 1.6T 从 1 万只跳到 80 万只——**总量几乎没变，全是结构切换**，只看单一速率会得出相反结论。 **载体是他人转录的 Excel，不是花旗原报告**（工作表 Source 写明 Source:Citi / Date:2025.08.13）；数字表为手工转录，转录误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-tfc-engine-800g-2025e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "company",
+        "id": "tfc-optics",
+        "label": "天孚通信"
+      },
+      "value": 30.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "product_form": "光引擎",
+        "speed": "800G",
+        "shipment_basis": "厂商出货",
+        "basis": "券商测算",
+        "customer": "未拆分",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「天孚」第 17 行「出货量统计」，第 18 行列名「800G (kUnits)」，第 20 行「2025E」，单元格 B20 = 300",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**product_form=光引擎，不是光模块**：配图图例写的是 800G / 1.6T Optical Engines，而中际旭创与新易盛那两张图写的是 Optical Transceiver。光引擎是模块的上游部件，一只模块可含多个，**放进同一条出货曲线会把部件和成品混算**。 单位换算：原表 kUnit ÷ 10 = 万只。 预测值，时点 2025-08。 **天孚的结构转换极快**：800G 光引擎 2024 年 65 万只，2025 年反而降到 30 万只，而 1.6T 从 1 万只跳到 80 万只——**总量几乎没变，全是结构切换**，只看单一速率会得出相反结论。 **载体是他人转录的 Excel，不是花旗原报告**（工作表 Source 写明 Source:Citi / Date:2025.08.13）；数字表为手工转录，转录误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-tfc-engine-1600g-2025e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "company",
+        "id": "tfc-optics",
+        "label": "天孚通信"
+      },
+      "value": 80.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "product_form": "光引擎",
+        "speed": "1.6T",
+        "shipment_basis": "厂商出货",
+        "basis": "券商测算",
+        "customer": "未拆分",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「天孚」第 17 行「出货量统计」，第 18 行列名「1.6T (kUnits)」，第 20 行「2025E」，单元格 C20 = 800",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**product_form=光引擎，不是光模块**：配图图例写的是 800G / 1.6T Optical Engines，而中际旭创与新易盛那两张图写的是 Optical Transceiver。光引擎是模块的上游部件，一只模块可含多个，**放进同一条出货曲线会把部件和成品混算**。 单位换算：原表 kUnit ÷ 10 = 万只。 预测值，时点 2025-08。 **天孚的结构转换极快**：800G 光引擎 2024 年 65 万只，2025 年反而降到 30 万只，而 1.6T 从 1 万只跳到 80 万只——**总量几乎没变，全是结构切换**，只看单一速率会得出相反结论。 **载体是他人转录的 Excel，不是花旗原报告**（工作表 Source 写明 Source:Citi / Date:2025.08.13）；数字表为手工转录，转录误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-tfc-engine-800g-2026e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "company",
+        "id": "tfc-optics",
+        "label": "天孚通信"
+      },
+      "value": 60.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "product_form": "光引擎",
+        "speed": "800G",
+        "shipment_basis": "厂商出货",
+        "basis": "券商测算",
+        "customer": "未拆分",
+        "region": "Global"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「天孚」第 17 行「出货量统计」，第 18 行列名「800G (kUnits)」，第 21 行「2026E」，单元格 B21 = 600",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**product_form=光引擎，不是光模块**：配图图例写的是 800G / 1.6T Optical Engines，而中际旭创与新易盛那两张图写的是 Optical Transceiver。光引擎是模块的上游部件，一只模块可含多个，**放进同一条出货曲线会把部件和成品混算**。 单位换算：原表 kUnit ÷ 10 = 万只。 预测值，时点 2025-08。 **天孚的结构转换极快**：800G 光引擎 2024 年 65 万只，2025 年反而降到 30 万只，而 1.6T 从 1 万只跳到 80 万只——**总量几乎没变，全是结构切换**，只看单一速率会得出相反结论。 **载体是他人转录的 Excel，不是花旗原报告**（工作表 Source 写明 Source:Citi / Date:2025.08.13）；数字表为手工转录，转录误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-tfc-engine-1600g-2026e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "company",
+        "id": "tfc-optics",
+        "label": "天孚通信"
+      },
+      "value": 120.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "product_form": "光引擎",
+        "speed": "1.6T",
+        "shipment_basis": "厂商出货",
+        "basis": "券商测算",
+        "customer": "未拆分",
+        "region": "Global"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「天孚」第 17 行「出货量统计」，第 18 行列名「1.6T (kUnits)」，第 21 行「2026E」，单元格 C21 = 1200",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**product_form=光引擎，不是光模块**：配图图例写的是 800G / 1.6T Optical Engines，而中际旭创与新易盛那两张图写的是 Optical Transceiver。光引擎是模块的上游部件，一只模块可含多个，**放进同一条出货曲线会把部件和成品混算**。 单位换算：原表 kUnit ÷ 10 = 万只。 预测值，时点 2025-08。 **天孚的结构转换极快**：800G 光引擎 2024 年 65 万只，2025 年反而降到 30 万只，而 1.6T 从 1 万只跳到 80 万只——**总量几乎没变，全是结构切换**，只看单一速率会得出相反结论。 **载体是他人转录的 Excel，不是花旗原报告**（工作表 Source 写明 Source:Citi / Date:2025.08.13）；数字表为手工转录，转录误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-tfc-engine-800g-2027e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "company",
+        "id": "tfc-optics",
+        "label": "天孚通信"
+      },
+      "value": 60.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "product_form": "光引擎",
+        "speed": "800G",
+        "shipment_basis": "厂商出货",
+        "basis": "券商测算",
+        "customer": "未拆分",
+        "region": "Global"
+      },
+      "as_of": "2027E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「天孚」第 17 行「出货量统计」，第 18 行列名「800G (kUnits)」，第 22 行「2027E」，单元格 B22 = 600",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**product_form=光引擎，不是光模块**：配图图例写的是 800G / 1.6T Optical Engines，而中际旭创与新易盛那两张图写的是 Optical Transceiver。光引擎是模块的上游部件，一只模块可含多个，**放进同一条出货曲线会把部件和成品混算**。 单位换算：原表 kUnit ÷ 10 = 万只。 预测值，时点 2025-08。 **天孚的结构转换极快**：800G 光引擎 2024 年 65 万只，2025 年反而降到 30 万只，而 1.6T 从 1 万只跳到 80 万只——**总量几乎没变，全是结构切换**，只看单一速率会得出相反结论。 **载体是他人转录的 Excel，不是花旗原报告**（工作表 Source 写明 Source:Citi / Date:2025.08.13）；数字表为手工转录，转录误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-tfc-engine-1600g-2027e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "company",
+        "id": "tfc-optics",
+        "label": "天孚通信"
+      },
+      "value": 130.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "product_form": "光引擎",
+        "speed": "1.6T",
+        "shipment_basis": "厂商出货",
+        "basis": "券商测算",
+        "customer": "未拆分",
+        "region": "Global"
+      },
+      "as_of": "2027E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「天孚」第 17 行「出货量统计」，第 18 行列名「1.6T (kUnits)」，第 22 行「2027E」，单元格 C22 = 1300",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**product_form=光引擎，不是光模块**：配图图例写的是 800G / 1.6T Optical Engines，而中际旭创与新易盛那两张图写的是 Optical Transceiver。光引擎是模块的上游部件，一只模块可含多个，**放进同一条出货曲线会把部件和成品混算**。 单位换算：原表 kUnit ÷ 10 = 万只。 预测值，时点 2025-08。 **天孚的结构转换极快**：800G 光引擎 2024 年 65 万只，2025 年反而降到 30 万只，而 1.6T 从 1 万只跳到 80 万只——**总量几乎没变，全是结构切换**，只看单一速率会得出相反结论。 **载体是他人转录的 Excel，不是花旗原报告**（工作表 Source 写明 Source:Citi / Date:2025.08.13）；数字表为手工转录，转录误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-revenue-2025e",
+      "metric_id": "company_revenue",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 25384.0,
+      "unit": "百万（原币）",
+      "caliber": {
+        "currency": "未注明",
+        "fiscal_align": "自然季/自然年",
+        "basis": "券商测算"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」第 4 行「营收」，第 3/4 行列名「2025E Citi」，单元格 B4 = 25384",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**取的是 Citi 列，不是同表并列的 BBG 一致预期列**（2025E：19932）；两者的偏离另记于 citi-aug25-eoptolink-delta-rev-2025e。 **币种未注明**：原表营收、净利各行只有数字，全表没有一处写单位。按量级几乎肯定是人民币百万元，但「看着像」不是口径，故 currency 填「未注明」——**这条数因此不可与任何已注明币种的数相加或比较**。 fiscal_align=自然季/自然年：三家均为 A 股公司，财年与自然年一致。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-netincome-2025e",
+      "metric_id": "company_net_income",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 10290.0,
+      "unit": "百万（原币）",
+      "caliber": {
+        "currency": "未注明",
+        "fiscal_align": "自然季/自然年",
+        "income_scope": "未注明",
+        "basis": "券商测算"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」第 9 行「净利」，单元格 B9 = 10290",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**income_scope=未注明**：原表只写「净利」，没说是归母、全口径还是扣非——三者在券商表里常并列，混用会把少数股东权益或一次性损益读成经营改善。 同表 BBG 一致预期为 7233。 **币种未注明**：原表营收、净利各行只有数字，全表没有一处写单位。按量级几乎肯定是人民币百万元，但「看着像」不是口径，故 currency 填「未注明」——**这条数因此不可与任何已注明币种的数相加或比较**。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-netmargin-2025e",
+      "metric_id": "company_net_margin",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 40.5,
+      "unit": "%",
+      "caliber": {
+        "fiscal_align": "自然季/自然年",
+        "income_scope": "未注明",
+        "basis": "券商测算"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」第 13 行「净利率 (%)」，单元格 B13 = 0.405",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "与 optics_gross_margin{margin_level: 公司级} 的毛利率之间隔着三费与所得税，不是同一层。 **中际旭创那张表没有净利率行**，故本库缺该公司同口径的这条，比较三家净利率时要注意样本不全。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-grossmargin-2025e",
+      "metric_id": "optics_gross_margin",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 51.8,
+      "unit": "%",
+      "caliber": {
+        "margin_level": "公司级",
+        "speed": "合计",
+        "optical_scheme": "未注明",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」第 10 行「毛利率 (%)」，单元格 B10 = 0.518",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**公司级综合毛利率，混了全部产品、客户与非光模块业务**，与同文件 1.6T 产品级毛利率（EML 41% / SiPh 50%）不在一层。 三家横比：天孚 54.4% > 新易盛 51.8% > 中际旭创 41.1%（2025E）——**天孚做的是光引擎与器件，产品结构与两家模块厂本就不同**，高毛利率不等于更强。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-delta-rev-2025e",
+      "metric_id": "earnings_vs_consensus_delta",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 27.4,
+      "unit": "%",
+      "caliber": {
+        "line_item": "营业收入",
+        "benchmark": "卖方一致预期",
+        "fiscal_align": "自然季/自然年",
+        "basis": "券商测算"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」第 4 行「营收」，第 3/4 行列名「差异%」，单元格 D4 = 0.27399999999999997",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**方向已核**：差异% = (Citi 预测 − BBG 一致预期) ÷ BBG 一致预期。以本条为例 (25384 − 19932) ÷ 19932 = 27.4%，与原表相符。 **注意这不是「实际 vs 预期」**：分子是花旗自己的预测，不是已实现业绩——basis=券商测算正是为此。它衡量的是这家券商比市场共识乐观多少，**不是公司超没超预期**。 同年同公司营收与净利的偏离方向一致但幅度差很多（营收 +27.4% vs 净利 +42.3%），说明花旗的乐观主要来自利润率假设而非收入假设。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-delta-ni-2025e",
+      "metric_id": "earnings_vs_consensus_delta",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 42.3,
+      "unit": "%",
+      "caliber": {
+        "line_item": "净利润",
+        "benchmark": "卖方一致预期",
+        "fiscal_align": "自然季/自然年",
+        "basis": "券商测算"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」第 9 行「净利」，第 3/4 行列名「差异%」，单元格 D9 = 0.423",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**方向已核**：差异% = (Citi 预测 − BBG 一致预期) ÷ BBG 一致预期。以本条为例 (10290 − 7233) ÷ 7233 = 42.3%，与原表相符。 **注意这不是「实际 vs 预期」**：分子是花旗自己的预测，不是已实现业绩——basis=券商测算正是为此。它衡量的是这家券商比市场共识乐观多少，**不是公司超没超预期**。 同年同公司营收与净利的偏离方向一致但幅度差很多（营收 +27.4% vs 净利 +42.3%），说明花旗的乐观主要来自利润率假设而非收入假设。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-revenue-2026e",
+      "metric_id": "company_revenue",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 38637.0,
+      "unit": "百万（原币）",
+      "caliber": {
+        "currency": "未注明",
+        "fiscal_align": "自然季/自然年",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」第 4 行「营收」，第 3/4 行列名「2026E Citi」，单元格 E4 = 38637",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**取的是 Citi 列，不是同表并列的 BBG 一致预期列**（2026E：26817）；两者的偏离另记于 citi-aug25-eoptolink-delta-rev-2026e。 **币种未注明**：原表营收、净利各行只有数字，全表没有一处写单位。按量级几乎肯定是人民币百万元，但「看着像」不是口径，故 currency 填「未注明」——**这条数因此不可与任何已注明币种的数相加或比较**。 fiscal_align=自然季/自然年：三家均为 A 股公司，财年与自然年一致。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-netincome-2026e",
+      "metric_id": "company_net_income",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 15947.0,
+      "unit": "百万（原币）",
+      "caliber": {
+        "currency": "未注明",
+        "fiscal_align": "自然季/自然年",
+        "income_scope": "未注明",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」第 9 行「净利」，单元格 E9 = 15947",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**income_scope=未注明**：原表只写「净利」，没说是归母、全口径还是扣非——三者在券商表里常并列，混用会把少数股东权益或一次性损益读成经营改善。 同表 BBG 一致预期为 9641。 **币种未注明**：原表营收、净利各行只有数字，全表没有一处写单位。按量级几乎肯定是人民币百万元，但「看着像」不是口径，故 currency 填「未注明」——**这条数因此不可与任何已注明币种的数相加或比较**。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-netmargin-2026e",
+      "metric_id": "company_net_margin",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 41.3,
+      "unit": "%",
+      "caliber": {
+        "fiscal_align": "自然季/自然年",
+        "income_scope": "未注明",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」第 13 行「净利率 (%)」，单元格 E13 = 0.413",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "与 optics_gross_margin{margin_level: 公司级} 的毛利率之间隔着三费与所得税，不是同一层。 **中际旭创那张表没有净利率行**，故本库缺该公司同口径的这条，比较三家净利率时要注意样本不全。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-grossmargin-2026e",
+      "metric_id": "optics_gross_margin",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 52.2,
+      "unit": "%",
+      "caliber": {
+        "margin_level": "公司级",
+        "speed": "合计",
+        "optical_scheme": "未注明",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」第 10 行「毛利率 (%)」，单元格 E10 = 0.522",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**公司级综合毛利率，混了全部产品、客户与非光模块业务**，与同文件 1.6T 产品级毛利率（EML 41% / SiPh 50%）不在一层。 三家横比：天孚 55.5% > 新易盛 52.2% > 中际旭创 44.8%（2026E）——**天孚做的是光引擎与器件，产品结构与两家模块厂本就不同**，高毛利率不等于更强。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-delta-rev-2026e",
+      "metric_id": "earnings_vs_consensus_delta",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 44.1,
+      "unit": "%",
+      "caliber": {
+        "line_item": "营业收入",
+        "benchmark": "卖方一致预期",
+        "fiscal_align": "自然季/自然年",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」第 4 行「营收」，第 3/4 行列名「差异%」，单元格 G4 = 0.441",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**方向已核**：差异% = (Citi 预测 − BBG 一致预期) ÷ BBG 一致预期。以本条为例 (38637 − 26817) ÷ 26817 = 44.1%，与原表相符。 **注意这不是「实际 vs 预期」**：分子是花旗自己的预测，不是已实现业绩——basis=券商测算正是为此。它衡量的是这家券商比市场共识乐观多少，**不是公司超没超预期**。 同年同公司营收与净利的偏离方向一致但幅度差很多（营收 +44.1% vs 净利 +65.4%），说明花旗的乐观主要来自利润率假设而非收入假设。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-delta-ni-2026e",
+      "metric_id": "earnings_vs_consensus_delta",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 65.4,
+      "unit": "%",
+      "caliber": {
+        "line_item": "净利润",
+        "benchmark": "卖方一致预期",
+        "fiscal_align": "自然季/自然年",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」第 9 行「净利」，第 3/4 行列名「差异%」，单元格 G9 = 0.654",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**方向已核**：差异% = (Citi 预测 − BBG 一致预期) ÷ BBG 一致预期。以本条为例 (15947 − 9641) ÷ 9641 = 65.4%，与原表相符。 **注意这不是「实际 vs 预期」**：分子是花旗自己的预测，不是已实现业绩——basis=券商测算正是为此。它衡量的是这家券商比市场共识乐观多少，**不是公司超没超预期**。 同年同公司营收与净利的偏离方向一致但幅度差很多（营收 +44.1% vs 净利 +65.4%），说明花旗的乐观主要来自利润率假设而非收入假设。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-revenue-2027e",
+      "metric_id": "company_revenue",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 46300.0,
+      "unit": "百万（原币）",
+      "caliber": {
+        "currency": "未注明",
+        "fiscal_align": "自然季/自然年",
+        "basis": "券商测算"
+      },
+      "as_of": "2027E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」第 4 行「营收」，第 3/4 行列名「2027E Citi」，单元格 H4 = 46300",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**取的是 Citi 列，不是同表并列的 BBG 一致预期列**（2027E：32359）；两者的偏离另记于 citi-aug25-eoptolink-delta-rev-2027e。 **币种未注明**：原表营收、净利各行只有数字，全表没有一处写单位。按量级几乎肯定是人民币百万元，但「看着像」不是口径，故 currency 填「未注明」——**这条数因此不可与任何已注明币种的数相加或比较**。 fiscal_align=自然季/自然年：三家均为 A 股公司，财年与自然年一致。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-netincome-2027e",
+      "metric_id": "company_net_income",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 19939.0,
+      "unit": "百万（原币）",
+      "caliber": {
+        "currency": "未注明",
+        "fiscal_align": "自然季/自然年",
+        "income_scope": "未注明",
+        "basis": "券商测算"
+      },
+      "as_of": "2027E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」第 9 行「净利」，单元格 H9 = 19939",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**income_scope=未注明**：原表只写「净利」，没说是归母、全口径还是扣非——三者在券商表里常并列，混用会把少数股东权益或一次性损益读成经营改善。 同表 BBG 一致预期为 11630。 **币种未注明**：原表营收、净利各行只有数字，全表没有一处写单位。按量级几乎肯定是人民币百万元，但「看着像」不是口径，故 currency 填「未注明」——**这条数因此不可与任何已注明币种的数相加或比较**。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-netmargin-2027e",
+      "metric_id": "company_net_margin",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 43.1,
+      "unit": "%",
+      "caliber": {
+        "fiscal_align": "自然季/自然年",
+        "income_scope": "未注明",
+        "basis": "券商测算"
+      },
+      "as_of": "2027E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」第 13 行「净利率 (%)」，单元格 H13 = 0.431",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "与 optics_gross_margin{margin_level: 公司级} 的毛利率之间隔着三费与所得税，不是同一层。 **中际旭创那张表没有净利率行**，故本库缺该公司同口径的这条，比较三家净利率时要注意样本不全。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-grossmargin-2027e",
+      "metric_id": "optics_gross_margin",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 53.2,
+      "unit": "%",
+      "caliber": {
+        "margin_level": "公司级",
+        "speed": "合计",
+        "optical_scheme": "未注明",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2027E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」第 10 行「毛利率 (%)」，单元格 H10 = 0.532",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**公司级综合毛利率，混了全部产品、客户与非光模块业务**，与同文件 1.6T 产品级毛利率（EML 41% / SiPh 50%）不在一层。 三家横比：天孚 55.9% > 新易盛 53.2% > 中际旭创 46.7%（2027E）——**天孚做的是光引擎与器件，产品结构与两家模块厂本就不同**，高毛利率不等于更强。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-delta-rev-2027e",
+      "metric_id": "earnings_vs_consensus_delta",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 43.1,
+      "unit": "%",
+      "caliber": {
+        "line_item": "营业收入",
+        "benchmark": "卖方一致预期",
+        "fiscal_align": "自然季/自然年",
+        "basis": "券商测算"
+      },
+      "as_of": "2027E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」第 4 行「营收」，第 3/4 行列名「差异%」，单元格 J4 = 0.431",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**方向已核**：差异% = (Citi 预测 − BBG 一致预期) ÷ BBG 一致预期。以本条为例 (46300 − 32359) ÷ 32359 = 43.1%，与原表相符。 **注意这不是「实际 vs 预期」**：分子是花旗自己的预测，不是已实现业绩——basis=券商测算正是为此。它衡量的是这家券商比市场共识乐观多少，**不是公司超没超预期**。 同年同公司营收与净利的偏离方向一致但幅度差很多（营收 +43.1% vs 净利 +71.4%），说明花旗的乐观主要来自利润率假设而非收入假设。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-delta-ni-2027e",
+      "metric_id": "earnings_vs_consensus_delta",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 71.4,
+      "unit": "%",
+      "caliber": {
+        "line_item": "净利润",
+        "benchmark": "卖方一致预期",
+        "fiscal_align": "自然季/自然年",
+        "basis": "券商测算"
+      },
+      "as_of": "2027E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」第 9 行「净利」，第 3/4 行列名「差异%」，单元格 J9 = 0.7140000000000001",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**方向已核**：差异% = (Citi 预测 − BBG 一致预期) ÷ BBG 一致预期。以本条为例 (19939 − 11630) ÷ 11630 = 71.4%，与原表相符。 **注意这不是「实际 vs 预期」**：分子是花旗自己的预测，不是已实现业绩——basis=券商测算正是为此。它衡量的是这家券商比市场共识乐观多少，**不是公司超没超预期**。 同年同公司营收与净利的偏离方向一致但幅度差很多（营收 +43.1% vs 净利 +71.4%），说明花旗的乐观主要来自利润率假设而非收入假设。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-innolight-revenue-2025e",
+      "metric_id": "company_revenue",
+      "entity": {
+        "type": "company",
+        "id": "innolight",
+        "label": "中际旭创"
+      },
+      "value": 37655.0,
+      "unit": "百万（原币）",
+      "caliber": {
+        "currency": "未注明",
+        "fiscal_align": "自然季/自然年",
+        "basis": "券商测算"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「中际旭创」第 5 行「营收」，第 3/4 行列名「2025E Citi」，单元格 B5 = 37655",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**取的是 Citi 列，不是同表并列的 BBG 一致预期列**（2025E：36513）；两者的偏离另记于 citi-aug25-innolight-delta-rev-2025e。 **币种未注明**：原表营收、净利各行只有数字，全表没有一处写单位。按量级几乎肯定是人民币百万元，但「看着像」不是口径，故 currency 填「未注明」——**这条数因此不可与任何已注明币种的数相加或比较**。 fiscal_align=自然季/自然年：三家均为 A 股公司，财年与自然年一致。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-innolight-netincome-2025e",
+      "metric_id": "company_net_income",
+      "entity": {
+        "type": "company",
+        "id": "innolight",
+        "label": "中际旭创"
+      },
+      "value": 10324.0,
+      "unit": "百万（原币）",
+      "caliber": {
+        "currency": "未注明",
+        "fiscal_align": "自然季/自然年",
+        "income_scope": "未注明",
+        "basis": "券商测算"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「中际旭创」第 11 行「净利」，单元格 B11 = 10324",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**income_scope=未注明**：原表只写「净利」，没说是归母、全口径还是扣非——三者在券商表里常并列，混用会把少数股东权益或一次性损益读成经营改善。 同表 BBG 一致预期为 8378。 **币种未注明**：原表营收、净利各行只有数字，全表没有一处写单位。按量级几乎肯定是人民币百万元，但「看着像」不是口径，故 currency 填「未注明」——**这条数因此不可与任何已注明币种的数相加或比较**。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-innolight-grossmargin-2025e",
+      "metric_id": "optics_gross_margin",
+      "entity": {
+        "type": "company",
+        "id": "innolight",
+        "label": "中际旭创"
+      },
+      "value": 41.1,
+      "unit": "%",
+      "caliber": {
+        "margin_level": "公司级",
+        "speed": "合计",
+        "optical_scheme": "未注明",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「中际旭创」第 12 行「毛利率 (%)」，单元格 B12 = 0.41100000000000003",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**公司级综合毛利率，混了全部产品、客户与非光模块业务**，与同文件 1.6T 产品级毛利率（EML 41% / SiPh 50%）不在一层。 三家横比：天孚 54.4% > 新易盛 51.8% > 中际旭创 41.1%（2025E）——**天孚做的是光引擎与器件，产品结构与两家模块厂本就不同**，高毛利率不等于更强。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-innolight-delta-rev-2025e",
+      "metric_id": "earnings_vs_consensus_delta",
+      "entity": {
+        "type": "company",
+        "id": "innolight",
+        "label": "中际旭创"
+      },
+      "value": 3.0,
+      "unit": "%",
+      "caliber": {
+        "line_item": "营业收入",
+        "benchmark": "卖方一致预期",
+        "fiscal_align": "自然季/自然年",
+        "basis": "券商测算"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「中际旭创」第 5 行「营收」，第 3/4 行列名「差异%」，单元格 D5 = 0.03",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**方向已核**：差异% = (Citi 预测 − BBG 一致预期) ÷ BBG 一致预期。以本条为例 (37655 − 36513) ÷ 36513 = 3.0%，与原表相符。 **注意这不是「实际 vs 预期」**：分子是花旗自己的预测，不是已实现业绩——basis=券商测算正是为此。它衡量的是这家券商比市场共识乐观多少，**不是公司超没超预期**。 同年同公司营收与净利的偏离方向一致但幅度差很多（营收 +3.0% vs 净利 +23.0%），说明花旗的乐观主要来自利润率假设而非收入假设。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-innolight-delta-ni-2025e",
+      "metric_id": "earnings_vs_consensus_delta",
+      "entity": {
+        "type": "company",
+        "id": "innolight",
+        "label": "中际旭创"
+      },
+      "value": 23.0,
+      "unit": "%",
+      "caliber": {
+        "line_item": "净利润",
+        "benchmark": "卖方一致预期",
+        "fiscal_align": "自然季/自然年",
+        "basis": "券商测算"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「中际旭创」第 11 行「净利」，第 3/4 行列名「差异%」，单元格 D11 = 0.23",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**方向已核**：差异% = (Citi 预测 − BBG 一致预期) ÷ BBG 一致预期。以本条为例 (10324 − 8378) ÷ 8378 = 23.0%，与原表相符。 **注意这不是「实际 vs 预期」**：分子是花旗自己的预测，不是已实现业绩——basis=券商测算正是为此。它衡量的是这家券商比市场共识乐观多少，**不是公司超没超预期**。 同年同公司营收与净利的偏离方向一致但幅度差很多（营收 +3.0% vs 净利 +23.0%），说明花旗的乐观主要来自利润率假设而非收入假设。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-innolight-revenue-2026e",
+      "metric_id": "company_revenue",
+      "entity": {
+        "type": "company",
+        "id": "innolight",
+        "label": "中际旭创"
+      },
+      "value": 60606.0,
+      "unit": "百万（原币）",
+      "caliber": {
+        "currency": "未注明",
+        "fiscal_align": "自然季/自然年",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「中际旭创」第 5 行「营收」，第 3/4 行列名「2026E Citi」，单元格 E5 = 60606",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**取的是 Citi 列，不是同表并列的 BBG 一致预期列**（2026E：45666）；两者的偏离另记于 citi-aug25-innolight-delta-rev-2026e。 **币种未注明**：原表营收、净利各行只有数字，全表没有一处写单位。按量级几乎肯定是人民币百万元，但「看着像」不是口径，故 currency 填「未注明」——**这条数因此不可与任何已注明币种的数相加或比较**。 fiscal_align=自然季/自然年：三家均为 A 股公司，财年与自然年一致。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-innolight-netincome-2026e",
+      "metric_id": "company_net_income",
+      "entity": {
+        "type": "company",
+        "id": "innolight",
+        "label": "中际旭创"
+      },
+      "value": 19492.0,
+      "unit": "百万（原币）",
+      "caliber": {
+        "currency": "未注明",
+        "fiscal_align": "自然季/自然年",
+        "income_scope": "未注明",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「中际旭创」第 11 行「净利」，单元格 E11 = 19492",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**income_scope=未注明**：原表只写「净利」，没说是归母、全口径还是扣非——三者在券商表里常并列，混用会把少数股东权益或一次性损益读成经营改善。 同表 BBG 一致预期为 10598。 **币种未注明**：原表营收、净利各行只有数字，全表没有一处写单位。按量级几乎肯定是人民币百万元，但「看着像」不是口径，故 currency 填「未注明」——**这条数因此不可与任何已注明币种的数相加或比较**。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-innolight-grossmargin-2026e",
+      "metric_id": "optics_gross_margin",
+      "entity": {
+        "type": "company",
+        "id": "innolight",
+        "label": "中际旭创"
+      },
+      "value": 44.8,
+      "unit": "%",
+      "caliber": {
+        "margin_level": "公司级",
+        "speed": "合计",
+        "optical_scheme": "未注明",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「中际旭创」第 12 行「毛利率 (%)」，单元格 E12 = 0.44799999999999995",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**公司级综合毛利率，混了全部产品、客户与非光模块业务**，与同文件 1.6T 产品级毛利率（EML 41% / SiPh 50%）不在一层。 三家横比：天孚 55.5% > 新易盛 52.2% > 中际旭创 44.8%（2026E）——**天孚做的是光引擎与器件，产品结构与两家模块厂本就不同**，高毛利率不等于更强。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-innolight-delta-rev-2026e",
+      "metric_id": "earnings_vs_consensus_delta",
+      "entity": {
+        "type": "company",
+        "id": "innolight",
+        "label": "中际旭创"
+      },
+      "value": 33.0,
+      "unit": "%",
+      "caliber": {
+        "line_item": "营业收入",
+        "benchmark": "卖方一致预期",
+        "fiscal_align": "自然季/自然年",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「中际旭创」第 5 行「营收」，第 3/4 行列名「差异%」，单元格 G5 = 0.33",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**方向已核**：差异% = (Citi 预测 − BBG 一致预期) ÷ BBG 一致预期。以本条为例 (60606 − 45666) ÷ 45666 = 33.0%，与原表相符。 **注意这不是「实际 vs 预期」**：分子是花旗自己的预测，不是已实现业绩——basis=券商测算正是为此。它衡量的是这家券商比市场共识乐观多少，**不是公司超没超预期**。 同年同公司营收与净利的偏离方向一致但幅度差很多（营收 +33.0% vs 净利 +84.0%），说明花旗的乐观主要来自利润率假设而非收入假设。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-innolight-delta-ni-2026e",
+      "metric_id": "earnings_vs_consensus_delta",
+      "entity": {
+        "type": "company",
+        "id": "innolight",
+        "label": "中际旭创"
+      },
+      "value": 84.0,
+      "unit": "%",
+      "caliber": {
+        "line_item": "净利润",
+        "benchmark": "卖方一致预期",
+        "fiscal_align": "自然季/自然年",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「中际旭创」第 11 行「净利」，第 3/4 行列名「差异%」，单元格 G11 = 0.84",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**方向已核**：差异% = (Citi 预测 − BBG 一致预期) ÷ BBG 一致预期。以本条为例 (19492 − 10598) ÷ 10598 = 84.0%，与原表相符。 **注意这不是「实际 vs 预期」**：分子是花旗自己的预测，不是已实现业绩——basis=券商测算正是为此。它衡量的是这家券商比市场共识乐观多少，**不是公司超没超预期**。 同年同公司营收与净利的偏离方向一致但幅度差很多（营收 +33.0% vs 净利 +84.0%），说明花旗的乐观主要来自利润率假设而非收入假设。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-innolight-revenue-2027e",
+      "metric_id": "company_revenue",
+      "entity": {
+        "type": "company",
+        "id": "innolight",
+        "label": "中际旭创"
+      },
+      "value": 73584.0,
+      "unit": "百万（原币）",
+      "caliber": {
+        "currency": "未注明",
+        "fiscal_align": "自然季/自然年",
+        "basis": "券商测算"
+      },
+      "as_of": "2027E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「中际旭创」第 5 行「营收」，第 3/4 行列名「2027E Citi」，单元格 H5 = 73584",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**取的是 Citi 列，不是同表并列的 BBG 一致预期列**（2027E：52382）；两者的偏离另记于 citi-aug25-innolight-delta-rev-2027e。 **币种未注明**：原表营收、净利各行只有数字，全表没有一处写单位。按量级几乎肯定是人民币百万元，但「看着像」不是口径，故 currency 填「未注明」——**这条数因此不可与任何已注明币种的数相加或比较**。 fiscal_align=自然季/自然年：三家均为 A 股公司，财年与自然年一致。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-innolight-netincome-2027e",
+      "metric_id": "company_net_income",
+      "entity": {
+        "type": "company",
+        "id": "innolight",
+        "label": "中际旭创"
+      },
+      "value": 24787.0,
+      "unit": "百万（原币）",
+      "caliber": {
+        "currency": "未注明",
+        "fiscal_align": "自然季/自然年",
+        "income_scope": "未注明",
+        "basis": "券商测算"
+      },
+      "as_of": "2027E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「中际旭创」第 11 行「净利」，单元格 H11 = 24787",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**income_scope=未注明**：原表只写「净利」，没说是归母、全口径还是扣非——三者在券商表里常并列，混用会把少数股东权益或一次性损益读成经营改善。 同表 BBG 一致预期为 12310。 **币种未注明**：原表营收、净利各行只有数字，全表没有一处写单位。按量级几乎肯定是人民币百万元，但「看着像」不是口径，故 currency 填「未注明」——**这条数因此不可与任何已注明币种的数相加或比较**。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-innolight-grossmargin-2027e",
+      "metric_id": "optics_gross_margin",
+      "entity": {
+        "type": "company",
+        "id": "innolight",
+        "label": "中际旭创"
+      },
+      "value": 46.7,
+      "unit": "%",
+      "caliber": {
+        "margin_level": "公司级",
+        "speed": "合计",
+        "optical_scheme": "未注明",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2027E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「中际旭创」第 12 行「毛利率 (%)」，单元格 H12 = 0.467",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**公司级综合毛利率，混了全部产品、客户与非光模块业务**，与同文件 1.6T 产品级毛利率（EML 41% / SiPh 50%）不在一层。 三家横比：天孚 55.9% > 新易盛 53.2% > 中际旭创 46.7%（2027E）——**天孚做的是光引擎与器件，产品结构与两家模块厂本就不同**，高毛利率不等于更强。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-innolight-delta-rev-2027e",
+      "metric_id": "earnings_vs_consensus_delta",
+      "entity": {
+        "type": "company",
+        "id": "innolight",
+        "label": "中际旭创"
+      },
+      "value": 40.0,
+      "unit": "%",
+      "caliber": {
+        "line_item": "营业收入",
+        "benchmark": "卖方一致预期",
+        "fiscal_align": "自然季/自然年",
+        "basis": "券商测算"
+      },
+      "as_of": "2027E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「中际旭创」第 5 行「营收」，第 3/4 行列名「差异%」，单元格 J5 = 0.4",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**方向已核**：差异% = (Citi 预测 − BBG 一致预期) ÷ BBG 一致预期。以本条为例 (73584 − 52382) ÷ 52382 = 40.0%，与原表相符。 **注意这不是「实际 vs 预期」**：分子是花旗自己的预测，不是已实现业绩——basis=券商测算正是为此。它衡量的是这家券商比市场共识乐观多少，**不是公司超没超预期**。 同年同公司营收与净利的偏离方向一致但幅度差很多（营收 +40.0% vs 净利 +101.0%），说明花旗的乐观主要来自利润率假设而非收入假设。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-innolight-delta-ni-2027e",
+      "metric_id": "earnings_vs_consensus_delta",
+      "entity": {
+        "type": "company",
+        "id": "innolight",
+        "label": "中际旭创"
+      },
+      "value": 101.0,
+      "unit": "%",
+      "caliber": {
+        "line_item": "净利润",
+        "benchmark": "卖方一致预期",
+        "fiscal_align": "自然季/自然年",
+        "basis": "券商测算"
+      },
+      "as_of": "2027E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「中际旭创」第 11 行「净利」，第 3/4 行列名「差异%」，单元格 J11 = 1.01",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**方向已核**：差异% = (Citi 预测 − BBG 一致预期) ÷ BBG 一致预期。以本条为例 (24787 − 12310) ÷ 12310 = 101.0%，与原表相符。 **注意这不是「实际 vs 预期」**：分子是花旗自己的预测，不是已实现业绩——basis=券商测算正是为此。它衡量的是这家券商比市场共识乐观多少，**不是公司超没超预期**。 同年同公司营收与净利的偏离方向一致但幅度差很多（营收 +40.0% vs 净利 +101.0%），说明花旗的乐观主要来自利润率假设而非收入假设。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-tfc-optics-revenue-2025e",
+      "metric_id": "company_revenue",
+      "entity": {
+        "type": "company",
+        "id": "tfc-optics",
+        "label": "天孚通信"
+      },
+      "value": 5553.0,
+      "unit": "百万（原币）",
+      "caliber": {
+        "currency": "未注明",
+        "fiscal_align": "自然季/自然年",
+        "basis": "券商测算"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「天孚」第 5 行「营收」，第 3/4 行列名「2025E Citi」，单元格 B5 = 5553",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**取的是 Citi 列，不是同表并列的 BBG 一致预期列**（2025E：5067）；两者的偏离另记于 citi-aug25-tfc-optics-delta-rev-2025e。 **币种未注明**：原表营收、净利各行只有数字，全表没有一处写单位。按量级几乎肯定是人民币百万元，但「看着像」不是口径，故 currency 填「未注明」——**这条数因此不可与任何已注明币种的数相加或比较**。 fiscal_align=自然季/自然年：三家均为 A 股公司，财年与自然年一致。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-tfc-optics-netincome-2025e",
+      "metric_id": "company_net_income",
+      "entity": {
+        "type": "company",
+        "id": "tfc-optics",
+        "label": "天孚通信"
+      },
+      "value": 2135.0,
+      "unit": "百万（原币）",
+      "caliber": {
+        "currency": "未注明",
+        "fiscal_align": "自然季/自然年",
+        "income_scope": "未注明",
+        "basis": "券商测算"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「天孚」第 10 行「净利」，单元格 B10 = 2135",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**income_scope=未注明**：原表只写「净利」，没说是归母、全口径还是扣非——三者在券商表里常并列，混用会把少数股东权益或一次性损益读成经营改善。 同表 BBG 一致预期为 1961。 **币种未注明**：原表营收、净利各行只有数字，全表没有一处写单位。按量级几乎肯定是人民币百万元，但「看着像」不是口径，故 currency 填「未注明」——**这条数因此不可与任何已注明币种的数相加或比较**。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-tfc-optics-netmargin-2025e",
+      "metric_id": "company_net_margin",
+      "entity": {
+        "type": "company",
+        "id": "tfc-optics",
+        "label": "天孚通信"
+      },
+      "value": 38.5,
+      "unit": "%",
+      "caliber": {
+        "fiscal_align": "自然季/自然年",
+        "income_scope": "未注明",
+        "basis": "券商测算"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「天孚」第 14 行「净利率 (%)」，单元格 B14 = 0.385",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "与 optics_gross_margin{margin_level: 公司级} 的毛利率之间隔着三费与所得税，不是同一层。 **中际旭创那张表没有净利率行**，故本库缺该公司同口径的这条，比较三家净利率时要注意样本不全。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-tfc-optics-grossmargin-2025e",
+      "metric_id": "optics_gross_margin",
+      "entity": {
+        "type": "company",
+        "id": "tfc-optics",
+        "label": "天孚通信"
+      },
+      "value": 54.4,
+      "unit": "%",
+      "caliber": {
+        "margin_level": "公司级",
+        "speed": "合计",
+        "optical_scheme": "未注明",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「天孚」第 11 行「毛利率 (%)」，单元格 B11 = 0.544",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**公司级综合毛利率，混了全部产品、客户与非光模块业务**，与同文件 1.6T 产品级毛利率（EML 41% / SiPh 50%）不在一层。 三家横比：天孚 54.4% > 新易盛 51.8% > 中际旭创 41.1%（2025E）——**天孚做的是光引擎与器件，产品结构与两家模块厂本就不同**，高毛利率不等于更强。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-tfc-optics-delta-rev-2025e",
+      "metric_id": "earnings_vs_consensus_delta",
+      "entity": {
+        "type": "company",
+        "id": "tfc-optics",
+        "label": "天孚通信"
+      },
+      "value": 10.0,
+      "unit": "%",
+      "caliber": {
+        "line_item": "营业收入",
+        "benchmark": "卖方一致预期",
+        "fiscal_align": "自然季/自然年",
+        "basis": "券商测算"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「天孚」第 5 行「营收」，第 3/4 行列名「差异%」，单元格 D5 = 0.1",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**方向已核**：差异% = (Citi 预测 − BBG 一致预期) ÷ BBG 一致预期。以本条为例 (5553 − 5067) ÷ 5067 = 10.0%，与原表相符。 **注意这不是「实际 vs 预期」**：分子是花旗自己的预测，不是已实现业绩——basis=券商测算正是为此。它衡量的是这家券商比市场共识乐观多少，**不是公司超没超预期**。 同年同公司营收与净利的偏离方向一致但幅度差很多（营收 +10.0% vs 净利 +9.0%），说明花旗的乐观主要来自利润率假设而非收入假设。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-tfc-optics-delta-ni-2025e",
+      "metric_id": "earnings_vs_consensus_delta",
+      "entity": {
+        "type": "company",
+        "id": "tfc-optics",
+        "label": "天孚通信"
+      },
+      "value": 9.0,
+      "unit": "%",
+      "caliber": {
+        "line_item": "净利润",
+        "benchmark": "卖方一致预期",
+        "fiscal_align": "自然季/自然年",
+        "basis": "券商测算"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「天孚」第 10 行「净利」，第 3/4 行列名「差异%」，单元格 D10 = 0.09",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**方向已核**：差异% = (Citi 预测 − BBG 一致预期) ÷ BBG 一致预期。以本条为例 (2135 − 1961) ÷ 1961 = 9.0%，与原表相符。 **注意这不是「实际 vs 预期」**：分子是花旗自己的预测，不是已实现业绩——basis=券商测算正是为此。它衡量的是这家券商比市场共识乐观多少，**不是公司超没超预期**。 同年同公司营收与净利的偏离方向一致但幅度差很多（营收 +10.0% vs 净利 +9.0%），说明花旗的乐观主要来自利润率假设而非收入假设。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-tfc-optics-revenue-2026e",
+      "metric_id": "company_revenue",
+      "entity": {
+        "type": "company",
+        "id": "tfc-optics",
+        "label": "天孚通信"
+      },
+      "value": 9003.0,
+      "unit": "百万（原币）",
+      "caliber": {
+        "currency": "未注明",
+        "fiscal_align": "自然季/自然年",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「天孚」第 5 行「营收」，第 3/4 行列名「2026E Citi」，单元格 E5 = 9003",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**取的是 Citi 列，不是同表并列的 BBG 一致预期列**（2026E：6716）；两者的偏离另记于 citi-aug25-tfc-optics-delta-rev-2026e。 **币种未注明**：原表营收、净利各行只有数字，全表没有一处写单位。按量级几乎肯定是人民币百万元，但「看着像」不是口径，故 currency 填「未注明」——**这条数因此不可与任何已注明币种的数相加或比较**。 fiscal_align=自然季/自然年：三家均为 A 股公司，财年与自然年一致。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-tfc-optics-netincome-2026e",
+      "metric_id": "company_net_income",
+      "entity": {
+        "type": "company",
+        "id": "tfc-optics",
+        "label": "天孚通信"
+      },
+      "value": 3600.0,
+      "unit": "百万（原币）",
+      "caliber": {
+        "currency": "未注明",
+        "fiscal_align": "自然季/自然年",
+        "income_scope": "未注明",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「天孚」第 10 行「净利」，单元格 E10 = 3600",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**income_scope=未注明**：原表只写「净利」，没说是归母、全口径还是扣非——三者在券商表里常并列，混用会把少数股东权益或一次性损益读成经营改善。 同表 BBG 一致预期为 2606。 **币种未注明**：原表营收、净利各行只有数字，全表没有一处写单位。按量级几乎肯定是人民币百万元，但「看着像」不是口径，故 currency 填「未注明」——**这条数因此不可与任何已注明币种的数相加或比较**。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-tfc-optics-netmargin-2026e",
+      "metric_id": "company_net_margin",
+      "entity": {
+        "type": "company",
+        "id": "tfc-optics",
+        "label": "天孚通信"
+      },
+      "value": 40.0,
+      "unit": "%",
+      "caliber": {
+        "fiscal_align": "自然季/自然年",
+        "income_scope": "未注明",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「天孚」第 14 行「净利率 (%)」，单元格 E14 = 0.4",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "与 optics_gross_margin{margin_level: 公司级} 的毛利率之间隔着三费与所得税，不是同一层。 **中际旭创那张表没有净利率行**，故本库缺该公司同口径的这条，比较三家净利率时要注意样本不全。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-tfc-optics-grossmargin-2026e",
+      "metric_id": "optics_gross_margin",
+      "entity": {
+        "type": "company",
+        "id": "tfc-optics",
+        "label": "天孚通信"
+      },
+      "value": 55.5,
+      "unit": "%",
+      "caliber": {
+        "margin_level": "公司级",
+        "speed": "合计",
+        "optical_scheme": "未注明",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「天孚」第 11 行「毛利率 (%)」，单元格 E11 = 0.555",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**公司级综合毛利率，混了全部产品、客户与非光模块业务**，与同文件 1.6T 产品级毛利率（EML 41% / SiPh 50%）不在一层。 三家横比：天孚 55.5% > 新易盛 52.2% > 中际旭创 44.8%（2026E）——**天孚做的是光引擎与器件，产品结构与两家模块厂本就不同**，高毛利率不等于更强。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-tfc-optics-delta-rev-2026e",
+      "metric_id": "earnings_vs_consensus_delta",
+      "entity": {
+        "type": "company",
+        "id": "tfc-optics",
+        "label": "天孚通信"
+      },
+      "value": 34.0,
+      "unit": "%",
+      "caliber": {
+        "line_item": "营业收入",
+        "benchmark": "卖方一致预期",
+        "fiscal_align": "自然季/自然年",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「天孚」第 5 行「营收」，第 3/4 行列名「差异%」，单元格 G5 = 0.34",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**方向已核**：差异% = (Citi 预测 − BBG 一致预期) ÷ BBG 一致预期。以本条为例 (9003 − 6716) ÷ 6716 = 34.0%，与原表相符。 **注意这不是「实际 vs 预期」**：分子是花旗自己的预测，不是已实现业绩——basis=券商测算正是为此。它衡量的是这家券商比市场共识乐观多少，**不是公司超没超预期**。 同年同公司营收与净利的偏离方向一致但幅度差很多（营收 +34.0% vs 净利 +38.0%），说明花旗的乐观主要来自利润率假设而非收入假设。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-tfc-optics-delta-ni-2026e",
+      "metric_id": "earnings_vs_consensus_delta",
+      "entity": {
+        "type": "company",
+        "id": "tfc-optics",
+        "label": "天孚通信"
+      },
+      "value": 38.0,
+      "unit": "%",
+      "caliber": {
+        "line_item": "净利润",
+        "benchmark": "卖方一致预期",
+        "fiscal_align": "自然季/自然年",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「天孚」第 10 行「净利」，第 3/4 行列名「差异%」，单元格 G10 = 0.38",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**方向已核**：差异% = (Citi 预测 − BBG 一致预期) ÷ BBG 一致预期。以本条为例 (3600 − 2606) ÷ 2606 = 38.0%，与原表相符。 **注意这不是「实际 vs 预期」**：分子是花旗自己的预测，不是已实现业绩——basis=券商测算正是为此。它衡量的是这家券商比市场共识乐观多少，**不是公司超没超预期**。 同年同公司营收与净利的偏离方向一致但幅度差很多（营收 +34.0% vs 净利 +38.0%），说明花旗的乐观主要来自利润率假设而非收入假设。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-tfc-optics-revenue-2027e",
+      "metric_id": "company_revenue",
+      "entity": {
+        "type": "company",
+        "id": "tfc-optics",
+        "label": "天孚通信"
+      },
+      "value": 15733.0,
+      "unit": "百万（原币）",
+      "caliber": {
+        "currency": "未注明",
+        "fiscal_align": "自然季/自然年",
+        "basis": "券商测算"
+      },
+      "as_of": "2027E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「天孚」第 5 行「营收」，第 3/4 行列名「2027E Citi」，单元格 H5 = 15733",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**取的是 Citi 列，不是同表并列的 BBG 一致预期列**（2027E：8403）；两者的偏离另记于 citi-aug25-tfc-optics-delta-rev-2027e。 **币种未注明**：原表营收、净利各行只有数字，全表没有一处写单位。按量级几乎肯定是人民币百万元，但「看着像」不是口径，故 currency 填「未注明」——**这条数因此不可与任何已注明币种的数相加或比较**。 fiscal_align=自然季/自然年：三家均为 A 股公司，财年与自然年一致。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-tfc-optics-netincome-2027e",
+      "metric_id": "company_net_income",
+      "entity": {
+        "type": "company",
+        "id": "tfc-optics",
+        "label": "天孚通信"
+      },
+      "value": 6453.0,
+      "unit": "百万（原币）",
+      "caliber": {
+        "currency": "未注明",
+        "fiscal_align": "自然季/自然年",
+        "income_scope": "未注明",
+        "basis": "券商测算"
+      },
+      "as_of": "2027E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「天孚」第 10 行「净利」，单元格 H10 = 6453",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**income_scope=未注明**：原表只写「净利」，没说是归母、全口径还是扣非——三者在券商表里常并列，混用会把少数股东权益或一次性损益读成经营改善。 同表 BBG 一致预期为 3257。 **币种未注明**：原表营收、净利各行只有数字，全表没有一处写单位。按量级几乎肯定是人民币百万元，但「看着像」不是口径，故 currency 填「未注明」——**这条数因此不可与任何已注明币种的数相加或比较**。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-tfc-optics-netmargin-2027e",
+      "metric_id": "company_net_margin",
+      "entity": {
+        "type": "company",
+        "id": "tfc-optics",
+        "label": "天孚通信"
+      },
+      "value": 41.0,
+      "unit": "%",
+      "caliber": {
+        "fiscal_align": "自然季/自然年",
+        "income_scope": "未注明",
+        "basis": "券商测算"
+      },
+      "as_of": "2027E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「天孚」第 14 行「净利率 (%)」，单元格 H14 = 0.41",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "与 optics_gross_margin{margin_level: 公司级} 的毛利率之间隔着三费与所得税，不是同一层。 **中际旭创那张表没有净利率行**，故本库缺该公司同口径的这条，比较三家净利率时要注意样本不全。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-tfc-optics-grossmargin-2027e",
+      "metric_id": "optics_gross_margin",
+      "entity": {
+        "type": "company",
+        "id": "tfc-optics",
+        "label": "天孚通信"
+      },
+      "value": 55.9,
+      "unit": "%",
+      "caliber": {
+        "margin_level": "公司级",
+        "speed": "合计",
+        "optical_scheme": "未注明",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2027E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「天孚」第 11 行「毛利率 (%)」，单元格 H11 = 0.5589999999999999",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**公司级综合毛利率，混了全部产品、客户与非光模块业务**，与同文件 1.6T 产品级毛利率（EML 41% / SiPh 50%）不在一层。 三家横比：天孚 55.9% > 新易盛 53.2% > 中际旭创 46.7%（2027E）——**天孚做的是光引擎与器件，产品结构与两家模块厂本就不同**，高毛利率不等于更强。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-tfc-optics-delta-rev-2027e",
+      "metric_id": "earnings_vs_consensus_delta",
+      "entity": {
+        "type": "company",
+        "id": "tfc-optics",
+        "label": "天孚通信"
+      },
+      "value": 87.0,
+      "unit": "%",
+      "caliber": {
+        "line_item": "营业收入",
+        "benchmark": "卖方一致预期",
+        "fiscal_align": "自然季/自然年",
+        "basis": "券商测算"
+      },
+      "as_of": "2027E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「天孚」第 5 行「营收」，第 3/4 行列名「差异%」，单元格 J5 = 0.87",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**方向已核**：差异% = (Citi 预测 − BBG 一致预期) ÷ BBG 一致预期。以本条为例 (15733 − 8403) ÷ 8403 = 87.0%，与原表相符。 **注意这不是「实际 vs 预期」**：分子是花旗自己的预测，不是已实现业绩——basis=券商测算正是为此。它衡量的是这家券商比市场共识乐观多少，**不是公司超没超预期**。 同年同公司营收与净利的偏离方向一致但幅度差很多（营收 +87.0% vs 净利 +98.0%），说明花旗的乐观主要来自利润率假设而非收入假设。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-tfc-optics-delta-ni-2027e",
+      "metric_id": "earnings_vs_consensus_delta",
+      "entity": {
+        "type": "company",
+        "id": "tfc-optics",
+        "label": "天孚通信"
+      },
+      "value": 98.0,
+      "unit": "%",
+      "caliber": {
+        "line_item": "净利润",
+        "benchmark": "卖方一致预期",
+        "fiscal_align": "自然季/自然年",
+        "basis": "券商测算"
+      },
+      "as_of": "2027E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「天孚」第 10 行「净利」，第 3/4 行列名「差异%」，单元格 J10 = 0.98",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**方向已核**：差异% = (Citi 预测 − BBG 一致预期) ÷ BBG 一致预期。以本条为例 (6453 − 3257) ÷ 3257 = 98.0%，与原表相符。 **注意这不是「实际 vs 预期」**：分子是花旗自己的预测，不是已实现业绩——basis=券商测算正是为此。它衡量的是这家券商比市场共识乐观多少，**不是公司超没超预期**。 同年同公司营收与净利的偏离方向一致但幅度差很多（营收 +87.0% vs 净利 +98.0%），说明花旗的乐观主要来自利润率假设而非收入假设。 载体是他人转录的 Excel，非花旗原报告；数字为手工转录，误差在文件内无法自查，标 [未核]。"
     }
   ]
 }
