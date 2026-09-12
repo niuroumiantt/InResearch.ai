@@ -25016,6 +25016,453 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**这是谷歌自报的液冷机队规模，不是其数据中心总容量**——液冷只覆盖 TPU 等高密度部分。 **status=L8（通电投运）**：原文 deployed fleet，是已部署运行的容量，**可计入当期供给**。 原文两处措辞不同：第 4 页「~1 GW total」、第 21 页「> 1 GW」，本条按下界记。 **这是目前本库唯一一条单一企业的液冷部署规模**，可作为「液冷已过验证期」的最硬证据之一。 文档页脚标 Confidential + Proprietary，但内容为 Hot Chips 公开教程，按公开材料处理。"
+    },
+    {
+      "fact_id": "leadleo-lc-threshold-25",
+      "metric_id": "liquid_cooling_econ_threshold",
+      "entity": {
+        "type": "technology",
+        "id": "cn-liquid-cooling-threshold",
+        "label": "中国液冷经济性/技术门槛"
+      },
+      "value": 25.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "tech": "冷板式",
+        "basis": "实测经济性测算",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0f86e7549c8f48a8017f2f4c61f59cfedf96d6e0ad570ff8ccc12227e14d4a44",
+        "local_file": "2025年液冷行业概览（头豹研究院，2025-10，精华版）.pdf",
+        "locator": "第 1 页摘要：「风冷与液冷「以单机柜 25kW 功率密度为核心分界互补共存」」",
+        "grade": "S3",
+        "originator": "头豹研究院（LeadLeo）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**三个数是三件不同的事，不要合成一个门槛**：25kW 是风冷与液冷的经济性分界（互补共存点）、30kW 是风冷的能力上限、40kW 是风冷效率急剧下降的起点。**本条是经济性分界**。 **tech 就近填冷板式**：原文这三个数针对的是「液冷 vs 风冷」整体，未区分冷板与浸没，标 [未核]。 对照库内 liquid-cooling-threshold-coldplate-2022（冷板式 15kW 下界，设计方判断）与 nv-cooling-threshold-dlc-min（>75kW 直液冷必选，厂商宣称）——**三个来源给的门槛从 15 到 75kW**，差五倍，因为问的问题不同（可用/经济/必需）。 **这是「精华版」而非完整报告**，多处数字只给结论不给测算过程；报告自称高度机密但为公开发布的市场概览。"
+    },
+    {
+      "fact_id": "leadleo-lc-threshold-30",
+      "metric_id": "liquid_cooling_econ_threshold",
+      "entity": {
+        "type": "technology",
+        "id": "cn-liquid-cooling-threshold",
+        "label": "中国液冷经济性/技术门槛"
+      },
+      "value": 30.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "tech": "冷板式",
+        "basis": "实测经济性测算",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "0f86e7549c8f48a8017f2f4c61f59cfedf96d6e0ad570ff8ccc12227e14d4a44",
+        "local_file": "2025年液冷行业概览（头豹研究院，2025-10，精华版）.pdf",
+        "locator": "第 2 页：「风冷系统「仅能支持 ≤30kW 机柜的功率密度」」",
+        "grade": "S3",
+        "originator": "头豹研究院（LeadLeo）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**三个数是三件不同的事，不要合成一个门槛**：25kW 是风冷与液冷的经济性分界（互补共存点）、30kW 是风冷的能力上限、40kW 是风冷效率急剧下降的起点。**本条是风冷能力上限**。 **tech 就近填冷板式**：原文这三个数针对的是「液冷 vs 风冷」整体，未区分冷板与浸没，标 [未核]。 对照库内 liquid-cooling-threshold-coldplate-2022（冷板式 15kW 下界，设计方判断）与 nv-cooling-threshold-dlc-min（>75kW 直液冷必选，厂商宣称）——**三个来源给的门槛从 15 到 75kW**，差五倍，因为问的问题不同（可用/经济/必需）。 **这是「精华版」而非完整报告**，多处数字只给结论不给测算过程；报告自称高度机密但为公开发布的市场概览。"
+    },
+    {
+      "fact_id": "leadleo-lc-threshold-40",
+      "metric_id": "liquid_cooling_econ_threshold",
+      "entity": {
+        "type": "technology",
+        "id": "cn-liquid-cooling-threshold",
+        "label": "中国液冷经济性/技术门槛"
+      },
+      "value": 40.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "tech": "冷板式",
+        "basis": "实测经济性测算",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "0f86e7549c8f48a8017f2f4c61f59cfedf96d6e0ad570ff8ccc12227e14d4a44",
+        "local_file": "2025年液冷行业概览（头豹研究院，2025-10，精华版）.pdf",
+        "locator": "第 2 页：「风冷「在 40kW 以上场景效率急剧下降」」",
+        "grade": "S3",
+        "originator": "头豹研究院（LeadLeo）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**三个数是三件不同的事，不要合成一个门槛**：25kW 是风冷与液冷的经济性分界（互补共存点）、30kW 是风冷的能力上限、40kW 是风冷效率急剧下降的起点。**本条是风冷失效起点**。 **tech 就近填冷板式**：原文这三个数针对的是「液冷 vs 风冷」整体，未区分冷板与浸没，标 [未核]。 对照库内 liquid-cooling-threshold-coldplate-2022（冷板式 15kW 下界，设计方判断）与 nv-cooling-threshold-dlc-min（>75kW 直液冷必选，厂商宣称）——**三个来源给的门槛从 15 到 75kW**，差五倍，因为问的问题不同（可用/经济/必需）。 **这是「精华版」而非完整报告**，多处数字只给结论不给测算过程；报告自称高度机密但为公开发布的市场概览。"
+    },
+    {
+      "fact_id": "leadleo-lc-density-coldplate-lower",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "technology",
+        "id": "lc-coldplate",
+        "label": "冷板式液冷"
+      },
+      "value": 25.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "市场普遍水平",
+        "power_basis": "设计功率",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "0f86e7549c8f48a8017f2f4c61f59cfedf96d6e0ad570ff8ccc12227e14d4a44",
+        "local_file": "2025年液冷行业概览（头豹研究院，2025-10，精华版）.pdf",
+        "locator": "第 8 页四路线对比表「单机柜功率密度」行，冷板式液冷 列 = 「25-40kW（常规）最高 120kW（相变冷板）」",
+        "grade": "S3",
+        "originator": "头豹研究院（LeadLeo）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是该技术路线的常规适用区间，不是某个产品的实测**（stat=市场普遍水平）。本条是下界。 **冷板式的上限可到 120kW（相变冷板）、喷淋式定制可到 40kW**，原文把常规值与极限值分开写，本库只录常规区间，极限值见此处。 **四条路线的区间互相重叠**（冷板 25-40、单相浸没 30-60、相变浸没 60-100、喷淋 20-30），**选型不是按密度一刀切**，原文给的选型逻辑是：中高密度且需兼容现有架构选冷板；常规高密度追求静音节能选单相浸没；超高密度与极致能效只有相变浸没可行；局部高热流或空间受限用喷淋补充。 **这是「精华版」而非完整报告**，多处数字只给结论不给测算过程；报告自称高度机密但为公开发布的市场概览。"
+    },
+    {
+      "fact_id": "leadleo-lc-density-coldplate-upper",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "technology",
+        "id": "lc-coldplate",
+        "label": "冷板式液冷"
+      },
+      "value": 40.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "市场普遍水平",
+        "power_basis": "设计功率",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "0f86e7549c8f48a8017f2f4c61f59cfedf96d6e0ad570ff8ccc12227e14d4a44",
+        "local_file": "2025年液冷行业概览（头豹研究院，2025-10，精华版）.pdf",
+        "locator": "第 8 页四路线对比表「单机柜功率密度」行，冷板式液冷 列 = 「25-40kW（常规）最高 120kW（相变冷板）」",
+        "grade": "S3",
+        "originator": "头豹研究院（LeadLeo）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是该技术路线的常规适用区间，不是某个产品的实测**（stat=市场普遍水平）。本条是上界。 **冷板式的上限可到 120kW（相变冷板）、喷淋式定制可到 40kW**，原文把常规值与极限值分开写，本库只录常规区间，极限值见此处。 **四条路线的区间互相重叠**（冷板 25-40、单相浸没 30-60、相变浸没 60-100、喷淋 20-30），**选型不是按密度一刀切**，原文给的选型逻辑是：中高密度且需兼容现有架构选冷板；常规高密度追求静音节能选单相浸没；超高密度与极致能效只有相变浸没可行；局部高热流或空间受限用喷淋补充。 **这是「精华版」而非完整报告**，多处数字只给结论不给测算过程；报告自称高度机密但为公开发布的市场概览。"
+    },
+    {
+      "fact_id": "leadleo-lc-pue-coldplate",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "technology",
+        "id": "lc-coldplate",
+        "label": "冷板式液冷"
+      },
+      "value": 1.15,
+      "unit": "比值",
+      "caliber": {
+        "basis": "宣传值",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0f86e7549c8f48a8017f2f4c61f59cfedf96d6e0ad570ff8ccc12227e14d4a44",
+        "local_file": "2025年液冷行业概览（头豹研究院，2025-10，精华版）.pdf",
+        "locator": "第 8 页四路线对比表「电费节省（万元/年）」行，冷板式液冷 列 = 「8-12（PUE1.15，对比风冷）」（PUE 值写在括号内）",
+        "grade": "S3",
+        "originator": "头豹研究院（LeadLeo）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这个 PUE 是电费节省测算的输入假设，不是实测**：原表把它写在「电费节省」行的括号里，basis 记宣传值（该维无「厂商宣称」取值，宣传值最接近）。**四路线 1.20 → 1.15 → 1.10 → 1.05 是等差排列**，看得出是设定值而非观测值。 对照库内 caict-2022-pue-hyperscale-inuse（中国在用超大型 1.39，运行值）：**这些 1.05-1.20 与全国在用实测差 0.19-0.34**，是「新建液冷单柜」与「全国在用平均」的差别，不可当作同一口径的改善幅度。 **这是「精华版」而非完整报告**，多处数字只给结论不给测算过程；报告自称高度机密但为公开发布的市场概览。"
+    },
+    {
+      "fact_id": "leadleo-lc-density-single-phase-lower",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "technology",
+        "id": "lc-single-phase",
+        "label": "单相浸没式液冷"
+      },
+      "value": 30.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "市场普遍水平",
+        "power_basis": "设计功率",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "0f86e7549c8f48a8017f2f4c61f59cfedf96d6e0ad570ff8ccc12227e14d4a44",
+        "local_file": "2025年液冷行业概览（头豹研究院，2025-10，精华版）.pdf",
+        "locator": "第 8 页四路线对比表「单机柜功率密度」行，单相浸没式液冷 列 = 「30-60kW」",
+        "grade": "S3",
+        "originator": "头豹研究院（LeadLeo）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是该技术路线的常规适用区间，不是某个产品的实测**（stat=市场普遍水平）。本条是下界。  **四条路线的区间互相重叠**（冷板 25-40、单相浸没 30-60、相变浸没 60-100、喷淋 20-30），**选型不是按密度一刀切**，原文给的选型逻辑是：中高密度且需兼容现有架构选冷板；常规高密度追求静音节能选单相浸没；超高密度与极致能效只有相变浸没可行；局部高热流或空间受限用喷淋补充。 **这是「精华版」而非完整报告**，多处数字只给结论不给测算过程；报告自称高度机密但为公开发布的市场概览。"
+    },
+    {
+      "fact_id": "leadleo-lc-density-single-phase-upper",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "technology",
+        "id": "lc-single-phase",
+        "label": "单相浸没式液冷"
+      },
+      "value": 60.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "市场普遍水平",
+        "power_basis": "设计功率",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "0f86e7549c8f48a8017f2f4c61f59cfedf96d6e0ad570ff8ccc12227e14d4a44",
+        "local_file": "2025年液冷行业概览（头豹研究院，2025-10，精华版）.pdf",
+        "locator": "第 8 页四路线对比表「单机柜功率密度」行，单相浸没式液冷 列 = 「30-60kW」",
+        "grade": "S3",
+        "originator": "头豹研究院（LeadLeo）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是该技术路线的常规适用区间，不是某个产品的实测**（stat=市场普遍水平）。本条是上界。  **四条路线的区间互相重叠**（冷板 25-40、单相浸没 30-60、相变浸没 60-100、喷淋 20-30），**选型不是按密度一刀切**，原文给的选型逻辑是：中高密度且需兼容现有架构选冷板；常规高密度追求静音节能选单相浸没；超高密度与极致能效只有相变浸没可行；局部高热流或空间受限用喷淋补充。 **这是「精华版」而非完整报告**，多处数字只给结论不给测算过程；报告自称高度机密但为公开发布的市场概览。"
+    },
+    {
+      "fact_id": "leadleo-lc-pue-single-phase",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "technology",
+        "id": "lc-single-phase",
+        "label": "单相浸没式液冷"
+      },
+      "value": 1.1,
+      "unit": "比值",
+      "caliber": {
+        "basis": "宣传值",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0f86e7549c8f48a8017f2f4c61f59cfedf96d6e0ad570ff8ccc12227e14d4a44",
+        "local_file": "2025年液冷行业概览（头豹研究院，2025-10，精华版）.pdf",
+        "locator": "第 8 页四路线对比表「电费节省（万元/年）」行，单相浸没式液冷 列 = 「15-20（PUE1.10，对比风冷）」（PUE 值写在括号内）",
+        "grade": "S3",
+        "originator": "头豹研究院（LeadLeo）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这个 PUE 是电费节省测算的输入假设，不是实测**：原表把它写在「电费节省」行的括号里，basis 记宣传值（该维无「厂商宣称」取值，宣传值最接近）。**四路线 1.20 → 1.15 → 1.10 → 1.05 是等差排列**，看得出是设定值而非观测值。 对照库内 caict-2022-pue-hyperscale-inuse（中国在用超大型 1.39，运行值）：**这些 1.05-1.20 与全国在用实测差 0.19-0.34**，是「新建液冷单柜」与「全国在用平均」的差别，不可当作同一口径的改善幅度。 **这是「精华版」而非完整报告**，多处数字只给结论不给测算过程；报告自称高度机密但为公开发布的市场概览。"
+    },
+    {
+      "fact_id": "leadleo-lc-density-two-phase-lower",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "technology",
+        "id": "lc-two-phase",
+        "label": "相变浸没式液冷"
+      },
+      "value": 60.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "市场普遍水平",
+        "power_basis": "设计功率",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "0f86e7549c8f48a8017f2f4c61f59cfedf96d6e0ad570ff8ccc12227e14d4a44",
+        "local_file": "2025年液冷行业概览（头豹研究院，2025-10，精华版）.pdf",
+        "locator": "第 8 页四路线对比表「单机柜功率密度」行，相变浸没式液冷 列 = 「60-100kW」",
+        "grade": "S3",
+        "originator": "头豹研究院（LeadLeo）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是该技术路线的常规适用区间，不是某个产品的实测**（stat=市场普遍水平）。本条是下界。  **四条路线的区间互相重叠**（冷板 25-40、单相浸没 30-60、相变浸没 60-100、喷淋 20-30），**选型不是按密度一刀切**，原文给的选型逻辑是：中高密度且需兼容现有架构选冷板；常规高密度追求静音节能选单相浸没；超高密度与极致能效只有相变浸没可行；局部高热流或空间受限用喷淋补充。 **这是「精华版」而非完整报告**，多处数字只给结论不给测算过程；报告自称高度机密但为公开发布的市场概览。"
+    },
+    {
+      "fact_id": "leadleo-lc-density-two-phase-upper",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "technology",
+        "id": "lc-two-phase",
+        "label": "相变浸没式液冷"
+      },
+      "value": 100.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "市场普遍水平",
+        "power_basis": "设计功率",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "0f86e7549c8f48a8017f2f4c61f59cfedf96d6e0ad570ff8ccc12227e14d4a44",
+        "local_file": "2025年液冷行业概览（头豹研究院，2025-10，精华版）.pdf",
+        "locator": "第 8 页四路线对比表「单机柜功率密度」行，相变浸没式液冷 列 = 「60-100kW」",
+        "grade": "S3",
+        "originator": "头豹研究院（LeadLeo）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是该技术路线的常规适用区间，不是某个产品的实测**（stat=市场普遍水平）。本条是上界。  **四条路线的区间互相重叠**（冷板 25-40、单相浸没 30-60、相变浸没 60-100、喷淋 20-30），**选型不是按密度一刀切**，原文给的选型逻辑是：中高密度且需兼容现有架构选冷板；常规高密度追求静音节能选单相浸没；超高密度与极致能效只有相变浸没可行；局部高热流或空间受限用喷淋补充。 **这是「精华版」而非完整报告**，多处数字只给结论不给测算过程；报告自称高度机密但为公开发布的市场概览。"
+    },
+    {
+      "fact_id": "leadleo-lc-pue-two-phase",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "technology",
+        "id": "lc-two-phase",
+        "label": "相变浸没式液冷"
+      },
+      "value": 1.05,
+      "unit": "比值",
+      "caliber": {
+        "basis": "宣传值",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0f86e7549c8f48a8017f2f4c61f59cfedf96d6e0ad570ff8ccc12227e14d4a44",
+        "local_file": "2025年液冷行业概览（头豹研究院，2025-10，精华版）.pdf",
+        "locator": "第 8 页四路线对比表「电费节省（万元/年）」行，相变浸没式液冷 列 = 「20-25（PUE1.05，对比风冷）」（PUE 值写在括号内）",
+        "grade": "S3",
+        "originator": "头豹研究院（LeadLeo）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这个 PUE 是电费节省测算的输入假设，不是实测**：原表把它写在「电费节省」行的括号里，basis 记宣传值（该维无「厂商宣称」取值，宣传值最接近）。**四路线 1.20 → 1.15 → 1.10 → 1.05 是等差排列**，看得出是设定值而非观测值。 对照库内 caict-2022-pue-hyperscale-inuse（中国在用超大型 1.39，运行值）：**这些 1.05-1.20 与全国在用实测差 0.19-0.34**，是「新建液冷单柜」与「全国在用平均」的差别，不可当作同一口径的改善幅度。 **这是「精华版」而非完整报告**，多处数字只给结论不给测算过程；报告自称高度机密但为公开发布的市场概览。"
+    },
+    {
+      "fact_id": "leadleo-lc-density-spray-lower",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "technology",
+        "id": "lc-spray",
+        "label": "喷淋式液冷"
+      },
+      "value": 20.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "市场普遍水平",
+        "power_basis": "设计功率",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "0f86e7549c8f48a8017f2f4c61f59cfedf96d6e0ad570ff8ccc12227e14d4a44",
+        "local_file": "2025年液冷行业概览（头豹研究院，2025-10，精华版）.pdf",
+        "locator": "第 8 页四路线对比表「单机柜功率密度」行，喷淋式液冷 列 = 「20-30kW（常规），最高 40kW（定制）」",
+        "grade": "S3",
+        "originator": "头豹研究院（LeadLeo）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是该技术路线的常规适用区间，不是某个产品的实测**（stat=市场普遍水平）。本条是下界。 **冷板式的上限可到 120kW（相变冷板）、喷淋式定制可到 40kW**，原文把常规值与极限值分开写，本库只录常规区间，极限值见此处。 **四条路线的区间互相重叠**（冷板 25-40、单相浸没 30-60、相变浸没 60-100、喷淋 20-30），**选型不是按密度一刀切**，原文给的选型逻辑是：中高密度且需兼容现有架构选冷板；常规高密度追求静音节能选单相浸没；超高密度与极致能效只有相变浸没可行；局部高热流或空间受限用喷淋补充。 **这是「精华版」而非完整报告**，多处数字只给结论不给测算过程；报告自称高度机密但为公开发布的市场概览。"
+    },
+    {
+      "fact_id": "leadleo-lc-density-spray-upper",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "technology",
+        "id": "lc-spray",
+        "label": "喷淋式液冷"
+      },
+      "value": 30.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "市场普遍水平",
+        "power_basis": "设计功率",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "0f86e7549c8f48a8017f2f4c61f59cfedf96d6e0ad570ff8ccc12227e14d4a44",
+        "local_file": "2025年液冷行业概览（头豹研究院，2025-10，精华版）.pdf",
+        "locator": "第 8 页四路线对比表「单机柜功率密度」行，喷淋式液冷 列 = 「20-30kW（常规），最高 40kW（定制）」",
+        "grade": "S3",
+        "originator": "头豹研究院（LeadLeo）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是该技术路线的常规适用区间，不是某个产品的实测**（stat=市场普遍水平）。本条是上界。 **冷板式的上限可到 120kW（相变冷板）、喷淋式定制可到 40kW**，原文把常规值与极限值分开写，本库只录常规区间，极限值见此处。 **四条路线的区间互相重叠**（冷板 25-40、单相浸没 30-60、相变浸没 60-100、喷淋 20-30），**选型不是按密度一刀切**，原文给的选型逻辑是：中高密度且需兼容现有架构选冷板；常规高密度追求静音节能选单相浸没；超高密度与极致能效只有相变浸没可行；局部高热流或空间受限用喷淋补充。 **这是「精华版」而非完整报告**，多处数字只给结论不给测算过程；报告自称高度机密但为公开发布的市场概览。"
+    },
+    {
+      "fact_id": "leadleo-lc-pue-spray",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "technology",
+        "id": "lc-spray",
+        "label": "喷淋式液冷"
+      },
+      "value": 1.2,
+      "unit": "比值",
+      "caliber": {
+        "basis": "宣传值",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0f86e7549c8f48a8017f2f4c61f59cfedf96d6e0ad570ff8ccc12227e14d4a44",
+        "local_file": "2025年液冷行业概览（头豹研究院，2025-10，精华版）.pdf",
+        "locator": "第 8 页四路线对比表「电费节省（万元/年）」行，喷淋式液冷 列 = 「10-15（PUE1.20，对比风冷）」（PUE 值写在括号内）",
+        "grade": "S3",
+        "originator": "头豹研究院（LeadLeo）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这个 PUE 是电费节省测算的输入假设，不是实测**：原表把它写在「电费节省」行的括号里，basis 记宣传值（该维无「厂商宣称」取值，宣传值最接近）。**四路线 1.20 → 1.15 → 1.10 → 1.05 是等差排列**，看得出是设定值而非观测值。 对照库内 caict-2022-pue-hyperscale-inuse（中国在用超大型 1.39，运行值）：**这些 1.05-1.20 与全国在用实测差 0.19-0.34**，是「新建液冷单柜」与「全国在用平均」的差别，不可当作同一口径的改善幅度。 **这是「精华版」而非完整报告**，多处数字只给结论不给测算过程；报告自称高度机密但为公开发布的市场概览。"
     }
   ]
 }
