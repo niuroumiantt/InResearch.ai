@@ -2407,5 +2407,58 @@ class M11MenuTests(unittest.TestCase):
                       self.dim('dc_securitization_issuance', 'instrument')['note'])
 
 
+class NeighbourMetricTests(unittest.TestCase):
+    """相邻指标之间的交叉引用——菜单长到 220 个之后自己扫出来的。
+
+    加完 81 个指标之后我扫了一遍全库，找同单位且命名相似的对。
+    绝大多数是刻意的区分（价格 vs 成本、供给 vs 需求、按金额 vs 按台数），
+    但有两处相邻得足以让人录错，而两边都没提对方。
+    """
+
+    def setUp(self):
+        self.metrics = L2.load_metrics()
+
+    def test_occupancy_and_vacancy_warn_against_converting(self):
+        """看着互补，分母常常不是同一个——拿 100 去减就是造数。"""
+        for mid, other in (('dc_occupancy_rate', 'dc_vacancy_rate'),
+                           ('dc_vacancy_rate', 'dc_occupancy_rate')):
+            note = self.metrics[mid]['note']
+            self.assertIn(other, note, mid)
+            self.assertIn('不要互相换算', note, mid)
+
+    def test_they_sit_in_different_modules_which_is_why_it_matters(self):
+        """两个模块的读者各看各的菜单，不交叉引用就看不见对方。"""
+        self.assertNotEqual(self.metrics['dc_occupancy_rate']['module'],
+                            self.metrics['dc_vacancy_rate']['module'])
+
+    def test_the_generic_share_metric_points_at_the_specific_ones(self):
+        note = self.metrics['vendor_market_share']['note']
+        for specific in ('cowos_market_share', 'hdd_top2_share',
+                         'self_asic_hyperscaler_gpu_share'):
+            self.assertIn(specific, note, specific)
+        self.assertIn('不要往这里塞', note)
+
+    def test_no_two_metrics_share_an_id(self):
+        ids = [v['metric_id'] for v in
+               json.loads((Path(L2.__file__).resolve().parent.parent /
+                           'framework/metrics.json').read_text(
+                               encoding='utf-8'))['metrics']]
+        self.assertEqual(len(ids), len(set(ids)))
+
+    def test_every_metric_has_a_unit_a_module_and_at_least_one_dimension(self):
+        for mid, v in self.metrics.items():
+            self.assertTrue(v.get('unit'), mid)
+            self.assertTrue(v.get('module'), mid)
+            self.assertTrue(v.get('caliber_dims'), mid)
+
+    def test_no_enum_has_a_duplicate_or_blank_value(self):
+        for mid, v in self.metrics.items():
+            for d in v.get('caliber_dims', []):
+                values = d.get('values') or []
+                self.assertEqual(len(values), len(set(values)), (mid, d['id']))
+                for value in values:
+                    self.assertTrue(str(value).strip(), (mid, d['id']))
+
+
 if __name__ == '__main__':
     unittest.main()
