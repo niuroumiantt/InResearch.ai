@@ -6239,6 +6239,95 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**「≥2.6m」是下界，且是既有建筑改造的放宽档**——**这一档专门为改造项目留的口子，拿它代表「数据中心机房净高」会系统性偏低**。 **这是中国移动的企业准入标准，不是某个项目的设计取值，也不是国标。**原文为《中国移动定制化IDC技术方案建议》/《中国移动IDC等级评定标准 V3.2.0》，按二星～钻石五星五档打分，本条对应的档位见 entity。**工作表「v3.2修改内容」重复了同一条要求（同文件两个版本），不构成交叉验证。**"
+    },
+    {
+      "fact_id": "caict-2022-pue-hyperscale-inuse",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "industry",
+        "id": "cn-hyperscale-dc-inuse",
+        "label": "中国在用超大型数据中心（全国平均）"
+      },
+      "value": 1.39,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "scale": "超大型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2022-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d01da12707d73864f636fd1adddcca1eb5a13deef3f90ea14147d8106136c5e4",
+        "local_file": "【2022年4月】【中国信通院】中国第三方数据中心运营商分析报告（2022年）.pdf",
+        "locator": "第 22 页「趋势二」段：「据中国信通院测算，目前我国在用超大型数据中心平均 PUE 为 1.39，大型数据中心平均 PUE 为 1.5」",
+        "grade": "S2",
+        "originator": "中国信通院云计算与大数据研究所（自测算）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是同一机构同一口径的第二个时点，可与库内 cn-hyperscale-pue-operating-2017（2017-12，在用超大型 1.63）直接对照——四年多从 1.63 降到 1.39。****但别拿它算年降幅**：原文只写「目前」，没给统计截止时点，本条按报告发布月 2022-04 记；2017 那条是「截至2017年底」，两端时点精度不同。**同样别与在建/设计 PUE 混**：库内 cn-hyperscale-pue-design-2017 是 1.41（设计工况），数值上与本条的 1.39 接近纯属巧合，一个是运行值一个是设计值。原文未说明样本量、是否加权、以及「在用」是否含改造中项目。"
+    },
+    {
+      "fact_id": "caict-2022-pue-large-inuse",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "industry",
+        "id": "cn-large-dc-inuse",
+        "label": "中国在用大型数据中心（全国平均）"
+      },
+      "value": 1.5,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "scale": "大型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2022-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d01da12707d73864f636fd1adddcca1eb5a13deef3f90ea14147d8106136c5e4",
+        "local_file": "【2022年4月】【中国信通院】中国第三方数据中心运营商分析报告（2022年）.pdf",
+        "locator": "第 22 页「趋势二」段：「目前我国在用超大型数据中心平均 PUE 为 1.39，大型数据中心平均 PUE 为 1.5」",
+        "grade": "S2",
+        "originator": "中国信通院云计算与大数据研究所（自测算）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**「大型」这一句原文没有重复「在用」二字**，只是与前半句并列，本条按并列结构判为在用口径，属推断，标 [未核]。对照库内 2017 年同机构数据：大型在用 1.54（见 cn-hyperscale-pue-operating-2017 的 locator 原文），四年多仅降 0.04，**远慢于超大型的 0.24**——大型与超大型不是一条曲线，不可互相代表。"
+    },
+    {
+      "fact_id": "bridge-dc-johor-capacity-2022",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "project",
+        "id": "bridge-dc-johor-my",
+        "label": "Bridge Data Centres 马来西亚柔佛超大规模数据中心园区（秦淮数据子集团）"
+      },
+      "value": 100.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L2",
+        "region": "APAC"
+      },
+      "as_of": "2022-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d01da12707d73864f636fd1adddcca1eb5a13deef3f90ea14147d8106136c5e4",
+        "local_file": "【2022年4月】【中国信通院】中国第三方数据中心运营商分析报告（2022年）.pdf",
+        "locator": "第 17 页「出海布局」段：「秦淮数据成立主攻中国以外亚太新市场的子集团—Bridge Data Centres，宣布在马来西亚柔佛投建 100MW 超大规模数据中心园区」",
+        "grade": "S2",
+        "originator": "中国信通院（转述企业公告）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**capacity_type=未披露**：原文只写「100MW」，没说是 IT 容量还是设施容量——两者差 1.3-1.5 倍，不许猜。**status=L2 是保守归类**：原文只写「宣布投建」，没有土地、电力或开工的任何状态信息，按「官方规划」记；**因此这 100MW 不计入当期投运供给（只有 L8+ 才计）**。地域按马来西亚归入 APAC（region 枚举无 MY）。同段另有万国数据在马来西亚柔佛努沙再也、印尼峇淡岛的园区布局，原文未给容量数字，未录。"
     }
   ]
 }
