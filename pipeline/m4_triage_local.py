@@ -1,45 +1,24 @@
 #!/usr/bin/env python3
-"""M4 triage L1 via the local ollama model.  No API, no network beyond localhost.
+"""L1 scoring through the shared configured research model.
 
-The judgement contract is identical to the in-session path (m4_triage_pack.py),
-so rows from both land in the same l1_results.jsonl and are told apart by the
-`model` field.  Examples scored in-session are replayed as few-shot anchors so
-the small model inherits the calibration rather than inventing its own.
-
-  calibrate --limit N   re-score files already scored in-session, report agreement
-  run [--limit N]       score pending files
-
-`run --workers N` keeps N requests in flight. The local server answers them in
-parallel only when it is started with OLLAMA_NUM_PARALLEL >= N; otherwise the
-extra requests just queue there and nothing gets faster.
+`calibrate` compares explicit terminal examples; `run` processes pending files.
+The default is temporarily Claude CLI. Configure models via INRESEARCH_MODEL_CONFIG.
 """
 from __future__ import annotations
-import argparse, json, random, re, sys, threading, time, urllib.request
+import argparse, json, random, re, sys, threading, time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
+import model_runtime as models
 import m4_triage_l1 as L1
 import m4_triage_pack as PK
 
-MODEL = 'qwen3:8b'
 MAX_WORKERS = 16
-ENDPOINT = 'http://127.0.0.1:11434/api/chat'
-FEWSHOT = 8
 
 
-def call(system: str, user: str, timeout: int = 180) -> dict:
-    body = json.dumps({'model': MODEL, 'messages': [{'role': 'system', 'content': system},
-                                                    {'role': 'user', 'content': user}],
-                       'stream': False, 'format': 'json', 'think': False,
-                       'options': {'temperature': 0, 'num_ctx': 8192, 'num_predict': 700}}).encode()
-    req = urllib.request.Request(ENDPOINT, data=body, headers={'Content-Type': 'application/json'})
-    with urllib.request.urlopen(req, timeout=timeout) as res:
-        out = json.load(res)
-    if out.get('model') != MODEL:
-        raise RuntimeError('model_identity_unverified')
-    msg = out['message']
-    return json.loads(msg.get('content') or msg.get('thinking') or '')
+def call(system: str, user: str, timeout=None) -> dict:
+    return models.configured_client().generate(system, user, think=False)
 
 
 def scored_rows():
@@ -48,50 +27,19 @@ def scored_rows():
         for line in L1.RESULTS.open(encoding='utf-8'):
             try: r = json.loads(line)
             except ValueError: continue
-            if r.get('status') == 'ok' and r.get('model') == 'claude-code-session':
+            if r.get('status') == 'ok' and L1.is_terminal_result(r):
                 rows.append(r)
     return rows
 
 
 def system_prompt() -> str:
-    # Anchors are stratified across the score range.  An unstratified sample is
-    # dominated by 1-3 (most of the corpus is vendor material) and the small
-    # model then collapses everything onto 2.
-    buckets = {}
-    for r in scored_rows():
-        buckets.setdefault(r['score'], []).append(r)
-    lines = []
-    for score in sorted(buckets, reverse=True):
-        for r in sorted(buckets[score], key=lambda x: x['rel'])[:2]:
-            lines.append('%s → score=%d module=%s：%s' % (Path(r['rel']).name[:48], r['score'], r['category'], (r.get('rationale') or '')[:55]))
-    examples = '\n'.join(lines)
-    return L1.task_card() + """
-
-以下是已由资深分拣员判定的样例，请以同样的尺度打分：
-""" + examples + """
-
-判分要点：
-1. 不要把所有文件都判成 2 分。上面的样例覆盖 0 到 8 分，请用满整个区间。
-2. 文件名里的“数据中心”常指企业数据平台、数据仓库、BI 或某行业信息系统，不是物理数据中心机房；这类判 0–1 分。
-3. 运营商或国家的正式标准与技术规范书、一手项目容量与造价数据、行业年鉴名录、头部厂商的实测实践：6–8 分。
-4. 厂商产品方案、投标交付文档、通用架构演示：2–3 分。
-5. 设备产品手册若含具体技术参数（UPS、精密空调、微模块规格），判 5 分，归 M09。
-6. 模块判断看主题实体：机房土建运营归 M10，供电与电气设备归 M09，制冷与液冷归 M08，网络设备与光模块归 M07，芯片服务器归 M06，中国市场与政策归 M14，市场规模数据归 M01。
-只输出 JSON，字段：score, module, title, org, year, keep_original_name, doc_type, language, rationale, evidence, confidence。"""
+    return L1.task_card()
 
 
 def judge(rec, system):
     text = PK.clean_preview(rec['preview'])[:PK.PREVIEW_CHARS]
-    head = {'path': rec['rel'], 'suffix': rec['suffix'], 'kb': round(rec['size'] / 1024)}
-    user = '文件元数据：\n' + json.dumps(head, ensure_ascii=False) + '\n\n文本预览：\n<<<\n' + (text or '（无可提取文本，只能按文件名判断）') + '\n>>>'
-    v = call(system, user)
-    v.setdefault('language', ''); v.setdefault('evidence', ''); v.setdefault('doc_type', 'other')
-    v.setdefault('confidence', 'medium'); v.setdefault('org', '未知'); v.setdefault('year', '未知')
-    v.setdefault('rationale', ''); v.setdefault('keep_original_name', True); v.setdefault('title', Path(rec['rel']).stem)
-    v['score'] = max(0, min(10, int(v.get('score', 0))))
-    if v.get('module') not in {'M%02d' % i for i in range(1, 16)} | {'unrelated', 'unknown'}:
-        v['module'] = 'unknown'
-    return v
+    value = call(system, L1.user_message(rec, text, rec['meta'], rec['level']))
+    return L1.validate_judgement(value)
 
 
 def cmd_calibrate(a):
@@ -175,8 +123,8 @@ def cmd_run(a):
                 o['proposed_name'] = L1.proposed_name(o)
                 emit(o, 'errors')
                 return
-            o = L1.finalize(rec, v, {'judge': MODEL}, None)
-            o['proposed_name'] = L1.proposed_name(o); o['model'] = MODEL
+            o = L1.finalize(rec, v, {'judge': v.get('_model', {}).get('actual')}, None)
+            o['proposed_name'] = L1.proposed_name(o); o['model'] = v.get('_model', {}).get('actual')
             emit(o, 'scored')
 
         with ThreadPoolExecutor(a.workers) as ex:

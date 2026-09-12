@@ -206,7 +206,10 @@ try {
           news.top.map(t => `<div class="sig">${esc(t.title)}<a href="${t.url}" target="_blank">${esc(t.source)}</a></div>`).join("") : ""}</div>
     </div>`;
 } catch (e) {
-  document.getElementById("root").innerHTML = `<div class="err">加载失败：${e.message}</div>`;
+  const error = document.createElement("div");
+  error.className = "err";
+  error.textContent = `加载失败：${e.message}`;
+  document.getElementById("root").replaceChildren(error);
 }
 })();
 

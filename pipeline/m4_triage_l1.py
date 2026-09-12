@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""M4 triage, level L1: preview-based scoring and classification with Claude Opus 5.
+"""M4 triage, level L1: preview-based scoring with the configured research model.
 
-Task definition: docs/local_reader/M4_TRIAGE_TASK.md (candidate proposal).
+Task definition: docs/M4_TRIAGE_TASK.md.
 This script never renames, moves or deletes anything.  It reads the SHA-256
 inventory, extracts a bounded text preview per file, asks the model for a
 structured judgement, and appends one JSON line per file to l1_results.jsonl.
@@ -10,8 +10,8 @@ Moving/renaming is a separate, later step driven by the mapping table.
 Modes:
   preview  --limit N        extract previews only, no API call (free dry run)
   sample   --limit N        synchronous API calls for N files, prints a summary
-  submit   [--limit N]      create Message Batches for all pending files
-  collect                   fetch finished batches into l1_results.jsonl
+  run      [--limit N]      score pending files through the shared model
+  collect                   drain previously submitted Anthropic batches
 """
 from __future__ import annotations
 import argparse, hashlib, json, os, random, re, subprocess, sys, threading, time, zipfile
@@ -29,9 +29,9 @@ INVENTORY = DATA / 'inventory.jsonl'
 RESULTS = DATA / 'l1_results.jsonl'
 BATCHES = DATA / 'l1_batches.jsonl'
 MOVES = STATE / 'moves.jsonl'
-MODEL = 'claude-opus-5'
+import model_runtime as models
 MAX_PREVIEW_CHARS = 6000
-TASK_VERSION = 'l1-2026-09-09a'
+TASK_VERSION = 'l1-2026-09-12a'
 
 TEXT_SUFFIXES = {'.pdf', '.txt', '.md', '.csv', '.docx', '.doc', '.rtf', '.pptx', '.html', '.htm', '.json', '.xml',
                  '.xlsx', '.xlsm', '.xltx', '.xls', '.ppt', '.et', '.wps', '.dps', '.vsdx', '.vsd'}
@@ -211,7 +211,10 @@ def load_inventory() -> list[dict]:
     for line in inventory_lines:
         try: r = json.loads(line)
         except ValueError: continue
-        if 'sha256' not in r: continue
+        if not r.get('sha256') or r.get('error'): continue
+        # Normalize the formal inventory at this one compatibility boundary.
+        if 'rel' not in r:
+            r = {**r, 'rel': r['original_rel'], 'size': r['size_bytes']}
         cur = by_sha.get(r['sha256'])
         if cur is None:
             by_sha[r['sha256']] = {**r, 'paths': [r['rel']]}
@@ -230,7 +233,10 @@ def done_keys() -> set:
     if RESULTS.exists():
         with RESULTS.open(encoding='utf-8') as fh:
             for line in fh:
-                try: r = json.loads(line); keys.add(r['sha256'])
+                try:
+                    r = json.loads(line)
+                    if r.get('status') in {'ok', 'l0'}:
+                        keys.add(r['sha256'])
                 except (ValueError, KeyError): pass
     return keys
 
@@ -311,20 +317,33 @@ def prepare(item: dict) -> dict:
     return rec
 
 
-def request_params(rec: dict, system_blocks):
-    return {
-        'model': MODEL, 'max_tokens': 2000,
-        'system': system_blocks,
-        'messages': [{'role': 'user', 'content': user_message(rec, rec['preview'], rec['meta'], rec['level'])}],
-        'output_config': {'format': {'type': 'json_schema', 'schema': SCHEMA}, 'effort': 'low'},
-    }
+def is_terminal_result(row):
+    # Historical records used the client name as the model name. New records
+    # keep those identities separate; history remains readable without rewriting.
+    return bool(row.get('executor')) or row.get('model') == 'claude-code-session'
+
+
+def validate_judgement(value):
+    if not isinstance(value, dict) or set(value) - set(SCHEMA['properties']) - {'_model'}:
+        raise ValueError('invalid_judgement:fields')
+    for name in SCHEMA['required']:
+        rule = SCHEMA['properties'][name]
+        item = value.get(name)
+        kind = {'integer': int, 'string': str, 'boolean': bool}[rule['type']]
+        if type(item) is not kind:
+            raise ValueError('invalid_judgement:' + name)
+        if 'enum' in rule and item not in rule['enum']:
+            raise ValueError('invalid_judgement:' + name)
+        if kind is int and not rule['minimum'] <= item <= rule['maximum']:
+            raise ValueError('invalid_judgement:' + name)
+    return value
 
 
 def finalize(rec: dict, parsed: dict | None, usage: dict | None, error: str | None) -> dict:
     out = {k: rec[k] for k in ('sha256', 'rel', 'suffix', 'size', 'level', 'task_version')}
     out['paths'] = rec.get('paths', [rec['rel']]); out['copies'] = rec.get('copies', 1)
     out['meta'] = rec['meta']; out['preview_chars'] = len(rec['preview'])
-    out['model'] = MODEL; out['at'] = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
+    out['model'] = (parsed or {}).get('_model', {}).get('actual'); out['at'] = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
     if error:
         out.update({'status': 'error', 'error': error, 'category': rec['category'] or '_review'})
         return out
@@ -337,7 +356,7 @@ def finalize(rec: dict, parsed: dict | None, usage: dict | None, error: str | No
         out['category'] = rec['category']  # stays unread until OCR; score is name-based only
         out['score_status'] = 'provisional_name_only'
     elif parsed['module'] == 'unrelated' or score == 0:
-        out['category'] = '_to_delete/unrelated'; out['score_status'] = 'provisional'
+        out['category'] = '_review'; out['score_status'] = 'provisional_zero_needs_review'
     elif parsed['module'] == 'unknown':
         out['category'] = '_review'; out['score_status'] = 'provisional'
     else:
@@ -494,7 +513,7 @@ def cmd_preview(args):
         print(json.dumps({'rel': rec['rel'], 'level': rec['level'], 'category': rec['category'], 'needs_model': rec['needs_model'], 'preview_chars': len(rec['preview']), 'meta': rec['meta'], 'head': rec['preview'][:160]}, ensure_ascii=False))
 
 
-def client():
+def legacy_batch_client():
     load_env()
     import anthropic
     if not os.environ.get('ANTHROPIC_API_KEY'):
@@ -502,75 +521,41 @@ def client():
     return anthropic.Anthropic(max_retries=3)
 
 
-def system_blocks():
-    return [{'type': 'text', 'text': task_card(), 'cache_control': {'type': 'ephemeral'}}]
-
-
 def cmd_sample(args):
-    c = client(); sysb = system_blocks()
+    model = models.configured_client()
+    system = task_card()
     items = load_inventory(); random.Random(args.seed).shuffle(items)
-    done = done_keys(); picked = []
-    for it in items:
-        if len(picked) >= args.limit: break
-        if it['sha256'] in done: continue
-        rec = prepare(it)
-        if not rec['needs_model']: continue
-        if args.text_only and rec['level'] != 'p': continue
-        picked.append(rec)
+    done = done_keys(); count = errors = 0
     DATA.mkdir(parents=True, exist_ok=True)
-    tot_in = tot_out = tot_cache = 0
     with RESULTS.open('a', encoding='utf-8') as f:
-        for rec in picked:
+        for item in items:
+            if count >= args.limit:
+                break
+            if item['sha256'] in done:
+                continue
+            rec = prepare(item)
+            if not rec['needs_model'] or (args.text_only and rec['level'] != 'p'):
+                continue
             try:
-                resp = c.messages.create(**request_params(rec, sysb))
-                if resp.stop_reason == 'refusal':
-                    out = finalize(rec, None, None, 'refusal')
-                else:
-                    text = next(b.text for b in resp.content if b.type == 'text')
-                    u = resp.usage
-                    usage = {'in': u.input_tokens, 'out': u.output_tokens, 'cache_read': getattr(u, 'cache_read_input_tokens', 0) or 0, 'cache_write': getattr(u, 'cache_creation_input_tokens', 0) or 0}
-                    tot_in += usage['in']; tot_out += usage['out']; tot_cache += usage['cache_read']
-                    out = finalize(rec, json.loads(text), usage, None)
-            except Exception as exc:
-                out = finalize(rec, None, None, type(exc).__name__ + ': ' + str(exc)[:200])
+                value = model.generate(system, user_message(rec, rec['preview'], rec['meta'], rec['level']))
+                out = finalize(rec, validate_judgement(value), None, None)
+            except (models.InferenceError, ValueError) as exc:
+                out = finalize(rec, None, None, str(exc))
+                errors += 1
             out['proposed_name'] = proposed_name(out)
             f.write(json.dumps(out, ensure_ascii=False) + '\n'); f.flush()
-            print(json.dumps({'score': out.get('score'), 'cat': out.get('category'), 'lvl': out['level'], 'conf': out.get('confidence'), 'name': out['proposed_name'], 'from': out['rel'][-70:]}, ensure_ascii=False))
-    print(json.dumps({'files': len(picked), 'input_tokens': tot_in, 'output_tokens': tot_out, 'cache_read_tokens': tot_cache}))
+            count += 1
+    print(json.dumps({'files': count, 'errors': errors}))
 
 
-def cmd_submit(args):
-    c = client(); sysb = system_blocks()
-    from anthropic.types.message_create_params import MessageCreateParamsNonStreaming
-    from anthropic.types.messages.batch_create_params import Request
-    done = done_keys(); items = [it for it in load_inventory() if it['sha256'] not in done]
-    if args.limit: items = items[:args.limit]
-    DATA.mkdir(parents=True, exist_ok=True)
-    pending = DATA / 'l1_pending'; pending.mkdir(exist_ok=True)
-    reqs = []; l0 = 0
-    with RESULTS.open('a', encoding='utf-8') as f:
-        for it in items:
-            rec = prepare(it)
-            if not rec['needs_model']:
-                out = finalize(rec, None, None, None); out['proposed_name'] = proposed_name(out)
-                f.write(json.dumps(out, ensure_ascii=False) + '\n'); l0 += 1; continue
-            (pending / (rec['sha256'] + '.json')).write_text(json.dumps(rec, ensure_ascii=False))
-            reqs.append(Request(custom_id=rec['sha256'], params=MessageCreateParamsNonStreaming(**request_params(rec, sysb))))
-            if len(reqs) == args.batch_size:
-                _submit_batch(c, reqs); reqs = []
-    if reqs: _submit_batch(c, reqs)
-    print(json.dumps({'l0_written': l0}))
-
-
-def _submit_batch(c, reqs):
-    b = c.messages.batches.create(requests=reqs)
-    with BATCHES.open('a', encoding='utf-8') as f:
-        f.write(json.dumps({'id': b.id, 'n': len(reqs), 'created': time.time(), 'status': b.processing_status}) + '\n')
-    print(json.dumps({'batch': b.id, 'requests': len(reqs)}))
+def cmd_run(args):
+    # Keep one implementation of the pending-file loop and its concurrency.
+    import m4_triage_local
+    m4_triage_local.cmd_run(args)
 
 
 def cmd_collect(args):
-    c = client(); pending = DATA / 'l1_pending'
+    c = legacy_batch_client(); pending = DATA / 'l1_pending'
     seen = set(); rows = []
     for line in BATCHES.open(encoding='utf-8'):
         r = json.loads(line)
@@ -595,7 +580,7 @@ def cmd_collect(args):
                         out = finalize(rec, None, None, 'refusal')
                     else:
                         text = next(bk.text for bk in msg.content if bk.type == 'text'); u = msg.usage
-                        out = finalize(rec, json.loads(text), {'in': u.input_tokens, 'out': u.output_tokens, 'cache_read': getattr(u, 'cache_read_input_tokens', 0) or 0}, None)
+                        out = finalize(rec, {**validate_judgement(json.loads(text)), '_model': {'actual': msg.model, 'backend': 'anthropic_legacy_batch'}}, {'in': u.input_tokens, 'out': u.output_tokens, 'cache_read': getattr(u, 'cache_read_input_tokens', 0) or 0}, None)
                 else:
                     out = finalize(rec, None, None, 'batch_' + res.result.type)
                 out['proposed_name'] = proposed_name(out); out['batch'] = b.id
@@ -609,10 +594,10 @@ def main():
     ap = argparse.ArgumentParser(); sub = ap.add_subparsers(dest='cmd', required=True)
     p = sub.add_parser('preview'); p.add_argument('--limit', type=int, default=20); p.add_argument('--seed', type=int, default=7); p.add_argument('--text-only', action='store_true')
     s = sub.add_parser('sample'); s.add_argument('--limit', type=int, default=50); s.add_argument('--seed', type=int, default=7); s.add_argument('--text-only', action='store_true')
-    b = sub.add_parser('submit'); b.add_argument('--limit', type=int, default=0); b.add_argument('--batch-size', type=int, default=5000)
+    r = sub.add_parser('run'); r.add_argument('--limit', type=int, default=0); r.add_argument('--workers', type=int, default=1)
     sub.add_parser('collect')
     a = ap.parse_args()
-    {'preview': cmd_preview, 'sample': cmd_sample, 'submit': cmd_submit, 'collect': cmd_collect}[a.cmd](a)
+    {'preview': cmd_preview, 'sample': cmd_sample, 'run': cmd_run, 'collect': cmd_collect}[a.cmd](a)
 
 if __name__ == '__main__':
     main()

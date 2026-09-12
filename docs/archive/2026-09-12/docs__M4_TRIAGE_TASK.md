@@ -1,21 +1,25 @@
+> HISTORICAL · 已由 2026-09-12 现行规则替代，仅供追溯；执行入口见 framework/CURRENT.md。
+
 # M4 资料分类与命名任务
 
-> CURRENT · 2026-09-12 更新（首次采用 2026-09-09）。规则归属见 [framework/CURRENT.md](../framework/CURRENT.md)；本文件在 `framework/current_state.json` 以 `reading-m4-triage-20260912` 登记，scope 为 `m4-triage`。
+> CURRENT · 2026-09-09 用户采用。规则归属见 [framework/CURRENT.md](../framework/CURRENT.md)；本文件在 `framework/current_state.json` 以 `reading-m4-triage-20260909` 登记，scope 为 `m4-triage`。
 >
 > 本任务只约束 **M4 本机原件的整理**，是对 [04 阅读标准](../framework/04_reading_scoring_standard.md) §5/§6 在该范围内的替代（见 §10）。Spark 的阅读、评分与 originals 不可变规则不受影响，仍按 04 标准执行。
 
-## 0. 实现状态（2026-09-12 源码核对）
+## 0. 实现状态（2026-09-09）
+
+已实现的只有第一步，其余仍是待建设计，不得据此声称已完成：
 
 | 步骤 | 状态 | 落点 |
 |---|---|---|
-| 全量清单与重复检测 | 已实现 | `m4_triage.py`；L1 入口兼容正式字段与旧清单 |
-| L1 预览、模型打分、终端提交 | 已实现；默认改用共享研究模型 | `m4_triage_l1.py`、`m4_triage_local.py`、`m4_triage_pack.py` |
-| 提取摘要与 L2 交付 | 已有代码 | `m4_triage_extract.py`、`m4_l2.py`；不是 Spark 全文流程的替代 |
-| 改名移动、日志与恢复 | 已有代码 | `m4_triage_apply.py`；运行验收与源码状态分开 |
-| M4 对照表导出与对账 | 已有代码 | `m4_triage_export.py` |
-| Spark catalog 的 apply-triage | 未实现 | §7.2 描述目标契约；不由脚本存在推断已完成 |
+| 全量清单：SHA-256、L0 分桶、重复检测 | **已实现** | `pipeline/m4_triage.py inventory` / `summary` |
+| L1 预览包生成 | 未实现 | — |
+| Opus 5 批量打分 | 未实现 | — |
+| 对照表 mapping.jsonl | 未实现 | — |
+| 改名移动与操作日志 | 未实现 | — |
+| Spark 侧 apply-triage | 未实现 | — |
 
-清单和阅读入口不移动原件；实际文件操作仍须按已给授权、对应操作计划和验收执行。模型更换不扩大原件操作范围。本次未操作 M4/Spark 原件，也未核对生产完成量。
+清单工具**只读**：以只读方式打开文件，拒绝把输出写进源目录，不改名、不移动、不删除。改名移动的授权要等对应步骤实现并通过小样验收后另行取得。
 
 ## 1. 任务一句话
 
@@ -40,7 +44,7 @@
 | L0 name_only | 只看文件名、路径、后缀、大小 | DWG/CAD、3D、图片、日志、压缩包、无法提取文本的文件 | 暂定，文件名带未读标记 |
 | L1 preview | pdftotext 首页+目录+首 4,000 字，模型路由 | 所有可提取文本的 PDF/Office 第一轮 | 暂定 |
 | L2 full | 全文分块阅读 | L1 得分 ≥7 或用户点名 | 正式 |
-| L3 ocr | 配置的视觉模型逐页双次 OCR 后再 L1/L2 | 扫描件（约 2,496 份），第一轮不做 | 正式 |
+| L3 ocr | qwen3-vl 逐页双次 OCR 后再 L1/L2 | 扫描件（约 2,496 份），第一轮不做 | 正式 |
 
 L0 文件**不会因为没读就得 0 分**。图纸/CAD 默认归“图纸资产（未读）”，得分位显示未读标记。
 
@@ -69,7 +73,7 @@ L0 文件**不会因为没读就得 0 分**。图纸/CAD 默认归“图纸资�
 
 | 桶 | 用途 |
 |---|---|
-| `_drawings_unread` | 图纸、CAD、3D、大幅面文件，L0 归类，不进入文章阅读模型 |
+| `_drawings_unread` | 图纸、CAD、3D、大幅面文件，L0 归类，不进 27B |
 | `_office_pending` | 需转换的 Office/加密文件 |
 | `_review` | 模型分歧、无法判断、疑似敏感 |
 | `_to_delete` | 0 分进 `_to_delete/unrelated/`，重复副本进 `_to_delete/duplicates/`；待用户一并处理 |
@@ -117,20 +121,21 @@ Spark 侧命令（待写）`continuous_reader.py apply-triage mapping.jsonl --dr
 
 M4 侧实际落地：`/Users/m4/Downloads/inresearch资料库/{category}/{new_name}`，文件本体在此；操作日志 `~/.local/state/inresearch.ai/m4-triage/moves.jsonl` 逐条记录 `sha256, from, to, at`，与对照表互为校验。重评分导致再次改名时同样先记日志再移动，表中 `version` 递增，Spark 以最新版为准；`sha16` 留在文件名里保证任何版本都能对回同一文档。
 
-## 8. 模型与客户端协议
+## 8. 模型与多模型协议
 
-模型接入的唯一正式源是 [08 模型执行](../framework/08_model_execution.md)。当前暂由 Claude CLI 执行模型任务，Spark 恢复后通过配置接入；替代固定 Claude 主判与固定本机 8B 第二意见。换兼容型号通过配置完成，阅读层级、评分和原件范围不随之变化。
-
-所有模型接收相同任务输入并返回相同判定字段。普通 `sample/run` 走共享推理接口；旧 `collect` 仅回收已提交的 Anthropic 批次，不再提交新批次。Claude Code / Codex CLI 可用同一 `pack/record` 契约，记录 executor 与实际模型（不可核实时记未知）。
-
-一次判定不因是某个品牌或更大模型自动更可信。双模型复核时保留双方分数与依据；差异 >2 或分类不同进 `_review`；零分/无关的单次模型建议进入待复核，不直接路由到待删除目录。已有正式审核决定继续保留。日常只使用一套当前有效结果，旧行作为过程记录。
+- 用户 2026-09-09 决定：L1 与 L2 全程使用 Claude Opus 5（`claude-opus-5`），L1 完成后直接进入 L2。本机 qwen3:8b 可作为免费第二意见，但不作为主判。
+- API 调用走 Message Batches（半价、异步），每批 ≤ 10,000 请求；结构化输出保证 JSON 契约。L1 预览文本会离开本机发送到 Anthropic API，这是采用该方案的已知代价。
+- 所有模型收到同一份输入包：元数据 + L1 预览文本 + 本任务卡 §4/§5 的打分锚点与模块表 + research_questions 摘要；输出同一 JSON 契约。
+- 每次输出记录模型名、digest、prompt 哈希；输出格式不合规直接记 `model_output_invalid`，不修补。
+- 合并规则：两模型 score 差 ≤2 取均值四舍五入并保留双方分；差 >2 或 category 不同进 `_review`；`_to_delete` 需全体一致。
+- 单模型阶段（Opus 5）同样按此契约记录，后加模型时无需改表。
 
 ## 9. 吞吐与顺序
 
-1. 先清单与哈希，再验证预览抽取。
-2. 用当前配置模型完成 50 份代表性小样，核对模型身份、评分、引文、命名及耗时；不能沿用旧模型费用/耗时估算。
-3. 按实测并发预算处理 L1；L2 范围保留本任务既有规则，Spark 按 04 对所有独立文章深读。OCR 单独验收其模型能力。
-4. 客户端并发上限只约束对应进程，共享 GPU 的全局容量仍须结合实际运行调度。
+1. L0 全量与 SHA-256 全量：一次跑完，约 1–2 小时。
+2. L1：约 38,000 个候选，Opus 5 Batch 估算 300–400 美元，通常 24 小时内回批；正式开跑前用 50 份样本实测 token。
+3. L2 只对 L1 ≥7 的做，按章节切块，Opus 5 Batch，规模取决于 L1 结果；L3 第一轮不做。
+4. 先 50 个文件小样：人工核对模型身份、分数合理性、命名可读性，通过后再开 LaunchAgent。
 
 ## 10. 与 04 阅读标准的关系
 

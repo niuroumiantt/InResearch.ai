@@ -80,7 +80,7 @@ L0 数据层   data/ — 六张实体表（项目/公司/价格/政策/合同/�
 
 当前规则见 [阅读标准 v3](framework/04_reading_scoring_standard.md)、[项目目标](docs/local_reader/PROJECT_BRIEF.md) 与 [执行协议](docs/local_reader/RUN_TO_COMPLETION.md)。用户已批准且已部署常驻模式；实际版本、健康与阅读数量以[实施记录](docs/reviews/2026-09-06/IMPLEMENTATION.md)及台账为准。
 
-`raw-materials → 原件/版本登记 → 27B 粗读 → 每篇深读 → 原文核验与候选 → C3 采用 → 节点/问题/Finding/交付`。
+`raw-materials → 原件/版本登记 → 配置的研究模型粗读 → 每篇深读 → 原文核验与候选 → C3 采用 → 节点/问题/Finding/交付`。
 
 框架缺口也生成搜集、访谈、实测与复核任务。低分不淘汰，depth 不靠摘要猜；原理/规范/接口/失败案例与数字同样可进入证据链。阅读完成、整理、核验和采用分别计量，存在 sources 路径不代表已消化。
 

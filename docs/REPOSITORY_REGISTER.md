@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `pipeline/governance.py --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.09.1。
+> GENERATED · 由 `pipeline/governance.py --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.12.2。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：470。
+在册文件：478。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,15 +15,15 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 12 |
-| 历史快照 | 36 |
-| 运行代码 | 81 |
-| 现行规范 | 11 |
-| 项目配置 | 37 |
+| 历史快照 | 39 |
+| 运行代码 | 82 |
+| 现行规范 | 12 |
+| 项目配置 | 39 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 26 |
 | 配套说明 | 34 |
-| 测试 | 25 |
+| 测试 | 26 |
 
 ## 在册记录集合
 
@@ -169,7 +169,7 @@
 | `docs/reviews/2026-09-06/evidence/runtime.json` | limits | 3 |
 | `framework/bom.json` | layers | 5 |
 | `framework/bom.json` | parts | 46 |
-| `framework/current_state.json` | policies | 20 |
+| `framework/current_state.json` | policies | 23 |
 | `framework/current_state.json` | entrypoints | 4 |
 | `framework/current_state.json` | retired_entrypoints | 3 |
 | `framework/current_state.json` | known_retired_patterns | 11 |
@@ -303,6 +303,7 @@
 | `deploy/Dockerfile` | 项目配置 |
 | [deploy/README.md](../deploy/README.md) | 配套说明 |
 | `deploy/docker-compose.yml` | 项目配置 |
+| `deploy/models.json` | 项目配置 |
 | `deploy/spark-reader/inresearch-material-intake.service` | 项目配置 |
 | `deploy/spark-reader/inresearch-material-intake.timer` | 项目配置 |
 | `deploy/spark-reader/inresearch-news.service` | 项目配置 |
@@ -337,6 +338,8 @@
 | [docs/archive/2026-09-06/docs__local_setup__setup.sh.md](archive/2026-09-06/docs__local_setup__setup.sh.md) | 历史快照 |
 | [docs/archive/2026-09-06/framework__01_data_standards.md](archive/2026-09-06/framework__01_data_standards.md) | 历史快照 |
 | [docs/archive/2026-09-06/framework__02_knowledge_format.md](archive/2026-09-06/framework__02_knowledge_format.md) | 历史快照 |
+| [docs/archive/2026-09-12/docs__M4_TRIAGE_TASK.md](archive/2026-09-12/docs__M4_TRIAGE_TASK.md) | 历史快照 |
+| [docs/archive/2026-09-12/framework__04_reading_scoring_standard.md](archive/2026-09-12/framework__04_reading_scoring_standard.md) | 历史快照 |
 | [docs/inbox/PHASE2_REPORT.md](inbox/PHASE2_REPORT.md) | 候选与外部输入 |
 | [docs/inbox/README.md](inbox/README.md) | 候选与外部输入 |
 | [docs/inbox/digest_drafts/7B_人工智能算力高质量发展评估体系_浪潮信息中国信通院.md](inbox/digest_drafts/7B_人工智能算力高质量发展评估体系_浪潮信息中国信通院.md) | 候选与外部输入 |
@@ -520,6 +523,7 @@
 | [docs/reviews/2026-09-06/frontend.md](reviews/2026-09-06/frontend.md) | 历史快照 |
 | [docs/reviews/2026-09-06/research.md](reviews/2026-09-06/research.md) | 历史快照 |
 | [docs/reviews/2026-09-06/spark-storage.md](reviews/2026-09-06/spark-storage.md) | 历史快照 |
+| [docs/reviews/2026-09-12/IMPLEMENTATION.md](reviews/2026-09-12/IMPLEMENTATION.md) | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
 | `docs/source/全球数据中心行业深度研究Q&A总报告_Q1-Q35_v1.0(2).docx` | 项目配置 |
 | `docs/source/全球数据中心行业现状_参考初稿版式v0.2_信源追溯版_2026-07-23.docx` | 项目配置 |
@@ -533,6 +537,7 @@
 | [framework/05_source_map.md](../framework/05_source_map.md) | 配套说明 |
 | [framework/06_acquisition.md](../framework/06_acquisition.md) | 现行规范 |
 | [framework/07_product_ecosystems.md](../framework/07_product_ecosystems.md) | 现行规范 |
+| [framework/08_model_execution.md](../framework/08_model_execution.md) | 现行规范 |
 | [framework/CURRENT.md](../framework/CURRENT.md) | 现行规范 |
 | `framework/bom.json` | 项目配置 |
 | `framework/current_state.json` | 项目配置 |
@@ -602,6 +607,7 @@
 | `pipeline/m4_triage_pack.py` | 运行代码 |
 | `pipeline/m4_triage_report.py` | 运行代码 |
 | `pipeline/material_intake.py` | 运行代码 |
+| `pipeline/model_runtime.py` | 运行代码 |
 | `pipeline/output_map.py` | 运行代码 |
 | `pipeline/product_library.py` | 运行代码 |
 | `pipeline/publish_reader.py` | 运行代码 |
@@ -632,6 +638,7 @@
 | `pipeline/test_m4_triage_report.py` | 测试 |
 | `pipeline/test_m4_triage_versions.py` | 测试 |
 | `pipeline/test_material_intake.py` | 测试 |
+| `pipeline/test_model_runtime.py` | 测试 |
 | `pipeline/test_news_projection.py` | 测试 |
 | `pipeline/test_product_library.py` | 测试 |
 | `pipeline/test_publish_reader.py` | 测试 |
@@ -680,3 +687,4 @@
 | `tests/object_network.cjs` | 项目配置 |
 | `tests/product_node_hover.cjs` | 项目配置 |
 | `tests/ui_skin.cjs` | 项目配置 |
+| `tests/url_rendering.cjs` | 项目配置 |

@@ -87,7 +87,8 @@ const PART = /server|node|sled|tray|blade|door|panel|rail|psu|power|fan|switch|s
 for (const file of files) {
   const card = document.createElement("div");
   card.className = "card";
-  card.innerHTML = `<canvas></canvas><div class="meta"><b>${file}</b><div class="rows">读取中…</div></div>`;
+  card.innerHTML = `<canvas></canvas><div class="meta"><b></b><div class="rows">读取中…</div></div>`;
+  card.querySelector("b").textContent = file;
   grid.appendChild(card);
   const cv = card.querySelector("canvas");
 

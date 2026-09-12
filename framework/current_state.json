@@ -1,6 +1,6 @@
 {
-  "version": "2026.09.09.1",
-  "effective_at": "2026-09-09",
+  "version": "2026.09.12.2",
+  "effective_at": "2026-09-12",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
     {
@@ -127,10 +127,10 @@
     {
       "id": "reading-20260906",
       "topic": "reading",
-      "status": "current",
+      "status": "superseded",
       "scope": "project",
       "effective_at": "2026-09-06",
-      "source": "framework/04_reading_scoring_standard.md",
+      "source": "docs/archive/2026-09-12/framework__04_reading_scoring_standard.md",
       "implementations": [
         "pipeline/continuous_reader.py",
         "pipeline/reading_queue.py",
@@ -141,20 +141,22 @@
       "supersedes": [
         "reading-legacy"
       ],
-      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。"
+      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。",
+      "superseded_by": "reading-20260912"
     },
     {
       "id": "reading-m4-triage-20260909",
       "topic": "reading",
-      "status": "current",
+      "status": "superseded",
       "scope": "m4-triage",
       "effective_at": "2026-09-09",
-      "source": "docs/M4_TRIAGE_TASK.md",
+      "source": "docs/archive/2026-09-12/docs__M4_TRIAGE_TASK.md",
       "implementations": [
         "pipeline/m4_triage.py"
       ],
       "supersedes": [],
-      "reason": "用户 2026-09-09 采用 M4 本机资料分类与命名任务。仅在 m4-triage 范围内替代 04 阅读标准 §5（新增 score 10-0 主分，importance 由其换算）与 §6（M4 本机原件随评分改名移动，以操作日志和 SHA-256 保证可逆）；Spark 的 project 范围阅读规则与 originals 不可变不受影响。当前只实现全量清单一步，改名移动尚未实现。"
+      "reason": "用户 2026-09-09 采用 M4 本机资料分类与命名任务。仅在 m4-triage 范围内替代 04 阅读标准 §5（新增 score 10-0 主分，importance 由其换算）与 §6（M4 本机原件随评分改名移动，以操作日志和 SHA-256 保证可逆）；Spark 的 project 范围阅读规则与 originals 不可变不受影响。当前只实现全量清单一步，改名移动尚未实现。",
+      "superseded_by": "reading-m4-triage-20260912"
     },
     {
       "id": "operations-legacy",
@@ -261,41 +263,42 @@
       "status": "current",
       "source": "framework/06_acquisition.md",
       "scope": "project",
-      "effective_at": "2026-09-07",
+      "effective_at": "2026-09-12",
       "implementations": [
-        "pipeline/acquisition.py",
-        "pipeline/fetch_news_signals.py",
-        "pipeline/fetch_sec.py",
-        "pipeline/fetch_gpu_prices.py",
-        "pipeline/collect.py",
-        "pipeline/launch_acquisition.py",
-        "pipeline/publish_reader.py",
-        "pipeline/research.py",
-        "pipeline/serve.py",
-        "pipeline/test_acquisition.py",
-        "scripts/export_inews_research.cjs",
-        "ops.html",
-        "docs/local_reader/ACQUISITION_OPERATIONS.md",
-        "pipeline/datacenter_news.py",
-        "pipeline/sync_datacenter_news.py",
-        "pipeline/backup_acquisition.py",
-        "pipeline/test_datacenter_news.py",
-        "assets/datacenter-news.js",
         "assets/datacenter-news.css",
+        "assets/datacenter-news.js",
+        "assets/materials.js",
         "deploy/spark-reader/inresearch-news.service",
         "deploy/spark-reader/inresearch-news.timer",
+        "docs/local_reader/ACQUISITION_OPERATIONS.md",
         "index.html",
-        "pipeline/test_news_projection.py",
-        "pipeline/material_intake.py",
-        "pipeline/pull_materials.py",
         "materials.html",
-        "assets/materials.js",
-        "pipeline/test_material_intake.py"
+        "ops.html",
+        "pipeline/acquisition.py",
+        "pipeline/backup_acquisition.py",
+        "pipeline/collect.py",
+        "pipeline/datacenter_news.py",
+        "pipeline/fetch_gpu_prices.py",
+        "pipeline/fetch_news_signals.py",
+        "pipeline/fetch_sec.py",
+        "pipeline/launch_acquisition.py",
+        "pipeline/material_intake.py",
+        "pipeline/model_runtime.py",
+        "pipeline/publish_reader.py",
+        "pipeline/pull_materials.py",
+        "pipeline/research.py",
+        "pipeline/serve.py",
+        "pipeline/sync_datacenter_news.py",
+        "pipeline/test_acquisition.py",
+        "pipeline/test_datacenter_news.py",
+        "pipeline/test_material_intake.py",
+        "pipeline/test_news_projection.py",
+        "scripts/export_inews_research.cjs"
       ],
       "supersedes": [
         "acquisition-legacy"
       ],
-      "reason": "Supplement website intake and verified Spark archival; preserve existing reader boundaries."
+      "reason": "保留新闻责任与来源验证规则；模型选择改为引用统一模型执行契约，替代在采集规则中固定 27B 型号。"
     },
     {
       "id": "product-ecosystems-20260906",
@@ -319,6 +322,67 @@
       ],
       "supersedes": [],
       "reason": "产品悬停展示显式关联厂商、点击进入独立页面；HDD 清除迁移文案；保留图谱导航与旧 ID 后台兼容。"
+    },
+    {
+      "id": "reading-20260912",
+      "topic": "reading",
+      "status": "current",
+      "scope": "project",
+      "effective_at": "2026-09-12",
+      "source": "framework/04_reading_scoring_standard.md",
+      "implementations": [
+        "doc.html",
+        "docs/local_reader/PROJECT_BRIEF.md",
+        "docs/local_reader/RUN_TO_COMPLETION.md",
+        "pipeline/continuous_reader.py",
+        "pipeline/model_runtime.py",
+        "pipeline/reading_queue.py",
+        "pipeline/test_continuous_reader.py",
+        "pipeline/test_model_runtime.py"
+      ],
+      "supersedes": [
+        "reading-20260906"
+      ],
+      "reason": "采用可替换默认研究模型与单一有效阅读结果；阅读与 C3 资格不取决于固定型号。"
+    },
+    {
+      "id": "reading-m4-triage-20260912",
+      "topic": "reading",
+      "status": "current",
+      "scope": "m4-triage",
+      "effective_at": "2026-09-12",
+      "source": "docs/M4_TRIAGE_TASK.md",
+      "implementations": [
+        "pipeline/m4_local_reader.py",
+        "pipeline/m4_offload_worker.py",
+        "pipeline/m4_triage.py",
+        "pipeline/m4_triage_extract.py",
+        "pipeline/m4_triage_l1.py",
+        "pipeline/m4_triage_local.py",
+        "pipeline/m4_triage_pack.py"
+      ],
+      "supersedes": [
+        "reading-m4-triage-20260909"
+      ],
+      "reason": "替代固定 Claude/8B 调用，统一模型配置与终端输出身份；原件操作范围不扩大，源码状态按最新基线核对。"
+    },
+    {
+      "id": "model-execution-20260912",
+      "topic": "model_execution",
+      "scope": "project",
+      "status": "current",
+      "effective_at": "2026-09-12",
+      "source": "framework/08_model_execution.md",
+      "implementations": [
+        "pipeline/model_runtime.py",
+        "deploy/models.json",
+        "deploy/spark-reader/reader.env.example",
+        "pipeline/publish_reader.py",
+        "pipeline/test_publish_reader.py",
+        "pipeline/test_model_runtime.py"
+      ],
+      "supersedes": [],
+      "reason": "用户采用型号可替换与共享项目契约；Spark 暂不可用，当前默认 Claude CLI，恢复后再切换 Spark 配置。分离模型能力、操作客户端与业务规则。"
     }
   ],
   "entrypoints": [

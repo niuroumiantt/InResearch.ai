@@ -470,7 +470,7 @@ def build_snapshot(root=ROOT):
     assignments = {a['workorder_id']: a for a in read_json(root / 'data/assignments.json', {'records': []})['records']}
     for task in tasks:
         task['assignment'] = assignments.get(task.get('wid'))
-    reader = runtime.get('reader', {'status': 'not_connected', 'model': 'qwen3.8:27b'})
+    reader = runtime.get('reader', {'status': 'not_connected', 'model': None})
     reader['received_at'] = runtime.get('received_at')
     if reader.get('received_at'):
         try:

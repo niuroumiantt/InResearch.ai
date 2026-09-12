@@ -2,13 +2,19 @@
 
 > CURRENT · 2026-09-06。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-12：模型配置统一与单一有效阅读结果
+
+用户要求模型可替换，Spark 27B 为后续接入目标；同日明确 Spark 暂不可用，先用 Claude CLI，恢复后再接 Spark。Claude Code terminal / Codex CLI 仍可作为操作客户端接入项目。一份材料默认只维护一套当前有效阅读结果，换默认模型不自动重读。正式规则见 08 模型执行及 04 阅读标准，替代 reader 只接受指定 27B 型号、M4 固定 Claude 主判与固定 8B 路径。
+
+本批实现标准库共享模型接口、配置/能力校验、实际模型记录、reader 旧配方兼容及 M4 调用接入。M4 的 pack/record 分开记录 executor 与 model；保留旧 Anthropic 批次回收，新增任务走共享入口。单次零分建议进入复核，模型失败仍可重试。修复 company/compare 的 URL 文本渲染，并增加浏览器回归入口。源码、测试通过和生产部署分别验收；此记录不表示 Spark 服务已更新。完整研究任务 CLI/API、自动旧配方路由、已完成资料重读替换与全站 UI 仍按后续阶段推进。
+
 ## 2026-09-09：采用 M4 本机资料分类与命名任务（方案一），先交付全量清单
 
 用户 2026-09-09 采用此前一直是草案的 M4 任务卡：M4 本机对 `/Users/m4/Downloads/所有raw materials`（87,501 个文件、251 GB）逐个阅读打分、归类、改名移动，对照表以 SHA-256 为唯一键，完成后交给 Spark 依表整理副本。文档入库为 `docs/M4_TRIAGE_TASK.md`，在 `framework/current_state.json` 以 `reading-m4-triage-20260909` 登记，scope 取 `m4-triage`。该 scope 只覆盖 M4 本机原件，替代 04 阅读标准 §5（新增 score 10–0 主分，importance 由 `max(1, round(score*0.9))` 换算）与 §6（原件随评分改名移动，以操作日志和 SHA-256 保证可逆）。Spark 的 project 范围阅读规则和 originals 不可变不受影响，两条现行政策并存于不同 scope。
 
-主判模型按任务卡 §8 定为 Claude Opus 5 批量 API，本机 qwen3:8b 只作第二意见；L1 预览文本会离开本机发送到 Anthropic API，这是采用该方案的已知代价。
+当时采用的固定 Claude 主判与 8B 第二意见已由 2026-09-12 的统一模型配置替代，当前执行见 08 与任务卡 §8。
 
-**本次只实现第一步**：`pipeline/m4_triage.py` 的 `inventory` 与 `summary`，做全量 SHA-256、按后缀与路径的 L0 分桶、字节相同副本的重复检测。工具只读，拒绝把输出写进源目录，不改名、不移动、不删除；追加式 JSONL 支持中断续跑；符号链接只登记不跟随。L1 预览、Opus 5 打分、对照表、改名移动与 Spark 侧 apply-triage 全部未实现，任务卡 §0 逐项标注状态。改名移动的授权要等实现并通过 50 份小样验收后另行取得，本条不代表已获得。
+**2026-09-09 当次实现记录（最新源码状态见任务卡 §0）**：`pipeline/m4_triage.py` 的 `inventory` 与 `summary`，做全量 SHA-256、按后缀与路径的 L0 分桶、字节相同副本的重复检测。工具只读，拒绝把输出写进源目录，不改名、不移动、不删除；追加式 JSONL 支持中断续跑；符号链接只登记不跟随。L1 预览、Opus 5 打分、对照表、改名移动与 Spark 侧 apply-triage 全部未实现，任务卡 §0 逐项标注状态。改名移动的授权要等实现并通过 50 份小样验收后另行取得，本条不代表已获得。
 
 ## 2026-09-09：reader 单进程内多线程处理任务
 

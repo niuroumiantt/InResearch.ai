@@ -349,8 +349,11 @@ def cmd_record(a):
                          ('org', '未知'), ('year', '未知'), ('rationale', ''), ('keep_original_name', True)):
                 parsed.setdefault(k, d)
             if 'score' not in parsed or 'module' not in parsed or 'title' not in parsed: bad += 1; continue
-            out = L1.finalize(rec, parsed, {'judge': 'claude-code-session'}, None)
-            out['proposed_name'] = L1.proposed_name(out); out['model'] = 'claude-code-session'
+            out = L1.finalize(rec, parsed, {'judge': getattr(a, 'executor', 'terminal')}, None)
+            out['proposed_name'] = L1.proposed_name(out)
+            out['executor'] = getattr(a, 'executor', 'terminal')
+            out['model'] = getattr(a, 'model', None)
+            out['model_identity'] = 'reported_by_executor' if out['model'] else 'unknown'
             f.write(json.dumps(out, ensure_ascii=False) + '\n'); n += 1
     # A verdicts file still being written reads like a finished one: 28 rows
     # recorded, nothing rejected, and the line is indistinguishable from a
@@ -614,6 +617,8 @@ def main():
     p.add_argument('--workers', type=int, default=4,
                    help='preview extractions in parallel (1..%d); local CPU work, no model' % MAX_WORKERS)
     r = s.add_parser('record'); r.add_argument('--verdicts', required=True); r.add_argument('--batch'); r.add_argument('--digests', action='store_true')
+    r.add_argument('--executor', default='terminal', help='client identity, e.g. claude-code or codex')
+    r.add_argument('--model', help='actual model reported by the client; omit if unknown')
     s.add_parser('status')
     v = s.add_parser('versions'); v.add_argument('--min-score', type=int, default=0)
     v.add_argument('--show', type=int, default=15, help='groups to print in full')

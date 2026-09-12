@@ -1,6 +1,6 @@
 # M4 资料分拣操作手册
 
-> 配套任务定义：[M4_TRIAGE_TASK.md](M4_TRIAGE_TASK.md)（候选提案）。本手册只列命令与顺序。
+> 配套任务定义：[M4_TRIAGE_TASK.md](../M4_TRIAGE_TASK.md)（现行规范）。本手册只列命令与顺序。
 > 所有命令在 M4 本机执行。凡是改名、移动的步骤都单独标注，且都先出 dry-run。
 
 解释器固定用分拣专用虚拟环境，换模型、换会话都不影响：
@@ -47,13 +47,9 @@ $PY $S/m4_inventory.py --workers 4
 $PY $S/m4_triage_l1.py preview --limit 20 --text-only
 ```
 
-### 1.2 配置 API 密钥（用户操作，Claude 不代填）
+### 1.2 配置共享模型
 
-```
-mkdir -p ~/.config/inresearch.ai
-printf 'ANTHROPIC_API_KEY=%s\n' 'sk-ant-...' > ~/.config/inresearch.ai/anthropic.env
-chmod 600 ~/.config/inresearch.ai/anthropic.env
-```
+使用 `deploy/models.json` 的统一配置，可设置 `INRESEARCH_MODEL_CONFIG` 指向本机 JSON。当前暂用本机已登录的 Claude CLI；先运行 `python3 pipeline/model_runtime.py --probe` 验证非交互调用。Spark 恢复后，按 [Spark 操作手册](SPARK_OPERATIONS.md) 配置实际可达的推理地址并切换角色引用，不能把 M4 的 loopback 当作 Spark。型号、预算、视觉能力由配置管理。
 
 ### 1.3 50 份小样，人工验收
 
@@ -61,16 +57,16 @@ chmod 600 ~/.config/inresearch.ai/anthropic.env
 $PY $S/m4_triage_l1.py sample --limit 50
 ```
 
-检查四件事：分数是否合理、模块是否对、拟定文件名是否可读、实测 token 与费用。
+检查四件事：分数是否合理、模块是否对、拟定文件名是否可读、实测耗时与失败率。
 通过后才进入全量。不通过就改任务卡的打分锚点，再跑一次小样。
 
-### 1.4 全量提交（Batch，半价，24 小时内回批）
+### 1.4 按预算处理待办
 
 ```
-$PY $S/m4_triage_l1.py submit
+$PY $S/m4_triage_l1.py run --workers 2
 ```
 
-### 1.5 回收结果（可重复执行，只收已完成的批次）
+### 1.5 仅回收旧 Anthropic 批次（需要原有 SDK 与密钥）
 
 ```
 $PY $S/m4_triage_l1.py collect
@@ -113,9 +109,9 @@ $PY $S/m4_triage_apply.py library revert
 移动目标：`/Users/m4/Downloads/inresearch资料库/{分类}/{新文件名}`
 操作日志：`~/.local/state/inresearch.ai/m4-triage/moves.jsonl`（移动前先写，可反向重放）
 
-## 阶段 4 · L2 精读（待写）
+## 阶段 4 · L2 精读
 
-只对 L1 得分 ≥7 的文件做，按章节切块，Opus 5，覆盖暂定分。
+范围按任务卡执行。已有 `m4_l2.py` 的准备与交付代码；实际阅读由执行者完成，记录其身份与证据。本批不把结构化交付工具称为已接通自动全文阅读。
 
 ## 阶段 5 · 交给 Spark
 
