@@ -17880,6 +17880,549 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**amount_type=产能产值，不是投资额**：这是产能对应的年产值（韩元），与「投了多少钱」是两回事。 **三条拼起来才是完整故事**：釜山工厂扩产使年产值由 2000 → 7000 亿韩元（自建），再收购 LS power solution 51% 股权新增 1000 亿韩元（收购），合计 8000 亿韩元。**2000 + 1000 ≠ 8000**，中间的 5000 亿是釜山扩产的增量，原文只给了前后水平没给增量。 公司另在美国犹他州与德克萨斯州推进开关柜与断路器扩产，原文未给金额。"
+    },
+    {
+      "fact_id": "nvidia-800vdc-conductors-415",
+      "metric_id": "power_architecture_spec",
+      "entity": {
+        "type": "technology",
+        "id": "dc-power-architecture",
+        "label": "数据中心供配电架构"
+      },
+      "value": 4.0,
+      "unit": "V 或 根",
+      "caliber": {
+        "architecture": "415 VAC",
+        "parameter": "导体数",
+        "region": "Global",
+        "basis": "架构宣称"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4495673d57215d0d51b19c973b10e79012dd6b003b356628079e268214aa28f6",
+        "local_file": "英伟达面向人工智能基础设施的 800 伏直流架构白皮书（18页）.pdf",
+        "locator": "第 12 页对比表：415 VAC 一行，导体数列 = 4 根（P1,P2,P3,PE）",
+        "grade": "S2",
+        "originator": "NVIDIA（Jared Huntington & Mike Tu）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**直流省一根导体**：交流方案是 4 根（三相+PE），直流是 3 根（正、回、PE）——这是 800 VDC 省铜的来源之一，另一半来自电压提高后电流下降。 原表同行还给了相对系数 0 与同截面输电能力提升 基准。 载体带【价值目录】valuelist.cn 的转载水印，非一手下载。"
+    },
+    {
+      "fact_id": "nvidia-800vdc-conductors-480",
+      "metric_id": "power_architecture_spec",
+      "entity": {
+        "type": "technology",
+        "id": "dc-power-architecture",
+        "label": "数据中心供配电架构"
+      },
+      "value": 4.0,
+      "unit": "V 或 根",
+      "caliber": {
+        "architecture": "480 VAC",
+        "parameter": "导体数",
+        "region": "Global",
+        "basis": "架构宣称"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4495673d57215d0d51b19c973b10e79012dd6b003b356628079e268214aa28f6",
+        "local_file": "英伟达面向人工智能基础设施的 800 伏直流架构白皮书（18页）.pdf",
+        "locator": "第 12 页对比表：480 VAC 一行，导体数列 = 4 根（P1,P2,P3,PE）",
+        "grade": "S2",
+        "originator": "NVIDIA（Jared Huntington & Mike Tu）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**直流省一根导体**：交流方案是 4 根（三相+PE），直流是 3 根（正、回、PE）——这是 800 VDC 省铜的来源之一，另一半来自电压提高后电流下降。 原表同行还给了相对系数 0.8 与同截面输电能力提升 +16%。 载体带【价值目录】valuelist.cn 的转载水印，非一手下载。"
+    },
+    {
+      "fact_id": "nvidia-800vdc-capacity-index-480",
+      "metric_id": "conductor_capacity_index",
+      "entity": {
+        "type": "technology",
+        "id": "dc-power-architecture",
+        "label": "数据中心供配电架构"
+      },
+      "value": 16.0,
+      "unit": "%",
+      "caliber": {
+        "architecture": "480 VAC",
+        "baseline": "415 VAC",
+        "condition": "固定线径 48A 连续额定",
+        "region": "Global",
+        "basis": "架构宣称"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4495673d57215d0d51b19c973b10e79012dd6b003b356628079e268214aa28f6",
+        "local_file": "英伟达面向人工智能基础设施的 800 伏直流架构白皮书（18页）.pdf",
+        "locator": "第 11-12 页：「going from 415 VAC to 800 VDC allows for 157% more power to be transmitted through the same cross-sectional area of copper. A common [480 VAC] only gives a 16% improvement… Looking further out to 1500 VDC distribution gives a 382% increase」，对比表 480 VAC 一行",
+        "grade": "S2",
+        "originator": "NVIDIA（Jared Huntington & Mike Tu）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**基准是 415 VAC，条件是固定线径、48A 连续额定**——换个基准或换个额定条件，这个百分比就不是这个值。 **跳一档（480 VAC）只有 +16%，跳到 800 VDC 才是 +157%**：这是白皮书论证「不能只是把交流电压往上抬」的核心数字。  载体带【价值目录】valuelist.cn 的转载水印，非一手下载。"
+    },
+    {
+      "fact_id": "nvidia-800vdc-conductors-800",
+      "metric_id": "power_architecture_spec",
+      "entity": {
+        "type": "technology",
+        "id": "dc-power-architecture",
+        "label": "数据中心供配电架构"
+      },
+      "value": 3.0,
+      "unit": "V 或 根",
+      "caliber": {
+        "architecture": "800 VDC",
+        "parameter": "导体数",
+        "region": "Global",
+        "basis": "架构宣称"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4495673d57215d0d51b19c973b10e79012dd6b003b356628079e268214aa28f6",
+        "local_file": "英伟达面向人工智能基础设施的 800 伏直流架构白皮书（18页）.pdf",
+        "locator": "第 12 页对比表：800 VDC 一行，导体数列 = 3 根（POS,RTN,PE）",
+        "grade": "S2",
+        "originator": "NVIDIA（Jared Huntington & Mike Tu）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**直流省一根导体**：交流方案是 4 根（三相+PE），直流是 3 根（正、回、PE）——这是 800 VDC 省铜的来源之一，另一半来自电压提高后电流下降。 原表同行还给了相对系数 1.7 与同截面输电能力提升 +157%。 载体带【价值目录】valuelist.cn 的转载水印，非一手下载。"
+    },
+    {
+      "fact_id": "nvidia-800vdc-capacity-index-800",
+      "metric_id": "conductor_capacity_index",
+      "entity": {
+        "type": "technology",
+        "id": "dc-power-architecture",
+        "label": "数据中心供配电架构"
+      },
+      "value": 157.0,
+      "unit": "%",
+      "caliber": {
+        "architecture": "800 VDC",
+        "baseline": "415 VAC",
+        "condition": "固定线径 48A 连续额定",
+        "region": "Global",
+        "basis": "架构宣称"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4495673d57215d0d51b19c973b10e79012dd6b003b356628079e268214aa28f6",
+        "local_file": "英伟达面向人工智能基础设施的 800 伏直流架构白皮书（18页）.pdf",
+        "locator": "第 11-12 页：「going from 415 VAC to 800 VDC allows for 157% more power to be transmitted through the same cross-sectional area of copper. A common [480 VAC] only gives a 16% improvement… Looking further out to 1500 VDC distribution gives a 382% increase」，对比表 800 VDC 一行",
+        "grade": "S2",
+        "originator": "NVIDIA（Jared Huntington & Mike Tu）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**基准是 415 VAC，条件是固定线径、48A 连续额定**——换个基准或换个额定条件，这个百分比就不是这个值。 **跳一档（480 VAC）只有 +16%，跳到 800 VDC 才是 +157%**：这是白皮书论证「不能只是把交流电压往上抬」的核心数字。  载体带【价值目录】valuelist.cn 的转载水印，非一手下载。"
+    },
+    {
+      "fact_id": "nvidia-800vdc-conductors-1500",
+      "metric_id": "power_architecture_spec",
+      "entity": {
+        "type": "technology",
+        "id": "dc-power-architecture",
+        "label": "数据中心供配电架构"
+      },
+      "value": 3.0,
+      "unit": "V 或 根",
+      "caliber": {
+        "architecture": "1500 VDC",
+        "parameter": "导体数",
+        "region": "Global",
+        "basis": "架构宣称"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4495673d57215d0d51b19c973b10e79012dd6b003b356628079e268214aa28f6",
+        "local_file": "英伟达面向人工智能基础设施的 800 伏直流架构白皮书（18页）.pdf",
+        "locator": "第 12 页对比表：1500 VDC 一行，导体数列 = 3 根（POS,RTN,PE）",
+        "grade": "S2",
+        "originator": "NVIDIA（Jared Huntington & Mike Tu）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**直流省一根导体**：交流方案是 4 根（三相+PE），直流是 3 根（正、回、PE）——这是 800 VDC 省铜的来源之一，另一半来自电压提高后电流下降。 原表同行还给了相对系数 3.1 与同截面输电能力提升 +382%。 载体带【价值目录】valuelist.cn 的转载水印，非一手下载。"
+    },
+    {
+      "fact_id": "nvidia-800vdc-capacity-index-1500",
+      "metric_id": "conductor_capacity_index",
+      "entity": {
+        "type": "technology",
+        "id": "dc-power-architecture",
+        "label": "数据中心供配电架构"
+      },
+      "value": 382.0,
+      "unit": "%",
+      "caliber": {
+        "architecture": "1500 VDC",
+        "baseline": "415 VAC",
+        "condition": "固定线径 48A 连续额定",
+        "region": "Global",
+        "basis": "架构宣称"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4495673d57215d0d51b19c973b10e79012dd6b003b356628079e268214aa28f6",
+        "local_file": "英伟达面向人工智能基础设施的 800 伏直流架构白皮书（18页）.pdf",
+        "locator": "第 11-12 页：「going from 415 VAC to 800 VDC allows for 157% more power to be transmitted through the same cross-sectional area of copper. A common [480 VAC] only gives a 16% improvement… Looking further out to 1500 VDC distribution gives a 382% increase」，对比表 1500 VDC 一行",
+        "grade": "S2",
+        "originator": "NVIDIA（Jared Huntington & Mike Tu）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**基准是 415 VAC，条件是固定线径、48A 连续额定**——换个基准或换个额定条件，这个百分比就不是这个值。 **跳一档（480 VAC）只有 +16%，跳到 800 VDC 才是 +157%**：这是白皮书论证「不能只是把交流电压往上抬」的核心数字。 1500 VDC 的 +382% 是更远期的方向性对照，原文并未主张现在就用。 载体带【价值目录】valuelist.cn 的转载水印，非一手下载。"
+    },
+    {
+      "fact_id": "nvidia-800vdc-swing-idle",
+      "metric_id": "rack_load_swing",
+      "entity": {
+        "type": "technology",
+        "id": "dc-power-architecture",
+        "label": "数据中心供配电架构"
+      },
+      "value": 30.0,
+      "unit": "%",
+      "caliber": {
+        "parameter": "最低负载占比",
+        "workload": "AI 训练",
+        "region": "Global",
+        "basis": "架构宣称"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4495673d57215d0d51b19c973b10e79012dd6b003b356628079e268214aa28f6",
+        "local_file": "英伟达面向人工智能基础设施的 800 伏直流架构白皮书（18页）.pdf",
+        "locator": "第 6 页：「rapid swings from idle at approximately 30% of rack power to 100% power utilization」",
+        "grade": "S2",
+        "originator": "NVIDIA（Jared Huntington & Mike Tu）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**AI 机柜在 idle 时约为满载功率的 30%，可瞬间拉到 100%**——这条决定了上游设备要按峰值选型而不是按均值。 载体带【价值目录】valuelist.cn 的转载水印，非一手下载。"
+    },
+    {
+      "fact_id": "nvidia-800vdc-swing-peak",
+      "metric_id": "rack_load_swing",
+      "entity": {
+        "type": "technology",
+        "id": "dc-power-architecture",
+        "label": "数据中心供配电架构"
+      },
+      "value": 50.0,
+      "unit": "%",
+      "caliber": {
+        "parameter": "峰值相对均值",
+        "workload": "未注明",
+        "region": "Global",
+        "basis": "架构宣称"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4495673d57215d0d51b19c973b10e79012dd6b003b356628079e268214aa28f6",
+        "local_file": "英伟达面向人工智能基础设施的 800 伏直流架构白皮书（18页）.pdf",
+        "locator": "第 8 页：「A square wave with a 50% duty cycle and a 50% peak over the average then going back to idle will result in a 25% increase in RMS losses」",
+        "grade": "S2",
+        "originator": "NVIDIA（Jared Huntington & Mike Tu）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文的算例：峰值高于均值 50%、占空比 50% 的方波负载。 载体带【价值目录】valuelist.cn 的转载水印，非一手下载。"
+    },
+    {
+      "fact_id": "nvidia-800vdc-swing-duty",
+      "metric_id": "rack_load_swing",
+      "entity": {
+        "type": "technology",
+        "id": "dc-power-architecture",
+        "label": "数据中心供配电架构"
+      },
+      "value": 50.0,
+      "unit": "%",
+      "caliber": {
+        "parameter": "占空比",
+        "workload": "未注明",
+        "region": "Global",
+        "basis": "架构宣称"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4495673d57215d0d51b19c973b10e79012dd6b003b356628079e268214aa28f6",
+        "local_file": "英伟达面向人工智能基础设施的 800 伏直流架构白皮书（18页）.pdf",
+        "locator": "第 8 页：同上句的 50% duty cycle",
+        "grade": "S2",
+        "originator": "NVIDIA（Jared Huntington & Mike Tu）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文算例中的方波占空比，与「峰值相对均值 50%」是同一个算例的两个参数，必须配对读。 载体带【价值目录】valuelist.cn 的转载水印，非一手下载。"
+    },
+    {
+      "fact_id": "nvidia-800vdc-swing-rms",
+      "metric_id": "rack_load_swing",
+      "entity": {
+        "type": "technology",
+        "id": "dc-power-architecture",
+        "label": "数据中心供配电架构"
+      },
+      "value": 25.0,
+      "unit": "%",
+      "caliber": {
+        "parameter": "RMS 损耗增幅",
+        "workload": "未注明",
+        "region": "Global",
+        "basis": "架构宣称"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4495673d57215d0d51b19c973b10e79012dd6b003b356628079e268214aa28f6",
+        "local_file": "英伟达面向人工智能基础设施的 800 伏直流架构白皮书（18页）.pdf",
+        "locator": "第 8 页：同上句的 25% increase in RMS losses",
+        "grade": "S2",
+        "originator": "NVIDIA（Jared Huntington & Mike Tu）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**上面那个算例的结果：RMS 损耗增加 25%。**原文结论是设备既要按机柜峰值电流选型、又要承受 RMS 损耗上升，故越靠近 GPU 削峰越省钱。 载体带【价值目录】valuelist.cn 的转载水印，非一手下载。"
+    },
+    {
+      "fact_id": "nvidia-800vdc-storage-cap",
+      "metric_id": "storage_response_window",
+      "entity": {
+        "type": "technology",
+        "id": "dc-power-architecture",
+        "label": "数据中心供配电架构"
+      },
+      "value": 100.0,
+      "unit": "ms",
+      "caliber": {
+        "storage_tech": "电解电容",
+        "bound_sense": "不大于",
+        "region": "Global",
+        "basis": "架构宣称"
+      },
+      "as_of": "2025",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "4495673d57215d0d51b19c973b10e79012dd6b003b356628079e268214aa28f6",
+        "local_file": "英伟达面向人工智能基础设施的 800 伏直流架构白皮书（18页）.pdf",
+        "locator": "第 8 页 Figure 5 说明：「Volumetrically electrolytic capacitors are a good solution for anything below 100 ms」",
+        "grade": "S2",
+        "originator": "NVIDIA（Jared Huntington & Mike Tu）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是按「体积最优」划分的时段门槛，不是能力上限**：原文比较的是单位体积的储能效率，三档合起来读才是完整的技术选型边界——<100ms 电解电容、100ms-10s 混合方案、>10s 电池。  载体带【价值目录】valuelist.cn 的转载水印，非一手下载。"
+    },
+    {
+      "fact_id": "nvidia-800vdc-storage-mix",
+      "metric_id": "storage_response_window",
+      "entity": {
+        "type": "technology",
+        "id": "dc-power-architecture",
+        "label": "数据中心供配电架构"
+      },
+      "value": 100.0,
+      "unit": "ms",
+      "caliber": {
+        "storage_tech": "混合方案",
+        "bound_sense": "不小于",
+        "region": "Global",
+        "basis": "架构宣称"
+      },
+      "as_of": "2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "4495673d57215d0d51b19c973b10e79012dd6b003b356628079e268214aa28f6",
+        "local_file": "英伟达面向人工智能基础设施的 800 伏直流架构白皮书（18页）.pdf",
+        "locator": "第 8 页：「There is a mix of solutions that are more optimized for the period between 100 ms and 10 seconds」",
+        "grade": "S2",
+        "originator": "NVIDIA（Jared Huntington & Mike Tu）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是按「体积最优」划分的时段门槛，不是能力上限**：原文比较的是单位体积的储能效率，三档合起来读才是完整的技术选型边界——<100ms 电解电容、100ms-10s 混合方案、>10s 电池。  载体带【价值目录】valuelist.cn 的转载水印，非一手下载。"
+    },
+    {
+      "fact_id": "nvidia-800vdc-storage-battery",
+      "metric_id": "storage_response_window",
+      "entity": {
+        "type": "technology",
+        "id": "dc-power-architecture",
+        "label": "数据中心供配电架构"
+      },
+      "value": 10000.0,
+      "unit": "ms",
+      "caliber": {
+        "storage_tech": "电池",
+        "bound_sense": "不小于",
+        "region": "Global",
+        "basis": "架构宣称"
+      },
+      "as_of": "2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "4495673d57215d0d51b19c973b10e79012dd6b003b356628079e268214aa28f6",
+        "local_file": "英伟达面向人工智能基础设施的 800 伏直流架构白皮书（18页）.pdf",
+        "locator": "第 8 页：「beyond this timescale batteries are the better volumetric solution」（10 秒 = 10,000 ms）",
+        "grade": "S2",
+        "originator": "NVIDIA（Jared Huntington & Mike Tu）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是按「体积最优」划分的时段门槛，不是能力上限**：原文比较的是单位体积的储能效率，三档合起来读才是完整的技术选型边界——<100ms 电解电容、100ms-10s 混合方案、>10s 电池。 单位换算：原文 10 seconds = 10,000 ms。 载体带【价值目录】valuelist.cn 的转载水印，非一手下载。"
+    },
+    {
+      "fact_id": "nvidia-800vdc-genratio-0",
+      "metric_id": "generation_ratio",
+      "entity": {
+        "type": "technology",
+        "id": "dc-power-architecture",
+        "label": "数据中心供配电架构"
+      },
+      "value": 1.75,
+      "unit": "x",
+      "caliber": {
+        "parameter": "TDP",
+        "baseline_generation": "Hopper",
+        "region": "Global",
+        "basis": "架构宣称"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4495673d57215d0d51b19c973b10e79012dd6b003b356628079e268214aa28f6",
+        "local_file": "英伟达面向人工智能基础设施的 800 伏直流架构白皮书（18页）.pdf",
+        "locator": "第 4 页 Figure 2 说明：「An example in Figure 2 above is the performance increase from Hopper to GB300. The TDP power increased by 75%」",
+        "grade": "S2",
+        "originator": "NVIDIA（Jared Huntington & Mike Tu）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**Hopper → GB300 的三个倍数必须一起读**：TDP 涨 1.75 倍、性能涨 50 倍、机柜功率密度涨 3.4 倍。单看 TDP 会以为能耗失控，单看性能会以为免费午餐——**能效提升来自性能，选址与供电压力来自功率密度**。  载体带【价值目录】valuelist.cn 的转载水印，非一手下载。"
+    },
+    {
+      "fact_id": "nvidia-800vdc-genratio-1",
+      "metric_id": "generation_ratio",
+      "entity": {
+        "type": "technology",
+        "id": "dc-power-architecture",
+        "label": "数据中心供配电架构"
+      },
+      "value": 50.0,
+      "unit": "x",
+      "caliber": {
+        "parameter": "性能",
+        "baseline_generation": "Hopper",
+        "region": "Global",
+        "basis": "架构宣称"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4495673d57215d0d51b19c973b10e79012dd6b003b356628079e268214aa28f6",
+        "local_file": "英伟达面向人工智能基础设施的 800 伏直流架构白皮书（18页）.pdf",
+        "locator": "第 4 页：「but the performance increased 50x with these changes」",
+        "grade": "S2",
+        "originator": "NVIDIA（Jared Huntington & Mike Tu）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**Hopper → GB300 的三个倍数必须一起读**：TDP 涨 1.75 倍、性能涨 50 倍、机柜功率密度涨 3.4 倍。单看 TDP 会以为能耗失控，单看性能会以为免费午餐——**能效提升来自性能，选址与供电压力来自功率密度**。  载体带【价值目录】valuelist.cn 的转载水印，非一手下载。"
+    },
+    {
+      "fact_id": "nvidia-800vdc-genratio-2",
+      "metric_id": "generation_ratio",
+      "entity": {
+        "type": "technology",
+        "id": "dc-power-architecture",
+        "label": "数据中心供配电架构"
+      },
+      "value": 3.4,
+      "unit": "x",
+      "caliber": {
+        "parameter": "机柜功率密度",
+        "baseline_generation": "Hopper",
+        "region": "Global",
+        "basis": "架构宣称"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4495673d57215d0d51b19c973b10e79012dd6b003b356628079e268214aa28f6",
+        "local_file": "英伟达面向人工智能基础设施的 800 伏直流架构白皮书（18页）.pdf",
+        "locator": "第 4 页：「This also led to a 3.4x increase in rack power density going from an 4x8 GPU NVLink domains (32 in the rack) to a 72 GPU NVLink domain」",
+        "grade": "S2",
+        "originator": "NVIDIA（Jared Huntington & Mike Tu）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**Hopper → GB300 的三个倍数必须一起读**：TDP 涨 1.75 倍、性能涨 50 倍、机柜功率密度涨 3.4 倍。单看 TDP 会以为能耗失控，单看性能会以为免费午餐——**能效提升来自性能，选址与供电压力来自功率密度**。 机柜功率密度那条 3.4 倍的来源是 NVLink 域由 4×8=32 卡扩到 72 卡，即**密度上升主要来自互联域做大，不是单卡功耗**。 载体带【价值目录】valuelist.cn 的转载水印，非一手下载。"
+    },
+    {
+      "fact_id": "nvidia-800vdc-genratio-3",
+      "metric_id": "generation_ratio",
+      "entity": {
+        "type": "technology",
+        "id": "dc-power-architecture",
+        "label": "数据中心供配电架构"
+      },
+      "value": 100.0,
+      "unit": "x",
+      "caliber": {
+        "parameter": "机柜功率密度",
+        "baseline_generation": "传统 web 服务器",
+        "region": "Global",
+        "basis": "架构宣称"
+      },
+      "as_of": "2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "4495673d57215d0d51b19c973b10e79012dd6b003b356628079e268214aa28f6",
+        "local_file": "英伟达面向人工智能基础设施的 800 伏直流架构白皮书（18页）.pdf",
+        "locator": "第 3 页：「GPU racks are approaching 100 times greater power density compared to web servers」",
+        "grade": "S2",
+        "originator": "NVIDIA（Jared Huntington & Mike Tu）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文「approaching 100 times」是下界式表述**，且对标的是传统 web 服务器机柜，不是上一代 GPU 机柜。  载体带【价值目录】valuelist.cn 的转载水印，非一手下载。"
     }
   ]
 }
