@@ -17502,6 +17502,384 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "单位换算：US$M ÷ 100 = 亿美元。预测值，做出时点 2020-12。 **这份的 storage_scope 口径原文写得很干净**：标题就是 External Disk Storage，即外置存储，**与同批 b31f7599 那份全球表的 Total（含服务器内置存储、占七成以上）不是一回事**，两者不可拼成一条曲线。 五年从 45.02 亿增至 65.94 亿美元，复合增速约 7.9%（本库未单独入库该增速）。 **同表按行业与省份各有一套拆分，本库存不下**：server_mfg_revenue 没有 subregion 与 vertical 两维（server_unit_shipments 与 vendor_market_share 有）。数字留在这里：北京 2019 年 1,010.85 百万美元、占全国 22.5%，上海 420.85、深圳 269.01，广东列作 GuangDongxSZ（不含深圳）311.55——**按省加总会漏深圳**。"
+    },
+    {
+      "fact_id": "dw-ge-vernova-backlog-2026q1",
+      "metric_id": "vendor_order_backlog",
+      "entity": {
+        "type": "company",
+        "id": "ge-vernova",
+        "label": "GE Vernova"
+      },
+      "value": 997.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "currency": "美元",
+        "order_basis": "在手订单",
+        "business_scope": "发电业务",
+        "fiscal_align": "公司财季/财年",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2026-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "abcd9e03fc7cb07e00774248c1e6a7a3c28fa2aab54201dc61f57717455c60da",
+        "local_file": "20260528-东吴证券-共享AIDC建设机遇，迎行业超级周期：海外电力设备巨头财报总结专题.pdf",
+        "locator": "第 1 页摘要与第 9 页：「FY26Q1 GEV 发电业务营收 100 亿美元，同比+60%，在手订单增至 997 亿美元」",
+        "grade": "S4",
+        "originator": "东吴证券"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**币种必须带**：GEV 报美元、西门子能源报欧元，两个数量级相近的数直接比会错一个汇率。 **fiscal_align=公司财季/财年**：GEV 的 FY26Q1 与西门子能源的 FY26Q2 都不是自然季，跨公司比较前要先对齐。 **这里的「在手订单」是订单簿余额，不是当期新增**；西门子能源两条（在手 660 亿欧元 / 当季新增 88.7 亿欧元）并存，正好是 order_basis 这一维的用处。 **注意原文一处单位不一致**：第 1 页摘要把 GEV 发电业务营收写成「100 亿元」，第 9 页正文写「100 亿美元」，以正文为准。"
+    },
+    {
+      "fact_id": "dw-siemens-energy-backlog-2026q2",
+      "metric_id": "vendor_order_backlog",
+      "entity": {
+        "type": "company",
+        "id": "siemens-energy",
+        "label": "Siemens Energy"
+      },
+      "value": 660.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "currency": "欧元",
+        "order_basis": "在手订单",
+        "business_scope": "燃机",
+        "fiscal_align": "公司财季/财年",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2026-Q2",
+      "bound": "point",
+      "evidence": {
+        "sha256": "abcd9e03fc7cb07e00774248c1e6a7a3c28fa2aab54201dc61f57717455c60da",
+        "local_file": "20260528-东吴证券-共享AIDC建设机遇，迎行业超级周期：海外电力设备巨头财报总结专题.pdf",
+        "locator": "第 1 页摘要与第 10 页：「FY26Q2 西门子能源燃机在手订单规模达 660 亿欧元，同比+27%」",
+        "grade": "S4",
+        "originator": "东吴证券"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**币种必须带**：GEV 报美元、西门子能源报欧元，两个数量级相近的数直接比会错一个汇率。 **fiscal_align=公司财季/财年**：GEV 的 FY26Q1 与西门子能源的 FY26Q2 都不是自然季，跨公司比较前要先对齐。 **这里的「在手订单」是订单簿余额，不是当期新增**；西门子能源两条（在手 660 亿欧元 / 当季新增 88.7 亿欧元）并存，正好是 order_basis 这一维的用处。 "
+    },
+    {
+      "fact_id": "dw-siemens-energy-neworders-2026q2",
+      "metric_id": "vendor_order_backlog",
+      "entity": {
+        "type": "company",
+        "id": "siemens-energy",
+        "label": "Siemens Energy"
+      },
+      "value": 88.7,
+      "unit": "亿（原币）",
+      "caliber": {
+        "currency": "欧元",
+        "order_basis": "新增订单",
+        "business_scope": "燃机",
+        "fiscal_align": "公司财季/财年",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2026-Q2",
+      "bound": "point",
+      "evidence": {
+        "sha256": "abcd9e03fc7cb07e00774248c1e6a7a3c28fa2aab54201dc61f57717455c60da",
+        "local_file": "20260528-东吴证券-共享AIDC建设机遇，迎行业超级周期：海外电力设备巨头财报总结专题.pdf",
+        "locator": "第 10 页：「FY26Q2 新增订单 88.7 亿欧元，同比+26%，继 FY26Q1 后再创历史新高」",
+        "grade": "S4",
+        "originator": "东吴证券"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**币种必须带**：GEV 报美元、西门子能源报欧元，两个数量级相近的数直接比会错一个汇率。 **fiscal_align=公司财季/财年**：GEV 的 FY26Q1 与西门子能源的 FY26Q2 都不是自然季，跨公司比较前要先对齐。 **这里的「在手订单」是订单簿余额，不是当期新增**；西门子能源两条（在手 660 亿欧元 / 当季新增 88.7 亿欧元）并存，正好是 order_basis 这一维的用处。 "
+    },
+    {
+      "fact_id": "dw-ge-vernova-b2b-0",
+      "metric_id": "book_to_bill",
+      "entity": {
+        "type": "company",
+        "id": "ge-vernova",
+        "label": "GE Vernova"
+      },
+      "value": 2.0,
+      "unit": "x",
+      "caliber": {
+        "ratio_basis": "订单÷收入",
+        "order_basis": "新增订单",
+        "business_scope": "发电业务",
+        "fiscal_align": "公司财季/财年",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2026-Q1",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "abcd9e03fc7cb07e00774248c1e6a7a3c28fa2aab54201dc61f57717455c60da",
+        "local_file": "20260528-东吴证券-共享AIDC建设机遇，迎行业超级周期：海外电力设备巨头财报总结专题.pdf",
+        "locator": "第 9 页：「FY26Q1 新增订单收入比突破 2.0」",
+        "grade": "S4",
+        "originator": "东吴证券"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**ratio_basis 决定这个数是什么**：订单÷收入是金额比，订单÷出货容量是 GW 比——**同一家同一期两个口径能差一倍**（GEV FY26Q1 金额口径 >2.0、容量口径 1.9）。 **>1 即订单簿在继续堆积**。原文用它论证产能紧缺：「公司的燃机交付速度已明显跟不上需求」。 原文「突破 2.0」是下界。 同报告另称日立能源输变电业务订单收入比长期 >1、LS 长期 >1.5，均为区间性表述未入库。"
+    },
+    {
+      "fact_id": "dw-ge-vernova-b2b-1",
+      "metric_id": "book_to_bill",
+      "entity": {
+        "type": "company",
+        "id": "ge-vernova",
+        "label": "GE Vernova"
+      },
+      "value": 3.3,
+      "unit": "x",
+      "caliber": {
+        "ratio_basis": "订单÷出货容量",
+        "order_basis": "新增订单",
+        "business_scope": "燃机",
+        "fiscal_align": "公司财季/财年",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2025-Q4",
+      "bound": "point",
+      "evidence": {
+        "sha256": "abcd9e03fc7cb07e00774248c1e6a7a3c28fa2aab54201dc61f57717455c60da",
+        "local_file": "20260528-东吴证券-共享AIDC建设机遇，迎行业超级周期：海外电力设备巨头财报总结专题.pdf",
+        "locator": "第 12 页：「FY25Q4 容量口径订单出货比达 3.3」",
+        "grade": "S4",
+        "originator": "东吴证券"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**ratio_basis 决定这个数是什么**：订单÷收入是金额比，订单÷出货容量是 GW 比——**同一家同一期两个口径能差一倍**（GEV FY26Q1 金额口径 >2.0、容量口径 1.9）。 **>1 即订单簿在继续堆积**。原文用它论证产能紧缺：「公司的燃机交付速度已明显跟不上需求」。  同报告另称日立能源输变电业务订单收入比长期 >1、LS 长期 >1.5，均为区间性表述未入库。"
+    },
+    {
+      "fact_id": "dw-ge-vernova-b2b-2",
+      "metric_id": "book_to_bill",
+      "entity": {
+        "type": "company",
+        "id": "ge-vernova",
+        "label": "GE Vernova"
+      },
+      "value": 1.9,
+      "unit": "x",
+      "caliber": {
+        "ratio_basis": "订单÷出货容量",
+        "order_basis": "新增订单",
+        "business_scope": "燃机",
+        "fiscal_align": "公司财季/财年",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2026-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "abcd9e03fc7cb07e00774248c1e6a7a3c28fa2aab54201dc61f57717455c60da",
+        "local_file": "20260528-东吴证券-共享AIDC建设机遇，迎行业超级周期：海外电力设备巨头财报总结专题.pdf",
+        "locator": "第 12 页：「FY26Q1 达 1.9」",
+        "grade": "S4",
+        "originator": "东吴证券"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**ratio_basis 决定这个数是什么**：订单÷收入是金额比，订单÷出货容量是 GW 比——**同一家同一期两个口径能差一倍**（GEV FY26Q1 金额口径 >2.0、容量口径 1.9）。 **>1 即订单簿在继续堆积**。原文用它论证产能紧缺：「公司的燃机交付速度已明显跟不上需求」。  同报告另称日立能源输变电业务订单收入比长期 >1、LS 长期 >1.5，均为区间性表述未入库。"
+    },
+    {
+      "fact_id": "dw-siemens-energy-b2b-3",
+      "metric_id": "book_to_bill",
+      "entity": {
+        "type": "company",
+        "id": "siemens-energy",
+        "label": "Siemens Energy"
+      },
+      "value": 2.55,
+      "unit": "x",
+      "caliber": {
+        "ratio_basis": "订单÷收入",
+        "order_basis": "新增订单",
+        "business_scope": "燃机",
+        "fiscal_align": "公司财季/财年",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2026-Q2",
+      "bound": "point",
+      "evidence": {
+        "sha256": "abcd9e03fc7cb07e00774248c1e6a7a3c28fa2aab54201dc61f57717455c60da",
+        "local_file": "20260528-东吴证券-共享AIDC建设机遇，迎行业超级周期：海外电力设备巨头财报总结专题.pdf",
+        "locator": "第 10 页：「订单收入比达 2.55，产能同样供不应求」",
+        "grade": "S4",
+        "originator": "东吴证券"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**ratio_basis 决定这个数是什么**：订单÷收入是金额比，订单÷出货容量是 GW 比——**同一家同一期两个口径能差一倍**（GEV FY26Q1 金额口径 >2.0、容量口径 1.9）。 **>1 即订单簿在继续堆积**。原文用它论证产能紧缺：「公司的燃机交付速度已明显跟不上需求」。  同报告另称日立能源输变电业务订单收入比长期 >1、LS 长期 >1.5，均为区间性表述未入库。"
+    },
+    {
+      "fact_id": "dw-gev-heavy-duty-units-2026e",
+      "metric_id": "major_equipment_count",
+      "entity": {
+        "type": "company",
+        "id": "ge-vernova",
+        "label": "GE Vernova"
+      },
+      "value": 70.0,
+      "unit": "台",
+      "caliber": {
+        "equipment": "柴发",
+        "redundancy": "未注明",
+        "region": "Global",
+        "basis": "厂商指引"
+      },
+      "as_of": "2026E@2026-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "abcd9e03fc7cb07e00774248c1e6a7a3c28fa2aab54201dc61f57717455c60da",
+        "local_file": "20260528-东吴证券-共享AIDC建设机遇，迎行业超级周期：海外电力设备巨头财报总结专题.pdf",
+        "locator": "第 12 页：「从新签订单数量看，重型燃气轮机订单增长迅猛：从 FY23Q1 的 6 台，快速攀升至 FY25Q4 的 41 台，FY26Q1 订单达 28 台」；配合伯恩斯坦那份的 GEV 计划「重型产量由 55 台增至 FY26 末 70-80 台」",
+        "grade": "S4",
+        "originator": "东吴证券"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "同源转述",
+      "notes": "**equipment 维没有「燃机」这个取值**，六个取值是柴发/变压器/UPS/高压开关柜/冷机/市电进线回路，**本条就近填了「柴发」，是错的**——重型燃气轮机不是柴油发电机组。已按菜单缺口另报，补上「燃气轮机」取值后本条要改。 原文「70-80 台」是区间，本条记下界 70。 **订单台数与产量台数是两件事**：原文给的是新签订单台数（FY23Q1 6 台 → FY25Q4 41 台 → FY26Q1 28 台），产量路径来自伯恩斯坦那份转述的 GEV 计划，两者同源于 GEV 但不是同一个量。"
+    },
+    {
+      "fact_id": "dw-siemens-us-expansion-invest",
+      "metric_id": "vendor_capacity_investment",
+      "entity": {
+        "type": "company",
+        "id": "siemens-energy",
+        "label": "Siemens Energy"
+      },
+      "value": 10.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "currency": "美元",
+        "amount_type": "扩产投资额",
+        "growth_source": "自建扩产",
+        "region": "US",
+        "basis": "厂商指引"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "abcd9e03fc7cb07e00774248c1e6a7a3c28fa2aab54201dc61f57717455c60da",
+        "local_file": "20260528-东吴证券-共享AIDC建设机遇，迎行业超级周期：海外电力设备巨头财报总结专题.pdf",
+        "locator": "第 1 页摘要与第 15 页：「同时在美开展十亿美元的扩产计划」「在美国开展 10 亿美元的投资计划，多个项目聚焦燃机扩产。其中多项投资被用于恢复或者增加燃气轮机的制造生产能力，包括恢复在北卡罗纳的燃机制造项目和增大燃机研发投入、在佛罗里达扩产燃机叶片」",
+        "grade": "S4",
+        "originator": "东吴证券"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**growth_source=自建扩产**：原文明确是恢复与新增制造产能（北卡燃机制造复产、佛州叶片扩产），不是收购。 **这 10 亿美元里含研发投入**，不是纯产能资本开支，原文未拆分。 对照库内伯恩斯坦那份：西门子能源的扩产以棕地复产（de-mothballing）为主，扩产地为柏林、夏洛特、芬斯邦，蒙特利尔航改产线复产——**两份报告对同一轮扩产的地点描述不完全重合**，需核。"
+    },
+    {
+      "fact_id": "dw-ls-hv-capacity-total",
+      "metric_id": "vendor_capacity_investment",
+      "entity": {
+        "type": "company",
+        "id": "ls-electric",
+        "label": "LS Electric（LS 产电）"
+      },
+      "value": 8000.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "currency": "韩元",
+        "amount_type": "产能产值",
+        "growth_source": "合计",
+        "region": "KR",
+        "basis": "厂商指引"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "abcd9e03fc7cb07e00774248c1e6a7a3c28fa2aab54201dc61f57717455c60da",
+        "local_file": "20260528-东吴证券-共享AIDC建设机遇，迎行业超级周期：海外电力设备巨头财报总结专题.pdf",
+        "locator": "第 30 页：「高压变年产值提升至 8000 亿韩元」",
+        "grade": "S4",
+        "originator": "东吴证券"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**amount_type=产能产值，不是投资额**：这是产能对应的年产值（韩元），与「投了多少钱」是两回事。 **三条拼起来才是完整故事**：釜山工厂扩产使年产值由 2000 → 7000 亿韩元（自建），再收购 LS power solution 51% 股权新增 1000 亿韩元（收购），合计 8000 亿韩元。**2000 + 1000 ≠ 8000**，中间的 5000 亿是釜山扩产的增量，原文只给了前后水平没给增量。 公司另在美国犹他州与德克萨斯州推进开关柜与断路器扩产，原文未给金额。"
+    },
+    {
+      "fact_id": "dw-ls-hv-capacity-before",
+      "metric_id": "vendor_capacity_investment",
+      "entity": {
+        "type": "company",
+        "id": "ls-electric",
+        "label": "LS Electric（LS 产电）"
+      },
+      "value": 2000.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "currency": "韩元",
+        "amount_type": "产能产值",
+        "growth_source": "自建扩产",
+        "region": "KR",
+        "basis": "厂商指引"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "abcd9e03fc7cb07e00774248c1e6a7a3c28fa2aab54201dc61f57717455c60da",
+        "local_file": "20260528-东吴证券-共享AIDC建设机遇，迎行业超级周期：海外电力设备巨头财报总结专题.pdf",
+        "locator": "第 30 页：「扩产后年产值从 2000 亿韩元提升至 7000 亿韩元」中的扩产前水平",
+        "grade": "S4",
+        "originator": "东吴证券"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**amount_type=产能产值，不是投资额**：这是产能对应的年产值（韩元），与「投了多少钱」是两回事。 **三条拼起来才是完整故事**：釜山工厂扩产使年产值由 2000 → 7000 亿韩元（自建），再收购 LS power solution 51% 股权新增 1000 亿韩元（收购），合计 8000 亿韩元。**2000 + 1000 ≠ 8000**，中间的 5000 亿是釜山扩产的增量，原文只给了前后水平没给增量。 公司另在美国犹他州与德克萨斯州推进开关柜与断路器扩产，原文未给金额。"
+    },
+    {
+      "fact_id": "dw-ls-hv-capacity-acquired",
+      "metric_id": "vendor_capacity_investment",
+      "entity": {
+        "type": "company",
+        "id": "ls-electric",
+        "label": "LS Electric（LS 产电）"
+      },
+      "value": 1000.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "currency": "韩元",
+        "amount_type": "产能产值",
+        "growth_source": "收购",
+        "region": "KR",
+        "basis": "厂商指引"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "abcd9e03fc7cb07e00774248c1e6a7a3c28fa2aab54201dc61f57717455c60da",
+        "local_file": "20260528-东吴证券-共享AIDC建设机遇，迎行业超级周期：海外电力设备巨头财报总结专题.pdf",
+        "locator": "第 30 页：「完成对 LS power solution 51% 股权收购，新增 1000 亿韩元年产值」",
+        "grade": "S4",
+        "originator": "东吴证券"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**amount_type=产能产值，不是投资额**：这是产能对应的年产值（韩元），与「投了多少钱」是两回事。 **三条拼起来才是完整故事**：釜山工厂扩产使年产值由 2000 → 7000 亿韩元（自建），再收购 LS power solution 51% 股权新增 1000 亿韩元（收购），合计 8000 亿韩元。**2000 + 1000 ≠ 8000**，中间的 5000 亿是釜山扩产的增量，原文只给了前后水平没给增量。 公司另在美国犹他州与德克萨斯州推进开关柜与断路器扩产，原文未给金额。"
     }
   ]
 }
