@@ -26853,6 +26853,240 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "单位换算：US$M ÷ 100 = 亿美元。占全国 6.0%（全国 2019 年 45.02 亿美元）。 深圳与广东是分开列的（原表广东写作 GuangDongxSZ 即不含深圳），两者合计 580.55 百万美元才是完整的广东省。 **这三条是补录**：首次录入时我按旧版抽取文本的大小写（BeiJing/ShangHai/ShenZhen）匹配省名，而重抽后的文本改成了 Beijing/Shanghai/Shenzhen，**三个最大的省份因此被漏掉**——同一文件在不同抽取器版本下的正文并不逐字稳定，这正是 text_md5 指纹的用处。"
+    },
+    {
+      "fact_id": "rand-us-dc-additional-demand-2030-low",
+      "metric_id": "model_projected_generation_need",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心"
+      },
+      "value": 34.0,
+      "unit": "GW",
+      "caliber": {
+        "model_source": "第三方咨询",
+        "horizon": "2030",
+        "region": "US"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 1 页：「Estimates for data center demand growth in the United States by 2030 vary widely, from an additional 34 gigawatts (GW) to as much as 253 GW」",
+        "grade": "S3",
+        "originator": "RAND Corporation（Arciniegas Rueda 等）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是各方估计区间的下界，不是 RAND 自己的判断**（RAND 自己给的是 158-253 GW）。**这一族的核心事实是「估计值本身差得离谱」**：原文明说美国 2030 年数据中心新增需求的各方估计从 34 GW 到 253 GW，**相差 7.4 倍**，差异来自需求增速、能效改进以及运营商长期扩张计划的不确定，**还来自口径本身不同**（TWh vs GW、AI 专用 vs 全部数据中心、预测年限不同）。**引用任何单一数字都必须带上是谁的估计、什么口径、到哪一年。**"
+    },
+    {
+      "fact_id": "rand-us-dc-additional-demand-2030-high",
+      "metric_id": "model_projected_generation_need",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心"
+      },
+      "value": 253.0,
+      "unit": "GW",
+      "caliber": {
+        "model_source": "第三方咨询",
+        "horizon": "2030",
+        "region": "US"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 1 页：「from an additional 34 gigawatts (GW) to as much as 253 GW」",
+        "grade": "S3",
+        "originator": "RAND Corporation（Arciniegas Rueda 等）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上界，与 RAND 自建模型的上界（253 GW，80% 留存率）重合。**这一族的核心事实是「估计值本身差得离谱」**：原文明说美国 2030 年数据中心新增需求的各方估计从 34 GW 到 253 GW，**相差 7.4 倍**，差异来自需求增速、能效改进以及运营商长期扩张计划的不确定，**还来自口径本身不同**（TWh vs GW、AI 专用 vs 全部数据中心、预测年限不同）。**引用任何单一数字都必须带上是谁的估计、什么口径、到哪一年。**"
+    },
+    {
+      "fact_id": "rand-us-additional-demand-own-low",
+      "metric_id": "model_projected_generation_need",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心"
+      },
+      "value": 158.0,
+      "unit": "GW",
+      "caliber": {
+        "model_source": "自建",
+        "horizon": "2030",
+        "region": "US"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 1 页：「For the United States alone, additional demand is estimated to be between 158 GW and 253 GW, assuming a retention rate of 50 percent to 80 percent」",
+        "grade": "S3",
+        "originator": "RAND Corporation（Arciniegas Rueda 等）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**RAND 自建模型的下界，对应 50% 的留存率**（retention rate，即全球 AI 算力需求里落在美国的比例）；上界 253 GW 对应 80%。**这个区间宽度完全来自一个假设参数**，不是需求本身的不确定。**这一族的核心事实是「估计值本身差得离谱」**：原文明说美国 2030 年数据中心新增需求的各方估计从 34 GW 到 253 GW，**相差 7.4 倍**，差异来自需求增速、能效改进以及运营商长期扩张计划的不确定，**还来自口径本身不同**（TWh vs GW、AI 专用 vs 全部数据中心、预测年限不同）。**引用任何单一数字都必须带上是谁的估计、什么口径、到哪一年。**"
+    },
+    {
+      "fact_id": "rand-global-ai-dc-power-2030",
+      "metric_id": "model_projected_generation_need",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 327.0,
+      "unit": "GW",
+      "caliber": {
+        "model_source": "自建",
+        "horizon": "2030",
+        "region": "Global"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 1 页：「RAND projects that global AI data center power demand could reach 327 GW by 2030」",
+        "grade": "S3",
+        "originator": "RAND Corporation（Arciniegas Rueda 等）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是全球 AI 数据中心的功率需求，不是全部数据中心**；美国部分按 50%-80% 留存率折出 158-253 GW。对照库内 IEA 的全球全部数据中心用电量（2030 Base Case 945 TWh）：**一个是功率（GW）一个是电量（TWh）**，换算需要利用率假设，不可直接比。**这一族的核心事实是「估计值本身差得离谱」**：原文明说美国 2030 年数据中心新增需求的各方估计从 34 GW 到 253 GW，**相差 7.4 倍**，差异来自需求增速、能效改进以及运营商长期扩张计划的不确定，**还来自口径本身不同**（TWh vs GW、AI 专用 vs 全部数据中心、预测年限不同）。**引用任何单一数字都必须带上是谁的估计、什么口径、到哪一年。**"
+    },
+    {
+      "fact_id": "rand-goldman-us-incremental-2030",
+      "metric_id": "model_projected_generation_need",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心"
+      },
+      "value": 47.0,
+      "unit": "GW",
+      "caliber": {
+        "model_source": "券商",
+        "horizon": "2030",
+        "region": "US"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 2 页：「Goldman Sachs forecasts an incremental 47 GW of data center demand, including both AI and non-AI uses, by 2030」",
+        "grade": "S3",
+        "originator": "RAND Corporation（Arciniegas Rueda 等）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**高盛这个 47 GW 含 AI 与非 AI 全部数据中心**，却只有 RAND 自建下界（158 GW，仅 AI）的三成——**口径更宽而数字更小，这正是原文强调「估计不可直接比」的例子**。**这一族的核心事实是「估计值本身差得离谱」**：原文明说美国 2030 年数据中心新增需求的各方估计从 34 GW 到 253 GW，**相差 7.4 倍**，差异来自需求增速、能效改进以及运营商长期扩张计划的不确定，**还来自口径本身不同**（TWh vs GW、AI 专用 vs 全部数据中心、预测年限不同）。**引用任何单一数字都必须带上是谁的估计、什么口径、到哪一年。**"
+    },
+    {
+      "fact_id": "rand-lbnl-us-dc-consumption-2028-low",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心"
+      },
+      "value": 325.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2028E@2025-01",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 1-2 页：「Lawrence Berkeley National Laboratory (LBNL) estimates that total U.S. data center power demand—including both AI-related and general use—will range between 325 TWh and 580 TWh by 2028. This estimate corresponds to 74–132 GW, representing an increase of 34–92 GW over current levels」",
+        "grade": "S3",
+        "originator": "RAND Corporation（Arciniegas Rueda 等）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**LBNL 口径含 AI 与通用两类**，区间下界。原文同时给出功率折算 74-132 GW 与净增 34-92 GW——**「34 GW」这个数在原文里是 LBNL 净增的下界，前面那句「各方估计从 34 GW 起」正是引自它**，不是一个独立的第三方估计。**这一族的核心事实是「估计值本身差得离谱」**：原文明说美国 2030 年数据中心新增需求的各方估计从 34 GW 到 253 GW，**相差 7.4 倍**，差异来自需求增速、能效改进以及运营商长期扩张计划的不确定，**还来自口径本身不同**（TWh vs GW、AI 专用 vs 全部数据中心、预测年限不同）。**引用任何单一数字都必须带上是谁的估计、什么口径、到哪一年。**"
+    },
+    {
+      "fact_id": "rand-lbnl-us-dc-consumption-2028-high",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心"
+      },
+      "value": 580.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2028E@2025-01",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 2 页：「will range between 325 TWh and 580 TWh by 2028」",
+        "grade": "S3",
+        "originator": "RAND Corporation（Arciniegas Rueda 等）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上界。**与库内 IEA 全球 2030 Base Case 945 TWh 对照**：美国一国到 2028 年就可能占到 580 TWh，即**六成以上**——两者口径（全球 vs 美国、2030 vs 2028）不同，但量级关系值得记住。**这一族的核心事实是「估计值本身差得离谱」**：原文明说美国 2030 年数据中心新增需求的各方估计从 34 GW 到 253 GW，**相差 7.4 倍**，差异来自需求增速、能效改进以及运营商长期扩张计划的不确定，**还来自口径本身不同**（TWh vs GW、AI 专用 vs 全部数据中心、预测年限不同）。**引用任何单一数字都必须带上是谁的估计、什么口径、到哪一年。**"
+    },
+    {
+      "fact_id": "rand-single-facility-max-2030",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-single-largest-dc",
+        "label": "美国单体最大数据中心（预期）"
+      },
+      "value": 5000.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L2",
+        "region": "US"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 2 页：「An individual facility may consume up to 5 GW by 2030, a substantial amount of power comparable to the 2023 net summer generation capacity of a single state, such as Idaho (5.4 GW), Maine (5.3 GW), or New Hampshire (4.5 GW)」",
+        "grade": "S3",
+        "originator": "RAND Corporation（Arciniegas Rueda 等）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**单体设施上限，不是某个已知项目**，故 status 记 L2（规划层面的预期）、capacity_type 未披露。**原文给的参照极有说服力**：5 GW 相当于爱达荷（5.4 GW）、缅因（5.3 GW）或新罕布什尔（4.5 GW）一个州 2023 年的夏季净发电容量。对照库内 Abilene 园区 1.8 GW IT 容量（SemiAnalysis 估算），**5 GW 是它的近三倍**。"
     }
   ]
 }
