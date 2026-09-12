@@ -309,7 +309,7 @@ class ClaimIdentityTests(unittest.TestCase):
     def test_the_same_claim_under_a_new_id_is_refused(self):
         self.add(fact())
         bad = problems(fact(fact_id='same-thing-again'), claims=self.claims)
-        self.assertTrue(any('同口径同时点已有一条' in p for p in bad), bad)
+        self.assertTrue(any('同口径同时点同 bound 已有一条' in p for p in bad), bad)
 
     def test_the_same_metric_and_date_in_another_caliber_is_a_different_claim(self):
         """4406 元/㎡ 施工总包 and 3736.6 土建本体 are both true of one month."""
@@ -317,6 +317,56 @@ class ClaimIdentityTests(unittest.TestCase):
         shell = fact(fact_id='luan-ct-cost-shell-2022', value=3736.6,
                      caliber={'stage': '招标控制价', 'scope': '土建本体'})
         self.assertEqual(problems(shell, claims=self.claims), [])
+
+    def test_a_range_is_two_records_one_upper_one_lower(self):
+        """「1800-2100 万只」 is one expert call, and it needs both ends.
+
+        Without bound in the key the second end is refused as a duplicate and
+        the range collapses to whichever end happened to be recorded first.
+        """
+        low = fact(fact_id='hs-2026e-low', value=1800.0, bound='lower')
+        self.assertEqual(problems(low, claims=self.claims), [])
+        self.add(low)
+        high = fact(fact_id='hs-2026e-high', value=2100.0, bound='upper')
+        self.assertEqual(problems(high, claims=self.claims), [])
+
+    def test_a_point_still_collides_with_a_point(self):
+        """bound in the key must not open a hole for plain duplicates."""
+        self.add(fact())
+        bad = problems(fact(fact_id='same-thing-again'), claims=self.claims)
+        self.assertTrue(any('同口径同时点同 bound 已有一条' in p for p in bad), bad)
+        self.assertTrue(any('bound: upper 与 bound: lower' in p for p in bad), bad)
+
+    def test_a_point_and_a_bound_at_one_key_are_not_the_same_record(self):
+        """一个点估计和一个上界不是同一条：上界说的是「不超过」，点说的是「就是」。"""
+        self.add(fact())
+        ceiling = fact(fact_id='luan-ct-cost-ceiling', value=5000.0, bound='upper')
+        self.assertEqual(problems(ceiling, claims=self.claims), [])
+
+    def test_two_uppers_at_one_key_still_collide(self):
+        upper = fact(fact_id='hs-2026e-high', value=2100.0, bound='upper')
+        self.add(upper)
+        bad = problems(fact(fact_id='hs-2026e-high-again', value=2200.0,
+                            bound='upper'), claims=self.claims)
+        self.assertTrue(any('同口径同时点同 bound 已有一条' in p for p in bad), bad)
+
+    def test_both_ends_of_a_forecast_range_survive_the_vintage_check(self):
+        """The forecast collision is keyed on bound too, or a bare 2026E range
+        loses one end to 「同一年份的预测已有一条」."""
+        low = fact(fact_id='dc-2026e-low', as_of='2026E', value=1800.0,
+                   bound='lower')
+        self.assertEqual(problems(low, claims=self.claims), [])
+        self.add(low)
+        high = fact(fact_id='dc-2026e-high', as_of='2026E', value=2100.0,
+                    bound='upper')
+        self.assertEqual(problems(high, claims=self.claims), [])
+
+    def test_two_bare_forecasts_of_one_bound_still_collide(self):
+        self.add(fact(fact_id='dc-2026e-low', as_of='2026E', value=1800.0,
+                      bound='lower'))
+        bad = problems(fact(fact_id='dc-2026e-low-again', as_of='2026E',
+                            value=1750.0, bound='lower'), claims=self.claims)
+        self.assertTrue(any('带上做出时点' in p for p in bad), bad)
 
     def test_a_different_entity_is_a_different_claim(self):
         self.add(fact())

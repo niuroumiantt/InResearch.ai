@@ -510,12 +510,19 @@ def claim_key(fact: dict) -> tuple:
     and 5.00 against 6.54 backlog years in one quarter, one over capacity and
     one over deliveries.  Keyed without caliber those read as duplicates; keyed
     with it they are what they are, two calibers of one thing.
+
+    bound belongs in the key for the same reason.  「1800-2100 万只」 is two
+    records about one metric at one date in one caliber - an upper and a lower.
+    Keyed without bound the second one is refused as a duplicate, the range
+    collapses to whichever end was recorded first, and the other end survives
+    only as prose in notes.  Ranges are the normal shape of an expert call, not
+    an edge case.
     """
     caliber = fact.get('caliber')
     dims = (tuple(sorted((k, str(v)) for k, v in caliber.items()))
             if isinstance(caliber, dict) else ())
     return ('claim', fact.get('metric_id'), (fact.get('entity') or {}).get('id'),
-            str(fact.get('as_of') or ''), dims)
+            str(fact.get('as_of') or ''), dims, fact.get('bound') or 'point')
 
 
 def forecast_key(fact: dict) -> tuple | None:
@@ -530,8 +537,8 @@ def forecast_key(fact: dict) -> tuple | None:
     as_of = str(fact.get('as_of') or '')
     if 'E' not in as_of:
         return None
-    _, metric, entity, _, dims = claim_key(fact)
-    return ('forecast', metric, entity, as_of.split('@')[0], dims)
+    _, metric, entity, _, dims, bound = claim_key(fact)
+    return ('forecast', metric, entity, as_of.split('@')[0], dims, bound)
 
 
 def index_claims(records: list[dict]) -> dict:
@@ -616,8 +623,10 @@ def check_fact(fact: dict, metrics: dict, seen: set, claims: dict | None = None)
         else:
             prior = claims.get(claim_key(fact))
             if prior:
-                bad.append('同口径同时点已有一条 %s——要么是重复录入，'
-                           '要么少了一个把两者区分开的口径维度' % prior)
+                bad.append('同口径同时点同 bound 已有一条 %s——要么是重复录入，'
+                           '要么少了一个把两者区分开的口径维度；'
+                           '若这两个数是一个区间的两端，把它们写成 '
+                           'bound: upper 与 bound: lower 两条' % prior)
     return bad
 
 
