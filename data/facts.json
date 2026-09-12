@@ -6122,7 +6122,7 @@
       "derived": false,
       "bound": "lower",
       "corroboration": "待交叉验证",
-      "notes": "**原文区间 1800 - 2100 万只，本条存下界 1800，上界 2100 见此处。** **【存储限制】原文是区间，本条只存下界**：fact 的 claim_key 不含 bound，同一实体同一时点的下界与上界两条会被判为重复录入，上界无法单独成条。上界见本条 notes，不要把本条当点值用。 **【口径提示 1】原文是「需求」不是「出货」**：表名「800G/1.6T 光模块市场需求情况表」。shipment_basis 四个取值（厂商出货／渠道提货／终端安装／未披露）没有「市场需求」，取「未披露」并标明，待菜单补齐后复核。 **【口径提示 2】basis 是就近归类**：四个取值（实测／预测／券商测算／厂商指引）没有「专家访谈／渠道调研」一项。本条实为未具名专家的口述估计，既非统计实测也非券商模型，待菜单补齐后复核。 rate_target=单模块：原文单位「万只」，按只计数，不是交换机端口速率。 **交叉对照**：花旗同口径（需求）2025E 为 2000 万只（citi-aug25-demand-800g-2025e），落在本区间内，两者相容。 **编制方与信源是两回事**：本表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框，单元格里没有），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」——未具名专家口述，不是机构研究报告，故 grade=S5（渠道材料）。"
+      "notes": "**原文区间 1800 - 2100 万只，本条是下界；上界 2100 见 expert-sep25-800g-demand-2025e-upper。**（2026-09-12 契约修订把 bound 并入 claim_key，两端才各自成条。） **【口径提示 1】原文是「需求」不是「出货」**：表名「800G/1.6T 光模块市场需求情况表」。shipment_basis 四个取值（厂商出货／渠道提货／终端安装／未披露）没有「市场需求」，取「未披露」并标明，待菜单补齐后复核。 **【口径提示 2】basis 是就近归类**：四个取值（实测／预测／券商测算／厂商指引）没有「专家访谈／渠道调研」一项。本条实为未具名专家的口述估计，既非统计实测也非券商模型，待菜单补齐后复核。 rate_target=单模块：原文单位「万只」，按只计数，不是交换机端口速率。 **交叉对照**：花旗同口径（需求）2025E 为 2000 万只（citi-aug25-demand-800g-2025e），落在本区间内，两者相容。 **编制方与信源是两回事**：本表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框，单元格里没有），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」——未具名专家口述，不是机构研究报告，故 grade=S5（渠道材料）。"
     },
     {
       "fact_id": "expert-sep25-800g-demand-2026e",
@@ -6155,7 +6155,7 @@
       "derived": false,
       "bound": "lower",
       "corroboration": "待交叉验证",
-      "notes": "**原文区间 3000 - 3200 万只，本条存下界 3000，上界 3200 见此处。** **【存储限制】原文是区间，本条只存下界**：fact 的 claim_key 不含 bound，同一实体同一时点的下界与上界两条会被判为重复录入，上界无法单独成条。上界见本条 notes，不要把本条当点值用。 **【口径提示 1】原文是「需求」不是「出货」**：表名「800G/1.6T 光模块市场需求情况表」。shipment_basis 四个取值（厂商出货／渠道提货／终端安装／未披露）没有「市场需求」，取「未披露」并标明，待菜单补齐后复核。 **【口径提示 2】basis 是就近归类**：四个取值（实测／预测／券商测算／厂商指引）没有「专家访谈／渠道调研」一项。本条实为未具名专家的口述估计，既非统计实测也非券商模型，待菜单补齐后复核。 rate_target=单模块：原文单位「万只」，按只计数，不是交换机端口速率。 **交叉对照有冲突，别合并**：花旗同口径 2026E 为 4500 万只（citi-aug25-demand-800g-2026e），比本条上界还高 41%；国信自测算 4000 万只（optics-800g-shipment-2026e）。三个数分别来自券商模型与专家口述，时点 2025-08／2025-09，**并列保留进核验，不取平均**。 原文备注给了一个方向性理由：微软常经思科/Arista/Juniper 或英伟达代采购，订单落在设备厂商端，模块厂看不全，故微软实际需求可能远超表内的 250 万只——即本条下界偏保守。 **编制方与信源是两回事**：本表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框，单元格里没有），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」——未具名专家口述，不是机构研究报告，故 grade=S5（渠道材料）。"
+      "notes": "**原文区间 3000 - 3200 万只，本条是下界；上界 3200 见 expert-sep25-800g-demand-2026e-upper。** **【口径提示 1】原文是「需求」不是「出货」**：表名「800G/1.6T 光模块市场需求情况表」。shipment_basis 四个取值（厂商出货／渠道提货／终端安装／未披露）没有「市场需求」，取「未披露」并标明，待菜单补齐后复核。 **【口径提示 2】basis 是就近归类**：四个取值（实测／预测／券商测算／厂商指引）没有「专家访谈／渠道调研」一项。本条实为未具名专家的口述估计，既非统计实测也非券商模型，待菜单补齐后复核。 rate_target=单模块：原文单位「万只」，按只计数，不是交换机端口速率。 **交叉对照有冲突，别合并**：花旗同口径 2026E 为 4500 万只（citi-aug25-demand-800g-2026e），比本条上界还高 41%；国信自测算 4000 万只（optics-800g-shipment-2026e）。三个数分别来自券商模型与专家口述，时点 2025-08／2025-09，**并列保留进核验，不取平均**。 原文备注给了一个方向性理由：微软常经思科/Arista/Juniper 或英伟达代采购，订单落在设备厂商端，模块厂看不全，故微软实际需求可能远超表内的 250 万只——即本条下界偏保守。 **编制方与信源是两回事**：本表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框，单元格里没有），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」——未具名专家口述，不是机构研究报告，故 grade=S5（渠道材料）。"
     },
     {
       "fact_id": "expert-sep25-1600g-demand-2025e",
@@ -6188,7 +6188,7 @@
       "derived": false,
       "bound": "lower",
       "corroboration": "待交叉验证",
-      "notes": "**原文区间 250 - 350 万只，本条存下界 250，上界 350 见此处。** **【存储限制】原文是区间，本条只存下界**：fact 的 claim_key 不含 bound，同一实体同一时点的下界与上界两条会被判为重复录入，上界无法单独成条。上界见本条 notes，不要把本条当点值用。 **【口径提示 1】原文是「需求」不是「出货」**：表名「800G/1.6T 光模块市场需求情况表」。shipment_basis 四个取值（厂商出货／渠道提货／终端安装／未披露）没有「市场需求」，取「未披露」并标明，待菜单补齐后复核。 **【口径提示 2】basis 是就近归类**：四个取值（实测／预测／券商测算／厂商指引）没有「专家访谈／渠道调研」一项。本条实为未具名专家的口述估计，既非统计实测也非券商模型，待菜单补齐后复核。 rate_target=单模块：原文单位「万只」，按只计数，不是交换机端口速率。 **结构提示**：原文明说这一年 1.6T「主要来自英伟达」，谷歌 20-30 万只，Meta/AWS「采购量不大可忽略」——即 2025 年的 1.6T 几乎是单一客户市场，用它做行业趋势要当心。 **交叉对照**：花旗 2025E 为 250 万只（citi-aug25-demand-1600g-2025e），正好是本区间下界。 **编制方与信源是两回事**：本表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框，单元格里没有），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」——未具名专家口述，不是机构研究报告，故 grade=S5（渠道材料）。"
+      "notes": "**原文区间 250 - 350 万只，本条是下界；上界 350 见 expert-sep25-1600g-demand-2025e-upper。** **【口径提示 1】原文是「需求」不是「出货」**：表名「800G/1.6T 光模块市场需求情况表」。shipment_basis 四个取值（厂商出货／渠道提货／终端安装／未披露）没有「市场需求」，取「未披露」并标明，待菜单补齐后复核。 **【口径提示 2】basis 是就近归类**：四个取值（实测／预测／券商测算／厂商指引）没有「专家访谈／渠道调研」一项。本条实为未具名专家的口述估计，既非统计实测也非券商模型，待菜单补齐后复核。 rate_target=单模块：原文单位「万只」，按只计数，不是交换机端口速率。 **结构提示**：原文明说这一年 1.6T「主要来自英伟达」，谷歌 20-30 万只，Meta/AWS「采购量不大可忽略」——即 2025 年的 1.6T 几乎是单一客户市场，用它做行业趋势要当心。 **交叉对照**：花旗 2025E 为 250 万只（citi-aug25-demand-1600g-2025e），正好是本区间下界。 **编制方与信源是两回事**：本表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框，单元格里没有），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」——未具名专家口述，不是机构研究报告，故 grade=S5（渠道材料）。"
     },
     {
       "fact_id": "expert-sep25-1600g-demand-2026e",
@@ -6252,7 +6252,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "**原文是区间 8~12 kN/㎡，本条只存下界 8。**上界 12 无法单独成条：claim_key 不含 bound，同实体同时点同口径的两端会被判重复录入。用本条比较时记得它是下界。 **这是中国移动的企业准入标准，不是某个项目的设计取值，也不是国标。**原文为《中国移动定制化IDC技术方案建议》/《中国移动IDC等级评定标准 V3.2.0》，按二星～钻石五星五档打分，本条对应的档位见 entity。**工作表「v3.2修改内容」重复了同一条要求（同文件两个版本），不构成交叉验证。** 原文还给了一条软化条款：「不满足要求时，由设计院出具载荷报告，并进行过加固」——即这不是硬性一票否决，**当作硬门槛用会高估约束力**。 **交叉参考**：库内忠县那份工艺对土建要求表的主机房设计取值为 10 kN/㎡，落在本区间内；**设计取值高于标准下界是常态，两者不可互相替代**（basis 一个是设计取值、一个是规范最低）。 二星到钻石五星五档全部打勾，即无分档差异。"
+      "notes": "**原文是区间 8~12 kN/㎡，本条是下界；上界 12 见 cmcc-idc-v32-floorload-mainroom-2019-upper。** **这是中国移动的企业准入标准，不是某个项目的设计取值，也不是国标。**原文为《中国移动定制化IDC技术方案建议》/《中国移动IDC等级评定标准 V3.2.0》，按二星～钻石五星五档打分，本条对应的档位见 entity。**工作表「v3.2修改内容」重复了同一条要求（同文件两个版本），不构成交叉验证。** 原文还给了一条软化条款：「不满足要求时，由设计院出具载荷报告，并进行过加固」——即这不是硬性一票否决，**当作硬门槛用会高估约束力**。 **交叉参考**：库内忠县那份工艺对土建要求表的主机房设计取值为 10 kN/㎡，落在本区间内；**设计取值高于标准下界是常态，两者不可互相替代**（basis 一个是设计取值、一个是规范最低）。 二星到钻石五星五档全部打勾，即无分档差异。"
     },
     {
       "fact_id": "cmcc-idc-v32-floorload-battery-2019",
@@ -6466,6 +6466,861 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**capacity_type=未披露**：原文只写「100MW」，没说是 IT 容量还是设施容量——两者差 1.3-1.5 倍，不许猜。**status=L2 是保守归类**：原文只写「宣布投建」，没有土地、电力或开工的任何状态信息，按「官方规划」记；**因此这 100MW 不计入当期投运供给（只有 L8+ 才计）**。地域按马来西亚归入 APAC（region 枚举无 MY）。同段另有万国数据在马来西亚柔佛努沙再也、印尼峇淡岛的园区布局，原文未给容量数字，未录。"
+    },
+    {
+      "fact_id": "expert-sep25-800g-demand-2025e-upper",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-800g",
+        "label": "全球 800G 光模块市场"
+      },
+      "value": 2100.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "800G",
+        "shipment_basis": "未披露",
+        "basis": "预测",
+        "region": "Global",
+        "product_form": "光模块",
+        "customer": "未拆分"
+      },
+      "as_of": "2025E@2025-09",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "688d46ed401e8e2cbb7b63503b46ccd10cab1f20af831872bb0e31900f2d915c",
+        "local_file": "光模块出货量数据.xlsx",
+        "locator": "工作表「800G光模块」第 3 行列名「整体需求规模（万只）」，第 5 行「2025」，单元格 B5 = 「1800 - 2100」",
+        "grade": "S5",
+        "originator": "未具名业内专家电话（2025-09-18），Global Semi Research 知识星球编制"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文区间 1800 - 2100 万只的**上界**；下界见 expert-sep25-800g-demand-2025e。两条同 metric、同实体、同时点、同口径，只有 bound 不同——2026-09-12 的契约修订把 bound 并入 claim_key 后两端才能各自成条。**【口径提示 1】原文是「需求」不是「出货」**：shipment_basis 四个取值没有「市场需求」，取「未披露」并标明。**【口径提示 2】basis 是就近归类**：本条实为未具名专家口述估计，四个取值里没有「专家访谈/渠道调研」。rate_target=单模块，原文单位「万只」按只计数，不是端口速率。**交叉对照**：花旗同口径 2025E 为 2000 万只（citi-aug25-demand-800g-2025e），落在本区间内。"
+    },
+    {
+      "fact_id": "expert-sep25-800g-demand-2026e-upper",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-800g",
+        "label": "全球 800G 光模块市场"
+      },
+      "value": 3200.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "800G",
+        "shipment_basis": "未披露",
+        "basis": "预测",
+        "region": "Global",
+        "product_form": "光模块",
+        "customer": "未拆分"
+      },
+      "as_of": "2026E@2025-09",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "688d46ed401e8e2cbb7b63503b46ccd10cab1f20af831872bb0e31900f2d915c",
+        "local_file": "光模块出货量数据.xlsx",
+        "locator": "工作表「800G光模块」第 3 行列名「整体需求规模（万只）」，第 6 行「2026」，单元格 B6 = 「3000 - 3200」",
+        "grade": "S5",
+        "originator": "未具名业内专家电话（2025-09-18），Global Semi Research 知识星球编制"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文区间 3000 - 3200 万只的**上界**；下界见 expert-sep25-800g-demand-2026e。**这条上界很关键**：花旗同口径 2026E 为 4500 万只（citi-aug25-demand-800g-2026e），**比本区间上界还高 41%**；国信自测算 4000 万只（optics-800g-shipment-2026e）。三个数来自券商模型与专家口述，时点 2025-08／2025-09，**并列保留进核验，不取平均**。原文备注给了方向性理由：微软常经思科/Arista/Juniper 或英伟达代采购，订单落在设备厂商端，模块厂看不全，故微软实际需求可能远超表内的 250 万只——即这个区间偏保守。口径提示同下界条：需求非出货、basis 为就近归类、rate_target=单模块。"
+    },
+    {
+      "fact_id": "expert-sep25-1600g-demand-2025e-upper",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-1600g",
+        "label": "全球 1.6T 光模块市场"
+      },
+      "value": 350.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "1.6T",
+        "shipment_basis": "未披露",
+        "basis": "预测",
+        "region": "Global",
+        "product_form": "光模块",
+        "customer": "未拆分"
+      },
+      "as_of": "2025E@2025-09",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "688d46ed401e8e2cbb7b63503b46ccd10cab1f20af831872bb0e31900f2d915c",
+        "local_file": "光模块出货量数据.xlsx",
+        "locator": "工作表「1.6T」第 3 行列名「整体需求规模（万只）」，第 4 行「2025」，单元格 B4 = 「主要来自英伟达，需求量在 250 - 350 万只之间」",
+        "grade": "S5",
+        "originator": "未具名业内专家电话（2025-09-18），Global Semi Research 知识星球编制"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文区间 250 - 350 万只的**上界**；下界见 expert-sep25-1600g-demand-2025e。**结构提示**：原文明说这一年 1.6T「主要来自英伟达」，谷歌 20-30 万只，Meta/AWS「采购量不大可忽略」——2025 年的 1.6T 几乎是单一客户市场，用它做行业趋势要当心。**交叉对照**：花旗 2025E 为 250 万只，正好是本区间下界，即花旗取的是这个区间的悲观端。口径提示同下界条。"
+    },
+    {
+      "fact_id": "cmcc-idc-v32-floorload-mainroom-2019-upper",
+      "metric_id": "room_floor_load",
+      "entity": {
+        "type": "policy",
+        "id": "cmcc-idc-grade-2star-plus",
+        "label": "中国移动 IDC 等级评定标准 V3.2 二星级及以上要求"
+      },
+      "value": 12.0,
+      "unit": "kN/㎡",
+      "caliber": {
+        "room_type": "主机房",
+        "basis": "规范最低",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "未注明"
+      },
+      "as_of": "2019",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "8d02a6eb999d3987271bb7982312650d529d574ed3154bb4b6111e779cfdef18",
+        "local_file": "定制化IDC解决方案-方案建议.xlsx",
+        "locator": "工作表「场地设施方案建议」第 17 行「4.主机房楼板承重」，末列方案建议：「主机房活荷载标准值8~12kN/m2，不满足要求时，由设计院出具载荷报告，并进行过加固（二星级及以上）」；工作表「v3.2修改内容」第 18 行同文",
+        "grade": "S2",
+        "originator": "中国移动"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文区间 8~12 kN/㎡ 的**上界**；下界见 cmcc-idc-v32-floorload-mainroom-2019。**这是中国移动的企业准入标准，不是某个项目的设计取值，也不是国标**，按二星～钻石五星五档打分且五档全部适用。原文软化条款：「不满足要求时，由设计院出具载荷报告，并进行过加固」——不是一票否决，当硬门槛用会高估约束力。**交叉参考**：库内忠县那份的主机房设计取值 10 kN/㎡ 落在本区间内；同表电池室为 16 kN/㎡ 点值，比主机房上界还高 33%。工作表「v3.2修改内容」重复同一要求（同文件两个版本），不构成交叉验证。"
+    },
+    {
+      "fact_id": "gev-turbine-delivery-capacity-2026e",
+      "metric_id": "gas_turbine_capacity_annual",
+      "entity": {
+        "type": "company",
+        "id": "ge-vernova",
+        "label": "GE Vernova"
+      },
+      "value": 20.0,
+      "unit": "GW/年",
+      "caliber": {
+        "scope": "单一厂商",
+        "basis": "厂商披露",
+        "region": "Global"
+      },
+      "as_of": "2026E@2026-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "abcd9e03fc7cb07e00774248c1e6a7a3c28fa2aab54201dc61f57717455c60da",
+        "local_file": "20260528-电力设备-共享AIDC建设机遇，迎行业超级周期-海外电力设备巨头财报总结专题.pdf",
+        "locator": "第 9 页「GEV燃机：业绩、订单迅速增长」页：「根据公司指引，燃气轮机年交付量将在 2026 年中达到 20GW，2028 年进一步提升至 24GW」",
+        "grade": "S4",
+        "originator": "东吴证券（转述 GEV 公司指引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文说的是「年交付量」不是铭牌产能**，本指标名为年产能，二者在供不应求时接近但不等同——同页明说「产能与交付能力同步爬坡」「产能告紧」，即交付量此时受产能约束、可作产能下沿看待，但不要当成铭牌值。**这条同时是库内 gev-turbine-backlog-capacity-2026q1（5.00 年 = 100GW 在手 ÷ 20GW 年产能）那个分母的出处**：此前那条是跨报告计算值，分母 20GW 在这里得到公司指引层面的印证。**时点要看清**：原文是「2026 年中达到」，不是全年均值。basis=厂商披露（公司指引），非第三方统计。"
+    },
+    {
+      "fact_id": "gev-turbine-delivery-capacity-2028e",
+      "metric_id": "gas_turbine_capacity_annual",
+      "entity": {
+        "type": "company",
+        "id": "ge-vernova",
+        "label": "GE Vernova"
+      },
+      "value": 24.0,
+      "unit": "GW/年",
+      "caliber": {
+        "scope": "单一厂商",
+        "basis": "厂商披露",
+        "region": "Global"
+      },
+      "as_of": "2028E@2026-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "abcd9e03fc7cb07e00774248c1e6a7a3c28fa2aab54201dc61f57717455c60da",
+        "local_file": "20260528-电力设备-共享AIDC建设机遇，迎行业超级周期-海外电力设备巨头财报总结专题.pdf",
+        "locator": "第 9 页：「燃气轮机年交付量将在 2026 年中达到 20GW，2028 年进一步提升至 24GW」；另见第 1 页摘要「28年将扩产至24GW/年」",
+        "grade": "S4",
+        "originator": "东吴证券（转述 GEV 公司指引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**两年扩 20%（20→24GW）。**口径同 2026 条：原文为「年交付量」的公司指引，不是铭牌产能。**参照系**：库内 gas-turbine-capacity-big3-2025 为三大厂商合计 46 GW/年（2025，第三方统计）——若该合计口径不变，GEV 一家 2028 年的 24GW 就相当于 2025 年三家总和的一半以上，**但两条 scope 不同（单一厂商 vs 三大厂商合计）、basis 不同（厂商披露 vs 第三方统计），只能作量级参照，不能相除算份额**。第 1 页摘要把这句写成「扩产至 24GW/年」，与正文的「交付量」措辞不一致，以正文为准。"
+    },
+    {
+      "fact_id": "overseas-td-majors-backlog-leadtime-2026",
+      "metric_id": "transformer_lead_time",
+      "entity": {
+        "type": "industry",
+        "id": "overseas-td-equipment-majors",
+        "label": "海外输变电设备巨头（在手订单口径）"
+      },
+      "value": 24.0,
+      "unit": "月",
+      "caliber": {
+        "basis": "未披露",
+        "voltage": "未披露",
+        "region": "Global"
+      },
+      "as_of": "2026",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "abcd9e03fc7cb07e00774248c1e6a7a3c28fa2aab54201dc61f57717455c60da",
+        "local_file": "20260528-电力设备-共享AIDC建设机遇，迎行业超级周期-海外电力设备巨头财报总结专题.pdf",
+        "locator": "第 5 页：「产能释放节奏缓慢，在手订单交期普遍在2年以上：1）巨头投产主要集中在发达国家，因熟练工人不足，产能释放节奏缓慢；2）AI算力中心对变压器交期要求高，部分采取加价抢单或巨头分包给中国公司的形式」",
+        "grade": "S4",
+        "originator": "东吴证券"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**「2 年以上」是下界，且口径与库内那条不同，不要当成互相矛盾**：本条是**海外输变电设备巨头在手订单整体的消化交期**（订单簿口径，涵盖变压器与开关设备），库内 transformer-lead-time-iea-2026 是 IEA 给的**大型电力变压器采购交货周期 48 个月下界**（专项口径）。一个是「厂商订单排到多久」、一个是「买家下单到拿货多久」，后者天然更长，两条并列保留。**故意用了不同的 entity**（overseas-td-equipment-majors vs large-power-transformer）把两者隔开。原文补充两条机制：产能投放在发达国家、熟练工人不足；AIDC 客户加价抢单或由巨头分包给中国公司——**分包意味着名义交期与实际交付主体可能不是一回事**。"
+    },
+    {
+      "fact_id": "abilene-stargate-power-supplied-202501",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "project",
+        "id": "abilene-lancium-crusoe-campus",
+        "label": "Abilene 阿比林 Lancium Clean Campus（Crusoe/Oracle 建设，OpenAI Stargate 首站）"
+      },
+      "value": 2200.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "并网容量",
+        "status": "L5",
+        "region": "US"
+      },
+      "as_of": "2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f2f798cbc058360ea54f58fe0c95d06ce6cb5a79a373e151fd5f36ff0c99b0e0",
+        "local_file": "SemiAnalysis OpenAI Stargate Joint Venture Demystified (2025-01-23).pdf",
+        "locator": "第 5 页：「This campus … has a stated capacity on their website of 1GW energized in 2025. However, we have learned through multiple industry sources and filings that the campus has unlocked another 1GW. This is a total of 2.2GW of power supplied.」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（Lancium 官网 1GW + 行业来源与备案文件另 1GW）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**2.2GW 是供电侧口径（power supplied），不是 IT 容量**——同页作者据此估算 IT 容量 1.8GW（见 abilene-stargate-it-capacity-202501），两者差的是 PUE。**两个 1GW 的证据强度不同**：第一个 1GW 是 Lancium 官网自述「2025 年通电」，第二个 1GW 来自作者的行业来源与备案文件，未公开，标 [未核]。status=L5（电力确定）：电力已锁定，但园区 20 栋楼当时只有 2 栋在建。**注意 1+1=2.2 而非 2.0**，原文未解释多出的 0.2GW 从何而来。"
+    },
+    {
+      "fact_id": "abilene-stargate-it-capacity-202501",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "project",
+        "id": "abilene-lancium-crusoe-campus",
+        "label": "Abilene 阿比林 Lancium Clean Campus（Crusoe/Oracle 建设，OpenAI Stargate 首站）"
+      },
+      "value": 1800.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L5",
+        "region": "US"
+      },
+      "as_of": "2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f2f798cbc058360ea54f58fe0c95d06ce6cb5a79a373e151fd5f36ff0c99b0e0",
+        "local_file": "SemiAnalysis OpenAI Stargate Joint Venture Demystified (2025-01-23).pdf",
+        "locator": "第 5 页：「we estimate the campus has a Critical IT Capacity of 1.8GW based on our Datacenter Model. This is a PUE of ~1.25」；第 6 页：「The resulting total all-in IT power for the ~700k GPUs is 1.8GW, which ties out to the 1,800MW of capacity」",
+        "grade": "S5",
+        "originator": "SemiAnalysis Datacenter Model（第三方推算，非披露）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是第三方模型推算值，不是任何一方披露的容量**，grade 记 S5。作者用两条路互验并声称对得上：①2.2GW 供电 ÷ PUE≈1.25 → 1.8GW IT；②约 70 万颗 GPU（10 万 GB200 + 估 20 万 GB300 + 估 40 万 VR200）的 all-in IT 功耗 = 1.8GW。**但第二条路里的 GPU 数量本身也是从 1000 亿美元 TCO 反推的**，两条路共用同一套模型假设，**不构成独立交叉验证**。作者同页说明 PUE 若改善可能接近 2GW IT，但 GB300/VR200 功率密度上升会让改善变难。"
+    },
+    {
+      "fact_id": "abilene-stargate-it-capacity-underconstruction-202501",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "project",
+        "id": "abilene-lancium-crusoe-campus",
+        "label": "Abilene 阿比林 Lancium Clean Campus（Crusoe/Oracle 建设，OpenAI Stargate 首站）"
+      },
+      "value": 180.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L6",
+        "region": "US"
+      },
+      "as_of": "2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f2f798cbc058360ea54f58fe0c95d06ce6cb5a79a373e151fd5f36ff0c99b0e0",
+        "local_file": "SemiAnalysis OpenAI Stargate Joint Venture Demystified (2025-01-23).pdf",
+        "locator": "第 4 页：「Four of the ~120k square foot modules make up one 480k square foot building, so only two buildings are currently being built with ~180MW of Critical IT Capacity … the 20 building campus will be comprised of 80 of those modules」，依据 2024-12-29 的高分辨率园区照片",
+        "grade": "S5",
+        "originator": "SemiAnalysis（据 2024-12-29 卫星/航拍照片与模型）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这条是「真正动土的部分」，与同园区 1800MW（L5）差 10 倍，是把公告容量当在建容量的直接反例。**口径链条：4 个约 12 万平方英尺模块 = 1 栋 48 万平方英尺楼；当时仅 2 栋在建 ≈ 180MW Critical IT；满园 20 栋 = 80 个模块 = 1800MW，比例自洽（2/20 = 180/1800）。**同一份报告第 3 页却写「20 个数据中心中已有 10 个在阿比林 underway」**——「underway」（含已宣布、已批）与照片上真正在建的 2 栋不是一回事，引用时必须分清。时点：照片为 2024-12-29，报告为 2025-01-23。"
+    },
+    {
+      "fact_id": "openai-gb200-rental-rate-202501",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "market",
+        "id": "gb200-openai-stargate",
+        "label": "OpenAI 在 Stargate/Abilene 集群支付的 GB200 时租"
+      },
+      "value": 2.8,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "实际成交",
+        "unit": "单卡",
+        "region": "US"
+      },
+      "as_of": "2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f2f798cbc058360ea54f58fe0c95d06ce6cb5a79a373e151fd5f36ff0c99b0e0",
+        "local_file": "SemiAnalysis OpenAI Stargate Joint Venture Demystified (2025-01-23).pdf",
+        "locator": "第 6 页：「we estimate OpenAI is paying rougly ~$2.8 per GPU hour for the first GB200 cluster which is a TCO of $2.38 an hour for the full-scale cluster」",
+        "grade": "S5",
+        "originator": "SemiAnalysis 估算（非合同披露）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**price_type=实际成交是就近归类**：原文是作者对 OpenAI 实付租金的估算（「we estimate OpenAI is paying」），不是挂牌价也不是披露的合同价，四个取值里没有「第三方估算」，已标 [未核]。**同句里的 2.38 美元/小时是成本（TCO）不是租金**，本库没有 GPU 单位小时成本指标，未录——**两个数只差 0.42 美元，但一个是 OpenAI 付出去的、一个是资产方的全成本，混用会把 15% 的价差读成利润率**。计价单位=单卡（per GPU hour）。对照库内 h100-listed-range-2024（公开挂牌、区间跨 6.5 倍、value 为空）：那是零售挂牌，本条是超大规模自用集群的内部结算，两者不可比。"
+    },
+    {
+      "fact_id": "abilene-stargate-building-area-202501",
+      "metric_id": "dc_gross_floor_area",
+      "entity": {
+        "type": "project",
+        "id": "abilene-lancium-crusoe-campus",
+        "label": "Abilene 阿比林 Lancium Clean Campus（Crusoe/Oracle 建设，OpenAI Stargate 首站）"
+      },
+      "value": 44593.0,
+      "unit": "㎡",
+      "caliber": {
+        "area_scope": "主机房楼单体",
+        "stage": "设计",
+        "region": "US"
+      },
+      "as_of": "2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f2f798cbc058360ea54f58fe0c95d06ce6cb5a79a373e151fd5f36ff0c99b0e0",
+        "local_file": "SemiAnalysis OpenAI Stargate Joint Venture Demystified (2025-01-23).pdf",
+        "locator": "第 4 页：「Four of the ~120k square foot modules make up one 480k square foot building」；第 3 页另称 20 个数据中心「each roughly 500k square feet」",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**单位换算**：480,000 平方英尺 × 0.092903 = 44,593 ㎡，非再加工。**这是单栋主机房楼**，不是园区总面积；满园 20 栋 = 80 个约 12 万平方英尺（约 11,148 ㎡）的模块，园区合计约 96 万平方英尺 ≈ 891,900 ㎡。**同报告第 3 页写「每个数据中心约 50 万平方英尺」，第 4 页写「48 万平方英尺一栋」，相差 4%**，应是取整差异，本条按更具体的 48 万记。**可与 180MW/2 栋 对照得单栋约 90MW、约 2.0 kW/㎡ 的 IT 功率面积密度**——该推算未入库，因为本库没有「单位面积 IT 功率」指标。"
+    },
+    {
+      "fact_id": "h100-sxm-ondemand-best-202503",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "market",
+        "id": "h100-sxm-ondemand-neocloud",
+        "label": "H100 SXM Neocloud 按需挂牌价（市场最优）"
+      },
+      "value": 2.99,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "公开挂牌",
+        "unit": "单卡",
+        "region": "Global"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fcc906b58b7f83134cd141ebbc0f2aabc18fa446b2728967261eb5e4121f5a70",
+        "local_file": "SemiAnalysis The GPU Cloud ClusterMAX Rating System (2025-03-26).pdf",
+        "locator": "第 30 页「Pricing, Value, and Availability」：「based on a typical on-demand price of USD 2.99/hr/GPU for an H100 SXM with 8x400G InfiniBand, renting one server of 8 GPUs would cost USD 23.92 per hour and $574.08 per day」；同节另称「The current best on-demand pricing is $2.99 USD per hour per GPU」；第 60 页 Lambda Labs 同为 $2.99/hr/GPU",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "已交叉验证",
+      "notes": "**这是整份 ClusterMAX 评级体系的基准价，配置口径写得很死**：H100 SXM + 8×400G InfiniBand，单机 8 卡即 23.92 美元/小时、574.08 美元/天。**捆绑范围要看清**：多数 Neocloud 该价格含板载 CPU、网络、电力、本地 NVMe 与 Slurm/驱动配置，**但网络存储与对象存储另计**（高性能网络存储约 6-9 美分/GB/月，对象存储 2-3 美分/GB/月），拿它与含存储的报价直接比会低估。**原文同时称其为「typical」和「current best」，两者不是一个意思**，本条按点值记并标 [未核]。对照库内 h100-listed-range-2024（2024 年公开挂牌区间跨 6.5 倍、value 为空）：本条是一年后的具体锚点。 **同一句话在 2024-10-03 的《AI Neocloud Playbook and Anatomy》里逐字出现（2.99 / 23.92 / 574.08 完全相同）**——本条的 2025-03 时点可能只是文本沿用而非新观测，见 h100-sxm-ondemand-best-202410。"
+    },
+    {
+      "fact_id": "h100-india-gov-auction-1y-202503",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "market",
+        "id": "h100-india-gov-auction",
+        "label": "印度政府招标采购的 H100 SXM 一年期算力（拍卖成交）"
+      },
+      "value": 1.6,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "长约",
+        "unit": "单卡",
+        "region": "APAC"
+      },
+      "as_of": "2025-03",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "fcc906b58b7f83134cd141ebbc0f2aabc18fa446b2728967261eb5e4121f5a70",
+        "local_file": "SemiAnalysis The GPU Cloud ClusterMAX Rating System (2025-03-26).pdf",
+        "locator": "第 65 页：「in India – the Indian Government has been holding GPU pricing tender exercises where Neoclouds can offer compute for the government to purchase in an auction mechanism. This has yielded very low pricing – as low as about $1.60/hr per H100 SXM for a one year contract, demonstrating somewhat of a buyer's market in that country」",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**「as low as about」是观察到的最低成交，不是均价**，故记下界。**同一张卡、同一时点，印度政府拍卖的一年长约 1.60 美元只有全球按需最优价 2.99 美元的 54%**——差价来自三处叠加：拍卖机制、一年期锁定、买方市场，**不可当作「印度算力便宜 46%」这种简单结论**。原文同段还指出欧洲与亚太的挂牌价整体高于美国（数据驻留与本地化要求所致），**即区域价差在不同采购机制下方向相反**。region 记 APAC（枚举无 IN）。"
+    },
+    {
+      "fact_id": "h100-hyperscaler-1y-scraped-low-202503",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "market",
+        "id": "h100-hyperscaler-1y-listed",
+        "label": "超大规模云厂 H100 一年期官网挂牌价（网络抓取值）"
+      },
+      "value": 10.0,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "公开挂牌",
+        "unit": "单卡",
+        "region": "Global"
+      },
+      "as_of": "2025-03",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "fcc906b58b7f83134cd141ebbc0f2aabc18fa446b2728967261eb5e4121f5a70",
+        "local_file": "SemiAnalysis The GPU Cloud ClusterMAX Rating System (2025-03-26).pdf",
+        "locator": "第 67 页：「We have seen some scrapes that have shown a one year contract pricing of $10-$12 per hour for the H100. This is ridiculous, as one year of rental for a single H100 node would cost $770,000 – over three times the upfront capital cost to deploy this node. Deals are never executed at this level of pricing.」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（转述第三方网络抓取，并明确否定其有效性）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这条录进来是当反例用的。**原文明说「Deals are never executed at this level of pricing」——抓取到的挂牌价与实际成交价差一个数量级（10-12 美元 vs Neocloud 按需最优 2.99 美元），**投资人用网页抓取推算云厂算力收入会系统性高估**。作者的证伪算式：单节点 8 卡按 10-12 美元/卡/小时租一年 ≈ 77 万美元，是该节点部署资本开支的三倍以上（隐含单节点 capex 约 25 万美元）。**price_type=公开挂牌 正是它与实际成交的分野**；上界 12 见 h100-hyperscaler-1y-scraped-high-202503。原文补充：云厂的现货与按需实际成交量很小，且普遍有大幅不可见折扣。"
+    },
+    {
+      "fact_id": "h100-hyperscaler-1y-scraped-high-202503",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "market",
+        "id": "h100-hyperscaler-1y-listed",
+        "label": "超大规模云厂 H100 一年期官网挂牌价（网络抓取值）"
+      },
+      "value": 12.0,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "公开挂牌",
+        "unit": "单卡",
+        "region": "Global"
+      },
+      "as_of": "2025-03",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "fcc906b58b7f83134cd141ebbc0f2aabc18fa446b2728967261eb5e4121f5a70",
+        "local_file": "SemiAnalysis The GPU Cloud ClusterMAX Rating System (2025-03-26).pdf",
+        "locator": "第 67 页：「some scrapes that have shown a one year contract pricing of $10-$12 per hour for the H100 … Deals are never executed at this level of pricing」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（转述第三方网络抓取，并明确否定其有效性）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间 10-12 美元的上界，下界见 h100-hyperscaler-1y-scraped-low-202503。**同样是反例**：作者明确表示这个价位不会有真实成交。留存的意义是给「挂牌价 vs 成交价」的偏离度一个上沿。"
+    },
+    {
+      "fact_id": "nebius-h100-ondemand-promo-202503",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "company",
+        "id": "nebius",
+        "label": "Nebius"
+      },
+      "value": 1.5,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "公开挂牌",
+        "unit": "单卡",
+        "region": "Global"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fcc906b58b7f83134cd141ebbc0f2aabc18fa446b2728967261eb5e4121f5a70",
+        "local_file": "SemiAnalysis The GPU Cloud ClusterMAX Rating System (2025-03-26).pdf",
+        "locator": "第 46 页：「offering on-demand NVIDIA H100 GPUs at roughly $1.50 per hour (at least for the first thousand hours per month) —half the cost charged by competitors like Lambda Labs」；第 66 页重述：「Nebius' on-demand offering at $1.50 per hour for the first 1,000 GPU-hours per month」",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**有用量上限的引流价，不是全量价**：仅适用于每月前 1,000 GPU 小时，超出部分原文未给价。**caliber 里没有一维能表达这个用量门槛**，只能写在这里——**直接把 1.50 当作 Nebius 的市场价会低估约一半**（同期 Lambda Labs H100 SXM 为 2.99 美元/卡/小时，原文称 Nebius 是其一半）。作者同时指出即便半价，Nebius 因 UI/UX 落后仍难获客——**价格不是唯一变量**。"
+    },
+    {
+      "fact_id": "h100-sxm-ondemand-best-202410",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "market",
+        "id": "h100-sxm-ondemand-neocloud",
+        "label": "H100 SXM Neocloud 按需挂牌价（市场最优）"
+      },
+      "value": 2.99,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "公开挂牌",
+        "unit": "单卡",
+        "region": "Global"
+      },
+      "as_of": "2024-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "74c37d3d61327898d5664c6b2b1f8116f6d2d82acb99ddf27877bae820154c35",
+        "local_file": "SemiAnalysis AI Neocloud Playbook and Anatomy (2024-10-03).pdf",
+        "locator": "第 47 页「Pricing and Contract Types」：「based on a typical on-demand price of $2.99 USD/hr/GPU for an H100 SXM with 8x400G InfiniBand, renting one server of 8 GPUs would cost $23.92 USD per hour and $574.08 per day」",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "已交叉验证",
+      "notes": "**重要发现：这句话在 2025-03 的 ClusterMAX 报告里逐字重复（同为 2.99 / 23.92 / 574.08）。**两处一字不差，说明 2025-03 那条大概率是沿用 2024-10 的旧文，**不能当作 2025 年 3 月的新观测**——库内 h100-sxm-ondemand-best-202503 已加注同一提示。两条并存的意义正在于此：**同一个「当前最优按需价」被标注了相隔五个月的两个时点，而数字纹丝不动**，要么是市场真的没动，要么是文本复用，无法从这两份文件本身区分。配置口径：H100 SXM + 8×400G InfiniBand，含 CPU/网络/电力/本地 NVMe/SLURM，网络存储（6-9 美分/GB/月）与对象存储（2-3 美分/GB/月）另计。"
+    },
+    {
+      "fact_id": "vc-platform-h100-shortterm-low-202410",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "market",
+        "id": "vc-platform-h100-shortterm",
+        "label": "VC 平台集群对被投企业的 H100 短租价（周级）"
+      },
+      "value": 2.3,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "现货",
+        "unit": "单卡",
+        "region": "Global"
+      },
+      "as_of": "2024-10",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "74c37d3d61327898d5664c6b2b1f8116f6d2d82acb99ddf27877bae820154c35",
+        "local_file": "SemiAnalysis AI Neocloud Playbook and Anatomy (2024-10-03).pdf",
+        "locator": "第 46 页：「they can spin up 1k GPU clusters for just a week at competitive prices in the $2.30-$2-50 per GPU per hour range – well below Neocloud Giant prices」（原文上界处印作「$2-50」，应为 $2.50）",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是一条「反直觉」的价格**：周级短租通常最贵，但 VC 平台（Andromeda、AI2、Computefund.ai、a16z 等）给被投企业的 1000 卡一周集群反而 2.30-2.50 美元，**低于同期按需最优 2.99 美元**。原因不是市场价，是**关联方定价**：VC 用算力条件换投资关系，且自己不运营、转包给 Neocloud Giants 托管。**拿它当市场短租基准会低估真实短租成本**。上界见 vc-platform-h100-shortterm-high-202410。price_type=现货 是就近归类（周级、无长期承诺），但它既非公开挂牌也非公开市场成交，标 [未核]。"
+    },
+    {
+      "fact_id": "vc-platform-h100-shortterm-high-202410",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "market",
+        "id": "vc-platform-h100-shortterm",
+        "label": "VC 平台集群对被投企业的 H100 短租价（周级）"
+      },
+      "value": 2.5,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "现货",
+        "unit": "单卡",
+        "region": "Global"
+      },
+      "as_of": "2024-10",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "74c37d3d61327898d5664c6b2b1f8116f6d2d82acb99ddf27877bae820154c35",
+        "local_file": "SemiAnalysis AI Neocloud Playbook and Anatomy (2024-10-03).pdf",
+        "locator": "第 46 页：「competitive prices in the $2.30-$2-50 per GPU per hour range」（原文印作「$2-50」，按上下文应为 $2.50）",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上界，下界见 vc-platform-h100-shortterm-low-202410。**原文此处有印刷错误**：写作「$2.30-$2-50」，按上下文判为 $2.50，已标 [未核]。口径说明同下界条：关联方定价、周级、1000 卡规模、由 Neocloud Giants 代运营。"
+    },
+    {
+      "fact_id": "global-gas-turbine-capacity-2025",
+      "metric_id": "gas_turbine_capacity_annual",
+      "entity": {
+        "type": "industry",
+        "id": "global-gas-turbine-supply",
+        "label": "全球燃气轮机生产产能"
+      },
+      "value": 64.0,
+      "unit": "GW/年",
+      "caliber": {
+        "scope": "全球",
+        "basis": "券商估算",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b500296f7f7fe6d2f08bf02f00aac96a4395e146251fdc1bac111d750208cd67",
+        "local_file": "Bernstein Powering AI - Mapping the gas turbine supply stack (2026-06-18).pdf",
+        "locator": "第 2 页「TURBINE POWER GENERATION CAPACITY EXPANSION HAS BEEN DISCIPLINED」：「Global turbine capacity is set to increase from 64 GW in 2025 to 109 GW by 2030 (>60% growth), with ~75% driven by the big-3 OEMs (Exhibit 1)」；Exhibit 1 标题写明为 gas turbine production capacity",
+        "grade": "S3",
+        "originator": "Bernstein（伯恩斯坦）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**与库内 gas-turbine-capacity-big3-2025（三大厂商合计 46 GW/年，2025，第三方统计）互为印证**：本条全球 64 GW × 原文「约 75% 由三大 OEM 贡献」= 48 GW，与 46 GW 相差 4%，两个独立来源基本对上。**一处口径瑕疵要记住**：Exhibit 1 标题说的是 gas turbine production capacity，但同页给西门子能源的 31GW 明确「incl. steam（汽轮机约占其总产能 20%）」，**即这个全球合计里至少混进了西门子的汽轮机产能**，纯燃机口径应略低于 64GW。原文强调本轮扩产以棕地复产（de-mothballing）为主而非绿地新建，因此产能可随需求回落而收缩，与 2000 年代那轮过度扩张不同。"
+    },
+    {
+      "fact_id": "global-gas-turbine-capacity-2030e",
+      "metric_id": "gas_turbine_capacity_annual",
+      "entity": {
+        "type": "industry",
+        "id": "global-gas-turbine-supply",
+        "label": "全球燃气轮机生产产能"
+      },
+      "value": 109.0,
+      "unit": "GW/年",
+      "caliber": {
+        "scope": "全球",
+        "basis": "券商估算",
+        "region": "Global"
+      },
+      "as_of": "2030E@2026-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b500296f7f7fe6d2f08bf02f00aac96a4395e146251fdc1bac111d750208cd67",
+        "local_file": "Bernstein Powering AI - Mapping the gas turbine supply stack (2026-06-18).pdf",
+        "locator": "第 2 页：「Global turbine capacity is set to increase from 64 GW in 2025 to 109 GW by 2030 (>60% growth)」；摘要页另处写作「rising >60% to ~110GW by 2030」",
+        "grade": "S3",
+        "originator": "Bernstein（伯恩斯坦）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "五年增 >60%、净增逾 40GW，其中约四分之三由三大 OEM 贡献。**同一份报告里这个数出现两个写法**：正文 109GW、摘要 ~110GW，本条取正文的 109。**与需求侧对照**：报告预测燃机需求由 2025 年约 96GW 增至 2030 年约 110GW——**即 2025 年需求（96GW）远高于产能（64GW），到 2030 年两者才接近**，这正是报告「supply-demand still tight」判断的算术基础。需求侧那两个数本库没有指标可放（见 metric_gaps）。"
+    },
+    {
+      "fact_id": "gev-gas-turbine-capacity-2025-bernstein",
+      "metric_id": "gas_turbine_capacity_annual",
+      "entity": {
+        "type": "company",
+        "id": "ge-vernova",
+        "label": "GE Vernova"
+      },
+      "value": 16.0,
+      "unit": "GW/年",
+      "caliber": {
+        "scope": "单一厂商",
+        "basis": "券商估算",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b500296f7f7fe6d2f08bf02f00aac96a4395e146251fdc1bac111d750208cd67",
+        "local_file": "Bernstein Powering AI - Mapping the gas turbine supply stack (2026-06-18).pdf",
+        "locator": "第 2 页：「produce a similar mapping for GE Vernova as capacity scales from 16 GW to 24 GW by 2028 (Exhibit 3)」；Exhibit 3 说明称该产能模型由公司报告搭建，重型机型将在 FY28 前增约 8GW",
+        "grade": "S3",
+        "originator": "Bernstein（据 GEV 公司报告自建产能模型）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**基年是推断的**：原文只说「从 16GW 增至 2028 年的 24GW」，未标明 16GW 对应哪一年；结合同页「2026 年年中达到 20GW」判断 16GW 是 2026 年之前（FY25）的水平，已标 [未核]。**16 → 24GW 的增量约 8GW 全部来自重型机型**（重型产量由 55 台增至 FY26 末的 70-80 台，2028 年 90-100 台），航改机型仅小幅增长。basis=券商估算（Bernstein 自建模型），与同项的厂商指引口径条目不可混。"
+    },
+    {
+      "fact_id": "gev-gas-turbine-capacity-2026e-bernstein",
+      "metric_id": "gas_turbine_capacity_annual",
+      "entity": {
+        "type": "company",
+        "id": "ge-vernova",
+        "label": "GE Vernova"
+      },
+      "value": 20.0,
+      "unit": "GW/年",
+      "caliber": {
+        "scope": "单一厂商",
+        "basis": "厂商披露",
+        "region": "Global"
+      },
+      "as_of": "2026E@2026-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b500296f7f7fe6d2f08bf02f00aac96a4395e146251fdc1bac111d750208cd67",
+        "local_file": "Bernstein Powering AI - Mapping the gas turbine supply stack (2026-06-18).pdf",
+        "locator": "第 60 页「GE Vernova have planned the following」：「On track to increase total capacity to 20GW by mid-2026」",
+        "grade": "S3",
+        "originator": "Bernstein 转述 GEV 公司计划"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**与库内 gev-turbine-delivery-capacity-2026e（东吴证券，2026-05 时点，同为 20GW）数值完全一致**，两家券商相隔一个月转述同一条 GEV 指引。**但这不构成独立交叉验证**——两者的原始信源都是 GEV 自己的指引，按本库规则「转载同一原文不算独立来源」，故仍记待交叉验证。**措辞差异值得留意**：东吴写「年交付量」，本份写「total capacity」，一个是出得去多少、一个是能造多少，在产能紧张期二者接近但概念不同。时点均为「2026 年年中」，不是全年。"
+    },
+    {
+      "fact_id": "gev-gas-turbine-capacity-2028e-bernstein",
+      "metric_id": "gas_turbine_capacity_annual",
+      "entity": {
+        "type": "company",
+        "id": "ge-vernova",
+        "label": "GE Vernova"
+      },
+      "value": 24.0,
+      "unit": "GW/年",
+      "caliber": {
+        "scope": "单一厂商",
+        "basis": "厂商披露",
+        "region": "Global"
+      },
+      "as_of": "2028E@2026-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b500296f7f7fe6d2f08bf02f00aac96a4395e146251fdc1bac111d750208cd67",
+        "local_file": "Bernstein Powering AI - Mapping the gas turbine supply stack (2026-06-18).pdf",
+        "locator": "第 60 页：「To raise production to ~24GW in 2028, including 90 – 100 heavy-duty gas units」",
+        "grade": "S3",
+        "originator": "Bernstein 转述 GEV 公司计划"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**与库内 gev-turbine-delivery-capacity-2028e（东吴证券，2026-05 时点，同为 24GW）一致**，同样源自 GEV 指引，不算独立交叉验证。**本份多给了台数口径**：24GW 对应 90-100 台重型燃机，即单台约 240-267MW；重型产量路径为 55 台 → FY26 末 70-80 台 → 2028 年 90-100 台。台数口径本库无指标（见 metric_gaps）。"
+    },
+    {
+      "fact_id": "siemens-gas-turbine-capacity-2030e-exsteam",
+      "metric_id": "gas_turbine_capacity_annual",
+      "entity": {
+        "type": "company",
+        "id": "siemens-energy",
+        "label": "Siemens Energy"
+      },
+      "value": 24.8,
+      "unit": "GW/年",
+      "caliber": {
+        "scope": "单一厂商",
+        "basis": "券商估算",
+        "region": "Global"
+      },
+      "as_of": "2030E@2026-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b500296f7f7fe6d2f08bf02f00aac96a4395e146251fdc1bac111d750208cd67",
+        "local_file": "Bernstein Powering AI - Mapping the gas turbine supply stack (2026-06-18).pdf",
+        "locator": "第 2 页：「Siemens Energy can nearly double capacity to 31 GW (incl. steam) by 2030 (Exhibit 2)」；第 59 页：「All of these increases help Siemens Energy to reach an available capacity of ~31GW by 2030 … As mentioned previously, this includes steam turbines (roughly 20% of Siemens Energy's total capacity)」",
+        "grade": "S3",
+        "originator": "Bernstein（伯恩斯坦）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**这是算出来的数，不是原文的数。**算法：原文口径 31 GW（含汽轮机）× (1 − 20%) = 24.8 GW，被减项是汽轮机产能（原文称汽轮机「roughly 20% of Siemens Energy's total capacity」）。**为什么要剥**：本指标是燃气轮机年产能，31GW 含汽轮机，与 GEV 的纯燃机 24GW 并列会高估西门子约 25%。**「roughly 20%」是约数，故 24.8 也是约数**，标 [未核]；需要精确值须回 Exhibit 2 分机型明细。原文另称西门子 2030 年产能将是各 OEM 中最高，增量最大的是 HL 级重型机（FY25→FY30 增约 6GW），中型与航改机型台数翻倍，扩产集中在柏林、夏洛特、芬斯邦三地，蒙特利尔航改产线复产。"
+    },
+    {
+      "fact_id": "siemens-dc-order-share-fy2025",
+      "metric_id": "gas_turbine_dc_order_share",
+      "entity": {
+        "type": "company",
+        "id": "siemens-energy",
+        "label": "Siemens Energy"
+      },
+      "value": 21.0,
+      "unit": "%",
+      "caliber": {
+        "region_scope": "全球",
+        "taxonomy": "按终端用途",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b500296f7f7fe6d2f08bf02f00aac96a4395e146251fdc1bac111d750208cd67",
+        "local_file": "Bernstein Powering AI - Mapping the gas turbine supply stack (2026-06-18).pdf",
+        "locator": "第 58 页：「In FY25, Siemens Energy disclosed the end-market point of orders, and whilst conventional still accounted for the majority (~58%), ~21% is allocated solely to data centers, clearly the second highest market (Exhibit 88). This data point has not been disclosed before」",
+        "grade": "S2",
+        "originator": "西门子能源 FY25 披露（经 Bernstein 转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是西门子能源首次披露订单的终端市场构成**（原文明说 has not been disclosed before），因此没有历史序列可比。同口径下常规电力仍占约 58%，数据中心 21% 位居第二。**计量口径原文未说明**——是按金额、按容量还是按台数不得而知，标 [未核]，这也是本库该指标缺一维 measure 的原因。**与库内 gas-turbine-dc-order-share-2024（全球 6.0%，2024）落差极大**：一个是市场级、一个是单一厂商，且时点差一年，**不可当作「一年从 6% 涨到 21%」**。"
+    },
+    {
+      "fact_id": "big3-dc-order-share-2026-low",
+      "metric_id": "gas_turbine_dc_order_share",
+      "entity": {
+        "type": "industry",
+        "id": "big3-gas-turbine-orders",
+        "label": "三大燃机 OEM 新增订单（GEV/西门子能源/三菱重工）"
+      },
+      "value": 20.0,
+      "unit": "%",
+      "caliber": {
+        "region_scope": "全球",
+        "taxonomy": "按终端用途",
+        "region": "Global"
+      },
+      "as_of": "2026",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "b500296f7f7fe6d2f08bf02f00aac96a4395e146251fdc1bac111d750208cd67",
+        "local_file": "Bernstein Powering AI - Mapping the gas turbine supply stack (2026-06-18).pdf",
+        "locator": "摘要页：「DCs now represent a visible share of 'big-3' orders (~20-30%), with gas generation expected to meet ~50% of incremental DC demand through 2030」",
+        "grade": "S3",
+        "originator": "Bernstein（伯恩斯坦）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间 20-30% 的下界，上界见 big3-dc-order-share-2026-high。**口径是三大 OEM 的新增订单，不是全市场**；与库内 gas-turbine-dc-order-share-2024（全球 6.0%）范围不同，不可直接接成时间序列。**同报告给出的分厂商佐证互相打架，要小心**：西门子 FY25 披露为 21%（落在区间内），而 GEV 在 2025 年 12 月投资者日说在手订单里超大规模客户「only 10%」、但预计未来将升至「more like a third」——**10%（在手存量）、21%（西门子当年订单）、1/3（GEV 前瞻）三个数分别是三种口径**，本库该指标缺 order_basis 维度，故只录了区间与西门子那条。"
+    },
+    {
+      "fact_id": "big3-dc-order-share-2026-high",
+      "metric_id": "gas_turbine_dc_order_share",
+      "entity": {
+        "type": "industry",
+        "id": "big3-gas-turbine-orders",
+        "label": "三大燃机 OEM 新增订单（GEV/西门子能源/三菱重工）"
+      },
+      "value": 30.0,
+      "unit": "%",
+      "caliber": {
+        "region_scope": "全球",
+        "taxonomy": "按终端用途",
+        "region": "Global"
+      },
+      "as_of": "2026",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "b500296f7f7fe6d2f08bf02f00aac96a4395e146251fdc1bac111d750208cd67",
+        "local_file": "Bernstein Powering AI - Mapping the gas turbine supply stack (2026-06-18).pdf",
+        "locator": "摘要页：「DCs now represent a visible share of 'big-3' orders (~20-30%)」",
+        "grade": "S3",
+        "originator": "Bernstein（伯恩斯坦）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上界，下界见 big3-dc-order-share-2026-low。口径说明同下界条。**这个上界与 GEV 前瞻的「约三分之一」量级一致**，可作为该指标未来一年的观察靶点。"
     }
   ]
 }

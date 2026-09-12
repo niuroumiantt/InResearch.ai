@@ -1419,6 +1419,8 @@ class M07MenuTests(unittest.TestCase):
         rows = [f for f in store['records']
                 if f['metric_id'] == 'optics_module_shipment']
         self.assertGreater(len(rows), 30)
+        # 区间的上界是后来另一台机器补的，与它自己的下界共用一个口径——
+        # 两端共用口径是 bound 这个字段的定义，不是巧合。
         for f in rows:
             self.assertEqual(f['caliber'].get('product_form'), '光模块', f['fact_id'])
             self.assertEqual(f['caliber'].get('customer'), '未拆分', f['fact_id'])
@@ -1669,6 +1671,8 @@ class M05M09MenuTests(unittest.TestCase):
         rows = [f for f in store['records']
                 if f['metric_id'] in ('room_floor_load', 'room_clear_height')]
         self.assertTrue(rows)
+        self.assertTrue(any(f.get('bound') == 'upper' for f in rows),
+                        '上界那条应当也在，且同样带着这两维')
         for f in rows:
             self.assertEqual(f['caliber']['tier'], '未注明', f['fact_id'])
             self.assertEqual(f['caliber']['build_type'], '未注明', f['fact_id'])
@@ -1869,6 +1873,59 @@ class BackfillProvenanceTests(unittest.TestCase):
         abbreviated = [f for f in owing
                        if L2.HEX12.match(str((f['evidence'] or {}).get('source_id') or ''))]
         self.assertEqual(len(abbreviated), 81)
+
+
+class RangeCaliberTests(unittest.TestCase):
+    """区间的两端共用一个口径——这是 bound 这个字段的定义。
+
+    两台机器并行改动时撞出来的：M4 按 #150 的新写法补了四条区间上界，
+    而我同时给那几个指标加了维度。合并后上界缺维，下界不缺。
+    补齐时不是猜，是照它自己那一端抄——两端如果口径不同，它们本来就不是
+    同一个区间的两端。
+    """
+
+    def setUp(self):
+        store = json.loads((Path(L2.__file__).resolve().parent.parent /
+                            'data/facts.json').read_text(encoding='utf-8'))
+        self.records = store['records']
+        self.by_id = {f['fact_id']: f for f in self.records}
+
+    def test_the_corpus_actually_holds_ranges_now(self):
+        """1800-2100 万只——当初逼出 bound 那条改动的就是它。"""
+        bounded = [f for f in self.records if f.get('bound')]
+        self.assertGreater(len(bounded), 4)
+
+    def test_both_ends_of_every_range_share_one_caliber(self):
+        pairs = 0
+        for fact in self.records:
+            if fact.get('bound') != 'upper':
+                continue
+            twin = self.by_id.get(fact['fact_id'][:-6])
+            if twin is None:            # 上界不一定按这个命名法配对
+                continue
+            pairs += 1
+            self.assertEqual(fact['caliber'], twin['caliber'], fact['fact_id'])
+            self.assertEqual(fact['metric_id'], twin['metric_id'], fact['fact_id'])
+            self.assertEqual(str(fact['as_of']), str(twin['as_of']), fact['fact_id'])
+        self.assertGreater(pairs, 3)
+
+    def test_an_upper_is_never_below_its_lower(self):
+        for fact in self.records:
+            if fact.get('bound') != 'upper' or fact.get('value') is None:
+                continue
+            twin = self.by_id.get(fact['fact_id'][:-6])
+            if twin is None or twin.get('value') is None:
+                continue
+            self.assertGreaterEqual(fact['value'], twin['value'], fact['fact_id'])
+
+    def test_every_range_end_validates_against_the_current_menu(self):
+        metrics = L2.load_metrics()
+        for fact in self.records:
+            if not fact.get('bound'):
+                continue
+            problems = [p for p in L2.check_fact(fact, metrics, set(), None)
+                        if 'sha256' not in p]
+            self.assertEqual(problems, [], fact['fact_id'])
 
 
 if __name__ == '__main__':
