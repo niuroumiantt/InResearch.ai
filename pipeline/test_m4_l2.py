@@ -1928,5 +1928,174 @@ class RangeCaliberTests(unittest.TestCase):
             self.assertEqual(problems, [], fact['fact_id'])
 
 
+class M03M04MenuTests(unittest.TestCase):
+    """M03 资本开支、M04 电力：17 条缺口。
+
+    这一批的主题是**同一份报告里两个都对、方向相反的数**——
+    美国近一半的电力增长来自数据中心，全球口径下不到 10%；
+    2030 年用电 945 与 1260 出自同一页的两个情景。
+    单独引用任何一个都能得出一个立场。
+    """
+
+    def setUp(self):
+        self.metrics = L2.load_metrics()
+
+    def dim(self, mid, did):
+        return next(d for d in self.metrics[mid]['caliber_dims'] if d['id'] == did)
+
+    def test_every_new_metric_exists(self):
+        for mid, module in (('capex_growth_rate', 'M03'),
+                            ('forecast_revision_delta', 'M03'),
+                            ('capex_share_by_segment', 'M03'),
+                            ('installed_server_base', 'M03'),
+                            ('dc_electricity_consumption', 'M04'),
+                            ('dc_demand_source_mix', 'M04'),
+                            ('dc_demand_source_share', 'M04'),
+                            ('dc_share_of_load_growth', 'M04'),
+                            ('gas_turbine_demand_annual', 'M04'),
+                            ('gas_turbine_units', 'M04'),
+                            ('dc_capacity_additions_annual', 'M04'),
+                            ('vendor_order_target', 'M04'),
+                            ('corporate_ppa_capacity', 'M04'),
+                            ('ppa_coverage_share', 'M04')):
+            self.assertEqual(self.metrics[mid]['module'], module, mid)
+            self.assertTrue(self.metrics[mid]['unit'], mid)
+
+    # -- 四个情景不是四家打架 ----------------------------------------------
+    def test_scenario_is_not_basis(self):
+        d = self.dim('dc_electricity_consumption', 'scenario')
+        for v in ('Base Case', 'Lift-Off', 'High Efficiency', 'Headwinds'):
+            self.assertIn(v, d['values'], v)
+        self.assertIn('945', d['note'])
+        self.assertIn('1260', d['note'])
+        self.assertIn('出自同一页', d['note'])
+
+    def test_a_single_scenario_is_not_the_base_case(self):
+        note = self.dim('dc_electricity_consumption', 'scenario')['note']
+        self.assertIn('单一情景', self.dim('dc_electricity_consumption',
+                                           'scenario')['values'])
+        self.assertIn('不要拿它当 Base Case', note)
+
+    def test_foreign_scenario_names_are_reported_not_mapped(self):
+        self.assertIn('不要硬映射',
+                      self.dim('dc_electricity_consumption', 'scenario')['note'])
+
+    # -- TWh 不是 GW -------------------------------------------------------
+    def test_energy_is_not_power(self):
+        note = self.metrics['dc_electricity_consumption']['note']
+        self.assertIn('TWh 不是 GW', note)
+        self.assertIn('global_dc_it_load', note)
+        self.assertIn('绝不可互换或直接换算', note)
+
+    # -- 两个都对、方向相反 ------------------------------------------------
+    def test_the_pair_that_must_be_stored_together(self):
+        note = self.metrics['dc_share_of_load_growth']['note']
+        self.assertIn('成对存储', note)
+        self.assertIn('只录其中一条等于挑了一个立场', note)
+
+    def test_it_is_distinguished_from_the_geographic_concentration_metric(self):
+        self.assertIn('load_growth_concentration',
+                      self.metrics['dc_share_of_load_growth']['note'])
+
+    # -- 存量地理分布不需要新指标 ------------------------------------------
+    def test_stock_concentration_reuses_the_existing_dimension(self):
+        """查过菜单才动手：basis_type 已经能区分存量与增量。"""
+        d = self.dim('load_growth_concentration', 'scope')
+        self.assertIn('前五集群', d['values'])
+        self.assertIn('不需要另立指标', d['note'])
+        self.assertIn('存量占比',
+                      self.dim('load_growth_concentration', 'basis_type')['values'])
+
+    # -- 产能没有需求就证不出结论 ------------------------------------------
+    def test_demand_exists_because_the_conclusion_needs_both_sides(self):
+        note = self.metrics['gas_turbine_demand_annual']['note']
+        self.assertIn('96GW', note)
+        self.assertIn('64GW', note)
+        self.assertIn('在库里就是不可复现的', note)
+
+    # -- 台数看得出单机在变大 ----------------------------------------------
+    def test_unit_counts_reveal_what_capacity_alone_hides(self):
+        note = self.metrics['gas_turbine_units']['note']
+        self.assertIn('240-267MW', note)
+        self.assertIn('看不出单机在变大还是变多', note)
+
+    # -- 三种订单口径 ------------------------------------------------------
+    def test_order_basis_separates_three_numbers_from_one_page(self):
+        d = self.dim('gas_turbine_dc_order_share', 'order_basis')
+        self.assertEqual(d['values'], ['新增订单', '在手订单', '前瞻指引'])
+        self.assertIn('看着是同一个指标在打架', d['note'])
+
+    def test_an_unstated_measure_stays_unstated(self):
+        d = self.dim('gas_turbine_dc_order_share', 'measure')
+        self.assertIn('未注明', d['values'])
+        self.assertIn('改写成一条假的「知道」', d['note'])
+
+    def test_the_four_order_share_facts_were_backfilled_from_their_own_notes(self):
+        """回填依据在每条事实自己的 notes 里，不是按 fact_id 猜的。"""
+        store = json.loads((Path(L2.__file__).resolve().parent.parent /
+                            'data/facts.json').read_text(encoding='utf-8'))
+        rows = {f['fact_id']: f for f in store['records']
+                if f['metric_id'] == 'gas_turbine_dc_order_share'}
+        self.assertEqual(len(rows), 4)
+        for f in rows.values():
+            self.assertEqual(f['caliber']['order_basis'], '新增订单', f['fact_id'])
+        # 分母写着 58GW，是容量口径
+        self.assertEqual(rows['gas-turbine-dc-order-share-2024']['caliber']['measure'],
+                         '按容量')
+        # 原文明说计量口径未说明，库内已标 [未核]
+        self.assertEqual(rows['siemens-dc-order-share-fy2025']['caliber']['measure'],
+                         '未注明')
+
+    # -- 上修 67% 与下修 67% -----------------------------------------------
+    def test_revision_direction_keeps_the_value_positive(self):
+        d = self.dim('forecast_revision_delta', 'revision_direction')
+        self.assertIn('value 一律取正数', d['note'])
+
+    def test_revision_is_not_the_consensus_delta(self):
+        note = self.metrics['forecast_revision_delta']['note']
+        self.assertIn('capex_vs_consensus_delta', note)
+        self.assertIn('前者说的是分歧，后者说的是改口', note)
+
+    # -- 存量不是流量 ------------------------------------------------------
+    def test_installed_base_is_not_shipments(self):
+        note = self.metrics['installed_server_base']['note']
+        self.assertIn('server_unit_shipments', note)
+        self.assertIn('存量不是流量', note)
+
+    def test_the_tier_thresholds_are_themselves_facts(self):
+        note = self.dim('installed_server_base', 'provider_tier')['note']
+        self.assertIn('这些门槛本身也是事实', note)
+
+    # -- 「超过一半」是下界 ------------------------------------------------
+    def test_more_than_half_is_a_lower_bound(self):
+        note = self.metrics['capex_share_by_segment']['note']
+        self.assertIn('下界不是点估计', note)
+        self.assertIn('不要自己取中值', note)
+
+    # -- CAGR 要带窗口 -----------------------------------------------------
+    def test_a_cagr_without_its_window_is_unusable(self):
+        note = self.dim('capex_growth_rate', 'period_basis')['note']
+        self.assertIn('必须在 notes 里写明起止年', note)
+
+    def test_growth_rates_do_not_add_up(self):
+        self.assertIn('两个分部各增 30% 不等于合计增 30%',
+                      self.metrics['capex_growth_rate']['note'])
+
+    # -- PPA 三个相邻指标 --------------------------------------------------
+    def test_ppa_capacity_is_none_of_the_three_neighbours(self):
+        note = self.metrics['corporate_ppa_capacity']['note']
+        self.assertIn('green_direct_capacity', note)
+        self.assertIn('contracted_power_capacity', note)
+        self.assertIn('三者测的是三件事', note)
+
+    def test_built_and_under_construction_do_not_add(self):
+        self.assertIn('不可相加',
+                      self.dim('corporate_ppa_capacity', 'status')['note'])
+
+    def test_coverage_is_a_paper_figure(self):
+        self.assertIn('不等于「实际覆盖」',
+                      self.metrics['ppa_coverage_share']['note'])
+
+
 if __name__ == '__main__':
     unittest.main()

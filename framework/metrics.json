@@ -3033,6 +3033,27 @@
       "module": "M09",
       "caliber_dims": [
         {
+          "id": "order_basis",
+          "name": "订单口径",
+          "values": [
+            "新增订单",
+            "在手订单",
+            "前瞻指引"
+          ],
+          "note": "**同一页上三个互不同口径的数**：GEV 在手订单中超大规模客户仅 10%、西门子 FY25 当年新增订单 21%、GEV 前瞻「约三分之一」。在手订单是存量（含多年前签的），新增订单是当年流量，前瞻指引是话。不带这一维，三条数看着是同一个指标在打架。"
+        },
+        {
+          "id": "measure",
+          "name": "份额口径",
+          "values": [
+            "按容量",
+            "按金额",
+            "按台数",
+            "未注明"
+          ],
+          "note": "贝克休斯 2025Q2「超过 70% 的台数投向数据中心项目」是台数口径，与按容量、按金额的份额都不可比——大机组少台数，小机组多台数。\n\n「未注明」不是凑数的兜底：西门子那条原文明确没说是按金额、按容量还是按台数，库内已标 [未核]。**替它断定一个口径，就是把一条诚实的「不知道」改写成一条假的「知道」。**"
+        },
+        {
           "id": "region_scope",
           "name": "订单范围",
           "values": [
@@ -3704,8 +3725,10 @@
           "values": [
             "五大电网区域",
             "前三区域",
-            "单一区域"
-          ]
+            "单一区域",
+            "前五集群"
+          ],
+          "note": "「前五集群」指数据中心的区域集群，**不是电网分区**——美国近一半的数据中心容量集中在五个集群，这条数用 basis_type: 存量占比 + scope: 前五集群 记。\n\n本指标的 basis_type 维已经能区分存量与增量，**存量容量的地理分布不需要另立指标**，用「存量占比」即可。"
         },
         {
           "id": "basis_type",
@@ -8204,6 +8227,945 @@
       "note": "**大件进场能力决定了柴发与冷机能不能运进来**，是被普遍忽略但会直接卡住施工的一类约束。原文例：周边道路宽 >6m、内转弯半径 >12m、净空 >4m；集装箱通道内转弯半径 ≥18m、吊车 32 吨；货梯不少于 2 台、单台承重 ≥2 吨；库房每 1000 机架 1 个、面积 ≥30㎡。\n\n**这些数单位不一，靠 spec_item 分组，绝不可放进同一条序列。**",
       "public_band": {
         "step": 1
+      }
+    },
+    {
+      "metric_id": "capex_growth_rate",
+      "name": "数据中心资本开支增速",
+      "unit": "%",
+      "module": "M03",
+      "caliber_dims": [
+        {
+          "id": "period_basis",
+          "name": "增速口径",
+          "values": [
+            "同比",
+            "环比",
+            "复合年均(CAGR)"
+          ],
+          "note": "**CAGR 必须在 notes 里写明起止年**：「2025-2030 五年 CAGR 34%」与「2026-2030 四年 CAGR」是两个数。只写 34% 而不写窗口，这条数日后无法复核也无法与别家比。"
+        },
+        {
+          "id": "segment",
+          "name": "客户分部",
+          "values": [
+            "Top 4 US Cloud",
+            "Top 3 China Cloud",
+            "Other Major Cloud",
+            "AI Model Builders",
+            "Neocloud",
+            "Rest of Cloud",
+            "Colocation",
+            "Telco",
+            "Enterprise",
+            "Hyperscalers",
+            "AI-specialized Cloud",
+            "Total"
+          ],
+          "note": "取值与 M01 dc_it_capex 的 segment 一致。**Hyperscalers 是汇总层，等于 Top 4 US Cloud + Top 3 China Cloud + Other Major Cloud 三项，不可与它们并列加总**（1,993.23 + 339.65 + 126.18 = 2,459.05）。"
+        },
+        {
+          "id": "scenario",
+          "name": "情景",
+          "values": [
+            "Base Case",
+            "Lift-Off",
+            "High Efficiency",
+            "Headwinds",
+            "单一情景"
+          ],
+          "note": "**同一个预测者对同一年份给出的几个值，不是互相矛盾的几条数据。**IEA 那份 2030 年给了四个：Base 945、Lift-Off 超 1260、High Efficiency 约 800、Headwinds 约 670 TWh。没有这一维，945 与 1260 会被读成两家打架，而它们出自同一页。\n\nbasis 维分的是「实测还是预测」，管不了这件事——四个值全是预测，差别在假设。原文只给一个数、不分情景的填「单一情景」，**不要拿它当 Base Case**：没分情景和明说是基准情景不是一回事。\n\n情景名用原文写法。别家报告的情景名不同（保守/中性/乐观之类）时，不要硬映射到这四个——那是另一套假设，映射过来就是编。遇到就当缺口报上来，另加取值。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global",
+            "JP",
+            "IN",
+            "KR",
+            "SG"
+          ]
+        },
+        {
+          "id": "basis",
+          "name": "数值性质",
+          "values": [
+            "实测",
+            "预测",
+            "券商测算",
+            "厂商指引",
+            "模型输出",
+            "趋势判断"
+          ]
+        },
+        {
+          "id": "vintage_note",
+          "name": "版本",
+          "values": [
+            "未注明",
+            "见 as_of"
+          ],
+          "note": "预测的做出时点写进 as_of（2030E@2026-07），不要挤在这一维。这一维只在原文完全没交代做出时点时填「未注明」。"
+        }
+      ],
+      "note": "库内 dc_it_capex 只存年度绝对额，增速无处放。**增速与绝对额是两条数，不是一条数的两种写法**——绝对额能加总，增速不能；两个分部各增 30% 不等于合计增 30%。\n\n同类缺口在 M02 出现过一次（机架规模增速，dc_market_growth）。那条管的是市场规模，本条管的是资本开支，分母不同。",
+      "public_band": {
+        "step": 5
+      }
+    },
+    {
+      "metric_id": "forecast_revision_delta",
+      "name": "同机构跨版本预测修订幅度",
+      "unit": "%",
+      "module": "M03",
+      "caliber_dims": [
+        {
+          "id": "metric_revised",
+          "name": "被修订的指标",
+          "values": [
+            "数据中心资本开支",
+            "数据中心用电量",
+            "出货量",
+            "装机容量",
+            "其他"
+          ],
+          "note": "修订的是哪个数——notes 里还要写清新旧两版各是多少。"
+        },
+        {
+          "id": "revision_direction",
+          "name": "修订方向",
+          "values": [
+            "上修",
+            "下修"
+          ],
+          "note": "**value 一律取正数，方向靠这一维。**上修 67% 与下修 67% 写成同一个数会被读反。"
+        },
+        {
+          "id": "segment",
+          "name": "客户分部",
+          "values": [
+            "Top 4 US Cloud",
+            "Top 3 China Cloud",
+            "Other Major Cloud",
+            "AI Model Builders",
+            "Neocloud",
+            "Rest of Cloud",
+            "Colocation",
+            "Telco",
+            "Enterprise",
+            "Hyperscalers",
+            "AI-specialized Cloud",
+            "Total"
+          ],
+          "note": "取值与 M01 dc_it_capex 的 segment 一致。**Hyperscalers 是汇总层，等于 Top 4 US Cloud + Top 3 China Cloud + Other Major Cloud 三项，不可与它们并列加总**（1,993.23 + 339.65 + 126.18 = 2,459.05）。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global",
+            "JP",
+            "IN",
+            "KR",
+            "SG"
+          ]
+        },
+        {
+          "id": "basis",
+          "name": "数值性质",
+          "values": [
+            "实测",
+            "预测",
+            "券商测算",
+            "厂商指引",
+            "模型输出",
+            "趋势判断"
+          ]
+        }
+      ],
+      "note": "**与 M02 的 capex_vs_consensus_delta 不是一回事**：那条比的是同一时点不同机构（实际 vs 卖方共识），本条比的是同一机构不同版本（2026-07 版相对 2026-01 版上修 67%）。前者说的是分歧，后者说的是改口。\n\nnotes 必须写明新旧两版的做出时点与各自的值——只记一个 67% 而不记它是从 6.6 万亿修到 11.0 万亿，日后没法复核。",
+      "public_band": {
+        "step": 5
+      }
+    },
+    {
+      "metric_id": "capex_share_by_segment",
+      "name": "资本开支的客户分部份额",
+      "unit": "%",
+      "module": "M03",
+      "caliber_dims": [
+        {
+          "id": "segment",
+          "name": "客户分部",
+          "values": [
+            "Top 4 US Cloud",
+            "Top 3 China Cloud",
+            "Other Major Cloud",
+            "AI Model Builders",
+            "Neocloud",
+            "Rest of Cloud",
+            "Colocation",
+            "Telco",
+            "Enterprise",
+            "Hyperscalers",
+            "AI-specialized Cloud",
+            "Total"
+          ],
+          "note": "取值与 M01 dc_it_capex 的 segment 一致。**Hyperscalers 是汇总层，等于 Top 4 US Cloud + Top 3 China Cloud + Other Major Cloud 三项，不可与它们并列加总**（1,993.23 + 339.65 + 126.18 = 2,459.05）。"
+        },
+        {
+          "id": "denominator",
+          "name": "分母",
+          "values": [
+            "全球数据中心 capex",
+            "某地域 capex",
+            "云服务商 capex"
+          ],
+          "note": "「占全球超过一半」与「占云服务商超过一半」差着 Colocation、Telco 与企业自建。"
+        },
+        {
+          "id": "scenario",
+          "name": "情景",
+          "values": [
+            "Base Case",
+            "Lift-Off",
+            "High Efficiency",
+            "Headwinds",
+            "单一情景"
+          ],
+          "note": "**同一个预测者对同一年份给出的几个值，不是互相矛盾的几条数据。**IEA 那份 2030 年给了四个：Base 945、Lift-Off 超 1260、High Efficiency 约 800、Headwinds 约 670 TWh。没有这一维，945 与 1260 会被读成两家打架，而它们出自同一页。\n\nbasis 维分的是「实测还是预测」，管不了这件事——四个值全是预测，差别在假设。原文只给一个数、不分情景的填「单一情景」，**不要拿它当 Base Case**：没分情景和明说是基准情景不是一回事。\n\n情景名用原文写法。别家报告的情景名不同（保守/中性/乐观之类）时，不要硬映射到这四个——那是另一套假设，映射过来就是编。遇到就当缺口报上来，另加取值。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global",
+            "JP",
+            "IN",
+            "KR",
+            "SG"
+          ]
+        },
+        {
+          "id": "basis",
+          "name": "数值性质",
+          "values": [
+            "实测",
+            "预测",
+            "券商测算",
+            "厂商指引",
+            "模型输出",
+            "趋势判断"
+          ]
+        }
+      ],
+      "note": "**「超过一半」是下界不是点估计**——用 bound: lower、value 50 记，不要写成 50 也不要自己取中值。\n\n份额类缺口至此在五个模块出现过。每一条份额事实的 notes 都要写清分母是什么，否则同为「Top 4 占一半」的两条数可能一条说的是全球、一条说的是云服务商。",
+      "public_band": {
+        "step": 5
+      }
+    },
+    {
+      "metric_id": "installed_server_base",
+      "name": "服务器装机存量",
+      "unit": "万台",
+      "module": "M03",
+      "caliber_dims": [
+        {
+          "id": "provider_tier",
+          "name": "云服务商分层",
+          "values": [
+            "Tier 1 Plus",
+            "Tier 1",
+            "Tier 2",
+            "Tier 3",
+            "Tier 4",
+            "未分层"
+          ],
+          "note": "原文的分层门槛：Tier 1 Plus >300 万台、Tier 1 >100 万台、Tier 2 50-100 万台、Tier 3 20-50 万台、Tier 4 <20 万台。**这些门槛本身也是事实**，用 bound: lower / upper 记进本指标，entity 填该分层。"
+        },
+        {
+          "id": "counterparty_role",
+          "name": "统计立场",
+          "values": [
+            "需求方",
+            "全市场（未分侧）"
+          ],
+          "note": "装机存量天然是买方视角——是谁装着这些机器，不是谁卖出去的。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global",
+            "JP",
+            "IN",
+            "KR",
+            "SG"
+          ]
+        },
+        {
+          "id": "basis",
+          "name": "数值性质",
+          "values": [
+            "实测",
+            "预测",
+            "券商测算",
+            "厂商指引",
+            "模型输出",
+            "趋势判断"
+          ]
+        }
+      ],
+      "note": "**存量不是流量。**库内 server_unit_shipments 是当年出货（流量），本指标是累计在役（存量）。拿出货量当装机量会把三五年的机器算成一年的。\n\n单位是万台，原文写「300 万台」直接记 300。",
+      "public_band": {
+        "step": 50
+      }
+    },
+    {
+      "metric_id": "dc_electricity_consumption",
+      "name": "数据中心用电量",
+      "unit": "TWh",
+      "module": "M04",
+      "caliber_dims": [
+        {
+          "id": "scenario",
+          "name": "情景",
+          "values": [
+            "Base Case",
+            "Lift-Off",
+            "High Efficiency",
+            "Headwinds",
+            "单一情景"
+          ],
+          "note": "**同一个预测者对同一年份给出的几个值，不是互相矛盾的几条数据。**IEA 那份 2030 年给了四个：Base 945、Lift-Off 超 1260、High Efficiency 约 800、Headwinds 约 670 TWh。没有这一维，945 与 1260 会被读成两家打架，而它们出自同一页。\n\nbasis 维分的是「实测还是预测」，管不了这件事——四个值全是预测，差别在假设。原文只给一个数、不分情景的填「单一情景」，**不要拿它当 Base Case**：没分情景和明说是基准情景不是一回事。\n\n情景名用原文写法。别家报告的情景名不同（保守/中性/乐观之类）时，不要硬映射到这四个——那是另一套假设，映射过来就是编。遇到就当缺口报上来，另加取值。"
+        },
+        {
+          "id": "scope",
+          "name": "统计范围",
+          "values": [
+            "全部数据中心",
+            "仅 AI 数据中心",
+            "仅传统数据中心",
+            "含加密货币挖矿",
+            "未注明"
+          ],
+          "note": "含不含挖矿能差出百分之十几，各家口径不一，原文不交代就填「未注明」，**不要按量级去猜是哪一种**。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global",
+            "JP",
+            "IN",
+            "KR",
+            "SG"
+          ]
+        },
+        {
+          "id": "basis",
+          "name": "数值性质",
+          "values": [
+            "实测",
+            "预测",
+            "券商测算",
+            "厂商指引",
+            "模型输出",
+            "趋势判断"
+          ]
+        }
+      ],
+      "note": "**这是全行业被引用最多的一组数，而本库此前一个能装它的指标都没有。**\n\n**TWh 不是 GW。**库内 global_dc_it_load 是 GW（功率），本指标是 TWh（电量），两者差一个时间维度，绝不可互换或直接换算——换算要知道利用小时数，而那正是各家假设不同的地方。\n\n已知的数：全球 2023 年约 360、2024 年 415 TWh；2030 年 Base 945、Lift-Off 超 1260、High Efficiency 约 800、Headwinds 约 670；2035 年区间 700-1720。日本 <20，印度约 9（占其总用电 0.5%）。带「约」「超过」「不足」的用 bound 记。",
+      "public_band": {
+        "step": 50
+      }
+    },
+    {
+      "metric_id": "dc_demand_source_mix",
+      "name": "数据中心用电增量的电源结构",
+      "unit": "TWh",
+      "module": "M04",
+      "caliber_dims": [
+        {
+          "id": "source",
+          "name": "电源类型",
+          "values": [
+            "可再生能源",
+            "天然气",
+            "核电",
+            "煤电",
+            "其他",
+            "合计"
+          ],
+          "note": "「合计」是各类之和，与分项同时入库时加总只能取一层。"
+        },
+        {
+          "id": "scenario",
+          "name": "情景",
+          "values": [
+            "Base Case",
+            "Lift-Off",
+            "High Efficiency",
+            "Headwinds",
+            "单一情景"
+          ],
+          "note": "**同一个预测者对同一年份给出的几个值，不是互相矛盾的几条数据。**IEA 那份 2030 年给了四个：Base 945、Lift-Off 超 1260、High Efficiency 约 800、Headwinds 约 670 TWh。没有这一维，945 与 1260 会被读成两家打架，而它们出自同一页。\n\nbasis 维分的是「实测还是预测」，管不了这件事——四个值全是预测，差别在假设。原文只给一个数、不分情景的填「单一情景」，**不要拿它当 Base Case**：没分情景和明说是基准情景不是一回事。\n\n情景名用原文写法。别家报告的情景名不同（保守/中性/乐观之类）时，不要硬映射到这四个——那是另一套假设，映射过来就是编。遇到就当缺口报上来，另加取值。"
+        },
+        {
+          "id": "window",
+          "name": "增量窗口",
+          "values": [
+            "至2030",
+            "至2035",
+            "单一年度",
+            "未注明"
+          ],
+          "note": "**增量必须带窗口。**「天然气增加 175 TWh」不写到哪一年就没有意义；同一份报告里 Lift-Off 情景下这个数是 290 TWh，情景与窗口都变了。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global",
+            "JP",
+            "IN",
+            "KR",
+            "SG"
+          ]
+        },
+        {
+          "id": "basis",
+          "name": "数值性质",
+          "values": [
+            "实测",
+            "预测",
+            "券商测算",
+            "厂商指引",
+            "模型输出",
+            "趋势判断"
+          ]
+        }
+      ],
+      "note": "记的是增量不是存量。已知：到 2035 年可再生 +450 TWh、天然气 +175 TWh（Lift-Off 下 290）、核电增量与天然气相当。\n\n若原文只给百分比不给电量，用 dc_demand_source_share 记，不要在这里换算——换算要乘一个总量，而那个总量随情景变。",
+      "public_band": {
+        "step": 25
+      }
+    },
+    {
+      "metric_id": "dc_demand_source_share",
+      "name": "数据中心用电增量的电源结构占比",
+      "unit": "%",
+      "module": "M04",
+      "caliber_dims": [
+        {
+          "id": "source",
+          "name": "电源类型",
+          "values": [
+            "可再生能源",
+            "天然气",
+            "核电",
+            "煤电",
+            "其他"
+          ]
+        },
+        {
+          "id": "scenario",
+          "name": "情景",
+          "values": [
+            "Base Case",
+            "Lift-Off",
+            "High Efficiency",
+            "Headwinds",
+            "单一情景"
+          ],
+          "note": "**同一个预测者对同一年份给出的几个值，不是互相矛盾的几条数据。**IEA 那份 2030 年给了四个：Base 945、Lift-Off 超 1260、High Efficiency 约 800、Headwinds 约 670 TWh。没有这一维，945 与 1260 会被读成两家打架，而它们出自同一页。\n\nbasis 维分的是「实测还是预测」，管不了这件事——四个值全是预测，差别在假设。原文只给一个数、不分情景的填「单一情景」，**不要拿它当 Base Case**：没分情景和明说是基准情景不是一回事。\n\n情景名用原文写法。别家报告的情景名不同（保守/中性/乐观之类）时，不要硬映射到这四个——那是另一套假设，映射过来就是编。遇到就当缺口报上来，另加取值。"
+        },
+        {
+          "id": "window",
+          "name": "增量窗口",
+          "values": [
+            "至2030",
+            "至2035",
+            "单一年度",
+            "未注明"
+          ]
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global",
+            "JP",
+            "IN",
+            "KR",
+            "SG"
+          ]
+        },
+        {
+          "id": "basis",
+          "name": "数值性质",
+          "values": [
+            "实测",
+            "预测",
+            "券商测算",
+            "厂商指引",
+            "模型输出",
+            "趋势判断"
+          ]
+        }
+      ],
+      "note": "与 dc_demand_source_mix（TWh）成对。已知：燃气发电预计满足 2030 年前数据中心增量需求的约 50%；全球数据中心需求增量的一半由可再生满足。\n\n同 scenario 同 window 同 region 的各电源占比应加总为 100%，录入时先加一遍。",
+      "public_band": {
+        "step": 5
+      }
+    },
+    {
+      "metric_id": "dc_share_of_load_growth",
+      "name": "数据中心占电力需求增长的比例",
+      "unit": "%",
+      "module": "M04",
+      "caliber_dims": [
+        {
+          "id": "window",
+          "name": "窗口",
+          "values": [
+            "至2030",
+            "至2035",
+            "单一年度",
+            "未注明"
+          ]
+        },
+        {
+          "id": "scenario",
+          "name": "情景",
+          "values": [
+            "Base Case",
+            "Lift-Off",
+            "High Efficiency",
+            "Headwinds",
+            "单一情景"
+          ],
+          "note": "**同一个预测者对同一年份给出的几个值，不是互相矛盾的几条数据。**IEA 那份 2030 年给了四个：Base 945、Lift-Off 超 1260、High Efficiency 约 800、Headwinds 约 670 TWh。没有这一维，945 与 1260 会被读成两家打架，而它们出自同一页。\n\nbasis 维分的是「实测还是预测」，管不了这件事——四个值全是预测，差别在假设。原文只给一个数、不分情景的填「单一情景」，**不要拿它当 Base Case**：没分情景和明说是基准情景不是一回事。\n\n情景名用原文写法。别家报告的情景名不同（保守/中性/乐观之类）时，不要硬映射到这四个——那是另一套假设，映射过来就是编。遇到就当缺口报上来，另加取值。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global",
+            "JP",
+            "IN",
+            "KR",
+            "SG"
+          ]
+        },
+        {
+          "id": "basis",
+          "name": "数值性质",
+          "values": [
+            "实测",
+            "预测",
+            "券商测算",
+            "厂商指引",
+            "模型输出",
+            "趋势判断"
+          ]
+        }
+      ],
+      "note": "**这个指标存在的唯一理由是：同一份报告里的两个数经常被单独引用，造成完全相反的印象。**美国 2030 年前近一半的电力需求增长来自数据中心；同一份报告说全球口径下数据中心只占不到 10%。两个数都对，差别全在 region。\n\n**成对存储**：录了美国那条就把全球那条一并录进来，并在两条的 notes 里互相指认。只录其中一条等于挑了一个立场。\n\n与 M04 的 load_growth_concentration 不同：那条是地理集中度（增长集中在哪几个区域），本条是成因归属（增长里有多少是数据中心）。",
+      "public_band": {
+        "step": 5
+      }
+    },
+    {
+      "metric_id": "gas_turbine_demand_annual",
+      "name": "燃气轮机年需求",
+      "unit": "GW/年",
+      "module": "M04",
+      "caliber_dims": [
+        {
+          "id": "demand_scope",
+          "name": "需求范围",
+          "values": [
+            "全球全用途",
+            "数据中心用",
+            "电力行业用",
+            "未注明"
+          ]
+        },
+        {
+          "id": "scenario",
+          "name": "情景",
+          "values": [
+            "Base Case",
+            "Lift-Off",
+            "High Efficiency",
+            "Headwinds",
+            "单一情景"
+          ],
+          "note": "**同一个预测者对同一年份给出的几个值，不是互相矛盾的几条数据。**IEA 那份 2030 年给了四个：Base 945、Lift-Off 超 1260、High Efficiency 约 800、Headwinds 约 670 TWh。没有这一维，945 与 1260 会被读成两家打架，而它们出自同一页。\n\nbasis 维分的是「实测还是预测」，管不了这件事——四个值全是预测，差别在假设。原文只给一个数、不分情景的填「单一情景」，**不要拿它当 Base Case**：没分情景和明说是基准情景不是一回事。\n\n情景名用原文写法。别家报告的情景名不同（保守/中性/乐观之类）时，不要硬映射到这四个——那是另一套假设，映射过来就是编。遇到就当缺口报上来，另加取值。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global",
+            "JP",
+            "IN",
+            "KR",
+            "SG"
+          ]
+        },
+        {
+          "id": "basis",
+          "name": "数值性质",
+          "values": [
+            "实测",
+            "预测",
+            "券商测算",
+            "厂商指引",
+            "模型输出",
+            "趋势判断"
+          ]
+        }
+      ],
+      "note": "**库内只有 gas_turbine_capacity_annual（产能），没有需求侧——而「2025 年需求 96GW 远超产能 64GW」这个结论正是靠两个数的对比才成立。**只存产能，这份报告的核心结论在库里就是不可复现的。\n\n已知：全球需求由 2025 年约 96 GW 增至 2030 年约 110 GW，为前十年均值的两倍以上。",
+      "public_band": {
+        "step": 5
+      }
+    },
+    {
+      "metric_id": "gas_turbine_units",
+      "name": "燃气轮机台数",
+      "unit": "台",
+      "module": "M04",
+      "caliber_dims": [
+        {
+          "id": "unit_basis",
+          "name": "台数口径",
+          "values": [
+            "年产量",
+            "新增订单",
+            "在手订单",
+            "产能"
+          ],
+          "note": "产量、订单与产能是三个数，不可互换。"
+        },
+        {
+          "id": "turbine_class",
+          "name": "机型",
+          "values": [
+            "重型",
+            "中型",
+            "航改型",
+            "未拆分"
+          ],
+          "note": "**单机容量差一个量级**，不分机型的台数没法与容量口径对照。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global",
+            "JP",
+            "IN",
+            "KR",
+            "SG"
+          ]
+        },
+        {
+          "id": "basis",
+          "name": "数值性质",
+          "values": [
+            "实测",
+            "预测",
+            "券商测算",
+            "厂商指引",
+            "模型输出",
+            "趋势判断"
+          ]
+        }
+      ],
+      "note": "**容量口径与台数口径同时给出时，单机容量的变化只有靠台数才能看出来。**GEV 重型燃机产量 55 台 → FY26 末 70-80 台 → 2028 年 90-100 台（对应 24GW，即单台约 240-267MW）。只记 GW 看不出单机在变大还是变多。\n\n区间用 bound: upper / lower 记两条。",
+      "public_band": {
+        "step": 5
+      }
+    },
+    {
+      "metric_id": "dc_capacity_additions_annual",
+      "name": "数据中心装机年新增",
+      "unit": "GW/年",
+      "module": "M04",
+      "caliber_dims": [
+        {
+          "id": "power_scope",
+          "name": "功率口径",
+          "values": [
+            "IT 负载",
+            "设施总功率",
+            "并网容量",
+            "未披露"
+          ],
+          "note": "与 M01 global_dc_it_load 的同名维一致。三者能差三成以上。"
+        },
+        {
+          "id": "scenario",
+          "name": "情景",
+          "values": [
+            "Base Case",
+            "Lift-Off",
+            "High Efficiency",
+            "Headwinds",
+            "单一情景"
+          ],
+          "note": "**同一个预测者对同一年份给出的几个值，不是互相矛盾的几条数据。**IEA 那份 2030 年给了四个：Base 945、Lift-Off 超 1260、High Efficiency 约 800、Headwinds 约 670 TWh。没有这一维，945 与 1260 会被读成两家打架，而它们出自同一页。\n\nbasis 维分的是「实测还是预测」，管不了这件事——四个值全是预测，差别在假设。原文只给一个数、不分情景的填「单一情景」，**不要拿它当 Base Case**：没分情景和明说是基准情景不是一回事。\n\n情景名用原文写法。别家报告的情景名不同（保守/中性/乐观之类）时，不要硬映射到这四个——那是另一套假设，映射过来就是编。遇到就当缺口报上来，另加取值。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global",
+            "JP",
+            "IN",
+            "KR",
+            "SG"
+          ]
+        },
+        {
+          "id": "basis",
+          "name": "数值性质",
+          "values": [
+            "实测",
+            "预测",
+            "券商测算",
+            "厂商指引",
+            "模型输出",
+            "趋势判断"
+          ]
+        }
+      ],
+      "note": "**存量、头部增量、全市场增量是三个数。**库内 global_dc_it_load 是存量、annual_delivery_capacity 限「头部 IDC」，全球年新增无处放。\n\n已知：报告建模 2025-2030 全球数据中心新增 20-35 GW/年，用 bound: lower 20 与 upper 35 两条记。",
+      "public_band": {
+        "step": 5
+      }
+    },
+    {
+      "metric_id": "vendor_order_target",
+      "name": "厂商订单目标与在手",
+      "unit": "十亿美元",
+      "module": "M04",
+      "caliber_dims": [
+        {
+          "id": "order_basis",
+          "name": "订单口径",
+          "values": [
+            "目标",
+            "已锁定",
+            "在手订单",
+            "新增订单"
+          ],
+          "note": "「有信心完成 15 亿美元」是目标，「YTD 已锁定 1.2GW」是已锁定——两者不可混，前者是话，后者是事。"
+        },
+        {
+          "id": "end_market",
+          "name": "终端市场",
+          "values": [
+            "数据中心",
+            "电力全行业",
+            "全公司",
+            "未拆分"
+          ]
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global",
+            "JP",
+            "IN",
+            "KR",
+            "SG"
+          ]
+        },
+        {
+          "id": "basis",
+          "name": "数值性质",
+          "values": [
+            "实测",
+            "预测",
+            "券商测算",
+            "厂商指引",
+            "模型输出",
+            "趋势判断"
+          ]
+        }
+      ],
+      "note": "单位十亿美元：15 亿美元记 1.5。容量口径的锁定量（1.2GW）不记在这里，记进 gas_turbine_demand_annual 或对应的容量指标，并在两条 notes 里互相指认。",
+      "public_band": {
+        "step": 1
+      }
+    },
+    {
+      "metric_id": "corporate_ppa_capacity",
+      "name": "企业 PPA 采购的可再生装机",
+      "unit": "GW",
+      "module": "M04",
+      "caliber_dims": [
+        {
+          "id": "status",
+          "name": "装机状态",
+          "values": [
+            "已投运",
+            "在建",
+            "合计"
+          ],
+          "note": "近 120 GW 已投运、另有 60 GW 在建——**两者不可相加成「总采购量」再与已投运的数比**。"
+        },
+        {
+          "id": "buyer_scope",
+          "name": "采购方范围",
+          "values": [
+            "全部企业",
+            "运营数据中心的科技公司",
+            "其他行业"
+          ],
+          "note": "全球企业 PPA 已投运近 120 GW，其中运营数据中心的科技公司占逾 30%。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global",
+            "JP",
+            "IN",
+            "KR",
+            "SG"
+          ]
+        },
+        {
+          "id": "basis",
+          "name": "数值性质",
+          "values": [
+            "实测",
+            "预测",
+            "券商测算",
+            "厂商指引",
+            "模型输出",
+            "趋势判断"
+          ]
+        }
+      ],
+      "note": "**发电侧的采购量，不是数据中心侧的用电合同。**M14 的 green_direct_capacity 只管中国绿电直连，M02 的 contracted_power_capacity 是数据中心侧的电力容量合同，三者测的是三件事。",
+      "public_band": {
+        "step": 10
+      }
+    },
+    {
+      "metric_id": "ppa_coverage_share",
+      "name": "PPA 对数据中心用电的覆盖率",
+      "unit": "%",
+      "module": "M04",
+      "caliber_dims": [
+        {
+          "id": "buyer_scope",
+          "name": "采购方范围",
+          "values": [
+            "全部企业",
+            "运营数据中心的科技公司"
+          ]
+        },
+        {
+          "id": "denominator",
+          "name": "分母",
+          "values": [
+            "全球数据中心用电量",
+            "某地域数据中心用电量"
+          ],
+          "note": "2024 年科技公司的可再生 PPA 足以覆盖全球数据中心 415 TWh 用电的约 20%——**分母那个 415 TWh 要一并记进 dc_electricity_consumption**，否则这个 20% 日后没法复核。"
+        },
+        {
+          "id": "region",
+          "name": "地域",
+          "values": [
+            "CN",
+            "US",
+            "EU",
+            "APAC",
+            "Global",
+            "JP",
+            "IN",
+            "KR",
+            "SG"
+          ]
+        },
+        {
+          "id": "basis",
+          "name": "数值性质",
+          "values": [
+            "实测",
+            "预测",
+            "券商测算",
+            "厂商指引",
+            "模型输出",
+            "趋势判断"
+          ]
+        }
+      ],
+      "note": "**「足以覆盖」不等于「实际覆盖」。**PPA 采购量与实际消纳在时间与地点上都对不齐，这个比例是账面口径，notes 里要写明。",
+      "public_band": {
+        "step": 5
       }
     }
   ]
