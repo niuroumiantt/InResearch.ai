@@ -22159,6 +22159,535 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**effect 这一维不能省**：同一个缺陷可以表述成「损失多少」或「还有多少提升空间」，方向相反、数值相同——本条是「带宽达成率」。 **这一族是 MFU 之下的一层**：库内 mfu_rate 与 realized_vs_theoretical_ratio 给的是总折损，这里给的是单项缺陷各自的贡献，可用于拆解为什么实测远低于理论。  "
+    },
+    {
+      "fact_id": "ms-tco-pue-nvidia-h100",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-h100",
+        "label": "NVIDIA H100"
+      },
+      "value": 1.5,
+      "unit": "比值",
+      "caliber": {
+        "basis": "第三方推算",
+        "scale": "单项目",
+        "period": "设计工况",
+        "region": "未披露"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ac27bf38c805c5ebebd0b594fc1f8379d902f1bbb752682488e46ade1c070568",
+        "local_file": "AI 训练/推理 TCO 对比（Morgan Stanley，2025-07-07）.xlsx",
+        "locator": "工作表「TCO Analysis for AI Training」第 28 行 PUE (Power Usage Effectiveness)，H100 列 = 1.5",
+        "grade": "S3",
+        "originator": "Morgan Stanley（工作表标注 Source: MS / Date: 2025.07.07）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**PUE 在这张表里是按芯片假设的，不是按机房**：同一份模型给 H100/MI300A/Gaudi3/Trainium2 都是 1.5、B200 给 1.4、GB200 给 1.2、TPU 给 1.3——**高功率密度芯片被假设了更低的 PUE**（GB200 单机 116.64kW 对应 1.2），这是模型的一个隐含判断而非观测。 **region=未披露**：原表没有说明这个 PUE 对应哪个地域的机房。 **这是券商 TCO 模型里的假设，不是任何一个真实机房的实测值**：同表统一假设 24,000 颗芯片一个集群、计算利用率 0.4、折旧 4 年、电价 150 美元/MWh（含输配）、训练 Llama-3 400B（FP16 总算力需求 17,418 ZFLOPS）。**改动其中任何一个假设，这一列的数都会变。**"
+    },
+    {
+      "fact_id": "ms-tco-perf-per-watt-nvidia-h100",
+      "metric_id": "compute_efficiency",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-h100",
+        "label": "NVIDIA H100"
+      },
+      "value": 1410.0,
+      "unit": "GFLOPS/W",
+      "caliber": {
+        "basis": "理论",
+        "precision": "FP16",
+        "region": "未披露"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ac27bf38c805c5ebebd0b594fc1f8379d902f1bbb752682488e46ade1c070568",
+        "local_file": "AI 训练/推理 TCO 对比（Morgan Stanley，2025-07-07）.xlsx",
+        "locator": "工作表「TCO Analysis for AI Training」第 26 行 Performance per Watt (TFLOPS/Watt)，H100 列 = 1.41",
+        "grade": "S3",
+        "originator": "Morgan Stanley（工作表标注 Source: MS / Date: 2025.07.07）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 1.41 TFLOPS/W × 1000 = 1410 GFLOPS/W。 **basis=理论**：分子是峰值性能（第 11 行 Peak performance per GPU）÷ TDP，**不是实测**——同表另有 0.4 的计算利用率，按实际算要再打四折。 **跨代与跨厂差距**：B200 2250 GFLOPS/W 最高，TPU v5p 660 最低，差 3.4 倍；而 GB200 的 2080 反而略低于 B200——**单卡能效不随功率密度单调上升**。 **这是券商 TCO 模型里的假设，不是任何一个真实机房的实测值**：同表统一假设 24,000 颗芯片一个集群、计算利用率 0.4、折旧 4 年、电价 150 美元/MWh（含输配）、训练 Llama-3 400B（FP16 总算力需求 17,418 ZFLOPS）。**改动其中任何一个假设，这一列的数都会变。**"
+    },
+    {
+      "fact_id": "ms-tco-pue-nvidia-b200",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-b200",
+        "label": "NVIDIA B200"
+      },
+      "value": 1.4,
+      "unit": "比值",
+      "caliber": {
+        "basis": "第三方推算",
+        "scale": "单项目",
+        "period": "设计工况",
+        "region": "未披露"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ac27bf38c805c5ebebd0b594fc1f8379d902f1bbb752682488e46ade1c070568",
+        "local_file": "AI 训练/推理 TCO 对比（Morgan Stanley，2025-07-07）.xlsx",
+        "locator": "工作表「TCO Analysis for AI Training」第 28 行 PUE (Power Usage Effectiveness)，B200 GPU 列 = 1.4",
+        "grade": "S3",
+        "originator": "Morgan Stanley（工作表标注 Source: MS / Date: 2025.07.07）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**PUE 在这张表里是按芯片假设的，不是按机房**：同一份模型给 H100/MI300A/Gaudi3/Trainium2 都是 1.5、B200 给 1.4、GB200 给 1.2、TPU 给 1.3——**高功率密度芯片被假设了更低的 PUE**（GB200 单机 116.64kW 对应 1.2），这是模型的一个隐含判断而非观测。 **region=未披露**：原表没有说明这个 PUE 对应哪个地域的机房。 **这是券商 TCO 模型里的假设，不是任何一个真实机房的实测值**：同表统一假设 24,000 颗芯片一个集群、计算利用率 0.4、折旧 4 年、电价 150 美元/MWh（含输配）、训练 Llama-3 400B（FP16 总算力需求 17,418 ZFLOPS）。**改动其中任何一个假设，这一列的数都会变。**"
+    },
+    {
+      "fact_id": "ms-tco-perf-per-watt-nvidia-b200",
+      "metric_id": "compute_efficiency",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-b200",
+        "label": "NVIDIA B200"
+      },
+      "value": 2250.0,
+      "unit": "GFLOPS/W",
+      "caliber": {
+        "basis": "理论",
+        "precision": "FP16",
+        "region": "未披露"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ac27bf38c805c5ebebd0b594fc1f8379d902f1bbb752682488e46ade1c070568",
+        "local_file": "AI 训练/推理 TCO 对比（Morgan Stanley，2025-07-07）.xlsx",
+        "locator": "工作表「TCO Analysis for AI Training」第 26 行 Performance per Watt (TFLOPS/Watt)，B200 GPU 列 = 2.25",
+        "grade": "S3",
+        "originator": "Morgan Stanley（工作表标注 Source: MS / Date: 2025.07.07）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 2.25 TFLOPS/W × 1000 = 2250 GFLOPS/W。 **basis=理论**：分子是峰值性能（第 11 行 Peak performance per GPU）÷ TDP，**不是实测**——同表另有 0.4 的计算利用率，按实际算要再打四折。 **跨代与跨厂差距**：B200 2250 GFLOPS/W 最高，TPU v5p 660 最低，差 3.4 倍；而 GB200 的 2080 反而略低于 B200——**单卡能效不随功率密度单调上升**。 **这是券商 TCO 模型里的假设，不是任何一个真实机房的实测值**：同表统一假设 24,000 颗芯片一个集群、计算利用率 0.4、折旧 4 年、电价 150 美元/MWh（含输配）、训练 Llama-3 400B（FP16 总算力需求 17,418 ZFLOPS）。**改动其中任何一个假设，这一列的数都会变。**"
+    },
+    {
+      "fact_id": "ms-tco-pue-nvidia-gb200",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200",
+        "label": "NVIDIA GB200 超级芯片"
+      },
+      "value": 1.2,
+      "unit": "比值",
+      "caliber": {
+        "basis": "第三方推算",
+        "scale": "单项目",
+        "period": "设计工况",
+        "region": "未披露"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ac27bf38c805c5ebebd0b594fc1f8379d902f1bbb752682488e46ade1c070568",
+        "local_file": "AI 训练/推理 TCO 对比（Morgan Stanley，2025-07-07）.xlsx",
+        "locator": "工作表「TCO Analysis for AI Training」第 28 行 PUE (Power Usage Effectiveness)，GB200 superchip 列 = 1.2",
+        "grade": "S3",
+        "originator": "Morgan Stanley（工作表标注 Source: MS / Date: 2025.07.07）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**PUE 在这张表里是按芯片假设的，不是按机房**：同一份模型给 H100/MI300A/Gaudi3/Trainium2 都是 1.5、B200 给 1.4、GB200 给 1.2、TPU 给 1.3——**高功率密度芯片被假设了更低的 PUE**（GB200 单机 116.64kW 对应 1.2），这是模型的一个隐含判断而非观测。 **region=未披露**：原表没有说明这个 PUE 对应哪个地域的机房。 **这是券商 TCO 模型里的假设，不是任何一个真实机房的实测值**：同表统一假设 24,000 颗芯片一个集群、计算利用率 0.4、折旧 4 年、电价 150 美元/MWh（含输配）、训练 Llama-3 400B（FP16 总算力需求 17,418 ZFLOPS）。**改动其中任何一个假设，这一列的数都会变。**"
+    },
+    {
+      "fact_id": "ms-tco-perf-per-watt-nvidia-gb200",
+      "metric_id": "compute_efficiency",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200",
+        "label": "NVIDIA GB200 超级芯片"
+      },
+      "value": 2080.0,
+      "unit": "GFLOPS/W",
+      "caliber": {
+        "basis": "理论",
+        "precision": "FP16",
+        "region": "未披露"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ac27bf38c805c5ebebd0b594fc1f8379d902f1bbb752682488e46ade1c070568",
+        "local_file": "AI 训练/推理 TCO 对比（Morgan Stanley，2025-07-07）.xlsx",
+        "locator": "工作表「TCO Analysis for AI Training」第 26 行 Performance per Watt (TFLOPS/Watt)，GB200 superchip 列 = 2.08",
+        "grade": "S3",
+        "originator": "Morgan Stanley（工作表标注 Source: MS / Date: 2025.07.07）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 2.08 TFLOPS/W × 1000 = 2080 GFLOPS/W。 **basis=理论**：分子是峰值性能（第 11 行 Peak performance per GPU）÷ TDP，**不是实测**——同表另有 0.4 的计算利用率，按实际算要再打四折。 **跨代与跨厂差距**：B200 2250 GFLOPS/W 最高，TPU v5p 660 最低，差 3.4 倍；而 GB200 的 2080 反而略低于 B200——**单卡能效不随功率密度单调上升**。 **这是券商 TCO 模型里的假设，不是任何一个真实机房的实测值**：同表统一假设 24,000 颗芯片一个集群、计算利用率 0.4、折旧 4 年、电价 150 美元/MWh（含输配）、训练 Llama-3 400B（FP16 总算力需求 17,418 ZFLOPS）。**改动其中任何一个假设，这一列的数都会变。**"
+    },
+    {
+      "fact_id": "ms-tco-pue-amd-mi300a",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "product",
+        "id": "amd-mi300a",
+        "label": "AMD MI300A"
+      },
+      "value": 1.5,
+      "unit": "比值",
+      "caliber": {
+        "basis": "第三方推算",
+        "scale": "单项目",
+        "period": "设计工况",
+        "region": "未披露"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ac27bf38c805c5ebebd0b594fc1f8379d902f1bbb752682488e46ade1c070568",
+        "local_file": "AI 训练/推理 TCO 对比（Morgan Stanley，2025-07-07）.xlsx",
+        "locator": "工作表「TCO Analysis for AI Training」第 28 行 PUE (Power Usage Effectiveness)，MI300A 列 = 1.5",
+        "grade": "S3",
+        "originator": "Morgan Stanley（工作表标注 Source: MS / Date: 2025.07.07）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**PUE 在这张表里是按芯片假设的，不是按机房**：同一份模型给 H100/MI300A/Gaudi3/Trainium2 都是 1.5、B200 给 1.4、GB200 给 1.2、TPU 给 1.3——**高功率密度芯片被假设了更低的 PUE**（GB200 单机 116.64kW 对应 1.2），这是模型的一个隐含判断而非观测。 **region=未披露**：原表没有说明这个 PUE 对应哪个地域的机房。 **这是券商 TCO 模型里的假设，不是任何一个真实机房的实测值**：同表统一假设 24,000 颗芯片一个集群、计算利用率 0.4、折旧 4 年、电价 150 美元/MWh（含输配）、训练 Llama-3 400B（FP16 总算力需求 17,418 ZFLOPS）。**改动其中任何一个假设，这一列的数都会变。**"
+    },
+    {
+      "fact_id": "ms-tco-perf-per-watt-amd-mi300a",
+      "metric_id": "compute_efficiency",
+      "entity": {
+        "type": "product",
+        "id": "amd-mi300a",
+        "label": "AMD MI300A"
+      },
+      "value": 1310.0,
+      "unit": "GFLOPS/W",
+      "caliber": {
+        "basis": "理论",
+        "precision": "FP16",
+        "region": "未披露"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ac27bf38c805c5ebebd0b594fc1f8379d902f1bbb752682488e46ade1c070568",
+        "local_file": "AI 训练/推理 TCO 对比（Morgan Stanley，2025-07-07）.xlsx",
+        "locator": "工作表「TCO Analysis for AI Training」第 26 行 Performance per Watt (TFLOPS/Watt)，MI300A 列 = 1.31",
+        "grade": "S3",
+        "originator": "Morgan Stanley（工作表标注 Source: MS / Date: 2025.07.07）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 1.31 TFLOPS/W × 1000 = 1310 GFLOPS/W。 **basis=理论**：分子是峰值性能（第 11 行 Peak performance per GPU）÷ TDP，**不是实测**——同表另有 0.4 的计算利用率，按实际算要再打四折。 **跨代与跨厂差距**：B200 2250 GFLOPS/W 最高，TPU v5p 660 最低，差 3.4 倍；而 GB200 的 2080 反而略低于 B200——**单卡能效不随功率密度单调上升**。 **这是券商 TCO 模型里的假设，不是任何一个真实机房的实测值**：同表统一假设 24,000 颗芯片一个集群、计算利用率 0.4、折旧 4 年、电价 150 美元/MWh（含输配）、训练 Llama-3 400B（FP16 总算力需求 17,418 ZFLOPS）。**改动其中任何一个假设，这一列的数都会变。**"
+    },
+    {
+      "fact_id": "ms-tco-pue-habana-gaudi3",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "product",
+        "id": "habana-gaudi3",
+        "label": "Habana/Alchip Gaudi 3"
+      },
+      "value": 1.5,
+      "unit": "比值",
+      "caliber": {
+        "basis": "第三方推算",
+        "scale": "单项目",
+        "period": "设计工况",
+        "region": "未披露"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ac27bf38c805c5ebebd0b594fc1f8379d902f1bbb752682488e46ade1c070568",
+        "local_file": "AI 训练/推理 TCO 对比（Morgan Stanley，2025-07-07）.xlsx",
+        "locator": "工作表「TCO Analysis for AI Training」第 28 行 PUE (Power Usage Effectiveness)，Gaudi 3 列 = 1.5",
+        "grade": "S3",
+        "originator": "Morgan Stanley（工作表标注 Source: MS / Date: 2025.07.07）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**PUE 在这张表里是按芯片假设的，不是按机房**：同一份模型给 H100/MI300A/Gaudi3/Trainium2 都是 1.5、B200 给 1.4、GB200 给 1.2、TPU 给 1.3——**高功率密度芯片被假设了更低的 PUE**（GB200 单机 116.64kW 对应 1.2），这是模型的一个隐含判断而非观测。 **region=未披露**：原表没有说明这个 PUE 对应哪个地域的机房。 **这是券商 TCO 模型里的假设，不是任何一个真实机房的实测值**：同表统一假设 24,000 颗芯片一个集群、计算利用率 0.4、折旧 4 年、电价 150 美元/MWh（含输配）、训练 Llama-3 400B（FP16 总算力需求 17,418 ZFLOPS）。**改动其中任何一个假设，这一列的数都会变。**"
+    },
+    {
+      "fact_id": "ms-tco-perf-per-watt-habana-gaudi3",
+      "metric_id": "compute_efficiency",
+      "entity": {
+        "type": "product",
+        "id": "habana-gaudi3",
+        "label": "Habana/Alchip Gaudi 3"
+      },
+      "value": 2040.0,
+      "unit": "GFLOPS/W",
+      "caliber": {
+        "basis": "理论",
+        "precision": "FP16",
+        "region": "未披露"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ac27bf38c805c5ebebd0b594fc1f8379d902f1bbb752682488e46ade1c070568",
+        "local_file": "AI 训练/推理 TCO 对比（Morgan Stanley，2025-07-07）.xlsx",
+        "locator": "工作表「TCO Analysis for AI Training」第 26 行 Performance per Watt (TFLOPS/Watt)，Gaudi 3 列 = 2.04",
+        "grade": "S3",
+        "originator": "Morgan Stanley（工作表标注 Source: MS / Date: 2025.07.07）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 2.04 TFLOPS/W × 1000 = 2040 GFLOPS/W。 **basis=理论**：分子是峰值性能（第 11 行 Peak performance per GPU）÷ TDP，**不是实测**——同表另有 0.4 的计算利用率，按实际算要再打四折。 **跨代与跨厂差距**：B200 2250 GFLOPS/W 最高，TPU v5p 660 最低，差 3.4 倍；而 GB200 的 2080 反而略低于 B200——**单卡能效不随功率密度单调上升**。 **这是券商 TCO 模型里的假设，不是任何一个真实机房的实测值**：同表统一假设 24,000 颗芯片一个集群、计算利用率 0.4、折旧 4 年、电价 150 美元/MWh（含输配）、训练 Llama-3 400B（FP16 总算力需求 17,418 ZFLOPS）。**改动其中任何一个假设，这一列的数都会变。**"
+    },
+    {
+      "fact_id": "ms-tco-pue-google-tpu-v5p",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "product",
+        "id": "google-tpu-v5p",
+        "label": "Google/Broadcom TPU v5p"
+      },
+      "value": 1.3,
+      "unit": "比值",
+      "caliber": {
+        "basis": "第三方推算",
+        "scale": "单项目",
+        "period": "设计工况",
+        "region": "未披露"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ac27bf38c805c5ebebd0b594fc1f8379d902f1bbb752682488e46ade1c070568",
+        "local_file": "AI 训练/推理 TCO 对比（Morgan Stanley，2025-07-07）.xlsx",
+        "locator": "工作表「TCO Analysis for AI Training」第 28 行 PUE (Power Usage Effectiveness)，TPU v5p 列 = 1.3",
+        "grade": "S3",
+        "originator": "Morgan Stanley（工作表标注 Source: MS / Date: 2025.07.07）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**PUE 在这张表里是按芯片假设的，不是按机房**：同一份模型给 H100/MI300A/Gaudi3/Trainium2 都是 1.5、B200 给 1.4、GB200 给 1.2、TPU 给 1.3——**高功率密度芯片被假设了更低的 PUE**（GB200 单机 116.64kW 对应 1.2），这是模型的一个隐含判断而非观测。 **region=未披露**：原表没有说明这个 PUE 对应哪个地域的机房。 **这是券商 TCO 模型里的假设，不是任何一个真实机房的实测值**：同表统一假设 24,000 颗芯片一个集群、计算利用率 0.4、折旧 4 年、电价 150 美元/MWh（含输配）、训练 Llama-3 400B（FP16 总算力需求 17,418 ZFLOPS）。**改动其中任何一个假设，这一列的数都会变。**"
+    },
+    {
+      "fact_id": "ms-tco-perf-per-watt-google-tpu-v5p",
+      "metric_id": "compute_efficiency",
+      "entity": {
+        "type": "product",
+        "id": "google-tpu-v5p",
+        "label": "Google/Broadcom TPU v5p"
+      },
+      "value": 660.0,
+      "unit": "GFLOPS/W",
+      "caliber": {
+        "basis": "理论",
+        "precision": "FP16",
+        "region": "未披露"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ac27bf38c805c5ebebd0b594fc1f8379d902f1bbb752682488e46ade1c070568",
+        "local_file": "AI 训练/推理 TCO 对比（Morgan Stanley，2025-07-07）.xlsx",
+        "locator": "工作表「TCO Analysis for AI Training」第 26 行 Performance per Watt (TFLOPS/Watt)，TPU v5p 列 = 0.66",
+        "grade": "S3",
+        "originator": "Morgan Stanley（工作表标注 Source: MS / Date: 2025.07.07）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 0.66 TFLOPS/W × 1000 = 660 GFLOPS/W。 **basis=理论**：分子是峰值性能（第 11 行 Peak performance per GPU）÷ TDP，**不是实测**——同表另有 0.4 的计算利用率，按实际算要再打四折。 **跨代与跨厂差距**：B200 2250 GFLOPS/W 最高，TPU v5p 660 最低，差 3.4 倍；而 GB200 的 2080 反而略低于 B200——**单卡能效不随功率密度单调上升**。 **这是券商 TCO 模型里的假设，不是任何一个真实机房的实测值**：同表统一假设 24,000 颗芯片一个集群、计算利用率 0.4、折旧 4 年、电价 150 美元/MWh（含输配）、训练 Llama-3 400B（FP16 总算力需求 17,418 ZFLOPS）。**改动其中任何一个假设，这一列的数都会变。**"
+    },
+    {
+      "fact_id": "ms-tco-pue-google-tpu-v6",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "product",
+        "id": "google-tpu-v6",
+        "label": "Google/Broadcom TPU v6"
+      },
+      "value": 1.3,
+      "unit": "比值",
+      "caliber": {
+        "basis": "第三方推算",
+        "scale": "单项目",
+        "period": "设计工况",
+        "region": "未披露"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ac27bf38c805c5ebebd0b594fc1f8379d902f1bbb752682488e46ade1c070568",
+        "local_file": "AI 训练/推理 TCO 对比（Morgan Stanley，2025-07-07）.xlsx",
+        "locator": "工作表「TCO Analysis for AI Training」第 28 行 PUE (Power Usage Effectiveness)，TPU v6 列 = 1.3",
+        "grade": "S3",
+        "originator": "Morgan Stanley（工作表标注 Source: MS / Date: 2025.07.07）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**PUE 在这张表里是按芯片假设的，不是按机房**：同一份模型给 H100/MI300A/Gaudi3/Trainium2 都是 1.5、B200 给 1.4、GB200 给 1.2、TPU 给 1.3——**高功率密度芯片被假设了更低的 PUE**（GB200 单机 116.64kW 对应 1.2），这是模型的一个隐含判断而非观测。 **region=未披露**：原表没有说明这个 PUE 对应哪个地域的机房。 **这是券商 TCO 模型里的假设，不是任何一个真实机房的实测值**：同表统一假设 24,000 颗芯片一个集群、计算利用率 0.4、折旧 4 年、电价 150 美元/MWh（含输配）、训练 Llama-3 400B（FP16 总算力需求 17,418 ZFLOPS）。**改动其中任何一个假设，这一列的数都会变。**"
+    },
+    {
+      "fact_id": "ms-tco-perf-per-watt-google-tpu-v6",
+      "metric_id": "compute_efficiency",
+      "entity": {
+        "type": "product",
+        "id": "google-tpu-v6",
+        "label": "Google/Broadcom TPU v6"
+      },
+      "value": 1320.0,
+      "unit": "GFLOPS/W",
+      "caliber": {
+        "basis": "理论",
+        "precision": "FP16",
+        "region": "未披露"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ac27bf38c805c5ebebd0b594fc1f8379d902f1bbb752682488e46ade1c070568",
+        "local_file": "AI 训练/推理 TCO 对比（Morgan Stanley，2025-07-07）.xlsx",
+        "locator": "工作表「TCO Analysis for AI Training」第 26 行 Performance per Watt (TFLOPS/Watt)，TPU v6 列 = 1.32",
+        "grade": "S3",
+        "originator": "Morgan Stanley（工作表标注 Source: MS / Date: 2025.07.07）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 1.32 TFLOPS/W × 1000 = 1320 GFLOPS/W。 **basis=理论**：分子是峰值性能（第 11 行 Peak performance per GPU）÷ TDP，**不是实测**——同表另有 0.4 的计算利用率，按实际算要再打四折。 **跨代与跨厂差距**：B200 2250 GFLOPS/W 最高，TPU v5p 660 最低，差 3.4 倍；而 GB200 的 2080 反而略低于 B200——**单卡能效不随功率密度单调上升**。 **这是券商 TCO 模型里的假设，不是任何一个真实机房的实测值**：同表统一假设 24,000 颗芯片一个集群、计算利用率 0.4、折旧 4 年、电价 150 美元/MWh（含输配）、训练 Llama-3 400B（FP16 总算力需求 17,418 ZFLOPS）。**改动其中任何一个假设，这一列的数都会变。**"
+    },
+    {
+      "fact_id": "ms-tco-pue-aws-trainium2",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "product",
+        "id": "aws-trainium2",
+        "label": "AWS/Marvell Trainium 2"
+      },
+      "value": 1.5,
+      "unit": "比值",
+      "caliber": {
+        "basis": "第三方推算",
+        "scale": "单项目",
+        "period": "设计工况",
+        "region": "未披露"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ac27bf38c805c5ebebd0b594fc1f8379d902f1bbb752682488e46ade1c070568",
+        "local_file": "AI 训练/推理 TCO 对比（Morgan Stanley，2025-07-07）.xlsx",
+        "locator": "工作表「TCO Analysis for AI Training」第 28 行 PUE (Power Usage Effectiveness)，Trainimum 2 列 = 1.5",
+        "grade": "S3",
+        "originator": "Morgan Stanley（工作表标注 Source: MS / Date: 2025.07.07）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**PUE 在这张表里是按芯片假设的，不是按机房**：同一份模型给 H100/MI300A/Gaudi3/Trainium2 都是 1.5、B200 给 1.4、GB200 给 1.2、TPU 给 1.3——**高功率密度芯片被假设了更低的 PUE**（GB200 单机 116.64kW 对应 1.2），这是模型的一个隐含判断而非观测。 **region=未披露**：原表没有说明这个 PUE 对应哪个地域的机房。 **这是券商 TCO 模型里的假设，不是任何一个真实机房的实测值**：同表统一假设 24,000 颗芯片一个集群、计算利用率 0.4、折旧 4 年、电价 150 美元/MWh（含输配）、训练 Llama-3 400B（FP16 总算力需求 17,418 ZFLOPS）。**改动其中任何一个假设，这一列的数都会变。**"
+    },
+    {
+      "fact_id": "ms-tco-perf-per-watt-aws-trainium2",
+      "metric_id": "compute_efficiency",
+      "entity": {
+        "type": "product",
+        "id": "aws-trainium2",
+        "label": "AWS/Marvell Trainium 2"
+      },
+      "value": 1160.0,
+      "unit": "GFLOPS/W",
+      "caliber": {
+        "basis": "理论",
+        "precision": "FP16",
+        "region": "未披露"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ac27bf38c805c5ebebd0b594fc1f8379d902f1bbb752682488e46ade1c070568",
+        "local_file": "AI 训练/推理 TCO 对比（Morgan Stanley，2025-07-07）.xlsx",
+        "locator": "工作表「TCO Analysis for AI Training」第 26 行 Performance per Watt (TFLOPS/Watt)，Trainimum 2 列 = 1.16",
+        "grade": "S3",
+        "originator": "Morgan Stanley（工作表标注 Source: MS / Date: 2025.07.07）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 1.16 TFLOPS/W × 1000 = 1160 GFLOPS/W。 **basis=理论**：分子是峰值性能（第 11 行 Peak performance per GPU）÷ TDP，**不是实测**——同表另有 0.4 的计算利用率，按实际算要再打四折。 **跨代与跨厂差距**：B200 2250 GFLOPS/W 最高，TPU v5p 660 最低，差 3.4 倍；而 GB200 的 2080 反而略低于 B200——**单卡能效不随功率密度单调上升**。 **这是券商 TCO 模型里的假设，不是任何一个真实机房的实测值**：同表统一假设 24,000 颗芯片一个集群、计算利用率 0.4、折旧 4 年、电价 150 美元/MWh（含输配）、训练 Llama-3 400B（FP16 总算力需求 17,418 ZFLOPS）。**改动其中任何一个假设，这一列的数都会变。**"
+    },
+    {
+      "fact_id": "ms-tco-compute-utilization",
+      "metric_id": "mfu_rate",
+      "entity": {
+        "type": "market",
+        "id": "ai-training-cluster-assumption",
+        "label": "AI 训练集群（券商模型假设）"
+      },
+      "value": 40.0,
+      "unit": "%",
+      "caliber": {
+        "cluster_scale": "超万卡",
+        "region": "未披露"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ac27bf38c805c5ebebd0b594fc1f8379d902f1bbb752682488e46ade1c070568",
+        "local_file": "AI 训练/推理 TCO 对比（Morgan Stanley，2025-07-07）.xlsx",
+        "locator": "工作表「TCO Analysis for AI Training」第 12 行 Compute utilization = 0.4（八个芯片列全部相同）",
+        "grade": "S3",
+        "originator": "Morgan Stanley（工作表标注 Source: MS / Date: 2025.07.07）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**八种芯片被统一假设为 40%**：模型没有按芯片区分利用率，**这意味着表里的「训练天数」差异完全来自峰值性能，不含软件栈成熟度的影响**——而现实中 TPU 与 Gaudi 的实际 MFU 通常低于 NVIDIA。这是这张表最需要警惕的假设。 cluster_scale=超万卡：同表假设 24,000 颗芯片一个集群。 对照库内 cn-10k-cluster-mfu-2024（中国万卡集群 MFU 上界 40%）：**数值相同但一个是实测上界、一个是模型假设**，不可当作互相印证。 **这是券商 TCO 模型里的假设，不是任何一个真实机房的实测值**：同表统一假设 24,000 颗芯片一个集群、计算利用率 0.4、折旧 4 年、电价 150 美元/MWh（含输配）、训练 Llama-3 400B（FP16 总算力需求 17,418 ZFLOPS）。**改动其中任何一个假设，这一列的数都会变。**"
+    },
+    {
+      "fact_id": "ms-tco-power-price-assumption",
+      "metric_id": "ppa_price_index",
+      "entity": {
+        "type": "market",
+        "id": "ai-training-cluster-assumption",
+        "label": "AI 训练集群（券商模型假设）"
+      },
+      "value": 150.0,
+      "unit": "$/MWh",
+      "caliber": {
+        "price_type": "长约",
+        "tenor": "≤5年",
+        "region": "未披露"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ac27bf38c805c5ebebd0b594fc1f8379d902f1bbb752682488e46ade1c070568",
+        "local_file": "AI 训练/推理 TCO 对比（Morgan Stanley，2025-07-07）.xlsx",
+        "locator": "工作表「TCO Analysis for AI Training」第 33 行 Power cost ($/mWh), Incl T&D = 150（八列相同）",
+        "grade": "S3",
+        "originator": "Morgan Stanley（工作表标注 Source: MS / Date: 2025.07.07）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**含输配电费（Incl T&D）**，这是它与很多「批发电价」口径不可比的原因。 **price_type/tenor 都是就近归类**：原表只写「Power cost」，没说是长约还是现货、也没说年限——按 TCO 模型通常用的多年平均电价归入长约 ≤5 年，标 [未核]。 **原表单位写作 $/mWh（小写 m）**，按上下文应为 $/MWh；若真按毫瓦时算会差 10 亿倍。 **这是券商 TCO 模型里的假设，不是任何一个真实机房的实测值**：同表统一假设 24,000 颗芯片一个集群、计算利用率 0.4、折旧 4 年、电价 150 美元/MWh（含输配）、训练 Llama-3 400B（FP16 总算力需求 17,418 ZFLOPS）。**改动其中任何一个假设，这一列的数都会变。**"
     }
   ]
 }
