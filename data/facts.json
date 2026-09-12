@@ -12106,6 +12106,486 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**这是对单一客户的供货量，不是剑桥的总出货**——customer=思科 正是为此；原文注明 2026 年的增量全部来自思科。 原文对剑桥的定位说明：不与一线厂商竞争；研发团队含菲尼萨工程师、产品架构类似，送样/送测无障碍；**直供云厂商 800G 困难，依托设备厂商订单**，市场旺时订单有保障。 原文「250-300」是区间，本条是上界。 速率记合计：原表未分速率。 **编制方与信源是两回事**：表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」，未具名，故 grade=S5。"
+    },
+    {
+      "fact_id": "iea-dc-electricity-2024",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 415.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "a235cdbed4b7a2dd7b432d23c4e7678500344b8f23d700461071d3ad7f42f01e",
+        "local_file": "IEA Energy and AI - World Energy Outlook Special Report (2025-04).pdf",
+        "locator": "第 77 页：「In 2024, technology companies’ renewables PPAs were sufficient to cover roughly 20% of the estimated 415 TWh of global electricity demand from data centres」",
+        "grade": "S3",
+        "originator": "国际能源署 IEA"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是全行业被引用最多的那个数的出处。**IEA 称其为 estimated，即 IEA 自己的估算而非统计直报，basis 记实测是就「已发生年份的量」而言，**不表示存在逐站点计量**。 scenario=单一情景：2024 是历史年份，不分情景——**「单一情景」不等于 Base Case**，后者特指 IEA 对未来的基准情景。 同页给出配套口径：科技公司的可再生 PPA 在 2024 年足以覆盖这 415 TWh 的约 20%。"
+    },
+    {
+      "fact_id": "iea-dc-electricity-2023",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 360.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "a235cdbed4b7a2dd7b432d23c4e7678500344b8f23d700461071d3ad7f42f01e",
+        "local_file": "IEA Energy and AI - World Energy Outlook Special Report (2025-04).pdf",
+        "locator": "第 30 页：「Consuming around 360 TWh of electricity in 2023, data centres accounted for one-third of ...」",
+        "grade": "S3",
+        "originator": "国际能源署 IEA"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「around 360 TWh」是约数。与 2024 年的 415 TWh 相比一年增约 15%，**两条同源同口径，可直接接成序列**。"
+    },
+    {
+      "fact_id": "iea-dc-electricity-2030-base-case",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 945.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "Base Case",
+        "scope": "全部数据中心",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "a235cdbed4b7a2dd7b432d23c4e7678500344b8f23d700461071d3ad7f42f01e",
+        "local_file": "IEA Energy and AI - World Energy Outlook Special Report (2025-04).pdf",
+        "locator": "第 17 页 Key findings：「In the Base Case, electricity consumption from data centres rises to around 945 TWh by 2030, more than doubling from the 2024 level」",
+        "grade": "S3",
+        "originator": "国际能源署 IEA"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**四个情景是同一份报告对同一年份的四个值，不是四个互相矛盾的预测**：Base 945 / Lift-Off 超 1260 / High Efficiency 约 800 / Headwinds 约 670 TWh，**上下差近一倍**。引用任何一个都必须带 scenario，否则「2030 年数据中心用电」这句话本身没有意义。 原文为约数。 情景含义：AI 采用与能效改善按当前趋势推进。相对 2024 年的 415 TWh 翻一倍多。"
+    },
+    {
+      "fact_id": "iea-dc-electricity-2030-lift-off",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 1260.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "Lift-Off",
+        "scope": "全部数据中心",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-04",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "a235cdbed4b7a2dd7b432d23c4e7678500344b8f23d700461071d3ad7f42f01e",
+        "local_file": "IEA Energy and AI - World Energy Outlook Special Report (2025-04).pdf",
+        "locator": "第 17 页 Key findings：「The Lift-Off Case assumes stronger AI uptake and limited local constraints on data centre buildout. In this case, consumption reaches over 1 260 TWh by 2030」",
+        "grade": "S3",
+        "originator": "国际能源署 IEA"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**四个情景是同一份报告对同一年份的四个值，不是四个互相矛盾的预测**：Base 945 / Lift-Off 超 1260 / High Efficiency 约 800 / Headwinds 约 670 TWh，**上下差近一倍**。引用任何一个都必须带 scenario，否则「2030 年数据中心用电」这句话本身没有意义。 **Lift-Off 原文是「over 1 260 TWh」，按下界记。** 情景含义：AI 采用更强、数据中心建设的本地约束有限。"
+    },
+    {
+      "fact_id": "iea-dc-electricity-2030-high-efficiency",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 800.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "High Efficiency",
+        "scope": "全部数据中心",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "a235cdbed4b7a2dd7b432d23c4e7678500344b8f23d700461071d3ad7f42f01e",
+        "local_file": "IEA Energy and AI - World Energy Outlook Special Report (2025-04).pdf",
+        "locator": "第 17 页 Key findings：「The High Efficiency Case is driven by energy savings in both software and hardware; consumption reaches around 800 TWh by 2030」",
+        "grade": "S3",
+        "originator": "国际能源署 IEA"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**四个情景是同一份报告对同一年份的四个值，不是四个互相矛盾的预测**：Base 945 / Lift-Off 超 1260 / High Efficiency 约 800 / Headwinds 约 670 TWh，**上下差近一倍**。引用任何一个都必须带 scenario，否则「2030 年数据中心用电」这句话本身没有意义。 原文为约数。 情景含义：软硬件双侧节能。**注意它比 Base 低 15%，说明能效路径的影响量级不小于需求路径。**"
+    },
+    {
+      "fact_id": "iea-dc-electricity-2030-headwinds",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 670.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "Headwinds",
+        "scope": "全部数据中心",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "a235cdbed4b7a2dd7b432d23c4e7678500344b8f23d700461071d3ad7f42f01e",
+        "local_file": "IEA Energy and AI - World Energy Outlook Special Report (2025-04).pdf",
+        "locator": "第 17 页 Key findings：「In the Headwinds Case, it reaches around 670 TWh」",
+        "grade": "S3",
+        "originator": "国际能源署 IEA"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**四个情景是同一份报告对同一年份的四个值，不是四个互相矛盾的预测**：Base 945 / Lift-Off 超 1260 / High Efficiency 约 800 / Headwinds 约 670 TWh，**上下差近一倍**。引用任何一个都必须带 scenario，否则「2030 年数据中心用电」这句话本身没有意义。 原文为约数。 情景含义：能源部门瓶颈与效率改善不及预期的组合。"
+    },
+    {
+      "fact_id": "iea-dc-electricity-2035-base",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 1200.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "Base Case",
+        "scope": "全部数据中心",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2035E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "a235cdbed4b7a2dd7b432d23c4e7678500344b8f23d700461071d3ad7f42f01e",
+        "local_file": "IEA Energy and AI - World Energy Outlook Special Report (2025-04).pdf",
+        "locator": "第 17 页：「Uncertainties widen further after 2030, but our Base Case sees global data centre electricity consumption rising to around 1 200 TWh by 2035」",
+        "grade": "S3",
+        "originator": "国际能源署 IEA"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**2035 年四情景的跨度为 700-1 720 TWh**（原文 Key findings 明示），比 2030 年的 670-1 260 更宽——不确定性随时间放大，用 2035 的单点值做规划风险很高。本条只录 Base Case 的 1 200。"
+    },
+    {
+      "fact_id": "iea-dc-electricity-2035-spread-lower",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 700.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2035E@2025-04",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "a235cdbed4b7a2dd7b432d23c4e7678500344b8f23d700461071d3ad7f42f01e",
+        "local_file": "IEA Energy and AI - World Energy Outlook Special Report (2025-04).pdf",
+        "locator": "第 17 页：「By 2035, the spread of uncertainty widens further, spanning 700 TWh to 1 720 TWh across the four cases」",
+        "grade": "S3",
+        "originator": "国际能源署 IEA"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是四情景的包络，不是某一个情景的值**，故 scenario 记「单一情景」并在此说明：700 TWh 对应最保守情景、1 720 TWh 对应最激进情景。与 iea-dc-electricity-2035-base（Base Case 1 200 TWh）是不同口径，不可并列作三点比较。 下端。"
+    },
+    {
+      "fact_id": "iea-dc-electricity-2035-spread-upper",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 1720.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2035E@2025-04",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "a235cdbed4b7a2dd7b432d23c4e7678500344b8f23d700461071d3ad7f42f01e",
+        "local_file": "IEA Energy and AI - World Energy Outlook Special Report (2025-04).pdf",
+        "locator": "第 17 页：「By 2035, the spread of uncertainty widens further, spanning 700 TWh to 1 720 TWh across the four cases」",
+        "grade": "S3",
+        "originator": "国际能源署 IEA"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是四情景的包络，不是某一个情景的值**，故 scenario 记「单一情景」并在此说明：700 TWh 对应最保守情景、1 720 TWh 对应最激进情景。与 iea-dc-electricity-2035-base（Base Case 1 200 TWh）是不同口径，不可并列作三点比较。 上端。"
+    },
+    {
+      "fact_id": "iea-dc-electricity-jp-2024",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "jp-datacenters",
+        "label": "日本数据中心"
+      },
+      "value": 20.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "region": "JP",
+        "basis": "模型输出"
+      },
+      "as_of": "2024",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "a235cdbed4b7a2dd7b432d23c4e7678500344b8f23d700461071d3ad7f42f01e",
+        "local_file": "IEA Energy and AI - World Energy Outlook Special Report (2025-04).pdf",
+        "locator": "第 44 页：「In Japan, we estimate that data centres account for less than 20 TWh of electricity」",
+        "grade": "S3",
+        "originator": "国际能源署 IEA"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**IEA 的估算（we estimate），不是各国统计**。 原文「less than 20 TWh」是上界。 与全球 415 TWh 对照：日本不足 5%、印度约 2%——**亚洲两个大市场的绝对量都还很小**。"
+    },
+    {
+      "fact_id": "iea-dc-electricity-in-2024",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "in-datacenters",
+        "label": "印度数据中心"
+      },
+      "value": 9.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "region": "IN",
+        "basis": "模型输出"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "a235cdbed4b7a2dd7b432d23c4e7678500344b8f23d700461071d3ad7f42f01e",
+        "local_file": "IEA Energy and AI - World Energy Outlook Special Report (2025-04).pdf",
+        "locator": "第 44 页：「data centres account for around 9 TWh of consumption in India (Box 2.2), or about 0.5%」",
+        "grade": "S3",
+        "originator": "国际能源署 IEA"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**IEA 的估算（we estimate），不是各国统计**。 印度同时给出占其全国用电约 0.5% 的相对口径。 与全球 415 TWh 对照：日本不足 5%、印度约 2%——**亚洲两个大市场的绝对量都还很小**。"
+    },
+    {
+      "fact_id": "iea-dc-share-load-growth-global-2030",
+      "metric_id": "dc_share_of_load_growth",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 10.0,
+      "unit": "%",
+      "caliber": {
+        "window": "至2030",
+        "scenario": "Base Case",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-04",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "a235cdbed4b7a2dd7b432d23c4e7678500344b8f23d700461071d3ad7f42f01e",
+        "local_file": "IEA Energy and AI - World Energy Outlook Special Report (2025-04).pdf",
+        "locator": "第 17 页：「Data centres still account for less than 10% of the growth in global electricity consumption to 2030」",
+        "grade": "S3",
+        "originator": "国际能源署 IEA"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这条和下一条必须成对读**：全球口径下数据中心只占 2030 年前电力需求增长的不到 10%，而美国口径下接近一半。**单独引用其中任何一个都会造成完全相反的印象**，这是本报告最容易被断章取义的地方。原文「less than 10%」是上界。"
+    },
+    {
+      "fact_id": "iea-dc-share-load-growth-us-2030",
+      "metric_id": "dc_share_of_load_growth",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心"
+      },
+      "value": 50.0,
+      "unit": "%",
+      "caliber": {
+        "window": "至2030",
+        "scenario": "Base Case",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-04",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "a235cdbed4b7a2dd7b432d23c4e7678500344b8f23d700461071d3ad7f42f01e",
+        "local_file": "IEA Energy and AI - World Energy Outlook Special Report (2025-04).pdf",
+        "locator": "第 17 页：「In the United States, data centres account for nearly half of electricity demand growth between now and 2030」",
+        "grade": "S3",
+        "originator": "国际能源署 IEA"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「nearly half」，按上界 50% 记。**与全球口径的不到 10% 成对使用**（见 iea-dc-share-load-growth-global-2030）。原文同段还给了一个更直观的对照：到本十年末，美国用于数据中心的电力将超过铝、钢、水泥、化工等全部能源密集型商品生产的总和。"
+    },
+    {
+      "fact_id": "iea-ppa-operational-2024",
+      "metric_id": "corporate_ppa_capacity",
+      "entity": {
+        "type": "industry",
+        "id": "global-corporate-ppa",
+        "label": "全球企业 PPA 采购的可再生装机"
+      },
+      "value": 120.0,
+      "unit": "GW",
+      "caliber": {
+        "status": "已投运",
+        "buyer_scope": "全部企业",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2024",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "a235cdbed4b7a2dd7b432d23c4e7678500344b8f23d700461071d3ad7f42f01e",
+        "local_file": "IEA Energy and AI - World Energy Outlook Special Report (2025-04).pdf",
+        "locator": "第 77 页：「To date, nearly 120 GW of operational renewables capacity has been procured through corporate PPAs globally」",
+        "grade": "S3",
+        "originator": "国际能源署 IEA"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**买方口径是全部企业，不只是数据中心**：原文同页称运营数据中心的科技公司占这 120 GW 的逾 30%。 原文「nearly 120 GW」是下界。"
+    },
+    {
+      "fact_id": "iea-ppa-underdev-2024",
+      "metric_id": "corporate_ppa_capacity",
+      "entity": {
+        "type": "industry",
+        "id": "global-corporate-ppa",
+        "label": "全球企业 PPA 采购的可再生装机"
+      },
+      "value": 60.0,
+      "unit": "GW",
+      "caliber": {
+        "status": "在建",
+        "buyer_scope": "全部企业",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "a235cdbed4b7a2dd7b432d23c4e7678500344b8f23d700461071d3ad7f42f01e",
+        "local_file": "IEA Energy and AI - World Energy Outlook Special Report (2025-04).pdf",
+        "locator": "第 77 页：「An additional 60 GW of PPA-related capacity is currently under development – meaning projects for which financing and/or permits have been secured or which are under ...」",
+        "grade": "S3",
+        "originator": "国际能源署 IEA"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**买方口径是全部企业，不只是数据中心**：原文同页称运营数据中心的科技公司占这 120 GW 的逾 30%。 「在建」的定义原文给得很具体：已获融资和/或许可、或已开工的项目——**不是所有已签 PPA 的项目**。"
+    },
+    {
+      "fact_id": "iea-ppa-tech-share-2024",
+      "metric_id": "corporate_ppa_capacity",
+      "entity": {
+        "type": "industry",
+        "id": "global-corporate-ppa-tech",
+        "label": "科技公司（运营数据中心）通过企业 PPA 采购的可再生装机"
+      },
+      "value": 36.0,
+      "unit": "GW",
+      "caliber": {
+        "status": "已投运",
+        "buyer_scope": "运营数据中心的科技公司",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2024",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "a235cdbed4b7a2dd7b432d23c4e7678500344b8f23d700461071d3ad7f42f01e",
+        "local_file": "IEA Energy and AI - World Energy Outlook Special Report (2025-04).pdf",
+        "locator": "第 77 页：「nearly 120 GW of operational renewables capacity has been procured through corporate PPAs globally … Technology companies operating data centres account for over 30% of this capacity」",
+        "grade": "S3",
+        "originator": "国际能源署 IEA"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**这是算出来的**：120 GW × 30% = 36 GW。两个乘数都是下界（原文 nearly 120 GW、over 30%），故结果记为下界，真实值高于 36 GW。**不要当点值用**；需要精确数须回 IEA Figure 2.16。"
     }
   ]
 }
