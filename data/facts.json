@@ -6450,6 +6450,93 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原文区间 8~12 kN/㎡ 的**上界**；下界见 cmcc-idc-v32-floorload-mainroom-2019。**这是中国移动的企业准入标准，不是某个项目的设计取值，也不是国标**，按二星～钻石五星五档打分且五档全部适用。原文软化条款：「不满足要求时，由设计院出具载荷报告，并进行过加固」——不是一票否决，当硬门槛用会高估约束力。**交叉参考**：库内忠县那份的主机房设计取值 10 kN/㎡ 落在本区间内；同表电池室为 16 kN/㎡ 点值，比主机房上界还高 33%。工作表「v3.2修改内容」重复同一要求（同文件两个版本），不构成交叉验证。"
+    },
+    {
+      "fact_id": "gev-turbine-delivery-capacity-2026e",
+      "metric_id": "gas_turbine_capacity_annual",
+      "entity": {
+        "type": "company",
+        "id": "ge-vernova",
+        "label": "GE Vernova"
+      },
+      "value": 20.0,
+      "unit": "GW/年",
+      "caliber": {
+        "scope": "单一厂商",
+        "basis": "厂商披露",
+        "region": "Global"
+      },
+      "as_of": "2026E@2026-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "abcd9e03fc7cb07e00774248c1e6a7a3c28fa2aab54201dc61f57717455c60da",
+        "local_file": "20260528-电力设备-共享AIDC建设机遇，迎行业超级周期-海外电力设备巨头财报总结专题.pdf",
+        "locator": "第 9 页「GEV燃机：业绩、订单迅速增长」页：「根据公司指引，燃气轮机年交付量将在 2026 年中达到 20GW，2028 年进一步提升至 24GW」",
+        "grade": "S4",
+        "originator": "东吴证券（转述 GEV 公司指引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文说的是「年交付量」不是铭牌产能**，本指标名为年产能，二者在供不应求时接近但不等同——同页明说「产能与交付能力同步爬坡」「产能告紧」，即交付量此时受产能约束、可作产能下沿看待，但不要当成铭牌值。**这条同时是库内 gev-turbine-backlog-capacity-2026q1（5.00 年 = 100GW 在手 ÷ 20GW 年产能）那个分母的出处**：此前那条是跨报告计算值，分母 20GW 在这里得到公司指引层面的印证。**时点要看清**：原文是「2026 年中达到」，不是全年均值。basis=厂商披露（公司指引），非第三方统计。"
+    },
+    {
+      "fact_id": "gev-turbine-delivery-capacity-2028e",
+      "metric_id": "gas_turbine_capacity_annual",
+      "entity": {
+        "type": "company",
+        "id": "ge-vernova",
+        "label": "GE Vernova"
+      },
+      "value": 24.0,
+      "unit": "GW/年",
+      "caliber": {
+        "scope": "单一厂商",
+        "basis": "厂商披露",
+        "region": "Global"
+      },
+      "as_of": "2028E@2026-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "abcd9e03fc7cb07e00774248c1e6a7a3c28fa2aab54201dc61f57717455c60da",
+        "local_file": "20260528-电力设备-共享AIDC建设机遇，迎行业超级周期-海外电力设备巨头财报总结专题.pdf",
+        "locator": "第 9 页：「燃气轮机年交付量将在 2026 年中达到 20GW，2028 年进一步提升至 24GW」；另见第 1 页摘要「28年将扩产至24GW/年」",
+        "grade": "S4",
+        "originator": "东吴证券（转述 GEV 公司指引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**两年扩 20%（20→24GW）。**口径同 2026 条：原文为「年交付量」的公司指引，不是铭牌产能。**参照系**：库内 gas-turbine-capacity-big3-2025 为三大厂商合计 46 GW/年（2025，第三方统计）——若该合计口径不变，GEV 一家 2028 年的 24GW 就相当于 2025 年三家总和的一半以上，**但两条 scope 不同（单一厂商 vs 三大厂商合计）、basis 不同（厂商披露 vs 第三方统计），只能作量级参照，不能相除算份额**。第 1 页摘要把这句写成「扩产至 24GW/年」，与正文的「交付量」措辞不一致，以正文为准。"
+    },
+    {
+      "fact_id": "overseas-td-majors-backlog-leadtime-2026",
+      "metric_id": "transformer_lead_time",
+      "entity": {
+        "type": "industry",
+        "id": "overseas-td-equipment-majors",
+        "label": "海外输变电设备巨头（在手订单口径）"
+      },
+      "value": 24.0,
+      "unit": "月",
+      "caliber": {
+        "basis": "未披露",
+        "voltage": "未披露",
+        "region": "Global"
+      },
+      "as_of": "2026",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "abcd9e03fc7cb07e00774248c1e6a7a3c28fa2aab54201dc61f57717455c60da",
+        "local_file": "20260528-电力设备-共享AIDC建设机遇，迎行业超级周期-海外电力设备巨头财报总结专题.pdf",
+        "locator": "第 5 页：「产能释放节奏缓慢，在手订单交期普遍在2年以上：1）巨头投产主要集中在发达国家，因熟练工人不足，产能释放节奏缓慢；2）AI算力中心对变压器交期要求高，部分采取加价抢单或巨头分包给中国公司的形式」",
+        "grade": "S4",
+        "originator": "东吴证券"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**「2 年以上」是下界，且口径与库内那条不同，不要当成互相矛盾**：本条是**海外输变电设备巨头在手订单整体的消化交期**（订单簿口径，涵盖变压器与开关设备），库内 transformer-lead-time-iea-2026 是 IEA 给的**大型电力变压器采购交货周期 48 个月下界**（专项口径）。一个是「厂商订单排到多久」、一个是「买家下单到拿货多久」，后者天然更长，两条并列保留。**故意用了不同的 entity**（overseas-td-equipment-majors vs large-power-transformer）把两者隔开。原文补充两条机制：产能投放在发达国家、熟练工人不足；AIDC 客户加价抢单或由巨头分包给中国公司——**分包意味着名义交期与实际交付主体可能不是一回事**。"
     }
   ]
 }
