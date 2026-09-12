@@ -6914,6 +6914,267 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "区间上界，下界见 vc-platform-h100-shortterm-low-202410。**原文此处有印刷错误**：写作「$2.30-$2-50」，按上下文判为 $2.50，已标 [未核]。口径说明同下界条：关联方定价、周级、1000 卡规模、由 Neocloud Giants 代运营。"
+    },
+    {
+      "fact_id": "global-gas-turbine-capacity-2025",
+      "metric_id": "gas_turbine_capacity_annual",
+      "entity": {
+        "type": "industry",
+        "id": "global-gas-turbine-supply",
+        "label": "全球燃气轮机生产产能"
+      },
+      "value": 64.0,
+      "unit": "GW/年",
+      "caliber": {
+        "scope": "全球",
+        "basis": "券商估算",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b500296f7f7fe6d2f08bf02f00aac96a4395e146251fdc1bac111d750208cd67",
+        "local_file": "Bernstein Powering AI - Mapping the gas turbine supply stack (2026-06-18).pdf",
+        "locator": "第 2 页「TURBINE POWER GENERATION CAPACITY EXPANSION HAS BEEN DISCIPLINED」：「Global turbine capacity is set to increase from 64 GW in 2025 to 109 GW by 2030 (>60% growth), with ~75% driven by the big-3 OEMs (Exhibit 1)」；Exhibit 1 标题写明为 gas turbine production capacity",
+        "grade": "S3",
+        "originator": "Bernstein（伯恩斯坦）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**与库内 gas-turbine-capacity-big3-2025（三大厂商合计 46 GW/年，2025，第三方统计）互为印证**：本条全球 64 GW × 原文「约 75% 由三大 OEM 贡献」= 48 GW，与 46 GW 相差 4%，两个独立来源基本对上。**一处口径瑕疵要记住**：Exhibit 1 标题说的是 gas turbine production capacity，但同页给西门子能源的 31GW 明确「incl. steam（汽轮机约占其总产能 20%）」，**即这个全球合计里至少混进了西门子的汽轮机产能**，纯燃机口径应略低于 64GW。原文强调本轮扩产以棕地复产（de-mothballing）为主而非绿地新建，因此产能可随需求回落而收缩，与 2000 年代那轮过度扩张不同。"
+    },
+    {
+      "fact_id": "global-gas-turbine-capacity-2030e",
+      "metric_id": "gas_turbine_capacity_annual",
+      "entity": {
+        "type": "industry",
+        "id": "global-gas-turbine-supply",
+        "label": "全球燃气轮机生产产能"
+      },
+      "value": 109.0,
+      "unit": "GW/年",
+      "caliber": {
+        "scope": "全球",
+        "basis": "券商估算",
+        "region": "Global"
+      },
+      "as_of": "2030E@2026-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b500296f7f7fe6d2f08bf02f00aac96a4395e146251fdc1bac111d750208cd67",
+        "local_file": "Bernstein Powering AI - Mapping the gas turbine supply stack (2026-06-18).pdf",
+        "locator": "第 2 页：「Global turbine capacity is set to increase from 64 GW in 2025 to 109 GW by 2030 (>60% growth)」；摘要页另处写作「rising >60% to ~110GW by 2030」",
+        "grade": "S3",
+        "originator": "Bernstein（伯恩斯坦）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "五年增 >60%、净增逾 40GW，其中约四分之三由三大 OEM 贡献。**同一份报告里这个数出现两个写法**：正文 109GW、摘要 ~110GW，本条取正文的 109。**与需求侧对照**：报告预测燃机需求由 2025 年约 96GW 增至 2030 年约 110GW——**即 2025 年需求（96GW）远高于产能（64GW），到 2030 年两者才接近**，这正是报告「supply-demand still tight」判断的算术基础。需求侧那两个数本库没有指标可放（见 metric_gaps）。"
+    },
+    {
+      "fact_id": "gev-gas-turbine-capacity-2025-bernstein",
+      "metric_id": "gas_turbine_capacity_annual",
+      "entity": {
+        "type": "company",
+        "id": "ge-vernova",
+        "label": "GE Vernova"
+      },
+      "value": 16.0,
+      "unit": "GW/年",
+      "caliber": {
+        "scope": "单一厂商",
+        "basis": "券商估算",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b500296f7f7fe6d2f08bf02f00aac96a4395e146251fdc1bac111d750208cd67",
+        "local_file": "Bernstein Powering AI - Mapping the gas turbine supply stack (2026-06-18).pdf",
+        "locator": "第 2 页：「produce a similar mapping for GE Vernova as capacity scales from 16 GW to 24 GW by 2028 (Exhibit 3)」；Exhibit 3 说明称该产能模型由公司报告搭建，重型机型将在 FY28 前增约 8GW",
+        "grade": "S3",
+        "originator": "Bernstein（据 GEV 公司报告自建产能模型）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**基年是推断的**：原文只说「从 16GW 增至 2028 年的 24GW」，未标明 16GW 对应哪一年；结合同页「2026 年年中达到 20GW」判断 16GW 是 2026 年之前（FY25）的水平，已标 [未核]。**16 → 24GW 的增量约 8GW 全部来自重型机型**（重型产量由 55 台增至 FY26 末的 70-80 台，2028 年 90-100 台），航改机型仅小幅增长。basis=券商估算（Bernstein 自建模型），与同项的厂商指引口径条目不可混。"
+    },
+    {
+      "fact_id": "gev-gas-turbine-capacity-2026e-bernstein",
+      "metric_id": "gas_turbine_capacity_annual",
+      "entity": {
+        "type": "company",
+        "id": "ge-vernova",
+        "label": "GE Vernova"
+      },
+      "value": 20.0,
+      "unit": "GW/年",
+      "caliber": {
+        "scope": "单一厂商",
+        "basis": "厂商披露",
+        "region": "Global"
+      },
+      "as_of": "2026E@2026-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b500296f7f7fe6d2f08bf02f00aac96a4395e146251fdc1bac111d750208cd67",
+        "local_file": "Bernstein Powering AI - Mapping the gas turbine supply stack (2026-06-18).pdf",
+        "locator": "第 60 页「GE Vernova have planned the following」：「On track to increase total capacity to 20GW by mid-2026」",
+        "grade": "S3",
+        "originator": "Bernstein 转述 GEV 公司计划"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**与库内 gev-turbine-delivery-capacity-2026e（东吴证券，2026-05 时点，同为 20GW）数值完全一致**，两家券商相隔一个月转述同一条 GEV 指引。**但这不构成独立交叉验证**——两者的原始信源都是 GEV 自己的指引，按本库规则「转载同一原文不算独立来源」，故仍记待交叉验证。**措辞差异值得留意**：东吴写「年交付量」，本份写「total capacity」，一个是出得去多少、一个是能造多少，在产能紧张期二者接近但概念不同。时点均为「2026 年年中」，不是全年。"
+    },
+    {
+      "fact_id": "gev-gas-turbine-capacity-2028e-bernstein",
+      "metric_id": "gas_turbine_capacity_annual",
+      "entity": {
+        "type": "company",
+        "id": "ge-vernova",
+        "label": "GE Vernova"
+      },
+      "value": 24.0,
+      "unit": "GW/年",
+      "caliber": {
+        "scope": "单一厂商",
+        "basis": "厂商披露",
+        "region": "Global"
+      },
+      "as_of": "2028E@2026-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b500296f7f7fe6d2f08bf02f00aac96a4395e146251fdc1bac111d750208cd67",
+        "local_file": "Bernstein Powering AI - Mapping the gas turbine supply stack (2026-06-18).pdf",
+        "locator": "第 60 页：「To raise production to ~24GW in 2028, including 90 – 100 heavy-duty gas units」",
+        "grade": "S3",
+        "originator": "Bernstein 转述 GEV 公司计划"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**与库内 gev-turbine-delivery-capacity-2028e（东吴证券，2026-05 时点，同为 24GW）一致**，同样源自 GEV 指引，不算独立交叉验证。**本份多给了台数口径**：24GW 对应 90-100 台重型燃机，即单台约 240-267MW；重型产量路径为 55 台 → FY26 末 70-80 台 → 2028 年 90-100 台。台数口径本库无指标（见 metric_gaps）。"
+    },
+    {
+      "fact_id": "siemens-gas-turbine-capacity-2030e-exsteam",
+      "metric_id": "gas_turbine_capacity_annual",
+      "entity": {
+        "type": "company",
+        "id": "siemens-energy",
+        "label": "Siemens Energy"
+      },
+      "value": 24.8,
+      "unit": "GW/年",
+      "caliber": {
+        "scope": "单一厂商",
+        "basis": "券商估算",
+        "region": "Global"
+      },
+      "as_of": "2030E@2026-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b500296f7f7fe6d2f08bf02f00aac96a4395e146251fdc1bac111d750208cd67",
+        "local_file": "Bernstein Powering AI - Mapping the gas turbine supply stack (2026-06-18).pdf",
+        "locator": "第 2 页：「Siemens Energy can nearly double capacity to 31 GW (incl. steam) by 2030 (Exhibit 2)」；第 59 页：「All of these increases help Siemens Energy to reach an available capacity of ~31GW by 2030 … As mentioned previously, this includes steam turbines (roughly 20% of Siemens Energy's total capacity)」",
+        "grade": "S3",
+        "originator": "Bernstein（伯恩斯坦）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**这是算出来的数，不是原文的数。**算法：原文口径 31 GW（含汽轮机）× (1 − 20%) = 24.8 GW，被减项是汽轮机产能（原文称汽轮机「roughly 20% of Siemens Energy's total capacity」）。**为什么要剥**：本指标是燃气轮机年产能，31GW 含汽轮机，与 GEV 的纯燃机 24GW 并列会高估西门子约 25%。**「roughly 20%」是约数，故 24.8 也是约数**，标 [未核]；需要精确值须回 Exhibit 2 分机型明细。原文另称西门子 2030 年产能将是各 OEM 中最高，增量最大的是 HL 级重型机（FY25→FY30 增约 6GW），中型与航改机型台数翻倍，扩产集中在柏林、夏洛特、芬斯邦三地，蒙特利尔航改产线复产。"
+    },
+    {
+      "fact_id": "siemens-dc-order-share-fy2025",
+      "metric_id": "gas_turbine_dc_order_share",
+      "entity": {
+        "type": "company",
+        "id": "siemens-energy",
+        "label": "Siemens Energy"
+      },
+      "value": 21.0,
+      "unit": "%",
+      "caliber": {
+        "region_scope": "全球",
+        "taxonomy": "按终端用途",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b500296f7f7fe6d2f08bf02f00aac96a4395e146251fdc1bac111d750208cd67",
+        "local_file": "Bernstein Powering AI - Mapping the gas turbine supply stack (2026-06-18).pdf",
+        "locator": "第 58 页：「In FY25, Siemens Energy disclosed the end-market point of orders, and whilst conventional still accounted for the majority (~58%), ~21% is allocated solely to data centers, clearly the second highest market (Exhibit 88). This data point has not been disclosed before」",
+        "grade": "S2",
+        "originator": "西门子能源 FY25 披露（经 Bernstein 转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是西门子能源首次披露订单的终端市场构成**（原文明说 has not been disclosed before），因此没有历史序列可比。同口径下常规电力仍占约 58%，数据中心 21% 位居第二。**计量口径原文未说明**——是按金额、按容量还是按台数不得而知，标 [未核]，这也是本库该指标缺一维 measure 的原因。**与库内 gas-turbine-dc-order-share-2024（全球 6.0%，2024）落差极大**：一个是市场级、一个是单一厂商，且时点差一年，**不可当作「一年从 6% 涨到 21%」**。"
+    },
+    {
+      "fact_id": "big3-dc-order-share-2026-low",
+      "metric_id": "gas_turbine_dc_order_share",
+      "entity": {
+        "type": "industry",
+        "id": "big3-gas-turbine-orders",
+        "label": "三大燃机 OEM 新增订单（GEV/西门子能源/三菱重工）"
+      },
+      "value": 20.0,
+      "unit": "%",
+      "caliber": {
+        "region_scope": "全球",
+        "taxonomy": "按终端用途",
+        "region": "Global"
+      },
+      "as_of": "2026",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "b500296f7f7fe6d2f08bf02f00aac96a4395e146251fdc1bac111d750208cd67",
+        "local_file": "Bernstein Powering AI - Mapping the gas turbine supply stack (2026-06-18).pdf",
+        "locator": "摘要页：「DCs now represent a visible share of 'big-3' orders (~20-30%), with gas generation expected to meet ~50% of incremental DC demand through 2030」",
+        "grade": "S3",
+        "originator": "Bernstein（伯恩斯坦）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间 20-30% 的下界，上界见 big3-dc-order-share-2026-high。**口径是三大 OEM 的新增订单，不是全市场**；与库内 gas-turbine-dc-order-share-2024（全球 6.0%）范围不同，不可直接接成时间序列。**同报告给出的分厂商佐证互相打架，要小心**：西门子 FY25 披露为 21%（落在区间内），而 GEV 在 2025 年 12 月投资者日说在手订单里超大规模客户「only 10%」、但预计未来将升至「more like a third」——**10%（在手存量）、21%（西门子当年订单）、1/3（GEV 前瞻）三个数分别是三种口径**，本库该指标缺 order_basis 维度，故只录了区间与西门子那条。"
+    },
+    {
+      "fact_id": "big3-dc-order-share-2026-high",
+      "metric_id": "gas_turbine_dc_order_share",
+      "entity": {
+        "type": "industry",
+        "id": "big3-gas-turbine-orders",
+        "label": "三大燃机 OEM 新增订单（GEV/西门子能源/三菱重工）"
+      },
+      "value": 30.0,
+      "unit": "%",
+      "caliber": {
+        "region_scope": "全球",
+        "taxonomy": "按终端用途",
+        "region": "Global"
+      },
+      "as_of": "2026",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "b500296f7f7fe6d2f08bf02f00aac96a4395e146251fdc1bac111d750208cd67",
+        "local_file": "Bernstein Powering AI - Mapping the gas turbine supply stack (2026-06-18).pdf",
+        "locator": "摘要页：「DCs now represent a visible share of 'big-3' orders (~20-30%)」",
+        "grade": "S3",
+        "originator": "Bernstein（伯恩斯坦）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上界，下界见 big3-dc-order-share-2026-low。口径说明同下界条。**这个上界与 GEV 前瞻的「约三分之一」量级一致**，可作为该指标未来一年的观察靶点。"
     }
   ]
 }
