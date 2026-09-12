@@ -20158,6 +20158,99 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**这是分层的门槛值，不是某家公司的装机量**：Dell'Oro 按云服务商总装机存量分四层（另有 Tier 1 Plus）。 单位换算：原文以台计，÷10,000 记万台（3 million servers = 300 万台，1 million = 100 万台，500,000 = 50 万台，200,000 = 20 万台）。 **Tier 4 是上界（不足 20 万台），其余是下界**——bound 这一维把「大于」与「小于」分开。 **本份是 1aa7674a 那本 pivot 工作簿的叙述版（同机构同批次 2026-07）**，绝对额已在那次录过 71 条（2030E 全球 31,121.84 亿美元，本报告写作 3.1 万亿），不重复录。"
+    },
+    {
+      "fact_id": "huafu-800vhvdc-adoption-consensus",
+      "metric_id": "tech_milestone_year",
+      "entity": {
+        "type": "technology",
+        "id": "dc-power-architecture",
+        "label": "数据中心供配电架构"
+      },
+      "value": 2027.0,
+      "unit": "年",
+      "caliber": {
+        "tech": "800V HVDC",
+        "milestone": "批量出货",
+        "view_holder": "市场共识",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b2f9848982b61a7d5f9338b264e1b27b8cb537858ce6d4c4af451f8eb0b26ff5",
+        "local_file": "20260525-电力设备_SST_从0到1的电力电子革命_AIDC+能源电由打开产业化空间.pdf",
+        "locator": "第 1 页投资要点第一段：「市场此前对 AIDC 供电方案的主流共识是：2027 年有望随 Rubin Ultra 推出而采用 800V HVDC，而 SST 大规模商用则需等待下一代平台，如 2028 年 Fyenman 的面世……但当前产业实际进展已明显超出预期」；末段：「当前是 SST 从 0 到 1 的起点，2026 年有望实现产品验证与送样」",
+        "grade": "S4",
+        "originator": "华福证券"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**view_holder=市场共识，不是本报告观点**：原文是在陈述「市场此前的主流共识」，并紧接着说产业实际进展已超出预期。**把它当成本报告的判断会读反**。时点与英伟达 Rubin Ultra 的推出绑定。"
+    },
+    {
+      "fact_id": "huafu-sst-mass-commercial-consensus",
+      "metric_id": "tech_milestone_year",
+      "entity": {
+        "type": "technology",
+        "id": "dc-power-architecture",
+        "label": "数据中心供配电架构"
+      },
+      "value": 2028.0,
+      "unit": "年",
+      "caliber": {
+        "tech": "SST 固态变压器",
+        "milestone": "批量出货",
+        "view_holder": "市场共识",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b2f9848982b61a7d5f9338b264e1b27b8cb537858ce6d4c4af451f8eb0b26ff5",
+        "local_file": "20260525-电力设备_SST_从0到1的电力电子革命_AIDC+能源电由打开产业化空间.pdf",
+        "locator": "第 1 页投资要点第一段：「市场此前对 AIDC 供电方案的主流共识是：2027 年有望随 Rubin Ultra 推出而采用 800V HVDC，而 SST 大规模商用则需等待下一代平台，如 2028 年 Fyenman 的面世……但当前产业实际进展已明显超出预期」；末段：「当前是 SST 从 0 到 1 的起点，2026 年有望实现产品验证与送样」",
+        "grade": "S4",
+        "originator": "华福证券"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同样是「市场此前共识」而非本报告判断**：共识认为 SST 大规模商用要等下一代平台（如 2028 年 Fyenman）。**本报告的主张恰恰是这个时点会提前**，但它没给出替代年份，只说「MP 批量生产在即」，故本库只有共识这一条年份。"
+    },
+    {
+      "fact_id": "huafu-sst-sampling-2026",
+      "metric_id": "tech_milestone_year",
+      "entity": {
+        "type": "technology",
+        "id": "dc-power-architecture",
+        "label": "数据中心供配电架构"
+      },
+      "value": 2026.0,
+      "unit": "年",
+      "caliber": {
+        "tech": "SST 固态变压器",
+        "milestone": "送样",
+        "view_holder": "本报告",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b2f9848982b61a7d5f9338b264e1b27b8cb537858ce6d4c4af451f8eb0b26ff5",
+        "local_file": "20260525-电力设备_SST_从0到1的电力电子革命_AIDC+能源电由打开产业化空间.pdf",
+        "locator": "第 1 页投资要点第一段：「市场此前对 AIDC 供电方案的主流共识是：2027 年有望随 Rubin Ultra 推出而采用 800V HVDC，而 SST 大规模商用则需等待下一代平台，如 2028 年 Fyenman 的面世……但当前产业实际进展已明显超出预期」；末段：「当前是 SST 从 0 到 1 的起点，2026 年有望实现产品验证与送样」",
+        "grade": "S4",
+        "originator": "华福证券"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这条是本报告自己的判断**（view_holder=本报告）：「2026 年有望实现产品验证与送样」。与上面两条「市场共识」的年份放在一起，才看得出这份报告的论点是「比共识早」。milestone 记送样（原文同时提到产品验证与送样，两者同年）。**报告只有两页、无任何量化数据**（无渗透率、单价、效率、市场规模），三条年份是它唯一可核验的内容。涉及厂商：金盘科技、四方股份、中国西电、为光能源、阳光电源等。"
     }
   ]
 }
