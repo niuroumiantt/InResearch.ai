@@ -5102,6 +5102,843 @@
       "bound": "point",
       "corroboration": "孤证已知",
       "notes": "值未披露：原表注 \"Units are not available for Storage Systems.\"，Units (000's) 块下 Storage Systems / All Flash Arrays / Disk and Hybrid Arrays 三行全年为空，Unit ASP ($) 块同样为空。不用金额 ÷ ASP 反推——存储既无台数也无 ASP，没有可反推的除数；且本块 Total 行台数与 Servers 行逐年完全相同，说明存储台数根本未计入总量。【口径提示】framework/metrics.json 的 server_unit_shipments.caliber_dims.server_class 目前只有 Accelerated/High-End / General-Purpose & Other / All Servers 三个取值，没有 Storage Systems，本条的 server_class 取值超出现有枚举，待菜单补齐后复核。"
+    },
+    {
+      "fact_id": "citi-aug25-demand-400g-2025e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-400g",
+        "label": "全球 400G 光模块市场"
+      },
+      "value": 1500.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "400G",
+        "shipment_basis": "未披露",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025-08",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「全球400G」，表头第 5 行「全球400G+光学收发器需求预测(单位:kUnit)」，第 6 行列名「400G需求」，第 7 行「2025E」，单元格 B7 = 15000",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "孤证已知",
+      "notes": "单位换算：原表单位 kUnit，本条 value = 原值 ÷ 10（1 kUnit = 1000 只 = 0.1 万只），非再加工。 **【口径提示】原文是「需求」不是「出货」**：表头写「需求预测」（配图标题 Demand Breakdown）。framework/metrics.json 的 optics_module_shipment.caliber_dims.shipment_basis 现有四个取值（厂商出货／渠道提货／终端安装／未披露）没有「市场需求」一项，本条取「未披露」并在此标明，待菜单补齐后复核。**不可与同批的厂商出货口径记录（中际旭创／新易盛）相加或互证。** rate_target=单模块：同工作表配图图例写作 400G/800G/1.6T Transceiver，按只计数，**不是交换机端口速率**——一个端口可由多模块聚合，两者不可并列。 同表「总需求」列（2025E 37500 / 2026E 59000 / 2027E 68700 kUnit）未录：speed 维度没有「合计」取值，且 2027 行 E9 是 SUM(B9:D9) 公式，录入即与三档重复计。 **载体不是花旗原报告**：本文件是他人把该报告数据转录成的 Excel（工作表 Source 写明 Source:Citi / Date:2025.08.13 / Report: China Networking），数字表为手工转录、配图为原报告截图。转录误差在本文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-demand-400g-2026e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-400g",
+        "label": "全球 400G 光模块市场"
+      },
+      "value": 600.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "400G",
+        "shipment_basis": "未披露",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2026E@2025-08",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「全球400G」，表头第 5 行「全球400G+光学收发器需求预测(单位:kUnit)」，第 6 行列名「400G需求」，第 8 行「2026E」，单元格 B8 = 6000",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "孤证已知",
+      "notes": "单位换算：原表单位 kUnit，本条 value = 原值 ÷ 10（1 kUnit = 1000 只 = 0.1 万只），非再加工。 **【口径提示】原文是「需求」不是「出货」**：表头写「需求预测」（配图标题 Demand Breakdown）。framework/metrics.json 的 optics_module_shipment.caliber_dims.shipment_basis 现有四个取值（厂商出货／渠道提货／终端安装／未披露）没有「市场需求」一项，本条取「未披露」并在此标明，待菜单补齐后复核。**不可与同批的厂商出货口径记录（中际旭创／新易盛）相加或互证。** rate_target=单模块：同工作表配图图例写作 400G/800G/1.6T Transceiver，按只计数，**不是交换机端口速率**——一个端口可由多模块聚合，两者不可并列。 同表「总需求」列（2025E 37500 / 2026E 59000 / 2027E 68700 kUnit）未录：speed 维度没有「合计」取值，且 2027 行 E9 是 SUM(B9:D9) 公式，录入即与三档重复计。 **载体不是花旗原报告**：本文件是他人把该报告数据转录成的 Excel（工作表 Source 写明 Source:Citi / Date:2025.08.13 / Report: China Networking），数字表为手工转录、配图为原报告截图。转录误差在本文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-demand-400g-2027e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-400g",
+        "label": "全球 400G 光模块市场"
+      },
+      "value": 120.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "400G",
+        "shipment_basis": "未披露",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2027E@2025-08",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「全球400G」，表头第 5 行「全球400G+光学收发器需求预测(单位:kUnit)」，第 6 行列名「400G需求」，第 9 行「2027E」，单元格 B9 = 1200",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "孤证已知",
+      "notes": "单位换算：原表单位 kUnit，本条 value = 原值 ÷ 10（1 kUnit = 1000 只 = 0.1 万只），非再加工。 **【口径提示】原文是「需求」不是「出货」**：表头写「需求预测」（配图标题 Demand Breakdown）。framework/metrics.json 的 optics_module_shipment.caliber_dims.shipment_basis 现有四个取值（厂商出货／渠道提货／终端安装／未披露）没有「市场需求」一项，本条取「未披露」并在此标明，待菜单补齐后复核。**不可与同批的厂商出货口径记录（中际旭创／新易盛）相加或互证。** rate_target=单模块：同工作表配图图例写作 400G/800G/1.6T Transceiver，按只计数，**不是交换机端口速率**——一个端口可由多模块聚合，两者不可并列。 同表「总需求」列（2025E 37500 / 2026E 59000 / 2027E 68700 kUnit）未录：speed 维度没有「合计」取值，且 2027 行 E9 是 SUM(B9:D9) 公式，录入即与三档重复计。 **载体不是花旗原报告**：本文件是他人把该报告数据转录成的 Excel（工作表 Source 写明 Source:Citi / Date:2025.08.13 / Report: China Networking），数字表为手工转录、配图为原报告截图。转录误差在本文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-demand-800g-2025e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-800g",
+        "label": "全球 800G 光模块市场"
+      },
+      "value": 2000.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "800G",
+        "shipment_basis": "未披露",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025-08",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「全球400G」，表头第 5 行「全球400G+光学收发器需求预测(单位:kUnit)」，第 6 行列名「800G需求」，第 7 行「2025E」，单元格 C7 = 20000",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "孤证已知",
+      "notes": "单位换算：原表单位 kUnit，本条 value = 原值 ÷ 10（1 kUnit = 1000 只 = 0.1 万只），非再加工。 **【口径提示】原文是「需求」不是「出货」**：表头写「需求预测」（配图标题 Demand Breakdown）。framework/metrics.json 的 optics_module_shipment.caliber_dims.shipment_basis 现有四个取值（厂商出货／渠道提货／终端安装／未披露）没有「市场需求」一项，本条取「未披露」并在此标明，待菜单补齐后复核。**不可与同批的厂商出货口径记录（中际旭创／新易盛）相加或互证。** rate_target=单模块：同工作表配图图例写作 400G/800G/1.6T Transceiver，按只计数，**不是交换机端口速率**——一个端口可由多模块聚合，两者不可并列。 同表「总需求」列（2025E 37500 / 2026E 59000 / 2027E 68700 kUnit）未录：speed 维度没有「合计」取值，且 2027 行 E9 是 SUM(B9:D9) 公式，录入即与三档重复计。 **载体不是花旗原报告**：本文件是他人把该报告数据转录成的 Excel（工作表 Source 写明 Source:Citi / Date:2025.08.13 / Report: China Networking），数字表为手工转录、配图为原报告截图。转录误差在本文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-demand-800g-2026e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-800g",
+        "label": "全球 800G 光模块市场"
+      },
+      "value": 4500.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "800G",
+        "shipment_basis": "未披露",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2026E@2025-08",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「全球400G」，表头第 5 行「全球400G+光学收发器需求预测(单位:kUnit)」，第 6 行列名「800G需求」，第 8 行「2026E」，单元格 C8 = 45000",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "**与库内已有记录对照**：optics-800g-shipment-2026e 为国信证券自测算「2026 年全球 800G 光模块有望达 4000 万只」（as_of 2026E，未带做出时点）；花旗此处 4500 万只。两者相差 12.5%，且**一为市场需求、一为出货**，来源与口径都不同，**并列保留，不合并也不取平均**。 单位换算：原表单位 kUnit，本条 value = 原值 ÷ 10（1 kUnit = 1000 只 = 0.1 万只），非再加工。 **【口径提示】原文是「需求」不是「出货」**：表头写「需求预测」（配图标题 Demand Breakdown）。framework/metrics.json 的 optics_module_shipment.caliber_dims.shipment_basis 现有四个取值（厂商出货／渠道提货／终端安装／未披露）没有「市场需求」一项，本条取「未披露」并在此标明，待菜单补齐后复核。**不可与同批的厂商出货口径记录（中际旭创／新易盛）相加或互证。** rate_target=单模块：同工作表配图图例写作 400G/800G/1.6T Transceiver，按只计数，**不是交换机端口速率**——一个端口可由多模块聚合，两者不可并列。 同表「总需求」列（2025E 37500 / 2026E 59000 / 2027E 68700 kUnit）未录：speed 维度没有「合计」取值，且 2027 行 E9 是 SUM(B9:D9) 公式，录入即与三档重复计。 **载体不是花旗原报告**：本文件是他人把该报告数据转录成的 Excel（工作表 Source 写明 Source:Citi / Date:2025.08.13 / Report: China Networking），数字表为手工转录、配图为原报告截图。转录误差在本文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-demand-800g-2027e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-800g",
+        "label": "全球 800G 光模块市场"
+      },
+      "value": 4950.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "800G",
+        "shipment_basis": "未披露",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2027E@2025-08",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「全球400G」，表头第 5 行「全球400G+光学收发器需求预测(单位:kUnit)」，第 6 行列名「800G需求」，第 9 行「2027E」，单元格 C9 = 49500",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "孤证已知",
+      "notes": "单位换算：原表单位 kUnit，本条 value = 原值 ÷ 10（1 kUnit = 1000 只 = 0.1 万只），非再加工。 **【口径提示】原文是「需求」不是「出货」**：表头写「需求预测」（配图标题 Demand Breakdown）。framework/metrics.json 的 optics_module_shipment.caliber_dims.shipment_basis 现有四个取值（厂商出货／渠道提货／终端安装／未披露）没有「市场需求」一项，本条取「未披露」并在此标明，待菜单补齐后复核。**不可与同批的厂商出货口径记录（中际旭创／新易盛）相加或互证。** rate_target=单模块：同工作表配图图例写作 400G/800G/1.6T Transceiver，按只计数，**不是交换机端口速率**——一个端口可由多模块聚合，两者不可并列。 同表「总需求」列（2025E 37500 / 2026E 59000 / 2027E 68700 kUnit）未录：speed 维度没有「合计」取值，且 2027 行 E9 是 SUM(B9:D9) 公式，录入即与三档重复计。 **载体不是花旗原报告**：本文件是他人把该报告数据转录成的 Excel（工作表 Source 写明 Source:Citi / Date:2025.08.13 / Report: China Networking），数字表为手工转录、配图为原报告截图。转录误差在本文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-demand-1600g-2025e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-1600g",
+        "label": "全球 1.6T 光模块市场"
+      },
+      "value": 250.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "1.6T",
+        "shipment_basis": "未披露",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025-08",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「全球400G」，表头第 5 行「全球400G+光学收发器需求预测(单位:kUnit)」，第 6 行列名「1.6T需求」，第 7 行「2025E」，单元格 D7 = 2500",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "孤证已知",
+      "notes": "单位换算：原表单位 kUnit，本条 value = 原值 ÷ 10（1 kUnit = 1000 只 = 0.1 万只），非再加工。 **【口径提示】原文是「需求」不是「出货」**：表头写「需求预测」（配图标题 Demand Breakdown）。framework/metrics.json 的 optics_module_shipment.caliber_dims.shipment_basis 现有四个取值（厂商出货／渠道提货／终端安装／未披露）没有「市场需求」一项，本条取「未披露」并在此标明，待菜单补齐后复核。**不可与同批的厂商出货口径记录（中际旭创／新易盛）相加或互证。** rate_target=单模块：同工作表配图图例写作 400G/800G/1.6T Transceiver，按只计数，**不是交换机端口速率**——一个端口可由多模块聚合，两者不可并列。 同表「总需求」列（2025E 37500 / 2026E 59000 / 2027E 68700 kUnit）未录：speed 维度没有「合计」取值，且 2027 行 E9 是 SUM(B9:D9) 公式，录入即与三档重复计。 **载体不是花旗原报告**：本文件是他人把该报告数据转录成的 Excel（工作表 Source 写明 Source:Citi / Date:2025.08.13 / Report: China Networking），数字表为手工转录、配图为原报告截图。转录误差在本文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-demand-1600g-2026e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-1600g",
+        "label": "全球 1.6T 光模块市场"
+      },
+      "value": 800.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "1.6T",
+        "shipment_basis": "未披露",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2026E@2025-08",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「全球400G」，表头第 5 行「全球400G+光学收发器需求预测(单位:kUnit)」，第 6 行列名「1.6T需求」，第 8 行「2026E」，单元格 D8 = 8000",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "**与库内已有记录对照**：optics-1600g-shipment-2026e 为国信证券「1.6T 光模块有望超过 700 万只」（下界）；花旗此处 800 万只点值，方向一致。两者口径仍是需求 vs 出货，并列保留。 单位换算：原表单位 kUnit，本条 value = 原值 ÷ 10（1 kUnit = 1000 只 = 0.1 万只），非再加工。 **【口径提示】原文是「需求」不是「出货」**：表头写「需求预测」（配图标题 Demand Breakdown）。framework/metrics.json 的 optics_module_shipment.caliber_dims.shipment_basis 现有四个取值（厂商出货／渠道提货／终端安装／未披露）没有「市场需求」一项，本条取「未披露」并在此标明，待菜单补齐后复核。**不可与同批的厂商出货口径记录（中际旭创／新易盛）相加或互证。** rate_target=单模块：同工作表配图图例写作 400G/800G/1.6T Transceiver，按只计数，**不是交换机端口速率**——一个端口可由多模块聚合，两者不可并列。 同表「总需求」列（2025E 37500 / 2026E 59000 / 2027E 68700 kUnit）未录：speed 维度没有「合计」取值，且 2027 行 E9 是 SUM(B9:D9) 公式，录入即与三档重复计。 **载体不是花旗原报告**：本文件是他人把该报告数据转录成的 Excel（工作表 Source 写明 Source:Citi / Date:2025.08.13 / Report: China Networking），数字表为手工转录、配图为原报告截图。转录误差在本文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-demand-1600g-2027e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-1600g",
+        "label": "全球 1.6T 光模块市场"
+      },
+      "value": 1800.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "1.6T",
+        "shipment_basis": "未披露",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2027E@2025-08",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「全球400G」，表头第 5 行「全球400G+光学收发器需求预测(单位:kUnit)」，第 6 行列名「1.6T需求」，第 9 行「2027E」，单元格 D9 = 18000",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "孤证已知",
+      "notes": "单位换算：原表单位 kUnit，本条 value = 原值 ÷ 10（1 kUnit = 1000 只 = 0.1 万只），非再加工。 **【口径提示】原文是「需求」不是「出货」**：表头写「需求预测」（配图标题 Demand Breakdown）。framework/metrics.json 的 optics_module_shipment.caliber_dims.shipment_basis 现有四个取值（厂商出货／渠道提货／终端安装／未披露）没有「市场需求」一项，本条取「未披露」并在此标明，待菜单补齐后复核。**不可与同批的厂商出货口径记录（中际旭创／新易盛）相加或互证。** rate_target=单模块：同工作表配图图例写作 400G/800G/1.6T Transceiver，按只计数，**不是交换机端口速率**——一个端口可由多模块聚合，两者不可并列。 同表「总需求」列（2025E 37500 / 2026E 59000 / 2027E 68700 kUnit）未录：speed 维度没有「合计」取值，且 2027 行 E9 是 SUM(B9:D9) 公式，录入即与三档重复计。 **载体不是花旗原报告**：本文件是他人把该报告数据转录成的 Excel（工作表 Source 写明 Source:Citi / Date:2025.08.13 / Report: China Networking），数字表为手工转录、配图为原报告截图。转录误差在本文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-innolight-400g-2025e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "company",
+        "id": "innolight",
+        "label": "中际旭创"
+      },
+      "value": 300.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "400G",
+        "shipment_basis": "厂商出货",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025-08",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「中际旭创」，第 17 行「出货量统计」，第 18 行列名「400G (kUnits)」，第 19 行「2025E」，单元格 B19 = 3000",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "孤证已知",
+      "notes": "单位换算：原表单位 kUnit，本条 value = 原值 ÷ 10（1 kUnit = 1000 只 = 0.1 万只），非再加工。 shipment_basis=厂商出货：原表标题「出货量统计」/ 配图标题 Shipment Forecast，为花旗对该公司自身出货量的预测，**不是市场需求**，不可与同批全球需求记录相加。basis=券商测算：同工作表另有 BBG consensus 列，本条取的是 Citi 列，两列不可混。 rate_target=单模块：配图图例写作 400G/800G/1.6T Optical Transceiver，按只计数，不是端口速率。 **400G 三年 3000→600→60 kUnit 是断崖式收缩，与全球 400G 需求曲线同向。** **载体不是花旗原报告**：本文件是他人把该报告数据转录成的 Excel（工作表 Source 写明 Source:Citi / Date:2025.08.13 / Report: China Networking），数字表为手工转录、配图为原报告截图。转录误差在本文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-innolight-400g-2026e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "company",
+        "id": "innolight",
+        "label": "中际旭创"
+      },
+      "value": 60.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "400G",
+        "shipment_basis": "厂商出货",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2026E@2025-08",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「中际旭创」，第 17 行「出货量统计」，第 18 行列名「400G (kUnits)」，第 20 行「2026E」，单元格 B20 = 600",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "孤证已知",
+      "notes": "单位换算：原表单位 kUnit，本条 value = 原值 ÷ 10（1 kUnit = 1000 只 = 0.1 万只），非再加工。 shipment_basis=厂商出货：原表标题「出货量统计」/ 配图标题 Shipment Forecast，为花旗对该公司自身出货量的预测，**不是市场需求**，不可与同批全球需求记录相加。basis=券商测算：同工作表另有 BBG consensus 列，本条取的是 Citi 列，两列不可混。 rate_target=单模块：配图图例写作 400G/800G/1.6T Optical Transceiver，按只计数，不是端口速率。 **400G 三年 3000→600→60 kUnit 是断崖式收缩，与全球 400G 需求曲线同向。** **载体不是花旗原报告**：本文件是他人把该报告数据转录成的 Excel（工作表 Source 写明 Source:Citi / Date:2025.08.13 / Report: China Networking），数字表为手工转录、配图为原报告截图。转录误差在本文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-innolight-400g-2027e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "company",
+        "id": "innolight",
+        "label": "中际旭创"
+      },
+      "value": 6.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "400G",
+        "shipment_basis": "厂商出货",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2027E@2025-08",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「中际旭创」，第 17 行「出货量统计」，第 18 行列名「400G (kUnits)」，第 21 行「2027E」，单元格 B21 = 60",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "孤证已知",
+      "notes": "单位换算：原表单位 kUnit，本条 value = 原值 ÷ 10（1 kUnit = 1000 只 = 0.1 万只），非再加工。 shipment_basis=厂商出货：原表标题「出货量统计」/ 配图标题 Shipment Forecast，为花旗对该公司自身出货量的预测，**不是市场需求**，不可与同批全球需求记录相加。basis=券商测算：同工作表另有 BBG consensus 列，本条取的是 Citi 列，两列不可混。 rate_target=单模块：配图图例写作 400G/800G/1.6T Optical Transceiver，按只计数，不是端口速率。 **400G 三年 3000→600→60 kUnit 是断崖式收缩，与全球 400G 需求曲线同向。** **载体不是花旗原报告**：本文件是他人把该报告数据转录成的 Excel（工作表 Source 写明 Source:Citi / Date:2025.08.13 / Report: China Networking），数字表为手工转录、配图为原报告截图。转录误差在本文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-innolight-800g-2025e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "company",
+        "id": "innolight",
+        "label": "中际旭创"
+      },
+      "value": 800.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "800G",
+        "shipment_basis": "厂商出货",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025-08",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「中际旭创」，第 17 行「出货量统计」，第 18 行列名「800G (kUnits)」，第 19 行「2025E」，单元格 C19 = 8000",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "孤证已知",
+      "notes": "单位换算：原表单位 kUnit，本条 value = 原值 ÷ 10（1 kUnit = 1000 只 = 0.1 万只），非再加工。 shipment_basis=厂商出货：原表标题「出货量统计」/ 配图标题 Shipment Forecast，为花旗对该公司自身出货量的预测，**不是市场需求**，不可与同批全球需求记录相加。basis=券商测算：同工作表另有 BBG consensus 列，本条取的是 Citi 列，两列不可混。 rate_target=单模块：配图图例写作 400G/800G/1.6T Optical Transceiver，按只计数，不是端口速率。 **400G 三年 3000→600→60 kUnit 是断崖式收缩，与全球 400G 需求曲线同向。** **载体不是花旗原报告**：本文件是他人把该报告数据转录成的 Excel（工作表 Source 写明 Source:Citi / Date:2025.08.13 / Report: China Networking），数字表为手工转录、配图为原报告截图。转录误差在本文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-innolight-800g-2026e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "company",
+        "id": "innolight",
+        "label": "中际旭创"
+      },
+      "value": 1700.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "800G",
+        "shipment_basis": "厂商出货",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2026E@2025-08",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「中际旭创」，第 17 行「出货量统计」，第 18 行列名「800G (kUnits)」，第 20 行「2026E」，单元格 C20 = 17000",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "孤证已知",
+      "notes": "单位换算：原表单位 kUnit，本条 value = 原值 ÷ 10（1 kUnit = 1000 只 = 0.1 万只），非再加工。 shipment_basis=厂商出货：原表标题「出货量统计」/ 配图标题 Shipment Forecast，为花旗对该公司自身出货量的预测，**不是市场需求**，不可与同批全球需求记录相加。basis=券商测算：同工作表另有 BBG consensus 列，本条取的是 Citi 列，两列不可混。 rate_target=单模块：配图图例写作 400G/800G/1.6T Optical Transceiver，按只计数，不是端口速率。 **400G 三年 3000→600→60 kUnit 是断崖式收缩，与全球 400G 需求曲线同向。** **载体不是花旗原报告**：本文件是他人把该报告数据转录成的 Excel（工作表 Source 写明 Source:Citi / Date:2025.08.13 / Report: China Networking），数字表为手工转录、配图为原报告截图。转录误差在本文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-innolight-800g-2027e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "company",
+        "id": "innolight",
+        "label": "中际旭创"
+      },
+      "value": 1900.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "800G",
+        "shipment_basis": "厂商出货",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2027E@2025-08",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「中际旭创」，第 17 行「出货量统计」，第 18 行列名「800G (kUnits)」，第 21 行「2027E」，单元格 C21 = 19000",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "孤证已知",
+      "notes": "单位换算：原表单位 kUnit，本条 value = 原值 ÷ 10（1 kUnit = 1000 只 = 0.1 万只），非再加工。 shipment_basis=厂商出货：原表标题「出货量统计」/ 配图标题 Shipment Forecast，为花旗对该公司自身出货量的预测，**不是市场需求**，不可与同批全球需求记录相加。basis=券商测算：同工作表另有 BBG consensus 列，本条取的是 Citi 列，两列不可混。 rate_target=单模块：配图图例写作 400G/800G/1.6T Optical Transceiver，按只计数，不是端口速率。 **400G 三年 3000→600→60 kUnit 是断崖式收缩，与全球 400G 需求曲线同向。** **载体不是花旗原报告**：本文件是他人把该报告数据转录成的 Excel（工作表 Source 写明 Source:Citi / Date:2025.08.13 / Report: China Networking），数字表为手工转录、配图为原报告截图。转录误差在本文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-innolight-1600g-2025e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "company",
+        "id": "innolight",
+        "label": "中际旭创"
+      },
+      "value": 95.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "1.6T",
+        "shipment_basis": "厂商出货",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025-08",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「中际旭创」，第 17 行「出货量统计」，第 18 行列名「1.6T (kUnits)」，第 19 行「2025E」，单元格 D19 = 950",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "孤证已知",
+      "notes": "单位换算：原表单位 kUnit，本条 value = 原值 ÷ 10（1 kUnit = 1000 只 = 0.1 万只），非再加工。 shipment_basis=厂商出货：原表标题「出货量统计」/ 配图标题 Shipment Forecast，为花旗对该公司自身出货量的预测，**不是市场需求**，不可与同批全球需求记录相加。basis=券商测算：同工作表另有 BBG consensus 列，本条取的是 Citi 列，两列不可混。 rate_target=单模块：配图图例写作 400G/800G/1.6T Optical Transceiver，按只计数，不是端口速率。 **400G 三年 3000→600→60 kUnit 是断崖式收缩，与全球 400G 需求曲线同向。** **载体不是花旗原报告**：本文件是他人把该报告数据转录成的 Excel（工作表 Source 写明 Source:Citi / Date:2025.08.13 / Report: China Networking），数字表为手工转录、配图为原报告截图。转录误差在本文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-innolight-1600g-2026e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "company",
+        "id": "innolight",
+        "label": "中际旭创"
+      },
+      "value": 304.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "1.6T",
+        "shipment_basis": "厂商出货",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2026E@2025-08",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「中际旭创」，第 17 行「出货量统计」，第 18 行列名「1.6T (kUnits)」，第 20 行「2026E」，单元格 D20 = 3040",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "孤证已知",
+      "notes": "单位换算：原表单位 kUnit，本条 value = 原值 ÷ 10（1 kUnit = 1000 只 = 0.1 万只），非再加工。 shipment_basis=厂商出货：原表标题「出货量统计」/ 配图标题 Shipment Forecast，为花旗对该公司自身出货量的预测，**不是市场需求**，不可与同批全球需求记录相加。basis=券商测算：同工作表另有 BBG consensus 列，本条取的是 Citi 列，两列不可混。 rate_target=单模块：配图图例写作 400G/800G/1.6T Optical Transceiver，按只计数，不是端口速率。 **400G 三年 3000→600→60 kUnit 是断崖式收缩，与全球 400G 需求曲线同向。** **载体不是花旗原报告**：本文件是他人把该报告数据转录成的 Excel（工作表 Source 写明 Source:Citi / Date:2025.08.13 / Report: China Networking），数字表为手工转录、配图为原报告截图。转录误差在本文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-innolight-1600g-2027e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "company",
+        "id": "innolight",
+        "label": "中际旭创"
+      },
+      "value": 720.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "1.6T",
+        "shipment_basis": "厂商出货",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2027E@2025-08",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「中际旭创」，第 17 行「出货量统计」，第 18 行列名「1.6T (kUnits)」，第 21 行「2027E」，单元格 D21 = 7200",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "孤证已知",
+      "notes": "单位换算：原表单位 kUnit，本条 value = 原值 ÷ 10（1 kUnit = 1000 只 = 0.1 万只），非再加工。 shipment_basis=厂商出货：原表标题「出货量统计」/ 配图标题 Shipment Forecast，为花旗对该公司自身出货量的预测，**不是市场需求**，不可与同批全球需求记录相加。basis=券商测算：同工作表另有 BBG consensus 列，本条取的是 Citi 列，两列不可混。 rate_target=单模块：配图图例写作 400G/800G/1.6T Optical Transceiver，按只计数，不是端口速率。 **400G 三年 3000→600→60 kUnit 是断崖式收缩，与全球 400G 需求曲线同向。** **载体不是花旗原报告**：本文件是他人把该报告数据转录成的 Excel（工作表 Source 写明 Source:Citi / Date:2025.08.13 / Report: China Networking），数字表为手工转录、配图为原报告截图。转录误差在本文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-400g-2025e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 450.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "400G",
+        "shipment_basis": "厂商出货",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025-08",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」，第 16 行「新易盛出货量统计」，第 17 行列名「400G (kUnits)」，第 18 行「2025E」，单元格 B18 = 4500",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "孤证已知",
+      "notes": "单位换算：原表单位 kUnit，本条 value = 原值 ÷ 10（1 kUnit = 1000 只 = 0.1 万只），非再加工。 shipment_basis=厂商出货：原表标题「出货量统计」/ 配图标题 Shipment Forecast，为花旗对该公司自身出货量的预测，**不是市场需求**，不可与同批全球需求记录相加。basis=券商测算：同工作表另有 BBG consensus 列，本条取的是 Citi 列，两列不可混。 rate_target=单模块：配图图例写作 400G/800G/1.6T Transceiver 与 400G/800G AEC 四项并列，按只计数，不是端口速率。 **同表第 E 列「400G/800G AEC(kUnits)」（100/300/450）未录**：AEC 是有源电缆、不是光模块，配图图例把它与 Transceiver 并列为独立品类；且其速率写作合并档「400G/800G」，speed 维度没有对应取值。菜单里没有它的位置，未硬塞进本指标。 **载体不是花旗原报告**：本文件是他人把该报告数据转录成的 Excel（工作表 Source 写明 Source:Citi / Date:2025.08.13 / Report: China Networking），数字表为手工转录、配图为原报告截图。转录误差在本文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-400g-2026e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 60.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "400G",
+        "shipment_basis": "厂商出货",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2026E@2025-08",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」，第 16 行「新易盛出货量统计」，第 17 行列名「400G (kUnits)」，第 19 行「2026E」，单元格 B19 = 600",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "孤证已知",
+      "notes": "单位换算：原表单位 kUnit，本条 value = 原值 ÷ 10（1 kUnit = 1000 只 = 0.1 万只），非再加工。 shipment_basis=厂商出货：原表标题「出货量统计」/ 配图标题 Shipment Forecast，为花旗对该公司自身出货量的预测，**不是市场需求**，不可与同批全球需求记录相加。basis=券商测算：同工作表另有 BBG consensus 列，本条取的是 Citi 列，两列不可混。 rate_target=单模块：配图图例写作 400G/800G/1.6T Transceiver 与 400G/800G AEC 四项并列，按只计数，不是端口速率。 **同表第 E 列「400G/800G AEC(kUnits)」（100/300/450）未录**：AEC 是有源电缆、不是光模块，配图图例把它与 Transceiver 并列为独立品类；且其速率写作合并档「400G/800G」，speed 维度没有对应取值。菜单里没有它的位置，未硬塞进本指标。 **载体不是花旗原报告**：本文件是他人把该报告数据转录成的 Excel（工作表 Source 写明 Source:Citi / Date:2025.08.13 / Report: China Networking），数字表为手工转录、配图为原报告截图。转录误差在本文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-400g-2027e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 6.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "400G",
+        "shipment_basis": "厂商出货",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2027E@2025-08",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」，第 16 行「新易盛出货量统计」，第 17 行列名「400G (kUnits)」，第 20 行「2027E」，单元格 B20 = 60",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "孤证已知",
+      "notes": "单位换算：原表单位 kUnit，本条 value = 原值 ÷ 10（1 kUnit = 1000 只 = 0.1 万只），非再加工。 shipment_basis=厂商出货：原表标题「出货量统计」/ 配图标题 Shipment Forecast，为花旗对该公司自身出货量的预测，**不是市场需求**，不可与同批全球需求记录相加。basis=券商测算：同工作表另有 BBG consensus 列，本条取的是 Citi 列，两列不可混。 rate_target=单模块：配图图例写作 400G/800G/1.6T Transceiver 与 400G/800G AEC 四项并列，按只计数，不是端口速率。 **同表第 E 列「400G/800G AEC(kUnits)」（100/300/450）未录**：AEC 是有源电缆、不是光模块，配图图例把它与 Transceiver 并列为独立品类；且其速率写作合并档「400G/800G」，speed 维度没有对应取值。菜单里没有它的位置，未硬塞进本指标。 **载体不是花旗原报告**：本文件是他人把该报告数据转录成的 Excel（工作表 Source 写明 Source:Citi / Date:2025.08.13 / Report: China Networking），数字表为手工转录、配图为原报告截图。转录误差在本文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-800g-2025e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 400.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "800G",
+        "shipment_basis": "厂商出货",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025-08",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」，第 16 行「新易盛出货量统计」，第 17 行列名「800G (kUnits)」，第 18 行「2025E」，单元格 C18 = 4000",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "孤证已知",
+      "notes": "单位换算：原表单位 kUnit，本条 value = 原值 ÷ 10（1 kUnit = 1000 只 = 0.1 万只），非再加工。 shipment_basis=厂商出货：原表标题「出货量统计」/ 配图标题 Shipment Forecast，为花旗对该公司自身出货量的预测，**不是市场需求**，不可与同批全球需求记录相加。basis=券商测算：同工作表另有 BBG consensus 列，本条取的是 Citi 列，两列不可混。 rate_target=单模块：配图图例写作 400G/800G/1.6T Transceiver 与 400G/800G AEC 四项并列，按只计数，不是端口速率。 **同表第 E 列「400G/800G AEC(kUnits)」（100/300/450）未录**：AEC 是有源电缆、不是光模块，配图图例把它与 Transceiver 并列为独立品类；且其速率写作合并档「400G/800G」，speed 维度没有对应取值。菜单里没有它的位置，未硬塞进本指标。 **载体不是花旗原报告**：本文件是他人把该报告数据转录成的 Excel（工作表 Source 写明 Source:Citi / Date:2025.08.13 / Report: China Networking），数字表为手工转录、配图为原报告截图。转录误差在本文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-800g-2026e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 1000.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "800G",
+        "shipment_basis": "厂商出货",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2026E@2025-08",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」，第 16 行「新易盛出货量统计」，第 17 行列名「800G (kUnits)」，第 19 行「2026E」，单元格 C19 = 10000",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "孤证已知",
+      "notes": "单位换算：原表单位 kUnit，本条 value = 原值 ÷ 10（1 kUnit = 1000 只 = 0.1 万只），非再加工。 shipment_basis=厂商出货：原表标题「出货量统计」/ 配图标题 Shipment Forecast，为花旗对该公司自身出货量的预测，**不是市场需求**，不可与同批全球需求记录相加。basis=券商测算：同工作表另有 BBG consensus 列，本条取的是 Citi 列，两列不可混。 rate_target=单模块：配图图例写作 400G/800G/1.6T Transceiver 与 400G/800G AEC 四项并列，按只计数，不是端口速率。 **同表第 E 列「400G/800G AEC(kUnits)」（100/300/450）未录**：AEC 是有源电缆、不是光模块，配图图例把它与 Transceiver 并列为独立品类；且其速率写作合并档「400G/800G」，speed 维度没有对应取值。菜单里没有它的位置，未硬塞进本指标。 **载体不是花旗原报告**：本文件是他人把该报告数据转录成的 Excel（工作表 Source 写明 Source:Citi / Date:2025.08.13 / Report: China Networking），数字表为手工转录、配图为原报告截图。转录误差在本文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-800g-2027e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 1300.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "800G",
+        "shipment_basis": "厂商出货",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2027E@2025-08",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」，第 16 行「新易盛出货量统计」，第 17 行列名「800G (kUnits)」，第 20 行「2027E」，单元格 C20 = 13000",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "孤证已知",
+      "notes": "单位换算：原表单位 kUnit，本条 value = 原值 ÷ 10（1 kUnit = 1000 只 = 0.1 万只），非再加工。 shipment_basis=厂商出货：原表标题「出货量统计」/ 配图标题 Shipment Forecast，为花旗对该公司自身出货量的预测，**不是市场需求**，不可与同批全球需求记录相加。basis=券商测算：同工作表另有 BBG consensus 列，本条取的是 Citi 列，两列不可混。 rate_target=单模块：配图图例写作 400G/800G/1.6T Transceiver 与 400G/800G AEC 四项并列，按只计数，不是端口速率。 **同表第 E 列「400G/800G AEC(kUnits)」（100/300/450）未录**：AEC 是有源电缆、不是光模块，配图图例把它与 Transceiver 并列为独立品类；且其速率写作合并档「400G/800G」，speed 维度没有对应取值。菜单里没有它的位置，未硬塞进本指标。 **载体不是花旗原报告**：本文件是他人把该报告数据转录成的 Excel（工作表 Source 写明 Source:Citi / Date:2025.08.13 / Report: China Networking），数字表为手工转录、配图为原报告截图。转录误差在本文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-1600g-2025e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 55.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "1.6T",
+        "shipment_basis": "厂商出货",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025-08",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」，第 16 行「新易盛出货量统计」，第 17 行列名「1.6T (kUnits)」，第 18 行「2025E」，单元格 D18 = 550",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "孤证已知",
+      "notes": "单位换算：原表单位 kUnit，本条 value = 原值 ÷ 10（1 kUnit = 1000 只 = 0.1 万只），非再加工。 shipment_basis=厂商出货：原表标题「出货量统计」/ 配图标题 Shipment Forecast，为花旗对该公司自身出货量的预测，**不是市场需求**，不可与同批全球需求记录相加。basis=券商测算：同工作表另有 BBG consensus 列，本条取的是 Citi 列，两列不可混。 rate_target=单模块：配图图例写作 400G/800G/1.6T Transceiver 与 400G/800G AEC 四项并列，按只计数，不是端口速率。 **同表第 E 列「400G/800G AEC(kUnits)」（100/300/450）未录**：AEC 是有源电缆、不是光模块，配图图例把它与 Transceiver 并列为独立品类；且其速率写作合并档「400G/800G」，speed 维度没有对应取值。菜单里没有它的位置，未硬塞进本指标。 **载体不是花旗原报告**：本文件是他人把该报告数据转录成的 Excel（工作表 Source 写明 Source:Citi / Date:2025.08.13 / Report: China Networking），数字表为手工转录、配图为原报告截图。转录误差在本文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-1600g-2026e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 176.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "1.6T",
+        "shipment_basis": "厂商出货",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2026E@2025-08",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」，第 16 行「新易盛出货量统计」，第 17 行列名「1.6T (kUnits)」，第 19 行「2026E」，单元格 D19 = 1760",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "孤证已知",
+      "notes": "单位换算：原表单位 kUnit，本条 value = 原值 ÷ 10（1 kUnit = 1000 只 = 0.1 万只），非再加工。 shipment_basis=厂商出货：原表标题「出货量统计」/ 配图标题 Shipment Forecast，为花旗对该公司自身出货量的预测，**不是市场需求**，不可与同批全球需求记录相加。basis=券商测算：同工作表另有 BBG consensus 列，本条取的是 Citi 列，两列不可混。 rate_target=单模块：配图图例写作 400G/800G/1.6T Transceiver 与 400G/800G AEC 四项并列，按只计数，不是端口速率。 **同表第 E 列「400G/800G AEC(kUnits)」（100/300/450）未录**：AEC 是有源电缆、不是光模块，配图图例把它与 Transceiver 并列为独立品类；且其速率写作合并档「400G/800G」，speed 维度没有对应取值。菜单里没有它的位置，未硬塞进本指标。 **载体不是花旗原报告**：本文件是他人把该报告数据转录成的 Excel（工作表 Source 写明 Source:Citi / Date:2025.08.13 / Report: China Networking），数字表为手工转录、配图为原报告截图。转录误差在本文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "citi-aug25-eoptolink-1600g-2027e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "company",
+        "id": "eoptolink",
+        "label": "新易盛"
+      },
+      "value": 396.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "1.6T",
+        "shipment_basis": "厂商出货",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2027E@2025-08",
+      "evidence": {
+        "sha256": "d0068f64372119b730a26c2bc05ec0dead7a01d809fad9876aabd861c4c7a555",
+        "local_file": "光模块 citi.xlsx",
+        "locator": "工作表「新易盛」，第 16 行「新易盛出货量统计」，第 17 行列名「1.6T (kUnits)」，第 20 行「2027E」，单元格 D20 = 3960",
+        "grade": "S3",
+        "originator": "花旗 (Citi)《China Networking — Super Upcycle Ahead Backed by ASIC and SiPh, Top Pick Innolight》，2025-08-13"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "孤证已知",
+      "notes": "单位换算：原表单位 kUnit，本条 value = 原值 ÷ 10（1 kUnit = 1000 只 = 0.1 万只），非再加工。 shipment_basis=厂商出货：原表标题「出货量统计」/ 配图标题 Shipment Forecast，为花旗对该公司自身出货量的预测，**不是市场需求**，不可与同批全球需求记录相加。basis=券商测算：同工作表另有 BBG consensus 列，本条取的是 Citi 列，两列不可混。 rate_target=单模块：配图图例写作 400G/800G/1.6T Transceiver 与 400G/800G AEC 四项并列，按只计数，不是端口速率。 **同表第 E 列「400G/800G AEC(kUnits)」（100/300/450）未录**：AEC 是有源电缆、不是光模块，配图图例把它与 Transceiver 并列为独立品类；且其速率写作合并档「400G/800G」，speed 维度没有对应取值。菜单里没有它的位置，未硬塞进本指标。 **载体不是花旗原报告**：本文件是他人把该报告数据转录成的 Excel（工作表 Source 写明 Source:Citi / Date:2025.08.13 / Report: China Networking），数字表为手工转录、配图为原报告截图。转录误差在本文件内无法自查，标 [未核]。"
     }
   ]
 }

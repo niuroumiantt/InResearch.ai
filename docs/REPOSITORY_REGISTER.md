@@ -39,7 +39,7 @@
 | `data/brief.json` | review_marked | 23 |
 | `data/companies.json` | records | 248 |
 | `data/contracts.json` | records | 2 |
-| `data/facts.json` | records | 119 |
+| `data/facts.json` | records | 217 |
 | `data/policies.json` | records | 2 |
 | `data/prices.json` | records | 207 |
 | `data/product_docs_plan.csv` | rows | 801 |
