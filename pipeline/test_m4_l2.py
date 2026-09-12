@@ -2241,5 +2241,171 @@ class M09MenuTests(unittest.TestCase):
         self.assertIn('10 s = 10000 ms', self.metrics['storage_response_window']['note'])
 
 
+class M11MenuTests(unittest.TestCase):
+    """M11 投资与项目经济：21 条缺口，M4 记下的最后一批。
+
+    这一批里有三条卡在枚举值上——**region 必填却没有「未披露」**，
+    于是一条没写地域的数只能靠猜。那不是某个指标的毛病，是全库 194 处的毛病。
+    """
+
+    def setUp(self):
+        self.metrics = L2.load_metrics()
+
+    def dim(self, mid, did):
+        return next(d for d in self.metrics[mid]['caliber_dims'] if d['id'] == did)
+
+    def test_every_new_metric_exists(self):
+        for mid in ('investor_survey_share', 'investor_composition_share',
+                    'dc_build_cost_per_mw', 'it_power_density_per_area',
+                    'project_tco', 'project_irr', 'contract_prepayment_share',
+                    'unit_cost_premium', 'compute_cost_generational_delta',
+                    'storage_network_surcharge', 'network_design_saving',
+                    'compute_demand_by_workload_share', 'ops_quality_loss',
+                    'scheduler_preference_share', 'dc_securitization_issuance',
+                    'retail_power_price_change', 'gpu_hourly_tco'):
+            self.assertEqual(self.metrics[mid]['module'], 'M11', mid)
+            self.assertTrue(self.metrics[mid]['unit'], mid)
+
+    # -- 全库 194 处的系统性缺口 -------------------------------------------
+    def test_every_region_dimension_can_say_it_was_never_stated(self):
+        missing = [(mid, 'region') for mid, v in self.metrics.items()
+                   for d in v.get('caliber_dims', [])
+                   if d['id'] == 'region' and '未披露' not in d['values']]
+        self.assertEqual(missing, [])
+
+    def test_the_region_note_says_it_is_not_a_shortcut(self):
+        note = self.dim('dc_build_cost_per_mw', 'region')['note']
+        self.assertIn('不是偷懒的出口', note)
+        self.assertIn('带着一个我们编的属性进了库', note)
+
+    def test_no_existing_fact_was_silently_moved_to_unstated(self):
+        """新增取值是给以后用的，不该有既有事实被改过去。"""
+        store = json.loads((Path(L2.__file__).resolve().parent.parent /
+                            'data/facts.json').read_text(encoding='utf-8'))
+        self.assertEqual([f['fact_id'] for f in store['records']
+                          if (f.get('caliber') or {}).get('region') == '未披露'], [])
+
+    # -- 另两处枚举 --------------------------------------------------------
+    def test_a_third_party_back_calculation_is_not_a_design_value(self):
+        d = self.dim('dc_pue', 'basis')
+        self.assertIn('第三方推算', d['values'])
+        self.assertIn('2.2GW', d['note'])
+
+    def test_the_pue_note_owns_up_to_the_arithmetic_not_matching(self):
+        """2.2 ÷ 1.8 = 1.222，而原文写「约 1.25」——差在哪没交代，就说没交代。"""
+        note = self.dim('dc_pue', 'basis')['note']
+        self.assertIn('1.222', note)
+        self.assertIn('不要替原文改数，也不要假装两者一致', note)
+        self.assertAlmostEqual(2.2 / 1.8, 1.2222, places=4)
+
+    def test_a_model_input_is_not_a_market_price(self):
+        d = self.dim('gpu_hourly_rate_spot', 'price_type')
+        self.assertIn('模型隐含价', d['values'])
+        self.assertIn('一句没发生过的事实', d['note'])
+
+    # -- 调查数据的裁决 ----------------------------------------------------
+    def test_survey_metrics_are_marked_three_ways(self):
+        """名字带「调查」、basis 有「调查结果」、还有 respondent_scope 维。"""
+        for mid in ('investor_survey_share', 'scheduler_preference_share'):
+            self.assertIn('调查结果', self.dim(mid, 'basis')['values'], mid)
+            self.assertIn('respondent_scope',
+                          [d['id'] for d in self.metrics[mid]['caliber_dims']], mid)
+
+    def test_the_ruling_is_stated_in_the_note(self):
+        note = self.metrics['investor_survey_share']['note']
+        self.assertIn('测的是「有多少人这么说」', note)
+        self.assertIn('没有样本量的百分比不能与任何别的调查比', note)
+
+    def test_rounding_is_recorded_as_found_not_forced_to_a_hundred(self):
+        self.assertIn('28 + 53 + 18 = 99',
+                      self.metrics['investor_survey_share']['note'])
+
+    def test_non_exclusive_options_may_exceed_a_hundred(self):
+        note = self.dim('scheduler_preference_share', 'requirement')['note']
+        self.assertIn('加总可以超过 100%', note)
+
+    # -- 算式 --------------------------------------------------------------
+    def test_the_build_cost_carries_its_arithmetic(self):
+        note = self.metrics['dc_build_cost_per_mw']['note']
+        self.assertIn('12,000 ÷ 250 = **48 百万美元/MW**', note)
+        self.assertEqual(12000 / 250, 48.0)
+
+    def test_the_density_says_we_computed_it_not_the_source(self):
+        note = self.metrics['it_power_density_per_area']['note']
+        self.assertIn('90,000 ÷ 44,593', note)
+        self.assertIn('原文没有直接给这个数', note)
+        self.assertAlmostEqual(90000 / 44593, 2.018, places=3)
+
+    def test_the_imperial_conversion_is_given(self):
+        self.assertIn('92.9 W/ft²', self.metrics['it_power_density_per_area']['note'])
+
+    # -- TCO 不是 capex ----------------------------------------------------
+    def test_tco_and_capex_are_separated_by_a_dimension(self):
+        d = self.dim('project_tco', 'amount_scope')
+        self.assertIn('TCO（全周期）', d['values'])
+        self.assertIn('资本开支', d['values'])
+        self.assertIn('最常见的错误', d['note'])
+
+    # -- 成本不是价格 ------------------------------------------------------
+    def test_cost_per_gpu_hour_is_not_the_rental_rate(self):
+        note = self.metrics['gpu_hourly_tco']['note']
+        self.assertIn('2.38', note)
+        self.assertIn('2.8', note)
+        self.assertIn('差额是租方的毛利', note)
+
+    # -- 无穷大不是一个数 --------------------------------------------------
+    def test_an_infinite_irr_is_recorded_as_prose_not_a_number(self):
+        note = self.metrics['contract_prepayment_share']['note']
+        self.assertIn('「无穷大」不是一个数', note)
+        self.assertIn('value 留白', note)
+
+    def test_a_negative_npv_is_not_forced_into_an_irr(self):
+        self.assertIn('不要硬折成一个 IRR 数字', self.metrics['project_irr']['note'])
+
+    # -- 同一条链上的两个点 ------------------------------------------------
+    def test_sixteen_and_sixtyone_are_one_chain_not_two_numbers(self):
+        note = self.dim('unit_cost_premium', 'cost_driver')['note']
+        self.assertIn('同一条链上的两个点', note)
+        self.assertIn('加总只能取一层', note)
+
+    def test_two_stages_of_one_design_do_not_add(self):
+        note = self.metrics['network_design_saving']['note']
+        self.assertIn('24.9% 与 31.6% 是同一方案的两档优化', note)
+
+    def test_the_saving_base_is_declared(self):
+        self.assertIn('不是集群总成本',
+                      self.dim('network_design_saving', 'cost_base')['note'])
+
+    # -- 含义相反的百分比 --------------------------------------------------
+    def test_losses_and_gains_share_a_unit_but_not_a_series(self):
+        note = self.dim('ops_quality_loss', 'effect')['note']
+        self.assertIn('含义相反的都有', note)
+        self.assertIn('绝不可放进同一条序列', note)
+
+    def test_ops_losses_do_not_sum(self):
+        self.assertIn('不可相加成「总折损」', self.metrics['ops_quality_loss']['note'])
+
+    # -- 时点决定这条数还对不对 --------------------------------------------
+    def test_the_training_share_is_time_critical(self):
+        note = self.metrics['compute_demand_by_workload_share']['note']
+        self.assertIn('2024-10', note)
+        self.assertIn('半年后就是错的', note)
+
+    def test_neocloud_demand_is_not_the_whole_market(self):
+        self.assertIn('不等于全市场',
+                      self.dim('compute_demand_by_workload_share',
+                               'customer_scope')['note'])
+
+    # -- 图里读不到年份就别按顺序假设 --------------------------------------
+    def test_unreadable_chart_years_must_be_recovered_not_assumed(self):
+        note = self.metrics['dc_securitization_issuance']['note']
+        self.assertIn('必须回原文对齐年份', note)
+        self.assertIn('不要按顺序假设', note)
+
+    def test_sasb_may_be_double_counted_with_cmbs(self):
+        self.assertIn('会重复计',
+                      self.dim('dc_securitization_issuance', 'instrument')['note'])
+
+
 if __name__ == '__main__':
     unittest.main()
