@@ -309,7 +309,7 @@ class ClaimIdentityTests(unittest.TestCase):
     def test_the_same_claim_under_a_new_id_is_refused(self):
         self.add(fact())
         bad = problems(fact(fact_id='same-thing-again'), claims=self.claims)
-        self.assertTrue(any('同口径同时点已有一条' in p for p in bad), bad)
+        self.assertTrue(any('同口径同时点同 bound 已有一条' in p for p in bad), bad)
 
     def test_the_same_metric_and_date_in_another_caliber_is_a_different_claim(self):
         """4406 元/㎡ 施工总包 and 3736.6 土建本体 are both true of one month."""
@@ -317,6 +317,56 @@ class ClaimIdentityTests(unittest.TestCase):
         shell = fact(fact_id='luan-ct-cost-shell-2022', value=3736.6,
                      caliber={'stage': '招标控制价', 'scope': '土建本体'})
         self.assertEqual(problems(shell, claims=self.claims), [])
+
+    def test_a_range_is_two_records_one_upper_one_lower(self):
+        """「1800-2100 万只」 is one expert call, and it needs both ends.
+
+        Without bound in the key the second end is refused as a duplicate and
+        the range collapses to whichever end happened to be recorded first.
+        """
+        low = fact(fact_id='hs-2026e-low', value=1800.0, bound='lower')
+        self.assertEqual(problems(low, claims=self.claims), [])
+        self.add(low)
+        high = fact(fact_id='hs-2026e-high', value=2100.0, bound='upper')
+        self.assertEqual(problems(high, claims=self.claims), [])
+
+    def test_a_point_still_collides_with_a_point(self):
+        """bound in the key must not open a hole for plain duplicates."""
+        self.add(fact())
+        bad = problems(fact(fact_id='same-thing-again'), claims=self.claims)
+        self.assertTrue(any('同口径同时点同 bound 已有一条' in p for p in bad), bad)
+        self.assertTrue(any('bound: upper 与 bound: lower' in p for p in bad), bad)
+
+    def test_a_point_and_a_bound_at_one_key_are_not_the_same_record(self):
+        """一个点估计和一个上界不是同一条：上界说的是「不超过」，点说的是「就是」。"""
+        self.add(fact())
+        ceiling = fact(fact_id='luan-ct-cost-ceiling', value=5000.0, bound='upper')
+        self.assertEqual(problems(ceiling, claims=self.claims), [])
+
+    def test_two_uppers_at_one_key_still_collide(self):
+        upper = fact(fact_id='hs-2026e-high', value=2100.0, bound='upper')
+        self.add(upper)
+        bad = problems(fact(fact_id='hs-2026e-high-again', value=2200.0,
+                            bound='upper'), claims=self.claims)
+        self.assertTrue(any('同口径同时点同 bound 已有一条' in p for p in bad), bad)
+
+    def test_both_ends_of_a_forecast_range_survive_the_vintage_check(self):
+        """The forecast collision is keyed on bound too, or a bare 2026E range
+        loses one end to 「同一年份的预测已有一条」."""
+        low = fact(fact_id='dc-2026e-low', as_of='2026E', value=1800.0,
+                   bound='lower')
+        self.assertEqual(problems(low, claims=self.claims), [])
+        self.add(low)
+        high = fact(fact_id='dc-2026e-high', as_of='2026E', value=2100.0,
+                    bound='upper')
+        self.assertEqual(problems(high, claims=self.claims), [])
+
+    def test_two_bare_forecasts_of_one_bound_still_collide(self):
+        self.add(fact(fact_id='dc-2026e-low', as_of='2026E', value=1800.0,
+                      bound='lower'))
+        bad = problems(fact(fact_id='dc-2026e-low-again', as_of='2026E',
+                            value=1750.0, bound='lower'), claims=self.claims)
+        self.assertTrue(any('带上做出时点' in p for p in bad), bad)
 
     def test_a_different_entity_is_a_different_claim(self):
         self.add(fact())
@@ -1014,6 +1064,146 @@ class CorrectedNoteTests(unittest.TestCase):
                    if d['id'] == 'server_class')
         self.assertNotIn('All Flash Arrays', dim['values'])
         self.assertIn('尚未校验', dim['note'])
+
+
+class SkipTests(unittest.TestCase):
+    """读了，菜单里没有位置——这条路以前是死的。
+
+    pack 不带 --sha 永远返回队首那一份，所以一个记不下任何东西的读者除了
+    「record --doc 空数组」没有别的出路，而那一招把文件记成已读、把发现丢掉。
+    发现才是重点：它是菜单落后于语料的唯一信号，而且必须活着走到改菜单的
+    那台机器上——所以缺口写进 repo，已读账本仍留在本机。
+    """
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-skip-')
+        base = Path(self.temp.name)
+        self.results = base / 'l1_results.jsonl'
+        self.results.write_text(json.dumps(
+            {**L1_ROW, 'org': 'IDC', 'year': '2025'}, ensure_ascii=False) + '\n',
+            encoding='utf-8')
+        self._saved = (L2.L1.RESULTS, L2.GAPS, L2.READ_LOG, L2.load_metrics,
+                       L2.load_facts)
+        L2.L1.RESULTS = self.results
+        L2.GAPS = base / 'metric_gaps.jsonl'
+        L2.READ_LOG = base / 'l2_read.jsonl'
+        L2.load_metrics = lambda: METRICS
+        L2.load_facts = lambda: {'records': []}
+
+    def tearDown(self):
+        (L2.L1.RESULTS, L2.GAPS, L2.READ_LOG, L2.load_metrics,
+         L2.load_facts) = self._saved
+        self.temp.cleanup()
+
+    def skip(self, gaps, doc=None, reason=None):
+        out = io.StringIO()
+        with redirect_stdout(out):
+            L2.cmd_skip(type('A', (), {'doc': doc or L1_ROW['sha256'][:8],
+                                       'gap': gaps, 'reason': reason}))
+        return json.loads(out.getvalue())
+
+    def gaps(self, filled=()):
+        out = io.StringIO()
+        with redirect_stdout(out):
+            L2.cmd_gaps(type('A', (), {'filled': list(filled)}))
+        return out.getvalue()
+
+    def test_the_queue_advances(self):
+        self.assertEqual([r['sha256'] for r in L2.eligible(8)], [L1_ROW['sha256']])
+        self.skip(['server_class 缺 x86'])
+        self.assertEqual(L2.eligible(8), [])
+
+    def test_the_gap_is_what_survives(self):
+        report = self.skip(['server_class 缺 x86'])
+        self.assertEqual(report['gaps_recorded'], 1)
+        rows = L2.open_gaps()
+        self.assertEqual([r['gap'] for r in rows], ['server_class 缺 x86'])
+        self.assertEqual(rows[0]['sha256'], L1_ROW['sha256'])
+        self.assertEqual(rows[0]['rel'], L1_ROW['rel'])
+
+    def test_one_document_can_report_several_gaps(self):
+        self.skip(['server_class 缺 x86', '缺 storage_scope 维度',
+                   '缺 counterparty_role 维度'])
+        self.assertEqual(len(L2.open_gaps()), 3)
+        self.assertEqual(len({r['sha256'] for r in L2.open_gaps()}), 1)
+
+    def test_the_same_gap_twice_is_one_gap(self):
+        """两次翻同一份文件报同一个缺口，不该在菜单待办上算两笔。"""
+        self.skip(['server_class 缺 x86'])
+        self.skip(['server_class 缺 x86'])
+        self.assertEqual(len(L2.open_gaps()), 1)
+
+    def test_the_same_gap_from_another_document_is_a_separate_row(self):
+        """counterparty_role 在三个模块都撞上了——那正是要看见的东西。"""
+        # L1_ROW is 'd' * 64, so this one must not start with d - the fourth
+        # time a fixture sha prefix has collided in this suite.
+        other = {**L1_ROW, 'sha256': 'b7' + 'c' * 62, 'rel': '别的/文件.xlsx'}
+        with self.results.open('a', encoding='utf-8') as fh:
+            fh.write(json.dumps(other, ensure_ascii=False) + '\n')
+        self.skip(['缺 counterparty_role 维度'])
+        self.skip(['缺 counterparty_role 维度'], doc='b7cccccc')
+        self.assertEqual(len(L2.open_gaps()), 2)
+
+    def test_the_read_ledger_says_it_was_a_skip_not_a_read(self):
+        """零条事实和「读了但存不下」印出来一样，就等于没记。"""
+        self.skip(['server_class 缺 x86'], reason='整表都是 x86 口径')
+        row = json.loads(L2.READ_LOG.read_text(encoding='utf-8').splitlines()[-1])
+        self.assertEqual(row['facts'], 0)
+        self.assertEqual(row['skipped'], '整表都是 x86 口径')
+        self.assertEqual(row['gaps'], [L2.open_gaps()[0]['gap_id']])
+
+    def test_the_default_reason_is_the_menu(self):
+        self.skip(['server_class 缺 x86'])
+        row = json.loads(L2.READ_LOG.read_text(encoding='utf-8').splitlines()[-1])
+        self.assertEqual(row['skipped'], '菜单没有位置')
+
+    def test_the_way_back_is_in_the_output(self):
+        """跳过不是丢弃：最终我们还是要都读的。"""
+        report = self.skip(['server_class 缺 x86'])
+        self.assertIn('pack --again --sha', report['note'])
+        self.assertIn(L1_ROW['sha256'][:12], report['note'])
+
+    def test_an_ambiguous_sha_is_refused(self):
+        with self.results.open('a', encoding='utf-8') as fh:
+            fh.write(json.dumps({**L1_ROW, 'sha256': L1_ROW['sha256'][:8] + 'e' * 56},
+                                ensure_ascii=False) + '\n')
+        with self.assertRaises(SystemExit):
+            self.skip(['随便'])
+
+    def test_filling_a_gap_clears_it(self):
+        gap_id = self.skip(['server_class 缺 x86'])['gap_ids'][0]
+        self.gaps(filled=[gap_id])
+        self.assertEqual(L2.open_gaps(), [])
+
+    def test_filling_one_leaves_the_others(self):
+        ids = self.skip(['缺 x86', '缺 storage_scope'])['gap_ids']
+        self.gaps(filled=[ids[0]])
+        self.assertEqual([r['gap'] for r in L2.open_gaps()], ['缺 storage_scope'])
+
+    def test_filling_an_unknown_gap_is_refused(self):
+        with self.assertRaises(SystemExit):
+            self.gaps(filled=['000000000000'])
+
+    def test_filling_the_same_gap_twice_is_refused(self):
+        """第二次销账多半是记错了账，不该悄悄成功。"""
+        gap_id = self.skip(['缺 x86'])['gap_ids'][0]
+        self.gaps(filled=[gap_id])
+        with self.assertRaises(SystemExit):
+            self.gaps(filled=[gap_id])
+
+    def test_the_listing_names_the_document_and_the_module(self):
+        self.skip(['server_class 缺 x86'])
+        listing = self.gaps()
+        self.assertIn('server_class 缺 x86', listing)
+        self.assertIn(L1_ROW['rel'], listing)
+        self.assertIn('"open_gaps": 1', listing)
+
+    def test_a_malformed_line_does_not_take_the_ledger_down(self):
+        self.skip(['缺 x86'])
+        with L2.GAPS.open('a', encoding='utf-8') as fh:
+            fh.write('{ 半行\n')
+        self.assertEqual(len(L2.open_gaps()), 1)
+
 
 if __name__ == '__main__':
     unittest.main()
