@@ -59,7 +59,9 @@ const dir = process.env.UI_QA_DIR;
      for(const width of [360,1440]){
        await page.setViewportSize({width,height:width===360?800:1000});
        const state=await measure();
-       assert.ok(state.width<=width+1,`${file} ${skin} ${mode}: page ${state.width} exceeds ${width}`);
+       const overflow = state.width>width+1 ? await page.evaluate(()=>Array.from(document.querySelectorAll('body *'))
+         .filter(e=>e.getBoundingClientRect().right>innerWidth+1).slice(0,8).map(e=>e.tagName+'#'+e.id)) : [];
+       assert.ok(state.width<=width+1,`${file} ${skin} ${mode}: page ${state.width} exceeds ${width}; ${overflow.join(', ')}`);
        if(dir && width===360 && mode==='light') await page.screenshot({path:path.join(dir,file.replaceAll('/','-')+'-'+skin+'-mobile.png')});
      }
    }
