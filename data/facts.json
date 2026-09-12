@@ -15363,6 +15363,338 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**period_basis=区间累计**：这是 2019→2024 五年累计涨幅，不是年度同比，折年化约 4.2%。混作同比会把幅度放大五倍。 原文「平均电费」未说明是居民还是全类别，本条记全类别并标 [未核]。 **这个数在原文里的位置是「数据中心推高民用电价」这一政治风险线索**，但 23% 的涨幅本身并未做归因拆解——不要拿它当数据中心造成涨价的证据。 **载体是中译本，译文粗糙**（正文出现「小 dot-com 时代」「and 到 2030 年」等机翻痕迹），关键数字都带脚注编号但脚注正文未抽出，引用前需回英文原件核对。"
+    },
+    {
+      "fact_id": "caict-2022-revenue-share-telcos-2020",
+      "metric_id": "dc_service_revenue_share",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc-service-market",
+        "label": "中国数据中心业务市场"
+      },
+      "value": 54.3,
+      "unit": "%",
+      "caliber": {
+        "operator_type": "基础电信运营商",
+        "service_scope": "IDC 服务（含托管与增值）",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d01da12707d73864f636fd1adddcca1eb5a13deef3f90ea14147d8106136c5e4",
+        "local_file": "【2022年4月】【中国信通院】中国第三方数据中心运营商分析报告（2022年）.pdf",
+        "locator": "第 7 页：「从 2020 年数据中心业务市场收入占比来看，基础电信运营商约占总市场规模的 54.3%」（图 3，来源标注 IDC、中国信通院）",
+        "grade": "S2",
+        "originator": "中国信通院云计算与大数据研究所"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是收入份额不是机架份额**，两者在中国市场差别很大：运营商机房大量自用于保障通信传输，商用部分客户分散。 **第三方份额一年从 40.7% 升至 45.7%，提升 5 个百分点**，是这份报告的核心结论；三大运营商合计 54.3%（电信 23.8 + 联通 16.7 + 移动 13.8 = 54.3，加总自洽）。 数据来源原文标注为 IDC 与信通院联合，**不是信通院独立测算**。"
+    },
+    {
+      "fact_id": "caict-2022-revenue-share-chinatelecom-2020",
+      "metric_id": "dc_service_revenue_share",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc-service-market",
+        "label": "中国数据中心业务市场"
+      },
+      "value": 23.8,
+      "unit": "%",
+      "caliber": {
+        "operator_type": "中国电信",
+        "service_scope": "IDC 服务（含托管与增值）",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d01da12707d73864f636fd1adddcca1eb5a13deef3f90ea14147d8106136c5e4",
+        "local_file": "【2022年4月】【中国信通院】中国第三方数据中心运营商分析报告（2022年）.pdf",
+        "locator": "第 7 页：「从 2020 年数据中心业务市场收入占比来看，其中中国电信市场规模约占 23.8%」（图 3，来源标注 IDC、中国信通院）",
+        "grade": "S2",
+        "originator": "中国信通院云计算与大数据研究所"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是收入份额不是机架份额**，两者在中国市场差别很大：运营商机房大量自用于保障通信传输，商用部分客户分散。 **第三方份额一年从 40.7% 升至 45.7%，提升 5 个百分点**，是这份报告的核心结论；三大运营商合计 54.3%（电信 23.8 + 联通 16.7 + 移动 13.8 = 54.3，加总自洽）。 数据来源原文标注为 IDC 与信通院联合，**不是信通院独立测算**。"
+    },
+    {
+      "fact_id": "caict-2022-revenue-share-chinaunicom-2020",
+      "metric_id": "dc_service_revenue_share",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc-service-market",
+        "label": "中国数据中心业务市场"
+      },
+      "value": 16.7,
+      "unit": "%",
+      "caliber": {
+        "operator_type": "中国联通",
+        "service_scope": "IDC 服务（含托管与增值）",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d01da12707d73864f636fd1adddcca1eb5a13deef3f90ea14147d8106136c5e4",
+        "local_file": "【2022年4月】【中国信通院】中国第三方数据中心运营商分析报告（2022年）.pdf",
+        "locator": "第 7 页：「从 2020 年数据中心业务市场收入占比来看，中国联通约占 16.7%」（图 3，来源标注 IDC、中国信通院）",
+        "grade": "S2",
+        "originator": "中国信通院云计算与大数据研究所"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是收入份额不是机架份额**，两者在中国市场差别很大：运营商机房大量自用于保障通信传输，商用部分客户分散。 **第三方份额一年从 40.7% 升至 45.7%，提升 5 个百分点**，是这份报告的核心结论；三大运营商合计 54.3%（电信 23.8 + 联通 16.7 + 移动 13.8 = 54.3，加总自洽）。 数据来源原文标注为 IDC 与信通院联合，**不是信通院独立测算**。"
+    },
+    {
+      "fact_id": "caict-2022-revenue-share-chinamobile-2020",
+      "metric_id": "dc_service_revenue_share",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc-service-market",
+        "label": "中国数据中心业务市场"
+      },
+      "value": 13.8,
+      "unit": "%",
+      "caliber": {
+        "operator_type": "中国移动",
+        "service_scope": "IDC 服务（含托管与增值）",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d01da12707d73864f636fd1adddcca1eb5a13deef3f90ea14147d8106136c5e4",
+        "local_file": "【2022年4月】【中国信通院】中国第三方数据中心运营商分析报告（2022年）.pdf",
+        "locator": "第 7 页：「从 2020 年数据中心业务市场收入占比来看，中国移动约占 13.8%」（图 3，来源标注 IDC、中国信通院）",
+        "grade": "S2",
+        "originator": "中国信通院云计算与大数据研究所"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是收入份额不是机架份额**，两者在中国市场差别很大：运营商机房大量自用于保障通信传输，商用部分客户分散。 **第三方份额一年从 40.7% 升至 45.7%，提升 5 个百分点**，是这份报告的核心结论；三大运营商合计 54.3%（电信 23.8 + 联通 16.7 + 移动 13.8 = 54.3，加总自洽）。 数据来源原文标注为 IDC 与信通院联合，**不是信通院独立测算**。"
+    },
+    {
+      "fact_id": "caict-2022-revenue-share-thirdparty-2020",
+      "metric_id": "dc_service_revenue_share",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc-service-market",
+        "label": "中国数据中心业务市场"
+      },
+      "value": 45.7,
+      "unit": "%",
+      "caliber": {
+        "operator_type": "第三方",
+        "service_scope": "IDC 服务（含托管与增值）",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d01da12707d73864f636fd1adddcca1eb5a13deef3f90ea14147d8106136c5e4",
+        "local_file": "【2022年4月】【中国信通院】中国第三方数据中心运营商分析报告（2022年）.pdf",
+        "locator": "第 7 页：「从 2020 年数据中心业务市场收入占比来看，第三方数据中心运营商市场规模占比为 45.7%」（图 3，来源标注 IDC、中国信通院）",
+        "grade": "S2",
+        "originator": "中国信通院云计算与大数据研究所"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是收入份额不是机架份额**，两者在中国市场差别很大：运营商机房大量自用于保障通信传输，商用部分客户分散。 **第三方份额一年从 40.7% 升至 45.7%，提升 5 个百分点**，是这份报告的核心结论；三大运营商合计 54.3%（电信 23.8 + 联通 16.7 + 移动 13.8 = 54.3，加总自洽）。 数据来源原文标注为 IDC 与信通院联合，**不是信通院独立测算**。"
+    },
+    {
+      "fact_id": "caict-2022-revenue-share-thirdparty-2019",
+      "metric_id": "dc_service_revenue_share",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc-service-market",
+        "label": "中国数据中心业务市场"
+      },
+      "value": 40.7,
+      "unit": "%",
+      "caliber": {
+        "operator_type": "第三方",
+        "service_scope": "IDC 服务（含托管与增值）",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d01da12707d73864f636fd1adddcca1eb5a13deef3f90ea14147d8106136c5e4",
+        "local_file": "【2022年4月】【中国信通院】中国第三方数据中心运营商分析报告（2022年）.pdf",
+        "locator": "第 7 页：「从 2020 年数据中心业务市场收入占比来看，对比 2019 年的 40.7%」（图 3，来源标注 IDC、中国信通院）",
+        "grade": "S2",
+        "originator": "中国信通院云计算与大数据研究所"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是收入份额不是机架份额**，两者在中国市场差别很大：运营商机房大量自用于保障通信传输，商用部分客户分散。 2019 年第三方为 40.7%，与 2020 年的 45.7% 构成本库该指标的两点序列。 数据来源原文标注为 IDC 与信通院联合，**不是信通院独立测算**。"
+    },
+    {
+      "fact_id": "caict-2022-top10-revenue-share-2021",
+      "metric_id": "top10_revenue_share",
+      "entity": {
+        "type": "industry",
+        "id": "cn-thirdparty-dc-market",
+        "label": "中国第三方数据中心市场"
+      },
+      "value": 40.0,
+      "unit": "%",
+      "caliber": {
+        "ranking_basis": "按机架规模",
+        "denominator": "第三方市场",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d01da12707d73864f636fd1adddcca1eb5a13deef3f90ea14147d8106136c5e4",
+        "local_file": "【2022年4月】【中国信通院】中国第三方数据中心运营商分析报告（2022年）.pdf",
+        "locator": "第 7 页：「2021 年，第三方数据中心运营商数据中心机架规模 Top10 企业数据中心业务收入约占第三方市场总收入 40%，该数据较上年度的 50% 有一定下滑」",
+        "grade": "S2",
+        "originator": "中国信通院云计算与大数据研究所"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**ranking_basis=按机架规模，denominator=第三方市场**——这两维都不能省：**「按机架规模选出的十家」与「收入前十家」不是同一批公司**，分母也只是第三方市场而非全市场。 **一年从 50% 掉到 40%**，原文归因两条：部分头部轻资产转型出售数据中心；新进入者增多、后起之秀追赶。 与库内 top10_pipeline_share（前十大开发商在建容量占比）完全不同：那是在建容量、这是存量收入。"
+    },
+    {
+      "fact_id": "caict-2022-top10-revenue-share-2020",
+      "metric_id": "top10_revenue_share",
+      "entity": {
+        "type": "industry",
+        "id": "cn-thirdparty-dc-market",
+        "label": "中国第三方数据中心市场"
+      },
+      "value": 50.0,
+      "unit": "%",
+      "caliber": {
+        "ranking_basis": "按机架规模",
+        "denominator": "第三方市场",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d01da12707d73864f636fd1adddcca1eb5a13deef3f90ea14147d8106136c5e4",
+        "local_file": "【2022年4月】【中国信通院】中国第三方数据中心运营商分析报告（2022年）.pdf",
+        "locator": "第 7 页：「该数据较上年度的 50% 有一定下滑」",
+        "grade": "S2",
+        "originator": "中国信通院云计算与大数据研究所"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2020 年值，与 2021 年的 40% 构成两点序列。口径同 2021 条（按机架规模排名、分母为第三方市场）。"
+    },
+    {
+      "fact_id": "caict-2022-growth-racks-2021",
+      "metric_id": "dc_market_growth",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc-market",
+        "label": "中国数据中心市场"
+      },
+      "value": 25.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "按机架规模",
+        "period_basis": "同比",
+        "operator_type": "全市场",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d01da12707d73864f636fd1adddcca1eb5a13deef3f90ea14147d8106136c5e4",
+        "local_file": "【2022年4月】【中国信通院】中国第三方数据中心运营商分析报告（2022年）.pdf",
+        "locator": "第 3 页：「据中国信通院测算，2021 年我国机架规模和市场规模增速达到 25%，已吸引越来越多的企业涌入数据中心市场」",
+        "grade": "S2",
+        "originator": "中国信通院云计算与大数据研究所"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文把机架规模增速与市场规模增速并列写作同一个 25%**，本库按 measure 分两条记，但要知道这两个数在原文里没有各自的独立出处。 **同一份报告另一处写「产业近年来保持 30% 左右的快速增长」并预计「同比增速有望继续保持在 30% 左右」**——25% 是 2021 年实绩、30% 是趋势判断，两者在同一份报告里并存，引用时不可混。"
+    },
+    {
+      "fact_id": "caict-2022-growth-revenue-2021",
+      "metric_id": "dc_market_growth",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc-market",
+        "label": "中国数据中心市场"
+      },
+      "value": 25.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "按市场收入",
+        "period_basis": "同比",
+        "operator_type": "全市场",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d01da12707d73864f636fd1adddcca1eb5a13deef3f90ea14147d8106136c5e4",
+        "local_file": "【2022年4月】【中国信通院】中国第三方数据中心运营商分析报告（2022年）.pdf",
+        "locator": "第 3 页：「据中国信通院测算，同上句，机架规模与市场规模增速同为 25%，已吸引越来越多的企业涌入数据中心市场」",
+        "grade": "S2",
+        "originator": "中国信通院云计算与大数据研究所"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文把机架规模增速与市场规模增速并列写作同一个 25%**，本库按 measure 分两条记，但要知道这两个数在原文里没有各自的独立出处。 **同一份报告另一处写「产业近年来保持 30% 左右的快速增长」并预计「同比增速有望继续保持在 30% 左右」**——25% 是 2021 年实绩、30% 是趋势判断，两者在同一份报告里并存，引用时不可混。"
+    },
+    {
+      "fact_id": "caict-2022-dc-service-revenue-2021",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc-service-market",
+        "label": "中国数据中心业务市场"
+      },
+      "value": 1500.0,
+      "unit": "亿元",
+      "caliber": {
+        "service_scope": "IDC 服务（含托管与增值）",
+        "operator_type": "全市场",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d01da12707d73864f636fd1adddcca1eb5a13deef3f90ea14147d8106136c5e4",
+        "local_file": "【2022年4月】【中国信通院】中国第三方数据中心运营商分析报告（2022年）.pdf",
+        "locator": "第 6 页：「我国数据中心市场收入节节攀升，2021 年总市场收入已达到 1500 亿元，如图 2 所示」（图 2 标题：2016-2021 我国数据中心业务总收入及增长率（亿元），来源 IDC、中国信通院）",
+        "grade": "S2",
+        "originator": "中国信通院云计算与大数据研究所"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是服务侧业务收入，不是资本开支**：库内 dc_it_capex（亿美元）是买设备的钱，两者不可换算也不可比较。 service_scope=IDC 服务（含托管与增值）：报告开篇界定第三方运营商提供「主机托管、服务器出租等基础业务，以及网络安全、数据应用、运行维护等增值服务」。 **图 2 有 2016-2021 六年的曲线，但图里没有数据标签**，文本只能读到 2021 年这一个点；要完整序列得回原图。 按同页份额拆分：第三方约占 45.7%（2020 年口径）→ 2021 年第三方市场收入量级约 685 亿元，**此为按不同年份份额的粗算，未入库**。"
     }
   ]
 }
