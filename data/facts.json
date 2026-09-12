@@ -6682,6 +6682,151 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**单位换算**：480,000 平方英尺 × 0.092903 = 44,593 ㎡，非再加工。**这是单栋主机房楼**，不是园区总面积；满园 20 栋 = 80 个约 12 万平方英尺（约 11,148 ㎡）的模块，园区合计约 96 万平方英尺 ≈ 891,900 ㎡。**同报告第 3 页写「每个数据中心约 50 万平方英尺」，第 4 页写「48 万平方英尺一栋」，相差 4%**，应是取整差异，本条按更具体的 48 万记。**可与 180MW/2 栋 对照得单栋约 90MW、约 2.0 kW/㎡ 的 IT 功率面积密度**——该推算未入库，因为本库没有「单位面积 IT 功率」指标。"
+    },
+    {
+      "fact_id": "h100-sxm-ondemand-best-202503",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "market",
+        "id": "h100-sxm-ondemand-neocloud",
+        "label": "H100 SXM Neocloud 按需挂牌价（市场最优）"
+      },
+      "value": 2.99,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "公开挂牌",
+        "unit": "单卡",
+        "region": "Global"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fcc906b58b7f83134cd141ebbc0f2aabc18fa446b2728967261eb5e4121f5a70",
+        "local_file": "SemiAnalysis The GPU Cloud ClusterMAX Rating System (2025-03-26).pdf",
+        "locator": "第 30 页「Pricing, Value, and Availability」：「based on a typical on-demand price of USD 2.99/hr/GPU for an H100 SXM with 8x400G InfiniBand, renting one server of 8 GPUs would cost USD 23.92 per hour and $574.08 per day」；同节另称「The current best on-demand pricing is $2.99 USD per hour per GPU」；第 60 页 Lambda Labs 同为 $2.99/hr/GPU",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是整份 ClusterMAX 评级体系的基准价，配置口径写得很死**：H100 SXM + 8×400G InfiniBand，单机 8 卡即 23.92 美元/小时、574.08 美元/天。**捆绑范围要看清**：多数 Neocloud 该价格含板载 CPU、网络、电力、本地 NVMe 与 Slurm/驱动配置，**但网络存储与对象存储另计**（高性能网络存储约 6-9 美分/GB/月，对象存储 2-3 美分/GB/月），拿它与含存储的报价直接比会低估。**原文同时称其为「typical」和「current best」，两者不是一个意思**，本条按点值记并标 [未核]。对照库内 h100-listed-range-2024（2024 年公开挂牌区间跨 6.5 倍、value 为空）：本条是一年后的具体锚点。"
+    },
+    {
+      "fact_id": "h100-india-gov-auction-1y-202503",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "market",
+        "id": "h100-india-gov-auction",
+        "label": "印度政府招标采购的 H100 SXM 一年期算力（拍卖成交）"
+      },
+      "value": 1.6,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "长约",
+        "unit": "单卡",
+        "region": "APAC"
+      },
+      "as_of": "2025-03",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "fcc906b58b7f83134cd141ebbc0f2aabc18fa446b2728967261eb5e4121f5a70",
+        "local_file": "SemiAnalysis The GPU Cloud ClusterMAX Rating System (2025-03-26).pdf",
+        "locator": "第 65 页：「in India – the Indian Government has been holding GPU pricing tender exercises where Neoclouds can offer compute for the government to purchase in an auction mechanism. This has yielded very low pricing – as low as about $1.60/hr per H100 SXM for a one year contract, demonstrating somewhat of a buyer's market in that country」",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**「as low as about」是观察到的最低成交，不是均价**，故记下界。**同一张卡、同一时点，印度政府拍卖的一年长约 1.60 美元只有全球按需最优价 2.99 美元的 54%**——差价来自三处叠加：拍卖机制、一年期锁定、买方市场，**不可当作「印度算力便宜 46%」这种简单结论**。原文同段还指出欧洲与亚太的挂牌价整体高于美国（数据驻留与本地化要求所致），**即区域价差在不同采购机制下方向相反**。region 记 APAC（枚举无 IN）。"
+    },
+    {
+      "fact_id": "h100-hyperscaler-1y-scraped-low-202503",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "market",
+        "id": "h100-hyperscaler-1y-listed",
+        "label": "超大规模云厂 H100 一年期官网挂牌价（网络抓取值）"
+      },
+      "value": 10.0,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "公开挂牌",
+        "unit": "单卡",
+        "region": "Global"
+      },
+      "as_of": "2025-03",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "fcc906b58b7f83134cd141ebbc0f2aabc18fa446b2728967261eb5e4121f5a70",
+        "local_file": "SemiAnalysis The GPU Cloud ClusterMAX Rating System (2025-03-26).pdf",
+        "locator": "第 67 页：「We have seen some scrapes that have shown a one year contract pricing of $10-$12 per hour for the H100. This is ridiculous, as one year of rental for a single H100 node would cost $770,000 – over three times the upfront capital cost to deploy this node. Deals are never executed at this level of pricing.」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（转述第三方网络抓取，并明确否定其有效性）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这条录进来是当反例用的。**原文明说「Deals are never executed at this level of pricing」——抓取到的挂牌价与实际成交价差一个数量级（10-12 美元 vs Neocloud 按需最优 2.99 美元），**投资人用网页抓取推算云厂算力收入会系统性高估**。作者的证伪算式：单节点 8 卡按 10-12 美元/卡/小时租一年 ≈ 77 万美元，是该节点部署资本开支的三倍以上（隐含单节点 capex 约 25 万美元）。**price_type=公开挂牌 正是它与实际成交的分野**；上界 12 见 h100-hyperscaler-1y-scraped-high-202503。原文补充：云厂的现货与按需实际成交量很小，且普遍有大幅不可见折扣。"
+    },
+    {
+      "fact_id": "h100-hyperscaler-1y-scraped-high-202503",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "market",
+        "id": "h100-hyperscaler-1y-listed",
+        "label": "超大规模云厂 H100 一年期官网挂牌价（网络抓取值）"
+      },
+      "value": 12.0,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "公开挂牌",
+        "unit": "单卡",
+        "region": "Global"
+      },
+      "as_of": "2025-03",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "fcc906b58b7f83134cd141ebbc0f2aabc18fa446b2728967261eb5e4121f5a70",
+        "local_file": "SemiAnalysis The GPU Cloud ClusterMAX Rating System (2025-03-26).pdf",
+        "locator": "第 67 页：「some scrapes that have shown a one year contract pricing of $10-$12 per hour for the H100 … Deals are never executed at this level of pricing」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（转述第三方网络抓取，并明确否定其有效性）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间 10-12 美元的上界，下界见 h100-hyperscaler-1y-scraped-low-202503。**同样是反例**：作者明确表示这个价位不会有真实成交。留存的意义是给「挂牌价 vs 成交价」的偏离度一个上沿。"
+    },
+    {
+      "fact_id": "nebius-h100-ondemand-promo-202503",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "company",
+        "id": "nebius",
+        "label": "Nebius"
+      },
+      "value": 1.5,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "公开挂牌",
+        "unit": "单卡",
+        "region": "Global"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fcc906b58b7f83134cd141ebbc0f2aabc18fa446b2728967261eb5e4121f5a70",
+        "local_file": "SemiAnalysis The GPU Cloud ClusterMAX Rating System (2025-03-26).pdf",
+        "locator": "第 46 页：「offering on-demand NVIDIA H100 GPUs at roughly $1.50 per hour (at least for the first thousand hours per month) —half the cost charged by competitors like Lambda Labs」；第 66 页重述：「Nebius' on-demand offering at $1.50 per hour for the first 1,000 GPU-hours per month」",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**有用量上限的引流价，不是全量价**：仅适用于每月前 1,000 GPU 小时，超出部分原文未给价。**caliber 里没有一维能表达这个用量门槛**，只能写在这里——**直接把 1.50 当作 Nebius 的市场价会低估约一半**（同期 Lambda Labs H100 SXM 为 2.99 美元/卡/小时，原文称 Nebius 是其一半）。作者同时指出即便半价，Nebius 因 UI/UX 落后仍难获客——**价格不是唯一变量**。"
     }
   ]
 }
