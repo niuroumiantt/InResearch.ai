@@ -120,7 +120,8 @@ def atomic_write(path, data):
     path = Path(path)
     temporary = path.with_name(path.name + '.tmp-' + uuid.uuid4().hex)
     try:
-        with temporary.open('xb') as stream:
+        fd = os.open(temporary, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+        with os.fdopen(fd, 'wb') as stream:
             stream.write(data)
             stream.flush()
             os.fsync(stream.fileno())

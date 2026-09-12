@@ -66,5 +66,33 @@ class UserTransactionTests(TestCase):
         self.assertEqual('{broken', self.path.read_text())
 
 
+class SessionKeyTests(TestCase):
+    def test_first_initialization_is_atomic_across_processes(self):
+        with tempfile.TemporaryDirectory() as temp:
+            key = Path(temp) / '.hub_secret'
+            users = Path(temp) / 'users.json'
+            code = ('import auth,sys; from pathlib import Path; '
+                    'auth.SECRET_FILE=Path(sys.argv[1]); auth.USERS_FILE=Path(sys.argv[2]); '
+                    'print(auth._secret().hex())')
+            env = {**os.environ, 'PYTHONPATH': str(Path(auth.__file__).parent)}
+            processes = [subprocess.Popen([sys.executable, '-c', code, str(key), str(users)],
+                                          env=env, stdout=subprocess.PIPE, text=True) for _ in range(4)]
+            values = [process.communicate(timeout=10)[0].strip() for process in processes]
+            self.assertTrue(all(process.returncode == 0 for process in processes))
+            self.assertEqual(set(values), {key.read_bytes().hex()})
+            self.assertEqual(len(key.read_bytes()), 32)
+            self.assertEqual(key.stat().st_mode & 0o777, 0o600)
+
+    def test_existing_invalid_key_is_rejected_without_replacement(self):
+        with tempfile.TemporaryDirectory() as temp:
+            key = Path(temp) / '.hub_secret'
+            for content in (b'', b'broken'):
+                key.write_bytes(content)
+                with mock.patch.object(auth, 'SECRET_FILE', key), \
+                     self.assertRaisesRegex(RuntimeError, 'session_key_unavailable'):
+                    auth.make_cookie('admin')
+                self.assertEqual(key.read_bytes(), content)
+
+
 if __name__ == '__main__':
     main()

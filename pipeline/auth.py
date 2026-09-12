@@ -25,7 +25,6 @@ from __future__ import annotations
 
 import base64
 import fcntl
-import tempfile
 import threading
 from functools import wraps
 import hashlib
@@ -36,6 +35,7 @@ import secrets
 import time
 from http.cookies import SimpleCookie
 from pathlib import Path
+from jsonl_store import atomic_write
 
 ROOT = Path(__file__).resolve().parent.parent
 USERS_FILE = ROOT / "data" / "users.json"
@@ -81,22 +81,8 @@ def user_write(fn):
 
 def save_users(users: dict):
     """Atomic persistence; callers must hold user_write for the full mutation."""
-    fd, name = tempfile.mkstemp(prefix='.users-', dir=USERS_FILE.parent)
-    try:
-        with os.fdopen(fd, 'w', encoding='utf-8') as stream:
-            json.dump({'users': users}, stream, ensure_ascii=False, indent=2)
-            stream.write('\n')
-            stream.flush()
-            os.fsync(stream.fileno())
-        os.replace(name, USERS_FILE)
-        directory = os.open(USERS_FILE.parent, os.O_RDONLY)
-        try:
-            os.fsync(directory)
-        finally:
-            os.close(directory)
-    finally:
-        if os.path.exists(name):
-            os.unlink(name)
+    body = json.dumps({'users': users}, ensure_ascii=False, indent=2) + '\n'
+    atomic_write(USERS_FILE, body.encode('utf-8'))
 
 
 def hash_password(password: str, salt_hex: str) -> str:
@@ -116,11 +102,23 @@ def verify_password(username: str, password: str) -> bool:
 
 # ── 会话 cookie ─────────────────────────────────────────────
 
-def _secret() -> bytes:
+@user_write
+def _initialize_secret():
+    # Recheck after acquiring the same cross-process account-store lock.
     if not SECRET_FILE.exists():
-        SECRET_FILE.write_bytes(secrets.token_bytes(32))
-        os.chmod(SECRET_FILE, 0o600)
-    return SECRET_FILE.read_bytes()
+        SECRET_FILE.parent.mkdir(parents=True, exist_ok=True)
+        atomic_write(SECRET_FILE, secrets.token_bytes(32))
+
+
+def _secret() -> bytes:
+    try:
+        value = SECRET_FILE.read_bytes()
+    except FileNotFoundError:
+        _initialize_secret()
+        value = SECRET_FILE.read_bytes()
+    if len(value) != 32:
+        raise RuntimeError('session_key_unavailable')
+    return value
 
 
 def _sign(payload: str) -> str:
