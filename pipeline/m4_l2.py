@@ -1241,8 +1241,11 @@ def main():
                     help='缺的是什么——指标、维度还是枚举值，可重复给')
     sk.add_argument('--reason', help='除了菜单缺口以外的原因')
     g = sub.add_parser('gaps', help='列出未补的菜单缺口')
-    g.add_argument('--filled', action='append', default=[],
-                   help='菜单已补上，销掉这个 gap_id，可重复给')
+    # extend 而不是 append：一批补完常常是几十条，一条一个 --filled 抄错的概率
+    # 比打字的成本高。--filled a b c 与 --filled a --filled b 都收。
+    g.add_argument('--filled', action='extend', nargs='+', default=[],
+                   metavar='GAP_ID',
+                   help='菜单已补上，销掉这些 gap_id，可给多个、可重复给')
     bp = sub.add_parser('backfill-provenance',
                         help='把 evidence.source_id 里的 sha256 前缀补成完整哈希')
     bp.add_argument('--commit', action='store_true', help='真写；不给就是干跑')

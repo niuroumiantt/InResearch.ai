@@ -3036,5 +3036,286 @@ class FourthRoundGapTests(unittest.TestCase):
             self.assertEqual(f['caliber']['stat'], '区间端', f['fact_id'])
 
 
+class FifthRoundGapTests(unittest.TestCase):
+    """M4 第五轮报上来的 46 条缺口——本批补的菜单。
+
+    这一批里有三件事值得单独盯：一是「规格进事实层」的裁决终于落了地，
+    M08 与 M14 两族规格指标都挂在它下面；二是三条 note 里的算术我写错了，
+    是逐个加过之后才发现的，下面的测试把算术本身钉住，不是钉那句话；
+    三是补维必须连同既有事实一起回填，否则主干当场红——上一轮就是这么红的。
+    """
+
+    def setUp(self):
+        self.metrics = L2.load_metrics()
+        self.facts = L2.load_facts()['records']
+
+    def dim(self, mid, did):
+        return next(d for d in self.metrics[mid]['caliber_dims'] if d['id'] == did)
+
+    def dims(self, mid):
+        return {d['id'] for d in self.metrics[mid]['caliber_dims']}
+
+    # -- 补的维必须连同既有事实一起回填 ------------------------------------
+    def test_every_fact_still_passes_after_the_menu_changed(self):
+        """补维当场回填，是上一轮把主干撞红之后立的规矩。
+
+        剩下的 38 条是早年遗留的 sha256 欠账，与本批无关：M4 已经确认
+        它们没有可走的回填路径（35 条 source_id 为空、3 条只有人给的名字）。
+        这个数字只许降不许升——升了说明本批又漏了一处回填。
+        """
+        metrics, seen, owed = self.metrics, set(), []
+        for f in self.facts:
+            bad = L2.check_fact(f, metrics, seen)
+            seen.add(f.get('fact_id'))
+            for e in bad:
+                self.assertIn('sha256', e, '%s: %s' % (f.get('fact_id'), e))
+                owed.append(f['fact_id'])
+        self.assertLessEqual(len(owed), 38)
+
+    def test_no_two_facts_share_a_claim_key(self):
+        """回填口径维会改 claim_key——填错一格就是把两条数撞成一条。"""
+        seen = {}
+        for f in self.facts:
+            key = L2.claim_key(f)
+            self.assertNotIn(key, seen,
+                             '%s 与 %s 撞了 claim_key' % (f['fact_id'], seen.get(key)))
+            seen[key] = f['fact_id']
+
+    def test_the_chip_demand_rows_say_which_vendor(self):
+        """三条都是全市场口径：两条是十一家逐行相加，一条是报告的整体预测。"""
+        rows = [f for f in self.facts if f['metric_id'] == 'cn_ai_chip_demand']
+        self.assertEqual(len(rows), 3)
+        for f in rows:
+            self.assertEqual(f['caliber']['vendor'], '全市场', f['fact_id'])
+
+    def test_the_projection_rows_say_which_scenario(self):
+        """RAND 的 158-253 是一个留存率参数的区间，不是两个情景——故填「单一情景」。
+
+        填「基准」会暗示原文另有一个高增长情景与之对照，那是我们编的。
+        scenario 这一维是为 EPRI 的 300/800 那种「同机构两情景」加的。
+        """
+        rows = [f for f in self.facts
+                if f['metric_id'] == 'model_projected_generation_need']
+        self.assertTrue(rows)
+        for f in rows:
+            self.assertEqual(f['caliber']['scenario'], '单一情景', f['fact_id'])
+        self.assertIn('单一情景',
+                      self.dim('model_projected_generation_need', 'scenario')['values'])
+        self.assertIn('EPRI',
+                      self.dim('model_projected_generation_need', 'scenario')['note'])
+
+    def test_the_material_rows_say_which_system(self):
+        """互连铜缆与动力电缆都是「电气材料」，加到一起得不到任何东西。"""
+        rows = [f for f in self.facts
+                if f['metric_id'] == 'electrical_material_intensity']
+        self.assertTrue(rows)
+        for f in rows:
+            self.assertIn(f['caliber']['system'], ('供配电', '接地与防雷'), f['fact_id'])
+        by_id = {f['fact_id']: f for f in rows}
+        self.assertEqual(by_id['ulanqab-p3-material-ground-steel']['caliber']['system'],
+                         '接地与防雷')
+        self.assertEqual(by_id['ulanqab-p3-material-tray-indoor']['caliber']['system'],
+                         '供配电')
+
+    # -- 三条我写错了的 note，钉的是算术不是那句话 --------------------------
+    def test_the_tco_identity_does_not_hold_on_two_of_five(self):
+        """原表五组里两组差 0.1。我先写成「五组全对得上」，是加过才发现的。
+
+        钉住算术本身：哪天有人「修正」了那两个数去凑恒等式，这里会红。
+        """
+        rows = [(0.9, 5.7, 6.5), (0.5, 4.3, 4.8), (0.5, 3.9, 4.3),
+                (0.8, 1.7, 2.5), (0.6, 2.9, 3.5)]
+        off = [r for r in rows if abs(r[0] + r[1] - r[2]) > 1e-9]
+        self.assertEqual(len(off), 2)
+        for power, hw, total in off:
+            self.assertAlmostEqual(power + hw - total, 0.1, places=9)
+        note = self.dim('task_tco', 'cost_item')['note']
+        self.assertIn('五组里两组差 0.1', note)
+        self.assertIn('[未核]', note)
+        self.assertIn('不要拿这个恒等式做硬校验', note)
+        self.assertNotIn('五组全对得上', note)
+
+    def test_the_chip_revenue_columns_do_add_up(self):
+        """按年逐列加，四列分毫不差。我先按错列取值，得出过「加不上」的假结论。"""
+        cols = {2024: ([355.8, 73.7], 429.5),
+                2025: ([1263.6, 77.2, 120.3], 1461.1),
+                2026: ([982.8, 982.8, 154.6], 2120.2),
+                2027: ([702.0, 1965.6, 198.1], 2865.7)}
+        for year, (parts, total) in cols.items():
+            self.assertAlmostEqual(sum(parts), total, places=9, msg=str(year))
+        note = self.dim('chip_revenue_cn', 'scope')['note']
+        self.assertIn('四列全部分毫不差', note)
+        self.assertIn('先犯过一次', note)
+
+    def test_the_three_pue_multipliers_are_three_different_numbers(self):
+        """含 PUE 与不含差的不是同一个倍数——1.5 / 1.4 / 1.2，原表一机一个。"""
+        got = [round(9.3 / 6.2, 4), round(12.04 / 8.6, 4), round(116.64 / 97.2, 4)]
+        self.assertEqual(got, [1.5, 1.4, 1.2])
+        note = self.dim('server_power_and_training_time', 'pue_included')['note']
+        self.assertIn('差的不是同一个倍数', note)
+        self.assertIn('[未核]', note)
+
+    def test_the_cluster_total_power_confirms_the_node_count(self):
+        """667 台不是我编的：GB200 667 × 116.64kW = 77.8MW，与原表对上。"""
+        self.assertAlmostEqual(3000 * 9.3 / 1000, 27.9, places=2)
+        self.assertAlmostEqual(3000 * 12.04 / 1000, 36.12, places=2)
+        self.assertAlmostEqual(667 * 116.64 / 1000, 77.8, places=1)
+        self.assertAlmostEqual(1344 / 2.016, 666.67, places=2)
+        self.assertAlmostEqual(396 / 0.132, 3000, places=6)
+
+    def test_the_bom_lines_add_to_the_stated_total(self):
+        """40,964 万元是加出来的，不是抄来的。"""
+        total = 340 * 84 + (21 + 15 + 45) * 84 + 500 + 1500 + 20 * 96 + 1680
+        self.assertEqual(total, 40964)
+        self.assertIn('总价 40,964 万元', self.metrics['cluster_bom_cost']['note'])
+
+    def test_the_cost_composition_adds_exactly(self):
+        self.assertAlmostEqual(13890247.76 + 1250122.30, 15140370.06, places=2)
+        self.assertIn('加总核对过，分毫不差',
+                      self.metrics['cost_composition_by_item']['note'])
+
+    def test_the_cloud_shares_and_amounts_both_close(self):
+        amounts = [12, 113, 40, 82, 97, 52, 22, 69, 325]
+        shares = [2, 14, 5, 10, 12, 6, 3, 8, 40]
+        self.assertEqual(sum(amounts), 812)
+        self.assertEqual(sum(shares), 100)
+        self.assertAlmostEqual(113 / 812 * 100, 13.9, places=1)
+
+    def test_the_foundry_split_adds_to_the_total_every_year(self):
+        for parts, total in (([2, 0, 0], 2), ([9, 1, 0], 10),
+                             ([0, 10, 10], 20), ([0, 6, 20], 26)):
+            self.assertEqual(sum(parts), total)
+        self.assertIn('可互校', self.metrics['foundry_capacity']['note'])
+
+    def test_the_cooling_route_shares_close_to_a_hundred(self):
+        self.assertEqual(65 + 34 + 1, 100)
+        self.assertIn('加总为 100%', self.metrics['cooling_route_share']['note'])
+        self.assertIn('分母完全不同',
+                      self.dim('cooling_route_share', 'denominator')['note'])
+
+    def test_the_liquid_cooling_growth_matches_the_stated_rate(self):
+        self.assertAlmostEqual(184 / 110.8 - 1, 0.661, places=3)
+        self.assertAlmostEqual((1300 / 365) ** 0.25 - 1, 0.374, places=3)
+
+    def test_the_grid_share_note_carries_the_unit_conversion(self):
+        """1,660 亿 kW·h = 166 TWh——单位不换算，占比与总量就对不上分母。"""
+        self.assertEqual(1660 / 10, 166)
+        self.assertIn('1,660 亿 kW·h = 166 TWh',
+                      self.metrics['dc_power_share_of_grid']['note'])
+
+    def test_gb300_gains_only_on_fp4(self):
+        self.assertAlmostEqual(1080 / 720, 1.5, places=9)
+        self.assertEqual(180, 180)                      # FP16 两代相同
+        self.assertAlmostEqual(20.7 / 13.8, 1.5, places=9)
+        note = self.metrics['accelerator_compute_spec']['note']
+        self.assertIn('FP16 与 FP8 完全一样', note)
+        self.assertIn('容量涨了 50% 而带宽没动',
+                      self.metrics['accelerator_memory_spec']['note'])
+
+    def test_the_domestic_chip_price_gap_is_what_the_note_says(self):
+        self.assertAlmostEqual(12 / 3.5, 3.43, places=2)
+        self.assertIn('3.4 倍', self.dim('chip_unit_price_cn', 'channel')['note'])
+
+    # -- 规格进事实层的裁决 ------------------------------------------------
+    def test_the_ruling_is_written_down_where_the_contract_lives(self):
+        """裁决要留在契约里，不能只活在一次对话里。"""
+        note = json.loads(
+            (L2.REPO / 'framework/metrics.json').read_text(encoding='utf-8'))['note']
+        self.assertIn('进事实层，不另建一层', note)
+        self.assertIn('会改变这个裁决的情形', note)
+
+    def test_every_spec_metric_declares_where_the_spec_came_from(self):
+        """规格多数来自券商转述与发布会转录，来源等级必须跟着数走。"""
+        for mid in ('accelerator_compute_spec', 'accelerator_memory_spec',
+                    'interconnect_bandwidth_spec', 'rack_component_count',
+                    'chip_design_spec', 'interconnect_lane_rate'):
+            d = self.dim(mid, 'spec_basis')
+            self.assertIn('厂商规格书', d['values'], mid)
+            self.assertIn('券商转述', d['values'], mid)
+
+    def test_a_spec_metric_names_the_product_in_free_text(self):
+        """型号是这一族的主键，占位词会把两款芯片撞成一条。"""
+        for mid in ('accelerator_compute_spec', 'accelerator_memory_spec',
+                    'interconnect_bandwidth_spec', 'rack_component_count',
+                    'chip_design_spec', 'interconnect_lane_rate'):
+            self.assertTrue(self.dim(mid, 'product').get('free_text'), mid)
+
+    def test_lane_rate_and_link_bandwidth_are_two_metrics(self):
+        """1.8TB/s 与 224Gbps 差一个通道数，同列就读不出差在哪。"""
+        self.assertEqual(self.metrics['interconnect_lane_rate']['unit'], 'Gbps/通道')
+        self.assertEqual(self.metrics['interconnect_bandwidth_spec']['unit'], 'GB/s')
+        self.assertIn('永不并列', self.metrics['interconnect_lane_rate']['note'])
+        self.assertIn('DAC 无源铜缆',
+                      self.dim('interconnect_lane_rate', 'medium')['values'])
+        self.assertIn('<5m（机柜内）',
+                      self.dim('interconnect_lane_rate', 'reach_band')['values'])
+
+    def test_in_rack_copper_is_its_own_route_on_the_milestone_menu(self):
+        d = self.dim('tech_milestone_year', 'tech')
+        self.assertIn('机柜内铜互连', d['values'])
+        self.assertIn('不是「光互连」的反面', d['note'])
+
+    # -- 单价与数量 --------------------------------------------------------
+    def test_quantity_has_a_metric_of_its_own(self):
+        """事实层一条只有一个 value，数量要能被乘，就只能是另一条数。"""
+        q = self.metrics['equipment_quantity']
+        for did in ('equipment', 'spec', 'uom', 'stage', 'region', 'basis'):
+            self.assertIn(did, self.dims('equipment_quantity'), did)
+        self.assertAlmostEqual(669223.01 * 6, 4015338.06, places=2)
+        self.assertIn('669,223.01 元/台 × 6 台 = 4,015,338.06 元', q['note'])
+
+    def test_the_quantity_flag_points_at_a_real_row(self):
+        """quantity_note 填「已同记数量」而没有对应的一条，那个标记就是在说谎。"""
+        self.assertIn('已同记数量',
+                      self.dim('equipment_unit_price', 'quantity_note')['values'])
+        self.assertIn('那个标记就是在说谎',
+                      self.metrics['equipment_quantity']['note'])
+
+    def test_price_and_quantity_share_the_keys_they_join_on(self):
+        price, qty = self.dims('equipment_unit_price'), self.dims('equipment_quantity')
+        for did in ('equipment', 'spec', 'uom', 'stage', 'region'):
+            self.assertIn(did, price, did)
+            self.assertIn(did, qty, did)
+
+    def test_the_price_metric_can_hold_a_dollar_quote(self):
+        """液冷快接是美元报价，而这个指标此前单位是元、没有币种维。"""
+        self.assertIn('美元', self.dim('equipment_unit_price', 'currency')['values'])
+        self.assertIn('液冷快接', self.dim('equipment_unit_price', 'equipment')['values'])
+
+    # -- 那三条口径提示不是缺口，不许被当成缺口销账 --------------------------
+    def test_the_reread_flags_are_still_open(self):
+        """「口径提示（非缺口）」是重读清单，销账等于把它抹掉。
+
+        RAND 那 100 页与冷源那份全套控制价，菜单补齐后要整份重读；
+        销账要等重读做完，不是等菜单补完。
+        """
+        open_ids = {r['gap_id'] for r in L2.open_gaps()}
+        for gid in ('c0d3e7fcefb7', 'a43dec696fcc', 'df8fbc0c4037',
+                    '99b7788670eb'):
+            self.assertIn(gid, open_ids, gid)
+
+    def test_the_menu_gaps_this_batch_filled_are_closed(self):
+        open_ids = {r['gap_id'] for r in L2.open_gaps()}
+        for gid in FILLED_THIS_BATCH:
+            self.assertNotIn(gid, open_ids, gid)
+
+
+#: 本批销账的 gap_id——显式名单，不靠前缀或字样匹配。
+#: 上一轮的教训：按 fact_id 里的字样批量判定，同一条测试被打了两次补丁还是不对。
+FILLED_THIS_BATCH = frozenset((
+    '6af0f6ef29ca', 'fb2fd593a96b', '79dcfab07590',
+    'c887218bba8c', 'b2b357ea5a41', '21b8800b45b4', '5647700326f0',
+    'a4ceb4989ff9', 'c6eac4df9d6f', '3d289012079d', 'd6ab0f6695c7',
+    '668882d117c0', '836448f119cb', 'f93ec7230288', 'dce7db166f51',
+    '4881b5e1ee08', '268ef629bbc5', '8b630833198b', 'af071d00d08f',
+    '0223b5b69287', '1d9cb156e7fa', '6240a391fd12', 'e860f4415f38',
+    '65767b0dfd12', '9bc7abd1f421',
+    '0287d488eb08', '1f84210a930d', 'cbce461c8ad4', '2749a0c3ae47',
+    'f29dcf1e1431',
+    '678b422a1179', 'dbaef8d19b23', '793dd357eb7b', 'd22737f33f3e',
+    '2f91e8fea8b5', 'e7a7f6d9e10d', '66f3c0cb1669', '550c2c739b1b',
+))
+
+
 if __name__ == '__main__':
     unittest.main()
