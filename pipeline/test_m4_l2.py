@@ -2772,5 +2772,205 @@ class AsymmetricDimensionTests(unittest.TestCase):
         self.assertIn('分项与合计不可一起加总', d['note'])
 
 
+class SplitDimensionSymmetryTests(unittest.TestCase):
+    """服务器/存储这一族的切法维矩阵——我是一条缺口一条缺口加上去的，从没让它自洽。
+
+    切法维是「把同一批对象切开」的维：谁买的、哪个省、哪个行业、哪个品类、
+    站在哪一侧。它与测量限定维（basis、price_type、stat）不同——后者说的是
+    这个数怎么来的，前者说的是这个数覆盖谁。
+
+    先后撞了两次，都是同一格：
+      product_category 容量侧有、金额侧没有，挡下 5 条；
+      subregion/vertical 台数侧有、金额侧没有，中国外置存储的省份与行业
+        拆分存不下。
+    两次都是同一张 IDC 表的两半——**同一份文件里的两列，只在一侧声明了维。**
+
+    这个类不主张每一格都要填满，主张的是：**每一格的有无都要是当下有据的选择，
+    并且看得见。**下面那张表就是当下的选择，改动它必须同时改这里。
+    """
+
+    #: 这一族里各指标当下声明的切法维。改菜单时同步改这里——
+    #: 让「加了一维却忘了对面」在测试里就红，而不是等语料撞出来。
+    EXPECTED = {
+        'server_unit_shipments':
+            {'subregion', 'vertical', 'buyer_category', 'counterparty_role'},
+        'server_mfg_revenue':
+            {'subregion', 'vertical', 'product_category', 'storage_scope'},
+        'server_asp':
+            {'subregion', 'vertical', 'storage_scope'},
+        'storage_capacity_shipped':
+            {'subregion', 'vertical', 'product_category', 'buyer_category',
+             'storage_scope'},
+        'it_infra_spend':
+            {'subregion', 'vertical', 'buyer_category'},
+        'vendor_market_share':
+            {'subregion', 'vertical'},
+        'installed_server_base':
+            {'counterparty_role'},
+    }
+
+    SPLIT_DIMS = ('subregion', 'vertical', 'product_category',
+                  'buyer_category', 'counterparty_role', 'storage_scope')
+
+    def setUp(self):
+        self.metrics = L2.load_metrics()
+
+    def declared(self, mid):
+        return {d['id'] for d in self.metrics[mid]['caliber_dims']
+                if d['id'] in self.SPLIT_DIMS}
+
+    def test_the_matrix_matches_what_is_declared(self):
+        for mid, expected in self.EXPECTED.items():
+            self.assertEqual(self.declared(mid), expected, mid)
+
+    def test_the_two_halves_of_one_idc_table_agree(self):
+        """台数与金额出自同一张表，按同一套省份与行业切——两侧必须都能装。"""
+        for dim_id in ('subregion', 'vertical'):
+            for mid in ('server_unit_shipments', 'server_mfg_revenue',
+                        'server_asp', 'storage_capacity_shipped',
+                        'vendor_market_share'):
+                self.assertIn(dim_id, self.declared(mid), (mid, dim_id))
+
+    def test_capacity_and_revenue_agree_on_product_category(self):
+        """第一次撞的那格，两侧现在一致。"""
+        for mid in ('server_mfg_revenue', 'storage_capacity_shipped'):
+            self.assertIn('product_category', self.declared(mid), mid)
+
+    def test_the_shared_dimension_note_says_why_both_sides_need_it(self):
+        for mid in ('server_mfg_revenue', 'storage_capacity_shipped'):
+            note = next(d for d in self.metrics[mid]['caliber_dims']
+                        if d['id'] == 'subregion')['note']
+            self.assertIn('台数侧与金额侧必须一致', note, mid)
+
+    def test_no_family_metric_lost_a_split_dimension(self):
+        """加维只会往上加；哪天某一格消失了，必是误删。"""
+        for mid, expected in self.EXPECTED.items():
+            self.assertTrue(expected <= self.declared(mid), mid)
+
+    def test_every_existing_fact_in_the_family_carries_them_all(self):
+        store = L2.load_facts()
+        for f in store['records']:
+            mid = f['metric_id']
+            if mid not in self.EXPECTED:
+                continue
+            for dim_id in self.EXPECTED[mid]:
+                self.assertIn(dim_id, f['caliber'], (f['fact_id'], dim_id))
+
+    #: 迁移当天库里就有的那批，回填只能填全国或不适用。之后读进来的可以真按省、
+    #: 按行业切——IDC 那份 2024 中国 AI 服务器就是按省份与行业各拆一套的。
+    #: 这条测试钉的是「回填没有凭空给既有事实按上一个省份」，不是「这一族永远不许按省切」。
+    BACKFILL_ONLY = ('delloro-jul26-', 'idc-ess-', 'idc-prc-external-storage-')
+
+    def test_the_backfill_never_claimed_a_province(self):
+        """既有事实一条都没有按省切过——回填只能填全国或不适用。
+
+        只查真的声明了这两维的指标。第一版对族内所有指标一律断言，
+        而 installed_server_base 并没有 subregion——它的分层门槛事实一录进来
+        就把这条测试弄红了，红的是测试不是数据。
+        """
+        store = L2.load_facts()
+        for f in store['records']:
+            expected = self.EXPECTED.get(f['metric_id'])
+            if not expected:
+                continue
+            fid = f['fact_id']
+            # 后来按省/按行业拆的条目自己带标记，不在回填批次之列——
+            # 中国外置存储那份的省份拆分就是 #155 补上 subregion 之后才录的。
+            if '-prov-' in fid or '-vertical-' in fid:
+                continue
+            if not fid.startswith(self.BACKFILL_ONLY):
+                # 回填之后读进来的可以真按省、按行业切——IDC 那份 2024 中国 AI
+                # 服务器就是按省份与行业各拆一套的（北京占 49.9%、互联网占 57.9%）。
+                # 这条测试钉的是「回填没有凭空给既有事实按上一个省份」，
+                # 不是「这一族永远不许按省切」。
+                continue
+            if 'subregion' in expected:
+                self.assertIn(f['caliber'].get('subregion'),
+                              ('全国', '不适用（非中国口径）'), f['fact_id'])
+            if 'vertical' in expected:
+                self.assertEqual(f['caliber'].get('vertical'), '未拆分', f['fact_id'])
+
+
+class FourthRoundGapTests(unittest.TestCase):
+    """M4 第四轮的五条缺口。其中一条是它自己填错了、当场标错并报上来的。"""
+
+    def setUp(self):
+        self.metrics = L2.load_metrics()
+
+    def dim(self, mid, did):
+        return next(d for d in self.metrics[mid]['caliber_dims'] if d['id'] == did)
+
+    # -- 混在一起的「存储容量」没有意义 ------------------------------------
+    def test_media_separates_hdd_from_flash(self):
+        d = self.dim('storage_capacity_shipped', 'media')
+        self.assertEqual(d['values'], ['HDD', 'Flash-SSD', '合计'])
+        self.assertIn('差一个量级', d['note'])
+
+    def test_the_media_note_carries_the_ratio_it_claims(self):
+        note = self.dim('storage_capacity_shipped', 'media')['note']
+        self.assertIn('97,419.6 ÷ 12,305.9 = 7.92', note)
+        self.assertAlmostEqual(97419.6 / 12305.9, 7.92, places=2)
+
+    def test_every_capacity_fact_says_which_media(self):
+        for f in L2.load_facts()['records']:
+            if f['metric_id'] == 'storage_capacity_shipped':
+                self.assertIn('media', f['caliber'], f['fact_id'])
+
+    # -- 五家最大买方的总值对不上 ------------------------------------------
+    def test_the_unreconciled_total_has_its_own_value(self):
+        d = self.dim('it_infra_spend', 'product_scope')
+        self.assertIn('原表 Total Value（含未定义残差）', d['values'])
+
+    def test_the_note_records_that_95_of_100_held(self):
+        """逐行验过 100 家——这个数字本身就是这条取值存在的理由。"""
+        note = self.dim('it_infra_spend', 'product_scope')['note']
+        self.assertIn('100 家全对', note)
+        self.assertIn('95 家成立', note)
+        self.assertIn('−139.24', note)          # Facebook，负号，方向相反
+        self.assertIn('不可参与任何加总校验', note)
+
+    # -- 重型燃机不是柴油发电机组 ------------------------------------------
+    def test_the_gas_turbine_value_exists_now(self):
+        self.assertIn('燃气轮机', self.dim('major_equipment_count', 'equipment')['values'])
+
+    def test_the_mislabelled_fact_was_corrected(self):
+        rows = {f['fact_id']: f for f in L2.load_facts()['records']}
+        got = rows['dw-gev-heavy-duty-units-2026e']
+        self.assertEqual(got['caliber']['equipment'], '燃气轮机')
+        self.assertEqual(got['caliber']['count_basis'], '产量台数')
+
+    def test_the_correction_is_recorded_in_the_fact_itself(self):
+        """账本是追加式的，改判要留痕——不能改完就当没发生过。"""
+        rows = {f['fact_id']: f for f in L2.load_facts()['records']}
+        notes = rows['dw-gev-heavy-duty-units-2026e']['notes']
+        self.assertIn('已改判', notes)
+        self.assertIn('当时枚举里没有燃机', notes)
+
+    def test_order_output_and_installed_counts_are_three_things(self):
+        d = self.dim('major_equipment_count', 'count_basis')
+        for v in ('新签订单台数', '产量台数', '装机台数'):
+            self.assertIn(v, d['values'], v)
+        self.assertIn('订单是将来要交的，产量是当期能造的，装机是已经在跑的', d['note'])
+
+    # -- 1230 行逐回路 -----------------------------------------------------
+    def test_a_circuit_can_be_named(self):
+        d = self.dim('circuit_current_margin', 'circuit_id')
+        self.assertTrue(d.get('free_text'))
+        self.assertIn('1230 行', d['note'])
+
+    def test_the_minimum_is_not_the_average(self):
+        note = self.dim('circuit_current_margin', 'stat')['note']
+        self.assertIn('一条余量充足的母线救不了一条贴着载流量走的馈线', note)
+
+    def test_the_two_existing_rows_are_marked_as_an_aggregate(self):
+        """那两条是一批回路归并出的区间两端，不是某一条回路。"""
+        rows = [f for f in L2.load_facts()['records']
+                if f['metric_id'] == 'circuit_current_margin']
+        self.assertTrue(rows)
+        for f in rows:
+            self.assertEqual(f['caliber']['circuit_id'], '汇总（非单回路）', f['fact_id'])
+            self.assertEqual(f['caliber']['stat'], '区间端', f['fact_id'])
+
+
 if __name__ == '__main__':
     unittest.main()

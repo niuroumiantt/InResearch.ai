@@ -231,7 +231,7 @@ def done_keys() -> set:
             if row.get('status') in {'ok', 'l0'}}
 
 
-_moved: dict | None = None
+_moved: tuple | None = None
 _moved_lock = threading.Lock()
 
 
