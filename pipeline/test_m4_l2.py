@@ -2022,7 +2022,8 @@ class M03M04MenuTests(unittest.TestCase):
     # -- 三种订单口径 ------------------------------------------------------
     def test_order_basis_separates_three_numbers_from_one_page(self):
         d = self.dim('gas_turbine_dc_order_share', 'order_basis')
-        self.assertEqual(d['values'], ['新增订单', '在手订单', '前瞻指引'])
+        # 后来又从另一份报告里冒出第四种口径「总承诺量」，见 M09MenuTests
+        self.assertEqual(d['values'], ['新增订单', '在手订单', '总承诺量', '前瞻指引'])
         self.assertIn('看着是同一个指标在打架', d['note'])
 
     def test_an_unstated_measure_stays_unstated(self):
@@ -2095,6 +2096,149 @@ class M03M04MenuTests(unittest.TestCase):
     def test_coverage_is_a_paper_figure(self):
         self.assertIn('不等于「实际覆盖」',
                       self.metrics['ppa_coverage_share']['note'])
+
+
+class M09MenuTests(unittest.TestCase):
+    """M09 供电架构与设备端：14 条缺口。
+
+    这一批的主题是**相对值**——+382%、3.4x、157% 裕度、2.0 倍订单收入比。
+    相对值离开基准和条件就是一个没有意义的数字，而它偏偏最容易被摘出来引用。
+    """
+
+    def setUp(self):
+        self.metrics = L2.load_metrics()
+
+    def dim(self, mid, did):
+        return next(d for d in self.metrics[mid]['caliber_dims'] if d['id'] == did)
+
+    def test_every_new_metric_exists(self):
+        for mid in ('power_architecture_spec', 'conductor_capacity_index',
+                    'rack_load_swing', 'storage_response_window',
+                    'generation_ratio', 'electrical_material_intensity',
+                    'circuit_current_margin', 'major_equipment_count',
+                    'tech_milestone_year', 'book_to_bill',
+                    'vendor_order_backlog', 'vendor_capacity_investment'):
+            self.assertEqual(self.metrics[mid]['module'], 'M09', mid)
+            self.assertTrue(self.metrics[mid]['unit'], mid)
+
+    # -- 相对值必须声明基准 ------------------------------------------------
+    def test_every_relative_metric_declares_its_baseline(self):
+        for mid, did in (('conductor_capacity_index', 'baseline'),
+                         ('generation_ratio', 'baseline_generation')):
+            self.assertIn('相对值必须声明基准', self.dim(mid, did)['note'], mid)
+
+    def test_the_conductor_index_is_conditional_not_physical(self):
+        note = self.dim('conductor_capacity_index', 'condition')['note']
+        self.assertIn('不是物理常数', note)
+        self.assertIn('48A', note)
+
+    def test_two_multiples_must_not_be_divided(self):
+        """性能 50x ÷ TDP 1.75x ≠ 能效 28.6x——两个倍数的基准配置不同。"""
+        note = self.metrics['generation_ratio']['note']
+        self.assertIn('不能相除', note)
+        self.assertIn('compute_efficiency', note)
+
+    # -- 25% 是推出来的，算式在 note 里 ------------------------------------
+    def test_the_rms_penalty_carries_its_derivation(self):
+        note = self.metrics['rack_load_swing']['note']
+        self.assertIn('(1.5² + 0.5²) / 2 = 1.25', note)
+        self.assertIn('derived: true', note)
+
+    def test_the_rms_arithmetic_actually_holds(self):
+        """note 里写的算式，这里真算一遍——上一轮三条口径写错就是没算过。"""
+        mean, peak = 1.0, 1.5
+        trough = 2 * mean - peak
+        self.assertAlmostEqual((peak ** 2 + trough ** 2) / 2, 1.25)
+
+    def test_the_swing_parameters_share_a_unit_but_not_a_meaning(self):
+        note = self.dim('rack_load_swing', 'parameter')['note']
+        self.assertIn('绝不可放进同一条序列', note)
+
+    # -- 两种裕度算法差 100 个百分点 ---------------------------------------
+    def test_the_margin_definition_changes_the_number(self):
+        note = self.dim('circuit_current_margin', 'margin_definition')['note']
+        self.assertIn('370', note)
+        self.assertIn('144', note)
+        self.assertIn('257%', note)
+        self.assertIn('157%', note)
+
+    def test_the_margin_arithmetic_holds(self):
+        self.assertAlmostEqual(370 / 144 * 100, 256.9, places=1)
+        self.assertAlmostEqual((370 - 144) / 144 * 100, 156.9, places=1)
+
+    # -- 架构宣称不是出货事实 ----------------------------------------------
+    def test_an_architecture_claim_is_not_a_shipped_fact(self):
+        self.assertIn('架构上限', self.dim('rack_density_shipping', 'stat')['values'])
+        self.assertIn('架构宣称',
+                      self.dim('rack_density_shipping', 'power_basis')['values'])
+        self.assertIn('一句宣传语就变成了',
+                      self.dim('rack_density_shipping', 'stat')['note'])
+
+    def test_the_shared_basis_dimension_carries_the_same_warning(self):
+        self.assertIn('架构宣称', self.dim('power_architecture_spec', 'basis')['values'])
+
+    # -- 订单口径 ----------------------------------------------------------
+    def test_total_commitment_is_a_fourth_order_basis(self):
+        d = self.dim('gas_turbine_dc_order_share', 'order_basis')
+        self.assertIn('总承诺量', d['values'])
+        self.assertIn('24 ÷ 87 = 27.6%', d['note'])
+
+    def test_book_to_bill_has_two_rulers(self):
+        note = self.dim('book_to_bill', 'ratio_basis')['note']
+        self.assertIn('3.3', note)
+        self.assertIn('是两把尺子', note)
+
+    def test_greater_than_signs_become_bounds(self):
+        self.assertIn('用 bound: lower 记', self.metrics['book_to_bill']['note'])
+
+    def test_backlog_is_not_the_cloud_contract_metric(self):
+        note = self.metrics['vendor_order_backlog']['note']
+        self.assertIn('mega_contract_backlog', note)
+        self.assertIn('三个数不换算、不相加', note)
+
+    # -- 币种混排 ----------------------------------------------------------
+    def test_mixed_currencies_are_declared(self):
+        for mid in ('vendor_order_backlog', 'vendor_capacity_investment'):
+            d = self.dim(mid, 'currency')
+            for v in ('美元', '欧元', '韩元', '未注明'):
+                self.assertIn(v, d['values'], (mid, v))
+
+    def test_investment_and_output_do_not_add(self):
+        note = self.dim('vendor_capacity_investment', 'amount_type')['note']
+        self.assertIn('更不能相加', note)
+
+    def test_the_korean_split_adds_up_and_says_so(self):
+        note = self.dim('vendor_capacity_investment', 'growth_source')['note']
+        self.assertIn('7000 + 1000 = 8000', note)
+
+    # -- 台数要配冗余 ------------------------------------------------------
+    def test_equipment_count_needs_redundancy_to_be_readable(self):
+        d = self.dim('major_equipment_count', 'redundancy')
+        self.assertIn('未注明', d['values'])
+        self.assertIn('不要替它断定', d['note'])
+
+    def test_at_least_ten_is_a_lower_bound(self):
+        self.assertIn('bound: lower', self.metrics['major_equipment_count']['note'])
+
+    # -- 同一个里程碑两个年份都对 ------------------------------------------
+    def test_two_dates_for_one_milestone_are_not_a_contradiction(self):
+        note = self.dim('tech_milestone_year', 'view_holder')['note']
+        self.assertIn('可以都对', note)
+        self.assertIn('看着是矛盾的', note)
+
+    def test_the_milestone_metric_cites_its_precedent(self):
+        self.assertIn('ethernet_ib_crossover_year',
+                      self.metrics['tech_milestone_year']['note'])
+
+    # -- 项目合计不是强度 --------------------------------------------------
+    def test_a_project_total_is_not_an_intensity(self):
+        note = self.dim('electrical_material_intensity', 'denominator')['note']
+        self.assertIn('项目合计不是强度', note)
+        self.assertIn('2712m', note)
+
+    # -- 毫秒统一 ----------------------------------------------------------
+    def test_the_storage_window_is_milliseconds_with_the_conversion(self):
+        self.assertIn('10 s = 10000 ms', self.metrics['storage_response_window']['note'])
 
 
 if __name__ == '__main__':
