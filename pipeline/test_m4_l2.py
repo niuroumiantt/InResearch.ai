@@ -2862,19 +2862,103 @@ class SplitDimensionSymmetryTests(unittest.TestCase):
     BACKFILL_ONLY = ('delloro-jul26-', 'idc-ess-', 'idc-prc-external-storage-')
 
     def test_the_backfill_never_claimed_a_province(self):
+        """既有事实一条都没有按省切过——回填只能填全国或不适用。
+
+        只查真的声明了这两维的指标。第一版对族内所有指标一律断言，
+        而 installed_server_base 并没有 subregion——它的分层门槛事实一录进来
+        就把这条测试弄红了，红的是测试不是数据。
+        """
         store = L2.load_facts()
         for f in store['records']:
-            mid = f['metric_id']
-            if mid not in self.EXPECTED:
+            expected = self.EXPECTED.get(f['metric_id'])
+            if not expected:
                 continue
-            if not f['fact_id'].startswith(self.BACKFILL_ONLY):
-                continue
-            declared = self.declared(mid)
-            if 'subregion' in declared:
+            if 'subregion' in expected:
                 self.assertIn(f['caliber'].get('subregion'),
                               ('全国', '不适用（非中国口径）'), f['fact_id'])
-            if 'vertical' in declared:
+            if 'vertical' in expected:
                 self.assertEqual(f['caliber'].get('vertical'), '未拆分', f['fact_id'])
+
+
+class FourthRoundGapTests(unittest.TestCase):
+    """M4 第四轮的五条缺口。其中一条是它自己填错了、当场标错并报上来的。"""
+
+    def setUp(self):
+        self.metrics = L2.load_metrics()
+
+    def dim(self, mid, did):
+        return next(d for d in self.metrics[mid]['caliber_dims'] if d['id'] == did)
+
+    # -- 混在一起的「存储容量」没有意义 ------------------------------------
+    def test_media_separates_hdd_from_flash(self):
+        d = self.dim('storage_capacity_shipped', 'media')
+        self.assertEqual(d['values'], ['HDD', 'Flash-SSD', '合计'])
+        self.assertIn('差一个量级', d['note'])
+
+    def test_the_media_note_carries_the_ratio_it_claims(self):
+        note = self.dim('storage_capacity_shipped', 'media')['note']
+        self.assertIn('97,419.6 ÷ 12,305.9 = 7.92', note)
+        self.assertAlmostEqual(97419.6 / 12305.9, 7.92, places=2)
+
+    def test_every_capacity_fact_says_which_media(self):
+        for f in L2.load_facts()['records']:
+            if f['metric_id'] == 'storage_capacity_shipped':
+                self.assertIn('media', f['caliber'], f['fact_id'])
+
+    # -- 五家最大买方的总值对不上 ------------------------------------------
+    def test_the_unreconciled_total_has_its_own_value(self):
+        d = self.dim('it_infra_spend', 'product_scope')
+        self.assertIn('原表 Total Value（含未定义残差）', d['values'])
+
+    def test_the_note_records_that_95_of_100_held(self):
+        """逐行验过 100 家——这个数字本身就是这条取值存在的理由。"""
+        note = self.dim('it_infra_spend', 'product_scope')['note']
+        self.assertIn('100 家全对', note)
+        self.assertIn('95 家成立', note)
+        self.assertIn('−139.24', note)          # Facebook，负号，方向相反
+        self.assertIn('不可参与任何加总校验', note)
+
+    # -- 重型燃机不是柴油发电机组 ------------------------------------------
+    def test_the_gas_turbine_value_exists_now(self):
+        self.assertIn('燃气轮机', self.dim('major_equipment_count', 'equipment')['values'])
+
+    def test_the_mislabelled_fact_was_corrected(self):
+        rows = {f['fact_id']: f for f in L2.load_facts()['records']}
+        got = rows['dw-gev-heavy-duty-units-2026e']
+        self.assertEqual(got['caliber']['equipment'], '燃气轮机')
+        self.assertEqual(got['caliber']['count_basis'], '产量台数')
+
+    def test_the_correction_is_recorded_in_the_fact_itself(self):
+        """账本是追加式的，改判要留痕——不能改完就当没发生过。"""
+        rows = {f['fact_id']: f for f in L2.load_facts()['records']}
+        notes = rows['dw-gev-heavy-duty-units-2026e']['notes']
+        self.assertIn('已改判', notes)
+        self.assertIn('当时枚举里没有燃机', notes)
+
+    def test_order_output_and_installed_counts_are_three_things(self):
+        d = self.dim('major_equipment_count', 'count_basis')
+        for v in ('新签订单台数', '产量台数', '装机台数'):
+            self.assertIn(v, d['values'], v)
+        self.assertIn('订单是将来要交的，产量是当期能造的，装机是已经在跑的', d['note'])
+
+    # -- 1230 行逐回路 -----------------------------------------------------
+    def test_a_circuit_can_be_named(self):
+        d = self.dim('circuit_current_margin', 'circuit_id')
+        self.assertTrue(d.get('free_text'))
+        self.assertIn('1230 行', d['note'])
+
+    def test_the_minimum_is_not_the_average(self):
+        note = self.dim('circuit_current_margin', 'stat')['note']
+        self.assertIn('一条余量充足的母线救不了一条贴着载流量走的馈线', note)
+
+    def test_the_two_existing_rows_are_marked_as_an_aggregate(self):
+        """那两条是一批回路归并出的区间两端，不是某一条回路。"""
+        rows = [f for f in L2.load_facts()['records']
+                if f['metric_id'] == 'circuit_current_margin']
+        self.assertTrue(rows)
+        for f in rows:
+            self.assertEqual(f['caliber']['circuit_id'], '汇总（非单回路）', f['fact_id'])
+            self.assertEqual(f['caliber']['stat'], '区间端', f['fact_id'])
 
 
 if __name__ == '__main__':
