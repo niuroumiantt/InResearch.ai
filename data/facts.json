@@ -5939,6 +5939,161 @@
       "bound": "point",
       "corroboration": "孤证已知",
       "notes": "单位换算：原表单位 kUnit，本条 value = 原值 ÷ 10（1 kUnit = 1000 只 = 0.1 万只），非再加工。 shipment_basis=厂商出货：原表标题「出货量统计」/ 配图标题 Shipment Forecast，为花旗对该公司自身出货量的预测，**不是市场需求**，不可与同批全球需求记录相加。basis=券商测算：同工作表另有 BBG consensus 列，本条取的是 Citi 列，两列不可混。 rate_target=单模块：配图图例写作 400G/800G/1.6T Transceiver 与 400G/800G AEC 四项并列，按只计数，不是端口速率。 **同表第 E 列「400G/800G AEC(kUnits)」（100/300/450）未录**：AEC 是有源电缆、不是光模块，配图图例把它与 Transceiver 并列为独立品类；且其速率写作合并档「400G/800G」，speed 维度没有对应取值。菜单里没有它的位置，未硬塞进本指标。 **载体不是花旗原报告**：本文件是他人把该报告数据转录成的 Excel（工作表 Source 写明 Source:Citi / Date:2025.08.13 / Report: China Networking），数字表为手工转录、配图为原报告截图。转录误差在本文件内无法自查，标 [未核]。"
+    },
+    {
+      "fact_id": "expert-sep25-800g-demand-2024",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-800g",
+        "label": "全球 800G 光模块市场"
+      },
+      "value": 800.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "800G",
+        "shipment_basis": "未披露",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "688d46ed401e8e2cbb7b63503b46ccd10cab1f20af831872bb0e31900f2d915c",
+        "local_file": "光模块出货量数据.xlsx",
+        "locator": "工作表「800G光模块」第 3 行列名「整体需求规模（万只）」，第 4 行「2024」，单元格 B4 = 「约 800」",
+        "grade": "S5",
+        "originator": "未具名业内专家电话（2025-09-18），Global Semi Research 知识星球编制"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "**原文「约 800」是约数不是精确值。** **【口径提示 1】原文是「需求」不是「出货」**：表名「800G/1.6T 光模块市场需求情况表」。shipment_basis 四个取值（厂商出货／渠道提货／终端安装／未披露）没有「市场需求」，取「未披露」并标明，待菜单补齐后复核。 **【口径提示 2】basis 是就近归类**：四个取值（实测／预测／券商测算／厂商指引）没有「专家访谈／渠道调研」一项。本条实为未具名专家的口述估计，既非统计实测也非券商模型，待菜单补齐后复核。 2024 已是过去年份，basis 取「实测」只表示「关于已发生年份的说法」，**不表示有统计实测**——它同样是专家的回溯口述。 rate_target=单模块：原文单位「万只」，按只计数，不是交换机端口速率。 同行分客户拆分：英伟达约 300 多万、谷歌约 200 多万、其余「/」，加总与 800 大致相符，但分客户列本库无处可放（见 metric_gaps）。 **编制方与信源是两回事**：本表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框，单元格里没有），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」——未具名专家口述，不是机构研究报告，故 grade=S5（渠道材料）。"
+    },
+    {
+      "fact_id": "expert-sep25-800g-demand-2025e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-800g",
+        "label": "全球 800G 光模块市场"
+      },
+      "value": 1800.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "800G",
+        "shipment_basis": "未披露",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025-09",
+      "evidence": {
+        "sha256": "688d46ed401e8e2cbb7b63503b46ccd10cab1f20af831872bb0e31900f2d915c",
+        "local_file": "光模块出货量数据.xlsx",
+        "locator": "工作表「800G光模块」第 3 行列名「整体需求规模（万只）」，第 5 行「2025」，单元格 B5 = 「1800 - 2100」",
+        "grade": "S5",
+        "originator": "未具名业内专家电话（2025-09-18），Global Semi Research 知识星球编制"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "lower",
+      "corroboration": "待交叉验证",
+      "notes": "**原文区间 1800 - 2100 万只，本条存下界 1800，上界 2100 见此处。** **【存储限制】原文是区间，本条只存下界**：fact 的 claim_key 不含 bound，同一实体同一时点的下界与上界两条会被判为重复录入，上界无法单独成条。上界见本条 notes，不要把本条当点值用。 **【口径提示 1】原文是「需求」不是「出货」**：表名「800G/1.6T 光模块市场需求情况表」。shipment_basis 四个取值（厂商出货／渠道提货／终端安装／未披露）没有「市场需求」，取「未披露」并标明，待菜单补齐后复核。 **【口径提示 2】basis 是就近归类**：四个取值（实测／预测／券商测算／厂商指引）没有「专家访谈／渠道调研」一项。本条实为未具名专家的口述估计，既非统计实测也非券商模型，待菜单补齐后复核。 rate_target=单模块：原文单位「万只」，按只计数，不是交换机端口速率。 **交叉对照**：花旗同口径（需求）2025E 为 2000 万只（citi-aug25-demand-800g-2025e），落在本区间内，两者相容。 **编制方与信源是两回事**：本表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框，单元格里没有），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」——未具名专家口述，不是机构研究报告，故 grade=S5（渠道材料）。"
+    },
+    {
+      "fact_id": "expert-sep25-800g-demand-2026e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-800g",
+        "label": "全球 800G 光模块市场"
+      },
+      "value": 3000.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "800G",
+        "shipment_basis": "未披露",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2026E@2025-09",
+      "evidence": {
+        "sha256": "688d46ed401e8e2cbb7b63503b46ccd10cab1f20af831872bb0e31900f2d915c",
+        "local_file": "光模块出货量数据.xlsx",
+        "locator": "工作表「800G光模块」第 3 行列名「整体需求规模（万只）」，第 6 行「2026」，单元格 B6 = 「3000 - 3200」",
+        "grade": "S5",
+        "originator": "未具名业内专家电话（2025-09-18），Global Semi Research 知识星球编制"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "lower",
+      "corroboration": "待交叉验证",
+      "notes": "**原文区间 3000 - 3200 万只，本条存下界 3000，上界 3200 见此处。** **【存储限制】原文是区间，本条只存下界**：fact 的 claim_key 不含 bound，同一实体同一时点的下界与上界两条会被判为重复录入，上界无法单独成条。上界见本条 notes，不要把本条当点值用。 **【口径提示 1】原文是「需求」不是「出货」**：表名「800G/1.6T 光模块市场需求情况表」。shipment_basis 四个取值（厂商出货／渠道提货／终端安装／未披露）没有「市场需求」，取「未披露」并标明，待菜单补齐后复核。 **【口径提示 2】basis 是就近归类**：四个取值（实测／预测／券商测算／厂商指引）没有「专家访谈／渠道调研」一项。本条实为未具名专家的口述估计，既非统计实测也非券商模型，待菜单补齐后复核。 rate_target=单模块：原文单位「万只」，按只计数，不是交换机端口速率。 **交叉对照有冲突，别合并**：花旗同口径 2026E 为 4500 万只（citi-aug25-demand-800g-2026e），比本条上界还高 41%；国信自测算 4000 万只（optics-800g-shipment-2026e）。三个数分别来自券商模型与专家口述，时点 2025-08／2025-09，**并列保留进核验，不取平均**。 原文备注给了一个方向性理由：微软常经思科/Arista/Juniper 或英伟达代采购，订单落在设备厂商端，模块厂看不全，故微软实际需求可能远超表内的 250 万只——即本条下界偏保守。 **编制方与信源是两回事**：本表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框，单元格里没有），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」——未具名专家口述，不是机构研究报告，故 grade=S5（渠道材料）。"
+    },
+    {
+      "fact_id": "expert-sep25-1600g-demand-2025e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-1600g",
+        "label": "全球 1.6T 光模块市场"
+      },
+      "value": 250.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "1.6T",
+        "shipment_basis": "未披露",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025-09",
+      "evidence": {
+        "sha256": "688d46ed401e8e2cbb7b63503b46ccd10cab1f20af831872bb0e31900f2d915c",
+        "local_file": "光模块出货量数据.xlsx",
+        "locator": "工作表「1.6T」第 3 行列名「整体需求规模（万只）」，第 4 行「2025」，单元格 B4 = 「主要来自英伟达，需求量在 250 - 350 万只之间」",
+        "grade": "S5",
+        "originator": "未具名业内专家电话（2025-09-18），Global Semi Research 知识星球编制"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "lower",
+      "corroboration": "待交叉验证",
+      "notes": "**原文区间 250 - 350 万只，本条存下界 250，上界 350 见此处。** **【存储限制】原文是区间，本条只存下界**：fact 的 claim_key 不含 bound，同一实体同一时点的下界与上界两条会被判为重复录入，上界无法单独成条。上界见本条 notes，不要把本条当点值用。 **【口径提示 1】原文是「需求」不是「出货」**：表名「800G/1.6T 光模块市场需求情况表」。shipment_basis 四个取值（厂商出货／渠道提货／终端安装／未披露）没有「市场需求」，取「未披露」并标明，待菜单补齐后复核。 **【口径提示 2】basis 是就近归类**：四个取值（实测／预测／券商测算／厂商指引）没有「专家访谈／渠道调研」一项。本条实为未具名专家的口述估计，既非统计实测也非券商模型，待菜单补齐后复核。 rate_target=单模块：原文单位「万只」，按只计数，不是交换机端口速率。 **结构提示**：原文明说这一年 1.6T「主要来自英伟达」，谷歌 20-30 万只，Meta/AWS「采购量不大可忽略」——即 2025 年的 1.6T 几乎是单一客户市场，用它做行业趋势要当心。 **交叉对照**：花旗 2025E 为 250 万只（citi-aug25-demand-1600g-2025e），正好是本区间下界。 **编制方与信源是两回事**：本表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框，单元格里没有），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」——未具名专家口述，不是机构研究报告，故 grade=S5（渠道材料）。"
+    },
+    {
+      "fact_id": "expert-sep25-1600g-demand-2026e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-1600g",
+        "label": "全球 1.6T 光模块市场"
+      },
+      "value": 860.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "speed": "1.6T",
+        "shipment_basis": "未披露",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2026E@2025-09",
+      "evidence": {
+        "sha256": "688d46ed401e8e2cbb7b63503b46ccd10cab1f20af831872bb0e31900f2d915c",
+        "local_file": "光模块出货量数据.xlsx",
+        "locator": "工作表「1.6T」第 3 行列名「整体需求规模（万只）」，第 5 行「2026」，单元格 B5 = 「保守估计约 860」",
+        "grade": "S5",
+        "originator": "未具名业内专家电话（2025-09-18），Global Semi Research 知识星球编制"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "lower",
+      "corroboration": "待交叉验证",
+      "notes": "**原文「保守估计约 860」，按下界记。** **【口径提示 1】原文是「需求」不是「出货」**：表名「800G/1.6T 光模块市场需求情况表」。shipment_basis 四个取值（厂商出货／渠道提货／终端安装／未披露）没有「市场需求」，取「未披露」并标明，待菜单补齐后复核。 **【口径提示 2】basis 是就近归类**：四个取值（实测／预测／券商测算／厂商指引）没有「专家访谈／渠道调研」一项。本条实为未具名专家的口述估计，既非统计实测也非券商模型，待菜单补齐后复核。 rate_target=单模块：原文单位「万只」，按只计数，不是交换机端口速率。 **交叉对照**：花旗 2026E 800 万只（citi-aug25-demand-1600g-2026e）、国信「超过 700 万只」下界（optics-1600g-shipment-2026e）。三个独立来源落在 700-860 区间内，方向一致；与同年 800G 的三方分歧（3000-4500）形成对比。 分客户：英伟达至少 500（其中给代工链 100-150）、谷歌约 150、Meta 约 80、AWS 约 80，加总 810 与 860 相符。 **编制方与信源是两回事**：本表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框，单元格里没有），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」——未具名专家口述，不是机构研究报告，故 grade=S5（渠道材料）。"
     }
   ]
 }
