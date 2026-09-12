@@ -32,6 +32,11 @@ METRICS = {
         'metric_id': 'free_form_metric', 'unit': 'MW', 'module': 'M04',
         'caliber_dims': [{'id': 'region', 'name': '地域'}],   # no enum: any text
     },
+    'noted_metric': {
+        'metric_id': 'noted_metric', 'name': '带警告的指标', 'unit': '亿美元', 'module': 'M10',
+        'note': '**表头单位与实际数值不符**，照表头换算会错一百万倍。',
+        'caliber_dims': [{'id': 'scope', 'name': '范围', 'values': ['甲', '乙']}],
+    },
 }
 
 SHA = 'a' * 64
@@ -899,6 +904,64 @@ class LiveFactLayerTests(unittest.TestCase):
         """A fact's module comes from its metric; an unknown metric has no module."""
         for fact_row in self.records:
             self.assertIn(fact_row['metric_id'], self.metrics, fact_row['fact_id'])
+
+
+class MenuTests(unittest.TestCase):
+    """What the packet shows a reader, and what it used to leave out."""
+
+    def test_a_metrics_own_note_reaches_the_packet(self):
+        """It carried the traps that span dimensions and was never printed."""
+        text = L2.metric_menu('M10', METRICS)
+        self.assertIn('照表头换算会错一百万倍', text)
+
+    def test_the_dimensions_still_come_with_theirs(self):
+        self.assertIn('caliber.scope', L2.metric_menu('M10', METRICS))
+
+    def test_other_modules_are_indexed_by_id(self):
+        """A document sits in one module; its numbers do not."""
+        index = L2.other_modules_index('M04', METRICS)
+        self.assertIn('dc_construction_cost_per_sqm', index)
+        self.assertIn('noted_metric', index)
+        self.assertNotIn('free_form_metric', index)   # that one is M04's own
+
+    def test_the_index_does_not_spell_out_calibers(self):
+        """139 metrics with full dimensions would bury the document itself."""
+        index = L2.other_modules_index('M04', METRICS)
+        self.assertNotIn('caliber.', index)
+        self.assertNotIn('招标控制价', index)
+
+    def test_a_module_with_no_metrics_says_so_rather_than_going_blank(self):
+        self.assertIn('先在 metrics.json 里补指标定义', L2.metric_menu('M99', METRICS))
+
+
+class LiveMenuTests(unittest.TestCase):
+    """The real menu, on the two metrics whose confusion is already recorded."""
+
+    def setUp(self):
+        self.metrics = L2.load_metrics()
+
+    def test_the_two_capex_metrics_point_at_each_other(self):
+        """3,610 and 3,511 are the same four companies and must never be one series."""
+        company = self.metrics['hyperscaler_capex_total']
+        datacentre = self.metrics['dc_it_capex']
+        self.assertIn('dc_it_capex', company['note'])
+        self.assertIn('hyperscaler_capex_total', datacentre['note'])
+
+    def test_the_unit_trap_is_stated_where_a_reader_will_meet_it(self):
+        text = L2.metric_menu('M01', self.metrics)
+        self.assertIn('错一百万倍', text)
+
+    def test_the_original_segment_names_are_kept_verbatim(self):
+        values = {d['id']: d['values'] for d in self.metrics['dc_it_capex']['caliber_dims']}
+        self.assertIn('Top 4 US Cloud', values['segment'])
+        self.assertIn('Asia Pacific excl. China', values['region'])
+        self.assertIn('DCPI & Other DC', values['technology'])
+
+    def test_the_aggregate_rows_are_marked_as_aggregates(self):
+        segment = next(d for d in self.metrics['dc_it_capex']['caliber_dims']
+                       if d['id'] == 'segment')
+        self.assertIn('Hyperscalers', segment['values'])
+        self.assertIn('不可与它的成分项一起加总', segment['note'])
 
 if __name__ == '__main__':
     unittest.main()
