@@ -9,6 +9,12 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
+
+import m4_records
+import m4_triage_l1 as L1
+import m4_triage_apply as APPLY
+import m4_inventory as LEGACY
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import m4_triage as mt
@@ -140,6 +146,87 @@ class InventoryTests(unittest.TestCase):
         report = mt.summary(self.out)
         self.assertEqual(report["errors"]["row_format_unrecognized"], 1)
         self.assertEqual(report["unique_sha256"], 1)
+
+    def test_changed_content_is_rehashed_and_summary_counts_current_path_once(self):
+        path = self.put('a.txt', b'old evidence')
+        self.run_inventory()
+        path.write_bytes(b'new evidence')
+        result = self.run_inventory()
+        self.assertEqual(result['hashed'], 1)
+        self.assertEqual(len(self.rows()), 2, 'historical observation was overwritten')
+        self.assertEqual(mt.summary(self.out)['rows'], 1)
+        current = m4_records.load_inventory(self.out / 'inventory.jsonl')
+        self.assertEqual(current[0]['sha256'], hashlib.sha256(b'new evidence').hexdigest())
+
+    def test_failed_path_is_retried_when_it_becomes_readable(self):
+        target = self.put('target.txt')
+        link = self.root / 'link.txt'
+        link.symlink_to(target)
+        self.run_inventory()
+        link.unlink()
+        link.write_bytes(b'recovered file')
+        result = self.run_inventory()
+        self.assertEqual(result['hashed'], 1)
+        self.assertEqual(mt.summary(self.out)['errors'], {})
+
+    def test_one_dataset_cannot_silently_change_its_source(self):
+        self.put('a.txt')
+        self.run_inventory()
+        another = self.base / 'another'
+        another.mkdir()
+        with self.assertRaisesRegex(ValueError, 'source_root_changed'):
+            mt.inventory(another, self.out, 1)
+
+    def test_torn_tail_is_preserved_and_resume_recovers_the_file(self):
+        self.put('a.txt')
+        self.run_inventory()
+        self.put('b.txt')
+        partial = b'{"original_rel":"b.txt","sha256":'
+        with (self.out / 'inventory.jsonl').open('ab') as stream:
+            stream.write(partial)
+        self.assertEqual(self.run_inventory()['hashed'], 1)
+        self.assertEqual(mt.summary(self.out)['rows'], 2)
+        self.assertEqual(next(self.out.glob('*.partial-*')).read_bytes(), partial)
+
+    def test_legacy_migration_preserves_bytes_and_all_consumers_agree(self):
+        content = b'the same research source'
+        sha = hashlib.sha256(content).hexdigest()
+        self.put('a.txt', content)
+        self.put('b.txt', content)
+        self.out.mkdir()
+        path = self.out / 'inventory.jsonl'
+        legacy = [{'rel': rel, 'sha256': sha, 'size': len(content)} for rel in ('a.txt', 'b.txt')]
+        path.write_text(''.join(json.dumps(row) + '\n' for row in legacy))
+        original = path.read_bytes()
+        with self.assertRaises(SystemExit):
+            self.run_inventory()
+        result = mt.migrate_inventory(self.out)
+        self.assertEqual(Path(result['backup']).read_bytes(), original)
+        with patch.object(L1, 'INVENTORY', path), patch.object(APPLY, 'INVENTORY', path):
+            self.assertEqual(L1.load_inventory()[0]['paths'], ['a.txt', 'b.txt'])
+            self.assertEqual(len(APPLY.load_inventory()[sha]), 2)
+            self.assertEqual(len(APPLY.plan_duplicates()), 1)
+        self.assertEqual(mt.summary(self.out)['duplicate_extra_copies'], 1)
+        self.assertEqual(self.run_inventory()['hashed'], 2)  # Add precise stat signature once.
+        self.assertEqual(self.run_inventory()['hashed'], 0)
+
+    def test_failed_migration_leaves_original_intact(self):
+        self.out.mkdir()
+        path = self.out / 'inventory.jsonl'
+        original = b'{"unrecognized":"unique evidence"}\n'
+        path.write_bytes(original)
+        with self.assertRaises(ValueError):
+            mt.migrate_inventory(self.out)
+        self.assertEqual(path.read_bytes(), original)
+
+    def test_legacy_command_uses_the_same_writer_and_dataset(self):
+        self.put('a.txt')
+        with patch.object(mt.m4_paths, 'source', return_value=self.root), \
+             patch.object(mt.m4_paths, 'data', return_value=self.out), \
+             contextlib.redirect_stdout(io.StringIO()):
+            LEGACY.main(['--workers', '1'])
+        self.assertIn('original_rel', self.rows()[0])
+        self.assertNotIn('rel', self.rows()[0])
 
     def test_missing_root_and_bad_worker_count_are_rejected(self):
         with self.assertRaises(SystemExit):

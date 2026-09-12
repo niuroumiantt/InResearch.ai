@@ -157,6 +157,15 @@ class ResearchTests(unittest.TestCase):
             ('evidence', 'status', 'candidate'),
             ('evidence', 'page_index', -500),
             ('evidence', 'page_index', True),
+            ('evidence', 'page_index', 2),
+            ('evidence', 'page_index', 999),
+            ('evidence', 'quote', ''),
+            ('evidence', 'quote', None),
+            ('evidence', 'content_sha256', 'b' * 64),
+            ('statements', 'status', 'superseded'),
+            ('statements', 'status', 'withdrawn'),
+            ('statements', 'review', {}),
+            ('statements', 'statement_ids', ['statement:reviewed']),
             ('evidence', 'review', {}),
             ('documents', 'status', 'withdrawn'),
             ('documents', 'status', 'rejected'),
@@ -170,7 +179,7 @@ class ResearchTests(unittest.TestCase):
                 self.assertTrue(research.validate(self.graph, self.questions, knowledge))
                 self.assertIn('M01-Q01', {task['question_ids'][0]
                               for task in research.question_tasks(self.questions, knowledge)})
-        for missing in ('evidence', 'documents'):
+        for missing in ('evidence', 'documents', 'statements'):
             with self.subTest(missing=missing):
                 knowledge = adopted_knowledge()
                 knowledge[missing] = []
@@ -204,6 +213,8 @@ class MutationTests(unittest.TestCase):
         research.atomic_json(self.root / 'data/assignments.json', {'records': [
             {'workorder_id': 'test', 'assignee': 'alice', 'status': '已派'}]})
         research.atomic_json(self.root / 'reports/workorders.json', {'orders': [{'wid': 'test'}]})
+        research.atomic_json(self.root / 'framework/research_questions.json', {'records': []})
+        research.atomic_json(self.root / 'data/research_knowledge.json', {key: [] for key in research.COLLECTIONS})
         self.root_patch = patch.object(serve, 'ROOT', self.root)
         self.root_patch.start()
 
@@ -237,6 +248,17 @@ class MutationTests(unittest.TestCase):
             rec = record(21)
             rec['value'] = float('nan')
             self.assertEqual(400, self.handler().api_add_price(rec)[0])
+
+    def test_new_question_is_assignable_without_regenerating_legacy_projection(self):
+        questions = research.read_json(research.ROOT / 'framework/research_questions.json')
+        research.atomic_json(self.root / 'framework/research_questions.json', questions)
+        question = questions['records'][-1]
+        wid = 'Q-' + question['id']
+        self.assertIn(wid, {task['wid'] for task in research.current_tasks(self.root)})
+        code, reply = self.handler().api_assign({'workorder_id': wid, 'assignee': 'alice', 'status': '已派'})
+        self.assertEqual(200, code, reply)
+        task = next(task for task in research.current_tasks(self.root) if task['wid'] == wid)
+        self.assertEqual('alice', task['assignment']['assignee'])
 
     def test_export_uses_real_module_files(self):
         import export

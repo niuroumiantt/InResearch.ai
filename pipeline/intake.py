@@ -74,8 +74,8 @@ AUDIT_RATE = 10        # B 档抽查比例的分母：10 → 抽 10%
 
 REJECT = {
     "DUP": "重复——库内已有",
-    "NO_LOCATOR": "数字无出处——key_number 缺 locator，无法回原文核对",
-    "NO_NUMBERS": "无可落库数字——对事实层没有贡献",
+    "NO_LOCATOR": "证据无出处——缺 locator，无法回原文核对",
+    "NO_EVIDENCE": "缺可定位的数字或非数字证据",
     "SHORT_SUMMARY": f"summary 不足 {MIN_SUMMARY} 字",
     "BAD_MODULE": "模块号非法",
     "BAD_FIELD": "必填字段缺失或取值非法",
@@ -172,7 +172,7 @@ def check_item(it, lib_names, lib_olds, decl_module):
         warn.append(f"非法模块号 {[m for m in mods if m not in VALID_MODULES]}")
     if it.get("confidence") not in {"A", "B", "C"}:
         bad.append("BAD_FIELD"); warn.append("confidence 须为 A/B/C")
-    if not isinstance(it.get("claimed_importance"), int) or not 1 <= it["claimed_importance"] <= 9:
+    if type(it.get("claimed_importance")) is not int or not 1 <= it["claimed_importance"] <= 9:
         bad.append("BAD_FIELD"); warn.append("claimed_importance 须为 1-9 整数")
 
     if len(it.get("summary") or "") < MIN_SUMMARY:
@@ -180,15 +180,26 @@ def check_item(it, lib_names, lib_olds, decl_module):
         warn.append(f"summary 仅 {len(it.get('summary') or '')} 字")
 
     kn = it.get("key_numbers") or []
-    if not kn:
-        # 低分存档件允许无数字；≥5 分声称有价值却拿不出数字，退回
-        if it.get("claimed_importance", 0) >= 5:
-            bad.append("NO_NUMBERS")
-            warn.append("自评 ≥5 分却没有任何 key_number")
+    statements = it.get('key_statements') or []
+    if not kn and not statements and type(it.get('claimed_importance')) is int and it['claimed_importance'] >= 5:
+        bad.append('NO_EVIDENCE')
+        warn.append('自评 ≥5 分须提供可定位的 key_numbers 或 key_statements')
     for n in kn:
         if not (n.get("locator") or "").strip():
             bad.append("NO_LOCATOR")
             warn.append(f"数字「{n.get('what','?')}」没有 locator")
+    for statement in statements:
+        if not isinstance(statement, dict):
+            bad.append('BAD_FIELD')
+            continue
+        if statement.get('kind') not in ('definition', 'mechanism', 'interface', 'standard', 'failure_case'):
+            bad.append('BAD_FIELD')
+            warn.append('key_statement.kind 须为 definition/mechanism/interface/standard/failure_case')
+        if not all(isinstance(statement.get(k), str) and statement[k].strip() for k in ('text', 'quote')):
+            bad.append('NO_EVIDENCE')
+            warn.append('非数字陈述须有 text 与原文 quote')
+        if not isinstance(statement.get('locator'), str) or not statement['locator'].strip():
+            bad.append('NO_LOCATOR')
 
     stem = Path(it.get("file", "")).name.lower()
     title = (it.get("title") or "").strip().lower()
@@ -237,6 +248,8 @@ def to_batch_rows(items, today):
         summary = it["summary"]
         if nums:
             summary += f" **可落库数字**：{nums}"
+        for statement in it.get('key_statements') or []:
+            summary += f" **候选陈述**：{statement['text']}；原文：{statement['quote']}（{statement['locator']}）"
         summary += (f" 【成员投递·{who}"
                     + (f"·回应工单 {wo}" if wo else "·自主发现")
                     + "】本行由成员登记，**尚未经我们审计**，不得直接上证据链。")
@@ -383,6 +396,9 @@ def main():
                     cal = f"｜口径：{n['caliber_note']}" if n.get("caliber_note") else ""
                     lines.append(f"      数：{n.get('what')} = {n.get('value')} {n.get('unit')}"
                                  f"（{n.get('locator')}）{cal}")
+            if t in ('A', 'B'):
+                for statement in (it.get('key_statements') or [])[:3]:
+                    lines.append(f"      陈述：{statement['text']}；原文：{statement['quote']}（{statement['locator']}）")
         lines.append("")
 
     OUT.write_text("\n".join(lines) + "\n", encoding="utf-8")

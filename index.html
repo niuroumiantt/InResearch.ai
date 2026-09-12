@@ -4,7 +4,7 @@
 <script src="/assets/site-skin.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Datacenter Hub — 全球数据中心行业总览</title>
+<title>inresearch.ai — 全球数据中心行业总览</title>
 <style>
 
 
@@ -79,13 +79,8 @@
 </head>
 <body>
 <div class="topbar">
-  <b>Datacenter Hub</b>
-  <a class="tab on" href="index.html">总览</a>
-  <a class="tab" href="research.html">研究工作台</a>
   <a class="tab" href="/research.html?node=ecosystem%3Astorage&amp;view=R&amp;tab=overview">产品生态</a>
   <a class="tab" href="bom.html">爆炸图</a>
-  <a class="tab" href="ops.html">管理后台</a>
-  <a class="tab" href="report.html">报告成稿</a>
   <span class="sp"></span>
   <span class="live" id="live"><i></i>连接中…</span>
   <a class="tab" href="doc.html?f=reports/HOW_TO_OUTPUT.md">按需输出 ↗</a>
@@ -126,15 +121,8 @@ function indStatus(i) {
 }
 const SCOLOR = { green: "var(--green)", yellow: "var(--yellow)", red: "var(--red)", na: "var(--line)" };
 
-function countUp(el, target, suffix) {
-  const t0 = performance.now(), dur = 900, from = 0;
-  const isInt = Number.isInteger(target);
-  function tick(t) {
-    const k = Math.min(1, (t - t0) / dur), v = from + (target - from) * (1 - Math.pow(1 - k, 3));
-    el.textContent = (isInt ? Math.round(v).toLocaleString() : v.toFixed(1)) + suffix;
-    if (k < 1) requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
+function showValue(el, target, suffix) {
+  el.textContent = (Number.isInteger(target) ? target.toLocaleString() : target.toFixed(1)) + suffix;
 }
 
 function hbar(rows, colorFn, valFn, labFn, tipFn) {
@@ -236,11 +224,11 @@ try {
     `<div class="kpi"><div class="v"><span style="color:${istat.red ? "var(--red)" : "var(--muted)"}">${istat.red}红</span>
      <span style="color:${istat.yellow ? "var(--yellow)" : "var(--muted)"}">${istat.yellow}黄</span></div>
      <div class="l">预警指标（${inds.indicators.length - istat.na} 有值 / 共 ${inds.indicators.length}）</div></div>`;
-  countUp(document.getElementById("k-op"), OP, " MW");
-  countUp(document.getElementById("k-bu"), BU, " MW");
-  countUp(document.getElementById("k-pl"), +(PL / 1000).toFixed(1), " GW");
-  if (iea) countUp(document.getElementById("k-iea"), iea.value, " TWh");
-  if (backlog) countUp(document.getElementById("k-bl"), backlog, " $B");
+  showValue(document.getElementById("k-op"), OP, " MW");
+  showValue(document.getElementById("k-bu"), BU, " MW");
+  showValue(document.getElementById("k-pl"), +(PL / 1000).toFixed(1), " GW");
+  if (iea) showValue(document.getElementById("k-iea"), iea.value, " TWh");
+  if (backlog) showValue(document.getElementById("k-bl"), backlog, " $B");
 
   // ── 大客户入口
   const ENTRY = ["microsoft", "amazon", "alphabet-google", "meta", "oracle", "openai", "anthropic", "xai", "coreweave", "equinix", "digital-realty"];

@@ -7,6 +7,7 @@ and what lets a doubled line count be read as healthy rather than as a
 double-move.
 """
 import io
+import hashlib
 import json
 from contextlib import redirect_stdout
 from pathlib import Path
@@ -50,6 +51,7 @@ class ApplyTests(unittest.TestCase):
             path = self.source / rel
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(sha, encoding="utf-8")
+            sha = hashlib.sha256(path.read_bytes()).hexdigest()
             inventory.append({"sha256": sha, "rel": rel, "size": path.stat().st_size})
             results.append({"sha256": sha, "category": category, "proposed_name": name,
                             "score": 5, "level": "p"})
@@ -178,6 +180,26 @@ class ApplyTests(unittest.TestCase):
         for rel, *_ in specs:
             self.assertTrue((self.source / rel).is_file(), "%s never came back" % rel)
 
+    def test_revert_then_apply_is_not_marked_permanently_done(self):
+        self.build(self.sample(2))
+        self.run_cli('library', 'apply')
+        self.run_cli('library', 'revert')
+        self.assertEqual(A.final_locations(), {})
+        result = json.loads(self.run_cli('library', 'apply').splitlines()[0])
+        self.assertEqual(result['moved'], 2)
+
+    def test_changed_source_is_rejected_while_other_files_still_move(self):
+        specs = self.sample(2)
+        self.build(specs)
+        changed = self.source / specs[0][0]
+        changed.write_bytes(b'new evidence')
+        planned = json.loads(self.run_cli('library', 'plan').splitlines()[1])
+        applied = json.loads(self.run_cli('library', 'apply').splitlines()[0])
+        self.assertEqual(planned['would_move'], 1)
+        self.assertEqual(applied['moved'], 1)
+        self.assertEqual(applied['rejected'], 1)
+        self.assertEqual(changed.read_bytes(), b'new evidence')
+
 
 
 
@@ -246,9 +268,7 @@ class RestageTests(unittest.TestCase):
         self.temp.cleanup()
 
     def sha(self, i):
-        # varying digits first: the destination carries only sha[:16], and a
-        # zero-padded counter makes every fixture collide there
-        return format(i, 'x').ljust(64, '0')
+        return hashlib.sha256(('content %d' % i).encode()).hexdigest()
 
     def flat_file_first(self, rels):
         """File everything the old way: bucket plus basename, no directories."""
@@ -344,6 +364,17 @@ class RestageTests(unittest.TestCase):
                          'revert left a copy behind in the new tree')
         self.assertFalse((self.source / rels[0]).exists(),
                          'revert wrongly pushed it back into the source tree')
+
+    def test_restaged_file_reverts_in_order_and_can_be_filed_again(self):
+        self.flat_file_first(['报告/广州/图纸/平面.dwg'])
+        self.run_cli('restage', 'apply')
+        blocked = json.loads(self.run_cli('library', 'revert'))
+        self.assertEqual(blocked['blocked_by_later_stage'], 1)
+        self.run_cli('restage', 'revert')
+        self.assertEqual(len(A.final_locations()), 1)
+        self.run_cli('library', 'revert')
+        self.assertEqual(A.final_locations(), {})
+        self.assertEqual(json.loads(self.run_cli('library', 'apply'))['moved'], 1)
 
     def test_a_pathological_path_still_terminates(self):
         """The marker used to be re-inserted where it had just been removed."""

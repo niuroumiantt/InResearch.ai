@@ -63,19 +63,19 @@ class ReportTests(unittest.TestCase):
         self.assertEqual(snapshot["inventory_paths"], 120)
         self.assertEqual((snapshot["judged"], snapshot["auto_filed"], snapshot["failed"]),
                          (30, 8, 2))
-        self.assertEqual(snapshot["remaining"], 100 - 40)
-        self.assertEqual(snapshot["percent_done"], 40.0)
+        self.assertEqual(snapshot["remaining"], 100 - 38)
+        self.assertEqual(snapshot["percent_done"], 38.0)
 
     def test_moves_count_successes_minus_reverts(self):
         self.build()
         write(self.moves,
-              [{"sha256": str(i), "stage": "duplicates", "ok": True} for i in range(10)]
+              [{"event": "move", "from": "raw/%d" % i, "to": "dup/%d" % i, "sha256": str(i), "stage": "duplicates", "ok": True} for i in range(10)]
               + [{"sha256": "x", "stage": "duplicates", "ok": False}]
-              + [{"event": "revert", "sha256": "0", "ok": True}])
+              + [{"event": "revert", "from": "dup/0", "to": "raw/0", "sha256": "0", "ok": True}])
         snapshot = RP.collect()
         self.assertEqual(snapshot["moved"], 9)
         self.assertEqual(snapshot["reverted"], 1)
-        self.assertEqual(snapshot["by_stage"], {"duplicates": 10})
+        self.assertEqual(snapshot["by_stage"], {"duplicates": 9})
 
     def test_no_move_log_yet_is_zero_not_a_crash(self):
         self.build()
@@ -98,9 +98,18 @@ class ReportTests(unittest.TestCase):
             handle.write('{"status": "ok", "sha')
         self.assertEqual(RP.collect()["judged"], 30)
 
+    def test_successful_reading_survives_failed_retry_without_inflating_progress(self):
+        self.build(judged=1, auto=0, failed=0, unique=2, extra_paths=0)
+        with self.results.open('a') as stream:
+            stream.write(json.dumps({'sha256': '%064d' % 0, 'status': 'error'}) + '\n')
+        snapshot = RP.collect()
+        self.assertEqual(snapshot['judged'], 1)
+        self.assertEqual(snapshot['failed'], 0)
+        self.assertEqual(snapshot['remaining'], 1)
+
     def test_reporting_never_writes(self):
         self.build()
-        write(self.moves, [{"sha256": "0", "stage": "duplicates", "ok": True}])
+        write(self.moves, [{"event": "move", "from": "a", "to": "b", "sha256": "0", "stage": "duplicates", "ok": True}])
         before = {p: p.read_bytes() for p in (self.inventory, self.results, self.moves)}
         RP.render(RP.collect())
         self.assertEqual({p: p.read_bytes() for p in before}, before)

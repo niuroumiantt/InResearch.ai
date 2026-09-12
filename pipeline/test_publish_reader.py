@@ -21,6 +21,7 @@ class PublisherTests(unittest.TestCase):
             token.chmod(0o600)
             env = {'READER_DATA_ROOT': str(root / 'data'), 'READER_STATE_ROOT': str(state),
                    'READER_BACKEND': 'ollama', 'READER_URL': 'http://127.0.0.1:11434',
+                   'READER_MODEL': 'configured-test-model',
                    'READER_OCR_MODEL': 'qwen3-vl:8b',
                    'READER_PUBLISH_URL': 'https://receiver.example.test/api/reader-snapshot'}
             with patch.dict(os.environ, env), patch.object(publish_reader.subprocess, 'run') as run, \
@@ -38,7 +39,7 @@ class PublisherTests(unittest.TestCase):
     def test_published_model_configuration_matches_worker_environment(self):
         snapshot = self.publish()
         self.assertEqual('qwen3-vl:8b', snapshot['reader']['backend']['ocr_model'])
-        self.assertEqual('qwen3.8:27b', snapshot['reader']['backend']['model'])
+        self.assertEqual('configured-test-model', snapshot['reader']['backend']['model'])
         self.assertEqual(json.loads((Path(__file__).resolve().parents[1] / 'framework/research_graph.json').read_text())['version'], snapshot['graph_version'])
         self.assertEqual([], snapshot['knowledge']['answers'])
 

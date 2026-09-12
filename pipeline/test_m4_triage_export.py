@@ -8,6 +8,7 @@ has that no one judged, has to be reported rather than skipped.
 """
 import io
 import json
+import hashlib
 from contextlib import redirect_stdout
 from pathlib import Path
 import sys
@@ -186,7 +187,7 @@ class ExportTests(unittest.TestCase):
         self.assertEqual(out['extra_here'], 0, 'one local file was left unpaired')
 
     def test_apply_plans_before_it_moves(self):
-        sha = self.sha(11)
+        sha = hashlib.sha256(b'xxxx').hexdigest()
         self.seed(inventory=[{'sha256': sha, 'rel': 'a/x.pdf', 'size': 4}],
                   results=[{'sha256': sha, 'status': 'ok', 'level': 'p',
                             'category': 'M10', 'score': 8}],
@@ -198,6 +199,55 @@ class ExportTests(unittest.TestCase):
         self.run_cli('apply', '--mapping', str(self.mapping), '--commit')
         self.assertTrue((APPLY.LIBRARY / 'M10/08p_x.pdf').is_file())
         self.assertFalse((other / 'raw/x.pdf').exists())
+
+    def test_mapping_rejects_truncation_and_duplicate_targets(self):
+        sha = self.sha(15)
+        self.seed(inventory=[{'sha256': sha, 'rel': 'a', 'size': 4}],
+                  ledger=self.moved(sha, 'a', 'M01/a'))
+        self.run_cli('export', '--out', str(self.mapping))
+        original = self.mapping.read_text()
+        self.mapping.write_text(original.splitlines()[0] + '\n{"sha256":')
+        with self.assertRaisesRegex(ValueError, 'header_or_count'):
+            EX.load_mapping(self.mapping)
+        self.mapping.write_text(original)
+        header, rows = EX.load_mapping(self.mapping)
+        header['files'] = 2
+        write(self.mapping, [{'header': header}, rows[0], {**rows[0], 'from': 'b'}])
+        with self.assertRaisesRegex(ValueError, 'duplicate_path'):
+            EX.load_mapping(self.mapping)
+
+    def test_import_same_relative_path_still_moves_between_roots(self):
+        sha = hashlib.sha256(b'xxxx').hexdigest()
+        self.seed(inventory=[{'sha256': sha, 'rel': 'a', 'size': 4}],
+                  ledger=self.moved(sha, 'a', 'a'))
+        self.run_cli('export', '--out', str(self.mapping))
+        other = self.spark_side([('a', sha, 4)])
+        self.run_cli('apply', '--mapping', str(self.mapping), '--commit')
+        self.assertFalse((other / 'a').exists())
+        self.assertEqual((APPLY.LIBRARY / 'a').read_bytes(), b'xxxx')
+
+    def test_mismatched_corpus_cannot_partially_commit(self):
+        sha = hashlib.sha256(b'xxxx').hexdigest()
+        self.seed(inventory=[{'sha256': sha, 'rel': 'a', 'size': 4}],
+                  ledger=self.moved(sha, 'a', 'M01/a'))
+        self.run_cli('export', '--out', str(self.mapping))
+        other = self.spark_side([('a', sha, 4), ('extra', self.sha(14), 4)])
+        with self.assertRaisesRegex(ValueError, 'corpus_mismatch'):
+            self.run_cli('apply', '--mapping', str(self.mapping), '--commit')
+        self.assertTrue((other / 'a').exists())
+        self.assertFalse((APPLY.LIBRARY / 'M01/a').exists())
+
+    def test_model_and_executor_provenance_survives_export(self):
+        sha = self.sha(15)
+        self.seed(inventory=[{'sha256': sha, 'rel': 'a', 'size': 4}],
+                  results=[{'sha256': sha, 'status': 'ok', 'model': 'configured-model',
+                            'executor': 'terminal', '_model': {'actual': 'configured-model'}}],
+                  ledger=self.moved(sha, 'a', 'M01/a'))
+        self.run_cli('export', '--out', str(self.mapping))
+        _, rows = EX.load_mapping(self.mapping)
+        self.assertEqual(rows[0]['model'], 'configured-model')
+        self.assertEqual(rows[0]['executor'], 'terminal')
+        self.assertEqual(rows[0]['_model']['actual'], 'configured-model')
 
     def test_importing_verdicts_does_not_duplicate_existing_rows(self):
         sha = self.sha(12)

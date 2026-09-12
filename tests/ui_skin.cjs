@@ -11,15 +11,21 @@ const base = process.env.UI_BASE_URL || 'http://127.0.0.1:8878';
 const manifest = require('../framework/interface_manifest.json');
 const dir = process.env.UI_QA_DIR;
 (async () => {
- const browser = await chromium.launch({channel:'chrome', headless:true, args:['--enable-unsafe-swiftshader']});
+ const browser = await chromium.launch({channel:process.env.UI_BROWSER_CHANNEL || undefined, headless:true, args:['--enable-unsafe-swiftshader']});
  try {
- const context = await browser.newContext({viewport:{width:1440,height:1000},colorScheme:'dark'});
+ // CI has software WebGL. Keep CSS dimensions and real scenes, with fewer raster pixels.
+ const context = await browser.newContext({viewport:{width:1440,height:1000},colorScheme:'dark',
+   reducedMotion:'reduce',deviceScaleFactor:process.env.CI ? 0.5 : 1});
  const page = await context.newPage(); const errors=[];
  page.on('pageerror',e=>errors.push(e.message));
  const measure = () => page.evaluate(()=>({skin:document.documentElement.dataset.uiSkin,theme:document.documentElement.dataset.uiTheme,width:document.documentElement.scrollWidth,viewport:innerWidth,bg:getComputedStyle(document.body).backgroundColor,bar:document.querySelectorAll('#ui-skinbar').length}));
  for (const file of manifest.static_pages) {
    const query = file==='research.html'?'?node=part:gpu&view=P&tab=tasks':file==='doc.html'?'?f=framework/05_interface_system.md':'';
    await page.goto(base+'/'+file+query); await page.locator('#ui-skinbar').waitFor();
+   await page.locator('.ui-navigation a[aria-current=page]').waitFor();
+   assert.equal(await page.locator('.ui-navigation a[aria-current=page]').count(),1,file+' active section');
+   if(file==='company.html') await page.locator('.head h1').waitFor();
+   if(file==='report.html') {await page.locator('.finding').first().waitFor();assert.equal(await page.locator('.finding').count(),150);}
    if(file==='research.html') await page.locator('.rg-node h2').waitFor();
    if(file==='ops.html'){await page.locator('#modules .mod').first().waitFor();assert.equal(await page.locator('#modules .mod').count(),15);assert.equal(await page.locator('#error').textContent(),'');assert.ok(await page.locator('#projects tr').count()>100);}
    const settledUrl=page.url();
@@ -35,6 +41,28 @@ const dir = process.env.UI_QA_DIR;
      if(dir && ['index.html','research.html','admin/product/index.html','doc.html','bom3d.html','rack3d.html'].includes(file) && mode==='light'){
        await page.waitForTimeout(file.includes('3d')?2200:200);
        await page.screenshot({path:path.join(dir,file.replaceAll('/','-')+'-'+skin+'.png')});
+     }
+     if(file==='research.html'){
+       assert.equal(await page.locator('.rg-detail-tab').first().evaluate(e=>getComputedStyle(e).borderRadius),'0px');
+       assert.equal(await page.locator('#researchSearch').evaluate(e=>getComputedStyle(e).borderRadius),skin==='folk'?'2px':'6px');
+     }
+     if(file==='materials.html'){
+       const contrast=await page.locator('#submit').evaluate(e=>{
+         const css=getComputedStyle(e);
+         const luminance=rgb=>rgb.match(/[\d.]+/g).slice(0,3).map(Number).map(v=>v/255)
+           .map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4).reduce((sum,v,i)=>sum+v*[.2126,.7152,.0722][i],0);
+         const a=luminance(css.color),b=luminance(css.backgroundColor);
+         return (Math.max(a,b)+.05)/(Math.min(a,b)+.05);
+       });
+       assert.ok(contrast>=4.5,'primary button contrast '+skin+' '+mode+' '+contrast);
+     }
+     for(const width of [360,1440]){
+       await page.setViewportSize({width,height:width===360?800:1000});
+       const state=await measure();
+       const overflow = state.width>width+1 ? await page.evaluate(()=>Array.from(document.querySelectorAll('body *'))
+         .filter(e=>e.getBoundingClientRect().right>innerWidth+1).slice(0,8).map(e=>e.tagName+'#'+e.id)) : [];
+       assert.ok(state.width<=width+1,`${file} ${skin} ${mode}: page ${state.width} exceeds ${width}; ${overflow.join(', ')}`);
+       if(dir && width===360 && mode==='light') await page.screenshot({path:path.join(dir,file.replaceAll('/','-')+'-'+skin+'-mobile.png')});
      }
    }
    // Head bar must remain usable on a phone; preexisting large data tables may scroll.

@@ -22,22 +22,12 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 import m4_triage_l1 as L1
 import m4_triage_pack as PK
+import m4_paths
+import m4_records
+from file_moves import replay
+from jsonl_store import read_rows
 
-MOVES = Path.home() / '.local/state/inresearch.ai/m4-triage/moves.jsonl'
-
-
-def read_rows(path: Path):
-    if not path.exists():
-        return
-    with path.open(encoding='utf-8') as handle:
-        for line in handle:
-            line = line.strip()
-            if not line:
-                continue
-            try:
-                yield json.loads(line)
-            except ValueError:
-                continue
+MOVES = m4_paths.state() / 'moves.jsonl'
 
 
 def moved_counts(path: Path | None = None):
@@ -48,18 +38,11 @@ def moved_counts(path: Path | None = None):
     somewhere else silently reads the original file.
     """
     path = MOVES if path is None else path
-    done = 0
-    reverted = 0
-    stages = collections.Counter()
-    for row in read_rows(path):
-        if row.get('event') == 'revert':
-            reverted += 1
-            continue
-        if row.get('ok') is False:
-            continue
-        done += 1
-        stages[row.get('stage') or 'unknown'] += 1
-    return {'moved': max(done - reverted, 0), 'reverted': reverted, 'by_stage': dict(stages)}
+    rows = list(read_rows(path))
+    records = replay(rows).values()
+    stages = collections.Counter(row.get('stage') or 'unknown' for row in records)
+    reverted = sum(row.get('event') == 'revert' and bool(row.get('ok')) for row in rows)
+    return {'moved': sum(stages.values()), 'reverted': reverted, 'by_stage': dict(stages)}
 
 
 def fmt_duration(hours):
@@ -73,12 +56,12 @@ def fmt_duration(hours):
 
 
 def collect():
-    inventory = list(read_rows(L1.INVENTORY))
-    results = list(read_rows(L1.RESULTS))
+    inventory = m4_records.load_inventory(L1.INVENTORY)
+    results = list(m4_records.current_results(L1.RESULTS).values())
     judged = [r for r in results if r.get('status') == 'ok']
     auto = [r for r in results if r.get('status') == 'l0']
     failed = [r for r in results if r.get('status') == 'error']
-    settled = {r.get('sha256') for r in results if r.get('sha256')}
+    settled = {r['sha256'] for r in results if r.get('status') in {'ok', 'l0'}}
 
     unique = {r['sha256'] for r in inventory if r.get('sha256')}
     remaining = len(unique - settled)

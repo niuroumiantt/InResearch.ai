@@ -28,7 +28,7 @@ class RunTests(unittest.TestCase):
         L1.RESULTS = self.results
         LOC.system_prompt = lambda: "system"
         L1.prepare = lambda item: {"rel": item["rel"], "suffix": ".pdf", "size": 1000,
-                                   "preview": "preview text",
+                                   "preview": "preview text", "meta": {}, "level": "p",
                                    "needs_model": item.get("needs_model", True),
                                    "sha256": item["sha256"]}
         L1.finalize = lambda rec, v, judge, err: {"sha256": rec["sha256"], "rel": rec["rel"],
@@ -50,10 +50,16 @@ class RunTests(unittest.TestCase):
             self.calls.append(user)
         try:
             time.sleep(0.02)  # long enough for overlap to be observable
-            return {"score": 5, "module": "M09", "title": "t", "org": "o", "year": "2025"}
+            return self.verdict()
         finally:
             with self.guard:
                 self.live -= 1
+
+    @staticmethod
+    def verdict():
+        return {"score": 5, "module": "M09", "title": "t", "org": "o", "year": "2025",
+                "keep_original_name": True, "doc_type": "report", "language": "zh",
+                "rationale": "source evidence", "evidence": "preview text", "confidence": "medium"}
 
     def items(self, n, needs_model=True):
         return [{"sha256": "%064d" % i, "rel": "f%d.pdf" % i, "suffix": ".pdf",
@@ -93,7 +99,7 @@ class RunTests(unittest.TestCase):
         def flaky(system, user, timeout=180):
             if "f3.pdf" in user:
                 raise RuntimeError("model_identity_unverified")
-            return {"score": 5, "module": "M09"}
+            return self.verdict()
         LOC.call = flaky
         rows = self.run_cmd(self.items(6), workers=3)
         self.assertEqual(len(rows), 6)

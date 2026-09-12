@@ -1,15 +1,9 @@
 #!/usr/bin/env python3
 """Hand the triage over to another machine without redoing any of it.
 
-The corpus lives on Spark; M4 only did the work because Spark was offline.
-Everything M4 decided - 51,457 duplicate moves, 35,895 filings, three rounds
-of renaming and 16,020 judgements that cost 31.7 hours of model time - exists
-only in M4's ledgers.  Without an export, reconciling the two machines means
-deleting Spark's tree and running the whole thing again.
-
-So this writes one line per physical file: where it started, where it ended,
-and what was decided about it.  Applying that on Spark reproduces the same
-library from Spark's own copy of the raw material.
+Exports one row per physical file with its final placement and current verdict.
+A separate unmanaged copy can apply these moves. A continuous-reader catalog's
+originals are immutable; its future import must update metadata/library links.
 
   export                write mapping.jsonl from this machine's ledgers
   verify  --mapping F   compare a mapping against the local tree, change nothing
@@ -26,6 +20,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 import m4_paths
+from jsonl_store import atomic_write, read_rows
+from m4_records import inventory_record
 import m4_triage_apply as APPLY
 import m4_triage_l1 as L1
 
@@ -41,7 +37,9 @@ def now():
 # --------------------------------------------------------------------------
 
 VERDICT_FIELDS = ('score', 'module', 'doc_type', 'year', 'org', 'title',
-                  'keep_original_name', 'confidence', 'language', 'rationale')
+                  'keep_original_name', 'confidence', 'language', 'rationale',
+                  'model', 'executor', 'model_identity', '_model', 'task_version',
+                  'score_status', 'importance', 'meta', 'preview_chars')
 
 
 def build_rows() -> tuple[list[dict], dict]:
@@ -80,10 +78,8 @@ def cmd_export(a):
     header = {'mapping_version': MAPPING_VERSION, 'generated': now(),
               'source_root': str(APPLY.SOURCE), 'library_root': str(APPLY.LIBRARY),
               'dataset': m4_paths.dataset(), 'files': len(rows)}
-    with path.open('w', encoding='utf-8') as fh:
-        fh.write(json.dumps({'header': header}, ensure_ascii=False) + '\n')
-        for row in rows:
-            fh.write(json.dumps(row, ensure_ascii=False) + '\n')
+    payload = [{'header': header}, *rows]
+    atomic_write(path, ''.join(json.dumps(row, ensure_ascii=False) + '\n' for row in payload).encode())
     print(json.dumps({'wrote': str(path), **header, **stats}, ensure_ascii=False))
 
 
@@ -92,15 +88,23 @@ def cmd_export(a):
 # --------------------------------------------------------------------------
 
 def load_mapping(path: Path) -> tuple[dict, list[dict]]:
-    header, rows = {}, []
-    with path.open(encoding='utf-8') as fh:
-        for line in fh:
-            try: record = json.loads(line)
-            except ValueError: continue
-            if 'header' in record and not rows:
-                header = record['header']; continue
-            if 'sha256' in record:
-                rows.append(record)
+    records = list(read_rows(path))
+    header = records[0].get('header', {}) if records else {}
+    rows = records[1:]
+    if (header.get('mapping_version') != MAPPING_VERSION
+            or type(header.get('files')) is not int or header['files'] != len(rows)):
+        raise ValueError('mapping_header_or_count_invalid')
+    origins, targets = set(), set()
+    for row in rows:
+        # Same content/path rules as the inventory; duplicates retain separate paths.
+        inventory_record({'rel': row.get('from'), 'sha256': row.get('sha256'), 'size': row.get('size', 0)})
+        target = row.get('to')
+        if not isinstance(target, str) or not target or Path(target).is_absolute() or '..' in Path(target).parts:
+            raise ValueError('mapping_target_invalid')
+        if row['from'] in origins or target in targets:
+            raise ValueError('mapping_duplicate_path')
+        origins.add(row['from'])
+        targets.add(target)
     return header, rows
 
 
@@ -160,7 +164,7 @@ def cmd_apply(a):
     moves = [{'sha256': m['sha256'], 'from': m['local'], 'to': m['to'],
               'size': m.get('size', 0), 'stage': 'import',
               'score': m.get('score'), 'level': m.get('level')}
-             for m in matched if m['local'] != m['to']]
+             for m in matched]
     if a.limit:
         moves = moves[:a.limit]
     print(json.dumps(summary, ensure_ascii=False))
@@ -169,6 +173,8 @@ def cmd_apply(a):
         for name, count in by_category.most_common():
             print('  %-30s %d' % (name, count))
         return
+    if missing or extra:
+        raise ValueError('mapping_corpus_mismatch: resolve missing/extra files before commit')
     APPLY.do_apply(moves, dry=False)
 
 

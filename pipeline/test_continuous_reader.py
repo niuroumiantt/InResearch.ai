@@ -116,6 +116,32 @@ class ReaderTests(unittest.TestCase):
         self.assertEqual(report["claims"][0]["object_ids"], ["obj-server"])
         self.assertEqual(report["evidence"][0]["question_ids"], ["q-power"])
 
+    def test_switching_default_keeps_one_completed_reading(self):
+        self.put()
+        self.run_reader()
+        doc = self.first_doc()
+        report = self.reader.artifact_path(doc["doc_id"], "report.json")
+        before = report.read_bytes()
+        calls = len(self.model.calls)
+        self.model.identity = {**self.model.identity, "model": "next-model"}
+        self.run_reader()
+        self.assertEqual(self.first_doc()["state"], "complete")
+        self.assertEqual(report.read_bytes(), before)
+        self.assertEqual(len(self.model.calls), calls)
+        self.assertEqual(self.reader.conn.execute("SELECT COUNT(*) FROM documents").fetchone()[0], 1)
+        self.put("new.txt", "新材料的独立内容")
+        self.reader.scan()
+        new_doc = self.reader.conn.execute("SELECT doc_id FROM documents WHERE doc_id!=?", (doc["doc_id"],)).fetchone()[0]
+        recipe = cr.read_json(self.reader.artifact_path(new_doc, "recipe.json"))
+        self.assertEqual(recipe["model"]["model"], "next-model")
+
+    def test_queued_reading_does_not_mix_models(self):
+        self.register()
+        self.model.identity = {**self.model.identity, "model": "next-model"}
+        self.run_reader()
+        self.assertEqual(self.first_doc()["error_code"], "execution_model_changed_requires_new_recipe")
+        self.assertEqual(self.model.calls, [])
+
     def test_duplicate_sources_and_version_chain_keep_bytes(self):
         raw = self.put("a/paper.txt", "内容 A")
         self.put("b/paper.txt", "内容 A")
@@ -599,10 +625,11 @@ class ReaderTests(unittest.TestCase):
         chunks = list(cr.split_text(text))
         self.assertEqual("".join(chunks), text)
         self.assertTrue(all(len(c) <= 6000 and len(c.encode()) <= 12000 for c in chunks))
+        self.assertEqual(cr.ModelClient(model="different-model").model, "different-model")
         with self.assertRaises(ValueError):
-            cr.ModelClient(model="different-model")
-        client = cr.ModelClient(timeout=1)
-        with mock.patch.object(cr.urllib.request, "urlopen", side_effect=OSError("private response must not leak")):
+            cr.ModelClient(model="")
+        client = cr.ModelClient(backend="ollama", url="http://localhost:11434", timeout=1)
+        with mock.patch.object(cr.models.urllib.request, "urlopen", side_effect=OSError("private response must not leak")):
             with self.assertRaises(cr.ModelError):
                 client.generate("synthesize", {"sections": []})
 
@@ -643,7 +670,7 @@ class ReaderTests(unittest.TestCase):
         self.assertEqual(self.model.ocr.call_count, 0)
 
     def test_ollama_vision_request_disables_thinking_and_accepts_json_from_thinking(self):
-        client = cr.ModelClient(timeout=1, ocr_model="qwen3-vl:8b")
+        client = cr.ModelClient(backend="ollama", url="http://localhost:11434", timeout=1, ocr_model="qwen3-vl:8b")
         seen = {}
         class Response:
             def __init__(self, body):
@@ -659,7 +686,7 @@ class ReaderTests(unittest.TestCase):
             return Response(json.dumps({"model": "qwen3-vl:8b", "message": {"content": "", "thinking": '{"text":"页面文字 12 kW","blank":false,"unreadable":false}'}}).encode())
         image = self.base / "page.png"
         image.write_bytes(b"png")
-        with mock.patch.object(cr.urllib.request, "urlopen", side_effect=fake_urlopen):
+        with mock.patch.object(cr.models.urllib.request, "urlopen", side_effect=fake_urlopen):
             out = client.ocr(image)
         self.assertIs(seen["body"]["think"], False)
         self.assertEqual((out["text"], out["blank"], out["unreadable"]), ("页面文字 12 kW", False, False))

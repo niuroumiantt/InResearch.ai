@@ -1,6 +1,6 @@
 # 当前研究与执行基准
 
-> CURRENT · 基准版本 2026.09.08.1 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
+> CURRENT · 基准版本 2026.09.12.6 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
 
 ## 从哪里读当前规则
 
@@ -14,6 +14,7 @@
 | 全站界面与换肤 | [05 界面规范](05_interface_system.md) | site-skin.js / CSS、interface_manifest.json |
 | 产品生态与总览 | [07 产品生态规范](07_product_ecosystems.md) | 生态/技术入口、中心关系图、九主题、厂商索引及旧 ID 映射 |
 | 采集与翻译 | [06 采集规范](06_acquisition.md) | acquisition.py、inews 显式投影、Spark 采集台账 |
+| 模型执行与客户端 | [08 模型执行](08_model_execution.md) | model_runtime.py、deploy/models.json |
 | 运行与部署 | [Spark 操作手册](../docs/local_reader/SPARK_OPERATIONS.md) | deploy/spark-reader/；本地开发见 docs/local_setup/README.md |
 | 规则替代与在册管理 | 本页 | current_state.json、repository_manifest.json、governance.py |
 
