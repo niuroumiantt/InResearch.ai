@@ -23129,6 +23129,1264 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**三档要一起看**：<20kW 纯风冷可行、20-75kW 混合风-液（含热管后门换热器）、>75kW 直液冷必选。**本条是直液冷的下限**，另一端见配对条目；20-75kW 那一段是过渡区，没有单一门槛值。 **tech=冷板式是就近归类**：原表只写「直液冷（DLC）」未区分冷板与浸没，标 [未核]。 对照库内 liquid-cooling-threshold-coldplate-2022（冷板式 15 kW/机柜 下界，设计方判断，CN）：**那条的门槛远低于这里的 75kW**——一个是「什么时候可以用液冷」、一个是「什么时候不得不用液冷」，**两者不是同一个问题**，并列保留。 **出处未知**：五张工作表均无署名、无日期，内容看得出是对英伟达公开规格的整理，但无法确认整理方与依据版本，grade 记 S5。原表多处自带问号（如 NVL32 总功耗「40kw?」、GB300 的 LPDDR5X「17.3TB?」、InfiniBand「2.7TB/s?」），**即整理者自己也不确定**。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-units-total-2024",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server-market",
+        "label": "中国 AI 服务器市场"
+      },
+      "value": 630.37,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按公司分」第 20 行 Grand Total 出货量 = 630370.2021187076 台",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**全市场合计 63.04 万台**，是所有分项的分母：按公司、按行业、按省三张表的 Grand Total 都等于这个数（小数位略有差异，属浮点累加）。 单位换算：原表台数 ÷ 1000 = 千台。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-revenue-total-2024",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server-market",
+        "label": "中国 AI 服务器市场"
+      },
+      "value": 233.55,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "region": "China",
+        "storage_scope": "不适用（非存储口径）",
+        "product_category": "未拆分",
+        "subregion": "全国",
+        "vertical": "未拆分"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按公司分」第 20 行 Grand Total 出货金额 = 23355.166602354955 $M",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。 **与台数配合得均价**：233.55 亿美元 ÷ 63.04 万台 ≈ 37,050 美元/台，**约为同期中国 x86 通用服务器均价（约 6,000 美元/台）的 6 倍**——这是 AI 服务器与通用服务器最直观的差别。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-units-ieit-systems-2024",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "company",
+        "id": "ieit-systems",
+        "label": "浪潮信息（IEIT SYSTEMS）"
+      },
+      "value": 174.154,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按公司分」IEIT SYSTEMS 行，出货量 = 174154.0 台",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**counterparty_role 仍记全市场（未分侧）**：原表是 IDC 对该厂商在中国市场出货量的第三方统计，**不是厂商自报的销量，也不是某个买方的采购量**。按台数份额 27.6%、按金额份额 35.7%——**两者差距见下**。 单位换算：原表台数 ÷ 1000 = 千台。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-revenue-ieit-systems-2024",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "company",
+        "id": "ieit-systems",
+        "label": "浪潮信息（IEIT SYSTEMS）"
+      },
+      "value": 83.36,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "region": "China",
+        "storage_scope": "不适用（非存储口径）",
+        "product_category": "未拆分",
+        "subregion": "全国",
+        "vertical": "未拆分"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按公司分」IEIT SYSTEMS 行，出货金额 = 8335.5 $M",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。隐含均价 47863 美元/台。 **台数份额与金额份额差很多**：浪潮信息（IEIT SYSTEMS） 按台数占 27.6%、按金额占 35.7%——单价高于市场均价。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-units-nettrix-2024",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "company",
+        "id": "nettrix",
+        "label": "宁畅"
+      },
+      "value": 58.208,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按公司分」Nettrix 行，出货量 = 58208.0 台",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**counterparty_role 仍记全市场（未分侧）**：原表是 IDC 对该厂商在中国市场出货量的第三方统计，**不是厂商自报的销量，也不是某个买方的采购量**。按台数份额 9.2%、按金额份额 8.8%——**两者差距见下**。 单位换算：原表台数 ÷ 1000 = 千台。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-revenue-nettrix-2024",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "company",
+        "id": "nettrix",
+        "label": "宁畅"
+      },
+      "value": 20.66,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "region": "China",
+        "storage_scope": "不适用（非存储口径）",
+        "product_category": "未拆分",
+        "subregion": "全国",
+        "vertical": "未拆分"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按公司分」Nettrix 行，出货金额 = 2065.98 $M",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。隐含均价 35493 美元/台。 **台数份额与金额份额差很多**：宁畅 按台数占 9.2%、按金额占 8.8%——单价低于市场均价。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-units-huawei-server-2024",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "company",
+        "id": "huawei-server",
+        "label": "华为（服务器）"
+      },
+      "value": 50.651,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按公司分」Huawei 行，出货量 = 50651.0 台",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**counterparty_role 仍记全市场（未分侧）**：原表是 IDC 对该厂商在中国市场出货量的第三方统计，**不是厂商自报的销量，也不是某个买方的采购量**。按台数份额 8.0%、按金额份额 6.5%——**两者差距见下**。 单位换算：原表台数 ÷ 1000 = 千台。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-revenue-huawei-server-2024",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "company",
+        "id": "huawei-server",
+        "label": "华为（服务器）"
+      },
+      "value": 15.21,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "region": "China",
+        "storage_scope": "不适用（非存储口径）",
+        "product_category": "未拆分",
+        "subregion": "全国",
+        "vertical": "未拆分"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按公司分」Huawei 行，出货金额 = 1521.08 $M",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。隐含均价 30031 美元/台。 **台数份额与金额份额差很多**：华为（服务器） 按台数占 8.0%、按金额占 6.5%——单价低于市场均价。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-units-kunqian-2024",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "company",
+        "id": "kunqian",
+        "label": "昆擎（KunQian）"
+      },
+      "value": 43.854,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按公司分」KunQian 行，出货量 = 43853.85 台",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**counterparty_role 仍记全市场（未分侧）**：原表是 IDC 对该厂商在中国市场出货量的第三方统计，**不是厂商自报的销量，也不是某个买方的采购量**。按台数份额 7.0%、按金额份额 2.3%——**两者差距见下**。 单位换算：原表台数 ÷ 1000 = 千台。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-revenue-kunqian-2024",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "company",
+        "id": "kunqian",
+        "label": "昆擎（KunQian）"
+      },
+      "value": 5.26,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "region": "China",
+        "storage_scope": "不适用（非存储口径）",
+        "product_category": "未拆分",
+        "subregion": "全国",
+        "vertical": "未拆分"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按公司分」KunQian 行，出货金额 = 525.78 $M",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。隐含均价 11989 美元/台。 **台数份额与金额份额差很多**：昆擎（KunQian） 按台数占 7.0%、按金额占 2.3%——单价低于市场均价。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-units-h3c-2024",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "company",
+        "id": "h3c",
+        "label": "新华三"
+      },
+      "value": 39.714,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按公司分」H3C 行，出货量 = 39713.92 台",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**counterparty_role 仍记全市场（未分侧）**：原表是 IDC 对该厂商在中国市场出货量的第三方统计，**不是厂商自报的销量，也不是某个买方的采购量**。按台数份额 6.3%、按金额份额 8.0%——**两者差距见下**。 单位换算：原表台数 ÷ 1000 = 千台。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-revenue-h3c-2024",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "company",
+        "id": "h3c",
+        "label": "新华三"
+      },
+      "value": 18.77,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "region": "China",
+        "storage_scope": "不适用（非存储口径）",
+        "product_category": "未拆分",
+        "subregion": "全国",
+        "vertical": "未拆分"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按公司分」H3C 行，出货金额 = 1876.6 $M",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。隐含均价 47253 美元/台。 **台数份额与金额份额差很多**：新华三 按台数占 6.3%、按金额占 8.0%——单价高于市场均价。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-units-xfusion-2024",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "company",
+        "id": "xfusion",
+        "label": "超聚变（xFusion）"
+      },
+      "value": 27.337,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按公司分」xFusion 行，出货量 = 27336.56 台",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**counterparty_role 仍记全市场（未分侧）**：原表是 IDC 对该厂商在中国市场出货量的第三方统计，**不是厂商自报的销量，也不是某个买方的采购量**。按台数份额 4.3%、按金额份额 7.1%——**两者差距见下**。 单位换算：原表台数 ÷ 1000 = 千台。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-revenue-xfusion-2024",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "company",
+        "id": "xfusion",
+        "label": "超聚变（xFusion）"
+      },
+      "value": 16.65,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "region": "China",
+        "storage_scope": "不适用（非存储口径）",
+        "product_category": "未拆分",
+        "subregion": "全国",
+        "vertical": "未拆分"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按公司分」xFusion 行，出货金额 = 1664.96 $M",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。隐含均价 60906 美元/台。 **台数份额与金额份额差很多**：超聚变（xFusion） 按台数占 4.3%、按金额占 7.1%——单价高于市场均价。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-units-powerleader-2024",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "company",
+        "id": "powerleader",
+        "label": "宝德"
+      },
+      "value": 27.975,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按公司分」Powerleader 行，出货量 = 27975.0 台",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**counterparty_role 仍记全市场（未分侧）**：原表是 IDC 对该厂商在中国市场出货量的第三方统计，**不是厂商自报的销量，也不是某个买方的采购量**。按台数份额 4.4%、按金额份额 2.9%——**两者差距见下**。 单位换算：原表台数 ÷ 1000 = 千台。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-revenue-powerleader-2024",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "company",
+        "id": "powerleader",
+        "label": "宝德"
+      },
+      "value": 6.83,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "region": "China",
+        "storage_scope": "不适用（非存储口径）",
+        "product_category": "未拆分",
+        "subregion": "全国",
+        "vertical": "未拆分"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按公司分」Powerleader 行，出货金额 = 682.88 $M",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。隐含均价 24410 美元/台。 **台数份额与金额份额差很多**：宝德 按台数占 4.4%、按金额占 2.9%——单价低于市场均价。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-units-enginetech-2024",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "company",
+        "id": "enginetech",
+        "label": "英特集团（Enginetech）"
+      },
+      "value": 26.487,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按公司分」Enginetech 行，出货量 = 26487.0 台",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**counterparty_role 仍记全市场（未分侧）**：原表是 IDC 对该厂商在中国市场出货量的第三方统计，**不是厂商自报的销量，也不是某个买方的采购量**。按台数份额 4.2%、按金额份额 1.8%——**两者差距见下**。 单位换算：原表台数 ÷ 1000 = 千台。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-revenue-enginetech-2024",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "company",
+        "id": "enginetech",
+        "label": "英特集团（Enginetech）"
+      },
+      "value": 4.25,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "region": "China",
+        "storage_scope": "不适用（非存储口径）",
+        "product_category": "未拆分",
+        "subregion": "全国",
+        "vertical": "未拆分"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按公司分」Enginetech 行，出货金额 = 424.59 $M",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。隐含均价 16030 美元/台。 **台数份额与金额份额差很多**：英特集团（Enginetech） 按台数占 4.2%、按金额占 1.8%——单价低于市场均价。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-share-ieit-systems-units-2024",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "ieit-systems",
+        "label": "浪潮信息（IEIT SYSTEMS）"
+      },
+      "value": 27.63,
+      "unit": "%",
+      "caliber": {
+        "measure": "按台数",
+        "product_line": "服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按公司分」IEIT SYSTEMS 行 ÷ 第 20 行 Grand Total（按台数口径）",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：174154.00 台 ÷ 630370.20 台 = 27.63%。原表只给绝对值不给份额。 **product_line=服务器（AI 服务器口径）**，与库内 x86 通用服务器的份额不可比。 浪潮信息按台数占 27.6%、按金额占 35.7%，**金额份额高出 8 个百分点**，说明其 AI 服务器单价高于市场均价。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-share-ieit-systems-value-2024",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "ieit-systems",
+        "label": "浪潮信息（IEIT SYSTEMS）"
+      },
+      "value": 35.69,
+      "unit": "%",
+      "caliber": {
+        "measure": "按金额",
+        "product_line": "服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按公司分」IEIT SYSTEMS 行 ÷ 第 20 行 Grand Total（按金额口径）",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：8335.50 $M ÷ 23355.17 $M = 35.69%。原表只给绝对值不给份额。 **product_line=服务器（AI 服务器口径）**，与库内 x86 通用服务器的份额不可比。 浪潮信息按台数占 27.6%、按金额占 35.7%，**金额份额高出 8 个百分点**，说明其 AI 服务器单价高于市场均价。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-share-nettrix-units-2024",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "nettrix",
+        "label": "宁畅"
+      },
+      "value": 9.23,
+      "unit": "%",
+      "caliber": {
+        "measure": "按台数",
+        "product_line": "服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按公司分」Nettrix 行 ÷ 第 20 行 Grand Total（按台数口径）",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：58208.00 台 ÷ 630370.20 台 = 9.23%。原表只给绝对值不给份额。 **product_line=服务器（AI 服务器口径）**，与库内 x86 通用服务器的份额不可比。  **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-share-nettrix-value-2024",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "nettrix",
+        "label": "宁畅"
+      },
+      "value": 8.85,
+      "unit": "%",
+      "caliber": {
+        "measure": "按金额",
+        "product_line": "服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按公司分」Nettrix 行 ÷ 第 20 行 Grand Total（按金额口径）",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2065.98 $M ÷ 23355.17 $M = 8.85%。原表只给绝对值不给份额。 **product_line=服务器（AI 服务器口径）**，与库内 x86 通用服务器的份额不可比。  **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-share-huawei-server-units-2024",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "huawei-server",
+        "label": "华为（服务器）"
+      },
+      "value": 8.04,
+      "unit": "%",
+      "caliber": {
+        "measure": "按台数",
+        "product_line": "服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按公司分」Huawei 行 ÷ 第 20 行 Grand Total（按台数口径）",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：50651.00 台 ÷ 630370.20 台 = 8.04%。原表只给绝对值不给份额。 **product_line=服务器（AI 服务器口径）**，与库内 x86 通用服务器的份额不可比。  **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-share-huawei-server-value-2024",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "huawei-server",
+        "label": "华为（服务器）"
+      },
+      "value": 6.51,
+      "unit": "%",
+      "caliber": {
+        "measure": "按金额",
+        "product_line": "服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按公司分」Huawei 行 ÷ 第 20 行 Grand Total（按金额口径）",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：1521.08 $M ÷ 23355.17 $M = 6.51%。原表只给绝对值不给份额。 **product_line=服务器（AI 服务器口径）**，与库内 x86 通用服务器的份额不可比。  **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-share-kunqian-units-2024",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "kunqian",
+        "label": "昆擎（KunQian）"
+      },
+      "value": 6.96,
+      "unit": "%",
+      "caliber": {
+        "measure": "按台数",
+        "product_line": "服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按公司分」KunQian 行 ÷ 第 20 行 Grand Total（按台数口径）",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：43853.85 台 ÷ 630370.20 台 = 6.96%。原表只给绝对值不给份额。 **product_line=服务器（AI 服务器口径）**，与库内 x86 通用服务器的份额不可比。  **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-share-kunqian-value-2024",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "kunqian",
+        "label": "昆擎（KunQian）"
+      },
+      "value": 2.25,
+      "unit": "%",
+      "caliber": {
+        "measure": "按金额",
+        "product_line": "服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按公司分」KunQian 行 ÷ 第 20 行 Grand Total（按金额口径）",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：525.78 $M ÷ 23355.17 $M = 2.25%。原表只给绝对值不给份额。 **product_line=服务器（AI 服务器口径）**，与库内 x86 通用服务器的份额不可比。  **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-units-vertical-internet-2024",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server-market",
+        "label": "中国 AI 服务器市场"
+      },
+      "value": 365.009,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "互联网",
+        "subregion": "全国"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按行业分」Internet 行，出货量 = 365008.82 台",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**互联网一个行业就占 57.9%%**（36.50 万台 / 63.04 万台），专业服务 11.7%%、电信 8.0%%、政府 5.9%%、金融 5.2%%、制造 4.1%%——**头部集中度极高**。 单位换算：原表台数 ÷ 1000 = 千台。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-units-vertical-services-2024",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server-market",
+        "label": "中国 AI 服务器市场"
+      },
+      "value": 73.764,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "专业服务",
+        "subregion": "全国"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按行业分」Services 行，出货量 = 73764.17 台",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条为分行业口径，占全市场 11.7%。 单位换算：原表台数 ÷ 1000 = 千台。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-units-vertical-telecom-2024",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server-market",
+        "label": "中国 AI 服务器市场"
+      },
+      "value": 50.335,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "电信",
+        "subregion": "全国"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按行业分」Telecom 行，出货量 = 50335.45 台",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条为分行业口径，占全市场 8.0%。 单位换算：原表台数 ÷ 1000 = 千台。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-units-vertical-government-2024",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server-market",
+        "label": "中国 AI 服务器市场"
+      },
+      "value": 37.071,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "政府",
+        "subregion": "全国"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按行业分」Government 行，出货量 = 37070.54 台",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条为分行业口径，占全市场 5.9%。 单位换算：原表台数 ÷ 1000 = 千台。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-units-vertical-finance-2024",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server-market",
+        "label": "中国 AI 服务器市场"
+      },
+      "value": 32.465,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "金融",
+        "subregion": "全国"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按行业分」Finance 行，出货量 = 32465.06 台",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条为分行业口径，占全市场 5.2%。 单位换算：原表台数 ÷ 1000 = 千台。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-units-vertical-manufacturing-2024",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server-market",
+        "label": "中国 AI 服务器市场"
+      },
+      "value": 25.899,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "制造",
+        "subregion": "全国"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按行业分」Manufacturing 行，出货量 = 25898.62 台",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条为分行业口径，占全市场 4.1%。 单位换算：原表台数 ÷ 1000 = 千台。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-units-prov-beijing-2024",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server-market",
+        "label": "中国 AI 服务器市场"
+      },
+      "value": 314.864,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "北京"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按省分」BeiJing 行，出货量 = 314864.08 台",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**北京一地占 49.9%%**（31.49 万台 / 63.04 万台）——AI 服务器的地理集中度远高于通用服务器。 单位换算：原表台数 ÷ 1000 = 千台。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-units-prov-zhejiang-2024",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server-market",
+        "label": "中国 AI 服务器市场"
+      },
+      "value": 76.095,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "浙江"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按省分」ZheJiang 行，出货量 = 76095.06 台",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条为分省口径，占全市场 12.1%。 单位换算：原表台数 ÷ 1000 = 千台。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-units-prov-shenzhen-2024",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server-market",
+        "label": "中国 AI 服务器市场"
+      },
+      "value": 58.831,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "深圳"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按省分」ShenZhen 行，出货量 = 58830.6 台",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条为分省口径，占全市场 9.3%。 单位换算：原表台数 ÷ 1000 = 千台。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-units-prov-shanghai-2024",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server-market",
+        "label": "中国 AI 服务器市场"
+      },
+      "value": 49.67,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "上海"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按省分」ShangHai 行，出货量 = 49670.1 台",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条为分省口径，占全市场 7.9%。 单位换算：原表台数 ÷ 1000 = 千台。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-units-prov-guangdongxsz-2024",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server-market",
+        "label": "中国 AI 服务器市场"
+      },
+      "value": 29.419,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "广东（不含深圳）"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按省分」GuangDongxSZ 行，出货量 = 29419.46 台",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原表把广东写作 GuangDongxSZ，即不含深圳**；深圳单列 5.88 万台。**按省加总时不要漏深圳**。 单位换算：原表台数 ÷ 1000 = 千台。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "idc-cn-aiserver-units-prov-jiangsu-2024",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server-market",
+        "label": "中国 AI 服务器市场"
+      },
+      "value": 24.458,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "江苏"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "29b9be59f28e159d79bfaefc4e4b024bd8c0e82e91a915f666f692a2b1585b9d",
+        "local_file": "IDC 2024 年中国 AI 服务器统计（按公司/行业/省份）.xlsx",
+        "locator": "工作表「按省分」JiangSu 行，出货量 = 24458.05 台",
+        "grade": "S3",
+        "originator": "IDC（三张工作表均标注 Source：IDC）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条为分省口径，占全市场 3.9%。 单位换算：原表台数 ÷ 1000 = 千台。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
     }
   ]
 }
