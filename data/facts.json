@@ -26757,6 +26757,102 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "单位换算：US$M ÷ 100 = 亿美元。占全国 2.3%（全国 2019 年 45.02 亿美元）。 **subregion 这一维是 #155 才给金额侧补上的**，此前省份拆分一条都录不进来。 **这是外置存储（External Disk Storage）口径**，与含服务器内置存储的 Total 口径差四倍。 "
+    },
+    {
+      "fact_id": "idc-prc-external-storage-2019-prov-beijing",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-external-storage-market",
+        "label": "中国外置磁盘存储市场"
+      },
+      "value": 10.11,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Storage Systems",
+        "region": "China",
+        "storage_scope": "External OEM",
+        "product_category": "未拆分",
+        "subregion": "北京",
+        "vertical": "未拆分"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a726419abb5b4b7efeb768266a0451b4c31752d126b200dc2c46ef573f01573",
+        "local_file": "2020Q3 IDC PRC Provincial Enterprise Storage System Tracker.xlsx",
+        "locator": "工作表「·Market Forecast」第 43 行「External Disk Storage Market Forecast by Provinces」，Beijing 行 2019 列 = 1010.85 百万美元",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly Enterprise Storage System Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。占全国 22.5%（全国 2019 年 45.02 亿美元）。 北京一地占全国 22.5%，北京+上海+深圳三地合计 37.8%——中国外置存储的地理集中度极高。 **这三条是补录**：首次录入时我按旧版抽取文本的大小写（BeiJing/ShangHai/ShenZhen）匹配省名，而重抽后的文本改成了 Beijing/Shanghai/Shenzhen，**三个最大的省份因此被漏掉**——同一文件在不同抽取器版本下的正文并不逐字稳定，这正是 text_md5 指纹的用处。"
+    },
+    {
+      "fact_id": "idc-prc-external-storage-2019-prov-shanghai",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-external-storage-market",
+        "label": "中国外置磁盘存储市场"
+      },
+      "value": 4.21,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Storage Systems",
+        "region": "China",
+        "storage_scope": "External OEM",
+        "product_category": "未拆分",
+        "subregion": "上海",
+        "vertical": "未拆分"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a726419abb5b4b7efeb768266a0451b4c31752d126b200dc2c46ef573f01573",
+        "local_file": "2020Q3 IDC PRC Provincial Enterprise Storage System Tracker.xlsx",
+        "locator": "工作表「·Market Forecast」第 43 行「External Disk Storage Market Forecast by Provinces」，Shanghai 行 2019 列 = 420.85 百万美元",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly Enterprise Storage System Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。占全国 9.3%（全国 2019 年 45.02 亿美元）。  **这三条是补录**：首次录入时我按旧版抽取文本的大小写（BeiJing/ShangHai/ShenZhen）匹配省名，而重抽后的文本改成了 Beijing/Shanghai/Shenzhen，**三个最大的省份因此被漏掉**——同一文件在不同抽取器版本下的正文并不逐字稳定，这正是 text_md5 指纹的用处。"
+    },
+    {
+      "fact_id": "idc-prc-external-storage-2019-prov-shenzhen",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-external-storage-market",
+        "label": "中国外置磁盘存储市场"
+      },
+      "value": 2.69,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Storage Systems",
+        "region": "China",
+        "storage_scope": "External OEM",
+        "product_category": "未拆分",
+        "subregion": "深圳",
+        "vertical": "未拆分"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a726419abb5b4b7efeb768266a0451b4c31752d126b200dc2c46ef573f01573",
+        "local_file": "2020Q3 IDC PRC Provincial Enterprise Storage System Tracker.xlsx",
+        "locator": "工作表「·Market Forecast」第 43 行「External Disk Storage Market Forecast by Provinces」，Shenzhen 行 2019 列 = 269.01 百万美元",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly Enterprise Storage System Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。占全国 6.0%（全国 2019 年 45.02 亿美元）。 深圳与广东是分开列的（原表广东写作 GuangDongxSZ 即不含深圳），两者合计 580.55 百万美元才是完整的广东省。 **这三条是补录**：首次录入时我按旧版抽取文本的大小写（BeiJing/ShangHai/ShenZhen）匹配省名，而重抽后的文本改成了 Beijing/Shanghai/Shenzhen，**三个最大的省份因此被漏掉**——同一文件在不同抽取器版本下的正文并不逐字稳定，这正是 text_md5 指纹的用处。"
     }
   ]
 }
