@@ -12,79 +12,15 @@
   - 状态行与"待办"是内部字段，不进对外产出物
   - 每模块章节含模块定位（取自模块定义）；附录自动汇总全部证据来源（去重）
 """
-import json
 import re
 import sys
 from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-RESEARCH = ROOT / "research"
 OUT_DIR = ROOT / "reports" / "output"
 
-FIELD_ORDER = ["结论", "论证", "证据", "口径提醒"]
-INTERNAL_FIELDS = {"待办"}
-
-
-def parse_findings(md_text):
-    """把研究文档拆成 finding 块：[{id, title, qtags, status, revised, body_lines}]"""
-    findings = []
-    cur = None
-    for line in md_text.split("\n"):
-        m = re.match(r"^##\s+(M\d+-F\d+)\s+(.*?)\s*(\{[^}]*\})?\s*$", line)
-        if m:
-            if cur:
-                findings.append(cur)
-            cur = {"id": m.group(1), "title": m.group(2),
-                   "qtags": (m.group(3) or "").strip("{}"), "status": "current",
-                   "revised": "", "body": []}
-            continue
-        if cur is None:
-            continue
-        s = re.match(r"^-\s+\*\*状态\*\*：(\S+?)\s*｜\s*\*\*修订\*\*：(\S+)", line)
-        if s:
-            cur["status"], cur["revised"] = s.group(1), s.group(2)
-            continue
-        cur["body"].append(line)
-    if cur:
-        findings.append(cur)
-    return findings
-
-
-def clean_body(body_lines):
-    """剔除内部字段（待办），保留结论/论证/证据/口径提醒。"""
-    out, skipping = [], False
-    for line in body_lines:
-        m = re.match(r"^-\s+\*\*([^*]+)\*\*：?", line)
-        if m:
-            skipping = m.group(1).strip() in INTERNAL_FIELDS
-        elif skipping and not line.startswith("  "):
-            skipping = False
-        if not skipping:
-            out.append(line)
-    while out and not out[-1].strip():
-        out.pop()
-    return out
-
-
-def module_position(mod_doc_path):
-    """取模块定义文件"定位与边界"第一段作章节导语。"""
-    try:
-        text = (ROOT / "framework" / mod_doc_path).read_text(encoding="utf-8")
-    except FileNotFoundError:
-        return ""
-    m = re.search(r"##\s*定位与边界\s*\n(.+?)(?:\n##|\Z)", text, re.S)
-    return m.group(1).strip() if m else ""
-
-
-def collect_sources(findings):
-    urls = []
-    for f in findings:
-        for line in f["body"]:
-            for u in re.findall(r"https?://[^\s)）]+", line):
-                if u not in urls:
-                    urls.append(u)
-    return urls
+from report_model import build_report, markdown_report
 
 
 def main():
@@ -96,62 +32,17 @@ def main():
         args.remove("--title"); args.remove(title)
     selected = [a for a in args if re.match(r"^M\d+$", a)]
 
-    registry = json.loads((ROOT / "framework" / "modules.json").read_text(encoding="utf-8"))
-    mods = registry["modules"]
-    if selected:
-        mods = [m for m in mods if m["id"] in selected]
+    report = build_report(ROOT, selected)
     today = date.today().isoformat()
-    title = title or ("全球数据中心研究报告" if not selected
-                      else "专题报告：" + "、".join(m["name"] for m in mods))
-
-    lines = [f"# {title}", "",
-             f"> 由 Datacenter Hub 知识层导出 ｜ 数据快照 {today} ｜ 框架 v{registry['version']}",
-             "> 口径与核验规则见《口径与核验规则手册》；每条结论的证据分级：S1 监管文件 / S2 公司披露 / S3 权威第三方 / S4 媒体 / S5 推算。",
-             ""]
-    all_findings, warn_count, chapters = [], 0, 0
-
-    # 执行摘要（全量导出时置于篇首；专题导出跳过）
-    summary = RESEARCH / "SUMMARY.md"
-    if not selected and summary.exists():
-        body = re.sub(r"^#\s+.*\n", "", summary.read_text(encoding="utf-8"), count=1)
-        lines += ["## 执行摘要", "", body.strip(), ""]
-
-    for m in mods:
-        rp = m.get("research") or f"research/{m['id']}.md"
-        if not rp or not (ROOT / rp).exists():
-            continue
-        findings = parse_findings((ROOT / rp).read_text(encoding="utf-8"))
-        if not findings:
-            continue
-        chapters += 1
-        lines.append(f"## {m['id']} {m['name']}")
-        definitions = list((ROOT / "framework/modules").glob(m["id"] + "_*.md"))
-        pos = module_position(m.get("doc") or str(definitions[0].relative_to(ROOT / "framework"))) if definitions else ""
-        if pos:
-            lines.append("")
-            lines.append("> " + pos.replace("\n", " "))
-        lines.append("")
-        for f in findings:
-            qtag = f"（{f['qtags']}）" if f["qtags"] and f["qtags"] != "new" else ""
-            lines.append(f"### {f['title']}{qtag}")
-            if f["status"] != "current":
-                warn_count += 1
-                lines.append("")
-                lines.append(f"> ⚠️ 本条状态为 {f['status']}（最后修订 {f['revised']}），结论可能需要更新，引用前请核验。")
-            lines.append("")
-            lines.extend(clean_body(f["body"]))
-            lines.append("")
-            all_findings.append(f)
-
+    title = title or report['title']
+    lines = markdown_report(report, title, today)
+    chapters = len(report['chapters'])
     if not chapters:
-        print("导出失败：没有可导出的研究章节", file=sys.stderr)
+        print("No current report chapters", file=sys.stderr)
         return 1
-
-    # 附录：来源清单
-    sources = collect_sources(all_findings)
-    lines += ["## 附录：来源清单", ""]
-    lines += [f"{i+1}. {u}" for i, u in enumerate(sources)]
-    lines.append("")
+    all_findings = [f for ch in report['chapters'] for f in ch['findings']]
+    warn_count = report['review_count']
+    sources = report['sources']
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     safe = re.sub(r"[^\w一-鿿：、]", "_", title)

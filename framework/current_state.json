@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.12.2",
+  "version": "2026.09.12.3",
   "effective_at": "2026-09-12",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -75,18 +75,23 @@
       "topic": "knowledge",
       "status": "current",
       "scope": "project",
-      "effective_at": "2026-09-06",
+      "effective_at": "2026-09-12",
       "source": "framework/02_knowledge_format.md",
       "implementations": [
         "pipeline/research.py",
         "pipeline/export.py",
+        "pipeline/report_model.py",
+        "pipeline/test_report_model.py",
+        "report.html",
+        "pipeline/test_research.py",
+        "pipeline/test_intake.py",
         "pipeline/intake.py",
         "data/research_knowledge.json"
       ],
       "supersedes": [
         "knowledge-legacy"
       ],
-      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。"
+      "reason": "补齐既有 C3 证据与依赖约束、非数字候选入口；网页和导出共用报告模型，失效 Finding 只保留历史入口。"
     },
     {
       "id": "products-legacy",

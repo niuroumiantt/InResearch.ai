@@ -61,23 +61,49 @@ def review_valid(row):
             and (review['tier'] != 'A' or review['authority'] == 'owner'))
 
 
+def evidence_errors(row, document, adopted=False):
+    """One source-location contract for validation and adoption eligibility."""
+    errors = []
+    page = row.get('page_index')
+    total = document.get('coverage', {}).get('pages_total')
+    if 'page_index' in row and (type(page) is not int or page < 0):
+        errors.append('page_index must be a nonnegative integer')
+    elif type(page) is int and type(total) is int and page >= total:
+        errors.append('page_index exceeds original document pages')
+    locator = row.get('locator')
+    if page is None and not (isinstance(locator, str) and locator.strip()):
+        errors.append('original locator required')
+    if adopted and not (isinstance(row.get('quote'), str) and row['quote'].strip()):
+        errors.append('adopted text evidence requires original quotation')
+    if row.get('content_sha256') and row['content_sha256'] != document.get('content_sha256'):
+        errors.append('evidence content identity differs from original document')
+    return errors
+
+
 def supported_adoption(row, knowledge):
-    if not review_valid(row) or not row.get('evidence_ids'):
-        return False
+    """Evaluate the whole support chain; revoked dependencies reopen questions."""
     evidence = {e['id']: e for e in knowledge.get('evidence', [])}
     documents = {d['id']: d for d in knowledge.get('documents', [])}
-    for eid in row['evidence_ids']:
-        e = evidence.get(eid, {})
-        d = documents.get(e.get('document_id'), {})
-        if e.get('status') != 'adopted' or not review_valid(e):
+    statements = {s['id']: s for s in knowledge.get('statements', [])}
+
+    def supported(record, visiting):
+        rid = record.get('id')
+        if (rid in visiting or record.get('status') != 'adopted'
+                or not review_valid(record) or not record.get('evidence_ids')):
             return False
-        if not coverage_complete(d) or d.get('status') in ('withdrawn', 'rejected'):
-            return False
-        if 'page_index' in e and (type(e['page_index']) is not int or e['page_index'] < 0):
-            return False
-        if not e.get('locator') and e.get('page_index') is None:
-            return False
-    return True
+        for eid in record['evidence_ids']:
+            e = evidence.get(eid, {})
+            d = documents.get(e.get('document_id'), {})
+            if e.get('status') != 'adopted' or not review_valid(e):
+                return False
+            if not coverage_complete(d) or d.get('status') in ('withdrawn', 'rejected', 'superseded'):
+                return False
+            if evidence_errors(e, d, adopted=True):
+                return False
+        return all(supported(statements.get(sid, {}), visiting | {rid})
+                   for sid in record.get('statement_ids', []))
+
+    return supported(row, set())
 
 
 def read_json(path, default=None):
@@ -163,10 +189,9 @@ def validate(graph, questions, knowledge):
             if name == 'evidence':
                 if row.get('document_id') not in tables['documents']:
                     errors.append(f'{rid}: missing original document')
-                if not row.get('locator') and row.get('page_index') is None:
-                    errors.append(f'{rid}: original locator required')
-                if 'page_index' in row and (type(row['page_index']) is not int or row['page_index'] < 0):
-                    errors.append(f'{rid}: page_index must be a nonnegative integer')
+                errors.extend(f'{rid}: {error}' for error in evidence_errors(
+                    row, tables['documents'].get(row.get('document_id'), {}),
+                    adopted=row.get('status') == 'adopted'))
             if name in ('statements', 'answers') and not row.get('evidence_ids'):
                 errors.append(f'{rid}: assertion/answer requires evidence')
             if name == 'answers' and row.get('question_id') not in qs:
@@ -197,6 +222,23 @@ def question_tasks(questions, knowledge):
                  object_ids=q['object_ids'], question_ids=[q['id']],
                  evidence_requirements=q['evidence_requirements'], status='open')
             for q in questions['records'] if q['id'] not in closed]
+
+
+def current_tasks(root=ROOT, questions=None, knowledge=None):
+    """The task set used by research views, assignment and queue consumers."""
+    if questions is None:
+        questions = read_json(root / 'framework/research_questions.json')
+    if knowledge is None:
+        knowledge = read_json(root / 'data/research_knowledge.json')
+    tasks = question_tasks(questions, knowledge)
+    legacy = read_json(root / 'reports/workorders.json', {'orders': []})['orders']
+    tasks.extend(o for o in legacy if o.get('kind') not in ('声明问题开放', '研究问题开放'))
+    names = {m['id']: m['name'] for m in read_json(root / 'framework/modules.json', {'modules': []})['modules']}
+    assignments = {a['workorder_id']: a for a in read_json(root / 'data/assignments.json', {'records': []})['records']}
+    for task in tasks:
+        task.setdefault('name', names.get(task.get('mid'), ''))
+        task['assignment'] = assignments.get(task.get('wid'))
+    return tasks
 
 
 def candidate_snapshot(payload, graph, questions):
@@ -464,12 +506,7 @@ def build_snapshot(root=ROOT):
     closed = completed_questions(curated)
     for q in questions['records']:
         q['status'] = 'answered' if q['id'] in closed else 'open'
-    tasks = question_tasks(questions, curated)
-    old = read_json(root / 'reports/workorders.json', {'orders': []})['orders']
-    tasks.extend(o for o in old if o.get('kind') not in ('声明问题开放', '研究问题开放'))
-    assignments = {a['workorder_id']: a for a in read_json(root / 'data/assignments.json', {'records': []})['records']}
-    for task in tasks:
-        task['assignment'] = assignments.get(task.get('wid'))
+    tasks = current_tasks(root, questions, curated)
     reader = runtime.get('reader', {'status': 'not_connected', 'model': None})
     reader['received_at'] = runtime.get('received_at')
     if reader.get('received_at'):

@@ -104,12 +104,9 @@ const esc = s => String(s ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").repl
 let ORDERS = [], STATS = {}, ASSIGN = {}, modFilter = "", canWrite = false;
 
 async function load() {
-  const [wo, as] = await Promise.all([
-    fetch("reports/workorders.json?t=" + Date.now()).then(r => r.json()),
-    fetch("data/assignments.json?t=" + Date.now()).then(r => r.json()).catch(() => ({records: []})),
-  ]);
+  const wo = await fetch("/api/tasks").then(r => {if (!r.ok) throw Error("任务暂不可用"); return r.json();});
   ORDERS = wo.orders; STATS = wo.module_stats || {};
-  ASSIGN = Object.fromEntries((as.records || []).map(r => [r.workorder_id, r]));
+  ASSIGN = Object.fromEntries(ORDERS.filter(o => o.assignment).map(o => [o.wid, o.assignment]));
   document.getElementById("sub").textContent =
     `工单 ${ORDERS.length} 张 ｜ 队列生成于 ${wo.generated} ｜ 工单 = 模块声明 − 仓库现状，不手写`;
 

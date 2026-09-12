@@ -19,6 +19,7 @@ import material_intake
 import hmac
 import math
 import research
+import report_model
 from functools import wraps
 import posixpath
 import subprocess
@@ -261,6 +262,19 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(200, research.build_snapshot(ROOT))
             except (ValueError, TypeError, KeyError, OSError) as e:
                 return self._json(503, {"ok": False, "error": "研究索引暂不可用", "detail": str(e)[:300]})
+        if urlsplit(self.path).path == '/api/report':
+            try:
+                return self._json(200, report_model.build_report(ROOT))
+            except (ValueError, TypeError, KeyError, OSError):
+                return self._json(503, {'ok': False, 'error': '报告暂不可用，请稍后重试'})
+        if urlsplit(self.path).path == '/api/tasks':
+            try:
+                projection = research.read_json(ROOT / 'reports/workorders.json', {})
+                return self._json(200, {'orders': research.current_tasks(ROOT),
+                                       'module_stats': projection.get('module_stats', {}),
+                                       'generated': datetime.now().isoformat(timespec='seconds')})
+            except (ValueError, TypeError, KeyError, OSError):
+                return self._json(503, {'ok': False, 'error': '任务暂不可用，请稍后重试'})
         return super().do_GET()
 
     def do_POST(self):
@@ -475,13 +489,10 @@ class Handler(SimpleHTTPRequestHandler):
         if status and status not in ASSIGN_STATUSES:
             return self._json(400, {"ok": False, "error": f"状态非法（合法：{'、'.join(sorted(ASSIGN_STATUSES))}）"})
 
-        wof = ROOT / "reports" / "workorders.json"
-        if not wof.exists():
-            return self._json(400, {"ok": False, "error": "工单队列尚未生成，先跑 workorder 任务"})
-        live = {o["wid"] for o in json.loads(wof.read_text(encoding="utf-8"))["orders"]}
+        live = {o['wid'] for o in research.current_tasks(ROOT)}
         if wid not in live:
             return self._json(400, {"ok": False,
-                                    "error": f"{wid} 不在当前工单队列里——可能该缺口已被填上，工单自动消失了"})
+                                    "error": f"{wid} 已不在当前任务集合中，请刷新任务列表"})
 
         p = ROOT / "data" / "assignments.json"
         doc = json.loads(p.read_text(encoding="utf-8"))

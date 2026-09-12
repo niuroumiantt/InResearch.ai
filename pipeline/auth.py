@@ -24,6 +24,10 @@
 from __future__ import annotations
 
 import base64
+import fcntl
+import tempfile
+import threading
+from functools import wraps
 import hashlib
 import hmac
 import json
@@ -53,16 +57,46 @@ def load_users() -> dict:
         return {}
     try:
         return json.loads(USERS_FILE.read_text(encoding="utf-8")).get("users", {})
-    except (json.JSONDecodeError, OSError):
-        return {}
+    except (json.JSONDecodeError, OSError) as exc:
+        raise RuntimeError("user_store_unavailable") from exc
+
+
+_user_lock = threading.RLock()
+
+
+def user_write(fn):
+    """Serialize complete read-modify-write operations across HTTP and CLI."""
+    @wraps(fn)
+    def wrapped(*args, **kwargs):
+        with _user_lock:
+            USERS_FILE.parent.mkdir(parents=True, exist_ok=True)
+            with USERS_FILE.with_name('.users.lock').open('a') as lock:
+                fcntl.flock(lock, fcntl.LOCK_EX)
+                try:
+                    return fn(*args, **kwargs)
+                finally:
+                    fcntl.flock(lock, fcntl.LOCK_UN)
+    return wrapped
 
 
 def save_users(users: dict):
-    USERS_FILE.write_text(
-        json.dumps({"_note": "Hub 登录用户表。哈希非明文，但本文件仍不进 git、不外发。",
-                    "users": users}, ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8")
-    os.chmod(USERS_FILE, 0o600)
+    """Atomic persistence; callers must hold user_write for the full mutation."""
+    fd, name = tempfile.mkstemp(prefix='.users-', dir=USERS_FILE.parent)
+    try:
+        with os.fdopen(fd, 'w', encoding='utf-8') as stream:
+            json.dump({'users': users}, stream, ensure_ascii=False, indent=2)
+            stream.write('\n')
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(name, USERS_FILE)
+        directory = os.open(USERS_FILE.parent, os.O_RDONLY)
+        try:
+            os.fsync(directory)
+        finally:
+            os.close(directory)
+    finally:
+        if os.path.exists(name):
+            os.unlink(name)
 
 
 def hash_password(password: str, salt_hex: str) -> str:
@@ -132,6 +166,7 @@ def session_user(cookie_header: str | None) -> str | None:
     return username
 
 
+@user_write
 def set_password(username: str, new_password: str) -> bool:
     """改指定用户的密码；用户不存在返回 False。CLI 与自助改密共用此入口。"""
     import secrets as _s
@@ -150,7 +185,7 @@ ROLES = ("admin", "member", "intern")
 # 数字——敏感的不只是标了 sensitive 的事实记录，账本本身就是。逐条拉黑必漏，
 # **漏一条路径等于没锁门**；白名单只放行工单系统，其余一概 403。
 INTERN_GET_ALLOW = ("/assets/site-skin.js", "/assets/site-skin.css", "/assets/InterVariable.woff2", "/assets/Inter-LICENSE.txt", "/team.html", "/reports/workorders.json", "/data/assignments.json",
-                    "/api/status", "/api/whoami", "/account", "/login", "/logout",
+                    "/api/status", "/api/tasks", "/api/whoami", "/account", "/login", "/logout",
                     "/assets/", "/favicon")
 INTERN_POST_ALLOW = ("/api/login", "/api/passwd", "/api/assign")
 
@@ -174,6 +209,7 @@ def _validate_name(name: str):
     return None
 
 
+@user_write
 def add_user(name: str, password: str | None = None, role: str | None = None):
     """返回 (ok, 提示或错误, 明文密码或 None)。密码只在这一次返回，之后只有哈希。"""
     import secrets as _s
@@ -196,6 +232,7 @@ def add_user(name: str, password: str | None = None, role: str | None = None):
     return True, f"已添加 {name}（角色：{r}）", pw
 
 
+@user_write
 def remove_user(name: str):
     users = load_users()
     if name not in users:
@@ -208,6 +245,7 @@ def remove_user(name: str):
     return True, f"已删除 {name}（其会话下一次请求即失效）"
 
 
+@user_write
 def set_role(name: str, role: str):
     users = load_users()
     if name not in users:
@@ -222,6 +260,7 @@ def set_role(name: str, role: str):
     return True, f"{name} → {role}（即时生效）"
 
 
+@user_write
 def rename_user(old: str, new: str):
     """改用户名。旧名的会话 cookie 随之失效（cookie 里是名字），需用新名重登。"""
     users = load_users()
@@ -240,10 +279,9 @@ def rename_user(old: str, new: str):
 def reset_password(name: str, password: str | None = None):
     """返回 (ok, 提示, 明文新密码或 None)。"""
     import secrets as _s
-    if name not in load_users():
-        return False, f"用户不存在：{name}", None
     pw = password or _s.token_urlsafe(12)
-    set_password(name, pw)
+    if not set_password(name, pw):
+        return False, f"用户不存在：{name}", None
     return True, f"已重置 {name} 的密码", pw
 
 
