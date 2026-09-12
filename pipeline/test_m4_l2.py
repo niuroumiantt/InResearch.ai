@@ -1547,5 +1547,140 @@ class M02MenuTests(unittest.TestCase):
         self.assertIn('换算完也不是同一件事', note)
 
 
+class M05M09MenuTests(unittest.TestCase):
+    """M05 选址与工程门槛、M09 设备与场地：9 条缺口。
+
+    这一批的主题是**单位与门槛方向**。一堆数挤在一个指标下、单位各不相同，
+    是最容易造出「同一条序列」假象的地方；而「不小于 8000m」与「不大于 1Ω」
+    写成同一个正数，方向丢了就读反了。
+    """
+
+    def setUp(self):
+        self.metrics = L2.load_metrics()
+
+    def dim(self, mid, did):
+        return next(d for d in self.metrics[mid]['caliber_dims'] if d['id'] == did)
+
+    def test_every_new_metric_exists(self):
+        for mid, module in (('site_hazard_setback', 'M05'),
+                            ('backup_autonomy', 'M05'),
+                            ('room_dimension', 'M05'),
+                            ('room_environment_limit', 'M05'),
+                            ('installed_equipment_capacity', 'M05'),
+                            ('grounding_resistance', 'M05'),
+                            ('video_retention_period', 'M05'),
+                            ('equipment_unit_price', 'M09'),
+                            ('site_logistics_spec', 'M09')):
+            self.assertEqual(self.metrics[mid]['module'], module, mid)
+
+    # -- 门槛方向不靠正负号 ------------------------------------------------
+    def test_every_threshold_metric_declares_its_direction(self):
+        for mid in ('site_hazard_setback', 'backup_autonomy', 'room_dimension',
+                    'grounding_resistance', 'video_retention_period',
+                    'site_logistics_spec'):
+            self.assertIn('bound_sense', [d['id'] for d in
+                                          self.metrics[mid]['caliber_dims']], mid)
+
+    def test_setback_says_value_is_always_positive(self):
+        self.assertIn('value 一律取正数',
+                      self.dim('site_hazard_setback', 'bound_sense')['note'])
+
+    # -- 等级差五倍 --------------------------------------------------------
+    def test_a_setback_without_a_tier_is_meaningless(self):
+        note = self.metrics['site_hazard_setback']['note']
+        self.assertIn('8000m', note)
+        self.assertIn('不带 tier 的距离门槛没有意义', note)
+
+    def test_the_two_tier_systems_do_not_convert(self):
+        for mid in ('site_hazard_setback', 'room_floor_load', 'room_clear_height'):
+            self.assertIn('不可互相换算', self.dim(mid, 'tier')['note'], mid)
+
+    # -- 四种后备撑的不是同一段时间 ----------------------------------------
+    def test_backup_types_must_not_be_summed(self):
+        note = self.dim('backup_autonomy', 'backup_type')['note']
+        self.assertIn('绝不可相加', note)
+        self.assertIn('串在不同的故障链上', note)
+
+    def test_the_backup_unit_is_minutes_with_the_conversion_spelled_out(self):
+        self.assertIn('12 小时 = 720 分钟', self.metrics['backup_autonomy']['note'])
+
+    def test_the_fuel_coefficient_is_not_a_value_of_this_metric(self):
+        self.assertIn('0.22 公斤', self.metrics['backup_autonomy']['note'])
+        self.assertIn('换算系数不是本指标的值', self.metrics['backup_autonomy']['note'])
+
+    # -- 同一个尺寸因用途不同差一倍 ----------------------------------------
+    def test_purpose_separates_two_correct_numbers(self):
+        note = self.dim('room_dimension', 'purpose')['note']
+        self.assertIn('500mm', note)
+        self.assertIn('250mm', note)
+        self.assertIn('两个都对的数看着是矛盾的', note)
+
+    # -- 允许值不是推荐值 --------------------------------------------------
+    def test_allowed_is_not_recommended(self):
+        note = self.dim('room_environment_limit', 'limit_type')['note']
+        self.assertIn('允许值是不越界就行，推荐值是应当落在其中', note)
+
+    # -- 铭牌容量写着，IT 负荷没写 -----------------------------------------
+    def test_installed_capacity_refuses_to_infer_the_it_load(self):
+        note = self.metrics['installed_equipment_capacity']['note']
+        self.assertIn('铭牌容量是原文写着的，IT 负荷不是', note)
+        self.assertIn('把写着的记下来，把推不出的留白', note)
+
+    def test_redundancy_unstated_stays_unstated(self):
+        note = self.dim('installed_equipment_capacity', 'capacity_basis')['note']
+        self.assertIn('不要替原文断定', note)
+        self.assertIn('75%', note)
+
+    def test_kw_and_kva_are_declared_not_assumed(self):
+        d = self.dim('installed_equipment_capacity', 'unit_kind')
+        self.assertEqual(d['values'], ['kW', 'kVA'])
+        self.assertIn('不可互换', d['note'])
+
+    # -- 单价跨计量单位不可比 ----------------------------------------------
+    def test_unit_price_is_grouped_by_its_unit_of_measure(self):
+        d = self.dim('equipment_unit_price', 'uom')
+        self.assertIn('跨 uom 不可比', d['note'])
+
+    def test_the_spec_must_reach_the_notes(self):
+        note = self.metrics['equipment_unit_price']['note']
+        self.assertIn('规格必须进 notes', note)
+        self.assertIn('1800kW 与 400kW 差一个数量级', note)
+
+    def test_all_in_price_is_not_the_bare_equipment_price(self):
+        self.assertIn('三成以上',
+                      self.dim('equipment_unit_price', 'price_scope')['note'])
+
+    # -- 一个指标装多种单位时靠维度分组 ------------------------------------
+    def test_mixed_unit_metrics_forbid_cross_item_comparison(self):
+        for mid, did in (('site_logistics_spec', 'spec_item'),
+                         ('room_environment_limit', 'parameter')):
+            self.assertIn('不要跨', self.dim(mid, did)['note'], mid)
+
+    # -- 国标与企标 --------------------------------------------------------
+    def test_the_code_minimum_is_split_into_national_and_carrier(self):
+        d = self.dim('room_floor_load', 'basis')
+        self.assertIn('规范最低（国标）', d['values'])
+        self.assertIn('规范最低（运营商企标）', d['values'])
+        self.assertIn('规范最低', d['values'])      # 旧值保留给既有事实
+
+    def test_the_existing_engineering_facts_were_backfilled(self):
+        store = json.loads((Path(L2.__file__).resolve().parent.parent /
+                            'data/facts.json').read_text(encoding='utf-8'))
+        rows = [f for f in store['records']
+                if f['metric_id'] in ('room_floor_load', 'room_clear_height')]
+        self.assertTrue(rows)
+        for f in rows:
+            self.assertEqual(f['caliber']['tier'], '未注明', f['fact_id'])
+            self.assertEqual(f['caliber']['build_type'], '未注明', f['fact_id'])
+
+    # -- 纯机电清单的分项对不上现有切法 ------------------------------------
+    def test_the_mechanical_only_denominator_and_its_escape_hatch(self):
+        self.assertIn('机电设备清单合计',
+                      self.dim('cost_share_by_trade', 'denominator')['values'])
+        self.assertIn('其他机电分项', self.dim('cost_share_by_trade', 'trade')['values'])
+        self.assertIn('不要硬塞进最像的那个 trade',
+                      self.dim('cost_share_by_trade', 'denominator')['note'])
+
+
 if __name__ == '__main__':
     unittest.main()
