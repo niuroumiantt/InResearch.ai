@@ -6537,6 +6537,151 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**「2 年以上」是下界，且口径与库内那条不同，不要当成互相矛盾**：本条是**海外输变电设备巨头在手订单整体的消化交期**（订单簿口径，涵盖变压器与开关设备），库内 transformer-lead-time-iea-2026 是 IEA 给的**大型电力变压器采购交货周期 48 个月下界**（专项口径）。一个是「厂商订单排到多久」、一个是「买家下单到拿货多久」，后者天然更长，两条并列保留。**故意用了不同的 entity**（overseas-td-equipment-majors vs large-power-transformer）把两者隔开。原文补充两条机制：产能投放在发达国家、熟练工人不足；AIDC 客户加价抢单或由巨头分包给中国公司——**分包意味着名义交期与实际交付主体可能不是一回事**。"
+    },
+    {
+      "fact_id": "abilene-stargate-power-supplied-202501",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "project",
+        "id": "abilene-lancium-crusoe-campus",
+        "label": "Abilene 阿比林 Lancium Clean Campus（Crusoe/Oracle 建设，OpenAI Stargate 首站）"
+      },
+      "value": 2200.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "并网容量",
+        "status": "L5",
+        "region": "US"
+      },
+      "as_of": "2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f2f798cbc058360ea54f58fe0c95d06ce6cb5a79a373e151fd5f36ff0c99b0e0",
+        "local_file": "SemiAnalysis OpenAI Stargate Joint Venture Demystified (2025-01-23).pdf",
+        "locator": "第 5 页：「This campus … has a stated capacity on their website of 1GW energized in 2025. However, we have learned through multiple industry sources and filings that the campus has unlocked another 1GW. This is a total of 2.2GW of power supplied.」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（Lancium 官网 1GW + 行业来源与备案文件另 1GW）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**2.2GW 是供电侧口径（power supplied），不是 IT 容量**——同页作者据此估算 IT 容量 1.8GW（见 abilene-stargate-it-capacity-202501），两者差的是 PUE。**两个 1GW 的证据强度不同**：第一个 1GW 是 Lancium 官网自述「2025 年通电」，第二个 1GW 来自作者的行业来源与备案文件，未公开，标 [未核]。status=L5（电力确定）：电力已锁定，但园区 20 栋楼当时只有 2 栋在建。**注意 1+1=2.2 而非 2.0**，原文未解释多出的 0.2GW 从何而来。"
+    },
+    {
+      "fact_id": "abilene-stargate-it-capacity-202501",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "project",
+        "id": "abilene-lancium-crusoe-campus",
+        "label": "Abilene 阿比林 Lancium Clean Campus（Crusoe/Oracle 建设，OpenAI Stargate 首站）"
+      },
+      "value": 1800.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L5",
+        "region": "US"
+      },
+      "as_of": "2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f2f798cbc058360ea54f58fe0c95d06ce6cb5a79a373e151fd5f36ff0c99b0e0",
+        "local_file": "SemiAnalysis OpenAI Stargate Joint Venture Demystified (2025-01-23).pdf",
+        "locator": "第 5 页：「we estimate the campus has a Critical IT Capacity of 1.8GW based on our Datacenter Model. This is a PUE of ~1.25」；第 6 页：「The resulting total all-in IT power for the ~700k GPUs is 1.8GW, which ties out to the 1,800MW of capacity」",
+        "grade": "S5",
+        "originator": "SemiAnalysis Datacenter Model（第三方推算，非披露）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是第三方模型推算值，不是任何一方披露的容量**，grade 记 S5。作者用两条路互验并声称对得上：①2.2GW 供电 ÷ PUE≈1.25 → 1.8GW IT；②约 70 万颗 GPU（10 万 GB200 + 估 20 万 GB300 + 估 40 万 VR200）的 all-in IT 功耗 = 1.8GW。**但第二条路里的 GPU 数量本身也是从 1000 亿美元 TCO 反推的**，两条路共用同一套模型假设，**不构成独立交叉验证**。作者同页说明 PUE 若改善可能接近 2GW IT，但 GB300/VR200 功率密度上升会让改善变难。"
+    },
+    {
+      "fact_id": "abilene-stargate-it-capacity-underconstruction-202501",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "project",
+        "id": "abilene-lancium-crusoe-campus",
+        "label": "Abilene 阿比林 Lancium Clean Campus（Crusoe/Oracle 建设，OpenAI Stargate 首站）"
+      },
+      "value": 180.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L6",
+        "region": "US"
+      },
+      "as_of": "2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f2f798cbc058360ea54f58fe0c95d06ce6cb5a79a373e151fd5f36ff0c99b0e0",
+        "local_file": "SemiAnalysis OpenAI Stargate Joint Venture Demystified (2025-01-23).pdf",
+        "locator": "第 4 页：「Four of the ~120k square foot modules make up one 480k square foot building, so only two buildings are currently being built with ~180MW of Critical IT Capacity … the 20 building campus will be comprised of 80 of those modules」，依据 2024-12-29 的高分辨率园区照片",
+        "grade": "S5",
+        "originator": "SemiAnalysis（据 2024-12-29 卫星/航拍照片与模型）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这条是「真正动土的部分」，与同园区 1800MW（L5）差 10 倍，是把公告容量当在建容量的直接反例。**口径链条：4 个约 12 万平方英尺模块 = 1 栋 48 万平方英尺楼；当时仅 2 栋在建 ≈ 180MW Critical IT；满园 20 栋 = 80 个模块 = 1800MW，比例自洽（2/20 = 180/1800）。**同一份报告第 3 页却写「20 个数据中心中已有 10 个在阿比林 underway」**——「underway」（含已宣布、已批）与照片上真正在建的 2 栋不是一回事，引用时必须分清。时点：照片为 2024-12-29，报告为 2025-01-23。"
+    },
+    {
+      "fact_id": "openai-gb200-rental-rate-202501",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "market",
+        "id": "gb200-openai-stargate",
+        "label": "OpenAI 在 Stargate/Abilene 集群支付的 GB200 时租"
+      },
+      "value": 2.8,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "实际成交",
+        "unit": "单卡",
+        "region": "US"
+      },
+      "as_of": "2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f2f798cbc058360ea54f58fe0c95d06ce6cb5a79a373e151fd5f36ff0c99b0e0",
+        "local_file": "SemiAnalysis OpenAI Stargate Joint Venture Demystified (2025-01-23).pdf",
+        "locator": "第 6 页：「we estimate OpenAI is paying rougly ~$2.8 per GPU hour for the first GB200 cluster which is a TCO of $2.38 an hour for the full-scale cluster」",
+        "grade": "S5",
+        "originator": "SemiAnalysis 估算（非合同披露）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**price_type=实际成交是就近归类**：原文是作者对 OpenAI 实付租金的估算（「we estimate OpenAI is paying」），不是挂牌价也不是披露的合同价，四个取值里没有「第三方估算」，已标 [未核]。**同句里的 2.38 美元/小时是成本（TCO）不是租金**，本库没有 GPU 单位小时成本指标，未录——**两个数只差 0.42 美元，但一个是 OpenAI 付出去的、一个是资产方的全成本，混用会把 15% 的价差读成利润率**。计价单位=单卡（per GPU hour）。对照库内 h100-listed-range-2024（公开挂牌、区间跨 6.5 倍、value 为空）：那是零售挂牌，本条是超大规模自用集群的内部结算，两者不可比。"
+    },
+    {
+      "fact_id": "abilene-stargate-building-area-202501",
+      "metric_id": "dc_gross_floor_area",
+      "entity": {
+        "type": "project",
+        "id": "abilene-lancium-crusoe-campus",
+        "label": "Abilene 阿比林 Lancium Clean Campus（Crusoe/Oracle 建设，OpenAI Stargate 首站）"
+      },
+      "value": 44593.0,
+      "unit": "㎡",
+      "caliber": {
+        "area_scope": "主机房楼单体",
+        "stage": "设计",
+        "region": "US"
+      },
+      "as_of": "2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f2f798cbc058360ea54f58fe0c95d06ce6cb5a79a373e151fd5f36ff0c99b0e0",
+        "local_file": "SemiAnalysis OpenAI Stargate Joint Venture Demystified (2025-01-23).pdf",
+        "locator": "第 4 页：「Four of the ~120k square foot modules make up one 480k square foot building」；第 3 页另称 20 个数据中心「each roughly 500k square feet」",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**单位换算**：480,000 平方英尺 × 0.092903 = 44,593 ㎡，非再加工。**这是单栋主机房楼**，不是园区总面积；满园 20 栋 = 80 个约 12 万平方英尺（约 11,148 ㎡）的模块，园区合计约 96 万平方英尺 ≈ 891,900 ㎡。**同报告第 3 页写「每个数据中心约 50 万平方英尺」，第 4 页写「48 万平方英尺一栋」，相差 4%**，应是取整差异，本条按更具体的 48 万记。**可与 180MW/2 栋 对照得单栋约 90MW、约 2.0 kW/㎡ 的 IT 功率面积密度**——该推算未入库，因为本库没有「单位面积 IT 功率」指标。"
     }
   ]
 }
