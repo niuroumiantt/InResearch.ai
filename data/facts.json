@@ -21078,6 +21078,945 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**bucket（本条的分档）= 低于 5%**；dimension = 数据中心敞口档。 **bucket 维只有「见 notes」一个取值**，同一维度的多个分档靠 entity 区分。 **24% 的受访者对数据中心的组合敞口低于 5%**，即这份调查里近四分之一是刚起步的配置者。 **这是问卷分布，不是市场价格**：分母是受访者人数，不是容量或金额。CBRE 未公布样本量分层明细，respondent_scope 记全体受访者。"
+    },
+    {
+      "fact_id": "abilene-pue-implied-202501",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "abilene-lancium-crusoe-campus",
+        "label": "Abilene 阿比林 Lancium Clean Campus（Crusoe/Oracle 建设，OpenAI Stargate 首站）"
+      },
+      "value": 1.25,
+      "unit": "比值",
+      "caliber": {
+        "basis": "第三方推算",
+        "scale": "单项目",
+        "period": "设计工况",
+        "region": "US"
+      },
+      "as_of": "2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f2f798cbc058360ea54f58fe0c95d06ce6cb5a79a373e151fd5f36ff0c99b0e0",
+        "local_file": "SemiAnalysis OpenAI Stargate Joint Venture Demystified (2025-01-23).pdf",
+        "locator": "第 5 页：「we estimate the campus has a Critical IT Capacity of 1.8GW based on our Datacenter Model. This is a PUE of ~1.25」",
+        "grade": "S5",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**basis=第三方推算**：这不是运行值也不是设计值，是 SemiAnalysis 用 2.2GW 供电与 1.8GW IT 容量反推的比值。 **原文写 ~1.25，但 2.2 ÷ 1.8 = 1.222**——两个数都留着：原文的 1.25 是取整后的说法，算式给的是 1.222，本条按原文记 1.25 并在此标明差异，**不要替原文改成 1.222**。 作者同页说 PUE 若改善可能让 IT 容量接近 2GW，但 GB300/VR200 的功率密度上升会让改善变难。"
+    },
+    {
+      "fact_id": "abilene-gpu-hourly-tco-202501",
+      "metric_id": "gpu_hourly_tco",
+      "entity": {
+        "type": "project",
+        "id": "abilene-lancium-crusoe-campus",
+        "label": "Abilene 阿比林 Lancium Clean Campus（Crusoe/Oracle 建设，OpenAI Stargate 首站）"
+      },
+      "value": 2.38,
+      "unit": "美元/GPU 小时",
+      "caliber": {
+        "cost_scope": "全规模集群 TCO",
+        "asset": "GB200 NVL72",
+        "scale": "全规模园区",
+        "region": "US",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f2f798cbc058360ea54f58fe0c95d06ce6cb5a79a373e151fd5f36ff0c99b0e0",
+        "local_file": "SemiAnalysis OpenAI Stargate Joint Venture Demystified (2025-01-23).pdf",
+        "locator": "第 6 页：「we estimate OpenAI is paying rougly ~$2.8 per GPU hour for the first GB200 cluster which is a TCO of $2.38 an hour for the full-scale cluster」",
+        "grade": "S5",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是成本不是租金**：同句里的 2.8 美元是 OpenAI 实付（已录在 gpu_hourly_rate_spot 的 openai-gb200-rental-rate-202501），本条 2.38 美元是全规模集群的 TCO。**两个数只差 0.42 美元（15%），一个是付出去的、一个是资产方的全成本**，混用会把这 15% 读成利润率。 scale=全规模园区：原文明确 TCO 是按 full-scale cluster 算的，而 2.8 美元对应的是首个 GB200 集群。"
+    },
+    {
+      "fact_id": "stargate-tco-500b",
+      "metric_id": "project_tco",
+      "entity": {
+        "type": "project",
+        "id": "abilene-lancium-crusoe-campus",
+        "label": "Abilene 阿比林 Lancium Clean Campus（Crusoe/Oracle 建设，OpenAI Stargate 首站）"
+      },
+      "value": 500.0,
+      "unit": "十亿美元",
+      "caliber": {
+        "amount_scope": "TCO（全周期）",
+        "window": "全周期",
+        "region": "US",
+        "basis": "厂商指引"
+      },
+      "as_of": "2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f2f798cbc058360ea54f58fe0c95d06ce6cb5a79a373e151fd5f36ff0c99b0e0",
+        "local_file": "SemiAnalysis OpenAI Stargate Joint Venture Demystified (2025-01-23).pdf",
+        "locator": "第 2 页：「The Stargate Joint Venture is a new company intended to invest $500B in AI infrastructure over the next four years with $100B being deployed immediately」；第 3 页明确：「the $100 billion and $500 billion is TCO which includes the capital Expenditures」",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**作者明确指出 5000 亿与 1000 亿这两个数是 TCO 不是 capex**——这是 Stargate 报道里最常见的错误，**TCO 含全周期运营与折旧，capex 只是其中一部分**。  "
+    },
+    {
+      "fact_id": "stargate-tco-100b",
+      "metric_id": "project_tco",
+      "entity": {
+        "type": "project",
+        "id": "abilene-lancium-crusoe-campus",
+        "label": "Abilene 阿比林 Lancium Clean Campus（Crusoe/Oracle 建设，OpenAI Stargate 首站）"
+      },
+      "value": 100.0,
+      "unit": "十亿美元",
+      "caliber": {
+        "amount_scope": "TCO（全周期）",
+        "window": "首期",
+        "region": "US",
+        "basis": "厂商指引"
+      },
+      "as_of": "2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f2f798cbc058360ea54f58fe0c95d06ce6cb5a79a373e151fd5f36ff0c99b0e0",
+        "local_file": "SemiAnalysis OpenAI Stargate Joint Venture Demystified (2025-01-23).pdf",
+        "locator": "第 2-3 页：「with $100B being deployed immediately」「$100B has datacenter sites and power ready to go. Funding is still not fully secured」",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**作者明确指出 5000 亿与 1000 亿这两个数是 TCO 不是 capex**——这是 Stargate 报道里最常见的错误，**TCO 含全周期运营与折旧，capex 只是其中一部分**。 作者判断这 1000 亿美元全部投向 Abilene 一个园区（「OpenAI doesn't have to build a new campus to expend all $100B in TCO」）。 **资金未完全落实**：原文写「Funding is still not fully secured」，不要当成已到位的投资。"
+    },
+    {
+      "fact_id": "stargate-it-capex-49b",
+      "metric_id": "project_tco",
+      "entity": {
+        "type": "project",
+        "id": "abilene-lancium-crusoe-campus",
+        "label": "Abilene 阿比林 Lancium Clean Campus（Crusoe/Oracle 建设，OpenAI Stargate 首站）"
+      },
+      "value": 49.0,
+      "unit": "十亿美元",
+      "caliber": {
+        "amount_scope": "IT 设备资本开支",
+        "window": "未注明",
+        "region": "US",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f2f798cbc058360ea54f58fe0c95d06ce6cb5a79a373e151fd5f36ff0c99b0e0",
+        "local_file": "SemiAnalysis OpenAI Stargate Joint Venture Demystified (2025-01-23).pdf",
+        "locator": "第 6 页：「We estimate Nvidia’s revenue from this and IT equipment Capex are more tame at ~$37.5B and ~$49B」",
+        "grade": "S5",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这两个才是资本开支口径**：IT 设备 capex 约 490 亿美元、其中英伟达收入约 375 亿美元，与 1000 亿美元的首期 TCO 差一倍以上。  "
+    },
+    {
+      "fact_id": "stargate-nvidia-rev-375b",
+      "metric_id": "project_tco",
+      "entity": {
+        "type": "project",
+        "id": "abilene-lancium-crusoe-campus",
+        "label": "Abilene 阿比林 Lancium Clean Campus（Crusoe/Oracle 建设，OpenAI Stargate 首站）"
+      },
+      "value": 37.5,
+      "unit": "十亿美元",
+      "caliber": {
+        "amount_scope": "单一厂商收入",
+        "window": "未注明",
+        "region": "US",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f2f798cbc058360ea54f58fe0c95d06ce6cb5a79a373e151fd5f36ff0c99b0e0",
+        "local_file": "SemiAnalysis OpenAI Stargate Joint Venture Demystified (2025-01-23).pdf",
+        "locator": "第 6 页：同句「Nvidia’s revenue from this … ~$37.5B」",
+        "grade": "S5",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这两个才是资本开支口径**：IT 设备 capex 约 490 亿美元、其中英伟达收入约 375 亿美元，与 1000 亿美元的首期 TCO 差一倍以上。  "
+    },
+    {
+      "fact_id": "abilene-it-power-density-202501",
+      "metric_id": "it_power_density_per_area",
+      "entity": {
+        "type": "project",
+        "id": "abilene-lancium-crusoe-campus",
+        "label": "Abilene 阿比林 Lancium Clean Campus（Crusoe/Oracle 建设，OpenAI Stargate 首站）"
+      },
+      "value": 2.02,
+      "unit": "kW/㎡",
+      "caliber": {
+        "area_basis": "机房面积（白空间）",
+        "power_scope": "IT 负载",
+        "region": "US",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f2f798cbc058360ea54f58fe0c95d06ce6cb5a79a373e151fd5f36ff0c99b0e0",
+        "local_file": "SemiAnalysis OpenAI Stargate Joint Venture Demystified (2025-01-23).pdf",
+        "locator": "第 4 页：「Four of the ~120k square foot modules make up one 480k square foot building, so only two buildings are currently being built with ~180MW of Critical IT Capacity」——180MW ÷ 2 栋 ÷ 44,593 ㎡/栋",
+        "grade": "S5",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：180MW ÷ 2 栋 = 90MW/栋；48 万平方英尺 = 44,593 ㎡；90,000 kW ÷ 44,593 ㎡ = 2.02 kW/㎡。 **area_basis=机房面积（白空间）是就近归类**：原文的 48 万平方英尺是整栋建筑面积，**其中多少是白空间原文没说**，若白空间只占七成，真实功率密度会高到约 2.9 kW/㎡。故本条标 [未核]。 这条的用处是给「一栋楼能塞多少算力」一个量级锚点，不适合做精确比较。"
+    },
+    {
+      "fact_id": "gb200-5y-project-irr-low",
+      "metric_id": "project_irr",
+      "entity": {
+        "type": "market",
+        "id": "gpu-cloud-economics",
+        "label": "GPU 云经济性（Neocloud/超大规模）"
+      },
+      "value": 20.0,
+      "unit": "%",
+      "caliber": {
+        "asset": "GB200 NVL72",
+        "contract_tenor": "5 年",
+        "price_assumption": "原文给定",
+        "region": "US",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-03",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "fcc906b58b7f83134cd141ebbc0f2aabc18fa446b2728967261eb5e4121f5a70",
+        "local_file": "SemiAnalysis The GPU Cloud ClusterMAX Rating System (2025-03-26).pdf",
+        "locator": "第 72 页：「Our total cost of ownership framework shows that a 5y GB200 NVL72 contract in the high $2 range could earn a 20-30% Project IRR through a 5-year service life」",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间 20-30% 的下界，上界见 gb200-5y-project-irr-high。 **价格假设是「high $2 range」（约 2.7-2.9 美元/GPU 小时）的五年长约**，换个价位这个 IRR 就不成立。 原文强调这个回报「不依赖五年以后的租金市场假设，也不依赖折旧年限估计」——**即它是相对稳健的一档**。 **对照另一端**：今天投产的 H100 在 1-3 个月短租与一年固定合约两种情形下项目 NPV 均显著为负。"
+    },
+    {
+      "fact_id": "gb200-5y-project-irr-high",
+      "metric_id": "project_irr",
+      "entity": {
+        "type": "market",
+        "id": "gpu-cloud-economics",
+        "label": "GPU 云经济性（Neocloud/超大规模）"
+      },
+      "value": 30.0,
+      "unit": "%",
+      "caliber": {
+        "asset": "GB200 NVL72",
+        "contract_tenor": "5 年",
+        "price_assumption": "原文给定",
+        "region": "US",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-03",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "fcc906b58b7f83134cd141ebbc0f2aabc18fa446b2728967261eb5e4121f5a70",
+        "local_file": "SemiAnalysis The GPU Cloud ClusterMAX Rating System (2025-03-26).pdf",
+        "locator": "第 72 页：「could earn a 20-30% Project IRR through a 5-year service life」",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上界，下界见 gb200-5y-project-irr-low。口径同下界条（high $2 价位、五年长约、五年服务期）。"
+    },
+    {
+      "fact_id": "neocloud-prepay-longterm-202503",
+      "metric_id": "contract_prepayment_share",
+      "entity": {
+        "type": "market",
+        "id": "gpu-cloud-economics",
+        "label": "GPU 云经济性（Neocloud/超大规模）"
+      },
+      "value": 25.0,
+      "unit": "%",
+      "caliber": {
+        "contract_tenor": "超长期",
+        "asset": "未注明",
+        "region": "US",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fcc906b58b7f83134cd141ebbc0f2aabc18fa446b2728967261eb5e4121f5a70",
+        "local_file": "SemiAnalysis The GPU Cloud ClusterMAX Rating System (2025-03-26).pdf",
+        "locator": "第 72 页：「One other benefit of very long-term contracts is that they are typically executed with a 25% prepayment. The longer the contract and the higher the price, the more upfront cash the GPU Provider collects」",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**预付比例直接决定项目现金流曲线**：原文的极端算例——五年期 3.50 美元/小时的 H100 合约，预付款超过集群资本开支，**IRR 为无穷大**（无需初始资本投入）。 同一作者 2024-10 的 Playbook 讨论 25% / 50% / 100% 三档，由 25% 提到 50% 可省约 500 万美元。"
+    },
+    {
+      "fact_id": "neocloud-cost-premium-capital",
+      "metric_id": "unit_cost_premium",
+      "entity": {
+        "type": "market",
+        "id": "gpu-cloud-economics",
+        "label": "GPU 云经济性（Neocloud/超大规模）"
+      },
+      "value": 16.0,
+      "unit": "%",
+      "caliber": {
+        "cost_driver": "资本成本",
+        "comparison": "新兴 Neocloud vs 超大规模",
+        "region": "US",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fcc906b58b7f83134cd141ebbc0f2aabc18fa446b2728967261eb5e4121f5a70",
+        "local_file": "SemiAnalysis The GPU Cloud ClusterMAX Rating System (2025-03-26).pdf",
+        "locator": "第 69 页：「an Emerging Neocloud’s higher cost of capital means that it will incur a 16% higher capital cost per GPU per hour compared to a Hyperscaler for that factor alone」",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**两条必须一起读**：单看资本成本这一项就贵 16%，叠加议价能力、以太网组网更便宜、规模效应等后合计贵 61%。**16% 不是 61% 的一部分近似，而是它的第一层**。 原文补充：若超大规模厂选择纯债务融资，资本成本差距会更大。 **这是「谁能在价格战里活下来」的核心量化**：新兴 Neocloud 每 GPU 小时成本高六成，意味着同一租金水平下它先亏。"
+    },
+    {
+      "fact_id": "neocloud-cost-premium-total",
+      "metric_id": "unit_cost_premium",
+      "entity": {
+        "type": "market",
+        "id": "gpu-cloud-economics",
+        "label": "GPU 云经济性（Neocloud/超大规模）"
+      },
+      "value": 61.0,
+      "unit": "%",
+      "caliber": {
+        "cost_driver": "合计",
+        "comparison": "新兴 Neocloud vs 超大规模",
+        "region": "US",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fcc906b58b7f83134cd141ebbc0f2aabc18fa446b2728967261eb5e4121f5a70",
+        "local_file": "SemiAnalysis The GPU Cloud ClusterMAX Rating System (2025-03-26).pdf",
+        "locator": "第 69 页：「Factoring in Hyperscalers’ more substantial bargaining power use of cheaper Ethernet networking, and much better scale in terms of additional cost items, this gap increases to 61% higher cost per GPU per hour for Emerging Neoclouds vs Hyperscalers」",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**两条必须一起读**：单看资本成本这一项就贵 16%，叠加议价能力、以太网组网更便宜、规模效应等后合计贵 61%。**16% 不是 61% 的一部分近似，而是它的第一层**。 原文补充：若超大规模厂选择纯债务融资，资本成本差距会更大。 **这是「谁能在价格战里活下来」的核心量化**：新兴 Neocloud 每 GPU 小时成本高六成，意味着同一租金水平下它先亏。"
+    },
+    {
+      "fact_id": "gb200-vs-h100-cost-delta-inference",
+      "metric_id": "compute_cost_generational_delta",
+      "entity": {
+        "type": "market",
+        "id": "gpu-cloud-economics",
+        "label": "GPU 云经济性（Neocloud/超大规模）"
+      },
+      "value": 75.0,
+      "unit": "%",
+      "caliber": {
+        "workload": "推理",
+        "cost_metric": "$/M tokens",
+        "baseline": "H100",
+        "region": "US",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fcc906b58b7f83134cd141ebbc0f2aabc18fa446b2728967261eb5e4121f5a70",
+        "local_file": "SemiAnalysis The GPU Cloud ClusterMAX Rating System (2025-03-26).pdf",
+        "locator": "第 10 页：「the GB200 NVL72 offers a 75% lower inference unit cost in terms of $/M tokens vs an H100 and a 56% lower training cost in terms of $/hr per effective PFLOP」",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**推理降幅（75%）远大于训练降幅（56%）**：同一次代际更替，两种负载的成本改善不是一个数，用其中一个代表「算力变便宜了多少」都会失真。 **cost_metric 必须带**：推理用 $/M tokens、训练用 $/hr per effective PFLOP，两个单位不可通约。 原文用这组数推出「若 GB200 NVL72 定价 2.20 美元/卡/小时，H100 需降到 0.98 美元买方才无差异（低 65%）」——**那两个价格是模型示例不是市场报价**，未入库。"
+    },
+    {
+      "fact_id": "gb200-vs-h100-cost-delta-training",
+      "metric_id": "compute_cost_generational_delta",
+      "entity": {
+        "type": "market",
+        "id": "gpu-cloud-economics",
+        "label": "GPU 云经济性（Neocloud/超大规模）"
+      },
+      "value": 56.0,
+      "unit": "%",
+      "caliber": {
+        "workload": "训练",
+        "cost_metric": "$/hr per effective PFLOP",
+        "baseline": "H100",
+        "region": "US",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fcc906b58b7f83134cd141ebbc0f2aabc18fa446b2728967261eb5e4121f5a70",
+        "local_file": "SemiAnalysis The GPU Cloud ClusterMAX Rating System (2025-03-26).pdf",
+        "locator": "第 10 页：同句",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**推理降幅（75%）远大于训练降幅（56%）**：同一次代际更替，两种负载的成本改善不是一个数，用其中一个代表「算力变便宜了多少」都会失真。 **cost_metric 必须带**：推理用 $/M tokens、训练用 $/hr per effective PFLOP，两个单位不可通约。 原文用这组数推出「若 GB200 NVL72 定价 2.20 美元/卡/小时，H100 需降到 0.98 美元买方才无差异（低 65%）」——**那两个价格是模型示例不是市场报价**，未入库。"
+    },
+    {
+      "fact_id": "gpu-cloud-storage-surcharge-nas-lower",
+      "metric_id": "storage_network_surcharge",
+      "entity": {
+        "type": "market",
+        "id": "gpu-cloud-economics",
+        "label": "GPU 云经济性（Neocloud/超大规模）"
+      },
+      "value": 6.0,
+      "unit": "美分/GB/月",
+      "caliber": {
+        "service": "高性能网络存储",
+        "bundling": "不含（另计）",
+        "region": "US",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-03",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "fcc906b58b7f83134cd141ebbc0f2aabc18fa446b2728967261eb5e4121f5a70",
+        "local_file": "SemiAnalysis The GPU Cloud ClusterMAX Rating System (2025-03-26).pdf",
+        "locator": "第 30 页：「Storage generally is charged separately, with prices of around 6-9c per GB/month for high-performance network storage and 2-3c per GB/month for Object storage」",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**bundling=不含（另计）**：GPU 时租（H100 SXM 2.99 美元/卡/小时）已含 CPU、网络、电力、本地 NVMe 与 Slurm 配置，**但网络存储与对象存储都另计**——比价时一边含一边不含会失真。 高性能网络存储是对象存储的 3 倍价。 区间下端。"
+    },
+    {
+      "fact_id": "gpu-cloud-storage-surcharge-nas-upper",
+      "metric_id": "storage_network_surcharge",
+      "entity": {
+        "type": "market",
+        "id": "gpu-cloud-economics",
+        "label": "GPU 云经济性（Neocloud/超大规模）"
+      },
+      "value": 9.0,
+      "unit": "美分/GB/月",
+      "caliber": {
+        "service": "高性能网络存储",
+        "bundling": "不含（另计）",
+        "region": "US",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-03",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "fcc906b58b7f83134cd141ebbc0f2aabc18fa446b2728967261eb5e4121f5a70",
+        "local_file": "SemiAnalysis The GPU Cloud ClusterMAX Rating System (2025-03-26).pdf",
+        "locator": "第 30 页：「Storage generally is charged separately, with prices of around 6-9c per GB/month for high-performance network storage and 2-3c per GB/month for Object storage」",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**bundling=不含（另计）**：GPU 时租（H100 SXM 2.99 美元/卡/小时）已含 CPU、网络、电力、本地 NVMe 与 Slurm 配置，**但网络存储与对象存储都另计**——比价时一边含一边不含会失真。 高性能网络存储是对象存储的 3 倍价。 区间上端。"
+    },
+    {
+      "fact_id": "gpu-cloud-storage-surcharge-object-lower",
+      "metric_id": "storage_network_surcharge",
+      "entity": {
+        "type": "market",
+        "id": "gpu-cloud-economics",
+        "label": "GPU 云经济性（Neocloud/超大规模）"
+      },
+      "value": 2.0,
+      "unit": "美分/GB/月",
+      "caliber": {
+        "service": "对象存储",
+        "bundling": "不含（另计）",
+        "region": "US",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-03",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "fcc906b58b7f83134cd141ebbc0f2aabc18fa446b2728967261eb5e4121f5a70",
+        "local_file": "SemiAnalysis The GPU Cloud ClusterMAX Rating System (2025-03-26).pdf",
+        "locator": "第 30 页：同句",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**bundling=不含（另计）**：GPU 时租（H100 SXM 2.99 美元/卡/小时）已含 CPU、网络、电力、本地 NVMe 与 Slurm 配置，**但网络存储与对象存储都另计**——比价时一边含一边不含会失真。  区间下端。"
+    },
+    {
+      "fact_id": "gpu-cloud-storage-surcharge-object-upper",
+      "metric_id": "storage_network_surcharge",
+      "entity": {
+        "type": "market",
+        "id": "gpu-cloud-economics",
+        "label": "GPU 云经济性（Neocloud/超大规模）"
+      },
+      "value": 3.0,
+      "unit": "美分/GB/月",
+      "caliber": {
+        "service": "对象存储",
+        "bundling": "不含（另计）",
+        "region": "US",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-03",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "fcc906b58b7f83134cd141ebbc0f2aabc18fa446b2728967261eb5e4121f5a70",
+        "local_file": "SemiAnalysis The GPU Cloud ClusterMAX Rating System (2025-03-26).pdf",
+        "locator": "第 30 页：同句",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**bundling=不含（另计）**：GPU 时租（H100 SXM 2.99 美元/卡/小时）已含 CPU、网络、电力、本地 NVMe 与 Slurm 配置，**但网络存储与对象存储都另计**——比价时一边含一边不含会失真。  区间上端。"
+    },
+    {
+      "fact_id": "neocloud-network-saving-rail",
+      "metric_id": "network_design_saving",
+      "entity": {
+        "type": "market",
+        "id": "gpu-cloud-economics",
+        "label": "GPU 云经济性（Neocloud/超大规模）"
+      },
+      "value": 5.0,
+      "unit": "%",
+      "caliber": {
+        "design_change": "轨道优化改 128 节点",
+        "cost_base": "集群总成本",
+        "cluster_scale": "1024 卡",
+        "region": "Global",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "74c37d3d61327898d5664c6b2b1f8116f6d2d82acb99ddf27877bae820154c35",
+        "local_file": "SemiAnalysis AI Neocloud Playbook and Anatomy (2024-10-03).pdf",
+        "locator": "第 6 页：「roughly a 5% savings. In a 1024 H100 cluster with 128 compute nodes, that is a savings of $1.74M」",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**cost_base 决定这个百分比的分母**：5% 是对集群总成本、34.8% 与 24.9% 是对后端 InfiniBand 成本，**两者分母差一个数量级，不可并列比较哪个方案更省**。 1024 卡 H100 集群、128 计算节点，5% 折合 174 万美元。 "
+    },
+    {
+      "fact_id": "neocloud-network-saving-dac",
+      "metric_id": "network_design_saving",
+      "entity": {
+        "type": "market",
+        "id": "gpu-cloud-economics",
+        "label": "GPU 云经济性（Neocloud/超大规模）"
+      },
+      "value": 34.8,
+      "unit": "%",
+      "caliber": {
+        "design_change": "半数连接改 DAC 铜缆",
+        "cost_base": "后端 InfiniBand 成本",
+        "cluster_scale": "未注明",
+        "region": "Global",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "74c37d3d61327898d5664c6b2b1f8116f6d2d82acb99ddf27877bae820154c35",
+        "local_file": "SemiAnalysis AI Neocloud Playbook and Anatomy (2024-10-03).pdf",
+        "locator": "第 11 页：「the cost savings are huge, saving 34.8% of the backend InfiniBand [cost]」",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**cost_base 决定这个百分比的分母**：5% 是对集群总成本、34.8% 与 24.9% 是对后端 InfiniBand 成本，**两者分母差一个数量级，不可并列比较哪个方案更省**。  "
+    },
+    {
+      "fact_id": "neocloud-network-saving-vms",
+      "metric_id": "network_design_saving",
+      "entity": {
+        "type": "market",
+        "id": "gpu-cloud-economics",
+        "label": "GPU 云经济性（Neocloud/超大规模）"
+      },
+      "value": 24.9,
+      "unit": "%",
+      "caliber": {
+        "design_change": "非阻塞虚拟模块化交换机",
+        "cost_base": "后端 InfiniBand 成本",
+        "cluster_scale": "未注明",
+        "region": "Global",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "74c37d3d61327898d5664c6b2b1f8116f6d2d82acb99ddf27877bae820154c35",
+        "local_file": "SemiAnalysis AI Neocloud Playbook and Anatomy (2024-10-03).pdf",
+        "locator": "第 12 页：「Using this non-blocking virtual modular switch design, we can save 24.9% on the Backend [network cost]」",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**cost_base 决定这个百分比的分母**：5% 是对集群总成本、34.8% 与 24.9% 是对后端 InfiniBand 成本，**两者分母差一个数量级，不可并列比较哪个方案更省**。  "
+    },
+    {
+      "fact_id": "neocloud-network-saving-vms-improved",
+      "metric_id": "network_design_saving",
+      "entity": {
+        "type": "market",
+        "id": "gpu-cloud-economics",
+        "label": "GPU 云经济性（Neocloud/超大规模）"
+      },
+      "value": 31.6,
+      "unit": "%",
+      "caliber": {
+        "design_change": "其他",
+        "cost_base": "后端 InfiniBand 成本",
+        "cluster_scale": "未注明",
+        "region": "Global",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "74c37d3d61327898d5664c6b2b1f8116f6d2d82acb99ddf27877bae820154c35",
+        "local_file": "SemiAnalysis AI Neocloud Playbook and Anatomy (2024-10-03).pdf",
+        "locator": "第 13 页：「31.6% compared to the reference architecture, an improvement over the 24.9% savings when [using the previous design]」",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**cost_base 决定这个百分比的分母**：5% 是对集群总成本、34.8% 与 24.9% 是对后端 InfiniBand 成本，**两者分母差一个数量级，不可并列比较哪个方案更省**。  **「其他」这条是前一方案的改进版（24.9% → 31.6%）**，原文未给它单独命名，design_change 只能填其他。"
+    },
+    {
+      "fact_id": "neocloud-demand-training-share-lower",
+      "metric_id": "compute_demand_by_workload_share",
+      "entity": {
+        "type": "market",
+        "id": "gpu-cloud-economics",
+        "label": "GPU 云经济性（Neocloud/超大规模）"
+      },
+      "value": 80.0,
+      "unit": "%",
+      "caliber": {
+        "workload": "训练",
+        "customer_scope": "Neocloud 客户",
+        "region": "Global",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024-10",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "74c37d3d61327898d5664c6b2b1f8116f6d2d82acb99ddf27877bae820154c35",
+        "local_file": "SemiAnalysis AI Neocloud Playbook and Anatomy (2024-10-03).pdf",
+        "locator": "第 47 页：「Today, around 80-90% of demand for Neocloud GPU compute is from training」",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间 80-90% 的下界。 **这是 2024-10 的时点值，是判断推理转型进度的基线**：若日后同口径降到六成以下，说明推理需求真正起量。customer_scope=Neocloud 客户，**不含超大规模自用**。"
+    },
+    {
+      "fact_id": "neocloud-demand-training-share-upper",
+      "metric_id": "compute_demand_by_workload_share",
+      "entity": {
+        "type": "market",
+        "id": "gpu-cloud-economics",
+        "label": "GPU 云经济性（Neocloud/超大规模）"
+      },
+      "value": 90.0,
+      "unit": "%",
+      "caliber": {
+        "workload": "训练",
+        "customer_scope": "Neocloud 客户",
+        "region": "Global",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024-10",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "74c37d3d61327898d5664c6b2b1f8116f6d2d82acb99ddf27877bae820154c35",
+        "local_file": "SemiAnalysis AI Neocloud Playbook and Anatomy (2024-10-03).pdf",
+        "locator": "第 47 页：「Today, around 80-90% of demand for Neocloud GPU compute is from training」",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间 80-90% 的上界。 **这是 2024-10 的时点值，是判断推理转型进度的基线**：若日后同口径降到六成以下，说明推理需求真正起量。customer_scope=Neocloud 客户，**不含超大规模自用**。"
+    },
+    {
+      "fact_id": "neocloud-ops-loss-slurm-slowdown-lower",
+      "metric_id": "ops_quality_loss",
+      "entity": {
+        "type": "market",
+        "id": "gpu-cloud-economics",
+        "label": "GPU 云经济性（Neocloud/超大规模）"
+      },
+      "value": 20.0,
+      "unit": "%",
+      "caliber": {
+        "defect": "SLURM_ID 分配不当",
+        "effect": "训练速度下降",
+        "region": "Global",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024-10",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "74c37d3d61327898d5664c6b2b1f8116f6d2d82acb99ddf27877bae820154c35",
+        "local_file": "SemiAnalysis AI Neocloud Playbook and Anatomy (2024-10-03).pdf",
+        "locator": "第 41 页：「SLURM_ID assigned sub optimally will result in a 20-30% slowdown」",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**effect 这一维不能省**：同一个缺陷可以表述成「损失多少」或「还有多少提升空间」，方向相反、数值相同——本条是「训练速度下降」。 **这一族是 MFU 之下的一层**：库内 mfu_rate 与 realized_vs_theoretical_ratio 给的是总折损，这里给的是单项缺陷各自的贡献，可用于拆解为什么实测远低于理论。  "
+    },
+    {
+      "fact_id": "neocloud-ops-loss-slurm-slowdown-upper",
+      "metric_id": "ops_quality_loss",
+      "entity": {
+        "type": "market",
+        "id": "gpu-cloud-economics",
+        "label": "GPU 云经济性（Neocloud/超大规模）"
+      },
+      "value": 30.0,
+      "unit": "%",
+      "caliber": {
+        "defect": "SLURM_ID 分配不当",
+        "effect": "训练速度下降",
+        "region": "Global",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024-10",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "74c37d3d61327898d5664c6b2b1f8116f6d2d82acb99ddf27877bae820154c35",
+        "local_file": "SemiAnalysis AI Neocloud Playbook and Anatomy (2024-10-03).pdf",
+        "locator": "第 41 页：同句",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**effect 这一维不能省**：同一个缺陷可以表述成「损失多少」或「还有多少提升空间」，方向相反、数值相同——本条是「训练速度下降」。 **这一族是 MFU 之下的一层**：库内 mfu_rate 与 realized_vs_theoretical_ratio 给的是总折损，这里给的是单项缺陷各自的贡献，可用于拆解为什么实测远低于理论。  "
+    },
+    {
+      "fact_id": "neocloud-ops-loss-tuning-headroom-lower",
+      "metric_id": "ops_quality_loss",
+      "entity": {
+        "type": "market",
+        "id": "gpu-cloud-economics",
+        "label": "GPU 云经济性（Neocloud/超大规模）"
+      },
+      "value": 10.0,
+      "unit": "%",
+      "caliber": {
+        "defect": "调优不足",
+        "effect": "吞吐提升空间",
+        "region": "Global",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024-10",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "74c37d3d61327898d5664c6b2b1f8116f6d2d82acb99ddf27877bae820154c35",
+        "local_file": "SemiAnalysis AI Neocloud Playbook and Anatomy (2024-10-03).pdf",
+        "locator": "第 42 页：「a quick 10-15% performance increase in training throughput … the customer can save 10-15% of their GPU spending」",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**effect 这一维不能省**：同一个缺陷可以表述成「损失多少」或「还有多少提升空间」，方向相反、数值相同——本条是「吞吐提升空间」。 **这一族是 MFU 之下的一层**：库内 mfu_rate 与 realized_vs_theoretical_ratio 给的是总折损，这里给的是单项缺陷各自的贡献，可用于拆解为什么实测远低于理论。 原文对调优那条的等价表述：省下 10-15% 的 GPU 开支，或用同样预算多训 10-15%。 "
+    },
+    {
+      "fact_id": "neocloud-ops-loss-tuning-headroom-upper",
+      "metric_id": "ops_quality_loss",
+      "entity": {
+        "type": "market",
+        "id": "gpu-cloud-economics",
+        "label": "GPU 云经济性（Neocloud/超大规模）"
+      },
+      "value": 15.0,
+      "unit": "%",
+      "caliber": {
+        "defect": "调优不足",
+        "effect": "吞吐提升空间",
+        "region": "Global",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024-10",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "74c37d3d61327898d5664c6b2b1f8116f6d2d82acb99ddf27877bae820154c35",
+        "local_file": "SemiAnalysis AI Neocloud Playbook and Anatomy (2024-10-03).pdf",
+        "locator": "第 42 页：同句",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**effect 这一维不能省**：同一个缺陷可以表述成「损失多少」或「还有多少提升空间」，方向相反、数值相同——本条是「吞吐提升空间」。 **这一族是 MFU 之下的一层**：库内 mfu_rate 与 realized_vs_theoretical_ratio 给的是总折损，这里给的是单项缺陷各自的贡献，可用于拆解为什么实测远低于理论。 原文对调优那条的等价表述：省下 10-15% 的 GPU 开支，或用同样预算多训 10-15%。 "
+    },
+    {
+      "fact_id": "neocloud-ops-loss-sdc-detect",
+      "metric_id": "ops_quality_loss",
+      "entity": {
+        "type": "market",
+        "id": "gpu-cloud-economics",
+        "label": "GPU 云经济性（Neocloud/超大规模）"
+      },
+      "value": 95.0,
+      "unit": "%",
+      "caliber": {
+        "defect": "静默数据损坏（SDC）",
+        "effect": "检出率",
+        "region": "Global",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "74c37d3d61327898d5664c6b2b1f8116f6d2d82acb99ddf27877bae820154c35",
+        "local_file": "SemiAnalysis AI Neocloud Playbook and Anatomy (2024-10-03).pdf",
+        "locator": "第 40 页：「catch 95% of the most common SDCs, but will unfortunately miss the remaining 5% of SDCs」",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**effect 这一维不能省**：同一个缺陷可以表述成「损失多少」或「还有多少提升空间」，方向相反、数值相同——本条是「检出率」。 **这一族是 MFU 之下的一层**：库内 mfu_rate 与 realized_vs_theoretical_ratio 给的是总折损，这里给的是单项缺陷各自的贡献，可用于拆解为什么实测远低于理论。  **95% 检出率对应 5% 漏检，两条是同一句话的两面**，一起入库便于说明「常规检测挡不住全部 SDC」。"
+    },
+    {
+      "fact_id": "neocloud-ops-loss-sdc-miss",
+      "metric_id": "ops_quality_loss",
+      "entity": {
+        "type": "market",
+        "id": "gpu-cloud-economics",
+        "label": "GPU 云经济性（Neocloud/超大规模）"
+      },
+      "value": 5.0,
+      "unit": "%",
+      "caliber": {
+        "defect": "静默数据损坏（SDC）",
+        "effect": "漏检率",
+        "region": "Global",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "74c37d3d61327898d5664c6b2b1f8116f6d2d82acb99ddf27877bae820154c35",
+        "local_file": "SemiAnalysis AI Neocloud Playbook and Anatomy (2024-10-03).pdf",
+        "locator": "第 40 页：同句",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**effect 这一维不能省**：同一个缺陷可以表述成「损失多少」或「还有多少提升空间」，方向相反、数值相同——本条是「漏检率」。 **这一族是 MFU 之下的一层**：库内 mfu_rate 与 realized_vs_theoretical_ratio 给的是总折损，这里给的是单项缺陷各自的贡献，可用于拆解为什么实测远低于理论。  **95% 检出率对应 5% 漏检，两条是同一句话的两面**，一起入库便于说明「常规检测挡不住全部 SDC」。"
+    },
+    {
+      "fact_id": "neocloud-ops-loss-link-bw",
+      "metric_id": "ops_quality_loss",
+      "entity": {
+        "type": "market",
+        "id": "gpu-cloud-economics",
+        "label": "GPU 云经济性（Neocloud/超大规模）"
+      },
+      "value": 50.0,
+      "unit": "%",
+      "caliber": {
+        "defect": "链路配置错误",
+        "effect": "带宽达成率",
+        "region": "Global",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "74c37d3d61327898d5664c6b2b1f8116f6d2d82acb99ddf27877bae820154c35",
+        "local_file": "SemiAnalysis AI Neocloud Playbook and Anatomy (2024-10-03).pdf",
+        "locator": "第 38 页：「operate at 50% the bandwidth of what it should be operating at」",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**effect 这一维不能省**：同一个缺陷可以表述成「损失多少」或「还有多少提升空间」，方向相反、数值相同——本条是「带宽达成率」。 **这一族是 MFU 之下的一层**：库内 mfu_rate 与 realized_vs_theoretical_ratio 给的是总折损，这里给的是单项缺陷各自的贡献，可用于拆解为什么实测远低于理论。  "
     }
   ]
 }
