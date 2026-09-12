@@ -24733,6 +24733,37 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "单位换算：原表「台」÷ 1 万 = 万颗（本指标单位为万颗）。 **counting=整卡是就近归类**：原表单位是「台」，而沐曦那条明确「含单板和 8 卡服务器」——**一台 8 卡服务器算 1 台还是 8 颗，原表没说**，因此这一族的口径不严，标 [未核]。**尤其不要把这些「台」与大摩那份的 die 数直接比**（见 ms-domestic-gpu-* 系列）。 **这不是全市场出货，是对单一客户的交付/订单**：寒武纪两款都是对 ByteDance、海光 DCU3 是对阿里巴巴——**customer 维在本指标里不存在**，只能写在这里。 "
+    },
+    {
+      "fact_id": "gb200-power-shelf-capacity",
+      "metric_id": "installed_equipment_capacity",
+      "entity": {
+        "type": "product",
+        "id": "gb200-nvl72",
+        "label": "GB200 NVL72（36×GB200 / 72 GPU）"
+      },
+      "value": 33.0,
+      "unit": "kW 或 kVA",
+      "caliber": {
+        "equipment": "高压直流",
+        "capacity_basis": "单台额定",
+        "unit_kind": "kW",
+        "region": "Global",
+        "basis": "清单实配"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2d3d3acc0cd2d8b3ca4607343cb44571bdc0b272f5e508c7430296c799e011c7",
+        "local_file": "GB200 机架 U 位排布（SemiAnalysis）.xlsx",
+        "locator": "工作表「GB200」机架 U 位排布图，第 33-34 U 与各变体对应位置标注「1U Power Shelf 33kW」（全表共出现 14 处）",
+        "grade": "S3",
+        "originator": "SemiAnalysis（工作表第 1 行标注 Source： Semianalysis）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**equipment=高压直流是就近归类**：原文只写 Power Shelf（机架内供电托架），枚举里没有「机架供电托架」这一项，标 [未核]。 **1U 占位、33kW 单台额定**：NVL72 在第 33-34U 放两台（合 66kW），NVL36 机架各放一台。**这是「一个机柜要几台供电托架」的换算基数**：整柜 120kW 需四台以上，与库内 nv-rack-power-gb200-nvl72-total（120kW）对得上。 同表另有 ipmi 管理交换机与计算/NVSwitch 托盘的 U 位排布，属布局信息不是数值，未录。"
     }
   ]
 }
