@@ -14735,6 +14735,546 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "单位换算 US$M ÷ 100 = 亿美元。预测值，做出时点 2020-12。 隐含均价由 2019 年 5,904 美元/台升至 2024 年 7,305 美元/台。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。"
+    },
+    {
+      "fact_id": "idc-ess-value-total-2016q1",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "global-enterprise-storage",
+        "label": "全球企业存储系统市场"
+      },
+      "value": 200.9,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Storage Systems",
+        "region": "Total",
+        "storage_scope": "Total"
+      },
+      "as_of": "2016-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b31f75998e3fc56e2d9cb315c0b94bac168b862761a29994988f5350334f43c0",
+        "local_file": "IDC Entr Infra Tracker (ESS) ForecastPivot 2021Q3.xlsx",
+        "locator": "工作表「Forecast Data」第 44 行 Total Value (US$M)，2016Q1 列 = 20089.77 百万美元",
+        "grade": "S3",
+        "originator": "IDC《Quarterly Enterprise Storage Systems Tracker》2021Q3 Forecast，发布 2021-12-16"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。本条为序列起点。 **storage_scope 是这份表最要命的一维**：Total 里约 76% 是 Internal/ODM，即**算进服务器里的那部分存储价值**；库内 Dell'Oro 口径的 server_mfg_revenue{Storage Systems} 只算外置存储，两者差近 4 倍。不带这一维就会打架。 **Total = External OEM + Internal/ODM**，三条同时入库便于核对：2021Q3 为 77.83 + 252.98 = 330.81 亿美元。 **同表还有一列 Value Constant（不变价，剔汇率）**，2016Q1 为 202.79 亿美元、与现价 200.90 差 0.9%，本库只录现价。"
+    },
+    {
+      "fact_id": "idc-ess-value-total-2021q3",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "global-enterprise-storage",
+        "label": "全球企业存储系统市场"
+      },
+      "value": 330.81,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Storage Systems",
+        "region": "Total",
+        "storage_scope": "Total"
+      },
+      "as_of": "2021-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b31f75998e3fc56e2d9cb315c0b94bac168b862761a29994988f5350334f43c0",
+        "local_file": "IDC Entr Infra Tracker (ESS) ForecastPivot 2021Q3.xlsx",
+        "locator": "工作表「Forecast Data」第 44 行 Total Value (US$M)，2021Q3 列 = 33081.29 百万美元",
+        "grade": "S3",
+        "originator": "IDC《Quarterly Enterprise Storage Systems Tracker》2021Q3 Forecast，发布 2021-12-16"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。本条为最新实绩季。 **storage_scope 是这份表最要命的一维**：Total 里约 76% 是 Internal/ODM，即**算进服务器里的那部分存储价值**；库内 Dell'Oro 口径的 server_mfg_revenue{Storage Systems} 只算外置存储，两者差近 4 倍。不带这一维就会打架。 **Total = External OEM + Internal/ODM**，三条同时入库便于核对：2021Q3 为 77.83 + 252.98 = 330.81 亿美元。 **同表还有一列 Value Constant（不变价，剔汇率）**，2016Q1 为 202.79 亿美元、与现价 200.90 差 0.9%，本库只录现价。"
+    },
+    {
+      "fact_id": "idc-ess-value-total-2025",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "global-enterprise-storage",
+        "label": "全球企业存储系统市场"
+      },
+      "value": 1770.74,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Storage Systems",
+        "region": "Total",
+        "storage_scope": "Total"
+      },
+      "as_of": "2025E@2021-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b31f75998e3fc56e2d9cb315c0b94bac168b862761a29994988f5350334f43c0",
+        "local_file": "IDC Entr Infra Tracker (ESS) ForecastPivot 2021Q3.xlsx",
+        "locator": "工作表「Forecast Data」第 44 行 Total Value (US$M)，2025 列 = 177073.53 百万美元",
+        "grade": "S3",
+        "originator": "IDC《Quarterly Enterprise Storage Systems Tracker》2021Q3 Forecast，发布 2021-12-16"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。本条为年度预测终点。 **storage_scope 是这份表最要命的一维**：Total 里约 76% 是 Internal/ODM，即**算进服务器里的那部分存储价值**；库内 Dell'Oro 口径的 server_mfg_revenue{Storage Systems} 只算外置存储，两者差近 4 倍。不带这一维就会打架。 **Total = External OEM + Internal/ODM**，三条同时入库便于核对：2021Q3 为 77.83 + 252.98 = 330.81 亿美元。 **同表还有一列 Value Constant（不变价，剔汇率）**，2016Q1 为 202.79 亿美元、与现价 200.90 差 0.9%，本库只录现价。"
+    },
+    {
+      "fact_id": "idc-ess-value-external-2016q1",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "global-enterprise-storage",
+        "label": "全球企业存储系统市场"
+      },
+      "value": 59.33,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Storage Systems",
+        "region": "Total",
+        "storage_scope": "External OEM"
+      },
+      "as_of": "2016-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b31f75998e3fc56e2d9cb315c0b94bac168b862761a29994988f5350334f43c0",
+        "local_file": "IDC Entr Infra Tracker (ESS) ForecastPivot 2021Q3.xlsx",
+        "locator": "工作表「Forecast Data」第 25 行 External OEM Total，2016Q1 列 = 5933.33 百万美元",
+        "grade": "S3",
+        "originator": "IDC《Quarterly Enterprise Storage Systems Tracker》2021Q3 Forecast，发布 2021-12-16"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。本条为序列起点。 **storage_scope 是这份表最要命的一维**：Total 里约 76% 是 Internal/ODM，即**算进服务器里的那部分存储价值**；库内 Dell'Oro 口径的 server_mfg_revenue{Storage Systems} 只算外置存储，两者差近 4 倍。不带这一维就会打架。 **Total = External OEM + Internal/ODM**，三条同时入库便于核对：2021Q3 为 77.83 + 252.98 = 330.81 亿美元。 **同表还有一列 Value Constant（不变价，剔汇率）**，2016Q1 为 202.79 亿美元、与现价 200.90 差 0.9%，本库只录现价。"
+    },
+    {
+      "fact_id": "idc-ess-value-external-2021q3",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "global-enterprise-storage",
+        "label": "全球企业存储系统市场"
+      },
+      "value": 77.83,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Storage Systems",
+        "region": "Total",
+        "storage_scope": "External OEM"
+      },
+      "as_of": "2021-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b31f75998e3fc56e2d9cb315c0b94bac168b862761a29994988f5350334f43c0",
+        "local_file": "IDC Entr Infra Tracker (ESS) ForecastPivot 2021Q3.xlsx",
+        "locator": "工作表「Forecast Data」第 25 行 External OEM Total，2021Q3 列 = 7783.04 百万美元",
+        "grade": "S3",
+        "originator": "IDC《Quarterly Enterprise Storage Systems Tracker》2021Q3 Forecast，发布 2021-12-16"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。本条为最新实绩季。 **storage_scope 是这份表最要命的一维**：Total 里约 76% 是 Internal/ODM，即**算进服务器里的那部分存储价值**；库内 Dell'Oro 口径的 server_mfg_revenue{Storage Systems} 只算外置存储，两者差近 4 倍。不带这一维就会打架。 **Total = External OEM + Internal/ODM**，三条同时入库便于核对：2021Q3 为 77.83 + 252.98 = 330.81 亿美元。 **同表还有一列 Value Constant（不变价，剔汇率）**，2016Q1 为 202.79 亿美元、与现价 200.90 差 0.9%，本库只录现价。"
+    },
+    {
+      "fact_id": "idc-ess-value-external-2025",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "global-enterprise-storage",
+        "label": "全球企业存储系统市场"
+      },
+      "value": 369.12,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Storage Systems",
+        "region": "Total",
+        "storage_scope": "External OEM"
+      },
+      "as_of": "2025E@2021-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b31f75998e3fc56e2d9cb315c0b94bac168b862761a29994988f5350334f43c0",
+        "local_file": "IDC Entr Infra Tracker (ESS) ForecastPivot 2021Q3.xlsx",
+        "locator": "工作表「Forecast Data」第 25 行 External OEM Total，2025 列 = 36912.13 百万美元",
+        "grade": "S3",
+        "originator": "IDC《Quarterly Enterprise Storage Systems Tracker》2021Q3 Forecast，发布 2021-12-16"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。本条为年度预测终点。 **storage_scope 是这份表最要命的一维**：Total 里约 76% 是 Internal/ODM，即**算进服务器里的那部分存储价值**；库内 Dell'Oro 口径的 server_mfg_revenue{Storage Systems} 只算外置存储，两者差近 4 倍。不带这一维就会打架。 **Total = External OEM + Internal/ODM**，三条同时入库便于核对：2021Q3 为 77.83 + 252.98 = 330.81 亿美元。 **同表还有一列 Value Constant（不变价，剔汇率）**，2016Q1 为 202.79 亿美元、与现价 200.90 差 0.9%，本库只录现价。"
+    },
+    {
+      "fact_id": "idc-ess-value-internal-2016q1",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "global-enterprise-storage",
+        "label": "全球企业存储系统市场"
+      },
+      "value": 141.56,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Storage Systems",
+        "region": "Total",
+        "storage_scope": "Internal-ODM"
+      },
+      "as_of": "2016-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b31f75998e3fc56e2d9cb315c0b94bac168b862761a29994988f5350334f43c0",
+        "local_file": "IDC Entr Infra Tracker (ESS) ForecastPivot 2021Q3.xlsx",
+        "locator": "工作表「Forecast Data」第 29 行 Internal/ODM Total，2016Q1 列 = 14156.44 百万美元",
+        "grade": "S3",
+        "originator": "IDC《Quarterly Enterprise Storage Systems Tracker》2021Q3 Forecast，发布 2021-12-16"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。本条为序列起点。 **storage_scope 是这份表最要命的一维**：Total 里约 76% 是 Internal/ODM，即**算进服务器里的那部分存储价值**；库内 Dell'Oro 口径的 server_mfg_revenue{Storage Systems} 只算外置存储，两者差近 4 倍。不带这一维就会打架。 **Total = External OEM + Internal/ODM**，三条同时入库便于核对：2021Q3 为 77.83 + 252.98 = 330.81 亿美元。 **同表还有一列 Value Constant（不变价，剔汇率）**，2016Q1 为 202.79 亿美元、与现价 200.90 差 0.9%，本库只录现价。"
+    },
+    {
+      "fact_id": "idc-ess-value-internal-2021q3",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "global-enterprise-storage",
+        "label": "全球企业存储系统市场"
+      },
+      "value": 252.98,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Storage Systems",
+        "region": "Total",
+        "storage_scope": "Internal-ODM"
+      },
+      "as_of": "2021-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b31f75998e3fc56e2d9cb315c0b94bac168b862761a29994988f5350334f43c0",
+        "local_file": "IDC Entr Infra Tracker (ESS) ForecastPivot 2021Q3.xlsx",
+        "locator": "工作表「Forecast Data」第 29 行 Internal/ODM Total，2021Q3 列 = 25298.25 百万美元",
+        "grade": "S3",
+        "originator": "IDC《Quarterly Enterprise Storage Systems Tracker》2021Q3 Forecast，发布 2021-12-16"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。本条为最新实绩季。 **storage_scope 是这份表最要命的一维**：Total 里约 76% 是 Internal/ODM，即**算进服务器里的那部分存储价值**；库内 Dell'Oro 口径的 server_mfg_revenue{Storage Systems} 只算外置存储，两者差近 4 倍。不带这一维就会打架。 **Total = External OEM + Internal/ODM**，三条同时入库便于核对：2021Q3 为 77.83 + 252.98 = 330.81 亿美元。 **同表还有一列 Value Constant（不变价，剔汇率）**，2016Q1 为 202.79 亿美元、与现价 200.90 差 0.9%，本库只录现价。"
+    },
+    {
+      "fact_id": "idc-ess-value-internal-2025",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "global-enterprise-storage",
+        "label": "全球企业存储系统市场"
+      },
+      "value": 1401.61,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Storage Systems",
+        "region": "Total",
+        "storage_scope": "Internal-ODM"
+      },
+      "as_of": "2025E@2021-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b31f75998e3fc56e2d9cb315c0b94bac168b862761a29994988f5350334f43c0",
+        "local_file": "IDC Entr Infra Tracker (ESS) ForecastPivot 2021Q3.xlsx",
+        "locator": "工作表「Forecast Data」第 29 行 Internal/ODM Total，2025 列 = 140161.40 百万美元",
+        "grade": "S3",
+        "originator": "IDC《Quarterly Enterprise Storage Systems Tracker》2021Q3 Forecast，发布 2021-12-16"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。本条为年度预测终点。 **storage_scope 是这份表最要命的一维**：Total 里约 76% 是 Internal/ODM，即**算进服务器里的那部分存储价值**；库内 Dell'Oro 口径的 server_mfg_revenue{Storage Systems} 只算外置存储，两者差近 4 倍。不带这一维就会打架。 **Total = External OEM + Internal/ODM**，三条同时入库便于核对：2021Q3 为 77.83 + 252.98 = 330.81 亿美元。 **同表还有一列 Value Constant（不变价，剔汇率）**，2016Q1 为 202.79 亿美元、与现价 200.90 差 0.9%，本库只录现价。"
+    },
+    {
+      "fact_id": "idc-ess-capacity-total-2016q1",
+      "metric_id": "storage_capacity_shipped",
+      "entity": {
+        "type": "market",
+        "id": "global-enterprise-storage",
+        "label": "全球企业存储系统市场"
+      },
+      "value": 44683.0,
+      "unit": "PB",
+      "caliber": {
+        "storage_scope": "Total",
+        "product_category": "未拆分",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2016-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b31f75998e3fc56e2d9cb315c0b94bac168b862761a29994988f5350334f43c0",
+        "local_file": "IDC Entr Infra Tracker (ESS) ForecastPivot 2021Q3.xlsx",
+        "locator": "工作表「Forecast Data」第 45 行 Total Terabytes，2016Q1 列 = 44682997 TB",
+        "grade": "S3",
+        "originator": "IDC《Quarterly Enterprise Storage Systems Tracker》2021Q3 Forecast，发布 2021-12-16"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 Terabytes ÷ 1000 = PB。本条为序列起点。 **storage_scope 是这份表最要命的一维**：Total 里约 76% 是 Internal/ODM，即**算进服务器里的那部分存储价值**；库内 Dell'Oro 口径的 server_mfg_revenue{Storage Systems} 只算外置存储，两者差近 4 倍。不带这一维就会打架。 **容量与金额的结构完全不同**：2021Q3 金额上 Internal/ODM 占 76%，容量上占 87%——**内置存储的单位容量价格远低于外置**，只看其中一个口径会得出相反的「谁更重要」。"
+    },
+    {
+      "fact_id": "idc-ess-capacity-total-2021q3",
+      "metric_id": "storage_capacity_shipped",
+      "entity": {
+        "type": "market",
+        "id": "global-enterprise-storage",
+        "label": "全球企业存储系统市场"
+      },
+      "value": 179494.5,
+      "unit": "PB",
+      "caliber": {
+        "storage_scope": "Total",
+        "product_category": "未拆分",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2021-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b31f75998e3fc56e2d9cb315c0b94bac168b862761a29994988f5350334f43c0",
+        "local_file": "IDC Entr Infra Tracker (ESS) ForecastPivot 2021Q3.xlsx",
+        "locator": "工作表「Forecast Data」第 45 行 Total Terabytes，2021Q3 列 = 179494512 TB",
+        "grade": "S3",
+        "originator": "IDC《Quarterly Enterprise Storage Systems Tracker》2021Q3 Forecast，发布 2021-12-16"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 Terabytes ÷ 1000 = PB。本条为最新实绩季。 **storage_scope 是这份表最要命的一维**：Total 里约 76% 是 Internal/ODM，即**算进服务器里的那部分存储价值**；库内 Dell'Oro 口径的 server_mfg_revenue{Storage Systems} 只算外置存储，两者差近 4 倍。不带这一维就会打架。 **容量与金额的结构完全不同**：2021Q3 金额上 Internal/ODM 占 76%，容量上占 87%——**内置存储的单位容量价格远低于外置**，只看其中一个口径会得出相反的「谁更重要」。"
+    },
+    {
+      "fact_id": "idc-ess-capacity-total-2025",
+      "metric_id": "storage_capacity_shipped",
+      "entity": {
+        "type": "market",
+        "id": "global-enterprise-storage",
+        "label": "全球企业存储系统市场"
+      },
+      "value": 2278848.8,
+      "unit": "PB",
+      "caliber": {
+        "storage_scope": "Total",
+        "product_category": "未拆分",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2021-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b31f75998e3fc56e2d9cb315c0b94bac168b862761a29994988f5350334f43c0",
+        "local_file": "IDC Entr Infra Tracker (ESS) ForecastPivot 2021Q3.xlsx",
+        "locator": "工作表「Forecast Data」第 45 行 Total Terabytes，2025 列 = 2278848813 TB",
+        "grade": "S3",
+        "originator": "IDC《Quarterly Enterprise Storage Systems Tracker》2021Q3 Forecast，发布 2021-12-16"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 Terabytes ÷ 1000 = PB。本条为年度预测终点。 **storage_scope 是这份表最要命的一维**：Total 里约 76% 是 Internal/ODM，即**算进服务器里的那部分存储价值**；库内 Dell'Oro 口径的 server_mfg_revenue{Storage Systems} 只算外置存储，两者差近 4 倍。不带这一维就会打架。 **容量与金额的结构完全不同**：2021Q3 金额上 Internal/ODM 占 76%，容量上占 87%——**内置存储的单位容量价格远低于外置**，只看其中一个口径会得出相反的「谁更重要」。"
+    },
+    {
+      "fact_id": "idc-ess-capacity-external-2016q1",
+      "metric_id": "storage_capacity_shipped",
+      "entity": {
+        "type": "market",
+        "id": "global-enterprise-storage",
+        "label": "全球企业存储系统市场"
+      },
+      "value": 11645.1,
+      "unit": "PB",
+      "caliber": {
+        "storage_scope": "External OEM",
+        "product_category": "未拆分",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2016-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b31f75998e3fc56e2d9cb315c0b94bac168b862761a29994988f5350334f43c0",
+        "local_file": "IDC Entr Infra Tracker (ESS) ForecastPivot 2021Q3.xlsx",
+        "locator": "工作表「Forecast Data」第 32 行 External OEM Total，2016Q1 列 = 11645103 TB",
+        "grade": "S3",
+        "originator": "IDC《Quarterly Enterprise Storage Systems Tracker》2021Q3 Forecast，发布 2021-12-16"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 Terabytes ÷ 1000 = PB。本条为序列起点。 **storage_scope 是这份表最要命的一维**：Total 里约 76% 是 Internal/ODM，即**算进服务器里的那部分存储价值**；库内 Dell'Oro 口径的 server_mfg_revenue{Storage Systems} 只算外置存储，两者差近 4 倍。不带这一维就会打架。 **容量与金额的结构完全不同**：2021Q3 金额上 Internal/ODM 占 76%，容量上占 87%——**内置存储的单位容量价格远低于外置**，只看其中一个口径会得出相反的「谁更重要」。"
+    },
+    {
+      "fact_id": "idc-ess-capacity-external-2021q3",
+      "metric_id": "storage_capacity_shipped",
+      "entity": {
+        "type": "market",
+        "id": "global-enterprise-storage",
+        "label": "全球企业存储系统市场"
+      },
+      "value": 24022.7,
+      "unit": "PB",
+      "caliber": {
+        "storage_scope": "External OEM",
+        "product_category": "未拆分",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2021-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b31f75998e3fc56e2d9cb315c0b94bac168b862761a29994988f5350334f43c0",
+        "local_file": "IDC Entr Infra Tracker (ESS) ForecastPivot 2021Q3.xlsx",
+        "locator": "工作表「Forecast Data」第 32 行 External OEM Total，2021Q3 列 = 24022718 TB",
+        "grade": "S3",
+        "originator": "IDC《Quarterly Enterprise Storage Systems Tracker》2021Q3 Forecast，发布 2021-12-16"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 Terabytes ÷ 1000 = PB。本条为最新实绩季。 **storage_scope 是这份表最要命的一维**：Total 里约 76% 是 Internal/ODM，即**算进服务器里的那部分存储价值**；库内 Dell'Oro 口径的 server_mfg_revenue{Storage Systems} 只算外置存储，两者差近 4 倍。不带这一维就会打架。 **容量与金额的结构完全不同**：2021Q3 金额上 Internal/ODM 占 76%，容量上占 87%——**内置存储的单位容量价格远低于外置**，只看其中一个口径会得出相反的「谁更重要」。"
+    },
+    {
+      "fact_id": "idc-ess-capacity-external-2025",
+      "metric_id": "storage_capacity_shipped",
+      "entity": {
+        "type": "market",
+        "id": "global-enterprise-storage",
+        "label": "全球企业存储系统市场"
+      },
+      "value": 188345.2,
+      "unit": "PB",
+      "caliber": {
+        "storage_scope": "External OEM",
+        "product_category": "未拆分",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2021-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b31f75998e3fc56e2d9cb315c0b94bac168b862761a29994988f5350334f43c0",
+        "local_file": "IDC Entr Infra Tracker (ESS) ForecastPivot 2021Q3.xlsx",
+        "locator": "工作表「Forecast Data」第 32 行 External OEM Total，2025 列 = 188345247 TB",
+        "grade": "S3",
+        "originator": "IDC《Quarterly Enterprise Storage Systems Tracker》2021Q3 Forecast，发布 2021-12-16"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 Terabytes ÷ 1000 = PB。本条为年度预测终点。 **storage_scope 是这份表最要命的一维**：Total 里约 76% 是 Internal/ODM，即**算进服务器里的那部分存储价值**；库内 Dell'Oro 口径的 server_mfg_revenue{Storage Systems} 只算外置存储，两者差近 4 倍。不带这一维就会打架。 **容量与金额的结构完全不同**：2021Q3 金额上 Internal/ODM 占 76%，容量上占 87%——**内置存储的单位容量价格远低于外置**，只看其中一个口径会得出相反的「谁更重要」。"
+    },
+    {
+      "fact_id": "idc-ess-capacity-internal-2016q1",
+      "metric_id": "storage_capacity_shipped",
+      "entity": {
+        "type": "market",
+        "id": "global-enterprise-storage",
+        "label": "全球企业存储系统市场"
+      },
+      "value": 33037.9,
+      "unit": "PB",
+      "caliber": {
+        "storage_scope": "Internal-ODM",
+        "product_category": "未拆分",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2016-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b31f75998e3fc56e2d9cb315c0b94bac168b862761a29994988f5350334f43c0",
+        "local_file": "IDC Entr Infra Tracker (ESS) ForecastPivot 2021Q3.xlsx",
+        "locator": "工作表「Forecast Data」第 36 行 Internal/ODM Total，2016Q1 列 = 33037894 TB",
+        "grade": "S3",
+        "originator": "IDC《Quarterly Enterprise Storage Systems Tracker》2021Q3 Forecast，发布 2021-12-16"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 Terabytes ÷ 1000 = PB。本条为序列起点。 **storage_scope 是这份表最要命的一维**：Total 里约 76% 是 Internal/ODM，即**算进服务器里的那部分存储价值**；库内 Dell'Oro 口径的 server_mfg_revenue{Storage Systems} 只算外置存储，两者差近 4 倍。不带这一维就会打架。 **容量与金额的结构完全不同**：2021Q3 金额上 Internal/ODM 占 76%，容量上占 87%——**内置存储的单位容量价格远低于外置**，只看其中一个口径会得出相反的「谁更重要」。"
+    },
+    {
+      "fact_id": "idc-ess-capacity-internal-2021q3",
+      "metric_id": "storage_capacity_shipped",
+      "entity": {
+        "type": "market",
+        "id": "global-enterprise-storage",
+        "label": "全球企业存储系统市场"
+      },
+      "value": 155471.8,
+      "unit": "PB",
+      "caliber": {
+        "storage_scope": "Internal-ODM",
+        "product_category": "未拆分",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2021-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b31f75998e3fc56e2d9cb315c0b94bac168b862761a29994988f5350334f43c0",
+        "local_file": "IDC Entr Infra Tracker (ESS) ForecastPivot 2021Q3.xlsx",
+        "locator": "工作表「Forecast Data」第 36 行 Internal/ODM Total，2021Q3 列 = 155471794 TB",
+        "grade": "S3",
+        "originator": "IDC《Quarterly Enterprise Storage Systems Tracker》2021Q3 Forecast，发布 2021-12-16"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 Terabytes ÷ 1000 = PB。本条为最新实绩季。 **storage_scope 是这份表最要命的一维**：Total 里约 76% 是 Internal/ODM，即**算进服务器里的那部分存储价值**；库内 Dell'Oro 口径的 server_mfg_revenue{Storage Systems} 只算外置存储，两者差近 4 倍。不带这一维就会打架。 **容量与金额的结构完全不同**：2021Q3 金额上 Internal/ODM 占 76%，容量上占 87%——**内置存储的单位容量价格远低于外置**，只看其中一个口径会得出相反的「谁更重要」。"
+    },
+    {
+      "fact_id": "idc-ess-capacity-internal-2025",
+      "metric_id": "storage_capacity_shipped",
+      "entity": {
+        "type": "market",
+        "id": "global-enterprise-storage",
+        "label": "全球企业存储系统市场"
+      },
+      "value": 2090503.6,
+      "unit": "PB",
+      "caliber": {
+        "storage_scope": "Internal-ODM",
+        "product_category": "未拆分",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2021-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b31f75998e3fc56e2d9cb315c0b94bac168b862761a29994988f5350334f43c0",
+        "local_file": "IDC Entr Infra Tracker (ESS) ForecastPivot 2021Q3.xlsx",
+        "locator": "工作表「Forecast Data」第 36 行 Internal/ODM Total，2025 列 = 2090503567 TB",
+        "grade": "S3",
+        "originator": "IDC《Quarterly Enterprise Storage Systems Tracker》2021Q3 Forecast，发布 2021-12-16"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 Terabytes ÷ 1000 = PB。本条为年度预测终点。 **storage_scope 是这份表最要命的一维**：Total 里约 76% 是 Internal/ODM，即**算进服务器里的那部分存储价值**；库内 Dell'Oro 口径的 server_mfg_revenue{Storage Systems} 只算外置存储，两者差近 4 倍。不带这一维就会打架。 **容量与金额的结构完全不同**：2021Q3 金额上 Internal/ODM 占 76%，容量上占 87%——**内置存储的单位容量价格远低于外置**，只看其中一个口径会得出相反的「谁更重要」。"
     }
   ]
 }
