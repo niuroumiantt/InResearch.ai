@@ -15122,7 +15122,8 @@
         "region": "Global",
         "basis": "第三方跟踪",
         "subregion": "不适用（非中国口径）",
-        "vertical": "未拆分"
+        "vertical": "未拆分",
+        "media": "合计"
       },
       "as_of": "2016-Q1",
       "bound": "point",
@@ -15155,7 +15156,8 @@
         "region": "Global",
         "basis": "第三方跟踪",
         "subregion": "不适用（非中国口径）",
-        "vertical": "未拆分"
+        "vertical": "未拆分",
+        "media": "合计"
       },
       "as_of": "2021-Q3",
       "bound": "point",
@@ -15188,7 +15190,8 @@
         "region": "Global",
         "basis": "预测",
         "subregion": "不适用（非中国口径）",
-        "vertical": "未拆分"
+        "vertical": "未拆分",
+        "media": "合计"
       },
       "as_of": "2025E@2021-12",
       "bound": "point",
@@ -15221,7 +15224,8 @@
         "region": "Global",
         "basis": "第三方跟踪",
         "subregion": "不适用（非中国口径）",
-        "vertical": "未拆分"
+        "vertical": "未拆分",
+        "media": "合计"
       },
       "as_of": "2016-Q1",
       "bound": "point",
@@ -15254,7 +15258,8 @@
         "region": "Global",
         "basis": "第三方跟踪",
         "subregion": "不适用（非中国口径）",
-        "vertical": "未拆分"
+        "vertical": "未拆分",
+        "media": "合计"
       },
       "as_of": "2021-Q3",
       "bound": "point",
@@ -15287,7 +15292,8 @@
         "region": "Global",
         "basis": "预测",
         "subregion": "不适用（非中国口径）",
-        "vertical": "未拆分"
+        "vertical": "未拆分",
+        "media": "合计"
       },
       "as_of": "2025E@2021-12",
       "bound": "point",
@@ -15320,7 +15326,8 @@
         "region": "Global",
         "basis": "第三方跟踪",
         "subregion": "不适用（非中国口径）",
-        "vertical": "未拆分"
+        "vertical": "未拆分",
+        "media": "合计"
       },
       "as_of": "2016-Q1",
       "bound": "point",
@@ -15353,7 +15360,8 @@
         "region": "Global",
         "basis": "第三方跟踪",
         "subregion": "不适用（非中国口径）",
-        "vertical": "未拆分"
+        "vertical": "未拆分",
+        "media": "合计"
       },
       "as_of": "2021-Q3",
       "bound": "point",
@@ -15386,7 +15394,8 @@
         "region": "Global",
         "basis": "预测",
         "subregion": "不适用（非中国口径）",
-        "vertical": "未拆分"
+        "vertical": "未拆分",
+        "media": "合计"
       },
       "as_of": "2025E@2021-12",
       "bound": "point",
@@ -17946,10 +17955,11 @@
       "value": 70.0,
       "unit": "台",
       "caliber": {
-        "equipment": "柴发",
+        "equipment": "燃气轮机",
         "redundancy": "未注明",
         "region": "Global",
-        "basis": "厂商指引"
+        "basis": "厂商指引",
+        "count_basis": "产量台数"
       },
       "as_of": "2026E@2026-05",
       "bound": "lower",
@@ -17963,7 +17973,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "同源转述",
-      "notes": "**equipment 维没有「燃机」这个取值**，六个取值是柴发/变压器/UPS/高压开关柜/冷机/市电进线回路，**本条就近填了「柴发」，是错的**——重型燃气轮机不是柴油发电机组。已按菜单缺口另报，补上「燃气轮机」取值后本条要改。 原文「70-80 台」是区间，本条记下界 70。 **订单台数与产量台数是两件事**：原文给的是新签订单台数（FY23Q1 6 台 → FY25Q4 41 台 → FY26Q1 28 台），产量路径来自伯恩斯坦那份转述的 GEV 计划，两者同源于 GEV 但不是同一个量。"
+      "notes": "**已改判**：本条曾就近填 equipment=「柴发」（当时枚举里没有燃机），录的人当场标错并报了缺口；菜单补上「燃气轮机」后已改正，count_basis 按本条 locator 引的是产量路径定为「产量台数」。 原文「70-80 台」是区间，本条记下界 70。 **订单台数与产量台数是两件事**：原文给的是新签订单台数（FY23Q1 6 台 → FY25Q4 41 台 → FY26Q1 28 台），产量路径来自伯恩斯坦那份转述的 GEV 计划，两者同源于 GEV 但不是同一个量。"
     },
     {
       "fact_id": "dw-siemens-us-expansion-invest",
@@ -18774,7 +18784,8 @@
         "equipment": "柴发",
         "redundancy": "未注明",
         "region": "CN",
-        "basis": "清单实配"
+        "basis": "清单实配",
+        "count_basis": "装机台数"
       },
       "as_of": "2019",
       "bound": "lower",
@@ -18804,7 +18815,8 @@
         "equipment": "市电进线回路",
         "redundancy": "未注明",
         "region": "CN",
-        "basis": "清单实配"
+        "basis": "清单实配",
+        "count_basis": "装机台数"
       },
       "as_of": "2019",
       "bound": "point",
@@ -18834,7 +18846,9 @@
         "circuit_type": "10kV 出线",
         "margin_definition": "载流量÷设计电流",
         "region": "CN",
-        "basis": "清单实配"
+        "basis": "清单实配",
+        "circuit_id": "汇总（非单回路）",
+        "stat": "区间端"
       },
       "as_of": "2019",
       "bound": "lower",
@@ -18864,7 +18878,9 @@
         "circuit_type": "10kV 出线",
         "margin_definition": "载流量÷设计电流",
         "region": "CN",
-        "basis": "清单实配"
+        "basis": "清单实配",
+        "circuit_id": "汇总（非单回路）",
+        "stat": "区间端"
       },
       "as_of": "2019",
       "bound": "upper",
