@@ -2856,15 +2856,25 @@ class SplitDimensionSymmetryTests(unittest.TestCase):
             for dim_id in self.EXPECTED[mid]:
                 self.assertIn(dim_id, f['caliber'], (f['fact_id'], dim_id))
 
+    #: 迁移当天库里就有的那批，回填只能填全国或不适用。之后读进来的可以真按省、
+    #: 按行业切——IDC 那份 2024 中国 AI 服务器就是按省份与行业各拆一套的。
+    #: 这条测试钉的是「回填没有凭空给既有事实按上一个省份」，不是「这一族永远不许按省切」。
+    BACKFILL_ONLY = ('delloro-jul26-', 'idc-ess-', 'idc-prc-external-storage-')
+
     def test_the_backfill_never_claimed_a_province(self):
-        """既有事实一条都没有按省切过——回填只能填全国或不适用。"""
         store = L2.load_facts()
         for f in store['records']:
-            if f['metric_id'] not in self.EXPECTED:
+            mid = f['metric_id']
+            if mid not in self.EXPECTED:
                 continue
-            self.assertIn(f['caliber'].get('subregion'),
-                          ('全国', '不适用（非中国口径）'), f['fact_id'])
-            self.assertEqual(f['caliber'].get('vertical'), '未拆分', f['fact_id'])
+            if not f['fact_id'].startswith(self.BACKFILL_ONLY):
+                continue
+            declared = self.declared(mid)
+            if 'subregion' in declared:
+                self.assertIn(f['caliber'].get('subregion'),
+                              ('全国', '不适用（非中国口径）'), f['fact_id'])
+            if 'vertical' in declared:
+                self.assertEqual(f['caliber'].get('vertical'), '未拆分', f['fact_id'])
 
 
 if __name__ == '__main__':
