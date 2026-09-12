@@ -215,38 +215,6 @@ class PreviewBudgetTests(unittest.TestCase):
         self.assertGreater(PK.OFFICE_PREVIEW_CHARS, PK.PREVIEW_CHARS)
 
 
-class SlowLines:
-    """A ledger that yields one line at a time, slowly and on purpose."""
-
-    def __init__(self, lines, delay):
-        self.lines, self.delay = lines, delay
-
-    def __enter__(self):
-        return self
-
-    def __exit__(self, *exc):
-        return False
-
-    def __iter__(self):
-        for line in self.lines:
-            time.sleep(self.delay)
-            yield line
-
-
-class SlowLedger:
-    """Stands in for the moves.jsonl Path, widening the build window."""
-
-    def __init__(self, rows, delay=0.0004):
-        self.lines = [json.dumps(r, ensure_ascii=False) for r in rows]
-        self.delay = delay
-
-    def exists(self):
-        return True
-
-    def open(self, encoding=None):
-        return SlowLines(self.lines, self.delay)
-
-
 class MovedIndexConcurrencyTests(unittest.TestCase):
     """pack builds previews on a thread pool; a half-built index is invisible.
 
@@ -263,17 +231,28 @@ class MovedIndexConcurrencyTests(unittest.TestCase):
     WORKERS = 8
 
     def setUp(self):
-        self._saved = (L1.MOVES, L1._moved)
-        L1.MOVES = SlowLedger([
-            # Zero-padded, not left-justified: '1'.ljust(64,'0') and
-            # '10'.ljust(64,'0') are the same string, so the keys collide.
+        self.temp = tempfile.TemporaryDirectory(prefix='m4-index-concurrency-')
+        self._saved = (L1.MOVES, L1._moved, L1.read_rows)
+        L1.MOVES = Path(self.temp.name) / 'moves.jsonl'
+        write(L1.MOVES, [
             {'event': 'move', 'sha256': '%064x' % i,
              'from': 'raw/f%d.pdf' % i, 'to': 'M10/f%d.pdf' % i, 'ok': True}
             for i in range(self.ROWS)])
+        original = L1.read_rows
+        self.builds = 0
+
+        def slow_rows(path):
+            self.builds += 1
+            for row in original(path):
+                time.sleep(0.0004)
+                yield row
+
+        L1.read_rows = slow_rows
         L1._moved = None
 
     def tearDown(self):
-        L1.MOVES, L1._moved = self._saved
+        L1.MOVES, L1._moved, L1.read_rows = self._saved
+        self.temp.cleanup()
 
     def test_every_thread_sees_a_complete_index(self):
         seen, errors = [], []
@@ -296,21 +275,20 @@ class MovedIndexConcurrencyTests(unittest.TestCase):
                          'a thread took a half-built index: %s' % sorted(set(seen)))
 
     def test_the_index_is_built_once_not_once_per_thread(self):
-        builds = []
-        original = SlowLedger.open
+        threads = [threading.Thread(target=L1.moved_index) for _ in range(self.WORKERS)]
+        for thread in threads:
+            thread.start()
+        for thread in threads:
+            thread.join(timeout=30)
+        self.assertEqual(self.builds, 1, 'the ledger was re-read per thread')
 
-        def counting_open(ledger, encoding=None):
-            builds.append(1)
-            return original(ledger, encoding)
-
-        SlowLedger.open = counting_open
-        try:
-            threads = [threading.Thread(target=L1.moved_index) for _ in range(self.WORKERS)]
-            for t in threads: t.start()
-            for t in threads: t.join(timeout=30)
-        finally:
-            SlowLedger.open = original
-        self.assertEqual(sum(builds), 1, 'the ledger was re-read per thread')
+    def test_appended_revert_refreshes_the_cached_index(self):
+        self.assertEqual(len(L1.moved_index()), self.ROWS)
+        with L1.MOVES.open('a') as stream:
+            stream.write(json.dumps({'event': 'revert', 'from': 'M10/f0.pdf',
+                                      'to': 'raw/f0.pdf', 'sha256': '%064x' % 0, 'ok': True}) + '\n')
+        self.assertNotIn('%064x' % 0, L1.moved_index())
+        self.assertEqual(self.builds, 2)
 
 
 if __name__ == '__main__':

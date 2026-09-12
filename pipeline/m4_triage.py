@@ -11,14 +11,15 @@ before it touches a file.
 
 Hashing runs in a thread pool; hashlib releases the GIL for large updates, so
 several threads keep the disk busy. The output is append-only JSONL, so an
-interrupted run resumes by skipping paths already recorded.
+interrupted run resumes unchanged files and retries changed or failed paths.
 """
 from __future__ import annotations
 
 import argparse
 from collections import Counter, defaultdict
 from concurrent.futures import ThreadPoolExecutor
-import hashlib
+import itertools
+import uuid
 import json
 import os
 from pathlib import Path
@@ -26,60 +27,14 @@ import sys
 import threading
 import time
 
-DEFAULT_ROOT = "/Users/m4/Downloads/所有raw materials"
-DEFAULT_OUT = Path.home() / ".local/share/inresearch.ai/m4-triage"
-CHUNK = 4 * 1024 * 1024
+import m4_paths
+from file_moves import digest
+from jsonl_store import JsonlStore, atomic_write, read_rows
+from m4_records import bucket, inventory_record, load_inventory
+
+DEFAULT_ROOT = m4_paths.source()
+DEFAULT_OUT = m4_paths.data()
 MAX_WORKERS = 16
-
-# L0 buckets come from the adopted task card. They are provisional by
-# construction: a bucket assigned from a suffix is never evidence of reading.
-DRAWING = {".dwg", ".dxf", ".dwf", ".dgn", ".rvt", ".rfa", ".ifc", ".skp", ".3dm",
-           ".step", ".stp", ".iges", ".igs", ".obj", ".fbx", ".max", ".blend", ".sat"}
-OFFICE = {".doc", ".docx", ".xls", ".xlsx", ".xlsm", ".ppt", ".pptx", ".pages",
-          ".numbers", ".key", ".odt", ".ods", ".odp", ".rtf", ".wps", ".et", ".dps"}
-TEXT = {".pdf", ".txt", ".md", ".csv", ".tsv", ".json", ".xml", ".htm", ".html"}
-IMAGE = {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tif", ".tiff", ".heic", ".heif",
-         ".webp", ".svg", ".psd", ".ai", ".eps", ".raw", ".cr2", ".nef"}
-ARCHIVE = {".zip", ".rar", ".7z", ".tar", ".gz", ".bz2", ".xz", ".tgz", ".iso"}
-INSTALLER = {".dmg", ".pkg", ".exe", ".msi", ".app", ".deb", ".rpm", ".apk", ".jar"}
-MEDIA = {".mp4", ".mov", ".avi", ".mkv", ".wmv", ".flv", ".mp3", ".wav", ".m4a", ".aac"}
-# Files the operating system writes next to real material; never research content.
-NOISE_NAMES = {".ds_store", "thumbs.db", "desktop.ini", ".localized"}
-PARTIAL_SUFFIXES = (".part", ".partial", ".tmp", ".crdownload", ".download", ".filepart")
-
-
-def bucket(rel: str, suffix: str) -> tuple[str, str]:
-    """Return (l0_bucket, route). route says which reading level comes next."""
-    name = Path(rel).name.lower()
-    if name in NOISE_NAMES or name.endswith(PARTIAL_SUFFIXES):
-        return "_noise", "l0_name_only"
-    if suffix in DRAWING:
-        return "_drawings_unread", "l0_name_only"
-    if suffix in OFFICE:
-        return "_office_pending", "l0_name_only"
-    if suffix in TEXT:
-        return "text_candidate", "l1_preview"
-    if suffix in IMAGE:
-        return "image", "l0_name_only"
-    if suffix in ARCHIVE:
-        return "archive", "l0_name_only"
-    if suffix in INSTALLER:
-        return "installer", "l0_name_only"
-    if suffix in MEDIA:
-        return "media", "l0_name_only"
-    return "other", "l0_name_only"
-
-
-def digest(path: Path) -> str:
-    h = hashlib.sha256()
-    with path.open("rb") as handle:
-        while True:
-            block = handle.read(CHUNK)
-            if not block:
-                break
-            h.update(block)
-    return h.hexdigest()
-
 
 def walk(root: Path):
     """Yield files under root. Symlinks are recorded, never followed."""
@@ -103,173 +58,127 @@ def foreign_row(row):
 
 
 def check_format(out_file: Path):
-    """Refuse to append to an inventory another tool wrote.
-
-    Appending would silently mix two schemas in one file: resume cannot match
-    the other tool's rows, so every file is hashed again, and `summary` then
-    reads rows whose fields it does not know."""
-    if not out_file.exists():
-        return
-    with out_file.open(encoding="utf-8") as handle:
-        for number, line in enumerate(handle, 1):
-            line = line.strip()
-            if not line:
-                continue
-            try:
-                row = json.loads(line)
-            except ValueError:
-                continue  # a torn final line from a killed run
-            if foreign_row(row):
-                raise SystemExit(
-                    "%s line %d was written in a different format; its keys are %s.\n"
-                    "Another inventory tool owns this file. Move it aside or pass a "
-                    "different --out-dir instead of mixing two formats in one file."
-                    % (out_file, number, sorted(row) if isinstance(row, dict) else type(row).__name__))
-            return  # the first readable row settles the format
+    for number, row in enumerate(read_rows(out_file), 1):
+        if foreign_row(row):
+            raise SystemExit(
+                '%s line %d uses a different format. Run migrate-inventory on this '
+                'out-dir before inventory; migration preserves a backup.' % (out_file, number))
 
 
-def load_done(out_file: Path) -> set[str]:
-    """Relative paths already recorded, so an interrupted run resumes."""
-    done = set()
-    if not out_file.exists():
-        return done
-    with out_file.open(encoding="utf-8") as handle:
-        for line in handle:
-            line = line.strip()
-            if not line:
-                continue
-            try:
-                done.add(json.loads(line)["original_rel"])
-            except (ValueError, KeyError):
-                continue  # a torn final line from a killed run is re-hashed
-    return done
+def migrate_inventory(out_dir):
+    """Explicit schema migration; preserve every historical observation and raw bytes."""
+    path = out_dir / 'inventory.jsonl'
+    if not path.exists():
+        raise SystemExit('no inventory yet: %s' % path)
+    with JsonlStore(path).locked():
+        rows = list(read_rows(path))
+        normalized = [inventory_record(row) for row in rows]
+        if normalized == rows:
+            return {'migrated': 0}
+        backup = path.with_name(path.name + '.before-migration-' + uuid.uuid4().hex)
+        atomic_write(backup, path.read_bytes())
+        atomic_write(path, ''.join(json.dumps(row, ensure_ascii=False) + '\n'
+                                   for row in normalized).encode('utf-8'))
+    return {'migrated': len(rows), 'backup': str(backup)}
 
 
 def inventory(root: Path, out_dir: Path, workers: int, limit=None):
+    if not 1 <= workers <= MAX_WORKERS:
+        raise ValueError('workers must be between 1 and %d' % MAX_WORKERS)
     if not root.is_dir():
-        raise SystemExit("source root not found: %s" % root)
-    try:
-        out_dir.resolve().relative_to(root.resolve())
-        raise SystemExit("output must live outside the source tree: %s" % out_dir)
-    except ValueError:
-        pass
-    out_dir.mkdir(parents=True, exist_ok=True)
-    out_file = out_dir / "inventory.jsonl"
-    check_format(out_file)
-    done = load_done(out_file)
+        raise SystemExit('source root not found: %s' % root)
+    if out_dir.resolve() == root.resolve() or root.resolve() in out_dir.resolve().parents:
+        raise SystemExit('output must live outside the source tree: %s' % out_dir)
     started = time.monotonic()
-    lock = threading.Lock()
+    out_file = out_dir / 'inventory.jsonl'
     counts = Counter()
-    handle = out_file.open("a", encoding="utf-8")
+    lock = threading.Lock()
+    with JsonlStore(out_file).locked() as store:
+        check_format(out_file)
+        binding = out_dir / 'inventory.meta.json'
+        identity = {'schema_version': 1, 'source_root': str(root.resolve())}
+        if binding.exists() and json.loads(binding.read_text()) != identity:
+            raise ValueError('inventory_source_root_changed: use a different dataset')
+        if not binding.exists():
+            atomic_write(binding, (json.dumps(identity) + '\n').encode())
+        done = {row['original_rel']: row for row in load_inventory(out_file)}
 
-    def record(path: Path):
-        rel = str(path.relative_to(root))
-        if rel in done:
-            counts["skipped_already_recorded"] += 1
-            return
-        try:
-            info = path.lstat()
-            if path.is_symlink():
-                row = {"original_rel": rel, "error": "symlink_not_followed"}
-            else:
-                suffix = path.suffix.lower()
-                l0, route = bucket(rel, suffix)
-                row = {"sha256": digest(path), "size_bytes": info.st_size,
-                       "suffix": suffix, "original_rel": rel,
-                       "original_name": path.name, "l0_bucket": l0, "route": route,
-                       "mtime": int(info.st_mtime),
-                       "hashed_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
-        except OSError as exc:
-            row = {"original_rel": rel, "error": type(exc).__name__}
-        line = json.dumps(row, ensure_ascii=False)
-        with lock:
-            handle.write(line + "\n")
-            counts["errors" if "error" in row else "hashed"] += 1
-            counts["bytes"] += row.get("size_bytes", 0)
-            total = counts["hashed"] + counts["errors"]
-            if total % 500 == 0:
-                handle.flush()
-                elapsed = time.monotonic() - started
-                sys.stderr.write("  %d files, %.1f GB, %.0f files/s\n" % (
-                    total, counts["bytes"] / 1e9, total / max(elapsed, 0.001)))
-                sys.stderr.flush()
+        def record(path):
+            rel = str(path.relative_to(root))
+            previous = done.get(rel, {})
+            try:
+                info = path.lstat()
+                signature = {'size_bytes': info.st_size, 'mtime_ns': info.st_mtime_ns,
+                             'ctime_ns': info.st_ctime_ns, 'device': info.st_dev, 'inode': info.st_ino}
+                if not previous.get('error') and all(previous.get(k) == v for k, v in signature.items()):
+                    with lock:
+                        counts['skipped_already_recorded'] += 1
+                    return
+                if path.is_symlink():
+                    row = {'original_rel': rel, 'error': 'symlink_not_followed'}
+                else:
+                    sha = digest(path)
+                    after = path.lstat()
+                    if (info.st_size, info.st_mtime_ns, info.st_ctime_ns, info.st_ino, info.st_dev) != (
+                            after.st_size, after.st_mtime_ns, after.st_ctime_ns, after.st_ino, after.st_dev):
+                        raise ValueError('inventory_file_changed')
+                    row = inventory_record({'original_rel': rel, 'sha256': sha, **signature,
+                                            'hashed_at': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())})
+            except (OSError, ValueError) as exc:
+                row = {'original_rel': rel, 'error': type(exc).__name__}
+            with lock:
+                store.append(row)
+                counts['errors' if 'error' in row else 'hashed'] += 1
+                counts['bytes'] += row.get('size_bytes', 0)
+                total = counts['hashed'] + counts['errors']
+                if total % 500 == 0:
+                    sys.stderr.write('  %d files, %.1f GB\n' % (total, counts['bytes'] / 1e9))
 
-    try:
         paths = walk(root)
         if limit:
-            paths = (p for i, p in enumerate(paths) if i < limit)
+            paths = itertools.islice(paths, limit)
         with ThreadPoolExecutor(max_workers=workers) as pool:
-            list(pool.map(record, paths))
-    finally:
-        handle.close()
-    return {"root": str(root), "inventory": str(out_file), "workers": workers,
-            "hashed": counts["hashed"], "errors": counts["errors"],
-            "skipped_already_recorded": counts["skipped_already_recorded"],
-            "bytes": counts["bytes"],
-            "elapsed_seconds": round(time.monotonic() - started, 1)}
+            for _ in pool.map(record, paths):
+                pass
+    return {'root': str(root), 'inventory': str(out_file), 'workers': workers,
+            'hashed': counts['hashed'], 'errors': counts['errors'],
+            'skipped_already_recorded': counts['skipped_already_recorded'],
+            'bytes': counts['bytes'], 'elapsed_seconds': round(time.monotonic() - started, 1)}
 
 
 def summary(out_dir: Path):
-    out_file = out_dir / "inventory.jsonl"
+    out_file = out_dir / 'inventory.jsonl'
     if not out_file.exists():
-        raise SystemExit("no inventory yet: %s" % out_file)
+        raise SystemExit('no inventory yet: %s' % out_file)
+    rows = load_inventory(out_file, strict=False)
     by_sha = defaultdict(list)
     buckets, routes, errors = Counter(), Counter(), Counter()
-    total_bytes = 0
-    rows = 0
-    with out_file.open(encoding="utf-8") as handle:
-        for line in handle:
-            line = line.strip()
-            if not line:
-                continue
-            try:
-                row = json.loads(line)
-            except ValueError:
-                continue
-            rows += 1
-            if foreign_row(row):
-                # Never crash on a row this tool did not write; report it instead.
-                errors["row_format_unrecognized"] += 1
-                continue
-            if "error" in row:
-                errors[row["error"]] += 1
-                continue
-            by_sha[row["sha256"]].append(row["original_rel"])
-            buckets[row["l0_bucket"]] += 1
-            routes[row["route"]] += 1
-            total_bytes += row["size_bytes"]
-    # Byte-identical copies: one kept, the rest are duplicates to review.
-    dup_groups = {sha: paths for sha, paths in by_sha.items() if len(paths) > 1}
-    dup_extra = sum(len(paths) - 1 for paths in dup_groups.values())
-    reclaimable = 0
-    with out_file.open(encoding="utf-8") as handle:
-        seen = set()
-        for line in handle:
-            try:
-                row = json.loads(line)
-            except ValueError:
-                continue
-            sha = row.get("sha256")
-            if sha in dup_groups:
-                if sha in seen:
-                    reclaimable += row["size_bytes"]
-                seen.add(sha)
-    return {"rows": rows, "unique_sha256": len(by_sha), "bytes": total_bytes,
-            "duplicate_groups": len(dup_groups), "duplicate_extra_copies": dup_extra,
-            "duplicate_reclaimable_bytes": reclaimable,
-            "l0_buckets": dict(buckets.most_common()),
-            "routes": dict(routes.most_common()), "errors": dict(errors.most_common())}
+    for row in rows:
+        if row.get('error'):
+            errors[row['error']] += 1
+        else:
+            by_sha[row['sha256']].append(row)
+            buckets[row['l0_bucket']] += 1
+            routes[row['route']] += 1
+    groups = [group for group in by_sha.values() if len(group) > 1]
+    return {'rows': len(rows), 'unique_sha256': len(by_sha),
+            'bytes': sum(row.get('size_bytes', 0) for row in rows if not row.get('error')),
+            'duplicate_groups': len(groups), 'duplicate_extra_copies': sum(len(g) - 1 for g in groups),
+            'duplicate_reclaimable_bytes': sum((len(g) - 1) * g[0]['size_bytes'] for g in groups),
+            'l0_buckets': dict(buckets.most_common()), 'routes': dict(routes.most_common()),
+            'errors': dict(errors.most_common())}
 
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--root", default=os.environ.get("M4_TRIAGE_ROOT", DEFAULT_ROOT))
-    ap.add_argument("--out-dir", default=os.environ.get("M4_TRIAGE_OUT", str(DEFAULT_OUT)))
+    ap.add_argument("--root", default=os.environ.get("M4_TRIAGE_ROOT", str(m4_paths.source())))
+    ap.add_argument("--out-dir", default=os.environ.get("M4_TRIAGE_OUT", str(m4_paths.data())))
     sub = ap.add_subparsers(dest="command", required=True)
     inv = sub.add_parser("inventory", help="hash and bucket every file (read-only, resumable)")
     inv.add_argument("--workers", type=int, default=8, help="hashing threads (1..%d)" % MAX_WORKERS)
     inv.add_argument("--limit", type=int, help="stop after this many files, for a trial run")
+    sub.add_parser("migrate-inventory", help="normalize legacy records with an intact backup")
     sub.add_parser("summary", help="report buckets and duplicates from the inventory")
     args = ap.parse_args(argv)
     out_dir = Path(args.out_dir).expanduser()
@@ -277,6 +186,8 @@ def main(argv=None):
         if not 1 <= args.workers <= MAX_WORKERS:
             ap.error("workers must be 1..%d" % MAX_WORKERS)
         result = inventory(Path(args.root).expanduser(), out_dir, args.workers, args.limit)
+    elif args.command == "migrate-inventory":
+        result = migrate_inventory(out_dir)
     else:
         result = summary(out_dir)
     print(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True))

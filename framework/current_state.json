@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.12.4",
+  "version": "2026.09.12.5",
   "effective_at": "2026-09-12",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -371,12 +371,21 @@
         "pipeline/m4_triage_extract.py",
         "pipeline/m4_triage_l1.py",
         "pipeline/m4_triage_local.py",
-        "pipeline/m4_triage_pack.py"
+        "pipeline/m4_triage_pack.py",
+        "pipeline/m4_records.py",
+        "pipeline/jsonl_store.py",
+        "pipeline/file_moves.py",
+        "pipeline/m4_inventory.py",
+        "pipeline/m4_triage_apply.py",
+        "pipeline/m4_triage_export.py",
+        "pipeline/m4_triage_report.py",
+        "pipeline/test_file_moves.py",
+        "docs/local_reader/M4_TRIAGE_RUNBOOK.md"
       ],
       "supersedes": [
         "reading-m4-triage-20260909"
       ],
-      "reason": "替代固定 Claude/8B 调用，统一模型配置与终端输出身份；原件操作范围不扩大，源码状态按最新基线核对。"
+      "reason": "统一模型配置和有效记录；清单只用一套写入/读取规则，物理移动增加哈希、持久日志、互斥及恢复，导出保留副本身份与模型来源；原件操作范围不扩大。"
     },
     {
       "id": "model-execution-20260912",

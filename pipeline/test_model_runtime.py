@@ -243,8 +243,8 @@ class TriageRoutingTests(unittest.TestCase):
 
     def test_formal_and_legacy_inventory_share_one_content_identity(self):
         path = self.root / "inventory.jsonl"
-        rows = [{"sha256": "abc", "original_rel": "a.pdf", "size_bytes": 42, "suffix": ".pdf"},
-                {"sha256": "abc", "rel": "copy.pdf", "size": 42, "suffix": ".pdf"}]
+        rows = [{"sha256": "a" * 64, "original_rel": "a.pdf", "size_bytes": 42, "suffix": ".pdf"},
+                {"sha256": "a" * 64, "rel": "copy.pdf", "size": 42, "suffix": ".pdf"}]
         path.write_text("\n".join(json.dumps(row) for row in rows))
         with mock.patch.object(triage, "INVENTORY", path):
             records = triage.load_inventory()

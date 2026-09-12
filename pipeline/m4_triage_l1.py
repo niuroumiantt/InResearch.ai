@@ -18,6 +18,9 @@ import argparse, hashlib, json, os, random, re, subprocess, sys, threading, time
 from pathlib import Path
 
 import m4_paths
+import m4_records
+from file_moves import replay
+from jsonl_store import read_rows
 import m4_office_text
 
 SOURCE = m4_paths.source()
@@ -206,15 +209,10 @@ def load_inventory() -> list[dict]:
     file that also exists as a real original is judged on that copy.
     """
     by_sha: dict[str, dict] = {}
-    with INVENTORY.open(encoding='utf-8') as fh:
-        inventory_lines = fh.readlines()
-    for line in inventory_lines:
-        try: r = json.loads(line)
-        except ValueError: continue
-        if not r.get('sha256') or r.get('error'): continue
-        # Normalize the formal inventory at this one compatibility boundary.
-        if 'rel' not in r:
-            r = {**r, 'rel': r['original_rel'], 'size': r['size_bytes']}
+    for row in m4_records.load_inventory(INVENTORY):
+        if row.get('error'):
+            continue
+        r = {**row, 'rel': row['original_rel'], 'size': row['size_bytes']}
         cur = by_sha.get(r['sha256'])
         if cur is None:
             by_sha[r['sha256']] = {**r, 'paths': [r['rel']]}
@@ -229,16 +227,8 @@ def load_inventory() -> list[dict]:
 
 
 def done_keys() -> set:
-    keys = set()
-    if RESULTS.exists():
-        with RESULTS.open(encoding='utf-8') as fh:
-            for line in fh:
-                try:
-                    r = json.loads(line)
-                    if r.get('status') in {'ok', 'l0'}:
-                        keys.add(r['sha256'])
-                except (ValueError, KeyError): pass
-    return keys
+    return {sha for sha, row in m4_records.current_results(RESULTS).items()
+            if row.get('status') in {'ok', 'l0'}}
 
 
 _moved: dict | None = None
@@ -246,35 +236,16 @@ _moved_lock = threading.Lock()
 
 
 def moved_index() -> dict:
-    """sha256 -> the file's current path inside the library, from the move ledger.
-
-    A finalised corpus no longer has its files where the inventory says: the
-    move step renamed each one into LIBRARY/<category>/.  Re-reading a file we
-    already scored (pack --redo) therefore has to follow the ledger, or every
-    preview comes back empty and the re-read silently degrades into a second
-    filename-only pass.  Files may move more than once (restage), so the last
-    successful move wins.  Built once, and only when a stale path is actually
-    hit, so a fresh corpus pays nothing.
-    """
+    """SHA -> current library location; refresh after another process moves or reverts."""
     global _moved
-    if _moved is None:
-        # Publish only once the index is complete.  pack runs prepare() on a
-        # thread pool: a half-filled dict assigned to the global early is
-        # visible to the other threads, which then miss, fall back to the dead
-        # source path, and silently produce empty previews for whatever had not
-        # been read yet.
-        with _moved_lock:
-            if _moved is None:
-                index: dict = {}
-                if MOVES.exists():
-                    with MOVES.open(encoding='utf-8') as fh:
-                        for line in fh:
-                            try: r = json.loads(line)
-                            except ValueError: continue
-                            if r.get('ok') and r.get('event') == 'move' and r.get('to'):
-                                index[r['sha256']] = r['to']
-                _moved = index
-    return _moved
+    info = MOVES.stat() if MOVES.exists() else None
+    signature = (str(MOVES.resolve()), info.st_size, info.st_mtime_ns, info.st_ino) if info else None
+    with _moved_lock:
+        if _moved is None or _moved[0] != signature:
+            index = {r['sha256']: r['to'] for r in replay(read_rows(MOVES)).values()
+                     if r['to_root'] == 'library'}
+            _moved = (signature, index)
+        return _moved[1]
 
 
 def readable_path(item: dict) -> tuple[Path, bool]:

@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `pipeline/governance.py --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.12.4。
+> GENERATED · 由 `pipeline/governance.py --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.12.5。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：485。
+在册文件：490。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,15 +15,15 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 12 |
-| 历史快照 | 39 |
-| 运行代码 | 83 |
+| 历史快照 | 40 |
+| 运行代码 | 86 |
 | 现行规范 | 12 |
 | 项目配置 | 42 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 26 |
 | 配套说明 | 34 |
-| 测试 | 29 |
+| 测试 | 30 |
 
 ## 在册记录集合
 
@@ -339,6 +339,7 @@
 | [docs/archive/2026-09-06/framework__01_data_standards.md](archive/2026-09-06/framework__01_data_standards.md) | 历史快照 |
 | [docs/archive/2026-09-06/framework__02_knowledge_format.md](archive/2026-09-06/framework__02_knowledge_format.md) | 历史快照 |
 | [docs/archive/2026-09-12/docs__M4_TRIAGE_TASK.md](archive/2026-09-12/docs__M4_TRIAGE_TASK.md) | 历史快照 |
+| [docs/archive/2026-09-12/docs__local_reader__M4_TRIAGE_RUNBOOK.md](archive/2026-09-12/docs__local_reader__M4_TRIAGE_RUNBOOK.md) | 历史快照 |
 | [docs/archive/2026-09-12/framework__04_reading_scoring_standard.md](archive/2026-09-12/framework__04_reading_scoring_standard.md) | 历史快照 |
 | [docs/inbox/PHASE2_REPORT.md](inbox/PHASE2_REPORT.md) | 候选与外部输入 |
 | [docs/inbox/README.md](inbox/README.md) | 候选与外部输入 |
@@ -586,9 +587,11 @@
 | `pipeline/fetch_news_signals.py` | 运行代码 |
 | `pipeline/fetch_sec.py` | 运行代码 |
 | `pipeline/fetch_sketchfab.py` | 运行代码 |
+| `pipeline/file_moves.py` | 运行代码 |
 | `pipeline/fix_stale_paths.py` | 运行代码 |
 | `pipeline/governance.py` | 运行代码 |
 | `pipeline/intake.py` | 运行代码 |
+| `pipeline/jsonl_store.py` | 运行代码 |
 | `pipeline/launch_acquisition.py` | 运行代码 |
 | `pipeline/launch_reader.py` | 运行代码 |
 | `pipeline/m4_inventory.py` | 运行代码 |
@@ -598,6 +601,7 @@
 | `pipeline/m4_offload_worker.py` | 运行代码 |
 | `pipeline/m4_paths.py` | 运行代码 |
 | `pipeline/m4_preflight.py` | 运行代码 |
+| `pipeline/m4_records.py` | 运行代码 |
 | `pipeline/m4_triage.py` | 运行代码 |
 | `pipeline/m4_triage_apply.py` | 运行代码 |
 | `pipeline/m4_triage_export.py` | 运行代码 |
@@ -626,6 +630,7 @@
 | `pipeline/test_continuous_reader.py` | 测试 |
 | `pipeline/test_datacenter_news.py` | 测试 |
 | `pipeline/test_display_regressions.py` | 测试 |
+| `pipeline/test_file_moves.py` | 测试 |
 | `pipeline/test_governance.py` | 测试 |
 | `pipeline/test_intake.py` | 测试 |
 | `pipeline/test_interface_system.py` | 测试 |

@@ -5,7 +5,7 @@ Defaults reproduce the original M4 run exactly, so nothing changes for a
 caller that sets no environment.  Three variables redirect a run at another
 corpus - a NAS share, an external disk, a second folder on the same Mac:
 
-    INRESEARCH_SOURCE    the tree to read, never modified
+    INRESEARCH_SOURCE    the input tree; only explicit apply/revert may move its files
     INRESEARCH_LIBRARY   where renamed originals are moved to
     INRESEARCH_DATASET   one path segment naming this corpus's ledgers
 
@@ -63,7 +63,7 @@ def volume_of(path: Path) -> int:
 
 
 def require_same_volume(src: Path, lib: Path) -> None:
-    """Moves use os.rename, which cannot cross a filesystem boundary.
+    """Moves use exclusive hard links, which cannot cross a filesystem boundary.
 
     Checked once, before anything moves: otherwise every single file fails
     with EXDEV and the run writes tens of thousands of error rows to the
@@ -71,6 +71,6 @@ def require_same_volume(src: Path, lib: Path) -> None:
     """
     if volume_of(src) != volume_of(lib):
         raise SystemExit(
-            'source and library are on different volumes, so os.rename cannot move between them:\n'
+            'source and library are on different volumes, so files cannot be moved between them:\n'
             '  source  %s\n  library %s\n'
             'Put the library on the same share or disk as the source.' % (src, lib))

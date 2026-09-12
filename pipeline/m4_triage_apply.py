@@ -9,17 +9,21 @@ Two independent stages, each with plan / apply / revert:
   library      Needs L1 results.  Moves the surviving copy into its category
                directory under the scored filename.
 
-Every move is written to moves.jsonl BEFORE it happens, so revert can replay it
-backwards.  Nothing is ever deleted or overwritten: a move whose destination
+Every move checks SHA-256 and durably journals its intent before reserving the
+destination. Interrupted moves recover under the same exclusive writer lock.  Nothing is ever deleted or overwritten: a move whose destination
 already exists is skipped and reported.
 """
 from __future__ import annotations
-import argparse, json, os, shutil, sys, time
+import argparse, json, sys, time
+from contextlib import nullcontext
 from collections import Counter, defaultdict
 from pathlib import Path
 
 import m4_paths
+from file_moves import MoveJournal, digest, endpoints, replay
+from jsonl_store import read_rows
 import m4_triage_l1
+import m4_records
 
 SOURCE = m4_paths.source()
 LIBRARY = m4_paths.library()
@@ -50,45 +54,19 @@ def keep_rank(rel: str):
 
 def load_inventory():
     by_sha = defaultdict(list)
-    with INVENTORY.open(encoding='utf-8') as fh:
-        for line in fh:
-            try: r = json.loads(line)
-            except ValueError: continue
-            if 'sha256' in r: by_sha[r['sha256']].append(r)
+    for row in m4_records.load_inventory(INVENTORY):
+        if not row.get('error'):
+            by_sha[row['sha256']].append({**row, 'rel': row['original_rel'], 'size': row['size_bytes']})
     return by_sha
 
 
 def load_results():
-    out = {}
-    if RESULTS.exists():
-        with RESULTS.open(encoding='utf-8') as fh:
-            for line in fh:
-                try: r = json.loads(line); out[r['sha256']] = r
-                except (ValueError, KeyError): pass
-    return out
-
-
-def root_of(mv) -> Path:
-    """A restage move starts inside the library; every other one in the source."""
-    return LIBRARY if mv.get('from_root') == 'library' else SOURCE
+    return m4_records.current_results(RESULTS)
 
 
 def category_of(mv):
     """Top-level destination directory: the module code, or a _bucket."""
     return mv['to'].split('/')[0]
-
-
-def applied_sources():
-    """Destinations already reached, so apply is idempotent and resumable."""
-    done = set()
-    if MOVES.exists():
-        with MOVES.open(encoding='utf-8') as fh:
-            for line in fh:
-                try: r = json.loads(line)
-                except ValueError: continue
-                if r.get('event') == 'move' and r.get('ok'):
-                    done.add(r['from'])
-    return done
 
 
 def plan_duplicates():
@@ -132,48 +110,13 @@ def desired_destination(res: dict) -> str | None:
 
 
 def ledger_rows():
-    if not MOVES.exists():
-        return
-    with MOVES.open(encoding='utf-8') as fh:
-        for line in fh:
-            try: yield json.loads(line)
-            except ValueError: continue
+    return read_rows(MOVES)
 
 
 def final_records() -> dict:
-    """Source path -> {to, sha256, stage, size}, replayed from the whole ledger.
-
-    Keyed by path, not by content hash.  Duplicate copies share one sha256
-    but are separate files with separate destinations, so a sha-keyed replay
-    reports only whichever of them moved last and silently loses the others.
-
-    Each row's `from` is either a source path or a place an earlier row put
-    the file, so following the chain gives every file's origin and its current
-    home; a revert that lands a file back at its origin drops out.
-
-    The hash and the stage are taken from the ledger rather than looked up in
-    the inventory: once the duplicates stage moves a copy out of the source
-    tree, a rescanned inventory no longer lists it, and joining on the
-    inventory would silently drop every duplicate.  The stage kept is the
-    first one, which records what was decided about the file - later rows are
-    renames, and would relabel everything "restage".
-    """
-    at = {}                             # current place -> the file's record
-    for row in ledger_rows():
-        if not row.get('ok'):
-            continue
-        src, dst = row.get('from'), row.get('to')
-        if not src or not dst:
-            continue
-        record = at.pop(src, None)
-        if record is None:
-            record = {'origin': src, 'sha256': row.get('sha256'),
-                      'stage': row.get('stage'), 'size': row.get('size', 0)}
-        if record['origin'] == dst:
-            continue                    # reverted all the way back
-        record = {**record, 'to': dst}
-        at[dst] = record
-    return {record['origin']: record for record in at.values()}
+    """Original source paths and current placements from the shared journal replay."""
+    return {record['origin']: {key: value for key, value in record.items() if key != 'chain'}
+            for record in replay(ledger_rows()).values()}
 
 
 def final_locations() -> dict:
@@ -224,61 +167,90 @@ def plan_restage():
     return moves
 
 
-def do_apply(moves, dry):
-    """Shared by plan and apply, so the dry run counts exactly what apply does.
+def journal():
+    return MoveJournal(MOVES, {'source': SOURCE, 'library': LIBRARY})
 
-    A dry run touches nothing: no state directory, no ledger, no filesystem
-    change.  It returns the same four counters apply reports plus the
-    destination breakdown, which is what lets the plan be reconciled against
-    the L0/L1 tallies before thirty-five thousand files move.
-    """
-    if not dry:
-        # os.rename cannot cross a filesystem boundary; fail before the first
-        # move rather than after thirty-five thousand EXDEV errors.
-        m4_paths.require_same_volume(SOURCE, LIBRARY)
-        STATE.mkdir(parents=True, exist_ok=True)
-    done = applied_sources()
-    n = skipped = missing = collided = 0
+
+def do_apply(moves, dry):
+    """Plan and apply check the same paths and hashes; only apply writes/recoveries."""
+    book = journal()
+    counts = {'would_move' if dry else 'moved': 0, 'already_done': 0,
+              'source_missing': 0, 'destination_exists': 0}
     by_category = Counter()
-    log = None if dry else MOVES.open('a', encoding='utf-8')
-    for mv in moves:
-        src = root_of(mv) / mv['from']
-        if mv['from'] in done: skipped += 1; continue
-        if not src.is_file(): missing += 1; continue
-        dst = LIBRARY / mv['to']
-        if dst.exists(): collided += 1; continue
-        if dry: n += 1; by_category[category_of(mv)] += 1; continue
-        rec = {'event': 'move', 'at': now(), **mv, 'ok': False}
-        log.write(json.dumps(rec, ensure_ascii=False) + '\n'); log.flush()
-        try:
-            dst.parent.mkdir(parents=True, exist_ok=True)
-            os.rename(src, dst)            # same volume: atomic, no copy
-            rec['ok'] = True
-        except OSError as exc:
-            rec['error'] = str(exc)[:200]
-        log.write(json.dumps(rec, ensure_ascii=False) + '\n'); log.flush()
-        if rec['ok']: n += 1; by_category[category_of(mv)] += 1
-    if log: log.close()
-    counts = {'moved' if not dry else 'would_move': n, 'already_done': skipped,
-              'source_missing': missing, 'destination_exists': collided}
+    errors = []
+    with nullcontext() if dry else book.locked():
+        placed = replay(book.rows())
+        done = {(endpoints(step)[0], record['sha256']): record
+                for record in placed.values() for step in record['chain']}
+        for mv in moves:
+            row = {'event': 'move', 'at': now(), **mv}
+            try:
+                src, dst = book.paths(row)
+                key = (endpoints(row)[0], row['sha256'])
+                if not src.exists() and key in done:
+                    current = done[key]
+                    _, located = book.paths({**row, 'to_root': current['to_root'], 'to': current['to']})
+                    if located.is_file() and digest(located) == row['sha256']:
+                        counts['already_done'] += 1
+                        continue
+                if not src.is_file():
+                    counts['source_missing'] += 1
+                    continue
+                if dst.exists():
+                    counts['destination_exists'] += 1
+                    continue
+                if dry:
+                    if digest(src) != row['sha256']:
+                        raise ValueError('move_source_hash_mismatch')
+                    m4_paths.require_same_volume(src, dst.parent)
+                else:
+                    book.move(row)
+                counts['would_move' if dry else 'moved'] += 1
+                by_category[category_of(mv)] += 1
+            except FileExistsError:
+                counts['destination_exists'] += 1
+            except ValueError as exc:
+                if str(exc) not in {'move_source_hash_mismatch', 'move_path_outside_root',
+                                    'move_symlink_not_allowed', 'move_regular_file_required'}:
+                    raise  # A journal or mid-move failure requires recovery before proceeding.
+                errors.append({'from': row['from'], 'error': str(exc)})
+    if errors:
+        counts['rejected'] = len(errors)
+        counts['errors'] = errors[:20]
     print(json.dumps(counts, ensure_ascii=False))
     return counts, by_category
 
 
 def do_revert(stage):
-    if not MOVES.exists(): sys.exit('no move log')
-    with MOVES.open(encoding='utf-8') as fh:
-        rows = [json.loads(l) for l in fh]
-    back = [r for r in rows if r.get('event') == 'move' and r.get('ok') and (not stage or r.get('stage') == stage)]
-    n = 0
-    with MOVES.open('a', encoding='utf-8') as log:
-        for r in reversed(back):
-            src = LIBRARY / r['to']; dst = root_of(r) / r['from']
-            if not src.is_file() or dst.exists(): continue
-            dst.parent.mkdir(parents=True, exist_ok=True)
-            os.rename(src, dst); n += 1
-            log.write(json.dumps({'event': 'revert', 'at': now(), 'from': r['to'], 'to': r['from'], 'sha256': r['sha256'], 'ok': True}, ensure_ascii=False) + '\n')
-    print(json.dumps({'reverted': n}))
+    if not MOVES.exists():
+        sys.exit('no move log')
+    counts = {'reverted': 0}
+    book = journal()
+    with book.locked():
+        for record in replay(book.rows()).values():
+            chain = record['chain']
+            if stage and chain[-1].get('stage') != stage:
+                if any(step.get('stage') == stage for step in chain):
+                    counts['blocked_by_later_stage'] = counts.get('blocked_by_later_stage', 0) + 1
+                continue
+            for row in reversed(chain):
+                if stage and row.get('stage') != stage:
+                    break
+                source, target = endpoints(row)
+                reverse = {**row, 'event': 'revert', 'at': now(),
+                           'from_root': target[0], 'from': target[1],
+                           'to_root': source[0], 'to': source[1]}
+                src, dst = book.paths(reverse)
+                if not src.is_file():
+                    counts['source_missing'] = counts.get('source_missing', 0) + 1
+                    break
+                if dst.exists():
+                    counts['destination_exists'] = counts.get('destination_exists', 0) + 1
+                    break
+                book.move(reverse)
+                counts['reverted'] += 1
+    print(json.dumps(counts))
+    return counts
 
 
 def main():
