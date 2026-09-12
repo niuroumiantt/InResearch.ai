@@ -46,6 +46,9 @@ GAPS = REPO / 'data/metric_gaps.jsonl'
 
 STATE = m4_paths.state()
 READ_LOG = STATE / 'l2_read.jsonl'
+# sha256 -> 正文指纹。sha256 认的是字节，这本账认的是内容：
+# 同一份报告的两个副本字节不同、sha256 不同，正文一字不差。
+TEXT_MD5 = STATE / 'l2_text_md5.jsonl'
 PACKET_DIR = m4_paths.data() / 'l2'
 
 MIN_SCORE = 8
@@ -449,6 +452,66 @@ sha256：{sha}
 """
 
 
+# A document's text can be identical while its bytes are not: the same report
+# re-exported, re-downloaded, or carried through a system that rewrites PDF
+# metadata.  sha256 sees two files; a reader sees one.  Two 信通院 reports made
+# it into the reading queue twice this way - same 41 pages, same 23,935
+# characters, same body md5, two different sha256.
+MIN_FINGERPRINT_CHARS = 500
+
+
+def text_fingerprint(text: str, meta: dict) -> str | None:
+    """A hash of what a reader would see, not of the bytes on disk.
+
+    Whitespace is dropped entirely, not collapsed to single spaces: a reflow
+    breaks a Chinese line mid-sentence where the original had no space at all,
+    so collapsing would still leave the two texts different.  Dropping it makes
+    a re-wrap invisible, which is what we want - a reflow is not a different
+    document.  Page count joins the hash because two documents can share
+    a long identical front matter (a quarterly series off one template) while
+    being different documents - a shared prefix plus a different page count is
+    not a duplicate.
+
+    Returns None below MIN_FINGERPRINT_CHARS: a dozen characters of extracted
+    text would collide across every scanned cover page in the corpus, and a
+    fingerprint that fires on unrelated files is worse than none.
+    """
+    body = re.sub(r'\s+', '', text)
+    if len(body) < MIN_FINGERPRINT_CHARS:
+        return None
+    pages = (meta or {}).get('pages') or 0
+    return hashlib.md5(('%s\x00%s' % (pages, body)).encode('utf-8')).hexdigest()
+
+
+def fingerprints() -> dict:
+    """sha256 -> text_md5, last write wins."""
+    seen = {}
+    if TEXT_MD5.exists():
+        with TEXT_MD5.open(encoding='utf-8') as fh:
+            for line in fh:
+                try: row = json.loads(line)
+                except ValueError: continue
+                if row.get('sha256') and row.get('text_md5'):
+                    seen[row['sha256']] = row['text_md5']
+    return seen
+
+
+def remember_fingerprint(sha: str, text_md5: str) -> None:
+    TEXT_MD5.parent.mkdir(parents=True, exist_ok=True)
+    with TEXT_MD5.open('a', encoding='utf-8') as fh:
+        fh.write(json.dumps({'sha256': sha, 'text_md5': text_md5, 'at': now()},
+                            ensure_ascii=False) + '\n')
+
+
+def already_read_with_same_text(sha: str, text_md5: str) -> list[str]:
+    """Documents already read whose text is this same text - other files only."""
+    if not text_md5:
+        return []
+    known, read = fingerprints(), read_documents()
+    return sorted(other for other, other_md5 in known.items()
+                  if other_md5 == text_md5 and other != sha and other in read)
+
+
 def cmd_pack(a):
     metrics, questions = load_metrics(), load_questions()
     # --again exists because the read ledger is append-only and pack skips what
@@ -472,6 +535,22 @@ def cmd_pack(a):
         print(json.dumps({'packed': 0, 'sha256': row['sha256'], 'rel': row.get('rel'),
                           'meta': meta, 'reason': '抽不出正文'}, ensure_ascii=False))
         return
+    text_md5 = text_fingerprint(text, meta)
+    if text_md5:
+        twins = already_read_with_same_text(row['sha256'], text_md5)
+        if twins and not a.again:
+            # Not a refusal to ever read it - a refusal to read it twice
+            # without saying so.  --again reopens it by name.
+            print(json.dumps(
+                {'packed': 0, 'sha256': row['sha256'], 'rel': row.get('rel'),
+                 'text_md5': text_md5, 'same_text_already_read': twins,
+                 'reason': '正文与已读过的文件一字不差——sha256 不同是因为字节不同，'
+                           '不是因为内容不同。确要再读一遍用 pack --again --sha %s；'
+                           '若确认是同一份，直接 skip 掉这一份'
+                           % row['sha256'][:12]}, ensure_ascii=False))
+            return
+        remember_fingerprint(row['sha256'], text_md5)
+
     pieces = chunks(text)
     out = PACKET_DIR / row['sha256'][:16]
     out.mkdir(parents=True, exist_ok=True)
@@ -495,6 +574,7 @@ def cmd_pack(a):
     print(json.dumps({'packed': 1, 'sha256': row['sha256'], 'module': module,
                       'score': row.get('score'), 'chars': len(text), 'chunks': len(pieces),
                       'read_from': 'library' if from_library else 'source',
+                      'text_md5': text_md5,
                       'unattributed': missing or None,
                       'again': True if a.again and row['sha256'] in read_documents() else None,
                       'brief': str(out / 'brief.md'), 'text': str(out / 'text.md'),
@@ -909,6 +989,116 @@ def cmd_gaps(a):
         print('           %s' % (row.get('rel') or row['sha256'][:16]))
 
 
+HEX12 = re.compile(r'^[0-9a-f]{12}$')
+
+
+def owing_provenance(records: list[dict]) -> list[dict]:
+    return [f for f in records if not (f.get('evidence') or {}).get('sha256')]
+
+
+def sources_index() -> dict:
+    """source_id -> the sources.json row, for the ones that carry a real name."""
+    path = REPO / 'data/sources.json'
+    if not path.exists():
+        return {}
+    try:
+        rows = json.loads(path.read_text(encoding='utf-8')).get('records') or []
+    except ValueError:
+        return {}
+    return {r['source_id']: r for r in rows if r.get('source_id')}
+
+
+def cmd_backfill_provenance(a):
+    """Turn the sha256 prefixes already sitting in evidence.source_id into
+    real evidence.sha256 values.
+
+    119 facts carry no content hash, and the reflex reading of that number is
+    「出处丢了」.  It is not: 81 of them name their document as a twelve-hex
+    string in evidence.source_id, which is sha256[:12] - the identity is there,
+    just abbreviated past the point where a join works.  Expanding it needs the
+    L1 ledger, which lives on the machine that did the reading, not in the
+    repo; hence a command rather than an edit.
+
+    A prefix that matches two documents is left alone and reported.  Twelve hex
+    characters over a corpus this size make that vanishingly unlikely, but
+    「不太可能」 is not a reason to write the wrong hash into the fact layer.
+    """
+    store = load_facts()
+    owing = owing_provenance(store['records'])
+    ledger = all_results()
+    sources = sources_index()
+    by_prefix = {}
+    for sha in ledger:
+        by_prefix.setdefault(sha[:12], []).append(sha)
+    inventory_rel = {}
+    try:
+        for item in L1.load_inventory():
+            for rel in item.get('paths') or [item.get('rel')]:
+                if rel:
+                    inventory_rel.setdefault(rel, item['sha256'])
+    except Exception as exc:                  # noqa: BLE001 - inventory is optional here
+        print(json.dumps({'note': '读不到清单，只用 L1 账本前缀这一条路：%s'
+                          % (type(exc).__name__)}, ensure_ascii=False))
+
+    fixed, ambiguous, unknown, by_path = [], [], [], []
+    for fact in owing:
+        evidence = fact.get('evidence') or {}
+        sid = str(evidence.get('source_id') or '')
+        if HEX12.match(sid):
+            hits = by_prefix.get(sid) or []
+            if len(hits) == 1:
+                fixed.append((fact, hits[0], 'prefix'))
+            elif len(hits) > 1:
+                ambiguous.append({'fact_id': fact['fact_id'], 'prefix': sid,
+                                  'matches': hits})
+            else:
+                unknown.append({'fact_id': fact['fact_id'], 'prefix': sid,
+                                'why': '这个前缀在 L1 账本里查无此文件'})
+            continue
+        rel = (evidence.get('local_file')
+               or (sources.get(sid) or {}).get('local_file'))
+        sha = inventory_rel.get(rel) if rel else None
+        if sha:
+            by_path.append((fact, sha, rel))
+        else:
+            unknown.append({'fact_id': fact['fact_id'],
+                            'source_id': sid or None, 'local_file': rel,
+                            'why': '既不是 sha256 前缀，也没有能在清单里查到的路径'})
+
+    report = {'owing_before': len(owing),
+              '按前缀补全': len(fixed), '按路径补全': len(by_path),
+              '前缀撞车（未动）': len(ambiguous),
+              '查不到（未动）': len(unknown),
+              'owing_after': len(owing) - len(fixed) - len(by_path)}
+    if not a.commit:
+        report['note'] = '这是干跑，什么都没写。确认无误后加 --commit'
+    print(json.dumps(report, ensure_ascii=False))
+    for row in ambiguous:
+        print('  撞车 %s  前缀 %s 命中 %d 份' %
+              (row['fact_id'], row['prefix'], len(row['matches'])))
+    for row in unknown[:a.show]:
+        print('  查不到 %s  %s' % (row['fact_id'], row['why']))
+    if len(unknown) > a.show:
+        print('  ……另有 %d 条查不到' % (len(unknown) - a.show))
+
+    if not a.commit or not (fixed or by_path):
+        return
+    for fact, sha, how in fixed:
+        fact['evidence']['sha256'] = sha
+    for fact, sha, rel in by_path:
+        fact['evidence']['sha256'] = sha
+        fact['evidence'].setdefault('local_file', rel)
+    store['updated'] = now()[:10]
+    tmp = FACTS.with_suffix('.json.tmp')
+    tmp.write_text(json.dumps(store, ensure_ascii=False, indent=2) + '\n',
+                   encoding='utf-8')
+    os.replace(tmp, FACTS)
+    print(json.dumps({'written': len(fixed) + len(by_path),
+                      'note': '记得把 test_m4_l2.py 的 PROVENANCE_DEBT 改成 %d'
+                              % (len(owing) - len(fixed) - len(by_path))},
+                     ensure_ascii=False))
+
+
 def cmd_status(a):
     store = load_facts()
     records = store['records']
@@ -923,6 +1113,8 @@ def cmd_status(a):
                       'value_withheld': sum(1 for f in records if f.get('value') is None),
                       'not_corroborated': sum(1 for f in records
                                               if f.get('corroboration') == '待交叉验证'),
+                      '正文指纹_已记': len(fingerprints()),
+                      '欠内容哈希的事实': len(owing_provenance(records)),
                       '菜单缺口_未补': len(open_gaps()),
                       '等菜单补齐后重读': len({r['sha256'] for r in open_gaps()})},
                      ensure_ascii=False))
@@ -965,11 +1157,16 @@ def main():
     g = sub.add_parser('gaps', help='列出未补的菜单缺口')
     g.add_argument('--filled', action='append', default=[],
                    help='菜单已补上，销掉这个 gap_id，可重复给')
+    bp = sub.add_parser('backfill-provenance',
+                        help='把 evidence.source_id 里的 sha256 前缀补成完整哈希')
+    bp.add_argument('--commit', action='store_true', help='真写；不给就是干跑')
+    bp.add_argument('--show', type=int, default=10)
     s = sub.add_parser('status')
     a = ap.parse_args()
     {'queue': cmd_queue, 'pack': cmd_pack, 'record': cmd_record,
      'attribute': cmd_attribute, 'flag': cmd_flag, 'skip': cmd_skip,
-     'gaps': cmd_gaps, 'status': cmd_status}[a.cmd](a)
+     'gaps': cmd_gaps, 'backfill-provenance': cmd_backfill_provenance,
+     'status': cmd_status}[a.cmd](a)
 
 
 if __name__ == '__main__':

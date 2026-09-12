@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：469。
+在册文件：470。
 
 | 身份 | 文件数 |
 |---|---|
@@ -18,7 +18,7 @@
 | 历史快照 | 36 |
 | 运行代码 | 81 |
 | 现行规范 | 11 |
-| 项目配置 | 36 |
+| 项目配置 | 37 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 26 |
@@ -179,7 +179,7 @@
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
 | `framework/interface_manifest.json` | static_pages | 13 |
-| `framework/metrics.json` | metrics | 139 |
+| `framework/metrics.json` | metrics | 220 |
 | `framework/modules.json` | modules | 15 |
 | `framework/research_graph.json` | views | 5 |
 | `framework/research_graph.json` | objects | 118 |
@@ -213,6 +213,7 @@
 | `.claude/launch.json` | 项目配置 |
 | `.claude/settings.local.json` | 项目配置 |
 | `.dockerignore` | 项目配置 |
+| `.gitattributes` | 项目配置 |
 | `.github/CODEOWNERS` | 项目配置 |
 | `.github/workflows/validate.yml` | 项目配置 |
 | `.gitignore` | 项目配置 |

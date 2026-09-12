@@ -1205,5 +1205,1260 @@ class SkipTests(unittest.TestCase):
         self.assertEqual(len(L2.open_gaps()), 1)
 
 
+class FilledGapTests(unittest.TestCase):
+    """M4 读表时撞到菜单没有位置的三处，补上之后钉住。
+
+    每一处都是「两个数看着可比、其实不是一件事」，正是这份契约存在的理由。
+    第四处（counterparty_role 供应方/需求方）没补——加一维会让该指标既有的
+    每一条事实全部失效，而我还不知道它命中的是哪三个模块，猜着加不如不加。
+    """
+
+    def setUp(self):
+        self.metrics = L2.load_metrics()
+
+    def dim(self, mid, dim_id):
+        return next(d for d in self.metrics[mid]['caliber_dims'] if d['id'] == dim_id)
+
+    # -- x86 是另一套切法，不是第五类 -------------------------------------
+    def test_x86_is_recordable(self):
+        for mid in ('server_mfg_revenue', 'server_unit_shipments', 'server_asp'):
+            self.assertIn('x86', self.dim(mid, 'server_class')['values'], mid)
+
+    def test_both_halves_of_the_partition_exist(self):
+        """只能记 x86 记不了非 x86，等于下一次还要 skip。"""
+        for mid in ('server_mfg_revenue', 'server_unit_shipments', 'server_asp'):
+            self.assertIn('非x86', self.dim(mid, 'server_class')['values'], mid)
+
+    def test_the_note_says_the_two_taxonomies_do_not_add(self):
+        for mid in ('server_mfg_revenue', 'server_unit_shipments', 'server_asp'):
+            note = self.dim(mid, 'server_class')['note']
+            self.assertIn('不能混着加总', note, mid)
+
+    def test_the_four_dell_oro_classes_are_untouched(self):
+        """补一套分类不该动掉原来那套。"""
+        for mid in ('server_mfg_revenue', 'server_unit_shipments', 'server_asp'):
+            values = self.dim(mid, 'server_class')['values']
+            for v in ('Accelerated/High-End', 'General-Purpose & Other',
+                      'All Servers', 'Storage Systems'):
+                self.assertIn(v, values, (mid, v))
+
+    # -- 同样叫「存储系统总额」的两个数差好几倍 ---------------------------
+    def test_storage_scope_is_a_declared_dimension(self):
+        for mid in ('server_mfg_revenue', 'server_asp'):
+            self.assertEqual(self.dim(mid, 'storage_scope')['values'],
+                             ['External OEM', 'Internal-ODM', 'Total',
+                              '不适用（非存储口径）'], mid)
+
+    def test_shipments_needs_no_storage_scope(self):
+        """存储没有台数（原表 Units are not available），这一维在那儿无意义。"""
+        with self.assertRaises(StopIteration):
+            self.dim('server_unit_shipments', 'storage_scope')
+
+    def test_the_note_refuses_to_hand_over_a_ratio_to_copy(self):
+        """三条口径写错的教训：断言换算关系的 note 必须附算式，否则叫人自己算。"""
+        note = self.dim('server_mfg_revenue', 'storage_scope')['note']
+        self.assertIn('自己算', note)
+        self.assertIn('不要抄这句', note)
+
+    def test_every_existing_fact_of_those_metrics_carries_the_new_dim(self):
+        """加一维就让既有事实全部失效——回填过才算补完。"""
+        store = json.loads((Path(L2.__file__).resolve().parent.parent /
+                            'data/facts.json').read_text(encoding='utf-8'))
+        rows = [f for f in store['records']
+                if f['metric_id'] in ('server_mfg_revenue', 'server_asp')]
+        self.assertTrue(rows)
+        for f in rows:
+            self.assertIn('storage_scope', f.get('caliber') or {}, f['fact_id'])
+
+    def test_no_storage_row_was_backfilled_as_not_applicable(self):
+        """存储行的口径要人判，机械回填成「不适用」就是造一条假事实。"""
+        store = json.loads((Path(L2.__file__).resolve().parent.parent /
+                            'data/facts.json').read_text(encoding='utf-8'))
+        for f in store['records']:
+            cal = f.get('caliber') or {}
+            if cal.get('server_class') == 'Storage Systems':
+                self.assertNotEqual(cal.get('storage_scope'), '不适用（非存储口径）',
+                                    f['fact_id'])
+
+    # -- 仅机电设备 -------------------------------------------------------
+    def test_mechanical_and_electrical_only_is_recordable(self):
+        scope = self.dim('dc_investment_per_rack', 'scope')
+        self.assertIn('仅机电设备', scope['values'])
+        self.assertIn('不是「含机电主设备」的子集', scope['note'])
+
+    def test_the_older_scope_values_survive(self):
+        values = self.dim('dc_investment_per_rack', 'scope')['values']
+        for v in ('土建本体', '施工总包', '含机电主设备', '含IT设备的项目总投资'):
+            self.assertIn(v, values, v)
+
+
+class M07MenuTests(unittest.TestCase):
+    """M07 光通信：18 条缺口一次补齐后的钉子。
+
+    这一批全是「同一个词指两件事」：BOM 成本与全成本、产品级与公司级毛利率、
+    名义产能与有效产出、市场需求与厂商出货、「其他」客户与「未拆分」。
+    每一条 note 挡的都是一次具体的读错。
+    """
+
+    def setUp(self):
+        self.metrics = L2.load_metrics()
+
+    def dim(self, mid, did):
+        return next(d for d in self.metrics[mid]['caliber_dims'] if d['id'] == did)
+
+    def test_every_new_metric_exists_with_a_unit_and_a_module(self):
+        for mid in ('optics_module_price', 'optics_module_unit_cost',
+                    'optics_gross_margin', 'optics_module_power',
+                    'optics_module_reach', 'aec_shipment', 'optics_market_size',
+                    'optics_demand_share_by_customer',
+                    'optics_supplier_share_at_customer', 'gpu_to_optics_ratio',
+                    'optics_production_capacity', 'optics_capacity_utilization',
+                    'optics_supply_gap', 'company_revenue', 'company_net_income',
+                    'company_net_margin', 'earnings_vs_consensus_delta'):
+            metric = self.metrics[mid]
+            self.assertTrue(metric['unit'], mid)
+            self.assertEqual(metric['module'], 'M07', mid)
+            self.assertTrue(metric['caliber_dims'], mid)
+
+    # -- 那个 0.7 会被读反 -------------------------------------------------
+    def test_the_bom_note_carries_the_arithmetic_that_settles_the_direction(self):
+        """表头写「70% = BOM Cost」，读反就把毛利率算高一截。"""
+        note = self.dim('optics_module_unit_cost', 'cost_scope')['note']
+        self.assertIn('493', note)
+        self.assertIn('704', note)
+        self.assertIn('小的那个是 BOM', note)
+
+    # -- 同一份报告里的两个毛利率 ------------------------------------------
+    def test_margin_level_separates_product_from_company(self):
+        values = self.dim('optics_gross_margin', 'margin_level')['values']
+        self.assertEqual(values, ['产品级', '公司级'])
+
+    def test_a_company_margin_is_not_a_product_margin(self):
+        self.assertIn('44.8%', self.dim('optics_gross_margin', 'margin_level')['note'])
+
+    # -- 名义产能不是能出的货 ----------------------------------------------
+    def test_capacity_basis_carries_its_arithmetic(self):
+        note = self.dim('optics_production_capacity', 'capacity_basis')['note']
+        self.assertIn('1500 × 0.8 = 1200', note)
+
+    # -- 缺口的符号不靠正负号 ----------------------------------------------
+    def test_the_gap_sign_lives_in_a_dimension_not_in_the_value(self):
+        gap = self.dim('optics_supply_gap', 'gap_side')
+        self.assertEqual(gap['values'], ['供不应求', '供过于求'])
+        self.assertIn('value 一律取正数', gap['note'])
+
+    def test_the_gap_depends_on_which_demand_case(self):
+        self.assertIn('demand_case', [d['id'] for d in
+                                      self.metrics['optics_supply_gap']['caliber_dims']])
+
+    # -- 未拆分 ≠ 其他 -----------------------------------------------------
+    def test_unsplit_is_not_the_same_as_other(self):
+        for mid in ('optics_module_shipment', 'aec_shipment',
+                    'optics_demand_share_by_customer'):
+            values = self.dim(mid, 'customer')['values']
+            self.assertIn('其他', values, mid)
+            self.assertIn('未拆分', values, mid)
+
+    def test_the_note_says_why_they_differ(self):
+        self.assertIn('「未拆分」不是「其他」',
+                      self.dim('optics_module_shipment', 'customer')['note'])
+
+    # -- 市场需求 ≠ 未披露 -------------------------------------------------
+    def test_market_demand_is_its_own_shipment_basis(self):
+        d = self.dim('optics_module_shipment', 'shipment_basis')
+        self.assertIn('市场需求', d['values'])
+        self.assertIn('未披露', d['values'])
+
+    def test_the_note_flags_the_rows_recorded_before_the_value_existed(self):
+        """约十条需求数记在「未披露」下，要拿原表逐条改判，不能按 fact_id 批量改。"""
+        note = self.dim('optics_module_shipment', 'shipment_basis')['note']
+        self.assertIn('逐条改判', note)
+        self.assertIn('不要在没有原文的情况下', note)
+
+    # -- 合并档不是两档之和 ------------------------------------------------
+    def test_the_merged_speed_bucket_cannot_be_split_or_summed(self):
+        for mid in ('optics_module_shipment', 'aec_shipment',
+                    'optics_module_price', 'optics_module_power'):
+            d = self.dim(mid, 'speed')
+            self.assertIn('400G/800G 合并档', d['values'], mid)
+            self.assertIn('合计', d['values'], mid)
+            self.assertIn('不能拆开', d['note'], mid)
+
+    # -- 配比是系数不是常数 ------------------------------------------------
+    def test_the_ratio_metric_says_the_architecture_moves_it(self):
+        note = self.dim('gpu_to_optics_ratio', 'architecture')['note']
+        self.assertIn('1:4 变 1:8', note)
+        self.assertIn('不能外推', note)
+
+    def test_the_ratio_note_refuses_the_single_market_wide_multiplier(self):
+        note = self.metrics['gpu_to_optics_ratio']['note']
+        self.assertIn('得到的都不是市场需求', note)
+
+    # -- 币种没写就不许替原文断定 ------------------------------------------
+    def test_an_unstated_currency_stays_unstated(self):
+        for mid in ('company_revenue', 'company_net_income'):
+            d = self.dim(mid, 'currency')
+            self.assertIn('未注明', d['values'], mid)
+            self.assertIn('不要替原文断定', d['note'], mid)
+
+    # -- AEC 不进光模块出货曲线 --------------------------------------------
+    def test_aec_is_a_separate_metric_not_a_product_form(self):
+        self.assertNotIn('AEC', self.dim('optics_module_shipment', 'product_form')['values'])
+        self.assertIn('替代读成增长', self.metrics['aec_shipment']['note'])
+
+    # -- 距离既是分组也是被测量 --------------------------------------------
+    def test_reach_is_both_a_grouping_and_a_measurement(self):
+        self.assertIn('reach', [d['id'] for d in
+                                self.metrics['optics_module_price']['caliber_dims']])
+        self.assertEqual(self.metrics['optics_module_reach']['unit'], 'm')
+
+    # -- 加了维就要回填 ----------------------------------------------------
+    def test_every_shipment_fact_carries_both_new_dimensions(self):
+        store = json.loads((Path(L2.__file__).resolve().parent.parent /
+                            'data/facts.json').read_text(encoding='utf-8'))
+        rows = [f for f in store['records']
+                if f['metric_id'] == 'optics_module_shipment']
+        self.assertGreater(len(rows), 30)
+        # 区间的上界是后来另一台机器补的，与它自己的下界共用一个口径——
+        # 两端共用口径是 bound 这个字段的定义，不是巧合。
+        for f in rows:
+            self.assertEqual(f['caliber'].get('product_form'), '光模块', f['fact_id'])
+            self.assertEqual(f['caliber'].get('customer'), '未拆分', f['fact_id'])
+
+
+class M02MenuTests(unittest.TestCase):
+    """M02 云与运营商：15 条缺口。
+
+    这一批的主题是**方向与层级**——谁买谁卖、哪一层加总、按什么排名。
+    读错方向会把买方读成卖方，读错层级会把同一笔钱算两遍。
+    """
+
+    def setUp(self):
+        self.metrics = L2.load_metrics()
+
+    def dim(self, mid, did):
+        return next(d for d in self.metrics[mid]['caliber_dims'] if d['id'] == did)
+
+    def test_every_new_metric_exists(self):
+        for mid in ('it_infra_spend', 'storage_capacity_shipped',
+                    'vendor_market_share', 'dc_service_revenue',
+                    'dc_service_revenue_share', 'top10_revenue_share',
+                    'dc_market_growth', 'operator_rack_capacity',
+                    'large_dc_count', 'operator_headcount',
+                    'operator_asset_balance', 'operator_credential_count'):
+            self.assertEqual(self.metrics[mid]['module'], 'M02', mid)
+            self.assertTrue(self.metrics[mid]['unit'], mid)
+
+    # -- 方向反了 ---------------------------------------------------------
+    def test_counterparty_role_stops_a_buyer_being_read_as_a_seller(self):
+        d = self.dim('server_unit_shipments', 'counterparty_role')
+        self.assertEqual(d['values'], ['供应方', '需求方', '全市场（未分侧）'])
+        self.assertIn('方向正好反了', d['note'])
+
+    def test_the_market_total_is_neither_side_and_says_so(self):
+        """既有 8 条的 entity 是 global-server-market，不是哪一家。"""
+        note = self.dim('server_unit_shipments', 'counterparty_role')['note']
+        self.assertIn('不要把它当成「未注明」', note)
+
+    def test_the_existing_shipment_facts_were_backfilled_as_market_totals(self):
+        store = json.loads((Path(L2.__file__).resolve().parent.parent /
+                            'data/facts.json').read_text(encoding='utf-8'))
+        rows = [f for f in store['records']
+                if f['metric_id'] == 'server_unit_shipments']
+        self.assertEqual(len(rows), 8)
+        for f in rows:
+            self.assertEqual(f['caliber']['counterparty_role'], '全市场（未分侧）',
+                             f['fact_id'])
+            self.assertIn('market', f['entity']['id'], f['fact_id'])
+
+    def test_unsplit_is_not_the_same_as_not_applicable(self):
+        d = self.dim('server_unit_shipments', 'buyer_category')
+        self.assertIn('未拆分', d['values'])
+        self.assertIn('不适用（非需求侧口径）', d['values'])
+        self.assertIn('两者不同', d['note'])
+
+    # -- 同一笔钱算两遍 ---------------------------------------------------
+    def test_the_overlap_is_a_recordable_row_not_a_footnote(self):
+        d = self.dim('it_infra_spend', 'product_scope')
+        self.assertIn('服务器内含存储（重叠额）', d['values'])
+        self.assertIn('服务器 + 存储 − 重叠额 = 服务器与存储合计', d['note'])
+
+    def test_demand_side_spend_is_not_the_supply_side_revenue_metric(self):
+        self.assertIn('不是同一个指标', self.metrics['it_infra_spend']['note'])
+
+    # -- 父子层级不可一起加总 ---------------------------------------------
+    def test_the_carrier_hierarchy_note_carries_its_arithmetic(self):
+        note = self.dim('dc_service_revenue', 'operator_type')['note']
+        self.assertIn('23.8 + 16.7 + 13.8 = 54.3', note)
+        self.assertIn('加总只能取一层', note)
+
+    def test_the_two_shares_at_one_level_add_to_a_hundred(self):
+        note = self.dim('dc_service_revenue_share', 'operator_type')['note']
+        self.assertIn('54.3% + 第三方 45.7% = 100.0', note)
+
+    # -- 按什么排名决定了是哪十家 -----------------------------------------
+    def test_top10_says_the_ranking_basis_changes_the_membership(self):
+        d = self.dim('top10_revenue_share', 'ranking_basis')
+        self.assertEqual(d['values'], ['按机架规模', '按收入', '按容量'])
+        self.assertIn('决定了这十家是哪十家', d['note'])
+
+    def test_top10_revenue_is_not_top10_pipeline(self):
+        note = self.metrics['top10_revenue_share']['note']
+        self.assertIn('top10_pipeline_share', note)
+        self.assertIn('不是同一个指标', note)
+
+    # -- 实测与趋势判断 ---------------------------------------------------
+    def test_a_trend_statement_is_not_a_measurement(self):
+        for mid in ('dc_market_growth', 'it_infra_spend'):
+            d = self.dim(mid, 'basis')
+            self.assertIn('趋势判断', d['values'], mid)
+        self.assertIn('造出一个不存在的加速', self.metrics['dc_market_growth']['note'])
+
+    # -- 广东不含深圳 -----------------------------------------------------
+    def test_guangdong_excluding_shenzhen_is_its_own_value(self):
+        d = self.dim('server_unit_shipments', 'subregion')
+        self.assertIn('广东（不含深圳）', d['values'])
+        self.assertIn('深圳', d['values'])
+        self.assertIn('不要自己合并成「广东」', d['note'])
+
+    # -- 「至少几路」是区间 -----------------------------------------------
+    def test_socket_values_are_ranges_that_contain_each_other(self):
+        d = self.dim('server_unit_shipments', 'socket_capability')
+        self.assertIn('是区间不是点', d['note'])
+        self.assertIn('不能相加', d['note'])
+
+    # -- 台数份额 ≠ 金额份额 ----------------------------------------------
+    def test_share_by_units_and_by_value_are_different_numbers(self):
+        d = self.dim('vendor_market_share', 'measure')
+        self.assertIn('4.7 个百分点', d['note'])
+
+    # -- 两个门槛互相包含 -------------------------------------------------
+    def test_the_two_size_thresholds_cannot_be_added(self):
+        d = self.dim('large_dc_count', 'size_threshold')
+        self.assertIn('被超 1000 的那批包含', d['note'])
+
+    # -- 在建工程未转固 ---------------------------------------------------
+    def test_construction_in_progress_is_not_yet_fixed_assets(self):
+        d = self.dim('operator_asset_balance', 'asset_item')
+        self.assertIn('转固之前不在固定资产里', d['note'])
+
+    # -- PB 不是 EB -------------------------------------------------------
+    def test_the_capacity_metric_warns_about_the_other_unit(self):
+        note = self.metrics['storage_capacity_shipped']['note']
+        self.assertIn('1 EB = 1000 PB', note)
+        self.assertIn('换算完也不是同一件事', note)
+
+
+class M05M09MenuTests(unittest.TestCase):
+    """M05 选址与工程门槛、M09 设备与场地：9 条缺口。
+
+    这一批的主题是**单位与门槛方向**。一堆数挤在一个指标下、单位各不相同，
+    是最容易造出「同一条序列」假象的地方；而「不小于 8000m」与「不大于 1Ω」
+    写成同一个正数，方向丢了就读反了。
+    """
+
+    def setUp(self):
+        self.metrics = L2.load_metrics()
+
+    def dim(self, mid, did):
+        return next(d for d in self.metrics[mid]['caliber_dims'] if d['id'] == did)
+
+    def test_every_new_metric_exists(self):
+        for mid, module in (('site_hazard_setback', 'M05'),
+                            ('backup_autonomy', 'M05'),
+                            ('room_dimension', 'M05'),
+                            ('room_environment_limit', 'M05'),
+                            ('installed_equipment_capacity', 'M05'),
+                            ('grounding_resistance', 'M05'),
+                            ('video_retention_period', 'M05'),
+                            ('equipment_unit_price', 'M09'),
+                            ('site_logistics_spec', 'M09')):
+            self.assertEqual(self.metrics[mid]['module'], module, mid)
+
+    # -- 门槛方向不靠正负号 ------------------------------------------------
+    def test_every_threshold_metric_declares_its_direction(self):
+        for mid in ('site_hazard_setback', 'backup_autonomy', 'room_dimension',
+                    'grounding_resistance', 'video_retention_period',
+                    'site_logistics_spec'):
+            self.assertIn('bound_sense', [d['id'] for d in
+                                          self.metrics[mid]['caliber_dims']], mid)
+
+    def test_setback_says_value_is_always_positive(self):
+        self.assertIn('value 一律取正数',
+                      self.dim('site_hazard_setback', 'bound_sense')['note'])
+
+    # -- 等级差五倍 --------------------------------------------------------
+    def test_a_setback_without_a_tier_is_meaningless(self):
+        note = self.metrics['site_hazard_setback']['note']
+        self.assertIn('8000m', note)
+        self.assertIn('不带 tier 的距离门槛没有意义', note)
+
+    def test_the_two_tier_systems_do_not_convert(self):
+        for mid in ('site_hazard_setback', 'room_floor_load', 'room_clear_height'):
+            self.assertIn('不可互相换算', self.dim(mid, 'tier')['note'], mid)
+
+    # -- 四种后备撑的不是同一段时间 ----------------------------------------
+    def test_backup_types_must_not_be_summed(self):
+        note = self.dim('backup_autonomy', 'backup_type')['note']
+        self.assertIn('绝不可相加', note)
+        self.assertIn('串在不同的故障链上', note)
+
+    def test_the_backup_unit_is_minutes_with_the_conversion_spelled_out(self):
+        self.assertIn('12 小时 = 720 分钟', self.metrics['backup_autonomy']['note'])
+
+    def test_the_fuel_coefficient_is_not_a_value_of_this_metric(self):
+        self.assertIn('0.22 公斤', self.metrics['backup_autonomy']['note'])
+        self.assertIn('换算系数不是本指标的值', self.metrics['backup_autonomy']['note'])
+
+    # -- 同一个尺寸因用途不同差一倍 ----------------------------------------
+    def test_purpose_separates_two_correct_numbers(self):
+        note = self.dim('room_dimension', 'purpose')['note']
+        self.assertIn('500mm', note)
+        self.assertIn('250mm', note)
+        self.assertIn('两个都对的数看着是矛盾的', note)
+
+    # -- 允许值不是推荐值 --------------------------------------------------
+    def test_allowed_is_not_recommended(self):
+        note = self.dim('room_environment_limit', 'limit_type')['note']
+        self.assertIn('允许值是不越界就行，推荐值是应当落在其中', note)
+
+    # -- 铭牌容量写着，IT 负荷没写 -----------------------------------------
+    def test_installed_capacity_refuses_to_infer_the_it_load(self):
+        note = self.metrics['installed_equipment_capacity']['note']
+        self.assertIn('铭牌容量是原文写着的，IT 负荷不是', note)
+        self.assertIn('把写着的记下来，把推不出的留白', note)
+
+    def test_redundancy_unstated_stays_unstated(self):
+        note = self.dim('installed_equipment_capacity', 'capacity_basis')['note']
+        self.assertIn('不要替原文断定', note)
+        self.assertIn('75%', note)
+
+    def test_kw_and_kva_are_declared_not_assumed(self):
+        d = self.dim('installed_equipment_capacity', 'unit_kind')
+        self.assertEqual(d['values'], ['kW', 'kVA'])
+        self.assertIn('不可互换', d['note'])
+
+    # -- 单价跨计量单位不可比 ----------------------------------------------
+    def test_unit_price_is_grouped_by_its_unit_of_measure(self):
+        d = self.dim('equipment_unit_price', 'uom')
+        self.assertIn('跨 uom 不可比', d['note'])
+
+    def test_the_spec_must_reach_the_notes(self):
+        note = self.metrics['equipment_unit_price']['note']
+        self.assertIn('规格必须进 notes', note)
+        self.assertIn('1800kW 与 400kW 差一个数量级', note)
+
+    def test_all_in_price_is_not_the_bare_equipment_price(self):
+        self.assertIn('三成以上',
+                      self.dim('equipment_unit_price', 'price_scope')['note'])
+
+    # -- 一个指标装多种单位时靠维度分组 ------------------------------------
+    def test_mixed_unit_metrics_forbid_cross_item_comparison(self):
+        for mid, did in (('site_logistics_spec', 'spec_item'),
+                         ('room_environment_limit', 'parameter')):
+            self.assertIn('不要跨', self.dim(mid, did)['note'], mid)
+
+    # -- 国标与企标 --------------------------------------------------------
+    def test_the_code_minimum_is_split_into_national_and_carrier(self):
+        d = self.dim('room_floor_load', 'basis')
+        self.assertIn('规范最低（国标）', d['values'])
+        self.assertIn('规范最低（运营商企标）', d['values'])
+        self.assertIn('规范最低', d['values'])      # 旧值保留给既有事实
+
+    def test_the_existing_engineering_facts_were_backfilled(self):
+        store = json.loads((Path(L2.__file__).resolve().parent.parent /
+                            'data/facts.json').read_text(encoding='utf-8'))
+        rows = [f for f in store['records']
+                if f['metric_id'] in ('room_floor_load', 'room_clear_height')]
+        self.assertTrue(rows)
+        self.assertTrue(any(f.get('bound') == 'upper' for f in rows),
+                        '上界那条应当也在，且同样带着这两维')
+        for f in rows:
+            self.assertEqual(f['caliber']['tier'], '未注明', f['fact_id'])
+            self.assertEqual(f['caliber']['build_type'], '未注明', f['fact_id'])
+
+    # -- 纯机电清单的分项对不上现有切法 ------------------------------------
+    def test_the_mechanical_only_denominator_and_its_escape_hatch(self):
+        self.assertIn('机电设备清单合计',
+                      self.dim('cost_share_by_trade', 'denominator')['values'])
+        self.assertIn('其他机电分项', self.dim('cost_share_by_trade', 'trade')['values'])
+        self.assertIn('不要硬塞进最像的那个 trade',
+                      self.dim('cost_share_by_trade', 'denominator')['note'])
+
+
+class TextFingerprintTests(unittest.TestCase):
+    """同一份报告的两个副本，字节不同、sha256 不同，正文一字不差。
+
+    M4 撞到的：两份中国信通院第三方运营商报告，41 页、23,935 字、正文 md5
+    完全一致，sha256 不同，于是排进阅读队列两次。sha256 认的是字节，
+    读者认的是内容——去重要在内容那一层做。
+    """
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-fp-')
+        base = Path(self.temp.name)
+        self._saved = (L2.TEXT_MD5, L2.read_documents)
+        L2.TEXT_MD5 = base / 'l2_text_md5.jsonl'
+        L2.read_documents = lambda: set(self.read)
+        self.read = set()
+
+    def tearDown(self):
+        (L2.TEXT_MD5, L2.read_documents) = self._saved
+        self.temp.cleanup()
+
+    def fp(self, text, pages=41):
+        return L2.text_fingerprint(text, {'pages': pages})
+
+    BODY = '中国第三方数据中心运营商分析报告。' * 40      # 逾 500 字
+
+    def test_a_re_export_with_different_bytes_has_the_same_fingerprint(self):
+        """换行被重排、空白被压掉，读者看到的还是同一篇。"""
+        other = self.BODY.replace('。', '。\n   ')
+        self.assertEqual(self.fp(self.BODY), self.fp(other))
+
+    def test_a_different_document_has_a_different_fingerprint(self):
+        self.assertNotEqual(self.fp(self.BODY), self.fp(self.BODY + '另起一段。'))
+
+    def test_a_shared_front_matter_with_a_different_page_count_is_not_a_twin(self):
+        """同一套模板的季度报告可以共用很长的开头，那不是同一份。"""
+        self.assertNotEqual(self.fp(self.BODY, pages=41),
+                            self.fp(self.BODY, pages=52))
+
+    def test_too_little_text_gets_no_fingerprint(self):
+        """十几个字的扫描件封面会撞上语料里的每一份扫描件。"""
+        self.assertIsNone(self.fp('目录'))
+        self.assertIsNone(self.fp('封面' * 100))          # 仍不足 500 字
+        self.assertIsNotNone(self.fp('封面' * 300))
+
+    # -- 台账 -------------------------------------------------------------
+    def test_a_twin_is_only_a_twin_once_the_other_one_was_read(self):
+        """还没读过的副本不算——两份都在队列里时，先读到哪份都行。"""
+        L2.remember_fingerprint('a' * 64, 'deadbeef')
+        self.assertEqual(L2.already_read_with_same_text('b' * 64, 'deadbeef'), [])
+        self.read.add('a' * 64)
+        self.assertEqual(L2.already_read_with_same_text('b' * 64, 'deadbeef'),
+                         ['a' * 64])
+
+    def test_a_document_is_never_its_own_twin(self):
+        L2.remember_fingerprint('a' * 64, 'deadbeef')
+        self.read.add('a' * 64)
+        self.assertEqual(L2.already_read_with_same_text('a' * 64, 'deadbeef'), [])
+
+    def test_no_fingerprint_means_no_twin_check(self):
+        L2.remember_fingerprint('a' * 64, 'deadbeef')
+        self.read.add('a' * 64)
+        self.assertEqual(L2.already_read_with_same_text('b' * 64, None), [])
+
+    def test_a_malformed_line_does_not_take_the_ledger_down(self):
+        L2.remember_fingerprint('a' * 64, 'deadbeef')
+        with L2.TEXT_MD5.open('a', encoding='utf-8') as fh:
+            fh.write('{ 半行\n')
+        self.assertEqual(L2.fingerprints(), {'a' * 64: 'deadbeef'})
+
+    def test_the_last_write_wins(self):
+        """重抽一遍得到不同的正文（抽取器修好了），以新的为准。"""
+        L2.remember_fingerprint('a' * 64, 'old')
+        L2.remember_fingerprint('a' * 64, 'new')
+        self.assertEqual(L2.fingerprints()['a' * 64], 'new')
+
+
+class BackfillProvenanceTests(unittest.TestCase):
+    """119 条事实没有内容哈希——但那不等于出处丢了。
+
+    其中 81 条在 evidence.source_id 里写着一个十二位十六进制串，那就是
+    sha256[:12]：身份一直在，只是缩写到了 join 不上的程度。展开它要 L1 账本，
+    而账本在读文件的那台机器上，不在仓库里——所以这是一条命令，不是一次编辑。
+    """
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-prov-')
+        base = Path(self.temp.name)
+        self.ledger = base / 'l1.jsonl'
+        self.facts = base / 'facts.json'
+        self._saved = (L2.L1.RESULTS, L2.FACTS, L2.REPO)
+        L2.L1.RESULTS = self.ledger
+        L2.FACTS = self.facts
+        L2.REPO = base                      # 没有 sources.json，走前缀这条路
+
+    def tearDown(self):
+        (L2.L1.RESULTS, L2.FACTS, L2.REPO) = self._saved
+        self.temp.cleanup()
+
+    def write(self, evidences, ledger_shas):
+        self.facts.write_text(json.dumps({'records': [
+            {'fact_id': 'f%d' % n, 'metric_id': 'm', 'evidence': e}
+            for n, e in enumerate(evidences)]}, ensure_ascii=False), encoding='utf-8')
+        self.ledger.write_text('\n'.join(
+            json.dumps({'sha256': s, 'rel': 'x/%s' % s[:8], 'suffix': '.pdf',
+                        'status': 'ok'}) for s in ledger_shas) + '\n',
+            encoding='utf-8')
+
+    def run_it(self, commit=False):
+        out = io.StringIO()
+        with redirect_stdout(out):
+            L2.cmd_backfill_provenance(type('A', (), {'commit': commit, 'show': 5}))
+        lines = out.getvalue().splitlines()
+        # 第一行可能是「读不到清单」的提示，报告是带 owing_before 的那一行
+        report = next(json.loads(l) for l in lines
+                      if l.startswith('{') and 'owing_before' in l)
+        return report, out.getvalue()
+
+    def stored(self):
+        return json.loads(self.facts.read_text(encoding='utf-8'))['records']
+
+    SHA = 'a1b2c3d4e5f6' + '0' * 52
+
+    def test_a_prefix_becomes_the_full_hash(self):
+        self.write([{'source_id': self.SHA[:12], 'locator': 'p.1'}], [self.SHA])
+        report, _ = self.run_it(commit=True)
+        self.assertEqual(report['按前缀补全'], 1)
+        self.assertEqual(self.stored()[0]['evidence']['sha256'], self.SHA)
+
+    def test_a_dry_run_writes_nothing(self):
+        """本项目的规矩：每一步真改之前先干跑一遍。"""
+        self.write([{'source_id': self.SHA[:12]}], [self.SHA])
+        report, text = self.run_it(commit=False)
+        self.assertEqual(report['按前缀补全'], 1)
+        self.assertIn('干跑', text)
+        self.assertNotIn('sha256', self.stored()[0]['evidence'])
+
+    def test_an_ambiguous_prefix_is_refused_not_guessed(self):
+        """十二位十六进制撞车极不可能——但「不太可能」不是往事实层写错哈希的理由。"""
+        twin = self.SHA[:12] + 'f' * 52
+        self.write([{'source_id': self.SHA[:12]}], [self.SHA, twin])
+        report, text = self.run_it(commit=True)
+        self.assertEqual(report['前缀撞车（未动）'], 1)
+        self.assertEqual(report['按前缀补全'], 0)
+        self.assertIn('撞车', text)
+        self.assertNotIn('sha256', self.stored()[0]['evidence'])
+
+    def test_a_prefix_the_ledger_does_not_know_is_reported_as_such(self):
+        self.write([{'source_id': 'ffffffffffff'}], [self.SHA])
+        report, text = self.run_it(commit=True)
+        self.assertEqual(report['查不到（未动）'], 1)
+        self.assertIn('这个前缀在 L1 账本里查无此文件', text)
+
+    def test_a_named_source_is_not_mistaken_for_a_prefix(self):
+        self.write([{'source_id': 'chinatelecom-luan-cost-2022'}], [self.SHA])
+        report, _ = self.run_it(commit=True)
+        self.assertEqual(report['按前缀补全'], 0)
+        self.assertEqual(report['查不到（未动）'], 1)
+
+    def test_a_fact_that_already_has_a_hash_is_left_alone(self):
+        self.write([{'sha256': 'b' * 64, 'source_id': self.SHA[:12]}], [self.SHA])
+        report, _ = self.run_it(commit=True)
+        self.assertEqual(report['owing_before'], 0)
+        self.assertEqual(self.stored()[0]['evidence']['sha256'], 'b' * 64)
+
+    def test_the_report_says_what_the_debt_will_be_afterwards(self):
+        """跑完要改 PROVENANCE_DEBT，命令自己把新数字算出来。"""
+        self.write([{'source_id': self.SHA[:12]}, {'source_id': 'ffffffffffff'}],
+                   [self.SHA])
+        report, text = self.run_it(commit=True)
+        self.assertEqual(report['owing_after'], 1)
+        self.assertIn('PROVENANCE_DEBT 改成 1', text)
+
+    def test_uppercase_is_not_a_hex_prefix(self):
+        """sha256 一律小写；大写串是别的东西，不要当成前缀去 join。"""
+        self.write([{'source_id': self.SHA[:12].upper()}], [self.SHA])
+        report, _ = self.run_it(commit=True)
+        self.assertEqual(report['按前缀补全'], 0)
+
+    def test_the_live_debt_is_mostly_abbreviated_not_missing(self):
+        """真实语料：119 条欠债里 81 条其实写着 sha256 前缀。"""
+        (L2.L1.RESULTS, L2.FACTS, L2.REPO) = self._saved
+        store = L2.load_facts()
+        owing = L2.owing_provenance(store['records'])
+        self.assertEqual(len(owing), PROVENANCE_DEBT)
+        abbreviated = [f for f in owing
+                       if L2.HEX12.match(str((f['evidence'] or {}).get('source_id') or ''))]
+        self.assertEqual(len(abbreviated), 81)
+
+
+class RangeCaliberTests(unittest.TestCase):
+    """区间的两端共用一个口径——这是 bound 这个字段的定义。
+
+    两台机器并行改动时撞出来的：M4 按 #150 的新写法补了四条区间上界，
+    而我同时给那几个指标加了维度。合并后上界缺维，下界不缺。
+    补齐时不是猜，是照它自己那一端抄——两端如果口径不同，它们本来就不是
+    同一个区间的两端。
+    """
+
+    def setUp(self):
+        store = json.loads((Path(L2.__file__).resolve().parent.parent /
+                            'data/facts.json').read_text(encoding='utf-8'))
+        self.records = store['records']
+        self.by_id = {f['fact_id']: f for f in self.records}
+
+    def test_the_corpus_actually_holds_ranges_now(self):
+        """1800-2100 万只——当初逼出 bound 那条改动的就是它。"""
+        bounded = [f for f in self.records if f.get('bound')]
+        self.assertGreater(len(bounded), 4)
+
+    def test_both_ends_of_every_range_share_one_caliber(self):
+        pairs = 0
+        for fact in self.records:
+            if fact.get('bound') != 'upper':
+                continue
+            twin = self.by_id.get(fact['fact_id'][:-6])
+            if twin is None:            # 上界不一定按这个命名法配对
+                continue
+            pairs += 1
+            self.assertEqual(fact['caliber'], twin['caliber'], fact['fact_id'])
+            self.assertEqual(fact['metric_id'], twin['metric_id'], fact['fact_id'])
+            self.assertEqual(str(fact['as_of']), str(twin['as_of']), fact['fact_id'])
+        self.assertGreater(pairs, 3)
+
+    def test_an_upper_is_never_below_its_lower(self):
+        for fact in self.records:
+            if fact.get('bound') != 'upper' or fact.get('value') is None:
+                continue
+            twin = self.by_id.get(fact['fact_id'][:-6])
+            if twin is None or twin.get('value') is None:
+                continue
+            self.assertGreaterEqual(fact['value'], twin['value'], fact['fact_id'])
+
+    def test_every_range_end_validates_against_the_current_menu(self):
+        metrics = L2.load_metrics()
+        for fact in self.records:
+            if not fact.get('bound'):
+                continue
+            problems = [p for p in L2.check_fact(fact, metrics, set(), None)
+                        if 'sha256' not in p]
+            self.assertEqual(problems, [], fact['fact_id'])
+
+
+class M03M04MenuTests(unittest.TestCase):
+    """M03 资本开支、M04 电力：17 条缺口。
+
+    这一批的主题是**同一份报告里两个都对、方向相反的数**——
+    美国近一半的电力增长来自数据中心，全球口径下不到 10%；
+    2030 年用电 945 与 1260 出自同一页的两个情景。
+    单独引用任何一个都能得出一个立场。
+    """
+
+    def setUp(self):
+        self.metrics = L2.load_metrics()
+
+    def dim(self, mid, did):
+        return next(d for d in self.metrics[mid]['caliber_dims'] if d['id'] == did)
+
+    def test_every_new_metric_exists(self):
+        for mid, module in (('capex_growth_rate', 'M03'),
+                            ('forecast_revision_delta', 'M03'),
+                            ('capex_share_by_segment', 'M03'),
+                            ('installed_server_base', 'M03'),
+                            ('dc_electricity_consumption', 'M04'),
+                            ('dc_demand_source_mix', 'M04'),
+                            ('dc_demand_source_share', 'M04'),
+                            ('dc_share_of_load_growth', 'M04'),
+                            ('gas_turbine_demand_annual', 'M04'),
+                            ('gas_turbine_units', 'M04'),
+                            ('dc_capacity_additions_annual', 'M04'),
+                            ('vendor_order_target', 'M04'),
+                            ('corporate_ppa_capacity', 'M04'),
+                            ('ppa_coverage_share', 'M04')):
+            self.assertEqual(self.metrics[mid]['module'], module, mid)
+            self.assertTrue(self.metrics[mid]['unit'], mid)
+
+    # -- 四个情景不是四家打架 ----------------------------------------------
+    def test_scenario_is_not_basis(self):
+        d = self.dim('dc_electricity_consumption', 'scenario')
+        for v in ('Base Case', 'Lift-Off', 'High Efficiency', 'Headwinds'):
+            self.assertIn(v, d['values'], v)
+        self.assertIn('945', d['note'])
+        self.assertIn('1260', d['note'])
+        self.assertIn('出自同一页', d['note'])
+
+    def test_a_single_scenario_is_not_the_base_case(self):
+        note = self.dim('dc_electricity_consumption', 'scenario')['note']
+        self.assertIn('单一情景', self.dim('dc_electricity_consumption',
+                                           'scenario')['values'])
+        self.assertIn('不要拿它当 Base Case', note)
+
+    def test_foreign_scenario_names_are_reported_not_mapped(self):
+        self.assertIn('不要硬映射',
+                      self.dim('dc_electricity_consumption', 'scenario')['note'])
+
+    # -- TWh 不是 GW -------------------------------------------------------
+    def test_energy_is_not_power(self):
+        note = self.metrics['dc_electricity_consumption']['note']
+        self.assertIn('TWh 不是 GW', note)
+        self.assertIn('global_dc_it_load', note)
+        self.assertIn('绝不可互换或直接换算', note)
+
+    # -- 两个都对、方向相反 ------------------------------------------------
+    def test_the_pair_that_must_be_stored_together(self):
+        note = self.metrics['dc_share_of_load_growth']['note']
+        self.assertIn('成对存储', note)
+        self.assertIn('只录其中一条等于挑了一个立场', note)
+
+    def test_it_is_distinguished_from_the_geographic_concentration_metric(self):
+        self.assertIn('load_growth_concentration',
+                      self.metrics['dc_share_of_load_growth']['note'])
+
+    # -- 存量地理分布不需要新指标 ------------------------------------------
+    def test_stock_concentration_reuses_the_existing_dimension(self):
+        """查过菜单才动手：basis_type 已经能区分存量与增量。"""
+        d = self.dim('load_growth_concentration', 'scope')
+        self.assertIn('前五集群', d['values'])
+        self.assertIn('不需要另立指标', d['note'])
+        self.assertIn('存量占比',
+                      self.dim('load_growth_concentration', 'basis_type')['values'])
+
+    # -- 产能没有需求就证不出结论 ------------------------------------------
+    def test_demand_exists_because_the_conclusion_needs_both_sides(self):
+        note = self.metrics['gas_turbine_demand_annual']['note']
+        self.assertIn('96GW', note)
+        self.assertIn('64GW', note)
+        self.assertIn('在库里就是不可复现的', note)
+
+    # -- 台数看得出单机在变大 ----------------------------------------------
+    def test_unit_counts_reveal_what_capacity_alone_hides(self):
+        note = self.metrics['gas_turbine_units']['note']
+        self.assertIn('240-267MW', note)
+        self.assertIn('看不出单机在变大还是变多', note)
+
+    # -- 三种订单口径 ------------------------------------------------------
+    def test_order_basis_separates_three_numbers_from_one_page(self):
+        d = self.dim('gas_turbine_dc_order_share', 'order_basis')
+        # 后来又从另一份报告里冒出第四种口径「总承诺量」，见 M09MenuTests
+        self.assertEqual(d['values'], ['新增订单', '在手订单', '总承诺量', '前瞻指引'])
+        self.assertIn('看着是同一个指标在打架', d['note'])
+
+    def test_an_unstated_measure_stays_unstated(self):
+        d = self.dim('gas_turbine_dc_order_share', 'measure')
+        self.assertIn('未注明', d['values'])
+        self.assertIn('改写成一条假的「知道」', d['note'])
+
+    def test_the_four_order_share_facts_were_backfilled_from_their_own_notes(self):
+        """回填依据在每条事实自己的 notes 里，不是按 fact_id 猜的。"""
+        store = json.loads((Path(L2.__file__).resolve().parent.parent /
+                            'data/facts.json').read_text(encoding='utf-8'))
+        rows = {f['fact_id']: f for f in store['records']
+                if f['metric_id'] == 'gas_turbine_dc_order_share'}
+        self.assertEqual(len(rows), 4)
+        for f in rows.values():
+            self.assertEqual(f['caliber']['order_basis'], '新增订单', f['fact_id'])
+        # 分母写着 58GW，是容量口径
+        self.assertEqual(rows['gas-turbine-dc-order-share-2024']['caliber']['measure'],
+                         '按容量')
+        # 原文明说计量口径未说明，库内已标 [未核]
+        self.assertEqual(rows['siemens-dc-order-share-fy2025']['caliber']['measure'],
+                         '未注明')
+
+    # -- 上修 67% 与下修 67% -----------------------------------------------
+    def test_revision_direction_keeps_the_value_positive(self):
+        d = self.dim('forecast_revision_delta', 'revision_direction')
+        self.assertIn('value 一律取正数', d['note'])
+
+    def test_revision_is_not_the_consensus_delta(self):
+        note = self.metrics['forecast_revision_delta']['note']
+        self.assertIn('capex_vs_consensus_delta', note)
+        self.assertIn('前者说的是分歧，后者说的是改口', note)
+
+    # -- 存量不是流量 ------------------------------------------------------
+    def test_installed_base_is_not_shipments(self):
+        note = self.metrics['installed_server_base']['note']
+        self.assertIn('server_unit_shipments', note)
+        self.assertIn('存量不是流量', note)
+
+    def test_the_tier_thresholds_are_themselves_facts(self):
+        note = self.dim('installed_server_base', 'provider_tier')['note']
+        self.assertIn('这些门槛本身也是事实', note)
+
+    # -- 「超过一半」是下界 ------------------------------------------------
+    def test_more_than_half_is_a_lower_bound(self):
+        note = self.metrics['capex_share_by_segment']['note']
+        self.assertIn('下界不是点估计', note)
+        self.assertIn('不要自己取中值', note)
+
+    # -- CAGR 要带窗口 -----------------------------------------------------
+    def test_a_cagr_without_its_window_is_unusable(self):
+        note = self.dim('capex_growth_rate', 'period_basis')['note']
+        self.assertIn('必须在 notes 里写明起止年', note)
+
+    def test_growth_rates_do_not_add_up(self):
+        self.assertIn('两个分部各增 30% 不等于合计增 30%',
+                      self.metrics['capex_growth_rate']['note'])
+
+    # -- PPA 三个相邻指标 --------------------------------------------------
+    def test_ppa_capacity_is_none_of_the_three_neighbours(self):
+        note = self.metrics['corporate_ppa_capacity']['note']
+        self.assertIn('green_direct_capacity', note)
+        self.assertIn('contracted_power_capacity', note)
+        self.assertIn('三者测的是三件事', note)
+
+    def test_built_and_under_construction_do_not_add(self):
+        self.assertIn('不可相加',
+                      self.dim('corporate_ppa_capacity', 'status')['note'])
+
+    def test_coverage_is_a_paper_figure(self):
+        self.assertIn('不等于「实际覆盖」',
+                      self.metrics['ppa_coverage_share']['note'])
+
+
+class M09MenuTests(unittest.TestCase):
+    """M09 供电架构与设备端：14 条缺口。
+
+    这一批的主题是**相对值**——+382%、3.4x、157% 裕度、2.0 倍订单收入比。
+    相对值离开基准和条件就是一个没有意义的数字，而它偏偏最容易被摘出来引用。
+    """
+
+    def setUp(self):
+        self.metrics = L2.load_metrics()
+
+    def dim(self, mid, did):
+        return next(d for d in self.metrics[mid]['caliber_dims'] if d['id'] == did)
+
+    def test_every_new_metric_exists(self):
+        for mid in ('power_architecture_spec', 'conductor_capacity_index',
+                    'rack_load_swing', 'storage_response_window',
+                    'generation_ratio', 'electrical_material_intensity',
+                    'circuit_current_margin', 'major_equipment_count',
+                    'tech_milestone_year', 'book_to_bill',
+                    'vendor_order_backlog', 'vendor_capacity_investment'):
+            self.assertEqual(self.metrics[mid]['module'], 'M09', mid)
+            self.assertTrue(self.metrics[mid]['unit'], mid)
+
+    # -- 相对值必须声明基准 ------------------------------------------------
+    def test_every_relative_metric_declares_its_baseline(self):
+        for mid, did in (('conductor_capacity_index', 'baseline'),
+                         ('generation_ratio', 'baseline_generation')):
+            self.assertIn('相对值必须声明基准', self.dim(mid, did)['note'], mid)
+
+    def test_the_conductor_index_is_conditional_not_physical(self):
+        note = self.dim('conductor_capacity_index', 'condition')['note']
+        self.assertIn('不是物理常数', note)
+        self.assertIn('48A', note)
+
+    def test_two_multiples_must_not_be_divided(self):
+        """性能 50x ÷ TDP 1.75x ≠ 能效 28.6x——两个倍数的基准配置不同。"""
+        note = self.metrics['generation_ratio']['note']
+        self.assertIn('不能相除', note)
+        self.assertIn('compute_efficiency', note)
+
+    # -- 25% 是推出来的，算式在 note 里 ------------------------------------
+    def test_the_rms_penalty_carries_its_derivation(self):
+        note = self.metrics['rack_load_swing']['note']
+        self.assertIn('(1.5² + 0.5²) / 2 = 1.25', note)
+        self.assertIn('derived: true', note)
+
+    def test_the_rms_arithmetic_actually_holds(self):
+        """note 里写的算式，这里真算一遍——上一轮三条口径写错就是没算过。"""
+        mean, peak = 1.0, 1.5
+        trough = 2 * mean - peak
+        self.assertAlmostEqual((peak ** 2 + trough ** 2) / 2, 1.25)
+
+    def test_the_swing_parameters_share_a_unit_but_not_a_meaning(self):
+        note = self.dim('rack_load_swing', 'parameter')['note']
+        self.assertIn('绝不可放进同一条序列', note)
+
+    # -- 两种裕度算法差 100 个百分点 ---------------------------------------
+    def test_the_margin_definition_changes_the_number(self):
+        note = self.dim('circuit_current_margin', 'margin_definition')['note']
+        self.assertIn('370', note)
+        self.assertIn('144', note)
+        self.assertIn('257%', note)
+        self.assertIn('157%', note)
+
+    def test_the_margin_arithmetic_holds(self):
+        self.assertAlmostEqual(370 / 144 * 100, 256.9, places=1)
+        self.assertAlmostEqual((370 - 144) / 144 * 100, 156.9, places=1)
+
+    # -- 架构宣称不是出货事实 ----------------------------------------------
+    def test_an_architecture_claim_is_not_a_shipped_fact(self):
+        self.assertIn('架构上限', self.dim('rack_density_shipping', 'stat')['values'])
+        self.assertIn('架构宣称',
+                      self.dim('rack_density_shipping', 'power_basis')['values'])
+        self.assertIn('一句宣传语就变成了',
+                      self.dim('rack_density_shipping', 'stat')['note'])
+
+    def test_the_shared_basis_dimension_carries_the_same_warning(self):
+        self.assertIn('架构宣称', self.dim('power_architecture_spec', 'basis')['values'])
+
+    # -- 订单口径 ----------------------------------------------------------
+    def test_total_commitment_is_a_fourth_order_basis(self):
+        d = self.dim('gas_turbine_dc_order_share', 'order_basis')
+        self.assertIn('总承诺量', d['values'])
+        self.assertIn('24 ÷ 87 = 27.6%', d['note'])
+
+    def test_book_to_bill_has_two_rulers(self):
+        note = self.dim('book_to_bill', 'ratio_basis')['note']
+        self.assertIn('3.3', note)
+        self.assertIn('是两把尺子', note)
+
+    def test_greater_than_signs_become_bounds(self):
+        self.assertIn('用 bound: lower 记', self.metrics['book_to_bill']['note'])
+
+    def test_backlog_is_not_the_cloud_contract_metric(self):
+        note = self.metrics['vendor_order_backlog']['note']
+        self.assertIn('mega_contract_backlog', note)
+        self.assertIn('三个数不换算、不相加', note)
+
+    # -- 币种混排 ----------------------------------------------------------
+    def test_mixed_currencies_are_declared(self):
+        for mid in ('vendor_order_backlog', 'vendor_capacity_investment'):
+            d = self.dim(mid, 'currency')
+            for v in ('美元', '欧元', '韩元', '未注明'):
+                self.assertIn(v, d['values'], (mid, v))
+
+    def test_investment_and_output_do_not_add(self):
+        note = self.dim('vendor_capacity_investment', 'amount_type')['note']
+        self.assertIn('更不能相加', note)
+
+    def test_the_korean_split_adds_up_and_says_so(self):
+        note = self.dim('vendor_capacity_investment', 'growth_source')['note']
+        self.assertIn('7000 + 1000 = 8000', note)
+
+    # -- 台数要配冗余 ------------------------------------------------------
+    def test_equipment_count_needs_redundancy_to_be_readable(self):
+        d = self.dim('major_equipment_count', 'redundancy')
+        self.assertIn('未注明', d['values'])
+        self.assertIn('不要替它断定', d['note'])
+
+    def test_at_least_ten_is_a_lower_bound(self):
+        self.assertIn('bound: lower', self.metrics['major_equipment_count']['note'])
+
+    # -- 同一个里程碑两个年份都对 ------------------------------------------
+    def test_two_dates_for_one_milestone_are_not_a_contradiction(self):
+        note = self.dim('tech_milestone_year', 'view_holder')['note']
+        self.assertIn('可以都对', note)
+        self.assertIn('看着是矛盾的', note)
+
+    def test_the_milestone_metric_cites_its_precedent(self):
+        self.assertIn('ethernet_ib_crossover_year',
+                      self.metrics['tech_milestone_year']['note'])
+
+    # -- 项目合计不是强度 --------------------------------------------------
+    def test_a_project_total_is_not_an_intensity(self):
+        note = self.dim('electrical_material_intensity', 'denominator')['note']
+        self.assertIn('项目合计不是强度', note)
+        self.assertIn('2712m', note)
+
+    # -- 毫秒统一 ----------------------------------------------------------
+    def test_the_storage_window_is_milliseconds_with_the_conversion(self):
+        self.assertIn('10 s = 10000 ms', self.metrics['storage_response_window']['note'])
+
+
+class M11MenuTests(unittest.TestCase):
+    """M11 投资与项目经济：21 条缺口，M4 记下的最后一批。
+
+    这一批里有三条卡在枚举值上——**region 必填却没有「未披露」**，
+    于是一条没写地域的数只能靠猜。那不是某个指标的毛病，是全库 194 处的毛病。
+    """
+
+    def setUp(self):
+        self.metrics = L2.load_metrics()
+
+    def dim(self, mid, did):
+        return next(d for d in self.metrics[mid]['caliber_dims'] if d['id'] == did)
+
+    def test_every_new_metric_exists(self):
+        for mid in ('investor_survey_share', 'investor_composition_share',
+                    'dc_build_cost_per_mw', 'it_power_density_per_area',
+                    'project_tco', 'project_irr', 'contract_prepayment_share',
+                    'unit_cost_premium', 'compute_cost_generational_delta',
+                    'storage_network_surcharge', 'network_design_saving',
+                    'compute_demand_by_workload_share', 'ops_quality_loss',
+                    'scheduler_preference_share', 'dc_securitization_issuance',
+                    'retail_power_price_change', 'gpu_hourly_tco'):
+            self.assertEqual(self.metrics[mid]['module'], 'M11', mid)
+            self.assertTrue(self.metrics[mid]['unit'], mid)
+
+    # -- 全库 194 处的系统性缺口 -------------------------------------------
+    def test_every_region_dimension_can_say_it_was_never_stated(self):
+        missing = [(mid, 'region') for mid, v in self.metrics.items()
+                   for d in v.get('caliber_dims', [])
+                   if d['id'] == 'region' and '未披露' not in d['values']]
+        self.assertEqual(missing, [])
+
+    def test_the_region_note_says_it_is_not_a_shortcut(self):
+        note = self.dim('dc_build_cost_per_mw', 'region')['note']
+        self.assertIn('不是偷懒的出口', note)
+        self.assertIn('带着一个我们编的属性进了库', note)
+
+    def test_no_existing_fact_was_silently_moved_to_unstated(self):
+        """新增取值是给以后用的，不该有既有事实被改过去。"""
+        store = json.loads((Path(L2.__file__).resolve().parent.parent /
+                            'data/facts.json').read_text(encoding='utf-8'))
+        self.assertEqual([f['fact_id'] for f in store['records']
+                          if (f.get('caliber') or {}).get('region') == '未披露'], [])
+
+    # -- 另两处枚举 --------------------------------------------------------
+    def test_a_third_party_back_calculation_is_not_a_design_value(self):
+        d = self.dim('dc_pue', 'basis')
+        self.assertIn('第三方推算', d['values'])
+        self.assertIn('2.2GW', d['note'])
+
+    def test_the_pue_note_owns_up_to_the_arithmetic_not_matching(self):
+        """2.2 ÷ 1.8 = 1.222，而原文写「约 1.25」——差在哪没交代，就说没交代。"""
+        note = self.dim('dc_pue', 'basis')['note']
+        self.assertIn('1.222', note)
+        self.assertIn('不要替原文改数，也不要假装两者一致', note)
+        self.assertAlmostEqual(2.2 / 1.8, 1.2222, places=4)
+
+    def test_a_model_input_is_not_a_market_price(self):
+        d = self.dim('gpu_hourly_rate_spot', 'price_type')
+        self.assertIn('模型隐含价', d['values'])
+        self.assertIn('一句没发生过的事实', d['note'])
+
+    # -- 调查数据的裁决 ----------------------------------------------------
+    def test_survey_metrics_are_marked_three_ways(self):
+        """名字带「调查」、basis 有「调查结果」、还有 respondent_scope 维。"""
+        for mid in ('investor_survey_share', 'scheduler_preference_share'):
+            self.assertIn('调查结果', self.dim(mid, 'basis')['values'], mid)
+            self.assertIn('respondent_scope',
+                          [d['id'] for d in self.metrics[mid]['caliber_dims']], mid)
+
+    def test_the_ruling_is_stated_in_the_note(self):
+        note = self.metrics['investor_survey_share']['note']
+        self.assertIn('测的是「有多少人这么说」', note)
+        self.assertIn('没有样本量的百分比不能与任何别的调查比', note)
+
+    def test_rounding_is_recorded_as_found_not_forced_to_a_hundred(self):
+        self.assertIn('28 + 53 + 18 = 99',
+                      self.metrics['investor_survey_share']['note'])
+
+    def test_non_exclusive_options_may_exceed_a_hundred(self):
+        note = self.dim('scheduler_preference_share', 'requirement')['note']
+        self.assertIn('加总可以超过 100%', note)
+
+    # -- 算式 --------------------------------------------------------------
+    def test_the_build_cost_carries_its_arithmetic(self):
+        note = self.metrics['dc_build_cost_per_mw']['note']
+        self.assertIn('12,000 ÷ 250 = **48 百万美元/MW**', note)
+        self.assertEqual(12000 / 250, 48.0)
+
+    def test_the_density_says_we_computed_it_not_the_source(self):
+        note = self.metrics['it_power_density_per_area']['note']
+        self.assertIn('90,000 ÷ 44,593', note)
+        self.assertIn('原文没有直接给这个数', note)
+        self.assertAlmostEqual(90000 / 44593, 2.018, places=3)
+
+    def test_the_imperial_conversion_is_given(self):
+        self.assertIn('92.9 W/ft²', self.metrics['it_power_density_per_area']['note'])
+
+    # -- TCO 不是 capex ----------------------------------------------------
+    def test_tco_and_capex_are_separated_by_a_dimension(self):
+        d = self.dim('project_tco', 'amount_scope')
+        self.assertIn('TCO（全周期）', d['values'])
+        self.assertIn('资本开支', d['values'])
+        self.assertIn('最常见的错误', d['note'])
+
+    # -- 成本不是价格 ------------------------------------------------------
+    def test_cost_per_gpu_hour_is_not_the_rental_rate(self):
+        note = self.metrics['gpu_hourly_tco']['note']
+        self.assertIn('2.38', note)
+        self.assertIn('2.8', note)
+        self.assertIn('差额是租方的毛利', note)
+
+    # -- 无穷大不是一个数 --------------------------------------------------
+    def test_an_infinite_irr_is_recorded_as_prose_not_a_number(self):
+        note = self.metrics['contract_prepayment_share']['note']
+        self.assertIn('「无穷大」不是一个数', note)
+        self.assertIn('value 留白', note)
+
+    def test_a_negative_npv_is_not_forced_into_an_irr(self):
+        self.assertIn('不要硬折成一个 IRR 数字', self.metrics['project_irr']['note'])
+
+    # -- 同一条链上的两个点 ------------------------------------------------
+    def test_sixteen_and_sixtyone_are_one_chain_not_two_numbers(self):
+        note = self.dim('unit_cost_premium', 'cost_driver')['note']
+        self.assertIn('同一条链上的两个点', note)
+        self.assertIn('加总只能取一层', note)
+
+    def test_two_stages_of_one_design_do_not_add(self):
+        note = self.metrics['network_design_saving']['note']
+        self.assertIn('24.9% 与 31.6% 是同一方案的两档优化', note)
+
+    def test_the_saving_base_is_declared(self):
+        self.assertIn('不是集群总成本',
+                      self.dim('network_design_saving', 'cost_base')['note'])
+
+    # -- 含义相反的百分比 --------------------------------------------------
+    def test_losses_and_gains_share_a_unit_but_not_a_series(self):
+        note = self.dim('ops_quality_loss', 'effect')['note']
+        self.assertIn('含义相反的都有', note)
+        self.assertIn('绝不可放进同一条序列', note)
+
+    def test_ops_losses_do_not_sum(self):
+        self.assertIn('不可相加成「总折损」', self.metrics['ops_quality_loss']['note'])
+
+    # -- 时点决定这条数还对不对 --------------------------------------------
+    def test_the_training_share_is_time_critical(self):
+        note = self.metrics['compute_demand_by_workload_share']['note']
+        self.assertIn('2024-10', note)
+        self.assertIn('半年后就是错的', note)
+
+    def test_neocloud_demand_is_not_the_whole_market(self):
+        self.assertIn('不等于全市场',
+                      self.dim('compute_demand_by_workload_share',
+                               'customer_scope')['note'])
+
+    # -- 图里读不到年份就别按顺序假设 --------------------------------------
+    def test_unreadable_chart_years_must_be_recovered_not_assumed(self):
+        note = self.metrics['dc_securitization_issuance']['note']
+        self.assertIn('必须回原文对齐年份', note)
+        self.assertIn('不要按顺序假设', note)
+
+    def test_sasb_may_be_double_counted_with_cmbs(self):
+        self.assertIn('会重复计',
+                      self.dim('dc_securitization_issuance', 'instrument')['note'])
+
+
+class NeighbourMetricTests(unittest.TestCase):
+    """相邻指标之间的交叉引用——菜单长到 220 个之后自己扫出来的。
+
+    加完 81 个指标之后我扫了一遍全库，找同单位且命名相似的对。
+    绝大多数是刻意的区分（价格 vs 成本、供给 vs 需求、按金额 vs 按台数），
+    但有两处相邻得足以让人录错，而两边都没提对方。
+    """
+
+    def setUp(self):
+        self.metrics = L2.load_metrics()
+
+    def test_occupancy_and_vacancy_warn_against_converting(self):
+        """看着互补，分母常常不是同一个——拿 100 去减就是造数。"""
+        for mid, other in (('dc_occupancy_rate', 'dc_vacancy_rate'),
+                           ('dc_vacancy_rate', 'dc_occupancy_rate')):
+            note = self.metrics[mid]['note']
+            self.assertIn(other, note, mid)
+            self.assertIn('不要互相换算', note, mid)
+
+    def test_they_sit_in_different_modules_which_is_why_it_matters(self):
+        """两个模块的读者各看各的菜单，不交叉引用就看不见对方。"""
+        self.assertNotEqual(self.metrics['dc_occupancy_rate']['module'],
+                            self.metrics['dc_vacancy_rate']['module'])
+
+    def test_the_generic_share_metric_points_at_the_specific_ones(self):
+        note = self.metrics['vendor_market_share']['note']
+        for specific in ('cowos_market_share', 'hdd_top2_share',
+                         'self_asic_hyperscaler_gpu_share'):
+            self.assertIn(specific, note, specific)
+        self.assertIn('不要往这里塞', note)
+
+    def test_no_two_metrics_share_an_id(self):
+        ids = [v['metric_id'] for v in
+               json.loads((Path(L2.__file__).resolve().parent.parent /
+                           'framework/metrics.json').read_text(
+                               encoding='utf-8'))['metrics']]
+        self.assertEqual(len(ids), len(set(ids)))
+
+    def test_every_metric_has_a_unit_a_module_and_at_least_one_dimension(self):
+        for mid, v in self.metrics.items():
+            self.assertTrue(v.get('unit'), mid)
+            self.assertTrue(v.get('module'), mid)
+            self.assertTrue(v.get('caliber_dims'), mid)
+
+    def test_no_enum_has_a_duplicate_or_blank_value(self):
+        for mid, v in self.metrics.items():
+            for d in v.get('caliber_dims', []):
+                values = d.get('values') or []
+                self.assertEqual(len(values), len(set(values)), (mid, d['id']))
+                for value in values:
+                    self.assertTrue(str(value).strip(), (mid, d['id']))
+
+
 if __name__ == '__main__':
     unittest.main()
