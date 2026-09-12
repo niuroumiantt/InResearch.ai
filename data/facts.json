@@ -25183,8 +25183,8 @@
       },
       "depth": "精读",
       "derived": false,
-      "corroboration": "待交叉验证",
-      "notes": "**三个数是三件不同的事，不要合成一个门槛**：25kW 是风冷与液冷的经济性分界（互补共存点）、30kW 是风冷的能力上限、40kW 是风冷效率急剧下降的起点。**本条是风冷失效起点**。 **tech 就近填冷板式**：原文这三个数针对的是「液冷 vs 风冷」整体，未区分冷板与浸没，标 [未核]。 对照库内 liquid-cooling-threshold-coldplate-2022（冷板式 15kW 下界，设计方判断）与 nv-cooling-threshold-dlc-min（>75kW 直液冷必选，厂商宣称）——**三个来源给的门槛从 15 到 75kW**，差五倍，因为问的问题不同（可用/经济/必需）。 **这是「精华版」而非完整报告**，多处数字只给结论不给测算过程；报告自称高度机密但为公开发布的市场概览。"
+      "corroboration": "同源转述",
+      "notes": "**三个数是三件不同的事，不要合成一个门槛**：25kW 是风冷与液冷的经济性分界（互补共存点）、30kW 是风冷的能力上限、40kW 是风冷效率急剧下降的起点。**本条是风冷失效起点**。 **tech 就近填冷板式**：原文这三个数针对的是「液冷 vs 风冷」整体，未区分冷板与浸没，标 [未核]。 对照库内 liquid-cooling-threshold-coldplate-2022（冷板式 15kW 下界，设计方判断）与 nv-cooling-threshold-dlc-min（>75kW 直液冷必选，厂商宣称）——**三个来源给的门槛从 15 到 75kW**，差五倍，因为问的问题不同（可用/经济/必需）。 **这是「精华版」而非完整报告**，多处数字只给结论不给测算过程；报告自称高度机密但为公开发布的市场概览。 **找到上游一手源**：中国信通院《智算中心液冷产业全景研究报告（2025 年）》第 6 页写「液冷系统能够支持智算中心单机柜功率密度轻松突破 40kW」，并在第 8 页给出投资梯度：**20kW 时液冷比风冷省约 10% 投资、40kW 时升到 14%**。头豹这份的市场规模数据也明确转述自信通院，**两份材料同源**，corroboration 因此改记同源转述而非待交叉验证。信通院那条因与本条撞 claim_key 未单独入库（sha256 3dbf751e0046096a）。"
     },
     {
       "fact_id": "leadleo-lc-density-coldplate-lower",
@@ -25545,6 +25545,1548 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**这个 PUE 是电费节省测算的输入假设，不是实测**：原表把它写在「电费节省」行的括号里，basis 记宣传值（该维无「厂商宣称」取值，宣传值最接近）。**四路线 1.20 → 1.15 → 1.10 → 1.05 是等差排列**，看得出是设定值而非观测值。 对照库内 caict-2022-pue-hyperscale-inuse（中国在用超大型 1.39，运行值）：**这些 1.05-1.20 与全国在用实测差 0.19-0.34**，是「新建液冷单柜」与「全国在用平均」的差别，不可当作同一口径的改善幅度。 **这是「精华版」而非完整报告**，多处数字只给结论不给测算过程；报告自称高度机密但为公开发布的市场概览。"
+    },
+    {
+      "fact_id": "yongzhou-cost-share-dc1-civil",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "huawei-yongzhou-dc",
+        "label": "华为（永州）云计算数据中心"
+      },
+      "value": 69.9,
+      "unit": "%",
+      "caliber": {
+        "trade": "土建",
+        "sub_trade": "1#数据中心 建筑工程",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e8254e90ac2beebde1036de429efae3d37361c71218355227c54769cc6a876e8",
+        "local_file": "华为（永州）云计算数据中心设计项目土建部分 招标控制价汇总表.xlsx",
+        "locator": "工作表「表-02建设项目招标控制价汇总表1-1」，1#数据中心 建筑工程 = 20094338.78 元；分母为第 37 行合计 28,745,813.46 元",
+        "grade": "S2",
+        "originator": "未具名造价单位（工程名称：华为（永州）云计算数据中心设计项目土建部分）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：20094338.78 ÷ 28,745,813.46 = 69.90%。 **四项合计 100%**（1# 建筑 69.9 + 1# 装饰 29.0 + 主门卫 0.62 + 次门卫 0.43），可互校。   **stage=招标控制价、scope=土建本体**：工程名称明写「土建部分」，**不含机电主设备与 IT 设备**——与库内含机电或含 IT 的单方造价差一个量级的内涵。各单项后标「已审」，即已过审核。"
+    },
+    {
+      "fact_id": "yongzhou-cost-share-dc1-finish",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "huawei-yongzhou-dc",
+        "label": "华为（永州）云计算数据中心"
+      },
+      "value": 29.05,
+      "unit": "%",
+      "caliber": {
+        "trade": "土建",
+        "sub_trade": "1#数据中心 装饰部分",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e8254e90ac2beebde1036de429efae3d37361c71218355227c54769cc6a876e8",
+        "local_file": "华为（永州）云计算数据中心设计项目土建部分 招标控制价汇总表.xlsx",
+        "locator": "工作表「表-02建设项目招标控制价汇总表1-1」，1#数据中心 装饰部分 = 8349970.17 元；分母为第 37 行合计 28,745,813.46 元",
+        "grade": "S2",
+        "originator": "未具名造价单位（工程名称：华为（永州）云计算数据中心设计项目土建部分）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：8349970.17 ÷ 28,745,813.46 = 29.05%。 **四项合计 100%**（1# 建筑 69.9 + 1# 装饰 29.0 + 主门卫 0.62 + 次门卫 0.43），可互校。 **装饰占 29% 是这份的特征**：数据中心土建里装饰部分接近三成，且其中含暂估价 315.08 万元（全项目暂估价 315.076 万元几乎全在装饰），**暂估价未落实前这个占比会变**。  **stage=招标控制价、scope=土建本体**：工程名称明写「土建部分」，**不含机电主设备与 IT 设备**——与库内含机电或含 IT 的单方造价差一个量级的内涵。各单项后标「已审」，即已过审核。"
+    },
+    {
+      "fact_id": "yongzhou-cost-share-gate1",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "huawei-yongzhou-dc",
+        "label": "华为（永州）云计算数据中心"
+      },
+      "value": 0.62,
+      "unit": "%",
+      "caliber": {
+        "trade": "土建",
+        "sub_trade": "2#主门卫（建筑+装饰）",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e8254e90ac2beebde1036de429efae3d37361c71218355227c54769cc6a876e8",
+        "local_file": "华为（永州）云计算数据中心设计项目土建部分 招标控制价汇总表.xlsx",
+        "locator": "工作表「表-02建设项目招标控制价汇总表1-1」，2#主门卫（建筑+装饰） = 177413.09 元；分母为第 37 行合计 28,745,813.46 元",
+        "grade": "S2",
+        "originator": "未具名造价单位（工程名称：华为（永州）云计算数据中心设计项目土建部分）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：177413.09 ÷ 28,745,813.46 = 0.62%。 **四项合计 100%**（1# 建筑 69.9 + 1# 装饰 29.0 + 主门卫 0.62 + 次门卫 0.43），可互校。 **装饰占 29% 是这份的特征**：数据中心土建里装饰部分接近三成，且其中含暂估价 315.08 万元（全项目暂估价 315.076 万元几乎全在装饰），**暂估价未落实前这个占比会变**。 **两个门卫合计只占 1.05%**，但它们是独立单项工程——这类附属工程常被单方造价统计漏掉。 **stage=招标控制价、scope=土建本体**：工程名称明写「土建部分」，**不含机电主设备与 IT 设备**——与库内含机电或含 IT 的单方造价差一个量级的内涵。各单项后标「已审」，即已过审核。"
+    },
+    {
+      "fact_id": "yongzhou-cost-share-gate2",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "huawei-yongzhou-dc",
+        "label": "华为（永州）云计算数据中心"
+      },
+      "value": 0.43,
+      "unit": "%",
+      "caliber": {
+        "trade": "土建",
+        "sub_trade": "3#次门卫（建筑+装饰）",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e8254e90ac2beebde1036de429efae3d37361c71218355227c54769cc6a876e8",
+        "local_file": "华为（永州）云计算数据中心设计项目土建部分 招标控制价汇总表.xlsx",
+        "locator": "工作表「表-02建设项目招标控制价汇总表1-1」，3#次门卫（建筑+装饰） = 124091.42 元；分母为第 37 行合计 28,745,813.46 元",
+        "grade": "S2",
+        "originator": "未具名造价单位（工程名称：华为（永州）云计算数据中心设计项目土建部分）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：124091.42 ÷ 28,745,813.46 = 0.43%。 **四项合计 100%**（1# 建筑 69.9 + 1# 装饰 29.0 + 主门卫 0.62 + 次门卫 0.43），可互校。 **装饰占 29% 是这份的特征**：数据中心土建里装饰部分接近三成，且其中含暂估价 315.08 万元（全项目暂估价 315.076 万元几乎全在装饰），**暂估价未落实前这个占比会变**。 **两个门卫合计只占 1.05%**，但它们是独立单项工程——这类附属工程常被单方造价统计漏掉。 **stage=招标控制价、scope=土建本体**：工程名称明写「土建部分」，**不含机电主设备与 IT 设备**——与库内含机电或含 IT 的单方造价差一个量级的内涵。各单项后标「已审」，即已过审核。"
+    },
+    {
+      "fact_id": "yongzhou-safety-civilized-fee-share",
+      "metric_id": "contract_fee_rate",
+      "entity": {
+        "type": "project",
+        "id": "huawei-yongzhou-dc",
+        "label": "华为（永州）云计算数据中心"
+      },
+      "value": 2.86,
+      "unit": "%",
+      "caliber": {
+        "fee_type": "安全文明施工费",
+        "region": "CN",
+        "basis": "概算取定"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e8254e90ac2beebde1036de429efae3d37361c71218355227c54769cc6a876e8",
+        "local_file": "华为（永州）云计算数据中心设计项目土建部分 招标控制价汇总表.xlsx",
+        "locator": "工作表「表-02」第 37 行合计：安全文明施工费 823,439.55 元 ÷ 合计 28,745,813.46 元",
+        "grade": "S2",
+        "originator": "未具名造价单位（工程名称：华为（永州）云计算数据中心设计项目土建部分）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：823,439.55 ÷ 28,745,813.46 = 2.86%。 同表另给规费合计 1,414,808.11 元（占 4.92%）与暂估价 3,150,760 元（占 10.96%）——**规费与暂估价本库无对应取值**，只能写在这里。 **stage=招标控制价、scope=土建本体**：工程名称明写「土建部分」，**不含机电主设备与 IT 设备**——与库内含机电或含 IT 的单方造价差一个量级的内涵。各单项后标「已审」，即已过审核。"
+    },
+    {
+      "fact_id": "caict-lc-2025-pue-liquid",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "technology",
+        "id": "lc-immersion",
+        "label": "浸没式液冷方案算力中心"
+      },
+      "value": 1.05,
+      "unit": "比值",
+      "caliber": {
+        "basis": "最优水平",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "3dbf751e0046096afc46c281944e35435ab4bbe4c016d7f080b1e801584361c5",
+        "local_file": "智算中心液冷产业全景研究报告（2025年）.pdf",
+        "locator": "第 12 页：「浸没式液冷在二次侧实现了 100%液体冷却，节能效果更优……液冷方案的算力中心 PUE 可达到 1.05 甚至更低，而传统模式下的算力中心的 PUE 值通常[更高]」",
+        "grade": "S2",
+        "originator": "中国信通院云计算与大数据研究所（2025-08）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文「可达到 1.05 甚至更低」是最优水平，不是行业均值**，故 basis 记最优水平、bound 记上界。 **与库内 caict-2022-pue-hyperscale-inuse（同机构：中国在用超大型 1.39 运行值）落差 0.34**——一个是液冷最优、一个是全国在用平均，**同一家机构的两个数不可当作改善幅度相减**。 对照头豹那份给的四路线设定值（1.20/1.15/1.10/1.05）：相变浸没的 1.05 与本条一致。"
+    },
+    {
+      "fact_id": "idc-cii-2020-capacity-amazon-hdd",
+      "metric_id": "storage_capacity_shipped",
+      "entity": {
+        "type": "company",
+        "id": "amazon",
+        "label": "Amazon（AWS）"
+      },
+      "value": 97419.6,
+      "unit": "PB",
+      "caliber": {
+        "storage_scope": "Total",
+        "media": "HDD",
+        "product_category": "未拆分",
+        "buyer_category": "Hyperscaler",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "879d13fa4e9c465589a1f32011d66e83b87b9b900ecfd72e61af6f2e0d990217",
+        "local_file": "IDC Cloud Infrastructure Index 2021.xlsx",
+        "locator": "工作表「Index 2021」表头「Total HDD (PB)」/ 2020，Amazon 行 = 97419.57 PB",
+        "grade": "S3",
+        "originator": "IDC《Cloud Infrastructure Index》2021（2021-10-22）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**media 这一维是 #156 才加的，此前 HDD 与 SSD 两列因其余各维相同而互撞 claim_key，一条都录不进来。** **该买方 2020 年 HDD 与闪存之比为 7.9:1**（HDD 97420 PB 对 SSD 12306 PB）——**HDD 与闪存的单位容量价格差一个量级，合在一起的「存储容量」没有意义**，这正是需要 media 维的原因。 buyer_category 取原表 B 列写法「Hyperscaler」；counterparty 是买方（该年发运给它的容量），不是它卖出的。"
+    },
+    {
+      "fact_id": "idc-cii-2020-capacity-amazon-ssd",
+      "metric_id": "storage_capacity_shipped",
+      "entity": {
+        "type": "company",
+        "id": "amazon",
+        "label": "Amazon（AWS）"
+      },
+      "value": 12305.9,
+      "unit": "PB",
+      "caliber": {
+        "storage_scope": "Total",
+        "media": "Flash-SSD",
+        "product_category": "未拆分",
+        "buyer_category": "Hyperscaler",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "879d13fa4e9c465589a1f32011d66e83b87b9b900ecfd72e61af6f2e0d990217",
+        "local_file": "IDC Cloud Infrastructure Index 2021.xlsx",
+        "locator": "工作表「Index 2021」表头「Total SSD (PB)」/ 2020，Amazon 行 = 12305.90 PB",
+        "grade": "S3",
+        "originator": "IDC《Cloud Infrastructure Index》2021（2021-10-22）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**media 这一维是 #156 才加的，此前 HDD 与 SSD 两列因其余各维相同而互撞 claim_key，一条都录不进来。** **该买方 2020 年 HDD 与闪存之比为 7.9:1**（HDD 97420 PB 对 SSD 12306 PB）——**HDD 与闪存的单位容量价格差一个量级，合在一起的「存储容量」没有意义**，这正是需要 media 维的原因。 buyer_category 取原表 B 列写法「Hyperscaler」；counterparty 是买方（该年发运给它的容量），不是它卖出的。"
+    },
+    {
+      "fact_id": "idc-cii-2020-spend-amazon-totalvalue",
+      "metric_id": "it_infra_spend",
+      "entity": {
+        "type": "company",
+        "id": "amazon",
+        "label": "Amazon（AWS）"
+      },
+      "value": 8496.68,
+      "unit": "百万美元",
+      "caliber": {
+        "product_scope": "原表 Total Value（含未定义残差）",
+        "buyer_category": "Hyperscaler",
+        "price_basis": "现价",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "879d13fa4e9c465589a1f32011d66e83b87b9b900ecfd72e61af6f2e0d990217",
+        "local_file": "IDC Cloud Infrastructure Index 2021.xlsx",
+        "locator": "工作表「Index 2021」表头「Total Value」/ 2020，Amazon 行 = 8496.68 百万美元",
+        "grade": "S3",
+        "originator": "IDC《Cloud Infrastructure Index》2021（2021-10-22）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**product_scope=原表 Total Value（含未定义残差），不参与任何加总校验。**本条的残差 = 8496.68 − （服务器 7576.76 + 外置存储 142.31）= **+777.61 百万美元，占总值 +9.2%**。 **「服务器 + 外置存储 = Total Value」这个恒等式对 100 家里的 95 家成立，五家最大的超大规模厂不成立**：微软差 +825.12 百万美元（占其总值 10.7%）、亚马逊 +777.61（9.2%）、苹果 +139.04（7.7%）、谷歌 +61.47（1.3%）、Facebook **−139.24（负号，方向相反）**。原表 Taxonomy 页只定义六个属性，未解释残差。  **不要把这条与同公司的 服务器/存储/重叠额 三条相加或相减来复核**，那正是它单独立一个取值的原因。"
+    },
+    {
+      "fact_id": "idc-cii-2020-capacity-microsoft-hdd",
+      "metric_id": "storage_capacity_shipped",
+      "entity": {
+        "type": "company",
+        "id": "microsoft",
+        "label": "微软"
+      },
+      "value": 50025.1,
+      "unit": "PB",
+      "caliber": {
+        "storage_scope": "Total",
+        "media": "HDD",
+        "product_category": "未拆分",
+        "buyer_category": "Hyperscaler",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "879d13fa4e9c465589a1f32011d66e83b87b9b900ecfd72e61af6f2e0d990217",
+        "local_file": "IDC Cloud Infrastructure Index 2021.xlsx",
+        "locator": "工作表「Index 2021」表头「Total HDD (PB)」/ 2020，Microsoft 行 = 50025.07 PB",
+        "grade": "S3",
+        "originator": "IDC《Cloud Infrastructure Index》2021（2021-10-22）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**media 这一维是 #156 才加的，此前 HDD 与 SSD 两列因其余各维相同而互撞 claim_key，一条都录不进来。** **该买方 2020 年 HDD 与闪存之比为 4.3:1**（HDD 50025 PB 对 SSD 11626 PB）——**HDD 与闪存的单位容量价格差一个量级，合在一起的「存储容量」没有意义**，这正是需要 media 维的原因。 buyer_category 取原表 B 列写法「Hyperscaler」；counterparty 是买方（该年发运给它的容量），不是它卖出的。"
+    },
+    {
+      "fact_id": "idc-cii-2020-capacity-microsoft-ssd",
+      "metric_id": "storage_capacity_shipped",
+      "entity": {
+        "type": "company",
+        "id": "microsoft",
+        "label": "微软"
+      },
+      "value": 11626.2,
+      "unit": "PB",
+      "caliber": {
+        "storage_scope": "Total",
+        "media": "Flash-SSD",
+        "product_category": "未拆分",
+        "buyer_category": "Hyperscaler",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "879d13fa4e9c465589a1f32011d66e83b87b9b900ecfd72e61af6f2e0d990217",
+        "local_file": "IDC Cloud Infrastructure Index 2021.xlsx",
+        "locator": "工作表「Index 2021」表头「Total SSD (PB)」/ 2020，Microsoft 行 = 11626.21 PB",
+        "grade": "S3",
+        "originator": "IDC《Cloud Infrastructure Index》2021（2021-10-22）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**media 这一维是 #156 才加的，此前 HDD 与 SSD 两列因其余各维相同而互撞 claim_key，一条都录不进来。** **该买方 2020 年 HDD 与闪存之比为 4.3:1**（HDD 50025 PB 对 SSD 11626 PB）——**HDD 与闪存的单位容量价格差一个量级，合在一起的「存储容量」没有意义**，这正是需要 media 维的原因。 buyer_category 取原表 B 列写法「Hyperscaler」；counterparty 是买方（该年发运给它的容量），不是它卖出的。"
+    },
+    {
+      "fact_id": "idc-cii-2020-spend-microsoft-totalvalue",
+      "metric_id": "it_infra_spend",
+      "entity": {
+        "type": "company",
+        "id": "microsoft",
+        "label": "微软"
+      },
+      "value": 7747.12,
+      "unit": "百万美元",
+      "caliber": {
+        "product_scope": "原表 Total Value（含未定义残差）",
+        "buyer_category": "Hyperscaler",
+        "price_basis": "现价",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "879d13fa4e9c465589a1f32011d66e83b87b9b900ecfd72e61af6f2e0d990217",
+        "local_file": "IDC Cloud Infrastructure Index 2021.xlsx",
+        "locator": "工作表「Index 2021」表头「Total Value」/ 2020，Microsoft 行 = 7747.12 百万美元",
+        "grade": "S3",
+        "originator": "IDC《Cloud Infrastructure Index》2021（2021-10-22）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**product_scope=原表 Total Value（含未定义残差），不参与任何加总校验。**本条的残差 = 7747.12 − （服务器 6582.19 + 外置存储 339.81）= **+825.12 百万美元，占总值 +10.7%**。 **「服务器 + 外置存储 = Total Value」这个恒等式对 100 家里的 95 家成立，五家最大的超大规模厂不成立**：微软差 +825.12 百万美元（占其总值 10.7%）、亚马逊 +777.61（9.2%）、苹果 +139.04（7.7%）、谷歌 +61.47（1.3%）、Facebook **−139.24（负号，方向相反）**。原表 Taxonomy 页只定义六个属性，未解释残差。  **不要把这条与同公司的 服务器/存储/重叠额 三条相加或相减来复核**，那正是它单独立一个取值的原因。"
+    },
+    {
+      "fact_id": "idc-cii-2020-capacity-google-hdd",
+      "metric_id": "storage_capacity_shipped",
+      "entity": {
+        "type": "company",
+        "id": "google",
+        "label": "谷歌"
+      },
+      "value": 70856.2,
+      "unit": "PB",
+      "caliber": {
+        "storage_scope": "Total",
+        "media": "HDD",
+        "product_category": "未拆分",
+        "buyer_category": "Hyperscaler",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "879d13fa4e9c465589a1f32011d66e83b87b9b900ecfd72e61af6f2e0d990217",
+        "local_file": "IDC Cloud Infrastructure Index 2021.xlsx",
+        "locator": "工作表「Index 2021」表头「Total HDD (PB)」/ 2020，Google 行 = 70856.19 PB",
+        "grade": "S3",
+        "originator": "IDC《Cloud Infrastructure Index》2021（2021-10-22）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**media 这一维是 #156 才加的，此前 HDD 与 SSD 两列因其余各维相同而互撞 claim_key，一条都录不进来。** **该买方 2020 年 HDD 与闪存之比为 17.0:1**（HDD 70856 PB 对 SSD 4167 PB）——**HDD 与闪存的单位容量价格差一个量级，合在一起的「存储容量」没有意义**，这正是需要 media 维的原因。 buyer_category 取原表 B 列写法「Hyperscaler」；counterparty 是买方（该年发运给它的容量），不是它卖出的。"
+    },
+    {
+      "fact_id": "idc-cii-2020-capacity-google-ssd",
+      "metric_id": "storage_capacity_shipped",
+      "entity": {
+        "type": "company",
+        "id": "google",
+        "label": "谷歌"
+      },
+      "value": 4167.4,
+      "unit": "PB",
+      "caliber": {
+        "storage_scope": "Total",
+        "media": "Flash-SSD",
+        "product_category": "未拆分",
+        "buyer_category": "Hyperscaler",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "879d13fa4e9c465589a1f32011d66e83b87b9b900ecfd72e61af6f2e0d990217",
+        "local_file": "IDC Cloud Infrastructure Index 2021.xlsx",
+        "locator": "工作表「Index 2021」表头「Total SSD (PB)」/ 2020，Google 行 = 4167.39 PB",
+        "grade": "S3",
+        "originator": "IDC《Cloud Infrastructure Index》2021（2021-10-22）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**media 这一维是 #156 才加的，此前 HDD 与 SSD 两列因其余各维相同而互撞 claim_key，一条都录不进来。** **该买方 2020 年 HDD 与闪存之比为 17.0:1**（HDD 70856 PB 对 SSD 4167 PB）——**HDD 与闪存的单位容量价格差一个量级，合在一起的「存储容量」没有意义**，这正是需要 media 维的原因。 buyer_category 取原表 B 列写法「Hyperscaler」；counterparty 是买方（该年发运给它的容量），不是它卖出的。"
+    },
+    {
+      "fact_id": "idc-cii-2020-spend-google-totalvalue",
+      "metric_id": "it_infra_spend",
+      "entity": {
+        "type": "company",
+        "id": "google",
+        "label": "谷歌"
+      },
+      "value": 4911.9,
+      "unit": "百万美元",
+      "caliber": {
+        "product_scope": "原表 Total Value（含未定义残差）",
+        "buyer_category": "Hyperscaler",
+        "price_basis": "现价",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "879d13fa4e9c465589a1f32011d66e83b87b9b900ecfd72e61af6f2e0d990217",
+        "local_file": "IDC Cloud Infrastructure Index 2021.xlsx",
+        "locator": "工作表「Index 2021」表头「Total Value」/ 2020，Google 行 = 4911.90 百万美元",
+        "grade": "S3",
+        "originator": "IDC《Cloud Infrastructure Index》2021（2021-10-22）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**product_scope=原表 Total Value（含未定义残差），不参与任何加总校验。**本条的残差 = 4911.90 − （服务器 4525.15 + 外置存储 325.28）= **+61.47 百万美元，占总值 +1.3%**。 **「服务器 + 外置存储 = Total Value」这个恒等式对 100 家里的 95 家成立，五家最大的超大规模厂不成立**：微软差 +825.12 百万美元（占其总值 10.7%）、亚马逊 +777.61（9.2%）、苹果 +139.04（7.7%）、谷歌 +61.47（1.3%）、Facebook **−139.24（负号，方向相反）**。原表 Taxonomy 页只定义六个属性，未解释残差。  **不要把这条与同公司的 服务器/存储/重叠额 三条相加或相减来复核**，那正是它单独立一个取值的原因。"
+    },
+    {
+      "fact_id": "idc-cii-2020-capacity-meta-hdd",
+      "metric_id": "storage_capacity_shipped",
+      "entity": {
+        "type": "company",
+        "id": "meta",
+        "label": "Meta（原 Facebook）"
+      },
+      "value": 29549.1,
+      "unit": "PB",
+      "caliber": {
+        "storage_scope": "Total",
+        "media": "HDD",
+        "product_category": "未拆分",
+        "buyer_category": "Hyperscaler",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "879d13fa4e9c465589a1f32011d66e83b87b9b900ecfd72e61af6f2e0d990217",
+        "local_file": "IDC Cloud Infrastructure Index 2021.xlsx",
+        "locator": "工作表「Index 2021」表头「Total HDD (PB)」/ 2020，Facebook 行 = 29549.15 PB",
+        "grade": "S3",
+        "originator": "IDC《Cloud Infrastructure Index》2021（2021-10-22）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**media 这一维是 #156 才加的，此前 HDD 与 SSD 两列因其余各维相同而互撞 claim_key，一条都录不进来。** **该买方 2020 年 HDD 与闪存之比为 24.0:1**（HDD 29549 PB 对 SSD 1234 PB）——**HDD 与闪存的单位容量价格差一个量级，合在一起的「存储容量」没有意义**，这正是需要 media 维的原因。 buyer_category 取原表 B 列写法「Hyperscaler」；counterparty 是买方（该年发运给它的容量），不是它卖出的。"
+    },
+    {
+      "fact_id": "idc-cii-2020-capacity-meta-ssd",
+      "metric_id": "storage_capacity_shipped",
+      "entity": {
+        "type": "company",
+        "id": "meta",
+        "label": "Meta（原 Facebook）"
+      },
+      "value": 1233.7,
+      "unit": "PB",
+      "caliber": {
+        "storage_scope": "Total",
+        "media": "Flash-SSD",
+        "product_category": "未拆分",
+        "buyer_category": "Hyperscaler",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "879d13fa4e9c465589a1f32011d66e83b87b9b900ecfd72e61af6f2e0d990217",
+        "local_file": "IDC Cloud Infrastructure Index 2021.xlsx",
+        "locator": "工作表「Index 2021」表头「Total SSD (PB)」/ 2020，Facebook 行 = 1233.72 PB",
+        "grade": "S3",
+        "originator": "IDC《Cloud Infrastructure Index》2021（2021-10-22）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**media 这一维是 #156 才加的，此前 HDD 与 SSD 两列因其余各维相同而互撞 claim_key，一条都录不进来。** **该买方 2020 年 HDD 与闪存之比为 24.0:1**（HDD 29549 PB 对 SSD 1234 PB）——**HDD 与闪存的单位容量价格差一个量级，合在一起的「存储容量」没有意义**，这正是需要 media 维的原因。 buyer_category 取原表 B 列写法「Hyperscaler」；counterparty 是买方（该年发运给它的容量），不是它卖出的。"
+    },
+    {
+      "fact_id": "idc-cii-2020-spend-meta-totalvalue",
+      "metric_id": "it_infra_spend",
+      "entity": {
+        "type": "company",
+        "id": "meta",
+        "label": "Meta（原 Facebook）"
+      },
+      "value": 6093.72,
+      "unit": "百万美元",
+      "caliber": {
+        "product_scope": "原表 Total Value（含未定义残差）",
+        "buyer_category": "Hyperscaler",
+        "price_basis": "现价",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "879d13fa4e9c465589a1f32011d66e83b87b9b900ecfd72e61af6f2e0d990217",
+        "local_file": "IDC Cloud Infrastructure Index 2021.xlsx",
+        "locator": "工作表「Index 2021」表头「Total Value」/ 2020，Facebook 行 = 6093.72 百万美元",
+        "grade": "S3",
+        "originator": "IDC《Cloud Infrastructure Index》2021（2021-10-22）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**product_scope=原表 Total Value（含未定义残差），不参与任何加总校验。**本条的残差 = 6093.72 − （服务器 6116.78 + 外置存储 116.18）= **-139.24 百万美元，占总值 -2.3%**。 **「服务器 + 外置存储 = Total Value」这个恒等式对 100 家里的 95 家成立，五家最大的超大规模厂不成立**：微软差 +825.12 百万美元（占其总值 10.7%）、亚马逊 +777.61（9.2%）、苹果 +139.04（7.7%）、谷歌 +61.47（1.3%）、Facebook **−139.24（负号，方向相反）**。原表 Taxonomy 页只定义六个属性，未解释残差。 **Facebook 的残差是负的**，说明它不是简单的「加了没列示的品类」（如交换机），而更像各家口径处理不同——原表无从判断。 **不要把这条与同公司的 服务器/存储/重叠额 三条相加或相减来复核**，那正是它单独立一个取值的原因。"
+    },
+    {
+      "fact_id": "idc-cii-2020-capacity-apple-hdd",
+      "metric_id": "storage_capacity_shipped",
+      "entity": {
+        "type": "company",
+        "id": "apple",
+        "label": "苹果"
+      },
+      "value": 3653.6,
+      "unit": "PB",
+      "caliber": {
+        "storage_scope": "Total",
+        "media": "HDD",
+        "product_category": "未拆分",
+        "buyer_category": "Hyperscaler",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "879d13fa4e9c465589a1f32011d66e83b87b9b900ecfd72e61af6f2e0d990217",
+        "local_file": "IDC Cloud Infrastructure Index 2021.xlsx",
+        "locator": "工作表「Index 2021」表头「Total HDD (PB)」/ 2020，Apple 行 = 3653.63 PB",
+        "grade": "S3",
+        "originator": "IDC《Cloud Infrastructure Index》2021（2021-10-22）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**media 这一维是 #156 才加的，此前 HDD 与 SSD 两列因其余各维相同而互撞 claim_key，一条都录不进来。** **该买方 2020 年 HDD 与闪存之比为 2.1:1**（HDD 3654 PB 对 SSD 1703 PB）——**HDD 与闪存的单位容量价格差一个量级，合在一起的「存储容量」没有意义**，这正是需要 media 维的原因。 buyer_category 取原表 B 列写法「Hyperscaler」；counterparty 是买方（该年发运给它的容量），不是它卖出的。"
+    },
+    {
+      "fact_id": "idc-cii-2020-capacity-apple-ssd",
+      "metric_id": "storage_capacity_shipped",
+      "entity": {
+        "type": "company",
+        "id": "apple",
+        "label": "苹果"
+      },
+      "value": 1702.7,
+      "unit": "PB",
+      "caliber": {
+        "storage_scope": "Total",
+        "media": "Flash-SSD",
+        "product_category": "未拆分",
+        "buyer_category": "Hyperscaler",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "879d13fa4e9c465589a1f32011d66e83b87b9b900ecfd72e61af6f2e0d990217",
+        "local_file": "IDC Cloud Infrastructure Index 2021.xlsx",
+        "locator": "工作表「Index 2021」表头「Total SSD (PB)」/ 2020，Apple 行 = 1702.75 PB",
+        "grade": "S3",
+        "originator": "IDC《Cloud Infrastructure Index》2021（2021-10-22）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**media 这一维是 #156 才加的，此前 HDD 与 SSD 两列因其余各维相同而互撞 claim_key，一条都录不进来。** **该买方 2020 年 HDD 与闪存之比为 2.1:1**（HDD 3654 PB 对 SSD 1703 PB）——**HDD 与闪存的单位容量价格差一个量级，合在一起的「存储容量」没有意义**，这正是需要 media 维的原因。 buyer_category 取原表 B 列写法「Hyperscaler」；counterparty 是买方（该年发运给它的容量），不是它卖出的。"
+    },
+    {
+      "fact_id": "idc-cii-2020-spend-apple-totalvalue",
+      "metric_id": "it_infra_spend",
+      "entity": {
+        "type": "company",
+        "id": "apple",
+        "label": "苹果"
+      },
+      "value": 1806.58,
+      "unit": "百万美元",
+      "caliber": {
+        "product_scope": "原表 Total Value（含未定义残差）",
+        "buyer_category": "Hyperscaler",
+        "price_basis": "现价",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "879d13fa4e9c465589a1f32011d66e83b87b9b900ecfd72e61af6f2e0d990217",
+        "local_file": "IDC Cloud Infrastructure Index 2021.xlsx",
+        "locator": "工作表「Index 2021」表头「Total Value」/ 2020，Apple 行 = 1806.58 百万美元",
+        "grade": "S3",
+        "originator": "IDC《Cloud Infrastructure Index》2021（2021-10-22）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**product_scope=原表 Total Value（含未定义残差），不参与任何加总校验。**本条的残差 = 1806.58 − （服务器 1657.09 + 外置存储 10.45）= **+139.04 百万美元，占总值 +7.7%**。 **「服务器 + 外置存储 = Total Value」这个恒等式对 100 家里的 95 家成立，五家最大的超大规模厂不成立**：微软差 +825.12 百万美元（占其总值 10.7%）、亚马逊 +777.61（9.2%）、苹果 +139.04（7.7%）、谷歌 +61.47（1.3%）、Facebook **−139.24（负号，方向相反）**。原表 Taxonomy 页只定义六个属性，未解释残差。  **不要把这条与同公司的 服务器/存储/重叠额 三条相加或相减来复核**，那正是它单独立一个取值的原因。"
+    },
+    {
+      "fact_id": "idc-cii-2020-capacity-alibaba-hdd",
+      "metric_id": "storage_capacity_shipped",
+      "entity": {
+        "type": "company",
+        "id": "alibaba",
+        "label": "阿里巴巴"
+      },
+      "value": 13316.1,
+      "unit": "PB",
+      "caliber": {
+        "storage_scope": "Total",
+        "media": "HDD",
+        "product_category": "未拆分",
+        "buyer_category": "Hyperscaler",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "879d13fa4e9c465589a1f32011d66e83b87b9b900ecfd72e61af6f2e0d990217",
+        "local_file": "IDC Cloud Infrastructure Index 2021.xlsx",
+        "locator": "工作表「Index 2021」表头「Total HDD (PB)」/ 2020，Alibaba 行 = 13316.07 PB",
+        "grade": "S3",
+        "originator": "IDC《Cloud Infrastructure Index》2021（2021-10-22）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**media 这一维是 #156 才加的，此前 HDD 与 SSD 两列因其余各维相同而互撞 claim_key，一条都录不进来。** **该买方 2020 年 HDD 与闪存之比为 9.9:1**（HDD 13316 PB 对 SSD 1342 PB）——**HDD 与闪存的单位容量价格差一个量级，合在一起的「存储容量」没有意义**，这正是需要 media 维的原因。 buyer_category 取原表 B 列写法「Hyperscaler」；counterparty 是买方（该年发运给它的容量），不是它卖出的。"
+    },
+    {
+      "fact_id": "idc-cii-2020-capacity-alibaba-ssd",
+      "metric_id": "storage_capacity_shipped",
+      "entity": {
+        "type": "company",
+        "id": "alibaba",
+        "label": "阿里巴巴"
+      },
+      "value": 1341.8,
+      "unit": "PB",
+      "caliber": {
+        "storage_scope": "Total",
+        "media": "Flash-SSD",
+        "product_category": "未拆分",
+        "buyer_category": "Hyperscaler",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "879d13fa4e9c465589a1f32011d66e83b87b9b900ecfd72e61af6f2e0d990217",
+        "local_file": "IDC Cloud Infrastructure Index 2021.xlsx",
+        "locator": "工作表「Index 2021」表头「Total SSD (PB)」/ 2020，Alibaba 行 = 1341.76 PB",
+        "grade": "S3",
+        "originator": "IDC《Cloud Infrastructure Index》2021（2021-10-22）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**media 这一维是 #156 才加的，此前 HDD 与 SSD 两列因其余各维相同而互撞 claim_key，一条都录不进来。** **该买方 2020 年 HDD 与闪存之比为 9.9:1**（HDD 13316 PB 对 SSD 1342 PB）——**HDD 与闪存的单位容量价格差一个量级，合在一起的「存储容量」没有意义**，这正是需要 media 维的原因。 buyer_category 取原表 B 列写法「Hyperscaler」；counterparty 是买方（该年发运给它的容量），不是它卖出的。"
+    },
+    {
+      "fact_id": "idc-cii-2020-capacity-tencent-hdd",
+      "metric_id": "storage_capacity_shipped",
+      "entity": {
+        "type": "company",
+        "id": "tencent",
+        "label": "腾讯"
+      },
+      "value": 6335.9,
+      "unit": "PB",
+      "caliber": {
+        "storage_scope": "Total",
+        "media": "HDD",
+        "product_category": "未拆分",
+        "buyer_category": "Hyperscaler",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "879d13fa4e9c465589a1f32011d66e83b87b9b900ecfd72e61af6f2e0d990217",
+        "local_file": "IDC Cloud Infrastructure Index 2021.xlsx",
+        "locator": "工作表「Index 2021」表头「Total HDD (PB)」/ 2020，Tencent 行 = 6335.86 PB",
+        "grade": "S3",
+        "originator": "IDC《Cloud Infrastructure Index》2021（2021-10-22）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**media 这一维是 #156 才加的，此前 HDD 与 SSD 两列因其余各维相同而互撞 claim_key，一条都录不进来。** **该买方 2020 年 HDD 与闪存之比为 26.0:1**（HDD 6336 PB 对 SSD 244 PB）——**HDD 与闪存的单位容量价格差一个量级，合在一起的「存储容量」没有意义**，这正是需要 media 维的原因。 buyer_category 取原表 B 列写法「Hyperscaler」；counterparty 是买方（该年发运给它的容量），不是它卖出的。"
+    },
+    {
+      "fact_id": "idc-cii-2020-capacity-tencent-ssd",
+      "metric_id": "storage_capacity_shipped",
+      "entity": {
+        "type": "company",
+        "id": "tencent",
+        "label": "腾讯"
+      },
+      "value": 243.9,
+      "unit": "PB",
+      "caliber": {
+        "storage_scope": "Total",
+        "media": "Flash-SSD",
+        "product_category": "未拆分",
+        "buyer_category": "Hyperscaler",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "879d13fa4e9c465589a1f32011d66e83b87b9b900ecfd72e61af6f2e0d990217",
+        "local_file": "IDC Cloud Infrastructure Index 2021.xlsx",
+        "locator": "工作表「Index 2021」表头「Total SSD (PB)」/ 2020，Tencent 行 = 243.92 PB",
+        "grade": "S3",
+        "originator": "IDC《Cloud Infrastructure Index》2021（2021-10-22）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**media 这一维是 #156 才加的，此前 HDD 与 SSD 两列因其余各维相同而互撞 claim_key，一条都录不进来。** **该买方 2020 年 HDD 与闪存之比为 26.0:1**（HDD 6336 PB 对 SSD 244 PB）——**HDD 与闪存的单位容量价格差一个量级，合在一起的「存储容量」没有意义**，这正是需要 media 维的原因。 buyer_category 取原表 B 列写法「Hyperscaler」；counterparty 是买方（该年发运给它的容量），不是它卖出的。"
+    },
+    {
+      "fact_id": "idc-cii-2020-capacity-baidu-hdd",
+      "metric_id": "storage_capacity_shipped",
+      "entity": {
+        "type": "company",
+        "id": "baidu",
+        "label": "百度"
+      },
+      "value": 3048.7,
+      "unit": "PB",
+      "caliber": {
+        "storage_scope": "Total",
+        "media": "HDD",
+        "product_category": "未拆分",
+        "buyer_category": "Hyperscaler",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "879d13fa4e9c465589a1f32011d66e83b87b9b900ecfd72e61af6f2e0d990217",
+        "local_file": "IDC Cloud Infrastructure Index 2021.xlsx",
+        "locator": "工作表「Index 2021」表头「Total HDD (PB)」/ 2020，Baidu 行 = 3048.68 PB",
+        "grade": "S3",
+        "originator": "IDC《Cloud Infrastructure Index》2021（2021-10-22）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**media 这一维是 #156 才加的，此前 HDD 与 SSD 两列因其余各维相同而互撞 claim_key，一条都录不进来。** **该买方 2020 年 HDD 与闪存之比为 9.0:1**（HDD 3049 PB 对 SSD 340 PB）——**HDD 与闪存的单位容量价格差一个量级，合在一起的「存储容量」没有意义**，这正是需要 media 维的原因。 buyer_category 取原表 B 列写法「Hyperscaler」；counterparty 是买方（该年发运给它的容量），不是它卖出的。"
+    },
+    {
+      "fact_id": "idc-cii-2020-capacity-baidu-ssd",
+      "metric_id": "storage_capacity_shipped",
+      "entity": {
+        "type": "company",
+        "id": "baidu",
+        "label": "百度"
+      },
+      "value": 340.2,
+      "unit": "PB",
+      "caliber": {
+        "storage_scope": "Total",
+        "media": "Flash-SSD",
+        "product_category": "未拆分",
+        "buyer_category": "Hyperscaler",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "879d13fa4e9c465589a1f32011d66e83b87b9b900ecfd72e61af6f2e0d990217",
+        "local_file": "IDC Cloud Infrastructure Index 2021.xlsx",
+        "locator": "工作表「Index 2021」表头「Total SSD (PB)」/ 2020，Baidu 行 = 340.18 PB",
+        "grade": "S3",
+        "originator": "IDC《Cloud Infrastructure Index》2021（2021-10-22）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**media 这一维是 #156 才加的，此前 HDD 与 SSD 两列因其余各维相同而互撞 claim_key，一条都录不进来。** **该买方 2020 年 HDD 与闪存之比为 9.0:1**（HDD 3049 PB 对 SSD 340 PB）——**HDD 与闪存的单位容量价格差一个量级，合在一起的「存储容量」没有意义**，这正是需要 media 维的原因。 buyer_category 取原表 B 列写法「Hyperscaler」；counterparty 是买方（该年发运给它的容量），不是它卖出的。"
+    },
+    {
+      "fact_id": "idc-prc-external-storage-2019-prov-guangdongxsz",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-external-storage-market",
+        "label": "中国外置磁盘存储市场"
+      },
+      "value": 3.12,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Storage Systems",
+        "region": "China",
+        "storage_scope": "External OEM",
+        "product_category": "未拆分",
+        "subregion": "广东（不含深圳）",
+        "vertical": "未拆分"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a726419abb5b4b7efeb768266a0451b4c31752d126b200dc2c46ef573f01573",
+        "local_file": "2020Q3 IDC PRC Provincial Enterprise Storage System Tracker.xlsx",
+        "locator": "工作表「·Market Forecast」第 43 行「External Disk Storage Market Forecast by Provinces」，GuangDongxSZ 行 2019 列 = 311.55 百万美元",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly Enterprise Storage System Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。占全国 6.9%（全国 2019 年 45.02 亿美元）。 **subregion 这一维是 #155 才给金额侧补上的**，此前省份拆分一条都录不进来。 **原表把广东写作 GuangDongxSZ，即不含深圳**，深圳单列——**按省加总时不要漏深圳**，两者合计 580.55 百万美元（311.55 + 深圳 269.01）才是完整的广东省。 "
+    },
+    {
+      "fact_id": "idc-prc-external-storage-2019-prov-jiangsu",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-external-storage-market",
+        "label": "中国外置磁盘存储市场"
+      },
+      "value": 2.42,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Storage Systems",
+        "region": "China",
+        "storage_scope": "External OEM",
+        "product_category": "未拆分",
+        "subregion": "江苏",
+        "vertical": "未拆分"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a726419abb5b4b7efeb768266a0451b4c31752d126b200dc2c46ef573f01573",
+        "local_file": "2020Q3 IDC PRC Provincial Enterprise Storage System Tracker.xlsx",
+        "locator": "工作表「·Market Forecast」第 43 行「External Disk Storage Market Forecast by Provinces」，JiangSu 行 2019 列 = 241.82 百万美元",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly Enterprise Storage System Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。占全国 5.4%（全国 2019 年 45.02 亿美元）。 **subregion 这一维是 #155 才给金额侧补上的**，此前省份拆分一条都录不进来。 **这是外置存储（External Disk Storage）口径**，与含服务器内置存储的 Total 口径差四倍。 "
+    },
+    {
+      "fact_id": "idc-prc-external-storage-2019-prov-zhejiang",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-external-storage-market",
+        "label": "中国外置磁盘存储市场"
+      },
+      "value": 2.37,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Storage Systems",
+        "region": "China",
+        "storage_scope": "External OEM",
+        "product_category": "未拆分",
+        "subregion": "浙江",
+        "vertical": "未拆分"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a726419abb5b4b7efeb768266a0451b4c31752d126b200dc2c46ef573f01573",
+        "local_file": "2020Q3 IDC PRC Provincial Enterprise Storage System Tracker.xlsx",
+        "locator": "工作表「·Market Forecast」第 43 行「External Disk Storage Market Forecast by Provinces」，ZheJiang 行 2019 列 = 237.15 百万美元",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly Enterprise Storage System Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。占全国 5.3%（全国 2019 年 45.02 亿美元）。 **subregion 这一维是 #155 才给金额侧补上的**，此前省份拆分一条都录不进来。 **这是外置存储（External Disk Storage）口径**，与含服务器内置存储的 Total 口径差四倍。 "
+    },
+    {
+      "fact_id": "idc-prc-external-storage-2019-prov-sichuan",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-external-storage-market",
+        "label": "中国外置磁盘存储市场"
+      },
+      "value": 1.67,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Storage Systems",
+        "region": "China",
+        "storage_scope": "External OEM",
+        "product_category": "未拆分",
+        "subregion": "四川",
+        "vertical": "未拆分"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a726419abb5b4b7efeb768266a0451b4c31752d126b200dc2c46ef573f01573",
+        "local_file": "2020Q3 IDC PRC Provincial Enterprise Storage System Tracker.xlsx",
+        "locator": "工作表「·Market Forecast」第 43 行「External Disk Storage Market Forecast by Provinces」，SiChuan 行 2019 列 = 166.56 百万美元",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly Enterprise Storage System Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。占全国 3.7%（全国 2019 年 45.02 亿美元）。 **subregion 这一维是 #155 才给金额侧补上的**，此前省份拆分一条都录不进来。 **这是外置存储（External Disk Storage）口径**，与含服务器内置存储的 Total 口径差四倍。 "
+    },
+    {
+      "fact_id": "idc-prc-external-storage-2019-prov-henan",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-external-storage-market",
+        "label": "中国外置磁盘存储市场"
+      },
+      "value": 1.59,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Storage Systems",
+        "region": "China",
+        "storage_scope": "External OEM",
+        "product_category": "未拆分",
+        "subregion": "河南",
+        "vertical": "未拆分"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a726419abb5b4b7efeb768266a0451b4c31752d126b200dc2c46ef573f01573",
+        "local_file": "2020Q3 IDC PRC Provincial Enterprise Storage System Tracker.xlsx",
+        "locator": "工作表「·Market Forecast」第 43 行「External Disk Storage Market Forecast by Provinces」，HeNan 行 2019 列 = 158.62 百万美元",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly Enterprise Storage System Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。占全国 3.5%（全国 2019 年 45.02 亿美元）。 **subregion 这一维是 #155 才给金额侧补上的**，此前省份拆分一条都录不进来。 **这是外置存储（External Disk Storage）口径**，与含服务器内置存储的 Total 口径差四倍。 "
+    },
+    {
+      "fact_id": "idc-prc-external-storage-2019-prov-shandong",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-external-storage-market",
+        "label": "中国外置磁盘存储市场"
+      },
+      "value": 1.54,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Storage Systems",
+        "region": "China",
+        "storage_scope": "External OEM",
+        "product_category": "未拆分",
+        "subregion": "山东",
+        "vertical": "未拆分"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a726419abb5b4b7efeb768266a0451b4c31752d126b200dc2c46ef573f01573",
+        "local_file": "2020Q3 IDC PRC Provincial Enterprise Storage System Tracker.xlsx",
+        "locator": "工作表「·Market Forecast」第 43 行「External Disk Storage Market Forecast by Provinces」，ShanDong 行 2019 列 = 153.62 百万美元",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly Enterprise Storage System Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。占全国 3.4%（全国 2019 年 45.02 亿美元）。 **subregion 这一维是 #155 才给金额侧补上的**，此前省份拆分一条都录不进来。 **这是外置存储（External Disk Storage）口径**，与含服务器内置存储的 Total 口径差四倍。 "
+    },
+    {
+      "fact_id": "idc-prc-external-storage-2019-prov-hubei",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-external-storage-market",
+        "label": "中国外置磁盘存储市场"
+      },
+      "value": 1.32,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Storage Systems",
+        "region": "China",
+        "storage_scope": "External OEM",
+        "product_category": "未拆分",
+        "subregion": "湖北",
+        "vertical": "未拆分"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a726419abb5b4b7efeb768266a0451b4c31752d126b200dc2c46ef573f01573",
+        "local_file": "2020Q3 IDC PRC Provincial Enterprise Storage System Tracker.xlsx",
+        "locator": "工作表「·Market Forecast」第 43 行「External Disk Storage Market Forecast by Provinces」，HuBei 行 2019 列 = 131.59 百万美元",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly Enterprise Storage System Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。占全国 2.9%（全国 2019 年 45.02 亿美元）。 **subregion 这一维是 #155 才给金额侧补上的**，此前省份拆分一条都录不进来。 **这是外置存储（External Disk Storage）口径**，与含服务器内置存储的 Total 口径差四倍。 "
+    },
+    {
+      "fact_id": "idc-prc-external-storage-2019-prov-hebei",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-external-storage-market",
+        "label": "中国外置磁盘存储市场"
+      },
+      "value": 1.08,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Storage Systems",
+        "region": "China",
+        "storage_scope": "External OEM",
+        "product_category": "未拆分",
+        "subregion": "河北",
+        "vertical": "未拆分"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a726419abb5b4b7efeb768266a0451b4c31752d126b200dc2c46ef573f01573",
+        "local_file": "2020Q3 IDC PRC Provincial Enterprise Storage System Tracker.xlsx",
+        "locator": "工作表「·Market Forecast」第 43 行「External Disk Storage Market Forecast by Provinces」，HeBei 行 2019 列 = 108.29 百万美元",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly Enterprise Storage System Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。占全国 2.4%（全国 2019 年 45.02 亿美元）。 **subregion 这一维是 #155 才给金额侧补上的**，此前省份拆分一条都录不进来。 **这是外置存储（External Disk Storage）口径**，与含服务器内置存储的 Total 口径差四倍。 "
+    },
+    {
+      "fact_id": "idc-prc-external-storage-2019-prov-shaanxi",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-external-storage-market",
+        "label": "中国外置磁盘存储市场"
+      },
+      "value": 1.04,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Storage Systems",
+        "region": "China",
+        "storage_scope": "External OEM",
+        "product_category": "未拆分",
+        "subregion": "陕西",
+        "vertical": "未拆分"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a726419abb5b4b7efeb768266a0451b4c31752d126b200dc2c46ef573f01573",
+        "local_file": "2020Q3 IDC PRC Provincial Enterprise Storage System Tracker.xlsx",
+        "locator": "工作表「·Market Forecast」第 43 行「External Disk Storage Market Forecast by Provinces」，ShaanXi 行 2019 列 = 103.66 百万美元",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly Enterprise Storage System Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。占全国 2.3%（全国 2019 年 45.02 亿美元）。 **subregion 这一维是 #155 才给金额侧补上的**，此前省份拆分一条都录不进来。 **这是外置存储（External Disk Storage）口径**，与含服务器内置存储的 Total 口径差四倍。 "
+    },
+    {
+      "fact_id": "idc-prc-external-storage-2019-prov-fujian",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-external-storage-market",
+        "label": "中国外置磁盘存储市场"
+      },
+      "value": 1.04,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Storage Systems",
+        "region": "China",
+        "storage_scope": "External OEM",
+        "product_category": "未拆分",
+        "subregion": "福建",
+        "vertical": "未拆分"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a726419abb5b4b7efeb768266a0451b4c31752d126b200dc2c46ef573f01573",
+        "local_file": "2020Q3 IDC PRC Provincial Enterprise Storage System Tracker.xlsx",
+        "locator": "工作表「·Market Forecast」第 43 行「External Disk Storage Market Forecast by Provinces」，FuJian 行 2019 列 = 103.61 百万美元",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly Enterprise Storage System Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。占全国 2.3%（全国 2019 年 45.02 亿美元）。 **subregion 这一维是 #155 才给金额侧补上的**，此前省份拆分一条都录不进来。 **这是外置存储（External Disk Storage）口径**，与含服务器内置存储的 Total 口径差四倍。 "
+    },
+    {
+      "fact_id": "idc-prc-external-storage-2019-prov-beijing",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-external-storage-market",
+        "label": "中国外置磁盘存储市场"
+      },
+      "value": 10.11,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Storage Systems",
+        "region": "China",
+        "storage_scope": "External OEM",
+        "product_category": "未拆分",
+        "subregion": "北京",
+        "vertical": "未拆分"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a726419abb5b4b7efeb768266a0451b4c31752d126b200dc2c46ef573f01573",
+        "local_file": "2020Q3 IDC PRC Provincial Enterprise Storage System Tracker.xlsx",
+        "locator": "工作表「·Market Forecast」第 43 行「External Disk Storage Market Forecast by Provinces」，Beijing 行 2019 列 = 1010.85 百万美元",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly Enterprise Storage System Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。占全国 22.5%（全国 2019 年 45.02 亿美元）。 北京一地占全国 22.5%，北京+上海+深圳三地合计 37.8%——中国外置存储的地理集中度极高。 **这三条是补录**：首次录入时我按旧版抽取文本的大小写（BeiJing/ShangHai/ShenZhen）匹配省名，而重抽后的文本改成了 Beijing/Shanghai/Shenzhen，**三个最大的省份因此被漏掉**——同一文件在不同抽取器版本下的正文并不逐字稳定，这正是 text_md5 指纹的用处。"
+    },
+    {
+      "fact_id": "idc-prc-external-storage-2019-prov-shanghai",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-external-storage-market",
+        "label": "中国外置磁盘存储市场"
+      },
+      "value": 4.21,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Storage Systems",
+        "region": "China",
+        "storage_scope": "External OEM",
+        "product_category": "未拆分",
+        "subregion": "上海",
+        "vertical": "未拆分"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a726419abb5b4b7efeb768266a0451b4c31752d126b200dc2c46ef573f01573",
+        "local_file": "2020Q3 IDC PRC Provincial Enterprise Storage System Tracker.xlsx",
+        "locator": "工作表「·Market Forecast」第 43 行「External Disk Storage Market Forecast by Provinces」，Shanghai 行 2019 列 = 420.85 百万美元",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly Enterprise Storage System Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。占全国 9.3%（全国 2019 年 45.02 亿美元）。  **这三条是补录**：首次录入时我按旧版抽取文本的大小写（BeiJing/ShangHai/ShenZhen）匹配省名，而重抽后的文本改成了 Beijing/Shanghai/Shenzhen，**三个最大的省份因此被漏掉**——同一文件在不同抽取器版本下的正文并不逐字稳定，这正是 text_md5 指纹的用处。"
+    },
+    {
+      "fact_id": "idc-prc-external-storage-2019-prov-shenzhen",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-external-storage-market",
+        "label": "中国外置磁盘存储市场"
+      },
+      "value": 2.69,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Storage Systems",
+        "region": "China",
+        "storage_scope": "External OEM",
+        "product_category": "未拆分",
+        "subregion": "深圳",
+        "vertical": "未拆分"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a726419abb5b4b7efeb768266a0451b4c31752d126b200dc2c46ef573f01573",
+        "local_file": "2020Q3 IDC PRC Provincial Enterprise Storage System Tracker.xlsx",
+        "locator": "工作表「·Market Forecast」第 43 行「External Disk Storage Market Forecast by Provinces」，Shenzhen 行 2019 列 = 269.01 百万美元",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly Enterprise Storage System Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：US$M ÷ 100 = 亿美元。占全国 6.0%（全国 2019 年 45.02 亿美元）。 深圳与广东是分开列的（原表广东写作 GuangDongxSZ 即不含深圳），两者合计 580.55 百万美元才是完整的广东省。 **这三条是补录**：首次录入时我按旧版抽取文本的大小写（BeiJing/ShangHai/ShenZhen）匹配省名，而重抽后的文本改成了 Beijing/Shanghai/Shenzhen，**三个最大的省份因此被漏掉**——同一文件在不同抽取器版本下的正文并不逐字稳定，这正是 text_md5 指纹的用处。"
+    },
+    {
+      "fact_id": "rand-us-dc-additional-demand-2030-low",
+      "metric_id": "model_projected_generation_need",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心"
+      },
+      "value": 34.0,
+      "unit": "GW",
+      "caliber": {
+        "model_source": "第三方咨询",
+        "horizon": "2030",
+        "region": "US"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 1 页：「Estimates for data center demand growth in the United States by 2030 vary widely, from an additional 34 gigawatts (GW) to as much as 253 GW」",
+        "grade": "S3",
+        "originator": "RAND Corporation（Arciniegas Rueda 等）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是各方估计区间的下界，不是 RAND 自己的判断**（RAND 自己给的是 158-253 GW）。**这一族的核心事实是「估计值本身差得离谱」**：原文明说美国 2030 年数据中心新增需求的各方估计从 34 GW 到 253 GW，**相差 7.4 倍**，差异来自需求增速、能效改进以及运营商长期扩张计划的不确定，**还来自口径本身不同**（TWh vs GW、AI 专用 vs 全部数据中心、预测年限不同）。**引用任何单一数字都必须带上是谁的估计、什么口径、到哪一年。**"
+    },
+    {
+      "fact_id": "rand-us-dc-additional-demand-2030-high",
+      "metric_id": "model_projected_generation_need",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心"
+      },
+      "value": 253.0,
+      "unit": "GW",
+      "caliber": {
+        "model_source": "第三方咨询",
+        "horizon": "2030",
+        "region": "US"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 1 页：「from an additional 34 gigawatts (GW) to as much as 253 GW」",
+        "grade": "S3",
+        "originator": "RAND Corporation（Arciniegas Rueda 等）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上界，与 RAND 自建模型的上界（253 GW，80% 留存率）重合。**这一族的核心事实是「估计值本身差得离谱」**：原文明说美国 2030 年数据中心新增需求的各方估计从 34 GW 到 253 GW，**相差 7.4 倍**，差异来自需求增速、能效改进以及运营商长期扩张计划的不确定，**还来自口径本身不同**（TWh vs GW、AI 专用 vs 全部数据中心、预测年限不同）。**引用任何单一数字都必须带上是谁的估计、什么口径、到哪一年。**"
+    },
+    {
+      "fact_id": "rand-us-additional-demand-own-low",
+      "metric_id": "model_projected_generation_need",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心"
+      },
+      "value": 158.0,
+      "unit": "GW",
+      "caliber": {
+        "model_source": "自建",
+        "horizon": "2030",
+        "region": "US"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 1 页：「For the United States alone, additional demand is estimated to be between 158 GW and 253 GW, assuming a retention rate of 50 percent to 80 percent」",
+        "grade": "S3",
+        "originator": "RAND Corporation（Arciniegas Rueda 等）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**RAND 自建模型的下界，对应 50% 的留存率**（retention rate，即全球 AI 算力需求里落在美国的比例）；上界 253 GW 对应 80%。**这个区间宽度完全来自一个假设参数**，不是需求本身的不确定。**这一族的核心事实是「估计值本身差得离谱」**：原文明说美国 2030 年数据中心新增需求的各方估计从 34 GW 到 253 GW，**相差 7.4 倍**，差异来自需求增速、能效改进以及运营商长期扩张计划的不确定，**还来自口径本身不同**（TWh vs GW、AI 专用 vs 全部数据中心、预测年限不同）。**引用任何单一数字都必须带上是谁的估计、什么口径、到哪一年。**"
+    },
+    {
+      "fact_id": "rand-global-ai-dc-power-2030",
+      "metric_id": "model_projected_generation_need",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 327.0,
+      "unit": "GW",
+      "caliber": {
+        "model_source": "自建",
+        "horizon": "2030",
+        "region": "Global"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 1 页：「RAND projects that global AI data center power demand could reach 327 GW by 2030」",
+        "grade": "S3",
+        "originator": "RAND Corporation（Arciniegas Rueda 等）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是全球 AI 数据中心的功率需求，不是全部数据中心**；美国部分按 50%-80% 留存率折出 158-253 GW。对照库内 IEA 的全球全部数据中心用电量（2030 Base Case 945 TWh）：**一个是功率（GW）一个是电量（TWh）**，换算需要利用率假设，不可直接比。**这一族的核心事实是「估计值本身差得离谱」**：原文明说美国 2030 年数据中心新增需求的各方估计从 34 GW 到 253 GW，**相差 7.4 倍**，差异来自需求增速、能效改进以及运营商长期扩张计划的不确定，**还来自口径本身不同**（TWh vs GW、AI 专用 vs 全部数据中心、预测年限不同）。**引用任何单一数字都必须带上是谁的估计、什么口径、到哪一年。**"
+    },
+    {
+      "fact_id": "rand-goldman-us-incremental-2030",
+      "metric_id": "model_projected_generation_need",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心"
+      },
+      "value": 47.0,
+      "unit": "GW",
+      "caliber": {
+        "model_source": "券商",
+        "horizon": "2030",
+        "region": "US"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 2 页：「Goldman Sachs forecasts an incremental 47 GW of data center demand, including both AI and non-AI uses, by 2030」",
+        "grade": "S3",
+        "originator": "RAND Corporation（Arciniegas Rueda 等）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**高盛这个 47 GW 含 AI 与非 AI 全部数据中心**，却只有 RAND 自建下界（158 GW，仅 AI）的三成——**口径更宽而数字更小，这正是原文强调「估计不可直接比」的例子**。**这一族的核心事实是「估计值本身差得离谱」**：原文明说美国 2030 年数据中心新增需求的各方估计从 34 GW 到 253 GW，**相差 7.4 倍**，差异来自需求增速、能效改进以及运营商长期扩张计划的不确定，**还来自口径本身不同**（TWh vs GW、AI 专用 vs 全部数据中心、预测年限不同）。**引用任何单一数字都必须带上是谁的估计、什么口径、到哪一年。**"
+    },
+    {
+      "fact_id": "rand-lbnl-us-dc-consumption-2028-low",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心"
+      },
+      "value": 325.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2028E@2025-01",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 1-2 页：「Lawrence Berkeley National Laboratory (LBNL) estimates that total U.S. data center power demand—including both AI-related and general use—will range between 325 TWh and 580 TWh by 2028. This estimate corresponds to 74–132 GW, representing an increase of 34–92 GW over current levels」",
+        "grade": "S3",
+        "originator": "RAND Corporation（Arciniegas Rueda 等）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**LBNL 口径含 AI 与通用两类**，区间下界。原文同时给出功率折算 74-132 GW 与净增 34-92 GW——**「34 GW」这个数在原文里是 LBNL 净增的下界，前面那句「各方估计从 34 GW 起」正是引自它**，不是一个独立的第三方估计。**这一族的核心事实是「估计值本身差得离谱」**：原文明说美国 2030 年数据中心新增需求的各方估计从 34 GW 到 253 GW，**相差 7.4 倍**，差异来自需求增速、能效改进以及运营商长期扩张计划的不确定，**还来自口径本身不同**（TWh vs GW、AI 专用 vs 全部数据中心、预测年限不同）。**引用任何单一数字都必须带上是谁的估计、什么口径、到哪一年。**"
+    },
+    {
+      "fact_id": "rand-lbnl-us-dc-consumption-2028-high",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心"
+      },
+      "value": 580.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2028E@2025-01",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 2 页：「will range between 325 TWh and 580 TWh by 2028」",
+        "grade": "S3",
+        "originator": "RAND Corporation（Arciniegas Rueda 等）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上界。**与库内 IEA 全球 2030 Base Case 945 TWh 对照**：美国一国到 2028 年就可能占到 580 TWh，即**六成以上**——两者口径（全球 vs 美国、2030 vs 2028）不同，但量级关系值得记住。**这一族的核心事实是「估计值本身差得离谱」**：原文明说美国 2030 年数据中心新增需求的各方估计从 34 GW 到 253 GW，**相差 7.4 倍**，差异来自需求增速、能效改进以及运营商长期扩张计划的不确定，**还来自口径本身不同**（TWh vs GW、AI 专用 vs 全部数据中心、预测年限不同）。**引用任何单一数字都必须带上是谁的估计、什么口径、到哪一年。**"
+    },
+    {
+      "fact_id": "rand-single-facility-max-2030",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-single-largest-dc",
+        "label": "美国单体最大数据中心（预期）"
+      },
+      "value": 5000.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L2",
+        "region": "US"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 2 页：「An individual facility may consume up to 5 GW by 2030, a substantial amount of power comparable to the 2023 net summer generation capacity of a single state, such as Idaho (5.4 GW), Maine (5.3 GW), or New Hampshire (4.5 GW)」",
+        "grade": "S3",
+        "originator": "RAND Corporation（Arciniegas Rueda 等）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**单体设施上限，不是某个已知项目**，故 status 记 L2（规划层面的预期）、capacity_type 未披露。**原文给的参照极有说服力**：5 GW 相当于爱达荷（5.4 GW）、缅因（5.3 GW）或新罕布什尔（4.5 GW）一个州 2023 年的夏季净发电容量。对照库内 Abilene 园区 1.8 GW IT 容量（SemiAnalysis 估算），**5 GW 是它的近三倍**。"
     }
   ]
 }

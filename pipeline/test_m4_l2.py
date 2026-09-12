@@ -2873,6 +2873,17 @@ class SplitDimensionSymmetryTests(unittest.TestCase):
             expected = self.EXPECTED.get(f['metric_id'])
             if not expected:
                 continue
+            fid = f['fact_id']
+            # 后来按省/按行业拆的条目自己带标记，不在回填批次之列——
+            # 中国外置存储那份的省份拆分就是 #155 补上 subregion 之后才录的。
+            if '-prov-' in fid or '-vertical-' in fid:
+                continue
+            if not fid.startswith(self.BACKFILL_ONLY):
+                # 回填之后读进来的可以真按省、按行业切——IDC 那份 2024 中国 AI
+                # 服务器就是按省份与行业各拆一套的（北京占 49.9%、互联网占 57.9%）。
+                # 这条测试钉的是「回填没有凭空给既有事实按上一个省份」，
+                # 不是「这一族永远不许按省切」。
+                continue
             if 'subregion' in expected:
                 self.assertIn(f['caliber'].get('subregion'),
                               ('全国', '不适用（非中国口径）'), f['fact_id'])
