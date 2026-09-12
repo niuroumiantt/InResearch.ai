@@ -19914,6 +19914,250 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**单位随 spec_item 变**：道路与半径是米、吊车与货梯承重是吨、货梯数量是台、库房面积是㎡——**这一族的 unit 实际是「随本维取值」，跨 spec_item 不可比**。  **库房是按机架数配的**：每 1000 个机架 1 个、面积 ≥30㎡，不足 1000 按 1000 计，同建筑内多库房面积可累加。 **这是中国移动的企业准入标准，不是国标也不是某项目的设计值。**原文为《中国移动定制化IDC技术方案建议》/《中国移动IDC等级评定标准 V3.2.0》，按二星～钻石五星五档打分；工作表「v3.2修改内容」重复同一条要求（同文件两个版本），不构成交叉验证。"
+    },
+    {
+      "fact_id": "delloro-jul26-capex-cagr-2025-2030",
+      "metric_id": "capex_growth_rate",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 34.0,
+      "unit": "%",
+      "caliber": {
+        "period_basis": "复合年均(CAGR)",
+        "segment": "Total",
+        "scenario": "单一情景",
+        "region": "Global",
+        "basis": "模型输出",
+        "vintage_note": "见 as_of"
+      },
+      "as_of": "2030E@2026-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f1929e2d37539d3da4207937e7ee0324f4c3b649b9a73acc27c6aab8ae73699a",
+        "local_file": "DellOro 202607 CL20A Data Center IT Capex Forecast Summary Jul26.pdf",
+        "locator": "第 4 页 Key Takeaways：「Worldwide data center capital expenditures (capex) are forecast to experience a five-year CAGR of 34%, reaching $3.1 T by 2030 (Figure 1)」；第 5 页正文重述",
+        "grade": "S3",
+        "originator": "Dell'Oro Group"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**区间是 2025→2030 五年**（报告首页注明「All compound annual growth rate (CAGR) projections in this summary refer to the period from 2025 to 2030, unless otherwise specified」）。 可与库内绝对额互校：7,113.81 → 31,121.84 亿美元，五年 4.38 倍，几何平均年增 34.3%，与 34% 相符。 **本份是 1aa7674a 那本 pivot 工作簿的叙述版（同机构同批次 2026-07）**，绝对额已在那次录过 71 条（2030E 全球 31,121.84 亿美元，本报告写作 3.1 万亿），不重复录。"
+    },
+    {
+      "fact_id": "delloro-jul26-forecast-revision-cumulative",
+      "metric_id": "forecast_revision_delta",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 67.0,
+      "unit": "%",
+      "caliber": {
+        "metric_revised": "数据中心资本开支",
+        "revision_direction": "上修",
+        "segment": "Total",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2026-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f1929e2d37539d3da4207937e7ee0324f4c3b649b9a73acc27c6aab8ae73699a",
+        "local_file": "DellOro 202607 CL20A Data Center IT Capex Forecast Summary Jul26.pdf",
+        "locator": "第 14 页 Comparison to Previous Forecast：「We have raised our data center capex forecast versus the prior report, increasing cumulative spending from $6.6 B (2026–2030) to $11.0 B, an increase of 67%, in this update」",
+        "grade": "S3",
+        "originator": "Dell'Oro Group"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**对标的是同机构上一版（2026-01）而不是市场共识**——与 M02 的 capex_vs_consensus_delta 不是一回事：那是跨机构比，这是同机构跨版本比。 **原文这里有一处单位错**：写作「from $6.6 B to $11.0 B」，与同报告 2030 年单年 3.1 万亿美元自相矛盾，按上下文应为 T（万亿）非 B（十亿），引用时勿照抄。修订幅度 67% 本身不受影响（比值与单位无关）。 原文给的五条上修原因：Top 4 US Cloud 的 2026 年 capex 指引抬高了基线；通用服务器台数因 agentic 与存储类新用例大幅上调；内存与存储商品价格上行；新增了加速器与 CPU 功耗等基础设施指标以对齐电力可得性；AI Model Builder 与 Neocloud 两个新分部贡献显著增量；scale-up 网络等新技术分部的支出上修。 **本份是 1aa7674a 那本 pivot 工作簿的叙述版（同机构同批次 2026-07）**，绝对额已在那次录过 71 条（2030E 全球 31,121.84 亿美元，本报告写作 3.1 万亿），不重复录。"
+    },
+    {
+      "fact_id": "delloro-jul26-capex-share-top4-us",
+      "metric_id": "capex_share_by_segment",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 50.0,
+      "unit": "%",
+      "caliber": {
+        "segment": "Top 4 US Cloud",
+        "denominator": "全球数据中心 capex",
+        "scenario": "单一情景",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2026E@2026-07",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "f1929e2d37539d3da4207937e7ee0324f4c3b649b9a73acc27c6aab8ae73699a",
+        "local_file": "DellOro 202607 CL20A Data Center IT Capex Forecast Summary Jul26.pdf",
+        "locator": "第 5 页：「The Top 4 US Cloud SPs—Amazon, Google, Meta, and Microsoft—… Together, they account for more than half of the data center capex, and their share will continue to increase over time」",
+        "grade": "S3",
+        "originator": "Dell'Oro Group"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文「more than half」，按下界 50% 记**，且明说份额还会继续上升。 可与库内同批绝对额对照：2030E Top 4 US Cloud 19,406.06 亿美元 ÷ Total 31,121.84 亿美元 = 62.4%，**即到 2030 年这个「过半」会变成约六成**；本条时点为报告当期。 **本份是 1aa7674a 那本 pivot 工作簿的叙述版（同机构同批次 2026-07）**，绝对额已在那次录过 71 条（2030E 全球 31,121.84 亿美元，本报告写作 3.1 万亿），不重复录。"
+    },
+    {
+      "fact_id": "delloro-jul26-tier-threshold-tier-1-plus",
+      "metric_id": "installed_server_base",
+      "entity": {
+        "type": "industry",
+        "id": "cloud-sp-tiers",
+        "label": "Dell'Oro 云服务商分层门槛"
+      },
+      "value": 300.0,
+      "unit": "万台",
+      "caliber": {
+        "provider_tier": "Tier 1 Plus",
+        "counterparty_role": "需求方",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2026",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "f1929e2d37539d3da4207937e7ee0324f4c3b649b9a73acc27c6aab8ae73699a",
+        "local_file": "DellOro 202607 CL20A Data Center IT Capex Forecast Summary Jul26.pdf",
+        "locator": "第 17 页 Definitions / Cloud SP Tiers：「Greater than 3 million servers」",
+        "grade": "S3",
+        "originator": "Dell'Oro Group"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是分层的门槛值，不是某家公司的装机量**：Dell'Oro 按云服务商总装机存量分四层（另有 Tier 1 Plus）。 单位换算：原文以台计，÷10,000 记万台（3 million servers = 300 万台，1 million = 100 万台，500,000 = 50 万台，200,000 = 20 万台）。 **Tier 4 是上界（不足 20 万台），其余是下界**——bound 这一维把「大于」与「小于」分开。 **本份是 1aa7674a 那本 pivot 工作簿的叙述版（同机构同批次 2026-07）**，绝对额已在那次录过 71 条（2030E 全球 31,121.84 亿美元，本报告写作 3.1 万亿），不重复录。"
+    },
+    {
+      "fact_id": "delloro-jul26-tier-threshold-tier-1",
+      "metric_id": "installed_server_base",
+      "entity": {
+        "type": "industry",
+        "id": "cloud-sp-tiers",
+        "label": "Dell'Oro 云服务商分层门槛"
+      },
+      "value": 100.0,
+      "unit": "万台",
+      "caliber": {
+        "provider_tier": "Tier 1",
+        "counterparty_role": "需求方",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2026",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "f1929e2d37539d3da4207937e7ee0324f4c3b649b9a73acc27c6aab8ae73699a",
+        "local_file": "DellOro 202607 CL20A Data Center IT Capex Forecast Summary Jul26.pdf",
+        "locator": "第 17 页 Definitions / Cloud SP Tiers：「Greater than 1 million servers」",
+        "grade": "S3",
+        "originator": "Dell'Oro Group"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是分层的门槛值，不是某家公司的装机量**：Dell'Oro 按云服务商总装机存量分四层（另有 Tier 1 Plus）。 单位换算：原文以台计，÷10,000 记万台（3 million servers = 300 万台，1 million = 100 万台，500,000 = 50 万台，200,000 = 20 万台）。 **Tier 4 是上界（不足 20 万台），其余是下界**——bound 这一维把「大于」与「小于」分开。 **本份是 1aa7674a 那本 pivot 工作簿的叙述版（同机构同批次 2026-07）**，绝对额已在那次录过 71 条（2030E 全球 31,121.84 亿美元，本报告写作 3.1 万亿），不重复录。"
+    },
+    {
+      "fact_id": "delloro-jul26-tier-threshold-tier-2",
+      "metric_id": "installed_server_base",
+      "entity": {
+        "type": "industry",
+        "id": "cloud-sp-tiers",
+        "label": "Dell'Oro 云服务商分层门槛"
+      },
+      "value": 50.0,
+      "unit": "万台",
+      "caliber": {
+        "provider_tier": "Tier 2",
+        "counterparty_role": "需求方",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2026",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "f1929e2d37539d3da4207937e7ee0324f4c3b649b9a73acc27c6aab8ae73699a",
+        "local_file": "DellOro 202607 CL20A Data Center IT Capex Forecast Summary Jul26.pdf",
+        "locator": "第 17 页 Definitions / Cloud SP Tiers：「Greater than 500,000 and fewer than 1 million servers」",
+        "grade": "S3",
+        "originator": "Dell'Oro Group"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是分层的门槛值，不是某家公司的装机量**：Dell'Oro 按云服务商总装机存量分四层（另有 Tier 1 Plus）。 单位换算：原文以台计，÷10,000 记万台（3 million servers = 300 万台，1 million = 100 万台，500,000 = 50 万台，200,000 = 20 万台）。 **Tier 4 是上界（不足 20 万台），其余是下界**——bound 这一维把「大于」与「小于」分开。 **本份是 1aa7674a 那本 pivot 工作簿的叙述版（同机构同批次 2026-07）**，绝对额已在那次录过 71 条（2030E 全球 31,121.84 亿美元，本报告写作 3.1 万亿），不重复录。"
+    },
+    {
+      "fact_id": "delloro-jul26-tier-threshold-tier-3",
+      "metric_id": "installed_server_base",
+      "entity": {
+        "type": "industry",
+        "id": "cloud-sp-tiers",
+        "label": "Dell'Oro 云服务商分层门槛"
+      },
+      "value": 20.0,
+      "unit": "万台",
+      "caliber": {
+        "provider_tier": "Tier 3",
+        "counterparty_role": "需求方",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2026",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "f1929e2d37539d3da4207937e7ee0324f4c3b649b9a73acc27c6aab8ae73699a",
+        "local_file": "DellOro 202607 CL20A Data Center IT Capex Forecast Summary Jul26.pdf",
+        "locator": "第 17 页 Definitions / Cloud SP Tiers：「Greater than 200,000 and fewer than 500,000 servers」",
+        "grade": "S3",
+        "originator": "Dell'Oro Group"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是分层的门槛值，不是某家公司的装机量**：Dell'Oro 按云服务商总装机存量分四层（另有 Tier 1 Plus）。 单位换算：原文以台计，÷10,000 记万台（3 million servers = 300 万台，1 million = 100 万台，500,000 = 50 万台，200,000 = 20 万台）。 **Tier 4 是上界（不足 20 万台），其余是下界**——bound 这一维把「大于」与「小于」分开。 **本份是 1aa7674a 那本 pivot 工作簿的叙述版（同机构同批次 2026-07）**，绝对额已在那次录过 71 条（2030E 全球 31,121.84 亿美元，本报告写作 3.1 万亿），不重复录。"
+    },
+    {
+      "fact_id": "delloro-jul26-tier-threshold-tier-4",
+      "metric_id": "installed_server_base",
+      "entity": {
+        "type": "industry",
+        "id": "cloud-sp-tiers",
+        "label": "Dell'Oro 云服务商分层门槛"
+      },
+      "value": 20.0,
+      "unit": "万台",
+      "caliber": {
+        "provider_tier": "Tier 4",
+        "counterparty_role": "需求方",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2026",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f1929e2d37539d3da4207937e7ee0324f4c3b649b9a73acc27c6aab8ae73699a",
+        "local_file": "DellOro 202607 CL20A Data Center IT Capex Forecast Summary Jul26.pdf",
+        "locator": "第 17 页 Definitions / Cloud SP Tiers：「Fewer than 200,000 servers」",
+        "grade": "S3",
+        "originator": "Dell'Oro Group"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是分层的门槛值，不是某家公司的装机量**：Dell'Oro 按云服务商总装机存量分四层（另有 Tier 1 Plus）。 单位换算：原文以台计，÷10,000 记万台（3 million servers = 300 万台，1 million = 100 万台，500,000 = 50 万台，200,000 = 20 万台）。 **Tier 4 是上界（不足 20 万台），其余是下界**——bound 这一维把「大于」与「小于」分开。 **本份是 1aa7674a 那本 pivot 工作簿的叙述版（同机构同批次 2026-07）**，绝对额已在那次录过 71 条（2030E 全球 31,121.84 亿美元，本报告写作 3.1 万亿），不重复录。"
     }
   ]
 }
