@@ -6709,8 +6709,8 @@
       },
       "depth": "精读",
       "derived": false,
-      "corroboration": "待交叉验证",
-      "notes": "**这是整份 ClusterMAX 评级体系的基准价，配置口径写得很死**：H100 SXM + 8×400G InfiniBand，单机 8 卡即 23.92 美元/小时、574.08 美元/天。**捆绑范围要看清**：多数 Neocloud 该价格含板载 CPU、网络、电力、本地 NVMe 与 Slurm/驱动配置，**但网络存储与对象存储另计**（高性能网络存储约 6-9 美分/GB/月，对象存储 2-3 美分/GB/月），拿它与含存储的报价直接比会低估。**原文同时称其为「typical」和「current best」，两者不是一个意思**，本条按点值记并标 [未核]。对照库内 h100-listed-range-2024（2024 年公开挂牌区间跨 6.5 倍、value 为空）：本条是一年后的具体锚点。"
+      "corroboration": "已交叉验证",
+      "notes": "**这是整份 ClusterMAX 评级体系的基准价，配置口径写得很死**：H100 SXM + 8×400G InfiniBand，单机 8 卡即 23.92 美元/小时、574.08 美元/天。**捆绑范围要看清**：多数 Neocloud 该价格含板载 CPU、网络、电力、本地 NVMe 与 Slurm/驱动配置，**但网络存储与对象存储另计**（高性能网络存储约 6-9 美分/GB/月，对象存储 2-3 美分/GB/月），拿它与含存储的报价直接比会低估。**原文同时称其为「typical」和「current best」，两者不是一个意思**，本条按点值记并标 [未核]。对照库内 h100-listed-range-2024（2024 年公开挂牌区间跨 6.5 倍、value 为空）：本条是一年后的具体锚点。 **同一句话在 2024-10-03 的《AI Neocloud Playbook and Anatomy》里逐字出现（2.99 / 23.92 / 574.08 完全相同）**——本条的 2025-03 时点可能只是文本沿用而非新观测，见 h100-sxm-ondemand-best-202410。"
     },
     {
       "fact_id": "h100-india-gov-auction-1y-202503",
@@ -6827,6 +6827,93 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**有用量上限的引流价，不是全量价**：仅适用于每月前 1,000 GPU 小时，超出部分原文未给价。**caliber 里没有一维能表达这个用量门槛**，只能写在这里——**直接把 1.50 当作 Nebius 的市场价会低估约一半**（同期 Lambda Labs H100 SXM 为 2.99 美元/卡/小时，原文称 Nebius 是其一半）。作者同时指出即便半价，Nebius 因 UI/UX 落后仍难获客——**价格不是唯一变量**。"
+    },
+    {
+      "fact_id": "h100-sxm-ondemand-best-202410",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "market",
+        "id": "h100-sxm-ondemand-neocloud",
+        "label": "H100 SXM Neocloud 按需挂牌价（市场最优）"
+      },
+      "value": 2.99,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "公开挂牌",
+        "unit": "单卡",
+        "region": "Global"
+      },
+      "as_of": "2024-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "74c37d3d61327898d5664c6b2b1f8116f6d2d82acb99ddf27877bae820154c35",
+        "local_file": "SemiAnalysis AI Neocloud Playbook and Anatomy (2024-10-03).pdf",
+        "locator": "第 47 页「Pricing and Contract Types」：「based on a typical on-demand price of $2.99 USD/hr/GPU for an H100 SXM with 8x400G InfiniBand, renting one server of 8 GPUs would cost $23.92 USD per hour and $574.08 per day」",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "已交叉验证",
+      "notes": "**重要发现：这句话在 2025-03 的 ClusterMAX 报告里逐字重复（同为 2.99 / 23.92 / 574.08）。**两处一字不差，说明 2025-03 那条大概率是沿用 2024-10 的旧文，**不能当作 2025 年 3 月的新观测**——库内 h100-sxm-ondemand-best-202503 已加注同一提示。两条并存的意义正在于此：**同一个「当前最优按需价」被标注了相隔五个月的两个时点，而数字纹丝不动**，要么是市场真的没动，要么是文本复用，无法从这两份文件本身区分。配置口径：H100 SXM + 8×400G InfiniBand，含 CPU/网络/电力/本地 NVMe/SLURM，网络存储（6-9 美分/GB/月）与对象存储（2-3 美分/GB/月）另计。"
+    },
+    {
+      "fact_id": "vc-platform-h100-shortterm-low-202410",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "market",
+        "id": "vc-platform-h100-shortterm",
+        "label": "VC 平台集群对被投企业的 H100 短租价（周级）"
+      },
+      "value": 2.3,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "现货",
+        "unit": "单卡",
+        "region": "Global"
+      },
+      "as_of": "2024-10",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "74c37d3d61327898d5664c6b2b1f8116f6d2d82acb99ddf27877bae820154c35",
+        "local_file": "SemiAnalysis AI Neocloud Playbook and Anatomy (2024-10-03).pdf",
+        "locator": "第 46 页：「they can spin up 1k GPU clusters for just a week at competitive prices in the $2.30-$2-50 per GPU per hour range – well below Neocloud Giant prices」（原文上界处印作「$2-50」，应为 $2.50）",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是一条「反直觉」的价格**：周级短租通常最贵，但 VC 平台（Andromeda、AI2、Computefund.ai、a16z 等）给被投企业的 1000 卡一周集群反而 2.30-2.50 美元，**低于同期按需最优 2.99 美元**。原因不是市场价，是**关联方定价**：VC 用算力条件换投资关系，且自己不运营、转包给 Neocloud Giants 托管。**拿它当市场短租基准会低估真实短租成本**。上界见 vc-platform-h100-shortterm-high-202410。price_type=现货 是就近归类（周级、无长期承诺），但它既非公开挂牌也非公开市场成交，标 [未核]。"
+    },
+    {
+      "fact_id": "vc-platform-h100-shortterm-high-202410",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "market",
+        "id": "vc-platform-h100-shortterm",
+        "label": "VC 平台集群对被投企业的 H100 短租价（周级）"
+      },
+      "value": 2.5,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "现货",
+        "unit": "单卡",
+        "region": "Global"
+      },
+      "as_of": "2024-10",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "74c37d3d61327898d5664c6b2b1f8116f6d2d82acb99ddf27877bae820154c35",
+        "local_file": "SemiAnalysis AI Neocloud Playbook and Anatomy (2024-10-03).pdf",
+        "locator": "第 46 页：「competitive prices in the $2.30-$2-50 per GPU per hour range」（原文印作「$2-50」，按上下文应为 $2.50）",
+        "grade": "S3",
+        "originator": "SemiAnalysis"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上界，下界见 vc-platform-h100-shortterm-low-202410。**原文此处有印刷错误**：写作「$2.30-$2-50」，按上下文判为 $2.50，已标 [未核]。口径说明同下界条：关联方定价、周级、1000 卡规模、由 Neocloud Giants 代运营。"
     }
   ]
 }
