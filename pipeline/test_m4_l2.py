@@ -1682,5 +1682,81 @@ class M05M09MenuTests(unittest.TestCase):
                       self.dim('cost_share_by_trade', 'denominator')['note'])
 
 
+class TextFingerprintTests(unittest.TestCase):
+    """同一份报告的两个副本，字节不同、sha256 不同，正文一字不差。
+
+    M4 撞到的：两份中国信通院第三方运营商报告，41 页、23,935 字、正文 md5
+    完全一致，sha256 不同，于是排进阅读队列两次。sha256 认的是字节，
+    读者认的是内容——去重要在内容那一层做。
+    """
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-fp-')
+        base = Path(self.temp.name)
+        self._saved = (L2.TEXT_MD5, L2.read_documents)
+        L2.TEXT_MD5 = base / 'l2_text_md5.jsonl'
+        L2.read_documents = lambda: set(self.read)
+        self.read = set()
+
+    def tearDown(self):
+        (L2.TEXT_MD5, L2.read_documents) = self._saved
+        self.temp.cleanup()
+
+    def fp(self, text, pages=41):
+        return L2.text_fingerprint(text, {'pages': pages})
+
+    BODY = '中国第三方数据中心运营商分析报告。' * 40      # 逾 500 字
+
+    def test_a_re_export_with_different_bytes_has_the_same_fingerprint(self):
+        """换行被重排、空白被压掉，读者看到的还是同一篇。"""
+        other = self.BODY.replace('。', '。\n   ')
+        self.assertEqual(self.fp(self.BODY), self.fp(other))
+
+    def test_a_different_document_has_a_different_fingerprint(self):
+        self.assertNotEqual(self.fp(self.BODY), self.fp(self.BODY + '另起一段。'))
+
+    def test_a_shared_front_matter_with_a_different_page_count_is_not_a_twin(self):
+        """同一套模板的季度报告可以共用很长的开头，那不是同一份。"""
+        self.assertNotEqual(self.fp(self.BODY, pages=41),
+                            self.fp(self.BODY, pages=52))
+
+    def test_too_little_text_gets_no_fingerprint(self):
+        """十几个字的扫描件封面会撞上语料里的每一份扫描件。"""
+        self.assertIsNone(self.fp('目录'))
+        self.assertIsNone(self.fp('封面' * 100))          # 仍不足 500 字
+        self.assertIsNotNone(self.fp('封面' * 300))
+
+    # -- 台账 -------------------------------------------------------------
+    def test_a_twin_is_only_a_twin_once_the_other_one_was_read(self):
+        """还没读过的副本不算——两份都在队列里时，先读到哪份都行。"""
+        L2.remember_fingerprint('a' * 64, 'deadbeef')
+        self.assertEqual(L2.already_read_with_same_text('b' * 64, 'deadbeef'), [])
+        self.read.add('a' * 64)
+        self.assertEqual(L2.already_read_with_same_text('b' * 64, 'deadbeef'),
+                         ['a' * 64])
+
+    def test_a_document_is_never_its_own_twin(self):
+        L2.remember_fingerprint('a' * 64, 'deadbeef')
+        self.read.add('a' * 64)
+        self.assertEqual(L2.already_read_with_same_text('a' * 64, 'deadbeef'), [])
+
+    def test_no_fingerprint_means_no_twin_check(self):
+        L2.remember_fingerprint('a' * 64, 'deadbeef')
+        self.read.add('a' * 64)
+        self.assertEqual(L2.already_read_with_same_text('b' * 64, None), [])
+
+    def test_a_malformed_line_does_not_take_the_ledger_down(self):
+        L2.remember_fingerprint('a' * 64, 'deadbeef')
+        with L2.TEXT_MD5.open('a', encoding='utf-8') as fh:
+            fh.write('{ 半行\n')
+        self.assertEqual(L2.fingerprints(), {'a' * 64: 'deadbeef'})
+
+    def test_the_last_write_wins(self):
+        """重抽一遍得到不同的正文（抽取器修好了），以新的为准。"""
+        L2.remember_fingerprint('a' * 64, 'old')
+        L2.remember_fingerprint('a' * 64, 'new')
+        self.assertEqual(L2.fingerprints()['a' * 64], 'new')
+
+
 if __name__ == '__main__':
     unittest.main()
