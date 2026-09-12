@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：468。
+在册文件：469。
 
 | 身份 | 文件数 |
 |---|---|
@@ -21,7 +21,7 @@
 | 项目配置 | 36 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
-| 在册数据/索引 | 25 |
+| 在册数据/索引 | 26 |
 | 配套说明 | 34 |
 | 测试 | 25 |
 
@@ -281,6 +281,7 @@
 | `data/companies.json` | 在册数据/索引 |
 | `data/contracts.json` | 在册数据/索引 |
 | `data/facts.json` | 在册数据/索引 |
+| `data/metric_gaps.jsonl` | 在册数据/索引 |
 | `data/policies.json` | 在册数据/索引 |
 | `data/prices.json` | 在册数据/索引 |
 | [data/product_docs_plan.csv](../data/product_docs_plan.csv) | 在册数据/索引 |
