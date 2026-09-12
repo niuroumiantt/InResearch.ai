@@ -1,6 +1,6 @@
 {
   "version": "0.1-draft",
-  "updated": "2026-08-17",
+  "updated": "2026-09-12",
   "note": "事实层种子。只收 depth 为「精读」或「据实生成」的数——半自动与目录级的行留在 LIBRARY_SCORES.csv 里当索引，不进这张表。首批四条全部来自已立 Finding（M10-F14/F16、M14 芜湖环评），每个数都可回原文逐行核对。",
   "records": [
     {
@@ -3134,6 +3134,1974 @@
       "depth": "精读",
       "notes": "**台股月营收是未经审计的自结数、新台币计价**，汇率波动影响同比读数。同批：纬创 +135.6%、广达 +70.6%。**⚠ 同段落内同比与环比混用**——「鸿海 6 月仅 AI 领域业务营收环比增长」是环比，上述三家是同比，**引用须逐条核对基准**。**单月数据波动大，不宜用单月同比推断年度趋势**；其价值在于台股月营收比季报早一到两个月，是全球 AI 服务器供应链最高频的公开信号。",
       "value": 179.0
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-total-2018",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex",
+        "label": "全球数据中心 IT 资本开支市场"
+      },
+      "value": 1807.74,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2018",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Technology，MFG Revenue ($M) 块，Total 行（第 11 行），2018 年列 E11",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 三维均取 Total。供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 同一数值在 Demand Chart、Supply by Regions、Demand by Customers 三张表的 Total 行完全一致。排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-total-2019",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex",
+        "label": "全球数据中心 IT 资本开支市场"
+      },
+      "value": 1859.88,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2019",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Technology，MFG Revenue ($M) 块，Total 行（第 11 行），2019 年列 F11",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 三维均取 Total。供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 同一数值在 Demand Chart、Supply by Regions、Demand by Customers 三张表的 Total 行完全一致。排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-total-2020",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex",
+        "label": "全球数据中心 IT 资本开支市场"
+      },
+      "value": 1988.43,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Technology，MFG Revenue ($M) 块，Total 行（第 11 行），2020 年列 G11",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 三维均取 Total。供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 同一数值在 Demand Chart、Supply by Regions、Demand by Customers 三张表的 Total 行完全一致。排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-total-2021",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex",
+        "label": "全球数据中心 IT 资本开支市场"
+      },
+      "value": 2305.75,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2021",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Technology，MFG Revenue ($M) 块，Total 行（第 11 行），2021 年列 H11",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 三维均取 Total。供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 同一数值在 Demand Chart、Supply by Regions、Demand by Customers 三张表的 Total 行完全一致。排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-total-2022",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex",
+        "label": "全球数据中心 IT 资本开支市场"
+      },
+      "value": 2649.01,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Technology，MFG Revenue ($M) 块，Total 行（第 11 行），2022 年列 I11",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 三维均取 Total。供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 同一数值在 Demand Chart、Supply by Regions、Demand by Customers 三张表的 Total 行完全一致。排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-total-2023",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex",
+        "label": "全球数据中心 IT 资本开支市场"
+      },
+      "value": 3050.53,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Technology，MFG Revenue ($M) 块，Total 行（第 11 行），2023 年列 J11",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 三维均取 Total。供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 同一数值在 Demand Chart、Supply by Regions、Demand by Customers 三张表的 Total 行完全一致。排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-total-2024",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex",
+        "label": "全球数据中心 IT 资本开支市场"
+      },
+      "value": 4653.01,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Technology，MFG Revenue ($M) 块，Total 行（第 11 行），2024 年列 K11",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 三维均取 Total。供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 同一数值在 Demand Chart、Supply by Regions、Demand by Customers 三张表的 Total 行完全一致。排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-total-2025",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex",
+        "label": "全球数据中心 IT 资本开支市场"
+      },
+      "value": 7113.81,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2025",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Technology，MFG Revenue ($M) 块，Total 行（第 11 行），2025 年列 L11",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 三维均取 Total。供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 同一数值在 Demand Chart、Supply by Regions、Demand by Customers 三张表的 Total 行完全一致。排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-total-2026e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex",
+        "label": "全球数据中心 IT 资本开支市场"
+      },
+      "value": 12276.71,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Technology，MFG Revenue ($M) 块，Total 行（第 11 行），2026 年列 M11",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 三维均取 Total。供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 同一数值在 Demand Chart、Supply by Regions、Demand by Customers 三张表的 Total 行完全一致。2026—2030 为 2026 年 7 月这一版做出的预测；排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-total-2027e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex",
+        "label": "全球数据中心 IT 资本开支市场"
+      },
+      "value": 17509.05,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2027E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Technology，MFG Revenue ($M) 块，Total 行（第 11 行），2027 年列 N11",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 三维均取 Total。供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 同一数值在 Demand Chart、Supply by Regions、Demand by Customers 三张表的 Total 行完全一致。2026—2030 为 2026 年 7 月这一版做出的预测；排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-total-2028e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex",
+        "label": "全球数据中心 IT 资本开支市场"
+      },
+      "value": 22701.05,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2028E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Technology，MFG Revenue ($M) 块，Total 行（第 11 行），2028 年列 O11",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 三维均取 Total。供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 同一数值在 Demand Chart、Supply by Regions、Demand by Customers 三张表的 Total 行完全一致。2026—2030 为 2026 年 7 月这一版做出的预测；排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-total-2029e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex",
+        "label": "全球数据中心 IT 资本开支市场"
+      },
+      "value": 27111.17,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2029E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Technology，MFG Revenue ($M) 块，Total 行（第 11 行），2029 年列 P11",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 三维均取 Total。供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 同一数值在 Demand Chart、Supply by Regions、Demand by Customers 三张表的 Total 行完全一致。2026—2030 为 2026 年 7 月这一版做出的预测；排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-total-2030e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex",
+        "label": "全球数据中心 IT 资本开支市场"
+      },
+      "value": 31121.84,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Technology，MFG Revenue ($M) 块，Total 行（第 11 行），2030 年列 Q11",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 三维均取 Total。供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 同一数值在 Demand Chart、Supply by Regions、Demand by Customers 三张表的 Total 行完全一致。2026—2030 为 2026 年 7 月这一版做出的预测；排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-seg-top-4-us-cloud-2026e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex-top-4-us-cloud",
+        "label": "全球数据中心 IT 资本开支——Top 4 US Cloud"
+      },
+      "value": 6598.72,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Top 4 US Cloud",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Demand by Customers，Capex ($M) 块，Top 4 US Cloud 行（第 13 行），2026 年列 M13",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本条取原表九个叶子分部之一；九个叶子逐年加总与 Total 差值为 0（已核）。汇总项 Hyperscalers 与 AI-specialized Cloud 不可与其成分项一起加总。 原表口径不对称：Top 4 US Cloud 含 Storage Systems，Top 3 China Cloud 不含，两个分部的技术覆盖不一样，直接比会偏。Top 4 US Cloud = Amazon / Google / Meta / Microsoft。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-seg-top-4-us-cloud-2030e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex-top-4-us-cloud",
+        "label": "全球数据中心 IT 资本开支——Top 4 US Cloud"
+      },
+      "value": 19406.06,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Top 4 US Cloud",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Demand by Customers，Capex ($M) 块，Top 4 US Cloud 行（第 13 行），2030 年列 Q13",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本条取原表九个叶子分部之一；九个叶子逐年加总与 Total 差值为 0（已核）。汇总项 Hyperscalers 与 AI-specialized Cloud 不可与其成分项一起加总。 原表口径不对称：Top 4 US Cloud 含 Storage Systems，Top 3 China Cloud 不含，两个分部的技术覆盖不一样，直接比会偏。Top 4 US Cloud = Amazon / Google / Meta / Microsoft。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-seg-top-3-china-cloud-2026e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex-top-3-china-cloud",
+        "label": "全球数据中心 IT 资本开支——Top 3 China Cloud"
+      },
+      "value": 892.78,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Top 3 China Cloud",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Demand by Customers，Capex ($M) 块，Top 3 China Cloud 行（第 14 行），2026 年列 M14",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本条取原表九个叶子分部之一；九个叶子逐年加总与 Total 差值为 0（已核）。汇总项 Hyperscalers 与 AI-specialized Cloud 不可与其成分项一起加总。 原表口径不对称：本分部不含 Storage Systems，而 Top 4 US Cloud 含，两者直接比会偏。Top 3 China Cloud = Alibaba / ByteDance / Tencent。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-seg-top-3-china-cloud-2030e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex-top-3-china-cloud",
+        "label": "全球数据中心 IT 资本开支——Top 3 China Cloud"
+      },
+      "value": 2088.23,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Top 3 China Cloud",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Demand by Customers，Capex ($M) 块，Top 3 China Cloud 行（第 14 行），2030 年列 Q14",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本条取原表九个叶子分部之一；九个叶子逐年加总与 Total 差值为 0（已核）。汇总项 Hyperscalers 与 AI-specialized Cloud 不可与其成分项一起加总。 原表口径不对称：本分部不含 Storage Systems，而 Top 4 US Cloud 含，两者直接比会偏。Top 3 China Cloud = Alibaba / ByteDance / Tencent。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-seg-other-major-cloud-2026e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex-other-major-cloud",
+        "label": "全球数据中心 IT 资本开支——Other Major Cloud"
+      },
+      "value": 558.57,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Other Major Cloud",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Demand by Customers，Capex ($M) 块，Other Major Cloud 行（第 15 行），2026 年列 M15",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本条取原表九个叶子分部之一；九个叶子逐年加总与 Total 差值为 0（已核）。汇总项 Hyperscalers 与 AI-specialized Cloud 不可与其成分项一起加总。 Other Major Cloud = Apple / Oracle。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-seg-other-major-cloud-2030e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex-other-major-cloud",
+        "label": "全球数据中心 IT 资本开支——Other Major Cloud"
+      },
+      "value": 1159.65,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Other Major Cloud",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Demand by Customers，Capex ($M) 块，Other Major Cloud 行（第 15 行），2030 年列 Q15",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本条取原表九个叶子分部之一；九个叶子逐年加总与 Total 差值为 0（已核）。汇总项 Hyperscalers 与 AI-specialized Cloud 不可与其成分项一起加总。 Other Major Cloud = Apple / Oracle。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-seg-ai-model-builders-2026e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex-ai-model-builders",
+        "label": "全球数据中心 IT 资本开支——AI Model Builders"
+      },
+      "value": 413.05,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "AI Model Builders",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Demand by Customers，Capex ($M) 块，AI Model Builders 行（第 17 行），2026 年列 M17",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本条取原表九个叶子分部之一；九个叶子逐年加总与 Total 差值为 0（已核）。汇总项 Hyperscalers 与 AI-specialized Cloud 不可与其成分项一起加总。 本分部是汇总项 AI-specialized Cloud 的成分（AI-specialized Cloud = AI Model Builders + Neocloud，已逐年核对相等），两者不可一起加总。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-seg-ai-model-builders-2030e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex-ai-model-builders",
+        "label": "全球数据中心 IT 资本开支——AI Model Builders"
+      },
+      "value": 1279.84,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "AI Model Builders",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Demand by Customers，Capex ($M) 块，AI Model Builders 行（第 17 行），2030 年列 Q17",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本条取原表九个叶子分部之一；九个叶子逐年加总与 Total 差值为 0（已核）。汇总项 Hyperscalers 与 AI-specialized Cloud 不可与其成分项一起加总。 本分部是汇总项 AI-specialized Cloud 的成分（AI-specialized Cloud = AI Model Builders + Neocloud，已逐年核对相等），两者不可一起加总。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-seg-neocloud-2026e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex-neocloud",
+        "label": "全球数据中心 IT 资本开支——Neocloud"
+      },
+      "value": 830.94,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Neocloud",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Demand by Customers，Capex ($M) 块，Neocloud 行（第 18 行），2026 年列 M18",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本条取原表九个叶子分部之一；九个叶子逐年加总与 Total 差值为 0（已核）。汇总项 Hyperscalers 与 AI-specialized Cloud 不可与其成分项一起加总。 本分部是汇总项 AI-specialized Cloud 的成分（AI-specialized Cloud = AI Model Builders + Neocloud，已逐年核对相等），两者不可一起加总。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-seg-neocloud-2030e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex-neocloud",
+        "label": "全球数据中心 IT 资本开支——Neocloud"
+      },
+      "value": 1957.3,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Neocloud",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Demand by Customers，Capex ($M) 块，Neocloud 行（第 18 行），2030 年列 Q18",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本条取原表九个叶子分部之一；九个叶子逐年加总与 Total 差值为 0（已核）。汇总项 Hyperscalers 与 AI-specialized Cloud 不可与其成分项一起加总。 本分部是汇总项 AI-specialized Cloud 的成分（AI-specialized Cloud = AI Model Builders + Neocloud，已逐年核对相等），两者不可一起加总。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-seg-rest-of-cloud-2026e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex-rest-of-cloud",
+        "label": "全球数据中心 IT 资本开支——Rest of Cloud"
+      },
+      "value": 627.52,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Rest of Cloud",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Demand by Customers，Capex ($M) 块，Rest of Cloud 行（第 19 行），2026 年列 M19",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本条取原表九个叶子分部之一；九个叶子逐年加总与 Total 差值为 0（已核）。汇总项 Hyperscalers 与 AI-specialized Cloud 不可与其成分项一起加总。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-seg-rest-of-cloud-2030e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex-rest-of-cloud",
+        "label": "全球数据中心 IT 资本开支——Rest of Cloud"
+      },
+      "value": 1168.72,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Rest of Cloud",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Demand by Customers，Capex ($M) 块，Rest of Cloud 行（第 19 行），2030 年列 Q19",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本条取原表九个叶子分部之一；九个叶子逐年加总与 Total 差值为 0（已核）。汇总项 Hyperscalers 与 AI-specialized Cloud 不可与其成分项一起加总。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-seg-colocation-2026e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex-colocation",
+        "label": "全球数据中心 IT 资本开支——Colocation"
+      },
+      "value": 221.68,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Colocation",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Demand by Customers，Capex ($M) 块，Colocation 行（第 20 行），2026 年列 M20",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本条取原表九个叶子分部之一；九个叶子逐年加总与 Total 差值为 0（已核）。汇总项 Hyperscalers 与 AI-specialized Cloud 不可与其成分项一起加总。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-seg-colocation-2030e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex-colocation",
+        "label": "全球数据中心 IT 资本开支——Colocation"
+      },
+      "value": 523.16,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Colocation",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Demand by Customers，Capex ($M) 块，Colocation 行（第 20 行），2030 年列 Q20",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本条取原表九个叶子分部之一；九个叶子逐年加总与 Total 差值为 0（已核）。汇总项 Hyperscalers 与 AI-specialized Cloud 不可与其成分项一起加总。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-seg-telco-2026e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex-telco",
+        "label": "全球数据中心 IT 资本开支——Telco"
+      },
+      "value": 183.99,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Telco",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Demand by Customers，Capex ($M) 块，Telco 行（第 21 行），2026 年列 M21",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本条取原表九个叶子分部之一；九个叶子逐年加总与 Total 差值为 0（已核）。汇总项 Hyperscalers 与 AI-specialized Cloud 不可与其成分项一起加总。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-seg-telco-2030e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex-telco",
+        "label": "全球数据中心 IT 资本开支——Telco"
+      },
+      "value": 337.28,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Telco",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Demand by Customers，Capex ($M) 块，Telco 行（第 21 行），2030 年列 Q21",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本条取原表九个叶子分部之一；九个叶子逐年加总与 Total 差值为 0（已核）。汇总项 Hyperscalers 与 AI-specialized Cloud 不可与其成分项一起加总。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-seg-enterprise-2026e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex-enterprise",
+        "label": "全球数据中心 IT 资本开支——Enterprise"
+      },
+      "value": 1949.46,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Enterprise",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Demand by Customers，Capex ($M) 块，Enterprise 行（第 22 行），2026 年列 M22",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本条取原表九个叶子分部之一；九个叶子逐年加总与 Total 差值为 0（已核）。汇总项 Hyperscalers 与 AI-specialized Cloud 不可与其成分项一起加总。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-seg-enterprise-2030e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-capex-enterprise",
+        "label": "全球数据中心 IT 资本开支——Enterprise"
+      },
+      "value": 3201.61,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Enterprise",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Demand by Customers，Capex ($M) 块，Enterprise 行（第 22 行），2030 年列 Q22",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本条取原表九个叶子分部之一；九个叶子逐年加总与 Total 差值为 0（已核）。汇总项 Hyperscalers 与 AI-specialized Cloud 不可与其成分项一起加总。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-tech-servers-2026e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "component",
+        "id": "dc-it-servers",
+        "label": "Servers"
+      },
+      "value": 7913.9,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "Total",
+        "technology": "Servers"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Technology，MFG Revenue ($M) 块，Servers 行（第 12 行），2026 年列 M12",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 四个技术分类互斥，逐年加总与 Total 差值为 0（已核）。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-tech-servers-2030e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "component",
+        "id": "dc-it-servers",
+        "label": "Servers"
+      },
+      "value": 19407.44,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "Total",
+        "technology": "Servers"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Technology，MFG Revenue ($M) 块，Servers 行（第 12 行），2030 年列 Q12",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 四个技术分类互斥，逐年加总与 Total 差值为 0（已核）。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-tech-storage-systems-2026e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "component",
+        "id": "dc-it-storage-systems",
+        "label": "Storage Systems"
+      },
+      "value": 344.52,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "Total",
+        "technology": "Storage Systems"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Technology，MFG Revenue ($M) 块，Storage Systems 行（第 13 行），2026 年列 M13",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 四个技术分类互斥，逐年加总与 Total 差值为 0（已核）。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-tech-storage-systems-2030e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "component",
+        "id": "dc-it-storage-systems",
+        "label": "Storage Systems"
+      },
+      "value": 431.6,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "Total",
+        "technology": "Storage Systems"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Technology，MFG Revenue ($M) 块，Storage Systems 行（第 13 行），2030 年列 Q13",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 四个技术分类互斥，逐年加总与 Total 差值为 0（已核）。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-tech-network-infrastructure-2026e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "component",
+        "id": "dc-it-network-infrastructure",
+        "label": "Network Infrastructure"
+      },
+      "value": 1905.07,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "Total",
+        "technology": "Network Infrastructure"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Technology，MFG Revenue ($M) 块，Network Infrastructure 行（第 14 行），2026 年列 M14",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 四个技术分类互斥，逐年加总与 Total 差值为 0（已核）。 含以太网与 InfiniBand 交换机（前端与后端）、Scale-up networking、光模块（前端与后端）、网络安全设备、数据中心互联光传输、路由器。AI Networking Switch 曾归在 DCPI & Other DC 下，2026-07 版重分类进本项，跨版本对照要留意。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-tech-network-infrastructure-2030e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "component",
+        "id": "dc-it-network-infrastructure",
+        "label": "Network Infrastructure"
+      },
+      "value": 5767.97,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "Total",
+        "technology": "Network Infrastructure"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Technology，MFG Revenue ($M) 块，Network Infrastructure 行（第 14 行），2030 年列 Q14",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 四个技术分类互斥，逐年加总与 Total 差值为 0（已核）。 含以太网与 InfiniBand 交换机（前端与后端）、Scale-up networking、光模块（前端与后端）、网络安全设备、数据中心互联光传输、路由器。AI Networking Switch 曾归在 DCPI & Other DC 下，2026-07 版重分类进本项，跨版本对照要留意。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-tech-dcpi-and-other-dc-2026e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "component",
+        "id": "dc-it-dcpi-and-other-dc",
+        "label": "DCPI & Other DC"
+      },
+      "value": 2113.23,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "Total",
+        "technology": "DCPI & Other DC"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Technology，MFG Revenue ($M) 块，DCPI & Other DC 行（第 15 行），2026 年列 M15",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 四个技术分类互斥，逐年加总与 Total 差值为 0（已核）。 DCPI = Data Center Physical Infrastructure；Other DC 含线缆、建筑、土地及未计入 DCPI 的其它供电与制冷设施。AI Networking Switch 已从本项移出到 Network Infrastructure，跨版本对照要留意。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-tech-dcpi-and-other-dc-2030e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "component",
+        "id": "dc-it-dcpi-and-other-dc",
+        "label": "DCPI & Other DC"
+      },
+      "value": 5514.83,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "Total",
+        "technology": "DCPI & Other DC"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Technology，MFG Revenue ($M) 块，DCPI & Other DC 行（第 15 行），2030 年列 Q15",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 四个技术分类互斥，逐年加总与 Total 差值为 0（已核）。 DCPI = Data Center Physical Infrastructure；Other DC 含线缆、建筑、土地及未计入 DCPI 的其它供电与制冷设施。AI Networking Switch 已从本项移出到 Network Infrastructure，跨版本对照要留意。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-region-north-america-2026e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "region",
+        "id": "north-america",
+        "label": "North America"
+      },
+      "value": 7558.68,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "North America",
+        "technology": "Total"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Regions，MFG Revenue ($M) 块，North America 行（第 12 行），2026 年列 M12",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本表六个地域行逐年加总与 Total 差值为 0（已核）。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-region-north-america-2030e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "region",
+        "id": "north-america",
+        "label": "North America"
+      },
+      "value": 19053.19,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "North America",
+        "technology": "Total"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Regions，MFG Revenue ($M) 块，North America 行（第 12 行），2030 年列 Q12",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本表六个地域行逐年加总与 Total 差值为 0（已核）。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-region-emea-2026e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "region",
+        "id": "emea",
+        "label": "EMEA"
+      },
+      "value": 1747.1,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "EMEA",
+        "technology": "Total"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Regions，MFG Revenue ($M) 块，EMEA 行（第 13 行），2026 年列 M13",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本表六个地域行逐年加总与 Total 差值为 0（已核）。 EMEA = Europe, Middle East, and Africa。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-region-emea-2030e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "region",
+        "id": "emea",
+        "label": "EMEA"
+      },
+      "value": 4704.21,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "EMEA",
+        "technology": "Total"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Regions，MFG Revenue ($M) 块，EMEA 行（第 13 行），2030 年列 Q13",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本表六个地域行逐年加总与 Total 差值为 0（已核）。 EMEA = Europe, Middle East, and Africa。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-region-asia-pacific-2026e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "region",
+        "id": "asia-pacific",
+        "label": "Asia Pacific"
+      },
+      "value": 84.75,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "Asia Pacific",
+        "technology": "Total"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Regions，MFG Revenue ($M) 块，Asia Pacific 行（第 14 行），2026 年列 M14",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本表六个地域行逐年加总与 Total 差值为 0（已核）。 【与原表注释冲突，按数值为准】原表 NOTES 写「Asia Pacific = China + Asia Pacific excl. China」，但本透视表里这三行是并列的六行之一：2026E 本行 84.75 亿美元，而 China 1620.85 + Asia Pacific excl. China 937.28 = 2558.13 亿美元，远不相等；六行逐年加总恰等于 Total（差值为 0，已核）。故本行是与 China、Asia Pacific excl. China 互斥的独立地域桶，不是二者之和；注释所述的包含关系在这张表上不成立。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-region-asia-pacific-2030e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "region",
+        "id": "asia-pacific",
+        "label": "Asia Pacific"
+      },
+      "value": 129.66,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "Asia Pacific",
+        "technology": "Total"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Regions，MFG Revenue ($M) 块，Asia Pacific 行（第 14 行），2030 年列 Q14",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本表六个地域行逐年加总与 Total 差值为 0（已核）。 【与原表注释冲突，按数值为准】原表 NOTES 写「Asia Pacific = China + Asia Pacific excl. China」，但本透视表里这三行是并列的六行之一：2026E 本行 84.75 亿美元，而 China 1620.85 + Asia Pacific excl. China 937.28 = 2558.13 亿美元，远不相等；六行逐年加总恰等于 Total（差值为 0，已核）。故本行是与 China、Asia Pacific excl. China 互斥的独立地域桶，不是二者之和；注释所述的包含关系在这张表上不成立。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-region-china-2026e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "region",
+        "id": "china",
+        "label": "China"
+      },
+      "value": 1620.85,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "China",
+        "technology": "Total"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Regions，MFG Revenue ($M) 块，China 行（第 15 行），2026 年列 M15",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本表六个地域行逐年加总与 Total 差值为 0（已核）。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-region-china-2030e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "region",
+        "id": "china",
+        "label": "China"
+      },
+      "value": 3923.37,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "China",
+        "technology": "Total"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Regions，MFG Revenue ($M) 块，China 行（第 15 行），2030 年列 Q15",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本表六个地域行逐年加总与 Total 差值为 0（已核）。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-region-asia-pacific-excl-china-2026e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "region",
+        "id": "asia-pacific-excl-china",
+        "label": "Asia Pacific excl. China"
+      },
+      "value": 937.28,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "Asia Pacific excl. China",
+        "technology": "Total"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Regions，MFG Revenue ($M) 块，Asia Pacific excl. China 行（第 16 行），2026 年列 M16",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本表六个地域行逐年加总与 Total 差值为 0（已核）。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-region-asia-pacific-excl-china-2030e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "region",
+        "id": "asia-pacific-excl-china",
+        "label": "Asia Pacific excl. China"
+      },
+      "value": 2707.46,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "Asia Pacific excl. China",
+        "technology": "Total"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Regions，MFG Revenue ($M) 块，Asia Pacific excl. China 行（第 16 行），2030 年列 Q16",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本表六个地域行逐年加总与 Total 差值为 0（已核）。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-region-cala-2026e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "region",
+        "id": "cala",
+        "label": "CALA"
+      },
+      "value": 328.05,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "CALA",
+        "technology": "Total"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Regions，MFG Revenue ($M) 块，CALA 行（第 17 行），2026 年列 M17",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本表六个地域行逐年加总与 Total 差值为 0（已核）。 CALA = Caribbean and Latin America。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-dcitcapex-region-cala-2030e",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "region",
+        "id": "cala",
+        "label": "CALA"
+      },
+      "value": 603.96,
+      "unit": "亿美元",
+      "caliber": {
+        "segment": "Total",
+        "region": "CALA",
+        "technology": "Total"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Regions，MFG Revenue ($M) 块，CALA 行（第 17 行），2030 年列 Q17",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 本表六个地域行逐年加总与 Total 差值为 0（已核）。 CALA = Caribbean and Latin America。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。 排除项未披露：原表把完整定义指向工作簿之外的 Executive Summary 文件，表内无任何排除项说明，「不含什么」一律不推。"
+    },
+    {
+      "fact_id": "delloro-jul26-srvrev-all-servers-2026e",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "global-server-market",
+        "label": "全球服务器市场"
+      },
+      "value": 7913.9,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "All Servers",
+        "region": "Total"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Servers & Storage，MFG Revenue ($M) 块，Servers 行（第 12 行），2026 年列 M12",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 原表行名 Servers，对应口径枚举 All Servers；等于 Accelerated/High-End + General-Purpose & Other。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。"
+    },
+    {
+      "fact_id": "delloro-jul26-srvunits-all-servers-2026e",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "global-server-market",
+        "label": "全球服务器市场"
+      },
+      "value": 22355.94,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "All Servers",
+        "region": "Total"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Servers & Storage，Units (000's) 块，Servers 行（第 36 行），2026 年列 M36",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "台数换算：原表列头写 Units (000's)，但单元格存的是台数原值，不是千台——以 MFG Revenue(原始美元) ÷ Units = Unit ASP($) 校验成立（2026 年本行 791390040412.36 ÷ 22355941.00 = 35399.54 美元/台，与 Unit ASP 行一致），若按列头直接当千台会大 1000 倍。本条 value = 原表数值 ÷ 1000，单位千台。 原表行名 Servers，对应口径枚举 All Servers；等于 Accelerated/High-End + General-Purpose & Other。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。"
+    },
+    {
+      "fact_id": "delloro-jul26-srvasp-all-servers-2026e",
+      "metric_id": "server_asp",
+      "entity": {
+        "type": "market",
+        "id": "global-server-market",
+        "label": "全球服务器市场"
+      },
+      "value": 35399.54,
+      "unit": "美元/台",
+      "caliber": {
+        "server_class": "All Servers",
+        "region": "Total"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Servers & Storage，Unit ASP ($) 块，Servers 行（第 60 行），2026 年列 M60",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "原表列头 Unit ASP ($)，数值本身就是美元/台，表头与数值一致，不做任何换算（与金额列的 1e8 换算、台数列的 1e3 换算都不同）。 原表行名 Servers，对应口径枚举 All Servers；等于 Accelerated/High-End + General-Purpose & Other。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。"
+    },
+    {
+      "fact_id": "delloro-jul26-srvrev-all-servers-2030e",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "global-server-market",
+        "label": "全球服务器市场"
+      },
+      "value": 19407.44,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "All Servers",
+        "region": "Total"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Servers & Storage，MFG Revenue ($M) 块，Servers 行（第 12 行），2030 年列 Q12",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 原表行名 Servers，对应口径枚举 All Servers；等于 Accelerated/High-End + General-Purpose & Other。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。"
+    },
+    {
+      "fact_id": "delloro-jul26-srvunits-all-servers-2030e",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "global-server-market",
+        "label": "全球服务器市场"
+      },
+      "value": 30575.34,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "All Servers",
+        "region": "Total"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Servers & Storage，Units (000's) 块，Servers 行（第 36 行），2030 年列 Q36",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "台数换算：原表列头写 Units (000's)，但单元格存的是台数原值，不是千台——以 MFG Revenue(原始美元) ÷ Units = Unit ASP($) 校验成立（2030 年本行 1940744357074.27 ÷ 30575343.63 = 63474.16 美元/台，与 Unit ASP 行一致），若按列头直接当千台会大 1000 倍。本条 value = 原表数值 ÷ 1000，单位千台。 原表行名 Servers，对应口径枚举 All Servers；等于 Accelerated/High-End + General-Purpose & Other。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。"
+    },
+    {
+      "fact_id": "delloro-jul26-srvasp-all-servers-2030e",
+      "metric_id": "server_asp",
+      "entity": {
+        "type": "market",
+        "id": "global-server-market",
+        "label": "全球服务器市场"
+      },
+      "value": 63474.16,
+      "unit": "美元/台",
+      "caliber": {
+        "server_class": "All Servers",
+        "region": "Total"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Servers & Storage，Unit ASP ($) 块，Servers 行（第 60 行），2030 年列 Q60",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "原表列头 Unit ASP ($)，数值本身就是美元/台，表头与数值一致，不做任何换算（与金额列的 1e8 换算、台数列的 1e3 换算都不同）。 原表行名 Servers，对应口径枚举 All Servers；等于 Accelerated/High-End + General-Purpose & Other。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。"
+    },
+    {
+      "fact_id": "delloro-jul26-srvrev-accelerated-high-end-2026e",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "global-server-market",
+        "label": "全球服务器市场"
+      },
+      "value": 4856.06,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "region": "Total"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Servers & Storage，MFG Revenue ($M) 块，Accelerated/High-End 行（第 13 行），2026 年列 M13",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 原文定义：带训练能力加速器的服务器，自 2020 年起单独追踪，2020 年之前无此切分，跨年序列在 2020 处断裂。可用于 M01-Q04（AI 负载与传统负载的占比与增速差）。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。"
+    },
+    {
+      "fact_id": "delloro-jul26-srvunits-accelerated-high-end-2026e",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "global-server-market",
+        "label": "全球服务器市场"
+      },
+      "value": 3234.64,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "region": "Total"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Servers & Storage，Units (000's) 块，Accelerated/High-End 行（第 37 行），2026 年列 M37",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "台数换算：原表列头写 Units (000's)，但单元格存的是台数原值，不是千台——以 MFG Revenue(原始美元) ÷ Units = Unit ASP($) 校验成立（2026 年本行 485606483377.20 ÷ 3234641.49 = 150126.83 美元/台，与 Unit ASP 行一致），若按列头直接当千台会大 1000 倍。本条 value = 原表数值 ÷ 1000，单位千台。 原文定义：带训练能力加速器的服务器，自 2020 年起单独追踪，2020 年之前无此切分，跨年序列在 2020 处断裂。可用于 M01-Q04（AI 负载与传统负载的占比与增速差）。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。"
+    },
+    {
+      "fact_id": "delloro-jul26-srvasp-accelerated-high-end-2026e",
+      "metric_id": "server_asp",
+      "entity": {
+        "type": "market",
+        "id": "global-server-market",
+        "label": "全球服务器市场"
+      },
+      "value": 150126.83,
+      "unit": "美元/台",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "region": "Total"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Servers & Storage，Unit ASP ($) 块，Accelerated/High-End 行（第 61 行），2026 年列 M61",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "原表列头 Unit ASP ($)，数值本身就是美元/台，表头与数值一致，不做任何换算（与金额列的 1e8 换算、台数列的 1e3 换算都不同）。 原文定义：带训练能力加速器的服务器，自 2020 年起单独追踪，2020 年之前无此切分，跨年序列在 2020 处断裂。可用于 M01-Q04（AI 负载与传统负载的占比与增速差）。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。"
+    },
+    {
+      "fact_id": "delloro-jul26-srvrev-accelerated-high-end-2030e",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "global-server-market",
+        "label": "全球服务器市场"
+      },
+      "value": 13221.22,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "region": "Total"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Servers & Storage，MFG Revenue ($M) 块，Accelerated/High-End 行（第 13 行），2030 年列 Q13",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 原文定义：带训练能力加速器的服务器，自 2020 年起单独追踪，2020 年之前无此切分，跨年序列在 2020 处断裂。可用于 M01-Q04（AI 负载与传统负载的占比与增速差）。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。"
+    },
+    {
+      "fact_id": "delloro-jul26-srvunits-accelerated-high-end-2030e",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "global-server-market",
+        "label": "全球服务器市场"
+      },
+      "value": 6930.19,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "region": "Total"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Servers & Storage，Units (000's) 块，Accelerated/High-End 行（第 37 行），2030 年列 Q37",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "台数换算：原表列头写 Units (000's)，但单元格存的是台数原值，不是千台——以 MFG Revenue(原始美元) ÷ Units = Unit ASP($) 校验成立（2030 年本行 1322122354647.77 ÷ 6930189.95 = 190777.22 美元/台，与 Unit ASP 行一致），若按列头直接当千台会大 1000 倍。本条 value = 原表数值 ÷ 1000，单位千台。 原文定义：带训练能力加速器的服务器，自 2020 年起单独追踪，2020 年之前无此切分，跨年序列在 2020 处断裂。可用于 M01-Q04（AI 负载与传统负载的占比与增速差）。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。"
+    },
+    {
+      "fact_id": "delloro-jul26-srvasp-accelerated-high-end-2030e",
+      "metric_id": "server_asp",
+      "entity": {
+        "type": "market",
+        "id": "global-server-market",
+        "label": "全球服务器市场"
+      },
+      "value": 190777.22,
+      "unit": "美元/台",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "region": "Total"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Servers & Storage，Unit ASP ($) 块，Accelerated/High-End 行（第 61 行），2030 年列 Q61",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "原表列头 Unit ASP ($)，数值本身就是美元/台，表头与数值一致，不做任何换算（与金额列的 1e8 换算、台数列的 1e3 换算都不同）。 原文定义：带训练能力加速器的服务器，自 2020 年起单独追踪，2020 年之前无此切分，跨年序列在 2020 处断裂。可用于 M01-Q04（AI 负载与传统负载的占比与增速差）。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。"
+    },
+    {
+      "fact_id": "delloro-jul26-srvrev-general-purpose-and-other-2026e",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "global-server-market",
+        "label": "全球服务器市场"
+      },
+      "value": 3057.84,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "General-Purpose & Other",
+        "region": "Total"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Servers & Storage，MFG Revenue ($M) 块，General-Purpose & Other 行（第 14 行），2026 年列 M14",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 原表行名写作 General-Purpose & Other（& 号），口径枚举写作 General-Purpose & Other，是同一项；指不带高端/训练能力加速器的其余全部服务器。可用于 M01-Q04。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。"
+    },
+    {
+      "fact_id": "delloro-jul26-srvunits-general-purpose-and-other-2026e",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "global-server-market",
+        "label": "全球服务器市场"
+      },
+      "value": 19121.3,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "General-Purpose & Other",
+        "region": "Total"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Servers & Storage，Units (000's) 块，General-Purpose & Other 行（第 38 行），2026 年列 M38",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "台数换算：原表列头写 Units (000's)，但单元格存的是台数原值，不是千台——以 MFG Revenue(原始美元) ÷ Units = Unit ASP($) 校验成立（2026 年本行 305783557035.16 ÷ 19121299.51 = 15991.78 美元/台，与 Unit ASP 行一致），若按列头直接当千台会大 1000 倍。本条 value = 原表数值 ÷ 1000，单位千台。 原表行名写作 General-Purpose & Other（& 号），口径枚举写作 General-Purpose & Other，是同一项；指不带高端/训练能力加速器的其余全部服务器。可用于 M01-Q04。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。"
+    },
+    {
+      "fact_id": "delloro-jul26-srvasp-general-purpose-and-other-2026e",
+      "metric_id": "server_asp",
+      "entity": {
+        "type": "market",
+        "id": "global-server-market",
+        "label": "全球服务器市场"
+      },
+      "value": 15991.78,
+      "unit": "美元/台",
+      "caliber": {
+        "server_class": "General-Purpose & Other",
+        "region": "Total"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Servers & Storage，Unit ASP ($) 块，General-Purpose & Other 行（第 62 行），2026 年列 M62",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "原表列头 Unit ASP ($)，数值本身就是美元/台，表头与数值一致，不做任何换算（与金额列的 1e8 换算、台数列的 1e3 换算都不同）。 原表行名写作 General-Purpose & Other（& 号），口径枚举写作 General-Purpose & Other，是同一项；指不带高端/训练能力加速器的其余全部服务器。可用于 M01-Q04。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。"
+    },
+    {
+      "fact_id": "delloro-jul26-srvrev-general-purpose-and-other-2030e",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "global-server-market",
+        "label": "全球服务器市场"
+      },
+      "value": 6186.22,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "General-Purpose & Other",
+        "region": "Total"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Servers & Storage，MFG Revenue ($M) 块，General-Purpose & Other 行（第 14 行），2030 年列 Q14",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "金额换算：原表金额单元格存的是原始美元，列头写 Capex ($M) / MFG Revenue ($M) 与数值不符（按表头再乘 1e6 会错一百万倍）；本条 value = 原表原始美元 ÷ 1e8，单位亿美元。 原表行名写作 General-Purpose & Other（& 号），口径枚举写作 General-Purpose & Other，是同一项；指不带高端/训练能力加速器的其余全部服务器。可用于 M01-Q04。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。"
+    },
+    {
+      "fact_id": "delloro-jul26-srvunits-general-purpose-and-other-2030e",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "global-server-market",
+        "label": "全球服务器市场"
+      },
+      "value": 23645.15,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "General-Purpose & Other",
+        "region": "Total"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Servers & Storage，Units (000's) 块，General-Purpose & Other 行（第 38 行），2030 年列 Q38",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "台数换算：原表列头写 Units (000's)，但单元格存的是台数原值，不是千台——以 MFG Revenue(原始美元) ÷ Units = Unit ASP($) 校验成立（2030 年本行 618622002426.50 ÷ 23645153.68 = 26162.74 美元/台，与 Unit ASP 行一致），若按列头直接当千台会大 1000 倍。本条 value = 原表数值 ÷ 1000，单位千台。 原表行名写作 General-Purpose & Other（& 号），口径枚举写作 General-Purpose & Other，是同一项；指不带高端/训练能力加速器的其余全部服务器。可用于 M01-Q04。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。"
+    },
+    {
+      "fact_id": "delloro-jul26-srvasp-general-purpose-and-other-2030e",
+      "metric_id": "server_asp",
+      "entity": {
+        "type": "market",
+        "id": "global-server-market",
+        "label": "全球服务器市场"
+      },
+      "value": 26162.74,
+      "unit": "美元/台",
+      "caliber": {
+        "server_class": "General-Purpose & Other",
+        "region": "Total"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Servers & Storage，Unit ASP ($) 块，General-Purpose & Other 行（第 62 行），2030 年列 Q62",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "待交叉验证",
+      "notes": "原表列头 Unit ASP ($)，数值本身就是美元/台，表头与数值一致，不做任何换算（与金额列的 1e8 换算、台数列的 1e3 换算都不同）。 原表行名写作 General-Purpose & Other（& 号），口径枚举写作 General-Purpose & Other，是同一项；指不带高端/训练能力加速器的其余全部服务器。可用于 M01-Q04。 供给侧（Supply by Technology / Supply by Regions）与需求侧（Demand by Customers）是同一个总量的两种切法，逐年 Total 完全相同，互相印证不构成交叉验证。"
+    },
+    {
+      "fact_id": "delloro-jul26-srvunits-storage-systems-2026e",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "global-storage-system-market",
+        "label": "全球存储系统市场"
+      },
+      "value": null,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "Storage Systems",
+        "region": "Total"
+      },
+      "as_of": "2026E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Servers & Storage，Units (000's) 块，Storage Systems 行（第 39 行）及其下 All Flash Arrays（第 40 行）、Disk and Hybrid Arrays（第 41 行）整行为空，2026 年列 M",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "孤证已知",
+      "notes": "值未披露：原表注 \"Units are not available for Storage Systems.\"，Units (000's) 块下 Storage Systems / All Flash Arrays / Disk and Hybrid Arrays 三行全年为空，Unit ASP ($) 块同样为空。不用金额 ÷ ASP 反推——存储既无台数也无 ASP，没有可反推的除数；且本块 Total 行台数与 Servers 行逐年完全相同，说明存储台数根本未计入总量。【口径提示】framework/metrics.json 的 server_unit_shipments.caliber_dims.server_class 目前只有 Accelerated/High-End / General-Purpose & Other / All Servers 三个取值，没有 Storage Systems，本条的 server_class 取值超出现有枚举，待菜单补齐后复核。"
+    },
+    {
+      "fact_id": "delloro-jul26-srvunits-storage-systems-2030e",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "global-storage-system-market",
+        "label": "全球存储系统市场"
+      },
+      "value": null,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "Storage Systems",
+        "region": "Total"
+      },
+      "as_of": "2030E@2026-07",
+      "evidence": {
+        "sha256": "1aa7674a687c1ecc325a7de0dd3bd58176f21dc486138eaba35b5f43b188dc85",
+        "local_file": "DellOro 202607 CL21A_Data_Center_IT_Capex_Forecast_Pivot_Tables_Jul26.xlsx",
+        "locator": "工作表 Supply by Servers & Storage，Units (000's) 块，Storage Systems 行（第 39 行）及其下 All Flash Arrays（第 40 行）、Disk and Hybrid Arrays（第 41 行）整行为空，2030 年列 Q",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "bound": "point",
+      "corroboration": "孤证已知",
+      "notes": "值未披露：原表注 \"Units are not available for Storage Systems.\"，Units (000's) 块下 Storage Systems / All Flash Arrays / Disk and Hybrid Arrays 三行全年为空，Unit ASP ($) 块同样为空。不用金额 ÷ ASP 反推——存储既无台数也无 ASP，没有可反推的除数；且本块 Total 行台数与 Servers 行逐年完全相同，说明存储台数根本未计入总量。【口径提示】framework/metrics.json 的 server_unit_shipments.caliber_dims.server_class 目前只有 Accelerated/High-End / General-Purpose & Other / All Servers 三个取值，没有 Storage Systems，本条的 server_class 取值超出现有枚举，待菜单补齐后复核。"
     }
   ]
 }
