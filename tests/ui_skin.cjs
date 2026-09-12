@@ -13,7 +13,9 @@ const dir = process.env.UI_QA_DIR;
 (async () => {
  const browser = await chromium.launch({channel:process.env.UI_BROWSER_CHANNEL || undefined, headless:true, args:['--enable-unsafe-swiftshader']});
  try {
- const context = await browser.newContext({viewport:{width:1440,height:1000},colorScheme:'dark'});
+ // CI has software WebGL. Keep CSS dimensions and real scenes, with fewer raster pixels.
+ const context = await browser.newContext({viewport:{width:1440,height:1000},colorScheme:'dark',
+   reducedMotion:'reduce',deviceScaleFactor:process.env.CI ? 0.5 : 1});
  const page = await context.newPage(); const errors=[];
  page.on('pageerror',e=>errors.push(e.message));
  const measure = () => page.evaluate(()=>({skin:document.documentElement.dataset.uiSkin,theme:document.documentElement.dataset.uiTheme,width:document.documentElement.scrollWidth,viewport:innerWidth,bg:getComputedStyle(document.body).backgroundColor,bar:document.querySelectorAll('#ui-skinbar').length}));
