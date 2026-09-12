@@ -662,5 +662,77 @@ class NamedRejudgeTests(unittest.TestCase):
         report = self.pack(cohort='new')
         self.assertEqual(report['packed'], 0)      # every file already judged
 
+class DrawingsCohortTests(unittest.TestCase):
+    """出处未知的表格，判的时候没人读过它的文本框。
+
+    表格的署名常常不在单元格里。688d46ed 的「知识星球：Global Semi Research」
+    是重复在五个 drawing 里的水印，取数的读者一个字都没看到，于是判成出处未知，
+    而机构名一直就在文件中。
+
+    队列刻意收窄：所有表格都是在读不到 drawing 的年代判的，但水印只能改变
+    「出处仍然缺着」的那些，所以队列是未署名的那几份，不是全部 760 份。
+    """
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix='m4-drawings-')
+        self.results = Path(self.temp.name) / 'l1_results.jsonl'
+        self._saved = L1.RESULTS
+        L1.RESULTS = self.results
+
+    def tearDown(self):
+        L1.RESULTS = self._saved
+        self.temp.cleanup()
+
+    def write(self, rows):
+        self.results.write_text(
+            '\n'.join(json.dumps(r, ensure_ascii=False) for r in rows) + '\n',
+            encoding='utf-8')
+
+    def row(self, sha, suffix='.xlsx', meta=None, org='未知', **over):
+        return {'sha256': sha, 'rel': 'a/%s%s' % (sha[:6], suffix), 'suffix': suffix,
+                'score': 8, 'status': 'ok', 'org': org,
+                'meta': {'sheets': 2, 'cells': 300} if meta is None else meta, **over}
+
+    def test_an_unattributed_workbook_is_in_the_cohort(self):
+        self.write([self.row('a' * 64)])
+        self.assertEqual(PK.judged_without_drawings(), {'a' * 64})
+
+    def test_an_attributed_one_is_not(self):
+        """水印改不了已经知道的出处——重判它只是白读一遍。"""
+        self.write([self.row('b' * 64, org='IDC')])
+        self.assertEqual(PK.judged_without_drawings(), set())
+
+    def test_an_empty_org_counts_as_unknown(self):
+        self.write([self.row('c' * 64, org='   ')])
+        self.assertEqual(PK.judged_without_drawings(), {'c' * 64})
+
+    def test_a_workbook_already_read_for_drawings_is_not(self):
+        self.write([self.row('d' * 64, meta={'sheets': 1, 'cells': 5,
+                                             'drawing_lines': 0})])
+        self.assertEqual(PK.judged_without_drawings(), set())
+
+    def test_only_spreadsheets(self):
+        """.ppt 和 .docx 的文本一直是整篇读的，没丢过文本框。"""
+        self.write([self.row('e' * 64, suffix='.pdf'),
+                    self.row('f' * 64, suffix='.ppt'),
+                    self.row('01' + 'a' * 62, suffix='.docx')])
+        self.assertEqual(PK.judged_without_drawings(), set())
+
+    def test_the_newest_row_decides(self):
+        self.write([self.row('02' + 'b' * 62),
+                    self.row('02' + 'b' * 62, org='Global Semi Research',
+                             meta={'sheets': 1, 'cells': 5, 'drawing_lines': 1})])
+        self.assertEqual(PK.judged_without_drawings(), set())
+
+    def test_a_declared_unrecoverable_org_is_still_in_the_cohort(self):
+        """翻遍全文没找到署名的那个读者，对 drawing 一样是瞎的。"""
+        self.write([self.row('03' + 'c' * 62, org_unrecoverable=True)])
+        self.assertEqual(PK.judged_without_drawings(), {'03' + 'c' * 62})
+
+    def test_it_is_a_named_cohort(self):
+        self.assertIn('drawings', PK.COHORTS)
+        self.assertIs(PK.COHORTS['drawings'], PK.judged_without_drawings)
+
+
 if __name__ == '__main__':
     unittest.main()

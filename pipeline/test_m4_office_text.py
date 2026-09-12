@@ -572,6 +572,103 @@ class XlsxCellTests(unittest.TestCase):
         self.assertIn('只有图表', text)
 
 
+class DrawingTests(unittest.TestCase):
+    """688d46ed 的署名是一张水印，重复在五个 drawing 里，单元格里一个字都没有。
+
+    表格的出处常常不在表格里。取数的读者只看单元格，于是 L1 判它出处未知，
+    而机构名一直就在文件中。
+    """
+
+    SHEET = ('<worksheet><sheetData><row r="1">'
+             '<c r="A1"><v>4406</v></c></row></sheetData></worksheet>')
+
+    def make(self, drawings, sheet=None):
+        tmp = tempfile.NamedTemporaryFile(suffix='.xlsx', delete=False)
+        with zipfile.ZipFile(tmp.name, 'w') as z:
+            z.writestr('xl/workbook.xml', '<workbook><sheet name="Sheet1"/></workbook>')
+            z.writestr('xl/worksheets/sheet1.xml', self.SHEET if sheet is None else sheet)
+            for i, body in enumerate(drawings):
+                z.writestr('xl/drawings/drawing%d.xml' % (i + 1), body)
+        return Path(tmp.name)
+
+    def read(self, drawings, sheet=None):
+        path = self.make(drawings, sheet)
+        try:
+            return O.extract(path)
+        finally:
+            path.unlink()
+
+    @staticmethod
+    def shape(*paragraphs):
+        return ('<xdr:wsDr>' + ''.join(
+            '<xdr:sp><xdr:txBody>' + p + '</xdr:txBody></xdr:sp>'
+            for p in paragraphs) + '</xdr:wsDr>')
+
+    @staticmethod
+    def para(*runs):
+        return '<a:p>' + ''.join('<a:r><a:t>%s</a:t></a:r>' % r for r in runs) + '</a:p>'
+
+    def test_a_watermark_reaches_the_text(self):
+        text, meta = self.read([self.shape(self.para('知识星球：Global Semi Research'))])
+        self.assertIn('知识星球：Global Semi Research', text)
+        self.assertEqual(meta['drawing_lines'], 1)
+
+    def test_it_lands_before_the_grid(self):
+        """L1 判的是预览，而表格的预览就是表头——落在单元格后面的署名它看不到。"""
+        text, _ = self.read([self.shape(self.para('Global Semi Research'))])
+        self.assertLess(text.index('Global Semi Research'), text.index('4406'))
+
+    def test_the_same_line_in_five_drawings_is_one_line_counted_five_times(self):
+        one = self.shape(self.para('知识星球：Global Semi Research'))
+        text, meta = self.read([one] * 5)
+        self.assertEqual(text.count('知识星球'), 1)
+        self.assertIn('×5', text)
+        self.assertEqual(meta['drawing_lines'], 1)
+
+    def test_a_one_off_label_carries_no_count(self):
+        text, _ = self.read([self.shape(self.para('单位：亿美元'))])
+        self.assertIn('单位：亿美元', text)
+        self.assertNotIn('×', text)
+
+    def test_runs_inside_one_paragraph_are_one_line(self):
+        """一行被拆成几个 run 是排版的事，不该拆成几行。"""
+        text, meta = self.read([self.shape(self.para('知识星球：', 'Global ', 'Semi Research'))])
+        self.assertIn('知识星球：Global Semi Research', text)
+        self.assertEqual(meta['drawing_lines'], 1)
+
+    def test_two_paragraphs_are_two_lines(self):
+        text, meta = self.read([self.shape(self.para('数据来源：IDC'), self.para('2025 年 3 月'))])
+        self.assertEqual(meta['drawing_lines'], 2)
+        self.assertIn('数据来源：IDC', text)
+        self.assertIn('2025 年 3 月', text)
+
+    def test_the_cells_still_come_through(self):
+        text, meta = self.read([self.shape(self.para('水印'))])
+        self.assertIn('4406', text)
+        self.assertEqual(meta['cells'], 1)
+
+    def test_entities_are_decoded(self):
+        text, _ = self.read([self.shape(self.para('A &amp; B 研究院'))])
+        self.assertIn('A & B 研究院', text)
+
+    def test_an_empty_paragraph_is_not_a_line(self):
+        text, meta = self.read([self.shape('<a:p/>', self.para('IDC'))])
+        self.assertEqual(meta['drawing_lines'], 1)
+        self.assertIn('IDC', text)
+
+    def test_a_workbook_with_no_drawings_is_unchanged(self):
+        text, meta = self.read([])
+        self.assertEqual(meta['drawing_lines'], 0)
+        self.assertNotIn('文本框/水印', text)
+
+    def test_a_chart_only_workbook_still_yields_its_shape_text(self):
+        """一张只有图表的表：单元格是空的，说明全在文本框里。"""
+        text, meta = self.read([self.shape(self.para('图 3：全球服务器出货量'))],
+                               sheet='<worksheet><sheetData/></worksheet>')
+        self.assertEqual(meta['cells'], 0)
+        self.assertIn('图 3：全球服务器出货量', text)
+
+
 class XlsCellTests(unittest.TestCase):
     def book(self, records):
         return build_ole({'Workbook': b''.join(records)})
