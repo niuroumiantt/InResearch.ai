@@ -15275,6 +15275,94 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "单位换算：原表 Terabytes ÷ 1000 = PB。本条为年度预测终点。 **storage_scope 是这份表最要命的一维**：Total 里约 76% 是 Internal/ODM，即**算进服务器里的那部分存储价值**；库内 Dell'Oro 口径的 server_mfg_revenue{Storage Systems} 只算外置存储，两者差近 4 倍。不带这一维就会打架。 **容量与金额的结构完全不同**：2021Q3 金额上 Internal/ODM 占 76%，容量上占 87%——**内置存储的单位容量价格远低于外置**，只看其中一个口径会得出相反的「谁更重要」。"
+    },
+    {
+      "fact_id": "gs-dc-build-cost-per-mw-2025",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "market",
+        "id": "ai-dc-typical-build",
+        "label": "典型 AI 数据中心（250MW 级）"
+      },
+      "value": 48.0,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "含 IT 设备",
+        "stage": "估算",
+        "region": "未披露",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "98580ce634d0aecdd5ca474e71bb8b9dec2f38fa303963d3986ef315e0c9e5a4",
+        "local_file": "高盛：历史性范式转变—人工智能开启计算新时代（2025-11 中译本）.pdf",
+        "locator": "第 3 页：「将一个典型的250兆瓦人工智能数据中心投入运行的平均成本约为120亿美元。包括其内部设备——这需要创新的融资解决方案来支持这种增长」",
+        "grade": "S3",
+        "originator": "高盛（Dan Dees 署名文章），中译本"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**这是算出来的**：12,000 百万美元 ÷ 250 MW = 48 百万美元/MW。原文只给总额与容量，没给单位造价。 **cost_scope=含 IT 设备**：原文明写「包括其内部设备」——**这是它比土建口径高一个量级的原因**，与库内任何「仅机电与土建」或「仅土建」的单位造价都不可比。 region=未披露：全文以美国叙事为主（美国电费、平方英尺、星际之门），但这句话本身没有限定地域，不替它断定。 「典型」是作者的概括，不是某个具体项目的结算值，stage 记估算。 **载体是中译本，译文粗糙**（正文出现「小 dot-com 时代」「and 到 2030 年」等机翻痕迹），关键数字都带脚注编号但脚注正文未抽出，引用前需回英文原件核对。"
+    },
+    {
+      "fact_id": "gs-dc-vacancy-2025",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-vacancy",
+        "label": "数据中心空置率（原文未限定地域）"
+      },
+      "value": 3.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "全球主要市场",
+        "region": "未披露"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "98580ce634d0aecdd5ca474e71bb8b9dec2f38fa303963d3986ef315e0c9e5a4",
+        "local_file": "高盛：历史性范式转变—人工智能开启计算新时代（2025-11 中译本）.pdf",
+        "locator": "第 11 页：「数据中心需求正迅速超过供应。数据中心空置率处于历史新低3%，在最热门的市场中接近0%—新的电力供应往往要到2028年或更晚才能上线」",
+        "grade": "S3",
+        "originator": "高盛（Dan Dees 署名文章），中译本"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**region=未披露，这条数当初正是因为这一维没有「未披露」取值而录不进来的。**从上下文（美国电费、平方英尺、星际之门）看极可能是北美口径，但通篇没有明说——**猜一个 US 进去，这条数就带着一个我们编的属性进了库**，所以填未披露。日后原文补明了改成具体地域即可。 原文配套两句都要带上：①最热门市场接近 0%；②新增电力供应往往要到 2028 年或更晚才能上线——**空置率低不是需求强的唯一解释，供给侧被电力卡住同样会压低它**。 对照库内 singapore-vacancy-2026（新加坡 2.0%，单一市场）与 low-vacancy-markets-2026（全球主要市场中空置率<5% 的有 20 个）。 **载体是中译本，译文粗糙**（正文出现「小 dot-com 时代」「and 到 2030 年」等机翻痕迹），关键数字都带脚注编号但脚注正文未抽出，引用前需回英文原件核对。"
+    },
+    {
+      "fact_id": "gs-us-retail-power-price-change-2019-2024",
+      "metric_id": "retail_power_price_change",
+      "entity": {
+        "type": "region",
+        "id": "us-retail-power",
+        "label": "美国零售电价"
+      },
+      "value": 23.0,
+      "unit": "%",
+      "caliber": {
+        "customer_class": "全类别",
+        "period_basis": "区间累计",
+        "region": "US",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "98580ce634d0aecdd5ca474e71bb8b9dec2f38fa303963d3986ef315e0c9e5a4",
+        "local_file": "高盛：历史性范式转变—人工智能开启计算新时代（2025-11 中译本）.pdf",
+        "locator": "第 20 页：「者的负担——2019年至2024年，美国平均电费上涨了23%」",
+        "grade": "S3",
+        "originator": "高盛（Dan Dees 署名文章），中译本"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**period_basis=区间累计**：这是 2019→2024 五年累计涨幅，不是年度同比，折年化约 4.2%。混作同比会把幅度放大五倍。 原文「平均电费」未说明是居民还是全类别，本条记全类别并标 [未核]。 **这个数在原文里的位置是「数据中心推高民用电价」这一政治风险线索**，但 23% 的涨幅本身并未做归因拆解——不要拿它当数据中心造成涨价的证据。 **载体是中译本，译文粗糙**（正文出现「小 dot-com 时代」「and 到 2030 年」等机翻痕迹），关键数字都带脚注编号但脚注正文未抽出，引用前需回英文原件核对。"
     }
   ]
 }
