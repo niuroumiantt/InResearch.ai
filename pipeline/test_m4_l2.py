@@ -1758,5 +1758,118 @@ class TextFingerprintTests(unittest.TestCase):
         self.assertEqual(L2.fingerprints()['a' * 64], 'new')
 
 
+class BackfillProvenanceTests(unittest.TestCase):
+    """119 条事实没有内容哈希——但那不等于出处丢了。
+
+    其中 81 条在 evidence.source_id 里写着一个十二位十六进制串，那就是
+    sha256[:12]：身份一直在，只是缩写到了 join 不上的程度。展开它要 L1 账本，
+    而账本在读文件的那台机器上，不在仓库里——所以这是一条命令，不是一次编辑。
+    """
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-prov-')
+        base = Path(self.temp.name)
+        self.ledger = base / 'l1.jsonl'
+        self.facts = base / 'facts.json'
+        self._saved = (L2.L1.RESULTS, L2.FACTS, L2.REPO)
+        L2.L1.RESULTS = self.ledger
+        L2.FACTS = self.facts
+        L2.REPO = base                      # 没有 sources.json，走前缀这条路
+
+    def tearDown(self):
+        (L2.L1.RESULTS, L2.FACTS, L2.REPO) = self._saved
+        self.temp.cleanup()
+
+    def write(self, evidences, ledger_shas):
+        self.facts.write_text(json.dumps({'records': [
+            {'fact_id': 'f%d' % n, 'metric_id': 'm', 'evidence': e}
+            for n, e in enumerate(evidences)]}, ensure_ascii=False), encoding='utf-8')
+        self.ledger.write_text('\n'.join(
+            json.dumps({'sha256': s, 'rel': 'x/%s' % s[:8], 'suffix': '.pdf',
+                        'status': 'ok'}) for s in ledger_shas) + '\n',
+            encoding='utf-8')
+
+    def run_it(self, commit=False):
+        out = io.StringIO()
+        with redirect_stdout(out):
+            L2.cmd_backfill_provenance(type('A', (), {'commit': commit, 'show': 5}))
+        lines = out.getvalue().splitlines()
+        # 第一行可能是「读不到清单」的提示，报告是带 owing_before 的那一行
+        report = next(json.loads(l) for l in lines
+                      if l.startswith('{') and 'owing_before' in l)
+        return report, out.getvalue()
+
+    def stored(self):
+        return json.loads(self.facts.read_text(encoding='utf-8'))['records']
+
+    SHA = 'a1b2c3d4e5f6' + '0' * 52
+
+    def test_a_prefix_becomes_the_full_hash(self):
+        self.write([{'source_id': self.SHA[:12], 'locator': 'p.1'}], [self.SHA])
+        report, _ = self.run_it(commit=True)
+        self.assertEqual(report['按前缀补全'], 1)
+        self.assertEqual(self.stored()[0]['evidence']['sha256'], self.SHA)
+
+    def test_a_dry_run_writes_nothing(self):
+        """本项目的规矩：每一步真改之前先干跑一遍。"""
+        self.write([{'source_id': self.SHA[:12]}], [self.SHA])
+        report, text = self.run_it(commit=False)
+        self.assertEqual(report['按前缀补全'], 1)
+        self.assertIn('干跑', text)
+        self.assertNotIn('sha256', self.stored()[0]['evidence'])
+
+    def test_an_ambiguous_prefix_is_refused_not_guessed(self):
+        """十二位十六进制撞车极不可能——但「不太可能」不是往事实层写错哈希的理由。"""
+        twin = self.SHA[:12] + 'f' * 52
+        self.write([{'source_id': self.SHA[:12]}], [self.SHA, twin])
+        report, text = self.run_it(commit=True)
+        self.assertEqual(report['前缀撞车（未动）'], 1)
+        self.assertEqual(report['按前缀补全'], 0)
+        self.assertIn('撞车', text)
+        self.assertNotIn('sha256', self.stored()[0]['evidence'])
+
+    def test_a_prefix_the_ledger_does_not_know_is_reported_as_such(self):
+        self.write([{'source_id': 'ffffffffffff'}], [self.SHA])
+        report, text = self.run_it(commit=True)
+        self.assertEqual(report['查不到（未动）'], 1)
+        self.assertIn('这个前缀在 L1 账本里查无此文件', text)
+
+    def test_a_named_source_is_not_mistaken_for_a_prefix(self):
+        self.write([{'source_id': 'chinatelecom-luan-cost-2022'}], [self.SHA])
+        report, _ = self.run_it(commit=True)
+        self.assertEqual(report['按前缀补全'], 0)
+        self.assertEqual(report['查不到（未动）'], 1)
+
+    def test_a_fact_that_already_has_a_hash_is_left_alone(self):
+        self.write([{'sha256': 'b' * 64, 'source_id': self.SHA[:12]}], [self.SHA])
+        report, _ = self.run_it(commit=True)
+        self.assertEqual(report['owing_before'], 0)
+        self.assertEqual(self.stored()[0]['evidence']['sha256'], 'b' * 64)
+
+    def test_the_report_says_what_the_debt_will_be_afterwards(self):
+        """跑完要改 PROVENANCE_DEBT，命令自己把新数字算出来。"""
+        self.write([{'source_id': self.SHA[:12]}, {'source_id': 'ffffffffffff'}],
+                   [self.SHA])
+        report, text = self.run_it(commit=True)
+        self.assertEqual(report['owing_after'], 1)
+        self.assertIn('PROVENANCE_DEBT 改成 1', text)
+
+    def test_uppercase_is_not_a_hex_prefix(self):
+        """sha256 一律小写；大写串是别的东西，不要当成前缀去 join。"""
+        self.write([{'source_id': self.SHA[:12].upper()}], [self.SHA])
+        report, _ = self.run_it(commit=True)
+        self.assertEqual(report['按前缀补全'], 0)
+
+    def test_the_live_debt_is_mostly_abbreviated_not_missing(self):
+        """真实语料：119 条欠债里 81 条其实写着 sha256 前缀。"""
+        (L2.L1.RESULTS, L2.FACTS, L2.REPO) = self._saved
+        store = L2.load_facts()
+        owing = L2.owing_provenance(store['records'])
+        self.assertEqual(len(owing), PROVENANCE_DEBT)
+        abbreviated = [f for f in owing
+                       if L2.HEX12.match(str((f['evidence'] or {}).get('source_id') or ''))]
+        self.assertEqual(len(abbreviated), 81)
+
+
 if __name__ == '__main__':
     unittest.main()
