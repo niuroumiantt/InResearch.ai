@@ -904,7 +904,7 @@ class ConfidentialScopeTests(unittest.TestCase):
 # is not relaxed for them - they simply owe it, and this number is the debt.
 # Pay one back and this test goes red, which is the point: the debt must not
 # change quietly in either direction.
-PROVENANCE_DEBT = 119
+PROVENANCE_DEBT = 38
 
 # Facts cite a source_id, and most of those ids name no row in sources.json.
 # check_fact cannot see this - it never reads sources.json - so it is pinned
@@ -1422,8 +1422,19 @@ class M07MenuTests(unittest.TestCase):
         # 区间的上界是后来另一台机器补的，与它自己的下界共用一个口径——
         # 两端共用口径是 bound 这个字段的定义，不是巧合。
         for f in rows:
-            self.assertEqual(f['caliber'].get('product_form'), '光模块', f['fact_id'])
-            self.assertEqual(f['caliber'].get('customer'), '未拆分', f['fact_id'])
+            self.assertIn(f['caliber'].get('product_form'), ('光模块', '光引擎', '未注明'),
+                          f['fact_id'])
+            self.assertIsNotNone(f['caliber'].get('customer'), f['fact_id'])
+            # 回填值是「光模块 / 未拆分」。填别的必须在 notes 里说清为什么——
+            # 天孚那八条是光引擎（配图图例写的是 Optical Engines），
+            # 分客户那批是真的按客户切过的，两者都不是默认值。
+            if f['caliber']['product_form'] != '光模块':
+                self.assertIn('光引擎', f['notes'], f['fact_id'])
+            if f['caliber']['customer'] != '未拆分':
+                # 按客户切过的数必须锚在那个客户自己的单元格上——locator 里
+                # 应当出现这个客户名（原文列名）。否则就是把总量挂到了某一家头上。
+                self.assertIn(f['caliber']['customer'], f['evidence']['locator'],
+                              f['fact_id'])
 
 
 class M02MenuTests(unittest.TestCase):
@@ -1460,16 +1471,39 @@ class M02MenuTests(unittest.TestCase):
         note = self.dim('server_unit_shipments', 'counterparty_role')['note']
         self.assertIn('不要把它当成「未注明」', note)
 
+    #: 迁移当时库里仅有的 8 条 server_unit_shipments，全部出自 Dell'Oro 那本工作簿。
+    #: 这一串写死是故意的：这条测试钉的是「迁移没有把既有事实改错方向」，
+    #: 不是「这个指标永远只有 8 条」——语料继续读下去必然会有新的。
+    MIGRATED_SHIPMENT_FACTS = (
+        'delloro-jul26-srvunits-all-servers-2026e',
+        'delloro-jul26-srvunits-all-servers-2030e',
+        'delloro-jul26-srvunits-accelerated-high-end-2026e',
+        'delloro-jul26-srvunits-accelerated-high-end-2030e',
+        'delloro-jul26-srvunits-general-purpose-and-other-2026e',
+        'delloro-jul26-srvunits-general-purpose-and-other-2030e',
+        'delloro-jul26-srvunits-storage-systems-2026e',
+        'delloro-jul26-srvunits-storage-systems-2030e',
+    )
+
     def test_the_existing_shipment_facts_were_backfilled_as_market_totals(self):
         store = json.loads((Path(L2.__file__).resolve().parent.parent /
                             'data/facts.json').read_text(encoding='utf-8'))
-        rows = [f for f in store['records']
-                if f['metric_id'] == 'server_unit_shipments']
-        self.assertEqual(len(rows), 8)
-        for f in rows:
-            self.assertEqual(f['caliber']['counterparty_role'], '全市场（未分侧）',
-                             f['fact_id'])
-            self.assertIn('market', f['entity']['id'], f['fact_id'])
+        rows = {f['fact_id']: f for f in store['records']
+                if f['metric_id'] == 'server_unit_shipments'}
+        for fid in self.MIGRATED_SHIPMENT_FACTS:
+            self.assertIn(fid, rows)
+            self.assertEqual(rows[fid]['caliber']['counterparty_role'], '全市场（未分侧）', fid)
+            self.assertIn('market', rows[fid]['entity']['id'], fid)
+
+    def test_later_shipment_facts_state_which_side_they_are(self):
+        """新读进来的可以是供应方或需求方，但三个取值之外的一律不收。"""
+        store = json.loads((Path(L2.__file__).resolve().parent.parent /
+                            'data/facts.json').read_text(encoding='utf-8'))
+        allowed = {'供应方', '需求方', '全市场（未分侧）'}
+        for f in store['records']:
+            if f['metric_id'] != 'server_unit_shipments':
+                continue
+            self.assertIn(f['caliber'].get('counterparty_role'), allowed, f['fact_id'])
 
     def test_unsplit_is_not_the_same_as_not_applicable(self):
         d = self.dim('server_unit_shipments', 'buyer_category')
@@ -1833,10 +1867,12 @@ class BackfillProvenanceTests(unittest.TestCase):
         self.assertNotIn('sha256', self.stored()[0]['evidence'])
 
     def test_a_prefix_the_ledger_does_not_know_is_reported_as_such(self):
+        """十二位十六进制既进不了账本前缀、也还原不成缓存键时，如实说这两条路都断了。"""
         self.write([{'source_id': 'ffffffffffff'}], [self.SHA])
         report, text = self.run_it(commit=True)
         self.assertEqual(report['查不到（未动）'], 1)
-        self.assertIn('这个前缀在 L1 账本里查无此文件', text)
+        self.assertIn('也不是能还原的 reader 缓存键', text)
+        self.assertNotIn('sha256', self.stored()[0]['evidence'])
 
     def test_a_named_source_is_not_mistaken_for_a_prefix(self):
         self.write([{'source_id': 'chinatelecom-luan-cost-2022'}], [self.SHA])
@@ -1864,15 +1900,35 @@ class BackfillProvenanceTests(unittest.TestCase):
         report, _ = self.run_it(commit=True)
         self.assertEqual(report['按前缀补全'], 0)
 
-    def test_the_live_debt_is_mostly_abbreviated_not_missing(self):
-        """真实语料：119 条欠债里 81 条其实写着 sha256 前缀。"""
+    def test_the_live_debt_is_what_no_route_could_reach(self):
+        """真实语料：81 条已按缓存键还清，剩下的 38 条没有一条还写着十二位十六进制。
+
+        原先这条测试断言「119 条里 81 条写着 sha256 前缀」。前半句对，后半句
+        不对——那 81 个十二位十六进制串一个都不是 sha256 前缀，它们是 reader
+        的缓存键（docs/inbox/path_migrations/cache_key_remap_20260818.json 里
+        一查便知），得先换成路径、再去 moves.jsonl 里换成内容哈希。按前缀 join
+        的那条路在真实语料上命中率是 0。
+
+        还清之后剩下的 38 条是真的没有出处线索：35 条 source_id 为空，3 条写的
+        是人给的名字（chinatelecom-luan-cost-2022 之类），两者都不指向任何文件。
+        """
         (L2.L1.RESULTS, L2.FACTS, L2.REPO) = self._saved
         store = L2.load_facts()
         owing = L2.owing_provenance(store['records'])
         self.assertEqual(len(owing), PROVENANCE_DEBT)
         abbreviated = [f for f in owing
                        if L2.HEX12.match(str((f['evidence'] or {}).get('source_id') or ''))]
-        self.assertEqual(len(abbreviated), 81)
+        self.assertEqual(abbreviated, [], '还有能按缓存键还的债没还')
+
+    def test_cache_keys_are_not_sha256_prefixes(self):
+        """这条钉住上面那句话里最容易被想当然的部分。"""
+        (L2.L1.RESULTS, L2.FACTS, L2.REPO) = self._saved
+        remap = json.loads(L2.CACHE_REMAP.read_text(encoding='utf-8'))
+        ledger = L2.all_results()
+        prefixes = {sha[:12] for sha in ledger}
+        collide = [k for k in remap if k in prefixes]
+        self.assertEqual(collide, [],
+                         '缓存键与 sha256 前缀撞上了，按前缀 join 会写错哈希')
 
 
 class RangeCaliberTests(unittest.TestCase):
@@ -2037,9 +2093,13 @@ class M03M04MenuTests(unittest.TestCase):
                             'data/facts.json').read_text(encoding='utf-8'))
         rows = {f['fact_id']: f for f in store['records']
                 if f['metric_id'] == 'gas_turbine_dc_order_share'}
-        self.assertEqual(len(rows), 4)
-        for f in rows.values():
-            self.assertEqual(f['caliber']['order_basis'], '新增订单', f['fact_id'])
+        # 迁移当时的四条，回填依据写在各自 notes 里；之后新读的条目不在此列——
+        # GEV 那两条正是为了「在手订单」与「前瞻指引」两个新取值才录进来的。
+        migrated = ('gas-turbine-dc-order-share-2024', 'siemens-dc-order-share-fy2025',
+                    'big3-dc-order-share-2026-low', 'big3-dc-order-share-2026-high')
+        for fid in migrated:
+            self.assertIn(fid, rows)
+            self.assertEqual(rows[fid]['caliber']['order_basis'], '新增订单', fid)
         # 分母写着 58GW，是容量口径
         self.assertEqual(rows['gas-turbine-dc-order-share-2024']['caliber']['measure'],
                          '按容量')
@@ -2278,12 +2338,20 @@ class M11MenuTests(unittest.TestCase):
         self.assertIn('不是偷懒的出口', note)
         self.assertIn('带着一个我们编的属性进了库', note)
 
-    def test_no_existing_fact_was_silently_moved_to_unstated(self):
-        """新增取值是给以后用的，不该有既有事实被改过去。"""
+    def test_unstated_region_is_never_silent(self):
+        """迁移当时没有一条既有事实被改成「未披露」；之后用它的必须说明理由。
+
+        原先这条断言全库一条都不能有，那是迁移当天的快照。但这个取值本来就是
+        为「原文真的没写地域」准备的——高盛那份的空置率 3% 与 48 百万美元/MW
+        正是它的第一批用户。所以规则改成：可以用，但必须在 notes 里写明原文
+        为什么没有地域，不能默默填进去。
+        """
         store = json.loads((Path(L2.__file__).resolve().parent.parent /
                             'data/facts.json').read_text(encoding='utf-8'))
-        self.assertEqual([f['fact_id'] for f in store['records']
-                          if (f.get('caliber') or {}).get('region') == '未披露'], [])
+        for f in store['records']:
+            if (f.get('caliber') or {}).get('region') != '未披露':
+                continue
+            self.assertIn('未披露', f.get('notes') or '', f['fact_id'])
 
     # -- 另两处枚举 --------------------------------------------------------
     def test_a_third_party_back_calculation_is_not_a_design_value(self):
