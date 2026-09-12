@@ -2859,7 +2859,76 @@ class SplitDimensionSymmetryTests(unittest.TestCase):
     #: 迁移当天库里就有的那批，回填只能填全国或不适用。之后读进来的可以真按省、
     #: 按行业切——IDC 那份 2024 中国 AI 服务器就是按省份与行业各拆一套的。
     #: 这条测试钉的是「回填没有凭空给既有事实按上一个省份」，不是「这一族永远不许按省切」。
-    BACKFILL_ONLY = ('delloro-jul26-', 'idc-ess-', 'idc-prc-external-storage-')
+    #: 回填批次——#155 加维时库里已有的 47 条，加上 #156 补的 33 条
+    #: （那 33 条是我加维时 M4 正在按加维前的菜单录的，合并后缺维）。
+    #: 这是一个封闭的历史集合，从两次回填的 commit 里逐条取出来写死。
+    #: **不要改用前缀或子串去圈它**：这条测试被前缀白名单和「-prov- 排除」
+    #: 两套启发式先后打过补丁，而白名单里本来就漏了 idc-cn-x86-revenue*——
+    #: 只是那批碰巧没按省切，才一直没红。集合是确定的，就该按集合写。
+    BACKFILL_BATCH = frozenset((
+        'delloro-jul26-srvasp-accelerated-high-end-2026e',
+        'delloro-jul26-srvasp-accelerated-high-end-2030e',
+        'delloro-jul26-srvasp-all-servers-2026e', 'delloro-jul26-srvasp-all-servers-2030e',
+        'delloro-jul26-srvasp-general-purpose-and-other-2026e',
+        'delloro-jul26-srvasp-general-purpose-and-other-2030e',
+        'delloro-jul26-srvrev-accelerated-high-end-2026e',
+        'delloro-jul26-srvrev-accelerated-high-end-2030e',
+        'delloro-jul26-srvrev-all-servers-2026e', 'delloro-jul26-srvrev-all-servers-2030e',
+        'delloro-jul26-srvrev-general-purpose-and-other-2026e',
+        'delloro-jul26-srvrev-general-purpose-and-other-2030e',
+        'idc-cii-2020-spend-alibaba-overlap', 'idc-cii-2020-spend-alibaba-server',
+        'idc-cii-2020-spend-alibaba-storage', 'idc-cii-2020-spend-alibaba-total',
+        'idc-cii-2020-spend-amazon-overlap', 'idc-cii-2020-spend-amazon-server',
+        'idc-cii-2020-spend-amazon-storage', 'idc-cii-2020-spend-apple-overlap',
+        'idc-cii-2020-spend-apple-server', 'idc-cii-2020-spend-apple-storage',
+        'idc-cii-2020-spend-baidu-overlap', 'idc-cii-2020-spend-baidu-server',
+        'idc-cii-2020-spend-baidu-storage', 'idc-cii-2020-spend-baidu-total',
+        'idc-cii-2020-spend-google-overlap', 'idc-cii-2020-spend-google-server',
+        'idc-cii-2020-spend-google-storage', 'idc-cii-2020-spend-meta-overlap',
+        'idc-cii-2020-spend-meta-server', 'idc-cii-2020-spend-meta-storage',
+        'idc-cii-2020-spend-microsoft-overlap', 'idc-cii-2020-spend-microsoft-server',
+        'idc-cii-2020-spend-microsoft-storage', 'idc-cii-2020-spend-tencent-overlap',
+        'idc-cii-2020-spend-tencent-server', 'idc-cii-2020-spend-tencent-storage',
+        'idc-cii-2020-spend-tencent-total', 'idc-cn-x86-revenue-2018q1',
+        'idc-cn-x86-revenue-2018q2', 'idc-cn-x86-revenue-2018q3',
+        'idc-cn-x86-revenue-2018q4', 'idc-cn-x86-revenue-2019q1',
+        'idc-cn-x86-revenue-2019q2', 'idc-cn-x86-revenue-2019q3',
+        'idc-cn-x86-revenue-2019q4', 'idc-cn-x86-revenue-2020q1',
+        'idc-cn-x86-revenue-2020q2', 'idc-cn-x86-revenue-2020q3',
+        'idc-cn-x86-revenue-fc-2019', 'idc-cn-x86-revenue-fc-2020',
+        'idc-cn-x86-revenue-fc-2021', 'idc-cn-x86-revenue-fc-2022',
+        'idc-cn-x86-revenue-fc-2023', 'idc-cn-x86-revenue-fc-2024',
+        'idc-ess-capacity-external-2016q1', 'idc-ess-capacity-external-2021q3',
+        'idc-ess-capacity-external-2025', 'idc-ess-capacity-internal-2016q1',
+        'idc-ess-capacity-internal-2021q3', 'idc-ess-capacity-internal-2025',
+        'idc-ess-capacity-total-2016q1', 'idc-ess-capacity-total-2021q3',
+        'idc-ess-capacity-total-2025', 'idc-ess-value-external-2016q1',
+        'idc-ess-value-external-2021q3', 'idc-ess-value-external-2025',
+        'idc-ess-value-internal-2016q1', 'idc-ess-value-internal-2021q3',
+        'idc-ess-value-internal-2025', 'idc-ess-value-total-2016q1',
+        'idc-ess-value-total-2021q3', 'idc-ess-value-total-2025',
+        'idc-prc-external-storage-2019', 'idc-prc-external-storage-2020',
+        'idc-prc-external-storage-2021', 'idc-prc-external-storage-2022',
+        'idc-prc-external-storage-2023', 'idc-prc-external-storage-2024',
+    ))
+
+    def test_the_backfill_batch_is_a_closed_historical_set(self):
+        """80 条是数出来的，不是估出来的：#155 的 47 条 + #156 的 33 条。
+
+        这条测试连同上一条被 M4 先后打过两次补丁，因为我第一版把「回填当天的
+        快照」写成了永久断言——语料一按省切就红。它教过我一次正确的形状
+        （MIGRATED_SHIPMENT_FACTS 按 fact_id 写死），我在这里没照做。
+        """
+        self.assertEqual(len(self.BACKFILL_BATCH), 80)
+        store = L2.load_facts()
+        present = {f['fact_id'] for f in store['records']}
+        missing = sorted(self.BACKFILL_BATCH - present)
+        self.assertEqual(missing, [], '回填批次里的事实不该消失')
+
+    def test_every_backfilled_fact_is_in_a_family_metric(self):
+        store = {f['fact_id']: f for f in L2.load_facts()['records']}
+        for fid in self.BACKFILL_BATCH:
+            self.assertIn(store[fid]['metric_id'], self.EXPECTED, fid)
 
     def test_the_backfill_never_claimed_a_province(self):
         """既有事实一条都没有按省切过——回填只能填全国或不适用。
@@ -2873,12 +2942,7 @@ class SplitDimensionSymmetryTests(unittest.TestCase):
             expected = self.EXPECTED.get(f['metric_id'])
             if not expected:
                 continue
-            fid = f['fact_id']
-            # 后来按省/按行业拆的条目自己带标记，不在回填批次之列——
-            # 中国外置存储那份的省份拆分就是 #155 补上 subregion 之后才录的。
-            if '-prov-' in fid or '-vertical-' in fid:
-                continue
-            if not fid.startswith(self.BACKFILL_ONLY):
+            if f['fact_id'] not in self.BACKFILL_BATCH:
                 # 回填之后读进来的可以真按省、按行业切——IDC 那份 2024 中国 AI
                 # 服务器就是按省份与行业各拆一套的（北京占 49.9%、互联网占 57.9%）。
                 # 这条测试钉的是「回填没有凭空给既有事实按上一个省份」，
