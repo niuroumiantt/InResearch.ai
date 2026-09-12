@@ -36,7 +36,7 @@ FACT_DEPTHS = {"精读", "据实生成"}   # 半自动与目录级不得进事�
 BOUNDS = {"point", "upper", "lower"}
 BOUND_SIGN = {"upper": "<", "lower": ">", "point": " "}
 GRADES = {"S1", "S2", "S3", "S4", "S5"}
-CORROB = {"待交叉验证", "已交叉验证", "孤证已知"}   # 缺省即「待交叉验证」
+CORROB = {"待交叉验证", "已交叉验证", "孤证已知", "同源转述"}   # 缺省即「待交叉验证」
 
 errors = []
 
@@ -192,7 +192,8 @@ def compare(facts, metrics, only=None):
                 mark = "（计算值）" if f.get("derived") else ""
                 # 「已交叉验证」才是可以拿去推算的；其余默认待验证
                 c = f.get("corroboration", "待交叉验证")
-                mark += {"已交叉验证": " ✓双源", "孤证已知": " ⚠孤证"}.get(c, " ·待验")
+                mark += {"已交叉验证": " ✓双源", "孤证已知": " ⚠孤证",
+                         "同源转述": " ⚠同源"}.get(c, " ·待验")
                 s = "🔒" if f.get("sensitive") else "  "
                 # value 允许为 null——「已知该指标存在但值未披露」是留白纪律的一部分，
                 # 渲染必须显式处理，不能崩（本行曾因未处理 None 报 TypeError）

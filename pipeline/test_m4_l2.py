@@ -2460,5 +2460,67 @@ class NeighbourMetricTests(unittest.TestCase):
                     self.assertTrue(str(value).strip(), (mid, d['id']))
 
 
+def problems_for(f):
+    """跑一遍校验，只看与 corroboration 有关的那部分。"""
+    return [x for x in problems(f) if 'corroboration' in x]
+
+
+class SameOriginTests(unittest.TestCase):
+    """「看着是两个来源，追到底是同一个」——M4 一轮里撞了两次。
+
+    (a) 同一作者原样重用自己的段落：SemiAnalysis 2025-03 写的「2.99 / 23.92 /
+        574.08」与它自己 2024-10 那份逐字相同。
+    (b) 两家转述同一个原始信源：东吴与伯恩斯坦都说 GEV 2026 年中 20GW、
+        2028 年 24GW，而两边的原始信源都是 GEV 自己的指引。
+
+    两次都只能写进 notes——corroboration 三个取值里没有一个说得出这件事。
+    """
+
+    def test_the_fourth_value_exists_everywhere_it_is_declared(self):
+        self.assertIn('同源转述', L2.CORROBORATION)
+        schema = json.loads((Path(L2.__file__).resolve().parent.parent /
+                             'data/schema/fact.schema.json').read_text(encoding='utf-8'))
+        self.assertIn('同源转述',
+                      schema['properties']['corroboration']['enum'])
+
+    def test_the_other_validator_agrees(self):
+        """facts.py 是另一条校验路径，两边枚举必须一致，否则一条合法事实
+        在一个地方通过、在另一个地方被拒。"""
+        import importlib, sys as _sys
+        _sys.path.insert(0, str(Path(L2.__file__).resolve().parent))
+        facts = importlib.import_module('facts')
+        self.assertEqual(set(L2.CORROBORATION), facts.CORROB)
+
+    def test_a_fact_may_declare_it(self):
+        problems = problems_for(fact(corroboration='同源转述'))
+        self.assertEqual(problems, [])
+
+    def test_an_invalid_value_still_names_all_four(self):
+        bad = problems_for(fact(corroboration='大概算验过了'))
+        self.assertTrue(any('同源转述' in p for p in bad), bad)
+
+    def test_the_schema_says_why_it_is_worse_than_pending(self):
+        """待验证是「还没有第二个来源」，同源转述是「有第二份文件但它不是第二个来源」。"""
+        schema = json.loads((Path(L2.__file__).resolve().parent.parent /
+                             'data/schema/fact.schema.json').read_text(encoding='utf-8'))
+        desc = schema['properties']['corroboration']['description']
+        self.assertIn('比「待交叉验证」更该警惕', desc)
+        self.assertIn('它不是第二个来源', desc)
+
+    def test_the_schema_keeps_both_worked_examples(self):
+        schema = json.loads((Path(L2.__file__).resolve().parent.parent /
+                             'data/schema/fact.schema.json').read_text(encoding='utf-8'))
+        desc = schema['properties']['corroboration']['description']
+        self.assertIn('574.08', desc)          # 同一作者重用自己
+        self.assertIn('20GW', desc)            # 两家转述同一信源
+
+    def test_it_records_what_cannot_be_told_apart(self):
+        """五个月「价格没动」，是市场没动还是没重写这段——分不出来就记下分不出来。"""
+        schema = json.loads((Path(L2.__file__).resolve().parent.parent /
+                             'data/schema/fact.schema.json').read_text(encoding='utf-8'))
+        self.assertIn('从这两份文件本身分不出来',
+                      schema['properties']['corroboration']['description'])
+
+
 if __name__ == '__main__':
     unittest.main()

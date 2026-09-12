@@ -60,7 +60,7 @@ FULL_TEXT_CHARS = 600000
 GRADES = ('S1', 'S2', 'S3', 'S4', 'S5')
 DEPTHS = ('精读', '据实生成')          # 半自动 and 目录级 never reach the fact layer
 BOUNDS = ('point', 'upper', 'lower')
-CORROBORATION = ('待交叉验证', '已交叉验证', '孤证已知')
+CORROBORATION = ('待交叉验证', '已交叉验证', '孤证已知', '同源转述')
 # A year is always the anchor; everything after it says what kind of year.
 #   2022-01        an actual, to the month
 #   2026-Q1        a quarter
@@ -416,7 +416,7 @@ sha256：{sha}
   }},
   "depth": "精读",
   "bound": "point|upper|lower",
-  "corroboration": "待交叉验证|已交叉验证|孤证已知",
+  "corroboration": "待交叉验证|已交叉验证|孤证已知|同源转述",
   "notes": "口径的例外、加总方式、被减项"
 }}
 ```
