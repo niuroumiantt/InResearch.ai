@@ -1205,5 +1205,92 @@ class SkipTests(unittest.TestCase):
         self.assertEqual(len(L2.open_gaps()), 1)
 
 
+class FilledGapTests(unittest.TestCase):
+    """M4 读表时撞到菜单没有位置的三处，补上之后钉住。
+
+    每一处都是「两个数看着可比、其实不是一件事」，正是这份契约存在的理由。
+    第四处（counterparty_role 供应方/需求方）没补——加一维会让该指标既有的
+    每一条事实全部失效，而我还不知道它命中的是哪三个模块，猜着加不如不加。
+    """
+
+    def setUp(self):
+        self.metrics = L2.load_metrics()
+
+    def dim(self, mid, dim_id):
+        return next(d for d in self.metrics[mid]['caliber_dims'] if d['id'] == dim_id)
+
+    # -- x86 是另一套切法，不是第五类 -------------------------------------
+    def test_x86_is_recordable(self):
+        for mid in ('server_mfg_revenue', 'server_unit_shipments', 'server_asp'):
+            self.assertIn('x86', self.dim(mid, 'server_class')['values'], mid)
+
+    def test_both_halves_of_the_partition_exist(self):
+        """只能记 x86 记不了非 x86，等于下一次还要 skip。"""
+        for mid in ('server_mfg_revenue', 'server_unit_shipments', 'server_asp'):
+            self.assertIn('非x86', self.dim(mid, 'server_class')['values'], mid)
+
+    def test_the_note_says_the_two_taxonomies_do_not_add(self):
+        for mid in ('server_mfg_revenue', 'server_unit_shipments', 'server_asp'):
+            note = self.dim(mid, 'server_class')['note']
+            self.assertIn('不能混着加总', note, mid)
+
+    def test_the_four_dell_oro_classes_are_untouched(self):
+        """补一套分类不该动掉原来那套。"""
+        for mid in ('server_mfg_revenue', 'server_unit_shipments', 'server_asp'):
+            values = self.dim(mid, 'server_class')['values']
+            for v in ('Accelerated/High-End', 'General-Purpose & Other',
+                      'All Servers', 'Storage Systems'):
+                self.assertIn(v, values, (mid, v))
+
+    # -- 同样叫「存储系统总额」的两个数差好几倍 ---------------------------
+    def test_storage_scope_is_a_declared_dimension(self):
+        for mid in ('server_mfg_revenue', 'server_asp'):
+            self.assertEqual(self.dim(mid, 'storage_scope')['values'],
+                             ['External OEM', 'Internal-ODM', 'Total',
+                              '不适用（非存储口径）'], mid)
+
+    def test_shipments_needs_no_storage_scope(self):
+        """存储没有台数（原表 Units are not available），这一维在那儿无意义。"""
+        with self.assertRaises(StopIteration):
+            self.dim('server_unit_shipments', 'storage_scope')
+
+    def test_the_note_refuses_to_hand_over_a_ratio_to_copy(self):
+        """三条口径写错的教训：断言换算关系的 note 必须附算式，否则叫人自己算。"""
+        note = self.dim('server_mfg_revenue', 'storage_scope')['note']
+        self.assertIn('自己算', note)
+        self.assertIn('不要抄这句', note)
+
+    def test_every_existing_fact_of_those_metrics_carries_the_new_dim(self):
+        """加一维就让既有事实全部失效——回填过才算补完。"""
+        store = json.loads((Path(L2.__file__).resolve().parent.parent /
+                            'data/facts.json').read_text(encoding='utf-8'))
+        rows = [f for f in store['records']
+                if f['metric_id'] in ('server_mfg_revenue', 'server_asp')]
+        self.assertTrue(rows)
+        for f in rows:
+            self.assertIn('storage_scope', f.get('caliber') or {}, f['fact_id'])
+
+    def test_no_storage_row_was_backfilled_as_not_applicable(self):
+        """存储行的口径要人判，机械回填成「不适用」就是造一条假事实。"""
+        store = json.loads((Path(L2.__file__).resolve().parent.parent /
+                            'data/facts.json').read_text(encoding='utf-8'))
+        for f in store['records']:
+            cal = f.get('caliber') or {}
+            if cal.get('server_class') == 'Storage Systems':
+                self.assertNotEqual(cal.get('storage_scope'), '不适用（非存储口径）',
+                                    f['fact_id'])
+
+    # -- 仅机电设备 -------------------------------------------------------
+    def test_mechanical_and_electrical_only_is_recordable(self):
+        scope = self.dim('dc_investment_per_rack', 'scope')
+        self.assertIn('仅机电设备', scope['values'])
+        self.assertIn('不是「含机电主设备」的子集', scope['note'])
+
+    def test_the_older_scope_values_survive(self):
+        values = self.dim('dc_investment_per_rack', 'scope')['values']
+        for v in ('土建本体', '施工总包', '含机电主设备', '含IT设备的项目总投资'):
+            self.assertIn(v, values, v)
+
+
 if __name__ == '__main__':
     unittest.main()

@@ -80,10 +80,11 @@
           "values": [
             "土建本体",
             "施工总包",
+            "仅机电设备",
             "含机电主设备",
             "含IT设备的项目总投资"
           ],
-          "note": "环评/立项口径的「总投资÷机架数」几乎都是含 IT 设备的项目总投资，与施工总包口径差一个数量级的内涵。"
+          "note": "环评/立项口径的「总投资÷机架数」几乎都是含 IT 设备的项目总投资，与施工总包口径差一个数量级的内涵。\n\n「仅机电设备」= 供配电+暖通+弱电等机电设备本身，不含土建、不含 IT 设备。它比「土建本体」小，也不是「含机电主设备」的子集——后者是土建加机电，前者是机电减土建，两者只在机电那部分重合。设备清单/招标包口径的表常常只报这一段。"
         },
         {
           "id": "region",
@@ -5296,9 +5297,11 @@
             "Accelerated/High-End",
             "General-Purpose & Other",
             "All Servers",
-            "Storage Systems"
+            "Storage Systems",
+            "x86",
+            "非x86"
           ],
-          "note": "取值用原表**数据行**的写法：General-Purpose **&** Other。原表散文注释里写作 \"General-Purpose and Other\"，两处拼法不同，以数据行为准。\n\n这一维实际覆盖服务器与存储两类产品——Storage Systems 是四个技术分类之一，有金额也有 ASP，只是没有台数。原表另有 All Flash Arrays 与 Disk and Hybrid Arrays，**它们与 Storage Systems 的层级关系尚未校验**，暂不入枚举；真要用时先算一遍加总再补。\n\nAccelerated/High-End 指带训练能力加速器的服务器，自 2020 年开始单独追踪；2020 年之前没有这个切分，跨年序列在 2020 处断裂。"
+          "note": "取值用原表**数据行**的写法：General-Purpose **&** Other。原表散文注释里写作 \"General-Purpose and Other\"，两处拼法不同，以数据行为准。\n\n这一维实际覆盖服务器与存储两类产品——Storage Systems 是四个技术分类之一，有金额也有 ASP，只是没有台数。原表另有 All Flash Arrays 与 Disk and Hybrid Arrays，**它们与 Storage Systems 的层级关系尚未校验**，暂不入枚举；真要用时先算一遍加总再补。\n\nAccelerated/High-End 指带训练能力加速器的服务器，自 2020 年开始单独追踪；2020 年之前没有这个切分，跨年序列在 2020 处断裂。\n\n**x86 / 非x86 来自另一套分类，不是上面四类的兄弟。**上面四类是 Dell'Oro 的产品分层（按加速能力与产品线切）；x86 / 非x86 是 IDC 中国服务器跟踪按指令集切的二分。两套都是对同一批机器的划分，但切法不同，**不能混着加总**，也不能拿x86 的数去和 All Servers 的数比增速——除非你先确认两边的机器口径一致。契约的精确匹配规则已经挡住了直接比较（x86 ≠ All Servers）；这条 note 是提醒不要在 notes 里手工把它们凑到一起。"
         },
         {
           "id": "region",
@@ -5313,6 +5316,17 @@
             "Total"
           ],
           "note": "原文地域名，一字未改。**六行互斥，逐年加总等于 Total（差值 0），可以一起加总。**\n\n原表 NOTES 印着 Asia Pacific = Asia Pacific excl. China + China，**但透视表里的数据不是这样**：2026E 的 Asia Pacific 只有 84.75 亿美元，而 China 1,620.85 + Asia Pacific excl. China 937.28 = 2,558.13。这里的 Asia Pacific 是一个残差桶（亚太中另两项都不覆盖的部分）。**以数据为准，不以原表声明为准**——照声明写会挡住一个真实可用的加总，那是这份契约自己说的「假不可比」。"
+        },
+        {
+          "id": "storage_scope",
+          "name": "存储统计范围",
+          "values": [
+            "External OEM",
+            "Internal-ODM",
+            "Total",
+            "不适用（非存储口径）"
+          ],
+          "note": "只在 server_class 取 Storage Systems 时有分别；服务器行填「不适用（非存储口径）」，这是既有事实的回填值。\n\n**同样叫「存储系统总额」的两个数可能差好几倍。**Dell'Oro 的 Storage Systems 是外部 OEM 阵列（External OEM）；IDC 的企业存储 Total 把算在服务器机身里的内置/ODM 直供那部分也计进来（Internal-ODM）。不记这一维，两个数看着是同一口径的两个来源，实际根本不是一件事。\n\n**差多少要自己算，不要抄这句。**M4 读表时量到接近 4 倍（IDC 的 Total 里约七成六是算在服务器内部的存储）——这个比例随年份和地域变，录入时用你手上那张表自己算一遍，把算式写进该条事实的 notes。凡是断言加总或换算关系的 note，都要附得出它的算式。"
         }
       ],
       "note": "**表头单位与实际数值不符**：原表列头写 Capex ($M) / MFG Revenue ($M)，而单元格里是原始美元——2018 年 Total 是 180,773,661,069，即 1,807.7 亿美元，不是 1,807.7 亿百万美元。按表头乘 1e6 会错一百万倍。入库时除以 1e8 转成亿美元，并在 notes 里注明这一步。\n\n**供给侧与需求侧是同一个总量的两种切法，不是两个独立估计**——2014–2030 逐年加总差值为零。两边的数互相印证不构成交叉验证，corroboration 只能写「孤证已知」或「待交叉验证」。",
@@ -5333,9 +5347,11 @@
             "Accelerated/High-End",
             "General-Purpose & Other",
             "All Servers",
-            "Storage Systems"
+            "Storage Systems",
+            "x86",
+            "非x86"
           ],
-          "note": "取值用原表**数据行**的写法：General-Purpose **&** Other。原表散文注释里写作 \"General-Purpose and Other\"，两处拼法不同，以数据行为准。\n\n这一维实际覆盖服务器与存储两类产品——Storage Systems 是四个技术分类之一，有金额也有 ASP，只是没有台数。原表另有 All Flash Arrays 与 Disk and Hybrid Arrays，**它们与 Storage Systems 的层级关系尚未校验**，暂不入枚举；真要用时先算一遍加总再补。\n\nAccelerated/High-End 指带训练能力加速器的服务器，自 2020 年开始单独追踪；2020 年之前没有这个切分，跨年序列在 2020 处断裂。"
+          "note": "取值用原表**数据行**的写法：General-Purpose **&** Other。原表散文注释里写作 \"General-Purpose and Other\"，两处拼法不同，以数据行为准。\n\n这一维实际覆盖服务器与存储两类产品——Storage Systems 是四个技术分类之一，有金额也有 ASP，只是没有台数。原表另有 All Flash Arrays 与 Disk and Hybrid Arrays，**它们与 Storage Systems 的层级关系尚未校验**，暂不入枚举；真要用时先算一遍加总再补。\n\nAccelerated/High-End 指带训练能力加速器的服务器，自 2020 年开始单独追踪；2020 年之前没有这个切分，跨年序列在 2020 处断裂。\n\n**x86 / 非x86 来自另一套分类，不是上面四类的兄弟。**上面四类是 Dell'Oro 的产品分层（按加速能力与产品线切）；x86 / 非x86 是 IDC 中国服务器跟踪按指令集切的二分。两套都是对同一批机器的划分，但切法不同，**不能混着加总**，也不能拿x86 的数去和 All Servers 的数比增速——除非你先确认两边的机器口径一致。契约的精确匹配规则已经挡住了直接比较（x86 ≠ All Servers）；这条 note 是提醒不要在 notes 里手工把它们凑到一起。"
         },
         {
           "id": "region",
@@ -5370,9 +5386,11 @@
             "Accelerated/High-End",
             "General-Purpose & Other",
             "All Servers",
-            "Storage Systems"
+            "Storage Systems",
+            "x86",
+            "非x86"
           ],
-          "note": "取值用原表**数据行**的写法：General-Purpose **&** Other。原表散文注释里写作 \"General-Purpose and Other\"，两处拼法不同，以数据行为准。\n\n这一维实际覆盖服务器与存储两类产品——Storage Systems 是四个技术分类之一，有金额也有 ASP，只是没有台数。原表另有 All Flash Arrays 与 Disk and Hybrid Arrays，**它们与 Storage Systems 的层级关系尚未校验**，暂不入枚举；真要用时先算一遍加总再补。\n\nAccelerated/High-End 指带训练能力加速器的服务器，自 2020 年开始单独追踪；2020 年之前没有这个切分，跨年序列在 2020 处断裂。"
+          "note": "取值用原表**数据行**的写法：General-Purpose **&** Other。原表散文注释里写作 \"General-Purpose and Other\"，两处拼法不同，以数据行为准。\n\n这一维实际覆盖服务器与存储两类产品——Storage Systems 是四个技术分类之一，有金额也有 ASP，只是没有台数。原表另有 All Flash Arrays 与 Disk and Hybrid Arrays，**它们与 Storage Systems 的层级关系尚未校验**，暂不入枚举；真要用时先算一遍加总再补。\n\nAccelerated/High-End 指带训练能力加速器的服务器，自 2020 年开始单独追踪；2020 年之前没有这个切分，跨年序列在 2020 处断裂。\n\n**x86 / 非x86 来自另一套分类，不是上面四类的兄弟。**上面四类是 Dell'Oro 的产品分层（按加速能力与产品线切）；x86 / 非x86 是 IDC 中国服务器跟踪按指令集切的二分。两套都是对同一批机器的划分，但切法不同，**不能混着加总**，也不能拿x86 的数去和 All Servers 的数比增速——除非你先确认两边的机器口径一致。契约的精确匹配规则已经挡住了直接比较（x86 ≠ All Servers）；这条 note 是提醒不要在 notes 里手工把它们凑到一起。"
         },
         {
           "id": "region",
@@ -5387,6 +5405,17 @@
             "Total"
           ],
           "note": "原文地域名，一字未改。**六行互斥，逐年加总等于 Total（差值 0），可以一起加总。**\n\n原表 NOTES 印着 Asia Pacific = Asia Pacific excl. China + China，**但透视表里的数据不是这样**：2026E 的 Asia Pacific 只有 84.75 亿美元，而 China 1,620.85 + Asia Pacific excl. China 937.28 = 2,558.13。这里的 Asia Pacific 是一个残差桶（亚太中另两项都不覆盖的部分）。**以数据为准，不以原表声明为准**——照声明写会挡住一个真实可用的加总，那是这份契约自己说的「假不可比」。"
+        },
+        {
+          "id": "storage_scope",
+          "name": "存储统计范围",
+          "values": [
+            "External OEM",
+            "Internal-ODM",
+            "Total",
+            "不适用（非存储口径）"
+          ],
+          "note": "只在 server_class 取 Storage Systems 时有分别；服务器行填「不适用（非存储口径）」，这是既有事实的回填值。\n\n**同样叫「存储系统总额」的两个数可能差好几倍。**Dell'Oro 的 Storage Systems 是外部 OEM 阵列（External OEM）；IDC 的企业存储 Total 把算在服务器机身里的内置/ODM 直供那部分也计进来（Internal-ODM）。不记这一维，两个数看着是同一口径的两个来源，实际根本不是一件事。\n\n**差多少要自己算，不要抄这句。**M4 读表时量到接近 4 倍（IDC 的 Total 里约七成六是算在服务器内部的存储）——这个比例随年份和地域变，录入时用你手上那张表自己算一遍，把算式写进该条事实的 notes。凡是断言加总或换算关系的 note，都要附得出它的算式。"
         }
       ],
       "note": "原表列头 Unit ASP ($)，值就是美元，**这一列的表头与数值一致**（2018 年 Servers 是 6,022 美元/台），与金额列的单位陷阱不同，不要一并换算。",
