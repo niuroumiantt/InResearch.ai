@@ -991,6 +991,64 @@ def cmd_gaps(a):
 
 HEX12 = re.compile(r'^[0-9a-f]{12}$')
 
+# The twelve-hex ids in evidence.source_id are reader cache keys, not sha256
+# prefixes.  Expanding one takes two hops: this remap gives the path the cache
+# key stood for, and the move ledger gives the sha256 that path carried before
+# the library was renamed around it.
+CACHE_REMAP = REPO / 'docs/inbox/path_migrations/cache_key_remap_20260818.json'
+MOVES = m4_paths.state() / 'moves.jsonl'
+
+
+def cache_key_to_sha(keys: set) -> dict:
+    """reader cache key -> sha256, for the keys asked about.
+
+    Two hops because neither half is enough on its own.  cache_key_remap holds
+    cache key -> the path that key was cached from, but those paths are from
+    the pre-rename library layout and no longer exist.  moves.jsonl holds every
+    rename ever performed, each line carrying the sha256 of the file being
+    moved - so the old path is still findable there, attached to a content
+    hash that does not move.
+
+    A basename that resolves to more than one sha256 is dropped rather than
+    guessed: duplicate copies of one report are common in this corpus, and two
+    of them are not necessarily the same bytes.
+    """
+    if not keys or not CACHE_REMAP.exists() or not MOVES.exists():
+        return {}
+    try:
+        remap = json.loads(CACHE_REMAP.read_text(encoding='utf-8'))
+    except ValueError:
+        return {}
+    want = {}
+    for key in keys:
+        entry = remap.get(key) or {}
+        for field in ('new_path', 'pre_path'):
+            path = entry.get(field)
+            if path:
+                want.setdefault(os.path.basename(path), set()).add(key)
+    if not want:
+        return {}
+    hits = {}
+    with MOVES.open(encoding='utf-8') as fh:
+        for line in fh:
+            for name in want:
+                if name in line:
+                    try:
+                        row = json.loads(line)
+                    except ValueError:
+                        continue
+                    sha = row.get('sha256')
+                    if sha:
+                        hits.setdefault(name, set()).add(sha)
+    out = {}
+    for name, shas in hits.items():
+        if len(shas) != 1:
+            continue
+        sha = next(iter(shas))
+        for key in want[name]:
+            out[key] = sha
+    return out
+
 
 def owing_provenance(records: list[dict]) -> list[dict]:
     return [f for f in records if not (f.get('evidence') or {}).get('sha256')]
@@ -1041,6 +1099,12 @@ def cmd_backfill_provenance(a):
                           % (type(exc).__name__)}, ensure_ascii=False))
 
     fixed, ambiguous, unknown, by_path = [], [], [], []
+    by_cache_key = []
+    cache_keys = cache_key_to_sha({
+        str((f.get('evidence') or {}).get('source_id') or '')
+        for f in owing
+        if HEX12.match(str((f.get('evidence') or {}).get('source_id') or ''))
+        and str((f.get('evidence') or {}).get('source_id')) not in by_prefix})
     for fact in owing:
         evidence = fact.get('evidence') or {}
         sid = str(evidence.get('source_id') or '')
@@ -1051,9 +1115,11 @@ def cmd_backfill_provenance(a):
             elif len(hits) > 1:
                 ambiguous.append({'fact_id': fact['fact_id'], 'prefix': sid,
                                   'matches': hits})
+            elif sid in cache_keys:
+                by_cache_key.append((fact, cache_keys[sid], sid))
             else:
                 unknown.append({'fact_id': fact['fact_id'], 'prefix': sid,
-                                'why': '这个前缀在 L1 账本里查无此文件'})
+                                'why': '既不是 sha256 前缀，也不是能还原的 reader 缓存键'})
             continue
         rel = (evidence.get('local_file')
                or (sources.get(sid) or {}).get('local_file'))
@@ -1067,9 +1133,11 @@ def cmd_backfill_provenance(a):
 
     report = {'owing_before': len(owing),
               '按前缀补全': len(fixed), '按路径补全': len(by_path),
+              '按缓存键补全': len(by_cache_key),
               '前缀撞车（未动）': len(ambiguous),
               '查不到（未动）': len(unknown),
-              'owing_after': len(owing) - len(fixed) - len(by_path)}
+              'owing_after': len(owing) - len(fixed) - len(by_path)
+                             - len(by_cache_key)}
     if not a.commit:
         report['note'] = '这是干跑，什么都没写。确认无误后加 --commit'
     print(json.dumps(report, ensure_ascii=False))
@@ -1081,21 +1149,24 @@ def cmd_backfill_provenance(a):
     if len(unknown) > a.show:
         print('  ……另有 %d 条查不到' % (len(unknown) - a.show))
 
-    if not a.commit or not (fixed or by_path):
+    if not a.commit or not (fixed or by_path or by_cache_key):
         return
     for fact, sha, how in fixed:
         fact['evidence']['sha256'] = sha
     for fact, sha, rel in by_path:
         fact['evidence']['sha256'] = sha
         fact['evidence'].setdefault('local_file', rel)
+    for fact, sha, key in by_cache_key:
+        fact['evidence']['sha256'] = sha
     store['updated'] = now()[:10]
     tmp = FACTS.with_suffix('.json.tmp')
     tmp.write_text(json.dumps(store, ensure_ascii=False, indent=2) + '\n',
                    encoding='utf-8')
     os.replace(tmp, FACTS)
-    print(json.dumps({'written': len(fixed) + len(by_path),
+    written = len(fixed) + len(by_path) + len(by_cache_key)
+    print(json.dumps({'written': written,
                       'note': '记得把 test_m4_l2.py 的 PROVENANCE_DEBT 改成 %d'
-                              % (len(owing) - len(fixed) - len(by_path))},
+                              % (len(owing) - written)},
                      ensure_ascii=False))
 
 
