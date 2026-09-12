@@ -24387,6 +24387,352 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "本条为分省口径，占全市场 3.9%。 单位换算：原表台数 ÷ 1000 = 千台。 **server_class=Accelerated/High-End**：原表口径是「AI 服务器」，本库用 Dell'Oro 的加速/高端服务器取值对应，**两者定义不必完全重合**，标 [未核]。 **原表数字带小数**（如 Dell 2747.999999999997 台），是从占比或金额反算回来的，不是整数计数——**本库按原值记，不四舍五入**，以便日后核对。"
+    },
+    {
+      "fact_id": "bern-cn-ai-accel-market-2024",
+      "metric_id": "cn_ai_chip_demand",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-accelerator-market",
+        "label": "中国 AI 加速器市场"
+      },
+      "value": 208.93,
+      "unit": "亿美元",
+      "caliber": {
+        "scenario": "禁令后实际",
+        "basis": "测算",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「国产GPU出货量」第 4 行「China AI Accelerator Market in 2024/2025E by Vendors (USD mn)」，2024 列十一家厂商逐行相加",
+        "grade": "S3",
+        "originator": "Bernstein（五张工作表均标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：原表只给分厂商金额没给合计，本条为十一家逐行相加 = 20893 $M ÷ 100 = 208.93 亿美元。 分厂商（2024，$M）：英伟达 13684、华为 4861、AMD 1000、寒武纪 222、海光 0、天数/T-head 260、昆仑 132、沐曦 92、摩尔线程 46、壁仞/Zixiao 110、其他 486。 **cn_ai_chip_demand 没有厂商维**，分厂商金额只能写在 notes 里；**这是本份最大的一块数据**（11 家 × 2 年），已另报缺口。 scenario=禁令后实际：2024-2025 处于美国出口管制之下，英伟达仍占 65%%（2024）与 55%%（2025E）。 **原表两处空值**：海光 2024 与壁仞 2025E 写「-」，本条按 0 参与加总，**若那是「未统计」而非「为零」，合计会偏低**，标 [未核]。"
+    },
+    {
+      "fact_id": "bern-cn-ai-accel-market-2025e",
+      "metric_id": "cn_ai_chip_demand",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-accelerator-market",
+        "label": "中国 AI 加速器市场"
+      },
+      "value": 382.77,
+      "unit": "亿美元",
+      "caliber": {
+        "scenario": "禁令后实际",
+        "basis": "预测",
+        "region": "CN"
+      },
+      "as_of": "2025E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「国产GPU出货量」第 4 行「China AI Accelerator Market in 2024/2025E by Vendors (USD mn)」，2025E 列十一家厂商逐行相加",
+        "grade": "S3",
+        "originator": "Bernstein（五张工作表均标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：原表只给分厂商金额没给合计，本条为十一家逐行相加 = 38277 $M ÷ 100 = 382.77 亿美元。 分厂商（2025E，$M）：英伟达 20875、华为 10694、AMD 1500、寒武纪 1467、海光 1069、天数/T-head 955、昆仑 363、沐曦 224、摩尔线程 61、壁仞/Zixiao 0、其他 1069。 **cn_ai_chip_demand 没有厂商维**，分厂商金额只能写在 notes 里；**这是本份最大的一块数据**（11 家 × 2 年），已另报缺口。 scenario=禁令后实际：2024-2025 处于美国出口管制之下，英伟达仍占 65%%（2024）与 55%%（2025E）。 **原表两处空值**：海光 2024 与壁仞 2025E 写「-」，本条按 0 参与加总，**若那是「未统计」而非「为零」，合计会偏低**，标 [未核]。"
+    },
+    {
+      "fact_id": "bern-cn-domestic-chip-share-value-2024",
+      "metric_id": "domestic_ai_chip_share_value",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-accelerator-market",
+        "label": "中国 AI 加速器市场"
+      },
+      "value": 29.7,
+      "unit": "%",
+      "caliber": {
+        "basis": "测算",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「国产GPU出货量」2024 列：国产合计（总额 20893 − 英伟达 13684 − AMD 1000 = 6209 $M）÷ 总额 20893",
+        "grade": "S3",
+        "originator": "Bernstein（五张工作表均标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：把英伟达与 AMD 归为非国产，其余九家（含 Others）归为国产，6209 ÷ 20893 = 29.7%。 **「Others」被算作国产是一个判断**：原表未说明 Others 的构成，若其中含非国产厂商，本值会偏高，标 [未核]。 **一年从 29.7% 升到 41.5%**（按金额），主要来自华为 48.6 亿→106.9 亿美元与寒武纪 2.2 亿→14.7 亿美元。 对照库内同指标的其它来源时注意：本条是按金额、且分母是中国 AI 加速器市场（含英伟达在华销售）。"
+    },
+    {
+      "fact_id": "bern-cn-domestic-chip-share-value-2025e",
+      "metric_id": "domestic_ai_chip_share_value",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-accelerator-market",
+        "label": "中国 AI 加速器市场"
+      },
+      "value": 41.5,
+      "unit": "%",
+      "caliber": {
+        "basis": "预测",
+        "region": "CN"
+      },
+      "as_of": "2025E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「国产GPU出货量」2025E 列：国产合计（总额 38277 − 英伟达 20875 − AMD 1500 = 15902 $M）÷ 总额 38277",
+        "grade": "S3",
+        "originator": "Bernstein（五张工作表均标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：把英伟达与 AMD 归为非国产，其余九家（含 Others）归为国产，15902 ÷ 38277 = 41.5%。 **「Others」被算作国产是一个判断**：原表未说明 Others 的构成，若其中含非国产厂商，本值会偏高，标 [未核]。 **一年从 29.7% 升到 41.5%**（按金额），主要来自华为 48.6 亿→106.9 亿美元与寒武纪 2.2 亿→14.7 亿美元。 对照库内同指标的其它来源时注意：本条是按金额、且分母是中国 AI 加速器市场（含英伟达在华销售）。"
+    },
+    {
+      "fact_id": "bern-shipment-cambricon-siyuan-590-2024-lower",
+      "metric_id": "domestic_gpu_shipment",
+      "entity": {
+        "type": "product",
+        "id": "cambricon-siyuan-590",
+        "label": "寒武纪思元 590"
+      },
+      "value": 2.0,
+      "unit": "万颗",
+      "caliber": {
+        "period": "年",
+        "counting": "整卡",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「寒武纪」第 6 行：2024 年向 ByteDance 交付约 20,000 - 30,000 台（下界）",
+        "grade": "S3",
+        "originator": "Bernstein（五张工作表均标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表「台」÷ 1 万 = 万颗（本指标单位为万颗）。 **counting=整卡是就近归类**：原表单位是「台」，而沐曦那条明确「含单板和 8 卡服务器」——**一台 8 卡服务器算 1 台还是 8 颗，原表没说**，因此这一族的口径不严，标 [未核]。**尤其不要把这些「台」与大摩那份的 die 数直接比**（见 ms-domestic-gpu-* 系列）。 **这不是全市场出货，是对单一客户的交付/订单**：寒武纪两款都是对 ByteDance、海光 DCU3 是对阿里巴巴——**customer 维在本指标里不存在**，只能写在这里。 原文「约 20,000 - 30,000 台」是区间，另一端见配对条目。"
+    },
+    {
+      "fact_id": "bern-shipment-cambricon-siyuan-590-2024-upper",
+      "metric_id": "domestic_gpu_shipment",
+      "entity": {
+        "type": "product",
+        "id": "cambricon-siyuan-590",
+        "label": "寒武纪思元 590"
+      },
+      "value": 3.0,
+      "unit": "万颗",
+      "caliber": {
+        "period": "年",
+        "counting": "整卡",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「寒武纪」第 6 行：2024 年向 ByteDance 交付约 20,000 - 30,000 台（上界）",
+        "grade": "S3",
+        "originator": "Bernstein（五张工作表均标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表「台」÷ 1 万 = 万颗（本指标单位为万颗）。 **counting=整卡是就近归类**：原表单位是「台」，而沐曦那条明确「含单板和 8 卡服务器」——**一台 8 卡服务器算 1 台还是 8 颗，原表没说**，因此这一族的口径不严，标 [未核]。**尤其不要把这些「台」与大摩那份的 die 数直接比**（见 ms-domestic-gpu-* 系列）。 **这不是全市场出货，是对单一客户的交付/订单**：寒武纪两款都是对 ByteDance、海光 DCU3 是对阿里巴巴——**customer 维在本指标里不存在**，只能写在这里。 原文「约 20,000 - 30,000 台」是区间，另一端见配对条目。"
+    },
+    {
+      "fact_id": "bern-shipment-cambricon-siyuan-590-2025",
+      "metric_id": "domestic_gpu_shipment",
+      "entity": {
+        "type": "product",
+        "id": "cambricon-siyuan-590",
+        "label": "寒武纪思元 590"
+      },
+      "value": 15.0,
+      "unit": "万颗",
+      "caliber": {
+        "period": "年",
+        "counting": "整卡",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「寒武纪」第 7 行：2025 年预计向 ByteDance 额外交付 150,000 台",
+        "grade": "S3",
+        "originator": "Bernstein（五张工作表均标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表「台」÷ 1 万 = 万颗（本指标单位为万颗）。 **counting=整卡是就近归类**：原表单位是「台」，而沐曦那条明确「含单板和 8 卡服务器」——**一台 8 卡服务器算 1 台还是 8 颗，原表没说**，因此这一族的口径不严，标 [未核]。**尤其不要把这些「台」与大摩那份的 die 数直接比**（见 ms-domestic-gpu-* 系列）。 **这不是全市场出货，是对单一客户的交付/订单**：寒武纪两款都是对 ByteDance、海光 DCU3 是对阿里巴巴——**customer 维在本指标里不存在**，只能写在这里。 "
+    },
+    {
+      "fact_id": "bern-shipment-cambricon-siyuan-580-2025",
+      "metric_id": "domestic_gpu_shipment",
+      "entity": {
+        "type": "product",
+        "id": "cambricon-siyuan-580",
+        "label": "寒武纪思元 580"
+      },
+      "value": 2.0,
+      "unit": "万颗",
+      "caliber": {
+        "period": "年",
+        "counting": "整卡",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「寒武纪」第 10 行：2025 年 ByteDance 预计订购约 20,000 台",
+        "grade": "S3",
+        "originator": "Bernstein（五张工作表均标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表「台」÷ 1 万 = 万颗（本指标单位为万颗）。 **counting=整卡是就近归类**：原表单位是「台」，而沐曦那条明确「含单板和 8 卡服务器」——**一台 8 卡服务器算 1 台还是 8 颗，原表没说**，因此这一族的口径不严，标 [未核]。**尤其不要把这些「台」与大摩那份的 die 数直接比**（见 ms-domestic-gpu-* 系列）。 **这不是全市场出货，是对单一客户的交付/订单**：寒武纪两款都是对 ByteDance、海光 DCU3 是对阿里巴巴——**customer 维在本指标里不存在**，只能写在这里。 "
+    },
+    {
+      "fact_id": "bern-shipment-metax-c500-2024",
+      "metric_id": "domestic_gpu_shipment",
+      "entity": {
+        "type": "product",
+        "id": "metax-c500",
+        "label": "沐曦 C500/550"
+      },
+      "value": 1.77,
+      "unit": "万颗",
+      "caliber": {
+        "period": "年",
+        "counting": "整卡",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「沐曦」第 9 行：2024 年销量 17,702 台（含单板与 8 卡服务器）",
+        "grade": "S3",
+        "originator": "Bernstein（五张工作表均标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表「台」÷ 1 万 = 万颗（本指标单位为万颗）。 **counting=整卡是就近归类**：原表单位是「台」，而沐曦那条明确「含单板和 8 卡服务器」——**一台 8 卡服务器算 1 台还是 8 颗，原表没说**，因此这一族的口径不严，标 [未核]。**尤其不要把这些「台」与大摩那份的 die 数直接比**（见 ms-domestic-gpu-* 系列）。  "
+    },
+    {
+      "fact_id": "bern-shipment-metax-server-gpu-2025",
+      "metric_id": "domestic_gpu_shipment",
+      "entity": {
+        "type": "product",
+        "id": "metax-server-gpu",
+        "label": "沐曦 Server GPU"
+      },
+      "value": 5.0,
+      "unit": "万颗",
+      "caliber": {
+        "period": "年",
+        "counting": "整卡",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「沐曦」第 10 行：2025 年预估出货 50,000 台",
+        "grade": "S3",
+        "originator": "Bernstein（五张工作表均标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表「台」÷ 1 万 = 万颗（本指标单位为万颗）。 **counting=整卡是就近归类**：原表单位是「台」，而沐曦那条明确「含单板和 8 卡服务器」——**一台 8 卡服务器算 1 台还是 8 颗，原表没说**，因此这一族的口径不严，标 [未核]。**尤其不要把这些「台」与大摩那份的 die 数直接比**（见 ms-domestic-gpu-* 系列）。  "
+    },
+    {
+      "fact_id": "bern-shipment-moore-threads-2024",
+      "metric_id": "domestic_gpu_shipment",
+      "entity": {
+        "type": "product",
+        "id": "moore-threads",
+        "label": "摩尔线程（集群/板卡/一体机合计）"
+      },
+      "value": 0.55,
+      "unit": "万颗",
+      "caliber": {
+        "period": "年",
+        "counting": "整卡",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「摩尔线程」第 4 行：2024 年通过集群、板卡和一体机销售 5.5k 台",
+        "grade": "S3",
+        "originator": "Bernstein（五张工作表均标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表「台」÷ 1 万 = 万颗（本指标单位为万颗）。 **counting=整卡是就近归类**：原表单位是「台」，而沐曦那条明确「含单板和 8 卡服务器」——**一台 8 卡服务器算 1 台还是 8 颗，原表没说**，因此这一族的口径不严，标 [未核]。**尤其不要把这些「台」与大摩那份的 die 数直接比**（见 ms-domestic-gpu-* 系列）。  "
+    },
+    {
+      "fact_id": "bern-shipment-hygon-dcu3-2025",
+      "metric_id": "domestic_gpu_shipment",
+      "entity": {
+        "type": "product",
+        "id": "hygon-dcu3",
+        "label": "海光 DCU3（曾用名 BW100/BW1000）"
+      },
+      "value": 1.5,
+      "unit": "万颗",
+      "caliber": {
+        "period": "年",
+        "counting": "整卡",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「海光」第 7 行：阿里巴巴预计订购 15,000 台",
+        "grade": "S3",
+        "originator": "Bernstein（五张工作表均标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表「台」÷ 1 万 = 万颗（本指标单位为万颗）。 **counting=整卡是就近归类**：原表单位是「台」，而沐曦那条明确「含单板和 8 卡服务器」——**一台 8 卡服务器算 1 台还是 8 颗，原表没说**，因此这一族的口径不严，标 [未核]。**尤其不要把这些「台」与大摩那份的 die 数直接比**（见 ms-domestic-gpu-* 系列）。 **这不是全市场出货，是对单一客户的交付/订单**：寒武纪两款都是对 ByteDance、海光 DCU3 是对阿里巴巴——**customer 维在本指标里不存在**，只能写在这里。 "
     }
   ]
 }
