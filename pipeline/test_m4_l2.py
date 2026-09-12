@@ -1292,5 +1292,137 @@ class FilledGapTests(unittest.TestCase):
             self.assertIn(v, values, v)
 
 
+class M07MenuTests(unittest.TestCase):
+    """M07 光通信：18 条缺口一次补齐后的钉子。
+
+    这一批全是「同一个词指两件事」：BOM 成本与全成本、产品级与公司级毛利率、
+    名义产能与有效产出、市场需求与厂商出货、「其他」客户与「未拆分」。
+    每一条 note 挡的都是一次具体的读错。
+    """
+
+    def setUp(self):
+        self.metrics = L2.load_metrics()
+
+    def dim(self, mid, did):
+        return next(d for d in self.metrics[mid]['caliber_dims'] if d['id'] == did)
+
+    def test_every_new_metric_exists_with_a_unit_and_a_module(self):
+        for mid in ('optics_module_price', 'optics_module_unit_cost',
+                    'optics_gross_margin', 'optics_module_power',
+                    'optics_module_reach', 'aec_shipment', 'optics_market_size',
+                    'optics_demand_share_by_customer',
+                    'optics_supplier_share_at_customer', 'gpu_to_optics_ratio',
+                    'optics_production_capacity', 'optics_capacity_utilization',
+                    'optics_supply_gap', 'company_revenue', 'company_net_income',
+                    'company_net_margin', 'earnings_vs_consensus_delta'):
+            metric = self.metrics[mid]
+            self.assertTrue(metric['unit'], mid)
+            self.assertEqual(metric['module'], 'M07', mid)
+            self.assertTrue(metric['caliber_dims'], mid)
+
+    # -- 那个 0.7 会被读反 -------------------------------------------------
+    def test_the_bom_note_carries_the_arithmetic_that_settles_the_direction(self):
+        """表头写「70% = BOM Cost」，读反就把毛利率算高一截。"""
+        note = self.dim('optics_module_unit_cost', 'cost_scope')['note']
+        self.assertIn('493', note)
+        self.assertIn('704', note)
+        self.assertIn('小的那个是 BOM', note)
+
+    # -- 同一份报告里的两个毛利率 ------------------------------------------
+    def test_margin_level_separates_product_from_company(self):
+        values = self.dim('optics_gross_margin', 'margin_level')['values']
+        self.assertEqual(values, ['产品级', '公司级'])
+
+    def test_a_company_margin_is_not_a_product_margin(self):
+        self.assertIn('44.8%', self.dim('optics_gross_margin', 'margin_level')['note'])
+
+    # -- 名义产能不是能出的货 ----------------------------------------------
+    def test_capacity_basis_carries_its_arithmetic(self):
+        note = self.dim('optics_production_capacity', 'capacity_basis')['note']
+        self.assertIn('1500 × 0.8 = 1200', note)
+
+    # -- 缺口的符号不靠正负号 ----------------------------------------------
+    def test_the_gap_sign_lives_in_a_dimension_not_in_the_value(self):
+        gap = self.dim('optics_supply_gap', 'gap_side')
+        self.assertEqual(gap['values'], ['供不应求', '供过于求'])
+        self.assertIn('value 一律取正数', gap['note'])
+
+    def test_the_gap_depends_on_which_demand_case(self):
+        self.assertIn('demand_case', [d['id'] for d in
+                                      self.metrics['optics_supply_gap']['caliber_dims']])
+
+    # -- 未拆分 ≠ 其他 -----------------------------------------------------
+    def test_unsplit_is_not_the_same_as_other(self):
+        for mid in ('optics_module_shipment', 'aec_shipment',
+                    'optics_demand_share_by_customer'):
+            values = self.dim(mid, 'customer')['values']
+            self.assertIn('其他', values, mid)
+            self.assertIn('未拆分', values, mid)
+
+    def test_the_note_says_why_they_differ(self):
+        self.assertIn('「未拆分」不是「其他」',
+                      self.dim('optics_module_shipment', 'customer')['note'])
+
+    # -- 市场需求 ≠ 未披露 -------------------------------------------------
+    def test_market_demand_is_its_own_shipment_basis(self):
+        d = self.dim('optics_module_shipment', 'shipment_basis')
+        self.assertIn('市场需求', d['values'])
+        self.assertIn('未披露', d['values'])
+
+    def test_the_note_flags_the_rows_recorded_before_the_value_existed(self):
+        """约十条需求数记在「未披露」下，要拿原表逐条改判，不能按 fact_id 批量改。"""
+        note = self.dim('optics_module_shipment', 'shipment_basis')['note']
+        self.assertIn('逐条改判', note)
+        self.assertIn('不要在没有原文的情况下', note)
+
+    # -- 合并档不是两档之和 ------------------------------------------------
+    def test_the_merged_speed_bucket_cannot_be_split_or_summed(self):
+        for mid in ('optics_module_shipment', 'aec_shipment',
+                    'optics_module_price', 'optics_module_power'):
+            d = self.dim(mid, 'speed')
+            self.assertIn('400G/800G 合并档', d['values'], mid)
+            self.assertIn('合计', d['values'], mid)
+            self.assertIn('不能拆开', d['note'], mid)
+
+    # -- 配比是系数不是常数 ------------------------------------------------
+    def test_the_ratio_metric_says_the_architecture_moves_it(self):
+        note = self.dim('gpu_to_optics_ratio', 'architecture')['note']
+        self.assertIn('1:4 变 1:8', note)
+        self.assertIn('不能外推', note)
+
+    def test_the_ratio_note_refuses_the_single_market_wide_multiplier(self):
+        note = self.metrics['gpu_to_optics_ratio']['note']
+        self.assertIn('得到的都不是市场需求', note)
+
+    # -- 币种没写就不许替原文断定 ------------------------------------------
+    def test_an_unstated_currency_stays_unstated(self):
+        for mid in ('company_revenue', 'company_net_income'):
+            d = self.dim(mid, 'currency')
+            self.assertIn('未注明', d['values'], mid)
+            self.assertIn('不要替原文断定', d['note'], mid)
+
+    # -- AEC 不进光模块出货曲线 --------------------------------------------
+    def test_aec_is_a_separate_metric_not_a_product_form(self):
+        self.assertNotIn('AEC', self.dim('optics_module_shipment', 'product_form')['values'])
+        self.assertIn('替代读成增长', self.metrics['aec_shipment']['note'])
+
+    # -- 距离既是分组也是被测量 --------------------------------------------
+    def test_reach_is_both_a_grouping_and_a_measurement(self):
+        self.assertIn('reach', [d['id'] for d in
+                                self.metrics['optics_module_price']['caliber_dims']])
+        self.assertEqual(self.metrics['optics_module_reach']['unit'], 'm')
+
+    # -- 加了维就要回填 ----------------------------------------------------
+    def test_every_shipment_fact_carries_both_new_dimensions(self):
+        store = json.loads((Path(L2.__file__).resolve().parent.parent /
+                            'data/facts.json').read_text(encoding='utf-8'))
+        rows = [f for f in store['records']
+                if f['metric_id'] == 'optics_module_shipment']
+        self.assertGreater(len(rows), 30)
+        for f in rows:
+            self.assertEqual(f['caliber'].get('product_form'), '光模块', f['fact_id'])
+            self.assertEqual(f['caliber'].get('customer'), '未拆分', f['fact_id'])
+
+
 if __name__ == '__main__':
     unittest.main()
