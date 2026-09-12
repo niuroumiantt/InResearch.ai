@@ -18423,6 +18423,254 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**原文「approaching 100 times」是下界式表述**，且对标的是传统 web 服务器机柜，不是上一代 GPU 机柜。  载体带【价值目录】valuelist.cn 的转载水印，非一手下载。"
+    },
+    {
+      "fact_id": "ulanqab-p3-material-ground-steel",
+      "metric_id": "electrical_material_intensity",
+      "entity": {
+        "type": "project",
+        "id": "ulanqab-huawei-phase3-1",
+        "label": "乌兰察布华为云数据中心三期一阶段"
+      },
+      "value": 2712.0,
+      "unit": "量/MW 或 量/机柜",
+      "caliber": {
+        "material": "接地扁钢",
+        "uom": "m",
+        "denominator": "项目合计",
+        "voltage_level": "未注明",
+        "region": "CN",
+        "basis": "清单实配"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d3d5bd3ee31c2c81969b6872b406b9855c0d50d691c76b0163d38d48847f362a",
+        "local_file": "乌兰察布华为运输局中心三期一阶段项目电气清册表.xlsx",
+        "locator": "工作表「接地」第 11 行「合计」，50*5mm 镀锌扁钢 = 2712 m",
+        "grade": "S2",
+        "originator": "华为（乌兰察布华为云数据中心三期一阶段项目电气清册）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**denominator=项目合计，不是强度**：原清册只给项目总量，没有给每 MW 或每机柜的口径。要换成强度需要该项目的 IT 容量，而**清册里查不到 IT 负荷**——UPS 总容量 5000kVA、冷量 2400kW，冗余配置（N+1 还是 2N）原文未写，IT 负荷可能是 2.4MW 也可能是 4.2MW，差 75%，故不反推。 分母若按同项目机电清单里的 522 个 IT 机柜算，本条相当于每机柜 5.20 m。 年份来自归档路径「2019.2 乌兰察布华为云数据中心三期一阶段项目」，工作簿内部无日期（文本框抽取也返回 0 条），标 [未核]。"
+    },
+    {
+      "fact_id": "ulanqab-p3-material-copper-braid",
+      "metric_id": "electrical_material_intensity",
+      "entity": {
+        "type": "project",
+        "id": "ulanqab-huawei-phase3-1",
+        "label": "乌兰察布华为云数据中心三期一阶段"
+      },
+      "value": 1588.0,
+      "unit": "量/MW 或 量/机柜",
+      "caliber": {
+        "material": "铜编织带",
+        "uom": "m",
+        "denominator": "项目合计",
+        "voltage_level": "未注明",
+        "region": "CN",
+        "basis": "清单实配"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d3d5bd3ee31c2c81969b6872b406b9855c0d50d691c76b0163d38d48847f362a",
+        "local_file": "乌兰察布华为运输局中心三期一阶段项目电气清册表.xlsx",
+        "locator": "工作表「接地」第 12 行「合计」，25mm² 铜编织带 = 1588 m",
+        "grade": "S2",
+        "originator": "华为（乌兰察布华为云数据中心三期一阶段项目电气清册）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**denominator=项目合计，不是强度**：原清册只给项目总量，没有给每 MW 或每机柜的口径。要换成强度需要该项目的 IT 容量，而**清册里查不到 IT 负荷**——UPS 总容量 5000kVA、冷量 2400kW，冗余配置（N+1 还是 2N）原文未写，IT 负荷可能是 2.4MW 也可能是 4.2MW，差 75%，故不反推。 分母若按同项目机电清单里的 522 个 IT 机柜算，本条相当于每机柜 3.04 m。 年份来自归档路径「2019.2 乌兰察布华为云数据中心三期一阶段项目」，工作簿内部无日期（文本框抽取也返回 0 条），标 [未核]。"
+    },
+    {
+      "fact_id": "ulanqab-p3-material-tray-indoor",
+      "metric_id": "electrical_material_intensity",
+      "entity": {
+        "type": "project",
+        "id": "ulanqab-huawei-phase3-1",
+        "label": "乌兰察布华为云数据中心三期一阶段"
+      },
+      "value": 242.0,
+      "unit": "量/MW 或 量/机柜",
+      "caliber": {
+        "material": "桥架（室内）",
+        "uom": "m",
+        "denominator": "项目合计",
+        "voltage_level": "10kV",
+        "region": "CN",
+        "basis": "清单实配"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d3d5bd3ee31c2c81969b6872b406b9855c0d50d691c76b0163d38d48847f362a",
+        "local_file": "乌兰察布华为运输局中心三期一阶段项目电气清册表.xlsx",
+        "locator": "工作表「桥架」10kV 桥架块第 8 行「合计」，800mm 宽单层桥架 = 242 m",
+        "grade": "S2",
+        "originator": "华为（乌兰察布华为云数据中心三期一阶段项目电气清册）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**denominator=项目合计，不是强度**：原清册只给项目总量，没有给每 MW 或每机柜的口径。要换成强度需要该项目的 IT 容量，而**清册里查不到 IT 负荷**——UPS 总容量 5000kVA、冷量 2400kW，冗余配置（N+1 还是 2N）原文未写，IT 负荷可能是 2.4MW 也可能是 4.2MW，差 75%，故不反推。 分母若按同项目机电清单里的 522 个 IT 机柜算，本条相当于每机柜 0.46 m。 年份来自归档路径「2019.2 乌兰察布华为云数据中心三期一阶段项目」，工作簿内部无日期（文本框抽取也返回 0 条），标 [未核]。"
+    },
+    {
+      "fact_id": "ulanqab-p3-material-tray-outdoor",
+      "metric_id": "electrical_material_intensity",
+      "entity": {
+        "type": "project",
+        "id": "ulanqab-huawei-phase3-1",
+        "label": "乌兰察布华为云数据中心三期一阶段"
+      },
+      "value": 163.0,
+      "unit": "量/MW 或 量/机柜",
+      "caliber": {
+        "material": "桥架（室外）",
+        "uom": "m",
+        "denominator": "项目合计",
+        "voltage_level": "10kV",
+        "region": "CN",
+        "basis": "清单实配"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d3d5bd3ee31c2c81969b6872b406b9855c0d50d691c76b0163d38d48847f362a",
+        "local_file": "乌兰察布华为运输局中心三期一阶段项目电气清册表.xlsx",
+        "locator": "工作表「桥架」第 9 行，800mm 宽单层桥架（室外）= 163 m",
+        "grade": "S2",
+        "originator": "华为（乌兰察布华为云数据中心三期一阶段项目电气清册）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**denominator=项目合计，不是强度**：原清册只给项目总量，没有给每 MW 或每机柜的口径。要换成强度需要该项目的 IT 容量，而**清册里查不到 IT 负荷**——UPS 总容量 5000kVA、冷量 2400kW，冗余配置（N+1 还是 2N）原文未写，IT 负荷可能是 2.4MW 也可能是 4.2MW，差 75%，故不反推。 分母若按同项目机电清单里的 522 个 IT 机柜算，本条相当于每机柜 0.31 m。 年份来自归档路径「2019.2 乌兰察布华为云数据中心三期一阶段项目」，工作簿内部无日期（文本框抽取也返回 0 条），标 [未核]。"
+    },
+    {
+      "fact_id": "ulanqab-p3-count-genset",
+      "metric_id": "major_equipment_count",
+      "entity": {
+        "type": "project",
+        "id": "ulanqab-huawei-phase3-1",
+        "label": "乌兰察布华为云数据中心三期一阶段"
+      },
+      "value": 6.0,
+      "unit": "台",
+      "caliber": {
+        "equipment": "柴发",
+        "redundancy": "未注明",
+        "region": "CN",
+        "basis": "清单实配"
+      },
+      "as_of": "2019",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "d3d5bd3ee31c2c81969b6872b406b9855c0d50d691c76b0163d38d48847f362a",
+        "local_file": "乌兰察布华为运输局中心三期一阶段项目电气清册表.xlsx",
+        "locator": "工作表「导线明细表（配电柜）」第 3-8 行：1#~6# 柴发各一路 10kV 出线（ZA-YJV-3×120，设计电流 130A）",
+        "grade": "S2",
+        "originator": "华为（乌兰察布华为云数据中心三期一阶段项目电气清册）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**从回路数点出来的，不是清单直接给的台数**：电气清册按导线逐条列示，柴发是按 1#~6# 各一路出线数出 6 台；**同项目的机电设备清单里柴发机组数量是 14 台**（1800kW/10.5kV，见 ulanqab-p3-price-genset），**两者不一致**——电气清册这 6 路可能只是三期一阶段某一栋或某一段的进线，或与机电清单的统计范围不同，**故本条按下界记并标 [未核]**。 年份来自归档路径「2019.2 乌兰察布华为云数据中心三期一阶段项目」，工作簿内部无日期（文本框抽取也返回 0 条），标 [未核]。"
+    },
+    {
+      "fact_id": "ulanqab-p3-count-utility-feeds",
+      "metric_id": "major_equipment_count",
+      "entity": {
+        "type": "project",
+        "id": "ulanqab-huawei-phase3-1",
+        "label": "乌兰察布华为云数据中心三期一阶段"
+      },
+      "value": 4.0,
+      "unit": "台",
+      "caliber": {
+        "equipment": "市电进线回路",
+        "redundancy": "未注明",
+        "region": "CN",
+        "basis": "清单实配"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d3d5bd3ee31c2c81969b6872b406b9855c0d50d691c76b0163d38d48847f362a",
+        "local_file": "乌兰察布华为运输局中心三期一阶段项目电气清册表.xlsx",
+        "locator": "工作表「电缆汇总版」第 3-6 行：1#市电 A/B 路、2#市电 A/B 路共四回 10kV 进线，每回 2(3×300)mm²",
+        "grade": "S2",
+        "originator": "华为（乌兰察布华为云数据中心三期一阶段项目电气清册）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**双路市电双系统**：1#与 2# 两套系统、每套 A/B 双路，共四回 10kV 进线。redundancy 未注明——原文没写这四回是 2N 还是其他配置。 年份来自归档路径「2019.2 乌兰察布华为云数据中心三期一阶段项目」，工作簿内部无日期（文本框抽取也返回 0 条），标 [未核]。"
+    },
+    {
+      "fact_id": "ulanqab-p3-current-margin-10kv-lower",
+      "metric_id": "circuit_current_margin",
+      "entity": {
+        "type": "project",
+        "id": "ulanqab-huawei-phase3-1",
+        "label": "乌兰察布华为云数据中心三期一阶段"
+      },
+      "value": 256.9,
+      "unit": "%",
+      "caliber": {
+        "circuit_type": "10kV 出线",
+        "margin_definition": "载流量÷设计电流",
+        "region": "CN",
+        "basis": "清单实配"
+      },
+      "as_of": "2019",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "d3d5bd3ee31c2c81969b6872b406b9855c0d50d691c76b0163d38d48847f362a",
+        "local_file": "乌兰察布华为运输局中心三期一阶段项目电气清册表.xlsx",
+        "locator": "工作表「导线明细表（配电柜）」10kV配电室出线柜→各层变压器共 10 余回：设计电流 116A 与 144A 两档，导线 WDZ-YJY-3×95，载流量均标 370A（下 端取设计电流 144A 的回路）",
+        "grade": "S2",
+        "originator": "华为（乌兰察布华为云数据中心三期一阶段项目电气清册）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**这是一组回路的裕度区间，不是某一回路的点值**：同一份清册里 10kV 出线的载流量都是 370A，但设计电流分 144A 与 116A 两档，于是裕度在 256.9%（370÷144）到 319.0%（370÷116）之间。**本条是下端**，另一端见配对条目。 **margin_definition 必须带**：本条是「载流量÷设计电流」，即 256.9% 意为载流量是设计电流的 2.6 倍；若改用「（载流量−设计电流）÷设计电流」则同一组数变成 156.9%-219.0%，**差整整 100 个百分点**。 **无法记成单回路**：circuit_current_margin 没有回路标识维，同一 circuit_type 下的多条回路互撞 claim_key，故改用区间表达。原清册有 1230 行逐回路明细，真要逐回路入库需要一维回路编号。 年份来自归档路径「2019.2 …」，工作簿内部无日期，标 [未核]。"
+    },
+    {
+      "fact_id": "ulanqab-p3-current-margin-10kv-upper",
+      "metric_id": "circuit_current_margin",
+      "entity": {
+        "type": "project",
+        "id": "ulanqab-huawei-phase3-1",
+        "label": "乌兰察布华为云数据中心三期一阶段"
+      },
+      "value": 319.0,
+      "unit": "%",
+      "caliber": {
+        "circuit_type": "10kV 出线",
+        "margin_definition": "载流量÷设计电流",
+        "region": "CN",
+        "basis": "清单实配"
+      },
+      "as_of": "2019",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "d3d5bd3ee31c2c81969b6872b406b9855c0d50d691c76b0163d38d48847f362a",
+        "local_file": "乌兰察布华为运输局中心三期一阶段项目电气清册表.xlsx",
+        "locator": "工作表「导线明细表（配电柜）」10kV配电室出线柜→各层变压器共 10 余回：设计电流 116A 与 144A 两档，导线 WDZ-YJY-3×120，载流量均标 370A（上 端取设计电流 116A 的回路）",
+        "grade": "S2",
+        "originator": "华为（乌兰察布华为云数据中心三期一阶段项目电气清册）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**这是一组回路的裕度区间，不是某一回路的点值**：同一份清册里 10kV 出线的载流量都是 370A，但设计电流分 144A 与 116A 两档，于是裕度在 256.9%（370÷144）到 319.0%（370÷116）之间。**本条是上端**，另一端见配对条目。 **margin_definition 必须带**：本条是「载流量÷设计电流」，即 256.9% 意为载流量是设计电流的 2.6 倍；若改用「（载流量−设计电流）÷设计电流」则同一组数变成 156.9%-219.0%，**差整整 100 个百分点**。 **无法记成单回路**：circuit_current_margin 没有回路标识维，同一 circuit_type 下的多条回路互撞 claim_key，故改用区间表达。原清册有 1230 行逐回路明细，真要逐回路入库需要一维回路编号。 年份来自归档路径「2019.2 …」，工作簿内部无日期，标 [未核]。"
     }
   ]
 }
