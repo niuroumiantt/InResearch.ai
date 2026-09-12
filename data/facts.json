@@ -22891,6 +22891,244 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "单位换算：原表千颗 ÷ 10 = 万颗。**counting=die，不是封装体也不是整卡**——一颗 die 到一张可用加速卡之间还有封装与整卡良率，**用 die 数直接当出货卡数会高估**。 本条的模型输入：中芯给该型号的晶圆产能 20 kwpm、每片 39 颗 die、平均良率 30%。 **型号切换极快**：910B 2026 年归零、910C 接棒又在 2027 年被 910X 超过——**任何单型号的曲线都会在两年内断掉**，看国产算力总量必须三条相加。 **这是券商自下而上的产能模型输出，不是出货统计**：链条为「中芯国际给国产 GPU 的晶圆产能（kwpm）× 每片 die 数 × 良率 = 年 die 产量」。**三个乘数里良率是最不可核的一环**（910B 从 2024 年 30% 推到 2027 年 70%），任何一环变动结果就变。"
+    },
+    {
+      "fact_id": "nv-rack-power-gb200-nvl72-tdp",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "gb200-nvl72",
+        "label": "GB200 NVL72（36×GB200 / 72 GPU）"
+      },
+      "value": 97.2,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "power_basis": "TDP 热设计功耗",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1abd3563541d73fc5032a2966775fbb0e77c03ed5f6c39353b4bbb2e5a63822a",
+        "local_file": "NVIDIA 整机柜系统参数与液冷方案对比.xlsx",
+        "locator": "工作表「参数」第 25 行 GPU Power Consumption，GB200 NVL72 列 = 36 × 2.7kw = 97.2kw",
+        "grade": "S5",
+        "originator": "未具名整理（工作表无署名；内容为英伟达公开规格与液冷方案对比）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**power_basis 这一维决定数值差多少**：同一个 GB200 NVL72，只算 GPU 的 TDP 是 97.2kW，整柜实际满载是 120kW——**差 23kW（24%），落在 CPU、NVSwitch、网卡与损耗上**。引用时不带这一维会低估四分之一。    **出处未知**：五张工作表均无署名、无日期，内容看得出是对英伟达公开规格的整理，但无法确认整理方与依据版本，grade 记 S5。原表多处自带问号（如 NVL32 总功耗「40kw?」、GB300 的 LPDDR5X「17.3TB?」、InfiniBand「2.7TB/s?」），**即整理者自己也不确定**。"
+    },
+    {
+      "fact_id": "nv-rack-power-gb200-nvl72-total",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "gb200-nvl72",
+        "label": "GB200 NVL72（36×GB200 / 72 GPU）"
+      },
+      "value": 120.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "power_basis": "实际满载",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1abd3563541d73fc5032a2966775fbb0e77c03ed5f6c39353b4bbb2e5a63822a",
+        "local_file": "NVIDIA 整机柜系统参数与液冷方案对比.xlsx",
+        "locator": "工作表「参数」第 26 行 Total Power Consumption，GB200 NVL72 列 = 120kw",
+        "grade": "S5",
+        "originator": "未具名整理（工作表无署名；内容为英伟达公开规格与液冷方案对比）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**power_basis 这一维决定数值差多少**：同一个 GB200 NVL72，只算 GPU 的 TDP 是 97.2kW，整柜实际满载是 120kW——**差 23kW（24%），落在 CPU、NVSwitch、网卡与损耗上**。引用时不带这一维会低估四分之一。  对照库内 rack-nvl72-2026（NVL72 类 120kW 下界，2026-08）：**本条 120kW 与其一致**，但那条是 bound=lower、本条是原表给的点值，来源不同可互相印证。  **出处未知**：五张工作表均无署名、无日期，内容看得出是对英伟达公开规格的整理，但无法确认整理方与依据版本，grade 记 S5。原表多处自带问号（如 NVL32 总功耗「40kw?」、GB300 的 LPDDR5X「17.3TB?」、InfiniBand「2.7TB/s?」），**即整理者自己也不确定**。"
+    },
+    {
+      "fact_id": "nv-rack-power-gb300-nvl72-total-lower",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "gb300-nvl72",
+        "label": "GB300 NVL72（36×GB300 / 72 GPU）"
+      },
+      "value": 125.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "power_basis": "实际满载",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "1abd3563541d73fc5032a2966775fbb0e77c03ed5f6c39353b4bbb2e5a63822a",
+        "local_file": "NVIDIA 整机柜系统参数与液冷方案对比.xlsx",
+        "locator": "工作表「液冷」第 10 行「机柜功耗」，GB300 列 = 125–130kW（备注「液冷必选，空冷难以胜任」）",
+        "grade": "S5",
+        "originator": "未具名整理（工作表无署名；内容为英伟达公开规格与液冷方案对比）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**power_basis 这一维决定数值差多少**：同一个 GB200 NVL72，只算 GPU 的 TDP 是 97.2kW，整柜实际满载是 120kW——**差 23kW（24%），落在 CPU、NVSwitch、网卡与损耗上**。引用时不带这一维会低估四分之一。   **GB300 比 GB200 整柜再高 5-10kW**（125-130 对 120），原表直接注明「液冷必选，空冷难以胜任」。 **出处未知**：五张工作表均无署名、无日期，内容看得出是对英伟达公开规格的整理，但无法确认整理方与依据版本，grade 记 S5。原表多处自带问号（如 NVL32 总功耗「40kw?」、GB300 的 LPDDR5X「17.3TB?」、InfiniBand「2.7TB/s?」），**即整理者自己也不确定**。"
+    },
+    {
+      "fact_id": "nv-rack-power-gb300-nvl72-total-upper",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "gb300-nvl72",
+        "label": "GB300 NVL72（36×GB300 / 72 GPU）"
+      },
+      "value": 130.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "power_basis": "实际满载",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "1abd3563541d73fc5032a2966775fbb0e77c03ed5f6c39353b4bbb2e5a63822a",
+        "local_file": "NVIDIA 整机柜系统参数与液冷方案对比.xlsx",
+        "locator": "工作表「液冷」第 10 行，GB300 列 = 125–130kW",
+        "grade": "S5",
+        "originator": "未具名整理（工作表无署名；内容为英伟达公开规格与液冷方案对比）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**power_basis 这一维决定数值差多少**：同一个 GB200 NVL72，只算 GPU 的 TDP 是 97.2kW，整柜实际满载是 120kW——**差 23kW（24%），落在 CPU、NVSwitch、网卡与损耗上**。引用时不带这一维会低估四分之一。   **GB300 比 GB200 整柜再高 5-10kW**（125-130 对 120），原表直接注明「液冷必选，空冷难以胜任」。 **出处未知**：五张工作表均无署名、无日期，内容看得出是对英伟达公开规格的整理，但无法确认整理方与依据版本，grade 记 S5。原表多处自带问号（如 NVL32 总功耗「40kw?」、GB300 的 LPDDR5X「17.3TB?」、InfiniBand「2.7TB/s?」），**即整理者自己也不确定**。"
+    },
+    {
+      "fact_id": "nv-rack-power-nvl32-tdp",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "nvl32",
+        "label": "NVL32（32×GH200）"
+      },
+      "value": 32.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "power_basis": "TDP 热设计功耗",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1abd3563541d73fc5032a2966775fbb0e77c03ed5f6c39353b4bbb2e5a63822a",
+        "local_file": "NVIDIA 整机柜系统参数与液冷方案对比.xlsx",
+        "locator": "工作表「参数」第 25 行，NVL32 列 = 32 × 1kw = 32kw",
+        "grade": "S5",
+        "originator": "未具名整理（工作表无署名；内容为英伟达公开规格与液冷方案对比）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**power_basis 这一维决定数值差多少**：同一个 GB200 NVL72，只算 GPU 的 TDP 是 97.2kW，整柜实际满载是 120kW——**差 23kW（24%），落在 CPU、NVSwitch、网卡与损耗上**。引用时不带这一维会低估四分之一。    **出处未知**：五张工作表均无署名、无日期，内容看得出是对英伟达公开规格的整理，但无法确认整理方与依据版本，grade 记 S5。原表多处自带问号（如 NVL32 总功耗「40kw?」、GB300 的 LPDDR5X「17.3TB?」、InfiniBand「2.7TB/s?」），**即整理者自己也不确定**。"
+    },
+    {
+      "fact_id": "nv-rack-power-gb200-superpod-tdp",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "gb200-superpod",
+        "label": "GB200 SuperPod（288×GB200 / 576 GPU）"
+      },
+      "value": 777.6,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "power_basis": "TDP 热设计功耗",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1abd3563541d73fc5032a2966775fbb0e77c03ed5f6c39353b4bbb2e5a63822a",
+        "local_file": "NVIDIA 整机柜系统参数与液冷方案对比.xlsx",
+        "locator": "工作表「参数」第 25 行，GB200 SuperPod 列 = 288 × 2.7kw = 777.6kw",
+        "grade": "S5",
+        "originator": "未具名整理（工作表无署名；内容为英伟达公开规格与液冷方案对比）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**power_basis 这一维决定数值差多少**：同一个 GB200 NVL72，只算 GPU 的 TDP 是 97.2kW，整柜实际满载是 120kW——**差 23kW（24%），落在 CPU、NVSwitch、网卡与损耗上**。引用时不带这一维会低估四分之一。 **GB200 SuperPod 的 777.6kW 不是一个机柜**：它是 288 个 GB200（576 GPU）的整套系统，横跨多柜，**放在 kW/机柜 这个单位下是原表的算法（288×2.7kW），不要当成单柜密度**。   **出处未知**：五张工作表均无署名、无日期，内容看得出是对英伟达公开规格的整理，但无法确认整理方与依据版本，grade 记 S5。原表多处自带问号（如 NVL32 总功耗「40kw?」、GB300 的 LPDDR5X「17.3TB?」、InfiniBand「2.7TB/s?」），**即整理者自己也不确定**。"
+    },
+    {
+      "fact_id": "nv-cooling-threshold-air-max",
+      "metric_id": "liquid_cooling_econ_threshold",
+      "entity": {
+        "type": "technology",
+        "id": "rack-cooling-scheme-thresholds",
+        "label": "机柜功率密度与散热方案门槛"
+      },
+      "value": 20.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "tech": "冷板式",
+        "basis": "厂商宣称",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "1abd3563541d73fc5032a2966775fbb0e77c03ed5f6c39353b4bbb2e5a63822a",
+        "local_file": "NVIDIA 整机柜系统参数与液冷方案对比.xlsx",
+        "locator": "工作表「机柜功率和散热方案」第 5-7 行：「< 20kW 纯风冷可行（传统数据中心常见）」",
+        "grade": "S5",
+        "originator": "未具名整理（工作表无署名；内容为英伟达公开规格与液冷方案对比）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**三档要一起看**：<20kW 纯风冷可行、20-75kW 混合风-液（含热管后门换热器）、>75kW 直液冷必选。**本条是风冷可行的上限**，另一端见配对条目；20-75kW 那一段是过渡区，没有单一门槛值。 **tech=冷板式是就近归类**：原表只写「直液冷（DLC）」未区分冷板与浸没，标 [未核]。 对照库内 liquid-cooling-threshold-coldplate-2022（冷板式 15 kW/机柜 下界，设计方判断，CN）：**那条的门槛远低于这里的 75kW**——一个是「什么时候可以用液冷」、一个是「什么时候不得不用液冷」，**两者不是同一个问题**，并列保留。 **出处未知**：五张工作表均无署名、无日期，内容看得出是对英伟达公开规格的整理，但无法确认整理方与依据版本，grade 记 S5。原表多处自带问号（如 NVL32 总功耗「40kw?」、GB300 的 LPDDR5X「17.3TB?」、InfiniBand「2.7TB/s?」），**即整理者自己也不确定**。"
+    },
+    {
+      "fact_id": "nv-cooling-threshold-dlc-min",
+      "metric_id": "liquid_cooling_econ_threshold",
+      "entity": {
+        "type": "technology",
+        "id": "rack-cooling-scheme-thresholds",
+        "label": "机柜功率密度与散热方案门槛"
+      },
+      "value": 75.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "tech": "冷板式",
+        "basis": "厂商宣称",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "1abd3563541d73fc5032a2966775fbb0e77c03ed5f6c39353b4bbb2e5a63822a",
+        "local_file": "NVIDIA 整机柜系统参数与液冷方案对比.xlsx",
+        "locator": "工作表「机柜功率和散热方案」第 5-7 行：「> 75kW 直液冷（DLC）高功率密度的必选路径」",
+        "grade": "S5",
+        "originator": "未具名整理（工作表无署名；内容为英伟达公开规格与液冷方案对比）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**三档要一起看**：<20kW 纯风冷可行、20-75kW 混合风-液（含热管后门换热器）、>75kW 直液冷必选。**本条是直液冷的下限**，另一端见配对条目；20-75kW 那一段是过渡区，没有单一门槛值。 **tech=冷板式是就近归类**：原表只写「直液冷（DLC）」未区分冷板与浸没，标 [未核]。 对照库内 liquid-cooling-threshold-coldplate-2022（冷板式 15 kW/机柜 下界，设计方判断，CN）：**那条的门槛远低于这里的 75kW**——一个是「什么时候可以用液冷」、一个是「什么时候不得不用液冷」，**两者不是同一个问题**，并列保留。 **出处未知**：五张工作表均无署名、无日期，内容看得出是对英伟达公开规格的整理，但无法确认整理方与依据版本，grade 记 S5。原表多处自带问号（如 NVL32 总功耗「40kw?」、GB300 的 LPDDR5X「17.3TB?」、InfiniBand「2.7TB/s?」），**即整理者自己也不确定**。"
     }
   ]
 }
