@@ -61,6 +61,10 @@ GRADES = ('S1', 'S2', 'S3', 'S4', 'S5')
 DEPTHS = ('精读', '据实生成')          # 半自动 and 目录级 never reach the fact layer
 BOUNDS = ('point', 'upper', 'lower')
 CORROBORATION = ('待交叉验证', '已交叉验证', '孤证已知', '同源转述')
+
+# 自由文本维填这些等于没填：它们不区分任何两条数，而区分正是这类维存在的理由。
+PLACEHOLDER_VALUES = frozenset(
+    ('见 notes', '见notes', '见备注', '同上', '未填', '待补', '略', '-', '—', 'N/A', 'n/a'))
 # A year is always the anchor; everything after it says what kind of year.
 #   2022-01        an actual, to the month
 #   2026-Q1        a quarter
@@ -659,6 +663,17 @@ def check_fact(fact: dict, metrics: dict, seen: set, claims: dict | None = None)
                 got = caliber.get(dim['id'])
                 if got is None:
                     bad.append('caliber 缺 %s（%s）——缺一维即无法比较' % (dim['id'], dim.get('name', '')))
+                elif dim.get('free_text'):
+                    # 有些口径维本来就是开放的：设备规格、调查选项、清单分项名。
+                    # 拿一个占位值糊过去比不填更糟——两台不同规格的 UPS 会撞成
+                    # 同一个 claim_key，后录的那台被当成重复直接拒掉。
+                    text = str(got).strip()
+                    if not text:
+                        bad.append('caliber.%s 是自由文本维，不能留空' % dim['id'])
+                    elif text in PLACEHOLDER_VALUES:
+                        bad.append('caliber.%s = %r 是占位词不是取值——'
+                                   '自由文本维要填原文的那一串（规格、选项、分项名），'
+                                   '它是把两条数区分开的东西' % (dim['id'], got))
                 elif dim.get('values') and got not in dim['values']:
                     bad.append('caliber.%s = %r 不在允许取值内：%s' % (
                         dim['id'], got, ' / '.join(dim['values'])))
