@@ -1,30 +1,12 @@
-/* Self-contained browser regression: URL values must remain text. */
+/* Untrusted URL values and Markdown remain text or validated links. */
 const assert = require('node:assert/strict');
-const http = require('node:http');
-const fs = require('node:fs/promises');
-const path = require('node:path');
 const {chromium} = require('playwright');
-const root = path.resolve(__dirname, '..');
-const types = {'.html':'text/html', '.js':'text/javascript', '.css':'text/css', '.json':'application/json'};
-
+const base = process.env.UI_BASE_URL;
 (async () => {
-  const server = http.createServer(async (req, res) => {
-    try {
-      const file = path.resolve(root, '.' + decodeURIComponent(new URL(req.url, 'http://localhost').pathname));
-      if (!file.startsWith(root + path.sep)) throw Error('outside test root');
-      const data = await fs.readFile(file);
-      res.writeHead(200, {'Content-Type':types[path.extname(file)] || 'application/octet-stream'});
-      res.end(data);
-    } catch { res.writeHead(404); res.end(); }
-  });
-  await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
-  let browser;
+  const browser = await chromium.launch({headless:true, channel:process.env.UI_BROWSER_CHANNEL || undefined,
+    args:['--enable-unsafe-swiftshader']});
   try {
-    browser = await chromium.launch({headless:true,
-      ...(process.env.UI_BROWSER_CHANNEL ? {channel:process.env.UI_BROWSER_CHANNEL} : {}),
-      args:['--enable-unsafe-swiftshader']});
     const page = await browser.newPage();
-    const base = `http://127.0.0.1:${server.address().port}`;
     const payload = '<img src=x onerror="window.__urlExecuted=true">';
     await page.goto(`${base}/company.html?c=${encodeURIComponent(payload)}`);
     await page.locator('#root .err').waitFor();
@@ -36,9 +18,37 @@ const types = {'.html':'text/html', '.js':'text/javascript', '.css':'text/css', 
     assert.equal(await page.locator('.meta b').first().textContent(), payload);
     assert.equal(await page.locator('.meta img').count(), 0);
     assert.equal(await page.evaluate(() => Boolean(window.__urlExecuted)), false);
-    console.log('PASS company error and comparison filename render URL input as text');
-  } finally {
-    if (browser) await browser.close();
-    await new Promise(resolve => server.close(resolve));
-  }
-})().catch(error => { console.error(error); process.exitCode = 1; });
+
+    const markdown = `# Fixture\n\n## ${payload}\n\n## Second\n\n## Third\n\n` +
+      '[unsafe](javascript:window.__urlExecuted=true)\n\n' +
+      '[quoted](https://example.test/"onpointerenter="window.__urlExecuted=true)\n\n' +
+      '[valid](https://example.test/?a=1&b=2)\n\n' +
+      '[current](../framework/CURRENT.md)\n\n' +
+      '`https://example.test/code`\n\n**Strong & clear**';
+    await page.route('**/research/M08.md?*', route => route.fulfill({body:markdown,contentType:'text/plain'}));
+    await page.goto(base+'/doc.html?f=research/M08.md');
+    await page.locator('#toc a').nth(2).waitFor();
+    assert.equal(await page.locator('#toc a').first().textContent(), payload);
+    assert.equal(await page.locator('#content img, #toc img, #content [onpointerenter], #content [onerror]').count(), 0);
+    assert.equal(await page.locator('#content a[href^="javascript:"]').count(), 0);
+    assert.equal(await page.locator('#content code a').count(), 0);
+    assert.equal(await page.getByRole('link',{name:'valid',exact:true}).getAttribute('href'), 'https://example.test/?a=1&b=2');
+    assert.match(await page.getByRole('link',{name:'current',exact:true}).getAttribute('href'), /doc\.html\?f=framework%2FCURRENT\.md$/);
+    assert.equal(await page.locator('#content b').textContent(), 'Strong & clear');
+    assert.equal(await page.evaluate(() => Boolean(window.__urlExecuted)), false);
+
+    const report = await (await page.request.get(base+'/api/report')).json();
+    const finding = report.chapters[0].findings[0];
+    finding.title = payload;
+    finding.body = ['- **结论**：[unsafe](javascript:window.__urlExecuted=true)',
+      '  - [quoted](https://example.test/"onpointerenter="window.__urlExecuted=true)',
+      '  - `https://example.test/code`'];
+    await page.route('**/api/report?*', route => route.fulfill({json:report}));
+    await page.goto(base+'/report.html');
+    await page.locator('.finding').first().waitFor();
+    assert.match(await page.locator('.finding h3').first().textContent(), /<img src=x/);
+    assert.equal(await page.locator('#docroot img, #docroot [onpointerenter], #docroot a[href^="javascript:"], #docroot code a').count(), 0);
+    assert.equal(await page.evaluate(() => Boolean(window.__urlExecuted)), false);
+    console.log('PASS URL text, Markdown links, code spans and document table of contents');
+  } finally { await browser.close(); }
+})().catch(error => {console.error(error);process.exitCode=1;});

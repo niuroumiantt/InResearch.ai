@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.12.5",
+  "version": "2026.09.12.6",
   "effective_at": "2026-09-12",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -17,19 +17,26 @@
       "topic": "architecture",
       "status": "current",
       "scope": "project",
-      "effective_at": "2026-09-06",
+      "effective_at": "2026-09-12",
       "source": "framework/00_overview.md",
       "implementations": [
         "framework/research_graph.json",
         "framework/research_questions.json",
         "assets/research-graph.js",
         "framework/modules/M15_情景与监测.md",
-        "framework_poster.html"
+        "framework_poster.html",
+        "README.md",
+        "pipeline/README.md",
+        "pipeline/research.py",
+        "pipeline/report_model.py",
+        "pipeline/model_runtime.py",
+        "pipeline/m4_records.py",
+        "pipeline/file_moves.py"
       ],
       "supersedes": [
         "architecture-legacy"
       ],
-      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。"
+      "reason": "保持五视角架构；明确研究定义、原文、采用、任务交付、推理与操作界面的第一层边界，替代 README 中模块唯一主体与上游无接口的旧说明。"
     },
     {
       "id": "data-legacy",
@@ -253,7 +260,9 @@
         ".github/workflows/validate.yml",
         "company.html",
         "materials.html",
-        "report.html"
+        "report.html",
+        "assets/markdown-inline.js",
+        "tests/url_rendering.cjs"
       ],
       "supersedes": [
         "interface-legacy"

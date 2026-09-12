@@ -75,7 +75,7 @@
    <a href="bom.html">爆炸图</a>  <b style="color:var(--accent)">报告成稿</b>
   <a href="doc.html?f=framework/01_data_standards.md">口径手册</a>
   <a href="doc.html?f=reports/verify_queue.md">核验队列</a>
-  <a href="https://github.com/niuroumiantt/datacenter" target="_blank">GitHub</a>
+  <a href="https://github.com/niuroumiantt/InResearch.ai" target="_blank">GitHub</a>
   <a href="javascript:window.print()">打印/存 PDF</a>
 </div>
 <div class="layout">
@@ -83,8 +83,9 @@
   <main><div id="docroot"><div class="page-doc">加载中…</div></div></main>
 </div>
 
+<script src="/assets/markdown-inline.js"></script>
 <script>
-const REPO = "https://github.com/niuroumiantt/datacenter/blob/main/";
+const REPO = "https://github.com/niuroumiantt/InResearch.ai/blob/main/";
 const CN = ["一","二","三","四","五","六","七","八","九","十","十一","十二","十三","十四","十五"];
 
 async function get(path) {
@@ -92,15 +93,8 @@ async function get(path) {
   if (!r.ok) throw new Error(path + " → HTTP " + r.status);
   return path.endsWith(".json") || path.startsWith("/api/") ? r.json() : r.text();
 }
-function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
-function inline(s) {
-  s = esc(s);
-  s = s.replace(/`([^`]+)`/g, (m, c) => "<code>" + c + "</code>");
-  s = s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2" target="_blank">$1</a>');
-  s = s.replace(/(^|[^"=\]>])(https?:\/\/[^\s<）]+)/g, '$1<a href="$2" target="_blank">$2</a>');
-  s = s.replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>");
-  return s;
-}
+const {escape: esc, inline} = window.ResearchMarkdown;
+
 function bulletsToHtml(items) {
   // items: [{depth, text}] → nested ul
   let html = "", depth = 0;
@@ -134,11 +128,11 @@ function parseFields(bodyLines) {
 function renderFinding(f, num) {
   const stCls = f.status === "current" ? "b-cur" : (f.status === "needs-review" ? "b-rev" : "b-sta");
   const { fields, notes } = parseFields(f.body);
-  let h = `<div class="finding${f.status !== "current" ? " review-note" : ""}" id="${f.id}" style="${f.status !== "current" ? "padding-left:14px" : ""}">`;
+  let h = `<div class="finding${f.status !== "current" ? " review-note" : ""}" id="${esc(f.id)}" style="${f.status !== "current" ? "padding-left:14px" : ""}">`;
   h += `<h3>${num} ${inline(f.title)}</h3>`;
-  h += `<div class="fmeta"><span class="badge ${stCls}">${f.status}</span>`;
+  h += `<div class="fmeta"><span class="badge ${stCls}">${esc(f.status)}</span>`;
   if (f.qtags) h += `<span class="badge b-q">${esc(f.qtags)}</span>`;
-  h += ` 修订 ${f.revised || "—"} · ${f.id}</div>`;
+  h += ` 修订 ${esc(f.revised || "—")} · ${esc(f.id)}</div>`;
   if (notes.length) h += `<div class="fmeta">${inline(notes.join(" "))}</div>`;
   if (fields["结论"]) h += `<p class="lead"><b class="lbl">结论：</b>${inline(fields["结论"].text)}${bulletsToHtml(fields["结论"].items)}</p>`;
   if (fields["论证"]) {

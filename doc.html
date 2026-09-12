@@ -73,18 +73,9 @@
   <article id="content">加载中…</article>
 </div>
 
+<script src="/assets/markdown-inline.js"></script>
 <script>
-function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
-
-function inline(s) {
-  s = s.replace(/`([^`]+)`/g, (m, c) => "<code>" + c + "</code>");
-  s = s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2" target="_blank">$1</a>');
-  s = s.replace(/(^|[^"=\]>])(https?:\/\/[^\s<）]+)/g, '$1<a href="$2" target="_blank">$2</a>');
-  s = s.replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>");
-  s = s.replace(/\{(Q\d+(?:[–\-、,\s]*Q?\d*)*|new)\}/g, '<span class="qtag">$1</span>');
-  s = s.replace(/(：|\uff1a)(current|needs-review|stale|superseded)\b/g, '：<span class="st st-$2">$2</span>');
-  return s;
-}
+const {escape: esc, inline} = window.ResearchMarkdown;
 
 function render(md) {
   const lines = md.split("\n");
@@ -96,7 +87,6 @@ function render(md) {
 
   while (i < lines.length) {
     let raw = lines[i];
-    let l = esc(raw);
 
     if (/^```/.test(raw)) {
       flushPara(); flushQuote(); closeLists(0);
@@ -108,7 +98,7 @@ function render(md) {
       flushPara(); flushQuote(); closeLists(0);
       const rows = [];
       while (i < lines.length && /^\|/.test(lines[i])) { rows.push(lines[i]); i++; }
-      const cells = r => r.replace(/^\||\|$/g, "").split("|").map(c => inline(esc(c.trim())));
+      const cells = r => r.replace(/^\||\|$/g, "").split("|").map(c => inline(c.trim()));
       let html = '<div class="tablewrap"><table><tr>' + cells(rows[0]).map(c => "<th>" + c + "</th>").join("") + "</tr>";
       for (let r = 1; r < rows.length; r++) {
         if (/^\|[\s:\-|]+\|$/.test(rows[r].replace(/\s/g, ""))) continue;
@@ -121,21 +111,21 @@ function render(md) {
       flushPara(); flushQuote(); closeLists(0);
       const lvl = h[1].length;
       const id = "h" + i;
-      out.push(`<h${lvl} id="${id}">` + inline(esc(h[2])) + `</h${lvl}>`);
+      out.push(`<h${lvl} id="${id}">` + inline(h[2]) + `</h${lvl}>`);
       i++; continue;
     }
-    if (/^>\s?/.test(raw)) { flushPara(); closeLists(0); quote.push(esc(raw.replace(/^>\s?/, ""))); i++; continue; }
+    if (/^>\s?/.test(raw)) { flushPara(); closeLists(0); quote.push(raw.replace(/^>\s?/, "")); i++; continue; }
     const li = raw.match(/^(\s*)-\s+(.*)/);
     if (li) {
       flushPara(); flushQuote();
       const depth = li[1].length >= 2 ? 2 : 1;
       if (listStack < depth) { while (listStack < depth) { out.push("<ul>"); listStack++; } }
       else closeLists(depth);
-      out.push("<li>" + inline(esc(li[2])) + "</li>"); i++; continue;
+      out.push("<li>" + inline(li[2]) + "</li>"); i++; continue;
     }
     if (/^---+\s*$/.test(raw)) { flushPara(); flushQuote(); closeLists(0); out.push("<hr>"); i++; continue; }
     if (raw.trim() === "") { flushPara(); flushQuote(); closeLists(0); i++; continue; }
-    closeLists(0); flushQuote(); para.push(l); i++;
+    closeLists(0); flushQuote(); para.push(raw); i++;
   }
   flushPara(); flushQuote(); closeLists(0);
   return out.join("\n");
@@ -314,7 +304,7 @@ async function showIdentity(f) {
     const hs = [...document.querySelectorAll("article h2")];
     if (hs.length >= 3) {
       const toc = document.getElementById("toc");
-      toc.innerHTML = hs.map(h => `<a href="#${h.id}">${h.textContent}</a>`).join("");
+      toc.innerHTML = hs.map(h => `<a href="#${h.id}">${esc(h.textContent)}</a>`).join("");
       toc.style.display = "";
     }
   } catch (e) {

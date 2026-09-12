@@ -41,6 +41,16 @@ class UserTransactionTests(TestCase):
         self.assertEqual(['False', 'True'], sorted(results))
         self.assertEqual(1, len(auth.load_users()))
 
+    def test_concurrent_password_changes_only_accept_the_current_password(self):
+        def change(password):
+            return auth.set_password('admin', password, current_password='test-password')
+        with ThreadPoolExecutor(2) as pool:
+            results = list(pool.map(change, ['new-password-one', 'new-password-two']))
+        self.assertEqual(sum(results), 1)
+        winner = ['new-password-one', 'new-password-two'][results.index(True)]
+        self.assertTrue(auth.verify_password('admin', winner))
+        self.assertFalse(auth.set_password('deleted', 'new-password', current_password='test-password'))
+
     def test_failed_replace_preserves_complete_existing_table(self):
         before = self.path.read_bytes()
         with mock.patch.object(auth.os, 'replace', side_effect=OSError('simulated crash')):

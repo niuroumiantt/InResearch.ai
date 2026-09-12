@@ -387,12 +387,11 @@ class Handler(SimpleHTTPRequestHandler):
             return self._json(400, {"ok": False, "error": "本地模式无需密码"})
         old_pw = payload.get("old_password") or ""
         new_pw = payload.get("new_password") or ""
-        if len(new_pw) < 8:
+        if not isinstance(old_pw, str) or not isinstance(new_pw, str) or len(new_pw) < 8:
             return self._json(400, {"ok": False, "error": "新密码至少 8 位"})
-        if not auth.verify_password(user, old_pw):
+        if not auth.set_password(user, new_pw, current_password=old_pw):
             auth.record_fail(auth.client_ip(self))   # 猜旧密码与猜登录同罪，计入限速
             return self._json(401, {"ok": False, "error": "当前密码不对"})
-        auth.set_password(user, new_pw)
         log_run("auth", f"改密成功 {user} @ {auth.client_ip(self)}")
         return self._json(200, {"ok": True})
 

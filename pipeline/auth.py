@@ -167,11 +167,14 @@ def session_user(cookie_header: str | None) -> str | None:
 
 
 @user_write
-def set_password(username: str, new_password: str) -> bool:
-    """改指定用户的密码；用户不存在返回 False。CLI 与自助改密共用此入口。"""
+def set_password(username: str, new_password: str, *, current_password: str | None = None) -> bool:
+    """在同一事务内核对旧密码并修改；管理员重置可省略旧密码。"""
     import secrets as _s
     users = load_users()
     if username not in users:
+        return False
+    if current_password is not None and not hmac.compare_digest(
+            hash_password(current_password, users[username]['salt']), users[username]['hash']):
         return False
     salt = _s.token_bytes(16).hex()
     users[username].update(salt=salt, hash=hash_password(new_password, salt))

@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `pipeline/governance.py --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.12.5。
+> GENERATED · 由 `pipeline/governance.py --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.12.6。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：490。
+在册文件：491。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,7 +16,7 @@
 | 现行入口 | 4 |
 | 生成物 | 12 |
 | 历史快照 | 40 |
-| 运行代码 | 86 |
+| 运行代码 | 87 |
 | 现行规范 | 12 |
 | 项目配置 | 42 |
 | 兼容研究记录 | 16 |
@@ -230,6 +230,7 @@
 | `assets/hdri/studio.exr` | 静态资源 |
 | `assets/hdri/warehouse.exr` | 静态资源 |
 | `assets/levels.json` | 静态资源 |
+| `assets/markdown-inline.js` | 运行代码 |
 | `assets/materials.js` | 运行代码 |
 | [assets/models/README.md](../assets/models/README.md) | 配套说明 |
 | `assets/models/manifest.json` | 静态资源 |
