@@ -1065,5 +1065,145 @@ class CorrectedNoteTests(unittest.TestCase):
         self.assertNotIn('All Flash Arrays', dim['values'])
         self.assertIn('尚未校验', dim['note'])
 
+
+class SkipTests(unittest.TestCase):
+    """读了，菜单里没有位置——这条路以前是死的。
+
+    pack 不带 --sha 永远返回队首那一份，所以一个记不下任何东西的读者除了
+    「record --doc 空数组」没有别的出路，而那一招把文件记成已读、把发现丢掉。
+    发现才是重点：它是菜单落后于语料的唯一信号，而且必须活着走到改菜单的
+    那台机器上——所以缺口写进 repo，已读账本仍留在本机。
+    """
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-skip-')
+        base = Path(self.temp.name)
+        self.results = base / 'l1_results.jsonl'
+        self.results.write_text(json.dumps(
+            {**L1_ROW, 'org': 'IDC', 'year': '2025'}, ensure_ascii=False) + '\n',
+            encoding='utf-8')
+        self._saved = (L2.L1.RESULTS, L2.GAPS, L2.READ_LOG, L2.load_metrics,
+                       L2.load_facts)
+        L2.L1.RESULTS = self.results
+        L2.GAPS = base / 'metric_gaps.jsonl'
+        L2.READ_LOG = base / 'l2_read.jsonl'
+        L2.load_metrics = lambda: METRICS
+        L2.load_facts = lambda: {'records': []}
+
+    def tearDown(self):
+        (L2.L1.RESULTS, L2.GAPS, L2.READ_LOG, L2.load_metrics,
+         L2.load_facts) = self._saved
+        self.temp.cleanup()
+
+    def skip(self, gaps, doc=None, reason=None):
+        out = io.StringIO()
+        with redirect_stdout(out):
+            L2.cmd_skip(type('A', (), {'doc': doc or L1_ROW['sha256'][:8],
+                                       'gap': gaps, 'reason': reason}))
+        return json.loads(out.getvalue())
+
+    def gaps(self, filled=()):
+        out = io.StringIO()
+        with redirect_stdout(out):
+            L2.cmd_gaps(type('A', (), {'filled': list(filled)}))
+        return out.getvalue()
+
+    def test_the_queue_advances(self):
+        self.assertEqual([r['sha256'] for r in L2.eligible(8)], [L1_ROW['sha256']])
+        self.skip(['server_class 缺 x86'])
+        self.assertEqual(L2.eligible(8), [])
+
+    def test_the_gap_is_what_survives(self):
+        report = self.skip(['server_class 缺 x86'])
+        self.assertEqual(report['gaps_recorded'], 1)
+        rows = L2.open_gaps()
+        self.assertEqual([r['gap'] for r in rows], ['server_class 缺 x86'])
+        self.assertEqual(rows[0]['sha256'], L1_ROW['sha256'])
+        self.assertEqual(rows[0]['rel'], L1_ROW['rel'])
+
+    def test_one_document_can_report_several_gaps(self):
+        self.skip(['server_class 缺 x86', '缺 storage_scope 维度',
+                   '缺 counterparty_role 维度'])
+        self.assertEqual(len(L2.open_gaps()), 3)
+        self.assertEqual(len({r['sha256'] for r in L2.open_gaps()}), 1)
+
+    def test_the_same_gap_twice_is_one_gap(self):
+        """两次翻同一份文件报同一个缺口，不该在菜单待办上算两笔。"""
+        self.skip(['server_class 缺 x86'])
+        self.skip(['server_class 缺 x86'])
+        self.assertEqual(len(L2.open_gaps()), 1)
+
+    def test_the_same_gap_from_another_document_is_a_separate_row(self):
+        """counterparty_role 在三个模块都撞上了——那正是要看见的东西。"""
+        # L1_ROW is 'd' * 64, so this one must not start with d - the fourth
+        # time a fixture sha prefix has collided in this suite.
+        other = {**L1_ROW, 'sha256': 'b7' + 'c' * 62, 'rel': '别的/文件.xlsx'}
+        with self.results.open('a', encoding='utf-8') as fh:
+            fh.write(json.dumps(other, ensure_ascii=False) + '\n')
+        self.skip(['缺 counterparty_role 维度'])
+        self.skip(['缺 counterparty_role 维度'], doc='b7cccccc')
+        self.assertEqual(len(L2.open_gaps()), 2)
+
+    def test_the_read_ledger_says_it_was_a_skip_not_a_read(self):
+        """零条事实和「读了但存不下」印出来一样，就等于没记。"""
+        self.skip(['server_class 缺 x86'], reason='整表都是 x86 口径')
+        row = json.loads(L2.READ_LOG.read_text(encoding='utf-8').splitlines()[-1])
+        self.assertEqual(row['facts'], 0)
+        self.assertEqual(row['skipped'], '整表都是 x86 口径')
+        self.assertEqual(row['gaps'], [L2.open_gaps()[0]['gap_id']])
+
+    def test_the_default_reason_is_the_menu(self):
+        self.skip(['server_class 缺 x86'])
+        row = json.loads(L2.READ_LOG.read_text(encoding='utf-8').splitlines()[-1])
+        self.assertEqual(row['skipped'], '菜单没有位置')
+
+    def test_the_way_back_is_in_the_output(self):
+        """跳过不是丢弃：最终我们还是要都读的。"""
+        report = self.skip(['server_class 缺 x86'])
+        self.assertIn('pack --again --sha', report['note'])
+        self.assertIn(L1_ROW['sha256'][:12], report['note'])
+
+    def test_an_ambiguous_sha_is_refused(self):
+        with self.results.open('a', encoding='utf-8') as fh:
+            fh.write(json.dumps({**L1_ROW, 'sha256': L1_ROW['sha256'][:8] + 'e' * 56},
+                                ensure_ascii=False) + '\n')
+        with self.assertRaises(SystemExit):
+            self.skip(['随便'])
+
+    def test_filling_a_gap_clears_it(self):
+        gap_id = self.skip(['server_class 缺 x86'])['gap_ids'][0]
+        self.gaps(filled=[gap_id])
+        self.assertEqual(L2.open_gaps(), [])
+
+    def test_filling_one_leaves_the_others(self):
+        ids = self.skip(['缺 x86', '缺 storage_scope'])['gap_ids']
+        self.gaps(filled=[ids[0]])
+        self.assertEqual([r['gap'] for r in L2.open_gaps()], ['缺 storage_scope'])
+
+    def test_filling_an_unknown_gap_is_refused(self):
+        with self.assertRaises(SystemExit):
+            self.gaps(filled=['000000000000'])
+
+    def test_filling_the_same_gap_twice_is_refused(self):
+        """第二次销账多半是记错了账，不该悄悄成功。"""
+        gap_id = self.skip(['缺 x86'])['gap_ids'][0]
+        self.gaps(filled=[gap_id])
+        with self.assertRaises(SystemExit):
+            self.gaps(filled=[gap_id])
+
+    def test_the_listing_names_the_document_and_the_module(self):
+        self.skip(['server_class 缺 x86'])
+        listing = self.gaps()
+        self.assertIn('server_class 缺 x86', listing)
+        self.assertIn(L1_ROW['rel'], listing)
+        self.assertIn('"open_gaps": 1', listing)
+
+    def test_a_malformed_line_does_not_take_the_ledger_down(self):
+        self.skip(['缺 x86'])
+        with L2.GAPS.open('a', encoding='utf-8') as fh:
+            fh.write('{ 半行\n')
+        self.assertEqual(len(L2.open_gaps()), 1)
+
+
 if __name__ == '__main__':
     unittest.main()

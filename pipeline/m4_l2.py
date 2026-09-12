@@ -24,7 +24,7 @@ Nothing here rewrites a document.  Facts reference their source by SHA-256:
 paths move between machines and archive layouts, content does not.
 """
 from __future__ import annotations
-import argparse, json, os, re, subprocess, sys, time
+import argparse, hashlib, json, os, re, subprocess, sys, time
 from collections import Counter
 from pathlib import Path
 
@@ -38,6 +38,11 @@ METRICS = REPO / 'framework/metrics.json'
 QUESTIONS = REPO / 'framework/research_questions.json'
 FACTS = REPO / 'data/facts.json'
 CONTRACT = REPO / 'framework/data_contract.json'
+# In the repo, not in machine-local state: a gap found while reading on M4
+# is only useful if it reaches whoever edits the menu, and that is a
+# different machine.  The read ledger stays local because it is about one
+# machine's progress; the gaps are about the contract.
+GAPS = REPO / 'data/metric_gaps.jsonl'
 
 STATE = m4_paths.state()
 READ_LOG = STATE / 'l2_read.jsonl'
@@ -821,6 +826,89 @@ def cmd_queue(a):
             (row.get('proposed_name') or row.get('rel', ''))[:58]))
 
 
+def open_gaps() -> list[dict]:
+    """Menu gaps recorded by skip and not yet marked filled."""
+    rows = []
+    if GAPS.exists():
+        with GAPS.open(encoding='utf-8') as fh:
+            for line in fh:
+                try: row = json.loads(line)
+                except ValueError: continue
+                if row.get('gap_id'):
+                    rows.append(row)
+    latest = {}
+    for row in rows:            # append-and-supersede, same as every other ledger
+        latest[row['gap_id']] = row
+    return [r for r in latest.values() if not r.get('filled')]
+
+
+def cmd_skip(a):
+    """Read it, found nothing the menu can hold, move on - and say what was missing.
+
+    Without this the loop deadlocks.  pack without --sha always returns the
+    same top-of-queue document, so a reader who cannot record anything has no
+    way forward except record --doc with an empty array, which marks the file
+    read and throws the finding away.  The gap is the whole point: it is the
+    only signal that the menu is behind the corpus, and it has to survive to
+    the machine where the menu is edited.
+    """
+    rows = all_results()
+    matched = [r for sha, r in rows.items() if sha.startswith(a.doc)]
+    if len(matched) != 1:
+        sys.exit('sha 前缀匹配到 %d 份判定，要正好一份' % len(matched))
+    row = matched[0]
+    sha = row['sha256']
+
+    at = now()
+    written = []
+    for text in a.gap:
+        gap_id = hashlib.sha256(('%s|%s' % (sha, text)).encode('utf-8')).hexdigest()[:12]
+        written.append({'gap_id': gap_id, 'at': at, 'sha256': sha,
+                        'rel': row.get('rel'), 'module': row.get('category'),
+                        'gap': text})
+    GAPS.parent.mkdir(parents=True, exist_ok=True)
+    with GAPS.open('a', encoding='utf-8') as fh:
+        for entry in written:
+            fh.write(json.dumps(entry, ensure_ascii=False) + '\n')
+
+    READ_LOG.parent.mkdir(parents=True, exist_ok=True)
+    with READ_LOG.open('a', encoding='utf-8') as fh:
+        fh.write(json.dumps({'sha256': sha, 'at': at, 'facts': 0,
+                             'skipped': a.reason or '菜单没有位置',
+                             'gaps': [e['gap_id'] for e in written]},
+                            ensure_ascii=False) + '\n')
+    print(json.dumps({'skipped': sha[:16], 'rel': row.get('rel'),
+                      'gaps_recorded': len(written),
+                      'gap_ids': [e['gap_id'] for e in written],
+                      'note': '已记入已读，队列会前进；菜单补齐后用 '
+                              'gaps --filled 销账，再 pack --again --sha %s 重读'
+                              % sha[:12]}, ensure_ascii=False))
+
+
+def cmd_gaps(a):
+    if a.filled:
+        known = {r['gap_id'] for r in open_gaps()}
+        unknown = [g for g in a.filled if g not in known]
+        if unknown:
+            sys.exit('这些 gap_id 不在未销账的缺口里：%s' % ' '.join(unknown))
+        at = now()
+        with GAPS.open('a', encoding='utf-8') as fh:
+            for row in open_gaps():
+                if row['gap_id'] in set(a.filled):
+                    fh.write(json.dumps({**row, 'filled': at}, ensure_ascii=False) + '\n')
+        print(json.dumps({'filled': a.filled, 'remaining': len(open_gaps())},
+                         ensure_ascii=False))
+        return
+
+    rows = open_gaps()
+    print(json.dumps({'open_gaps': len(rows),
+                      'documents_waiting': len({r['sha256'] for r in rows})},
+                     ensure_ascii=False))
+    for row in sorted(rows, key=lambda r: (r.get('module') or '', r['at'])):
+        print('  %s  %-8s %s' % (row['gap_id'], row.get('module') or '?', row['gap']))
+        print('           %s' % (row.get('rel') or row['sha256'][:16]))
+
+
 def cmd_status(a):
     store = load_facts()
     records = store['records']
@@ -834,7 +922,9 @@ def cmd_status(a):
                       'with_sha256': sum(1 for f in records if (f.get('evidence') or {}).get('sha256')),
                       'value_withheld': sum(1 for f in records if f.get('value') is None),
                       'not_corroborated': sum(1 for f in records
-                                              if f.get('corroboration') == '待交叉验证')},
+                                              if f.get('corroboration') == '待交叉验证'),
+                      '菜单缺口_未补': len(open_gaps()),
+                      '等菜单补齐后重读': len({r['sha256'] for r in open_gaps()})},
                      ensure_ascii=False))
     for module, n in by_module.most_common():
         print('  %-8s %d' % (module, n))
@@ -867,10 +957,19 @@ def main():
     fl.add_argument('--pii', action='store_true', help='含个人信息或内网地址')
     fl.add_argument('--clear', action='store_true', help='解除该标记')
     fl.add_argument('--evidence', required=True, help='在哪一页哪一处看到的')
+    sk = sub.add_parser('skip', help='读了，菜单里没有位置，记下缺口再往前走')
+    sk.add_argument('--doc', required=True, help='文件 sha256，前缀即可')
+    sk.add_argument('--gap', required=True, action='append',
+                    help='缺的是什么——指标、维度还是枚举值，可重复给')
+    sk.add_argument('--reason', help='除了菜单缺口以外的原因')
+    g = sub.add_parser('gaps', help='列出未补的菜单缺口')
+    g.add_argument('--filled', action='append', default=[],
+                   help='菜单已补上，销掉这个 gap_id，可重复给')
     s = sub.add_parser('status')
     a = ap.parse_args()
     {'queue': cmd_queue, 'pack': cmd_pack, 'record': cmd_record,
-     'attribute': cmd_attribute, 'flag': cmd_flag, 'status': cmd_status}[a.cmd](a)
+     'attribute': cmd_attribute, 'flag': cmd_flag, 'skip': cmd_skip,
+     'gaps': cmd_gaps, 'status': cmd_status}[a.cmd](a)
 
 
 if __name__ == '__main__':
