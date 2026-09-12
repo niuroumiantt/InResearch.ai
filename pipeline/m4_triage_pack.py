@@ -95,6 +95,30 @@ def judged_without_cells() -> set:
             and 'cells' not in (r.get('meta') or {})}
 
 
+def judged_without_drawings() -> set:
+    """Unattributed workbooks judged before the reader could see a text box.
+
+    A spreadsheet's publisher is often nowhere in its cells.  688d46ed carried
+    「知识星球：Global Semi Research」 as a watermark repeated across five
+    drawings; the cell reader saw none of it and the file was judged 出处未知
+    with the attribution inside it the whole time.
+
+    Narrow on purpose.  Every spreadsheet was judged without drawings, but a
+    watermark can only change the verdict where the publisher is still missing,
+    so the cohort is the unattributed ones - a few, not all 760.
+
+    org_unrecoverable is not an exemption.  It means a reader went through the
+    full text and found no byline, and that reader was as blind to the drawings
+    as the extractor was; a verdict reached without seeing part of the file is
+    exactly what a re-judge cohort is for.  The ledger appends, so if the
+    drawings hold nothing either, the second look costs a row and settles it.
+    """
+    return {sha for sha, r in last_results().items()
+            if r.get('suffix') in SPREADSHEETS
+            and 'drawing_lines' not in (r.get('meta') or {})
+            and str(r.get('org') or '未知').strip() in ('', '未知')}
+
+
 def nothing_new(meta: dict) -> bool:
     """Re-read cleanly and still holds no cell: this preview cannot change.
 
@@ -148,6 +172,7 @@ COHORTS = {
     'new': None,                       # never judged
     'blind': blind_scored,             # judged from the filename alone
     'cells': judged_without_cells,     # judged before the reader saw a value
+    'drawings': judged_without_drawings,   # 出处未知, and the text boxes were unread
 }
 
 
@@ -567,11 +592,12 @@ def cmd_status(a):
                       '抽取速率_每分钟': round(rate, 1), '速率口径': basis,
                       '预计剩余小时': round(need / rate / 60, 1) if rate else None,
                       '被覆盖的旧判定行': superseded,
-                      # Two cohorts that are not "unscored" but are not done
+                      # Three cohorts that are not "unscored" but are not done
                       # either.  Without a number here the only way to learn
                       # how much re-judging is owed is to run a pack.
                       '待重判_只看过文件名': len(blind_scored()),
-                      '待重判_读不到单元格时判的表格': len(judged_without_cells())},
+                      '待重判_读不到单元格时判的表格': len(judged_without_cells()),
+                      '待重判_出处未知且没读过文本框': len(judged_without_drawings())},
                      ensure_ascii=False))
     for k, v in cat.most_common(10): print(f'  {v:7d}  {k}')
     if sc: print('分数分布: ' + json.dumps({str(k): sc[k] for k in sorted(sc, reverse=True)}))
