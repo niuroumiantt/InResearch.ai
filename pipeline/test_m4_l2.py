@@ -1424,5 +1424,128 @@ class M07MenuTests(unittest.TestCase):
             self.assertEqual(f['caliber'].get('customer'), '未拆分', f['fact_id'])
 
 
+class M02MenuTests(unittest.TestCase):
+    """M02 云与运营商：15 条缺口。
+
+    这一批的主题是**方向与层级**——谁买谁卖、哪一层加总、按什么排名。
+    读错方向会把买方读成卖方，读错层级会把同一笔钱算两遍。
+    """
+
+    def setUp(self):
+        self.metrics = L2.load_metrics()
+
+    def dim(self, mid, did):
+        return next(d for d in self.metrics[mid]['caliber_dims'] if d['id'] == did)
+
+    def test_every_new_metric_exists(self):
+        for mid in ('it_infra_spend', 'storage_capacity_shipped',
+                    'vendor_market_share', 'dc_service_revenue',
+                    'dc_service_revenue_share', 'top10_revenue_share',
+                    'dc_market_growth', 'operator_rack_capacity',
+                    'large_dc_count', 'operator_headcount',
+                    'operator_asset_balance', 'operator_credential_count'):
+            self.assertEqual(self.metrics[mid]['module'], 'M02', mid)
+            self.assertTrue(self.metrics[mid]['unit'], mid)
+
+    # -- 方向反了 ---------------------------------------------------------
+    def test_counterparty_role_stops_a_buyer_being_read_as_a_seller(self):
+        d = self.dim('server_unit_shipments', 'counterparty_role')
+        self.assertEqual(d['values'], ['供应方', '需求方', '全市场（未分侧）'])
+        self.assertIn('方向正好反了', d['note'])
+
+    def test_the_market_total_is_neither_side_and_says_so(self):
+        """既有 8 条的 entity 是 global-server-market，不是哪一家。"""
+        note = self.dim('server_unit_shipments', 'counterparty_role')['note']
+        self.assertIn('不要把它当成「未注明」', note)
+
+    def test_the_existing_shipment_facts_were_backfilled_as_market_totals(self):
+        store = json.loads((Path(L2.__file__).resolve().parent.parent /
+                            'data/facts.json').read_text(encoding='utf-8'))
+        rows = [f for f in store['records']
+                if f['metric_id'] == 'server_unit_shipments']
+        self.assertEqual(len(rows), 8)
+        for f in rows:
+            self.assertEqual(f['caliber']['counterparty_role'], '全市场（未分侧）',
+                             f['fact_id'])
+            self.assertIn('market', f['entity']['id'], f['fact_id'])
+
+    def test_unsplit_is_not_the_same_as_not_applicable(self):
+        d = self.dim('server_unit_shipments', 'buyer_category')
+        self.assertIn('未拆分', d['values'])
+        self.assertIn('不适用（非需求侧口径）', d['values'])
+        self.assertIn('两者不同', d['note'])
+
+    # -- 同一笔钱算两遍 ---------------------------------------------------
+    def test_the_overlap_is_a_recordable_row_not_a_footnote(self):
+        d = self.dim('it_infra_spend', 'product_scope')
+        self.assertIn('服务器内含存储（重叠额）', d['values'])
+        self.assertIn('服务器 + 存储 − 重叠额 = 服务器与存储合计', d['note'])
+
+    def test_demand_side_spend_is_not_the_supply_side_revenue_metric(self):
+        self.assertIn('不是同一个指标', self.metrics['it_infra_spend']['note'])
+
+    # -- 父子层级不可一起加总 ---------------------------------------------
+    def test_the_carrier_hierarchy_note_carries_its_arithmetic(self):
+        note = self.dim('dc_service_revenue', 'operator_type')['note']
+        self.assertIn('23.8 + 16.7 + 13.8 = 54.3', note)
+        self.assertIn('加总只能取一层', note)
+
+    def test_the_two_shares_at_one_level_add_to_a_hundred(self):
+        note = self.dim('dc_service_revenue_share', 'operator_type')['note']
+        self.assertIn('54.3% + 第三方 45.7% = 100.0', note)
+
+    # -- 按什么排名决定了是哪十家 -----------------------------------------
+    def test_top10_says_the_ranking_basis_changes_the_membership(self):
+        d = self.dim('top10_revenue_share', 'ranking_basis')
+        self.assertEqual(d['values'], ['按机架规模', '按收入', '按容量'])
+        self.assertIn('决定了这十家是哪十家', d['note'])
+
+    def test_top10_revenue_is_not_top10_pipeline(self):
+        note = self.metrics['top10_revenue_share']['note']
+        self.assertIn('top10_pipeline_share', note)
+        self.assertIn('不是同一个指标', note)
+
+    # -- 实测与趋势判断 ---------------------------------------------------
+    def test_a_trend_statement_is_not_a_measurement(self):
+        for mid in ('dc_market_growth', 'it_infra_spend'):
+            d = self.dim(mid, 'basis')
+            self.assertIn('趋势判断', d['values'], mid)
+        self.assertIn('造出一个不存在的加速', self.metrics['dc_market_growth']['note'])
+
+    # -- 广东不含深圳 -----------------------------------------------------
+    def test_guangdong_excluding_shenzhen_is_its_own_value(self):
+        d = self.dim('server_unit_shipments', 'subregion')
+        self.assertIn('广东（不含深圳）', d['values'])
+        self.assertIn('深圳', d['values'])
+        self.assertIn('不要自己合并成「广东」', d['note'])
+
+    # -- 「至少几路」是区间 -----------------------------------------------
+    def test_socket_values_are_ranges_that_contain_each_other(self):
+        d = self.dim('server_unit_shipments', 'socket_capability')
+        self.assertIn('是区间不是点', d['note'])
+        self.assertIn('不能相加', d['note'])
+
+    # -- 台数份额 ≠ 金额份额 ----------------------------------------------
+    def test_share_by_units_and_by_value_are_different_numbers(self):
+        d = self.dim('vendor_market_share', 'measure')
+        self.assertIn('4.7 个百分点', d['note'])
+
+    # -- 两个门槛互相包含 -------------------------------------------------
+    def test_the_two_size_thresholds_cannot_be_added(self):
+        d = self.dim('large_dc_count', 'size_threshold')
+        self.assertIn('被超 1000 的那批包含', d['note'])
+
+    # -- 在建工程未转固 ---------------------------------------------------
+    def test_construction_in_progress_is_not_yet_fixed_assets(self):
+        d = self.dim('operator_asset_balance', 'asset_item')
+        self.assertIn('转固之前不在固定资产里', d['note'])
+
+    # -- PB 不是 EB -------------------------------------------------------
+    def test_the_capacity_metric_warns_about_the_other_unit(self):
+        note = self.metrics['storage_capacity_shipped']['note']
+        self.assertIn('1 EB = 1000 PB', note)
+        self.assertIn('换算完也不是同一件事', note)
+
+
 if __name__ == '__main__':
     unittest.main()
