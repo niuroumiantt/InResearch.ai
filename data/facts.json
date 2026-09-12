@@ -24987,6 +24987,35 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**规格在 spec 维里（自由文本）**：卧式离心冷却水泵（双工况、单级端吸）CTP(Eg)-01/02/03，流量 717CMH、扬程 300KPa、参考功率 90KW。 数量 3 台。 **price_scope 要看清**：蓄冰槽那条取的是表-09 的综合单价（含安装调试与措施），两台水泵取的是分析表里的设备单价行（仅设备，未含安装费 426.89 元/台）——**同一份文件里两种口径并存，混用会低估或高估三成**。 **同规格不同工况差一倍**：45kW 基载泵 30,681 元/台，90kW 双工况泵 65,629 元/台，**功率翻倍、价格 2.14 倍**。 **stage=招标控制价**：这是招标方设的上限价，不是中标价也不是结算价——库内 M10 的经验是控制价与结算价的偏离方向与幅度未知，**不可当作实际造价**。**tax=含税**：本工程总造价 15,140,370.06 元 = 税前 13,890,247.76 + 增值税销项 1,250,122.30。"
+    },
+    {
+      "fact_id": "google-liquid-cooled-fleet-2024",
+      "metric_id": "global_operational_gw",
+      "entity": {
+        "type": "company",
+        "id": "google",
+        "label": "谷歌"
+      },
+      "value": 1.0,
+      "unit": "GW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "Global"
+      },
+      "as_of": "2024",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "3f43fa2f6e118eb7af0b0f1656915bb3e585fadf041b7f100c912659f683b2da",
+        "local_file": "Evolution of Google IT Liquid Cooling - From Prototype to 1GW Scale (Hot Chips Tutorial, 2025-08-24).pdf",
+        "locator": "第 4 页：「By 2024, Google’s liquid cooled fleet had grown to ~1 GW total」；第 21 页重述「Google has > 1 GW of liquid cooling infra」",
+        "grade": "S2",
+        "originator": "Google（Jorge Padilla / Madhu Iyengar，Hot Chips Tutorial）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是谷歌自报的液冷机队规模，不是其数据中心总容量**——液冷只覆盖 TPU 等高密度部分。 **status=L8（通电投运）**：原文 deployed fleet，是已部署运行的容量，**可计入当期供给**。 原文两处措辞不同：第 4 页「~1 GW total」、第 21 页「> 1 GW」，本条按下界记。 **这是目前本库唯一一条单一企业的液冷部署规模**，可作为「液冷已过验证期」的最硬证据之一。 文档页脚标 Confidential + Proprietary，但内容为 Hot Chips 公开教程，按公开材料处理。"
     }
   ]
 }
