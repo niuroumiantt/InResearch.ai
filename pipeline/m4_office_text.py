@@ -660,6 +660,36 @@ def row_cells(xml: str, row: int, strings: list[str], dated: list[bool]) -> dict
     return cells
 
 
+DRAWING = re.compile(r'xl/drawings/drawing\d+\.xml')
+A_PARA = re.compile(r'<a:p(?:\s[^>]*)?>(.*?)</a:p>', re.S)
+A_RUN = re.compile(r'<a:t[^>]*>(.*?)</a:t>', re.S)
+
+
+def drawing_text(z, names) -> list[tuple[str, int]]:
+    """Text boxes, watermarks and shape labels - the text that is not in a cell.
+
+    A workbook's publisher is often nowhere in its cells.  688d46ed carried
+    「知识星球：Global Semi Research」 as a watermark repeated across five
+    drawings and nothing else; the cell reader saw none of it, so L1 judged the
+    file 出处未知 with the attribution sitting inside it the whole time.
+
+    Returned as (line, times) rather than deduplicated away: a watermark on
+    every sheet and a one-off label are different things, and the count is what
+    tells them apart.
+    """
+    lines = {}
+    for name in sorted(n for n in names if DRAWING.fullmatch(n)):
+        try:
+            xml = z.read(name).decode('utf-8', 'ignore')
+        except (KeyError, zipfile.BadZipFile):
+            continue
+        for para in A_PARA.findall(xml):
+            line = unescape(''.join(A_RUN.findall(para))).strip()
+            if line:
+                lines[line] = lines.get(line, 0) + 1
+    return list(lines.items())
+
+
 def xlsx_text(path: Path, limit: int = MAX_CHARS) -> tuple[str, dict]:
     with zipfile.ZipFile(path) as z:
         names = z.namelist()
@@ -683,6 +713,7 @@ def xlsx_text(path: Path, limit: int = MAX_CHARS) -> tuple[str, dict]:
             if not strings:
                 inline += len(T_RUN.findall(xml))
             grids.append((label, sheet_cells(xml, strings, dated)))
+        shapes = drawing_text(z, names)
 
     body, counts = grid_text(grids, limit)
     # shared_strings stays in meta: it is what the redo pass was judged on, and
@@ -690,10 +721,18 @@ def xlsx_text(path: Path, limit: int = MAX_CHARS) -> tuple[str, dict]:
     # shared_strings keeps its old meaning - text entries the sheet can draw
     # on, inline ones included - so the numbers recorded for 35,895 files still
     # mean what they meant.  `cells` is the new measure and the honest one.
-    meta = {'sheets': len(sheets), 'shared_strings': len(strings) or inline, **counts}
+    meta = {'sheets': len(sheets), 'shared_strings': len(strings) or inline,
+            'drawing_lines': len(shapes), **counts}
     parts = []
     if sheets:
         parts.append('工作表: ' + ' | '.join(sheets))
+    if shapes:
+        # Ahead of the grid on purpose: L1 judges on a preview, and a preview
+        # of a workbook is column headers.  Attribution that lands after the
+        # cells is attribution L1 will never see.
+        parts.append('文本框/水印:\n' + '\n'.join(
+            '  ' + line + ('  ×%d' % times if times > 1 else '')
+            for line, times in shapes))
     if body:
         parts.append(body)
     else:
