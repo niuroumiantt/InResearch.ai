@@ -12586,6 +12586,2155 @@
       "derived": true,
       "corroboration": "待交叉验证",
       "notes": "**这是算出来的**：120 GW × 30% = 36 GW。两个乘数都是下界（原文 nearly 120 GW、over 30%），故结果记为下界，真实值高于 36 GW。**不要当点值用**；需要精确数须回 IEA Figure 2.16。"
+    },
+    {
+      "fact_id": "idc-cn-x86-units-2018q1",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 666.94,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "x86",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2018-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1: x86 Server Unit Shipments by Vendor，第 22 行 Grand Total，2018Q1 列 = 666938 台",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表单位为台，本条 ÷1000 记千台。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 **季度波动极大**：2020Q1 仅 597,614 台、2020Q2 883,253 台、2020Q3 914,034 台——疫情年的 Q1 塌陷与随后反弹，用单季度同比推年度会严重失真。"
+    },
+    {
+      "fact_id": "idc-cn-x86-revenue-2018q1",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 31.63,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "x86",
+        "region": "China",
+        "storage_scope": "不适用（非存储口径）"
+      },
+      "as_of": "2018-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 2: x86 Server Vendor Revenue (US$M) of Shipments by Vendor，第 39 行 Grand Total，2018Q1 列 = 3162.57 百万美元",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 US$M ÷ 100 = 亿美元。**列头写明是 Vendor Revenue（厂商收入），不是终端售价口径**。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 与同季台数配合可得均价：2020Q3 为 55.22 亿美元 ÷ 91.40 万台 ≈ 6,041 美元/台。"
+    },
+    {
+      "fact_id": "idc-cn-x86-units-2018q2",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 837.1,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "x86",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2018-Q2",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1: x86 Server Unit Shipments by Vendor，第 22 行 Grand Total，2018Q2 列 = 837097 台",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表单位为台，本条 ÷1000 记千台。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 **季度波动极大**：2020Q1 仅 597,614 台、2020Q2 883,253 台、2020Q3 914,034 台——疫情年的 Q1 塌陷与随后反弹，用单季度同比推年度会严重失真。"
+    },
+    {
+      "fact_id": "idc-cn-x86-revenue-2018q2",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 41.94,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "x86",
+        "region": "China",
+        "storage_scope": "不适用（非存储口径）"
+      },
+      "as_of": "2018-Q2",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 2: x86 Server Vendor Revenue (US$M) of Shipments by Vendor，第 39 行 Grand Total，2018Q2 列 = 4194.35 百万美元",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 US$M ÷ 100 = 亿美元。**列头写明是 Vendor Revenue（厂商收入），不是终端售价口径**。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 与同季台数配合可得均价：2020Q3 为 55.22 亿美元 ÷ 91.40 万台 ≈ 6,041 美元/台。"
+    },
+    {
+      "fact_id": "idc-cn-x86-units-2018q3",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 905.69,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "x86",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2018-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1: x86 Server Unit Shipments by Vendor，第 22 行 Grand Total，2018Q3 列 = 905689 台",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表单位为台，本条 ÷1000 记千台。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 **季度波动极大**：2020Q1 仅 597,614 台、2020Q2 883,253 台、2020Q3 914,034 台——疫情年的 Q1 塌陷与随后反弹，用单季度同比推年度会严重失真。"
+    },
+    {
+      "fact_id": "idc-cn-x86-revenue-2018q3",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 48.57,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "x86",
+        "region": "China",
+        "storage_scope": "不适用（非存储口径）"
+      },
+      "as_of": "2018-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 2: x86 Server Vendor Revenue (US$M) of Shipments by Vendor，第 39 行 Grand Total，2018Q3 列 = 4856.72 百万美元",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 US$M ÷ 100 = 亿美元。**列头写明是 Vendor Revenue（厂商收入），不是终端售价口径**。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 与同季台数配合可得均价：2020Q3 为 55.22 亿美元 ÷ 91.40 万台 ≈ 6,041 美元/台。"
+    },
+    {
+      "fact_id": "idc-cn-x86-units-2018q4",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 894.21,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "x86",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2018-Q4",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1: x86 Server Unit Shipments by Vendor，第 22 行 Grand Total，2018Q4 列 = 894212 台",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表单位为台，本条 ÷1000 记千台。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 **季度波动极大**：2020Q1 仅 597,614 台、2020Q2 883,253 台、2020Q3 914,034 台——疫情年的 Q1 塌陷与随后反弹，用单季度同比推年度会严重失真。"
+    },
+    {
+      "fact_id": "idc-cn-x86-revenue-2018q4",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 49.68,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "x86",
+        "region": "China",
+        "storage_scope": "不适用（非存储口径）"
+      },
+      "as_of": "2018-Q4",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 2: x86 Server Vendor Revenue (US$M) of Shipments by Vendor，第 39 行 Grand Total，2018Q4 列 = 4967.56 百万美元",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 US$M ÷ 100 = 亿美元。**列头写明是 Vendor Revenue（厂商收入），不是终端售价口径**。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 与同季台数配合可得均价：2020Q3 为 55.22 亿美元 ÷ 91.40 万台 ≈ 6,041 美元/台。"
+    },
+    {
+      "fact_id": "idc-cn-x86-units-2019q1",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 662.65,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "x86",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2019-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1: x86 Server Unit Shipments by Vendor，第 22 行 Grand Total，2019Q1 列 = 662655 台",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表单位为台，本条 ÷1000 记千台。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 **季度波动极大**：2020Q1 仅 597,614 台、2020Q2 883,253 台、2020Q3 914,034 台——疫情年的 Q1 塌陷与随后反弹，用单季度同比推年度会严重失真。"
+    },
+    {
+      "fact_id": "idc-cn-x86-revenue-2019q1",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 36.5,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "x86",
+        "region": "China",
+        "storage_scope": "不适用（非存储口径）"
+      },
+      "as_of": "2019-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 2: x86 Server Vendor Revenue (US$M) of Shipments by Vendor，第 39 行 Grand Total，2019Q1 列 = 3649.82 百万美元",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 US$M ÷ 100 = 亿美元。**列头写明是 Vendor Revenue（厂商收入），不是终端售价口径**。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 与同季台数配合可得均价：2020Q3 为 55.22 亿美元 ÷ 91.40 万台 ≈ 6,041 美元/台。"
+    },
+    {
+      "fact_id": "idc-cn-x86-units-2019q2",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 714.39,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "x86",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2019-Q2",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1: x86 Server Unit Shipments by Vendor，第 22 行 Grand Total，2019Q2 列 = 714388 台",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表单位为台，本条 ÷1000 记千台。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 **季度波动极大**：2020Q1 仅 597,614 台、2020Q2 883,253 台、2020Q3 914,034 台——疫情年的 Q1 塌陷与随后反弹，用单季度同比推年度会严重失真。"
+    },
+    {
+      "fact_id": "idc-cn-x86-revenue-2019q2",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 38.47,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "x86",
+        "region": "China",
+        "storage_scope": "不适用（非存储口径）"
+      },
+      "as_of": "2019-Q2",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 2: x86 Server Vendor Revenue (US$M) of Shipments by Vendor，第 39 行 Grand Total，2019Q2 列 = 3847.09 百万美元",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 US$M ÷ 100 = 亿美元。**列头写明是 Vendor Revenue（厂商收入），不是终端售价口径**。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 与同季台数配合可得均价：2020Q3 为 55.22 亿美元 ÷ 91.40 万台 ≈ 6,041 美元/台。"
+    },
+    {
+      "fact_id": "idc-cn-x86-units-2019q3",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 862.41,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "x86",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2019-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1: x86 Server Unit Shipments by Vendor，第 22 行 Grand Total，2019Q3 列 = 862414 台",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表单位为台，本条 ÷1000 记千台。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 **季度波动极大**：2020Q1 仅 597,614 台、2020Q2 883,253 台、2020Q3 914,034 台——疫情年的 Q1 塌陷与随后反弹，用单季度同比推年度会严重失真。"
+    },
+    {
+      "fact_id": "idc-cn-x86-revenue-2019q3",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 49.08,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "x86",
+        "region": "China",
+        "storage_scope": "不适用（非存储口径）"
+      },
+      "as_of": "2019-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 2: x86 Server Vendor Revenue (US$M) of Shipments by Vendor，第 39 行 Grand Total，2019Q3 列 = 4907.74 百万美元",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 US$M ÷ 100 = 亿美元。**列头写明是 Vendor Revenue（厂商收入），不是终端售价口径**。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 与同季台数配合可得均价：2020Q3 为 55.22 亿美元 ÷ 91.40 万台 ≈ 6,041 美元/台。"
+    },
+    {
+      "fact_id": "idc-cn-x86-units-2019q4",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 941.07,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "x86",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2019-Q4",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1: x86 Server Unit Shipments by Vendor，第 22 行 Grand Total，2019Q4 列 = 941068 台",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表单位为台，本条 ÷1000 记千台。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 **季度波动极大**：2020Q1 仅 597,614 台、2020Q2 883,253 台、2020Q3 914,034 台——疫情年的 Q1 塌陷与随后反弹，用单季度同比推年度会严重失真。"
+    },
+    {
+      "fact_id": "idc-cn-x86-revenue-2019q4",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 52.79,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "x86",
+        "region": "China",
+        "storage_scope": "不适用（非存储口径）"
+      },
+      "as_of": "2019-Q4",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 2: x86 Server Vendor Revenue (US$M) of Shipments by Vendor，第 39 行 Grand Total，2019Q4 列 = 5279.44 百万美元",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 US$M ÷ 100 = 亿美元。**列头写明是 Vendor Revenue（厂商收入），不是终端售价口径**。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 与同季台数配合可得均价：2020Q3 为 55.22 亿美元 ÷ 91.40 万台 ≈ 6,041 美元/台。"
+    },
+    {
+      "fact_id": "idc-cn-x86-units-2020q1",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 597.61,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "x86",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2020-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1: x86 Server Unit Shipments by Vendor，第 22 行 Grand Total，2020Q1 列 = 597614 台",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表单位为台，本条 ÷1000 记千台。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 **季度波动极大**：2020Q1 仅 597,614 台、2020Q2 883,253 台、2020Q3 914,034 台——疫情年的 Q1 塌陷与随后反弹，用单季度同比推年度会严重失真。"
+    },
+    {
+      "fact_id": "idc-cn-x86-revenue-2020q1",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 34.79,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "x86",
+        "region": "China",
+        "storage_scope": "不适用（非存储口径）"
+      },
+      "as_of": "2020-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 2: x86 Server Vendor Revenue (US$M) of Shipments by Vendor，第 39 行 Grand Total，2020Q1 列 = 3478.97 百万美元",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 US$M ÷ 100 = 亿美元。**列头写明是 Vendor Revenue（厂商收入），不是终端售价口径**。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 与同季台数配合可得均价：2020Q3 为 55.22 亿美元 ÷ 91.40 万台 ≈ 6,041 美元/台。"
+    },
+    {
+      "fact_id": "idc-cn-x86-units-2020q2",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 883.25,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "x86",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2020-Q2",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1: x86 Server Unit Shipments by Vendor，第 22 行 Grand Total，2020Q2 列 = 883253 台",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表单位为台，本条 ÷1000 记千台。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 **季度波动极大**：2020Q1 仅 597,614 台、2020Q2 883,253 台、2020Q3 914,034 台——疫情年的 Q1 塌陷与随后反弹，用单季度同比推年度会严重失真。"
+    },
+    {
+      "fact_id": "idc-cn-x86-revenue-2020q2",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 54.65,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "x86",
+        "region": "China",
+        "storage_scope": "不适用（非存储口径）"
+      },
+      "as_of": "2020-Q2",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 2: x86 Server Vendor Revenue (US$M) of Shipments by Vendor，第 39 行 Grand Total，2020Q2 列 = 5465.44 百万美元",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 US$M ÷ 100 = 亿美元。**列头写明是 Vendor Revenue（厂商收入），不是终端售价口径**。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 与同季台数配合可得均价：2020Q3 为 55.22 亿美元 ÷ 91.40 万台 ≈ 6,041 美元/台。"
+    },
+    {
+      "fact_id": "idc-cn-x86-units-2020q3",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 914.03,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "x86",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1: x86 Server Unit Shipments by Vendor，第 22 行 Grand Total，2020Q3 列 = 914034 台",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表单位为台，本条 ÷1000 记千台。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 **季度波动极大**：2020Q1 仅 597,614 台、2020Q2 883,253 台、2020Q3 914,034 台——疫情年的 Q1 塌陷与随后反弹，用单季度同比推年度会严重失真。"
+    },
+    {
+      "fact_id": "idc-cn-x86-revenue-2020q3",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 55.22,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "x86",
+        "region": "China",
+        "storage_scope": "不适用（非存储口径）"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 2: x86 Server Vendor Revenue (US$M) of Shipments by Vendor，第 39 行 Grand Total，2020Q3 列 = 5522.19 百万美元",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表 US$M ÷ 100 = 亿美元。**列头写明是 Vendor Revenue（厂商收入），不是终端售价口径**。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 与同季台数配合可得均价：2020Q3 为 55.22 亿美元 ÷ 91.40 万台 ≈ 6,041 美元/台。"
+    },
+    {
+      "fact_id": "idc-cn-x86-units-inspur-2020q3",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "company",
+        "id": "inspur",
+        "label": "浪潮"
+      },
+      "value": 272.45,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "x86",
+        "counterparty_role": "供应方",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1，Inspur 行，2020Q3 列 = 272452 台",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "counterparty_role=供应方：这是该厂商向中国市场的出货，不是它自己采购。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 "
+    },
+    {
+      "fact_id": "idc-cn-x86-share-inspur-units-2020q3",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "inspur",
+        "label": "浪潮"
+      },
+      "value": 29.81,
+      "unit": "%",
+      "caliber": {
+        "measure": "按台数",
+        "product_line": "x86 服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1（台数），Inspur 行，2020Q3 的 % Share 列 = 0.298076",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同一家同一季，两个口径的份额不一样**：浪潮按台数 29.81%、按金额 34.53%，差 4.7 个百分点——**单价高于市场均价的厂商在金额口径上更大**。引用「份额」不带 measure 等于没说。 分母为中国 x86 服务器整机市场。"
+    },
+    {
+      "fact_id": "idc-cn-x86-share-inspur-value-2020q3",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "inspur",
+        "label": "浪潮"
+      },
+      "value": 34.53,
+      "unit": "%",
+      "caliber": {
+        "measure": "按金额",
+        "product_line": "x86 服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 2（厂商收入），Inspur 行，2020Q3 的 % Share 列 = 0.345296",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同一家同一季，两个口径的份额不一样**：浪潮按台数 29.81%、按金额 34.53%，差 4.7 个百分点——**单价高于市场均价的厂商在金额口径上更大**。引用「份额」不带 measure 等于没说。 分母为中国 x86 服务器整机市场。"
+    },
+    {
+      "fact_id": "idc-cn-x86-units-huawei-server-2020q3",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "company",
+        "id": "huawei-server",
+        "label": "华为（服务器）"
+      },
+      "value": 152.13,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "x86",
+        "counterparty_role": "供应方",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1，Huawei 行，2020Q3 列 = 152127 台",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "counterparty_role=供应方：这是该厂商向中国市场的出货，不是它自己采购。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 "
+    },
+    {
+      "fact_id": "idc-cn-x86-share-huawei-server-units-2020q3",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "huawei-server",
+        "label": "华为（服务器）"
+      },
+      "value": 16.64,
+      "unit": "%",
+      "caliber": {
+        "measure": "按台数",
+        "product_line": "x86 服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1（台数），Huawei 行，2020Q3 的 % Share 列 = 0.166434",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同一家同一季，两个口径的份额不一样**：浪潮按台数 29.81%、按金额 34.53%，差 4.7 个百分点——**单价高于市场均价的厂商在金额口径上更大**。引用「份额」不带 measure 等于没说。 分母为中国 x86 服务器整机市场。"
+    },
+    {
+      "fact_id": "idc-cn-x86-share-huawei-server-value-2020q3",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "huawei-server",
+        "label": "华为（服务器）"
+      },
+      "value": 17.31,
+      "unit": "%",
+      "caliber": {
+        "measure": "按金额",
+        "product_line": "x86 服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 2（厂商收入），Huawei 行，2020Q3 的 % Share 列 = 0.173093",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同一家同一季，两个口径的份额不一样**：浪潮按台数 29.81%、按金额 34.53%，差 4.7 个百分点——**单价高于市场均价的厂商在金额口径上更大**。引用「份额」不带 measure 等于没说。 分母为中国 x86 服务器整机市场。"
+    },
+    {
+      "fact_id": "idc-cn-x86-units-h3c-2020q3",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "company",
+        "id": "h3c",
+        "label": "新华三"
+      },
+      "value": 124.99,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "x86",
+        "counterparty_role": "供应方",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1，H3C 行，2020Q3 列 = 124990 台",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "counterparty_role=供应方：这是该厂商向中国市场的出货，不是它自己采购。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 "
+    },
+    {
+      "fact_id": "idc-cn-x86-share-h3c-units-2020q3",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "h3c",
+        "label": "新华三"
+      },
+      "value": 13.67,
+      "unit": "%",
+      "caliber": {
+        "measure": "按台数",
+        "product_line": "x86 服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1（台数），H3C 行，2020Q3 的 % Share 列 = 0.136745",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同一家同一季，两个口径的份额不一样**：浪潮按台数 29.81%、按金额 34.53%，差 4.7 个百分点——**单价高于市场均价的厂商在金额口径上更大**。引用「份额」不带 measure 等于没说。 分母为中国 x86 服务器整机市场。"
+    },
+    {
+      "fact_id": "idc-cn-x86-share-h3c-value-2020q3",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "h3c",
+        "label": "新华三"
+      },
+      "value": 15.44,
+      "unit": "%",
+      "caliber": {
+        "measure": "按金额",
+        "product_line": "x86 服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 2（厂商收入），H3C 行，2020Q3 的 % Share 列 = 0.154352",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同一家同一季，两个口径的份额不一样**：浪潮按台数 29.81%、按金额 34.53%，差 4.7 个百分点——**单价高于市场均价的厂商在金额口径上更大**。引用「份额」不带 measure 等于没说。 分母为中国 x86 服务器整机市场。"
+    },
+    {
+      "fact_id": "idc-cn-x86-units-dell-2020q3",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "company",
+        "id": "dell",
+        "label": "戴尔"
+      },
+      "value": 96.04,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "x86",
+        "counterparty_role": "供应方",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1，Dell 行，2020Q3 列 = 96038 台",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "counterparty_role=供应方：这是该厂商向中国市场的出货，不是它自己采购。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 "
+    },
+    {
+      "fact_id": "idc-cn-x86-share-dell-units-2020q3",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "dell",
+        "label": "戴尔"
+      },
+      "value": 10.51,
+      "unit": "%",
+      "caliber": {
+        "measure": "按台数",
+        "product_line": "x86 服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1（台数），Dell 行，2020Q3 的 % Share 列 = 0.105070",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同一家同一季，两个口径的份额不一样**：浪潮按台数 29.81%、按金额 34.53%，差 4.7 个百分点——**单价高于市场均价的厂商在金额口径上更大**。引用「份额」不带 measure 等于没说。 分母为中国 x86 服务器整机市场。"
+    },
+    {
+      "fact_id": "idc-cn-x86-share-dell-value-2020q3",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "dell",
+        "label": "戴尔"
+      },
+      "value": 6.98,
+      "unit": "%",
+      "caliber": {
+        "measure": "按金额",
+        "product_line": "x86 服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 2（厂商收入），Dell 行，2020Q3 的 % Share 列 = 0.069835",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同一家同一季，两个口径的份额不一样**：浪潮按台数 29.81%、按金额 34.53%，差 4.7 个百分点——**单价高于市场均价的厂商在金额口径上更大**。引用「份额」不带 measure 等于没说。 分母为中国 x86 服务器整机市场。"
+    },
+    {
+      "fact_id": "idc-cn-x86-units-lenovo-2020q3",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "company",
+        "id": "lenovo",
+        "label": "联想"
+      },
+      "value": 79.0,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "x86",
+        "counterparty_role": "供应方",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1，Lenovo 行，2020Q3 列 = 78999 台",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "counterparty_role=供应方：这是该厂商向中国市场的出货，不是它自己采购。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 "
+    },
+    {
+      "fact_id": "idc-cn-x86-share-lenovo-units-2020q3",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "lenovo",
+        "label": "联想"
+      },
+      "value": 8.64,
+      "unit": "%",
+      "caliber": {
+        "measure": "按台数",
+        "product_line": "x86 服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1（台数），Lenovo 行，2020Q3 的 % Share 列 = 0.086430",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同一家同一季，两个口径的份额不一样**：浪潮按台数 29.81%、按金额 34.53%，差 4.7 个百分点——**单价高于市场均价的厂商在金额口径上更大**。引用「份额」不带 measure 等于没说。 分母为中国 x86 服务器整机市场。"
+    },
+    {
+      "fact_id": "idc-cn-x86-share-lenovo-value-2020q3",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "lenovo",
+        "label": "联想"
+      },
+      "value": 7.82,
+      "unit": "%",
+      "caliber": {
+        "measure": "按金额",
+        "product_line": "x86 服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 2（厂商收入），Lenovo 行，2020Q3 的 % Share 列 = 0.078194",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同一家同一季，两个口径的份额不一样**：浪潮按台数 29.81%、按金额 34.53%，差 4.7 个百分点——**单价高于市场均价的厂商在金额口径上更大**。引用「份额」不带 measure 等于没说。 分母为中国 x86 服务器整机市场。"
+    },
+    {
+      "fact_id": "idc-cn-x86-units-odm-direct-2020q3",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "company",
+        "id": "odm-direct",
+        "label": "ODM 直销"
+      },
+      "value": 50.98,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "x86",
+        "counterparty_role": "供应方",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1，ODM Direct 行，2020Q3 列 = 50984 台",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "counterparty_role=供应方：这是该厂商向中国市场的出货，不是它自己采购。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 ODM Direct 是白牌直销渠道不是单一厂商，Others 是残差桶。"
+    },
+    {
+      "fact_id": "idc-cn-x86-share-odm-direct-units-2020q3",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "odm-direct",
+        "label": "ODM 直销"
+      },
+      "value": 5.58,
+      "unit": "%",
+      "caliber": {
+        "measure": "按台数",
+        "product_line": "x86 服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1（台数），ODM Direct 行，2020Q3 的 % Share 列 = 0.055779",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同一家同一季，两个口径的份额不一样**：浪潮按台数 29.81%、按金额 34.53%，差 4.7 个百分点——**单价高于市场均价的厂商在金额口径上更大**。引用「份额」不带 measure 等于没说。 分母为中国 x86 服务器整机市场。"
+    },
+    {
+      "fact_id": "idc-cn-x86-share-odm-direct-value-2020q3",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "odm-direct",
+        "label": "ODM 直销"
+      },
+      "value": 5.31,
+      "unit": "%",
+      "caliber": {
+        "measure": "按金额",
+        "product_line": "x86 服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 2（厂商收入），ODM Direct 行，2020Q3 的 % Share 列 = 0.053061",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同一家同一季，两个口径的份额不一样**：浪潮按台数 29.81%、按金额 34.53%，差 4.7 个百分点——**单价高于市场均价的厂商在金额口径上更大**。引用「份额」不带 measure 等于没说。 分母为中国 x86 服务器整机市场。"
+    },
+    {
+      "fact_id": "idc-cn-x86-units-sugon-2020q3",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "company",
+        "id": "sugon",
+        "label": "中科曙光"
+      },
+      "value": 26.92,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "x86",
+        "counterparty_role": "供应方",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1，Sugon 行，2020Q3 列 = 26919 台",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "counterparty_role=供应方：这是该厂商向中国市场的出货，不是它自己采购。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 "
+    },
+    {
+      "fact_id": "idc-cn-x86-share-sugon-units-2020q3",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "sugon",
+        "label": "中科曙光"
+      },
+      "value": 2.95,
+      "unit": "%",
+      "caliber": {
+        "measure": "按台数",
+        "product_line": "x86 服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1（台数），Sugon 行，2020Q3 的 % Share 列 = 0.029451",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同一家同一季，两个口径的份额不一样**：浪潮按台数 29.81%、按金额 34.53%，差 4.7 个百分点——**单价高于市场均价的厂商在金额口径上更大**。引用「份额」不带 measure 等于没说。 分母为中国 x86 服务器整机市场。"
+    },
+    {
+      "fact_id": "idc-cn-x86-share-sugon-value-2020q3",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "sugon",
+        "label": "中科曙光"
+      },
+      "value": 3.05,
+      "unit": "%",
+      "caliber": {
+        "measure": "按金额",
+        "product_line": "x86 服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 2（厂商收入），Sugon 行，2020Q3 的 % Share 列 = 0.030486",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同一家同一季，两个口径的份额不一样**：浪潮按台数 29.81%、按金额 34.53%，差 4.7 个百分点——**单价高于市场均价的厂商在金额口径上更大**。引用「份额」不带 measure 等于没说。 分母为中国 x86 服务器整机市场。"
+    },
+    {
+      "fact_id": "idc-cn-x86-units-zte-2020q3",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "company",
+        "id": "zte",
+        "label": "中兴"
+      },
+      "value": 28.9,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "x86",
+        "counterparty_role": "供应方",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1，ZTE 行，2020Q3 列 = 28904 台",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "counterparty_role=供应方：这是该厂商向中国市场的出货，不是它自己采购。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 "
+    },
+    {
+      "fact_id": "idc-cn-x86-share-zte-units-2020q3",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "zte",
+        "label": "中兴"
+      },
+      "value": 3.16,
+      "unit": "%",
+      "caliber": {
+        "measure": "按台数",
+        "product_line": "x86 服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1（台数），ZTE 行，2020Q3 的 % Share 列 = 0.031622",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同一家同一季，两个口径的份额不一样**：浪潮按台数 29.81%、按金额 34.53%，差 4.7 个百分点——**单价高于市场均价的厂商在金额口径上更大**。引用「份额」不带 measure 等于没说。 分母为中国 x86 服务器整机市场。"
+    },
+    {
+      "fact_id": "idc-cn-x86-share-zte-value-2020q3",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "zte",
+        "label": "中兴"
+      },
+      "value": 2.5,
+      "unit": "%",
+      "caliber": {
+        "measure": "按金额",
+        "product_line": "x86 服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 2（厂商收入），ZTE 行，2020Q3 的 % Share 列 = 0.024997",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同一家同一季，两个口径的份额不一样**：浪潮按台数 29.81%、按金额 34.53%，差 4.7 个百分点——**单价高于市场均价的厂商在金额口径上更大**。引用「份额」不带 measure 等于没说。 分母为中国 x86 服务器整机市场。"
+    },
+    {
+      "fact_id": "idc-cn-x86-units-powerleader-2020q3",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "company",
+        "id": "powerleader",
+        "label": "宝德"
+      },
+      "value": 26.89,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "x86",
+        "counterparty_role": "供应方",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1，Powerleader 行，2020Q3 列 = 26893 台",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "counterparty_role=供应方：这是该厂商向中国市场的出货，不是它自己采购。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 "
+    },
+    {
+      "fact_id": "idc-cn-x86-share-powerleader-units-2020q3",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "powerleader",
+        "label": "宝德"
+      },
+      "value": 2.94,
+      "unit": "%",
+      "caliber": {
+        "measure": "按台数",
+        "product_line": "x86 服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1（台数），Powerleader 行，2020Q3 的 % Share 列 = 0.029422",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同一家同一季，两个口径的份额不一样**：浪潮按台数 29.81%、按金额 34.53%，差 4.7 个百分点——**单价高于市场均价的厂商在金额口径上更大**。引用「份额」不带 measure 等于没说。 分母为中国 x86 服务器整机市场。"
+    },
+    {
+      "fact_id": "idc-cn-x86-share-powerleader-value-2020q3",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "powerleader",
+        "label": "宝德"
+      },
+      "value": 1.94,
+      "unit": "%",
+      "caliber": {
+        "measure": "按金额",
+        "product_line": "x86 服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 2（厂商收入），Powerleader 行，2020Q3 的 % Share 列 = 0.019444",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同一家同一季，两个口径的份额不一样**：浪潮按台数 29.81%、按金额 34.53%，差 4.7 个百分点——**单价高于市场均价的厂商在金额口径上更大**。引用「份额」不带 measure 等于没说。 分母为中国 x86 服务器整机市场。"
+    },
+    {
+      "fact_id": "idc-cn-x86-units-nettrix-2020q3",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "company",
+        "id": "nettrix",
+        "label": "宁畅"
+      },
+      "value": 17.63,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "x86",
+        "counterparty_role": "供应方",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1，Nettrix 行，2020Q3 列 = 17634 台",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "counterparty_role=供应方：这是该厂商向中国市场的出货，不是它自己采购。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 "
+    },
+    {
+      "fact_id": "idc-cn-x86-share-nettrix-units-2020q3",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "nettrix",
+        "label": "宁畅"
+      },
+      "value": 1.93,
+      "unit": "%",
+      "caliber": {
+        "measure": "按台数",
+        "product_line": "x86 服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1（台数），Nettrix 行，2020Q3 的 % Share 列 = 0.019292",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同一家同一季，两个口径的份额不一样**：浪潮按台数 29.81%、按金额 34.53%，差 4.7 个百分点——**单价高于市场均价的厂商在金额口径上更大**。引用「份额」不带 measure 等于没说。 分母为中国 x86 服务器整机市场。"
+    },
+    {
+      "fact_id": "idc-cn-x86-share-nettrix-value-2020q3",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "nettrix",
+        "label": "宁畅"
+      },
+      "value": 2.08,
+      "unit": "%",
+      "caliber": {
+        "measure": "按金额",
+        "product_line": "x86 服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 2（厂商收入），Nettrix 行，2020Q3 的 % Share 列 = 0.020844",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同一家同一季，两个口径的份额不一样**：浪潮按台数 29.81%、按金额 34.53%，差 4.7 个百分点——**单价高于市场均价的厂商在金额口径上更大**。引用「份额」不带 measure 等于没说。 分母为中国 x86 服务器整机市场。"
+    },
+    {
+      "fact_id": "idc-cn-x86-units-other-server-vendors-2020q3",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "company",
+        "id": "other-server-vendors",
+        "label": "其他厂商（残差）"
+      },
+      "value": 38.09,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "x86",
+        "counterparty_role": "供应方",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1，Others 行，2020Q3 列 = 38092 台",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "counterparty_role=供应方：这是该厂商向中国市场的出货，不是它自己采购。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。 ODM Direct 是白牌直销渠道不是单一厂商，Others 是残差桶。"
+    },
+    {
+      "fact_id": "idc-cn-x86-share-other-server-vendors-units-2020q3",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "other-server-vendors",
+        "label": "其他厂商（残差）"
+      },
+      "value": 4.17,
+      "unit": "%",
+      "caliber": {
+        "measure": "按台数",
+        "product_line": "x86 服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 1（台数），Others 行，2020Q3 的 % Share 列 = 0.041674",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同一家同一季，两个口径的份额不一样**：浪潮按台数 29.81%、按金额 34.53%，差 4.7 个百分点——**单价高于市场均价的厂商在金额口径上更大**。引用「份额」不带 measure 等于没说。 分母为中国 x86 服务器整机市场。"
+    },
+    {
+      "fact_id": "idc-cn-x86-share-other-server-vendors-value-2020q3",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "other-server-vendors",
+        "label": "其他厂商（残差）"
+      },
+      "value": 3.04,
+      "unit": "%",
+      "caliber": {
+        "measure": "按金额",
+        "product_line": "x86 服务器",
+        "subregion": "全国",
+        "vertical": "未拆分",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 2（厂商收入），Others 行，2020Q3 的 % Share 列 = 0.030394",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同一家同一季，两个口径的份额不一样**：浪潮按台数 29.81%、按金额 34.53%，差 4.7 个百分点——**单价高于市场均价的厂商在金额口径上更大**。引用「份额」不带 measure 等于没说。 分母为中国 x86 服务器整机市场。"
+    },
+    {
+      "fact_id": "idc-cn-x86-units-fc-2019",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 3180.53,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "x86",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 4: PRC x86 Server Market Forecast 2020-2024，Units 行，2019 列 = 3180525",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算 ÷1000。2019 为实绩基年。 **同表另给 2020-2024 台数 CAGR 8.38%、金额 CAGR 13.10%——金额增速快于台数，即单价上行**。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。"
+    },
+    {
+      "fact_id": "idc-cn-x86-revenue-fc-2019",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 187.78,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "x86",
+        "region": "China",
+        "storage_scope": "不适用（非存储口径）"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 4，Value (US$M) 行，2019 列 = 18777.98",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算 US$M ÷ 100 = 亿美元。2019 为实绩基年。 隐含均价由 2019 年 5,904 美元/台升至 2024 年 7,305 美元/台。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。"
+    },
+    {
+      "fact_id": "idc-cn-x86-units-fc-2020",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 3371.52,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "x86",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2020E@2020-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 4: PRC x86 Server Market Forecast 2020-2024，Units 行，2020 列 = 3371519",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算 ÷1000。预测值，做出时点 2020-12。 **同表另给 2020-2024 台数 CAGR 8.38%、金额 CAGR 13.10%——金额增速快于台数，即单价上行**。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。"
+    },
+    {
+      "fact_id": "idc-cn-x86-revenue-fc-2020",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 213.88,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "x86",
+        "region": "China",
+        "storage_scope": "不适用（非存储口径）"
+      },
+      "as_of": "2020E@2020-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 4，Value (US$M) 行，2020 列 = 21388.12",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算 US$M ÷ 100 = 亿美元。预测值，做出时点 2020-12。 隐含均价由 2019 年 5,904 美元/台升至 2024 年 7,305 美元/台。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。"
+    },
+    {
+      "fact_id": "idc-cn-x86-units-fc-2021",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 3685.62,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "x86",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2021E@2020-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 4: PRC x86 Server Market Forecast 2020-2024，Units 行，2021 列 = 3685623",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算 ÷1000。预测值，做出时点 2020-12。 **同表另给 2020-2024 台数 CAGR 8.38%、金额 CAGR 13.10%——金额增速快于台数，即单价上行**。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。"
+    },
+    {
+      "fact_id": "idc-cn-x86-revenue-fc-2021",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 243.02,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "x86",
+        "region": "China",
+        "storage_scope": "不适用（非存储口径）"
+      },
+      "as_of": "2021E@2020-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 4，Value (US$M) 行，2021 列 = 24301.96",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算 US$M ÷ 100 = 亿美元。预测值，做出时点 2020-12。 隐含均价由 2019 年 5,904 美元/台升至 2024 年 7,305 美元/台。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。"
+    },
+    {
+      "fact_id": "idc-cn-x86-units-fc-2022",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 4023.59,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "x86",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2022E@2020-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 4: PRC x86 Server Market Forecast 2020-2024，Units 行，2022 列 = 4023588",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算 ÷1000。预测值，做出时点 2020-12。 **同表另给 2020-2024 台数 CAGR 8.38%、金额 CAGR 13.10%——金额增速快于台数，即单价上行**。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。"
+    },
+    {
+      "fact_id": "idc-cn-x86-revenue-fc-2022",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 274.92,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "x86",
+        "region": "China",
+        "storage_scope": "不适用（非存储口径）"
+      },
+      "as_of": "2022E@2020-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 4，Value (US$M) 行，2022 列 = 27491.67",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算 US$M ÷ 100 = 亿美元。预测值，做出时点 2020-12。 隐含均价由 2019 年 5,904 美元/台升至 2024 年 7,305 美元/台。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。"
+    },
+    {
+      "fact_id": "idc-cn-x86-units-fc-2023",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 4377.51,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "x86",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2023E@2020-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 4: PRC x86 Server Market Forecast 2020-2024，Units 行，2023 列 = 4377507",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算 ÷1000。预测值，做出时点 2020-12。 **同表另给 2020-2024 台数 CAGR 8.38%、金额 CAGR 13.10%——金额增速快于台数，即单价上行**。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。"
+    },
+    {
+      "fact_id": "idc-cn-x86-revenue-fc-2023",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 309.46,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "x86",
+        "region": "China",
+        "storage_scope": "不适用（非存储口径）"
+      },
+      "as_of": "2023E@2020-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 4，Value (US$M) 行，2023 列 = 30946.32",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算 US$M ÷ 100 = 亿美元。预测值，做出时点 2020-12。 隐含均价由 2019 年 5,904 美元/台升至 2024 年 7,305 美元/台。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。"
+    },
+    {
+      "fact_id": "idc-cn-x86-units-fc-2024",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 4756.37,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "x86",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2024E@2020-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 4: PRC x86 Server Market Forecast 2020-2024，Units 行，2024 列 = 4756367",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算 ÷1000。预测值，做出时点 2020-12。 **同表另给 2020-2024 台数 CAGR 8.38%、金额 CAGR 13.10%——金额增速快于台数，即单价上行**。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。"
+    },
+    {
+      "fact_id": "idc-cn-x86-revenue-fc-2024",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-x86-server-market",
+        "label": "中国 x86 服务器市场"
+      },
+      "value": 347.46,
+      "unit": "亿美元",
+      "caliber": {
+        "server_class": "x86",
+        "region": "China",
+        "storage_scope": "不适用（非存储口径）"
+      },
+      "as_of": "2024E@2020-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5007e19ab6624c5fe013cf35e66ce6e95af29736ec9ba6abe701ab4486d135a8",
+        "local_file": "2020Q3 IDC China Quarterly Provincial Server Tracker.xlsx",
+        "locator": "工作表「Datacut」Table 4，Value (US$M) 行，2024 列 = 34745.61",
+        "grade": "S3",
+        "originator": "IDC《PRC Quarterly x86 Server Tracker》2020Q3，发布 2020-12-22"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算 US$M ÷ 100 = 亿美元。预测值，做出时点 2020-12。 隐含均价由 2019 年 5,904 美元/台升至 2024 年 7,305 美元/台。 **口径三处必须带**：①这是中国市场的 **x86** 服务器，不含非 x86（Power/小型机/ARM），server_class 记 x86；②整机出货，counterparty_role=全市场（未分侧），既不是某买方的采购也不是某卖方的销售；③IDC 的季度跟踪为第三方统计，非厂商直报。"
     }
   ]
 }
