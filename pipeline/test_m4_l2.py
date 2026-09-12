@@ -2772,5 +2772,100 @@ class AsymmetricDimensionTests(unittest.TestCase):
         self.assertIn('分项与合计不可一起加总', d['note'])
 
 
+class SplitDimensionSymmetryTests(unittest.TestCase):
+    """服务器/存储这一族的切法维矩阵——我是一条缺口一条缺口加上去的，从没让它自洽。
+
+    切法维是「把同一批对象切开」的维：谁买的、哪个省、哪个行业、哪个品类、
+    站在哪一侧。它与测量限定维（basis、price_type、stat）不同——后者说的是
+    这个数怎么来的，前者说的是这个数覆盖谁。
+
+    先后撞了两次，都是同一格：
+      product_category 容量侧有、金额侧没有，挡下 5 条；
+      subregion/vertical 台数侧有、金额侧没有，中国外置存储的省份与行业
+        拆分存不下。
+    两次都是同一张 IDC 表的两半——**同一份文件里的两列，只在一侧声明了维。**
+
+    这个类不主张每一格都要填满，主张的是：**每一格的有无都要是当下有据的选择，
+    并且看得见。**下面那张表就是当下的选择，改动它必须同时改这里。
+    """
+
+    #: 这一族里各指标当下声明的切法维。改菜单时同步改这里——
+    #: 让「加了一维却忘了对面」在测试里就红，而不是等语料撞出来。
+    EXPECTED = {
+        'server_unit_shipments':
+            {'subregion', 'vertical', 'buyer_category', 'counterparty_role'},
+        'server_mfg_revenue':
+            {'subregion', 'vertical', 'product_category', 'storage_scope'},
+        'server_asp':
+            {'subregion', 'vertical', 'storage_scope'},
+        'storage_capacity_shipped':
+            {'subregion', 'vertical', 'product_category', 'buyer_category',
+             'storage_scope'},
+        'it_infra_spend':
+            {'subregion', 'vertical', 'buyer_category'},
+        'vendor_market_share':
+            {'subregion', 'vertical'},
+        'installed_server_base':
+            {'counterparty_role'},
+    }
+
+    SPLIT_DIMS = ('subregion', 'vertical', 'product_category',
+                  'buyer_category', 'counterparty_role', 'storage_scope')
+
+    def setUp(self):
+        self.metrics = L2.load_metrics()
+
+    def declared(self, mid):
+        return {d['id'] for d in self.metrics[mid]['caliber_dims']
+                if d['id'] in self.SPLIT_DIMS}
+
+    def test_the_matrix_matches_what_is_declared(self):
+        for mid, expected in self.EXPECTED.items():
+            self.assertEqual(self.declared(mid), expected, mid)
+
+    def test_the_two_halves_of_one_idc_table_agree(self):
+        """台数与金额出自同一张表，按同一套省份与行业切——两侧必须都能装。"""
+        for dim_id in ('subregion', 'vertical'):
+            for mid in ('server_unit_shipments', 'server_mfg_revenue',
+                        'server_asp', 'storage_capacity_shipped',
+                        'vendor_market_share'):
+                self.assertIn(dim_id, self.declared(mid), (mid, dim_id))
+
+    def test_capacity_and_revenue_agree_on_product_category(self):
+        """第一次撞的那格，两侧现在一致。"""
+        for mid in ('server_mfg_revenue', 'storage_capacity_shipped'):
+            self.assertIn('product_category', self.declared(mid), mid)
+
+    def test_the_shared_dimension_note_says_why_both_sides_need_it(self):
+        for mid in ('server_mfg_revenue', 'storage_capacity_shipped'):
+            note = next(d for d in self.metrics[mid]['caliber_dims']
+                        if d['id'] == 'subregion')['note']
+            self.assertIn('台数侧与金额侧必须一致', note, mid)
+
+    def test_no_family_metric_lost_a_split_dimension(self):
+        """加维只会往上加；哪天某一格消失了，必是误删。"""
+        for mid, expected in self.EXPECTED.items():
+            self.assertTrue(expected <= self.declared(mid), mid)
+
+    def test_every_existing_fact_in_the_family_carries_them_all(self):
+        store = L2.load_facts()
+        for f in store['records']:
+            mid = f['metric_id']
+            if mid not in self.EXPECTED:
+                continue
+            for dim_id in self.EXPECTED[mid]:
+                self.assertIn(dim_id, f['caliber'], (f['fact_id'], dim_id))
+
+    def test_the_backfill_never_claimed_a_province(self):
+        """既有事实一条都没有按省切过——回填只能填全国或不适用。"""
+        store = L2.load_facts()
+        for f in store['records']:
+            if f['metric_id'] not in self.EXPECTED:
+                continue
+            self.assertIn(f['caliber'].get('subregion'),
+                          ('全国', '不适用（非中国口径）'), f['fact_id'])
+            self.assertEqual(f['caliber'].get('vertical'), '未拆分', f['fact_id'])
+
+
 if __name__ == '__main__':
     unittest.main()
