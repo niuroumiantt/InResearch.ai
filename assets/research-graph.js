@@ -370,7 +370,10 @@ async function startWorkbench() {
   const kindSelect = document.getElementById("researchKind");
   const objectsEl = document.getElementById("researchObjects");
   const phoneLayout = matchMedia("(max-width:700px)");
-  const compactPanels = () => root.querySelectorAll(".rg-workbench-overview,.rg-object-picker").forEach(panel => { panel.open = !phoneLayout.matches; });
+  const compactPanels = () => {
+    root.querySelector('.rg-object-picker').open = !phoneLayout.matches;
+    root.querySelector('.rg-workbench-overview').open = !phoneLayout.matches && !new URLSearchParams(location.search).has('node');
+  };
   compactPanels(); phoneLayout.addEventListener("change", compactPanels);
   const params = new URLSearchParams(location.search);
   const state = { view: Object.hasOwn(VIEW_INFO, params.get("view")) ? params.get("view") : "P",

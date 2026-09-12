@@ -1,6 +1,6 @@
 const assert=require('node:assert/strict');
 const {chromium}=require('playwright');
-(async()=>{const browser=await chromium.launch({channel:'chrome',headless:true});try{
+(async()=>{const browser=await chromium.launch({channel:process.env.UI_BROWSER_CHANNEL || undefined,headless:true});try{
  const page=await browser.newPage({viewport:{width:1280,height:900}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.route('**/api/research',r=>r.fulfill({json:{reader:{acquisition:{news_feed:{status:'success',exported_at:new Date().toISOString(),items:[{title:'Datacenter opens',title_zh:'数据中心开业',publisher:'Example',published_at:Date.parse('2026-09-06T02:30:00Z'),url:'https://example.com/news',category:'数据中心'},{title:'unsafe',url:'javascript:alert(1)'},...Array.from({length:15},(_,i)=>({title:'Data center '+i,title_zh:'数据中心 '+i,url:'https://example.com/'+i,published_at:Date.parse(i===0?'2026-09-05T16:10:00Z':'2026-09-05T15:50:00Z')}))]}}}}}));
  for(const file of ['index.html','ops.html']){

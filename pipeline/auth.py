@@ -24,6 +24,9 @@
 from __future__ import annotations
 
 import base64
+import fcntl
+import threading
+from functools import wraps
 import hashlib
 import hmac
 import json
@@ -32,6 +35,7 @@ import secrets
 import time
 from http.cookies import SimpleCookie
 from pathlib import Path
+from jsonl_store import atomic_write
 
 ROOT = Path(__file__).resolve().parent.parent
 USERS_FILE = ROOT / "data" / "users.json"
@@ -53,16 +57,32 @@ def load_users() -> dict:
         return {}
     try:
         return json.loads(USERS_FILE.read_text(encoding="utf-8")).get("users", {})
-    except (json.JSONDecodeError, OSError):
-        return {}
+    except (json.JSONDecodeError, OSError) as exc:
+        raise RuntimeError("user_store_unavailable") from exc
+
+
+_user_lock = threading.RLock()
+
+
+def user_write(fn):
+    """Serialize complete read-modify-write operations across HTTP and CLI."""
+    @wraps(fn)
+    def wrapped(*args, **kwargs):
+        with _user_lock:
+            USERS_FILE.parent.mkdir(parents=True, exist_ok=True)
+            with USERS_FILE.with_name('.users.lock').open('a') as lock:
+                fcntl.flock(lock, fcntl.LOCK_EX)
+                try:
+                    return fn(*args, **kwargs)
+                finally:
+                    fcntl.flock(lock, fcntl.LOCK_UN)
+    return wrapped
 
 
 def save_users(users: dict):
-    USERS_FILE.write_text(
-        json.dumps({"_note": "Hub 登录用户表。哈希非明文，但本文件仍不进 git、不外发。",
-                    "users": users}, ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8")
-    os.chmod(USERS_FILE, 0o600)
+    """Atomic persistence; callers must hold user_write for the full mutation."""
+    body = json.dumps({'users': users}, ensure_ascii=False, indent=2) + '\n'
+    atomic_write(USERS_FILE, body.encode('utf-8'))
 
 
 def hash_password(password: str, salt_hex: str) -> str:
@@ -82,11 +102,23 @@ def verify_password(username: str, password: str) -> bool:
 
 # ── 会话 cookie ─────────────────────────────────────────────
 
-def _secret() -> bytes:
+@user_write
+def _initialize_secret():
+    # Recheck after acquiring the same cross-process account-store lock.
     if not SECRET_FILE.exists():
-        SECRET_FILE.write_bytes(secrets.token_bytes(32))
-        os.chmod(SECRET_FILE, 0o600)
-    return SECRET_FILE.read_bytes()
+        SECRET_FILE.parent.mkdir(parents=True, exist_ok=True)
+        atomic_write(SECRET_FILE, secrets.token_bytes(32))
+
+
+def _secret() -> bytes:
+    try:
+        value = SECRET_FILE.read_bytes()
+    except FileNotFoundError:
+        _initialize_secret()
+        value = SECRET_FILE.read_bytes()
+    if len(value) != 32:
+        raise RuntimeError('session_key_unavailable')
+    return value
 
 
 def _sign(payload: str) -> str:
@@ -132,11 +164,15 @@ def session_user(cookie_header: str | None) -> str | None:
     return username
 
 
-def set_password(username: str, new_password: str) -> bool:
-    """改指定用户的密码；用户不存在返回 False。CLI 与自助改密共用此入口。"""
+@user_write
+def set_password(username: str, new_password: str, *, current_password: str | None = None) -> bool:
+    """在同一事务内核对旧密码并修改；管理员重置可省略旧密码。"""
     import secrets as _s
     users = load_users()
     if username not in users:
+        return False
+    if current_password is not None and not hmac.compare_digest(
+            hash_password(current_password, users[username]['salt']), users[username]['hash']):
         return False
     salt = _s.token_bytes(16).hex()
     users[username].update(salt=salt, hash=hash_password(new_password, salt))
@@ -150,7 +186,7 @@ ROLES = ("admin", "member", "intern")
 # 数字——敏感的不只是标了 sensitive 的事实记录，账本本身就是。逐条拉黑必漏，
 # **漏一条路径等于没锁门**；白名单只放行工单系统，其余一概 403。
 INTERN_GET_ALLOW = ("/assets/site-skin.js", "/assets/site-skin.css", "/assets/InterVariable.woff2", "/assets/Inter-LICENSE.txt", "/team.html", "/reports/workorders.json", "/data/assignments.json",
-                    "/api/status", "/api/whoami", "/account", "/login", "/logout",
+                    "/api/status", "/api/tasks", "/api/whoami", "/account", "/login", "/logout",
                     "/assets/", "/favicon")
 INTERN_POST_ALLOW = ("/api/login", "/api/passwd", "/api/assign")
 
@@ -174,6 +210,7 @@ def _validate_name(name: str):
     return None
 
 
+@user_write
 def add_user(name: str, password: str | None = None, role: str | None = None):
     """返回 (ok, 提示或错误, 明文密码或 None)。密码只在这一次返回，之后只有哈希。"""
     import secrets as _s
@@ -196,6 +233,7 @@ def add_user(name: str, password: str | None = None, role: str | None = None):
     return True, f"已添加 {name}（角色：{r}）", pw
 
 
+@user_write
 def remove_user(name: str):
     users = load_users()
     if name not in users:
@@ -208,6 +246,7 @@ def remove_user(name: str):
     return True, f"已删除 {name}（其会话下一次请求即失效）"
 
 
+@user_write
 def set_role(name: str, role: str):
     users = load_users()
     if name not in users:
@@ -222,6 +261,7 @@ def set_role(name: str, role: str):
     return True, f"{name} → {role}（即时生效）"
 
 
+@user_write
 def rename_user(old: str, new: str):
     """改用户名。旧名的会话 cookie 随之失效（cookie 里是名字），需用新名重登。"""
     users = load_users()
@@ -240,10 +280,9 @@ def rename_user(old: str, new: str):
 def reset_password(name: str, password: str | None = None):
     """返回 (ok, 提示, 明文新密码或 None)。"""
     import secrets as _s
-    if name not in load_users():
-        return False, f"用户不存在：{name}", None
     pw = password or _s.token_urlsafe(12)
-    set_password(name, pw)
+    if not set_password(name, pw):
+        return False, f"用户不存在：{name}", None
     return True, f"已重置 {name} 的密码", pw
 
 
@@ -281,7 +320,7 @@ def record_fail(ip: str):
 
 LOGIN_PAGE = """<!doctype html><html lang="zh" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light"><head><script src="/assets/site-skin.js"></script><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Inresearch Hub · 登录</title><style>
+<title>inresearch.ai · 登录</title><style>
   body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
        font:15px/1.6 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
        background:var(--ui-bg);color:var(--ui-ink)}
@@ -300,10 +339,10 @@ LOGIN_PAGE = """<!doctype html><html lang="zh" data-ui-skin="folk" data-ui-theme
   .note{margin-top:18px;color:var(--ui-muted);font-size:11.5px;text-align:center}
 </style><link rel="stylesheet" href="/assets/site-skin.css"></head><body class="ui-auth">
 <form onsubmit="return go(event)">
-  <h1>Inresearch Hub</h1>
+  <h1>inresearch.ai</h1>
   <p class="sub">数据中心研究 · 内部系统</p>
-  <label>用户名</label><input id="u" autocomplete="username" autofocus>
-  <label>密码</label><input id="p" type="password" autocomplete="current-password">
+  <label for="u">用户名</label><input id="u" autocomplete="username" autofocus>
+  <label for="p">密码</label><input id="p" type="password" autocomplete="current-password">
   <button>登录</button>
   <div class="err" id="err"></div>
   <div class="note">账号由管理员分配，本系统不提供注册</div>
@@ -322,7 +361,7 @@ async function go(e){e.preventDefault();
 
 PASSWD_PAGE = """<!doctype html><html lang="zh" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light"><head><script src="/assets/site-skin.js"></script><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>修改密码 · Inresearch Hub</title><style>
+<title>修改密码 · inresearch.ai</title><style>
   body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
        font:15px/1.6 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
        background:var(--ui-bg);color:var(--ui-ink)}
@@ -341,9 +380,9 @@ PASSWD_PAGE = """<!doctype html><html lang="zh" data-ui-skin="folk" data-ui-them
 </style><link rel="stylesheet" href="/assets/site-skin.css"></head><body class="ui-auth">
 <form onsubmit="return go(event)">
   <h1>修改密码</h1>
-  <label>当前密码</label><input id="old" type="password" autocomplete="current-password" autofocus>
-  <label>新密码（至少 8 位）</label><input id="n1" type="password" autocomplete="new-password">
-  <label>再输一遍</label><input id="n2" type="password" autocomplete="new-password">
+  <label for="old">当前密码</label><input id="old" type="password" autocomplete="current-password" autofocus>
+  <label for="n1">新密码（至少 8 位）</label><input id="n1" type="password" autocomplete="new-password">
+  <label for="n2">再输一遍</label><input id="n2" type="password" autocomplete="new-password">
   <button>确认修改</button>
   <div class="msg" id="msg"></div>
   <a href="/">← 返回首页</a>
@@ -364,7 +403,7 @@ async function go(e){e.preventDefault();
 
 FORBIDDEN_PAGE = """<!doctype html><html lang="zh" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light"><head><script src="/assets/site-skin.js"></script><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>无权访问 · Inresearch Hub</title><style>
+<title>无权访问 · inresearch.ai</title><style>
   body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
        font:15px/1.6 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
        background:var(--ui-bg);color:var(--ui-ink)}

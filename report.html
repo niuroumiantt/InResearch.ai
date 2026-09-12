@@ -4,7 +4,7 @@
 <script src="/assets/site-skin.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>全球数据中心研究（活文档）— Datacenter Hub</title>
+<title>全球数据中心研究（活文档）— inresearch.ai</title>
 <style>
 
 
@@ -25,7 +25,7 @@
   nav.toc a.on { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
   main { flex: 1; min-width: 0; }
   .page-doc { background: var(--page); border: 1px solid var(--line); border-radius: var(--ui-radius);
-    box-shadow: 0 1px 6px rgba(0,0,0,.06); padding: 44px 68px; margin-bottom: 22px; }
+    box-shadow: 0 1px 6px rgba(0,0,0,.06); padding: 44px 68px; margin-bottom: 22px; overflow-wrap:anywhere; }
   .page-doc.cover-page { padding: 60px 68px; }
   .cover { text-align: center; border-bottom: 2px solid var(--text); margin-bottom: 40px; padding-bottom: 28px; }
   .cover h1 { font-size: 30px; letter-spacing: 2px; margin-bottom: 14px; }
@@ -59,7 +59,7 @@
   .open-q h3 { font-size: 15px; margin: 20px 0 6px; }
   .err { color: var(--red); padding: 20px; }
   code { font-family: ui-monospace, Menlo, monospace; font-size: 13px; background: var(--bg); padding: 1px 5px; border-radius: var(--ui-radius); }
-  @media (max-width: 900px) { nav.toc { display: none; } .page-doc { padding: 32px 22px; } }
+  @media (max-width: 900px) { nav.toc { display: none; } .page-doc { padding: 24px 16px; } }
   @media print {
     .topbar, nav.toc { display: none; }
     body { background: #fff; } .layout { margin: 0; }
@@ -70,12 +70,12 @@
 </head>
 <body>
 <div class="topbar">
-  <b>Datacenter Hub</b><span style="color:var(--muted)">全球数据中心研究 · 活文档</span>
+  <span style="color:var(--muted)">全球数据中心研究 · 活文档</span>
   <span class="sp"></span>
-  <a href="index.html">总览</a> <a href="bom.html">爆炸图</a> <a href="ops.html">工作台</a> <b style="color:var(--accent)">报告成稿</b>
+   <a href="bom.html">爆炸图</a>  <b style="color:var(--accent)">报告成稿</b>
   <a href="doc.html?f=framework/01_data_standards.md">口径手册</a>
   <a href="doc.html?f=reports/verify_queue.md">核验队列</a>
-  <a href="https://github.com/niuroumiantt/datacenter" target="_blank">GitHub</a>
+  <a href="https://github.com/niuroumiantt/InResearch.ai" target="_blank">GitHub</a>
   <a href="javascript:window.print()">打印/存 PDF</a>
 </div>
 <div class="layout">
@@ -83,24 +83,18 @@
   <main><div id="docroot"><div class="page-doc">加载中…</div></div></main>
 </div>
 
+<script src="/assets/markdown-inline.js"></script>
 <script>
-const REPO = "https://github.com/niuroumiantt/datacenter/blob/main/";
+const REPO = "https://github.com/niuroumiantt/InResearch.ai/blob/main/";
 const CN = ["一","二","三","四","五","六","七","八","九","十","十一","十二","十三","十四","十五"];
 
 async function get(path) {
   const r = await fetch(path + "?t=" + Date.now(), { cache: "no-store" });
   if (!r.ok) throw new Error(path + " → HTTP " + r.status);
-  return path.endsWith(".json") ? r.json() : r.text();
+  return path.endsWith(".json") || path.startsWith("/api/") ? r.json() : r.text();
 }
-function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
-function inline(s) {
-  s = esc(s);
-  s = s.replace(/`([^`]+)`/g, (m, c) => "<code>" + c + "</code>");
-  s = s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2" target="_blank">$1</a>');
-  s = s.replace(/(^|[^"=\]>])(https?:\/\/[^\s<）]+)/g, '$1<a href="$2" target="_blank">$2</a>');
-  s = s.replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>");
-  return s;
-}
+const {escape: esc, inline} = window.ResearchMarkdown;
+
 function bulletsToHtml(items) {
   // items: [{depth, text}] → nested ul
   let html = "", depth = 0;
@@ -134,11 +128,11 @@ function parseFields(bodyLines) {
 function renderFinding(f, num) {
   const stCls = f.status === "current" ? "b-cur" : (f.status === "needs-review" ? "b-rev" : "b-sta");
   const { fields, notes } = parseFields(f.body);
-  let h = `<div class="finding${f.status !== "current" ? " review-note" : ""}" id="${f.id}" style="${f.status !== "current" ? "padding-left:14px" : ""}">`;
+  let h = `<div class="finding${f.status !== "current" ? " review-note" : ""}" id="${esc(f.id)}" style="${f.status !== "current" ? "padding-left:14px" : ""}">`;
   h += `<h3>${num} ${inline(f.title)}</h3>`;
-  h += `<div class="fmeta"><span class="badge ${stCls}">${f.status}</span>`;
+  h += `<div class="fmeta"><span class="badge ${stCls}">${esc(f.status)}</span>`;
   if (f.qtags) h += `<span class="badge b-q">${esc(f.qtags)}</span>`;
-  h += ` 修订 ${f.revised || "—"} · ${f.id}</div>`;
+  h += ` 修订 ${esc(f.revised || "—")} · ${esc(f.id)}</div>`;
   if (notes.length) h += `<div class="fmeta">${inline(notes.join(" "))}</div>`;
   if (fields["结论"]) h += `<p class="lead"><b class="lbl">结论：</b>${inline(fields["结论"].text)}${bulletsToHtml(fields["结论"].items)}</p>`;
   if (fields["论证"]) {
@@ -172,78 +166,54 @@ function renderGenericBlock(header, lines) {
   return h + "</div>";
 }
 
-function parseResearch(md) {
-  // 返回 {intro:[], blocks:[{type:'finding'|'generic', ...}]}
-  const lines = md.split("\n");
-  const blocks = []; let intro = []; let cur = null;
-  for (const line of lines) {
-    if (line.startsWith("# ")) continue;
-    const h = line.match(/^##\s+(M\d+-F\d+)\s+(.*?)\s*(\{[^}]*\})?\s*$/);
-    const g = line.match(/^##\s+(.*)$/);
-    if (h) { cur = { type: "finding", id: h[1], title: h[2], qtags: (h[3] || "").replace(/[{}]/g, ""), status: "current", revised: "", body: [] }; blocks.push(cur); continue; }
-    if (g) { cur = { type: "generic", header: g[1], body: [] }; blocks.push(cur); continue; }
-    if (!cur) { if (line.trim()) intro.push(line); continue; }
-    const s = line.match(/^-\s+\*\*状态\*\*：(\S+?)\s*｜\s*\*\*修订\*\*：(\S+)/);
-    if (s && cur.type === "finding") { cur.status = s[1]; cur.revised = s[2]; continue; }
-    cur.body.push(line);
-  }
-  return { intro, blocks };
-}
-
 (async () => {
   try {
-    const reg = await get("framework/modules.json");
-    const mods = reg.modules.filter(m => m.research);
-    const [summaryMd, ...researchMds] = await Promise.all(
-      [get("research/SUMMARY.md").catch(() => null), ...mods.map(m => get(m.research))]);
-
-    let totalFindings = 0, reviewCount = 0, sources = new Set();
-    const chapters = mods.map((m, i) => {
-      const parsed = parseResearch(researchMds[i]);
-      parsed.blocks.forEach(b => {
-        if (b.type === "finding") {
-          totalFindings++;
-          if (b.status !== "current") reviewCount++;
-          b.body.forEach(l => (l.match(/https?:\/\/[^\s)）]+/g) || []).forEach(u => sources.add(u)));
-        }
-      });
-      return { m, parsed };
-    });
+    const report = await get("/api/report");
+    const chapters = report.chapters;
+    const summaryMd = report.summary;
+    const totalFindings = report.finding_count;
+    const reviewCount = report.review_count;
+    const sources = new Set(report.sources);
+    const reg = {version: report.framework_version};
+    const mods = chapters.map(ch => ch.module);
 
     const today = new Date().toISOString().slice(0, 10);
     let html = `<section class="page-doc cover-page"><div class="cover"><h1>全球数据中心研究</h1>
-      <div class="meta">活文档 · 由知识层实时渲染 ｜ 数据快照 ${today} ｜ ${mods.length} 章 · ${totalFindings} 条研究结论 · ${sources.size} 个来源
+      <div class="meta">兼容研究结论 ｜ 生成日期 ${today} ｜ 内容版本 ${esc(report.data_revision.slice(0,12))} ｜ ${mods.length} 章 · ${totalFindings} 条研究结论 · ${sources.size} 个来源
       ${reviewCount ? `｜ <span style="color:var(--yellow)">⚠️ ${reviewCount} 条待复核</span>` : ""}<br>
+      生成日期不代表来源核验日期；既有 Finding 未自动取得对象证据的 C3 采用资格。<br>
       框架 v${reg.version} · 口径规则见<a href="doc.html?f=framework/01_data_standards.md">《口径与核验规则手册》</a> · 证据分级 S1 监管文件 / S2 公司披露 / S3 权威第三方 / S4 媒体 / S5 推算</div></div>`;
 
     const toc = [];
     if (summaryMd) {
       html += `<h2 class="chapter" id="ch-summary">执行摘要 — 十大核心判断</h2>`;
-      const p = parseResearch(summaryMd);
-      html += `<ol class="summary-list">` + renderGenericBlock(null, p.intro.filter(l => !l.startsWith(">"))).replace(/^<div>|<\/div>$/g, "") + `</ol>`;
+      const summaryLines = summaryMd.split("\n").filter(l => !l.startsWith("#"));
+      html += `<ol class="summary-list">` + renderGenericBlock(null, summaryLines.filter(l => !l.startsWith(">"))).replace(/^<div>|<\/div>$/g, "") + `</ol>`;
       html += `<div class="chapter-src">源文件 <code>research/SUMMARY.md</code> · <a href="doc.html?f=research/SUMMARY.md">原文</a> · <a href="${REPO}research/SUMMARY.md" target="_blank">GitHub</a></div>`;
       toc.push({ id: "ch-summary", label: "执行摘要" });
     }
     html += `</section>`;
 
     chapters.forEach((ch, i) => {
-      const { m, parsed } = ch;
+      const m = ch.module;
       const cid = "ch-" + m.id;
       toc.push({ id: cid, label: `第${CN[i]}章 ${m.name}` });
       html += `<section class="page-doc"><h2 class="chapter" id="${cid}">第${CN[i]}章 ${m.name}</h2>`;
-      html += `<div class="chapter-sub">${m.id} · ${m.en} · 溯源 ${m.source_questions.join(" ") || "新增研究"} · 更新节奏 ${m.update_freq}</div>`;
-      if (parsed.intro.length) html += parsed.intro.filter(l => l.startsWith(">")).map(l => `<blockquote>${inline(l.replace(/^>\s?/, ""))}</blockquote>`).join("");
-      let fnum = 0;
-      parsed.blocks.forEach(b => {
-        if (b.type === "finding") { fnum++; html += renderFinding(b, `${i + 1}.${fnum}`); }
-        else html += renderGenericBlock(b.header, b.body);
-      });
-      html += `<div class="chapter-src">本章源文件 <code>${m.research}</code>（<a href="doc.html?f=${m.research}">原文</a> · <a href="${REPO}${m.research}" target="_blank">GitHub</a>）
-        · 模块定义 <code>framework/${m.doc}</code>（<a href="doc.html?f=framework/${m.doc}">原文</a>）
-        · 依赖数据表 ${m.tables.map(t => `<a href="${REPO}data/${t}.json" target="_blank">${t}</a>`).join(" / ")}</div></section>`;
+      html += `<div class="chapter-sub">${m.id} · ${m.en} · 溯源 ${(m.source_questions || []).join(" ") || "新增研究"} · 更新节奏 ${m.update_freq}</div>`;
+      if (ch.position) html += `<blockquote>${inline(ch.position.replaceAll("\n", " "))}</blockquote>`;
+      ch.findings.forEach((finding, n) => { html += renderFinding(finding, `${i + 1}.${n + 1}`); });
+      html += `<div class="chapter-src">本章源文件 <code>${ch.source}</code>（<a href="doc.html?f=${ch.source}">原文</a> · <a href="${REPO}${ch.source}" target="_blank">GitHub</a>）
+        · 模块定义 <code>framework/${ch.definition}</code>（<a href="doc.html?f=framework/${ch.definition}">原文</a>）
+        · 依赖数据表 ${(m.tables || []).map(t => `<a href="${REPO}data/${t}.json" target="_blank">${t}</a>`).join(" / ")}</div></section>`;
     });
 
+    if (report.history.length) {
+      html += `<section class="page-doc"><h2>历史记录</h2>` + report.history.map(f =>
+        `<p id="${esc(f.id)}">${esc(f.id)} · ${esc(f.status)} · <a href="doc.html?f=${encodeURIComponent(f.source)}">查看历史原文</a></p>`).join("") + `</section>`;
+    }
     document.getElementById("docroot").innerHTML = html;
+    const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (target) target.scrollIntoView();
     document.getElementById("toc").innerHTML = toc.map(t => `<a href="#${t.id}" id="toc-${t.id}">${t.label}</a>`).join("");
 
     // 滚动高亮
@@ -252,12 +222,14 @@ function parseResearch(md) {
       let on = heads[0];
       for (const h of heads) if (h && h.getBoundingClientRect().top < 120) on = h;
       document.querySelectorAll("nav.toc a").forEach(a => a.classList.remove("on"));
-      const link = document.getElementById("toc-" + on.id);
+      const link = document.getElementById("toc-" + on?.id);
       if (link) link.classList.add("on");
     }, { passive: true });
   } catch (e) {
-    document.getElementById("docroot").innerHTML =
-      `<div class="err">加载失败：${e.message}<br>请确认通过 http://localhost:8000 访问（file:// 协议无法读取数据）。</div>`;
+    const error = document.createElement("div");
+    error.className = "err";
+    error.textContent = e.message;
+    document.getElementById("docroot").replaceChildren(error);
   }
 })();
 </script>

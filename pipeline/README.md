@@ -1,8 +1,19 @@
 # pipeline — 采集与校验
 
-零依赖 Python（与 news 项目同基因）。所有脚本从仓库根目录运行。
+核心运行使用 Python 标准库。所有命令从仓库根目录运行，格式提取器和浏览器测试按各自依赖环境验收。
 
 现行采集、存储和翻译方案见 [06 采集规范](../framework/06_acquisition.md)。采集在 Spark 执行；旧简报日期不能代替采集状态。
+
+## 共享用例
+
+- `research.py`：对象/问题/知识快照、有效采用依赖、当前任务。网页 `/api/research`、`/api/tasks` 与派工共用此集合。
+- `report_model.py`：有效报告章节、Finding、历史入口与内容版本；`export.py` 和 `/api/report` 共用，浏览器只负责展示。
+- `model_runtime.py`：配置化推理、能力/预算校验与实际模型身份。当前默认 Claude CLI，换型号不改业务规则。
+- `m4_records.py`：语料每路径最新观察、每内容有效判定；旧清单只在这里归一。`m4_triage.py` 是唯一清单写入器，`m4_inventory.py` 保留命令兼容。
+- `jsonl_store.py` / `file_moves.py`：本地日志、尾部恢复、互斥及内容校验后的物理移动。处理临时输入/记录不会改变 reader 原件纪律。
+- `auth.py`：HTTP/CLI 账号操作共用事务；自助改密在同一事务中验证旧密码。
+
+新入口调用这些用例，不复制一份业务状态或按客户端品牌分叉规则。持续 reader 的 SQLite 与 M4 专用 scope 仍按各自正式规范管理，未实现的统一任务 API 和受控重读见 08。
 
 ## 现有脚本
 
@@ -22,7 +33,7 @@
 | `serve.py` | 常驻 | 服务器：静态站点 + 登录认证（auth.py）+ 管理后台 API（任务白名单执行 / 价格人工录入含校验回滚 / 派工）|
 | `auth.py` | 模块 | 登录认证与限速（PBKDF2 + HMAC 会话 cookie），serve.py 与 users.py 共用；非独立命令 |
 | `users.py` | 按需 | 用户 CRUD 命令行（加/删/改角色/重置密码），与管理后台 API 同一套规则 |
-| `workorder.py` | 按需 | 工单队列 = 声明 − 现状：每个模块下一步该做什么 → `reports/workorders.json` |
+| `workorder.py` | 按需 | 模块兼容工单生成器；当前任务与派工资格由 research.current_tasks 计算 |
 | `blindspot.py` | 按需 | 盲区体检：库里有但分类器看不见的材料 |
 | `intake.py` | 按需 | 成员投递机检与三档分流（A 人批 / B 模型批抽 10% / C 自动）；`--selftest` 自检 |
 | `facts.py` | 按需 | 事实层校验 + 可比性判定；`--public` 对外口径预览 |

@@ -1,12 +1,16 @@
 # 知识记录与 Finding 兼容格式 v2
 
-> CURRENT · 2026-09-06。现行入口：[CURRENT](CURRENT.md)。规范源由 `current_state.json` 指定。
+> CURRENT · 2026-09-12。现行入口：[CURRENT](CURRENT.md)。规范源由 `current_state.json` 指定。
 
 ## 共同底座
 
 研究对象与关系在 `research_graph.json`，问题与验收在 `research_questions.json`，正式文档、证据、陈述和回答在 `data/research_knowledge.json`。Spark 运行快照仅是候选；产品目录、资料计划及历史来源索引另行登记。
 
 每条证据有稳定身份、文档版本与原文定位；每个陈述指向支持/反证，回答指向问题和证据。范围、时间、配置与来源的变化触发复核。旧版结论和原件保留，使用 superseded / needs-review 等状态及新旧引用，不靠覆盖原文抹掉历史。
+
+当前文本证据的 `page_index` 从 0 开始，必须小于原件页数；采用须保留非空原文 `quote`，并核对内容身份及全文覆盖。陈述、回答的直接证据和间接 `statement_ids` 支持链均须通过 C3、保持 adopted；失效、缺失或循环依赖使问题重新开放，不能只看回答自己的状态。机器检查定位与依赖结构，不代替原文语义审核。
+
+成员投递可使用数字 `key_numbers`，或非数字 `key_statements`（定义、机制、接口、规范、失败案例）。后者须包含 `kind/text/quote/locator`，不因缺少数字退回高价值材料。兼容 CSV 保留陈述和出处，接收仍属候选登记。
 
 ## 兼容模块研究文档
 
@@ -29,6 +33,8 @@
 Finding ID `Mxx-Fn` 永不复用；`{Qnn}` 追溯旧报告问题，新增使用 `{new}`。状态为 current、needs-review、stale、superseded。更新结论须保留前版或对应提交及替代关系；仅完成复核可更新核验日期，不伪造实质修订。示例是格式示意，不能进入证据库。
 
 `verify.py` 生成复核任务；`export.py` 对 needs-review/stale 强制提示，对 superseded 不当作当前正文。现有解析器及旧记录不自动具备新证据链；迁移须逐条核对，150 条既有 Finding 不能据数量直接算作已采用的对象证据。
+
+`report_model.py` 统一解析模块来源、Finding、状态、来源清单与内容版本。网页 `/api/report` 和 Markdown/Word 导出共用该报告模型；被替代记录只保留历史入口。生成日期与内容哈希独立展示，不冒充来源核验日期。
 
 ## 变更顺序
 

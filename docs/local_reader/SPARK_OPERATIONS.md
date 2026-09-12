@@ -2,7 +2,7 @@
 
 > CURRENT · 2026-09-06。规则归属与替代关系见 framework/CURRENT.md。
 
-本手册对应 `pipeline/continuous_reader.py`，不是旧 reader 脚本的启动说明。实现为 Python 标准库、SQLite 与单一队列持有进程（该进程内可开多个工作线程，见「并发与吞吐」）；部署、实际 27B 验收及同步状态由当次部署记录说明。代码通过隔离故障测试不等于 Spark 已完成部署。
+本手册对应 `pipeline/continuous_reader.py`，不是旧 reader 脚本的启动说明。实现为 Python 标准库、SQLite 与单一队列持有进程（该进程内可开多个工作线程，见「并发与吞吐」）；部署、实际模型验收及同步状态由当次部署记录说明。代码通过隔离故障测试不等于 Spark 已完成部署。
 
 ## 数据落点与交付契约
 
@@ -81,7 +81,7 @@ ssh spark@100.100.1.2 'cd /home/spark/.local/share/inresearch.ai/raw-materials &
 
 ## 首次安装与真模型 smoke
 
-先确保规范源码已落在 `~/code/inresearch.ai`；Python 3.9+，Linux 用户 systemd。PDF 工具需要 Poppler 的 `pdftotext/pdfinfo/pdfimages/pdftoppm`。27B 推理使用显式 Ollama loopback 配置，或已配置鉴权的 infra gateway `brain` 路由；响应必须报告 `qwen3.8:27b`，否则阻塞。不会使用测试模型兜底。
+先确保规范源码已落在 `~/code/inresearch.ai`；Python 3.9+，Linux 用户 systemd。PDF 工具需要 Poppler 的 `pdftotext/pdfinfo/pdfimages/pdftoppm`。推理默认配置见 `deploy/models.json`，当前因 Spark 不可用而暂选 Claude CLI；此配置不表示 Spark 服务已改用 CLI。恢复 Spark 部署时，用 `INRESEARCH_MODEL_CONFIG` 指向本机 JSON，将 `research_default` 设为 `spark` 并核对地址；型号、路由、预算及能力按 [08 模型执行](../../framework/08_model_execution.md)。实际响应必须匹配所选型号，失败不换模型兜底。
 
 ```bash
 python3 ~/code/inresearch.ai/pipeline/continuous_reader.py init
@@ -107,9 +107,19 @@ python3 ~/code/inresearch.ai/pipeline/continuous_reader.py \
   export --dest "$reader_smoke/snapshot.json"
 ```
 
-这个短 txt 只产生一块，依次 3 次真实 27B 调用（粗读、块深读、综合）及 6 个任务（包括接收副本归档）；冷加载时间由模型服务决定。默认每次 HTTP 900 秒，模型输出受结构化 JSON 与引文校验；有限重试可能使一次 smoke 保持 pending/failed，应检查真实错误码，不能把退出命令当完成证明。验收需看到 `counts.complete=1`、成对 coverage 相等、candidate 输出与实际 model。随后加文本 PDF、扫描 PDF 小样本验证实际 Poppler/OCR 环境。
+这个短 txt 只产生一块，依次 3 次当前配置模型的真实调用（粗读、块深读、综合）及 6 个任务（包括接收副本归档）；冷加载时间由模型服务决定。默认每次 HTTP 900 秒，模型输出受结构化 JSON 与引文校验；有限重试可能使一次 smoke 保持 pending/failed，应检查真实错误码，不能把退出命令当完成证明。验收需看到 `counts.complete=1`、成对 coverage 相等、candidate 输出与实际 model。随后加文本 PDF、扫描 PDF 小样本验证实际 Poppler/OCR 环境。
 
-正式单块最多 6000 字符且最多 12000 UTF-8 字节，页内分块不丢字符；ID 候选上下文限 4800 字节；综合批次约 15000 字节并分层缩减，输入/输出均留上下文余量。没有通过扩大 32768 上限偷换模型配置。HTTP 调用时不持有 SQLite 写事务，因此发布器可读取快照。
+正式单块最多 6000 字符且最多 12000 UTF-8 字节，页内分块不丢字符；ID 候选上下文限 4800 字节；综合批次约 15000 字节并分层缩减，输入/输出均留上下文余量。上下文和输出上限来自模型配置；输入超过预算明确阻塞，不静默截断。HTTP 调用时不持有 SQLite 写事务，因此发布器可读取快照。
+
+## 统一配置与更换型号
+
+默认 JSON 只有 `research_default` 与可选 `ocr` 角色，角色引用 `profiles` 中的配置。复制到本机配置目录后修改；不在各业务脚本中填写型号。旧 reader 的 CLI 参数优先于 READER 环境变量，后者优先于 JSON。从旧 env 迁移时移除已转入 JSON 的覆盖项；安装器保留原有配置，不替用户自动覆盖。
+
+M4 上的共享入口也读取 `INRESEARCH_MODEL_CONFIG`。暂用 Claude CLI 时，在 M4 本机验证 CLI 登录、代理环境及 `python3 pipeline/model_runtime.py --probe`。后续切换 Spark 档案时，将 `profile.url` 设为实际可达的 Spark 推理地址或本机到 Spark 的转发地址；`127.0.0.1` 只指执行机器本身。此代码变更不会自动建立网络转发或开放端口。
+
+OCR 在同一文件内新增视觉 profile（`capabilities: ["vision_json"]`），将 `roles.ocr` 指向它。视觉适配当前支持 Ollama；旧 `READER_OCR_MODEL` 保留兼容。模型 revision 是冻结配置中的可选版本标识，不冒充服务端已验证的权重摘要。
+
+修改配置后重启对应进程。新型号先按上面的隔离 smoke 验证实际模型、阅读覆盖与候选；同模型名称但权重改变时应更新 revision。已有任务不混用新旧配置；已完成结果保持不变。
 
 ## 日常运行与恢复
 
@@ -136,12 +146,13 @@ systemctl --user start inresearch-reader.service
 
 `retry` 不带 doc-id 会重试全部 failed/blocked，仅在已修复原因时使用。`rollback` 只移除台账中与原件相符的 library 符号链接，不删除原件、raw、阅读结果或来源链；已回滚的操作不会在启动时自动重建。崩溃前处于 prepared 的改名，或正常 committed 但丢失的视图，可从操作台账恢复。目标被用户文件占用/指向别处时转 needs_review，绝不覆盖。修正占位冲突后可 retry organize 任务。
 
-执行配方冻结 27B backend/model/context、分块和注册表快照。切换 backend/阅读模型或升级不兼容配方会阻塞旧任务，不能用普通 retry 掩盖；需另行设计保留旧产物的重新处理版本。可在同一配方追加已明确配置的 OCR 能力，逐页记录实际视觉模型，retry 从已保存页继续。
+一份材料只维护一套有效阅读结果；更换默认模型只影响新任务，已完成材料不会重读。执行配方冻结 backend/model/context、输出预算、请求路由、可选 revision、分块和注册表快照；旧配方补齐默认值后兼容本次升级。已有任务的推理配置不符时仍阻塞，恢复匹配配置后可 retry；自动选择旧配置和显式重读替换命令在后续实现，不能用删除台账来重读。可在同一配方追加已明确配置的 OCR 能力，逐页记录实际视觉模型，retry 从已保存页继续。
 
 ## 并发与吞吐
 
 - **队列所有权不变**：仍然只有一个进程持有 catalog 锁，中断任务回收与对账仍只发生一次；第二个进程照旧报 `another_worker_owns_queue`。多线程只发生在这一个进程内部。
 - `READER_WORKERS`（默认 `1`，上限 16）设定该进程内的工作线程数。每个线程持有自己的 SQLite 连接，领取任务用 `BEGIN IMMEDIATE`，同一任务不会被领两次；`--workers N` 可在命令行覆盖。扫描与入库仍留在持锁线程，保持单写入者。
+- 共享推理客户端的 `max_parallel`（默认 2）另行限制同时请求数；它不是跨进程全局限流。
 - **改大线程数之前先放开 Ollama 服务端**。Ollama 默认串行处理请求，客户端并发只会堆在服务端队列里。需在 Ollama 服务上设 `OLLAMA_NUM_PARALLEL` 不小于 `READER_WORKERS`，并确认「并发请求数 × `num_ctx`」的 KV 缓存仍放得进显存，否则会触发换出，反而更慢。27B、32k 上下文下先从 2 起步，用 `ollama ps` 与 `status.json` 的处理速率核对后再加。
 - 任一线程抛出未预期异常会停下整个 run 并向上抛出，与原先单线程一致，不会留下半跑状态。
 
