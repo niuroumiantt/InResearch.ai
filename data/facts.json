@@ -22688,6 +22688,209 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**含输配电费（Incl T&D）**，这是它与很多「批发电价」口径不可比的原因。 **price_type/tenor 都是就近归类**：原表只写「Power cost」，没说是长约还是现货、也没说年限——按 TCO 模型通常用的多年平均电价归入长约 ≤5 年，标 [未核]。 **原表单位写作 $/mWh（小写 m）**，按上下文应为 $/MWh；若真按毫瓦时算会差 10 亿倍。 **这是券商 TCO 模型里的假设，不是任何一个真实机房的实测值**：同表统一假设 24,000 颗芯片一个集群、计算利用率 0.4、折旧 4 年、电价 150 美元/MWh（含输配）、训练 Llama-3 400B（FP16 总算力需求 17,418 ZFLOPS）。**改动其中任何一个假设，这一列的数都会变。**"
+    },
+    {
+      "fact_id": "ms-domestic-gpu-910b-2024",
+      "metric_id": "domestic_gpu_shipment",
+      "entity": {
+        "type": "product",
+        "id": "huawei-ascend-910b",
+        "label": "华为昇腾 910B"
+      },
+      "value": 56.2,
+      "unit": "万颗",
+      "caliber": {
+        "period": "年",
+        "counting": "die",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "local_file": "国产 GPU 产能良率与参数统计.xlsx",
+        "locator": "工作表「国产GPU 产能 良率」第 13 行「910B Die annual production (k)」，2024 列 = 562",
+        "grade": "S3",
+        "originator": "Morgan Stanley《Gauging domestic AI GPU self sufficiency》（工作表末行标注）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表千颗 ÷ 10 = 万颗。**counting=die，不是封装体也不是整卡**——一颗 die 到一张可用加速卡之间还有封装与整卡良率，**用 die 数直接当出货卡数会高估**。 本条的模型输入：中芯给该型号的晶圆产能 2 kwpm、每片 78 颗 die、平均良率 30%。 **型号切换极快**：910B 2026 年归零、910C 接棒又在 2027 年被 910X 超过——**任何单型号的曲线都会在两年内断掉**，看国产算力总量必须三条相加。 **这是券商自下而上的产能模型输出，不是出货统计**：链条为「中芯国际给国产 GPU 的晶圆产能（kwpm）× 每片 die 数 × 良率 = 年 die 产量」。**三个乘数里良率是最不可核的一环**（910B 从 2024 年 30% 推到 2027 年 70%），任何一环变动结果就变。"
+    },
+    {
+      "fact_id": "ms-domestic-gpu-910b-2025",
+      "metric_id": "domestic_gpu_shipment",
+      "entity": {
+        "type": "product",
+        "id": "huawei-ascend-910b",
+        "label": "华为昇腾 910B"
+      },
+      "value": 252.7,
+      "unit": "万颗",
+      "caliber": {
+        "period": "年",
+        "counting": "die",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "local_file": "国产 GPU 产能良率与参数统计.xlsx",
+        "locator": "工作表「国产GPU 产能 良率」第 13 行「910B Die annual production (k)」，2025 列 = 2527",
+        "grade": "S3",
+        "originator": "Morgan Stanley《Gauging domestic AI GPU self sufficiency》（工作表末行标注）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表千颗 ÷ 10 = 万颗。**counting=die，不是封装体也不是整卡**——一颗 die 到一张可用加速卡之间还有封装与整卡良率，**用 die 数直接当出货卡数会高估**。 本条的模型输入：中芯给该型号的晶圆产能 9 kwpm、每片 78 颗 die、平均良率 30%。 **型号切换极快**：910B 2026 年归零、910C 接棒又在 2027 年被 910X 超过——**任何单型号的曲线都会在两年内断掉**，看国产算力总量必须三条相加。 **这是券商自下而上的产能模型输出，不是出货统计**：链条为「中芯国际给国产 GPU 的晶圆产能（kwpm）× 每片 die 数 × 良率 = 年 die 产量」。**三个乘数里良率是最不可核的一环**（910B 从 2024 年 30% 推到 2027 年 70%），任何一环变动结果就变。"
+    },
+    {
+      "fact_id": "ms-domestic-gpu-910c-2025",
+      "metric_id": "domestic_gpu_shipment",
+      "entity": {
+        "type": "product",
+        "id": "huawei-ascend-910c",
+        "label": "华为昇腾 910C"
+      },
+      "value": 7.0,
+      "unit": "万颗",
+      "caliber": {
+        "period": "年",
+        "counting": "die",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "local_file": "国产 GPU 产能良率与参数统计.xlsx",
+        "locator": "工作表「国产GPU 产能 良率」第 14 行「910C Die annual production (k)」，2025 列 = 70",
+        "grade": "S3",
+        "originator": "Morgan Stanley《Gauging domestic AI GPU self sufficiency》（工作表末行标注）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表千颗 ÷ 10 = 万颗。**counting=die，不是封装体也不是整卡**——一颗 die 到一张可用加速卡之间还有封装与整卡良率，**用 die 数直接当出货卡数会高估**。 本条的模型输入：中芯给该型号的晶圆产能 1 kwpm、每片 39 颗 die、平均良率 15%。 **型号切换极快**：910B 2026 年归零、910C 接棒又在 2027 年被 910X 超过——**任何单型号的曲线都会在两年内断掉**，看国产算力总量必须三条相加。 **这是券商自下而上的产能模型输出，不是出货统计**：链条为「中芯国际给国产 GPU 的晶圆产能（kwpm）× 每片 die 数 × 良率 = 年 die 产量」。**三个乘数里良率是最不可核的一环**（910B 从 2024 年 30% 推到 2027 年 70%），任何一环变动结果就变。"
+    },
+    {
+      "fact_id": "ms-domestic-gpu-910c-2026",
+      "metric_id": "domestic_gpu_shipment",
+      "entity": {
+        "type": "product",
+        "id": "huawei-ascend-910c",
+        "label": "华为昇腾 910C"
+      },
+      "value": 140.4,
+      "unit": "万颗",
+      "caliber": {
+        "period": "年",
+        "counting": "die",
+        "basis": "第三方推算"
+      },
+      "as_of": "2026E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "local_file": "国产 GPU 产能良率与参数统计.xlsx",
+        "locator": "工作表「国产GPU 产能 良率」第 14 行「910C Die annual production (k)」，2026 列 = 1404",
+        "grade": "S3",
+        "originator": "Morgan Stanley《Gauging domestic AI GPU self sufficiency》（工作表末行标注）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表千颗 ÷ 10 = 万颗。**counting=die，不是封装体也不是整卡**——一颗 die 到一张可用加速卡之间还有封装与整卡良率，**用 die 数直接当出货卡数会高估**。 本条的模型输入：中芯给该型号的晶圆产能 10 kwpm、每片 39 颗 die、平均良率 30%。 **型号切换极快**：910B 2026 年归零、910C 接棒又在 2027 年被 910X 超过——**任何单型号的曲线都会在两年内断掉**，看国产算力总量必须三条相加。 **这是券商自下而上的产能模型输出，不是出货统计**：链条为「中芯国际给国产 GPU 的晶圆产能（kwpm）× 每片 die 数 × 良率 = 年 die 产量」。**三个乘数里良率是最不可核的一环**（910B 从 2024 年 30% 推到 2027 年 70%），任何一环变动结果就变。"
+    },
+    {
+      "fact_id": "ms-domestic-gpu-910c-2027",
+      "metric_id": "domestic_gpu_shipment",
+      "entity": {
+        "type": "product",
+        "id": "huawei-ascend-910c",
+        "label": "华为昇腾 910C"
+      },
+      "value": 140.4,
+      "unit": "万颗",
+      "caliber": {
+        "period": "年",
+        "counting": "die",
+        "basis": "第三方推算"
+      },
+      "as_of": "2027E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "local_file": "国产 GPU 产能良率与参数统计.xlsx",
+        "locator": "工作表「国产GPU 产能 良率」第 14 行「910C Die annual production (k)」，2027 列 = 1404",
+        "grade": "S3",
+        "originator": "Morgan Stanley《Gauging domestic AI GPU self sufficiency》（工作表末行标注）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表千颗 ÷ 10 = 万颗。**counting=die，不是封装体也不是整卡**——一颗 die 到一张可用加速卡之间还有封装与整卡良率，**用 die 数直接当出货卡数会高估**。 本条的模型输入：中芯给该型号的晶圆产能 6 kwpm、每片 39 颗 die、平均良率 50%。 **型号切换极快**：910B 2026 年归零、910C 接棒又在 2027 年被 910X 超过——**任何单型号的曲线都会在两年内断掉**，看国产算力总量必须三条相加。 **这是券商自下而上的产能模型输出，不是出货统计**：链条为「中芯国际给国产 GPU 的晶圆产能（kwpm）× 每片 die 数 × 良率 = 年 die 产量」。**三个乘数里良率是最不可核的一环**（910B 从 2024 年 30% 推到 2027 年 70%），任何一环变动结果就变。"
+    },
+    {
+      "fact_id": "ms-domestic-gpu-910x-2026",
+      "metric_id": "domestic_gpu_shipment",
+      "entity": {
+        "type": "product",
+        "id": "huawei-ascend-910x",
+        "label": "华为昇腾 910X"
+      },
+      "value": 70.2,
+      "unit": "万颗",
+      "caliber": {
+        "period": "年",
+        "counting": "die",
+        "basis": "第三方推算"
+      },
+      "as_of": "2026E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "local_file": "国产 GPU 产能良率与参数统计.xlsx",
+        "locator": "工作表「国产GPU 产能 良率」第 15 行「910X Die annual production (k)」，2026 列 = 702",
+        "grade": "S3",
+        "originator": "Morgan Stanley《Gauging domestic AI GPU self sufficiency》（工作表末行标注）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表千颗 ÷ 10 = 万颗。**counting=die，不是封装体也不是整卡**——一颗 die 到一张可用加速卡之间还有封装与整卡良率，**用 die 数直接当出货卡数会高估**。 本条的模型输入：中芯给该型号的晶圆产能 10 kwpm、每片 39 颗 die、平均良率 15%。 **型号切换极快**：910B 2026 年归零、910C 接棒又在 2027 年被 910X 超过——**任何单型号的曲线都会在两年内断掉**，看国产算力总量必须三条相加。 **这是券商自下而上的产能模型输出，不是出货统计**：链条为「中芯国际给国产 GPU 的晶圆产能（kwpm）× 每片 die 数 × 良率 = 年 die 产量」。**三个乘数里良率是最不可核的一环**（910B 从 2024 年 30% 推到 2027 年 70%），任何一环变动结果就变。"
+    },
+    {
+      "fact_id": "ms-domestic-gpu-910x-2027",
+      "metric_id": "domestic_gpu_shipment",
+      "entity": {
+        "type": "product",
+        "id": "huawei-ascend-910x",
+        "label": "华为昇腾 910X"
+      },
+      "value": 280.8,
+      "unit": "万颗",
+      "caliber": {
+        "period": "年",
+        "counting": "die",
+        "basis": "第三方推算"
+      },
+      "as_of": "2027E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ffdc18f9fb07939d975a4cc5747e811af174ad461ddfa2e7c52b8b77fb2bc3d4",
+        "local_file": "国产 GPU 产能良率与参数统计.xlsx",
+        "locator": "工作表「国产GPU 产能 良率」第 15 行「910X Die annual production (k)」，2027 列 = 2808",
+        "grade": "S3",
+        "originator": "Morgan Stanley《Gauging domestic AI GPU self sufficiency》（工作表末行标注）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：原表千颗 ÷ 10 = 万颗。**counting=die，不是封装体也不是整卡**——一颗 die 到一张可用加速卡之间还有封装与整卡良率，**用 die 数直接当出货卡数会高估**。 本条的模型输入：中芯给该型号的晶圆产能 20 kwpm、每片 39 颗 die、平均良率 30%。 **型号切换极快**：910B 2026 年归零、910C 接棒又在 2027 年被 910X 超过——**任何单型号的曲线都会在两年内断掉**，看国产算力总量必须三条相加。 **这是券商自下而上的产能模型输出，不是出货统计**：链条为「中芯国际给国产 GPU 的晶圆产能（kwpm）× 每片 die 数 × 良率 = 年 die 产量」。**三个乘数里良率是最不可核的一环**（910B 从 2024 年 30% 推到 2027 年 70%），任何一环变动结果就变。"
     }
   ]
 }
