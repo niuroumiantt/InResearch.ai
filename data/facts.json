@@ -78934,6 +78934,219 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "振荡区间 50%-90%（相对 UPS 容量），周期数秒；分布式训练同步时尖峰 120%。原文示例未区分训练推理。"
+    },
+    {
+      "fact_id": "hsbc2026-global-dc-capex-per-mw-assumption",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "market",
+        "id": "global-ai-dc-capex-assumption",
+        "label": "AI 数据中心建设资本支出（汇丰中央假设）"
+      },
+      "asserter": "汇丰银行",
+      "value": 50.0,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "含 IT 设备",
+        "stage": "估算",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2026-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "db10dd836b9d7a8bba841cb0bb4b10b9ca35395c5bf3e1c8070350b5d6266d0b",
+        "local_file": "20260330-汇丰银行人工智能瓶颈评估：数据中心设备供应商迎来上行周期(61页).pdf",
+        "locator": "第 9 页：「我们采用中央资本支出假设为每吉瓦50亿美元（或每兆瓦5000万美元），但这一数字因地区、规模和芯片类型而大相径庭。大多数支出用于芯片和其他IT设备……非IT资本支出，包括建筑外壳和安装所有必需设备，占20-25%」",
+        "grade": "S3",
+        "originator": "汇丰银行《评估人工智能瓶颈：数据中心设备供应商势头强劲》（Sean McLoughlin 等，2026-03-25，中文版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "含芯片与 IT 设备的全口径；非 IT 部分占 20-25%（约 10-12.5 百万美元/MW）。汇丰称过去 12 个月每兆瓦资本支出上升。"
+    },
+    {
+      "fact_id": "hsbc2026-global-it-load-2025",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "汇丰银行",
+      "value": 95.0,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "IT 负载",
+        "basis": "券商测算",
+        "region": "Global",
+        "scenario": "未注明"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "db10dd836b9d7a8bba841cb0bb4b10b9ca35395c5bf3e1c8070350b5d6266d0b",
+        "local_file": "20260330-汇丰银行人工智能瓶颈评估：数据中心设备供应商迎来上行周期(61页).pdf",
+        "locator": "第 32 页 Vertiv 投资论点：「我们预计，随着全球IT工作量从2025年的约95GW增长到2030年的约205GW」",
+        "grade": "S3",
+        "originator": "汇丰银行《评估人工智能瓶颈：数据中心设备供应商势头强劲》（Sean McLoughlin 等，2026-03-25，中文版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「IT工作量」「约 95GW」，按 IT 负载记；汇丰估算。"
+    },
+    {
+      "fact_id": "hsbc2026-global-it-load-2030e",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "汇丰银行",
+      "value": 205.0,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "IT 负载",
+        "basis": "预测",
+        "region": "Global",
+        "scenario": "未注明"
+      },
+      "as_of": "2030E@2026-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "db10dd836b9d7a8bba841cb0bb4b10b9ca35395c5bf3e1c8070350b5d6266d0b",
+        "local_file": "20260330-汇丰银行人工智能瓶颈评估：数据中心设备供应商迎来上行周期(61页).pdf",
+        "locator": "第 32 页 Vertiv 投资论点：「我们预计，随着全球IT工作量从2025年的约95GW增长到2030年的约205GW」",
+        "grade": "S3",
+        "originator": "汇丰银行《评估人工智能瓶颈：数据中心设备供应商势头强劲》（Sean McLoughlin 等，2026-03-25，中文版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「约 205GW」；2025-2030 年约增 1.2 倍。"
+    },
+    {
+      "fact_id": "hsbc2026-bnef-mvlv-transformer-lead-time-lower",
+      "metric_id": "transformer_lead_time",
+      "entity": {
+        "type": "market",
+        "id": "dc-mv-lv-transformer",
+        "label": "数据中心中低压（MV/LV）变压器"
+      },
+      "asserter": "彭博新能源财经",
+      "value": 6.0,
+      "unit": "月",
+      "caliber": {
+        "basis": "未披露",
+        "voltage": "≤35kV",
+        "region": "Global"
+      },
+      "as_of": "2026-03",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "db10dd836b9d7a8bba841cb0bb4b10b9ca35395c5bf3e1c8070350b5d6266d0b",
+        "local_file": "20260330-汇丰银行人工智能瓶颈评估：数据中心设备供应商迎来上行周期(61页).pdf",
+        "locator": "第 13 页「数据中心内电气设备成本分解（如有，包括交货时间）」表（来源：BNEF，汇丰银行；基于 50 兆瓦数据中心、30 千瓦机架密度、需要新建变电站）：MV/LV 变压器 交货期 6-17个月",
+        "grade": "S3",
+        "originator": "彭博新能源财经（经汇丰银行《评估人工智能瓶颈：数据中心设备供应商势头强劲》（Sean McLoughlin 等，2026-03-25，中文版）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间下界；MV/LV 按中低压记 ≤35kV。同表：MV 开关设备 3-4 个月、UPS 2-3 个月。"
+    },
+    {
+      "fact_id": "hsbc2026-bnef-mvlv-transformer-lead-time-upper",
+      "metric_id": "transformer_lead_time",
+      "entity": {
+        "type": "market",
+        "id": "dc-mv-lv-transformer",
+        "label": "数据中心中低压（MV/LV）变压器"
+      },
+      "asserter": "彭博新能源财经",
+      "value": 17.0,
+      "unit": "月",
+      "caliber": {
+        "basis": "未披露",
+        "voltage": "≤35kV",
+        "region": "Global"
+      },
+      "as_of": "2026-03",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "db10dd836b9d7a8bba841cb0bb4b10b9ca35395c5bf3e1c8070350b5d6266d0b",
+        "local_file": "20260330-汇丰银行人工智能瓶颈评估：数据中心设备供应商迎来上行周期(61页).pdf",
+        "locator": "第 13 页「数据中心内电气设备成本分解（如有，包括交货时间）」表（来源：BNEF，汇丰银行；基于 50 兆瓦数据中心、30 千瓦机架密度、需要新建变电站）：MV/LV 变压器 交货期 6-17个月",
+        "grade": "S3",
+        "originator": "彭博新能源财经（经汇丰银行《评估人工智能瓶颈：数据中心设备供应商势头强劲》（Sean McLoughlin 等，2026-03-25，中文版）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上界；MV/LV 按中低压记 ≤35kV。同表：MV 开关设备 3-4 个月、UPS 2-3 个月。"
+    },
+    {
+      "fact_id": "hsbc2026-bnef-hv-substation-lead-time-lower",
+      "metric_id": "transformer_lead_time",
+      "entity": {
+        "type": "market",
+        "id": "dc-hv-substation",
+        "label": "数据中心新建高压变电站"
+      },
+      "asserter": "彭博新能源财经",
+      "value": 36.0,
+      "unit": "月",
+      "caliber": {
+        "basis": "未披露",
+        "voltage": "未披露",
+        "region": "Global"
+      },
+      "as_of": "2026-03",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "db10dd836b9d7a8bba841cb0bb4b10b9ca35395c5bf3e1c8070350b5d6266d0b",
+        "local_file": "20260330-汇丰银行人工智能瓶颈评估：数据中心设备供应商迎来上行周期(61页).pdf",
+        "locator": "第 13 页「数据中心内电气设备成本分解（如有，包括交货时间）」表（来源：BNEF，汇丰银行；基于 50 兆瓦数据中心、30 千瓦机架密度、需要新建变电站）：变电站 交货期 3-5年；正文「关键瓶颈在于高压变电站，那里的交货期为3至5年」",
+        "grade": "S3",
+        "originator": "彭博新能源财经（经汇丰银行《评估人工智能瓶颈：数据中心设备供应商势头强劲》（Sean McLoughlin 等，2026-03-25，中文版）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "3-5 年 = 36-60 个月，区间下界；对象是整座高压变电站而非单台变压器，电压等级原文未写。"
+    },
+    {
+      "fact_id": "hsbc2026-bnef-hv-substation-lead-time-upper",
+      "metric_id": "transformer_lead_time",
+      "entity": {
+        "type": "market",
+        "id": "dc-hv-substation",
+        "label": "数据中心新建高压变电站"
+      },
+      "asserter": "彭博新能源财经",
+      "value": 60.0,
+      "unit": "月",
+      "caliber": {
+        "basis": "未披露",
+        "voltage": "未披露",
+        "region": "Global"
+      },
+      "as_of": "2026-03",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "db10dd836b9d7a8bba841cb0bb4b10b9ca35395c5bf3e1c8070350b5d6266d0b",
+        "local_file": "20260330-汇丰银行人工智能瓶颈评估：数据中心设备供应商迎来上行周期(61页).pdf",
+        "locator": "第 13 页「数据中心内电气设备成本分解（如有，包括交货时间）」表（来源：BNEF，汇丰银行；基于 50 兆瓦数据中心、30 千瓦机架密度、需要新建变电站）：变电站 交货期 3-5年；正文「关键瓶颈在于高压变电站，那里的交货期为3至5年」",
+        "grade": "S3",
+        "originator": "彭博新能源财经（经汇丰银行《评估人工智能瓶颈：数据中心设备供应商势头强劲》（Sean McLoughlin 等，2026-03-25，中文版）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "3-5 年 = 36-60 个月，区间上界；对象是整座高压变电站而非单台变压器，电压等级原文未写。"
     }
   ]
 }
