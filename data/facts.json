@@ -60279,7 +60279,10 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "伯恩斯坦模型：标准机架数（2020 年 400 万 → 2024 年 880 万，取信通院/工信部口径）× 每架 2.5 kW × 利用率（54%→66%）× PUE（1.62→1.46）× 8,760 小时。历史年份也是模型推算值，不是统计直报，basis 记券商测算。"
+      "notes": "伯恩斯坦模型：标准机架数（2020 年 400 万 → 2024 年 880 万，取信通院/工信部口径）× 每架 2.5 kW × 利用率（54%→66%）× PUE（1.62→1.46）× 8,760 小时。历史年份也是模型推算值，不是统计直报，basis 记券商测算。",
+      "disputed_by": [
+        "caict-cpsync2025-cn-dc-electricity-2020"
+      ]
     },
     {
       "fact_id": "bern2025-cn-dc-electricity-2021",
@@ -60385,7 +60388,10 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "伯恩斯坦模型：标准机架数（2020 年 400 万 → 2024 年 880 万，取信通院/工信部口径）× 每架 2.5 kW × 利用率（54%→66%）× PUE（1.62→1.46）× 8,760 小时。历史年份也是模型推算值，不是统计直报，basis 记券商测算。"
+      "notes": "伯恩斯坦模型：标准机架数（2020 年 400 万 → 2024 年 880 万，取信通院/工信部口径）× 每架 2.5 kW × 利用率（54%→66%）× PUE（1.62→1.46）× 8,760 小时。历史年份也是模型推算值，不是统计直报，basis 记券商测算。",
+      "disputed_by": [
+        "caict-cpsync2025-cn-dc-electricity-2023"
+      ]
     },
     {
       "fact_id": "bern2025-cn-dc-electricity-2024",
@@ -61066,6 +61072,294 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "「over 2% by 2026」按下界记。高盛该报告月份原文未写，@ 取 WEF 白皮书时点。同句 2030 年约 3% 与库内高盛 2024-04 电力报告的 3%-4% 区间一致，未重复录；起点「约 1%」未写年份，未录。"
+    },
+    {
+      "fact_id": "caict-cpsync2025-cn-dc-electricity-2019",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心/算力中心（合计）"
+      },
+      "asserter": "中国信通院",
+      "value": 82.4,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4454b911225e042866b50ad66d5327b76e3de03fa1f44fae86c5fbc11eb22b7f",
+        "local_file": "【报告】中国信通院：算力电力协同发展研究报告（2025）.pdf",
+        "locator": "第 9 页 图 1「全国数据中心用电量占比」（来源：国家能源局、中国信息通信研究院；单位亿千瓦时） 2019 年 824",
+        "grade": "S2",
+        "originator": "中国信通院云计算与大数据研究所《算力电力协同发展研究报告（2025 年）》（2025-05）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "824 亿 kWh = 82.4 TWh。同图 2021 年 1116、2022 年 1300 与库内信通院 2024 液冷报告同值，未重复录。"
+    },
+    {
+      "fact_id": "caict-cpsync2025-cn-dc-electricity-2020",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心/算力中心（合计）"
+      },
+      "asserter": "中国信通院",
+      "value": 93.9,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4454b911225e042866b50ad66d5327b76e3de03fa1f44fae86c5fbc11eb22b7f",
+        "local_file": "【报告】中国信通院：算力电力协同发展研究报告（2025）.pdf",
+        "locator": "第 9 页 图 1「全国数据中心用电量占比」（来源：国家能源局、中国信息通信研究院；单位亿千瓦时） 2020 年 939",
+        "grade": "S2",
+        "originator": "中国信通院云计算与大数据研究所《算力电力协同发展研究报告（2025 年）》（2025-05）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "939 亿 kWh = 93.9 TWh。伯恩斯坦模型同年 69 TWh（口径 basis 不同，按争议互指）。",
+      "disputes": [
+        "bern2025-cn-dc-electricity-2020"
+      ]
+    },
+    {
+      "fact_id": "caict-cpsync2025-cn-dc-electricity-2023",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心/算力中心（合计）"
+      },
+      "asserter": "中国信通院",
+      "value": 150.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4454b911225e042866b50ad66d5327b76e3de03fa1f44fae86c5fbc11eb22b7f",
+        "local_file": "【报告】中国信通院：算力电力协同发展研究报告（2025）.pdf",
+        "locator": "第 9 页正文：「据中国信息通信研究院测算，2023 年全国数据中心用电量为 1500 亿千瓦时，同比增长 15.4%，而同期全社会用电量增速为 5.8%」；图 1 同值",
+        "grade": "S2",
+        "originator": "中国信通院云计算与大数据研究所《算力电力协同发展研究报告（2025 年）》（2025-05）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「测算」，basis 按已发生年份记实测（同库内信通院其他年份）。伯恩斯坦模型同年 156 TWh，按争议互指。",
+      "disputes": [
+        "bern2025-cn-dc-electricity-2023"
+      ]
+    },
+    {
+      "fact_id": "caict-cpsync2025-cn-dc-power-share-2023",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心/算力中心（合计）"
+      },
+      "asserter": "中国信通院",
+      "value": 1.6,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4454b911225e042866b50ad66d5327b76e3de03fa1f44fae86c5fbc11eb22b7f",
+        "local_file": "【报告】中国信通院：算力电力协同发展研究报告（2025）.pdf",
+        "locator": "第 9 页：「2023 年，我国算力中心耗电量占全社会用电量的比例为 1.6%」",
+        "grade": "S2",
+        "originator": "中国信通院云计算与大数据研究所《算力电力协同发展研究报告（2025 年）》（2025-05）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": ""
+    },
+    {
+      "fact_id": "caict-cpsync2025-zhangjiakou-dc-power-share-2019",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "zhangjiakou-datacenters",
+        "label": "张家口数据中心（合计）"
+      },
+      "asserter": "中国信通院",
+      "value": 6.8,
+      "unit": "%",
+      "caliber": {
+        "denominator": "某地区用电量",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4454b911225e042866b50ad66d5327b76e3de03fa1f44fae86c5fbc11eb22b7f",
+        "local_file": "【报告】中国信通院：算力电力协同发展研究报告（2025）.pdf",
+        "locator": "第 19 页：「张家口的数据中心用电量占全社会用电量比重已从 2019 年的 6.8%增长至 2023 年的 20.1%」",
+        "grade": "S2",
+        "originator": "中国信通院云计算与大数据研究所《算力电力协同发展研究报告（2025 年）》（2025-05）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "分母为张家口市全社会用电量。"
+    },
+    {
+      "fact_id": "caict-cpsync2025-zhangjiakou-dc-power-share-2023",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "zhangjiakou-datacenters",
+        "label": "张家口数据中心（合计）"
+      },
+      "asserter": "中国信通院",
+      "value": 20.1,
+      "unit": "%",
+      "caliber": {
+        "denominator": "某地区用电量",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4454b911225e042866b50ad66d5327b76e3de03fa1f44fae86c5fbc11eb22b7f",
+        "local_file": "【报告】中国信通院：算力电力协同发展研究报告（2025）.pdf",
+        "locator": "第 19 页：「张家口的数据中心用电量占全社会用电量比重已从 2019 年的 6.8%增长至 2023 年的 20.1%」",
+        "grade": "S2",
+        "originator": "中国信通院云计算与大数据研究所《算力电力协同发展研究报告（2025 年）》（2025-05）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "分母为张家口市全社会用电量。"
+    },
+    {
+      "fact_id": "caict-cpsync2025-alibaba-clean-energy-share-2023",
+      "metric_id": "dc_renewable_share",
+      "entity": {
+        "type": "company",
+        "id": "alibaba",
+        "label": "阿里巴巴"
+      },
+      "asserter": "阿里巴巴",
+      "value": 53.9,
+      "unit": "%",
+      "caliber": {
+        "measure": "可再生电量占总用电",
+        "scope": "单一运营商",
+        "region": "CN",
+        "basis": "厂商披露"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4454b911225e042866b50ad66d5327b76e3de03fa1f44fae86c5fbc11eb22b7f",
+        "local_file": "【报告】中国信通院：算力电力协同发展研究报告（2025）.pdf",
+        "locator": "第 11 页：「根据各企业最新 ESG 报告数据，2023 年，阿里巴巴自建数据中心的清洁能源占比为 53.9%」",
+        "grade": "S2",
+        "originator": "阿里巴巴（经中国信通院云计算与大数据研究所《算力电力协同发展研究报告（2025 年）》（2025-05）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「清洁能源占比」，限自建数据中心；清洁能源可能含非可再生（如核电），measure 按最接近的可再生电量占比记。"
+    },
+    {
+      "fact_id": "caict-cpsync2025-gds-renewable-share-2023",
+      "metric_id": "dc_renewable_share",
+      "entity": {
+        "type": "company",
+        "id": "gds",
+        "label": "万国数据"
+      },
+      "asserter": "万国数据",
+      "value": 38.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "可再生电量占总用电",
+        "scope": "单一运营商",
+        "region": "CN",
+        "basis": "厂商披露"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4454b911225e042866b50ad66d5327b76e3de03fa1f44fae86c5fbc11eb22b7f",
+        "local_file": "【报告】中国信通院：算力电力协同发展研究报告（2025）.pdf",
+        "locator": "第 11 页：「万国数据可再生能源使用比例为 38%」",
+        "grade": "S2",
+        "originator": "万国数据（经中国信通院云计算与大数据研究所《算力电力协同发展研究报告（2025 年）》（2025-05）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "ESG 报告口径。"
+    },
+    {
+      "fact_id": "caict-cpsync2025-tencent-renewable-share-2023",
+      "metric_id": "dc_renewable_share",
+      "entity": {
+        "type": "company",
+        "id": "tencent",
+        "label": "腾讯"
+      },
+      "asserter": "腾讯",
+      "value": 12.4,
+      "unit": "%",
+      "caliber": {
+        "measure": "可再生电量占总用电",
+        "scope": "单一运营商",
+        "region": "CN",
+        "basis": "厂商披露"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4454b911225e042866b50ad66d5327b76e3de03fa1f44fae86c5fbc11eb22b7f",
+        "local_file": "【报告】中国信通院：算力电力协同发展研究报告（2025）.pdf",
+        "locator": "第 11 页：「腾讯可再生电力使用比例为 12.4%」",
+        "grade": "S2",
+        "originator": "腾讯（经中国信通院云计算与大数据研究所《算力电力协同发展研究报告（2025 年）》（2025-05）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "ESG 报告口径，原文未限定数据中心。"
     }
   ]
 }
