@@ -61036,6 +61036,36 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "容量 CAGR 7.5% 至 200 GW 情景。"
+    },
+    {
+      "fact_id": "wef2025-gs-global-dc-power-share-2026e",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "高盛",
+      "value": 2.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2025-01",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "0b513c4ade97890c9ce377527f4442f056ef9c7dab5553209904ecb4a8412323",
+        "local_file": "20251204-人工智能的能源悖论：平衡挑战与机遇(28页).pdf",
+        "locator": "第 4 页：「One estimate now expects data-centre-related electricity consumption to grow from approximately 1% of global electricity demand to over 2% by 2026, potentially reaching 3% by 2030 if forecasted growth continues.」脚注 2：Goldman Sachs Equity Research (2024). US Telecom Services and Infrastructure Initiation",
+        "grade": "S3",
+        "originator": "高盛股票研究《US Telecom Services and Infrastructure Initiation》（2024，经世界经济论坛 AI Governance Alliance × 埃森哲《AI's Energy Paradox》白皮书 2025-01 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「over 2% by 2026」按下界记。高盛该报告月份原文未写，@ 取 WEF 白皮书时点。同句 2030 年约 3% 与库内高盛 2024-04 电力报告的 3%-4% 区间一致，未重复录；起点「约 1%」未写年份，未录。"
     }
   ]
 }
