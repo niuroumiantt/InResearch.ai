@@ -215,6 +215,16 @@ def check_fact(fact: dict, metrics: dict, seen: set, claims: dict | None = None)
     if fact.get('derived'):
         if not str(fact.get('notes') or fact.get('derivation') or '').strip():
             bad.append('derived 为真时必须在 notes 里写清算法与被减项（兼容历史 derivation）')
+    # **derived 说的是「值是算出来的」，不是「这条里有什么东西是我们推断的」。**
+    # 2026-09-13 的 C3 A 档复审发现 46 条把 derived 置 true 只为了说明 as_of 是
+    # 推断的（联通企标 34 条 + 华为永州 12 条里的 7 条），而值全是照抄原表。
+    # 代价有两层：一是把照抄的数说成计算值，二是对外视图按「派生值不单独对外」
+    # 把它们剔掉了——挡住了，但挡的理由是假的，真正该挡它们的是分发限制。
+    # 时点是推断的，就用这一维说，不要借别的字段。
+    if fact.get('as_of_inferred'):
+        if not str(fact.get('notes') or '').strip():
+            bad.append('as_of_inferred 为真时必须在 notes 里写清推断依据'
+                       '（凭哪条引用、哪个利率、哪份规范版本定的年份）')
     value_range = fact.get('value_range')
     if value_range is not None:
         if value is not None:

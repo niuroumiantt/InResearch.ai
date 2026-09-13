@@ -65,6 +65,24 @@ def validate(facts, metrics):
         seen.add(fact.get('fact_id'))
 
 
+WITHHELD = "受分发限制，不对外给值"
+
+
+def restricted(f):
+    """本条是否因分发限制而不得对外。
+
+    由来（2026-09-13，C3 A 档复审）：中国联通 IDC 建设标准那 34 条的原件封面写着
+    「企业内部资料，严格保密」。此前 sensitive 只在内部视图里显示一个 🔒，而
+    --public 照样把它们打出来——**金额转区间挡不住这件事**：泄露的是「某运营商
+    企标里 2000kW 柴发的概算价位大约在四百万这个量级」这个事实本身，不是它的第二位
+    有效数字。band 改的是精度，改不了这份材料本不该由我们转发。
+
+    所以 sensitive 在对外一侧是硬门，不是标记。内部仍然全留全实名——高敏感数据
+    是内部信心与校验基线的来源，这一条没变。
+    """
+    return bool(f.get("sensitive"))
+
+
 def public_view(f, m, today_year=None):
     """对外呈现（2026-08-17 用户拍板的规则）。
 
@@ -73,7 +91,13 @@ def public_view(f, m, today_year=None):
       2. **涉及钱财的只给区间不给精确值** —— 精确的招标控制价既不合规也没必要；
       3. **必须标明数据年份与距今年数** —— 这些本就是老数据，直接拿来用没有现实价值，
          说清"引用的是某年的数据、大概在哪个区间"，既够用又诚实。
+
+    第四条（2026-09-13 加）：**受分发限制的条目在这里就被挡住**，不靠调用方自觉。
+    这个函数是对外呈现的唯一出口，门放在出口上才关得住。
     """
+    if restricted(f):
+        yr = str(f.get("as_of", ""))[:4]
+        return f"{f['entity'].get('label','')}：**{WITHHELD}**（{yr} 年数据；原件标注内部资料）"
     v = f.get("value")
     value_range = f.get("value_range")
     unit = f.get("unit", "")
@@ -205,18 +229,30 @@ def main():
             if not m or (only and mid != only):
                 continue
             print(f"\n{m['name']}（{m['unit']}）")
+            held = 0
             for f in fs:
                 if f.get("derived"):
                     continue          # 派生值不单独对外，避免同一笔钱出现两次
+                if restricted(f):
+                    held += 1         # 不给值，但承认它存在——见下
+                    continue
                 print("  · " + public_view(f, m))
+            if held:
+                # **不给值，但对外承认存在。**假装库里没有这些数是另一种不诚实，
+                # 而且会让读者以为这个指标只有这么几条可比数据。
+                print(f"  · 另有 {held} 条受分发限制未列出")
         print("\n（派生值已从对外视图剔除，避免同一笔钱以两种口径重复出现。）")
+        print("（受分发限制的条目只报条数不报值：原件标注内部资料，"
+              "转区间也不构成可以转发的理由。）")
         return 1 if errors else 0
 
     for l in compare(facts, metrics, only):
         print(l)
 
-    print("\n提示：🔒 = 敏感（业主商业信息）。**内部全留全实名**——高敏感数据是内部信心与校验基线的来源；")
-    print("      对外走 --public：实名照旧，金额转区间并标明是哪年的老数据。")
+    print("\n提示：🔒 = 敏感（业主商业信息或原件标注内部资料）。**内部全留全实名**——"
+          "高敏感数据是内部信心与校验基线的来源；")
+    print("      对外走 --public：实名照旧，金额转区间并标明是哪年的老数据，"
+          "🔒 只报条数不报值。")
     return 1 if errors else 0
 
 

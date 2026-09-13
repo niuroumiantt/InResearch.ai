@@ -23,6 +23,51 @@ class PublicFactDisplayTests(unittest.TestCase):
         row.update(changes)
         return row
 
+    # -- 分发受限的条目在对外出口就被挡住 --------------------------------
+    # 2026-09-13 的 C3 A 档复审发现：sensitive 此前只在内部视图里显示一个 🔒，
+    # --public 照样把值打出来。中国联通 IDC 建设标准那 34 条的原件写着「企业内部
+    # 资料，严格保密」——金额转区间挡不住这件事，泄露的是「某运营商企标里 2000kW
+    # 柴发的概算价位大约在四百万量级」这个事实本身，不是它的第二位有效数字。
+    def test_a_restricted_fact_never_shows_its_value(self):
+        row = self.record(4000000.0, unit="元/计量单位", sensitive=True,
+                          as_of="2013")
+        result = facts.public_view(row, {"public_band": {"step": 10000}},
+                                   today_year=2026)
+        self.assertIn(facts.WITHHELD, result)
+        self.assertNotIn("4,000,000", result)
+        self.assertNotIn("3,990,000", result)   # 区间下界也不许露
+        self.assertIn("2013", result)           # 年份仍然给，它不是秘密
+
+    def test_the_entity_is_still_named(self):
+        """实名照旧是用户 2026-08-17 拍板的规则，这次只挡值，不改那一条。"""
+        row = self.record(4000000.0, sensitive=True)
+        self.assertIn("测试对象",
+                      facts.public_view(row, {}, today_year=2026))
+
+    def test_an_unrestricted_money_fact_is_still_banded(self):
+        row = self.record(4406.0, unit="元/㎡")
+        result = facts.public_view(row, {"public_band": {"step": 500}},
+                                   today_year=2026)
+        self.assertIn("4,000–4,500", result)
+        self.assertNotIn(facts.WITHHELD, result)
+
+    def test_the_gate_is_on_the_only_public_exit(self):
+        """门放在唯一出口上，不靠调用方自觉——库里 37 条一条都不能漏。"""
+        store = json.loads((project_root() / 'data/facts.json')
+                           .read_text(encoding='utf-8'))['records']
+        metrics = {m['metric_id']: m for m in json.loads(
+            (project_root() / 'framework/metrics.json')
+            .read_text(encoding='utf-8'))['metrics']}
+        restricted = [f for f in store if facts.restricted(f)]
+        self.assertTrue(restricted)
+        for f in restricted:
+            line = facts.public_view(f, metrics[f['metric_id']], 2026)
+            self.assertIn(facts.WITHHELD, line, f['fact_id'])
+            if f.get('value') is not None:
+                digits = ('%d' % int(f['value']))[:4]
+                self.assertNotIn(digits, line.replace(str(f.get('as_of')), ''),
+                                 f['fact_id'])
+
     def test_nonfinancial_precision_and_zero(self):
         for value in [1.63, 1.41, 1.076, 0]:
             with self.subTest(value=value):
