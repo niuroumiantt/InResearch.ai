@@ -36357,6 +36357,153 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 high 档。  **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "xai-colossus1-capacity-2025",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "project",
+        "id": "xai-colossus-1",
+        "label": "xAI Colossus 1（孟菲斯）"
+      },
+      "value": 300.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L9",
+        "region": "US"
+      },
+      "as_of": "2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4cf87bfd94cb604252efa4e82d05a00670ae9784ec0bc4107b863624c31b1e5d",
+        "local_file": "SemiAnalysis xAI's Colossus 2 - First Gigawatt Datacenter In The World（2025-09-16，中英对照版）.pdf",
+        "locator": "第 1 页：「However, Colossus 1’s ~300 MW looks modest next to the Gigawatt-scale clusters under construction by OpenAI, Meta and Anthropic」；同页：「the largest AI training cluster, erected from scratch in 122 days」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（Datacenter Industry Model，卫星图像计数）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**「~300 MW」是约数**，未说 IT 还是设施口径。原文称它仍是全球最大的完全运营中的单一连贯集群（谷歌多站点训练除外），**从零建成仅用 122 天**。status 记满载运营 L9，标 [未核]。**原文为付费墙后内容的截取版**，多处关键数字被抹去（如 Colossus 1 的 GPU 数、Solaris 为 xAI 服务的具体 MW），只录显式出现的数。"
+    },
+    {
+      "fact_id": "xai-colossus1-onsite-turbines",
+      "metric_id": "btm_operational_mw",
+      "entity": {
+        "type": "project",
+        "id": "xai-colossus-1",
+        "label": "xAI Colossus 1（孟菲斯）"
+      },
+      "value": 198.0,
+      "unit": "MW",
+      "caliber": {
+        "power_type": "燃气",
+        "status": "L8",
+        "region": "US"
+      },
+      "as_of": "2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4cf87bfd94cb604252efa4e82d05a00670ae9784ec0bc4107b863624c31b1e5d",
+        "local_file": "SemiAnalysis xAI's Colossus 2 - First Gigawatt Datacenter In The World（2025-09-16，中英对照版）.pdf",
+        "locator": "第 9 页图 5：「xAI Colossus 1 - twelve SMT-130 turbines (198 MW)」，来源 SemiAnalysis Datacenter Industry Model",
+        "grade": "S3",
+        "originator": "SemiAnalysis（Datacenter Industry Model，卫星图像计数）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**12 台 SMT-130 燃气轮机，合 198MW**（单台约 16.5MW）。**占 Colossus 1 约 300MW 的三分之二**——即这个集群大部分电力来自表后自备燃机，而不是电网。燃机为租赁（Solaris Energy Infrastructure），不是 xAI 自有。**原文为付费墙后内容的截取版**，多处关键数字被抹去（如 Colossus 1 的 GPU 数、Solaris 为 xAI 服务的具体 MW），只录显式出现的数。"
+    },
+    {
+      "fact_id": "xai-colossus2-onsite-turbines",
+      "metric_id": "btm_operational_mw",
+      "entity": {
+        "type": "project",
+        "id": "xai-colossus-2",
+        "label": "xAI Colossus 2（孟菲斯/密西西比州 Southaven）"
+      },
+      "value": 266.0,
+      "unit": "MW",
+      "caliber": {
+        "power_type": "燃气",
+        "status": "L8",
+        "region": "US"
+      },
+      "as_of": "2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4cf87bfd94cb604252efa4e82d05a00670ae9784ec0bc4107b863624c31b1e5d",
+        "local_file": "SemiAnalysis xAI's Colossus 2 - First Gigawatt Datacenter In The World（2025-09-16，中英对照版）.pdf",
+        "locator": "第 10 页图 6：「xAI Colossus 2 - seven Titan 350 turbines (266 MW)」，来源 SemiAnalysis Datacenter Industry Model",
+        "grade": "S3",
+        "originator": "SemiAnalysis（Datacenter Industry Model，卫星图像计数）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**7 台 Titan 350（单台约 38MW），合 266MW**。另第 6 页：密西西比州 Southaven 的停运电厂现有 7 台 35MW 燃机在运行（本条是否已含这 7 台原文未说，**不要相加**，标 [未核]）。密西西比监管方已临时批准 xAI 在当地运行燃机。**原文为付费墙后内容的截取版**，多处关键数字被抹去（如 Colossus 1 的 GPU 数、Solaris 为 xAI 服务的具体 MW），只录显式出现的数。"
+    },
+    {
+      "fact_id": "xai-colossus2-cooling-capacity-202508",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "project",
+        "id": "xai-colossus-2",
+        "label": "xAI Colossus 2（孟菲斯/密西西比州 Southaven）"
+      },
+      "value": 200.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "设施容量",
+        "status": "L7",
+        "region": "US"
+      },
+      "as_of": "2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4cf87bfd94cb604252efa4e82d05a00670ae9784ec0bc4107b863624c31b1e5d",
+        "local_file": "SemiAnalysis xAI's Colossus 2 - First Gigawatt Datacenter In The World（2025-09-16，中英对照版）.pdf",
+        "locator": "第 3 页：「By August 22nd, 2025, we count 119 air-cooled chillers on site, i.e. roughly 200 MW of cooling capacity. That’s enough to power roughly [redacted] GB200 NVL72. And an Elon tweet shows some racks were already installed in July」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（Datacenter Industry Model，卫星图像计数）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**这是卫星图像数冷机反推的冷量，不是电力容量**：2025-08-22 数到 119 台风冷冷机 ≈ 200MW 冷量——capacity_type 就近记设施容量，**实际是「冷量能支撑多少 IT」的代理值**，标 [未核]。原文另称按非常规布局 Colossus 2 可以做到 >1GW（第 12 页）。7 月已有机柜安装。**原文为付费墙后内容的截取版**，多处关键数字被抹去（如 Colossus 1 的 GPU 数、Solaris 为 xAI 服务的具体 MW），只录显式出现的数。"
+    },
+    {
+      "fact_id": "solaris-turbine-fleet-1h2027",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "company",
+        "id": "solaris-energy-infrastructure",
+        "label": "Solaris Energy Infrastructure（燃机租赁商）"
+      },
+      "value": 1.7,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "铭牌容量",
+        "power_type": "燃气",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "厂商指引"
+      },
+      "as_of": "2027E@2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4cf87bfd94cb604252efa4e82d05a00670ae9784ec0bc4107b863624c31b1e5d",
+        "local_file": "SemiAnalysis xAI's Colossus 2 - First Gigawatt Datacenter In The World（2025-09-16，中英对照版）.pdf",
+        "locator": "第 7-8 页：「NYSE listed Solaris Energy Infrastructure owns a fleet of 600 MW of gas turbines … Musk’s firm weighs 67% of SEI’s 1700 MW orderbook … the remaining 900 MW will be owned by a Joint Venture owned at 50.1% by Solaris and 49.9% by xAI」；图 4「Total Operated 1,700 MW Fleet in 1H 2027」；第 10 页「Solaris expects to have over 1.1 GW of fully operating turbines for xAI by Q2 2027」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（Datacenter Industry Model，卫星图像计数）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**Solaris 目前自有燃机 600MW，计划 2027 年上半年运营机队达 1,700MW**，**xAI 占其订单簿 67%**；其中 900MW 由 Solaris 50.1%/xAI 49.9% 的合资公司持有。Solaris 预计 2027-Q2 为 xAI 提供超过 1.1GW 完全运行的燃机，SemiAnalysis 判断 xAI 可能再追加到超过 1.5GW 总毛功率。**window 就近记累计**（原文是到 2027 年上半年的机队规模，不是增量），标 [未核]。**这是「表后燃机租赁」这一新商业模式最具体的规模数**。**原文为付费墙后内容的截取版**，多处关键数字被抹去（如 Colossus 1 的 GPU 数、Solaris 为 xAI 服务的具体 MW），只录显式出现的数。"
     }
   ]
 }
