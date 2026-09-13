@@ -1,0 +1,9 @@
+consumer,line,reference,planned_result
+web/pages/bom3d.html,146,"const get = async p => (await fetch(p + ""?t="" + Date.now())).json();",migrate to loadSceneData
+web/pages/bom3d.html,147,"const [BOM, companies, prices, inds, reg, products] = await Promise.all([",migrate to loadSceneData
+web/pages/bom3d.html,148,"get(""framework/bom.json""), get(""data/companies.json""), get(""data/prices.json""),",migrate to loadSceneData
+web/pages/bom3d.html,149,"get(""framework/indicators.json""), get(""framework/modules.json""), get(""data/products.json"")]);",migrate to loadSceneData
+web/pages/rack3d.html,127,"const get = async p => (await fetch(p + ""?t="" + Date.now())).json();",migrate to loadSceneData
+web/pages/rack3d.html,128,"const [BOM, companies, prices, inds, reg] = await Promise.all([",migrate to loadSceneData
+web/pages/rack3d.html,129,"get(""framework/bom.json""), get(""data/companies.json""), get(""data/prices.json""),",migrate to loadSceneData
+web/pages/rack3d.html,130,"get(""framework/indicators.json""), get(""framework/modules.json"")]);",migrate to loadSceneData

@@ -4,7 +4,7 @@ const {chromium} = require('playwright');
 (async () => {
   const browser = await chromium.launch({headless:true, args:['--enable-unsafe-swiftshader']});
   try {
-    const page = await browser.newPage({viewport:{width:1280,height:900}, reducedMotion:'reduce'});
+    const page = await browser.newPage({viewport:{width:1280,height:900}, reducedMotion:'reduce', deviceScaleFactor:process.env.CI ? .5 : 1});
     const errors = [], fullRequests=[]; page.on('pageerror', e => errors.push(e.message));
     page.on('request', request=>{if(new URL(request.url()).pathname==='/api/research')fullRequests.push(request.url());});
     // Inspect actual scene objects without shipping debug globals in application code.
@@ -17,12 +17,14 @@ const {chromium} = require('playwright');
       await route.fulfill({response, body:instrumented});
     });
     for (const url of ['/bom3d.html?p=server', '/rack3d.html?node=part:gpu']) {
+      console.log('Scene contract: loading '+url);
       await page.goto(process.env.UI_BASE_URL + url);
       const dossier = page.locator('#dossier');
       await dossier.locator('h2').waitFor();
       await dossier.locator('.rg-3d-panel[data-state=ready]').waitFor();
       assert.match(await dossier.locator('.rg-3d-panel .rg-chips').textContent(), /个问题.*条证据.*个关联任务/);
       assert.ok(await dossier.locator('.rg-3d-neighbors a').count()>0);
+      console.log('Scene contract: research ready '+url);
       const canvas = dossier.locator('canvas'); await canvas.waitFor();
       assert.equal(await canvas.count(), 1);
       assert.ok(await dossier.getByRole('link', {name:'模块原文'}).isVisible());
@@ -70,6 +72,7 @@ const {chromium} = require('playwright');
       await page.mouse.move(px+80,py+30,{steps:5}); await page.mouse.up();
       assert.ok(!await dossier.isVisible(), 'orbit drag does not select a part');
     }
+    console.log('Scene contract: motion, picking and material ownership');
     const contracts = await page.evaluate(async () => {
       const THREE = await import('three');
       const {createScenePicking} = await import('/assets/scene-picking.js');

@@ -231,3 +231,10 @@ html[data-ui-skin] td button{white-space:nowrap}
  .ui-task-table td:last-child{margin-left:auto}
  .ui-task-table td button{min-height:34px}
 }
+
+/* Required scene data status; navigation stays available during retry. */
+html[data-ui-skin] .rg-scene-startup{position:fixed;z-index:120;top:calc(var(--ui-bar-height) + 76px);left:50%;transform:translateX(-50%);box-sizing:border-box;width:min(420px,calc(100vw - 32px));padding:20px;background:var(--ui-surface);color:var(--ui-body);border:1px solid var(--ui-frame);border-radius:var(--ui-radius);box-shadow:var(--ui-shadow)}
+html[data-ui-skin] .rg-scene-startup h2{font-size:16px;margin:0 0 10px;line-height:1.5}
+html[data-ui-skin] .rg-scene-startup p{color:var(--ui-secondary);font-size:14px;line-height:1.6;margin:0 0 14px}
+html[data-ui-skin] .rg-scene-startup button{width:auto;min-height:36px;padding:8px 18px;background:var(--ui-accent);color:var(--ui-on-accent);border:0;border-radius:var(--ui-control-radius);cursor:pointer}
+html[data-ui-skin] .rg-scene-startup button[hidden]{display:none}

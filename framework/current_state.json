@@ -1,6 +1,6 @@
 {
-  "version": "2026.09.13.11",
-  "effective_at": "2026-09-13",
+  "version": "2026.09.14.1",
+  "effective_at": "2026-09-14",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
     {
@@ -266,7 +266,7 @@
       "status": "current",
       "source": "framework/05_interface_system.md",
       "scope": "project",
-      "effective_at": "2026-09-13",
+      "effective_at": "2026-09-14",
       "implementations": [
         "web/components/site-shell.js",
         "web/themes/site-skin.css",
@@ -302,12 +302,14 @@
         "tests/part_dossier.cjs",
         "tests/research_summary.cjs",
         "tests/unit/test_research.py",
-        "src/inresearch/knowledge/registry.py"
+        "src/inresearch/knowledge/registry.py",
+        "web/components/scene-data.js",
+        "tests/scene_bootstrap.cjs"
       ],
       "supersedes": [
         "interface-legacy"
       ],
-      "reason": "2026-09-13：3D 档案改用同权威关联字段投影，仍共用完整工作台的节点关联算法；研究面板就绪、失败重试和挂载/请求替换成为明确验收。既有输入/材质所有权保持，renderer/资产生命周期仍未全面收敛。",
+      "reason": "2026-09-13：3D 档案改用同权威关联字段投影，仍共用完整工作台的节点关联算法；研究面板就绪、失败重试和挂载/请求替换成为明确验收。既有输入/材质所有权保持，renderer/资产生命周期仍未全面收敛。；2026-09-14 两场景必需定义改用统一加载/结构检查/取消/重试，恢复显式控件状态，不扩大为可选资产就绪。",
       "implementation_revision": "2026.09.13.11"
     },
     {
