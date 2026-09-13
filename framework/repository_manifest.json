@@ -136,8 +136,8 @@
     {
       "path": "data/facts.json",
       "role": "source_record",
-      "bytes": 3279989,
-      "sha256": "20a289391a9f867cb6736dda21a530d180884db47f0a06443742218b64ad3469",
+      "bytes": 2829902,
+      "sha256": "a90b1d2a3de054508cb3c18c134c361287637ad2ff51fd5745b96a7845e51c9c",
       "collections": [
         {
           "name": "records",
@@ -280,8 +280,8 @@
     {
       "path": "data/schema/fact.schema.json",
       "role": "source_record",
-      "bytes": 9244,
-      "sha256": "d88770d53c53b6b5869993a721879f4e6d0f33ab3bb6f8b17e2bb1945ab788b5",
+      "bytes": 9763,
+      "sha256": "f9df64679ca115e9fa723117f92cf71c5e0e4b29e1b6216f417835135cb75e81",
       "collections": [
         {
           "name": "required",
@@ -515,8 +515,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 25234,
-      "sha256": "773b85cdc4cd7fdb0eb2fcaa5fdacd5cdf6270913114ff2e42c6559dd1e5409b",
+      "bytes": 26003,
+      "sha256": "318991d7adcdf7267de9b0a37a74d1a5f900280878d45362758e950c7e9c36d5",
       "collections": []
     },
     {
@@ -3716,251 +3716,11 @@
       "collections": []
     },
     {
-      "path": "docs/reviews/2026-09-13/deep-read/DELIVERY.md",
+      "path": "docs/reviews/2026-09-13/c3-a-review/DELIVERY.md",
       "role": "historical",
-      "bytes": 9997,
-      "sha256": "0389ac4dd56d73dc39ff9a3dce6ddc5112f5976a598c8b2496c6e1600f5e1d52",
+      "bytes": 7784,
+      "sha256": "954a8247e4ec536c1830de8819c4787bd256fa10fe48ba0d6c813b10ae538cf0",
       "collections": []
-    },
-    {
-      "path": "docs/reviews/2026-09-13/deep-read/PLAN.md",
-      "role": "historical",
-      "bytes": 6868,
-      "sha256": "492d77e7461f4f2af72ad68ee4ae02a78e16da3031732ee827600073319b8467",
-      "collections": []
-    },
-    {
-      "path": "docs/reviews/2026-09-13/deep-read/audit.py",
-      "role": "historical",
-      "bytes": 6495,
-      "sha256": "0e9c6dfe16d69f1f776dd86cf203ef56705d81161376eb72c5f334378c1374df",
-      "collections": []
-    },
-    {
-      "path": "docs/reviews/2026-09-13/deep-read/baseline.json",
-      "role": "historical",
-      "bytes": 620,
-      "sha256": "21d66d6db3a79627d4ede1905d71762247498780b496f83b729b6b0e90be478c",
-      "collections": [
-        {
-          "name": "ambiguous_pack_selected",
-          "count": 1
-        }
-      ]
-    },
-    {
-      "path": "docs/reviews/2026-09-13/deep-read/consumers-after.csv",
-      "role": "historical",
-      "bytes": 46483,
-      "sha256": "53f7346c0438c9a2e75fa678a57db829bef6f18f52bafd2fff4dcd8c5a47e85a",
-      "collections": [
-        {
-          "name": "rows",
-          "count": 455,
-          "fields": [
-            "consumer",
-            "line",
-            "symbol",
-            "kind"
-          ]
-        }
-      ]
-    },
-    {
-      "path": "docs/reviews/2026-09-13/deep-read/consumers-before.csv",
-      "role": "historical",
-      "bytes": 29666,
-      "sha256": "97f6096af17e3d6e2f63b000d33c6b292de2b523a1e2a5b64ff6543464f74a3a",
-      "collections": [
-        {
-          "name": "rows",
-          "count": 425,
-          "fields": [
-            "consumer",
-            "line",
-            "symbol",
-            "kind"
-          ]
-        }
-      ]
-    },
-    {
-      "path": "docs/reviews/2026-09-13/deep-read/contracts_audit.py",
-      "role": "historical",
-      "bytes": 7007,
-      "sha256": "9f0ec14ac784e59858998d1f5f4b860d23d45366e005d96abae6bbf651bd9a80",
-      "collections": []
-    },
-    {
-      "path": "docs/reviews/2026-09-13/deep-read/dependency-audit.json",
-      "role": "historical",
-      "bytes": 16498,
-      "sha256": "6880a6ca2260e726507669208cb552cc35d8876903459ed2b95714c40b4eb3c8",
-      "collections": [
-        {
-          "name": "cycles",
-          "count": 0
-        },
-        {
-          "name": "import_edges",
-          "count": 187
-        }
-      ]
-    },
-    {
-      "path": "docs/reviews/2026-09-13/deep-read/file-plan.csv",
-      "role": "historical",
-      "bytes": 83080,
-      "sha256": "f0fd02e336fe054373557c8f3a5ffe3722b83656c7d368593780a3fbcd3b8834",
-      "collections": [
-        {
-          "name": "rows",
-          "count": 603,
-          "fields": [
-            "path",
-            "action",
-            "destination",
-            "reason"
-          ]
-        }
-      ]
-    },
-    {
-      "path": "docs/reviews/2026-09-13/deep-read/file-results.csv",
-      "role": "historical",
-      "bytes": 43385,
-      "sha256": "e8ec976d04e918143852b5a244cf7025ed1aa9d33b1a328ad23f1a489939da37",
-      "collections": [
-        {
-          "name": "rows",
-          "count": 621,
-          "fields": [
-            "path",
-            "action",
-            "planned",
-            "result"
-          ]
-        }
-      ]
-    },
-    {
-      "path": "docs/reviews/2026-09-13/deep-read/functions-before.csv",
-      "role": "historical",
-      "bytes": 1932,
-      "sha256": "489673addc9b1027f12a9539480d8c137c0809882af12a9e71f1756a8741d84d",
-      "collections": [
-        {
-          "name": "rows",
-          "count": 38,
-          "fields": [
-            "symbol",
-            "line",
-            "lines",
-            "target"
-          ]
-        }
-      ]
-    },
-    {
-      "path": "docs/reviews/2026-09-13/deep-read/integration-files.csv",
-      "role": "historical",
-      "bytes": 51646,
-      "sha256": "1fca61a6903334038836c115d429de347de822000741cbeb9fa1ba6cd2c12982",
-      "collections": [
-        {
-          "name": "rows",
-          "count": 621,
-          "fields": [
-            "path",
-            "upstream_change",
-            "our_change",
-            "disposition"
-          ]
-        }
-      ]
-    },
-    {
-      "path": "docs/reviews/2026-09-13/deep-read/public-contracts.csv",
-      "role": "historical",
-      "bytes": 97545,
-      "sha256": "4a74d19fd9f47ab3e7b28665d18fccbf380330ba5b0eff56e80a11bb43fbcdfe",
-      "collections": [
-        {
-          "name": "rows",
-          "count": 76,
-          "fields": [
-            "symbol",
-            "implementation",
-            "line",
-            "consumer_count",
-            "consumers",
-            "result"
-          ]
-        }
-      ]
-    },
-    {
-      "path": "docs/reviews/2026-09-13/deep-read/real-flow.json",
-      "role": "historical",
-      "bytes": 12394,
-      "sha256": "610dceeaf426dd87803d5eaa995d7a66b053e4509fa50e1db85e3b27eea0e8e3",
-      "collections": [
-        {
-          "name": "steps",
-          "count": 6
-        }
-      ]
-    },
-    {
-      "path": "docs/reviews/2026-09-13/deep-read/statistics-after.json",
-      "role": "historical",
-      "bytes": 2210,
-      "sha256": "d9d57d2197e683f351dcbb108754428fb4596fca5649322669808e221d6e9df1",
-      "collections": []
-    },
-    {
-      "path": "docs/reviews/2026-09-13/deep-read/statistics-before.json",
-      "role": "historical",
-      "bytes": 766,
-      "sha256": "8aca0179761cee5c816460ee1cea660d097758ac108094f03260d745b48854b9",
-      "collections": []
-    },
-    {
-      "path": "docs/reviews/2026-09-13/deep-read/test-migration.json",
-      "role": "historical",
-      "bytes": 1953,
-      "sha256": "e0494f01193bbce2bdfe04506350e0317c6a687acf9613969640340579a73928",
-      "collections": []
-    },
-    {
-      "path": "docs/reviews/2026-09-13/deep-read/test-results.csv",
-      "role": "historical",
-      "bytes": 66756,
-      "sha256": "f8962497b1515562be08efa718f4f0b206c7eb27352c36a3ab9d4dd5941f362b",
-      "collections": [
-        {
-          "name": "rows",
-          "count": 413,
-          "fields": [
-            "test",
-            "current",
-            "present",
-            "result"
-          ]
-        }
-      ]
-    },
-    {
-      "path": "docs/reviews/2026-09-13/deep-read/verification.json",
-      "role": "historical",
-      "bytes": 1243,
-      "sha256": "fa74d3f14104b3148a511b38a6f2dfa06f2bfc9ad34a29d10648702cb6ee0767",
-      "collections": [
-        {
-          "name": "remaining",
-          "count": 5
-        }
-      ]
     },
     {
       "path": "docs/reviews/2026-09-13/fact-conflicts/DELIVERY.md",
@@ -4387,8 +4147,8 @@
     {
       "path": "framework/01_data_standards.md",
       "role": "normative",
-      "bytes": 8532,
-      "sha256": "8844a236725e1ea87fcdb8b51ef6fd31d0fee25efac9a809c008ce408d29ff3c",
+      "bytes": 9444,
+      "sha256": "77caca1fff5e86e4b5307492199558d21a9de610093c5ea3bcb2896f06b6e51f",
       "collections": []
     },
     {
@@ -4560,8 +4320,8 @@
     {
       "path": "framework/metrics.json",
       "role": "project_config",
-      "bytes": 704394,
-      "sha256": "d87b354c0cb87bb1d9f0dd555b308f9f236f8f308c50f067a15ba0ef8e2fdf1a",
+      "bytes": 705941,
+      "sha256": "5cfb59476288bf6c4c053d30ef25753724159ce69f60761205c4f778e0879d34",
       "collections": [
         {
           "name": "metrics",
@@ -4737,8 +4497,8 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 23918,
-      "sha256": "1fa942178a12c30570c54fd0ffe36dcd53e40041b64d10c0fac44e81b7f0a4d6",
+      "bytes": 21424,
+      "sha256": "e8f12dd7ccab38db49c01cdbe46cf3aee24bbd5a976f9693978131a0f369ae0d",
       "collections": [
         {
           "name": "policies",
@@ -5360,15 +5120,15 @@
     {
       "path": "src/inresearch/knowledge/fact_contract.py",
       "role": "implementation",
-      "bytes": 17899,
-      "sha256": "e9a94a4d61dc25f32ded42ded0a7722fddc2cf56ee12b4111e6a7a5de71735bd",
+      "bytes": 16688,
+      "sha256": "eab0c8c2ef36309943579b56e601851aa3119e472a934caf7accb503292404a8",
       "collections": []
     },
     {
       "path": "src/inresearch/knowledge/facts.py",
       "role": "implementation",
-      "bytes": 9578,
-      "sha256": "cc002b5175e6c8f1f4ac58bf9dcc6537adcbc56c8f57b86680fb30259202f4a9",
+      "bytes": 11533,
+      "sha256": "3ed61b820e6ff2e6621979333547c64e1ab003cf6ec22771eb8fe15cb8a4c0f5",
       "collections": []
     },
     {
@@ -5836,8 +5596,8 @@
     {
       "path": "tests/unit/test_display_regressions.py",
       "role": "test",
-      "bytes": 6032,
-      "sha256": "80fa0bfb97bf9e2494cabaad1c00d15e2d03964ea347749a99b9ee25cc031e5d",
+      "bytes": 8704,
+      "sha256": "22c778fe01b42915da6b5d1c2aa9292db8f481a135400c63307d4e9c6ddfeb20",
       "collections": []
     },
     {
@@ -6625,8 +6385,8 @@
     "design_reference": 1,
     "entrypoint": 4,
     "generated": 12,
-    "historical": 110,
-    "implementation": 132,
+    "historical": 92,
+    "implementation": 127,
     "normative": 13,
     "project_config": 35,
     "research_record": 16,

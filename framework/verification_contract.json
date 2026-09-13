@@ -15,7 +15,7 @@
     "docs/local_reader/RUN_TO_COMPLETION.md": "a8eb25aa6718bab718ffbf73114e67204fd265cd05d7a2f0b9cc42e8fcfec10c",
     "docs/local_reader/SPARK_OPERATIONS.md": "b7d782223bd3a54f40e64571c223cdb36b85b672b395334b71347581005e1c48",
     "framework/00_overview.md": "75f2d2f14c3f2b3f3cd9f4949cc4e7c788710764871e1368a7dac023f7371226",
-    "framework/01_data_standards.md": "8844a236725e1ea87fcdb8b51ef6fd31d0fee25efac9a809c008ce408d29ff3c",
+    "framework/01_data_standards.md": "77caca1fff5e86e4b5307492199558d21a9de610093c5ea3bcb2896f06b6e51f",
     "framework/02_knowledge_format.md": "049e0010977b11fb6161c0fca15fe210c96be74124e70195e23d3028258a82ff",
     "framework/03_bom_and_collaboration.md": "e276393ec9f555984f07047a8d3de21daf208c5693be0ce86788dfff50ad75ed",
     "framework/04_reading_scoring_standard.md": "f0ffebc29e60c3c019691c51f2ae5c18b1e4593c46ef3acdf44b38b5f4433abb",
@@ -39,6 +39,7 @@
     "tests/unit/test_catalog_migration.py": "463ffb034bd7d1f5b2cd2f8c221e07734ac287dd0df95a7fda127a2f2d69de48",
     "tests/unit/test_commands.py": "03265020c3aba7de0dfe056467ef678193c0e139859c917666c0ed216095b6d4",
     "tests/unit/test_continuous_reader.py": "6c36c298912077a7ab480e43f4a54fbfbb08978624c6e6efb3ac9f47657f4238",
+    "tests/unit/test_display_regressions.py": "22c778fe01b42915da6b5d1c2aa9292db8f481a135400c63307d4e9c6ddfeb20",
     "tests/unit/test_file_moves.py": "1f9ba746f06885b6d48ee2d73b5da8bc4364ca1ad54e85b5d6fe23cdbf1edf9a",
     "tests/unit/test_governance.py": "ee59b285f13ea82d6df0426d0fbd519b7b8f9e7695fde569708c0dac10d71f39",
     "tests/unit/test_intake.py": "752b45e1bec8938738ea28b827dcdcc9031bce772cc9030d7ded1d7be9176c10",
@@ -78,27 +79,28 @@
       "policy": "data-20260906",
       "scope": "project",
       "source": "framework/01_data_standards.md",
-      "checked_requirement": "C3 支持链资格、定位、数值口径、非数字候选与来源冲突的并列登记",
+      "checked_requirement": "C3 支持链资格、定位、数值口径、非数字候选、来源冲突并列与分发受限的对外阻断",
       "tests": [
         "tests/unit/test_research.py::ResearchTests.test_invalid_C3_review_never_closes_question",
         "tests/unit/test_research.py::ResearchTests.test_C_archive_cannot_close_and_valid_B_reopens_then_closes",
         "tests/unit/test_intake.py::IntakeEvidenceTests.test_B_requires_current_matching_workorder_and_A_takes_priority",
         "tests/unit/test_intake.py::IntakeEvidenceTests.test_malformed_evidence_and_types_fail_without_crashing",
-        "tests/unit/test_fact_contract.py::ValidatorTests.test_a_missing_caliber_dimension_is_refused",
-        "tests/unit/test_fact_contract.py::TemporalGrammarTests.test_a_half_year_is_a_period_of_its_own",
-        "tests/unit/test_fact_contract.py::AsserterTests.test_two_houses_on_one_question_no_longer_collide",
-        "tests/unit/test_fact_contract.py::AsserterTests.test_two_named_houses_must_point_at_each_other",
-        "tests/unit/test_fact_contract.py::AsserterTests.test_a_revision_is_not_a_dispute",
-        "tests/unit/test_fact_contract.py::AsserterTests.test_unstated_does_not_earn_a_seat_beside_a_named_house",
-        "tests/unit/test_deep_read.py::DisputeRecordTests.test_the_other_side_learns_it_is_contested",
-        "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_generated_dispute_links_do_not_break_original_request_replay",
-        "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_disputes_inside_one_batch_commit_together_and_replay_after_receipt_failure",
-        "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_batch_claim_indexes_enforce_new_dispute_and_revision_contracts"
+        "tests/unit/test_m4_l2.py::ValidatorTests.test_a_missing_caliber_dimension_is_refused",
+        "tests/unit/test_m4_l2.py::TemporalGrammarTests.test_a_half_year_is_a_period_of_its_own",
+        "tests/unit/test_m4_l2.py::AsserterTests.test_two_houses_on_one_question_no_longer_collide",
+        "tests/unit/test_m4_l2.py::AsserterTests.test_two_named_houses_must_point_at_each_other",
+        "tests/unit/test_m4_l2.py::AsserterTests.test_a_revision_is_not_a_dispute",
+        "tests/unit/test_m4_l2.py::AsserterTests.test_unstated_does_not_earn_a_seat_beside_a_named_house",
+        "tests/unit/test_m4_l2.py::DisputeRecordTests.test_the_other_side_learns_it_is_contested",
+        "tests/unit/test_display_regressions.py::PublicFactDisplayTests.test_a_restricted_fact_never_shows_its_value",
+        "tests/unit/test_display_regressions.py::PublicFactDisplayTests.test_the_gate_is_on_the_only_public_exit"
       ],
       "not_verified": [
         "38 条存量事实缺内容 SHA；27 条历史来源未登记；B 审核质量与语义冲突识别不能由机检代替。",
         "asserter 归一表是人写的前缀映射：未列入的译名或简称会落到「未注明」；188 条「未注明」（148 条 originator 本为空）需人工回查原件，既有 1,562 条未逐条复核。",
-        "机器只判冲突的形状，不判谁对：A 档裁决仍为所有者人工判断，不提供按来源等级或发布日期自动取舍的路径。"
+        "机器只判冲突的形状，不判谁对：A 档裁决仍为所有者人工判断，不提供按来源等级或发布日期自动取舍的路径。",
+        "C3 A 档由模型代理受委托复审并记名（docs/reviews/2026-09-13/c3-a-review）：争议裁决所用外部锚点取自审核者既有知识、未在库内建立事实；「算力中心」外延未经原文确认，第一对争议的口径改法待确认后执行。",
+        "分发限制门只覆盖 knowledge/facts.py 这一个对外出口；新增出口须复用 restricted()，机检不覆盖。"
       ]
     },
     {
