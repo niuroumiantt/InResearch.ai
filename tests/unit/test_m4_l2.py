@@ -1810,7 +1810,15 @@ class M05M09MenuTests(unittest.TestCase):
         self.assertTrue(rows)
         self.assertTrue(any(f.get('bound') == 'upper' for f in rows),
                         '上界那条应当也在，且同样带着这两维')
+        # 回填当天的那批一律「未注明」；之后读进来的可以按原文填具体值——
+        # AIDC 机房白皮书那两条就是明写「新建」智算机房的承重要求。
+        # 这里钉的是「回填没有凭空编出档位」，不是「这两维永远不许有值」。
+        later = ('aidc-wp-',)
         for f in rows:
+            if f['fact_id'].startswith(later):
+                self.assertIn(f['caliber']['tier'], self.dim(f['metric_id'], 'tier')['values'], f['fact_id'])
+                self.assertIn(f['caliber']['build_type'], self.dim(f['metric_id'], 'build_type')['values'], f['fact_id'])
+                continue
             self.assertEqual(f['caliber']['tier'], '未注明', f['fact_id'])
             self.assertEqual(f['caliber']['build_type'], '未注明', f['fact_id'])
 
