@@ -64350,6 +64350,37 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "不含加密货币；区间上界。库内另有 IEA 2022 年约 350 TWh（经高盛转引，gs2024-iea-global-dc-electricity-2022）——IEA 不同版本口径/修订。"
+    },
+    {
+      "fact_id": "msft-hotchips2025-diablo400-ac-holdup",
+      "metric_id": "storage_response_window",
+      "entity": {
+        "type": "product",
+        "id": "ocp-diablo-400-power-rack",
+        "label": "OCP Mt Diablo 400 解耦电源机架（微软/Meta/谷歌联合规范）"
+      },
+      "asserter": "微软",
+      "value": 20.0,
+      "unit": "ms",
+      "caliber": {
+        "storage_tech": "电解电容",
+        "bound_sense": "不大于",
+        "region": "Global",
+        "basis": "架构宣称"
+      },
+      "as_of": "2025-08",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "d4baf332a1ed3a821a44924215b37541e74bdbbafeb6fd86d104788ed8abfbfd",
+        "local_file": "HC2025.T1DCRacks.S4.Bojja.pdf",
+        "locator": "第 14 页 Diablo 400 电源机架要点：「AC loss holdup and ride through support via bulk storage capacitors」「Line overvoltage, Line sag, Holdup sans battery backup — ITIC upto 20 msec at 100% loading」",
+        "grade": "S2",
+        "originator": "微软 Harsha Bojja《Re-Architecting Power Systems for AI Racks》（Hot Chips 2025 AI Rack Tutorial）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "不带电池时靠母线大容量电容做 AC 掉电保持与穿越，满载下按 ITIC 曲线最多 20 ms；原文「upto」按上界记。同页：480Vac 满载整机架效率目标 >97%、最多 12 路 200A AC 引线、±400V 采用高阻中点接地。as_of 取 Hot Chips 2025（2025-08）。"
     }
   ]
 }
