@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.13.8。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.13.9。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：661。
+在册文件：674。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,7 +15,7 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 12 |
-| 历史快照 | 144 |
+| 历史快照 | 157 |
 | 运行代码 | 135 |
 | 现行规范 | 13 |
 | 项目配置 | 36 |
@@ -205,6 +205,15 @@
 | `docs/reviews/2026-09-13/deep-read/real-flow.json` | steps | 6 |
 | `docs/reviews/2026-09-13/deep-read/test-results.csv` | rows | 413 |
 | `docs/reviews/2026-09-13/deep-read/verification.json` | remaining | 5 |
+| `docs/reviews/2026-09-13/news-projection/consumers-before.csv` | rows | 24 |
+| `docs/reviews/2026-09-13/news-projection/file-plan.csv` | rows | 667 |
+| `docs/reviews/2026-09-13/news-projection/file-results.csv` | rows | 674 |
+| `docs/reviews/2026-09-13/news-projection/legacy-removal.csv` | rows | 7 |
+| `docs/reviews/2026-09-13/news-projection/payload-before.json` | consumers | 2 |
+| `docs/reviews/2026-09-13/news-projection/payload-before.json` | news_hosts | 2 |
+| `docs/reviews/2026-09-13/news-projection/public-consumers.csv` | rows | 45 |
+| `docs/reviews/2026-09-13/news-projection/scope.json` | changed | 12 |
+| `docs/reviews/2026-09-13/news-projection/scope.json` | new | 0 |
 | `docs/reviews/2026-09-13/reading-authority/consumers-after.csv` | rows | 177 |
 | `docs/reviews/2026-09-13/reading-authority/consumers-before.csv` | rows | 113 |
 | `docs/reviews/2026-09-13/reading-authority/file-plan.csv` | rows | 628 |
@@ -598,6 +607,19 @@
 | [docs/reviews/2026-09-13/deep-read/test-results.csv](reviews/2026-09-13/deep-read/test-results.csv) | 历史快照 |
 | `docs/reviews/2026-09-13/deep-read/verification.json` | 历史快照 |
 | [docs/reviews/2026-09-13/fact-conflicts/DELIVERY.md](reviews/2026-09-13/fact-conflicts/DELIVERY.md) | 历史快照 |
+| [docs/reviews/2026-09-13/news-projection/DELIVERY.md](reviews/2026-09-13/news-projection/DELIVERY.md) | 历史快照 |
+| [docs/reviews/2026-09-13/news-projection/PLAN.md](reviews/2026-09-13/news-projection/PLAN.md) | 历史快照 |
+| `docs/reviews/2026-09-13/news-projection/audit.py` | 历史快照 |
+| [docs/reviews/2026-09-13/news-projection/consumers-before.csv](reviews/2026-09-13/news-projection/consumers-before.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/news-projection/file-plan.csv](reviews/2026-09-13/news-projection/file-plan.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/news-projection/file-results.csv](reviews/2026-09-13/news-projection/file-results.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/news-projection/legacy-removal.csv](reviews/2026-09-13/news-projection/legacy-removal.csv) | 历史快照 |
+| `docs/reviews/2026-09-13/news-projection/payload-after.json` | 历史快照 |
+| `docs/reviews/2026-09-13/news-projection/payload-before.json` | 历史快照 |
+| [docs/reviews/2026-09-13/news-projection/public-consumers.csv](reviews/2026-09-13/news-projection/public-consumers.csv) | 历史快照 |
+| `docs/reviews/2026-09-13/news-projection/scope.json` | 历史快照 |
+| `docs/reviews/2026-09-13/news-projection/statistics-after.json` | 历史快照 |
+| `docs/reviews/2026-09-13/news-projection/statistics-before.json` | 历史快照 |
 | [docs/reviews/2026-09-13/reading-authority/DELIVERY.md](reviews/2026-09-13/reading-authority/DELIVERY.md) | 历史快照 |
 | [docs/reviews/2026-09-13/reading-authority/INTEGRATION.md](reviews/2026-09-13/reading-authority/INTEGRATION.md) | 历史快照 |
 | [docs/reviews/2026-09-13/reading-authority/PLAN.md](reviews/2026-09-13/reading-authority/PLAN.md) | 历史快照 |

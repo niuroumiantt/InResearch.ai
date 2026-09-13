@@ -1,0 +1,25 @@
+path,line,reference
+docs/PROJECT_PANORAMA.md,21,网站 `/api/research` 返回当前发布的对象、问题、候选、任务与 Spark 快照；源码版本、容器健康和 systemd 状态分别核对。设计文档、旧报告、原始索引和 PDF 不代表实时服务状态。原文未导入、未完成覆盖或未通过采用时，保持明确缺口。
+docs/REPOSITORY_REGISTER.md,920,| `web/components/datacenter-news.js` | 运行代码 |
+framework/current_state.json,324,"""web/components/datacenter-news.js"","
+framework/repository_manifest.json,6880,"""path"": ""web/components/datacenter-news.js"","
+src/inresearch/delivery/acquisition_status.py,8,reader=research.build_snapshot()['reader']
+src/inresearch/delivery/reader_status.py,8,reader = research.build_snapshot()['reader']
+src/inresearch/interfaces/http.py,265,"if urlsplit(self.path).path == ""/api/research"":"
+src/inresearch/interfaces/http.py,267,"return self._json(200, research.build_snapshot(ROOT))"
+src/inresearch/knowledge/registry.py,477,def build_snapshot(root=ROOT):
+src/inresearch/knowledge/registry.py,535,"print(json.dumps(build_snapshot(), ensure_ascii=False, allow_nan=False))"
+src/inresearch/workflow/reading_queue.py,42,"documents = research.build_snapshot(ROOT)[""knowledge""][""documents""]"
+src/inresearch/workflow/workorders.py,128,"documents = research.build_snapshot(ROOT)[""knowledge""][""documents""]"
+tests/datacenter_news.cjs,5,"await page.route('**/api/research',r=>r.fulfill({json:{reader:{acquisition:{news_feed:{status:'success',exported_at:new Date().toISOString(),items:[{title:'Datacenter opens',title_zh:'数据中心开业',publisher:'Example',published_at:Date.parse('2026-09-06T02:30:00Z'),url:'https://example.com/news',category:'数据中心'},{title:'unsafe',url:'javascript:alert(1)'},...Array.from({length:15},(_,i)=>({title:'Data center '+i,title_zh:'数据中心 '+i,url:'https://example.com/'+i,published_at:Date.parse(i===0?'2026-09-05T16:10:00Z':'2026-09-05T15:50:00Z')}))]}}}}}));"
+tests/research_delivery.cjs,18,const snapshot = await (await page.request.get(base+'/api/research')).json();
+tests/unit/test_interface_system.py,44,"'/api/research':401,'/data/users.json':404,'/assets/.hub_secret':404,"
+tests/unit/test_research.py,389,"code, view = self.request('GET', '/api/research')"
+tests/unit/test_research.py,432,"code, view = self.request('GET', '/api/research')"
+tests/unit/test_research.py,450,"code, view = self.request('GET', '/api/research')"
+web/components/datacenter-news.js,15,"const r = await fetch('/api/research', {cache:'no-store'});"
+web/components/research-graph.js,127,"const response = await fetch(""/api/research"", { cache: ""no-store"", signal: controller.signal });"
+web/components/research-graph.js,777,"detail.replaceChildren(element(""div"", ""rg-empty"", ""对象、材料和任务尚未载入。请连接提供 /api/research 的研究服务后重试；静态页面不会显示虚构的加载成功或完成状态。""));"
+web/pages/index.html,79,"<script type=""module"" src=""assets/datacenter-news.js""></script>"
+web/pages/ops.html,77,"<script type=""module"" src=""assets/datacenter-news.js""></script>"
+web/routes.json,6,"""/assets/datacenter-news.js"": ""web/components/datacenter-news.js"","

@@ -452,6 +452,66 @@ class ReaderSnapshotHTTPTests(unittest.TestCase):
                 self.assertEqual(curated, {key: view['knowledge'][key] for key in research.COLLECTIONS})
                 self.assertTrue(view['reader'].get('stale') or view['reader'].get('error')
                                 or view['reader'].get('status') not in ('idle', 'running'))
+                code, news = self.request('GET', '/api/news')
+                self.assertEqual(code, 200)
+                self.assertIsNone(news['feed'])
+                self.assertEqual(news['reader']['status'], view['reader']['status'])
+
+    def test_news_projection_uses_validated_input_without_catalog_tasks_or_private_metadata(self):
+        payload = self.payload()
+        payload['reader'].update(roots={'private': '/private/originals'}, acquisition={'news_feed': {
+            'status': 'success', 'exported_at': datetime.now(timezone.utc).isoformat(),
+            'internal_path': '/private/cache', 'items': [
+                {'title_zh': str(i), 'title': 'unneeded original', 'url': 'https://example.test/' + str(i),
+                 'domain': 'example.test', 'published_at': 1700000000000 + i, 'private': 'do not project'}
+                for i in range(100)]}})
+        self.assertEqual(self.post(payload)[0], 200)
+        before = self.snapshot_path.read_bytes()
+        with patch.object(research, 'build_catalog', side_effect=AssertionError('unneeded catalog')), \
+                patch.object(research, 'current_tasks', side_effect=AssertionError('unneeded tasks')):
+            code, news = self.request('GET', '/api/news')
+        self.assertEqual(code, 200)
+        self.assertEqual(set(news), {'schema_version', 'feed', 'reader'})
+        self.assertEqual(len(news['feed']['items']), 80)
+        self.assertEqual([item['title_zh'] for item in news['feed']['items']], [str(i) for i in range(99, 19, -1)])
+        self.assertEqual(set(news['feed']), {'status', 'exported_at', 'items'})
+        self.assertEqual(set(news['feed']['items'][0]), {'title_zh', 'url', 'domain', 'published_at'})
+        code, full = self.request('GET', '/api/research')
+        self.assertEqual(news['reader'], {key: full['reader'][key] for key in news['reader']})
+        self.assertEqual(self.snapshot_path.read_bytes(), before)
+
+    def test_news_missing_stale_fresh_replacement_and_replay_follow_one_snapshot(self):
+        code, news = self.request('GET', '/api/news')
+        self.assertEqual(code, 200)
+        self.assertEqual(news['reader']['status'], 'not_connected')
+        self.assertIsNone(news['feed'])
+        payload = self.payload(seconds=1)
+        payload['reader']['acquisition'] = {'news_feed': {'status': 'success',
+            'exported_at': datetime.now(timezone.utc).isoformat(), 'items': [
+                {'title_zh': 'old', 'url': 'https://example.test/old'}]}}
+        self.assertEqual(self.post(payload)[0], 200)
+        stored = research.read_json(self.snapshot_path)
+        stored['received_at'] = (datetime.now(timezone.utc) - timedelta(hours=2)).isoformat()
+        self.snapshot_path.write_text(json.dumps(stored))
+        self.assertTrue(self.request('GET', '/api/news')[1]['reader']['stale'])
+        new = copy.deepcopy(payload); new['generated'] = self.payload(seconds=2)['generated']
+        new['reader']['acquisition']['news_feed']['items'][0]['title_zh'] = 'new'
+        self.assertEqual(self.post(new)[0], 200)
+        for old in (payload, new): self.assertEqual(self.post(old)[0], 409)
+        news = self.request('GET', '/api/news')[1]
+        self.assertFalse(news['reader']['stale'])
+        self.assertEqual(news['feed']['items'][0]['title_zh'], 'new')
+
+    def test_invalid_news_metadata_fails_the_view_without_rewriting_the_snapshot(self):
+        for acquisition in (['unexpected'], {'news_feed': []}, {'news_feed': {'items': 'not-array'}},
+                            {'news_feed': {'items': [None]}}):
+            payload = self.payload(); payload['reader']['acquisition'] = acquisition
+            self.snapshot_path.write_text(json.dumps(payload))
+            before = self.snapshot_path.read_bytes()
+            code, news = self.request('GET', '/api/news')
+            self.assertEqual(code, 503)
+            self.assertFalse(news['ok'])
+            self.assertEqual(self.snapshot_path.read_bytes(), before)
 
 
 if __name__ == '__main__':

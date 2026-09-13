@@ -1,0 +1,46 @@
+implementation_or_endpoint,consumer,line,reference,result
+/api/news,docs/DECISIONS.md,8,请求改为 `/api/news`。原快照约 2.9 MB，其中约 1.95 MB 是新闻不用的产品目录。,new bounded news consumer / shared validation
+/api/research,docs/PROJECT_PANORAMA.md,21,网站 `/api/research` 返回当前发布的对象、问题、候选、任务与 Spark 快照；源码版本、容器健康和 systemd 状态分别核对。设计文档、旧报告、原始索引和 PDF 不代表实时服务状态。原文未导入、未完成覆盖或未通过采用时，保持明确缺口。,full research consumer retained
+datacenter-news.js,docs/REPOSITORY_REGISTER.md,942,| `web/components/datacenter-news.js` | 运行代码 |,new bounded news consumer / shared validation
+/api/news,framework/06_acquisition.md,123,网站消费统一使用 `/api/news`：从与完整研究视图相同的已校验 Reader 快照读取 feed，,new bounded news consumer / shared validation
+/api/research,framework/06_acquisition.md,126,首页与 ops 的旧完整研究快照轮询退出；研究图与兼容外部客户端继续使用 `/api/research`。,full research consumer retained
+datacenter-news.js,framework/current_state.json,324,"""web/components/datacenter-news.js"",",new bounded news consumer / shared validation
+datacenter-news.js,framework/repository_manifest.json,7044,"""path"": ""web/components/datacenter-news.js"",",new bounded news consumer / shared validation
+build_snapshot,src/inresearch/delivery/acquisition_status.py,8,reader=research.build_snapshot()['reader'],full research consumer retained
+build_snapshot,src/inresearch/delivery/reader_status.py,8,reader = research.build_snapshot()['reader'],full research consumer retained
+/api/news,src/inresearch/interfaces/http.py,265,if urlsplit(self.path).path == '/api/news':,new bounded news consumer / shared validation
+build_news,src/inresearch/interfaces/http.py,267,"return self._json(200, research.build_news(ROOT))",new bounded news consumer / shared validation
+/api/research,src/inresearch/interfaces/http.py,270,"if urlsplit(self.path).path == ""/api/research"":",full research consumer retained
+build_snapshot,src/inresearch/interfaces/http.py,272,"return self._json(200, research.build_snapshot(ROOT))",full research consumer retained
+_snapshot_inputs,src/inresearch/knowledge/registry.py,477,def _snapshot_inputs(root):,new bounded news consumer / shared validation
+_reader_state,src/inresearch/knowledge/registry.py,497,def _reader_state(runtime):,new bounded news consumer / shared validation
+build_news,src/inresearch/knowledge/registry.py,509,def build_news(root=ROOT):,new bounded news consumer / shared validation
+_snapshot_inputs,src/inresearch/knowledge/registry.py,511,"*_, runtime = _snapshot_inputs(root)",new bounded news consumer / shared validation
+_reader_state,src/inresearch/knowledge/registry.py,512,reader = _reader_state(runtime),new bounded news consumer / shared validation
+build_snapshot,src/inresearch/knowledge/registry.py,533,def build_snapshot(root=ROOT):,full research consumer retained
+_snapshot_inputs,src/inresearch/knowledge/registry.py,534,"graph, questions, curated, knowledge, runtime = _snapshot_inputs(root)",new bounded news consumer / shared validation
+_reader_state,src/inresearch/knowledge/registry.py,545,"return dict(graph=graph, questions=questions, knowledge=knowledge, tasks=tasks, reader=_reader_state(runtime),",new bounded news consumer / shared validation
+build_snapshot,src/inresearch/knowledge/registry.py,568,"print(json.dumps(build_snapshot(), ensure_ascii=False, allow_nan=False))",full research consumer retained
+build_snapshot,src/inresearch/workflow/reading_queue.py,42,"documents = research.build_snapshot(ROOT)[""knowledge""][""documents""]",full research consumer retained
+build_snapshot,src/inresearch/workflow/workorders.py,128,"documents = research.build_snapshot(ROOT)[""knowledge""][""documents""]",full research consumer retained
+/api/news,tests/datacenter_news.cjs,5,"await page.route('**/api/news',r=>r.fulfill({json:{reader:{status:'idle',stale:false},feed:{status:'success',exported_at:new Date().toISOString(),items:[{title:'Datacenter opens',title_zh:'数据中心开业',publisher:'Example',published_at:Date.parse('2026-09-06T02:30:00Z'),url:'https://example.com/news',category:'数据中心'},{title:'unsafe',url:'javascript:alert(1)'},...Array.from({length:15},(_,i)=>({title:'Data center '+i,title_zh:'数据中心 '+i,url:'https://example.com/'+i,published_at:Date.parse(i===0?'2026-09-05T16:10:00Z':'2026-09-05T15:50:00Z')}))]}}}));",regression fixture/assertion; live HTTP and browser execution recorded separately
+/api/research,tests/datacenter_news.cjs,6,"await page.route('**/api/research',r=>{fullRequests++;return r.fulfill({status:500,body:'unexpected full snapshot'});});",regression fixture/assertion; live HTTP and browser execution recorded separately
+/api/news,tests/datacenter_news.cjs,27,"window.fetch=(url,options)=>url==='/api/news'",regression fixture/assertion; live HTTP and browser execution recorded separately
+/api/research,tests/research_delivery.cjs,18,const snapshot = await (await page.request.get(base+'/api/research')).json();,regression fixture/assertion; live HTTP and browser execution recorded separately
+/api/research,tests/unit/test_interface_system.py,44,"'/api/research':401,'/data/users.json':404,'/assets/.hub_secret':404,",regression fixture/assertion; live HTTP and browser execution recorded separately
+/api/research,tests/unit/test_research.py,389,"code, view = self.request('GET', '/api/research')",regression fixture/assertion; live HTTP and browser execution recorded separately
+/api/research,tests/unit/test_research.py,432,"code, view = self.request('GET', '/api/research')",regression fixture/assertion; live HTTP and browser execution recorded separately
+/api/research,tests/unit/test_research.py,450,"code, view = self.request('GET', '/api/research')",regression fixture/assertion; live HTTP and browser execution recorded separately
+/api/news,tests/unit/test_research.py,455,"code, news = self.request('GET', '/api/news')",regression fixture/assertion; live HTTP and browser execution recorded separately
+/api/news,tests/unit/test_research.py,472,"code, news = self.request('GET', '/api/news')",regression fixture/assertion; live HTTP and browser execution recorded separately
+/api/research,tests/unit/test_research.py,479,"code, full = self.request('GET', '/api/research')",regression fixture/assertion; live HTTP and browser execution recorded separately
+/api/news,tests/unit/test_research.py,484,"code, news = self.request('GET', '/api/news')",regression fixture/assertion; live HTTP and browser execution recorded separately
+/api/news,tests/unit/test_research.py,496,"self.assertTrue(self.request('GET', '/api/news')[1]['reader']['stale'])",regression fixture/assertion; live HTTP and browser execution recorded separately
+/api/news,tests/unit/test_research.py,501,"news = self.request('GET', '/api/news')[1]",regression fixture/assertion; live HTTP and browser execution recorded separately
+/api/news,tests/unit/test_research.py,511,"code, news = self.request('GET', '/api/news')",regression fixture/assertion; live HTTP and browser execution recorded separately
+/api/news,web/components/datacenter-news.js,19,"const r = await fetch('/api/news', {cache:'no-store', signal:request.signal});",new bounded news consumer / shared validation
+/api/research,web/components/research-graph.js,127,"const response = await fetch(""/api/research"", { cache: ""no-store"", signal: controller.signal });",full research consumer retained
+/api/research,web/components/research-graph.js,777,"detail.replaceChildren(element(""div"", ""rg-empty"", ""对象、材料和任务尚未载入。请连接提供 /api/research 的研究服务后重试；静态页面不会显示虚构的加载成功或完成状态。""));",full research consumer retained
+datacenter-news.js,web/pages/index.html,79,"<script type=""module"" src=""assets/datacenter-news.js""></script>",new bounded news consumer / shared validation
+datacenter-news.js,web/pages/ops.html,77,"<script type=""module"" src=""assets/datacenter-news.js""></script>",new bounded news consumer / shared validation
+datacenter-news.js,web/routes.json,6,"""/assets/datacenter-news.js"": ""web/components/datacenter-news.js"",",new bounded news consumer / shared validation
