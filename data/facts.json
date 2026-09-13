@@ -34096,6 +34096,186 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "单位换算：原表美元/MW ÷ 1,000,000 = 百万美元/MW。 **low/mid/high 是三档建设规格（平均/良好/顶级品质），不是统计分布**，bound 按低档记下界、高档记上界、中档记点值。本条为 High 档。 **中国台湾按中档排名第 14**；该市场建设成本通胀 2024/25 为 3.9%、2025/26 为 1.7%。  **cost_scope=仅机电与土建**：原文口径是 Total Construction Cost = Base Building（Powered Shell）+ Data Hall Fit Out（**不含客户自配的 IT 设备，也不含土地**）。**这与高盛那条 48 百万美元/MW（含 IT 设备）不可比**——含 IT 的口径是它的四到七倍。规格假设：Tier 3（高配 Tier 3-4）、10-50kW/柜（高配 30-100+kW）、发电机与 UPS N+1 或 2N、风冷或混合冷却。"
+    },
+    {
+      "fact_id": "swsc-capex-guide-google-2025-lower",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "google",
+        "label": "谷歌"
+      },
+      "value": 910.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "厂商指引",
+        "vintage": "其他快照",
+        "region": "US"
+      },
+      "as_of": "2025E@2025-10",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "89cf8449629c9ec7dd33ebee5e3ecb6d362ffe5f40662709a22401cf5b117f37",
+        "local_file": "西南证券 AI专题·从FOMO CapEx到ROI CapEx（2026-01）.pdf",
+        "locator": "第 6 页 1.1 节：「谷歌：将全年资本开支指引提高至910亿~930亿美元之间」",
+        "grade": "S4",
+        "originator": "西南证券研究院海外研究团队（转述各公司业绩会指引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "同源转述",
+      "notes": "区间 910-930 亿美元下界。 **corroboration=同源转述**：数字出自公司业绩会，券商转述，不构成独立来源。 **as_of 的做出时点按业绩会月份记**：谷歌、亚马逊、Meta 均为 25Q3 业绩会（2025-10 前后），甲骨文 FY26Q2 业绩会（2025-12），原文未给精确日期，标 [未核]。"
+    },
+    {
+      "fact_id": "swsc-capex-guide-google-2025-upper",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "google",
+        "label": "谷歌"
+      },
+      "value": 930.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "厂商指引",
+        "vintage": "其他快照",
+        "region": "US"
+      },
+      "as_of": "2025E@2025-10",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "89cf8449629c9ec7dd33ebee5e3ecb6d362ffe5f40662709a22401cf5b117f37",
+        "local_file": "西南证券 AI专题·从FOMO CapEx到ROI CapEx（2026-01）.pdf",
+        "locator": "第 6 页 1.1 节：同句",
+        "grade": "S4",
+        "originator": "西南证券研究院海外研究团队（转述各公司业绩会指引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "同源转述",
+      "notes": "区间上界。 **corroboration=同源转述**：数字出自公司业绩会，券商转述，不构成独立来源。 **as_of 的做出时点按业绩会月份记**：谷歌、亚马逊、Meta 均为 25Q3 业绩会（2025-10 前后），甲骨文 FY26Q2 业绩会（2025-12），原文未给精确日期，标 [未核]。"
+    },
+    {
+      "fact_id": "swsc-capex-guide-amazon-2025",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "amazon",
+        "label": "亚马逊"
+      },
+      "value": 1250.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "厂商指引",
+        "vintage": "其他快照",
+        "region": "US"
+      },
+      "as_of": "2025E@2025-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "89cf8449629c9ec7dd33ebee5e3ecb6d362ffe5f40662709a22401cf5b117f37",
+        "local_file": "西南证券 AI专题·从FOMO CapEx到ROI CapEx（2026-01）.pdf",
+        "locator": "第 6 页 1.1 节：「亚马逊：25Q3业绩会给出2025全年现金资本支出约1250亿美元的指引」",
+        "grade": "S4",
+        "originator": "西南证券研究院海外研究团队（转述各公司业绩会指引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "同源转述",
+      "notes": "**原文是「现金资本支出」**，不含融资租赁，与 Meta 那条「含融资租赁」口径不同，不可直接相加。 **corroboration=同源转述**：数字出自公司业绩会，券商转述，不构成独立来源。 **as_of 的做出时点按业绩会月份记**：谷歌、亚马逊、Meta 均为 25Q3 业绩会（2025-10 前后），甲骨文 FY26Q2 业绩会（2025-12），原文未给精确日期，标 [未核]。"
+    },
+    {
+      "fact_id": "swsc-capex-guide-meta-2025-lower",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "meta",
+        "label": "Meta"
+      },
+      "value": 700.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "厂商指引",
+        "vintage": "其他快照",
+        "region": "US"
+      },
+      "as_of": "2025E@2025-10",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "89cf8449629c9ec7dd33ebee5e3ecb6d362ffe5f40662709a22401cf5b117f37",
+        "local_file": "西南证券 AI专题·从FOMO CapEx到ROI CapEx（2026-01）.pdf",
+        "locator": "第 6 页 1.1 节：「Meta：第三次上调2025年全年资本开支指引，预计全年资本开支（含融资租赁）将在700亿~720亿美元之间」",
+        "grade": "S4",
+        "originator": "西南证券研究院海外研究团队（转述各公司业绩会指引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "同源转述",
+      "notes": "**含融资租赁**，且是年内第三次上调。区间下界。 **corroboration=同源转述**：数字出自公司业绩会，券商转述，不构成独立来源。 **as_of 的做出时点按业绩会月份记**：谷歌、亚马逊、Meta 均为 25Q3 业绩会（2025-10 前后），甲骨文 FY26Q2 业绩会（2025-12），原文未给精确日期，标 [未核]。"
+    },
+    {
+      "fact_id": "swsc-capex-guide-meta-2025-upper",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "meta",
+        "label": "Meta"
+      },
+      "value": 720.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "厂商指引",
+        "vintage": "其他快照",
+        "region": "US"
+      },
+      "as_of": "2025E@2025-10",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "89cf8449629c9ec7dd33ebee5e3ecb6d362ffe5f40662709a22401cf5b117f37",
+        "local_file": "西南证券 AI专题·从FOMO CapEx到ROI CapEx（2026-01）.pdf",
+        "locator": "第 6 页 1.1 节：同句",
+        "grade": "S4",
+        "originator": "西南证券研究院海外研究团队（转述各公司业绩会指引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "同源转述",
+      "notes": "区间上界，含融资租赁。 **corroboration=同源转述**：数字出自公司业绩会，券商转述，不构成独立来源。 **as_of 的做出时点按业绩会月份记**：谷歌、亚马逊、Meta 均为 25Q3 业绩会（2025-10 前后），甲骨文 FY26Q2 业绩会（2025-12），原文未给精确日期，标 [未核]。"
+    },
+    {
+      "fact_id": "swsc-capex-guide-oracle-2026",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "oracle",
+        "label": "甲骨文"
+      },
+      "value": 500.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "厂商指引",
+        "vintage": "其他快照",
+        "region": "US"
+      },
+      "as_of": "2026E@2025-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "89cf8449629c9ec7dd33ebee5e3ecb6d362ffe5f40662709a22401cf5b117f37",
+        "local_file": "西南证券 AI专题·从FOMO CapEx到ROI CapEx（2026-01）.pdf",
+        "locator": "第 8 页 1.2 节：「于FY26Q2业绩会将FY2026资本支出指引从350亿美元上调至500亿美元，而维持全年总收入670亿美元指引不变」",
+        "grade": "S4",
+        "originator": "西南证券研究院海外研究团队（转述各公司业绩会指引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "同源转述",
+      "notes": "**财年口径**：甲骨文 FY2026 截至 2026 年 5 月。**资本开支指引上调 43%（350→500 亿），收入指引 670 亿不变**——capex/收入之比由 52% 升到 75%；FY25Q4 至 FY26Q2 自由现金流（TTM）为 −4 / −59 / −132 亿美元，**连续三个季度为负且在扩大**。 **corroboration=同源转述**：数字出自公司业绩会，券商转述，不构成独立来源。 **as_of 的做出时点按业绩会月份记**：谷歌、亚马逊、Meta 均为 25Q3 业绩会（2025-10 前后），甲骨文 FY26Q2 业绩会（2025-12），原文未给精确日期，标 [未核]。"
     }
   ]
 }
