@@ -64412,6 +64412,102 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原文「大约 75%」；其余约 25% 由风冷承担。对照 SemiAnalysis 100MW 配 85MW DLC 冷量（库内 cooling_capacity_ratio 其他条）。"
+    },
+    {
+      "fact_id": "csc2025-ai-server-mlcc-per-server",
+      "metric_id": "rack_component_count",
+      "entity": {
+        "type": "product",
+        "id": "ai-server-mlcc-per-server",
+        "label": "AI 服务器（泛指）"
+      },
+      "asserter": "中信建投证券",
+      "value": 28000.0,
+      "unit": "个",
+      "caliber": {
+        "product": "AI 服务器（泛指）",
+        "component": "其他",
+        "denominator": "每托盘",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2025-12",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "01d15f3f81085ebfbf0c2b84cebc8877113c6441ee986bed84500a83594a835b",
+        "local_file": "20251206-中信建投-人工智能行业：AI服务器功率增长使AI芯片电感和AI芯片电容需求持续增长(38页).pdf",
+        "locator": "第 3 页：「AI服务器MLCC用量可以达到2.8万颗/台，是普通服务器的13倍，容量达600,000μF，是传统服务器的27倍」",
+        "grade": "S3",
+        "originator": "中信建投证券《AI服务器功率增长使AI芯片电感和AI芯片电容需求持续增长》（2025-12-06）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "component 原文为 MLCC（多层陶瓷电容），枚举无此项记「其他」；原文单位「颗/台」（每台服务器），denominator 取最接近的「每托盘」。原文「可以达到」按上界记；未注明出处。"
+    },
+    {
+      "fact_id": "csc2025-b200-vrm-inductors-per-gpu",
+      "metric_id": "rack_component_count",
+      "entity": {
+        "type": "product",
+        "id": "b200-vrm-inductors-per-gpu",
+        "label": "NVIDIA B200（单 GPU）"
+      },
+      "asserter": "中信建投证券",
+      "value": 20.0,
+      "unit": "个",
+      "caliber": {
+        "product": "NVIDIA B200（单 GPU）",
+        "component": "其他",
+        "denominator": "每卡",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2025-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "01d15f3f81085ebfbf0c2b84cebc8877113c6441ee986bed84500a83594a835b",
+        "local_file": "20251206-中信建投-人工智能行业：AI服务器功率增长使AI芯片电感和AI芯片电容需求持续增长(38页).pdf",
+        "locator": "第 18 页：「英伟达B200（单GPU）的核心供电通常配置18–24相，每相一颗电感，因此板上会看到20颗左右的大号磁性电感排成一列」",
+        "grade": "S3",
+        "originator": "中信建投证券《AI服务器功率增长使AI芯片电感和AI芯片电容需求持续增长》（2025-12-06）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "component 原文为 VRM 电感（Chokes），记「其他」；「18–24 相」对应电感数，原文取「20颗左右」。"
+    },
+    {
+      "fact_id": "csc2025-gb200-vrm-inductors-per-card",
+      "metric_id": "rack_component_count",
+      "entity": {
+        "type": "product",
+        "id": "gb200-vrm-inductors-per-card",
+        "label": "NVIDIA GB200（2×B200 + Grace CPU）"
+      },
+      "asserter": "中信建投证券",
+      "value": 40.0,
+      "unit": "个",
+      "caliber": {
+        "product": "NVIDIA GB200（2×B200 + Grace CPU）",
+        "component": "其他",
+        "denominator": "每板卡",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2025-12",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "01d15f3f81085ebfbf0c2b84cebc8877113c6441ee986bed84500a83594a835b",
+        "local_file": "20251206-中信建投-人工智能行业：AI服务器功率增长使AI芯片电感和AI芯片电容需求持续增长(38页).pdf",
+        "locator": "第 18 页：「GB200（2×B200+Grace CPU）……三者分别需要独立的多相VRM，因此整卡的核心供电电感数量往往超过40颗以上，是传统GPU的数倍」",
+        "grade": "S3",
+        "originator": "中信建投证券《AI服务器功率增长使AI芯片电感和AI芯片电容需求持续增长》（2025-12-06）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "component 原文为核心供电电感，记「其他」；「超过 40 颗」按下界记。"
     }
   ]
 }
