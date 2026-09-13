@@ -52,7 +52,11 @@ class PublicFactDisplayTests(unittest.TestCase):
         self.assertNotIn(facts.WITHHELD, result)
 
     def test_the_gate_is_on_the_only_public_exit(self):
-        """门放在唯一出口上，不靠调用方自觉——库里 37 条一条都不能漏。"""
+        """门放在唯一出口上，不靠调用方自觉——库里受限的每一条都不能漏。
+
+        不钉条数：受限这一类会随复审增减（2026-09-13 所有者取消了 3 条招标控制价的
+        标记，由 37 降到 34），钉住条数只会让测试在正确的改动上报红。
+        """
         store = json.loads((project_root() / 'data/facts.json')
                            .read_text(encoding='utf-8'))['records']
         metrics = {m['metric_id']: m for m in json.loads(

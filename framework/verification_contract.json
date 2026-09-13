@@ -42,7 +42,7 @@
     "tests/unit/test_continuous_reader.py": "6c36c298912077a7ab480e43f4a54fbfbb08978624c6e6efb3ac9f47657f4238",
     "tests/unit/test_deep_read.py": "c37407f0b58782b159a73b54f90304e46947efabc9bc86d1fe5922873f75f0e9",
     "tests/unit/test_deep_read_transactions.py": "8dbc032fa92ecaff99d208380714f630a5aec8a728c13d01a5879c68e7f42813",
-    "tests/unit/test_display_regressions.py": "22c778fe01b42915da6b5d1c2aa9292db8f481a135400c63307d4e9c6ddfeb20",
+    "tests/unit/test_display_regressions.py": "2d421828267a60a806a04821a49210a92a0ff424cfe64b32247f30f686c4d667",
     "tests/unit/test_fact_contract.py": "7af06630640c2122fdd3f24c551d64636e639e0b8f3bfbf80bcd887c1a6d6407",
     "tests/unit/test_file_moves.py": "1f9ba746f06885b6d48ee2d73b5da8bc4364ca1ad54e85b5d6fe23cdbf1edf9a",
     "tests/unit/test_governance.py": "ee59b285f13ea82d6df0426d0fbd519b7b8f9e7695fde569708c0dac10d71f39",
@@ -112,7 +112,8 @@
         "分发限制门只覆盖 knowledge/facts.py 这一个对外出口；新增出口须复用 restricted()，机检不覆盖。",
         "A 档分诊用极差阈值（2 倍）区分方法离散与量级分歧：这是分诊不是判定，阈值两侧都可能误判（口径差可能只差 10%，模型离散也可能超过 2 倍），链接全部保留待人复核。",
         "asserter 的拼写分裂（谷歌/Google 这类中英对照）机检挡不住，只能靠 manage.py facts --asserters 人工对照。",
-        "basis 的 nature 声明由人逐维判断：181 个指标声明为数值性质、11 个重载的留在口径里，新增指标若把「测的是什么」放进 basis 又误加 nature，机检不会发现。"
+        "basis 的 nature 声明由人逐维判断：181 个指标声明为数值性质、11 个重载的留在口径里，新增指标若把「测的是什么」放进 basis 又误加 nature，机检不会发现。",
+        "分发受限这一类由人判断原件有无分发限制：2026-09-13 所有者取消了 3 条招标控制价的标记（招标控制价依法公开），现存 34 条全部来自中国联通企标那一份原件。机检只保证受限条目不外泄，不判断某份材料该不该被标记。"
       ]
     },
     {
