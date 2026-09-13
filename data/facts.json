@@ -78810,6 +78810,68 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "机架母线的额定供电能力（整柜功率上限），不是实际出货密度。15625A、1483 mm²、85 kg；测试 750kW 温升 29.6℃、压降 0.05V。液冷的是母线本身，机架散热路线原文未写，cooling_route 记未注明。 as_of 取 OCP Global Summit 2024（2024-10）。"
+    },
+    {
+      "fact_id": "sa-100k-msft-dev-cluster-rack-power",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "project",
+        "id": "microsoft-h100-development-cluster",
+        "label": "微软 H100 开发集群（SemiAnalysis 配图，未点名地点）"
+      },
+      "asserter": "SemiAnalysis",
+      "value": 40.0,
+      "unit": "kW/架",
+      "caliber": {
+        "basis": "设计取值",
+        "scope": "单柜上限",
+        "region": "未披露"
+      },
+      "as_of": "2024-06",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "7bff306036e1d1be322f769e4a36fcfe28620997d5d1889f90fd1495ba59fb07",
+        "local_file": "100k H100 Clusters_ Power, Network Topology, Ethernet vs InfiniBand, Reliability, Failures, Checkpointing.pdf",
+        "locator": "第 28 页：「In this Microsoft development cluster, each rack supports up to 40kW of power density, housing four H100 nodes per rack」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《100,000 H100 Clusters: Power, Network Topology, Ethernet vs InfiniBand, Reliability, Failures, Checkpointing》（Dylan Patel、Daniel Nishball，2024-06-17）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「supports up to 40kW」按上界记；每架 4 台 8 卡 H100 服务器。地点原文未写，region 记未披露。"
+    },
+    {
+      "fact_id": "sa-100k-msft-dev-cluster-nodes-per-rack",
+      "metric_id": "rack_component_count",
+      "entity": {
+        "type": "project",
+        "id": "microsoft-h100-development-cluster",
+        "label": "微软 H100 开发集群（SemiAnalysis 配图，未点名地点）"
+      },
+      "asserter": "SemiAnalysis",
+      "value": 4.0,
+      "unit": "个",
+      "caliber": {
+        "product": "微软 H100 开发集群机架",
+        "component": "计算托盘",
+        "denominator": "每机架",
+        "spec_basis": "第三方实测",
+        "region": "未披露"
+      },
+      "as_of": "2024-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7bff306036e1d1be322f769e4a36fcfe28620997d5d1889f90fd1495ba59fb07",
+        "local_file": "100k H100 Clusters_ Power, Network Topology, Ethernet vs InfiniBand, Reliability, Failures, Checkpointing.pdf",
+        "locator": "第 28 页：「In this Microsoft development cluster, each rack supports up to 40kW of power density, housing four H100 nodes per rack」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《100,000 H100 Clusters: Power, Network Topology, Ethernet vs InfiniBand, Reliability, Failures, Checkpointing》（Dylan Patel、Daniel Nishball，2024-06-17）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「four H100 nodes per rack」，按节点记计算托盘；依据现场照片判读，spec_basis 取第三方实测。地点原文未写，region 记未披露。"
     }
   ]
 }
