@@ -28516,6 +28516,448 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**表后 49.0 GW + 表前 33.0 GW = 合计 82.0 GW**（本条是合计列）。    **对照需求侧**：全美 82 GW 可用容量净增，对 2030 年 AI 数据中心新增需求 34-253 GW（见 rand-us-dc-additional-demand-2030-*）。原文结论是表前资源的净增「不太可能」满足这个规模。 **FTM 与 BTM 两列本库没有单独取值**（capacity_basis 只有铭牌/有效/合计可用），只能写在这里；**且 BTM 这一列（全美 49 GW）与表 2.13/2.14 算出的有效容量增量（太阳能 9.8 + 储能 26.5 = 36.3 GW）对不上**，原文未解释差额，疑为含太阳能+储能混合方案的正面情景口径，标 [未核]。"
+    },
+    {
+      "fact_id": "xylem-wue-tower-withdraw",
+      "metric_id": "dc_wue_limit",
+      "entity": {
+        "type": "technology",
+        "id": "dc-cooling-water-use",
+        "label": "数据中心冷却方式的单位水耗"
+      },
+      "value": 2.75,
+      "unit": "L/kWh",
+      "caliber": {
+        "water_zone": "未划分",
+        "limit_type": "实测均值",
+        "region": "Global",
+        "cooling_tech": "冷却塔",
+        "water_basis": "取水量",
+        "duty_window": "持续运行"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c3393ab9f9b8714cb7a0173ac5877537e155d15458a5303da9f988e8d819d064",
+        "local_file": "滋养新经济：驾驭人工智能革命的影响（赛莱默 / Global Water Intelligence，2026-01，中译本）.pdf",
+        "locator": "第 11 页冷却技术对比栏：「冷却塔冷却：……持续运行状态下，其单位水耗约为 2.75 升/千瓦时」",
+        "grade": "S3",
+        "originator": "赛莱默（Xylem）与 Global Water Intelligence（页脚 © GWI）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**取水与耗水必须成对读**：取水量是从水源抽走的全部水，消耗性水耗是其中蒸发掉、永久离开流域的部分，其余回排（但水温与水质已变）。**原文核心论点就是两者不能混**。 **消耗占取水的比例：冷却塔 67%、绝热 84%、直接液冷配冷却塔 68%**——绝热冷却取水最少但几乎全蒸发。 **duty_window=持续运行**：这是设备满负荷连续运转的单位水耗，**不是年均 WUE**——绝热与直接液冷都是季节性使用，年均值低得多（见同份的年均两条）。 **limit_type=实测均值是就近归类**：原文是技术典型值，未给样本来源，标 [未核]。"
+    },
+    {
+      "fact_id": "xylem-wue-tower-consume",
+      "metric_id": "dc_wue_limit",
+      "entity": {
+        "type": "technology",
+        "id": "dc-cooling-water-use",
+        "label": "数据中心冷却方式的单位水耗"
+      },
+      "value": 1.85,
+      "unit": "L/kWh",
+      "caliber": {
+        "water_zone": "未划分",
+        "limit_type": "实测均值",
+        "region": "Global",
+        "cooling_tech": "冷却塔",
+        "water_basis": "消耗性水耗",
+        "duty_window": "持续运行"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c3393ab9f9b8714cb7a0173ac5877537e155d15458a5303da9f988e8d819d064",
+        "local_file": "滋养新经济：驾驭人工智能革命的影响（赛莱默 / Global Water Intelligence，2026-01，中译本）.pdf",
+        "locator": "第 11 页冷却技术对比栏：「其中消耗性水耗达 1.85 升/千瓦时」",
+        "grade": "S3",
+        "originator": "赛莱默（Xylem）与 Global Water Intelligence（页脚 © GWI）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**取水与耗水必须成对读**：取水量是从水源抽走的全部水，消耗性水耗是其中蒸发掉、永久离开流域的部分，其余回排（但水温与水质已变）。**原文核心论点就是两者不能混**。 **消耗占取水的比例：冷却塔 67%、绝热 84%、直接液冷配冷却塔 68%**——绝热冷却取水最少但几乎全蒸发。 **duty_window=持续运行**：这是设备满负荷连续运转的单位水耗，**不是年均 WUE**——绝热与直接液冷都是季节性使用，年均值低得多（见同份的年均两条）。 **limit_type=实测均值是就近归类**：原文是技术典型值，未给样本来源，标 [未核]。"
+    },
+    {
+      "fact_id": "xylem-wue-adiabatic-withdraw",
+      "metric_id": "dc_wue_limit",
+      "entity": {
+        "type": "technology",
+        "id": "dc-cooling-water-use",
+        "label": "数据中心冷却方式的单位水耗"
+      },
+      "value": 0.75,
+      "unit": "L/kWh",
+      "caliber": {
+        "water_zone": "未划分",
+        "limit_type": "实测均值",
+        "region": "Global",
+        "cooling_tech": "绝热冷却",
+        "water_basis": "取水量",
+        "duty_window": "持续运行"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c3393ab9f9b8714cb7a0173ac5877537e155d15458a5303da9f988e8d819d064",
+        "local_file": "滋养新经济：驾驭人工智能革命的影响（赛莱默 / Global Water Intelligence，2026-01，中译本）.pdf",
+        "locator": "第 11 页冷却技术对比栏：「绝热冷却系统：……持续运行时，其单位水耗约为 0.75 升/千瓦时」",
+        "grade": "S3",
+        "originator": "赛莱默（Xylem）与 Global Water Intelligence（页脚 © GWI）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**取水与耗水必须成对读**：取水量是从水源抽走的全部水，消耗性水耗是其中蒸发掉、永久离开流域的部分，其余回排（但水温与水质已变）。**原文核心论点就是两者不能混**。 **消耗占取水的比例：冷却塔 67%、绝热 84%、直接液冷配冷却塔 68%**——绝热冷却取水最少但几乎全蒸发。 **duty_window=持续运行**：这是设备满负荷连续运转的单位水耗，**不是年均 WUE**——绝热与直接液冷都是季节性使用，年均值低得多（见同份的年均两条）。 **limit_type=实测均值是就近归类**：原文是技术典型值，未给样本来源，标 [未核]。"
+    },
+    {
+      "fact_id": "xylem-wue-adiabatic-consume",
+      "metric_id": "dc_wue_limit",
+      "entity": {
+        "type": "technology",
+        "id": "dc-cooling-water-use",
+        "label": "数据中心冷却方式的单位水耗"
+      },
+      "value": 0.63,
+      "unit": "L/kWh",
+      "caliber": {
+        "water_zone": "未划分",
+        "limit_type": "实测均值",
+        "region": "Global",
+        "cooling_tech": "绝热冷却",
+        "water_basis": "消耗性水耗",
+        "duty_window": "持续运行"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c3393ab9f9b8714cb7a0173ac5877537e155d15458a5303da9f988e8d819d064",
+        "local_file": "滋养新经济：驾驭人工智能革命的影响（赛莱默 / Global Water Intelligence，2026-01，中译本）.pdf",
+        "locator": "第 11 页冷却技术对比栏：「其中消耗性水耗为 0.63 升/千瓦时」",
+        "grade": "S3",
+        "originator": "赛莱默（Xylem）与 Global Water Intelligence（页脚 © GWI）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**取水与耗水必须成对读**：取水量是从水源抽走的全部水，消耗性水耗是其中蒸发掉、永久离开流域的部分，其余回排（但水温与水质已变）。**原文核心论点就是两者不能混**。 **消耗占取水的比例：冷却塔 67%、绝热 84%、直接液冷配冷却塔 68%**——绝热冷却取水最少但几乎全蒸发。 **duty_window=持续运行**：这是设备满负荷连续运转的单位水耗，**不是年均 WUE**——绝热与直接液冷都是季节性使用，年均值低得多（见同份的年均两条）。 **limit_type=实测均值是就近归类**：原文是技术典型值，未给样本来源，标 [未核]。"
+    },
+    {
+      "fact_id": "xylem-wue-dlc-tower-withdraw",
+      "metric_id": "dc_wue_limit",
+      "entity": {
+        "type": "technology",
+        "id": "dc-cooling-water-use",
+        "label": "数据中心冷却方式的单位水耗"
+      },
+      "value": 1.73,
+      "unit": "L/kWh",
+      "caliber": {
+        "water_zone": "未划分",
+        "limit_type": "实测均值",
+        "region": "Global",
+        "cooling_tech": "直接液冷+冷却塔",
+        "water_basis": "取水量",
+        "duty_window": "持续运行"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c3393ab9f9b8714cb7a0173ac5877537e155d15458a5303da9f988e8d819d064",
+        "local_file": "滋养新经济：驾驭人工智能革命的影响（赛莱默 / Global Water Intelligence，2026-01，中译本）.pdf",
+        "locator": "第 11 页冷却技术对比栏：「直接液冷：……搭配冷却塔的直接液冷系统在持续运行时，单位水耗约为 1.73 升/千瓦时」",
+        "grade": "S3",
+        "originator": "赛莱默（Xylem）与 Global Water Intelligence（页脚 © GWI）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**取水与耗水必须成对读**：取水量是从水源抽走的全部水，消耗性水耗是其中蒸发掉、永久离开流域的部分，其余回排（但水温与水质已变）。**原文核心论点就是两者不能混**。 **消耗占取水的比例：冷却塔 67%、绝热 84%、直接液冷配冷却塔 68%**——绝热冷却取水最少但几乎全蒸发。 **duty_window=持续运行**：这是设备满负荷连续运转的单位水耗，**不是年均 WUE**——绝热与直接液冷都是季节性使用，年均值低得多（见同份的年均两条）。 **limit_type=实测均值是就近归类**：原文是技术典型值，未给样本来源，标 [未核]。"
+    },
+    {
+      "fact_id": "xylem-wue-dlc-tower-consume",
+      "metric_id": "dc_wue_limit",
+      "entity": {
+        "type": "technology",
+        "id": "dc-cooling-water-use",
+        "label": "数据中心冷却方式的单位水耗"
+      },
+      "value": 1.17,
+      "unit": "L/kWh",
+      "caliber": {
+        "water_zone": "未划分",
+        "limit_type": "实测均值",
+        "region": "Global",
+        "cooling_tech": "直接液冷+冷却塔",
+        "water_basis": "消耗性水耗",
+        "duty_window": "持续运行"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c3393ab9f9b8714cb7a0173ac5877537e155d15458a5303da9f988e8d819d064",
+        "local_file": "滋养新经济：驾驭人工智能革命的影响（赛莱默 / Global Water Intelligence，2026-01，中译本）.pdf",
+        "locator": "第 11 页冷却技术对比栏：「其中消耗性水耗为 1.17 升/千瓦时」",
+        "grade": "S3",
+        "originator": "赛莱默（Xylem）与 Global Water Intelligence（页脚 © GWI）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**取水与耗水必须成对读**：取水量是从水源抽走的全部水，消耗性水耗是其中蒸发掉、永久离开流域的部分，其余回排（但水温与水质已变）。**原文核心论点就是两者不能混**。 **消耗占取水的比例：冷却塔 67%、绝热 84%、直接液冷配冷却塔 68%**——绝热冷却取水最少但几乎全蒸发。 **duty_window=持续运行**：这是设备满负荷连续运转的单位水耗，**不是年均 WUE**——绝热与直接液冷都是季节性使用，年均值低得多（见同份的年均两条）。 **limit_type=实测均值是就近归类**：原文是技术典型值，未给样本来源，标 [未核]。"
+    },
+    {
+      "fact_id": "xylem-wue-annual-adiabatic",
+      "metric_id": "dc_wue_limit",
+      "entity": {
+        "type": "technology",
+        "id": "dc-cooling-water-use",
+        "label": "数据中心冷却方式的单位水耗"
+      },
+      "value": 0.1,
+      "unit": "L/kWh",
+      "caliber": {
+        "water_zone": "未划分",
+        "limit_type": "实测均值",
+        "region": "Global",
+        "cooling_tech": "绝热冷却",
+        "water_basis": "取水量",
+        "duty_window": "年使用 5%-20%"
+      },
+      "as_of": "2026",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "c3393ab9f9b8714cb7a0173ac5877537e155d15458a5303da9f988e8d819d064",
+        "local_file": "滋养新经济：驾驭人工智能革命的影响（赛莱默 / Global Water Intelligence，2026-01，中译本）.pdf",
+        "locator": "第 11 页：「绝热冷却系统的年使用时长通常仅为 5%-20%，因此其年度平均用水效率（WUE）往往低于 0.1 升/千瓦时」",
+        "grade": "S3",
+        "originator": "赛莱默（Xylem）与 Global Water Intelligence（页脚 © GWI）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**年均与持续运行差近一个数量级**：绝热冷却持续运行 0.75，年均 <0.1；直接液冷配冷却塔持续运行 1.73，年均 <0.3。**引用 WUE 不说是哪个窗口，等于没说**。原文「低于」按上界记。 water_basis 按取水量记：原文「用水效率（WUE）」按行业惯例是取水口径，原文未明说，标 [未核]。 **对照库内中国政策限值**（cn-wue-limit-scarce-2023 缺水区 0.8、丰水区 1.4）：这两条年均值远低于政策线，**但一个是技术年均一个是政策上限，不可当作「国内要求很宽松」的证据**。"
+    },
+    {
+      "fact_id": "xylem-wue-annual-dlc-tower",
+      "metric_id": "dc_wue_limit",
+      "entity": {
+        "type": "technology",
+        "id": "dc-cooling-water-use",
+        "label": "数据中心冷却方式的单位水耗"
+      },
+      "value": 0.3,
+      "unit": "L/kWh",
+      "caliber": {
+        "water_zone": "未划分",
+        "limit_type": "实测均值",
+        "region": "Global",
+        "cooling_tech": "直接液冷+冷却塔",
+        "water_basis": "取水量",
+        "duty_window": "年均"
+      },
+      "as_of": "2026",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "c3393ab9f9b8714cb7a0173ac5877537e155d15458a5303da9f988e8d819d064",
+        "local_file": "滋养新经济：驾驭人工智能革命的影响（赛莱默 / Global Water Intelligence，2026-01，中译本）.pdf",
+        "locator": "第 11 页：「若考虑季节使用差异，该系统的年度平均用水效率（WUE）通常低于 0.3 升/千瓦时」",
+        "grade": "S3",
+        "originator": "赛莱默（Xylem）与 Global Water Intelligence（页脚 © GWI）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**年均与持续运行差近一个数量级**：绝热冷却持续运行 0.75，年均 <0.1；直接液冷配冷却塔持续运行 1.73，年均 <0.3。**引用 WUE 不说是哪个窗口，等于没说**。原文「低于」按上界记。 water_basis 按取水量记：原文「用水效率（WUE）」按行业惯例是取水口径，原文未明说，标 [未核]。 **对照库内中国政策限值**（cn-wue-limit-scarce-2023 缺水区 0.8、丰水区 1.4）：这两条年均值远低于政策线，**但一个是技术年均一个是政策上限，不可当作「国内要求很宽松」的证据**。"
+    },
+    {
+      "fact_id": "xylem-ai-water-30min-total",
+      "metric_id": "ai_water_footprint",
+      "entity": {
+        "type": "market",
+        "id": "ai-usage-water-footprint",
+        "label": "人工智能使用的水足迹"
+      },
+      "value": 616.0,
+      "unit": "毫升",
+      "caliber": {
+        "denominator": "每 30 分钟使用",
+        "water_basis": "取水量",
+        "stage": "合计",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c3393ab9f9b8714cb7a0173ac5877537e155d15458a5303da9f988e8d819d064",
+        "local_file": "滋养新经济：驾驭人工智能革命的影响（赛莱默 / Global Water Intelligence，2026-01，中译本）.pdf",
+        "locator": "第 6 页「人工智能的水资源足迹」图：「使用人工智能 30 分钟的水资源影响……616ml 用水量」；正文：「使用人工智能 30 分钟仅需消耗略多于 600 毫升的水，远低于此前对人工智能每次查询用水量的估计」",
+        "grade": "S3",
+        "originator": "赛莱默（Xylem）与 Global Water Intelligence（页脚 © GWI）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是回应「AI 一次查询喝一瓶水」类说法的量化**：30 分钟约 616 毫升，其中 91% 回排、只有 9% 真正蒸发。 **构成排序原文给了**：最大的水耗来自数据中心的电力供应（场外发电），其次是芯片制造中嵌入的水，**数据中心现场冷却反而最少**——与大众直觉相反。图中三段分项的毫升数原文未标，本库只录合计。 图注来源为 GWI。"
+    },
+    {
+      "fact_id": "xylem-ai-water-30min-nonconsume",
+      "metric_id": "ai_water_footprint",
+      "entity": {
+        "type": "market",
+        "id": "ai-usage-water-footprint",
+        "label": "人工智能使用的水足迹"
+      },
+      "value": 560.6,
+      "unit": "毫升",
+      "caliber": {
+        "denominator": "每 30 分钟使用",
+        "water_basis": "非消耗性（回排）",
+        "stage": "合计",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c3393ab9f9b8714cb7a0173ac5877537e155d15458a5303da9f988e8d819d064",
+        "local_file": "滋养新经济：驾驭人工智能革命的影响（赛莱默 / Global Water Intelligence，2026-01，中译本）.pdf",
+        "locator": "第 6 页「人工智能的水资源足迹」图：「91% 非消耗性用水」；正文：「使用人工智能 30 分钟仅需消耗略多于 600 毫升的水，远低于此前对人工智能每次查询用水量的估计」",
+        "grade": "S3",
+        "originator": "赛莱默（Xylem）与 Global Water Intelligence（页脚 © GWI）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：616 毫升 × 91% = 560.6 毫升。 **构成排序原文给了**：最大的水耗来自数据中心的电力供应（场外发电），其次是芯片制造中嵌入的水，**数据中心现场冷却反而最少**——与大众直觉相反。图中三段分项的毫升数原文未标，本库只录合计。 图注来源为 GWI。"
+    },
+    {
+      "fact_id": "xylem-ai-water-30min-consume",
+      "metric_id": "ai_water_footprint",
+      "entity": {
+        "type": "market",
+        "id": "ai-usage-water-footprint",
+        "label": "人工智能使用的水足迹"
+      },
+      "value": 55.4,
+      "unit": "毫升",
+      "caliber": {
+        "denominator": "每 30 分钟使用",
+        "water_basis": "消耗性水耗",
+        "stage": "合计",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c3393ab9f9b8714cb7a0173ac5877537e155d15458a5303da9f988e8d819d064",
+        "local_file": "滋养新经济：驾驭人工智能革命的影响（赛莱默 / Global Water Intelligence，2026-01，中译本）.pdf",
+        "locator": "第 6 页「人工智能的水资源足迹」图：「9% 消耗性用水」；正文：「使用人工智能 30 分钟仅需消耗略多于 600 毫升的水，远低于此前对人工智能每次查询用水量的估计」",
+        "grade": "S3",
+        "originator": "赛莱默（Xylem）与 Global Water Intelligence（页脚 © GWI）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：616 毫升 × 9% = 55.4 毫升。 **构成排序原文给了**：最大的水耗来自数据中心的电力供应（场外发电），其次是芯片制造中嵌入的水，**数据中心现场冷却反而最少**——与大众直觉相反。图中三段分项的毫升数原文未标，本库只录合计。 图注来源为 GWI。"
+    },
+    {
+      "fact_id": "xylem-industry-water-share-current",
+      "metric_id": "industry_water_use",
+      "entity": {
+        "type": "industry",
+        "id": "new-economy-water",
+        "label": "新经济三大产业（芯片制造/数据中心/相关制造）用水"
+      },
+      "value": 3.7,
+      "unit": "%",
+      "caliber": {
+        "parameter": "占工业取水比",
+        "industry_scope": "新经济三大产业",
+        "window": "某一年",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c3393ab9f9b8714cb7a0173ac5877537e155d15458a5303da9f988e8d819d064",
+        "local_file": "滋养新经济：驾驭人工智能革命的影响（赛莱默 / Global Water Intelligence，2026-01，中译本）.pdf",
+        "locator": "第 3 页摘要「增长态势」栏：「2025 年其工业取水量仅占总量的 3.7%」；第 12 页重述",
+        "grade": "S3",
+        "originator": "赛莱默（Xylem）与 Global Water Intelligence（页脚 © GWI）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**3.7% 这个数要和增长率一起读**：份额很小，但到 2050 年还要再增长 129%——**且集中在水资源紧张地区**，原文指出数据中心与芯片厂的选址逻辑是「与低成本电力和土地挂钩、与水资源脱钩」。 「三大产业」指人工智能新经济的芯片制造、数据中心与相关制造，原文未给这个 3.7% 的分子分母明细。 **时点更正为 2025**：原文明写「2025 年其工业取水量仅占总量的 3.7%」。同栏给出 2025 年新经济淡水取水量 23.7 立方公里，本库无立方公里口径的取水量指标，未录。"
+    },
+    {
+      "fact_id": "xylem-industry-water-growth-to-2050",
+      "metric_id": "industry_water_use",
+      "entity": {
+        "type": "industry",
+        "id": "new-economy-water",
+        "label": "新经济三大产业（芯片制造/数据中心/相关制造）用水"
+      },
+      "value": 129.0,
+      "unit": "%",
+      "caliber": {
+        "parameter": "用水增长率",
+        "industry_scope": "新经济三大产业",
+        "window": "至2050",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2050E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c3393ab9f9b8714cb7a0173ac5877537e155d15458a5303da9f988e8d819d064",
+        "local_file": "滋养新经济：驾驭人工智能革命的影响（赛莱默 / Global Water Intelligence，2026-01，中译本）.pdf",
+        "locator": "第 3 页摘要「增长态势」栏：「到2050年，用水量将再增长129%」（基期为 2025 年的 23.7 立方公里）",
+        "grade": "S3",
+        "originator": "赛莱默（Xylem）与 Global Water Intelligence（页脚 © GWI）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**129% 是相对当前的增幅，38% 是 2020 年以来已发生的增幅**，两者基期不同不可相加。原文同页：数据中心用水增长远慢于用电——不到 2050 年用电预计近 7 倍增幅的一半。 「三大产业」指人工智能新经济的芯片制造、数据中心与相关制造，原文未给这个 3.7% 的分子分母明细。"
+    },
+    {
+      "fact_id": "xylem-industry-water-growth-since-2020",
+      "metric_id": "industry_water_use",
+      "entity": {
+        "type": "industry",
+        "id": "new-economy-water",
+        "label": "新经济三大产业（芯片制造/数据中心/相关制造）用水"
+      },
+      "value": 38.0,
+      "unit": "%",
+      "caliber": {
+        "parameter": "用水增长率",
+        "industry_scope": "新经济三大产业",
+        "window": "历史区间",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c3393ab9f9b8714cb7a0173ac5877537e155d15458a5303da9f988e8d819d064",
+        "local_file": "滋养新经济：驾驭人工智能革命的影响（赛莱默 / Global Water Intelligence，2026-01，中译本）.pdf",
+        "locator": "第 3 页摘要「增长态势」栏：「2025年，新经济的淡水取水量达23.7立方公里，较2020年增长38%」",
+        "grade": "S3",
+        "originator": "赛莱默（Xylem）与 Global Water Intelligence（页脚 © GWI）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**129% 是相对当前的增幅，38% 是 2020 年以来已发生的增幅**，两者基期不同不可相加。原文同页：数据中心用水增长远慢于用电——不到 2050 年用电预计近 7 倍增幅的一半。 「三大产业」指人工智能新经济的芯片制造、数据中心与相关制造，原文未给这个 3.7% 的分子分母明细。 **时点更正为 2025**：38% 是 2020→2025 五年的累计增幅。"
     }
   ]
 }
