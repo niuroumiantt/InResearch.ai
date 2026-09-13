@@ -36,7 +36,7 @@
 | `data/brief.json` | review_marked | 23 |
 | `data/companies.json` | records | 248 |
 | `data/contracts.json` | records | 2 |
-| `data/facts.json` | records | 1247 |
+| `data/facts.json` | records | 1320 |
 | `data/policies.json` | records | 2 |
 | `data/prices.json` | records | 207 |
 | `data/product_docs_plan.csv` | rows | 801 |
@@ -209,7 +209,7 @@
 | `framework/indicators.json` | indicators | 44 |
 | `framework/interface_manifest.json` | static_pages | 13 |
 | `framework/interface_manifest.json` | template_fragments | 4 |
-| `framework/metrics.json` | metrics | 267 |
+| `framework/metrics.json` | metrics | 278 |
 | `framework/modules.json` | modules | 15 |
 | `framework/research_graph.json` | views | 5 |
 | `framework/research_graph.json` | objects | 118 |

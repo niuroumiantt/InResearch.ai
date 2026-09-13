@@ -1949,31 +1949,71 @@ class DeepReadJournalTests(unittest.TestCase):
                         reader()
 
 
-class TextIdentityPackTests(unittest.TestCase):
+class TextTwinRoutingTests(unittest.TestCase):
+    """Equal extracted text is a review hint, not original identity or full coverage."""
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-twin-')
+        base = Path(self.temp.name)
+        self._saved = (L2.TEXT_MD5, L2.READ_LOG, L2.eligible, L2.full_text,
+                       L2.L1.readable_path, L2.load_metrics, L2.load_questions,
+                       L2.load_facts, L2.PACKET_DIR)
+        L2.TEXT_MD5 = base / 'l2_text_md5.jsonl'
+        L2.READ_LOG = base / 'l2_read.jsonl'
+        L2.PACKET_DIR = base / 'packets'
+        self.text = '中国第三方数据中心运营商分析报告。' * 60
+        source = base / 'copy.pdf'
+        source.write_bytes('另一个字节序列'.encode('utf-8'))
+        self.row = {**L1_ROW, 'sha256': hashlib.sha256(source.read_bytes()).hexdigest()}
+        L2.eligible = lambda min_score=8, include_read=False, since=0: [self.row]
+        L2.full_text = lambda path, suffix: (self.text, {'pages': 41})
+        L2.L1.readable_path = lambda r: (source, False)
+        L2.load_metrics = lambda: METRICS
+        L2.load_questions = lambda: {}
+        L2.load_facts = lambda: {'records': []}
+        # 已读过的那一份：同一正文、另一个 sha
+        L2.remember_fingerprint('a' * 64, L2.text_fingerprint(self.text, {'pages': 41}))
+        L2.READ_LOG.write_text(json.dumps({'sha256': 'a' * 64, 'facts': 3}) + '\n',
+                               encoding='utf-8')
+
+    def tearDown(self):
+        (L2.TEXT_MD5, L2.READ_LOG, L2.eligible, L2.full_text, L2.L1.readable_path,
+         L2.load_metrics, L2.load_questions, L2.load_facts, L2.PACKET_DIR) = self._saved
+        self.temp.cleanup()
+
+    def pack(self, again=False):
+        out = io.StringIO()
+        with redirect_stdout(out):
+            L2.cmd_pack(type('A', (), {'sha': self.row['sha256'][:12] if again else None,
+                                       'min_score': 8, 'again': again, 'since': 0}))
+        return json.loads(out.getvalue())
+
     def test_same_extracted_text_different_bytes_still_gets_its_own_packet(self):
-        with tempfile.TemporaryDirectory() as d, ExitStack() as stack:
-            root = Path(d)
-            original = root/'original.pdf'; original.write_bytes(b'different container and diagrams')
-            sha = hashlib.sha256(original.read_bytes()).hexdigest()
-            body = 'Same extracted text does not prove identical diagrams. ' * 30
-            row = {**L1_ROW, 'sha256': sha, 'suffix': '.pdf'}
-            for name, value in [('TEXT_MD5', root/'fingerprints.jsonl'), ('PACKET_DIR', root/'packets')]:
-                stack.enter_context(patch.object(L2, name, value))
-            stack.enter_context(patch.object(L2, 'eligible', return_value=[row]))
-            stack.enter_context(patch.object(L2, 'read_documents', return_value={'a' * 64}))
-            stack.enter_context(patch.object(L2.L1, 'readable_path', return_value=(original, False)))
-            stack.enter_context(patch.object(L2, 'full_text', return_value=(body, {'pages': 2})))
-            L2.remember_fingerprint('a' * 64, L2.text_fingerprint(body, {'pages': 2}))
-            output = io.StringIO()
-            args = type('Args', (), {'again': False, 'sha': sha, 'min_score': 8, 'since': 0})()
-            with redirect_stdout(output):
-                L2.cmd_pack(args)
-            result = json.loads(output.getvalue())
-            self.assertEqual(result['packed'], 1)
-            self.assertEqual(result['sha256'], sha)
-            self.assertEqual(result['same_text_already_read'], ['a' * 64])
-            self.assertTrue(Path(result['text']).is_file())
-            self.assertNotIn(sha, L2.read_documents())
+        before = L2.READ_LOG.read_bytes()
+        report = self.pack()
+        self.assertEqual(report['packed'], 1)
+        self.assertEqual(report['sha256'], self.row['sha256'])
+        self.assertEqual(report['same_text_already_read'], ['a' * 64])
+        self.assertNotIn(self.row['sha256'], L2.read_documents())
+        self.assertEqual(before, L2.READ_LOG.read_bytes())
+        self.assertTrue(Path(report['text']).is_file())
+
+    def test_again_still_reopens_a_genuinely_read_document(self):
+        L2.append_record(L2.READ_LOG, {'sha256': self.row['sha256'], 'facts': 3})
+        report = self.pack(again=True)
+        self.assertEqual(report['packed'], 1)
+        self.assertTrue(report['again'])
+
+    def test_old_automatic_twin_record_is_preserved_but_not_counted_as_read(self):
+        L2.append_record(L2.READ_LOG, {'sha256': self.row['sha256'], 'facts': 0, 'twin_of': ['a' * 64]})
+        before = L2.READ_LOG.read_bytes()
+        self.assertNotIn(self.row['sha256'], L2.read_documents())
+        self.assertIn('a' * 64, L2.read_documents())
+        self.assertEqual(before, L2.READ_LOG.read_bytes())
+        # A later actual full read with no facts remains a valid completion.
+        L2.append_record(L2.READ_LOG, {'sha256': self.row['sha256'], 'facts': 0})
+        self.assertIn(self.row['sha256'], L2.read_documents())
+        self.assertTrue(L2.READ_LOG.read_bytes().startswith(before))
 
 
 class NearTwinTests(unittest.TestCase):

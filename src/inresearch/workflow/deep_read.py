@@ -112,7 +112,8 @@ def all_results() -> dict:
 
 def read_documents() -> set:
     """Documents already given a full read, so pack advances instead of looping."""
-    return {row['sha256'] for row in read_rows(READ_LOG) if row.get('sha256')}
+    return {row['sha256'] for row in read_rows(READ_LOG)
+            if row.get('sha256') and 'twin_of' not in row}
 
 
 # Our own output is not a source.  A summary this project wrote was derived

@@ -38265,6 +38265,2248 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**未来 300kW 机柜超过 2 吨 → 楼面承重将达 20 kN/㎡**（300kW 按同表对应 2028 年）。 **对照库内既有承重**：中国移动 V3.2 企标主机房 8-12 kN/㎡、电池室 16 kN/㎡——**智算机房要求已向电池室看齐并将超过它**。 **白皮书的算账**：土建生命周期 40-50 年、只占机房 CapEx 约 10%，为提升承重多花不到机房 CapEx 的 1%，远比日后结构加固便宜——**建议新建按未来承重一次到位**。 智算机房液冷就绪周期：有客户提出从需求确定到设备可入场只给 4 个月。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd01-genset-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd01",
+        "label": "华为 AI 数据中心参考设计 RD01（IT 1744 kW）"
+      },
+      "value": 3.44,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "柴发",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 7 页 RD01 设备配置：「柴油发电机 2000 kW DCC*3」，配电架构 3DR；「总IT功率 1744 kW」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2000 kW × 3 = 6000 kW ÷ IT 1744 kW = 3.44 倍。 **redundancy=未注明**：原文配电架构是 3DR（DR=分布式冗余），不在 N/N+1/2N/2(N+1) 四档里，标 [未核]。 **倍数高于 1 的来源有三层**：DR 冗余、制冷与配电等非 IT 负载、柴发 DCC 额定与降容余量——**不能反推 IT 容量**。 "
+    },
+    {
+      "fact_id": "huawei-aidc-rd01-transformer-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd01",
+        "label": "华为 AI 数据中心参考设计 RD01（IT 1744 kW）"
+      },
+      "value": 3.44,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "变压器",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 7 页 RD01 设备配置：「变压器 2000 kVA*3」，配电架构 3DR",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2000 kVA × 3 = 6000 kVA ÷ IT 1744 kW = 3.44 倍。**分子是 kVA、分母是 kW，未折功率因数**（按 0.9 折算约 3.10 倍）。redundancy 未注明，原文为 3DR。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd02-genset-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd02",
+        "label": "华为 AI 数据中心参考设计 RD02（IT 2616 kW）"
+      },
+      "value": 2.523,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "柴发",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 9 页 RD02 设备配置：「柴油发电机 2200 kW DCC*3」，配电架构 3DR；「总IT功率 2616 kW」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2200 kW × 3 = 6600 kW ÷ IT 2616 kW = 2.52 倍。 **redundancy=未注明**：原文配电架构是 3DR（DR=分布式冗余），不在 N/N+1/2N/2(N+1) 四档里，标 [未核]。 **倍数高于 1 的来源有三层**：DR 冗余、制冷与配电等非 IT 负载、柴发 DCC 额定与降容余量——**不能反推 IT 容量**。 "
+    },
+    {
+      "fact_id": "huawei-aidc-rd02-transformer-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd02",
+        "label": "华为 AI 数据中心参考设计 RD02（IT 2616 kW）"
+      },
+      "value": 2.867,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "变压器",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 9 页 RD02 设备配置：「变压器 2500 kVA*3」，配电架构 3DR",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2500 kVA × 3 = 7500 kVA ÷ IT 2616 kW = 2.87 倍。**分子是 kVA、分母是 kW，未折功率因数**（按 0.9 折算约 2.58 倍）。redundancy 未注明，原文为 3DR。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd03-genset-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd03",
+        "label": "华为 AI 数据中心参考设计 RD03（IT 3488 kW）"
+      },
+      "value": 2.523,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "柴发",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 11 页 RD03 设备配置：「柴油发电机 2200 kW DCC*4」，配电架构 4DR；「总IT功率 3488 kW」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2200 kW × 4 = 8800 kW ÷ IT 3488 kW = 2.52 倍。 **redundancy=未注明**：原文配电架构是 4DR（DR=分布式冗余），不在 N/N+1/2N/2(N+1) 四档里，标 [未核]。 **倍数高于 1 的来源有三层**：DR 冗余、制冷与配电等非 IT 负载、柴发 DCC 额定与降容余量——**不能反推 IT 容量**。 "
+    },
+    {
+      "fact_id": "huawei-aidc-rd03-transformer-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd03",
+        "label": "华为 AI 数据中心参考设计 RD03（IT 3488 kW）"
+      },
+      "value": 2.867,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "变压器",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 11 页 RD03 设备配置：「变压器 2500 kVA*4」，配电架构 4DR",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2500 kVA × 4 = 10000 kVA ÷ IT 3488 kW = 2.87 倍。**分子是 kVA、分母是 kW，未折功率因数**（按 0.9 折算约 2.58 倍）。redundancy 未注明，原文为 4DR。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd04-genset-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd04",
+        "label": "华为 AI 数据中心参考设计 RD04（IT 4360 kW）"
+      },
+      "value": 2.202,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "柴发",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 13 页 RD04 设备配置：「柴油发电机 2400 kW DCC*4」，配电架构 4DR；「总IT功率 4360 kW」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2400 kW × 4 = 9600 kW ÷ IT 4360 kW = 2.20 倍。 **redundancy=未注明**：原文配电架构是 4DR（DR=分布式冗余），不在 N/N+1/2N/2(N+1) 四档里，标 [未核]。 **倍数高于 1 的来源有三层**：DR 冗余、制冷与配电等非 IT 负载、柴发 DCC 额定与降容余量——**不能反推 IT 容量**。 "
+    },
+    {
+      "fact_id": "huawei-aidc-rd04-transformer-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd04",
+        "label": "华为 AI 数据中心参考设计 RD04（IT 4360 kW）"
+      },
+      "value": 2.294,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "变压器",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 13 页 RD04 设备配置：「变压器 2500 kVA*4」，配电架构 4DR",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2500 kVA × 4 = 10000 kVA ÷ IT 4360 kW = 2.29 倍。**分子是 kVA、分母是 kW，未折功率因数**（按 0.9 折算约 2.06 倍）。redundancy 未注明，原文为 4DR。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd05-genset-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd05",
+        "label": "华为 AI 数据中心参考设计 RD05（IT 5232 kW）"
+      },
+      "value": 2.523,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "柴发",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 15 页 RD05 设备配置：「柴油发电机 2200 kW DCC*6」，配电架构 3DR*2；「总IT功率 5232 kW」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2200 kW × 6 = 13200 kW ÷ IT 5232 kW = 2.52 倍。 **redundancy=未注明**：原文配电架构是 3DR*2（DR=分布式冗余），不在 N/N+1/2N/2(N+1) 四档里，标 [未核]。 **倍数高于 1 的来源有三层**：DR 冗余、制冷与配电等非 IT 负载、柴发 DCC 额定与降容余量——**不能反推 IT 容量**。 "
+    },
+    {
+      "fact_id": "huawei-aidc-rd05-transformer-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd05",
+        "label": "华为 AI 数据中心参考设计 RD05（IT 5232 kW）"
+      },
+      "value": 2.867,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "变压器",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 15 页 RD05 设备配置：「变压器 2500 kVA*6」，配电架构 3DR*2",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2500 kVA × 6 = 15000 kVA ÷ IT 5232 kW = 2.87 倍。**分子是 kVA、分母是 kW，未折功率因数**（按 0.9 折算约 2.58 倍）。redundancy 未注明，原文为 3DR*2。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd06-genset-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd06",
+        "label": "华为 AI 数据中心参考设计 RD06（IT 2384 kW）"
+      },
+      "value": 2.768,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "柴发",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 17 页 RD06 设备配置：「柴油发电机 2200 kW DCC*3」，配电架构 3DR；「总IT功率 2384 kW」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2200 kW × 3 = 6600 kW ÷ IT 2384 kW = 2.77 倍。 **redundancy=未注明**：原文配电架构是 3DR（DR=分布式冗余），不在 N/N+1/2N/2(N+1) 四档里，标 [未核]。 **倍数高于 1 的来源有三层**：DR 冗余、制冷与配电等非 IT 负载、柴发 DCC 额定与降容余量——**不能反推 IT 容量**。 "
+    },
+    {
+      "fact_id": "huawei-aidc-rd06-transformer-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd06",
+        "label": "华为 AI 数据中心参考设计 RD06（IT 2384 kW）"
+      },
+      "value": 3.146,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "变压器",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 17 页 RD06 设备配置：「变压器 2500 kVA*3」，配电架构 3DR",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2500 kVA × 3 = 7500 kVA ÷ IT 2384 kW = 3.15 倍。**分子是 kVA、分母是 kW，未折功率因数**（按 0.9 折算约 2.83 倍）。redundancy 未注明，原文为 3DR。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd07-genset-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd07",
+        "label": "华为 AI 数据中心参考设计 RD07（IT 3576 kW）"
+      },
+      "value": 2.461,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "柴发",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 19 页 RD07 设备配置：「柴油发电机 2200 kW DCC*4」，配电架构 4DR；「总IT功率 3576 kW」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2200 kW × 4 = 8800 kW ÷ IT 3576 kW = 2.46 倍。 **redundancy=未注明**：原文配电架构是 4DR（DR=分布式冗余），不在 N/N+1/2N/2(N+1) 四档里，标 [未核]。 **倍数高于 1 的来源有三层**：DR 冗余、制冷与配电等非 IT 负载、柴发 DCC 额定与降容余量——**不能反推 IT 容量**。 "
+    },
+    {
+      "fact_id": "huawei-aidc-rd07-transformer-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd07",
+        "label": "华为 AI 数据中心参考设计 RD07（IT 3576 kW）"
+      },
+      "value": 2.796,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "变压器",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 19 页 RD07 设备配置：「变压器 2500 kVA*4」，配电架构 4DR",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2500 kVA × 4 = 10000 kVA ÷ IT 3576 kW = 2.80 倍。**分子是 kVA、分母是 kW，未折功率因数**（按 0.9 折算约 2.52 倍）。redundancy 未注明，原文为 4DR。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd08-genset-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd08",
+        "label": "华为 AI 数据中心参考设计 RD08（IT 4768 kW）"
+      },
+      "value": 2.768,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "柴发",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 21 页 RD08 设备配置：「柴油发电机 2200 kW DCC*6」，配电架构 3DR*2；「总IT功率 4768 kW」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2200 kW × 6 = 13200 kW ÷ IT 4768 kW = 2.77 倍。 **redundancy=未注明**：原文配电架构是 3DR*2（DR=分布式冗余），不在 N/N+1/2N/2(N+1) 四档里，标 [未核]。 **倍数高于 1 的来源有三层**：DR 冗余、制冷与配电等非 IT 负载、柴发 DCC 额定与降容余量——**不能反推 IT 容量**。 "
+    },
+    {
+      "fact_id": "huawei-aidc-rd08-transformer-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd08",
+        "label": "华为 AI 数据中心参考设计 RD08（IT 4768 kW）"
+      },
+      "value": 3.146,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "变压器",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 21 页 RD08 设备配置：「变压器 2500 kVA*6」，配电架构 3DR*2",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2500 kVA × 6 = 15000 kVA ÷ IT 4768 kW = 3.15 倍。**分子是 kVA、分母是 kW，未折功率因数**（按 0.9 折算约 2.83 倍）。redundancy 未注明，原文为 3DR*2。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd09-genset-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd09",
+        "label": "华为 AI 数据中心参考设计 RD09（IT 5960 kW）"
+      },
+      "value": 2.685,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "柴发",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 23 页 RD09 设备配置：「柴油发电机 2000 kW DCC*8」，配电架构 4DR*2；「总IT功率 5960 kW」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2000 kW × 8 = 16000 kW ÷ IT 5960 kW = 2.68 倍。 **redundancy=未注明**：原文配电架构是 4DR*2（DR=分布式冗余），不在 N/N+1/2N/2(N+1) 四档里，标 [未核]。 **倍数高于 1 的来源有三层**：DR 冗余、制冷与配电等非 IT 负载、柴发 DCC 额定与降容余量——**不能反推 IT 容量**。 "
+    },
+    {
+      "fact_id": "huawei-aidc-rd09-transformer-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd09",
+        "label": "华为 AI 数据中心参考设计 RD09（IT 5960 kW）"
+      },
+      "value": 2.685,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "变压器",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 23 页 RD09 设备配置：「变压器 2000 kVA*8」，配电架构 4DR*2",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2000 kVA × 8 = 16000 kVA ÷ IT 5960 kW = 2.68 倍。**分子是 kVA、分母是 kW，未折功率因数**（按 0.9 折算约 2.42 倍）。redundancy 未注明，原文为 4DR*2。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd10-genset-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd10",
+        "label": "华为 AI 数据中心参考设计 RD10（IT 7152 kW）"
+      },
+      "value": 2.461,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "柴发",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 25 页 RD10 设备配置：「柴油发电机 2200 kW DCC*8」，配电架构 4DR*2；「总IT功率 7152 kW」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2200 kW × 8 = 17600 kW ÷ IT 7152 kW = 2.46 倍。 **redundancy=未注明**：原文配电架构是 4DR*2（DR=分布式冗余），不在 N/N+1/2N/2(N+1) 四档里，标 [未核]。 **倍数高于 1 的来源有三层**：DR 冗余、制冷与配电等非 IT 负载、柴发 DCC 额定与降容余量——**不能反推 IT 容量**。 "
+    },
+    {
+      "fact_id": "huawei-aidc-rd10-transformer-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd10",
+        "label": "华为 AI 数据中心参考设计 RD10（IT 7152 kW）"
+      },
+      "value": 2.796,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "变压器",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 25 页 RD10 设备配置：「变压器 2500 kVA*8」，配电架构 4DR*2",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2500 kVA × 8 = 20000 kVA ÷ IT 7152 kW = 2.80 倍。**分子是 kVA、分母是 kW，未折功率因数**（按 0.9 折算约 2.52 倍）。redundancy 未注明，原文为 4DR*2。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd11-genset-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd11",
+        "label": "华为 AI 数据中心参考设计 RD11（IT 3528 kW）"
+      },
+      "value": 2.494,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "柴发",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 27 页 RD11 设备配置：「柴油发电机 2200 kW DCC*4」，配电架构 4DR；「总IT功率 3528 kW」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2200 kW × 4 = 8800 kW ÷ IT 3528 kW = 2.49 倍。 **redundancy=未注明**：原文配电架构是 4DR（DR=分布式冗余），不在 N/N+1/2N/2(N+1) 四档里，标 [未核]。 **倍数高于 1 的来源有三层**：DR 冗余、制冷与配电等非 IT 负载、柴发 DCC 额定与降容余量——**不能反推 IT 容量**。 "
+    },
+    {
+      "fact_id": "huawei-aidc-rd11-transformer-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd11",
+        "label": "华为 AI 数据中心参考设计 RD11（IT 3528 kW）"
+      },
+      "value": 2.834,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "变压器",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 27 页 RD11 设备配置：「变压器 2500 kVA*4」，配电架构 4DR",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2500 kVA × 4 = 10000 kVA ÷ IT 3528 kW = 2.83 倍。**分子是 kVA、分母是 kW，未折功率因数**（按 0.9 折算约 2.55 倍）。redundancy 未注明，原文为 4DR。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd12-genset-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd12",
+        "label": "华为 AI 数据中心参考设计 RD12（IT 4704 kW）"
+      },
+      "value": 2.806,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "柴发",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 29 页 RD12 设备配置：「柴油发电机 2200 kW DCC*6」，配电架构 3DR*2；「总IT功率 4704 kW」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2200 kW × 6 = 13200 kW ÷ IT 4704 kW = 2.81 倍。 **redundancy=未注明**：原文配电架构是 3DR*2（DR=分布式冗余），不在 N/N+1/2N/2(N+1) 四档里，标 [未核]。 **倍数高于 1 的来源有三层**：DR 冗余、制冷与配电等非 IT 负载、柴发 DCC 额定与降容余量——**不能反推 IT 容量**。 "
+    },
+    {
+      "fact_id": "huawei-aidc-rd12-transformer-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd12",
+        "label": "华为 AI 数据中心参考设计 RD12（IT 4704 kW）"
+      },
+      "value": 3.189,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "变压器",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 29 页 RD12 设备配置：「变压器 2500 kVA*6」，配电架构 3DR*2",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2500 kVA × 6 = 15000 kVA ÷ IT 4704 kW = 3.19 倍。**分子是 kVA、分母是 kW，未折功率因数**（按 0.9 折算约 2.87 倍）。redundancy 未注明，原文为 3DR*2。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd13-genset-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd13",
+        "label": "华为 AI 数据中心参考设计 RD13（IT 5880 kW）"
+      },
+      "value": 2.721,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "柴发",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 31 页 RD13 设备配置：「柴油发电机 2000 kW DCC*8」，配电架构 4DR*2；「总IT功率 5880 kW」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2000 kW × 8 = 16000 kW ÷ IT 5880 kW = 2.72 倍。 **redundancy=未注明**：原文配电架构是 4DR*2（DR=分布式冗余），不在 N/N+1/2N/2(N+1) 四档里，标 [未核]。 **倍数高于 1 的来源有三层**：DR 冗余、制冷与配电等非 IT 负载、柴发 DCC 额定与降容余量——**不能反推 IT 容量**。 "
+    },
+    {
+      "fact_id": "huawei-aidc-rd13-transformer-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd13",
+        "label": "华为 AI 数据中心参考设计 RD13（IT 5880 kW）"
+      },
+      "value": 2.721,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "变压器",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 31 页 RD13 设备配置：「变压器 2000 kVA*8」，配电架构 4DR*2",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2000 kVA × 8 = 16000 kVA ÷ IT 5880 kW = 2.72 倍。**分子是 kVA、分母是 kW，未折功率因数**（按 0.9 折算约 2.45 倍）。redundancy 未注明，原文为 4DR*2。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd14-genset-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd14",
+        "label": "华为 AI 数据中心参考设计 RD14（IT 7056 kW）"
+      },
+      "value": 2.494,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "柴发",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 33 页 RD14 设备配置：「柴油发电机 2200 kW DCC*8」，配电架构 4DR*2；「总IT功率 7056 kW」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2200 kW × 8 = 17600 kW ÷ IT 7056 kW = 2.49 倍。 **redundancy=未注明**：原文配电架构是 4DR*2（DR=分布式冗余），不在 N/N+1/2N/2(N+1) 四档里，标 [未核]。 **倍数高于 1 的来源有三层**：DR 冗余、制冷与配电等非 IT 负载、柴发 DCC 额定与降容余量——**不能反推 IT 容量**。 "
+    },
+    {
+      "fact_id": "huawei-aidc-rd14-transformer-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd14",
+        "label": "华为 AI 数据中心参考设计 RD14（IT 7056 kW）"
+      },
+      "value": 2.834,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "变压器",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 33 页 RD14 设备配置：「变压器 2500 kVA*8」，配电架构 4DR*2",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2500 kVA × 8 = 20000 kVA ÷ IT 7056 kW = 2.83 倍。**分子是 kVA、分母是 kW，未折功率因数**（按 0.9 折算约 2.55 倍）。redundancy 未注明，原文为 4DR*2。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd15-genset-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd15",
+        "label": "华为 AI 数据中心参考设计 RD15（IT 15200 kW，钢构方案）"
+      },
+      "value": 2.368,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "柴发",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 37 页 RD15 设备配置：「柴油发电机 2400 kW DCC*15」，配电架构 3DR*4；「总IT功率 15.2 MW」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2400 kW × 15 = 36000 kW ÷ IT 15200 kW = 2.37 倍。 **redundancy=未注明**：原文配电架构是 3DR*4（DR=分布式冗余），不在 N/N+1/2N/2(N+1) 四档里，标 [未核]。 **倍数高于 1 的来源有三层**：DR 冗余、制冷与配电等非 IT 负载、柴发 DCC 额定与降容余量——**不能反推 IT 容量**。 钢构方案（RD15-21）的柴发台数含通用机房与动力负荷，分母按总 IT 功率（含通用机房）计。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd15-transformer-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd15",
+        "label": "华为 AI 数据中心参考设计 RD15（IT 15200 kW，钢构方案）"
+      },
+      "value": 2.467,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "变压器",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 37 页 RD15 设备配置：「变压器 2500 kVA*15」，配电架构 3DR*4",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2500 kVA × 15 = 37500 kVA ÷ IT 15200 kW = 2.47 倍。**分子是 kVA、分母是 kW，未折功率因数**（按 0.9 折算约 2.22 倍）。redundancy 未注明，原文为 3DR*4。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd15-genset-total",
+      "metric_id": "installed_equipment_capacity",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd15",
+        "label": "华为 AI 数据中心参考设计 RD15（IT 15200 kW，钢构方案）"
+      },
+      "value": 36000.0,
+      "unit": "kW 或 kVA",
+      "caliber": {
+        "equipment": "柴发",
+        "capacity_basis": "系统合计（含冗余）",
+        "unit_kind": "kW",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 37 页 RD15 设备配置：「柴油发电机 2400 kW DCC*15」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：单台 × 台数。含通用机房与动力负荷。厂商参考设计（钢构方案）。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd15-transformer-total",
+      "metric_id": "installed_equipment_capacity",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd15",
+        "label": "华为 AI 数据中心参考设计 RD15（IT 15200 kW，钢构方案）"
+      },
+      "value": 37500.0,
+      "unit": "kW 或 kVA",
+      "caliber": {
+        "equipment": "变压器",
+        "capacity_basis": "系统合计（含冗余）",
+        "unit_kind": "kVA",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 37 页 RD15 设备配置：「变压器 2500 kVA*15」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：单台 × 台数。含通用机房与动力负荷。厂商参考设计（钢构方案）。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd15-chiller-unit",
+      "metric_id": "installed_equipment_capacity",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd15",
+        "label": "华为 AI 数据中心参考设计 RD15（IT 15200 kW，钢构方案）"
+      },
+      "value": 3517.0,
+      "unit": "kW 或 kVA",
+      "caliber": {
+        "equipment": "冷机",
+        "capacity_basis": "单台额定",
+        "unit_kind": "kW",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 37 页 RD15 温控系统：「水冷冷水机组 3517 kW，2+1」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**水冷冷水机组单台 3517 kW、配置 2+1**（钢构方案独有，预制模块化方案 RD01-14 用风冷冷水机组）。钢构方案 IT 机柜风液比 3:7 或 2:8，通用机房全风冷。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd15-gfa",
+      "metric_id": "dc_gross_floor_area",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd15",
+        "label": "华为 AI 数据中心参考设计 RD15（IT 15200 kW，钢构方案）"
+      },
+      "value": 5450.0,
+      "unit": "㎡",
+      "caliber": {
+        "area_scope": "总建筑面积",
+        "stage": "设计",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 36 页 RD15 总体指标：「数据中心建筑面积 5450㎡（不含钢架平台、制冷机房面积）」；总用地面积 13440㎡",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**不含钢架平台与制冷机房面积**——area_scope 就近记总建筑面积，实际偏小，标 [未核]。总用地 13440㎡。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd15-it-density",
+      "metric_id": "it_power_density_per_area",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd15",
+        "label": "华为 AI 数据中心参考设计 RD15（IT 15200 kW，钢构方案）"
+      },
+      "value": 2.79,
+      "unit": "kW/㎡",
+      "caliber": {
+        "area_basis": "建筑面积",
+        "power_scope": "IT 负载",
+        "region": "CN",
+        "basis": "厂商指引"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 36 页 RD15 总体指标：总 IT 功率 15200 kW ÷ 数据中心建筑面积 5450㎡",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：15200 ÷ 5450 = 2.79 kW/㎡。**分母不含钢架平台与制冷机房**，故偏高。对照 SemiAnalysis 估算的 Abilene 单栋约 2.0 kW/㎡（abilene-it-power-density-202501，按整栋建筑面积）：华为钢构方案高出 1.4 倍，口径差异大，不可简单比。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd16-genset-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd16",
+        "label": "华为 AI 数据中心参考设计 RD16（IT 33800 kW，钢构方案）"
+      },
+      "value": 2.059,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "柴发",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 39 页 RD16 设备配置：「柴油发电机 2400 kW DCC*29」，配电架构 4DR*6；「总IT功率 33.8 MW」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2400 kW × 29 = 69600 kW ÷ IT 33800 kW = 2.06 倍。 **redundancy=未注明**：原文配电架构是 4DR*6（DR=分布式冗余），不在 N/N+1/2N/2(N+1) 四档里，标 [未核]。 **倍数高于 1 的来源有三层**：DR 冗余、制冷与配电等非 IT 负载、柴发 DCC 额定与降容余量——**不能反推 IT 容量**。 钢构方案（RD15-21）的柴发台数含通用机房与动力负荷，分母按总 IT 功率（含通用机房）计。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd16-transformer-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd16",
+        "label": "华为 AI 数据中心参考设计 RD16（IT 33800 kW，钢构方案）"
+      },
+      "value": 2.145,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "变压器",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 39 页 RD16 设备配置：「变压器 2500 kVA*29」，配电架构 4DR*6",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2500 kVA × 29 = 72500 kVA ÷ IT 33800 kW = 2.14 倍。**分子是 kVA、分母是 kW，未折功率因数**（按 0.9 折算约 1.93 倍）。redundancy 未注明，原文为 4DR*6。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd16-genset-total",
+      "metric_id": "installed_equipment_capacity",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd16",
+        "label": "华为 AI 数据中心参考设计 RD16（IT 33800 kW，钢构方案）"
+      },
+      "value": 69600.0,
+      "unit": "kW 或 kVA",
+      "caliber": {
+        "equipment": "柴发",
+        "capacity_basis": "系统合计（含冗余）",
+        "unit_kind": "kW",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 39 页 RD16 设备配置：「柴油发电机 2400 kW DCC*29」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：单台 × 台数。含通用机房与动力负荷。厂商参考设计（钢构方案）。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd16-transformer-total",
+      "metric_id": "installed_equipment_capacity",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd16",
+        "label": "华为 AI 数据中心参考设计 RD16（IT 33800 kW，钢构方案）"
+      },
+      "value": 72500.0,
+      "unit": "kW 或 kVA",
+      "caliber": {
+        "equipment": "变压器",
+        "capacity_basis": "系统合计（含冗余）",
+        "unit_kind": "kVA",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 39 页 RD16 设备配置：「变压器 2500 kVA*29」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：单台 × 台数。含通用机房与动力负荷。厂商参考设计（钢构方案）。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd16-chiller-unit",
+      "metric_id": "installed_equipment_capacity",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd16",
+        "label": "华为 AI 数据中心参考设计 RD16（IT 33800 kW，钢构方案）"
+      },
+      "value": 3869.0,
+      "unit": "kW 或 kVA",
+      "caliber": {
+        "equipment": "冷机",
+        "capacity_basis": "单台额定",
+        "unit_kind": "kW",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 39 页 RD16 温控系统：「水冷冷水机组 3869 kW，4+1」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**水冷冷水机组单台 3869 kW、配置 4+1**（钢构方案独有，预制模块化方案 RD01-14 用风冷冷水机组）。钢构方案 IT 机柜风液比 3:7 或 2:8，通用机房全风冷。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd16-gfa",
+      "metric_id": "dc_gross_floor_area",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd16",
+        "label": "华为 AI 数据中心参考设计 RD16（IT 33800 kW，钢构方案）"
+      },
+      "value": 9996.0,
+      "unit": "㎡",
+      "caliber": {
+        "area_scope": "总建筑面积",
+        "stage": "设计",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 38 页 RD16 总体指标：「数据中心建筑面积 9996㎡（不含钢架平台、制冷机房面积）」；总用地面积 15140㎡",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**不含钢架平台与制冷机房面积**——area_scope 就近记总建筑面积，实际偏小，标 [未核]。总用地 15140㎡。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd16-it-density",
+      "metric_id": "it_power_density_per_area",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd16",
+        "label": "华为 AI 数据中心参考设计 RD16（IT 33800 kW，钢构方案）"
+      },
+      "value": 3.38,
+      "unit": "kW/㎡",
+      "caliber": {
+        "area_basis": "建筑面积",
+        "power_scope": "IT 负载",
+        "region": "CN",
+        "basis": "厂商指引"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 38 页 RD16 总体指标：总 IT 功率 33800 kW ÷ 数据中心建筑面积 9996㎡",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：33800 ÷ 9996 = 3.38 kW/㎡。**分母不含钢架平台与制冷机房**，故偏高。对照 SemiAnalysis 估算的 Abilene 单栋约 2.0 kW/㎡（abilene-it-power-density-202501，按整栋建筑面积）：华为钢构方案高出 1.7 倍，口径差异大，不可简单比。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd17-genset-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd17",
+        "label": "华为 AI 数据中心参考设计 RD17（IT 21200 kW，钢构方案）"
+      },
+      "value": 2.151,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "柴发",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 41 页 RD17 设备配置：「柴油发电机 2400 kW DCC*19」，配电架构 4DR*4；「总IT功率 21.2 MW」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2400 kW × 19 = 45600 kW ÷ IT 21200 kW = 2.15 倍。 **redundancy=未注明**：原文配电架构是 4DR*4（DR=分布式冗余），不在 N/N+1/2N/2(N+1) 四档里，标 [未核]。 **倍数高于 1 的来源有三层**：DR 冗余、制冷与配电等非 IT 负载、柴发 DCC 额定与降容余量——**不能反推 IT 容量**。 钢构方案（RD15-21）的柴发台数含通用机房与动力负荷，分母按总 IT 功率（含通用机房）计。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd17-transformer-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd17",
+        "label": "华为 AI 数据中心参考设计 RD17（IT 21200 kW，钢构方案）"
+      },
+      "value": 2.241,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "变压器",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 41 页 RD17 设备配置：「变压器 2500 kVA*19」，配电架构 4DR*4",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2500 kVA × 19 = 47500 kVA ÷ IT 21200 kW = 2.24 倍。**分子是 kVA、分母是 kW，未折功率因数**（按 0.9 折算约 2.02 倍）。redundancy 未注明，原文为 4DR*4。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd17-genset-total",
+      "metric_id": "installed_equipment_capacity",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd17",
+        "label": "华为 AI 数据中心参考设计 RD17（IT 21200 kW，钢构方案）"
+      },
+      "value": 45600.0,
+      "unit": "kW 或 kVA",
+      "caliber": {
+        "equipment": "柴发",
+        "capacity_basis": "系统合计（含冗余）",
+        "unit_kind": "kW",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 41 页 RD17 设备配置：「柴油发电机 2400 kW DCC*19」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：单台 × 台数。含通用机房与动力负荷。厂商参考设计（钢构方案）。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd17-transformer-total",
+      "metric_id": "installed_equipment_capacity",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd17",
+        "label": "华为 AI 数据中心参考设计 RD17（IT 21200 kW，钢构方案）"
+      },
+      "value": 47500.0,
+      "unit": "kW 或 kVA",
+      "caliber": {
+        "equipment": "变压器",
+        "capacity_basis": "系统合计（含冗余）",
+        "unit_kind": "kVA",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 41 页 RD17 设备配置：「变压器 2500 kVA*19」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：单台 × 台数。含通用机房与动力负荷。厂商参考设计（钢构方案）。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd17-chiller-unit",
+      "metric_id": "installed_equipment_capacity",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd17",
+        "label": "华为 AI 数据中心参考设计 RD17（IT 21200 kW，钢构方案）"
+      },
+      "value": 3869.0,
+      "unit": "kW 或 kVA",
+      "caliber": {
+        "equipment": "冷机",
+        "capacity_basis": "单台额定",
+        "unit_kind": "kW",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 41 页 RD17 温控系统：「水冷冷水机组 3869 kW，2+1」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**水冷冷水机组单台 3869 kW、配置 2+1**（钢构方案独有，预制模块化方案 RD01-14 用风冷冷水机组）。钢构方案 IT 机柜风液比 3:7 或 2:8，通用机房全风冷。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd17-gfa",
+      "metric_id": "dc_gross_floor_area",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd17",
+        "label": "华为 AI 数据中心参考设计 RD17（IT 21200 kW，钢构方案）"
+      },
+      "value": 5450.0,
+      "unit": "㎡",
+      "caliber": {
+        "area_scope": "总建筑面积",
+        "stage": "设计",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 40 页 RD17 总体指标：「数据中心建筑面积 5450㎡（不含钢架平台、制冷机房面积）」；总用地面积 13440㎡",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**不含钢架平台与制冷机房面积**——area_scope 就近记总建筑面积，实际偏小，标 [未核]。总用地 13440㎡。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd17-it-density",
+      "metric_id": "it_power_density_per_area",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd17",
+        "label": "华为 AI 数据中心参考设计 RD17（IT 21200 kW，钢构方案）"
+      },
+      "value": 3.89,
+      "unit": "kW/㎡",
+      "caliber": {
+        "area_basis": "建筑面积",
+        "power_scope": "IT 负载",
+        "region": "CN",
+        "basis": "厂商指引"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 40 页 RD17 总体指标：总 IT 功率 21200 kW ÷ 数据中心建筑面积 5450㎡",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：21200 ÷ 5450 = 3.89 kW/㎡。**分母不含钢架平台与制冷机房**，故偏高。对照 SemiAnalysis 估算的 Abilene 单栋约 2.0 kW/㎡（abilene-it-power-density-202501，按整栋建筑面积）：华为钢构方案高出 1.9 倍，口径差异大，不可简单比。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd18-genset-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd18",
+        "label": "华为 AI 数据中心参考设计 RD18（IT 47000 kW，钢构方案）"
+      },
+      "value": 2.094,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "柴发",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 43 页 RD18 设备配置：「柴油发电机 2400 kW DCC*41」，配电架构 3DR*12；「总IT功率 47 MW」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2400 kW × 41 = 98400 kW ÷ IT 47000 kW = 2.09 倍。 **redundancy=未注明**：原文配电架构是 3DR*12（DR=分布式冗余），不在 N/N+1/2N/2(N+1) 四档里，标 [未核]。 **倍数高于 1 的来源有三层**：DR 冗余、制冷与配电等非 IT 负载、柴发 DCC 额定与降容余量——**不能反推 IT 容量**。 钢构方案（RD15-21）的柴发台数含通用机房与动力负荷，分母按总 IT 功率（含通用机房）计。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd18-transformer-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd18",
+        "label": "华为 AI 数据中心参考设计 RD18（IT 47000 kW，钢构方案）"
+      },
+      "value": 2.181,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "变压器",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 43 页 RD18 设备配置：「变压器 2500 kVA*41」，配电架构 3DR*12",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2500 kVA × 41 = 102500 kVA ÷ IT 47000 kW = 2.18 倍。**分子是 kVA、分母是 kW，未折功率因数**（按 0.9 折算约 1.96 倍）。redundancy 未注明，原文为 3DR*12。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd18-genset-total",
+      "metric_id": "installed_equipment_capacity",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd18",
+        "label": "华为 AI 数据中心参考设计 RD18（IT 47000 kW，钢构方案）"
+      },
+      "value": 98400.0,
+      "unit": "kW 或 kVA",
+      "caliber": {
+        "equipment": "柴发",
+        "capacity_basis": "系统合计（含冗余）",
+        "unit_kind": "kW",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 43 页 RD18 设备配置：「柴油发电机 2400 kW DCC*41」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：单台 × 台数。含通用机房与动力负荷。厂商参考设计（钢构方案）。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd18-transformer-total",
+      "metric_id": "installed_equipment_capacity",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd18",
+        "label": "华为 AI 数据中心参考设计 RD18（IT 47000 kW，钢构方案）"
+      },
+      "value": 102500.0,
+      "unit": "kW 或 kVA",
+      "caliber": {
+        "equipment": "变压器",
+        "capacity_basis": "系统合计（含冗余）",
+        "unit_kind": "kVA",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 43 页 RD18 设备配置：「变压器 2500 kVA*41」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：单台 × 台数。含通用机房与动力负荷。厂商参考设计（钢构方案）。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd18-chiller-unit",
+      "metric_id": "installed_equipment_capacity",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd18",
+        "label": "华为 AI 数据中心参考设计 RD18（IT 47000 kW，钢构方案）"
+      },
+      "value": 4220.0,
+      "unit": "kW 或 kVA",
+      "caliber": {
+        "equipment": "冷机",
+        "capacity_basis": "单台额定",
+        "unit_kind": "kW",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 43 页 RD18 温控系统：「水冷冷水机组 4220 kW，4+1」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**水冷冷水机组单台 4220 kW、配置 4+1**（钢构方案独有，预制模块化方案 RD01-14 用风冷冷水机组）。钢构方案 IT 机柜风液比 3:7 或 2:8，通用机房全风冷。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd18-gfa",
+      "metric_id": "dc_gross_floor_area",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd18",
+        "label": "华为 AI 数据中心参考设计 RD18（IT 47000 kW，钢构方案）"
+      },
+      "value": 9996.0,
+      "unit": "㎡",
+      "caliber": {
+        "area_scope": "总建筑面积",
+        "stage": "设计",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 42 页 RD18 总体指标：「数据中心建筑面积 9996㎡（不含钢架平台、制冷机房面积）」；总用地面积 15140㎡",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**不含钢架平台与制冷机房面积**——area_scope 就近记总建筑面积，实际偏小，标 [未核]。总用地 15140㎡。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd18-it-density",
+      "metric_id": "it_power_density_per_area",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd18",
+        "label": "华为 AI 数据中心参考设计 RD18（IT 47000 kW，钢构方案）"
+      },
+      "value": 4.7,
+      "unit": "kW/㎡",
+      "caliber": {
+        "area_basis": "建筑面积",
+        "power_scope": "IT 负载",
+        "region": "CN",
+        "basis": "厂商指引"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 42 页 RD18 总体指标：总 IT 功率 47000 kW ÷ 数据中心建筑面积 9996㎡",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：47000 ÷ 9996 = 4.70 kW/㎡。**分母不含钢架平台与制冷机房**，故偏高。对照 SemiAnalysis 估算的 Abilene 单栋约 2.0 kW/㎡（abilene-it-power-density-202501，按整栋建筑面积）：华为钢构方案高出 2.3 倍，口径差异大，不可简单比。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd19-genset-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd19",
+        "label": "华为 AI 数据中心参考设计 RD19（IT 20000 kW，钢构方案）"
+      },
+      "value": 2.28,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "柴发",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 45 页 RD19 设备配置：「柴油发电机 2400 kW DCC*19」，配电架构 4DR*4；「总IT功率 20 MW」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2400 kW × 19 = 45600 kW ÷ IT 20000 kW = 2.28 倍。 **redundancy=未注明**：原文配电架构是 4DR*4（DR=分布式冗余），不在 N/N+1/2N/2(N+1) 四档里，标 [未核]。 **倍数高于 1 的来源有三层**：DR 冗余、制冷与配电等非 IT 负载、柴发 DCC 额定与降容余量——**不能反推 IT 容量**。 钢构方案（RD15-21）的柴发台数含通用机房与动力负荷，分母按总 IT 功率（含通用机房）计。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd19-transformer-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd19",
+        "label": "华为 AI 数据中心参考设计 RD19（IT 20000 kW，钢构方案）"
+      },
+      "value": 2.375,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "变压器",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 45 页 RD19 设备配置：「变压器 2500 kVA*19」，配电架构 4DR*4",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2500 kVA × 19 = 47500 kVA ÷ IT 20000 kW = 2.38 倍。**分子是 kVA、分母是 kW，未折功率因数**（按 0.9 折算约 2.14 倍）。redundancy 未注明，原文为 4DR*4。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd19-genset-total",
+      "metric_id": "installed_equipment_capacity",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd19",
+        "label": "华为 AI 数据中心参考设计 RD19（IT 20000 kW，钢构方案）"
+      },
+      "value": 45600.0,
+      "unit": "kW 或 kVA",
+      "caliber": {
+        "equipment": "柴发",
+        "capacity_basis": "系统合计（含冗余）",
+        "unit_kind": "kW",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 45 页 RD19 设备配置：「柴油发电机 2400 kW DCC*19」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：单台 × 台数。含通用机房与动力负荷。厂商参考设计（钢构方案）。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd19-transformer-total",
+      "metric_id": "installed_equipment_capacity",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd19",
+        "label": "华为 AI 数据中心参考设计 RD19（IT 20000 kW，钢构方案）"
+      },
+      "value": 47500.0,
+      "unit": "kW 或 kVA",
+      "caliber": {
+        "equipment": "变压器",
+        "capacity_basis": "系统合计（含冗余）",
+        "unit_kind": "kVA",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 45 页 RD19 设备配置：「变压器 2500 kVA*19」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：单台 × 台数。含通用机房与动力负荷。厂商参考设计（钢构方案）。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd19-chiller-unit",
+      "metric_id": "installed_equipment_capacity",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd19",
+        "label": "华为 AI 数据中心参考设计 RD19（IT 20000 kW，钢构方案）"
+      },
+      "value": 3869.0,
+      "unit": "kW 或 kVA",
+      "caliber": {
+        "equipment": "冷机",
+        "capacity_basis": "单台额定",
+        "unit_kind": "kW",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 45 页 RD19 温控系统：「水冷冷水机组 3869 kW，2+1」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**水冷冷水机组单台 3869 kW、配置 2+1**（钢构方案独有，预制模块化方案 RD01-14 用风冷冷水机组）。钢构方案 IT 机柜风液比 3:7 或 2:8，通用机房全风冷。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd19-gfa",
+      "metric_id": "dc_gross_floor_area",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd19",
+        "label": "华为 AI 数据中心参考设计 RD19（IT 20000 kW，钢构方案）"
+      },
+      "value": 5160.0,
+      "unit": "㎡",
+      "caliber": {
+        "area_scope": "总建筑面积",
+        "stage": "设计",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 44 页 RD19 总体指标：「数据中心建筑面积 5160㎡（不含钢架平台、制冷机房面积）」；总用地面积 13190㎡",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**不含钢架平台与制冷机房面积**——area_scope 就近记总建筑面积，实际偏小，标 [未核]。总用地 13190㎡。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd19-it-density",
+      "metric_id": "it_power_density_per_area",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd19",
+        "label": "华为 AI 数据中心参考设计 RD19（IT 20000 kW，钢构方案）"
+      },
+      "value": 3.88,
+      "unit": "kW/㎡",
+      "caliber": {
+        "area_basis": "建筑面积",
+        "power_scope": "IT 负载",
+        "region": "CN",
+        "basis": "厂商指引"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 44 页 RD19 总体指标：总 IT 功率 20000 kW ÷ 数据中心建筑面积 5160㎡",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：20000 ÷ 5160 = 3.88 kW/㎡。**分母不含钢架平台与制冷机房**，故偏高。对照 SemiAnalysis 估算的 Abilene 单栋约 2.0 kW/㎡（abilene-it-power-density-202501，按整栋建筑面积）：华为钢构方案高出 1.9 倍，口径差异大，不可简单比。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd20-genset-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd20",
+        "label": "华为 AI 数据中心参考设计 RD20（IT 44700 kW，钢构方案）"
+      },
+      "value": 2.201,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "柴发",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 47 页 RD20 设备配置：「柴油发电机 2400 kW DCC*41」，配电架构 3DR*12；「总IT功率 44.7 MW」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2400 kW × 41 = 98400 kW ÷ IT 44700 kW = 2.20 倍。 **redundancy=未注明**：原文配电架构是 3DR*12（DR=分布式冗余），不在 N/N+1/2N/2(N+1) 四档里，标 [未核]。 **倍数高于 1 的来源有三层**：DR 冗余、制冷与配电等非 IT 负载、柴发 DCC 额定与降容余量——**不能反推 IT 容量**。 钢构方案（RD15-21）的柴发台数含通用机房与动力负荷，分母按总 IT 功率（含通用机房）计。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd20-transformer-ratio",
+      "metric_id": "equipment_to_it_ratio",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd20",
+        "label": "华为 AI 数据中心参考设计 RD20（IT 44700 kW，钢构方案）"
+      },
+      "value": 2.293,
+      "unit": "倍",
+      "caliber": {
+        "equipment": "变压器",
+        "redundancy": "未注明",
+        "load_basis": "设计 IT 负载",
+        "region": "CN",
+        "basis": "参考设计"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 47 页 RD20 设备配置：「变压器 2500 kVA*41」，配电架构 3DR*12",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2500 kVA × 41 = 102500 kVA ÷ IT 44700 kW = 2.29 倍。**分子是 kVA、分母是 kW，未折功率因数**（按 0.9 折算约 2.06 倍）。redundancy 未注明，原文为 3DR*12。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd20-genset-total",
+      "metric_id": "installed_equipment_capacity",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd20",
+        "label": "华为 AI 数据中心参考设计 RD20（IT 44700 kW，钢构方案）"
+      },
+      "value": 98400.0,
+      "unit": "kW 或 kVA",
+      "caliber": {
+        "equipment": "柴发",
+        "capacity_basis": "系统合计（含冗余）",
+        "unit_kind": "kW",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 47 页 RD20 设备配置：「柴油发电机 2400 kW DCC*41」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：单台 × 台数。含通用机房与动力负荷。厂商参考设计（钢构方案）。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd20-transformer-total",
+      "metric_id": "installed_equipment_capacity",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd20",
+        "label": "华为 AI 数据中心参考设计 RD20（IT 44700 kW，钢构方案）"
+      },
+      "value": 102500.0,
+      "unit": "kW 或 kVA",
+      "caliber": {
+        "equipment": "变压器",
+        "capacity_basis": "系统合计（含冗余）",
+        "unit_kind": "kVA",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 47 页 RD20 设备配置：「变压器 2500 kVA*41」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：单台 × 台数。含通用机房与动力负荷。厂商参考设计（钢构方案）。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd20-chiller-unit",
+      "metric_id": "installed_equipment_capacity",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd20",
+        "label": "华为 AI 数据中心参考设计 RD20（IT 44700 kW，钢构方案）"
+      },
+      "value": 4220.0,
+      "unit": "kW 或 kVA",
+      "caliber": {
+        "equipment": "冷机",
+        "capacity_basis": "单台额定",
+        "unit_kind": "kW",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 47 页 RD20 温控系统：「水冷冷水机组 4220 kW，4+1」",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**水冷冷水机组单台 4220 kW、配置 4+1**（钢构方案独有，预制模块化方案 RD01-14 用风冷冷水机组）。钢构方案 IT 机柜风液比 3:7 或 2:8，通用机房全风冷。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd20-gfa",
+      "metric_id": "dc_gross_floor_area",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd20",
+        "label": "华为 AI 数据中心参考设计 RD20（IT 44700 kW，钢构方案）"
+      },
+      "value": 9470.0,
+      "unit": "㎡",
+      "caliber": {
+        "area_scope": "总建筑面积",
+        "stage": "设计",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 46 页 RD20 总体指标：「数据中心建筑面积 9470㎡（不含钢架平台、制冷机房面积）」；总用地面积 14850㎡",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**不含钢架平台与制冷机房面积**——area_scope 就近记总建筑面积，实际偏小，标 [未核]。总用地 14850㎡。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd20-it-density",
+      "metric_id": "it_power_density_per_area",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd20",
+        "label": "华为 AI 数据中心参考设计 RD20（IT 44700 kW，钢构方案）"
+      },
+      "value": 4.72,
+      "unit": "kW/㎡",
+      "caliber": {
+        "area_basis": "建筑面积",
+        "power_scope": "IT 负载",
+        "region": "CN",
+        "basis": "厂商指引"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 46 页 RD20 总体指标：总 IT 功率 44700 kW ÷ 数据中心建筑面积 9470㎡",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：44700 ÷ 9470 = 4.72 kW/㎡。**分母不含钢架平台与制冷机房**，故偏高。对照 SemiAnalysis 估算的 Abilene 单栋约 2.0 kW/㎡（abilene-it-power-density-202501，按整栋建筑面积）：华为钢构方案高出 2.3 倍，口径差异大，不可简单比。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd21-gfa",
+      "metric_id": "dc_gross_floor_area",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd21",
+        "label": "华为 AI 数据中心参考设计 RD21（IT 50000 kW，钢构方案）"
+      },
+      "value": 23000.0,
+      "unit": "㎡",
+      "caliber": {
+        "area_scope": "总建筑面积",
+        "stage": "设计",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 48 页 RD21 总体指标：「数据中心建筑面积 23000㎡（不含钢架平台、制冷机房面积）」；总用地面积 40800㎡",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**不含钢架平台与制冷机房面积**——area_scope 就近记总建筑面积，实际偏小，标 [未核]。总用地 40800㎡。"
+    },
+    {
+      "fact_id": "huawei-aidc-rd21-it-density",
+      "metric_id": "it_power_density_per_area",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-rd21",
+        "label": "华为 AI 数据中心参考设计 RD21（IT 50000 kW，钢构方案）"
+      },
+      "value": 2.17,
+      "unit": "kW/㎡",
+      "caliber": {
+        "area_basis": "建筑面积",
+        "power_scope": "IT 负载",
+        "region": "CN",
+        "basis": "厂商指引"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 48 页 RD21 总体指标：总 IT 功率 50000 kW ÷ 数据中心建筑面积 23000㎡",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：50000 ÷ 23000 = 2.17 kW/㎡。**分母不含钢架平台与制冷机房**，故偏高。对照 SemiAnalysis 估算的 Abilene 单栋约 2.0 kW/㎡（abilene-it-power-density-202501，按整栋建筑面积）：华为钢构方案高出 1.1 倍，口径差异大，不可简单比。"
+    },
+    {
+      "fact_id": "huawei-aidc-steel-backup-10min",
+      "metric_id": "backup_autonomy",
+      "entity": {
+        "type": "product",
+        "id": "huawei-aidc-steel-rd15-21",
+        "label": "华为 AI 数据中心参考设计 钢构方案（RD15-21）"
+      },
+      "value": 10.0,
+      "unit": "分钟",
+      "caliber": {
+        "backup_type": "UPS 蓄电池",
+        "tier": "未注明",
+        "bound_sense": "设计值",
+        "region": "CN",
+        "basis": "设计取值"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c718c70eb1ef0c0ac8bcb00416fb44bb29edc60d54d25cf7f0b2de2e3829945",
+        "local_file": "华为 AI 数据中心参考设计（预制模块化方案 RD01-14 / 钢构方案 RD15-21）.pdf",
+        "locator": "第 36-48 页 RD15-RD21 总体指标：「设计等级 Tier III」「备电/备冷时间 10 min」（七个设计相同）",
+        "grade": "S2",
+        "originator": "华为数字能源（AI 数据中心参考设计）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文「备电/备冷时间」合写一个 10 min**，本条记备电（UPS），备冷同为 10 分钟未单独立条。设计等级 Tier III——tier 枚举是国内星级与 A/B/C 级，没有 Uptime Tier，记未注明。对照中国移动 V3.2：UPS ≥15min（四星及以上）、连续供冷 ≥15min（钻石五星）——**华为钢构参考设计 10 分钟低于移动四星线**。"
     }
   ]
 }

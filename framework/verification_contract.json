@@ -7,7 +7,7 @@
     "AGENTS.md": "724d29fbab3a097c490eeb294f71724625d045e20ec080c6a9a252dadc72e22b",
     "CLAUDE.md": "322b8e598f53f516c60307f53781c0da4c8f49c7a639362b51b468967e91a9de",
     "data/schema/submission.schema.json": "b0d0b8a1b9150f585ede35da218149772d77ba33f898f0d2718c48f323e83fe8",
-    "docs/M4_TRIAGE_TASK.md": "cb470a56dd6b7281fa4a0f0c86c5f432b63f24cd2f13a76a55cc354baeb2b700",
+    "docs/M4_TRIAGE_TASK.md": "63a14d14af9256cea7ede5c99571785b8a59bfeb672766c7a839e8e55d947cd7",
     "docs/inbox/submissions/README.md": "d4da3229d11971a41b1c5e551bb88d5e7fe6e84d066116596257bc811a93a12b",
     "docs/local_reader/ACQUISITION_OPERATIONS.md": "91d862b923f292d337771f17dbfc965357b76039df162c78b97003237f9feb85",
     "docs/local_reader/M4_PREFLIGHT.md": "d6283a210b1cf7b29fc78d3c084edb5092f59e8f3242cdd615b52b44fd31bb69",
@@ -23,7 +23,7 @@
     "framework/06_acquisition.md": "5465abce68d873f438eb4a049f8e1f4b836017ac9a6475b1f24472041a6e90a0",
     "framework/07_product_ecosystems.md": "a6239c5cb221120394ec706cf3ded786dd6b1cf34cc526b167dc157d50bd3fce",
     "framework/08_model_execution.md": "1b582a429a9edfe9eec398d327e6179c3f339d124cf0ba6324dce5c123e1f038",
-    "framework/09_software_contracts.md": "bb6943fbf9b66f0321b9130aa602b1431817051c431e23d9f496c202ae0daa90",
+    "framework/09_software_contracts.md": "f7a45e9a8ffb15e853f89c9df8dee2418af497010eb2551db93551d2bd70a704",
     "framework/CURRENT.md": "9d177d81579fd7d7d91a109510c6f8a883194b03a63ebf143821cd8cfc4e7b30",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "tests/auth_appearance.cjs": "40f4e5feb30d2cec89bcf7cb90b89e780862a30580a4708e7dcb4dee1b9b8142",
@@ -41,7 +41,7 @@
     "tests/unit/test_file_moves.py": "1f9ba746f06885b6d48ee2d73b5da8bc4364ca1ad54e85b5d6fe23cdbf1edf9a",
     "tests/unit/test_governance.py": "ee59b285f13ea82d6df0426d0fbd519b7b8f9e7695fde569708c0dac10d71f39",
     "tests/unit/test_intake.py": "752b45e1bec8938738ea28b827dcdcc9031bce772cc9030d7ded1d7be9176c10",
-    "tests/unit/test_m4_l2.py": "6b3f927ea6a74739496891bb1d8199e9f482726906af42645e5ceb9112822e0c",
+    "tests/unit/test_m4_l2.py": "5331581c7cbb64ecfbc75fe733adeb1a960d6d861e4e1395ca23af1ac27640fa",
     "tests/unit/test_m4_office_text.py": "7c9ca244f5e3746ca61f3032030cc6260a4312f2ad5ddf9b5b7c011d831525c3",
     "tests/unit/test_m4_triage.py": "028d627d24c321632410f7845856f94953dfa6d9eb82569a206c042d378f7949",
     "tests/unit/test_m4_triage_local.py": "1bfd549d038cd1e0b8b5d79bca4b9ca9528a56d9008f73265cf9750dfce0e6d2",
@@ -213,10 +213,11 @@
         "tests/unit/test_m4_triage_local.py::RunTests.test_late_model_reply_does_not_replace_a_newer_terminal_result",
         "tests/unit/test_file_moves.py::MoveRecoveryTests.test_two_processes_serialize_the_same_move",
         "tests/unit/test_file_moves.py::MoveRecoveryTests.test_crash_after_unlink_recovers_missing_commit",
-        "tests/unit/test_m4_l2.py::TextIdentityPackTests.test_same_extracted_text_different_bytes_still_gets_its_own_packet",
+        "tests/unit/test_m4_l2.py::TextTwinRoutingTests.test_same_extracted_text_different_bytes_still_gets_its_own_packet",
         "tests/unit/test_m4_office_text.py::XlsxCellTests.test_huge_merged_range_is_rejected_before_expanding",
         "tests/unit/test_m4_office_text.py::XlsxCellTests.test_merge_budget_is_cumulative_and_invalid_ranges_fail",
-        "tests/unit/test_m4_l2.py::DeepReadJournalTests.test_committed_corruption_fails_and_torn_tail_is_read_only"
+        "tests/unit/test_m4_l2.py::DeepReadJournalTests.test_committed_corruption_fails_and_torn_tail_is_read_only",
+        "tests/unit/test_m4_l2.py::TextTwinRoutingTests.test_old_automatic_twin_record_is_preserved_but_not_counted_as_read"
       ],
       "not_verified": [
         "真实 M4 50 份当前模型小样及新版执行未验；Spark apply-triage catalog 桥未实现。"
