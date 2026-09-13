@@ -53169,6 +53169,593 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "6,270 亿美元 = 627 $B；原文「商业 RPO」（commercial RPO），business_scope 记公司整体（微软商业分部口径，非仅 Azure）。「26Q1」按原文记自然季，微软财年 FY26Q3。"
+    },
+    {
+      "fact_id": "sqt2025-caict-cn-compute-total-2023",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "中国信通院",
+      "value": 230.0,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "总算力",
+        "precision": "混合/未注明",
+        "area": "全国",
+        "status": "在用",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9bb1d3c7936d2dc86a5cb039f6236e20fe552a6b9922c0587b26d62aadc8cd1e",
+        "local_file": "20250514-深企投产业研究(深圳)-智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期(51页).pdf",
+        "locator": "第 18 页：「根据中国信通院数据，截至 2023 年底，全国在用数据中心机架总规模已跃升至 810 万标准机架，算力总规模达到 230EFLOPS……存力总规模约 1200EB」",
+        "grade": "S3",
+        "originator": "中国信通院（经深企投产业研究院《智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期》（2025-04）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "精度未注明。2024 年算力规模较 2023 年底增长 16.5%（工信部），未给绝对值。"
+    },
+    {
+      "fact_id": "sqt2025-caict-cn-storage-2023",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "cn-storage-policy-scope",
+        "label": "中国存力总规模（信通院/政策口径）"
+      },
+      "asserter": "中国信通院",
+      "value": 1200.0,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "utilization": "未注明",
+        "cloud": "未注明",
+        "location": "未注明",
+        "area": "全国",
+        "status": "在用",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9bb1d3c7936d2dc86a5cb039f6236e20fe552a6b9922c0587b26d62aadc8cd1e",
+        "local_file": "20250514-深企投产业研究(深圳)-智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期(51页).pdf",
+        "locator": "第 18 页：「截至 2023 年底……存力总规模约 1200EB」",
+        "grade": "S3",
+        "originator": "中国信通院（经深企投产业研究院《智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期》（2025-04）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「约 1200EB」。信通院/政策口径的「存力」，与 IDC StorageSphere（含终端设备）口径不同，entity 分开。"
+    },
+    {
+      "fact_id": "sqt2025-policy-cn-compute-target-2025",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "policy",
+        "id": "miit-2023-compute-infra-action-plan",
+        "label": "工信部等六部门《算力基础设施高质量发展行动计划》（2023-10）"
+      },
+      "asserter": "工信部",
+      "value": 300.0,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "总算力",
+        "precision": "混合/未注明",
+        "area": "全国",
+        "status": "规划目标",
+        "region": "CN",
+        "basis": "政策目标"
+      },
+      "as_of": "2025目标",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "9bb1d3c7936d2dc86a5cb039f6236e20fe552a6b9922c0587b26d62aadc8cd1e",
+        "local_file": "20250514-深企投产业研究(深圳)-智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期(51页).pdf",
+        "locator": "第 14 页 表 4 国家层面政策文件：「到 2025 年，计算力方面，算力规模超过 300EFLOPS，智能算力占比达到 35%」",
+        "grade": "S3",
+        "originator": "工信部等六部门《算力基础设施高质量发展行动计划》（经深企投产业研究院《智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期》（2025-04）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「超过」按下界记。同文件：智能算力占比 35%（另见广东 50%）。"
+    },
+    {
+      "fact_id": "sqt2025-policy-cn-storage-target-2025",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "policy",
+        "id": "miit-2023-compute-infra-action-plan",
+        "label": "工信部等六部门《算力基础设施高质量发展行动计划》（2023-10）"
+      },
+      "asserter": "工信部",
+      "value": 1800.0,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "utilization": "未注明",
+        "cloud": "未注明",
+        "location": "未注明",
+        "area": "全国",
+        "status": "规划目标",
+        "region": "CN",
+        "basis": "政策目标"
+      },
+      "as_of": "2025目标",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "9bb1d3c7936d2dc86a5cb039f6236e20fe552a6b9922c0587b26d62aadc8cd1e",
+        "local_file": "20250514-深企投产业研究(深圳)-智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期(51页).pdf",
+        "locator": "第 14 页 表 4：「存储力方面，存储总量超过 1800EB，先进存储容量占比达到 30%以上」",
+        "grade": "S3",
+        "originator": "工信部等六部门《算力基础设施高质量发展行动计划》（经深企投产业研究院《智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期》（2025-04）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「超过」按下界记；先进存储占比 30% 以上（本指标无占比口径，未录）。"
+    },
+    {
+      "fact_id": "sqt2025-policy-guangdong-compute-target-2025",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "policy",
+        "id": "guangdong-compute-action-plan-2024",
+        "label": "《广东省算力基础设施高质量发展行动暨“粤算”行动计划（2024-2025 年）》"
+      },
+      "asserter": "广东省人民政府",
+      "value": 38.0,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "总算力",
+        "precision": "混合/未注明",
+        "area": "广东",
+        "status": "规划目标",
+        "region": "CN",
+        "basis": "政策目标"
+      },
+      "as_of": "2025目标",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9bb1d3c7936d2dc86a5cb039f6236e20fe552a6b9922c0587b26d62aadc8cd1e",
+        "local_file": "20250514-深企投产业研究(深圳)-智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期(51页).pdf",
+        "locator": "第 15 页 表 5 地方层面政策文件：「到 2025 年算力规模达到 38EFLOPS，智能算力占比达到 50%，到 2025 年底，新增国产化算力占比达到 70%」",
+        "grade": "S3",
+        "originator": "广东省人民政府（经深企投产业研究院《智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期》（2025-04）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "智能算力占比 50%、新增国产化算力占比 70%（无占比指标，未录）。"
+    },
+    {
+      "fact_id": "sqt2025-caict-global-compute-2023",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "global-compute",
+        "label": "全球算力"
+      },
+      "asserter": "中国信通院",
+      "value": 1397.0,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "总算力",
+        "precision": "混合/未注明",
+        "area": "全球",
+        "status": "未注明",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9bb1d3c7936d2dc86a5cb039f6236e20fe552a6b9922c0587b26d62aadc8cd1e",
+        "local_file": "20250514-深企投产业研究(深圳)-智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期(51页).pdf",
+        "locator": "第 17 页：「根据 IDC、Gartner、TOP500、中国信通院的预测，预计全球算力规模将从 2023 年的 1397EFLOPS……增长至 2030 年的 16ZFLOPS」",
+        "grade": "S3",
+        "originator": "中国信通院（经深企投产业研究院《智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期》（2025-04）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文并列四家来源，asserter 记中国信通院（该组数为信通院汇总测算的通行出处，原文未指明归属哪一家——**待交叉验证**）。精度未注明。"
+    },
+    {
+      "fact_id": "sqt2025-caict-global-compute-2030e",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "global-compute",
+        "label": "全球算力"
+      },
+      "asserter": "中国信通院",
+      "value": 16000.0,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "总算力",
+        "precision": "混合/未注明",
+        "area": "全球",
+        "status": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9bb1d3c7936d2dc86a5cb039f6236e20fe552a6b9922c0587b26d62aadc8cd1e",
+        "local_file": "20250514-深企投产业研究(深圳)-智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期(51页).pdf",
+        "locator": "第 17 页：「……增长至 2030 年的 16ZFLOPS（1ZFlops=1021Flops），预计 2023-2030 年全球算力规模复合增速达 50%」",
+        "grade": "S3",
+        "originator": "中国信通院（经深企投产业研究院《智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期》（2025-04）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "16 ZFLOPS = 16,000 EFLOPS。asserter 归属同上，待交叉验证。预测做出时点原文未写，@ 取深企投报告 2025-04。"
+    },
+    {
+      "fact_id": "sqt2025-kezhi-cn-aidc-investment-2023",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "科智咨询",
+      "value": 879.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "智算中心投资额",
+        "chip_type": "不分类型",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9bb1d3c7936d2dc86a5cb039f6236e20fe552a6b9922c0587b26d62aadc8cd1e",
+        "local_file": "20250514-深企投产业研究(深圳)-智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期(51页).pdf",
+        "locator": "第 19 页：「根据科智咨询数据，2023 年中国智算中心市场投资规模达 879 亿元，同比增长 90%以上，2024 年预计为 1014 亿元……预计 2028 年中国智算中心市场投资规模有望达到 2886 亿元，2023-2028 年 CAGR 达 26.8%」",
+        "grade": "S3",
+        "originator": "科智咨询（经深企投产业研究院《智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期》（2025-04）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "人民币；同比 +90% 以上。"
+    },
+    {
+      "fact_id": "sqt2025-kezhi-cn-aidc-investment-2024e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "科智咨询",
+      "value": 1014.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "智算中心投资额",
+        "chip_type": "不分类型",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2024E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9bb1d3c7936d2dc86a5cb039f6236e20fe552a6b9922c0587b26d62aadc8cd1e",
+        "local_file": "20250514-深企投产业研究(深圳)-智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期(51页).pdf",
+        "locator": "第 19 页：「根据科智咨询数据，2023 年中国智算中心市场投资规模达 879 亿元，同比增长 90%以上，2024 年预计为 1014 亿元……预计 2028 年中国智算中心市场投资规模有望达到 2886 亿元，2023-2028 年 CAGR 达 26.8%」",
+        "grade": "S3",
+        "originator": "科智咨询（经深企投产业研究院《智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期》（2025-04）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "人民币。预测做出时点原文未写，@ 取深企投报告 2025-04。"
+    },
+    {
+      "fact_id": "sqt2025-kezhi-cn-aidc-investment-2028e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "科智咨询",
+      "value": 2886.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "智算中心投资额",
+        "chip_type": "不分类型",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2028E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9bb1d3c7936d2dc86a5cb039f6236e20fe552a6b9922c0587b26d62aadc8cd1e",
+        "local_file": "20250514-深企投产业研究(深圳)-智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期(51页).pdf",
+        "locator": "第 19 页：「根据科智咨询数据，2023 年中国智算中心市场投资规模达 879 亿元，同比增长 90%以上，2024 年预计为 1014 亿元……预计 2028 年中国智算中心市场投资规模有望达到 2886 亿元，2023-2028 年 CAGR 达 26.8%」",
+        "grade": "S3",
+        "originator": "科智咨询（经深企投产业研究院《智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期》（2025-04）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "人民币；2023-2028 CAGR 26.8%。预测做出时点原文未写，@ 取深企投报告 2025-04。"
+    },
+    {
+      "fact_id": "sqt2025-idc-cn-aidc-service-market-2024h1",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "IDC",
+      "value": 146.1,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "智算服务市场规模",
+        "chip_type": "不分类型",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2024-H1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9bb1d3c7936d2dc86a5cb039f6236e20fe552a6b9922c0587b26d62aadc8cd1e",
+        "local_file": "20250514-深企投产业研究(深圳)-智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期(51页).pdf",
+        "locator": "第 33 页：「根据 IDC 发布的《中国智算服务市场（2024 上半年）跟踪》报告显示，2024 年上半年，中国智算服务市场整体规模达 146.1 亿元，同比增长 79.6%」",
+        "grade": "S3",
+        "originator": "IDC《中国智算服务市场（2024 上半年）跟踪》（经深企投产业研究院《智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期》（2025-04）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "人民币；细分：智算集成服务 57.0 亿元（39%）、GenAI IaaS 52.0 亿元（35.6%）、Non-GenAI IaaS 37.1 亿元（25.4%）。"
+    },
+    {
+      "fact_id": "sqt2025-kezhi-aidc-share-region-jjj-yrd-gd",
+      "metric_id": "aidc_project_structure_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "科智咨询",
+      "value": 40.0,
+      "unit": "%",
+      "caliber": {
+        "grouping": "按区域",
+        "group": "京津冀、长三角及广东省",
+        "measure": "项目数",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2024-08",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "9bb1d3c7936d2dc86a5cb039f6236e20fe552a6b9922c0587b26d62aadc8cd1e",
+        "local_file": "20250514-深企投产业研究(深圳)-智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期(51页).pdf",
+        "locator": "第 20-22 页（截至 2024 年 8 月，全国投运、在建、规划智算中心 300 余个；资料来源：科智咨询，深企投整理）：「京津冀、长三角及广东省智算中心项目合计超过 120 个，占比超 40%」",
+        "grade": "S3",
+        "originator": "科智咨询（经深企投产业研究院《智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期》（2025-04）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「超 40%」按下界记；项目合计超 120 个。"
+    },
+    {
+      "fact_id": "sqt2025-kezhi-aidc-share-scale-100p-1000p",
+      "metric_id": "aidc_project_structure_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "科智咨询",
+      "value": 70.0,
+      "unit": "%",
+      "caliber": {
+        "grouping": "其他",
+        "group": "100P 到 1000P（多服务于产业集群类需求）",
+        "measure": "项目数",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9bb1d3c7936d2dc86a5cb039f6236e20fe552a6b9922c0587b26d62aadc8cd1e",
+        "local_file": "20250514-深企投产业研究(深圳)-智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期(51页).pdf",
+        "locator": "第 20-22 页（截至 2024 年 8 月，全国投运、在建、规划智算中心 300 余个；资料来源：科智咨询，深企投整理）：「100P 到 1000P 多服务于产业集群类需求，当前落地项目数量最多，占比 70%」；表 6 >1000P 大型智算中心项目数占比 20%",
+        "grade": "S3",
+        "originator": "科智咨询（经深企投产业研究院《智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期》（2025-04）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "分组依据是算力规模档（100P-1000P），不是产业类型，grouping 记其他。"
+    },
+    {
+      "fact_id": "sqt2025-kezhi-aidc-share-scale-gt1000p",
+      "metric_id": "aidc_project_structure_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "科智咨询",
+      "value": 20.0,
+      "unit": "%",
+      "caliber": {
+        "grouping": "其他",
+        "group": ">1000P 大型智算中心",
+        "measure": "项目数",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9bb1d3c7936d2dc86a5cb039f6236e20fe552a6b9922c0587b26d62aadc8cd1e",
+        "local_file": "20250514-深企投产业研究(深圳)-智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期(51页).pdf",
+        "locator": "第 20-22 页（截至 2024 年 8 月，全国投运、在建、规划智算中心 300 余个；资料来源：科智咨询，深企投整理）：表 6「>1000P 大型智算中心 项目数量占比 20%」",
+        "grade": "S3",
+        "originator": "科智咨询（经深企投产业研究院《智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期》（2025-04）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "按算力规模档分组。"
+    },
+    {
+      "fact_id": "sqt2025-kezhi-aidc-share-builder-gov-telco-count",
+      "metric_id": "aidc_project_structure_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "科智咨询",
+      "value": 50.0,
+      "unit": "%",
+      "caliber": {
+        "grouping": "按建设主体",
+        "group": "地方政府和基础电信运营商",
+        "measure": "项目数",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2024-08",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "9bb1d3c7936d2dc86a5cb039f6236e20fe552a6b9922c0587b26d62aadc8cd1e",
+        "local_file": "20250514-深企投产业研究(深圳)-智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期(51页).pdf",
+        "locator": "第 20-22 页（截至 2024 年 8 月，全国投运、在建、规划智算中心 300 余个；资料来源：科智咨询，深企投整理）：「地方政府和基础电信运营商主导建设的智算中心项目占比超过 50%」",
+        "grade": "S3",
+        "originator": "科智咨询（经深企投产业研究院《智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期》（2025-04）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「超过 50%」按下界记。"
+    },
+    {
+      "fact_id": "sqt2025-kezhi-aidc-share-builder-cloud-count",
+      "metric_id": "aidc_project_structure_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "科智咨询",
+      "value": 17.7,
+      "unit": "%",
+      "caliber": {
+        "grouping": "按建设主体",
+        "group": "互联网及云厂商",
+        "measure": "项目数",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9bb1d3c7936d2dc86a5cb039f6236e20fe552a6b9922c0587b26d62aadc8cd1e",
+        "local_file": "20250514-深企投产业研究(深圳)-智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期(51页).pdf",
+        "locator": "第 20-22 页（截至 2024 年 8 月，全国投运、在建、规划智算中心 300 余个；资料来源：科智咨询，深企投整理）：「互联网及云厂商项目数量占比约为 17.7%」",
+        "grade": "S3",
+        "originator": "科智咨询（经深企投产业研究院《智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期》（2025-04）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「约」。"
+    },
+    {
+      "fact_id": "sqt2025-kezhi-aidc-share-builder-cloud-compute",
+      "metric_id": "aidc_project_structure_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "科智咨询",
+      "value": 30.0,
+      "unit": "%",
+      "caliber": {
+        "grouping": "按建设主体",
+        "group": "互联网及云厂商",
+        "measure": "算力规模",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2024-08",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "9bb1d3c7936d2dc86a5cb039f6236e20fe552a6b9922c0587b26d62aadc8cd1e",
+        "local_file": "20250514-深企投产业研究(深圳)-智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期(51页).pdf",
+        "locator": "第 20-22 页（截至 2024 年 8 月，全国投运、在建、规划智算中心 300 余个；资料来源：科智咨询，深企投整理）：「从算力规模维度看……互联网及云厂商建设的智算中心规模占比超过 30%，其次为基础电信运营商，占比约为 25.6%」",
+        "grade": "S3",
+        "originator": "科智咨询（经深企投产业研究院《智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期》（2025-04）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「超过 30%」按下界记；项目数仅 17.7%——项目少而大。"
+    },
+    {
+      "fact_id": "sqt2025-kezhi-aidc-share-builder-telco-compute",
+      "metric_id": "aidc_project_structure_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "科智咨询",
+      "value": 25.6,
+      "unit": "%",
+      "caliber": {
+        "grouping": "按建设主体",
+        "group": "基础电信运营商",
+        "measure": "算力规模",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9bb1d3c7936d2dc86a5cb039f6236e20fe552a6b9922c0587b26d62aadc8cd1e",
+        "local_file": "20250514-深企投产业研究(深圳)-智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期(51页).pdf",
+        "locator": "第 20-22 页（截至 2024 年 8 月，全国投运、在建、规划智算中心 300 余个；资料来源：科智咨询，深企投整理）：「……其次为基础电信运营商，占比约为 25.6%」",
+        "grade": "S3",
+        "originator": "科智咨询（经深企投产业研究院《智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期》（2025-04）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「约」。"
     }
   ]
 }
