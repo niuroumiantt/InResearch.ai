@@ -42684,7 +42684,11 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "9600.9 亿 kWh = 960.09 TWh。**量级存疑**：同一白皮书第 15 页另称 2017 年全球约 800 万个数据中心消耗 416.2 TWh（约占全球用电 2%），与本表 1103.4 TWh 相差 2.65 倍；IEA 口径 2023 年也仅约 360 TWh。原文两处都未交代口径差异，照录并报冲突缺口。",
-      "asserter": "ICTresearch"
+      "asserter": "ICTresearch",
+      "disputed_by": [
+        "jrc2024-ericsson-global-dc-electricity-2015",
+        "jrc2024-iea-global-dc-electricity-2015"
+      ]
     },
     {
       "fact_id": "ictresearch-gdc2019-global-dc-electricity-2016",
@@ -42717,7 +42721,10 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "10343.8 亿 kWh = 1034.38 TWh。**量级存疑**：同一白皮书第 15 页另称 2017 年全球约 800 万个数据中心消耗 416.2 TWh（约占全球用电 2%），与本表 1103.4 TWh 相差 2.65 倍；IEA 口径 2023 年也仅约 360 TWh。原文两处都未交代口径差异，照录并报冲突缺口。",
-      "asserter": "ICTresearch"
+      "asserter": "ICTresearch",
+      "disputed_by": [
+        "jrc2024-twente-global-dc-electricity-2016"
+      ]
     },
     {
       "fact_id": "ictresearch-gdc2019-global-dc-electricity-2017",
@@ -42752,7 +42759,8 @@
       "notes": "11034.3 亿 kWh = 1103.43 TWh。**量级存疑**：同一白皮书第 15 页另称 2017 年全球约 800 万个数据中心消耗 416.2 TWh（约占全球用电 2%），与本表 1103.4 TWh 相差 2.65 倍；IEA 口径 2023 年也仅约 360 TWh。原文两处都未交代口径差异，照录并报冲突缺口。",
       "asserter": "ICTresearch",
       "disputed_by": [
-        "gdc2019-global-dc-electricity-2017-4162"
+        "gdc2019-global-dc-electricity-2017-4162",
+        "jrc2024-mcmaster-global-dc-electricity-2017"
       ]
     },
     {
@@ -49001,13 +49009,13 @@
         "local_file": "20250316-2024年全球展望报告 人工智能和绿色能源转型将带来新的挑战和机遇(24页).pdf",
         "locator": "第 17 页 Ireland 专栏：「In 2022, data centers consumed 18% of the country’s electricity, up from 5% in 2015」",
         "grade": "S3",
-        "originator": "JLL（转引爱尔兰官方统计）"
+        "originator": "爱尔兰中央统计局 CSO（经 JLL《Data Centers 2024 Global Outlook》转引）"
       },
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "爱尔兰全国用电占比（region 枚举无国家级取值，按所属 EU 记，entity 为爱尔兰）。原文脚注 9 未在本段展开出处（爱尔兰统计局 CSO 口径）。",
-      "asserter": "JLL"
+      "asserter": "爱尔兰中央统计局"
     },
     {
       "fact_id": "jll2024-ireland-dc-power-share-2015",
@@ -49031,13 +49039,13 @@
         "local_file": "20250316-2024年全球展望报告 人工智能和绿色能源转型将带来新的挑战和机遇(24页).pdf",
         "locator": "第 17 页 Ireland 专栏：「In 2022, data centers consumed 18% of the country’s electricity, up from 5% in 2015」",
         "grade": "S3",
-        "originator": "JLL（转引爱尔兰官方统计）"
+        "originator": "爱尔兰中央统计局 CSO（经 JLL《Data Centers 2024 Global Outlook》转引）"
       },
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "同上。",
-      "asserter": "JLL"
+      "asserter": "爱尔兰中央统计局"
     },
     {
       "fact_id": "jll2024-eirgrid-ireland-dc-power-share-2028e",
@@ -50263,6 +50271,9 @@
       "asserter": "CESI",
       "disputes": [
         "ictresearch-gdc2019-global-dc-electricity-2017"
+      ],
+      "disputed_by": [
+        "jrc2024-mcmaster-global-dc-electricity-2017"
       ]
     },
     {
@@ -60149,7 +60160,11 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "高盛基于 IEA、思科与学术数据的估算，原文「约」；不含加密货币（同章口径）。"
+      "notes": "高盛基于 IEA、思科与学术数据的估算，原文「约」；不含加密货币（同章口径）。",
+      "disputed_by": [
+        "jrc2024-ericsson-global-dc-electricity-2020",
+        "jrc2024-schneider-global-dc-electricity-2020"
+      ]
     },
     {
       "fact_id": "gs2024-iea-global-dc-electricity-2022",
@@ -61360,6 +61375,2981 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "ESG 报告口径，原文未限定数据中心。"
+    },
+    {
+      "fact_id": "jrc2024-eu27-dc-electricity-2022-lower",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "eu27-datacenters",
+        "label": "欧盟 27 国数据中心（合计）"
+      },
+      "asserter": "JRC",
+      "value": 45.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "模型输出"
+      },
+      "as_of": "2022",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 4-5 页 Abstract/Executive Summary：「Data centres in the EU used an estimated 45–65 TWh of electricity in 2022 (1.8–2.6% of total EU electricity use)」",
+        "grade": "S2",
+        "originator": "Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "JRC 自身估算，区间下界。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-eu27-dc-electricity-2022-upper",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "eu27-datacenters",
+        "label": "欧盟 27 国数据中心（合计）"
+      },
+      "asserter": "JRC",
+      "value": 65.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "模型输出"
+      },
+      "as_of": "2022",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "同上",
+        "grade": "S2",
+        "originator": "Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上界。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-eu27-dc-power-share-2022-lower",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "eu27-datacenters",
+        "label": "欧盟 27 国数据中心（合计）"
+      },
+      "asserter": "JRC",
+      "value": 1.8,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "EU",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2022",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 4-5 页：「(1.8–2.6% of total EU electricity use)」",
+        "grade": "S2",
+        "originator": "Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "JRC 自身估算。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-eu27-dc-power-share-2022-upper",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "eu27-datacenters",
+        "label": "欧盟 27 国数据中心（合计）"
+      },
+      "asserter": "JRC",
+      "value": 2.6,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "EU",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2022",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 4-5 页：「(1.8–2.6% of total EU electricity use)」",
+        "grade": "S2",
+        "originator": "Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "JRC 自身估算。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-netherlands-dc-power-share-2022",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "netherlands-datacenters",
+        "label": "荷兰数据中心（合计）"
+      },
+      "asserter": "JRC",
+      "value": 5.2,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "EU",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 5 页 Executive Summary：「Data centres represent over 2% of national electricity use in Ireland (18%), the Netherlands (5.2%), Luxembourg (4.8%), Denmark (4.5%), and Germany (3%), Sweden (2.3%), and France (2.2%)」",
+        "grade": "S2",
+        "originator": "Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "JRC 2022 年分国估算（图 2）。爱尔兰 18% 与爱尔兰统计局同值、为其转用，未重复录；卢森堡 4.8% 无 entity 先例，一并记在此 notes。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-denmark-dc-power-share-2022",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "denmark-datacenters",
+        "label": "丹麦数据中心（合计）"
+      },
+      "asserter": "JRC",
+      "value": 4.5,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "EU",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 5 页 Executive Summary：「Data centres represent over 2% of national electricity use in Ireland (18%), the Netherlands (5.2%), Luxembourg (4.8%), Denmark (4.5%), and Germany (3%), Sweden (2.3%), and France (2.2%)」",
+        "grade": "S2",
+        "originator": "Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "JRC 2022 年分国估算（图 2）。爱尔兰 18% 与爱尔兰统计局同值、为其转用，未重复录；卢森堡 4.8% 无 entity 先例，一并记在此 notes。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-germany-dc-power-share-2022",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "germany-datacenters",
+        "label": "德国数据中心（合计）"
+      },
+      "asserter": "JRC",
+      "value": 3.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "EU",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 5 页 Executive Summary：「Data centres represent over 2% of national electricity use in Ireland (18%), the Netherlands (5.2%), Luxembourg (4.8%), Denmark (4.5%), and Germany (3%), Sweden (2.3%), and France (2.2%)」",
+        "grade": "S2",
+        "originator": "Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "JRC 2022 年分国估算（图 2）。爱尔兰 18% 与爱尔兰统计局同值、为其转用，未重复录；卢森堡 4.8% 无 entity 先例，一并记在此 notes。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-sweden-dc-power-share-2022",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "sweden-datacenters",
+        "label": "瑞典数据中心（合计）"
+      },
+      "asserter": "JRC",
+      "value": 2.3,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "EU",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 5 页 Executive Summary：「Data centres represent over 2% of national electricity use in Ireland (18%), the Netherlands (5.2%), Luxembourg (4.8%), Denmark (4.5%), and Germany (3%), Sweden (2.3%), and France (2.2%)」",
+        "grade": "S2",
+        "originator": "Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "JRC 2022 年分国估算（图 2）。爱尔兰 18% 与爱尔兰统计局同值、为其转用，未重复录；卢森堡 4.8% 无 entity 先例，一并记在此 notes。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-france-dc-power-share-2022",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "france-datacenters",
+        "label": "法国数据中心（合计）"
+      },
+      "asserter": "JRC",
+      "value": 2.2,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "EU",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 5 页 Executive Summary：「Data centres represent over 2% of national electricity use in Ireland (18%), the Netherlands (5.2%), Luxembourg (4.8%), Denmark (4.5%), and Germany (3%), Sweden (2.3%), and France (2.2%)」",
+        "grade": "S2",
+        "originator": "Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "JRC 2022 年分国估算（图 2）。爱尔兰 18% 与爱尔兰统计局同值、为其转用，未重复录；卢森堡 4.8% 无 entity 先例，一并记在此 notes。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-dodd2020-eu27-dc-electricity-2020",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "eu27-datacenters",
+        "label": "欧盟 27 国数据中心（合计）"
+      },
+      "asserter": "Dodd et al.",
+      "value": 104.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "模型输出"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 9-10 页 2.3 European estimates 与 Table 2：「estimated that data centres in the EU consumed 104 TWh in 2020 (Dodd et al., 2020). Enterprise data centres accounted for 44% … colocation and managed service providers … 56%」",
+        "grade": "S2",
+        "originator": "Dodd et al. (2020)，JRC 产品局与 Viegand Maagøe 等（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "JRC 产品局与咨询方合著（Dodd et al. 2020），JRC 评质量 Low-medium。同年 VHK 为 39.5 TWh，相差 2.6 倍。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。",
+      "disputed_by": [
+        "jrc2024-vhk2020-eu27-dc-electricity-2020"
+      ]
+    },
+    {
+      "fact_id": "jrc2024-dodd2020-eu27-dc-electricity-2015",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "eu27-datacenters",
+        "label": "欧盟 27 国数据中心（合计）"
+      },
+      "asserter": "Dodd et al.",
+      "value": 74.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "模型输出"
+      },
+      "as_of": "2015",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 9-10 页 2.3 European estimates 与 Table 2 Table 2：「Dodd et al. (2020) … 74 TWh in 2015」",
+        "grade": "S2",
+        "originator": "Dodd et al. (2020)（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Table 2 标注 EU27。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-dodd2020-eu27-dc-electricity-2025e",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "eu27-datacenters",
+        "label": "欧盟 27 国数据中心（合计）"
+      },
+      "asserter": "Dodd et al.",
+      "value": 134.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2024-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 9-10 页 2.3 European estimates 与 Table 2：「projected energy consumption would grow to 134 TWh in 2025 and 160 TWh in 2030」",
+        "grade": "S2",
+        "originator": "Dodd et al. (2020)（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "转引 JRC 综述；原研究发表月份未写，预测的 @ 取 JRC 报告时点 2024-02，实际做出时点更早。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-dodd2020-eu27-dc-electricity-2030e",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "eu27-datacenters",
+        "label": "欧盟 27 国数据中心（合计）"
+      },
+      "asserter": "Dodd et al.",
+      "value": 160.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2024-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 9-10 页 2.3 European estimates 与 Table 2：同上",
+        "grade": "S2",
+        "originator": "Dodd et al. (2020)（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "转引 JRC 综述；原研究发表月份未写，预测的 @ 取 JRC 报告时点 2024-02，实际做出时点更早。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-vhk2020-eu27-dc-electricity-2020",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "eu27-datacenters",
+        "label": "欧盟 27 国数据中心（合计）"
+      },
+      "asserter": "VHK & Viegand Maagøe",
+      "value": 39.5,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "模型输出"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 9-10 页 2.3 European estimates 与 Table 2：「A report prepared for DG ENER by consultants VHK and Viegand Maagøe estimated that data centres in the EU27 consumed 39.5 TWh in 2020 … based on the disaggregated estimate for Western Europe in Masanet et al. (2020)」",
+        "grade": "S2",
+        "originator": "VHK & Viegand Maagøe (2020)，为 DG ENER 编写（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "基于 Masanet 等西欧拆分值推算；与 Dodd 同年 104 TWh 争议。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。",
+      "disputes": [
+        "jrc2024-dodd2020-eu27-dc-electricity-2020"
+      ]
+    },
+    {
+      "fact_id": "jrc2024-montevecchi2020-eu28-dc-electricity-2010",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "eu28-datacenters",
+        "label": "欧盟 28 国数据中心（合计）"
+      },
+      "asserter": "Montevecchi et al.",
+      "value": 53.9,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "模型输出"
+      },
+      "as_of": "2010",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 9-10 页 2.3 European estimates 与 Table 2：「found that data centre energy consumption in the EU28 increased from 53.9 TWh in 2010 to 76.8 TWh in 2018 (Montevecchi et al., 2020) … projected energy use would grow to 92.6 TWh in 2025 and 98.5 TWh in 2030」",
+        "grade": "S2",
+        "originator": "Montevecchi et al. (2020)，奥地利环境署与 Borderstep 研究所（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "奥地利环境署与 Borderstep 为 DG CONNECT 编写；2018 年占 EU28 用电 2.7%。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-montevecchi2020-eu28-dc-electricity-2018",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "eu28-datacenters",
+        "label": "欧盟 28 国数据中心（合计）"
+      },
+      "asserter": "Montevecchi et al.",
+      "value": 76.8,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "模型输出"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 9-10 页 2.3 European estimates 与 Table 2：「found that data centre energy consumption in the EU28 increased from 53.9 TWh in 2010 to 76.8 TWh in 2018 (Montevecchi et al., 2020) … projected energy use would grow to 92.6 TWh in 2025 and 98.5 TWh in 2030」",
+        "grade": "S2",
+        "originator": "Montevecchi et al. (2020)，奥地利环境署与 Borderstep 研究所（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "奥地利环境署与 Borderstep 为 DG CONNECT 编写；2018 年占 EU28 用电 2.7%。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-montevecchi2020-eu28-dc-electricity-2025e",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "eu28-datacenters",
+        "label": "欧盟 28 国数据中心（合计）"
+      },
+      "asserter": "Montevecchi et al.",
+      "value": 92.6,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2024-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 9-10 页 2.3 European estimates 与 Table 2：「found that data centre energy consumption in the EU28 increased from 53.9 TWh in 2010 to 76.8 TWh in 2018 (Montevecchi et al., 2020) … projected energy use would grow to 92.6 TWh in 2025 and 98.5 TWh in 2030」",
+        "grade": "S2",
+        "originator": "Montevecchi et al. (2020)，奥地利环境署与 Borderstep 研究所（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "奥地利环境署与 Borderstep 为 DG CONNECT 编写；2018 年占 EU28 用电 2.7%。转引 JRC 综述；原研究发表月份未写，预测的 @ 取 JRC 报告时点 2024-02，实际做出时点更早。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-montevecchi2020-eu28-dc-electricity-2030e",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "eu28-datacenters",
+        "label": "欧盟 28 国数据中心（合计）"
+      },
+      "asserter": "Montevecchi et al.",
+      "value": 98.5,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2024-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 9-10 页 2.3 European estimates 与 Table 2：「found that data centre energy consumption in the EU28 increased from 53.9 TWh in 2010 to 76.8 TWh in 2018 (Montevecchi et al., 2020) … projected energy use would grow to 92.6 TWh in 2025 and 98.5 TWh in 2030」",
+        "grade": "S2",
+        "originator": "Montevecchi et al. (2020)，奥地利环境署与 Borderstep 研究所（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "奥地利环境署与 Borderstep 为 DG CONNECT 编写；2018 年占 EU28 用电 2.7%。转引 JRC 综述；原研究发表月份未写，预测的 @ 取 JRC 报告时点 2024-02，实际做出时点更早。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-masanet2020-weu-dc-electricity-2018",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "western-europe-datacenters",
+        "label": "西欧数据中心（Masanet 等区域口径）"
+      },
+      "asserter": "Masanet et al.",
+      "value": 39.4,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "模型输出"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 10 页 Table 2：「Masanet et al. (2020) … 39.4 TWh in 2018 for Western Europe」",
+        "grade": "S2",
+        "originator": "Masanet et al. (2020)（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "LBNL 等全球模型的西欧拆分。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-bashroush2018-europe-dc-electricity-2017",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "europe-unspecified-datacenters",
+        "label": "欧洲数据中心（范围未注明）"
+      },
+      "asserter": "Bashroush",
+      "value": 130.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "模型输出"
+      },
+      "as_of": "2017",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 9-10 页 Table 2：「Bashroush (2018) Methodology not disclosed 130 TWh in 2017」",
+        "grade": "S2",
+        "originator": "Bashroush (2018)，EU Horizon 2020 资助（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "方法未披露（JRC 评 Low），地域范围原文未写明 EU27/EU28。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-prakash2014-eu27-dc-electricity-2011",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "eu27-datacenters",
+        "label": "欧盟 27 国数据中心（合计）"
+      },
+      "asserter": "Prakash et al.",
+      "value": 52.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "模型输出"
+      },
+      "as_of": "2011",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 10 页：「Prakash et al. (2014) estimated that data centre energy use in the EU27 would increase from 52 TWh in 2011 to 70 TWh in 2020」",
+        "grade": "S2",
+        "originator": "Prakash et al. (2014)（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "为 DG CONNECT 编写（2014）。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-prakash2014-eu27-dc-electricity-2020e",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "eu27-datacenters",
+        "label": "欧盟 27 国数据中心（合计）"
+      },
+      "asserter": "Prakash et al.",
+      "value": 70.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "预测"
+      },
+      "as_of": "2020E@2024-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "同上",
+        "grade": "S2",
+        "originator": "Prakash et al. (2014)（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2014 年做出的 2020 年预测；转引 JRC 综述；原研究发表月份未写，预测的 @ 取 JRC 报告时点 2024-02，实际做出时点更早。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-deloitte2014-eu28-dc-electricity-2015",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "eu28-datacenters",
+        "label": "欧盟 28 国数据中心（合计）"
+      },
+      "asserter": "德勤",
+      "value": 78.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "模型输出"
+      },
+      "as_of": "2015",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 10 页：「Deloitte et al. (2014) estimated that data centres consumed 78 TWh in the EU28 in 2015」",
+        "grade": "S2",
+        "originator": "Deloitte et al. (2014)（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "为 DG GROW 编写（2014），2015 年值为其时的推算。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-cowi2021-denmark-dc-electricity-2020",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "denmark-datacenters",
+        "label": "丹麦数据中心（合计）"
+      },
+      "asserter": "COWI",
+      "value": 0.88,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "模型输出"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 11-13 页 Country-level estimates 与 Table 3：「estimated that data centres consumed 0.88 TWh in 2020 (COWI, 2021)」",
+        "grade": "S2",
+        "originator": "COWI (2021)（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "丹麦能源署委托。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-dea-denmark-dc-electricity-2021",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "denmark-datacenters",
+        "label": "丹麦数据中心（合计）"
+      },
+      "asserter": "丹麦能源署",
+      "value": 1.1,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "模型输出"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 11-13 页 Country-level estimates 与 Table 3：「with an estimate of 1.1 TWh in 2021 (Danish Energy Agency, 2023a)」",
+        "grade": "S2",
+        "originator": "Danish Energy Agency (2023a)（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "基于 COWI 与 Energinet 功率利用数据。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-etla-finland-dc-electricity-2018",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "finland-datacenters",
+        "label": "芬兰数据中心（合计）"
+      },
+      "asserter": "ETLA",
+      "value": 0.25,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "实测"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 11-13 页 Country-level estimates 与 Table 3：「estimated that data centres consumed around 250 GWh in 2018 based on reported electricity consumption of the two-digit level industrial classification」",
+        "grade": "S2",
+        "originator": "芬兰经济研究所 ETLA（Hiekkanen et al., 2021）（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "250 GWh = 0.25 TWh；行业用电统计口径（TOL 62–63），JRC 评 High。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-ademe-arcep-france-dc-electricity-2020",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "france-datacenters",
+        "label": "法国数据中心（合计）"
+      },
+      "asserter": "Ademe & Arcep",
+      "value": 11.6,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "模型输出"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 11-13 页 Country-level estimates 与 Table 3：「estimating the total energy consumption of data centres in France at 11.6 TWh in 2020 (Ademe & Arcep, 2022)」",
+        "grade": "S2",
+        "originator": "法国环境署 Ademe 与电信监管局 Arcep（2022）（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "托管 49%、企业数据中心 36%。同年 GreenIT.fr 为 5.2 TWh。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。",
+      "disputed_by": [
+        "jrc2024-greenit-france-dc-electricity-2020"
+      ]
+    },
+    {
+      "fact_id": "jrc2024-greenit-france-dc-electricity-2020",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "france-datacenters",
+        "label": "法国数据中心（合计）"
+      },
+      "asserter": "GreenIT.fr",
+      "value": 5.2,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "模型输出"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 11-13 页 Country-level estimates 与 Table 3：「GreenIT.fr estimated that data centres in France consumed 5.2 TWh in 2020 (Bordage et al., 2021)」；Table 3 方法：服务器数 × 能耗因子 × 平均 PUE 1.7",
+        "grade": "S2",
+        "originator": "GreenIT.fr（Bordage et al., 2021）（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "JRC 评 Low；脚注 3：数字技术总用电 40 TWh 中数据中心使用阶段占 13%。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。",
+      "disputes": [
+        "jrc2024-ademe-arcep-france-dc-electricity-2020"
+      ]
+    },
+    {
+      "fact_id": "jrc2024-citizing-france-dc-electricity-2019",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "france-datacenters",
+        "label": "法国数据中心（合计）"
+      },
+      "asserter": "CITIZING",
+      "value": 9.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "模型输出"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 11-13 页 Country-level estimates 与 Table 3：「A report commissioned by the French Senate estimated that data centres in France consumed around 9 TWh in 2019 (CITIZING, 2020)」",
+        "grade": "S2",
+        "originator": "CITIZING (2020)，法国参议院委托（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "按数据流量外推，JRC 评 Low；原文「around」。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-borderstep-germany-dc-electricity-2018",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "germany-datacenters",
+        "label": "德国数据中心（合计）"
+      },
+      "asserter": "Borderstep",
+      "value": 14.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "模型输出"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 11-13 页 Country-level estimates 与 Table 3：「The Borderstep Institute estimated that data centres in Germany consumed 14 TWh in 2018, 16.3 TWh in 2020, 17 TWh in 2021, and 17.9 TWh in 2022」",
+        "grade": "S2",
+        "originator": "Borderstep 研究所（Hintemann et al.）（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "自下而上模型，JRC 评 High。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-borderstep-germany-dc-electricity-2020",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "germany-datacenters",
+        "label": "德国数据中心（合计）"
+      },
+      "asserter": "Borderstep",
+      "value": 16.3,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "模型输出"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 11-13 页 Country-level estimates 与 Table 3：「The Borderstep Institute estimated that data centres in Germany consumed 14 TWh in 2018, 16.3 TWh in 2020, 17 TWh in 2021, and 17.9 TWh in 2022」",
+        "grade": "S2",
+        "originator": "Borderstep 研究所（Hintemann et al.）（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "自下而上模型，JRC 评 High。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-borderstep-germany-dc-electricity-2021",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "germany-datacenters",
+        "label": "德国数据中心（合计）"
+      },
+      "asserter": "Borderstep",
+      "value": 17.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "模型输出"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 11-13 页 Country-level estimates 与 Table 3：「The Borderstep Institute estimated that data centres in Germany consumed 14 TWh in 2018, 16.3 TWh in 2020, 17 TWh in 2021, and 17.9 TWh in 2022」",
+        "grade": "S2",
+        "originator": "Borderstep 研究所（Hintemann et al.）（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "自下而上模型，JRC 评 High。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-borderstep-germany-dc-electricity-2022",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "germany-datacenters",
+        "label": "德国数据中心（合计）"
+      },
+      "asserter": "Borderstep",
+      "value": 17.9,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "模型输出"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 11-13 页 Country-level estimates 与 Table 3：「The Borderstep Institute estimated that data centres in Germany consumed 14 TWh in 2018, 16.3 TWh in 2020, 17 TWh in 2021, and 17.9 TWh in 2022」",
+        "grade": "S2",
+        "originator": "Borderstep 研究所（Hintemann et al.）（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "自下而上模型，JRC 评 High。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-borderstep-germany-dc-electricity-2030e",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "germany-datacenters",
+        "label": "德国数据中心（合计）"
+      },
+      "asserter": "Borderstep",
+      "value": 27.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2024-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 11-13 页 Country-level estimates 与 Table 3：「they project data centre energy consumption could reach 27 TWh in 2030 (Hintemann et al., 2023)」",
+        "grade": "S2",
+        "originator": "Borderstep 研究所（Hintemann et al., 2023）（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "转引 JRC 综述；原研究发表月份未写，预测的 @ 取 JRC 报告时点 2024-02，实际做出时点更早。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-cso-ireland-dc-electricity-2019",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "ireland-datacenters",
+        "label": "爱尔兰数据中心（合计）"
+      },
+      "asserter": "爱尔兰中央统计局",
+      "value": 2.5,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "实测"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 11-13 页 Country-level estimates 与 Table 3：「The CSO estimate that data centres used 2.5 TWh in 2019 (9% of national electricity consumption), 3 TWh in 2020 (11%), 4 TWh in 2021 (14%), and 5.25 TWh in 2022 (18%)」",
+        "grade": "S2",
+        "originator": "爱尔兰中央统计局 CSO（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "基于 ESB 电表数据，JRC 评 High。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-cso-ireland-dc-power-share-2019",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "ireland-datacenters",
+        "label": "爱尔兰数据中心（合计）"
+      },
+      "asserter": "爱尔兰中央统计局",
+      "value": 9.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "EU",
+        "basis": "实测"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 11-13 页 Country-level estimates 与 Table 3：「… 2.5 TWh in 2019 (9% of national electricity consumption)」",
+        "grade": "S2",
+        "originator": "爱尔兰中央统计局 CSO（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "电表数据口径；2022 年 18% 库内已由 JLL 转引录入（同断言者同值），未重复。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-cso-ireland-dc-electricity-2020",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "ireland-datacenters",
+        "label": "爱尔兰数据中心（合计）"
+      },
+      "asserter": "爱尔兰中央统计局",
+      "value": 3.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "实测"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 11-13 页 Country-level estimates 与 Table 3：「The CSO estimate that data centres used 2.5 TWh in 2019 (9% of national electricity consumption), 3 TWh in 2020 (11%), 4 TWh in 2021 (14%), and 5.25 TWh in 2022 (18%)」",
+        "grade": "S2",
+        "originator": "爱尔兰中央统计局 CSO（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "基于 ESB 电表数据，JRC 评 High。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-cso-ireland-dc-power-share-2020",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "ireland-datacenters",
+        "label": "爱尔兰数据中心（合计）"
+      },
+      "asserter": "爱尔兰中央统计局",
+      "value": 11.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "EU",
+        "basis": "实测"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 11-13 页 Country-level estimates 与 Table 3：「… 3 TWh in 2020 (11% of national electricity consumption)」",
+        "grade": "S2",
+        "originator": "爱尔兰中央统计局 CSO（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "电表数据口径；2022 年 18% 库内已由 JLL 转引录入（同断言者同值），未重复。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-cso-ireland-dc-electricity-2021",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "ireland-datacenters",
+        "label": "爱尔兰数据中心（合计）"
+      },
+      "asserter": "爱尔兰中央统计局",
+      "value": 4.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "实测"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 11-13 页 Country-level estimates 与 Table 3：「The CSO estimate that data centres used 2.5 TWh in 2019 (9% of national electricity consumption), 3 TWh in 2020 (11%), 4 TWh in 2021 (14%), and 5.25 TWh in 2022 (18%)」",
+        "grade": "S2",
+        "originator": "爱尔兰中央统计局 CSO（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "基于 ESB 电表数据，JRC 评 High。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-cso-ireland-dc-power-share-2021",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "ireland-datacenters",
+        "label": "爱尔兰数据中心（合计）"
+      },
+      "asserter": "爱尔兰中央统计局",
+      "value": 14.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "EU",
+        "basis": "实测"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 11-13 页 Country-level estimates 与 Table 3：「… 4 TWh in 2021 (14% of national electricity consumption)」",
+        "grade": "S2",
+        "originator": "爱尔兰中央统计局 CSO（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "电表数据口径；2022 年 18% 库内已由 JLL 转引录入（同断言者同值），未重复。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-cso-ireland-dc-electricity-2022",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "ireland-datacenters",
+        "label": "爱尔兰数据中心（合计）"
+      },
+      "asserter": "爱尔兰中央统计局",
+      "value": 5.25,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "实测"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 11-13 页 Country-level estimates 与 Table 3：「The CSO estimate that data centres used 2.5 TWh in 2019 (9% of national electricity consumption), 3 TWh in 2020 (11%), 4 TWh in 2021 (14%), and 5.25 TWh in 2022 (18%)」",
+        "grade": "S2",
+        "originator": "爱尔兰中央统计局 CSO（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "基于 ESB 电表数据，JRC 评 High。正文 5.25、Table 3 写 5.3，取正文。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-cbs-netherlands-dc-electricity-2017",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "netherlands-datacenters",
+        "label": "荷兰数据中心（合计）"
+      },
+      "asserter": "荷兰统计局",
+      "value": 1.6,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "实测"
+      },
+      "as_of": "2017",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 11-13 页 Country-level estimates 与 Table 3：「Statistics Netherlands estimated that data centres consumed 1.6 TWh in 2017, 2.4 TWh in 2018, and 2.7 TWh in 2019」",
+        "grade": "S2",
+        "originator": "荷兰统计局 CBS（2021a）（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "基于企业登记与 TenneT 用电数据，JRC 评 High；2019 年大型数据中心（>7.5 GWh）占 90%。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-cbs-netherlands-dc-electricity-2018",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "netherlands-datacenters",
+        "label": "荷兰数据中心（合计）"
+      },
+      "asserter": "荷兰统计局",
+      "value": 2.4,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "实测"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 11-13 页 Country-level estimates 与 Table 3：「Statistics Netherlands estimated that data centres consumed 1.6 TWh in 2017, 2.4 TWh in 2018, and 2.7 TWh in 2019」",
+        "grade": "S2",
+        "originator": "荷兰统计局 CBS（2021a）（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "基于企业登记与 TenneT 用电数据，JRC 评 High；2019 年大型数据中心（>7.5 GWh）占 90%。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-cbs-netherlands-dc-electricity-2019",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "netherlands-datacenters",
+        "label": "荷兰数据中心（合计）"
+      },
+      "asserter": "荷兰统计局",
+      "value": 2.7,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "实测"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 11-13 页 Country-level estimates 与 Table 3：「Statistics Netherlands estimated that data centres consumed 1.6 TWh in 2017, 2.4 TWh in 2018, and 2.7 TWh in 2019」",
+        "grade": "S2",
+        "originator": "荷兰统计局 CBS（2021a）（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "基于企业登记与 TenneT 用电数据，JRC 评 High；2019 年大型数据中心（>7.5 GWh）占 90%。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-sea-sweden-dc-electricity-2022-lower",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "sweden-datacenters",
+        "label": "瑞典数据中心（合计）"
+      },
+      "asserter": "瑞典能源署",
+      "value": 2.8,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "模型输出"
+      },
+      "as_of": "2022",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 11-13 页 Country-level estimates 与 Table 3：「The Swedish Energy Agency and the Research Institutes of Sweden (RISE) estimate that data centres in the country used 2.8–3.2 TWh in 2022」",
+        "grade": "S2",
+        "originator": "瑞典能源署与 RISE（2023）（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间下界。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-sea-sweden-dc-electricity-2022-upper",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "sweden-datacenters",
+        "label": "瑞典数据中心（合计）"
+      },
+      "asserter": "瑞典能源署",
+      "value": 3.2,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "模型输出"
+      },
+      "as_of": "2022",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "同上",
+        "grade": "S2",
+        "originator": "瑞典能源署与 RISE（2023）（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上界。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-radar-sweden-dc-electricity-2020",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "sweden-datacenters",
+        "label": "瑞典数据中心（合计）"
+      },
+      "asserter": "Radar",
+      "value": 2.4,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "模型输出"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 11-13 页 Country-level estimates 与 Table 3：「Radar, an IT consulting firm, estimated that Swedish data centres used 2.4 TWh of electricity in 2020. They estimate floor space of 20 hectares, total capacity of 640 MW, and 43% power utilisation」",
+        "grade": "S2",
+        "originator": "Radar (2020)（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "IT 咨询公司估计；同时给出总容量 640 MW、功率利用率 43%。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-nve-norway-dc-electricity-2019",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "norway-datacenters",
+        "label": "挪威数据中心（合计）"
+      },
+      "asserter": "挪威水资源与能源局",
+      "value": 0.8,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "模型输出"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 13 页：「The Norwegian Water Resources and Energy Directorate (NVE) estimate that data centres in Norway consumed 0.8 TWh in 2019 (NVE, 2020). The report also projects data centres to consume 4–9 TWh in 2040」",
+        "grade": "S2",
+        "originator": "挪威水资源与能源局 NVE（2020）（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": " region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-nve-norway-dc-electricity-2040e-lower",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "norway-datacenters",
+        "label": "挪威数据中心（合计）"
+      },
+      "asserter": "挪威水资源与能源局",
+      "value": 4.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "预测"
+      },
+      "as_of": "2040E@2024-02",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "同上",
+        "grade": "S2",
+        "originator": "挪威水资源与能源局 NVE（2020）（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2040 年区间下界；转引 JRC 综述；原研究发表月份未写，预测的 @ 取 JRC 报告时点 2024-02，实际做出时点更早。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-nve-norway-dc-electricity-2040e-upper",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "norway-datacenters",
+        "label": "挪威数据中心（合计）"
+      },
+      "asserter": "挪威水资源与能源局",
+      "value": 9.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "预测"
+      },
+      "as_of": "2040E@2024-02",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "同上",
+        "grade": "S2",
+        "originator": "挪威水资源与能源局 NVE（2020）（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上界；转引 JRC 综述；原研究发表月份未写，预测的 @ 取 JRC 报告时点 2024-02，实际做出时点更早。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-ngeso-uk-dc-electricity-2020-lower",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "uk-datacenters",
+        "label": "英国数据中心（合计）"
+      },
+      "asserter": "National Grid ESO",
+      "value": 4.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "模型输出"
+      },
+      "as_of": "2020",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 13 页：「National Grid ESO … estimates that data centres used 4–7 TWh of electricity in 2020, equivalent to 1.3–2.5% of national electricity use」",
+        "grade": "S2",
+        "originator": "National Grid ESO（2022）（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间下界。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-ngeso-uk-dc-power-share-2020-lower",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "uk-datacenters",
+        "label": "英国数据中心（合计）"
+      },
+      "asserter": "National Grid ESO",
+      "value": 1.3,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "EU",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "同上",
+        "grade": "S2",
+        "originator": "National Grid ESO（2022）（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间下界。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-ngeso-uk-dc-electricity-2020-upper",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "uk-datacenters",
+        "label": "英国数据中心（合计）"
+      },
+      "asserter": "National Grid ESO",
+      "value": 7.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "模型输出"
+      },
+      "as_of": "2020",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 13 页：「National Grid ESO … estimates that data centres used 4–7 TWh of electricity in 2020, equivalent to 1.3–2.5% of national electricity use」",
+        "grade": "S2",
+        "originator": "National Grid ESO（2022）（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上界。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-ngeso-uk-dc-power-share-2020-upper",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "uk-datacenters",
+        "label": "英国数据中心（合计）"
+      },
+      "asserter": "National Grid ESO",
+      "value": 2.5,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "EU",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "同上",
+        "grade": "S2",
+        "originator": "National Grid ESO（2022）（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上界。 region 枚举无国家级取值，按欧洲记 EU（非欧盟成员挪威/英国同样记 EU，entity 区分国家）。"
+    },
+    {
+      "fact_id": "jrc2024-shehabi-us-dc-electricity-2014",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心（合计）"
+      },
+      "asserter": "LBNL",
+      "value": 70.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2014",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 14 页：「In the United States, data centres consumed 70 TWh in 2014 (1.8% of national electricity use) and projected to rise to 73 TWh in 2020 based on current trends (Shehabi et al., 2016, 2018)」",
+        "grade": "S2",
+        "originator": "LBNL（Shehabi et al., 2016）（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "劳伦斯伯克利国家实验室 Shehabi 等；占全美用电 1.8%。"
+    },
+    {
+      "fact_id": "jrc2024-shehabi-us-dc-electricity-2020e",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心（合计）"
+      },
+      "asserter": "LBNL",
+      "value": 73.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "US",
+        "basis": "预测"
+      },
+      "as_of": "2020E@2024-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "同上",
+        "grade": "S2",
+        "originator": "LBNL（Shehabi et al., 2016）（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2016 年做出的 2020 年趋势预测；转引 JRC 综述；原研究发表月份未写，预测的 @ 取 JRC 报告时点 2024-02，实际做出时点更早。"
+    },
+    {
+      "fact_id": "jrc2024-shehabi-us-dc-power-share-2014",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心（合计）"
+      },
+      "asserter": "LBNL",
+      "value": 1.8,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "US",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2014",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "同上",
+        "grade": "S2",
+        "originator": "LBNL（Shehabi et al., 2016）（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": ""
+    },
+    {
+      "fact_id": "jrc2024-sg-mci-dc-power-share-2020",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "singapore-datacenters",
+        "label": "新加坡数据中心（合计）"
+      },
+      "asserter": "新加坡通讯及新闻部",
+      "value": 7.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "APAC",
+        "basis": "实测"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 14 页：「In Singapore, data centres accounted for around 7% of national electricity consumption in 2020 (Singapore Ministry of Communications and Information, 2021)」",
+        "grade": "S2",
+        "originator": "新加坡通讯及新闻部（2021）（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「around」。dc_power_share_of_grid 的 region 无 SG，按 APAC 记，entity 为新加坡。"
+    },
+    {
+      "fact_id": "jrc2024-borderstep-global-dc-electricity-2018-lower",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "Borderstep",
+      "value": 310.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2018",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 39 页 Annex Table A.1「Overview of studies estimating the global energy use of data centres since 2018」：Borderstep 310-330 TWh in 2018",
+        "grade": "S2",
+        "originator": "Borderstep（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "不含加密货币；含加密货币为 400 TWh。 区间下界。"
+    },
+    {
+      "fact_id": "jrc2024-borderstep-global-dc-electricity-2018-upper",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "Borderstep",
+      "value": 330.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2018",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 39 页 Annex Table A.1「Overview of studies estimating the global energy use of data centres since 2018」：Borderstep 310-330 TWh in 2018",
+        "grade": "S2",
+        "originator": "Borderstep（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "不含加密货币；含加密货币为 400 TWh。 区间上界。"
+    },
+    {
+      "fact_id": "jrc2024-borderstep-global-dc-electricity-2020-lower",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "Borderstep",
+      "value": 270.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2020",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 39 页 Annex Table A.1「Overview of studies estimating the global energy use of data centres since 2018」：Borderstep 270-380 TWh in 2020",
+        "grade": "S2",
+        "originator": "Borderstep（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "不含加密货币；含加密货币 350-500 TWh。 区间下界。",
+      "disputed_by": [
+        "jrc2024-huawei-andrae-global-dc-electricity-2020-lower",
+        "jrc2024-iea-global-dc-electricity-2020-lower",
+        "jrc2024-twente-global-dc-electricity-2020-lower"
+      ]
+    },
+    {
+      "fact_id": "jrc2024-borderstep-global-dc-electricity-2020-upper",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "Borderstep",
+      "value": 380.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2020",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 39 页 Annex Table A.1「Overview of studies estimating the global energy use of data centres since 2018」：Borderstep 270-380 TWh in 2020",
+        "grade": "S2",
+        "originator": "Borderstep（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "不含加密货币；含加密货币 350-500 TWh。 区间上界。",
+      "disputed_by": [
+        "jrc2024-huawei-andrae-global-dc-electricity-2020-upper",
+        "jrc2024-iea-global-dc-electricity-2020-upper",
+        "jrc2024-twente-global-dc-electricity-2020-upper"
+      ]
+    },
+    {
+      "fact_id": "jrc2024-huawei-andrae-global-dc-electricity-2020-lower",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "华为",
+      "value": 196.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2020",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 39 页 Annex Table A.1「Overview of studies estimating the global energy use of data centres since 2018」：华为 196-299 TWh in 2020",
+        "grade": "S2",
+        "originator": "华为（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Andrae（华为）按 IP 流量与能效情景外推。 区间下界。",
+      "disputes": [
+        "jrc2024-borderstep-global-dc-electricity-2020-lower"
+      ],
+      "disputed_by": [
+        "jrc2024-iea-global-dc-electricity-2020-lower",
+        "jrc2024-twente-global-dc-electricity-2020-lower"
+      ]
+    },
+    {
+      "fact_id": "jrc2024-huawei-andrae-global-dc-electricity-2020-upper",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "华为",
+      "value": 299.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2020",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 39 页 Annex Table A.1「Overview of studies estimating the global energy use of data centres since 2018」：华为 196-299 TWh in 2020",
+        "grade": "S2",
+        "originator": "华为（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Andrae（华为）按 IP 流量与能效情景外推。 区间上界。",
+      "disputes": [
+        "jrc2024-borderstep-global-dc-electricity-2020-upper"
+      ],
+      "disputed_by": [
+        "jrc2024-iea-global-dc-electricity-2020-upper",
+        "jrc2024-twente-global-dc-electricity-2020-upper"
+      ]
+    },
+    {
+      "fact_id": "jrc2024-iea-global-dc-electricity-2020-lower",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "IEA",
+      "value": 200.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2020",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 39 页 Annex Table A.1「Overview of studies estimating the global energy use of data centres since 2018」：IEA 200-250 TWh in 2020",
+        "grade": "S2",
+        "originator": "IEA（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "IEA 2023a 等历版汇总。 区间下界。",
+      "disputes": [
+        "jrc2024-borderstep-global-dc-electricity-2020-lower",
+        "jrc2024-huawei-andrae-global-dc-electricity-2020-lower"
+      ],
+      "disputed_by": [
+        "jrc2024-twente-global-dc-electricity-2020-lower"
+      ]
+    },
+    {
+      "fact_id": "jrc2024-iea-global-dc-electricity-2020-upper",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "IEA",
+      "value": 250.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2020",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 39 页 Annex Table A.1「Overview of studies estimating the global energy use of data centres since 2018」：IEA 200-250 TWh in 2020",
+        "grade": "S2",
+        "originator": "IEA（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "IEA 2023a 等历版汇总。 区间上界。",
+      "disputes": [
+        "jrc2024-borderstep-global-dc-electricity-2020-upper",
+        "jrc2024-huawei-andrae-global-dc-electricity-2020-upper"
+      ],
+      "disputed_by": [
+        "jrc2024-twente-global-dc-electricity-2020-upper"
+      ]
+    },
+    {
+      "fact_id": "jrc2024-iea-global-dc-electricity-2021-lower",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "IEA",
+      "value": 220.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2021",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 39 页 Annex Table A.1「Overview of studies estimating the global energy use of data centres since 2018」：IEA 220-320 TWh in 2021",
+        "grade": "S2",
+        "originator": "IEA（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "IEA 2023a。 区间下界。"
+    },
+    {
+      "fact_id": "jrc2024-iea-global-dc-electricity-2021-upper",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "IEA",
+      "value": 320.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2021",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 39 页 Annex Table A.1「Overview of studies estimating the global energy use of data centres since 2018」：IEA 220-320 TWh in 2021",
+        "grade": "S2",
+        "originator": "IEA（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "IEA 2023a。 区间上界。"
+    },
+    {
+      "fact_id": "jrc2024-shift-global-dc-electricity-2017-lower",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "The Shift Project",
+      "value": 559.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2017",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 39 页 Annex Table A.1「Overview of studies estimating the global energy use of data centres since 2018」：The Shift Project 559-593 TWh in 2017",
+        "grade": "S2",
+        "originator": "The Shift Project（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "JRC 视为离群值（沿用过时假设外推）。 区间下界。"
+    },
+    {
+      "fact_id": "jrc2024-shift-global-dc-electricity-2017-upper",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "The Shift Project",
+      "value": 593.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2017",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 39 页 Annex Table A.1「Overview of studies estimating the global energy use of data centres since 2018」：The Shift Project 559-593 TWh in 2017",
+        "grade": "S2",
+        "originator": "The Shift Project（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "JRC 视为离群值（沿用过时假设外推）。 区间上界。"
+    },
+    {
+      "fact_id": "jrc2024-twente-global-dc-electricity-2020-lower",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "University of Twente",
+      "value": 240.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2020",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 39 页 Annex Table A.1「Overview of studies estimating the global energy use of data centres since 2018」：University of Twente 240-275 TWh in 2020",
+        "grade": "S2",
+        "originator": "University of Twente（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Koot & Wijnhoven (2021)。 区间下界。",
+      "disputes": [
+        "jrc2024-borderstep-global-dc-electricity-2020-lower",
+        "jrc2024-huawei-andrae-global-dc-electricity-2020-lower",
+        "jrc2024-iea-global-dc-electricity-2020-lower"
+      ]
+    },
+    {
+      "fact_id": "jrc2024-twente-global-dc-electricity-2020-upper",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "University of Twente",
+      "value": 275.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2020",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 39 页 Annex Table A.1「Overview of studies estimating the global energy use of data centres since 2018」：University of Twente 240-275 TWh in 2020",
+        "grade": "S2",
+        "originator": "University of Twente（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Koot & Wijnhoven (2021)。 区间上界。",
+      "disputes": [
+        "jrc2024-borderstep-global-dc-electricity-2020-upper",
+        "jrc2024-huawei-andrae-global-dc-electricity-2020-upper",
+        "jrc2024-iea-global-dc-electricity-2020-upper"
+      ]
+    },
+    {
+      "fact_id": "jrc2024-borderstep-crypto-global-dc-electricity-2018",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "Borderstep",
+      "value": 400.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "含加密货币挖矿",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 39 页 Annex Table A.1「Overview of studies estimating the global energy use of data centres since 2018」：Borderstep 400 TWh in 2018",
+        "grade": "S2",
+        "originator": "Borderstep（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "含加密货币口径（不含为 310-330）。"
+    },
+    {
+      "fact_id": "jrc2024-ericsson-global-dc-electricity-2015",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "Ericsson",
+      "value": 220.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2015",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 39 页 Annex Table A.1「Overview of studies estimating the global energy use of data centres since 2018」：Ericsson 220 TWh in 2015",
+        "grade": "S2",
+        "originator": "Ericsson（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Malmodin 等（爱立信/Telia）；含企业网络为 245。ITU (2020) 同年同值 220 TWh 基于本模型，按同源未另录。",
+      "disputes": [
+        "ictresearch-gdc2019-global-dc-electricity-2015"
+      ],
+      "disputed_by": [
+        "jrc2024-iea-global-dc-electricity-2015"
+      ]
+    },
+    {
+      "fact_id": "jrc2024-ericsson-global-dc-electricity-2020",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "Ericsson",
+      "value": 223.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 39 页 Annex Table A.1「Overview of studies estimating the global energy use of data centres since 2018」：Ericsson 223 TWh in 2020",
+        "grade": "S2",
+        "originator": "Ericsson（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Malmodin et al. (2023)。",
+      "disputes": [
+        "gs2024-global-dc-electricity-2020"
+      ],
+      "disputed_by": [
+        "jrc2024-schneider-global-dc-electricity-2020"
+      ]
+    },
+    {
+      "fact_id": "jrc2024-greenit-global-dc-electricity-2019",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "GreenIT.fr",
+      "value": 312.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 39 页 Annex Table A.1「Overview of studies estimating the global energy use of data centres since 2018」：GreenIT.fr 312 TWh in 2019",
+        "grade": "S2",
+        "originator": "GreenIT.fr（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Bordage (2019)，按在用服务器数与三座数据中心 LCA 推算。",
+      "disputed_by": [
+        "jrc2024-shift-global-dc-electricity-2019"
+      ]
+    },
+    {
+      "fact_id": "jrc2024-huawei-andrae-global-dc-electricity-2018",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "华为",
+      "value": 211.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 39 页 Annex Table A.1「Overview of studies estimating the global energy use of data centres since 2018」：华为 211 TWh in 2018",
+        "grade": "S2",
+        "originator": "华为（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Andrae (2019)。",
+      "disputed_by": [
+        "jrc2024-iea-global-dc-electricity-2018",
+        "jrc2024-lbnl-masanet-global-dc-electricity-2018"
+      ]
+    },
+    {
+      "fact_id": "jrc2024-iea-global-dc-electricity-2018",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "IEA",
+      "value": 200.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 39 页 Annex Table A.1「Overview of studies estimating the global energy use of data centres since 2018」：IEA 200 TWh in 2018",
+        "grade": "S2",
+        "originator": "IEA（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "",
+      "disputes": [
+        "jrc2024-huawei-andrae-global-dc-electricity-2018"
+      ],
+      "disputed_by": [
+        "jrc2024-lbnl-masanet-global-dc-electricity-2018"
+      ]
+    },
+    {
+      "fact_id": "jrc2024-lbnl-masanet-global-dc-electricity-2018",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "LBNL",
+      "value": 205.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 39 页 Annex Table A.1「Overview of studies estimating the global energy use of data centres since 2018」：LBNL 205 TWh in 2018",
+        "grade": "S2",
+        "originator": "LBNL（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Masanet et al. (2020)，劳伦斯伯克利实验室等自下而上模型。",
+      "disputes": [
+        "jrc2024-huawei-andrae-global-dc-electricity-2018",
+        "jrc2024-iea-global-dc-electricity-2018"
+      ]
+    },
+    {
+      "fact_id": "jrc2024-mcmaster-global-dc-electricity-2017",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "McMaster University",
+      "value": 704.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2017",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 39 页 Annex Table A.1「Overview of studies estimating the global energy use of data centres since 2018」：McMaster University 704 TWh in 2017",
+        "grade": "S2",
+        "originator": "McMaster University（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Belkhir & Elmeligi (2018)，按 2008 年估计值每年 +12% 外推，JRC 视为离群值。",
+      "disputes": [
+        "ictresearch-gdc2019-global-dc-electricity-2017",
+        "gdc2019-global-dc-electricity-2017-4162"
+      ]
+    },
+    {
+      "fact_id": "jrc2024-schneider-global-dc-electricity-2020",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "施耐德电气",
+      "value": 341.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 39 页 Annex Table A.1「Overview of studies estimating the global energy use of data centres since 2018」：施耐德电气 341 TWh in 2020",
+        "grade": "S2",
+        "originator": "施耐德电气（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "按工作负载、存储需求与全球平均 PUE 自下而上估计。",
+      "disputes": [
+        "gs2024-global-dc-electricity-2020",
+        "jrc2024-ericsson-global-dc-electricity-2020"
+      ]
+    },
+    {
+      "fact_id": "jrc2024-shift-global-dc-electricity-2019",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "The Shift Project",
+      "value": 393.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 39 页 Annex Table A.1「Overview of studies estimating the global energy use of data centres since 2018」：The Shift Project 393 TWh in 2019",
+        "grade": "S2",
+        "originator": "The Shift Project（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "含加密货币为 438 TWh；JRC 视为离群值。",
+      "disputes": [
+        "jrc2024-greenit-global-dc-electricity-2019"
+      ]
+    },
+    {
+      "fact_id": "jrc2024-twente-global-dc-electricity-2016",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "University of Twente",
+      "value": 286.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2016",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 39 页 Annex Table A.1「Overview of studies estimating the global energy use of data centres since 2018」：University of Twente 286 TWh in 2016",
+        "grade": "S2",
+        "originator": "University of Twente（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Koot & Wijnhoven (2021)。",
+      "disputes": [
+        "ictresearch-gdc2019-global-dc-electricity-2016"
+      ]
+    },
+    {
+      "fact_id": "jrc2024-itu-global-dc-electricity-2020e",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "ITU",
+      "value": 230.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2020E@2024-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 39 页 Annex Table A.1「Overview of studies estimating the global energy use of data centres since 2018」：ITU (2020) 230 TWh in 2020 (projection)",
+        "grade": "S2",
+        "originator": "ITU（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表标 projection；转引 JRC 综述；原研究发表月份未写，预测的 @ 取 JRC 报告时点 2024-02，实际做出时点更早。",
+      "disputed_by": [
+        "jrc2024-mcmaster-global-dc-electricity-2020e"
+      ]
+    },
+    {
+      "fact_id": "jrc2024-mcmaster-global-dc-electricity-2020e",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "McMaster University",
+      "value": 990.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2020E@2024-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 39 页 Annex Table A.1「Overview of studies estimating the global energy use of data centres since 2018」：Belkhir & Elmeligi (2018) 990 TWh in 2020 (projection)",
+        "grade": "S2",
+        "originator": "McMaster University（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "JRC 视为离群值；转引 JRC 综述；原研究发表月份未写，预测的 @ 取 JRC 报告时点 2024-02，实际做出时点更早。",
+      "disputes": [
+        "jrc2024-itu-global-dc-electricity-2020e"
+      ]
+    },
+    {
+      "fact_id": "jrc2024-iea-global-dc-electricity-2015",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "IEA",
+      "value": 200.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2015",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 6 页 Table 1「Global trends in digital and energy indicators, 2015–2022」：Data centre energy use (excluding crypto) 2015 200 TWh（Sources: IEA (2023a)）",
+        "grade": "S2",
+        "originator": "IEA（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "不含加密货币。",
+      "disputes": [
+        "ictresearch-gdc2019-global-dc-electricity-2015",
+        "jrc2024-ericsson-global-dc-electricity-2015"
+      ]
+    },
+    {
+      "fact_id": "jrc2024-iea-global-dc-electricity-2022-lower",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "IEA",
+      "value": 240.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2022",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 6 页 Table 1：Data centre energy use (excluding crypto) 2022 240–340 TWh（IEA 2023a）",
+        "grade": "S2",
+        "originator": "IEA（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "不含加密货币；区间下界。库内另有 IEA 2022 年约 350 TWh（经高盛转引，gs2024-iea-global-dc-electricity-2022）——IEA 不同版本口径/修订。"
+    },
+    {
+      "fact_id": "jrc2024-iea-global-dc-electricity-2022-upper",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "IEA",
+      "value": 340.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2022",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
+        "local_file": "20241210-欧盟联合研究中心：2024欧盟数据中心与宽带通信网络能源消耗研究报告(41页).pdf",
+        "locator": "第 6 页 Table 1：Data centre energy use (excluding crypto) 2022 240–340 TWh（IEA 2023a）",
+        "grade": "S2",
+        "originator": "IEA（经 Kamiya & Bertoldi《Energy Consumption in Data Centres and Broadband Communication Networks in the EU》（欧盟联合研究中心 JRC，2024） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "不含加密货币；区间上界。库内另有 IEA 2022 年约 350 TWh（经高盛转引，gs2024-iea-global-dc-electricity-2022）——IEA 不同版本口径/修订。"
     }
   ]
 }
