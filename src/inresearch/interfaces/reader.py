@@ -2,11 +2,9 @@
 from __future__ import annotations
 import os
 import argparse, sqlite3, sys
-from inresearch.adapters import models as models
-from inresearch.workflow.reader import Reader
-from inresearch.adapters.reader_model import ModelClient
 from inresearch.materials.reader_contracts import ReaderError, MAX_WORKERS
 from inresearch.materials.artifacts import encoded
+from inresearch.workflow.reading_results import ReadingResults
 
 def main(argv=None):
     os.umask(0o077)
@@ -26,6 +24,8 @@ def main(argv=None):
     sub = ap.add_subparsers(dest="command", required=True)
     for command in ("init", "scan", "status"):
         sub.add_parser(command)
+    current = sub.add_parser('current', help='read the current full-reading result without creating or upgrading a catalog')
+    current.add_argument('--sha', required=True)
     run = sub.add_parser("run")
     run.add_argument("--once", action="store_true", help="drain eligible jobs; future retries remain pending")
     run.add_argument("--max-jobs", type=int)
@@ -54,8 +54,18 @@ def main(argv=None):
         parser = sub.add_parser(command)
         parser.add_argument("--dest", required=True)
     args = ap.parse_args(argv)
+    if args.command == 'current':
+        try:
+            print(encoded(ReadingResults(args.data_root).current(args.sha)))
+            return 0
+        except (ReaderError, OSError, ValueError, sqlite3.Error) as exc:
+            print(encoded({'error': exc.code if isinstance(exc, ReaderError) else str(exc)}), file=sys.stderr)
+            return 1
     if args.stable_seconds < 0 or (args.timeout is not None and args.timeout <= 0):
         ap.error("stability must be >= 0 and timeout > 0")
+    from inresearch.adapters import models
+    from inresearch.adapters.reader_model import ModelClient
+    from inresearch.workflow.reader import Reader
     try:
         model = ModelClient(args.backend, args.url, args.model, args.timeout, args.ocr_model,
                             args.context, args.max_output_tokens, args.request_model)

@@ -30,13 +30,13 @@ class TextFingerprintTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-fp-')
         base = Path(self.temp.name)
-        self._saved = (L2.similarity.path, L2.read_documents)
+        self._saved = (L2.similarity.path, L2.processed_documents)
         L2.similarity.path = base / 'l2_text_md5.jsonl'
-        L2.read_documents = lambda: set(self.read)
-        self.read = set()
+        L2.processed_documents = lambda: set(self.processed)
+        self.processed = set()
 
     def tearDown(self):
-        (L2.similarity.path, L2.read_documents) = self._saved
+        (L2.similarity.path, L2.processed_documents) = self._saved
         self.temp.cleanup()
 
     def fp(self, text, pages=41):
@@ -64,23 +64,23 @@ class TextFingerprintTests(unittest.TestCase):
         self.assertIsNotNone(self.fp('封面' * 300))
 
     # -- 台账 -------------------------------------------------------------
-    def test_a_twin_is_only_a_twin_once_the_other_one_was_read(self):
+    def test_a_twin_processing_hint_requires_the_other_processing_receipt(self):
         """还没读过的副本不算——两份都在队列里时，先读到哪份都行。"""
         L2.similarity.remember('a' * 64, 'deadbeef')
-        self.assertEqual(L2.similarity.same_text('b' * 64, 'deadbeef', L2.read_documents(), read=True), [])
-        self.read.add('a' * 64)
-        self.assertEqual(L2.similarity.same_text('b' * 64, 'deadbeef', L2.read_documents(), read=True),
+        self.assertEqual(L2.similarity.same_text('b' * 64, 'deadbeef', L2.processed_documents(), processed=True), [])
+        self.processed.add('a' * 64)
+        self.assertEqual(L2.similarity.same_text('b' * 64, 'deadbeef', L2.processed_documents(), processed=True),
                          ['a' * 64])
 
     def test_a_document_is_never_its_own_twin(self):
         L2.similarity.remember('a' * 64, 'deadbeef')
-        self.read.add('a' * 64)
-        self.assertEqual(L2.similarity.same_text('a' * 64, 'deadbeef', L2.read_documents(), read=True), [])
+        self.processed.add('a' * 64)
+        self.assertEqual(L2.similarity.same_text('a' * 64, 'deadbeef', L2.processed_documents(), processed=True), [])
 
     def test_no_fingerprint_means_no_twin_check(self):
         L2.similarity.remember('a' * 64, 'deadbeef')
-        self.read.add('a' * 64)
-        self.assertEqual(L2.similarity.same_text('b' * 64, None, L2.read_documents(), read=True), [])
+        self.processed.add('a' * 64)
+        self.assertEqual(L2.similarity.same_text('b' * 64, None, L2.processed_documents(), processed=True), [])
 
     def test_an_incomplete_tail_does_not_take_the_ledger_down(self):
         L2.similarity.remember('a' * 64, 'deadbeef')
@@ -89,27 +89,27 @@ class TextFingerprintTests(unittest.TestCase):
         self.assertEqual(L2.similarity.fingerprints(), {'a' * 64: 'deadbeef'})
 
     # -- 开包了但还没读的副本 ---------------------------------------------
-    def test_a_packed_but_unread_copy_is_reported(self):
+    def test_a_packed_but_unprocessed_copy_is_reported(self):
         """第三对副本就是这么漏的：两份同一轮开包，都还没读，什么都没响。"""
         L2.similarity.remember('a' * 64, 'deadbeef')
         self.assertEqual(
-            L2.similarity.same_text('b' * 64, 'deadbeef', L2.read_documents(), read=False), ['a' * 64])
+            L2.similarity.same_text('b' * 64, 'deadbeef', L2.processed_documents(), processed=False), ['a' * 64])
 
-    def test_a_read_copy_is_not_reported_here(self):
+    def test_a_processed_copy_is_not_reported_here(self):
         """已读的那条路由 already_read_with_same_text 管，两边不重复报。"""
         L2.similarity.remember('a' * 64, 'deadbeef')
-        self.read.add('a' * 64)
+        self.processed.add('a' * 64)
         self.assertEqual(
-            L2.similarity.same_text('b' * 64, 'deadbeef', L2.read_documents(), read=False), [])
+            L2.similarity.same_text('b' * 64, 'deadbeef', L2.processed_documents(), processed=False), [])
 
     def test_a_document_is_never_its_own_open_twin(self):
         L2.similarity.remember('a' * 64, 'deadbeef')
         self.assertEqual(
-            L2.similarity.same_text('a' * 64, 'deadbeef', L2.read_documents(), read=False), [])
+            L2.similarity.same_text('a' * 64, 'deadbeef', L2.processed_documents(), processed=False), [])
 
     def test_no_fingerprint_means_no_open_twin_check(self):
         L2.similarity.remember('a' * 64, 'deadbeef')
-        self.assertEqual(L2.similarity.same_text('b' * 64, None, L2.read_documents(), read=False), [])
+        self.assertEqual(L2.similarity.same_text('b' * 64, None, L2.processed_documents(), processed=False), [])
 
     def test_the_last_write_wins(self):
         """重抽一遍得到不同的正文（抽取器修好了），以新的为准。"""
@@ -129,10 +129,10 @@ class NearTwinTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-near-')
         base = Path(self.temp.name)
-        self._saved = (L2.similarity.path, L2.read_documents)
+        self._saved = (L2.similarity.path, L2.processed_documents)
         L2.similarity.path = base / 'l2_text_md5.jsonl'
-        L2.read_documents = lambda: set(self.read)
-        self.read = set()
+        L2.processed_documents = lambda: set(self.processed)
+        self.processed = set()
         rng = random.Random(7)
         vocab = ['液冷', '智算中心', '冷板', '浸没', '单相', '相变', 'PUE', '机柜',
                  '服务器', '部署', '产业', '标准', '测试', '运营商', '能效']
@@ -141,7 +141,7 @@ class NearTwinTests(unittest.TestCase):
         self.copyright_page = '版权声明本报告版权属于中国信息通信研究院引用请注明来源' * 15
 
     def tearDown(self):
-        (L2.similarity.path, L2.read_documents) = self._saved
+        (L2.similarity.path, L2.processed_documents) = self._saved
         self.temp.cleanup()
 
     def test_a_copy_missing_a_page_is_a_near_twin(self):
@@ -168,25 +168,25 @@ class NearTwinTests(unittest.TestCase):
     def test_too_little_text_gets_no_sketch(self):
         self.assertEqual(SIM.text_sketch('目录'), [])
 
-    def test_the_ledger_reports_who_it_overlaps_and_whether_it_was_read(self):
+    def test_the_ledger_reports_overlap_and_processing_receipts(self):
         sketch = SIM.text_sketch(self.copyright_page + self.body)
         L2.similarity.remember('a' * 64, 'deadbeef', SIM.text_sketch(self.body))
-        found = L2.similarity.near_twins('b' * 64, sketch, L2.read_documents())
+        found = L2.similarity.near_twins('b' * 64, sketch, L2.processed_documents())
         self.assertEqual([t['sha256'] for t in found], ['a' * 64])
-        self.assertFalse(found[0]['read'])
-        self.read.add('a' * 64)
-        self.assertTrue(L2.similarity.near_twins('b' * 64, sketch, L2.read_documents())[0]['read'])
+        self.assertFalse(found[0]['processed'])
+        self.processed.add('a' * 64)
+        self.assertTrue(L2.similarity.near_twins('b' * 64, sketch, L2.processed_documents())[0]['processed'])
 
     def test_a_document_is_never_its_own_near_twin(self):
         sketch = SIM.text_sketch(self.body)
         L2.similarity.remember('a' * 64, 'deadbeef', sketch)
-        self.assertEqual(L2.similarity.near_twins('a' * 64, sketch, L2.read_documents()), [])
+        self.assertEqual(L2.similarity.near_twins('a' * 64, sketch, L2.processed_documents()), [])
 
     def test_a_ledger_row_without_a_sketch_is_skipped_not_fatal(self):
         """#159 之前写进账本的行只有 text_md5，没有 sketch。"""
         L2.similarity.remember('a' * 64, 'deadbeef')
         self.assertEqual(L2.similarity.sketches(), {})
-        self.assertEqual(L2.similarity.near_twins('b' * 64, SIM.text_sketch(self.body), L2.read_documents()), [])
+        self.assertEqual(L2.similarity.near_twins('b' * 64, SIM.text_sketch(self.body), L2.processed_documents()), [])
 
     def test_an_empty_sketch_never_matches(self):
         self.assertEqual(SIM.sketch_overlap([], []), 0.0)

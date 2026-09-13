@@ -1,6 +1,6 @@
 # Spark 持续 reader 运行手册
 
-> CURRENT · 2026-09-06。规则归属与替代关系见 framework/CURRENT.md。
+> CURRENT · 2026-09-13。规则归属与替代关系见 framework/CURRENT.md。
 
 本手册对应 `src/inresearch/workflow/reader.py`，不是旧 reader 脚本的启动说明。实现为 Python 标准库、SQLite 与单一队列持有进程（该进程内可开多个工作线程，见「并发与吞吐」）；部署、实际模型验收及同步状态由当次部署记录说明。代码通过隔离故障测试不等于 Spark 已完成部署。
 
@@ -222,3 +222,16 @@ cat ~/.local/state/inresearch.ai/publish-status.json
 首次源码由 m5 对 GitHub main 核对 SHA 后以 Git bundle 传入，在规范目录初始化完整 Git checkout。Spark 没有保存通用 GitHub token；后续可从已认证 m5 生成 main 的 bundle，传到 Spark 并 fetch。更新前核对当前源码无未提交/未跟踪文件，停止 reader，在 main 上 `git merge --ff-only` 已验证远端 SHA，再安装版本化 units、更新 release 配置并重启。不要 reset/stash/覆盖 dirty 工作区，也不要 rsync 覆盖正在执行的源码。
 
 主站按 infra 的正式整体发布流程跟随 GitHub main；不能为提速旁路其部署锁、数据库保护或发布提交。Web 快照是派生副本，不代替 Spark 永久台账和原件备份。
+
+
+## 只读查询与终端复用
+
+```bash
+python3 manage.py reader --data-root /实际数据根 current --sha 完整SHA
+python3 manage.py deep-read --reader-data-root /同一数据根 current --sha 完整SHA
+python3 manage.py deep-read --reader-data-root /同一数据根 pack --sha 完整SHA
+```
+
+共用 READER_DATA_ROOT 也可省略参数；缺省数据根是 ~/.local/share/inresearch.ai。current 是只读查询，不启动模型、不创建目录、不迁移旧 catalog；返回 catalog_missing / not_registered / no_current_result / legacy_unverified / available。available 表示原件、覆盖和封印机检通过，仍是候选；异常或损坏须处理后重试，不静默改读其他数据根。
+
+L2 的记录和 skip 是事实处理回执，不产生全文版本。pack 如有当前完整结果，会复用页块和原报告，固定 reading_result 的版本与 SHA；`--again` 仅重开任务包。完整重读和审阅替换仍走上文 reader 版本流程。网站发布只同步源码，不会自动连接或升级另一台机器的 catalog；不要把旧 L2 回执转换成虚构的覆盖证明。

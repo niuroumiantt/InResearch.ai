@@ -22,6 +22,7 @@ from inresearch.knowledge import fact_contract, provenance
 from inresearch.storage.files import locked, write_json
 from inresearch.storage.jsonl import JsonlStore, read_rows
 from inresearch.workflow.reading_gaps import ReadingGaps
+from inresearch.workflow.reading_results import ReadingResults
 
 
 def now():
@@ -35,15 +36,17 @@ class CompletionPending(OSError):
 
 
 class DeepRead:
-    def __init__(self, root=None, state=None, packet_dir=None, materials=None, extractor=None):
+    def __init__(self, root=None, state=None, packet_dir=None, materials=None, extractor=None,
+                 reader_data_root=None):
         self.root = Path(root) if root is not None else project_root()
         state = Path(state) if state is not None else paths.state()
         self.materials = materials if materials is not None else triage
         self.extractor = extractor if extractor is not None else packet.full_text
+        self.readings = ReadingResults(reader_data_root)
         self.facts_path = self.root / 'data/facts.json'
         self.metrics_path = self.root / 'framework/metrics.json'
         self.questions_path = self.root / 'framework/research_questions.json'
-        self.read_log = state / 'l2_read.jsonl'
+        self.receipt_log = state / 'l2_read.jsonl'
         self.packet_dir = Path(packet_dir) if packet_dir is not None else paths.data() / 'l2'
         self.similarity = SimilarityIndex(state / 'l2_text_md5.jsonl')
         self.gaps = ReadingGaps(self.root / 'data/metric_gaps.jsonl')
@@ -69,21 +72,22 @@ class DeepRead:
     def resolve_document(self, prefix, what='sha', allow_unregistered=True):
         return policy.resolve_document(self.all_results(), prefix, what, allow_unregistered)
 
-    def read_documents(self):
-        return {row['sha256'] for row in read_rows(self.read_log)
+    def processed_documents(self):
+        # Historical filename retained; these are processing receipts, not reports.
+        return {row['sha256'] for row in read_rows(self.receipt_log)
                 if row.get('sha256') and 'twin_of' not in row}
 
     def twin_documents(self):
-        return {row['sha256'] for row in read_rows(self.read_log)
+        return {row['sha256'] for row in read_rows(self.receipt_log)
                 if row.get('sha256') and 'twin_of' in row}
 
-    def remember_read(self, row, execution=None):
+    def remember_processing(self, row, execution=None):
         operation = provenance.digest(row)
-        store = JsonlStore(self.read_log)
+        store = JsonlStore(self.receipt_log)
         with store.locked():
             if any(r.get('operation_id') == operation for r in store.rows()):
                 return True
-            store.append({**row, 'operation_id': operation, 'at': now(),
+            store.append({**row, 'kind': 'fact_processing_receipt', 'operation_id': operation, 'at': now(),
                           'execution': execution or {'executor':'unknown','model':'unknown','verification':'unknown'}})
         return False
 
@@ -91,11 +95,14 @@ class DeepRead:
         metrics = self.load_metrics()
         return Counter(metrics.get(f['metric_id'], {}).get('module') for f in self.load_facts()['records'])
 
-    def eligible(self, min_score=policy.MIN_SCORE, include_read=False, since=0):
-        done, covered = self.read_documents(), self.coverage()
+    def current(self, sha):
+        return self.readings.current(sha)
+
+    def eligible(self, min_score=policy.MIN_SCORE, include_processed=False, since=0):
+        done, covered = self.processed_documents(), self.coverage()
         rows = [r for r in self.all_results().values()
                 if (r.get('score') or 0) >= min_score and r.get('status') == 'ok'
-                and (include_read or r['sha256'] not in done)
+                and (include_processed or r['sha256'] not in done)
                 and not policy.admission_problems(r)
                 and (not since or policy.document_year(r) >= since)]
         return sorted(rows, key=lambda r: (covered.get(r.get('category'), 0),
@@ -107,29 +114,37 @@ class DeepRead:
         # Resolve against all judgments before filtering eligibility. A second
         # match cannot disappear merely because its score or restriction differs.
         selected = self.resolve_document(sha, allow_unregistered=False)['sha256'] if sha else None
-        pool = self.eligible(0 if selected else min_score, include_read=again, since=since)
+        pool = self.eligible(0 if selected else min_score, include_processed=again, since=since)
         if selected:
             pool = [r for r in pool if r['sha256'] == selected]
         if not pool:
-            return dict(packed=0, reason='没有符合条件且未读的文件')
+            return dict(packed=0, reason='没有符合条件且尚未完成事实处理的文件')
         row = pool[0]
         path, from_library = self.materials.readable_path(row)
         with verified_content(path, row['sha256']):
-            text, meta = self.extractor(path, row['suffix'])
+            current = self.readings.current(row['sha256'], include_text=True)
+            if current['status'] == 'available':
+                text = current.pop('text')
+                meta = dict(method='reader_current_result', pages=current['report']['coverage']['pages_total'])
+            else:
+                text, meta = self.extractor(path, row['suffix'])
         if not text.strip():
             return dict(packed=0, sha256=row['sha256'], rel=row.get('rel'), meta=meta, reason='抽不出正文')
         fingerprint, sketch = text_fingerprint(text, meta), text_sketch(text)
-        done = self.read_documents()
-        twins = self.similarity.same_text(row['sha256'], fingerprint, done, read=True) if fingerprint else []
-        opened = self.similarity.same_text(row['sha256'], fingerprint, done, read=False) if fingerprint else []
+        done = self.processed_documents()
+        twins = self.similarity.same_text(row['sha256'], fingerprint, done, processed=True) if fingerprint else []
+        opened = self.similarity.same_text(row['sha256'], fingerprint, done, processed=False) if fingerprint else []
         near = self.similarity.near_twins(row['sha256'], sketch, done)
+        reference = {k: v for k, v in current.items() if k != 'report'}
         report = packet.publish(self.packet_dir, row, text, meta, self.load_metrics(), self.load_questions(),
-                                policy.unattributed(row), result_revision(row), self.materials.MAX_PREVIEW_CHARS)
+                                policy.unattributed(row), result_revision(row), self.materials.MAX_PREVIEW_CHARS,
+                                reading_result=reference)
         if fingerprint:
             self.similarity.remember(row['sha256'], fingerprint, sketch)
-        return {**report, 'packed': 1, 'read_from': 'library' if from_library else 'source',
-                'text_md5': fingerprint, 'same_text_already_read': twins or None,
-                'same_text_packed_not_read': opened or None, 'near_twins': near or None,
+        return {**report, 'packed': 1,
+                'read_from': 'reader_current_result' if current['status'] == 'available' else 'library' if from_library else 'source',
+                'text_md5': fingerprint, 'same_text_already_processed': twins or None,
+                'same_text_packed_not_processed': opened or None, 'near_twins': near or None,
                 'same_text_note': '提取文本相同；SHA 不同，图表和脚注可能不同；不自动跳读。' if twins or opened else None,
                 'near_twin_note': '文本高度重合；须核对图表、脚注和版本，相似度不能证明差异仅是版权页。' if near else None,
                 'again': True if again and row['sha256'] in done else None}
@@ -195,12 +210,12 @@ class DeepRead:
             report.update(accepted=len(accepted), facts_total=len(store['records']))
             if doc_sha and not rejected:
                 try:
-                    report['receipt_replayed'] = self.remember_read(dict(sha256=doc_sha,
+                    report['receipt_replayed'] = self.remember_processing(dict(sha256=doc_sha,
                         facts=len(incoming), fact_ids=sorted(f['fact_id'] for f in incoming)), execution)
                 except OSError as exc:
                     raise CompletionPending('facts') from exc
             if not incoming:
-                report['note'] = '解析出 0 条事实；这是人工阅读声明，不证明已读全文。重开用 pack --again --sha。'
+                report['note'] = '解析出 0 条事实；仅记录事实处理回执，不证明全文已读，不改变全文阅读状态。重开用 pack --again --sha。'
             return report
 
     def attribute(self, sha, *, expected_revision, org=None, unrecoverable=False, year=None, title=None, evidence):
@@ -247,12 +262,12 @@ class DeepRead:
         row = self.resolve_document(doc, '--doc')
         report = self.gaps.propose(row, texts, now())
         try:
-            replayed = self.remember_read(dict(sha256=row['sha256'], facts=0,
+            replayed = self.remember_processing(dict(sha256=row['sha256'], facts=0,
                          skipped=reason or '菜单没有位置', gaps=sorted(report['gap_ids'])))
         except OSError as exc:
             raise CompletionPending('gaps') from exc
         return dict(**report, skipped=row['sha256'][:16], rel=row.get('rel'), receipt_replayed=replayed,
-                    note='缺口补齐后用 gaps --filled，再 pack --again --sha %s 重读' % row['sha256'][:12])
+                    note='缺口补齐后用 gaps --filled，再 pack --again --sha %s 继续事实处理' % row['sha256'][:12])
 
     def backfill_provenance(self, commit=False, expected_plan=None):
         # A plan is recomputed inside the fact lock; it binds both facts and all
@@ -280,8 +295,9 @@ class DeepRead:
 
     def status(self):
         records = self.load_facts()['records']; metrics = self.load_metrics(); gaps = self.gaps.open()
-        return dict(facts=len(records), documents_read=len(self.read_documents()),
-                    **{'历史副本行_不计已读': len(self.twin_documents())},
+        return dict(facts=len(records), documents_processed=len(self.processed_documents()),
+                    reading=self.readings.status(),
+                    **{'历史副本行_不计处理完成': len(self.twin_documents())},
                     metrics_covered=len({f['metric_id'] for f in records}), metrics_total=len(metrics),
                     with_locator=sum(bool((f.get('evidence') or {}).get('locator')) for f in records),
                     with_sha256=sum(bool((f.get('evidence') or {}).get('sha256')) for f in records),

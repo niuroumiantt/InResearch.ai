@@ -342,15 +342,15 @@ class RecencyTests(unittest.TestCase):
                 'year': year, 'proposed_name': name or '%02d_%s_x.xlsx' % (score, year)}
 
     def order(self, rows, **kw):
-        saved = (L2.all_results, L2.read_documents, L2.load_facts, L2.load_metrics)
+        saved = (L2.all_results, L2.processed_documents, L2.load_facts, L2.load_metrics)
         L2.all_results = lambda: {r['sha256']: r for r in rows}
-        L2.read_documents = lambda: set()
+        L2.processed_documents = lambda: set()
         L2.load_facts = lambda: {'records': []}
         L2.load_metrics = lambda: METRICS
         try:
             return [r['sha256'] for r in L2.eligible(8, **kw)]
         finally:
-            (L2.all_results, L2.read_documents, L2.load_facts, L2.load_metrics) = saved
+            (L2.all_results, L2.processed_documents, L2.load_facts, L2.load_metrics) = saved
 
     def test_the_newer_document_comes_first(self):
         old = self.row('1' + 'a' * 63, '2016')

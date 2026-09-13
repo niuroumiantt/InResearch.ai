@@ -28,7 +28,7 @@ def app_at(base):
         MAX_PREVIEW_CHARS=triage.MAX_PREVIEW_CHARS, proposed_name=triage.proposed_name,
         readable_path=lambda row: (base/row['rel'], False),
         load_inventory=lambda: list(read_rows(base/'inventory.jsonl')))
-    return DeepRead(base, base/'state', base/'packets', materials)
+    return DeepRead(base, base/'state', base/'packets', materials, reader_data_root=base/'reader')
 
 
 def competing(base, action, barrier, queue, value):
@@ -92,24 +92,24 @@ class DeepReadTransactionTests(unittest.TestCase):
             with self.assertRaises(ValueError):self.app.record([],SHA)
             self.assertEqual(self.app.record([fact()])['rejected'],1)
             self.assertEqual(before,self.app.facts_path.read_bytes())
-            self.assertFalse(self.app.read_log.exists())
+            self.assertFalse(self.app.receipt_log.exists())
 
     def test_identical_fact_replay_never_duplicates_completion_or_records(self):
-        first=self.app.record([fact()],SHA); before=self.app.read_log.read_bytes()
+        first=self.app.record([fact()],SHA); before=self.app.receipt_log.read_bytes()
         repeated=self.app.record([fact()],SHA)
         self.assertEqual((first['accepted'],repeated['replayed']),(1,1))
         self.assertTrue(repeated['receipt_replayed'])
-        self.assertEqual(before,self.app.read_log.read_bytes())
+        self.assertEqual(before,self.app.receipt_log.read_bytes())
         self.assertEqual(len(self.app.load_facts()['records']),1)
         self.assertEqual(self.app.record([fact()])['replayed'],1)
 
     def test_execution_attribution_is_explicit_and_replay_cannot_rewrite_it(self):
         self.app.record([fact()],SHA,executor='claude-code',model='reported-model')
-        original=self.app.read_log.read_bytes()
-        execution=list(read_rows(self.app.read_log))[0]['execution']
+        original=self.app.receipt_log.read_bytes()
+        execution=list(read_rows(self.app.receipt_log))[0]['execution']
         self.assertEqual(execution,dict(executor='claude-code',model='reported-model',verification='client_reported'))
         self.app.record([fact()],SHA,executor='another-client',model='another-model')
-        self.assertEqual(original,self.app.read_log.read_bytes())
+        self.assertEqual(original,self.app.receipt_log.read_bytes())
         with self.assertRaises(ValueError):self.app.record([fact()],SHA,executor='bad\nclient')
 
     def test_empty_envelopes_are_valid_but_not_automatic_proof_of_full_read(self):
@@ -117,7 +117,7 @@ class DeepReadTransactionTests(unittest.TestCase):
             report=self.app.record(payload,SHA)
             self.assertEqual(report['incoming'],0)
             self.assertIn('不证明',report['note'])
-        self.assertEqual(len(list(read_rows(self.app.read_log))),1)
+        self.assertEqual(len(list(read_rows(self.app.receipt_log))),1)
 
     def test_malformed_input_is_rejected_before_writes(self):
         before=self.app.facts_path.read_bytes()
@@ -126,22 +126,22 @@ class DeepReadTransactionTests(unittest.TestCase):
         for key in ('evidence','entity','caliber'):
             self.assertEqual(self.app.record([fact(**{key:[]})],SHA)['rejected'],1)
         self.assertEqual(before,self.app.facts_path.read_bytes())
-        self.assertFalse(self.app.read_log.exists())
+        self.assertFalse(self.app.receipt_log.exists())
 
     def test_failed_fact_write_retains_old_authority_and_no_receipt(self):
         before=self.app.facts_path.read_bytes()
         with patch('inresearch.workflow.deep_read.write_json',side_effect=OSError('disk')):
             with self.assertRaises(OSError):self.app.record([fact()],SHA)
         self.assertEqual(before,self.app.facts_path.read_bytes())
-        self.assertFalse(self.app.read_log.exists())
+        self.assertFalse(self.app.receipt_log.exists())
 
     def test_fact_commit_then_receipt_failure_recovers_from_same_input(self):
-        with patch.object(self.app,'remember_read',side_effect=OSError('receipt unavailable')):
+        with patch.object(self.app,'remember_processing',side_effect=OSError('receipt unavailable')):
             with self.assertRaises(CompletionPending):self.app.record([fact()],SHA)
         self.assertEqual(len(self.app.load_facts()['records']),1)
         report=self.app.record([fact()],SHA)
         self.assertEqual(report['replayed'],1)
-        self.assertEqual(list(read_rows(self.app.read_log))[0]['facts'],1)
+        self.assertEqual(list(read_rows(self.app.receipt_log))[0]['facts'],1)
 
     def test_visible_but_uncertain_fact_commit_is_not_rolled_back(self):
         def replace_then_fail(path,data):
@@ -155,20 +155,20 @@ class DeepReadTransactionTests(unittest.TestCase):
     def test_skip_retry_keeps_a_filled_gap_closed_and_preserves_receipt(self):
         first=self.app.skip(SHA,['missing dimension'])
         self.app.gaps.fill(first['gap_ids'],'2026-09-13')
-        before=self.app.gaps.path.read_bytes(); receipt=self.app.read_log.read_bytes()
+        before=self.app.gaps.path.read_bytes(); receipt=self.app.receipt_log.read_bytes()
         retry=self.app.skip(SHA,['missing dimension'])
         self.assertEqual(retry['gaps_recorded'],0)
         self.assertEqual(self.app.gaps.open(),[])
         self.assertEqual(before,self.app.gaps.path.read_bytes())
-        self.assertEqual(receipt,self.app.read_log.read_bytes())
+        self.assertEqual(receipt,self.app.receipt_log.read_bytes())
 
     def test_gap_commit_then_receipt_failure_and_fill_can_be_replayed(self):
-        with patch.object(self.app,'remember_read',side_effect=OSError('receipt unavailable')):
+        with patch.object(self.app,'remember_processing',side_effect=OSError('receipt unavailable')):
             with self.assertRaises(CompletionPending):self.app.skip(SHA,['missing dimension'])
         ids=list(self.app.gaps.current());self.app.gaps.fill(ids,'2026-09-13')
         self.app.skip(SHA,['missing dimension'])
         self.assertFalse(self.app.gaps.open())
-        self.assertEqual(len(list(read_rows(self.app.read_log))),1)
+        self.assertEqual(len(list(read_rows(self.app.receipt_log))),1)
 
     def test_gap_batch_unknown_identifier_and_precommit_failure_are_atomic(self):
         ids=self.app.skip(SHA,['dimension A','dimension B'])['gap_ids']
@@ -194,12 +194,12 @@ class DeepReadTransactionTests(unittest.TestCase):
         results=self.pairs('record');self.assertTrue(all(s=='ok' for s,_ in results),results)
         self.assertEqual(sorted(r['accepted'] for _,r in results),[0,1])
         self.assertEqual(len(self.app.load_facts()['records']),1)
-        self.assertEqual(len(list(read_rows(self.app.read_log))),1)
+        self.assertEqual(len(list(read_rows(self.app.receipt_log))),1)
 
     def test_processes_propose_and_fill_one_gap_without_duplicate_receipts(self):
         results=self.pairs('skip');self.assertTrue(all(s=='ok' for s,_ in results),results)
         self.assertEqual(sorted(r['gaps_recorded'] for _,r in results),[0,1])
-        self.assertEqual(len(list(read_rows(self.app.read_log))),1)
+        self.assertEqual(len(list(read_rows(self.app.receipt_log))),1)
         gap=next(iter(self.app.gaps.current()))
         results=self.pairs('fill',gap);self.assertTrue(all(s=='ok' for s,_ in results),results)
         self.assertEqual(sorted(r['replayed'] for _,r in results),[0,1])
@@ -259,7 +259,7 @@ class DeepReadTransactionTests(unittest.TestCase):
     def test_cli_returns_commit_stage_and_requires_external_revision(self):
         incoming=self.base/'input.json';incoming.write_text(json.dumps([fact()]))
         output=io.StringIO()
-        with patch.object(self.app,'remember_read',side_effect=OSError('receipt')),redirect_stdout(output):
+        with patch.object(self.app,'remember_processing',side_effect=OSError('receipt')),redirect_stdout(output):
             rc=cli.main(['record','--facts',str(incoming),'--doc',SHA],self.app)
         self.assertEqual(rc,1)
         self.assertEqual(json.loads(output.getvalue())['commit_state'],'facts_committed_receipt_pending')
@@ -312,18 +312,18 @@ class DeepReadTransactionTests(unittest.TestCase):
                     disputes=['original'])
         self.app.record([first],SHA)
         self.app.record([second],SHA)
-        receipts=self.app.read_log.read_bytes();stored=self.app.facts_path.read_bytes()
+        receipts=self.app.receipt_log.read_bytes();stored=self.app.facts_path.read_bytes()
         retry=self.app.record([first],SHA)
         self.assertEqual((retry['accepted'],retry['replayed']),(0,1))
         self.assertTrue(retry['receipt_replayed'])
         self.assertEqual(stored,self.app.facts_path.read_bytes())
-        self.assertEqual(receipts,self.app.read_log.read_bytes())
+        self.assertEqual(receipts,self.app.receipt_log.read_bytes())
         self.assertEqual(self.app.load_facts()['records'][0]['disputed_by'],['disputed'])
 
     def test_disputes_inside_one_batch_commit_together_and_replay_after_receipt_failure(self):
         batch=[fact(fact_id='first',asserter='First institute'),
                fact(fact_id='second',asserter='Second institute',value=5100,disputes=['first'])]
-        with patch.object(self.app,'remember_read',side_effect=OSError('receipt unavailable')):
+        with patch.object(self.app,'remember_processing',side_effect=OSError('receipt unavailable')):
             with self.assertRaises(CompletionPending):self.app.record(batch,SHA)
         records=self.app.load_facts()['records']
         self.assertEqual(len(records),2)
@@ -331,7 +331,7 @@ class DeepReadTransactionTests(unittest.TestCase):
         self.assertNotIn('disputed_by',batch[0])
         retry=self.app.record(batch,SHA)
         self.assertEqual(retry['replayed'],2)
-        self.assertEqual(len(list(read_rows(self.app.read_log))),1)
+        self.assertEqual(len(list(read_rows(self.app.receipt_log))),1)
 
     def test_batch_claim_indexes_enforce_new_dispute_and_revision_contracts(self):
         first=fact(fact_id='first',asserter='First institute')
@@ -346,8 +346,8 @@ class DeepReadTransactionTests(unittest.TestCase):
         self.assertEqual(self.app.record([first,revised],SHA)['accepted'],2)
 
     def test_historical_twin_rows_are_counted_separately_and_never_exclude_unread(self):
-        self.app.read_log.parent.mkdir(parents=True)
-        self.app.read_log.write_text(json.dumps(dict(sha256=SHA,twin_of='b'*64))+'\n')
-        self.assertEqual(self.app.status()['documents_read'],0)
-        self.assertEqual(self.app.status()['历史副本行_不计已读'],1)
+        self.app.receipt_log.parent.mkdir(parents=True)
+        self.app.receipt_log.write_text(json.dumps(dict(sha256=SHA,twin_of='b'*64))+'\n')
+        self.assertEqual(self.app.status()['documents_processed'],0)
+        self.assertEqual(self.app.status()['历史副本行_不计处理完成'],1)
         self.assertEqual([r['sha256'] for r in self.app.eligible()],[SHA])

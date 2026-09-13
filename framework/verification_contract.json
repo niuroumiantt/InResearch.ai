@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.13.6",
+  "version": "2026.09.13.7",
   "reviewed_at": "2026-09-13",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -7,24 +7,24 @@
     "AGENTS.md": "724d29fbab3a097c490eeb294f71724625d045e20ec080c6a9a252dadc72e22b",
     "CLAUDE.md": "322b8e598f53f516c60307f53781c0da4c8f49c7a639362b51b468967e91a9de",
     "data/schema/submission.schema.json": "b0d0b8a1b9150f585ede35da218149772d77ba33f898f0d2718c48f323e83fe8",
-    "docs/M4_TRIAGE_TASK.md": "7aec5f854d5a1034029206cf71fd52b4544073aefa4bed0adf90f8da87a36c12",
+    "docs/M4_TRIAGE_TASK.md": "e200e10f031eb30168e91c158f3c78b8ee5e08e77c855b15ccd0874fdad140a3",
     "docs/inbox/submissions/README.md": "d4da3229d11971a41b1c5e551bb88d5e7fe6e84d066116596257bc811a93a12b",
     "docs/local_reader/ACQUISITION_OPERATIONS.md": "91d862b923f292d337771f17dbfc965357b76039df162c78b97003237f9feb85",
     "docs/local_reader/M4_PREFLIGHT.md": "d6283a210b1cf7b29fc78d3c084edb5092f59e8f3242cdd615b52b44fd31bb69",
     "docs/local_reader/PROJECT_BRIEF.md": "26af169ca2c61746b628df2105541b517941aa01e2e190d57ebc6076173ce445",
     "docs/local_reader/RUN_TO_COMPLETION.md": "a8eb25aa6718bab718ffbf73114e67204fd265cd05d7a2f0b9cc42e8fcfec10c",
-    "docs/local_reader/SPARK_OPERATIONS.md": "b7d782223bd3a54f40e64571c223cdb36b85b672b395334b71347581005e1c48",
+    "docs/local_reader/SPARK_OPERATIONS.md": "3073372315be60c2b237afdba0c006147a2586e107aa22abaaa556b8c15b62b1",
     "framework/00_overview.md": "75f2d2f14c3f2b3f3cd9f4949cc4e7c788710764871e1368a7dac023f7371226",
     "framework/01_data_standards.md": "77caca1fff5e86e4b5307492199558d21a9de610093c5ea3bcb2896f06b6e51f",
     "framework/02_knowledge_format.md": "049e0010977b11fb6161c0fca15fe210c96be74124e70195e23d3028258a82ff",
     "framework/03_bom_and_collaboration.md": "e276393ec9f555984f07047a8d3de21daf208c5693be0ce86788dfff50ad75ed",
-    "framework/04_reading_scoring_standard.md": "f0ffebc29e60c3c019691c51f2ae5c18b1e4593c46ef3acdf44b38b5f4433abb",
+    "framework/04_reading_scoring_standard.md": "23f1e2a4086ac2d77e81d4239dfc739b038668d4f9558e31a720969fbe8934c5",
     "framework/05_interface_system.md": "1b4d823d8fbf9b46f4db48683249a34cfc1d54fc6e84f129bb00b21a9df25f89",
     "framework/06_acquisition.md": "5465abce68d873f438eb4a049f8e1f4b836017ac9a6475b1f24472041a6e90a0",
     "framework/07_product_ecosystems.md": "a6239c5cb221120394ec706cf3ded786dd6b1cf34cc526b167dc157d50bd3fce",
-    "framework/08_model_execution.md": "bcbb4fcaf23620546d9473eabc3e1db0dd8918cf1aff216f70e6dab99f328e8b",
-    "framework/09_software_contracts.md": "c70392aa95188b01f4d9121082f4a2d5bc9717c282ea9e967018ff2ea4eaa335",
-    "framework/CURRENT.md": "ec01fd9e4ae4abe1b77a0b593fbb8269c9396ab89a878f8cae6c42e6df7f05b2",
+    "framework/08_model_execution.md": "6c1be72c11c0948ae349cba63bf6704e1c6cb5544eb2a0c5605386d65b2a7be9",
+    "framework/09_software_contracts.md": "e1763f7bb7cfe2b30ec0c2e65fc158fe78916932d53a8fa4badaa59d6148bc80",
+    "framework/CURRENT.md": "e68789b885247ae118076bb14494f89b06e5b883eff9cd669f62b8230479db19",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "tests/auth_appearance.cjs": "40f4e5feb30d2cec89bcf7cb90b89e780862a30580a4708e7dcb4dee1b9b8142",
     "tests/hardware_ecosystems.cjs": "4317d7b56ae541c1537d4a22ac6538d8faa96a66b545cfc5f1c146c86c84e80d",
@@ -34,16 +34,16 @@
     "tests/research_delivery.cjs": "4514c88bc0b8d79a54884ce3b2dda0a6afeeae79c0416b4533d4b44b7629d9e9",
     "tests/run_browser.cjs": "9a6dde1e1618169be60ee433e28d0ba6c5bad13917538f71909f179fa6732f39",
     "tests/ui_skin.cjs": "f3a1fa6223715cacb0c72a04102dde38e5cad3b8c43117be54bcccdab1be22fa",
-    "tests/unit/deep_read_fixtures.py": "a05ce5b320efe0358e4563f8430ab872d907063455f06f7b4793b93d97014636",
+    "tests/unit/deep_read_fixtures.py": "e748d51107427c48684ebedfa8286a8a515b36a0b3c8bc7d0fefa7d9ba713df1",
     "tests/unit/test_acquisition.py": "9df70bf9f5f2453e45a9f5af50baf9d4bc8cccae0afe3a76555b00c6b5099110",
     "tests/unit/test_catalog_bridge.py": "47ed253f19bd29eeff4221e07215084526b1b7fae85e58b4aab051d4b6ac8405",
     "tests/unit/test_catalog_migration.py": "463ffb034bd7d1f5b2cd2f8c221e07734ac287dd0df95a7fda127a2f2d69de48",
     "tests/unit/test_commands.py": "03265020c3aba7de0dfe056467ef678193c0e139859c917666c0ed216095b6d4",
     "tests/unit/test_continuous_reader.py": "6c36c298912077a7ab480e43f4a54fbfbb08978624c6e6efb3ac9f47657f4238",
-    "tests/unit/test_deep_read.py": "c37407f0b58782b159a73b54f90304e46947efabc9bc86d1fe5922873f75f0e9",
-    "tests/unit/test_deep_read_transactions.py": "8dbc032fa92ecaff99d208380714f630a5aec8a728c13d01a5879c68e7f42813",
+    "tests/unit/test_deep_read.py": "1bd705a4a4d2fa989661dca729f129f3f8e99d9c08ba589d5dbb118f82be7751",
+    "tests/unit/test_deep_read_transactions.py": "e44abfc65c4550106aa009041a92271a8e5d3c880bd56b680147baaefe633317",
     "tests/unit/test_display_regressions.py": "2d421828267a60a806a04821a49210a92a0ff424cfe64b32247f30f686c4d667",
-    "tests/unit/test_fact_contract.py": "7af06630640c2122fdd3f24c551d64636e639e0b8f3bfbf80bcd887c1a6d6407",
+    "tests/unit/test_fact_contract.py": "85a83dfbf8485571c40503afd2bf7d65ad025913bc19a69dc6fe90ab48c7db97",
     "tests/unit/test_file_moves.py": "1f9ba746f06885b6d48ee2d73b5da8bc4364ca1ad54e85b5d6fe23cdbf1edf9a",
     "tests/unit/test_governance.py": "ee59b285f13ea82d6df0426d0fbd519b7b8f9e7695fde569708c0dac10d71f39",
     "tests/unit/test_intake.py": "752b45e1bec8938738ea28b827dcdcc9031bce772cc9030d7ded1d7be9176c10",
@@ -53,11 +53,12 @@
     "tests/unit/test_model_runtime.py": "f9e4436b792b4b557017552b0767d8d5cf1c3c67fad0f4bfaad2c18139c12daf",
     "tests/unit/test_product_library.py": "2fb430bcfaca1d664d4fabeebf0d1a9dc88ff5da2212e662313e697d9676d41d",
     "tests/unit/test_publish_reader.py": "b595a4a6b9e1b09c7c7ba4decfcaf0714d90d8ad8194ad461f9ad41534729102",
+    "tests/unit/test_reading_results.py": "40e5b2b52876f421fe9e42ee6270062137d15642f33c04bbfe002e778ccddfed",
     "tests/unit/test_reading_revisions.py": "11159514736025f8532fde946401a726cd1c7fb08fb731d5c3195e34707f1c93",
     "tests/unit/test_report_model.py": "1e02a56bbe7a75ee68d2ce2463d989e673d9e32d0cf66de09051cf5a39e0f7b2",
     "tests/unit/test_research.py": "b01db6f4a1e5c66e714cbb1440eab47467fb9ae4fef29ad124e436c3aab62ffb",
     "tests/unit/test_research_navigation.py": "8edaecdc3a3a3050000746453cb41e1c38b4a699f14037e4d9b0eac84429ac44",
-    "tests/unit/test_text_similarity.py": "4e24065bfcc56cb264977928be50bf448a4feda3c24b82a0a56c36d045caab9c",
+    "tests/unit/test_text_similarity.py": "428e0d72f97461a57a4bf4ec1c459abdeea8e3847638787a893881bfba621dcd",
     "tests/unit/test_verification_contract.py": "2c1c2611dd2fb1973acf336e4b297f37ad7b06f4d5147574d99f3324fcc69232",
     "tests/url_rendering.cjs": "b463695816e72417012ef814ebbb4d382f256e61f46017fe54c9167abfdb953d"
   },
@@ -148,13 +149,16 @@
       "policy": "operations-20260906",
       "scope": "project",
       "source": "docs/local_reader/SPARK_OPERATIONS.md",
-      "checked_requirement": "备份恢复和停止服务不报健康",
+      "checked_requirement": "备份恢复和停止服务不报健康；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界",
       "tests": [
         "tests/unit/test_continuous_reader.py::ReaderTests.test_backup_restores_catalog_and_views_under_new_root",
         "tests/unit/test_publish_reader.py::PublisherTests.test_stopped_worker_is_not_reported_as_healthy_idle",
         "tests/unit/test_reading_revisions.py::ReadingRevisionTests.test_backup_restores_current_and_historical_revisions_without_inference",
         "tests/unit/test_catalog_migration.py::CatalogMigrationTests.test_legacy_backup_upgrade_preserves_records_paths_and_attempts",
-        "tests/unit/test_catalog_migration.py::CatalogMigrationTests.test_active_old_worker_prevents_schema_upgrade"
+        "tests/unit/test_catalog_migration.py::CatalogMigrationTests.test_active_old_worker_prevents_schema_upgrade",
+        "tests/unit/test_reading_results.py::ReadingResultsTests.test_missing_catalog_query_does_not_create_directories_or_initialize",
+        "tests/unit/test_reading_results.py::ReadingResultsTests.test_old_or_new_catalog_refuses_without_migration_or_backup",
+        "tests/unit/test_reading_results.py::ReadingResultsTests.test_read_only_catalog_cannot_write_even_through_connection"
       ],
       "not_verified": [
         "本轮未连接 Spark/M4 验证服务、模型、备份和容量；历史启动记录不证明当前在线。"
@@ -225,7 +229,7 @@
       "policy": "reading-20260912",
       "scope": "project",
       "source": "framework/04_reading_scoring_standard.md",
-      "checked_requirement": "逐篇覆盖、失败恢复、不因换模型重复读、同名新版; explicit full reread, reviewed switch, failure isolation and version-scoped evidence",
+      "checked_requirement": "逐篇覆盖、失败恢复、不因换模型重复读、同名新版; explicit full reread, reviewed switch, failure isolation and version-scoped evidence；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界",
       "tests": [
         "tests/unit/test_continuous_reader.py::ReaderTests.test_full_text_coverage_candidate_and_view",
         "tests/unit/test_continuous_reader.py::ReaderTests.test_switching_default_keeps_one_completed_reading",
@@ -236,7 +240,12 @@
         "tests/unit/test_reading_revisions.py::ReadingRevisionTests.test_failed_reread_retry_keeps_current_and_frozen_model",
         "tests/unit/test_reading_revisions.py::ReadingRevisionTests.test_report_or_checkpoint_change_and_wrong_review_hash_cannot_activate",
         "tests/unit/test_reading_revisions.py::ReadingRevisionTests.test_incomplete_report_never_reaches_ready",
-        "tests/unit/test_reading_revisions.py::ReadingRevisionTests.test_reject_and_late_activation_do_not_resurrect_or_overwrite"
+        "tests/unit/test_reading_revisions.py::ReadingRevisionTests.test_reject_and_late_activation_do_not_resurrect_or_overwrite",
+        "tests/unit/test_reading_results.py::ReadingResultsTests.test_reader_and_l2_current_cli_return_same_verified_revision_without_model",
+        "tests/unit/test_reading_results.py::ReadingResultsTests.test_current_pack_reuses_full_text_and_report_without_extractor_or_new_reading",
+        "tests/unit/test_reading_results.py::ReadingResultsTests.test_zero_fact_and_legacy_receipts_do_not_create_full_reading_proof",
+        "tests/unit/test_reading_results.py::ReadingResultsTests.test_changed_original_or_chunk_is_detected_by_both_consumers",
+        "tests/unit/test_reading_results.py::ReadingResultsTests.test_report_reference_cannot_point_outside_the_sealed_artifact"
       ],
       "not_verified": [
         "Actual Spark/M4 catalog migration and large historical-corpus reread are not verified. OCR/drawing capability gaps still block completion; mechanical coverage and a recorded reviewer do not prove semantic quality."
@@ -246,7 +255,7 @@
       "policy": "reading-m4-triage-20260912",
       "scope": "m4-triage",
       "source": "docs/M4_TRIAGE_TASK.md",
-      "checked_requirement": "同字节多路径、失败不盖成功、迟到拒写、移动可恢复；L2 ≥7 或点名、唯一 SHA、共同准入、L1 版本冲突",
+      "checked_requirement": "同字节多路径、失败不盖成功、迟到拒写、移动可恢复；L2 ≥7 或点名、唯一 SHA、共同准入、L1 版本冲突；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界",
       "tests": [
         "tests/unit/test_m4_triage.py::InventoryTests.test_identical_bytes_are_one_sha_with_every_path_recorded",
         "tests/unit/test_deep_read.py::EffectiveResultTests.test_failed_retry_does_not_remove_a_document_from_the_deep_read_queue",
@@ -257,12 +266,15 @@
         "tests/unit/test_m4_office_text.py::XlsxCellTests.test_huge_merged_range_is_rejected_before_expanding",
         "tests/unit/test_m4_office_text.py::XlsxCellTests.test_merge_budget_is_cumulative_and_invalid_ranges_fail",
         "tests/unit/test_deep_read.py::DeepReadJournalTests.test_committed_corruption_fails_and_torn_tail_is_read_only",
-        "tests/unit/test_deep_read.py::TextTwinRoutingTests.test_old_automatic_twin_record_is_preserved_but_not_counted_as_read",
+        "tests/unit/test_deep_read.py::TextTwinRoutingTests.test_old_automatic_twin_record_is_preserved_but_not_counted_as_processed",
         "tests/unit/test_reading_revisions.py::ReadingRevisionTests.test_ocr_failure_releases_the_same_revision_claim",
         "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_current_threshold_and_named_low_score_keep_admission_boundary",
         "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_ambiguous_packet_does_not_start_extraction_even_if_other_match_is_ineligible",
         "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_restricted_and_self_authored_sources_cannot_bypass_queue_at_record",
-        "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_processes_cannot_both_replace_the_same_l1_revision"
+        "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_processes_cannot_both_replace_the_same_l1_revision",
+        "tests/unit/test_reading_results.py::ReadingResultsTests.test_record_skip_and_again_only_change_processing_not_current_reading",
+        "tests/unit/test_reading_results.py::ReadingResultsTests.test_zero_fact_and_legacy_receipts_do_not_create_full_reading_proof",
+        "tests/unit/test_reading_results.py::ReadingResultsTests.test_query_uses_explicit_root_or_shared_environment_not_another_catalog"
       ],
       "not_verified": [
         "真实 M4 50 份当前模型小样及新版执行未验；Spark apply-triage catalog 桥未实现。"
@@ -272,13 +284,15 @@
       "policy": "model-execution-20260912",
       "scope": "project",
       "source": "framework/08_model_execution.md",
-      "checked_requirement": "配置换模型、模型身份与执行器分离、固定旧任务配方、失败可重试",
+      "checked_requirement": "配置换模型、模型身份与执行器分离、固定旧任务配方、失败可重试；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界",
       "tests": [
         "tests/unit/test_model_runtime.py::ModelRuntimeTests.test_model_switch_changes_transport_without_changing_task",
         "tests/unit/test_model_runtime.py::ModelRuntimeTests.test_wrong_model_is_rejected_and_model_cannot_forge_provenance",
         "tests/unit/test_model_runtime.py::ClaudeCliTests.test_cli_failure_timeout_and_missing_executable_are_distinct",
         "tests/unit/test_continuous_reader.py::ReaderTests.test_queued_reading_does_not_mix_models",
-        "tests/unit/test_reading_revisions.py::ReadingRevisionTests.test_changed_default_used_only_by_new_explicit_revision"
+        "tests/unit/test_reading_revisions.py::ReadingRevisionTests.test_changed_default_used_only_by_new_explicit_revision",
+        "tests/unit/test_reading_results.py::ReadingResultsTests.test_reader_and_l2_current_cli_return_same_verified_revision_without_model",
+        "tests/unit/test_reading_results.py::ReadingResultsTests.test_ready_failed_retry_and_changed_model_do_not_change_shared_current"
       ],
       "not_verified": [
         "Spark/第二实际模型未验证；旧配方自动路由与跨进程/跨项目公平调度未实现；本轮隔离测试不冒充真实推理验收。"
@@ -288,7 +302,7 @@
       "policy": "software-contracts-20260913",
       "scope": "project",
       "source": "framework/09_software_contracts.md",
-      "checked_requirement": "统一写入、跨进程并发、提交前失败与提交后不确定、重放去重; catalog revision authority, atomic activation and consistent export snapshot；L2 用例/CLI 分离、缺口主提交及回执重放、来源计划替换",
+      "checked_requirement": "统一写入、跨进程并发、提交前失败与提交后不确定、重放去重; catalog revision authority, atomic activation and consistent export snapshot；L2 用例/CLI 分离、缺口主提交及回执重放、来源计划替换；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界",
       "tests": [
         "tests/unit/test_commands.py::CommandFlows.test_independent_processes_do_not_lose_records",
         "tests/unit/test_commands.py::CommandFlows.test_exception_and_failed_replace_keep_old_bytes",
@@ -311,11 +325,14 @@
         "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_concurrent_packet_publication_has_independent_complete_artifacts",
         "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_provenance_commit_requires_reviewed_plan_and_rejects_changed_facts",
         "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_provenance_commit_rejects_changed_resolution_and_interior_damage",
-        "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_cli_returns_commit_stage_and_requires_external_revision"
+        "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_cli_returns_commit_stage_and_requires_external_revision",
+        "tests/unit/test_reading_results.py::ReadingResultsTests.test_pack_keeps_one_snapshot_during_independent_process_activation",
+        "tests/unit/test_reading_results.py::ReadingResultsTests.test_packet_publication_failure_preserves_authority_and_retries_without_inference",
+        "tests/unit/test_reading_results.py::ReadingResultsTests.test_corrupt_current_never_silently_reextracts_and_retry_uses_original"
       ],
       "not_verified": [
         "L2 已拆开参数/用例/准入/相似度/缺口/来源职责；两个 3D 场景仍需收敛。并非其他所有多文件流程均已逐阶段验收。",
-        "来源计划验证是身份解析与提交保护，不证明 38 条历史缺口已经补齐；M4/Spark 实机与跨 L2/reader 全文记录未验。"
+        "来源计划验证是身份解析与提交保护，不证明 38 条历史缺口已经补齐；M4/Spark 实机资料连接与历史完整结果导入未验；本机 shared catalog 不代表跨机器同步已完成。"
       ]
     }
   ]
