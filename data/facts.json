@@ -40507,6 +40507,64 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**原文「备电/备冷时间」合写一个 10 min**，本条记备电（UPS），备冷同为 10 分钟未单独立条。设计等级 Tier III——tier 枚举是国内星级与 A/B/C 级，没有 Uptime Tier，记未注明。对照中国移动 V3.2：UPS ≥15min（四星及以上）、连续供冷 ≥15min（钻石五星）——**华为钢构参考设计 10 分钟低于移动四星线**。"
+    },
+    {
+      "fact_id": "cq-dc-cooling-load-index-ac-area",
+      "metric_id": "cooling_load_index",
+      "entity": {
+        "type": "project",
+        "id": "cq-dc-load-calc",
+        "label": "重庆某数据中心（工程负荷计算书，项目名未写）"
+      },
+      "value": 1322.7,
+      "unit": "W/㎡",
+      "caliber": {
+        "basis": "设计计算",
+        "area_scope": "含辅助与支持区",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "cafdb9492f932b7a7446ab81b16d741decac66e4b306a8131e0ce5b69b8e2344",
+        "local_file": "工程负荷计算书（重庆）.xlsx",
+        "locator": "工作表「负荷计算表」第 42-56 行「建筑物」块：面积 6,996.99 ㎡；夏季总冷负荷(含新风/全热) 8:00 为 9,219,000 W、20:00 为 9,254,644 W；夏季总冷负荷指标(含新风) 8:00 1,317.6 → 20:00 1,322.7 W/㎡；夏季总冷负荷最大时刻 21:00；气象参数：重庆，夏季空调计算干球 35.5℃、湿球 26.5℃",
+        "grade": "S2",
+        "originator": "未署名设计单位（工程负荷计算书）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**1,322.7 W/㎡ 是表内 8:00-20:00 的最大值，但原表标注总冷负荷最大时刻为 21:00（21:00 列没抽出来）**，故按下界记。**逐时几乎不变（1,317.6 → 1,322.7）**——数据中心冷负荷由 IT 发热主导，日照与新风只贡献不到 6%（新风冷负荷 519,928 W 占 5.6%）。area_scope 就近记含辅助与支持区：6,996.99 ㎡ 是计算面积（空调面积），与「建筑指标」所用建筑面积（约 8,090 ㎡）不同，标 [未核]。分层差异大：1 层 1,306.5、2 层 997.5 W/㎡。**对照 metrics.json 注释里的贵阳靶场 737-831 W/㎡**：重庆这栋高出六成。年份与项目名表内均未写，as_of 按文件入库年记，标 [未核]。"
+    },
+    {
+      "fact_id": "cq-dc-cooling-load-index-building",
+      "metric_id": "cooling_load_index",
+      "entity": {
+        "type": "project",
+        "id": "cq-dc-load-calc",
+        "label": "重庆某数据中心（工程负荷计算书，项目名未写）"
+      },
+      "value": 1143.9,
+      "unit": "W/㎡",
+      "caliber": {
+        "basis": "设计计算",
+        "area_scope": "总建筑面积",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "cafdb9492f932b7a7446ab81b16d741decac66e4b306a8131e0ce5b69b8e2344",
+        "local_file": "工程负荷计算书（重庆）.xlsx",
+        "locator": "工作表「负荷计算表」「建筑物」块：夏季总冷负荷建筑指标(含新风) 8:00 1,139.5 → 20:00 1,143.9 W/㎡",
+        "grade": "S2",
+        "originator": "未署名设计单位（工程负荷计算书）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同一栋楼、同一负荷，按建筑面积算是 1,143.9，按计算面积算是 1,322.7——差 16%**，正是 area_scope 这一维存在的理由。反推建筑面积约 9,254,644 ÷ 1,143.9 ≈ 8,090 ㎡（未入库）。下界理由同上一条（峰值 21:00 未列出）。"
     }
   ]
 }
