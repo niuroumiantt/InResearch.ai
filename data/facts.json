@@ -34276,6 +34276,93 @@
       "derived": false,
       "corroboration": "同源转述",
       "notes": "**财年口径**：甲骨文 FY2026 截至 2026 年 5 月。**资本开支指引上调 43%（350→500 亿），收入指引 670 亿不变**——capex/收入之比由 52% 升到 75%；FY25Q4 至 FY26Q2 自由现金流（TTM）为 −4 / −59 / −132 亿美元，**连续三个季度为负且在扩大**。 **corroboration=同源转述**：数字出自公司业绩会，券商转述，不构成独立来源。 **as_of 的做出时点按业绩会月份记**：谷歌、亚马逊、Meta 均为 25Q3 业绩会（2025-10 前后），甲骨文 FY26Q2 业绩会（2025-12），原文未给精确日期，标 [未核]。"
+    },
+    {
+      "fact_id": "aws-p5e-capacity-block-price-before-2601",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "market",
+        "id": "aws-p5e-48xlarge-capacity-block",
+        "label": "AWS EC2 p5e.48xlarge 容量块（8×H200）"
+      },
+      "value": 34.61,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "公开挂牌",
+        "unit": "整机8卡",
+        "region": "Global"
+      },
+      "as_of": "2025-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "217c41a13b297293e15739ae3115206744e700dc86fb55892c78f4a086aa42a5",
+        "local_file": "国信证券 人工智能算力系列报告一：海外云大厂提价，关注算力涨价周期（2026-01-29）.pdf",
+        "locator": "第 2 页摘要与第 4 页：「26年1月，大多数地区，p5e.48xlarge实例价格从每小时34.61美元上调至39.80美元，上调幅度约15%」",
+        "grade": "S4",
+        "originator": "国信证券（熊莉、艾宪、张宇凡）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**提价前价格**，as_of 按提价前一个月 2025-12 记（原文只说「从」34.61 调至 39.80，未给旧价的起始时点），标 [未核]。region 记 Global（原文「大多数地区」）。**unit=整机8卡**：p5e.48xlarge 是 8 张 H200 的整机实例，折单卡约 4.33 美元/小时。**这是 EC2 容量块（Capacity Blocks for ML）的挂牌价**，不是按需价也不是长约价。**提价方向与库内 SemiAnalysis「H100 价格一路下行」的叙事相反**——2026 年初出现的是云厂提价，国信称之为「算力涨价周期」。原文图 3 标题写的是 p5en.48xlarge（US West），正文写 p5e.48xlarge，两者均为 H200 机型但网络配置不同，标 [未核]。"
+    },
+    {
+      "fact_id": "aws-p5e-capacity-block-price-2601",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "market",
+        "id": "aws-p5e-48xlarge-capacity-block",
+        "label": "AWS EC2 p5e.48xlarge 容量块（8×H200）"
+      },
+      "value": 39.8,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "公开挂牌",
+        "unit": "整机8卡",
+        "region": "Global"
+      },
+      "as_of": "2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "217c41a13b297293e15739ae3115206744e700dc86fb55892c78f4a086aa42a5",
+        "local_file": "国信证券 人工智能算力系列报告一：海外云大厂提价，关注算力涨价周期（2026-01-29）.pdf",
+        "locator": "第 2 页摘要与第 4 页：「p5e.48xlarge实例价格从每小时34.61美元上调至39.80美元，上调幅度约15%」",
+        "grade": "S4",
+        "originator": "国信证券（熊莉、艾宪、张宇凡）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**提价后价格，涨幅 15.0%**。同期谷歌云宣布自 2026-05-01 起上调全球数据传输服务价格，北美费率翻倍、欧洲 +60%、亚洲 +42%（数据传输价格本库无指标）。**unit=整机8卡**：p5e.48xlarge 是 8 张 H200 的整机实例，折单卡约 4.97 美元/小时。**这是 EC2 容量块（Capacity Blocks for ML）的挂牌价**，不是按需价也不是长约价。**提价方向与库内 SemiAnalysis「H100 价格一路下行」的叙事相反**——2026 年初出现的是云厂提价，国信称之为「算力涨价周期」。原文图 3 标题写的是 p5en.48xlarge（US West），正文写 p5e.48xlarge，两者均为 H200 机型但网络配置不同，标 [未核]。"
+    },
+    {
+      "fact_id": "lightcounting-optics-market-2029e",
+      "metric_id": "optics_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-market",
+        "label": "全球光模块市场"
+      },
+      "value": 37000.0,
+      "unit": "百万美元",
+      "caliber": {
+        "speed": "合计",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2029E@2026-01",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "217c41a13b297293e15739ae3115206744e700dc86fb55892c78f4a086aa42a5",
+        "local_file": "国信证券 人工智能算力系列报告一：海外云大厂提价，关注算力涨价周期（2026-01-29）.pdf",
+        "locator": "第 2 页摘要：「根据Lightcounting预测，光模块的全球市场规模在2024-2029年或将以22%的CAGR保持增长，2029年有望突破370亿美元，其中，光学器件（包括光芯片和光学元件组件）约占光模块成本70%以上」",
+        "grade": "S4",
+        "originator": "LightCounting（经国信证券转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：370 亿美元 = 37,000 百万美元。**原文「突破」按下界记。**2024-2029 CAGR 22%；光学器件（光芯片与光学元件组件）占光模块成本 70% 以上。**同段 Lumentum 25Q3 电话会称光芯片供需缺口已升至 25%-30%**，2026 年光芯片有望涨价（缺口比例本库无光芯片指标，未录）。as_of 做出时点按国信报告月记，LightCounting 原预测发布时间未给，标 [未核]。"
     }
   ]
 }
