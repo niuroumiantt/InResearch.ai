@@ -35067,6 +35067,36 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**这是此前台账里「机柜功率里程碑原文没给时点」那条缺口的第一个带时点的数**：Meta 路线图给到 2027-Q3、≥256 加速器、>900kW、±400 VDC、以液冷为主、机柜尺寸待定。三代路线：量产 ≤72 加速器（48 VDC/±400 VDC，风冷或液冷，单宽）→ 2026-Q3 ≤144 加速器（双宽 IT 柜）→ 2027-Q3 ≥256。**「>900kW」按下界记**。对照 GB200 NVL72 整柜 120kW：7.5 倍。"
+    },
+    {
+      "fact_id": "meta-catalina-orv3-hpr-rack-power",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "meta-catalina-orv3-hpr",
+        "label": "Meta Catalina（GB200 NVL72 定制版）ORv3 高功率机柜"
+      },
+      "value": 93.5,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "power_basis": "设计功率",
+        "region": "Global"
+      },
+      "as_of": "2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5f9f884bcd99d2c1973c641c09fff631d08b947aa04d6b6aee7a90286c460a5f",
+        "local_file": "Meta’s Catalina Platform (NVL72) – Hot Chips 2025 Datacenter Racks Tutorial.pdf",
+        "locator": "第 15 页「High Power Rack」：「First deployment of HPR (High Power Rack) version of Open Rack v3 • Increased per-rack power to 93.5kW • Enabled 5.5kW per PSU/BBU module; 33kW per power shelf」；演进图 ORV3 Vanilla → ORV3 w/ new Busbar 600A → ORV3 HPR 33kW → ORV3 HPR 94kW；第 12 页 Meta 版 NVL72 为 2 个物理 IT 机柜",
+        "grade": "S2",
+        "originator": "Meta（William Arnold / Matt Bowman，Hot Chips 2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**关键口径：Meta 版 NVL72 拆成 2 个物理 IT 机柜**（原版 1 个），每柜 93.5kW——**不能与原版 GB200 NVL72 单柜 120kW（nv-rack-power-gb200-nvl72-total）直接比成「Meta 更省电」**，Meta 这一 pod 72 GPU 配了 72 颗 Grace CPU（原版 36）、LPDDR 34.6TB（原版 17.3TB）、总内存 48TB（原版 30TB）。供电托架 33kW/台，与 SemiAnalysis 那份 GB200 1U Power Shelf 33kW（gb200-power-shelf-capacity）一致；PSU/BBU 模块 5.5kW。冷却为风辅液冷（AALC），以兼容传统数据中心设施。"
     }
   ]
 }
