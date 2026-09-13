@@ -37789,6 +37789,147 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**原文「超」按下界记**。2023→2026 年复合增速 36%（1.2055×1.36³ ≈ 3.03 GW，与「超 3,000MW」一致）。做出时点按转述报告月记，科智原始发布时间未给。"
+    },
+    {
+      "fact_id": "idc-cn-domestic-ai-chip-shipment-2024",
+      "metric_id": "domestic_gpu_shipment",
+      "entity": {
+        "type": "industry",
+        "id": "cn-domestic-ai-chips",
+        "label": "中国本土 AI 芯片（合计）"
+      },
+      "value": 82.0,
+      "unit": "万颗",
+      "caliber": {
+        "period": "年",
+        "counting": "整卡",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "0b7968d301e781dcd9de1b9e8e53749ce63e067ca74bcd2e37567ca810f9cf8b",
+        "local_file": "中国信通院《人工智能算力基础设施赋能研究报告（2025 年）》.pdf",
+        "locator": "第 10 页：「据 IDC 数据显示，2024 年我国加速芯片市场规模超过 270 万张，GPU 卡占据 70% 的市场份额，我国本土 AI 芯片出货量已超过 82 万张，市场渗透率从 2023 年的 15% 提升至 30%」",
+        "grade": "S3",
+        "originator": "IDC（经中国信通院转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文按「张」计，counting 记整卡；「超过」按下界记。**同句：2024 年中国加速芯片市场超 270 万张、GPU 卡占 70%。**82 ÷ 270 = 30.4%，与原文「渗透率 30%」自洽**（按张数）。对照库内伯恩斯坦按金额算的 2024 年国产化率 29.7%（bern-cn-domestic-chip-share-value-2024）——**按张数与按金额恰好都在 30% 附近**，两个口径、两个来源。"
+    },
+    {
+      "fact_id": "idc-cn-domestic-ai-chip-share-units-2024",
+      "metric_id": "domestic_ai_chip_share_units",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-accelerator-market",
+        "label": "中国 AI 加速器市场"
+      },
+      "value": 30.0,
+      "unit": "%",
+      "caliber": {
+        "basis": "实测",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0b7968d301e781dcd9de1b9e8e53749ce63e067ca74bcd2e37567ca810f9cf8b",
+        "local_file": "中国信通院《人工智能算力基础设施赋能研究报告（2025 年）》.pdf",
+        "locator": "第 10 页：「本土 AI 芯片出货量已超过 82 万张，市场渗透率从 2023 年的 15% 提升至 30%」",
+        "grade": "S3",
+        "originator": "IDC（经中国信通院转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**按颗数（张数）的国产化率一年翻倍：2023 年 15% → 2024 年 30%**。basis=实测是就近归类（IDC 跟踪统计）。与伯恩斯坦按金额 29.7% 并列（不同口径）。"
+    },
+    {
+      "fact_id": "idc-cn-domestic-ai-chip-share-units-2023",
+      "metric_id": "domestic_ai_chip_share_units",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-accelerator-market",
+        "label": "中国 AI 加速器市场"
+      },
+      "value": 15.0,
+      "unit": "%",
+      "caliber": {
+        "basis": "实测",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0b7968d301e781dcd9de1b9e8e53749ce63e067ca74bcd2e37567ca810f9cf8b",
+        "local_file": "中国信通院《人工智能算力基础设施赋能研究报告（2025 年）》.pdf",
+        "locator": "第 10 页：「市场渗透率从 2023 年的 15% 提升至 30%」",
+        "grade": "S3",
+        "originator": "IDC（经中国信通院转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2023 年基期值，与 2024 年 30% 构成序列。"
+    },
+    {
+      "fact_id": "caict-mfu-excellent-range-lower",
+      "metric_id": "mfu_rate",
+      "entity": {
+        "type": "market",
+        "id": "cn-aidc-cluster-mfu",
+        "label": "中国智算集群模型算力利用率（业界调研）"
+      },
+      "value": 40.0,
+      "unit": "%",
+      "caliber": {
+        "cluster_scale": "万卡",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "0b7968d301e781dcd9de1b9e8e53749ce63e067ca74bcd2e37567ca810f9cf8b",
+        "local_file": "中国信通院《人工智能算力基础设施赋能研究报告（2025 年）》.pdf",
+        "locator": "第 21 页：「从业界实践调研结果看，智算集群算力有效性能普遍不高，达到 40-50% 属于较为优秀。部分主体在特定条件探索，可超过 50%」",
+        "grade": "S2",
+        "originator": "中国信通院产业与规划研究所"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**40-50% 是「较为优秀」档，不是平均**——原文说普遍不高。区间下界，上界见 caict-mfu-excellent-range-upper。**cluster_scale 就近记万卡**，原文未限定集群规模，标 [未核]。对照库内 cn-10k-cluster-mfu-2024（万卡 MFU 上界 40%）：一年后「优秀」档下界即为去年的上界。同页：高性能网络优化下集群线性加速比可达 90% 以上。"
+    },
+    {
+      "fact_id": "caict-mfu-excellent-range-upper",
+      "metric_id": "mfu_rate",
+      "entity": {
+        "type": "market",
+        "id": "cn-aidc-cluster-mfu",
+        "label": "中国智算集群模型算力利用率（业界调研）"
+      },
+      "value": 50.0,
+      "unit": "%",
+      "caliber": {
+        "cluster_scale": "万卡",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "0b7968d301e781dcd9de1b9e8e53749ce63e067ca74bcd2e37567ca810f9cf8b",
+        "local_file": "中国信通院《人工智能算力基础设施赋能研究报告（2025 年）》.pdf",
+        "locator": "第 21 页：「达到 40-50% 属于较为优秀。部分主体在特定条件探索，可超过 50%」",
+        "grade": "S2",
+        "originator": "中国信通院产业与规划研究所"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上界；个别主体在特定条件下可超过 50%。"
     }
   ]
 }
