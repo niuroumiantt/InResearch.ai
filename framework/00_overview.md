@@ -75,7 +75,7 @@ P 的浏览目录按园区与资源接入、建筑与安全、机房与设施、
 
 ## 保持不变的纪律
 
-现行 `01_data_standards.md`、`02_knowledge_format.md`、`docs/DECISIONS.md` 的容量/用电/金额/需求模型边界、L8+ 当期供给、官方未披露容量不推算、跨中外口径、独立核验与 C3 采用要求保持。自动深读不自动创建 current Finding；数据只留不删，原件不随缓存或任务 TTL 清理。
+现行 `01_data_standards.md`、`02_knowledge_format.md` 的容量/用电/金额/需求模型边界、L8+ 当期供给、官方未披露容量不推算、跨中外口径、独立核验与 C3 采用要求保持。自动深读不自动创建 current Finding；数据只留不删，原件不随缓存或任务 TTL 清理。
 
 ## 实现与扩展边界
 

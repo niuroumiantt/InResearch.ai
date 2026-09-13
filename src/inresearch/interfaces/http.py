@@ -7,6 +7,7 @@ while data mutation rules live in workflow.commands.
 """
 
 from inresearch.paths import project_root
+from inresearch.storage.files import CommitUncertain
 from inresearch.interfaces.static import source_path
 from inresearch.interfaces import pages
 import os
@@ -363,6 +364,9 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(413, {"ok": False, "error": "snapshot must be 1 byte to 64 MiB"})
             payload = json.loads(self.rfile.read(size))
             reply = commands.receive_snapshot(ROOT, payload)
+        except CommitUncertain as error:
+            return self._json(503, {'ok': False, 'error': str(error),
+                                    'commit_state': 'visible_durability_unconfirmed'})
         except commands.Rejected as e:
             return self._json(e.status, {"ok": False, "error": str(e)})
         except (ValueError, TypeError, KeyError, AttributeError) as e:
@@ -443,6 +447,9 @@ class Handler(SimpleHTTPRequestHandler):
     def api_add_price(self, rec):
         try:
             reply = commands.add_price(ROOT, rec)
+        except CommitUncertain as error:
+            return self._json(503, {'ok': False, 'error': str(error),
+                                    'commit_state': 'visible_durability_unconfirmed'})
         except commands.Rejected as exc:
             return self._json(exc.status, {"ok": False, "error": str(exc)})
         return self._json(200, reply)
@@ -451,6 +458,9 @@ class Handler(SimpleHTTPRequestHandler):
     def api_assign(self, rec, by=""):
         try:
             reply = commands.assign(ROOT, rec, by=by, role=auth.user_role(by) if by else 'admin')
+        except CommitUncertain as error:
+            return self._json(503, {'ok': False, 'error': str(error),
+                                    'commit_state': 'visible_durability_unconfirmed'})
         except commands.Rejected as exc:
             return self._json(exc.status, {"ok": False, "error": str(exc)})
         return self._json(200, reply)

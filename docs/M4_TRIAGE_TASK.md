@@ -136,4 +136,4 @@ python3 manage.py inventory summary
 | §5 importance 1–9 | 新增 score 10–0 为主分，importance 由 `max(1, round(score*0.9))` 换算并同时记录 |
 | §6 “分数放元数据，不再随评分移动原件” | **M4 本机原件随评分改名移动**，以操作日志和 SHA-256 保证可逆可追溯。这是对 §6 的明确替代，只适用于 M4 本机原件；Spark 侧 originals 仍不可变，只动 library 链接 |
 | §1 “不按低分剔除文章” | 0 分进待删除视图但不删除、不退出台账；由用户决定 |
-| DECISIONS C3 采用分档 | 不变；本任务只管读取优先级与整理，不等于采纳 |
+| 01_data_standards.md §4 C3 采用分档 | 不变；本任务只管读取优先级与整理，不等于采纳 |

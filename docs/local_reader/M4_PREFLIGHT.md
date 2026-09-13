@@ -1,6 +1,6 @@
 # M4 预筛节点
 
-M4 的职责是为 Spark 提供**只读、可审计的路由建议**，不运行正式 reader、不写入 Spark SQLite 台账，也不移动或删除原始材料。
+本页 `preflight` 命令的职责是为 Spark 提供**只读、可审计的路由建议**，不运行正式 reader、不写入 Spark SQLite 台账，也不移动或删除原始材料。
 
 默认来源为 `/Users/m4/Downloads/所有raw materials`，运行结果写到 `~/.local/share/inresearch.ai/m4-preflight/<UTC 时间戳>/`：
 
@@ -13,11 +13,15 @@ M4 的职责是为 Spark 提供**只读、可审计的路由建议**，不运行
 python3 ~/code/inresearch.ai/manage.py preflight
 ```
 
-在 M4 上，`~/Library/LaunchAgents/com.inresearch.m4-preflight.plist` 以
+本预筛 scope 不代替 [M4 正式分类整理任务](../M4_TRIAGE_TASK.md)；后者的原件移动按独立规则执行。
+
+既有部署记录为：在 M4 上，`~/Library/LaunchAgents/com.inresearch.m4-preflight.plist` 以
 `StartInterval=1800` 每 30 分钟运行一次，并在登录时立即运行。它由本机
 `launchd` 和本仓库脚本执行，不依赖 Codex、Spark 或互联网；M4 进入深度
 休眠时会暂停，唤醒后恢复后续调度。日志位于
 `~/.local/state/inresearch.ai/m4-preflight.log` 和
 `~/.local/state/inresearch.ai/m4-preflight-error.log`。
+
+上述为已有调度配置说明；当前服务是否启用须在 M4 核对 launchctl 与最新输出，本轮未作实机验证。
 
 路由是由文件名、路径和后缀得出的候选，不是文件内容、完整性或研究价值的最终判断。`priority_read` 可用于提出 Spark 的后续投料/优先级调整；必须审核后才可作用于 Spark。CAD/3D、Office、压缩包和扫描图像保留在相应后处理队列，绝不被预筛工具删除。

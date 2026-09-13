@@ -6,6 +6,7 @@ import importlib
 import json
 import sys
 from pathlib import Path
+from inresearch.storage.files import CommitUncertain
 
 ROOT = project_root()
 COMMANDS = {
@@ -56,6 +57,10 @@ def main(argv=None):
             reply = commands.receive_snapshot(args.root, payload)
         print(json.dumps(reply, ensure_ascii=False))
         return 0
+    except CommitUncertain as exc:
+        print(json.dumps({'ok': False, 'status': 503, 'error': str(exc),
+                          'commit_state': 'visible_durability_unconfirmed'}))
+        return 1
     except (ValueError, TypeError, KeyError) as exc:
         print(json.dumps({'ok': False, 'status': getattr(exc, 'status', 400), 'error': str(exc)}, ensure_ascii=False))
         return 1
