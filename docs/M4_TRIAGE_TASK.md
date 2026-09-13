@@ -8,11 +8,11 @@
 
 | 步骤 | 状态 | 落点 |
 |---|---|---|
-| 全量清单与重复检测 | 已实现 | `m4_triage.py` 唯一写入器；`m4_records.py` 统一读取旧/新格式 |
-| L1 预览、模型打分、终端提交 | 已实现；默认改用共享研究模型 | `m4_triage_l1.py`、`m4_triage_local.py`、`m4_triage_pack.py` |
-| 提取摘要与 L2 交付 | 已有代码 | `m4_triage_extract.py`、`m4_l2.py`；不是 Spark 全文流程的替代 |
-| 改名移动、日志与恢复 | 已实现并通过隔离故障测试 | `file_moves.py`、`jsonl_store.py`、`m4_triage_apply.py`；未操作生产原件 |
-| M4 对照表导出与对账 | 已有代码 | `m4_triage_export.py` |
+| 全量清单与重复检测 | 已实现 | `inresearch.materials.inventory` 唯一写入器；`inresearch.materials.records` 统一读取旧/新格式 |
+| L1 预览、模型打分、终端提交 | 已实现；默认改用共享研究模型 | `inresearch.workflow.triage`、`inresearch.workflow.score`、`inresearch.workflow.terminal_batch` |
+| 提取摘要与 L2 交付 | 已有代码 | `inresearch.workflow.attribution`、`inresearch.workflow.deep_read`；不是 Spark 全文流程的替代 |
+| 改名移动、日志与恢复 | 已实现并通过隔离故障测试 | `inresearch.storage.moves`、`inresearch.storage.jsonl`、`inresearch.materials.organize`；未操作生产原件 |
+| M4 对照表导出与对账 | 已有代码 | `inresearch.materials.mapping` |
 | Spark catalog 的 apply-triage | 未实现 | §7.2 描述目标契约；不由脚本存在推断已完成 |
 
 清单和阅读入口不移动原件；实际文件操作仍须按已给授权、对应操作计划和验收执行。模型更换不扩大原件操作范围。本次未操作 M4/Spark 原件，也未核对生产完成量。
@@ -94,17 +94,17 @@ python3 manage.py inventory inventory --workers 8
 python3 manage.py inventory summary
 ```
 
-所有阶段共用 `m4_paths.py` 的 `INRESEARCH_SOURCE`、`INRESEARCH_LIBRARY` 与 `INRESEARCH_DATASET`。默认源目录 `/Users/m4/Downloads/所有raw materials`，清单写入 `~/.local/share/inresearch.ai/m4-triage/inventory.jsonl`。清单命令可显式指定 `--root` / `--out-dir`，兼容旧 `M4_TRIAGE_ROOT` / `M4_TRIAGE_OUT`；其他阶段需指向相同数据集。输出必须在源目录外。清单元数据绑定源根，移动日志绑定两个根，不能用原账本静默切换语料。
+所有阶段共用 `inresearch.materials.paths` 的 `INRESEARCH_SOURCE`、`INRESEARCH_LIBRARY` 与 `INRESEARCH_DATASET`。默认源目录 `/Users/m4/Downloads/所有raw materials`，清单写入 `~/.local/share/inresearch.ai/m4-triage/inventory.jsonl`。清单命令可显式指定 `--root` / `--out-dir`，兼容旧 `M4_TRIAGE_ROOT` / `M4_TRIAGE_OUT`；其他阶段需指向相同数据集。输出必须在源目录外。清单元数据绑定源根，移动日志绑定两个根，不能用原账本静默切换语料。
 
 清单唯一写入格式为 `schema_version, sha256, size_bytes, suffix, original_rel, original_name, l0_bucket, route, mtime_ns, ctime_ns, device, inode, hashed_at`。持锁追加，未变化的文件续跑跳过，变化与失败路径重新读取；每路径取最新观察，旧观察留在日志中。符号链接不跟随。尾部断行先保留副本再恢复，中间损坏拒绝继续。
 
-旧 `rel/size` 格式在统一读取边界兼容；继续清点前执行 `migrate-inventory`，完整备份后原子转换，不混写格式。旧 `m4_inventory.py` 独立入口已删除，清点统一用 `python3 manage.py inventory`。summary、分类、L2 深读队列、移动、导出与进度共同使用归一后的集合；一次失败不覆盖已有成功判定，尚无成功结果的文件仍算待处理。L2 通过 `m4_records.current_results` 读取有效判定，不能另外按日志末行决定是否可深读。
+旧 `rel/size` 格式在统一读取边界兼容；继续清点前执行 `migrate-inventory`，完整备份后原子转换，不混写格式。旧 `m4_inventory.py` 独立入口已删除，清点统一用 `python3 manage.py inventory`。summary、分类、L2 深读队列、移动、导出与进度共同使用归一后的集合；一次失败不覆盖已有成功判定，尚无成功结果的文件仍算待处理。L2 通过 `inresearch.materials.records.current_results` 读取有效判定，不能另外按日志末行决定是否可深读。
 
 哈希在线程池里跑，`--workers` 默认 8、上限 16。251 GB 的一次性全量估计 1–2 小时，取决于磁盘。
 
 ### 7.2 物理副本对照表（已实现）
 
-`m4_triage_export.py export` 原子写入 `mapping.jsonl`。首行登记版本、生成时间、源/目标根、数据集与文件数；之后每个物理文件一行 `sha256, from, to, size, stage`，正式保留副本携带当前判定、模型/执行者及来源信息。内容相同的额外副本仍各占一行，避免只按 SHA 合并时漏掉路径。以移动日志回放结果导出，不依赖已移动路径继续出现在最新清单。
+`python3 manage.py mapping export` 原子写入 `mapping.jsonl`。首行登记版本、生成时间、源/目标根、数据集与文件数；之后每个物理文件一行 `sha256, from, to, size, stage`，正式保留副本携带当前判定、模型/执行者及来源信息。内容相同的额外副本仍各占一行，避免只按 SHA 合并时漏掉路径。以移动日志回放结果导出，不依赖已移动路径继续出现在最新清单。
 
 导入验证表头、文件数、相对路径及重复目标；按 SHA 匹配本地清单，缺失或额外文件未对清时禁止 commit。plan/apply 共用路径和内容校验，plan 也会完整读取待移动文件计算哈希。跨根目录同名路径仍是一次移动。成功后按现存位置判断幂等，回退后可以重新执行；restage 必须先回退，才能回退其前面的 library 阶段。
 

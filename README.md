@@ -64,7 +64,7 @@ PYTHONPATH=src python3 -m unittest discover -s tests/unit
 node tests/run_browser.cjs
 ```
 
-变更现行规则时同步规范、实现、替代关系及清单。`verify.py`、`reading_queue.py`、`workorder.py`、`blindspot.py` 仍可生成专项检查或兼容输出；它们不再代表四套并列的研究任务事实源。
+变更现行规则时同步规范、实现、替代关系及清单。`inresearch.knowledge.verify`、`inresearch.workflow.reading_queue`、`inresearch.workflow.workorders`、`inresearch.knowledge.coverage` 仍可生成专项检查或兼容输出；它们不再代表四套并列的研究任务事实源。
 
 ## 采集与发布
 

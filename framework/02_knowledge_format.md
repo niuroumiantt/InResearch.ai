@@ -32,9 +32,9 @@
 
 Finding ID `Mxx-Fn` 永不复用；`{Qnn}` 追溯旧报告问题，新增使用 `{new}`。状态为 current、needs-review、stale、superseded。更新结论须保留前版或对应提交及替代关系；仅完成复核可更新核验日期，不伪造实质修订。示例是格式示意，不能进入证据库。
 
-`verify.py` 生成复核任务；`export.py` 对 needs-review/stale 强制提示，对 superseded 不当作当前正文。现有解析器及旧记录不自动具备新证据链；迁移须逐条核对，150 条既有 Finding 不能据数量直接算作已采用的对象证据。
+`inresearch.knowledge.verify` 生成复核任务；`inresearch.delivery.export` 对 needs-review/stale 强制提示，对 superseded 不当作当前正文。现有解析器及旧记录不自动具备新证据链；迁移须逐条核对，150 条既有 Finding 不能据数量直接算作已采用的对象证据。
 
-`report_model.py` 统一解析模块来源、Finding、状态、来源清单与内容版本。网页 `/api/report` 和 Markdown/Word 导出共用该报告模型；被替代记录只保留历史入口。生成日期与内容哈希独立展示，不冒充来源核验日期。
+`inresearch.delivery.report` 统一解析模块来源、Finding、状态、来源清单与内容版本。网页 `/api/report` 和 Markdown/Word 导出共用该报告模型；被替代记录只保留历史入口。生成日期与内容哈希独立展示，不冒充来源核验日期。
 
 ## 变更顺序
 
