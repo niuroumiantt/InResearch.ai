@@ -41583,6 +41583,223 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "同上，超大型档。 转引自 CESI 绿色数据中心白皮书 2019 政策综述。"
+    },
+    {
+      "fact_id": "yongzhou-dc1-building-cost-item-labor",
+      "metric_id": "cost_composition_by_item",
+      "entity": {
+        "type": "project",
+        "id": "huawei-yongzhou-dc1-building",
+        "label": "华为（永州）云计算数据中心 1#数据中心 建筑工程（土建，已审）"
+      },
+      "value": 4745437.53,
+      "unit": "元",
+      "caliber": {
+        "cost_item": "人工费",
+        "stage": "招标控制价",
+        "basis_of_share": "金额",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b45876a6bd698cf0d349bdf1710d4b137708b92d97a5a241c691ac6c2486aa47",
+        "local_file": "1#数据中心 建筑工程(已审).xls",
+        "locator": "工作表「附D新表D.3单位工程费用计算表1-1」（招标控制价，一般计税法，工程名称：华为（永州）云计算数据中心设计项目土建部分，单位工程：1#数据中心 建筑工程(已审)） 第 6 行 1.1 人工费 Σ工日数量×工日单价(市场价)",
+        "grade": "S2",
+        "originator": "未具名造价单位（工程名称：华为（永州）云计算数据中心设计项目土建部分）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "土建本体，不含机电与 IT 设备。总造价 20,094,338.78 元与同项目汇总表（e8254e90，yongzhou-cost-share-dc1-civil 分子）一致，可互校。直接费 16,017,437.71 = 人工 + 材料 + 机械；费用和利润 2,020,633.15 = 管理费 116,710.01（2.333%）+ 利润 127,165.39（2.542%）+ 总价措施 685,357.06（其中安全文明施工费 659,339.04，13.18%）+ 规费；附加税费 72,080.13（0.36%）未单列（无对应 cost_item）。销项税率 11% 表明按 2018 年 5 月前税率编制，as_of 沿用同项目已录的 2025（原文无日期），**实际编制年份可能早于此**。"
+    },
+    {
+      "fact_id": "yongzhou-dc1-building-cost-item-material",
+      "metric_id": "cost_composition_by_item",
+      "entity": {
+        "type": "project",
+        "id": "huawei-yongzhou-dc1-building",
+        "label": "华为（永州）云计算数据中心 1#数据中心 建筑工程（土建，已审）"
+      },
+      "value": 10029724.29,
+      "unit": "元",
+      "caliber": {
+        "cost_item": "材料费",
+        "stage": "招标控制价",
+        "basis_of_share": "金额",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b45876a6bd698cf0d349bdf1710d4b137708b92d97a5a241c691ac6c2486aa47",
+        "local_file": "1#数据中心 建筑工程(已审).xls",
+        "locator": "工作表「附D新表D.3单位工程费用计算表1-1」（招标控制价，一般计税法，工程名称：华为（永州）云计算数据中心设计项目土建部分，单位工程：1#数据中心 建筑工程(已审)） 第 8 行 1.2 材料费 Σ材料用量×材料除税预算价格",
+        "grade": "S2",
+        "originator": "未具名造价单位（工程名称：华为（永州）云计算数据中心设计项目土建部分）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "土建本体，不含机电与 IT 设备。总造价 20,094,338.78 元与同项目汇总表（e8254e90，yongzhou-cost-share-dc1-civil 分子）一致，可互校。直接费 16,017,437.71 = 人工 + 材料 + 机械；费用和利润 2,020,633.15 = 管理费 116,710.01（2.333%）+ 利润 127,165.39（2.542%）+ 总价措施 685,357.06（其中安全文明施工费 659,339.04，13.18%）+ 规费；附加税费 72,080.13（0.36%）未单列（无对应 cost_item）。销项税率 11% 表明按 2018 年 5 月前税率编制，as_of 沿用同项目已录的 2025（原文无日期），**实际编制年份可能早于此**。"
+    },
+    {
+      "fact_id": "yongzhou-dc1-building-cost-item-machine",
+      "metric_id": "cost_composition_by_item",
+      "entity": {
+        "type": "project",
+        "id": "huawei-yongzhou-dc1-building",
+        "label": "华为（永州）云计算数据中心 1#数据中心 建筑工程（土建，已审）"
+      },
+      "value": 1242275.89,
+      "unit": "元",
+      "caliber": {
+        "cost_item": "机械费",
+        "stage": "招标控制价",
+        "basis_of_share": "金额",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b45876a6bd698cf0d349bdf1710d4b137708b92d97a5a241c691ac6c2486aa47",
+        "local_file": "1#数据中心 建筑工程(已审).xls",
+        "locator": "工作表「附D新表D.3单位工程费用计算表1-1」（招标控制价，一般计税法，工程名称：华为（永州）云计算数据中心设计项目土建部分，单位工程：1#数据中心 建筑工程(已审)） 第 9 行 1.3 机械费",
+        "grade": "S2",
+        "originator": "未具名造价单位（工程名称：华为（永州）云计算数据中心设计项目土建部分）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "土建本体，不含机电与 IT 设备。总造价 20,094,338.78 元与同项目汇总表（e8254e90，yongzhou-cost-share-dc1-civil 分子）一致，可互校。直接费 16,017,437.71 = 人工 + 材料 + 机械；费用和利润 2,020,633.15 = 管理费 116,710.01（2.333%）+ 利润 127,165.39（2.542%）+ 总价措施 685,357.06（其中安全文明施工费 659,339.04，13.18%）+ 规费；附加税费 72,080.13（0.36%）未单列（无对应 cost_item）。销项税率 11% 表明按 2018 年 5 月前税率编制，as_of 沿用同项目已录的 2025（原文无日期），**实际编制年份可能早于此**。"
+    },
+    {
+      "fact_id": "yongzhou-dc1-building-cost-item-fees",
+      "metric_id": "cost_composition_by_item",
+      "entity": {
+        "type": "project",
+        "id": "huawei-yongzhou-dc1-building",
+        "label": "华为（永州）云计算数据中心 1#数据中心 建筑工程（土建，已审）"
+      },
+      "value": 1091400.69,
+      "unit": "元",
+      "caliber": {
+        "cost_item": "规费",
+        "stage": "招标控制价",
+        "basis_of_share": "金额",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b45876a6bd698cf0d349bdf1710d4b137708b92d97a5a241c691ac6c2486aa47",
+        "local_file": "1#数据中心 建筑工程(已审).xls",
+        "locator": "工作表「附D新表D.3单位工程费用计算表1-1」（招标控制价，一般计税法，工程名称：华为（永州）云计算数据中心设计项目土建部分，单位工程：1#数据中心 建筑工程(已审)） 第 16 行 2.4 规费（排污费/职工教育与工会经费/住房公积金/安全生产责任险/社会保险费）",
+        "grade": "S2",
+        "originator": "未具名造价单位（工程名称：华为（永州）云计算数据中心设计项目土建部分）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "土建本体，不含机电与 IT 设备。总造价 20,094,338.78 元与同项目汇总表（e8254e90，yongzhou-cost-share-dc1-civil 分子）一致，可互校。直接费 16,017,437.71 = 人工 + 材料 + 机械；费用和利润 2,020,633.15 = 管理费 116,710.01（2.333%）+ 利润 127,165.39（2.542%）+ 总价措施 685,357.06（其中安全文明施工费 659,339.04，13.18%）+ 规费；附加税费 72,080.13（0.36%）未单列（无对应 cost_item）。销项税率 11% 表明按 2018 年 5 月前税率编制，as_of 沿用同项目已录的 2025（原文无日期），**实际编制年份可能早于此**。"
+    },
+    {
+      "fact_id": "yongzhou-dc1-building-cost-item-pretax",
+      "metric_id": "cost_composition_by_item",
+      "entity": {
+        "type": "project",
+        "id": "huawei-yongzhou-dc1-building",
+        "label": "华为（永州）云计算数据中心 1#数据中心 建筑工程（土建，已审）"
+      },
+      "value": 18038070.86,
+      "unit": "元",
+      "caliber": {
+        "cost_item": "税前工程造价",
+        "stage": "招标控制价",
+        "basis_of_share": "金额",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b45876a6bd698cf0d349bdf1710d4b137708b92d97a5a241c691ac6c2486aa47",
+        "local_file": "1#数据中心 建筑工程(已审).xls",
+        "locator": "工作表「附D新表D.3单位工程费用计算表1-1」（招标控制价，一般计税法，工程名称：华为（永州）云计算数据中心设计项目土建部分，单位工程：1#数据中心 建筑工程(已审)） 第 22 行 3 建安费用 = 1 直接费用 + 2 费用和利润",
+        "grade": "S2",
+        "originator": "未具名造价单位（工程名称：华为（永州）云计算数据中心设计项目土建部分）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "土建本体，不含机电与 IT 设备。总造价 20,094,338.78 元与同项目汇总表（e8254e90，yongzhou-cost-share-dc1-civil 分子）一致，可互校。直接费 16,017,437.71 = 人工 + 材料 + 机械；费用和利润 2,020,633.15 = 管理费 116,710.01（2.333%）+ 利润 127,165.39（2.542%）+ 总价措施 685,357.06（其中安全文明施工费 659,339.04，13.18%）+ 规费；附加税费 72,080.13（0.36%）未单列（无对应 cost_item）。销项税率 11% 表明按 2018 年 5 月前税率编制，as_of 沿用同项目已录的 2025（原文无日期），**实际编制年份可能早于此**。"
+    },
+    {
+      "fact_id": "yongzhou-dc1-building-cost-item-vat",
+      "metric_id": "cost_composition_by_item",
+      "entity": {
+        "type": "project",
+        "id": "huawei-yongzhou-dc1-building",
+        "label": "华为（永州）云计算数据中心 1#数据中心 建筑工程（土建，已审）"
+      },
+      "value": 1984187.79,
+      "unit": "元",
+      "caliber": {
+        "cost_item": "增值税销项",
+        "stage": "招标控制价",
+        "basis_of_share": "金额",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b45876a6bd698cf0d349bdf1710d4b137708b92d97a5a241c691ac6c2486aa47",
+        "local_file": "1#数据中心 建筑工程(已审).xls",
+        "locator": "工作表「附D新表D.3单位工程费用计算表1-1」（招标控制价，一般计税法，工程名称：华为（永州）云计算数据中心设计项目土建部分，单位工程：1#数据中心 建筑工程(已审)） 第 24 行 4 销项税额（税率 11%）",
+        "grade": "S2",
+        "originator": "未具名造价单位（工程名称：华为（永州）云计算数据中心设计项目土建部分）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "土建本体，不含机电与 IT 设备。总造价 20,094,338.78 元与同项目汇总表（e8254e90，yongzhou-cost-share-dc1-civil 分子）一致，可互校。直接费 16,017,437.71 = 人工 + 材料 + 机械；费用和利润 2,020,633.15 = 管理费 116,710.01（2.333%）+ 利润 127,165.39（2.542%）+ 总价措施 685,357.06（其中安全文明施工费 659,339.04，13.18%）+ 规费；附加税费 72,080.13（0.36%）未单列（无对应 cost_item）。销项税率 11% 表明按 2018 年 5 月前税率编制，as_of 沿用同项目已录的 2025（原文无日期），**实际编制年份可能早于此**。"
+    },
+    {
+      "fact_id": "yongzhou-dc1-building-cost-item-total",
+      "metric_id": "cost_composition_by_item",
+      "entity": {
+        "type": "project",
+        "id": "huawei-yongzhou-dc1-building",
+        "label": "华为（永州）云计算数据中心 1#数据中心 建筑工程（土建，已审）"
+      },
+      "value": 20094338.78,
+      "unit": "元",
+      "caliber": {
+        "cost_item": "总造价",
+        "stage": "招标控制价",
+        "basis_of_share": "金额",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b45876a6bd698cf0d349bdf1710d4b137708b92d97a5a241c691ac6c2486aa47",
+        "local_file": "1#数据中心 建筑工程(已审).xls",
+        "locator": "工作表「附D新表D.3单位工程费用计算表1-1」（招标控制价，一般计税法，工程名称：华为（永州）云计算数据中心设计项目土建部分，单位工程：1#数据中心 建筑工程(已审)） 第 27 行 建安工程造价 = 3+4+5+6+税前项目",
+        "grade": "S2",
+        "originator": "未具名造价单位（工程名称：华为（永州）云计算数据中心设计项目土建部分）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "土建本体，不含机电与 IT 设备。总造价 20,094,338.78 元与同项目汇总表（e8254e90，yongzhou-cost-share-dc1-civil 分子）一致，可互校。直接费 16,017,437.71 = 人工 + 材料 + 机械；费用和利润 2,020,633.15 = 管理费 116,710.01（2.333%）+ 利润 127,165.39（2.542%）+ 总价措施 685,357.06（其中安全文明施工费 659,339.04，13.18%）+ 规费；附加税费 72,080.13（0.36%）未单列（无对应 cost_item）。销项税率 11% 表明按 2018 年 5 月前税率编制，as_of 沿用同项目已录的 2025（原文无日期），**实际编制年份可能早于此**。"
     }
   ]
 }
