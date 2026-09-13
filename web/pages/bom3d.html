@@ -143,10 +143,15 @@ import { OutputPass } from "./assets/vendor/OutputPass.js";
 import { EXRLoader } from "./assets/vendor/EXRLoader.js";
 import { GLTFLoader } from "./assets/vendor/GLTFLoader.js";
 
-const get = async p => (await fetch(p + "?t=" + Date.now())).json();
-const [BOM, companies, prices, inds, reg, products] = await Promise.all([
-  get("framework/bom.json"), get("data/companies.json"), get("data/prices.json"),
-  get("framework/indicators.json"), get("framework/modules.json"), get("data/products.json")]);
+import {loadSceneData} from "/assets/scene-data.js";
+const [BOM, companies, prices, inds, reg, products] = await loadSceneData([
+  {url:"framework/bom.json", collection:"parts"},
+  {url:"data/companies.json", collection:"records"},
+  {url:"data/prices.json", collection:"records"},
+  {url:"framework/indicators.json", collection:"indicators"},
+  {url:"framework/modules.json", collection:"modules"},
+  {url:"data/products.json", collection:"records"},
+], {controls:[document.querySelector(".hud")]});
 const CN = {}; companies.records.forEach(c => CN[c.company_id] = c.name_cn || c.name);
 const INDS = {}; inds.indicators.forEach(i => INDS[i.id] = i);
 const MODNAME = {}; reg.modules.forEach(m => MODNAME[m.id] = m.name);
