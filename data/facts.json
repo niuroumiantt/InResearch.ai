@@ -42870,6 +42870,688 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "已上架 GPU 数；同站点总算力 6,800P（精度未注明，项目级算力无指标）。2023 年以来超 1,000 个大模型在大装置上完成训练。"
+    },
+    {
+      "fact_id": "gb50174-2017-floorload-main-lower",
+      "metric_id": "room_floor_load",
+      "entity": {
+        "type": "policy",
+        "id": "gb-50174-2017",
+        "label": "GB 50174—2017《数据中心设计规范》"
+      },
+      "value": 8.0,
+      "unit": "kN/㎡",
+      "caliber": {
+        "room_type": "主机房",
+        "basis": "规范最低（国标）",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "未注明"
+      },
+      "as_of": "2017-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "52feb87105eef682c004a781d6b915acf2a10089d9b4d77f5a7550062a5b5d72",
+        "local_file": "GB 50174-2017 数据中心设计规范.pdf",
+        "locator": "第 51 页 附录 A 表 A·建筑与结构：「主机房活荷载标准值（kN/m2） 8～12 … 根据机柜的摆放密度确定荷载值」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部、国家质量监督检验检疫总局"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间 8～12 下界（上界见 -upper）。**A/B/C 三级共用一格**，tier 记未注明。正文 6.1.1：荷载按 GB 50009 附录 C 计算，但不宜小于附录 A 标准值。中国移动 IDC 企标 V3.2 二星及以上同为 8～12。 国标 2017-05-04 发布、2018-01-01 实施。"
+    },
+    {
+      "fact_id": "gb50174-2017-floorload-main-upper",
+      "metric_id": "room_floor_load",
+      "entity": {
+        "type": "policy",
+        "id": "gb-50174-2017",
+        "label": "GB 50174—2017《数据中心设计规范》"
+      },
+      "value": 12.0,
+      "unit": "kN/㎡",
+      "caliber": {
+        "room_type": "主机房",
+        "basis": "规范最低（国标）",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "未注明"
+      },
+      "as_of": "2017-05",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "52feb87105eef682c004a781d6b915acf2a10089d9b4d77f5a7550062a5b5d72",
+        "local_file": "GB 50174-2017 数据中心设计规范.pdf",
+        "locator": "第 51 页 附录 A 表 A·建筑与结构：「主机房活荷载标准值（kN/m2） 8～12」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部、国家质量监督检验检疫总局"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上界；按机柜摆放密度在区间内取值。A/B/C 通用。 国标 2017-05-04 发布、2018-01-01 实施。"
+    },
+    {
+      "fact_id": "gb50174-2017-floorload-ups-lower",
+      "metric_id": "room_floor_load",
+      "entity": {
+        "type": "policy",
+        "id": "gb-50174-2017",
+        "label": "GB 50174—2017《数据中心设计规范》"
+      },
+      "value": 8.0,
+      "unit": "kN/㎡",
+      "caliber": {
+        "room_type": "UPS室",
+        "basis": "规范最低（国标）",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "未注明"
+      },
+      "as_of": "2017-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "52feb87105eef682c004a781d6b915acf2a10089d9b4d77f5a7550062a5b5d72",
+        "local_file": "GB 50174-2017 数据中心设计规范.pdf",
+        "locator": "第 51 页 附录 A 表 A·建筑与结构：「不间断电源系统室活荷载标准值（kN/m2） 宜为 8～10」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部、国家质量监督检验检疫总局"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间 8～10 下界，「宜为」。A/B/C 通用。 国标 2017-05-04 发布、2018-01-01 实施。"
+    },
+    {
+      "fact_id": "gb50174-2017-floorload-ups-upper",
+      "metric_id": "room_floor_load",
+      "entity": {
+        "type": "policy",
+        "id": "gb-50174-2017",
+        "label": "GB 50174—2017《数据中心设计规范》"
+      },
+      "value": 10.0,
+      "unit": "kN/㎡",
+      "caliber": {
+        "room_type": "UPS室",
+        "basis": "规范最低（国标）",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "未注明"
+      },
+      "as_of": "2017-05",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "52feb87105eef682c004a781d6b915acf2a10089d9b4d77f5a7550062a5b5d72",
+        "local_file": "GB 50174-2017 数据中心设计规范.pdf",
+        "locator": "第 51 页 附录 A 表 A·建筑与结构：「不间断电源系统室活荷载标准值（kN/m2） 宜为 8～10」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部、国家质量监督检验检疫总局"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上界。 国标 2017-05-04 发布、2018-01-01 实施。"
+    },
+    {
+      "fact_id": "gb50174-2017-floorload-battery",
+      "metric_id": "room_floor_load",
+      "entity": {
+        "type": "policy",
+        "id": "gb-50174-2017",
+        "label": "GB 50174—2017《数据中心设计规范》"
+      },
+      "value": 16.0,
+      "unit": "kN/㎡",
+      "caliber": {
+        "room_type": "电池室",
+        "basis": "规范最低（国标）",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "未注明"
+      },
+      "as_of": "2017-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "52feb87105eef682c004a781d6b915acf2a10089d9b4d77f5a7550062a5b5d72",
+        "local_file": "GB 50174-2017 数据中心设计规范.pdf",
+        "locator": "第 51 页 附录 A 表 A·建筑与结构：「电池室活荷载标准值（kN/m2） 蓄电池组 4 层摆放时，不应小于 16」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部、国家质量监督检验检疫总局"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "前提：蓄电池组 4 层摆放。A/B/C 通用。另表中：主机房吊挂荷载不应小于 1.2、总控中心不应小于 6、钢瓶间不应小于 8、电磁屏蔽室宜为 8～12（房间类型无对应取值，未录）。 国标 2017-05-04 发布、2018-01-01 实施。"
+    },
+    {
+      "fact_id": "gb50174-2017-clearheight-new",
+      "metric_id": "room_clear_height",
+      "entity": {
+        "type": "policy",
+        "id": "gb-50174-2017",
+        "label": "GB 50174—2017《数据中心设计规范》"
+      },
+      "value": 3.0,
+      "unit": "m",
+      "caliber": {
+        "measure": "梁下净高",
+        "room_type": "主机房",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "新建"
+      },
+      "as_of": "2017-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "52feb87105eef682c004a781d6b915acf2a10089d9b4d77f5a7550062a5b5d72",
+        "local_file": "GB 50174-2017 数据中心设计规范.pdf",
+        "locator": "第 24 页 6.1.3「主机房净高应根据机柜高度、管线安装及通风要求确定。新建数据中心时，主机房净高不宜小于 3.0m」；第 78 页条文说明 6.1.3",
+        "grade": "S1",
+        "originator": "住房和城乡建设部、国家质量监督检验检疫总局"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文只写「主机房净高」**，未定义量到梁下还是吊顶；measure 取梁下净高，依据是中国移动 IDC 企标 V3.2 对同一组 3.0/2.6m 写作「主梁下沿至原地面高度」。「不宜小于」。 国标 2017-05-04 发布、2018-01-01 实施。"
+    },
+    {
+      "fact_id": "gb50174-2017-clearheight-retrofit",
+      "metric_id": "room_clear_height",
+      "entity": {
+        "type": "policy",
+        "id": "gb-50174-2017",
+        "label": "GB 50174—2017《数据中心设计规范》"
+      },
+      "value": 2.6,
+      "unit": "m",
+      "caliber": {
+        "measure": "梁下净高",
+        "room_type": "主机房",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "改造"
+      },
+      "as_of": "2017-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "52feb87105eef682c004a781d6b915acf2a10089d9b4d77f5a7550062a5b5d72",
+        "local_file": "GB 50174-2017 数据中心设计规范.pdf",
+        "locator": "第 78 页 条文说明 6.1.3「当利用已有建筑改建数据中心时……主机房净高可适量降低，但不应小于 2.6m，此时机柜容量也应适量降低」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部、国家质量监督检验检疫总局"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "出自条文说明（非正文条款）。measure 同上一条的取法。 国标 2017-05-04 发布、2018-01-01 实施。"
+    },
+    {
+      "fact_id": "gb50174-2017-setback-parking-a",
+      "metric_id": "site_hazard_setback",
+      "entity": {
+        "type": "policy",
+        "id": "gb-50174-2017",
+        "label": "GB 50174—2017《数据中心设计规范》"
+      },
+      "value": 20.0,
+      "unit": "m",
+      "caliber": {
+        "hazard_type": "停车场",
+        "tier": "A 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2017-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "52feb87105eef682c004a781d6b915acf2a10089d9b4d77f5a7550062a5b5d72",
+        "local_file": "GB 50174-2017 数据中心设计规范.pdf",
+        "locator": "第 49 页 附录 A 表 A「各级数据中心技术要求」·选址：「距离停车场」A 级 不宜小于 20m",
+        "grade": "S1",
+        "originator": "住房和城乡建设部、国家质量监督检验检疫总局"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "包括自用和外部停车场。 C 级无要求。 国标 2017-05-04 发布、2018-01-01 实施。"
+    },
+    {
+      "fact_id": "gb50174-2017-setback-parking-b",
+      "metric_id": "site_hazard_setback",
+      "entity": {
+        "type": "policy",
+        "id": "gb-50174-2017",
+        "label": "GB 50174—2017《数据中心设计规范》"
+      },
+      "value": 10.0,
+      "unit": "m",
+      "caliber": {
+        "hazard_type": "停车场",
+        "tier": "B 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2017-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "52feb87105eef682c004a781d6b915acf2a10089d9b4d77f5a7550062a5b5d72",
+        "local_file": "GB 50174-2017 数据中心设计规范.pdf",
+        "locator": "第 49 页 附录 A 表 A「各级数据中心技术要求」·选址：「距离停车场」B 级 不宜小于 10m",
+        "grade": "S1",
+        "originator": "住房和城乡建设部、国家质量监督检验检疫总局"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "包括自用和外部停车场。 国标 2017-05-04 发布、2018-01-01 实施。"
+    },
+    {
+      "fact_id": "gb50174-2017-setback-rail-highway-a",
+      "metric_id": "site_hazard_setback",
+      "entity": {
+        "type": "policy",
+        "id": "gb-50174-2017",
+        "label": "GB 50174—2017《数据中心设计规范》"
+      },
+      "value": 800.0,
+      "unit": "m",
+      "caliber": {
+        "hazard_type": "铁路或高速公路",
+        "tier": "A 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2017-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "52feb87105eef682c004a781d6b915acf2a10089d9b4d77f5a7550062a5b5d72",
+        "local_file": "GB 50174-2017 数据中心设计规范.pdf",
+        "locator": "第 49 页 附录 A 表 A「各级数据中心技术要求」·选址：「距离铁路或高速公路」A 级 不宜小于 800m",
+        "grade": "S1",
+        "originator": "住房和城乡建设部、国家质量监督检验检疫总局"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "不包括各场所自身使用的数据中心。OCR 把 800 识成「SO Om」，已按版式核对。 C 级无要求。 国标 2017-05-04 发布、2018-01-01 实施。"
+    },
+    {
+      "fact_id": "gb50174-2017-setback-rail-highway-b",
+      "metric_id": "site_hazard_setback",
+      "entity": {
+        "type": "policy",
+        "id": "gb-50174-2017",
+        "label": "GB 50174—2017《数据中心设计规范》"
+      },
+      "value": 100.0,
+      "unit": "m",
+      "caliber": {
+        "hazard_type": "铁路或高速公路",
+        "tier": "B 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2017-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "52feb87105eef682c004a781d6b915acf2a10089d9b4d77f5a7550062a5b5d72",
+        "local_file": "GB 50174-2017 数据中心设计规范.pdf",
+        "locator": "第 49 页 附录 A 表 A「各级数据中心技术要求」·选址：「距离铁路或高速公路」B 级 不宜小于 100m",
+        "grade": "S1",
+        "originator": "住房和城乡建设部、国家质量监督检验检疫总局"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "不包括各场所自身使用的数据中心。OCR 把 800 识成「SO Om」，已按版式核对。 国标 2017-05-04 发布、2018-01-01 实施。"
+    },
+    {
+      "fact_id": "gb50174-2017-setback-airport-a",
+      "metric_id": "site_hazard_setback",
+      "entity": {
+        "type": "policy",
+        "id": "gb-50174-2017",
+        "label": "GB 50174—2017《数据中心设计规范》"
+      },
+      "value": 8000.0,
+      "unit": "m",
+      "caliber": {
+        "hazard_type": "机场",
+        "tier": "A 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2017-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "52feb87105eef682c004a781d6b915acf2a10089d9b4d77f5a7550062a5b5d72",
+        "local_file": "GB 50174-2017 数据中心设计规范.pdf",
+        "locator": "第 49 页 附录 A 表 A「各级数据中心技术要求」·选址：「距离机场」A 级 不宜小于 8000m",
+        "grade": "S1",
+        "originator": "住房和城乡建设部、国家质量监督检验检疫总局"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「在飞机航道范围内建设数据中心距离飞机场」，不包括机场自身使用的数据中心。 C 级无要求。 国标 2017-05-04 发布、2018-01-01 实施。"
+    },
+    {
+      "fact_id": "gb50174-2017-setback-airport-b",
+      "metric_id": "site_hazard_setback",
+      "entity": {
+        "type": "policy",
+        "id": "gb-50174-2017",
+        "label": "GB 50174—2017《数据中心设计规范》"
+      },
+      "value": 1600.0,
+      "unit": "m",
+      "caliber": {
+        "hazard_type": "机场",
+        "tier": "B 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2017-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "52feb87105eef682c004a781d6b915acf2a10089d9b4d77f5a7550062a5b5d72",
+        "local_file": "GB 50174-2017 数据中心设计规范.pdf",
+        "locator": "第 49 页 附录 A 表 A「各级数据中心技术要求」·选址：「距离机场」B 级 不宜小于 1600m",
+        "grade": "S1",
+        "originator": "住房和城乡建设部、国家质量监督检验检疫总局"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「在飞机航道范围内建设数据中心距离飞机场」，不包括机场自身使用的数据中心。 国标 2017-05-04 发布、2018-01-01 实施。"
+    },
+    {
+      "fact_id": "gb50174-2017-setback-subway-a",
+      "metric_id": "site_hazard_setback",
+      "entity": {
+        "type": "policy",
+        "id": "gb-50174-2017",
+        "label": "GB 50174—2017《数据中心设计规范》"
+      },
+      "value": 100.0,
+      "unit": "m",
+      "caliber": {
+        "hazard_type": "其他",
+        "tier": "A 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2017-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "52feb87105eef682c004a781d6b915acf2a10089d9b4d77f5a7550062a5b5d72",
+        "local_file": "GB 50174-2017 数据中心设计规范.pdf",
+        "locator": "第 49 页 附录 A 表 A「各级数据中心技术要求」·选址：「距离地铁的距离」A 级 不宜小于 100m",
+        "grade": "S1",
+        "originator": "住房和城乡建设部、国家质量监督检验检疫总局"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "hazard_type 无「地铁」取值，记其他；B 级 80m 见 -b。不包括地铁公司自身使用的数据中心。 国标 2017-05-04 发布、2018-01-01 实施。"
+    },
+    {
+      "fact_id": "gb50174-2017-setback-subway-b",
+      "metric_id": "site_hazard_setback",
+      "entity": {
+        "type": "policy",
+        "id": "gb-50174-2017",
+        "label": "GB 50174—2017《数据中心设计规范》"
+      },
+      "value": 80.0,
+      "unit": "m",
+      "caliber": {
+        "hazard_type": "其他",
+        "tier": "B 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2017-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "52feb87105eef682c004a781d6b915acf2a10089d9b4d77f5a7550062a5b5d72",
+        "local_file": "GB 50174-2017 数据中心设计规范.pdf",
+        "locator": "第 49 页 附录 A 表 A「各级数据中心技术要求」·选址：「距离地铁的距离」B 级 不宜小于 80m",
+        "grade": "S1",
+        "originator": "住房和城乡建设部、国家质量监督检验检疫总局"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "hazard_type 无「地铁」取值，记其他。 国标 2017-05-04 发布、2018-01-01 实施。"
+    },
+    {
+      "fact_id": "gb50174-2017-setback-nuclear-a",
+      "metric_id": "site_hazard_setback",
+      "entity": {
+        "type": "policy",
+        "id": "gb-50174-2017",
+        "label": "GB 50174—2017《数据中心设计规范》"
+      },
+      "value": 40000.0,
+      "unit": "m",
+      "caliber": {
+        "hazard_type": "核电站",
+        "tier": "A 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2017-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "52feb87105eef682c004a781d6b915acf2a10089d9b4d77f5a7550062a5b5d72",
+        "local_file": "GB 50174-2017 数据中心设计规范.pdf",
+        "locator": "第 49 页 附录 A 表 A「各级数据中心技术要求」·选址：「距离核电站的危险区域 不应小于 40000m」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部、国家质量监督检验检疫总局"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文为距核电站**危险区域**，A/B 两列合并一格，另见 -b。「不应」为强制语气。 国标 2017-05-04 发布、2018-01-01 实施。"
+    },
+    {
+      "fact_id": "gb50174-2017-setback-nuclear-b",
+      "metric_id": "site_hazard_setback",
+      "entity": {
+        "type": "policy",
+        "id": "gb-50174-2017",
+        "label": "GB 50174—2017《数据中心设计规范》"
+      },
+      "value": 40000.0,
+      "unit": "m",
+      "caliber": {
+        "hazard_type": "核电站",
+        "tier": "B 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2017-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "52feb87105eef682c004a781d6b915acf2a10089d9b4d77f5a7550062a5b5d72",
+        "local_file": "GB 50174-2017 数据中心设计规范.pdf",
+        "locator": "第 49 页 附录 A 表 A「各级数据中心技术要求」·选址：「距离核电站的危险区域 不应小于 40000m」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部、国家质量监督检验检疫总局"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "A/B 两列合并一格。 国标 2017-05-04 发布、2018-01-01 实施。"
+    },
+    {
+      "fact_id": "gb50174-2017-setback-residential-a",
+      "metric_id": "site_hazard_setback",
+      "entity": {
+        "type": "policy",
+        "id": "gb-50174-2017",
+        "label": "GB 50174—2017《数据中心设计规范》"
+      },
+      "value": 100.0,
+      "unit": "m",
+      "caliber": {
+        "hazard_type": "住宅",
+        "tier": "A 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2017-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "52feb87105eef682c004a781d6b915acf2a10089d9b4d77f5a7550062a5b5d72",
+        "local_file": "GB 50174-2017 数据中心设计规范.pdf",
+        "locator": "第 50 页 附录 A 表 A 续表·选址：「距离住宅 不宜小于 100m」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部、国家质量监督检验检疫总局"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "按版式位于 A 级列。 国标 2017-05-04 发布、2018-01-01 实施。"
+    },
+    {
+      "fact_id": "gb50174-2017-ups-battery-a",
+      "metric_id": "backup_autonomy",
+      "entity": {
+        "type": "policy",
+        "id": "gb-50174-2017",
+        "label": "GB 50174—2017《数据中心设计规范》"
+      },
+      "value": 15.0,
+      "unit": "分钟",
+      "caliber": {
+        "backup_type": "UPS 蓄电池",
+        "tier": "A 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2017-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "52feb87105eef682c004a781d6b915acf2a10089d9b4d77f5a7550062a5b5d72",
+        "local_file": "GB 50174-2017 数据中心设计规范.pdf",
+        "locator": "第 54 页 附录 A 表 A·电气：「不间断电源系统电池最少备用时间 A 级 15min（柴油发电机作为后备电源时）」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部、国家质量监督检验检疫总局"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "前提：柴油发电机作后备电源。C 级根据实际需要确定。 国标 2017-05-04 发布、2018-01-01 实施。"
+    },
+    {
+      "fact_id": "gb50174-2017-ups-battery-b",
+      "metric_id": "backup_autonomy",
+      "entity": {
+        "type": "policy",
+        "id": "gb-50174-2017",
+        "label": "GB 50174—2017《数据中心设计规范》"
+      },
+      "value": 7.0,
+      "unit": "分钟",
+      "caliber": {
+        "backup_type": "UPS 蓄电池",
+        "tier": "B 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2017-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "52feb87105eef682c004a781d6b915acf2a10089d9b4d77f5a7550062a5b5d72",
+        "local_file": "GB 50174-2017 数据中心设计规范.pdf",
+        "locator": "第 54 页 附录 A 表 A·电气：「不间断电源系统电池最少备用时间 B 级 7min（柴油发电机作为后备电源时）」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部、国家质量监督检验检疫总局"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "前提同上。 国标 2017-05-04 发布、2018-01-01 实施。"
+    },
+    {
+      "fact_id": "gb50174-2017-genset-fuel-a",
+      "metric_id": "backup_autonomy",
+      "entity": {
+        "type": "policy",
+        "id": "gb-50174-2017",
+        "label": "GB 50174—2017《数据中心设计规范》"
+      },
+      "value": 720.0,
+      "unit": "分钟",
+      "caliber": {
+        "backup_type": "柴发燃油储存",
+        "tier": "A 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2017-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "52feb87105eef682c004a781d6b915acf2a10089d9b4d77f5a7550062a5b5d72",
+        "local_file": "GB 50174-2017 数据中心设计规范.pdf",
+        "locator": "第 54 页 附录 A 表 A·电气：「柴油发电机燃料存储量 宜满足 12h 用油」，备注「当外部供油时间有保障时，燃料存储量仅需大于外部供油时间」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部、国家质量监督检验检疫总局"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "12h = 720 分钟，「宜」。按版式位于 A 级列。 国标 2017-05-04 发布、2018-01-01 实施。"
+    },
+    {
+      "fact_id": "gb50174-2017-cooling-water-a",
+      "metric_id": "backup_autonomy",
+      "entity": {
+        "type": "policy",
+        "id": "gb-50174-2017",
+        "label": "GB 50174—2017《数据中心设计规范》"
+      },
+      "value": 720.0,
+      "unit": "分钟",
+      "caliber": {
+        "backup_type": "蓄水池",
+        "tier": "A 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2017-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "52feb87105eef682c004a781d6b915acf2a10089d9b4d77f5a7550062a5b5d72",
+        "local_file": "GB 50174-2017 数据中心设计规范.pdf",
+        "locator": "第 44 页 12.1.4「当不能确定应急水车抵达现场的时间时，A 级数据中心可按 12h 储水」；第 58 页 表 A·给排水「冷却水储水量 宜满足 12h 用水」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部、国家质量监督检验检疫总局"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "12h = 720 分钟；储存时间原则上不应低于当地应急水车抵达时间。 国标 2017-05-04 发布、2018-01-01 实施。"
     }
   ]
 }
