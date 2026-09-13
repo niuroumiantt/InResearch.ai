@@ -1,16 +1,16 @@
 # M4 资料分类与命名任务
 
-> CURRENT · 2026-09-12 更新（首次采用 2026-09-09）。规则归属见 [framework/CURRENT.md](../framework/CURRENT.md)；本文件在 `framework/current_state.json` 以 `reading-m4-triage-20260912` 登记，scope 为 `m4-triage`。
+> CURRENT · 2026-09-13 更新（首次采用 2026-09-09）。规则归属见 [framework/CURRENT.md](../framework/CURRENT.md)；本文件在 `framework/current_state.json` 以 `reading-m4-triage-20260912` 登记，scope 为 `m4-triage`。
 >
 > 本任务只约束 **M4 本机原件的整理**，是对 [04 阅读标准](../framework/04_reading_scoring_standard.md) §5/§6 在该范围内的替代（见 §10）。Spark 的阅读、评分与 originals 不可变规则不受影响，仍按 04 标准执行。
 
-## 0. 实现状态（2026-09-12 源码核对）
+## 0. 实现状态（2026-09-13 源码核对）
 
 | 步骤 | 状态 | 落点 |
 |---|---|---|
 | 全量清单与重复检测 | 已实现 | `inresearch.materials.inventory` 唯一写入器；`inresearch.materials.records` 统一读取旧/新格式 |
 | L1 预览、模型打分、终端提交 | 已实现；默认改用共享研究模型 | `inresearch.workflow.triage`、`inresearch.workflow.score`、`inresearch.workflow.terminal_batch` |
-| 提取摘要与 L2 交付 | 已有代码 | `inresearch.workflow.attribution`、`inresearch.workflow.deep_read`；不是 Spark 全文流程的替代 |
+| 提取摘要与 L2 交付 | 用例已拆分并补齐准入/重放/计划冲突规则 | `inresearch.workflow.attribution`、`inresearch.workflow.deep_read.DeepRead`；CLI 为 `inresearch.interfaces.deep_read`；不是 Spark 全文流程的替代 |
 | 改名移动、日志与恢复 | 已实现并通过隔离故障测试 | `inresearch.storage.moves`、`inresearch.storage.jsonl`、`inresearch.materials.organize`；未操作生产原件 |
 | M4 对照表导出与对账 | 已有代码 | `inresearch.materials.mapping` |
 | Spark catalog 的 apply-triage | 未实现 | §7.2 描述目标契约；不由脚本存在推断已完成 |
@@ -38,8 +38,8 @@
 | 层级 | 含义 | 适用 | 打分性质 |
 |---|---|---|---|
 | L0 name_only | 只看文件名、路径、后缀、大小 | DWG/CAD、3D、图片、日志、压缩包、无法提取文本的文件 | 暂定，文件名带未读标记 |
-| L1 preview | pdftotext 首页+目录+首 4,000 字，模型路由 | 所有可提取文本的 PDF/Office 第一轮 | 暂定 |
-| L2 full | 全文分块阅读 | L1 得分 ≥7 或用户点名 | 正式 |
+| L1 preview | 按格式抽取后最多 6,000 字预览，PDF 可补取中段，模型路由 | 所有可提取文本的 PDF/Office 第一轮 | 暂定 |
+| L2 full | 全文分块阅读 | L1 得分 ≥7 或用户点名 | 完整阅读与审核后才可确认正式评分 |
 | L3 ocr | 配置的视觉模型逐页双次 OCR 后再 L1/L2 | 扫描件（约 2,496 份），第一轮不做 | 正式 |
 
 L0 文件**不会因为没读就得 0 分**。图纸/CAD 默认归“图纸资产（未读）”，得分位显示未读标记。
@@ -142,3 +142,14 @@ python3 manage.py inventory summary
 2026-09-13 集成核对：文本指纹和近似摘要仅为复核提示，不能代替原件内容 SHA，不能自动阻止另一内容版本开包或沿用其证据。合并单元格展开在分配前检查累计抽取预算，超限明确失败并保留原件；截断或超限不计完整阅读。
 
 带 `twin_of` 的文本副本自动推测记录不是完整阅读证明，保留日志供复核，不能单独让另一 SHA 退出待读队列；后续实际完整阅读的独立记录仍可生效。
+
+
+## 11. L2 命令与修订基线
+
+软件职责和事务权威见 [09 软件契约](../framework/09_software_contracts.md#l2-终端阅读用例)。`deep-read queue` 自动门槛为 7，`--min-score` 可用于当次优先队列；`pack --sha` 显式点名仍保留准入与已读检查，已读材料加 `--again`。SHA 有歧义即拒绝，不取第一份。包的正文、brief 和 manifest 使用同一独立目录，按返回路径读取，不再拼接旧固定 sha16 目录。
+
+`queue`、`pack` 给出 L1 版本。`attribute` / `flag` 新请求必须带 `--expected-revision <所读版本>`；冲突后先查看新判定再形成修改，不静默沿用旧终端结果。`backfill-provenance` 先干跑，逐项核对候选路径与 SHA；应用时用 `--commit --expected-plan <计划摘要>`。事实或解析依据变化需要重新复核。
+
+record 接受事实数组或含 records/facts 数组的对象；`--doc` 是完整 SHA 或唯一前缀。相同事实和完成请求重放不重复计数；事实成功而回执失败时重放同一输入。`skip` 保留缺口，再记录人工完成声明；重复 skip 不重新打开已经 filled 的缺口，`gaps --filled` 重复提交返回已完成。空数组或日志存在不证明实际深读质量。当前 L2 用例不自动把 L1 的分数/层级升级为全文正式评分，也不授予 C3。
+
+record 的 `--executor` / `--model` 写入本次完成回执；未提供记 unknown。外部客户端声明明确标为 client_reported，不冒充程序已验证的模型身份。请求重放保留原归属，不以新的客户端名字改写旧阅读记录。
