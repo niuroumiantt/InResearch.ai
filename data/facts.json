@@ -32505,6 +32505,185 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "OVH 的 DLC 与机柜后门换热器共用一套冷却水系统，只能把水冷到 27°C（DLC 本可用 45°C）。**1.26 受益于机房集中在法国北部的冷气候**，原文特意点明。**原文特别提醒 PUE 可被操纵、不总能公平比较**：高环境温度设计的机房风扇功耗更高但冷却能耗更低，反而可能 PUE 更高而总耗电更少。"
+    },
+    {
+      "fact_id": "uptime-avg-rack-density-2011",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "industry",
+        "id": "global-dc-uptime-survey",
+        "label": "Uptime Institute 全球数据中心调查"
+      },
+      "value": 2.4,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "均值",
+        "power_basis": "实际功率密度",
+        "region": "Global"
+      },
+      "as_of": "2011",
+      "bound": "point",
+      "evidence": {
+        "sha256": "58db19c6f47d04e6b8f57a8d0ed8574a122e559901f9429475a8086ff32a22e9",
+        "local_file": "绿色数据中心创新实践：冷板液冷系统设计参考（中国绿色数据中心技术创新论坛）.pdf",
+        "locator": "第 6 页 2.1 节：「Uptime Institute 发布的《2020 全球数据中心调查报告》显示，2020 年全球 71% 的数据中心平均功率密度低于 10kW/机架，最常见是 5~9kW/机架，平均单机架功率为 8.4kW/机架，平均功率密度高于 20kW/机架的数据中心约占 16%……相比于 2017 年的 5.6kW/机架、2011 年的 2.4 kW/机架增长显著」",
+        "grade": "S3",
+        "originator": "Uptime Institute《2020 全球数据中心调查报告》（经该设计参考转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**2011 → 2017 → 2020 三点：2.4 → 5.6 → 8.4 kW/机架，九年 3.5 倍。** **rack_type=传统风冷是就近归类**：Uptime 调查是全行业机柜平均，不区分冷却方式，但 2020 年以前绝大多数是风冷，标 [未核]。 **同份调查的分布更有用**：2020 年 71% 的数据中心平均密度 <10kW、最常见 5-9kW，>20kW 的约占 16%——均值 8.4 被少数高密度拉高。 **Uptime 样本偏差同样适用**：SemiAnalysis 那份指出 Uptime 调查大体不含超大规模厂（见 sa-cool-pue-uptime-avg）。 对照 GB200 NVL72 整柜 120kW：是 2020 年行业均值的 14 倍。"
+    },
+    {
+      "fact_id": "uptime-avg-rack-density-2017",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "industry",
+        "id": "global-dc-uptime-survey",
+        "label": "Uptime Institute 全球数据中心调查"
+      },
+      "value": 5.6,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "均值",
+        "power_basis": "实际功率密度",
+        "region": "Global"
+      },
+      "as_of": "2017",
+      "bound": "point",
+      "evidence": {
+        "sha256": "58db19c6f47d04e6b8f57a8d0ed8574a122e559901f9429475a8086ff32a22e9",
+        "local_file": "绿色数据中心创新实践：冷板液冷系统设计参考（中国绿色数据中心技术创新论坛）.pdf",
+        "locator": "第 6 页 2.1 节：「Uptime Institute 发布的《2020 全球数据中心调查报告》显示，2020 年全球 71% 的数据中心平均功率密度低于 10kW/机架，最常见是 5~9kW/机架，平均单机架功率为 8.4kW/机架，平均功率密度高于 20kW/机架的数据中心约占 16%……相比于 2017 年的 5.6kW/机架、2011 年的 2.4 kW/机架增长显著」",
+        "grade": "S3",
+        "originator": "Uptime Institute《2020 全球数据中心调查报告》（经该设计参考转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**2011 → 2017 → 2020 三点：2.4 → 5.6 → 8.4 kW/机架，九年 3.5 倍。** **rack_type=传统风冷是就近归类**：Uptime 调查是全行业机柜平均，不区分冷却方式，但 2020 年以前绝大多数是风冷，标 [未核]。 **同份调查的分布更有用**：2020 年 71% 的数据中心平均密度 <10kW、最常见 5-9kW，>20kW 的约占 16%——均值 8.4 被少数高密度拉高。 **Uptime 样本偏差同样适用**：SemiAnalysis 那份指出 Uptime 调查大体不含超大规模厂（见 sa-cool-pue-uptime-avg）。 对照 GB200 NVL72 整柜 120kW：是 2020 年行业均值的 14 倍。"
+    },
+    {
+      "fact_id": "uptime-avg-rack-density-2020",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "industry",
+        "id": "global-dc-uptime-survey",
+        "label": "Uptime Institute 全球数据中心调查"
+      },
+      "value": 8.4,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "均值",
+        "power_basis": "实际功率密度",
+        "region": "Global"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "58db19c6f47d04e6b8f57a8d0ed8574a122e559901f9429475a8086ff32a22e9",
+        "local_file": "绿色数据中心创新实践：冷板液冷系统设计参考（中国绿色数据中心技术创新论坛）.pdf",
+        "locator": "第 6 页 2.1 节：「Uptime Institute 发布的《2020 全球数据中心调查报告》显示，2020 年全球 71% 的数据中心平均功率密度低于 10kW/机架，最常见是 5~9kW/机架，平均单机架功率为 8.4kW/机架，平均功率密度高于 20kW/机架的数据中心约占 16%……相比于 2017 年的 5.6kW/机架、2011 年的 2.4 kW/机架增长显著」",
+        "grade": "S3",
+        "originator": "Uptime Institute《2020 全球数据中心调查报告》（经该设计参考转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**2011 → 2017 → 2020 三点：2.4 → 5.6 → 8.4 kW/机架，九年 3.5 倍。** **rack_type=传统风冷是就近归类**：Uptime 调查是全行业机柜平均，不区分冷却方式，但 2020 年以前绝大多数是风冷，标 [未核]。 **同份调查的分布更有用**：2020 年 71% 的数据中心平均密度 <10kW、最常见 5-9kW，>20kW 的约占 16%——均值 8.4 被少数高密度拉高。 **Uptime 样本偏差同样适用**：SemiAnalysis 那份指出 Uptime 调查大体不含超大规模厂（见 sa-cool-pue-uptime-avg）。 对照 GB200 NVL72 整柜 120kW：是 2020 年行业均值的 14 倍。"
+    },
+    {
+      "fact_id": "lcref-air-cooling-limit",
+      "metric_id": "liquid_cooling_econ_threshold",
+      "entity": {
+        "type": "technology",
+        "id": "cn-liquid-cooling-threshold",
+        "label": "中国液冷经济性/技术门槛"
+      },
+      "value": 12.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "tech": "冷板式",
+        "basis": "设计方判断",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "58db19c6f47d04e6b8f57a8d0ed8574a122e559901f9429475a8086ff32a22e9",
+        "local_file": "绿色数据中心创新实践：冷板液冷系统设计参考（中国绿色数据中心技术创新论坛）.pdf",
+        "locator": "第 7 页 2.2 节：「采用风冷的数据中心通常可以解决 12kW 以内的机柜制冷。随着服务器单位功耗增大，原先尺寸的普通服务器机柜可容纳的服务器功率往往超过 15kW，相对于现有的风冷数据中心，这已经到了空气对流散热能力的天花板」",
+        "grade": "S3",
+        "originator": "中国绿色数据中心技术创新论坛"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**12kW 是「现有风冷数据中心」的常规上限，15kW 以上是空气对流散热的天花板。** **本库现在有五个来源给了五个门槛**：本条 12kW（本设计参考）、银行数据中心可研报告的冷板式 15kW 以上（设计方判断）、头豹 25/30/40kW、信通院 40kW、NVL 整理表 >75kW——**问的是不同的事**：现有风冷机房能否承载 / 液冷何时更经济 / 风冷何时失效 / 何时必须直液冷。 时点原文未写，发布方为中国绿色数据中心技术创新论坛，按正文引用的最新年份记 2023，标 [未核]。"
+    },
+    {
+      "fact_id": "cn-policy-pue-large-dc-2021",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "cn-new-dc-3yr-plan",
+        "label": "工信部《新型数据中心发展三年行动计划（2021-2023 年）》/「东数西算」"
+      },
+      "value": 1.3,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "scale": "大型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2021-07",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "58db19c6f47d04e6b8f57a8d0ed8574a122e559901f9429475a8086ff32a22e9",
+        "local_file": "绿色数据中心创新实践：冷板液冷系统设计参考（中国绿色数据中心技术创新论坛）.pdf",
+        "locator": "第 4 页：「同年 7 月，工信部印发《新型数据中心发展三年行动计划（2021-2023 年）》，明确提出新建大型及以上数据中心电能利用效率（PUE）降低到 1.3 以下。2022 年 1 月，国务院印发“十四五”数字经济发展规划……强调大型、超大型数据中心 PUE 降到 1.3 以下，并在给多个算力网络国家枢纽节点启动的复函中，都将 PUE 指标控制在 1.25 以内」",
+        "grade": "S1",
+        "originator": "工信部 / 国务院 / 国家发改委（经该设计参考转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**新建大型及以上数据中心 PUE <1.3**，2022-01「十四五」数字经济发展规划重申。**国家枢纽节点更严，1.25 以内**（见 cn-policy-pue-hub-nodes-2022）。对照库内四川集群起步区 1.25（sichuan-pue-threshold-cluster-2025）。grade=S1 为政策原文层级，但本条经设计参考转述，未核对政策原件。"
+    },
+    {
+      "fact_id": "cn-policy-pue-hub-nodes-2022",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "cn-east-data-west-compute-hubs",
+        "label": "「东数西算」国家算力枢纽节点启动复函"
+      },
+      "value": 1.25,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2022",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "58db19c6f47d04e6b8f57a8d0ed8574a122e559901f9429475a8086ff32a22e9",
+        "local_file": "绿色数据中心创新实践：冷板液冷系统设计参考（中国绿色数据中心技术创新论坛）.pdf",
+        "locator": "第 4 页：「并在给多个算力网络国家枢纽节点启动的复函中，都将 PUE 指标控制在 1.25 以内」；第 6 页：「在未来布局的算力枢纽 8 大节点中，东部数据中心 PUE 需要降低到 1.25 以下（包括华南地区），西部地区……的数据中心 PUE 要求在 1.2 以下」",
+        "grade": "S1",
+        "originator": "国家发改委等（经该设计参考转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "枢纽节点门槛 1.25，严于全国大型数据中心的 1.3。**原文第 6 页进一步写：8 大算力枢纽节点中东部数据中心 PUE 需降到 1.25 以下（含华南），西部地区的数据中心 PUE 要求在 1.2 以下**（原文跨栏排版，「西部地区」与「1.2 以下」分在两栏，按阅读顺序拼接，标 [未核]），西部那条未单独入库。grade=S1 为政策层级但经转述，未核原件。"
     }
   ]
 }
