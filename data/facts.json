@@ -46923,6 +46923,213 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原文口径是「全市智能计算中心算力」，按智能算力记；「以上」按下界记。"
+    },
+    {
+      "fact_id": "jll2024-idc-storagesphere2023-global-2023",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "global-storage-installed-base",
+        "label": "全球已安装存储容量（IDC StorageSphere）"
+      },
+      "value": 10100.0,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c2b2be7186c9021df9eb313e1cd70f6e4adef5470575eab4cd40b0049745c596",
+        "local_file": "20250316-2024年全球展望报告 人工智能和绿色能源转型将带来新的挑战和机遇(24页).pdf",
+        "locator": "第 5 页：「total storage capacity in data centers and endpoint devices will grow from 10.1 zettabytes (ZB) in 2023 to 21.0 ZB in 2027, for a five-year compound annual growth rate (CAGR) of 18.5%」，脚注 1：Aug 2023, IDC #US49346223, Revelations in the Global StorageSphere 2023",
+        "grade": "S3",
+        "originator": "IDC《Revelations in the Global StorageSphere 2023》（#US49346223，2023-08，经 JLL 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "10.1 ZB = 10,100 EB；数据中心与端点设备合计，与 IDC StorageSphere 历版同一序列。2021-03 版曾预测 2023 年 11,123.9 EB，本版实际估计值更低。"
+    },
+    {
+      "fact_id": "jll2024-idc-storagesphere2023-global-2027e",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "global-storage-installed-base",
+        "label": "全球已安装存储容量（IDC StorageSphere）"
+      },
+      "value": 21000.0,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2027E@2023-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c2b2be7186c9021df9eb313e1cd70f6e4adef5470575eab4cd40b0049745c596",
+        "local_file": "20250316-2024年全球展望报告 人工智能和绿色能源转型将带来新的挑战和机遇(24页).pdf",
+        "locator": "第 5 页：「total storage capacity in data centers and endpoint devices will grow from 10.1 zettabytes (ZB) in 2023 to 21.0 ZB in 2027, for a five-year compound annual growth rate (CAGR) of 18.5%」，脚注 1：Aug 2023, IDC #US49346223, Revelations in the Global StorageSphere 2023",
+        "grade": "S3",
+        "originator": "IDC《Revelations in the Global StorageSphere 2023》（#US49346223，2023-08，经 JLL 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "21.0 ZB = 21,000 EB；2023-2027 CAGR 18.5%（原文称五年 CAGR）。"
+    },
+    {
+      "fact_id": "jll2024-ireland-dc-power-share-2022",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "ireland-datacenters",
+        "label": "爱尔兰数据中心（合计）"
+      },
+      "value": 18.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "EU",
+        "basis": "实测"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c2b2be7186c9021df9eb313e1cd70f6e4adef5470575eab4cd40b0049745c596",
+        "local_file": "20250316-2024年全球展望报告 人工智能和绿色能源转型将带来新的挑战和机遇(24页).pdf",
+        "locator": "第 17 页 Ireland 专栏：「In 2022, data centers consumed 18% of the country’s electricity, up from 5% in 2015」",
+        "grade": "S3",
+        "originator": "JLL（转引爱尔兰官方统计）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "爱尔兰全国用电占比（region 枚举无国家级取值，按所属 EU 记，entity 为爱尔兰）。原文脚注 9 未在本段展开出处（爱尔兰统计局 CSO 口径）。"
+    },
+    {
+      "fact_id": "jll2024-ireland-dc-power-share-2015",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "ireland-datacenters",
+        "label": "爱尔兰数据中心（合计）"
+      },
+      "value": 5.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "EU",
+        "basis": "实测"
+      },
+      "as_of": "2015",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c2b2be7186c9021df9eb313e1cd70f6e4adef5470575eab4cd40b0049745c596",
+        "local_file": "20250316-2024年全球展望报告 人工智能和绿色能源转型将带来新的挑战和机遇(24页).pdf",
+        "locator": "第 17 页 Ireland 专栏：「In 2022, data centers consumed 18% of the country’s electricity, up from 5% in 2015」",
+        "grade": "S3",
+        "originator": "JLL（转引爱尔兰官方统计）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "同上。"
+    },
+    {
+      "fact_id": "jll2024-eirgrid-ireland-dc-power-share-2028e",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "ireland-datacenters",
+        "label": "爱尔兰数据中心（合计）"
+      },
+      "value": 30.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "EU",
+        "basis": "预测"
+      },
+      "as_of": "2028E@2024-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c2b2be7186c9021df9eb313e1cd70f6e4adef5470575eab4cd40b0049745c596",
+        "local_file": "20250316-2024年全球展望报告 人工智能和绿色能源转型将带来新的挑战和机遇(24页).pdf",
+        "locator": "第 16 页：「EirGrid in Ireland estimates that electricity demand from data centers could more than double to 30% of all consumption in 2028」",
+        "grade": "S3",
+        "originator": "EirGrid（经 JLL 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "EirGrid 预测，做出时点原文未写，@ 取 JLL 2024 年度展望发布时点（2024 年初），实际更早。"
+    },
+    {
+      "fact_id": "jll2024-denmark-dc-power-share-2030e",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "denmark-datacenters",
+        "label": "丹麦数据中心（合计）"
+      },
+      "value": 15.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "EU",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2024-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c2b2be7186c9021df9eb313e1cd70f6e4adef5470575eab4cd40b0049745c596",
+        "local_file": "20250316-2024年全球展望报告 人工智能和绿色能源转型将带来新的挑战和机遇(24页).pdf",
+        "locator": "第 16 页：「In Denmark, electricity usage from data centers is forecast to grow from 1% to 15% of total consumption by 2030」",
+        "grade": "S3",
+        "originator": "未注明（经 JLL 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "预测者与做出时点原文未写，@ 取 JLL 报告时点；起点 1% 未写年份，未录。"
+    },
+    {
+      "fact_id": "jll2024-nova-dc-power-capacity-2022",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "northern-virginia",
+        "label": "北弗吉尼亚数据中心市场"
+      },
+      "value": 2767.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "US"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c2b2be7186c9021df9eb313e1cd70f6e4adef5470575eab4cd40b0049745c596",
+        "local_file": "20250316-2024年全球展望报告 人工智能和绿色能源转型将带来新的挑战和机遇(24页).pdf",
+        "locator": "第 17 页 United States 专栏：「In Northern Virginia, the power capacity used by data centers doubled between 2018 and 2022 to 2,767MW, according to Dominion Energy」",
+        "grade": "S3",
+        "originator": "Dominion Energy（经 JLL 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Dominion Energy 口径的数据中心用电容量（「power capacity used」），未说明 IT 还是设施/并网口径，capacity_type 记未披露。2018 年约为其一半（原文「doubled」，未给精确值，未录）。"
     }
   ]
 }
