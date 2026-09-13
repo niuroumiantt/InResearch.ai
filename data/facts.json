@@ -64381,6 +64381,37 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "不带电池时靠母线大容量电容做 AC 掉电保持与穿越，满载下按 ITIC 曲线最多 20 ms；原文「upto」按上界记。同页：480Vac 满载整机架效率目标 >97%、最多 12 路 200A AC 引线、±400V 采用高阻中点接地。as_of 取 Hot Chips 2025（2025-08）。"
+    },
+    {
+      "fact_id": "gx2025-vertiv-nvidia-hybrid-dlc-share",
+      "metric_id": "cooling_capacity_ratio",
+      "entity": {
+        "type": "market",
+        "id": "gpu-high-density-dc-hybrid-cooling",
+        "label": "GPU 高密数据中心风液混合制冷方案（维谛×英伟达测试）"
+      },
+      "asserter": "维谛",
+      "value": 75.0,
+      "unit": "%",
+      "caliber": {
+        "cooling_tech": "直接液冷 DLC",
+        "denominator": "IT 负载",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2024-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d10fba0ef884901d7730333e57f4d1b379d87d23bca346033cb1889cc3524c9d",
+        "local_file": "20250313-国信证券-人工智能设备专题：英伟达GTC大会在即，关注电源、液冷、CPO及PCB板块(20页).pdf",
+        "locator": "第 9 页：「2024年3月，维谛Vertiv与英伟达NVIDIA专家团队共同针对高密数据中心制冷方案进行研发测试，并发布实测数据：GPU型高密数据中心的冷板液冷和风冷的创新风液混合制冷方案中大约 75% 的 IT 负载可通过冷板液冷技术实现有效冷却」",
+        "grade": "S3",
+        "originator": "维谛 Vertiv × 英伟达联合测试（经国信证券《人工智能设备专题》2025-03-13 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「大约 75%」；其余约 25% 由风冷承担。对照 SemiAnalysis 100MW 配 85MW DLC 冷量（库内 cooling_capacity_ratio 其他条）。"
     }
   ]
 }
