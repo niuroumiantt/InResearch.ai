@@ -77171,6 +77171,106 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "「算力中心服务市场」口径原文未定义，service_scope 记未注明；五年 CAGR 18.9%。IDC 该预测的发布时点原文未写，@ 只能确定为 2024 年或更早。同报告第 3 页信通院 2023 年在用机架 810 万、算力 230 EFLOPS 库内已有。"
+    },
+    {
+      "fact_id": "caict2023-cn-dc-service-revenue-2022",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-dc-service-market",
+        "label": "中国算力中心服务市场"
+      },
+      "asserter": "中国信通院",
+      "value": 1900.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "IDC 服务（含托管与增值）",
+        "operator_type": "全市场",
+        "region": "CN",
+        "basis": "第三方跟踪",
+        "currency": "人民币"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "60b51761e20cb9177dcaacc31642246d2fa1b8c945c8a66e83d4ed6fc803f4e6",
+        "local_file": "20230727-中国信通院：中国第三方数据中心服务商分析报告(43页).pdf",
+        "locator": "第 12 页：「据中国信通院测算，2022 年数据中心业务市场收入约达到 1900 亿元，近三年年均复合增长率为 27.2%」（图 2 来源：IDC，中国信通院云计算与大数据研究所）",
+        "grade": "S2",
+        "originator": "中国信通院云计算与大数据研究所《中国第三方数据中心服务商分析报告（2023 年）》（2023-07）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「约」；service_scope 沿用库内信通院 2021 年 1,500 亿元那条（caict-2022-dc-service-revenue-2021）的口径。"
+    },
+    {
+      "fact_id": "caict2023-singapore-new-dc-pue-limit-2022",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "singapore-new-dc-admission-2022",
+        "label": "新加坡新建数据中心准入要求（2022）"
+      },
+      "asserter": "新加坡政府",
+      "value": 1.3,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "APAC"
+      },
+      "as_of": "2022",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "60b51761e20cb9177dcaacc31642246d2fa1b8c945c8a66e83d4ed6fc803f4e6",
+        "local_file": "20230727-中国信通院：中国第三方数据中心服务商分析报告(43页).pdf",
+        "locator": "第 20 页：「2022 年，新加坡政府对新建数据中心项目设置了准入门槛，要求新建数据中心 PUE 值低于 1.3，并通过 BCA-IMDA 绿色标志（“GM- NDC”）认证」",
+        "grade": "S3",
+        "originator": "新加坡政府（经中国信通院云计算与大数据研究所《中国第三方数据中心服务商分析报告（2023 年）》（2023-07）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「低于」按上界记；period 原文未写，按政策 PUE 惯例记年均。region 无 SG，记 APAC。"
+    },
+    {
+      "fact_id": "caict2023-amsterdam-new-dc-pue-limit",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "amsterdam-new-dc-pue-rule",
+        "label": "荷兰阿姆斯特丹新建数据中心 PUE 规定"
+      },
+      "asserter": "荷兰政府",
+      "value": 1.2,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "EU"
+      },
+      "as_of": "2023-07",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "60b51761e20cb9177dcaacc31642246d2fa1b8c945c8a66e83d4ed6fc803f4e6",
+        "local_file": "20230727-中国信通院：中国第三方数据中心服务商分析报告(43页).pdf",
+        "locator": "第 20 页：「荷兰政府规定，在阿姆斯特丹新建数据中心，PUE 值应低于 1.2」",
+        "grade": "S3",
+        "originator": "荷兰政府（经中国信通院云计算与大数据研究所《中国第三方数据中心服务商分析报告（2023 年）》（2023-07）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「低于」按上界记；period 原文未写，按政策 PUE 惯例记年均。规定发布时间原文未写，as_of 取报告时点。"
     }
   ]
 }
