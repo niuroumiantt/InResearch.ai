@@ -1,0 +1,45 @@
+consumer,line,owner,call,result
+src/inresearch/adapters/historical_brief.py,42,latest_news_signals,"workspace_path('data/raw/news_signals', ROOT)",same resolver for all transports; authoring has no runtime override
+src/inresearch/adapters/historical_brief.py,53,recent_sec_filings,"workspace_path('data/raw/sec', ROOT)",same resolver for all transports; authoring has no runtime override
+src/inresearch/adapters/historical_brief.py,172,main,"workspace_path('data/brief.json', ROOT)",same resolver for all transports; authoring has no runtime override
+src/inresearch/adapters/historical_brief.py,193,main,"workspace_path('reports/daily_brief.md', ROOT)",same resolver for all transports; authoring has no runtime override
+src/inresearch/delivery/export.py,24,<module defaults>,"workspace_path('reports/output', ROOT)",same resolver for all transports; authoring has no runtime override
+src/inresearch/delivery/map.py,22,<module defaults>,"workspace_path('reports/output', ROOT)",same resolver for all transports; authoring has no runtime override
+src/inresearch/interfaces/auth.py,43,<module defaults>,"workspace_path('data/users.json', ROOT)",same resolver for all transports; authoring has no runtime override
+src/inresearch/interfaces/auth.py,44,<module defaults>,"workspace_path('data/.hub_secret', ROOT)",same resolver for all transports; authoring has no runtime override
+src/inresearch/interfaces/http.py,57,log_run,"workspace_path('logs', ROOT)",same resolver for all transports; authoring has no runtime override
+src/inresearch/interfaces/http.py,197,intake_worker,"workspace_path('data/.reader_sync_token', ROOT)",same resolver for all transports; authoring has no runtime override
+src/inresearch/interfaces/http.py,261,do_GET,"workspace_path('logs', ROOT)",same resolver for all transports; authoring has no runtime override
+src/inresearch/interfaces/http.py,277,do_GET,"workspace_path('reports/workorders.json', ROOT)",same resolver for all transports; authoring has no runtime override
+src/inresearch/interfaces/http.py,353,api_reader_snapshot,"workspace_path('data/.reader_sync_token', ROOT)",same resolver for all transports; authoring has no runtime override
+src/inresearch/interfaces/static.py,24,source_path,"workspace_path(relative, root, public=True)",same resolver for all transports; authoring has no runtime override
+src/inresearch/knowledge/coverage.py,35,<module defaults>,"workspace_path('reports/blindspot.md', ROOT)",same resolver for all transports; authoring has no runtime override
+src/inresearch/knowledge/coverage.py,36,<module defaults>,"workspace_path('reports/blindspot.json', ROOT)",same resolver for all transports; authoring has no runtime override
+src/inresearch/knowledge/indicators.py,23,load,"workspace_path(f'data/{name}.json', root)",same resolver for all transports; authoring has no runtime override
+src/inresearch/knowledge/indicators.py,47,refresh,"workspace_path('framework/indicators.json', root)",same resolver for all transports; authoring has no runtime override
+src/inresearch/knowledge/indicators.py,89,_refresh,"workspace_path('framework/indicators.json', root)",same resolver for all transports; authoring has no runtime override
+src/inresearch/knowledge/registry.py,228,current_tasks,"workspace_path('reports/workorders.json', root)",same resolver for all transports; authoring has no runtime override
+src/inresearch/knowledge/registry.py,231,current_tasks,"workspace_path('data/assignments.json', root)",same resolver for all transports; authoring has no runtime override
+src/inresearch/knowledge/registry.py,314,build_catalog,"workspace_path(primary_index, root)",same resolver for all transports; authoring has no runtime override
+src/inresearch/knowledge/registry.py,320,build_catalog,"workspace_path(plan_path, root)",same resolver for all transports; authoring has no runtime override
+src/inresearch/knowledge/registry.py,321,build_catalog,"workspace_path(plan_path, root)",same resolver for all transports; authoring has no runtime override
+src/inresearch/knowledge/registry.py,484,build_snapshot,"workspace_path('data/research_runtime.json', root)",same resolver for all transports; authoring has no runtime override
+src/inresearch/knowledge/validate.py,42,load,"workspace_path(f'data/{name}.json', ROOT)",same resolver for all transports; authoring has no runtime override
+src/inresearch/knowledge/validate.py,195,main,"workspace_path('data/product_docs_plan.csv', ROOT)",same resolver for all transports; authoring has no runtime override
+src/inresearch/knowledge/validate.py,215,main,"workspace_path('data/product_library_index.json', ROOT)",same resolver for all transports; authoring has no runtime override
+src/inresearch/knowledge/verify.py,30,<module defaults>,"workspace_path('reports/verify_queue.md', ROOT)",same resolver for all transports; authoring has no runtime override
+src/inresearch/knowledge/verify.py,45,load,"workspace_path(f'data/{name}.json', ROOT)",same resolver for all transports; authoring has no runtime override
+src/inresearch/materials/inbox.py,17,root,workspace_path('data/.material-intake'),same resolver for all transports; authoring has no runtime override
+src/inresearch/materials/library.py,46,<module defaults>,"workspace_path('data/product_docs_plan.csv', ROOT)",same resolver for all transports; authoring has no runtime override
+src/inresearch/materials/library.py,47,<module defaults>,"workspace_path('data/product_library_index.json', ROOT)",same resolver for all transports; authoring has no runtime override
+src/inresearch/workflow/commands.py,45,add_price,"workspace_path('data/prices.json', root)",same resolver for all transports; authoring has no runtime override
+src/inresearch/workflow/commands.py,70,assign,"workspace_path('data/assignments.json', root)",same resolver for all transports; authoring has no runtime override
+src/inresearch/workflow/commands.py,98,receive_snapshot,"workspace_path('data/research_runtime.json', root)",same resolver for all transports; authoring has no runtime override
+src/inresearch/workflow/reading_queue.py,20,<module defaults>,"workspace_path('reports/reading_queue.md', ROOT)",same resolver for all transports; authoring has no runtime override
+src/inresearch/workflow/submissions.py,31,<module defaults>,"workspace_path('reports/intake_review.md', ROOT)",same resolver for all transports; authoring has no runtime override
+src/inresearch/workflow/workorders.py,40,<module defaults>,"workspace_path('reports/workorders.md', ROOT)",same resolver for all transports; authoring has no runtime override
+src/inresearch/workflow/workorders.py,41,<module defaults>,"workspace_path('reports/workorders.json', ROOT)",same resolver for all transports; authoring has no runtime override
+src/inresearch/workflow/workorders.py,76,field_coverage,"workspace_path(f'data/{table}.json', ROOT)",same resolver for all transports; authoring has no runtime override
+src/inresearch/workflow/workorders.py,89,load_state,"workspace_path('framework/indicators.json', ROOT)",same resolver for all transports; authoring has no runtime override
+tests/unit/test_storage_layout.py,170,test_private_roots_traversal_and_symlink_escape_never_become_static_routes,"layout.workspace_path('../source/data/facts.json', self.root)",same resolver for all transports; authoring has no runtime override
+tests/unit/test_storage_layout.py,177,test_authoring_mode_remains_an_explicit_checkout_and_requires_no_contract,"layout.workspace_path('data/prices.json', self.root)",same resolver for all transports; authoring has no runtime override

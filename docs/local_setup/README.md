@@ -17,3 +17,16 @@
 Spark 的常驻阅读入口是 [SPARK_OPERATIONS](../local_reader/SPARK_OPERATIONS.md)。Mac 上的旧 `reader/`、外置盘和研报目录可能仍有唯一文件，只能核对后迁移；本页不授权自动搬删。一次性旧目录迁移器 `setup.sh` 已退役并显式退出。
 
 主站由 infra 的正式部署流程跟随 GitHub main；不在此重复维护服务器发布命令。产品资料的旧外置卷操作见 `PRODUCT_LIBRARY.md`，用于已有登记位置的核查，不代表当前原件已在该卷。
+
+## 网站发布数据边界
+
+生产设置 `INRESEARCH_RUNTIME_ROOT=/runtime`，只把既有主机 data/reports/logs 挂到对应运行目录。
+已发布研究与规范从只读镜像读取；持久状态及可重建产物按
+[storage_contract](../../framework/storage_contract.json) 选择路径。旧卷内正式事实副本不删除，也不再遮住镜像。
+价格、派工和产品处理计划的 Git 内容只在首次安装作种子，发布/回退不重置已有记录。
+
+需要隔离本地运行时，先设置 `INRESEARCH_RUNTIME_ROOT` 为项目外的持久目录，再执行
+`python3 manage.py storage initialize`；检查使用 `python3 manage.py storage check`，只读且不创建数据。
+已有线上发布加 `--require-auth` 校验 admin 存储和会话密钥。未设置运行根的 checkout 仍是作者工作区；
+使用 `serve` 或生成器可能修改本地数据和产物，修改前保持工作区职责明确。布局变更不自动迁移，
+初始化中断须按同版种子恢复。原件、密钥、数据库按现有备份流程保存，不提交 Git。

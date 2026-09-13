@@ -1,6 +1,6 @@
 """Private durable website inbox. Documents are data, never execution instructions."""
 
-from inresearch.paths import project_root
+from inresearch.storage.layout import workspace_path
 import hashlib
 import json
 import os
@@ -14,7 +14,7 @@ from inresearch.storage.files import locked, sync_directory
 MAX_BYTES = 64 * 1024 * 1024
 
 def root():
-    return Path(os.environ.get('INRESEARCH_INTAKE_ROOT', project_root() / 'data/.material-intake'))
+    return Path(os.environ.get('INRESEARCH_INTAKE_ROOT', workspace_path('data/.material-intake')))
 
 def record_path(key):
     if not re.fullmatch(r'[a-f0-9]{32}', key):

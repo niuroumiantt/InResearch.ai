@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 
 from inresearch.paths import project_root
+from inresearch.storage.layout import workspace_path, LayoutError
 
 
 def source_path(url_path, root=None):
@@ -13,14 +14,13 @@ def source_path(url_path, root=None):
         parts = Path(url_path.lstrip('/')).parts
         allowed = {'data', 'framework', 'docs', 'reports', 'research'}
         if (not parts or parts[0] not in allowed or any(p.startswith('.') or p == '..' for p in parts)
-                or parts[-1].lower() == 'users.json' or url_path.lower() == '/data/research_runtime.json'):
+                or parts[-1].lower() == 'users.json' or url_path.lower() == '/data/research_runtime.json'
+                or parts[:2] == ('data', 'raw')):
             return root / '.not-served'
         if Path(parts[-1]).suffix.lower() not in {'.json', '.md', '.csv', '.txt', '.pdf', '.html', '.png', '.jpg', '.svg'}:
             return root / '.not-served'
         relative = '/'.join(parts)
-    path = root / relative
     try:
-        path.resolve().relative_to(root)
-    except ValueError:
+        return workspace_path(relative, root, public=True)
+    except LayoutError:
         return root / '.not-served'
-    return path

@@ -10,6 +10,7 @@ from pathlib import Path
 
 from inresearch.knowledge import registry as research
 from inresearch.knowledge.policy import price_errors
+from inresearch.storage.layout import workspace_path
 from inresearch.storage.files import json_transaction, locked, write_json
 
 ASSIGN_STATUSES = {'已派', '进行中', '已交付', '已合并', '已放弃'}
@@ -41,7 +42,7 @@ def add_price(root, record):
     rec.setdefault('region', None)
     rec.setdefault('assumptions', None)
     rec.setdefault('note', '人工录入')
-    with json_transaction(Path(root) / 'data/prices.json') as doc:
+    with json_transaction(workspace_path('data/prices.json', root)) as doc:
         if any((row['series_id'], row['as_of']) == (rec['series_id'], rec['as_of'])
                for row in doc['records']):
             raise Rejected('该序列在此时点已有记录（series_id + as_of 唯一）', 409)
@@ -66,7 +67,7 @@ def assign(root, rec, by='', role='admin'):
         raise Rejected('缺 workorder_id')
     if status and status not in ASSIGN_STATUSES:
         raise Rejected('状态非法（合法：%s）' % '、'.join(sorted(ASSIGN_STATUSES)))
-    with json_transaction(Path(root) / 'data/assignments.json') as doc:
+    with json_transaction(workspace_path('data/assignments.json', root)) as doc:
         if wid not in {o['wid'] for o in research.current_tasks(root)}:
             raise Rejected(wid + ' 已不在当前任务集合中，请刷新任务列表')
         row = next((r for r in doc['records'] if r['workorder_id'] == wid), None)
@@ -94,7 +95,7 @@ def assign(root, rec, by='', role='admin'):
 
 def receive_snapshot(root, payload, destination=None):
     root = Path(root)
-    destination = Path(destination or os.environ.get('INRESEARCH_READER_SNAPSHOT', root / 'data/research_runtime.json'))
+    destination = Path(destination or os.environ.get('INRESEARCH_READER_SNAPSHOT', workspace_path('data/research_runtime.json', root)))
     with locked(destination):
         snapshot = research.candidate_snapshot(payload,
             research.read_json(root / 'framework/research_graph.json'),

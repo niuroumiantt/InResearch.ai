@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "published_authority": "Git release image; authoring occurs in source checkouts",
+  "runtime_environment": "INRESEARCH_RUNTIME_ROOT",
+  "files": {
+    "data/prices.json": {
+      "runtime": "data/prices.json",
+      "kind": "state",
+      "seed": true,
+      "public": true
+    },
+    "data/assignments.json": {
+      "runtime": "data/assignments.json",
+      "kind": "state",
+      "seed": true,
+      "public": true
+    },
+    "data/product_docs_plan.csv": {
+      "runtime": "data/product_docs_plan.csv",
+      "kind": "state",
+      "seed": true,
+      "public": true
+    },
+    "data/product_library_index.json": {
+      "runtime": "data/product_library_index.json",
+      "kind": "state",
+      "seed": false,
+      "public": true,
+      "initial": {
+        "records": []
+      }
+    },
+    "data/users.json": {
+      "runtime": "data/users.json",
+      "kind": "private",
+      "seed": false,
+      "public": false
+    },
+    "data/.hub_secret": {
+      "runtime": "data/.hub_secret",
+      "kind": "private",
+      "seed": false,
+      "public": false
+    },
+    "data/.reader_sync_token": {
+      "runtime": "data/.reader_sync_token",
+      "kind": "private",
+      "seed": false,
+      "public": false
+    },
+    "data/research_runtime.json": {
+      "runtime": "data/research_runtime.json",
+      "kind": "private",
+      "seed": false,
+      "public": false
+    },
+    "data/brief.json": {
+      "runtime": "data/brief.json",
+      "kind": "projection",
+      "seed": true,
+      "public": true
+    },
+    "reports/blindspot.md": {
+      "runtime": "reports/blindspot.md",
+      "kind": "projection",
+      "seed": true,
+      "public": true
+    },
+    "reports/blindspot.json": {
+      "runtime": "reports/blindspot.json",
+      "kind": "projection",
+      "seed": true,
+      "public": true
+    },
+    "reports/daily_brief.md": {
+      "runtime": "reports/daily_brief.md",
+      "kind": "projection",
+      "seed": true,
+      "public": true
+    },
+    "reports/intake_review.md": {
+      "runtime": "reports/intake_review.md",
+      "kind": "projection",
+      "seed": true,
+      "public": true
+    },
+    "reports/reading_queue.md": {
+      "runtime": "reports/reading_queue.md",
+      "kind": "projection",
+      "seed": true,
+      "public": true
+    },
+    "reports/verify_queue.md": {
+      "runtime": "reports/verify_queue.md",
+      "kind": "projection",
+      "seed": true,
+      "public": true
+    },
+    "reports/workorders.md": {
+      "runtime": "reports/workorders.md",
+      "kind": "projection",
+      "seed": true,
+      "public": true
+    },
+    "reports/workorders.json": {
+      "runtime": "reports/workorders.json",
+      "kind": "projection",
+      "seed": true,
+      "public": true
+    },
+    "framework/indicators.json": {
+      "runtime": "data/projections/indicators.json",
+      "kind": "projection",
+      "seed": true,
+      "public": true
+    }
+  },
+  "directories": {
+    "data/raw": {
+      "runtime": "data/raw",
+      "kind": "private",
+      "public": false
+    },
+    "data/.material-intake": {
+      "runtime": "data/.material-intake",
+      "kind": "private",
+      "public": false
+    },
+    "reports/output": {
+      "runtime": "reports/output",
+      "kind": "projection",
+      "public": true
+    },
+    "logs": {
+      "runtime": "logs",
+      "kind": "private",
+      "public": false
+    }
+  }
+}

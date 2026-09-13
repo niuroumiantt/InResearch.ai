@@ -24,6 +24,7 @@
 from __future__ import annotations
 
 from inresearch.paths import project_root
+from inresearch.storage.layout import workspace_path
 
 import base64
 import fcntl
@@ -39,8 +40,8 @@ from http.cookies import SimpleCookie
 from inresearch.storage.jsonl import atomic_write
 
 ROOT = project_root()
-USERS_FILE = ROOT / "data" / "users.json"
-SECRET_FILE = ROOT / "data" / ".hub_secret"
+USERS_FILE = workspace_path("data/users.json", ROOT)
+SECRET_FILE = workspace_path("data/.hub_secret", ROOT)
 
 PBKDF2_ITERS = 200_000
 SESSION_TTL = 7 * 24 * 3600          # 7 天

@@ -1,0 +1,105 @@
+path,line,reference
+data/brief.json,607,"""review_marked"": ["
+docs/REPOSITORY_REGISTER.md,36,| `data/brief.json` | review_marked | 23 |
+docs/REPOSITORY_REGISTER.md,689,| `framework/storage_contract.json` | 项目配置 |
+docs/local_setup/README.md,23,生产设置 `INRESEARCH_RUNTIME_ROOT=/runtime`，只把既有主机 data/reports/logs 挂到对应运行目录。
+docs/local_setup/README.md,25,[storage_contract](../../framework/storage_contract.json) 选择路径。旧卷内正式事实副本不删除，也不再遮住镜像。
+docs/local_setup/README.md,28,需要隔离本地运行时，先设置 `INRESEARCH_RUNTIME_ROOT` 为项目外的持久目录，再执行
+framework/09_software_contracts.md,15,网站部署设置 `INRESEARCH_RUNTIME_ROOT`，`storage.layout.workspace_path` 根据
+framework/09_software_contracts.md,16,`framework/storage_contract.json` 解析逻辑路径。Git 发布镜像是正式 facts、知识、schema、
+framework/09_software_contracts.md,34,历史简报对 SEC 信号只生成 `review_suggestions` 及依据，退出自动改写 Finding 状态的
+framework/09_software_contracts.md,35,`mark_findings_needs_review`/`review_marked`；正式撤回/采用仍须研究审核。重新生成简报不是
+framework/CURRENT.md,19,| 软件职责与写入 | [09 软件契约](09_software_contracts.md) | 统一用例、结果投影、事务存储与 storage_contract 发布边界 |
+framework/current_state.json,243,"""framework/storage_contract.json"","
+framework/current_state.json,350,"""framework/storage_contract.json"","
+framework/current_state.json,540,"""framework/storage_contract.json"","
+framework/repository_manifest.json,107,"""name"": ""review_marked"","
+framework/repository_manifest.json,5139,"""path"": ""framework/storage_contract.json"","
+framework/storage_contract.json,4,"""runtime_environment"": ""INRESEARCH_RUNTIME_ROOT"","
+framework/verification_contract.json,64,"""framework/storage_contract.json"": ""ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8"","
+framework/verification_contract.json,218,"""tests/unit/test_storage_layout.py::StorageLayoutTests.test_event_review_suggestions_preserve_formal_research_bytes"""
+src/inresearch/README.md,13,| storage | `layout` 依 storage_contract 区分 Git 发布研究、持久状态与产物；`files` 覆盖完整文件事务；`jsonl` 处理持久追加和损坏尾行；`catalog` 管线程局部 SQLite 连接；`moves` 维护可恢复原件移动 |
+src/inresearch/adapters/historical_brief.py,7,from inresearch.storage.layout import workspace_path
+src/inresearch/adapters/historical_brief.py,42,"d = workspace_path(""data/raw/news_signals"", ROOT)"
+src/inresearch/adapters/historical_brief.py,53,"d = workspace_path(""data/raw/sec"", ROOT)"
+src/inresearch/adapters/historical_brief.py,73,def review_suggestions(sec_filings):
+src/inresearch/adapters/historical_brief.py,129,suggestions = review_suggestions(sec)
+src/inresearch/adapters/historical_brief.py,170,"""review_suggestions"": suggestions,"
+src/inresearch/adapters/historical_brief.py,172,"atomic_write(workspace_path(""data/brief.json"", ROOT),"
+src/inresearch/adapters/historical_brief.py,193,"atomic_write(workspace_path(""reports/daily_brief.md"", ROOT), ""\n"".join(lines) + ""\n"")"
+src/inresearch/delivery/export.py,17,from inresearch.storage.layout import workspace_path
+src/inresearch/delivery/export.py,24,"OUT_DIR = workspace_path(""reports/output"", ROOT)"
+src/inresearch/delivery/map.py,13,from inresearch.storage.layout import workspace_path
+src/inresearch/delivery/map.py,22,"OUT = workspace_path(""reports/output"", ROOT)"
+src/inresearch/interfaces/auth.py,27,from inresearch.storage.layout import workspace_path
+src/inresearch/interfaces/auth.py,43,"USERS_FILE = workspace_path(""data/users.json"", ROOT)"
+src/inresearch/interfaces/auth.py,44,"SECRET_FILE = workspace_path(""data/.hub_secret"", ROOT)"
+src/inresearch/interfaces/http.py,10,"from inresearch.storage.layout import initialize_runtime, workspace_path"
+src/inresearch/interfaces/http.py,57,"d = workspace_path(""logs"", ROOT)"
+src/inresearch/interfaces/http.py,197,"token_path = Path(os.environ.get('INRESEARCH_READER_TOKEN_FILE', workspace_path('data/.reader_sync_token', ROOT)))"
+src/inresearch/interfaces/http.py,261,"f = workspace_path(""logs"", ROOT) / f""task_{t}.log"""
+src/inresearch/interfaces/http.py,277,"projection = research.read_json(workspace_path('reports/workorders.json', ROOT), {})"
+src/inresearch/interfaces/http.py,353,"token_path = Path(os.environ.get('INRESEARCH_READER_TOKEN_FILE', workspace_path('data/.reader_sync_token', ROOT)))"
+src/inresearch/interfaces/http.py,478,if os.environ.get('INRESEARCH_RUNTIME_ROOT'):
+src/inresearch/interfaces/static.py,6,"from inresearch.storage.layout import workspace_path, LayoutError"
+src/inresearch/interfaces/static.py,24,"return workspace_path(relative, root, public=True)"
+src/inresearch/knowledge/coverage.py,26,from inresearch.storage.layout import workspace_path
+src/inresearch/knowledge/coverage.py,35,"OUT = workspace_path(""reports/blindspot.md"", ROOT)"
+src/inresearch/knowledge/coverage.py,36,"OUT_JSON = workspace_path(""reports/blindspot.json"", ROOT)   # 供仪表盘等机器消费方"
+src/inresearch/knowledge/indicators.py,12,from inresearch.storage.layout import workspace_path
+src/inresearch/knowledge/indicators.py,23,"return json.loads((workspace_path(f""data/{name}.json"", root)).read_text(encoding=""utf-8""))[""records""]"
+src/inresearch/knowledge/indicators.py,47,"with locked(workspace_path(""framework/indicators.json"", root)):"
+src/inresearch/knowledge/indicators.py,89,"p = workspace_path(""framework/indicators.json"", root)"
+src/inresearch/knowledge/registry.py,9,from inresearch.storage.layout import workspace_path
+src/inresearch/knowledge/registry.py,228,"legacy = read_json(workspace_path('reports/workorders.json', root), {'orders': []})['orders']"
+src/inresearch/knowledge/registry.py,231,"assignments = {a['workorder_id']: a for a in read_json(workspace_path('data/assignments.json', root), {'records': []})['records']}"
+src/inresearch/knowledge/registry.py,314,"indexed = read_json(workspace_path(primary_index, root), {'records': []}).get('records', [])"
+src/inresearch/knowledge/registry.py,320,"if (workspace_path(plan_path, root)).exists():"
+src/inresearch/knowledge/registry.py,321,"with (workspace_path(plan_path, root)).open(encoding='utf-8-sig', newline='') as fh:"
+src/inresearch/knowledge/registry.py,484,"runtime_path = Path(os.environ.get('INRESEARCH_READER_SNAPSHOT', workspace_path('data/research_runtime.json', root)))"
+src/inresearch/knowledge/validate.py,18,from inresearch.storage.layout import workspace_path
+src/inresearch/knowledge/validate.py,42,"path = workspace_path(f""data/{name}.json"", ROOT)"
+src/inresearch/knowledge/validate.py,195,"plan_path = workspace_path(""data/product_docs_plan.csv"", ROOT)"
+src/inresearch/knowledge/validate.py,215,"plib_path = workspace_path(""data/product_library_index.json"", ROOT)"
+src/inresearch/knowledge/verify.py,23,from inresearch.storage.layout import workspace_path
+src/inresearch/knowledge/verify.py,30,"OUT = workspace_path(""reports/verify_queue.md"", ROOT)"
+src/inresearch/knowledge/verify.py,45,"return json.loads((workspace_path(f""data/{name}.json"", ROOT)).read_text(encoding=""utf-8""))[""records""]"
+src/inresearch/materials/inbox.py,3,from inresearch.storage.layout import workspace_path
+src/inresearch/materials/inbox.py,17,"return Path(os.environ.get('INRESEARCH_INTAKE_ROOT', workspace_path('data/.material-intake')))"
+src/inresearch/materials/library.py,26,from inresearch.storage.layout import workspace_path
+src/inresearch/materials/library.py,46,"PLAN = workspace_path(""data/product_docs_plan.csv"", ROOT)"
+src/inresearch/materials/library.py,47,"INDEX = workspace_path(""data/product_library_index.json"", ROOT)"
+src/inresearch/storage/layout.py,24,raise LayoutError('invalid_workspace_path')
+src/inresearch/storage/layout.py,31,raise LayoutError('workspace_path_escapes_root')
+src/inresearch/storage/layout.py,37,value = runtime if runtime is not None else os.environ.get('INRESEARCH_RUNTIME_ROOT')
+src/inresearch/storage/layout.py,44,contract = json.loads((root / 'framework/storage_contract.json').read_text())
+src/inresearch/storage/layout.py,45,if contract.get('version') != 1 or contract.get('runtime_environment') != 'INRESEARCH_RUNTIME_ROOT':
+src/inresearch/storage/layout.py,46,raise LayoutError('unsupported_storage_contract')
+src/inresearch/storage/layout.py,70,"def workspace_path(relative, root=None, *, public=False):"
+src/inresearch/workflow/commands.py,13,from inresearch.storage.layout import workspace_path
+src/inresearch/workflow/commands.py,45,"with json_transaction(workspace_path('data/prices.json', root)) as doc:"
+src/inresearch/workflow/commands.py,70,"with json_transaction(workspace_path('data/assignments.json', root)) as doc:"
+src/inresearch/workflow/commands.py,98,"destination = Path(destination or os.environ.get('INRESEARCH_READER_SNAPSHOT', workspace_path('data/research_runtime.json', root)))"
+src/inresearch/workflow/reading_queue.py,9,from inresearch.storage.layout import workspace_path
+src/inresearch/workflow/reading_queue.py,20,"OUT = workspace_path(""reports/reading_queue.md"", ROOT)"
+src/inresearch/workflow/submissions.py,23,from inresearch.storage.layout import workspace_path
+src/inresearch/workflow/submissions.py,31,"OUT = workspace_path(""reports/intake_review.md"", ROOT)"
+src/inresearch/workflow/workorders.py,27,from inresearch.storage.layout import workspace_path
+src/inresearch/workflow/workorders.py,40,"OUT = workspace_path(""reports/workorders.md"", ROOT)"
+src/inresearch/workflow/workorders.py,41,"OUT_JSON = workspace_path(""reports/workorders.json"", ROOT)   # 给 team.html 等机器消费方"
+src/inresearch/workflow/workorders.py,76,"recs = json.loads((workspace_path(f""data/{table}.json"", ROOT)).read_text(encoding=""utf-8""))[""records""]"
+src/inresearch/workflow/workorders.py,89,"inds = json.loads((workspace_path(""framework/indicators.json"", ROOT)).read_text(encoding=""utf-8""))[""indicators""]"
+tests/container_storage.py,37,"from inresearch.storage.layout import initialize_runtime, workspace_path"
+tests/container_storage.py,50,"print(json.dumps(dict(facts=hashlib.sha256(workspace_path('data/facts.json').read_bytes()).hexdigest(),"
+tests/container_storage.py,51,prices=hashlib.sha256(workspace_path('data/prices.json').read_bytes()).hexdigest())))
+tests/container_storage.py,56,"'-v', str(runtime) + ':/runtime', '-e', 'INRESEARCH_RUNTIME_ROOT=/runtime',"
+tests/unit/test_storage_layout.py,45,self.contract = json.loads((REPO / 'framework/storage_contract.json').read_text())
+tests/unit/test_storage_layout.py,46,"for relative in ['framework/storage_contract.json', 'web/routes.json'] + ["
+tests/unit/test_storage_layout.py,51,"self.env = patch.dict(os.environ, INRESEARCH_RUNTIME_ROOT=str(self.runtime))"
+tests/unit/test_storage_layout.py,126,file = self.root / 'framework/storage_contract.json'
+tests/unit/test_storage_layout.py,170,"with self.assertRaises(layout.LayoutError): layout.workspace_path('../source/data/facts.json', self.root)"
+tests/unit/test_storage_layout.py,176,"with patch.dict(os.environ, INRESEARCH_RUNTIME_ROOT=''):"
+tests/unit/test_storage_layout.py,177,"self.assertEqual(layout.workspace_path('data/prices.json', self.root), self.root / 'data/prices.json')"
+tests/unit/test_storage_layout.py,200,def test_event_review_suggestions_preserve_formal_research_bytes(self):
+tests/unit/test_storage_layout.py,207,result = historical_brief.review_suggestions(signals)
+tests/unit/test_storage_layout.py,217,"env = dict(os.environ, INRESEARCH_RUNTIME_ROOT=str(runtime), INRESEARCH_PROJECT_ROOT=str(REPO),"

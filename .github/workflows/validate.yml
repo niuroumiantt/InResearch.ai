@@ -35,3 +35,9 @@ jobs:
           "$RUNNER_TEMP/browser-tests/node_modules/.bin/playwright" install --with-deps chromium
       - name: Full browser regression suite
         run: NODE_PATH="$RUNNER_TEMP/browser-tests/node_modules" node tests/run_browser.cjs
+  storage-container:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Immutable research and persistent runtime across release replacement
+        run: python3 tests/container_storage.py

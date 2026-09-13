@@ -4,7 +4,7 @@ Current policy: framework/06_acquisition.md. Cached data is not live collection 
 """
 
 from inresearch.paths import project_root
-from inresearch.storage.files import locked
+from inresearch.storage.layout import workspace_path
 import json
 import subprocess
 import sys
@@ -39,7 +39,7 @@ def run_step(name, args, timeout=180):
 
 
 def latest_news_signals():
-    d = ROOT / "data" / "raw" / "news_signals"
+    d = workspace_path("data/raw/news_signals", ROOT)
     files = sorted(d.glob("*_signals.json"), reverse=True) if d.exists() else []
     if not files:
         return None
@@ -50,7 +50,7 @@ def recent_sec_filings():
     """从 data/raw/sec/ 存档解析近 N 天的关注文件。"""
     cutoff = (date.today() - timedelta(days=SEC_RECENT_DAYS)).isoformat()
     out = []
-    d = ROOT / "data" / "raw" / "sec"
+    d = workspace_path("data/raw/sec", ROOT)
     for f in sorted(d.glob("*.json")) if d.exists() else []:
         try:
             data = json.loads(f.read_text(encoding="utf-8"))
@@ -70,42 +70,32 @@ def recent_sec_filings():
     return out
 
 
-def mark_findings_needs_review(sec_filings):
-    """事件驱动核验联动：近 7 天有 10-Q/10-K/8-K 的实体，其触发器命中的 current Finding
-    自动标为 needs-review（进入 verify.py 的 P1 队列）。人工复核后改回 current。"""
+def review_suggestions(sec_filings):
+    """Suggest event-triggered review; signals never rewrite adopted research."""
     import re
-    # 各实体最近一次硬信号（10-Q/10-K/8-K）的文件日期
     hard = {}
-    for f in sec_filings:
-        if f["form"] in {"10-Q", "10-K", "8-K"}:
-            hard[f["company"]] = max(hard.get(f["company"], ""), f["date"])
-    marked = []
-    if not hard:
-        return marked
-    for rp in sorted((ROOT / "research").glob("M*.md")):
-        with locked(rp):
-            text = rp.read_text(encoding="utf-8")
-            out, changed = [], False
-            pending = None  # (fid, title) 等待其状态行
-            for line in text.split("\n"):
-                h = re.match(r"^##\s+(M\d+-F\d+)\s+(.*?)\s*(\{[^}]*\})?\s*$", line)
-                if h:
-                    pending = (h.group(1), h.group(2))
-                elif pending and re.match(r"^-\s+\*\*状态\*\*：current\s*｜", line):
-                    rev = re.search(r"\*\*修订\*\*：(\S+)", line)
-                    revised = rev.group(1) if rev else ""
-                    # 只对"信号晚于最后修订"的 Finding 标记——复核过的不重复打扰
-                    hits = [c for c, d in hard.items() if f"entity:{c}" in line and d > revised]
-                    if hits:
-                        line = line.replace("**状态**：current", "**状态**：needs-review", 1)
-                        marked.append({"finding": pending[0], "title": pending[1][:40],
-                                       "entities": hits, "file": rp.name})
-                        changed = True
-                    pending = None
-                out.append(line)
-            if changed:
-                atomic_write(rp, "\n".join(out))
-    return marked
+    for filing in sec_filings:
+        if filing["form"] in {"10-Q", "10-K", "8-K"}:
+            hard[filing["company"]] = max(hard.get(filing["company"], ""), filing["date"])
+    suggestions = []
+    for path in sorted((ROOT / "research").glob("M*.md")) if hard else ():
+        pending = None
+        for line in path.read_text(encoding="utf-8").splitlines():
+            heading = re.match(r"^##\s+(M\d+-F\d+)\s+(.*?)\s*(\{[^}]*\})?\s*$", line)
+            if heading:
+                pending = heading.group(1), heading.group(2)
+            elif pending and re.match(r"^-\s+\*\*状态\*\*：current\s*｜", line):
+                revision = re.search(r"\*\*修订\*\*：(\S+)", line)
+                revised = revision.group(1) if revision else ""
+                hits = [c for c, stamp in hard.items() if f"entity:{c}" in line and stamp > revised]
+                if hits:
+                    suggestions.append({'finding': pending[0], 'title': pending[1][:40],
+                                        'entities': hits, 'file': path.name, 'status': 'review_suggested',
+                                        'signals': [f for f in sec_filings if f['company'] in hits
+                                                    and f['date'] > revised
+                                                    and f['form'] in {'10-Q', '10-K', '8-K'}]})
+                pending = None
+    return suggestions
 
 
 def research_stats():
@@ -136,8 +126,13 @@ def main():
 
     news, news_date = latest_news_signals() or ({}, None)
     sec = recent_sec_filings()
-    marked = mark_findings_needs_review(sec)
+    suggestions = review_suggestions(sec)
     queue = verify.build_queue()
+    queue.extend({'p': 1, 'table': 'research', 'id': item['finding'],
+                  'reason': '事件触发的待复核建议（尚未修改正式状态）',
+                  'urls': [signal['url'] for signal in item['signals'] if signal.get('url')],
+                  'action': '核对信号与原文后走研究审核：' + item['file']} for item in suggestions)
+    queue.sort(key=lambda row: (row['p'], row['table'], row['id']))
     counts = verify.write_markdown(queue)
 
     # 公司名映射（简报里显示中文名）
@@ -172,9 +167,9 @@ def main():
                       for q in queue if q["p"] == 1][:10],
         },
         "research": research_stats(),
-        "review_marked": marked,
+        "review_suggestions": suggestions,
     }
-    atomic_write(ROOT / "data" / "brief.json",
+    atomic_write(workspace_path("data/brief.json", ROOT),
                  json.dumps(brief, ensure_ascii=False, indent=2) + "\n")
 
     # 人读简报
@@ -195,11 +190,11 @@ def main():
     lines.append("")
     for q in brief["verify"]["items"]:
         lines.append(f"- [ ] {q['table']} / {q['id']} — {q['reason']}")
-    atomic_write(ROOT / "reports" / "daily_brief.md", "\n".join(lines) + "\n")
+    atomic_write(workspace_path("reports/daily_brief.md", ROOT), "\n".join(lines) + "\n")
 
-    if marked:
-        print(f"◆ 事件驱动核验：{len(marked)} 条 Finding 因 SEC 信号标为 needs-review")
-        for m in marked:
+    if suggestions:
+        print(f"◆ 事件驱动核验：{len(suggestions)} 条 Finding 因 SEC 信号建议复核（正式状态未修改）")
+        for m in suggestions:
             print(f"    {m['finding']}  ←  {', '.join(m['entities'])}（{m['file']}）")
     print(f"③ 核验队列  P1 {counts[1]} ｜ P2 {counts[2]}")
     print(f"④ 简报已写出  data/brief.json ｜ reports/daily_brief.md")

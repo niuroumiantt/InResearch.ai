@@ -10,7 +10,7 @@
 | delivery | `report` 为网页/Markdown/docx 报告模型；`reader_export` 生成候选及备份；`reading_packet` 生成终端精读包；`publish` 接收器协议适配 |
 | adapters | `models` 根据 role/profile 选推理后端；`reader_model` 声明阅读任务；`office*` 分解容器/网格/二进制和 OOXML；采集、新闻和 3D 资产由命名明确的适配器处理 |
 | interfaces | `cli` 为命令注册和 JSON 参数层，`deep_read` 承接 L2 终端协议；`http` 为身份/路由/错误层；`pages` 组合共享认证布局；`static` 只服务声明路径 |
-| storage | `files` 覆盖完整文件事务；`jsonl` 处理持久追加和损坏尾行；`catalog` 管线程局部 SQLite 连接；`moves` 维护可恢复原件移动 |
+| storage | `layout` 依 storage_contract 区分 Git 发布研究、持久状态与产物；`files` 覆盖完整文件事务；`jsonl` 处理持久追加和损坏尾行；`catalog` 管线程局部 SQLite 连接；`moves` 维护可恢复原件移动 |
 
 稳定业务命令：`models --probe`、`reader`、`inventory`、`triage`、`score`、`batch`、`deep-read`、`organize`、`mapping`、`registry`、`facts`、`validate`、`export`、`serve`。参数见各子命令 `--help`。`add-price`、`assign`、`receive-snapshot` 接受 stdin JSON 或 `--input FILE`，与 HTTP 共用 `workflow.commands`；`--root` 只指定这三个修改用例的业务根，不改变其他命令的原件根或模型配置。
 

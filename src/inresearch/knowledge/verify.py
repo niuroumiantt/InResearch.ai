@@ -20,13 +20,14 @@ verify 管"数据该不该重新查证"）。零依赖。collect.py 复用本模
 """
 
 from inresearch.paths import project_root
+from inresearch.storage.layout import workspace_path
+from inresearch.storage.files import atomic_write
 import json
 import sys
 from datetime import date, datetime
 
 ROOT = project_root()
-DATA = ROOT / "data"
-OUT = ROOT / "reports" / "verify_queue.md"
+OUT = workspace_path("reports/verify_queue.md", ROOT)
 
 from inresearch.knowledge.policy import FRESH_DAYS as FRESH, price_series_freq, price_series_limit
 
@@ -41,7 +42,7 @@ def days_since(datestr):
 
 
 def load(name):
-    return json.loads((DATA / f"{name}.json").read_text(encoding="utf-8"))["records"]
+    return json.loads((workspace_path(f"data/{name}.json", ROOT)).read_text(encoding="utf-8"))["records"]
 
 
 def build_queue(show_all=False):
@@ -140,7 +141,7 @@ def write_markdown(queue, show_all=False):
             for u in q["urls"][:3]:
                 lines.append(f"      来源：{u}")
         lines.append("")
-    OUT.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    atomic_write(OUT, ("\n".join(lines) + "\n").encode('utf-8'))
     return counts
 
 
@@ -151,7 +152,7 @@ def main():
     print(f"P1 必须处理 {counts[1]} 条 ｜ P2 补强来源 {counts[2]} 条" + (f" ｜ P3 {counts[3]} 条" if show_all else ""))
     for q in [q for q in queue if q["p"] == 1][:10]:
         print(f"  P1  {q['table']:10s} {q['id']:28s} {q['reason']}")
-    print(f"完整队列已写入 {OUT.relative_to(ROOT)}")
+    print(f"完整队列已写入 {OUT}")
     return 0
 
 

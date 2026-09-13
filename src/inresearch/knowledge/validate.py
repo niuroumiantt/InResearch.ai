@@ -15,6 +15,7 @@
 """
 
 from inresearch.paths import project_root
+from inresearch.storage.layout import workspace_path
 import csv
 import json
 import re
@@ -38,7 +39,7 @@ def warn(msg):
 
 
 def load(name):
-    path = DATA / f"{name}.json"
+    path = workspace_path(f"data/{name}.json", ROOT)
     if not path.exists():
         err(f"{name}.json 不存在")
         return []
@@ -191,7 +192,7 @@ def main():
     # 由来：资料本体在本机外置卷上、云端永远看不见，**索引与计划表就是唯一能被校验的部分**。
     # 不检查的话，company_id 写错、file_path 跑出 library/ 之外、同一份资料两个 doc_id，
     # 都要等到本机点开「本地 ⧉」404 才发现。
-    plan_path = DATA / "product_docs_plan.csv"
+    plan_path = workspace_path("data/product_docs_plan.csv", ROOT)
     doc_types = {"DS", "PB", "BR", "WEB", "RA", "UM", "WP"}
     doc_status = {"todo", "downloaded", "needs_manual", "verified", "superseded"}
     plan_n = 0
@@ -211,7 +212,7 @@ def main():
                     err(f"product_docs_plan: 作业行重复 {rid}")
                 seen_rows.add(rid)
 
-    plib_path = DATA / "product_library_index.json"
+    plib_path = workspace_path("data/product_library_index.json", ROOT)
     plib = []
     if plib_path.exists():
         plib = json.loads(plib_path.read_text(encoding="utf-8")).get("records", [])

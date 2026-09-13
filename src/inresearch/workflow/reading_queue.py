@@ -6,6 +6,8 @@ Spark 永久队列还负责公平调度、重试与阻塞状态，本脚本是�
 """
 
 from inresearch.paths import project_root
+from inresearch.storage.layout import workspace_path
+from inresearch.storage.files import atomic_write
 import csv
 import sys
 from inresearch.knowledge import registry as research
@@ -15,7 +17,7 @@ from datetime import date
 ROOT = project_root()
 SCORES = ROOT / "docs" / "LIBRARY_SCORES.csv"
 SOURCES = ROOT / "data" / "sources.json"
-OUT = ROOT / "reports" / "reading_queue.md"
+OUT = workspace_path("reports/reading_queue.md", ROOT)
 
 
 def eligible(row):
@@ -62,12 +64,12 @@ def main():
         lines.append(f"- [ ] **{r['importance']}{r['confidence']}** {fname} ｜ {r['org']} {r['year']} ｜ → {r['module']} ｜ {r.get('depth') or '精读'}"
                      + ("　**⚠ 待审计**" if audit_pending(r) else ""))
         lines.append(f"      {r['new_path']}")
-    OUT.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    atomic_write(OUT, ("\n".join(lines) + "\n").encode('utf-8'))
 
     print(f"打分表 {len(rows)} ｜ 入队候选 {len(pool)} ｜ 已消化 {len(pool) - len(queue)} ｜ 待消化 {len(queue)}")
     for r in queue[:8]:
         print(f"  {r['importance']}{r['confidence']}  {r['new_path'].split('/')[-1][:52]:52s} → {r['module']}")
-    print(f"完整队列已写入 {OUT.relative_to(ROOT)}")
+    print(f"完整队列已写入 {OUT}")
     return 0
 
 

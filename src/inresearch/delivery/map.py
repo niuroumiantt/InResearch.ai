@@ -10,6 +10,8 @@
 """
 
 from inresearch.paths import project_root
+from inresearch.storage.layout import workspace_path
+from inresearch.storage.files import atomic_write
 import json
 import subprocess
 import sys
@@ -17,7 +19,7 @@ from datetime import date
 from pathlib import Path
 
 ROOT = project_root()
-OUT = ROOT / "reports" / "output"
+OUT = workspace_path("reports/output", ROOT)
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
 # 裁剪窗口（经度/纬度）与画布
@@ -134,14 +136,14 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     html_path = OUT / f"{today}_全球Top{n}数据中心地图.html"
     pdf_path = html_path.with_suffix(".pdf")
-    html_path.write_text(html, encoding="utf-8")
-    print(f"→ {html_path.relative_to(ROOT)}")
+    atomic_write(html_path, html.encode('utf-8'))
+    print(f"→ {html_path}")
     if Path(CHROME).exists():
         r = subprocess.run([CHROME, "--headless", "--disable-gpu", "--no-pdf-header-footer",
                             f"--print-to-pdf={pdf_path}", "--landscape", str(html_path)],
                            capture_output=True, text=True, timeout=60)
         if pdf_path.exists():
-            print(f"→ {pdf_path.relative_to(ROOT)}")
+            print(f"→ {pdf_path}")
         else:
             print("Chrome 渲染失败:", (r.stderr or "")[-200:])
     else:

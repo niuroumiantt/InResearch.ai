@@ -7,6 +7,7 @@ while data mutation rules live in workflow.commands.
 """
 
 from inresearch.paths import project_root
+from inresearch.storage.layout import initialize_runtime, workspace_path
 from inresearch.storage.files import CommitUncertain
 from inresearch.interfaces.static import source_path
 from inresearch.interfaces import pages
@@ -53,7 +54,7 @@ LOCK = threading.Lock()
 
 
 def log_run(task, output):
-    d = ROOT / "logs"
+    d = workspace_path("logs", ROOT)
     d.mkdir(exist_ok=True)
     (d / f"task_{task}.log").write_text(
         f"[{datetime.now().isoformat(timespec='seconds')}]\n{output}\n", encoding="utf-8")
@@ -193,7 +194,7 @@ class Handler(SimpleHTTPRequestHandler):
         return super().do_HEAD()
 
     def intake_worker(self):
-        token_path = Path(os.environ.get('INRESEARCH_READER_TOKEN_FILE', ROOT / 'data/.reader_sync_token'))
+        token_path = Path(os.environ.get('INRESEARCH_READER_TOKEN_FILE', workspace_path('data/.reader_sync_token', ROOT)))
         try:
             token = token_path.read_text().strip()
         except OSError:
@@ -257,7 +258,7 @@ class Handler(SimpleHTTPRequestHandler):
         if self.path == "/api/status":
             st = {}
             for t in TASKS:
-                f = ROOT / "logs" / f"task_{t}.log"
+                f = workspace_path("logs", ROOT) / f"task_{t}.log"
                 st[t] = {"last": datetime.fromtimestamp(f.stat().st_mtime).isoformat(timespec="minutes")
                          if f.exists() else None, "running": t in RUNNING}
             return self._json(200, st)
@@ -273,7 +274,7 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(503, {'ok': False, 'error': '报告暂不可用，请稍后重试'})
         if urlsplit(self.path).path == '/api/tasks':
             try:
-                projection = research.read_json(ROOT / 'reports/workorders.json', {})
+                projection = research.read_json(workspace_path('reports/workorders.json', ROOT), {})
                 return self._json(200, {'orders': research.current_tasks(ROOT),
                                        'module_stats': projection.get('module_stats', {}),
                                        'generated': datetime.now().isoformat(timespec='seconds')})
@@ -349,7 +350,7 @@ class Handler(SimpleHTTPRequestHandler):
         return self._json(404, {"ok": False, "error": "未知接口"})
 
     def api_reader_snapshot(self):
-        token_path = Path(os.environ.get('INRESEARCH_READER_TOKEN_FILE', ROOT / 'data/.reader_sync_token'))
+        token_path = Path(os.environ.get('INRESEARCH_READER_TOKEN_FILE', workspace_path('data/.reader_sync_token', ROOT)))
         try:
             token = token_path.read_text().strip()
         except OSError:
@@ -474,6 +475,10 @@ def main():
     global AUTH_ON
     AUTH_ON = {"on": True, "off": False}.get(
         os.environ.get("HUB_AUTH", "").lower(), host != "127.0.0.1")
+    if os.environ.get('INRESEARCH_RUNTIME_ROOT'):
+        initialize_runtime(ROOT)
+        from inresearch.knowledge.indicators import refresh
+        refresh(ROOT)
     srv = ThreadingHTTPServer((host, port), Handler)
     where = "http://localhost:%d" % port if host == "127.0.0.1" else f"{host}:{port}"
     print(f"Datacenter Hub 服务运行于 {where}（静态 + 管理 API）"

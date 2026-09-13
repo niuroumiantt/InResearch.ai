@@ -10,6 +10,7 @@ from inresearch.storage.files import CommitUncertain
 
 ROOT = project_root()
 COMMANDS = {
+    'storage': 'inresearch.storage.layout',
     'models': 'inresearch.adapters.models',
     'serve': 'inresearch.interfaces.http', 'users': 'inresearch.interfaces.users', 'reader': 'inresearch.interfaces.reader',
     'inventory': 'inresearch.materials.inventory', 'triage': 'inresearch.workflow.triage', 'score': 'inresearch.workflow.score',

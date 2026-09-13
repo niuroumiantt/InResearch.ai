@@ -6,6 +6,7 @@ No original documents or runtime credentials are served by this module.
 """
 
 from inresearch.paths import project_root
+from inresearch.storage.layout import workspace_path
 import argparse
 import copy
 import csv
@@ -224,10 +225,10 @@ def current_tasks(root=ROOT, questions=None, knowledge=None):
     if knowledge is None:
         knowledge = read_json(root / 'data/research_knowledge.json')
     tasks = question_tasks(questions, knowledge)
-    legacy = read_json(root / 'reports/workorders.json', {'orders': []})['orders']
+    legacy = read_json(workspace_path('reports/workorders.json', root), {'orders': []})['orders']
     tasks.extend(o for o in legacy if o.get('kind') not in ('声明问题开放', '研究问题开放'))
     names = {m['id']: m['name'] for m in read_json(root / 'framework/modules.json', {'modules': []})['modules']}
-    assignments = {a['workorder_id']: a for a in read_json(root / 'data/assignments.json', {'records': []})['records']}
+    assignments = {a['workorder_id']: a for a in read_json(workspace_path('data/assignments.json', root), {'records': []})['records']}
     for task in tasks:
         task.setdefault('name', names.get(task.get('mid'), ''))
         task['assignment'] = assignments.get(task.get('wid'))
@@ -310,14 +311,14 @@ def build_catalog(root, graph):
     fallback_index = 'docs/inbox/inresearch-alignment/library_index.json'
     product_rows = read_json(root / product_path, {'records': []})['records']
     company_rows = read_json(root / company_path, {'records': []})['records']
-    indexed = read_json(root / primary_index, {'records': []}).get('records', [])
+    indexed = read_json(workspace_path(primary_index, root), {'records': []}).get('records', [])
     index_path = primary_index
     if not indexed:
         index_path = fallback_index
         indexed = read_json(root / fallback_index, {'records': []}).get('records', [])
     plans = []
-    if (root / plan_path).exists():
-        with (root / plan_path).open(encoding='utf-8-sig', newline='') as fh:
+    if (workspace_path(plan_path, root)).exists():
+        with (workspace_path(plan_path, root)).open(encoding='utf-8-sig', newline='') as fh:
             plans = list(csv.DictReader(fh))
     objects = {row['id']: row for row in graph.get('objects', [])}
     parents = {}
@@ -480,7 +481,7 @@ def build_snapshot(root=ROOT):
     errors = validate(graph, questions, curated)
     if errors:
         raise ValueError('; '.join(errors[:8]))
-    runtime_path = Path(os.environ.get('INRESEARCH_READER_SNAPSHOT', root / 'data/research_runtime.json'))
+    runtime_path = Path(os.environ.get('INRESEARCH_READER_SNAPSHOT', workspace_path('data/research_runtime.json', root)))
     knowledge = copy.deepcopy(curated)
     try:
         runtime = read_json(runtime_path, {})
