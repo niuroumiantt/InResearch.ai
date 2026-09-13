@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.13.5",
+  "version": "2026.09.13.6",
   "reviewed_at": "2026-09-13",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -7,7 +7,7 @@
     "AGENTS.md": "724d29fbab3a097c490eeb294f71724625d045e20ec080c6a9a252dadc72e22b",
     "CLAUDE.md": "322b8e598f53f516c60307f53781c0da4c8f49c7a639362b51b468967e91a9de",
     "data/schema/submission.schema.json": "b0d0b8a1b9150f585ede35da218149772d77ba33f898f0d2718c48f323e83fe8",
-    "docs/M4_TRIAGE_TASK.md": "63a14d14af9256cea7ede5c99571785b8a59bfeb672766c7a839e8e55d947cd7",
+    "docs/M4_TRIAGE_TASK.md": "7aec5f854d5a1034029206cf71fd52b4544073aefa4bed0adf90f8da87a36c12",
     "docs/inbox/submissions/README.md": "d4da3229d11971a41b1c5e551bb88d5e7fe6e84d066116596257bc811a93a12b",
     "docs/local_reader/ACQUISITION_OPERATIONS.md": "91d862b923f292d337771f17dbfc965357b76039df162c78b97003237f9feb85",
     "docs/local_reader/M4_PREFLIGHT.md": "d6283a210b1cf7b29fc78d3c084edb5092f59e8f3242cdd615b52b44fd31bb69",
@@ -23,8 +23,8 @@
     "framework/06_acquisition.md": "5465abce68d873f438eb4a049f8e1f4b836017ac9a6475b1f24472041a6e90a0",
     "framework/07_product_ecosystems.md": "a6239c5cb221120394ec706cf3ded786dd6b1cf34cc526b167dc157d50bd3fce",
     "framework/08_model_execution.md": "bcbb4fcaf23620546d9473eabc3e1db0dd8918cf1aff216f70e6dab99f328e8b",
-    "framework/09_software_contracts.md": "92f20ed5e2b4df454b2a5990eb3aa58b16390d0fa26fbf69ca5c471d53f8b6bf",
-    "framework/CURRENT.md": "735c0b61e3a06ec0751d15b6fd03b911a77fd0de3ea09cb7ed6cbcb13163f074",
+    "framework/09_software_contracts.md": "c70392aa95188b01f4d9121082f4a2d5bc9717c282ea9e967018ff2ea4eaa335",
+    "framework/CURRENT.md": "ec01fd9e4ae4abe1b77a0b593fbb8269c9396ab89a878f8cae6c42e6df7f05b2",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "tests/auth_appearance.cjs": "40f4e5feb30d2cec89bcf7cb90b89e780862a30580a4708e7dcb4dee1b9b8142",
     "tests/hardware_ecosystems.cjs": "4317d7b56ae541c1537d4a22ac6538d8faa96a66b545cfc5f1c146c86c84e80d",
@@ -42,7 +42,6 @@
     "tests/unit/test_file_moves.py": "1f9ba746f06885b6d48ee2d73b5da8bc4364ca1ad54e85b5d6fe23cdbf1edf9a",
     "tests/unit/test_governance.py": "ee59b285f13ea82d6df0426d0fbd519b7b8f9e7695fde569708c0dac10d71f39",
     "tests/unit/test_intake.py": "752b45e1bec8938738ea28b827dcdcc9031bce772cc9030d7ded1d7be9176c10",
-    "tests/unit/test_m4_l2.py": "47827d559aee173e1e171b75ec8786b62a79ea2837beee7a7972b81e96ebaf90",
     "tests/unit/test_m4_office_text.py": "7c9ca244f5e3746ca61f3032030cc6260a4312f2ad5ddf9b5b7c011d831525c3",
     "tests/unit/test_m4_triage.py": "028d627d24c321632410f7845856f94953dfa6d9eb82569a206c042d378f7949",
     "tests/unit/test_m4_triage_local.py": "1bfd549d038cd1e0b8b5d79bca4b9ca9528a56d9008f73265cf9750dfce0e6d2",
@@ -54,7 +53,12 @@
     "tests/unit/test_research.py": "b01db6f4a1e5c66e714cbb1440eab47467fb9ae4fef29ad124e436c3aab62ffb",
     "tests/unit/test_research_navigation.py": "8edaecdc3a3a3050000746453cb41e1c38b4a699f14037e4d9b0eac84429ac44",
     "tests/unit/test_verification_contract.py": "2c1c2611dd2fb1973acf336e4b297f37ad7b06f4d5147574d99f3324fcc69232",
-    "tests/url_rendering.cjs": "b463695816e72417012ef814ebbb4d382f256e61f46017fe54c9167abfdb953d"
+    "tests/url_rendering.cjs": "b463695816e72417012ef814ebbb4d382f256e61f46017fe54c9167abfdb953d",
+    "tests/unit/test_deep_read.py": "e41a2b21f77b7ae4f0dfa57e7bee22c77590ef5133cf8c5e628ba2d5de43a22b",
+    "tests/unit/test_fact_contract.py": "36eeacfa1d43ba37ba241542f93f4b5051a39c2c6fb37ce065ec8636a345d9d7",
+    "tests/unit/test_text_similarity.py": "4e24065bfcc56cb264977928be50bf448a4feda3c24b82a0a56c36d045caab9c",
+    "tests/unit/test_deep_read_transactions.py": "8dbc032fa92ecaff99d208380714f630a5aec8a728c13d01a5879c68e7f42813",
+    "tests/unit/deep_read_fixtures.py": "a05ce5b320efe0358e4563f8430ab872d907063455f06f7b4793b93d97014636"
   },
   "policies": [
     {
@@ -80,13 +84,16 @@
         "tests/unit/test_research.py::ResearchTests.test_C_archive_cannot_close_and_valid_B_reopens_then_closes",
         "tests/unit/test_intake.py::IntakeEvidenceTests.test_B_requires_current_matching_workorder_and_A_takes_priority",
         "tests/unit/test_intake.py::IntakeEvidenceTests.test_malformed_evidence_and_types_fail_without_crashing",
-        "tests/unit/test_m4_l2.py::ValidatorTests.test_a_missing_caliber_dimension_is_refused",
-        "tests/unit/test_m4_l2.py::TemporalGrammarTests.test_a_half_year_is_a_period_of_its_own",
-        "tests/unit/test_m4_l2.py::AsserterTests.test_two_houses_on_one_question_no_longer_collide",
-        "tests/unit/test_m4_l2.py::AsserterTests.test_two_named_houses_must_point_at_each_other",
-        "tests/unit/test_m4_l2.py::AsserterTests.test_a_revision_is_not_a_dispute",
-        "tests/unit/test_m4_l2.py::AsserterTests.test_unstated_does_not_earn_a_seat_beside_a_named_house",
-        "tests/unit/test_m4_l2.py::DisputeRecordTests.test_the_other_side_learns_it_is_contested"
+        "tests/unit/test_fact_contract.py::ValidatorTests.test_a_missing_caliber_dimension_is_refused",
+        "tests/unit/test_fact_contract.py::TemporalGrammarTests.test_a_half_year_is_a_period_of_its_own",
+        "tests/unit/test_fact_contract.py::AsserterTests.test_two_houses_on_one_question_no_longer_collide",
+        "tests/unit/test_fact_contract.py::AsserterTests.test_two_named_houses_must_point_at_each_other",
+        "tests/unit/test_fact_contract.py::AsserterTests.test_a_revision_is_not_a_dispute",
+        "tests/unit/test_fact_contract.py::AsserterTests.test_unstated_does_not_earn_a_seat_beside_a_named_house",
+        "tests/unit/test_deep_read.py::DisputeRecordTests.test_the_other_side_learns_it_is_contested",
+        "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_generated_dispute_links_do_not_break_original_request_replay",
+        "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_disputes_inside_one_batch_commit_together_and_replay_after_receipt_failure",
+        "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_batch_claim_indexes_enforce_new_dispute_and_revision_contracts"
       ],
       "not_verified": [
         "38 条存量事实缺内容 SHA；27 条历史来源未登记；B 审核质量与语义冲突识别不能由机检代替。",
@@ -224,19 +231,23 @@
       "policy": "reading-m4-triage-20260912",
       "scope": "m4-triage",
       "source": "docs/M4_TRIAGE_TASK.md",
-      "checked_requirement": "同字节多路径、失败不盖成功、迟到拒写、移动可恢复",
+      "checked_requirement": "同字节多路径、失败不盖成功、迟到拒写、移动可恢复；L2 ≥7 或点名、唯一 SHA、共同准入、L1 版本冲突",
       "tests": [
         "tests/unit/test_m4_triage.py::InventoryTests.test_identical_bytes_are_one_sha_with_every_path_recorded",
-        "tests/unit/test_m4_l2.py::EffectiveResultTests.test_failed_retry_does_not_remove_a_document_from_the_deep_read_queue",
+        "tests/unit/test_deep_read.py::EffectiveResultTests.test_failed_retry_does_not_remove_a_document_from_the_deep_read_queue",
         "tests/unit/test_m4_triage_local.py::RunTests.test_late_model_reply_does_not_replace_a_newer_terminal_result",
         "tests/unit/test_file_moves.py::MoveRecoveryTests.test_two_processes_serialize_the_same_move",
         "tests/unit/test_file_moves.py::MoveRecoveryTests.test_crash_after_unlink_recovers_missing_commit",
-        "tests/unit/test_m4_l2.py::TextTwinRoutingTests.test_same_extracted_text_different_bytes_still_gets_its_own_packet",
+        "tests/unit/test_deep_read.py::TextTwinRoutingTests.test_same_extracted_text_different_bytes_still_gets_its_own_packet",
         "tests/unit/test_m4_office_text.py::XlsxCellTests.test_huge_merged_range_is_rejected_before_expanding",
         "tests/unit/test_m4_office_text.py::XlsxCellTests.test_merge_budget_is_cumulative_and_invalid_ranges_fail",
-        "tests/unit/test_m4_l2.py::DeepReadJournalTests.test_committed_corruption_fails_and_torn_tail_is_read_only",
-        "tests/unit/test_m4_l2.py::TextTwinRoutingTests.test_old_automatic_twin_record_is_preserved_but_not_counted_as_read",
-        "tests/unit/test_reading_revisions.py::ReadingRevisionTests.test_ocr_failure_releases_the_same_revision_claim"
+        "tests/unit/test_deep_read.py::DeepReadJournalTests.test_committed_corruption_fails_and_torn_tail_is_read_only",
+        "tests/unit/test_deep_read.py::TextTwinRoutingTests.test_old_automatic_twin_record_is_preserved_but_not_counted_as_read",
+        "tests/unit/test_reading_revisions.py::ReadingRevisionTests.test_ocr_failure_releases_the_same_revision_claim",
+        "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_current_threshold_and_named_low_score_keep_admission_boundary",
+        "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_ambiguous_packet_does_not_start_extraction_even_if_other_match_is_ineligible",
+        "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_restricted_and_self_authored_sources_cannot_bypass_queue_at_record",
+        "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_processes_cannot_both_replace_the_same_l1_revision"
       ],
       "not_verified": [
         "真实 M4 50 份当前模型小样及新版执行未验；Spark apply-triage catalog 桥未实现。"
@@ -262,7 +273,7 @@
       "policy": "software-contracts-20260913",
       "scope": "project",
       "source": "framework/09_software_contracts.md",
-      "checked_requirement": "统一写入、跨进程并发、提交前失败与提交后不确定、重放去重; catalog revision authority, atomic activation and consistent export snapshot",
+      "checked_requirement": "统一写入、跨进程并发、提交前失败与提交后不确定、重放去重; catalog revision authority, atomic activation and consistent export snapshot；L2 用例/CLI 分离、缺口主提交及回执重放、来源计划替换",
       "tests": [
         "tests/unit/test_commands.py::CommandFlows.test_independent_processes_do_not_lose_records",
         "tests/unit/test_commands.py::CommandFlows.test_exception_and_failed_replace_keep_old_bytes",
@@ -275,10 +286,21 @@
         "tests/unit/test_reading_revisions.py::ReadingRevisionTests.test_export_holds_one_snapshot_while_other_process_activates",
         "tests/unit/test_reading_revisions.py::ReadingRevisionTests.test_directory_export_manifest_names_immutable_versions",
         "tests/unit/test_catalog_migration.py::CatalogMigrationTests.test_failure_inside_schema_change_rolls_back_with_backup_retained",
-        "tests/unit/test_catalog_migration.py::CatalogMigrationTests.test_orphan_job_is_not_silently_dropped_during_upgrade"
+        "tests/unit/test_catalog_migration.py::CatalogMigrationTests.test_orphan_job_is_not_silently_dropped_during_upgrade",
+        "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_processes_record_one_fact_and_one_completion",
+        "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_processes_propose_and_fill_one_gap_without_duplicate_receipts",
+        "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_fact_commit_then_receipt_failure_recovers_from_same_input",
+        "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_gap_commit_then_receipt_failure_and_fill_can_be_replayed",
+        "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_uncertain_gap_batch_is_fully_visible_and_retry_does_not_reopen",
+        "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_packet_publication_failure_never_exposes_a_partial_final_packet",
+        "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_concurrent_packet_publication_has_independent_complete_artifacts",
+        "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_provenance_commit_requires_reviewed_plan_and_rejects_changed_facts",
+        "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_provenance_commit_rejects_changed_resolution_and_interior_damage",
+        "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_cli_returns_commit_stage_and_requires_external_revision"
       ],
       "not_verified": [
-        "非价格/派工/快照的文件消费者仍按 OSError 停止；并非每个多文件流程都有逐阶段恢复验证。deep_read 与 3D 巨型实现还未全部收敛。"
+        "L2 已拆开参数/用例/准入/相似度/缺口/来源职责；两个 3D 场景仍需收敛。并非其他所有多文件流程均已逐阶段验收。",
+        "来源计划验证是身份解析与提交保护，不证明 38 条历史缺口已经补齐；M4/Spark 实机与跨 L2/reader 全文记录未验。"
       ]
     }
   ]

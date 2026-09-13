@@ -124,14 +124,28 @@ def index_claims(records: list[dict]) -> dict:
     allowed to share, and the conflict check needs all of them, not the last.
     """
     claims = {}
-    for f in records:
-        claims[claim_key(f)] = f.get('fact_id')
-        claims.setdefault(revision_key(f), f.get('fact_id'))
-        key = forecast_key(f)
-        if key is not None:
-            claims.setdefault(key, f.get('fact_id'))
-        claims.setdefault(claim_identity(f), []).append(f.get('fact_id'))
+    for fact in records:
+        index_claim(claims, fact)
     return claims
+
+
+def index_claim(claims: dict, fact: dict) -> None:
+    """Add a validated record to every identity used by batch and stored checks."""
+    claims[claim_key(fact)] = fact.get('fact_id')
+    claims.setdefault(revision_key(fact), fact.get('fact_id'))
+    key = forecast_key(fact)
+    if key is not None:
+        claims.setdefault(key, fact.get('fact_id'))
+    claims.setdefault(claim_identity(fact), []).append(fact.get('fact_id'))
+
+
+def same_submission(stored: dict | None, incoming: dict) -> bool:
+    """Generated reverse links may grow after the original request committed."""
+    return stored is not None and stored == {**incoming, **(
+        {'disputed_by': stored['disputed_by']}
+        if 'disputed_by' in stored and 'disputed_by' not in incoming else {})}
+
+
 
 def check_fact(fact: dict, metrics: dict, seen: set, claims: dict | None = None) -> list[str]:
     bad = []
@@ -293,3 +307,39 @@ def _collision_problems(fact: dict, claims: dict) -> list[str]:
                        % ('、'.join(undeclared),
                           ', '.join('"%s"' % fid for fid in undeclared)))
     return bad
+
+
+def cross_link_disputes(accepted: list[dict], stored: list[dict]) -> list[dict]:
+    """Write the reverse link on the other side, and report each pair once.
+
+    A dispute declared in one direction only is half recorded: whoever reads
+    the older fact would never learn it is contested.  record writes
+    disputed_by rather than asking the reader to edit two records by hand -
+    the same reason supersedes does not overwrite the old edition.
+    """
+    by_id = {f.get('fact_id'): f for f in list(stored) + list(accepted)}
+    pairs = []
+    for fact in accepted:
+        others = [by_id.get(fid) for fid in (fact.get('disputes') or [])]
+        others = [o for o in others if o]
+        if not others:
+            continue
+        for other in others:
+            back = other.setdefault('disputed_by', [])
+            if fact['fact_id'] not in back:
+                back.append(fact['fact_id'])
+        pairs.append({'about': '%s / %s / %s' % (
+            fact.get('metric_id'), (fact.get('entity') or {}).get('id') or '—',
+            fact.get('as_of')),
+            'sides': [side_summary(f) for f in [fact] + others]})
+    return pairs
+
+
+def side_summary(fact: dict) -> dict:
+    value = fact.get('value')
+    if value is None and fact.get('value_range'):
+        value = '%s-%s' % tuple(fact['value_range'])
+    return {'fact_id': fact.get('fact_id'), 'asserter': asserter_of(fact),
+            'value': '未披露' if value is None else value,
+            'unit': fact.get('unit') or '',
+            'locator': (fact.get('evidence') or {}).get('locator') or ''}

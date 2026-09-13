@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.13.5。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.13.6。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：592。
+在册文件：620。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,15 +15,15 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 12 |
-| 历史快照 | 91 |
-| 运行代码 | 127 |
+| 历史快照 | 110 |
+| 运行代码 | 132 |
 | 现行规范 | 13 |
 | 项目配置 | 35 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 26 |
 | 配套说明 | 35 |
-| 测试 | 46 |
+| 测试 | 50 |
 
 ## 在册记录集合
 
@@ -182,6 +182,19 @@
 | `docs/reviews/2026-09-13/architecture/real-reader-flow.json` | acceptance | 1 |
 | `docs/reviews/2026-09-13/architecture/shared-implementations.csv` | rows | 152 |
 | `docs/reviews/2026-09-13/architecture/source-reference-debt.csv` | rows | 27 |
+| `docs/reviews/2026-09-13/deep-read/baseline.json` | ambiguous_pack_selected | 1 |
+| `docs/reviews/2026-09-13/deep-read/consumers-after.csv` | rows | 455 |
+| `docs/reviews/2026-09-13/deep-read/consumers-before.csv` | rows | 425 |
+| `docs/reviews/2026-09-13/deep-read/dependency-audit.json` | cycles | 0 |
+| `docs/reviews/2026-09-13/deep-read/dependency-audit.json` | import_edges | 187 |
+| `docs/reviews/2026-09-13/deep-read/file-plan.csv` | rows | 603 |
+| `docs/reviews/2026-09-13/deep-read/file-results.csv` | rows | 621 |
+| `docs/reviews/2026-09-13/deep-read/functions-before.csv` | rows | 38 |
+| `docs/reviews/2026-09-13/deep-read/integration-files.csv` | rows | 621 |
+| `docs/reviews/2026-09-13/deep-read/public-contracts.csv` | rows | 76 |
+| `docs/reviews/2026-09-13/deep-read/real-flow.json` | steps | 6 |
+| `docs/reviews/2026-09-13/deep-read/test-results.csv` | rows | 413 |
+| `docs/reviews/2026-09-13/deep-read/verification.json` | remaining | 5 |
 | `docs/reviews/2026-09-13/reading-revisions/baseline.json` | documents_columns | 18 |
 | `docs/reviews/2026-09-13/reading-revisions/baseline.json` | jobs_columns | 13 |
 | `docs/reviews/2026-09-13/reading-revisions/consumers-after.csv` | rows | 100 |
@@ -529,6 +542,25 @@
 | [docs/reviews/2026-09-13/architecture/shared-implementations.csv](reviews/2026-09-13/architecture/shared-implementations.csv) | 历史快照 |
 | [docs/reviews/2026-09-13/architecture/source-reference-debt.csv](reviews/2026-09-13/architecture/source-reference-debt.csv) | 历史快照 |
 | `docs/reviews/2026-09-13/architecture/verification.json` | 历史快照 |
+| [docs/reviews/2026-09-13/deep-read/DELIVERY.md](reviews/2026-09-13/deep-read/DELIVERY.md) | 历史快照 |
+| [docs/reviews/2026-09-13/deep-read/PLAN.md](reviews/2026-09-13/deep-read/PLAN.md) | 历史快照 |
+| `docs/reviews/2026-09-13/deep-read/audit.py` | 历史快照 |
+| `docs/reviews/2026-09-13/deep-read/baseline.json` | 历史快照 |
+| [docs/reviews/2026-09-13/deep-read/consumers-after.csv](reviews/2026-09-13/deep-read/consumers-after.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/deep-read/consumers-before.csv](reviews/2026-09-13/deep-read/consumers-before.csv) | 历史快照 |
+| `docs/reviews/2026-09-13/deep-read/contracts_audit.py` | 历史快照 |
+| `docs/reviews/2026-09-13/deep-read/dependency-audit.json` | 历史快照 |
+| [docs/reviews/2026-09-13/deep-read/file-plan.csv](reviews/2026-09-13/deep-read/file-plan.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/deep-read/file-results.csv](reviews/2026-09-13/deep-read/file-results.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/deep-read/functions-before.csv](reviews/2026-09-13/deep-read/functions-before.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/deep-read/integration-files.csv](reviews/2026-09-13/deep-read/integration-files.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/deep-read/public-contracts.csv](reviews/2026-09-13/deep-read/public-contracts.csv) | 历史快照 |
+| `docs/reviews/2026-09-13/deep-read/real-flow.json` | 历史快照 |
+| `docs/reviews/2026-09-13/deep-read/statistics-after.json` | 历史快照 |
+| `docs/reviews/2026-09-13/deep-read/statistics-before.json` | 历史快照 |
+| `docs/reviews/2026-09-13/deep-read/test-migration.json` | 历史快照 |
+| [docs/reviews/2026-09-13/deep-read/test-results.csv](reviews/2026-09-13/deep-read/test-results.csv) | 历史快照 |
+| `docs/reviews/2026-09-13/deep-read/verification.json` | 历史快照 |
 | [docs/reviews/2026-09-13/fact-conflicts/DELIVERY.md](reviews/2026-09-13/fact-conflicts/DELIVERY.md) | 历史快照 |
 | [docs/reviews/2026-09-13/reading-revisions/DELIVERY.md](reviews/2026-09-13/reading-revisions/DELIVERY.md) | 历史快照 |
 | [docs/reviews/2026-09-13/reading-revisions/PLAN.md](reviews/2026-09-13/reading-revisions/PLAN.md) | 历史快照 |
@@ -665,6 +697,7 @@
 | `src/inresearch/interfaces/__init__.py` | 运行代码 |
 | `src/inresearch/interfaces/auth.py` | 运行代码 |
 | `src/inresearch/interfaces/cli.py` | 运行代码 |
+| `src/inresearch/interfaces/deep_read.py` | 运行代码 |
 | `src/inresearch/interfaces/governance.py` | 运行代码 |
 | `src/inresearch/interfaces/http.py` | 运行代码 |
 | `src/inresearch/interfaces/pages.py` | 运行代码 |
@@ -681,6 +714,7 @@
 | `src/inresearch/knowledge/navigation.py` | 运行代码 |
 | `src/inresearch/knowledge/news_policy.py` | 运行代码 |
 | `src/inresearch/knowledge/policy.py` | 运行代码 |
+| `src/inresearch/knowledge/provenance.py` | 运行代码 |
 | `src/inresearch/knowledge/registry.py` | 运行代码 |
 | `src/inresearch/knowledge/validate.py` | 运行代码 |
 | `src/inresearch/knowledge/verify.py` | 运行代码 |
@@ -695,10 +729,12 @@
 | `src/inresearch/materials/paths.py` | 运行代码 |
 | `src/inresearch/materials/preflight.py` | 运行代码 |
 | `src/inresearch/materials/reader_contracts.py` | 运行代码 |
+| `src/inresearch/materials/reading_policy.py` | 运行代码 |
 | `src/inresearch/materials/receive.py` | 运行代码 |
 | `src/inresearch/materials/records.py` | 运行代码 |
 | `src/inresearch/materials/repair_paths.py` | 运行代码 |
 | `src/inresearch/materials/scan_candidates.py` | 运行代码 |
+| `src/inresearch/materials/text_similarity.py` | 运行代码 |
 | `src/inresearch/materials/triage.py` | 运行代码 |
 | `src/inresearch/paths.py` | 运行代码 |
 | `src/inresearch/storage/__init__.py` | 运行代码 |
@@ -712,6 +748,7 @@
 | `src/inresearch/workflow/deep_read.py` | 运行代码 |
 | `src/inresearch/workflow/progress.py` | 运行代码 |
 | `src/inresearch/workflow/reader.py` | 运行代码 |
+| `src/inresearch/workflow/reading_gaps.py` | 运行代码 |
 | `src/inresearch/workflow/reading_queue.py` | 运行代码 |
 | `src/inresearch/workflow/reading_revisions.py` | 运行代码 |
 | `src/inresearch/workflow/reading_stages.py` | 运行代码 |
@@ -729,6 +766,7 @@
 | `tests/research_delivery.cjs` | 测试 |
 | `tests/run_browser.cjs` | 测试 |
 | `tests/ui_skin.cjs` | 测试 |
+| `tests/unit/deep_read_fixtures.py` | 测试 |
 | `tests/unit/test_acquisition.py` | 测试 |
 | `tests/unit/test_auth.py` | 测试 |
 | `tests/unit/test_catalog_bridge.py` | 测试 |
@@ -736,13 +774,15 @@
 | `tests/unit/test_commands.py` | 测试 |
 | `tests/unit/test_continuous_reader.py` | 测试 |
 | `tests/unit/test_datacenter_news.py` | 测试 |
+| `tests/unit/test_deep_read.py` | 测试 |
+| `tests/unit/test_deep_read_transactions.py` | 测试 |
 | `tests/unit/test_display_regressions.py` | 测试 |
+| `tests/unit/test_fact_contract.py` | 测试 |
 | `tests/unit/test_file_moves.py` | 测试 |
 | `tests/unit/test_governance.py` | 测试 |
 | `tests/unit/test_http_workflow.py` | 测试 |
 | `tests/unit/test_intake.py` | 测试 |
 | `tests/unit/test_interface_system.py` | 测试 |
-| `tests/unit/test_m4_l2.py` | 测试 |
 | `tests/unit/test_m4_office_text.py` | 测试 |
 | `tests/unit/test_m4_paths.py` | 测试 |
 | `tests/unit/test_m4_redo_reads.py` | 测试 |
@@ -764,6 +804,7 @@
 | `tests/unit/test_research_navigation.py` | 测试 |
 | `tests/unit/test_result_versions.py` | 测试 |
 | `tests/unit/test_suite_integrity.py` | 测试 |
+| `tests/unit/test_text_similarity.py` | 测试 |
 | `tests/unit/test_verification_contract.py` | 测试 |
 | `tests/url_rendering.cjs` | 测试 |
 | `web/assets/Inter-LICENSE.txt` | 静态资源 |

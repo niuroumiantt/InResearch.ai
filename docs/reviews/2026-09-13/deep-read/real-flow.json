@@ -1,0 +1,194 @@
+{
+  "synthetic": true,
+  "chars": 431,
+  "sha256": "eee4aa4ecdd2ed1bd4ecc057ebb99ba842e51bd6eb0ea770207a2a79f092a493",
+  "model": {
+    "backend": "claude_cli",
+    "model": "claude-opus-5",
+    "context": 32768,
+    "max_output_tokens": 4096,
+    "request_model": "claude-opus-5",
+    "revision": "",
+    "requested": "claude-opus-5",
+    "actual": "claude-opus-5",
+    "prompt_sha256": "fd48b203d0e882aebdc975c853b739b2269b18331a0f5e60e28eb144fbb79489",
+    "input_sha256": "cae7a01ca90e31c1951b66e1559ba124ad17ba750395b1a76f491de0ad096cd6",
+    "executor": "claude-code"
+  },
+  "source": "[段 1] 合成工程验收材料；仅验证程序流程，不是现实项目资料，不能作为外部研究证据。\n项目：L2 事务验收夹具。文档日期：2025-06-01。机柜中列出 3 台服务器，每台设备额定功率 600 W。按这些已披露数相乘，服务器额定功率小计为 1800 W，即 1.8 kW。它是一个据实计算的小计，不是现场实测功耗，也不是整栋数据中心的设施总功率。\n[段 2] 本夹具给出的机柜 IT 配电设计负荷上限为 2.4 kW。“不超过”是上界，不能作为某一时刻恰好消耗 2.4 kW 的点值。两项数字的范围不同：1.8 kW 只包括服务器；2.4 kW 是该机柜 IT 支路的设计上限。\n[段 3] 未提供 PUE、利用率、运行小时、电价、冗余系数、网络设备功率和制冷系统功率。不能从这些信息推算全年电费、全年耗电、整体设施容量或扩容余量。不要把未披露字段填成 0。\n[末段] 生成的事实只能保留为本次隔离测试记录，未做交叉核验，不能改变任何正式问题的已采用状态。\n",
+  "entrypoint": "fresh Python subprocess -> interfaces.deep_read.main with explicit isolated DeepRead dependency; manage.py registration checked separately",
+  "steps": [
+    {
+      "args": [
+        "queue"
+      ],
+      "returncode": 0,
+      "stdout": "{\"eligible_unread\": 1, \"min_score\": 7, \"candidates\": [{\"sha256\": \"eee4aa4ecdd2ed1bd4ecc057ebb99ba842e51bd6eb0ea770207a2a79f092a493\", \"result_revision\": \"ebca279ef0426a316e431c919835ae54b2a574f5b0a99c2d5d089366a9c678ff\", \"name\": \"material.txt\"}], \"already_read\": 0, \"self_authored_excluded\": 0, \"unattributed\": 0, \"restricted_excluded\": 0, \"mb\": 0}\n  M04      待读 1    已有事实 0\n  eee4aa4ecdd2ed1b  M04   已有事实 0    7 分 2025      material.txt\n"
+    },
+    {
+      "args": [
+        "pack",
+        "--sha",
+        "eee4aa4ecdd2ed1bd4ecc057ebb99ba842e51bd6eb0ea770207a2a79f092a493"
+      ],
+      "returncode": 0,
+      "stdout": "{\"sha256\": \"eee4aa4ecdd2ed1bd4ecc057ebb99ba842e51bd6eb0ea770207a2a79f092a493\", \"module\": \"M04\", \"score\": 7, \"chars\": 431, \"chunks\": 1, \"result_revision\": \"ebca279ef0426a316e431c919835ae54b2a574f5b0a99c2d5d089366a9c678ff\", \"packet_id\": \"b487c457f24f4916a74cc00be7d7bce0\", \"unattributed\": null, \"brief\": \"<isolated-test-root>/packets/eee4aa4ecdd2ed1bd4ecc057ebb99ba842e51bd6eb0ea770207a2a79f092a493/b487c457f24f4916a74cc00be7d7bce0/brief.md\", \"text\": \"<isolated-test-root>/packets/eee4aa4ecdd2ed1bd4ecc057ebb99ba842e51bd6eb0ea770207a2a79f092a493/b487c457f24f4916a74cc00be7d7bce0/text.md\", \"manifest\": \"<isolated-test-root>/packets/eee4aa4ecdd2ed1bd4ecc057ebb99ba842e51bd6eb0ea770207a2a79f092a493/b487c457f24f4916a74cc00be7d7bce0/manifest.json\", \"packed\": 1, \"read_from\": \"source\", \"text_md5\": null, \"same_text_already_read\": null, \"same_text_packed_not_read\": null, \"near_twins\": null, \"same_text_note\": null, \"near_twin_note\": null, \"again\": null}\n"
+    },
+    {
+      "args": [
+        "record",
+        "--facts",
+        "<isolated-test-root>/incoming.json",
+        "--doc",
+        "eee4aa4ecdd2ed1bd4ecc057ebb99ba842e51bd6eb0ea770207a2a79f092a493",
+        "--executor",
+        "claude-code",
+        "--model",
+        "claude-opus-5"
+      ],
+      "returncode": 0,
+      "stdout": "{\"incoming\": 2, \"accepted\": 2, \"rejected\": 0, \"replayed\": 0, \"facts_total\": 2, \"receipt_replayed\": false}\n"
+    },
+    {
+      "args": [
+        "record",
+        "--facts",
+        "<isolated-test-root>/incoming.json",
+        "--doc",
+        "eee4aa4ecdd2ed1bd4ecc057ebb99ba842e51bd6eb0ea770207a2a79f092a493",
+        "--executor",
+        "claude-code",
+        "--model",
+        "claude-opus-5"
+      ],
+      "returncode": 0,
+      "stdout": "{\"incoming\": 2, \"accepted\": 0, \"rejected\": 0, \"replayed\": 2, \"facts_total\": 2, \"receipt_replayed\": true}\n"
+    },
+    {
+      "args": [
+        "status"
+      ],
+      "returncode": 0,
+      "stdout": "{\"facts\": 2, \"documents_read\": 1, \"历史副本行_不计已读\": 0, \"metrics_covered\": 2, \"metrics_total\": 2, \"with_locator\": 2, \"with_sha256\": 2, \"value_withheld\": 0, \"not_corroborated\": 2, \"正文指纹_已记\": 0, \"欠内容哈希的事实\": 0, \"菜单缺口_未补\": 0, \"等菜单补齐后重读\": 0}\n  M04      2\n"
+    },
+    {
+      "args": [
+        "pack",
+        "--sha",
+        "eee4aa4ecdd2ed1bd4ecc057ebb99ba842e51bd6eb0ea770207a2a79f092a493",
+        "--again"
+      ],
+      "returncode": 0,
+      "stdout": "{\"sha256\": \"eee4aa4ecdd2ed1bd4ecc057ebb99ba842e51bd6eb0ea770207a2a79f092a493\", \"module\": \"M04\", \"score\": 7, \"chars\": 431, \"chunks\": 1, \"result_revision\": \"ebca279ef0426a316e431c919835ae54b2a574f5b0a99c2d5d089366a9c678ff\", \"packet_id\": \"ea54a1d42f294cf8bc9125bfcba308e3\", \"unattributed\": null, \"brief\": \"<isolated-test-root>/packets/eee4aa4ecdd2ed1bd4ecc057ebb99ba842e51bd6eb0ea770207a2a79f092a493/ea54a1d42f294cf8bc9125bfcba308e3/brief.md\", \"text\": \"<isolated-test-root>/packets/eee4aa4ecdd2ed1bd4ecc057ebb99ba842e51bd6eb0ea770207a2a79f092a493/ea54a1d42f294cf8bc9125bfcba308e3/text.md\", \"manifest\": \"<isolated-test-root>/packets/eee4aa4ecdd2ed1bd4ecc057ebb99ba842e51bd6eb0ea770207a2a79f092a493/ea54a1d42f294cf8bc9125bfcba308e3/manifest.json\", \"packed\": 1, \"read_from\": \"source\", \"text_md5\": null, \"same_text_already_read\": null, \"same_text_packed_not_read\": null, \"near_twins\": null, \"same_text_note\": null, \"near_twin_note\": null, \"again\": true}\n"
+    }
+  ],
+  "completion_receipts": 1,
+  "facts": 2,
+  "original_unchanged": true,
+  "c3_adoption": false,
+  "semantic_review": {
+    "reviewer": "Codex source/output comparison after Claude generation",
+    "quotes_verified_against_source": 6,
+    "result": "1.8 kW is derived server-only subtotal; 2.4 kW is upper rack-IT limit; missing issuer remains unknown; no facility power, energy, cost or headroom invented",
+    "scope": "one synthetic sample; not corpus-quality acceptance or C3 review"
+  },
+  "completed_at": "2026-09-13T11:21:31Z",
+  "answer": {
+    "records": [
+      {
+        "fact_id": "l2-transaction-fixture-server-rated-power-subtotal-2025-06-01",
+        "asserter": "未注明",
+        "metric_id": "server_rated_power_subtotal",
+        "entity": {
+          "type": "project",
+          "id": "l2-transaction-fixture",
+          "label": "L2 事务验收夹具"
+        },
+        "value": 1.8,
+        "unit": "kW",
+        "caliber": {
+          "scope": "server_only"
+        },
+        "as_of": "2025-06-01",
+        "evidence": {
+          "sha256": "eee4aa4ecdd2ed1bd4ecc057ebb99ba842e51bd6eb0ea770207a2a79f092a493",
+          "locator": "material.txt / text.md 段1：“按这些已披露数相乘，服务器额定功率小计为 1800 W，即 1.8 kW。”",
+          "grade": "S5"
+        },
+        "depth": "精读",
+        "bound": "point",
+        "derived": true,
+        "corroboration": "待交叉验证",
+        "notes": "算法：3 台服务器 × 每台额定功率 600 W = 1800 W = 1.8 kW。原文明确这是据实计算的小计。原文未给出断言机构，是合成验收夹具自身的表述，所以 asserter 填未注明。范围只包括服务器，不含网络设备和制冷。它不是现场实测功耗，也不是整栋数据中心的设施总功率。材料是合成工程验收材料，只用于验证程序流程，不是现实项目资料，不能作为外部研究证据。本记录只保留为隔离测试记录，未做交叉核验，不是正式采用，不改变任何正式问题的已采用状态。"
+      },
+      {
+        "fact_id": "l2-transaction-fixture-rack-it-design-limit-2025-06-01",
+        "asserter": "未注明",
+        "metric_id": "rack_it_design_limit",
+        "entity": {
+          "type": "project",
+          "id": "l2-transaction-fixture",
+          "label": "L2 事务验收夹具"
+        },
+        "value": 2.4,
+        "unit": "kW",
+        "caliber": {
+          "scope": "rack_it_branch"
+        },
+        "as_of": "2025-06-01",
+        "evidence": {
+          "sha256": "eee4aa4ecdd2ed1bd4ecc057ebb99ba842e51bd6eb0ea770207a2a79f092a493",
+          "locator": "material.txt / text.md 段2：“本夹具给出的机柜 IT 配电设计负荷上限为 2.4 kW。”",
+          "grade": "S5"
+        },
+        "depth": "精读",
+        "bound": "upper",
+        "derived": false,
+        "corroboration": "待交叉验证",
+        "notes": "这是机柜 IT 支路的设计上限。原文说明“不超过”是上界，不能作为某一时刻恰好消耗 2.4 kW 的点值。其范围与 1.8 kW 服务器小计不同，两者不可直接相减得出扩容余量。原文未给出断言机构，由夹具自身给出，所以 asserter 填未注明。材料是合成工程验收材料，只用于验证程序流程，不能作为外部研究证据。本记录只保留为隔离测试记录，未做交叉核验，不是正式采用，不改变任何正式问题的已采用状态。"
+      }
+    ],
+    "quotes": [
+      "合成工程验收材料；仅验证程序流程，不是现实项目资料，不能作为外部研究证据。",
+      "文档日期：2025-06-01。",
+      "机柜中列出 3 台服务器，每台设备额定功率 600 W。按这些已披露数相乘，服务器额定功率小计为 1800 W，即 1.8 kW。它是一个据实计算的小计，不是现场实测功耗，也不是整栋数据中心的设施总功率。",
+      "本夹具给出的机柜 IT 配电设计负荷上限为 2.4 kW。“不超过”是上界，不能作为某一时刻恰好消耗 2.4 kW 的点值。两项数字的范围不同：1.8 kW 只包括服务器；2.4 kW 是该机柜 IT 支路的设计上限。",
+      "未提供 PUE、利用率、运行小时、电价、冗余系数、网络设备功率和制冷系统功率。不能从这些信息推算全年电费、全年耗电、整体设施容量或扩容余量。不要把未披露字段填成 0。",
+      "生成的事实只能保留为本次隔离测试记录，未做交叉核验，不能改变任何正式问题的已采用状态。"
+    ],
+    "not_inferred": [
+      "PUE（未披露，不填 0）",
+      "利用率（未披露，不填 0）",
+      "运行小时（未披露，不填 0）",
+      "电价（未披露，不填 0）",
+      "冗余系数（未披露，不填 0）",
+      "网络设备功率（未披露，不填 0）",
+      "制冷系统功率（未披露，不填 0）",
+      "全年电费（不可推算）",
+      "全年耗电（不可推算）",
+      "整体设施容量或整栋数据中心设施总功率（不可推算）",
+      "扩容余量（不以 2.4 kW − 1.8 kW 推算，两者范围不同）",
+      "现场实测功耗或某一时刻的实际消耗（1.8 kW 为额定小计，2.4 kW 为设计上界）",
+      "断言机构名称（原文未注明）"
+    ],
+    "limitations": {
+      "synthetic_test_only": true,
+      "cross_verified": false,
+      "formally_adopted": false,
+      "statement": "仅为合成测试材料生成的隔离测试记录，未做交叉核验，不是正式采用，不能作为外部研究证据，不改变任何正式问题的已采用状态。"
+    },
+    "_model": {
+      "backend": "claude_cli",
+      "model": "claude-opus-5",
+      "context": 32768,
+      "max_output_tokens": 4096,
+      "request_model": "claude-opus-5",
+      "revision": "",
+      "requested": "claude-opus-5",
+      "actual": "claude-opus-5",
+      "prompt_sha256": "fd48b203d0e882aebdc975c853b739b2269b18331a0f5e60e28eb144fbb79489",
+      "input_sha256": "cae7a01ca90e31c1951b66e1559ba124ad17ba750395b1a76f491de0ad096cd6",
+      "executor": "claude-code"
+    }
+  }
+}
