@@ -37675,6 +37675,120 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**厂商宣称：预制模块化把建设周期由 18 个月压到 6 个月**。stat 就近记均值，stage 就近记开工到交付，标 [未核]。对照 xAI Colossus 1 从零建成 122 天（约 4 个月，xai-colossus1-capacity-2025 notes）。"
+    },
+    {
+      "fact_id": "caict-racks-inuse-2023",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc-racks-inuse",
+        "label": "中国在用数据中心机架"
+      },
+      "value": 810.0,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9bb1d3c7936d2dc86a5cb039f6236e20fe552a6b9922c0587b26d62aadc8cd1e",
+        "local_file": "深企投产业研究院 智算中心行业研究（2025-04）.pdf",
+        "locator": "第 18 页：「根据中国信通院数据，截至 2023 年底，全国在用数据中心机架总规模已跃升至 810 万标准机架，算力总规模达到 230EFLOPS……存力总规模约 1200EB」；图 4 来源工信部、中国信通院《中国算力中心服务商分析报告（2024 年）》",
+        "grade": "S3",
+        "originator": "中国信通院（经深企投产业研究院转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "同源转述",
+      "notes": "**与库内 caict-wp2022-racks-2021（同一实体，2021 年底 520 万）构成序列**：两年 +290 万架、年均 +25%。同句算力总规模 230 EFLOPS、存力约 1,200 EB（本库无算力/存力总规模指标）。"
+    },
+    {
+      "fact_id": "miit-racks-inuse-2024",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc-racks-inuse",
+        "label": "中国在用数据中心机架"
+      },
+      "value": 880.0,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2024-12",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "9bb1d3c7936d2dc86a5cb039f6236e20fe552a6b9922c0587b26d62aadc8cd1e",
+        "local_file": "深企投产业研究院 智算中心行业研究（2025-04）.pdf",
+        "locator": "第 18 页：「根据工信部最新数据显示，2024 年，我国在用算力中心标准机架数超过 880 万架，算力规模较 2023 年底增长 16.5%」",
+        "grade": "S3",
+        "originator": "工信部（经深企投产业研究院转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "同源转述",
+      "notes": "**原文「超过」按下界记**。**口径是「算力中心」而非「数据中心」**，工信部 2024 年起改用算力中心口径，与 2023 年信通院「数据中心机架」可能不完全同口径，接成序列时要小心，标 [未核]。对照库内 cn-rack-total-2025（2025-06，1,085 万）。"
+    },
+    {
+      "fact_id": "kezhi-cn-aidc-it-load-2023",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "industry",
+        "id": "cn-aidc",
+        "label": "中国投用智算中心"
+      },
+      "value": 1.2055,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "IT 负载",
+        "basis": "实测",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9bb1d3c7936d2dc86a5cb039f6236e20fe552a6b9922c0587b26d62aadc8cd1e",
+        "local_file": "深企投产业研究院 智算中心行业研究（2025-04）.pdf",
+        "locator": "第 18 页：「根据科智咨询数据，2023 年，中国投用智算中心总 IT 负载达到 1205.5MW，同比增长 41.6%。预计 2026 年，中国智算中心 IT 负载规模将超 3000MW，复合年增速达到 36%」",
+        "grade": "S3",
+        "originator": "科智咨询（经深企投产业研究院转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：1,205.5 MW = 1.2055 GW。**只是智算中心**，不是全部数据中心；同比 +41.6%。**basis=实测是就近归类**，科智咨询的统计口径原文未说明。"
+    },
+    {
+      "fact_id": "kezhi-cn-aidc-it-load-2026e",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "industry",
+        "id": "cn-aidc",
+        "label": "中国投用智算中心"
+      },
+      "value": 3.0,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "IT 负载",
+        "basis": "预测",
+        "region": "CN"
+      },
+      "as_of": "2026E@2025-04",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "9bb1d3c7936d2dc86a5cb039f6236e20fe552a6b9922c0587b26d62aadc8cd1e",
+        "local_file": "深企投产业研究院 智算中心行业研究（2025-04）.pdf",
+        "locator": "第 18 页：「预计 2026 年，中国智算中心 IT 负载规模将超 3000MW，复合年增速达到 36%」",
+        "grade": "S3",
+        "originator": "科智咨询（经深企投产业研究院转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文「超」按下界记**。2023→2026 年复合增速 36%（1.2055×1.36³ ≈ 3.03 GW，与「超 3,000MW」一致）。做出时点按转述报告月记，科智原始发布时间未给。"
     }
   ]
 }
