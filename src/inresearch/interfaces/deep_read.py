@@ -26,6 +26,11 @@ def cmd_record(app, a):
         print('  ' + str(row['fact_id']))
         for problem in row['problems']:
             print('     - ' + problem)
+    for pair in report.get('disputes', []):
+        print('  ⚖ C3 A 档待审：' + pair['about'])
+        for side in pair['sides']:
+            print('     %s %s %s [%s]\n        %s' % (
+                side['asserter'], side['value'], side['unit'], side['fact_id'], side['locator']))
     return 1 if errors else 0
 
 

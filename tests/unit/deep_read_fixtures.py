@@ -48,9 +48,12 @@ def fact(**over):
         'as_of': '2022-01',
         'evidence': {'sha256': SHA, 'locator': '封面限价 79,483,818.90 元', 'grade': 'S2'},
         'depth': '精读', 'bound': 'point', 'corroboration': '已交叉验证',
+        # 断言者进 claim_key：同一家的重复仍然撞键，两家的分歧不再撞键。
+        'asserter': '中国移动',
     }
     base.update(over)
     return base
+
 
 def other(**over):
     """A fact about a different site, so it is a different claim."""

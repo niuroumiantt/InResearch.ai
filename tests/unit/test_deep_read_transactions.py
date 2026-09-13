@@ -305,3 +305,49 @@ class DeepReadTransactionTests(unittest.TestCase):
             self.app.backfill_provenance(True,plan['plan_sha256'])
         self.app.moves_path.write_text('{broken}\n')
         with self.assertRaisesRegex(ValueError,'invalid JSON record'):self.app.backfill_provenance()
+
+    def test_generated_dispute_links_do_not_break_original_request_replay(self):
+        first=fact(fact_id='original',asserter='First institute')
+        second=fact(fact_id='disputed',asserter='Second institute',value=5100,
+                    disputes=['original'])
+        self.app.record([first],SHA)
+        self.app.record([second],SHA)
+        receipts=self.app.read_log.read_bytes();stored=self.app.facts_path.read_bytes()
+        retry=self.app.record([first],SHA)
+        self.assertEqual((retry['accepted'],retry['replayed']),(0,1))
+        self.assertTrue(retry['receipt_replayed'])
+        self.assertEqual(stored,self.app.facts_path.read_bytes())
+        self.assertEqual(receipts,self.app.read_log.read_bytes())
+        self.assertEqual(self.app.load_facts()['records'][0]['disputed_by'],['disputed'])
+
+    def test_disputes_inside_one_batch_commit_together_and_replay_after_receipt_failure(self):
+        batch=[fact(fact_id='first',asserter='First institute'),
+               fact(fact_id='second',asserter='Second institute',value=5100,disputes=['first'])]
+        with patch.object(self.app,'remember_read',side_effect=OSError('receipt unavailable')):
+            with self.assertRaises(CompletionPending):self.app.record(batch,SHA)
+        records=self.app.load_facts()['records']
+        self.assertEqual(len(records),2)
+        self.assertEqual(records[0]['disputed_by'],['second'])
+        self.assertNotIn('disputed_by',batch[0])
+        retry=self.app.record(batch,SHA)
+        self.assertEqual(retry['replayed'],2)
+        self.assertEqual(len(list(read_rows(self.app.read_log))),1)
+
+    def test_batch_claim_indexes_enforce_new_dispute_and_revision_contracts(self):
+        first=fact(fact_id='first',asserter='First institute')
+        unlinked=fact(fact_id='second',asserter='Second institute',value=5100)
+        self.assertEqual(self.app.record([first,unlinked],SHA)['rejected'],1)
+        self.assertEqual(self.app.load_facts()['records'],[])
+        revised=fact(fact_id='revised',as_of='2022-01@2026-09',value=5100,
+                     asserter='First institute')
+        self.assertEqual(self.app.record([first,revised],SHA)['rejected'],1)
+        self.assertEqual(self.app.load_facts()['records'],[])
+        revised['supersedes']='first'
+        self.assertEqual(self.app.record([first,revised],SHA)['accepted'],2)
+
+    def test_historical_twin_rows_are_counted_separately_and_never_exclude_unread(self):
+        self.app.read_log.parent.mkdir(parents=True)
+        self.app.read_log.write_text(json.dumps(dict(sha256=SHA,twin_of='b'*64))+'\n')
+        self.assertEqual(self.app.status()['documents_read'],0)
+        self.assertEqual(self.app.status()['历史副本行_不计已读'],1)
+        self.assertEqual([r['sha256'] for r in self.app.eligible()],[SHA])

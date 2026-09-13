@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：608。
+在册文件：609。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,7 +15,7 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 12 |
-| 历史快照 | 98 |
+| 历史快照 | 99 |
 | 运行代码 | 132 |
 | 现行规范 | 13 |
 | 项目配置 | 35 |
@@ -36,7 +36,7 @@
 | `data/brief.json` | review_marked | 23 |
 | `data/companies.json` | records | 248 |
 | `data/contracts.json` | records | 2 |
-| `data/facts.json` | records | 1562 |
+| `data/facts.json` | records | 1568 |
 | `data/policies.json` | records | 2 |
 | `data/prices.json` | records | 207 |
 | `data/product_docs_plan.csv` | rows | 801 |
@@ -48,7 +48,7 @@
 | `data/research_knowledge.json` | answers | 0 |
 | `data/schema/company.schema.json` | required | 4 |
 | `data/schema/contract.schema.json` | required | 7 |
-| `data/schema/fact.schema.json` | required | 8 |
+| `data/schema/fact.schema.json` | required | 9 |
 | `data/schema/policy.schema.json` | required | 7 |
 | `data/schema/price.schema.json` | required | 6 |
 | `data/schema/products.schema.json` | required | 7 |
@@ -222,7 +222,7 @@
 | `framework/indicators.json` | indicators | 44 |
 | `framework/interface_manifest.json` | static_pages | 13 |
 | `framework/interface_manifest.json` | template_fragments | 4 |
-| `framework/metrics.json` | metrics | 278 |
+| `framework/metrics.json` | metrics | 297 |
 | `framework/modules.json` | modules | 15 |
 | `framework/research_graph.json` | views | 5 |
 | `framework/research_graph.json` | objects | 118 |
@@ -541,6 +541,7 @@
 | [docs/reviews/2026-09-13/deep-read/functions-before.csv](reviews/2026-09-13/deep-read/functions-before.csv) | 历史快照 |
 | `docs/reviews/2026-09-13/deep-read/statistics-before.json` | 历史快照 |
 | `docs/reviews/2026-09-13/deep-read/test-migration.json` | 历史快照 |
+| [docs/reviews/2026-09-13/fact-conflicts/DELIVERY.md](reviews/2026-09-13/fact-conflicts/DELIVERY.md) | 历史快照 |
 | [docs/reviews/2026-09-13/reading-revisions/DELIVERY.md](reviews/2026-09-13/reading-revisions/DELIVERY.md) | 历史快照 |
 | [docs/reviews/2026-09-13/reading-revisions/PLAN.md](reviews/2026-09-13/reading-revisions/PLAN.md) | 历史快照 |
 | `docs/reviews/2026-09-13/reading-revisions/baseline.json` | 历史快照 |

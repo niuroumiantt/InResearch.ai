@@ -73,6 +73,10 @@ class DeepRead:
         return {row['sha256'] for row in read_rows(self.read_log)
                 if row.get('sha256') and 'twin_of' not in row}
 
+    def twin_documents(self):
+        return {row['sha256'] for row in read_rows(self.read_log)
+                if row.get('sha256') and 'twin_of' in row}
+
     def remember_read(self, row, execution=None):
         operation = provenance.digest(row)
         store = JsonlStore(self.read_log)
@@ -161,7 +165,7 @@ class DeepRead:
                 problems = policy.admission_problems(ledger.get(sha, {}))
                 if doc_sha and sha != doc_sha:
                     problems.append('evidence.sha256 与 --doc 材料身份不一致')
-                if not problems and existing.get(fact.get('fact_id')) == fact:
+                if not problems and fact_contract.same_submission(existing.get(fact.get('fact_id')), fact):
                     replayed += 1
                     continue
                 problems += fact_contract.check_fact(fact, metrics, seen, claims)
@@ -169,16 +173,16 @@ class DeepRead:
                     rejected.append(dict(fact_id=fact.get('fact_id'), problems=problems))
                     continue
                 seen.add(fact['fact_id'])
-                claims[fact_contract.claim_key(fact)] = fact['fact_id']
-                key = fact_contract.forecast_key(fact)
-                if key is not None:
-                    claims.setdefault(key, fact['fact_id'])
+                fact_contract.index_claim(claims, fact)
                 accepted.append(copy.deepcopy(fact))
             report = dict(incoming=len(incoming), accepted=0, rejected=len(rejected),
                           replayed=replayed, facts_total=len(store['records']), problems=rejected)
             if rejected and not partial:
                 report['note'] = '默认全有或全无；确认收下通过的那些请加 --partial'
                 return report
+            disputes = fact_contract.cross_link_disputes(accepted, store['records'])
+            if disputes:
+                report.update(disputes_pending_a=len(disputes), disputes=disputes)
             if accepted:
                 store['records'].extend(accepted)
                 store['updated'] = now()[:10]
@@ -272,6 +276,7 @@ class DeepRead:
     def status(self):
         records = self.load_facts()['records']; metrics = self.load_metrics(); gaps = self.gaps.open()
         return dict(facts=len(records), documents_read=len(self.read_documents()),
+                    **{'历史副本行_不计已读': len(self.twin_documents())},
                     metrics_covered=len({f['metric_id'] for f in records}), metrics_total=len(metrics),
                     with_locator=sum(bool((f.get('evidence') or {}).get('locator')) for f in records),
                     with_sha256=sum(bool((f.get('evidence') or {}).get('sha256')) for f in records),

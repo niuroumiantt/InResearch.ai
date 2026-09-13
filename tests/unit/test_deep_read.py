@@ -921,3 +921,51 @@ class BackfillProvenanceTests(unittest.TestCase):
                          '缓存键与 sha256 前缀撞上了，按前缀 join 会写错哈希')
 
 
+
+
+class DisputeRecordTests(unittest.TestCase):
+    """争议进库之后要能被找到：反向链接与一屏可审的报告。"""
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-dispute-')
+        base = Path(self.temp.name)
+        self.facts = base / 'facts.json'
+        prior = fact(fact_id='miit-2021', value=94.0, asserter='工信部')
+        self.facts.write_text(json.dumps({'records': [prior]}, ensure_ascii=False),
+                              encoding='utf-8')
+        self.app = make_app()
+        self.addCleanup(self.app._test_temporary.cleanup)
+        self.app.facts_path = self.facts
+        self.app.read_log = base / 'l2_read.jsonl'
+        self.app.load_metrics = lambda: METRICS
+
+    def tearDown(self):
+        self.temp.cleanup()
+
+    def record(self, facts):
+        path = Path(self.temp.name) / 'incoming.json'
+        path.write_text(json.dumps(facts, ensure_ascii=False), encoding='utf-8')
+        out = io.StringIO()
+        with redirect_stdout(out):
+            CLI.cmd_record(self.app, type('A', (), {'facts': str(path), 'doc': None,
+                                         'partial': False, 'show': 5}))
+        lines = out.getvalue().splitlines()
+        return json.loads(lines[0]), '\n'.join(lines[1:])
+
+    def test_the_other_side_learns_it_is_contested(self):
+        report, _ = self.record([fact(fact_id='caict-2021', value=111.6,
+                                      asserter='中国信通院', disputes=['miit-2021'])])
+        self.assertEqual(report['accepted'], 1)
+        self.assertEqual(report['disputes_pending_a'], 1)
+        stored = {f['fact_id']: f for f in
+                  json.loads(self.facts.read_text(encoding='utf-8'))['records']}
+        self.assertEqual(stored['miit-2021']['disputed_by'], ['caict-2021'])
+
+    def test_both_values_are_printed_side_by_side_for_the_owner(self):
+        _, tail = self.record([fact(fact_id='caict-2021', value=111.6,
+                                    asserter='中国信通院', disputes=['miit-2021'])])
+        self.assertIn('C3 A 档待审', tail)
+        self.assertIn('工信部', tail)
+        self.assertIn('中国信通院', tail)
+        self.assertIn('94', tail)
+        self.assertIn('111.6', tail)

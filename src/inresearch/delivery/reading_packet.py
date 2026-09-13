@@ -145,6 +145,7 @@ sha256：{sha}
 ```json
 {{
   "fact_id": "小写连字符，全库唯一",
+  "asserter": "最初断言这个数的机构短名；不是转述者，确实不可追溯填未注明",
   "metric_id": "必须是下面菜单里的某一个",
   "entity": {{"type": "project|company|region|component|market", "id": "...", "label": "..."}},
   "value": 4406.0,
@@ -162,6 +163,10 @@ sha256：{sha}
   "notes": "口径的例外、加总方式、被减项"
 }}
 ```
+
+断言者（asserter）与材料 SHA 分开。转述 IDC 的数仍写 IDC。已有同年同口径记录时，
+不同断言者须用 disputes 列出已有 fact_id，双方保留供 C3 A 档审核；同一断言者修订实绩，
+用 as_of 的 @版本与 supersedes 指向旧事实。不同时间的预测可并列，不自动替代。
 
 ## 五条纪律
 

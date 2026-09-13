@@ -1058,13 +1058,21 @@ class M05M09MenuTests(unittest.TestCase):
         self.assertTrue(rows)
         self.assertTrue(any(f.get('bound') == 'upper' for f in rows),
                         '上界那条应当也在，且同样带着这两维')
-        # 回填当天的那批一律「未注明」；之后读进来的可以按原文填具体值——
-        # AIDC 机房白皮书那两条就是明写「新建」智算机房的承重要求。
-        # 这里钉的是「回填没有凭空编出档位」，不是「这两维永远不许有值」。
-        # GB 50174 与联通建设标准同样原文分了新建/改建。
-        later = ('aidc-wp-', 'gb50174-2017-', 'cucc-idc-std-')
+        # 钉的是「回填那一批没有凭空编出档位」，不是「这两维永远不许有值」。
+        # 按 fact_id 白名单点名回填批次，而不是给新录条目列前缀豁免：
+        # 前缀白名单每加一份原文明写档位的材料就要改一次，改的是断言本身，
+        # 而这条断言该管的东西（2026-09-13 那次回填有没有编数）是不变的。
+        BACKFILLED = {
+            'cmcc-idc-v32-floorload-mainroom-2019',
+            'cmcc-idc-v32-floorload-battery-2019',
+            'cmcc-idc-v32-floorload-mainroom-2019-upper',
+            'cmcc-idc-v32-clearheight-4star-2019',
+            'cmcc-idc-v32-clearheight-23star-new-2019',
+            'cmcc-idc-v32-clearheight-23star-retrofit-2019',
+            'alibaba-2019-immersion-idc-floorload-13kn',
+        }
         for f in rows:
-            if f['fact_id'].startswith(later):
+            if f['fact_id'] not in BACKFILLED:
                 self.assertIn(f['caliber']['tier'], self.dim(f['metric_id'], 'tier')['values'], f['fact_id'])
                 self.assertIn(f['caliber']['build_type'], self.dim(f['metric_id'], 'build_type')['values'], f['fact_id'])
                 continue
@@ -2440,3 +2448,74 @@ class FifthRoundGapTests(unittest.TestCase):
             self.assertNotIn(gid, open_ids, gid)
 
 
+
+
+class AsserterTests(unittest.TestCase):
+    """谁说的进键，从哪份文件读到的不进键。
+
+    上一版规则按 sha256 判争议，两头判反：绿色数据中心白皮书一份 PDF 里引了
+    416.2 与 ICTresearch 的 1,103（一个哈希、两个断言者），IDC 对 2016 年的数
+    改过五版（五个哈希、一个断言者）。文件身份不是断言身份。
+    """
+
+    def test_two_houses_on_one_question_no_longer_collide(self):
+        """工信部 94 对信通院 111.6：同指标同年同口径，两家。"""
+        miit = fact(fact_id='cn-dc-power-2021-miit', value=94.0, asserter='工信部')
+        caict = fact(fact_id='cn-dc-power-2021-caict', value=111.6, asserter='中国信通院')
+        self.assertNotEqual(FC.claim_key(miit), FC.claim_key(caict))
+        self.assertEqual(FC.claim_identity(miit), FC.claim_identity(caict),
+                         '同一个问题——冲突要能被找到，靠的就是这个键相同')
+
+    def test_the_same_house_twice_still_collides(self):
+        one = fact(fact_id='a-1', asserter='IDC')
+        two = fact(fact_id='a-2', value=99.0, asserter='IDC')
+        self.assertEqual(FC.claim_key(one), FC.claim_key(two))
+
+    def test_a_missing_asserter_is_refused(self):
+        bad = problems(fact(asserter=None))
+        self.assertTrue(any('asserter' in p for p in bad), bad)
+
+    def test_a_report_title_is_not_an_asserter(self):
+        """originator 存书名期号日期，asserter 只要机构名——它要当键用。"""
+        bad = problems(fact(asserter='IDC《Worldwide Global StorageSphere Forecast, '
+                                     '2021–2025》（#US47509621，2021-03）'))
+        self.assertTrue(any('机构名' in p for p in bad), bad)
+
+    def test_a_placeholder_is_not_an_asserter(self):
+        self.assertTrue(problems(fact(asserter='待补')))
+
+    def test_unstated_does_not_earn_a_seat_beside_a_named_house(self):
+        """来源不明的数与具名来源并列，等于白送它一个独立印证的地位。"""
+        named = fact(fact_id='iea-2025', value=485.0, asserter='IEA')
+        claims = FC.index_claims([named])
+        anon = fact(fact_id='unknown-2025', value=448.0, asserter='未注明')
+        bad = problems(anon, claims=claims)
+        self.assertTrue(any('未注明' in p for p in bad), bad)
+
+    def test_two_named_houses_must_point_at_each_other(self):
+        first = fact(fact_id='miit-2021', value=94.0, asserter='工信部')
+        claims = FC.index_claims([first])
+        second = fact(fact_id='caict-2021', value=111.6, asserter='中国信通院')
+        bad = problems(second, claims=claims)
+        self.assertTrue(any('disputes' in p for p in bad), bad)
+        self.assertEqual(problems({**second, 'disputes': ['miit-2021']}, claims=claims), [])
+
+    def test_a_revision_is_not_a_dispute(self):
+        """IDC 自己改 2016 年的数：同一家、后一版，要 supersedes 而不是 disputes。"""
+        old = fact(fact_id='idc-2016-v2019', as_of='2016@2019-04',
+                   value=1923.9, asserter='IDC')
+        claims = FC.index_claims([old])
+        new = fact(fact_id='idc-2016-v2021', as_of='2016@2021-03',
+                   value=2000.0, asserter='IDC')
+        bad = problems(new, claims=claims)
+        self.assertTrue(any('supersedes' in p and '修订' in p for p in bad), bad)
+        self.assertEqual(problems({**new, 'supersedes': 'idc-2016-v2019'},
+                                  claims=claims), [])
+
+    def test_two_vintages_of_one_forecast_stay_side_by_side(self):
+        """预测的两个时点是两个都还活着的判断，不是接替，不要 supersedes。"""
+        first = fact(fact_id='idc-2025e-at-2019', as_of='2025E@2019-04', asserter='IDC')
+        claims = FC.index_claims([first])
+        second = fact(fact_id='idc-2025e-at-2021', as_of='2025E@2021-03',
+                      value=99.0, asserter='IDC')
+        self.assertEqual(problems(second, claims=claims), [])

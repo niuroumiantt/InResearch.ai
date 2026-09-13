@@ -34,6 +34,12 @@
 
 完整文件计划见 file-plan.csv；逐公共函数职责见 functions-before.csv；调用和操作引用见 consumers-before.csv。最终提供对应 after/result 表，不能以短文件、测试总数或部署代替这些退出条件。
 
+## 集成前补充（2026-09-13，先记录再迁移）
+
+实施期间主分支推进至 20814b8，PR #167 新增断言者/争议/修订事实契约与 11 个测试，直接改动了待拆的 deep_read 和 test_m4_l2。冻结的 465f8de 基线仍保留；另列集成基线以区分本轮整改与其他任务的数据增长。完整保留上游 facts、metrics、schema 与规范映射；把新增 9 个纯契约测试迁到 test_fact_contract、2 个录入测试迁到 test_deep_read，旧巨型测试文件仍退出。
+
+新增公共责任：争议索引/反向链接属于 knowledge.fact_contract，DeepRead 在同一事实事务内调用，CLI 只呈现双方摘要；不在 workflow 保留第二套 claim 规则。阅读包同步新必填 asserter 与 disputes/supersedes 提示。反向链接是写入系统生成字段，须验证它不会导致旧请求重试被当成新事实；历史 twin 行继续保留并单独计量，不算已读。实模型验收须在集成新契约后重跑；之前的成功只作为集成前证据。
+
 ## 验证与边界
 
 - 真实 CLI：隔离原件/清单 → queue/pack → Claude CLI 阅读 → record → 重放 → 一份完成结果，保留候选/事实/C3 区别。

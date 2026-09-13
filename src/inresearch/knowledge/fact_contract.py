@@ -20,8 +20,55 @@ AS_OF = re.compile(r'^\d{4}(-\d{4}|-\d{2}(-\d{2})?|-Q[1-4]E?|-H[12]E?)?(E|目标
 
 FACT_ID = re.compile(r'^[a-z0-9]+(-[a-z0-9]+)*$')
 
+# 断言者不明时的取值。**它与任何具名断言者相撞时按重复处理**（见 record）：
+# 宁可拒一条真的，也不要让一个来源不明的数伪装成第二家的独立印证。
+UNSTATED_ASSERTER = '未注明'
+
+# 转载不是断言。同一原文的两次转载、两次 OCR、两个模型复述都不算独立来源
+# （01_data_standards §60），所以 asserter 记的是**最初说这个数的那一家**，
+# 不是我们从哪份文件读到它。花旗转述 IDC 的数，asserter 是 IDC。
+ASSERTER_MAX = 40
+
+def claim_identity(fact: dict) -> tuple:
+    """What the record is *about*: metric, entity, date, caliber, bound.
+
+    Deliberately without the asserter.  Two houses giving different numbers for
+    one thing are two records about one question - that shared question is this
+    key, and it is what makes a conflict findable at all.
+    """
+    caliber = fact.get('caliber')
+    dims = (tuple(sorted((k, str(v)) for k, v in caliber.items()))
+            if isinstance(caliber, dict) else ())
+    return ('about', fact.get('metric_id'), (fact.get('entity') or {}).get('id'),
+            str(fact.get('as_of') or ''), dims, fact.get('bound') or 'point')
+
+
+def asserter_of(fact: dict) -> str:
+    """Who says so, normalised to a short name.  '未注明' when unrecoverable."""
+    return str(fact.get('asserter') or '').strip() or UNSTATED_ASSERTER
+
+
 def claim_key(fact: dict) -> tuple:
-    """What makes two records the same claim: metric, entity, date, caliber.
+    """What makes two records the same claim: who asserts what about which thing.
+
+    **The asserter belongs in the key.** 工信部 says 2021 用电 94 TWh and 信通院
+    says 111.6 TWh: same metric, same year, same caliber, two houses.  Keyed
+    without the asserter the second one is refused as a duplicate and the
+    disagreement never enters the store - which is exactly backwards: a
+    disagreement between two independent houses is one of the most valuable
+    things a fact layer can hold.  §60 of 01_data_standards says to keep both
+    sides with their originals and mark the dispute; this key is what lets it.
+
+    Keyed *with* the asserter, the file a number arrived in stops mattering -
+    and it should stop mattering.  绿色数据中心白皮书 quotes both 416.2 TWh and
+    ICTresearch's 1,103 TWh from one PDF with one sha256; IDC revises its own
+    2016 figure across five editions with five different sha256.  Judging
+    conflict by file identity gets both cases wrong in opposite directions.
+    Who asserts a number is not where you found it.
+
+    A revision is not a conflict: same asserter, same year, a later edition.
+    That is carried by as_of's @vintage (2016@2021-03) plus `supersedes`, which
+    keeps the earlier value readable instead of overwriting it.
 
     Caliber belongs in the key because it is the thing that makes two numbers
     different rather than contradictory.  The store already holds 4406 元/㎡
@@ -37,11 +84,22 @@ def claim_key(fact: dict) -> tuple:
     only as prose in notes.  Ranges are the normal shape of an expert call, not
     an edge case.
     """
-    caliber = fact.get('caliber')
-    dims = (tuple(sorted((k, str(v)) for k, v in caliber.items()))
-            if isinstance(caliber, dict) else ())
-    return ('claim', fact.get('metric_id'), (fact.get('entity') or {}).get('id'),
-            str(fact.get('as_of') or ''), dims, fact.get('bound') or 'point')
+    _, metric, entity, as_of, dims, bound = claim_identity(fact)
+    return ('claim', metric, entity, as_of, dims, bound, asserter_of(fact))
+
+
+def revision_key(fact: dict) -> tuple:
+    """One asserter's series for one year, with the edition stripped off.
+
+    IDC's 2016 installed-bytes figure appears in the 2018, 2019, 2020, 2021 and
+    2023 editions with different values.  They are one series revised, not five
+    claims, so they share this key and each later one must name what it
+    supersedes.
+    """
+    _, metric, entity, as_of, dims, bound = claim_identity(fact)
+    return ('revision', metric, entity, as_of.split('@')[0], dims, bound,
+            asserter_of(fact))
+
 
 def forecast_key(fact: dict) -> tuple | None:
     """The same claim with the vintage stripped off - forecasts only.
@@ -55,18 +113,39 @@ def forecast_key(fact: dict) -> tuple | None:
     as_of = str(fact.get('as_of') or '')
     if 'E' not in as_of:
         return None
-    _, metric, entity, _, dims, bound = claim_key(fact)
-    return ('forecast', metric, entity, as_of.split('@')[0], dims, bound)
+    _, metric, entity, _, dims, bound = claim_identity(fact)
+    return ('forecast', metric, entity, as_of.split('@')[0], dims, bound,
+            asserter_of(fact))
 
 def index_claims(records: list[dict]) -> dict:
-    """claim/forecast key -> the fact_id already holding it."""
+    """claim/forecast/revision key -> the fact_id already holding it.
+
+    claim_identity maps to a *list*: that is the one key several records are
+    allowed to share, and the conflict check needs all of them, not the last.
+    """
     claims = {}
-    for f in records:
-        claims[claim_key(f)] = f.get('fact_id')
-        key = forecast_key(f)
-        if key is not None:
-            claims.setdefault(key, f.get('fact_id'))
+    for fact in records:
+        index_claim(claims, fact)
     return claims
+
+
+def index_claim(claims: dict, fact: dict) -> None:
+    """Add a validated record to every identity used by batch and stored checks."""
+    claims[claim_key(fact)] = fact.get('fact_id')
+    claims.setdefault(revision_key(fact), fact.get('fact_id'))
+    key = forecast_key(fact)
+    if key is not None:
+        claims.setdefault(key, fact.get('fact_id'))
+    claims.setdefault(claim_identity(fact), []).append(fact.get('fact_id'))
+
+
+def same_submission(stored: dict | None, incoming: dict) -> bool:
+    """Generated reverse links may grow after the original request committed."""
+    return stored is not None and stored == {**incoming, **(
+        {'disputed_by': stored['disputed_by']}
+        if 'disputed_by' in stored and 'disputed_by' not in incoming else {})}
+
+
 
 def check_fact(fact: dict, metrics: dict, seen: set, claims: dict | None = None) -> list[str]:
     bad = []
@@ -132,6 +211,17 @@ def check_fact(fact: dict, metrics: dict, seen: set, claims: dict | None = None)
         if not re.fullmatch(r'[0-9a-f]{64}', sha):
             bad.append('evidence.sha256 必须是 64 位十六进制——路径会变，内容不会')
 
+    asserter = str(fact.get('asserter') or '').strip()
+    if not asserter:
+        bad.append('缺 asserter——最初说这个数的那一家（IDC / 信通院 / 工信部 / IEA）；'
+                   '转述者不算断言者，花旗转述 IDC 的数 asserter 写 IDC；'
+                   '全文确实查不到就写「%s」' % UNSTATED_ASSERTER)
+    elif len(asserter) > ASSERTER_MAX:
+        bad.append('asserter 要短到能当键用（≤%d 字）：报告名、期号、发布日期写进 '
+                   'evidence.originator，这里只要机构名' % ASSERTER_MAX)
+    elif asserter in PLACEHOLDER_VALUES:
+        bad.append('asserter = %r 是占位词不是机构名' % asserter)
+
     if fact.get('bound') is not None and fact['bound'] not in BOUNDS:
         bad.append('bound 必须是 %s' % ' / '.join(BOUNDS))
     if fact.get('corroboration') is not None and fact['corroboration'] not in CORROBORATION:
@@ -152,19 +242,104 @@ def check_fact(fact: dict, metrics: dict, seen: set, claims: dict | None = None)
         bad.append('value 为 null 时必须在 notes 说明为何留白')
 
     if claims is not None:
-        key = forecast_key(fact)
-        if key is not None and '@' not in str(fact.get('as_of') or ''):
-            prior = claims.get(key)
-            if prior:
-                bad.append('同一年份的预测已有一条 %s——若是同一个数，属重复录入；'
-                           '若是不同时点做出的两次预测，两条都要写成 2025E@2024-04 '
-                           '的形式带上做出时点，否则它们会被平均到一起。'
-                           '同一家自己的再预测不构成交叉验证。' % prior)
-        else:
-            prior = claims.get(claim_key(fact))
-            if prior:
-                bad.append('同口径同时点同 bound 已有一条 %s——要么是重复录入，'
-                           '要么少了一个把两者区分开的口径维度；'
-                           '若这两个数是一个区间的两端，把它们写成 '
-                           'bound: upper 与 bound: lower 两条' % prior)
+        bad.extend(_collision_problems(fact, claims))
     return bad
+
+
+def _collision_problems(fact: dict, claims: dict) -> list[str]:
+    """Three different things look alike here, and only one is an error.
+
+    Same asserter, same everything: a duplicate.
+    Same asserter, a later edition: a revision - keep both, name what it
+      supersedes, and put the edition in as_of's @vintage.
+    Different asserters: a conflict - keep both sides, cross-link them, and it
+      goes to C3 A 档 for the owner.  §60 forbids letting the higher grade or
+      the later date silently overwrite.
+    """
+    bad = []
+    as_of = str(fact.get('as_of') or '')
+    forecast = forecast_key(fact)
+    if forecast is not None and '@' not in as_of:
+        prior = claims.get(forecast)
+        if prior:
+            return ['同一年份的预测已有一条 %s——若是同一个数，属重复录入；'
+                    '若是不同时点做出的两次预测，两条都要写成 2025E@2024-04 '
+                    '的形式带上做出时点，否则它们会被平均到一起。'
+                    '同一家自己的再预测不构成交叉验证。' % prior]
+
+    twin = claims.get(claim_key(fact))
+    if twin:
+        return ['同一断言者、同口径同时点同 bound 已有一条 %s——要么是重复录入，'
+                '要么少了一个把两者区分开的口径维度；'
+                '若这两个数是一个区间的两端，把它们写成 '
+                'bound: upper 与 bound: lower 两条' % twin]
+
+    # 同一家的另一版：as_of 带 @ 才算修订，且必须指明替代了谁。
+    #
+    # 只对实绩要求 supersedes，不对预测要求：同一家在两个时点对 2025 年做的
+    # 两次预测是两个都还活着的判断（看法怎么变，本身就是要读的东西），而同一
+    # 家对 2016 年实际值改口，后一版是要替代前一版的。两者都用 @ 记版本，但
+    # 一个是并列，一个是接替。
+    if '@' in as_of and forecast is None:
+        prior = claims.get(revision_key(fact))
+        if prior and prior != fact.get('supersedes'):
+            bad.append('同一断言者对 %s 已有一条 %s——这是修订而不是争议：'
+                       'supersedes 写 %s，旧版留在库里不覆盖'
+                       % (as_of.split('@')[0], prior, prior))
+
+    # 别人家的同一个问题：并列，但必须互相指认。
+    others = [fid for fid in (claims.get(claim_identity(fact)) or [])
+              if fid != fact.get('fact_id')]
+    if others:
+        named = asserter_of(fact) != UNSTATED_ASSERTER
+        declared = set(fact.get('disputes') or [])
+        undeclared = [fid for fid in others if fid not in declared]
+        if undeclared and not named:
+            bad.append('同一问题下已有 %s，而这一条的 asserter 是「%s」——'
+                       '来源不明的数与具名来源的数并列，等于给它一个它没有的'
+                       '独立印证地位。先把断言者查出来，或确认它就是那一家的转述'
+                       '（这种情况不新增事实，corroboration 记「同源转述」）'
+                       % ('、'.join(undeclared), UNSTATED_ASSERTER))
+        elif undeclared:
+            bad.append('同一问题下已有 %s（不同断言者）——按 01_data_standards §60，'
+                       '两边都要留下并标明争议：把 disputes 写成 [%s]。'
+                       '不要因为来源等级或发布日期更晚就覆盖对方。'
+                       % ('、'.join(undeclared),
+                          ', '.join('"%s"' % fid for fid in undeclared)))
+    return bad
+
+
+def cross_link_disputes(accepted: list[dict], stored: list[dict]) -> list[dict]:
+    """Write the reverse link on the other side, and report each pair once.
+
+    A dispute declared in one direction only is half recorded: whoever reads
+    the older fact would never learn it is contested.  record writes
+    disputed_by rather than asking the reader to edit two records by hand -
+    the same reason supersedes does not overwrite the old edition.
+    """
+    by_id = {f.get('fact_id'): f for f in list(stored) + list(accepted)}
+    pairs = []
+    for fact in accepted:
+        others = [by_id.get(fid) for fid in (fact.get('disputes') or [])]
+        others = [o for o in others if o]
+        if not others:
+            continue
+        for other in others:
+            back = other.setdefault('disputed_by', [])
+            if fact['fact_id'] not in back:
+                back.append(fact['fact_id'])
+        pairs.append({'about': '%s / %s / %s' % (
+            fact.get('metric_id'), (fact.get('entity') or {}).get('id') or '—',
+            fact.get('as_of')),
+            'sides': [side_summary(f) for f in [fact] + others]})
+    return pairs
+
+
+def side_summary(fact: dict) -> dict:
+    value = fact.get('value')
+    if value is None and fact.get('value_range'):
+        value = '%s-%s' % tuple(fact['value_range'])
+    return {'fact_id': fact.get('fact_id'), 'asserter': asserter_of(fact),
+            'value': '未披露' if value is None else value,
+            'unit': fact.get('unit') or '',
+            'locator': (fact.get('evidence') or {}).get('locator') or ''}
