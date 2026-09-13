@@ -2344,18 +2344,18 @@
         "region": "Global"
       },
       "bound": "point",
-      "as_of": "2026",
+      "as_of": "2024-12",
       "evidence": {
         "source_id": "e24f98981216",
         "locator": "交银国际《数据中心系列研究（2）》(2026-04-30)「全球97个主要市场中有20个市场的空置率极低，并低于5%（当中7个市场的空置率低于1%）」",
         "grade": "S4",
-        "originator": "（原文未标明统计机构）",
+        "originator": "戴德梁行（经交银国际转述）",
         "sha256": "3f4f64e06794060835d085a7cc49aa8563e0b765b293b2366702f54541018d7e"
       },
       "depth": "精读",
-      "notes": "**分母是「全球 97 个主要市场」，其划分标准与统计机构原文未给出，已标 [未核]**。更极端的一档：其中 7 个市场空置率低于 1%。**⚠ 必须与同报告的另一句配对读：「并非所有运营中的数据中心都有足够容量满足单个设施内 20MW 以上的需求，大体量项目容量依然不足」——总量空置与「大单可承接容量」是两回事，只看空置率会低估紧张程度。**region=Global。",
+      "notes": "**2026-09-13 更正：as_of 由 2026 改为 2024-12。**在 d39895a4cdc3ea8a（同一份交银国际报告的另一个文件）里读到原文，发现这组数不是交银自己的 2026 年判断，而是转引「戴德梁行数据，2024 年底，97 个全球市场……」——时点是 2024 年底、源头是戴德梁行。fact_id 保留原样以免断链。 **分母是「全球 97 个主要市场」，其划分标准与统计机构原文未给出，已标 [未核]**。更极端的一档：其中 7 个市场空置率低于 1%。**⚠ 必须与同报告的另一句配对读：「并非所有运营中的数据中心都有足够容量满足单个设施内 20MW 以上的需求，大体量项目容量依然不足」——总量空置与「大单可承接容量」是两回事，只看空置率会低估紧张程度。**region=Global。",
       "value": 20.0,
-      "corroboration": "孤证已知"
+      "corroboration": "同源转述"
     },
     {
       "fact_id": "singapore-vacancy-2026",
@@ -34363,6 +34363,351 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "单位换算：370 亿美元 = 37,000 百万美元。**原文「突破」按下界记。**2024-2029 CAGR 22%；光学器件（光芯片与光学元件组件）占光模块成本 70% 以上。**同段 Lumentum 25Q3 电话会称光芯片供需缺口已升至 25%-30%**，2026 年光芯片有望涨价（缺口比例本库无光芯片指标，未录）。as_of 做出时点按国信报告月记，LightCounting 原预测发布时间未给，标 [未核]。"
+    },
+    {
+      "fact_id": "jll-global-dc-capacity-2030e",
+      "metric_id": "global_operational_gw",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 200.0,
+      "unit": "GW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "Global"
+      },
+      "as_of": "2030E@2026-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d39895a4cdc3ea8ae1aa9dc32da477ac2524398ab28cc523ff1586a5090fa302",
+        "local_file": "交银国际 数据中心系列研究（2）：“智能算力枢纽”转型进行时（2026-04-29）.pdf",
+        "locator": "第 2 页摘要与第 16 页：「据仲量联行预计，2026 年至 2030 年间，全球数据中心行业规模或将增长 97GW，到 2030 年，全球数据中心容量或达 200GW，主要受益于超大规模云的扩张和人工智能需求驱动」",
+        "grade": "S3",
+        "originator": "仲量联行（JLL，经交银国际转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**capacity_type=IT容量是就近归类**：原文只说「数据中心容量」，未说明 IT 负载还是设施容量，而本指标没有「未披露」取值——标 [未核]。 **2026-2030 增 97GW，意味着 2025 年底约 103GW**（原文未直接给基期，此为倒推，未入库）。 分区域：美洲占全球约 50%、2030 年前 CAGR 17%（美国约占美洲 90%）；亚太 32→57GW、CAGR 12%；EMEA CAGR 10%、新增 13GW。 **配套金额**：JLL 预计未来五年 100GW 新增容量创造 1.2 万亿美元资产价值，叠加租户 GPU 与网络投入 1-2 万亿美元，总支出接近 3 万亿美元。 对照库内 IEA（2030 Base Case 945 TWh）与 RAND（全球 AI 数据中心 327 GW）：**口径全不同**——电量、仅 AI、全部数据中心容量——不可直接比。"
+    },
+    {
+      "fact_id": "jll-apac-dc-capacity-2025",
+      "metric_id": "global_operational_gw",
+      "entity": {
+        "type": "region",
+        "id": "apac-datacenters",
+        "label": "亚太数据中心（合计）"
+      },
+      "value": 32.0,
+      "unit": "GW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "APAC"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d39895a4cdc3ea8ae1aa9dc32da477ac2524398ab28cc523ff1586a5090fa302",
+        "local_file": "交银国际 数据中心系列研究（2）：“智能算力枢纽”转型进行时（2026-04-29）.pdf",
+        "locator": "第 16 页：「亚太地区的数据中心容量将从 32GW 增长到 57GW，复合年增长率将达 12%」",
+        "grade": "S3",
+        "originator": "仲量联行（JLL，经交银国际转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**起点年份原文未写**，按「未来五年」与 2030 终点倒推为 2025，标 [未核]。capacity_type 就近记 IT 容量，同上条。 亚太内部分化：托管服务 CAGR 19% 领跑，企业本地部署容量未来五年预计下降 6%。 2026 年东京、北京、上海运营产能预计分别增长 20%、8%、12%；在建项目签约率部分主要市场约 90%，规划项目预租率柔佛 49%、新加坡 46%。"
+    },
+    {
+      "fact_id": "jll-apac-dc-capacity-2030",
+      "metric_id": "global_operational_gw",
+      "entity": {
+        "type": "region",
+        "id": "apac-datacenters",
+        "label": "亚太数据中心（合计）"
+      },
+      "value": 57.0,
+      "unit": "GW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "APAC"
+      },
+      "as_of": "2030E@2026-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d39895a4cdc3ea8ae1aa9dc32da477ac2524398ab28cc523ff1586a5090fa302",
+        "local_file": "交银国际 数据中心系列研究（2）：“智能算力枢纽”转型进行时（2026-04-29）.pdf",
+        "locator": "第 16 页：同句",
+        "grade": "S3",
+        "originator": "仲量联行（JLL，经交银国际转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**起点年份原文未写**，按「未来五年」与 2030 终点倒推为 2025，标 [未核]。capacity_type 就近记 IT 容量，同上条。 亚太内部分化：托管服务 CAGR 19% 领跑，企业本地部署容量未来五年预计下降 6%。 2026 年东京、北京、上海运营产能预计分别增长 20%、8%、12%；在建项目签约率部分主要市场约 90%，规划项目预租率柔佛 49%、新加坡 46%。"
+    },
+    {
+      "fact_id": "cw-low-vacancy-markets-lt1-2024",
+      "metric_id": "low_vacancy_market_count",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-markets",
+        "label": "全球主要数据中心市场"
+      },
+      "value": 7.0,
+      "unit": "个",
+      "caliber": {
+        "threshold": "<1%",
+        "universe": "全球主要市场",
+        "region": "Global"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d39895a4cdc3ea8ae1aa9dc32da477ac2524398ab28cc523ff1586a5090fa302",
+        "local_file": "交银国际 数据中心系列研究（2）：“智能算力枢纽”转型进行时（2026-04-29）.pdf",
+        "locator": "第 4 页：「另外，根据戴德梁行数据，2024 年底，97 个全球市场中，仅 8 个运营中的数据中心拥有足够的容量，可以满足单个设施内 20MW 或以上容量的需求……全球 97 个主要市场中有 20 个市场的空置率极低，并低于 5%（当中 7 个市场的空置率低于 1%）」",
+        "grade": "S3",
+        "originator": "戴德梁行（经交银国际转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "同源转述",
+      "notes": "**97 个市场里 7 个空置率 <1%**，是 20 个 <5% 的子集。同句另一个数更尖锐：**97 个市场中只有 8 个能在单体设施内提供 ≥20MW**（本库无「可满足大体量需求的市场数」指标，未录）。时点为戴德梁行 2024 年底数据。"
+    },
+    {
+      "fact_id": "vnet-base-capacity-2025",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "company",
+        "id": "vnet",
+        "label": "世纪互联"
+      },
+      "value": 889.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "CN"
+      },
+      "as_of": "2025-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d39895a4cdc3ea8ae1aa9dc32da477ac2524398ab28cc523ff1586a5090fa302",
+        "local_file": "交银国际 数据中心系列研究（2）：“智能算力枢纽”转型进行时（2026-04-29）.pdf",
+        "locator": "第 11 页：「截至 2025 财年末，该公司在全国 30 多个城市运营超过 50 座数据中心，基地型业务运营容量 889MW，城市型业务运营机柜数超 49,000 个」；「在运营规模自 2023 年底的 332MW，大幅上升至 2025 年的 889MW，2 年 CAGR 为 63.6%」",
+        "grade": "S4",
+        "originator": "交银国际研究（谢骐聪）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**只是基地型业务的运营容量**，不含城市型（城市型按机柜计，超 49,000 个）。两年 CAGR 63.6%（332→889MW）。capacity_type 原文未说明 IT 还是设施，记未披露。"
+    },
+    {
+      "fact_id": "vnet-base-capacity-2023",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "company",
+        "id": "vnet",
+        "label": "世纪互联"
+      },
+      "value": 332.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "CN"
+      },
+      "as_of": "2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d39895a4cdc3ea8ae1aa9dc32da477ac2524398ab28cc523ff1586a5090fa302",
+        "local_file": "交银国际 数据中心系列研究（2）：“智能算力枢纽”转型进行时（2026-04-29）.pdf",
+        "locator": "第 11 页：「在运营规模自 2023 年底的 332MW，大幅上升至 2025 年的 889MW」",
+        "grade": "S4",
+        "originator": "交银国际研究（谢骐聪）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "基地型业务 2023 年底运营容量，与 vnet-base-capacity-2025 构成两点序列。"
+    },
+    {
+      "fact_id": "vnet-base-delivered-2025",
+      "metric_id": "annual_delivery_capacity",
+      "entity": {
+        "type": "company",
+        "id": "vnet",
+        "label": "世纪互联"
+      },
+      "value": 404.0,
+      "unit": "MW/年",
+      "caliber": {
+        "scope": "单一头部企业",
+        "basis": "实测",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d39895a4cdc3ea8ae1aa9dc32da477ac2524398ab28cc523ff1586a5090fa302",
+        "local_file": "交银国际 数据中心系列研究（2）：“智能算力枢纽”转型进行时（2026-04-29）.pdf",
+        "locator": "第 11 页：「支撑了公司 2025 年 82.4 亿元资本开支及 2026 年 100 亿-120 亿元的资本开支计划，主要用于保障这些订单的交付（2025 年交付 404MW，创历史新高；2026 年计划交付 450-500MW）」",
+        "grade": "S4",
+        "originator": "交银国际研究（谢骐聪）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**2025 年交付 404MW，创历史新高**，对应资本开支 82.4 亿元——**粗算约 2,040 万元/MW**（未入库，含未交付在建的投入，不是单位造价）。订单集中在环京与乌兰察布，4Q25 单季新增基地型订单 135MW。"
+    },
+    {
+      "fact_id": "vnet-base-delivery-plan-2026-low",
+      "metric_id": "annual_delivery_capacity",
+      "entity": {
+        "type": "company",
+        "id": "vnet",
+        "label": "世纪互联"
+      },
+      "value": 450.0,
+      "unit": "MW/年",
+      "caliber": {
+        "scope": "单一头部企业",
+        "basis": "厂商指引",
+        "region": "CN"
+      },
+      "as_of": "2026E@2026-04",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "d39895a4cdc3ea8ae1aa9dc32da477ac2524398ab28cc523ff1586a5090fa302",
+        "local_file": "交银国际 数据中心系列研究（2）：“智能算力枢纽”转型进行时（2026-04-29）.pdf",
+        "locator": "第 11 页：「2026 年计划交付 450-500MW」",
+        "grade": "S4",
+        "originator": "交银国际研究（谢骐聪）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间下界；2026 年资本开支计划 100-120 亿元。"
+    },
+    {
+      "fact_id": "vnet-base-delivery-plan-2026-high",
+      "metric_id": "annual_delivery_capacity",
+      "entity": {
+        "type": "company",
+        "id": "vnet",
+        "label": "世纪互联"
+      },
+      "value": 500.0,
+      "unit": "MW/年",
+      "caliber": {
+        "scope": "单一头部企业",
+        "basis": "厂商指引",
+        "region": "CN"
+      },
+      "as_of": "2026E@2026-04",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "d39895a4cdc3ea8ae1aa9dc32da477ac2524398ab28cc523ff1586a5090fa302",
+        "local_file": "交银国际 数据中心系列研究（2）：“智能算力枢纽”转型进行时（2026-04-29）.pdf",
+        "locator": "第 11 页：「2026 年计划交付 450-500MW」",
+        "grade": "S4",
+        "originator": "交银国际研究（谢骐聪）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上界。"
+    },
+    {
+      "fact_id": "vnet-base-total-design-2025",
+      "metric_id": "contracted_capacity_mw",
+      "entity": {
+        "type": "company",
+        "id": "vnet",
+        "label": "世纪互联"
+      },
+      "value": 2181.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "总资源",
+        "region": "CN"
+      },
+      "as_of": "2025-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d39895a4cdc3ea8ae1aa9dc32da477ac2524398ab28cc523ff1586a5090fa302",
+        "local_file": "交银国际 数据中心系列研究（2）：“智能算力枢纽”转型进行时（2026-04-29）.pdf",
+        "locator": "第 11 页：「加上已签署谅解备忘录的基地型项目以及储备项目，总设计容量已达到 2,181MW」",
+        "grade": "S4",
+        "originator": "交银国际研究（谢骐聪）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**含已签谅解备忘录与储备项目的总设计容量**，是运营容量 889MW 的 2.45 倍——**MOU 不是订单，更不是在建**，不可当作确定供给。"
+    },
+    {
+      "fact_id": "dayone-booked-capacity-2025q4",
+      "metric_id": "contracted_capacity_mw",
+      "entity": {
+        "type": "company",
+        "id": "dayone",
+        "label": "DayOne（原万国数据国际业务）"
+      },
+      "value": 837.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "含客户订单",
+        "region": "APAC"
+      },
+      "as_of": "2025-Q4",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d39895a4cdc3ea8ae1aa9dc32da477ac2524398ab28cc523ff1586a5090fa302",
+        "local_file": "交银国际 数据中心系列研究（2）：“智能算力枢纽”转型进行时（2026-04-29）.pdf",
+        "locator": "第 7 页：「截至 2025 年 4 季度……另外，计在 DayOne 下的已预订的容量达 837MW，已开始计费在营运容量超过 369MW」",
+        "grade": "S4",
+        "originator": "交银国际研究（谢骐聪）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**DayOne 是万国数据分拆的海外业务**，与万国数据境内的 785MW（gds-contracted-capacity-2025q2）是两个主体，不可相加当作万国总量。已预订 837MW 中已开始计费的在营容量超过 369MW（44%）。"
+    },
+    {
+      "fact_id": "dayone-billing-capacity-2025q4",
+      "metric_id": "contracted_capacity_mw",
+      "entity": {
+        "type": "company",
+        "id": "dayone",
+        "label": "DayOne（原万国数据国际业务）"
+      },
+      "value": 369.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "已交付",
+        "region": "APAC"
+      },
+      "as_of": "2025-Q4",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "d39895a4cdc3ea8ae1aa9dc32da477ac2524398ab28cc523ff1586a5090fa302",
+        "local_file": "交银国际 数据中心系列研究（2）：“智能算力枢纽”转型进行时（2026-04-29）.pdf",
+        "locator": "第 7 页：「已开始计费在营运容量超过 369MW」",
+        "grade": "S4",
+        "originator": "交银国际研究（谢骐聪）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「超过」按下界记；capacity_type 就近记已交付（原文为已开始计费的在营容量）。"
     }
   ]
 }
