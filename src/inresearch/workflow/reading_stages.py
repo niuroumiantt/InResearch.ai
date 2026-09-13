@@ -10,27 +10,107 @@ class ReadingStages:
         self.data, self.model = data, model
         self.ocr_max_pages, self.large_format_points = ocr_max_pages, large_format_points
 
-    def artifact_path(self, doc_id, name):
+    def artifact_path(self, doc, name):
+        doc_id = doc["doc_id"]
         if not re.fullmatch(r"doc-[0-9a-f]{64}", doc_id):
             raise UnsafePath()
-        return safe_path(self.data, "artifacts/%s/%s" % (doc_id, name))
+        prefix = 'artifacts/' + doc_id
+        if doc['artifact_rel'] != prefix and not doc['artifact_rel'].startswith(prefix + '/'):
+            raise UnsafePath()
+        return safe_path(self.data, doc["artifact_rel"] + "/" + name)
 
     def _cached(self, doc, relative, marker):
-        p = self.artifact_path(doc["doc_id"], relative)
+        p = self.artifact_path(doc, relative)
         if not p.exists():
             return None
         value = read_json(p)
-        if value.get("_recipe") != doc["recipe"] or value.get("_marker") != marker or value.get("doc_id") != doc["doc_id"]:
+        if (value.get("_recipe") != doc["recipe"] or value.get("_marker") != marker
+                or value.get("doc_id") != doc["doc_id"] or value.get('content_sha256') != doc['sha256']):
+            raise IntegrityError()
+        if value.get('reading_revision_id') != doc['revision_id'] and doc['artifact_rel'] != 'artifacts/' + doc['doc_id']:
             raise IntegrityError()
         return value
+
+    def validate_report(self, doc):
+        """Mechanical completeness and source binding; not semantic or C3 review."""
+        if digest_file(safe_path(self.data, doc['original_rel'])) != doc['sha256']:
+            raise IntegrityError()
+        recipe = read_json(self.artifact_path(doc, 'recipe.json'))
+        if recipe['recipe'] != doc['recipe']:
+            raise IntegrityError()
+        report = self._cached(doc, 'report.json', 'report')
+        extraction = self._cached(doc, 'extraction.json', 'extract')
+        if not report or not extraction or not extraction['chunks']:
+            raise IntegrityError()
+        chunks = []
+        for i, item in enumerate(extraction['chunks']):
+            if item['index'] != i or not 1 <= item['page_index'] <= extraction['pages_total']:
+                raise IntegrityError()
+            chunk = self._cached(doc, 'chunks/%06d.json' % i, 'read:%d' % i)
+            text = self._chunk_text(item)
+            if (not chunk or chunk['chunk_sha256'] != item['sha256'] or chunk['page_index'] != item['page_index']
+                    or chunk['characters'] != len(text)):
+                raise IntegrityError()
+            chunks.append(chunk)
+        coverage = report['coverage']
+        pages = {c['page_index'] for c in chunks} | {p['page_index'] for p in extraction['pages'] if p.get('blank')}
+        counts = {'pages_total': extraction['pages_total'], 'pages_read': len(pages),
+                  'chunks_total': len(chunks), 'chunks_read': len(chunks),
+                  'characters_total': extraction['characters_total'],
+                  'characters_read': sum(c['characters'] for c in chunks)}
+        if (coverage.get('complete') is not True or any(coverage.get(k) != v for k,v in counts.items())
+                or counts['pages_total'] != counts['pages_read'] or counts['characters_total'] != counts['characters_read']
+                or report['evidence'] != [e for c in chunks for e in c['evidence']]
+                or report['claims'] != [c for chunk in chunks for c in chunk['claims']]):
+            raise IntegrityError()
+        return report
+
+    def seal(self, doc):
+        """Bind the checked candidate to immutable artifact bytes before DB commit."""
+        self.validate_report(doc)
+        manifest_path = self.artifact_path(doc, 'manifest.json')
+        files = {}
+        for prefix in (doc['artifact_rel'], doc['extracted_rel']):
+            for path in sorted(safe_path(self.data, prefix).rglob('*')):
+                if path == manifest_path:
+                    continue
+                if path.is_symlink():
+                    raise UnsafePath()
+                if path.is_file():
+                    files[path.relative_to(self.data).as_posix()] = digest_file(path)
+        manifest = {'revision_id': doc['revision_id'], 'content_sha256': doc['sha256'], 'files': files}
+        if manifest_path.exists():
+            if read_json(manifest_path) != manifest:
+                raise IntegrityError()
+        else:
+            atomic_json(manifest_path, manifest)
+        return {'report_rel': self.artifact_path(doc, 'report.json').relative_to(self.data).as_posix(),
+                'report_sha256': digest_file(self.artifact_path(doc, 'report.json')),
+                'manifest_sha256': digest_file(manifest_path)}
+
+    def verify_seal(self, doc):
+        manifest_path = self.artifact_path(doc, 'manifest.json')
+        if not doc['manifest_sha256'] or digest_file(manifest_path) != doc['manifest_sha256']:
+            raise IntegrityError()
+        manifest = read_json(manifest_path)
+        if manifest['revision_id'] != doc['revision_id'] or manifest['content_sha256'] != doc['sha256']:
+            raise IntegrityError()
+        if digest_file(self.artifact_path(doc, 'report.json')) != doc['report_sha256']:
+            raise IntegrityError()
+        for relative, sha in manifest['files'].items():
+            if not any(relative.startswith(prefix + '/') for prefix in (doc['artifact_rel'], doc['extracted_rel'])):
+                raise IntegrityError()
+            if digest_file(safe_path(self.data, relative)) != sha:
+                raise IntegrityError()
+        return self.validate_report(doc)
 
     def _persist(self, doc, relative, marker, value):
         prior = self._cached(doc, relative, marker)
         if prior is not None:
             return prior
         out = {**value, "doc_id": doc["doc_id"], "content_sha256": doc["sha256"],
-               "_recipe": doc["recipe"], "_marker": marker, "created_at": now_iso(), "acceptance": "candidate"}
-        atomic_json(self.artifact_path(doc["doc_id"], relative), out)
+               "reading_revision_id": doc["revision_id"], "_recipe": doc["recipe"], "_marker": marker, "created_at": now_iso(), "acceptance": "candidate"}
+        atomic_json(self.artifact_path(doc, relative), out)
         return out
 
     def _extract(self, doc):
@@ -68,7 +148,7 @@ class ReadingStages:
                         image_pages.add(int(cols[0]))
             ocr_pages = 0
             for i in range(1, int(m.group(1)) + 1):
-                page_file = safe_path(self.data, "extracted/%s/pages/%06d.json" % (doc["doc_id"], i))
+                page_file = safe_path(self.data, "%s/pages/%06d.json" % (doc["extracted_rel"], i))
                 if page_file.exists():
                     page = read_json(page_file)
                     if page.get("source_sha256") != doc["sha256"]:
@@ -106,10 +186,10 @@ class ReadingStages:
             raise Blocked("no_substantive_text")
         chunks = []
         for i, text in enumerate(texts, 1):
-            recipe = read_json(self.artifact_path(doc["doc_id"], "recipe.json"))
+            recipe = read_json(self.artifact_path(doc, "recipe.json"))
             for part in split_text(text, recipe["chunk_chars"]):
                 index = len(chunks)
-                rel = "extracted/%s/chunks/%06d.txt" % (doc["doc_id"], index)
+                rel = "%s/chunks/%06d.txt" % (doc["extracted_rel"], index)
                 atomic_bytes(safe_path(self.data, rel), part.encode("utf-8"))
                 chunks.append({"index": index, "page_index": i, "text_rel": rel, "sha256": digest_bytes(part.encode()), "characters": len(part)})
         result = {"pages": page_meta, "pages_total": len(texts), "chunks": chunks,
@@ -185,7 +265,7 @@ class ReadingStages:
                 "verification": "candidate_ocr_agreement_not_accuracy_certification"}
 
     def _context(self, doc, text):
-        snapshot = read_json(self.artifact_path(doc["doc_id"], "context.json"))
+        snapshot = read_json(self.artifact_path(doc, "context.json"))
         # Separate budgets prevent hundreds of questions from displacing all objects.
         # Retrieval hints propose candidates, never establish a document/claim mapping.
         lower = text.lower()
@@ -262,7 +342,7 @@ class ReadingStages:
         cached = self._cached(doc, "triage.json", "triage")
         if cached:
             return cached
-        extraction = read_json(self.artifact_path(doc["doc_id"], "extraction.json"))
+        extraction = read_json(self.artifact_path(doc, "extraction.json"))
         # Explicit bounded preview across the beginning, middle and end, never claimed as full coverage.
         chunks = extraction["chunks"]
         picks = sorted({0, len(chunks) // 2, len(chunks) - 1})
@@ -292,7 +372,7 @@ class ReadingStages:
         cached = self._cached(doc, relative, marker)
         if cached:
             return cached
-        extraction = read_json(self.artifact_path(doc["doc_id"], "extraction.json"))
+        extraction = read_json(self.artifact_path(doc, "extraction.json"))
         chunk = extraction["chunks"][index]
         text = self._chunk_text(chunk)
         context = self._context(doc, text)
@@ -321,13 +401,13 @@ class ReadingStages:
                 quote = require_text(ev.get("quote") if isinstance(ev, dict) else None, 500)
                 if re.sub(r"\s+", "", quote) not in normalized:
                     raise ModelOutputError()
-                eid = "%s:chunk:%d:claim:%d:ev:%d" % (doc["doc_id"], index, c_index, e_index)
+                eid = "%s:chunk:%d:claim:%d:ev:%d" % (doc["revision_id"], index, c_index, e_index)
                 evs.append({"id": eid, "page_index": chunk["page_index"],
                             "locator": "page:%d/chunk:%d" % (chunk["page_index"], index),
-                            "quote": quote, "source_sha256": doc["sha256"], "chunk_sha256": chunk["sha256"], **claim_ids})
+                            "quote": quote, "source_sha256": doc["sha256"], "reading_revision_id": doc["revision_id"], "chunk_sha256": chunk["sha256"], **claim_ids})
                 refs.append(eid)
-            clean_claims.append({"id": "%s:chunk:%d:claim:%d" % (doc["doc_id"], index, c_index),
-                                 "text": claim["text"], "kind": claim["kind"], "evidence_ids": refs, "acceptance": "candidate", **claim_ids})
+            clean_claims.append({"id": "%s:chunk:%d:claim:%d" % (doc["revision_id"], index, c_index),
+                                 "text": claim["text"], "kind": claim["kind"], "evidence_ids": refs, "reading_revision_id": doc["revision_id"], "acceptance": "candidate", **claim_ids})
         result.update(self._ids(result, context))
         for field in ("object_ids", "question_ids"):
             result[field] = sorted(set(result[field]) | {v for claim in clean_claims for v in claim[field]})
@@ -338,8 +418,8 @@ class ReadingStages:
         cached = self._cached(doc, "report.json", "report")
         if cached:
             return cached
-        extraction = read_json(self.artifact_path(doc["doc_id"], "extraction.json"))
-        triage = read_json(self.artifact_path(doc["doc_id"], "triage.json"))
+        extraction = read_json(self.artifact_path(doc, "extraction.json"))
+        triage = read_json(self.artifact_path(doc, "triage.json"))
         chunks = []
         for chunk in extraction["chunks"]:
             result = self._cached(doc, "chunks/%06d.json" % chunk["index"], "read:%d" % chunk["index"])
@@ -379,7 +459,7 @@ class ReadingStages:
             if len(next_items) >= len(items):
                 raise Blocked("synthesis_budget_cannot_reduce")
             items, level = next_items, level + 1
-        context = read_json(self.artifact_path(doc["doc_id"], "context.json"))
+        context = read_json(self.artifact_path(doc, "context.json"))
         object_ids = sorted(set(v for c in chunks + [triage] for v in c["object_ids"]))
         question_ids = sorted(set(v for c in chunks + [triage] for v in c["question_ids"]))
         pages_read = len({c["page_index"] for c in chunks} | {p["page_index"] for p in extraction["pages"] if p.get("blank")})

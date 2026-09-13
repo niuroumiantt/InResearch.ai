@@ -1,7 +1,7 @@
 """Reader command arguments. The workflow has no CLI parsing dependency."""
 from __future__ import annotations
 import os
-import argparse, sys
+import argparse, sqlite3, sys
 from inresearch.adapters import models as models
 from inresearch.workflow.reader import Reader
 from inresearch.adapters.reader_model import ModelClient
@@ -34,6 +34,20 @@ def main(argv=None):
                           "configured for parallel requests for more than one to help" % MAX_WORKERS)
     retry = sub.add_parser("retry")
     retry.add_argument("--doc-id")
+    retry.add_argument("--revision-id")
+    reread = sub.add_parser('reread', help='create a separately reviewed reading candidate')
+    for name in ('doc-id','expected-current','request-id','reason'):
+        reread.add_argument('--' + name, required=True)
+    revisions = sub.add_parser('revisions')
+    revisions.add_argument('--doc-id', required=True)
+    inspect = sub.add_parser('inspect-revision')
+    inspect.add_argument('--revision-id', required=True)
+    activate = sub.add_parser('activate-revision', help='switch current reading, never C3 adoption')
+    for name in ('revision-id','expected-current','expected-report-sha256','reviewer','reason'):
+        activate.add_argument('--' + name, required=True)
+    reject = sub.add_parser('reject-revision')
+    for name in ('revision-id','reviewer','reason'):
+        reject.add_argument('--' + name, required=True)
     rollback = sub.add_parser("rollback")
     rollback.add_argument("--doc-id", required=True)
     for command in ("export", "backup"):
@@ -47,8 +61,9 @@ def main(argv=None):
                             args.context, args.max_output_tokens, args.request_model)
     except (ValueError, TypeError, OSError, models.InferenceError) as exc:
         ap.error(str(exc))
-    reader = Reader(args.data_root, args.state_root, args.repo_root, model, args.stable_seconds).initialize()
+    reader = Reader(args.data_root, args.state_root, args.repo_root, model, args.stable_seconds)
     try:
+        reader.initialize()
         if args.command == "run":
             result = reader.run(args.once, args.max_jobs, workers=args.workers)
         elif args.command == "scan":
@@ -59,8 +74,18 @@ def main(argv=None):
             result = reader.write_status()
         elif args.command == "retry":
             with reader.worker_session():
-                result = reader.retry(args.doc_id)
+                result = reader.retry(args.doc_id, args.revision_id)
             reader.write_status()
+        elif args.command == 'reread':
+            result = reader.revisions.request(args.doc_id,args.expected_current,args.request_id,args.reason)
+        elif args.command == 'revisions':
+            result = reader.revisions.list(args.doc_id)
+        elif args.command == 'inspect-revision':
+            result = reader.revisions.inspect(args.revision_id)
+        elif args.command == 'activate-revision':
+            result = reader.revisions.activate(args.revision_id,args.expected_current,args.expected_report_sha256,args.reviewer,args.reason)
+        elif args.command == 'reject-revision':
+            result = reader.revisions.reject(args.revision_id,args.reviewer,args.reason)
         elif args.command == "rollback":
             with reader.worker_session():
                 result = reader.rollback(args.doc_id)
@@ -73,7 +98,7 @@ def main(argv=None):
     except BlockingIOError:
         print(encoded({"error": "another_worker_owns_queue"}), file=sys.stderr)
         return 2
-    except (ReaderError, OSError, ValueError) as exc:
+    except (ReaderError, OSError, ValueError, sqlite3.Error) as exc:
         print(encoded({"error": exc.code if isinstance(exc, ReaderError) else type(exc).__name__}), file=sys.stderr)
         return 1
     finally:

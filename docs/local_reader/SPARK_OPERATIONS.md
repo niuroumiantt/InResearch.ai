@@ -146,7 +146,23 @@ systemctl --user start inresearch-reader.service
 
 `retry` 不带 doc-id 会重试全部 failed/blocked，仅在已修复原因时使用。`rollback` 只移除台账中与原件相符的 library 符号链接，不删除原件、raw、阅读结果或来源链；已回滚的操作不会在启动时自动重建。崩溃前处于 prepared 的改名，或正常 committed 但丢失的视图，可从操作台账恢复。目标被用户文件占用/指向别处时转 needs_review，绝不覆盖。修正占位冲突后可 retry organize 任务。
 
-一份材料只维护一套有效阅读结果；更换默认模型只影响新任务，已完成材料不会重读。执行配方冻结 backend/model/context、输出预算、请求路由、可选 revision、分块和注册表快照；旧配方补齐默认值后兼容本次升级。已有任务的推理配置不符时仍阻塞，恢复匹配配置后可 retry；自动选择旧配置和显式重读替换命令在后续实现，不能用删除台账来重读。可在同一配方追加已明确配置的 OCR 能力，逐页记录实际视觉模型，retry 从已保存页继续。
+一份材料只维护一套有效阅读结果；更换默认模型只影响新任务，已完成材料不会重读。执行配方冻结 backend/model/context、输出预算、请求路由、可选 revision、分块和注册表快照；旧配方补齐默认值后兼容本次升级。已有任务的推理配置不符时仍阻塞，恢复匹配配置后可 retry；自动选择旧配置仍未实现，显式重读流程见下节，不能用删除台账来重读。可在同一配方追加已明确配置的 OCR 能力，逐页记录实际视觉模型，retry 从已保存页继续。
+
+## 阅读版本升级与受控重读
+
+首次升级 catalog v2 前停止旧 worker 和发布器，运行 `reader init`：程序持同一队列锁，先保存 catalog 内的 `before-reading-revisions-*.sqlite`，再事务迁移；保留文档/来源、任务次数、旧报告与原件路径。外键或遗失任务检查失败则回滚并报错。备份有旧 schema，仅用于停机后在新空目录进行恢复演练，不能将旧库直接覆盖运行中的新库；新版本写入的记录须独立保留与核对。
+
+升级后可在 worker 运行时提交新的重读请求及验收已 ready 的版本；这些用例用 SQLite 事务并发控制，不执行 worker 中断回收。`retry` 仍按上一节持队列锁操作，可用 `--revision-id` 限定版本。模型变更须按配置重启 worker，新旧未决任务不自动跨模型路由。
+
+```bash
+python3 manage.py reader revisions --doc-id doc-完整内容哈希
+python3 manage.py reader reread --doc-id doc-完整内容哈希 --expected-current rev-当前版本 --request-id 本次稳定请求键 --reason '重新核对完整材料'
+python3 manage.py reader inspect-revision --revision-id rev-新版本
+python3 manage.py reader activate-revision --revision-id rev-新版本 --expected-current rev-开始时旧版本 --expected-report-sha256 已审阅报告完整SHA --reviewer 审阅者 --reason '核对正文、尾段、引用与理解质量的结论'
+python3 manage.py reader reject-revision --revision-id rev-新版本 --reviewer 审阅者 --reason '具体未通过原因'
+```
+
+inspect 返回报告、覆盖、模型与产物摘要；ready 不等于内容正确。新候选处理期间的导出继续选择旧版本，验收后只投影新版本；原件、历史阅读和 C3 采用记录保留。目录导出通过 manifest 的版本文件名选择当前结果，不能用目录内 JSON 文件总数统计已读材料。状态中的 reading_revisions 单列待审/失败/历史重读，不增加 documents_total。
 
 ## 并发与吞吐
 
@@ -181,7 +197,7 @@ python3 ~/code/inresearch.ai/manage.py reader backup --dest /已准备好的独�
 
 目标必须不存在且在运行 data/state 之外。备份包含已登记原件；尚未稳定/入库的 raw 投料不包含在 catalog 备份中，投料来源应继续保留或单独备份。不要直接复制运行中的 `catalog.sqlite` 而漏掉 WAL。
 
-恢复先停止 worker 和发布器，在**新的空目录**校验 manifest 的 catalog/file 哈希；将备份根 `catalog.sqlite` 放入新根 `catalog/catalog.sqlite`，将 originals/intake-receipts/artifacts/extracted 及清单中接收隔离件保持相对路径复制，初始化新 state。以相同 backend/model 和源码配方启动：running 任务重领，prepared 接收归档/视图操作恢复，缺失的 committed library 链接重建；来源根路径由新 data 根重定位。读完的原件不应重新投递来代替恢复 catalog。恢复 smoke 完成、文档/来源数和哈希对账后再安排正式路径切换，旧数据及失败备份保留。自动恢复 CLI、跨模型重新处理与独立文章拆分尚未实现，不能在验收报告中记为完成。
+恢复先停止 worker 和发布器，在**新的空目录**校验 manifest 的 catalog/file 哈希；将备份根 `catalog.sqlite` 放入新根 `catalog/catalog.sqlite`，将 originals/intake-receipts/artifacts/extracted 及清单中接收隔离件保持相对路径复制，初始化新 state。以相同 backend/model 和源码配方启动：running 任务重领，prepared 接收归档/视图操作恢复，缺失的 committed library 链接重建；来源根路径由新 data 根重定位。读完的原件不应重新投递来代替恢复 catalog。恢复 smoke 完成、文档/来源数和哈希对账后再安排正式路径切换，旧数据及失败备份保留。自动恢复 CLI、自动旧模型路由与独立文章拆分尚未实现，不能在验收报告中记为完成。
 
 测试命令：
 

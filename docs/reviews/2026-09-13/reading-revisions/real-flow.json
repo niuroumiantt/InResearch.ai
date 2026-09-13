@@ -1,0 +1,55 @@
+{
+  "environment": "macOS, real Claude CLI, synthetic temporary engineering fixture; no production/Spark/M4 data writes",
+  "source": "Synthetic engineering acceptance fixture. These are scenario assumptions, not measured industry facts.\n\nSection 1: A test rack contains 10 servers. Each server is assumed to consume 300 W at the stated test condition. The assumed server subtotal is 3000 W. This excludes networking, storage, cooling and power conversion losses. Do not call this rack total power.\n\nSection 2: The fixture supplies no load curve, ambient temperature, redundancy policy or measured efficiency. A reader must retain these unknowns and must not infer production capacity or an annual electricity bill.\n\nFinal section END: Preserve this tail paragraph. Reading this document creates candidate observations only. It provides no independent verification and does not authorize adopting any research fact.\n",
+  "content_sha256": "35678821ce6821fb1863cce0065d531d03b6cf2d275bd46314d674cecb95ea0a",
+  "model": [
+    {
+      "actual": "claude-opus-5",
+      "backend": "claude_cli",
+      "context": 32768,
+      "executor": "claude-code",
+      "input_sha256": "2e20dde80611e7e054fbaa3355e5be0bd6da0638f4df8caef4b24b03090b0603",
+      "max_output_tokens": 4096,
+      "model": "claude-opus-5",
+      "prompt_sha256": "723ccd520339f7ffe36b9ccddaa89b602c926f9d67f78caa944f6d74fa71ea16",
+      "request_model": "claude-opus-5",
+      "requested": "claude-opus-5",
+      "revision": ""
+    }
+  ],
+  "old_revision": "rev-363e481cfe1c465f818c5b6b7a0ff26d",
+  "new_revision": "rev-ae6df3bf2393427a9818d2376cde2d43",
+  "request_replayed": true,
+  "while_queued_current": "rev-363e481cfe1c465f818c5b6b7a0ff26d",
+  "while_ready_current": "rev-363e481cfe1c465f818c5b6b7a0ff26d",
+  "activated": {
+    "acceptance": "candidate_only",
+    "current": true,
+    "previous_revision_id": "rev-363e481cfe1c465f818c5b6b7a0ff26d",
+    "replayed": false,
+    "revision_id": "rev-ae6df3bf2393427a9818d2376cde2d43"
+  },
+  "activation_replayed": true,
+  "documents_exported": 1,
+  "evidence_exported": 7,
+  "coverage": {
+    "characters_read": 781,
+    "characters_total": 781,
+    "chunks_read": 1,
+    "chunks_total": 1,
+    "complete": true,
+    "pages_read": 1,
+    "pages_total": 1
+  },
+  "review": "Reviewed all seven quoted assertions against the 781-character synthetic source: assumptions, 3000 W server-only subtotal, excluded loads, unknowns and final candidate-only caveat retained. Mapping remains a proposal; no C3 adoption.",
+  "previous_report_preserved": true,
+  "original_preserved": true,
+  "receiver": {
+    "ok": true,
+    "received_at": "2026-09-13T10:00:56.723955+00:00",
+    "documents": 1
+  },
+  "received_revision": "rev-ae6df3bf2393427a9818d2376cde2d43",
+  "c3_adoption": false,
+  "report_sha256": "4916039aaac169ad376ca733d498eefb0ea567e9be76326367e87a7e4024782e"
+}

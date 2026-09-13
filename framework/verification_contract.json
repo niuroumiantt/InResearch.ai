@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.13.4",
+  "version": "2026.09.13.5",
   "reviewed_at": "2026-09-13",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -11,20 +11,20 @@
     "docs/inbox/submissions/README.md": "d4da3229d11971a41b1c5e551bb88d5e7fe6e84d066116596257bc811a93a12b",
     "docs/local_reader/ACQUISITION_OPERATIONS.md": "91d862b923f292d337771f17dbfc965357b76039df162c78b97003237f9feb85",
     "docs/local_reader/M4_PREFLIGHT.md": "d6283a210b1cf7b29fc78d3c084edb5092f59e8f3242cdd615b52b44fd31bb69",
-    "docs/local_reader/PROJECT_BRIEF.md": "9c9445cab9ebd48e445669d6cc54d7eade341e2b30e7fad65ca95b22f88a4e6e",
-    "docs/local_reader/RUN_TO_COMPLETION.md": "2a4a0697ad024f9f57b17fa3f9bfe9b6f95ebd6e6e340fc7731e53a308147dbe",
-    "docs/local_reader/SPARK_OPERATIONS.md": "eff565ae4a33f209d3c69aa61c622b60fe3f6aeff74a9fda1446b5a00356bff8",
+    "docs/local_reader/PROJECT_BRIEF.md": "26af169ca2c61746b628df2105541b517941aa01e2e190d57ebc6076173ce445",
+    "docs/local_reader/RUN_TO_COMPLETION.md": "a8eb25aa6718bab718ffbf73114e67204fd265cd05d7a2f0b9cc42e8fcfec10c",
+    "docs/local_reader/SPARK_OPERATIONS.md": "b7d782223bd3a54f40e64571c223cdb36b85b672b395334b71347581005e1c48",
     "framework/00_overview.md": "75f2d2f14c3f2b3f3cd9f4949cc4e7c788710764871e1368a7dac023f7371226",
     "framework/01_data_standards.md": "8844a236725e1ea87fcdb8b51ef6fd31d0fee25efac9a809c008ce408d29ff3c",
-    "framework/02_knowledge_format.md": "b1cce8140f84e841358c65b8c4702cdfcc0d182e83ce86811a8b7b47719d3c70",
+    "framework/02_knowledge_format.md": "049e0010977b11fb6161c0fca15fe210c96be74124e70195e23d3028258a82ff",
     "framework/03_bom_and_collaboration.md": "e276393ec9f555984f07047a8d3de21daf208c5693be0ce86788dfff50ad75ed",
-    "framework/04_reading_scoring_standard.md": "4a755cf6fa1748c8017c60dd496589a994b782f415130d2c241ea28c1dc43689",
+    "framework/04_reading_scoring_standard.md": "f0ffebc29e60c3c019691c51f2ae5c18b1e4593c46ef3acdf44b38b5f4433abb",
     "framework/05_interface_system.md": "1b4d823d8fbf9b46f4db48683249a34cfc1d54fc6e84f129bb00b21a9df25f89",
     "framework/06_acquisition.md": "5465abce68d873f438eb4a049f8e1f4b836017ac9a6475b1f24472041a6e90a0",
     "framework/07_product_ecosystems.md": "a6239c5cb221120394ec706cf3ded786dd6b1cf34cc526b167dc157d50bd3fce",
-    "framework/08_model_execution.md": "1b582a429a9edfe9eec398d327e6179c3f339d124cf0ba6324dce5c123e1f038",
-    "framework/09_software_contracts.md": "f7a45e9a8ffb15e853f89c9df8dee2418af497010eb2551db93551d2bd70a704",
-    "framework/CURRENT.md": "9d177d81579fd7d7d91a109510c6f8a883194b03a63ebf143821cd8cfc4e7b30",
+    "framework/08_model_execution.md": "bcbb4fcaf23620546d9473eabc3e1db0dd8918cf1aff216f70e6dab99f328e8b",
+    "framework/09_software_contracts.md": "92f20ed5e2b4df454b2a5990eb3aa58b16390d0fa26fbf69ca5c471d53f8b6bf",
+    "framework/CURRENT.md": "735c0b61e3a06ec0751d15b6fd03b911a77fd0de3ea09cb7ed6cbcb13163f074",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "tests/auth_appearance.cjs": "40f4e5feb30d2cec89bcf7cb90b89e780862a30580a4708e7dcb4dee1b9b8142",
     "tests/hardware_ecosystems.cjs": "4317d7b56ae541c1537d4a22ac6538d8faa96a66b545cfc5f1c146c86c84e80d",
@@ -36,8 +36,9 @@
     "tests/ui_skin.cjs": "f3a1fa6223715cacb0c72a04102dde38e5cad3b8c43117be54bcccdab1be22fa",
     "tests/unit/test_acquisition.py": "9df70bf9f5f2453e45a9f5af50baf9d4bc8cccae0afe3a76555b00c6b5099110",
     "tests/unit/test_catalog_bridge.py": "47ed253f19bd29eeff4221e07215084526b1b7fae85e58b4aab051d4b6ac8405",
+    "tests/unit/test_catalog_migration.py": "463ffb034bd7d1f5b2cd2f8c221e07734ac287dd0df95a7fda127a2f2d69de48",
     "tests/unit/test_commands.py": "03265020c3aba7de0dfe056467ef678193c0e139859c917666c0ed216095b6d4",
-    "tests/unit/test_continuous_reader.py": "2eeb2a07d36b0f0917f54e1674919a4dcd6944b79d3fd5e9ba97e7d4da59df52",
+    "tests/unit/test_continuous_reader.py": "6c36c298912077a7ab480e43f4a54fbfbb08978624c6e6efb3ac9f47657f4238",
     "tests/unit/test_file_moves.py": "1f9ba746f06885b6d48ee2d73b5da8bc4364ca1ad54e85b5d6fe23cdbf1edf9a",
     "tests/unit/test_governance.py": "ee59b285f13ea82d6df0426d0fbd519b7b8f9e7695fde569708c0dac10d71f39",
     "tests/unit/test_intake.py": "752b45e1bec8938738ea28b827dcdcc9031bce772cc9030d7ded1d7be9176c10",
@@ -48,8 +49,9 @@
     "tests/unit/test_model_runtime.py": "f9e4436b792b4b557017552b0767d8d5cf1c3c67fad0f4bfaad2c18139c12daf",
     "tests/unit/test_product_library.py": "2fb430bcfaca1d664d4fabeebf0d1a9dc88ff5da2212e662313e697d9676d41d",
     "tests/unit/test_publish_reader.py": "b595a4a6b9e1b09c7c7ba4decfcaf0714d90d8ad8194ad461f9ad41534729102",
+    "tests/unit/test_reading_revisions.py": "11159514736025f8532fde946401a726cd1c7fb08fb731d5c3195e34707f1c93",
     "tests/unit/test_report_model.py": "1e02a56bbe7a75ee68d2ce2463d989e673d9e32d0cf66de09051cf5a39e0f7b2",
-    "tests/unit/test_research.py": "8b4c8f658d83627f3024899ad0d7e07ce21bb8ac9a659c8c1981df914c7d13cf",
+    "tests/unit/test_research.py": "b01db6f4a1e5c66e714cbb1440eab47467fb9ae4fef29ad124e436c3aab62ffb",
     "tests/unit/test_research_navigation.py": "8edaecdc3a3a3050000746453cb41e1c38b4a699f14037e4d9b0eac84429ac44",
     "tests/unit/test_verification_contract.py": "2c1c2611dd2fb1973acf336e4b297f37ad7b06f4d5147574d99f3324fcc69232",
     "tests/url_rendering.cjs": "b463695816e72417012ef814ebbb4d382f256e61f46017fe54c9167abfdb953d"
@@ -93,7 +95,8 @@
       "tests": [
         "tests/unit/test_research.py::ResearchTests.test_withdrawn_or_invalid_original_evidence_reopens_question",
         "tests/unit/test_research.py::ReaderSnapshotHTTPTests.test_successful_http_receipt_is_candidate_only_and_bad_token_is_401",
-        "tests/unit/test_report_model.py::ReportModelTests.test_superseded_body_never_enters_current_report_but_link_survives"
+        "tests/unit/test_report_model.py::ReportModelTests.test_superseded_body_never_enters_current_report_but_link_survives",
+        "tests/unit/test_research.py::ResearchTests.test_reading_revision_survives_receipt_without_replacing_adopted_evidence"
       ],
       "not_verified": [
         "150 条兼容 Finding 尚未逐条迁入对象证据链；不等同 150 条已采用证据。"
@@ -119,7 +122,10 @@
       "checked_requirement": "备份恢复和停止服务不报健康",
       "tests": [
         "tests/unit/test_continuous_reader.py::ReaderTests.test_backup_restores_catalog_and_views_under_new_root",
-        "tests/unit/test_publish_reader.py::PublisherTests.test_stopped_worker_is_not_reported_as_healthy_idle"
+        "tests/unit/test_publish_reader.py::PublisherTests.test_stopped_worker_is_not_reported_as_healthy_idle",
+        "tests/unit/test_reading_revisions.py::ReadingRevisionTests.test_backup_restores_current_and_historical_revisions_without_inference",
+        "tests/unit/test_catalog_migration.py::CatalogMigrationTests.test_legacy_backup_upgrade_preserves_records_paths_and_attempts",
+        "tests/unit/test_catalog_migration.py::CatalogMigrationTests.test_active_old_worker_prevents_schema_upgrade"
       ],
       "not_verified": [
         "本轮未连接 Spark/M4 验证服务、模型、备份和容量；历史启动记录不证明当前在线。"
@@ -190,16 +196,21 @@
       "policy": "reading-20260912",
       "scope": "project",
       "source": "framework/04_reading_scoring_standard.md",
-      "checked_requirement": "逐篇覆盖、失败恢复、不因换模型重复读、同名新版",
+      "checked_requirement": "逐篇覆盖、失败恢复、不因换模型重复读、同名新版; explicit full reread, reviewed switch, failure isolation and version-scoped evidence",
       "tests": [
         "tests/unit/test_continuous_reader.py::ReaderTests.test_full_text_coverage_candidate_and_view",
         "tests/unit/test_continuous_reader.py::ReaderTests.test_switching_default_keeps_one_completed_reading",
         "tests/unit/test_continuous_reader.py::ReaderTests.test_duplicate_sources_and_version_chain_keep_bytes",
         "tests/unit/test_continuous_reader.py::ReaderTests.test_restart_uses_persisted_chunk_without_second_model_call",
-        "tests/unit/test_intake.py::IntakeEvidenceTests.test_same_filename_new_edition_is_candidate_not_duplicate"
+        "tests/unit/test_intake.py::IntakeEvidenceTests.test_same_filename_new_edition_is_candidate_not_duplicate",
+        "tests/unit/test_reading_revisions.py::ReadingRevisionTests.test_full_reread_review_switch_retains_history_and_single_current",
+        "tests/unit/test_reading_revisions.py::ReadingRevisionTests.test_failed_reread_retry_keeps_current_and_frozen_model",
+        "tests/unit/test_reading_revisions.py::ReadingRevisionTests.test_report_or_checkpoint_change_and_wrong_review_hash_cannot_activate",
+        "tests/unit/test_reading_revisions.py::ReadingRevisionTests.test_incomplete_report_never_reaches_ready",
+        "tests/unit/test_reading_revisions.py::ReadingRevisionTests.test_reject_and_late_activation_do_not_resurrect_or_overwrite"
       ],
       "not_verified": [
-        "已完成全文材料显式重读→验收新版本→原子切换的完整事务未实现；图纸/OCR 等受能力及覆盖门槛阻塞的材料不算完成。"
+        "Actual Spark/M4 catalog migration and large historical-corpus reread are not verified. OCR/drawing capability gaps still block completion; mechanical coverage and a recorded reviewer do not prove semantic quality."
       ]
     },
     {
@@ -217,7 +228,8 @@
         "tests/unit/test_m4_office_text.py::XlsxCellTests.test_huge_merged_range_is_rejected_before_expanding",
         "tests/unit/test_m4_office_text.py::XlsxCellTests.test_merge_budget_is_cumulative_and_invalid_ranges_fail",
         "tests/unit/test_m4_l2.py::DeepReadJournalTests.test_committed_corruption_fails_and_torn_tail_is_read_only",
-        "tests/unit/test_m4_l2.py::TextTwinRoutingTests.test_old_automatic_twin_record_is_preserved_but_not_counted_as_read"
+        "tests/unit/test_m4_l2.py::TextTwinRoutingTests.test_old_automatic_twin_record_is_preserved_but_not_counted_as_read",
+        "tests/unit/test_reading_revisions.py::ReadingRevisionTests.test_ocr_failure_releases_the_same_revision_claim"
       ],
       "not_verified": [
         "真实 M4 50 份当前模型小样及新版执行未验；Spark apply-triage catalog 桥未实现。"
@@ -232,7 +244,8 @@
         "tests/unit/test_model_runtime.py::ModelRuntimeTests.test_model_switch_changes_transport_without_changing_task",
         "tests/unit/test_model_runtime.py::ModelRuntimeTests.test_wrong_model_is_rejected_and_model_cannot_forge_provenance",
         "tests/unit/test_model_runtime.py::ClaudeCliTests.test_cli_failure_timeout_and_missing_executable_are_distinct",
-        "tests/unit/test_continuous_reader.py::ReaderTests.test_queued_reading_does_not_mix_models"
+        "tests/unit/test_continuous_reader.py::ReaderTests.test_queued_reading_does_not_mix_models",
+        "tests/unit/test_reading_revisions.py::ReadingRevisionTests.test_changed_default_used_only_by_new_explicit_revision"
       ],
       "not_verified": [
         "Spark/第二实际模型未验证；旧配方自动路由与跨进程/跨项目公平调度未实现；本轮隔离测试不冒充真实推理验收。"
@@ -242,14 +255,20 @@
       "policy": "software-contracts-20260913",
       "scope": "project",
       "source": "framework/09_software_contracts.md",
-      "checked_requirement": "统一写入、跨进程并发、提交前失败与提交后不确定、重放去重",
+      "checked_requirement": "统一写入、跨进程并发、提交前失败与提交后不确定、重放去重; catalog revision authority, atomic activation and consistent export snapshot",
       "tests": [
         "tests/unit/test_commands.py::CommandFlows.test_independent_processes_do_not_lose_records",
         "tests/unit/test_commands.py::CommandFlows.test_exception_and_failed_replace_keep_old_bytes",
         "tests/unit/test_commands.py::CommandFlows.test_post_replace_sync_failure_is_visible_and_retry_does_not_duplicate",
         "tests/unit/test_commands.py::CommandFlows.test_cli_and_http_expose_post_commit_uncertainty",
         "tests/unit/test_intake.py::IntakeEvidenceTests.test_candidate_export_retry_preserves_other_batches_and_never_adopts",
-        "tests/unit/test_product_library.py::ProductLibraryTests.test_adopt_recovers_before_index_and_after_index_without_duplicates"
+        "tests/unit/test_product_library.py::ProductLibraryTests.test_adopt_recovers_before_index_and_after_index_without_duplicates",
+        "tests/unit/test_reading_revisions.py::ReadingRevisionTests.test_activation_transaction_failure_rolls_back_then_replays",
+        "tests/unit/test_reading_revisions.py::ReadingRevisionTests.test_independent_process_requests_and_activations_are_idempotent",
+        "tests/unit/test_reading_revisions.py::ReadingRevisionTests.test_export_holds_one_snapshot_while_other_process_activates",
+        "tests/unit/test_reading_revisions.py::ReadingRevisionTests.test_directory_export_manifest_names_immutable_versions",
+        "tests/unit/test_catalog_migration.py::CatalogMigrationTests.test_failure_inside_schema_change_rolls_back_with_backup_retained",
+        "tests/unit/test_catalog_migration.py::CatalogMigrationTests.test_orphan_job_is_not_silently_dropped_during_upgrade"
       ],
       "not_verified": [
         "非价格/派工/快照的文件消费者仍按 OSError 停止；并非每个多文件流程都有逐阶段恢复验证。deep_read 与 3D 巨型实现还未全部收敛。"
