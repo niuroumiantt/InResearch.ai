@@ -1,0 +1,32 @@
+implementation,consumer,line,reference
+/api/research,docs/PROJECT_PANORAMA.md,21,网站 `/api/research` 返回当前发布的对象、问题、候选、任务与 Spark 快照；源码版本、容器健康和 systemd 状态分别核对。设计文档、旧报告、原始索引和 PDF 不代表实时服务状态。原文未导入、未完成覆盖或未通过采用时，保持明确缺口。
+/api/research,framework/06_acquisition.md,126,首页与 ops 的旧完整研究快照轮询退出；研究图与兼容外部客户端继续使用 `/api/research`。
+build_snapshot,src/inresearch/delivery/acquisition_status.py,8,reader=research.build_snapshot()['reader']
+build_snapshot,src/inresearch/delivery/reader_status.py,8,reader = research.build_snapshot()['reader']
+/api/research,src/inresearch/interfaces/http.py,270,"if urlsplit(self.path).path == ""/api/research"":"
+build_snapshot,src/inresearch/interfaces/http.py,272,"return self._json(200, research.build_snapshot(ROOT))"
+build_snapshot,src/inresearch/knowledge/registry.py,533,def build_snapshot(root=ROOT):
+build_snapshot,src/inresearch/knowledge/registry.py,568,"print(json.dumps(build_snapshot(), ensure_ascii=False, allow_nan=False))"
+build_snapshot,src/inresearch/workflow/reading_queue.py,42,"documents = research.build_snapshot(ROOT)[""knowledge""][""documents""]"
+build_snapshot,src/inresearch/workflow/workorders.py,128,"documents = research.build_snapshot(ROOT)[""knowledge""][""documents""]"
+/api/research,tests/datacenter_news.cjs,6,"await page.route('**/api/research',r=>{fullRequests++;return r.fulfill({status:500,body:'unexpected full snapshot'});});"
+/api/research,tests/research_delivery.cjs,18,const snapshot = await (await page.request.get(base+'/api/research')).json();
+/api/research,tests/unit/test_interface_system.py,44,"'/api/research':401,'/data/users.json':404,'/assets/.hub_secret':404,"
+/api/research,tests/unit/test_research.py,389,"code, view = self.request('GET', '/api/research')"
+/api/research,tests/unit/test_research.py,432,"code, view = self.request('GET', '/api/research')"
+/api/research,tests/unit/test_research.py,450,"code, view = self.request('GET', '/api/research')"
+/api/research,tests/unit/test_research.py,479,"code, full = self.request('GET', '/api/research')"
+mountNodeResearch,web/components/part-dossier.js,3,"import {mountNodeResearch, safeURL} from './research-graph.js';"
+mountNodeResearch,web/components/part-dossier.js,31,"mountNodeResearch(research, ""part:"" + p.id);"
+loadResearch,web/components/research-graph.js,121,export async function loadResearch({ refresh = false } = {}) {
+/api/research,web/components/research-graph.js,127,"const response = await fetch(""/api/research"", { cache: ""no-store"", signal: controller.signal });"
+buildResearchIndex,web/components/research-graph.js,137,export function buildResearchIndex(data) {
+forNode(,web/components/research-graph.js,159,function forNode(id) {
+mountNodeResearch,web/components/research-graph.js,308,"export function mountNodeResearch(container, nodeId) {"
+loadResearch,web/components/research-graph.js,319,loadResearch().then(data => {
+buildResearchIndex,web/components/research-graph.js,321,const index = buildResearchIndex(data); const resolvedId = index.byId.get(nodeId)?.redirect_to || nodeId; const object = index.byId.get(resolvedId);
+forNode(,web/components/research-graph.js,324,const linked = index.forNode(resolvedId);
+forNode(,web/components/research-graph.js,620,const linked = index.forNode(o.id);
+loadResearch,web/components/research-graph.js,731,data = await loadResearch({ refresh }); index = buildResearchIndex(data);
+buildResearchIndex,web/components/research-graph.js,731,data = await loadResearch({ refresh }); index = buildResearchIndex(data);
+/api/research,web/components/research-graph.js,777,"detail.replaceChildren(element(""div"", ""rg-empty"", ""对象、材料和任务尚未载入。请连接提供 /api/research 的研究服务后重试；静态页面不会显示虚构的加载成功或完成状态。""));"

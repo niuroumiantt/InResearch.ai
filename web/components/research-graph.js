@@ -117,23 +117,36 @@ function fields(rows) {
   }
   return dl;
 }
-let pendingResearch;
-export async function loadResearch({ refresh = false } = {}) {
-  if (refresh) pendingResearch = null;
-  if (!pendingResearch) pendingResearch = (async () => {
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 12000);
-    try {
-      const response = await fetch("/api/research", { cache: "no-store", signal: controller.signal });
-      if (!response.ok) throw new Error("研究服务返回 HTTP " + response.status);
-      const data = await response.json();
-      if (!data?.graph || !Array.isArray(data.graph.objects) || !Array.isArray(data.graph.relations))
-        throw new Error("研究服务返回的数据结构不完整");
-      return data;
-    } finally { clearTimeout(timer); }
-  })().catch(error => { pendingResearch = null; throw error; });
-  return pendingResearch;
+const researchRequests = new Map();
+function loadResearchView(path, {refresh = false} = {}) {
+  if (refresh) researchRequests.delete(path);
+  if (!researchRequests.has(path)) {
+    const request = {};
+    request.promise = (async () => {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 12000);
+      try {
+        const response = await fetch(path, {cache:'no-store', signal:controller.signal});
+        if (!response.ok) throw new Error("研究服务返回 HTTP " + response.status);
+        const data = await response.json();
+        if (!data?.graph || !Array.isArray(data.graph.objects) || !Array.isArray(data.graph.relations))
+          throw new Error("研究服务返回的数据结构不完整");
+        if (path === '/api/research-summary' && (data.schema_version !== 1 ||
+            !Array.isArray(data.questions) || !Array.isArray(data.tasks) ||
+            !['evidence','statements','answers'].every(key => Array.isArray(data.knowledge?.[key]))))
+          throw new Error('研究关联摘要的数据结构不完整');
+        return data;
+      } finally { clearTimeout(timer); }
+    })().catch(error => {
+      if (researchRequests.get(path) === request) researchRequests.delete(path);
+      throw error;
+    });
+    researchRequests.set(path, request);
+  }
+  return researchRequests.get(path).promise;
 }
+export function loadResearch(options) { return loadResearchView('/api/research', options); }
+export function loadResearchSummary(options) { return loadResearchView('/api/research-summary', options); }
 export function buildResearchIndex(data) {
   const objects = list(data.graph?.objects);
   const hidden = new Set(objects.filter(o => o.navigation_hidden).map(o => o.id));
@@ -305,7 +318,10 @@ function recordCard(record, category, index) {
   return card;
 }
 /* A compact version used inside both Three.js dossiers. */
+const researchMounts = new WeakMap();
 export function mountNodeResearch(container, nodeId) {
+  const own = {}; researchMounts.set(container, own);
+  const current = () => container.isConnected && researchMounts.get(container) === own;
   container.replaceChildren();
   container.classList.add("rg-3d-panel");
   container.dataset.nodeId = nodeId;
@@ -315,29 +331,41 @@ export function mountNodeResearch(container, nodeId) {
   actions.append(link("打开节点研究 →", researchHref(nodeId), "rg-link-button rg-primary"),
     link("系统连接", researchHref(nodeId, "F"), "rg-link-button"));
   container.append(actions);
-  const body = element("div"); body.append(element("p", "", "正在读取这个节点的研究记录…")); container.append(body);
-  loadResearch().then(data => {
-    if (!container.isConnected || container.dataset.nodeId !== nodeId) return;
-    const index = buildResearchIndex(data); const resolvedId = index.byId.get(nodeId)?.redirect_to || nodeId; const object = index.byId.get(resolvedId);
-    body.replaceChildren();
-    if (!object) { body.append(element("p", "", "此类别尚未映射到研究对象。打开工作台查看已有对象。")); return; }
-    const linked = index.forNode(resolvedId);
-    const status = element("div", "rg-chips"); status.style.marginTop = "10px";
-    status.append(chip(linked.questions.length + " 个问题"), chip(linked.evidence.length + " 条证据"), chip(linked.tasks.length + " 个关联任务"));
-    body.append(status);
-    if (!linked.evidence.length) body.append(element("p", "", "尚无精确关联证据。公司、产品和模块资料数量不代表该节点已核实。"));
-    const neighbors = element("div", "rg-3d-neighbors");
-    for (const r of linked.relations.slice(0, 5)) {
-      const other = r.source === resolvedId ? r.target : r.source;
-      const direction = r.source === resolvedId ? " → " : " ← ";
-      neighbors.append(link(relText(r.type) + direction + (index.byId.get(other)?.name || other),
-        researchHref(other, viewOfRelation(r)[0]), ""));
-    }
-    body.append(neighbors);
-  }).catch(error => {
-    if (!container.isConnected) return;
-    body.replaceChildren(element("p", "", "研究服务暂不可用，节点数据未载入。" + (error.name === "AbortError" ? "连接超时。" : "")));
-  });
+  const body = element("div"); container.append(body);
+  function load(refresh = false) {
+    const request = {}; own.request = request;
+    const active = () => current() && own.request === request;
+    container.dataset.state = 'loading';
+    body.replaceChildren(element('p', '', '正在读取这个节点的研究记录…'));
+    loadResearchSummary({refresh}).then(data => {
+      if (!active()) return;
+      const index = buildResearchIndex(data); const resolvedId = index.byId.get(nodeId)?.redirect_to || nodeId; const object = index.byId.get(resolvedId);
+      body.replaceChildren();
+      if (!object) { container.dataset.state = 'missing'; body.append(element("p", "", "此类别尚未映射到研究对象。打开工作台查看已有对象。")); return; }
+      container.dataset.state = 'ready';
+      const linked = index.forNode(resolvedId);
+      const status = element("div", "rg-chips"); status.style.marginTop = "10px";
+      status.append(chip(linked.questions.length + " 个问题"), chip(linked.evidence.length + " 条证据"), chip(linked.tasks.length + " 个关联任务"));
+      body.append(status);
+      if (data.reader?.stale || ['not_connected','degraded'].includes(data.reader?.status))
+        body.append(element('p', 'rg-muted', '阅读快照未连接或更新延迟；当前显示可用研究记录。'));
+      if (!linked.evidence.length) body.append(element("p", "", "尚无精确关联证据。公司、产品和模块资料数量不代表该节点已核实。"));
+      const neighbors = element("div", "rg-3d-neighbors");
+      for (const r of linked.relations.slice(0, 5)) {
+        const other = r.source === resolvedId ? r.target : r.source;
+        const direction = r.source === resolvedId ? " → " : " ← ";
+        neighbors.append(link(relText(r.type) + direction + (index.byId.get(other)?.name || other),
+          researchHref(other, viewOfRelation(r)[0]), ""));
+      }
+      body.append(neighbors);
+    }).catch(error => {
+      if (!active()) return;
+      container.dataset.state = 'error';
+      body.replaceChildren(element("p", "", "研究服务暂不可用，节点数据未载入。" + (error.name === "AbortError" ? "连接超时。" : "")));
+      body.append(button('重试', () => { if (current()) load(true); }));
+    });
+  }
+  load();
 }
 export function bindResearchMeshNodes(meshes) {
   for (const mesh of meshes) if (mesh.userData?.part) {
