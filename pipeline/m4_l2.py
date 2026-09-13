@@ -516,6 +516,28 @@ def already_read_with_same_text(sha: str, text_md5: str) -> list[str]:
                   if other_md5 == text_md5 and other != sha and other in read)
 
 
+def packed_not_read_with_same_text(sha: str, text_md5: str) -> list[str]:
+    """Copies whose text is this text and which are packed but not yet read.
+
+    The read twin check below only fires once the other copy is in the read
+    ledger.  That is deliberate - with both copies still in the queue, either
+    one may be read first.  But it leaves the case M4 actually hit on the third
+    pair (the 赛莱默 water report): both copies were packed in the same round,
+    neither was read yet, so nothing fired and the duplicate was caught by the
+    reader's own memory.  A fingerprint recorded by pack and never compared at
+    pack time is a ledger nobody reads.
+
+    So this does not block - it says so.  The packet is still written; the
+    output names the copy already open, and the reader decides whether to read
+    this one or skip it.
+    """
+    if not text_md5:
+        return []
+    known, read = fingerprints(), read_documents()
+    return sorted(other for other, other_md5 in known.items()
+                  if other_md5 == text_md5 and other != sha and other not in read)
+
+
 def cmd_pack(a):
     metrics, questions = load_metrics(), load_questions()
     # --again exists because the read ledger is append-only and pack skips what
@@ -553,7 +575,12 @@ def cmd_pack(a):
                            '若确认是同一份，直接 skip 掉这一份'
                            % row['sha256'][:12]}, ensure_ascii=False))
             return
+        # 在记账之前问：正文一样、还没读、已经开过包的是哪几份。
+        # 记账之后再问就问不出来了——自己会出现在账本里。
+        open_twins = packed_not_read_with_same_text(row['sha256'], text_md5)
         remember_fingerprint(row['sha256'], text_md5)
+    else:
+        open_twins = []
 
     pieces = chunks(text)
     out = PACKET_DIR / row['sha256'][:16]
@@ -579,6 +606,13 @@ def cmd_pack(a):
                       'score': row.get('score'), 'chars': len(text), 'chunks': len(pieces),
                       'read_from': 'library' if from_library else 'source',
                       'text_md5': text_md5,
+                      'same_text_packed_not_read': open_twins or None,
+                      'same_text_note': ('正文与已开包但尚未读的 %d 份一字不差：%s。'
+                                         '两份都读就是把同一篇读两遍——确认是同一份的话'
+                                         '读完这一份后 skip 掉另一份' %
+                                         (len(open_twins),
+                                          ' '.join(t[:12] for t in open_twins)))
+                                        if open_twins else None,
                       'unattributed': missing or None,
                       'again': True if a.again and row['sha256'] in read_documents() else None,
                       'brief': str(out / 'brief.md'), 'text': str(out / 'text.md'),
