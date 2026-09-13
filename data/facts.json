@@ -31164,6 +31164,151 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**按金额还是按颗数原文没说**：本条就近记入按金额的国产化率，理由是同一批 Bernstein 材料（68ef35cb 那份）的市场规模全部以 USD mn 计，标 [未核]。 **与同批材料的序列对接**：68ef35cb 那份按金额算出的国产化率 2024 年 29.7%、2025E 41.5%，本条 2027E 55%——**三点单调上升**，但前两点是我按分厂商金额加总算的、本条是原文直接给的，来源层级不同。 原文给的驱动：本土芯片性能提升与产能扩张。"
+    },
+    {
+      "fact_id": "bern-ascend-910b-2024",
+      "metric_id": "domestic_gpu_shipment",
+      "entity": {
+        "type": "product",
+        "id": "huawei-ascend-910b",
+        "label": "华为昇腾 910B"
+      },
+      "value": 45.0,
+      "unit": "万颗",
+      "caliber": {
+        "period": "年",
+        "counting": "未披露",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c330c9054a16f4838b747b4e7c36091bf405a77a9191c5faf03325274c179ea1",
+        "local_file": "华为昇腾出货量多来源对比.xlsx",
+        "locator": "工作表「华为」第 20-24 行（Source：Bernstein，Date:2025.07.21），2024 行 Ascend 910 B 列 = 450",
+        "grade": "S3",
+        "originator": "Bernstein"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原表单位没写**：数字 450，按千颗读作 45 万颗，标 [未核]；counting 因此记未披露。 **同一张表并列了三个来源，且三者口径都不一样**：瑞穗说 2025 年昇腾 910「订单超 70 万颗」（订单不是出货，未录）；「本营纪要」估计 2025 年 910C 45 万张 + 910B 40 万张（按「张」计，即整卡）；Bernstein 给 2025 年 910C 35 万 + 910B 35 万（单位未注，推断为千颗）。**2025 年合计：纪要 85 万张 vs Bernstein 70 万，差 21%**，而且计数对象可能不同（张 vs 颗）。对照库内大摩那份 die 产量（ms-domestic-gpu-910b-2025 252.7 万颗 die）：**die 数是这里的三倍以上**，die 到可用卡之间还有封装与整卡良率，不可互证。"
+    },
+    {
+      "fact_id": "bern-ascend-910c-2025",
+      "metric_id": "domestic_gpu_shipment",
+      "entity": {
+        "type": "product",
+        "id": "huawei-ascend-910c",
+        "label": "华为昇腾 910C"
+      },
+      "value": 35.0,
+      "unit": "万颗",
+      "caliber": {
+        "period": "年",
+        "counting": "未披露",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c330c9054a16f4838b747b4e7c36091bf405a77a9191c5faf03325274c179ea1",
+        "local_file": "华为昇腾出货量多来源对比.xlsx",
+        "locator": "工作表「华为」第 20-24 行（Source：Bernstein，Date:2025.07.21），2025(预测） 行 Ascend 910 C 列 = 350",
+        "grade": "S3",
+        "originator": "Bernstein"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原表单位没写**：数字 350，按千颗读作 35 万颗，标 [未核]；counting 因此记未披露。 **同一张表并列了三个来源，且三者口径都不一样**：瑞穗说 2025 年昇腾 910「订单超 70 万颗」（订单不是出货，未录）；「本营纪要」估计 2025 年 910C 45 万张 + 910B 40 万张（按「张」计，即整卡）；Bernstein 给 2025 年 910C 35 万 + 910B 35 万（单位未注，推断为千颗）。**2025 年合计：纪要 85 万张 vs Bernstein 70 万，差 21%**，而且计数对象可能不同（张 vs 颗）。对照库内大摩那份 die 产量（ms-domestic-gpu-910b-2025 252.7 万颗 die）：**die 数是这里的三倍以上**，die 到可用卡之间还有封装与整卡良率，不可互证。"
+    },
+    {
+      "fact_id": "bern-ascend-910b-2025",
+      "metric_id": "domestic_gpu_shipment",
+      "entity": {
+        "type": "product",
+        "id": "huawei-ascend-910b",
+        "label": "华为昇腾 910B"
+      },
+      "value": 35.0,
+      "unit": "万颗",
+      "caliber": {
+        "period": "年",
+        "counting": "未披露",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c330c9054a16f4838b747b4e7c36091bf405a77a9191c5faf03325274c179ea1",
+        "local_file": "华为昇腾出货量多来源对比.xlsx",
+        "locator": "工作表「华为」第 20-24 行（Source：Bernstein，Date:2025.07.21），2025(预测） 行 Ascend 910 B 列 = 350",
+        "grade": "S3",
+        "originator": "Bernstein"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原表单位没写**：数字 350，按千颗读作 35 万颗，标 [未核]；counting 因此记未披露。 **同一张表并列了三个来源，且三者口径都不一样**：瑞穗说 2025 年昇腾 910「订单超 70 万颗」（订单不是出货，未录）；「本营纪要」估计 2025 年 910C 45 万张 + 910B 40 万张（按「张」计，即整卡）；Bernstein 给 2025 年 910C 35 万 + 910B 35 万（单位未注，推断为千颗）。**2025 年合计：纪要 85 万张 vs Bernstein 70 万，差 21%**，而且计数对象可能不同（张 vs 颗）。对照库内大摩那份 die 产量（ms-domestic-gpu-910b-2025 252.7 万颗 die）：**die 数是这里的三倍以上**，die 到可用卡之间还有封装与整卡良率，不可互证。"
+    },
+    {
+      "fact_id": "minutes-ascend-910c-2025",
+      "metric_id": "domestic_gpu_shipment",
+      "entity": {
+        "type": "product",
+        "id": "huawei-ascend-910c",
+        "label": "华为昇腾 910C"
+      },
+      "value": 45.0,
+      "unit": "万颗",
+      "caliber": {
+        "period": "年",
+        "counting": "整卡",
+        "basis": "渠道调研"
+      },
+      "as_of": "2025E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c330c9054a16f4838b747b4e7c36091bf405a77a9191c5faf03325274c179ea1",
+        "local_file": "华为昇腾出货量多来源对比.xlsx",
+        "locator": "工作表「华为」第 5 行说明：「本营纪要：估计2025年有45万张910C和40万张910B」",
+        "grade": "S5",
+        "originator": "未具名纪要（「本营纪要」）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文按「张」计，counting 记整卡**；单位是万颗但这里一「颗」即一张卡，标 [未核]。 「本营纪要」来源不明，grade 记 S5。 **同一张表并列了三个来源，且三者口径都不一样**：瑞穗说 2025 年昇腾 910「订单超 70 万颗」（订单不是出货，未录）；「本营纪要」估计 2025 年 910C 45 万张 + 910B 40 万张（按「张」计，即整卡）；Bernstein 给 2025 年 910C 35 万 + 910B 35 万（单位未注，推断为千颗）。**2025 年合计：纪要 85 万张 vs Bernstein 70 万，差 21%**，而且计数对象可能不同（张 vs 颗）。对照库内大摩那份 die 产量（ms-domestic-gpu-910b-2025 252.7 万颗 die）：**die 数是这里的三倍以上**，die 到可用卡之间还有封装与整卡良率，不可互证。"
+    },
+    {
+      "fact_id": "minutes-ascend-910b-2025",
+      "metric_id": "domestic_gpu_shipment",
+      "entity": {
+        "type": "product",
+        "id": "huawei-ascend-910b",
+        "label": "华为昇腾 910B"
+      },
+      "value": 40.0,
+      "unit": "万颗",
+      "caliber": {
+        "period": "年",
+        "counting": "整卡",
+        "basis": "渠道调研"
+      },
+      "as_of": "2025E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c330c9054a16f4838b747b4e7c36091bf405a77a9191c5faf03325274c179ea1",
+        "local_file": "华为昇腾出货量多来源对比.xlsx",
+        "locator": "工作表「华为」第 5 行说明：「本营纪要：估计2025年有45万张910C和40万张910B」",
+        "grade": "S5",
+        "originator": "未具名纪要（「本营纪要」）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文按「张」计，counting 记整卡**；单位是万颗但这里一「颗」即一张卡，标 [未核]。 「本营纪要」来源不明，grade 记 S5。 **同一张表并列了三个来源，且三者口径都不一样**：瑞穗说 2025 年昇腾 910「订单超 70 万颗」（订单不是出货，未录）；「本营纪要」估计 2025 年 910C 45 万张 + 910B 40 万张（按「张」计，即整卡）；Bernstein 给 2025 年 910C 35 万 + 910B 35 万（单位未注，推断为千颗）。**2025 年合计：纪要 85 万张 vs Bernstein 70 万，差 21%**，而且计数对象可能不同（张 vs 颗）。对照库内大摩那份 die 产量（ms-domestic-gpu-910b-2025 252.7 万颗 die）：**die 数是这里的三倍以上**，die 到可用卡之间还有封装与整卡良率，不可互证。"
     }
   ]
 }
