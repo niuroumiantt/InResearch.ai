@@ -46257,6 +46257,64 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原表 PB，÷1000 记 EB。**IDC 2019-04 版预测**，以 @ 时点与 2020-05、2021-03 两版区分。2018–2023 CAGR 18.4%；按位置 2019E Core 2,175,262 / Edge 340,696 / Endpoint 3,357,384 PB（location 维缺，见 7c2ea8ee 缺口）。"
+    },
+    {
+      "fact_id": "bis-dcpower2025-global-capacity-demand-2030-lower",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 171.0,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "未披露",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2030E@2025-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "6b8ac4fef1bbd0361b199bb034a8e003c2595eb1054006f725fbef1f0beaf05a",
+        "local_file": "Global Data Center Power Infrastructure Market.pdf",
+        "locator": "第 39 页 趋势段落：「Data center capacity demand is expected to grow between 19% and 22% annually from 2023 to 2030, potentially reaching 171 to 219 GW by the end of the decade. In more optimistic scenarios, growth could reach 27% per year, bringing total demand close to 298 GW by 2030」；Table 1「Estimated Data Center Capacity Demand, GW」",
+        "grade": "S3",
+        "originator": "BIS Research《Global Data Center Power Infrastructure Market》（2025-05，未注明原始出处）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「capacity demand」未说明 IT 负载还是设施口径，power_scope 记未披露。区间 171–219 GW 对应 2023–2030 年均增长 19%–22%；另有乐观情景 27%/年、约 298 GW（与 219 同为上界，缺情景维未录）。AI 负载约占未来容量需求 70%、生成式 AI 约 40%。原文未注明出处（该组数与麦肯锡公开数字一致，但本文件未写，不补）。报告页脚：经 EMIS 下载，禁止未授权分发。"
+    },
+    {
+      "fact_id": "bis-dcpower2025-global-capacity-demand-2030-upper",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 219.0,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "未披露",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2030E@2025-05",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "6b8ac4fef1bbd0361b199bb034a8e003c2595eb1054006f725fbef1f0beaf05a",
+        "local_file": "Global Data Center Power Infrastructure Market.pdf",
+        "locator": "PAGE_LOC 1.1 趋势段落：「Data center capacity demand is expected to grow between 19% and 22% annually from 2023 to 2030, potentially reaching 171 to 219 GW by the end of the decade. In more optimistic scenarios, growth could reach 27% per year, bringing total demand close to 298 GW by 2030」；Table 1「Estimated Data Center Capacity Demand, GW」",
+        "grade": "S3",
+        "originator": "BIS Research《Global Data Center Power Infrastructure Market》（2025-05，未注明原始出处）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「capacity demand」未说明 IT 负载还是设施口径，power_scope 记未披露。区间 171–219 GW 对应 2023–2030 年均增长 19%–22%；另有乐观情景 27%/年、约 298 GW（与 219 同为上界，缺情景维未录）。AI 负载约占未来容量需求 70%、生成式 AI 约 40%。原文未注明出处（该组数与麦肯锡公开数字一致，但本文件未写，不补）。报告页脚：经 EMIS 下载，禁止未授权分发。"
     }
   ]
 }
