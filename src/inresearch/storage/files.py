@@ -4,16 +4,27 @@ Atomic replacement protects readers; locked() protects a complete mutation.
 The lock is a stable sibling inode, never the inode being replaced. Callers
 must keep business validation inside the transaction and publish only once.
 """
-from contextlib import contextmanager
 import fcntl
 import json
-import os as os
-from pathlib import Path
+import os
 import threading
 import uuid
+from contextlib import contextmanager
+from pathlib import Path
 
 _locks = {}
 _guard = threading.Lock()
+
+
+class CommitUncertain(OSError):
+    """Replacement is visible, but its directory durability was not confirmed.
+
+    Callers must inspect the authoritative record before retrying. Do not roll
+    back: a later process may already have observed or updated the new value.
+    """
+
+    def __init__(self):
+        super().__init__('commit_visible_durability_unconfirmed; read current state before retry')
 
 
 def sync_directory(path):
@@ -46,7 +57,10 @@ def atomic_write(path, data):
             stream.flush()
             os.fsync(stream.fileno())
         os.replace(temporary, path)
-        sync_directory(path.parent)
+        try:
+            sync_directory(path.parent)
+        except OSError as exc:
+            raise CommitUncertain() from exc
     finally:
         temporary.unlink(missing_ok=True)
 

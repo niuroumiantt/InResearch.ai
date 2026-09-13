@@ -18,6 +18,7 @@ import inresearch.adapters.office_biff as office_biff
 import inresearch.adapters.office_container as office_container
 import inresearch.adapters.office_grid as office_grid
 import inresearch.adapters.office_ppt as office_ppt
+import inresearch.adapters.office_ooxml as office_ooxml
 
 FREE = 0xFFFFFFFF
 ENDOFCHAIN = 0xFFFFFFFE
@@ -572,6 +573,19 @@ class XlsxCellTests(unittest.TestCase):
                                   '<mergeCells><mergeCell ref="A5:D"/></mergeCells>'
                                   '</worksheet>')
         self.assertIn('5\t1', text)
+
+    def test_huge_merged_range_is_rejected_before_expanding(self):
+        cells = {(1, 0): 'heading'}
+        with self.assertRaisesRegex(ValueError, 'exceeds_extraction_budget'):
+            office_ooxml.mark_merges(cells, '<mergeCell ref="A1:XFD1048576"/>')
+        self.assertEqual({(1, 0): 'heading'}, cells)
+
+    def test_merge_budget_is_cumulative_and_invalid_ranges_fail(self):
+        with self.assertRaisesRegex(ValueError, 'exceeds_extraction_budget'):
+            office_ooxml.mark_merges({(1, 0): 'a', (2, 0): 'b'},
+                                    '<mergeCell ref="A1:C1"/><mergeCell ref="A2:C2"/>', max_cells=5)
+        with self.assertRaisesRegex(ValueError, 'invalid_merged_cell_range'):
+            office_ooxml.mark_merges({(2, 0): 'a'}, '<mergeCell ref="A2:C1"/>')
 
     def test_a_gap_is_kept_so_a_value_stays_under_its_header(self):
         text, _ = self.read(sheet='<worksheet><sheetData><row r="3">'

@@ -42,16 +42,23 @@ def merge_ranges(xml: str) -> list[tuple[int, int, int, int]]:
     return out
 
 
-def mark_merges(cells: dict, xml: str) -> dict:
+def mark_merges(cells: dict, xml: str, max_cells: int = MAX_CHARS) -> dict:
     """Fill the covered cells of every merged range with a continuation mark.
 
     Only where the top-left actually has a value and the covered cell is
     empty: a mark written over a value would invent a span that is not there,
     and an empty range is nothing to say anything about.
     """
+    remaining = max_cells
     for r1, c1, r2, c2 in merge_ranges(xml):
+        if not (0 < r1 <= r2 and 0 <= c1 <= c2):
+            raise ValueError('invalid_merged_cell_range')
         if (r1, c1) not in cells:
             continue
+        area = (r2 - r1 + 1) * (c2 - c1 + 1)
+        if area > remaining:
+            raise ValueError('merged_cell_expansion_exceeds_extraction_budget')
+        remaining -= area
         for r in range(r1, r2 + 1):
             for c in range(c1, c2 + 1):
                 if (r, c) != (r1, c1):
@@ -191,7 +198,7 @@ def xlsx_text(path: Path, limit: int = MAX_CHARS) -> tuple[str, dict]:
             xml = z.read(n).decode('utf-8', 'ignore')
             if not strings:
                 inline += len(T_RUN.findall(xml))
-            grids.append((label, mark_merges(sheet_cells(xml, strings, dated), xml)))
+            grids.append((label, mark_merges(sheet_cells(xml, strings, dated), xml, limit)))
         shapes = drawing_text(z, names)
 
     body, counts = grid_text(grids, limit)

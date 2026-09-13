@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.13.3",
+  "version": "2026.09.13.4",
   "effective_at": "2026-09-13",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -17,7 +17,7 @@
       "topic": "architecture",
       "status": "current",
       "scope": "project",
-      "effective_at": "2026-09-12",
+      "effective_at": "2026-09-13",
       "source": "framework/00_overview.md",
       "implementations": [
         "framework/research_graph.json",
@@ -36,7 +36,7 @@
       "supersedes": [
         "architecture-legacy"
       ],
-      "reason": "保持五视角架构；明确研究定义、原文、采用、任务交付、推理与操作界面的第一层边界，替代 README 中模块唯一主体与上游无接口的旧说明。"
+      "reason": "保持五视角架构；明确研究定义、原文、采用、任务交付、推理与操作界面的第一层边界，替代 README 中模块唯一主体与上游无接口的旧说明。；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。"
     },
     {
       "id": "data-legacy",
@@ -52,7 +52,7 @@
       "topic": "data",
       "status": "current",
       "scope": "project",
-      "effective_at": "2026-09-06",
+      "effective_at": "2026-09-13",
       "source": "framework/01_data_standards.md",
       "implementations": [
         "framework/data_contract.json",
@@ -61,12 +61,17 @@
         "src/inresearch/knowledge/verify.py",
         "src/inresearch/knowledge/facts.py",
         "src/inresearch/knowledge/registry.py",
-        "web/pages/index.html"
+        "web/pages/index.html",
+        "src/inresearch/workflow/submissions.py",
+        "data/schema/submission.schema.json",
+        "docs/inbox/submissions/README.md",
+        "tests/unit/test_intake.py",
+        "tests/unit/test_research.py"
       ],
       "supersedes": [
         "data-legacy"
       ],
-      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。"
+      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。"
     },
     {
       "id": "knowledge-legacy",
@@ -115,7 +120,7 @@
       "topic": "products",
       "status": "current",
       "scope": "project",
-      "effective_at": "2026-09-06",
+      "effective_at": "2026-09-13",
       "source": "framework/03_bom_and_collaboration.md",
       "implementations": [
         "src/inresearch/knowledge/registry.py",
@@ -126,7 +131,7 @@
       "supersedes": [
         "products-legacy"
       ],
-      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。"
+      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。"
     },
     {
       "id": "reading-legacy",
@@ -217,19 +222,22 @@
       "topic": "change_management",
       "status": "current",
       "scope": "project",
-      "effective_at": "2026-09-06",
+      "effective_at": "2026-09-13",
       "source": "framework/CURRENT.md",
       "implementations": [
         "AGENTS.md",
         "CLAUDE.md",
         "src/inresearch/interfaces/governance.py",
         ".github/workflows/validate.yml",
-        "web/pages/doc.html"
+        "web/pages/doc.html",
+        "framework/verification_contract.json",
+        "src/inresearch/interfaces/verification.py",
+        "tests/unit/test_verification_contract.py"
       ],
       "supersedes": [
         "change_management-legacy"
       ],
-      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。"
+      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。"
     },
     {
       "id": "interface-legacy",
@@ -331,7 +339,7 @@
       "supersedes": [
         "acquisition-legacy"
       ],
-      "reason": "保留新闻责任与来源验证规则；模型选择改为引用统一模型执行契约，替代在采集规则中固定 27B 型号。；按软件契约迁移职责与全部调用，保留原件及已采用知识权威，详见 2026-09-13 架构交付。"
+      "reason": "保留新闻责任与来源验证规则；模型选择改为引用统一模型执行契约，替代在采集规则中固定 27B 型号。；按软件契约迁移职责与全部调用，保留原件及已采用知识权威，详见 2026-09-13 架构交付。；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。"
     },
     {
       "id": "product-ecosystems-20260906",
@@ -361,7 +369,7 @@
       "topic": "reading",
       "status": "current",
       "scope": "project",
-      "effective_at": "2026-09-12",
+      "effective_at": "2026-09-13",
       "source": "framework/04_reading_scoring_standard.md",
       "implementations": [
         "web/pages/doc.html",
@@ -376,7 +384,7 @@
       "supersedes": [
         "reading-20260906"
       ],
-      "reason": "采用可替换默认研究模型与单一有效阅读结果；阅读与 C3 资格不取决于固定型号。"
+      "reason": "采用可替换默认研究模型与单一有效阅读结果；阅读与 C3 资格不取决于固定型号。；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。"
     },
     {
       "id": "reading-m4-triage-20260912",
@@ -403,12 +411,14 @@
         "tests/unit/test_file_moves.py",
         "docs/local_reader/M4_TRIAGE_RUNBOOK.md",
         "src/inresearch/materials/triage.py",
-        "src/inresearch/materials/naming.py"
+        "src/inresearch/materials/naming.py",
+        "src/inresearch/adapters/office_ooxml.py",
+        "tests/unit/test_m4_office_text.py"
       ],
       "supersedes": [
         "reading-m4-triage-20260909"
       ],
-      "reason": "统一模型配置和有效记录；清单只用一套写入/读取规则，物理移动增加哈希、持久日志、互斥及恢复，导出保留副本身份与模型来源；2026-09-13 补齐 L2 深读队列遗漏的有效结果读取，失败重试不得遮住已成功结果；原件操作范围不扩大。；按软件契约迁移职责与全部调用，保留原件及已采用知识权威，详见 2026-09-13 架构交付。"
+      "reason": "统一模型配置和有效记录；清单只用一套写入/读取规则，物理移动增加哈希、持久日志、互斥及恢复，导出保留副本身份与模型来源；2026-09-13 补齐 L2 深读队列遗漏的有效结果读取，失败重试不得遮住已成功结果；原件操作范围不扩大。；按软件契约迁移职责与全部调用，保留原件及已采用知识权威，详见 2026-09-13 架构交付。；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。；并行 M4 主分支 bdc1352 集成复审：限制合并单元格展开预算；提取文本相同不再阻挡另一 SHA，近似提示不得猜测原件等价。；集成 e73af67，保留新增事实，退出仅凭文本相同自动标记已读；历史 twin_of 行保留但不单独授予完成资格。"
     },
     {
       "id": "model-execution-20260912",
@@ -436,7 +446,7 @@
       "source": "framework/09_software_contracts.md",
       "effective_at": "2026-09-13",
       "supersedes": [],
-      "reason": "采用先证据后实现的六阶段架构整改；建立唯一用例、跨进程写入和结果权威边界；发布前复核现行规范的模块名称与命令入口，历史正文保留原名",
+      "reason": "采用先证据后实现的六阶段架构整改；建立唯一用例、跨进程写入和结果权威边界；发布前复核现行规范的模块名称与命令入口，历史正文保留原名；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。；并行 M4 主分支 bdc1352 集成复审：限制合并单元格展开预算；提取文本相同不再阻挡另一 SHA，近似提示不得猜测原件等价。；集成 e73af67，保留新增事实，退出仅凭文本相同自动标记已读；历史 twin_of 行保留但不单独授予完成资格。",
       "implementations": [
         "src/inresearch/workflow/commands.py",
         "src/inresearch/storage/files.py",
@@ -448,7 +458,13 @@
         "src/inresearch/storage/catalog.py",
         "src/inresearch/materials/library.py",
         "src/inresearch/knowledge/news_policy.py",
-        "web/routes.json"
+        "web/routes.json",
+        "src/inresearch/interfaces/http.py",
+        "tests/unit/test_commands.py",
+        "src/inresearch/adapters/office_ooxml.py",
+        "tests/unit/test_m4_office_text.py",
+        "src/inresearch/workflow/deep_read.py",
+        "tests/unit/test_m4_l2.py"
       ]
     }
   ],
@@ -475,5 +491,14 @@
     "带宽除以\\s*2",
     "精读／据实生成</b>可直接引用",
     "pull --rebase --autostash"
+  ],
+  "operational_guides": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "docs/inbox/submissions/README.md",
+    "docs/local_reader/RUN_TO_COMPLETION.md",
+    "docs/local_reader/PROJECT_BRIEF.md",
+    "docs/local_reader/ACQUISITION_OPERATIONS.md",
+    "docs/local_reader/M4_PREFLIGHT.md"
   ]
 }

@@ -6,6 +6,7 @@
 """
 
 from inresearch.paths import project_root
+from inresearch.interfaces.verification import verification_errors
 import argparse
 from collections import Counter
 import csv
@@ -103,6 +104,8 @@ def classify(path, state):
         return 'entrypoint'
     if path in state['retired_entrypoints']:
         return 'retired_entrypoint'
+    if path in state.get('operational_guides', []):
+        return 'supporting_document'
     if path.endswith('/RESEARCH_ARCHITECTURE_V2.md'):
         return 'design_reference'
     if path.startswith(('docs/archive/', 'docs/reviews/', 'docs/intern/')):
@@ -206,6 +209,7 @@ def main():
                 (ROOT / name).write_text('')
     state = json.loads((ROOT / STATE).read_text())
     errors = policy_errors(state)
+    errors += verification_errors(state, ROOT)
     manifest = build_manifest(state)
     errors += retired_errors(manifest, state)
     text = json.dumps(manifest, ensure_ascii=False, indent=2)+'\n'
@@ -220,7 +224,7 @@ def main():
     for error in errors:
         print('ERROR:', error)
     if not errors:
-        print(f'Governance {state["version"]}: {len(manifest["files"])} files; current scopes and content inventory verified')
+        print(f'Governance {state["version"]}: {len(manifest["files"])} files; scopes, inventory and reviewed test map verified; semantic coverage remains partial')
     return bool(errors)
 
 
