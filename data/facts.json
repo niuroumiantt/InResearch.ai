@@ -78655,6 +78655,161 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "单栋机房楼 18 台 PRP 1800kW，分 2 组、主用 16 台 + 备用 2 台；redundancy 原文为「16+2」，按每组 N+1 记 N+1——**原文未明写每组配置，推断**。"
+    },
+    {
+      "fact_id": "ocp2024-te-meta-orv3-std-busbar-rack-power",
+      "metric_id": "product_density_coverage",
+      "entity": {
+        "type": "product",
+        "id": "ocp-orv3-std-busbar",
+        "label": "ORv3 标准母线"
+      },
+      "asserter": "TE Connectivity",
+      "value": 18.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "bound_sense": "上限",
+        "cooling_route": "风冷",
+        "region": "Global",
+        "basis": "厂商指引"
+      },
+      "as_of": "2024-10",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "02e9e48eea150f26a83221a91a1ef9fe311e688f1a38a8984b93c95b433fe13b",
+        "local_file": "5736 - Beyond ORV3 Hpr Rack Vertical Busbar Next Gen Rack Busbar Enabling 200Kw AI Racks.pdf",
+        "locator": "第 9 页 母线规格对比表：ORv3 18kW 750A 150mm² 14KG；ORv3 HPR 150kW 3125A 1450mm² 70KG；ORv3 LC200kW 4166A 212mm² 16KG；ORv3 LC 400kW 8333A 477mm² 45KG；ORv3 LC 750kW 15625A 1483mm² 85KG（截面 2196mm × 35mm × 厚度）",
+        "grade": "S2",
+        "originator": "TE Connectivity × Meta《ORv3 & ORv3 HPR Liquid Cooled Bus Bar Assembly》（OCP Global Summit 2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "机架母线的额定供电能力（整柜功率上限），不是实际出货密度。750A、150 mm²、14 kg。 as_of 取 OCP Global Summit 2024（2024-10）。"
+    },
+    {
+      "fact_id": "ocp2024-te-meta-orv3-hpr-busbar-rack-power",
+      "metric_id": "product_density_coverage",
+      "entity": {
+        "type": "product",
+        "id": "ocp-orv3-hpr-busbar",
+        "label": "ORv3 HPR（高功率机架）母线"
+      },
+      "asserter": "TE Connectivity",
+      "value": 150.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "bound_sense": "上限",
+        "cooling_route": "风冷",
+        "region": "Global",
+        "basis": "厂商指引"
+      },
+      "as_of": "2024-10",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "02e9e48eea150f26a83221a91a1ef9fe311e688f1a38a8984b93c95b433fe13b",
+        "local_file": "5736 - Beyond ORV3 Hpr Rack Vertical Busbar Next Gen Rack Busbar Enabling 200Kw AI Racks.pdf",
+        "locator": "第 9 页 母线规格对比表：ORv3 18kW 750A 150mm² 14KG；ORv3 HPR 150kW 3125A 1450mm² 70KG；ORv3 LC200kW 4166A 212mm² 16KG；ORv3 LC 400kW 8333A 477mm² 45KG；ORv3 LC 750kW 15625A 1483mm² 85KG（截面 2196mm × 35mm × 厚度）",
+        "grade": "S2",
+        "originator": "TE Connectivity × Meta《ORv3 & ORv3 HPR Liquid Cooled Bus Bar Assembly》（OCP Global Summit 2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "机架母线的额定供电能力（整柜功率上限），不是实际出货密度。3125A、1450 mm²、70 kg；原文「ORv3 HPR enables up to 150kW with air cooling」。 as_of 取 OCP Global Summit 2024（2024-10）。"
+    },
+    {
+      "fact_id": "ocp2024-te-meta-orv3-lc200-busbar-rack-power",
+      "metric_id": "product_density_coverage",
+      "entity": {
+        "type": "product",
+        "id": "ocp-orv3-lc200-busbar",
+        "label": "ORv3 液冷母线 LC200kW"
+      },
+      "asserter": "TE Connectivity",
+      "value": 200.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "bound_sense": "上限",
+        "cooling_route": "未注明",
+        "region": "Global",
+        "basis": "厂商指引"
+      },
+      "as_of": "2024-10",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "02e9e48eea150f26a83221a91a1ef9fe311e688f1a38a8984b93c95b433fe13b",
+        "local_file": "5736 - Beyond ORV3 Hpr Rack Vertical Busbar Next Gen Rack Busbar Enabling 200Kw AI Racks.pdf",
+        "locator": "第 9 页 母线规格对比表：ORv3 18kW 750A 150mm² 14KG；ORv3 HPR 150kW 3125A 1450mm² 70KG；ORv3 LC200kW 4166A 212mm² 16KG；ORv3 LC 400kW 8333A 477mm² 45KG；ORv3 LC 750kW 15625A 1483mm² 85KG（截面 2196mm × 35mm × 厚度）",
+        "grade": "S2",
+        "originator": "TE Connectivity × Meta《ORv3 & ORv3 HPR Liquid Cooled Bus Bar Assembly》（OCP Global Summit 2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "机架母线的额定供电能力（整柜功率上限），不是实际出货密度。4166A、212 mm²、16 kg；200kW 档受 0.1V 最大压降约束（测试温升 7.79℃）。液冷的是母线本身，机架散热路线原文未写，cooling_route 记未注明。 as_of 取 OCP Global Summit 2024（2024-10）。"
+    },
+    {
+      "fact_id": "ocp2024-te-meta-orv3-lc400-busbar-rack-power",
+      "metric_id": "product_density_coverage",
+      "entity": {
+        "type": "product",
+        "id": "ocp-orv3-lc400-busbar",
+        "label": "ORv3 液冷母线 LC 400kW"
+      },
+      "asserter": "TE Connectivity",
+      "value": 400.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "bound_sense": "上限",
+        "cooling_route": "未注明",
+        "region": "Global",
+        "basis": "厂商指引"
+      },
+      "as_of": "2024-10",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "02e9e48eea150f26a83221a91a1ef9fe311e688f1a38a8984b93c95b433fe13b",
+        "local_file": "5736 - Beyond ORV3 Hpr Rack Vertical Busbar Next Gen Rack Busbar Enabling 200Kw AI Racks.pdf",
+        "locator": "第 9 页 母线规格对比表：ORv3 18kW 750A 150mm² 14KG；ORv3 HPR 150kW 3125A 1450mm² 70KG；ORv3 LC200kW 4166A 212mm² 16KG；ORv3 LC 400kW 8333A 477mm² 45KG；ORv3 LC 750kW 15625A 1483mm² 85KG（截面 2196mm × 35mm × 厚度）",
+        "grade": "S2",
+        "originator": "TE Connectivity × Meta《ORv3 & ORv3 HPR Liquid Cooled Bus Bar Assembly》（OCP Global Summit 2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "机架母线的额定供电能力（整柜功率上限），不是实际出货密度。8333A、477 mm²、45 kg。液冷的是母线本身，机架散热路线原文未写，cooling_route 记未注明。 as_of 取 OCP Global Summit 2024（2024-10）。"
+    },
+    {
+      "fact_id": "ocp2024-te-meta-orv3-lc750-busbar-rack-power",
+      "metric_id": "product_density_coverage",
+      "entity": {
+        "type": "product",
+        "id": "ocp-orv3-lc750-busbar",
+        "label": "ORv3 液冷母线 LC 750kW"
+      },
+      "asserter": "TE Connectivity",
+      "value": 750.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "bound_sense": "上限",
+        "cooling_route": "未注明",
+        "region": "Global",
+        "basis": "厂商指引"
+      },
+      "as_of": "2024-10",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "02e9e48eea150f26a83221a91a1ef9fe311e688f1a38a8984b93c95b433fe13b",
+        "local_file": "5736 - Beyond ORV3 Hpr Rack Vertical Busbar Next Gen Rack Busbar Enabling 200Kw AI Racks.pdf",
+        "locator": "第 9 页 母线规格对比表：ORv3 18kW 750A 150mm² 14KG；ORv3 HPR 150kW 3125A 1450mm² 70KG；ORv3 LC200kW 4166A 212mm² 16KG；ORv3 LC 400kW 8333A 477mm² 45KG；ORv3 LC 750kW 15625A 1483mm² 85KG（截面 2196mm × 35mm × 厚度）",
+        "grade": "S2",
+        "originator": "TE Connectivity × Meta《ORv3 & ORv3 HPR Liquid Cooled Bus Bar Assembly》（OCP Global Summit 2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "机架母线的额定供电能力（整柜功率上限），不是实际出货密度。15625A、1483 mm²、85 kg；测试 750kW 温升 29.6℃、压降 0.05V。液冷的是母线本身，机架散热路线原文未写，cooling_route 记未注明。 as_of 取 OCP Global Summit 2024（2024-10）。"
     }
   ]
 }
