@@ -24,7 +24,7 @@ class ReadingStages:
         if not p.exists():
             return None
         value = read_json(p)
-        if (value.get("_recipe") != doc["recipe"] or value.get("_marker") != marker
+        if (not isinstance(value,dict) or value.get("_recipe") != doc["recipe"] or value.get("_marker") != marker
                 or value.get("doc_id") != doc["doc_id"] or value.get('content_sha256') != doc['sha256']):
             raise IntegrityError()
         if value.get('reading_revision_id') != doc['revision_id'] and doc['artifact_rel'] != 'artifacts/' + doc['doc_id']:

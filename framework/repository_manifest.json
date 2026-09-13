@@ -3716,6 +3716,13 @@
       "collections": []
     },
     {
+      "path": "docs/reviews/2026-09-13/reading-revisions/DELIVERY.md",
+      "role": "historical",
+      "bytes": 6042,
+      "sha256": "43a56f2d1a602ec8939d49ffc7399f95e914f1128ee3afc7a8d39edbc346df66",
+      "collections": []
+    },
+    {
       "path": "docs/reviews/2026-09-13/reading-revisions/PLAN.md",
       "role": "historical",
       "bytes": 6289,
@@ -3739,28 +3746,61 @@
       ]
     },
     {
-      "path": "docs/reviews/2026-09-13/reading-revisions/consumers-before.csv",
+      "path": "docs/reviews/2026-09-13/reading-revisions/consumers-after.csv",
       "role": "historical",
-      "bytes": 8993,
-      "sha256": "fabc024a8656f81360c2c9240e6a433987ab3d0aa610a254304f2a05843cd87b",
+      "bytes": 22753,
+      "sha256": "c66204a0152ba397342d7c92ffac61ad6f17aa416b94c8741b021e82bd25a168",
       "collections": [
         {
           "name": "rows",
-          "count": 50,
+          "count": 100,
           "fields": [
+            "implementation",
             "consumer",
             "line",
-            "target",
-            "reference"
+            "symbol",
+            "kind",
+            "migration_result"
           ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/reading-revisions/consumers-before.csv",
+      "role": "historical",
+      "bytes": 10838,
+      "sha256": "f33839320d79e101152aa3543fb80a895b0c2d3c5fb69df43c517f3797956927",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 82,
+          "fields": [
+            "implementation",
+            "consumer",
+            "line",
+            "symbol",
+            "kind"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/reading-revisions/dependencies.json",
+      "role": "historical",
+      "bytes": 186,
+      "sha256": "7510721b945bed3f7e4f5e6ab708a325eec03d94f3db108a36b01352e0984d84",
+      "collections": [
+        {
+          "name": "cycles",
+          "count": 0
         }
       ]
     },
     {
       "path": "docs/reviews/2026-09-13/reading-revisions/file-plan.csv",
       "role": "historical",
-      "bytes": 86676,
-      "sha256": "71a834d8de1ed195e29c8ad33303b4e6cc2905c3bc63a94f0395a913e062e3fa",
+      "bytes": 86087,
+      "sha256": "16e7555b2b33cf6d07481880fed8f3cc74fbdb9a20a4993cf06613df36cd5732",
       "collections": [
         {
           "name": "rows",
@@ -3770,6 +3810,42 @@
             "destination",
             "action",
             "responsibility_or_reason"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/reading-revisions/file-results.csv",
+      "role": "historical",
+      "bytes": 74333,
+      "sha256": "d701e03f2d9d45c33ae02bad2ca9703647a0e3480ff13c81c81a7bf715ebf431",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 591,
+          "fields": [
+            "source",
+            "destination",
+            "action",
+            "planned_action",
+            "result"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/reading-revisions/public-contracts.csv",
+      "role": "historical",
+      "bytes": 2510,
+      "sha256": "21e67c5c14df13075e4baf240d23966f35c1d9396621b42cd5204f5e7332c751",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 10,
+          "fields": [
+            "implementation",
+            "consumers",
+            "migration_result"
           ]
         }
       ]
@@ -3787,10 +3863,24 @@
       ]
     },
     {
+      "path": "docs/reviews/2026-09-13/reading-revisions/statistics-after.json",
+      "role": "historical",
+      "bytes": 2463,
+      "sha256": "bb68d7838e5d642f044ab0e0320bc6ed8c90362f5180d7c8705f11f3b6a67878",
+      "collections": []
+    },
+    {
       "path": "docs/reviews/2026-09-13/reading-revisions/statistics-before.json",
       "role": "historical",
       "bytes": 777,
       "sha256": "9a890d03f7c1e011ae06be67309d1cbacd9ca39c8726a7ae19638a05fd75fcdd",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-09-13/reading-revisions/verification.json",
+      "role": "historical",
+      "bytes": 633,
+      "sha256": "4ad9ff464dd00eed66eab11b4eac694df58f176560afe707f2e59fe426e5a9af",
       "collections": []
     },
     {
@@ -5198,8 +5288,8 @@
     {
       "path": "src/inresearch/storage/catalog.py",
       "role": "implementation",
-      "bytes": 11946,
-      "sha256": "b14f02c845aa9f1a08f6540e5ceaffd1dfaff1f0fd5e3c97c8b2df32ada8bb43",
+      "bytes": 11996,
+      "sha256": "984f3d2a1dcf2e16af87b6aefc6e0d8f45faf19e0cff552c6945c572d9ea44a8",
       "collections": []
     },
     {
@@ -5282,8 +5372,8 @@
     {
       "path": "src/inresearch/workflow/reading_stages.py",
       "role": "implementation",
-      "bytes": 28683,
-      "sha256": "54c39b8e8b20256f34707c8c3d55d26f0e77440d42a228c8b926037728195bd3",
+      "bytes": 28713,
+      "sha256": "10f4631f2e3e4580b75b63c6a4b1f2c5f930a7f5a966f61b6d36671a46cb1ca6",
       "collections": []
     },
     {
@@ -6218,7 +6308,7 @@
     "design_reference": 1,
     "entrypoint": 4,
     "generated": 12,
-    "historical": 83,
+    "historical": 90,
     "implementation": 127,
     "normative": 13,
     "project_config": 35,

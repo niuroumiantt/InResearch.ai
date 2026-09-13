@@ -124,10 +124,13 @@ class Catalog:
         path = self._db.parent / ('before-reading-revisions-' + uuid.uuid4().hex + '.sqlite')
         fd = os.open(str(path), os.O_CREAT | os.O_EXCL | os.O_RDWR, 0o600)
         os.close(fd)
-        with sqlite3.connect(str(path)) as backup:
+        backup = sqlite3.connect(str(path))
+        try:
             self.conn.backup(backup)
             if backup.execute('PRAGMA integrity_check').fetchone()[0] != 'ok':
                 raise ValueError('legacy catalog backup failed integrity check')
+        finally:
+            backup.close()
         with path.open('rb') as saved:
             os.fsync(saved.fileno())
         fd = os.open(str(path.parent), os.O_RDONLY)

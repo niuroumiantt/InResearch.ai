@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：584。
+在册文件：591。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,7 +15,7 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 12 |
-| 历史快照 | 83 |
+| 历史快照 | 90 |
 | 运行代码 | 127 |
 | 现行规范 | 13 |
 | 项目配置 | 35 |
@@ -184,8 +184,12 @@
 | `docs/reviews/2026-09-13/architecture/source-reference-debt.csv` | rows | 27 |
 | `docs/reviews/2026-09-13/reading-revisions/baseline.json` | documents_columns | 18 |
 | `docs/reviews/2026-09-13/reading-revisions/baseline.json` | jobs_columns | 13 |
-| `docs/reviews/2026-09-13/reading-revisions/consumers-before.csv` | rows | 50 |
+| `docs/reviews/2026-09-13/reading-revisions/consumers-after.csv` | rows | 100 |
+| `docs/reviews/2026-09-13/reading-revisions/consumers-before.csv` | rows | 82 |
+| `docs/reviews/2026-09-13/reading-revisions/dependencies.json` | cycles | 0 |
 | `docs/reviews/2026-09-13/reading-revisions/file-plan.csv` | rows | 588 |
+| `docs/reviews/2026-09-13/reading-revisions/file-results.csv` | rows | 591 |
+| `docs/reviews/2026-09-13/reading-revisions/public-contracts.csv` | rows | 10 |
 | `docs/reviews/2026-09-13/reading-revisions/real-flow.json` | model | 1 |
 | `docs/reviews/2026-09-13/standards/baseline-probes.json` | C_tier_closed_questions | 1 |
 | `docs/reviews/2026-09-13/standards/baseline-probes.json` | C_tier_validation_errors | 0 |
@@ -525,12 +529,19 @@
 | [docs/reviews/2026-09-13/architecture/shared-implementations.csv](reviews/2026-09-13/architecture/shared-implementations.csv) | 历史快照 |
 | [docs/reviews/2026-09-13/architecture/source-reference-debt.csv](reviews/2026-09-13/architecture/source-reference-debt.csv) | 历史快照 |
 | `docs/reviews/2026-09-13/architecture/verification.json` | 历史快照 |
+| [docs/reviews/2026-09-13/reading-revisions/DELIVERY.md](reviews/2026-09-13/reading-revisions/DELIVERY.md) | 历史快照 |
 | [docs/reviews/2026-09-13/reading-revisions/PLAN.md](reviews/2026-09-13/reading-revisions/PLAN.md) | 历史快照 |
 | `docs/reviews/2026-09-13/reading-revisions/baseline.json` | 历史快照 |
+| [docs/reviews/2026-09-13/reading-revisions/consumers-after.csv](reviews/2026-09-13/reading-revisions/consumers-after.csv) | 历史快照 |
 | [docs/reviews/2026-09-13/reading-revisions/consumers-before.csv](reviews/2026-09-13/reading-revisions/consumers-before.csv) | 历史快照 |
+| `docs/reviews/2026-09-13/reading-revisions/dependencies.json` | 历史快照 |
 | [docs/reviews/2026-09-13/reading-revisions/file-plan.csv](reviews/2026-09-13/reading-revisions/file-plan.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/reading-revisions/file-results.csv](reviews/2026-09-13/reading-revisions/file-results.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/reading-revisions/public-contracts.csv](reviews/2026-09-13/reading-revisions/public-contracts.csv) | 历史快照 |
 | `docs/reviews/2026-09-13/reading-revisions/real-flow.json` | 历史快照 |
+| `docs/reviews/2026-09-13/reading-revisions/statistics-after.json` | 历史快照 |
 | `docs/reviews/2026-09-13/reading-revisions/statistics-before.json` | 历史快照 |
+| `docs/reviews/2026-09-13/reading-revisions/verification.json` | 历史快照 |
 | [docs/reviews/2026-09-13/standards/DELIVERY.md](reviews/2026-09-13/standards/DELIVERY.md) | 历史快照 |
 | [docs/reviews/2026-09-13/standards/INTEGRATION_PLAN.md](reviews/2026-09-13/standards/INTEGRATION_PLAN.md) | 历史快照 |
 | [docs/reviews/2026-09-13/standards/PLAN.md](reviews/2026-09-13/standards/PLAN.md) | 历史快照 |
