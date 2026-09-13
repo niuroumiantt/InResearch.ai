@@ -79147,6 +79147,186 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "3-5 年 = 36-60 个月，区间上界；对象是整座高压变电站而非单台变压器，电压等级原文未写。"
+    },
+    {
+      "fact_id": "gszq2026-iren-nvidia-neocloud-price",
+      "metric_id": "power_capacity_lease_price",
+      "entity": {
+        "type": "project",
+        "id": "iren-nvidia-managed-gpu-cloud-2026",
+        "label": "IREN × 英伟达托管 GPU 云合同（Childress 园区）"
+      },
+      "asserter": "国盛证券",
+      "value": 11.33,
+      "unit": "百万美元/MW/年",
+      "caliber": {
+        "inclusion": "含 IT 设备",
+        "tenor": "≤5 年",
+        "region": "US"
+      },
+      "as_of": "2026-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c313839f4592dcba5d89dd6cbd795e340556901e3439b639a1ffca4b7a2ec71d",
+        "local_file": "20260523-通信行业点评_AIDC_算力租赁和云_加密矿场AI转型的_三段论_13页_922kb.pdf",
+        "locator": "第 4、8 页：「合同涉及的总关键 IT 负载数与合同总额：60MW、34 亿美元；关键 IT 负载均价：1133 万美元／MW／年；合同年限均值：5 年」「拿下英伟达 34 亿美元 AI 云订单（5 年期、约 60MW，单价 1,133 万美元／MW／年）」",
+        "grade": "S3",
+        "originator": "国盛证券《AIDC、算力租赁和云：加密矿场 AI 转型的“三段论”》（2026-05-23）（合同额与 MW 来自公司公告，单价为国盛按合同额÷MW÷年限折算）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单价由国盛按「合同总额 ÷ 关键 IT 负载 ÷ 合同年限」折算，asserter 记国盛；合同额与容量来自公司公告。托管 GPU 云服务（含 GPU、软件与运维），inclusion 取含 IT 设备；2026-05-07 签署，得克萨斯州 Childress 园区约 60MW。"
+    },
+    {
+      "fact_id": "gszq2026-iren-microsoft-baremetal-price",
+      "metric_id": "power_capacity_lease_price",
+      "entity": {
+        "type": "project",
+        "id": "iren-microsoft-gb300-bare-metal",
+        "label": "IREN × 微软 GB300 裸金属合同"
+      },
+      "asserter": "国盛证券",
+      "value": 9.7,
+      "unit": "百万美元/MW/年",
+      "caliber": {
+        "inclusion": "含 IT 设备",
+        "tenor": "≤5 年",
+        "region": "US"
+      },
+      "as_of": "2026-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c313839f4592dcba5d89dd6cbd795e340556901e3439b639a1ffca4b7a2ec71d",
+        "local_file": "20260523-通信行业点评_AIDC_算力租赁和云_加密矿场AI转型的_三段论_13页_922kb.pdf",
+        "locator": "第 8 页：「公司与微软签订 5 年 97 亿美元 GB300 裸金属合同（200MW、单价 970 万美元／MW／年），且含 20%预付款（约 19.4 亿美元）」",
+        "grade": "S3",
+        "originator": "国盛证券《AIDC、算力租赁和云：加密矿场 AI 转型的“三段论”》（2026-05-23）（合同额与 MW 来自公司公告，单价为国盛按合同额÷MW÷年限折算）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单价由国盛按「合同总额 ÷ 关键 IT 负载 ÷ 合同年限」折算，asserter 记国盛；合同额与容量来自公司公告。裸金属租赁含 GPU 服务器；签约月份原文未写，as_of 取报告月份。"
+    },
+    {
+      "fact_id": "gszq2026-hut8-fluidstack-colo-price",
+      "metric_id": "power_capacity_lease_price",
+      "entity": {
+        "type": "project",
+        "id": "hut8-fluidstack-colo-2025-12",
+        "label": "Hut 8 × Fluidstack 托管合同（Anthropic 最终用户）"
+      },
+      "asserter": "国盛证券",
+      "value": 1.905,
+      "unit": "百万美元/MW/年",
+      "caliber": {
+        "inclusion": "仅电力容量",
+        "tenor": "10-15 年",
+        "region": "US"
+      },
+      "as_of": "2025-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c313839f4592dcba5d89dd6cbd795e340556901e3439b639a1ffca4b7a2ec71d",
+        "local_file": "20260523-通信行业点评_AIDC_算力租赁和云_加密矿场AI转型的_三段论_13页_922kb.pdf",
+        "locator": "第 8 页：「与 Fluidstack（Anthropic 为最终用户、谷歌资金支持）签订 245MW、70 亿美元合同（2025 年 12 月，15 年期，单价 190.5 万美元／MW／年）」",
+        "grade": "S3",
+        "originator": "国盛证券《AIDC、算力租赁和云：加密矿场 AI 转型的“三段论”》（2026-05-23）（合同额与 MW 来自公司公告，单价为国盛按合同额÷MW÷年限折算）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单价由国盛按「合同总额 ÷ 关键 IT 负载 ÷ 合同年限」折算，asserter 记国盛；合同额与容量来自公司公告。三净（NNN）场地托管；15 年期记 10-15 年档。"
+    },
+    {
+      "fact_id": "gszq2026-hut8-ig-client-colo-price",
+      "metric_id": "power_capacity_lease_price",
+      "entity": {
+        "type": "project",
+        "id": "hut8-ig-client-colo-2026-05",
+        "label": "Hut 8 × 某投资级客户托管合同"
+      },
+      "asserter": "国盛证券",
+      "value": 1.856,
+      "unit": "百万美元/MW/年",
+      "caliber": {
+        "inclusion": "仅电力容量",
+        "tenor": "10-15 年",
+        "region": "US"
+      },
+      "as_of": "2026-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c313839f4592dcba5d89dd6cbd795e340556901e3439b639a1ffca4b7a2ec71d",
+        "local_file": "20260523-通信行业点评_AIDC_算力租赁和云_加密矿场AI转型的_三段论_13页_922kb.pdf",
+        "locator": "第 8 页：「2026 年 5 月 7 日新签的与“某投资级客户”352MW、98 亿美元合同（15 年期，单价 185.6 万美元／MW／年，照付不议）」",
+        "grade": "S3",
+        "originator": "国盛证券《AIDC、算力租赁和云：加密矿场 AI 转型的“三段论”》（2026-05-23）（合同额与 MW 来自公司公告，单价为国盛按合同额÷MW÷年限折算）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单价由国盛按「合同总额 ÷ 关键 IT 负载 ÷ 合同年限」折算，asserter 记国盛；合同额与容量来自公司公告。三净、照付不议；15 年期记 10-15 年档。"
+    },
+    {
+      "fact_id": "gszq2026-apld-hyperscaler-a-colo-price",
+      "metric_id": "power_capacity_lease_price",
+      "entity": {
+        "type": "project",
+        "id": "apld-hyperscaler-a-colo-2025-10",
+        "label": "Applied Digital × 美国某投资级超大云厂商 A 托管合同"
+      },
+      "asserter": "国盛证券",
+      "value": 1.667,
+      "unit": "百万美元/MW/年",
+      "caliber": {
+        "inclusion": "仅电力容量",
+        "tenor": "10-15 年",
+        "region": "US"
+      },
+      "as_of": "2025-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c313839f4592dcba5d89dd6cbd795e340556901e3439b639a1ffca4b7a2ec71d",
+        "local_file": "20260523-通信行业点评_AIDC_算力租赁和云_加密矿场AI转型的_三段论_13页_922kb.pdf",
+        "locator": "第 8 页：「与“美国某投资级超大云厂商 A”（200MW、50 亿美元、15 年期、单价 166.7 万美元／MW／年，2025 年 10 月）」",
+        "grade": "S3",
+        "originator": "国盛证券《AIDC、算力租赁和云：加密矿场 AI 转型的“三段论”》（2026-05-23）（合同额与 MW 来自公司公告，单价为国盛按合同额÷MW÷年限折算）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单价由国盛按「合同总额 ÷ 关键 IT 负载 ÷ 合同年限」折算，asserter 记国盛；合同额与容量来自公司公告。15 年期记 10-15 年档。"
+    },
+    {
+      "fact_id": "gszq2026-cipher-aws-colo-price",
+      "metric_id": "power_capacity_lease_price",
+      "entity": {
+        "type": "project",
+        "id": "cipher-aws-colo-2025-11",
+        "label": "Cipher Mining × 亚马逊云托管合同"
+      },
+      "asserter": "国盛证券",
+      "value": 1.222,
+      "unit": "百万美元/MW/年",
+      "caliber": {
+        "inclusion": "仅电力容量",
+        "tenor": "10-15 年",
+        "region": "US"
+      },
+      "as_of": "2025-11",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c313839f4592dcba5d89dd6cbd795e340556901e3439b639a1ffca4b7a2ec71d",
+        "local_file": "20260523-通信行业点评_AIDC_算力租赁和云_加密矿场AI转型的_三段论_13页_922kb.pdf",
+        "locator": "第 9 页：「与亚马逊云签订 300MW、55 亿美元、15 年期合同（2025 年 11 月，单价 122.2 万美元／MW／年，2026 年 7 月上线、8 月开始付租金）」",
+        "grade": "S3",
+        "originator": "国盛证券《AIDC、算力租赁和云：加密矿场 AI 转型的“三段论”》（2026-05-23）（合同额与 MW 来自公司公告，单价为国盛按合同额÷MW÷年限折算）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单价由国盛按「合同总额 ÷ 关键 IT 负载 ÷ 合同年限」折算，asserter 记国盛；合同额与容量来自公司公告。15 年期记 10-15 年档；板块内唯一由公有云厂商直接签的订单。"
     }
   ]
 }
