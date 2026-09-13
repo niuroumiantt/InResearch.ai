@@ -78159,6 +78159,438 @@
       "derivation": "6,007.14 ÷ 4,800,403.42 × 100；as_of 取资料目录名「2016.12 华为(永州)云计算数据中心设计项目」",
       "corroboration": "待交叉验证",
       "notes": "**分母是「华为数据安装工程」建设项目合计（仅安装部分），不是含土建的全项目总造价**——与同项目土建汇总表的占比（分母 28,745,813.46 元）是两个分母，不可相加。2#、3# 应为门卫等附属建筑安装。三项合计 100%。"
+    },
+    {
+      "fact_id": "ulanqab-p3-elec-price-transformer-2500kva",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "project",
+        "id": "ulanqab-huawei-phase3-1",
+        "label": "乌兰察布华为云数据中心三期一阶段"
+      },
+      "asserter": "华为",
+      "value": 381335.5,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "变压器",
+        "uom": "台",
+        "price_scope": "综合单价（含安装调试）",
+        "stage": "概算",
+        "tax": "未注明",
+        "region": "CN",
+        "spec": "SCB10-2500kVA-10/0.4kV，Uk=8%，强迫空气冷却，IP30 罩壳",
+        "currency": "人民币",
+        "quantity_note": "已同记数量"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5b10bf1bb39a5684026e4a4f793258bccd5d6d8f6f225a95c9785941e3c10fd7",
+        "local_file": "乌兰察布华为云三期（电气）.xlsx",
+        "locator": "工作表「变压器」第 3 行，综合单价列 = 381335.5 元/台，数量 2 台；规格描述：SCB10-2500kVA-10/0.4kV，Uk=8%，强迫空气冷却，IP30 罩壳",
+        "grade": "S2",
+        "originator": "华为（乌兰察布华为云三期电气清单）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本工作簿是同项目机电清单（ca7964f0，库内已录柴发 4,704,000 元/台等 6 条）的电气分册：柴发、UPS、母线等单价两份一致，本条为另一份未覆盖或无单价的项。年份沿用同项目归档路径「2019.2」，工作簿内部无日期。**两份汇总表的配电柜合计不同（本册 16,159,843 元、另一份 73,723,563 元）**，另一份疑含低压列头与母线外的更多成套柜，未核。"
+    },
+    {
+      "fact_id": "ulanqab-p3-elec-price-transformer-2000kva",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "project",
+        "id": "ulanqab-huawei-phase3-1",
+        "label": "乌兰察布华为云数据中心三期一阶段"
+      },
+      "asserter": "华为",
+      "value": 290956.2,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "变压器",
+        "uom": "台",
+        "price_scope": "综合单价（含安装调试）",
+        "stage": "概算",
+        "tax": "未注明",
+        "region": "CN",
+        "spec": "SCB10-2000kVA-10/0.4kV，Uk=6%，强迫空气冷却，IP30 罩壳",
+        "currency": "人民币",
+        "quantity_note": "已同记数量"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5b10bf1bb39a5684026e4a4f793258bccd5d6d8f6f225a95c9785941e3c10fd7",
+        "local_file": "乌兰察布华为云三期（电气）.xlsx",
+        "locator": "工作表「变压器」第 4 行，综合单价列 = 290956.2 元/台，数量 2 台；规格描述：SCB10-2000kVA-10/0.4kV，Uk=6%，强迫空气冷却，IP30 罩壳",
+        "grade": "S2",
+        "originator": "华为（乌兰察布华为云三期电气清单）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本工作簿是同项目机电清单（ca7964f0，库内已录柴发 4,704,000 元/台等 6 条）的电气分册：柴发、UPS、母线等单价两份一致，本条为另一份未覆盖或无单价的项。年份沿用同项目归档路径「2019.2」，工作簿内部无日期。**两份汇总表的配电柜合计不同（本册 16,159,843 元、另一份 73,723,563 元）**，另一份疑含低压列头与母线外的更多成套柜，未核。"
+    },
+    {
+      "fact_id": "ulanqab-p3-elec-price-genset-test-load",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "project",
+        "id": "ulanqab-huawei-phase3-1",
+        "label": "乌兰察布华为云数据中心三期一阶段"
+      },
+      "asserter": "华为",
+      "value": 1211472.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "其他",
+        "uom": "套",
+        "price_scope": "综合单价（含安装调试）",
+        "stage": "概算",
+        "tax": "未注明",
+        "region": "CN",
+        "spec": "测试假负载 10kV,1800kW",
+        "currency": "人民币",
+        "quantity_note": "已同记数量"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5b10bf1bb39a5684026e4a4f793258bccd5d6d8f6f225a95c9785941e3c10fd7",
+        "local_file": "乌兰察布华为云三期（电气）.xlsx",
+        "locator": "工作表「柴油发电机组」第 11 行，综合单价列 = 1211472.0 元/套，数量 1 套；规格描述：测试假负载 10kV,1800kW",
+        "grade": "S2",
+        "originator": "华为（乌兰察布华为云三期电气清单）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本工作簿是同项目机电清单（ca7964f0，库内已录柴发 4,704,000 元/台等 6 条）的电气分册：柴发、UPS、母线等单价两份一致，本条为另一份未覆盖或无单价的项。equipment 无对应取值，记其他。年份沿用同项目归档路径「2019.2」，工作簿内部无日期。**两份汇总表的配电柜合计不同（本册 16,159,843 元、另一份 73,723,563 元）**，另一份疑含低压列头与母线外的更多成套柜，未核。"
+    },
+    {
+      "fact_id": "ulanqab-p3-elec-price-hv-incoming-10kv",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "project",
+        "id": "ulanqab-huawei-phase3-1",
+        "label": "乌兰察布华为云数据中心三期一阶段"
+      },
+      "asserter": "华为",
+      "value": 153299.8,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "uom": "台",
+        "price_scope": "综合单价（含安装调试）",
+        "stage": "概算",
+        "tax": "未注明",
+        "region": "CN",
+        "spec": "10kV市电进线柜 10kV/1250A",
+        "currency": "人民币",
+        "quantity_note": "已同记数量"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5b10bf1bb39a5684026e4a4f793258bccd5d6d8f6f225a95c9785941e3c10fd7",
+        "local_file": "乌兰察布华为云三期（电气）.xlsx",
+        "locator": "工作表「配电柜」第 4 行，综合单价列 = 153299.8 元/台，数量 2 台；规格描述：10kV市电进线柜 10kV/1250A",
+        "grade": "S2",
+        "originator": "华为（乌兰察布华为云三期电气清单）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本工作簿是同项目机电清单（ca7964f0，库内已录柴发 4,704,000 元/台等 6 条）的电气分册：柴发、UPS、母线等单价两份一致，本条为另一份未覆盖或无单价的项。年份沿用同项目归档路径「2019.2」，工作簿内部无日期。**两份汇总表的配电柜合计不同（本册 16,159,843 元、另一份 73,723,563 元）**，另一份疑含低压列头与母线外的更多成套柜，未核。"
+    },
+    {
+      "fact_id": "ulanqab-p3-elec-price-hv-metering",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "project",
+        "id": "ulanqab-huawei-phase3-1",
+        "label": "乌兰察布华为云数据中心三期一阶段"
+      },
+      "asserter": "华为",
+      "value": 234308.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "uom": "台",
+        "price_scope": "综合单价（含安装调试）",
+        "stage": "概算",
+        "tax": "未注明",
+        "region": "CN",
+        "spec": "高压计量柜（详见图纸）",
+        "currency": "人民币",
+        "quantity_note": "已同记数量"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5b10bf1bb39a5684026e4a4f793258bccd5d6d8f6f225a95c9785941e3c10fd7",
+        "local_file": "乌兰察布华为云三期（电气）.xlsx",
+        "locator": "工作表「配电柜」第 5 行，综合单价列 = 234308.0 元/台，数量 2 台；规格描述：高压计量柜（详见图纸）",
+        "grade": "S2",
+        "originator": "华为（乌兰察布华为云三期电气清单）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本工作簿是同项目机电清单（ca7964f0，库内已录柴发 4,704,000 元/台等 6 条）的电气分册：柴发、UPS、母线等单价两份一致，本条为另一份未覆盖或无单价的项。年份沿用同项目归档路径「2019.2」，工作簿内部无日期。**两份汇总表的配电柜合计不同（本册 16,159,843 元、另一份 73,723,563 元）**，另一份疑含低压列头与母线外的更多成套柜，未核。"
+    },
+    {
+      "fact_id": "ulanqab-p3-elec-price-hv-feeder-630a",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "project",
+        "id": "ulanqab-huawei-phase3-1",
+        "label": "乌兰察布华为云数据中心三期一阶段"
+      },
+      "asserter": "华为",
+      "value": 147369.7,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "uom": "台",
+        "price_scope": "综合单价（含安装调试）",
+        "stage": "概算",
+        "tax": "未注明",
+        "region": "CN",
+        "spec": "高压馈电柜 630A",
+        "currency": "人民币",
+        "quantity_note": "已同记数量"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5b10bf1bb39a5684026e4a4f793258bccd5d6d8f6f225a95c9785941e3c10fd7",
+        "local_file": "乌兰察布华为云三期（电气）.xlsx",
+        "locator": "工作表「配电柜」第 7 行，综合单价列 = 147369.7 元/台，数量 4 台；规格描述：高压馈电柜 630A",
+        "grade": "S2",
+        "originator": "华为（乌兰察布华为云三期电气清单）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本工作簿是同项目机电清单（ca7964f0，库内已录柴发 4,704,000 元/台等 6 条）的电气分册：柴发、UPS、母线等单价两份一致，本条为另一份未覆盖或无单价的项。年份沿用同项目归档路径「2019.2」，工作簿内部无日期。**两份汇总表的配电柜合计不同（本册 16,159,843 元、另一份 73,723,563 元）**，另一份疑含低压列头与母线外的更多成套柜，未核。"
+    },
+    {
+      "fact_id": "ulanqab-p3-elec-price-gen-outgoing",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "project",
+        "id": "ulanqab-huawei-phase3-1",
+        "label": "乌兰察布华为云数据中心三期一阶段"
+      },
+      "asserter": "华为",
+      "value": 442836.4,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "uom": "套",
+        "price_scope": "综合单价（含安装调试）",
+        "stage": "概算",
+        "tax": "未注明",
+        "region": "CN",
+        "spec": "柴油发电机出线柜 GEN-1—GEN-4",
+        "currency": "人民币",
+        "quantity_note": "已同记数量"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5b10bf1bb39a5684026e4a4f793258bccd5d6d8f6f225a95c9785941e3c10fd7",
+        "local_file": "乌兰察布华为云三期（电气）.xlsx",
+        "locator": "工作表「配电柜」第 11 行，综合单价列 = 442836.4 元/套，数量 4 套；规格描述：柴油发电机出线柜 GEN-1—GEN-4",
+        "grade": "S2",
+        "originator": "华为（乌兰察布华为云三期电气清单）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本工作簿是同项目机电清单（ca7964f0，库内已录柴发 4,704,000 元/台等 6 条）的电气分册：柴发、UPS、母线等单价两份一致，本条为另一份未覆盖或无单价的项。年份沿用同项目归档路径「2019.2」，工作簿内部无日期。**两份汇总表的配电柜合计不同（本册 16,159,843 元、另一份 73,723,563 元）**，另一份疑含低压列头与母线外的更多成套柜，未核。"
+    },
+    {
+      "fact_id": "ulanqab-p3-elec-price-gen-parallel-incoming",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "project",
+        "id": "ulanqab-huawei-phase3-1",
+        "label": "乌兰察布华为云数据中心三期一阶段"
+      },
+      "asserter": "华为",
+      "value": 167744.9,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "uom": "台",
+        "price_scope": "综合单价（含安装调试）",
+        "stage": "概算",
+        "tax": "未注明",
+        "region": "CN",
+        "spec": "油机并机进线柜 630A/10kV/25kA",
+        "currency": "人民币",
+        "quantity_note": "已同记数量"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5b10bf1bb39a5684026e4a4f793258bccd5d6d8f6f225a95c9785941e3c10fd7",
+        "local_file": "乌兰察布华为云三期（电气）.xlsx",
+        "locator": "工作表「配电柜」第 12 行，综合单价列 = 167744.9 元/台，数量 8 台；规格描述：油机并机进线柜 630A/10kV/25kA",
+        "grade": "S2",
+        "originator": "华为（乌兰察布华为云三期电气清单）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本工作簿是同项目机电清单（ca7964f0，库内已录柴发 4,704,000 元/台等 6 条）的电气分册：柴发、UPS、母线等单价两份一致，本条为另一份未覆盖或无单价的项。年份沿用同项目归档路径「2019.2」，工作簿内部无日期。**两份汇总表的配电柜合计不同（本册 16,159,843 元、另一份 73,723,563 元）**，另一份疑含低压列头与母线外的更多成套柜，未核。"
+    },
+    {
+      "fact_id": "ulanqab-p3-elec-price-lv-incoming-5000a",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "project",
+        "id": "ulanqab-huawei-phase3-1",
+        "label": "乌兰察布华为云数据中心三期一阶段"
+      },
+      "asserter": "华为",
+      "value": 285368.2,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "uom": "台",
+        "price_scope": "综合单价（含安装调试）",
+        "stage": "概算",
+        "tax": "未注明",
+        "region": "CN",
+        "spec": "低压进线柜 5000A（T1/T2 低压成套柜）",
+        "currency": "人民币",
+        "quantity_note": "已同记数量"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5b10bf1bb39a5684026e4a4f793258bccd5d6d8f6f225a95c9785941e3c10fd7",
+        "local_file": "乌兰察布华为云三期（电气）.xlsx",
+        "locator": "工作表「配电柜」第 20 行，综合单价列 = 285368.2 元/台，数量 2 台；规格描述：低压进线柜 5000A（T1/T2 低压成套柜）",
+        "grade": "S2",
+        "originator": "华为（乌兰察布华为云三期电气清单）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本工作簿是同项目机电清单（ca7964f0，库内已录柴发 4,704,000 元/台等 6 条）的电气分册：柴发、UPS、母线等单价两份一致，本条为另一份未覆盖或无单价的项。年份沿用同项目归档路径「2019.2」，工作簿内部无日期。**两份汇总表的配电柜合计不同（本册 16,159,843 元、另一份 73,723,563 元）**，另一份疑含低压列头与母线外的更多成套柜，未核。"
+    },
+    {
+      "fact_id": "ulanqab-p3-elec-price-lv-capacitor-300kvar",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "project",
+        "id": "ulanqab-huawei-phase3-1",
+        "label": "乌兰察布华为云数据中心三期一阶段"
+      },
+      "asserter": "华为",
+      "value": 119766.7,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "uom": "台",
+        "price_scope": "综合单价（含安装调试）",
+        "stage": "概算",
+        "tax": "未注明",
+        "region": "CN",
+        "spec": "补偿柜 300kVar（T1/T2 低压成套柜）",
+        "currency": "人民币",
+        "quantity_note": "已同记数量"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5b10bf1bb39a5684026e4a4f793258bccd5d6d8f6f225a95c9785941e3c10fd7",
+        "local_file": "乌兰察布华为云三期（电气）.xlsx",
+        "locator": "工作表「配电柜」第 21 行，综合单价列 = 119766.7 元/台，数量 2 台；规格描述：补偿柜 300kVar（T1/T2 低压成套柜）",
+        "grade": "S2",
+        "originator": "华为（乌兰察布华为云三期电气清单）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本工作簿是同项目机电清单（ca7964f0，库内已录柴发 4,704,000 元/台等 6 条）的电气分册：柴发、UPS、母线等单价两份一致，本条为另一份未覆盖或无单价的项。年份沿用同项目归档路径「2019.2」，工作簿内部无日期。**两份汇总表的配电柜合计不同（本册 16,159,843 元、另一份 73,723,563 元）**，另一份疑含低压列头与母线外的更多成套柜，未核。"
+    },
+    {
+      "fact_id": "ulanqab-p3-elec-price-ups-bypass-5000a",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "project",
+        "id": "ulanqab-huawei-phase3-1",
+        "label": "乌兰察布华为云数据中心三期一阶段"
+      },
+      "asserter": "华为",
+      "value": 309676.6,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "uom": "台",
+        "price_scope": "综合单价（含安装调试）",
+        "stage": "概算",
+        "tax": "未注明",
+        "region": "CN",
+        "spec": "UPS旁路柜 5000A/4P",
+        "currency": "人民币",
+        "quantity_note": "已同记数量"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5b10bf1bb39a5684026e4a4f793258bccd5d6d8f6f225a95c9785941e3c10fd7",
+        "local_file": "乌兰察布华为云三期（电气）.xlsx",
+        "locator": "工作表「配电柜」第 24 行，综合单价列 = 309676.6 元/台，数量 2 台；规格描述：UPS旁路柜 5000A/4P",
+        "grade": "S2",
+        "originator": "华为（乌兰察布华为云三期电气清单）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本工作簿是同项目机电清单（ca7964f0，库内已录柴发 4,704,000 元/台等 6 条）的电气分册：柴发、UPS、母线等单价两份一致，本条为另一份未覆盖或无单价的项。年份沿用同项目归档路径「2019.2」，工作簿内部无日期。**两份汇总表的配电柜合计不同（本册 16,159,843 元、另一份 73,723,563 元）**，另一份疑含低压列头与母线外的更多成套柜，未核。"
+    },
+    {
+      "fact_id": "ulanqab-p3-elec-price-apf-250a",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "project",
+        "id": "ulanqab-huawei-phase3-1",
+        "label": "乌兰察布华为云数据中心三期一阶段"
+      },
+      "asserter": "华为",
+      "value": 200366.9,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "uom": "台",
+        "price_scope": "综合单价（含安装调试）",
+        "stage": "概算",
+        "tax": "未注明",
+        "region": "CN",
+        "spec": "有源滤波柜 250A",
+        "currency": "人民币",
+        "quantity_note": "已同记数量"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5b10bf1bb39a5684026e4a4f793258bccd5d6d8f6f225a95c9785941e3c10fd7",
+        "local_file": "乌兰察布华为云三期（电气）.xlsx",
+        "locator": "工作表「配电柜」第 26 行，综合单价列 = 200366.9 元/台，数量 2 台；规格描述：有源滤波柜 250A",
+        "grade": "S2",
+        "originator": "华为（乌兰察布华为云三期电气清单）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本工作簿是同项目机电清单（ca7964f0，库内已录柴发 4,704,000 元/台等 6 条）的电气分册：柴发、UPS、母线等单价两份一致，本条为另一份未覆盖或无单价的项。年份沿用同项目归档路径「2019.2」，工作簿内部无日期。**两份汇总表的配电柜合计不同（本册 16,159,843 元、另一份 73,723,563 元）**，另一份疑含低压列头与母线外的更多成套柜，未核。"
     }
   ]
 }
