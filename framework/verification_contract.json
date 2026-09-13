@@ -42,8 +42,8 @@
     "tests/unit/test_continuous_reader.py": "6c36c298912077a7ab480e43f4a54fbfbb08978624c6e6efb3ac9f47657f4238",
     "tests/unit/test_deep_read.py": "1bd705a4a4d2fa989661dca729f129f3f8e99d9c08ba589d5dbb118f82be7751",
     "tests/unit/test_deep_read_transactions.py": "e44abfc65c4550106aa009041a92271a8e5d3c880bd56b680147baaefe633317",
-    "tests/unit/test_display_regressions.py": "2d421828267a60a806a04821a49210a92a0ff424cfe64b32247f30f686c4d667",
-    "tests/unit/test_fact_contract.py": "85a83dfbf8485571c40503afd2bf7d65ad025913bc19a69dc6fe90ab48c7db97",
+    "tests/unit/test_display_regressions.py": "2602913be97a4e6a9b1bd60e30be5ef35853bc799efa797f71d517df22085d51",
+    "tests/unit/test_fact_contract.py": "9529b7f8b43ac8a3203db9b0dc77a9b4e39cf990a9379a5ac62f345d9f31804f",
     "tests/unit/test_file_moves.py": "1f9ba746f06885b6d48ee2d73b5da8bc4364ca1ad54e85b5d6fe23cdbf1edf9a",
     "tests/unit/test_governance.py": "ee59b285f13ea82d6df0426d0fbd519b7b8f9e7695fde569708c0dac10d71f39",
     "tests/unit/test_intake.py": "752b45e1bec8938738ea28b827dcdcc9031bce772cc9030d7ded1d7be9176c10",
@@ -103,7 +103,13 @@
         "tests/unit/test_fact_contract.py::NatureDimTests.test_the_live_menu_keeps_the_overloaded_ones_in",
         "tests/unit/test_deep_read.py::DisputeRecordTests.test_a_spread_within_method_noise_does_not_queue_for_the_owner",
         "tests/unit/test_deep_read.py::DisputeRecordTests.test_an_order_of_magnitude_gap_does_queue_for_the_owner",
-        "tests/unit/test_deep_read.py::RecordTests.test_a_full_hash_that_names_no_document_is_refused"
+        "tests/unit/test_deep_read.py::RecordTests.test_a_full_hash_that_names_no_document_is_refused",
+        "tests/unit/test_fact_contract.py::RevisionChainTests.test_the_third_edition_may_point_at_the_middle_one",
+        "tests/unit/test_fact_contract.py::RevisionChainTests.test_an_older_edition_is_not_asked_to_supersede_a_newer_one",
+        "tests/unit/test_fact_contract.py::RevisionChainTests.test_record_moves_the_link_to_the_newer_side",
+        "tests/unit/test_fact_contract.py::RevisionChainTests.test_forecast_vintages_are_not_a_chain",
+        "tests/unit/test_display_regressions.py::BuriedAsserterTests.test_a_named_house_in_the_quote_is_reported",
+        "tests/unit/test_display_regressions.py::BuriedAsserterTests.test_the_live_store_has_none_left"
       ],
       "not_verified": [
         "38 条存量事实缺内容 SHA；27 条历史来源未登记；B 审核质量与语义冲突识别不能由机检代替。",
@@ -114,7 +120,8 @@
         "A 档分诊用极差阈值（2 倍）区分方法离散与量级分歧：这是分诊不是判定，阈值两侧都可能误判（口径差可能只差 10%，模型离散也可能超过 2 倍），链接全部保留待人复核。",
         "asserter 的拼写分裂（谷歌/Google 这类中英对照）机检挡不住，只能靠 manage.py facts --asserters 人工对照。",
         "basis 的 nature 声明由人逐维判断：181 个指标声明为数值性质、11 个重载的留在口径里，新增指标若把「测的是什么」放进 basis 又误加 nature，机检不会发现。",
-        "分发受限这一类由人判断原件有无分发限制：2026-09-13 所有者取消了 3 条招标控制价的标记（招标控制价依法公开），现存 34 条全部来自中国联通企标那一份原件。机检只保证受限条目不外泄，不判断某份材料该不该被标记。"
+        "分发受限这一类由人判断原件有无分发限制：2026-09-13 所有者取消了 3 条招标控制价的标记（招标控制价依法公开），现存 34 条全部来自中国联通企标那一份原件。机检只保证受限条目不外泄，不判断某份材料该不该被标记。",
+        "修订链只检查「有没有接上链」，不检查接得对不对：版本序按 as_of 的 @ 文本排序，两版同月或版本写法不一致时序关系判不出来，要人看原件。buried_asserters 是提示不是判定：locator 里点的名可能是转引链上更远的一环，asserter 究竟写谁仍须翻原件。"
       ]
     },
     {

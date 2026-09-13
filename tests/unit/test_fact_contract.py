@@ -2578,3 +2578,78 @@ class AsserterTests(unittest.TestCase):
         second = fact(fact_id='idc-2025e-at-2021', as_of='2025E@2021-03',
                       value=99.0, asserter='IDC')
         self.assertEqual(problems(second, claims=claims), [])
+
+
+class RevisionChainTests(unittest.TestCase):
+    """五版一条链，按被读到的顺序录入，接替关系还要对得上。
+
+    上一版把 revision_key 映到一个 fact_id，用 setdefault 留最先入库的那条，
+    于是链上第三版只能指向最老的一版，中间那版整个掉出链——2015 年数据圈总量
+    的 2020-04 版被迫 supersedes Data Age（2017-06），跳过了 2018-11 底表。
+    而比库里现存版本更旧的一版根本录不进去：检查要它去 supersedes 新版，
+    方向是反的。
+    """
+
+    def chain(self, *pairs):
+        return [fact(fact_id=fid, as_of='2015@' + vintage, value=value,
+                     asserter='IDC', **({'supersedes': sup} if sup else {}))
+                for fid, vintage, value, sup in pairs]
+
+    def test_the_third_edition_may_point_at_the_middle_one(self):
+        """2020-04 该接 2018-11 底表，不是被迫跳回 2017-06。"""
+        stored = self.chain(('idc-2015-v2017', '2017-06', 16.1, None),
+                            ('idc-2015-v2018', '2018-11', 18.0, 'idc-2015-v2017'))
+        claims = FC.index_claims(stored)
+        third = fact(fact_id='idc-2015-v2020', as_of='2015@2020-04',
+                     value=20.0, asserter='IDC')
+        self.assertEqual(problems({**third, 'supersedes': 'idc-2015-v2018'},
+                                  claims=claims), [],
+                         '指向中间那版必须放行——它才是真正的前一版')
+        self.assertEqual(problems({**third, 'supersedes': 'idc-2015-v2017'},
+                                  claims=claims), [],
+                         '指向链上任意一版也算接上了，不强求最近的')
+
+    def test_an_unlinked_third_edition_names_the_nearest_predecessor(self):
+        stored = self.chain(('idc-2015-v2017', '2017-06', 16.1, None),
+                            ('idc-2015-v2018', '2018-11', 18.0, 'idc-2015-v2017'))
+        claims = FC.index_claims(stored)
+        third = fact(fact_id='idc-2015-v2020', as_of='2015@2020-04',
+                     value=20.0, asserter='IDC')
+        bad = problems(third, claims=claims)
+        self.assertTrue(any('修订' in p for p in bad), bad)
+        self.assertTrue(any('idc-2015-v2018' in p for p in bad), bad)
+
+    def test_an_older_edition_is_not_asked_to_supersede_a_newer_one(self):
+        """比库里每一版都旧的一版要录得进去，且不用 supersedes 任何人。"""
+        stored = self.chain(('idc-2015-v2020', '2020-04', 20.0, None))
+        claims = FC.index_claims(stored)
+        older = fact(fact_id='idc-2015-v2018', as_of='2015@2018-11',
+                     value=18.0, asserter='IDC')
+        self.assertEqual(problems(older, claims=claims), [],
+                         '方向反过来了，不能要旧版去 supersedes 新版')
+
+    def test_record_moves_the_link_to_the_newer_side(self):
+        """插进来的旧版由新版那一侧记载接替关系。"""
+        stored = self.chain(('idc-2015-v2017', '2017-06', 16.1, None),
+                            ('idc-2015-v2020', '2020-04', 20.0, 'idc-2015-v2017'))
+        inserted = self.chain(('idc-2015-v2018', '2018-11', 18.0, 'idc-2015-v2017'))
+        moved = FC.relink_revisions(inserted, stored)
+        self.assertEqual([(r['fact_id'], r['was'], r['now']) for r in moved],
+                         [('idc-2015-v2020', 'idc-2015-v2017', 'idc-2015-v2018')])
+        self.assertEqual(stored[1]['supersedes'], 'idc-2015-v2018')
+
+    def test_a_chain_already_in_order_is_left_alone(self):
+        stored = self.chain(('idc-2015-v2017', '2017-06', 16.1, None),
+                            ('idc-2015-v2018', '2018-11', 18.0, 'idc-2015-v2017'))
+        appended = self.chain(('idc-2015-v2020', '2020-04', 20.0, 'idc-2015-v2018'))
+        self.assertEqual(FC.relink_revisions(appended, stored), [])
+        self.assertEqual(stored[1]['supersedes'], 'idc-2015-v2017')
+
+    def test_forecast_vintages_are_not_a_chain(self):
+        """两个时点的预测是并列，relink 不该去动它们。"""
+        stored = [fact(fact_id='idc-2025e-at-2019', as_of='2025E@2019-04',
+                       asserter='IDC')]
+        appended = [fact(fact_id='idc-2025e-at-2018', as_of='2025E@2018-11',
+                         value=99.0, asserter='IDC')]
+        self.assertEqual(FC.relink_revisions(appended, stored), [])
+        self.assertIsNone(stored[0].get('supersedes'))

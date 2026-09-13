@@ -170,5 +170,42 @@ console.log(JSON.stringify(counts));
         self.assertTrue(json.loads(result.stdout))
 
 
+class BuriedAsserterTests(unittest.TestCase):
+    """「据 X 统计」的 X 就是断言者，别让它留在 locator 的引号里。
+
+    cn-dc-occupancy-2023 就是这样漏掉的：locator 写着「据中国信通院统计」，
+    asserter 却是「未注明」，那条数因此既拿不到归属，也进不了与科智那条的争议对。
+    """
+
+    def fact(self, locator, asserter="未注明"):
+        return {"fact_id": "x", "asserter": asserter,
+                "evidence": {"locator": locator}}
+
+    def test_a_named_house_in_the_quote_is_reported(self):
+        found = facts.buried_asserters([self.fact("正文「据中国信通院统计，上架率 66.7%」")])
+        self.assertEqual([f[0] for f in found], ["x"])
+
+    def test_a_latin_name_is_reported(self):
+        self.assertTrue(facts.buried_asserters([self.fact("「根据GTW数据，2024 年新增 58GW」")]))
+
+    def test_data_centre_is_not_a_house(self):
+        """「数据中心」会被「据X」的模式误切成「据中心…」。"""
+        self.assertEqual(facts.buried_asserters(
+            [self.fact("「数据中心项目可行性研究报告」")]), [])
+
+    def test_a_subjectless_phrase_is_not_a_house(self):
+        for vague in ("「据公开数据测算」", "「据各厂商官网数据」"):
+            self.assertEqual(facts.buried_asserters([self.fact(vague)]), [], vague)
+
+    def test_an_already_named_record_is_not_reported(self):
+        self.assertEqual(facts.buried_asserters(
+            [self.fact("正文「据中国信通院统计」", asserter="中国信通院")]), [])
+
+    def test_the_live_store_has_none_left(self):
+        """全库扫一遍：locator 点了名而字段空着的，应当已经补完。"""
+        stored, _ = facts.load()
+        self.assertEqual(facts.buried_asserters(stored), [])
+
+
 if __name__ == "__main__":
     unittest.main()

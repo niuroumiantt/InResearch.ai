@@ -140,11 +140,27 @@ def revision_key(fact: dict) -> tuple:
     2023 editions with different values.  They are one series revised, not five
     claims, so they share this key and each later one must name what it
     supersedes.
+
+    The key maps to the *whole chain*, not to one edition.  A chain of five is
+    read in whatever order the editions are found, and the 2020 edition's
+    predecessor is the 2018 底表, not whichever edition happened to be recorded
+    first.  Keyed to a single id, the third edition can only ever point at the
+    earliest one and every edition between them drops out of the chain.
     """
     as_of = str(fact.get('as_of') or '')
     return ('revision', fact.get('metric_id'), (fact.get('entity') or {}).get('id'),
             as_of.split('@')[0], _dims(fact), fact.get('bound') or 'point',
             asserter_of(fact))
+
+
+def vintage_of(fact: dict) -> str:
+    """as_of’s @edition, or '' when the record carries none.
+
+    Editions sort as text because they are written 2018-11 / 2020-04 / 2023,
+    zero-padded and most-significant-first; '' sorts before every real edition,
+    which is what an un-versioned record should do.
+    """
+    return str(fact.get('as_of') or '').partition('@')[2]
 
 
 def forecast_key(fact: dict) -> tuple | None:
@@ -164,10 +180,13 @@ def forecast_key(fact: dict) -> tuple | None:
             asserter_of(fact))
 
 def index_claims(records: list[dict], metrics: dict | None = None) -> dict:
-    """claim/forecast/revision key -> the fact_id already holding it.
+    """claim/forecast/revision key -> the fact_id(s) already holding it.
 
-    claim_identity maps to a *list*: that is the one key several records are
-    allowed to share, and the conflict check needs all of them, not the last.
+    claim_identity and revision_key map to *lists*: those are the keys several
+    records are allowed to share, and the checks need all of them, not the
+    last.  revision_key's entries carry the edition, because which record a new
+    one supersedes depends on the order of the editions, not the order they
+    were read in.
     """
     claims = {}
     for fact in records:
@@ -182,7 +201,8 @@ def index_claim(claims: dict, fact: dict, metric: dict | None = None) -> None:
     去重、修订、预测三把键始终用完整口径，与菜单声明无关。
     """
     claims[claim_key(fact)] = fact.get('fact_id')
-    claims.setdefault(revision_key(fact), fact.get('fact_id'))
+    claims.setdefault(revision_key(fact), []).append(
+        (vintage_of(fact), fact.get('fact_id')))
     key = forecast_key(fact)
     if key is not None:
         claims.setdefault(key, fact.get('fact_id'))
@@ -341,11 +361,21 @@ def _collision_problems(fact: dict, claims: dict) -> list[str]:
     # 家对 2016 年实际值改口，后一版是要替代前一版的。两者都用 @ 记版本，但
     # 一个是并列，一个是接替。
     if '@' in as_of and forecast is None:
-        prior = claims.get(revision_key(fact))
-        if prior and prior != fact.get('supersedes'):
-            bad.append('同一断言者对 %s 已有一条 %s——这是修订而不是争议：'
-                       'supersedes 写 %s，旧版留在库里不覆盖'
-                       % (as_of.split('@')[0], prior, prior))
+        chain = [(v, fid) for v, fid in (claims.get(revision_key(fact)) or [])
+                 if fid != fact.get('fact_id')]
+        older = sorted(v for v, _ in chain if v < vintage_of(fact))
+        if chain and older and fact.get('supersedes') not in {fid for _, fid in chain}:
+            # 指向链上任意一版都算接上了：五版一条链，按被读到的顺序录入，
+            # 2020 版该接的是 2018 底表而不是最先入库的那一版。建议给最近的
+            # 前一版，但不把它当成唯一答案。
+            nearest = [fid for v, fid in sorted(chain) if v == older[-1]]
+            bad.append('同一断言者对 %s 已有 %s——这是修订而不是争议：'
+                       'supersedes 写链上任一更早的版本（最近的一版是 %s），'
+                       '旧版留在库里不覆盖'
+                       % (as_of.split('@')[0], '、'.join(
+                           fid for _, fid in sorted(chain)), '、'.join(nearest)))
+        # 这一条比库里每一版都旧：方向反过来了，不能要它去 supersedes 新版。
+        # 接替关系由新版那一侧记载，record 负责补写（见 relink_revisions）。
 
     # 别人家的同一个问题：并列，但必须互相指认。
     others = [fid for fid in (claims.get(claim_identity(fact)) or [])
@@ -367,6 +397,45 @@ def _collision_problems(fact: dict, claims: dict) -> list[str]:
                        % ('、'.join(undeclared),
                           ', '.join('"%s"' % fid for fid in undeclared)))
     return bad
+
+
+def relink_revisions(accepted: list[dict], stored: list[dict]) -> list[dict]:
+    """Insert an older edition into a chain by fixing the newer side's link.
+
+    Editions arrive in the order they are found, not in the order they were
+    published.  IDC's 2016 figure turns up in the 2023 edition first and the
+    2018 底表 three rounds later, and the older record cannot be asked to
+    supersede a newer one - that is the relation backwards.  So the newer
+    edition's supersedes moves to the record now sitting between it and what it
+    used to point at, exactly as cross_link_disputes writes the reverse link
+    rather than asking the reader to edit two records by hand.
+
+    Only a link that is now wrong is moved: a chain already naming its
+    immediate predecessor is left alone.
+    """
+    chains = {}
+    for fact in list(stored) + list(accepted):
+        if '@' not in str(fact.get('as_of') or '') or forecast_key(fact) is not None:
+            continue
+        chains.setdefault(revision_key(fact), []).append(fact)
+    moved = []
+    for chain in chains.values():
+        if len(chain) < 2:
+            continue
+        chain.sort(key=vintage_of)
+        new_ids = {f.get('fact_id') for f in accepted}
+        for older, newer in zip(chain, chain[1:]):
+            if newer.get('supersedes') == older.get('fact_id'):
+                continue
+            # 只在新插入的那一版造成断点时改写，不去动本来就不相干的链。
+            if older.get('fact_id') not in new_ids:
+                continue
+            moved.append({'fact_id': newer.get('fact_id'),
+                          'was': newer.get('supersedes'),
+                          'now': older.get('fact_id'),
+                          'as_of': newer.get('as_of')})
+            newer['supersedes'] = older.get('fact_id')
+    return moved
 
 
 def cross_link_disputes(accepted: list[dict], stored: list[dict]) -> list[dict]:

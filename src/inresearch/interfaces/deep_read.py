@@ -28,6 +28,9 @@ def cmd_record(app, a):
         print('  ' + str(row['fact_id']))
         for problem in row['problems']:
             print('     - ' + problem)
+    for row in report.get('revisions_relinked', []):
+        print('  ↩ 修订链改接：%s 的 supersedes 由 %s 改为 %s（新录的是更早的一版）'
+              % (row['fact_id'], row['was'] or '（原为空）', row['now']))
     for pair in report.get('disputes', []):
         mark = '⚖ C3 A 档待审' if pair.get('needs_owner') else '· 已登记（方法离散，不占 A 档）'
         spread = ('极差 %.2fx' % pair['spread']) if pair.get('spread') else '极差未知'

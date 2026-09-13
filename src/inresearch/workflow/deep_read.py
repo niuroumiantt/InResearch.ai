@@ -195,6 +195,11 @@ class DeepRead:
             if rejected and not partial:
                 report['note'] = '默认全有或全无；确认收下通过的那些请加 --partial'
                 return report
+            relinked = fact_contract.relink_revisions(accepted, store['records'])
+            if relinked:
+                # 新录的是旧版时，接替关系写在新版那一侧——旧版去 supersedes 新版
+                # 方向是反的。改写的是既有记录，所以逐条报出来。
+                report.update(revisions_relinked=relinked)
             disputes = fact_contract.cross_link_disputes(accepted, store['records'])
             if disputes:
                 # 只有量级分歧进 A 档的待审计数；方法离散照样入库、照样互相指认，
