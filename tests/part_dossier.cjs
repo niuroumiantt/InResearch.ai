@@ -6,6 +6,15 @@ const {chromium} = require('playwright');
   try {
     const page = await browser.newPage({viewport:{width:1280,height:900}, reducedMotion:'reduce'});
     const errors = []; page.on('pageerror', e => errors.push(e.message));
+    // Inspect actual scene objects without shipping debug globals in application code.
+    await page.route(/\/(bom3d|rack3d)\.html/, async route => {
+      const response = await route.fetch();
+      const html = await response.text();
+      const instrumented = html.replace('</script>\n</body>',
+        'globalThis.__sceneForTest = {scene, pickables, camera, controls};\n</script>\n</body>');
+      assert.notEqual(instrumented, html);
+      await route.fulfill({response, body:instrumented});
+    });
     for (const url of ['/bom3d.html?p=server', '/rack3d.html?node=part:gpu']) {
       await page.goto(process.env.UI_BASE_URL + url);
       const dossier = page.locator('#dossier');
@@ -19,10 +28,89 @@ const {chromium} = require('playwright');
       await page.mouse.move(box.x+90, box.y+65, {steps:4}); await page.mouse.up();
       await page.getByRole('button',{name:'folk',exact:true}).click();
       assert.ok(await canvas.isVisible());
+      if (process.env.REVIEW_SCREENSHOTS) await page.screenshot({path:process.env.REVIEW_SCREENSHOTS + '/' + (url.includes('bom3d') ? 'scene-campus.png' : 'scene-rack.png')});
       await dossier.getByRole('button',{name:'关闭部件档案'}).click();
       assert.ok(!await dossier.isVisible());
+      await page.waitForFunction(() => Boolean(globalThis.__sceneForTest));
+      await page.getByRole('button',{name:'Attio',exact:true}).click();
+      // Reduced-motion playback finishes at the selected end, without background writers.
+      await page.locator('#play').click();
+      assert.equal(await page.locator('#explode').inputValue(), '100');
+      await page.locator('.rg-stage-control').selectOption({index:1});
+      const selected = await page.locator('#explode').inputValue();
+      await page.getByRole('button',{name:'folk',exact:true}).click();
+      assert.equal(await page.locator('#explode').inputValue(), selected);
+      // Exercise normal animation too: repeated play then a manual phase owns the state.
+      await page.emulateMedia({reducedMotion:'no-preference'});
+      await page.locator('#play').click(); await page.locator('#play').click();
+      await page.locator('.rg-stage-control').selectOption({index:2});
+      const manual = await page.locator('#explode').inputValue();
+      await page.waitForTimeout(180);
+      assert.equal(await page.locator('#explode').inputValue(), manual);
+      await page.emulateMedia({reducedMotion:'reduce'});
+      if (url.includes('bom3d')) {
+        await page.evaluate(() => { globalThis.__originalMaterials = __sceneForTest.pickables.map(m => m.material); globalThis.__materialState = __originalMaterials.map(m => JSON.stringify((Array.isArray(m)?m:[m]).map(v=>[v.opacity,v.transparent,v.emissive?.getHex(),v.emissiveIntensity]))); });
+        await page.locator('#dchip-power').click(); await page.locator('#dchip-cooling').click();
+        assert.equal(await page.locator('#explode').inputValue(), '45');
+        assert.ok(await page.evaluate(() => __originalMaterials.every((m,i)=>JSON.stringify((Array.isArray(m)?m:[m]).map(v=>[v.opacity,v.transparent,v.emissive?.getHex(),v.emissiveIntensity]))===__materialState[i])));
+        assert.ok(await page.evaluate(() => __sceneForTest.pickables.some((m,i) => m.material !== __originalMaterials[i])));
+        await page.keyboard.press('Escape');
+        assert.ok(await page.evaluate(() => __sceneForTest.pickables.every((m,i) => m.material === __originalMaterials[i])));
+        await page.locator('#covChip').click(); await page.locator('#covChip').click();
+        assert.ok(await page.evaluate(() => __sceneForTest.pickables.every((m,i) => m.material === __originalMaterials[i])));
+      }
+      const main = page.locator('#c');
+      const mainBox = await main.boundingBox();
+      const px = mainBox.x + mainBox.width * .5, py = mainBox.y + mainBox.height * .6;
+      await page.mouse.move(px,py); await page.mouse.down();
+      await page.mouse.move(px+80,py+30,{steps:5}); await page.mouse.up();
+      assert.ok(!await dossier.isVisible(), 'orbit drag does not select a part');
     }
+    const contracts = await page.evaluate(async () => {
+      const THREE = await import('three');
+      const {createScenePicking} = await import('/assets/scene-picking.js');
+      const {createSceneMotion} = await import('/assets/scene-motion.js');
+      const check = (condition, message) => { if (!condition) throw Error(message); };
+      let time = 0, next = 0, frames = new Map(), history = [];
+      const motion = createSceneMotion({now:()=>time, reducedMotion:()=>false,
+        requestFrame:callback=>{frames.set(++next,callback);return next;}, cancelFrame:()=>{}});
+      motion.run(100, value=>history.push(['old',value]));
+      const oldFrame = frames.get(next); time=20;
+      motion.run(100, value=>history.push(['new',value]));
+      const currentFrame = frames.get(next), length = history.length;
+      oldFrame(100); check(history.length===length, 'superseded frame wrote state');
+      currentFrame(70); check(history.at(-1)[0]==='new' && history.at(-1)[1]===.5, 'new timeline progress');
+      const pending = frames.get(next); motion.cancel(); pending(200);
+      check(history.at(-1)[1]===.5, 'cancelled frame wrote state');
+      motion.run(0,value=>history.push(['retry',value])); check(history.at(-1)[1]===1,'restart failed');
+      const canvas = document.createElement('canvas'), tip = document.createElement('div');
+      canvas.style.cssText='position:fixed;left:100px;top:150px;width:300px;height:300px;z-index:999999';
+      tip.style.cssText='position:fixed;pointer-events:none'; document.body.append(canvas,tip);
+      const material = new THREE.MeshStandardMaterial({emissive:0,emissiveIntensity:0});
+      const geometry = new THREE.BoxGeometry(1,1,1), a = new THREE.Mesh(geometry,material), b = new THREE.Mesh(geometry,material);
+      b.position.x=2; const group = new THREE.Group(); group.add(a,b);
+      const camera = new THREE.PerspectiveCamera(45,1,.1,100); camera.position.z=5;
+      let selections=0, disposedGeometry=false; geometry.addEventListener('dispose',()=>disposedGeometry=true);
+      const picking = createScenePicking({THREE,canvas,camera,pickables:[a,b],tip,describe:()=> 'test part',select:()=>selections++});
+      const event = (type,x=250,y=300) => canvas.dispatchEvent(new PointerEvent(type,{pointerId:1,isPrimary:true,button:0,clientX:x,clientY:y}));
+      event('pointermove'); check(a.children.length===1 && b.children.length===0,'highlight must be local');
+      check(a.material===material && b.material===material && material.emissive.getHex()===0 && material.emissiveIntensity===0,'material changed');
+      event('pointerdown'); event('pointermove',290); event('pointermove'); event('pointerup');
+      check(selections===0,'drag return to origin selected');
+      event('pointerdown'); event('pointerup'); check(selections===1,'normal click failed after drag');
+      event('pointermove'); check(a.children.length===1,'highlight did not recover');
+      event('pointerleave'); check(a.children.length===0,'overlay was not released');
+      group.visible=false; event('pointermove'); check(a.children.length===0,'hidden parent picked');
+      group.visible=true; event('pointermove');
+      const cover=document.createElement('div');cover.style.cssText='position:fixed;left:100px;top:150px;width:300px;height:300px;z-index:1000000';document.body.append(cover);
+      event('pointermove'); check(a.children.length===0,'captured pointer picked through overlay');cover.remove();
+      picking.dispose(); event('pointerdown'); event('pointerup');
+      check(selections===1 && !disposedGeometry && material.emissive.getHex()===0,'cleanup damaged shared scene');
+      canvas.remove();tip.remove();geometry.dispose();material.dispose();
+      return true;
+    });
+    assert.ok(contracts);
     assert.deepEqual(errors, []);
-    console.log('PASS both real 3D dossiers, deep links, inspector drag, theme preservation and close');
+    console.log('PASS both real 3D scenes: dossiers, themes, motion takeover, stale frames, isolated materials, picking, drag and cleanup');
   } finally { await browser.close(); }
 })().catch(error => {console.error(error); process.exitCode=1;});

@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.13.9",
+  "version": "2026.09.13.10",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -515,8 +515,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 34343,
-      "sha256": "67228ccdd878251f84b323bdad6e0399a1bfa83128185d7564f308ccd5727a67",
+      "bytes": 34884,
+      "sha256": "812d5d2ea4ca694de464183d17de644adb424a164c946f345bf52538fa68d83c",
       "collections": []
     },
     {
@@ -4721,6 +4721,156 @@
       "collections": []
     },
     {
+      "path": "docs/reviews/2026-09-13/scene-interaction/DELIVERY.md",
+      "role": "historical",
+      "bytes": 3738,
+      "sha256": "a1969ded63b53a7afedadd8703ea1f07d85de52f2cadaa08f08b9dd12618aa9e",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-09-13/scene-interaction/PLAN.md",
+      "role": "historical",
+      "bytes": 3524,
+      "sha256": "f1d08f4c5513956e8118173c831d7e1d6d98e73e4c54f0a8554690ca4c28fdda",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-09-13/scene-interaction/audit.py",
+      "role": "historical",
+      "bytes": 3397,
+      "sha256": "edf89a73ac20d8e82f6cf35d9f7875183d7efb25d0e185d0fc32461e978aef28",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-09-13/scene-interaction/consumers-before.csv",
+      "role": "historical",
+      "bytes": 9402,
+      "sha256": "3caee35d9a446c23f51cd83f70d7920f05f4a4299058e1f2c39b8af397ee0a93",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 79,
+          "fields": [
+            "implementation",
+            "path",
+            "line",
+            "reference"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/scene-interaction/file-plan.csv",
+      "role": "historical",
+      "bytes": 59319,
+      "sha256": "422710cc69a9e26c988c20dd0e93cee2d84d71bf1f61612c336a037e0ff7d1a1",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 676,
+          "fields": [
+            "path",
+            "action",
+            "target_responsibility",
+            "legacy_exit"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/scene-interaction/file-results.csv",
+      "role": "historical",
+      "bytes": 84442,
+      "sha256": "749272296b24d0421925a118e3d518815363ef103d189ef5a1869b33d468c292",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 688,
+          "fields": [
+            "path",
+            "action",
+            "target",
+            "result"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/scene-interaction/legacy-removal.csv",
+      "role": "historical",
+      "bytes": 1330,
+      "sha256": "dd8d9a4b6669d3d52be50b72af29c1a597abf5e06806f9cc1cd8892be12ca4be",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 12,
+          "fields": [
+            "old_implementation",
+            "consumer",
+            "result",
+            "replacement_or_reason"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/scene-interaction/previous-release-verification.json",
+      "role": "historical",
+      "bytes": 5230,
+      "sha256": "8cc426f4ba8fc779050c92e14ad891f83b720516a89649e4aea62dd09efe8984",
+      "collections": [
+        {
+          "name": "containers",
+          "count": 11
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/scene-interaction/public-consumers.csv",
+      "role": "historical",
+      "bytes": 10662,
+      "sha256": "81166ebafb946a78a352f6a3bae869963f0cb036da81f467e9076dfd78070ad6",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 51,
+          "fields": [
+            "implementation_or_endpoint",
+            "consumer",
+            "line",
+            "reference",
+            "result"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/scene-interaction/scope.json",
+      "role": "historical",
+      "bytes": 517,
+      "sha256": "cdd4bb12eca27aa61904191afc61aabe01dddd8f4fd1a78311b63a7567f3b6d9",
+      "collections": [
+        {
+          "name": "changed",
+          "count": 13
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/scene-interaction/statistics-after.json",
+      "role": "historical",
+      "bytes": 1589,
+      "sha256": "8d59df0e6076d0974810634f568f0985a6bf419f88c80fa142a05d9668df15ed",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-09-13/scene-interaction/statistics-before.json",
+      "role": "historical",
+      "bytes": 617,
+      "sha256": "4ba83558535fe3368fe8988ba799f110ec6148f730e2188bb0f7912eede5daf9",
+      "collections": []
+    },
+    {
       "path": "docs/reviews/2026-09-13/standards/DELIVERY.md",
       "role": "historical",
       "bytes": 8388,
@@ -5005,8 +5155,8 @@
     {
       "path": "framework/05_interface_system.md",
       "role": "normative",
-      "bytes": 7738,
-      "sha256": "1b4d823d8fbf9b46f4db48683249a34cfc1d54fc6e84f129bb00b21a9df25f89",
+      "bytes": 8717,
+      "sha256": "c5cb9e8b6e021c3f2e8df650f6bdb67465ab0d117c6ca95e976512c08ca65a81",
       "collections": []
     },
     {
@@ -5047,8 +5197,8 @@
     {
       "path": "framework/CURRENT.md",
       "role": "normative",
-      "bytes": 5375,
-      "sha256": "f07bb42bab6f056493dbe0383ce1911b7508f4b97abb55ef71dedcc1aa3d048c",
+      "bytes": 5376,
+      "sha256": "13639da6e8e0aea647107c2d9b3770bf201803c1c1a1b8cac70d0a720998280c",
       "collections": []
     },
     {
@@ -5070,8 +5220,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 23948,
-      "sha256": "6c2f0770df662766c9ae32e692d45610778840938f0aa5c5f12d3cf7cb74999f",
+      "bytes": 24057,
+      "sha256": "3af2e34e6433f7e6c81b38d2a489997058a19306899f90383380ea76ffb10b9c",
       "collections": [
         {
           "name": "policies",
@@ -5334,8 +5484,8 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 33670,
-      "sha256": "c9cfe351727657db33426eb1a7cd9868ec724c0af492b57c844a62d20ff0bcad",
+      "bytes": 33905,
+      "sha256": "1e01435302dcdc054963057597c397075a2da931c21e09247210ca10b0661f13",
       "collections": [
         {
           "name": "policies",
@@ -6356,8 +6506,8 @@
     {
       "path": "tests/part_dossier.cjs",
       "role": "test",
-      "bytes": 1695,
-      "sha256": "6cd4f62d5e8a946ca316ccc037ed1b57a9fb3c599188e40699949c94a49aa0d5",
+      "bytes": 8979,
+      "sha256": "4ff55b5d1ecca93f930756ab6a6f528353246ebb26d144d168c0a0800dc98da3",
       "collections": []
     },
     {
@@ -7083,6 +7233,20 @@
       "collections": []
     },
     {
+      "path": "web/components/scene-motion.js",
+      "role": "implementation",
+      "bytes": 884,
+      "sha256": "f88b58d79915b50dac43972d7b2bac06decf4282701d1ed819cc51b754985db1",
+      "collections": []
+    },
+    {
+      "path": "web/components/scene-picking.js",
+      "role": "implementation",
+      "bytes": 3420,
+      "sha256": "207af98ede2cb64dfbe1a3ca917ca6be621bf0dad83f9a6dd57fe5fee06a5832",
+      "collections": []
+    },
+    {
       "path": "web/components/series-summary.js",
       "role": "implementation",
       "bytes": 1979,
@@ -7148,8 +7312,8 @@
     {
       "path": "web/pages/bom3d.html",
       "role": "implementation",
-      "bytes": 56900,
-      "sha256": "4a3993e8848d1b236674c4fb98eea98fa12b5e17dfdfc658525e52807b29ce32",
+      "bytes": 55439,
+      "sha256": "21df87875372876313758d6d560bb59f71e576a71ba127b74274f068ff22d46a",
       "collections": []
     },
     {
@@ -7211,8 +7375,8 @@
     {
       "path": "web/pages/rack3d.html",
       "role": "implementation",
-      "bytes": 42239,
-      "sha256": "0e0ff726a81c74a7eb39516fa08b96a2b25068a96589b34495de698893886e90",
+      "bytes": 40885,
+      "sha256": "57e4c7ad0dbb1f2ae072eb50c9c8f022c52b19c62ee9a08a804ab10628dee05f",
       "collections": []
     },
     {
@@ -7239,8 +7403,8 @@
     {
       "path": "web/routes.json",
       "role": "project_config",
-      "bytes": 4697,
-      "sha256": "f9b75cd78a77d94f16dc0d5d7d1d322fafdeb3d111be991ad5bdee8e5966a004",
+      "bytes": 4825,
+      "sha256": "4bea9d94c21866925f3352df8751ffcbd54d0326098ee05f5e247ef90ea3e215",
       "collections": []
     },
     {
@@ -7264,8 +7428,8 @@
     "design_reference": 1,
     "entrypoint": 4,
     "generated": 12,
-    "historical": 157,
-    "implementation": 135,
+    "historical": 169,
+    "implementation": 137,
     "normative": 13,
     "project_config": 36,
     "research_record": 16,

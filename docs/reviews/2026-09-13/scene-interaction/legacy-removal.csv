@@ -1,0 +1,13 @@
+old_implementation,consumer,result,replacement_or_reason
+setHover/pick/window pointermove/click,web/pages/bom3d.html,removed,scene-picking: isolated overlay and canvas gesture
+play RAF,web/pages/bom3d.html,removed,scene-motion: shared slider writer
+setHover/pick/window pointermove/click,web/pages/rack3d.html,removed,scene-picking: isolated overlay and canvas gesture
+play RAF,web/pages/rack3d.html,removed,scene-motion: shared slider writer
+animSlider RAF,web/pages/bom3d.html,removed,sliderMotion.run
+camAnim RAF,web/pages/bom3d.html,removed,cameraMotion.run/cancel
+setDim original material/userData cache,web/pages/bom3d.html,removed,per-mesh clone restoration and disposal
+unused matsOf,web/pages/rack3d.html,removed,no remaining consumer after hover exit
+renderer/environment/texture construction,both scene pages,retained/uncompleted,separate responsibility review; no claim of full scene decomposition
+GLB manifest and drill navigation,both scene pages,retained/uncompleted,separate responsibility review; no claim of full scene decomposition
+large scene-specific geometry,both scene pages,retained/uncompleted,separate responsibility review; no claim of full scene decomposition
+initial data load failure recovery,both scene pages,retained/uncompleted,separate responsibility review; no claim of full scene decomposition
