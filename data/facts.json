@@ -76052,6 +76052,67 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "区间上界。图表 32 标「数据来源：Accenture等」，asserter 记埃森哲；做出时点原文未写，@ 只能确定不晚于本报告的 2025 年。"
+    },
+    {
+      "fact_id": "sa-scaling-amazon-anthropic-trainium2-400k",
+      "metric_id": "cluster_gpu_count",
+      "entity": {
+        "type": "project",
+        "id": "amazon-anthropic-trainium2-cluster",
+        "label": "亚马逊为 Anthropic 准备的 Trainium2 集群"
+      },
+      "asserter": "SemiAnalysis",
+      "value": 400000.0,
+      "unit": "颗",
+      "caliber": {
+        "scope": "单集群可扩展上限",
+        "accelerator": "AWS Trainium2",
+        "region": "未披露",
+        "basis": "第三方估算"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ba27b6209b916e07043564a94cce5cb72c6a8a4598b2c5da301580227d275c9d",
+        "local_file": "Scaling Laws – O1 Pro Architecture, Reasoning Training Infrastructure, Orion and Claude 3.5 Opus “Failures” – SemiAnalysis.pdf",
+        "locator": "第 2 页：「From Amazon investing considerable sums to accelerate its Trainium2 custom silicon and preparing 400k chips for Anthropic at an estimated cost of $6.5B in total IT and datacenter investment, to Meta’s 2GW datacenter plans for 2026 in Louisiana」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Scaling Laws – O1 Pro Architecture, Reasoning Training Infrastructure…》（Dylan Patel 等，2024-12-11）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「preparing 400k chips」为筹备中的规模，scope 记单集群可扩展上限（非已部署）；原文未写地点，region 记未披露。估算总投资 65 亿美元（IT+数据中心）。同句：Meta 2026 年路易斯安那 2GW 数据中心计划（未录，库内 Meta 项目另有来源）。"
+    },
+    {
+      "fact_id": "sa-scaling-meta-louisiana-2gw-2026",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "project",
+        "id": "meta-louisiana-dc",
+        "label": "Meta 路易斯安那数据中心"
+      },
+      "asserter": "SemiAnalysis",
+      "value": 2000.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L2",
+        "region": "US"
+      },
+      "as_of": "2026E@2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ba27b6209b916e07043564a94cce5cb72c6a8a4598b2c5da301580227d275c9d",
+        "local_file": "Scaling Laws – O1 Pro Architecture, Reasoning Training Infrastructure, Orion and Claude 3.5 Opus “Failures” – SemiAnalysis.pdf",
+        "locator": "第 2 页：「… to Meta’s 2GW datacenter plans for 2026 in Louisiana」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Scaling Laws – O1 Pro Architecture, Reasoning Training Infrastructure…》（Dylan Patel 等，2024-12-11）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「2GW datacenter plans for 2026」，口径未写，status 记 L2（规划）。"
     }
   ]
 }
