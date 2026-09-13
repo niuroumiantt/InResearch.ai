@@ -1930,6 +1930,67 @@ class TextFingerprintTests(unittest.TestCase):
         self.assertEqual(L2.fingerprints()['a' * 64], 'new')
 
 
+class TwinAdvanceTests(unittest.TestCase):
+    """pack 拦下一字不差的副本之后，队列要前进。
+
+    以前只拦不记：副本留在队首，每次 pack 都返回同一句拒绝，直到有人手打
+    skip——而那份文件机器已经逐字证明是读过的。这种程度的确定性，替读者记
+    已读不算越权。
+    """
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-twin-')
+        base = Path(self.temp.name)
+        self._saved = (L2.TEXT_MD5, L2.READ_LOG, L2.eligible, L2.full_text,
+                       L2.L1.readable_path, L2.load_metrics, L2.load_questions,
+                       L2.load_facts, L2.PACKET_DIR)
+        L2.TEXT_MD5 = base / 'l2_text_md5.jsonl'
+        L2.READ_LOG = base / 'l2_read.jsonl'
+        L2.PACKET_DIR = base / 'packets'
+        self.text = '中国第三方数据中心运营商分析报告。' * 60
+        source = base / 'copy.pdf'
+        source.write_bytes('另一个字节序列'.encode('utf-8'))
+        self.row = {**L1_ROW, 'sha256': hashlib.sha256(source.read_bytes()).hexdigest()}
+        L2.eligible = lambda min_score=8, include_read=False, since=0: [self.row]
+        L2.full_text = lambda path, suffix: (self.text, {'pages': 41})
+        L2.L1.readable_path = lambda r: (source, False)
+        L2.load_metrics = lambda: METRICS
+        L2.load_questions = lambda: {}
+        L2.load_facts = lambda: {'records': []}
+        # 已读过的那一份：同一正文、另一个 sha
+        L2.remember_fingerprint('a' * 64, L2.text_fingerprint(self.text, {'pages': 41}))
+        L2.READ_LOG.write_text(json.dumps({'sha256': 'a' * 64, 'facts': 3}) + '\n',
+                               encoding='utf-8')
+
+    def tearDown(self):
+        (L2.TEXT_MD5, L2.READ_LOG, L2.eligible, L2.full_text, L2.L1.readable_path,
+         L2.load_metrics, L2.load_questions, L2.load_facts, L2.PACKET_DIR) = self._saved
+        self.temp.cleanup()
+
+    def pack(self, again=False):
+        out = io.StringIO()
+        with redirect_stdout(out):
+            L2.cmd_pack(type('A', (), {'sha': self.row['sha256'][:12] if again else None,
+                                       'min_score': 8, 'again': again, 'since': 0}))
+        return json.loads(out.getvalue())
+
+    def test_a_blocked_twin_is_marked_read_so_the_queue_advances(self):
+        report = self.pack()
+        self.assertEqual(report['packed'], 0)
+        self.assertTrue(report['marked_read'])
+        self.assertIn(self.row['sha256'], L2.read_documents())
+        rows = [json.loads(l) for l in L2.READ_LOG.read_text(encoding='utf-8').splitlines()]
+        self.assertEqual(rows[-1]['facts'], 0)
+        self.assertEqual(rows[-1]['twin_of'], ['a' * 64])
+        self.assertIn('正文副本', rows[-1]['skipped'])
+
+    def test_again_still_reopens_it(self):
+        """记成已读不是封死：--again 照样能按名重开。"""
+        self.pack()
+        report = self.pack(again=True)
+        self.assertEqual(report['packed'], 1)
+
+
 class NearTwinTests(unittest.TestCase):
     """丢了一页的副本：text_md5 一字不差才算，这里管「差一页」。
 

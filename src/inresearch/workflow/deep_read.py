@@ -468,12 +468,25 @@ def cmd_pack(a):
         if twins and not a.again:
             # Not a refusal to ever read it - a refusal to read it twice
             # without saying so.  --again reopens it by name.
+            #
+            # And the queue moves on.  Blocking without recording left the
+            # copy at the top of the queue, so every pack returned the same
+            # refusal until someone typed skip by hand - for a document the
+            # machine had already proven, character for character, was one it
+            # had read.  Certainty this complete is the one case where marking
+            # read on the reader's behalf is not presumption.  The ledger row
+            # says why, and --again still reopens it.
+            READ_LOG.parent.mkdir(parents=True, exist_ok=True)
+            append_record(READ_LOG, {'sha256': row['sha256'], 'at': now(), 'facts': 0,
+                                     'skipped': '正文副本：与 %s 一字不差' % twins[0][:16],
+                                     'twin_of': twins})
             print(json.dumps(
                 {'packed': 0, 'sha256': row['sha256'], 'rel': row.get('rel'),
                  'text_md5': text_md5, 'same_text_already_read': twins,
+                 'marked_read': True,
                  'reason': '正文与已读过的文件一字不差——sha256 不同是因为字节不同，'
-                           '不是因为内容不同。确要再读一遍用 pack --again --sha %s；'
-                           '若确认是同一份，直接 skip 掉这一份'
+                           '不是因为内容不同。已按副本记入已读，队列会前进；'
+                           '确要再读一遍用 pack --again --sha %s'
                            % row['sha256'][:12]}, ensure_ascii=False))
             return
         # 在记账之前问：正文一样、还没读、已经开过包的是哪几份。
