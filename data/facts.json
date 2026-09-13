@@ -47775,6 +47775,215 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**原文未点名是哪一份规范、何时发布**，as_of 取蓝皮书时点。库内已有国家层面新建大型数据中心限值为 1.3（2021 三年行动计划）、枢纽节点 1.25，与本条 1.15 差距大——**待交叉验证，不宜单独引用**。period 原文未写，按政策 PUE 惯例记年均。"
+    },
+    {
+      "fact_id": "iea2026-dc-electricity-2025",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 485.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "87f1ac0ecd8ca3dc5e129ad866fd975d4fff8264a4de3aa8a9e42a5c29529382",
+        "local_file": "20260611-摩根大通长远视角：人工智能、能源与气候问答(70页).pdf",
+        "locator": "第 6 页：「In the updated Base Case, data centre electricity consumption grows from around 485 TWh in 2025 to roughly 950 TWh by 2030, accounting for just under 10% of global electricity demand growth over the period」；第 2 页 Executive Summary 同述",
+        "grade": "S3",
+        "originator": "IEA《Key Questions on Energy and AI》（2026，经 J.P. Morgan《The Long View: Q&A on AI, Energy and Climate》2026-06-08 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「around 485 TWh」。IEA 2025 版给 2024 年 415 TWh（iea-dc-electricity-2024）。2025 为已发生年份，按「单一情景/实测」记，同 2024 那条的处理；IEA 自身为估算。"
+    },
+    {
+      "fact_id": "iea2026-dc-electricity-2030-base",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 950.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "Base Case",
+        "scope": "全部数据中心",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2026-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "87f1ac0ecd8ca3dc5e129ad866fd975d4fff8264a4de3aa8a9e42a5c29529382",
+        "local_file": "20260611-摩根大通长远视角：人工智能、能源与气候问答(70页).pdf",
+        "locator": "第 6 页：「In the updated Base Case, data centre electricity consumption grows from around 485 TWh in 2025 to roughly 950 TWh by 2030, accounting for just under 10% of global electricity demand growth over the period」；第 2 页 Executive Summary 同述",
+        "grade": "S3",
+        "originator": "IEA《Key Questions on Energy and AI》（2026，经 J.P. Morgan《The Long View: Q&A on AI, Energy and Climate》2026-06-08 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「roughly 950 TWh」。IEA 2025 版 Base Case 为 945（@2025-04），更新版基本不变——原文称物理约束（内存、并网等待 4-5 年、燃气轮机、变压器、电工）使 2030 前各情景收敛。IEA 2026 报告发布月份原文未写，@ 取 J.P. Morgan 转引报告时点 2026-06（实际做出时点更早）。"
+    },
+    {
+      "fact_id": "iea2026-dc-power-share-2025",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 1.5,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "87f1ac0ecd8ca3dc5e129ad866fd975d4fff8264a4de3aa8a9e42a5c29529382",
+        "local_file": "20260611-摩根大通长远视角：人工智能、能源与气候问答(70页).pdf",
+        "locator": "第 2 页 Executive Summary：「Data centres accounted for approximately 1.5% of global electricity consumption in 2025, with demand growing at four times the rate of broader electricity consumption since 2017」",
+        "grade": "S3",
+        "originator": "IEA《Key Questions on Energy and AI》（2026，经 J.P. Morgan《The Long View: Q&A on AI, Energy and Climate》2026-06-08 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「approximately 1.5%」。"
+    },
+    {
+      "fact_id": "iea2026-dc-power-share-2030e-base",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 3.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2026-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "87f1ac0ecd8ca3dc5e129ad866fd975d4fff8264a4de3aa8a9e42a5c29529382",
+        "local_file": "20260611-摩根大通长远视角：人工智能、能源与气候问答(70页).pdf",
+        "locator": "第 1 页要点：「In the IEA’s Base Case, DC double their share of global electricity from 1.5% to 3% by 2030 (485 → 950 TWh)」",
+        "grade": "S3",
+        "originator": "IEA《Key Questions on Energy and AI》（2026，经 J.P. Morgan《The Long View: Q&A on AI, Energy and Climate》2026-06-08 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Base Case（本指标无情景维，写在 notes）。IEA 2026 报告发布月份原文未写，@ 取 J.P. Morgan 转引报告时点 2026-06（实际做出时点更早）。"
+    },
+    {
+      "fact_id": "iea2026-dc-supply-renewables-to-2030",
+      "metric_id": "dc_demand_source_mix",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 200.0,
+      "unit": "TWh",
+      "caliber": {
+        "source": "可再生能源",
+        "scenario": "Base Case",
+        "window": "至2030",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2026-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "87f1ac0ecd8ca3dc5e129ad866fd975d4fff8264a4de3aa8a9e42a5c29529382",
+        "local_file": "20260611-摩根大通长远视角：人工智能、能源与气候问答(70页).pdf",
+        "locator": "第 9 页：「With an additional 200TWh (360TWh in 2030), renewables would account for more than one-third of DC total generation by 2030. Gas is expected to grow strongly, mostly in the US, doubling to around 340TWh and reaching around 30% of the mix」",
+        "grade": "S3",
+        "originator": "IEA《Key Questions on Energy and AI》（2026，经 J.P. Morgan《The Long View: Q&A on AI, Energy and Climate》2026-06-08 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "增量 200 TWh（2030 年存量 360 TWh）。天然气原文只给存量「翻倍至约 340 TWh」、未给增量，按本指标 note 不换算，未录。可再生+天然气合计约覆盖 2030 年数据中心用电 65%。IEA 2026 报告发布月份原文未写，@ 取 J.P. Morgan 转引报告时点 2026-06（实际做出时点更早）。"
+    },
+    {
+      "fact_id": "iea2026-best-hyperscale-pue-lower",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "market",
+        "id": "best-in-class-hyperscale-dc",
+        "label": "同类最优超大规模数据中心"
+      },
+      "value": 1.1,
+      "unit": "比值",
+      "caliber": {
+        "basis": "最优水平",
+        "scale": "超大型",
+        "period": "年均",
+        "region": "Global"
+      },
+      "as_of": "2026-06",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "87f1ac0ecd8ca3dc5e129ad866fd975d4fff8264a4de3aa8a9e42a5c29529382",
+        "local_file": "20260611-摩根大通长远视角：人工智能、能源与气候问答(70页).pdf",
+        "locator": "第 2 页 Executive Summary：「best-in-class hyperscale facilities now achieve PUE ratios of 1.1–1.2 versus 1.5–1.7 for older facilities」",
+        "grade": "S3",
+        "originator": "J.P. Morgan（据 IEA 2026）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间 1.1–1.2 的下界；对照老旧设施 1.5–1.7（无 basis 取值可对应「老旧设施典型值」，未录）。period 原文未写，按年均记。"
+    },
+    {
+      "fact_id": "iea2026-best-hyperscale-pue-upper",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "market",
+        "id": "best-in-class-hyperscale-dc",
+        "label": "同类最优超大规模数据中心"
+      },
+      "value": 1.2,
+      "unit": "比值",
+      "caliber": {
+        "basis": "最优水平",
+        "scale": "超大型",
+        "period": "年均",
+        "region": "Global"
+      },
+      "as_of": "2026-06",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "87f1ac0ecd8ca3dc5e129ad866fd975d4fff8264a4de3aa8a9e42a5c29529382",
+        "local_file": "20260611-摩根大通长远视角：人工智能、能源与气候问答(70页).pdf",
+        "locator": "第 2 页 Executive Summary：「best-in-class hyperscale facilities now achieve PUE ratios of 1.1–1.2 versus 1.5–1.7 for older facilities」",
+        "grade": "S3",
+        "originator": "J.P. Morgan（据 IEA 2026）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间 1.1–1.2 的上界；对照老旧设施 1.5–1.7（无 basis 取值可对应「老旧设施典型值」，未录）。period 原文未写，按年均记。"
     }
   ]
 }
