@@ -78872,6 +78872,68 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原文「four H100 nodes per rack」，按节点记计算托盘；依据现场照片判读，spec_basis 取第三方实测。地点原文未写，region 记未披露。"
+    },
+    {
+      "fact_id": "abb2026-ai-load-idle-floor",
+      "metric_id": "rack_load_swing",
+      "entity": {
+        "type": "market",
+        "id": "gpu-ai-load-profile-abb",
+        "label": "GPU/加速器 AI 负载特性（ABB 客户配置文件）"
+      },
+      "asserter": "ABB",
+      "value": 40.0,
+      "unit": "%",
+      "caliber": {
+        "parameter": "最低负载占比",
+        "workload": "未注明",
+        "region": "Global",
+        "basis": "厂商指引"
+      },
+      "as_of": "2026-03",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "93606ce9ae90cd63d9185a2d43bfb20616eb21d2af7aeb231a4980bab168bab6",
+        "local_file": "20260313-ABB AI数据中心电力保护(18页).pdf",
+        "locator": "第 6 页「动态负载周期」：「空闲/低负载：数据预处理、内存访问或等待 I/O 时，功率需求可降至 UPS 容量的 40%或更低；高强度负载：模型训练或推理期间，需求可在数毫秒内飙升至 UPS 容量的 90%以上」",
+        "grade": "S2",
+        "originator": "ABB《AI 数据中心电力保护》白皮书（2026-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "分母是 UPS 额定容量，不是机柜设计功率；「40%或更低」按上界记。训练与推理未区分，workload 记未注明。另：短时过载峰值超过 UPS 额定 100%，ABB 实验室测试到 130%、15 ms 120%。"
+    },
+    {
+      "fact_id": "abb2026-llm-cluster-oscillation-floor",
+      "metric_id": "rack_load_swing",
+      "entity": {
+        "type": "market",
+        "id": "llm-server-cluster-load-abb",
+        "label": "运行大语言模型的服务器集群（ABB 示例）"
+      },
+      "asserter": "ABB",
+      "value": 50.0,
+      "unit": "%",
+      "caliber": {
+        "parameter": "最低负载占比",
+        "workload": "未注明",
+        "region": "Global",
+        "basis": "厂商指引"
+      },
+      "as_of": "2026-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "93606ce9ae90cd63d9185a2d43bfb20616eb21d2af7aeb231a4980bab168bab6",
+        "local_file": "20260313-ABB AI数据中心电力保护(18页).pdf",
+        "locator": "第 7 页「叠加负载特性」：「运行大型语言模型的服务器集群，其负载会在50%至90%区间内以数秒为周期持续振荡。同时，在进行分布式训练同步时，它可能产生120%的负载尖峰」",
+        "grade": "S2",
+        "originator": "ABB《AI 数据中心电力保护》白皮书（2026-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "振荡区间 50%-90%（相对 UPS 容量），周期数秒；分布式训练同步时尖峰 120%。原文示例未区分训练推理。"
     }
   ]
 }
