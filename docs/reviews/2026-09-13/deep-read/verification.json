@@ -1,0 +1,45 @@
+{
+  "python": {
+    "version": "3.9.6",
+    "tests": 939,
+    "result": "passed",
+    "seconds": 11.683
+  },
+  "transaction_tests": {
+    "tests": 29,
+    "result": "passed",
+    "seconds": 0.469,
+    "independent_processes": true
+  },
+  "prior_tests": {
+    "fixed_baseline": 899,
+    "integrated_baseline": 910,
+    "old_l2": 402,
+    "upstream_l2_added": 11,
+    "l2_preserved": 413,
+    "new_transaction_cases": 29
+  },
+  "governance": {
+    "version": "2026.09.13.6",
+    "scopes": 13,
+    "result": "passed; final inventory regenerated before commit",
+    "semantic_coverage": "partial"
+  },
+  "strict_validation": {
+    "warnings": 0
+  },
+  "registry": {
+    "objects": 118,
+    "questions": 449
+  },
+  "real_model": "real-flow.json",
+  "ci": "pending PR execution",
+  "deployment": "pending merged release; final evidence recorded in PR and local release report",
+  "remaining": [
+    "M4/Spark production ledgers not upgraded or mutated",
+    "L2 and reader completion/version authorities not yet unified",
+    "38 existing facts without content hash; 27 dangling source IDs retained",
+    "188 upstream unspecified asserters are not manually verified here",
+    "3D scene decomposition and whole-corpus semantic review remain"
+  ]
+}

@@ -5,8 +5,9 @@ ROOT=Path(__file__).resolve().parents[4]
 OUT=Path(__file__).resolve().parent
 BASE='465f8defe21e9fe7a7a75ad87bfeaa07e10e2fab'
 SOURCE='src/inresearch/workflow/deep_read.py'
-NEW=['src/inresearch/interfaces/deep_read.py','src/inresearch/materials/reading_policy.py','src/inresearch/materials/text_similarity.py','src/inresearch/knowledge/provenance.py','src/inresearch/workflow/reading_gaps.py','tests/unit/test_deep_read.py','tests/unit/test_fact_contract.py','tests/unit/test_text_similarity.py','tests/unit/test_deep_read_transactions.py']
-CHANGED={SOURCE,'src/inresearch/interfaces/cli.py','src/inresearch/README.md','src/inresearch/delivery/reading_packet.py','framework/09_software_contracts.md','framework/CURRENT.md','framework/current_state.json','framework/verification_contract.json','framework/repository_manifest.json','docs/REPOSITORY_REGISTER.md','docs/M4_TRIAGE_TASK.md','docs/DECISIONS.md'}
+NEW=['tests/unit/deep_read_fixtures.py','src/inresearch/interfaces/deep_read.py','src/inresearch/materials/reading_policy.py','src/inresearch/materials/text_similarity.py','src/inresearch/knowledge/provenance.py','src/inresearch/workflow/reading_gaps.py','tests/unit/test_deep_read.py','tests/unit/test_fact_contract.py','tests/unit/test_text_similarity.py','tests/unit/test_deep_read_transactions.py']
+INTEGRATED='20814b8'
+CHANGED={SOURCE,'src/inresearch/knowledge/fact_contract.py','src/inresearch/interfaces/cli.py','src/inresearch/README.md','src/inresearch/delivery/reading_packet.py','framework/09_software_contracts.md','framework/CURRENT.md','framework/current_state.json','framework/verification_contract.json','framework/repository_manifest.json','docs/REPOSITORY_REGISTER.md','docs/M4_TRIAGE_TASK.md','docs/DECISIONS.md'}
 REMOVED={'tests/unit/test_m4_l2.py'}
 PURE={'self_authored','restricted','unattributed','gap_label','document_year','matches'}
 SIMILAR={'text_fingerprint','text_sketch','sketch_overlap','fingerprints','sketches','remember_fingerprint','already_read_with_same_text','packed_not_read_with_same_text','near_twins'}
@@ -74,5 +75,7 @@ if '--before' in sys.argv:
 elif '--after' in sys.argv:
  new=current(); table('consumers-after.csv',references(new))
  table('file-results.csv',[dict(path=p,action='removed' if p not in new else 'added' if p not in old else 'modified' if old[p]!=new[p] else 'retained',planned=p in CHANGED or p in NEW or p in REMOVED or p.startswith(str(OUT.relative_to(ROOT))),result='see public-contracts and delivery; history/originals not deleted' if old.get(p)!=new.get(p) else 'unchanged') for p in sorted(set(old)|set(new))])
- dump('statistics-after.json',dict(baseline=BASE,before=stats(old),after=stats(current())))
+ upstream={p:git('show',INTEGRATED+':'+p) for p in git('ls-tree','-r','--name-only','-z',INTEGRATED).decode().strip('\0').split('\0')}
+ table('integration-files.csv',[dict(path=p,upstream_change=p not in old or old.get(p)!=upstream.get(p),our_change=upstream.get(p)!=new.get(p),disposition='unchanged from integrated main' if upstream.get(p)==new.get(p) else 'see contract migration') for p in sorted(set(upstream)|set(new))])
+ dump('statistics-after.json',dict(baseline=BASE,integration_baseline=INTEGRATED,before=stats(old),integrated=stats(upstream),after=stats(current())))
 else:raise SystemExit('Use --before once before implementation, or --after after review')

@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：609。
+在册文件：620。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,7 +15,7 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 12 |
-| 历史快照 | 99 |
+| 历史快照 | 110 |
 | 运行代码 | 132 |
 | 现行规范 | 13 |
 | 项目配置 | 35 |
@@ -183,9 +183,18 @@
 | `docs/reviews/2026-09-13/architecture/shared-implementations.csv` | rows | 152 |
 | `docs/reviews/2026-09-13/architecture/source-reference-debt.csv` | rows | 27 |
 | `docs/reviews/2026-09-13/deep-read/baseline.json` | ambiguous_pack_selected | 1 |
+| `docs/reviews/2026-09-13/deep-read/consumers-after.csv` | rows | 455 |
 | `docs/reviews/2026-09-13/deep-read/consumers-before.csv` | rows | 425 |
+| `docs/reviews/2026-09-13/deep-read/dependency-audit.json` | cycles | 0 |
+| `docs/reviews/2026-09-13/deep-read/dependency-audit.json` | import_edges | 187 |
 | `docs/reviews/2026-09-13/deep-read/file-plan.csv` | rows | 603 |
+| `docs/reviews/2026-09-13/deep-read/file-results.csv` | rows | 621 |
 | `docs/reviews/2026-09-13/deep-read/functions-before.csv` | rows | 38 |
+| `docs/reviews/2026-09-13/deep-read/integration-files.csv` | rows | 621 |
+| `docs/reviews/2026-09-13/deep-read/public-contracts.csv` | rows | 76 |
+| `docs/reviews/2026-09-13/deep-read/real-flow.json` | steps | 6 |
+| `docs/reviews/2026-09-13/deep-read/test-results.csv` | rows | 413 |
+| `docs/reviews/2026-09-13/deep-read/verification.json` | remaining | 5 |
 | `docs/reviews/2026-09-13/reading-revisions/baseline.json` | documents_columns | 18 |
 | `docs/reviews/2026-09-13/reading-revisions/baseline.json` | jobs_columns | 13 |
 | `docs/reviews/2026-09-13/reading-revisions/consumers-after.csv` | rows | 100 |
@@ -533,14 +542,25 @@
 | [docs/reviews/2026-09-13/architecture/shared-implementations.csv](reviews/2026-09-13/architecture/shared-implementations.csv) | 历史快照 |
 | [docs/reviews/2026-09-13/architecture/source-reference-debt.csv](reviews/2026-09-13/architecture/source-reference-debt.csv) | 历史快照 |
 | `docs/reviews/2026-09-13/architecture/verification.json` | 历史快照 |
+| [docs/reviews/2026-09-13/deep-read/DELIVERY.md](reviews/2026-09-13/deep-read/DELIVERY.md) | 历史快照 |
 | [docs/reviews/2026-09-13/deep-read/PLAN.md](reviews/2026-09-13/deep-read/PLAN.md) | 历史快照 |
 | `docs/reviews/2026-09-13/deep-read/audit.py` | 历史快照 |
 | `docs/reviews/2026-09-13/deep-read/baseline.json` | 历史快照 |
+| [docs/reviews/2026-09-13/deep-read/consumers-after.csv](reviews/2026-09-13/deep-read/consumers-after.csv) | 历史快照 |
 | [docs/reviews/2026-09-13/deep-read/consumers-before.csv](reviews/2026-09-13/deep-read/consumers-before.csv) | 历史快照 |
+| `docs/reviews/2026-09-13/deep-read/contracts_audit.py` | 历史快照 |
+| `docs/reviews/2026-09-13/deep-read/dependency-audit.json` | 历史快照 |
 | [docs/reviews/2026-09-13/deep-read/file-plan.csv](reviews/2026-09-13/deep-read/file-plan.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/deep-read/file-results.csv](reviews/2026-09-13/deep-read/file-results.csv) | 历史快照 |
 | [docs/reviews/2026-09-13/deep-read/functions-before.csv](reviews/2026-09-13/deep-read/functions-before.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/deep-read/integration-files.csv](reviews/2026-09-13/deep-read/integration-files.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/deep-read/public-contracts.csv](reviews/2026-09-13/deep-read/public-contracts.csv) | 历史快照 |
+| `docs/reviews/2026-09-13/deep-read/real-flow.json` | 历史快照 |
+| `docs/reviews/2026-09-13/deep-read/statistics-after.json` | 历史快照 |
 | `docs/reviews/2026-09-13/deep-read/statistics-before.json` | 历史快照 |
 | `docs/reviews/2026-09-13/deep-read/test-migration.json` | 历史快照 |
+| [docs/reviews/2026-09-13/deep-read/test-results.csv](reviews/2026-09-13/deep-read/test-results.csv) | 历史快照 |
+| `docs/reviews/2026-09-13/deep-read/verification.json` | 历史快照 |
 | [docs/reviews/2026-09-13/fact-conflicts/DELIVERY.md](reviews/2026-09-13/fact-conflicts/DELIVERY.md) | 历史快照 |
 | [docs/reviews/2026-09-13/reading-revisions/DELIVERY.md](reviews/2026-09-13/reading-revisions/DELIVERY.md) | 历史快照 |
 | [docs/reviews/2026-09-13/reading-revisions/PLAN.md](reviews/2026-09-13/reading-revisions/PLAN.md) | 历史快照 |

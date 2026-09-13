@@ -10,9 +10,9 @@ from inresearch.knowledge import fact_contract as FC
 def make_app():
     temporary = tempfile.TemporaryDirectory(prefix='inresearch-l2-test-service-')
     base = Path(temporary.name)
-    material = SimpleNamespace(**{k:v for k,v in vars(triage).items() if not k.startswith('__')})
-    material.RESULTS = base/'l1.jsonl'
-    material.load_inventory = lambda: []
+    material = SimpleNamespace(RESULTS=base/'l1.jsonl', INVENTORY=base/'inventory.jsonl',
+        MAX_PREVIEW_CHARS=triage.MAX_PREVIEW_CHARS, proposed_name=triage.proposed_name,
+        readable_path=lambda row: (base/row['rel'], False), load_inventory=lambda: [])
     app = DeepRead(state=base, packet_dir=base/'packets', materials=material)
     app._test_temporary = temporary
     return app
@@ -95,4 +95,3 @@ FILLED_THIS_BATCH = frozenset((
     '678b422a1179', 'dbaef8d19b23', '793dd357eb7b', 'd22737f33f3e',
     '2f91e8fea8b5', 'e7a7f6d9e10d', '66f3c0cb1669', '550c2c739b1b',
 ))
-
