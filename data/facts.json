@@ -31136,6 +31136,34 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2027E 年 AI CapEx 12 USD bn（占总 capex 100%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 "
+    },
+    {
+      "fact_id": "bern-cn-domestic-chip-share-2027e",
+      "metric_id": "domestic_ai_chip_share_value",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-accelerator-market",
+        "label": "中国 AI 加速器市场"
+      },
+      "value": 55.0,
+      "unit": "%",
+      "caliber": {
+        "basis": "预测",
+        "region": "CN"
+      },
+      "as_of": "2027E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "16eb5f68c846b96f19022ccf55f1030ee903dbcdd2b4d64a299baf5c9d5f9392",
+        "local_file": "H20 禁令损失与供应缺口（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表 Sheet1 第 21 行「预计 2027 年本土 AI 芯片厂商的市场份额 | 0.55 | 随本土芯片性能提升及产能扩张」",
+        "grade": "S3",
+        "originator": "Bernstein"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**按金额还是按颗数原文没说**：本条就近记入按金额的国产化率，理由是同一批 Bernstein 材料（68ef35cb 那份）的市场规模全部以 USD mn 计，标 [未核]。 **与同批材料的序列对接**：68ef35cb 那份按金额算出的国产化率 2024 年 29.7%、2025E 41.5%，本条 2027E 55%——**三点单调上升**，但前两点是我按分厂商金额加总算的、本条是原文直接给的，来源层级不同。 原文给的驱动：本土芯片性能提升与产能扩张。"
     }
   ]
 }
