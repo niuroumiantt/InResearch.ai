@@ -42,7 +42,7 @@
     "tests/unit/test_file_moves.py": "1f9ba746f06885b6d48ee2d73b5da8bc4364ca1ad54e85b5d6fe23cdbf1edf9a",
     "tests/unit/test_governance.py": "ee59b285f13ea82d6df0426d0fbd519b7b8f9e7695fde569708c0dac10d71f39",
     "tests/unit/test_intake.py": "752b45e1bec8938738ea28b827dcdcc9031bce772cc9030d7ded1d7be9176c10",
-    "tests/unit/test_m4_l2.py": "c99117dccb1ab1854422a79abc5f06fe77c1fd38bf4822e2b81b7ce3fc523c21",
+    "tests/unit/test_m4_l2.py": "47827d559aee173e1e171b75ec8786b62a79ea2837beee7a7972b81e96ebaf90",
     "tests/unit/test_m4_office_text.py": "7c9ca244f5e3746ca61f3032030cc6260a4312f2ad5ddf9b5b7c011d831525c3",
     "tests/unit/test_m4_triage.py": "028d627d24c321632410f7845856f94953dfa6d9eb82569a206c042d378f7949",
     "tests/unit/test_m4_triage_local.py": "1bfd549d038cd1e0b8b5d79bca4b9ca9528a56d9008f73265cf9750dfce0e6d2",
@@ -74,17 +74,24 @@
       "policy": "data-20260906",
       "scope": "project",
       "source": "framework/01_data_standards.md",
-      "checked_requirement": "C3 支持链资格、定位、数值口径与非数字候选",
+      "checked_requirement": "C3 支持链资格、定位、数值口径、非数字候选与来源冲突的并列登记",
       "tests": [
         "tests/unit/test_research.py::ResearchTests.test_invalid_C3_review_never_closes_question",
         "tests/unit/test_research.py::ResearchTests.test_C_archive_cannot_close_and_valid_B_reopens_then_closes",
         "tests/unit/test_intake.py::IntakeEvidenceTests.test_B_requires_current_matching_workorder_and_A_takes_priority",
         "tests/unit/test_intake.py::IntakeEvidenceTests.test_malformed_evidence_and_types_fail_without_crashing",
         "tests/unit/test_m4_l2.py::ValidatorTests.test_a_missing_caliber_dimension_is_refused",
-        "tests/unit/test_m4_l2.py::TemporalGrammarTests.test_a_half_year_is_a_period_of_its_own"
+        "tests/unit/test_m4_l2.py::TemporalGrammarTests.test_a_half_year_is_a_period_of_its_own",
+        "tests/unit/test_m4_l2.py::AsserterTests.test_two_houses_on_one_question_no_longer_collide",
+        "tests/unit/test_m4_l2.py::AsserterTests.test_two_named_houses_must_point_at_each_other",
+        "tests/unit/test_m4_l2.py::AsserterTests.test_a_revision_is_not_a_dispute",
+        "tests/unit/test_m4_l2.py::AsserterTests.test_unstated_does_not_earn_a_seat_beside_a_named_house",
+        "tests/unit/test_m4_l2.py::DisputeRecordTests.test_the_other_side_learns_it_is_contested"
       ],
       "not_verified": [
-        "38 条存量事实缺内容 SHA；27 条历史来源未登记；B 审核质量与语义冲突识别不能由机检代替。"
+        "38 条存量事实缺内容 SHA；27 条历史来源未登记；B 审核质量与语义冲突识别不能由机检代替。",
+        "asserter 归一表是人写的前缀映射：未列入的译名或简称会落到「未注明」；188 条「未注明」（148 条 originator 本为空）需人工回查原件，既有 1,562 条未逐条复核。",
+        "机器只判冲突的形状，不判谁对：A 档裁决仍为所有者人工判断，不提供按来源等级或发布日期自动取舍的路径。"
       ]
     },
     {

@@ -31,7 +31,7 @@ from inresearch.storage.jsonl import append_record, read_rows
 from inresearch.materials.records import commit_result, result_revision, current_results
 from inresearch.storage.files import locked, write_json
 from functools import wraps
-from inresearch.knowledge.fact_contract import CORROBORATION as CORROBORATION, PLACEHOLDER_VALUES as PLACEHOLDER_VALUES, claim_key as claim_key, forecast_key as forecast_key, index_claims, check_fact as check_fact
+from inresearch.knowledge.fact_contract import CORROBORATION as CORROBORATION, PLACEHOLDER_VALUES as PLACEHOLDER_VALUES, claim_key as claim_key, claim_identity as claim_identity, revision_key as revision_key, asserter_of as asserter_of, forecast_key as forecast_key, index_claims, check_fact as check_fact
 from inresearch.delivery.reading_packet import FULL_TEXT_CHARS as FULL_TEXT_CHARS, full_text as full_text, chunks as chunks, metric_menu as metric_menu, other_modules_index as other_modules_index, question_menu, ATTRIBUTION_ASK, PACKET_HEAD
 
 import argparse, hashlib, json, os, re, sys, time
@@ -111,9 +111,29 @@ def all_results() -> dict:
 
 
 def read_documents() -> set:
-    """Documents already given a full read, so pack advances instead of looping."""
+    """Documents already given a full read.
+
+    A twin row is not one of them.  #165 settled that: a copy whose text was
+    never read is not read, whatever the fingerprint proves about the copy it
+    matches.  So twins stay out of this set - out of documents_read, out of
+    coverage, out of anything that counts reading.
+    """
     return {row['sha256'] for row in read_rows(READ_LOG)
             if row.get('sha256') and 'twin_of' not in row}
+
+
+def twin_documents() -> set:
+    """Ledger rows left by the old automatic twin marking, for reporting only.
+
+    #165 removed the marking itself: pack no longer blocks a character-for-
+    character copy, it packs it and names the twin it matches, and the reader
+    decides.  So these rows are history - they stay readable (status counts
+    them separately) and they still do not count as read, which is what #165
+    settled.  Nothing filters the queue on them: a copy that was never read is
+    in the queue, and that is the point.
+    """
+    return {row['sha256'] for row in read_rows(READ_LOG)
+            if row.get('sha256') and 'twin_of' in row}
 
 
 # Our own output is not a source.  A summary this project wrote was derived
@@ -567,9 +587,12 @@ def cmd_record(a):
             continue
         seen.add(fact['fact_id'])
         claims[claim_key(fact)] = fact['fact_id']
+        claims.setdefault(revision_key(fact), fact['fact_id'])
         key = forecast_key(fact)
         if key is not None:
             claims.setdefault(key, fact['fact_id'])
+        # 同一批里两条互为争议方时，第二条也要看见第一条。
+        claims.setdefault(claim_identity(fact), []).append(fact['fact_id'])
         accepted.append(fact)
 
     if rejected and not a.partial:
@@ -583,6 +606,7 @@ def cmd_record(a):
                 print('     - ' + p)
         return 1
 
+    disputes = cross_link_disputes(accepted, store['records']) if accepted else []
     if accepted:
         store['records'].extend(accepted)
         store['updated'] = now()[:10]
@@ -595,7 +619,9 @@ def cmd_record(a):
     # unwritten facts.json print the same line, and --doc has by then marked a
     # document read for good - so say which one this was.
     print(json.dumps({'incoming': len(incoming), 'accepted': len(accepted),
-                      'rejected': len(rejected), 'replayed': replayed, 'facts_total': len(store['records']),
+                      'rejected': len(rejected), 'replayed': replayed,
+                      'facts_total': len(store['records']),
+                      **({'disputes_pending_a': len(disputes)} if disputes else {}),
                       **({'note': 'facts.json 解析出 0 条。读不出数是合法结果；'
                                   '但若不该是 0，先确认文件真的写出来了——'
                                   '这一份已按 --doc 记入已读，重开要用 pack --again --sha'}
@@ -605,7 +631,51 @@ def cmd_record(a):
         print('  %s' % r['fact_id'])
         for p in r['problems']:
             print('     - ' + p)
+    for pair in disputes:
+        # 并排打出来，因为审一对争议不该需要翻库：C3 A 档是所有者的活，
+        # 而把活递过去的人有责任把两边的数、断言者、原文定位放在一屏里。
+        print('  ⚖ C3 A 档待审：%s' % pair['about'])
+        for side in pair['sides']:
+            print('     %-10s %s %s  [%s]' % (side['asserter'], side['value'],
+                                              side['unit'], side['fact_id']))
+            print('        %s' % side['locator'])
     return 1 if rejected else 0
+
+
+def cross_link_disputes(accepted: list[dict], stored: list[dict]) -> list[dict]:
+    """Write the reverse link on the other side, and report each pair once.
+
+    A dispute declared in one direction only is half recorded: whoever reads
+    the older fact would never learn it is contested.  record writes
+    disputed_by rather than asking the reader to edit two records by hand -
+    the same reason supersedes does not overwrite the old edition.
+    """
+    by_id = {f.get('fact_id'): f for f in list(stored) + list(accepted)}
+    pairs = []
+    for fact in accepted:
+        others = [by_id.get(fid) for fid in (fact.get('disputes') or [])]
+        others = [o for o in others if o]
+        if not others:
+            continue
+        for other in others:
+            back = other.setdefault('disputed_by', [])
+            if fact['fact_id'] not in back:
+                back.append(fact['fact_id'])
+        pairs.append({'about': '%s / %s / %s' % (
+            fact.get('metric_id'), (fact.get('entity') or {}).get('id') or '—',
+            fact.get('as_of')),
+            'sides': [side_summary(f) for f in [fact] + others]})
+    return pairs
+
+
+def side_summary(fact: dict) -> dict:
+    value = fact.get('value')
+    if value is None and fact.get('value_range'):
+        value = '%s-%s' % tuple(fact['value_range'])
+    return {'fact_id': fact.get('fact_id'), 'asserter': asserter_of(fact),
+            'value': '未披露' if value is None else value,
+            'unit': fact.get('unit') or '',
+            'locator': (fact.get('evidence') or {}).get('locator') or ''}
 
 
 def cmd_attribute(a):
@@ -987,6 +1057,7 @@ def cmd_status(a):
     by_module = Counter(metrics.get(f['metric_id'], {}).get('module') for f in records)
     print(json.dumps({'facts': len(records),
                       'documents_read': len(read_documents()),
+                      '历史副本行_不计已读': len(twin_documents()),
                       'metrics_covered': len({f['metric_id'] for f in records}),
                       'metrics_total': len(metrics),
                       'with_locator': sum(1 for f in records if (f.get('evidence') or {}).get('locator')),
