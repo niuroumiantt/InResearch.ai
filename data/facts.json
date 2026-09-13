@@ -60173,6 +60173,70 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "IEA 估计，经高盛转引；原文「约」，不含加密货币。"
+    },
+    {
+      "fact_id": "ms2025-epoch-leading-ai-supercomputer-chips-2030",
+      "metric_id": "cluster_gpu_count",
+      "entity": {
+        "type": "market",
+        "id": "leading-ai-supercomputer-trend",
+        "label": "领先 AI 超算（趋势外推）"
+      },
+      "asserter": "Epoch AI",
+      "value": 2000000.0,
+      "unit": "颗",
+      "caliber": {
+        "scope": "单集群实际部署",
+        "accelerator": "AI chips（未注明型号）",
+        "region": "Global",
+        "basis": "第三方估算"
+      },
+      "as_of": "2030-06E@2025-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "91731d93806900454a43edcb288ec1f5ec69afbba41e82212ed4479dcfbee4dc",
+        "local_file": "20250614-摩根士丹利：美国人工智能的能源支持：对我们报告的反馈(20页).pdf",
+        "locator": "第 6 页：「This quote from Epoch AI is especially striking: \"If the observed trends continue, the leading AI supercomputer in June 2030 will need 2 million AI chips, cost $200 billion, and require 9 GW of power.\"」",
+        "grade": "S3",
+        "originator": "Epoch AI《AI Supercomputers》（经 Morgan Stanley《Powering AI in the US: Feedback》（Stephen Byrd 等，2025-06-12） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "趋势外推（「If the observed trends continue」），不是某个已宣布项目。同句：造价 2,000 亿美元、电力 9 GW（无对应指标，未录）。Epoch 原报告时点未写，@ 取摩根士丹利转引时点。依据：领先 AI 超算算力每 9 个月翻倍、购置成本与电力需求每 13 个月翻倍。"
+    },
+    {
+      "fact_id": "ms2025-amazon-pa-dc-investment",
+      "metric_id": "compute_spend_commitment",
+      "entity": {
+        "type": "company",
+        "id": "amazon",
+        "label": "亚马逊"
+      },
+      "asserter": "亚马逊",
+      "value": 200.0,
+      "unit": "亿美元",
+      "caliber": {
+        "horizon": "未注明",
+        "commitment_basis": "未注明",
+        "counterparty": "宾夕法尼亚州（数据中心投资）",
+        "currency": "美元",
+        "region": "US",
+        "basis": "公告实测"
+      },
+      "as_of": "2025-06",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "91731d93806900454a43edcb288ec1f5ec69afbba41e82212ed4479dcfbee4dc",
+        "local_file": "20250614-摩根士丹利：美国人工智能的能源支持：对我们报告的反馈(20页).pdf",
+        "locator": "第 6 页：「This week, Amazon announced at least $20bn in data center investment in PA and identified two initial locations」",
+        "grade": "S3",
+        "originator": "亚马逊公告（经 Morgan Stanley《Powering AI in the US: Feedback》（Stephen Byrd 等，2025-06-12） 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「at least $20bn」按下界记；投资期限原文未写。选址两处，分析师认为 Fairless 电厂（VST 收购中）适合电力合同或共址。"
     }
   ]
 }
