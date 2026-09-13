@@ -47130,6 +47130,408 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "Dominion Energy 口径的数据中心用电容量（「power capacity used」），未说明 IT 还是设施/并网口径，capacity_type 记未披露。2018 年约为其一半（原文「doubled」，未给精确值，未录）。"
+    },
+    {
+      "fact_id": "cw2023-low-vacancy-markets-lt10",
+      "metric_id": "low_vacancy_market_count",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-markets",
+        "label": "戴德梁行跟踪的全球数据中心市场"
+      },
+      "value": 24.0,
+      "unit": "个",
+      "caliber": {
+        "threshold": "<10%",
+        "universe": "全球主要市场",
+        "region": "Global"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2fd6081bc083a6dfde025f0a7d1e091177176e929d8327fe3c712ace3a564b66",
+        "local_file": "Cushman&Wakefield：2023年全球数据中心市场对比报告(38页).pdf",
+        "locator": "第 24 页 Vacancy：「there are 24 markets that are now under 10-percent vacancy—33% more markets than the prior version of this report」",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield《2023 Global Data Center Market Comparison》（第四版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "分母为本版覆盖的 63 个全球市场（第 5 页）；比上一版多 33%（上一版约 18 个）。"
+    },
+    {
+      "fact_id": "cw2023-nova-vacancy",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "northern-virginia",
+        "label": "北弗吉尼亚数据中心市场"
+      },
+      "value": 1.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一市场",
+        "region": "US"
+      },
+      "as_of": "2023",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "2fd6081bc083a6dfde025f0a7d1e091177176e929d8327fe3c712ace3a564b66",
+        "local_file": "Cushman&Wakefield：2023年全球数据中心市场对比报告(38页).pdf",
+        "locator": "第 24 页 Vacancy：「there are 24 markets that are now under 10-percent vacancy—33% more markets than the prior version of this report」；「AMERICAS: Northern Virginia hit a record low vacancy of under 1% this year」；第 6 页同述「vacancy at below 1%」",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield《2023 Global Data Center Market Comparison》（第四版）（数据：C&W Research、datacenterHawk）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「under 1%」按上界记。"
+    },
+    {
+      "fact_id": "cw2023-singapore-vacancy-2022",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "sg-dc",
+        "label": "新加坡数据中心市场"
+      },
+      "value": 2.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一市场",
+        "region": "SG"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2fd6081bc083a6dfde025f0a7d1e091177176e929d8327fe3c712ace3a564b66",
+        "local_file": "Cushman&Wakefield：2023年全球数据中心市场对比报告(38页).pdf",
+        "locator": "第 24 页 Vacancy：「APAC: Singapore has also encountered record low vacancies of 2% in 2022」",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield《2023 Global Data Center Market Comparison》（第四版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "时点原文明写 2022。"
+    },
+    {
+      "fact_id": "cw2023-paris-vacancy",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "paris-dc",
+        "label": "巴黎数据中心市场"
+      },
+      "value": 2.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一市场",
+        "region": "EU"
+      },
+      "as_of": "2023",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "2fd6081bc083a6dfde025f0a7d1e091177176e929d8327fe3c712ace3a564b66",
+        "local_file": "Cushman&Wakefield：2023年全球数据中心市场对比报告(38页).pdf",
+        "locator": "第 24 页 Vacancy：「EMEA: … Paris and Frankfurt likewise tightened their already single digit vacancies to under 2%」",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield《2023 Global Data Center Market Comparison》（第四版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「under 2%」按上界记。"
+    },
+    {
+      "fact_id": "cw2023-frankfurt-vacancy",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "frankfurt-dc",
+        "label": "法兰克福数据中心市场"
+      },
+      "value": 2.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一市场",
+        "region": "EU"
+      },
+      "as_of": "2023",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "2fd6081bc083a6dfde025f0a7d1e091177176e929d8327fe3c712ace3a564b66",
+        "local_file": "Cushman&Wakefield：2023年全球数据中心市场对比报告(38页).pdf",
+        "locator": "第 24 页 Vacancy：「EMEA: … Paris and Frankfurt likewise tightened their already single digit vacancies to under 2%」",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield《2023 Global Data Center Market Comparison》（第四版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「under 2%」按上界记。"
+    },
+    {
+      "fact_id": "cw2023-nova-capacity",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "northern-virginia",
+        "label": "北弗吉尼亚数据中心市场"
+      },
+      "value": 2500.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "US"
+      },
+      "as_of": "2023",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "2fd6081bc083a6dfde025f0a7d1e091177176e929d8327fe3c712ace3a564b66",
+        "local_file": "Cushman&Wakefield：2023年全球数据中心市场对比报告(38页).pdf",
+        "locator": "第 6 页：「Northern Virginia … remaining the largest market at over 2.5 gigawatts (GW) of capacity」",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield《2023 Global Data Center Market Comparison》（第四版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「over 2.5 GW」按下界记；口径未说明。Loudoun County 开发暂停至 2025 或 2026 年（电力输配能力受限）。"
+    },
+    {
+      "fact_id": "cw2023-pipeline-2021",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "cw-tracked-global-markets",
+        "label": "戴德梁行报告覆盖的全球数据中心市场合计（各版市场数不同）"
+      },
+      "value": 2900.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L6",
+        "region": "Global"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2fd6081bc083a6dfde025f0a7d1e091177176e929d8327fe3c712ace3a564b66",
+        "local_file": "Cushman&Wakefield：2023年全球数据中心市场对比报告(38页).pdf",
+        "locator": "第 26 页 Development Pipeline：「In the first edition of this report, 1.6 GW were under construction across the 38 markets profiled; this swelled to 2.9 GW in 48 markets in 2021, and now an incredible 4.1 GW are currently under construction in the 55 markets in 2022. Now, in 2023 there are 7.1 GW under development across 63 markets」",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield《2023 Global Data Center Market Comparison》（第四版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「under construction」，覆盖 48 个市场——**各年分母市场数不同（38→48→55→63），增长部分来自新增市场，不能当同口径增速读**。"
+    },
+    {
+      "fact_id": "cw2023-pipeline-2022",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "cw-tracked-global-markets",
+        "label": "戴德梁行报告覆盖的全球数据中心市场合计（各版市场数不同）"
+      },
+      "value": 4100.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L6",
+        "region": "Global"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2fd6081bc083a6dfde025f0a7d1e091177176e929d8327fe3c712ace3a564b66",
+        "local_file": "Cushman&Wakefield：2023年全球数据中心市场对比报告(38页).pdf",
+        "locator": "第 26 页 Development Pipeline：「In the first edition of this report, 1.6 GW were under construction across the 38 markets profiled; this swelled to 2.9 GW in 48 markets in 2021, and now an incredible 4.1 GW are currently under construction in the 55 markets in 2022. Now, in 2023 there are 7.1 GW under development across 63 markets」",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield《2023 Global Data Center Market Comparison》（第四版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「under construction」，覆盖 55 个市场——**各年分母市场数不同（38→48→55→63），增长部分来自新增市场，不能当同口径增速读**。"
+    },
+    {
+      "fact_id": "cw2023-pipeline-2023",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "cw-tracked-global-markets",
+        "label": "戴德梁行报告覆盖的全球数据中心市场合计（各版市场数不同）"
+      },
+      "value": 7100.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L6",
+        "region": "Global"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2fd6081bc083a6dfde025f0a7d1e091177176e929d8327fe3c712ace3a564b66",
+        "local_file": "Cushman&Wakefield：2023年全球数据中心市场对比报告(38页).pdf",
+        "locator": "第 26 页 Development Pipeline：「In the first edition of this report, 1.6 GW were under construction across the 38 markets profiled; this swelled to 2.9 GW in 48 markets in 2021, and now an incredible 4.1 GW are currently under construction in the 55 markets in 2022. Now, in 2023 there are 7.1 GW under development across 63 markets」",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield《2023 Global Data Center Market Comparison》（第四版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「under development」，覆盖 63 个市场——**各年分母市场数不同（38→48→55→63），增长部分来自新增市场，不能当同口径增速读**。2023 年用词从 under construction 变为 under development，可能含尚未开工的项目，status 仍记 L6，偏乐观。"
+    },
+    {
+      "fact_id": "cw2023-chicago-under-construction",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "chicago-dc",
+        "label": "芝加哥数据中心市场"
+      },
+      "value": 300.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L6",
+        "region": "US"
+      },
+      "as_of": "2023",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "2fd6081bc083a6dfde025f0a7d1e091177176e929d8327fe3c712ace3a564b66",
+        "local_file": "Cushman&Wakefield：2023年全球数据中心市场对比报告(38页).pdf",
+        "locator": "第 26 页 Development Pipeline：「Chicago and Phoenix … ballooning their sites under active development to over 300 MW」",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield《2023 Global Data Center Market Comparison》（第四版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「over 300 MW」按下界记。"
+    },
+    {
+      "fact_id": "cw2023-phoenix-under-construction",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "phoenix-dc",
+        "label": "凤凰城数据中心市场"
+      },
+      "value": 300.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L6",
+        "region": "US"
+      },
+      "as_of": "2023",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "2fd6081bc083a6dfde025f0a7d1e091177176e929d8327fe3c712ace3a564b66",
+        "local_file": "Cushman&Wakefield：2023年全球数据中心市场对比报告(38页).pdf",
+        "locator": "第 26 页 Development Pipeline：「Chicago and Phoenix … ballooning their sites under active development to over 300 MW」",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield《2023 Global Data Center Market Comparison》（第四版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「over 300 MW」按下界记。"
+    },
+    {
+      "fact_id": "cw2023-london-under-construction",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "london-dc",
+        "label": "伦敦数据中心市场"
+      },
+      "value": 300.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L6",
+        "region": "EU"
+      },
+      "as_of": "2023",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "2fd6081bc083a6dfde025f0a7d1e091177176e929d8327fe3c712ace3a564b66",
+        "local_file": "Cushman&Wakefield：2023年全球数据中心市场对比报告(38页).pdf",
+        "locator": "第 26 页 Development Pipeline：「London’s pipeline … remained squarely in the top 10 with over 300 MW under construction」",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield《2023 Global Data Center Market Comparison》（第四版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「over 300 MW」按下界记。 region 记 EU 指欧洲（英国非欧盟成员，枚举无 UK）。"
+    },
+    {
+      "fact_id": "cw2023-dublin-under-construction",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "dublin-dc",
+        "label": "都柏林数据中心市场"
+      },
+      "value": 300.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L6",
+        "region": "EU"
+      },
+      "as_of": "2023",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "2fd6081bc083a6dfde025f0a7d1e091177176e929d8327fe3c712ace3a564b66",
+        "local_file": "Cushman&Wakefield：2023年全球数据中心市场对比报告(38页).pdf",
+        "locator": "第 26 页 Development Pipeline：「Dublin also retained a ranking at eighth … totaling just under 300 MW under construction」",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield《2023 Global Data Center Market Comparison》（第四版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「just under 300 MW」按上界记。"
+    },
+    {
+      "fact_id": "cw2023-meta-qts-portland-campus",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "project",
+        "id": "qts-meta-portland-campus",
+        "label": "QTS 为 Meta 规划的 Portland（Hillsboro）园区"
+      },
+      "value": 250.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L1",
+        "region": "US"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2fd6081bc083a6dfde025f0a7d1e091177176e929d8327fe3c712ace3a564b66",
+        "local_file": "Cushman&Wakefield：2023年全球数据中心市场对比报告(38页).pdf",
+        "locator": "第 6 页：「Press reports indicate a major new build by QTS is being planned on behalf of Meta, with the prospective campus reported as requiring 250 megawatts (MW) of power at full buildout」",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield《2023 Global Data Center Market Comparison》（第四版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "媒体报道、规划中，status 记 L1（传闻或意向）；满建所需电力，口径未说明。"
     }
   ]
 }
