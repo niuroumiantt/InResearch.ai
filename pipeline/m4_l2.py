@@ -59,6 +59,8 @@ CHUNK_CHARS = 15000
 # last row, and the facts drawn from it would be silently partial.
 FULL_TEXT_CHARS = 600000
 GRADES = ('S1', 'S2', 'S3', 'S4', 'S5')
+# 完整 sha 与前缀要分开对待：完整的自证，前缀得有判定可解。
+FULL_SHA = re.compile(r'[0-9a-f]{64}')
 DEPTHS = ('精读', '据实生成')          # 半自动 and 目录级 never reach the fact layer
 BOUNDS = ('point', 'upper', 'lower')
 CORROBORATION = ('待交叉验证', '已交叉验证', '孤证已知', '同源转述')
@@ -75,7 +77,9 @@ PLACEHOLDER_VALUES = frozenset(
 #   2025E@2024-04  a 2025 forecast made in April 2024 - the vintage matters,
 #                  because the same year forecast twelve months apart is two
 #                  different claims and must not be averaged together
-AS_OF = re.compile(r'^\d{4}(-\d{4}|-\d{2}(-\d{2})?|-Q[1-4]E?)?(E|目标)?(@\d{4}-\d{2})?$')
+# 半年与季度并列，因为渠道纪要按半年给数：寒武纪 2025 上半年已交付 4 万片、
+# 下半年预计约 7 万片。拆成两个季度是我们替原文做的拆分，原文没这个拆分。
+AS_OF = re.compile(r'^\d{4}(-\d{4}|-\d{2}(-\d{2})?|-Q[1-4]E?|-H[12]E?)?(E|目标)?(@\d{4}-\d{2})?$')
 FACT_ID = re.compile(r'^[a-z0-9]+(-[a-z0-9]+)*$')
 UNKNOWN = '未知'            # what L1 writes when the preview never named a publisher
 YEAR = re.compile(r'^\d{4}$')
@@ -406,7 +410,7 @@ sha256：{sha}
   "value": 4406.0,
   "unit": "必须与指标声明的单位一致",
   "caliber": {{ "指标声明的每一维都要有取值，缺一不收" }},
-  "as_of": "2022-01 实绩 / 2026-Q1 季度 / 2026E 预测 / 2025目标 目标值 / 2025E@2024-04 预测及其做出的时点",
+  "as_of": "2022-01 实绩 / 2026-Q1 季度 / 2026-H1 半年 / 2026E 预测 / 2025目标 目标值 / 2025E@2024-04 预测及其做出的时点",
   "evidence": {{
     "sha256": "{sha}",
     "locator": "页码/表号/段落——要能让人翻回去核对这一个数",
@@ -494,10 +498,12 @@ def fingerprints() -> dict:
     return seen
 
 
-def remember_fingerprint(sha: str, text_md5: str) -> None:
+def remember_fingerprint(sha: str, text_md5: str,
+                         sketch: list[str] | None = None) -> None:
     TEXT_MD5.parent.mkdir(parents=True, exist_ok=True)
     with TEXT_MD5.open('a', encoding='utf-8') as fh:
-        fh.write(json.dumps({'sha256': sha, 'text_md5': text_md5, 'at': now()},
+        fh.write(json.dumps({'sha256': sha, 'text_md5': text_md5, 'at': now(),
+                             **({'sketch': sketch} if sketch else {})},
                             ensure_ascii=False) + '\n')
 
 
@@ -530,6 +536,104 @@ def packed_not_read_with_same_text(sha: str, text_md5: str) -> list[str]:
     known, read = fingerprints(), read_documents()
     return sorted(other for other, other_md5 in known.items()
                   if other_md5 == text_md5 and other != sha and other not in read)
+
+
+# --------------------------------------------------------------------------
+# near-duplicates - the copy that is not byte-for-byte and not word-for-word
+# --------------------------------------------------------------------------
+# text_md5 catches a re-export: same text, different bytes.  It does not catch
+# the copy that lost a page.  Three PDFs of one 信通院 liquid-cooling report
+# reached the queue at 28,615 / 28,932 / 29,032 characters - one missing a
+# copyright page, one a different header - so three different text_md5 and
+# nothing fired.  A prefix fingerprint would not have helped either: what
+# differs sits at the front.
+#
+# So compare content, not offsets.  Cut the body into chunks at boundaries the
+# content itself decides (a gear hash over the last few dozen bytes), and an
+# inserted page changes only the chunks it touches; every other chunk hashes
+# the same as before.  Keep the 64 numerically smallest chunk hashes as the
+# document's sketch and the overlap of two sketches estimates how much text
+# the two share - that is the bottom-k estimator, and 64 values is enough to
+# tell "a page apart" from "a different report".
+SKETCH_SIZE = 64
+CHUNK_BITS = 0xFF               # 边界平均每 256 字节一次
+NEAR_TWIN_RATIO = 0.8           # 共有八成以上正文就值得说一声
+GEAR = [(i * 0x9E3779B1) & 0xFFFFFFFF for i in range(256)]
+
+
+def text_sketch(text: str) -> list[str]:
+    """The 64 smallest content-defined chunk hashes of this text.
+
+    Whitespace goes first, for the same reason text_fingerprint drops it: a
+    reflow is not a different document.  Returns [] below the same floor -
+    a sketch of a cover page would match every cover page in the corpus.
+    """
+    body = re.sub(r'\s+', '', text)
+    if len(body) < MIN_FINGERPRINT_CHARS:
+        return []
+    data = body.encode('utf-8')
+    hashes, start, h = set(), 0, 0
+    for i, byte in enumerate(data):
+        h = ((h << 1) + GEAR[byte]) & 0xFFFFFFFF
+        if not h & CHUNK_BITS and i - start >= 64:
+            hashes.add(hashlib.md5(data[start:i + 1]).hexdigest()[:12])
+            start, h = i + 1, 0
+    if start < len(data):
+        hashes.add(hashlib.md5(data[start:]).hexdigest()[:12])
+    return sorted(hashes)[:SKETCH_SIZE]
+
+
+def sketch_overlap(a: list[str], b: list[str]) -> float:
+    """Bottom-k estimate of how much text two sketches share, 0.0 - 1.0.
+
+    The k smallest hashes of the union are a uniform sample of the union, so
+    the share of them present in both sketches estimates the Jaccard index.
+    Taking them from the union rather than from either side is what keeps the
+    estimate honest when one document is longer than the other.
+    """
+    if not a or not b:
+        return 0.0
+    sa, sb = set(a), set(b)
+    k = min(len(a), len(b), SKETCH_SIZE)
+    sample = sorted(sa | sb)[:k]
+    if not sample:
+        return 0.0
+    return sum(1 for h in sample if h in sa and h in sb) / len(sample)
+
+
+def sketches() -> dict:
+    """sha256 -> sketch, last write wins.  Same ledger as the fingerprints."""
+    seen = {}
+    if TEXT_MD5.exists():
+        with TEXT_MD5.open(encoding='utf-8') as fh:
+            for line in fh:
+                try: row = json.loads(line)
+                except ValueError: continue
+                if row.get('sha256') and row.get('sketch'):
+                    seen[row['sha256']] = row['sketch']
+    return seen
+
+
+def near_twins(sha: str, sketch: list[str]) -> list[dict]:
+    """Documents whose text mostly is this text - copies that lost a page.
+
+    Exact twins are left to text_md5; they come back with ratio 1.0 there and
+    would only say the same thing twice.  Everything at or above the ratio is
+    reported with how much it shares and whether it was already read, because
+    those two facts decide what the reader does next.
+    """
+    if not sketch:
+        return []
+    read = read_documents()
+    out = []
+    for other, other_sketch in sketches().items():
+        if other == sha:
+            continue
+        ratio = sketch_overlap(sketch, other_sketch)
+        if ratio >= NEAR_TWIN_RATIO:
+            out.append({'sha256': other, 'shared': round(ratio, 3),
+                        'read': other in read})
+    return sorted(out, key=lambda r: -r['shared'])
 
 
 def cmd_pack(a):
@@ -572,9 +676,12 @@ def cmd_pack(a):
         # 在记账之前问：正文一样、还没读、已经开过包的是哪几份。
         # 记账之后再问就问不出来了——自己会出现在账本里。
         open_twins = packed_not_read_with_same_text(row['sha256'], text_md5)
-        remember_fingerprint(row['sha256'], text_md5)
+        sketch = text_sketch(text)
+        remember_fingerprint(row['sha256'], text_md5, sketch)
     else:
-        open_twins = []
+        open_twins, sketch = [], []
+    # 近似副本：正文不是一字不差，但差的只是一页版权声明。同样只报不挡。
+    approximate = near_twins(row['sha256'], sketch) if sketch else []
 
     pieces = chunks(text)
     out = PACKET_DIR / row['sha256'][:16]
@@ -601,6 +708,17 @@ def cmd_pack(a):
                       'read_from': 'library' if from_library else 'source',
                       'text_md5': text_md5,
                       'same_text_packed_not_read': open_twins or None,
+                      'near_twins': approximate or None,
+                      'near_twin_note': ('正文与 %d 份高度重合（%s），像是丢了一页'
+                                         '版权声明或页眉的副本——sha256 与 text_md5 '
+                                         '都挡不住这种。确认是同一份就 skip 掉这一份'
+                                         % (len(approximate),
+                                            '、'.join('%s %.0f%%%s' %
+                                                      (t['sha256'][:12],
+                                                       t['shared'] * 100,
+                                                       ' 已读' if t['read'] else ' 未读')
+                                                      for t in approximate)))
+                                        if approximate else None,
                       'same_text_note': ('正文与已开包但尚未读的 %d 份一字不差：%s。'
                                          '两份都读就是把同一篇读两遍——确认是同一份的话'
                                          '读完这一份后 skip 掉另一份' %
@@ -715,7 +833,8 @@ def check_fact(fact: dict, metrics: dict, seen: set, claims: dict | None = None)
         bad.append('value 必须是数字或 null：%r' % value)
 
     if not AS_OF.match(str(fact.get('as_of', ''))):
-        bad.append('as_of 必须是 YYYY / YYYY-MM / YYYY-MM-DD：%r' % fact.get('as_of'))
+        bad.append('as_of 必须是 YYYY / YYYY-MM / YYYY-MM-DD / YYYY-Q1 / YYYY-H1'
+                   '（可带 E 或 目标，可带 @快照）：%r' % fact.get('as_of'))
 
     if fact.get('depth') not in DEPTHS:
         bad.append('depth 只收 %s，半自动与目录级不进事实层' % ' / '.join(DEPTHS))
@@ -758,7 +877,36 @@ def check_fact(fact: dict, metrics: dict, seen: set, claims: dict | None = None)
     return bad
 
 
+def resolve_document(prefix: str, what: str = 'sha') -> dict:
+    """A sha prefix -> the one L1 result it names, or exit saying why not.
+
+    Every command that takes a document takes a prefix, because nobody types
+    sixty-four hex characters by hand.  record was the exception and it did not
+    say so: --doc wrote whatever it was given straight into the read ledger,
+    and the queue matches on the full hash, so a prefix marked nothing as read.
+    The document stayed at the top of the queue and got packed again - the only
+    way it surfaced was a reader noticing the same file twice.
+
+    Silent is the problem, not strict.  Resolve it here, once, for everyone.
+    """
+    matched = [r for sha, r in all_results().items() if sha.startswith(prefix)]
+    if len(matched) != 1 and FULL_SHA.fullmatch(prefix or ''):
+        # A full hash is unambiguous whether or not L1 has a row for it: the
+        # read ledger keys on the hash, not on the judgement.  Only a prefix
+        # needs a row to resolve against.
+        return {'sha256': prefix}
+    if len(matched) != 1:
+        sys.exit('%s 前缀「%s」匹配到 %d 份判定，要正好一份%s'
+                 % (what, prefix, len(matched),
+                    '。给长一点的前缀' if len(matched) > 1 else
+                    '。这个前缀不在 L1 判定里——抄错了，或者这份还没进判定'))
+    return matched[0]
+
+
 def cmd_record(a):
+    # 先把 --doc 解析成完整 sha，再动 facts.json：解析失败要在写之前失败，
+    # 否则事实进了库、文件没记成已读，得手工回。
+    doc_sha = resolve_document(a.doc, '--doc')['sha256'] if a.doc else None
     metrics = load_metrics()
     incoming = json.loads(Path(a.facts).read_text(encoding='utf-8'))
     if isinstance(incoming, dict):
@@ -800,7 +948,7 @@ def cmd_record(a):
     if a.doc:
         READ_LOG.parent.mkdir(parents=True, exist_ok=True)
         with READ_LOG.open('a', encoding='utf-8') as fh:
-            fh.write(json.dumps({'sha256': a.doc, 'at': now(),
+            fh.write(json.dumps({'sha256': doc_sha, 'at': now(),
                                  'facts': len(accepted)}, ensure_ascii=False) + '\n')
     # Zero facts is a legal outcome and always was.  But zero facts and an
     # unwritten facts.json print the same line, and --doc has by then marked a
@@ -975,11 +1123,7 @@ def cmd_skip(a):
     only signal that the menu is behind the corpus, and it has to survive to
     the machine where the menu is edited.
     """
-    rows = all_results()
-    matched = [r for sha, r in rows.items() if sha.startswith(a.doc)]
-    if len(matched) != 1:
-        sys.exit('sha 前缀匹配到 %d 份判定，要正好一份' % len(matched))
-    row = matched[0]
+    row = resolve_document(a.doc, '--doc')
     sha = row['sha256']
 
     at = now()
@@ -1247,7 +1391,7 @@ def main():
     p.add_argument('--again', action='store_true', help='重开一份已记入已读的文件，须同时给 --sha')
     p.add_argument('--since', type=int, default=0, help='只取这一年及以后的文件')
     r = sub.add_parser('record'); r.add_argument('--facts', required=True)
-    r.add_argument('--doc', help='读完的文件 sha256，写进已读账本')
+    r.add_argument('--doc', help='读完的文件 sha256，前缀即可，写进已读账本')
     r.add_argument('--partial', action='store_true', help='收下通过校验的，跳过不通过的')
     r.add_argument('--show', type=int, default=10)
     t = sub.add_parser('attribute', help='把 L1 从预览里没看出来的出处补回判定')

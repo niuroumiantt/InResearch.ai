@@ -9,6 +9,7 @@ framework/metrics.json too.
 """
 import io
 import json
+import random
 import re
 from contextlib import redirect_stdout
 from pathlib import Path
@@ -158,6 +159,16 @@ class TemporalGrammarTests(unittest.TestCase):
         for value in ('去年', '2022/01', '22-01', '', 'soon', '2022-Q9'):
             self.assertFalse(self.accepted(value), value)
 
+    def test_a_half_year_is_a_period_of_its_own(self):
+        """渠道纪要按半年给数（寒武纪 2025 上半年 4 万片、下半年约 7 万片）。
+
+        写成两个季度是我们替原文做的拆分，原文没有这个拆分。
+        """
+        for value in ('2025-H1', '2025-H2', '2025-H2E', '2025-H1E@2025-06'):
+            self.assertTrue(self.accepted(value), value)
+        for value in ('2025-H3', '2025-H0', '2025-H'):
+            self.assertFalse(self.accepted(value), value)
+
 
 class ChunkTests(unittest.TestCase):
     def test_chunks_break_on_blank_lines_and_keep_everything(self):
@@ -247,6 +258,53 @@ class RecordTests(unittest.TestCase):
         """Zero facts is a legitimate outcome; inventing one is not."""
         report = self.record([], doc='c' * 64)
         self.assertEqual(report['accepted'], 0)
+        self.assertIn('c' * 64, L2.READ_LOG.read_text(encoding='utf-8'))
+
+    # -- --doc 收前缀 -----------------------------------------------------
+    # 前缀原样写进已读台账，而队列只认完整 sha，于是文件没被记成已读、
+    # 下一轮又被开了一次包。skip 与 attribute 都解前缀，只有 record 不解。
+    def test_a_prefix_is_resolved_to_the_full_hash(self):
+        full = 'd' * 64
+        saved = L2.all_results
+        L2.all_results = lambda: {full: {'sha256': full, 'rel': '一份.pdf'}}
+        try:
+            self.record([fact()], doc='dddddddddddd')
+        finally:
+            L2.all_results = saved
+        rows = [json.loads(l) for l in
+                L2.READ_LOG.read_text(encoding='utf-8').splitlines()]
+        self.assertEqual(rows[0]['sha256'], full)
+
+    def test_a_prefix_that_matches_nothing_stops_before_anything_is_written(self):
+        saved = L2.all_results
+        L2.all_results = lambda: {}
+        try:
+            with self.assertRaises(SystemExit):
+                self.record([fact()], doc='dddddddddddd')
+        finally:
+            L2.all_results = saved
+        self.assertEqual(json.loads(self.facts.read_text(encoding='utf-8'))['records'], [])
+        self.assertFalse(L2.READ_LOG.exists())
+
+    def test_an_ambiguous_prefix_stops_too(self):
+        saved = L2.all_results
+        L2.all_results = lambda: {'d' * 64: {'sha256': 'd' * 64},
+                                  'd' * 63 + 'e': {'sha256': 'd' * 63 + 'e'}}
+        try:
+            with self.assertRaises(SystemExit):
+                self.record([fact()], doc='dddddddddddd')
+        finally:
+            L2.all_results = saved
+        self.assertEqual(json.loads(self.facts.read_text(encoding='utf-8'))['records'], [])
+
+    def test_a_full_hash_needs_no_judgement_row(self):
+        """完整哈希自证：已读台账认哈希，不认判定。"""
+        saved = L2.all_results
+        L2.all_results = lambda: {}
+        try:
+            self.record([fact()], doc='c' * 64)
+        finally:
+            L2.all_results = saved
         self.assertIn('c' * 64, L2.READ_LOG.read_text(encoding='utf-8'))
 
 
@@ -1842,6 +1900,81 @@ class TextFingerprintTests(unittest.TestCase):
         L2.remember_fingerprint('a' * 64, 'old')
         L2.remember_fingerprint('a' * 64, 'new')
         self.assertEqual(L2.fingerprints()['a' * 64], 'new')
+
+
+class NearTwinTests(unittest.TestCase):
+    """丢了一页的副本：text_md5 一字不差才算，这里管「差一页」。
+
+    M4 撞到的：信通院《智算中心液冷产业全景研究报告（2025 年）》三个 PDF，
+    28,615 / 28,932 / 29,032 字符，差的是版权声明页与页眉，三个 text_md5
+    互不相同，于是什么都没响。前缀指纹也救不了——差的那一页在最前面。
+    """
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-near-')
+        base = Path(self.temp.name)
+        self._saved = (L2.TEXT_MD5, L2.read_documents)
+        L2.TEXT_MD5 = base / 'l2_text_md5.jsonl'
+        L2.read_documents = lambda: set(self.read)
+        self.read = set()
+        rng = random.Random(7)
+        vocab = ['液冷', '智算中心', '冷板', '浸没', '单相', '相变', 'PUE', '机柜',
+                 '服务器', '部署', '产业', '标准', '测试', '运营商', '能效']
+        self.body = ''.join(rng.choice(vocab) for _ in range(4000))
+        self.other = ''.join(rng.choice(vocab) for _ in range(4000))
+        self.copyright_page = '版权声明本报告版权属于中国信息通信研究院引用请注明来源' * 15
+
+    def tearDown(self):
+        (L2.TEXT_MD5, L2.read_documents) = self._saved
+        self.temp.cleanup()
+
+    def test_a_copy_missing_a_page_is_a_near_twin(self):
+        full, short = self.copyright_page + self.body, self.body
+        self.assertNotEqual(L2.text_fingerprint(full, {'pages': 28}),
+                            L2.text_fingerprint(short, {'pages': 28}))
+        self.assertGreaterEqual(
+            L2.sketch_overlap(L2.text_sketch(full), L2.text_sketch(short)),
+            L2.NEAR_TWIN_RATIO)
+
+    def test_a_different_report_of_the_same_length_is_not(self):
+        self.assertLess(
+            L2.sketch_overlap(L2.text_sketch(self.body), L2.text_sketch(self.other)),
+            L2.NEAR_TWIN_RATIO)
+
+    def test_a_shared_front_matter_with_a_different_body_is_not(self):
+        """同一模板的两份季报共用很长的开头，那不是副本。"""
+        head = self.body[:2000]
+        self.assertLess(
+            L2.sketch_overlap(L2.text_sketch(head + self.body[2000:]),
+                              L2.text_sketch(head + self.other[2000:])),
+            L2.NEAR_TWIN_RATIO)
+
+    def test_too_little_text_gets_no_sketch(self):
+        self.assertEqual(L2.text_sketch('目录'), [])
+
+    def test_the_ledger_reports_who_it_overlaps_and_whether_it_was_read(self):
+        sketch = L2.text_sketch(self.copyright_page + self.body)
+        L2.remember_fingerprint('a' * 64, 'deadbeef', L2.text_sketch(self.body))
+        found = L2.near_twins('b' * 64, sketch)
+        self.assertEqual([t['sha256'] for t in found], ['a' * 64])
+        self.assertFalse(found[0]['read'])
+        self.read.add('a' * 64)
+        self.assertTrue(L2.near_twins('b' * 64, sketch)[0]['read'])
+
+    def test_a_document_is_never_its_own_near_twin(self):
+        sketch = L2.text_sketch(self.body)
+        L2.remember_fingerprint('a' * 64, 'deadbeef', sketch)
+        self.assertEqual(L2.near_twins('a' * 64, sketch), [])
+
+    def test_a_ledger_row_without_a_sketch_is_skipped_not_fatal(self):
+        """#159 之前写进账本的行只有 text_md5，没有 sketch。"""
+        L2.remember_fingerprint('a' * 64, 'deadbeef')
+        self.assertEqual(L2.sketches(), {})
+        self.assertEqual(L2.near_twins('b' * 64, L2.text_sketch(self.body)), [])
+
+    def test_an_empty_sketch_never_matches(self):
+        self.assertEqual(L2.sketch_overlap([], []), 0.0)
+        self.assertEqual(L2.sketch_overlap(['aa'], []), 0.0)
 
 
 class BackfillProvenanceTests(unittest.TestCase):
