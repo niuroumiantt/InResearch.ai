@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：491。
+在册文件：497。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,7 +15,7 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 12 |
-| 历史快照 | 40 |
+| 历史快照 | 46 |
 | 运行代码 | 87 |
 | 现行规范 | 12 |
 | 项目配置 | 42 |
@@ -167,6 +167,10 @@
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | collect_steps | 3 |
 | `docs/reviews/2026-09-06/evidence/http-probes.json` | items | 4 |
 | `docs/reviews/2026-09-06/evidence/runtime.json` | limits | 3 |
+| `docs/reviews/2026-09-13/architecture/baseline.json` | scope_limits | 2 |
+| `docs/reviews/2026-09-13/architecture/consumers.csv` | rows | 748 |
+| `docs/reviews/2026-09-13/architecture/file-migration.csv` | rows | 491 |
+| `docs/reviews/2026-09-13/architecture/legacy-removal.csv` | rows | 12 |
 | `framework/bom.json` | layers | 5 |
 | `framework/bom.json` | parts | 46 |
 | `framework/current_state.json` | policies | 23 |
@@ -526,6 +530,12 @@
 | [docs/reviews/2026-09-06/research.md](reviews/2026-09-06/research.md) | 历史快照 |
 | [docs/reviews/2026-09-06/spark-storage.md](reviews/2026-09-06/spark-storage.md) | 历史快照 |
 | [docs/reviews/2026-09-12/IMPLEMENTATION.md](reviews/2026-09-12/IMPLEMENTATION.md) | 历史快照 |
+| [docs/reviews/2026-09-13/architecture/README.md](reviews/2026-09-13/architecture/README.md) | 历史快照 |
+| `docs/reviews/2026-09-13/architecture/baseline-result-divergence.json` | 历史快照 |
+| `docs/reviews/2026-09-13/architecture/baseline.json` | 历史快照 |
+| [docs/reviews/2026-09-13/architecture/consumers.csv](reviews/2026-09-13/architecture/consumers.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/architecture/file-migration.csv](reviews/2026-09-13/architecture/file-migration.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/architecture/legacy-removal.csv](reviews/2026-09-13/architecture/legacy-removal.csv) | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
 | `docs/source/全球数据中心行业深度研究Q&A总报告_Q1-Q35_v1.0(2).docx` | 项目配置 |
 | `docs/source/全球数据中心行业现状_参考初稿版式v0.2_信源追溯版_2026-07-23.docx` | 项目配置 |

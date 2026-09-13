@@ -1,0 +1,97 @@
+{
+  "commit": "8150149e2c77e4f820ba6e6434ec26cc2efda4d3",
+  "files": 491,
+  "directories": 47,
+  "categories": {
+    "data_config_registry": {
+      "files": 148,
+      "lines": 234164
+    },
+    "docs_other_text": {
+      "files": 171,
+      "lines": 45032
+    },
+    "owned_source": {
+      "files": 90,
+      "lines": 21396
+    },
+    "third_party": {
+      "files": 17,
+      "lines": 66682
+    },
+    "binary": {
+      "files": 23,
+      "lines": 0
+    },
+    "external_material": {
+      "files": 3,
+      "lines": 517
+    },
+    "tests": {
+      "files": 39,
+      "lines": 9872
+    }
+  },
+  "method": "Git tracked files; physical UTF-8 lines including comments/blanks; runtime/ignored files excluded; third-party and external proposals excluded from owned source",
+  "scope_limits": [
+    "No runtime database or original-material inventory",
+    "Reference inventory is tracked textual references/imports, not undiscoverable out-of-repository clients"
+  ],
+  "planned_modules": {
+    "m4_paths": "src/inresearch/materials/paths.py",
+    "m4_records": "src/inresearch/materials/records.py",
+    "m4_triage": "src/inresearch/materials/inventory.py",
+    "m4_triage_apply": "src/inresearch/materials/organize.py",
+    "m4_triage_export": "src/inresearch/materials/mapping.py",
+    "m4_preflight": "src/inresearch/materials/preflight.py",
+    "material_intake": "src/inresearch/materials/inbox.py",
+    "pull_materials": "src/inresearch/materials/receive.py",
+    "product_library": "src/inresearch/materials/library.py",
+    "fix_stale_paths": "src/inresearch/materials/repair_paths.py",
+    "scan_inbox": "src/inresearch/materials/scan_candidates.py",
+    "continuous_reader": "src/inresearch/workflow/reader.py",
+    "m4_l2": "src/inresearch/workflow/deep_read.py",
+    "m4_triage_l1": "src/inresearch/workflow/triage.py",
+    "m4_triage_local": "src/inresearch/workflow/score.py",
+    "m4_triage_pack": "src/inresearch/workflow/terminal_batch.py",
+    "m4_triage_extract": "src/inresearch/workflow/attribution.py",
+    "m4_triage_report": "src/inresearch/workflow/progress.py",
+    "reading_queue": "src/inresearch/workflow/reading_queue.py",
+    "workorder": "src/inresearch/workflow/workorders.py",
+    "intake": "src/inresearch/workflow/submissions.py",
+    "research": "src/inresearch/knowledge/registry.py",
+    "research_navigation": "src/inresearch/knowledge/navigation.py",
+    "facts": "src/inresearch/knowledge/facts.py",
+    "data_policy": "src/inresearch/knowledge/policy.py",
+    "validate": "src/inresearch/knowledge/validate.py",
+    "verify": "src/inresearch/knowledge/verify.py",
+    "blindspot": "src/inresearch/knowledge/coverage.py",
+    "refresh_indicators": "src/inresearch/knowledge/indicators.py",
+    "update_ciks": "src/inresearch/knowledge/company_ids.py",
+    "report_model": "src/inresearch/delivery/report.py",
+    "export": "src/inresearch/delivery/export.py",
+    "output_map": "src/inresearch/delivery/map.py",
+    "build_library_index": "src/inresearch/delivery/library_index.py",
+    "publish_reader": "src/inresearch/delivery/publish.py",
+    "backup_acquisition": "src/inresearch/delivery/backup.py",
+    "launch_reader": "src/inresearch/delivery/reader_status.py",
+    "launch_acquisition": "src/inresearch/delivery/acquisition_status.py",
+    "model_runtime": "src/inresearch/adapters/models.py",
+    "m4_office_text": "src/inresearch/adapters/office.py",
+    "m4_offload_worker": "src/inresearch/adapters/ocr_worker.py",
+    "acquisition": "src/inresearch/adapters/acquisition.py",
+    "datacenter_news": "src/inresearch/adapters/news_projection.py",
+    "sync_datacenter_news": "src/inresearch/adapters/news_sync.py",
+    "fetch_news_signals": "src/inresearch/adapters/legacy_news.py",
+    "collect": "src/inresearch/adapters/historical_brief.py",
+    "check_models": "src/inresearch/adapters/asset_check.py",
+    "compare_models": "src/inresearch/adapters/asset_compare.py",
+    "fetch_sketchfab": "src/inresearch/adapters/asset_download.py",
+    "serve": "src/inresearch/interfaces/http.py",
+    "auth": "src/inresearch/interfaces/auth.py",
+    "users": "src/inresearch/interfaces/users.py",
+    "governance": "src/inresearch/interfaces/governance.py",
+    "jsonl_store": "src/inresearch/storage/jsonl.py",
+    "file_moves": "src/inresearch/storage/moves.py"
+  }
+}

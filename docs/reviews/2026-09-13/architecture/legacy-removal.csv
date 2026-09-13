@@ -1,0 +1,13 @@
+old_implementation,replacement,exit_gate,result
+pipeline/fetch_sec.py,acquisition sec,all tracked callers migrated; CLI and workflow tests pass; no runtime records deleted,planned
+pipeline/fetch_gpu_prices.py,acquisition gpu,all tracked callers migrated; CLI and workflow tests pass; no runtime records deleted,planned
+pipeline/m4_inventory.py,inventory,all tracked callers migrated; CLI and workflow tests pass; no runtime records deleted,planned
+pipeline/m4_local_reader.py,triage / score (旧 0–100 分支退出新任务；已有日志保留为历史输入),all tracked callers migrated; CLI and workflow tests pass; no runtime records deleted,planned
+m4_triage_pack.last_results 独立取末行,materials.records.current_results,consumer tests + failure/concurrency workflow pass,planned
+m4_triage_local.scored_rows 独立重放全部成功行,materials.records.current_results + terminal filter,consumer tests + failure/concurrency workflow pass,planned
+serve.api_add_price 先写后校验/回滚,"workflow.commands.add_price, validate before commit",consumer tests + failure/concurrency workflow pass,planned
+serve.api_assign HTTP 专属派工规则,"workflow.commands.assign, shared HTTP/CLI use case",consumer tests + failure/concurrency workflow pass,planned
+serve.MUTATION_LOCK 充当数据锁,storage transaction across full read/validate/write,consumer tests + failure/concurrency workflow pass,planned
+research.atomic_json / material_intake.atomic / collect.atomic_write / continuous_reader.atomic_bytes,storage.atomic (domain wrappers only for encoding or path policy),consumer tests + failure/concurrency workflow pass,planned
+m4_l2 固定临时文件事实写入,storage transaction + domain conflict validation,consumer tests + failure/concurrency workflow pass,planned
+site-skin.js DOM 猜测旧导航/自动包裹面板,explicit shell mount / component markup,consumer tests + failure/concurrency workflow pass,planned

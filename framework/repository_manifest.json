@@ -3858,6 +3858,95 @@
       "collections": []
     },
     {
+      "path": "docs/reviews/2026-09-13/architecture/README.md",
+      "role": "historical",
+      "bytes": 12798,
+      "sha256": "08e479155aa945039029bbed4224d46635849639305264f2d3522b2d168c84ae",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-09-13/architecture/baseline-result-divergence.json",
+      "role": "historical",
+      "bytes": 369,
+      "sha256": "f31bd72c8a32c43f8075e0e1df49e28557d101d4451c52a9f13b805c2a1d8cce",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-09-13/architecture/baseline.json",
+      "role": "historical",
+      "bytes": 4317,
+      "sha256": "538df111a335b594b3b5ebef009a02bc1dc3a947b42bb1dc8daa6882c6a20396",
+      "collections": [
+        {
+          "name": "scope_limits",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/architecture/consumers.csv",
+      "role": "historical",
+      "bytes": 118893,
+      "sha256": "4fb75e49d22152df9c3ded5fc159d2c8d49f64fb1ffb1be11100c6605fe21694",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 748,
+          "fields": [
+            "implementation_before",
+            "implementation_after",
+            "consumer_before",
+            "consumer_after",
+            "line_before",
+            "kind",
+            "migration_result"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/architecture/file-migration.csv",
+      "role": "historical",
+      "bytes": 123025,
+      "sha256": "f9035da849cedb275ec6957bc7d9fac0af7794a284d3d6ff61b246c19b98cfac",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 491,
+          "fields": [
+            "old_path",
+            "category",
+            "lines_before",
+            "sha256_before",
+            "target_path",
+            "owner",
+            "action",
+            "phase",
+            "reason",
+            "result"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/architecture/legacy-removal.csv",
+      "role": "historical",
+      "bytes": 1953,
+      "sha256": "e50e29ac58ecd3f43bebdabba2c6325c306b14caae8668e626dbad85d977bc2b",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 12,
+          "fields": [
+            "old_implementation",
+            "replacement",
+            "exit_gate",
+            "result"
+          ]
+        }
+      ]
+    },
+    {
       "path": "docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx",
       "role": "project_config",
       "bytes": 82031,
@@ -5279,7 +5368,7 @@
     "design_reference": 1,
     "entrypoint": 4,
     "generated": 12,
-    "historical": 40,
+    "historical": 46,
     "implementation": 87,
     "normative": 12,
     "project_config": 42,
