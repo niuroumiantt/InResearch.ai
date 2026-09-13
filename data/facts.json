@@ -42586,6 +42586,164 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "「300,000+」按下界记；在建。"
+    },
+    {
+      "fact_id": "swsc-aidc-global-compute-total-2021",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "global-compute",
+        "label": "全球算力"
+      },
+      "value": 615.0,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "总算力",
+        "precision": "混合/未注明",
+        "area": "全球",
+        "status": "未注明",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "cd0c48c10428a905dc07768abadbe82fcc98d9bafdeaf055aeeb2c3270475a5a",
+        "local_file": "20230822-西南证券-人工智能专题研究：智算中心——赋能AI产业化、产业AI化(43页).pdf",
+        "locator": "第 19 页（2.1 算力规模）及第 2 页核心要点：「2021年全球算力总规模为615 EFlops，同比增长43.4%」",
+        "grade": "S3",
+        "originator": "中国信通院《中国算力发展指数白皮书（2022 年）》（经西南证券 2023-08 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "精度未注明；在用/累计口径原文未写。"
+    },
+    {
+      "fact_id": "swsc-aidc-global-compute-ai-2021",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "global-compute",
+        "label": "全球算力"
+      },
+      "value": 232.0,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "混合/未注明",
+        "area": "全球",
+        "status": "未注明",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "cd0c48c10428a905dc07768abadbe82fcc98d9bafdeaf055aeeb2c3270475a5a",
+        "local_file": "20230822-西南证券-人工智能专题研究：智算中心——赋能AI产业化、产业AI化(43页).pdf",
+        "locator": "第 19 页：「2021年全球智能算力规模为232 EFlops，同比增长116.8%」",
+        "grade": "S3",
+        "originator": "中国信通院《中国算力发展指数白皮书（2022 年）》（经西南证券 2023-08 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "智能算力是总算力 615 的子集；精度未注明。"
+    },
+    {
+      "fact_id": "swsc-aidc-global-compute-total-2025e",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "global-compute",
+        "label": "全球算力"
+      },
+      "value": 3300.0,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "总算力",
+        "precision": "混合/未注明",
+        "area": "全球",
+        "status": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2023-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "cd0c48c10428a905dc07768abadbe82fcc98d9bafdeaf055aeeb2c3270475a5a",
+        "local_file": "20230822-西南证券-人工智能专题研究：智算中心——赋能AI产业化、产业AI化(43页).pdf",
+        "locator": "第 19 页：「中国信通院预测2025年全球算力总规模将达3300 Eflops，CAGR超50%」",
+        "grade": "S3",
+        "originator": "中国信通院（经西南证券 2023-08 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "信通院预测，做出时点原文未写（出自 2022 年白皮书），@ 取西南证券转引报告的 2023-08，实际做出时点应更早。"
+    },
+    {
+      "fact_id": "swsc-aidc-cn-ai-compute-2026e",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "value": 1271.4,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "混合/未注明",
+        "area": "全国",
+        "status": "未注明",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2023-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "cd0c48c10428a905dc07768abadbe82fcc98d9bafdeaf055aeeb2c3270475a5a",
+        "local_file": "20230822-西南证券-人工智能专题研究：智算中心——赋能AI产业化、产业AI化(43页).pdf",
+        "locator": "第 20 页（2.2 智能算力规模）：「根据IDC预测，2023年我国智能算力规模将以59.3%的速度增长，预计2026年将达1271.4EFlops」",
+        "grade": "S3",
+        "originator": "IDC（经西南证券 2023-08 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "IDC 预测，原文未注明精度（IDC 智能算力惯用 FP16，但原文未写，不补）。做出时点原文未写，@ 取转引报告 2023-08。"
+    },
+    {
+      "fact_id": "swsc-aidc-alibaba-ulanqab-pue",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "alibaba-cloud-ulanqab-aidc",
+        "label": "阿里云乌兰察布智算中心"
+      },
+      "value": 1.2,
+      "unit": "比值",
+      "caliber": {
+        "basis": "宣传值",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2023-08",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "cd0c48c10428a905dc07768abadbe82fcc98d9bafdeaf055aeeb2c3270475a5a",
+        "local_file": "20230822-西南证券-人工智能专题研究：智算中心——赋能AI产业化、产业AI化(43页).pdf",
+        "locator": "第 14 页 企业主导的智算中心（部分）表：「建设规模为3000PFLOPS的AI算力……采用风冷、AI调温、模块化设计等绿色技术，可实现全年超过80%时间全新风运行，年平均PUE小于1.2」",
+        "grade": "S3",
+        "originator": "IDC圈（经西南证券转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「小于 1.2」按上界记。表源《IDC圈：2023年中国智算中心项目盘点•企业自建篇》，西南证券整理。"
     }
   ]
 }
