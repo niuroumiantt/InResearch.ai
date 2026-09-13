@@ -44754,6 +44754,502 @@
       "sensitive": true,
       "corroboration": "待交叉验证",
       "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 区间上界。 备注：根据系统容量、设备配置选择。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "idc-seagate-dataage2025-installed-storage-2010",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "global-storage-installed-base",
+        "label": "全球已安装存储容量（IDC Data Age 2025）"
+      },
+      "value": 1374.5,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2010",
+      "bound": "point",
+      "evidence": {
+        "sha256": "22992608bb1c64481b7337b01734fa196a69fdbee4aa6830dedeca9ae54f1aea",
+        "local_file": "IDC 201801 from JR data creation Seagate White Paper Figure data - VH1.xlsx",
+        "locator": "工作表「Model」第 11 行「WW Installed Bytes」（第 9 行表头 EB created，2010 列）",
+        "grade": "S3",
+        "originator": "IDC / Seagate《Data Age 2025》白皮书图表数据（2017-06-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表第 6 行为同一序列未除 1000 的值（单位应为 PB），第 11 行已换算为 EB，本条取第 11 行并保留 1 位小数。**全球已安装存储容量（含端点/边缘/核心全部介质），不是中国政策口径的「存力」**——口径最接近 storage_capacity_total 的「全部/在用」。工作簿 2017-06 时点的历史估算。同表：数据创建量 2025 年 163,297 EB（163 ZB），已安装/创建比 2010 年 0.84 → 2025 年约 0.08。"
+    },
+    {
+      "fact_id": "idc-seagate-dataage2025-installed-storage-2011",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "global-storage-installed-base",
+        "label": "全球已安装存储容量（IDC Data Age 2025）"
+      },
+      "value": 1778.1,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2011",
+      "bound": "point",
+      "evidence": {
+        "sha256": "22992608bb1c64481b7337b01734fa196a69fdbee4aa6830dedeca9ae54f1aea",
+        "local_file": "IDC 201801 from JR data creation Seagate White Paper Figure data - VH1.xlsx",
+        "locator": "工作表「Model」第 11 行「WW Installed Bytes」（第 9 行表头 EB created，2011 列）",
+        "grade": "S3",
+        "originator": "IDC / Seagate《Data Age 2025》白皮书图表数据（2017-06-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表第 6 行为同一序列未除 1000 的值（单位应为 PB），第 11 行已换算为 EB，本条取第 11 行并保留 1 位小数。**全球已安装存储容量（含端点/边缘/核心全部介质），不是中国政策口径的「存力」**——口径最接近 storage_capacity_total 的「全部/在用」。工作簿 2017-06 时点的历史估算。同表：数据创建量 2025 年 163,297 EB（163 ZB），已安装/创建比 2010 年 0.84 → 2025 年约 0.08。"
+    },
+    {
+      "fact_id": "idc-seagate-dataage2025-installed-storage-2012",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "global-storage-installed-base",
+        "label": "全球已安装存储容量（IDC Data Age 2025）"
+      },
+      "value": 2191.0,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2012",
+      "bound": "point",
+      "evidence": {
+        "sha256": "22992608bb1c64481b7337b01734fa196a69fdbee4aa6830dedeca9ae54f1aea",
+        "local_file": "IDC 201801 from JR data creation Seagate White Paper Figure data - VH1.xlsx",
+        "locator": "工作表「Model」第 11 行「WW Installed Bytes」（第 9 行表头 EB created，2012 列）",
+        "grade": "S3",
+        "originator": "IDC / Seagate《Data Age 2025》白皮书图表数据（2017-06-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表第 6 行为同一序列未除 1000 的值（单位应为 PB），第 11 行已换算为 EB，本条取第 11 行并保留 1 位小数。**全球已安装存储容量（含端点/边缘/核心全部介质），不是中国政策口径的「存力」**——口径最接近 storage_capacity_total 的「全部/在用」。工作簿 2017-06 时点的历史估算。同表：数据创建量 2025 年 163,297 EB（163 ZB），已安装/创建比 2010 年 0.84 → 2025 年约 0.08。"
+    },
+    {
+      "fact_id": "idc-seagate-dataage2025-installed-storage-2013",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "global-storage-installed-base",
+        "label": "全球已安装存储容量（IDC Data Age 2025）"
+      },
+      "value": 2629.6,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2013",
+      "bound": "point",
+      "evidence": {
+        "sha256": "22992608bb1c64481b7337b01734fa196a69fdbee4aa6830dedeca9ae54f1aea",
+        "local_file": "IDC 201801 from JR data creation Seagate White Paper Figure data - VH1.xlsx",
+        "locator": "工作表「Model」第 11 行「WW Installed Bytes」（第 9 行表头 EB created，2013 列）",
+        "grade": "S3",
+        "originator": "IDC / Seagate《Data Age 2025》白皮书图表数据（2017-06-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表第 6 行为同一序列未除 1000 的值（单位应为 PB），第 11 行已换算为 EB，本条取第 11 行并保留 1 位小数。**全球已安装存储容量（含端点/边缘/核心全部介质），不是中国政策口径的「存力」**——口径最接近 storage_capacity_total 的「全部/在用」。工作簿 2017-06 时点的历史估算。同表：数据创建量 2025 年 163,297 EB（163 ZB），已安装/创建比 2010 年 0.84 → 2025 年约 0.08。"
+    },
+    {
+      "fact_id": "idc-seagate-dataage2025-installed-storage-2014",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "global-storage-installed-base",
+        "label": "全球已安装存储容量（IDC Data Age 2025）"
+      },
+      "value": 3101.1,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2014",
+      "bound": "point",
+      "evidence": {
+        "sha256": "22992608bb1c64481b7337b01734fa196a69fdbee4aa6830dedeca9ae54f1aea",
+        "local_file": "IDC 201801 from JR data creation Seagate White Paper Figure data - VH1.xlsx",
+        "locator": "工作表「Model」第 11 行「WW Installed Bytes」（第 9 行表头 EB created，2014 列）",
+        "grade": "S3",
+        "originator": "IDC / Seagate《Data Age 2025》白皮书图表数据（2017-06-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表第 6 行为同一序列未除 1000 的值（单位应为 PB），第 11 行已换算为 EB，本条取第 11 行并保留 1 位小数。**全球已安装存储容量（含端点/边缘/核心全部介质），不是中国政策口径的「存力」**——口径最接近 storage_capacity_total 的「全部/在用」。工作簿 2017-06 时点的历史估算。同表：数据创建量 2025 年 163,297 EB（163 ZB），已安装/创建比 2010 年 0.84 → 2025 年约 0.08。"
+    },
+    {
+      "fact_id": "idc-seagate-dataage2025-installed-storage-2015",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "global-storage-installed-base",
+        "label": "全球已安装存储容量（IDC Data Age 2025）"
+      },
+      "value": 3527.8,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2015",
+      "bound": "point",
+      "evidence": {
+        "sha256": "22992608bb1c64481b7337b01734fa196a69fdbee4aa6830dedeca9ae54f1aea",
+        "local_file": "IDC 201801 from JR data creation Seagate White Paper Figure data - VH1.xlsx",
+        "locator": "工作表「Model」第 11 行「WW Installed Bytes」（第 9 行表头 EB created，2015 列）",
+        "grade": "S3",
+        "originator": "IDC / Seagate《Data Age 2025》白皮书图表数据（2017-06-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表第 6 行为同一序列未除 1000 的值（单位应为 PB），第 11 行已换算为 EB，本条取第 11 行并保留 1 位小数。**全球已安装存储容量（含端点/边缘/核心全部介质），不是中国政策口径的「存力」**——口径最接近 storage_capacity_total 的「全部/在用」。工作簿 2017-06 时点的历史估算。同表：数据创建量 2025 年 163,297 EB（163 ZB），已安装/创建比 2010 年 0.84 → 2025 年约 0.08。"
+    },
+    {
+      "fact_id": "idc-seagate-dataage2025-installed-storage-2016",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "global-storage-installed-base",
+        "label": "全球已安装存储容量（IDC Data Age 2025）"
+      },
+      "value": 3998.7,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2016",
+      "bound": "point",
+      "evidence": {
+        "sha256": "22992608bb1c64481b7337b01734fa196a69fdbee4aa6830dedeca9ae54f1aea",
+        "local_file": "IDC 201801 from JR data creation Seagate White Paper Figure data - VH1.xlsx",
+        "locator": "工作表「Model」第 11 行「WW Installed Bytes」（第 9 行表头 EB created，2016 列）",
+        "grade": "S3",
+        "originator": "IDC / Seagate《Data Age 2025》白皮书图表数据（2017-06-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表第 6 行为同一序列未除 1000 的值（单位应为 PB），第 11 行已换算为 EB，本条取第 11 行并保留 1 位小数。**全球已安装存储容量（含端点/边缘/核心全部介质），不是中国政策口径的「存力」**——口径最接近 storage_capacity_total 的「全部/在用」。工作簿 2017-06 时点的历史估算。同表：数据创建量 2025 年 163,297 EB（163 ZB），已安装/创建比 2010 年 0.84 → 2025 年约 0.08。"
+    },
+    {
+      "fact_id": "idc-seagate-dataage2025-installed-storage-2017",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "global-storage-installed-base",
+        "label": "全球已安装存储容量（IDC Data Age 2025）"
+      },
+      "value": 4523.7,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2017E@2017-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "22992608bb1c64481b7337b01734fa196a69fdbee4aa6830dedeca9ae54f1aea",
+        "local_file": "IDC 201801 from JR data creation Seagate White Paper Figure data - VH1.xlsx",
+        "locator": "工作表「Model」第 11 行「WW Installed Bytes」（第 9 行表头 EB created，2017 列）",
+        "grade": "S3",
+        "originator": "IDC / Seagate《Data Age 2025》白皮书图表数据（2017-06-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表第 6 行为同一序列未除 1000 的值（单位应为 PB），第 11 行已换算为 EB，本条取第 11 行并保留 1 位小数。**全球已安装存储容量（含端点/边缘/核心全部介质），不是中国政策口径的「存力」**——口径最接近 storage_capacity_total 的「全部/在用」。工作簿日期 2017-06-01，2017 年起为预测。同表：数据创建量 2025 年 163,297 EB（163 ZB），已安装/创建比 2010 年 0.84 → 2025 年约 0.08。"
+    },
+    {
+      "fact_id": "idc-seagate-dataage2025-installed-storage-2018",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "global-storage-installed-base",
+        "label": "全球已安装存储容量（IDC Data Age 2025）"
+      },
+      "value": 5137.0,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2018E@2017-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "22992608bb1c64481b7337b01734fa196a69fdbee4aa6830dedeca9ae54f1aea",
+        "local_file": "IDC 201801 from JR data creation Seagate White Paper Figure data - VH1.xlsx",
+        "locator": "工作表「Model」第 11 行「WW Installed Bytes」（第 9 行表头 EB created，2018 列）",
+        "grade": "S3",
+        "originator": "IDC / Seagate《Data Age 2025》白皮书图表数据（2017-06-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表第 6 行为同一序列未除 1000 的值（单位应为 PB），第 11 行已换算为 EB，本条取第 11 行并保留 1 位小数。**全球已安装存储容量（含端点/边缘/核心全部介质），不是中国政策口径的「存力」**——口径最接近 storage_capacity_total 的「全部/在用」。工作簿日期 2017-06-01，2017 年起为预测。同表：数据创建量 2025 年 163,297 EB（163 ZB），已安装/创建比 2010 年 0.84 → 2025 年约 0.08。"
+    },
+    {
+      "fact_id": "idc-seagate-dataage2025-installed-storage-2019",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "global-storage-installed-base",
+        "label": "全球已安装存储容量（IDC Data Age 2025）"
+      },
+      "value": 5884.8,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2019E@2017-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "22992608bb1c64481b7337b01734fa196a69fdbee4aa6830dedeca9ae54f1aea",
+        "local_file": "IDC 201801 from JR data creation Seagate White Paper Figure data - VH1.xlsx",
+        "locator": "工作表「Model」第 11 行「WW Installed Bytes」（第 9 行表头 EB created，2019 列）",
+        "grade": "S3",
+        "originator": "IDC / Seagate《Data Age 2025》白皮书图表数据（2017-06-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表第 6 行为同一序列未除 1000 的值（单位应为 PB），第 11 行已换算为 EB，本条取第 11 行并保留 1 位小数。**全球已安装存储容量（含端点/边缘/核心全部介质），不是中国政策口径的「存力」**——口径最接近 storage_capacity_total 的「全部/在用」。工作簿日期 2017-06-01，2017 年起为预测。同表：数据创建量 2025 年 163,297 EB（163 ZB），已安装/创建比 2010 年 0.84 → 2025 年约 0.08。"
+    },
+    {
+      "fact_id": "idc-seagate-dataage2025-installed-storage-2020",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "global-storage-installed-base",
+        "label": "全球已安装存储容量（IDC Data Age 2025）"
+      },
+      "value": 6709.2,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2020E@2017-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "22992608bb1c64481b7337b01734fa196a69fdbee4aa6830dedeca9ae54f1aea",
+        "local_file": "IDC 201801 from JR data creation Seagate White Paper Figure data - VH1.xlsx",
+        "locator": "工作表「Model」第 11 行「WW Installed Bytes」（第 9 行表头 EB created，2020 列）",
+        "grade": "S3",
+        "originator": "IDC / Seagate《Data Age 2025》白皮书图表数据（2017-06-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表第 6 行为同一序列未除 1000 的值（单位应为 PB），第 11 行已换算为 EB，本条取第 11 行并保留 1 位小数。**全球已安装存储容量（含端点/边缘/核心全部介质），不是中国政策口径的「存力」**——口径最接近 storage_capacity_total 的「全部/在用」。工作簿日期 2017-06-01，2017 年起为预测。同表：数据创建量 2025 年 163,297 EB（163 ZB），已安装/创建比 2010 年 0.84 → 2025 年约 0.08。"
+    },
+    {
+      "fact_id": "idc-seagate-dataage2025-installed-storage-2021",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "global-storage-installed-base",
+        "label": "全球已安装存储容量（IDC Data Age 2025）"
+      },
+      "value": 7656.0,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2021E@2017-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "22992608bb1c64481b7337b01734fa196a69fdbee4aa6830dedeca9ae54f1aea",
+        "local_file": "IDC 201801 from JR data creation Seagate White Paper Figure data - VH1.xlsx",
+        "locator": "工作表「Model」第 11 行「WW Installed Bytes」（第 9 行表头 EB created，2021 列）",
+        "grade": "S3",
+        "originator": "IDC / Seagate《Data Age 2025》白皮书图表数据（2017-06-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表第 6 行为同一序列未除 1000 的值（单位应为 PB），第 11 行已换算为 EB，本条取第 11 行并保留 1 位小数。**全球已安装存储容量（含端点/边缘/核心全部介质），不是中国政策口径的「存力」**——口径最接近 storage_capacity_total 的「全部/在用」。工作簿日期 2017-06-01，2017 年起为预测。同表：数据创建量 2025 年 163,297 EB（163 ZB），已安装/创建比 2010 年 0.84 → 2025 年约 0.08。"
+    },
+    {
+      "fact_id": "idc-seagate-dataage2025-installed-storage-2022",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "global-storage-installed-base",
+        "label": "全球已安装存储容量（IDC Data Age 2025）"
+      },
+      "value": 8737.2,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2022E@2017-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "22992608bb1c64481b7337b01734fa196a69fdbee4aa6830dedeca9ae54f1aea",
+        "local_file": "IDC 201801 from JR data creation Seagate White Paper Figure data - VH1.xlsx",
+        "locator": "工作表「Model」第 11 行「WW Installed Bytes」（第 9 行表头 EB created，2022 列）",
+        "grade": "S3",
+        "originator": "IDC / Seagate《Data Age 2025》白皮书图表数据（2017-06-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表第 6 行为同一序列未除 1000 的值（单位应为 PB），第 11 行已换算为 EB，本条取第 11 行并保留 1 位小数。**全球已安装存储容量（含端点/边缘/核心全部介质），不是中国政策口径的「存力」**——口径最接近 storage_capacity_total 的「全部/在用」。工作簿日期 2017-06-01，2017 年起为预测。同表：数据创建量 2025 年 163,297 EB（163 ZB），已安装/创建比 2010 年 0.84 → 2025 年约 0.08。"
+    },
+    {
+      "fact_id": "idc-seagate-dataage2025-installed-storage-2023",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "global-storage-installed-base",
+        "label": "全球已安装存储容量（IDC Data Age 2025）"
+      },
+      "value": 9979.9,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2023E@2017-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "22992608bb1c64481b7337b01734fa196a69fdbee4aa6830dedeca9ae54f1aea",
+        "local_file": "IDC 201801 from JR data creation Seagate White Paper Figure data - VH1.xlsx",
+        "locator": "工作表「Model」第 11 行「WW Installed Bytes」（第 9 行表头 EB created，2023 列）",
+        "grade": "S3",
+        "originator": "IDC / Seagate《Data Age 2025》白皮书图表数据（2017-06-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表第 6 行为同一序列未除 1000 的值（单位应为 PB），第 11 行已换算为 EB，本条取第 11 行并保留 1 位小数。**全球已安装存储容量（含端点/边缘/核心全部介质），不是中国政策口径的「存力」**——口径最接近 storage_capacity_total 的「全部/在用」。工作簿日期 2017-06-01，2017 年起为预测。同表：数据创建量 2025 年 163,297 EB（163 ZB），已安装/创建比 2010 年 0.84 → 2025 年约 0.08。"
+    },
+    {
+      "fact_id": "idc-seagate-dataage2025-installed-storage-2024",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "global-storage-installed-base",
+        "label": "全球已安装存储容量（IDC Data Age 2025）"
+      },
+      "value": 11405.5,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2024E@2017-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "22992608bb1c64481b7337b01734fa196a69fdbee4aa6830dedeca9ae54f1aea",
+        "local_file": "IDC 201801 from JR data creation Seagate White Paper Figure data - VH1.xlsx",
+        "locator": "工作表「Model」第 11 行「WW Installed Bytes」（第 9 行表头 EB created，2024 列）",
+        "grade": "S3",
+        "originator": "IDC / Seagate《Data Age 2025》白皮书图表数据（2017-06-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表第 6 行为同一序列未除 1000 的值（单位应为 PB），第 11 行已换算为 EB，本条取第 11 行并保留 1 位小数。**全球已安装存储容量（含端点/边缘/核心全部介质），不是中国政策口径的「存力」**——口径最接近 storage_capacity_total 的「全部/在用」。工作簿日期 2017-06-01，2017 年起为预测。同表：数据创建量 2025 年 163,297 EB（163 ZB），已安装/创建比 2010 年 0.84 → 2025 年约 0.08。"
+    },
+    {
+      "fact_id": "idc-seagate-dataage2025-installed-storage-2025",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "global-storage-installed-base",
+        "label": "全球已安装存储容量（IDC Data Age 2025）"
+      },
+      "value": 13035.7,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2017-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "22992608bb1c64481b7337b01734fa196a69fdbee4aa6830dedeca9ae54f1aea",
+        "local_file": "IDC 201801 from JR data creation Seagate White Paper Figure data - VH1.xlsx",
+        "locator": "工作表「Model」第 11 行「WW Installed Bytes」（第 9 行表头 EB created，2025 列）",
+        "grade": "S3",
+        "originator": "IDC / Seagate《Data Age 2025》白皮书图表数据（2017-06-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表第 6 行为同一序列未除 1000 的值（单位应为 PB），第 11 行已换算为 EB，本条取第 11 行并保留 1 位小数。**全球已安装存储容量（含端点/边缘/核心全部介质），不是中国政策口径的「存力」**——口径最接近 storage_capacity_total 的「全部/在用」。工作簿日期 2017-06-01，2017 年起为预测。同表：数据创建量 2025 年 163,297 EB（163 ZB），已安装/创建比 2010 年 0.84 → 2025 年约 0.08。"
     }
   ]
 }
