@@ -47532,6 +47532,123 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "媒体报道、规划中，status 记 L1（传闻或意向）；满建所需电力，口径未说明。"
+    },
+    {
+      "fact_id": "coal-carbon-sheet-2020-rack-5kw",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "project",
+        "id": "dc-coal-carbon-conversion-sheet-2020",
+        "label": "数据中心标准煤-碳排放指标换算表（2020 新版，编制单位未署名）"
+      },
+      "value": 5.0,
+      "unit": "kW/架",
+      "caliber": {
+        "basis": "规划平均",
+        "scope": "全场平均",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "a853eb633db99578d7c0ccb0baaa32e61be24e5c1dc5a6d1873f66414e14c28b",
+        "local_file": "数据中心标准煤-碳排放指标换算表-2020(新版).xls",
+        "locator": "工作表「数据中心项目综合估算表」①-④四个估算块的备注列：「备注：采用单机柜功率5kW/Rack,机柜数ⅹ单机柜千瓦数，得到IT总功率数」",
+        "grade": "S4",
+        "originator": "未署名（数据中心标准煤-碳排放指标换算表 2020 新版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "按全部机柜统一 5kW/架估 IT 总功率。同簿「标煤换算表」工作表示例另用 6kW/柜。 估算模板的假设参数，不是某个项目的设计或实测值。编制单位未署名（文件名标 2020 新版）；region 记 CN 的依据：标准煤折算与 0.604 kgCO₂/kWh 电网因子均为中国口径。"
+    },
+    {
+      "fact_id": "coal-carbon-sheet-2020-diversity-085",
+      "metric_id": "diversity_factor",
+      "entity": {
+        "type": "project",
+        "id": "dc-coal-carbon-conversion-sheet-2020",
+        "label": "数据中心标准煤-碳排放指标换算表（2020 新版，编制单位未署名）"
+      },
+      "value": 0.85,
+      "unit": "比值",
+      "caliber": {
+        "scope": "IT负载",
+        "basis": "设计取值",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "a853eb633db99578d7c0ccb0baaa32e61be24e5c1dc5a6d1873f66414e14c28b",
+        "local_file": "数据中心标准煤-碳排放指标换算表-2020(新版).xls",
+        "locator": "工作表「数据中心项目综合估算表」①-④四个估算块的备注列：「备注：同时系数采用0.85，PUE采用1.35」",
+        "grade": "S4",
+        "originator": "未署名（数据中心标准煤-碳排放指标换算表 2020 新版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "IT 总功率 × 0.85 × PUE 1.35 得单路市电需求容量（kVA）：4,285.7 架 × 5kW = 21,428.6 kW → 24,589.3 kVA。 估算模板的假设参数，不是某个项目的设计或实测值。编制单位未署名（文件名标 2020 新版）；region 记 CN 的依据：标准煤折算与 0.604 kgCO₂/kWh 电网因子均为中国口径。"
+    },
+    {
+      "fact_id": "coal-carbon-sheet-2020-sqm-per-rack-7",
+      "metric_id": "sqm_per_rack",
+      "entity": {
+        "type": "project",
+        "id": "dc-coal-carbon-conversion-sheet-2020",
+        "label": "数据中心标准煤-碳排放指标换算表（2020 新版，编制单位未署名）"
+      },
+      "value": 7.0,
+      "unit": "㎡/架",
+      "caliber": {
+        "basis": "设计取值",
+        "area_scope": "总建筑面积",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "a853eb633db99578d7c0ccb0baaa32e61be24e5c1dc5a6d1873f66414e14c28b",
+        "local_file": "数据中心标准煤-碳排放指标换算表-2020(新版).xls",
+        "locator": "工作表「数据中心项目综合估算表」①-④四个估算块的备注列：「备注：采用一个机柜占地（建筑面积）7㎡估算」",
+        "grade": "S4",
+        "originator": "未署名（数据中心标准煤-碳排放指标换算表 2020 新版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "按总建筑面积折算（30,000 ㎡ → 4,285.7 架），不是主机房面积。 估算模板的假设参数，不是某个项目的设计或实测值。编制单位未署名（文件名标 2020 新版）；region 记 CN 的依据：标准煤折算与 0.604 kgCO₂/kWh 电网因子均为中国口径。"
+    },
+    {
+      "fact_id": "coal-carbon-sheet-2020-pue-135",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "dc-coal-carbon-conversion-sheet-2020",
+        "label": "数据中心标准煤-碳排放指标换算表（2020 新版，编制单位未署名）"
+      },
+      "value": 1.35,
+      "unit": "比值",
+      "caliber": {
+        "basis": "设计值",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "a853eb633db99578d7c0ccb0baaa32e61be24e5c1dc5a6d1873f66414e14c28b",
+        "local_file": "数据中心标准煤-碳排放指标换算表-2020(新版).xls",
+        "locator": "工作表「数据中心项目综合估算表」①-④四个估算块的备注列：「备注：同时系数采用0.85，PUE采用1.35」",
+        "grade": "S4",
+        "originator": "未署名（数据中心标准煤-碳排放指标换算表 2020 新版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "用于折算全年碳排与标煤（×8760h），故按年均记。 估算模板的假设参数，不是某个项目的设计或实测值。编制单位未署名（文件名标 2020 新版）；region 记 CN 的依据：标准煤折算与 0.604 kgCO₂/kWh 电网因子均为中国口径。"
     }
   ]
 }
