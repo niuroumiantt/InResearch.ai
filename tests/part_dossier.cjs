@@ -70,6 +70,7 @@ const {chromium} = require('playwright');
       const THREE = await import('three');
       const {createScenePicking} = await import('/assets/scene-picking.js');
       const {createSceneMotion} = await import('/assets/scene-motion.js');
+      const {createPartInspector} = await import('/assets/part-inspector.js');
       const check = (condition, message) => { if (!condition) throw Error(message); };
       let time = 0, next = 0, frames = new Map(), history = [];
       const motion = createSceneMotion({now:()=>time, reducedMotion:()=>false,
@@ -106,7 +107,24 @@ const {chromium} = require('playwright');
       event('pointermove'); check(a.children.length===0,'captured pointer picked through overlay');cover.remove();
       picking.dispose(); event('pointerdown'); event('pointerup');
       check(selections===1 && !disposedGeometry && material.emissive.getHex()===0,'cleanup damaged shared scene');
-      canvas.remove();tip.remove();geometry.dispose();material.dispose();
+      canvas.remove();tip.remove();
+      // Actual inspector and Three materials, with render capture instead of a second GPU context.
+      const original = new THREE.MeshStandardMaterial({color:0x123456,opacity:1,emissiveIntensity:.2});
+      const dim = original.clone();dim.opacity=.1;dim.transparent=true;a.material=dim;
+      let cloned = null;
+      class CaptureRenderer {
+        setPixelRatio() {} setSize() {}
+        render(scene) {scene.traverse(object=>{if(object.isMesh) cloned=object.material;});}
+      }
+      const inspector = createPartInspector({THREE:{...THREE,WebGLRenderer:CaptureRenderer},
+        environment:()=>null,meshesFor:()=>[a],materialFor:()=>original});
+      document.body.append(inspector.canvas);check(inspector.show('part'),'inspector failed');inspector.tick();
+      check(cloned!==original && cloned.opacity===1 && !cloned.transparent && cloned.color.getHex()===0x123456 && cloned.emissiveIntensity===.2,'inspector used presentation material');
+      check(a.material===dim && dim.opacity===.1,'inspector changed main scene');
+      let disposed=false;cloned.addEventListener('dispose',()=>disposed=true);inspector.show('part');
+      check(disposed && !disposedGeometry,'inspector released shared geometry or leaked old clone');
+      inspector.hide();inspector.canvas.remove();dim.dispose();original.dispose();
+      geometry.dispose();material.dispose();
       return true;
     });
     assert.ok(contracts);

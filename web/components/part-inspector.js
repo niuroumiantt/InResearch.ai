@@ -1,5 +1,5 @@
 /* A component owns its renderer and cloned materials, never the source geometry. */
-export function createPartInspector({THREE, environment, meshesFor}) {
+export function createPartInspector({THREE, environment, meshesFor, materialFor = mesh => mesh.material}) {
   const iCv = document.createElement("canvas");
   iCv.width = 604; iCv.height = 380;
   let iRen = null, iScene, iCam, iPivot, iGroup, iSpin = true, iRotX = -0.35, iRotY = 0.7, iVisible = false;
@@ -31,7 +31,6 @@ export function createPartInspector({THREE, environment, meshesFor}) {
   }
   function cloneMatForInspect(m) {
     const c = m.clone();
-    if (m.userData.orig) { c.opacity = m.userData.orig.opacity; c.transparent = m.userData.orig.transparent; c.emissiveIntensity = m.userData.orig.ei; }
     c.userData = {};
     return c;
   }
@@ -48,7 +47,8 @@ export function createPartInspector({THREE, environment, meshesFor}) {
     iGroup.position.set(0, 0, 0);
     meshes.forEach(src => {
       src.updateWorldMatrix(true, false);
-      const mat = Array.isArray(src.material) ? src.material.map(cloneMatForInspect) : cloneMatForInspect(src.material);
+      const source = materialFor(src);
+      const mat = Array.isArray(source) ? source.map(cloneMatForInspect) : cloneMatForInspect(source);
       const m = new THREE.Mesh(src.geometry, mat);
       m.applyMatrix4(src.matrixWorld);
       iGroup.add(m);

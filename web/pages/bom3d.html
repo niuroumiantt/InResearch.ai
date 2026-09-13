@@ -946,7 +946,8 @@ addEventListener("keydown", e => {
 /* ─────────── 交互与档案 ─────────── */
 const tip = document.getElementById("tip3d");
 /* ── 部件旋转查看器：档案内单独渲染该部件，可拖动 360° 查看 ── */
-const inspector = createPartInspector({THREE, environment: () => scene.environment, meshesFor: pid => PARTMESH[pid]});
+const inspector = createPartInspector({THREE, environment: () => scene.environment, meshesFor: pid => PARTMESH[pid],
+  materialFor: mesh => dimmed.get(mesh)?.original || mesh.userData.covPrev || mesh.material});
 const showDossier = createPartDossier({el: document.getElementById('dossier'), view: 'campus',
   BOM, moduleNames: MODNAME, companies: CN, prices, indicators: INDS,
   statusNames: SN, statusColors: SBADGE, inspector});

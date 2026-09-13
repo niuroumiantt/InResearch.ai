@@ -21,7 +21,7 @@ def main():
     before = {p: git('show', SCOPE['baseline'] + ':' + p) for p in git('ls-tree', '-r', '--name-only', '-z', SCOPE['baseline']).decode().strip('\0').split('\0')}
     paths = sorted(set(git('ls-files', '-co', '--exclude-standard', '-z').decode().strip('\0').split('\0')))
     after = {p: (ROOT / p).read_bytes() for p in paths if (ROOT / p).is_file()}
-    terms = ('createScenePicking', 'createSceneMotion', 'sliderMotion', 'cameraMotion', 'setDim', 'installStageControl', 'scene-picking.js', 'scene-motion.js')
+    terms = ('createScenePicking', 'createSceneMotion', 'createPartInspector', 'materialFor', 'userData.orig', 'sliderMotion', 'cameraMotion', 'setDim', 'installStageControl', 'scene-picking.js', 'scene-motion.js')
     refs = []
     for p, body in sorted(after.items()):
         if p.startswith(('docs/reviews/', 'docs/archive/')): continue
