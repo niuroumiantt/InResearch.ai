@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.13.8",
+  "version": "2026.09.13.9",
   "effective_at": "2026-09-13",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -350,13 +350,15 @@
         "framework/storage_contract.json",
         "src/inresearch/storage/layout.py",
         "tests/unit/test_storage_layout.py",
-        "tests/container_storage.py"
+        "tests/container_storage.py",
+        "tests/datacenter_news.cjs",
+        "tests/unit/test_research.py"
       ],
       "supersedes": [
         "acquisition-legacy"
       ],
-      "reason": "Published Git research and persistent runtime state have separate authority; explicit initialization, recovery and read-only deployment replace whole-directory shadowing. Historical brief proposes review without changing formal findings; existing research and originals scope remain.",
-      "implementation_revision": "2026.09.13.8"
+      "reason": "News uses a bounded projection of the same validated Reader snapshot; homepage/ops stop polling the full research view. No second authority or original-data migration; stale responses cannot overwrite newer UI state.",
+      "implementation_revision": "2026.09.13.9"
     },
     {
       "id": "product-ecosystems-20260906",

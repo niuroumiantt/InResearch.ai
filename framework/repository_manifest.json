@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.13.8",
+  "version": "2026.09.13.9",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -515,8 +515,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 33634,
-      "sha256": "be926c87e46179cad8df5784c5d727d79ab5434be05884753d3b621ce1d682f5",
+      "bytes": 34343,
+      "sha256": "67228ccdd878251f84b323bdad6e0399a1bfa83128185d7564f308ccd5727a67",
       "collections": []
     },
     {
@@ -4168,6 +4168,170 @@
       "collections": []
     },
     {
+      "path": "docs/reviews/2026-09-13/news-projection/DELIVERY.md",
+      "role": "historical",
+      "bytes": 3122,
+      "sha256": "5e4929b51438b5bcc94b24b2607b9027443493bad18ce1fd0d22a8145541fb8d",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-09-13/news-projection/PLAN.md",
+      "role": "historical",
+      "bytes": 2637,
+      "sha256": "c6e1d88db49f2d8e068afc797d95f5193753f0b9624846d0ef3e23e6ba5913ae",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-09-13/news-projection/audit.py",
+      "role": "historical",
+      "bytes": 3279,
+      "sha256": "1954d68770f1d44be1a029eb03231ccc5a7f949f2458eec9246cdc7611169b60",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-09-13/news-projection/consumers-before.csv",
+      "role": "historical",
+      "bytes": 3249,
+      "sha256": "4b912bc21e7e66e8ba87de07133b3724546ae3822b8e8427798f4be47263e2f0",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 24,
+          "fields": [
+            "path",
+            "line",
+            "reference"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/news-projection/file-plan.csv",
+      "role": "historical",
+      "bytes": 78352,
+      "sha256": "cda469ce377c0e6e6643a05222d2f33fd14ebc20479f612809d9f5b6cdb146c3",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 667,
+          "fields": [
+            "path",
+            "action",
+            "target",
+            "reason"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/news-projection/file-results.csv",
+      "role": "historical",
+      "bytes": 82212,
+      "sha256": "f2b40686690e99df05532b66d6bdda38573918020f2bee3851e712f8ca731b44",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 674,
+          "fields": [
+            "path",
+            "action",
+            "target",
+            "result"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/news-projection/legacy-removal.csv",
+      "role": "historical",
+      "bytes": 1215,
+      "sha256": "79a34b8eab1af62180eedf796a661341898e747b5d647d3511c575a973ceb1ce",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 7,
+          "fields": [
+            "old_implementation",
+            "disposition",
+            "all_known_consumers",
+            "result_or_reason"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/news-projection/payload-after.json",
+      "role": "historical",
+      "bytes": 231,
+      "sha256": "06634b8477a6a70203d05f2cceb26d73c1ddaada9a1fec9eb6ca678281e8b165",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-09-13/news-projection/payload-before.json",
+      "role": "historical",
+      "bytes": 594,
+      "sha256": "1915e39bfe3f9dd66484318e62c9a0933ca734cb527ec7efdc68e9ce446c98b2",
+      "collections": [
+        {
+          "name": "consumers",
+          "count": 2
+        },
+        {
+          "name": "news_hosts",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/news-projection/public-consumers.csv",
+      "role": "historical",
+      "bytes": 8400,
+      "sha256": "43db7ab59ef5427551f7bf3647e3c3625cb630ddc58e5b53524291a593e0c7b8",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 45,
+          "fields": [
+            "implementation_or_endpoint",
+            "consumer",
+            "line",
+            "reference",
+            "result"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/news-projection/scope.json",
+      "role": "historical",
+      "bytes": 532,
+      "sha256": "a16311ba06f47ff364c2907dc5955e291aa0d1a2cd772fe08868683c75c21203",
+      "collections": [
+        {
+          "name": "changed",
+          "count": 12
+        },
+        {
+          "name": "new",
+          "count": 0
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/news-projection/statistics-after.json",
+      "role": "historical",
+      "bytes": 1589,
+      "sha256": "b9eaaf1134eeaaab5b0cb1f76c4ff30ae2ebe1abcea05dba33cf83229bb406a6",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-09-13/news-projection/statistics-before.json",
+      "role": "historical",
+      "bytes": 617,
+      "sha256": "8ab884316aadbe27c7305ac586fdd7499f48e3da5152a25e1407c922c05af891",
+      "collections": []
+    },
+    {
       "path": "docs/reviews/2026-09-13/reading-authority/DELIVERY.md",
       "role": "historical",
       "bytes": 8467,
@@ -4855,8 +5019,8 @@
     {
       "path": "framework/06_acquisition.md",
       "role": "normative",
-      "bytes": 17409,
-      "sha256": "337ce3fdd88ddab74004d7fdd91ce9554ee9139dacaa0f69413703fbad2b2b66",
+      "bytes": 18366,
+      "sha256": "d05a9da1c558d5882443ded1b2508e72c8a8c35eb486b9bc1cd2644305149270",
       "collections": []
     },
     {
@@ -4884,7 +5048,7 @@
       "path": "framework/CURRENT.md",
       "role": "normative",
       "bytes": 5375,
-      "sha256": "0590960fdc464bb70f30b3aa0d5f6a3675524b9ea139649eac2eb70a30864b3c",
+      "sha256": "f07bb42bab6f056493dbe0383ce1911b7508f4b97abb55ef71dedcc1aa3d048c",
       "collections": []
     },
     {
@@ -4906,8 +5070,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 23939,
-      "sha256": "bd9ea7b63c8bf731320e464d0bbd234f0e7aa0e727bdc1e6a15367f6d4ecfa26",
+      "bytes": 23948,
+      "sha256": "6c2f0770df662766c9ae32e692d45610778840938f0aa5c5f12d3cf7cb74999f",
       "collections": [
         {
           "name": "policies",
@@ -5170,8 +5334,8 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 32850,
-      "sha256": "deea79309b851d803c7841dc52e80526318d567c48b8dc9709f756704fb025d7",
+      "bytes": 33670,
+      "sha256": "c9cfe351727657db33426eb1a7cd9868ec724c0af492b57c844a62d20ff0bcad",
       "collections": [
         {
           "name": "policies",
@@ -5730,8 +5894,8 @@
     {
       "path": "src/inresearch/interfaces/http.py",
       "role": "implementation",
-      "bytes": 25551,
-      "sha256": "6c650a8d0b6a70de3ffd81f3bd303dafb27d1883fbb67d3b76489c4e020ec693",
+      "bytes": 25852,
+      "sha256": "48bbdc5f6264b8b6e15704f5d055b0c2d369f6cff57edd41c059ec1821ccd58c",
       "collections": []
     },
     {
@@ -5842,8 +6006,8 @@
     {
       "path": "src/inresearch/knowledge/registry.py",
       "role": "implementation",
-      "bytes": 29599,
-      "sha256": "76dbc7d1299d950bfeecfa8fafb7df6706bb84d48d9d8cd82b3939ec72cc8abe",
+      "bytes": 31211,
+      "sha256": "4599045affd65eb0c1f65db06e8592e6d17debca6a018cb8f45336e711b515b3",
       "collections": []
     },
     {
@@ -6171,8 +6335,8 @@
     {
       "path": "tests/datacenter_news.cjs",
       "role": "test",
-      "bytes": 2584,
-      "sha256": "7d401430d5bb1b9dc4eb432cf9756b521b8c40e7aa230a09cd98a4fb2b635795",
+      "bytes": 5483,
+      "sha256": "7eb0a2b32d4e1f02ba91c485b63bd60524d5b1164658c3ac9b3ceec7e1d6faa5",
       "collections": []
     },
     {
@@ -6472,8 +6636,8 @@
     {
       "path": "tests/unit/test_research.py",
       "role": "test",
-      "bytes": 25299,
-      "sha256": "b01db6f4a1e5c66e714cbb1440eab47467fb9ae4fef29ad124e436c3aab62ffb",
+      "bytes": 29263,
+      "sha256": "1987412a64f3b43f53e840f8a298dffd9a1241f0718abd11c83bff37e572b53a",
       "collections": []
     },
     {
@@ -6879,8 +7043,8 @@
     {
       "path": "web/components/datacenter-news.js",
       "role": "implementation",
-      "bytes": 3628,
-      "sha256": "35debbb7bd702b46679720402311a9a3ef230824fafb0f4faaddbeee159d71aa",
+      "bytes": 4160,
+      "sha256": "0a8d797654cecd897a14b8bb5e3c5ab338c3cac45be2a7ad6fe4186a1c67977b",
       "collections": []
     },
     {
@@ -7100,7 +7264,7 @@
     "design_reference": 1,
     "entrypoint": 4,
     "generated": 12,
-    "historical": 144,
+    "historical": 157,
     "implementation": 135,
     "normative": 13,
     "project_config": 36,

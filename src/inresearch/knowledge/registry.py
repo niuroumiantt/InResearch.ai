@@ -474,7 +474,7 @@ def build_catalog(root, graph):
                 note='登记产品线、型号标签、计划与历史资料索引；不代表 SKU、当前文件可用、全文已读或研究已采用。')
 
 
-def build_snapshot(root=ROOT):
+def _snapshot_inputs(root):
     graph = read_json(root / 'framework/research_graph.json')
     questions = read_json(root / 'framework/research_questions.json')
     curated = read_json(root / 'data/research_knowledge.json')
@@ -491,6 +491,47 @@ def build_snapshot(root=ROOT):
             knowledge = merge_knowledge(curated, runtime['knowledge'])
     except (ValueError, TypeError, KeyError, AttributeError, OSError):
         runtime = {'reader': {'status': 'degraded', 'message': '候选快照与现行框架不一致或校验失败，等待 Spark 重同步；正式研究仍可访问。'}}
+    return graph, questions, curated, knowledge, runtime
+
+
+def _reader_state(runtime):
+    reader = copy.deepcopy(runtime.get('reader', {'status': 'not_connected', 'model': None}))
+    reader['received_at'] = runtime.get('received_at')
+    if reader.get('received_at'):
+        try:
+            age = (datetime.now(timezone.utc) - datetime.fromisoformat(reader['received_at'])).total_seconds()
+            reader['stale'] = age > 900
+        except (ValueError, TypeError):
+            reader['stale'] = True
+    return reader
+
+
+def build_news(root=ROOT):
+    """News consumes the same validated snapshot without constructing catalog/tasks."""
+    *_, runtime = _snapshot_inputs(root)
+    reader = _reader_state(runtime)
+    acquisition = reader.get('acquisition')
+    if acquisition is not None and not isinstance(acquisition, dict):
+        raise ValueError('invalid_acquisition_metadata')
+    feed = acquisition.get('news_feed') if isinstance(acquisition, dict) else None
+    if feed is not None:
+        if not isinstance(feed, dict) or not isinstance(feed.get('items', []), list):
+            raise ValueError('invalid_news_feed')
+        items = feed.get('items', [])
+        if any(not isinstance(item, dict) for item in items):
+            raise ValueError('invalid_news_item')
+        def timestamp(item):
+            value = item.get('published_at')
+            return value if type(value) in (int, float) and abs(value) <= 8640000000000000 else 0
+        feed = dict(status=feed.get('status'), exported_at=feed.get('exported_at'),
+                    items=[{key: item[key] for key in ('title_zh', 'url', 'domain', 'published_at') if key in item}
+                           for item in sorted(items, key=timestamp, reverse=True)[:80]])
+    return dict(schema_version=1, feed=feed,
+                reader={key: reader[key] for key in ('status', 'received_at', 'stale') if key in reader})
+
+
+def build_snapshot(root=ROOT):
+    graph, questions, curated, knowledge, runtime = _snapshot_inputs(root)
     # Legacy metadata is explicitly not proof of reading or source availability.
     for source in read_json(root / 'data/sources.json', {'records': []})['records']:
         knowledge['documents'].append(dict(id='legacy:' + source['source_id'], title=source['title'],
@@ -501,15 +542,7 @@ def build_snapshot(root=ROOT):
     for q in questions['records']:
         q['status'] = 'answered' if q['id'] in closed else 'open'
     tasks = current_tasks(root, questions, curated)
-    reader = runtime.get('reader', {'status': 'not_connected', 'model': None})
-    reader['received_at'] = runtime.get('received_at')
-    if reader.get('received_at'):
-        try:
-            age = (datetime.now(timezone.utc) - datetime.fromisoformat(reader['received_at'])).total_seconds()
-            reader['stale'] = age > 900
-        except (ValueError, TypeError):
-            reader['stale'] = True
-    return dict(graph=graph, questions=questions, knowledge=knowledge, tasks=tasks, reader=reader,
+    return dict(graph=graph, questions=questions, knowledge=knowledge, tasks=tasks, reader=_reader_state(runtime),
                 catalog=build_catalog(root, graph))
 
 

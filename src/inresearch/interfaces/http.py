@@ -262,6 +262,11 @@ class Handler(SimpleHTTPRequestHandler):
                 st[t] = {"last": datetime.fromtimestamp(f.stat().st_mtime).isoformat(timespec="minutes")
                          if f.exists() else None, "running": t in RUNNING}
             return self._json(200, st)
+        if urlsplit(self.path).path == '/api/news':
+            try:
+                return self._json(200, research.build_news(ROOT))
+            except (ValueError, TypeError, KeyError, OSError):
+                return self._json(503, {'ok': False, 'error': '新闻暂不可用，请稍后重试'})
         if urlsplit(self.path).path == "/api/research":
             try:
                 return self._json(200, research.build_snapshot(ROOT))

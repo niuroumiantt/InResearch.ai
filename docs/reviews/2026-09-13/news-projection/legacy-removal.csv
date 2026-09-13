@@ -1,0 +1,8 @@
+old_implementation,disposition,all_known_consumers,result_or_reason
+news polling full /api/research,removed from news component,homepage and ops through shared datacenter-news.js,both now request /api/news; browser checks reject full snapshot polling
+independent duplicated snapshot validation,not introduced,registry full and news views,both call _snapshot_inputs and _reader_state; no second news state or database
+late refresh overwriting newer news,removed,shared news refresh callback,new request aborts old transport and late results are rejected by request identity
+missing connection displayed as active sync,replaced,homepage and ops,not_connected/degraded/waiting/uninitialized/stale/failure are explicit
+full research API,retained,research-graph.js; registry CLI snapshot; existing tests; unknown external clients,needed for full research workspace; existing response contract preserved
+original news metadata and runtime snapshot,retained,Reader/source records and full research API,new view selects displayed fields only; stored bytes unchanged
+catalog duplication and report freshness,unfinished,full research view and generated reports,not solved by reducing news payload; remain separately recorded
