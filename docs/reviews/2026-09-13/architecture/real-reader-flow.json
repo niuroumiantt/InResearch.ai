@@ -1,0 +1,108 @@
+{
+  "elapsed_seconds": 29.9,
+  "backend": {
+    "backend": "claude_cli",
+    "model": "claude-opus-5",
+    "context": 32768,
+    "max_output_tokens": 4096,
+    "request_model": "claude-opus-5",
+    "revision": "",
+    "ocr_model": ""
+  },
+  "result": {
+    "processed": 7,
+    "schema_version": 1,
+    "generated": "2026-09-13T05:39:13+00:00",
+    "status": "idle",
+    "counts": {
+      "complete": 1
+    },
+    "documents_total": 1,
+    "sources_total": 2,
+    "stage_counts": [
+      {
+        "stage": "extract",
+        "state": "succeeded",
+        "count": 1
+      },
+      {
+        "stage": "organize",
+        "state": "succeeded",
+        "count": 1
+      },
+      {
+        "stage": "read",
+        "state": "succeeded",
+        "count": 1
+      },
+      {
+        "stage": "receipt",
+        "state": "succeeded",
+        "count": 2
+      },
+      {
+        "stage": "synthesize",
+        "state": "succeeded",
+        "count": 1
+      },
+      {
+        "stage": "triage",
+        "state": "succeeded",
+        "count": 1
+      }
+    ],
+    "oldest_pending_seconds": null,
+    "oldest_pending": null,
+    "recent_failures": [],
+    "backend": {
+      "backend": "claude_cli",
+      "model": "claude-opus-5",
+      "context": 32768,
+      "max_output_tokens": 4096,
+      "request_model": "claude-opus-5",
+      "revision": "",
+      "ocr_model": ""
+    },
+    "last_scan": {
+      "at": "2026-09-13T05:38:43+00:00",
+      "duplicates": 1,
+      "errors": 0,
+      "registered": 1,
+      "seen": 2,
+      "waiting": 0
+    },
+    "roots": {
+      "data": "temporary isolated data",
+      "state": "temporary isolated state"
+    },
+    "acceptance": "candidate_only",
+    "free_bytes": 1850940104704
+  },
+  "documents": 1,
+  "sources": 2,
+  "states": [
+    "complete"
+  ],
+  "coverage": [
+    {
+      "characters_read": 155,
+      "characters_total": 155,
+      "chunks_read": 1,
+      "chunks_total": 1,
+      "complete": true,
+      "pages_read": 1,
+      "pages_total": 1
+    }
+  ],
+  "scope": "temporary synthetic material and real configured Claude CLI; no production writes",
+  "receive": {
+    "ok": true,
+    "received_at": "2026-09-13T05:39:13.067260+00:00",
+    "documents": 1
+  },
+  "duplicate_snapshot_status": 409,
+  "repeat_processed": 0,
+  "acceptance": [
+    "candidate"
+  ]
+}

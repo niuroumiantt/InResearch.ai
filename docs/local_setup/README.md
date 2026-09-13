@@ -4,13 +4,13 @@
 
 ## 本地站点
 
-在仓库运行 `python3 pipeline/serve.py 8000`，浏览器打开 `http://127.0.0.1:8000`。研究工作台需要该 API 服务，单纯静态 HTTP 服务不提供研究数据。是否安装本机 launchd 应检查实际服务；文档不假定任何电脑已有三项常驻任务。
+在仓库运行 `python3 manage.py serve 8000`，浏览器打开 `http://127.0.0.1:8000`。研究工作台需要该 API 服务，单纯静态 HTTP 服务不提供研究数据。是否安装本机 launchd 应检查实际服务；文档不假定任何电脑已有三项常驻任务。
 
 ## 同步
 
 `bash docs/local_setup/sync.sh` 仅在 main 且工作区干净时取远端并快进。存在未提交内容或分叉就停止；脚本不自动提交、暂存或解决冲突。带 `--push` 时只校验并推送已提交内容。新工作先在独立分支审核与提交，完成本地检查和 GitHub 检查后再合并。
 
-修改规范、源码或在册数据后，更新相应现行定义和替代记录，运行 `python3 pipeline/governance.py --refresh` 刷新清单，再运行 `python3 pipeline/governance.py --check` 与相关测试。清单只描述 Git 在册内容，不把本地唯一资料算成代码缓存。
+修改规范、源码或在册数据后，更新相应现行定义和替代记录，运行 `python3 manage.py governance --refresh` 刷新清单，再运行 `python3 manage.py governance --check` 与相关测试。清单只描述 Git 在册内容，不把本地唯一资料算成代码缓存。
 
 ## 持续阅读与生产
 

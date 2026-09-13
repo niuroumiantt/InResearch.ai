@@ -1,0 +1,6 @@
+consumer,implementation,migration_result
+"infra inresearch-host/docker-compose.yml","deploy/Dockerfile + manage.py serve","read-only inspected: uses repository Dockerfile; /app/data and /app/reports volumes unchanged"
+"production inresearch-deploy.service","/usr/local/bin/inresearch-deploy","read-only inspected: formal infra release; deployed version verified separately"
+"Spark user units","manage.py reader / receive / publish / news-sync","source migrated; installation and runtime NOT verified"
+"M4 OCR callback","manage.py reader retry","source migrated; SSH runtime NOT verified"
+"unknown external shell scripts and running terminal sessions","retired pipeline paths","not enumerable from repository; no claim of migration"

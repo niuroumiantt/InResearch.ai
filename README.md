@@ -2,18 +2,18 @@
 
 数据中心行业研究工作台。围绕稳定对象提出问题，用可定位原文形成证据和陈述，再经审核形成回答与交付。目标是解释原理、比较方案、核对数据与诊断约束；材料量、模型评分和漂亮报告本身不代表研究完成。
 
-当前规则从 [framework/CURRENT.md](framework/CURRENT.md) 进入；实现与本地验收见 [2026-09-12 整改记录](docs/reviews/2026-09-12/IMPLEMENTATION.md)。记录中的源码测试与生产发布分开计量。
+当前规则从 [framework/CURRENT.md](framework/CURRENT.md) 进入；实现与本地验收见 [2026-09-13 架构交付](docs/reviews/2026-09-13/architecture/DELIVERY.md)。记录中的源码测试与生产发布分开计量。
 
 ## 项目的第一层边界
 
 | 领域 | 负责什么 | 当前入口 |
 |---|---|---|
 | 研究定义 | 对象、关系、问题、范围与验收 | `framework/research_graph.json`、`research_questions.json` |
-| 原文与阅读 | 内容身份、版本、任务、覆盖、候选及恢复 | `pipeline/continuous_reader.py`；运行 SQLite 与原件不进 Git |
-| 知识与采用 | 原文定位、事实、非数字陈述、支持/反证及 C3 采用 | `pipeline/research.py`、`data/research_knowledge.json` |
-| 任务与交付 | 从当前缺口生成任务；从有效结果生成网页与报告 | `research.current_tasks`、`pipeline/report_model.py` |
-| 推理适配 | 根据角色配置调用模型，核对能力、预算和实际身份 | `pipeline/model_runtime.py`、`deploy/models.json` |
-| 操作界面 | 网页、CLI 接入相同用例；主题与导航共用基础 | `pipeline/serve.py`、`assets/site-skin.*` |
+| 原文与阅读 | 内容身份、版本、任务、覆盖、候选及恢复 | `src/inresearch/workflow/reader.py`；运行 SQLite 与原件不进 Git |
+| 知识与采用 | 原文定位、事实、非数字陈述、支持/反证及 C3 采用 | `src/inresearch/knowledge/registry.py`、`data/research_knowledge.json` |
+| 任务与交付 | 从当前缺口生成任务；从有效结果生成网页与报告 | `knowledge.registry.current_tasks`、`src/inresearch/delivery/report.py` |
+| 推理适配 | 根据角色配置调用模型，核对能力、预算和实际身份 | `src/inresearch/adapters/models.py`、`deploy/models.json` |
+| 操作界面 | 网页、CLI 接入相同用例；主题与导航共用基础 | `src/inresearch/interfaces/http.py`、`web/components`、`web/themes` |
 
 P/F/V/D/R 五视角是同一知识底座的观察方式，不是五套数据。M01–M15 保留维护分工和兼容 Finding；`research/Mxx.md` 继续参与报告，但不再作为唯一知识中心。兼容 Finding 不自动取得对象证据的 C3 资格。
 
@@ -24,8 +24,8 @@ P/F/V/D/R 五视角是同一知识底座的观察方式，不是五套数据。M
 同一材料默认一套当前有效阅读结果。失败重试不覆盖成功结果，换默认模型不自动重读已完成材料。原文、被引用的历史证据和尝试日志保留；受控重读替换与完整统一任务 CLI/API 的未实现边界见 [08 模型执行](framework/08_model_execution.md)。
 
 ```bash
-python3 pipeline/model_runtime.py --probe
-python3 pipeline/serve.py
+python3 manage.py models --probe
+python3 manage.py serve
 ```
 
 站点默认在本机 `127.0.0.1:8000`。推理认证与代理由 CLI 和运行环境提供，项目不保存 OAuth 凭据或本机代理地址。网页容器不因此获得本机 Claude 登录态。
@@ -46,7 +46,7 @@ python3 pipeline/serve.py
 | `framework/current_state.json` | 唯一现行规则、替代关系与影响路径 |
 | `data/facts.json`、`framework/metrics.json` | 带口径和时点的数字事实及指标定义 |
 | `research/` | 模块兼容研究记录 |
-| `pipeline/README.md` | 程序入口与用例 |
+| `src/inresearch/README.md` | 程序入口与用例 |
 | `docs/local_reader/M4_TRIAGE_RUNBOOK.md` | 独立语料清点、判定与文件整理 |
 | `tests/run_browser.cjs` | 使用临时服务运行全站浏览器测试 |
 
@@ -55,11 +55,11 @@ python3 pipeline/serve.py
 ## 检查与更新闭环
 
 ```bash
-python3 pipeline/governance.py --refresh
-python3 pipeline/governance.py --check
-python3 pipeline/validate.py --strict
-python3 pipeline/research.py
-python3 -m unittest discover -s pipeline
+python3 manage.py governance --refresh
+python3 manage.py governance --check
+python3 manage.py validate --strict
+python3 manage.py registry
+PYTHONPATH=src python3 -m unittest discover -s tests/unit
 # 浏览器依赖单独安装；CI 固定版本并执行同一入口
 node tests/run_browser.cjs
 ```

@@ -2,7 +2,7 @@ const assert = require('node:assert/strict');
 const {execFileSync} = require('node:child_process');
 const {chromium} = require('playwright');
 const pages = JSON.parse(execFileSync(process.env.PYTHON || 'python3', ['-c',
-  "import sys,json;sys.path.insert(0,'pipeline');import auth;print(json.dumps({n:getattr(auth,n) for n in ('LOGIN_PAGE','PASSWD_PAGE','FORBIDDEN_PAGE')}))"], {encoding:'utf8'}));
+  "import sys,json;sys.path.insert(0,'src');from inresearch.interfaces import pages as auth;print(json.dumps({n:getattr(auth,n) for n in ('LOGIN_PAGE','PASSWD_PAGE','FORBIDDEN_PAGE')}))"], {encoding:'utf8'}));
 (async () => {
   const browser = await chromium.launch({channel:process.env.UI_BROWSER_CHANNEL || undefined,headless:true});
   try {

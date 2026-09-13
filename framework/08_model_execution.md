@@ -12,7 +12,7 @@ Claude Code、Codex CLI 等是操作客户端，分别记录 `executor` 与实�
 
 版本化默认配置唯一入口为 `deploy/models.json`；本机可用 `INRESEARCH_MODEL_CONFIG` 指向同结构 JSON。配置通过角色引用模型档案；`research_default` 当前指向 `claude_cli`，使用本机已登录的 Claude CLI。`spark` 档案保留，待恢复并验收后切换角色引用。型号、后端、地址、请求路由、上下文、输出预算、超时和并发上限均属于配置。密钥仅记录环境变量名称，值不入库。
 
-`pipeline/model_runtime.py` 是公共推理接口。任务提示词、评分与证据语义校验由各业务调用者拥有。当前支持 Claude CLI、Ollama 与兼容 chat-completions 的 gateway；每次响应核对实际模型并覆盖模型自填的来源字段。请求路由名与实际模型名分开。接口失败不静默切换供应商或模型。
+`src/inresearch/adapters/models.py` 是公共推理接口。任务提示词、评分与证据语义校验由各业务调用者拥有。当前支持 Claude CLI、Ollama 与兼容 chat-completions 的 gateway；每次响应核对实际模型并覆盖模型自填的来源字段。请求路由名与实际模型名分开。接口失败不静默切换供应商或模型。
 
 Claude CLI 在临时目录中以非交互模式运行，材料从标准输入传入；禁用工具、MCP、浏览器、项目指令与会话持久化。它仅返回 JSON，由项目校验并写入结果。认证与代理由 CLI 及运行环境负责，项目不复制 OAuth 凭据、不写死本机代理。`command` 可配置可执行文件的绝对路径；模型身份来自 CLI 的实际回答事件，并记录 `executor=claude-code`。用量统计可能包含 CLI 的辅助模型，不冒充阅读模型。这一推理适配器与终端操作客户端共享业务契约，但职责不同。
 
@@ -32,4 +32,4 @@ Claude CLI 在临时目录中以非交互模式运行，材料从标准输入传
 
 代码契约测试覆盖配置切换、旧配方兼容、模型身份、结构化输出、失败恢复及不重复阅读。生产能力另用代表性材料验证覆盖、引文、数字与边界、耗时和失败原因；第二型号未实测时不能声称已经兼容。常驻服务是否生效以实际源码、配置与运行记录为准。
 
-`python3 pipeline/model_runtime.py --probe` 通过所选配置发送一条无研究材料的真实 JSON 请求，核对结构和实际模型；配置校验或交互式 CLI 登录成功不能代替这项检查。CLI 参数依据本机 `claude --help` 及 [官方非交互文档](https://code.claude.com/docs/en/headless)。
+`python3 manage.py models --probe` 通过所选配置发送一条无研究材料的真实 JSON 请求，核对结构和实际模型；配置校验或交互式 CLI 登录成功不能代替这项检查。CLI 参数依据本机 `claude --help` 及 [官方非交互文档](https://code.claude.com/docs/en/headless)。

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light">
+<head>
+<script src="/assets/theme-state.js"></script>
+<script src="/assets/site-skin.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>公司档案 — inresearch.ai</title>
+<style>
+
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font: 13.5px/1.6 -apple-system, "PingFang SC", sans-serif; padding-bottom: 50px; }
+  a { color: var(--accent); text-decoration: none; }
+  .topbar { position: sticky; top: 0; background: var(--card); border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; gap: 4px; padding: 0 18px; height: 46px; z-index: 20; }
+  .topbar b { font-size: 15px; margin-right: 14px; }
+  .tab { padding: 12px 14px; color: var(--muted); }
+  .topbar .sp { flex: 1; }
+  .switcher { font-size: 12px; }
+  .wrap { max-width: 1240px; margin: 16px auto 0; padding: 0 16px; }
+  .head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 4px; }
+  .head h1 { font-size: 24px; }
+  .chip { font-size: 11px; border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 1px 9px; color: var(--muted); }
+  .profile { color: var(--muted); font-size: 13px; max-width: 900px; margin-bottom: 14px; }
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 12px; }
+  .kpi { background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 11px 14px; }
+  .kpi .v { font-size: 21px; font-weight: 700; }
+  .kpi .l { color: var(--muted); font-size: 11.5px; }
+  .grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 12px; }
+  .board { min-width:0; background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 14px 16px; }
+  .b12 { grid-column: span 12; } .b6 { grid-column: span 6; }
+  @media (max-width: 980px) { .b6 { grid-column: span 12; } }
+  .bh { display: flex; align-items: baseline; flex-wrap:wrap; gap:8px; margin-bottom: 8px; }
+  .bh h2 { font-size: 14px; }
+  .bh .go { margin-left: auto; font-size: 11.5px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  th, td { text-align: left; padding: 5px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 500; font-size: 11.5px; }
+  tr:last-child td { border-bottom: none; }
+  .badge { display: inline-block; font-size: 10.5px; font-weight: 600; padding: 0 7px; border-radius: var(--ui-radius); color: #fff; }
+  .note { color: var(--muted); font-size: 11px; margin-top: 6px; }
+  .sig { padding: 6px 0; border-bottom: 1px solid var(--line); font-size: 12px; }
+  .sig:last-child { border-bottom: none; }
+  .sig a { display: block; color: var(--muted); font-size: 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #tip { position: fixed; background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius);
+    box-shadow: 0 4px 16px rgba(0,0,0,.15); padding: 10px 12px; font-size: 12px; max-width: 280px;
+    pointer-events: none; z-index: 50; display: none; line-height: 1.7; }
+  .err { color: var(--red); padding: 20px; }
+</style>
+<link rel="stylesheet" href="/assets/site-skin.css">
+</head>
+<body>
+<inresearch-shell data-section="research"></inresearch-shell>
+<div class="topbar">
+   <a class="tab" href="bom.html">爆炸图</a>
+  <span class="sp"></span>
+  <select class="switcher" id="switcher" onchange="location='company.html?c='+this.value"></select>
+</div>
+<div class="wrap" id="root">加载中…</div>
+<div id="tip"></div>
+
+<script>
+async function get(p) {
+  const r = await fetch(p + "?t=" + Date.now(), { cache: "no-store" });
+  if (!r.ok) throw new Error(p + " → HTTP " + r.status);
+  return p.endsWith("json") || p.includes("/api/") ? r.json() : r.text();
+}
+const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+const fmtMW = n => n >= 10000 ? (n / 1000).toFixed(1) + " GW" : Math.round(n).toLocaleString() + " MW";
+function capBuckets(p) {
+  let op = 0, bu = 0, pl = 0;
+  const put = (l, v) => { const n = +l.slice(1); if (n >= 8) op += v; else if (n >= 6) bu += v; else pl += v; };
+  if (p.capacity_it_mw) put(p.status, p.capacity_it_mw);
+  for (const [k, v] of Object.entries(p.capacity_it_mw_by_status || {})) put(k, v);
+  return [op, bu, pl];
+}
+const SC = l => +l.slice(1) >= 8 ? "var(--green)" : +l.slice(1) >= 6 ? "var(--yellow)" : "var(--gray)";
+
+(async () => {
+try {
+  const cid = new URLSearchParams(location.search).get("c") || "microsoft";
+  const [companies, projectsDoc, contracts, world, reg] = await Promise.all([
+    get("data/companies.json"), get("data/projects.json"), get("data/contracts.json"),
+    get("assets/world.geo.json"), get("framework/modules.json")]);
+  let brief = null; try { brief = await get("data/brief.json"); } catch (e) {}
+  const c = companies.records.find(x => x.company_id === cid);
+  if (!c) throw new Error("公司不存在: " + cid);
+  document.title = c.name + " — inresearch.ai";
+  const cname = Object.fromEntries(companies.records.map(x => [x.company_id, x.name_cn || x.name]));
+
+  // 公司切换器（按角色排序，hyperscaler/ai-lab/neocloud 优先）
+  const pri = r => r.includes("hyperscaler") ? 0 : r.includes("ai-lab") ? 1 : r.includes("neocloud") ? 2 : r.includes("colo") ? 3 : 4;
+  document.getElementById("switcher").innerHTML = companies.records
+    .slice().sort((a, b) => pri(a.roles) - pri(b.roles) || a.name.localeCompare(b.name))
+    .map(x => `<option value="${x.company_id}" ${x.company_id === cid ? "selected" : ""}>${x.name_cn || x.name}</option>`).join("");
+
+  const mine = projectsDoc.records.filter(p =>
+    (p.developer || []).includes(cid) || (p.tenant || []).includes(cid));
+  let OP = 0, BU = 0, PL = 0;
+  mine.forEach(p => { const [o, b, l] = capBuckets(p); OP += o; BU += b; PL += l; });
+  const myContracts = contracts.records.filter(x => x.parties.includes(cid));
+
+  // 研究结论提及（扫描 15 个研究文档）
+  const mentions = [];
+  await Promise.all(reg.modules.filter(m => m.research).map(async m => {
+    try {
+      const md = await get(m.research);
+      let cur = null;
+      md.split("\n").forEach(line => {
+        const h = line.match(/^##\s+(M\d+-F\d+)\s+(.*?)\s*(\{[^}]*\})?\s*$/);
+        if (h) cur = { id: h[1], title: h[2], mod: m.id };
+        else if (cur && (line.includes("companies:" + cid) || line.includes("entity:" + cid)))
+          if (!mentions.find(x => x.id === cur.id)) mentions.push({ ...cur });
+      });
+    } catch (e) {}
+  }));
+
+  // SEC 最新文件（本地存档，可能不存在）
+  let secRows = "";
+  if (c.cik) {
+    try {
+      const sub = await get("data/raw/sec/" + cid + ".json");
+      const r = sub.filings.recent;
+      const rows = [];
+      for (let i = 0; i < r.form.length && rows.length < 6; i++)
+        if (["10-Q", "10-K", "8-K", "20-F", "6-K"].includes(r.form[i]))
+          rows.push(`<tr><td>${r.filingDate[i]}</td><td>${r.form[i]}</td>
+            <td><a target="_blank" href="https://www.sec.gov/Archives/edgar/data/${+c.cik}/${r.accessionNumber[i].replace(/-/g, "")}/${r.primaryDocument[i]}">查看</a></td></tr>`);
+      secRows = rows.join("");
+    } catch (e) {}
+  }
+
+  // 迷你地图
+  const LON0 = -170, LON1 = 180, LAT0 = -55, LAT1 = 72, MW_ = 1160, MH = MW_ * (LAT1 - LAT0) / (LON1 - LON0) * 1.25;
+  const xy = (lon, lat) => [(lon - LON0) / (LON1 - LON0) * MW_, (LAT1 - lat) / (LAT1 - LAT0) * MH];
+  let land = "";
+  world.features.forEach(f => {
+    const polys = f.geometry.type === "MultiPolygon" ? f.geometry.coordinates : [f.geometry.coordinates];
+    let d = "";
+    polys.forEach(poly => poly.forEach(ring => {
+      const pts = ring.filter((_, i) => i % 3 === 0).map(([lo, la]) => xy(lo, la));
+      if (pts.length > 2) d += "M" + pts.map(p => p[0].toFixed(0) + " " + p[1].toFixed(0)).join("L") + "Z";
+    }));
+    if (d) land += `<path d="${d}" fill="var(--map-land)" stroke="var(--map-line)" stroke-width="0.4"/>`;
+  });
+  let dots = "";
+  mine.filter(p => p.coordinates).forEach(p => {
+    const [o, b, l] = capBuckets(p), tot = o + b + l;
+    const [la, lo] = p.coordinates.split(",").map(Number);
+    const [x, y] = xy(lo, la);
+    const r = tot ? Math.max(5, Math.min(16, Math.sqrt(tot / 5000) * 16)) : 4;
+    const tip = `<b>${esc(p.name)}</b><br><span style="color:var(--muted)">${esc(p.location || "")} · ${p.status}</span><br>` +
+      (tot ? `容量 <b>${fmtMW(tot)}</b>（运营 ${o}/在建 ${b}/规划 ${l}）` : `容量未披露`) +
+      `<br><span style="color:var(--muted)">核验 ${p.verified_date}</span>`;
+    dots += `<circle cx="${x}" cy="${y}" r="${r}" fill="${SC(p.status)}" fill-opacity=".78"
+      stroke="var(--card)" stroke-width="1" ${tot ? "" : 'stroke-dasharray="2 2"'} data-tip="${esc(tip)}" style="cursor:pointer"/>`;
+  });
+
+  const projRows = mine.sort((a, b) => {
+    const ca = capBuckets(a), cb = capBuckets(b);
+    return (cb[0] + cb[1] + cb[2]) - (ca[0] + ca[1] + ca[2]);
+  }).map(p => {
+    const [o, b, l] = capBuckets(p), tot = o + b + l;
+    return `<tr><td>${esc(p.name)}<div style="font-size:10.5px;color:var(--gray)">${esc(p.location || "")}</div></td>
+      <td><span class="badge" style="background:${SC(p.status)}">${p.status}</span></td>
+      <td>${tot ? fmtMW(tot) : "<span style='color:var(--gray)'>未披露</span>"}</td>
+      <td>${tot ? `${o}/${b}/${l}` : "—"}</td>
+      <td>${(p.developer || []).includes(cid) ? "自建/开发" : "租户"}</td>
+      <td style="font-size:11px">${p.verified_date}</td>
+      <td>${(p.sources || [])[0] ? `<a href="${p.sources[0].url}" target="_blank">源</a>` : ""}</td></tr>`;
+  }).join("");
+
+  const news = brief?.news?.entities?.find(e => e.id === cid);
+  const newsDates = (brief?.news?.scanned_dates || []).filter(d => /^\d{4}-\d{2}-\d{2}$/.test(d)).sort();
+  const newsDate = newsDates.length ? `${newsDates[0]}—${newsDates.at(-1)}` : '窗口日期未知';
+
+  document.getElementById("root").innerHTML = `
+    <div class="head"><h1>${c.name}</h1><span style="color:var(--muted)">${c.name_cn || ""}</span>
+      ${c.roles.map(r => `<span class="chip">${r}</span>`).join("")}
+      ${c.ticker ? `<span class="chip">${c.ticker}</span>` : ""}
+      ${c.ir_url ? `<a class="chip" href="${c.ir_url}" target="_blank">IR ↗</a>` : ""}
+      ${c.cik ? `<a class="chip" href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=${c.cik}" target="_blank">EDGAR ↗</a>` : ""}</div>
+    <div class="profile">${esc(c.profile || "")}</div>
+    <div class="kpis">
+      <div class="kpi"><div class="v">${mine.length}</div><div class="l">关联园区（项目库）</div></div>
+      <div class="kpi"><div class="v">${OP ? fmtMW(OP) : "—"}</div><div class="l">运营容量 L8+</div></div>
+      <div class="kpi"><div class="v">${BU ? fmtMW(BU) : "—"}</div><div class="l">在建 L6–7</div></div>
+      <div class="kpi"><div class="v">${PL ? fmtMW(PL) : "—"}</div><div class="l">规划 L1–5</div></div>
+      <div class="kpi"><div class="v">${myContracts.length}</div><div class="l">关联合同</div></div>
+      <div class="kpi"><div class="v">${news ? news.count : '—'}</div><div class="l">历史新闻信号 · ${esc(newsDate)}</div></div>
+    </div>
+    <div class="grid">
+      <div class="board b12"><div class="bh"><h2>全球布局</h2><span class="note" style="margin:0 0 0 10px">绿 运营 · 黄 在建 · 灰 规划 · 虚线圈=容量未披露</span></div>
+        <svg viewBox="0 0 ${MW_} ${MH.toFixed(0)}" width="100%">${land}${dots}</svg></div>
+      <div class="board b12"><div class="bh"><h2>园区清单（${mine.length}）</h2></div>
+        <div class="ui-table-scroll" tabindex="0" role="region" aria-label="Table"><table><tr><th>园区</th><th>状态</th><th>合计容量</th><th>运/建/规</th><th>关系</th><th>核验</th><th>来源</th></tr>${projRows || "<tr><td colspan=7>暂无关联项目——等待补录或在后台登记</td></tr>"}</table></div>
+        <div class="note">容量口径：IT 负载 MW；未披露 ≠ 不存在——hyperscaler 大多不公布单园区容量</div></div>
+      <div class="board b6"><div class="bh"><h2>关联合同</h2></div>
+        ${myContracts.length ? `<div class="ui-table-scroll" tabindex="0" role="region" aria-label="Table"><table><tr><th>合同</th><th>类型</th><th>$B</th><th>循环</th></tr>` +
+          myContracts.map(x => `<tr><td>${x.contract_id}<div style="font-size:10px;color:var(--gray)">${x.parties.map(p => cname[p] || p).join(" ↔ ")}</div></td>
+          <td>${x.type}</td><td>${x.value_usd_b ?? "—"}</td><td>${x.circular_flag ? "⚠️" : "—"}</td></tr>`).join("") + "</table></div>" : '<div class="note">暂无</div>'}
+        ${secRows ? `<div class="bh" style="margin-top:14px"><h2>最新 SEC 文件</h2></div><div class="ui-table-scroll" tabindex="0" role="region" aria-label="Table"><table><tr><th>日期</th><th>类型</th><th></th></tr>${secRows}</table></div>` : ""}</div>
+      <div class="board b6"><div class="bh"><h2>研究结论提及（${mentions.length}）</h2><a class="go" href="report.html">全文 →</a></div>
+        ${mentions.length ? mentions.map(m => `<div class="sig"><a href="report.html#${m.id}">【${m.mod}】${esc(m.title)}</a></div>`).join("") : '<div class="note">暂无</div>'}
+        ${news ? `<div class="bh" style="margin-top:14px"><h2>历史信号 · ${esc(newsDate)}</h2></div>` +
+          news.top.map(t => `<div class="sig">${esc(t.title)}<a href="${t.url}" target="_blank">${esc(t.source)}</a></div>`).join("") : ""}</div>
+    </div>`;
+} catch (e) {
+  const error = document.createElement("div");
+  error.className = "err";
+  error.textContent = `加载失败：${e.message}`;
+  document.getElementById("root").replaceChildren(error);
+}
+})();
+
+const tip = document.getElementById("tip");
+addEventListener("mousemove", e => {
+  const t = e.target.closest?.("[data-tip]");
+  if (t) {
+    tip.innerHTML = t.dataset.tip; tip.style.display = "block";
+    tip.style.left = Math.min(e.clientX + 14, innerWidth - 300) + "px";
+    tip.style.top = Math.min(e.clientY + 14, innerHeight - 120) + "px";
+  } else tip.style.display = "none";
+});
+</script>
+</body>
+</html>

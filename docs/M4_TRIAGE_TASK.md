@@ -90,15 +90,15 @@ L0 文件**不会因为没读就得 0 分**。图纸/CAD 默认归“图纸资�
 ### 7.1 全量清单（已实现）
 
 ```bash
-python3 pipeline/m4_triage.py inventory --workers 8
-python3 pipeline/m4_triage.py summary
+python3 manage.py inventory inventory --workers 8
+python3 manage.py inventory summary
 ```
 
 所有阶段共用 `m4_paths.py` 的 `INRESEARCH_SOURCE`、`INRESEARCH_LIBRARY` 与 `INRESEARCH_DATASET`。默认源目录 `/Users/m4/Downloads/所有raw materials`，清单写入 `~/.local/share/inresearch.ai/m4-triage/inventory.jsonl`。清单命令可显式指定 `--root` / `--out-dir`，兼容旧 `M4_TRIAGE_ROOT` / `M4_TRIAGE_OUT`；其他阶段需指向相同数据集。输出必须在源目录外。清单元数据绑定源根，移动日志绑定两个根，不能用原账本静默切换语料。
 
 清单唯一写入格式为 `schema_version, sha256, size_bytes, suffix, original_rel, original_name, l0_bucket, route, mtime_ns, ctime_ns, device, inode, hashed_at`。持锁追加，未变化的文件续跑跳过，变化与失败路径重新读取；每路径取最新观察，旧观察留在日志中。符号链接不跟随。尾部断行先保留副本再恢复，中间损坏拒绝继续。
 
-旧 `rel/size` 格式在统一读取边界兼容；继续清点前执行 `migrate-inventory`，完整备份后原子转换，不混写格式。旧 `m4_inventory.py` 仅转到同一写入器。summary、分类、L2 深读队列、移动、导出与进度共同使用归一后的集合；一次失败不覆盖已有成功判定，尚无成功结果的文件仍算待处理。L2 通过 `m4_records.current_results` 读取有效判定，不能另外按日志末行决定是否可深读。
+旧 `rel/size` 格式在统一读取边界兼容；继续清点前执行 `migrate-inventory`，完整备份后原子转换，不混写格式。旧 `m4_inventory.py` 独立入口已删除，清点统一用 `python3 manage.py inventory`。summary、分类、L2 深读队列、移动、导出与进度共同使用归一后的集合；一次失败不覆盖已有成功判定，尚无成功结果的文件仍算待处理。L2 通过 `m4_records.current_results` 读取有效判定，不能另外按日志末行决定是否可深读。
 
 哈希在线程池里跑，`--workers` 默认 8、上限 16。251 GB 的一次性全量估计 1–2 小时，取决于磁盘。
 

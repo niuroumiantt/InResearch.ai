@@ -1,0 +1,597 @@
+#!/usr/bin/env python3
+"""Persistent research reader; one queue owner, optionally several worker threads. Source bytes and candidate artifacts never expire.
+
+No core facts are written. Production inference uses a configured Claude CLI, Ollama
+model or gateway route; tests inject a Python model object instead of a fake CLI mode.
+
+One process owns the queue (an exclusive lock on the catalog), so interrupted-job
+recovery and reconciliation still happen exactly once. Inside that process the
+worker loop may run in several threads: each thread owns its own SQLite connection
+and claims its own job, and SQLite's BEGIN IMMEDIATE keeps a job from being claimed
+twice. Throughput past a couple of threads needs the Ollama server to serve requests
+in parallel (OLLAMA_NUM_PARALLEL); otherwise the requests only queue there instead.
+"""
+from __future__ import annotations
+
+from inresearch.paths import project_root
+
+from contextlib import contextmanager
+from datetime import datetime, timezone
+import fcntl
+import hashlib
+import json
+import os
+from pathlib import Path
+import shutil
+import subprocess
+import tempfile
+import threading
+import time
+
+from inresearch.materials.reader_contracts import ReaderError, Blocked, Deferred, UnsafePath, IntegrityError, RECIPE_VERSION, OCR_DEFERRED_PRIORITY, OCR_MAX_PAGES, OCR_DEFER_SECONDS, LARGE_FORMAT_POINTS, MAX_WORKERS, MODULES
+from inresearch.materials.artifacts import now_iso, encoded, digest_bytes, digest_file, private_dir, safe_path, atomic_json, durable_rename, read_json, clean_name, signature, is_partial
+from inresearch.adapters.reader_model import ModelClient
+from inresearch.storage.catalog import Catalog, SCHEMA
+from inresearch.workflow.reading_stages import ReadingStages
+from inresearch.delivery import reader_export as reader_delivery
+from inresearch.adapters import models
+
+MODEL = models.load_profile(path=models.DEFAULT_CONFIG).model
+CONTEXT = models.load_profile(path=models.DEFAULT_CONFIG).context
+# OCR is the expensive path (render + two vision passes per page). Scanned documents
+# are read after text-layer documents, capped per document, and large-format pages
+# (engineering drawings) are left to a dedicated drawing workflow instead of OCR.
+
+
+class Reader:
+    def __init__(self, data_root=None, state_root=None, repo_root=None, model=None,
+                 stable_seconds=60, chunk_chars=6000, clock=time.time):
+        self.data = Path(data_root or Path.home() / ".local/share/inresearch.ai").expanduser().resolve()
+        self.state = Path(state_root or Path.home() / ".local/state/inresearch.ai").expanduser().resolve()
+        self.repo = Path(repo_root or project_root()).expanduser().resolve()
+        self.model = model or ModelClient()
+        self.stable_seconds, self.chunk_chars, self.clock = stable_seconds, chunk_chars, clock
+        self.ocr_max_pages, self.ocr_defer_seconds, self.large_format_points = OCR_MAX_PAGES, OCR_DEFER_SECONDS, LARGE_FORMAT_POINTS
+        if stable_seconds < 0 or not 1 <= chunk_chars <= 6000:
+            raise ValueError("invalid scan stability or chunk size")
+        self.catalog = None
+        self.stages = ReadingStages(self.data, self.model, self.ocr_max_pages, self.large_format_points)
+
+    @property
+    def conn(self):
+        return self.catalog.conn if self.catalog else None
+
+    def transaction(self):
+        return self.catalog.transaction()
+
+    def close(self):
+        if self.catalog:
+            self.catalog.close()
+
+    def artifact_path(self, doc_id, name):
+        return self.stages.artifact_path(doc_id, name)
+
+    def export(self, dest):
+        return reader_delivery.export(dest, self.conn, self.data, self.snapshot(), self.status())
+
+    def export_snapshot(self):
+        return reader_delivery.export_snapshot(self.conn, self.data, self.snapshot(), self.status())
+
+    def backup(self, dest):
+        return reader_delivery.backup(dest, self.conn, self.data, self.state)
+
+    def initialize(self):
+        for p in (self.data, self.state):
+            private_dir(p)
+        for name in ("raw-materials", "originals", "library", "extracted", "artifacts", "candidates", "indexes", "catalog", "intake-receipts"):
+            private_dir(safe_path(self.data, name))
+        db = safe_path(self.data, "catalog/catalog.sqlite")
+        fd = os.open(str(db), os.O_CREAT | os.O_RDWR, 0o600)
+        os.fchmod(fd, 0o600)
+        os.close(fd)
+        self.catalog = Catalog(db)
+        self.conn.executescript(SCHEMA)
+        self.conn.execute("INSERT OR IGNORE INTO meta VALUES ('dispatch_count','0')")
+        return self
+
+
+    @contextmanager
+    def worker_session(self):
+        # The lock follows the catalog even if a caller selects a different log root.
+        lock_path = safe_path(self.data, "catalog/reader.worker.lock")
+        fd = os.open(str(lock_path), os.O_CREAT | os.O_RDWR, 0o600)
+        try:
+            fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            with self.transaction():
+                self.conn.execute("UPDATE jobs SET state=CASE WHEN attempts>=max_attempts THEN 'failed' ELSE 'pending' END, error_code='worker_interrupted',available=? WHERE state='running'", (self.clock(),))
+                self.conn.execute("UPDATE documents SET state='queued' WHERE state='running'")
+                self._refresh_failures()
+            self.reconcile_operations()
+            self.reconcile_intake()
+            yield
+        finally:
+            os.close(fd)
+
+    def doc(self, doc_id):
+        row = self.conn.execute("SELECT * FROM documents WHERE doc_id=?", (doc_id,)).fetchone()
+        if row is None:
+            raise ValueError("unknown doc_id")
+        return dict(row)
+
+    def _refresh_failures(self, doc_id=None):
+        rows = self.conn.execute("SELECT doc_id,state,error_code FROM jobs WHERE state IN ('blocked','failed') AND (? IS NULL OR doc_id=?) ORDER BY CASE state WHEN 'blocked' THEN 1 ELSE 0 END", (doc_id, doc_id)).fetchall()
+        for row in rows:
+            self.conn.execute("UPDATE documents SET state=?,error_code=? WHERE doc_id=?", (row["state"], row["error_code"], row["doc_id"]))
+
+
+    def snapshot(self):
+        out = {"graph_version": None, "questions_version": None, "objects": [], "questions": []}
+        for fn, records, target, version in (("research_graph.json", "objects", "objects", "graph_version"),
+                                             ("research_questions.json", "records", "questions", "questions_version")):
+            p = self.repo / "framework" / fn
+            try:
+                value = read_json(p)
+                if not isinstance(value.get(records), list):
+                    continue
+                out[target] = [r for r in value[records] if not (target == "objects" and r.get("navigation_hidden"))]
+                out[version] = value.get("version")
+            except (OSError, ValueError, AttributeError):
+                continue
+        out["snapshot_hash"] = digest_bytes(encoded(out).encode())
+        return out
+
+    def _enqueue(self, doc, stage, chunk=0):
+        key = "%s:%s:%s:%s" % (doc["doc_id"], stage, chunk, doc["recipe"])
+        self.conn.execute("INSERT OR IGNORE INTO jobs(job_id,doc_id,stage,chunk,available,created) VALUES(?,?,?,?,?,?)",
+                          (key, doc["doc_id"], stage, chunk, self.clock(), self.clock()))
+
+    def _register(self, source, rel, sig):
+        # Stage the bytes first, then verify source metadata before archiving them.
+        if shutil.disk_usage(self.data).free < source.stat().st_size + 128 * 1024 * 1024:
+            raise Blocked("insufficient_archive_space")
+        staging = private_dir(safe_path(self.data, "originals/.receiving"))
+        fd, temp_name = tempfile.mkstemp(prefix="incoming-", suffix=".partial", dir=str(staging))
+        tmp = Path(temp_name)
+        h = hashlib.sha256()
+        try:
+            with os.fdopen(fd, "wb") as dest:
+                before = signature(source)
+                if before != sig or source.is_symlink():
+                    raise IntegrityError()
+                with source.open("rb") as src:
+                    for block in iter(lambda: src.read(1024 * 1024), b""):
+                        h.update(block)
+                        dest.write(block)
+                    dest.flush()
+                    os.fsync(dest.fileno())
+            if signature(source) != before:
+                raise IntegrityError()
+            sha = h.hexdigest()
+            if digest_file(source) != sha or signature(source) != before:
+                raise IntegrityError()
+            doc_id = "doc-" + sha
+            existing = self.conn.execute("SELECT * FROM documents WHERE sha256=?", (sha,)).fetchone()
+            orig_rel = existing["original_rel"] if existing else "originals/%s/%s/%s" % (sha[:2], sha, clean_name(source.name, 180))
+            target = safe_path(self.data, orig_rel)
+            private_dir(target.parent)
+            if target.exists():
+                if digest_file(target) != sha:
+                    raise IntegrityError()
+            else:
+                durable_rename(tmp, target)
+                os.chmod(target, 0o400)
+            snapshot = self.snapshot() if not existing else None
+            recipe = digest_bytes(encoded({"version": RECIPE_VERSION, "model": self.model.identity,
+                                            "chunk_chars": self.chunk_chars, "snapshot": snapshot["snapshot_hash"] if snapshot else None}).encode())[:24]
+            if not existing:
+                atomic_json(self.artifact_path(doc_id, "context.json"), snapshot)
+                atomic_json(self.artifact_path(doc_id, "recipe.json"), {"recipe": recipe, "version": RECIPE_VERSION,
+                            "model": self.model.identity, "chunk_chars": self.chunk_chars})
+            with self.transaction():
+                self.conn.execute("INSERT OR IGNORE INTO documents(doc_id,sha256,original_name,original_rel,suffix,size_bytes,recipe,created,updated) VALUES(?,?,?,?,?,?,?,?,?)",
+                                  (doc_id, sha, source.name, orig_rel, source.suffix.lower(), target.stat().st_size, recipe, self.clock(), self.clock()))
+                prior = self.conn.execute("SELECT * FROM sources WHERE source_key=? ORDER BY version_seq DESC LIMIT 1", (rel,)).fetchone()
+                if not prior or prior["signature"] != sig:
+                    self.conn.execute("INSERT INTO sources(source_key,doc_id,version_seq,previous_doc_id,signature,received) VALUES(?,?,?,?,?,?)",
+                                      (rel, doc_id, prior["version_seq"] + 1 if prior else 1, prior["doc_id"] if prior else None, sig, self.clock()))
+                self.conn.execute("UPDATE observations SET registered_signature=? WHERE source_key=?", (sig, rel))
+                self._enqueue(self.doc(doc_id), "extract")
+                if existing and existing["report_rel"] and existing["library_rel"]:
+                    self._queue_receipts(self.doc(doc_id))
+            return not bool(existing)
+        finally:
+            if tmp.exists():
+                tmp.unlink()
+
+    def scan(self, max_register=32):
+        raw = safe_path(self.data, "raw-materials")
+        counts = {"seen": 0, "registered": 0, "duplicates": 0, "waiting": 0, "errors": 0}
+        for base, dirs, files in os.walk(str(raw), followlinks=False):
+            dirs[:] = [d for d in sorted(dirs) if not is_partial(d) and not (Path(base) / d).is_symlink()]
+            for name in sorted(files):
+                p = Path(base) / name
+                rel = p.relative_to(raw).as_posix()
+                if is_partial(rel) or p.is_symlink() or not p.is_file():
+                    continue
+                counts["seen"] += 1
+                try:
+                    safe_path(raw, rel)
+                    sig = signature(p)
+                    seen = self.conn.execute("SELECT * FROM observations WHERE source_key=?", (rel,)).fetchone()
+                    if not seen or seen["signature"] != sig:
+                        self.conn.execute("INSERT INTO observations(source_key,signature,stable_since) VALUES(?,?,?) ON CONFLICT(source_key) DO UPDATE SET signature=excluded.signature,stable_since=excluded.stable_since,registered_signature=NULL", (rel, sig, self.clock()))
+                        if self.stable_seconds > 0:
+                            counts["waiting"] += 1
+                            continue
+                        seen = self.conn.execute("SELECT * FROM observations WHERE source_key=?", (rel,)).fetchone()
+                    if seen["registered_signature"] == sig:
+                        continue
+                    if self.clock() - seen["stable_since"] < self.stable_seconds:
+                        counts["waiting"] += 1
+                        continue
+                    if counts["registered"] + counts["duplicates"] >= max_register:
+                        counts["waiting"] += 1
+                        continue
+                    added = self._register(p, rel, sig)
+                    counts["registered" if added else "duplicates"] += 1
+                except (OSError, ReaderError):
+                    counts["errors"] += 1
+        self.conn.execute("INSERT OR REPLACE INTO meta VALUES ('last_scan',?)", (encoded({"at": now_iso(), **counts}),))
+        return counts
+
+
+    def _link_target(self, doc):
+        report = read_json(self.artifact_path(doc["doc_id"], "report.json"))
+        cls = report["classification"]
+        module = cls["module_id"] if cls["module_id"] in MODULES else "_unmapped"
+        name = "_".join(clean_name(cls.get(k), n) for k, n in (("year", 8), ("org", 25), ("title", 55)))
+        name = clean_name(name, 180)
+        name += "__" + doc["sha256"][:16] + doc["suffix"]
+        return "library/%s/%s" % (module, name)
+
+    def _apply_link(self, operation):
+        source = safe_path(self.data, operation["source_rel"])
+        target = safe_path(self.data, operation["target_rel"], leaf_link=True)
+        if not operation["target_rel"].startswith("library/") or not operation["source_rel"].startswith("originals/"):
+            raise UnsafePath()
+        if digest_file(source) != self.doc(operation["doc_id"])["sha256"]:
+            raise IntegrityError()
+        private_dir(target.parent)
+        if target.is_symlink():
+            if target.resolve() != source.resolve():
+                raise UnsafePath()
+        elif target.exists():
+            raise UnsafePath()
+        else:
+            os.symlink(os.path.relpath(str(source), str(target.parent)), str(target))
+        if target.resolve() != source.resolve():
+            raise IntegrityError()
+        with self.transaction():
+            self.conn.execute("UPDATE operations SET state='committed',updated=? WHERE operation_id=?", (self.clock(), operation["operation_id"]))
+            self.conn.execute("UPDATE documents SET library_rel=?,updated=? WHERE doc_id=?", (operation["target_rel"], self.clock(), operation["doc_id"]))
+
+    def _organize(self, doc):
+        relative = self._link_target(doc)
+        op_id = "organize:" + doc["doc_id"] + ":" + doc["recipe"]
+        self.conn.execute("INSERT OR IGNORE INTO operations VALUES(?,?,?,?,?,?,?)",
+                          (op_id, doc["doc_id"], relative, doc["original_rel"], "prepared", self.clock(), self.clock()))
+        operation = dict(self.conn.execute("SELECT * FROM operations WHERE operation_id=?", (op_id,)).fetchone())
+        if operation["state"] == "rolled_back":
+            return {"library_rel": None, "state": "rolled_back"}
+        self._apply_link(operation)
+        return {"library_rel": relative, "state": "committed"}
+
+    def reconcile_operations(self):
+        for row in self.conn.execute("SELECT * FROM operations WHERE state IN ('prepared','committed')").fetchall():
+            try:
+                if row["state"] == "committed":
+                    target = safe_path(self.data, row["target_rel"], leaf_link=True)
+                    source = safe_path(self.data, row["source_rel"])
+                    if target.is_symlink() and target.resolve() == source.resolve() and source.is_file():
+                        continue
+                self._apply_link(dict(row))
+            except (OSError, ReaderError):
+                self.conn.execute("UPDATE operations SET state='needs_review',updated=? WHERE operation_id=?", (self.clock(), row["operation_id"]))
+                self.conn.execute("UPDATE documents SET state='blocked',error_code='organize_recovery_requires_review' WHERE doc_id=?", (row["doc_id"],))
+                self.conn.execute("UPDATE jobs SET state='blocked',error_code='organize_recovery_requires_review' WHERE doc_id=? AND stage='organize'", (row["doc_id"],))
+
+    def rollback(self, doc_id):
+        doc = self.doc(doc_id)
+        for row in self.conn.execute("SELECT * FROM operations WHERE doc_id=? AND state='committed'", (doc_id,)).fetchall():
+            target = safe_path(self.data, row["target_rel"], leaf_link=True)
+            source = safe_path(self.data, row["source_rel"])
+            if not row["target_rel"].startswith("library/"):
+                raise UnsafePath()
+            if target.is_symlink() and target.resolve() == source.resolve():
+                target.unlink()  # Only our verified view link, never source bytes.
+            elif target.exists() or target.is_symlink():
+                raise UnsafePath()
+            with self.transaction():
+                self.conn.execute("UPDATE operations SET state='rolled_back',updated=? WHERE operation_id=?", (self.clock(), row["operation_id"]))
+                self.conn.execute("UPDATE documents SET library_rel=NULL,updated=? WHERE doc_id=?", (self.clock(), doc_id))
+        return {"doc_id": doc_id, "view_rolled_back": True, "source_preserved": safe_path(self.data, doc["original_rel"]).exists()}
+
+    def _queue_receipts(self, doc):
+        for row in self.conn.execute("SELECT id FROM sources WHERE doc_id=?", (doc["doc_id"],)).fetchall():
+            self._enqueue(doc, "receipt", row["id"])
+
+    def _receipt(self, doc, source_id):
+        source = self.conn.execute("SELECT * FROM sources WHERE id=? AND doc_id=?", (source_id, doc["doc_id"])).fetchone()
+        if not source:
+            raise IntegrityError()
+        if not self.conn.execute("SELECT 1 FROM operations WHERE doc_id=? AND state='committed'", (doc["doc_id"],)).fetchone():
+            raise Blocked("receipt_requires_committed_library")
+        op_id = "intake:%d" % source_id
+        quarantine = "raw-materials/.reader-intake/%d-%s.partial" % (source_id, doc["sha256"])
+        receipt = "intake-receipts/received/%s/%d-%s" % (doc["sha256"], source_id, clean_name(Path(source["source_key"]).name, 160))
+        self.conn.execute("INSERT OR IGNORE INTO intake_operations VALUES(?,?,?,?,?,?,?,?,?,?,NULL)",
+                          (op_id, source_id, doc["doc_id"], "raw-materials/" + source["source_key"], quarantine, receipt,
+                           source["signature"], "prepared", self.clock(), self.clock()))
+        operation = dict(self.conn.execute("SELECT * FROM intake_operations WHERE operation_id=?", (op_id,)).fetchone())
+        return self._apply_receipt(operation)
+
+    def _intake_state(self, operation, state, error=None):
+        self.conn.execute("UPDATE intake_operations SET state=?,updated=?,error_code=? WHERE operation_id=?",
+                          (state, self.clock(), error, operation["operation_id"]))
+        return {"source_id": operation["source_id"], "state": state, "receipt_rel": operation["receipt_rel"] if state == "committed" else None}
+
+    def _apply_receipt(self, operation):
+        """Move only the verified receiving copy. Every byte remains in originals or receipts.
+
+        prepared -> hidden quarantine -> hash/stat check -> permanent receipt. The
+        recorded paths make every rename recoverable, including a concurrent upload.
+        """
+        if operation["state"] in {"committed", "superseded", "source_missing", "changed_restored"}:
+            return {"source_id": operation["source_id"], "state": operation["state"]}
+        if operation["state"] == "needs_review":
+            raise Blocked("intake_changed_bytes_retained_requires_review")
+        for field, prefix in (("source_rel", "raw-materials/"), ("quarantine_rel", "raw-materials/.reader-intake/"),
+                              ("receipt_rel", "intake-receipts/received/")):
+            if not operation[field].startswith(prefix):
+                raise UnsafePath()
+        raw = safe_path(self.data, operation["source_rel"])
+        quarantine = safe_path(self.data, operation["quarantine_rel"])
+        receipt = safe_path(self.data, operation["receipt_rel"])
+        doc = self.doc(operation["doc_id"])
+        original = safe_path(self.data, doc["original_rel"])
+        if digest_file(original) != doc["sha256"]:
+            raise IntegrityError()
+        if receipt.exists():
+            if digest_file(receipt) != doc["sha256"] or quarantine.exists():
+                raise IntegrityError()
+            return self._intake_state(operation, "committed")
+        if not quarantine.exists():
+            if not raw.exists():
+                return self._intake_state(operation, "source_missing")
+            if signature(raw) != operation["expected_signature"] or digest_file(raw) != doc["sha256"]:
+                return self._intake_state(operation, "superseded")
+            private_dir(quarantine.parent)
+            durable_rename(raw, quarantine)
+            self._intake_state(operation, "quarantined")
+        before = signature(quarantine)
+        matches = digest_file(quarantine) == doc["sha256"] and signature(quarantine) == before
+        if not matches:
+            if not raw.exists() and not raw.is_symlink():
+                durable_rename(quarantine, raw)
+                return self._intake_state(operation, "changed_restored", "receiving_copy_changed")
+            self._intake_state(operation, "needs_review", "changed_bytes_retained_in_quarantine")
+            raise Blocked("intake_changed_bytes_retained_requires_review")
+        private_dir(receipt.parent)
+        durable_rename(quarantine, receipt)
+        os.chmod(receipt, 0o400)
+        if digest_file(receipt) != doc["sha256"]:
+            self._intake_state(operation, "needs_review", "changed_bytes_retained_in_receipt")
+            raise Blocked("intake_changed_bytes_retained_requires_review")
+        return self._intake_state(operation, "committed")
+
+    def reconcile_intake(self):
+        for row in self.conn.execute("SELECT * FROM intake_operations WHERE state IN ('prepared','quarantined')").fetchall():
+            try:
+                self._apply_receipt(dict(row))
+            except (OSError, ReaderError):
+                # Keep all bytes and the operation for an explicit retry/review.
+                self.conn.execute("UPDATE documents SET state='blocked',error_code='intake_recovery_requires_review' WHERE doc_id=?", (row["doc_id"],))
+                self.conn.execute("UPDATE jobs SET state='blocked',error_code='intake_recovery_requires_review' WHERE doc_id=? AND stage='receipt' AND chunk=?", (row["doc_id"], row["source_id"]))
+
+    def claim(self):
+        with self.transaction():
+            n = int(self.conn.execute("SELECT value FROM meta WHERE key='dispatch_count'").fetchone()[0])
+            # Every fourth dispatch serves the oldest eligible job, independently of new priorities.
+            order = "j.created,j.doc_id,j.chunk,j.job_id" if n % 4 == 0 else "d.priority DESC,j.created,j.doc_id,j.chunk,j.job_id"
+            row = self.conn.execute("SELECT j.* FROM jobs j JOIN documents d USING(doc_id) WHERE j.state='pending' AND j.available<=? AND d.state NOT IN ('blocked','failed') ORDER BY " + order + " LIMIT 1", (self.clock(),)).fetchone()
+            if not row:
+                return None
+            self.conn.execute("UPDATE jobs SET state='running',attempts=attempts+1,started=?,error_code=NULL WHERE job_id=?", (self.clock(), row["job_id"]))
+            self.conn.execute("UPDATE documents SET state='running',phase=?,updated=? WHERE doc_id=?", (row["stage"], self.clock(), row["doc_id"]))
+            self.conn.execute("UPDATE meta SET value=? WHERE key='dispatch_count'", (str(n + 1),))
+            return dict(self.conn.execute("SELECT * FROM jobs WHERE job_id=?", (row["job_id"],)).fetchone())
+
+    def _finish(self, job, result):
+        doc = self.doc(job["doc_id"])
+        stage = job["stage"]
+        with self.transaction():
+            cur = self.conn.execute("UPDATE jobs SET state='succeeded',finished=? WHERE job_id=? AND state='running' AND attempts=?", (self.clock(), job["job_id"], job["attempts"]))
+            if cur.rowcount != 1:
+                raise IntegrityError()
+            self.conn.execute("UPDATE documents SET state='queued',error_code=NULL,updated=? WHERE doc_id=?", (self.clock(), doc["doc_id"]))
+            if stage == "extract":
+                self.conn.execute("UPDATE documents SET pages_total=?,chunks_total=? WHERE doc_id=?", (result["pages_total"], result["chunks_total"], doc["doc_id"]))
+                self._enqueue(doc, "triage")
+            elif stage == "triage":
+                self.conn.execute("UPDATE documents SET priority=? WHERE doc_id=?", (result["importance"], doc["doc_id"]))
+                for i in range(doc["chunks_total"]):
+                    self._enqueue(doc, "read", i)
+            elif stage == "read":
+                done = self.conn.execute("SELECT COUNT(*) FROM jobs WHERE doc_id=? AND stage='read' AND state='succeeded'", (doc["doc_id"],)).fetchone()[0]
+                self.conn.execute("UPDATE documents SET chunks_read=? WHERE doc_id=?", (done, doc["doc_id"]))
+                if done == doc["chunks_total"]:
+                    self._enqueue(doc, "synthesize")
+            elif stage == "synthesize":
+                self.conn.execute("UPDATE documents SET report_rel=? WHERE doc_id=?", ("artifacts/%s/report.json" % doc["doc_id"], doc["doc_id"]))
+                self._enqueue(doc, "organize")
+            elif stage == "organize":
+                self._queue_receipts(doc)
+            elif stage == "receipt":
+                remaining = self.conn.execute("SELECT COUNT(*) FROM jobs WHERE doc_id=? AND stage='receipt' AND state!='succeeded'", (doc["doc_id"],)).fetchone()[0]
+                if not remaining:
+                    self.conn.execute("UPDATE documents SET state='complete',phase='complete' WHERE doc_id=?", (doc["doc_id"],))
+            self._refresh_failures(doc["doc_id"])
+
+    def process(self, job):
+        doc = self.doc(job["doc_id"])
+        # No silent backend/model change during a document's frozen execution recipe.
+        try:
+            recipe = read_json(self.artifact_path(doc["doc_id"], "recipe.json"))
+            # OCR availability may be added on retry; the actual OCR models are
+            # captured per page. The configured reading identity stays frozen.
+            identity = models.reading_identity
+            if identity(recipe["model"]) != identity(self.model.identity) or recipe["version"] != RECIPE_VERSION:
+                raise Blocked("execution_model_changed_requires_new_recipe")
+            funcs = {"extract": self.stages._extract, "triage": self.stages._triage, "synthesize": self.stages._synthesize, "organize": self._organize}
+            if job["stage"] == "read":
+                result = self.stages._read_chunk(doc, job["chunk"])
+            elif job["stage"] == "receipt":
+                result = self._receipt(doc, job["chunk"])
+            else:
+                result = funcs[job["stage"]](doc)
+            self._finish(job, result)
+            self.write_status()
+            return "succeeded"
+        except (ReaderError, OSError, ValueError, KeyError, IndexError, TypeError, subprocess.SubprocessError) as exc:
+            error = exc
+        code = error.code if isinstance(error, ReaderError) else type(error).__name__
+        if isinstance(error, Deferred):
+            with self.transaction():
+                cur = self.conn.execute("UPDATE jobs SET state='pending',attempts=attempts-1,available=?,error_code=? WHERE job_id=? AND state='running' AND attempts=?",
+                                        (self.clock() + self.ocr_defer_seconds, code, job["job_id"], job["attempts"]))
+                if cur.rowcount != 1:
+                    raise IntegrityError()
+                self.conn.execute("UPDATE documents SET state='queued',priority=?,error_code=?,updated=? WHERE doc_id=?", (OCR_DEFERRED_PRIORITY, code, self.clock(), doc["doc_id"]))
+            self.write_status()
+            return "deferred"
+        blocked = isinstance(error, (Blocked, UnsafePath, IntegrityError))
+        terminal = blocked or job["attempts"] >= job["max_attempts"]
+        state = "blocked" if blocked else ("failed" if terminal else "pending")
+        delay = min(3600, 30 * 2 ** (job["attempts"] - 1))
+        with self.transaction():
+            cur = self.conn.execute("UPDATE jobs SET state=?,available=?,finished=?,error_code=? WHERE job_id=? AND state='running' AND attempts=?",
+                                    (state, self.clock() + delay, self.clock() if terminal else None, code, job["job_id"], job["attempts"]))
+            if cur.rowcount != 1:
+                raise IntegrityError()
+            self.conn.execute("UPDATE documents SET state=?,error_code=?,updated=? WHERE doc_id=?", ("blocked" if blocked else ("failed" if terminal else "queued"), code, self.clock(), doc["doc_id"]))
+            self._refresh_failures(doc["doc_id"])
+        self.write_status()
+        return state
+
+    def retry(self, doc_id=None):
+        if doc_id:
+            self.doc(doc_id)
+        with self.transaction():
+            rows = self.conn.execute("SELECT DISTINCT doc_id FROM jobs WHERE state IN ('failed','blocked') AND (? IS NULL OR doc_id=?)", (doc_id, doc_id)).fetchall()
+            cur = self.conn.execute("UPDATE jobs SET state='pending',attempts=0,available=?,error_code=NULL WHERE state IN ('failed','blocked') AND (? IS NULL OR doc_id=?)", (self.clock(), doc_id, doc_id))
+            for row in rows:
+                self.conn.execute("UPDATE documents SET state='queued',error_code=NULL WHERE doc_id=?", (row[0],))
+                self.conn.execute("UPDATE intake_operations SET state='prepared',error_code=NULL WHERE doc_id=? AND state='needs_review'", (row[0],))
+        return {"retried": cur.rowcount}
+
+    def status(self):
+        counts = {row[0]: row[1] for row in self.conn.execute("SELECT state,COUNT(*) FROM documents GROUP BY state")}
+        stages = [{"stage": r[0], "state": r[1], "count": r[2]} for r in self.conn.execute("SELECT stage,state,COUNT(*) FROM jobs GROUP BY stage,state ORDER BY stage,state")]
+        failures = [dict(r) for r in self.conn.execute("SELECT doc_id,original_name,phase,error_code FROM documents WHERE error_code IS NOT NULL ORDER BY updated DESC LIMIT 20")]
+        pending = self.conn.execute("SELECT MIN(created) FROM jobs WHERE state='pending'").fetchone()[0]
+        active = self.conn.execute("SELECT COUNT(*) FROM jobs WHERE state='running'").fetchone()[0]
+        last_scan = self.conn.execute("SELECT value FROM meta WHERE key='last_scan'").fetchone()
+        scan = json.loads(last_scan[0]) if last_scan else {}
+        return {"schema_version": 1, "generated": now_iso(), "status": "degraded" if failures or scan.get("errors") else ("running" if active else "idle"),
+                "counts": counts, "documents_total": sum(counts.values()),
+                "sources_total": self.conn.execute("SELECT COUNT(*) FROM sources").fetchone()[0],
+                "stage_counts": stages, "oldest_pending_seconds": max(0, self.clock() - pending) if pending is not None else None,
+                "oldest_pending": datetime.fromtimestamp(pending, timezone.utc).isoformat() if pending is not None else None,
+                "recent_failures": failures, "backend": self.model.identity,
+                "last_scan": scan,
+                "roots": {"data": str(self.data), "state": str(self.state)},
+                "acceptance": "candidate_only", "free_bytes": shutil.disk_usage(self.data).free}
+
+    def write_status(self):
+        status = self.status()
+        atomic_json(safe_path(self.state, "status.json"), status)
+        return status
+
+    def run(self, once=False, max_jobs=None, poll_seconds=10, workers=1):
+        """One process owns the queue; `workers` threads claim and process jobs.
+
+        Scanning stays on the owning thread so intake keeps its single writer.
+        A worker's failure stops the others and is re-raised, as it would have
+        ended the single-threaded loop."""
+        if not isinstance(workers, int) or isinstance(workers, bool) or not 1 <= workers <= MAX_WORKERS:
+            raise ValueError("workers must be an integer 1..%d" % MAX_WORKERS)
+        counter = {"processed": 0, "idle": 0, "error": None}
+        guard = threading.Lock()
+        stop = threading.Event()
+
+        def exhausted():
+            return max_jobs is not None and counter["processed"] >= max_jobs
+
+        def loop():
+            try:
+                while not stop.is_set():
+                    with guard:
+                        if exhausted():
+                            stop.set()
+                            break
+                    # BEGIN IMMEDIATE inside claim() serializes the claim, so two
+                    # threads never take the same job.
+                    job = self.claim()
+                    if job is None:
+                        self.write_status()
+                        with guard:
+                            counter["idle"] += 1
+                            # A running job still enqueues its next stage, so an
+                            # empty queue only ends the drain once every worker
+                            # is idle.
+                            drained = counter["idle"] >= workers
+                        if once and drained:
+                            stop.set()
+                            break
+                        stop.wait(0.05 if once else poll_seconds)
+                        with guard:
+                            counter["idle"] -= 1
+                        continue
+                    self.write_status()
+                    outcome = self.process(job)
+                    print(encoded({"at": now_iso(), "doc_id": job["doc_id"], "stage": job["stage"],
+                                   "chunk": job["chunk"], "outcome": outcome}), flush=True)
+                    with guard:
+                        counter["processed"] += 1
+                        if exhausted():
+                            stop.set()
+            except BaseException as exc:  # noqa: BLE001 - reported to the owning thread
+                with guard:
+                    if counter["error"] is None:
+                        counter["error"] = exc
+                stop.set()
+            finally:
+                self.catalog._close_thread()
+
+        with self.worker_session():
+            self.scan()
+            threads = [threading.Thread(target=loop, name="reader-worker-%d" % i, daemon=True)
+                       for i in range(workers)]
+            for thread in threads:
+                thread.start()
+            try:
+                if once:
+                    # Workers stop themselves once the queue drains; setting the
+                    # stop flag here would end them before they claim anything.
+                    for thread in threads:
+                        thread.join()
+                else:
+                    while not stop.wait(poll_seconds):
+                        self.scan()
+            finally:
+                stop.set()
+                for thread in threads:
+                    thread.join()
+            if counter["error"] is not None:
+                raise counter["error"]
+        return {"processed": counter["processed"], **self.write_status()}

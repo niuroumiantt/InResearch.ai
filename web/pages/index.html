@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light">
+<head>
+<script src="/assets/theme-state.js"></script>
+<script src="/assets/site-skin.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>inresearch.ai — 全球数据中心行业总览</title>
+<style>
+
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font: 13.5px/1.6 -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; padding-bottom: 50px; }
+  a { color: var(--accent); text-decoration: none; }
+  .topbar { position: sticky; top: 0; background: var(--card); border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; gap: 4px; padding: 0 18px; height: 46px; z-index: 20; }
+  .topbar b { font-size: 15px; margin-right: 14px; }
+  .tab { padding: 12px 14px; color: var(--muted); border-bottom: 2px solid transparent; }
+  .tab.on { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+  .topbar .sp { flex: 1; }
+  .live { font-size: 11.5px; color: var(--muted); }
+  .live i { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--green);
+    margin-right: 5px; animation: blink 2s ease-in-out infinite; }
+  @keyframes blink { 50% { opacity: .25; } }
+
+  @keyframes scroll { to { transform: translateX(-100%); } }
+  .wrap { max-width: 1240px; margin: 16px auto 0; padding: 0 16px; }
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 12px; }
+  .kpi { background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 12px 14px; }
+  .kpi .v { font-size: 23px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .kpi .v small { font-size: 12px; font-weight: 400; color: var(--muted); }
+  .kpi .l { color: var(--muted); font-size: 11.5px; margin-top: 1px; }
+  .entries { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; align-items: center; }
+  .entries .lbl { font-size: 12px; color: var(--muted); }
+  .entry { background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 5px 14px;
+    font-size: 12.5px; color: var(--text); transition: border-color .15s; }
+  .entry:hover { border-color: var(--accent); color: var(--accent); }
+  .entry small { color: var(--muted); margin-left: 4px; }
+  .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px; }
+  .board { background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 14px 16px; overflow: hidden; }
+  .b12 { grid-column: span 12; } .b8 { grid-column: span 8; } .b6 { grid-column: span 6; } .b4 { grid-column: span 4; } .b3 { grid-column: span 3; }
+  @media (max-width: 980px) { .b8, .b6, .b4, .b3 { grid-column: span 12; } }
+  .chip-sm { display: inline-block; font-size: 10.5px; border: 1px solid var(--line); border-radius: var(--ui-radius);
+    padding: 0 8px; margin-left: 4px; color: var(--yellow); text-decoration: none; }
+  .chip-sm:hover { border-color: var(--yellow); }
+  .bh { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; }
+  .bh h2 { font-size: 14px; }
+  .bh .go { margin-left: auto; font-size: 11.5px; white-space: nowrap; }
+  svg text { font-family: -apple-system, "PingFang SC", sans-serif; }
+  .metric { display: flex; align-items: baseline; gap: 7px; padding: 7px 0; border-bottom: 1px dashed var(--line); }
+  .metric:last-child { border-bottom: none; }
+  .metric .nm { color: var(--muted); font-size: 12px; flex: 1; }
+  .metric .val { font-weight: 700; font-size: 15px; font-variant-numeric: tabular-nums; }
+  .metric .val.na { color: var(--gray); font-weight: 400; font-size: 12px; }
+  .metric .asof { font-size: 10px; color: var(--gray); }
+  .sdot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; align-self: center; }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  th, td { text-align: left; padding: 5px 8px; border-bottom: 1px solid var(--line); }
+  th { color: var(--muted); font-weight: 500; font-size: 11.5px; }
+  tr:last-child td { border-bottom: none; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .note { color: var(--muted); font-size: 11px; margin-top: 6px; }
+  .histgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(255px, 1fr)); gap: 14px; }
+  .histcell h3 { font-size: 12px; color: var(--muted); font-weight: 500; margin-bottom: 2px; }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; }
+  #tip { position: fixed; background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius);
+    box-shadow: 0 4px 16px rgba(0,0,0,.15); padding: 10px 12px; font-size: 12px; max-width: 280px;
+    pointer-events: none; z-index: 50; display: none; line-height: 1.7; }
+  #tip b { font-size: 13px; }
+  #tip .tl { color: var(--muted); }
+  circle.site { cursor: pointer; transition: fill-opacity .15s; }
+  circle.site:hover { fill-opacity: 1; }
+  circle.halo { transform-box: fill-box; transform-origin: center; animation: pulse 2.4s ease-out infinite; pointer-events: none; }
+  @keyframes pulse { 0% { transform: scale(1); opacity: .5; } 80% { transform: scale(2.1); opacity: 0; } 100% { opacity: 0; } }
+  .err { color: var(--red); background: var(--card); border: 1px solid var(--red); border-radius: var(--ui-radius); padding: 14px; margin-top: 16px; }
+</style>
+<link rel="stylesheet" href="/assets/site-skin.css">
+<link rel="stylesheet" href="assets/datacenter-news.css">
+<script type="module" src="assets/datacenter-news.js"></script>
+</head>
+<body>
+<inresearch-shell data-section="overview"></inresearch-shell>
+<div class="topbar">
+  <a class="tab" href="/research.html?node=ecosystem%3Astorage&amp;view=R&amp;tab=overview">产品生态</a>
+  <a class="tab" href="bom.html">爆炸图</a>
+  <span class="sp"></span>
+  <span class="live" id="live"><i></i>连接中…</span>
+  <a class="tab" href="doc.html?f=reports/HOW_TO_OUTPUT.md">按需输出 ↗</a>
+</div>
+
+<div class="wrap">
+  <div class="kpis" id="kpis"></div>
+  <section class="dc-news" data-datacenter-news aria-label="数据中心新闻"></section>
+  <div class="entries"><a class="entry" href="research.html">进入研究工作台 <small>物理 · 系统 · 产业 · 需求 · 证据</small></a><a class="entry" href="bom3d.html">园区 3D</a><a class="entry" href="rack3d.html">机柜拆解</a></div>
+  <div class="entries" id="entries"></div>
+  <div class="grid" id="grid"></div>
+  <div id="error"></div>
+</div>
+<div id="tip"></div>
+
+<script>
+async function get(p) {
+  const r = await fetch(p + "?t=" + Date.now(), { cache: "no-store" });
+  if (!r.ok) throw new Error(p + " → HTTP " + r.status);
+  return r.json();
+}
+const fmtMW = n => n >= 10000 ? (n / 1000).toFixed(1) + " GW" : Math.round(n).toLocaleString() + " MW";
+const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+
+function capBuckets(p) {
+  let op = 0, bu = 0, pl = 0;
+  const put = (lvl, v) => { const n = +lvl.slice(1); if (n >= 8) op += v; else if (n >= 6) bu += v; else pl += v; };
+  if (p.capacity_it_mw) put(p.status, p.capacity_it_mw);
+  for (const [k, v] of Object.entries(p.capacity_it_mw_by_status || {})) put(k, v);
+  return [op, bu, pl];
+}
+function indStatus(i) {
+  if (i.value == null) return "na";
+  if (i.direction === "info" || i.yellow == null) return "green";
+  const worse = i.direction === "above" ? (v, t) => v >= t : (v, t) => v <= t;
+  if (i.red != null && worse(i.value, i.red)) return "red";
+  return worse(i.value, i.yellow) ? "yellow" : "green";
+}
+const SCOLOR = { green: "var(--green)", yellow: "var(--yellow)", red: "var(--red)", na: "var(--line)" };
+
+function showValue(el, target, suffix) {
+  el.textContent = (Number.isInteger(target) ? target.toLocaleString() : target.toFixed(1)) + suffix;
+}
+
+function hbar(rows, colorFn, valFn, labFn, tipFn) {
+  const W = 520, LH = 24, L = 150;
+  const max = Math.max(...rows.map(valFn), 1);
+  let s = `<svg viewBox="0 0 ${W} ${rows.length * LH + 4}" width="100%">`;
+  rows.forEach((r, i) => {
+    const v = valFn(r), w = Math.max(2, v / max * (W - L - 70)), y = i * LH;
+    s += `<text x="${L - 8}" y="${y + 16}" text-anchor="end" font-size="11.5" fill="var(--muted)">${labFn(r)}</text>
+          <rect x="${L}" y="${y + 5}" width="${w}" height="14" rx="3" fill="${colorFn(r)}" ${tipFn ? `class="site" data-tip="${esc(tipFn(r))}"` : ""}/>
+          <text x="${L + w + 6}" y="${y + 16}" font-size="11" fill="var(--text)">${v.toLocaleString()}</text>`;
+  });
+  return s + "</svg>";
+}
+function linechart(seriesList, unit) {
+  // seriesList: [{name, color, pts:[{d:Date, v}]}] → 多线迷你图
+  const W = 340, H = 120, PL = 8, PR = 46, PT = 12, PB = 20;
+  const all = seriesList.flatMap(s => s.pts);
+  if (all.length < 2) return "";
+  const t0 = Math.min(...all.map(p => +p.d)), t1 = Math.max(...all.map(p => +p.d));
+  const v0 = Math.min(...all.map(p => p.v)), v1 = Math.max(...all.map(p => p.v));
+  const pad = (v1 - v0) * 0.12 || v1 * 0.1 || 1;
+  const X = d => PL + (+d - t0) / Math.max(1, t1 - t0) * (W - PL - PR);
+  const Y = v => PT + (1 - (v - (v0 - pad)) / ((v1 + pad) - (v0 - pad))) * (H - PT - PB);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%">`;
+  s += `<line x1="${PL}" y1="${H - PB}" x2="${W - PR}" y2="${H - PB}" stroke="var(--line)" stroke-width="0.7"/>`;
+  seriesList.forEach(sr => {
+    const pts = sr.pts.slice().sort((a, b) => a.d - b.d);
+    const path = pts.map(p => `${X(p.d).toFixed(1)},${Y(p.v).toFixed(1)}`).join(" ");
+    s += `<polyline points="${path}" fill="none" stroke="${sr.color}" stroke-width="1.8" stroke-linejoin="round"/>`;
+    pts.forEach(p => s += `<circle cx="${X(p.d).toFixed(1)}" cy="${Y(p.v).toFixed(1)}" r="2.4" fill="${sr.color}"
+      data-tip="${esc(`<b>${sr.name}</b><br>${p.d.toISOString().slice(0, 10)}：${p.v.toLocaleString()} ${unit}`)}" class="site"/>`);
+    const last = pts[pts.length - 1];
+    s += `<text x="${W - PR + 4}" y="${Y(last.v) + 4}" font-size="10.5" fill="${sr.color}" font-weight="600">${last.v >= 1000 ? (last.v / 1000).toFixed(1) + "k" : last.v}</text>`;
+  });
+  const d0 = new Date(t0), d1 = new Date(t1);
+  s += `<text x="${PL}" y="${H - 6}" font-size="9.5" fill="var(--muted)">${d0.getFullYear()}</text>
+        <text x="${W - PR}" y="${H - 6}" font-size="9.5" fill="var(--muted)" text-anchor="end">${d1.getFullYear() === d0.getFullYear() ? d1.toISOString().slice(5, 10) : d1.getFullYear()}</text>`;
+  return s + "</svg>";
+}
+
+function stackbar(rows, keys, colors, labFn, tipFn) {
+  const W = 520, LH = 26, L = 118;
+  const max = Math.max(...rows.map(r => keys.reduce((a, k) => a + r[k], 0)), 1);
+  let s = `<svg viewBox="0 0 ${W} ${rows.length * LH + 4}" width="100%">`;
+  rows.forEach((r, i) => {
+    let x = L; const y = i * LH;
+    s += `<text x="${L - 8}" y="${y + 17}" text-anchor="end" font-size="11.5" fill="var(--muted)">${labFn(r)}</text>`;
+    keys.forEach((k, j) => {
+      const w = r[k] / max * (W - L - 80);
+      if (w > 0.5) s += `<rect x="${x}" y="${y + 6}" width="${w}" height="14" fill="${colors[j]}" ${tipFn ? `class="site" data-tip="${esc(tipFn(r, k))}"` : ""}/>`;
+      x += w;
+    });
+    s += `<text x="${x + 6}" y="${y + 17}" font-size="11" fill="var(--text)">${fmtMW(keys.reduce((a, k) => a + r[k], 0))}</text>`;
+  });
+  return s + "</svg>";
+}
+
+let world = null;
+async function render() {
+try {
+  const [reg, inds, projectsDoc, companies, prices, contracts] = await Promise.all([
+    get("framework/modules.json"), get("framework/indicators.json"), get("data/projects.json"),
+    get("data/companies.json"), get("data/prices.json"), get("data/contracts.json")]);
+  if (!world) world = await get("assets/world.geo.json");
+  let brief = null; try { brief = await get("data/brief.json"); } catch (e) {}
+  const cname = Object.fromEntries(companies.records.map(c => [c.company_id, c.name_cn || c.name]));
+  const indBy = Object.fromEntries(inds.indicators.map(i => [i.id, i]));
+
+  // ── 聚合
+  const P = projectsDoc.records.filter(p => !p.site_id.includes("portfolio"));
+  let OP = 0, BU = 0, PL = 0;
+  const funnel = Object.fromEntries(Array.from({length: 9}, (_, i) => ["L" + (i + 1), { mw: 0, n: 0 }]));
+  const regions = {};
+  P.forEach(p => {
+    const [o, b, l] = capBuckets(p); OP += o; BU += b; PL += l;
+    const r = regions[p.region] = regions[p.region] || { op: 0, bu: 0, pl: 0, n: 0 };
+    r.op += o; r.bu += b; r.pl += l; r.n++;
+    const add = (k, v) => { funnel[k].mw += v; };
+    if (p.capacity_it_mw) add(p.status, p.capacity_it_mw);
+    for (const [k, v] of Object.entries(p.capacity_it_mw_by_status || {})) add(k, v);
+    funnel[p.status].n++;
+  });
+  const istat = { green: 0, yellow: 0, red: 0, na: 0 };
+  inds.indicators.forEach(i => istat[indStatus(i)]++);
+  const iea = prices.records.find(r => r.series_id === "benchmark-iea-global-consumption");
+  const backlog = indBy.mega_contract_backlog?.value;
+
+  // ── KPI（数字滚动）
+  document.getElementById("kpis").innerHTML = [
+    ["k-op", OP, " MW", "运营容量 L8+（项目库口径）"],
+    ["k-bu", BU, " MW", "在建容量 L6–7"],
+    ["k-pl", +(PL / 1000).toFixed(1), " GW", "规划容量 L1–5（不计入供给）"],
+    ["k-iea", iea ? iea.value : 0, " TWh", "全球用电 2024（IEA 基准）"],
+    ["k-bl", backlog || 0, " $B", "大额合同余额（种子样本）"],
+    [null, null, null, null],
+  ].filter(x => x[0]).map(([id, v, u, l]) =>
+    `<div class="kpi"><div class="v" id="${id}">0${u}</div><div class="l">${l}</div></div>`).join("") +
+    `<div class="kpi"><div class="v"><span style="color:${istat.red ? "var(--red)" : "var(--muted)"}">${istat.red}红</span>
+     <span style="color:${istat.yellow ? "var(--yellow)" : "var(--muted)"}">${istat.yellow}黄</span></div>
+     <div class="l">预警指标（${inds.indicators.length - istat.na} 有值 / 共 ${inds.indicators.length}）</div></div>`;
+  showValue(document.getElementById("k-op"), OP, " MW");
+  showValue(document.getElementById("k-bu"), BU, " MW");
+  showValue(document.getElementById("k-pl"), +(PL / 1000).toFixed(1), " GW");
+  if (iea) showValue(document.getElementById("k-iea"), iea.value, " TWh");
+  if (backlog) showValue(document.getElementById("k-bl"), backlog, " $B");
+
+  // ── 大客户入口
+  const ENTRY = ["microsoft", "amazon", "alphabet-google", "meta", "oracle", "openai", "anthropic", "xai", "coreweave", "equinix", "digital-realty"];
+  const projCount = {};
+  P.forEach(p => new Set([...(p.developer || []), ...(p.tenant || [])]).forEach(d => projCount[d] = (projCount[d] || 0) + 1));
+  document.getElementById("entries").innerHTML = `<span class="lbl">大客户入口</span>` +
+    ENTRY.filter(id => cname[id]).map(id =>
+      `<a class="entry" href="company.html?c=${id}">${cname[id]}<small>${projCount[id] || 0} 园区</small></a>`).join("") +
+    `<a class="entry" href="company.html" style="color:var(--muted)">全部 ${companies.records.length} 家（页内可切换）→</a>`;
+
+  const C = { op: "var(--green)", bu: "var(--yellow)", pl: "var(--gray)" };
+  const boards = [];
+
+  // ── 行业仪表盘（穷尽互斥：四维度 × 4 指标，注册表驱动）
+  const GROUPS = [
+    ["供给与市场", "report.html#ch-M01", ["global_operational_gw", "vacancy_rate_na", "dc_rent_index_na", "price_per_mw_operational"]],
+    ["电力与设备", "report.html#ch-M04", ["interconnection_queue_years", "ppa_price_index", "transformer_lead_time", "gas_turbine_backlog_years"]],
+    ["算力与技术", "report.html#ch-M06", ["gpu_lead_time", "rack_density_shipping", "liquid_cooling_penetration", "gpu_hourly_rate_spot"]],
+    ["需求与资本", "report.html#ch-M12", ["ai_revenue_capex_ratio", "token_price_flagship", "circular_deal_exposure", "aidc_utilization_channel"]],
+  ];
+  GROUPS.forEach(([title, go, ids]) => {
+    const rows = ids.map(id => indBy[id]).filter(Boolean).map(i => {
+      const st = indStatus(i);
+      return `<div class="metric" title="${esc(i.auto_note || i.source || "")}">
+        <span class="sdot" style="background:${SCOLOR[st]}"></span>
+        <span class="nm">${i.name}</span>
+        ${i.value != null ? `<span class="val">${i.value.toLocaleString()}<small style="font-size:10px;color:var(--muted)"> ${i.unit}</small></span><span class="asof">${(i.as_of || "").slice(2)}</span>`
+                          : `<span class="val na">待录入</span>`}</div>`;
+    }).join("");
+    boards.push(["b3", title, go, rows]);
+  });
+
+  // ── 全球布局地图（悬停钻取）
+  const LON0 = -170, LON1 = 180, LAT0 = -55, LAT1 = 72, MW_ = 1160, MH = MW_ * (LAT1 - LAT0) / (LON1 - LON0) * 1.25;
+  const xy = (lon, lat) => [(lon - LON0) / (LON1 - LON0) * MW_, (LAT1 - lat) / (LAT1 - LAT0) * MH];
+  let land = "";
+  world.features.forEach(f => {
+    const polys = f.geometry.type === "MultiPolygon" ? f.geometry.coordinates : [f.geometry.coordinates];
+    let d = "";
+    polys.forEach(poly => poly.forEach(ring => {
+      const pts = ring.filter((_, i) => i % 3 === 0).map(([lo, la]) => xy(lo, la));
+      if (pts.length > 2) d += "M" + pts.map(p => p[0].toFixed(0) + " " + p[1].toFixed(0)).join("L") + "Z";
+    }));
+    if (d) land += `<path d="${d}" fill="var(--map-land)" stroke="var(--map-line)" stroke-width="0.4"/>`;
+  });
+  let dots = "";
+  P.filter(p => p.coordinates).forEach(p => {
+    const [o, b, l] = capBuckets(p), tot = o + b + l;
+    const [la, lo] = p.coordinates.split(",").map(Number);
+    const [x, y] = xy(lo, la);
+    const r = tot ? Math.max(4.5, Math.min(16, Math.sqrt(tot / 5000) * 16)) : 3.5;
+    const c = tot ? (o >= Math.max(b, l) ? C.op : (b >= l ? C.bu : C.pl))
+                  : (+p.status.slice(1) >= 8 ? C.op : +p.status.slice(1) >= 6 ? C.bu : C.pl);
+    const owner = (p.developer || [])[0] || (p.tenant || [])[0];
+    const tip = `<b>${esc(p.name)}</b><br><span class="tl">${esc(p.location || "")} · 状态 ${p.status}</span><br>` +
+      (tot ? `容量 <b>${fmtMW(tot)}</b>（运营 ${o} / 在建 ${b} / 规划 ${l}）<br>` : `容量未披露（hyperscaler 常态，≠不存在）<br>`) +
+      (p.developer?.length ? `开发 ${p.developer.map(d => cname[d] || d).join("、")}<br>` : "") +
+      (p.tenant?.length ? `租户 ${p.tenant.map(d => cname[d] || d).join("、")}<br>` : "") +
+      `<span class="tl">核验 ${p.verified_date} · 点击看公司档案</span>`;
+    if (tot && b > Math.max(o, l)) dots += `<circle class="halo" cx="${x}" cy="${y}" r="${r}" fill="none" stroke="${c}" stroke-width="1.5"/>`;
+    dots += `<circle class="site" cx="${x}" cy="${y}" r="${r}" fill="${c}" fill-opacity="${tot ? .75 : .55}"
+      stroke="var(--card)" stroke-width="1" ${tot ? "" : 'stroke-dasharray="2 2"'}
+      data-tip="${esc(tip)}" onclick="location.href='${owner ? "company.html?c=" + owner : "report.html#ch-M05"}'"/>`;
+  });
+  boards.push(["b12", "全球项目布局", "report.html#ch-M05",
+    `<svg viewBox="0 0 ${MW_} ${MH.toFixed(0)}" width="100%">${land}${dots}</svg>
+     <div class="note"><span class="dot" style="background:var(--green)"></span>运营主导
+     <span class="dot" style="background:var(--yellow);margin-left:10px"></span>在建主导（脉动=施工中）
+     <span class="dot" style="background:var(--gray);margin-left:10px"></span>规划主导 · 圆面积∝容量 · 悬停看园区详情</div>`]);
+
+  // ── 漏斗 / 区域 / 开发商 / Token / 合同
+  const FN = ["传闻", "官宣", "土地", "电力申请", "电力确定", "开工", "机电", "通电", "满载"];
+  boards.push(["b6", "项目漏斗（IT 容量 MW × 九级状态）", "report.html#ch-M01",
+    hbar(Object.entries(funnel).map(([k, v]) => ({ k, ...v })),
+      r => +r.k.slice(1) >= 8 ? C.op : +r.k.slice(1) >= 6 ? C.bu : C.pl, r => r.mw,
+      r => r.k + " " + FN[+r.k.slice(1) - 1],
+      r => `<b>${r.k} ${FN[+r.k.slice(1) - 1]}</b><br>${fmtMW(r.mw)}<br><span class="tl">处于此状态的项目 ${r.n} 个</span>`) +
+    `<div class="note">仅 L8+ 计入当期供给；早期披露容量与情景预测分列（口径手册）</div>`]);
+  const rrows = Object.entries(regions).map(([k, v]) => ({ k, ...v })).sort((a, b) => (b.op + b.bu + b.pl) - (a.op + a.bu + a.pl));
+  const RN = { "north-america": "北美", "china": "中国", "mena": "中东北非", "apac": "亚太", "latam": "拉美", "europe": "欧洲", "india": "印度" };
+  boards.push(["b6", "区域容量结构", "report.html#ch-M05",
+    stackbar(rrows, ["op", "bu", "pl"], [C.op, C.bu, C.pl], r => RN[r.k] || r.k,
+      (r, k) => `<b>${RN[r.k] || r.k}</b><br>${{op: "运营", bu: "在建", pl: "规划"}[k]} ${fmtMW(r[k])}<br><span class="tl">项目 ${r.n} 个 · 合计 ${fmtMW(r.op + r.bu + r.pl)}</span>`) +
+    `<div class="note">绿=运营 黄=在建 灰=规划 · 中国板块单列不与海外混加（M14）</div>`]);
+  const dev = {};
+  P.forEach(p => (p.developer || []).forEach(d => {
+    if (d === "multiple") return;
+    const [o, b, l] = capBuckets(p); dev[d] = (dev[d] || 0) + o + b + l;
+  }));
+  boards.push(["b4", "开发商管线 Top 8（全状态 MW）", "report.html#ch-M02",
+    hbar(Object.entries(dev).map(([k, v]) => ({ k, v })).sort((a, b) => b.v - a.v).slice(0, 8),
+      () => "var(--accent)", r => r.v, r => cname[r.k] || r.k) +
+    `<div class="note">含规划口径，排名≠当前市场份额</div>`]);
+  // 每家只取最新牌价（历史点在下方"历史走势"里看曲线）
+  const tokLatest = {};
+  prices.records.filter(r => r.category === "token-price").forEach(r => {
+    if (!tokLatest[r.series_id] || r.as_of > tokLatest[r.series_id].as_of) tokLatest[r.series_id] = r;
+  });
+  const tok = Object.values(tokLatest).sort((a, b) => b.value - a.value);
+  const TOKNAME = { openai: "OpenAI", anthropic: "Anthropic", google: "Google" };
+  boards.push(["b4", "旗舰模型 API 价格（$/M 输出，当期牌价）", "report.html#ch-M12",
+    hbar(tok, () => "var(--accent)", r => r.value,
+      r => TOKNAME[r.series_id.split("-")[2]] || r.series_id.split("-")[2],
+      r => `<b>${TOKNAME[r.series_id.split("-")[2]] || ""} 旗舰输出价</b><br>${r.value} $/M tok · ${r.as_of}<br><span class="tl">${esc(r.note || "")}</span>`) +
+    `<div class="note">牌价≠实现价（缓存 0.1x / 批处理 0.5x）· 最新 ${tok.map(r => r.as_of).sort().pop() || ""}</div>`]);
+  // ── 历史走势（时间序列，≥2 点的序列自动成线）
+  const bySeries = {};
+  prices.records.forEach(r => (bySeries[r.series_id] = bySeries[r.series_id] || []).push({ d: new Date(r.as_of), v: r.value }));
+  const HIST = [
+    ["vacancy-rate-na", "北美空置率", "%", "var(--green)"],
+    ["dc-rent-index-na", "北美租金指数 (2020=100)", "", "var(--accent)"],
+    ["gpu-hourly-h100-spot", "H100 现货时租", "$/hr", "var(--yellow)"],
+    ["token-price-openai-flagship-output", "旗舰模型输出价（OpenAI 当期）", "$/M tok", "var(--red)"],
+    ["benchmark-iea-global-consumption", "全球数据中心用电（IEA）", "TWh", "var(--gray)"],
+    ["transformer-lead-time", "大型变压器交期", "月", "var(--yellow)"],
+  ];
+  const cells = [];
+  HIST.forEach(([sid, label, unit, color]) => {
+    const pts = bySeries[sid];
+    if (pts && pts.length >= 2)
+      cells.push(`<div class="histcell"><h3>${label}${unit ? `（${unit}）` : ""}</h3>${linechart([{ name: label, color, pts }], unit)}</div>`);
+  });
+  const CAPEX = [["capex-microsoft-annual", "微软", "var(--accent)"], ["capex-alphabet-annual", "谷歌", "var(--green)"],
+                 ["capex-amazon-annual", "亚马逊", "var(--yellow)"], ["capex-meta-annual", "Meta", "var(--red)"]];
+  const capexSeries = CAPEX.filter(([sid]) => bySeries[sid]?.length >= 2)
+    .map(([sid, name, color]) => ({ name, color, pts: bySeries[sid] }));
+  if (capexSeries.length)
+    cells.push(`<div class="histcell"><h3>四大厂年度 Capex（$B）　${capexSeries.map(s => `<span style="color:${s.color}">●${s.name}</span>`).join(" ")}</h3>${linechart(capexSeries, "$B")}</div>`);
+  const DELL = [["delloro-capex-top4-us-cloud", "Top4美国云", "var(--accent)"], ["delloro-capex-top3-china-cloud", "Top3中国云", "var(--red)"],
+                ["delloro-capex-ai-specialized", "AI专业云", "var(--yellow)"], ["delloro-capex-enterprise", "企业", "var(--gray)"]];
+  const dellSeries = DELL.filter(([sid]) => bySeries[sid]?.length >= 2).map(([sid, name, color]) => ({ name, color, pts: bySeries[sid] }));
+  if (dellSeries.length)
+    cells.push(`<div class="histcell"><h3>分客户段 Capex（$B，DellOro，26 起为预测）　${dellSeries.map(s => `<span style="color:${s.color}">●${s.name}</span>`).join(" ")}</h3>${linechart(dellSeries, "$B")}</div>`);
+  if (cells.length)
+    boards.push(["b12", "历史走势", "doc.html?f=reports/HOW_TO_OUTPUT.md", `<div class="histgrid">${cells.join("")}</div>
+      <div class="note">时间序列随采集与容量考古持续加密；悬停数据点看时点与数值（prices 表）</div>`]);
+
+  boards.push(["b4", "大额合同（种子样本）", "report.html#ch-M11",
+    `<table><tr><th>双方</th><th class="num">$B</th><th>循环</th></tr>` +
+    contracts.records.map(c => `<tr><td>${c.parties.map(p => cname[p] || p).join(" ↔ ")}<div style="font-size:10px;color:var(--gray)">${c.type} · ${c.announced_date}</div></td>
+      <td class="num">${c.value_usd_b ?? "—"}</td><td>${c.circular_flag ? "⚠️" : "—"}</td></tr>`).join("") + `</table>
+    <div class="note">合同批量入库在路线图第二阶段</div>`]);
+
+  // ── 研究工作台速览（brief.json 由 collect.py 每日生成）
+  if (brief?.verify) {
+    const res = brief.research || {};
+    const totF = Object.values(res).reduce((s, m) => s + (m.findings || 0), 0);
+    const totNR = Object.values(res).reduce((s, m) => s + (m.needs_review || 0), 0);
+    const nrMods = Object.entries(res).filter(([, m]) => m.needs_review > 0)
+      .map(([k, m]) => `<a class="chip-sm" href="doc.html?f=research/${k}.md">${k}×${m.needs_review}</a>`).join(" ");
+    const qi = (brief.verify.items || []).slice(0, 4).map(i =>
+      `<div style="font-size:11px;color:var(--gray);padding:2px 0">· ${esc(i.id)} — ${esc((i.reason || "").slice(0, 34))}</div>`).join("");
+    boards.push(["b8", "研究工作台 · 今天该干什么", "doc.html?f=reports/verify_queue.md",
+      `<div style="display:flex;gap:26px;flex-wrap:wrap;margin-bottom:6px">
+        <div><b style="font-size:20px;color:${brief.verify.p1 ? "var(--yellow)" : "var(--green)"}">${brief.verify.p1}</b> <span style="font-size:11px;color:var(--gray)">P1 必须处理</span></div>
+        <div><b style="font-size:20px">${brief.verify.p2}</b> <span style="font-size:11px;color:var(--gray)">P2 补强来源</span></div>
+        <div><b style="font-size:20px">${totF}</b> <span style="font-size:11px;color:var(--gray)">研究结论（15 模块）</span></div>
+        <div><b style="font-size:20px;color:${totNR ? "var(--yellow)" : "var(--green)"}">${totNR}</b> <span style="font-size:11px;color:var(--gray)">待复核 ${nrMods}</span></div>
+      </div>${qi}
+      <div class="note">核验队列 verify.py ｜ 精读队列 reading_queue.py ｜ 简报 ${brief.date || ""}</div>`]);
+  }
+
+  // ── 研究核心 · 事实层与工单（新机制的仪表盘出口；机制看不见就等于不存在）
+  const [facts, mets, wos, blind] = await Promise.all([
+    get("data/facts.json").catch(() => null),
+    get("framework/metrics.json").catch(() => null),
+    get("reports/workorders.json").catch(() => null),
+    get("reports/blindspot.json").catch(() => null),
+  ]);
+  if (facts && mets) {
+    const nf = facts.records.length, nm = mets.metrics.length;
+    const filled = new Set(facts.records.map(f => f.metric_id)).size;
+    const bounded = facts.records.filter(f => (f.bound || "point") !== "point").length;
+    const sens = facts.records.filter(f => f.sensitive).length;
+    const p1 = wos ? wos.orders.filter(o => o.pri === "P1").length : 0;
+    const alarms = blind ? blind.modules.filter(m => m.alarm) : [];
+    const kinds = wos ? Object.entries(wos.orders.reduce((a, o) =>
+      (a[o.kind] = (a[o.kind] || 0) + 1, a), {})).sort((x, y) => y[1] - x[1]).slice(0, 4) : [];
+    boards.push(["b8", "研究核心 · 事实层与工单", "team.html",
+      `<div style="display:flex;gap:26px;flex-wrap:wrap;margin-bottom:8px">
+        <div><b style="font-size:20px">${nf}</b> <span style="font-size:11px;color:var(--gray)">条事实（${filled}/${nm} 个指标已有数）</span></div>
+        <div><b style="font-size:20px">${wos ? wos.orders.length : "—"}</b> <span style="font-size:11px;color:var(--gray)">张工单 ｜ P1 <b style="color:${p1 ? "var(--yellow)" : "var(--green)"}">${p1}</b></span></div>
+        <div><b style="font-size:20px;color:${alarms.length ? "var(--yellow)" : "var(--green)"}">${alarms.length}</b> <span style="font-size:11px;color:var(--gray)">模块盲区报警</span></div>
+      </div>
+      <div style="font-size:11px;color:var(--gray);padding:2px 0">
+        缺口：${kinds.map(([k, v]) => `${esc(k)} ${v}`).join(" ｜ ") || "—"}</div>
+      <div style="font-size:11px;color:var(--gray);padding:2px 0">
+        盲区：${alarms.map(m => `<a class="chip-sm" href="doc.html?f=reports/blindspot.md">${m.mid} ${m.ratio}×</a>`).join(" ") || "无"}</div>
+      <div class="note">事实层原子 = 指标 × 口径 × 时点 × 出处；其中 ${bounded} 条为边界值（非点值）、${sens} 条敏感（对外须转区间）。工单 = 声明 − 现状，不手写。</div>`]);
+  }
+
+  document.getElementById("grid").innerHTML = boards.map(([cls, title, go, body]) =>
+    `<div class="board ${cls}"><div class="bh"><h2>${title}</h2><a class="go" href="${go}">详情 →</a></div>${body}</div>`).join("");
+  document.getElementById("live").innerHTML = `<i></i>实时 · ${new Date().toTimeString().slice(0, 8)} 刷新`;
+} catch (e) {
+  document.getElementById("error").innerHTML = `<div class="err">加载失败：${e.message}</div>`;
+}
+}
+
+// 悬停钻取 tooltip
+const tip = document.getElementById("tip");
+addEventListener("mousemove", e => {
+  const t = e.target.closest?.("[data-tip]");
+  if (t) {
+    tip.innerHTML = t.dataset.tip;
+    tip.style.display = "block";
+    tip.style.left = Math.min(e.clientX + 14, innerWidth - 300) + "px";
+    tip.style.top = Math.min(e.clientY + 14, innerHeight - 140) + "px";
+  } else tip.style.display = "none";
+});
+
+render();
+setInterval(render, 60000);  // 每分钟自动刷新
+</script>
+</body>
+</html>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light">
+<head>
+<script src="/assets/theme-state.js"></script>
+<script src="/assets/site-skin.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>管理后台 — inresearch.ai</title>
+<style>
+
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font: 14px/1.6 -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; padding: 24px 16px 60px; }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  h1 { font-size: 22px; margin-bottom: 4px; }
+  .sub { color: var(--muted); margin-bottom: 24px; font-size: 13px; }
+  h2 { font-size: 16px; margin: 28px 0 12px; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+  .stat { background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 14px 16px; }
+  .stat .num { font-size: 24px; font-weight: 700; }
+  .stat .lbl { color: var(--muted); font-size: 12px; }
+  .modules { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+  .mod { background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 12px 14px; }
+  .mod .id { font-size: 11px; color: var(--accent); font-weight: 700; }
+  .mod .nm { font-weight: 600; margin: 2px 0; }
+  .mod .meta { font-size: 11px; color: var(--muted); }
+  .dim-tag { display: inline-block; font-size: 10px; padding: 1px 6px; border-radius: var(--ui-radius); border: 1px solid var(--line); color: var(--muted); margin-left: 4px; }
+  .doclink { float: right; font-size: 11px; }
+  .doclink.muted { color: var(--muted); }
+  .sub a { color: var(--accent); text-decoration: none; }
+  table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); overflow: hidden; }
+  th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); font-size: 13px; }
+  th { color: var(--muted); font-weight: 500; font-size: 12px; background: color-mix(in srgb, var(--card) 60%, var(--bg)); }
+  tr:last-child td { border-bottom: none; }
+  .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+  .g { background: var(--green); } .y { background: var(--yellow); } .r { background: var(--red); } .n { background: var(--gray); }
+  .badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 8px; border-radius: var(--ui-radius); color: #fff; }
+  .funnel { display: flex; gap: 4px; margin: 8px 0 4px; flex-wrap: wrap; }
+  .fseg { flex: 1; min-width: 60px; text-align: center; background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 8px 4px; }
+  .fseg .lv { font-size: 10px; color: var(--muted); }
+  .fseg .mw { font-size: 15px; font-weight: 700; }
+  .note { color: var(--muted); font-size: 12px; margin-top: 6px; }
+  .brief-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px; }
+  .brief-col { background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 12px 14px; }
+  .brief-col h3 { font-size: 13px; margin-bottom: 8px; }
+  .bmeta { font-weight: 400; color: var(--muted); font-size: 11px; }
+  .sig { padding: 6px 0; border-bottom: 1px solid var(--line); font-size: 12px; }
+  .sig:last-child { border-bottom: none; }
+  .sig .ent { font-weight: 600; }
+  .sig .cnt { color: var(--muted); }
+  .sig a { display: block; color: var(--muted); font-size: 11px; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .sig a:hover { color: var(--accent); }
+  .err { color: var(--red); background: var(--card); border: 1px solid var(--red); border-radius: var(--ui-radius); padding: 14px; margin-top: 20px; }
+  .tasks { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 8px; }
+  .task-btn { background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 10px 12px;
+    cursor: pointer; text-align: left; font: inherit; color: var(--text); transition: border-color .15s; }
+  .task-btn:hover { border-color: var(--accent); }
+  .task-btn.busy { opacity: .55; pointer-events: none; }
+  .task-btn b { display: block; font-size: 13px; }
+  .task-btn span { font-size: 11px; color: var(--muted); }
+  .console { background: #0d1117; color: #7ee787; border-radius: var(--ui-radius); padding: 12px 14px; font: 11.5px/1.6 ui-monospace, Menlo, monospace;
+    max-height: 220px; overflow-y: auto; white-space: pre-wrap; margin-top: 10px; }
+  .pform { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 8px;
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 14px; }
+  .pform label { font-size: 11px; color: var(--muted); display: block; margin-bottom: 2px; }
+  .pform input, .pform select { width: 100%; padding: 6px 8px; border: 1px solid var(--line); border-radius: var(--ui-radius);
+    background: var(--bg); color: var(--text); font: inherit; font-size: 12.5px; }
+  .pform .full { grid-column: 1 / -1; }
+  .pform button { grid-column: 1 / -1; padding: 9px; border: none; border-radius: var(--ui-radius); background: var(--accent);
+    color: var(--ui-on-accent); font: inherit; font-weight: 600; cursor: pointer; }
+  .pmsg { font-size: 12px; margin-top: 6px; }
+  a { color: var(--accent); text-decoration: none; }
+  .tablewrap { overflow-x: auto; }
+</style>
+<link rel="stylesheet" href="/assets/site-skin.css">
+<link rel="stylesheet" href="assets/datacenter-news.css">
+<script type="module" src="assets/datacenter-news.js"></script>
+</head>
+<body style="--ui-page-inset:24px">
+<inresearch-shell data-section="admin"></inresearch-shell>
+<div class="wrap">
+  <h1>管理后台 <span id="whoami" style="float:right;font-size:12px;font-weight:400;color:var(--muted)"></span></h1>
+  <div class="sub">数据中心研究数据枢纽 · 框架与规则按已采用决策维护 · <span id="updated"></span> ·
+    <a href="doc.html?f=framework/00_overview.md">框架总览</a> ·
+    <a href="doc.html?f=framework/01_data_standards.md">口径手册</a> ·
+    <a href="doc.html?f=framework/02_knowledge_format.md">知识格式</a> ·
+    <a href="doc.html?f=reports/verify_queue.md">核验队列</a> ·
+    <a href="doc.html?f=reports/daily_brief.md">今日简报</a></div>
+
+  <section id="usersSec" style="display:none">
+  <h2>用户与权限 <span style="font-weight:400;font-size:12px;color:var(--muted)">仅 admin 可见 · 无注册，只能在这里加人</span></h2>
+  <div id="pwReveal" style="display:none;background:var(--card);border:1px solid var(--yellow);border-radius: var(--ui-radius);padding:12px 14px;margin-bottom:10px;font-size:13px">
+    <b id="pwUser"></b> 的密码（<b>只显示这一次</b>，抄给使用者）：
+    <code id="pwText" style="font-size:14px;user-select:all"></code>
+    <button onclick="copyPw()" style="margin-left:8px;font-size:12px;padding:2px 10px;border-radius: var(--ui-radius);border:1px solid var(--line);background:var(--card);color:var(--text);cursor:pointer">复制</button>
+    <span id="pwCopied" style="color:var(--green);font-size:12px"></span>
+  </div>
+  <table id="usersTable"><thead><tr>
+    <th>用户名</th><th>角色</th><th>创建于</th><th style="text-align:right">操作</th>
+  </tr></thead><tbody></tbody></table>
+  <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;align-items:center">
+    <input id="nuName" placeholder="新用户名（小写字母/数字）" style="flex:1;min-width:160px;padding:8px 11px;border-radius: var(--ui-radius);border:1px solid var(--line);background:var(--card);color:var(--text)">
+    <select id="nuRole" style="padding:8px;border-radius: var(--ui-radius);border:1px solid var(--line);background:var(--card);color:var(--text)">
+      <option value="intern">intern · 只见工单板</option>
+      <option value="member">member · 看全量可录入</option>
+      <option value="admin">admin · 全部权限</option>
+    </select>
+    <button onclick="addUser()" style="padding:8px 18px;border-radius: var(--ui-radius);border:0;background:var(--accent);color:var(--ui-on-accent);cursor:pointer">添加用户</button>
+  </div>
+  <div id="usersMsg" style="font-size:12.5px;margin-top:8px;min-height:1.2em"></div>
+  <div style="font-size:11.5px;color:var(--muted);margin-top:4px">
+    角色说明：intern 只能访问工单板并认领工单；member 可看全部数据、录价格、派工；admin 另可跑管线任务与管理用户。
+    改名后旧名的登录立即失效，须用新名重登；最后一个 admin 不可降级或删除。</div>
+  </section>
+
+  <h2>采集与运行控制台</h2>
+  <p class="meta">采集在 Spark 执行，三个来源按钮查询同步状态。<a href="doc.html?f=framework/06_acquisition.md">采集、翻译与阶段计划 →</a></p>
+  <div class="tasks" id="tasks"></div>
+  <pre class="console" id="console">后台就绪。点击任务运行，输出显示在这里；每个任务显示上次运行时间。</pre>
+
+  <h2>手动录入 — 价格 / 事件（渠道信息与季报数据的固定入口）</h2>
+  <form class="pform" id="pform" onsubmit="return false">
+    <div><label>序列 series_id *</label><input name="series_id" list="serieslist" placeholder="如 price-per-mw-operational" required><datalist id="serieslist"></datalist></div>
+    <div><label>类目 *</label><select name="category">
+      <option value="asset-deal">asset-deal 资产成交</option><option value="market">market 市场指标</option>
+      <option value="rent">rent 租金</option><option value="gpu-rental">gpu-rental 算力租价</option>
+      <option value="lead-time">lead-time 交期</option><option value="used-gpu">used-gpu 二手GPU</option>
+      <option value="token-price">token-price</option><option value="ppa">ppa 电价</option>
+      <option value="credit-spread">credit-spread 利差</option><option value="benchmark">benchmark 基准</option></select></div>
+    <div><label>模块 *</label><select name="module"><option>M11</option><option>M01</option><option>M04</option><option>M06</option><option>M08</option><option>M09</option><option>M12</option><option>M13</option><option>M14</option></select></div>
+    <div><label>数据时点 as_of *</label><input name="as_of" type="date" required></div>
+    <div><label>数值 *</label><input name="value" type="number" step="any" required></div>
+    <div><label>单位 *</label><input name="unit" placeholder="$M/MW · 月 · %" required></div>
+    <div><label>区域</label><input name="region" placeholder="north-america / cn / global"></div>
+    <div><label>来源等级 *</label><select name="grade">
+      <option value="company">S2 公司披露</option><option value="regulatory">S1 监管文件</option>
+      <option value="research">S3 权威第三方</option><option value="media">S4 媒体</option>
+      <option value="estimate">S5 推算/渠道</option></select></div>
+    <div class="full"><label>来源 URL *（渠道信息填 channel: 联系人/场合）</label><input name="source_url" required></div>
+    <div class="full"><label>假设/推导（estimate 级必填）</label><input name="assumptions"></div>
+    <div class="full"><label>备注</label><input name="note"></div>
+    <button id="psubmit">校验并入库（自动回填指标）</button>
+    <div class="pmsg full" id="pmsg"></div>
+  </form>
+
+  <div class="stats" id="stats" style="margin-top:24px"></div>
+
+  <section class="dc-news" data-datacenter-news aria-label="数据中心新闻"></section>
+  <div id="briefSection" style="display:none">
+    <h2>历史简报 <span id="briefDate" style="font-weight:400;color:var(--muted);font-size:13px"></span></h2>
+    <div class="brief-grid">
+      <div class="brief-col">
+        <h3>🏛️ SEC 文件（近7天）</h3>
+        <div id="secFilings"></div>
+      </div>
+      <div class="brief-col">
+        <h3>✅ 核验队列 <span class="bmeta" id="verifyMeta"></span></h3>
+        <div id="verifyItems"></div>
+      </div>
+    </div>
+  </div>
+
+  <h2>项目漏斗（九级，按 IT 容量 MW 聚合，仅 L8+ 计入"现有规模"）</h2>
+  <div class="funnel" id="funnel"></div>
+  <div class="note">口径：capacity_it_mw（含 by_status 拆分）；集群级/未填容量的记录不计入。规则见 framework/01_data_standards.md</div>
+
+  <h2>监测仪表盘（L4 · 红黄绿）</h2>
+  <div class="tablewrap"><table id="indicators"></table></div>
+
+  <h2>研究模块（L2 · 15 模块）</h2>
+  <div class="modules" id="modules"></div>
+
+  <h2>项目库（L0）</h2>
+  <div class="tablewrap"><table id="projects"></table></div>
+
+  <div class="note" style="margin-top:24px">
+    本页为静态视图：<code>python3 -m http.server 8000</code> 后打开。数据文件位于 <code>data/</code>，
+    框架文件位于 <code>framework/</code>。校验：<code>python3 inresearch.py validate</code>
+  </div>
+  <div id="error"></div>
+</div>
+
+<script>
+// ── 当前用户与「用户与权限」区（仅 admin） ─────────────────
+let ME=null;
+async function initWho(){
+  try{
+    ME=await (await fetch("/api/whoami")).json();
+    if(!ME.ok) return;
+    document.getElementById("whoami").innerHTML =
+      `${ME.user} · ${ME.role} &nbsp;<a href="/account">改密码</a> &nbsp;<a href="/logout">退出</a>`;
+    if(ME.role==="admin"){document.getElementById("usersSec").style.display="";loadUsers();}
+  }catch(e){}
+}
+async function loadUsers(){
+  const d=await (await fetch("/api/users")).json();
+  if(!d.ok) return;
+  const tb=document.querySelector("#usersTable tbody");
+  tb.innerHTML=d.users.map(u=>`<tr>
+    <td><b>${u.name}</b>${u.name===ME.user?' <span style="color:var(--muted);font-size:11px">(我)</span>':''}</td>
+    <td><select onchange="setRole('${u.name}',this.value,this)" style="padding:3px 6px;border-radius: var(--ui-radius);border:1px solid var(--line);background:var(--card);color:var(--text)">
+      ${["intern","member","admin"].map(r=>`<option value="${r}"${r===u.role?" selected":""}>${r}</option>`).join("")}
+    </select></td>
+    <td style="color:var(--muted)">${u.created}</td>
+    <td style="text-align:right;white-space:nowrap">
+      <a href="#" onclick="resetPw('${u.name}');return false">重置密码</a> ·
+      <a href="#" onclick="renameU('${u.name}');return false">改名</a> ·
+      <a href="#" onclick="removeU('${u.name}');return false" style="color:var(--red)">删除</a>
+    </td></tr>`).join("");
+}
+function umsg(ok,text){const m=document.getElementById("usersMsg");
+  m.style.color=ok?"var(--green)":"var(--red)";m.textContent=text;}
+function showPw(name,pw){
+  document.getElementById("pwUser").textContent=name;
+  document.getElementById("pwText").textContent=pw;
+  document.getElementById("pwCopied").textContent="";
+  document.getElementById("pwReveal").style.display="";
+}
+function copyPw(){navigator.clipboard.writeText(document.getElementById("pwText").textContent)
+  .then(()=>document.getElementById("pwCopied").textContent="✓ 已复制");}
+async function uapi(body){
+  const d=await (await fetch("/api/users",{method:"POST",body:JSON.stringify(body)})).json();
+  umsg(d.ok,d.ok?(d.msg||"完成"):(d.error||"失败"));
+  if(d.ok){loadUsers();if(d.password)showPw(body.username,d.password);}
+  return d;
+}
+function addUser(){
+  const name=document.getElementById("nuName").value.trim();
+  if(!name){umsg(false,"填一个用户名");return;}
+  uapi({action:"add",username:name,role:document.getElementById("nuRole").value})
+    .then(d=>{if(d.ok)document.getElementById("nuName").value="";});
+}
+function setRole(name,role,sel){
+  uapi({action:"role",username:name,role}).then(d=>{if(!d.ok)loadUsers();});
+}
+function resetPw(name){
+  if(!confirm(`重置 ${name} 的密码？旧密码将立即失效。`))return;
+  uapi({action:"reset",username:name});
+}
+function renameU(name){
+  const nn=prompt(`把 ${name} 改成什么名字？\n（改名后其旧登录立即失效，须用新名重登）`,name);
+  if(!nn||nn===name)return;
+  uapi({action:"rename",username:name,new_name:nn.trim()});
+}
+function removeU(name){
+  if(!confirm(`确定删除 ${name}？其登录立即失效。此操作不可撤销。`))return;
+  uapi({action:"remove",username:name});
+}
+initWho();
+</script>
+<script>
+const DIM_NAMES = { physical: "物理", capital: "资本", economics: "经济学", cross: "横切", synthesis: "综合" };
+
+async function loadJSON(path) {
+  const r = await fetch(path + "?t=" + Date.now(), { cache: "no-store" });
+  if (!r.ok) throw new Error(path + " → HTTP " + r.status);
+  return r.json();
+}
+
+function indicatorStatus(ind) {
+  if (ind.value === null || ind.value === undefined) return ["n", "待录入"];
+  const { direction, yellow, red, value } = ind;
+  if (direction === "info" || yellow === null) return ["g", "跟踪中"];
+  const worse = direction === "above" ? (v, t) => v >= t : (v, t) => v <= t;
+  if (red !== null && worse(value, red)) return ["r", "红"];
+  if (worse(value, yellow)) return ["y", "黄"];
+  return ["g", "绿"];
+}
+
+function projectCapacity(p) {
+  const by = {};
+  if (p.capacity_it_mw_by_status) Object.assign(by, p.capacity_it_mw_by_status);
+  else if (p.capacity_it_mw) by[p.status] = p.capacity_it_mw;
+  return by;
+}
+
+(async () => {
+  try {
+    const [mods, inds, projects, companies, prices, contracts] = await Promise.all([
+      loadJSON("framework/modules.json"), loadJSON("framework/indicators.json"),
+      loadJSON("data/projects.json"), loadJSON("data/companies.json"),
+      loadJSON("data/prices.json"), loadJSON("data/contracts.json"),
+    ]);
+    document.getElementById("updated").textContent = "框架 v" + mods.version + " · " + mods.updated;
+
+    // 今日信号（brief.json 由 src/inresearch/adapters/historical_brief.py 生成；没有则隐藏该区块）
+    try {
+      const brief = await loadJSON("data/brief.json");
+      document.getElementById("briefSection").style.display = "";
+      document.getElementById("briefDate").textContent = brief.date + "（" + (brief.generated || "").slice(11, 16) + " 生成）";
+      document.getElementById("secFilings").innerHTML = brief.sec.slice(0, 8).map(f =>
+        `<div class="sig"><span class="ent">${f.name}</span> <span class="cnt">${f.form} · ${f.date}</span>` +
+        `<a href="${f.url}" target="_blank">查看文件</a></div>`).join("") || '<div class="note">近 7 天无新文件</div>';
+      document.getElementById("verifyMeta").textContent = `P1 ${brief.verify.p1} 条 · P2 ${brief.verify.p2} 条`;
+      document.getElementById("verifyItems").innerHTML = brief.verify.items.slice(0, 8).map(q =>
+        `<div class="sig"><span class="ent">${q.table} / ${q.id}</span><div class="cnt">${q.reason}</div></div>`).join("")
+        || '<div class="note">P1 清零 🎉</div>';
+    } catch (e) { /* brief.json 缺失时隐藏区块 */ }
+
+    // 统计行
+    let totalFindings = 0;
+    try {
+      const rs = (await loadJSON("data/brief.json")).research || {};
+      totalFindings = Object.values(rs).reduce((a, s) => a + (s.findings || 0), 0);
+    } catch (e) {}
+    const stats = [
+      [totalFindings, "研究结论"], [projects.records.length, "项目"],
+      [companies.records.length, "公司"], [prices.records.length, "价格点"],
+      [contracts.records.length, "合同"], [mods.modules.length, "模块"],
+      [inds.indicators.length, "监测指标"],
+    ];
+    document.getElementById("stats").innerHTML = stats.map(
+      ([n, l]) => `<div class="stat"><div class="num">${n}</div><div class="lbl">${l}</div></div>`).join("");
+
+    // 漏斗
+    const funnel = Object.fromEntries(Array.from({length: 9}, (_, i) => ["L" + (i + 1), 0]));
+    projects.records.forEach(p => {
+      const by = projectCapacity(p);
+      for (const [lv, mw] of Object.entries(by)) if (funnel[lv] !== undefined) funnel[lv] += mw;
+    });
+    document.getElementById("funnel").innerHTML = Object.entries(funnel).map(
+      ([lv, mw]) => `<div class="fseg"><div class="lv">${lv}</div><div class="mw">${mw ? mw.toLocaleString() : "–"}</div></div>`).join("");
+
+    // 指标表
+    const it = ['<tr><th></th><th>指标</th><th>模块</th><th>当前值</th><th>时点</th><th>阈值(黄/红)</th><th>频率</th></tr>'];
+    inds.indicators.forEach(ind => {
+      const [cls, txt] = indicatorStatus(ind);
+      it.push(`<tr><td><span class="dot ${cls}"></span>${txt}</td><td>${ind.name}</td><td>${ind.module}</td>` +
+        `<td>${ind.value ?? "—"} ${ind.value != null ? ind.unit : ""}</td><td>${ind.as_of ?? "—"}</td>` +
+        `<td>${ind.yellow ?? "—"} / ${ind.red ?? "—"}</td><td>${ind.freq}</td></tr>`);
+    });
+    document.getElementById("indicators").innerHTML = it.join("");
+
+    // 模块卡片（研究文档状态来自 brief.research，collect.py 生成）
+    let rstats = {};
+    try { rstats = (await loadJSON("data/brief.json")).research || {}; } catch (e) {}
+    const dimOf = {};
+    for (const [dim, ids] of Object.entries(mods.dimensions || {})) ids.forEach(id => dimOf[id] = dim);
+    document.getElementById("modules").innerHTML = mods.modules.map(m => {
+      const rs = rstats[m.id];
+      const researchPath = m.research || `research/${m.id}.md`;
+      const link = researchPath
+        ? `<a class="doclink" href="doc.html?f=${researchPath}">📄 ${rs ? rs.findings + " 条结论" : "研究文档"}${rs && rs.needs_review ? " ⚠️" + rs.needs_review : ""}</a>`
+        : `<span class="doclink muted">待迁入</span>`;
+      return `<div class="mod"><span class="id">${m.id}</span><span class="dim-tag">${DIM_NAMES[dimOf[m.id]] || ""}</span>` + link +
+        `<div class="nm">${m.name}</div><div class="meta">${(m.beats || []).length} 个信源跑口 · ${(m.questions || []).length} 个模块问题` +
+        `</div></div>`;
+    }).join("");
+
+    // 项目表
+    const STATUS_COLOR = lv => +lv.slice(1) >= 8 ? "var(--green)" : +lv.slice(1) >= 6 ? "var(--yellow)" : "var(--gray)";
+    const pt = ['<tr><th>项目</th><th>地点</th><th>状态</th><th>IT容量(MW)</th><th>类型</th><th>核验日期</th></tr>'];
+    projects.records.forEach(p => {
+      const by = projectCapacity(p);
+      const capStr = Object.entries(by).map(([l, m]) => `${l}:${m}`).join(" ") || "—";
+      pt.push(`<tr><td>${p.name}${p.disputed ? " ⚠️" : ""}</td><td>${p.location}</td>` +
+        `<td><span class="badge" style="background:${STATUS_COLOR(p.status)}">${p.status}</span></td>` +
+        `<td>${capStr}</td><td>${p.type}</td><td>${p.verified_date}</td></tr>`);
+    });
+    document.getElementById("projects").innerHTML = pt.join("");
+  } catch (e) {
+    document.getElementById("error").innerHTML = `<div class="err">加载失败：${e.message}<br>请刷新页面；若仍失败，请保留错误信息。此页需要应用服务提供数据与管理 API。</div>`;
+  }
+})();
+</script>
+<script>
+// ── 管理后台：采集控制台 + 手动录入 ──
+const TASKS = [
+  ["collect", "兼容简报", "仅汇总历史缓存，不触发采集"],
+  ["news", "inews 采集状态", "Spark 新闻线索台账；不是全文"],
+  ["sec", "SEC 采集状态", "Spark 披露清单与原件；不自动采用"],
+  ["gpu", "GPU 采集状态", "按需报价快照；不写正式价格表"],
+  ["indicators", "指标回填", "库内数据→指标值"],
+  ["verify", "核验队列", "生成待核清单"],
+  ["queue", "精读队列", "已打分−已消化，该读什么"],
+  ["reader", "Spark 阅读状态", "读取已配置的 Spark 阅读服务快照与队列状态"],
+  ["validate", "数据校验", "口径规则把关"],
+  ["export", "导出报告", "全量 md+docx"],
+  ["map", "Top10 地图", "html+pdf（PDF 仅本机，服务器缺渲染依赖）"],
+  ["inbox", "扫描收件箱", "docs/inbox 新材料"],
+  ["workorder", "工单队列", "声明−现状，每模块下一步"],
+  ["blindspot", "盲区体检", "库里有但分类器看不见的材料"],
+  ["intake", "投递机检", "成员投递三档分流（A 人批/B 抽查/C 自动）"],
+  ["facts", "事实层校验", "口径可比性判定"],
+];
+const consoleEl = document.getElementById("console");
+function clog(s) { consoleEl.textContent += "\n" + s; consoleEl.scrollTop = consoleEl.scrollHeight; }
+
+async function refreshStatus() {
+  try {
+    const st = await (await fetch("/api/status")).json();
+    TASKS.forEach(([id]) => {
+      const el = document.getElementById("t-" + id);
+      if (el) el.querySelector(".last").textContent = st[id]?.running ? "运行中…" : (st[id]?.last ? "上次 " + st[id].last.slice(5, 16).replace("T", " ") : "未运行过");
+    });
+  } catch (e) {}
+}
+document.getElementById("tasks").innerHTML = TASKS.map(([id, name, desc]) =>
+  `<button class="task-btn" id="t-${id}" onclick="runTask('${id}')"><b>▶ ${name}</b><span>${desc}</span><br><span class="last"></span></button>`).join("");
+refreshStatus();
+
+async function runTask(id) {
+  const btn = document.getElementById("t-" + id);
+  btn.classList.add("busy");
+  clog(`\n$ ${id} 启动…`);
+  try {
+    const r = await (await fetch("/api/run", { method: "POST", body: JSON.stringify({ task: id }) })).json();
+    clog((r.ok ? "✔ " : "✘ ") + (r.name || id) + "\n" + (r.output || r.error || ""));
+  } catch (e) { clog("✘ 请求失败: " + e.message + "（确认由 src/inresearch/interfaces/http.py 提供服务）"); }
+  btn.classList.remove("busy");
+  refreshStatus();
+}
+
+// 录入表单：序列名自动补全 + 提交
+(async () => {
+  try {
+    const prices = await (await fetch("data/prices.json?t=" + Date.now())).json();
+    document.getElementById("serieslist").innerHTML =
+      [...new Set(prices.records.map(r => r.series_id))].map(s => `<option value="${s}">`).join("");
+  } catch (e) {}
+})();
+document.getElementById("psubmit").onclick = async () => {
+  const f = document.getElementById("pform");
+  const rec = Object.fromEntries(new FormData(f).entries());
+  const msg = document.getElementById("pmsg");
+  msg.textContent = "提交中…"; msg.style.color = "var(--muted)";
+  try {
+    const r = await (await fetch("/api/add-price", { method: "POST", body: JSON.stringify(rec) })).json();
+    msg.textContent = r.ok ? "✔ " + r.msg : "✘ " + r.error;
+    msg.style.color = r.ok ? "var(--green)" : "var(--red)";
+    if (r.ok) { f.reset(); clog("✔ 录入 " + rec.series_id + "@" + rec.as_of + " = " + rec.value + " " + rec.unit); }
+  } catch (e) { msg.textContent = "✘ " + e.message; msg.style.color = "var(--red)"; }
+};
+</script>
+</body>
+</html>

@@ -4,7 +4,7 @@
 
 > **本文件是生成物，不要手写。** 工单 = `framework/modules.json` 的模块声明 − 仓库现状（indicators / LIBRARY_SCORES / research / sources）。
 > 工单号按**内容**哈希而非位置编号——队列重算后同一件事的号不变，所以派出去的活不会错位到别的任务上。
-> 改工单的正确做法是改声明或改现状，然后重跑 `python3 pipeline/workorder.py`。
+> 改工单的正确做法是改声明或改现状，然后重跑 `python3 manage.py workorders`。
 
 优先级：**P1** 声明缺失与弹药饥饿（不补就长不出东西）｜**P2** 指标留白、信源未开口、声明问题未答（正常采集量）｜**P3** 消化积压与鲜度逾期（不是采集，是加工）
 
@@ -270,7 +270,7 @@
 
 **缺口**：M02 有 1 条 needs-review、0 条 stale
 
-**动作**：跑 `python3 pipeline/verify.py` 取核验队列，按触发器找新证据复核。
+**动作**：跑 `python3 manage.py verify` 取核验队列，按触发器找新证据复核。
 
 ## M03 需求格局
 
@@ -1310,7 +1310,7 @@
 
 **缺口**：M06 有 10 条 needs-review、0 条 stale
 
-**动作**：跑 `python3 pipeline/verify.py` 取核验队列，按触发器找新证据复核。
+**动作**：跑 `python3 manage.py verify` 取核验队列，按触发器找新证据复核。
 
 ## M07 网络与互联
 
@@ -1648,7 +1648,7 @@
 
 **缺口**：M07 有 4 条 needs-review、0 条 stale
 
-**动作**：跑 `python3 pipeline/verify.py` 取核验队列，按触发器找新证据复核。
+**动作**：跑 `python3 manage.py verify` 取核验队列，按触发器找新证据复核。
 
 ## M08 散热与制冷
 
@@ -2100,7 +2100,7 @@
 
 **缺口**：M08 有 3 条 needs-review、0 条 stale
 
-**动作**：跑 `python3 pipeline/verify.py` 取核验队列，按触发器找新证据复核。
+**动作**：跑 `python3 manage.py verify` 取核验队列，按触发器找新证据复核。
 
 ## M09 电气设备供应链
 
@@ -2444,7 +2444,7 @@
 
 **缺口**：M09 有 1 条 needs-review、0 条 stale
 
-**动作**：跑 `python3 pipeline/verify.py` 取核验队列，按触发器找新证据复核。
+**动作**：跑 `python3 manage.py verify` 取核验队列，按触发器找新证据复核。
 
 ## M10 建设运营与人才
 
@@ -2820,7 +2820,7 @@
 
 **缺口**：M11 有 1 条 needs-review、0 条 stale
 
-**动作**：跑 `python3 pipeline/verify.py` 取核验队列，按触发器找新证据复核。
+**动作**：跑 `python3 manage.py verify` 取核验队列，按触发器找新证据复核。
 
 ## M12 需求侧经济学
 
@@ -3196,7 +3196,7 @@
 
 **缺口**：M13 有 2 条 needs-review、0 条 stale
 
-**动作**：跑 `python3 pipeline/verify.py` 取核验队列，按触发器找新证据复核。
+**动作**：跑 `python3 manage.py verify` 取核验队列，按触发器找新证据复核。
 
 ## M14 中国板块
 
@@ -3440,5 +3440,5 @@
 
 **缺口**：M15 有 1 条 needs-review、0 条 stale
 
-**动作**：跑 `python3 pipeline/verify.py` 取核验队列，按触发器找新证据复核。
+**动作**：跑 `python3 manage.py verify` 取核验队列，按触发器找新证据复核。
 

@@ -1,0 +1,64 @@
+{
+  "python": {
+    "status": "passed",
+    "tests": 845,
+    "seconds": 9.292,
+    "environment": "macOS system Python 3.9; temporary fixtures"
+  },
+  "browser": {
+    "status": "passed",
+    "suites": 9,
+    "results": [
+      "PASS index.html four appearances + phone controls",
+      "PASS research.html four appearances + phone controls",
+      "PASS admin/product/index.html four appearances + phone controls",
+      "PASS doc.html four appearances + phone controls",
+      "PASS bom3d.html four appearances + phone controls",
+      "PASS rack3d.html four appearances + phone controls",
+      "PASS bom.html four appearances + phone controls",
+      "PASS company.html four appearances + phone controls",
+      "PASS compare.html four appearances + phone controls",
+      "PASS ops.html four appearances + phone controls",
+      "PASS team.html four appearances + phone controls",
+      "PASS report.html four appearances + phone controls",
+      "PASS materials.html four appearances + phone controls",
+      "PASS persistence, cross-tab sync, explicit/system mode, print, corrupt/blocked storage, preserved research state; no page errors",
+      "PASS homepage and ops shared news: scrolling, titles, safe links, skins, mobile",
+      "PASS ecosystem drilldown, CPU depth, vendor jump, legacy links, skins and mobile",
+      "PASS server→SSD→NAND, keyboard, back, reload, topics, SVG, skins, mobile, pagination",
+      "PASS hover manufacturers, HDD navigation, vendor filter reload, keyboard Escape, touch and mobile",
+      "PASS URL text, Markdown links, code spans and document table of contents",
+      "PASS report content, source model, current task parity and team rendering",
+      "PASS 24 auth appearances, field labels and public navigation boundary",
+      "PASS both real 3D dossiers, deep links, inspector drag, theme preservation and close"
+    ]
+  },
+  "real_claude": {
+    "status": "passed",
+    "proof": "real-reader-flow.json"
+  },
+  "strict_data": {
+    "status": "passed",
+    "warnings": 0
+  },
+  "registry": {
+    "status": "passed",
+    "objects": 118,
+    "questions": 449
+  },
+  "fact_audit": {
+    "status": "unresolved",
+    "exit_code": 1,
+    "missing_sha_facts": 38,
+    "unregistered_historical_source_ids": 27
+  },
+  "remote_spark_m4": {
+    "status": "not verified",
+    "reason": "Spark unavailable; active M4 runtime and originals not modified"
+  },
+  "deployment": {
+    "status": "pending",
+    "proof": "separate deployment.json after formal release"
+  },
+  "scope": "Each check describes its own environment; no blanket architecture-complete claim."
+}
