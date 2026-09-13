@@ -34708,6 +34708,306 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原文「超过」按下界记；capacity_type 就近记已交付（原文为已开始计费的在营容量）。"
+    },
+    {
+      "fact_id": "gszq-capex-guide-google-2026-lower",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "google",
+        "label": "谷歌"
+      },
+      "value": 1800.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "厂商指引",
+        "vintage": "其他快照",
+        "region": "US"
+      },
+      "as_of": "2026E@2026-04",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "8331131274f41b35820442cf35aa69972b07bd8941f98504cd7197134037b024",
+        "local_file": "国盛证券 全球算力共振，AIDC大时代（2026-05-25）.pdf",
+        "locator": "第 3 页：「公司预计将2026年资本支出预期范围上调至1800-1900亿美元，较2025年全年资本支出915亿美元翻倍」",
+        "grade": "S4",
+        "originator": "国盛证券研究所（杨润思、杨凡仪），转述各公司 26Q1 业绩会"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "同源转述",
+      "notes": "**较 2025 年全年 915 亿美元翻倍**；同季云订单积压环比翻倍至超 4,600 亿美元。 **corroboration=同源转述**：数字出自公司业绩会，券商转述。 做出时点按 26Q1 业绩会（2026-04 下旬）记。 **对照库内西南证券转述的 2025 年指引**（谷歌 910-930、Meta 700-720、亚马逊 1,250 亿美元）：**一年后 2026 年指引全部翻倍左右**。"
+    },
+    {
+      "fact_id": "gszq-capex-guide-google-2026-upper",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "google",
+        "label": "谷歌"
+      },
+      "value": 1900.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "厂商指引",
+        "vintage": "其他快照",
+        "region": "US"
+      },
+      "as_of": "2026E@2026-04",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "8331131274f41b35820442cf35aa69972b07bd8941f98504cd7197134037b024",
+        "local_file": "国盛证券 全球算力共振，AIDC大时代（2026-05-25）.pdf",
+        "locator": "第 3 页：「同句」",
+        "grade": "S4",
+        "originator": "国盛证券研究所（杨润思、杨凡仪），转述各公司 26Q1 业绩会"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "同源转述",
+      "notes": "区间上界。 **corroboration=同源转述**：数字出自公司业绩会，券商转述。 做出时点按 26Q1 业绩会（2026-04 下旬）记。 **对照库内西南证券转述的 2025 年指引**（谷歌 910-930、Meta 700-720、亚马逊 1,250 亿美元）：**一年后 2026 年指引全部翻倍左右**。"
+    },
+    {
+      "fact_id": "gszq-capex-guide-microsoft-2026",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "microsoft",
+        "label": "微软"
+      },
+      "value": 1900.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "厂商指引",
+        "vintage": "其他快照",
+        "region": "US"
+      },
+      "as_of": "2026E@2026-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8331131274f41b35820442cf35aa69972b07bd8941f98504cd7197134037b024",
+        "local_file": "国盛证券 全球算力共振，AIDC大时代（2026-05-25）.pdf",
+        "locator": "第 3 页：「2026年资本支出预计1900亿美元，其中约250亿美元来自组件价格上升」",
+        "grade": "S4",
+        "originator": "国盛证券研究所（杨润思、杨凡仪），转述各公司 26Q1 业绩会"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "同源转述",
+      "notes": "**其中约 250 亿美元（13%）来自组件价格上升**，不是新增容量——**同一笔 capex 能买到的算力在缩水**。商业 RPO 增至 6,270 亿美元。 **corroboration=同源转述**：数字出自公司业绩会，券商转述。 做出时点按 26Q1 业绩会（2026-04 下旬）记。 **对照库内西南证券转述的 2025 年指引**（谷歌 910-930、Meta 700-720、亚马逊 1,250 亿美元）：**一年后 2026 年指引全部翻倍左右**。"
+    },
+    {
+      "fact_id": "gszq-capex-guide-meta-2026-lower",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "meta",
+        "label": "Meta"
+      },
+      "value": 1250.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "厂商指引",
+        "vintage": "其他快照",
+        "region": "US"
+      },
+      "as_of": "2026E@2026-04",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "8331131274f41b35820442cf35aa69972b07bd8941f98504cd7197134037b024",
+        "local_file": "国盛证券 全球算力共振，AIDC大时代（2026-05-25）.pdf",
+        "locator": "第 3 页：「公司将2026年资本支出预期上调至1250-1450亿美元之间，此前预测为1150-1350亿美元，公司指出上调主要系今年零部件价格上涨及新增数据中心成本」",
+        "grade": "S4",
+        "originator": "国盛证券研究所（杨润思、杨凡仪），转述各公司 26Q1 业绩会"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "同源转述",
+      "notes": "**由 1,150-1,350 上调至 1,250-1,450 亿美元（上下界各 +100 亿）**，原因是零部件涨价与新增数据中心成本。 **corroboration=同源转述**：数字出自公司业绩会，券商转述。 做出时点按 26Q1 业绩会（2026-04 下旬）记。 **对照库内西南证券转述的 2025 年指引**（谷歌 910-930、Meta 700-720、亚马逊 1,250 亿美元）：**一年后 2026 年指引全部翻倍左右**。"
+    },
+    {
+      "fact_id": "gszq-capex-guide-meta-2026-upper",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "meta",
+        "label": "Meta"
+      },
+      "value": 1450.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "厂商指引",
+        "vintage": "其他快照",
+        "region": "US"
+      },
+      "as_of": "2026E@2026-04",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "8331131274f41b35820442cf35aa69972b07bd8941f98504cd7197134037b024",
+        "local_file": "国盛证券 全球算力共振，AIDC大时代（2026-05-25）.pdf",
+        "locator": "第 3 页：「同句」",
+        "grade": "S4",
+        "originator": "国盛证券研究所（杨润思、杨凡仪），转述各公司 26Q1 业绩会"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "同源转述",
+      "notes": "区间上界。 **corroboration=同源转述**：数字出自公司业绩会，券商转述。 做出时点按 26Q1 业绩会（2026-04 下旬）记。 **对照库内西南证券转述的 2025 年指引**（谷歌 910-930、Meta 700-720、亚马逊 1,250 亿美元）：**一年后 2026 年指引全部翻倍左右**。"
+    },
+    {
+      "fact_id": "gszq-capex-guide-amazon-2026",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "amazon",
+        "label": "亚马逊"
+      },
+      "value": 2000.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "厂商指引",
+        "vintage": "其他快照",
+        "region": "US"
+      },
+      "as_of": "2026E@2026-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8331131274f41b35820442cf35aa69972b07bd8941f98504cd7197134037b024",
+        "local_file": "国盛证券 全球算力共振，AIDC大时代（2026-05-25）.pdf",
+        "locator": "第 3 页：「公司单季资本支出432亿美元，同比增长超78%；预计2026全年的资本支出2000亿美元，主要用于数据中心业务」",
+        "grade": "S4",
+        "originator": "国盛证券研究所（杨润思、杨凡仪），转述各公司 26Q1 业绩会"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "同源转述",
+      "notes": "26Q1 单季 432 亿美元、同比 +78% 以上。 **corroboration=同源转述**：数字出自公司业绩会，券商转述。 做出时点按 26Q1 业绩会（2026-04 下旬）记。 **对照库内西南证券转述的 2025 年指引**（谷歌 910-930、Meta 700-720、亚马逊 1,250 亿美元）：**一年后 2026 年指引全部翻倍左右**。"
+    },
+    {
+      "fact_id": "gszq-capex-google-2025-actual",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "google",
+        "label": "谷歌"
+      },
+      "value": 915.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "US"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8331131274f41b35820442cf35aa69972b07bd8941f98504cd7197134037b024",
+        "local_file": "国盛证券 全球算力共振，AIDC大时代（2026-05-25）.pdf",
+        "locator": "第 3 页：「较2025年全年资本支出915亿美元翻倍」",
+        "grade": "S4",
+        "originator": "国盛证券研究所（杨润思、杨凡仪），转述各公司 26Q1 业绩会"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "同源转述",
+      "notes": "**2025 年实际 915 亿美元，落在 2025-10 时的指引区间 910-930 亿（swsc-capex-guide-google-2025-*）下沿**。**corroboration=同源转述**：数字出自公司业绩会，券商转述。"
+    },
+    {
+      "fact_id": "schneider-1mw-2n-hardware-cost-us",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "schneider-ref-dc-us",
+        "label": "施耐德参考设计：美国 1MW 2N 数据中心"
+      },
+      "value": 8.6,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "US",
+        "basis": "厂商指引"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8331131274f41b35820442cf35aa69972b07bd8941f98504cd7197134037b024",
+        "local_file": "国盛证券 全球算力共振，AIDC大时代（2026-05-25）.pdf",
+        "locator": "第 6 页：「据施耐德电气数据：美国1000kw，电源线路配置为2N的数据中心硬件总成本为860万美元……中国数据中心硬件总成本为500万美元……马来西亚数据中心硬件总成本约460万美元」",
+        "grade": "S3",
+        "originator": "施耐德电气（经国盛证券转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：万美元 ÷ 100 = 百万美元/MW（1,000kW = 1MW）。 **供配电系统占 49%、冷却占 16%**；饼图中外部结构占 16%。 **口径是「硬件总成本」，按 1MW、2N 供电线路配置**；饼图列出的构成为 UPS、电源、开关设备、核心配电设备、制冷机、冷水空调机、冷却塔、循环水泵、加工泵、工程设施、外部结构、运维、其他——**含外部结构与工程设施，不含 IT 设备与土地**，cost_scope 就近记仅机电与土建，标 [未核]。 **对照同库戴德梁行亚太 2026**：中国内地中档 7.1、马来西亚中档 9.6 百万美元/MW——**施耐德的数比戴德梁行低 30%-50%**，前者是硬件、后者含 Powered Shell 与机房装修，口径不同；美国 8.6 与日本/新加坡（16.0/14.4）也不在一个量级。 时点：国盛引用未给施耐德数据发布年，按报告年记，标 [未核]。"
+    },
+    {
+      "fact_id": "schneider-1mw-2n-hardware-cost-cn",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "schneider-ref-dc-cn",
+        "label": "施耐德参考设计：中国 1MW 2N 数据中心"
+      },
+      "value": 5.0,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "CN",
+        "basis": "厂商指引"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8331131274f41b35820442cf35aa69972b07bd8941f98504cd7197134037b024",
+        "local_file": "国盛证券 全球算力共振，AIDC大时代（2026-05-25）.pdf",
+        "locator": "第 6 页：「据施耐德电气数据：美国1000kw，电源线路配置为2N的数据中心硬件总成本为860万美元……中国数据中心硬件总成本为500万美元……马来西亚数据中心硬件总成本约460万美元」",
+        "grade": "S3",
+        "originator": "施耐德电气（经国盛证券转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：万美元 ÷ 100 = 百万美元/MW（1,000kW = 1MW）。 **供配电系统占 57%、冷却占 19%**——比美国更偏重电气；外部结构仅 1%。 **口径是「硬件总成本」，按 1MW、2N 供电线路配置**；饼图列出的构成为 UPS、电源、开关设备、核心配电设备、制冷机、冷水空调机、冷却塔、循环水泵、加工泵、工程设施、外部结构、运维、其他——**含外部结构与工程设施，不含 IT 设备与土地**，cost_scope 就近记仅机电与土建，标 [未核]。 **对照同库戴德梁行亚太 2026**：中国内地中档 7.1、马来西亚中档 9.6 百万美元/MW——**施耐德的数比戴德梁行低 30%-50%**，前者是硬件、后者含 Powered Shell 与机房装修，口径不同；美国 8.6 与日本/新加坡（16.0/14.4）也不在一个量级。 时点：国盛引用未给施耐德数据发布年，按报告年记，标 [未核]。"
+    },
+    {
+      "fact_id": "schneider-1mw-2n-hardware-cost-my",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "schneider-ref-dc-my",
+        "label": "施耐德参考设计：马来西亚 1MW 2N 数据中心"
+      },
+      "value": 4.6,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "厂商指引"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8331131274f41b35820442cf35aa69972b07bd8941f98504cd7197134037b024",
+        "local_file": "国盛证券 全球算力共振，AIDC大时代（2026-05-25）.pdf",
+        "locator": "第 6 页：「据施耐德电气数据：美国1000kw，电源线路配置为2N的数据中心硬件总成本为860万美元……中国数据中心硬件总成本为500万美元……马来西亚数据中心硬件总成本约460万美元」",
+        "grade": "S3",
+        "originator": "施耐德电气（经国盛证券转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：万美元 ÷ 100 = 百万美元/MW（1,000kW = 1MW）。 **供配电系统占 57%、冷却占 19%**，结构与中国一致。 **口径是「硬件总成本」，按 1MW、2N 供电线路配置**；饼图列出的构成为 UPS、电源、开关设备、核心配电设备、制冷机、冷水空调机、冷却塔、循环水泵、加工泵、工程设施、外部结构、运维、其他——**含外部结构与工程设施，不含 IT 设备与土地**，cost_scope 就近记仅机电与土建，标 [未核]。 **对照同库戴德梁行亚太 2026**：中国内地中档 7.1、马来西亚中档 9.6 百万美元/MW——**施耐德的数比戴德梁行低 30%-50%**，前者是硬件、后者含 Powered Shell 与机房装修，口径不同；美国 8.6 与日本/新加坡（16.0/14.4）也不在一个量级。 时点：国盛引用未给施耐德数据发布年，按报告年记，标 [未核]。"
     }
   ]
 }
