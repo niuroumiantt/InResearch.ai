@@ -47984,6 +47984,123 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "区间 1.1–1.2 的上界；对照老旧设施 1.5–1.7（无 basis 取值可对应「老旧设施典型值」，未录）。period 原文未写，按年均记。"
+    },
+    {
+      "fact_id": "kysec-zhongwei-park-green-share-2025",
+      "metric_id": "dc_renewable_share",
+      "entity": {
+        "type": "project",
+        "id": "zhongwei-cloud-base-park",
+        "label": "宁夏中卫云基地算力园区"
+      },
+      "value": 65.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "可再生电量占总用电",
+        "scope": "单项目",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "78d663ed86bd18bce008fd49d6a90175b374eda333d9619c87ab5129a953f3fa",
+        "local_file": "20260505-算电协同从_电支撑算_迈向_算优化电_寻北证绿电+算力基建机遇_17页_2mb.pdf",
+        "locator": "第 3 页：「截至 2026 年 4 月底，全国算力行业前十企业中已有六家入驻中卫云基地算力园区，园区 2025 年绿电使用占比超 65%」",
+        "grade": "S3",
+        "originator": "新闻联播报道（经开源证券转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「超 65%」按下界记；园区级（多家企业）而非单个数据中心，scope 取最接近的单项目。原文「绿电使用占比」未说明是否含绿证折算，measure 按字面记可再生电量占比。数据源自新闻联播报道。"
+    },
+    {
+      "fact_id": "kysec-zhongwei-green-direct-supply-capacity",
+      "metric_id": "green_direct_capacity",
+      "entity": {
+        "type": "project",
+        "id": "zhongwei-dc-green-direct-supply",
+        "label": "中卫云基地数据中心绿电供应项目（中国大唐）"
+      },
+      "value": 2.0,
+      "unit": "GW",
+      "caliber": {
+        "stat_basis": "对应新能源总装机",
+        "region": "CN"
+      },
+      "as_of": "2026-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "78d663ed86bd18bce008fd49d6a90175b374eda333d9619c87ab5129a953f3fa",
+        "local_file": "20260505-算电协同从_电支撑算_迈向_算优化电_寻北证绿电+算力基建机遇_17页_2mb.pdf",
+        "locator": "第 3 页：「中卫云基地数据中心绿电供应项目，由 50 万千瓦光伏电站和 150 万千瓦风电场协同组成」；「2026 年 5 月 2 日……中卫云基地数据中心绿电直供 50 万千瓦光伏电站正式投运」；「150 万千瓦风电项目将于年底建成，建成后整体项目年发电量可达 43 亿千瓦时」",
+        "grade": "S3",
+        "originator": "新闻联播 / 中国大唐（经开源证券转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单个项目：光伏 0.5 GW（2026-05-02 投运）+ 风电 1.5 GW（年底建成）= 2.0 GW，其中风电尚在建；全年发电 43 亿 kWh、相当于减碳 365 万吨。称「我国首个大规模算电协同绿电供应项目」。本指标原为全国已审批项目合计，此为项目级。"
+    },
+    {
+      "fact_id": "kysec-cn-internet-data-services-power-2026q1",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "cn-internet-data-services",
+        "label": "中国互联网数据服务业（行业用电统计口径）"
+      },
+      "value": 22.9,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "未注明",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2026-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "78d663ed86bd18bce008fd49d6a90175b374eda333d9619c87ab5129a953f3fa",
+        "local_file": "20260505-算电协同从_电支撑算_迈向_算优化电_寻北证绿电+算力基建机遇_17页_2mb.pdf",
+        "locator": "第 4 页：「“十四五”以来，我国互联网数据服务业用电增长总体呈逐步加快态势，2021—2025 年年均增长 36%。今年一季度，互联网数据服务用电量达到 229 亿千瓦时，同比增长 44%；互联网数据服务用电量在全社会用电量中的占比接近 1%」",
+        "grade": "S3",
+        "originator": "未注明（行业用电统计，经开源证券转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "229 亿 kWh = 22.9 TWh，单季度。**「互联网数据服务」是全社会用电分行业统计口径（中电联/能源局），与「数据中心用电量」不完全等同**，scope 记未注明。原文未注明发布机构。"
+    },
+    {
+      "fact_id": "kysec-cn-internet-data-services-power-share-2026q1",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "cn-internet-data-services",
+        "label": "中国互联网数据服务业（行业用电统计口径）"
+      },
+      "value": 1.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2026-Q1",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "78d663ed86bd18bce008fd49d6a90175b374eda333d9619c87ab5129a953f3fa",
+        "local_file": "20260505-算电协同从_电支撑算_迈向_算优化电_寻北证绿电+算力基建机遇_17页_2mb.pdf",
+        "locator": "第 4 页：「互联网数据服务用电量在全社会用电量中的占比接近 1%」",
+        "grade": "S3",
+        "originator": "未注明（行业用电统计，经开源证券转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「接近 1%」按上界记；单季度、互联网数据服务行业口径。"
     }
   ]
 }
