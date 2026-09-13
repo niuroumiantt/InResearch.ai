@@ -2,7 +2,7 @@
 from __future__ import annotations
 import re, zipfile
 from pathlib import Path
-from inresearch.adapters.office_grid import MAX_CHARS, COL_REF, col_index, is_date_format, number_text, grid_text
+from inresearch.adapters.office_grid import MAX_CHARS, COL_REF, col_index, is_date_format, number_text, grid_text, MERGE_MARK
 
 
 XML_ENTITIES = (('&lt;', '<'), ('&gt;', '>'), ('&quot;', '"'),
@@ -27,6 +27,37 @@ CELL_XFS = re.compile(r'<cellXfs\b[^>]*>(.*?)</cellXfs>', re.S)
 XF_FMT = re.compile(r'<xf\b[^>]*?\bnumFmtId="(\d+)"')
 
 ROW = re.compile(r'<row\b([^>]*?)(?:/>|>(.*?)</row>)', re.S)
+
+MERGE_REF = re.compile(r'<mergeCell[^>]*\bref="([A-Z]+)(\d+):([A-Z]+)(\d+)"')
+
+
+def merge_ranges(xml: str) -> list[tuple[int, int, int, int]]:
+    """<mergeCell ref="A5:D5"/> -> [(row1, col1, row2, col2)]，列从 0 起。"""
+    out = []
+    for c1, r1, c2, r2 in MERGE_REF.findall(xml):
+        try:
+            out.append((int(r1), col_index(c1 + r1), int(r2), col_index(c2 + r2)))
+        except ValueError:
+            continue
+    return out
+
+
+def mark_merges(cells: dict, xml: str) -> dict:
+    """Fill the covered cells of every merged range with a continuation mark.
+
+    Only where the top-left actually has a value and the covered cell is
+    empty: a mark written over a value would invent a span that is not there,
+    and an empty range is nothing to say anything about.
+    """
+    for r1, c1, r2, c2 in merge_ranges(xml):
+        if (r1, c1) not in cells:
+            continue
+        for r in range(r1, r2 + 1):
+            for c in range(c1, c2 + 1):
+                if (r, c) != (r1, c1):
+                    cells.setdefault((r, c), MERGE_MARK)
+    return cells
+
 
 DRAWING = re.compile(r'xl/drawings/drawing\d+\.xml')
 
@@ -160,7 +191,7 @@ def xlsx_text(path: Path, limit: int = MAX_CHARS) -> tuple[str, dict]:
             xml = z.read(n).decode('utf-8', 'ignore')
             if not strings:
                 inline += len(T_RUN.findall(xml))
-            grids.append((label, sheet_cells(xml, strings, dated)))
+            grids.append((label, mark_merges(sheet_cells(xml, strings, dated), xml)))
         shapes = drawing_text(z, names)
 
     body, counts = grid_text(grids, limit)
@@ -181,6 +212,10 @@ def xlsx_text(path: Path, limit: int = MAX_CHARS) -> tuple[str, dict]:
         parts.append('文本框/水印:\n' + '\n'.join(
             '  ' + line + ('  ×%d' % times if times > 1 else '')
             for line, times in shapes))
+    if MERGE_MARK in body:
+        # 一次就够：读者需要知道这个符号是什么，不需要每行都被提醒一遍。
+        parts.append('%s = 与左上角同属一个合并单元格，值只写在左上角那一格'
+                     % MERGE_MARK)
     if body:
         parts.append(body)
     else:

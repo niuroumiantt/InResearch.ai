@@ -14,7 +14,9 @@ CORROBORATION = ('待交叉验证', '已交叉验证', '孤证已知', '同源�
 PLACEHOLDER_VALUES = frozenset(
     ('见 notes', '见notes', '见备注', '同上', '未填', '待补', '略', '-', '—', 'N/A', 'n/a'))
 
-AS_OF = re.compile(r'^\d{4}(-\d{4}|-\d{2}(-\d{2})?|-Q[1-4]E?)?(E|目标)?(@\d{4}-\d{2})?$')
+# 半年与季度并列，因为渠道纪要按半年给数：寒武纪 2025 上半年已交付 4 万片、
+# 下半年预计约 7 万片。拆成两个季度是我们替原文做的拆分，原文没这个拆分。
+AS_OF = re.compile(r'^\d{4}(-\d{4}|-\d{2}(-\d{2})?|-Q[1-4]E?|-H[12]E?)?(E|目标)?(@\d{4}-\d{2})?$')
 
 FACT_ID = re.compile(r'^[a-z0-9]+(-[a-z0-9]+)*$')
 
@@ -112,7 +114,8 @@ def check_fact(fact: dict, metrics: dict, seen: set, claims: dict | None = None)
         bad.append('value 必须是数字或 null：%r' % value)
 
     if not AS_OF.match(str(fact.get('as_of', ''))):
-        bad.append('as_of 必须是 YYYY / YYYY-MM / YYYY-MM-DD：%r' % fact.get('as_of'))
+        bad.append('as_of 必须是 YYYY / YYYY-MM / YYYY-MM-DD / YYYY-Q1 / YYYY-H1'
+                   '（可带 E 或 目标，可带 @快照）：%r' % fact.get('as_of'))
 
     if fact.get('depth') not in DEPTHS:
         bad.append('depth 只收 %s，半自动与目录级不进事实层' % ' / '.join(DEPTHS))
