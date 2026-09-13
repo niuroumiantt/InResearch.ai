@@ -14,12 +14,14 @@
 """
 
 from inresearch.paths import project_root
+from inresearch.storage.layout import workspace_path
+from inresearch.storage.files import atomic_write
 import re
 import sys
 from datetime import date
 
 ROOT = project_root()
-OUT_DIR = ROOT / "reports" / "output"
+OUT_DIR = workspace_path("reports/output", ROOT)
 
 from inresearch.delivery.report import build_report, markdown_report
 
@@ -48,7 +50,7 @@ def main():
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     safe = re.sub(r"[^\w一-鿿：、]", "_", title)
     md_path = OUT_DIR / f"{today}_{safe}.md"
-    md_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    atomic_write(md_path, ("\n".join(lines) + "\n").encode('utf-8'))
     print(f"导出 {chapters} 章 ｜ {len(all_findings)} 条 Finding（{warn_count} 条带警示）｜ {len(sources)} 个来源")
     print(f"→ {md_path}")
 

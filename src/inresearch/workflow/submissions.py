@@ -20,6 +20,7 @@ from pathlib import Path
 
 from inresearch.knowledge.registry import current_tasks
 from inresearch.paths import project_root
+from inresearch.storage.layout import workspace_path
 from inresearch.storage.files import atomic_write, locked
 
 ROOT = project_root()
@@ -27,7 +28,7 @@ SUBS = ROOT / "docs" / "inbox" / "submissions"
 SCORES = ROOT / "docs" / "LIBRARY_SCORES.csv"
 FACTS = ROOT / "data" / "facts.json"
 METRICS = ROOT / "framework" / "metrics.json"
-OUT = ROOT / "reports" / "intake_review.md"
+OUT = workspace_path("reports/intake_review.md", ROOT)
 BATCHES = ROOT / "docs" / "inbox" / "scored_batches"
 BATCH_FIELDS = ["new_path", "old_name", "importance", "confidence", "year", "org",
                 "module", "summary", "scored", "depth"]
@@ -412,7 +413,7 @@ def main():
                     lines.append(f"      陈述：{statement['text']}；原文：{statement['quote']}（{statement['locator']}）")
         lines.append("")
 
-    OUT.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    atomic_write(OUT, ("\n".join(lines) + "\n").encode('utf-8'))
 
     sampled = [it for _, _, it, _, _, _, _ in buckets["B"] if audit_sampled(it)]
     print(f"共 {total} 件｜通过 {accepted}｜退回 {len(buckets['退回'])}")
@@ -452,7 +453,7 @@ def main():
     elif buckets["B"] or buckets["C"]:
         print(f"  提示：{len(buckets['B']) + len(buckets['C'])} 件 B/C 候选可导出，加 --accept 生成批次。")
 
-    print(f"完整审阅卡已写入 {OUT.relative_to(ROOT)}")
+    print(f"完整审阅卡已写入 {OUT}")
     return 1 if read_errors or buckets["退回"] else 0
 
 

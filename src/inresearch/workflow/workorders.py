@@ -24,6 +24,8 @@
 """
 
 from inresearch.paths import project_root
+from inresearch.storage.layout import workspace_path
+from inresearch.storage.files import atomic_write, write_json
 import csv
 import hashlib
 import json
@@ -35,8 +37,8 @@ from collections import Counter, defaultdict
 from datetime import date
 
 ROOT = project_root()
-OUT = ROOT / "reports" / "workorders.md"
-OUT_JSON = ROOT / "reports" / "workorders.json"   # 给 team.html 等机器消费方
+OUT = workspace_path("reports/workorders.md", ROOT)
+OUT_JSON = workspace_path("reports/workorders.json", ROOT)   # 给 team.html 等机器消费方
 
 AMMO_THIN = 60          # 弹药（非目录级）低于此值视为偏瘦
 DIGEST_BACKLOG = 40     # 半自动 ≥6 分未消化超过此值视为消化积压
@@ -71,7 +73,7 @@ def classify_source(src):
 
 def field_coverage(table, field):
     """返回 (有该字段的条数, 总条数)。"""
-    recs = json.loads((ROOT / "data" / f"{table}.json").read_text(encoding="utf-8"))["records"]
+    recs = json.loads((workspace_path(f"data/{table}.json", ROOT)).read_text(encoding="utf-8"))["records"]
     ok = sum(1 for r in recs if r.get(field) not in (None, "", [], {}))
     return ok, len(recs)
 
@@ -84,7 +86,7 @@ ACCEPT = ("每份填一行登记（{importance}{confidence}_{年份}_{主题}_{�
 def load_state():
     rows = list(csv.DictReader((ROOT / "docs" / "LIBRARY_SCORES.csv").open(encoding="utf-8")))
     sources = json.loads((ROOT / "data" / "sources.json").read_text(encoding="utf-8"))["records"]
-    inds = json.loads((ROOT / "framework" / "indicators.json").read_text(encoding="utf-8"))["indicators"]
+    inds = json.loads((workspace_path("framework/indicators.json", ROOT)).read_text(encoding="utf-8"))["indicators"]
     mods = json.loads((ROOT / "framework" / "modules.json").read_text(encoding="utf-8"))["modules"]
     mets = json.loads((ROOT / "framework" / "metrics.json").read_text(encoding="utf-8"))["metrics"]
     facts = json.loads((ROOT / "data" / "facts.json").read_text(encoding="utf-8"))["records"]
@@ -248,7 +250,8 @@ def build(only=None):
         # 这里曾因覆盖循环变量，导致 34 条「声明问题开放」工单静默消失
         empty = [x for x in met_by_mod.get(mid, []) if fact_cnt[x["metric_id"]] == 0]
         for met in empty:
-            dimtxt = "、".join(f"{dd['name']}（{'/'.join(dd['values'][:3])}…）"
+            dimtxt = "、".join(f"{dd['name']}（" +
+                              ("/".join(dd['values'][:3]) + "…" if dd.get('values') else "按原文填写") + "）"
                               for dd in met["caliber_dims"] if dd["id"] != "region")
             add("P2", "事实层空白",
                 f"指标 `{met['metric_id']}`（{met['name']}）已声明口径维度，但事实层一条数都没有",
@@ -380,16 +383,14 @@ def render(orders, ammo, high, backlog):
 def main():
     only = sys.argv[1] if len(sys.argv) > 1 and re.fullmatch(r"M\d\d", sys.argv[1]) else None
     orders, ammo, high, backlog = build(only)
-    OUT.write_text(render(orders, ammo, high, backlog), encoding="utf-8")
+    atomic_write(OUT, render(orders, ammo, high, backlog).encode('utf-8'))
 
     # 必须 sorted：set 的迭代顺序随进程变（字符串哈希随机化），不排序的话
     # 每跑一次 json 的 key 顺序就换一遍，git 每次都报几十行假改动，真改动被噪声盖住。
     stats = {m: {"ammo": ammo[m], "high": high[m], "backlog": backlog[m],
                  "findings": findings_state(m)[0]}
              for m in sorted({o["mid"] for o in orders})}
-    OUT_JSON.write_text(json.dumps(
-        {"generated": date.today().isoformat(), "orders": orders, "module_stats": stats},
-        ensure_ascii=False, indent=1), encoding="utf-8")
+    write_json(OUT_JSON, {"generated": date.today().isoformat(), "orders": orders, "module_stats": stats})
 
     c = Counter(o["pri"] for o in orders)
     print(f"工单 {len(orders)} 张｜P1 {c['P1']} P2 {c['P2']} P3 {c['P3']}")
@@ -399,7 +400,7 @@ def main():
                                   Counter(o["kind"] for o in orders).most_common()))
     for o in [x for x in orders if x["pri"] == "P1"]:
         print(f"  P1 {o['mid']} {o['kind']}：{o['gap'][:60]}")
-    print(f"完整队列已写入 {OUT.relative_to(ROOT)} 与 {OUT_JSON.relative_to(ROOT)}")
+    print(f"完整队列已写入 {OUT} 与 {OUT_JSON}")
     return 0
 
 

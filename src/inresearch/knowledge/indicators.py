@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
-"""指标回填器：从六张表自动计算可推导的指标值，写回 framework/indicators.json。
+"""指标回填器：按发布定义与当前业务数据生成指标投影。
 
     python3 manage.py indicators
 
 规则：只回填"库内数据可直接计算"的指标；渠道/外部指标仍靠人工录入。
 每次运行覆盖计算值（value + as_of），人工录入的指标不受影响。
-collect.py 每日调用。零依赖。
+作者工作区写 framework/indicators.json；部署写独立运行投影，保留发布定义。零依赖。
 """
 
 from inresearch.paths import project_root
+from inresearch.storage.layout import workspace_path
 from inresearch.storage.files import locked, write_json
 import json
 from datetime import date
@@ -19,7 +20,7 @@ TODAY = date.today().isoformat()
 
 
 def load(name, root):
-    return json.loads((root / "data" / f"{name}.json").read_text(encoding="utf-8"))["records"]
+    return json.loads((workspace_path(f"data/{name}.json", root)).read_text(encoding="utf-8"))["records"]
 
 
 def cap_buckets(p):
@@ -43,7 +44,7 @@ def latest_price(prices, series):
 
 
 def refresh(root=ROOT):
-    with locked(Path(root) / "framework/indicators.json"):
+    with locked(workspace_path("framework/indicators.json", root)):
         return _refresh(Path(root))
 
 
@@ -85,8 +86,8 @@ def _refresh(root):
         computed["mega_contract_backlog"] = (round(sum(c["value_usd_b"] for c in vals), 1), TODAY,
                                              "contracts 表合计（种子样本）")
 
-    p = root / "framework" / "indicators.json"
-    doc = json.loads(p.read_text(encoding="utf-8"))
+    p = workspace_path("framework/indicators.json", root)
+    doc = json.loads((root / "framework/indicators.json").read_text(encoding="utf-8"))
     n = 0
     for ind in doc["indicators"]:
         if ind["id"] in computed:

@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.13.7",
+  "version": "2026.09.13.8",
   "effective_at": "2026-09-13",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -239,12 +239,17 @@
         "web/pages/doc.html",
         "framework/verification_contract.json",
         "src/inresearch/interfaces/verification.py",
-        "tests/unit/test_verification_contract.py"
+        "tests/unit/test_verification_contract.py",
+        "framework/storage_contract.json",
+        "src/inresearch/storage/layout.py",
+        "tests/unit/test_storage_layout.py",
+        "tests/container_storage.py"
       ],
       "supersedes": [
         "change_management-legacy"
       ],
-      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。"
+      "reason": "Published Git research and persistent runtime state have separate authority; explicit initialization, recovery and read-only deployment replace whole-directory shadowing. Historical brief proposes review without changing formal findings; existing research and originals scope remain.",
+      "implementation_revision": "2026.09.13.8"
     },
     {
       "id": "interface-legacy",
@@ -341,12 +346,17 @@
         "tests/unit/test_datacenter_news.py",
         "tests/unit/test_material_intake.py",
         "tests/unit/test_news_projection.py",
-        "scripts/export_inews_research.cjs"
+        "scripts/export_inews_research.cjs",
+        "framework/storage_contract.json",
+        "src/inresearch/storage/layout.py",
+        "tests/unit/test_storage_layout.py",
+        "tests/container_storage.py"
       ],
       "supersedes": [
         "acquisition-legacy"
       ],
-      "reason": "保留新闻责任与来源验证规则；模型选择改为引用统一模型执行契约，替代在采集规则中固定 27B 型号。；按软件契约迁移职责与全部调用，保留原件及已采用知识权威，详见 2026-09-13 架构交付。；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。"
+      "reason": "Published Git research and persistent runtime state have separate authority; explicit initialization, recovery and read-only deployment replace whole-directory shadowing. Historical brief proposes review without changing formal findings; existing research and originals scope remain.",
+      "implementation_revision": "2026.09.13.8"
     },
     {
       "id": "product-ecosystems-20260906",
@@ -489,7 +499,7 @@
       "source": "framework/09_software_contracts.md",
       "effective_at": "2026-09-13",
       "supersedes": [],
-      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。",
+      "reason": "Published Git research and persistent runtime state have separate authority; explicit initialization, recovery and read-only deployment replace whole-directory shadowing. Historical brief proposes review without changing formal findings; existing research and originals scope remain.",
       "implementations": [
         "src/inresearch/workflow/commands.py",
         "src/inresearch/storage/files.py",
@@ -526,9 +536,13 @@
         "src/inresearch/delivery/reading_packet.py",
         "src/inresearch/workflow/reading_results.py",
         "src/inresearch/materials/reading_artifacts.py",
-        "tests/unit/test_reading_results.py"
+        "tests/unit/test_reading_results.py",
+        "framework/storage_contract.json",
+        "src/inresearch/storage/layout.py",
+        "tests/unit/test_storage_layout.py",
+        "tests/container_storage.py"
       ],
-      "implementation_revision": "2026.09.13.7"
+      "implementation_revision": "2026.09.13.8"
     }
   ],
   "entrypoints": [
@@ -562,6 +576,7 @@
     "docs/local_reader/RUN_TO_COMPLETION.md",
     "docs/local_reader/PROJECT_BRIEF.md",
     "docs/local_reader/ACQUISITION_OPERATIONS.md",
-    "docs/local_reader/M4_PREFLIGHT.md"
+    "docs/local_reader/M4_PREFLIGHT.md",
+    "docs/local_setup/README.md"
   ]
 }

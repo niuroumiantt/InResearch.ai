@@ -23,6 +23,8 @@ M04 的「电力」在中文语料里到处都是）。它的用处是**报出�
 """
 
 from inresearch.paths import project_root
+from inresearch.storage.layout import workspace_path
+from inresearch.storage.files import atomic_write, write_json
 import csv
 import json
 import re
@@ -30,8 +32,8 @@ import sys
 from datetime import date
 
 ROOT = project_root()
-OUT = ROOT / "reports" / "blindspot.md"
-OUT_JSON = ROOT / "reports" / "blindspot.json"   # 供仪表盘等机器消费方
+OUT = workspace_path("reports/blindspot.md", ROOT)
+OUT_JSON = workspace_path("reports/blindspot.json", ROOT)   # 供仪表盘等机器消费方
 
 SUSPECT_RATIO = 3.0   # 强信号疑似/已命中 超过此倍数即报警
 MIN_SUSPECT = 30      # 强信号疑似数低于此值不报警（避免小样本噪声）
@@ -137,20 +139,19 @@ def main():
     if only:
         mods = [m for m in mods if m["id"] == only]
     res = scan(rows, mods)
-    OUT.write_text(render(res), encoding="utf-8")
-    OUT_JSON.write_text(json.dumps(
+    atomic_write(OUT, render(res).encode('utf-8'))
+    write_json(OUT_JSON,
         {"generated": date.today().isoformat(),
          "modules": [{k: e[k] for k in ("mid", "name", "kws", "hit", "blind")}
                      | {"ratio": (None if e["ratio"] in (None, float("inf")) else round(e["ratio"], 1)),
-                        "alarm": alarming(e)} for e in res]},
-        ensure_ascii=False, indent=1), encoding="utf-8")
+                        "alarm": alarming(e)} for e in res]})
 
     alarms = [e for e in res if alarming(e)]
     print(f"体检 {len(res)} 个模块｜报警 {len(alarms)} 个")
     for e in sorted(alarms, key=lambda x: -(x["ratio"] if x["ratio"] not in (None, float("inf")) else 1e9)):
         r = "—" if e["ratio"] is None else ("∞" if e["ratio"] == float("inf") else f"{e['ratio']:.1f}x")
         print(f"  ⚠️ {e['mid']} {e['name']}：已命中 {e['hit']}，疑似看不见 {e['blind']}（{r}）")
-    print(f"完整报告已写入 {OUT.relative_to(ROOT)} 与 {OUT_JSON.relative_to(ROOT)}")
+    print(f"完整报告已写入 {OUT} 与 {OUT_JSON}")
     return 0
 
 

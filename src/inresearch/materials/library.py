@@ -23,6 +23,7 @@
 """
 
 from inresearch.paths import project_root
+from inresearch.storage.layout import workspace_path
 from inresearch.storage.files import locked, atomic_write, write_json, sync_directory, make_directory
 from functools import wraps
 import io
@@ -42,8 +43,8 @@ from pathlib import Path
 
 ROOT = project_root()
 LINK = ROOT / "product"                      # 仓库内软链（gitignore）
-PLAN = ROOT / "data" / "product_docs_plan.csv"
-INDEX = ROOT / "data" / "product_library_index.json"
+PLAN = workspace_path("data/product_docs_plan.csv", ROOT)
+INDEX = workspace_path("data/product_library_index.json", ROOT)
 
 DOC_TYPES = {"DS": "datasheet 规格书", "PB": "product brief", "BR": "brochure 产品册",
              "WEB": "官网产品页存档", "RA": "参考架构", "UM": "用户手册", "WP": "白皮书"}
@@ -196,7 +197,7 @@ def cmd_plan(args):
     save_plan(rows)
     todo = sum(1 for r in rows if r["status"] == "todo")
     withurl = sum(1 for r in rows if r["status"] == "todo" and r["source_url"])
-    print(f"作业计划 {PLAN.relative_to(ROOT)}：{len(rows)} 行；待办 {todo}（其中已填来源 URL {withurl}）")
+    print(f"作业计划 {PLAN}：{len(rows)} 行；待办 {todo}（其中已填来源 URL {withurl}）")
     print("下一步：把 source_url 列填上（官方页面的直链），再跑 fetch。**留空不是缺陷，是还没查到——不许猜链接。**")
 
 
@@ -422,7 +423,7 @@ def cmd_fetch(args):
             print("  python3 manage.py library adopt "
                   "--row 'nvidia|训练-推理GPU|h200|DS' --file product/_inbox/xxx.pdf")
         else:
-            print(f"完成：成功 {ok}，需人工 {fail}。索引 {len(doc['records'])} 条 → {INDEX.relative_to(ROOT)}")
+            print(f"完成：成功 {ok}，需人工 {fail}。索引 {len(doc['records'])} 条 → {INDEX}")
         print("需人工的行留在计划表里带原因，看板会亮黄色 !——**不下的理由要留，别静默跳过**。")
 
 
