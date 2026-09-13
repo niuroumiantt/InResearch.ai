@@ -57,13 +57,13 @@
 
 ```bash
 # 容器名以 `sudo docker ps` 为准；2026-09-08 生产主机上是 inresearch-host-inresearch-1（旧文档写的 dchub 早已不存在）
-sudo docker exec inresearch-host-inresearch-1 python3 pipeline/users.py add admin            # 首个用户自动 admin
-sudo docker exec inresearch-host-inresearch-1 python3 pipeline/users.py add intern-zhang     # 之后默认 intern
-sudo docker exec inresearch-host-inresearch-1 python3 pipeline/users.py add lao --role member
-sudo docker exec inresearch-host-inresearch-1 python3 pipeline/users.py role <用户名> <角色>  # 改角色（最后一个 admin 不可降级）
-sudo docker exec inresearch-host-inresearch-1 python3 pipeline/users.py list
-sudo docker exec inresearch-host-inresearch-1 python3 pipeline/users.py passwd <用户名>
-sudo docker exec inresearch-host-inresearch-1 python3 pipeline/users.py remove <用户名>       # 立即踢掉其会话
+sudo docker exec inresearch-host-inresearch-1 python3 manage.py users add admin            # 首个用户自动 admin
+sudo docker exec inresearch-host-inresearch-1 python3 manage.py users add intern-zhang     # 之后默认 intern
+sudo docker exec inresearch-host-inresearch-1 python3 manage.py users add lao --role member
+sudo docker exec inresearch-host-inresearch-1 python3 manage.py users role <用户名> <角色>  # 改角色（最后一个 admin 不可降级）
+sudo docker exec inresearch-host-inresearch-1 python3 manage.py users list
+sudo docker exec inresearch-host-inresearch-1 python3 manage.py users passwd <用户名>
+sudo docker exec inresearch-host-inresearch-1 python3 manage.py users remove <用户名>       # 立即踢掉其会话
 ```
 
 **三个角色（2026-08-18 云端设计，用户委托）**：
@@ -115,7 +115,7 @@ docker compose -f deploy/docker-compose.yml up -d --build
 
 # 4) 自检——**这三条都过了才算部署成功**
 docker compose -f deploy/docker-compose.yml ps
-docker compose -f deploy/docker-compose.yml exec hub python3 pipeline/validate.py --strict
+docker compose -f deploy/docker-compose.yml exec hub python3 manage.py validate --strict
 curl -sf http://localhost/  && echo "反代通"    # 未接 Cloudflare 时会被 403 拦，属预期
 ```
 

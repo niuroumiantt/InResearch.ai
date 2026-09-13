@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.13.1",
+  "version": "2026.09.13.3",
   "effective_at": "2026-09-13",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -22,16 +22,16 @@
       "implementations": [
         "framework/research_graph.json",
         "framework/research_questions.json",
-        "assets/research-graph.js",
+        "web/components/research-graph.js",
         "framework/modules/M15_情景与监测.md",
-        "framework_poster.html",
+        "web/pages/framework_poster.html",
         "README.md",
-        "pipeline/README.md",
-        "pipeline/research.py",
-        "pipeline/report_model.py",
-        "pipeline/model_runtime.py",
-        "pipeline/m4_records.py",
-        "pipeline/file_moves.py"
+        "src/inresearch/README.md",
+        "src/inresearch/knowledge/registry.py",
+        "src/inresearch/delivery/report.py",
+        "src/inresearch/adapters/models.py",
+        "src/inresearch/materials/records.py",
+        "src/inresearch/storage/moves.py"
       ],
       "supersedes": [
         "architecture-legacy"
@@ -56,12 +56,12 @@
       "source": "framework/01_data_standards.md",
       "implementations": [
         "framework/data_contract.json",
-        "pipeline/data_policy.py",
-        "pipeline/validate.py",
-        "pipeline/verify.py",
-        "pipeline/facts.py",
-        "pipeline/research.py",
-        "index.html"
+        "src/inresearch/knowledge/policy.py",
+        "src/inresearch/knowledge/validate.py",
+        "src/inresearch/knowledge/verify.py",
+        "src/inresearch/knowledge/facts.py",
+        "src/inresearch/knowledge/registry.py",
+        "web/pages/index.html"
       ],
       "supersedes": [
         "data-legacy"
@@ -82,23 +82,24 @@
       "topic": "knowledge",
       "status": "current",
       "scope": "project",
-      "effective_at": "2026-09-12",
+      "effective_at": "2026-09-13",
       "source": "framework/02_knowledge_format.md",
       "implementations": [
-        "pipeline/research.py",
-        "pipeline/export.py",
-        "pipeline/report_model.py",
-        "pipeline/test_report_model.py",
-        "report.html",
-        "pipeline/test_research.py",
-        "pipeline/test_intake.py",
-        "pipeline/intake.py",
-        "data/research_knowledge.json"
+        "src/inresearch/knowledge/registry.py",
+        "src/inresearch/delivery/export.py",
+        "src/inresearch/delivery/report.py",
+        "tests/unit/test_report_model.py",
+        "web/pages/report.html",
+        "tests/unit/test_research.py",
+        "tests/unit/test_intake.py",
+        "src/inresearch/workflow/submissions.py",
+        "data/research_knowledge.json",
+        "src/inresearch/knowledge/fact_contract.py"
       ],
       "supersedes": [
         "knowledge-legacy"
       ],
-      "reason": "补齐既有 C3 证据与依赖约束、非数字候选入口；网页和导出共用报告模型，失效 Finding 只保留历史入口。"
+      "reason": "补齐既有 C3 证据与依赖约束、非数字候选入口；网页和导出共用报告模型，失效 Finding 只保留历史入口。；按软件契约迁移职责与全部调用，保留原件及已采用知识权威，详见 2026-09-13 架构交付。"
     },
     {
       "id": "products-legacy",
@@ -117,10 +118,10 @@
       "effective_at": "2026-09-06",
       "source": "framework/03_bom_and_collaboration.md",
       "implementations": [
-        "pipeline/research.py",
-        "admin/product/index.html",
-        "bom3d.html",
-        "rack3d.html"
+        "src/inresearch/knowledge/registry.py",
+        "web/pages/admin/product/index.html",
+        "web/pages/bom3d.html",
+        "web/pages/rack3d.html"
       ],
       "supersedes": [
         "products-legacy"
@@ -144,9 +145,9 @@
       "effective_at": "2026-09-06",
       "source": "docs/archive/2026-09-12/framework__04_reading_scoring_standard.md",
       "implementations": [
-        "pipeline/continuous_reader.py",
-        "pipeline/reading_queue.py",
-        "doc.html",
+        "src/inresearch/workflow/reader.py",
+        "src/inresearch/workflow/reading_queue.py",
+        "web/pages/doc.html",
         "docs/local_reader/PROJECT_BRIEF.md",
         "docs/local_reader/RUN_TO_COMPLETION.md"
       ],
@@ -164,7 +165,7 @@
       "effective_at": "2026-09-09",
       "source": "docs/archive/2026-09-12/docs__M4_TRIAGE_TASK.md",
       "implementations": [
-        "pipeline/m4_triage.py"
+        "src/inresearch/materials/inventory.py"
       ],
       "supersedes": [],
       "reason": "用户 2026-09-09 采用 M4 本机资料分类与命名任务。仅在 m4-triage 范围内替代 04 阅读标准 §5（新增 score 10-0 主分，importance 由其换算）与 §6（M4 本机原件随评分改名移动，以操作日志和 SHA-256 保证可逆）；Spark 的 project 范围阅读规则与 originals 不可变不受影响。当前只实现全量清单一步，改名移动尚未实现。",
@@ -184,19 +185,23 @@
       "topic": "operations",
       "status": "current",
       "scope": "project",
-      "effective_at": "2026-09-06",
+      "effective_at": "2026-09-13",
       "source": "docs/local_reader/SPARK_OPERATIONS.md",
       "implementations": [
         "docs/local_setup/sync.sh",
         "docs/local_setup/setup.sh",
-        "pipeline/publish_reader.py",
+        "src/inresearch/delivery/publish.py",
         "deploy/spark-reader/inresearch-reader.service",
-        "docs/local_setup/README.md"
+        "docs/local_setup/README.md",
+        "src/inresearch/interfaces/reader.py",
+        "src/inresearch/workflow/reading_stages.py",
+        "src/inresearch/delivery/reader_export.py",
+        "src/inresearch/storage/catalog.py"
       ],
       "supersedes": [
         "operations-legacy"
       ],
-      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。"
+      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。；按软件契约迁移职责与全部调用，保留原件及已采用知识权威，详见 2026-09-13 架构交付。"
     },
     {
       "id": "change_management-legacy",
@@ -217,9 +222,9 @@
       "implementations": [
         "AGENTS.md",
         "CLAUDE.md",
-        "pipeline/governance.py",
+        "src/inresearch/interfaces/governance.py",
         ".github/workflows/validate.yml",
-        "doc.html"
+        "web/pages/doc.html"
       ],
       "supersedes": [
         "change_management-legacy"
@@ -241,33 +246,42 @@
       "status": "current",
       "source": "framework/05_interface_system.md",
       "scope": "project",
-      "effective_at": "2026-09-12",
+      "effective_at": "2026-09-13",
       "implementations": [
-        "assets/site-skin.js",
-        "assets/site-skin.css",
-        "assets/research.css",
+        "web/components/site-shell.js",
+        "web/themes/site-skin.css",
+        "web/assets/research.css",
         "framework/interface_manifest.json",
-        "pipeline/auth.py",
-        "pipeline/serve.py",
-        "pipeline/test_interface_system.py",
+        "src/inresearch/interfaces/auth.py",
+        "src/inresearch/interfaces/http.py",
+        "tests/unit/test_interface_system.py",
         "tests/ui_skin.cjs",
-        "assets/InterVariable.woff2",
-        "assets/Inter-LICENSE.txt",
-        "assets/research-graph.js",
+        "web/assets/InterVariable.woff2",
+        "web/assets/Inter-LICENSE.txt",
+        "web/components/research-graph.js",
         "tests/run_browser.cjs",
         "tests/research_delivery.cjs",
         "tests/auth_appearance.cjs",
         ".github/workflows/validate.yml",
-        "company.html",
-        "materials.html",
-        "report.html",
-        "assets/markdown-inline.js",
-        "tests/url_rendering.cjs"
+        "web/pages/company.html",
+        "web/pages/materials.html",
+        "web/pages/report.html",
+        "web/components/markdown-inline.js",
+        "tests/url_rendering.cjs",
+        "src/inresearch/interfaces/pages.py",
+        "web/themes/preference.js",
+        "web/components/auth-form.js",
+        "web/routes.json",
+        "web/components/part-inspector.js",
+        "web/components/part-dossier.js",
+        "web/components/series-summary.js",
+        "web/components/auth.css",
+        "src/inresearch/interfaces/static.py"
       ],
       "supersedes": [
         "interface-legacy"
       ],
-      "reason": "统一全站一级导航，保留页面局部操作；删除失效 folk 规则，修正控件对比与手机溢出，补全浏览器 CI 和内容验收。"
+      "reason": "统一全站一级导航，保留页面局部操作；删除失效 folk 规则，修正控件对比与手机溢出，补全浏览器 CI 和内容验收。；按软件契约迁移职责与全部调用，保留原件及已采用知识权威，详见 2026-09-13 架构交付。"
     },
     {
       "id": "acquisition-legacy",
@@ -284,42 +298,40 @@
       "status": "current",
       "source": "framework/06_acquisition.md",
       "scope": "project",
-      "effective_at": "2026-09-12",
+      "effective_at": "2026-09-13",
       "implementations": [
-        "assets/datacenter-news.css",
-        "assets/datacenter-news.js",
-        "assets/materials.js",
+        "web/assets/datacenter-news.css",
+        "web/components/datacenter-news.js",
+        "web/assets/materials.js",
         "deploy/spark-reader/inresearch-news.service",
         "deploy/spark-reader/inresearch-news.timer",
         "docs/local_reader/ACQUISITION_OPERATIONS.md",
-        "index.html",
-        "materials.html",
-        "ops.html",
-        "pipeline/acquisition.py",
-        "pipeline/backup_acquisition.py",
-        "pipeline/collect.py",
-        "pipeline/datacenter_news.py",
-        "pipeline/fetch_gpu_prices.py",
-        "pipeline/fetch_news_signals.py",
-        "pipeline/fetch_sec.py",
-        "pipeline/launch_acquisition.py",
-        "pipeline/material_intake.py",
-        "pipeline/model_runtime.py",
-        "pipeline/publish_reader.py",
-        "pipeline/pull_materials.py",
-        "pipeline/research.py",
-        "pipeline/serve.py",
-        "pipeline/sync_datacenter_news.py",
-        "pipeline/test_acquisition.py",
-        "pipeline/test_datacenter_news.py",
-        "pipeline/test_material_intake.py",
-        "pipeline/test_news_projection.py",
+        "web/pages/index.html",
+        "web/pages/materials.html",
+        "web/pages/ops.html",
+        "src/inresearch/adapters/acquisition.py",
+        "src/inresearch/delivery/backup.py",
+        "src/inresearch/adapters/historical_brief.py",
+        "src/inresearch/adapters/news_projection.py",
+        "src/inresearch/knowledge/news_policy.py",
+        "src/inresearch/delivery/acquisition_status.py",
+        "src/inresearch/materials/inbox.py",
+        "src/inresearch/adapters/models.py",
+        "src/inresearch/delivery/publish.py",
+        "src/inresearch/materials/receive.py",
+        "src/inresearch/knowledge/registry.py",
+        "src/inresearch/interfaces/http.py",
+        "src/inresearch/adapters/news_sync.py",
+        "tests/unit/test_acquisition.py",
+        "tests/unit/test_datacenter_news.py",
+        "tests/unit/test_material_intake.py",
+        "tests/unit/test_news_projection.py",
         "scripts/export_inews_research.cjs"
       ],
       "supersedes": [
         "acquisition-legacy"
       ],
-      "reason": "保留新闻责任与来源验证规则；模型选择改为引用统一模型执行契约，替代在采集规则中固定 27B 型号。"
+      "reason": "保留新闻责任与来源验证规则；模型选择改为引用统一模型执行契约，替代在采集规则中固定 27B 型号。；按软件契约迁移职责与全部调用，保留原件及已采用知识权威，详见 2026-09-13 架构交付。"
     },
     {
       "id": "product-ecosystems-20260906",
@@ -331,15 +343,15 @@
       "implementations": [
         "framework/research_graph.json",
         "framework/research_questions.json",
-        "assets/research-graph.js",
-        "pipeline/research.py",
-        "pipeline/research_navigation.py",
-        "index.html",
-        "admin/product/index.html",
-        "bom3d.html",
-        "rack3d.html",
-        "assets/object-network.js",
-        "pipeline/continuous_reader.py"
+        "web/components/research-graph.js",
+        "src/inresearch/knowledge/registry.py",
+        "src/inresearch/knowledge/navigation.py",
+        "web/pages/index.html",
+        "web/pages/admin/product/index.html",
+        "web/pages/bom3d.html",
+        "web/pages/rack3d.html",
+        "web/components/object-network.js",
+        "src/inresearch/workflow/reader.py"
       ],
       "supersedes": [],
       "reason": "产品悬停展示显式关联厂商、点击进入独立页面；HDD 清除迁移文案；保留图谱导航与旧 ID 后台兼容。"
@@ -352,14 +364,14 @@
       "effective_at": "2026-09-12",
       "source": "framework/04_reading_scoring_standard.md",
       "implementations": [
-        "doc.html",
+        "web/pages/doc.html",
         "docs/local_reader/PROJECT_BRIEF.md",
         "docs/local_reader/RUN_TO_COMPLETION.md",
-        "pipeline/continuous_reader.py",
-        "pipeline/model_runtime.py",
-        "pipeline/reading_queue.py",
-        "pipeline/test_continuous_reader.py",
-        "pipeline/test_model_runtime.py"
+        "src/inresearch/workflow/reader.py",
+        "src/inresearch/adapters/models.py",
+        "src/inresearch/workflow/reading_queue.py",
+        "tests/unit/test_continuous_reader.py",
+        "tests/unit/test_model_runtime.py"
       ],
       "supersedes": [
         "reading-20260906"
@@ -371,32 +383,32 @@
       "topic": "reading",
       "status": "current",
       "scope": "m4-triage",
-      "effective_at": "2026-09-12",
+      "effective_at": "2026-09-13",
       "source": "docs/M4_TRIAGE_TASK.md",
       "implementations": [
-        "pipeline/m4_local_reader.py",
-        "pipeline/m4_offload_worker.py",
-        "pipeline/m4_triage.py",
-        "pipeline/m4_triage_extract.py",
-        "pipeline/m4_triage_l1.py",
-        "pipeline/m4_triage_local.py",
-        "pipeline/m4_triage_pack.py",
-        "pipeline/m4_l2.py",
-        "pipeline/test_m4_l2.py",
-        "pipeline/m4_records.py",
-        "pipeline/jsonl_store.py",
-        "pipeline/file_moves.py",
-        "pipeline/m4_inventory.py",
-        "pipeline/m4_triage_apply.py",
-        "pipeline/m4_triage_export.py",
-        "pipeline/m4_triage_report.py",
-        "pipeline/test_file_moves.py",
-        "docs/local_reader/M4_TRIAGE_RUNBOOK.md"
+        "src/inresearch/adapters/ocr_worker.py",
+        "src/inresearch/materials/inventory.py",
+        "src/inresearch/workflow/attribution.py",
+        "src/inresearch/workflow/triage.py",
+        "src/inresearch/workflow/score.py",
+        "src/inresearch/workflow/terminal_batch.py",
+        "src/inresearch/workflow/deep_read.py",
+        "tests/unit/test_m4_l2.py",
+        "src/inresearch/materials/records.py",
+        "src/inresearch/storage/jsonl.py",
+        "src/inresearch/storage/moves.py",
+        "src/inresearch/materials/organize.py",
+        "src/inresearch/materials/mapping.py",
+        "src/inresearch/workflow/progress.py",
+        "tests/unit/test_file_moves.py",
+        "docs/local_reader/M4_TRIAGE_RUNBOOK.md",
+        "src/inresearch/materials/triage.py",
+        "src/inresearch/materials/naming.py"
       ],
       "supersedes": [
         "reading-m4-triage-20260909"
       ],
-      "reason": "统一模型配置和有效记录；清单只用一套写入/读取规则，物理移动增加哈希、持久日志、互斥及恢复，导出保留副本身份与模型来源；2026-09-13 补齐 L2 深读队列遗漏的有效结果读取，失败重试不得遮住已成功结果；原件操作范围不扩大。"
+      "reason": "统一模型配置和有效记录；清单只用一套写入/读取规则，物理移动增加哈希、持久日志、互斥及恢复，导出保留副本身份与模型来源；2026-09-13 补齐 L2 深读队列遗漏的有效结果读取，失败重试不得遮住已成功结果；原件操作范围不扩大。；按软件契约迁移职责与全部调用，保留原件及已采用知识权威，详见 2026-09-13 架构交付。"
     },
     {
       "id": "model-execution-20260912",
@@ -406,15 +418,38 @@
       "effective_at": "2026-09-12",
       "source": "framework/08_model_execution.md",
       "implementations": [
-        "pipeline/model_runtime.py",
+        "src/inresearch/adapters/models.py",
         "deploy/models.json",
         "deploy/spark-reader/reader.env.example",
-        "pipeline/publish_reader.py",
-        "pipeline/test_publish_reader.py",
-        "pipeline/test_model_runtime.py"
+        "src/inresearch/delivery/publish.py",
+        "tests/unit/test_publish_reader.py",
+        "tests/unit/test_model_runtime.py"
       ],
       "supersedes": [],
       "reason": "用户采用型号可替换与共享项目契约；Spark 暂不可用，当前默认 Claude CLI，恢复后再切换 Spark 配置。分离模型能力、操作客户端与业务规则。"
+    },
+    {
+      "id": "software-contracts-20260913",
+      "topic": "software-contracts",
+      "status": "current",
+      "scope": "project",
+      "source": "framework/09_software_contracts.md",
+      "effective_at": "2026-09-13",
+      "supersedes": [],
+      "reason": "采用先证据后实现的六阶段架构整改；建立唯一用例、跨进程写入和结果权威边界；发布前复核现行规范的模块名称与命令入口，历史正文保留原名",
+      "implementations": [
+        "src/inresearch/workflow/commands.py",
+        "src/inresearch/storage/files.py",
+        "src/inresearch/materials/records.py",
+        "manage.py",
+        "src/inresearch/interfaces/cli.py",
+        "src/inresearch/interfaces/static.py",
+        "src/inresearch/storage/jsonl.py",
+        "src/inresearch/storage/catalog.py",
+        "src/inresearch/materials/library.py",
+        "src/inresearch/knowledge/news_policy.py",
+        "web/routes.json"
+      ]
     }
   ],
   "entrypoints": [

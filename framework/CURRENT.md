@@ -1,22 +1,23 @@
 # 当前研究与执行基准
 
-> CURRENT · 基准版本 2026.09.13.1 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
+> CURRENT · 基准版本 2026.09.13.3 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
 
 ## 从哪里读当前规则
 
 | 主题 | 唯一现行规范源 | 机器实现或配套入口 |
 |---|---|---|
 | 研究架构 | [00 框架总览](00_overview.md) | research_graph.json、research_questions.json、research.html |
-| 数据口径与核验 | [01 口径手册](01_data_standards.md) | data_contract.json；validate.py、verify.py、facts.py、research.py |
-| 知识与版本 | [02 知识格式](02_knowledge_format.md) | research_knowledge.json、兼容 Finding、export.py |
+| 数据口径与核验 | [01 口径手册](01_data_standards.md) | data_contract.json；inresearch.knowledge.validate、inresearch.knowledge.verify、inresearch.knowledge.facts、inresearch.knowledge.registry |
+| 知识与版本 | [02 知识格式](02_knowledge_format.md) | research_knowledge.json、兼容 Finding、inresearch.delivery.export |
 | 3D 与产品映射 | [03 对象与协作](03_bom_and_collaboration.md) | 稳定部件 ID、产品线目录、空间/装配/系统关系 |
-| 全文阅读与采用 | [04 阅读标准](04_reading_scoring_standard.md) | Spark 执行协议及 continuous_reader.py |
-| 全站界面与换肤 | [05 界面规范](05_interface_system.md) | site-skin.js / CSS、interface_manifest.json |
+| 全文阅读与采用 | [04 阅读标准](04_reading_scoring_standard.md) | Spark 执行协议及 inresearch.workflow.reader |
+| 全站界面与换肤 | [05 界面规范](05_interface_system.md) | web/components/site-shell.js、web/themes、interface_manifest.json |
 | 产品生态与总览 | [07 产品生态规范](07_product_ecosystems.md) | 生态/技术入口、中心关系图、九主题、厂商索引及旧 ID 映射 |
-| 采集与翻译 | [06 采集规范](06_acquisition.md) | acquisition.py、inews 显式投影、Spark 采集台账 |
-| 模型执行与客户端 | [08 模型执行](08_model_execution.md) | model_runtime.py、deploy/models.json |
+| 采集与翻译 | [06 采集规范](06_acquisition.md) | inresearch.adapters.acquisition、inews 显式投影、Spark 采集台账 |
+| 模型执行与客户端 | [08 模型执行](08_model_execution.md) | inresearch.adapters.models、deploy/models.json |
+| 软件职责与写入 | [09 软件契约](09_software_contracts.md) | 统一用例、结果投影和事务存储 |
 | 运行与部署 | [Spark 操作手册](../docs/local_reader/SPARK_OPERATIONS.md) | deploy/spark-reader/；本地开发见 docs/local_setup/README.md |
-| 规则替代与在册管理 | 本页 | current_state.json、repository_manifest.json、governance.py |
+| 规则替代与在册管理 | 本页 | current_state.json、repository_manifest.json、inresearch.interfaces.governance |
 
 规范源的主题、状态、适用范围、被替代版本及相关实现都登记在 [current_state.json](current_state.json)。[在册清单](../docs/REPOSITORY_REGISTER.md)列出 Git 管理的全部文件、身份、内容摘要和记录集合。外部材料是研究输入，不因出现在仓库内就成为规范。
 
@@ -33,7 +34,7 @@
 
 查现行主题及引用 → 判定变更类型与范围 → 修改唯一源和适用实现 → 登记 supersedes / 原因 / 影响路径 → 归档旧执行正文 → 更新清单 → 校验与测试 → 已授权的仓库合并和部署 → 核对实际运行版本。
 
-`governance.py --check` 检查在册路径/内容摘要、主题单一生效、替代链、规范引用、历史边界及已知失效表述。它不能自动证明所有自然语言都没有语义冲突；任何规则变更仍须审阅关联实现和记录。新文件或修改后的在册内容没有刷新清单会使 CI 失败。
+`python3 manage.py governance --check` 检查在册路径/内容摘要、主题单一生效、替代链、规范引用、历史边界及已知失效表述。它不能自动证明所有自然语言都没有语义冲突；任何规则变更仍须审阅关联实现和记录。新文件或修改后的在册内容没有刷新清单会使 CI 失败。
 
 ## 记录与运行边界
 

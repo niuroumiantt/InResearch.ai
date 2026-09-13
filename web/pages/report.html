@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light">
+<head>
+<script src="/assets/theme-state.js"></script>
+<script src="/assets/site-skin.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球数据中心研究（活文档）— inresearch.ai</title>
+<style>
+
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font: 15px/1.9 "Songti SC", "STSong", "SimSun", Georgia, serif; }
+  a { color: var(--accent); text-decoration: none; }
+  .topbar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: var(--page);
+    border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 18px; padding: 0 20px;
+    font-family: -apple-system, "PingFang SC", sans-serif; font-size: 13px; z-index: 10; }
+  .topbar b { font-size: 14px; }
+  .topbar .sp { flex: 1; }
+  .layout { display: flex; max-width: 1200px; margin: 64px auto 60px; gap: 24px; padding: 0 16px; }
+  nav.toc { width: 230px; flex-shrink: 0; position: sticky; top: 64px; align-self: flex-start;
+    max-height: calc(100vh - 90px); overflow-y: auto; font-family: -apple-system, "PingFang SC", sans-serif;
+    font-size: 12.5px; line-height: 1.7; }
+  nav.toc a { display: block; color: var(--muted); padding: 3px 10px; border-left: 2px solid var(--line); }
+  nav.toc a:hover { color: var(--accent); }
+  nav.toc a.on { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+  main { flex: 1; min-width: 0; }
+  .page-doc { background: var(--page); border: 1px solid var(--line); border-radius: var(--ui-radius);
+    box-shadow: 0 1px 6px rgba(0,0,0,.06); padding: 44px 68px; margin-bottom: 22px; overflow-wrap:anywhere; }
+  .page-doc.cover-page { padding: 60px 68px; }
+  .cover { text-align: center; border-bottom: 2px solid var(--text); margin-bottom: 40px; padding-bottom: 28px; }
+  .cover h1 { font-size: 30px; letter-spacing: 2px; margin-bottom: 14px; }
+  .cover .meta { font-family: -apple-system, "PingFang SC", sans-serif; color: var(--muted); font-size: 13px; }
+  h2.chapter { font-size: 21px; margin: 0 0 6px; }
+  .chapter-sub { font-family: -apple-system, "PingFang SC", sans-serif; font-size: 12px; color: var(--muted); margin-bottom: 18px; }
+  .finding { margin: 26px 0; }
+  .finding h3 { font-size: 16.5px; line-height: 1.6; margin-bottom: 4px; }
+  .fmeta { font-family: -apple-system, "PingFang SC", sans-serif; font-size: 11.5px; color: var(--muted); margin-bottom: 10px; }
+  .badge { display: inline-block; font-size: 10.5px; font-weight: 600; padding: 0 7px; border-radius: var(--ui-radius);
+    color: #fff; vertical-align: 1px; margin-right: 5px; font-family: -apple-system, sans-serif; }
+  .b-cur { background: var(--green); } .b-rev { background: var(--yellow); } .b-sta { background: var(--red); }
+  .b-q { background: none; color: var(--accent); border: 1px solid var(--accent); }
+  .lead { margin: 8px 0 10px; text-align: justify; }
+  .lead b.lbl, .cav b.lbl { font-family: -apple-system, "PingFang SC", sans-serif; font-size: 13px; }
+  ul.arg { margin: 6px 0 10px 26px; }
+  ul.arg li { margin: 5px 0; text-align: justify; }
+  ul.arg ul { margin-left: 22px; }
+  .cav { background: var(--caution-bg); border: 1px solid var(--caution-line); border-radius: var(--ui-radius);
+    padding: 10px 14px; margin: 10px 0; font-size: 13.5px; text-align: justify; }
+  details { margin: 8px 0; font-size: 13px; }
+  details summary { cursor: pointer; color: var(--muted); font-family: -apple-system, "PingFang SC", sans-serif; font-size: 12.5px; }
+  details ul { margin: 6px 0 4px 24px; color: var(--muted); }
+  details a { word-break: break-all; }
+  .review-note { border-left: 3px solid var(--yellow); }
+  .chapter-src { font-family: -apple-system, "PingFang SC", sans-serif; font-size: 11.5px; color: var(--muted);
+    border-top: 1px dashed var(--line); margin-top: 22px; padding-top: 8px; }
+  .summary-list { margin: 14px 0 10px 30px; }
+  .summary-list li { margin: 10px 0; text-align: justify; }
+  blockquote { color: var(--muted); font-size: 13.5px; border-left: 3px solid var(--line); padding: 4px 14px; margin: 12px 0; }
+  .open-q h3 { font-size: 15px; margin: 20px 0 6px; }
+  .err { color: var(--red); padding: 20px; }
+  code { font-family: ui-monospace, Menlo, monospace; font-size: 13px; background: var(--bg); padding: 1px 5px; border-radius: var(--ui-radius); }
+  @media (max-width: 900px) { nav.toc { display: none; } .page-doc { padding: 24px 16px; } }
+  @media print {
+    .topbar, nav.toc { display: none; }
+    body { background: #fff; } .layout { margin: 0; }
+    .page-doc { border: none; box-shadow: none; padding: 0; }
+  }
+</style>
+<link rel="stylesheet" href="/assets/site-skin.css">
+</head>
+<body>
+<inresearch-shell data-section="reports"></inresearch-shell>
+<div class="topbar">
+  <span style="color:var(--muted)">全球数据中心研究 · 活文档</span>
+  <span class="sp"></span>
+   <a href="bom.html">爆炸图</a>  <b style="color:var(--accent)">报告成稿</b>
+  <a href="doc.html?f=framework/01_data_standards.md">口径手册</a>
+  <a href="doc.html?f=reports/verify_queue.md">核验队列</a>
+  <a href="https://github.com/niuroumiantt/InResearch.ai" target="_blank">GitHub</a>
+  <a href="javascript:window.print()">打印/存 PDF</a>
+</div>
+<div class="layout">
+  <nav class="toc" id="toc"></nav>
+  <main><div id="docroot"><div class="page-doc">加载中…</div></div></main>
+</div>
+
+<script src="/assets/markdown-inline.js"></script>
+<script>
+const REPO = "https://github.com/niuroumiantt/InResearch.ai/blob/main/";
+const CN = ["一","二","三","四","五","六","七","八","九","十","十一","十二","十三","十四","十五"];
+
+async function get(path) {
+  const r = await fetch(path + "?t=" + Date.now(), { cache: "no-store" });
+  if (!r.ok) throw new Error(path + " → HTTP " + r.status);
+  return path.endsWith(".json") || path.startsWith("/api/") ? r.json() : r.text();
+}
+const {escape: esc, inline} = window.ResearchMarkdown;
+
+function bulletsToHtml(items) {
+  // items: [{depth, text}] → nested ul
+  let html = "", depth = 0;
+  for (const it of items) {
+    while (depth < it.depth) { html += "<ul>"; depth++; }
+    while (depth > it.depth) { html += "</ul>"; depth--; }
+    html += "<li>" + inline(it.text) + "</li>";
+  }
+  while (depth > 0) { html += "</ul>"; depth--; }
+  return html;
+}
+
+function parseFields(bodyLines) {
+  // 顶层 "- **字段**：..." 分组；子弹与续行归入当前字段
+  const fields = {}; let cur = null; const notes = [];
+  for (const raw of bodyLines) {
+    const top = raw.match(/^-\s+\*\*([^*]+)\*\*：?\s*(.*)$/);
+    if (top) {
+      cur = top[1].trim();
+      fields[cur] = { text: top[2] || "", items: [] };
+      continue;
+    }
+    const sub = raw.match(/^(\s+)-\s+(.*)$/);
+    if (sub && cur) { fields[cur].items.push({ depth: Math.max(1, Math.floor(sub[1].length / 2)), text: sub[2] }); continue; }
+    if (raw.trim() && cur) { fields[cur].text += (fields[cur].text ? " " : "") + raw.trim(); continue; }
+    if (raw.trim()) notes.push(raw.trim());
+  }
+  return { fields, notes };
+}
+
+function renderFinding(f, num) {
+  const stCls = f.status === "current" ? "b-cur" : (f.status === "needs-review" ? "b-rev" : "b-sta");
+  const { fields, notes } = parseFields(f.body);
+  let h = `<div class="finding${f.status !== "current" ? " review-note" : ""}" id="${esc(f.id)}" style="${f.status !== "current" ? "padding-left:14px" : ""}">`;
+  h += `<h3>${num} ${inline(f.title)}</h3>`;
+  h += `<div class="fmeta"><span class="badge ${stCls}">${esc(f.status)}</span>`;
+  if (f.qtags) h += `<span class="badge b-q">${esc(f.qtags)}</span>`;
+  h += ` 修订 ${esc(f.revised || "—")} · ${esc(f.id)}</div>`;
+  if (notes.length) h += `<div class="fmeta">${inline(notes.join(" "))}</div>`;
+  if (fields["结论"]) h += `<p class="lead"><b class="lbl">结论：</b>${inline(fields["结论"].text)}${bulletsToHtml(fields["结论"].items)}</p>`;
+  if (fields["论证"]) {
+    h += fields["论证"].text ? `<p class="lead"><b class="lbl">论证：</b>${inline(fields["论证"].text)}</p>` : "";
+    h += `<ul class="arg">${bulletsToHtml(fields["论证"].items).replace(/^<ul>|<\/ul>$/g, "")}</ul>`;
+  }
+  if (fields["口径提醒"]) h += `<div class="cav"><b class="lbl">⚖ 口径提醒：</b>${inline(fields["口径提醒"].text)}${bulletsToHtml(fields["口径提醒"].items)}</div>`;
+  if (fields["证据"]) h += `<details><summary>证据（${(fields["证据"].items.length || 1)} 条，含来源链接）</summary>${bulletsToHtml(fields["证据"].items) || "<p>" + inline(fields["证据"].text) + "</p>"}</details>`;
+  if (fields["待办"]) h += `<details><summary>内部待办</summary>${bulletsToHtml(fields["待办"].items) || "<ul><li>" + inline(fields["待办"].text) + "</li></ul>"}</details>`;
+  h += `</div>`;
+  return h;
+}
+
+function renderGenericBlock(header, lines) {
+  let h = header ? `<div class="open-q"><h3>${inline(header)}</h3>` : "<div>";
+  let items = [], para = [];
+  const flush = () => {
+    if (items.length) { h += "<ul class='arg'>" + bulletsToHtml(items).replace(/^<ul>|<\/ul>$/g, "") + "</ul>"; items = []; }
+    if (para.length) { h += "<p class='lead'>" + inline(para.join(" ")) + "</p>"; para = []; }
+  };
+  for (const raw of lines) {
+    const li = raw.match(/^(\s*)-\s+(.*)$/);
+    const ol = raw.match(/^(\d+)\.\s+(.*)$/);
+    if (li) { if (para.length) flush(); items.push({ depth: Math.max(1, Math.floor(li[1].length / 2) + 1) - 1 || 1, text: li[2] }); }
+    else if (ol) { if (para.length || items.length) flush(); h += `<li value="${ol[1]}" style="margin:10px 0 10px 30px;text-align:justify">${inline(ol[2])}</li>`; }
+    else if (raw.startsWith("> ")) { flush(); h += `<blockquote>${inline(raw.slice(2))}</blockquote>`; }
+    else if (!raw.trim()) flush();
+    else para.push(raw.trim());
+  }
+  flush();
+  return h + "</div>";
+}
+
+(async () => {
+  try {
+    const report = await get("/api/report");
+    const chapters = report.chapters;
+    const summaryMd = report.summary;
+    const totalFindings = report.finding_count;
+    const reviewCount = report.review_count;
+    const sources = new Set(report.sources);
+    const reg = {version: report.framework_version};
+    const mods = chapters.map(ch => ch.module);
+
+    const today = new Date().toISOString().slice(0, 10);
+    let html = `<section class="page-doc cover-page"><div class="cover"><h1>全球数据中心研究</h1>
+      <div class="meta">兼容研究结论 ｜ 生成日期 ${today} ｜ 内容版本 ${esc(report.data_revision.slice(0,12))} ｜ ${mods.length} 章 · ${totalFindings} 条研究结论 · ${sources.size} 个来源
+      ${reviewCount ? `｜ <span style="color:var(--yellow)">⚠️ ${reviewCount} 条待复核</span>` : ""}<br>
+      生成日期不代表来源核验日期；既有 Finding 未自动取得对象证据的 C3 采用资格。<br>
+      框架 v${reg.version} · 口径规则见<a href="doc.html?f=framework/01_data_standards.md">《口径与核验规则手册》</a> · 证据分级 S1 监管文件 / S2 公司披露 / S3 权威第三方 / S4 媒体 / S5 推算</div></div>`;
+
+    const toc = [];
+    if (summaryMd) {
+      html += `<h2 class="chapter" id="ch-summary">执行摘要 — 十大核心判断</h2>`;
+      const summaryLines = summaryMd.split("\n").filter(l => !l.startsWith("#"));
+      html += `<ol class="summary-list">` + renderGenericBlock(null, summaryLines.filter(l => !l.startsWith(">"))).replace(/^<div>|<\/div>$/g, "") + `</ol>`;
+      html += `<div class="chapter-src">源文件 <code>research/SUMMARY.md</code> · <a href="doc.html?f=research/SUMMARY.md">原文</a> · <a href="${REPO}research/SUMMARY.md" target="_blank">GitHub</a></div>`;
+      toc.push({ id: "ch-summary", label: "执行摘要" });
+    }
+    html += `</section>`;
+
+    chapters.forEach((ch, i) => {
+      const m = ch.module;
+      const cid = "ch-" + m.id;
+      toc.push({ id: cid, label: `第${CN[i]}章 ${m.name}` });
+      html += `<section class="page-doc"><h2 class="chapter" id="${cid}">第${CN[i]}章 ${m.name}</h2>`;
+      html += `<div class="chapter-sub">${m.id} · ${m.en} · 溯源 ${(m.source_questions || []).join(" ") || "新增研究"} · 更新节奏 ${m.update_freq}</div>`;
+      if (ch.position) html += `<blockquote>${inline(ch.position.replaceAll("\n", " "))}</blockquote>`;
+      ch.findings.forEach((finding, n) => { html += renderFinding(finding, `${i + 1}.${n + 1}`); });
+      html += `<div class="chapter-src">本章源文件 <code>${ch.source}</code>（<a href="doc.html?f=${ch.source}">原文</a> · <a href="${REPO}${ch.source}" target="_blank">GitHub</a>）
+        · 模块定义 <code>framework/${ch.definition}</code>（<a href="doc.html?f=framework/${ch.definition}">原文</a>）
+        · 依赖数据表 ${(m.tables || []).map(t => `<a href="${REPO}data/${t}.json" target="_blank">${t}</a>`).join(" / ")}</div></section>`;
+    });
+
+    if (report.history.length) {
+      html += `<section class="page-doc"><h2>历史记录</h2>` + report.history.map(f =>
+        `<p id="${esc(f.id)}">${esc(f.id)} · ${esc(f.status)} · <a href="doc.html?f=${encodeURIComponent(f.source)}">查看历史原文</a></p>`).join("") + `</section>`;
+    }
+    document.getElementById("docroot").innerHTML = html;
+    const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (target) target.scrollIntoView();
+    document.getElementById("toc").innerHTML = toc.map(t => `<a href="#${t.id}" id="toc-${t.id}">${t.label}</a>`).join("");
+
+    // 滚动高亮
+    const heads = toc.map(t => document.getElementById(t.id));
+    addEventListener("scroll", () => {
+      let on = heads[0];
+      for (const h of heads) if (h && h.getBoundingClientRect().top < 120) on = h;
+      document.querySelectorAll("nav.toc a").forEach(a => a.classList.remove("on"));
+      const link = document.getElementById("toc-" + on?.id);
+      if (link) link.classList.add("on");
+    }, { passive: true });
+  } catch (e) {
+    const error = document.createElement("div");
+    error.className = "err";
+    error.textContent = e.message;
+    document.getElementById("docroot").replaceChildren(error);
+  }
+})();
+</script>
+</body>
+</html>

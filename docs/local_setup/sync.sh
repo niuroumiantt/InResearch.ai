@@ -11,8 +11,8 @@ fi
 git fetch origin main
 git merge --ff-only origin/main
 if [ "${1:-}" = --push ]; then
-  python3 pipeline/governance.py --check
-  python3 pipeline/validate.py --strict
-  python3 pipeline/research.py
+  python3 manage.py governance --check
+  python3 manage.py validate --strict
+  python3 manage.py registry
   git push origin main
 fi

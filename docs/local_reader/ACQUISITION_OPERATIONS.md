@@ -5,10 +5,10 @@
 在 Spark 的 `~/code/inresearch.ai` 执行：
 
 ```bash
-python3 pipeline/acquisition.py status
-python3 pipeline/acquisition.py news --input /明确路径/inews-research-export.json
-python3 pipeline/acquisition.py sec --company nvidia --limit 1
-python3 pipeline/acquisition.py gpu --gpu 'H100 SXM'
+python3 manage.py acquisition status
+python3 manage.py acquisition news --input /明确路径/inews-research-export.json
+python3 manage.py acquisition sec --company nvidia --limit 1
+python3 manage.py acquisition gpu --gpu 'H100 SXM'
 ```
 
 显式 `--question M13-Q01` 只登记研究任务关联；必须是现行问题 ID，不代表来源已回答问题。自定义数据根使用命令前的 `--data-root /路径`；正式 Spark 用默认永久目录。
@@ -25,7 +25,7 @@ GPU 官方搜索需要私有 `VAST_API_KEY`，只放本机私有环境文件/秘
 
 部署 `deploy/spark-reader/inresearch-news.service` 和 `.timer` 至 `~/.config/systemd/user/`，执行 `systemctl --user daemon-reload` 与 `systemctl --user enable --now inresearch-news.timer`。上线前先执行服务一次，确认上游接口可用、台账成功、备份可恢复，再启用定时。Spark 现有 reader-publish 每五分钟发布至网站。
 
-`python3 pipeline/sync_datacenter_news.py` 可手动重试。失败记录在 acquisition runs，旧窗口保持；不触碰用户仍在传输的 raw-materials 隐藏目录。首页的同步时间代表完整窗口抓取时间，不能用网页刷新时间冒充。
+`python3 manage.py news-sync` 可手动重试。失败记录在 acquisition runs，旧窗口保持；不触碰用户仍在传输的 raw-materials 隐藏目录。首页的同步时间代表完整窗口抓取时间，不能用网页刷新时间冒充。
 
 ## 2026-09-07：经验证的上游选定范围
 

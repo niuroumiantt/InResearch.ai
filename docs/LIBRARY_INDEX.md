@@ -2,7 +2,7 @@
 
 > ⚠️ **本索引已过期两代**（2026-08-18 卫生审计确认）：下方仍是 08-15 前的旧目录结构
 > （01–90 编号，17,843 份），库本体现已重组为 M01–M15 结构、28,759 份。
-> 重建须在**本机**执行（库本体不进 git）：`python3 pipeline/build_library_index.py`，
+> 重建须在**本机**执行（库本体不进 git）：`python3 manage.py library-index`，
 > 跑完本横幅自动消失。在那之前查文件请以 docs/LIBRARY_SCORES.csv 的 new_path 为准。
 
 > 二进制不进 git；本索引进 git 作全量清单。大目录（>80 文件）仅记摘要，明细可用
@@ -628,4 +628,4 @@
 - 2025_阿里云实时计算Flink AI能力解读-57页.pdf（13.1MB）
 - 2025_阿里超节点 2025.09.29.pptx（13.3MB）
 
-共 17843 份 / 88.6GB ｜ 生成 2026-08-15 ｜ 重建：python3 pipeline/build_library_index.py
+共 17843 份 / 88.6GB ｜ 生成 2026-08-15 ｜ 重建：python3 manage.py library-index

@@ -10,7 +10,7 @@ M4 的职责是为 Spark 提供**只读、可审计的路由建议**，不运行
 运行：
 
 ```bash
-python3 ~/code/inresearch.ai/pipeline/m4_preflight.py
+python3 ~/code/inresearch.ai/manage.py preflight
 ```
 
 在 M4 上，`~/Library/LaunchAgents/com.inresearch.m4-preflight.plist` 以

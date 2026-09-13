@@ -11,7 +11,7 @@ WorkingDirectory=%h/code/inresearch.ai
 Environment=PYTHONUNBUFFERED=1
 Environment=PYTHONDONTWRITEBYTECODE=1
 EnvironmentFile=-%h/.config/inresearch.ai/reader.env
-ExecStart=/usr/bin/python3 %h/code/inresearch.ai/pipeline/continuous_reader.py run
+ExecStart=/usr/bin/python3 %h/code/inresearch.ai/manage.py reader run
 Restart=on-failure
 RestartSec=30
 TimeoutStopSec=30

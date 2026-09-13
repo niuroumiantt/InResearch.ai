@@ -1,0 +1,65 @@
+"""One local command surface for people and terminal agents. Lazy task imports."""
+
+from inresearch.paths import project_root
+import argparse
+import importlib
+import json
+import sys
+from pathlib import Path
+
+ROOT = project_root()
+COMMANDS = {
+    'models': 'inresearch.adapters.models',
+    'serve': 'inresearch.interfaces.http', 'users': 'inresearch.interfaces.users', 'reader': 'inresearch.interfaces.reader',
+    'inventory': 'inresearch.materials.inventory', 'triage': 'inresearch.workflow.triage', 'score': 'inresearch.workflow.score',
+    'batch': 'inresearch.workflow.terminal_batch', 'deep-read': 'inresearch.workflow.deep_read', 'organize': 'inresearch.materials.organize',
+    'mapping': 'inresearch.materials.mapping', 'preflight': 'inresearch.materials.preflight',
+    'attribution': 'inresearch.workflow.attribution', 'progress': 'inresearch.workflow.progress',
+    'receive': 'inresearch.materials.receive', 'publish': 'inresearch.delivery.publish', 'ocr-worker': 'inresearch.adapters.ocr_worker',
+    'acquisition': 'inresearch.adapters.acquisition', 'news-sync': 'inresearch.adapters.news_sync',
+    'historical-brief': 'inresearch.adapters.historical_brief',
+    'acquisition-status': 'inresearch.delivery.acquisition_status', 'reader-status': 'inresearch.delivery.reader_status',
+    'backup': 'inresearch.delivery.backup', 'library': 'inresearch.materials.library',
+    'library-index': 'inresearch.delivery.library_index', 'repair-paths': 'inresearch.materials.repair_paths',
+    'asset-check': 'inresearch.adapters.asset_check', 'asset-compare': 'inresearch.adapters.asset_compare', 'asset-download': 'inresearch.adapters.asset_download',
+    'registry': 'inresearch.knowledge.registry', 'facts': 'inresearch.knowledge.facts', 'validate': 'inresearch.knowledge.validate', 'verify': 'inresearch.knowledge.verify',
+    'governance': 'inresearch.interfaces.governance', 'indicators': 'inresearch.knowledge.indicators', 'company-ids': 'inresearch.knowledge.company_ids',
+    'coverage': 'inresearch.knowledge.coverage', 'reading-queue': 'inresearch.workflow.reading_queue', 'workorders': 'inresearch.workflow.workorders',
+    'submissions': 'inresearch.workflow.submissions', 'scan-candidates': 'inresearch.materials.scan_candidates', 'export': 'inresearch.delivery.export', 'map': 'inresearch.delivery.map',
+}
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument('--root', type=Path, default=ROOT, help='business data root for command mutations')
+    ap.add_argument('command', choices=sorted([*COMMANDS, 'add-price', 'assign', 'receive-snapshot']))
+    ap.add_argument('args', nargs=argparse.REMAINDER)
+    args = ap.parse_args(argv)
+    if args.command in COMMANDS:
+        sys.argv = [args.command, *args.args]
+        module = importlib.import_module(COMMANDS[args.command])
+        return module.main()
+    from inresearch.workflow import commands as commands
+    command = argparse.ArgumentParser(prog='inresearch ' + args.command)
+    command.add_argument('--input', type=Path, help='JSON file; otherwise read stdin')
+    command.add_argument('--actor', default='local-cli')
+    options = command.parse_args(args.args)
+    try:
+        payload = json.loads(options.input.read_text() if options.input else sys.stdin.read())
+        if not isinstance(payload, dict):
+            raise ValueError('JSON object required')
+        if args.command == 'add-price':
+            reply = commands.add_price(args.root, payload)
+        elif args.command == 'assign':
+            reply = commands.assign(args.root, payload, by=options.actor)
+        else:
+            reply = commands.receive_snapshot(args.root, payload)
+        print(json.dumps(reply, ensure_ascii=False))
+        return 0
+    except (ValueError, TypeError, KeyError) as exc:
+        print(json.dumps({'ok': False, 'status': getattr(exc, 'status', 400), 'error': str(exc)}, ensure_ascii=False))
+        return 1
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

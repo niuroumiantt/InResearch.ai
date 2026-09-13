@@ -1,0 +1,102 @@
+{
+  "deployed": "23fbad46be23cc3dcccc729b9429aa94d93290c3",
+  "source": "23fbad46be23cc3dcccc729b9429aa94d93290c3",
+  "release": "accce41ee0208619bc082b9862fc2a9a4d63a7be",
+  "service": "Result=success\nActiveState=inactive",
+  "timer": "active",
+  "unfinished": false,
+  "source_hashes": {
+    "manage.py": true,
+    "src/inresearch/interfaces/http.py": true,
+    "src/inresearch/workflow/commands.py": true,
+    "src/inresearch/storage/files.py": true,
+    "web/routes.json": true,
+    "web/components/site-shell.js": true,
+    "framework/current_state.json": true
+  },
+  "environment_checks": {
+    "governance --check": {
+      "exit_code": 0,
+      "environment": "production Git source checkout",
+      "summary": "Governance 2026.09.13.3: 553 files; current scopes and content inventory verified"
+    },
+    "validate --strict": {
+      "exit_code": 0,
+      "environment": "running application container and persistent data volumes",
+      "summary": "记录数: projects=120 companies=248 prices=209 policies=2 contracts=2 sources=74 products=175 bom_parts=46 product_docs_plan=801 product_library=0\n校验通过（0 warnings）"
+    },
+    "registry": {
+      "exit_code": 0,
+      "environment": "running application container and persistent data volumes",
+      "summary": "Research v2.1.2: 118 objects, 449 questions; references valid"
+    }
+  },
+  "anonymous_identity": 401,
+  "login_page": 200,
+  "https_admin_login": 200,
+  "admin_role": true,
+  "pages": {
+    "index.html": 200,
+    "research.html": 200,
+    "admin/product/index.html": 200,
+    "doc.html": 200,
+    "bom3d.html": 200,
+    "rack3d.html": 200,
+    "bom.html": 200,
+    "company.html": 200,
+    "compare.html": 200,
+    "ops.html": 200,
+    "team.html": 200,
+    "report.html": 200,
+    "materials.html": 200,
+    "admin/product/": 200,
+    "admin/product": 200
+  },
+  "apis": {
+    "users": 200,
+    "research": 200,
+    "report": 200,
+    "tasks": 200,
+    "materials": 200
+  },
+  "private_paths": {
+    "src/inresearch/interfaces/auth.py": 404,
+    "tests/unit/test_auth.py": 404,
+    "data/users.json": 404,
+    "data/research_runtime.json": 404,
+    ".git/config": 404,
+    "src/": 404,
+    "web/routes.json": 404
+  },
+  "verified_at": "2026-09-13T06:04:04.005805+00:00",
+  "pr": "https://github.com/niuroumiantt/InResearch.ai/pull/163",
+  "expected_commit": "23fbad46be23cc3dcccc729b9429aa94d93290c3",
+  "merged": true,
+  "runtime_scope": "Production HTTPS and application container; no Spark/M4 runtime update",
+  "credentials_changed": false,
+  "business_data_mutated": false,
+  "application_containers": [
+    {
+      "name": "inresearch-host-caddy-1",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "name": "inresearch-host-inresearch-1",
+      "running": true,
+      "health": "healthy"
+    }
+  ],
+  "host_release_health": {
+    "running_containers": 11,
+    "all_running": true,
+    "all_declared_healthchecks_passed": true
+  },
+  "ci": {
+    "pull_request_run": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/34741270584",
+    "pull_request_conclusion": "success",
+    "merged_commit_run": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/34741540941",
+    "merged_commit_conclusion": "success"
+  },
+  "evidence_scope": "Snapshot at verified_at for implementation commit 23fbad4; subsequent evidence-only commits do not change the tested implementation."
+}

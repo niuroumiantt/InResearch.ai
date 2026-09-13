@@ -2,9 +2,13 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "hub",
+      "name": "inresearch.ai",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8000"],
+      "runtimeArgs": [
+        "manage.py",
+        "serve",
+        "8000"
+      ],
       "port": 8000
     }
   ]

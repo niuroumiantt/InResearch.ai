@@ -32,10 +32,14 @@
 
 Finding ID `Mxx-Fn` 永不复用；`{Qnn}` 追溯旧报告问题，新增使用 `{new}`。状态为 current、needs-review、stale、superseded。更新结论须保留前版或对应提交及替代关系；仅完成复核可更新核验日期，不伪造实质修订。示例是格式示意，不能进入证据库。
 
-`verify.py` 生成复核任务；`export.py` 对 needs-review/stale 强制提示，对 superseded 不当作当前正文。现有解析器及旧记录不自动具备新证据链；迁移须逐条核对，150 条既有 Finding 不能据数量直接算作已采用的对象证据。
+`inresearch.knowledge.verify` 生成复核任务；`inresearch.delivery.export` 对 needs-review/stale 强制提示，对 superseded 不当作当前正文。现有解析器及旧记录不自动具备新证据链；迁移须逐条核对，150 条既有 Finding 不能据数量直接算作已采用的对象证据。
 
-`report_model.py` 统一解析模块来源、Finding、状态、来源清单与内容版本。网页 `/api/report` 和 Markdown/Word 导出共用该报告模型；被替代记录只保留历史入口。生成日期与内容哈希独立展示，不冒充来源核验日期。
+`inresearch.delivery.report` 统一解析模块来源、Finding、状态、来源清单与内容版本。网页 `/api/report` 和 Markdown/Word 导出共用该报告模型；被替代记录只保留历史入口。生成日期与内容哈希独立展示，不冒充来源核验日期。
 
 ## 变更顺序
 
 来源或范围变化 → 标受影响记录待复核 → 回到原文与反证 → 通过口径与 C3 → 建立新版本及替代链 → 更新当前回答与下游交付。较新的文件时间或模型结论本身不是采用授权。研究记录的修订与规范的修订分别遵循 [当前基准](CURRENT.md)。
+
+2026-09-13 对齐：reader v1 原件抽取/报告保留 1 起始 PDF 页号；`delivery.reader_export` 是唯一转换边界，输出知识证据的 `page_index` 减 1 并先验证范围。原文 locator 继续保留人读页号，旧不可变报告不重写。事实文件审计与新增录入共用 `knowledge.fact_contract`，已有缺失内容哈希作为溯源债务报告，不凭路径猜出或补造哈希。
+
+事实校验的现行入口是 `knowledge.fact_contract.check_fact`，录入与存量审计共用。`value_range` 与非空 `value` 互斥，区间必须是有序有限数字；未披露且无区间时须写留白原因。派生算法统一在 `notes` 解释，兼容读取历史 `derivation` 字段；不要求把已有说明复制到第二字段。这是对旧审计器只认 `derivation`、新录入器只认 `notes` 的替代，不能仅凭字段非空证明算法正确，原件核对和采用仍按研究契约执行。

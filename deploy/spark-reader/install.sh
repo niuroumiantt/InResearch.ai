@@ -5,7 +5,7 @@ umask 077
 reader_repo="$HOME/code/inresearch.ai"
 reader_config="$HOME/.config/inresearch.ai"
 reader_units="$HOME/.config/systemd/user"
-if [[ ! -f "$reader_repo/pipeline/continuous_reader.py" ]]; then
+if [[ ! -f "$reader_repo/manage.py" ]]; then
   echo 'Expected canonical checkout: ~/code/inresearch.ai' >&2
   exit 1
 fi
@@ -17,7 +17,7 @@ mkdir -p "$reader_config" "$reader_units"
 if [[ ! -e "$reader_config/reader.env" ]]; then
   install -m 600 "$reader_repo/deploy/spark-reader/reader.env.example" "$reader_config/reader.env"
 fi
-python3 "$reader_repo/pipeline/continuous_reader.py" init
+python3 "$reader_repo/manage.py" reader init
 install -m 600 "$reader_repo/deploy/spark-reader/inresearch-reader.service" "$reader_units/inresearch-reader.service"
 systemctl --user daemon-reload
 systemctl --user enable inresearch-reader.service
