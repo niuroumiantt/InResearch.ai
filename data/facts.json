@@ -47649,6 +47649,132 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "用于折算全年碳排与标煤（×8760h），故按年均记。 估算模板的假设参数，不是某个项目的设计或实测值。编制单位未署名（文件名标 2020 新版）；region 记 CN 的依据：标准煤折算与 0.604 kgCO₂/kWh 电网因子均为中国口径。"
+    },
+    {
+      "fact_id": "oi-bluebook2026-cn-ai-compute-202509",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "value": 1053.0,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "混合/未注明",
+        "area": "全国",
+        "status": "未注明",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e5af45b0612f37493d88c9f25c3485a0f247b2701d4e599003d99149d5af9833",
+        "local_file": "20260515-开放群岛开源社区-人工智能行业2026中国智能经济发展蓝皮书：数据要素、算电融合与AI产业规模化(86页).pdf",
+        "locator": "第 24 页（报告页码 13）：「截至 2025 年 9 月，我国智能算力总规模已达到 1053EFLOPS，位居全球第二」，脚注 17 中国通信企业协会《开局之年看发展｜算力网络：从规模扩张到高效服务》（2026-01-14）",
+        "grade": "S4",
+        "originator": "中国通信企业协会（经开放群岛蓝皮书转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "精度未注明。同段称北京亦庄、门头沟规划千 P 级至五千 P 级公共算力平台。"
+    },
+    {
+      "fact_id": "oi-bluebook2026-guiyang-guian-compute-2026",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "region",
+        "id": "guiyang-guian",
+        "label": "贵阳贵安"
+      },
+      "value": 190.0,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "总算力",
+        "precision": "混合/未注明",
+        "area": "贵阳贵安",
+        "status": "规划目标",
+        "region": "CN",
+        "basis": "政策目标"
+      },
+      "as_of": "2026目标",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e5af45b0612f37493d88c9f25c3485a0f247b2701d4e599003d99149d5af9833",
+        "local_file": "20260515-开放群岛开源社区-人工智能行业2026中国智能经济发展蓝皮书：数据要素、算电融合与AI产业规模化(86页).pdf",
+        "locator": "第 24 页（报告页码 13）：「以贵阳贵安等先行区域为例，其智算占比超过 98%，并规划在 2026 年实现 190EFLOPS 的算力规模」",
+        "grade": "S4",
+        "originator": "开放群岛（Open Islands）开源社区《2026 中国智能经济发展蓝皮书》（2026-05）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「算力规模」未说总算力还是智能算力，compute_type 取总算力（同句另给智算占比 >98%）；精度未注明。"
+    },
+    {
+      "fact_id": "oi-bluebook2026-domestic-corridors-compute-2026",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "region",
+        "id": "wuhan-hefei-taiyuan-corridors",
+        "label": "武汉、合肥、太原三大国产算力走廊"
+      },
+      "value": 35.0,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "FP16",
+        "area": "武汉、合肥、太原三大国产算力走廊",
+        "status": "规划目标",
+        "region": "CN",
+        "basis": "政策目标"
+      },
+      "as_of": "2026目标",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e5af45b0612f37493d88c9f25c3485a0f247b2701d4e599003d99149d5af9833",
+        "local_file": "20260515-开放群岛开源社区-人工智能行业2026中国智能经济发展蓝皮书：数据要素、算电融合与AI产业规模化(86页).pdf",
+        "locator": "第 25 页（报告页码 14）：「武汉、合肥、太原三大国产算力走廊规划在 2026 年合计交付 35EFLOPS（FP16）的算力」",
+        "grade": "S4",
+        "originator": "开放群岛（Open Islands）开源社区《2026 中国智能经济发展蓝皮书》（2026-05）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "三地合计；原文写「交付」，按规划目标记。"
+    },
+    {
+      "fact_id": "oi-bluebook2026-cn-new-large-dc-pue",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "cn-national-dc-pue-requirement-unnamed",
+        "label": "「国家规范」对新建大型数据中心的 PUE 要求（蓝皮书未点名文件）"
+      },
+      "value": 1.15,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "scale": "大型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2026-05",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "e5af45b0612f37493d88c9f25c3485a0f247b2701d4e599003d99149d5af9833",
+        "local_file": "20260515-开放群岛开源社区-人工智能行业2026中国智能经济发展蓝皮书：数据要素、算电融合与AI产业规模化(86页).pdf",
+        "locator": "第 26 页（报告页码 14-15）：「国家规范强制要求新建大型数据中心 PUE（电能利用效率）不高于 1.15，并推动液冷技术渗透率的大幅提升」",
+        "grade": "S4",
+        "originator": "开放群岛（Open Islands）开源社区《2026 中国智能经济发展蓝皮书》（2026-05）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文未点名是哪一份规范、何时发布**，as_of 取蓝皮书时点。库内已有国家层面新建大型数据中心限值为 1.3（2021 三年行动计划）、枢纽节点 1.25，与本条 1.15 差距大——**待交叉验证，不宜单独引用**。period 原文未写，按政策 PUE 惯例记年均。"
     }
   ]
 }
