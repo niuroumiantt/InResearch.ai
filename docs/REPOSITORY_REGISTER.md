@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：553。
+在册文件：554。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,7 +15,7 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 12 |
-| 历史快照 | 58 |
+| 历史快照 | 59 |
 | 运行代码 | 125 |
 | 现行规范 | 13 |
 | 项目配置 | 34 |
@@ -170,10 +170,11 @@
 | `docs/reviews/2026-09-13/architecture/consumers.csv` | rows | 748 |
 | `docs/reviews/2026-09-13/architecture/dependency-audit.json` | cycles | 0 |
 | `docs/reviews/2026-09-13/architecture/dependency-audit.json` | forbidden_direction_edges | 0 |
+| `docs/reviews/2026-09-13/architecture/deployment.json` | application_containers | 2 |
 | `docs/reviews/2026-09-13/architecture/external-consumers.csv` | rows | 5 |
 | `docs/reviews/2026-09-13/architecture/file-migration.csv` | rows | 491 |
 | `docs/reviews/2026-09-13/architecture/legacy-removal.csv` | rows | 19 |
-| `docs/reviews/2026-09-13/architecture/new-files.csv` | rows | 66 |
+| `docs/reviews/2026-09-13/architecture/new-files.csv` | rows | 67 |
 | `docs/reviews/2026-09-13/architecture/provenance-debt.csv` | rows | 38 |
 | `docs/reviews/2026-09-13/architecture/public-consumers.csv` | rows | 2184 |
 | `docs/reviews/2026-09-13/architecture/real-reader-flow.json` | states | 1 |
@@ -493,6 +494,7 @@
 | `docs/reviews/2026-09-13/architecture/baseline.json` | 历史快照 |
 | [docs/reviews/2026-09-13/architecture/consumers.csv](reviews/2026-09-13/architecture/consumers.csv) | 历史快照 |
 | `docs/reviews/2026-09-13/architecture/dependency-audit.json` | 历史快照 |
+| `docs/reviews/2026-09-13/architecture/deployment.json` | 历史快照 |
 | [docs/reviews/2026-09-13/architecture/external-consumers.csv](reviews/2026-09-13/architecture/external-consumers.csv) | 历史快照 |
 | [docs/reviews/2026-09-13/architecture/file-migration.csv](reviews/2026-09-13/architecture/file-migration.csv) | 历史快照 |
 | [docs/reviews/2026-09-13/architecture/legacy-removal.csv](reviews/2026-09-13/architecture/legacy-removal.csv) | 历史快照 |
