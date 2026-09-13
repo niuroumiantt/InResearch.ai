@@ -50,6 +50,12 @@ function fixture(name, brokenTexture=false) {
      const b=await status.boundingBox();assert.ok(b.x>=0 && b.x+b.width<=width);
      const retry=status.getByRole('button',{name:'重试',exact:true});assert.ok(await retry.isVisible());
      assert.ok(await retry.evaluate(e=>{const b=e.getBoundingClientRect();return e.contains(document.elementFromPoint(b.x+b.width/2,b.y+b.height/2))}),'retry is covered by another panel');
+     const contrast=await retry.evaluate(e=>{
+      const style=getComputedStyle(e),luminance=color=>color.match(/[\d.]+/g).slice(0,3).map(Number).map(v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4}).reduce((sum,v,i)=>sum+v*[.2126,.7152,.0722][i],0);
+      const a=luminance(style.color),b=luminance(style.backgroundColor);
+      return {ratio:(Math.max(a,b)+.05)/(Math.min(a,b)+.05),height:e.getBoundingClientRect().height};
+     });
+     assert.ok(contrast.ratio>=4.5 && contrast.height>=36,'retry needs readable contrast and a usable touch target');
      assert.notEqual(await status.evaluate(e=>getComputedStyle(e).backgroundColor),'rgba(0, 0, 0, 0)');
     }
    }
