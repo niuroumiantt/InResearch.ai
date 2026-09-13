@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：568。
+在册文件：575。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,7 +15,7 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 12 |
-| 历史快照 | 70 |
+| 历史快照 | 77 |
 | 运行代码 | 126 |
 | 现行规范 | 13 |
 | 项目配置 | 35 |
@@ -36,7 +36,7 @@
 | `data/brief.json` | review_marked | 23 |
 | `data/companies.json` | records | 248 |
 | `data/contracts.json` | records | 2 |
-| `data/facts.json` | records | 1144 |
+| `data/facts.json` | records | 1247 |
 | `data/policies.json` | records | 2 |
 | `data/prices.json` | records | 207 |
 | `data/product_docs_plan.csv` | rows | 801 |
@@ -192,6 +192,9 @@
 | `docs/reviews/2026-09-13/standards/consumers-before.json` | interfaces.governance | 2 |
 | `docs/reviews/2026-09-13/standards/dependencies.json` | cycles | 0 |
 | `docs/reviews/2026-09-13/standards/file-changes.csv` | rows | 42 |
+| `docs/reviews/2026-09-13/standards/integrated-consumers-after.csv` | rows | 93 |
+| `docs/reviews/2026-09-13/standards/integrated-dependencies.json` | cycles | 0 |
+| `docs/reviews/2026-09-13/standards/integrated-file-changes.csv` | rows | 53 |
 | `framework/bom.json` | layers | 5 |
 | `framework/bom.json` | parts | 46 |
 | `framework/current_state.json` | policies | 24 |
@@ -206,7 +209,7 @@
 | `framework/indicators.json` | indicators | 44 |
 | `framework/interface_manifest.json` | static_pages | 13 |
 | `framework/interface_manifest.json` | template_fragments | 4 |
-| `framework/metrics.json` | metrics | 250 |
+| `framework/metrics.json` | metrics | 267 |
 | `framework/modules.json` | modules | 15 |
 | `framework/research_graph.json` | views | 5 |
 | `framework/research_graph.json` | objects | 118 |
@@ -518,6 +521,7 @@
 | [docs/reviews/2026-09-13/architecture/source-reference-debt.csv](reviews/2026-09-13/architecture/source-reference-debt.csv) | 历史快照 |
 | `docs/reviews/2026-09-13/architecture/verification.json` | 历史快照 |
 | [docs/reviews/2026-09-13/standards/DELIVERY.md](reviews/2026-09-13/standards/DELIVERY.md) | 历史快照 |
+| [docs/reviews/2026-09-13/standards/INTEGRATION_PLAN.md](reviews/2026-09-13/standards/INTEGRATION_PLAN.md) | 历史快照 |
 | [docs/reviews/2026-09-13/standards/PLAN.md](reviews/2026-09-13/standards/PLAN.md) | 历史快照 |
 | [docs/reviews/2026-09-13/standards/POLICY_MATRIX.md](reviews/2026-09-13/standards/POLICY_MATRIX.md) | 历史快照 |
 | `docs/reviews/2026-09-13/standards/baseline-probes.json` | 历史快照 |
@@ -526,6 +530,12 @@
 | `docs/reviews/2026-09-13/standards/consumers-before.json` | 历史快照 |
 | `docs/reviews/2026-09-13/standards/dependencies.json` | 历史快照 |
 | [docs/reviews/2026-09-13/standards/file-changes.csv](reviews/2026-09-13/standards/file-changes.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/standards/integrated-POLICY_MATRIX.md](reviews/2026-09-13/standards/integrated-POLICY_MATRIX.md) | 历史快照 |
+| [docs/reviews/2026-09-13/standards/integrated-consumers-after.csv](reviews/2026-09-13/standards/integrated-consumers-after.csv) | 历史快照 |
+| `docs/reviews/2026-09-13/standards/integrated-dependencies.json` | 历史快照 |
+| [docs/reviews/2026-09-13/standards/integrated-file-changes.csv](reviews/2026-09-13/standards/integrated-file-changes.csv) | 历史快照 |
+| `docs/reviews/2026-09-13/standards/integrated-statistics.json` | 历史快照 |
+| `docs/reviews/2026-09-13/standards/integrated-verification.json` | 历史快照 |
 | `docs/reviews/2026-09-13/standards/statistics.json` | 历史快照 |
 | `docs/reviews/2026-09-13/standards/verification.json` | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |

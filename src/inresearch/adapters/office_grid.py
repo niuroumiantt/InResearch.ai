@@ -73,6 +73,13 @@ def number_text(value: float, dated: bool) -> str:
     # precision these documents claim and short of inventing any.
     return repr(round(value, 12))
 
+# 合并单元格的值只存在左上角那一格，其余格在 XML 里根本不存在。渲染成空白
+# 的后果不是「少了一格」，而是读者把右边某一列的数读成那一列的数——冷源工程
+# 表-09 的 小计 行就是这么错列的（4067+165+2593+67 ≠ 2825.41）。
+# 标一个「〃」出来，跨了哪几列就一目了然。
+MERGE_MARK = '〃'
+
+
 def grid_text(sheets: list[tuple[str, dict]], limit: int = MAX_CHARS) -> tuple[str, dict]:
     """Render [(sheet name, {(row, col): text})] as tab-separated rows.
 
@@ -99,7 +106,8 @@ def grid_text(sheets: list[tuple[str, dict]], limit: int = MAX_CHARS) -> tuple[s
             line = '%d\t%s' % (r, '\t'.join(cells.get((r, c), '') for c in range(width)))
             out.append(line.rstrip('\t'))
             rows_out += 1
-            cells_out += sum(1 for c in range(width) if (r, c) in cells)
+            cells_out += sum(1 for c in range(width)
+                             if cells.get((r, c), '') not in ('', MERGE_MARK))
             total += len(line) + 1
     return '\n'.join(out), {'rows': rows_out, 'cells': cells_out,
                             'truncated': truncated or total > limit}

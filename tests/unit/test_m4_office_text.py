@@ -18,6 +18,7 @@ import inresearch.adapters.office_biff as office_biff
 import inresearch.adapters.office_container as office_container
 import inresearch.adapters.office_grid as office_grid
 import inresearch.adapters.office_ppt as office_ppt
+import inresearch.adapters.office_ooxml as office_ooxml
 
 FREE = 0xFFFFFFFF
 ENDOFCHAIN = 0xFFFFFFFE
@@ -527,6 +528,64 @@ class XlsxCellTests(unittest.TestCase):
                                shared=['<si><t>楼面荷载</t></si>'])
         self.assertIn('楼面荷载\t4406', text)
         self.assertEqual(meta['cells'], 2)
+
+    # -- 合并单元格 -------------------------------------------------------
+    # 冷源工程表-09：小计行的值写在合并区的左上角，其余格在 XML 里不存在，
+    # 渲染成空白后读者把右边一列的数读成了那一列的数（4067+165+2593+67 ≠
+    # 2825.41），逐项人工费因此加出 94.8 万、与表-04 的 62.9 万对不上。
+    MERGED = ('<worksheet><sheetData>'
+              '<row r="5"><c r="A5"><v>1</v></c><c r="E5"><v>2825.41</v></c></row>'
+              '</sheetData>'
+              '<mergeCells count="1"><mergeCell ref="A5:D5"/></mergeCells>'
+              '</worksheet>')
+
+    def test_a_merged_range_is_marked_so_the_span_is_visible(self):
+        text, _ = self.read(sheet=self.MERGED)
+        self.assertIn('5\t1\t〃\t〃\t〃\t2825.41', text)
+
+    def test_the_mark_is_explained_once(self):
+        text, _ = self.read(sheet=self.MERGED)
+        self.assertEqual(text.count('同属一个合并单元格'), 1)
+
+    def test_the_mark_is_not_counted_as_a_cell(self):
+        """cells 是 35,895 份文件的判定依据，不能被记号灌水。"""
+        _, meta = self.read(sheet=self.MERGED)
+        self.assertEqual(meta['cells'], 2)
+
+    def test_an_empty_merged_range_says_nothing(self):
+        text, _ = self.read(sheet='<worksheet><sheetData>'
+                                  '<row r="5"><c r="E5"><v>1</v></c></row></sheetData>'
+                                  '<mergeCells><mergeCell ref="A5:D5"/></mergeCells>'
+                                  '</worksheet>')
+        self.assertNotIn('〃', text)
+
+    def test_a_merged_range_never_writes_over_a_value(self):
+        text, _ = self.read(sheet='<worksheet><sheetData><row r="5">'
+                                  '<c r="A5"><v>1</v></c><c r="C5"><v>7</v></c>'
+                                  '</row></sheetData>'
+                                  '<mergeCells><mergeCell ref="A5:D5"/></mergeCells>'
+                                  '</worksheet>')
+        self.assertIn('5\t1\t〃\t7\t〃', text)
+
+    def test_a_malformed_merge_ref_is_ignored(self):
+        text, _ = self.read(sheet='<worksheet><sheetData>'
+                                  '<row r="5"><c r="A5"><v>1</v></c></row></sheetData>'
+                                  '<mergeCells><mergeCell ref="A5:D"/></mergeCells>'
+                                  '</worksheet>')
+        self.assertIn('5\t1', text)
+
+    def test_huge_merged_range_is_rejected_before_expanding(self):
+        cells = {(1, 0): 'heading'}
+        with self.assertRaisesRegex(ValueError, 'exceeds_extraction_budget'):
+            office_ooxml.mark_merges(cells, '<mergeCell ref="A1:XFD1048576"/>')
+        self.assertEqual({(1, 0): 'heading'}, cells)
+
+    def test_merge_budget_is_cumulative_and_invalid_ranges_fail(self):
+        with self.assertRaisesRegex(ValueError, 'exceeds_extraction_budget'):
+            office_ooxml.mark_merges({(1, 0): 'a', (2, 0): 'b'},
+                                    '<mergeCell ref="A1:C1"/><mergeCell ref="A2:C2"/>', max_cells=5)
+        with self.assertRaisesRegex(ValueError, 'invalid_merged_cell_range'):
+            office_ooxml.mark_merges({(2, 0): 'a'}, '<mergeCell ref="A2:C1"/>')
 
     def test_a_gap_is_kept_so_a_value_stays_under_its_header(self):
         text, _ = self.read(sheet='<worksheet><sheetData><row r="3">'
