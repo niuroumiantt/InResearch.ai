@@ -1,6 +1,6 @@
 {
   "version": "0.1-draft",
-  "updated": "2026-09-12",
+  "updated": "2026-09-13",
   "note": "事实层种子。只收 depth 为「精读」或「据实生成」的数——半自动与目录级的行留在 LIBRARY_SCORES.csv 里当索引，不进这张表。首批四条全部来自已立 Finding（M10-F14/F16、M14 芜湖环评），每个数都可回原文逐行核对。",
   "records": [
     {
@@ -27121,6 +27121,1401 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**单体设施上限，不是某个已知项目**，故 status 记 L2（规划层面的预期）、capacity_type 未披露。**原文给的参照极有说服力**：5 GW 相当于爱达荷（5.4 GW）、缅因（5.3 GW）或新罕布什尔（4.5 GW）一个州 2023 年的夏季净发电容量。对照库内 Abilene 园区 1.8 GW IT 容量（SemiAnalysis 估算），**5 GW 是它的近三倍**。"
+    },
+    {
+      "fact_id": "rand-btm-nameplate-solar-caiso",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-caiso",
+        "label": "加州 CAISO"
+      },
+      "value": 7.1,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "铭牌容量",
+        "power_type": "太阳能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 32 页 Table 2.10（BTM Solar PV Nameplate Capacity Growth by Region Out to 2030），CAISO 行：2024 实绩 17.0 → 2030 预测 24.1 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 24.1 − 2024 实绩 17.0 = 7.1 GW（原表给逐年存量，未直接给增量）。  **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-nameplate-solar-ercot",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-ercot",
+        "label": "德州 ERCOT"
+      },
+      "value": 6.3,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "铭牌容量",
+        "power_type": "太阳能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 32 页 Table 2.10（BTM Solar PV Nameplate Capacity Growth by Region Out to 2030），ERCOT 行：2024 实绩 2.5 → 2030 预测 8.8 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 8.8 − 2024 实绩 2.5 = 6.3 GW（原表给逐年存量，未直接给增量）。  **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-nameplate-solar-ne-iso",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-ne-iso",
+        "label": "新英格兰 ISO-NE"
+      },
+      "value": 2.0,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "铭牌容量",
+        "power_type": "太阳能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 32 页 Table 2.10（BTM Solar PV Nameplate Capacity Growth by Region Out to 2030），NE-ISO 行：2024 实绩 4.0 → 2030 预测 6.0 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 6.0 − 2024 实绩 4.0 = 2.0 GW（原表给逐年存量，未直接给增量）。  **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-nameplate-solar-miso",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-miso",
+        "label": "中部 MISO"
+      },
+      "value": 8.1,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "铭牌容量",
+        "power_type": "太阳能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 32 页 Table 2.10（BTM Solar PV Nameplate Capacity Growth by Region Out to 2030），MISO 行：2024 实绩 5.7 → 2030 预测 13.8 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 13.8 − 2024 实绩 5.7 = 8.1 GW（原表给逐年存量，未直接给增量）。  **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-nameplate-solar-ny-iso",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-ny-iso",
+        "label": "纽约 NYISO"
+      },
+      "value": 1.4,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "铭牌容量",
+        "power_type": "太阳能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 32 页 Table 2.10（BTM Solar PV Nameplate Capacity Growth by Region Out to 2030），NY-ISO 行：2024 实绩 5.2 → 2030 预测 6.6 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 6.6 − 2024 实绩 5.2 = 1.4 GW（原表给逐年存量，未直接给增量）。  **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-nameplate-solar-pjm",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-pjm",
+        "label": "PJM"
+      },
+      "value": 11.7,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "铭牌容量",
+        "power_type": "太阳能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 32 页 Table 2.10（BTM Solar PV Nameplate Capacity Growth by Region Out to 2030），PJM 行：2024 实绩 8.4 → 2030 预测 20.1 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 20.1 − 2024 实绩 8.4 = 11.7 GW（原表给逐年存量，未直接给增量）。  **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-nameplate-solar-spp",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-spp",
+        "label": "西南 SPP"
+      },
+      "value": 2.3,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "铭牌容量",
+        "power_type": "太阳能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 32 页 Table 2.10（BTM Solar PV Nameplate Capacity Growth by Region Out to 2030），SPP 行：2024 实绩 0.7 → 2030 预测 3.0 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 3.0 − 2024 实绩 0.7 = 2.3 GW（原表给逐年存量，未直接给增量）。  **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-nameplate-solar-non-iso-regions",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-non-iso-regions",
+        "label": "非 ISO 区域"
+      },
+      "value": 16.8,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "铭牌容量",
+        "power_type": "太阳能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 32 页 Table 2.10（BTM Solar PV Nameplate Capacity Growth by Region Out to 2030），Non-ISO regions 行：2024 实绩 7.3 → 2030 预测 24.1 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 24.1 − 2024 实绩 7.3 = 16.8 GW（原表给逐年存量，未直接给增量）。  **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-nameplate-solar-total",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-total",
+        "label": "美国合计"
+      },
+      "value": 55.7,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "铭牌容量",
+        "power_type": "太阳能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 32 页 Table 2.10（BTM Solar PV Nameplate Capacity Growth by Region Out to 2030），Total 行：2024 实绩 50.8 → 2030 预测 106.5 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 106.5 − 2024 实绩 50.8 = 55.7 GW（原表给逐年存量，未直接给增量）。 原文正文给的整数是太阳能 +56 GW、储能 +36 GW（表内 106.5−50.8=55.7、41.5−5.9=35.6），两处取整一致。 **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-nameplate-storage-caiso",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-caiso",
+        "label": "加州 CAISO"
+      },
+      "value": 0.0,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "铭牌容量",
+        "power_type": "储能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 33 页 Table 2.11（BTM Storage Nameplate Capacity Growth by Region Out to 2030），CAISO 行：2024 实绩 1.9 → 2030 预测 1.9 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 1.9 − 2024 实绩 1.9 = 0.0 GW（原表给逐年存量，未直接给增量）。 **加州储能六年零增长**（1.9→1.9 GW），原文直说对储能预测的把握低于太阳能。 **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-nameplate-storage-ercot",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-ercot",
+        "label": "德州 ERCOT"
+      },
+      "value": 8.3,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "铭牌容量",
+        "power_type": "储能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 33 页 Table 2.11（BTM Storage Nameplate Capacity Growth by Region Out to 2030），ERCOT 行：2024 实绩 2.3 → 2030 预测 10.6 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 10.6 − 2024 实绩 2.3 = 8.3 GW（原表给逐年存量，未直接给增量）。 **2029-2030 年有一个大跳升**，原表注明这反映 NREL 预测里资本与运维成本、渗透率等假设的叠加，不是已知项目。 **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-nameplate-storage-ne-iso",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-ne-iso",
+        "label": "新英格兰 ISO-NE"
+      },
+      "value": 0.8,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "铭牌容量",
+        "power_type": "储能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 33 页 Table 2.11（BTM Storage Nameplate Capacity Growth by Region Out to 2030），NE-ISO 行：2024 实绩 0.1 → 2030 预测 0.9 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 0.9 − 2024 实绩 0.1 = 0.8 GW（原表给逐年存量，未直接给增量）。  **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-nameplate-storage-miso",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-miso",
+        "label": "中部 MISO"
+      },
+      "value": 7.7,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "铭牌容量",
+        "power_type": "储能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 33 页 Table 2.11（BTM Storage Nameplate Capacity Growth by Region Out to 2030），MISO 行：2024 实绩 0.0 → 2030 预测 7.7 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 7.7 − 2024 实绩 0.0 = 7.7 GW（原表给逐年存量，未直接给增量）。 **2029-2030 年有一个大跳升**，原表注明这反映 NREL 预测里资本与运维成本、渗透率等假设的叠加，不是已知项目。 **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-nameplate-storage-ny-iso",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-ny-iso",
+        "label": "纽约 NYISO"
+      },
+      "value": 2.9,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "铭牌容量",
+        "power_type": "储能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 33 页 Table 2.11（BTM Storage Nameplate Capacity Growth by Region Out to 2030），NY-ISO 行：2024 实绩 0.1 → 2030 预测 3.0 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 3.0 − 2024 实绩 0.1 = 2.9 GW（原表给逐年存量，未直接给增量）。  **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-nameplate-storage-pjm",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-pjm",
+        "label": "PJM"
+      },
+      "value": 3.8,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "铭牌容量",
+        "power_type": "储能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 33 页 Table 2.11（BTM Storage Nameplate Capacity Growth by Region Out to 2030），PJM 行：2024 实绩 0.1 → 2030 预测 3.9 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 3.9 − 2024 实绩 0.1 = 3.8 GW（原表给逐年存量，未直接给增量）。  **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-nameplate-storage-spp",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-spp",
+        "label": "西南 SPP"
+      },
+      "value": 3.3,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "铭牌容量",
+        "power_type": "储能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 33 页 Table 2.11（BTM Storage Nameplate Capacity Growth by Region Out to 2030），SPP 行：2024 实绩 0.2 → 2030 预测 3.5 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 3.5 − 2024 实绩 0.2 = 3.3 GW（原表给逐年存量，未直接给增量）。  **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-nameplate-storage-non-iso-regions",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-non-iso-regions",
+        "label": "非 ISO 区域"
+      },
+      "value": 8.7,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "铭牌容量",
+        "power_type": "储能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 33 页 Table 2.11（BTM Storage Nameplate Capacity Growth by Region Out to 2030），Non-ISO regions 行：2024 实绩 1.3 → 2030 预测 10.0 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 10.0 − 2024 实绩 1.3 = 8.7 GW（原表给逐年存量，未直接给增量）。 **2029-2030 年有一个大跳升**，原表注明这反映 NREL 预测里资本与运维成本、渗透率等假设的叠加，不是已知项目。 **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-nameplate-storage-total",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-total",
+        "label": "美国合计"
+      },
+      "value": 35.6,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "铭牌容量",
+        "power_type": "储能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 33 页 Table 2.11（BTM Storage Nameplate Capacity Growth by Region Out to 2030），Total 行：2024 实绩 5.9 → 2030 预测 41.5 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 41.5 − 2024 实绩 5.9 = 35.6 GW（原表给逐年存量，未直接给增量）。 原文正文给的整数是太阳能 +56 GW、储能 +36 GW（表内 106.5−50.8=55.7、41.5−5.9=35.6），两处取整一致。 **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-effective-solar-caiso",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-caiso",
+        "label": "加州 CAISO"
+      },
+      "value": 0.6,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "有效容量",
+        "power_type": "太阳能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 35 页 Table 2.13（BTM Solar PV Effective Capacity Growth by Region Out to 2030），CAISO 行：2024 实绩 1.5 → 2030 预测 2.1 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 2.1 − 2024 实绩 1.5 = 0.6 GW（原表给逐年存量，未直接给增量）。 该区域 ELCC：太阳能 8.8%、储能 76.5%。 **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-effective-solar-ercot",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-ercot",
+        "label": "德州 ERCOT"
+      },
+      "value": 0.4,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "有效容量",
+        "power_type": "太阳能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 35 页 Table 2.13（BTM Solar PV Effective Capacity Growth by Region Out to 2030），ERCOT 行：2024 实绩 0.1 → 2030 预测 0.5 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 0.5 − 2024 实绩 0.1 = 0.4 GW（原表给逐年存量，未直接给增量）。 该区域 ELCC：太阳能 5.6%、储能 79.9%。 **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-effective-solar-ne-iso",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-ne-iso",
+        "label": "新英格兰 ISO-NE"
+      },
+      "value": 0.0,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "有效容量",
+        "power_type": "太阳能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 35 页 Table 2.13（BTM Solar PV Effective Capacity Growth by Region Out to 2030），NE-ISO 行：2024 实绩 0.1 → 2030 预测 0.1 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 0.1 − 2024 实绩 0.1 = 0.0 GW（原表给逐年存量，未直接给增量）。 该区域 ELCC：太阳能 2.3%、储能 95.1%。 **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-effective-solar-miso",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-miso",
+        "label": "中部 MISO"
+      },
+      "value": 3.2,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "有效容量",
+        "power_type": "太阳能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 35 页 Table 2.13（BTM Solar PV Effective Capacity Growth by Region Out to 2030），MISO 行：2024 实绩 2.2 → 2030 预测 5.4 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 5.4 − 2024 实绩 2.2 = 3.2 GW（原表给逐年存量，未直接给增量）。 该区域 ELCC：太阳能 38.8%、储能 75.7%。 **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-effective-solar-ny-iso",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-ny-iso",
+        "label": "纽约 NYISO"
+      },
+      "value": 0.2,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "有效容量",
+        "power_type": "太阳能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 35 页 Table 2.13（BTM Solar PV Effective Capacity Growth by Region Out to 2030），NY-ISO 行：2024 实绩 0.7 → 2030 预测 0.9 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 0.9 − 2024 实绩 0.7 = 0.2 GW（原表给逐年存量，未直接给增量）。 该区域 ELCC：太阳能 13.9%、储能 78.9%。 **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-effective-solar-pjm",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-pjm",
+        "label": "PJM"
+      },
+      "value": 1.2,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "有效容量",
+        "power_type": "太阳能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 35 页 Table 2.13（BTM Solar PV Effective Capacity Growth by Region Out to 2030），PJM 行：2024 实绩 0.9 → 2030 预测 2.1 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 2.1 − 2024 实绩 0.9 = 1.2 GW（原表给逐年存量，未直接给增量）。 该区域 ELCC：太阳能 10.5%、储能 67.0%。 **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-effective-solar-spp",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-spp",
+        "label": "西南 SPP"
+      },
+      "value": 1.1,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "有效容量",
+        "power_type": "太阳能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 35 页 Table 2.13（BTM Solar PV Effective Capacity Growth by Region Out to 2030），SPP 行：2024 实绩 0.4 → 2030 预测 1.5 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 1.5 − 2024 实绩 0.4 = 1.1 GW（原表给逐年存量，未直接给增量）。 该区域 ELCC：太阳能 50.6%、储能 56.5%。 **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-effective-solar-non-iso-regions",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-non-iso-regions",
+        "label": "非 ISO 区域"
+      },
+      "value": 3.1,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "有效容量",
+        "power_type": "太阳能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 35 页 Table 2.13（BTM Solar PV Effective Capacity Growth by Region Out to 2030），Non-ISO regions 行：2024 实绩 1.4 → 2030 预测 4.5 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 4.5 − 2024 实绩 1.4 = 3.1 GW（原表给逐年存量，未直接给增量）。 该区域 ELCC：太阳能 18.6%、储能 75.7%。 **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-effective-solar-total",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-total",
+        "label": "美国合计"
+      },
+      "value": 9.8,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "有效容量",
+        "power_type": "太阳能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 35 页 Table 2.13（BTM Solar PV Effective Capacity Growth by Region Out to 2030），Total 行：2024 实绩 7.3 → 2030 预测 17.1 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 17.1 − 2024 实绩 7.3 = 9.8 GW（原表给逐年存量，未直接给增量）。  **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-effective-storage-caiso",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-caiso",
+        "label": "加州 CAISO"
+      },
+      "value": 0.0,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "有效容量",
+        "power_type": "储能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 35 页 Table 2.14（BTM Storage Effective Capacity Growth by Region Out to 2030），CAISO 行：2024 实绩 1.5 → 2030 预测 1.5 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 1.5 − 2024 实绩 1.5 = 0.0 GW（原表给逐年存量，未直接给增量）。 该区域 ELCC：太阳能 8.8%、储能 76.5%。 **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-effective-storage-ercot",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-ercot",
+        "label": "德州 ERCOT"
+      },
+      "value": 6.7,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "有效容量",
+        "power_type": "储能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 35 页 Table 2.14（BTM Storage Effective Capacity Growth by Region Out to 2030），ERCOT 行：2024 实绩 1.8 → 2030 预测 8.5 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 8.5 − 2024 实绩 1.8 = 6.7 GW（原表给逐年存量，未直接给增量）。 该区域 ELCC：太阳能 5.6%、储能 79.9%。**2029-2030 年有一个大跳升**，原表注明这反映 NREL 预测里资本与运维成本、渗透率等假设的叠加，不是已知项目。 **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-effective-storage-ne-iso",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-ne-iso",
+        "label": "新英格兰 ISO-NE"
+      },
+      "value": 0.8,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "有效容量",
+        "power_type": "储能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 35 页 Table 2.14（BTM Storage Effective Capacity Growth by Region Out to 2030），NE-ISO 行：2024 实绩 0.1 → 2030 预测 0.9 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 0.9 − 2024 实绩 0.1 = 0.8 GW（原表给逐年存量，未直接给增量）。 该区域 ELCC：太阳能 2.3%、储能 95.1%。 **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-effective-storage-miso",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-miso",
+        "label": "中部 MISO"
+      },
+      "value": 5.8,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "有效容量",
+        "power_type": "储能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 35 页 Table 2.14（BTM Storage Effective Capacity Growth by Region Out to 2030），MISO 行：2024 实绩 0.0 → 2030 预测 5.8 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 5.8 − 2024 实绩 0.0 = 5.8 GW（原表给逐年存量，未直接给增量）。 该区域 ELCC：太阳能 38.8%、储能 75.7%。**2029-2030 年有一个大跳升**，原表注明这反映 NREL 预测里资本与运维成本、渗透率等假设的叠加，不是已知项目。 **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-effective-storage-ny-iso",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-ny-iso",
+        "label": "纽约 NYISO"
+      },
+      "value": 2.3,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "有效容量",
+        "power_type": "储能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 35 页 Table 2.14（BTM Storage Effective Capacity Growth by Region Out to 2030），NY-ISO 行：2024 实绩 0.1 → 2030 预测 2.4 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 2.4 − 2024 实绩 0.1 = 2.3 GW（原表给逐年存量，未直接给增量）。 该区域 ELCC：太阳能 13.9%、储能 78.9%。 **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-effective-storage-pjm",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-pjm",
+        "label": "PJM"
+      },
+      "value": 2.6,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "有效容量",
+        "power_type": "储能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 35 页 Table 2.14（BTM Storage Effective Capacity Growth by Region Out to 2030），PJM 行：2024 实绩 0.0 → 2030 预测 2.6 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 2.6 − 2024 实绩 0.0 = 2.6 GW（原表给逐年存量，未直接给增量）。 该区域 ELCC：太阳能 10.5%、储能 67.0%。 **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-effective-storage-spp",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-spp",
+        "label": "西南 SPP"
+      },
+      "value": 1.9,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "有效容量",
+        "power_type": "储能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 35 页 Table 2.14（BTM Storage Effective Capacity Growth by Region Out to 2030），SPP 行：2024 实绩 0.1 → 2030 预测 2.0 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 2.0 − 2024 实绩 0.1 = 1.9 GW（原表给逐年存量，未直接给增量）。 该区域 ELCC：太阳能 50.6%、储能 56.5%。 **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-effective-storage-non-iso-regions",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-non-iso-regions",
+        "label": "非 ISO 区域"
+      },
+      "value": 6.6,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "有效容量",
+        "power_type": "储能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 35 页 Table 2.14（BTM Storage Effective Capacity Growth by Region Out to 2030），Non-ISO regions 行：2024 实绩 1.0 → 2030 预测 7.6 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 7.6 − 2024 实绩 1.0 = 6.6 GW（原表给逐年存量，未直接给增量）。 该区域 ELCC：太阳能 18.6%、储能 75.7%。**2029-2030 年有一个大跳升**，原表注明这反映 NREL 预测里资本与运维成本、渗透率等假设的叠加，不是已知项目。 **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-btm-effective-storage-total",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-total",
+        "label": "美国合计"
+      },
+      "value": 26.5,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "有效容量",
+        "power_type": "储能",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 35 页 Table 2.14（BTM Storage Effective Capacity Growth by Region Out to 2030），Total 行：2024 实绩 4.6 → 2030 预测 31.1 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：2030 预测 31.1 − 2024 实绩 4.6 = 26.5 GW（原表给逐年存量，未直接给增量）。  **铭牌容量 × ELCC = 有效容量**：ELCC（有效载荷承载能力）是这类资源在负荷高峰时真能顶上的比例。**太阳能的 ELCC 普遍很低**（新英格兰 2.3%、德州 5.6%、加州 8.8%），**储能则在 56%-95%**——所以「装了多少」与「高峰时能顶多少」可以差一个数量级。原文特别强调：太阳能的 ELCC 只反映白天高峰，不解决夜间与阴天。"
+    },
+    {
+      "fact_id": "rand-available-capacity-combined-caiso",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-caiso",
+        "label": "加州 CAISO"
+      },
+      "value": 1.9,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "可用容量（FTM+BTM）",
+        "power_type": "合计",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 45 页 Table 2.24（FTM and BTM Available Capacity Additions by Region, 2025–2030），CAISO 行：FTM -1.2 / BTM 3.6 / Combined 1.9 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**表后 3.6 GW + 表前 -1.2 GW = 合计 1.9 GW**（本条是合计列）。 **负值是净减**：原表注明 FTM 为负表示新增的可用容量少于退役造成的可用容量减少。    "
+    },
+    {
+      "fact_id": "rand-available-capacity-combined-ercot",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-ercot",
+        "label": "德州 ERCOT"
+      },
+      "value": 69.0,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "可用容量（FTM+BTM）",
+        "power_type": "合计",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 45 页 Table 2.24（FTM and BTM Available Capacity Additions by Region, 2025–2030），ERCOT 行：FTM 59.0 / BTM 10.0 / Combined 69.0 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**表后 10.0 GW + 表前 59.0 GW = 合计 69.0 GW**（本条是合计列）。   **德州 ERCOT 一家贡献 69 GW，占全美 82 GW 的 84%**——全美净增几乎全靠德州。  "
+    },
+    {
+      "fact_id": "rand-available-capacity-combined-ne-iso",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-ne-iso",
+        "label": "新英格兰 ISO-NE"
+      },
+      "value": 4.3,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "可用容量（FTM+BTM）",
+        "power_type": "合计",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 45 页 Table 2.24（FTM and BTM Available Capacity Additions by Region, 2025–2030），NE-ISO 行：FTM 3.3 / BTM 1.0 / Combined 4.3 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**表后 1.0 GW + 表前 3.3 GW = 合计 4.3 GW**（本条是合计列）。     "
+    },
+    {
+      "fact_id": "rand-available-capacity-combined-miso",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-miso",
+        "label": "中部 MISO"
+      },
+      "value": -0.8,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "可用容量（FTM+BTM）",
+        "power_type": "合计",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 45 页 Table 2.24（FTM and BTM Available Capacity Additions by Region, 2025–2030），MISO 行：FTM -12.0 / BTM 11.0 / Combined -0.8 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**表后 11.0 GW + 表前 -12.0 GW = 合计 -0.8 GW**（本条是合计列）。 **负值是净减**：原表注明 FTM 为负表示新增的可用容量少于退役造成的可用容量减少。 **MISO 与 PJM 合计为负**：即便算上表后资源，这两个区域到 2030 年可用容量仍在净减，原文警告这类区域可能出现更频繁、更长的停电。   "
+    },
+    {
+      "fact_id": "rand-available-capacity-combined-ny-iso",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-ny-iso",
+        "label": "纽约 NYISO"
+      },
+      "value": 3.6,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "可用容量（FTM+BTM）",
+        "power_type": "合计",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 45 页 Table 2.24（FTM and BTM Available Capacity Additions by Region, 2025–2030），NY-ISO 行：FTM 0.4 / BTM 3.3 / Combined 3.6 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**表后 3.3 GW + 表前 0.4 GW = 合计 3.6 GW**（本条是合计列）。     "
+    },
+    {
+      "fact_id": "rand-available-capacity-combined-pjm",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-pjm",
+        "label": "PJM"
+      },
+      "value": -0.7,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "可用容量（FTM+BTM）",
+        "power_type": "合计",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 45 页 Table 2.24（FTM and BTM Available Capacity Additions by Region, 2025–2030），PJM 行：FTM -5.3 / BTM 4.7 / Combined -0.7 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**表后 4.7 GW + 表前 -5.3 GW = 合计 -0.7 GW**（本条是合计列）。 **负值是净减**：原表注明 FTM 为负表示新增的可用容量少于退役造成的可用容量减少。 **MISO 与 PJM 合计为负**：即便算上表后资源，这两个区域到 2030 年可用容量仍在净减，原文警告这类区域可能出现更频繁、更长的停电。   "
+    },
+    {
+      "fact_id": "rand-available-capacity-combined-spp",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-spp",
+        "label": "西南 SPP"
+      },
+      "value": 1.8,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "可用容量（FTM+BTM）",
+        "power_type": "合计",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 45 页 Table 2.24（FTM and BTM Available Capacity Additions by Region, 2025–2030），SPP 行：FTM -1.7 / BTM 3.5 / Combined 1.8 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**表后 3.5 GW + 表前 -1.7 GW = 合计 1.8 GW**（本条是合计列）。 **负值是净减**：原表注明 FTM 为负表示新增的可用容量少于退役造成的可用容量减少。    "
+    },
+    {
+      "fact_id": "rand-available-capacity-combined-non-iso-regions",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-non-iso-regions",
+        "label": "非 ISO 区域"
+      },
+      "value": 2.7,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "可用容量（FTM+BTM）",
+        "power_type": "合计",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 45 页 Table 2.24（FTM and BTM Available Capacity Additions by Region, 2025–2030），Non-ISO regions 行：FTM -9.4 / BTM 12.0 / Combined 2.7 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**表后 12.0 GW + 表前 -9.4 GW = 合计 2.7 GW**（本条是合计列）。 **负值是净减**：原表注明 FTM 为负表示新增的可用容量少于退役造成的可用容量减少。    "
+    },
+    {
+      "fact_id": "rand-available-capacity-combined-total",
+      "metric_id": "btm_capacity_addition",
+      "entity": {
+        "type": "region",
+        "id": "us-total",
+        "label": "美国合计"
+      },
+      "value": 82.0,
+      "unit": "GW",
+      "caliber": {
+        "capacity_basis": "可用容量（FTM+BTM）",
+        "power_type": "合计",
+        "window": "2025-2030 累计",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fbe3f35f5ea38977a772c43e25358cf1a6f73a927c7f28dc00e95e7f5ffdeb5f",
+        "local_file": "RAND Assessing the United States Additional AI Power Demand (RRA3845-1, 2025).pdf",
+        "locator": "第 45 页 Table 2.24（FTM and BTM Available Capacity Additions by Region, 2025–2030），Total 行：FTM 33.0 / BTM 49.0 / Combined 82.0 GW",
+        "grade": "S3",
+        "originator": "RAND Corporation（BTM 部分引自 NREL 分布式能源预测）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**表后 49.0 GW + 表前 33.0 GW = 合计 82.0 GW**（本条是合计列）。    **对照需求侧**：全美 82 GW 可用容量净增，对 2030 年 AI 数据中心新增需求 34-253 GW（见 rand-us-dc-additional-demand-2030-*）。原文结论是表前资源的净增「不太可能」满足这个规模。 **FTM 与 BTM 两列本库没有单独取值**（capacity_basis 只有铭牌/有效/合计可用），只能写在这里；**且 BTM 这一列（全美 49 GW）与表 2.13/2.14 算出的有效容量增量（太阳能 9.8 + 储能 26.5 = 36.3 GW）对不上**，原文未解释差额，疑为含太阳能+储能混合方案的正面情景口径，标 [未核]。"
     }
   ]
 }
