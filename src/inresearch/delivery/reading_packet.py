@@ -199,7 +199,7 @@ sha256：{sha}
 """
 
 
-def publish(root, row, text, meta, metrics, questions, missing, revision, preview=6000):
+def publish(root, row, text, meta, metrics, questions, missing, revision, preview=6000, reading_result=None):
     """Publish one complete, independently named terminal packet; never overwrite."""
     import hashlib
     import json
@@ -218,6 +218,12 @@ def publish(root, row, text, meta, metrics, questions, missing, revision, previe
         metrics=metric_menu(module, metrics), others=other_modules_index(module, metrics),
         questions=question_menu(module, questions))
     brief += '\n\nL1 判定版本：`%s`。归属/限制修改须传 `--expected-revision %s`；冲突后重新查看当前判定。\n' % (revision, revision)
+    reading_result = reading_result or {'status': 'not_checked'}
+    if reading_result['status'] == 'available':
+        brief += '\n复用当前全文阅读版本 `%s`，报告 SHA `%s`，报告路径 `%s`。先阅读该报告，再对照正文提取事实；本包不创建第二份阅读结果。\n' % (
+            reading_result['reading_revision_id'], reading_result['report_sha256'], reading_result['report_path'])
+    else:
+        brief += '\n当前全文阅读结果：`%s`。本包仅提供任务输入；record/skip 只记录事实处理，不证明全文完成。完整结果须沿 reader 的逐块阅读与版本验收流程产生。\n' % reading_result['status']
     parent = Path(root) / row['sha256']; make_directory(parent)
     packet_id = uuid.uuid4().hex
     staging, target = parent / ('.'+packet_id+'.pending'), parent / packet_id
@@ -225,7 +231,7 @@ def publish(root, row, text, meta, metrics, questions, missing, revision, previe
     manifest = dict(sha256=row['sha256'], result_revision=revision, packet_id=packet_id,
                     text_sha256=hashlib.sha256(text.encode()).hexdigest(),
                     brief_sha256=hashlib.sha256(brief.encode()).hexdigest(), chars=len(text),
-                    extraction=meta)
+                    extraction=meta, reading_result=reading_result)
     atomic_write(staging/'text.md', text.encode())
     atomic_write(staging/'brief.md', brief.encode())
     atomic_write(staging/'manifest.json', (json.dumps(manifest,ensure_ascii=False,indent=2)+'\n').encode())
@@ -234,4 +240,5 @@ def publish(root, row, text, meta, metrics, questions, missing, revision, previe
     return dict(sha256=row['sha256'], module=module, score=row.get('score'), chars=len(text),
                 chunks=len(chunks(text)), result_revision=revision, packet_id=packet_id,
                 unattributed=missing or None, brief=str(target/'brief.md'), text=str(target/'text.md'),
-                manifest=str(target/'manifest.json'), **{k:v for k,v in meta.items() if k!='extract_error'})
+                manifest=str(target/'manifest.json'), reading_result=reading_result,
+                **{k:v for k,v in meta.items() if k!='extract_error'})

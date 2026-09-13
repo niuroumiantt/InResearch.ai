@@ -1,0 +1,178 @@
+path,line,reference
+docs/DECISIONS.md,7,先以 8237c13 提交现状反例、全文件处置和消费者计划，再让 reader/L2 current 与 L2 pack 共用 catalog 当前指针及已有原件/覆盖/封印检查。已有合格结果开包不再重复抽取；任务包固定生成时的版本，重开包不新建阅读。旧 l2_read.jsonl 保留为事实处理回执，公开计数改为 processed，不能冒充全文已读。查询只读、不初始化或迁移数据库；缺失、旧未验证和损坏各自说明。并行 #171 的事实与分诊规则原样保留。验证范围与剩余工作见 docs/reviews/2026-09-13/reading-authority，真实跨机器资料尚未迁移。
+docs/M4_TRIAGE_TASK.md,164,终端 JSON 的 documents_read/already_read/eligible_unread 已退出，改为 documents_processed/already_processed/eligible_unprocessed；相似提示改为 same_text_already_processed、same_text_packed_not_processed 和 processed。旧 l2_read.jsonl 字节不迁移，其历史名字不改变回执含义。status.reading 单列 catalog 清单状态，不把旧人工声明自动认定为全文合格。真实 M4/Spark 数据根连接和旧资料审计仍须实机验收。
+docs/REPOSITORY_REGISTER.md,762,| `src/inresearch/materials/reading_artifacts.py` | 运行代码 |
+docs/REPOSITORY_REGISTER.md,784,| `src/inresearch/workflow/reading_results.py` | 运行代码 |
+docs/REPOSITORY_REGISTER.md,833,| `tests/unit/test_reading_results.py` | 测试 |
+framework/04_reading_scoring_standard.md,90,L2 的 queue/record/skip 是事实处理任务，其回执不是全文阅读报告。旧 l2_read.jsonl 保留为历史处理台账；documents_processed、already_processed、eligible_unprocessed 与相似提示中的 processed 只反映事实处理。旧回执不自动导入为 reading_run，也不改变全文完成数。
+framework/08_model_execution.md,25,同一内容身份只维护一套当前有效阅读结果，由 reader catalog 的当前指针选择。reader current 与 deep-read current 共用 workflow.reading_results，不构建推理客户端；L2 事实处理回执不能成为第二套全文结果。尝试日志、局部检查点和被引用的历史依据可保留；失败重试不增加前台的阅读份数。
+framework/09_software_contracts.md,21,全文 reader 的 documents 拥有内容身份、原件位置和当前版本指针；reading_runs 拥有独立配方、产物与执行状态，jobs 绑定 revision_id。current_readings 是唯一当前阅读投影；新版本 ready 后经审阅用例验证原件、覆盖、产物清单及报告 SHA，再在一个 SQLite 事务内比较基线并切换指针、保存审阅。旧版本和候选仍保留，重放不重复创建或倒序覆盖。导出持同一读事务，目录导出以版本文件名和最后原子提交的 manifest 形成一致入口；后台旧文件不作为当前选择器。
+framework/09_software_contracts.md,59,workflow.reading_results.ReadingResults 使用 storage.catalog 的只读连接，在单个读事务内选择 current_readings 并调用 materials.reading_artifacts 的同一产物校验。ReadingStages 继承该产物责任；版本审阅继续使用相同封印检查。查询不初始化或迁移 schema；只读连接禁止写事务和直接 SQL 修改。它没有写入当前指针的接口。
+framework/09_software_contracts.md,63,L2 的 read_documents/remember_read 及 documents_read/already_read/eligible_unread 退出当前 API，分别由 processed_documents/remember_processing 和 documents_processed/already_processed/eligible_unprocessed 表示事实处理。receipt_log 沿用 l2_read.jsonl 文件名与稳定 operation_id；旧行仍供处理进度与重试恢复使用，不升级为全文报告。相似度的 processed 也仅来自该回执。status.reading 的 catalog_current_results 是 catalog 清单计数，非逐份新验收；具体结果须通过 current 校验。跨机器统一与旧资料导入未由本次只读接口自动实现。
+framework/CURRENT.md,14,| 全文阅读与采用 | [04 阅读标准](04_reading_scoring_standard.md) | reader catalog 为当前全文结果权威；workflow.reading_results 为 reader/L2 共同查询入口 |
+framework/current_state.json,208,"""src/inresearch/workflow/reading_results.py"","
+framework/current_state.json,209,"""src/inresearch/materials/reading_artifacts.py"","
+framework/current_state.json,210,"""tests/unit/test_reading_results.py"""
+framework/current_state.json,397,"""src/inresearch/workflow/reading_results.py"","
+framework/current_state.json,398,"""src/inresearch/materials/reading_artifacts.py"","
+framework/current_state.json,399,"""tests/unit/test_reading_results.py"""
+framework/current_state.json,445,"""src/inresearch/workflow/reading_results.py"","
+framework/current_state.json,446,"""src/inresearch/materials/reading_artifacts.py"","
+framework/current_state.json,447,"""tests/unit/test_reading_results.py"""
+framework/current_state.json,476,"""src/inresearch/workflow/reading_results.py"","
+framework/current_state.json,477,"""src/inresearch/materials/reading_artifacts.py"","
+framework/current_state.json,478,"""tests/unit/test_reading_results.py"""
+framework/current_state.json,527,"""src/inresearch/workflow/reading_results.py"","
+framework/current_state.json,528,"""src/inresearch/materials/reading_artifacts.py"","
+framework/current_state.json,529,"""tests/unit/test_reading_results.py"""
+framework/repository_manifest.json,5736,"""path"": ""src/inresearch/materials/reading_artifacts.py"","
+framework/repository_manifest.json,5890,"""path"": ""src/inresearch/workflow/reading_results.py"","
+framework/repository_manifest.json,6233,"""path"": ""tests/unit/test_reading_results.py"","
+framework/verification_contract.json,56,"""tests/unit/test_reading_results.py"": ""40e5b2b52876f421fe9e42ee6270062137d15642f33c04bbfe002e778ccddfed"","
+framework/verification_contract.json,158,"""tests/unit/test_reading_results.py::ReadingResultsTests.test_missing_catalog_query_does_not_create_directories_or_initialize"","
+framework/verification_contract.json,159,"""tests/unit/test_reading_results.py::ReadingResultsTests.test_old_or_new_catalog_refuses_without_migration_or_backup"","
+framework/verification_contract.json,160,"""tests/unit/test_reading_results.py::ReadingResultsTests.test_read_only_catalog_cannot_write_even_through_connection"""
+framework/verification_contract.json,243,"""tests/unit/test_reading_results.py::ReadingResultsTests.test_reader_and_l2_current_cli_return_same_verified_revision_without_model"","
+framework/verification_contract.json,244,"""tests/unit/test_reading_results.py::ReadingResultsTests.test_current_pack_reuses_full_text_and_report_without_extractor_or_new_reading"","
+framework/verification_contract.json,245,"""tests/unit/test_reading_results.py::ReadingResultsTests.test_zero_fact_and_legacy_receipts_do_not_create_full_reading_proof"","
+framework/verification_contract.json,246,"""tests/unit/test_reading_results.py::ReadingResultsTests.test_changed_original_or_chunk_is_detected_by_both_consumers"","
+framework/verification_contract.json,247,"""tests/unit/test_reading_results.py::ReadingResultsTests.test_report_reference_cannot_point_outside_the_sealed_artifact"""
+framework/verification_contract.json,274,"""tests/unit/test_reading_results.py::ReadingResultsTests.test_record_skip_and_again_only_change_processing_not_current_reading"","
+framework/verification_contract.json,275,"""tests/unit/test_reading_results.py::ReadingResultsTests.test_zero_fact_and_legacy_receipts_do_not_create_full_reading_proof"","
+framework/verification_contract.json,276,"""tests/unit/test_reading_results.py::ReadingResultsTests.test_query_uses_explicit_root_or_shared_environment_not_another_catalog"""
+framework/verification_contract.json,293,"""tests/unit/test_reading_results.py::ReadingResultsTests.test_reader_and_l2_current_cli_return_same_verified_revision_without_model"","
+framework/verification_contract.json,294,"""tests/unit/test_reading_results.py::ReadingResultsTests.test_ready_failed_retry_and_changed_model_do_not_change_shared_current"""
+framework/verification_contract.json,328,"""tests/unit/test_reading_results.py::ReadingResultsTests.test_pack_keeps_one_snapshot_during_independent_process_activation"","
+framework/verification_contract.json,329,"""tests/unit/test_reading_results.py::ReadingResultsTests.test_packet_publication_failure_preserves_authority_and_retries_without_inference"","
+framework/verification_contract.json,330,"""tests/unit/test_reading_results.py::ReadingResultsTests.test_corrupt_current_never_silently_reextracts_and_retry_uses_original"""
+src/inresearch/README.md,7,| materials | `records` 为当前判读权威投影及版本提交；`triage` 为清单/预览契约；`naming` 为纯命名规则；`reading_artifacts` 共管原件、覆盖和封印校验；`reading_policy` 管 L2 准入，`text_similarity` 仅提示相似；`inbox`/`receive` 接收；`organize`/`mapping` 处理显式整理 |
+src/inresearch/README.md,9,| workflow | `commands` 为 HTTP/CLI 共享修改用例；`reader` 控制任务状态；`reading_stages` 执行候选判读；`reading_results` 查询唯一当前全文结果；`deep_read.DeepRead` 编排事实处理与回执；`reading_gaps` 管缺口事务；`score` 为模型批量评分 |
+src/inresearch/delivery/reader_export.py,31,"for row in conn.execute(""SELECT * FROM current_readings WHERE report_rel IS NOT NULL ORDER BY created""):"
+src/inresearch/delivery/reader_export.py,50,"for row in conn.execute(""SELECT * FROM current_readings ORDER BY created,doc_id""):"
+src/inresearch/interfaces/deep_read.py,98,"'already_processed': len(app.processed_documents()),"
+src/inresearch/interfaces/reader.py,7,from inresearch.workflow.reading_results import ReadingResults
+src/inresearch/interfaces/reader.py,59,print(encoded(ReadingResults(args.data_root).current(args.sha)))
+src/inresearch/materials/reading_artifacts.py,9,class ReadingArtifacts:
+src/inresearch/materials/reading_artifacts.py,13,"def artifact_path(self, doc, name):"
+src/inresearch/materials/reading_artifacts.py,23,"p = self.artifact_path(doc, relative)"
+src/inresearch/materials/reading_artifacts.py,34,"def validate_report(self, doc):"
+src/inresearch/materials/reading_artifacts.py,38,"recipe = read_json(self.artifact_path(doc, 'recipe.json'))"
+src/inresearch/materials/reading_artifacts.py,70,self.validate_report(doc)
+src/inresearch/materials/reading_artifacts.py,71,"manifest_path = self.artifact_path(doc, 'manifest.json')"
+src/inresearch/materials/reading_artifacts.py,87,"return {'report_rel': self.artifact_path(doc, 'report.json').relative_to(self.data).as_posix(),"
+src/inresearch/materials/reading_artifacts.py,88,"'report_sha256': digest_file(self.artifact_path(doc, 'report.json')),"
+src/inresearch/materials/reading_artifacts.py,91,"def verify_seal(self, doc):"
+src/inresearch/materials/reading_artifacts.py,92,"if safe_path(self.data, doc['report_rel']) != self.artifact_path(doc, 'report.json'):"
+src/inresearch/materials/reading_artifacts.py,94,"manifest_path = self.artifact_path(doc, 'manifest.json')"
+src/inresearch/materials/reading_artifacts.py,100,"if digest_file(self.artifact_path(doc, 'report.json')) != doc['report_sha256']:"
+src/inresearch/materials/reading_artifacts.py,107,return self.validate_report(doc)
+src/inresearch/storage/catalog.py,71,"CREATE VIEW IF NOT EXISTS current_readings AS """""" + READINGS + """""""
+src/inresearch/storage/catalog.py,185,"row = self.conn.execute('SELECT * FROM current_readings WHERE doc_id=?',(doc_id,)).fetchone()"
+src/inresearch/workflow/deep_read.py,25,from inresearch.workflow.reading_results import ReadingResults
+src/inresearch/workflow/deep_read.py,45,self.readings = ReadingResults(reader_data_root)
+src/inresearch/workflow/deep_read.py,49,self.receipt_log = state / 'l2_read.jsonl'
+src/inresearch/workflow/deep_read.py,75,def processed_documents(self):
+src/inresearch/workflow/deep_read.py,84,"def remember_processing(self, row, execution=None):"
+src/inresearch/workflow/deep_read.py,102,"done, covered = self.processed_documents(), self.coverage()"
+src/inresearch/workflow/deep_read.py,134,done = self.processed_documents()
+src/inresearch/workflow/deep_read.py,213,"report['receipt_replayed'] = self.remember_processing(dict(sha256=doc_sha,"
+src/inresearch/workflow/deep_read.py,265,"replayed = self.remember_processing(dict(sha256=row['sha256'], facts=0,"
+src/inresearch/workflow/deep_read.py,298,"return dict(facts=len(records), documents_processed=len(self.processed_documents()),"
+src/inresearch/workflow/reader.py,36,from inresearch.workflow.reading_stages import ReadingStages
+src/inresearch/workflow/reader.py,59,"self.stages = ReadingStages(self.data, self.model, self.ocr_max_pages, self.large_format_points)"
+src/inresearch/workflow/reader.py,72,"def artifact_path(self, doc_id, name):"
+src/inresearch/workflow/reader.py,73,"return self.stages.artifact_path(self.doc(doc_id), name)"
+src/inresearch/workflow/reader.py,240,"report = read_json(self.stages.artifact_path(doc, ""report.json""))"
+src/inresearch/workflow/reader.py,448,"recipe = read_json(self.stages.artifact_path(doc, ""recipe.json""))"
+src/inresearch/workflow/reader.py,504,"counts = {row[0]: row[1] for row in self.conn.execute(""SELECT state,COUNT(*) FROM current_readings GROUP BY state"")}"
+src/inresearch/workflow/reading_results.py,8,from inresearch.materials.reading_artifacts import ReadingArtifacts
+src/inresearch/workflow/reading_results.py,13,class ReadingResults:
+src/inresearch/workflow/reading_results.py,17,self.artifacts = ReadingArtifacts(self.data)
+src/inresearch/workflow/reading_results.py,41,"row = conn.execute('SELECT * FROM current_readings WHERE sha256=?', (sha,)).fetchone()"
+src/inresearch/workflow/reading_results.py,51,report = self.artifacts.verify_seal(doc)
+src/inresearch/workflow/reading_revisions.py,31,"atomic_json(self.stages.artifact_path(execution,'context.json'),context)"
+src/inresearch/workflow/reading_revisions.py,32,"atomic_json(self.stages.artifact_path(execution,'recipe.json'),"
+src/inresearch/workflow/reading_revisions.py,65,"report = self.stages.verify_seal(run) if run['manifest_sha256'] else (read_report(self.stages.data,run) if run['report_rel'] else None)"
+src/inresearch/workflow/reading_revisions.py,85,self.stages.verify_seal(run)
+src/inresearch/workflow/reading_revisions.py,91,self.stages.verify_seal(run)
+src/inresearch/workflow/reading_stages.py,8,from inresearch.materials.reading_artifacts import ReadingArtifacts
+src/inresearch/workflow/reading_stages.py,10,class ReadingStages(ReadingArtifacts):
+src/inresearch/workflow/reading_stages.py,25,"atomic_json(self.artifact_path(doc, relative), out)"
+src/inresearch/workflow/reading_stages.py,101,"recipe = read_json(self.artifact_path(doc, ""recipe.json""))"
+src/inresearch/workflow/reading_stages.py,180,"snapshot = read_json(self.artifact_path(doc, ""context.json""))"
+src/inresearch/workflow/reading_stages.py,252,"extraction = read_json(self.artifact_path(doc, ""extraction.json""))"
+src/inresearch/workflow/reading_stages.py,282,"extraction = read_json(self.artifact_path(doc, ""extraction.json""))"
+src/inresearch/workflow/reading_stages.py,328,"extraction = read_json(self.artifact_path(doc, ""extraction.json""))"
+src/inresearch/workflow/reading_stages.py,329,"triage = read_json(self.artifact_path(doc, ""triage.json""))"
+src/inresearch/workflow/reading_stages.py,369,"context = read_json(self.artifact_path(doc, ""context.json""))"
+tests/unit/test_continuous_reader.py,84,"return dict(self.reader.conn.execute(""SELECT * FROM current_readings ORDER BY created,doc_id LIMIT 1"").fetchone())"
+tests/unit/test_continuous_reader.py,108,"report = artifacts.read_json(self.reader.artifact_path(doc[""doc_id""], ""report.json""))"
+tests/unit/test_continuous_reader.py,132,"report = self.reader.artifact_path(doc[""doc_id""], ""report.json"")"
+tests/unit/test_continuous_reader.py,144,"recipe = artifacts.read_json(self.reader.artifact_path(new_doc, ""recipe.json""))"
+tests/unit/test_continuous_reader.py,286,"docs = list(self.reader.conn.execute(""SELECT * FROM current_readings""))"
+tests/unit/test_continuous_reader.py,326,"docs = {d[""suffix""]: dict(d) for d in self.reader.conn.execute(""SELECT * FROM current_readings"")}"
+tests/unit/test_continuous_reader.py,334,"docs = {d[""suffix""]: dict(d) for d in self.reader.conn.execute(""SELECT * FROM current_readings"")}"
+tests/unit/test_continuous_reader.py,409,"extraction = artifacts.read_json(self.reader.artifact_path(self.first_doc()[""doc_id""], ""extraction.json""))"
+tests/unit/test_continuous_reader.py,459,"self.assertEqual(artifacts.read_json(self.reader.artifact_path(self.first_doc()[""doc_id""], ""report.json""))[""graph_version""], ""2.0.0"")"
+tests/unit/test_continuous_reader.py,540,"report = artifacts.read_json(self.reader.artifact_path(doc[""doc_id""], ""report.json""))"
+tests/unit/test_continuous_reader.py,544,"levels = list(self.reader.artifact_path(doc[""doc_id""], ""synthesis"").glob(""l001-*.json""))"
+tests/unit/test_continuous_reader.py,598,"path = self.reader.artifact_path(doc[""doc_id""], ""context.json"")"
+tests/unit/test_continuous_reader.py,712,"states = [row[0] for row in self.reader.conn.execute(""SELECT state FROM current_readings"")]"
+tests/unit/test_deep_read.py,31,L2.receipt_log = base / 'l2_read.jsonl'
+tests/unit/test_deep_read.py,82,"with patch.object(L2, 'remember_processing', side_effect=OSError('interrupted after fact commit')):"
+tests/unit/test_deep_read.py,170,"patch.object(L2, 'processed_documents', return_value=set()), \"
+tests/unit/test_deep_read.py,347,"L2.all_results, L2.processed_documents)"
+tests/unit/test_deep_read.py,352,L2.processed_documents = lambda: set()
+tests/unit/test_deep_read.py,360,"L2.all_results, L2.processed_documents) = saved"
+tests/unit/test_deep_read.py,464,"self._saved = (L2.processed_documents, L2.all_results, L2.load_facts, L2.load_metrics)"
+tests/unit/test_deep_read.py,465,L2.processed_documents = lambda: {L1_ROW['sha256']}
+tests/unit/test_deep_read.py,471,"(L2.processed_documents, L2.all_results, L2.load_facts, L2.load_metrics) = self._saved"
+tests/unit/test_deep_read.py,504,"self._saved = (L2.materials.RESULTS, L2.load_metrics, L2.load_facts, L2.processed_documents)"
+tests/unit/test_deep_read.py,508,L2.processed_documents = lambda: set()
+tests/unit/test_deep_read.py,511,"(L2.materials.RESULTS, L2.load_metrics, L2.load_facts, L2.processed_documents) = self._saved"
+tests/unit/test_deep_read.py,597,L2.receipt_log = base / 'l2_read.jsonl'
+tests/unit/test_deep_read.py,723,"for obj, attr, reader in [(L2, 'receipt_log', L2.processed_documents), (L2.similarity, 'path', L2.similarity.fingerprints),"
+tests/unit/test_deep_read.py,746,L2.receipt_log = base / 'l2_read.jsonl'
+tests/unit/test_deep_read.py,781,"self.assertNotIn(self.row['sha256'], L2.processed_documents())"
+tests/unit/test_deep_read.py,794,"self.assertNotIn(self.row['sha256'], L2.processed_documents())"
+tests/unit/test_deep_read.py,795,"self.assertIn('a' * 64, L2.processed_documents())"
+tests/unit/test_deep_read.py,799,"self.assertIn(self.row['sha256'], L2.processed_documents())"
+tests/unit/test_deep_read.py,954,self.app.receipt_log = base / 'l2_read.jsonl'
+tests/unit/test_deep_read_transactions.py,139,"with patch.object(self.app,'remember_processing',side_effect=OSError('receipt unavailable')):"
+tests/unit/test_deep_read_transactions.py,166,"with patch.object(self.app,'remember_processing',side_effect=OSError('receipt unavailable')):"
+tests/unit/test_deep_read_transactions.py,262,"with patch.object(self.app,'remember_processing',side_effect=OSError('receipt')),redirect_stdout(output):"
+tests/unit/test_deep_read_transactions.py,326,"with patch.object(self.app,'remember_processing',side_effect=OSError('receipt unavailable')):"
+tests/unit/test_fact_contract.py,345,"saved = (L2.all_results, L2.processed_documents, L2.load_facts, L2.load_metrics)"
+tests/unit/test_fact_contract.py,347,L2.processed_documents = lambda: set()
+tests/unit/test_fact_contract.py,353,"(L2.all_results, L2.processed_documents, L2.load_facts, L2.load_metrics) = saved"
+tests/unit/test_m4_triage_extract.py,707,def test_a_workbook_already_read_for_drawings_is_not(self):
+tests/unit/test_reading_results.py,21,from inresearch.workflow.reading_results import ReadingResults
+tests/unit/test_reading_results.py,24,class ReadingResultsTests(unittest.TestCase):
+tests/unit/test_reading_results.py,100,self.app.readings=ReadingResults(self.f.base/'missing-reader')
+tests/unit/test_reading_results.py,104,"self.assertNotIn('documents_read',status)"
+tests/unit/test_reading_results.py,110,"self.assertEqual(self.app.processed_documents(),{self.sha})"
+tests/unit/test_reading_results.py,116,service=ReadingResults(root)
+tests/unit/test_reading_results.py,124,"self.assertEqual(ReadingResults().current(self.sha)['reading_revision_id'],self.doc['revision_id'])"
+tests/unit/test_reading_results.py,125,"self.assertEqual(ReadingResults(self.f.base/'different').current(self.sha)['status'],'catalog_missing')"
+tests/unit/test_reading_results.py,216,original=self.results.artifacts.verify_seal
+tests/unit/test_reading_results.py,222,"with mock.patch.object(self.results.artifacts,'verify_seal',side_effect=activate_during_read):"
+tests/unit/test_reading_revisions.py,133,"atomic_json(self.r.stages.artifact_path(doc,'report.json'),report)"
+tests/unit/test_text_similarity.py,33,"self._saved = (L2.similarity.path, L2.processed_documents)"
+tests/unit/test_text_similarity.py,35,L2.processed_documents = lambda: set(self.processed)
+tests/unit/test_text_similarity.py,39,"(L2.similarity.path, L2.processed_documents) = self._saved"
+tests/unit/test_text_similarity.py,70,"self.assertEqual(L2.similarity.same_text('b' * 64, 'deadbeef', L2.processed_documents(), processed=True), [])"
+tests/unit/test_text_similarity.py,72,"self.assertEqual(L2.similarity.same_text('b' * 64, 'deadbeef', L2.processed_documents(), processed=True),"
+tests/unit/test_text_similarity.py,78,"self.assertEqual(L2.similarity.same_text('a' * 64, 'deadbeef', L2.processed_documents(), processed=True), [])"
+tests/unit/test_text_similarity.py,83,"self.assertEqual(L2.similarity.same_text('b' * 64, None, L2.processed_documents(), processed=True), [])"
+tests/unit/test_text_similarity.py,96,"L2.similarity.same_text('b' * 64, 'deadbeef', L2.processed_documents(), processed=False), ['a' * 64])"
+tests/unit/test_text_similarity.py,99,"""""""已读的那条路由 already_read_with_same_text 管，两边不重复报。"""""""
+tests/unit/test_text_similarity.py,103,"L2.similarity.same_text('b' * 64, 'deadbeef', L2.processed_documents(), processed=False), [])"
+tests/unit/test_text_similarity.py,108,"L2.similarity.same_text('a' * 64, 'deadbeef', L2.processed_documents(), processed=False), [])"
+tests/unit/test_text_similarity.py,112,"self.assertEqual(L2.similarity.same_text('b' * 64, None, L2.processed_documents(), processed=False), [])"
+tests/unit/test_text_similarity.py,132,"self._saved = (L2.similarity.path, L2.processed_documents)"
+tests/unit/test_text_similarity.py,134,L2.processed_documents = lambda: set(self.processed)
+tests/unit/test_text_similarity.py,144,"(L2.similarity.path, L2.processed_documents) = self._saved"
+tests/unit/test_text_similarity.py,174,"found = L2.similarity.near_twins('b' * 64, sketch, L2.processed_documents())"
+tests/unit/test_text_similarity.py,178,"self.assertTrue(L2.similarity.near_twins('b' * 64, sketch, L2.processed_documents())[0]['processed'])"
+tests/unit/test_text_similarity.py,183,"self.assertEqual(L2.similarity.near_twins('a' * 64, sketch, L2.processed_documents()), [])"
+tests/unit/test_text_similarity.py,189,"self.assertEqual(L2.similarity.near_twins('b' * 64, SIM.text_sketch(self.body), L2.processed_documents()), [])"

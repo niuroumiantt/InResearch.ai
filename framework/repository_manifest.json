@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.13.6",
+  "version": "2026.09.13.7",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -515,8 +515,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 28469,
-      "sha256": "eda2428a1d7af495b6af28adc5c3c66b623f529c06723a084ed60abb7062777a",
+      "bytes": 29174,
+      "sha256": "9e4cb7a4a4bb31cb340332ba1c05d77f70c11269439f3ee0ebab468c31ca83ac",
       "collections": []
     },
     {
@@ -560,8 +560,8 @@
     {
       "path": "docs/M4_TRIAGE_TASK.md",
       "role": "normative",
-      "bytes": 15174,
-      "sha256": "7aec5f854d5a1034029206cf71fd52b4544073aefa4bed0adf90f8da87a36c12",
+      "bytes": 16503,
+      "sha256": "e200e10f031eb30168e91c158f3c78b8ee5e08e77c855b15ccd0874fdad140a3",
       "collections": []
     },
     {
@@ -3220,8 +3220,8 @@
     {
       "path": "docs/local_reader/SPARK_OPERATIONS.md",
       "role": "normative",
-      "bytes": 24224,
-      "sha256": "b7d782223bd3a54f40e64571c223cdb36b85b672b395334b71347581005e1c48",
+      "bytes": 25344,
+      "sha256": "3073372315be60c2b237afdba0c006147a2586e107aa22abaaa556b8c15b62b1",
       "collections": []
     },
     {
@@ -3977,6 +3977,227 @@
       "collections": []
     },
     {
+      "path": "docs/reviews/2026-09-13/reading-authority/DELIVERY.md",
+      "role": "historical",
+      "bytes": 8467,
+      "sha256": "98252f4672bea11fb0d34420035fc0aedeb6eb5fa8f211c61ee636dd0fdd0c61",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-09-13/reading-authority/INTEGRATION.md",
+      "role": "historical",
+      "bytes": 1474,
+      "sha256": "e1f5a943840fc3d854f07b3dc5504b2f321c69ee436c3b78ff1dfdcbf4c2ed2d",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-09-13/reading-authority/PLAN.md",
+      "role": "historical",
+      "bytes": 4771,
+      "sha256": "b053fd503419589ba898a8f36a4ebd99caf391b2aa6ed6061e08cc6cd26b2449",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-09-13/reading-authority/audit.py",
+      "role": "historical",
+      "bytes": 7395,
+      "sha256": "cb65965ff86326eb370d4b54996fc4cf5961b666afca9f59f3dda3767f59faa7",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-09-13/reading-authority/baseline.json",
+      "role": "historical",
+      "bytes": 262,
+      "sha256": "e4a0caa6db1f320f7cbcb4ba1a7da16b5f450f83e8a5bfb4c7a681a493e079d2",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-09-13/reading-authority/consumers-after.csv",
+      "role": "historical",
+      "bytes": 23783,
+      "sha256": "d6c8942fc22981abaedffeebd337cb7f52fb6bd1c3def25287af9212fe032cd7",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 177,
+          "fields": [
+            "path",
+            "line",
+            "reference"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/reading-authority/consumers-before.csv",
+      "role": "historical",
+      "bytes": 12992,
+      "sha256": "faae124b7d9fa5b4c535766df7082f62547d8a2a060a97b805fcb3c172e2de11",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 113,
+          "fields": [
+            "path",
+            "line",
+            "reference"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/reading-authority/file-plan.csv",
+      "role": "historical",
+      "bytes": 73965,
+      "sha256": "0d28c17f827ad1107343d7ef1969aed7e7990b29f0d199b53cc157f69b1a09f6",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 628,
+          "fields": [
+            "path",
+            "action",
+            "target",
+            "reason"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/reading-authority/file-results.csv",
+      "role": "historical",
+      "bytes": 77213,
+      "sha256": "316ca8dd398b55d6dfd0032d7bf8fe3a8ae0b3df957f3fc33feda7ecf0735886",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 642,
+          "fields": [
+            "path",
+            "action",
+            "target",
+            "reason"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/reading-authority/method-migration.csv",
+      "role": "historical",
+      "bytes": 580,
+      "sha256": "cf2a0a3b1675baac9dd8d6b6579b783e48ed45a3fe49722886fa027694874eb5",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 6,
+          "fields": [
+            "before",
+            "after",
+            "same_ast",
+            "reason"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/reading-authority/public-consumers.csv",
+      "role": "historical",
+      "bytes": 221137,
+      "sha256": "48ef681edc8da04fb2c0cf0156a54438e9c8109a569ea8f40f99883136c67f44",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 1258,
+          "fields": [
+            "implementation",
+            "symbol",
+            "definition_line",
+            "consumer",
+            "line",
+            "call",
+            "resolution"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/reading-authority/real-flow.json",
+      "role": "historical",
+      "bytes": 2822,
+      "sha256": "761f1142c114700873eec6c030c91ca973ff5f7728a3c0fb59f68f19bfc4fe43",
+      "collections": [
+        {
+          "name": "actual_models",
+          "count": 1
+        },
+        {
+          "name": "unverified",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/reading-authority/statistics-after.json",
+      "role": "historical",
+      "bytes": 675,
+      "sha256": "1e38e41e067cbd6ca7b088bb905affbaa19597d866713a921bd59bfb922e731b",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-09-13/reading-authority/statistics-before.json",
+      "role": "historical",
+      "bytes": 674,
+      "sha256": "2893c09cc61d0100c90734947e07698be9c9c22ab1b7033c75ce00d916f0d69f",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-09-13/reading-authority/test-migration.csv",
+      "role": "historical",
+      "bytes": 199820,
+      "sha256": "8cfb0bfe20f47e67e6f77cb2b32305b81159a6031bef6e76e3b70148a31b41a9",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 951,
+          "fields": [
+            "before",
+            "after",
+            "result"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/reading-authority/test-migration.json",
+      "role": "historical",
+      "bytes": 2329,
+      "sha256": "fd91174c3e748d2566ea090573ae3c9ec4fdbebb058f9e42230b2ae0b5c57f30",
+      "collections": [
+        {
+          "name": "added",
+          "count": 17
+        },
+        {
+          "name": "missing",
+          "count": 0
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/reading-authority/test-renames.json",
+      "role": "historical",
+      "bytes": 1359,
+      "sha256": "4e59ebe9648f7bf8d39cb012545bd888c42b8619dcc9623ea9e2c8f040bc3851",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-09-13/reading-authority/verification.json",
+      "role": "historical",
+      "bytes": 914,
+      "sha256": "8dc09cc3fa0255c2b8a41f4656af9f1eb1b0344e3034dd59b36e16064045334e",
+      "collections": []
+    },
+    {
       "path": "docs/reviews/2026-09-13/reading-revisions/DELIVERY.md",
       "role": "historical",
       "bytes": 6104,
@@ -4422,8 +4643,8 @@
     {
       "path": "framework/04_reading_scoring_standard.md",
       "role": "normative",
-      "bytes": 9126,
-      "sha256": "f0ffebc29e60c3c019691c51f2ae5c18b1e4593c46ef3acdf44b38b5f4433abb",
+      "bytes": 10728,
+      "sha256": "23f1e2a4086ac2d77e81d4239dfc739b038668d4f9558e31a720969fbe8934c5",
       "collections": []
     },
     {
@@ -4457,22 +4678,22 @@
     {
       "path": "framework/08_model_execution.md",
       "role": "normative",
-      "bytes": 4734,
-      "sha256": "bcbb4fcaf23620546d9473eabc3e1db0dd8918cf1aff216f70e6dab99f328e8b",
+      "bytes": 4932,
+      "sha256": "6c1be72c11c0948ae349cba63bf6704e1c6cb5544eb2a0c5605386d65b2a7be9",
       "collections": []
     },
     {
       "path": "framework/09_software_contracts.md",
       "role": "normative",
-      "bytes": 9318,
-      "sha256": "c70392aa95188b01f4d9121082f4a2d5bc9717c282ea9e967018ff2ea4eaa335",
+      "bytes": 10881,
+      "sha256": "e1763f7bb7cfe2b30ec0c2e65fc158fe78916932d53a8fa4badaa59d6148bc80",
       "collections": []
     },
     {
       "path": "framework/CURRENT.md",
       "role": "normative",
-      "bytes": 5288,
-      "sha256": "ec01fd9e4ae4abe1b77a0b593fbb8269c9396ab89a878f8cae6c42e6df7f05b2",
+      "bytes": 5342,
+      "sha256": "e68789b885247ae118076bb14494f89b06e5b883eff9cd669f62b8230479db19",
       "collections": []
     },
     {
@@ -4494,8 +4715,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 22868,
-      "sha256": "a3957b925d04c8cc03826c1b70dfc3c8dae61685730b1175f01d7dc3c2d396c0",
+      "bytes": 23340,
+      "sha256": "93df1faad38e8b2a7dc46ee94409c55b682467549907b6548b883c6cd2f7c24c",
       "collections": [
         {
           "name": "policies",
@@ -4751,8 +4972,8 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 25980,
-      "sha256": "38a7c13f4d5fe132c485dab195abb6ff4ab18f5c4bc1787376b45c7aa7bad3a7",
+      "bytes": 28811,
+      "sha256": "43519e6c25ae51d62f6a4f361be7166e064b6a33b5f0da401ae4c618f97d684c",
       "collections": [
         {
           "name": "policies",
@@ -5059,8 +5280,8 @@
     {
       "path": "src/inresearch/README.md",
       "role": "supporting_document",
-      "bytes": 3621,
-      "sha256": "da28a061e859a10d3d4e95fc0236d65e872c3995ca5ef568e28f884b97f5df72",
+      "bytes": 3767,
+      "sha256": "812c39e251053f1d432bef4d17063efc31ecccaffead8b64715fd0f8e1508e46",
       "collections": []
     },
     {
@@ -5262,8 +5483,8 @@
     {
       "path": "src/inresearch/delivery/reading_packet.py",
       "role": "implementation",
-      "bytes": 11407,
-      "sha256": "ca63ee1f6fb386d0eaf16234bb62a3e28a9fa2ae449ed0ab02facff120432e15",
+      "bytes": 12184,
+      "sha256": "443abe8d6d34bd80b9e86c2db66ec4a0e5312af0394e05c9ca6a6f83897eed09",
       "collections": []
     },
     {
@@ -5297,8 +5518,8 @@
     {
       "path": "src/inresearch/interfaces/deep_read.py",
       "role": "implementation",
-      "bytes": 10376,
-      "sha256": "302cdd5b8ea64886f610ecd3bb0af58396dec9d5e36899016ac18dccf6b1f017",
+      "bytes": 11186,
+      "sha256": "9e78e19f487ca80d0bcd81b54a93bd884b08322d6cff8a54fb5704c494f0da41",
       "collections": []
     },
     {
@@ -5325,8 +5546,8 @@
     {
       "path": "src/inresearch/interfaces/reader.py",
       "role": "implementation",
-      "bytes": 5679,
-      "sha256": "6f792aa377e23feede30feb161265cb08bb081dec1c0546a868b15ef1994bc2a",
+      "bytes": 6268,
+      "sha256": "6810f8fb6b864375d6e2f7455ce09b6c8d2858cde1b4cac13a6c53eca770baf3",
       "collections": []
     },
     {
@@ -5519,6 +5740,13 @@
       "collections": []
     },
     {
+      "path": "src/inresearch/materials/reading_artifacts.py",
+      "role": "implementation",
+      "bytes": 6571,
+      "sha256": "9b0814d9f5c930f94c24e95bdb82907f8193c0fecc8472dc149de19433b13b6b",
+      "collections": []
+    },
+    {
       "path": "src/inresearch/materials/reading_policy.py",
       "role": "implementation",
       "bytes": 4585,
@@ -5556,8 +5784,8 @@
     {
       "path": "src/inresearch/materials/text_similarity.py",
       "role": "implementation",
-      "bytes": 3164,
-      "sha256": "79611cc435c5981062bf1f386f97c7f71abeeefe5b0e279c7e27c399a0a4c7ac",
+      "bytes": 3179,
+      "sha256": "5ff973efec90dec9369e918845447928995b67d955a6d47331215a63d988edde",
       "collections": []
     },
     {
@@ -5584,8 +5812,8 @@
     {
       "path": "src/inresearch/storage/catalog.py",
       "role": "implementation",
-      "bytes": 11996,
-      "sha256": "984f3d2a1dcf2e16af87b6aefc6e0d8f45faf19e0cff552c6945c572d9ea44a8",
+      "bytes": 12402,
+      "sha256": "f13c38eab4dc86f1bc04de1fb1e8aab14807ecdae26fcee4491c647b0b4a1a19",
       "collections": []
     },
     {
@@ -5633,8 +5861,8 @@
     {
       "path": "src/inresearch/workflow/deep_read.py",
       "role": "implementation",
-      "bytes": 18272,
-      "sha256": "82fe9b849d4dc954afd9eb51eeca9bfca7d5b1f72c7975aa52e2b935e143c2a9",
+      "bytes": 19348,
+      "sha256": "d1e76ae3944e6c8f92372d4669a733d60f3c43e17eda8b0b825a9007a1125d49",
       "collections": []
     },
     {
@@ -5666,6 +5894,13 @@
       "collections": []
     },
     {
+      "path": "src/inresearch/workflow/reading_results.py",
+      "role": "implementation",
+      "bytes": 3694,
+      "sha256": "df601a3abed7070d25d2197da0484c0c5fc8dbbedb9ac58eaa6e07cb2405d1af",
+      "collections": []
+    },
+    {
       "path": "src/inresearch/workflow/reading_revisions.py",
       "role": "implementation",
       "bytes": 8001,
@@ -5675,8 +5910,8 @@
     {
       "path": "src/inresearch/workflow/reading_stages.py",
       "role": "implementation",
-      "bytes": 28713,
-      "sha256": "10f4631f2e3e4580b75b63c6a4b1f2c5f930a7f5a966f61b6d36671a46cb1ca6",
+      "bytes": 23387,
+      "sha256": "3a6b345147f742758105d2d55eb6fb01a2f26cd8ceebb38f04985deae9cb45d2",
       "collections": []
     },
     {
@@ -5780,8 +6015,8 @@
     {
       "path": "tests/unit/deep_read_fixtures.py",
       "role": "test",
-      "bytes": 4176,
-      "sha256": "a05ce5b320efe0358e4563f8430ab872d907063455f06f7b4793b93d97014636",
+      "bytes": 4208,
+      "sha256": "e748d51107427c48684ebedfa8286a8a515b36a0b3c8bc7d0fefa7d9ba713df1",
       "collections": []
     },
     {
@@ -5836,15 +6071,15 @@
     {
       "path": "tests/unit/test_deep_read.py",
       "role": "test",
-      "bytes": 49884,
-      "sha256": "c37407f0b58782b159a73b54f90304e46947efabc9bc86d1fe5922873f75f0e9",
+      "bytes": 50117,
+      "sha256": "1bd705a4a4d2fa989661dca729f129f3f8e99d9c08ba589d5dbb118f82be7751",
       "collections": []
     },
     {
       "path": "tests/unit/test_deep_read_transactions.py",
       "role": "test",
-      "bytes": 20529,
-      "sha256": "8dbc032fa92ecaff99d208380714f630a5aec8a728c13d01a5879c68e7f42813",
+      "bytes": 20656,
+      "sha256": "e44abfc65c4550106aa009041a92271a8e5d3c880bd56b680147baaefe633317",
       "collections": []
     },
     {
@@ -5857,8 +6092,8 @@
     {
       "path": "tests/unit/test_fact_contract.py",
       "role": "test",
-      "bytes": 135949,
-      "sha256": "7af06630640c2122fdd3f24c551d64636e639e0b8f3bfbf80bcd887c1a6d6407",
+      "bytes": 135964,
+      "sha256": "85a83dfbf8485571c40503afd2bf7d65ad025913bc19a69dc6fe90ab48c7db97",
       "collections": []
     },
     {
@@ -6002,6 +6237,13 @@
       "collections": []
     },
     {
+      "path": "tests/unit/test_reading_results.py",
+      "role": "test",
+      "bytes": 14978,
+      "sha256": "40e5b2b52876f421fe9e42ee6270062137d15642f33c04bbfe002e778ccddfed",
+      "collections": []
+    },
+    {
       "path": "tests/unit/test_reading_revisions.py",
       "role": "test",
       "bytes": 13746,
@@ -6046,8 +6288,8 @@
     {
       "path": "tests/unit/test_text_similarity.py",
       "role": "test",
-      "bytes": 9648,
-      "sha256": "4e24065bfcc56cb264977928be50bf448a4feda3c24b82a0a56c36d045caab9c",
+      "bytes": 9846,
+      "sha256": "428e0d72f97461a57a4bf4ec1c459abdeea8e3847638787a893881bfba621dcd",
       "collections": []
     },
     {
@@ -6639,14 +6881,14 @@
     "design_reference": 1,
     "entrypoint": 4,
     "generated": 12,
-    "historical": 112,
-    "implementation": 132,
+    "historical": 130,
+    "implementation": 134,
     "normative": 13,
     "project_config": 35,
     "research_record": 16,
     "retired_entrypoint": 3,
     "source_record": 26,
     "supporting_document": 35,
-    "test": 50
+    "test": 51
   }
 }

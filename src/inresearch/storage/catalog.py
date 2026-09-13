@@ -84,13 +84,16 @@ def statements(conn, sql):
             conn.execute(statement)
 
 class Catalog:
-    def __init__(self, path):
+    def __init__(self, path, *, read_only=False):
         self._db = path
+        self.read_only = read_only
         self._local = threading.local()
         self._conns = []
         self._conns_lock = threading.Lock()
 
     def initialize(self):
+        if self.read_only:
+            raise ValueError('read-only catalog cannot initialize or migrate')
         version = self.conn.execute('PRAGMA user_version').fetchone()[0]
         if version == 2:
             return
@@ -205,10 +208,12 @@ class Catalog:
         if conn is None:
             if self._db is None:
                 return None
-            conn = sqlite3.connect(str(self._db), timeout=30, isolation_level=None)
+            target = self._db.resolve().as_uri() + '?mode=ro' if self.read_only else str(self._db)
+            conn = sqlite3.connect(target, uri=self.read_only, timeout=30, isolation_level=None)
             conn.row_factory = sqlite3.Row
-            conn.execute("PRAGMA journal_mode=WAL")
-            conn.execute("PRAGMA synchronous=FULL")
+            if not self.read_only:
+                conn.execute("PRAGMA journal_mode=WAL")
+                conn.execute("PRAGMA synchronous=FULL")
             conn.execute("PRAGMA foreign_keys=ON")
             conn.execute("PRAGMA busy_timeout=30000")
             self._local.conn = conn
@@ -235,6 +240,8 @@ class Catalog:
 
     @contextmanager
     def transaction(self):
+        if self.read_only:
+            raise ValueError('read-only catalog cannot write')
         self.conn.execute("BEGIN IMMEDIATE")
         try:
             yield

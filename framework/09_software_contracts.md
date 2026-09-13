@@ -33,13 +33,13 @@ Claude CLI 暂为默认推理执行器，未来 Spark 或更大模型从 role/pr
 
 2026-09-13 集成核对：文本指纹和近似摘要仅为复核提示，不能代替原件内容 SHA，不能自动阻止另一内容版本开包或沿用其证据。合并单元格展开在分配前检查累计抽取预算，超限明确失败并保留原件；截断或超限不计完整阅读。
 
-带 `twin_of` 的文本副本自动推测记录不是完整阅读证明，保留日志供复核，不能单独让另一 SHA 退出待读队列；后续实际完整阅读的独立记录仍可生效。
+带 `twin_of` 的文本副本自动推测记录不是完整阅读证明，保留日志供复核，不能单独让另一 SHA 退出事实处理队列；后续事实处理回执可按其身份生效；全文结果仍须查询 reader catalog。
 
 ## L2 终端阅读用例
 
 `interfaces.deep_read` 只处理命令参数、输出与错误；`workflow.deep_read.DeepRead` 显式绑定项目和运行路径，组合领域规则与存储。`materials.reading_policy` 是队列、打包和事实录入的共享准入规则；`materials.text_similarity` 只提供相似度提示；`workflow.reading_gaps` 维护指标缺口；`knowledge.provenance` 给出来源身份修复计划。事实约束仍归 `knowledge.fact_contract`，不经 L2 聚合转出口调用。
 
-打包在全部有效 L1 判定中先解析唯一 SHA，再检查范围；歧义不能通过分数过滤变成唯一。L2 自动队列按 M4 任务卡默认 ≥7，显式点名可越过优先级分数，仍须满足成功判定、准入及已读/again 条件。每次包生成独立目录，完整正文、提示和 manifest 写好后才发布目录；旧包不覆盖。返回 L1 的 result_revision，attribute/flag 须以客户端已看过的 expected-revision 提交，不能在收到旧指令时临时读取最新版作为其授权基线。
+打包在全部有效 L1 判定中先解析唯一 SHA，再检查范围；歧义不能通过分数过滤变成唯一。L2 自动队列按 M4 任务卡默认 ≥7，显式点名可越过优先级分数，仍须满足成功判定、准入及已处理/again 条件。每次包生成独立目录，完整正文、提示和 manifest 写好后才发布目录；旧包不覆盖。返回 L1 的 result_revision，attribute/flag 须以客户端已看过的 expected-revision 提交，不能在收到旧指令时临时读取最新版作为其授权基线。
 
 record 在事实锁内读取/校验/提交，并持相同的 L1 判定锁复核来源准入；锁顺序为 facts → L1 → 完成日志。自写材料与已标限制材料不能绕过队列直接录入，限制变更不自动改写既有事实。事实为主提交，完成日志按稳定请求身份幂等记录；相同事实重复提交不再插入，事实已提交而回执失败返回 facts_committed_receipt_pending。零条是允许的人工完成声明，不由空数组自动证明全文已读、重新评分或正式采用。
 
@@ -47,8 +47,17 @@ record 在事实锁内读取/校验/提交，并持相同的 L1 判定锁复核�
 
 来源修复默认只输出计划。只使用明确的 SHA 前缀、精确登记路径或成功移动端点构成的缓存映射链；文件名、JSON 子串、未解析或互相冲突的身份路径不提供覆盖权。commit 须传干跑的 expected-plan；事实及相关台账在同一组锁下重读，计划绑定事实内容和具体解析候选，变化则拒绝。没有原件复核的历史事实不因机械补齐 SHA 自动取得质量验收。命令不指导自动降低测试基线。原 38 条历史缺口继续单独披露。
 
-L2 完成回执保留 executor/model 及核实状态。终端提供的身份是 client_reported；缺失为 unknown，不推测当前默认模型。完成请求重放保留最初的归属，不能借重试替换旧执行身份。
+L2 事实处理回执保留 executor/model 及核实状态。终端提供的身份是 client_reported；缺失为 unknown，不推测当前默认模型。完成请求重放保留最初的归属，不能借重试替换旧执行身份。
 
 上游断言者契约的 claim/revision/forecast/争议索引统一由 knowledge.fact_contract 维护；录入在同一事实事务内补齐 disputed_by 并返回双方摘要，CLI 负责呈现 C3 A 档待审事项。服务生成的反向链接可在原请求完成后增加，不能令原事实请求重放失败。保留上游 asserter、disputes、supersedes 的形状约束；不将自动链接或终端提示当作已经完成 C3 审核。
 
-L2 保留显式提交未登记完整 SHA 的人工事实入口；没有 L1 记录时不能据此判定来源已准入，也没有自动核验该原件。已知来源的限制在事实事务内检查；打包仍要求唯一已登记成功 L1 和原件字节校验。record 回执仅证明这次录入/完成声明已持久保存，不能充当完整阅读或来源质量证明。
+record --doc 须匹配已登记的完整 SHA 或唯一前缀；无 --doc 的人工事实输入仍可携带未登记来源，其通过形状校验不表示来源已准入或原件已核验。已知来源的限制在事实事务内检查；打包仍要求唯一已登记成功 L1 和原件字节校验。record 回执仅证明这次录入/完成声明已持久保存，不能充当完整阅读或来源质量证明。
+
+
+## 当前全文结果的共同消费者
+
+workflow.reading_results.ReadingResults 使用 storage.catalog 的只读连接，在单个读事务内选择 current_readings 并调用 materials.reading_artifacts 的同一产物校验。ReadingStages 继承该产物责任；版本审阅继续使用相同封印检查。查询不初始化或迁移 schema；只读连接禁止写事务和直接 SQL 修改。它没有写入当前指针的接口。
+
+reader current、deep-read current 和 L2 pack 是共同查询消费者。pack 在验证 M4 内容身份后复用当前报告所绑定的正文，并把 reading_result（状态、版本、报告 SHA 和原路径）写入任务包 manifest。并发激活不改变已经取得的快照，旧包保留旧版本引用；新版 ready/失败/重试和默认模型改变均不绕过既有 activate-revision。
+
+L2 的 read_documents/remember_read 及 documents_read/already_read/eligible_unread 退出当前 API，分别由 processed_documents/remember_processing 和 documents_processed/already_processed/eligible_unprocessed 表示事实处理。receipt_log 沿用 l2_read.jsonl 文件名与稳定 operation_id；旧行仍供处理进度与重试恢复使用，不升级为全文报告。相似度的 processed 也仅来自该回执。status.reading 的 catalog_current_results 是 catalog 清单计数，非逐份新验收；具体结果须通过 current 校验。跨机器统一与旧资料导入未由本次只读接口自动实现。

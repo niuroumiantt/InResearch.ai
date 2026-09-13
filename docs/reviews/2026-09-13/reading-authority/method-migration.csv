@@ -1,0 +1,7 @@
+before,after,same_ast,reason
+ReadingStages.artifact_path,ReadingArtifacts.artifact_path,True,same inherited implementation
+ReadingStages._cached,ReadingArtifacts._cached,True,same inherited implementation
+ReadingStages.validate_report,ReadingArtifacts.validate_report,True,same inherited implementation
+ReadingStages.seal,ReadingArtifacts.seal,True,same inherited implementation
+ReadingStages.verify_seal,ReadingArtifacts.verify_seal,False,also bind returned report path to sealed artifact
+ReadingStages._chunk_text,ReadingArtifacts._chunk_text,True,same inherited implementation

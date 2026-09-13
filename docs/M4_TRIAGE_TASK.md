@@ -141,15 +141,24 @@ python3 manage.py inventory summary
 
 2026-09-13 集成核对：文本指纹和近似摘要仅为复核提示，不能代替原件内容 SHA，不能自动阻止另一内容版本开包或沿用其证据。合并单元格展开在分配前检查累计抽取预算，超限明确失败并保留原件；截断或超限不计完整阅读。
 
-带 `twin_of` 的文本副本自动推测记录不是完整阅读证明，保留日志供复核，不能单独让另一 SHA 退出待读队列；后续实际完整阅读的独立记录仍可生效。
+带 `twin_of` 的文本副本自动推测记录不是完整阅读证明，保留日志供复核，不能单独让另一 SHA 退出事实处理队列；旧回执仍保留，全文结果须查询 reader catalog。
 
 
 ## 11. L2 命令与修订基线
 
-软件职责和事务权威见 [09 软件契约](../framework/09_software_contracts.md#l2-终端阅读用例)。`deep-read queue` 自动门槛为 7，`--min-score` 可用于当次优先队列；`pack --sha` 显式点名仍保留准入与已读检查，已读材料加 `--again`。SHA 有歧义即拒绝，不取第一份。包的正文、brief 和 manifest 使用同一独立目录，按返回路径读取，不再拼接旧固定 sha16 目录。
+软件职责和事务权威见 [09 软件契约](../framework/09_software_contracts.md#l2-终端阅读用例)。`deep-read queue` 自动门槛为 7，`--min-score` 可用于当次优先队列；`pack --sha` 显式点名仍保留准入与事实处理状态检查，已处理材料加 `--again`。SHA 有歧义即拒绝，不取第一份。包的正文、brief 和 manifest 使用同一独立目录，按返回路径读取，不再拼接旧固定 sha16 目录。
 
 `queue`、`pack` 给出 L1 版本。`attribute` / `flag` 新请求必须带 `--expected-revision <所读版本>`；冲突后先查看新判定再形成修改，不静默沿用旧终端结果。`backfill-provenance` 先干跑，逐项核对候选路径与 SHA；应用时用 `--commit --expected-plan <计划摘要>`。事实或解析依据变化需要重新复核。
 
 record 接受事实数组或含 records/facts 数组的对象；`--doc` 是完整 SHA 或唯一前缀。相同事实和完成请求重放不重复计数；事实成功而回执失败时重放同一输入。`skip` 保留缺口，再记录人工完成声明；重复 skip 不重新打开已经 filled 的缺口，`gaps --filled` 重复提交返回已完成。空数组或日志存在不证明实际深读质量。当前 L2 用例不自动把 L1 的分数/层级升级为全文正式评分，也不授予 C3。
 
 record 的 `--executor` / `--model` 写入本次完成回执；未提供记 unknown。外部客户端声明明确标为 client_reported，不冒充程序已验证的模型身份。请求重放保留原归属，不以新的客户端名字改写旧阅读记录。
+
+
+### 共用当前全文结果（2026-09-13）
+
+`python3 manage.py deep-read --reader-data-root /实际reader数据根 current --sha 完整SHA` 与 `reader --data-root 同一根 current --sha 完整SHA` 返回同一当前全文报告；亦可共用 READER_DATA_ROOT。未指定时均为 ~/.local/share/inresearch.ai，不能把 M4 的 dataset 子目录误当成已存在的 reader 库。查询不调用模型、改写库或移动原件。
+
+pack 自动复用验证通过的当前报告和页块；返回 reading_result 状态、版本、报告 SHA 和原路径，任务包固定该版本。无合格报告时仍提供抽取输入，但不报告已完成全文。record/skip 只产生事实处理回执，pack --again 不产生新阅读版本；需要全文重读继续走 reader reread/inspect-revision/activate-revision。
+
+终端 JSON 的 documents_read/already_read/eligible_unread 已退出，改为 documents_processed/already_processed/eligible_unprocessed；相似提示改为 same_text_already_processed、same_text_packed_not_processed 和 processed。旧 l2_read.jsonl 字节不迁移，其历史名字不改变回执含义。status.reading 单列 catalog 清单状态，不把旧人工声明自动认定为全文合格。真实 M4/Spark 数据根连接和旧资料审计仍须实机验收。

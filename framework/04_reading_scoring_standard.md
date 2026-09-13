@@ -1,6 +1,6 @@
 # 文献阅读、评分与采用标准 v4
 
-> CURRENT · 2026-09-12。规则归属与替代关系见 framework/CURRENT.md。
+> CURRENT · 2026-09-13。规则归属与替代关系见 framework/CURRENT.md。
 
 > 2026-09-06 用户采用生效。依据：[研究架构 v2](../docs/reviews/2026-09-06/RESEARCH_ARCHITECTURE_V2.md)；常驻执行见 [RUN_TO_COMPLETION](../docs/local_reader/RUN_TO_COMPLETION.md)。本标准替代 v2 的低分过滤、凭摘要判 depth、分数驱动物理改名与“精读即可直接引用”规则。现行口径和 C3 采用门槛不变。
 
@@ -81,3 +81,14 @@ Spark 持续产出原文可回查的阅读成果和候选，研究侧按 C3 更�
 新版本达到 ready 只说明原件哈希、配方、覆盖、块内容和报告通过机检。审阅者通过 `inspect-revision` 核对正文、尾段、引用与理解质量，再以报告 SHA、旧版本基线、审核人和理由执行 `activate-revision`。程序重新验证被审阅的产物，事务内比较旧指针并一次切换；重复请求不重复生效，迟到或被拒绝的版本不能覆盖当前结果。模型失败、损坏、不完整覆盖或提交失败保留旧结果。未通过语义核对时 `reject-revision` 关闭候选，记录和原件保留。
 
 阅读验收是阅读结果选择，仍不等于 C3 采用。旧报告、被引用的旧证据和原件保留；新候选证据使用独立阅读版本 ID，不能借用旧证据身份。当前快照每个内容身份只投影一项，历史版本经台账和具体产物路径回查。原件 library 名称保留为接收时的别名，不随重读移动原件，也不成为当前阅读结论的权威。
+
+
+## 9. 终端处理与共享全文结果
+
+`reader current --sha 完整SHA` 与 `deep-read current --sha 完整SHA` 查询同一个 reader catalog；当前指针仍只有 documents.current_revision_id。共同的只读用例验证原件、覆盖、配方和产物封印，返回阅读版本、报告 SHA、报告原路径及候选身份。查询不运行模型、不初始化或升级库；旧库需要显式升级，缺失库、尚无当前结果和旧未验证报告分别说明。产物损坏报错，不用重新抽取来掩盖损坏。机检与已保存的审阅记录仍不证明全部语义正确。
+
+L2 的 queue/record/skip 是事实处理任务，其回执不是全文阅读报告。旧 l2_read.jsonl 保留为历史处理台账；documents_processed、already_processed、eligible_unprocessed 与相似提示中的 processed 只反映事实处理。旧回执不自动导入为 reading_run，也不改变全文完成数。
+
+L2 pack 有合格当前结果时，复用其已核对的页块正文和报告版本；每个任务包固定引用生成时看到的版本，之后切换当前结果不改写旧包。没有合格当前结果时仍可提供抽取输入，但不得称其为已完成全文阅读。pack --again 只是重新处理事实；正式全文重读与替换继续按第 8 节执行。
+
+两个客户端须使用同一数据根：READER_DATA_ROOT，或分别使用 reader --data-root 与 deep-read --reader-data-root。未配置的跨机器副本不因此自动同步；真实旧资料须先清点、核对覆盖与身份后受控导入，不能凭人工回执编造完整产物。

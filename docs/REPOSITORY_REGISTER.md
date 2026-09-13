@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.13.6。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.13.7。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：622。
+在册文件：643。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,15 +15,15 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 12 |
-| 历史快照 | 112 |
-| 运行代码 | 132 |
+| 历史快照 | 130 |
+| 运行代码 | 134 |
 | 现行规范 | 13 |
 | 项目配置 | 35 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 26 |
 | 配套说明 | 35 |
-| 测试 | 50 |
+| 测试 | 51 |
 
 ## 在册记录集合
 
@@ -195,6 +195,17 @@
 | `docs/reviews/2026-09-13/deep-read/real-flow.json` | steps | 6 |
 | `docs/reviews/2026-09-13/deep-read/test-results.csv` | rows | 413 |
 | `docs/reviews/2026-09-13/deep-read/verification.json` | remaining | 5 |
+| `docs/reviews/2026-09-13/reading-authority/consumers-after.csv` | rows | 177 |
+| `docs/reviews/2026-09-13/reading-authority/consumers-before.csv` | rows | 113 |
+| `docs/reviews/2026-09-13/reading-authority/file-plan.csv` | rows | 628 |
+| `docs/reviews/2026-09-13/reading-authority/file-results.csv` | rows | 642 |
+| `docs/reviews/2026-09-13/reading-authority/method-migration.csv` | rows | 6 |
+| `docs/reviews/2026-09-13/reading-authority/public-consumers.csv` | rows | 1258 |
+| `docs/reviews/2026-09-13/reading-authority/real-flow.json` | actual_models | 1 |
+| `docs/reviews/2026-09-13/reading-authority/real-flow.json` | unverified | 3 |
+| `docs/reviews/2026-09-13/reading-authority/test-migration.csv` | rows | 951 |
+| `docs/reviews/2026-09-13/reading-authority/test-migration.json` | added | 17 |
+| `docs/reviews/2026-09-13/reading-authority/test-migration.json` | missing | 0 |
 | `docs/reviews/2026-09-13/reading-revisions/baseline.json` | documents_columns | 18 |
 | `docs/reviews/2026-09-13/reading-revisions/baseline.json` | jobs_columns | 13 |
 | `docs/reviews/2026-09-13/reading-revisions/consumers-after.csv` | rows | 100 |
@@ -563,6 +574,24 @@
 | [docs/reviews/2026-09-13/deep-read/test-results.csv](reviews/2026-09-13/deep-read/test-results.csv) | 历史快照 |
 | `docs/reviews/2026-09-13/deep-read/verification.json` | 历史快照 |
 | [docs/reviews/2026-09-13/fact-conflicts/DELIVERY.md](reviews/2026-09-13/fact-conflicts/DELIVERY.md) | 历史快照 |
+| [docs/reviews/2026-09-13/reading-authority/DELIVERY.md](reviews/2026-09-13/reading-authority/DELIVERY.md) | 历史快照 |
+| [docs/reviews/2026-09-13/reading-authority/INTEGRATION.md](reviews/2026-09-13/reading-authority/INTEGRATION.md) | 历史快照 |
+| [docs/reviews/2026-09-13/reading-authority/PLAN.md](reviews/2026-09-13/reading-authority/PLAN.md) | 历史快照 |
+| `docs/reviews/2026-09-13/reading-authority/audit.py` | 历史快照 |
+| `docs/reviews/2026-09-13/reading-authority/baseline.json` | 历史快照 |
+| [docs/reviews/2026-09-13/reading-authority/consumers-after.csv](reviews/2026-09-13/reading-authority/consumers-after.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/reading-authority/consumers-before.csv](reviews/2026-09-13/reading-authority/consumers-before.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/reading-authority/file-plan.csv](reviews/2026-09-13/reading-authority/file-plan.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/reading-authority/file-results.csv](reviews/2026-09-13/reading-authority/file-results.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/reading-authority/method-migration.csv](reviews/2026-09-13/reading-authority/method-migration.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/reading-authority/public-consumers.csv](reviews/2026-09-13/reading-authority/public-consumers.csv) | 历史快照 |
+| `docs/reviews/2026-09-13/reading-authority/real-flow.json` | 历史快照 |
+| `docs/reviews/2026-09-13/reading-authority/statistics-after.json` | 历史快照 |
+| `docs/reviews/2026-09-13/reading-authority/statistics-before.json` | 历史快照 |
+| [docs/reviews/2026-09-13/reading-authority/test-migration.csv](reviews/2026-09-13/reading-authority/test-migration.csv) | 历史快照 |
+| `docs/reviews/2026-09-13/reading-authority/test-migration.json` | 历史快照 |
+| `docs/reviews/2026-09-13/reading-authority/test-renames.json` | 历史快照 |
+| `docs/reviews/2026-09-13/reading-authority/verification.json` | 历史快照 |
 | [docs/reviews/2026-09-13/reading-revisions/DELIVERY.md](reviews/2026-09-13/reading-revisions/DELIVERY.md) | 历史快照 |
 | [docs/reviews/2026-09-13/reading-revisions/PLAN.md](reviews/2026-09-13/reading-revisions/PLAN.md) | 历史快照 |
 | `docs/reviews/2026-09-13/reading-revisions/baseline.json` | 历史快照 |
@@ -731,6 +760,7 @@
 | `src/inresearch/materials/paths.py` | 运行代码 |
 | `src/inresearch/materials/preflight.py` | 运行代码 |
 | `src/inresearch/materials/reader_contracts.py` | 运行代码 |
+| `src/inresearch/materials/reading_artifacts.py` | 运行代码 |
 | `src/inresearch/materials/reading_policy.py` | 运行代码 |
 | `src/inresearch/materials/receive.py` | 运行代码 |
 | `src/inresearch/materials/records.py` | 运行代码 |
@@ -752,6 +782,7 @@
 | `src/inresearch/workflow/reader.py` | 运行代码 |
 | `src/inresearch/workflow/reading_gaps.py` | 运行代码 |
 | `src/inresearch/workflow/reading_queue.py` | 运行代码 |
+| `src/inresearch/workflow/reading_results.py` | 运行代码 |
 | `src/inresearch/workflow/reading_revisions.py` | 运行代码 |
 | `src/inresearch/workflow/reading_stages.py` | 运行代码 |
 | `src/inresearch/workflow/score.py` | 运行代码 |
@@ -800,6 +831,7 @@
 | `tests/unit/test_news_projection.py` | 测试 |
 | `tests/unit/test_product_library.py` | 测试 |
 | `tests/unit/test_publish_reader.py` | 测试 |
+| `tests/unit/test_reading_results.py` | 测试 |
 | `tests/unit/test_reading_revisions.py` | 测试 |
 | `tests/unit/test_report_model.py` | 测试 |
 | `tests/unit/test_research.py` | 测试 |
