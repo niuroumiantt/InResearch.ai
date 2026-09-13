@@ -76502,6 +76502,128 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "非 ICT 设备投资（暖通、发电机组、配电、UPS、消防等）8.54 亿元 ÷ 5,000 机柜 ≈ 17 万元/架。招商据此把商汤 56 亿元拆为土地 1%、土建 12%、非 ICT 8.5%、ICT 71.6%（类比推算，未录）。"
+    },
+    {
+      "fact_id": "sa-gpt4-training-a100-count",
+      "metric_id": "cluster_gpu_count",
+      "entity": {
+        "type": "project",
+        "id": "openai-gpt4-training-cluster",
+        "label": "OpenAI GPT-4 预训练集群"
+      },
+      "asserter": "SemiAnalysis",
+      "value": 25000.0,
+      "unit": "颗",
+      "caliber": {
+        "scope": "单集群实际部署",
+        "accelerator": "A100",
+        "region": "未披露",
+        "basis": "第三方估算"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "21ee33a56767c3d7c1657aee26a926ed316096a1fc9817c60483fa88527ec929",
+        "local_file": "GPT-4 Architecture, Infrastructure, Training Dataset, Costs, Vision, MoE (1).pdf",
+        "locator": "第 7 页：「OpenAI’s training FLOPS for GPT-4 is ~2.15e25, on ~25,000 A100s for 90 to 100 days at about 32% to 36% MFU … If their cost in the cloud was about $1 per A100 hour, the training costs for this run alone would be about $63 million … Today, the pre-training could be done with ~8,192 H100 in ~55 days for $21.5 million at $2 per H100 hour」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《GPT-4 Architecture, Infrastructure, Training Dataset, Costs, Vision, MoE》（Dylan Patel、Gerald Wong，2023-07-11）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「~25,000 A100s」，训练 90-100 天、总 FLOPS 约 2.15e25。训练年份原文未写（GPT-4 于 2023-03 发布），as_of 按训练期 2022 记——**推断**；地点未写，region 未披露。"
+    },
+    {
+      "fact_id": "sa-gpt4-training-mfu-lower",
+      "metric_id": "mfu_rate",
+      "entity": {
+        "type": "project",
+        "id": "openai-gpt4-training-cluster",
+        "label": "OpenAI GPT-4 预训练集群"
+      },
+      "asserter": "SemiAnalysis",
+      "value": 32.0,
+      "unit": "%",
+      "caliber": {
+        "cluster_scale": "超万卡",
+        "region": "未披露"
+      },
+      "as_of": "2022",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "21ee33a56767c3d7c1657aee26a926ed316096a1fc9817c60483fa88527ec929",
+        "local_file": "GPT-4 Architecture, Infrastructure, Training Dataset, Costs, Vision, MoE (1).pdf",
+        "locator": "第 PG 页：「OpenAI’s training FLOPS for GPT-4 is ~2.15e25, on ~25,000 A100s for 90 to 100 days at about 32% to 36% MFU … If their cost in the cloud was about $1 per A100 hour, the training costs for this run alone would be about $63 million … Today, the pre-training could be done with ~8,192 H100 in ~55 days for $21.5 million at $2 per H100 hour」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《GPT-4 Architecture, Infrastructure, Training Dataset, Costs, Vision, MoE》（Dylan Patel、Gerald Wong，2023-07-11）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「about 32% to 36% MFU」，原因之一是故障后需从检查点重启。约 2.5 万卡记超万卡。as_of 同上为推断。"
+    },
+    {
+      "fact_id": "sa-gpt4-training-mfu-upper",
+      "metric_id": "mfu_rate",
+      "entity": {
+        "type": "project",
+        "id": "openai-gpt4-training-cluster",
+        "label": "OpenAI GPT-4 预训练集群"
+      },
+      "asserter": "SemiAnalysis",
+      "value": 36.0,
+      "unit": "%",
+      "caliber": {
+        "cluster_scale": "超万卡",
+        "region": "未披露"
+      },
+      "as_of": "2022",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "21ee33a56767c3d7c1657aee26a926ed316096a1fc9817c60483fa88527ec929",
+        "local_file": "GPT-4 Architecture, Infrastructure, Training Dataset, Costs, Vision, MoE (1).pdf",
+        "locator": "第 PG 页：「OpenAI’s training FLOPS for GPT-4 is ~2.15e25, on ~25,000 A100s for 90 to 100 days at about 32% to 36% MFU … If their cost in the cloud was about $1 per A100 hour, the training costs for this run alone would be about $63 million … Today, the pre-training could be done with ~8,192 H100 in ~55 days for $21.5 million at $2 per H100 hour」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《GPT-4 Architecture, Infrastructure, Training Dataset, Costs, Vision, MoE》（Dylan Patel、Gerald Wong，2023-07-11）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「about 32% to 36% MFU」，原因之一是故障后需从检查点重启。约 2.5 万卡记超万卡。as_of 同上为推断。"
+    },
+    {
+      "fact_id": "sa-gpt4-training-cost-a100",
+      "metric_id": "task_tco",
+      "entity": {
+        "type": "project",
+        "id": "openai-gpt4-training-cluster",
+        "label": "OpenAI GPT-4 预训练集群"
+      },
+      "asserter": "SemiAnalysis",
+      "value": 63.0,
+      "unit": "百万美元",
+      "caliber": {
+        "task": "训练（其他）",
+        "chip": "A100",
+        "cost_item": "TCO 合计",
+        "reliability": "原文数字",
+        "region": "未披露",
+        "basis": "模型输出"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "21ee33a56767c3d7c1657aee26a926ed316096a1fc9817c60483fa88527ec929",
+        "local_file": "GPT-4 Architecture, Infrastructure, Training Dataset, Costs, Vision, MoE (1).pdf",
+        "locator": "第 PG 页：「OpenAI’s training FLOPS for GPT-4 is ~2.15e25, on ~25,000 A100s for 90 to 100 days at about 32% to 36% MFU … If their cost in the cloud was about $1 per A100 hour, the training costs for this run alone would be about $63 million … Today, the pre-training could be done with ~8,192 H100 in ~55 days for $21.5 million at $2 per H100 hour」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《GPT-4 Architecture, Infrastructure, Training Dataset, Costs, Vision, MoE》（Dylan Patel、Gerald Wong，2023-07-11）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "按云上约 1 美元/A100 小时计的单次预训练成本，不含实验、失败训练与数据等；同文称当下用约 8,192 张 H100、约 55 天、2 美元/H100 小时约 2,150 万美元。cost_item 记 TCO 合计是按算力租用成本的近似。"
     }
   ]
 }
