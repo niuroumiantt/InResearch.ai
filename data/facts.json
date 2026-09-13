@@ -44363,7 +44363,7 @@
         "region": "CN",
         "basis": "预测"
       },
-      "as_of": "2026E@2023-08",
+      "as_of": "2026E@2023-01",
       "bound": "point",
       "evidence": {
         "sha256": "cd0c48c10428a905dc07768abadbe82fcc98d9bafdeaf055aeeb2c3270475a5a",
@@ -44374,8 +44374,8 @@
       },
       "depth": "精读",
       "derived": false,
-      "corroboration": "待交叉验证",
-      "notes": "IDC 预测，原文未注明精度（IDC 智能算力惯用 FP16，但原文未写，不补）。做出时点原文未写，@ 取转引报告 2023-08。",
+      "corroboration": "同源转述",
+      "notes": "IDC 预测，原文未注明精度（IDC 智能算力惯用 FP16，但原文未写，不补）。做出时点原文未写，@ 取转引报告 2023-08。 订正（2026-09-13）：该数出自 IDC《2022-2023 中国人工智能计算力发展评估报告》（2023-01，原文 FP16），西南证券为转引；@ 由转引时点 2023-08 改为原报告时点 2023-01，corroboration 记同源转述（原报告那条见 idc2023-cn-ai-compute-fp16-2026e）。",
       "asserter": "IDC"
     },
     {
@@ -44430,7 +44430,7 @@
         "region": "CN",
         "basis": "行业机构"
       },
-      "as_of": "2022",
+      "as_of": "2022@2023-12",
       "bound": "point",
       "evidence": {
         "sha256": "e31ccc7eb970f9f8e5a0d888d060595882cadc90990a59bec3a905f1ce6d5bca",
@@ -48313,7 +48313,7 @@
         "region": "CN",
         "basis": "行业机构"
       },
-      "as_of": "2020",
+      "as_of": "2020@2025-02",
       "bound": "point",
       "evidence": {
         "sha256": "fedd0d12296f5c45685251310507355731c429402d322cfde8e2a8cfb065d643",
@@ -48327,6 +48327,39 @@
       "corroboration": "待交叉验证",
       "notes": "FP16 口径（基于智能加速卡半精度相当运算能力测算）。2023-2028 CAGR 46.2%，上一版预期 33.9%。2022 年 259.9 与商汤白皮书转引的 IDC 值同键同值，未重复录。图上数值标签，正文未逐年列出。",
       "asserter": "IDC"
+    },
+    {
+      "fact_id": "idc2023-cn-ai-compute-fp16-2021",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "IDC",
+      "value": 155.2,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "FP16",
+        "area": "全国",
+        "status": "未注明",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2021@2023-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a061af65e678edd8b43c9e7bbab0f7029171101e3aa6cf7ba5e2933c9e44b07",
+        "local_file": "20230113-2023中国人工智能计算力发展评估报告-IDC&浪潮(32页).pdf",
+        "locator": "第 8 页：「2021年中国智能算力规模达155.2 每秒百亿亿次浮点运算（EFLOPS），2022年智能算力规模将达到268.0 EFLOPS，预计到2026年……达到1,271.4EFLOPS……2021年中国通用算力规模达47.7EFLOPS，预计到2026年通用算力规模将达到111.3 EFLOPS」；第 4 页核心观点同述",
+        "grade": "S3",
+        "originator": "IDC、浪潮信息《2022-2023 中国人工智能计算力发展评估报告》（2023-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "FP16（基于智能加速卡半精度相当运算能力）。IDC 2025-02 版同年同值（idc2025-cn-ai-compute-fp16-2021 已按修订接替本条）。"
     },
     {
       "fact_id": "idc2025-cn-ai-compute-fp16-2021",
@@ -48346,7 +48379,7 @@
         "region": "CN",
         "basis": "行业机构"
       },
-      "as_of": "2021",
+      "as_of": "2021@2025-02",
       "bound": "point",
       "evidence": {
         "sha256": "fedd0d12296f5c45685251310507355731c429402d322cfde8e2a8cfb065d643",
@@ -48359,7 +48392,8 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "FP16 口径（基于智能加速卡半精度相当运算能力测算）。2023-2028 CAGR 46.2%，上一版预期 33.9%。2022 年 259.9 与商汤白皮书转引的 IDC 值同键同值，未重复录。图上数值标签，正文未逐年列出。",
-      "asserter": "IDC"
+      "asserter": "IDC",
+      "supersedes": "idc2023-cn-ai-compute-fp16-2021"
     },
     {
       "fact_id": "idc2025-cn-ai-compute-fp16-2023",
@@ -48379,7 +48413,7 @@
         "region": "CN",
         "basis": "行业机构"
       },
-      "as_of": "2023",
+      "as_of": "2023@2025-02",
       "bound": "point",
       "evidence": {
         "sha256": "fedd0d12296f5c45685251310507355731c429402d322cfde8e2a8cfb065d643",
@@ -48412,7 +48446,7 @@
         "region": "CN",
         "basis": "行业机构"
       },
-      "as_of": "2024",
+      "as_of": "2024@2025-02",
       "bound": "point",
       "evidence": {
         "sha256": "fedd0d12296f5c45685251310507355731c429402d322cfde8e2a8cfb065d643",
@@ -48577,7 +48611,7 @@
         "region": "CN",
         "basis": "行业机构"
       },
-      "as_of": "2020",
+      "as_of": "2020@2025-02",
       "bound": "point",
       "evidence": {
         "sha256": "fedd0d12296f5c45685251310507355731c429402d322cfde8e2a8cfb065d643",
@@ -48591,6 +48625,39 @@
       "corroboration": "待交叉验证",
       "notes": "FP64 口径（基于 CPU 双精度运算能力测算），与 FP16 智能算力不可相加或直接比较。2023-2028 CAGR 18.8%，上一版预期 16.6%。",
       "asserter": "IDC"
+    },
+    {
+      "fact_id": "idc2023-cn-general-compute-fp64-2021",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "IDC",
+      "value": 47.7,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "通用算力",
+        "precision": "FP64",
+        "area": "全国",
+        "status": "未注明",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2021@2023-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a061af65e678edd8b43c9e7bbab0f7029171101e3aa6cf7ba5e2933c9e44b07",
+        "local_file": "20230113-2023中国人工智能计算力发展评估报告-IDC&浪潮(32页).pdf",
+        "locator": "第 8 页：「2021年中国智能算力规模达155.2 每秒百亿亿次浮点运算（EFLOPS），2022年智能算力规模将达到268.0 EFLOPS，预计到2026年……达到1,271.4EFLOPS……2021年中国通用算力规模达47.7EFLOPS，预计到2026年通用算力规模将达到111.3 EFLOPS」；第 4 页核心观点同述",
+        "grade": "S3",
+        "originator": "IDC、浪潮信息《2022-2023 中国人工智能计算力发展评估报告》（2023-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "FP64（CPU 双精度）。IDC 2025-02 版同年同值，已按修订接替本条。"
     },
     {
       "fact_id": "idc2025-cn-general-compute-fp64-2021",
@@ -48610,7 +48677,7 @@
         "region": "CN",
         "basis": "行业机构"
       },
-      "as_of": "2021",
+      "as_of": "2021@2025-02",
       "bound": "point",
       "evidence": {
         "sha256": "fedd0d12296f5c45685251310507355731c429402d322cfde8e2a8cfb065d643",
@@ -48623,7 +48690,8 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "FP64 口径（基于 CPU 双精度运算能力测算），与 FP16 智能算力不可相加或直接比较。2023-2028 CAGR 18.8%，上一版预期 16.6%。",
-      "asserter": "IDC"
+      "asserter": "IDC",
+      "supersedes": "idc2023-cn-general-compute-fp64-2021"
     },
     {
       "fact_id": "idc2025-cn-general-compute-fp64-2022",
@@ -48643,7 +48711,7 @@
         "region": "CN",
         "basis": "行业机构"
       },
-      "as_of": "2022",
+      "as_of": "2022@2025-02",
       "bound": "point",
       "evidence": {
         "sha256": "fedd0d12296f5c45685251310507355731c429402d322cfde8e2a8cfb065d643",
@@ -48676,7 +48744,7 @@
         "region": "CN",
         "basis": "行业机构"
       },
-      "as_of": "2023",
+      "as_of": "2023@2025-02",
       "bound": "point",
       "evidence": {
         "sha256": "fedd0d12296f5c45685251310507355731c429402d322cfde8e2a8cfb065d643",
@@ -48709,7 +48777,7 @@
         "region": "CN",
         "basis": "行业机构"
       },
-      "as_of": "2024",
+      "as_of": "2024@2025-02",
       "bound": "point",
       "evidence": {
         "sha256": "fedd0d12296f5c45685251310507355731c429402d322cfde8e2a8cfb065d643",
@@ -76113,6 +76181,233 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原文「2GW datacenter plans for 2026」，口径未写，status 记 L2（规划）。"
+    },
+    {
+      "fact_id": "idc2023-cn-ai-compute-fp16-2022e",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "IDC",
+      "value": 268.0,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "FP16",
+        "area": "全国",
+        "status": "未注明",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2022E@2023-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a061af65e678edd8b43c9e7bbab0f7029171101e3aa6cf7ba5e2933c9e44b07",
+        "local_file": "20230113-2023中国人工智能计算力发展评估报告-IDC&浪潮(32页).pdf",
+        "locator": "第 8 页：「2021年中国智能算力规模达155.2 每秒百亿亿次浮点运算（EFLOPS），2022年智能算力规模将达到268.0 EFLOPS，预计到2026年……达到1,271.4EFLOPS……2021年中国通用算力规模达47.7EFLOPS，预计到2026年通用算力规模将达到111.3 EFLOPS」；第 4 页核心观点同述",
+        "grade": "S3",
+        "originator": "IDC、浪潮信息《2022-2023 中国人工智能计算力发展评估报告》（2023-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "FP16。IDC 2023-12 版给 2022 年实绩 259.9（sensetime-wp-idc-cn-ai-compute-2022）。"
+    },
+    {
+      "fact_id": "idc2023-cn-ai-compute-fp16-2026e",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "IDC",
+      "value": 1271.4,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "FP16",
+        "area": "全国",
+        "status": "未注明",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2023-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a061af65e678edd8b43c9e7bbab0f7029171101e3aa6cf7ba5e2933c9e44b07",
+        "local_file": "20230113-2023中国人工智能计算力发展评估报告-IDC&浪潮(32页).pdf",
+        "locator": "第 8 页：「2021年中国智能算力规模达155.2 每秒百亿亿次浮点运算（EFLOPS），2022年智能算力规模将达到268.0 EFLOPS，预计到2026年……达到1,271.4EFLOPS……2021年中国通用算力规模达47.7EFLOPS，预计到2026年通用算力规模将达到111.3 EFLOPS」；第 4 页核心观点同述",
+        "grade": "S3",
+        "originator": "IDC、浪潮信息《2022-2023 中国人工智能计算力发展评估报告》（2023-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "FP16；2021-2026 CAGR 52.3%。西南证券 2023-08 转引同值（精度未注明，已标同源转述）。2025-02 版对 2026 年的预测为 1,460.3。"
+    },
+    {
+      "fact_id": "idc2023-cn-general-compute-fp64-2026e",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "IDC",
+      "value": 111.3,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "通用算力",
+        "precision": "FP64",
+        "area": "全国",
+        "status": "未注明",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2023-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a061af65e678edd8b43c9e7bbab0f7029171101e3aa6cf7ba5e2933c9e44b07",
+        "local_file": "20230113-2023中国人工智能计算力发展评估报告-IDC&浪潮(32页).pdf",
+        "locator": "第 8 页：「2021年中国智能算力规模达155.2 每秒百亿亿次浮点运算（EFLOPS），2022年智能算力规模将达到268.0 EFLOPS，预计到2026年……达到1,271.4EFLOPS……2021年中国通用算力规模达47.7EFLOPS，预计到2026年通用算力规模将达到111.3 EFLOPS」；第 4 页核心观点同述",
+        "grade": "S3",
+        "originator": "IDC、浪潮信息《2022-2023 中国人工智能计算力发展评估报告》（2023-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "FP64；2021-2026 CAGR 18.5%。2025-02 版对 2026 年为 101.7。"
+    },
+    {
+      "fact_id": "idc2023-global-ai-server-market-2021",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "global-ai-server-market",
+        "label": "全球 AI 服务器市场"
+      },
+      "asserter": "IDC",
+      "value": 156.3,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a061af65e678edd8b43c9e7bbab0f7029171101e3aa6cf7ba5e2933c9e44b07",
+        "local_file": "20230113-2023中国人工智能计算力发展评估报告-IDC&浪潮(32页).pdf",
+        "locator": "第 12 页：「IDC发布的《全球人工智能市场半年度追踪报告》显示，2021年全球人工智能服务器市场规模达156.3亿美元……预计2026年全球人工智能服务器市场规模将达到347.1亿美元，五年复合增长率为17.3%……2021年中国人工智能服务器市场规模达到59.2亿美元，与2020年相比增长68.2%……预计到2026年，中国人工智能服务器市场规模将达到123.4亿美元」",
+        "grade": "S3",
+        "originator": "IDC、浪潮信息《2022-2023 中国人工智能计算力发展评估报告》（2023-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元；约合人民币 1,045 亿元；同比 +39.1%。浪潮 20.9%、戴尔 13.0%、HPE 9.2%。"
+    },
+    {
+      "fact_id": "idc2023-global-ai-server-market-2026e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "global-ai-server-market",
+        "label": "全球 AI 服务器市场"
+      },
+      "asserter": "IDC",
+      "value": 347.1,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2023-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a061af65e678edd8b43c9e7bbab0f7029171101e3aa6cf7ba5e2933c9e44b07",
+        "local_file": "20230113-2023中国人工智能计算力发展评估报告-IDC&浪潮(32页).pdf",
+        "locator": "第 12 页：「IDC发布的《全球人工智能市场半年度追踪报告》显示，2021年全球人工智能服务器市场规模达156.3亿美元……预计2026年全球人工智能服务器市场规模将达到347.1亿美元，五年复合增长率为17.3%……2021年中国人工智能服务器市场规模达到59.2亿美元，与2020年相比增长68.2%……预计到2026年，中国人工智能服务器市场规模将达到123.4亿美元」",
+        "grade": "S3",
+        "originator": "IDC、浪潮信息《2022-2023 中国人工智能计算力发展评估报告》（2023-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元；五年 CAGR 17.3%。"
+    },
+    {
+      "fact_id": "idc2023-cn-ai-server-market-2021",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "IDC",
+      "value": 59.2,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "美元",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a061af65e678edd8b43c9e7bbab0f7029171101e3aa6cf7ba5e2933c9e44b07",
+        "local_file": "20230113-2023中国人工智能计算力发展评估报告-IDC&浪潮(32页).pdf",
+        "locator": "第 12 页：「IDC发布的《全球人工智能市场半年度追踪报告》显示，2021年全球人工智能服务器市场规模达156.3亿美元……预计2026年全球人工智能服务器市场规模将达到347.1亿美元，五年复合增长率为17.3%……2021年中国人工智能服务器市场规模达到59.2亿美元，与2020年相比增长68.2%……预计到2026年，中国人工智能服务器市场规模将达到123.4亿美元」",
+        "grade": "S3",
+        "originator": "IDC、浪潮信息《2022-2023 中国人工智能计算力发展评估报告》（2023-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元；同比 +68.2%。"
+    },
+    {
+      "fact_id": "idc2023-cn-ai-server-market-2026e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "IDC",
+      "value": 123.4,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "美元",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2023-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a061af65e678edd8b43c9e7bbab0f7029171101e3aa6cf7ba5e2933c9e44b07",
+        "local_file": "20230113-2023中国人工智能计算力发展评估报告-IDC&浪潮(32页).pdf",
+        "locator": "第 12 页：「IDC发布的《全球人工智能市场半年度追踪报告》显示，2021年全球人工智能服务器市场规模达156.3亿美元……预计2026年全球人工智能服务器市场规模将达到347.1亿美元，五年复合增长率为17.3%……2021年中国人工智能服务器市场规模达到59.2亿美元，与2020年相比增长68.2%……预计到2026年，中国人工智能服务器市场规模将达到123.4亿美元」",
+        "grade": "S3",
+        "originator": "IDC、浪潮信息《2022-2023 中国人工智能计算力发展评估报告》（2023-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元。"
     }
   ]
 }
