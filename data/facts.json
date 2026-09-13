@@ -32197,6 +32197,314 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "标杆单项目；**同时给出可再生能源利用率 100%**（绿电交易），本库无可再生能源利用率指标。同页中金数据昆山一号 CUE 0.49，也无指标。时点按 2021 记，标 [未核]。"
+    },
+    {
+      "fact_id": "sa-cool-pue-uptime-avg",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "industry",
+        "id": "global-dc-uptime-survey",
+        "label": "Uptime Institute 行业调查平均"
+      },
+      "value": 1.6,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "Global"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c6bceb9eacff12dae55cd85cee48d2412489b7969defffb69f4d1109007d2651",
+        "local_file": "SemiAnalysis Datacenter Anatomy Part 2 – Cooling Systems (2025-02-13).pdf",
+        "locator": "第 6 页：「The industry average PUE, calculated by the Uptime Institute, is around 1.6. While many analysts and marketing charts take that number at face value, it is not representative of the industry – it is based on a survey that largely excludes hyperscalers and is a simple average of respondents with datacenters bigger than 4MW」",
+        "grade": "S3",
+        "originator": "Uptime Institute（经 SemiAnalysis 转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这个 1.6 被广泛引用，但原文明说它不代表行业**：调查大体不含超大规模厂，且是 >4MW 受访者的简单平均（不按容量加权）。 **按容量加权后行业真实 PUE 会显著更低**——超大规模厂 1.08-1.15（见同份四家条目）占了新增容量的大头。 时点原文未给，按报告前一年 2024 记，标 [未核]。 **原文特别提醒 PUE 可被操纵、不总能公平比较**：高环境温度设计的机房风扇功耗更高但冷却能耗更低，反而可能 PUE 更高而总耗电更少。"
+    },
+    {
+      "fact_id": "sa-cool-pue-google",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "company",
+        "id": "google",
+        "label": "谷歌"
+      },
+      "value": 1.1,
+      "unit": "比值",
+      "caliber": {
+        "basis": "宣传值",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "Global"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c6bceb9eacff12dae55cd85cee48d2412489b7969defffb69f4d1109007d2651",
+        "local_file": "SemiAnalysis Datacenter Anatomy Part 2 – Cooling Systems (2025-02-13).pdf",
+        "locator": "第 6 页「Google and Meta both operate at around 1.1 PUE, and Microsoft and AWS around 1.15 PUE」；第 44 页：「Google’s reference design is very different – while their PUE is best-in-class at 1.10, their use of water is much more extensive with a WUE above 1.0」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（Dylan Patel 等）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**basis=宣传值**：这是公司层面自报的机队平均，SemiAnalysis 转述，未经独立核验。 **PUE 与 WUE 是此消彼长的**：谷歌 PUE 1.10 最低，但 WUE >1.0（大量用水侧节能器与冷却塔）；Meta 两者都低（1.08 / 0.20），代价是三层「H」型建筑，外壳建设周期约 2 年、是同行的 2-3 倍——**Meta 因此在 AI 时代拆掉了若干在建的 H 型楼改新设计**。 **原文特别提醒 PUE 可被操纵、不总能公平比较**：高环境温度设计的机房风扇功耗更高但冷却能耗更低，反而可能 PUE 更高而总耗电更少。"
+    },
+    {
+      "fact_id": "sa-cool-wue-google",
+      "metric_id": "dc_wue_limit",
+      "entity": {
+        "type": "company",
+        "id": "google",
+        "label": "谷歌"
+      },
+      "value": 1.0,
+      "unit": "L/kWh",
+      "caliber": {
+        "water_zone": "未划分",
+        "limit_type": "实测均值",
+        "region": "Global",
+        "cooling_tech": "未注明",
+        "water_basis": "未注明",
+        "duty_window": "年均"
+      },
+      "as_of": "2024",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "c6bceb9eacff12dae55cd85cee48d2412489b7969defffb69f4d1109007d2651",
+        "local_file": "SemiAnalysis Datacenter Anatomy Part 2 – Cooling Systems (2025-02-13).pdf",
+        "locator": "第 44 页：「Google’s reference design is very different – while their PUE is best-in-class at 1.10, their use of water is much more extensive with a WUE above 1.0」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（Dylan Patel 等）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**公司机队年均**，SemiAnalysis 转述。原文 「above 1.0」按下界记。 **water_basis 未注明**：原文只写 WUE，未说取水还是耗水口径——**对照赛莱默那份的成对数据，这一维不同能差 30%**。 对照库内赛莱默技术典型值：冷却塔持续运行 2.75、年均直接液冷 <0.3——Meta 0.20 已低于液冷年均上界。"
+    },
+    {
+      "fact_id": "sa-cool-pue-meta",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "company",
+        "id": "meta",
+        "label": "Meta"
+      },
+      "value": 1.08,
+      "unit": "比值",
+      "caliber": {
+        "basis": "宣传值",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "Global"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c6bceb9eacff12dae55cd85cee48d2412489b7969defffb69f4d1109007d2651",
+        "local_file": "SemiAnalysis Datacenter Anatomy Part 2 – Cooling Systems (2025-02-13).pdf",
+        "locator": "第 6 页「Google and Meta both operate at around 1.1 PUE, and Microsoft and AWS around 1.15 PUE」；第 43 页：「Meta’s efficiency levels are impressive (PUE at 1.08 and WUE at 0.20), but this is achieved through a complex, three-level structure」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（Dylan Patel 等）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**basis=宣传值**：这是公司层面自报的机队平均，SemiAnalysis 转述，未经独立核验。 **PUE 与 WUE 是此消彼长的**：谷歌 PUE 1.10 最低，但 WUE >1.0（大量用水侧节能器与冷却塔）；Meta 两者都低（1.08 / 0.20），代价是三层「H」型建筑，外壳建设周期约 2 年、是同行的 2-3 倍——**Meta 因此在 AI 时代拆掉了若干在建的 H 型楼改新设计**。 **原文特别提醒 PUE 可被操纵、不总能公平比较**：高环境温度设计的机房风扇功耗更高但冷却能耗更低，反而可能 PUE 更高而总耗电更少。"
+    },
+    {
+      "fact_id": "sa-cool-wue-meta",
+      "metric_id": "dc_wue_limit",
+      "entity": {
+        "type": "company",
+        "id": "meta",
+        "label": "Meta"
+      },
+      "value": 0.2,
+      "unit": "L/kWh",
+      "caliber": {
+        "water_zone": "未划分",
+        "limit_type": "实测均值",
+        "region": "Global",
+        "cooling_tech": "未注明",
+        "water_basis": "未注明",
+        "duty_window": "年均"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c6bceb9eacff12dae55cd85cee48d2412489b7969defffb69f4d1109007d2651",
+        "local_file": "SemiAnalysis Datacenter Anatomy Part 2 – Cooling Systems (2025-02-13).pdf",
+        "locator": "第 43 页：「Meta’s efficiency levels are impressive (PUE at 1.08 and WUE at 0.20), but this is achieved through a complex, three-level structure」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（Dylan Patel 等）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**公司机队年均**，SemiAnalysis 转述。 **water_basis 未注明**：原文只写 WUE，未说取水还是耗水口径——**对照赛莱默那份的成对数据，这一维不同能差 30%**。 对照库内赛莱默技术典型值：冷却塔持续运行 2.75、年均直接液冷 <0.3——Meta 0.20 已低于液冷年均上界。"
+    },
+    {
+      "fact_id": "sa-cool-pue-microsoft",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "company",
+        "id": "microsoft",
+        "label": "微软"
+      },
+      "value": 1.15,
+      "unit": "比值",
+      "caliber": {
+        "basis": "宣传值",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "Global"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c6bceb9eacff12dae55cd85cee48d2412489b7969defffb69f4d1109007d2651",
+        "local_file": "SemiAnalysis Datacenter Anatomy Part 2 – Cooling Systems (2025-02-13).pdf",
+        "locator": "第 6 页「Google and Meta both operate at around 1.1 PUE, and Microsoft and AWS around 1.15 PUE」；第 37 页：「Microsoft and AWS around 1.15 PUE … leading Microsoft to post a >2 WUE ratio in Phoenix, despite a company average of 0.3 WUE」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（Dylan Patel 等）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**basis=宣传值**：这是公司层面自报的机队平均，SemiAnalysis 转述，未经独立核验。 **公司均值掩盖了选址差异**：微软公司平均 WUE 0.3，但凤凰城（干热、靠蒸发冷却）那座 WUE >2——**同一家公司单站点能差 7 倍**。 **原文特别提醒 PUE 可被操纵、不总能公平比较**：高环境温度设计的机房风扇功耗更高但冷却能耗更低，反而可能 PUE 更高而总耗电更少。"
+    },
+    {
+      "fact_id": "sa-cool-wue-microsoft",
+      "metric_id": "dc_wue_limit",
+      "entity": {
+        "type": "company",
+        "id": "microsoft",
+        "label": "微软"
+      },
+      "value": 0.3,
+      "unit": "L/kWh",
+      "caliber": {
+        "water_zone": "未划分",
+        "limit_type": "实测均值",
+        "region": "Global",
+        "cooling_tech": "未注明",
+        "water_basis": "未注明",
+        "duty_window": "年均"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c6bceb9eacff12dae55cd85cee48d2412489b7969defffb69f4d1109007d2651",
+        "local_file": "SemiAnalysis Datacenter Anatomy Part 2 – Cooling Systems (2025-02-13).pdf",
+        "locator": "第 37 页：「Microsoft and AWS around 1.15 PUE … leading Microsoft to post a >2 WUE ratio in Phoenix, despite a company average of 0.3 WUE」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（Dylan Patel 等）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**公司机队年均**，SemiAnalysis 转述。 **water_basis 未注明**：原文只写 WUE，未说取水还是耗水口径——**对照赛莱默那份的成对数据，这一维不同能差 30%**。 对照库内赛莱默技术典型值：冷却塔持续运行 2.75、年均直接液冷 <0.3——Meta 0.20 已低于液冷年均上界。"
+    },
+    {
+      "fact_id": "sa-cool-pue-amazon",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "company",
+        "id": "amazon",
+        "label": "亚马逊 AWS"
+      },
+      "value": 1.15,
+      "unit": "比值",
+      "caliber": {
+        "basis": "宣传值",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "Global"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c6bceb9eacff12dae55cd85cee48d2412489b7969defffb69f4d1109007d2651",
+        "local_file": "SemiAnalysis Datacenter Anatomy Part 2 – Cooling Systems (2025-02-13).pdf",
+        "locator": "第 6 页「Google and Meta both operate at around 1.1 PUE, and Microsoft and AWS around 1.15 PUE」；同句",
+        "grade": "S3",
+        "originator": "SemiAnalysis（Dylan Patel 等）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**basis=宣传值**：这是公司层面自报的机队平均，SemiAnalysis 转述，未经独立核验。  **原文特别提醒 PUE 可被操纵、不总能公平比较**：高环境温度设计的机房风扇功耗更高但冷却能耗更低，反而可能 PUE 更高而总耗电更少。"
+    },
+    {
+      "fact_id": "sa-cool-wue-msft-phoenix",
+      "metric_id": "dc_wue_limit",
+      "entity": {
+        "type": "project",
+        "id": "microsoft-phoenix-dc",
+        "label": "微软凤凰城数据中心"
+      },
+      "value": 2.0,
+      "unit": "L/kWh",
+      "caliber": {
+        "water_zone": "缺水区",
+        "limit_type": "实测均值",
+        "region": "US",
+        "cooling_tech": "绝热冷却",
+        "water_basis": "未注明",
+        "duty_window": "年均"
+      },
+      "as_of": "2024",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "c6bceb9eacff12dae55cd85cee48d2412489b7969defffb69f4d1109007d2651",
+        "local_file": "SemiAnalysis Datacenter Anatomy Part 2 – Cooling Systems (2025-02-13).pdf",
+        "locator": "第 37 页：「This system is completely dry – and this specific Datacenter is located near Phoenix, Arizona … The drawback is that water evaporation is needed for a large portion of the year, leading Microsoft to post a >2 WUE ratio in Phoenix, despite a company average of 0.3 WUE」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（Dylan Patel 等）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文「>2」按下界记。**凤凰城气候干热，湿球温度远低于干球，因此一年大部分时间要靠蒸发冷却——**「干旱地区」反而用水更多**，这是反直觉的一条。cooling_tech 按蒸发/绝热归类（原文说设计本身免冷机与冷塔，但需大量蒸发），标 [未核]。water_zone 按亚利桑那记缺水区。"
+    },
+    {
+      "fact_id": "sa-cool-pue-ovh",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "company",
+        "id": "ovh",
+        "label": "OVHcloud"
+      },
+      "value": 1.26,
+      "unit": "比值",
+      "caliber": {
+        "basis": "宣传值",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "EU"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c6bceb9eacff12dae55cd85cee48d2412489b7969defffb69f4d1109007d2651",
+        "local_file": "SemiAnalysis Datacenter Anatomy Part 2 – Cooling Systems (2025-02-13).pdf",
+        "locator": "第 61 页：「OVH is forced to cool facility water down to 27°C. Their PUE is still enviable at 1.26, but this is helped by their Geographic mix being heavily tilted towards the North of France」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（Dylan Patel 等）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "OVH 的 DLC 与机柜后门换热器共用一套冷却水系统，只能把水冷到 27°C（DLC 本可用 45°C）。**1.26 受益于机房集中在法国北部的冷气候**，原文特意点明。**原文特别提醒 PUE 可被操纵、不总能公平比较**：高环境温度设计的机房风扇功耗更高但冷却能耗更低，反而可能 PUE 更高而总耗电更少。"
     }
   ]
 }
