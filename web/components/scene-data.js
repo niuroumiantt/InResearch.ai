@@ -18,10 +18,12 @@ export async function loadSceneData(sources, {controls = [], timeoutMs = 12000} 
       const controller = new AbortController();
       let timer;
       try {
-        const batch = Promise.all(sources.map(async ({url, collection}) => {
+        const batch = Promise.all(sources.map(async ({url, collection, schemaVersion}) => {
           const response = await fetch(url, {cache:'no-store', signal:controller.signal});
           if (!response.ok) throw new Error('Scene data HTTP ' + response.status);
           const data = await response.json();
+          if (schemaVersion !== undefined && data?.schema_version !== schemaVersion)
+            throw new Error('Scene data schema version is unsupported');
           if (!Array.isArray(data?.[collection]) || data[collection].some(row =>
               row === null || typeof row !== 'object' || Array.isArray(row)))
             throw new Error('Scene data collection is invalid');

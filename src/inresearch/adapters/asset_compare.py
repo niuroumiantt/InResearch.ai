@@ -75,11 +75,11 @@ def inspect(path):
     # 评分：网格数是硬条件（合并成 1-3 个就基本没法拆）
     n_mesh = len(meshes)
     if n_mesh >= 12 and part_named:
-        tear, why = "优", f"{n_mesh} 个网格，{len(part_named)} 个部件名 → 可逐件拆"
+        tear, why = "优", f"{n_mesh} 个网格，{len(part_named)} 个部件名 → 可分网格；物理拆解关系待核对"
     elif n_mesh >= 6:
-        tear, why = "中", f"{n_mesh} 个网格 → 能拆几层，细部拆不动"
+        tear, why = "中", f"{n_mesh} 个网格 → 存在多个网格；拆解关系待核对"
     else:
-        tear, why = "差", f"只有 {n_mesh} 个网格（已合并）→ 只能整体当外壳"
+        tear, why = "差", f"只有 {n_mesh} 个网格（已合并）→ 网格少；不能据此推定实际装配"
 
     return {
         "file": os.path.basename(path), "size": size_mb,
@@ -114,11 +114,11 @@ def main():
             print(f"{'':<30}  部件名样例：{'、'.join(r['parts'])}")
 
     print("\n选型标准（按重要性排序）：")
-    print("  1. 可拆解=优  —— 网格 ≥12 且有部件名，才做得了逐级爆炸拆解")
+    print("  1. 可拆解=优  —— 网格 ≥12 且有部件名，仅提供拆解检查线索，实际装配和动画绑定仍待核对")
     print("  2. 无品牌标识 —— 对外材料不能带别家 logo（我们的对外三条）")
     print("  3. 体积 ≤10MB、三角面 ≤50 万 —— 铁律 A3 与手机端体验")
     print("  4. CC0 优于 CC-BY —— CC0 无署名负担")
-    print("\n下一步：选定后把它移进 assets/models/ 并登记，或直接 python3 manage.py asset-check")
+    print("\n下一步：选定后把它按 docs/local_setup/ADD_3D_MODEL.md 登记候选到 web/assets/models/，或直接 python3 manage.py asset-check")
 
 
 if __name__ == "__main__":

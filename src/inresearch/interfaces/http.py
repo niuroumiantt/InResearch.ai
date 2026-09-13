@@ -15,6 +15,7 @@ import os
 import json
 from inresearch.interfaces import auth as auth
 from inresearch.materials import inbox as material_intake
+from inresearch.materials import model_assets
 import hmac
 from inresearch.workflow import commands as commands
 from inresearch.knowledge import registry as research
@@ -26,7 +27,7 @@ import threading
 from datetime import datetime
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer as ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import unquote, urlsplit
+from urllib.parse import parse_qs, unquote, urlsplit
 
 ROOT = project_root()
 PY = sys.executable
@@ -262,6 +263,15 @@ class Handler(SimpleHTTPRequestHandler):
                 st[t] = {"last": datetime.fromtimestamp(f.stat().st_mtime).isoformat(timespec="minutes")
                          if f.exists() else None, "running": t in RUNNING}
             return self._json(200, st)
+        if urlsplit(self.path).path == '/api/model-assets':
+            query = parse_qs(urlsplit(self.path).query, keep_blank_values=True)
+            page = query.get('page', [None])
+            if set(query) - {'page'} or len(page) != 1 or (page[0] is not None and page[0] not in model_assets.PAGES):
+                return self._json(400, {'ok': False, 'error': '无效场景'})
+            try:
+                return self._json(200, model_assets.snapshot(ROOT, page[0]))
+            except (ValueError, TypeError, KeyError, OSError):
+                return self._json(503, {'ok': False, 'error': '模型登记暂不可用，请重试'})
         if urlsplit(self.path).path == '/api/news':
             try:
                 return self._json(200, research.build_news(ROOT))

@@ -44,7 +44,7 @@ def make_directory(path):
     sync_directory(path.parent)
 
 
-def atomic_write(path, data):
+def atomic_write(path, data, *, exclusive=False):
     path = Path(path)
     make_directory(path.parent)
     if path.is_symlink():
@@ -56,8 +56,13 @@ def atomic_write(path, data):
             stream.write(data)
             stream.flush()
             os.fsync(stream.fileno())
-        os.replace(temporary, path)
+        if exclusive:
+            os.link(temporary, path)  # Publish a complete new file; never replace one.
+        else:
+            os.replace(temporary, path)
         try:
+            if exclusive:
+                temporary.unlink()
             sync_directory(path.parent)
         except OSError as exc:
             raise CommitUncertain() from exc

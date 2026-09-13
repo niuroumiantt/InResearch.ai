@@ -86,3 +86,12 @@ workflow.reading_results.ReadingResults 使用 storage.catalog 的只读连接�
 reader current、deep-read current 和 L2 pack 是共同查询消费者。pack 在验证 M4 内容身份后复用当前报告所绑定的正文，并把 reading_result（状态、版本、报告 SHA 和原路径）写入任务包 manifest。并发激活不改变已经取得的快照，旧包保留旧版本引用；新版 ready/失败/重试和默认模型改变均不绕过既有 activate-revision。
 
 L2 的 read_documents/remember_read 及 documents_read/already_read/eligible_unread 退出当前 API，分别由 processed_documents/remember_processing 和 documents_processed/already_processed/eligible_unprocessed 表示事实处理。receipt_log 沿用 l2_read.jsonl 文件名与稳定 operation_id；旧行仍供处理进度与重试恢复使用，不升级为全文报告。相似度的 processed 也仅来自该回执。status.reading 的 catalog_current_results 是 catalog 清单计数，非逐份新验收；具体结果须通过 current 校验。跨机器统一与旧资料导入未由本次只读接口自动实现。
+
+
+## 视觉输入的共享导入与发布
+
+materials.model_assets 拥有视觉输入内容身份与采用状态；workflow.model_assets 拥有候选导入用例；adapters.asset_download 只处理下载和格式转换，asset_check、HTTP 和静态路径共用领域校验。web/assets/models/manifest.json 是唯一登记主提交点，网站只读发布状态，不提供采用写入接口。候选/拒绝模型的存在不赋予默认场景显示资格。
+
+导入使用 storage.files.locked 包住读取、同名核对、独占创建和登记提交。atomic_write(exclusive=True) 用完整临时文件的独占链接发布，旧两参数原子替换调用语义保留；目标存在即拒绝覆盖。二进制先发布、登记最后提交，中断留下的完整未登记文件在同内容重试时复用，不当作已登记；同名不同字节拒绝，新版本用新名字。登记已提交但同步失败维持 CommitUncertain 语义，重试先读取现行决定，不删除原件或重复登记。该流程不替代产品资料库既有预备日志，也不是所有多文件写入都已统一的声明。
+
+同一发布登记派生比较视图、已采用场景视图和允许的 GLB 静态路径，无第二份发布列表。作者修改在 Git 审阅与发布流程生效，下载器不自动采用或推送。外部下载包和 glTF 引用只在临时目录内解析，源材料不移动；核心仍使用 Python 标准库。

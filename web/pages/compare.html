@@ -23,11 +23,11 @@
   .card{background:var(--card);border:1px solid var(--line);border-radius: var(--ui-radius);overflow:hidden}
   .card canvas{display:block;width:100%;height:230px;background:#0d1119;cursor:grab}
   .meta{padding:10px 14px}
-  .meta b{font-size:13.5px}
+  .meta b{font-size:13.5px;overflow-wrap:anywhere} .meta p{color:var(--muted);font-size:12px;margin:5px 0}
   .kv{display:flex;justify-content:space-between;font-size:11.5px;color:var(--muted);
     padding:3px 0;border-bottom:1px dashed var(--line)}
   .kv:last-child{border:none}
-  .kv i{font-style:normal;color:var(--text);font-variant-numeric:tabular-nums}
+  .kv i{max-width:65%;overflow-wrap:anywhere;font-style:normal;color:var(--text);font-variant-numeric:tabular-nums}
   .tag{display:inline-block;font-size:10.5px;font-weight:700;padding:1px 8px;border-radius: var(--ui-radius);color:#0b0e14}
   .good{background:#22c55e} .mid{background:#f59e0b} .bad{background:#ef4444}
   .empty{color:var(--muted);padding:30px;text-align:center;border:1px dashed var(--line);border-radius: var(--ui-radius)}
@@ -43,30 +43,27 @@
 </div>
 <div class="wrap">
   <h1>3D 资产检查</h1>
-  <div class="sub">把候选 <code>.glb</code> 放进 <code>assets/models/</code>，用
-    <code>?f=a.glb,b.glb,c.glb</code> 指定要比的文件（不带参数则比 manifest 里登记的）。
-    拖动可旋转；下方数据由页面实时读取模型内部结构。</div>
+  <div class="sub">候选、已采用与未采用模型分开列示。仅已采用模型进入研究场景；这里的网格统计只帮助检查结构，不证明物理部件正确或可逐件拆解。</div>
   <div class="grid" id="grid"><div class="empty">加载中…</div></div>
 </div>
 
 <script type="importmap">{"imports":{"three":"./assets/vendor/three.module.js"}}</script>
 <script type="module">
 import * as THREE from "three";
-import { GLTFLoader } from "./assets/vendor/GLTFLoader.js";
+import {createModelLoad, loadModel} from "/assets/model-assets.js";
+import {loadSceneData} from "/assets/scene-data.js";
 
-const q = new URLSearchParams(location.search);
-let files = (q.get("f") || "").split(",").map(s => s.trim()).filter(Boolean);
-if (!files.length) {
-  try {
-    const mf = await (await fetch("assets/models/manifest.json?t=" + Date.now())).json();
-    files = (mf.models || []).map(m => m.file);
-  } catch (e) { files = []; }
-}
 const grid = document.getElementById("grid");
-if (!files.length) {
-  grid.innerHTML = '<div class="empty">没有可比的模型——把 .glb 放进 assets/models/，或用 ?f=文件名 指定</div>';
+const [manifest] = await loadSceneData([{url:"/api/model-assets",collection:"models",schemaVersion:1}], {controls:[grid]});
+const requested = [...new Set((new URLSearchParams(location.search).get("f") || "").split(",").map(s => s.trim()).filter(Boolean))];
+const entries = requested.length ? requested.map(file => manifest.models.find(m => m.file === file) || {file}) : manifest.models;
+grid.replaceChildren();
+if (!entries.length) {
+  const empty = document.createElement("div"); empty.className="empty";
+  empty.textContent="尚无已登记模型。候选通过审阅后才会进入研究场景。"; grid.append(empty);
 }
-grid.innerHTML = "";
+const previews = [];
+window.addEventListener('pagehide', event => {if (!event.persisted) previews.forEach(dispose => dispose());});
 
 const env = (() => {                       // 简易影棚环境，保证材质有反射
   const s = new THREE.Scene();
@@ -84,12 +81,20 @@ const env = (() => {                       // 简易影棚环境，保证材质�
 
 const PART = /server|node|sled|tray|blade|door|panel|rail|psu|power|fan|switch|shelf|drive|disk|cover|side|frame|post|unit|module|rack/i;
 
-for (const file of files) {
+for (const entry of entries) {
+  const {file} = entry;
   const card = document.createElement("div");
   card.className = "card";
   card.innerHTML = `<canvas></canvas><div class="meta"><b></b><div class="rows">读取中…</div></div>`;
   card.querySelector("b").textContent = file;
   grid.appendChild(card);
+  const identity = document.createElement('p');
+  identity.textContent = ({candidate:'候选 · 待审阅',adopted:'已采用',rejected:'未采用'})[entry.status] || '未登记，不能预览';
+  card.querySelector('.meta').prepend(identity);
+  if (!entry.status) {card.querySelector('canvas').remove();card.querySelector('.rows').textContent='请从已登记的模型中选择。';continue;}
+  const decision = document.createElement('p');decision.textContent=entry.decision || '下载只建立候选，不授予采用状态。';
+  card.querySelector('.meta').append(decision);
+  const credit = document.createElement('a');credit.href=entry.source;credit.textContent=entry.license;credit.rel='noopener';credit.target='_blank';card.querySelector('.meta').append(credit);
   const cv = card.querySelector("canvas");
 
   const ren = new THREE.WebGLRenderer({ canvas: cv, antialias: true, alpha: true });
@@ -99,7 +104,8 @@ for (const file of files) {
   ren.toneMappingExposure = 1.05;
   const sc = new THREE.Scene();
   const pm = new THREE.PMREMGenerator(ren);
-  sc.environment = pm.fromScene(env, 0.04).texture;
+  const environment = pm.fromScene(env, 0.04);
+  sc.environment = environment.texture; pm.dispose();
   sc.add(new THREE.HemisphereLight(0x9db4d8, 0x141a26, .8));
   const dl = new THREE.DirectionalLight(0xfff2e0, 1.8); dl.position.set(3, 5, 4); sc.add(dl);
   const cam = new THREE.PerspectiveCamera(34, 1, .01, 200);
@@ -115,8 +121,9 @@ for (const file of files) {
   });
   cv.addEventListener("pointerup", () => drag = null);
 
-  new GLTFLoader().load("assets/models/" + file, g => {
-    const o = g.scene;
+  const slot = createModelLoad({host:card.querySelector('.meta'), label:'模型',
+    load:signal => loadModel(entry, signal), commit:model => {
+    const o = model.root;
     pivot.add(o);
     let tris = 0, meshes = 0, mats = new Set(), named = [];
     o.traverse(x => {
@@ -133,26 +140,31 @@ for (const file of files) {
     const rad = Math.max(sz.x, sz.y, sz.z) * .5 || 1;
     cam.position.set(0, rad * .35, rad * 2.9); cam.lookAt(0, 0, 0);
 
-    const tear = meshes >= 12 && named.length ? ["good", "优", "可逐件拆"]
-      : meshes >= 6 ? ["mid", "中", "能拆几层"] : ["bad", "差", "已合并，只能当外壳"];
-    card.querySelector(".rows").innerHTML =
-      `<div class="kv"><span>可拆解性</span><i><span class="tag ${tear[0]}">${tear[1]}</span> ${tear[2]}</i></div>
-       <div class="kv"><span>网格 / 材质</span><i>${meshes} / ${mats.size}</i></div>
-       <div class="kv"><span>三角面</span><i>${Math.round(tris).toLocaleString()}</i></div>
-       <div class="kv"><span>尺寸比例 宽×高×深</span><i>${sz.x.toFixed(1)} × ${sz.y.toFixed(1)} × ${sz.z.toFixed(1)}</i></div>
-       <div class="kv"><span>部件名</span><i>${named.length ? named.slice(0, 2).join("、").slice(0, 30) : "无"}</i></div>`;
-  }, undefined, () => {
-    card.querySelector(".rows").innerHTML = '<div class="kv"><span style="color:#ef4444">加载失败——不是有效 GLB？</span></div>';
-  });
+    const rows = card.querySelector('.rows'); rows.replaceChildren();
+    const values = [
+      ['结构检查', '网格与名称仅作线索，拆解关系待核对'],
+      ['网格 / 材质', `${meshes} / ${mats.size}`],
+      ['三角面', Math.round(tris).toLocaleString()],
+      ['尺寸比例 宽×高×深', `${sz.x.toFixed(1)} × ${sz.y.toFixed(1)} × ${sz.z.toFixed(1)}`],
+      ['部件名线索', named.length ? named.slice(0, 2).join('、').slice(0, 60) : '无'],
+    ];
+    for (const [key,value] of values) {
+      const row=document.createElement('div'), label=document.createElement('span'), text=document.createElement('i');
+      row.className='kv';label.textContent=key;text.textContent=value;row.append(label,text);rows.append(row);
+    }
+  }});
 
   function resize() { const w = cv.clientWidth, h = cv.clientHeight; ren.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix(); }
+  let frame;
   (function loop() {
-    requestAnimationFrame(loop);
+    frame = requestAnimationFrame(loop);
     if (spin) rotY += .005;
     pivot.rotation.set(rotX, rotY, 0);
     resize(); ren.render(sc, cam);
   })();
+  previews.push(() => {cancelAnimationFrame(frame);slot.dispose();environment.dispose();ren.dispose();});
 }
+env.traverse(object => {object.geometry?.dispose();object.material?.dispose();});
 </script>
 </body>
 </html>

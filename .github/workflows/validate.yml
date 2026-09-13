@@ -14,6 +14,8 @@ jobs:
         run: python3 manage.py governance --check
       - name: 口径与数据校验
         run: python3 manage.py validate --strict
+      - name: Visual model identity and adoption contract
+        run: python3 manage.py asset-check
       - name: 核验队列可生成
         run: python3 manage.py verify
       - name: 指标回填可运行

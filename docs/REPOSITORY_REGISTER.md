@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.14.1。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.14.2。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：717。
+在册文件：735。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,15 +15,15 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 12 |
-| 历史快照 | 195 |
-| 运行代码 | 138 |
+| 历史快照 | 208 |
+| 运行代码 | 141 |
 | 现行规范 | 13 |
 | 项目配置 | 36 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 26 |
 | 配套说明 | 35 |
-| 测试 | 55 |
+| 测试 | 57 |
 
 ## 在册记录集合
 
@@ -261,6 +261,14 @@
 | `docs/reviews/2026-09-13/standards/integrated-consumers-after.csv` | rows | 114 |
 | `docs/reviews/2026-09-13/standards/integrated-dependencies.json` | cycles | 0 |
 | `docs/reviews/2026-09-13/standards/integrated-file-changes.csv` | rows | 53 |
+| `docs/reviews/2026-09-14/model-assets/baseline.json` | rejected_sample_requests | 1 |
+| `docs/reviews/2026-09-14/model-assets/consumers-before.csv` | rows | 77 |
+| `docs/reviews/2026-09-14/model-assets/file-plan.csv` | rows | 722 |
+| `docs/reviews/2026-09-14/model-assets/file-results.csv` | rows | 735 |
+| `docs/reviews/2026-09-14/model-assets/legacy-removal.csv` | rows | 7 |
+| `docs/reviews/2026-09-14/model-assets/public-consumers.csv` | rows | 195 |
+| `docs/reviews/2026-09-14/model-assets/public-contracts.csv` | rows | 17 |
+| `docs/reviews/2026-09-14/model-assets/scope.json` | changed | 32 |
 | `docs/reviews/2026-09-14/scene-bootstrap/baseline.json` | items | 2 |
 | `docs/reviews/2026-09-14/scene-bootstrap/consumers-before.csv` | rows | 8 |
 | `docs/reviews/2026-09-14/scene-bootstrap/file-plan.csv` | rows | 704 |
@@ -274,7 +282,7 @@
 | `framework/current_state.json` | entrypoints | 4 |
 | `framework/current_state.json` | retired_entrypoints | 3 |
 | `framework/current_state.json` | known_retired_patterns | 11 |
-| `framework/current_state.json` | operational_guides | 8 |
+| `framework/current_state.json` | operational_guides | 9 |
 | `framework/data_contract.json` | source_grades | 5 |
 | `framework/data_contract.json` | project_statuses | 9 |
 | `framework/data_contract.json` | current_supply_statuses | 2 |
@@ -716,6 +724,19 @@
 | `docs/reviews/2026-09-13/standards/statistics.json` | 历史快照 |
 | `docs/reviews/2026-09-13/standards/verification.json` | 历史快照 |
 | [docs/reviews/2026-09-13/verification-map-repair.md](reviews/2026-09-13/verification-map-repair.md) | 历史快照 |
+| [docs/reviews/2026-09-14/model-assets/DELIVERY.md](reviews/2026-09-14/model-assets/DELIVERY.md) | 历史快照 |
+| [docs/reviews/2026-09-14/model-assets/PLAN.md](reviews/2026-09-14/model-assets/PLAN.md) | 历史快照 |
+| `docs/reviews/2026-09-14/model-assets/audit.py` | 历史快照 |
+| `docs/reviews/2026-09-14/model-assets/baseline.json` | 历史快照 |
+| [docs/reviews/2026-09-14/model-assets/consumers-before.csv](reviews/2026-09-14/model-assets/consumers-before.csv) | 历史快照 |
+| [docs/reviews/2026-09-14/model-assets/file-plan.csv](reviews/2026-09-14/model-assets/file-plan.csv) | 历史快照 |
+| [docs/reviews/2026-09-14/model-assets/file-results.csv](reviews/2026-09-14/model-assets/file-results.csv) | 历史快照 |
+| [docs/reviews/2026-09-14/model-assets/legacy-removal.csv](reviews/2026-09-14/model-assets/legacy-removal.csv) | 历史快照 |
+| [docs/reviews/2026-09-14/model-assets/public-consumers.csv](reviews/2026-09-14/model-assets/public-consumers.csv) | 历史快照 |
+| [docs/reviews/2026-09-14/model-assets/public-contracts.csv](reviews/2026-09-14/model-assets/public-contracts.csv) | 历史快照 |
+| `docs/reviews/2026-09-14/model-assets/scope.json` | 历史快照 |
+| `docs/reviews/2026-09-14/model-assets/statistics-after.json` | 历史快照 |
+| `docs/reviews/2026-09-14/model-assets/statistics-before.json` | 历史快照 |
 | [docs/reviews/2026-09-14/scene-bootstrap/DELIVERY.md](reviews/2026-09-14/scene-bootstrap/DELIVERY.md) | 历史快照 |
 | [docs/reviews/2026-09-14/scene-bootstrap/PLAN.md](reviews/2026-09-14/scene-bootstrap/PLAN.md) | 历史快照 |
 | `docs/reviews/2026-09-14/scene-bootstrap/audit.py` | 历史快照 |
@@ -861,6 +882,7 @@
 | `src/inresearch/materials/inventory.py` | 运行代码 |
 | `src/inresearch/materials/library.py` | 运行代码 |
 | `src/inresearch/materials/mapping.py` | 运行代码 |
+| `src/inresearch/materials/model_assets.py` | 运行代码 |
 | `src/inresearch/materials/naming.py` | 运行代码 |
 | `src/inresearch/materials/organize.py` | 运行代码 |
 | `src/inresearch/materials/paths.py` | 运行代码 |
@@ -885,6 +907,7 @@
 | `src/inresearch/workflow/attribution.py` | 运行代码 |
 | `src/inresearch/workflow/commands.py` | 运行代码 |
 | `src/inresearch/workflow/deep_read.py` | 运行代码 |
+| `src/inresearch/workflow/model_assets.py` | 运行代码 |
 | `src/inresearch/workflow/progress.py` | 运行代码 |
 | `src/inresearch/workflow/reader.py` | 运行代码 |
 | `src/inresearch/workflow/reading_gaps.py` | 运行代码 |
@@ -901,6 +924,7 @@
 | `tests/container_storage.py` | 测试 |
 | `tests/datacenter_news.cjs` | 测试 |
 | `tests/hardware_ecosystems.cjs` | 测试 |
+| `tests/model_assets.cjs` | 测试 |
 | `tests/object_network.cjs` | 测试 |
 | `tests/part_dossier.cjs` | 测试 |
 | `tests/product_node_hover.cjs` | 测试 |
@@ -937,6 +961,7 @@
 | `tests/unit/test_m4_triage_report.py` | 测试 |
 | `tests/unit/test_m4_triage_versions.py` | 测试 |
 | `tests/unit/test_material_intake.py` | 测试 |
+| `tests/unit/test_model_assets.py` | 测试 |
 | `tests/unit/test_model_runtime.py` | 测试 |
 | `tests/unit/test_news_projection.py` | 测试 |
 | `tests/unit/test_product_library.py` | 测试 |
@@ -1002,6 +1027,7 @@
 | `web/components/auth.css` | 运行代码 |
 | `web/components/datacenter-news.js` | 运行代码 |
 | `web/components/markdown-inline.js` | 运行代码 |
+| `web/components/model-assets.js` | 运行代码 |
 | `web/components/object-network.js` | 运行代码 |
 | `web/components/part-dossier.js` | 运行代码 |
 | `web/components/part-inspector.js` | 运行代码 |
