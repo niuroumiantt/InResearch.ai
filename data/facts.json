@@ -79327,6 +79327,402 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "单价由国盛按「合同总额 ÷ 关键 IT 负载 ÷ 合同年限」折算，asserter 记国盛；合同额与容量来自公司公告。15 年期记 10-15 年档；板块内唯一由公有云厂商直接签的订单。"
+    },
+    {
+      "fact_id": "nanan-backup-dispatch-dc-share-site-grading",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "nanan-power-backup-dispatch-dc",
+        "label": "南安市供电公司备用调度指挥数据中心"
+      },
+      "asserter": "南安市供电公司",
+      "value": 35.34,
+      "unit": "%",
+      "caliber": {
+        "trade": "场平与边坡",
+        "sub_trade": "场地平整土石方工程",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f3184e25acf7f85cbb03768a907c8d91c5daee18b5d25fdc7eca6f539a1a5b02",
+        "local_file": "2、【控制价】南安市供电公司备用调度指挥数据中心.xlsx",
+        "locator": "工作表「表3单项工程造价汇总表」第 1 页 第 7 行：场地平整土石方工程 17,697,273 元；表2 合计 50,077,461 元（封2 招标控制价，编制时间 2025-03-20）",
+        "grade": "S2",
+        "originator": "南安市供电公司备用调度指挥数据中心招标控制价（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "17,697,273 ÷ 50,077,461 × 100",
+      "corroboration": "待交叉验证",
+      "notes": "分母为全项目招标控制价（含场平边坡、岗亭、室外市政、园林、智能化）。**场平与边坡 19,373,799 元（38.7%）反超数据中心楼主体 26,930,563 元中的任一分项**，是选址成本的直接证据。**其中含「北山片区养老」6,595,947 元**（表4：分部分项里备用调度指挥数据中心 10,354,593 元、北山片区养老 6,595,947 元）——场平包里混入了非数据中心的片区工程，这一项不能全算在数据中心头上。 各项合计 100%。"
+    },
+    {
+      "fact_id": "nanan-backup-dispatch-dc-share-slope",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "nanan-power-backup-dispatch-dc",
+        "label": "南安市供电公司备用调度指挥数据中心"
+      },
+      "asserter": "南安市供电公司",
+      "value": 3.35,
+      "unit": "%",
+      "caliber": {
+        "trade": "场平与边坡",
+        "sub_trade": "边坡工程",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f3184e25acf7f85cbb03768a907c8d91c5daee18b5d25fdc7eca6f539a1a5b02",
+        "local_file": "2、【控制价】南安市供电公司备用调度指挥数据中心.xlsx",
+        "locator": "工作表「表3单项工程造价汇总表」第 1 页 第 8 行：边坡工程 1,676,526 元；表2 合计 50,077,461 元（封2 招标控制价，编制时间 2025-03-20）",
+        "grade": "S2",
+        "originator": "南安市供电公司备用调度指挥数据中心招标控制价（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "1,676,526 ÷ 50,077,461 × 100",
+      "corroboration": "待交叉验证",
+      "notes": "分母为全项目招标控制价（含场平边坡、岗亭、室外市政、园林、智能化）。**场平与边坡 19,373,799 元（38.7%）反超数据中心楼主体 26,930,563 元中的任一分项**，是选址成本的直接证据。 各项合计 100%。"
+    },
+    {
+      "fact_id": "nanan-backup-dispatch-dc-share-basement-civil",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "nanan-power-backup-dispatch-dc",
+        "label": "南安市供电公司备用调度指挥数据中心"
+      },
+      "asserter": "南安市供电公司",
+      "value": 15.57,
+      "unit": "%",
+      "caliber": {
+        "trade": "土建",
+        "sub_trade": "电力备用调度数据中心·地下室(土建)",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f3184e25acf7f85cbb03768a907c8d91c5daee18b5d25fdc7eca6f539a1a5b02",
+        "local_file": "2、【控制价】南安市供电公司备用调度指挥数据中心.xlsx",
+        "locator": "工作表「表3单项工程造价汇总表」第 2 页 第 16 行：电力备用调度数据中心·地下室(土建) 7,797,189 元；表2 合计 50,077,461 元（封2 招标控制价，编制时间 2025-03-20）",
+        "grade": "S2",
+        "originator": "南安市供电公司备用调度指挥数据中心招标控制价（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "7,797,189 ÷ 50,077,461 × 100",
+      "corroboration": "待交叉验证",
+      "notes": "分母为全项目招标控制价（含场平边坡、岗亭、室外市政、园林、智能化）。**场平与边坡 19,373,799 元（38.7%）反超数据中心楼主体 26,930,563 元中的任一分项**，是选址成本的直接证据。 各项合计 100%。"
+    },
+    {
+      "fact_id": "nanan-backup-dispatch-dc-share-basement-install",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "nanan-power-backup-dispatch-dc",
+        "label": "南安市供电公司备用调度指挥数据中心"
+      },
+      "asserter": "南安市供电公司",
+      "value": 2.92,
+      "unit": "%",
+      "caliber": {
+        "trade": "机电安装",
+        "sub_trade": "电力备用调度数据中心·地下室(安装)",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f3184e25acf7f85cbb03768a907c8d91c5daee18b5d25fdc7eca6f539a1a5b02",
+        "local_file": "2、【控制价】南安市供电公司备用调度指挥数据中心.xlsx",
+        "locator": "工作表「表3单项工程造价汇总表」第 2 页 第 17 行：电力备用调度数据中心·地下室(安装) 1,462,929 元；表2 合计 50,077,461 元（封2 招标控制价，编制时间 2025-03-20）",
+        "grade": "S2",
+        "originator": "南安市供电公司备用调度指挥数据中心招标控制价（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "1,462,929 ÷ 50,077,461 × 100",
+      "corroboration": "待交叉验证",
+      "notes": "分母为全项目招标控制价（含场平边坡、岗亭、室外市政、园林、智能化）。**场平与边坡 19,373,799 元（38.7%）反超数据中心楼主体 26,930,563 元中的任一分项**，是选址成本的直接证据。 各项合计 100%。"
+    },
+    {
+      "fact_id": "nanan-backup-dispatch-dc-share-super-structure",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "nanan-power-backup-dispatch-dc",
+        "label": "南安市供电公司备用调度指挥数据中心"
+      },
+      "asserter": "南安市供电公司",
+      "value": 21.07,
+      "unit": "%",
+      "caliber": {
+        "trade": "土建",
+        "sub_trade": "电力备用调度数据中心·上部主体",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f3184e25acf7f85cbb03768a907c8d91c5daee18b5d25fdc7eca6f539a1a5b02",
+        "local_file": "2、【控制价】南安市供电公司备用调度指挥数据中心.xlsx",
+        "locator": "工作表「表3单项工程造价汇总表」第 2 页 第 18 行：电力备用调度数据中心·上部主体 10,550,034 元；表2 合计 50,077,461 元（封2 招标控制价，编制时间 2025-03-20）",
+        "grade": "S2",
+        "originator": "南安市供电公司备用调度指挥数据中心招标控制价（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "10,550,034 ÷ 50,077,461 × 100",
+      "corroboration": "待交叉验证",
+      "notes": "分母为全项目招标控制价（含场平边坡、岗亭、室外市政、园林、智能化）。**场平与边坡 19,373,799 元（38.7%）反超数据中心楼主体 26,930,563 元中的任一分项**，是选址成本的直接证据。 各项合计 100%。"
+    },
+    {
+      "fact_id": "nanan-backup-dispatch-dc-share-prefab",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "nanan-power-backup-dispatch-dc",
+        "label": "南安市供电公司备用调度指挥数据中心"
+      },
+      "asserter": "南安市供电公司",
+      "value": 7.38,
+      "unit": "%",
+      "caliber": {
+        "trade": "土建",
+        "sub_trade": "电力备用调度数据中心·上部主体-装配式",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f3184e25acf7f85cbb03768a907c8d91c5daee18b5d25fdc7eca6f539a1a5b02",
+        "local_file": "2、【控制价】南安市供电公司备用调度指挥数据中心.xlsx",
+        "locator": "工作表「表3单项工程造价汇总表」第 2 页 第 19 行：电力备用调度数据中心·上部主体-装配式 3,697,369 元；表2 合计 50,077,461 元（封2 招标控制价，编制时间 2025-03-20）",
+        "grade": "S2",
+        "originator": "南安市供电公司备用调度指挥数据中心招标控制价（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "3,697,369 ÷ 50,077,461 × 100",
+      "corroboration": "待交叉验证",
+      "notes": "分母为全项目招标控制价（含场平边坡、岗亭、室外市政、园林、智能化）。**场平与边坡 19,373,799 元（38.7%）反超数据中心楼主体 26,930,563 元中的任一分项**，是选址成本的直接证据。 各项合计 100%。"
+    },
+    {
+      "fact_id": "nanan-backup-dispatch-dc-share-super-install",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "nanan-power-backup-dispatch-dc",
+        "label": "南安市供电公司备用调度指挥数据中心"
+      },
+      "asserter": "南安市供电公司",
+      "value": 6.75,
+      "unit": "%",
+      "caliber": {
+        "trade": "机电安装",
+        "sub_trade": "电力备用调度数据中心·上部安装工程",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f3184e25acf7f85cbb03768a907c8d91c5daee18b5d25fdc7eca6f539a1a5b02",
+        "local_file": "2、【控制价】南安市供电公司备用调度指挥数据中心.xlsx",
+        "locator": "工作表「表3单项工程造价汇总表」第 2 页 第 20 行：电力备用调度数据中心·上部安装工程 3,379,509 元；表2 合计 50,077,461 元（封2 招标控制价，编制时间 2025-03-20）",
+        "grade": "S2",
+        "originator": "南安市供电公司备用调度指挥数据中心招标控制价（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "3,379,509 ÷ 50,077,461 × 100",
+      "corroboration": "待交叉验证",
+      "notes": "分母为全项目招标控制价（含场平边坡、岗亭、室外市政、园林、智能化）。**场平与边坡 19,373,799 元（38.7%）反超数据中心楼主体 26,930,563 元中的任一分项**，是选址成本的直接证据。 各项合计 100%。"
+    },
+    {
+      "fact_id": "nanan-backup-dispatch-dc-share-seismic-brace",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "nanan-power-backup-dispatch-dc",
+        "label": "南安市供电公司备用调度指挥数据中心"
+      },
+      "asserter": "南安市供电公司",
+      "value": 0.09,
+      "unit": "%",
+      "caliber": {
+        "trade": "其他机电分项",
+        "sub_trade": "电力备用调度数据中心·抗震支架",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f3184e25acf7f85cbb03768a907c8d91c5daee18b5d25fdc7eca6f539a1a5b02",
+        "local_file": "2、【控制价】南安市供电公司备用调度指挥数据中心.xlsx",
+        "locator": "工作表「表3单项工程造价汇总表」第 2 页 第 21 行：电力备用调度数据中心·抗震支架 43,533 元；表2 合计 50,077,461 元（封2 招标控制价，编制时间 2025-03-20）",
+        "grade": "S2",
+        "originator": "南安市供电公司备用调度指挥数据中心招标控制价（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "43,533 ÷ 50,077,461 × 100",
+      "corroboration": "待交叉验证",
+      "notes": "分母为全项目招标控制价（含场平边坡、岗亭、室外市政、园林、智能化）。**场平与边坡 19,373,799 元（38.7%）反超数据中心楼主体 26,930,563 元中的任一分项**，是选址成本的直接证据。抗震支架不属 trade 九类，记其他机电分项。 各项合计 100%。"
+    },
+    {
+      "fact_id": "nanan-backup-dispatch-dc-share-guardhouse",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "nanan-power-backup-dispatch-dc",
+        "label": "南安市供电公司备用调度指挥数据中心"
+      },
+      "asserter": "南安市供电公司",
+      "value": 0.35,
+      "unit": "%",
+      "caliber": {
+        "trade": "土建",
+        "sub_trade": "岗亭（建筑装饰 149,150 + 安装 26,762）",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f3184e25acf7f85cbb03768a907c8d91c5daee18b5d25fdc7eca6f539a1a5b02",
+        "local_file": "2、【控制价】南安市供电公司备用调度指挥数据中心.xlsx",
+        "locator": "工作表「表2工程项目造价汇总表」第 8 行：岗亭（建筑装饰 149,150 + 安装 26,762） 175,912 元；表2 合计 50,077,461 元（封2 招标控制价，编制时间 2025-03-20）",
+        "grade": "S2",
+        "originator": "南安市供电公司备用调度指挥数据中心招标控制价（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "175,912 ÷ 50,077,461 × 100",
+      "corroboration": "待交叉验证",
+      "notes": "分母为全项目招标控制价（含场平边坡、岗亭、室外市政、园林、智能化）。**场平与边坡 19,373,799 元（38.7%）反超数据中心楼主体 26,930,563 元中的任一分项**，是选址成本的直接证据。 各项合计 100%。"
+    },
+    {
+      "fact_id": "nanan-backup-dispatch-dc-share-outdoor-municipal",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "nanan-power-backup-dispatch-dc",
+        "label": "南安市供电公司备用调度指挥数据中心"
+      },
+      "asserter": "南安市供电公司",
+      "value": 2.0,
+      "unit": "%",
+      "caliber": {
+        "trade": "室外与市政",
+        "sub_trade": "室外总体市政工程",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f3184e25acf7f85cbb03768a907c8d91c5daee18b5d25fdc7eca6f539a1a5b02",
+        "local_file": "2、【控制价】南安市供电公司备用调度指挥数据中心.xlsx",
+        "locator": "工作表「表2工程项目造价汇总表」第 9 行：室外总体市政工程 1,003,786 元；表2 合计 50,077,461 元（封2 招标控制价，编制时间 2025-03-20）",
+        "grade": "S2",
+        "originator": "南安市供电公司备用调度指挥数据中心招标控制价（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "1,003,786 ÷ 50,077,461 × 100",
+      "corroboration": "待交叉验证",
+      "notes": "分母为全项目招标控制价（含场平边坡、岗亭、室外市政、园林、智能化）。**场平与边坡 19,373,799 元（38.7%）反超数据中心楼主体 26,930,563 元中的任一分项**，是选址成本的直接证据。 各项合计 100%。"
+    },
+    {
+      "fact_id": "nanan-backup-dispatch-dc-share-landscape",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "nanan-power-backup-dispatch-dc",
+        "label": "南安市供电公司备用调度指挥数据中心"
+      },
+      "asserter": "南安市供电公司",
+      "value": 0.88,
+      "unit": "%",
+      "caliber": {
+        "trade": "室外与市政",
+        "sub_trade": "园林绿化与景观工程",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f3184e25acf7f85cbb03768a907c8d91c5daee18b5d25fdc7eca6f539a1a5b02",
+        "local_file": "2、【控制价】南安市供电公司备用调度指挥数据中心.xlsx",
+        "locator": "工作表「表2工程项目造价汇总表」第 10 行：园林绿化与景观工程 441,060 元；表2 合计 50,077,461 元（封2 招标控制价，编制时间 2025-03-20）",
+        "grade": "S2",
+        "originator": "南安市供电公司备用调度指挥数据中心招标控制价（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "441,060 ÷ 50,077,461 × 100",
+      "corroboration": "待交叉验证",
+      "notes": "分母为全项目招标控制价（含场平边坡、岗亭、室外市政、园林、智能化）。**场平与边坡 19,373,799 元（38.7%）反超数据中心楼主体 26,930,563 元中的任一分项**，是选址成本的直接证据。 各项合计 100%。"
+    },
+    {
+      "fact_id": "nanan-backup-dispatch-dc-share-intelligent",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "nanan-power-backup-dispatch-dc",
+        "label": "南安市供电公司备用调度指挥数据中心"
+      },
+      "asserter": "南安市供电公司",
+      "value": 4.3,
+      "unit": "%",
+      "caliber": {
+        "trade": "弱电智能化",
+        "sub_trade": "智能化工程",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f3184e25acf7f85cbb03768a907c8d91c5daee18b5d25fdc7eca6f539a1a5b02",
+        "local_file": "2、【控制价】南安市供电公司备用调度指挥数据中心.xlsx",
+        "locator": "工作表「表2工程项目造价汇总表」第 11 行：智能化工程 2,152,341 元；表2 合计 50,077,461 元（封2 招标控制价，编制时间 2025-03-20）",
+        "grade": "S2",
+        "originator": "南安市供电公司备用调度指挥数据中心招标控制价（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "2,152,341 ÷ 50,077,461 × 100",
+      "corroboration": "待交叉验证",
+      "notes": "分母为全项目招标控制价（含场平边坡、岗亭、室外市政、园林、智能化）。**场平与边坡 19,373,799 元（38.7%）反超数据中心楼主体 26,930,563 元中的任一分项**，是选址成本的直接证据。 各项合计 100%。"
     }
   ]
 }
