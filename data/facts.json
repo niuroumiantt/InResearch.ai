@@ -78591,6 +78591,70 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "本工作簿是同项目机电清单（ca7964f0，库内已录柴发 4,704,000 元/台等 6 条）的电气分册：柴发、UPS、母线等单价两份一致，本条为另一份未覆盖或无单价的项。年份沿用同项目归档路径「2019.2」，工作簿内部无日期。**两份汇总表的配电柜合计不同（本册 16,159,843 元、另一份 73,723,563 元）**，另一份疑含低压列头与母线外的更多成套柜，未核。"
+    },
+    {
+      "fact_id": "odcc2024-heying-huailai-fuel-autonomy",
+      "metric_id": "backup_autonomy",
+      "entity": {
+        "type": "project",
+        "id": "heying-huailai-dc-building",
+        "label": "合盈数据（怀来）科技产业园某数据中心机房楼"
+      },
+      "asserter": "合盈数据",
+      "value": 720.0,
+      "unit": "分钟",
+      "caliber": {
+        "backup_type": "柴发燃油储存",
+        "tier": "A 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "设计取值"
+      },
+      "as_of": "2024-09",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "ea5e13d8242b77adede971d711a8989305e40c97e1756a24c5a8832d261bf226",
+        "local_file": "数据中心供柴油系统技术报告.pdf",
+        "locator": "第 60-61 页 （四）项目案例：「此机房楼设置 18 台 PRP 功率 1800KW 柴油发电机组，柴油发电机组分为 2 组，主用 16 台备用 2 台，储油量需要满足柴油发电机组不小于 12 小时用油量。产品资料显示，柴油发电机组燃油消耗率为 436L/小时，12 小时最大负荷总用油量约 83.7m³，计算总储油量约 92.1m³，共设置 2 台 50m³ 埋地卧式储油罐」",
+        "grade": "S2",
+        "originator": "合盈数据项目案例（经开放数据中心标准推进委员会 ODCC《数据中心供柴油系统技术报告》（ODCC-2024-0200B，2024-09）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "12 小时 = 720 分钟；按 GB 50174 A 级设计。16 主用 × 436 L/h × 12 h ≈ 83.7 m³，乘 1.1 余量得 92.1 m³，配 2 台 50 m³ 双层玻璃钢埋地罐，每台机组配 1 m³ 日用油箱。报告编写单位含北京中科合盈数据科技，案例为自家项目。as_of 取报告发布月份。"
+    },
+    {
+      "fact_id": "odcc2024-heying-huailai-genset-count",
+      "metric_id": "major_equipment_count",
+      "entity": {
+        "type": "project",
+        "id": "heying-huailai-dc-building",
+        "label": "合盈数据（怀来）科技产业园某数据中心机房楼"
+      },
+      "asserter": "合盈数据",
+      "value": 18.0,
+      "unit": "台",
+      "caliber": {
+        "equipment": "柴发",
+        "redundancy": "N+1",
+        "count_basis": "装机台数",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2024-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ea5e13d8242b77adede971d711a8989305e40c97e1756a24c5a8832d261bf226",
+        "local_file": "数据中心供柴油系统技术报告.pdf",
+        "locator": "第 60-61 页 （四）项目案例：「此机房楼设置 18 台 PRP 功率 1800KW 柴油发电机组，柴油发电机组分为 2 组，主用 16 台备用 2 台，储油量需要满足柴油发电机组不小于 12 小时用油量。产品资料显示，柴油发电机组燃油消耗率为 436L/小时，12 小时最大负荷总用油量约 83.7m³，计算总储油量约 92.1m³，共设置 2 台 50m³ 埋地卧式储油罐」",
+        "grade": "S2",
+        "originator": "合盈数据项目案例（经开放数据中心标准推进委员会 ODCC《数据中心供柴油系统技术报告》（ODCC-2024-0200B，2024-09）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单栋机房楼 18 台 PRP 1800kW，分 2 组、主用 16 台 + 备用 2 台；redundancy 原文为「16+2」，按每组 N+1 记 N+1——**原文未明写每组配置，推断**。"
     }
   ]
 }
