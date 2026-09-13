@@ -1,12 +1,14 @@
 """Terminal protocol for the L2 reading use cases; no direct business writes."""
 import argparse
 import json
+import sqlite3
 from collections import Counter
 from pathlib import Path
 from inresearch.materials import reading_policy as policy
 from inresearch.materials.records import result_revision
 from inresearch.workflow.deep_read import DeepRead, CompletionPending, now
 from inresearch.storage.files import CommitUncertain
+from inresearch.materials.reader_contracts import ReaderError
 
 
 def emit(value):
@@ -90,10 +92,11 @@ def cmd_queue(app, a):
                    if (r.get('score') or 0) >= a.min_score
                    and r.get('status') == 'ok' and policy.self_authored(r))
     shown = [r for r in pool if policy.matches(r, a.grep)]
-    print(json.dumps({'eligible_unread': len(pool), 'min_score': a.min_score,
+    print(json.dumps({'eligible_unprocessed': len(pool), 'min_score': a.min_score,
                       'candidates': [{'sha256': r['sha256'], 'result_revision': result_revision(r),
                                       'name': r.get('proposed_name') or r.get('rel')} for r in shown[:a.show]],
-                      'already_read': len(app.read_documents()),
+                      'already_processed': len(app.processed_documents()),
+                      'processing_scope': 'fact_extraction_receipts_not_full_reading',
                       'self_authored_excluded': excluded,
                       'unattributed': sum(1 for r in pool if policy.unattributed(r)),
                       **({'since': a.since} if a.since else {}),
@@ -104,9 +107,9 @@ def cmd_queue(app, a):
                       'mb': round(sum(r.get('size', 0) for r in pool) / 1e6)},
                      ensure_ascii=False))
     for module, n in by_module.most_common():
-        print('  %-8s 待读 %-4d 已有事实 %d' % (module, n, covered.get(module, 0)))
+        print('  %-8s 待处理 %-4d 已有事实 %d' % (module, n, covered.get(module, 0)))
     if a.grep:
-        print('  匹配「%s」%d 条（共 %d 条待读）' % (a.grep, len(shown), len(pool)))
+        print('  匹配「%s」%d 条（共 %d 条待处理）' % (a.grep, len(shown), len(pool)))
     for row in shown[:a.show]:
         module = row.get('category') or '?'
         year = policy.document_year(row)
@@ -118,18 +121,21 @@ def cmd_queue(app, a):
 
 def main(argv=None, app=None):
     ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument('--reader-data-root', help='共享 reader 数据根；缺省使用 READER_DATA_ROOT 或项目默认数据目录')
     sub = ap.add_subparsers(dest='cmd', required=True)
+    current = sub.add_parser('current', help='查询唯一当前全文阅读结果，不初始化或改写台账')
+    current.add_argument('--sha', required=True, help='完整内容 SHA-256')
     q = sub.add_parser('queue'); q.add_argument('--min-score', type=int, default=policy.MIN_SCORE)
     q.add_argument('--since', type=int, default=0, help='只看这一年及以后的文件')
     q.add_argument('--show', type=int, default=15)
     q.add_argument('--grep', help='只列名字或路径里含这个词的')
     p = sub.add_parser('pack'); p.add_argument('--sha'); p.add_argument('--min-score', type=int, default=policy.MIN_SCORE)
-    p.add_argument('--again', action='store_true', help='重开一份已记入已读的文件，须同时给 --sha')
+    p.add_argument('--again', action='store_true', help='重新打开已处理材料的任务包，须同时给 --sha；不创建阅读版本')
     p.add_argument('--since', type=int, default=0, help='只取这一年及以后的文件')
     r = sub.add_parser('record'); r.add_argument('--facts', required=True)
     r.add_argument('--executor', help='调用客户端；未提供记 unknown')
     r.add_argument('--model', help='客户端报告的实际模型；未核实时不猜测')
-    r.add_argument('--doc', help='读完的文件 sha256，前缀即可，写进已读账本')
+    r.add_argument('--doc', help='处理材料 sha256，前缀即可，记录事实处理回执；不改变全文阅读状态')
     r.add_argument('--partial', action='store_true', help='收下通过校验的，跳过不通过的')
     r.add_argument('--show', type=int, default=10)
     t = sub.add_parser('attribute', help='把 L1 从预览里没看出来的出处补回判定')
@@ -147,7 +153,7 @@ def main(argv=None, app=None):
     fl.add_argument('--pii', action='store_true', help=policy.RESTRICTIONS['pii'])
     fl.add_argument('--clear', action='store_true', help='解除该标记')
     fl.add_argument('--evidence', required=True, help='在哪一页哪一处看到的')
-    sk = sub.add_parser('skip', help='读了，菜单里没有位置，记下缺口再往前走')
+    sk = sub.add_parser('skip', help='记录菜单缺口及处理回执；不改变全文阅读状态')
     sk.add_argument('--doc', required=True, help='文件 sha256，前缀即可')
     sk.add_argument('--gap', required=True, action='append',
                     help='缺的是什么——指标、维度还是枚举值，可重复给')
@@ -165,8 +171,11 @@ def main(argv=None, app=None):
     bp.add_argument('--show', type=int, default=10)
     sub.add_parser('status')
     a = ap.parse_args(argv)
-    app = app if app is not None else DeepRead()
+    app = app if app is not None else DeepRead(reader_data_root=a.reader_data_root)
     try:
+        if a.cmd == 'current':
+            emit(app.current(a.sha))
+            return 0
         return {'queue': cmd_queue, 'pack': cmd_pack, 'record': cmd_record,
          'attribute': cmd_attribute, 'flag': cmd_flag, 'skip': cmd_skip,
          'gaps': cmd_gaps, 'backfill-provenance': cmd_backfill_provenance,
@@ -177,7 +186,10 @@ def main(argv=None, app=None):
     except CommitUncertain as exc:
         emit(dict(ok=False, error=str(exc), commit_state='visible_durability_unconfirmed'))
         return 1
-    except (ValueError, TypeError, KeyError, OSError) as exc:
+    except ReaderError as exc:
+        emit(dict(ok=False, error=exc.code))
+        return 1
+    except (ValueError, TypeError, KeyError, OSError, sqlite3.Error) as exc:
         emit(dict(ok=False, error=str(exc)))
         return 1
 

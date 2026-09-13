@@ -1,0 +1,63 @@
+{
+  "environment": "real configured Claude CLI; isolated synthetic source, reader via manage.py, L2 CLI in fresh processes with explicit isolated paths",
+  "source": "合成工程验收材料。所有数字都是测试假设，不是真实行业证据。\n题目：测试机柜的功率边界。机构：验证实验室。日期：2026-09-13。\n假设机柜有 6 台服务器，每台在给定条件下消耗 300 W，服务器小计为 1800 W。\n1800 W 仅包括服务器，不包括网络、存储、制冷和电力转换损耗，不能称为机柜总功率。\n没有负载曲线、环境温度、冗余策略及实测效率，因此不能据此推算年耗电量、电费或可用容量。\n末段 END：保留此段。阅读只产生候选观察，不提供独立核验，也不授权 C3 采用。\n",
+  "content_sha256": "6c4ecc759d35507726a2cbc87f47c8b616e9581e704ed568b11697489b0dd949",
+  "elapsed_seconds": 43.9,
+  "current_revision": "rev-5fa4656341f84f68ab1d38947f66200b",
+  "report_sha256": "fee678342fb03ba1cde6a477b8e2b8dd08d88cdc14e69eb61de7fd504de0b57d",
+  "actual_models": [
+    {
+      "actual": "claude-opus-5",
+      "backend": "claude_cli",
+      "context": 32768,
+      "executor": "claude-code",
+      "input_sha256": "3bd5d2dee0347c9615fc21aa46f9574a3472c5af12a6727f36e510e8787946a4",
+      "max_output_tokens": 4096,
+      "model": "claude-opus-5",
+      "prompt_sha256": "723ccd520339f7ffe36b9ccddaa89b602c926f9d67f78caa944f6d74fa71ea16",
+      "request_model": "claude-opus-5",
+      "requested": "claude-opus-5",
+      "revision": ""
+    }
+  ],
+  "coverage": {
+    "characters_read": 242,
+    "characters_total": 242,
+    "chunks_read": 1,
+    "chunks_total": 1,
+    "complete": true,
+    "pages_read": 1,
+    "pages_total": 1
+  },
+  "shared_cli_identical": true,
+  "packet_reused_source_text": true,
+  "packet_report_matches": true,
+  "quotes_match_source": true,
+  "evidence_count": 6,
+  "phase": "complete",
+  "production_writes": false,
+  "c3_adoption": false,
+  "counts": {
+    "documents": 1,
+    "reading_runs": 1,
+    "sources": 2,
+    "jobs": 7
+  },
+  "facts_written": 1,
+  "receipt_count": 1,
+  "record_replayed": true,
+  "reopened_packet_reuses_same_revision": true,
+  "source_hash_preserved": true,
+  "report_hash_preserved": true,
+  "review": "Codex compared the complete 242-character source and all six claims/quotes. The 6 × 300 W = 1800 W server-only scenario, excluded loads, unknown inputs and final candidate-only restriction are retained. One isolated fact payload was prepared after this review; no formal research or C3 adoption.",
+  "operator": {
+    "executor": "codex-desktop",
+    "model": "unknown",
+    "verification": "client_reported"
+  },
+  "unverified": [
+    "real M4/Spark data integration",
+    "second real model",
+    "all-corpus semantic quality"
+  ]
+}

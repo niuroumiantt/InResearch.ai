@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.13.6",
+  "version": "2026.09.13.7",
   "effective_at": "2026-09-13",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -204,13 +204,16 @@
         "src/inresearch/storage/catalog.py",
         "src/inresearch/workflow/reading_revisions.py",
         "tests/unit/test_reading_revisions.py",
-        "tests/unit/test_catalog_migration.py"
+        "tests/unit/test_catalog_migration.py",
+        "src/inresearch/workflow/reading_results.py",
+        "src/inresearch/materials/reading_artifacts.py",
+        "tests/unit/test_reading_results.py"
       ],
       "supersedes": [
         "operations-legacy"
       ],
-      "reason": "2026-09-13: implement explicit reading revisions, immutable candidate artifacts, reviewed activation and transaction-safe catalog migration; automatic model routing and remote runtime upgrade remain separate. Replaces earlier unimplemented-status wording; other policy scope is preserved.",
-      "implementation_revision": "2026.09.13.5"
+      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。",
+      "implementation_revision": "2026.09.13.7"
     },
     {
       "id": "change_management-legacy",
@@ -390,13 +393,16 @@
         "src/inresearch/delivery/reader_export.py",
         "src/inresearch/interfaces/reader.py",
         "tests/unit/test_reading_revisions.py",
-        "tests/unit/test_catalog_migration.py"
+        "tests/unit/test_catalog_migration.py",
+        "src/inresearch/workflow/reading_results.py",
+        "src/inresearch/materials/reading_artifacts.py",
+        "tests/unit/test_reading_results.py"
       ],
       "supersedes": [
         "reading-20260906"
       ],
-      "reason": "2026-09-13: implement explicit reading revisions, immutable candidate artifacts, reviewed activation and transaction-safe catalog migration; automatic model routing and remote runtime upgrade remain separate. Replaces earlier unimplemented-status wording; other policy scope is preserved.",
-      "implementation_revision": "2026.09.13.5"
+      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。",
+      "implementation_revision": "2026.09.13.7"
     },
     {
       "id": "reading-m4-triage-20260912",
@@ -435,20 +441,23 @@
         "src/inresearch/materials/text_similarity.py",
         "src/inresearch/knowledge/provenance.py",
         "src/inresearch/workflow/reading_gaps.py",
-        "src/inresearch/delivery/reading_packet.py"
+        "src/inresearch/delivery/reading_packet.py",
+        "src/inresearch/workflow/reading_results.py",
+        "src/inresearch/materials/reading_artifacts.py",
+        "tests/unit/test_reading_results.py"
       ],
       "supersedes": [
         "reading-m4-triage-20260909"
       ],
-      "reason": "L2 CLI 与用例分离，准入/唯一 SHA/旧版本基线共用；缺口和完成回执可重放，来源修复绑定复核计划，拒绝文件名猜测；对齐既有 ≥7 或点名规则。历史原件、事实和运行数据保留，M4/Spark 实机与全量语义另验。",
-      "implementation_revision": "2026.09.13.6"
+      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。",
+      "implementation_revision": "2026.09.13.7"
     },
     {
       "id": "model-execution-20260912",
       "topic": "model_execution",
       "scope": "project",
       "status": "current",
-      "effective_at": "2026-09-12",
+      "effective_at": "2026-09-13",
       "source": "framework/08_model_execution.md",
       "implementations": [
         "src/inresearch/adapters/models.py",
@@ -463,11 +472,14 @@
         "src/inresearch/delivery/reader_export.py",
         "src/inresearch/interfaces/reader.py",
         "tests/unit/test_reading_revisions.py",
-        "tests/unit/test_catalog_migration.py"
+        "tests/unit/test_catalog_migration.py",
+        "src/inresearch/workflow/reading_results.py",
+        "src/inresearch/materials/reading_artifacts.py",
+        "tests/unit/test_reading_results.py"
       ],
       "supersedes": [],
-      "reason": "2026-09-13: implement explicit reading revisions, immutable candidate artifacts, reviewed activation and transaction-safe catalog migration; automatic model routing and remote runtime upgrade remain separate. Replaces earlier unimplemented-status wording; other policy scope is preserved.",
-      "implementation_revision": "2026.09.13.5"
+      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。",
+      "implementation_revision": "2026.09.13.7"
     },
     {
       "id": "software-contracts-20260913",
@@ -477,7 +489,7 @@
       "source": "framework/09_software_contracts.md",
       "effective_at": "2026-09-13",
       "supersedes": [],
-      "reason": "L2 CLI 与用例分离，准入/唯一 SHA/旧版本基线共用；缺口和完成回执可重放，来源修复绑定复核计划，拒绝文件名猜测；对齐既有 ≥7 或点名规则。历史原件、事实和运行数据保留，M4/Spark 实机与全量语义另验。",
+      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。",
       "implementations": [
         "src/inresearch/workflow/commands.py",
         "src/inresearch/storage/files.py",
@@ -511,9 +523,12 @@
         "src/inresearch/materials/text_similarity.py",
         "src/inresearch/knowledge/provenance.py",
         "src/inresearch/workflow/reading_gaps.py",
-        "src/inresearch/delivery/reading_packet.py"
+        "src/inresearch/delivery/reading_packet.py",
+        "src/inresearch/workflow/reading_results.py",
+        "src/inresearch/materials/reading_artifacts.py",
+        "tests/unit/test_reading_results.py"
       ],
-      "implementation_revision": "2026.09.13.6"
+      "implementation_revision": "2026.09.13.7"
     }
   ],
   "entrypoints": [

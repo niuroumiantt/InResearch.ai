@@ -67,10 +67,10 @@ class SimilarityIndex:
                       'at': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
                       **({'sketch': sketch} if sketch else {})})
 
-    def same_text(self, sha, fingerprint, done, *, read):
+    def same_text(self, sha, fingerprint, done, *, processed):
         return sorted(other for other, value in self.fingerprints().items()
                       if fingerprint and value == fingerprint and other != sha
-                      and (other in done) == read)
+                      and (other in done) == processed)
 
     def near_twins(self, sha, sketch, done):
         if not sketch:
@@ -79,5 +79,5 @@ class SimilarityIndex:
         for other, value in self.sketches().items():
             ratio = sketch_overlap(sketch, value)
             if other != sha and ratio >= NEAR_TWIN_RATIO:
-                rows.append({'sha256': other, 'shared': round(ratio, 3), 'read': other in done})
+                rows.append({'sha256': other, 'shared': round(ratio, 3), 'processed': other in done})
         return sorted(rows, key=lambda row: (-row['shared'], row['sha256']))

@@ -13,7 +13,7 @@ def make_app():
     material = SimpleNamespace(RESULTS=base/'l1.jsonl', INVENTORY=base/'inventory.jsonl',
         MAX_PREVIEW_CHARS=triage.MAX_PREVIEW_CHARS, proposed_name=triage.proposed_name,
         readable_path=lambda row: (base/row['rel'], False), load_inventory=lambda: [])
-    app = DeepRead(state=base, packet_dir=base/'packets', materials=material)
+    app = DeepRead(state=base, packet_dir=base/'packets', materials=material, reader_data_root=base/'reader')
     app._test_temporary = temporary
     return app
 

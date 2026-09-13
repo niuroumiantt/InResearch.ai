@@ -1,6 +1,6 @@
 # 当前研究与执行基准
 
-> CURRENT · 基准版本 2026.09.13.6 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
+> CURRENT · 基准版本 2026.09.13.7 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
 
 ## 从哪里读当前规则
 
@@ -11,7 +11,7 @@
 | 知识与版本 | [02 知识格式](02_knowledge_format.md) | research_knowledge.json、兼容 Finding、inresearch.delivery.export |
 | 3D 与产品映射 | [03 对象与协作](03_bom_and_collaboration.md) | 稳定部件 ID、产品线目录、空间/装配/系统关系 |
 | M4 原件分类整理（独立 scope） | [M4 任务卡](../docs/M4_TRIAGE_TASK.md) | inventory / triage / organize；不扩大 Spark originals 操作权限 |
-| 全文阅读与采用 | [04 阅读标准](04_reading_scoring_standard.md) | Spark 执行协议及 inresearch.workflow.reader |
+| 全文阅读与采用 | [04 阅读标准](04_reading_scoring_standard.md) | reader catalog 为当前全文结果权威；workflow.reading_results 为 reader/L2 共同查询入口 |
 | 全站界面与换肤 | [05 界面规范](05_interface_system.md) | web/components/site-shell.js、web/themes、interface_manifest.json |
 | 产品生态与总览 | [07 产品生态规范](07_product_ecosystems.md) | 生态/技术入口、中心关系图、九主题、厂商索引及旧 ID 映射 |
 | 采集与翻译 | [06 采集规范](06_acquisition.md) | inresearch.adapters.acquisition、inews 显式投影、Spark 采集台账 |

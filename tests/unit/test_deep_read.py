@@ -26,9 +26,9 @@ class RecordTests(unittest.TestCase):
         self.facts = base / 'facts.json'
         self.facts.write_text(json.dumps(
             {'version': '0.1', 'records': []}, ensure_ascii=False), encoding='utf-8')
-        self._saved = (L2.facts_path, L2.read_log, L2.load_metrics, L2.all_results)
+        self._saved = (L2.facts_path, L2.receipt_log, L2.load_metrics, L2.all_results)
         L2.facts_path = self.facts
-        L2.read_log = base / 'l2_read.jsonl'
+        L2.receipt_log = base / 'l2_read.jsonl'
         L2.load_metrics = lambda: METRICS
         # --doc 的完整哈希也要解得出一份判定（手打错一位的哈希不该通过），
         # 所以夹具把这几个 sha 注册进判定表。
@@ -37,7 +37,7 @@ class RecordTests(unittest.TestCase):
         L2.all_results = lambda: registered
 
     def tearDown(self):
-        (L2.facts_path, L2.read_log, L2.load_metrics, L2.all_results) = self._saved
+        (L2.facts_path, L2.receipt_log, L2.load_metrics, L2.all_results) = self._saved
         self.temp.cleanup()
 
     def record(self, facts, **flags):
@@ -71,26 +71,26 @@ class RecordTests(unittest.TestCase):
         report = self.record([fact()])
         self.assertEqual(report['accepted'], 0)
 
-    def test_recording_marks_the_document_read(self):
+    def test_recording_marks_the_document_processed(self):
         self.record([fact()], doc=SHA)
-        rows = [json.loads(l) for l in L2.read_log.read_text(encoding='utf-8').splitlines()]
+        rows = [json.loads(l) for l in L2.receipt_log.read_text(encoding='utf-8').splitlines()]
         self.assertEqual(rows[0]['sha256'], SHA)
         self.assertEqual(rows[0]['facts'], 1)
 
-    def test_failed_read_log_can_be_replayed_without_duplicate_facts(self):
+    def test_failed_receipt_log_can_be_replayed_without_duplicate_facts(self):
         from unittest.mock import patch
-        with patch.object(L2, 'remember_read', side_effect=OSError('interrupted after fact commit')):
+        with patch.object(L2, 'remember_processing', side_effect=OSError('interrupted after fact commit')):
             with self.assertRaises(OSError):
                 self.record([fact()], doc=SHA)
         report = self.record([fact()], doc=SHA)
         self.assertEqual(report['replayed'], 1)
         self.assertEqual(report['facts_total'], 1)
-        self.assertTrue(L2.read_log.exists())
+        self.assertTrue(L2.receipt_log.exists())
 
-    def test_other_material_cannot_mark_this_document_read(self):
+    def test_other_material_cannot_mark_this_document_processed(self):
         report = self.record([fact()], doc='b' * 64)
         self.assertEqual(report['accepted'], 0)
-        self.assertFalse(L2.read_log.exists())
+        self.assertFalse(L2.receipt_log.exists())
         self.assertEqual(json.loads(self.facts.read_text())['records'], [])
 
     def test_two_bare_forecasts_of_one_year_do_not_both_land(self):
@@ -110,11 +110,11 @@ class RecordTests(unittest.TestCase):
                                    as_of='2023E@2021-06', value=99.0)])
         self.assertEqual(report['accepted'], 1)
 
-    def test_a_document_with_no_facts_still_counts_as_read(self):
+    def test_a_document_with_no_facts_still_has_processing_receipt(self):
         """Zero facts is a legitimate outcome; inventing one is not."""
         report = self.record([], doc='c' * 64)
         self.assertEqual(report['accepted'], 0)
-        self.assertIn('c' * 64, L2.read_log.read_text(encoding='utf-8'))
+        self.assertIn('c' * 64, L2.receipt_log.read_text(encoding='utf-8'))
 
     # -- --doc 收前缀 -----------------------------------------------------
     # 前缀原样写进已读台账，而队列只认完整 sha，于是文件没被记成已读、
@@ -128,7 +128,7 @@ class RecordTests(unittest.TestCase):
         with self.resolving({SHA: {'sha256': SHA, 'rel': '一份.pdf'}}):
             self.record([fact()], doc=SHA[:12])
         rows = [json.loads(l) for l in
-                L2.read_log.read_text(encoding='utf-8').splitlines()]
+                L2.receipt_log.read_text(encoding='utf-8').splitlines()]
         self.assertEqual(rows[0]['sha256'], SHA)
 
     def test_a_prefix_that_matches_nothing_stops_before_anything_is_written(self):
@@ -136,7 +136,7 @@ class RecordTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 self.record([fact()], doc=SHA[:12])
         self.assertEqual(json.loads(self.facts.read_text(encoding='utf-8'))['records'], [])
-        self.assertFalse(L2.read_log.exists())
+        self.assertFalse(L2.receipt_log.exists())
 
     def test_an_ambiguous_prefix_stops_too(self):
         with self.resolving({SHA: {'sha256': SHA},
@@ -156,7 +156,7 @@ class RecordTests(unittest.TestCase):
                 self.record([fact()], doc=SHA)
         self.assertIn('完整哈希', str(caught.exception))
         self.assertEqual(json.loads(self.facts.read_text(encoding='utf-8'))['records'], [])
-        self.assertFalse(L2.read_log.exists())
+        self.assertFalse(L2.receipt_log.exists())
 
 
 class EffectiveResultTests(unittest.TestCase):
@@ -167,7 +167,7 @@ class EffectiveResultTests(unittest.TestCase):
                 L1_ROW, {'sha256': L1_ROW['sha256'], 'status': 'error',
                          'error': 'model_timeout'}]) + '\n')
             with patch.object(L2.materials, 'RESULTS', path), \
-                    patch.object(L2, 'read_documents', return_value=set()), \
+                    patch.object(L2, 'processed_documents', return_value=set()), \
                     patch.object(L2, 'load_metrics', return_value=METRICS), \
                     patch.object(L2, 'load_facts', return_value={'records': []}):
                 self.assertEqual([row['sha256'] for row in L2.eligible()],
@@ -283,7 +283,7 @@ class AttributionTests(unittest.TestCase):
         row = {**row, 'sha256': hashlib.sha256(source.read_bytes()).hexdigest()}
         saved = (L2.eligible, L2.extractor, L2.materials.readable_path,
                  L2.load_metrics, L2.load_questions, L2.load_facts, L2.packet_dir)
-        L2.eligible = lambda min_score=8, include_read=False, since=0: [row]
+        L2.eligible = lambda min_score=8, include_processed=False, since=0: [row]
         L2.extractor = lambda path, suffix: ('第一页正文\n\n[p.2] 第二页',
                                             meta if meta is not None else {'pages': 2})
         L2.materials.readable_path = lambda r: (source, False)
@@ -344,12 +344,12 @@ class QueueOutputTests(unittest.TestCase):
     def queue(self, rows, grep=None):
         self.grep = grep
         saved = (L2.eligible, L2.load_metrics, L2.load_facts,
-                 L2.all_results, L2.read_documents)
-        L2.eligible = lambda min_score=8, include_read=False, since=0: rows
+                 L2.all_results, L2.processed_documents)
+        L2.eligible = lambda min_score=8, include_processed=False, since=0: rows
         L2.load_metrics = lambda: METRICS
         L2.load_facts = lambda: {'records': []}
         L2.all_results = lambda: {r['sha256']: r for r in rows}
-        L2.read_documents = lambda: set()
+        L2.processed_documents = lambda: set()
         try:
             out = io.StringIO()
             with redirect_stdout(out):
@@ -357,7 +357,7 @@ class QueueOutputTests(unittest.TestCase):
                                             'grep': self.grep, 'since': 0}))
         finally:
             (L2.eligible, L2.load_metrics, L2.load_facts,
-             L2.all_results, L2.read_documents) = saved
+             L2.all_results, L2.processed_documents) = saved
         return out.getvalue()
 
     def test_each_row_carries_the_hash_pack_needs(self):
@@ -386,7 +386,7 @@ class QueueOutputTests(unittest.TestCase):
         rows.append({**L1_ROW, 'sha256': 'f' * 64,
                      'proposed_name': '09p_2022_某院_忠县通信机房 工艺对土建要求表.xlsx'})
         text = self.queue(rows, grep='忠县')
-        self.assertIn('匹配「忠县」1 条（共 31 条待读）', text)
+        self.assertIn('匹配「忠县」1 条（共 31 条待处理）', text)
         self.assertIn('f' * 16, text)
         self.assertNotIn('机房工程 3.pdf', text)
 
@@ -402,7 +402,7 @@ class QueueOutputTests(unittest.TestCase):
     def test_the_header_counts_the_gap(self):
         report = json.loads(self.queue([L1_ROW]).splitlines()[0])
         self.assertEqual(report['unattributed'], 1)
-        self.assertEqual(report['eligible_unread'], 1)
+        self.assertEqual(report['eligible_unprocessed'], 1)
 
 
 class EmptyBatchTests(unittest.TestCase):
@@ -419,14 +419,14 @@ class EmptyBatchTests(unittest.TestCase):
         self.facts = base / 'facts.json'
         self.facts.write_text(json.dumps({'version': '0.1', 'records': []}),
                               encoding='utf-8')
-        self._saved = (L2.facts_path, L2.read_log, L2.load_metrics, L2.all_results)
-        L2.facts_path, L2.read_log, L2.load_metrics = self.facts, base / 'read.jsonl', lambda: METRICS
+        self._saved = (L2.facts_path, L2.receipt_log, L2.load_metrics, L2.all_results)
+        L2.facts_path, L2.receipt_log, L2.load_metrics = self.facts, base / 'read.jsonl', lambda: METRICS
         # --doc 的完整哈希也要解得出一份判定
         L2.all_results = lambda: {'e' * 64: {'sha256': 'e' * 64, 'rel': '空批次.pdf',
                                              'score': 9, 'status': 'ok'}}
 
     def tearDown(self):
-        (L2.facts_path, L2.read_log, L2.load_metrics, L2.all_results) = self._saved
+        (L2.facts_path, L2.receipt_log, L2.load_metrics, L2.all_results) = self._saved
         self.temp.cleanup()
 
     def record(self, incoming, doc=None):
@@ -461,21 +461,21 @@ class PackAgainTests(unittest.TestCase):
 
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-again-')
-        self._saved = (L2.read_documents, L2.all_results, L2.load_facts, L2.load_metrics)
-        L2.read_documents = lambda: {L1_ROW['sha256']}
+        self._saved = (L2.processed_documents, L2.all_results, L2.load_facts, L2.load_metrics)
+        L2.processed_documents = lambda: {L1_ROW['sha256']}
         L2.all_results = lambda: {L1_ROW['sha256']: L1_ROW}
         L2.load_facts = lambda: {'records': []}
         L2.load_metrics = lambda: METRICS
 
     def tearDown(self):
-        (L2.read_documents, L2.all_results, L2.load_facts, L2.load_metrics) = self._saved
+        (L2.processed_documents, L2.all_results, L2.load_facts, L2.load_metrics) = self._saved
         self.temp.cleanup()
 
-    def test_a_read_document_is_out_of_the_queue(self):
+    def test_a_processed_document_is_out_of_the_queue(self):
         self.assertEqual(L2.eligible(8), [])
 
     def test_and_can_be_reopened_on_purpose(self):
-        self.assertEqual([r['sha256'] for r in L2.eligible(8, include_read=True)],
+        self.assertEqual([r['sha256'] for r in L2.eligible(8, include_processed=True)],
                          [L1_ROW['sha256']])
 
     def test_reopening_requires_naming_the_document(self):
@@ -501,14 +501,14 @@ class RestrictionTests(unittest.TestCase):
         self.results.write_text(json.dumps(
             {**L1_ROW, 'org': 'Forward Insights', 'year': '2025'},
             ensure_ascii=False) + '\n', encoding='utf-8')
-        self._saved = (L2.materials.RESULTS, L2.load_metrics, L2.load_facts, L2.read_documents)
+        self._saved = (L2.materials.RESULTS, L2.load_metrics, L2.load_facts, L2.processed_documents)
         L2.materials.RESULTS = self.results
         L2.load_metrics = lambda: METRICS
         L2.load_facts = lambda: {'records': []}
-        L2.read_documents = lambda: set()
+        L2.processed_documents = lambda: set()
 
     def tearDown(self):
-        (L2.materials.RESULTS, L2.load_metrics, L2.load_facts, L2.read_documents) = self._saved
+        (L2.materials.RESULTS, L2.load_metrics, L2.load_facts, L2.processed_documents) = self._saved
         self.temp.cleanup()
 
     def flag(self, **over):
@@ -590,16 +590,16 @@ class SkipTests(unittest.TestCase):
         self.results.write_text(json.dumps(
             {**L1_ROW, 'org': 'IDC', 'year': '2025'}, ensure_ascii=False) + '\n',
             encoding='utf-8')
-        self._saved = (L2.materials.RESULTS, L2.gaps.path, L2.read_log, L2.load_metrics,
+        self._saved = (L2.materials.RESULTS, L2.gaps.path, L2.receipt_log, L2.load_metrics,
                        L2.load_facts)
         L2.materials.RESULTS = self.results
         L2.gaps.path = base / 'metric_gaps.jsonl'
-        L2.read_log = base / 'l2_read.jsonl'
+        L2.receipt_log = base / 'l2_read.jsonl'
         L2.load_metrics = lambda: METRICS
         L2.load_facts = lambda: {'records': []}
 
     def tearDown(self):
-        (L2.materials.RESULTS, L2.gaps.path, L2.read_log, L2.load_metrics,
+        (L2.materials.RESULTS, L2.gaps.path, L2.receipt_log, L2.load_metrics,
          L2.load_facts) = self._saved
         self.temp.cleanup()
 
@@ -652,17 +652,17 @@ class SkipTests(unittest.TestCase):
         self.skip(['缺 counterparty_role 维度'], doc='b7cccccc')
         self.assertEqual(len(L2.gaps.open()), 2)
 
-    def test_the_read_ledger_says_it_was_a_skip_not_a_read(self):
+    def test_the_processing_receipt_preserves_the_skip_reason(self):
         """零条事实和「读了但存不下」印出来一样，就等于没记。"""
         self.skip(['server_class 缺 x86'], reason='整表都是 x86 口径')
-        row = json.loads(L2.read_log.read_text(encoding='utf-8').splitlines()[-1])
+        row = json.loads(L2.receipt_log.read_text(encoding='utf-8').splitlines()[-1])
         self.assertEqual(row['facts'], 0)
         self.assertEqual(row['skipped'], '整表都是 x86 口径')
         self.assertEqual(row['gaps'], [L2.gaps.open()[0]['gap_id']])
 
     def test_the_default_reason_is_the_menu(self):
         self.skip(['server_class 缺 x86'])
-        row = json.loads(L2.read_log.read_text(encoding='utf-8').splitlines()[-1])
+        row = json.loads(L2.receipt_log.read_text(encoding='utf-8').splitlines()[-1])
         self.assertEqual(row['skipped'], '菜单没有位置')
 
     def test_the_way_back_is_in_the_output(self):
@@ -720,7 +720,7 @@ class DeepReadJournalTests(unittest.TestCase):
             path = Path(d)/'journal.jsonl'
             row = {'sha256': 'a' * 64, 'text_md5': 'ab', 'sketch': ['ab'], 'gap_id': 'g'}
             data = (json.dumps(row) + '\n').encode()
-            for obj, attr, reader in [(L2, 'read_log', L2.read_documents), (L2.similarity, 'path', L2.similarity.fingerprints),
+            for obj, attr, reader in [(L2, 'receipt_log', L2.processed_documents), (L2.similarity, 'path', L2.similarity.fingerprints),
                                  (L2.similarity, 'path', L2.similarity.sketches), (L2.gaps, 'path', L2.gaps.open)]:
                 with self.subTest(reader=reader.__name__), patch.object(obj, attr, path):
                     path.write_bytes(data)
@@ -739,17 +739,17 @@ class TextTwinRoutingTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-twin-')
         base = Path(self.temp.name)
-        self._saved = (L2.similarity.path, L2.read_log, L2.eligible, L2.extractor,
+        self._saved = (L2.similarity.path, L2.receipt_log, L2.eligible, L2.extractor,
                        L2.materials.readable_path, L2.load_metrics, L2.load_questions,
                        L2.load_facts, L2.packet_dir)
         L2.similarity.path = base / 'l2_text_md5.jsonl'
-        L2.read_log = base / 'l2_read.jsonl'
+        L2.receipt_log = base / 'l2_read.jsonl'
         L2.packet_dir = base / 'packets'
         self.text = '中国第三方数据中心运营商分析报告。' * 60
         source = base / 'copy.pdf'
         source.write_bytes('另一个字节序列'.encode('utf-8'))
         self.row = {**L1_ROW, 'sha256': hashlib.sha256(source.read_bytes()).hexdigest()}
-        L2.eligible = lambda min_score=8, include_read=False, since=0: [self.row]
+        L2.eligible = lambda min_score=8, include_processed=False, since=0: [self.row]
         L2.extractor = lambda path, suffix: (self.text, {'pages': 41})
         L2.materials.readable_path = lambda r: (source, False)
         L2.load_metrics = lambda: METRICS
@@ -757,11 +757,11 @@ class TextTwinRoutingTests(unittest.TestCase):
         L2.load_facts = lambda: {'records': []}
         # 已读过的那一份：同一正文、另一个 sha
         L2.similarity.remember('a' * 64, SIM.text_fingerprint(self.text, {'pages': 41}))
-        L2.read_log.write_text(json.dumps({'sha256': 'a' * 64, 'facts': 3}) + '\n',
+        L2.receipt_log.write_text(json.dumps({'sha256': 'a' * 64, 'facts': 3}) + '\n',
                                encoding='utf-8')
 
     def tearDown(self):
-        (L2.similarity.path, L2.read_log, L2.eligible, L2.extractor, L2.materials.readable_path,
+        (L2.similarity.path, L2.receipt_log, L2.eligible, L2.extractor, L2.materials.readable_path,
          L2.load_metrics, L2.load_questions, L2.load_facts, L2.packet_dir) = self._saved
         self.temp.cleanup()
 
@@ -773,31 +773,31 @@ class TextTwinRoutingTests(unittest.TestCase):
         return json.loads(out.getvalue())
 
     def test_same_extracted_text_different_bytes_still_gets_its_own_packet(self):
-        before = L2.read_log.read_bytes()
+        before = L2.receipt_log.read_bytes()
         report = self.pack()
         self.assertEqual(report['packed'], 1)
         self.assertEqual(report['sha256'], self.row['sha256'])
-        self.assertEqual(report['same_text_already_read'], ['a' * 64])
-        self.assertNotIn(self.row['sha256'], L2.read_documents())
-        self.assertEqual(before, L2.read_log.read_bytes())
+        self.assertEqual(report['same_text_already_processed'], ['a' * 64])
+        self.assertNotIn(self.row['sha256'], L2.processed_documents())
+        self.assertEqual(before, L2.receipt_log.read_bytes())
         self.assertTrue(Path(report['text']).is_file())
 
-    def test_again_still_reopens_a_genuinely_read_document(self):
-        JSONL.append_record(L2.read_log, {'sha256': self.row['sha256'], 'facts': 3})
+    def test_again_reopens_a_processed_document(self):
+        JSONL.append_record(L2.receipt_log, {'sha256': self.row['sha256'], 'facts': 3})
         report = self.pack(again=True)
         self.assertEqual(report['packed'], 1)
         self.assertTrue(report['again'])
 
-    def test_old_automatic_twin_record_is_preserved_but_not_counted_as_read(self):
-        JSONL.append_record(L2.read_log, {'sha256': self.row['sha256'], 'facts': 0, 'twin_of': ['a' * 64]})
-        before = L2.read_log.read_bytes()
-        self.assertNotIn(self.row['sha256'], L2.read_documents())
-        self.assertIn('a' * 64, L2.read_documents())
-        self.assertEqual(before, L2.read_log.read_bytes())
+    def test_old_automatic_twin_record_is_preserved_but_not_counted_as_processed(self):
+        JSONL.append_record(L2.receipt_log, {'sha256': self.row['sha256'], 'facts': 0, 'twin_of': ['a' * 64]})
+        before = L2.receipt_log.read_bytes()
+        self.assertNotIn(self.row['sha256'], L2.processed_documents())
+        self.assertIn('a' * 64, L2.processed_documents())
+        self.assertEqual(before, L2.receipt_log.read_bytes())
         # A later actual full read with no facts remains a valid completion.
-        JSONL.append_record(L2.read_log, {'sha256': self.row['sha256'], 'facts': 0})
-        self.assertIn(self.row['sha256'], L2.read_documents())
-        self.assertTrue(L2.read_log.read_bytes().startswith(before))
+        JSONL.append_record(L2.receipt_log, {'sha256': self.row['sha256'], 'facts': 0})
+        self.assertIn(self.row['sha256'], L2.processed_documents())
+        self.assertTrue(L2.receipt_log.read_bytes().startswith(before))
 
 
 class BackfillProvenanceTests(unittest.TestCase):
@@ -951,7 +951,7 @@ class DisputeRecordTests(unittest.TestCase):
         self.app = make_app()
         self.addCleanup(self.app._test_temporary.cleanup)
         self.app.facts_path = self.facts
-        self.app.read_log = base / 'l2_read.jsonl'
+        self.app.receipt_log = base / 'l2_read.jsonl'
         self.app.load_metrics = lambda: METRICS
 
     def tearDown(self):
