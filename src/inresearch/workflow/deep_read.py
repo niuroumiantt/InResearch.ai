@@ -153,7 +153,7 @@ class DeepRead:
                 raise ValueError('; '.join(policy.admission_problems(ledger[doc_sha])))
             metrics, store = self.load_metrics(), self.load_facts()
             existing = {f['fact_id']: f for f in store['records']}
-            seen, claims = set(existing), fact_contract.index_claims(store['records'])
+            seen, claims = set(existing), fact_contract.index_claims(store['records'], metrics)
             accepted, rejected, replayed = [], [], 0
             for fact in incoming:
                 malformed = [key for key in ('evidence', 'entity', 'caliber')
@@ -173,7 +173,7 @@ class DeepRead:
                     rejected.append(dict(fact_id=fact.get('fact_id'), problems=problems))
                     continue
                 seen.add(fact['fact_id'])
-                fact_contract.index_claim(claims, fact)
+                fact_contract.index_claim(claims, fact, metrics.get(fact.get('metric_id')))
                 accepted.append(copy.deepcopy(fact))
             report = dict(incoming=len(incoming), accepted=0, rejected=len(rejected),
                           replayed=replayed, facts_total=len(store['records']), problems=rejected)
@@ -182,7 +182,12 @@ class DeepRead:
                 return report
             disputes = fact_contract.cross_link_disputes(accepted, store['records'])
             if disputes:
-                report.update(disputes_pending_a=len(disputes), disputes=disputes)
+                # 只有量级分歧进 A 档的待审计数；方法离散照样入库、照样互相指认，
+                # 但不占所有者的队列（见 fact_contract 里那段分诊说明）。
+                report.update(disputes=disputes,
+                              disputes_recorded=len(disputes),
+                              disputes_pending_a=sum(1 for d in disputes
+                                                     if d['needs_owner']))
             if accepted:
                 store['records'].extend(accepted)
                 store['updated'] = now()[:10]

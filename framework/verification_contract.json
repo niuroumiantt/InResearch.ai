@@ -34,12 +34,16 @@
     "tests/research_delivery.cjs": "4514c88bc0b8d79a54884ce3b2dda0a6afeeae79c0416b4533d4b44b7629d9e9",
     "tests/run_browser.cjs": "9a6dde1e1618169be60ee433e28d0ba6c5bad13917538f71909f179fa6732f39",
     "tests/ui_skin.cjs": "f3a1fa6223715cacb0c72a04102dde38e5cad3b8c43117be54bcccdab1be22fa",
+    "tests/unit/deep_read_fixtures.py": "a05ce5b320efe0358e4563f8430ab872d907063455f06f7b4793b93d97014636",
     "tests/unit/test_acquisition.py": "9df70bf9f5f2453e45a9f5af50baf9d4bc8cccae0afe3a76555b00c6b5099110",
     "tests/unit/test_catalog_bridge.py": "47ed253f19bd29eeff4221e07215084526b1b7fae85e58b4aab051d4b6ac8405",
     "tests/unit/test_catalog_migration.py": "463ffb034bd7d1f5b2cd2f8c221e07734ac287dd0df95a7fda127a2f2d69de48",
     "tests/unit/test_commands.py": "03265020c3aba7de0dfe056467ef678193c0e139859c917666c0ed216095b6d4",
     "tests/unit/test_continuous_reader.py": "6c36c298912077a7ab480e43f4a54fbfbb08978624c6e6efb3ac9f47657f4238",
+    "tests/unit/test_deep_read.py": "c37407f0b58782b159a73b54f90304e46947efabc9bc86d1fe5922873f75f0e9",
+    "tests/unit/test_deep_read_transactions.py": "8dbc032fa92ecaff99d208380714f630a5aec8a728c13d01a5879c68e7f42813",
     "tests/unit/test_display_regressions.py": "22c778fe01b42915da6b5d1c2aa9292db8f481a135400c63307d4e9c6ddfeb20",
+    "tests/unit/test_fact_contract.py": "7af06630640c2122fdd3f24c551d64636e639e0b8f3bfbf80bcd887c1a6d6407",
     "tests/unit/test_file_moves.py": "1f9ba746f06885b6d48ee2d73b5da8bc4364ca1ad54e85b5d6fe23cdbf1edf9a",
     "tests/unit/test_governance.py": "ee59b285f13ea82d6df0426d0fbd519b7b8f9e7695fde569708c0dac10d71f39",
     "tests/unit/test_intake.py": "752b45e1bec8938738ea28b827dcdcc9031bce772cc9030d7ded1d7be9176c10",
@@ -53,13 +57,9 @@
     "tests/unit/test_report_model.py": "1e02a56bbe7a75ee68d2ce2463d989e673d9e32d0cf66de09051cf5a39e0f7b2",
     "tests/unit/test_research.py": "b01db6f4a1e5c66e714cbb1440eab47467fb9ae4fef29ad124e436c3aab62ffb",
     "tests/unit/test_research_navigation.py": "8edaecdc3a3a3050000746453cb41e1c38b4a699f14037e4d9b0eac84429ac44",
-    "tests/unit/test_verification_contract.py": "2c1c2611dd2fb1973acf336e4b297f37ad7b06f4d5147574d99f3324fcc69232",
-    "tests/url_rendering.cjs": "b463695816e72417012ef814ebbb4d382f256e61f46017fe54c9167abfdb953d",
-    "tests/unit/test_deep_read.py": "e41a2b21f77b7ae4f0dfa57e7bee22c77590ef5133cf8c5e628ba2d5de43a22b",
-    "tests/unit/test_fact_contract.py": "36eeacfa1d43ba37ba241542f93f4b5051a39c2c6fb37ce065ec8636a345d9d7",
     "tests/unit/test_text_similarity.py": "4e24065bfcc56cb264977928be50bf448a4feda3c24b82a0a56c36d045caab9c",
-    "tests/unit/test_deep_read_transactions.py": "8dbc032fa92ecaff99d208380714f630a5aec8a728c13d01a5879c68e7f42813",
-    "tests/unit/deep_read_fixtures.py": "a05ce5b320efe0358e4563f8430ab872d907063455f06f7b4793b93d97014636"
+    "tests/unit/test_verification_contract.py": "2c1c2611dd2fb1973acf336e4b297f37ad7b06f4d5147574d99f3324fcc69232",
+    "tests/url_rendering.cjs": "b463695816e72417012ef814ebbb4d382f256e61f46017fe54c9167abfdb953d"
   },
   "policies": [
     {
@@ -96,14 +96,23 @@
         "tests/unit/test_display_regressions.py::PublicFactDisplayTests.test_the_gate_is_on_the_only_public_exit",
         "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_generated_dispute_links_do_not_break_original_request_replay",
         "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_disputes_inside_one_batch_commit_together_and_replay_after_receipt_failure",
-        "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_batch_claim_indexes_enforce_new_dispute_and_revision_contracts"
+        "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_batch_claim_indexes_enforce_new_dispute_and_revision_contracts",
+        "tests/unit/test_fact_contract.py::NatureDimTests.test_a_declared_nature_dim_drops_out_of_the_question",
+        "tests/unit/test_fact_contract.py::NatureDimTests.test_an_undeclared_dim_keeps_the_two_apart",
+        "tests/unit/test_fact_contract.py::NatureDimTests.test_the_live_menu_keeps_the_overloaded_ones_in",
+        "tests/unit/test_deep_read.py::DisputeRecordTests.test_a_spread_within_method_noise_does_not_queue_for_the_owner",
+        "tests/unit/test_deep_read.py::DisputeRecordTests.test_an_order_of_magnitude_gap_does_queue_for_the_owner",
+        "tests/unit/test_deep_read.py::RecordTests.test_a_full_hash_that_names_no_document_is_refused"
       ],
       "not_verified": [
         "38 条存量事实缺内容 SHA；27 条历史来源未登记；B 审核质量与语义冲突识别不能由机检代替。",
         "asserter 归一表是人写的前缀映射：未列入的译名或简称会落到「未注明」；188 条「未注明」（148 条 originator 本为空）需人工回查原件，既有 1,562 条未逐条复核。",
         "机器只判冲突的形状，不判谁对：A 档裁决仍为所有者人工判断，不提供按来源等级或发布日期自动取舍的路径。",
         "C3 A 档由模型代理受委托复审并记名（docs/reviews/2026-09-13/c3-a-review）：争议裁决所用外部锚点取自审核者既有知识、未在库内建立事实；「算力中心」外延未经原文确认，第一对争议的口径改法待确认后执行。",
-        "分发限制门只覆盖 knowledge/facts.py 这一个对外出口；新增出口须复用 restricted()，机检不覆盖。"
+        "分发限制门只覆盖 knowledge/facts.py 这一个对外出口；新增出口须复用 restricted()，机检不覆盖。",
+        "A 档分诊用极差阈值（2 倍）区分方法离散与量级分歧：这是分诊不是判定，阈值两侧都可能误判（口径差可能只差 10%，模型离散也可能超过 2 倍），链接全部保留待人复核。",
+        "asserter 的拼写分裂（谷歌/Google 这类中英对照）机检挡不住，只能靠 manage.py facts --asserters 人工对照。",
+        "basis 的 nature 声明由人逐维判断：181 个指标声明为数值性质、11 个重载的留在口径里，新增指标若把「测的是什么」放进 basis 又误加 nature，机检不会发现。"
       ]
     },
     {

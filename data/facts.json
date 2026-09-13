@@ -2426,7 +2426,7 @@
       "depth": "精读",
       "notes": "**「IT 负载」是 IT 侧功率口径，不等于数据中心总用电功率（需乘 PUE），也不等于并网容量**——与本库 M04 的电源/电网侧 GW（如美国 2025 年负荷 432GW、PJM 队列 252GW）**不可直接比较或相加**。同一预测序列的其余点位：2026 年 96GW、2028 年超 140GW（下界），CAGR 23%-25%。「90% 增长来自 AI」为**增量口径不是存量口径**。**本条为转引，正式引用应回到 Semi Analysis 原报告。**region=Global。",
       "value": 49.0,
-      "asserter": "国信证券"
+      "asserter": "SemiAnalysis"
     },
     {
       "fact_id": "low-vacancy-markets-2026",
@@ -2601,7 +2601,7 @@
       "value": 66.7,
       "derived": true,
       "derivation": "**原文为「大约三分之二」，66.7 是换算值、非精确披露**。「短寿命资产」主要指 GPU 和 CPU，**与土建/机电等长寿命资产相对**。**这条对折旧假设很关键**：短寿命资产占三分之二意味着折旧年限假设的敏感性极高，可与 M11 的「固定资产 15 年直线折旧」类模型假设对照——**后者显然不适用于 GPU**。时点=2026Q1（微软 FY26Q3）。",
-      "asserter": "国信证券"
+      "asserter": "微软"
     },
     {
       "fact_id": "coreweave-contracted-power-2025",
@@ -7667,7 +7667,7 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**这是西门子能源首次披露订单的终端市场构成**（原文明说 has not been disclosed before），因此没有历史序列可比。同口径下常规电力仍占约 58%，数据中心 21% 位居第二。**计量口径原文未说明**——是按金额、按容量还是按台数不得而知，标 [未核]，这也是本库该指标缺一维 measure 的原因。**与库内 gas-turbine-dc-order-share-2024（全球 6.0%，2024）落差极大**：一个是市场级、一个是单一厂商，且时点差一年，**不可当作「一年从 6% 涨到 21%」**。",
-      "asserter": "伯恩斯坦"
+      "asserter": "西门子能源"
     },
     {
       "fact_id": "big3-dc-order-share-2026-low",
@@ -26035,7 +26035,7 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**这是谷歌自报的液冷机队规模，不是其数据中心总容量**——液冷只覆盖 TPU 等高密度部分。 **status=L8（通电投运）**：原文 deployed fleet，是已部署运行的容量，**可计入当期供给**。 原文两处措辞不同：第 4 页「~1 GW total」、第 21 页「> 1 GW」，本条按下界记。 **这是目前本库唯一一条单一企业的液冷部署规模**，可作为「液冷已过验证期」的最硬证据之一。 文档页脚标 Confidential + Proprietary，但内容为 Hot Chips 公开教程，按公开材料处理。",
-      "asserter": "Google"
+      "asserter": "谷歌"
     },
     {
       "fact_id": "leadleo-lc-threshold-25",
@@ -33552,7 +33552,7 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**这个 1.6 被广泛引用，但原文明说它不代表行业**：调查大体不含超大规模厂，且是 >4MW 受访者的简单平均（不按容量加权）。 **按容量加权后行业真实 PUE 会显著更低**——超大规模厂 1.08-1.15（见同份四家条目）占了新增容量的大头。 时点原文未给，按报告前一年 2024 记，标 [未核]。 **原文特别提醒 PUE 可被操纵、不总能公平比较**：高环境温度设计的机房风扇功耗更高但冷却能耗更低，反而可能 PUE 更高而总耗电更少。",
-      "asserter": "SemiAnalysis"
+      "asserter": "Uptime Institute"
     },
     {
       "fact_id": "sa-cool-pue-google",
@@ -36414,7 +36414,7 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "单位换算：万美元 ÷ 100 = 百万美元/MW（1,000kW = 1MW）。 **供配电系统占 49%、冷却占 16%**；饼图中外部结构占 16%。 **口径是「硬件总成本」，按 1MW、2N 供电线路配置**；饼图列出的构成为 UPS、电源、开关设备、核心配电设备、制冷机、冷水空调机、冷却塔、循环水泵、加工泵、工程设施、外部结构、运维、其他——**含外部结构与工程设施，不含 IT 设备与土地**，cost_scope 就近记仅机电与土建，标 [未核]。 **对照同库戴德梁行亚太 2026**：中国内地中档 7.1、马来西亚中档 9.6 百万美元/MW——**施耐德的数比戴德梁行低 30%-50%**，前者是硬件、后者含 Powered Shell 与机房装修，口径不同；美国 8.6 与日本/新加坡（16.0/14.4）也不在一个量级。 时点：国盛引用未给施耐德数据发布年，按报告年记，标 [未核]。",
-      "asserter": "国盛证券"
+      "asserter": "施耐德电气"
     },
     {
       "fact_id": "schneider-1mw-2n-hardware-cost-cn",
@@ -36445,7 +36445,7 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "单位换算：万美元 ÷ 100 = 百万美元/MW（1,000kW = 1MW）。 **供配电系统占 57%、冷却占 19%**——比美国更偏重电气；外部结构仅 1%。 **口径是「硬件总成本」，按 1MW、2N 供电线路配置**；饼图列出的构成为 UPS、电源、开关设备、核心配电设备、制冷机、冷水空调机、冷却塔、循环水泵、加工泵、工程设施、外部结构、运维、其他——**含外部结构与工程设施，不含 IT 设备与土地**，cost_scope 就近记仅机电与土建，标 [未核]。 **对照同库戴德梁行亚太 2026**：中国内地中档 7.1、马来西亚中档 9.6 百万美元/MW——**施耐德的数比戴德梁行低 30%-50%**，前者是硬件、后者含 Powered Shell 与机房装修，口径不同；美国 8.6 与日本/新加坡（16.0/14.4）也不在一个量级。 时点：国盛引用未给施耐德数据发布年，按报告年记，标 [未核]。",
-      "asserter": "国盛证券"
+      "asserter": "施耐德电气"
     },
     {
       "fact_id": "schneider-1mw-2n-hardware-cost-my",
@@ -36476,7 +36476,7 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "单位换算：万美元 ÷ 100 = 百万美元/MW（1,000kW = 1MW）。 **供配电系统占 57%、冷却占 19%**，结构与中国一致。 **口径是「硬件总成本」，按 1MW、2N 供电线路配置**；饼图列出的构成为 UPS、电源、开关设备、核心配电设备、制冷机、冷水空调机、冷却塔、循环水泵、加工泵、工程设施、外部结构、运维、其他——**含外部结构与工程设施，不含 IT 设备与土地**，cost_scope 就近记仅机电与土建，标 [未核]。 **对照同库戴德梁行亚太 2026**：中国内地中档 7.1、马来西亚中档 9.6 百万美元/MW——**施耐德的数比戴德梁行低 30%-50%**，前者是硬件、后者含 Powered Shell 与机房装修，口径不同；美国 8.6 与日本/新加坡（16.0/14.4）也不在一个量级。 时点：国盛引用未给施耐德数据发布年，按报告年记，标 [未核]。",
-      "asserter": "国盛证券"
+      "asserter": "施耐德电气"
     },
     {
       "fact_id": "meta-prometheus-cluster-2026e",
@@ -42761,7 +42761,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "11034.3 亿 kWh = 1103.43 TWh。**量级存疑**：同一白皮书第 15 页另称 2017 年全球约 800 万个数据中心消耗 416.2 TWh（约占全球用电 2%），与本表 1103.4 TWh 相差 2.65 倍；IEA 口径 2023 年也仅约 360 TWh。原文两处都未交代口径差异，照录并报冲突缺口。\n\n**C3 A 档裁决（2026-09-13，受委托复审）：保留，量级严重存疑，不得用于推算。**外部锚点（IEA 2023 约 360 TWh、2024 年 415 TWh；Masanet 等 2020 给 2018 年约 205 TWh）表明2017 年全球 1,103 TWh 高出约五倍。**不删除**——它是这份白皮书被引用时的实际出处之一，删掉等于让后来人无从判断别处引到的那个大数从哪来；但任何派生计算都不得引用本条。basis 由「实测」改为「第三方估算」（原表未交代方法）。",
+      "notes": "11034.3 亿 kWh = 1103.43 TWh。**量级存疑**：同一白皮书第 15 页另称 2017 年全球约 800 万个数据中心消耗 416.2 TWh（约占全球用电 2%），与本表 1103.4 TWh 相差 2.65 倍；IEA 口径 2023 年也仅约 360 TWh。原文两处都未交代口径差异，照录并报冲突缺口。\n\n**C3 A 档裁决（2026-09-13，受委托复审）：保留，量级严重存疑，不得用于推算。**外部锚点（IEA 2023 约 360 TWh、2024 年 415 TWh；Masanet 等 2020 给 2018 年约 205 TWh）表明2017 年全球 1,103 TWh 高出约五倍。**不删除**——它是这份白皮书被引用时的实际出处之一，删掉等于让后来人无从判断别处引到的那个大数从哪来；但任何派生计算都不得引用本条。basis 由「实测」改为「第三方估算」（原表未交代方法）。\n\n**锚点已进库（2026-09-13 晚，读表侧同日新录）**：jrc2024-iea-global-dc-electricity-2018 （IEA 2018 年 200 TWh）与同序列 2015/2020-2022 区间已作为事实录入，本裁决当时只能引审核者既有知识的那一步，现在可在库内直接对照。",
       "asserter": "ICTresearch",
       "disputed_by": [
         "gdc2019-global-dc-electricity-2017-4162",
@@ -50272,7 +50272,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "原文该句未注明出处，asserter 按白皮书编写方 CESI 记（库内同句的 2% 占比 gdc2019-global-dc-power-share-2017 同样记 CESI）。与同一份白皮书第 14 页表 4 引 ICTresearch 的 2017 年 1,103.43 TWh 同一问题、差 2.65 倍——同一 PDF，断言者不同，按争议并列。\n\n**C3 A 档裁决（2026-09-13，受委托复审）：双方保留，均不得用于推算，争议标记不解除。**与同一份白皮书第 14 页 ICTresearch 的 1,103.43 TWh 相差 2.65 倍——**一份材料内部自相矛盾，这件事本身就是要记住的证据**，不是要挑一个留下。外部锚点：IEA 口径 2023 年约 360 TWh、2024 年 415 TWh，Masanet 等 2020 年 Science 给 2018 年约 205 TWh；按此 2017 年全球应在 200 TWh 量级，本条 416.2 已偏高约一倍，对方偏高约五倍。corroboration 维持「待交叉验证」，basis 由「实测」改为「第三方估算」（白皮书转录，方法未交代）。",
+      "notes": "原文该句未注明出处，asserter 按白皮书编写方 CESI 记（库内同句的 2% 占比 gdc2019-global-dc-power-share-2017 同样记 CESI）。与同一份白皮书第 14 页表 4 引 ICTresearch 的 2017 年 1,103.43 TWh 同一问题、差 2.65 倍——同一 PDF，断言者不同，按争议并列。\n\n**C3 A 档裁决（2026-09-13，受委托复审）：双方保留，均不得用于推算，争议标记不解除。**与同一份白皮书第 14 页 ICTresearch 的 1,103.43 TWh 相差 2.65 倍——**一份材料内部自相矛盾，这件事本身就是要记住的证据**，不是要挑一个留下。外部锚点：IEA 口径 2023 年约 360 TWh、2024 年 415 TWh，Masanet 等 2020 年 Science 给 2018 年约 205 TWh；按此 2017 年全球应在 200 TWh 量级，本条 416.2 已偏高约一倍，对方偏高约五倍。corroboration 维持「待交叉验证」，basis 由「实测」改为「第三方估算」（白皮书转录，方法未交代）。\n\n**锚点已进库（2026-09-13 晚，读表侧同日新录）**：jrc2024-iea-global-dc-electricity-2018 （IEA 2018 年 200 TWh）与同序列 2015/2020-2022 区间已作为事实录入，本裁决当时只能引审核者既有知识的那一步，现在可在库内直接对照。",
       "asserter": "CESI",
       "disputes": [
         "ictresearch-gdc2019-global-dc-electricity-2017"
@@ -60188,7 +60188,7 @@
         "energy_scope": "未注明",
         "sector_basis": "数据中心",
         "region": "Global",
-        "basis": "实测"
+        "basis": "模型输出"
       },
       "as_of": "2022",
       "bound": "point",
@@ -61110,7 +61110,7 @@
         "energy_scope": "未注明",
         "sector_basis": "数据中心",
         "region": "CN",
-        "basis": "实测"
+        "basis": "统计上报"
       },
       "as_of": "2019",
       "bound": "point",
@@ -61143,7 +61143,7 @@
         "energy_scope": "未注明",
         "sector_basis": "数据中心",
         "region": "CN",
-        "basis": "实测"
+        "basis": "统计上报"
       },
       "as_of": "2020",
       "bound": "point",
@@ -61179,7 +61179,7 @@
         "energy_scope": "未注明",
         "sector_basis": "数据中心",
         "region": "CN",
-        "basis": "实测"
+        "basis": "第三方估算"
       },
       "as_of": "2023",
       "bound": "point",
@@ -62208,7 +62208,7 @@
         "energy_scope": "未注明",
         "sector_basis": "数据中心",
         "region": "EU",
-        "basis": "实测"
+        "basis": "第三方估算"
       },
       "as_of": "2018",
       "bound": "point",
@@ -62511,7 +62511,7 @@
         "energy_scope": "未注明",
         "sector_basis": "数据中心",
         "region": "EU",
-        "basis": "实测"
+        "basis": "统计上报"
       },
       "as_of": "2019",
       "bound": "point",
@@ -62574,7 +62574,7 @@
         "energy_scope": "未注明",
         "sector_basis": "数据中心",
         "region": "EU",
-        "basis": "实测"
+        "basis": "统计上报"
       },
       "as_of": "2020",
       "bound": "point",
@@ -62637,7 +62637,7 @@
         "energy_scope": "未注明",
         "sector_basis": "数据中心",
         "region": "EU",
-        "basis": "实测"
+        "basis": "统计上报"
       },
       "as_of": "2021",
       "bound": "point",
@@ -62700,7 +62700,7 @@
         "energy_scope": "未注明",
         "sector_basis": "数据中心",
         "region": "EU",
-        "basis": "实测"
+        "basis": "统计上报"
       },
       "as_of": "2022",
       "bound": "point",
@@ -62733,7 +62733,7 @@
         "energy_scope": "未注明",
         "sector_basis": "数据中心",
         "region": "EU",
-        "basis": "实测"
+        "basis": "统计上报"
       },
       "as_of": "2017",
       "bound": "point",
@@ -62766,7 +62766,7 @@
         "energy_scope": "未注明",
         "sector_basis": "数据中心",
         "region": "EU",
-        "basis": "实测"
+        "basis": "统计上报"
       },
       "as_of": "2018",
       "bound": "point",
@@ -62799,7 +62799,7 @@
         "energy_scope": "未注明",
         "sector_basis": "数据中心",
         "region": "EU",
-        "basis": "实测"
+        "basis": "统计上报"
       },
       "as_of": "2019",
       "bound": "point",
@@ -63504,7 +63504,7 @@
         "energy_scope": "未注明",
         "sector_basis": "数据中心",
         "region": "Global",
-        "basis": "实测"
+        "basis": "模型输出"
       },
       "as_of": "2020",
       "bound": "lower",
@@ -63544,7 +63544,7 @@
         "energy_scope": "未注明",
         "sector_basis": "数据中心",
         "region": "Global",
-        "basis": "实测"
+        "basis": "模型输出"
       },
       "as_of": "2020",
       "bound": "upper",
@@ -63584,7 +63584,7 @@
         "energy_scope": "未注明",
         "sector_basis": "数据中心",
         "region": "Global",
-        "basis": "实测"
+        "basis": "模型输出"
       },
       "as_of": "2021",
       "bound": "lower",
@@ -63617,7 +63617,7 @@
         "energy_scope": "未注明",
         "sector_basis": "数据中心",
         "region": "Global",
-        "basis": "实测"
+        "basis": "模型输出"
       },
       "as_of": "2021",
       "bound": "upper",
@@ -63952,8 +63952,8 @@
       },
       "depth": "精读",
       "derived": false,
-      "corroboration": "待交叉验证",
-      "notes": "Andrae (2019)。",
+      "corroboration": "已交叉验证",
+      "notes": "Andrae (2019)。\n\n**C3 A 档复审（2026-09-13）：争议机器在这里找到的是印证，不是分歧。**Masanet 等（LBNL）205 TWh 与 Andrae（经华为）211 TWh 是两项独立的自底向上研究，相差 3%，corroboration 由「待交叉验证」改为「已交叉验证」。\n\n**同组的 IEA 200 TWh 未计入这次印证**：IEA 历史值一般引 Masanet 等，若确系同一谱系，它与 LBNL 那条是同源转述而不是第三个独立来源——**三个数字互相靠近不等于三个独立来源**。请读表侧核对 JRC 综述 Table 里 IEA 那行的方法出处后再定 IEA 那条的 corroboration。",
       "disputed_by": [
         "jrc2024-iea-global-dc-electricity-2018",
         "jrc2024-lbnl-masanet-global-dc-electricity-2018"
@@ -63976,7 +63976,7 @@
         "energy_scope": "未注明",
         "sector_basis": "数据中心",
         "region": "Global",
-        "basis": "实测"
+        "basis": "模型输出"
       },
       "as_of": "2018",
       "bound": "point",
@@ -64028,8 +64028,8 @@
       },
       "depth": "精读",
       "derived": false,
-      "corroboration": "待交叉验证",
-      "notes": "Masanet et al. (2020)，劳伦斯伯克利实验室等自下而上模型。",
+      "corroboration": "已交叉验证",
+      "notes": "Masanet et al. (2020)，劳伦斯伯克利实验室等自下而上模型。\n\n**C3 A 档复审（2026-09-13）：争议机器在这里找到的是印证，不是分歧。**Masanet 等（LBNL）205 TWh 与 Andrae（经华为）211 TWh 是两项独立的自底向上研究，相差 3%，corroboration 由「待交叉验证」改为「已交叉验证」。\n\n**同组的 IEA 200 TWh 未计入这次印证**：IEA 历史值一般引 Masanet 等，若确系同一谱系，它与 LBNL 那条是同源转述而不是第三个独立来源——**三个数字互相靠近不等于三个独立来源**。请读表侧核对 JRC 综述 Table 里 IEA 那行的方法出处后再定 IEA 那条的 corroboration。",
       "disputes": [
         "jrc2024-huawei-andrae-global-dc-electricity-2018",
         "jrc2024-iea-global-dc-electricity-2018"
@@ -64200,7 +64200,7 @@
         "region": "Global",
         "basis": "预测"
       },
-      "as_of": "2020E@2024-02",
+      "as_of": "2020E@2020",
       "bound": "point",
       "evidence": {
         "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
@@ -64212,10 +64212,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "原表标 projection；转引 JRC 综述；原研究发表月份未写，预测的 @ 取 JRC 报告时点 2024-02，实际做出时点更早。",
-      "disputed_by": [
-        "jrc2024-mcmaster-global-dc-electricity-2020e"
-      ]
+      "notes": "原表标 projection；转引 JRC 综述；原研究发表月份未写，预测的 @ 取 JRC 报告时点 2024-02，实际做出时点更早。\n\n**C3 A 档裁决（2026-09-13）：这不是争议，是 vintage 被压平了。**原来 as_of 写 2020E@2024-02——转引综述只给得出年份，而 @ 当时只收到月份，于是 McMaster（2018 年做出）与 ITU（2020 年做出）两个 2020E 被压成同一个时点、报成 4.3 倍的争议。契约已放宽到 @YYYY，本条改记 2020E@2020（2020 年做出）。两个时点的预测是两个都还活着的判断，并列而不互相取代，争议链接据此撤除。"
     },
     {
       "fact_id": "jrc2024-mcmaster-global-dc-electricity-2020e",
@@ -64236,7 +64233,7 @@
         "region": "Global",
         "basis": "预测"
       },
-      "as_of": "2020E@2024-02",
+      "as_of": "2020E@2018",
       "bound": "point",
       "evidence": {
         "sha256": "19227f538f918070ade3df6019b8a4bc9d3e7fb156e2fdc58f688b4057d36bae",
@@ -64248,10 +64245,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "JRC 视为离群值；转引 JRC 综述；原研究发表月份未写，预测的 @ 取 JRC 报告时点 2024-02，实际做出时点更早。",
-      "disputes": [
-        "jrc2024-itu-global-dc-electricity-2020e"
-      ]
+      "notes": "JRC 视为离群值；转引 JRC 综述；原研究发表月份未写，预测的 @ 取 JRC 报告时点 2024-02，实际做出时点更早。\n\n**C3 A 档裁决（2026-09-13）：这不是争议，是 vintage 被压平了。**原来 as_of 写 2020E@2024-02——转引综述只给得出年份，而 @ 当时只收到月份，于是 McMaster（2018 年做出）与 ITU（2020 年做出）两个 2020E 被压成同一个时点、报成 4.3 倍的争议。契约已放宽到 @YYYY，本条改记 2020E@2018（2018 年做出）。两个时点的预测是两个都还活着的判断，并列而不互相取代，争议链接据此撤除。"
     },
     {
       "fact_id": "jrc2024-iea-global-dc-electricity-2015",
@@ -64270,7 +64264,7 @@
         "energy_scope": "未注明",
         "sector_basis": "数据中心",
         "region": "Global",
-        "basis": "实测"
+        "basis": "模型输出"
       },
       "as_of": "2015",
       "bound": "point",
@@ -64307,7 +64301,7 @@
         "energy_scope": "未注明",
         "sector_basis": "数据中心",
         "region": "Global",
-        "basis": "实测"
+        "basis": "模型输出"
       },
       "as_of": "2022",
       "bound": "lower",
@@ -64340,7 +64334,7 @@
         "energy_scope": "未注明",
         "sector_basis": "数据中心",
         "region": "Global",
-        "basis": "实测"
+        "basis": "模型输出"
       },
       "as_of": "2022",
       "bound": "upper",

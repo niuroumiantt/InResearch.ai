@@ -26,7 +26,7 @@
 from inresearch.paths import project_root
 import json
 import sys
-from collections import defaultdict
+from collections import defaultdict, Counter
 from datetime import date
 
 ROOT = project_root()
@@ -203,9 +203,27 @@ def compare(facts, metrics, only=None):
     return lines
 
 
+def asserter_listing(facts):
+    """断言者清单与条数。
+
+    asserter 进 claim_key，所以**同一家写两种名字就是两家**：库里曾同时有「谷歌」3 条
+    与「Google」1 条，两者的重复、修订、争议都互相看不见。录入前用
+    `manage.py facts --asserters` 看一眼现有写法，比事后扫库便宜得多。
+    """
+    counts = Counter(f.get("asserter") or "（缺）" for f in facts)
+    lines = ["断言者 %d 家（asserter 进键，新名字先对一眼现有写法）" % len(counts)]
+    lines += ["  %5d  %s" % (n, name) for name, n in counts.most_common()]
+    return lines
+
+
 def main():
     args = sys.argv[1:]
     public = "--public" in args
+    if "--asserters" in args:
+        facts, _ = load()
+        for line in asserter_listing(facts):
+            print(line)
+        return 0
     only = next((a for a in args if not a.startswith("-")), None)
     facts, metrics = load()
     validate(facts, metrics)
