@@ -77600,6 +77600,99 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "用水 5,109,997 吨；WUE 单位原文未写，按行业惯例 L/kWh 记。"
+    },
+    {
+      "fact_id": "sa-elec-us-colo-greenfield-capex-per-mw",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-colo-greenfield-dc",
+        "label": "美国典型托管运营商新建数据中心"
+      },
+      "asserter": "SemiAnalysis",
+      "value": 8.0,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "US",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b4ec04b87c9099412c290e268ad4db9eb034f9b99f11b2ea60995dfe317139a9",
+        "local_file": "Datacenter Anatomy Part 1_ Electrical Systems.pdf",
+        "locator": "第 32 页：「Today, required Capex is around ~$8 million USD per MW to build a greenfield Datacenter in the US for a typical colocation operator, with hyperscalers likely spending a bit less」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Datacenter Anatomy Part 1: Electrical Systems》（Dylan Patel 等，2024-10-14）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「around ~$8 million」；不含 IT 设备（同页 capex 分项中供配电设备占 40-45%），cost_scope 记仅机电与土建；超大规模自建略低。小型零售数据中心可达 2-3 倍。"
+    },
+    {
+      "fact_id": "sa-elec-tokyo-singapore-capex-per-mw",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "market",
+        "id": "tokyo-singapore-dc",
+        "label": "东京与新加坡数据中心"
+      },
+      "asserter": "SemiAnalysis",
+      "value": 10.0,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024-10",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "b4ec04b87c9099412c290e268ad4db9eb034f9b99f11b2ea60995dfe317139a9",
+        "local_file": "Datacenter Anatomy Part 1_ Electrical Systems.pdf",
+        "locator": "第 33 页：「In expensive or land-limited geographies like Tokyo or Singapore … figures north of $10M per MW are common. Conversely, some locations such as Johor Bahru, Malaysia are very attractive, as we often hear of campuses built at $6M per MW or even slightly less」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Datacenter Anatomy Part 1: Electrical Systems》（Dylan Patel 等，2024-10-14）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「north of $10M per MW」按下界记；土地贵、多层建筑。"
+    },
+    {
+      "fact_id": "sa-elec-johor-capex-per-mw",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "market",
+        "id": "johor-bahru-dc",
+        "label": "马来西亚柔佛新山数据中心园区"
+      },
+      "asserter": "SemiAnalysis",
+      "value": 6.0,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024-10",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "b4ec04b87c9099412c290e268ad4db9eb034f9b99f11b2ea60995dfe317139a9",
+        "local_file": "Datacenter Anatomy Part 1_ Electrical Systems.pdf",
+        "locator": "第 33 页：「In expensive or land-limited geographies like Tokyo or Singapore … figures north of $10M per MW are common. Conversely, some locations such as Johor Bahru, Malaysia are very attractive, as we often hear of campuses built at $6M per MW or even slightly less」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Datacenter Anatomy Part 1: Electrical Systems》（Dylan Patel 等，2024-10-14）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「$6M per MW or even slightly less」按上界记；原文为「often hear」的传闻口径。"
     }
   ]
 }
