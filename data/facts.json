@@ -37930,6 +37930,93 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "区间上界；个别主体在特定条件下可超过 50%。"
+    },
+    {
+      "fact_id": "msft-preleased-binding-capacity-202504",
+      "metric_id": "contracted_power_capacity",
+      "entity": {
+        "type": "company",
+        "id": "microsoft",
+        "label": "微软"
+      },
+      "value": 5.0,
+      "unit": "GW",
+      "caliber": {
+        "capacity_type": "合同锁定电力",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1bcb8302783eaa52970b3deb04e093c0beb9eb2a07ad95b40bb3918a55eaa77c",
+        "local_file": "SemiAnalysis Microsoft’s Datacenter Freeze – 1.5GW Self-Build Slowdown & Lease Cancellation Misconceptions (2025-04-28).pdf",
+        "locator": "第 2 页：「The market has been focusing on “2GW of lease cancellations” which only covers non-binding LOIs, not firm contracts. This fails to mention that Microsoft has ~5GW of pre-leased capacity under binding contracts that will start operations between 2025 and 2028」；第 4 页：「In 2023 and H1 2024 … The company contracted over 5GW of capacity, including close to 2GW in CQ3 2023 alone」",
+        "grade": "S3",
+        "originator": "SemiAnalysis Datacenter Model"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**~5GW 是有约束力合同的预租容量，2025-2028 年间陆续投运**。**市场热议的「2GW 租约取消」只是不具约束力的意向书（LOI），不是正式合同**——原文的核心纠偏。**速度参照**：微软 2023 年与 2024 上半年签了 5GW 以上，仅 2023 年三季度就近 2GW，而整个北美数据中心市场 2022 全年才增 2GW。"
+    },
+    {
+      "fact_id": "msft-self-build-freeze-2025",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "company",
+        "id": "microsoft",
+        "label": "微软（自建项目，暂停部分）"
+      },
+      "value": 1500.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L6",
+        "region": "Global"
+      },
+      "as_of": "2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1bcb8302783eaa52970b3deb04e093c0beb9eb2a07ad95b40bb3918a55eaa77c",
+        "local_file": "SemiAnalysis Microsoft’s Datacenter Freeze – 1.5GW Self-Build Slowdown & Lease Cancellation Misconceptions (2025-04-28).pdf",
+        "locator": "第 3 页：「Our research indicates that Microsoft is freezing 1.5GW of near term self-build datacenter projects – projects that were previously scheduled to go online in 2025 and 2026. Microsoft is freezing multiple (but not all) self-build projects across the globe」",
+        "grade": "S3",
+        "originator": "SemiAnalysis Datacenter Model"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这 1.5GW 是被冻结的容量，不是在建中的供给**——原计划 2025-2026 年上线。status 就近记 L6 表示冻结前的开工状态，**不可计入当期或近期供给**，标 [未核]。原文判断：租赁放缓只影响 2027 年以后，**真正影响近两年容量的是这 1.5GW 自建冻结**。本库无「冻结/暂停容量」指标，只能借容量指标加 notes 表达。"
+    },
+    {
+      "fact_id": "crusoe-abilene-total-power-2026e",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "project",
+        "id": "abilene-lancium-crusoe-campus",
+        "label": "Abilene 阿比林 Lancium Clean Campus（Crusoe/Oracle 建设，OpenAI Stargate 首站）"
+      },
+      "value": 1200.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "并网容量",
+        "status": "L6",
+        "region": "US"
+      },
+      "as_of": "2026E@2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1bcb8302783eaa52970b3deb04e093c0beb9eb2a07ad95b40bb3918a55eaa77c",
+        "local_file": "SemiAnalysis Microsoft’s Datacenter Freeze – 1.5GW Self-Build Slowdown & Lease Cancellation Misconceptions (2025-04-28).pdf",
+        "locator": "第 6 页：「Crusoe publicly announced a major expansion of the campus in March, targeting 1.2GW of total power by 2026. Ground has already been broken for future buildings」",
+        "grade": "S3",
+        "originator": "Crusoe 公告（经 SemiAnalysis 转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**Crusoe 2025-03 公告：到 2026 年总电力 1.2GW**。**与库内同一园区的两条对照**：SemiAnalysis 2025-01 估算供电 2.2GW、IT 1.8GW（abilene-stargate-power-supplied-202501 / -it-capacity-202501）——**三个月后 Crusoe 自己公告的是 2026 年 1.2GW**，比 SemiAnalysis 的估算低近一半；可能是分期口径不同（2.2GW 为全园区远期），标 [未核]。capacity_type 就近记并网容量（原文 total power）。"
     }
   ]
 }
