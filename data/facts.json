@@ -40866,6 +40866,37 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原文「40℃左右」，为行业典型值表述而非某一项目实测。一次侧供水＝40℃减趋近温度 3-10℃，全国大部分地区冷却塔即可供给、无需压缩机；对比混合冷却模式风冷部分需 20℃以下冷液。"
+    },
+    {
+      "fact_id": "alibaba-2019-immersion-idc-floorload-13kn",
+      "metric_id": "room_floor_load",
+      "entity": {
+        "type": "company",
+        "id": "alibaba-immersion-idc-guideline",
+        "label": "阿里巴巴液冷 IDC 设计指标建议（2019）"
+      },
+      "value": 13.0,
+      "unit": "kN/㎡",
+      "caliber": {
+        "room_type": "主机房",
+        "basis": "设计取值",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "未注明"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f94a17860b30a6258d0791260b057474c6d5b5734324f987cd247f840720be48",
+        "local_file": "IDC 液冷化 正在发生的未来（阿里巴巴，2019）.pdf",
+        "locator": "第 32 页「液冷将给IDC交付带来的变化」：「IDC设计指标有所调整，例如楼板承重13kN/平米（宜降板）」",
+        "grade": "S3",
+        "originator": "阿里巴巴"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "浸没液冷 IDC 的楼板承重建议值（冷却液更重，第 18 页对比表「重量 --」），附「宜降板」。原文未说明是主机房，按承载液冷机柜/Tank 的机房记主机房；非某项目竣工值，是阿里对液冷 IDC 设计指标的调整建议。对照中国移动二星及以上主机房 8~12 kN/㎡。"
     }
   ]
 }
