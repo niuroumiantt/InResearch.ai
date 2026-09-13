@@ -75734,6 +75734,324 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原表 PB，÷1000 记 EB、保留 1 位小数。中国（PRC）数据圈。"
+    },
+    {
+      "fact_id": "ccia2025-nda-cn-compute-total-2024",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "国家数据局",
+      "value": 280.0,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "总算力",
+        "precision": "混合/未注明",
+        "area": "全国",
+        "status": "未注明",
+        "region": "CN",
+        "basis": "官方统计"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dbde9d119d2aaa1e34e9c4ec304e11a7f09f53096ce18f0ee925f155deb1fcd3",
+        "local_file": "20251219-中国通信工业协会数据中心委员会：全球重点区域算力竞争态势分析报告（2025年）(114页).pdf",
+        "locator": "第 53 页：「国家数据局数据显示，2024年末中国算力总规模达280EFLOPS，同比增长22%；数据生产量达41.06ZB，同比增长25%」",
+        "grade": "S3",
+        "originator": "国家数据局（经中国通信工业协会数据中心委员会《全球重点区域算力竞争态势分析报告（2025 年）》（2025-12-19）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "精度未注明。同段：截至 2025-06 在用算力中心标准机架 1085 万架（库内已有）、存力总规模超过 1680EB（未写时点，未录）。"
+    },
+    {
+      "fact_id": "ccia2025-cn-ai-compute-2024",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "中国通信工业协会数据中心委员会",
+      "value": 90.0,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "混合/未注明",
+        "area": "全国",
+        "status": "未注明",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dbde9d119d2aaa1e34e9c4ec304e11a7f09f53096ce18f0ee925f155deb1fcd3",
+        "local_file": "20251219-中国通信工业协会数据中心委员会：全球重点区域算力竞争态势分析报告（2025年）(114页).pdf",
+        "locator": "第 53 页：「截至2024年底，中国智能算力规模达90EFLOPS,占算力总规模的比例为32%」",
+        "grade": "S3",
+        "originator": "中国通信工业协会数据中心委员会《全球重点区域算力竞争态势分析报告（2025 年）》（2025-12-19）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "该句未注明出处，asserter 记报告编写方。精度未注明——与 IDC 2024 年 725.3 EFLOPS（FP16）差 8 倍，主要是精度与口径不同（IDC 按加速卡 FP16 相当算力），不可直接比。"
+    },
+    {
+      "fact_id": "ccia2025-accenture-cn-dc-electricity-2030e-lower",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心/算力中心（合计）"
+      },
+      "asserter": "埃森哲",
+      "value": 400.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "dbde9d119d2aaa1e34e9c4ec304e11a7f09f53096ce18f0ee925f155deb1fcd3",
+        "local_file": "20251219-中国通信工业协会数据中心委员会：全球重点区域算力竞争态势分析报告（2025年）(114页).pdf",
+        "locator": "第 107 页：「据测算，2030年中国数据中心用电量预计达到400-600TWh，占全社会用电量的比重约为4.8%-6%；美国数据中心用电量预计达到413-509TWh，占比约9%-11%」；图表 32 数据来源：Accenture等",
+        "grade": "S3",
+        "originator": "埃森哲（经中国通信工业协会数据中心委员会《全球重点区域算力竞争态势分析报告（2025 年）》（2025-12-19）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间下界。图表 32 标「数据来源：Accenture等」，asserter 记埃森哲；做出时点原文未写，@ 只能确定不晚于本报告的 2025 年。"
+    },
+    {
+      "fact_id": "ccia2025-accenture-cn-dc-power-share-2030e-lower",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心/算力中心（合计）"
+      },
+      "asserter": "埃森哲",
+      "value": 4.8,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "dbde9d119d2aaa1e34e9c4ec304e11a7f09f53096ce18f0ee925f155deb1fcd3",
+        "local_file": "20251219-中国通信工业协会数据中心委员会：全球重点区域算力竞争态势分析报告（2025年）(114页).pdf",
+        "locator": "第 107 页：「据测算，2030年中国数据中心用电量预计达到400-600TWh，占全社会用电量的比重约为4.8%-6%；美国数据中心用电量预计达到413-509TWh，占比约9%-11%」；图表 32 数据来源：Accenture等",
+        "grade": "S3",
+        "originator": "埃森哲（经中国通信工业协会数据中心委员会《全球重点区域算力竞争态势分析报告（2025 年）》（2025-12-19）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间下界。图表 32 标「数据来源：Accenture等」，asserter 记埃森哲；做出时点原文未写，@ 只能确定不晚于本报告的 2025 年。"
+    },
+    {
+      "fact_id": "ccia2025-accenture-cn-dc-electricity-2030e-upper",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心/算力中心（合计）"
+      },
+      "asserter": "埃森哲",
+      "value": 600.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2025",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "dbde9d119d2aaa1e34e9c4ec304e11a7f09f53096ce18f0ee925f155deb1fcd3",
+        "local_file": "20251219-中国通信工业协会数据中心委员会：全球重点区域算力竞争态势分析报告（2025年）(114页).pdf",
+        "locator": "第 107 页：「据测算，2030年中国数据中心用电量预计达到400-600TWh，占全社会用电量的比重约为4.8%-6%；美国数据中心用电量预计达到413-509TWh，占比约9%-11%」；图表 32 数据来源：Accenture等",
+        "grade": "S3",
+        "originator": "埃森哲（经中国通信工业协会数据中心委员会《全球重点区域算力竞争态势分析报告（2025 年）》（2025-12-19）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上界。图表 32 标「数据来源：Accenture等」，asserter 记埃森哲；做出时点原文未写，@ 只能确定不晚于本报告的 2025 年。"
+    },
+    {
+      "fact_id": "ccia2025-accenture-cn-dc-power-share-2030e-upper",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心/算力中心（合计）"
+      },
+      "asserter": "埃森哲",
+      "value": 6.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2025",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "dbde9d119d2aaa1e34e9c4ec304e11a7f09f53096ce18f0ee925f155deb1fcd3",
+        "local_file": "20251219-中国通信工业协会数据中心委员会：全球重点区域算力竞争态势分析报告（2025年）(114页).pdf",
+        "locator": "第 107 页：「据测算，2030年中国数据中心用电量预计达到400-600TWh，占全社会用电量的比重约为4.8%-6%；美国数据中心用电量预计达到413-509TWh，占比约9%-11%」；图表 32 数据来源：Accenture等",
+        "grade": "S3",
+        "originator": "埃森哲（经中国通信工业协会数据中心委员会《全球重点区域算力竞争态势分析报告（2025 年）》（2025-12-19）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上界。图表 32 标「数据来源：Accenture等」，asserter 记埃森哲；做出时点原文未写，@ 只能确定不晚于本报告的 2025 年。"
+    },
+    {
+      "fact_id": "ccia2025-accenture-us-dc-electricity-2030e-lower",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心（合计）"
+      },
+      "asserter": "埃森哲",
+      "value": 413.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "US",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "dbde9d119d2aaa1e34e9c4ec304e11a7f09f53096ce18f0ee925f155deb1fcd3",
+        "local_file": "20251219-中国通信工业协会数据中心委员会：全球重点区域算力竞争态势分析报告（2025年）(114页).pdf",
+        "locator": "第 107 页：「据测算，2030年中国数据中心用电量预计达到400-600TWh，占全社会用电量的比重约为4.8%-6%；美国数据中心用电量预计达到413-509TWh，占比约9%-11%」；图表 32 数据来源：Accenture等",
+        "grade": "S3",
+        "originator": "埃森哲（经中国通信工业协会数据中心委员会《全球重点区域算力竞争态势分析报告（2025 年）》（2025-12-19）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间下界。图表 32 标「数据来源：Accenture等」，asserter 记埃森哲；做出时点原文未写，@ 只能确定不晚于本报告的 2025 年。"
+    },
+    {
+      "fact_id": "ccia2025-accenture-us-dc-power-share-2030e-lower",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心（合计）"
+      },
+      "asserter": "埃森哲",
+      "value": 9.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "US",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "dbde9d119d2aaa1e34e9c4ec304e11a7f09f53096ce18f0ee925f155deb1fcd3",
+        "local_file": "20251219-中国通信工业协会数据中心委员会：全球重点区域算力竞争态势分析报告（2025年）(114页).pdf",
+        "locator": "第 107 页：「据测算，2030年中国数据中心用电量预计达到400-600TWh，占全社会用电量的比重约为4.8%-6%；美国数据中心用电量预计达到413-509TWh，占比约9%-11%」；图表 32 数据来源：Accenture等",
+        "grade": "S3",
+        "originator": "埃森哲（经中国通信工业协会数据中心委员会《全球重点区域算力竞争态势分析报告（2025 年）》（2025-12-19）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间下界。图表 32 标「数据来源：Accenture等」，asserter 记埃森哲；做出时点原文未写，@ 只能确定不晚于本报告的 2025 年。"
+    },
+    {
+      "fact_id": "ccia2025-accenture-us-dc-electricity-2030e-upper",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心（合计）"
+      },
+      "asserter": "埃森哲",
+      "value": 509.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "US",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2025",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "dbde9d119d2aaa1e34e9c4ec304e11a7f09f53096ce18f0ee925f155deb1fcd3",
+        "local_file": "20251219-中国通信工业协会数据中心委员会：全球重点区域算力竞争态势分析报告（2025年）(114页).pdf",
+        "locator": "第 107 页：「据测算，2030年中国数据中心用电量预计达到400-600TWh，占全社会用电量的比重约为4.8%-6%；美国数据中心用电量预计达到413-509TWh，占比约9%-11%」；图表 32 数据来源：Accenture等",
+        "grade": "S3",
+        "originator": "埃森哲（经中国通信工业协会数据中心委员会《全球重点区域算力竞争态势分析报告（2025 年）》（2025-12-19）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上界。图表 32 标「数据来源：Accenture等」，asserter 记埃森哲；做出时点原文未写，@ 只能确定不晚于本报告的 2025 年。"
+    },
+    {
+      "fact_id": "ccia2025-accenture-us-dc-power-share-2030e-upper",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心（合计）"
+      },
+      "asserter": "埃森哲",
+      "value": 11.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "US",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2025",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "dbde9d119d2aaa1e34e9c4ec304e11a7f09f53096ce18f0ee925f155deb1fcd3",
+        "local_file": "20251219-中国通信工业协会数据中心委员会：全球重点区域算力竞争态势分析报告（2025年）(114页).pdf",
+        "locator": "第 107 页：「据测算，2030年中国数据中心用电量预计达到400-600TWh，占全社会用电量的比重约为4.8%-6%；美国数据中心用电量预计达到413-509TWh，占比约9%-11%」；图表 32 数据来源：Accenture等",
+        "grade": "S3",
+        "originator": "埃森哲（经中国通信工业协会数据中心委员会《全球重点区域算力竞争态势分析报告（2025 年）》（2025-12-19）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上界。图表 32 标「数据来源：Accenture等」，asserter 记埃森哲；做出时点原文未写，@ 只能确定不晚于本报告的 2025 年。"
     }
   ]
 }
