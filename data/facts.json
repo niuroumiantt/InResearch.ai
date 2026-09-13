@@ -76408,6 +76408,100 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "美元。"
+    },
+    {
+      "fact_id": "cms2023-sensetime-lingang-compute-full-build",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "sensetime-lingang-aidc",
+        "label": "商汤上海临港 AIDC（人工智能计算中心）"
+      },
+      "asserter": "商汤科技",
+      "value": 3740.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "规划",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "厂商披露"
+      },
+      "as_of": "2022-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ba09d368423185d066bd36ea70d25ef2a99454f73a070a02e64ae487aca9b9cb",
+        "local_file": "20230212-信息技术-通信行业ChatGPT对算力需求及ICT硬件投资拉动的量化测算：ChatGPT启动人工智能革命，带来海量算力基础设施需求-招商证券[梁程加,刘浩天](11页).pdf",
+        "locator": "第 8 页：「根据商汤科技官网，2022 年 1 月 24 日商汤科技人工智能计算中心启动运营，该项目占地面积约 5.8 万平方米，总投资约 56 亿元，项目全部建成后 AI 计算峰值速度将达到 3740 Pflops，新建机柜数量 5000 个……根据光环新网定增文件，其“上海嘉定绿色云计算基地二期”项目占地 2.4 万平方米，建设完成后建成 5000 个机柜。其中工程建设为 2.79 亿元，每平方米建设费用 1.16 万元；非 ICT 设备投资（包括暖通、发电机组、配电、UPS、消防等）为 8.54 亿元，平均单机柜投资额 17 万元」",
+        "grade": "S3",
+        "originator": "商汤科技官网（经招商证券《ChatGPT 对算力需求及 ICT 硬件投资拉动的量化测算》（梁程加、刘浩天，2023-02-12）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「项目全部建成后 AI 计算峰值速度」，status 记规划；2022-01-24 启动运营时披露。总投资约 56 亿元、机柜 5,000 个、占地约 5.8 万㎡。商汤白皮书另称截至 2023Q4 总体算力 6,800P（与本条口径/时点不同）。"
+    },
+    {
+      "fact_id": "cms2023-sinnet-jiading2-civil-cost-per-sqm",
+      "metric_id": "dc_construction_cost_per_sqm",
+      "entity": {
+        "type": "project",
+        "id": "sinnet-shanghai-jiading-phase2",
+        "label": "光环新网上海嘉定绿色云计算基地二期"
+      },
+      "asserter": "光环新网",
+      "value": 11600.0,
+      "unit": "元/㎡",
+      "caliber": {
+        "stage": "估算",
+        "scope": "土建本体",
+        "region": "CN",
+        "tax": "未注明"
+      },
+      "as_of": "2023-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ba09d368423185d066bd36ea70d25ef2a99454f73a070a02e64ae487aca9b9cb",
+        "local_file": "20230212-信息技术-通信行业ChatGPT对算力需求及ICT硬件投资拉动的量化测算：ChatGPT启动人工智能革命，带来海量算力基础设施需求-招商证券[梁程加,刘浩天](11页).pdf",
+        "locator": "第 8 页：「根据商汤科技官网，2022 年 1 月 24 日商汤科技人工智能计算中心启动运营，该项目占地面积约 5.8 万平方米，总投资约 56 亿元，项目全部建成后 AI 计算峰值速度将达到 3740 Pflops，新建机柜数量 5000 个……根据光环新网定增文件，其“上海嘉定绿色云计算基地二期”项目占地 2.4 万平方米，建设完成后建成 5000 个机柜。其中工程建设为 2.79 亿元，每平方米建设费用 1.16 万元；非 ICT 设备投资（包括暖通、发电机组、配电、UPS、消防等）为 8.54 亿元，平均单机柜投资额 17 万元」",
+        "grade": "S3",
+        "originator": "光环新网定增文件（经招商证券《ChatGPT 对算力需求及 ICT 硬件投资拉动的量化测算》（梁程加、刘浩天，2023-02-12）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "工程建设 2.79 亿元 ÷ 占地 2.4 万㎡ ≈ 1.16 万元/㎡——**分母是占地面积而非建筑面积**（原文「项目占地 2.4 万平方米」），与按建筑面积的单方造价不可直接比。定增文件时点原文未写，as_of 取转引报告月份。"
+    },
+    {
+      "fact_id": "cms2023-sinnet-jiading2-non-ict-per-rack",
+      "metric_id": "dc_investment_per_rack",
+      "entity": {
+        "type": "project",
+        "id": "sinnet-shanghai-jiading-phase2",
+        "label": "光环新网上海嘉定绿色云计算基地二期"
+      },
+      "asserter": "光环新网",
+      "value": 17.0,
+      "unit": "万元/架",
+      "caliber": {
+        "stage": "估算",
+        "scope": "仅机电设备",
+        "region": "CN",
+        "tax": "未注明"
+      },
+      "as_of": "2023-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ba09d368423185d066bd36ea70d25ef2a99454f73a070a02e64ae487aca9b9cb",
+        "local_file": "20230212-信息技术-通信行业ChatGPT对算力需求及ICT硬件投资拉动的量化测算：ChatGPT启动人工智能革命，带来海量算力基础设施需求-招商证券[梁程加,刘浩天](11页).pdf",
+        "locator": "第 8 页：「根据商汤科技官网，2022 年 1 月 24 日商汤科技人工智能计算中心启动运营，该项目占地面积约 5.8 万平方米，总投资约 56 亿元，项目全部建成后 AI 计算峰值速度将达到 3740 Pflops，新建机柜数量 5000 个……根据光环新网定增文件，其“上海嘉定绿色云计算基地二期”项目占地 2.4 万平方米，建设完成后建成 5000 个机柜。其中工程建设为 2.79 亿元，每平方米建设费用 1.16 万元；非 ICT 设备投资（包括暖通、发电机组、配电、UPS、消防等）为 8.54 亿元，平均单机柜投资额 17 万元」",
+        "grade": "S3",
+        "originator": "光环新网定增文件（经招商证券《ChatGPT 对算力需求及 ICT 硬件投资拉动的量化测算》（梁程加、刘浩天，2023-02-12）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "非 ICT 设备投资（暖通、发电机组、配电、UPS、消防等）8.54 亿元 ÷ 5,000 机柜 ≈ 17 万元/架。招商据此把商汤 56 亿元拆为土地 1%、土建 12%、非 ICT 8.5%、ICT 71.6%（类比推算，未录）。"
     }
   ]
 }
