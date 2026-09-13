@@ -76624,6 +76624,102 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "按云上约 1 美元/A100 小时计的单次预训练成本，不含实验、失败训练与数据等；同文称当下用约 8,192 张 H100、约 55 天、2 美元/H100 小时约 2,150 万美元。cost_item 记 TCO 合计是按算力租用成本的近似。"
+    },
+    {
+      "fact_id": "idc2021-cn-ai-server-market-2021e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "IDC",
+      "value": 56.9,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "美元",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2021E@2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "62be34eb960eb32f447c861f83e672edc9fbdfed98d46d422c0ee924e9c7e7d6",
+        "local_file": "2021-2022中国人工智能计算力发展评估报告(39页).pdf",
+        "locator": "第 15 页：「根据 IDC 中国加速计算市场报告，预计 2021 年人工智能加速服务器市场规模将达到 56.9 亿美元，相比 2020 年增长 61.6%，到 2025 年，中国人工智能加速服务器市场将达到 108.6 亿美元，其五年复合增长率为 25.3%」",
+        "grade": "S3",
+        "originator": "IDC、浪潮信息《2021-2022 中国人工智能计算力发展评估报告》（2021 年）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「人工智能加速服务器」，同比 +61.6%。当年预测值；IDC 2023-01 版给 2021 年实绩 59.2 亿美元。报告发布月份原文未写（引用截至 2021 年 4 月、2021 年上半年数据），@ 记 2021。"
+    },
+    {
+      "fact_id": "idc2021-cn-ai-server-market-2025e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "IDC",
+      "value": 108.6,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "美元",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "62be34eb960eb32f447c861f83e672edc9fbdfed98d46d422c0ee924e9c7e7d6",
+        "local_file": "2021-2022中国人工智能计算力发展评估报告(39页).pdf",
+        "locator": "第 15 页：「根据 IDC 中国加速计算市场报告，预计 2021 年人工智能加速服务器市场规模将达到 56.9 亿美元，相比 2020 年增长 61.6%，到 2025 年，中国人工智能加速服务器市场将达到 108.6 亿美元，其五年复合增长率为 25.3%」",
+        "grade": "S3",
+        "originator": "IDC、浪潮信息《2021-2022 中国人工智能计算力发展评估报告》（2021 年）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "五年 CAGR 25.3%。报告发布月份原文未写（引用截至 2021 年 4 月、2021 年上半年数据），@ 记 2021。"
+    },
+    {
+      "fact_id": "idc2021-global-ai-server-market-2025e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "global-ai-server-market",
+        "label": "全球 AI 服务器市场"
+      },
+      "asserter": "IDC",
+      "value": 260.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2021",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "62be34eb960eb32f447c861f83e672edc9fbdfed98d46d422c0ee924e9c7e7d6",
+        "local_file": "2021-2022中国人工智能计算力发展评估报告(39页).pdf",
+        "locator": "第 14 页：「预计到 2025 年，全球人工智能服务器市场规模将超过 260 亿美元」",
+        "grade": "S3",
+        "originator": "IDC、浪潮信息《2021-2022 中国人工智能计算力发展评估报告》（2021 年）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「超过」按下界记。报告发布月份原文未写（引用截至 2021 年 4 月、2021 年上半年数据），@ 记 2021。"
     }
   ]
 }
