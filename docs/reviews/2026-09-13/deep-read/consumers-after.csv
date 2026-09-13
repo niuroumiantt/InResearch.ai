@@ -1,0 +1,456 @@
+consumer,line,symbol,kind
+docs/DECISIONS.md,22,以 26f617b 先提交现状反例、591 文件计划和消费者清单，再拆开 CLI、阅读用例、资料准入、相似度提示、缺口维护和来源解析。歧义 SHA 不开包，已标限制与自写材料不能直接录事实；相同事实及完成回执重放不重复，旧 skip 不重新打开已销账缺口。归属/限制修改使用客户端已读版本，来源提交绑定干跑计划，不按文件名子串猜 SHA。按任务卡既有范围对齐默认 ≥7 和显式点名；旧 4000 字说明更新为实际 6000 字，完成回执不自动形成正式评分。规范、测试迁移与尚未验证项见本轮 docs/,"import, registered entry, path or operational reference"
+docs/DECISIONS.md,42,上轮已采用的“失败重试不覆盖成功判定”遗漏了 `m4_l2.all_results`：该入口仍逐行取末条记录，会让已成功材料在一次模型失败后退出深读队列。本次删除这段独立选择逻辑，直接调用 `m4_records.current_results`，并用队列保留和成功重新评分两个反例验证。补充现行任务卡及注册表的实现清单，范围仍为 M4 判定消费，不迁移真实原件或修改 C3 采用规则。,"import, registered entry, path or operational reference"
+docs/M4_TRIAGE_TASK.md,13,| 提取摘要与 L2 交付 | 用例已拆分并补齐准入/重放/计划冲突规则 | `inresearch.workflow.attribution`、`inresearch.workflow.deep_read.DeepRead`；CLI 为 `inresearch.interfaces.deep_read`；不是 Spark 全文流程的替代 |,"import, registered entry, path or operational reference"
+docs/M4_TRIAGE_TASK.md,149,软件职责和事务权威见 [09 软件契约](../framework/09_software_contracts.md#l2-终端阅读用例)。`deep-read queue` 自动门槛为 7，`--min-score` 可用于当次优先队列；`pack --sha` 显式点名仍保留准入与已读检查，已读材料加 `--again`。SHA 有歧义即拒绝，不取第一份。包的正文、brief 和 manifest 使用同一独立目录，按返回路径读取，不再拼接旧固定 sha16 目录。,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,185,| `docs/reviews/2026-09-13/deep-read/baseline.json` | ambiguous_pack_selected | 1 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,186,| `docs/reviews/2026-09-13/deep-read/consumers-after.csv` | rows | 455 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,187,| `docs/reviews/2026-09-13/deep-read/consumers-before.csv` | rows | 425 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,188,| `docs/reviews/2026-09-13/deep-read/dependency-audit.json` | cycles | 0 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,189,| `docs/reviews/2026-09-13/deep-read/dependency-audit.json` | import_edges | 187 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,190,| `docs/reviews/2026-09-13/deep-read/file-plan.csv` | rows | 603 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,191,| `docs/reviews/2026-09-13/deep-read/file-results.csv` | rows | 621 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,192,| `docs/reviews/2026-09-13/deep-read/functions-before.csv` | rows | 38 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,193,| `docs/reviews/2026-09-13/deep-read/integration-files.csv` | rows | 621 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,194,| `docs/reviews/2026-09-13/deep-read/public-contracts.csv` | rows | 76 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,195,| `docs/reviews/2026-09-13/deep-read/real-flow.json` | steps | 6 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,196,| `docs/reviews/2026-09-13/deep-read/test-results.csv` | rows | 413 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,197,| `docs/reviews/2026-09-13/deep-read/verification.json` | remaining | 5 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,284,| `data/metric_gaps.jsonl` | 在册数据/索引 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,545,| [docs/reviews/2026-09-13/deep-read/DELIVERY.md](reviews/2026-09-13/deep-read/DELIVERY.md) | 历史快照 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,546,| [docs/reviews/2026-09-13/deep-read/PLAN.md](reviews/2026-09-13/deep-read/PLAN.md) | 历史快照 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,547,| `docs/reviews/2026-09-13/deep-read/audit.py` | 历史快照 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,548,| `docs/reviews/2026-09-13/deep-read/baseline.json` | 历史快照 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,549,| [docs/reviews/2026-09-13/deep-read/consumers-after.csv](reviews/2026-09-13/deep-read/consumers-after.csv) | 历史快照 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,550,| [docs/reviews/2026-09-13/deep-read/consumers-before.csv](reviews/2026-09-13/deep-read/consumers-before.csv) | 历史快照 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,551,| `docs/reviews/2026-09-13/deep-read/contracts_audit.py` | 历史快照 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,552,| `docs/reviews/2026-09-13/deep-read/dependency-audit.json` | 历史快照 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,553,| [docs/reviews/2026-09-13/deep-read/file-plan.csv](reviews/2026-09-13/deep-read/file-plan.csv) | 历史快照 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,554,| [docs/reviews/2026-09-13/deep-read/file-results.csv](reviews/2026-09-13/deep-read/file-results.csv) | 历史快照 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,555,| [docs/reviews/2026-09-13/deep-read/functions-before.csv](reviews/2026-09-13/deep-read/functions-before.csv) | 历史快照 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,556,| [docs/reviews/2026-09-13/deep-read/integration-files.csv](reviews/2026-09-13/deep-read/integration-files.csv) | 历史快照 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,557,| [docs/reviews/2026-09-13/deep-read/public-contracts.csv](reviews/2026-09-13/deep-read/public-contracts.csv) | 历史快照 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,558,| `docs/reviews/2026-09-13/deep-read/real-flow.json` | 历史快照 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,559,| `docs/reviews/2026-09-13/deep-read/statistics-after.json` | 历史快照 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,560,| `docs/reviews/2026-09-13/deep-read/statistics-before.json` | 历史快照 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,561,| `docs/reviews/2026-09-13/deep-read/test-migration.json` | 历史快照 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,562,| [docs/reviews/2026-09-13/deep-read/test-results.csv](reviews/2026-09-13/deep-read/test-results.csv) | 历史快照 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,563,| `docs/reviews/2026-09-13/deep-read/verification.json` | 历史快照 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,700,| `src/inresearch/interfaces/deep_read.py` | 运行代码 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,748,| `src/inresearch/workflow/deep_read.py` | 运行代码 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,769,| `tests/unit/deep_read_fixtures.py` | 测试 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,777,| `tests/unit/test_deep_read.py` | 测试 |,"import, registered entry, path or operational reference"
+docs/REPOSITORY_REGISTER.md,778,| `tests/unit/test_deep_read_transactions.py` | 测试 |,"import, registered entry, path or operational reference"
+docs/inbox/facts_candidates/README.md,7,`python3 manage.py deep-read record` 是受校验的录入入口；`python3 manage.py facts` 只审计既有事实，不负责自动映射或写入。Claude CLI、Spark 与其他终端调用同一录入契约。,"import, registered entry, path or operational reference"
+framework/09_software_contracts.md,40,`interfaces.deep_read` 只处理命令参数、输出与错误；`workflow.deep_read.DeepRead` 显式绑定项目和运行路径，组合领域规则与存储。`materials.reading_policy` 是队列、打包和事实录入的共享准入规则；`materials.text_similarity` 只提供相似度提示；`workflow.reading_gaps` 维护指标缺口；`knowledge.provenance` 给出来源身份修复计划。事实约束仍归 `knowl,"import, registered entry, path or operational reference"
+framework/current_state.json,415,"""src/inresearch/workflow/deep_read.py"",","import, registered entry, path or operational reference"
+framework/current_state.json,428,"""tests/unit/test_deep_read.py"",","import, registered entry, path or operational reference"
+framework/current_state.json,431,"""tests/unit/test_deep_read_transactions.py"",","import, registered entry, path or operational reference"
+framework/current_state.json,432,"""tests/unit/deep_read_fixtures.py"",","import, registered entry, path or operational reference"
+framework/current_state.json,433,"""src/inresearch/interfaces/deep_read.py"",","import, registered entry, path or operational reference"
+framework/current_state.json,497,"""src/inresearch/workflow/deep_read.py"",","import, registered entry, path or operational reference"
+framework/current_state.json,504,"""tests/unit/test_deep_read.py"",","import, registered entry, path or operational reference"
+framework/current_state.json,507,"""tests/unit/test_deep_read_transactions.py"",","import, registered entry, path or operational reference"
+framework/current_state.json,508,"""tests/unit/deep_read_fixtures.py"",","import, registered entry, path or operational reference"
+framework/current_state.json,509,"""src/inresearch/interfaces/deep_read.py"",","import, registered entry, path or operational reference"
+framework/repository_manifest.json,149,"""path"": ""data/metric_gaps.jsonl"",","import, registered entry, path or operational reference"
+framework/repository_manifest.json,3719,"""path"": ""docs/reviews/2026-09-13/deep-read/DELIVERY.md"",","import, registered entry, path or operational reference"
+framework/repository_manifest.json,3726,"""path"": ""docs/reviews/2026-09-13/deep-read/PLAN.md"",","import, registered entry, path or operational reference"
+framework/repository_manifest.json,3733,"""path"": ""docs/reviews/2026-09-13/deep-read/audit.py"",","import, registered entry, path or operational reference"
+framework/repository_manifest.json,3740,"""path"": ""docs/reviews/2026-09-13/deep-read/baseline.json"",","import, registered entry, path or operational reference"
+framework/repository_manifest.json,3752,"""path"": ""docs/reviews/2026-09-13/deep-read/consumers-after.csv"",","import, registered entry, path or operational reference"
+framework/repository_manifest.json,3770,"""path"": ""docs/reviews/2026-09-13/deep-read/consumers-before.csv"",","import, registered entry, path or operational reference"
+framework/repository_manifest.json,3788,"""path"": ""docs/reviews/2026-09-13/deep-read/contracts_audit.py"",","import, registered entry, path or operational reference"
+framework/repository_manifest.json,3795,"""path"": ""docs/reviews/2026-09-13/deep-read/dependency-audit.json"",","import, registered entry, path or operational reference"
+framework/repository_manifest.json,3811,"""path"": ""docs/reviews/2026-09-13/deep-read/file-plan.csv"",","import, registered entry, path or operational reference"
+framework/repository_manifest.json,3829,"""path"": ""docs/reviews/2026-09-13/deep-read/file-results.csv"",","import, registered entry, path or operational reference"
+framework/repository_manifest.json,3847,"""path"": ""docs/reviews/2026-09-13/deep-read/functions-before.csv"",","import, registered entry, path or operational reference"
+framework/repository_manifest.json,3865,"""path"": ""docs/reviews/2026-09-13/deep-read/integration-files.csv"",","import, registered entry, path or operational reference"
+framework/repository_manifest.json,3883,"""path"": ""docs/reviews/2026-09-13/deep-read/public-contracts.csv"",","import, registered entry, path or operational reference"
+framework/repository_manifest.json,3903,"""path"": ""docs/reviews/2026-09-13/deep-read/real-flow.json"",","import, registered entry, path or operational reference"
+framework/repository_manifest.json,3915,"""path"": ""docs/reviews/2026-09-13/deep-read/statistics-after.json"",","import, registered entry, path or operational reference"
+framework/repository_manifest.json,3922,"""path"": ""docs/reviews/2026-09-13/deep-read/statistics-before.json"",","import, registered entry, path or operational reference"
+framework/repository_manifest.json,3929,"""path"": ""docs/reviews/2026-09-13/deep-read/test-migration.json"",","import, registered entry, path or operational reference"
+framework/repository_manifest.json,3936,"""path"": ""docs/reviews/2026-09-13/deep-read/test-results.csv"",","import, registered entry, path or operational reference"
+framework/repository_manifest.json,3954,"""path"": ""docs/reviews/2026-09-13/deep-read/verification.json"",","import, registered entry, path or operational reference"
+framework/repository_manifest.json,5284,"""path"": ""src/inresearch/interfaces/deep_read.py"",","import, registered entry, path or operational reference"
+framework/repository_manifest.json,5620,"""path"": ""src/inresearch/workflow/deep_read.py"",","import, registered entry, path or operational reference"
+framework/repository_manifest.json,5767,"""path"": ""tests/unit/deep_read_fixtures.py"",","import, registered entry, path or operational reference"
+framework/repository_manifest.json,5823,"""path"": ""tests/unit/test_deep_read.py"",","import, registered entry, path or operational reference"
+framework/repository_manifest.json,5830,"""path"": ""tests/unit/test_deep_read_transactions.py"",","import, registered entry, path or operational reference"
+framework/verification_contract.json,57,"""tests/unit/test_deep_read.py"": ""e41a2b21f77b7ae4f0dfa57e7bee22c77590ef5133cf8c5e628ba2d5de43a22b"",","import, registered entry, path or operational reference"
+framework/verification_contract.json,60,"""tests/unit/test_deep_read_transactions.py"": ""8dbc032fa92ecaff99d208380714f630a5aec8a728c13d01a5879c68e7f42813"",","import, registered entry, path or operational reference"
+framework/verification_contract.json,61,"""tests/unit/deep_read_fixtures.py"": ""a05ce5b320efe0358e4563f8430ab872d907063455f06f7b4793b93d97014636""","import, registered entry, path or operational reference"
+framework/verification_contract.json,93,"""tests/unit/test_deep_read.py::DisputeRecordTests.test_the_other_side_learns_it_is_contested"",","import, registered entry, path or operational reference"
+framework/verification_contract.json,94,"""tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_generated_dispute_links_do_not_break_original_request_replay"",","import, registered entry, path or operational reference"
+framework/verification_contract.json,95,"""tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_disputes_inside_one_batch_commit_together_and_replay_after_receipt_failure"",","import, registered entry, path or operational reference"
+framework/verification_contract.json,96,"""tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_batch_claim_indexes_enforce_new_dispute_and_revision_contracts""","import, registered entry, path or operational reference"
+framework/verification_contract.json,237,"""tests/unit/test_deep_read.py::EffectiveResultTests.test_failed_retry_does_not_remove_a_document_from_the_deep_read_queue"",","import, registered entry, path or operational reference"
+framework/verification_contract.json,241,"""tests/unit/test_deep_read.py::TextTwinRoutingTests.test_same_extracted_text_different_bytes_still_gets_its_own_packet"",","import, registered entry, path or operational reference"
+framework/verification_contract.json,244,"""tests/unit/test_deep_read.py::DeepReadJournalTests.test_committed_corruption_fails_and_torn_tail_is_read_only"",","import, registered entry, path or operational reference"
+framework/verification_contract.json,245,"""tests/unit/test_deep_read.py::TextTwinRoutingTests.test_old_automatic_twin_record_is_preserved_but_not_counted_as_read"",","import, registered entry, path or operational reference"
+framework/verification_contract.json,247,"""tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_current_threshold_and_named_low_score_keep_admission_boundary"",","import, registered entry, path or operational reference"
+framework/verification_contract.json,248,"""tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_ambiguous_packet_does_not_start_extraction_even_if_other_match_is_ineligible"",","import, registered entry, path or operational reference"
+framework/verification_contract.json,249,"""tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_restricted_and_self_authored_sources_cannot_bypass_queue_at_record"",","import, registered entry, path or operational reference"
+framework/verification_contract.json,250,"""tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_processes_cannot_both_replace_the_same_l1_revision""","import, registered entry, path or operational reference"
+framework/verification_contract.json,290,"""tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_processes_record_one_fact_and_one_completion"",","import, registered entry, path or operational reference"
+framework/verification_contract.json,291,"""tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_processes_propose_and_fill_one_gap_without_duplicate_receipts"",","import, registered entry, path or operational reference"
+framework/verification_contract.json,292,"""tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_fact_commit_then_receipt_failure_recovers_from_same_input"",","import, registered entry, path or operational reference"
+framework/verification_contract.json,293,"""tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_gap_commit_then_receipt_failure_and_fill_can_be_replayed"",","import, registered entry, path or operational reference"
+framework/verification_contract.json,294,"""tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_uncertain_gap_batch_is_fully_visible_and_retry_does_not_reopen"",","import, registered entry, path or operational reference"
+framework/verification_contract.json,295,"""tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_packet_publication_failure_never_exposes_a_partial_final_packet"",","import, registered entry, path or operational reference"
+framework/verification_contract.json,296,"""tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_concurrent_packet_publication_has_independent_complete_artifacts"",","import, registered entry, path or operational reference"
+framework/verification_contract.json,297,"""tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_provenance_commit_requires_reviewed_plan_and_rejects_changed_facts"",","import, registered entry, path or operational reference"
+framework/verification_contract.json,298,"""tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_provenance_commit_rejects_changed_resolution_and_interior_damage"",","import, registered entry, path or operational reference"
+framework/verification_contract.json,299,"""tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_cli_returns_commit_stage_and_requires_external_revision""","import, registered entry, path or operational reference"
+src/inresearch/README.md,9,| workflow | `commands` 为 HTTP/CLI 共享修改用例；`reader` 控制任务状态；`reading_stages` 执行候选判读；`deep_read.DeepRead` 编排事实、阅读与完成回执；`reading_gaps` 管缺口事务；`score` 为模型批量评分 |,"import, registered entry, path or operational reference"
+src/inresearch/README.md,12,| interfaces | `cli` 为命令注册和 JSON 参数层，`deep_read` 承接 L2 终端协议；`http` 为身份/路由/错误层；`pages` 组合共享认证布局；`static` 只服务声明路径 |,"import, registered entry, path or operational reference"
+src/inresearch/README.md,15,稳定业务命令：`models --probe`、`reader`、`inventory`、`triage`、`score`、`batch`、`deep-read`、`organize`、`mapping`、`registry`、`facts`、`validate`、`export`、`serve`。参数见各子命令 `--help`。`add-price`、`assign`、`receive-snapshot` 接受 stdin JSON 或 `--input FILE`，与 HTTP 共用 `w,"import, registered entry, path or operational reference"
+src/inresearch/delivery/reading_packet.py,112,"python3 manage.py deep-read attribute --sha {sha16} --expected-revision {revision} --org ""IDC"" --year 2024 \\","import, registered entry, path or operational reference"
+src/inresearch/delivery/reading_packet.py,119,python3 manage.py deep-read attribute --sha {sha16} --expected-revision {revision} --unrecoverable \\,"import, registered entry, path or operational reference"
+src/inresearch/interfaces/cli.py,16,"'batch': 'inresearch.workflow.terminal_batch', 'deep-read': 'inresearch.interfaces.deep_read', 'organize': 'inresearch.materials.organize',","import, registered entry, path or operational reference"
+src/inresearch/interfaces/deep_read.py,8,"from inresearch.workflow.deep_read import DeepRead, CompletionPending, now","import, registered entry, path or operational reference"
+src/inresearch/workflow/deep_read.py,4,syntax and presentation belong to interfaces.deep_read; C3 remains separate.,"import, registered entry, path or operational reference"
+src/inresearch/workflow/deep_read.py,46,self.read_log = state / 'l2_read.jsonl',"import, registered entry, path or operational reference"
+src/inresearch/workflow/deep_read.py,48,self.similarity = SimilarityIndex(state / 'l2_text_md5.jsonl'),"import, registered entry, path or operational reference"
+src/inresearch/workflow/deep_read.py,49,self.gaps = ReadingGaps(self.root / 'data/metric_gaps.jsonl'),"import, registered entry, path or operational reference"
+tests/unit/deep_read_fixtures.py,5,from inresearch.workflow.deep_read import DeepRead,"import, registered entry, path or operational reference"
+tests/unit/test_deep_read.py,30,facts_path,direct L2 member
+tests/unit/test_deep_read.py,31,read_log,direct L2 member
+tests/unit/test_deep_read.py,32,load_metrics,direct L2 member
+tests/unit/test_deep_read.py,274,eligible,direct L2 member
+tests/unit/test_deep_read.py,275,extractor,direct L2 member
+tests/unit/test_deep_read.py,278,load_metrics,direct L2 member
+tests/unit/test_deep_read.py,279,load_questions,direct L2 member
+tests/unit/test_deep_read.py,280,load_facts,direct L2 member
+tests/unit/test_deep_read.py,281,packet_dir,direct L2 member
+tests/unit/test_deep_read.py,336,eligible,direct L2 member
+tests/unit/test_deep_read.py,337,load_metrics,direct L2 member
+tests/unit/test_deep_read.py,338,load_facts,direct L2 member
+tests/unit/test_deep_read.py,339,all_results,direct L2 member
+tests/unit/test_deep_read.py,340,read_documents,direct L2 member
+tests/unit/test_deep_read.py,450,read_documents,direct L2 member
+tests/unit/test_deep_read.py,451,all_results,direct L2 member
+tests/unit/test_deep_read.py,452,load_facts,direct L2 member
+tests/unit/test_deep_read.py,453,load_metrics,direct L2 member
+tests/unit/test_deep_read.py,491,load_metrics,direct L2 member
+tests/unit/test_deep_read.py,492,load_facts,direct L2 member
+tests/unit/test_deep_read.py,493,read_documents,direct L2 member
+tests/unit/test_deep_read.py,582,read_log,direct L2 member
+tests/unit/test_deep_read.py,583,load_metrics,direct L2 member
+tests/unit/test_deep_read.py,584,load_facts,direct L2 member
+tests/unit/test_deep_read.py,731,read_log,direct L2 member
+tests/unit/test_deep_read.py,732,packet_dir,direct L2 member
+tests/unit/test_deep_read.py,737,eligible,direct L2 member
+tests/unit/test_deep_read.py,738,extractor,direct L2 member
+tests/unit/test_deep_read.py,740,load_metrics,direct L2 member
+tests/unit/test_deep_read.py,741,load_questions,direct L2 member
+tests/unit/test_deep_read.py,742,load_facts,direct L2 member
+tests/unit/test_deep_read.py,803,facts_path,direct L2 member
+tests/unit/test_deep_read.py,804,root,direct L2 member
+tests/unit/test_deep_read.py,29,facts_path,direct L2 member
+tests/unit/test_deep_read.py,29,read_log,direct L2 member
+tests/unit/test_deep_read.py,29,load_metrics,direct L2 member
+tests/unit/test_deep_read.py,35,facts_path,direct L2 member
+tests/unit/test_deep_read.py,35,read_log,direct L2 member
+tests/unit/test_deep_read.py,35,load_metrics,direct L2 member
+tests/unit/test_deep_read.py,188,materials,direct L2 member
+tests/unit/test_deep_read.py,189,materials,direct L2 member
+tests/unit/test_deep_read.py,192,materials,direct L2 member
+tests/unit/test_deep_read.py,272,eligible,direct L2 member
+tests/unit/test_deep_read.py,272,extractor,direct L2 member
+tests/unit/test_deep_read.py,273,load_metrics,direct L2 member
+tests/unit/test_deep_read.py,273,load_questions,direct L2 member
+tests/unit/test_deep_read.py,273,load_facts,direct L2 member
+tests/unit/test_deep_read.py,273,packet_dir,direct L2 member
+tests/unit/test_deep_read.py,277,materials,direct L2 member
+tests/unit/test_deep_read.py,334,eligible,direct L2 member
+tests/unit/test_deep_read.py,334,load_metrics,direct L2 member
+tests/unit/test_deep_read.py,334,load_facts,direct L2 member
+tests/unit/test_deep_read.py,335,all_results,direct L2 member
+tests/unit/test_deep_read.py,335,read_documents,direct L2 member
+tests/unit/test_deep_read.py,410,facts_path,direct L2 member
+tests/unit/test_deep_read.py,410,read_log,direct L2 member
+tests/unit/test_deep_read.py,410,load_metrics,direct L2 member
+tests/unit/test_deep_read.py,411,facts_path,direct L2 member
+tests/unit/test_deep_read.py,411,read_log,direct L2 member
+tests/unit/test_deep_read.py,411,load_metrics,direct L2 member
+tests/unit/test_deep_read.py,414,facts_path,direct L2 member
+tests/unit/test_deep_read.py,414,read_log,direct L2 member
+tests/unit/test_deep_read.py,414,load_metrics,direct L2 member
+tests/unit/test_deep_read.py,449,read_documents,direct L2 member
+tests/unit/test_deep_read.py,449,all_results,direct L2 member
+tests/unit/test_deep_read.py,449,load_facts,direct L2 member
+tests/unit/test_deep_read.py,449,load_metrics,direct L2 member
+tests/unit/test_deep_read.py,456,read_documents,direct L2 member
+tests/unit/test_deep_read.py,456,all_results,direct L2 member
+tests/unit/test_deep_read.py,456,load_facts,direct L2 member
+tests/unit/test_deep_read.py,456,load_metrics,direct L2 member
+tests/unit/test_deep_read.py,489,load_metrics,direct L2 member
+tests/unit/test_deep_read.py,489,load_facts,direct L2 member
+tests/unit/test_deep_read.py,489,read_documents,direct L2 member
+tests/unit/test_deep_read.py,490,materials,direct L2 member
+tests/unit/test_deep_read.py,496,load_metrics,direct L2 member
+tests/unit/test_deep_read.py,496,load_facts,direct L2 member
+tests/unit/test_deep_read.py,496,read_documents,direct L2 member
+tests/unit/test_deep_read.py,578,read_log,direct L2 member
+tests/unit/test_deep_read.py,578,load_metrics,direct L2 member
+tests/unit/test_deep_read.py,579,load_facts,direct L2 member
+tests/unit/test_deep_read.py,580,materials,direct L2 member
+tests/unit/test_deep_read.py,581,gaps,direct L2 member
+tests/unit/test_deep_read.py,587,read_log,direct L2 member
+tests/unit/test_deep_read.py,587,load_metrics,direct L2 member
+tests/unit/test_deep_read.py,588,load_facts,direct L2 member
+tests/unit/test_deep_read.py,727,read_log,direct L2 member
+tests/unit/test_deep_read.py,727,eligible,direct L2 member
+tests/unit/test_deep_read.py,727,extractor,direct L2 member
+tests/unit/test_deep_read.py,728,load_metrics,direct L2 member
+tests/unit/test_deep_read.py,728,load_questions,direct L2 member
+tests/unit/test_deep_read.py,729,load_facts,direct L2 member
+tests/unit/test_deep_read.py,729,packet_dir,direct L2 member
+tests/unit/test_deep_read.py,730,similarity,direct L2 member
+tests/unit/test_deep_read.py,739,materials,direct L2 member
+tests/unit/test_deep_read.py,749,read_log,direct L2 member
+tests/unit/test_deep_read.py,749,eligible,direct L2 member
+tests/unit/test_deep_read.py,749,extractor,direct L2 member
+tests/unit/test_deep_read.py,750,load_metrics,direct L2 member
+tests/unit/test_deep_read.py,750,load_questions,direct L2 member
+tests/unit/test_deep_read.py,750,load_facts,direct L2 member
+tests/unit/test_deep_read.py,750,packet_dir,direct L2 member
+tests/unit/test_deep_read.py,771,read_log,direct L2 member
+tests/unit/test_deep_read.py,777,read_log,direct L2 member
+tests/unit/test_deep_read.py,783,read_log,direct L2 member
+tests/unit/test_deep_read.py,801,facts_path,direct L2 member
+tests/unit/test_deep_read.py,801,root,direct L2 member
+tests/unit/test_deep_read.py,802,materials,direct L2 member
+tests/unit/test_deep_read.py,807,facts_path,direct L2 member
+tests/unit/test_deep_read.py,807,root,direct L2 member
+tests/unit/test_deep_read.py,905,facts_path,direct L2 member
+tests/unit/test_deep_read.py,905,root,direct L2 member
+tests/unit/test_deep_read.py,906,load_facts,direct L2 member
+tests/unit/test_deep_read.py,915,facts_path,direct L2 member
+tests/unit/test_deep_read.py,915,root,direct L2 member
+tests/unit/test_deep_read.py,917,all_results,direct L2 member
+tests/unit/test_deep_read.py,272,materials,direct L2 member
+tests/unit/test_deep_read.py,290,eligible,direct L2 member
+tests/unit/test_deep_read.py,290,extractor,direct L2 member
+tests/unit/test_deep_read.py,290,load_metrics,direct L2 member
+tests/unit/test_deep_read.py,291,load_questions,direct L2 member
+tests/unit/test_deep_read.py,291,load_facts,direct L2 member
+tests/unit/test_deep_read.py,291,packet_dir,direct L2 member
+tests/unit/test_deep_read.py,347,eligible,direct L2 member
+tests/unit/test_deep_read.py,347,load_metrics,direct L2 member
+tests/unit/test_deep_read.py,347,load_facts,direct L2 member
+tests/unit/test_deep_read.py,348,all_results,direct L2 member
+tests/unit/test_deep_read.py,348,read_documents,direct L2 member
+tests/unit/test_deep_read.py,460,eligible,direct L2 member
+tests/unit/test_deep_read.py,489,materials,direct L2 member
+tests/unit/test_deep_read.py,496,materials,direct L2 member
+tests/unit/test_deep_read.py,519,eligible,direct L2 member
+tests/unit/test_deep_read.py,536,eligible,direct L2 member
+tests/unit/test_deep_read.py,548,eligible,direct L2 member
+tests/unit/test_deep_read.py,578,materials,direct L2 member
+tests/unit/test_deep_read.py,578,gaps,direct L2 member
+tests/unit/test_deep_read.py,587,materials,direct L2 member
+tests/unit/test_deep_read.py,587,gaps,direct L2 member
+tests/unit/test_deep_read.py,607,eligible,direct L2 member
+tests/unit/test_deep_read.py,612,gaps,direct L2 member
+tests/unit/test_deep_read.py,727,similarity,direct L2 member
+tests/unit/test_deep_read.py,728,materials,direct L2 member
+tests/unit/test_deep_read.py,744,similarity,direct L2 member
+tests/unit/test_deep_read.py,745,read_log,direct L2 member
+tests/unit/test_deep_read.py,749,similarity,direct L2 member
+tests/unit/test_deep_read.py,749,materials,direct L2 member
+tests/unit/test_deep_read.py,761,read_log,direct L2 member
+tests/unit/test_deep_read.py,766,read_documents,direct L2 member
+tests/unit/test_deep_read.py,778,read_log,direct L2 member
+tests/unit/test_deep_read.py,779,read_documents,direct L2 member
+tests/unit/test_deep_read.py,780,read_documents,direct L2 member
+tests/unit/test_deep_read.py,784,read_documents,direct L2 member
+tests/unit/test_deep_read.py,801,materials,direct L2 member
+tests/unit/test_deep_read.py,807,materials,direct L2 member
+tests/unit/test_deep_read.py,905,materials,direct L2 member
+tests/unit/test_deep_read.py,915,materials,direct L2 member
+tests/unit/test_deep_read.py,83,read_log,direct L2 member
+tests/unit/test_deep_read.py,88,read_log,direct L2 member
+tests/unit/test_deep_read.py,112,read_log,direct L2 member
+tests/unit/test_deep_read.py,134,read_log,direct L2 member
+tests/unit/test_deep_read.py,147,read_log,direct L2 member
+tests/unit/test_deep_read.py,157,materials,direct L2 member
+tests/unit/test_deep_read.py,170,materials,direct L2 member
+tests/unit/test_deep_read.py,290,materials,direct L2 member
+tests/unit/test_deep_read.py,542,eligible,direct L2 member
+tests/unit/test_deep_read.py,669,gaps,direct L2 member
+tests/unit/test_deep_read.py,686,gaps,direct L2 member
+tests/unit/test_deep_read.py,708,read_documents,direct L2 member
+tests/unit/test_deep_read.py,708,similarity,direct L2 member
+tests/unit/test_deep_read.py,709,similarity,direct L2 member
+tests/unit/test_deep_read.py,709,gaps,direct L2 member
+tests/unit/test_deep_read.py,767,read_log,direct L2 member
+tests/unit/test_deep_read.py,781,read_log,direct L2 member
+tests/unit/test_deep_read.py,916,cache_remap,direct L2 member
+tests/unit/test_deep_read.py,198,all_results,direct L2 member
+tests/unit/test_deep_read.py,463,eligible,direct L2 member
+tests/unit/test_deep_read.py,502,all_results,direct L2 member
+tests/unit/test_deep_read.py,514,eligible,direct L2 member
+tests/unit/test_deep_read.py,605,eligible,direct L2 member
+tests/unit/test_deep_read.py,620,gaps,direct L2 member
+tests/unit/test_deep_read.py,627,gaps,direct L2 member
+tests/unit/test_deep_read.py,638,gaps,direct L2 member
+tests/unit/test_deep_read.py,697,gaps,direct L2 member
+tests/unit/test_deep_read.py,699,gaps,direct L2 member
+tests/unit/test_deep_read.py,708,similarity,direct L2 member
+tests/unit/test_deep_read.py,709,similarity,direct L2 member
+tests/unit/test_deep_read.py,709,gaps,direct L2 member
+tests/unit/test_deep_read.py,674,gaps,direct L2 member
+tests/unit/test_deep_read.py,785,read_log,direct L2 member
+tests/unit/test_deep_read.py,71,read_log,direct L2 member
+tests/unit/test_deep_read.py,126,read_log,direct L2 member
+tests/unit/test_deep_read.py,161,eligible,direct L2 member
+tests/unit/test_deep_read.py,171,all_results,direct L2 member
+tests/unit/test_deep_read.py,621,gaps,direct L2 member
+tests/unit/test_deep_read.py,643,read_log,direct L2 member
+tests/unit/test_deep_read.py,646,gaps,direct L2 member
+tests/unit/test_deep_read.py,650,read_log,direct L2 member
+tests/unit/test_deep_read.py,823,backfill_provenance,direct L2 member
+tests/unit/test_deep_read.py,11,from inresearch.interfaces import deep_read as CLI,"import, registered entry, path or operational reference"
+tests/unit/test_deep_read.py,18,"from deep_read_fixtures import (make_app, METRICS, SHA, fact, other, problems, problems_for,","import, registered entry, path or operational reference"
+tests/unit/test_deep_read.py,31,L2.read_log = base / 'l2_read.jsonl',"import, registered entry, path or operational reference"
+tests/unit/test_deep_read.py,151,def test_failed_retry_does_not_remove_a_document_from_the_deep_read_queue(self):,"import, registered entry, path or operational reference"
+tests/unit/test_deep_read.py,581,L2.gaps.path = base / 'metric_gaps.jsonl',"import, registered entry, path or operational reference"
+tests/unit/test_deep_read.py,582,L2.read_log = base / 'l2_read.jsonl',"import, registered entry, path or operational reference"
+tests/unit/test_deep_read.py,730,L2.similarity.path = base / 'l2_text_md5.jsonl',"import, registered entry, path or operational reference"
+tests/unit/test_deep_read.py,731,L2.read_log = base / 'l2_read.jsonl',"import, registered entry, path or operational reference"
+tests/unit/test_deep_read.py,939,self.app.read_log = base / 'l2_read.jsonl',"import, registered entry, path or operational reference"
+tests/unit/test_deep_read_transactions.py,14,from inresearch.interfaces import deep_read as cli,"import, registered entry, path or operational reference"
+tests/unit/test_deep_read_transactions.py,15,"from inresearch.workflow.deep_read import DeepRead, CompletionPending","import, registered entry, path or operational reference"
+tests/unit/test_deep_read_transactions.py,22,"from deep_read_fixtures import METRICS, SHA, fact, other","import, registered entry, path or operational reference"
+tests/unit/test_deep_read_transactions.py,133,"with patch('inresearch.workflow.deep_read.write_json',side_effect=OSError('disk')):","import, registered entry, path or operational reference"
+tests/unit/test_deep_read_transactions.py,150,"with patch('inresearch.workflow.deep_read.write_json',side_effect=replace_then_fail):","import, registered entry, path or operational reference"
+tests/unit/test_fact_contract.py,343,all_results,direct L2 member
+tests/unit/test_fact_contract.py,344,read_documents,direct L2 member
+tests/unit/test_fact_contract.py,345,load_facts,direct L2 member
+tests/unit/test_fact_contract.py,346,load_metrics,direct L2 member
+tests/unit/test_fact_contract.py,407,root,direct L2 member
+tests/unit/test_fact_contract.py,342,all_results,direct L2 member
+tests/unit/test_fact_contract.py,342,read_documents,direct L2 member
+tests/unit/test_fact_contract.py,342,load_facts,direct L2 member
+tests/unit/test_fact_contract.py,342,load_metrics,direct L2 member
+tests/unit/test_fact_contract.py,408,load_metrics,direct L2 member
+tests/unit/test_fact_contract.py,481,load_metrics,direct L2 member
+tests/unit/test_fact_contract.py,518,load_metrics,direct L2 member
+tests/unit/test_fact_contract.py,568,load_metrics,direct L2 member
+tests/unit/test_fact_contract.py,655,load_metrics,direct L2 member
+tests/unit/test_fact_contract.py,799,load_metrics,direct L2 member
+tests/unit/test_fact_contract.py,946,load_metrics,direct L2 member
+tests/unit/test_fact_contract.py,1135,load_metrics,direct L2 member
+tests/unit/test_fact_contract.py,1154,load_metrics,direct L2 member
+tests/unit/test_fact_contract.py,1326,load_metrics,direct L2 member
+tests/unit/test_fact_contract.py,1469,load_metrics,direct L2 member
+tests/unit/test_fact_contract.py,1644,load_metrics,direct L2 member
+tests/unit/test_fact_contract.py,1759,load_metrics,direct L2 member
+tests/unit/test_fact_contract.py,1782,load_metrics,direct L2 member
+tests/unit/test_fact_contract.py,1783,load_facts,direct L2 member
+tests/unit/test_fact_contract.py,1844,load_facts,direct L2 member
+tests/unit/test_fact_contract.py,1857,load_facts,direct L2 member
+tests/unit/test_fact_contract.py,1875,load_metrics,direct L2 member
+tests/unit/test_fact_contract.py,1904,load_facts,direct L2 member
+tests/unit/test_fact_contract.py,1964,load_metrics,direct L2 member
+tests/unit/test_fact_contract.py,1999,load_facts,direct L2 member
+tests/unit/test_fact_contract.py,2071,load_facts,direct L2 member
+tests/unit/test_fact_contract.py,2088,load_facts,direct L2 member
+tests/unit/test_fact_contract.py,2110,load_metrics,direct L2 member
+tests/unit/test_fact_contract.py,2197,load_metrics,direct L2 member
+tests/unit/test_fact_contract.py,350,all_results,direct L2 member
+tests/unit/test_fact_contract.py,350,read_documents,direct L2 member
+tests/unit/test_fact_contract.py,350,load_facts,direct L2 member
+tests/unit/test_fact_contract.py,350,load_metrics,direct L2 member
+tests/unit/test_fact_contract.py,409,load_facts,direct L2 member
+tests/unit/test_fact_contract.py,1767,load_metrics,direct L2 member
+tests/unit/test_fact_contract.py,1767,load_facts,direct L2 member
+tests/unit/test_fact_contract.py,1794,load_metrics,direct L2 member
+tests/unit/test_fact_contract.py,1794,load_facts,direct L2 member
+tests/unit/test_fact_contract.py,2127,load_facts,direct L2 member
+tests/unit/test_fact_contract.py,2198,load_facts,direct L2 member
+tests/unit/test_fact_contract.py,295,root,direct L2 member
+tests/unit/test_fact_contract.py,348,eligible,direct L2 member
+tests/unit/test_fact_contract.py,616,root,direct L2 member
+tests/unit/test_fact_contract.py,626,root,direct L2 member
+tests/unit/test_fact_contract.py,768,root,direct L2 member
+tests/unit/test_fact_contract.py,840,root,direct L2 member
+tests/unit/test_fact_contract.py,851,root,direct L2 member
+tests/unit/test_fact_contract.py,1054,root,direct L2 member
+tests/unit/test_fact_contract.py,1101,root,direct L2 member
+tests/unit/test_fact_contract.py,1249,root,direct L2 member
+tests/unit/test_fact_contract.py,1506,root,direct L2 member
+tests/unit/test_fact_contract.py,1701,root,direct L2 member
+tests/unit/test_fact_contract.py,1724,root,direct L2 member
+tests/unit/test_fact_contract.py,1731,root,direct L2 member
+tests/unit/test_fact_contract.py,1739,root,direct L2 member
+tests/unit/test_fact_contract.py,2077,load_facts,direct L2 member
+tests/unit/test_fact_contract.py,2149,load_facts,direct L2 member
+tests/unit/test_fact_contract.py,2156,load_facts,direct L2 member
+tests/unit/test_fact_contract.py,2179,load_facts,direct L2 member
+tests/unit/test_fact_contract.py,2440,gaps,direct L2 member
+tests/unit/test_fact_contract.py,2446,gaps,direct L2 member
+tests/unit/test_fact_contract.py,2371,root,direct L2 member
+tests/unit/test_fact_contract.py,1668,root,direct L2 member
+tests/unit/test_fact_contract.py,11,from inresearch.interfaces import deep_read as CLI,"import, registered entry, path or operational reference"
+tests/unit/test_fact_contract.py,18,"from deep_read_fixtures import (make_app, METRICS, SHA, fact, other, problems, problems_for,","import, registered entry, path or operational reference"
+tests/unit/test_text_similarity.py,35,read_documents,direct L2 member
+tests/unit/test_text_similarity.py,134,read_documents,direct L2 member
+tests/unit/test_text_similarity.py,33,read_documents,direct L2 member
+tests/unit/test_text_similarity.py,34,similarity,direct L2 member
+tests/unit/test_text_similarity.py,39,read_documents,direct L2 member
+tests/unit/test_text_similarity.py,132,read_documents,direct L2 member
+tests/unit/test_text_similarity.py,133,similarity,direct L2 member
+tests/unit/test_text_similarity.py,144,read_documents,direct L2 member
+tests/unit/test_text_similarity.py,33,similarity,direct L2 member
+tests/unit/test_text_similarity.py,39,similarity,direct L2 member
+tests/unit/test_text_similarity.py,69,similarity,direct L2 member
+tests/unit/test_text_similarity.py,76,similarity,direct L2 member
+tests/unit/test_text_similarity.py,81,similarity,direct L2 member
+tests/unit/test_text_similarity.py,86,similarity,direct L2 member
+tests/unit/test_text_similarity.py,94,similarity,direct L2 member
+tests/unit/test_text_similarity.py,100,similarity,direct L2 member
+tests/unit/test_text_similarity.py,106,similarity,direct L2 member
+tests/unit/test_text_similarity.py,111,similarity,direct L2 member
+tests/unit/test_text_similarity.py,116,similarity,direct L2 member
+tests/unit/test_text_similarity.py,117,similarity,direct L2 member
+tests/unit/test_text_similarity.py,132,similarity,direct L2 member
+tests/unit/test_text_similarity.py,144,similarity,direct L2 member
+tests/unit/test_text_similarity.py,173,similarity,direct L2 member
+tests/unit/test_text_similarity.py,174,similarity,direct L2 member
+tests/unit/test_text_similarity.py,174,read_documents,direct L2 member
+tests/unit/test_text_similarity.py,182,similarity,direct L2 member
+tests/unit/test_text_similarity.py,187,similarity,direct L2 member
+tests/unit/test_text_similarity.py,70,similarity,direct L2 member
+tests/unit/test_text_similarity.py,70,read_documents,direct L2 member
+tests/unit/test_text_similarity.py,72,similarity,direct L2 member
+tests/unit/test_text_similarity.py,72,read_documents,direct L2 member
+tests/unit/test_text_similarity.py,78,similarity,direct L2 member
+tests/unit/test_text_similarity.py,78,read_documents,direct L2 member
+tests/unit/test_text_similarity.py,83,similarity,direct L2 member
+tests/unit/test_text_similarity.py,83,read_documents,direct L2 member
+tests/unit/test_text_similarity.py,89,similarity,direct L2 member
+tests/unit/test_text_similarity.py,96,similarity,direct L2 member
+tests/unit/test_text_similarity.py,96,read_documents,direct L2 member
+tests/unit/test_text_similarity.py,103,similarity,direct L2 member
+tests/unit/test_text_similarity.py,103,read_documents,direct L2 member
+tests/unit/test_text_similarity.py,108,similarity,direct L2 member
+tests/unit/test_text_similarity.py,108,read_documents,direct L2 member
+tests/unit/test_text_similarity.py,112,similarity,direct L2 member
+tests/unit/test_text_similarity.py,112,read_documents,direct L2 member
+tests/unit/test_text_similarity.py,183,similarity,direct L2 member
+tests/unit/test_text_similarity.py,183,read_documents,direct L2 member
+tests/unit/test_text_similarity.py,188,similarity,direct L2 member
+tests/unit/test_text_similarity.py,189,similarity,direct L2 member
+tests/unit/test_text_similarity.py,189,read_documents,direct L2 member
+tests/unit/test_text_similarity.py,87,similarity,direct L2 member
+tests/unit/test_text_similarity.py,118,similarity,direct L2 member
+tests/unit/test_text_similarity.py,178,similarity,direct L2 member
+tests/unit/test_text_similarity.py,178,read_documents,direct L2 member
+tests/unit/test_text_similarity.py,11,from inresearch.interfaces import deep_read as CLI,"import, registered entry, path or operational reference"
+tests/unit/test_text_similarity.py,18,"from deep_read_fixtures import (make_app, METRICS, SHA, fact, other, problems, problems_for,","import, registered entry, path or operational reference"
+tests/unit/test_text_similarity.py,34,L2.similarity.path = base / 'l2_text_md5.jsonl',"import, registered entry, path or operational reference"
+tests/unit/test_text_similarity.py,133,L2.similarity.path = base / 'l2_text_md5.jsonl',"import, registered entry, path or operational reference"

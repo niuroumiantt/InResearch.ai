@@ -1,12 +1,3 @@
-#!/usr/bin/env python3
-"""A contract nothing enforces is a comment.
-
-fact.schema.json states the rules that make two numbers comparable - every
-caliber dimension present, the unit as declared, a locator someone can follow
-back.  These tests are what turns those sentences into a gate.  The fixture
-metrics mirror the real ones in shape, so a rule that passes here passes on
-framework/metrics.json too.
-"""
 import io
 import hashlib
 import json
@@ -17,59 +8,16 @@ from pathlib import Path
 import tempfile
 import unittest
 from unittest.mock import patch
-
-from inresearch.workflow import deep_read as L2
+from inresearch.interfaces import deep_read as CLI
+from inresearch.knowledge import fact_contract as FC, provenance as PROV
+from inresearch.materials import reading_policy as POLICY, text_similarity as SIM
+from inresearch.delivery import reading_packet as PACKET
+from inresearch.storage import jsonl as JSONL
+from inresearch.materials.records import result_revision
 import inresearch.adapters.office_grid as office_grid
-
-METRICS = {
-    'dc_construction_cost_per_sqm': {
-        'metric_id': 'dc_construction_cost_per_sqm', 'unit': '元/㎡', 'module': 'M10',
-        'caliber_dims': [
-            {'id': 'stage', 'name': '造价阶段', 'values': ['招标控制价', '竣工结算价']},
-            {'id': 'scope', 'name': '包含范围', 'values': ['土建本体', '施工总包']},
-        ],
-    },
-    'free_form_metric': {
-        'metric_id': 'free_form_metric', 'unit': 'MW', 'module': 'M04',
-        'caliber_dims': [{'id': 'region', 'name': '地域'}],   # no enum: any text
-    },
-    'noted_metric': {
-        'metric_id': 'noted_metric', 'name': '带警告的指标', 'unit': '亿美元', 'module': 'M10',
-        'note': '**表头单位与实际数值不符**，照表头换算会错一百万倍。',
-        'caliber_dims': [{'id': 'scope', 'name': '范围', 'values': ['甲', '乙']}],
-    },
-}
-
-SHA = 'a' * 64
-
-
-def fact(**over):
-    base = {
-        'fact_id': 'luan-ct-cost-gc-2022',
-        'metric_id': 'dc_construction_cost_per_sqm',
-        'entity': {'type': 'project', 'id': 'cn-ah-luan-ct', 'label': '六安 CT'},
-        'value': 4406.0, 'unit': '元/㎡',
-        'caliber': {'stage': '招标控制价', 'scope': '施工总包'},
-        'as_of': '2022-01',
-        'evidence': {'sha256': SHA, 'locator': '封面限价 79,483,818.90 元', 'grade': 'S2'},
-        'depth': '精读', 'bound': 'point', 'corroboration': '已交叉验证',
-        # 断言者进 claim_key：同一家的重复仍然撞键，两家的分歧不再撞键。
-        'asserter': '中国移动',
-    }
-    base.update(over)
-    return base
-
-
-def other(**over):
-    """A fact about a different site, so it is a different claim."""
-    over.setdefault('entity', {'type': 'project', 'id': 'cn-gd-gz-dc', 'label': '广州'})
-    over.setdefault('fact_id', 'gz-dc-cost-gc-2022')
-    return fact(**over)
-
-
-def problems(f, seen=None, claims=None):
-    return L2.check_fact(f, METRICS, seen if seen is not None else set(), claims)
-
+from deep_read_fixtures import (make_app, METRICS, SHA, fact, other, problems, problems_for,
+    L1_ROW, PROVENANCE_DEBT, DANGLING_SOURCE_IDS, KNOWN_DIM_NAMES, FILLED_THIS_BATCH)
+L2 = make_app()
 
 class ValidatorTests(unittest.TestCase):
     def test_a_well_formed_fact_passes(self):
@@ -188,7 +136,7 @@ class TemporalGrammarTests(unittest.TestCase):
 class ChunkTests(unittest.TestCase):
     def test_chunks_break_on_blank_lines_and_keep_everything(self):
         text = '\n\n'.join('段落 %d %s' % (i, 'x' * 400) for i in range(40))
-        pieces = L2.chunks(text, size=2000)
+        pieces = PACKET.chunks(text, size=2000)
         self.assertGreater(len(pieces), 1)
         for piece in pieces:
             self.assertLessEqual(len(piece), 3000)
@@ -196,137 +144,7 @@ class ChunkTests(unittest.TestCase):
         self.assertEqual(rejoined.replace('\n', ''), text.replace('\n', ''))
 
     def test_a_short_text_is_one_chunk(self):
-        self.assertEqual(L2.chunks('短文'), ['短文'])
-
-
-class RecordTests(unittest.TestCase):
-    def setUp(self):
-        self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-test-')
-        base = Path(self.temp.name)
-        self.facts = base / 'facts.json'
-        self.facts.write_text(json.dumps(
-            {'version': '0.1', 'records': []}, ensure_ascii=False), encoding='utf-8')
-        self._saved = (L2.FACTS, L2.READ_LOG, L2.load_metrics)
-        L2.FACTS = self.facts
-        L2.READ_LOG = base / 'l2_read.jsonl'
-        L2.load_metrics = lambda: METRICS
-
-    def tearDown(self):
-        (L2.FACTS, L2.READ_LOG, L2.load_metrics) = self._saved
-        self.temp.cleanup()
-
-    def record(self, facts, **flags):
-        path = Path(self.temp.name) / 'incoming.json'
-        path.write_text(json.dumps(facts, ensure_ascii=False), encoding='utf-8')
-        args = type('A', (), {'facts': str(path), 'doc': flags.get('doc'),
-                              'partial': flags.get('partial', False), 'show': 5})
-        out = io.StringIO()
-        with redirect_stdout(out):
-            L2.cmd_record(args)
-        return json.loads(out.getvalue().splitlines()[0])
-
-    def test_a_good_batch_lands(self):
-        report = self.record([fact(), other()])
-        self.assertEqual(report['accepted'], 2)
-        stored = json.loads(self.facts.read_text(encoding='utf-8'))['records']
-        self.assertEqual(len(stored), 2)
-
-    def test_one_bad_fact_holds_the_whole_batch(self):
-        report = self.record([fact(), other(fact_id='bad', unit='wrong')])
-        self.assertEqual(report['accepted'], 0)
-        self.assertEqual(json.loads(self.facts.read_text(encoding='utf-8'))['records'], [])
-
-    def test_partial_takes_the_good_ones(self):
-        report = self.record([fact(), other(fact_id='bad', unit='wrong')], partial=True)
-        self.assertEqual(report['accepted'], 1)
-        self.assertEqual(report['rejected'], 1)
-
-    def test_a_fact_id_already_in_the_store_is_refused(self):
-        self.record([fact()])
-        report = self.record([fact()])
-        self.assertEqual(report['accepted'], 0)
-
-    def test_recording_marks_the_document_read(self):
-        self.record([fact()], doc=SHA)
-        rows = [json.loads(l) for l in L2.READ_LOG.read_text(encoding='utf-8').splitlines()]
-        self.assertEqual(rows[0]['sha256'], SHA)
-        self.assertEqual(rows[0]['facts'], 1)
-
-    def test_failed_read_log_can_be_replayed_without_duplicate_facts(self):
-        from unittest.mock import patch
-        with patch.object(L2, 'append_record', side_effect=OSError('interrupted after fact commit')):
-            with self.assertRaises(OSError):
-                self.record([fact()], doc=SHA)
-        report = self.record([fact()], doc=SHA)
-        self.assertEqual(report['replayed'], 1)
-        self.assertEqual(report['facts_total'], 1)
-        self.assertTrue(L2.READ_LOG.exists())
-
-    def test_other_material_cannot_mark_this_document_read(self):
-        report = self.record([fact()], doc='b' * 64)
-        self.assertEqual(report['accepted'], 0)
-        self.assertFalse(L2.READ_LOG.exists())
-        self.assertEqual(json.loads(self.facts.read_text())['records'], [])
-
-    def test_two_bare_forecasts_of_one_year_do_not_both_land(self):
-        """The wiring, not just the rule: record must build and keep the index."""
-        report = self.record([fact(fact_id='idc-2023e-a', as_of='2023E'),
-                              fact(fact_id='idc-2023e-b', as_of='2023E', value=99.0)])
-        self.assertEqual(report['accepted'], 0)
-
-    def test_the_index_survives_between_runs(self):
-        self.record([fact(fact_id='idc-2023e-a', as_of='2023E')])
-        report = self.record([fact(fact_id='idc-2023e-b', as_of='2023E', value=99.0)])
-        self.assertEqual(report['accepted'], 0)
-
-    def test_the_same_year_at_two_vintages_both_land(self):
-        self.record([fact(fact_id='idc-2023e-at-2019', as_of='2023E@2019-01')])
-        report = self.record([fact(fact_id='idc-2023e-at-2021',
-                                   as_of='2023E@2021-06', value=99.0)])
-        self.assertEqual(report['accepted'], 1)
-
-    def test_a_document_with_no_facts_still_counts_as_read(self):
-        """Zero facts is a legitimate outcome; inventing one is not."""
-        report = self.record([], doc='c' * 64)
-        self.assertEqual(report['accepted'], 0)
-        self.assertIn('c' * 64, L2.READ_LOG.read_text(encoding='utf-8'))
-
-    # -- --doc 收前缀 -----------------------------------------------------
-    # 前缀原样写进已读台账，而队列只认完整 sha，于是文件没被记成已读、
-    # 下一轮又被开了一次包。skip 与 attribute 都解前缀，只有 record 不解。
-    # 用 SHA 本身的前缀：主干另有一条规矩——事实自证的 sha 必须与 --doc 一致，
-    # 换个哈希会先撞上那一条，测不到前缀解析。
-    def resolving(self, results):
-        return patch.object(L2, 'all_results', lambda: results)
-
-    def test_a_prefix_is_resolved_to_the_full_hash(self):
-        with self.resolving({SHA: {'sha256': SHA, 'rel': '一份.pdf'}}):
-            self.record([fact()], doc=SHA[:12])
-        rows = [json.loads(l) for l in
-                L2.READ_LOG.read_text(encoding='utf-8').splitlines()]
-        self.assertEqual(rows[0]['sha256'], SHA)
-
-    def test_a_prefix_that_matches_nothing_stops_before_anything_is_written(self):
-        with self.resolving({}):
-            with self.assertRaises(SystemExit):
-                self.record([fact()], doc=SHA[:12])
-        self.assertEqual(json.loads(self.facts.read_text(encoding='utf-8'))['records'], [])
-        self.assertFalse(L2.READ_LOG.exists())
-
-    def test_an_ambiguous_prefix_stops_too(self):
-        with self.resolving({SHA: {'sha256': SHA},
-                             'a' * 63 + 'b': {'sha256': 'a' * 63 + 'b'}}):
-            with self.assertRaises(SystemExit):
-                self.record([fact()], doc=SHA[:12])
-        self.assertEqual(json.loads(self.facts.read_text(encoding='utf-8'))['records'], [])
-
-    def test_a_full_hash_needs_no_judgement_row(self):
-        """完整哈希自证：已读台账认哈希，不认判定。"""
-        with self.resolving({}):
-            self.record([fact()], doc=SHA)
-        self.assertIn(SHA, L2.READ_LOG.read_text(encoding='utf-8'))
-
-
+        self.assertEqual(PACKET.chunks('短文'), ['短文'])
 
 
 class SelfAuthoredTests(unittest.TestCase):
@@ -342,26 +160,26 @@ class SelfAuthoredTests(unittest.TestCase):
 
     def test_our_own_org_label_is_excluded(self):
         for org in ('本项目', '内部研究', 'inresearch.ai'):
-            self.assertTrue(L2.self_authored({'org': org, 'rel': 'a/b.md'}), org)
+            self.assertTrue(POLICY.self_authored({'org': org, 'rel': 'a/b.md'}), org)
 
     def test_whitespace_around_the_label_does_not_smuggle_it_through(self):
-        self.assertTrue(L2.self_authored({'org': '  本项目 ', 'rel': 'a/b.md'}))
+        self.assertTrue(POLICY.self_authored({'org': '  本项目 ', 'rel': 'a/b.md'}))
 
     def test_our_own_output_directories_are_excluded(self):
         for rel in ('docs/SUMMARY.md', 'data/facts.json', 'framework/metrics.json',
                     'reports/verify_queue.md', '要删/reader/cache.txt'):
-            self.assertTrue(L2.self_authored({'org': '某机构', 'rel': rel}), rel)
+            self.assertTrue(POLICY.self_authored({'org': '某机构', 'rel': rel}), rel)
 
     def test_a_real_source_is_not_excluded(self):
         for row in ({'org': 'Dell\'Oro Group', 'rel': '报告/capex.pdf'},
                     {'org': '国际能源署', 'rel': '数据中心报告购买/iea.pdf'},
                     {'org': None, 'rel': 'raw/x.xlsx'},
                     {}):
-            self.assertFalse(L2.self_authored(row), row)
+            self.assertFalse(POLICY.self_authored(row), row)
 
     def test_a_directory_that_merely_starts_similarly_is_kept(self):
-        self.assertFalse(L2.self_authored({'org': 'X', 'rel': 'documentation/x.pdf'}))
-        self.assertFalse(L2.self_authored({'org': 'X', 'rel': 'database报告/x.pdf'}))
+        self.assertFalse(POLICY.self_authored({'org': 'X', 'rel': 'documentation/x.pdf'}))
+        self.assertFalse(POLICY.self_authored({'org': 'X', 'rel': 'database报告/x.pdf'}))
 
 
 class ClaimIdentityTests(unittest.TestCase):
@@ -379,8 +197,8 @@ class ClaimIdentityTests(unittest.TestCase):
 
     def add(self, f):
         """What cmd_record does on acceptance."""
-        self.claims[L2.claim_key(f)] = f['fact_id']
-        key = L2.forecast_key(f)
+        self.claims[FC.claim_key(f)] = f['fact_id']
+        key = FC.forecast_key(f)
         if key is not None:
             self.claims.setdefault(key, f['fact_id'])
 
@@ -474,435 +292,19 @@ class ClaimIdentityTests(unittest.TestCase):
         self.assertEqual(problems(fact()), [])
 
     def test_the_existing_fact_layer_indexes_without_collision(self):
-        store = json.loads((L2.REPO /
+        store = json.loads((L2.root /
                             'data/facts.json').read_text(encoding='utf-8'))
         records = store['records']
         self.assertGreater(len(records), 100)
         claims = {}
         for f in records:
-            key, forecast = L2.claim_key(f), L2.forecast_key(f)
+            key, forecast = FC.claim_key(f), FC.forecast_key(f)
             self.assertNotIn(key, claims, f['fact_id'])
             if forecast is not None and '@' not in f['as_of']:
                 self.assertNotIn(forecast, claims, f['fact_id'])
             claims[key] = f['fact_id']
             if forecast is not None:
                 claims.setdefault(forecast, f['fact_id'])
-
-
-L1_ROW = {
-    'sha256': 'd' * 64, 'rel': '报告/未命名表格.xlsx', 'suffix': '.xlsx',
-    'status': 'ok', 'score': 9, 'score_status': 'scored', 'level': 'p',
-    'category': 'M10', 'org': '未知', 'year': '未知', 'title': '机柜功率密度测算',
-    'keep_original_name': False, 'size': 4096,
-}
-
-
-class EffectiveResultTests(unittest.TestCase):
-    def test_failed_retry_does_not_remove_a_document_from_the_deep_read_queue(self):
-        with tempfile.TemporaryDirectory(prefix='m4-l2-effective-') as directory:
-            path = Path(directory) / 'results.jsonl'
-            path.write_text('\n'.join(json.dumps(row) for row in [
-                L1_ROW, {'sha256': L1_ROW['sha256'], 'status': 'error',
-                         'error': 'model_timeout'}]) + '\n')
-            with patch.object(L2.L1, 'RESULTS', path), \
-                    patch.object(L2, 'read_documents', return_value=set()), \
-                    patch.object(L2, 'load_metrics', return_value=METRICS), \
-                    patch.object(L2, 'load_facts', return_value={'records': []}):
-                self.assertEqual([row['sha256'] for row in L2.eligible()],
-                                 [L1_ROW['sha256']])
-
-    def test_successful_reassessment_still_replaces_the_previous_score(self):
-        with tempfile.TemporaryDirectory(prefix='m4-l2-effective-') as directory:
-            path = Path(directory) / 'results.jsonl'
-            path.write_text('\n'.join(json.dumps(row) for row in [
-                L1_ROW, {**L1_ROW, 'score': 7},
-                {'sha256': L1_ROW['sha256'], 'status': 'error'}]) + '\n')
-            with patch.object(L2.L1, 'RESULTS', path):
-                self.assertEqual(L2.all_results()[L1_ROW['sha256']]['score'], 7)
-
-
-class AttributionTests(unittest.TestCase):
-    """A 9-point workbook whose publisher never reached the preview.
-
-    L1 judges on the first 6000 characters, and a spreadsheet's first 6000
-    characters are column headers.  So the files scored highest on their
-    numbers are the ones most likely to carry 未知 as their publisher - and an
-    unattributed number cannot honestly be graded as first-hand.
-    """
-
-    def setUp(self):
-        self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-attr-')
-        self.results = Path(self.temp.name) / 'l1_results.jsonl'
-        self.results.write_text(json.dumps(L1_ROW, ensure_ascii=False) + '\n',
-                                encoding='utf-8')
-        self._saved = L2.L1.RESULTS
-        L2.L1.RESULTS = self.results
-
-    def tearDown(self):
-        L2.L1.RESULTS = self._saved
-        self.temp.cleanup()
-
-    def attribute(self, **over):
-        args = {'sha': 'd' * 8, 'org': None, 'unrecoverable': False, 'year': None,
-                'title': None, 'evidence': '封面右下角'}
-        args.update(over)
-        out = io.StringIO()
-        with redirect_stdout(out):
-            L2.cmd_attribute(type('A', (), args))
-        return json.loads(out.getvalue())
-
-    def rows(self):
-        return [json.loads(l) for l in
-                self.results.read_text(encoding='utf-8').splitlines()]
-
-    def test_an_unknown_publisher_is_asked_for(self):
-        self.assertEqual(L2.unattributed(L1_ROW), ['org', 'year'])
-
-    def test_a_named_publisher_is_not_asked_for(self):
-        self.assertEqual(L2.unattributed({**L1_ROW, 'org': 'IDC', 'year': '2024'}), [])
-
-    def test_an_empty_string_counts_as_unknown(self):
-        self.assertIn('org', L2.unattributed({**L1_ROW, 'org': '  '}))
-
-    def test_the_publisher_lands_in_the_new_filename(self):
-        report = self.attribute(org='IDC', year='2024')
-        self.assertIn('IDC', report['now'])
-        self.assertIn('2024', report['now'])
-        self.assertNotIn('IDC', report['was'] or '')
-
-    def test_the_old_verdict_is_superseded_not_erased(self):
-        self.attribute(org='IDC', year='2024')
-        rows = self.rows()
-        self.assertEqual(len(rows), 2)
-        self.assertEqual(rows[0]['org'], '未知')
-        self.assertEqual(rows[1]['org'], 'IDC')
-        self.assertEqual(rows[1]['attributed']['was']['org'], '未知')
-        self.assertEqual(rows[1]['attributed']['evidence'], '封面右下角')
-
-    def test_saying_there_is_nothing_to_find_stops_the_asking(self):
-        """Both fields were unknown when it was declared, so both were searched."""
-        self.attribute(unrecoverable=True, evidence='封面/页眉/版权页均无署名')
-        row = self.rows()[-1]
-        self.assertEqual(row['unrecoverable'], ['org', 'year'])
-        self.assertEqual(L2.unattributed(row), [])
-
-    def test_a_year_given_alongside_is_not_declared_missing(self):
-        """忠县's shape: the publisher is on the cover, the year is nowhere."""
-        self.attribute(unrecoverable=True, year='2024', evidence='无署名，年份取自封面')
-        row = self.rows()[-1]
-        self.assertEqual(row['unrecoverable'], ['org'])
-        self.assertEqual(row['year'], '2024')
-
-    def test_a_publisher_and_a_shrug_cannot_both_be_given(self):
-        with self.assertRaises(SystemExit):
-            self.attribute(org='IDC', unrecoverable=True)
-
-    def test_one_of_the_two_must_be_given(self):
-        with self.assertRaises(SystemExit):
-            self.attribute()
-
-    def test_a_year_that_is_not_a_year_is_refused(self):
-        with self.assertRaises(SystemExit):
-            self.attribute(org='IDC', year='2024年')
-
-    def test_an_ambiguous_sha_prefix_is_refused(self):
-        with self.assertRaises(SystemExit):
-            self.attribute(sha='e' * 8, org='IDC')
-
-    def test_nothing_is_renamed_here(self):
-        report = self.attribute(org='IDC', year='2024')
-        self.assertIn('restage', report['renamed_by'])
-
-    def pack(self, row, meta=None):
-        """Real inventoried bytes with a deterministic document extractor."""
-        source = Path(self.temp.name) / 'source.txt'
-        source.write_text('第一页正文\n\n[p.2] 第二页')
-        row = {**row, 'sha256': hashlib.sha256(source.read_bytes()).hexdigest()}
-        saved = (L2.eligible, L2.full_text, L2.L1.readable_path,
-                 L2.load_metrics, L2.load_questions, L2.load_facts, L2.PACKET_DIR)
-        L2.eligible = lambda min_score=8, include_read=False, since=0: [row]
-        L2.full_text = lambda path, suffix: ('第一页正文\n\n[p.2] 第二页',
-                                            meta if meta is not None else {'pages': 2})
-        L2.L1.readable_path = lambda r: (source, False)
-        L2.load_metrics = lambda: METRICS
-        L2.load_questions = lambda: {}
-        L2.load_facts = lambda: {'records': []}
-        L2.PACKET_DIR = Path(self.temp.name) / 'packets'
-        try:
-            out = io.StringIO()
-            with redirect_stdout(out):
-                L2.cmd_pack(type('A', (), {'sha': None, 'min_score': 8,
-                                           'again': False, 'since': 0}))
-            report = json.loads(out.getvalue())
-            brief = (L2.PACKET_DIR / row['sha256'][:16] / 'brief.md').read_text(encoding='utf-8')
-        finally:
-            (L2.eligible, L2.full_text, L2.L1.readable_path, L2.load_metrics,
-             L2.load_questions, L2.load_facts, L2.PACKET_DIR) = saved
-        return report, brief
-
-    def test_the_packet_asks_for_the_publisher(self):
-        """The section has to reach the brief, not merely exist in the module."""
-        report, brief = self.pack(L1_ROW)
-        self.assertEqual(report['unattributed'], ['org', 'year'])
-        self.assertIn('这份文件的出处，L1 没认出来', brief)
-        self.assertIn('attribute --sha ' + report['sha256'][:16], brief)
-
-    def test_a_truncated_document_says_so_in_its_own_packet(self):
-        """A reader who thinks they saw the whole sheet reports the last row as the last."""
-        _, brief = self.pack(L1_ROW, meta={'truncated': True})
-        self.assertIn('不是全文', brief)
-        self.assertIn('不要把最后一行当作表格的最后一行', brief)
-
-    def test_a_whole_document_carries_no_such_warning(self):
-        _, brief = self.pack(L1_ROW, meta={'pages': 2})
-        self.assertNotIn('不是全文', brief)
-
-    def test_l2_asks_for_far_more_than_a_preview(self):
-        """L1 judges from a preview; L2 records numbers and needs the document."""
-        self.assertGreater(L2.FULL_TEXT_CHARS, 20 * office_grid.MAX_CHARS)
-
-    def test_an_attributed_document_is_not_asked_again(self):
-        report, brief = self.pack({**L1_ROW, 'org': 'IDC', 'year': '2024'})
-        self.assertIsNone(report['unattributed'])
-        self.assertNotIn('L1 没认出来', brief)
-        self.assertIn('## 你要产出什么', brief)
-
-
-class QueueOutputTests(unittest.TestCase):
-    """The queue has to print the argument the next command takes.
-
-    `pack` addresses a document by hash.  A queue listing only names sends you
-    hunting for the hash of the row you just decided to read - and the name is
-    truncated, so the hash inside it may not even be there.
-    """
-
-    grep = None
-
-    def queue(self, rows, grep=None):
-        self.grep = grep
-        saved = (L2.eligible, L2.load_metrics, L2.load_facts,
-                 L2.all_results, L2.read_documents)
-        L2.eligible = lambda min_score=8, include_read=False, since=0: rows
-        L2.load_metrics = lambda: METRICS
-        L2.load_facts = lambda: {'records': []}
-        L2.all_results = lambda: {r['sha256']: r for r in rows}
-        L2.read_documents = lambda: set()
-        try:
-            out = io.StringIO()
-            with redirect_stdout(out):
-                L2.cmd_queue(type('A', (), {'min_score': 8, 'show': 5,
-                                            'grep': self.grep, 'since': 0}))
-        finally:
-            (L2.eligible, L2.load_metrics, L2.load_facts,
-             L2.all_results, L2.read_documents) = saved
-        return out.getvalue()
-
-    def test_each_row_carries_the_hash_pack_needs(self):
-        text = self.queue([L1_ROW])
-        self.assertIn(L1_ROW['sha256'][:16], text.splitlines()[-1])
-
-    def test_an_unattributed_document_is_marked_in_the_list(self):
-        self.assertIn('出处未知', self.queue([L1_ROW]))
-        self.assertNotIn('出处未知',
-                         self.queue([{**L1_ROW, 'org': 'IDC', 'year': '2024'}]))
-
-    def test_a_known_publisher_with_no_year_is_not_called_unattributed(self):
-        """09p_未知_中国移动_忠县… has a publisher; only its year is missing."""
-        row = {**L1_ROW, 'org': '中国移动', 'year': '未知'}
-        text = self.queue([row])
-        self.assertIn('年份未知', text)
-        self.assertNotIn('出处未知', text)
-
-    def test_grep_finds_one_document_in_a_long_queue(self):
-        """The reading order is by coverage, so the row you want is anywhere."""
-        rows = [{**L1_ROW, 'sha256': '%064x' % i,
-                 'proposed_name': '09p_2022_某院_机房工程 %d.pdf' % i} for i in range(30)]
-        rows.append({**L1_ROW, 'sha256': 'f' * 64,
-                     'proposed_name': '09p_2022_某院_忠县通信机房 工艺对土建要求表.xlsx'})
-        text = self.queue(rows, grep='忠县')
-        self.assertIn('匹配「忠县」1 条（共 31 条待读）', text)
-        self.assertIn('f' * 16, text)
-        self.assertNotIn('机房工程 3.pdf', text)
-
-    def test_grep_matches_the_original_path_too(self):
-        row = {**L1_ROW, 'rel': '设计院图纸/忠县/要求表.xlsx', 'proposed_name': '09p_x.xlsx'}
-        self.assertIn(row['sha256'][:16], self.queue([row], grep='忠县'))
-
-    def test_without_grep_nothing_is_filtered_and_nothing_is_announced(self):
-        text = self.queue([L1_ROW])
-        self.assertNotIn('匹配', text)
-        self.assertIn(L1_ROW['sha256'][:16], text)
-
-    def test_the_header_counts_the_gap(self):
-        report = json.loads(self.queue([L1_ROW]).splitlines()[0])
-        self.assertEqual(report['unattributed'], 1)
-        self.assertEqual(report['eligible_unread'], 1)
-
-
-class EmptyBatchTests(unittest.TestCase):
-    """Zero facts is legal.  An unwritten facts.json is not, and they printed alike.
-
-    The first real run recorded `{"accepted": 0, "rejected": 0}` against a
-    10-point workbook and marked it read for good.  The file on disk turned out
-    to hold `[]` - which says nothing about whether anyone read the document.
-    """
-
-    def setUp(self):
-        self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-empty-')
-        base = Path(self.temp.name)
-        self.facts = base / 'facts.json'
-        self.facts.write_text(json.dumps({'version': '0.1', 'records': []}),
-                              encoding='utf-8')
-        self._saved = (L2.FACTS, L2.READ_LOG, L2.load_metrics)
-        L2.FACTS, L2.READ_LOG, L2.load_metrics = self.facts, base / 'read.jsonl', lambda: METRICS
-
-    def tearDown(self):
-        (L2.FACTS, L2.READ_LOG, L2.load_metrics) = self._saved
-        self.temp.cleanup()
-
-    def record(self, incoming, doc=None):
-        path = Path(self.temp.name) / 'incoming.json'
-        path.write_text(json.dumps(incoming, ensure_ascii=False), encoding='utf-8')
-        out = io.StringIO()
-        with redirect_stdout(out):
-            L2.cmd_record(type('A', (), {'facts': str(path), 'doc': doc,
-                                         'partial': False, 'show': 5}))
-        return json.loads(out.getvalue().splitlines()[0])
-
-    def test_an_empty_batch_says_so_and_says_how_to_reopen(self):
-        report = self.record([], doc='e' * 64)
-        self.assertEqual(report['incoming'], 0)
-        self.assertIn('pack --again', report['note'])
-
-    def test_a_batch_that_lands_carries_no_such_note(self):
-        report = self.record([fact()])
-        self.assertEqual(report['incoming'], 1)
-        self.assertNotIn('note', report)
-
-    def test_a_batch_that_is_wholly_rejected_is_not_called_empty(self):
-        """Nothing landed either way, but the reasons are opposite."""
-        report = self.record([fact(unit='wrong')])
-        self.assertEqual(report['incoming'], 1)
-        self.assertIn('全有或全无', report['note'])
-        self.assertNotIn('pack --again', report['note'])
-
-
-class PackAgainTests(unittest.TestCase):
-    """A document marked read by accident could never be packed again."""
-
-    def setUp(self):
-        self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-again-')
-        self._saved = (L2.read_documents, L2.all_results, L2.load_facts, L2.load_metrics)
-        L2.read_documents = lambda: {L1_ROW['sha256']}
-        L2.all_results = lambda: {L1_ROW['sha256']: L1_ROW}
-        L2.load_facts = lambda: {'records': []}
-        L2.load_metrics = lambda: METRICS
-
-    def tearDown(self):
-        (L2.read_documents, L2.all_results, L2.load_facts, L2.load_metrics) = self._saved
-        self.temp.cleanup()
-
-    def test_a_read_document_is_out_of_the_queue(self):
-        self.assertEqual(L2.eligible(8), [])
-
-    def test_and_can_be_reopened_on_purpose(self):
-        self.assertEqual([r['sha256'] for r in L2.eligible(8, include_read=True)],
-                         [L1_ROW['sha256']])
-
-    def test_reopening_requires_naming_the_document(self):
-        """Without --sha it would reopen whatever sorts first, which is not the ask."""
-        with self.assertRaises(SystemExit):
-            L2.cmd_pack(type('A', (), {'sha': None, 'min_score': 8, 'again': True}))
-
-
-
-class RestrictionTests(unittest.TestCase):
-    """Score and admissibility are different questions.
-
-    The first re-judged batch surfaced a quarterly whose cover reads
-    "Confidential for Western Digital Corp. / Not to be distributed".  It
-    scored 8, and 8 is right - it is a real first-hand source and the library
-    should know it is there.  What it must not do is flow through L2 into
-    facts that get quoted, which at 8 points it otherwise would, near the
-    front of the queue.
-    """
-
-    def setUp(self):
-        self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-flag-')
-        self.results = Path(self.temp.name) / 'l1_results.jsonl'
-        self.results.write_text(json.dumps(
-            {**L1_ROW, 'org': 'Forward Insights', 'year': '2025'},
-            ensure_ascii=False) + '\n', encoding='utf-8')
-        self._saved = (L2.L1.RESULTS, L2.load_metrics, L2.load_facts, L2.read_documents)
-        L2.L1.RESULTS = self.results
-        L2.load_metrics = lambda: METRICS
-        L2.load_facts = lambda: {'records': []}
-        L2.read_documents = lambda: set()
-
-    def tearDown(self):
-        (L2.L1.RESULTS, L2.load_metrics, L2.load_facts, L2.read_documents) = self._saved
-        self.temp.cleanup()
-
-    def flag(self, **over):
-        args = {'sha': L1_ROW['sha256'][:8], 'confidential': False, 'pii': False,
-                'clear': False, 'evidence': '封面：Not to be distributed'}
-        args.update(over)
-        out = io.StringIO()
-        with redirect_stdout(out):
-            L2.cmd_flag(type('A', (), args))
-        return json.loads(out.getvalue())
-
-    def rows(self):
-        return [json.loads(l) for l in
-                self.results.read_text(encoding='utf-8').splitlines()]
-
-    def test_an_unflagged_document_is_in_the_queue(self):
-        self.assertEqual([r['sha256'] for r in L2.eligible(8)], [L1_ROW['sha256']])
-
-    def test_flagging_it_takes_it_out(self):
-        report = self.flag(confidential=True)
-        self.assertEqual(report['now'], ['confidential'])
-        self.assertEqual(L2.eligible(8), [])
-
-    def test_the_score_and_the_file_are_untouched(self):
-        self.flag(confidential=True)
-        row = self.rows()[-1]
-        self.assertEqual(row['score'], L1_ROW['score'])
-        self.assertEqual(row['rel'], L1_ROW['rel'])
-        self.assertIn('分数都不变', self.flag(pii=True)['effect'])
-
-    def test_the_reason_travels_with_the_flag(self):
-        self.flag(confidential=True)
-        row = self.rows()[-1]
-        self.assertEqual(row['flagged'][0]['evidence'], '封面：Not to be distributed')
-        self.assertEqual(row['flagged'][0]['fields'], ['confidential'])
-
-    def test_personal_information_is_the_other_gate(self):
-        self.flag(pii=True)
-        self.assertEqual(L2.eligible(8), [])
-
-    def test_a_flag_can_be_lifted(self):
-        self.flag(confidential=True)
-        report = self.flag(confidential=True, clear=True, evidence='看错了，封面无此字样')
-        self.assertEqual(report['now'], [])
-        self.assertEqual(len(L2.eligible(8)), 1)
-
-    def test_lifting_one_flag_leaves_the_other(self):
-        self.flag(confidential=True)
-        self.flag(pii=True)
-        self.flag(confidential=True, clear=True, evidence='机密那条看错了')
-        self.assertEqual(L2.eligible(8), [])
-
-    def test_a_flag_with_no_field_named_is_refused(self):
-        with self.assertRaises(SystemExit):
-            self.flag()
-
-    def test_the_queue_counts_what_it_excluded(self):
-        self.flag(confidential=True)
-        out = io.StringIO()
-        with redirect_stdout(out):
-            L2.cmd_queue(type('A', (), {'min_score': 8, 'show': 5, 'grep': None, 'since': 0}))
-        self.assertEqual(json.loads(out.getvalue().splitlines()[0])['restricted_excluded'], 1)
 
 
 class UnrecoverableScopeTests(unittest.TestCase):
@@ -914,15 +316,15 @@ class UnrecoverableScopeTests(unittest.TestCase):
 
     def test_an_unrecoverable_publisher_still_leaves_the_year_asked(self):
         row = {**L1_ROW, 'org_unrecoverable': True}
-        self.assertEqual(L2.unattributed(row), ['year'])
+        self.assertEqual(POLICY.unattributed(row), ['year'])
 
     def test_both_can_be_declared_unrecoverable(self):
         row = {**L1_ROW, 'unrecoverable': ['org', 'year']}
-        self.assertEqual(L2.unattributed(row), [])
+        self.assertEqual(POLICY.unattributed(row), [])
 
     def test_a_field_that_is_present_is_not_reported_either_way(self):
         row = {**L1_ROW, 'org': 'IDC', 'org_unrecoverable': True}
-        self.assertEqual(L2.unattributed(row), ['year'])
+        self.assertEqual(POLICY.unattributed(row), ['year'])
 
 
 class RecencyTests(unittest.TestCase):
@@ -972,15 +374,15 @@ class RecencyTests(unittest.TestCase):
     def test_the_year_is_taken_from_the_name_when_the_field_is_blank(self):
         row = {**L1_ROW, 'year': '未知',
                'proposed_name': '09p_2023_IDC_Global DataSphere__abc.xlsx'}
-        self.assertEqual(L2.document_year(row), 2023)
+        self.assertEqual(POLICY.document_year(row), 2023)
 
     def test_a_year_that_is_not_a_year_is_not_read_as_one(self):
         row = {**L1_ROW, 'year': '未知', 'proposed_name': 'x.xlsx', 'rel': 'a/b.xlsx'}
-        self.assertEqual(L2.document_year(row), 0)
+        self.assertEqual(POLICY.document_year(row), 0)
 
     def test_a_declared_year_beats_a_number_in_the_path(self):
         row = {**L1_ROW, 'year': '2025', 'rel': '2016工程/x.xlsx'}
-        self.assertEqual(L2.document_year(row), 2025)
+        self.assertEqual(POLICY.document_year(row), 2025)
 
 
 class ConfidentialScopeTests(unittest.TestCase):
@@ -992,34 +394,17 @@ class ConfidentialScopeTests(unittest.TestCase):
     """
 
     def test_nothing_is_flagged_automatically(self):
-        self.assertEqual(L2.restricted(L1_ROW), [])
+        self.assertEqual(POLICY.restricted(L1_ROW), [])
 
     def test_the_wording_says_what_the_flag_is_for(self):
-        text = L2.RESTRICTIONS['confidential']
+        text = POLICY.RESTRICTIONS['confidential']
         self.assertIn('限定收件方', text)
         self.assertIn('不是泛用的机密页脚', text)
 
 
-# The fact layer as it actually stands, not a fixture of it.  Every other test
-# here builds its own metrics and its own facts; this one reads the two files
-# the project ships, because a contract change that invalidates recorded data
-# is a real event and nothing was watching for it.
-#
-# 119 facts were recorded before evidence.sha256 became required.  The contract
-# is not relaxed for them - they simply owe it, and this number is the debt.
-# Pay one back and this test goes red, which is the point: the debt must not
-# change quietly in either direction.
-PROVENANCE_DEBT = 38
-
-# Facts cite a source_id, and most of those ids name no row in sources.json.
-# check_fact cannot see this - it never reads sources.json - so it is pinned
-# here instead, where it stays visible until someone decides what to do.
-DANGLING_SOURCE_IDS = 27
-
-
 class LiveFactLayerTests(unittest.TestCase):
     def setUp(self):
-        self.repo = L2.REPO
+        self.repo = L2.root
         self.metrics = L2.load_metrics()
         self.records = L2.load_facts()['records']
 
@@ -1027,7 +412,7 @@ class LiveFactLayerTests(unittest.TestCase):
         """Adding a caliber dimension to a metric invalidates facts that lack it."""
         seen, failures = set(), {}
         for fact in self.records:
-            problems = [p for p in L2.check_fact(fact, self.metrics, seen)
+            problems = [p for p in FC.check_fact(fact, self.metrics, seen)
                         if 'sha256' not in p]
             if problems:
                 failures[fact['fact_id']] = problems
@@ -1066,27 +451,27 @@ class MenuTests(unittest.TestCase):
 
     def test_a_metrics_own_note_reaches_the_packet(self):
         """It carried the traps that span dimensions and was never printed."""
-        text = L2.metric_menu('M10', METRICS)
+        text = PACKET.metric_menu('M10', METRICS)
         self.assertIn('照表头换算会错一百万倍', text)
 
     def test_the_dimensions_still_come_with_theirs(self):
-        self.assertIn('caliber.scope', L2.metric_menu('M10', METRICS))
+        self.assertIn('caliber.scope', PACKET.metric_menu('M10', METRICS))
 
     def test_other_modules_are_indexed_by_id(self):
         """A document sits in one module; its numbers do not."""
-        index = L2.other_modules_index('M04', METRICS)
+        index = PACKET.other_modules_index('M04', METRICS)
         self.assertIn('dc_construction_cost_per_sqm', index)
         self.assertIn('noted_metric', index)
         self.assertNotIn('free_form_metric', index)   # that one is M04's own
 
     def test_the_index_does_not_spell_out_calibers(self):
         """139 metrics with full dimensions would bury the document itself."""
-        index = L2.other_modules_index('M04', METRICS)
+        index = PACKET.other_modules_index('M04', METRICS)
         self.assertNotIn('caliber.', index)
         self.assertNotIn('招标控制价', index)
 
     def test_a_module_with_no_metrics_says_so_rather_than_going_blank(self):
-        self.assertIn('先在 metrics.json 里补指标定义', L2.metric_menu('M99', METRICS))
+        self.assertIn('先在 metrics.json 里补指标定义', PACKET.metric_menu('M99', METRICS))
 
 
 class LiveMenuTests(unittest.TestCase):
@@ -1103,7 +488,7 @@ class LiveMenuTests(unittest.TestCase):
         self.assertIn('hyperscaler_capex_total', datacentre['note'])
 
     def test_the_unit_trap_is_stated_where_a_reader_will_meet_it(self):
-        text = L2.metric_menu('M01', self.metrics)
+        text = PACKET.metric_menu('M01', self.metrics)
         self.assertIn('错一百万倍', text)
 
     def test_the_original_segment_names_are_kept_verbatim(self):
@@ -1171,145 +556,6 @@ class CorrectedNoteTests(unittest.TestCase):
         self.assertIn('尚未校验', dim['note'])
 
 
-class SkipTests(unittest.TestCase):
-    """读了，菜单里没有位置——这条路以前是死的。
-
-    pack 不带 --sha 永远返回队首那一份，所以一个记不下任何东西的读者除了
-    「record --doc 空数组」没有别的出路，而那一招把文件记成已读、把发现丢掉。
-    发现才是重点：它是菜单落后于语料的唯一信号，而且必须活着走到改菜单的
-    那台机器上——所以缺口写进 repo，已读账本仍留在本机。
-    """
-
-    def setUp(self):
-        self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-skip-')
-        base = Path(self.temp.name)
-        self.results = base / 'l1_results.jsonl'
-        self.results.write_text(json.dumps(
-            {**L1_ROW, 'org': 'IDC', 'year': '2025'}, ensure_ascii=False) + '\n',
-            encoding='utf-8')
-        self._saved = (L2.L1.RESULTS, L2.GAPS, L2.READ_LOG, L2.load_metrics,
-                       L2.load_facts)
-        L2.L1.RESULTS = self.results
-        L2.GAPS = base / 'metric_gaps.jsonl'
-        L2.READ_LOG = base / 'l2_read.jsonl'
-        L2.load_metrics = lambda: METRICS
-        L2.load_facts = lambda: {'records': []}
-
-    def tearDown(self):
-        (L2.L1.RESULTS, L2.GAPS, L2.READ_LOG, L2.load_metrics,
-         L2.load_facts) = self._saved
-        self.temp.cleanup()
-
-    def skip(self, gaps, doc=None, reason=None):
-        out = io.StringIO()
-        with redirect_stdout(out):
-            L2.cmd_skip(type('A', (), {'doc': doc or L1_ROW['sha256'][:8],
-                                       'gap': gaps, 'reason': reason}))
-        return json.loads(out.getvalue())
-
-    def gaps(self, filled=()):
-        out = io.StringIO()
-        with redirect_stdout(out):
-            L2.cmd_gaps(type('A', (), {'filled': list(filled)}))
-        return out.getvalue()
-
-    def test_the_queue_advances(self):
-        self.assertEqual([r['sha256'] for r in L2.eligible(8)], [L1_ROW['sha256']])
-        self.skip(['server_class 缺 x86'])
-        self.assertEqual(L2.eligible(8), [])
-
-    def test_the_gap_is_what_survives(self):
-        report = self.skip(['server_class 缺 x86'])
-        self.assertEqual(report['gaps_recorded'], 1)
-        rows = L2.open_gaps()
-        self.assertEqual([r['gap'] for r in rows], ['server_class 缺 x86'])
-        self.assertEqual(rows[0]['sha256'], L1_ROW['sha256'])
-        self.assertEqual(rows[0]['rel'], L1_ROW['rel'])
-
-    def test_one_document_can_report_several_gaps(self):
-        self.skip(['server_class 缺 x86', '缺 storage_scope 维度',
-                   '缺 counterparty_role 维度'])
-        self.assertEqual(len(L2.open_gaps()), 3)
-        self.assertEqual(len({r['sha256'] for r in L2.open_gaps()}), 1)
-
-    def test_the_same_gap_twice_is_one_gap(self):
-        """两次翻同一份文件报同一个缺口，不该在菜单待办上算两笔。"""
-        self.skip(['server_class 缺 x86'])
-        self.skip(['server_class 缺 x86'])
-        self.assertEqual(len(L2.open_gaps()), 1)
-
-    def test_the_same_gap_from_another_document_is_a_separate_row(self):
-        """counterparty_role 在三个模块都撞上了——那正是要看见的东西。"""
-        # L1_ROW is 'd' * 64, so this one must not start with d - the fourth
-        # time a fixture sha prefix has collided in this suite.
-        other = {**L1_ROW, 'sha256': 'b7' + 'c' * 62, 'rel': '别的/文件.xlsx'}
-        with self.results.open('a', encoding='utf-8') as fh:
-            fh.write(json.dumps(other, ensure_ascii=False) + '\n')
-        self.skip(['缺 counterparty_role 维度'])
-        self.skip(['缺 counterparty_role 维度'], doc='b7cccccc')
-        self.assertEqual(len(L2.open_gaps()), 2)
-
-    def test_the_read_ledger_says_it_was_a_skip_not_a_read(self):
-        """零条事实和「读了但存不下」印出来一样，就等于没记。"""
-        self.skip(['server_class 缺 x86'], reason='整表都是 x86 口径')
-        row = json.loads(L2.READ_LOG.read_text(encoding='utf-8').splitlines()[-1])
-        self.assertEqual(row['facts'], 0)
-        self.assertEqual(row['skipped'], '整表都是 x86 口径')
-        self.assertEqual(row['gaps'], [L2.open_gaps()[0]['gap_id']])
-
-    def test_the_default_reason_is_the_menu(self):
-        self.skip(['server_class 缺 x86'])
-        row = json.loads(L2.READ_LOG.read_text(encoding='utf-8').splitlines()[-1])
-        self.assertEqual(row['skipped'], '菜单没有位置')
-
-    def test_the_way_back_is_in_the_output(self):
-        """跳过不是丢弃：最终我们还是要都读的。"""
-        report = self.skip(['server_class 缺 x86'])
-        self.assertIn('pack --again --sha', report['note'])
-        self.assertIn(L1_ROW['sha256'][:12], report['note'])
-
-    def test_an_ambiguous_sha_is_refused(self):
-        with self.results.open('a', encoding='utf-8') as fh:
-            fh.write(json.dumps({**L1_ROW, 'sha256': L1_ROW['sha256'][:8] + 'e' * 56},
-                                ensure_ascii=False) + '\n')
-        with self.assertRaises(SystemExit):
-            self.skip(['随便'])
-
-    def test_filling_a_gap_clears_it(self):
-        gap_id = self.skip(['server_class 缺 x86'])['gap_ids'][0]
-        self.gaps(filled=[gap_id])
-        self.assertEqual(L2.open_gaps(), [])
-
-    def test_filling_one_leaves_the_others(self):
-        ids = self.skip(['缺 x86', '缺 storage_scope'])['gap_ids']
-        self.gaps(filled=[ids[0]])
-        self.assertEqual([r['gap'] for r in L2.open_gaps()], ['缺 storage_scope'])
-
-    def test_filling_an_unknown_gap_is_refused(self):
-        with self.assertRaises(SystemExit):
-            self.gaps(filled=['000000000000'])
-
-    def test_filling_the_same_gap_twice_is_refused(self):
-        """第二次销账多半是记错了账，不该悄悄成功。"""
-        gap_id = self.skip(['缺 x86'])['gap_ids'][0]
-        self.gaps(filled=[gap_id])
-        with self.assertRaises(SystemExit):
-            self.gaps(filled=[gap_id])
-
-    def test_the_listing_names_the_document_and_the_module(self):
-        self.skip(['server_class 缺 x86'])
-        listing = self.gaps()
-        self.assertIn('server_class 缺 x86', listing)
-        self.assertIn(L1_ROW['rel'], listing)
-        self.assertIn('"open_gaps": 1', listing)
-
-    def test_an_incomplete_tail_does_not_take_the_ledger_down(self):
-        self.skip(['缺 x86'])
-        with L2.GAPS.open('a', encoding='utf-8') as fh:
-            fh.write('{ 半行')
-        self.assertEqual(len(L2.open_gaps()), 1)
-
-
 class FilledGapTests(unittest.TestCase):
     """M4 读表时撞到菜单没有位置的三处，补上之后钉住。
 
@@ -1367,7 +613,7 @@ class FilledGapTests(unittest.TestCase):
 
     def test_every_existing_fact_of_those_metrics_carries_the_new_dim(self):
         """加一维就让既有事实全部失效——回填过才算补完。"""
-        store = json.loads((L2.REPO /
+        store = json.loads((L2.root /
                             'data/facts.json').read_text(encoding='utf-8'))
         rows = [f for f in store['records']
                 if f['metric_id'] in ('server_mfg_revenue', 'server_asp')]
@@ -1377,7 +623,7 @@ class FilledGapTests(unittest.TestCase):
 
     def test_no_storage_row_was_backfilled_as_not_applicable(self):
         """存储行的口径要人判，机械回填成「不适用」就是造一条假事实。"""
-        store = json.loads((L2.REPO /
+        store = json.loads((L2.root /
                             'data/facts.json').read_text(encoding='utf-8'))
         for f in store['records']:
             cal = f.get('caliber') or {}
@@ -1519,7 +765,7 @@ class M07MenuTests(unittest.TestCase):
 
     # -- 加了维就要回填 ----------------------------------------------------
     def test_every_shipment_fact_carries_both_new_dimensions(self):
-        store = json.loads((L2.REPO /
+        store = json.loads((L2.root /
                             'data/facts.json').read_text(encoding='utf-8'))
         rows = [f for f in store['records']
                 if f['metric_id'] == 'optics_module_shipment']
@@ -1591,7 +837,7 @@ class M02MenuTests(unittest.TestCase):
     )
 
     def test_the_existing_shipment_facts_were_backfilled_as_market_totals(self):
-        store = json.loads((L2.REPO /
+        store = json.loads((L2.root /
                             'data/facts.json').read_text(encoding='utf-8'))
         rows = {f['fact_id']: f for f in store['records']
                 if f['metric_id'] == 'server_unit_shipments'}
@@ -1602,7 +848,7 @@ class M02MenuTests(unittest.TestCase):
 
     def test_later_shipment_facts_state_which_side_they_are(self):
         """新读进来的可以是供应方或需求方，但三个取值之外的一律不收。"""
-        store = json.loads((L2.REPO /
+        store = json.loads((L2.root /
                             'data/facts.json').read_text(encoding='utf-8'))
         allowed = {'供应方', '需求方', '全市场（未分侧）'}
         for f in store['records']:
@@ -1805,7 +1051,7 @@ class M05M09MenuTests(unittest.TestCase):
         self.assertIn('规范最低', d['values'])      # 旧值保留给既有事实
 
     def test_the_existing_engineering_facts_were_backfilled(self):
-        store = json.loads((L2.REPO /
+        store = json.loads((L2.root /
                             'data/facts.json').read_text(encoding='utf-8'))
         rows = [f for f in store['records']
                 if f['metric_id'] in ('room_floor_load', 'room_clear_height')]
@@ -1842,520 +1088,6 @@ class M05M09MenuTests(unittest.TestCase):
                       self.dim('cost_share_by_trade', 'denominator')['note'])
 
 
-class TextFingerprintTests(unittest.TestCase):
-    """同一份报告的两个副本，字节不同、sha256 不同，正文一字不差。
-
-    M4 撞到的：两份中国信通院第三方运营商报告，41 页、23,935 字、正文 md5
-    完全一致，sha256 不同，于是排进阅读队列两次。sha256 认的是字节，
-    读者认的是内容——去重要在内容那一层做。
-    """
-
-    def setUp(self):
-        self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-fp-')
-        base = Path(self.temp.name)
-        self._saved = (L2.TEXT_MD5, L2.read_documents)
-        L2.TEXT_MD5 = base / 'l2_text_md5.jsonl'
-        L2.read_documents = lambda: set(self.read)
-        self.read = set()
-
-    def tearDown(self):
-        (L2.TEXT_MD5, L2.read_documents) = self._saved
-        self.temp.cleanup()
-
-    def fp(self, text, pages=41):
-        return L2.text_fingerprint(text, {'pages': pages})
-
-    BODY = '中国第三方数据中心运营商分析报告。' * 40      # 逾 500 字
-
-    def test_a_re_export_with_different_bytes_has_the_same_fingerprint(self):
-        """换行被重排、空白被压掉，读者看到的还是同一篇。"""
-        other = self.BODY.replace('。', '。\n   ')
-        self.assertEqual(self.fp(self.BODY), self.fp(other))
-
-    def test_a_different_document_has_a_different_fingerprint(self):
-        self.assertNotEqual(self.fp(self.BODY), self.fp(self.BODY + '另起一段。'))
-
-    def test_a_shared_front_matter_with_a_different_page_count_is_not_a_twin(self):
-        """同一套模板的季度报告可以共用很长的开头，那不是同一份。"""
-        self.assertNotEqual(self.fp(self.BODY, pages=41),
-                            self.fp(self.BODY, pages=52))
-
-    def test_too_little_text_gets_no_fingerprint(self):
-        """十几个字的扫描件封面会撞上语料里的每一份扫描件。"""
-        self.assertIsNone(self.fp('目录'))
-        self.assertIsNone(self.fp('封面' * 100))          # 仍不足 500 字
-        self.assertIsNotNone(self.fp('封面' * 300))
-
-    # -- 台账 -------------------------------------------------------------
-    def test_a_twin_is_only_a_twin_once_the_other_one_was_read(self):
-        """还没读过的副本不算——两份都在队列里时，先读到哪份都行。"""
-        L2.remember_fingerprint('a' * 64, 'deadbeef')
-        self.assertEqual(L2.already_read_with_same_text('b' * 64, 'deadbeef'), [])
-        self.read.add('a' * 64)
-        self.assertEqual(L2.already_read_with_same_text('b' * 64, 'deadbeef'),
-                         ['a' * 64])
-
-    def test_a_document_is_never_its_own_twin(self):
-        L2.remember_fingerprint('a' * 64, 'deadbeef')
-        self.read.add('a' * 64)
-        self.assertEqual(L2.already_read_with_same_text('a' * 64, 'deadbeef'), [])
-
-    def test_no_fingerprint_means_no_twin_check(self):
-        L2.remember_fingerprint('a' * 64, 'deadbeef')
-        self.read.add('a' * 64)
-        self.assertEqual(L2.already_read_with_same_text('b' * 64, None), [])
-
-    def test_an_incomplete_tail_does_not_take_the_ledger_down(self):
-        L2.remember_fingerprint('a' * 64, 'deadbeef')
-        with L2.TEXT_MD5.open('a', encoding='utf-8') as fh:
-            fh.write('{ 半行')
-        self.assertEqual(L2.fingerprints(), {'a' * 64: 'deadbeef'})
-
-    # -- 开包了但还没读的副本 ---------------------------------------------
-    def test_a_packed_but_unread_copy_is_reported(self):
-        """第三对副本就是这么漏的：两份同一轮开包，都还没读，什么都没响。"""
-        L2.remember_fingerprint('a' * 64, 'deadbeef')
-        self.assertEqual(
-            L2.packed_not_read_with_same_text('b' * 64, 'deadbeef'), ['a' * 64])
-
-    def test_a_read_copy_is_not_reported_here(self):
-        """已读的那条路由 already_read_with_same_text 管，两边不重复报。"""
-        L2.remember_fingerprint('a' * 64, 'deadbeef')
-        self.read.add('a' * 64)
-        self.assertEqual(
-            L2.packed_not_read_with_same_text('b' * 64, 'deadbeef'), [])
-
-    def test_a_document_is_never_its_own_open_twin(self):
-        L2.remember_fingerprint('a' * 64, 'deadbeef')
-        self.assertEqual(
-            L2.packed_not_read_with_same_text('a' * 64, 'deadbeef'), [])
-
-    def test_no_fingerprint_means_no_open_twin_check(self):
-        L2.remember_fingerprint('a' * 64, 'deadbeef')
-        self.assertEqual(L2.packed_not_read_with_same_text('b' * 64, None), [])
-
-    def test_the_last_write_wins(self):
-        """重抽一遍得到不同的正文（抽取器修好了），以新的为准。"""
-        L2.remember_fingerprint('a' * 64, 'old')
-        L2.remember_fingerprint('a' * 64, 'new')
-        self.assertEqual(L2.fingerprints()['a' * 64], 'new')
-
-
-class DeepReadJournalTests(unittest.TestCase):
-    def test_committed_corruption_fails_and_torn_tail_is_read_only(self):
-        with tempfile.TemporaryDirectory() as d:
-            path = Path(d)/'journal.jsonl'
-            row = {'sha256': 'a' * 64, 'text_md5': 'ab', 'sketch': ['ab'], 'gap_id': 'g'}
-            data = (json.dumps(row) + '\n').encode()
-            for attr, reader in [('READ_LOG', L2.read_documents), ('TEXT_MD5', L2.fingerprints),
-                                 ('TEXT_MD5', L2.sketches), ('GAPS', L2.open_gaps)]:
-                with self.subTest(reader=reader.__name__), patch.object(L2, attr, path):
-                    path.write_bytes(data)
-                    expected = reader()
-                    path.write_bytes(data + b'{unfinished')
-                    self.assertEqual(expected, reader())
-                    self.assertEqual(data + b'{unfinished', path.read_bytes())
-                    path.write_bytes(data + b'{broken}\n' + data)
-                    with self.assertRaisesRegex(ValueError, 'invalid JSON record'):
-                        reader()
-
-
-class TextTwinRoutingTests(unittest.TestCase):
-    """Equal extracted text is a review hint, not original identity or full coverage."""
-
-    def setUp(self):
-        self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-twin-')
-        base = Path(self.temp.name)
-        self._saved = (L2.TEXT_MD5, L2.READ_LOG, L2.eligible, L2.full_text,
-                       L2.L1.readable_path, L2.load_metrics, L2.load_questions,
-                       L2.load_facts, L2.PACKET_DIR)
-        L2.TEXT_MD5 = base / 'l2_text_md5.jsonl'
-        L2.READ_LOG = base / 'l2_read.jsonl'
-        L2.PACKET_DIR = base / 'packets'
-        self.text = '中国第三方数据中心运营商分析报告。' * 60
-        source = base / 'copy.pdf'
-        source.write_bytes('另一个字节序列'.encode('utf-8'))
-        self.row = {**L1_ROW, 'sha256': hashlib.sha256(source.read_bytes()).hexdigest()}
-        L2.eligible = lambda min_score=8, include_read=False, since=0: [self.row]
-        L2.full_text = lambda path, suffix: (self.text, {'pages': 41})
-        L2.L1.readable_path = lambda r: (source, False)
-        L2.load_metrics = lambda: METRICS
-        L2.load_questions = lambda: {}
-        L2.load_facts = lambda: {'records': []}
-        # 已读过的那一份：同一正文、另一个 sha
-        L2.remember_fingerprint('a' * 64, L2.text_fingerprint(self.text, {'pages': 41}))
-        L2.READ_LOG.write_text(json.dumps({'sha256': 'a' * 64, 'facts': 3}) + '\n',
-                               encoding='utf-8')
-
-    def tearDown(self):
-        (L2.TEXT_MD5, L2.READ_LOG, L2.eligible, L2.full_text, L2.L1.readable_path,
-         L2.load_metrics, L2.load_questions, L2.load_facts, L2.PACKET_DIR) = self._saved
-        self.temp.cleanup()
-
-    def pack(self, again=False):
-        out = io.StringIO()
-        with redirect_stdout(out):
-            L2.cmd_pack(type('A', (), {'sha': self.row['sha256'][:12] if again else None,
-                                       'min_score': 8, 'again': again, 'since': 0}))
-        return json.loads(out.getvalue())
-
-    def test_same_extracted_text_different_bytes_still_gets_its_own_packet(self):
-        before = L2.READ_LOG.read_bytes()
-        report = self.pack()
-        self.assertEqual(report['packed'], 1)
-        self.assertEqual(report['sha256'], self.row['sha256'])
-        self.assertEqual(report['same_text_already_read'], ['a' * 64])
-        self.assertNotIn(self.row['sha256'], L2.read_documents())
-        self.assertEqual(before, L2.READ_LOG.read_bytes())
-        self.assertTrue(Path(report['text']).is_file())
-
-    def test_again_still_reopens_a_genuinely_read_document(self):
-        L2.append_record(L2.READ_LOG, {'sha256': self.row['sha256'], 'facts': 3})
-        report = self.pack(again=True)
-        self.assertEqual(report['packed'], 1)
-        self.assertTrue(report['again'])
-
-    def test_old_automatic_twin_record_is_preserved_but_not_counted_as_read(self):
-        L2.append_record(L2.READ_LOG, {'sha256': self.row['sha256'], 'facts': 0, 'twin_of': ['a' * 64]})
-        before = L2.READ_LOG.read_bytes()
-        self.assertNotIn(self.row['sha256'], L2.read_documents())
-        self.assertIn('a' * 64, L2.read_documents())
-        self.assertEqual(before, L2.READ_LOG.read_bytes())
-        # A later actual full read with no facts remains a valid completion.
-        L2.append_record(L2.READ_LOG, {'sha256': self.row['sha256'], 'facts': 0})
-        self.assertIn(self.row['sha256'], L2.read_documents())
-        self.assertTrue(L2.READ_LOG.read_bytes().startswith(before))
-
-
-class AsserterTests(unittest.TestCase):
-    """谁说的进键，从哪份文件读到的不进键。
-
-    上一版规则按 sha256 判争议，两头判反：绿色数据中心白皮书一份 PDF 里引了
-    416.2 与 ICTresearch 的 1,103（一个哈希、两个断言者），IDC 对 2016 年的数
-    改过五版（五个哈希、一个断言者）。文件身份不是断言身份。
-    """
-
-    def test_two_houses_on_one_question_no_longer_collide(self):
-        """工信部 94 对信通院 111.6：同指标同年同口径，两家。"""
-        miit = fact(fact_id='cn-dc-power-2021-miit', value=94.0, asserter='工信部')
-        caict = fact(fact_id='cn-dc-power-2021-caict', value=111.6, asserter='中国信通院')
-        self.assertNotEqual(L2.claim_key(miit), L2.claim_key(caict))
-        self.assertEqual(L2.claim_identity(miit), L2.claim_identity(caict),
-                         '同一个问题——冲突要能被找到，靠的就是这个键相同')
-
-    def test_the_same_house_twice_still_collides(self):
-        one = fact(fact_id='a-1', asserter='IDC')
-        two = fact(fact_id='a-2', value=99.0, asserter='IDC')
-        self.assertEqual(L2.claim_key(one), L2.claim_key(two))
-
-    def test_a_missing_asserter_is_refused(self):
-        bad = problems(fact(asserter=None))
-        self.assertTrue(any('asserter' in p for p in bad), bad)
-
-    def test_a_report_title_is_not_an_asserter(self):
-        """originator 存书名期号日期，asserter 只要机构名——它要当键用。"""
-        bad = problems(fact(asserter='IDC《Worldwide Global StorageSphere Forecast, '
-                                     '2021–2025》（#US47509621，2021-03）'))
-        self.assertTrue(any('机构名' in p for p in bad), bad)
-
-    def test_a_placeholder_is_not_an_asserter(self):
-        self.assertTrue(problems(fact(asserter='待补')))
-
-    def test_unstated_does_not_earn_a_seat_beside_a_named_house(self):
-        """来源不明的数与具名来源并列，等于白送它一个独立印证的地位。"""
-        named = fact(fact_id='iea-2025', value=485.0, asserter='IEA')
-        claims = L2.index_claims([named])
-        anon = fact(fact_id='unknown-2025', value=448.0, asserter='未注明')
-        bad = problems(anon, claims=claims)
-        self.assertTrue(any('未注明' in p for p in bad), bad)
-
-    def test_two_named_houses_must_point_at_each_other(self):
-        first = fact(fact_id='miit-2021', value=94.0, asserter='工信部')
-        claims = L2.index_claims([first])
-        second = fact(fact_id='caict-2021', value=111.6, asserter='中国信通院')
-        bad = problems(second, claims=claims)
-        self.assertTrue(any('disputes' in p for p in bad), bad)
-        self.assertEqual(problems({**second, 'disputes': ['miit-2021']}, claims=claims), [])
-
-    def test_a_revision_is_not_a_dispute(self):
-        """IDC 自己改 2016 年的数：同一家、后一版，要 supersedes 而不是 disputes。"""
-        old = fact(fact_id='idc-2016-v2019', as_of='2016@2019-04',
-                   value=1923.9, asserter='IDC')
-        claims = L2.index_claims([old])
-        new = fact(fact_id='idc-2016-v2021', as_of='2016@2021-03',
-                   value=2000.0, asserter='IDC')
-        bad = problems(new, claims=claims)
-        self.assertTrue(any('supersedes' in p and '修订' in p for p in bad), bad)
-        self.assertEqual(problems({**new, 'supersedes': 'idc-2016-v2019'},
-                                  claims=claims), [])
-
-    def test_two_vintages_of_one_forecast_stay_side_by_side(self):
-        """预测的两个时点是两个都还活着的判断，不是接替，不要 supersedes。"""
-        first = fact(fact_id='idc-2025e-at-2019', as_of='2025E@2019-04', asserter='IDC')
-        claims = L2.index_claims([first])
-        second = fact(fact_id='idc-2025e-at-2021', as_of='2025E@2021-03',
-                      value=99.0, asserter='IDC')
-        self.assertEqual(problems(second, claims=claims), [])
-
-
-class DisputeRecordTests(unittest.TestCase):
-    """争议进库之后要能被找到：反向链接与一屏可审的报告。"""
-
-    def setUp(self):
-        self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-dispute-')
-        base = Path(self.temp.name)
-        self.facts = base / 'facts.json'
-        prior = fact(fact_id='miit-2021', value=94.0, asserter='工信部')
-        self.facts.write_text(json.dumps({'records': [prior]}, ensure_ascii=False),
-                              encoding='utf-8')
-        self._saved = (L2.FACTS, L2.READ_LOG, L2.load_metrics)
-        L2.FACTS = self.facts
-        L2.READ_LOG = base / 'l2_read.jsonl'
-        L2.load_metrics = lambda: METRICS
-
-    def tearDown(self):
-        (L2.FACTS, L2.READ_LOG, L2.load_metrics) = self._saved
-        self.temp.cleanup()
-
-    def record(self, facts):
-        path = Path(self.temp.name) / 'incoming.json'
-        path.write_text(json.dumps(facts, ensure_ascii=False), encoding='utf-8')
-        out = io.StringIO()
-        with redirect_stdout(out):
-            L2.cmd_record(type('A', (), {'facts': str(path), 'doc': None,
-                                         'partial': False, 'show': 5}))
-        lines = out.getvalue().splitlines()
-        return json.loads(lines[0]), '\n'.join(lines[1:])
-
-    def test_the_other_side_learns_it_is_contested(self):
-        report, _ = self.record([fact(fact_id='caict-2021', value=111.6,
-                                      asserter='中国信通院', disputes=['miit-2021'])])
-        self.assertEqual(report['accepted'], 1)
-        self.assertEqual(report['disputes_pending_a'], 1)
-        stored = {f['fact_id']: f for f in
-                  json.loads(self.facts.read_text(encoding='utf-8'))['records']}
-        self.assertEqual(stored['miit-2021']['disputed_by'], ['caict-2021'])
-
-    def test_both_values_are_printed_side_by_side_for_the_owner(self):
-        _, tail = self.record([fact(fact_id='caict-2021', value=111.6,
-                                    asserter='中国信通院', disputes=['miit-2021'])])
-        self.assertIn('C3 A 档待审', tail)
-        self.assertIn('工信部', tail)
-        self.assertIn('中国信通院', tail)
-        self.assertIn('94', tail)
-        self.assertIn('111.6', tail)
-
-
-class NearTwinTests(unittest.TestCase):
-    """丢了一页的副本：text_md5 一字不差才算，这里管「差一页」。
-
-    M4 撞到的：信通院《智算中心液冷产业全景研究报告（2025 年）》三个 PDF，
-    28,615 / 28,932 / 29,032 字符，差的是版权声明页与页眉，三个 text_md5
-    互不相同，于是什么都没响。前缀指纹也救不了——差的那一页在最前面。
-    """
-
-    def setUp(self):
-        self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-near-')
-        base = Path(self.temp.name)
-        self._saved = (L2.TEXT_MD5, L2.read_documents)
-        L2.TEXT_MD5 = base / 'l2_text_md5.jsonl'
-        L2.read_documents = lambda: set(self.read)
-        self.read = set()
-        rng = random.Random(7)
-        vocab = ['液冷', '智算中心', '冷板', '浸没', '单相', '相变', 'PUE', '机柜',
-                 '服务器', '部署', '产业', '标准', '测试', '运营商', '能效']
-        self.body = ''.join(rng.choice(vocab) for _ in range(4000))
-        self.other = ''.join(rng.choice(vocab) for _ in range(4000))
-        self.copyright_page = '版权声明本报告版权属于中国信息通信研究院引用请注明来源' * 15
-
-    def tearDown(self):
-        (L2.TEXT_MD5, L2.read_documents) = self._saved
-        self.temp.cleanup()
-
-    def test_a_copy_missing_a_page_is_a_near_twin(self):
-        full, short = self.copyright_page + self.body, self.body
-        self.assertNotEqual(L2.text_fingerprint(full, {'pages': 28}),
-                            L2.text_fingerprint(short, {'pages': 28}))
-        self.assertGreaterEqual(
-            L2.sketch_overlap(L2.text_sketch(full), L2.text_sketch(short)),
-            L2.NEAR_TWIN_RATIO)
-
-    def test_a_different_report_of_the_same_length_is_not(self):
-        self.assertLess(
-            L2.sketch_overlap(L2.text_sketch(self.body), L2.text_sketch(self.other)),
-            L2.NEAR_TWIN_RATIO)
-
-    def test_a_shared_front_matter_with_a_different_body_is_not(self):
-        """同一模板的两份季报共用很长的开头，那不是副本。"""
-        head = self.body[:2000]
-        self.assertLess(
-            L2.sketch_overlap(L2.text_sketch(head + self.body[2000:]),
-                              L2.text_sketch(head + self.other[2000:])),
-            L2.NEAR_TWIN_RATIO)
-
-    def test_too_little_text_gets_no_sketch(self):
-        self.assertEqual(L2.text_sketch('目录'), [])
-
-    def test_the_ledger_reports_who_it_overlaps_and_whether_it_was_read(self):
-        sketch = L2.text_sketch(self.copyright_page + self.body)
-        L2.remember_fingerprint('a' * 64, 'deadbeef', L2.text_sketch(self.body))
-        found = L2.near_twins('b' * 64, sketch)
-        self.assertEqual([t['sha256'] for t in found], ['a' * 64])
-        self.assertFalse(found[0]['read'])
-        self.read.add('a' * 64)
-        self.assertTrue(L2.near_twins('b' * 64, sketch)[0]['read'])
-
-    def test_a_document_is_never_its_own_near_twin(self):
-        sketch = L2.text_sketch(self.body)
-        L2.remember_fingerprint('a' * 64, 'deadbeef', sketch)
-        self.assertEqual(L2.near_twins('a' * 64, sketch), [])
-
-    def test_a_ledger_row_without_a_sketch_is_skipped_not_fatal(self):
-        """#159 之前写进账本的行只有 text_md5，没有 sketch。"""
-        L2.remember_fingerprint('a' * 64, 'deadbeef')
-        self.assertEqual(L2.sketches(), {})
-        self.assertEqual(L2.near_twins('b' * 64, L2.text_sketch(self.body)), [])
-
-    def test_an_empty_sketch_never_matches(self):
-        self.assertEqual(L2.sketch_overlap([], []), 0.0)
-        self.assertEqual(L2.sketch_overlap(['aa'], []), 0.0)
-
-
-class BackfillProvenanceTests(unittest.TestCase):
-    """119 条事实没有内容哈希——但那不等于出处丢了。
-
-    其中 81 条在 evidence.source_id 里写着一个十二位十六进制串，那就是
-    sha256[:12]：身份一直在，只是缩写到了 join 不上的程度。展开它要 L1 账本，
-    而账本在读文件的那台机器上，不在仓库里——所以这是一条命令，不是一次编辑。
-    """
-
-    def setUp(self):
-        self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-prov-')
-        base = Path(self.temp.name)
-        self.ledger = base / 'l1.jsonl'
-        self.facts = base / 'facts.json'
-        self._saved = (L2.L1.RESULTS, L2.FACTS, L2.REPO)
-        L2.L1.RESULTS = self.ledger
-        L2.FACTS = self.facts
-        L2.REPO = base                      # 没有 sources.json，走前缀这条路
-
-    def tearDown(self):
-        (L2.L1.RESULTS, L2.FACTS, L2.REPO) = self._saved
-        self.temp.cleanup()
-
-    def write(self, evidences, ledger_shas):
-        self.facts.write_text(json.dumps({'records': [
-            {'fact_id': 'f%d' % n, 'metric_id': 'm', 'evidence': e}
-            for n, e in enumerate(evidences)]}, ensure_ascii=False), encoding='utf-8')
-        self.ledger.write_text('\n'.join(
-            json.dumps({'sha256': s, 'rel': 'x/%s' % s[:8], 'suffix': '.pdf',
-                        'status': 'ok'}) for s in ledger_shas) + '\n',
-            encoding='utf-8')
-
-    def run_it(self, commit=False):
-        out = io.StringIO()
-        with redirect_stdout(out):
-            L2.cmd_backfill_provenance(type('A', (), {'commit': commit, 'show': 5}))
-        lines = out.getvalue().splitlines()
-        # 第一行可能是「读不到清单」的提示，报告是带 owing_before 的那一行
-        report = next(json.loads(l) for l in lines
-                      if l.startswith('{') and 'owing_before' in l)
-        return report, out.getvalue()
-
-    def stored(self):
-        return json.loads(self.facts.read_text(encoding='utf-8'))['records']
-
-    SHA = 'a1b2c3d4e5f6' + '0' * 52
-
-    def test_a_prefix_becomes_the_full_hash(self):
-        self.write([{'source_id': self.SHA[:12], 'locator': 'p.1'}], [self.SHA])
-        report, _ = self.run_it(commit=True)
-        self.assertEqual(report['按前缀补全'], 1)
-        self.assertEqual(self.stored()[0]['evidence']['sha256'], self.SHA)
-
-    def test_a_dry_run_writes_nothing(self):
-        """本项目的规矩：每一步真改之前先干跑一遍。"""
-        self.write([{'source_id': self.SHA[:12]}], [self.SHA])
-        report, text = self.run_it(commit=False)
-        self.assertEqual(report['按前缀补全'], 1)
-        self.assertIn('干跑', text)
-        self.assertNotIn('sha256', self.stored()[0]['evidence'])
-
-    def test_an_ambiguous_prefix_is_refused_not_guessed(self):
-        """十二位十六进制撞车极不可能——但「不太可能」不是往事实层写错哈希的理由。"""
-        twin = self.SHA[:12] + 'f' * 52
-        self.write([{'source_id': self.SHA[:12]}], [self.SHA, twin])
-        report, text = self.run_it(commit=True)
-        self.assertEqual(report['前缀撞车（未动）'], 1)
-        self.assertEqual(report['按前缀补全'], 0)
-        self.assertIn('撞车', text)
-        self.assertNotIn('sha256', self.stored()[0]['evidence'])
-
-    def test_a_prefix_the_ledger_does_not_know_is_reported_as_such(self):
-        """十二位十六进制既进不了账本前缀、也还原不成缓存键时，如实说这两条路都断了。"""
-        self.write([{'source_id': 'ffffffffffff'}], [self.SHA])
-        report, text = self.run_it(commit=True)
-        self.assertEqual(report['查不到（未动）'], 1)
-        self.assertIn('也不是能还原的 reader 缓存键', text)
-        self.assertNotIn('sha256', self.stored()[0]['evidence'])
-
-    def test_a_named_source_is_not_mistaken_for_a_prefix(self):
-        self.write([{'source_id': 'chinatelecom-luan-cost-2022'}], [self.SHA])
-        report, _ = self.run_it(commit=True)
-        self.assertEqual(report['按前缀补全'], 0)
-        self.assertEqual(report['查不到（未动）'], 1)
-
-    def test_a_fact_that_already_has_a_hash_is_left_alone(self):
-        self.write([{'sha256': 'b' * 64, 'source_id': self.SHA[:12]}], [self.SHA])
-        report, _ = self.run_it(commit=True)
-        self.assertEqual(report['owing_before'], 0)
-        self.assertEqual(self.stored()[0]['evidence']['sha256'], 'b' * 64)
-
-    def test_the_report_says_what_the_debt_will_be_afterwards(self):
-        """跑完要改 PROVENANCE_DEBT，命令自己把新数字算出来。"""
-        self.write([{'source_id': self.SHA[:12]}, {'source_id': 'ffffffffffff'}],
-                   [self.SHA])
-        report, text = self.run_it(commit=True)
-        self.assertEqual(report['owing_after'], 1)
-        self.assertIn('PROVENANCE_DEBT 改成 1', text)
-
-    def test_uppercase_is_not_a_hex_prefix(self):
-        """sha256 一律小写；大写串是别的东西，不要当成前缀去 join。"""
-        self.write([{'source_id': self.SHA[:12].upper()}], [self.SHA])
-        report, _ = self.run_it(commit=True)
-        self.assertEqual(report['按前缀补全'], 0)
-
-    def test_the_live_debt_is_what_no_route_could_reach(self):
-        """真实语料：81 条已按缓存键还清，剩下的 38 条没有一条还写着十二位十六进制。
-
-        原先这条测试断言「119 条里 81 条写着 sha256 前缀」。前半句对，后半句
-        不对——那 81 个十二位十六进制串一个都不是 sha256 前缀，它们是 reader
-        的缓存键（docs/inbox/path_migrations/cache_key_remap_20260818.json 里
-        一查便知），得先换成路径、再去 moves.jsonl 里换成内容哈希。按前缀 join
-        的那条路在真实语料上命中率是 0。
-
-        还清之后剩下的 38 条是真的没有出处线索：35 条 source_id 为空，3 条写的
-        是人给的名字（chinatelecom-luan-cost-2022 之类），两者都不指向任何文件。
-        """
-        (L2.L1.RESULTS, L2.FACTS, L2.REPO) = self._saved
-        store = L2.load_facts()
-        owing = L2.owing_provenance(store['records'])
-        self.assertEqual(len(owing), PROVENANCE_DEBT)
-        abbreviated = [f for f in owing
-                       if L2.HEX12.match(str((f['evidence'] or {}).get('source_id') or ''))]
-        self.assertEqual(abbreviated, [], '还有能按缓存键还的债没还')
-
-    def test_cache_keys_are_not_sha256_prefixes(self):
-        """这条钉住上面那句话里最容易被想当然的部分。"""
-        (L2.L1.RESULTS, L2.FACTS, L2.REPO) = self._saved
-        remap = json.loads(L2.CACHE_REMAP.read_text(encoding='utf-8'))
-        ledger = L2.all_results()
-        prefixes = {sha[:12] for sha in ledger}
-        collide = [k for k in remap if k in prefixes]
-        self.assertEqual(collide, [],
-                         '缓存键与 sha256 前缀撞上了，按前缀 join 会写错哈希')
-
-
 class RangeCaliberTests(unittest.TestCase):
     """区间的两端共用一个口径——这是 bound 这个字段的定义。
 
@@ -2366,7 +1098,7 @@ class RangeCaliberTests(unittest.TestCase):
     """
 
     def setUp(self):
-        store = json.loads((L2.REPO /
+        store = json.loads((L2.root /
                             'data/facts.json').read_text(encoding='utf-8'))
         self.records = store['records']
         self.by_id = {f['fact_id']: f for f in self.records}
@@ -2404,7 +1136,7 @@ class RangeCaliberTests(unittest.TestCase):
         for fact in self.records:
             if not fact.get('bound'):
                 continue
-            problems = [p for p in L2.check_fact(fact, metrics, set(), None)
+            problems = [p for p in FC.check_fact(fact, metrics, set(), None)
                         if 'sha256' not in p]
             self.assertEqual(problems, [], fact['fact_id'])
 
@@ -2514,7 +1246,7 @@ class M03M04MenuTests(unittest.TestCase):
 
     def test_the_four_order_share_facts_were_backfilled_from_their_own_notes(self):
         """回填依据在每条事实自己的 notes 里，不是按 fact_id 猜的。"""
-        store = json.loads((L2.REPO /
+        store = json.loads((L2.root /
                             'data/facts.json').read_text(encoding='utf-8'))
         rows = {f['fact_id']: f for f in store['records']
                 if f['metric_id'] == 'gas_turbine_dc_order_share'}
@@ -2771,7 +1503,7 @@ class M11MenuTests(unittest.TestCase):
         正是它的第一批用户。所以规则改成：可以用，但必须在 notes 里写明原文
         为什么没有地域，不能默默填进去。
         """
-        store = json.loads((L2.REPO /
+        store = json.loads((L2.root /
                             'data/facts.json').read_text(encoding='utf-8'))
         for f in store['records']:
             if (f.get('caliber') or {}).get('region') != '未披露':
@@ -2933,7 +1665,7 @@ class NeighbourMetricTests(unittest.TestCase):
 
     def test_no_two_metrics_share_an_id(self):
         ids = [v['metric_id'] for v in
-               json.loads((L2.REPO /
+               json.loads((L2.root /
                            'framework/metrics.json').read_text(
                                encoding='utf-8'))['metrics']]
         self.assertEqual(len(ids), len(set(ids)))
@@ -2953,11 +1685,6 @@ class NeighbourMetricTests(unittest.TestCase):
                     self.assertTrue(str(value).strip(), (mid, d['id']))
 
 
-def problems_for(f):
-    """跑一遍校验，只看与 corroboration 有关的那部分。"""
-    return [x for x in problems(f) if 'corroboration' in x]
-
-
 class SameOriginTests(unittest.TestCase):
     """「看着是两个来源，追到底是同一个」——M4 一轮里撞了两次。
 
@@ -2970,8 +1697,8 @@ class SameOriginTests(unittest.TestCase):
     """
 
     def test_the_fourth_value_exists_everywhere_it_is_declared(self):
-        self.assertIn('同源转述', L2.CORROBORATION)
-        schema = json.loads((L2.REPO /
+        self.assertIn('同源转述', FC.CORROBORATION)
+        schema = json.loads((L2.root /
                              'data/schema/fact.schema.json').read_text(encoding='utf-8'))
         self.assertIn('同源转述',
                       schema['properties']['corroboration']['enum'])
@@ -2982,7 +1709,7 @@ class SameOriginTests(unittest.TestCase):
         import importlib
 
         facts = importlib.import_module('inresearch.knowledge.facts')
-        self.assertEqual(set(L2.CORROBORATION), facts.CORROB)
+        self.assertEqual(set(FC.CORROBORATION), facts.CORROB)
 
     def test_a_fact_may_declare_it(self):
         problems = problems_for(fact(corroboration='同源转述'))
@@ -2994,14 +1721,14 @@ class SameOriginTests(unittest.TestCase):
 
     def test_the_schema_says_why_it_is_worse_than_pending(self):
         """待验证是「还没有第二个来源」，同源转述是「有第二份文件但它不是第二个来源」。"""
-        schema = json.loads((L2.REPO /
+        schema = json.loads((L2.root /
                              'data/schema/fact.schema.json').read_text(encoding='utf-8'))
         desc = schema['properties']['corroboration']['description']
         self.assertIn('比「待交叉验证」更该警惕', desc)
         self.assertIn('它不是第二个来源', desc)
 
     def test_the_schema_keeps_both_worked_examples(self):
-        schema = json.loads((L2.REPO /
+        schema = json.loads((L2.root /
                              'data/schema/fact.schema.json').read_text(encoding='utf-8'))
         desc = schema['properties']['corroboration']['description']
         self.assertIn('574.08', desc)          # 同一作者重用自己
@@ -3009,14 +1736,10 @@ class SameOriginTests(unittest.TestCase):
 
     def test_it_records_what_cannot_be_told_apart(self):
         """五个月「价格没动」，是市场没动还是没重写这段——分不出来就记下分不出来。"""
-        schema = json.loads((L2.REPO /
+        schema = json.loads((L2.root /
                              'data/schema/fact.schema.json').read_text(encoding='utf-8'))
         self.assertIn('从这两份文件本身分不出来',
                       schema['properties']['corroboration']['description'])
-
-#: 出现在 note 里就该真的存在的维名——「spec 维」曾经只在 note 里存在过。
-KNOWN_DIM_NAMES = {'spec', 'sub_trade', 'option', 'bucket', 'scenario',
-                   'tier', 'customer', 'region', 'measure', 'basis'}
 
 
 class FreeTextDimensionTests(unittest.TestCase):
@@ -3047,13 +1770,13 @@ class FreeTextDimensionTests(unittest.TestCase):
                  if f['metric_id'] == 'equipment_unit_price')))
         probe['fact_id'] = 'probe-new-spec'
         probe['caliber']['spec'] = '风冷冷水机组，制冷量≥350kW，COP≥3.2'
-        self.assertEqual(L2.check_fact(probe, metrics, set(), None), [])
+        self.assertEqual(FC.check_fact(probe, metrics, set(), None), [])
 
     def test_a_placeholder_is_refused_with_the_reason(self):
         d = self.dim('equipment_unit_price', 'spec')
         self.assertTrue(d.get('free_text'))
         for junk in ('见 notes', '同上', '待补', 'N/A', '—'):
-            self.assertIn(junk, L2.PLACEHOLDER_VALUES)
+            self.assertIn(junk, FC.PLACEHOLDER_VALUES)
 
     def test_the_refusal_says_what_the_dimension_is_for(self):
         metrics = L2.load_metrics()
@@ -3063,7 +1786,7 @@ class FreeTextDimensionTests(unittest.TestCase):
                  if f['metric_id'] == 'equipment_unit_price')))
         probe['fact_id'] = 'probe-placeholder'
         probe['caliber']['spec'] = '见 notes'
-        bad = L2.check_fact(probe, metrics, set(), None)
+        bad = FC.check_fact(probe, metrics, set(), None)
         self.assertTrue(any('占位词不是取值' in p for p in bad), bad)
         self.assertTrue(any('把两条数区分开' in p for p in bad), bad)
 
@@ -3074,18 +1797,18 @@ class FreeTextDimensionTests(unittest.TestCase):
         blank = json.loads(json.dumps(base)); blank['fact_id'] = 'p1'
         blank['caliber']['spec'] = '   '
         self.assertTrue(any('不能留空' in p
-                            for p in L2.check_fact(blank, metrics, set(), None)))
+                            for p in FC.check_fact(blank, metrics, set(), None)))
         gone = json.loads(json.dumps(base)); gone['fact_id'] = 'p2'
         del gone['caliber']['spec']
         self.assertTrue(any('缺 spec' in p
-                            for p in L2.check_fact(gone, metrics, set(), None)))
+                            for p in FC.check_fact(gone, metrics, set(), None)))
 
     # -- 三处占位都清掉了 --------------------------------------------------
     def test_no_dimension_anywhere_still_holds_a_placeholder(self):
         for mid, metric in self.metrics.items():
             for d in metric.get('caliber_dims', []):
                 for value in d.get('values') or ():
-                    self.assertNotIn(str(value), L2.PLACEHOLDER_VALUES, (mid, d['id']))
+                    self.assertNotIn(str(value), FC.PLACEHOLDER_VALUES, (mid, d['id']))
 
     def test_every_dimension_is_either_an_enum_or_free_text(self):
         """两者都不是的维，check_fact 会放行任何字符串——等于没有约束。"""
@@ -3123,7 +1846,7 @@ class FreeTextDimensionTests(unittest.TestCase):
         for f in store['records']:
             if f['metric_id'] != 'equipment_unit_price':
                 continue
-            key = L2.claim_key(f)
+            key = FC.claim_key(f)
             self.assertNotIn(key, seen, (f['fact_id'], seen.get(key)))
             seen[key] = f['fact_id']
             keys.append(key)
@@ -3490,7 +2213,7 @@ class FifthRoundGapTests(unittest.TestCase):
         """
         metrics, seen, owed = self.metrics, set(), []
         for f in self.facts:
-            bad = L2.check_fact(f, metrics, seen)
+            bad = FC.check_fact(f, metrics, seen)
             seen.add(f.get('fact_id'))
             for e in bad:
                 self.assertIn('sha256', e, '%s: %s' % (f.get('fact_id'), e))
@@ -3501,7 +2224,7 @@ class FifthRoundGapTests(unittest.TestCase):
         """回填口径维会改 claim_key——填错一格就是把两条数撞成一条。"""
         seen = {}
         for f in self.facts:
-            key = L2.claim_key(f)
+            key = FC.claim_key(f)
             self.assertNotIn(key, seen,
                              '%s 与 %s 撞了 claim_key' % (f['fact_id'], seen.get(key)))
             seen[key] = f['fact_id']
@@ -3645,7 +2368,7 @@ class FifthRoundGapTests(unittest.TestCase):
     def test_the_ruling_is_written_down_where_the_contract_lives(self):
         """裁决要留在契约里，不能只活在一次对话里。"""
         note = json.loads(
-            (L2.REPO / 'framework/metrics.json').read_text(encoding='utf-8'))['note']
+            (L2.root / 'framework/metrics.json').read_text(encoding='utf-8'))['note']
         self.assertIn('进事实层，不另建一层', note)
         self.assertIn('会改变这个裁决的情形', note)
 
@@ -3714,33 +2437,85 @@ class FifthRoundGapTests(unittest.TestCase):
         RAND 那 100 页与冷源那份全套控制价，菜单补齐后要整份重读；
         销账要等重读做完，不是等菜单补完。
         """
-        open_ids = {r['gap_id'] for r in L2.open_gaps()}
+        open_ids = {r['gap_id'] for r in L2.gaps.open()}
         for gid in ('c0d3e7fcefb7', 'a43dec696fcc', 'df8fbc0c4037',
                     '99b7788670eb'):
             self.assertIn(gid, open_ids, gid)
 
     def test_the_menu_gaps_this_batch_filled_are_closed(self):
-        open_ids = {r['gap_id'] for r in L2.open_gaps()}
+        open_ids = {r['gap_id'] for r in L2.gaps.open()}
         for gid in FILLED_THIS_BATCH:
             self.assertNotIn(gid, open_ids, gid)
 
 
-#: 本批销账的 gap_id——显式名单，不靠前缀或字样匹配。
-#: 上一轮的教训：按 fact_id 里的字样批量判定，同一条测试被打了两次补丁还是不对。
-FILLED_THIS_BATCH = frozenset((
-    '6af0f6ef29ca', 'fb2fd593a96b', '79dcfab07590',
-    'c887218bba8c', 'b2b357ea5a41', '21b8800b45b4', '5647700326f0',
-    'a4ceb4989ff9', 'c6eac4df9d6f', '3d289012079d', 'd6ab0f6695c7',
-    '668882d117c0', '836448f119cb', 'f93ec7230288', 'dce7db166f51',
-    '4881b5e1ee08', '268ef629bbc5', '8b630833198b', 'af071d00d08f',
-    '0223b5b69287', '1d9cb156e7fa', '6240a391fd12', 'e860f4415f38',
-    '65767b0dfd12', '9bc7abd1f421',
-    '0287d488eb08', '1f84210a930d', 'cbce461c8ad4', '2749a0c3ae47',
-    'f29dcf1e1431',
-    '678b422a1179', 'dbaef8d19b23', '793dd357eb7b', 'd22737f33f3e',
-    '2f91e8fea8b5', 'e7a7f6d9e10d', '66f3c0cb1669', '550c2c739b1b',
-))
 
 
-if __name__ == '__main__':
-    unittest.main()
+class AsserterTests(unittest.TestCase):
+    """谁说的进键，从哪份文件读到的不进键。
+
+    上一版规则按 sha256 判争议，两头判反：绿色数据中心白皮书一份 PDF 里引了
+    416.2 与 ICTresearch 的 1,103（一个哈希、两个断言者），IDC 对 2016 年的数
+    改过五版（五个哈希、一个断言者）。文件身份不是断言身份。
+    """
+
+    def test_two_houses_on_one_question_no_longer_collide(self):
+        """工信部 94 对信通院 111.6：同指标同年同口径，两家。"""
+        miit = fact(fact_id='cn-dc-power-2021-miit', value=94.0, asserter='工信部')
+        caict = fact(fact_id='cn-dc-power-2021-caict', value=111.6, asserter='中国信通院')
+        self.assertNotEqual(FC.claim_key(miit), FC.claim_key(caict))
+        self.assertEqual(FC.claim_identity(miit), FC.claim_identity(caict),
+                         '同一个问题——冲突要能被找到，靠的就是这个键相同')
+
+    def test_the_same_house_twice_still_collides(self):
+        one = fact(fact_id='a-1', asserter='IDC')
+        two = fact(fact_id='a-2', value=99.0, asserter='IDC')
+        self.assertEqual(FC.claim_key(one), FC.claim_key(two))
+
+    def test_a_missing_asserter_is_refused(self):
+        bad = problems(fact(asserter=None))
+        self.assertTrue(any('asserter' in p for p in bad), bad)
+
+    def test_a_report_title_is_not_an_asserter(self):
+        """originator 存书名期号日期，asserter 只要机构名——它要当键用。"""
+        bad = problems(fact(asserter='IDC《Worldwide Global StorageSphere Forecast, '
+                                     '2021–2025》（#US47509621，2021-03）'))
+        self.assertTrue(any('机构名' in p for p in bad), bad)
+
+    def test_a_placeholder_is_not_an_asserter(self):
+        self.assertTrue(problems(fact(asserter='待补')))
+
+    def test_unstated_does_not_earn_a_seat_beside_a_named_house(self):
+        """来源不明的数与具名来源并列，等于白送它一个独立印证的地位。"""
+        named = fact(fact_id='iea-2025', value=485.0, asserter='IEA')
+        claims = FC.index_claims([named])
+        anon = fact(fact_id='unknown-2025', value=448.0, asserter='未注明')
+        bad = problems(anon, claims=claims)
+        self.assertTrue(any('未注明' in p for p in bad), bad)
+
+    def test_two_named_houses_must_point_at_each_other(self):
+        first = fact(fact_id='miit-2021', value=94.0, asserter='工信部')
+        claims = FC.index_claims([first])
+        second = fact(fact_id='caict-2021', value=111.6, asserter='中国信通院')
+        bad = problems(second, claims=claims)
+        self.assertTrue(any('disputes' in p for p in bad), bad)
+        self.assertEqual(problems({**second, 'disputes': ['miit-2021']}, claims=claims), [])
+
+    def test_a_revision_is_not_a_dispute(self):
+        """IDC 自己改 2016 年的数：同一家、后一版，要 supersedes 而不是 disputes。"""
+        old = fact(fact_id='idc-2016-v2019', as_of='2016@2019-04',
+                   value=1923.9, asserter='IDC')
+        claims = FC.index_claims([old])
+        new = fact(fact_id='idc-2016-v2021', as_of='2016@2021-03',
+                   value=2000.0, asserter='IDC')
+        bad = problems(new, claims=claims)
+        self.assertTrue(any('supersedes' in p and '修订' in p for p in bad), bad)
+        self.assertEqual(problems({**new, 'supersedes': 'idc-2016-v2019'},
+                                  claims=claims), [])
+
+    def test_two_vintages_of_one_forecast_stay_side_by_side(self):
+        """预测的两个时点是两个都还活着的判断，不是接替，不要 supersedes。"""
+        first = fact(fact_id='idc-2025e-at-2019', as_of='2025E@2019-04', asserter='IDC')
+        claims = FC.index_claims([first])
+        second = fact(fact_id='idc-2025e-at-2021', as_of='2025E@2021-03',
+                      value=99.0, asserter='IDC')
+        self.assertEqual(problems(second, claims=claims), [])

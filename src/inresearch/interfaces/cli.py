@@ -13,7 +13,7 @@ COMMANDS = {
     'models': 'inresearch.adapters.models',
     'serve': 'inresearch.interfaces.http', 'users': 'inresearch.interfaces.users', 'reader': 'inresearch.interfaces.reader',
     'inventory': 'inresearch.materials.inventory', 'triage': 'inresearch.workflow.triage', 'score': 'inresearch.workflow.score',
-    'batch': 'inresearch.workflow.terminal_batch', 'deep-read': 'inresearch.workflow.deep_read', 'organize': 'inresearch.materials.organize',
+    'batch': 'inresearch.workflow.terminal_batch', 'deep-read': 'inresearch.interfaces.deep_read', 'organize': 'inresearch.materials.organize',
     'mapping': 'inresearch.materials.mapping', 'preflight': 'inresearch.materials.preflight',
     'attribution': 'inresearch.workflow.attribution', 'progress': 'inresearch.workflow.progress',
     'receive': 'inresearch.materials.receive', 'publish': 'inresearch.delivery.publish', 'ocr-worker': 'inresearch.adapters.ocr_worker',

@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.13.5",
+  "version": "2026.09.13.6",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -515,8 +515,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 24454,
-      "sha256": "f92accb3c5d8691b22567ff3803e3e59611141ee85963411b66172c3b093af1a",
+      "bytes": 25234,
+      "sha256": "773b85cdc4cd7fdb0eb2fcaa5fdacd5cdf6270913114ff2e42c6559dd1e5409b",
       "collections": []
     },
     {
@@ -560,8 +560,8 @@
     {
       "path": "docs/M4_TRIAGE_TASK.md",
       "role": "normative",
-      "bytes": 13389,
-      "sha256": "63a14d14af9256cea7ede5c99571785b8a59bfeb672766c7a839e8e55d947cd7",
+      "bytes": 15174,
+      "sha256": "7aec5f854d5a1034029206cf71fd52b4544073aefa4bed0adf90f8da87a36c12",
       "collections": []
     },
     {
@@ -3716,6 +3716,253 @@
       "collections": []
     },
     {
+      "path": "docs/reviews/2026-09-13/deep-read/DELIVERY.md",
+      "role": "historical",
+      "bytes": 9997,
+      "sha256": "0389ac4dd56d73dc39ff9a3dce6ddc5112f5976a598c8b2496c6e1600f5e1d52",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-09-13/deep-read/PLAN.md",
+      "role": "historical",
+      "bytes": 6868,
+      "sha256": "492d77e7461f4f2af72ad68ee4ae02a78e16da3031732ee827600073319b8467",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-09-13/deep-read/audit.py",
+      "role": "historical",
+      "bytes": 6495,
+      "sha256": "0e9c6dfe16d69f1f776dd86cf203ef56705d81161376eb72c5f334378c1374df",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-09-13/deep-read/baseline.json",
+      "role": "historical",
+      "bytes": 620,
+      "sha256": "21d66d6db3a79627d4ede1905d71762247498780b496f83b729b6b0e90be478c",
+      "collections": [
+        {
+          "name": "ambiguous_pack_selected",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/deep-read/consumers-after.csv",
+      "role": "historical",
+      "bytes": 46483,
+      "sha256": "53f7346c0438c9a2e75fa678a57db829bef6f18f52bafd2fff4dcd8c5a47e85a",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 455,
+          "fields": [
+            "consumer",
+            "line",
+            "symbol",
+            "kind"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/deep-read/consumers-before.csv",
+      "role": "historical",
+      "bytes": 29666,
+      "sha256": "97f6096af17e3d6e2f63b000d33c6b292de2b523a1e2a5b64ff6543464f74a3a",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 425,
+          "fields": [
+            "consumer",
+            "line",
+            "symbol",
+            "kind"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/deep-read/contracts_audit.py",
+      "role": "historical",
+      "bytes": 7007,
+      "sha256": "9f0ec14ac784e59858998d1f5f4b860d23d45366e005d96abae6bbf651bd9a80",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-09-13/deep-read/dependency-audit.json",
+      "role": "historical",
+      "bytes": 16498,
+      "sha256": "6880a6ca2260e726507669208cb552cc35d8876903459ed2b95714c40b4eb3c8",
+      "collections": [
+        {
+          "name": "cycles",
+          "count": 0
+        },
+        {
+          "name": "import_edges",
+          "count": 187
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/deep-read/file-plan.csv",
+      "role": "historical",
+      "bytes": 83080,
+      "sha256": "f0fd02e336fe054373557c8f3a5ffe3722b83656c7d368593780a3fbcd3b8834",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 603,
+          "fields": [
+            "path",
+            "action",
+            "destination",
+            "reason"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/deep-read/file-results.csv",
+      "role": "historical",
+      "bytes": 43385,
+      "sha256": "e8ec976d04e918143852b5a244cf7025ed1aa9d33b1a328ad23f1a489939da37",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 621,
+          "fields": [
+            "path",
+            "action",
+            "planned",
+            "result"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/deep-read/functions-before.csv",
+      "role": "historical",
+      "bytes": 1932,
+      "sha256": "489673addc9b1027f12a9539480d8c137c0809882af12a9e71f1756a8741d84d",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 38,
+          "fields": [
+            "symbol",
+            "line",
+            "lines",
+            "target"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/deep-read/integration-files.csv",
+      "role": "historical",
+      "bytes": 51646,
+      "sha256": "1fca61a6903334038836c115d429de347de822000741cbeb9fa1ba6cd2c12982",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 621,
+          "fields": [
+            "path",
+            "upstream_change",
+            "our_change",
+            "disposition"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/deep-read/public-contracts.csv",
+      "role": "historical",
+      "bytes": 97545,
+      "sha256": "4a74d19fd9f47ab3e7b28665d18fccbf380330ba5b0eff56e80a11bb43fbcdfe",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 76,
+          "fields": [
+            "symbol",
+            "implementation",
+            "line",
+            "consumer_count",
+            "consumers",
+            "result"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/deep-read/real-flow.json",
+      "role": "historical",
+      "bytes": 12394,
+      "sha256": "610dceeaf426dd87803d5eaa995d7a66b053e4509fa50e1db85e3b27eea0e8e3",
+      "collections": [
+        {
+          "name": "steps",
+          "count": 6
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/deep-read/statistics-after.json",
+      "role": "historical",
+      "bytes": 2210,
+      "sha256": "d9d57d2197e683f351dcbb108754428fb4596fca5649322669808e221d6e9df1",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-09-13/deep-read/statistics-before.json",
+      "role": "historical",
+      "bytes": 766,
+      "sha256": "8aca0179761cee5c816460ee1cea660d097758ac108094f03260d745b48854b9",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-09-13/deep-read/test-migration.json",
+      "role": "historical",
+      "bytes": 1953,
+      "sha256": "e0494f01193bbce2bdfe04506350e0317c6a687acf9613969640340579a73928",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-09-13/deep-read/test-results.csv",
+      "role": "historical",
+      "bytes": 66756,
+      "sha256": "f8962497b1515562be08efa718f4f0b206c7eb27352c36a3ab9d4dd5941f362b",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 413,
+          "fields": [
+            "test",
+            "current",
+            "present",
+            "result"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-13/deep-read/verification.json",
+      "role": "historical",
+      "bytes": 1243,
+      "sha256": "fa74d3f14104b3148a511b38a6f2dfa06f2bfc9ad34a29d10648702cb6ee0767",
+      "collections": [
+        {
+          "name": "remaining",
+          "count": 5
+        }
+      ]
+    },
+    {
       "path": "docs/reviews/2026-09-13/fact-conflicts/DELIVERY.md",
       "role": "historical",
       "bytes": 4010,
@@ -4203,15 +4450,15 @@
     {
       "path": "framework/09_software_contracts.md",
       "role": "normative",
-      "bytes": 5668,
-      "sha256": "92f20ed5e2b4df454b2a5990eb3aa58b16390d0fa26fbf69ca5c471d53f8b6bf",
+      "bytes": 9318,
+      "sha256": "c70392aa95188b01f4d9121082f4a2d5bc9717c282ea9e967018ff2ea4eaa335",
       "collections": []
     },
     {
       "path": "framework/CURRENT.md",
       "role": "normative",
       "bytes": 5288,
-      "sha256": "735c0b61e3a06ec0751d15b6fd03b911a77fd0de3ea09cb7ed6cbcb13163f074",
+      "sha256": "ec01fd9e4ae4abe1b77a0b593fbb8269c9396ab89a878f8cae6c42e6df7f05b2",
       "collections": []
     },
     {
@@ -4233,8 +4480,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 22444,
-      "sha256": "a71b16f3e90c67b863aa0322ef47a95bd5d73d2e14bef20f8af4c0ea20608db4",
+      "bytes": 22868,
+      "sha256": "a3957b925d04c8cc03826c1b70dfc3c8dae61685730b1175f01d7dc3c2d396c0",
       "collections": [
         {
           "name": "policies",
@@ -4490,8 +4737,8 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 20634,
-      "sha256": "6f1538776f6d6c3b5710f3ed736f2cab46d8befbe97e16974ced77f540aee045",
+      "bytes": 23918,
+      "sha256": "1fa942178a12c30570c54fd0ffe36dcd53e40041b64d10c0fac44e81b7f0a4d6",
       "collections": [
         {
           "name": "policies",
@@ -4798,8 +5045,8 @@
     {
       "path": "src/inresearch/README.md",
       "role": "supporting_document",
-      "bytes": 3352,
-      "sha256": "aa07faa46ef8f758580000a61d8c0052f0583876265a538faaaf3b81d0f35439",
+      "bytes": 3621,
+      "sha256": "da28a061e859a10d3d4e95fc0236d65e872c3995ca5ef568e28f884b97f5df72",
       "collections": []
     },
     {
@@ -5001,8 +5248,8 @@
     {
       "path": "src/inresearch/delivery/reading_packet.py",
       "role": "implementation",
-      "bytes": 8286,
-      "sha256": "50dcacfc9fcd6c9e7863bbbfa0df0f7adef9996b1f7bee899ff0d29cfa6fe0a3",
+      "bytes": 11407,
+      "sha256": "ca63ee1f6fb386d0eaf16234bb62a3e28a9fa2ae449ed0ab02facff120432e15",
       "collections": []
     },
     {
@@ -5029,8 +5276,15 @@
     {
       "path": "src/inresearch/interfaces/cli.py",
       "role": "implementation",
-      "bytes": 4252,
-      "sha256": "8591ab7ef478ef5802db4fb00dc64ad6129bc3f7100ad04d070203723970c2c5",
+      "bytes": 4254,
+      "sha256": "57c7232698c0dbf60c46581b68d8ccd1ac95f5462e910a12f0d65f3e4e5ac81a",
+      "collections": []
+    },
+    {
+      "path": "src/inresearch/interfaces/deep_read.py",
+      "role": "implementation",
+      "bytes": 10157,
+      "sha256": "cdd2e9a311d18fa1501512157093e1aa0ac58ee442dc07a4dea41e893d395728",
       "collections": []
     },
     {
@@ -5106,8 +5360,8 @@
     {
       "path": "src/inresearch/knowledge/fact_contract.py",
       "role": "implementation",
-      "bytes": 15808,
-      "sha256": "b72fe426596006cea6741d67c59c8042c891b57215346342883902d6aeda04b7",
+      "bytes": 17899,
+      "sha256": "e9a94a4d61dc25f32ded42ded0a7722fddc2cf56ee12b4111e6a7a5de71735bd",
       "collections": []
     },
     {
@@ -5143,6 +5397,13 @@
       "role": "implementation",
       "bytes": 1490,
       "sha256": "0f85e094d47da5aeba1137ee698fb29a797291a6b843011e2cce644c0ca8d144",
+      "collections": []
+    },
+    {
+      "path": "src/inresearch/knowledge/provenance.py",
+      "role": "implementation",
+      "bytes": 3886,
+      "sha256": "7cc6e8b9ff6f7d5ab12b321c67ea531b9c125c7691dcadc678fa9bb56e556f02",
       "collections": []
     },
     {
@@ -5244,6 +5505,13 @@
       "collections": []
     },
     {
+      "path": "src/inresearch/materials/reading_policy.py",
+      "role": "implementation",
+      "bytes": 3731,
+      "sha256": "4cf8b96a4e26e946de5eec76e8c157ba076f246d60a033ac85e46dfb7a649b66",
+      "collections": []
+    },
+    {
       "path": "src/inresearch/materials/receive.py",
       "role": "implementation",
       "bytes": 3459,
@@ -5269,6 +5537,13 @@
       "role": "implementation",
       "bytes": 2088,
       "sha256": "9a71f2733141ec9675871d5570935d8bf2c7a0908ea79f3b52f75cd72e4ca3fc",
+      "collections": []
+    },
+    {
+      "path": "src/inresearch/materials/text_similarity.py",
+      "role": "implementation",
+      "bytes": 3164,
+      "sha256": "79611cc435c5981062bf1f386f97c7f71abeeefe5b0e279c7e27c399a0a4c7ac",
       "collections": []
     },
     {
@@ -5344,8 +5619,8 @@
     {
       "path": "src/inresearch/workflow/deep_read.py",
       "role": "implementation",
-      "bytes": 55503,
-      "sha256": "cd94ebde7b74c478aa933263c46010957f78dc7ebca28b9dc0a45499d7580de6",
+      "bytes": 17844,
+      "sha256": "2a23527c890135aa4a900f1b9fa5f8dd284ae3a60ce79b4ceeb11463158a1bff",
       "collections": []
     },
     {
@@ -5360,6 +5635,13 @@
       "role": "implementation",
       "bytes": 36876,
       "sha256": "9012e96456416dd49107b2e2c297d48a16d62c74d2c8c9ef90d3dc94e81a96df",
+      "collections": []
+    },
+    {
+      "path": "src/inresearch/workflow/reading_gaps.py",
+      "role": "implementation",
+      "bytes": 2676,
+      "sha256": "48f069b42b345810a9d4c3c42efc4f14e5ea2fc720d59e1952c2b8b404d0e2f4",
       "collections": []
     },
     {
@@ -5482,6 +5764,13 @@
       "collections": []
     },
     {
+      "path": "tests/unit/deep_read_fixtures.py",
+      "role": "test",
+      "bytes": 4176,
+      "sha256": "a05ce5b320efe0358e4563f8430ab872d907063455f06f7b4793b93d97014636",
+      "collections": []
+    },
+    {
       "path": "tests/unit/test_acquisition.py",
       "role": "test",
       "bytes": 5565,
@@ -5531,10 +5820,31 @@
       "collections": []
     },
     {
+      "path": "tests/unit/test_deep_read.py",
+      "role": "test",
+      "bytes": 47228,
+      "sha256": "e41a2b21f77b7ae4f0dfa57e7bee22c77590ef5133cf8c5e628ba2d5de43a22b",
+      "collections": []
+    },
+    {
+      "path": "tests/unit/test_deep_read_transactions.py",
+      "role": "test",
+      "bytes": 20529,
+      "sha256": "8dbc032fa92ecaff99d208380714f630a5aec8a728c13d01a5879c68e7f42813",
+      "collections": []
+    },
+    {
       "path": "tests/unit/test_display_regressions.py",
       "role": "test",
       "bytes": 6032,
       "sha256": "80fa0bfb97bf9e2494cabaad1c00d15e2d03964ea347749a99b9ee25cc031e5d",
+      "collections": []
+    },
+    {
+      "path": "tests/unit/test_fact_contract.py",
+      "role": "test",
+      "bytes": 132488,
+      "sha256": "36eeacfa1d43ba37ba241542f93f4b5051a39c2c6fb37ce065ec8636a345d9d7",
       "collections": []
     },
     {
@@ -5570,13 +5880,6 @@
       "role": "test",
       "bytes": 3198,
       "sha256": "8370a4c48fd3c09971872ed17e334b5ea694c53edf44e5b74d3caf4879a63b74",
-      "collections": []
-    },
-    {
-      "path": "tests/unit/test_m4_l2.py",
-      "role": "test",
-      "bytes": 190591,
-      "sha256": "47827d559aee173e1e171b75ec8786b62a79ea2837beee7a7972b81e96ebaf90",
       "collections": []
     },
     {
@@ -5724,6 +6027,13 @@
       "role": "test",
       "bytes": 2247,
       "sha256": "b793b11cf00ce96e2501d8c192cad34ec1381fb4cac58964fdd54369013108a2",
+      "collections": []
+    },
+    {
+      "path": "tests/unit/test_text_similarity.py",
+      "role": "test",
+      "bytes": 9648,
+      "sha256": "4e24065bfcc56cb264977928be50bf448a4feda3c24b82a0a56c36d045caab9c",
       "collections": []
     },
     {
@@ -6315,14 +6625,14 @@
     "design_reference": 1,
     "entrypoint": 4,
     "generated": 12,
-    "historical": 91,
-    "implementation": 127,
+    "historical": 110,
+    "implementation": 132,
     "normative": 13,
     "project_config": 35,
     "research_record": 16,
     "retired_entrypoint": 3,
     "source_record": 26,
     "supporting_document": 35,
-    "test": 46
+    "test": 50
   }
 }
