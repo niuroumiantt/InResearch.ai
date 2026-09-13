@@ -45296,6 +45296,471 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原表第 6 行为同一序列未除 1000 的值（单位应为 PB），第 11 行已换算为 EB，本条取第 11 行并保留 1 位小数。**全球已安装存储容量（含端点/边缘/核心全部介质），不是中国政策口径的「存力」**——口径最接近 storage_capacity_total 的「全部/在用」。工作簿日期 2017-06-01，2017 年起为预测。同表：数据创建量 2025 年 163,297 EB（163 ZB），已安装/创建比 2010 年 0.84 → 2025 年约 0.08。"
+    },
+    {
+      "fact_id": "idc-storagesphere2021-global-installed-2017",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "global-storage-installed-base",
+        "label": "全球已安装存储容量（IDC StorageSphere）"
+      },
+      "value": 4387.4,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2017",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7c2ea8eefc66b617cca48e9b5296e15bb25eb8b6e416ea24328b84be4211d282",
+        "local_file": "IDC 202103 Global StorageSphere installed base US47509621_forecast.xlsx",
+        "locator": "工作表「3. Market Context」Table 9 第 14 行「March 2021 forecast」2017 列 = 4,387,446 PB",
+        "grade": "S3",
+        "originator": "IDC《Worldwide Global StorageSphere Forecast, 2021–2025》（#US47509621，2021-03，John Rydning、David Reinsel）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表 PB，÷1000 记 EB。装机容量含已用（utilized）与可用（available）两部分，2020 年已用 4,154,270 PB、可用 2,530,055 PB。**同一 IDC 序列的旧版（Data Age 2025，2017-06）与本版数值不同**：旧版 2017-2025 为预测、as_of 带 @2017-06，不冲突；2016 年旧版 3,998.7 EB 与本版 3,833.1 EB 同键，本条未录 2016（放待录文件，等争议/修订放行）。IDC 2020-05 版与本版 2016-2019 基本一致、2020 年起下调。"
+    },
+    {
+      "fact_id": "idc-storagesphere2021-global-installed-2018",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "global-storage-installed-base",
+        "label": "全球已安装存储容量（IDC StorageSphere）"
+      },
+      "value": 5043.6,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7c2ea8eefc66b617cca48e9b5296e15bb25eb8b6e416ea24328b84be4211d282",
+        "local_file": "IDC 202103 Global StorageSphere installed base US47509621_forecast.xlsx",
+        "locator": "工作表「3. Market Context」Table 9 第 14 行「March 2021 forecast」2018 列 = 5,043,639 PB",
+        "grade": "S3",
+        "originator": "IDC《Worldwide Global StorageSphere Forecast, 2021–2025》（#US47509621，2021-03，John Rydning、David Reinsel）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表 PB，÷1000 记 EB。装机容量含已用（utilized）与可用（available）两部分，2020 年已用 4,154,270 PB、可用 2,530,055 PB。**同一 IDC 序列的旧版（Data Age 2025，2017-06）与本版数值不同**：旧版 2017-2025 为预测、as_of 带 @2017-06，不冲突；2016 年旧版 3,998.7 EB 与本版 3,833.1 EB 同键，本条未录 2016（放待录文件，等争议/修订放行）。IDC 2020-05 版与本版 2016-2019 基本一致、2020 年起下调。"
+    },
+    {
+      "fact_id": "idc-storagesphere2021-global-installed-2019",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "global-storage-installed-base",
+        "label": "全球已安装存储容量（IDC StorageSphere）"
+      },
+      "value": 5781.8,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7c2ea8eefc66b617cca48e9b5296e15bb25eb8b6e416ea24328b84be4211d282",
+        "local_file": "IDC 202103 Global StorageSphere installed base US47509621_forecast.xlsx",
+        "locator": "工作表「3. Market Context」Table 9 第 14 行「March 2021 forecast」2019 列 = 5,781,804 PB",
+        "grade": "S3",
+        "originator": "IDC《Worldwide Global StorageSphere Forecast, 2021–2025》（#US47509621，2021-03，John Rydning、David Reinsel）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表 PB，÷1000 记 EB。装机容量含已用（utilized）与可用（available）两部分，2020 年已用 4,154,270 PB、可用 2,530,055 PB。**同一 IDC 序列的旧版（Data Age 2025，2017-06）与本版数值不同**：旧版 2017-2025 为预测、as_of 带 @2017-06，不冲突；2016 年旧版 3,998.7 EB 与本版 3,833.1 EB 同键，本条未录 2016（放待录文件，等争议/修订放行）。IDC 2020-05 版与本版 2016-2019 基本一致、2020 年起下调。"
+    },
+    {
+      "fact_id": "idc-storagesphere2021-global-installed-2020",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "global-storage-installed-base",
+        "label": "全球已安装存储容量（IDC StorageSphere）"
+      },
+      "value": 6684.3,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7c2ea8eefc66b617cca48e9b5296e15bb25eb8b6e416ea24328b84be4211d282",
+        "local_file": "IDC 202103 Global StorageSphere installed base US47509621_forecast.xlsx",
+        "locator": "工作表「3. Market Context」Table 9 第 14 行「March 2021 forecast」2020 列 = 6,684,325 PB；同值见「2. Market Forecast」Table 1 第 54 行 Total",
+        "grade": "S3",
+        "originator": "IDC《Worldwide Global StorageSphere Forecast, 2021–2025》（#US47509621，2021-03，John Rydning、David Reinsel）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表 PB，÷1000 记 EB。装机容量含已用（utilized）与可用（available）两部分，2020 年已用 4,154,270 PB、可用 2,530,055 PB。**同一 IDC 序列的旧版（Data Age 2025，2017-06）与本版数值不同**：旧版 2017-2025 为预测、as_of 带 @2017-06，不冲突；2016 年旧版 3,998.7 EB 与本版 3,833.1 EB 同键，本条未录 2016（放待录文件，等争议/修订放行）。IDC 2020-05 版与本版 2016-2019 基本一致、2020 年起下调。"
+    },
+    {
+      "fact_id": "idc-storagesphere2021-global-installed-2021",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "global-storage-installed-base",
+        "label": "全球已安装存储容量（IDC StorageSphere）"
+      },
+      "value": 7859.4,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2021E@2021-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7c2ea8eefc66b617cca48e9b5296e15bb25eb8b6e416ea24328b84be4211d282",
+        "local_file": "IDC 202103 Global StorageSphere installed base US47509621_forecast.xlsx",
+        "locator": "工作表「3. Market Context」Table 9 第 14 行「March 2021 forecast」2021 列 = 7,859,388 PB；同值见「2. Market Forecast」Table 1 第 54 行 Total",
+        "grade": "S3",
+        "originator": "IDC《Worldwide Global StorageSphere Forecast, 2021–2025》（#US47509621，2021-03，John Rydning、David Reinsel）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表 PB，÷1000 记 EB。装机容量含已用（utilized）与可用（available）两部分，2020 年已用 4,154,270 PB、可用 2,530,055 PB。**同一 IDC 序列的旧版（Data Age 2025，2017-06）与本版数值不同**：旧版 2017-2025 为预测、as_of 带 @2017-06，不冲突；2016 年旧版 3,998.7 EB 与本版 3,833.1 EB 同键，本条未录 2016（放待录文件，等争议/修订放行）。IDC 2020-05 版与本版 2016-2019 基本一致、2020 年起下调。"
+    },
+    {
+      "fact_id": "idc-storagesphere2021-global-installed-2022",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "global-storage-installed-base",
+        "label": "全球已安装存储容量（IDC StorageSphere）"
+      },
+      "value": 9311.9,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2022E@2021-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7c2ea8eefc66b617cca48e9b5296e15bb25eb8b6e416ea24328b84be4211d282",
+        "local_file": "IDC 202103 Global StorageSphere installed base US47509621_forecast.xlsx",
+        "locator": "工作表「3. Market Context」Table 9 第 14 行「March 2021 forecast」2022 列 = 9,311,919 PB；同值见「2. Market Forecast」Table 1 第 54 行 Total",
+        "grade": "S3",
+        "originator": "IDC《Worldwide Global StorageSphere Forecast, 2021–2025》（#US47509621，2021-03，John Rydning、David Reinsel）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表 PB，÷1000 记 EB。装机容量含已用（utilized）与可用（available）两部分，2020 年已用 4,154,270 PB、可用 2,530,055 PB。**同一 IDC 序列的旧版（Data Age 2025，2017-06）与本版数值不同**：旧版 2017-2025 为预测、as_of 带 @2017-06，不冲突；2016 年旧版 3,998.7 EB 与本版 3,833.1 EB 同键，本条未录 2016（放待录文件，等争议/修订放行）。IDC 2020-05 版与本版 2016-2019 基本一致、2020 年起下调。"
+    },
+    {
+      "fact_id": "idc-storagesphere2021-global-installed-2023",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "global-storage-installed-base",
+        "label": "全球已安装存储容量（IDC StorageSphere）"
+      },
+      "value": 11123.9,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2023E@2021-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7c2ea8eefc66b617cca48e9b5296e15bb25eb8b6e416ea24328b84be4211d282",
+        "local_file": "IDC 202103 Global StorageSphere installed base US47509621_forecast.xlsx",
+        "locator": "工作表「3. Market Context」Table 9 第 14 行「March 2021 forecast」2023 列 = 11,123,939 PB；同值见「2. Market Forecast」Table 1 第 54 行 Total",
+        "grade": "S3",
+        "originator": "IDC《Worldwide Global StorageSphere Forecast, 2021–2025》（#US47509621，2021-03，John Rydning、David Reinsel）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表 PB，÷1000 记 EB。装机容量含已用（utilized）与可用（available）两部分，2020 年已用 4,154,270 PB、可用 2,530,055 PB。**同一 IDC 序列的旧版（Data Age 2025，2017-06）与本版数值不同**：旧版 2017-2025 为预测、as_of 带 @2017-06，不冲突；2016 年旧版 3,998.7 EB 与本版 3,833.1 EB 同键，本条未录 2016（放待录文件，等争议/修订放行）。IDC 2020-05 版与本版 2016-2019 基本一致、2020 年起下调。"
+    },
+    {
+      "fact_id": "idc-storagesphere2021-global-installed-2024",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "global-storage-installed-base",
+        "label": "全球已安装存储容量（IDC StorageSphere）"
+      },
+      "value": 13368.7,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2024E@2021-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7c2ea8eefc66b617cca48e9b5296e15bb25eb8b6e416ea24328b84be4211d282",
+        "local_file": "IDC 202103 Global StorageSphere installed base US47509621_forecast.xlsx",
+        "locator": "工作表「3. Market Context」Table 9 第 14 行「March 2021 forecast」2024 列 = 13,368,718 PB；同值见「2. Market Forecast」Table 1 第 54 行 Total",
+        "grade": "S3",
+        "originator": "IDC《Worldwide Global StorageSphere Forecast, 2021–2025》（#US47509621，2021-03，John Rydning、David Reinsel）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表 PB，÷1000 记 EB。装机容量含已用（utilized）与可用（available）两部分，2020 年已用 4,154,270 PB、可用 2,530,055 PB。**同一 IDC 序列的旧版（Data Age 2025，2017-06）与本版数值不同**：旧版 2017-2025 为预测、as_of 带 @2017-06，不冲突；2016 年旧版 3,998.7 EB 与本版 3,833.1 EB 同键，本条未录 2016（放待录文件，等争议/修订放行）。IDC 2020-05 版与本版 2016-2019 基本一致、2020 年起下调。"
+    },
+    {
+      "fact_id": "idc-storagesphere2021-global-installed-2025",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "global-storage-installed-base",
+        "label": "全球已安装存储容量（IDC StorageSphere）"
+      },
+      "value": 16117.1,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2021-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7c2ea8eefc66b617cca48e9b5296e15bb25eb8b6e416ea24328b84be4211d282",
+        "local_file": "IDC 202103 Global StorageSphere installed base US47509621_forecast.xlsx",
+        "locator": "工作表「3. Market Context」Table 9 第 14 行「March 2021 forecast」2025 列 = 16,117,133 PB；同值见「2. Market Forecast」Table 1 第 54 行 Total",
+        "grade": "S3",
+        "originator": "IDC《Worldwide Global StorageSphere Forecast, 2021–2025》（#US47509621，2021-03，John Rydning、David Reinsel）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表 PB，÷1000 记 EB。装机容量含已用（utilized）与可用（available）两部分，2020 年已用 4,154,270 PB、可用 2,530,055 PB。**同一 IDC 序列的旧版（Data Age 2025，2017-06）与本版数值不同**：旧版 2017-2025 为预测、as_of 带 @2017-06，不冲突；2016 年旧版 3,998.7 EB 与本版 3,833.1 EB 同键，本条未录 2016（放待录文件，等争议/修订放行）。IDC 2020-05 版与本版 2016-2019 基本一致、2020 年起下调。"
+    },
+    {
+      "fact_id": "idc-storagesphere2021-cn-installed-2020",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "cn-storage-installed-base",
+        "label": "中国已安装存储容量（IDC StorageSphere）"
+      },
+      "value": 1141.2,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "中国",
+        "status": "在用",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7c2ea8eefc66b617cca48e9b5296e15bb25eb8b6e416ea24328b84be4211d282",
+        "local_file": "IDC 202103 Global StorageSphere installed base US47509621_forecast.xlsx",
+        "locator": "工作表「2. Market Forecast」Table 2 第 89 行「People's Republic of China」2020 列 = 1,141,211 PB",
+        "grade": "S3",
+        "originator": "IDC《Worldwide Global StorageSphere Forecast, 2021–2025》（#US47509621，2021-03，John Rydning、David Reinsel）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表 PB，÷1000 记 EB。IDC 口径的全部已安装存储（含端点设备，如手机、PC），**不是中国政策口径的「存力」**（政策口径主要指数据中心存储），与深企投 2023 年约 1,200 EB 不可直接比。2020–2025 CAGR 22.4%。"
+    },
+    {
+      "fact_id": "idc-storagesphere2021-cn-installed-2021",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "cn-storage-installed-base",
+        "label": "中国已安装存储容量（IDC StorageSphere）"
+      },
+      "value": 1336.8,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "中国",
+        "status": "在用",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2021E@2021-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7c2ea8eefc66b617cca48e9b5296e15bb25eb8b6e416ea24328b84be4211d282",
+        "local_file": "IDC 202103 Global StorageSphere installed base US47509621_forecast.xlsx",
+        "locator": "工作表「2. Market Forecast」Table 2 第 89 行「People's Republic of China」2021 列 = 1,336,818 PB",
+        "grade": "S3",
+        "originator": "IDC《Worldwide Global StorageSphere Forecast, 2021–2025》（#US47509621，2021-03，John Rydning、David Reinsel）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表 PB，÷1000 记 EB。IDC 口径的全部已安装存储（含端点设备，如手机、PC），**不是中国政策口径的「存力」**（政策口径主要指数据中心存储），与深企投 2023 年约 1,200 EB 不可直接比。2020–2025 CAGR 22.4%。"
+    },
+    {
+      "fact_id": "idc-storagesphere2021-cn-installed-2022",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "cn-storage-installed-base",
+        "label": "中国已安装存储容量（IDC StorageSphere）"
+      },
+      "value": 1655.3,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "中国",
+        "status": "在用",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2022E@2021-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7c2ea8eefc66b617cca48e9b5296e15bb25eb8b6e416ea24328b84be4211d282",
+        "local_file": "IDC 202103 Global StorageSphere installed base US47509621_forecast.xlsx",
+        "locator": "工作表「2. Market Forecast」Table 2 第 89 行「People's Republic of China」2022 列 = 1,655,269 PB",
+        "grade": "S3",
+        "originator": "IDC《Worldwide Global StorageSphere Forecast, 2021–2025》（#US47509621，2021-03，John Rydning、David Reinsel）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表 PB，÷1000 记 EB。IDC 口径的全部已安装存储（含端点设备，如手机、PC），**不是中国政策口径的「存力」**（政策口径主要指数据中心存储），与深企投 2023 年约 1,200 EB 不可直接比。2020–2025 CAGR 22.4%。"
+    },
+    {
+      "fact_id": "idc-storagesphere2021-cn-installed-2023",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "cn-storage-installed-base",
+        "label": "中国已安装存储容量（IDC StorageSphere）"
+      },
+      "value": 2051.4,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "中国",
+        "status": "在用",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2023E@2021-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7c2ea8eefc66b617cca48e9b5296e15bb25eb8b6e416ea24328b84be4211d282",
+        "local_file": "IDC 202103 Global StorageSphere installed base US47509621_forecast.xlsx",
+        "locator": "工作表「2. Market Forecast」Table 2 第 89 行「People's Republic of China」2023 列 = 2,051,371 PB",
+        "grade": "S3",
+        "originator": "IDC《Worldwide Global StorageSphere Forecast, 2021–2025》（#US47509621，2021-03，John Rydning、David Reinsel）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表 PB，÷1000 记 EB。IDC 口径的全部已安装存储（含端点设备，如手机、PC），**不是中国政策口径的「存力」**（政策口径主要指数据中心存储），与深企投 2023 年约 1,200 EB 不可直接比。2020–2025 CAGR 22.4%。"
+    },
+    {
+      "fact_id": "idc-storagesphere2021-cn-installed-2024",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "cn-storage-installed-base",
+        "label": "中国已安装存储容量（IDC StorageSphere）"
+      },
+      "value": 2547.2,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "中国",
+        "status": "在用",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2024E@2021-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7c2ea8eefc66b617cca48e9b5296e15bb25eb8b6e416ea24328b84be4211d282",
+        "local_file": "IDC 202103 Global StorageSphere installed base US47509621_forecast.xlsx",
+        "locator": "工作表「2. Market Forecast」Table 2 第 89 行「People's Republic of China」2024 列 = 2,547,238 PB",
+        "grade": "S3",
+        "originator": "IDC《Worldwide Global StorageSphere Forecast, 2021–2025》（#US47509621，2021-03，John Rydning、David Reinsel）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表 PB，÷1000 记 EB。IDC 口径的全部已安装存储（含端点设备，如手机、PC），**不是中国政策口径的「存力」**（政策口径主要指数据中心存储），与深企投 2023 年约 1,200 EB 不可直接比。2020–2025 CAGR 22.4%。"
+    },
+    {
+      "fact_id": "idc-storagesphere2021-cn-installed-2025",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "cn-storage-installed-base",
+        "label": "中国已安装存储容量（IDC StorageSphere）"
+      },
+      "value": 3136.9,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "area": "中国",
+        "status": "在用",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2021-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7c2ea8eefc66b617cca48e9b5296e15bb25eb8b6e416ea24328b84be4211d282",
+        "local_file": "IDC 202103 Global StorageSphere installed base US47509621_forecast.xlsx",
+        "locator": "工作表「2. Market Forecast」Table 2 第 89 行「People's Republic of China」2025 列 = 3,136,938 PB",
+        "grade": "S3",
+        "originator": "IDC《Worldwide Global StorageSphere Forecast, 2021–2025》（#US47509621，2021-03，John Rydning、David Reinsel）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表 PB，÷1000 记 EB。IDC 口径的全部已安装存储（含端点设备，如手机、PC），**不是中国政策口径的「存力」**（政策口径主要指数据中心存储），与深企投 2023 年约 1,200 EB 不可直接比。2020–2025 CAGR 22.4%。"
     }
   ]
 }
