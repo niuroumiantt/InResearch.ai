@@ -40565,6 +40565,157 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**同一栋楼、同一负荷，按建筑面积算是 1,143.9，按计算面积算是 1,322.7——差 16%**，正是 area_scope 这一维存在的理由。反推建筑面积约 9,254,644 ÷ 1,143.9 ≈ 8,090 ㎡（未入库）。下界理由同上一条（峰值 21:00 未列出）。"
+    },
+    {
+      "fact_id": "caict-lc2024-cn-dc-electricity-2021",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心/算力中心（合计）"
+      },
+      "value": 111.6,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "bab000e217f95557fdd6b8d1788285aeb7b4859c10e96c1c3bcb1fb442f76d60",
+        "local_file": "中国信通院《算力中心冷板式液冷发展研究报告（2024 年）》.pdf",
+        "locator": "第 26 页：「2021 年全国算力中心的耗电总量为 1116 亿千瓦时」",
+        "grade": "S2",
+        "originator": "中国信通院云计算与大数据研究所（2024-05）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：亿千瓦时 ÷ 10 = TWh（1 亿 kWh = 0.1 TWh）。 **口径是「算力中心」，与 IEA 的「数据中心」不必同口径**。2022 年同比 +16%；2030 年约 380 TWh 是 2022 年的 2.9 倍。 **对照同一机构另一份（信通院液冷全景 2025）**：2024 年数据中心总耗电 1,660 亿 kWh（166 TWh）——2022→2024 两年 +28%，比本报告隐含的 2022→2030 年均 +14.3% 慢。 "
+    },
+    {
+      "fact_id": "caict-lc2024-cn-dc-electricity-2022",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心/算力中心（合计）"
+      },
+      "value": 130.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "bab000e217f95557fdd6b8d1788285aeb7b4859c10e96c1c3bcb1fb442f76d60",
+        "local_file": "中国信通院《算力中心冷板式液冷发展研究报告（2024 年）》.pdf",
+        "locator": "第 26 页：「2022 年我国算力中心能耗总量 1300 亿千瓦时，同比增长 16%」",
+        "grade": "S2",
+        "originator": "中国信通院云计算与大数据研究所（2024-05）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：亿千瓦时 ÷ 10 = TWh（1 亿 kWh = 0.1 TWh）。 **口径是「算力中心」，与 IEA 的「数据中心」不必同口径**。2022 年同比 +16%；2030 年约 380 TWh 是 2022 年的 2.9 倍。 **对照同一机构另一份（信通院液冷全景 2025）**：2024 年数据中心总耗电 1,660 亿 kWh（166 TWh）——2022→2024 两年 +28%，比本报告隐含的 2022→2030 年均 +14.3% 慢。 对照 IEA 全球 2024 年 415 TWh：中国 2022 年 130 TWh 约占其三成（年份不同，仅作量级参照）。"
+    },
+    {
+      "fact_id": "caict-lc2024-cn-dc-electricity-2030",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心/算力中心（合计）"
+      },
+      "value": 380.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "region": "CN",
+        "basis": "模型输出"
+      },
+      "as_of": "2030E@2024-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "bab000e217f95557fdd6b8d1788285aeb7b4859c10e96c1c3bcb1fb442f76d60",
+        "local_file": "中国信通院《算力中心冷板式液冷发展研究报告（2024 年）》.pdf",
+        "locator": "第 26 页：「预计到 2030 年，能耗总量将达到约 3800 亿千瓦时」",
+        "grade": "S2",
+        "originator": "中国信通院云计算与大数据研究所（2024-05）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：亿千瓦时 ÷ 10 = TWh（1 亿 kWh = 0.1 TWh）。 **口径是「算力中心」，与 IEA 的「数据中心」不必同口径**。2022 年同比 +16%；2030 年约 380 TWh 是 2022 年的 2.9 倍。 **对照同一机构另一份（信通院液冷全景 2025）**：2024 年数据中心总耗电 1,660 亿 kWh（166 TWh）——2022→2024 两年 +28%，比本报告隐含的 2022→2030 年均 +14.3% 慢。 "
+    },
+    {
+      "fact_id": "caict-lc2024-rack-density-large-dc",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "industry",
+        "id": "cn-large-dc-rack-density",
+        "label": "中国大型算力中心单机架功率密度"
+      },
+      "value": 8.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "市场普遍水平",
+        "era": "当期",
+        "power_basis": "实际功率密度",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "bab000e217f95557fdd6b8d1788285aeb7b4859c10e96c1c3bcb1fb442f76d60",
+        "local_file": "中国信通院《算力中心冷板式液冷发展研究报告（2024 年）》.pdf",
+        "locator": "第 9 页：「大型算力中心的单机架功率密度已接近 8kW，少数超大型算力中心的单机架功率密度已达 20kW」；第 23 页：「AI 集群算力密度普遍达到 50kW/柜。目前，自然风冷的算力中心单柜密度一般只支持 8-10kW」",
+        "grade": "S2",
+        "originator": "中国信通院云计算与大数据研究所（2024-05）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**「已接近 8kW」按上界记**；少数超大型已达 20kW，AI 集群普遍 50kW/柜，自然风冷一般只支持 8-10kW。rack_type 就近记传统风冷（原文是大型算力中心整体水平），标 [未核]。对照 Uptime 2020 年全球均值 8.4kW（uptime-avg-rack-density-2020）——**中国大型算力中心 2024 年与全球 2020 年水平相当**。"
+    },
+    {
+      "fact_id": "caict-lc2025-cn-dc-electricity-2024",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心/算力中心（合计）"
+      },
+      "value": 166.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3dbf751e0046096afc46c281944e35435ab4bbe4c016d7f080b1e801584361c5",
+        "local_file": "中国信通院《智算中心液冷产业全景研究报告（2025 年）》.pdf",
+        "locator": "第 5 页：「2024 年我国算力中心总耗电量达到 1660 亿 kW·h，约占全社会总用电量的 1.68%」",
+        "grade": "S2",
+        "originator": "中国信通院云计算与大数据研究所（2025-08）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：1,660 亿 kWh = 166 TWh。**约占全社会用电量 1.68%**。原文口径是「算力中心」。**上一轮这份报告读时指标不存在、只记了缺口，这次按新菜单补录**。对照同机构 2024 年报告：2021 年 111.6、2022 年 130 TWh（caict-lc2024-cn-dc-electricity-*）——2022→2024 两年 +28%。"
     }
   ]
 }
