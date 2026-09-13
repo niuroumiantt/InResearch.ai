@@ -1,29 +1,29 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.13.3。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.13.4。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：554。
+在册文件：575。
 
 | 身份 | 文件数 |
 |---|---|
 | 静态资源 | 39 |
-| 候选与外部输入 | 145 |
+| 候选与外部输入 | 144 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 12 |
-| 历史快照 | 59 |
-| 运行代码 | 125 |
+| 历史快照 | 77 |
+| 运行代码 | 126 |
 | 现行规范 | 13 |
-| 项目配置 | 34 |
+| 项目配置 | 35 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 26 |
-| 配套说明 | 34 |
-| 测试 | 43 |
+| 配套说明 | 35 |
+| 测试 | 44 |
 
 ## 在册记录集合
 
@@ -36,7 +36,7 @@
 | `data/brief.json` | review_marked | 23 |
 | `data/companies.json` | records | 248 |
 | `data/contracts.json` | records | 2 |
-| `data/facts.json` | records | 1247 |
+| `data/facts.json` | records | 1320 |
 | `data/policies.json` | records | 2 |
 | `data/prices.json` | records | 207 |
 | `data/product_docs_plan.csv` | rows | 801 |
@@ -182,12 +182,26 @@
 | `docs/reviews/2026-09-13/architecture/real-reader-flow.json` | acceptance | 1 |
 | `docs/reviews/2026-09-13/architecture/shared-implementations.csv` | rows | 152 |
 | `docs/reviews/2026-09-13/architecture/source-reference-debt.csv` | rows | 27 |
+| `docs/reviews/2026-09-13/standards/baseline-probes.json` | C_tier_closed_questions | 1 |
+| `docs/reviews/2026-09-13/standards/baseline-probes.json` | C_tier_validation_errors | 0 |
+| `docs/reviews/2026-09-13/standards/baseline-probes.json` | same_filename_rejections | 1 |
+| `docs/reviews/2026-09-13/standards/consumers-after.csv` | rows | 62 |
+| `docs/reviews/2026-09-13/standards/consumers-before.json` | knowledge.registry | 11 |
+| `docs/reviews/2026-09-13/standards/consumers-before.json` | workflow.submissions | 2 |
+| `docs/reviews/2026-09-13/standards/consumers-before.json` | storage.files | 13 |
+| `docs/reviews/2026-09-13/standards/consumers-before.json` | interfaces.governance | 2 |
+| `docs/reviews/2026-09-13/standards/dependencies.json` | cycles | 0 |
+| `docs/reviews/2026-09-13/standards/file-changes.csv` | rows | 42 |
+| `docs/reviews/2026-09-13/standards/integrated-consumers-after.csv` | rows | 114 |
+| `docs/reviews/2026-09-13/standards/integrated-dependencies.json` | cycles | 0 |
+| `docs/reviews/2026-09-13/standards/integrated-file-changes.csv` | rows | 53 |
 | `framework/bom.json` | layers | 5 |
 | `framework/bom.json` | parts | 46 |
 | `framework/current_state.json` | policies | 24 |
 | `framework/current_state.json` | entrypoints | 4 |
 | `framework/current_state.json` | retired_entrypoints | 3 |
 | `framework/current_state.json` | known_retired_patterns | 11 |
+| `framework/current_state.json` | operational_guides | 7 |
 | `framework/data_contract.json` | source_grades | 5 |
 | `framework/data_contract.json` | project_statuses | 9 |
 | `framework/data_contract.json` | current_supply_statuses | 2 |
@@ -204,6 +218,7 @@
 | `framework/research_graph.json` | catalog_topic_mappings | 35 |
 | `framework/research_graph.json` | research_topics | 9 |
 | `framework/research_questions.json` | records | 449 |
+| `framework/verification_contract.json` | policies | 13 |
 | `reports/blindspot.json` | modules | 15 |
 | `reports/workorders.json` | orders | 564 |
 | `research/M01.md` | Finding | 7 |
@@ -444,7 +459,7 @@
 | [docs/inbox/scored_batches/batch_20260817_70.csv](inbox/scored_batches/batch_20260817_70.csv) | 候选与外部输入 |
 | [docs/inbox/scored_batches/batch_20260817_71.csv](inbox/scored_batches/batch_20260817_71.csv) | 候选与外部输入 |
 | [docs/inbox/scored_batches/batch_20260817_72.csv](inbox/scored_batches/batch_20260817_72.csv) | 候选与外部输入 |
-| [docs/inbox/submissions/README.md](inbox/submissions/README.md) | 候选与外部输入 |
+| [docs/inbox/submissions/README.md](inbox/submissions/README.md) | 配套说明 |
 | `docs/inbox/submissions/_selftest/submission.json` | 候选与外部输入 |
 | `docs/inbox/submissions/_template/submission.json` | 候选与外部输入 |
 | [docs/intern/BATCH01_A_product_links.md](intern/BATCH01_A_product_links.md) | 历史快照 |
@@ -505,6 +520,24 @@
 | [docs/reviews/2026-09-13/architecture/shared-implementations.csv](reviews/2026-09-13/architecture/shared-implementations.csv) | 历史快照 |
 | [docs/reviews/2026-09-13/architecture/source-reference-debt.csv](reviews/2026-09-13/architecture/source-reference-debt.csv) | 历史快照 |
 | `docs/reviews/2026-09-13/architecture/verification.json` | 历史快照 |
+| [docs/reviews/2026-09-13/standards/DELIVERY.md](reviews/2026-09-13/standards/DELIVERY.md) | 历史快照 |
+| [docs/reviews/2026-09-13/standards/INTEGRATION_PLAN.md](reviews/2026-09-13/standards/INTEGRATION_PLAN.md) | 历史快照 |
+| [docs/reviews/2026-09-13/standards/PLAN.md](reviews/2026-09-13/standards/PLAN.md) | 历史快照 |
+| [docs/reviews/2026-09-13/standards/POLICY_MATRIX.md](reviews/2026-09-13/standards/POLICY_MATRIX.md) | 历史快照 |
+| `docs/reviews/2026-09-13/standards/baseline-probes.json` | 历史快照 |
+| `docs/reviews/2026-09-13/standards/cli-flow.json` | 历史快照 |
+| [docs/reviews/2026-09-13/standards/consumers-after.csv](reviews/2026-09-13/standards/consumers-after.csv) | 历史快照 |
+| `docs/reviews/2026-09-13/standards/consumers-before.json` | 历史快照 |
+| `docs/reviews/2026-09-13/standards/dependencies.json` | 历史快照 |
+| [docs/reviews/2026-09-13/standards/file-changes.csv](reviews/2026-09-13/standards/file-changes.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/standards/integrated-POLICY_MATRIX.md](reviews/2026-09-13/standards/integrated-POLICY_MATRIX.md) | 历史快照 |
+| [docs/reviews/2026-09-13/standards/integrated-consumers-after.csv](reviews/2026-09-13/standards/integrated-consumers-after.csv) | 历史快照 |
+| `docs/reviews/2026-09-13/standards/integrated-dependencies.json` | 历史快照 |
+| [docs/reviews/2026-09-13/standards/integrated-file-changes.csv](reviews/2026-09-13/standards/integrated-file-changes.csv) | 历史快照 |
+| `docs/reviews/2026-09-13/standards/integrated-statistics.json` | 历史快照 |
+| `docs/reviews/2026-09-13/standards/integrated-verification.json` | 历史快照 |
+| `docs/reviews/2026-09-13/standards/statistics.json` | 历史快照 |
+| `docs/reviews/2026-09-13/standards/verification.json` | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
 | `docs/source/全球数据中心行业深度研究Q&A总报告_Q1-Q35_v1.0(2).docx` | 项目配置 |
 | `docs/source/全球数据中心行业现状_参考初稿版式v0.2_信源追溯版_2026-07-23.docx` | 项目配置 |
@@ -546,6 +579,7 @@
 | `framework/repository_manifest.json` | 生成物 |
 | `framework/research_graph.json` | 项目配置 |
 | `framework/research_questions.json` | 项目配置 |
+| `framework/verification_contract.json` | 项目配置 |
 | `manage.py` | 运行代码 |
 | [reports/HOW_TO_OUTPUT.md](../reports/HOW_TO_OUTPUT.md) | 生成物 |
 | `reports/blindspot.json` | 生成物 |
@@ -614,6 +648,7 @@
 | `src/inresearch/interfaces/reader.py` | 运行代码 |
 | `src/inresearch/interfaces/static.py` | 运行代码 |
 | `src/inresearch/interfaces/users.py` | 运行代码 |
+| `src/inresearch/interfaces/verification.py` | 运行代码 |
 | `src/inresearch/knowledge/__init__.py` | 运行代码 |
 | `src/inresearch/knowledge/company_ids.py` | 运行代码 |
 | `src/inresearch/knowledge/coverage.py` | 运行代码 |
@@ -703,6 +738,7 @@
 | `tests/unit/test_research_navigation.py` | 测试 |
 | `tests/unit/test_result_versions.py` | 测试 |
 | `tests/unit/test_suite_integrity.py` | 测试 |
+| `tests/unit/test_verification_contract.py` | 测试 |
 | `tests/url_rendering.cjs` | 测试 |
 | `web/assets/Inter-LICENSE.txt` | 静态资源 |
 | `web/assets/InterVariable.woff2` | 静态资源 |

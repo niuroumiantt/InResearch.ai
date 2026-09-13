@@ -1,0 +1,63 @@
+implementation,consumer,line,symbol,result
+src/inresearch/interfaces/cli.py,manage.py,7,main,same shared implementation; existing behavior regression verified
+src/inresearch/interfaces/cli.py,src/inresearch/__main__.py,1,main,same shared implementation; existing behavior regression verified
+src/inresearch/storage/files.py,src/inresearch/adapters/acquisition.py,163,write_json,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/storage/files.py,src/inresearch/adapters/historical_brief.py,7,locked,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/storage/files.py,src/inresearch/adapters/historical_brief.py,20,atomic_write,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/knowledge/registry.py,src/inresearch/delivery/acquisition_status.py,5,registry,same shared implementation; existing behavior regression verified
+src/inresearch/knowledge/registry.py,src/inresearch/delivery/reader_status.py,4,registry,same shared implementation; existing behavior regression verified
+src/inresearch/storage/files.py,src/inresearch/interfaces/cli.py,9,CommitUncertain,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/interfaces/http.py,src/inresearch/interfaces/cli.py,14,dynamic CLI target,same shared implementation; existing behavior regression verified
+src/inresearch/knowledge/registry.py,src/inresearch/interfaces/cli.py,26,dynamic CLI target,same shared implementation; existing behavior regression verified
+src/inresearch/interfaces/governance.py,src/inresearch/interfaces/cli.py,27,dynamic CLI target,same shared implementation; existing behavior regression verified
+src/inresearch/workflow/submissions.py,src/inresearch/interfaces/cli.py,29,dynamic CLI target,"CLI same entry; tests updated for true workorder match, candidates and retries"
+src/inresearch/interfaces/verification.py,src/inresearch/interfaces/governance.py,9,verification_errors,new reviewed map checked on governance check AND refresh; never auto-approved
+src/inresearch/storage/files.py,src/inresearch/interfaces/http.py,10,CommitUncertain,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/knowledge/registry.py,src/inresearch/interfaces/http.py,19,registry,same shared implementation; existing behavior regression verified
+src/inresearch/storage/files.py,src/inresearch/knowledge/company_ids.py,12,locked,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/storage/files.py,src/inresearch/knowledge/company_ids.py,12,write_json,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/storage/files.py,src/inresearch/knowledge/indicators.py,12,locked,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/storage/files.py,src/inresearch/knowledge/indicators.py,12,write_json,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/storage/files.py,src/inresearch/knowledge/registry.py,121,write_json,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/storage/files.py,src/inresearch/materials/artifacts.py,52,atomic_write,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/storage/files.py,src/inresearch/materials/inbox.py,12,locked,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/storage/files.py,src/inresearch/materials/inbox.py,12,sync_directory,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/storage/files.py,src/inresearch/materials/inbox.py,25,write_json,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/storage/files.py,src/inresearch/materials/library.py,26,locked,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/storage/files.py,src/inresearch/materials/library.py,26,atomic_write,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/storage/files.py,src/inresearch/materials/library.py,26,write_json,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/storage/files.py,src/inresearch/materials/library.py,26,sync_directory,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/storage/files.py,src/inresearch/materials/library.py,26,make_directory,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/storage/files.py,src/inresearch/storage/jsonl.py,9,atomic_write,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/storage/files.py,src/inresearch/storage/jsonl.py,9,sync_directory,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/storage/files.py,src/inresearch/storage/jsonl.py,9,make_directory,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/storage/files.py,src/inresearch/storage/jsonl.py,9,locked,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/knowledge/registry.py,src/inresearch/workflow/commands.py,11,registry,same shared implementation; existing behavior regression verified
+src/inresearch/storage/files.py,src/inresearch/workflow/commands.py,13,json_transaction,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/storage/files.py,src/inresearch/workflow/commands.py,13,locked,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/storage/files.py,src/inresearch/workflow/commands.py,13,write_json,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/storage/files.py,src/inresearch/workflow/deep_read.py,32,locked,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/storage/files.py,src/inresearch/workflow/deep_read.py,32,write_json,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/knowledge/registry.py,src/inresearch/workflow/reading_queue.py,11,registry,same shared implementation; existing behavior regression verified
+src/inresearch/knowledge/registry.py,src/inresearch/workflow/submissions.py,21,current_tasks,same shared implementation; existing behavior regression verified
+src/inresearch/storage/files.py,src/inresearch/workflow/submissions.py,23,atomic_write,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/storage/files.py,src/inresearch/workflow/submissions.py,23,locked,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/knowledge/registry.py,src/inresearch/workflow/workorders.py,32,registry,same shared implementation; existing behavior regression verified
+src/inresearch/knowledge/registry.py,tests/unit/test_catalog_bridge.py,12,registry,same shared implementation; existing behavior regression verified
+src/inresearch/interfaces/cli.py,tests/unit/test_commands.py,11,cli,same shared implementation; existing behavior regression verified
+src/inresearch/storage/files.py,tests/unit/test_commands.py,12,files,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/interfaces/http.py,tests/unit/test_commands.py,13,http,same shared implementation; existing behavior regression verified
+src/inresearch/knowledge/registry.py,tests/unit/test_continuous_reader.py,109,evidence_errors,same shared implementation; existing behavior regression verified
+src/inresearch/interfaces/governance.py,tests/unit/test_governance.py,9,governance,same shared implementation; existing behavior regression verified
+src/inresearch/interfaces/http.py,tests/unit/test_http_workflow.py,11,http,same shared implementation; existing behavior regression verified
+src/inresearch/storage/files.py,tests/unit/test_http_workflow.py,12,write_json,CommitUncertain remains OSError; stop/recovery path retained; explicit HTTP/CLI response tested only for price/assign/snapshot
+src/inresearch/workflow/submissions.py,tests/unit/test_intake.py,8,submissions,"CLI same entry; tests updated for true workorder match, candidates and retries"
+src/inresearch/interfaces/http.py,tests/unit/test_interface_system.py,11,http,same shared implementation; existing behavior regression verified
+src/inresearch/interfaces/cli.py,tests/unit/test_m4_triage.py,16,cli,same shared implementation; existing behavior regression verified
+src/inresearch/knowledge/registry.py,tests/unit/test_report_model.py,6,registry,same shared implementation; existing behavior regression verified
+src/inresearch/knowledge/registry.py,tests/unit/test_research.py,14,registry,same shared implementation; existing behavior regression verified
+src/inresearch/interfaces/http.py,tests/unit/test_research.py,16,http,same shared implementation; existing behavior regression verified
+src/inresearch/interfaces/governance.py,tests/unit/test_verification_contract.py,11,governance,same shared implementation; existing behavior regression verified
+src/inresearch/interfaces/verification.py,tests/unit/test_verification_contract.py,12,CONTRACT,new reviewed map checked on governance check AND refresh; never auto-approved
+src/inresearch/interfaces/verification.py,tests/unit/test_verification_contract.py,12,verification_errors,new reviewed map checked on governance check AND refresh; never auto-approved
+src/inresearch/interfaces/governance.py,tests/unit/test_verification_contract.py,49,dynamic CLI target,same shared implementation; existing behavior regression verified

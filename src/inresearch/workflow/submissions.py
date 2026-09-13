@@ -1,61 +1,26 @@
-#!/usr/bin/env python3
-"""投递入口：机检 + 三档分流。团队化之后，所有者是唯一合并者，也就是唯一瓶颈。
+"""成员候选接收：验证证据登记、匹配当前工单、按 C3 分流。
 
-**本脚本的唯一目的：在所有者看到之前，把不合格的投递挡掉，把该他判的顶到最前面。**
+规则唯一来源：framework/01_data_standards.md §4；结构见 submission.schema.json。
+--accept 仅导出 B 待审核/C 存档候选 CSV，不执行模型审核或正式采用。
+同名只提示；原件字节 SHA 身份由材料接收流程验证，本入口不推测内容相同。
+数字相差倍数是疑似冲突提示，不能代替口径审阅或自动覆盖事实。
 
-15 个成员每周各交 2 次就是 30 次审阅；每次哪怕只花 20 分钟判断也是每周 10 小时。
-所以不能"全部等他批"——那只是把瓶颈从「读」挪到「批」。
-
-三档分流（2026-08-16 立，2026-08-17 用户批复）：
-  A 必须人批   自评 ≥8 ／ 与现有事实冲突 ／ 标了 sensitive ／ 会改写既有结论
-  B 模型批     5-7 分、命中工单缺口、无冲突 → 模型入库，抽 10% 复核
-  C 自动入库   ≤4 分存档件
-
-「与现有事实冲突」怎么判（2026-08-17 补，此前只写在注释里、代码没实现）：
-拿投递的 key_number 去 data/facts.json 里找**同单位且指标名相近**的既有事实，
-数值相差 ≥2 倍就升 A 档。这是烟雾报警器不是判决书——名字相近不等于同口径，
-同口径的两个数差 2 倍也可能都对（不同地区、不同年份）。它的作用只是**别让
-一个和我们既有结论打架的数静默入库**。误报的代价是所有者多看一件，漏报的
-代价是错误数据进了库还没人知道；**误报便宜、漏报贵**，所以宁可报宽。
-
-10% 抽查怎么抽（同上，此前也没实现）：按投递件的稳定标识哈希取模，
-**确定性抽样**——同一件每次跑都是同一个结论，不会重跑一次换一批。
-抽中的件在批次 CSV 的 summary 里带「【抽查复核】」前缀，合进
-LIBRARY_SCORES.csv 后仍可 grep 到；否则「抽了 10%」只是屏幕上一闪的数字，
-事后没人找得到该复核哪几件。
-
-机检五关（过不了直接退，不占所有者时间）：
-  1. 格式    submission.json 必填字段、summary ≥200 字
-  2. 溯源    每个 key_number 必须有 locator——写不出就说明没真看到那个数
-  3. 查重    文件名/标题 撞 LIBRARY_SCORES.csv 即退
-  4. 合法    模块号 M01-M15、confidence A-C、claimed_importance 1-9
-  5. 命中    声明了 workorder 的，检查是否真的命中该模块
-
-退回理由取小枚举并写进结果，便于回流给成员——**退回不给理由，成员下次照犯**。
-
-回流不另开写库路径：`--accept` 把过机检的 B/C 档写成**标准批次 CSV**，
-走本地精读会话已经跑了 50+ 批的那条既有合并流程。A 档留给所有者人工过目，不自动入库。
-
-成员登记的行 depth 标 **`成员精读`**——他确实读了，但**尚未经我们审计**。
-它可以进精读队列（等着被审），但**不得进事实层**，与「半自动」同理：
-不是不信任，是不宣称我们没做过的核实。审计通过后由所有者提级为「精读」。
-
-用法：
-  python3 manage.py submissions                       # 扫 docs/inbox/submissions/ 全部
-  python3 manage.py submissions <投递目录>            # 只看一个
-  python3 manage.py submissions --accept              # 把 B/C 档写成批次 CSV（A 档不自动入库）
-  python3 manage.py submissions --selftest            # 自检：冲突升档与模板排除是否还生效
-零依赖。
+用法：python3 manage.py submissions [投递目录] [--accept | --selftest]
 """
 
-from inresearch.paths import project_root
 import csv
 import hashlib
+import io
 import json
+import math
 import re
 import sys
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
+
+from inresearch.knowledge.registry import current_tasks
+from inresearch.paths import project_root
+from inresearch.storage.files import atomic_write, locked
 
 ROOT = project_root()
 SUBS = ROOT / "docs" / "inbox" / "submissions"
@@ -75,7 +40,6 @@ NAME_OVERLAP = 0.30    # 指标名相近的判据：2-gram 重合率下限
 AUDIT_RATE = 10        # B 档抽查比例的分母：10 → 抽 10%
 
 REJECT = {
-    "DUP": "重复——库内已有",
     "NO_LOCATOR": "证据无出处——缺 locator，无法回原文核对",
     "NO_EVIDENCE": "缺可定位的数字或非数字证据",
     "SHORT_SUMMARY": f"summary 不足 {MIN_SUMMARY} 字",
@@ -161,12 +125,18 @@ def audit_sampled(it):
 def check_item(it, lib_names, lib_olds, decl_module):
     """返回 (退回理由码列表, 提示列表)。"""
     bad, warn = [], []
-    for k in ("file", "title", "org", "year", "modules", "claimed_importance", "confidence", "summary"):
-        if it.get(k) in (None, "", []):
-            bad.append("BAD_FIELD")
-            warn.append(f"缺字段 `{k}`")
-    if bad:
-        return bad, warn
+    if not isinstance(it, dict):
+        return ['BAD_FIELD'], ['材料登记须为对象']
+    text_fields = ('file', 'title', 'org', 'confidence', 'summary')
+    if (not all(isinstance(it.get(k), str) and it[k].strip() for k in text_fields)
+            or type(it.get('year')) is not int or not 1990 <= it['year'] <= 2100
+            or not isinstance(it.get('modules'), list) or not it['modules']
+            or not all(isinstance(m, str) for m in it['modules'])
+            or any(k in it and not isinstance(it[k], list)
+                   for k in ('key_numbers', 'key_statements', 'replaces_record_ids'))
+            or ('sensitive' in it and type(it['sensitive']) is not bool)
+            or not all(isinstance(r, str) and r.strip() for r in it.get('replaces_record_ids', []))):
+        return ['BAD_FIELD'], ['必填字段或证据集合类型非法，见 submission.schema.json']
 
     mods = it.get("modules") or []
     if any(m not in VALID_MODULES for m in mods):
@@ -187,7 +157,15 @@ def check_item(it, lib_names, lib_olds, decl_module):
         bad.append('NO_EVIDENCE')
         warn.append('自评 ≥5 分须提供可定位的 key_numbers 或 key_statements')
     for n in kn:
-        if not (n.get("locator") or "").strip():
+        if not isinstance(n, dict):
+            bad.append('BAD_FIELD')
+            continue
+        value = n.get('value')
+        if (not all(isinstance(n.get(k), str) and n[k].strip() for k in ('what', 'unit'))
+                or not (isinstance(value, str) and value.strip()
+                        or type(value) in (int, float) and math.isfinite(value))):
+            bad.append('BAD_FIELD')
+        if not isinstance(n.get('locator'), str) or not n['locator'].strip():
             bad.append("NO_LOCATOR")
             warn.append(f"数字「{n.get('what','?')}」没有 locator")
     for statement in statements:
@@ -206,8 +184,7 @@ def check_item(it, lib_names, lib_olds, decl_module):
     stem = Path(it.get("file", "")).name.lower()
     title = (it.get("title") or "").strip().lower()
     if stem in lib_names or stem in lib_olds or (title and title in lib_olds):
-        bad.append("DUP")
-        warn.append(f"库内已有同名件：{it.get('file')}")
+        warn.append(f"库内有同名件，待原件 SHA 核对，不能按名称拒收：{it.get('file')}")
 
     if decl_module and decl_module not in mods:
         bad.append("OFF_TARGET")
@@ -216,17 +193,25 @@ def check_item(it, lib_names, lib_olds, decl_module):
     return sorted(set(bad)), warn
 
 
-def tier(it, bad, conf):
+def matched_workorder(submission, item, tasks):
+    """A declared ID alone cannot qualify a candidate for B review."""
+    wid = submission.get('workorder')
+    if not wid:
+        return False
+    task = tasks.get(wid, {})
+    module = task.get('module_id') or task.get('mid')
+    assignment = task.get('assignment') or {}
+    return bool(module and module == submission.get('module') and module in item.get('modules', [])
+                and assignment.get('status') not in ('已合并', '已放弃'))
+
+
+def tier(it, bad, conf, matched=False):
     if bad:
         return "退回"
-    if it.get("sensitive"):
+    if it.get("sensitive") or it.get('replaces_record_ids') or conf or it['claimed_importance'] >= 8:
         return "A"
-    if it.get("claimed_importance", 0) >= 8:
-        return "A"
-    if conf:                     # 与既有事实打架的，不管几分都得人看
-        return "A"
-    if it.get("claimed_importance", 0) >= 5:
-        return "B"
+    if it['claimed_importance'] >= 5:
+        return "B" if matched else "待匹配"
     return "C"
 
 
@@ -249,7 +234,7 @@ def to_batch_rows(items, today):
             for n in (it.get("key_numbers") or []))
         summary = it["summary"]
         if nums:
-            summary += f" **可落库数字**：{nums}"
+            summary += f" **候选数字**：{nums}"
         for statement in it.get('key_statements') or []:
             summary += f" **候选陈述**：{statement['text']}；原文：{statement['quote']}（{statement['locator']}）"
         summary += (f" 【成员投递·{who}"
@@ -277,7 +262,7 @@ def to_batch_rows(items, today):
 
 
 def hit_rates(buckets):
-    """成员命中率——用户定的 KPI 是命中率不是投递量。"""
+    """机检通过率，不冒充实际研究命中率。"""
     tally = {}
     for t, items in buckets.items():
         for who, *_ in items:
@@ -311,10 +296,10 @@ def selftest():
     else:
         print(f"✓ 冲突升 A 档：{conf[0]}")
     t, _ = got["普通材料"]
-    if t != "B":
-        ok = False; print(f"✗ 干净的 6 分件应落 B 档，实为 {t}")
+    if t != "待匹配":
+        ok = False; print(f"✗ 无工单的 6 分件应待匹配，实为 {t}")
     else:
-        print("✓ 干净的 6 分件落 B 档")
+        print("✓ 无工单的 6 分件保留候选，等待匹配")
 
     scanned = [p.parent.name for p in SUBS.rglob("submission.json")
                if not any(x.startswith("_") for x in p.relative_to(SUBS).parts)]
@@ -347,40 +332,64 @@ def main():
         print("没有找到任何 submission.json")
         return 0
 
-    buckets = {"A": [], "B": [], "C": [], "退回": []}
+    tasks = {task["wid"]: task for task in current_tasks(ROOT)}
+    buckets = {"A": [], "B": [], "C": [], "待匹配": [], "退回": []}
     lines = ["# 投递审阅 — 机检结果与分流", "",
-             "> 三档：**A 必须你批**（≥8分／敏感／与现有结论冲突）｜"
-             "**B 模型批**（5-7分命中缺口，抽 10% 复核）｜**C 自动入库**（≤4 分存档）。",
+             ("> 三档：**A 必须你批**（≥8分／敏感／与现有结论冲突）｜"
+             "**B 待模型审核**（5-7分命中工单，确定性抽样复核）｜**C 候选存档**（≤4 分）。未匹配工单的中分材料保持待匹配。"),
              "> 退回项已带理由码，直接回流给成员即可——**退回不给理由，下次照犯**。", ""]
 
+    read_errors = 0
     for d in dirs:
         try:
             sub = json.loads((d / "submission.json").read_text(encoding="utf-8"))
-        except Exception as e:
+        except (OSError, ValueError) as e:
+            read_errors += 1
             print(f"✗ {d}：submission.json 读取失败 {e}")
+            continue
+        if (not isinstance(sub, dict) or not isinstance(sub.get('items'), list)
+                or not sub['items'] or not isinstance(sub.get('contributor'), str)
+                or not sub['contributor'].strip() or not isinstance(sub.get('module'), str)
+                or sub['module'] not in VALID_MODULES
+                or not isinstance(sub.get('submitted'), str)
+                or ('workorder' in sub and not isinstance(sub['workorder'], str))):
+            read_errors += 1
+            print(f"✗ {d}：投递单必填字段或类型非法")
+            continue
+        try:
+            date.fromisoformat(sub['submitted'])
+        except ValueError:
+            read_errors += 1
+            print(f"✗ {d}：submitted 日期非法")
             continue
         who = sub.get("contributor", "?")
         decl = sub.get("module")
         for it in sub.get("items", []):
             bad, warn = check_item(it, lib_names, lib_olds, decl)
+            matched = False if bad else matched_workorder(sub, it, tasks)
+            if not bad and sub.get('workorder') and not matched:
+                bad.append('OFF_TARGET')
+                warn.append('工单已退出当前集合、已结束，或其模块与材料不匹配')
             conf = [] if bad else conflicts(it, by_unit)
-            t = tier(it, bad, conf)
+            if not isinstance(it, dict):
+                it = {}
+            t = tier(it, bad, conf, matched)
             buckets[t].append((who, sub.get("workorder"), it, bad, warn, conf, d))
 
     total = sum(len(v) for v in buckets.values())
     accepted = total - len(buckets["退回"])
     lines.append(f"共 {total} 件｜通过机检 {accepted}｜退回 {len(buckets['退回'])}"
-                 f"｜**需你批 {len(buckets['A'])}**｜模型批 {len(buckets['B'])}｜自动 {len(buckets['C'])}")
+                 f"｜**需你批 {len(buckets['A'])}**｜待模型审核 {len(buckets['B'])}｜候选存档 {len(buckets['C'])}｜待匹配 {len(buckets['待匹配'])}")
     lines.append("")
 
-    for t, label in (("A", "🔴 必须你批"), ("退回", "↩️ 退回成员"), ("B", "模型批（抽查）"), ("C", "自动入库")):
+    for t, label in (("A", "🔴 必须你批"), ("退回", "↩️ 退回成员"), ("B", "待模型审核（抽查）"), ("C", "候选存档"), ("待匹配", "候选待匹配工单")):
         if not buckets[t]:
             continue
         lines += [f"## {label}（{len(buckets[t])} 件）", ""]
         for who, wo, it, bad, warn, conf, d in buckets[t]:
             head = (f"- **{it.get('claimed_importance','?')}{it.get('confidence','?')}** "
-                    f"{it.get('title','?')[:52]} ｜ {it.get('org','?')} {it.get('year','?')} "
-                    f"｜ → {'/'.join(it.get('modules') or [])} ｜ {who}"
+                    f"{str(it.get('title','?'))[:52]} ｜ {it.get('org','?')} {it.get('year','?')} "
+                    f"｜ → {it.get('modules') or []!s} ｜ {who}"
                     + (f" ｜ 工单 {wo}" if wo else " ｜ *自主发现*")
                     + (" ｜ 🔍 **抽中复核**" if t == "B" and audit_sampled(it) else ""))
             lines.append(head)
@@ -407,38 +416,44 @@ def main():
 
     sampled = [it for _, _, it, _, _, _, _ in buckets["B"] if audit_sampled(it)]
     print(f"共 {total} 件｜通过 {accepted}｜退回 {len(buckets['退回'])}")
-    print(f"  🔴 需你批 {len(buckets['A'])}｜模型批 {len(buckets['B'])}"
-          f"（抽中复核 {len(sampled)}）｜自动入库 {len(buckets['C'])}")
+    print(f"  🔴 需你批 {len(buckets['A'])}｜待模型审核 {len(buckets['B'])}"
+          f"（抽中复核 {len(sampled)}）｜候选存档 {len(buckets['C'])}｜待匹配 {len(buckets['待匹配'])}")
     for who, wo, it, bad, warn, conf, d in buckets["退回"]:
-        print(f"  ↩️ {it.get('title','?')[:40]}：{'；'.join(REJECT.get(b, b) for b in bad)}")
+        print(f"  ↩️ {str(it.get('title','?'))[:40]}：{'；'.join(REJECT.get(b, b) for b in bad)}")
     for who, wo, it, bad, warn, conf, d in buckets["A"]:
         for c in conf:
             print(f"  ⚠️ 冲突升 A：{it.get('title','?')[:32]} — {c}")
     rates = hit_rates(buckets)
     if rates:
-        print("  命中率（KPI）：" + "｜".join(
+        print("  机检通过率（非研究命中率）：" + "｜".join(
             f"{w} {v['过']}/{v['总']}（{v['过']*100//v['总']}%）" for w, v in sorted(rates.items())))
 
     if accept:
         promo = buckets["B"] + buckets["C"]
         if not promo:
-            print("没有可自动入库的 B/C 档投递。")
+            print("没有可导出的 B/C 候选。")
         else:
-            today = date.today().isoformat()
+            today = datetime.now().astimezone().date().isoformat()
             rows = to_batch_rows(promo, today)
             BATCHES.mkdir(parents=True, exist_ok=True)
-            who = safe(promo[0][0], 20)
-            f = BATCHES / f"batch_sub_{today.replace('-', '')}_{who}.csv"
-            with f.open("w", encoding="utf-8", newline="") as fh:
-                w = csv.DictWriter(fh, fieldnames=BATCH_FIELDS)
-                w.writeheader(); w.writerows(rows)
+            # Payload identity is only for idempotent candidate export, not material identity.
+            stream = io.StringIO(newline='')
+            writer = csv.DictWriter(stream, fieldnames=BATCH_FIELDS)
+            writer.writeheader(); writer.writerows(rows)
+            data = stream.getvalue().encode('utf-8')
+            identity = [{k: v for k, v in row.items() if k != 'scored'} for row in rows]
+            batch_id = hashlib.sha256(json.dumps(identity, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
+            f = BATCHES / f"batch_sub_{batch_id}.csv"
+            with locked(f):
+                if not f.exists():
+                    atomic_write(f, data)
             print(f"已写出批次 {f.relative_to(ROOT)}（{len(rows)} 行，depth=成员精读）")
-            print("  → 走既有合并流程入表；**A 档不自动入库**，等你过目。")
+            print("  → 仅生成候选批次；B 尚需模型审核，C 仅存档，均不直接采用。")
     elif buckets["B"] or buckets["C"]:
-        print(f"  提示：{len(buckets['B']) + len(buckets['C'])} 件 B/C 档可自动入库，加 --accept 生成批次。")
+        print(f"  提示：{len(buckets['B']) + len(buckets['C'])} 件 B/C 候选可导出，加 --accept 生成批次。")
 
     print(f"完整审阅卡已写入 {OUT.relative_to(ROOT)}")
-    return 0
+    return 1 if read_errors or buckets["退回"] else 0
 
 
 if __name__ == "__main__":

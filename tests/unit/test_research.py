@@ -192,15 +192,28 @@ class ResearchTests(unittest.TestCase):
             {'at': 'not-a-date'}, {'at': '2026-09-06T00:00:00'},
             {'tier': 'invented'}, {'authority': 'worker'},
             {'tier': 'A', 'authority': 'reviewer'},
-            {'decision': 'candidate'}, {'by': ''},
+            {'decision': 'candidate'}, {'by': ''}, {'by': '   '}, {'tier': 'C'},
         ]
         for override in cases:
-            for table in ('answers', 'evidence'):
+            for table in ('answers', 'statements', 'evidence'):
                 with self.subTest(table=table, override=override):
                     knowledge = adopted_knowledge()
                     knowledge[table][0]['review'].update(override)
                     self.assertEqual(set(), research.completed_questions(knowledge))
                     self.assertTrue(research.validate(self.graph, self.questions, knowledge))
+
+    def test_C_archive_cannot_close_and_valid_B_reopens_then_closes(self):
+        knowledge = adopted_knowledge()
+        for table in ('evidence', 'statements', 'answers'):
+            knowledge[table][0]['review'].update(tier='B', authority='reviewer')
+        self.assertEqual({'M01-Q01'}, research.completed_questions(knowledge))
+        for malformed in (None, [], 'review', {'tier': 'C'}):
+            broken = copy.deepcopy(knowledge)
+            broken['statements'][0]['review'] = malformed
+            self.assertEqual(set(), research.completed_questions(broken))
+            tasks = research.question_tasks(self.questions, broken)
+            self.assertIn('Q-M01-Q01', {t['wid'] for t in tasks})
+        self.assertEqual({'M01-Q01'}, research.completed_questions(knowledge))
 
 
 class MutationTests(unittest.TestCase):

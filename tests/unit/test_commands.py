@@ -65,6 +65,32 @@ class CommandFlows(unittest.TestCase):
             self.assertEqual(h.api_add_price({**rec, 'series_id':'bad', 'value':True})[0], 400)
         self.assertEqual(len(json.loads((self.root/'data/prices.json').read_text())['records']), 1)
 
+    def test_post_replace_sync_failure_is_visible_and_retry_does_not_duplicate(self):
+        with patch.object(file_store, 'sync_directory', side_effect=OSError('injected fsync failure')):
+            with self.assertRaises(file_store.CommitUncertain):
+                price(self.root, 1)
+        records = json.loads((self.root/'data/prices.json').read_text())['records']
+        self.assertEqual(1, len(records))
+        with self.assertRaises(commands.Rejected) as error:
+            price(self.root, 1)
+        self.assertEqual(409, error.exception.status)
+        self.assertEqual(records, json.loads((self.root/'data/prices.json').read_text())['records'])
+
+    def test_cli_and_http_expose_post_commit_uncertainty(self):
+        output = io.StringIO()
+        with patch.object(commands, 'add_price', side_effect=file_store.CommitUncertain()), \
+             patch('sys.stdin', io.StringIO('{}')), patch('sys.stdout', output):
+            self.assertEqual(1, cli.main(['--root', str(self.root), 'add-price']))
+        self.assertEqual('visible_durability_unconfirmed', json.loads(output.getvalue())['commit_state'])
+        h = object.__new__(serve.Handler)
+        h._json = lambda status, body: (status, body)
+        for command, call in [('add_price', lambda: h.api_add_price({})),
+                              ('assign', lambda: h.api_assign({}))]:
+            with patch.object(commands, command, side_effect=file_store.CommitUncertain()):
+                status, body = call()
+            self.assertEqual(503, status)
+            self.assertEqual('visible_durability_unconfirmed', body['commit_state'])
+
 
 if __name__ == '__main__':
     unittest.main()

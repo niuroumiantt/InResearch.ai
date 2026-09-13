@@ -1,10 +1,12 @@
 # Spark 持续资料阅读 - 当前目标与接口
 
-> 2026-09-06 用户采用生效。旧 datacenter-reader 有限批次计划 **SUPERSEDED / 已被替代**，不可作为启动指令。正式标准：[阅读标准 v3](../../framework/04_reading_scoring_standard.md)、[执行协议](RUN_TO_COMPLETION.md)、[架构 v2](../reviews/2026-09-06/RESEARCH_ARCHITECTURE_V2.md)。历史规模、主机和完成数字只描述当时账本，不代表当前磁盘或服务状态。
+> 2026-09-06 用户采用生效。旧 datacenter-reader 有限批次计划 **SUPERSEDED / 已被替代**，不可作为启动指令。正式标准：[阅读标准 v4](../../framework/04_reading_scoring_standard.md)、[执行协议](RUN_TO_COMPLETION.md)、[现行架构](../../framework/00_overview.md)。历史规模、主机和完成数字只描述当时账本，不代表当前磁盘或服务状态。
+
+执行模型按 [08 模型执行](../../framework/08_model_execution.md)；当前暂用 Claude CLI，Spark 是待恢复的运行目标，文档不证明服务在线。
 
 ## 当前目标
 
-Spark 长期接收 raw-materials，27B 粗读后对每篇独立文章深读，原文证据关联对象、接口、问题和数字/非数字陈述。接收、阅读、质量、分类、核验和采用分别登记；低分不淘汰，新料和旧积压均持续推进。
+Spark 长期接收 raw-materials，配置的研究模型粗读后对每篇独立文章深读，原文证据关联对象、接口、问题和数字/非数字陈述。接收、阅读、质量、分类、核验和采用分别登记；低分不淘汰，新料和旧积压均持续推进。
 
 研究既由框架提出缺口找资料，也由新材料产生证据、反证和新问题。15 模块保留兼容导航，分类可细化到对象/关系，不新建重复公司、资产或原件。
 

@@ -12,7 +12,7 @@ import hashlib
 import json
 import random
 import re
-from contextlib import redirect_stdout
+from contextlib import redirect_stdout, ExitStack
 from pathlib import Path
 import tempfile
 import unittest
@@ -1301,10 +1301,10 @@ class SkipTests(unittest.TestCase):
         self.assertIn(L1_ROW['rel'], listing)
         self.assertIn('"open_gaps": 1', listing)
 
-    def test_a_malformed_line_does_not_take_the_ledger_down(self):
+    def test_an_incomplete_tail_does_not_take_the_ledger_down(self):
         self.skip(['缺 x86'])
         with L2.GAPS.open('a', encoding='utf-8') as fh:
-            fh.write('{ 半行\n')
+            fh.write('{ 半行')
         self.assertEqual(len(L2.open_gaps()), 1)
 
 
@@ -1894,10 +1894,10 @@ class TextFingerprintTests(unittest.TestCase):
         self.read.add('a' * 64)
         self.assertEqual(L2.already_read_with_same_text('b' * 64, None), [])
 
-    def test_a_malformed_line_does_not_take_the_ledger_down(self):
+    def test_an_incomplete_tail_does_not_take_the_ledger_down(self):
         L2.remember_fingerprint('a' * 64, 'deadbeef')
         with L2.TEXT_MD5.open('a', encoding='utf-8') as fh:
-            fh.write('{ 半行\n')
+            fh.write('{ 半行')
         self.assertEqual(L2.fingerprints(), {'a' * 64: 'deadbeef'})
 
     # -- 开包了但还没读的副本 ---------------------------------------------
@@ -1930,13 +1930,27 @@ class TextFingerprintTests(unittest.TestCase):
         self.assertEqual(L2.fingerprints()['a' * 64], 'new')
 
 
-class TwinAdvanceTests(unittest.TestCase):
-    """pack 拦下一字不差的副本之后，队列要前进。
+class DeepReadJournalTests(unittest.TestCase):
+    def test_committed_corruption_fails_and_torn_tail_is_read_only(self):
+        with tempfile.TemporaryDirectory() as d:
+            path = Path(d)/'journal.jsonl'
+            row = {'sha256': 'a' * 64, 'text_md5': 'ab', 'sketch': ['ab'], 'gap_id': 'g'}
+            data = (json.dumps(row) + '\n').encode()
+            for attr, reader in [('READ_LOG', L2.read_documents), ('TEXT_MD5', L2.fingerprints),
+                                 ('TEXT_MD5', L2.sketches), ('GAPS', L2.open_gaps)]:
+                with self.subTest(reader=reader.__name__), patch.object(L2, attr, path):
+                    path.write_bytes(data)
+                    expected = reader()
+                    path.write_bytes(data + b'{unfinished')
+                    self.assertEqual(expected, reader())
+                    self.assertEqual(data + b'{unfinished', path.read_bytes())
+                    path.write_bytes(data + b'{broken}\n' + data)
+                    with self.assertRaisesRegex(ValueError, 'invalid JSON record'):
+                        reader()
 
-    以前只拦不记：副本留在队首，每次 pack 都返回同一句拒绝，直到有人手打
-    skip——而那份文件机器已经逐字证明是读过的。这种程度的确定性，替读者记
-    已读不算越权。
-    """
+
+class TextTwinRoutingTests(unittest.TestCase):
+    """Equal extracted text is a review hint, not original identity or full coverage."""
 
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-twin-')
@@ -1974,21 +1988,32 @@ class TwinAdvanceTests(unittest.TestCase):
                                        'min_score': 8, 'again': again, 'since': 0}))
         return json.loads(out.getvalue())
 
-    def test_a_blocked_twin_is_marked_read_so_the_queue_advances(self):
+    def test_same_extracted_text_different_bytes_still_gets_its_own_packet(self):
+        before = L2.READ_LOG.read_bytes()
         report = self.pack()
-        self.assertEqual(report['packed'], 0)
-        self.assertTrue(report['marked_read'])
-        self.assertIn(self.row['sha256'], L2.read_documents())
-        rows = [json.loads(l) for l in L2.READ_LOG.read_text(encoding='utf-8').splitlines()]
-        self.assertEqual(rows[-1]['facts'], 0)
-        self.assertEqual(rows[-1]['twin_of'], ['a' * 64])
-        self.assertIn('正文副本', rows[-1]['skipped'])
+        self.assertEqual(report['packed'], 1)
+        self.assertEqual(report['sha256'], self.row['sha256'])
+        self.assertEqual(report['same_text_already_read'], ['a' * 64])
+        self.assertNotIn(self.row['sha256'], L2.read_documents())
+        self.assertEqual(before, L2.READ_LOG.read_bytes())
+        self.assertTrue(Path(report['text']).is_file())
 
-    def test_again_still_reopens_it(self):
-        """记成已读不是封死：--again 照样能按名重开。"""
-        self.pack()
+    def test_again_still_reopens_a_genuinely_read_document(self):
+        L2.append_record(L2.READ_LOG, {'sha256': self.row['sha256'], 'facts': 3})
         report = self.pack(again=True)
         self.assertEqual(report['packed'], 1)
+        self.assertTrue(report['again'])
+
+    def test_old_automatic_twin_record_is_preserved_but_not_counted_as_read(self):
+        L2.append_record(L2.READ_LOG, {'sha256': self.row['sha256'], 'facts': 0, 'twin_of': ['a' * 64]})
+        before = L2.READ_LOG.read_bytes()
+        self.assertNotIn(self.row['sha256'], L2.read_documents())
+        self.assertIn('a' * 64, L2.read_documents())
+        self.assertEqual(before, L2.READ_LOG.read_bytes())
+        # A later actual full read with no facts remains a valid completion.
+        L2.append_record(L2.READ_LOG, {'sha256': self.row['sha256'], 'facts': 0})
+        self.assertIn(self.row['sha256'], L2.read_documents())
+        self.assertTrue(L2.READ_LOG.read_bytes().startswith(before))
 
 
 class NearTwinTests(unittest.TestCase):

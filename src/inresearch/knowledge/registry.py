@@ -51,12 +51,15 @@ def coverage_complete(document):
 
 def review_valid(row):
     review = row.get('review', {})
+    if not isinstance(review, dict):
+        return False
     try:
         parse_time(review.get('at'))
     except (ValueError, TypeError):
         return False
     # Promotion is an explicit curated write; the worker and receiver cannot create it.
-    return (bool(review.get('by')) and review.get('tier') in ('A', 'B', 'C')
+    return (isinstance(review.get('by'), str) and bool(review['by'].strip())
+            and review.get('tier') in ('A', 'B')
             and review.get('decision') == 'adopted'
             and review.get('authority') in ('owner', 'reviewer')
             and (review['tier'] != 'A' or review['authority'] == 'owner'))

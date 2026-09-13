@@ -27,7 +27,7 @@ from __future__ import annotations
 
 from inresearch.materials.artifacts import verified_content
 from inresearch.paths import project_root
-from inresearch.storage.jsonl import append_record
+from inresearch.storage.jsonl import append_record, read_rows
 from inresearch.materials.records import commit_result, result_revision, current_results
 from inresearch.storage.files import locked, write_json
 from functools import wraps
@@ -112,13 +112,8 @@ def all_results() -> dict:
 
 def read_documents() -> set:
     """Documents already given a full read, so pack advances instead of looping."""
-    done = set()
-    if READ_LOG.exists():
-        with READ_LOG.open(encoding='utf-8') as fh:
-            for line in fh:
-                try: done.add(json.loads(line)['sha256'])
-                except (ValueError, KeyError): continue
-    return done
+    return {row['sha256'] for row in read_rows(READ_LOG)
+            if row.get('sha256') and 'twin_of' not in row}
 
 
 # Our own output is not a source.  A summary this project wrote was derived
@@ -291,15 +286,8 @@ def text_fingerprint(text: str, meta: dict) -> str | None:
 
 def fingerprints() -> dict:
     """sha256 -> text_md5, last write wins."""
-    seen = {}
-    if TEXT_MD5.exists():
-        with TEXT_MD5.open(encoding='utf-8') as fh:
-            for line in fh:
-                try: row = json.loads(line)
-                except ValueError: continue
-                if row.get('sha256') and row.get('text_md5'):
-                    seen[row['sha256']] = row['text_md5']
-    return seen
+    return {row['sha256']: row['text_md5'] for row in read_rows(TEXT_MD5)
+            if row.get('sha256') and row.get('text_md5')}
 
 
 def remember_fingerprint(sha: str, text_md5: str,
@@ -405,15 +393,8 @@ def sketch_overlap(a: list[str], b: list[str]) -> float:
 
 def sketches() -> dict:
     """sha256 -> sketch, last write wins.  Same ledger as the fingerprints."""
-    seen = {}
-    if TEXT_MD5.exists():
-        with TEXT_MD5.open(encoding='utf-8') as fh:
-            for line in fh:
-                try: row = json.loads(line)
-                except ValueError: continue
-                if row.get('sha256') and row.get('sketch'):
-                    seen[row['sha256']] = row['sketch']
-    return seen
+    return {row['sha256']: row['sketch'] for row in read_rows(TEXT_MD5)
+            if row.get('sha256') and row.get('sketch')}
 
 
 def near_twins(sha: str, sketch: list[str]) -> list[dict]:
@@ -465,37 +446,15 @@ def cmd_pack(a):
     text_md5 = text_fingerprint(text, meta)
     if text_md5:
         twins = already_read_with_same_text(row['sha256'], text_md5)
-        if twins and not a.again:
-            # Not a refusal to ever read it - a refusal to read it twice
-            # without saying so.  --again reopens it by name.
-            #
-            # And the queue moves on.  Blocking without recording left the
-            # copy at the top of the queue, so every pack returned the same
-            # refusal until someone typed skip by hand - for a document the
-            # machine had already proven, character for character, was one it
-            # had read.  Certainty this complete is the one case where marking
-            # read on the reader's behalf is not presumption.  The ledger row
-            # says why, and --again still reopens it.
-            READ_LOG.parent.mkdir(parents=True, exist_ok=True)
-            append_record(READ_LOG, {'sha256': row['sha256'], 'at': now(), 'facts': 0,
-                                     'skipped': '正文副本：与 %s 一字不差' % twins[0][:16],
-                                     'twin_of': twins})
-            print(json.dumps(
-                {'packed': 0, 'sha256': row['sha256'], 'rel': row.get('rel'),
-                 'text_md5': text_md5, 'same_text_already_read': twins,
-                 'marked_read': True,
-                 'reason': '正文与已读过的文件一字不差——sha256 不同是因为字节不同，'
-                           '不是因为内容不同。已按副本记入已读，队列会前进；'
-                           '确要再读一遍用 pack --again --sha %s'
-                           % row['sha256'][:12]}, ensure_ascii=False))
-            return
+        # Equal extracted text does not prove equal diagrams, footnotes or
+        # document identity. Keep the observation; never block another SHA.
         # 在记账之前问：正文一样、还没读、已经开过包的是哪几份。
         # 记账之后再问就问不出来了——自己会出现在账本里。
         open_twins = packed_not_read_with_same_text(row['sha256'], text_md5)
         sketch = text_sketch(text)
         remember_fingerprint(row['sha256'], text_md5, sketch)
     else:
-        open_twins, sketch = [], []
+        twins, open_twins, sketch = [], [], []
     # 近似副本：正文不是一字不差，但差的只是一页版权声明。同样只报不挡。
     approximate = near_twins(row['sha256'], sketch) if sketch else []
 
@@ -525,22 +484,13 @@ def cmd_pack(a):
                       'text_md5': text_md5,
                       'same_text_packed_not_read': open_twins or None,
                       'near_twins': approximate or None,
-                      'near_twin_note': ('正文与 %d 份高度重合（%s），像是丢了一页'
-                                         '版权声明或页眉的副本——sha256 与 text_md5 '
-                                         '都挡不住这种。确认是同一份就 skip 掉这一份'
-                                         % (len(approximate),
-                                            '、'.join('%s %.0f%%%s' %
-                                                      (t['sha256'][:12],
-                                                       t['shared'] * 100,
-                                                       ' 已读' if t['read'] else ' 未读')
-                                                      for t in approximate)))
-                                        if approximate else None,
-                      'same_text_note': ('正文与已开包但尚未读的 %d 份一字不差：%s。'
-                                         '两份都读就是把同一篇读两遍——确认是同一份的话'
-                                         '读完这一份后 skip 掉另一份' %
-                                         (len(open_twins),
-                                          ' '.join(t[:12] for t in open_twins)))
-                                        if open_twins else None,
+                      'same_text_already_read': twins or None,
+                      'near_twin_note': ('提取文本与其他材料高度重合；核对原件图表、脚注和版本差异。'
+                                         '相似度不能证明缺的只是版权页，不能据此自动跳读或沿用旧证据。'
+                                         if approximate else None),
+                      'same_text_note': ('提取文本相同；原件 SHA 不同，图表或其他未抽取内容可能不同。'
+                                         '保留独立内容身份，确认原件等价前不自动跳读。'
+                                         if twins or open_twins else None),
                       'unattributed': missing or None,
                       'again': True if a.again and row['sha256'] in read_documents() else None,
                       'brief': str(out / 'brief.md'), 'text': str(out / 'text.md'),
@@ -791,14 +741,7 @@ def cmd_queue(a):
 
 def open_gaps() -> list[dict]:
     """Menu gaps recorded by skip and not yet marked filled."""
-    rows = []
-    if GAPS.exists():
-        with GAPS.open(encoding='utf-8') as fh:
-            for line in fh:
-                try: row = json.loads(line)
-                except ValueError: continue
-                if row.get('gap_id'):
-                    rows.append(row)
+    rows = [row for row in read_rows(GAPS) if row.get('gap_id')]
     latest = {}
     for row in rows:            # append-and-supersede, same as every other ledger
         latest[row['gap_id']] = row
@@ -904,17 +847,11 @@ def cache_key_to_sha(keys: set) -> dict:
     if not want:
         return {}
     hits = {}
-    with MOVES.open(encoding='utf-8') as fh:
-        for line in fh:
-            for name in want:
-                if name in line:
-                    try:
-                        row = json.loads(line)
-                    except ValueError:
-                        continue
-                    sha = row.get('sha256')
-                    if sha:
-                        hits.setdefault(name, set()).add(sha)
+    for row in read_rows(MOVES):
+        line = json.dumps(row, ensure_ascii=False)
+        for name in want:
+            if name in line and row.get('sha256'):
+                hits.setdefault(name, set()).add(row['sha256'])
     out = {}
     for name, shas in hits.items():
         if len(shas) != 1:
