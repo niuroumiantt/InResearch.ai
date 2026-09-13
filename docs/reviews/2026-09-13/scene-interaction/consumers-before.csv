@@ -1,0 +1,81 @@
+implementation,path,line,reference
+bom3d.html,docs/REPOSITORY_REGISTER.md,957,| `web/pages/bom3d.html` | 运行代码 |
+rack3d.html,docs/REPOSITORY_REGISTER.md,966,| `web/pages/rack3d.html` | 运行代码 |
+rack3d.html,docs/local_setup/ADD_3D_MODEL.md,100,浏览器开 **http://localhost:8000/rack3d.html** 。模型应该已经站在场地中央。
+bom3d.html,framework/current_state.json,128,"""web/pages/bom3d.html"","
+rack3d.html,framework/current_state.json,129,"""web/pages/rack3d.html"""
+bom3d.html,framework/current_state.json,378,"""web/pages/bom3d.html"","
+rack3d.html,framework/current_state.json,379,"""web/pages/rack3d.html"","
+bom3d.html,framework/interface_manifest.json,8,"""bom3d.html"","
+rack3d.html,framework/interface_manifest.json,9,"""rack3d.html"","
+bom3d.html,framework/interface_manifest.json,36,"""bom3d.html"": ""web/pages/bom3d.html"","
+rack3d.html,framework/interface_manifest.json,37,"""rack3d.html"": ""web/pages/rack3d.html"","
+bom3d.html,framework/repository_manifest.json,7149,"""path"": ""web/pages/bom3d.html"","
+rack3d.html,framework/repository_manifest.json,7212,"""path"": ""web/pages/rack3d.html"","
+rack3d.html,src/inresearch/adapters/asset_check.py,97,"f""\n下一步：python3 -m http.server 8000 然后开 http://localhost:8000/rack3d.html 看效果"")"
+rack3d.html,src/inresearch/adapters/asset_download.py,204,"""  python3 -m http.server 8000 → http://localhost:8000/rack3d.html"")"
+bom3d.html,tests/part_dossier.cjs,9,"for (const url of ['/bom3d.html?p=server', '/rack3d.html?node=part:gpu']) {"
+rack3d.html,tests/part_dossier.cjs,9,"for (const url of ['/bom3d.html?p=server', '/rack3d.html?node=part:gpu']) {"
+bom3d.html,tests/ui_skin.cjs,38,"if (['index.html','research.html','bom3d.html','rack3d.html'].includes(file)) assert.equal(geometry.radius,skin==='folk'?'0px':'8px',file+' panel geometry');"
+rack3d.html,tests/ui_skin.cjs,38,"if (['index.html','research.html','bom3d.html','rack3d.html'].includes(file)) assert.equal(geometry.radius,skin==='folk'?'0px':'8px',file+' panel geometry');"
+bom3d.html,tests/ui_skin.cjs,41,"if(dir && ['index.html','research.html','admin/product/index.html','doc.html','bom3d.html','rack3d.html'].includes(file) && mode==='light'){"
+rack3d.html,tests/ui_skin.cjs,41,"if(dir && ['index.html','research.html','admin/product/index.html','doc.html','bom3d.html','rack3d.html'].includes(file) && mode==='light'){"
+bom3d.html,web/assets/levels.json,4,"{ ""id"": ""dc"", ""icon"": ""🏢"", ""name"": ""数据中心"", ""en"": ""Data Center"", ""page"": ""bom3d.html"","
+rack3d.html,web/assets/levels.json,6,"{ ""id"": ""rack"", ""icon"": ""🗄️"", ""name"": ""机柜"", ""en"": ""Rack"", ""page"": ""rack3d.html"","
+rack3d.html,web/assets/levels.json,8,"{ ""id"": ""server"", ""icon"": ""🧠"", ""name"": ""GPU 服务器"", ""en"": ""GPU Server"", ""page"": ""rack3d.html?x=70"","
+rack3d.html,web/assets/panels/README.md,19,拷进本目录并在上表登记（**来源与许可留痕是纪律**），再改 rack3d.html 的 PANELS 表。
+showDossier,web/components/part-dossier.js,19,return function showDossier(p) {
+rack3d.html,web/components/part-dossier.js,41,"links.append(dossierLink(""继续拆解机柜 →"", ""rack3d.html?x=100&node="" + encodeURIComponent(""part:"" + p.id) + ""#"" + encodeURIComponent(p.id)));"
+bom3d.html,web/components/part-dossier.js,43,"links.append(dossierLink(""返回园区定位"", ""bom3d.html?"" + new URLSearchParams({ p: p.id, node: ""part:"" + p.id })));"
+installStageControl,web/components/research-graph.js,349,"export function installStageControl(stages, slider, apply) {"
+bom3d.html,web/components/research-graph.js,652,"actions.append(link(""园区 3D 定位"", ""bom3d.html?"" + new URLSearchParams({ p: o.legacy_bom_id, node: o.id })));"
+rack3d.html,web/components/research-graph.js,653,"actions.append(link(""机柜参考拆解"", ""rack3d.html?x=100&node="" + encodeURIComponent(o.id) + ""#"" + encodeURIComponent(o.legacy_bom_id)));"
+bom3d.html,web/pages/admin/product/index.html,108,"<a class=""tab"" href=""/bom3d.html"">爆炸图 3D</a>"
+bom3d.html,web/pages/bom.html,95,"<a class=""tab"" href=""bom3d.html"">爆炸图 3D</a>"
+rack3d.html,web/pages/bom.html,96,"<a class=""tab"" href=""rack3d.html"">机柜拆解台</a>"
+bom3d.html,web/pages/bom.html,105,"<a class=""go3d"" href=""bom3d.html"">🧊 进入 3D 立体拆解 →</a></div>"
+bom3d.html,web/pages/bom3d.html,106,"<a class=""tab on"" href=""bom3d.html"">爆炸图 3D</a>"
+rack3d.html,web/pages/bom3d.html,107,"<a class=""tab"" href=""rack3d.html"">机柜拆解台</a>"
+rack3d.html,web/pages/bom3d.html,123,"<a href=""rack3d.html""><button style=""background:transparent;border:1px solid var(--line);color:var(--text);font-weight:500"">🔬 进入机柜拆解台 →</button></a>"
+installStageControl,web/pages/bom3d.html,135,"import { bindResearchMeshNodes, installStageControl, safeURL } from ""./assets/research-graph.js"";"
+installStageControl,web/pages/bom3d.html,827,"const syncStageControl = installStageControl(STAGES, slider, apply);"
+camAnim,web/pages/bom3d.html,877,let camAnim = null;
+camAnim,web/pages/bom3d.html,883,camAnim && cancelAnimationFrame(camAnim.raf);
+camAnim,web/pages/bom3d.html,884,camAnim = {};
+camAnim,web/pages/bom3d.html,889,if (k < 1) camAnim.raf = requestAnimationFrame(fly); else camAnim = null;
+camAnim,web/pages/bom3d.html,892,"canvas.addEventListener(""pointerdown"", () => { camAnim && cancelAnimationFrame(camAnim.raf); camAnim = null; });"
+animSlider,web/pages/bom3d.html,894,"function animSlider(to, dur = 1400) {"
+function setDim,web/pages/bom3d.html,905,"function setDim(mesh, dim) {"
+animSlider,web/pages/bom3d.html,929,animSlider(d.t);
+showDossier,web/pages/bom3d.html,935,showDossier(p);
+setHover,web/pages/bom3d.html,957,"function setHover(o, on) {"
+function pick(,web/pages/bom3d.html,970,function pick(e) {
+setHover,web/pages/bom3d.html,978,"if (hovered && hovered !== o) { setHover(hovered, false); hovered = null; }"
+setHover,web/pages/bom3d.html,980,"if (hovered !== o) { setHover(o, true); hovered = o; }"
+showDossier,web/pages/bom3d.html,992,if (o?.userData.part && PART[o.userData.part]) showDossier(PART[o.userData.part]);
+showDossier,web/pages/bom3d.html,997,"const showDossier = createPartDossier({el: document.getElementById('dossier'), view: 'campus',"
+showDossier,web/pages/bom3d.html,1030,if (p) { controls.autoRotate = false; showDossier(p); }
+bom3d.html,web/pages/compare.html,40,"<a class=""tab"" href=""bom3d.html"">爆炸图 3D</a>"
+rack3d.html,web/pages/compare.html,41,"<a class=""tab"" href=""rack3d.html"">机柜拆解台</a>"
+bom3d.html,web/pages/index.html,94,"<div class=""entries""><a class=""entry"" href=""research.html"">进入研究工作台 <small>物理 · 系统 · 产业 · 需求 · 证据</small></a><a class=""entry"" href=""bom3d.html"">园区 3D</a><a class=""entry"" href=""rack3d.html"">机柜拆解</a></div>"
+rack3d.html,web/pages/index.html,94,"<div class=""entries""><a class=""entry"" href=""research.html"">进入研究工作台 <small>物理 · 系统 · 产业 · 需求 · 证据</small></a><a class=""entry"" href=""bom3d.html"">园区 3D</a><a class=""entry"" href=""rack3d.html"">机柜拆解</a></div>"
+bom3d.html,web/pages/poster.html,84,"<a class=""tab"" href=""bom3d.html"">爆炸图 3D</a>"
+rack3d.html,web/pages/poster.html,85,"<a class=""tab"" href=""rack3d.html"">机柜拆解台</a>"
+rack3d.html,web/pages/poster.html,158,"<a href=""rack3d.html?x=100#${L.part}"">🔬 3D 拆解</a>"
+bom3d.html,web/pages/rack3d.html,92,"<a class=""tab"" href=""bom3d.html"">爆炸图 3D</a>"
+rack3d.html,web/pages/rack3d.html,93,"<a class=""tab on"" href=""rack3d.html"">机柜拆解台</a>"
+bom3d.html,web/pages/rack3d.html,105,"<a href=""bom3d.html?d=compute""><button class=""ghost"">← 返回数据中心全景</button></a>"
+installStageControl,web/pages/rack3d.html,116,"import { bindResearchMeshNodes, installStageControl, safeURL } from ""./assets/research-graph.js"";"
+installStageControl,web/pages/rack3d.html,662,"const syncStageControl = installStageControl(STAGES, slider, apply);"
+setHover,web/pages/rack3d.html,679,"function setHover(o, on) {"
+function pick(,web/pages/rack3d.html,692,function pick(e) {
+setHover,web/pages/rack3d.html,700,"if (hovered && hovered !== o) { setHover(hovered, false); hovered = null; }"
+setHover,web/pages/rack3d.html,702,"if (hovered !== o) { setHover(o, true); hovered = o; }"
+showDossier,web/pages/rack3d.html,714,if (o?.userData.part && PART[o.userData.part]) showDossier(PART[o.userData.part]);
+showDossier,web/pages/rack3d.html,725,"const showDossier = createPartDossier({el: document.getElementById('dossier'), view: 'rack',"
+showDossier,web/pages/rack3d.html,752,if (PART[pid]) { controls.autoRotate = false; showDossier(PART[pid]); } }
+bom3d.html,web/pages/research.html,16,"<nav aria-label=""研究视图""><a href=""bom.html"">结构 2D</a><a href=""bom3d.html"">园区 3D</a><a href=""rack3d.html"">机柜拆解</a><a href=""admin/product/"">产品资料</a></nav>"
+rack3d.html,web/pages/research.html,16,"<nav aria-label=""研究视图""><a href=""bom.html"">结构 2D</a><a href=""bom3d.html"">园区 3D</a><a href=""rack3d.html"">机柜拆解</a><a href=""admin/product/"">产品资料</a></nav>"
+bom3d.html,web/routes.json,57,"""/bom3d.html"": ""web/pages/bom3d.html"","
+rack3d.html,web/routes.json,66,"""/rack3d.html"": ""web/pages/rack3d.html"","
+material.userData.orig,web/components/part-inspector.js,34,legacy implicit material restoration; must exit with setDim cache

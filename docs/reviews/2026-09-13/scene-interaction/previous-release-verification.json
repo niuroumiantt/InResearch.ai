@@ -1,0 +1,179 @@
+{
+  "scope": "prior data authority release, not this scene candidate",
+  "app_pr": 174,
+  "app_commit": "73e0c4c6c3006ad942009a5c848e004daeef58b1",
+  "infra_commit": "6a5d1561713cb6595dec2490650a3b7f9daaea18",
+  "release": "52a8ff75c963a1d9e7382066a158094f4414f7d2",
+  "verified_at": "2026-09-13T14:46:24.183521+00:00",
+  "admin_https": 200,
+  "pages": {
+    "index.html": 200,
+    "research.html": 200,
+    "admin/product/index.html": 200,
+    "doc.html": 200,
+    "bom3d.html": 200,
+    "rack3d.html": 200,
+    "bom.html": 200,
+    "company.html": 200,
+    "compare.html": 200,
+    "ops.html": 200,
+    "team.html": 200,
+    "report.html": 200,
+    "materials.html": 200,
+    "admin/product/": 200,
+    "admin/product": 200
+  },
+  "policy_map": {
+    "version": "2026.09.13.8",
+    "policies": 13
+  },
+  "containers": [
+    {
+      "name": "inresearch-host-caddy-1",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "name": "inresearch-host-oa-crm-agent-1",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "name": "inresearch-host-inresearch-1",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "name": "inresearch-host-inews-1",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "name": "inresearch-host-yidian-1",
+      "running": true,
+      "health": null
+    },
+    {
+      "name": "inresearch-host-oa-worker-1",
+      "running": true,
+      "health": null
+    },
+    {
+      "name": "inresearch-host-oa-1",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "name": "inresearch-host-jidian-1",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "name": "inresearch-host-oa-ai-gateway-1",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "name": "inresearch-host-glocal-1",
+      "running": true,
+      "health": "healthy"
+    },
+    {
+      "name": "inresearch-host-oa-db-1",
+      "running": true,
+      "health": "healthy"
+    }
+  ],
+  "all_source_hashes_match": true,
+  "published_data": {
+    "data/companies.json": {
+      "status": 200,
+      "sha256": "fcb76444137bf3d60dacc45d0809d9a05a34ddc6eea2dd0f0d4ea6e760e56aa6"
+    },
+    "data/contracts.json": {
+      "status": 200,
+      "sha256": "3cfc4cca69609eab14e08f0c67bc3c9fcbfdcc24c2b658066117974697bc7164"
+    },
+    "data/facts.json": {
+      "status": 200,
+      "sha256": "cd69ae6eb9f2ba26a84520e92baa45db31b29ccb9490e8a5379b075806745bdf",
+      "records": 2373
+    },
+    "data/policies.json": {
+      "status": 200,
+      "sha256": "45b96d3e0f02af1565eb6c0a972cb2bb65919f1db9a299de3499d1a60da7c814"
+    },
+    "data/products.json": {
+      "status": 200,
+      "sha256": "e580923b44e2513b6924c5dfd1b39bd73d075065dbb764dedb2a57fea677be2f"
+    },
+    "data/projects.json": {
+      "status": 200,
+      "sha256": "99d572cd1edbe32dd30ca456353f01bf5baec807153e7317aef07f0c6cd609a7"
+    },
+    "data/research_knowledge.json": {
+      "status": 200,
+      "sha256": "ac4ab38d728cede2a79f8f990a78ab4bb223aef1ebdc4711fb7efb248d94b464"
+    },
+    "data/schema/company.schema.json": {
+      "status": 200,
+      "sha256": "3010cb82de2388a7ee4153b321bc9ba33de2cc38ef97fea93a35f78376a54ad1"
+    },
+    "data/schema/contract.schema.json": {
+      "status": 200,
+      "sha256": "250d5c948b6afa8adbadab5276a93dd1050c3a5d435bd10bda724ddd415fb0bd"
+    },
+    "data/schema/fact.schema.json": {
+      "status": 200,
+      "sha256": "f9df64679ca115e9fa723117f92cf71c5e0e4b29e1b6216f417835135cb75e81"
+    },
+    "data/schema/policy.schema.json": {
+      "status": 200,
+      "sha256": "65e6b482a2417017f811a8de5e73b65297f4dc693a644c32bd2b4aabd08d8423"
+    },
+    "data/schema/price.schema.json": {
+      "status": 200,
+      "sha256": "78409db5f8ea778d7468a9d6abdccfdfb18705cd222314110869cf863ba573c2"
+    },
+    "data/schema/products.schema.json": {
+      "status": 200,
+      "sha256": "ba533624eca89ad6b00101c3aa7e0427fd0c1a065d25c6c65322fcdb65be4c56"
+    },
+    "data/schema/project.schema.json": {
+      "status": 200,
+      "sha256": "ab682ef64b8687940c778a4ed79c49bfbc0d44a343df1193bdf2d5d84a3b4754"
+    },
+    "data/schema/source.schema.json": {
+      "status": 200,
+      "sha256": "a265e04bdc7c51b31c96a2cbf13c0a598ae33c906ecfc7fbad7389bf324ea33d"
+    },
+    "data/schema/submission.schema.json": {
+      "status": 200,
+      "sha256": "b0d0b8a1b9150f585ede35da218149772d77ba33f898f0d2718c48f323e83fe8"
+    },
+    "data/sources.json": {
+      "status": 200,
+      "sha256": "e46d8757ecba0cbb47439f40c8d9a63785a3b4de75bc68963f627f1ca1a3e55e"
+    },
+    "reports/HOW_TO_OUTPUT.md": {
+      "status": 200,
+      "sha256": "e3d83faa34514c8d734c141e1de2c79d7b02c66c8d686b7fe472dc9587db0a79"
+    },
+    "framework/storage_contract.json": {
+      "status": 200,
+      "sha256": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8"
+    },
+    "framework/metrics.json": {
+      "status": 200,
+      "sha256": "839503af2038e195b1593c7d212d9c998278607ba3807985ad9c34be381bda2d"
+    }
+  },
+  "runtime_preservation": {
+    "original_files": 98,
+    "unchanged": 98,
+    "changed": [],
+    "initialized": "ready",
+    "runtime_prices": 209
+  },
+  "runtime_scope": "Production HTTPS and application container; no Spark/M4 runtime update"
+}

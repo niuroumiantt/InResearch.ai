@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.13.9",
+  "version": "2026.09.13.10",
   "reviewed_at": "2026-09-13",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -19,17 +19,17 @@
     "framework/02_knowledge_format.md": "049e0010977b11fb6161c0fca15fe210c96be74124e70195e23d3028258a82ff",
     "framework/03_bom_and_collaboration.md": "e276393ec9f555984f07047a8d3de21daf208c5693be0ce86788dfff50ad75ed",
     "framework/04_reading_scoring_standard.md": "23f1e2a4086ac2d77e81d4239dfc739b038668d4f9558e31a720969fbe8934c5",
-    "framework/05_interface_system.md": "1b4d823d8fbf9b46f4db48683249a34cfc1d54fc6e84f129bb00b21a9df25f89",
+    "framework/05_interface_system.md": "386701d7e1f844d94088cd2ff7d462048462a907768fa943105de75efe2a394c",
     "framework/06_acquisition.md": "d05a9da1c558d5882443ded1b2508e72c8a8c35eb486b9bc1cd2644305149270",
     "framework/07_product_ecosystems.md": "a6239c5cb221120394ec706cf3ded786dd6b1cf34cc526b167dc157d50bd3fce",
     "framework/08_model_execution.md": "6c1be72c11c0948ae349cba63bf6704e1c6cb5544eb2a0c5605386d65b2a7be9",
     "framework/09_software_contracts.md": "fd0bcad00e27e7b97fefb00e9f9d32bde77c0a1bb8cc0868c8cdf155cf0f6a58",
-    "framework/CURRENT.md": "f07bb42bab6f056493dbe0383ce1911b7508f4b97abb55ef71dedcc1aa3d048c",
+    "framework/CURRENT.md": "13639da6e8e0aea647107c2d9b3770bf201803c1c1a1b8cac70d0a720998280c",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "tests/auth_appearance.cjs": "40f4e5feb30d2cec89bcf7cb90b89e780862a30580a4708e7dcb4dee1b9b8142",
     "tests/hardware_ecosystems.cjs": "4317d7b56ae541c1537d4a22ac6538d8faa96a66b545cfc5f1c146c86c84e80d",
     "tests/object_network.cjs": "5524edb7f522285a68ad6e9a81dd8a5e0525f8fd716478987e22a8a36df0d0a3",
-    "tests/part_dossier.cjs": "6cd4f62d5e8a946ca316ccc037ed1b57a9fb3c599188e40699949c94a49aa0d5",
+    "tests/part_dossier.cjs": "701b79d65acaae0508d2a4914ea2818a224b5b9912435c561e927b2275fa0822",
     "tests/product_node_hover.cjs": "720258d27a7c69d4926ff1b711c7c57ce1e7ae83264e4d48a2dad370a0ba4779",
     "tests/research_delivery.cjs": "4514c88bc0b8d79a54884ce3b2dda0a6afeeae79c0416b4533d4b44b7629d9e9",
     "tests/run_browser.cjs": "9a6dde1e1618169be60ee433e28d0ba6c5bad13917538f71909f179fa6732f39",
@@ -195,7 +195,7 @@
       "policy": "interface-20260906",
       "scope": "project",
       "source": "framework/05_interface_system.md",
-      "checked_requirement": "13 页皮肤/明暗/宽度、认证外观、状态保持与安全链接",
+      "checked_requirement": "13 页皮肤/明暗/宽度、认证外观、状态保持与安全链接；主画布手势边界、共享原材质保留、领域恢复、动画取代/迟到拒写/手动接管",
       "tests": [
         "tests/ui_skin.cjs",
         "tests/auth_appearance.cjs",
@@ -204,7 +204,8 @@
         "tests/part_dossier.cjs"
       ],
       "not_verified": [
-        "截图矩阵不证明逐像素设计质量、屏幕阅读器体验或真实 3D 帧率；未修改页面的全站设计仍需持续人工体验验收。"
+        "截图矩阵不证明逐像素设计质量、屏幕阅读器体验或真实 3D 帧率；未修改页面的全站设计仍需持续人工体验验收。",
+        "Renderer/纹理/GLB 与下钻加载仍有重复；启动数据失败恢复、全部 GPU/触摸设备与帧率未验。"
       ]
     },
     {

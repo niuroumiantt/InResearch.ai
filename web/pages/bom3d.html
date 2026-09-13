@@ -129,6 +129,8 @@
 <script type="importmap">{"imports": {"three": "./assets/vendor/three.module.js"}}</script>
 <script type="module">
 import * as THREE from "three";
+import {createScenePicking} from "/assets/scene-picking.js";
+import {createSceneMotion} from "/assets/scene-motion.js";
 import {createPartDossier, dossierNode} from "/assets/part-dossier.js";
 import {createPartInspector} from "/assets/part-inspector.js";
 import {escapeHtml as esc} from "/assets/series-summary.js";
@@ -823,19 +825,16 @@ function apply() {
   stageEl.textContent = s;
   syncStageControl();
 }
-slider.addEventListener("input", apply);
+const sliderMotion = createSceneMotion();
+slider.addEventListener("input", () => { sliderMotion.cancel(); apply(); });
 const syncStageControl = installStageControl(STAGES, slider, apply);
 { const x = new URLSearchParams(location.search).get("x"); if (x !== null) slider.value = Math.max(0, Math.min(100, +x || 0)); }
 apply();
-document.getElementById("play").onclick = () => {
-  const t0 = performance.now(), from = +slider.value, to = from > 90 ? 0 : 100, dur = 6000;
-  (function anim(t) {
-    const k = Math.min(1, (t - t0) / dur);
-    slider.value = from + (to - from) * k;
-    apply();
-    if (k < 1) requestAnimationFrame(anim);
-  })(t0);
-};
+function animateSlider(to, duration = 1400) {
+  const from = +slider.value;
+  sliderMotion.run(duration, progress => { slider.value = from + (to - from) * progress; apply(); });
+}
+document.getElementById("play").onclick = () => animateSlider(+slider.value > 90 ? 0 : 100, 6000);
 
 /* ─────────── 领域导航：一键飞进想探索的领域 ─────────── */
 const PARTMESH = {};
@@ -874,43 +873,37 @@ const DOMAINS = [
 ];
 DOMAINS.forEach(d => d.parts = BOM.parts.filter(p => d.mods.includes(p.module)));
 
-let camAnim = null;
-function flyTo(cam, tgt, dur = 1100) {
+const cameraMotion = createSceneMotion();
+function flyTo(cam, tgt, duration = 1100) {
   controls.autoRotate = false;
-  const c0 = camera.position.clone(), t0v = controls.target.clone();
-  const c1 = new THREE.Vector3(...cam), t1v = new THREE.Vector3(...tgt);
-  const start = performance.now();
-  camAnim && cancelAnimationFrame(camAnim.raf);
-  camAnim = {};
-  (function fly(now) {
-    const k = Math.min(1, (now - start) / dur), e = ease(k);
-    camera.position.lerpVectors(c0, c1, e);
-    controls.target.lerpVectors(t0v, t1v, e);
-    if (k < 1) camAnim.raf = requestAnimationFrame(fly); else camAnim = null;
-  })(start);
-}
-canvas.addEventListener("pointerdown", () => { camAnim && cancelAnimationFrame(camAnim.raf); camAnim = null; });
-
-function animSlider(to, dur = 1400) {
-  const from = +slider.value, start = performance.now();
-  (function step(now) {
-    const k = Math.min(1, (now - start) / dur);
-    slider.value = from + (to - from) * k;
-    apply();
-    if (k < 1) requestAnimationFrame(step);
-  })(start);
-}
-
-let activeDomain = null;
-function setDim(mesh, dim) {
-  matsOf(mesh).forEach(mat => {
-    if (!mat.userData.orig) mat.userData.orig = { opacity: mat.opacity, transparent: mat.transparent, ei: mat.emissiveIntensity || 0 };
-    const o = mat.userData.orig;
-    if (dim) { mat.transparent = true; mat.opacity = Math.min(o.opacity, 0.10); mat.emissiveIntensity = 0; }
-    else { mat.transparent = o.transparent; mat.opacity = o.opacity; mat.emissiveIntensity = o.ei; }
+  const fromCamera = camera.position.clone(), fromTarget = controls.target.clone();
+  const toCamera = new THREE.Vector3(...cam), toTarget = new THREE.Vector3(...tgt);
+  cameraMotion.run(duration, progress => {
+    camera.position.lerpVectors(fromCamera, toCamera, ease(progress));
+    controls.target.lerpVectors(fromTarget, toTarget, ease(progress));
   });
 }
+canvas.addEventListener("pointerdown", cameraMotion.cancel);
+
+let activeDomain = null;
+const dimmed = new Map();
+function setDim(mesh, dim) {
+  if (dim && !dimmed.has(mesh)) {
+    const original = mesh.material;
+    const copies = matsOf(mesh).map(material => {
+      const copy = material.clone(); copy.transparent = true; copy.opacity = Math.min(material.opacity, 0.10);
+      if ('emissiveIntensity' in copy) copy.emissiveIntensity = 0;
+      return copy;
+    });
+    dimmed.set(mesh, {original, copies});
+    mesh.material = Array.isArray(original) ? copies : copies[0];
+  } else if (!dim && dimmed.has(mesh)) {
+    const {original, copies} = dimmed.get(mesh);
+    mesh.material = original; copies.forEach(material => material.dispose()); dimmed.delete(mesh);
+  }
+}
 function clearDomain() {
+  sliderMotion.cancel();
   activeDomain = null;
   pickables.forEach(m => setDim(m, false));
   decor.forEach(m => m.material && setDim(m, false));
@@ -926,7 +919,7 @@ function enterDomain(d) {
   const ids = new Set(d.parts.map(p => p.id));
   pickables.forEach(m => setDim(m, !ids.has(m.userData.part)));
   decor.forEach(m => m.material && setDim(m, true));
-  animSlider(d.t);
+  animateSlider(d.t);
   flyTo(d.cam, d.tgt);
   document.getElementById("domainParts").innerHTML = d.parts.map(p =>
     `<div class="pitem" data-part="${p.id}"><span class="dot" style="background:${SBADGE[p.status]}"></span>${esc(p.name)}<span class="covb" style="background:${COVC[covScore(p)]}" title="数据覆盖 ${covScore(p)}/4（公司/产品/序列/指标）">${covScore(p)}/4</span>${PARTMESH[p.id] ? "" : '<span class="nm" title="场景中尚无 3D 造型——点击直接看档案">未建模</span>'}<span class="lay">${p.layer}</span></div>`).join("");
@@ -951,52 +944,19 @@ addEventListener("keydown", e => {
 });
 
 /* ─────────── 交互与档案 ─────────── */
-const ray = new THREE.Raycaster(), mouse = new THREE.Vector2();
 const tip = document.getElementById("tip3d");
-let hovered = null;
-function setHover(o, on) {
-  matsOf(o).forEach(mat => {
-    if (on) {
-      if (mat.userData._hei === undefined) mat.userData._hei = mat.emissiveIntensity || 0;
-      if (!mat.emissive) mat.emissive = new THREE.Color(0xffffff);
-      if (mat.emissive.getHex() === 0) mat.emissive.setHex(0x93c5fd);
-      mat.emissiveIntensity = Math.max(0.45, mat.userData._hei + 0.3);
-    } else if (mat.userData._hei !== undefined) {
-      mat.emissiveIntensity = mat.userData._hei;
-      delete mat.userData._hei;
-    }
-  });
-}
-function pick(e) {
-  mouse.set((e.clientX / innerWidth) * 2 - 1, -(e.clientY / innerHeight) * 2 + 1);
-  ray.setFromCamera(mouse, camera);
-  const hit = ray.intersectObjects(pickables)[0];
-  return hit ? hit.object : null;
-}
-addEventListener("pointermove", e => {
-  const o = pick(e);
-  if (hovered && hovered !== o) { setHover(hovered, false); hovered = null; }
-  if (o && o.userData.part) {
-    if (hovered !== o) { setHover(o, true); hovered = o; }
-    const p = PART[o.userData.part];
-    tip.style.display = "block";
-    tip.style.left = Math.min(e.clientX + 12, innerWidth - 220) + "px";
-    tip.style.top = (e.clientY + 12) + "px";
-    tip.textContent = p ? `${p.name}（${SN[p.status]}）· 点击看档案` : o.userData.part;
-    canvas.style.cursor = "pointer";
-  } else { tip.style.display = "none"; canvas.style.cursor = "grab"; }
-});
-addEventListener("click", e => {
-  if (e.target.closest("#dossier") || e.target.closest(".hud") || e.target.closest(".topbar,#ui-skinbar")) return;
-  const o = pick(e);
-  if (o?.userData.part && PART[o.userData.part]) showDossier(PART[o.userData.part]);
-});
-
 /* ── 部件旋转查看器：档案内单独渲染该部件，可拖动 360° 查看 ── */
-const inspector = createPartInspector({THREE, environment: () => scene.environment, meshesFor: pid => PARTMESH[pid]});
+const inspector = createPartInspector({THREE, environment: () => scene.environment, meshesFor: pid => PARTMESH[pid],
+  materialFor: mesh => dimmed.get(mesh)?.original || mesh.userData.covPrev || mesh.material});
 const showDossier = createPartDossier({el: document.getElementById('dossier'), view: 'campus',
   BOM, moduleNames: MODNAME, companies: CN, prices, indicators: INDS,
   statusNames: SN, statusColors: SBADGE, inspector});
+createScenePicking({THREE, canvas, camera, pickables, tip,
+  describe: object => {
+    const part = PART[object.userData.part];
+    return part ? `${part.name}（${SN[part.status]}）· 点击看档案` : '';
+  },
+  select: object => showDossier(PART[object.userData.part])});
 
 // sparkline 悬停读数（事件委托，一次绑定）
 const dossierEl = document.getElementById("dossier");

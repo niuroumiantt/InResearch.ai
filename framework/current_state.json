@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.13.9",
+  "version": "2026.09.13.10",
   "effective_at": "2026-09-13",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -296,12 +296,16 @@
         "web/components/part-dossier.js",
         "web/components/series-summary.js",
         "web/components/auth.css",
-        "src/inresearch/interfaces/static.py"
+        "src/inresearch/interfaces/static.py",
+        "web/components/scene-picking.js",
+        "web/components/scene-motion.js",
+        "tests/part_dossier.cjs"
       ],
       "supersedes": [
         "interface-legacy"
       ],
-      "reason": "统一全站一级导航，保留页面局部操作；删除失效 folk 规则，修正控件对比与手机溢出，补全浏览器 CI 和内容验收。；按软件契约迁移职责与全部调用，保留原件及已采用知识权威，详见 2026-09-13 架构交付。"
+      "reason": "2026-09-13：两场景共用 canvas 拾取与单写者动画；高亮/领域淡化不改共享原材质，迟到帧不得覆盖新操作。几何/renderer/资产加载仍保留，未宣称全部 3D 拆分完成。",
+      "implementation_revision": "2026.09.13.10"
     },
     {
       "id": "acquisition-legacy",
