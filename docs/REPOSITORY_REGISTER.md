@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：593。
+在册文件：622。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,8 +15,8 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 12 |
-| 历史快照 | 92 |
-| 运行代码 | 127 |
+| 历史快照 | 112 |
+| 运行代码 | 132 |
 | 现行规范 | 13 |
 | 项目配置 | 35 |
 | 兼容研究记录 | 16 |
@@ -543,6 +543,25 @@
 | [docs/reviews/2026-09-13/architecture/source-reference-debt.csv](reviews/2026-09-13/architecture/source-reference-debt.csv) | 历史快照 |
 | `docs/reviews/2026-09-13/architecture/verification.json` | 历史快照 |
 | [docs/reviews/2026-09-13/c3-a-review/DELIVERY.md](reviews/2026-09-13/c3-a-review/DELIVERY.md) | 历史快照 |
+| [docs/reviews/2026-09-13/deep-read/DELIVERY.md](reviews/2026-09-13/deep-read/DELIVERY.md) | 历史快照 |
+| [docs/reviews/2026-09-13/deep-read/PLAN.md](reviews/2026-09-13/deep-read/PLAN.md) | 历史快照 |
+| `docs/reviews/2026-09-13/deep-read/audit.py` | 历史快照 |
+| `docs/reviews/2026-09-13/deep-read/baseline.json` | 历史快照 |
+| [docs/reviews/2026-09-13/deep-read/consumers-after.csv](reviews/2026-09-13/deep-read/consumers-after.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/deep-read/consumers-before.csv](reviews/2026-09-13/deep-read/consumers-before.csv) | 历史快照 |
+| `docs/reviews/2026-09-13/deep-read/contracts_audit.py` | 历史快照 |
+| `docs/reviews/2026-09-13/deep-read/dependency-audit.json` | 历史快照 |
+| [docs/reviews/2026-09-13/deep-read/file-plan.csv](reviews/2026-09-13/deep-read/file-plan.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/deep-read/file-results.csv](reviews/2026-09-13/deep-read/file-results.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/deep-read/functions-before.csv](reviews/2026-09-13/deep-read/functions-before.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/deep-read/integration-files.csv](reviews/2026-09-13/deep-read/integration-files.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/deep-read/public-contracts.csv](reviews/2026-09-13/deep-read/public-contracts.csv) | 历史快照 |
+| `docs/reviews/2026-09-13/deep-read/real-flow.json` | 历史快照 |
+| `docs/reviews/2026-09-13/deep-read/statistics-after.json` | 历史快照 |
+| `docs/reviews/2026-09-13/deep-read/statistics-before.json` | 历史快照 |
+| `docs/reviews/2026-09-13/deep-read/test-migration.json` | 历史快照 |
+| [docs/reviews/2026-09-13/deep-read/test-results.csv](reviews/2026-09-13/deep-read/test-results.csv) | 历史快照 |
+| `docs/reviews/2026-09-13/deep-read/verification.json` | 历史快照 |
 | [docs/reviews/2026-09-13/fact-conflicts/DELIVERY.md](reviews/2026-09-13/fact-conflicts/DELIVERY.md) | 历史快照 |
 | [docs/reviews/2026-09-13/reading-revisions/DELIVERY.md](reviews/2026-09-13/reading-revisions/DELIVERY.md) | 历史快照 |
 | [docs/reviews/2026-09-13/reading-revisions/PLAN.md](reviews/2026-09-13/reading-revisions/PLAN.md) | 历史快照 |
@@ -575,6 +594,7 @@
 | `docs/reviews/2026-09-13/standards/integrated-verification.json` | 历史快照 |
 | `docs/reviews/2026-09-13/standards/statistics.json` | 历史快照 |
 | `docs/reviews/2026-09-13/standards/verification.json` | 历史快照 |
+| [docs/reviews/2026-09-13/verification-map-repair.md](reviews/2026-09-13/verification-map-repair.md) | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
 | `docs/source/全球数据中心行业深度研究Q&A总报告_Q1-Q35_v1.0(2).docx` | 项目配置 |
 | `docs/source/全球数据中心行业现状_参考初稿版式v0.2_信源追溯版_2026-07-23.docx` | 项目配置 |
