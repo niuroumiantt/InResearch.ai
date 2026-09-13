@@ -78060,6 +78060,105 @@
       "derivation": "as_of 取资料目录名「2016.12 华为(永州)云计算数据中心设计项目」，与 11% 销项税率一致；原表无日期",
       "corroboration": "待交叉验证",
       "notes": "总造价 826,732.20 元与同项目 1#安装工程 E.2 汇总表的电气安装工程一致，可互校。该表页眉标「用途：投标」，而 E.2 汇总表标招标控制价，stage 按汇总表记。管理费 3,160.40、利润 3,445.04、脚手架 2,759.86、附加税费 2,965.56 元未单列；建筑电气安装（配电箱、控制箱等），不含机房供配电主设备。"
+    },
+    {
+      "fact_id": "yongzhou-install-share-install1",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "huawei-yongzhou-dc",
+        "label": "华为（永州）云计算数据中心"
+      },
+      "asserter": "未注明",
+      "value": 99.53,
+      "unit": "%",
+      "caliber": {
+        "trade": "机电安装",
+        "sub_trade": "1#安装工程",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2016-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7a1fa29057abace60d7dfb764229cdbfc25aba09ce0a82b6b830d0c00d719f41",
+        "local_file": "华为数据安装工程.xls",
+        "locator": "工作表「E.1 建设项目招标控制价汇总表」（工程名称：华为数据安装工程）：1#安装工程 4,777,959.36 元；第 29 行合计 4,800,403.42 元",
+        "grade": "S2",
+        "originator": "未具名造价单位（华为（永州）云计算数据中心设计项目安装工程，广联达软件导出）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "4,777,959.36 ÷ 4,800,403.42 × 100；as_of 取资料目录名「2016.12 华为(永州)云计算数据中心设计项目」",
+      "corroboration": "待交叉验证",
+      "notes": "**分母是「华为数据安装工程」建设项目合计（仅安装部分），不是含土建的全项目总造价**——与同项目土建汇总表的占比（分母 28,745,813.46 元）是两个分母，不可相加。2#、3# 应为门卫等附属建筑安装。三项合计 100%。"
+    },
+    {
+      "fact_id": "yongzhou-install-share-install2",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "huawei-yongzhou-dc",
+        "label": "华为（永州）云计算数据中心"
+      },
+      "asserter": "未注明",
+      "value": 0.34,
+      "unit": "%",
+      "caliber": {
+        "trade": "机电安装",
+        "sub_trade": "2#安装工程",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2016-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7a1fa29057abace60d7dfb764229cdbfc25aba09ce0a82b6b830d0c00d719f41",
+        "local_file": "华为数据安装工程.xls",
+        "locator": "工作表「E.1 建设项目招标控制价汇总表」（工程名称：华为数据安装工程）：2#安装工程 16,436.92 元；第 29 行合计 4,800,403.42 元",
+        "grade": "S2",
+        "originator": "未具名造价单位（华为（永州）云计算数据中心设计项目安装工程，广联达软件导出）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "16,436.92 ÷ 4,800,403.42 × 100；as_of 取资料目录名「2016.12 华为(永州)云计算数据中心设计项目」",
+      "corroboration": "待交叉验证",
+      "notes": "**分母是「华为数据安装工程」建设项目合计（仅安装部分），不是含土建的全项目总造价**——与同项目土建汇总表的占比（分母 28,745,813.46 元）是两个分母，不可相加。2#、3# 应为门卫等附属建筑安装。三项合计 100%。"
+    },
+    {
+      "fact_id": "yongzhou-install-share-install3",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "huawei-yongzhou-dc",
+        "label": "华为（永州）云计算数据中心"
+      },
+      "asserter": "未注明",
+      "value": 0.13,
+      "unit": "%",
+      "caliber": {
+        "trade": "机电安装",
+        "sub_trade": "3#安装工程",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2016-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7a1fa29057abace60d7dfb764229cdbfc25aba09ce0a82b6b830d0c00d719f41",
+        "local_file": "华为数据安装工程.xls",
+        "locator": "工作表「E.1 建设项目招标控制价汇总表」（工程名称：华为数据安装工程）：3#安装工程 6,007.14 元；第 29 行合计 4,800,403.42 元",
+        "grade": "S2",
+        "originator": "未具名造价单位（华为（永州）云计算数据中心设计项目安装工程，广联达软件导出）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "6,007.14 ÷ 4,800,403.42 × 100；as_of 取资料目录名「2016.12 华为(永州)云计算数据中心设计项目」",
+      "corroboration": "待交叉验证",
+      "notes": "**分母是「华为数据安装工程」建设项目合计（仅安装部分），不是含土建的全项目总造价**——与同项目土建汇总表的占比（分母 28,745,813.46 元）是两个分母，不可相加。2#、3# 应为门卫等附属建筑安装。三项合计 100%。"
     }
   ]
 }
