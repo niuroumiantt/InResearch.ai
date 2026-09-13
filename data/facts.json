@@ -29696,6 +29696,1446 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**表-04 自洽**：分部分项 12,854,287.84 + 措施 318,176.90 + 其他项目 717,783.02 = 税前 13,890,247.76；+ 增值税 1,250,122.30 = 总造价 15,140,370.06。增值税率 9%。 占总造价 0.50%。   **basis=设计值是就近归类**：控制价是招标方的计价上限，标 [未核]。 **stage=招标控制价、tax=含税**（总造价 15,140,370.06 元含增值税 1,250,122.30 元）。归档路径显示为「中国移动南方基地二期工程二阶段项目施工总承包 / 冷源系统工程」。"
+    },
+    {
+      "fact_id": "bern-cn-capex-bytedance-2022",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "bytedance",
+        "label": "字节跳动"
+      },
+      "value": 80.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 6 行「2022」，ByteDance 列 = 8",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2022 年 AI CapEx 3 USD bn（占总 capex 38%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 **字节跳动的 AI capex 从 2024 年起等于总 capex**（11/11、21/21…），即 Bernstein 假设其全部 capex 都是 AI 相关。"
+    },
+    {
+      "fact_id": "bern-cn-capex-alibaba-2022",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "alibaba",
+        "label": "阿里巴巴"
+      },
+      "value": 60.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 6 行「2022」，Alibaba 列 = 6",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2022 年 AI CapEx 2 USD bn（占总 capex 33%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 "
+    },
+    {
+      "fact_id": "bern-cn-capex-tencent-2022",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "tencent",
+        "label": "腾讯"
+      },
+      "value": 50.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 6 行「2022」，Tencent 列 = 5",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2022 年 AI CapEx 2 USD bn（占总 capex 40%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 "
+    },
+    {
+      "fact_id": "bern-cn-capex-china-mobile-2022",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "china-mobile",
+        "label": "中国移动"
+      },
+      "value": 280.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 6 行「2022」，China Mobile 列 = 28",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2022 年 AI CapEx 6 USD bn（占总 capex 21%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 **运营商的总 capex 含大量非数据中心的通信网络投资**，与字节/阿里/腾讯的 capex 结构不同，横比要小心。"
+    },
+    {
+      "fact_id": "bern-cn-capex-china-telecom-2022",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "china-telecom",
+        "label": "中国电信"
+      },
+      "value": 140.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 6 行「2022」，China Telecom 列 = 14",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2022 年 AI CapEx 3 USD bn（占总 capex 21%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 **运营商的总 capex 含大量非数据中心的通信网络投资**，与字节/阿里/腾讯的 capex 结构不同，横比要小心。"
+    },
+    {
+      "fact_id": "bern-cn-capex-china-unicom-2022",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "china-unicom",
+        "label": "中国联通"
+      },
+      "value": 110.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 6 行「2022」，China Unicom 列 = 11",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2022 年 AI CapEx 3 USD bn（占总 capex 27%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 **运营商的总 capex 含大量非数据中心的通信网络投资**，与字节/阿里/腾讯的 capex 结构不同，横比要小心。"
+    },
+    {
+      "fact_id": "bern-cn-capex-baidu-2022",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "baidu",
+        "label": "百度"
+      },
+      "value": 20.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 6 行「2022」，Baidu 列 = 2",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2022 年 AI CapEx 1 USD bn（占总 capex 50%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 "
+    },
+    {
+      "fact_id": "bern-cn-capex-huawei-2022",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "huawei",
+        "label": "华为"
+      },
+      "value": 50.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 6 行「2022」，Huawei 列 = 5",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2022 年 AI CapEx 2 USD bn（占总 capex 40%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 "
+    },
+    {
+      "fact_id": "bern-cn-capex-bytedance-2023",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "bytedance",
+        "label": "字节跳动"
+      },
+      "value": 80.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 7 行「2023」，ByteDance 列 = 8",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2023 年 AI CapEx 4 USD bn（占总 capex 50%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 **字节跳动的 AI capex 从 2024 年起等于总 capex**（11/11、21/21…），即 Bernstein 假设其全部 capex 都是 AI 相关。"
+    },
+    {
+      "fact_id": "bern-cn-capex-alibaba-2023",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "alibaba",
+        "label": "阿里巴巴"
+      },
+      "value": 40.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 7 行「2023」，Alibaba 列 = 4",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2023 年 AI CapEx 2 USD bn（占总 capex 50%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 "
+    },
+    {
+      "fact_id": "bern-cn-capex-tencent-2023",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "tencent",
+        "label": "腾讯"
+      },
+      "value": 40.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 7 行「2023」，Tencent 列 = 4",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2023 年 AI CapEx 3 USD bn（占总 capex 75%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 "
+    },
+    {
+      "fact_id": "bern-cn-capex-china-mobile-2023",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "china-mobile",
+        "label": "中国移动"
+      },
+      "value": 260.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 7 行「2023」，China Mobile 列 = 26",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2023 年 AI CapEx 5 USD bn（占总 capex 19%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 **运营商的总 capex 含大量非数据中心的通信网络投资**，与字节/阿里/腾讯的 capex 结构不同，横比要小心。"
+    },
+    {
+      "fact_id": "bern-cn-capex-china-telecom-2023",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "china-telecom",
+        "label": "中国电信"
+      },
+      "value": 130.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 7 行「2023」，China Telecom 列 = 13",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2023 年 AI CapEx 3 USD bn（占总 capex 23%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 **运营商的总 capex 含大量非数据中心的通信网络投资**，与字节/阿里/腾讯的 capex 结构不同，横比要小心。"
+    },
+    {
+      "fact_id": "bern-cn-capex-china-unicom-2023",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "china-unicom",
+        "label": "中国联通"
+      },
+      "value": 110.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 7 行「2023」，China Unicom 列 = 11",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2023 年 AI CapEx 3 USD bn（占总 capex 27%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 **运营商的总 capex 含大量非数据中心的通信网络投资**，与字节/阿里/腾讯的 capex 结构不同，横比要小心。"
+    },
+    {
+      "fact_id": "bern-cn-capex-baidu-2023",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "baidu",
+        "label": "百度"
+      },
+      "value": 30.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 7 行「2023」，Baidu 列 = 3",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2023 年 AI CapEx 2 USD bn（占总 capex 67%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 "
+    },
+    {
+      "fact_id": "bern-cn-capex-huawei-2023",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "huawei",
+        "label": "华为"
+      },
+      "value": 60.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 7 行「2023」，Huawei 列 = 6",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2023 年 AI CapEx 4 USD bn（占总 capex 67%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 "
+    },
+    {
+      "fact_id": "bern-cn-capex-bytedance-2024",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "bytedance",
+        "label": "字节跳动"
+      },
+      "value": 110.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 8 行「2024」，ByteDance 列 = 11",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2024 年 AI CapEx 11 USD bn（占总 capex 100%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 **字节跳动的 AI capex 从 2024 年起等于总 capex**（11/11、21/21…），即 Bernstein 假设其全部 capex 都是 AI 相关。"
+    },
+    {
+      "fact_id": "bern-cn-capex-alibaba-2024",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "alibaba",
+        "label": "阿里巴巴"
+      },
+      "value": 100.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 8 行「2024」，Alibaba 列 = 10",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2024 年 AI CapEx 8 USD bn（占总 capex 80%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 "
+    },
+    {
+      "fact_id": "bern-cn-capex-tencent-2024",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "tencent",
+        "label": "腾讯"
+      },
+      "value": 110.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 8 行「2024」，Tencent 列 = 11",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2024 年 AI CapEx 9 USD bn（占总 capex 82%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 "
+    },
+    {
+      "fact_id": "bern-cn-capex-china-mobile-2024",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "china-mobile",
+        "label": "中国移动"
+      },
+      "value": 220.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 8 行「2024」，China Mobile 列 = 22",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2024 年 AI CapEx 5 USD bn（占总 capex 23%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 **运营商的总 capex 含大量非数据中心的通信网络投资**，与字节/阿里/腾讯的 capex 结构不同，横比要小心。"
+    },
+    {
+      "fact_id": "bern-cn-capex-china-telecom-2024",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "china-telecom",
+        "label": "中国电信"
+      },
+      "value": 130.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 8 行「2024」，China Telecom 列 = 13",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2024 年 AI CapEx 3 USD bn（占总 capex 23%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 **运营商的总 capex 含大量非数据中心的通信网络投资**，与字节/阿里/腾讯的 capex 结构不同，横比要小心。"
+    },
+    {
+      "fact_id": "bern-cn-capex-china-unicom-2024",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "china-unicom",
+        "label": "中国联通"
+      },
+      "value": 110.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 8 行「2024」，China Unicom 列 = 11",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2024 年 AI CapEx 3 USD bn（占总 capex 27%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 **运营商的总 capex 含大量非数据中心的通信网络投资**，与字节/阿里/腾讯的 capex 结构不同，横比要小心。"
+    },
+    {
+      "fact_id": "bern-cn-capex-baidu-2024",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "baidu",
+        "label": "百度"
+      },
+      "value": 20.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 8 行「2024」，Baidu 列 = 2",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2024 年 AI CapEx 2 USD bn（占总 capex 100%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 "
+    },
+    {
+      "fact_id": "bern-cn-capex-huawei-2024",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "huawei",
+        "label": "华为"
+      },
+      "value": 70.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 8 行「2024」，Huawei 列 = 7",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2024 年 AI CapEx 6 USD bn（占总 capex 86%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 "
+    },
+    {
+      "fact_id": "bern-cn-capex-bytedance-2025e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "bytedance",
+        "label": "字节跳动"
+      },
+      "value": 210.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "券商测算",
+        "vintage": "其他快照",
+        "region": "CN"
+      },
+      "as_of": "2025E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 9 行「2025E」，ByteDance 列 = 21",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2025E 年 AI CapEx 21 USD bn（占总 capex 100%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 **字节跳动的 AI capex 从 2024 年起等于总 capex**（11/11、21/21…），即 Bernstein 假设其全部 capex 都是 AI 相关。"
+    },
+    {
+      "fact_id": "bern-cn-capex-alibaba-2025e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "alibaba",
+        "label": "阿里巴巴"
+      },
+      "value": 180.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "券商测算",
+        "vintage": "其他快照",
+        "region": "CN"
+      },
+      "as_of": "2025E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 9 行「2025E」，Alibaba 列 = 18",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2025E 年 AI CapEx 16 USD bn（占总 capex 89%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 "
+    },
+    {
+      "fact_id": "bern-cn-capex-tencent-2025e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "tencent",
+        "label": "腾讯"
+      },
+      "value": 130.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "券商测算",
+        "vintage": "其他快照",
+        "region": "CN"
+      },
+      "as_of": "2025E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 9 行「2025E」，Tencent 列 = 13",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2025E 年 AI CapEx 11 USD bn（占总 capex 85%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 "
+    },
+    {
+      "fact_id": "bern-cn-capex-china-mobile-2025e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "china-mobile",
+        "label": "中国移动"
+      },
+      "value": 210.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "券商测算",
+        "vintage": "其他快照",
+        "region": "CN"
+      },
+      "as_of": "2025E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 9 行「2025E」，China Mobile 列 = 21",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2025E 年 AI CapEx 5 USD bn（占总 capex 24%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 **运营商的总 capex 含大量非数据中心的通信网络投资**，与字节/阿里/腾讯的 capex 结构不同，横比要小心。"
+    },
+    {
+      "fact_id": "bern-cn-capex-china-telecom-2025e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "china-telecom",
+        "label": "中国电信"
+      },
+      "value": 120.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "券商测算",
+        "vintage": "其他快照",
+        "region": "CN"
+      },
+      "as_of": "2025E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 9 行「2025E」，China Telecom 列 = 12",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2025E 年 AI CapEx 4 USD bn（占总 capex 33%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 **运营商的总 capex 含大量非数据中心的通信网络投资**，与字节/阿里/腾讯的 capex 结构不同，横比要小心。"
+    },
+    {
+      "fact_id": "bern-cn-capex-china-unicom-2025e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "china-unicom",
+        "label": "中国联通"
+      },
+      "value": 80.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "券商测算",
+        "vintage": "其他快照",
+        "region": "CN"
+      },
+      "as_of": "2025E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 9 行「2025E」，China Unicom 列 = 8",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2025E 年 AI CapEx 4 USD bn（占总 capex 50%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 **运营商的总 capex 含大量非数据中心的通信网络投资**，与字节/阿里/腾讯的 capex 结构不同，横比要小心。"
+    },
+    {
+      "fact_id": "bern-cn-capex-baidu-2025e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "baidu",
+        "label": "百度"
+      },
+      "value": 30.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "券商测算",
+        "vintage": "其他快照",
+        "region": "CN"
+      },
+      "as_of": "2025E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 9 行「2025E」，Baidu 列 = 3",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2025E 年 AI CapEx 3 USD bn（占总 capex 100%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 "
+    },
+    {
+      "fact_id": "bern-cn-capex-huawei-2025e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "huawei",
+        "label": "华为"
+      },
+      "value": 80.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "券商测算",
+        "vintage": "其他快照",
+        "region": "CN"
+      },
+      "as_of": "2025E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 9 行「2025E」，Huawei 列 = 8",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2025E 年 AI CapEx 7 USD bn（占总 capex 88%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 "
+    },
+    {
+      "fact_id": "bern-cn-capex-bytedance-2026e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "bytedance",
+        "label": "字节跳动"
+      },
+      "value": 280.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "券商测算",
+        "vintage": "其他快照",
+        "region": "CN"
+      },
+      "as_of": "2026E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 10 行「2026E」，ByteDance 列 = 28",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2026E 年 AI CapEx 28 USD bn（占总 capex 100%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 **字节跳动的 AI capex 从 2024 年起等于总 capex**（11/11、21/21…），即 Bernstein 假设其全部 capex 都是 AI 相关。"
+    },
+    {
+      "fact_id": "bern-cn-capex-alibaba-2026e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "alibaba",
+        "label": "阿里巴巴"
+      },
+      "value": 180.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "券商测算",
+        "vintage": "其他快照",
+        "region": "CN"
+      },
+      "as_of": "2026E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 10 行「2026E」，Alibaba 列 = 18",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2026E 年 AI CapEx 16 USD bn（占总 capex 89%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 "
+    },
+    {
+      "fact_id": "bern-cn-capex-tencent-2026e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "tencent",
+        "label": "腾讯"
+      },
+      "value": 140.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "券商测算",
+        "vintage": "其他快照",
+        "region": "CN"
+      },
+      "as_of": "2026E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 10 行「2026E」，Tencent 列 = 14",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2026E 年 AI CapEx 12 USD bn（占总 capex 86%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 "
+    },
+    {
+      "fact_id": "bern-cn-capex-china-mobile-2026e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "china-mobile",
+        "label": "中国移动"
+      },
+      "value": 200.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "券商测算",
+        "vintage": "其他快照",
+        "region": "CN"
+      },
+      "as_of": "2026E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 10 行「2026E」，China Mobile 列 = 20",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2026E 年 AI CapEx 5 USD bn（占总 capex 25%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 **运营商的总 capex 含大量非数据中心的通信网络投资**，与字节/阿里/腾讯的 capex 结构不同，横比要小心。"
+    },
+    {
+      "fact_id": "bern-cn-capex-china-telecom-2026e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "china-telecom",
+        "label": "中国电信"
+      },
+      "value": 120.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "券商测算",
+        "vintage": "其他快照",
+        "region": "CN"
+      },
+      "as_of": "2026E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 10 行「2026E」，China Telecom 列 = 12",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2026E 年 AI CapEx 4 USD bn（占总 capex 33%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 **运营商的总 capex 含大量非数据中心的通信网络投资**，与字节/阿里/腾讯的 capex 结构不同，横比要小心。"
+    },
+    {
+      "fact_id": "bern-cn-capex-china-unicom-2026e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "china-unicom",
+        "label": "中国联通"
+      },
+      "value": 80.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "券商测算",
+        "vintage": "其他快照",
+        "region": "CN"
+      },
+      "as_of": "2026E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 10 行「2026E」，China Unicom 列 = 8",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2026E 年 AI CapEx 4 USD bn（占总 capex 50%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 **运营商的总 capex 含大量非数据中心的通信网络投资**，与字节/阿里/腾讯的 capex 结构不同，横比要小心。"
+    },
+    {
+      "fact_id": "bern-cn-capex-baidu-2026e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "baidu",
+        "label": "百度"
+      },
+      "value": 30.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "券商测算",
+        "vintage": "其他快照",
+        "region": "CN"
+      },
+      "as_of": "2026E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 10 行「2026E」，Baidu 列 = 3",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2026E 年 AI CapEx 3 USD bn（占总 capex 100%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 "
+    },
+    {
+      "fact_id": "bern-cn-capex-huawei-2026e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "huawei",
+        "label": "华为"
+      },
+      "value": 100.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "券商测算",
+        "vintage": "其他快照",
+        "region": "CN"
+      },
+      "as_of": "2026E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 10 行「2026E」，Huawei 列 = 10",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2026E 年 AI CapEx 10 USD bn（占总 capex 100%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 "
+    },
+    {
+      "fact_id": "bern-cn-capex-bytedance-2027e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "bytedance",
+        "label": "字节跳动"
+      },
+      "value": 330.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "券商测算",
+        "vintage": "其他快照",
+        "region": "CN"
+      },
+      "as_of": "2027E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 11 行「2027E」，ByteDance 列 = 33",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2027E 年 AI CapEx 33 USD bn（占总 capex 100%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 **字节跳动的 AI capex 从 2024 年起等于总 capex**（11/11、21/21…），即 Bernstein 假设其全部 capex 都是 AI 相关。"
+    },
+    {
+      "fact_id": "bern-cn-capex-alibaba-2027e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "alibaba",
+        "label": "阿里巴巴"
+      },
+      "value": 180.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "券商测算",
+        "vintage": "其他快照",
+        "region": "CN"
+      },
+      "as_of": "2027E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 11 行「2027E」，Alibaba 列 = 18",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2027E 年 AI CapEx 16 USD bn（占总 capex 89%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 "
+    },
+    {
+      "fact_id": "bern-cn-capex-tencent-2027e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "tencent",
+        "label": "腾讯"
+      },
+      "value": 140.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "券商测算",
+        "vintage": "其他快照",
+        "region": "CN"
+      },
+      "as_of": "2027E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 11 行「2027E」，Tencent 列 = 14",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2027E 年 AI CapEx 12 USD bn（占总 capex 86%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 "
+    },
+    {
+      "fact_id": "bern-cn-capex-china-mobile-2027e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "china-mobile",
+        "label": "中国移动"
+      },
+      "value": 200.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "券商测算",
+        "vintage": "其他快照",
+        "region": "CN"
+      },
+      "as_of": "2027E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 11 行「2027E」，China Mobile 列 = 20",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2027E 年 AI CapEx 5 USD bn（占总 capex 25%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 **运营商的总 capex 含大量非数据中心的通信网络投资**，与字节/阿里/腾讯的 capex 结构不同，横比要小心。"
+    },
+    {
+      "fact_id": "bern-cn-capex-china-telecom-2027e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "china-telecom",
+        "label": "中国电信"
+      },
+      "value": 110.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "券商测算",
+        "vintage": "其他快照",
+        "region": "CN"
+      },
+      "as_of": "2027E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 11 行「2027E」，China Telecom 列 = 11",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2027E 年 AI CapEx 4 USD bn（占总 capex 36%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 **运营商的总 capex 含大量非数据中心的通信网络投资**，与字节/阿里/腾讯的 capex 结构不同，横比要小心。"
+    },
+    {
+      "fact_id": "bern-cn-capex-china-unicom-2027e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "china-unicom",
+        "label": "中国联通"
+      },
+      "value": 80.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "券商测算",
+        "vintage": "其他快照",
+        "region": "CN"
+      },
+      "as_of": "2027E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 11 行「2027E」，China Unicom 列 = 8",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2027E 年 AI CapEx 4 USD bn（占总 capex 50%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 **运营商的总 capex 含大量非数据中心的通信网络投资**，与字节/阿里/腾讯的 capex 结构不同，横比要小心。"
+    },
+    {
+      "fact_id": "bern-cn-capex-baidu-2027e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "baidu",
+        "label": "百度"
+      },
+      "value": 30.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "券商测算",
+        "vintage": "其他快照",
+        "region": "CN"
+      },
+      "as_of": "2027E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 11 行「2027E」，Baidu 列 = 3",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2027E 年 AI CapEx 3 USD bn（占总 capex 100%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 "
+    },
+    {
+      "fact_id": "bern-cn-capex-huawei-2027e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "huawei",
+        "label": "华为"
+      },
+      "value": 120.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "单一公司",
+        "basis": "券商测算",
+        "vintage": "其他快照",
+        "region": "CN"
+      },
+      "as_of": "2027E@2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5eb9ca6dc3482c84b6ca442f42368feac0c5109d47a02c0a62e0a693bfb5e0c0",
+        "local_file": "中国主要云厂与运营商资本开支（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「资本开支」第 4 行「China Major CSPs & Telecoms Total CapEx (USD bn)」，第 11 行「2027E」，Huawei 列 = 12",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source:: Bernstein / Date：2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：USD bn × 10 = 亿美元。**这是公司总资本开支，不是 AI 资本开支**。 同表另给该公司 2027E 年 AI CapEx 12 USD bn（占总 capex 100%）——**AI 那一张表本库存不下**：hyperscaler_capex_total 没有「全部 vs 仅 AI」这一维，同公司同年两个数撞 claim_key，已报缺口。 **原表整数到 USD bn，小公司取整误差很大**（百度 2-3 USD bn，±0.5 就是 ±20%）。 "
     }
   ]
 }
