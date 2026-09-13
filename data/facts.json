@@ -31309,6 +31309,688 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**原文按「张」计，counting 记整卡**；单位是万颗但这里一「颗」即一张卡，标 [未核]。 「本营纪要」来源不明，grade 记 S5。 **同一张表并列了三个来源，且三者口径都不一样**：瑞穗说 2025 年昇腾 910「订单超 70 万颗」（订单不是出货，未录）；「本营纪要」估计 2025 年 910C 45 万张 + 910B 40 万张（按「张」计，即整卡）；Bernstein 给 2025 年 910C 35 万 + 910B 35 万（单位未注，推断为千颗）。**2025 年合计：纪要 85 万张 vs Bernstein 70 万，差 21%**，而且计数对象可能不同（张 vs 颗）。对照库内大摩那份 die 产量（ms-domestic-gpu-910b-2025 252.7 万颗 die）：**die 数是这里的三倍以上**，die 到可用卡之间还有封装与整卡良率，不可互证。"
+    },
+    {
+      "fact_id": "nanji-p2s2-share-01",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "value": 0.883,
+      "unit": "%",
+      "caliber": {
+        "trade": "其他机电分项",
+        "sub_trade": "总包管理服务费及甲供材料保管费",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "251a3cc3c2a8ab452ccdb5b08b5bcedac2c4c37afe907a68513a6536bc494d59",
+        "local_file": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价汇总表.xlsx",
+        "locator": "工作表「01表-02 建设项目招标控制价汇总表-1」第 1 项「总包管理服务费及甲供材料保管费」含税金额 = 5144845.95 元；分母为合计 582,548,992.56 元",
+        "grade": "S2",
+        "originator": "招标人：中国移动通信集团广东有限公司（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：5144845.95 ÷ 582,548,992.56 = 0.883%。21 项合计正好 100%（已加总校验）。 **trade 是本库的归并**，sub_trade 保留原文单项名。   **stage=招标控制价、含税**（税率 9%）。招标人为中国移动通信集团广东有限公司。**这是库内冷源系统工程那份（6fb42b4a5ebe49cc，总造价 15,140,370.06 元）的上级项目**——两份数字逐分对上。"
+    },
+    {
+      "fact_id": "nanji-p2s2-share-02",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "value": 0.054,
+      "unit": "%",
+      "caliber": {
+        "trade": "土建",
+        "sub_trade": "白蚁防治工程",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "251a3cc3c2a8ab452ccdb5b08b5bcedac2c4c37afe907a68513a6536bc494d59",
+        "local_file": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价汇总表.xlsx",
+        "locator": "工作表「01表-02 建设项目招标控制价汇总表-1」第 2 项「白蚁防治工程」含税金额 = 313096.41 元；分母为合计 582,548,992.56 元",
+        "grade": "S2",
+        "originator": "招标人：中国移动通信集团广东有限公司（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：313096.41 ÷ 582,548,992.56 = 0.054%。21 项合计正好 100%（已加总校验）。 **trade 是本库的归并**，sub_trade 保留原文单项名。   **stage=招标控制价、含税**（税率 9%）。招标人为中国移动通信集团广东有限公司。**这是库内冷源系统工程那份（6fb42b4a5ebe49cc，总造价 15,140,370.06 元）的上级项目**——两份数字逐分对上。"
+    },
+    {
+      "fact_id": "nanji-p2s2-share-03",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "value": 0.012,
+      "unit": "%",
+      "caliber": {
+        "trade": "室外与市政",
+        "sub_trade": "地下管线盲探",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "251a3cc3c2a8ab452ccdb5b08b5bcedac2c4c37afe907a68513a6536bc494d59",
+        "local_file": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价汇总表.xlsx",
+        "locator": "工作表「01表-02 建设项目招标控制价汇总表-1」第 3 项「地下管线盲探」含税金额 = 70850.00 元；分母为合计 582,548,992.56 元",
+        "grade": "S2",
+        "originator": "招标人：中国移动通信集团广东有限公司（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：70850.00 ÷ 582,548,992.56 = 0.012%。21 项合计正好 100%（已加总校验）。 **trade 是本库的归并**，sub_trade 保留原文单项名。   **stage=招标控制价、含税**（税率 9%）。招标人为中国移动通信集团广东有限公司。**这是库内冷源系统工程那份（6fb42b4a5ebe49cc，总造价 15,140,370.06 元）的上级项目**——两份数字逐分对上。"
+    },
+    {
+      "fact_id": "nanji-p2s2-share-04",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "value": 0.033,
+      "unit": "%",
+      "caliber": {
+        "trade": "室外与市政",
+        "sub_trade": "临时用水",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "251a3cc3c2a8ab452ccdb5b08b5bcedac2c4c37afe907a68513a6536bc494d59",
+        "local_file": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价汇总表.xlsx",
+        "locator": "工作表「01表-02 建设项目招标控制价汇总表-1」第 4 项「临时用水」含税金额 = 190105.90 元；分母为合计 582,548,992.56 元",
+        "grade": "S2",
+        "originator": "招标人：中国移动通信集团广东有限公司（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：190105.90 ÷ 582,548,992.56 = 0.033%。21 项合计正好 100%（已加总校验）。 **trade 是本库的归并**，sub_trade 保留原文单项名。   **stage=招标控制价、含税**（税率 9%）。招标人为中国移动通信集团广东有限公司。**这是库内冷源系统工程那份（6fb42b4a5ebe49cc，总造价 15,140,370.06 元）的上级项目**——两份数字逐分对上。"
+    },
+    {
+      "fact_id": "nanji-p2s2-share-05",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "value": 0.04,
+      "unit": "%",
+      "caliber": {
+        "trade": "土建",
+        "sub_trade": "房屋鉴定",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "251a3cc3c2a8ab452ccdb5b08b5bcedac2c4c37afe907a68513a6536bc494d59",
+        "local_file": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价汇总表.xlsx",
+        "locator": "工作表「01表-02 建设项目招标控制价汇总表-1」第 5 项「房屋鉴定」含税金额 = 235750.00 元；分母为合计 582,548,992.56 元",
+        "grade": "S2",
+        "originator": "招标人：中国移动通信集团广东有限公司（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：235750.00 ÷ 582,548,992.56 = 0.040%。21 项合计正好 100%（已加总校验）。 **trade 是本库的归并**，sub_trade 保留原文单项名。   **stage=招标控制价、含税**（税率 9%）。招标人为中国移动通信集团广东有限公司。**这是库内冷源系统工程那份（6fb42b4a5ebe49cc，总造价 15,140,370.06 元）的上级项目**——两份数字逐分对上。"
+    },
+    {
+      "fact_id": "nanji-p2s2-share-06",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "value": 53.639,
+      "unit": "%",
+      "caliber": {
+        "trade": "土建",
+        "sub_trade": "土建工程",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "251a3cc3c2a8ab452ccdb5b08b5bcedac2c4c37afe907a68513a6536bc494d59",
+        "local_file": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价汇总表.xlsx",
+        "locator": "工作表「01表-02 建设项目招标控制价汇总表-1」第 6 项「土建工程」含税金额 = 312473967.18 元；分母为合计 582,548,992.56 元",
+        "grade": "S2",
+        "originator": "招标人：中国移动通信集团广东有限公司（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：312473967.18 ÷ 582,548,992.56 = 53.639%。21 项合计正好 100%（已加总校验）。 **trade 是本库的归并**，sub_trade 保留原文单项名。 **土建一项占 53.6%**，加上精装修暂估 11.7%，建筑本体约占总包的三分之二；**暖通（通风空调 7.7% + 冷源 2.6%）只占 10.3%**——注意这是总包口径，**制冷主机等大量设备为甲供，不在总包内**（第 1 项即「甲供材料保管费」）。  **stage=招标控制价、含税**（税率 9%）。招标人为中国移动通信集团广东有限公司。**这是库内冷源系统工程那份（6fb42b4a5ebe49cc，总造价 15,140,370.06 元）的上级项目**——两份数字逐分对上。"
+    },
+    {
+      "fact_id": "nanji-p2s2-share-07",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "value": 0.944,
+      "unit": "%",
+      "caliber": {
+        "trade": "机电安装",
+        "sub_trade": "给排水工程",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "251a3cc3c2a8ab452ccdb5b08b5bcedac2c4c37afe907a68513a6536bc494d59",
+        "local_file": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价汇总表.xlsx",
+        "locator": "工作表「01表-02 建设项目招标控制价汇总表-1」第 7 项「给排水工程」含税金额 = 5498254.44 元；分母为合计 582,548,992.56 元",
+        "grade": "S2",
+        "originator": "招标人：中国移动通信集团广东有限公司（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：5498254.44 ÷ 582,548,992.56 = 0.944%。21 项合计正好 100%（已加总校验）。 **trade 是本库的归并**，sub_trade 保留原文单项名。   **stage=招标控制价、含税**（税率 9%）。招标人为中国移动通信集团广东有限公司。**这是库内冷源系统工程那份（6fb42b4a5ebe49cc，总造价 15,140,370.06 元）的上级项目**——两份数字逐分对上。"
+    },
+    {
+      "fact_id": "nanji-p2s2-share-08",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "value": 3.71,
+      "unit": "%",
+      "caliber": {
+        "trade": "供配电",
+        "sub_trade": "电气工程",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "251a3cc3c2a8ab452ccdb5b08b5bcedac2c4c37afe907a68513a6536bc494d59",
+        "local_file": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价汇总表.xlsx",
+        "locator": "工作表「01表-02 建设项目招标控制价汇总表-1」第 8 项「电气工程」含税金额 = 21611307.97 元；分母为合计 582,548,992.56 元",
+        "grade": "S2",
+        "originator": "招标人：中国移动通信集团广东有限公司（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：21611307.97 ÷ 582,548,992.56 = 3.710%。21 项合计正好 100%（已加总校验）。 **trade 是本库的归并**，sub_trade 保留原文单项名。   **stage=招标控制价、含税**（税率 9%）。招标人为中国移动通信集团广东有限公司。**这是库内冷源系统工程那份（6fb42b4a5ebe49cc，总造价 15,140,370.06 元）的上级项目**——两份数字逐分对上。"
+    },
+    {
+      "fact_id": "nanji-p2s2-share-09",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "value": 3.315,
+      "unit": "%",
+      "caliber": {
+        "trade": "消防",
+        "sub_trade": "消防工程",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "251a3cc3c2a8ab452ccdb5b08b5bcedac2c4c37afe907a68513a6536bc494d59",
+        "local_file": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价汇总表.xlsx",
+        "locator": "工作表「01表-02 建设项目招标控制价汇总表-1」第 9 项「消防工程」含税金额 = 19310549.56 元；分母为合计 582,548,992.56 元",
+        "grade": "S2",
+        "originator": "招标人：中国移动通信集团广东有限公司（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：19310549.56 ÷ 582,548,992.56 = 3.315%。21 项合计正好 100%（已加总校验）。 **trade 是本库的归并**，sub_trade 保留原文单项名。   **stage=招标控制价、含税**（税率 9%）。招标人为中国移动通信集团广东有限公司。**这是库内冷源系统工程那份（6fb42b4a5ebe49cc，总造价 15,140,370.06 元）的上级项目**——两份数字逐分对上。"
+    },
+    {
+      "fact_id": "nanji-p2s2-share-10",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "value": 7.686,
+      "unit": "%",
+      "caliber": {
+        "trade": "暖通制冷",
+        "sub_trade": "通风空调工程",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "251a3cc3c2a8ab452ccdb5b08b5bcedac2c4c37afe907a68513a6536bc494d59",
+        "local_file": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价汇总表.xlsx",
+        "locator": "工作表「01表-02 建设项目招标控制价汇总表-1」第 10 项「通风空调工程」含税金额 = 44774417.93 元；分母为合计 582,548,992.56 元",
+        "grade": "S2",
+        "originator": "招标人：中国移动通信集团广东有限公司（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：44774417.93 ÷ 582,548,992.56 = 7.686%。21 项合计正好 100%（已加总校验）。 **trade 是本库的归并**，sub_trade 保留原文单项名。 **土建一项占 53.6%**，加上精装修暂估 11.7%，建筑本体约占总包的三分之二；**暖通（通风空调 7.7% + 冷源 2.6%）只占 10.3%**——注意这是总包口径，**制冷主机等大量设备为甲供，不在总包内**（第 1 项即「甲供材料保管费」）。  **stage=招标控制价、含税**（税率 9%）。招标人为中国移动通信集团广东有限公司。**这是库内冷源系统工程那份（6fb42b4a5ebe49cc，总造价 15,140,370.06 元）的上级项目**——两份数字逐分对上。"
+    },
+    {
+      "fact_id": "nanji-p2s2-share-11",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "value": 0.753,
+      "unit": "%",
+      "caliber": {
+        "trade": "供配电",
+        "sub_trade": "高低压配电工程",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "251a3cc3c2a8ab452ccdb5b08b5bcedac2c4c37afe907a68513a6536bc494d59",
+        "local_file": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价汇总表.xlsx",
+        "locator": "工作表「01表-02 建设项目招标控制价汇总表-1」第 11 项「高低压配电工程」含税金额 = 4384139.59 元；分母为合计 582,548,992.56 元",
+        "grade": "S2",
+        "originator": "招标人：中国移动通信集团广东有限公司（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：4384139.59 ÷ 582,548,992.56 = 0.753%。21 项合计正好 100%（已加总校验）。 **trade 是本库的归并**，sub_trade 保留原文单项名。   **stage=招标控制价、含税**（税率 9%）。招标人为中国移动通信集团广东有限公司。**这是库内冷源系统工程那份（6fb42b4a5ebe49cc，总造价 15,140,370.06 元）的上级项目**——两份数字逐分对上。"
+    },
+    {
+      "fact_id": "nanji-p2s2-share-12",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "value": 1.109,
+      "unit": "%",
+      "caliber": {
+        "trade": "机电安装",
+        "sub_trade": "电梯工程",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "251a3cc3c2a8ab452ccdb5b08b5bcedac2c4c37afe907a68513a6536bc494d59",
+        "local_file": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价汇总表.xlsx",
+        "locator": "工作表「01表-02 建设项目招标控制价汇总表-1」第 12 项「电梯工程」含税金额 = 6462829.62 元；分母为合计 582,548,992.56 元",
+        "grade": "S2",
+        "originator": "招标人：中国移动通信集团广东有限公司（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：6462829.62 ÷ 582,548,992.56 = 1.109%。21 项合计正好 100%（已加总校验）。 **trade 是本库的归并**，sub_trade 保留原文单项名。   **stage=招标控制价、含税**（税率 9%）。招标人为中国移动通信集团广东有限公司。**这是库内冷源系统工程那份（6fb42b4a5ebe49cc，总造价 15,140,370.06 元）的上级项目**——两份数字逐分对上。"
+    },
+    {
+      "fact_id": "nanji-p2s2-share-13",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "value": 0.309,
+      "unit": "%",
+      "caliber": {
+        "trade": "土建",
+        "sub_trade": "地下室人防工程",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "251a3cc3c2a8ab452ccdb5b08b5bcedac2c4c37afe907a68513a6536bc494d59",
+        "local_file": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价汇总表.xlsx",
+        "locator": "工作表「01表-02 建设项目招标控制价汇总表-1」第 13 项「地下室人防工程」含税金额 = 1799087.07 元；分母为合计 582,548,992.56 元",
+        "grade": "S2",
+        "originator": "招标人：中国移动通信集团广东有限公司（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：1799087.07 ÷ 582,548,992.56 = 0.309%。21 项合计正好 100%（已加总校验）。 **trade 是本库的归并**，sub_trade 保留原文单项名。   **stage=招标控制价、含税**（税率 9%）。招标人为中国移动通信集团广东有限公司。**这是库内冷源系统工程那份（6fb42b4a5ebe49cc，总造价 15,140,370.06 元）的上级项目**——两份数字逐分对上。"
+    },
+    {
+      "fact_id": "nanji-p2s2-share-14",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "value": 2.599,
+      "unit": "%",
+      "caliber": {
+        "trade": "暖通制冷",
+        "sub_trade": "冷源系统工程",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "251a3cc3c2a8ab452ccdb5b08b5bcedac2c4c37afe907a68513a6536bc494d59",
+        "local_file": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价汇总表.xlsx",
+        "locator": "工作表「01表-02 建设项目招标控制价汇总表-1」第 14 项「冷源系统工程」含税金额 = 15140370.06 元；分母为合计 582,548,992.56 元",
+        "grade": "S2",
+        "originator": "招标人：中国移动通信集团广东有限公司（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：15140370.06 ÷ 582,548,992.56 = 2.599%。21 项合计正好 100%（已加总校验）。 **trade 是本库的归并**，sub_trade 保留原文单项名。 **土建一项占 53.6%**，加上精装修暂估 11.7%，建筑本体约占总包的三分之二；**暖通（通风空调 7.7% + 冷源 2.6%）只占 10.3%**——注意这是总包口径，**制冷主机等大量设备为甲供，不在总包内**（第 1 项即「甲供材料保管费」）。  **stage=招标控制价、含税**（税率 9%）。招标人为中国移动通信集团广东有限公司。**这是库内冷源系统工程那份（6fb42b4a5ebe49cc，总造价 15,140,370.06 元）的上级项目**——两份数字逐分对上。"
+    },
+    {
+      "fact_id": "nanji-p2s2-share-15",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "value": 0.264,
+      "unit": "%",
+      "caliber": {
+        "trade": "机电安装",
+        "sub_trade": "抗震支架工程",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "251a3cc3c2a8ab452ccdb5b08b5bcedac2c4c37afe907a68513a6536bc494d59",
+        "local_file": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价汇总表.xlsx",
+        "locator": "工作表「01表-02 建设项目招标控制价汇总表-1」第 15 项「抗震支架工程」含税金额 = 1535445.12 元；分母为合计 582,548,992.56 元",
+        "grade": "S2",
+        "originator": "招标人：中国移动通信集团广东有限公司（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：1535445.12 ÷ 582,548,992.56 = 0.264%。21 项合计正好 100%（已加总校验）。 **trade 是本库的归并**，sub_trade 保留原文单项名。   **stage=招标控制价、含税**（税率 9%）。招标人为中国移动通信集团广东有限公司。**这是库内冷源系统工程那份（6fb42b4a5ebe49cc，总造价 15,140,370.06 元）的上级项目**——两份数字逐分对上。"
+    },
+    {
+      "fact_id": "nanji-p2s2-share-16",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "value": 2.412,
+      "unit": "%",
+      "caliber": {
+        "trade": "室外与市政",
+        "sub_trade": "室外配套工程",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "251a3cc3c2a8ab452ccdb5b08b5bcedac2c4c37afe907a68513a6536bc494d59",
+        "local_file": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价汇总表.xlsx",
+        "locator": "工作表「01表-02 建设项目招标控制价汇总表-1」第 16 项「室外配套工程」含税金额 = 14053709.16 元；分母为合计 582,548,992.56 元",
+        "grade": "S2",
+        "originator": "招标人：中国移动通信集团广东有限公司（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：14053709.16 ÷ 582,548,992.56 = 2.412%。21 项合计正好 100%（已加总校验）。 **trade 是本库的归并**，sub_trade 保留原文单项名。   **stage=招标控制价、含税**（税率 9%）。招标人为中国移动通信集团广东有限公司。**这是库内冷源系统工程那份（6fb42b4a5ebe49cc，总造价 15,140,370.06 元）的上级项目**——两份数字逐分对上。"
+    },
+    {
+      "fact_id": "nanji-p2s2-share-17",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "value": 0.133,
+      "unit": "%",
+      "caliber": {
+        "trade": "室外与市政",
+        "sub_trade": "凌塘村排水工程及相关拆除补偿",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "251a3cc3c2a8ab452ccdb5b08b5bcedac2c4c37afe907a68513a6536bc494d59",
+        "local_file": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价汇总表.xlsx",
+        "locator": "工作表「01表-02 建设项目招标控制价汇总表-1」第 17 项「凌塘村排水工程及相关拆除补偿」含税金额 = 775144.39 元；分母为合计 582,548,992.56 元",
+        "grade": "S2",
+        "originator": "招标人：中国移动通信集团广东有限公司（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：775144.39 ÷ 582,548,992.56 = 0.133%。21 项合计正好 100%（已加总校验）。 **trade 是本库的归并**，sub_trade 保留原文单项名。   **stage=招标控制价、含税**（税率 9%）。招标人为中国移动通信集团广东有限公司。**这是库内冷源系统工程那份（6fb42b4a5ebe49cc，总造价 15,140,370.06 元）的上级项目**——两份数字逐分对上。"
+    },
+    {
+      "fact_id": "nanji-p2s2-share-18",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "value": 2.484,
+      "unit": "%",
+      "caliber": {
+        "trade": "室外与市政",
+        "sub_trade": "室外工程",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "251a3cc3c2a8ab452ccdb5b08b5bcedac2c4c37afe907a68513a6536bc494d59",
+        "local_file": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价汇总表.xlsx",
+        "locator": "工作表「01表-02 建设项目招标控制价汇总表-1」第 18 项「室外工程」含税金额 = 14473327.19 元；分母为合计 582,548,992.56 元",
+        "grade": "S2",
+        "originator": "招标人：中国移动通信集团广东有限公司（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：14473327.19 ÷ 582,548,992.56 = 2.484%。21 项合计正好 100%（已加总校验）。 **trade 是本库的归并**，sub_trade 保留原文单项名。   **stage=招标控制价、含税**（税率 9%）。招标人为中国移动通信集团广东有限公司。**这是库内冷源系统工程那份（6fb42b4a5ebe49cc，总造价 15,140,370.06 元）的上级项目**——两份数字逐分对上。"
+    },
+    {
+      "fact_id": "nanji-p2s2-share-19",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "value": 11.664,
+      "unit": "%",
+      "caliber": {
+        "trade": "土建",
+        "sub_trade": "精装修工程暂估价",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "251a3cc3c2a8ab452ccdb5b08b5bcedac2c4c37afe907a68513a6536bc494d59",
+        "local_file": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价汇总表.xlsx",
+        "locator": "工作表「01表-02 建设项目招标控制价汇总表-1」第 19 项「精装修工程暂估价」含税金额 = 67948135.51 元；分母为合计 582,548,992.56 元",
+        "grade": "S2",
+        "originator": "招标人：中国移动通信集团广东有限公司（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：67948135.51 ÷ 582,548,992.56 = 11.664%。21 项合计正好 100%（已加总校验）。 **trade 是本库的归并**，sub_trade 保留原文单项名。  **三项暂估价（精装修 6,794.8 万 + 智能化 2,863.1 万 + 园林 1,772.3 万）合计 1.14 亿元，占总包 19.6%**，未定标前这部分金额会变。 **stage=招标控制价、含税**（税率 9%）。招标人为中国移动通信集团广东有限公司。**这是库内冷源系统工程那份（6fb42b4a5ebe49cc，总造价 15,140,370.06 元）的上级项目**——两份数字逐分对上。"
+    },
+    {
+      "fact_id": "nanji-p2s2-share-20",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "value": 4.915,
+      "unit": "%",
+      "caliber": {
+        "trade": "弱电智能化",
+        "sub_trade": "智能化工程暂估价",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "251a3cc3c2a8ab452ccdb5b08b5bcedac2c4c37afe907a68513a6536bc494d59",
+        "local_file": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价汇总表.xlsx",
+        "locator": "工作表「01表-02 建设项目招标控制价汇总表-1」第 20 项「智能化工程暂估价」含税金额 = 28630624.04 元；分母为合计 582,548,992.56 元",
+        "grade": "S2",
+        "originator": "招标人：中国移动通信集团广东有限公司（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：28630624.04 ÷ 582,548,992.56 = 4.915%。21 项合计正好 100%（已加总校验）。 **trade 是本库的归并**，sub_trade 保留原文单项名。  **三项暂估价（精装修 6,794.8 万 + 智能化 2,863.1 万 + 园林 1,772.3 万）合计 1.14 亿元，占总包 19.6%**，未定标前这部分金额会变。 **stage=招标控制价、含税**（税率 9%）。招标人为中国移动通信集团广东有限公司。**这是库内冷源系统工程那份（6fb42b4a5ebe49cc，总造价 15,140,370.06 元）的上级项目**——两份数字逐分对上。"
+    },
+    {
+      "fact_id": "nanji-p2s2-share-21",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "value": 3.042,
+      "unit": "%",
+      "caliber": {
+        "trade": "室外与市政",
+        "sub_trade": "园林工程暂估价",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "251a3cc3c2a8ab452ccdb5b08b5bcedac2c4c37afe907a68513a6536bc494d59",
+        "local_file": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价汇总表.xlsx",
+        "locator": "工作表「01表-02 建设项目招标控制价汇总表-1」第 21 项「园林工程暂估价」含税金额 = 17723035.47 元；分母为合计 582,548,992.56 元",
+        "grade": "S2",
+        "originator": "招标人：中国移动通信集团广东有限公司（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**算出来的**：17723035.47 ÷ 582,548,992.56 = 3.042%。21 项合计正好 100%（已加总校验）。 **trade 是本库的归并**，sub_trade 保留原文单项名。  **三项暂估价（精装修 6,794.8 万 + 智能化 2,863.1 万 + 园林 1,772.3 万）合计 1.14 亿元，占总包 19.6%**，未定标前这部分金额会变。 **stage=招标控制价、含税**（税率 9%）。招标人为中国移动通信集团广东有限公司。**这是库内冷源系统工程那份（6fb42b4a5ebe49cc，总造价 15,140,370.06 元）的上级项目**——两份数字逐分对上。"
+    },
+    {
+      "fact_id": "nanji-p2s2-cost-total",
+      "metric_id": "cost_composition_by_item",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "value": 582548992.56,
+      "unit": "元",
+      "caliber": {
+        "cost_item": "总造价",
+        "stage": "招标控制价",
+        "basis_of_share": "金额",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "251a3cc3c2a8ab452ccdb5b08b5bcedac2c4c37afe907a68513a6536bc494d59",
+        "local_file": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价汇总表.xlsx",
+        "locator": "工作表「扉-2 招标控制价扉页」：招标控制价（小写）582548992.56，（大写）伍亿捌仟贰佰伍拾肆万捌仟玖佰玖拾贰元伍角陆分",
+        "grade": "S2",
+        "originator": "招标人：中国移动通信集团广东有限公司（造价咨询人未署名）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**扉页、汇总表、汇总表-1 三处合计一致，都是 582,548,992.56 元。** **但不含税与税金的拆分两张表不一致**：「0建设项目招标控制价汇总表」写不含税 534,448,617.04 + 税金 48,100,375.52，「01表-02」写不含税 534,493,934.62 + 税金 48,055,057.94——**两者差 45,317.58 元，方向相反、合计不变**，疑为某单项的税金四舍五入口径不同，本库只录合计，标 [未核]。 **对比 9 月送审金额 588,572,588.49 元，审减 6,023,595.93 元（1.02%）**；分项看土建审减 6,242.6 万、电梯审增 502.3 万、通风空调审增 455.5 万——**合计只降 1%，但单项调整幅度很大**。 **stage=招标控制价、含税**（税率 9%）。招标人为中国移动通信集团广东有限公司。**这是库内冷源系统工程那份（6fb42b4a5ebe49cc，总造价 15,140,370.06 元）的上级项目**——两份数字逐分对上。"
     }
   ]
 }
