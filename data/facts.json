@@ -846,7 +846,10 @@
       "derived": false,
       "sensitive": false,
       "notes": "**物理层口径**：机架空间与电源插座的占用比例，**不反映服务器实际性能与负载**（报告原文即如此批评该指标）。与上一条 GPU 利用率 <30% 是**两个不同层面的指标，不可混用、不可相减**。由中国信通院统计，属一手统计口径。范围=全国在用数据中心（含通用与智算），时点=2023 年底，地域=中国大陆。",
-      "asserter": "未注明"
+      "asserter": "中国信通院",
+      "disputed_by": [
+        "kezhi2024-cn-idc-occupancy-2023"
+      ]
     },
     {
       "fact_id": "cn-llm-corp-gpu-util-2024",
@@ -76720,6 +76723,422 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "「超过」按下界记。报告发布月份原文未写（引用截至 2021 年 4 月、2021 年上半年数据），@ 记 2021。"
+    },
+    {
+      "fact_id": "kezhi2024-cn-idc-occupancy-2023",
+      "metric_id": "dc_occupancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "cn-idc-market",
+        "label": "中国 IDC 市场（科智咨询口径）"
+      },
+      "asserter": "科智咨询",
+      "value": 56.4,
+      "unit": "%",
+      "caliber": {
+        "scope": "全国",
+        "region": "CN"
+      },
+      "as_of": "2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fefbc4acdd5f7c037de54c3dd0e83dcb61c641286c9651ddfda01e56a40614aa",
+        "local_file": "2024中国第三方算力中心服务商发展研究报告-科智咨询.pdf",
+        "locator": "第 23 页：「截至2023年底，全国在运营IDC机柜规模270.4万架，增速比去年增长12%；IDC需求规模达到152.5万架，同比增长10%。机房平均上架率56.4%，整体市场存在供需失衡问题」",
+        "grade": "S3",
+        "originator": "科智咨询《2024 中国第三方算力中心服务商发展研究报告》（2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "需求 152.5 万架 ÷ 在运营 270.4 万架 ≈ 56.4%，按自然机柜计。库内另有 2023 年全国上架率 66.7%（cn-dc-occupancy-2023，断言者未注明），口径不明，互指供核。",
+      "disputes": [
+        "cn-dc-occupancy-2023"
+      ]
+    },
+    {
+      "fact_id": "kezhi2024-west-hubs-idc-occupancy-2023",
+      "metric_id": "dc_occupancy_rate",
+      "entity": {
+        "type": "region",
+        "id": "west-hubs-idc-market",
+        "label": "西部枢纽节点 IDC 市场"
+      },
+      "asserter": "科智咨询",
+      "value": 58.5,
+      "unit": "%",
+      "caliber": {
+        "scope": "区域市场",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fefbc4acdd5f7c037de54c3dd0e83dcb61c641286c9651ddfda01e56a40614aa",
+        "local_file": "2024中国第三方算力中心服务商发展研究报告-科智咨询.pdf",
+        "locator": "第 23 页 图表 13「2023年中国IDC市场重点区域上架率情况」：西部枢纽节点 58.5%",
+        "grade": "S3",
+        "originator": "科智咨询《2024 中国第三方算力中心服务商发展研究报告》（2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图表数值标签，数值与区域名按版式配对（左列：西部枢纽节点 58.5%、成渝 62.4%、广东省 57.9%；右列：京津冀 76%、长三角 64%）——**版式配对，待核**。"
+    },
+    {
+      "fact_id": "kezhi2024-jingjinji-idc-occupancy-2023",
+      "metric_id": "dc_occupancy_rate",
+      "entity": {
+        "type": "region",
+        "id": "jingjinji-idc-market",
+        "label": "京津冀 IDC 市场"
+      },
+      "asserter": "科智咨询",
+      "value": 76.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "区域市场",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fefbc4acdd5f7c037de54c3dd0e83dcb61c641286c9651ddfda01e56a40614aa",
+        "local_file": "2024中国第三方算力中心服务商发展研究报告-科智咨询.pdf",
+        "locator": "第 23 页 图表 13「2023年中国IDC市场重点区域上架率情况」：京津冀 76.0%",
+        "grade": "S3",
+        "originator": "科智咨询《2024 中国第三方算力中心服务商发展研究报告》（2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图表数值标签，数值与区域名按版式配对（左列：西部枢纽节点 58.5%、成渝 62.4%、广东省 57.9%；右列：京津冀 76%、长三角 64%）——**版式配对，待核**。"
+    },
+    {
+      "fact_id": "kezhi2024-chengyu-idc-occupancy-2023",
+      "metric_id": "dc_occupancy_rate",
+      "entity": {
+        "type": "region",
+        "id": "chengyu-idc-market",
+        "label": "成渝 IDC 市场"
+      },
+      "asserter": "科智咨询",
+      "value": 62.4,
+      "unit": "%",
+      "caliber": {
+        "scope": "区域市场",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fefbc4acdd5f7c037de54c3dd0e83dcb61c641286c9651ddfda01e56a40614aa",
+        "local_file": "2024中国第三方算力中心服务商发展研究报告-科智咨询.pdf",
+        "locator": "第 23 页 图表 13「2023年中国IDC市场重点区域上架率情况」：成渝 62.4%",
+        "grade": "S3",
+        "originator": "科智咨询《2024 中国第三方算力中心服务商发展研究报告》（2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图表数值标签，数值与区域名按版式配对（左列：西部枢纽节点 58.5%、成渝 62.4%、广东省 57.9%；右列：京津冀 76%、长三角 64%）——**版式配对，待核**。"
+    },
+    {
+      "fact_id": "kezhi2024-yrd-idc-occupancy-2023",
+      "metric_id": "dc_occupancy_rate",
+      "entity": {
+        "type": "region",
+        "id": "yrd-idc-market",
+        "label": "长三角 IDC 市场"
+      },
+      "asserter": "科智咨询",
+      "value": 64.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "区域市场",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fefbc4acdd5f7c037de54c3dd0e83dcb61c641286c9651ddfda01e56a40614aa",
+        "local_file": "2024中国第三方算力中心服务商发展研究报告-科智咨询.pdf",
+        "locator": "第 23 页 图表 13「2023年中国IDC市场重点区域上架率情况」：长三角 64.0%",
+        "grade": "S3",
+        "originator": "科智咨询《2024 中国第三方算力中心服务商发展研究报告》（2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图表数值标签，数值与区域名按版式配对（左列：西部枢纽节点 58.5%、成渝 62.4%、广东省 57.9%；右列：京津冀 76%、长三角 64%）——**版式配对，待核**。"
+    },
+    {
+      "fact_id": "kezhi2024-guangdong-idc-occupancy-2023",
+      "metric_id": "dc_occupancy_rate",
+      "entity": {
+        "type": "region",
+        "id": "guangdong-idc-market",
+        "label": "广东省 IDC 市场"
+      },
+      "asserter": "科智咨询",
+      "value": 57.9,
+      "unit": "%",
+      "caliber": {
+        "scope": "区域市场",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fefbc4acdd5f7c037de54c3dd0e83dcb61c641286c9651ddfda01e56a40614aa",
+        "local_file": "2024中国第三方算力中心服务商发展研究报告-科智咨询.pdf",
+        "locator": "第 23 页 图表 13「2023年中国IDC市场重点区域上架率情况」：广东省 57.9%",
+        "grade": "S3",
+        "originator": "科智咨询《2024 中国第三方算力中心服务商发展研究报告》（2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图表数值标签，数值与区域名按版式配对（左列：西部枢纽节点 58.5%、成渝 62.4%、广东省 57.9%；右列：京津冀 76%、长三角 64%）——**版式配对，待核**。"
+    },
+    {
+      "fact_id": "kezhi2024-cn-idc-cabinets-2023",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "market",
+        "id": "cn-idc-market",
+        "label": "中国 IDC 市场（科智咨询口径）"
+      },
+      "asserter": "科智咨询",
+      "value": 270.4,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "物理机柜",
+        "region": "CN"
+      },
+      "as_of": "2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fefbc4acdd5f7c037de54c3dd0e83dcb61c641286c9651ddfda01e56a40614aa",
+        "local_file": "2024中国第三方算力中心服务商发展研究报告-科智咨询.pdf",
+        "locator": "第 18 页：「2023年，中国在运营IDC自然机柜数量达到270.4万架，折合IT负载12545MW，机柜数量较2022年同比增长12.1%」；第 23 页同值",
+        "grade": "S3",
+        "originator": "科智咨询《2024 中国第三方算力中心服务商发展研究报告》（2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「自然机柜」，counting 记物理机柜；指标单位名为「万标准机架」，数值是自然机柜万架——与信通院标准机架口径（2023 年 810 万）不可比。"
+    },
+    {
+      "fact_id": "kezhi2024-cn-idc-it-load-2023",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "cn-idc-market",
+        "label": "中国 IDC 市场（科智咨询口径）"
+      },
+      "asserter": "科智咨询",
+      "value": 12545.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "CN"
+      },
+      "as_of": "2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fefbc4acdd5f7c037de54c3dd0e83dcb61c641286c9651ddfda01e56a40614aa",
+        "local_file": "2024中国第三方算力中心服务商发展研究报告-科智咨询.pdf",
+        "locator": "第 18 页：「中国在运营IDC自然机柜数量达到270.4万架，折合IT负载12545MW」",
+        "grade": "S3",
+        "originator": "科智咨询《2024 中国第三方算力中心服务商发展研究报告》（2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "在运营 IDC 机柜折合的 IT 负载（约 4.6 kW/柜）。"
+    },
+    {
+      "fact_id": "kezhi2024-cn-provider-resources-2019",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "cn-dc-service-providers-resources",
+        "label": "中国算力中心服务商资源规模（科智咨询，含通用与智算）"
+      },
+      "asserter": "科智咨询",
+      "value": 6252.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "CN"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fefbc4acdd5f7c037de54c3dd0e83dcb61c641286c9651ddfda01e56a40614aa",
+        "local_file": "2024中国第三方算力中心服务商发展研究报告-科智咨询.pdf",
+        "locator": "第 12 页 图表 8「中国算力中心服务商资源规模（MW）」2019 年 6252",
+        "grade": "S3",
+        "originator": "科智咨询《2024 中国第三方算力中心服务商发展研究报告》（2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "统计口径含通用算力中心与智算中心（2023 年智算占 2%、2024E 3%）；原文未说明 IT 还是设施口径。"
+    },
+    {
+      "fact_id": "kezhi2024-cn-provider-resources-2020",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "cn-dc-service-providers-resources",
+        "label": "中国算力中心服务商资源规模（科智咨询，含通用与智算）"
+      },
+      "asserter": "科智咨询",
+      "value": 7700.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fefbc4acdd5f7c037de54c3dd0e83dcb61c641286c9651ddfda01e56a40614aa",
+        "local_file": "2024中国第三方算力中心服务商发展研究报告-科智咨询.pdf",
+        "locator": "第 12 页 图表 8「中国算力中心服务商资源规模（MW）」2020 年 7700",
+        "grade": "S3",
+        "originator": "科智咨询《2024 中国第三方算力中心服务商发展研究报告》（2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "统计口径含通用算力中心与智算中心（2023 年智算占 2%、2024E 3%）；原文未说明 IT 还是设施口径。"
+    },
+    {
+      "fact_id": "kezhi2024-cn-provider-resources-2021",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "cn-dc-service-providers-resources",
+        "label": "中国算力中心服务商资源规模（科智咨询，含通用与智算）"
+      },
+      "asserter": "科智咨询",
+      "value": 9580.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "CN"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fefbc4acdd5f7c037de54c3dd0e83dcb61c641286c9651ddfda01e56a40614aa",
+        "local_file": "2024中国第三方算力中心服务商发展研究报告-科智咨询.pdf",
+        "locator": "第 12 页 图表 8「中国算力中心服务商资源规模（MW）」2021 年 9580",
+        "grade": "S3",
+        "originator": "科智咨询《2024 中国第三方算力中心服务商发展研究报告》（2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "统计口径含通用算力中心与智算中心（2023 年智算占 2%、2024E 3%）；原文未说明 IT 还是设施口径。"
+    },
+    {
+      "fact_id": "kezhi2024-cn-provider-resources-2022",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "cn-dc-service-providers-resources",
+        "label": "中国算力中心服务商资源规模（科智咨询，含通用与智算）"
+      },
+      "asserter": "科智咨询",
+      "value": 10870.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "CN"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fefbc4acdd5f7c037de54c3dd0e83dcb61c641286c9651ddfda01e56a40614aa",
+        "local_file": "2024中国第三方算力中心服务商发展研究报告-科智咨询.pdf",
+        "locator": "第 12 页 图表 8「中国算力中心服务商资源规模（MW）」2022 年 10870",
+        "grade": "S3",
+        "originator": "科智咨询《2024 中国第三方算力中心服务商发展研究报告》（2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "统计口径含通用算力中心与智算中心（2023 年智算占 2%、2024E 3%）；原文未说明 IT 还是设施口径。"
+    },
+    {
+      "fact_id": "kezhi2024-cn-provider-resources-2023",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "cn-dc-service-providers-resources",
+        "label": "中国算力中心服务商资源规模（科智咨询，含通用与智算）"
+      },
+      "asserter": "科智咨询",
+      "value": 12771.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fefbc4acdd5f7c037de54c3dd0e83dcb61c641286c9651ddfda01e56a40614aa",
+        "local_file": "2024中国第三方算力中心服务商发展研究报告-科智咨询.pdf",
+        "locator": "第 12 页 图表 8「中国算力中心服务商资源规模（MW）」2023 年 12771",
+        "grade": "S3",
+        "originator": "科智咨询《2024 中国第三方算力中心服务商发展研究报告》（2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "统计口径含通用算力中心与智算中心（2023 年智算占 2%、2024E 3%）；原文未说明 IT 还是设施口径。"
+    },
+    {
+      "fact_id": "kezhi2024-cn-provider-resources-2024e",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "cn-dc-service-providers-resources",
+        "label": "中国算力中心服务商资源规模（科智咨询，含通用与智算）"
+      },
+      "asserter": "科智咨询",
+      "value": 15026.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "CN"
+      },
+      "as_of": "2024E@2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fefbc4acdd5f7c037de54c3dd0e83dcb61c641286c9651ddfda01e56a40614aa",
+        "local_file": "2024中国第三方算力中心服务商发展研究报告-科智咨询.pdf",
+        "locator": "第 12 页 图表 8「中国算力中心服务商资源规模（MW）」2024E 年 15026",
+        "grade": "S3",
+        "originator": "科智咨询《2024 中国第三方算力中心服务商发展研究报告》（2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "统计口径含通用算力中心与智算中心（2023 年智算占 2%、2024E 3%）；原文未说明 IT 还是设施口径。报告发布月份未写，@ 记 2024。"
     }
   ]
 }
