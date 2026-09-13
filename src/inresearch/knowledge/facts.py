@@ -25,6 +25,7 @@
 
 from inresearch.paths import project_root
 import json
+import re
 import sys
 from collections import defaultdict, Counter
 from datetime import date
@@ -33,7 +34,8 @@ ROOT = project_root()
 FACTS = ROOT / "data" / "facts.json"
 METRICS = ROOT / "framework" / "metrics.json"
 
-from inresearch.knowledge.fact_contract import check_fact, DEPTHS, CORROBORATION
+from inresearch.knowledge.fact_contract import (check_fact, DEPTHS, CORROBORATION,
+                                                UNSTATED_ASSERTER as UNSTATED)
 FACT_DEPTHS = set(DEPTHS)
 CORROB = set(CORROBORATION)
 BOUND_SIGN = {"upper": "<", "lower": ">", "point": " "}
@@ -213,7 +215,41 @@ def asserter_listing(facts):
     counts = Counter(f.get("asserter") or "（缺）" for f in facts)
     lines = ["断言者 %d 家（asserter 进键，新名字先对一眼现有写法）" % len(counts)]
     lines += ["  %5d  %s" % (n, name) for name, n in counts.most_common()]
+    buried = buried_asserters(facts)
+    if buried:
+        lines.append("")
+        lines.append("以下 %d 条 asserter 是「未注明」，但原文里点了名——先核一眼：" % len(buried))
+        lines += ["  %-38s %s" % (fid, quote) for fid, quote in buried]
     return lines
+
+
+# 「据 X 统计」的 X 就是断言者，而它常常只留在 locator 的原文引号里。
+# cn-dc-occupancy-2023 就是这样：locator 写着「据中国信通院统计」，asserter 却是
+# 「未注明」——那条数因此拿不到它该有的归属，也进不了与科智那条的争议对。
+# 「数据中心」里的「据中心」会被这个模式误切，所以先把它挡掉再匹配。
+BURIED = re.compile(r"(?<!数)据([\u4e00-\u9fff]{2,12}?|[A-Z][A-Za-z&. ]{1,20}?)"
+                    r"(统计|测算|调研|研究表明|的研究|数据)")
+VAGUE = ("公开", "各厂商官网", "上述", "本报告", "该报告", "行业", "业内")
+
+
+def buried_asserters(facts):
+    """asserter 是「未注明」而原文点了名的记录。
+
+    只报不改：X 可能是真断言者（清华大学、GTW），也可能是「公开数据」这类
+    没有主体的说法，要人看一眼原文才能定。
+    """
+    found = []
+    for fact in facts:
+        if (fact.get("asserter") or "") != UNSTATED:
+            continue
+        blob = str((fact.get("evidence") or {}).get("locator") or "")
+        for match in BURIED.finditer(blob):
+            who = match.group(1).strip()
+            if any(v in who for v in VAGUE):
+                continue
+            found.append((fact.get("fact_id"), match.group(0)))
+            break
+    return found
 
 
 def main():
