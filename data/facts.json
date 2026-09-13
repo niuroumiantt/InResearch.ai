@@ -77271,6 +77271,335 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "「低于」按上界记；period 原文未写，按政策 PUE 惯例记年均。规定发布时间原文未写，as_of 取报告时点。"
+    },
+    {
+      "fact_id": "gds-esg2021-avg-pue-2020",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "company",
+        "id": "gds",
+        "label": "万国数据"
+      },
+      "asserter": "万国数据",
+      "value": 1.34,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7126851bbab32b7a468f58ae74a1325e2a70a8d5c6b73869c714e25729fe704a",
+        "local_file": "【2022年12月】【万国数据】2021年度ESG报告.pdf",
+        "locator": "第 9 页 Key Metrics 表（2020 Performance / 2021 Performance / 2030 Targets）：Average PUE of data centers 2020 1.34",
+        "grade": "S2",
+        "originator": "万国数据《2021 年度 ESG 报告》（2022-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "自建数据中心平均年 PUE。"
+    },
+    {
+      "fact_id": "gds-esg2021-avg-pue-2021",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "company",
+        "id": "gds",
+        "label": "万国数据"
+      },
+      "asserter": "万国数据",
+      "value": 1.32,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7126851bbab32b7a468f58ae74a1325e2a70a8d5c6b73869c714e25729fe704a",
+        "local_file": "【2022年12月】【万国数据】2021年度ESG报告.pdf",
+        "locator": "第 9 页 Key Metrics 表（2020 Performance / 2021 Performance / 2030 Targets）：2021 1.32；第 17 页「In 2021, our self-developed data centers achieved an average PUE of 1.32」",
+        "grade": "S2",
+        "originator": "万国数据《2021 年度 ESG 报告》（2022-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "自建数据中心平均年 PUE；2020 年后建成且利用率超 50% 的数据中心平均 PUE 低于 1.30。"
+    },
+    {
+      "fact_id": "gds-esg2021-pue-target-2030",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "company",
+        "id": "gds",
+        "label": "万国数据"
+      },
+      "asserter": "万国数据",
+      "value": 1.2,
+      "unit": "比值",
+      "caliber": {
+        "basis": "企标要求",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2030目标",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "7126851bbab32b7a468f58ae74a1325e2a70a8d5c6b73869c714e25729fe704a",
+        "local_file": "【2022年12月】【万国数据】2021年度ESG报告.pdf",
+        "locator": "第 9 页 Key Metrics 表（2020 Performance / 2021 Performance / 2030 Targets）：2030 Targets 1.20",
+        "grade": "S2",
+        "originator": "万国数据《2021 年度 ESG 报告》（2022-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "企业自定 2030 年目标，basis 取「企标要求」表示企业自设值而非政策限值；附录称该目标以超大规模云客户需求为假设。"
+    },
+    {
+      "fact_id": "gds-esg2021-best-dc-pue-2022",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "gds-best-performing-dc",
+        "label": "万国数据表现最佳数据中心（未点名）"
+      },
+      "asserter": "万国数据",
+      "value": 1.17,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2022-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7126851bbab32b7a468f58ae74a1325e2a70a8d5c6b73869c714e25729fe704a",
+        "local_file": "【2022年12月】【万国数据】2021年度ESG报告.pdf",
+        "locator": "第 17 页：「Our best performing data center achieved average a PUE of 1.17 from April 2021 to March 2022」",
+        "grade": "S2",
+        "originator": "万国数据《2021 年度 ESG 报告》（2022-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "统计窗 2021-04 至 2022-03 的年均；2021-03 起实施节能改造。"
+    },
+    {
+      "fact_id": "gds-esg2021-uptime-global-avg-pue-2021",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "asserter": "Uptime Institute",
+      "value": 1.57,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "Global"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7126851bbab32b7a468f58ae74a1325e2a70a8d5c6b73869c714e25729fe704a",
+        "local_file": "【2022年12月】【万国数据】2021年度ESG报告.pdf",
+        "locator": "第 17 页：「compared with a global average for data centers of 1.57 (Uptime Institute 2021 Data Center Industry Survey Results)」",
+        "grade": "S3",
+        "originator": "Uptime Institute（经万国数据《2021 年度 ESG 报告》（2022-12）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Uptime 年度调查口径（受访设施平均），非全量统计。"
+    },
+    {
+      "fact_id": "gds-esg2021-renewable-share-2020",
+      "metric_id": "dc_renewable_share",
+      "entity": {
+        "type": "company",
+        "id": "gds",
+        "label": "万国数据"
+      },
+      "asserter": "万国数据",
+      "value": 22.6,
+      "unit": "%",
+      "caliber": {
+        "measure": "可再生电量占总用电",
+        "scope": "单一运营商",
+        "region": "CN",
+        "basis": "厂商披露"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7126851bbab32b7a468f58ae74a1325e2a70a8d5c6b73869c714e25729fe704a",
+        "local_file": "【2022年12月】【万国数据】2021年度ESG报告.pdf",
+        "locator": "第 9 页 Key Metrics 表（2020 Performance / 2021 Performance / 2030 Targets）：Percentage of renewable energy 2020 22.6%",
+        "grade": "S2",
+        "originator": "万国数据《2021 年度 ESG 报告》（2022-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "同表可再生电量 622 GWh / 总用电 2,758 GWh。"
+    },
+    {
+      "fact_id": "gds-esg2021-renewable-share-2021",
+      "metric_id": "dc_renewable_share",
+      "entity": {
+        "type": "company",
+        "id": "gds",
+        "label": "万国数据"
+      },
+      "asserter": "万国数据",
+      "value": 34.3,
+      "unit": "%",
+      "caliber": {
+        "measure": "可再生电量占总用电",
+        "scope": "单一运营商",
+        "region": "CN",
+        "basis": "厂商披露"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7126851bbab32b7a468f58ae74a1325e2a70a8d5c6b73869c714e25729fe704a",
+        "local_file": "【2022年12月】【万国数据】2021年度ESG报告.pdf",
+        "locator": "第 9 页 Key Metrics 表（2020 Performance / 2021 Performance / 2030 Targets）：2021 34.3%；第 17 页能源表 Renewable Energy 1,425 GWh、Power consumption 4,158 GWh",
+        "grade": "S2",
+        "originator": "万国数据《2021 年度 ESG 报告》（2022-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "1,425 ÷ 4,158 = 34.3%，可互校。信通院 2025 报告称万国 2023 年 38%。"
+    },
+    {
+      "fact_id": "gds-esg2021-renewable-target-2030",
+      "metric_id": "dc_renewable_share",
+      "entity": {
+        "type": "company",
+        "id": "gds",
+        "label": "万国数据"
+      },
+      "asserter": "万国数据",
+      "value": 100.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "可再生电量占总用电",
+        "scope": "单一运营商",
+        "region": "CN",
+        "basis": "目标值"
+      },
+      "as_of": "2030目标",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7126851bbab32b7a468f58ae74a1325e2a70a8d5c6b73869c714e25729fe704a",
+        "local_file": "【2022年12月】【万国数据】2021年度ESG报告.pdf",
+        "locator": "第 9 页 Key Metrics 表（2020 Performance / 2021 Performance / 2030 Targets）：2030 Targets 100%",
+        "grade": "S2",
+        "originator": "万国数据《2021 年度 ESG 报告》（2022-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2030 年 100% 可再生能源与碳中和目标。"
+    },
+    {
+      "fact_id": "gds-esg2021-wue-2020",
+      "metric_id": "dc_wue_limit",
+      "entity": {
+        "type": "company",
+        "id": "gds",
+        "label": "万国数据"
+      },
+      "asserter": "万国数据",
+      "value": 1.64,
+      "unit": "L/kWh",
+      "caliber": {
+        "water_zone": "未划分",
+        "limit_type": "实测均值",
+        "region": "CN",
+        "cooling_tech": "未注明",
+        "water_basis": "未注明",
+        "duty_window": "年均"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7126851bbab32b7a468f58ae74a1325e2a70a8d5c6b73869c714e25729fe704a",
+        "local_file": "【2022年12月】【万国数据】2021年度ESG报告.pdf",
+        "locator": "第 17 页 Energy and Water Performance 表：Water usage effectiveness 2020 1.64",
+        "grade": "S2",
+        "originator": "万国数据《2021 年度 ESG 报告》（2022-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "用水 3,411,819 吨；WUE 单位原文未写，按行业惯例 L/kWh 记。"
+    },
+    {
+      "fact_id": "gds-esg2021-wue-2021",
+      "metric_id": "dc_wue_limit",
+      "entity": {
+        "type": "company",
+        "id": "gds",
+        "label": "万国数据"
+      },
+      "asserter": "万国数据",
+      "value": 1.72,
+      "unit": "L/kWh",
+      "caliber": {
+        "water_zone": "未划分",
+        "limit_type": "实测均值",
+        "region": "CN",
+        "cooling_tech": "未注明",
+        "water_basis": "未注明",
+        "duty_window": "年均"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7126851bbab32b7a468f58ae74a1325e2a70a8d5c6b73869c714e25729fe704a",
+        "local_file": "【2022年12月】【万国数据】2021年度ESG报告.pdf",
+        "locator": "第 17 页 Energy and Water Performance 表：Water usage effectiveness 2021 1.72",
+        "grade": "S2",
+        "originator": "万国数据《2021 年度 ESG 报告》（2022-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "用水 5,109,997 吨；WUE 单位原文未写，按行业惯例 L/kWh 记。"
     }
   ]
 }
