@@ -26,7 +26,7 @@ docs/inbox/project_registry/*
 
 # 第四类交付物：事实候选（2026-08-17 新增）
 # 本地会话精读时产出的「事实候选」JSON：what/value/unit/locator/caliber_note，
-# 云端 pipeline/facts.py 负责映射 metric_id 后并入 data/facts.json。
+# 云端 src/inresearch/knowledge/facts.py 负责映射 metric_id 后并入 data/facts.json。
 # 同样是黑名单加白名单放行——不在这里显式放行，复制进去 git status 完全看不到，
 # push 会「没有待提交的改动」正常退出，交付看起来成功但云端永远拿不到（已踩过两次）。
 !docs/inbox/facts_candidates/
@@ -95,3 +95,9 @@ docs/inbox/framework_proposals/*
 # Rebuildable web replica; durable originals/catalog remain on Spark outside source.
 data/research_runtime.json
 data/.reader_sync_token
+
+# Stable transaction locks are runtime state, never source.
+.*.lock
+
+# Recoverable product admission contains local runtime paths.
+data/.product_library_index.json.pending

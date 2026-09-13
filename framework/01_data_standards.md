@@ -61,17 +61,17 @@ P/F/V/D/R 是物理、系统、产业、需求、研究的观察视角；M01–M
 
 估算须附 `assumptions`；预测与情景记录不等同观测事实。对作者主张的引文只证明“作者这样说过”，不自动证明其主张为真。
 
-C3 分流沿用：高分、敏感或冲突件进入 A 档由所有者审；符合条件的 B 档模型审并确定性抽查 10%；C 档存档。资料接收/分流与核心研究采用分开。Spark 和接收 API 只产生 candidate；正式回答需采用证据、完整覆盖、原文定位及有效审核记录，满足 `pipeline/research.py` 的验证才能关闭问题。
+C3 分流沿用：高分、敏感或冲突件进入 A 档由所有者审；符合条件的 B 档模型审并确定性抽查 10%；C 档存档。资料接收/分流与核心研究采用分开。Spark 和接收 API 只产生 candidate；正式回答需采用证据、完整覆盖、原文定位及有效审核记录，满足 `src/inresearch/knowledge/registry.py` 的验证才能关闭问题。
 
 ## 5. 可追溯字段与保鲜
 
 | 记录 | 追溯要求及实现位置 |
 |---|---|
-| 项目 | `site_id`、状态、容量口径、`sources[].url/grade`、`verified_date`；`validate.py` |
-| 价格/基准 | 序列、指标/单位、`as_of`、grade、source_url，estimate 附 assumptions；`validate.py` / `verify.py` |
-| 数字事实 | 稳定 ID、metric、value/unit、caliber、as_of、来源；`facts.py` |
-| 原件与证据 | doc ID、内容哈希、版本、页/节/表/单元格、引文、对象/问题 ID；`research.py` |
-| 结论与采用 | 陈述类型、支持/反证、状态、审核人/时间/分流档；`research.py` 与兼容 Finding 格式 |
+| 项目 | `site_id`、状态、容量口径、`sources[].url/grade`、`verified_date`；`inresearch.knowledge.validate` |
+| 价格/基准 | 序列、指标/单位、`as_of`、grade、source_url，estimate 附 assumptions；`inresearch.knowledge.validate` / `inresearch.knowledge.verify` |
+| 数字事实 | 稳定 ID、metric、value/unit、caliber、as_of、来源；`inresearch.knowledge.facts` |
+| 原件与证据 | doc ID、内容哈希、版本、页/节/表/单元格、引文、对象/问题 ID；`inresearch.knowledge.registry` |
+| 结论与采用 | 陈述类型、支持/反证、状态、审核人/时间/分流档；`inresearch.knowledge.registry` 与兼容 Finding 格式 |
 
 保鲜阈值的唯一机器定义是 `data_contract.json`：L6–L9 项目 90 天，L1–L5 项目 180 天；项目超阈告警，超过两倍阈值阻断数据校验。价格按序列频率判断：annual 455、quarterly 150、monthly 45、spot 30、default 365 天；显式 frequency 优先，兼容序列名规则见同一声明。一次性 benchmark 与历史序列点保留原时点，不逐点当作当前报价催更新。
 

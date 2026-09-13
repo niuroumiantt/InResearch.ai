@@ -3,7 +3,7 @@ Description=Archive website research submissions on Spark
 After=network-online.target
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/python3 %h/.local/share/inresearch.ai/intake-service/pull_materials.py
+ExecStart=/usr/bin/python3 %h/code/inresearch.ai/manage.py receive
 UMask=0077
 NoNewPrivileges=yes
 PrivateTmp=yes

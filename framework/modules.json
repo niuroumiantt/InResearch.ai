@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "updated": "2026-08-16",
-  "note": "模块声明（L1）。模块是声明不是代码——core 里不允许出现 if M07 这类分支。本文件声明每个模块要回答什么、由哪些信源跑口供养；现状由 indicators.json / LIBRARY_SCORES.csv / research/Mxx.md 提供；工单 = 声明 − 现状，由 pipeline/workorder.py 计算，任何人都不手写工单。 keywords 用于盲区体检（pipeline/blindspot.py）：检测「库里有、但分类器看不见」的材料。\n\n信源跑口带 url/find/cadence 三个字段（2026-08-17 补）：派工给实习生时必须说清「去哪儿、找什么、多久出一次」，否则他无从下手。**不确定的网址不要编**，宁可只写检索路径。\n\nquestions 字段必须**逐字包含** framework/modules/Mxx_*.md「核心问题」下的每一条（2026-08-17 补）：此前两边分叉，定义文件 80 条、本文件只有 36 条，**44 条设计之初就想清楚的问题从来没生成过工单**。validate.py 现在会逐字比对，改了 .md 不同步这里就会校验失败。",
+  "note": "模块声明（L1）。模块是声明不是代码——core 里不允许出现 if M07 这类分支。本文件声明每个模块要回答什么、由哪些信源跑口供养；现状由 indicators.json / LIBRARY_SCORES.csv / research/Mxx.md 提供；工单 = 声明 − 现状，由 src/inresearch/workflow/workorders.py 计算，任何人都不手写工单。 keywords 用于盲区体检（src/inresearch/knowledge/coverage.py）：检测「库里有、但分类器看不见」的材料。\n\n信源跑口带 url/find/cadence 三个字段（2026-08-17 补）：派工给实习生时必须说清「去哪儿、找什么、多久出一次」，否则他无从下手。**不确定的网址不要编**，宁可只写检索路径。\n\nquestions 字段必须**逐字包含** framework/modules/Mxx_*.md「核心问题」下的每一条（2026-08-17 补）：此前两边分叉，定义文件 80 条、本文件只有 36 条，**44 条设计之初就想清楚的问题从来没生成过工单**。validate.py 现在会逐字比对，改了 .md 不同步这里就会校验失败。",
   "beat_channels": {
     "付费": "机构订阅，需采购预算",
     "免费": "公开可取，难在知道其重要",

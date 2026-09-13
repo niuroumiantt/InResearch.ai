@@ -2,7 +2,7 @@
 
 > CURRENT · 2026-09-06。规则归属与替代关系见 framework/CURRENT.md。
 
-本手册对应 `pipeline/continuous_reader.py`，不是旧 reader 脚本的启动说明。实现为 Python 标准库、SQLite 与单一队列持有进程（该进程内可开多个工作线程，见「并发与吞吐」）；部署、实际模型验收及同步状态由当次部署记录说明。代码通过隔离故障测试不等于 Spark 已完成部署。
+本手册对应 `src/inresearch/workflow/reader.py`，不是旧 reader 脚本的启动说明。实现为 Python 标准库、SQLite 与单一队列持有进程（该进程内可开多个工作线程，见「并发与吞吐」）；部署、实际模型验收及同步状态由当次部署记录说明。代码通过隔离故障测试不等于 Spark 已完成部署。
 
 ## 数据落点与交付契约
 
@@ -84,7 +84,7 @@ ssh spark@100.100.1.2 'cd /home/spark/.local/share/inresearch.ai/raw-materials &
 先确保规范源码已落在 `~/code/inresearch.ai`；Python 3.9+，Linux 用户 systemd。PDF 工具需要 Poppler 的 `pdftotext/pdfinfo/pdfimages/pdftoppm`。推理默认配置见 `deploy/models.json`，当前因 Spark 不可用而暂选 Claude CLI；此配置不表示 Spark 服务已改用 CLI。恢复 Spark 部署时，用 `INRESEARCH_MODEL_CONFIG` 指向本机 JSON，将 `research_default` 设为 `spark` 并核对地址；型号、路由、预算及能力按 [08 模型执行](../../framework/08_model_execution.md)。实际响应必须匹配所选型号，失败不换模型兜底。
 
 ```bash
-python3 ~/code/inresearch.ai/pipeline/continuous_reader.py init
+python3 ~/code/inresearch.ai/manage.py reader init
 bash ~/code/inresearch.ai/deploy/spark-reader/install.sh
 ```
 
@@ -94,15 +94,15 @@ bash ~/code/inresearch.ai/deploy/spark-reader/install.sh
 
 ```bash
 reader_smoke="$(mktemp -d -t inresearch-reader-smoke.XXXXXX)"
-python3 ~/code/inresearch.ai/pipeline/continuous_reader.py \
+python3 ~/code/inresearch.ai/manage.py reader \
   --data-root "$reader_smoke/data" --state-root "$reader_smoke/state" \
   --stable-seconds 0 init
 printf '%s\n' '服务器由处理器、内存、存储及网络接口组成。运行需要供电与散热。' \
   > "$reader_smoke/data/raw-materials/smoke.txt"
-python3 ~/code/inresearch.ai/pipeline/continuous_reader.py \
+python3 ~/code/inresearch.ai/manage.py reader \
   --data-root "$reader_smoke/data" --state-root "$reader_smoke/state" \
   --stable-seconds 0 run --once
-python3 ~/code/inresearch.ai/pipeline/continuous_reader.py \
+python3 ~/code/inresearch.ai/manage.py reader \
   --data-root "$reader_smoke/data" --state-root "$reader_smoke/state" \
   export --dest "$reader_smoke/snapshot.json"
 ```
@@ -115,7 +115,7 @@ python3 ~/code/inresearch.ai/pipeline/continuous_reader.py \
 
 默认 JSON 只有 `research_default` 与可选 `ocr` 角色，角色引用 `profiles` 中的配置。复制到本机配置目录后修改；不在各业务脚本中填写型号。旧 reader 的 CLI 参数优先于 READER 环境变量，后者优先于 JSON。从旧 env 迁移时移除已转入 JSON 的覆盖项；安装器保留原有配置，不替用户自动覆盖。
 
-M4 上的共享入口也读取 `INRESEARCH_MODEL_CONFIG`。暂用 Claude CLI 时，在 M4 本机验证 CLI 登录、代理环境及 `python3 pipeline/model_runtime.py --probe`。后续切换 Spark 档案时，将 `profile.url` 设为实际可达的 Spark 推理地址或本机到 Spark 的转发地址；`127.0.0.1` 只指执行机器本身。此代码变更不会自动建立网络转发或开放端口。
+M4 上的共享入口也读取 `INRESEARCH_MODEL_CONFIG`。暂用 Claude CLI 时，在 M4 本机验证 CLI 登录、代理环境及 `python3 manage.py models --probe`。后续切换 Spark 档案时，将 `profile.url` 设为实际可达的 Spark 推理地址或本机到 Spark 的转发地址；`127.0.0.1` 只指执行机器本身。此代码变更不会自动建立网络转发或开放端口。
 
 OCR 在同一文件内新增视觉 profile（`capabilities: ["vision_json"]`），将 `roles.ocr` 指向它。视觉适配当前支持 Ollama；旧 `READER_OCR_MODEL` 保留兼容。模型 revision 是冻结配置中的可选版本标识，不冒充服务端已验证的权重摘要。
 
@@ -126,7 +126,7 @@ OCR 在同一文件内新增视觉 profile（`capabilities: ["vision_json"]`）�
 ```bash
 systemctl --user status inresearch-reader.service --no-pager
 journalctl --user -u inresearch-reader.service -n 40 --no-pager
-python3 ~/code/inresearch.ai/pipeline/continuous_reader.py status
+python3 ~/code/inresearch.ai/manage.py reader status
 ```
 
 状态为 `idle/running/degraded`，另列每阶段数量、最老等待任务和错误码。`idle` 可能有退避中的重试或等待稳定的新文件，不能解释为全库已读完。状态中不记录模型响应正文、HTTP 凭据或异常响应体。
@@ -139,8 +139,8 @@ python3 ~/code/inresearch.ai/pipeline/continuous_reader.py status
 
 ```bash
 systemctl --user stop inresearch-reader.service
-python3 ~/code/inresearch.ai/pipeline/continuous_reader.py retry --doc-id doc-完整哈希
-python3 ~/code/inresearch.ai/pipeline/continuous_reader.py rollback --doc-id doc-完整哈希
+python3 ~/code/inresearch.ai/manage.py reader retry --doc-id doc-完整哈希
+python3 ~/code/inresearch.ai/manage.py reader rollback --doc-id doc-完整哈希
 systemctl --user start inresearch-reader.service
 ```
 
@@ -176,7 +176,7 @@ systemctl --user restart inresearch-reader.service
 14 天基础设施任务队列不是本服务的档案层。catalog、originals、intake-receipts、artifacts 与 extracted 均无自动 TTL。本版 backup 使用 SQLite 在线快照，复制该快照引用的原件、接收副本、隔离保留件与成果，输出 SHA256 清单；未完成备份保留 `backup.partial.json`，不能作为完整恢复点。建议以同一用户权限写入独立磁盘/另一机器，执行后验证清单，再登记其物理位置；同盘备份不抵御整盘故障。
 
 ```bash
-python3 ~/code/inresearch.ai/pipeline/continuous_reader.py backup --dest /已准备好的独立存储/reader-20260906
+python3 ~/code/inresearch.ai/manage.py reader backup --dest /已准备好的独立存储/reader-20260906
 ```
 
 目标必须不存在且在运行 data/state 之外。备份包含已登记原件；尚未稳定/入库的 raw 投料不包含在 catalog 备份中，投料来源应继续保留或单独备份。不要直接复制运行中的 `catalog.sqlite` 而漏掉 WAL。
@@ -186,7 +186,7 @@ python3 ~/code/inresearch.ai/pipeline/continuous_reader.py backup --dest /已准
 测试命令：
 
 ```bash
-python3 -m unittest discover -s pipeline -p test_continuous_reader.py -v
+PYTHONPATH=src python3 -m unittest discover -s tests/unit -p test_continuous_reader.py -v
 ```
 
 测试只在系统临时目录通过注入模型验证状态与证据契约，不提供生产 fake 参数。真实推理和实际部署需单独验收并留存运行记录。

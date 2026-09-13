@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `pipeline/governance.py --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.13.1。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.13.3。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：491。
+在册文件：553。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,24 +15,21 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 12 |
-| 历史快照 | 40 |
-| 运行代码 | 87 |
-| 现行规范 | 12 |
-| 项目配置 | 42 |
+| 历史快照 | 58 |
+| 运行代码 | 125 |
+| 现行规范 | 13 |
+| 项目配置 | 34 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 26 |
 | 配套说明 | 34 |
-| 测试 | 30 |
+| 测试 | 43 |
 
 ## 在册记录集合
 
 | 文件 | 集合 | 条数 |
 |---|---|---|
 | `.claude/launch.json` | configurations | 1 |
-| `assets/levels.json` | levels | 5 |
-| `assets/models/manifest.json` | models | 1 |
-| `assets/world.geo.json` | features | 180 |
 | `data/assignments.json` | statuses | 5 |
 | `data/assignments.json` | records | 0 |
 | `data/brief.json` | sec | 16 |
@@ -167,9 +164,26 @@
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | collect_steps | 3 |
 | `docs/reviews/2026-09-06/evidence/http-probes.json` | items | 4 |
 | `docs/reviews/2026-09-06/evidence/runtime.json` | limits | 3 |
+| `docs/reviews/2026-09-13/architecture/after.json` | top_level_directories | 12 |
+| `docs/reviews/2026-09-13/architecture/after.json` | unresolved_old_references | 0 |
+| `docs/reviews/2026-09-13/architecture/baseline.json` | scope_limits | 2 |
+| `docs/reviews/2026-09-13/architecture/consumers.csv` | rows | 748 |
+| `docs/reviews/2026-09-13/architecture/dependency-audit.json` | cycles | 0 |
+| `docs/reviews/2026-09-13/architecture/dependency-audit.json` | forbidden_direction_edges | 0 |
+| `docs/reviews/2026-09-13/architecture/external-consumers.csv` | rows | 5 |
+| `docs/reviews/2026-09-13/architecture/file-migration.csv` | rows | 491 |
+| `docs/reviews/2026-09-13/architecture/legacy-removal.csv` | rows | 19 |
+| `docs/reviews/2026-09-13/architecture/new-files.csv` | rows | 66 |
+| `docs/reviews/2026-09-13/architecture/provenance-debt.csv` | rows | 38 |
+| `docs/reviews/2026-09-13/architecture/public-consumers.csv` | rows | 2184 |
+| `docs/reviews/2026-09-13/architecture/real-reader-flow.json` | states | 1 |
+| `docs/reviews/2026-09-13/architecture/real-reader-flow.json` | coverage | 1 |
+| `docs/reviews/2026-09-13/architecture/real-reader-flow.json` | acceptance | 1 |
+| `docs/reviews/2026-09-13/architecture/shared-implementations.csv` | rows | 152 |
+| `docs/reviews/2026-09-13/architecture/source-reference-debt.csv` | rows | 27 |
 | `framework/bom.json` | layers | 5 |
 | `framework/bom.json` | parts | 46 |
-| `framework/current_state.json` | policies | 23 |
+| `framework/current_state.json` | policies | 24 |
 | `framework/current_state.json` | entrypoints | 4 |
 | `framework/current_state.json` | retired_entrypoints | 3 |
 | `framework/current_state.json` | known_retired_patterns | 11 |
@@ -179,6 +193,7 @@
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
 | `framework/interface_manifest.json` | static_pages | 13 |
+| `framework/interface_manifest.json` | template_fragments | 4 |
 | `framework/metrics.json` | metrics | 250 |
 | `framework/modules.json` | modules | 15 |
 | `framework/research_graph.json` | views | 5 |
@@ -205,6 +220,9 @@
 | `research/M13.md` | Finding | 6 |
 | `research/M14.md` | Finding | 11 |
 | `research/M15.md` | Finding | 12 |
+| `web/assets/levels.json` | levels | 5 |
+| `web/assets/models/manifest.json` | models | 1 |
+| `web/assets/world.geo.json` | features | 180 |
 
 ## 全部文件
 
@@ -220,64 +238,6 @@
 | [AGENTS.md](../AGENTS.md) | 现行入口 |
 | [CLAUDE.md](../CLAUDE.md) | 现行入口 |
 | [README.md](../README.md) | 配套说明 |
-| `admin/product/index.html` | 运行代码 |
-| `assets/Inter-LICENSE.txt` | 静态资源 |
-| `assets/InterVariable.woff2` | 静态资源 |
-| `assets/datacenter-news.css` | 运行代码 |
-| `assets/datacenter-news.js` | 运行代码 |
-| [assets/hdri/README.md](../assets/hdri/README.md) | 配套说明 |
-| `assets/hdri/lab.exr` | 静态资源 |
-| `assets/hdri/studio.exr` | 静态资源 |
-| `assets/hdri/warehouse.exr` | 静态资源 |
-| `assets/levels.json` | 静态资源 |
-| `assets/markdown-inline.js` | 运行代码 |
-| `assets/materials.js` | 运行代码 |
-| [assets/models/README.md](../assets/models/README.md) | 配套说明 |
-| `assets/models/manifest.json` | 静态资源 |
-| `assets/models/server_v2_console.glb` | 静态资源 |
-| `assets/object-network.js` | 运行代码 |
-| [assets/panels/README.md](../assets/panels/README.md) | 配套说明 |
-| `assets/panels/server_gpu.png` | 静态资源 |
-| `assets/panels/server_nvme.png` | 静态资源 |
-| `assets/panels/server_storage.png` | 静态资源 |
-| `assets/panels/switch_ib.png` | 静态资源 |
-| `assets/panels/switch_tor.png` | 静态资源 |
-| [assets/renders/README.md](../assets/renders/README.md) | 配套说明 |
-| `assets/renders/chassis.png` | 静态资源 |
-| `assets/renders/coldplate.png` | 静态资源 |
-| `assets/renders/fans.png` | 静态资源 |
-| `assets/renders/gpu-board.png` | 静态资源 |
-| `assets/renders/hbm.png` | 静态资源 |
-| `assets/renders/mobo.png` | 静态资源 |
-| `assets/renders/nic.png` | 静态资源 |
-| `assets/renders/psu.png` | 静态资源 |
-| `assets/renders/ssd.png` | 静态资源 |
-| `assets/research-graph.js` | 运行代码 |
-| `assets/research.css` | 运行代码 |
-| `assets/site-skin.css` | 运行代码 |
-| `assets/site-skin.js` | 运行代码 |
-| `assets/vendor/BufferGeometryUtils.js` | 静态资源 |
-| `assets/vendor/CopyShader.js` | 静态资源 |
-| `assets/vendor/EXRLoader.js` | 静态资源 |
-| `assets/vendor/EffectComposer.js` | 静态资源 |
-| `assets/vendor/GLTFLoader.js` | 静态资源 |
-| `assets/vendor/LuminosityHighPassShader.js` | 静态资源 |
-| `assets/vendor/MaskPass.js` | 静态资源 |
-| `assets/vendor/OrbitControls.js` | 静态资源 |
-| `assets/vendor/OutputPass.js` | 静态资源 |
-| `assets/vendor/OutputShader.js` | 静态资源 |
-| `assets/vendor/Pass.js` | 静态资源 |
-| `assets/vendor/RenderPass.js` | 静态资源 |
-| `assets/vendor/ShaderPass.js` | 静态资源 |
-| `assets/vendor/UnrealBloomPass.js` | 静态资源 |
-| `assets/vendor/fflate.module.js` | 静态资源 |
-| `assets/vendor/three.module.js` | 静态资源 |
-| `assets/world.geo.json` | 静态资源 |
-| `bake.html` | 运行代码 |
-| `bom.html` | 运行代码 |
-| `bom3d.html` | 运行代码 |
-| `company.html` | 运行代码 |
-| `compare.html` | 运行代码 |
 | `data/assignments.json` | 在册数据/索引 |
 | `data/brief.json` | 在册数据/索引 |
 | `data/companies.json` | 在册数据/索引 |
@@ -314,7 +274,6 @@
 | `deploy/spark-reader/inresearch-reader.service` | 项目配置 |
 | `deploy/spark-reader/install.sh` | 运行代码 |
 | `deploy/spark-reader/reader.env.example` | 项目配置 |
-| `doc.html` | 运行代码 |
 | [docs/CN_PROJECT_ARCHIVES.csv](CN_PROJECT_ARCHIVES.csv) | 在册数据/索引 |
 | [docs/DATA_SOURCING.md](DATA_SOURCING.md) | 配套说明 |
 | [docs/DECISIONS.md](DECISIONS.md) | 现行入口 |
@@ -526,6 +485,24 @@
 | [docs/reviews/2026-09-06/research.md](reviews/2026-09-06/research.md) | 历史快照 |
 | [docs/reviews/2026-09-06/spark-storage.md](reviews/2026-09-06/spark-storage.md) | 历史快照 |
 | [docs/reviews/2026-09-12/IMPLEMENTATION.md](reviews/2026-09-12/IMPLEMENTATION.md) | 历史快照 |
+| [docs/reviews/2026-09-13/architecture/DELIVERY.md](reviews/2026-09-13/architecture/DELIVERY.md) | 历史快照 |
+| [docs/reviews/2026-09-13/architecture/README.md](reviews/2026-09-13/architecture/README.md) | 历史快照 |
+| `docs/reviews/2026-09-13/architecture/after.json` | 历史快照 |
+| `docs/reviews/2026-09-13/architecture/audit.py` | 历史快照 |
+| `docs/reviews/2026-09-13/architecture/baseline-result-divergence.json` | 历史快照 |
+| `docs/reviews/2026-09-13/architecture/baseline.json` | 历史快照 |
+| [docs/reviews/2026-09-13/architecture/consumers.csv](reviews/2026-09-13/architecture/consumers.csv) | 历史快照 |
+| `docs/reviews/2026-09-13/architecture/dependency-audit.json` | 历史快照 |
+| [docs/reviews/2026-09-13/architecture/external-consumers.csv](reviews/2026-09-13/architecture/external-consumers.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/architecture/file-migration.csv](reviews/2026-09-13/architecture/file-migration.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/architecture/legacy-removal.csv](reviews/2026-09-13/architecture/legacy-removal.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/architecture/new-files.csv](reviews/2026-09-13/architecture/new-files.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/architecture/provenance-debt.csv](reviews/2026-09-13/architecture/provenance-debt.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/architecture/public-consumers.csv](reviews/2026-09-13/architecture/public-consumers.csv) | 历史快照 |
+| `docs/reviews/2026-09-13/architecture/real-reader-flow.json` | 历史快照 |
+| [docs/reviews/2026-09-13/architecture/shared-implementations.csv](reviews/2026-09-13/architecture/shared-implementations.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/architecture/source-reference-debt.csv](reviews/2026-09-13/architecture/source-reference-debt.csv) | 历史快照 |
+| `docs/reviews/2026-09-13/architecture/verification.json` | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
 | `docs/source/全球数据中心行业深度研究Q&A总报告_Q1-Q35_v1.0(2).docx` | 项目配置 |
 | `docs/source/全球数据中心行业现状_参考初稿版式v0.2_信源追溯版_2026-07-23.docx` | 项目配置 |
@@ -540,6 +517,7 @@
 | [framework/06_acquisition.md](../framework/06_acquisition.md) | 现行规范 |
 | [framework/07_product_ecosystems.md](../framework/07_product_ecosystems.md) | 现行规范 |
 | [framework/08_model_execution.md](../framework/08_model_execution.md) | 现行规范 |
+| [framework/09_software_contracts.md](../framework/09_software_contracts.md) | 现行规范 |
 | [framework/CURRENT.md](../framework/CURRENT.md) | 现行规范 |
 | `framework/bom.json` | 项目配置 |
 | `framework/current_state.json` | 项目配置 |
@@ -566,103 +544,7 @@
 | `framework/repository_manifest.json` | 生成物 |
 | `framework/research_graph.json` | 项目配置 |
 | `framework/research_questions.json` | 项目配置 |
-| `framework_poster.html` | 运行代码 |
-| `index.html` | 运行代码 |
-| `materials.html` | 运行代码 |
-| `ops.html` | 运行代码 |
-| [pipeline/README.md](../pipeline/README.md) | 配套说明 |
-| `pipeline/acquisition.py` | 运行代码 |
-| `pipeline/auth.py` | 运行代码 |
-| `pipeline/backup_acquisition.py` | 运行代码 |
-| `pipeline/blindspot.py` | 运行代码 |
-| `pipeline/build_library_index.py` | 运行代码 |
-| `pipeline/check_models.py` | 运行代码 |
-| `pipeline/collect.py` | 运行代码 |
-| `pipeline/compare_models.py` | 运行代码 |
-| `pipeline/continuous_reader.py` | 运行代码 |
-| `pipeline/data_policy.py` | 运行代码 |
-| `pipeline/datacenter_news.py` | 运行代码 |
-| `pipeline/export.py` | 运行代码 |
-| `pipeline/facts.py` | 运行代码 |
-| `pipeline/fetch_gpu_prices.py` | 运行代码 |
-| `pipeline/fetch_news_signals.py` | 运行代码 |
-| `pipeline/fetch_sec.py` | 运行代码 |
-| `pipeline/fetch_sketchfab.py` | 运行代码 |
-| `pipeline/file_moves.py` | 运行代码 |
-| `pipeline/fix_stale_paths.py` | 运行代码 |
-| `pipeline/governance.py` | 运行代码 |
-| `pipeline/intake.py` | 运行代码 |
-| `pipeline/jsonl_store.py` | 运行代码 |
-| `pipeline/launch_acquisition.py` | 运行代码 |
-| `pipeline/launch_reader.py` | 运行代码 |
-| `pipeline/m4_inventory.py` | 运行代码 |
-| `pipeline/m4_l2.py` | 运行代码 |
-| `pipeline/m4_local_reader.py` | 运行代码 |
-| `pipeline/m4_office_text.py` | 运行代码 |
-| `pipeline/m4_offload_worker.py` | 运行代码 |
-| `pipeline/m4_paths.py` | 运行代码 |
-| `pipeline/m4_preflight.py` | 运行代码 |
-| `pipeline/m4_records.py` | 运行代码 |
-| `pipeline/m4_triage.py` | 运行代码 |
-| `pipeline/m4_triage_apply.py` | 运行代码 |
-| `pipeline/m4_triage_export.py` | 运行代码 |
-| `pipeline/m4_triage_extract.py` | 运行代码 |
-| `pipeline/m4_triage_l1.py` | 运行代码 |
-| `pipeline/m4_triage_local.py` | 运行代码 |
-| `pipeline/m4_triage_pack.py` | 运行代码 |
-| `pipeline/m4_triage_report.py` | 运行代码 |
-| `pipeline/material_intake.py` | 运行代码 |
-| `pipeline/model_runtime.py` | 运行代码 |
-| `pipeline/output_map.py` | 运行代码 |
-| `pipeline/product_library.py` | 运行代码 |
-| `pipeline/publish_reader.py` | 运行代码 |
-| `pipeline/pull_materials.py` | 运行代码 |
-| `pipeline/reading_queue.py` | 运行代码 |
-| `pipeline/refresh_indicators.py` | 运行代码 |
-| `pipeline/report_model.py` | 运行代码 |
-| `pipeline/research.py` | 运行代码 |
-| `pipeline/research_navigation.py` | 运行代码 |
-| `pipeline/scan_inbox.py` | 运行代码 |
-| `pipeline/serve.py` | 运行代码 |
-| `pipeline/sync_datacenter_news.py` | 运行代码 |
-| `pipeline/test_acquisition.py` | 测试 |
-| `pipeline/test_auth.py` | 测试 |
-| `pipeline/test_catalog_bridge.py` | 测试 |
-| `pipeline/test_continuous_reader.py` | 测试 |
-| `pipeline/test_datacenter_news.py` | 测试 |
-| `pipeline/test_display_regressions.py` | 测试 |
-| `pipeline/test_file_moves.py` | 测试 |
-| `pipeline/test_governance.py` | 测试 |
-| `pipeline/test_intake.py` | 测试 |
-| `pipeline/test_interface_system.py` | 测试 |
-| `pipeline/test_m4_l2.py` | 测试 |
-| `pipeline/test_m4_office_text.py` | 测试 |
-| `pipeline/test_m4_paths.py` | 测试 |
-| `pipeline/test_m4_redo_reads.py` | 测试 |
-| `pipeline/test_m4_triage.py` | 测试 |
-| `pipeline/test_m4_triage_apply.py` | 测试 |
-| `pipeline/test_m4_triage_export.py` | 测试 |
-| `pipeline/test_m4_triage_extract.py` | 测试 |
-| `pipeline/test_m4_triage_local.py` | 测试 |
-| `pipeline/test_m4_triage_report.py` | 测试 |
-| `pipeline/test_m4_triage_versions.py` | 测试 |
-| `pipeline/test_material_intake.py` | 测试 |
-| `pipeline/test_model_runtime.py` | 测试 |
-| `pipeline/test_news_projection.py` | 测试 |
-| `pipeline/test_product_library.py` | 测试 |
-| `pipeline/test_publish_reader.py` | 测试 |
-| `pipeline/test_report_model.py` | 测试 |
-| `pipeline/test_research.py` | 测试 |
-| `pipeline/test_research_navigation.py` | 测试 |
-| `pipeline/test_suite_integrity.py` | 测试 |
-| `pipeline/update_ciks.py` | 运行代码 |
-| `pipeline/users.py` | 运行代码 |
-| `pipeline/validate.py` | 运行代码 |
-| `pipeline/verify.py` | 运行代码 |
-| `pipeline/workorder.py` | 运行代码 |
-| `poster.html` | 运行代码 |
-| `rack3d.html` | 运行代码 |
-| `report.html` | 运行代码 |
+| `manage.py` | 运行代码 |
 | [reports/HOW_TO_OUTPUT.md](../reports/HOW_TO_OUTPUT.md) | 生成物 |
 | `reports/blindspot.json` | 生成物 |
 | [reports/blindspot.md](../reports/blindspot.md) | 生成物 |
@@ -673,7 +555,6 @@
 | [reports/verify_queue.md](../reports/verify_queue.md) | 生成物 |
 | `reports/workorders.json` | 生成物 |
 | [reports/workorders.md](../reports/workorders.md) | 生成物 |
-| `research.html` | 运行代码 |
 | [research/M01.md](../research/M01.md) | 兼容研究记录 |
 | [research/M02.md](../research/M02.md) | 兼容研究记录 |
 | [research/M03.md](../research/M03.md) | 兼容研究记录 |
@@ -691,13 +572,212 @@
 | [research/M15.md](../research/M15.md) | 兼容研究记录 |
 | [research/SUMMARY.md](../research/SUMMARY.md) | 兼容研究记录 |
 | `scripts/export_inews_research.cjs` | 项目配置 |
-| `team.html` | 运行代码 |
-| `tests/auth_appearance.cjs` | 项目配置 |
-| `tests/datacenter_news.cjs` | 项目配置 |
-| `tests/hardware_ecosystems.cjs` | 项目配置 |
-| `tests/object_network.cjs` | 项目配置 |
-| `tests/product_node_hover.cjs` | 项目配置 |
-| `tests/research_delivery.cjs` | 项目配置 |
-| `tests/run_browser.cjs` | 项目配置 |
-| `tests/ui_skin.cjs` | 项目配置 |
-| `tests/url_rendering.cjs` | 项目配置 |
+| [src/inresearch/README.md](../src/inresearch/README.md) | 配套说明 |
+| `src/inresearch/__init__.py` | 运行代码 |
+| `src/inresearch/__main__.py` | 运行代码 |
+| `src/inresearch/adapters/__init__.py` | 运行代码 |
+| `src/inresearch/adapters/acquisition.py` | 运行代码 |
+| `src/inresearch/adapters/asset_check.py` | 运行代码 |
+| `src/inresearch/adapters/asset_compare.py` | 运行代码 |
+| `src/inresearch/adapters/asset_download.py` | 运行代码 |
+| `src/inresearch/adapters/historical_brief.py` | 运行代码 |
+| `src/inresearch/adapters/models.py` | 运行代码 |
+| `src/inresearch/adapters/news_projection.py` | 运行代码 |
+| `src/inresearch/adapters/news_sync.py` | 运行代码 |
+| `src/inresearch/adapters/ocr_worker.py` | 运行代码 |
+| `src/inresearch/adapters/office.py` | 运行代码 |
+| `src/inresearch/adapters/office_biff.py` | 运行代码 |
+| `src/inresearch/adapters/office_container.py` | 运行代码 |
+| `src/inresearch/adapters/office_grid.py` | 运行代码 |
+| `src/inresearch/adapters/office_ooxml.py` | 运行代码 |
+| `src/inresearch/adapters/office_ppt.py` | 运行代码 |
+| `src/inresearch/adapters/reader_model.py` | 运行代码 |
+| `src/inresearch/delivery/__init__.py` | 运行代码 |
+| `src/inresearch/delivery/acquisition_status.py` | 运行代码 |
+| `src/inresearch/delivery/backup.py` | 运行代码 |
+| `src/inresearch/delivery/export.py` | 运行代码 |
+| `src/inresearch/delivery/library_index.py` | 运行代码 |
+| `src/inresearch/delivery/map.py` | 运行代码 |
+| `src/inresearch/delivery/publish.py` | 运行代码 |
+| `src/inresearch/delivery/reader_export.py` | 运行代码 |
+| `src/inresearch/delivery/reader_status.py` | 运行代码 |
+| `src/inresearch/delivery/reading_packet.py` | 运行代码 |
+| `src/inresearch/delivery/report.py` | 运行代码 |
+| `src/inresearch/interfaces/__init__.py` | 运行代码 |
+| `src/inresearch/interfaces/auth.py` | 运行代码 |
+| `src/inresearch/interfaces/cli.py` | 运行代码 |
+| `src/inresearch/interfaces/governance.py` | 运行代码 |
+| `src/inresearch/interfaces/http.py` | 运行代码 |
+| `src/inresearch/interfaces/pages.py` | 运行代码 |
+| `src/inresearch/interfaces/reader.py` | 运行代码 |
+| `src/inresearch/interfaces/static.py` | 运行代码 |
+| `src/inresearch/interfaces/users.py` | 运行代码 |
+| `src/inresearch/knowledge/__init__.py` | 运行代码 |
+| `src/inresearch/knowledge/company_ids.py` | 运行代码 |
+| `src/inresearch/knowledge/coverage.py` | 运行代码 |
+| `src/inresearch/knowledge/fact_contract.py` | 运行代码 |
+| `src/inresearch/knowledge/facts.py` | 运行代码 |
+| `src/inresearch/knowledge/indicators.py` | 运行代码 |
+| `src/inresearch/knowledge/navigation.py` | 运行代码 |
+| `src/inresearch/knowledge/news_policy.py` | 运行代码 |
+| `src/inresearch/knowledge/policy.py` | 运行代码 |
+| `src/inresearch/knowledge/registry.py` | 运行代码 |
+| `src/inresearch/knowledge/validate.py` | 运行代码 |
+| `src/inresearch/knowledge/verify.py` | 运行代码 |
+| `src/inresearch/materials/__init__.py` | 运行代码 |
+| `src/inresearch/materials/artifacts.py` | 运行代码 |
+| `src/inresearch/materials/inbox.py` | 运行代码 |
+| `src/inresearch/materials/inventory.py` | 运行代码 |
+| `src/inresearch/materials/library.py` | 运行代码 |
+| `src/inresearch/materials/mapping.py` | 运行代码 |
+| `src/inresearch/materials/naming.py` | 运行代码 |
+| `src/inresearch/materials/organize.py` | 运行代码 |
+| `src/inresearch/materials/paths.py` | 运行代码 |
+| `src/inresearch/materials/preflight.py` | 运行代码 |
+| `src/inresearch/materials/reader_contracts.py` | 运行代码 |
+| `src/inresearch/materials/receive.py` | 运行代码 |
+| `src/inresearch/materials/records.py` | 运行代码 |
+| `src/inresearch/materials/repair_paths.py` | 运行代码 |
+| `src/inresearch/materials/scan_candidates.py` | 运行代码 |
+| `src/inresearch/materials/triage.py` | 运行代码 |
+| `src/inresearch/paths.py` | 运行代码 |
+| `src/inresearch/storage/__init__.py` | 运行代码 |
+| `src/inresearch/storage/catalog.py` | 运行代码 |
+| `src/inresearch/storage/files.py` | 运行代码 |
+| `src/inresearch/storage/jsonl.py` | 运行代码 |
+| `src/inresearch/storage/moves.py` | 运行代码 |
+| `src/inresearch/workflow/__init__.py` | 运行代码 |
+| `src/inresearch/workflow/attribution.py` | 运行代码 |
+| `src/inresearch/workflow/commands.py` | 运行代码 |
+| `src/inresearch/workflow/deep_read.py` | 运行代码 |
+| `src/inresearch/workflow/progress.py` | 运行代码 |
+| `src/inresearch/workflow/reader.py` | 运行代码 |
+| `src/inresearch/workflow/reading_queue.py` | 运行代码 |
+| `src/inresearch/workflow/reading_stages.py` | 运行代码 |
+| `src/inresearch/workflow/score.py` | 运行代码 |
+| `src/inresearch/workflow/submissions.py` | 运行代码 |
+| `src/inresearch/workflow/terminal_batch.py` | 运行代码 |
+| `src/inresearch/workflow/triage.py` | 运行代码 |
+| `src/inresearch/workflow/workorders.py` | 运行代码 |
+| `tests/auth_appearance.cjs` | 测试 |
+| `tests/datacenter_news.cjs` | 测试 |
+| `tests/hardware_ecosystems.cjs` | 测试 |
+| `tests/object_network.cjs` | 测试 |
+| `tests/part_dossier.cjs` | 测试 |
+| `tests/product_node_hover.cjs` | 测试 |
+| `tests/research_delivery.cjs` | 测试 |
+| `tests/run_browser.cjs` | 测试 |
+| `tests/ui_skin.cjs` | 测试 |
+| `tests/unit/test_acquisition.py` | 测试 |
+| `tests/unit/test_auth.py` | 测试 |
+| `tests/unit/test_catalog_bridge.py` | 测试 |
+| `tests/unit/test_commands.py` | 测试 |
+| `tests/unit/test_continuous_reader.py` | 测试 |
+| `tests/unit/test_datacenter_news.py` | 测试 |
+| `tests/unit/test_display_regressions.py` | 测试 |
+| `tests/unit/test_file_moves.py` | 测试 |
+| `tests/unit/test_governance.py` | 测试 |
+| `tests/unit/test_http_workflow.py` | 测试 |
+| `tests/unit/test_intake.py` | 测试 |
+| `tests/unit/test_interface_system.py` | 测试 |
+| `tests/unit/test_m4_l2.py` | 测试 |
+| `tests/unit/test_m4_office_text.py` | 测试 |
+| `tests/unit/test_m4_paths.py` | 测试 |
+| `tests/unit/test_m4_redo_reads.py` | 测试 |
+| `tests/unit/test_m4_triage.py` | 测试 |
+| `tests/unit/test_m4_triage_apply.py` | 测试 |
+| `tests/unit/test_m4_triage_export.py` | 测试 |
+| `tests/unit/test_m4_triage_extract.py` | 测试 |
+| `tests/unit/test_m4_triage_local.py` | 测试 |
+| `tests/unit/test_m4_triage_report.py` | 测试 |
+| `tests/unit/test_m4_triage_versions.py` | 测试 |
+| `tests/unit/test_material_intake.py` | 测试 |
+| `tests/unit/test_model_runtime.py` | 测试 |
+| `tests/unit/test_news_projection.py` | 测试 |
+| `tests/unit/test_product_library.py` | 测试 |
+| `tests/unit/test_publish_reader.py` | 测试 |
+| `tests/unit/test_report_model.py` | 测试 |
+| `tests/unit/test_research.py` | 测试 |
+| `tests/unit/test_research_navigation.py` | 测试 |
+| `tests/unit/test_result_versions.py` | 测试 |
+| `tests/unit/test_suite_integrity.py` | 测试 |
+| `tests/url_rendering.cjs` | 测试 |
+| `web/assets/Inter-LICENSE.txt` | 静态资源 |
+| `web/assets/InterVariable.woff2` | 静态资源 |
+| `web/assets/datacenter-news.css` | 运行代码 |
+| [web/assets/hdri/README.md](../web/assets/hdri/README.md) | 配套说明 |
+| `web/assets/hdri/lab.exr` | 静态资源 |
+| `web/assets/hdri/studio.exr` | 静态资源 |
+| `web/assets/hdri/warehouse.exr` | 静态资源 |
+| `web/assets/levels.json` | 静态资源 |
+| `web/assets/materials.js` | 运行代码 |
+| [web/assets/models/README.md](../web/assets/models/README.md) | 配套说明 |
+| `web/assets/models/manifest.json` | 静态资源 |
+| `web/assets/models/server_v2_console.glb` | 静态资源 |
+| [web/assets/panels/README.md](../web/assets/panels/README.md) | 配套说明 |
+| `web/assets/panels/server_gpu.png` | 静态资源 |
+| `web/assets/panels/server_nvme.png` | 静态资源 |
+| `web/assets/panels/server_storage.png` | 静态资源 |
+| `web/assets/panels/switch_ib.png` | 静态资源 |
+| `web/assets/panels/switch_tor.png` | 静态资源 |
+| [web/assets/renders/README.md](../web/assets/renders/README.md) | 配套说明 |
+| `web/assets/renders/chassis.png` | 静态资源 |
+| `web/assets/renders/coldplate.png` | 静态资源 |
+| `web/assets/renders/fans.png` | 静态资源 |
+| `web/assets/renders/gpu-board.png` | 静态资源 |
+| `web/assets/renders/hbm.png` | 静态资源 |
+| `web/assets/renders/mobo.png` | 静态资源 |
+| `web/assets/renders/nic.png` | 静态资源 |
+| `web/assets/renders/psu.png` | 静态资源 |
+| `web/assets/renders/ssd.png` | 静态资源 |
+| `web/assets/research.css` | 运行代码 |
+| `web/assets/vendor/BufferGeometryUtils.js` | 静态资源 |
+| `web/assets/vendor/CopyShader.js` | 静态资源 |
+| `web/assets/vendor/EXRLoader.js` | 静态资源 |
+| `web/assets/vendor/EffectComposer.js` | 静态资源 |
+| `web/assets/vendor/GLTFLoader.js` | 静态资源 |
+| `web/assets/vendor/LuminosityHighPassShader.js` | 静态资源 |
+| `web/assets/vendor/MaskPass.js` | 静态资源 |
+| `web/assets/vendor/OrbitControls.js` | 静态资源 |
+| `web/assets/vendor/OutputPass.js` | 静态资源 |
+| `web/assets/vendor/OutputShader.js` | 静态资源 |
+| `web/assets/vendor/Pass.js` | 静态资源 |
+| `web/assets/vendor/RenderPass.js` | 静态资源 |
+| `web/assets/vendor/ShaderPass.js` | 静态资源 |
+| `web/assets/vendor/UnrealBloomPass.js` | 静态资源 |
+| `web/assets/vendor/fflate.module.js` | 静态资源 |
+| `web/assets/vendor/three.module.js` | 静态资源 |
+| `web/assets/world.geo.json` | 静态资源 |
+| `web/components/auth-form.js` | 运行代码 |
+| `web/components/auth.css` | 运行代码 |
+| `web/components/datacenter-news.js` | 运行代码 |
+| `web/components/markdown-inline.js` | 运行代码 |
+| `web/components/object-network.js` | 运行代码 |
+| `web/components/part-dossier.js` | 运行代码 |
+| `web/components/part-inspector.js` | 运行代码 |
+| `web/components/research-graph.js` | 运行代码 |
+| `web/components/series-summary.js` | 运行代码 |
+| `web/components/site-shell.js` | 运行代码 |
+| `web/pages/admin/product/index.html` | 运行代码 |
+| `web/pages/auth/forbidden.html` | 运行代码 |
+| `web/pages/auth/layout.html` | 运行代码 |
+| `web/pages/auth/login.html` | 运行代码 |
+| `web/pages/auth/password.html` | 运行代码 |
+| `web/pages/bake.html` | 运行代码 |
+| `web/pages/bom.html` | 运行代码 |
+| `web/pages/bom3d.html` | 运行代码 |
+| `web/pages/company.html` | 运行代码 |
+| `web/pages/compare.html` | 运行代码 |
+| `web/pages/doc.html` | 运行代码 |
+| `web/pages/framework_poster.html` | 运行代码 |
+| `web/pages/index.html` | 运行代码 |
+| `web/pages/materials.html` | 运行代码 |
+| `web/pages/ops.html` | 运行代码 |
+| `web/pages/poster.html` | 运行代码 |
+| `web/pages/rack3d.html` | 运行代码 |
+| `web/pages/report.html` | 运行代码 |
+| `web/pages/research.html` | 运行代码 |
+| `web/pages/team.html` | 运行代码 |
+| `web/routes.json` | 项目配置 |
+| `web/themes/preference.js` | 运行代码 |
+| `web/themes/site-skin.css` | 运行代码 |

@@ -2,7 +2,7 @@
 
 生成时间：2026-09-12 ｜ P1（必须处理）23 条 ｜ P2（补强来源）24 条
 
-流程：打开来源链接核对 → 有变化改数据+来源，无变化只改 verified_date → `python3 pipeline/validate.py`
+流程：打开来源链接核对 → 有变化改数据+来源，无变化只改 verified_date → `python3 manage.py validate`
 
 ## P1
 

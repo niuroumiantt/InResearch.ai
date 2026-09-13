@@ -16,16 +16,37 @@
     "materials.html"
   ],
   "dynamic_pages": {
-    "pipeline/auth.py": [
+    "src/inresearch/interfaces/pages.py": [
       "LOGIN_PAGE",
       "PASSWD_PAGE",
       "FORBIDDEN_PAGE"
     ]
   },
   "excluded_pages": {
-    "poster.html": "固定版式的打印交付物",
-    "framework_poster.html": "固定版式的框架海报",
-    "bake.html": "开发用模型烘焙工具",
+    "web/pages/poster.html": "固定版式的打印交付物",
+    "web/pages/framework_poster.html": "固定版式的框架海报",
+    "web/pages/bake.html": "开发用模型烘焙工具",
     "docs/inbox/framework_proposals/framework_proposal_L1-L4_20260831.html": "未采用的外部提案原件"
-  }
+  },
+  "page_sources": {
+    "index.html": "web/pages/index.html",
+    "research.html": "web/pages/research.html",
+    "admin/product/index.html": "web/pages/admin/product/index.html",
+    "doc.html": "web/pages/doc.html",
+    "bom3d.html": "web/pages/bom3d.html",
+    "rack3d.html": "web/pages/rack3d.html",
+    "bom.html": "web/pages/bom.html",
+    "company.html": "web/pages/company.html",
+    "compare.html": "web/pages/compare.html",
+    "ops.html": "web/pages/ops.html",
+    "team.html": "web/pages/team.html",
+    "report.html": "web/pages/report.html",
+    "materials.html": "web/pages/materials.html"
+  },
+  "template_fragments": [
+    "web/pages/auth/layout.html",
+    "web/pages/auth/login.html",
+    "web/pages/auth/password.html",
+    "web/pages/auth/forbidden.html"
+  ]
 }

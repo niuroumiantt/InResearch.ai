@@ -6,7 +6,7 @@
 
 用户在全站顶部选择 Attio 或 folk，实际页面立即切换。两个名称表示本项目依据参考设计实现的视觉方案，不是加载第三方官方皮肤或远程应用。
 
-跨项目研究与基础变量由 [infra/design/crm](https://github.com/niuroumiantt/infra/tree/main/design/crm) 维护；本文件是本项目集成与验收的现行入口。基础变量按版本嵌入 `assets/site-skin.css`，不是跨站远程加载。
+跨项目研究与基础变量由 [infra/design/crm](https://github.com/niuroumiantt/infra/tree/main/design/crm) 维护；本文件是本项目集成与验收的现行入口。基础变量按版本嵌入 `web/themes/site-skin.css`，不是跨站远程加载。
 
 | 项目 | Attio | folk |
 |---|---|---|
@@ -27,7 +27,7 @@
 
 风格只有 Attio / folk；明暗单独选择浅色 / 深色 / 跟随系统。默认 folk + 浅色，以用户提供的线条式参考为起点。只有选择“跟随系统”才响应操作系统明暗变化。
 
-统一令牌位于 `assets/site-skin.css`，全部应用页使用同一文件；旧 CSS 变量只作为兼容别名，不再各自定义色板。颜色、边界、圆角、字重、间距组合、图标族均参与切换。不得在单页重新添加 `prefers-color-scheme` 色板或全局强制圆角规则。
+统一令牌位于 `web/themes/site-skin.css`，全部应用页使用同一文件；旧 CSS 变量只作为兼容别名，不再各自定义色板。颜色、边界、圆角、字重、间距组合、图标族均参与切换。不得在单页重新添加 `prefers-color-scheme` 色板或全局强制圆角规则。
 
 偏好存于当前浏览器同源 localStorage（`inresearch.ui.v1`），跨页面、刷新及同源标签页生效；不跨设备同步，不写入研究数据或账号权限。存储不可用时本页仍可切换，并提示偏好未保存。脚本在首次绘制前设置根节点属性，降低错误色系闪现。
 
@@ -66,3 +66,7 @@
 文档和报告使用同一安全行内 Markdown 子集：原文先分词再渲染，代码段不转链接，链接仅允许 HTTP(S)。文档目录标题按文本显示，不能把渲染后的标题文本再次解释成 HTML。
 
 CI 的 3D 外观矩阵使用减少动态效果及 0.5 设备像素比，保持 360/1440 CSS 宽度和真实场景，避免无 GPU runner 被持续光栅化占满；本机截图用原像素比。该矩阵验证界面与交互，不替代 3D 渲染质量或帧率验收。浏览器作业最长 15 分钟。
+
+## 2026-09-13：源码职责与共享结构
+
+应用页通过 `<inresearch-shell data-section="…">` 显式声明导航归属，响应式面板声明 `data-responsive-panel`。shell 不再猜 URL 分类、扫描旧导航补图标或包裹任意 hud。`web/themes/preference.js` 只维护偏好与外观事件，`web/components/site-shell.js` 拥有导航与控件。认证页使用同一布局、样式和表单错误/重试流程，账号模块不再携带 HTML。园区与机柜共用部件查看器和价格序列摘要，查看器自己管理画布和克隆材质，不释放主场景几何。公开 URL 由 `web/routes.json` 对应唯一源码，不复制旧实现。

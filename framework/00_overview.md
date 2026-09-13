@@ -81,7 +81,7 @@ P 的浏览目录按园区与资源接入、建筑与安全、机房与设施、
 
 研究定义、原文阅读、知识采用、任务交付、推理适配与操作界面分别有明确责任。新增对象/关系/问题先修改声明及校验；新增研究用例在 Python 领域入口实现，再由网页或 CLI 调用。新增模型只扩展统一配置或推理适配器，不复制评分、采用和任务状态机。新增页面复用导航、外观和接口，不在浏览器重算一份派工集合或报告有效状态。
 
-当前共享入口：`research.py` 计算研究快照、当前任务和采用资格；`report_model.py` 为网页与导出提供同一内容集合；`model_runtime.py` 提供配置化推理；`m4_records.py` 提供语料当前观察与有效判定；`file_moves.py` 统一物理移动与恢复。HTTP 与终端只是这些用例的入口。专用 M4 预览/文件整理与 Spark 全文/C3 流程按各自 scope 保留，不能因代码相似抹平原件权限或阅读承诺。
+当前共享入口：`inresearch.knowledge.registry` 计算研究快照、当前任务和采用资格；`inresearch.delivery.report` 为网页与导出提供同一内容集合；`inresearch.adapters.models` 提供配置化推理；`inresearch.materials.records` 提供语料当前观察与有效判定；`inresearch.storage.moves` 统一物理移动与恢复。HTTP 与终端只是这些用例的入口。专用 M4 预览/文件整理与 Spark 全文/C3 流程按各自 scope 保留，不能因代码相似抹平原件权限或阅读承诺。
 
 新代码不扩大兼容 Finding、旧工单和旧 CLI 的规范地位。只有规范中声明为当前的源决定行为；历史记录继续保留身份和转向。若完整任务 API、受控重读或 Spark 接口尚未实现，应直接标明，不在 UI 伪装为完成。
 

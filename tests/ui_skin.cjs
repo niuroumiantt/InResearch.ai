@@ -1,4 +1,4 @@
-/* Browser regression. Start: python3 pipeline/serve.py 8878
+/* Browser regression. Start: python3 manage.py serve 8878
  * Run: NODE_PATH=<directory containing playwright> node tests/ui_skin.cjs
  * UI_BASE_URL defaults to local server; screenshots go to UI_QA_DIR if set.
  * Requires a locally installed Chrome and Playwright; no production dependency.

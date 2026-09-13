@@ -77,7 +77,7 @@ mv ~/Downloads/你下载的文件.glb assets/models/server_rack.glb
 ## 第 4 步：自检（关键，别跳）
 
 ```bash
-python3 pipeline/check_models.py
+python3 manage.py asset-check
 ```
 
 它会告诉你：JSON 写没写错、文件在不在、是不是真 GLB、体积超没超线、来源许可填没填。
@@ -158,12 +158,12 @@ git add assets/models/ && git commit -m "3D 模型入库：机柜（CC0）" && g
 
 ## 附：用脚本自动下（批量加模型时省事）
 
-`pipeline/fetch_sketchfab.py` 走官方 API，一条命令完成下载+转格式+登记，
+`src/inresearch/adapters/asset_download.py` 走官方 API，一条命令完成下载+转格式+登记，
 **license 与 source 从 API 原样带回，不用手填**：
 
 ```bash
 export SKETCHFAB_TOKEN=你的令牌      # 取令牌：Sketchfab → Settings → Password & API → API Token
-python3 pipeline/fetch_sketchfab.py "https://sketchfab.com/3d-models/xxx-<uid>" --hide-rack
+python3 manage.py asset-download "https://sketchfab.com/3d-models/xxx-<uid>" --hide-rack
 ```
 
 它会先查许可，**不在白名单（CC0 / Public Domain / CC Attribution）就拒绝下载**——

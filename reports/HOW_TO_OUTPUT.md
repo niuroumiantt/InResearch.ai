@@ -6,10 +6,10 @@
 
 | 命令 | 产出 |
 |---|---|
-| `python3 pipeline/export.py --docx` | 全量研究报告（执行摘要 + 15 章，md + Word） |
-| `python3 pipeline/export.py M08 M09 --docx --title "散热与电力设备专题"` | 任选模块组合的专题报告 |
-| `python3 pipeline/output_map.py` | 全球 Top 10 数据中心园区地图（HTML + PDF，标注容量与用电量估算） |
-| `python3 pipeline/output_map.py 15` | Top 15 版本 |
+| `python3 manage.py export --docx` | 全量研究报告（执行摘要 + 15 章，md + Word） |
+| `python3 manage.py export M08 M09 --docx --title "散热与电力设备专题"` | 任选模块组合的专题报告 |
+| `python3 manage.py map` | 全球 Top 10 数据中心园区地图（HTML + PDF，标注容量与用电量估算） |
+| `python3 manage.py map 15` | Top 15 版本 |
 
 产出物统一落在 `reports/output/`，带数据快照日期，可复现。
 
