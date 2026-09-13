@@ -35008,6 +35008,65 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "单位换算：万美元 ÷ 100 = 百万美元/MW（1,000kW = 1MW）。 **供配电系统占 57%、冷却占 19%**，结构与中国一致。 **口径是「硬件总成本」，按 1MW、2N 供电线路配置**；饼图列出的构成为 UPS、电源、开关设备、核心配电设备、制冷机、冷水空调机、冷却塔、循环水泵、加工泵、工程设施、外部结构、运维、其他——**含外部结构与工程设施，不含 IT 设备与土地**，cost_scope 就近记仅机电与土建，标 [未核]。 **对照同库戴德梁行亚太 2026**：中国内地中档 7.1、马来西亚中档 9.6 百万美元/MW——**施耐德的数比戴德梁行低 30%-50%**，前者是硬件、后者含 Powered Shell 与机房装修，口径不同；美国 8.6 与日本/新加坡（16.0/14.4）也不在一个量级。 时点：国盛引用未给施耐德数据发布年，按报告年记，标 [未核]。"
+    },
+    {
+      "fact_id": "meta-prometheus-cluster-2026e",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "project",
+        "id": "meta-prometheus",
+        "label": "Meta Prometheus AI 集群"
+      },
+      "value": 1000.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L6",
+        "region": "US"
+      },
+      "as_of": "2026E@2025-10",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "b58a1fa8f9581396db1baa7df1d67d16c4d57b503a4cf9625789320187754ad5",
+        "local_file": "Meta Scaling the AI Infrastructure to Data Center Regions (OCP Global Summit 2025 Keynote).pdf",
+        "locator": "第 10 页「Large Scale Infrastructure」：「Prometheus: 1GW+ cluster by 2026」「Hyperion: 5GW over the next few years」",
+        "grade": "S2",
+        "originator": "Meta（Dan Rabinovitsj，OCP 2025 主题演讲）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文「1GW+」按下界记，时点「by 2026」**。capacity_type 未披露（原文未说 IT 还是设施）；status 按 2025 年演讲时在建记 L6，标 [未核]。**同页 Hyperion「未来几年 5GW」没有给年份，as_of 无法落，未录**——它是 Prometheus 的 5 倍。演讲时点按 OCP Global Summit 2025（2025-10）记。"
+    },
+    {
+      "fact_id": "meta-rack-roadmap-2027q3",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "meta-ocp-rack-256-accelerators",
+        "label": "Meta OCP 大 scale-up 域机柜路线（≥256 加速器）"
+      },
+      "value": 900.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "设计目标",
+        "power_basis": "架构宣称",
+        "region": "Global"
+      },
+      "as_of": "2027-Q3E@2025-10",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "b58a1fa8f9581396db1baa7df1d67d16c4d57b503a4cf9625789320187754ad5",
+        "local_file": "Meta Scaling the AI Infrastructure to Data Center Regions (OCP Global Summit 2025 Keynote).pdf",
+        "locator": "第 11 页「Large Scale-Up Domains require bigger racks」路线图：MP ≤72 加速器 / 2026-Q3 ≤144 加速器、IT 机柜双宽 / 2027-Q3 ≥256 加速器、Greater than 900kW、±400 VDC、Primarily Liquid Cooled、IT Rack Size TBD",
+        "grade": "S2",
+        "originator": "Meta（OCP 2025 主题演讲）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是此前台账里「机柜功率里程碑原文没给时点」那条缺口的第一个带时点的数**：Meta 路线图给到 2027-Q3、≥256 加速器、>900kW、±400 VDC、以液冷为主、机柜尺寸待定。三代路线：量产 ≤72 加速器（48 VDC/±400 VDC，风冷或液冷，单宽）→ 2026-Q3 ≤144 加速器（双宽 IT 柜）→ 2027-Q3 ≥256。**「>900kW」按下界记**。对照 GB200 NVL72 整柜 120kW：7.5 倍。"
     }
   ]
 }
