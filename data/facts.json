@@ -35097,6 +35097,1266 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**关键口径：Meta 版 NVL72 拆成 2 个物理 IT 机柜**（原版 1 个），每柜 93.5kW——**不能与原版 GB200 NVL72 单柜 120kW（nv-rack-power-gb200-nvl72-total）直接比成「Meta 更省电」**，Meta 这一 pod 72 GPU 配了 72 颗 Grace CPU（原版 36）、LPDDR 34.6TB（原版 17.3TB）、总内存 48TB（原版 30TB）。供电托架 33kW/台，与 SemiAnalysis 那份 GB200 1U Power Shelf 33kW（gb200-power-shelf-capacity）一致；PSU/BBU 模块 5.5kW。冷却为风辅液冷（AALC），以兼容传统数据中心设施。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-japan-low",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-japan",
+        "label": "日本数据中心市场"
+      },
+      "value": 10.45,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Japan 行 Low $/MW = $10,449,000",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 low 档。  **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-japan-mid",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-japan",
+        "label": "日本数据中心市场"
+      },
+      "value": 13.24,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Japan 行 Mid $/MW = $13,235,400",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 mid 档。 **跨版本自洽校验**：本市场中档由 13.24 升到 2026 版 16.0 百万美元/MW，变化 +20.9%；2026 版给的 2025/26 建设成本通胀为 20.9%，两者一致。 **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-japan-high",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-japan",
+        "label": "日本数据中心市场"
+      },
+      "value": 16.02,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Japan 行 High $/MW = $16,021,800",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 high 档。  **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-singapore-low",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-singapore",
+        "label": "新加坡数据中心市场"
+      },
+      "value": 9.27,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Singapore 行 Low $/MW = $9,268,628",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 low 档。  **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-singapore-mid",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-singapore",
+        "label": "新加坡数据中心市场"
+      },
+      "value": 11.74,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Singapore 行 Mid $/MW = $11,740,262",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 mid 档。 **跨版本自洽校验**：本市场中档由 11.74 升到 2026 版 14.4 百万美元/MW，变化 +22.7%；2026 版给的 2025/26 建设成本通胀为 22.7%，两者一致。 **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-singapore-high",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-singapore",
+        "label": "新加坡数据中心市场"
+      },
+      "value": 14.21,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Singapore 行 High $/MW = $14,211,896",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 high 档。  **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-australia-low",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-australia",
+        "label": "澳大利亚数据中心市场"
+      },
+      "value": 7.6,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Australia 行 Low $/MW = $7,604,533",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 low 档。  **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-australia-mid",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-australia",
+        "label": "澳大利亚数据中心市场"
+      },
+      "value": 9.63,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Australia 行 Mid $/MW = $9,632,409",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 mid 档。 **跨版本自洽校验**：本市场中档由 9.63 升到 2026 版 10.0 百万美元/MW，变化 +3.8%；2026 版给的 2025/26 建设成本通胀为 3.8%，两者一致。 **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-australia-high",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-australia",
+        "label": "澳大利亚数据中心市场"
+      },
+      "value": 11.66,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Australia 行 High $/MW = $11,660,284",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 high 档。  **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-south-korea-low",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-south-korea",
+        "label": "韩国数据中心市场"
+      },
+      "value": 7.5,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，South Korea 行 Low $/MW = $7,503,756",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 low 档。  **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-south-korea-mid",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-south-korea",
+        "label": "韩国数据中心市场"
+      },
+      "value": 9.5,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，South Korea 行 Mid $/MW = $9,504,758",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 mid 档。 **跨版本自洽校验**：本市场中档由 9.50 升到 2026 版 10.6 百万美元/MW，变化 +11.5%；2026 版给的 2025/26 建设成本通胀为 11.5%，两者一致。 **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-south-korea-high",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-south-korea",
+        "label": "韩国数据中心市场"
+      },
+      "value": 11.51,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，South Korea 行 High $/MW = $11,505,759",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 high 档。  **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-hong-kong-china-low",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-hong-kong-china",
+        "label": "中国香港数据中心市场"
+      },
+      "value": 7.41,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Hong Kong, China 行 Low $/MW = $7,414,298",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 low 档。  **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-hong-kong-china-mid",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-hong-kong-china",
+        "label": "中国香港数据中心市场"
+      },
+      "value": 9.39,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Hong Kong, China 行 Mid $/MW = $9,391,444",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 mid 档。 **跨版本自洽校验**：本市场中档由 9.39 升到 2026 版 9.8 百万美元/MW，变化 +4.4%；2026 版给的 2025/26 建设成本通胀为 4.4%，两者一致。 **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-hong-kong-china-high",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-hong-kong-china",
+        "label": "中国香港数据中心市场"
+      },
+      "value": 11.37,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Hong Kong, China 行 High $/MW = $11,368,590",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 high 档。  **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-new-zealand-low",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-new-zealand",
+        "label": "新西兰数据中心市场"
+      },
+      "value": 7.31,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，New Zealand 行 Low $/MW = $7,310,491",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 low 档。  **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-new-zealand-mid",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-new-zealand",
+        "label": "新西兰数据中心市场"
+      },
+      "value": 9.26,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，New Zealand 行 Mid $/MW = $9,259,955",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 mid 档。 **跨版本自洽校验**：本市场中档由 9.26 升到 2026 版 9.3 百万美元/MW，变化 +0.4%；2026 版给的 2025/26 建设成本通胀为 0.0%，两者一致。 **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-new-zealand-high",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-new-zealand",
+        "label": "新西兰数据中心市场"
+      },
+      "value": 11.21,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，New Zealand 行 High $/MW = $11,209,420",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 high 档。  **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-malaysia-low",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-malaysia",
+        "label": "马来西亚数据中心市场"
+      },
+      "value": 6.49,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Malaysia 行 Low $/MW = $6,487,788",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 low 档。  **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-malaysia-mid",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-malaysia",
+        "label": "马来西亚数据中心市场"
+      },
+      "value": 9.02,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Malaysia 行 Mid $/MW = $9,024,147",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 mid 档。 **跨版本自洽校验**：本市场中档由 9.02 升到 2026 版 9.6 百万美元/MW，变化 +6.4%；2026 版给的 2025/26 建设成本通胀为 9.3%，**两者不一致**，差额可能来自规格假设或汇率调整，标 [未核]。 **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-malaysia-high",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-malaysia",
+        "label": "马来西亚数据中心市场"
+      },
+      "value": 11.56,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Malaysia 行 High $/MW = $11,560,506",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 high 档。  **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-indonesia-low",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-indonesia",
+        "label": "印度尼西亚数据中心市场"
+      },
+      "value": 6.94,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Indonesia 行 Low $/MW = $6,935,119",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 low 档。  **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-indonesia-mid",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-indonesia",
+        "label": "印度尼西亚数据中心市场"
+      },
+      "value": 8.78,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Indonesia 行 Mid $/MW = $8,784,484",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 mid 档。 **跨版本自洽校验**：本市场中档由 8.78 升到 2026 版 8.3 百万美元/MW，变化 -5.5%；2026 版给的 2025/26 建设成本通胀为 5.0%，**两者不一致**，差额可能来自规格假设或汇率调整，标 [未核]。 **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-indonesia-high",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-indonesia",
+        "label": "印度尼西亚数据中心市场"
+      },
+      "value": 10.63,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Indonesia 行 High $/MW = $10,633,849",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 high 档。  **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-thailand-low",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-thailand",
+        "label": "泰国数据中心市场"
+      },
+      "value": 6.05,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Thailand 行 Low $/MW = $6,054,469",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 low 档。  **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-thailand-mid",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-thailand",
+        "label": "泰国数据中心市场"
+      },
+      "value": 7.67,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Thailand 行 Mid $/MW = $7,668,994",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 mid 档。 **跨版本自洽校验**：本市场中档由 7.67 升到 2026 版 8.8 百万美元/MW，变化 +14.7%；2026 版给的 2025/26 建设成本通胀为 14.7%，两者一致。 **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-thailand-high",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-thailand",
+        "label": "泰国数据中心市场"
+      },
+      "value": 9.28,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Thailand 行 High $/MW = $9,283,519",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 high 档。  **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-india-low",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-india",
+        "label": "印度数据中心市场"
+      },
+      "value": 5.63,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，India 行 Low $/MW = $5,626,530",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 low 档。  **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-india-mid",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-india",
+        "label": "印度数据中心市场"
+      },
+      "value": 7.13,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，India 行 Mid $/MW = $7,126,938",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 mid 档。 **跨版本自洽校验**：本市场中档由 7.13 升到 2026 版 7.4 百万美元/MW，变化 +3.8%；2026 版给的 2025/26 建设成本通胀为 3.8%，两者一致。 **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-india-high",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-india",
+        "label": "印度数据中心市场"
+      },
+      "value": 8.63,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，India 行 High $/MW = $8,627,346",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 high 档。  **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-chinese-mainland-low",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-chinese-mainland",
+        "label": "中国内地数据中心市场"
+      },
+      "value": 5.61,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "CN",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Chinese Mainland 行 Low $/MW = $5,613,504",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 low 档。  **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-chinese-mainland-mid",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-chinese-mainland",
+        "label": "中国内地数据中心市场"
+      },
+      "value": 7.11,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "CN",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Chinese Mainland 行 Mid $/MW = $7,110,438",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 mid 档。 **跨版本自洽校验**：本市场中档由 7.11 升到 2026 版 7.1 百万美元/MW，变化 -0.1%；2026 版给的 2025/26 建设成本通胀为 0.4%，两者一致。 **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-chinese-mainland-high",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-chinese-mainland",
+        "label": "中国内地数据中心市场"
+      },
+      "value": 8.61,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "CN",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Chinese Mainland 行 High $/MW = $8,607,373",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 high 档。  **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-philippines-low",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-philippines",
+        "label": "菲律宾数据中心市场"
+      },
+      "value": 5.52,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Philippines 行 Low $/MW = $5,520,000",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 low 档。  **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-philippines-mid",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-philippines",
+        "label": "菲律宾数据中心市场"
+      },
+      "value": 6.97,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Philippines 行 Mid $/MW = $6,966,214",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 mid 档。 **跨版本自洽校验**：本市场中档由 6.97 升到 2026 版 8.2 百万美元/MW，变化 +17.7%；2026 版给的 2025/26 建设成本通胀为 17.7%，两者一致。 **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-philippines-high",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-philippines",
+        "label": "菲律宾数据中心市场"
+      },
+      "value": 8.41,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Philippines 行 High $/MW = $8,412,427",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 high 档。  **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-vietnam-low",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-vietnam",
+        "label": "越南数据中心市场"
+      },
+      "value": 5.48,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Vietnam 行 Low $/MW = $5,475,473",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 low 档。  **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-vietnam-mid",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-vietnam",
+        "label": "越南数据中心市场"
+      },
+      "value": 6.94,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Vietnam 行 Mid $/MW = $6,935,600",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 mid 档。 **跨版本自洽校验**：本市场中档由 6.94 升到 2026 版 7.2 百万美元/MW，变化 +3.8%；2026 版给的 2025/26 建设成本通胀为 3.8%，两者一致。 **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-vietnam-high",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-vietnam",
+        "label": "越南数据中心市场"
+      },
+      "value": 8.4,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Vietnam 行 High $/MW = $8,395,726",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 high 档。  **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-taiwan-china-low",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-taiwan-china",
+        "label": "中国台湾数据中心市场"
+      },
+      "value": 5.05,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Taiwan, China 行 Low $/MW = $5,047,296",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 low 档。  **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-taiwan-china-mid",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-taiwan-china",
+        "label": "中国台湾数据中心市场"
+      },
+      "value": 6.39,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Taiwan, China 行 Mid $/MW = $6,393,241",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 mid 档。 **跨版本自洽校验**：本市场中档由 6.39 升到 2026 版 6.5 百万美元/MW，变化 +1.7%；2026 版给的 2025/26 建设成本通胀为 1.7%，两者一致。 **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
+    },
+    {
+      "fact_id": "cw-apac-2025-build-cost-taiwan-china-high",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "region",
+        "id": "apac-dc-market-taiwan-china",
+        "label": "中国台湾数据中心市场"
+      },
+      "value": 7.74,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-02",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "fffb8d02194a894e87b76fc40c6e6fbd4df7290e3df9424327c2a02dd86ec0e2",
+        "local_file": "Cushman & Wakefield Asia Pacific Data Centre Construction Cost Guide 2025 (last updated 2025-02-25).pdf",
+        "locator": "第 11 页「Regional Cost per Megawatt Comparison」表，Taiwan, China 行 High $/MW = $7,739,187",
+        "grade": "S3",
+        "originator": "Cushman & Wakefield 戴德梁行（Asia Pacific Data Centre Group）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单位换算：美元/MW ÷ 1,000,000 = 百万美元/MW（原值精确到美元，本条取两位小数）。 **这是戴德梁行 2025 版（2025-02-25 更新），与库内 2026 版（cw-apac-2026-build-cost-*）构成两个年份**。low/mid/high 为三档建设规格，本条为 high 档。  **口径**：Total Construction Cost = Powered Shell + Data Hall Fit Out，**不含客户 IT 设备与土地**。2024 年区域平均建设成本同比 +3.8%。"
     }
   ]
 }
