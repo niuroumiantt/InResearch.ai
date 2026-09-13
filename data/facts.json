@@ -38017,6 +38017,254 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**Crusoe 2025-03 公告：到 2026 年总电力 1.2GW**。**与库内同一园区的两条对照**：SemiAnalysis 2025-01 估算供电 2.2GW、IT 1.8GW（abilene-stargate-power-supplied-202501 / -it-capacity-202501）——**三个月后 Crusoe 自己公告的是 2026 年 1.2GW**，比 SemiAnalysis 的估算低近一半；可能是分期口径不同（2.2GW 为全园区远期），标 [未核]。capacity_type 就近记并网容量（原文 total power）。"
+    },
+    {
+      "fact_id": "aidc-wp-rack-power-2025",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "industry",
+        "id": "aidc-rack-power-roadmap-wp",
+        "label": "AIDC 机房参考设计白皮书：整机柜功耗预测"
+      },
+      "value": 50.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "设计目标",
+        "era": "当期",
+        "power_basis": "架构宣称",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5a325af53cbe6bb06cfeae65670a088e55d1f64e3570a83889bb8350ffab4b08",
+        "local_file": "AIDC 机房参考设计白皮书（2025，未署名）.pdf",
+        "locator": "第 5 页「1.1 AI业务负载及应用发展趋势」机柜功耗发展预测表：年度 2025/2026/2027/2028 → 机柜功耗 ~50kW / 80~150kW / 150~300kW / 300kW以上（注：所指机柜不包含业界宏机柜）；本条 2025 年「~50kW」",
+        "grade": "S3",
+        "originator": "未署名行业机构（AIDC 机房参考设计白皮书）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**逐年路线：~50 → 80-150 → 150-300 → 300kW 以上（2025-2028）**，本条为 2025 年约数。 **原文注明不含「宏机柜」**（多柜拼成的超节点）。液冷占比随之由当前 70% 升到 90% 以上；单超节点供电将走向 1-10MW、单集群数百 MW，而当前单包间 1-2MW、单栋楼 10-20MW。 **对照同库 Meta 路线图 2027-Q3 >900kW（meta-rack-roadmap-2027q3）**：Meta 是大 scale-up 域整柜，本白皮书明确排除宏机柜，二者 2027 年差 3 倍以上不矛盾。 做出时点：白皮书年份 2025、月份未给，按 2025-10 记，标 [未核]。发布方未署名。"
+    },
+    {
+      "fact_id": "aidc-wp-rack-power-2026-lower",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "industry",
+        "id": "aidc-rack-power-roadmap-wp",
+        "label": "AIDC 机房参考设计白皮书：整机柜功耗预测"
+      },
+      "value": 80.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "设计目标",
+        "era": "路线图目标",
+        "power_basis": "架构宣称",
+        "region": "Global"
+      },
+      "as_of": "2026E@2025-10",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "5a325af53cbe6bb06cfeae65670a088e55d1f64e3570a83889bb8350ffab4b08",
+        "local_file": "AIDC 机房参考设计白皮书（2025，未署名）.pdf",
+        "locator": "第 5 页「1.1 AI业务负载及应用发展趋势」机柜功耗发展预测表：年度 2025/2026/2027/2028 → 机柜功耗 ~50kW / 80~150kW / 150~300kW / 300kW以上（注：所指机柜不包含业界宏机柜）；本条 2026 年「80~150kW」",
+        "grade": "S3",
+        "originator": "未署名行业机构（AIDC 机房参考设计白皮书）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**逐年路线：~50 → 80-150 → 150-300 → 300kW 以上（2025-2028）**，本条为区间下端。 **原文注明不含「宏机柜」**（多柜拼成的超节点）。液冷占比随之由当前 70% 升到 90% 以上；单超节点供电将走向 1-10MW、单集群数百 MW，而当前单包间 1-2MW、单栋楼 10-20MW。 **对照同库 Meta 路线图 2027-Q3 >900kW（meta-rack-roadmap-2027q3）**：Meta 是大 scale-up 域整柜，本白皮书明确排除宏机柜，二者 2027 年差 3 倍以上不矛盾。 做出时点：白皮书年份 2025、月份未给，按 2025-10 记，标 [未核]。发布方未署名。"
+    },
+    {
+      "fact_id": "aidc-wp-rack-power-2026-upper",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "industry",
+        "id": "aidc-rack-power-roadmap-wp",
+        "label": "AIDC 机房参考设计白皮书：整机柜功耗预测"
+      },
+      "value": 150.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "设计目标",
+        "era": "路线图目标",
+        "power_basis": "架构宣称",
+        "region": "Global"
+      },
+      "as_of": "2026E@2025-10",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "5a325af53cbe6bb06cfeae65670a088e55d1f64e3570a83889bb8350ffab4b08",
+        "local_file": "AIDC 机房参考设计白皮书（2025，未署名）.pdf",
+        "locator": "第 5 页「1.1 AI业务负载及应用发展趋势」机柜功耗发展预测表：年度 2025/2026/2027/2028 → 机柜功耗 ~50kW / 80~150kW / 150~300kW / 300kW以上（注：所指机柜不包含业界宏机柜）；本条 2026 年「80~150kW」",
+        "grade": "S3",
+        "originator": "未署名行业机构（AIDC 机房参考设计白皮书）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**逐年路线：~50 → 80-150 → 150-300 → 300kW 以上（2025-2028）**，本条为区间上端。 **原文注明不含「宏机柜」**（多柜拼成的超节点）。液冷占比随之由当前 70% 升到 90% 以上；单超节点供电将走向 1-10MW、单集群数百 MW，而当前单包间 1-2MW、单栋楼 10-20MW。 **对照同库 Meta 路线图 2027-Q3 >900kW（meta-rack-roadmap-2027q3）**：Meta 是大 scale-up 域整柜，本白皮书明确排除宏机柜，二者 2027 年差 3 倍以上不矛盾。 做出时点：白皮书年份 2025、月份未给，按 2025-10 记，标 [未核]。发布方未署名。"
+    },
+    {
+      "fact_id": "aidc-wp-rack-power-2027-lower",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "industry",
+        "id": "aidc-rack-power-roadmap-wp",
+        "label": "AIDC 机房参考设计白皮书：整机柜功耗预测"
+      },
+      "value": 150.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "设计目标",
+        "era": "路线图目标",
+        "power_basis": "架构宣称",
+        "region": "Global"
+      },
+      "as_of": "2027E@2025-10",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "5a325af53cbe6bb06cfeae65670a088e55d1f64e3570a83889bb8350ffab4b08",
+        "local_file": "AIDC 机房参考设计白皮书（2025，未署名）.pdf",
+        "locator": "第 5 页「1.1 AI业务负载及应用发展趋势」机柜功耗发展预测表：年度 2025/2026/2027/2028 → 机柜功耗 ~50kW / 80~150kW / 150~300kW / 300kW以上（注：所指机柜不包含业界宏机柜）；本条 2027 年「150~300kW」",
+        "grade": "S3",
+        "originator": "未署名行业机构（AIDC 机房参考设计白皮书）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**逐年路线：~50 → 80-150 → 150-300 → 300kW 以上（2025-2028）**，本条为区间下端。 **原文注明不含「宏机柜」**（多柜拼成的超节点）。液冷占比随之由当前 70% 升到 90% 以上；单超节点供电将走向 1-10MW、单集群数百 MW，而当前单包间 1-2MW、单栋楼 10-20MW。 **对照同库 Meta 路线图 2027-Q3 >900kW（meta-rack-roadmap-2027q3）**：Meta 是大 scale-up 域整柜，本白皮书明确排除宏机柜，二者 2027 年差 3 倍以上不矛盾。 做出时点：白皮书年份 2025、月份未给，按 2025-10 记，标 [未核]。发布方未署名。"
+    },
+    {
+      "fact_id": "aidc-wp-rack-power-2027-upper",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "industry",
+        "id": "aidc-rack-power-roadmap-wp",
+        "label": "AIDC 机房参考设计白皮书：整机柜功耗预测"
+      },
+      "value": 300.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "设计目标",
+        "era": "路线图目标",
+        "power_basis": "架构宣称",
+        "region": "Global"
+      },
+      "as_of": "2027E@2025-10",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "5a325af53cbe6bb06cfeae65670a088e55d1f64e3570a83889bb8350ffab4b08",
+        "local_file": "AIDC 机房参考设计白皮书（2025，未署名）.pdf",
+        "locator": "第 5 页「1.1 AI业务负载及应用发展趋势」机柜功耗发展预测表：年度 2025/2026/2027/2028 → 机柜功耗 ~50kW / 80~150kW / 150~300kW / 300kW以上（注：所指机柜不包含业界宏机柜）；本条 2027 年「150~300kW」",
+        "grade": "S3",
+        "originator": "未署名行业机构（AIDC 机房参考设计白皮书）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**逐年路线：~50 → 80-150 → 150-300 → 300kW 以上（2025-2028）**，本条为区间上端。 **原文注明不含「宏机柜」**（多柜拼成的超节点）。液冷占比随之由当前 70% 升到 90% 以上；单超节点供电将走向 1-10MW、单集群数百 MW，而当前单包间 1-2MW、单栋楼 10-20MW。 **对照同库 Meta 路线图 2027-Q3 >900kW（meta-rack-roadmap-2027q3）**：Meta 是大 scale-up 域整柜，本白皮书明确排除宏机柜，二者 2027 年差 3 倍以上不矛盾。 做出时点：白皮书年份 2025、月份未给，按 2025-10 记，标 [未核]。发布方未署名。"
+    },
+    {
+      "fact_id": "aidc-wp-rack-power-2028-lower",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "industry",
+        "id": "aidc-rack-power-roadmap-wp",
+        "label": "AIDC 机房参考设计白皮书：整机柜功耗预测"
+      },
+      "value": 300.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "设计目标",
+        "era": "路线图目标",
+        "power_basis": "架构宣称",
+        "region": "Global"
+      },
+      "as_of": "2028E@2025-10",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "5a325af53cbe6bb06cfeae65670a088e55d1f64e3570a83889bb8350ffab4b08",
+        "local_file": "AIDC 机房参考设计白皮书（2025，未署名）.pdf",
+        "locator": "第 5 页「1.1 AI业务负载及应用发展趋势」机柜功耗发展预测表：年度 2025/2026/2027/2028 → 机柜功耗 ~50kW / 80~150kW / 150~300kW / 300kW以上（注：所指机柜不包含业界宏机柜）；本条 2028 年「300kW以上」",
+        "grade": "S3",
+        "originator": "未署名行业机构（AIDC 机房参考设计白皮书）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**逐年路线：~50 → 80-150 → 150-300 → 300kW 以上（2025-2028）**，本条为区间下端。 **原文注明不含「宏机柜」**（多柜拼成的超节点）。液冷占比随之由当前 70% 升到 90% 以上；单超节点供电将走向 1-10MW、单集群数百 MW，而当前单包间 1-2MW、单栋楼 10-20MW。 **对照同库 Meta 路线图 2027-Q3 >900kW（meta-rack-roadmap-2027q3）**：Meta 是大 scale-up 域整柜，本白皮书明确排除宏机柜，二者 2027 年差 3 倍以上不矛盾。 做出时点：白皮书年份 2025、月份未给，按 2025-10 记，标 [未核]。发布方未署名。"
+    },
+    {
+      "fact_id": "aidc-wp-floor-load-2025",
+      "metric_id": "room_floor_load",
+      "entity": {
+        "type": "industry",
+        "id": "aidc-room-design-wp",
+        "label": "AIDC 机房参考设计白皮书：智算机房"
+      },
+      "value": 12.0,
+      "unit": "kN/㎡",
+      "caliber": {
+        "room_type": "主机房",
+        "basis": "设计取值",
+        "region": "Global",
+        "tier": "未注明",
+        "build_type": "新建"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5a325af53cbe6bb06cfeae65670a088e55d1f64e3570a83889bb8350ffab4b08",
+        "local_file": "AIDC 机房参考设计白皮书（2025，未署名）.pdf",
+        "locator": "第 7 页「建筑结构设计挑战」：「当前AI机柜重量约1.3吨，对机房承重要求约为12kN/㎡，预计未来300kW机柜的重量将超过2吨，对机房承重要求将达到20kN/㎡」；第 9 页：「机房土建的生命周期通常40~50年，土建成本只占机房CapEx的10%左右，以较小的成本涨幅（＜1%机房CapEx）提升智算设备区的结构承重能力」",
+        "grade": "S3",
+        "originator": "未署名行业机构（AIDC 机房参考设计白皮书）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**当前 AI 机柜约 1.3 吨 → 楼面承重约 12 kN/㎡**。 **对照库内既有承重**：中国移动 V3.2 企标主机房 8-12 kN/㎡、电池室 16 kN/㎡——**智算机房要求已向电池室看齐并将超过它**。 **白皮书的算账**：土建生命周期 40-50 年、只占机房 CapEx 约 10%，为提升承重多花不到机房 CapEx 的 1%，远比日后结构加固便宜——**建议新建按未来承重一次到位**。 智算机房液冷就绪周期：有客户提出从需求确定到设备可入场只给 4 个月。"
+    },
+    {
+      "fact_id": "aidc-wp-floor-load-2028",
+      "metric_id": "room_floor_load",
+      "entity": {
+        "type": "industry",
+        "id": "aidc-room-design-wp",
+        "label": "AIDC 机房参考设计白皮书：智算机房"
+      },
+      "value": 20.0,
+      "unit": "kN/㎡",
+      "caliber": {
+        "room_type": "主机房",
+        "basis": "设计取值",
+        "region": "Global",
+        "tier": "未注明",
+        "build_type": "新建"
+      },
+      "as_of": "2028E@2025-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5a325af53cbe6bb06cfeae65670a088e55d1f64e3570a83889bb8350ffab4b08",
+        "local_file": "AIDC 机房参考设计白皮书（2025，未署名）.pdf",
+        "locator": "第 7 页「建筑结构设计挑战」：「当前AI机柜重量约1.3吨，对机房承重要求约为12kN/㎡，预计未来300kW机柜的重量将超过2吨，对机房承重要求将达到20kN/㎡」；第 9 页：「机房土建的生命周期通常40~50年，土建成本只占机房CapEx的10%左右，以较小的成本涨幅（＜1%机房CapEx）提升智算设备区的结构承重能力」",
+        "grade": "S3",
+        "originator": "未署名行业机构（AIDC 机房参考设计白皮书）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**未来 300kW 机柜超过 2 吨 → 楼面承重将达 20 kN/㎡**（300kW 按同表对应 2028 年）。 **对照库内既有承重**：中国移动 V3.2 企标主机房 8-12 kN/㎡、电池室 16 kN/㎡——**智算机房要求已向电池室看齐并将超过它**。 **白皮书的算账**：土建生命周期 40-50 年、只占机房 CapEx 约 10%，为提升承重多花不到机房 CapEx 的 1%，远比日后结构加固便宜——**建议新建按未来承重一次到位**。 智算机房液冷就绪周期：有客户提出从需求确定到设备可入场只给 4 个月。"
     }
   ]
 }
