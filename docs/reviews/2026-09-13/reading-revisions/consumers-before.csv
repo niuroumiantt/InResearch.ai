@@ -1,0 +1,51 @@
+consumer,line,target,reference
+deploy/spark-reader/inresearch-reader.service,14,reader run,ExecStart=/usr/bin/python3 %h/code/inresearch.ai/manage.py reader run
+docs/local_reader/SPARK_OPERATIONS.md,16,catalog/catalog.sqlite,| `~/.local/share/inresearch.ai/catalog/catalog.sqlite` | 永久文档、每次投递、版本、任务与操作台账；不可当作缓存清理 |
+docs/local_reader/SPARK_OPERATIONS.md,142,reader retry,python3 ~/code/inresearch.ai/manage.py reader retry --doc-id doc-完整哈希
+docs/local_reader/SPARK_OPERATIONS.md,184,catalog/catalog.sqlite,恢复先停止 worker 和发布器，在**新的空目录**校验 manifest 的 catalog/file 哈希；将备份根 `catalog.sqlite` 放入新根 `catalog/catalog.sqlite`，将 originals/intake-receipts/artifacts/extracted 及清单中接收隔离件保持相对路径复制，初始化新 state。以相同 backend/model 和源码配方启动：running 任务重领，prepared 接收归档/视图操作恢复，缺失的 committed library 链接重建；来源根路径由新 data 根重定位。读完的原件不应重新投递来代替恢复 catalog。恢复 smoke 完成、文档/来源数和哈希对账后再安排正式路径切换
+framework/00_overview.md,84,inresearch.knowledge.registry,当前共享入口：`inresearch.knowledge.registry` 计算研究快照、当前任务和采用资格；`inresearch.delivery.report` 为网页与导出提供同一内容集合；`inresearch.adapters.models` 提供配置化推理；`inresearch.materials.records` 提供语料当前观察与有效判定；`inresearch.storage.moves` 统一物理移动与恢复。HTTP 与终端只是这些用例的入口。专用 M4 预览/文件整理与 Spark 全文/C3 流程按各自 scope 保留，不能因代码相似抹平原件权限或阅读承诺。
+framework/01_data_standards.md,81,inresearch.knowledge.registry,| 原件与证据 | doc ID、内容哈希、版本、页/节/表/单元格、引文、对象/问题 ID；`inresearch.knowledge.registry` |
+framework/01_data_standards.md,82,inresearch.knowledge.registry,| 结论与采用 | 陈述类型、支持/反证、状态、审核人/时间/分流档；`inresearch.knowledge.registry` 与兼容 Finding 格式 |
+framework/03_bom_and_collaboration.md,27,inresearch.knowledge.registry,- 研究视图、团队页与派工接口共用 `inresearch.knowledge.registry.current_tasks()`；问题任务依据当前问题和有效采用结果计算。旧 `reports/workorders.json` 仅提供兼容队列与模块统计，不能否决当前存在的问题任务。负责人记录按稳定任务 ID 保留。
+framework/06_acquisition.md,88,catalog/catalog.sqlite,| `catalog/catalog.sqlite` | 已有 reader 的逐篇阅读与归档台账；不复制到采集台账 |
+framework/CURRENT.md,10,inresearch.knowledge.registry,| 数据口径与核验 | [01 口径手册](01_data_standards.md) | data_contract.json；inresearch.knowledge.validate、inresearch.knowledge.verify、inresearch.knowledge.facts、inresearch.knowledge.registry |
+framework/CURRENT.md,14,inresearch.workflow.reader,| 全文阅读与采用 | [04 阅读标准](04_reading_scoring_standard.md) | Spark 执行协议及 inresearch.workflow.reader |
+src/inresearch/adapters/acquisition.py,5,catalog/catalog.sqlite,The separate ledger owns discovery/acquisition; catalog/catalog.sqlite owns reading.
+src/inresearch/adapters/ocr_worker.py,25,catalog/catalog.sqlite,c=sqlite3.connect('/home/spark/.local/share/inresearch.ai/catalog/catalog.sqlite')
+src/inresearch/adapters/ocr_worker.py,26,from documents,"for r in c.execute(\""select doc_id,sha256,original_rel,original_name from documents where state='blocked' and suffix='.pdf' and error_code in ('ocr_page_unreadable','ocr_numbers_disagree','scanned_page_requires_ocr') order by updated limit ?\"",(%d,)):"
+src/inresearch/delivery/publish.py,12,inresearch.workflow.reader,from inresearch.workflow.reader import Reader
+src/inresearch/delivery/reader_export.py,22,report_rel; FROM documents,"for row in conn.execute(""SELECT doc_id,report_rel FROM documents WHERE report_rel IS NOT NULL ORDER BY created""):"
+src/inresearch/delivery/reader_export.py,23,report_rel,"report = read_json(safe_path(data, row[""report_rel""]))"
+src/inresearch/delivery/reader_export.py,41,FROM documents,"for row in conn.execute(""SELECT * FROM documents ORDER BY created,doc_id""):"
+src/inresearch/delivery/reader_export.py,43,report_rel,"report = read_json(safe_path(data, doc[""report_rel""])) if doc[""report_rel""] else {}"
+src/inresearch/delivery/reader_export.py,97,FROM documents,"for row in snapshot.execute(""SELECT doc_id,original_rel,sha256 FROM documents""):"
+src/inresearch/interfaces/cli.py,14,inresearch.interfaces.reader,"'serve': 'inresearch.interfaces.http', 'users': 'inresearch.interfaces.users', 'reader': 'inresearch.interfaces.reader',"
+src/inresearch/interfaces/cli.py,26,inresearch.knowledge.registry,"'registry': 'inresearch.knowledge.registry', 'facts': 'inresearch.knowledge.facts', 'validate': 'inresearch.knowledge.validate', 'verify': 'inresearch.knowledge.verify',"
+src/inresearch/interfaces/reader.py,6,inresearch.workflow.reader,from inresearch.workflow.reader import Reader
+src/inresearch/storage/catalog.py,14,report_rel,"report_rel TEXT, library_rel TEXT, error_code TEXT"
+src/inresearch/storage/moves.py,102,catalog/catalog.sqlite,if (parent / 'catalog/catalog.sqlite').is_file():
+src/inresearch/workflow/reader.py,34,inresearch.storage.catalog,"from inresearch.storage.catalog import Catalog, SCHEMA"
+src/inresearch/workflow/reader.py,35,inresearch.workflow.reading_stages,from inresearch.workflow.reading_stages import ReadingStages
+src/inresearch/workflow/reader.py,88,catalog/catalog.sqlite,"db = safe_path(self.data, ""catalog/catalog.sqlite"")"
+src/inresearch/workflow/reader.py,116,FROM documents,"row = self.conn.execute(""SELECT * FROM documents WHERE doc_id=?"", (doc_id,)).fetchone()"
+src/inresearch/workflow/reader.py,173,FROM documents,"existing = self.conn.execute(""SELECT * FROM documents WHERE sha256=?"", (sha,)).fetchone()"
+src/inresearch/workflow/reader.py,199,report_rel,"if existing and existing[""report_rel""] and existing[""library_rel""]:"
+src/inresearch/workflow/reader.py,430,report_rel,"self.conn.execute(""UPDATE documents SET report_rel=? WHERE doc_id=?"", (""artifacts/%s/report.json"" % doc[""doc_id""], doc[""doc_id""]))"
+src/inresearch/workflow/reader.py,498,FROM documents,"counts = {row[0]: row[1] for row in self.conn.execute(""SELECT state,COUNT(*) FROM documents GROUP BY state"")}"
+src/inresearch/workflow/reader.py,500,FROM documents,"failures = [dict(r) for r in self.conn.execute(""SELECT doc_id,original_name,phase,error_code FROM documents WHERE error_code IS NOT NULL ORDER BY updated DESC LIMIT 20"")]"
+src/inresearch/workflow/submissions.py,21,inresearch.knowledge.registry,from inresearch.knowledge.registry import current_tasks
+tests/unit/test_continuous_reader.py,84,FROM documents,"return dict(self.reader.conn.execute(""SELECT * FROM documents ORDER BY created,doc_id LIMIT 1"").fetchone())"
+tests/unit/test_continuous_reader.py,109,inresearch.knowledge.registry,from inresearch.knowledge.registry import evidence_errors
+tests/unit/test_continuous_reader.py,140,FROM documents,"self.assertEqual(self.reader.conn.execute(""SELECT COUNT(*) FROM documents"").fetchone()[0], 1)"
+tests/unit/test_continuous_reader.py,143,FROM documents,"new_doc = self.reader.conn.execute(""SELECT doc_id FROM documents WHERE doc_id!=?"", (doc[""doc_id""],)).fetchone()[0]"
+tests/unit/test_continuous_reader.py,162,FROM documents,"self.assertEqual(self.reader.conn.execute(""SELECT COUNT(*) FROM documents"").fetchone()[0], 2)"
+tests/unit/test_continuous_reader.py,261,report_rel,"self.assertIsNone(doc[""report_rel""])"
+tests/unit/test_continuous_reader.py,286,FROM documents,"docs = list(self.reader.conn.execute(""SELECT * FROM documents""))"
+tests/unit/test_continuous_reader.py,288,report_rel,"self.assertTrue(all(d[""report_rel""] is None for d in docs))"
+tests/unit/test_continuous_reader.py,326,FROM documents,"docs = {d[""suffix""]: dict(d) for d in self.reader.conn.execute(""SELECT * FROM documents"")}"
+tests/unit/test_continuous_reader.py,334,FROM documents,"docs = {d[""suffix""]: dict(d) for d in self.reader.conn.execute(""SELECT * FROM documents"")}"
+tests/unit/test_continuous_reader.py,351,report_rel,"self.assertIsNone(doc[""report_rel""])"
+tests/unit/test_continuous_reader.py,402,report_rel,"self.assertIsNone(self.first_doc()[""report_rel""])"
+tests/unit/test_continuous_reader.py,556,catalog/catalog.sqlite,"shutil.copyfile(str(backup / ""catalog.sqlite""), str(restored_root / ""catalog/catalog.sqlite""))"
+tests/unit/test_continuous_reader.py,712,FROM documents,"states = [row[0] for row in self.reader.conn.execute(""SELECT state FROM documents"")]"
+tests/unit/test_file_moves.py,149,catalog/catalog.sqlite,(self.root / 'catalog/catalog.sqlite').touch()
