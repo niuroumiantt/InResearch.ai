@@ -53,6 +53,8 @@ def fact(**over):
         'as_of': '2022-01',
         'evidence': {'sha256': SHA, 'locator': '封面限价 79,483,818.90 元', 'grade': 'S2'},
         'depth': '精读', 'bound': 'point', 'corroboration': '已交叉验证',
+        # 断言者进 claim_key：同一家的重复仍然撞键，两家的分歧不再撞键。
+        'asserter': '中国移动',
     }
     base.update(over)
     return base
@@ -1810,13 +1812,21 @@ class M05M09MenuTests(unittest.TestCase):
         self.assertTrue(rows)
         self.assertTrue(any(f.get('bound') == 'upper' for f in rows),
                         '上界那条应当也在，且同样带着这两维')
-        # 回填当天的那批一律「未注明」；之后读进来的可以按原文填具体值——
-        # AIDC 机房白皮书那两条就是明写「新建」智算机房的承重要求。
-        # 这里钉的是「回填没有凭空编出档位」，不是「这两维永远不许有值」。
-        # GB 50174 与联通建设标准同样原文分了新建/改建。
-        later = ('aidc-wp-', 'gb50174-2017-', 'cucc-idc-std-')
+        # 钉的是「回填那一批没有凭空编出档位」，不是「这两维永远不许有值」。
+        # 按 fact_id 白名单点名回填批次，而不是给新录条目列前缀豁免：
+        # 前缀白名单每加一份原文明写档位的材料就要改一次，改的是断言本身，
+        # 而这条断言该管的东西（2026-09-13 那次回填有没有编数）是不变的。
+        BACKFILLED = {
+            'cmcc-idc-v32-floorload-mainroom-2019',
+            'cmcc-idc-v32-floorload-battery-2019',
+            'cmcc-idc-v32-floorload-mainroom-2019-upper',
+            'cmcc-idc-v32-clearheight-4star-2019',
+            'cmcc-idc-v32-clearheight-23star-new-2019',
+            'cmcc-idc-v32-clearheight-23star-retrofit-2019',
+            'alibaba-2019-immersion-idc-floorload-13kn',
+        }
         for f in rows:
-            if f['fact_id'].startswith(later):
+            if f['fact_id'] not in BACKFILLED:
                 self.assertIn(f['caliber']['tier'], self.dim(f['metric_id'], 'tier')['values'], f['fact_id'])
                 self.assertIn(f['caliber']['build_type'], self.dim(f['metric_id'], 'build_type')['values'], f['fact_id'])
                 continue
@@ -2015,6 +2025,125 @@ class TextTwinRoutingTests(unittest.TestCase):
         L2.append_record(L2.READ_LOG, {'sha256': self.row['sha256'], 'facts': 0})
         self.assertIn(self.row['sha256'], L2.read_documents())
         self.assertTrue(L2.READ_LOG.read_bytes().startswith(before))
+
+
+class AsserterTests(unittest.TestCase):
+    """谁说的进键，从哪份文件读到的不进键。
+
+    上一版规则按 sha256 判争议，两头判反：绿色数据中心白皮书一份 PDF 里引了
+    416.2 与 ICTresearch 的 1,103（一个哈希、两个断言者），IDC 对 2016 年的数
+    改过五版（五个哈希、一个断言者）。文件身份不是断言身份。
+    """
+
+    def test_two_houses_on_one_question_no_longer_collide(self):
+        """工信部 94 对信通院 111.6：同指标同年同口径，两家。"""
+        miit = fact(fact_id='cn-dc-power-2021-miit', value=94.0, asserter='工信部')
+        caict = fact(fact_id='cn-dc-power-2021-caict', value=111.6, asserter='中国信通院')
+        self.assertNotEqual(L2.claim_key(miit), L2.claim_key(caict))
+        self.assertEqual(L2.claim_identity(miit), L2.claim_identity(caict),
+                         '同一个问题——冲突要能被找到，靠的就是这个键相同')
+
+    def test_the_same_house_twice_still_collides(self):
+        one = fact(fact_id='a-1', asserter='IDC')
+        two = fact(fact_id='a-2', value=99.0, asserter='IDC')
+        self.assertEqual(L2.claim_key(one), L2.claim_key(two))
+
+    def test_a_missing_asserter_is_refused(self):
+        bad = problems(fact(asserter=None))
+        self.assertTrue(any('asserter' in p for p in bad), bad)
+
+    def test_a_report_title_is_not_an_asserter(self):
+        """originator 存书名期号日期，asserter 只要机构名——它要当键用。"""
+        bad = problems(fact(asserter='IDC《Worldwide Global StorageSphere Forecast, '
+                                     '2021–2025》（#US47509621，2021-03）'))
+        self.assertTrue(any('机构名' in p for p in bad), bad)
+
+    def test_a_placeholder_is_not_an_asserter(self):
+        self.assertTrue(problems(fact(asserter='待补')))
+
+    def test_unstated_does_not_earn_a_seat_beside_a_named_house(self):
+        """来源不明的数与具名来源并列，等于白送它一个独立印证的地位。"""
+        named = fact(fact_id='iea-2025', value=485.0, asserter='IEA')
+        claims = L2.index_claims([named])
+        anon = fact(fact_id='unknown-2025', value=448.0, asserter='未注明')
+        bad = problems(anon, claims=claims)
+        self.assertTrue(any('未注明' in p for p in bad), bad)
+
+    def test_two_named_houses_must_point_at_each_other(self):
+        first = fact(fact_id='miit-2021', value=94.0, asserter='工信部')
+        claims = L2.index_claims([first])
+        second = fact(fact_id='caict-2021', value=111.6, asserter='中国信通院')
+        bad = problems(second, claims=claims)
+        self.assertTrue(any('disputes' in p for p in bad), bad)
+        self.assertEqual(problems({**second, 'disputes': ['miit-2021']}, claims=claims), [])
+
+    def test_a_revision_is_not_a_dispute(self):
+        """IDC 自己改 2016 年的数：同一家、后一版，要 supersedes 而不是 disputes。"""
+        old = fact(fact_id='idc-2016-v2019', as_of='2016@2019-04',
+                   value=1923.9, asserter='IDC')
+        claims = L2.index_claims([old])
+        new = fact(fact_id='idc-2016-v2021', as_of='2016@2021-03',
+                   value=2000.0, asserter='IDC')
+        bad = problems(new, claims=claims)
+        self.assertTrue(any('supersedes' in p and '修订' in p for p in bad), bad)
+        self.assertEqual(problems({**new, 'supersedes': 'idc-2016-v2019'},
+                                  claims=claims), [])
+
+    def test_two_vintages_of_one_forecast_stay_side_by_side(self):
+        """预测的两个时点是两个都还活着的判断，不是接替，不要 supersedes。"""
+        first = fact(fact_id='idc-2025e-at-2019', as_of='2025E@2019-04', asserter='IDC')
+        claims = L2.index_claims([first])
+        second = fact(fact_id='idc-2025e-at-2021', as_of='2025E@2021-03',
+                      value=99.0, asserter='IDC')
+        self.assertEqual(problems(second, claims=claims), [])
+
+
+class DisputeRecordTests(unittest.TestCase):
+    """争议进库之后要能被找到：反向链接与一屏可审的报告。"""
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix='m4-l2-dispute-')
+        base = Path(self.temp.name)
+        self.facts = base / 'facts.json'
+        prior = fact(fact_id='miit-2021', value=94.0, asserter='工信部')
+        self.facts.write_text(json.dumps({'records': [prior]}, ensure_ascii=False),
+                              encoding='utf-8')
+        self._saved = (L2.FACTS, L2.READ_LOG, L2.load_metrics)
+        L2.FACTS = self.facts
+        L2.READ_LOG = base / 'l2_read.jsonl'
+        L2.load_metrics = lambda: METRICS
+
+    def tearDown(self):
+        (L2.FACTS, L2.READ_LOG, L2.load_metrics) = self._saved
+        self.temp.cleanup()
+
+    def record(self, facts):
+        path = Path(self.temp.name) / 'incoming.json'
+        path.write_text(json.dumps(facts, ensure_ascii=False), encoding='utf-8')
+        out = io.StringIO()
+        with redirect_stdout(out):
+            L2.cmd_record(type('A', (), {'facts': str(path), 'doc': None,
+                                         'partial': False, 'show': 5}))
+        lines = out.getvalue().splitlines()
+        return json.loads(lines[0]), '\n'.join(lines[1:])
+
+    def test_the_other_side_learns_it_is_contested(self):
+        report, _ = self.record([fact(fact_id='caict-2021', value=111.6,
+                                      asserter='中国信通院', disputes=['miit-2021'])])
+        self.assertEqual(report['accepted'], 1)
+        self.assertEqual(report['disputes_pending_a'], 1)
+        stored = {f['fact_id']: f for f in
+                  json.loads(self.facts.read_text(encoding='utf-8'))['records']}
+        self.assertEqual(stored['miit-2021']['disputed_by'], ['caict-2021'])
+
+    def test_both_values_are_printed_side_by_side_for_the_owner(self):
+        _, tail = self.record([fact(fact_id='caict-2021', value=111.6,
+                                    asserter='中国信通院', disputes=['miit-2021'])])
+        self.assertIn('C3 A 档待审', tail)
+        self.assertIn('工信部', tail)
+        self.assertIn('中国信通院', tail)
+        self.assertIn('94', tail)
+        self.assertIn('111.6', tail)
 
 
 class NearTwinTests(unittest.TestCase):
