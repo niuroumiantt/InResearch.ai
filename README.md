@@ -21,7 +21,7 @@ P/F/V/D/R 五视角是同一知识底座的观察方式，不是五套数据。M
 
 当前 Spark 不可用，暂用本机已登录的 **Claude CLI** 推理。后续接 Spark、换更大型号通过配置完成，业务代码不以模型品牌或参数规模决定研究规则。每次记录实际模型与执行者；Claude Code、Codex CLI 是操作客户端，不用终端名称冒充模型。
 
-同一材料默认一套当前有效阅读结果。失败重试不覆盖成功结果，换默认模型不自动重读已完成材料。原文、被引用的历史证据和尝试日志保留；受控重读替换与完整统一任务 CLI/API 的未实现边界见 [08 模型执行](framework/08_model_execution.md)。
+同一材料默认一套当前有效阅读结果。失败重试不覆盖成功结果，换默认模型不自动重读已完成材料。原文、被引用的历史证据和尝试日志保留；受控重读通过 reader 的 reread / inspect-revision / activate-revision / reject-revision 共用用例，完整统一任务 CLI/API 等剩余边界见 [08 模型执行](framework/08_model_execution.md)。
 
 ```bash
 python3 manage.py models --probe

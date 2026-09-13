@@ -31,7 +31,8 @@ import time
 from inresearch.materials.reader_contracts import ReaderError, Blocked, Deferred, UnsafePath, IntegrityError, RECIPE_VERSION, OCR_DEFERRED_PRIORITY, OCR_MAX_PAGES, OCR_DEFER_SECONDS, LARGE_FORMAT_POINTS, MAX_WORKERS, MODULES
 from inresearch.materials.artifacts import now_iso, encoded, digest_bytes, digest_file, private_dir, safe_path, atomic_json, durable_rename, read_json, clean_name, signature, is_partial
 from inresearch.adapters.reader_model import ModelClient
-from inresearch.storage.catalog import Catalog, SCHEMA
+from inresearch.storage.catalog import Catalog
+from inresearch.workflow.reading_revisions import ReadingRevisions
 from inresearch.workflow.reading_stages import ReadingStages
 from inresearch.delivery import reader_export as reader_delivery
 from inresearch.adapters import models
@@ -69,13 +70,15 @@ class Reader:
             self.catalog.close()
 
     def artifact_path(self, doc_id, name):
-        return self.stages.artifact_path(doc_id, name)
+        return self.stages.artifact_path(self.doc(doc_id), name)
 
     def export(self, dest):
-        return reader_delivery.export(dest, self.conn, self.data, self.snapshot(), self.status())
+        with self.catalog.read_snapshot():
+            return reader_delivery.export(dest, self.conn, self.data, self.snapshot(), self.status())
 
     def export_snapshot(self):
-        return reader_delivery.export_snapshot(self.conn, self.data, self.snapshot(), self.status())
+        with self.catalog.read_snapshot():
+            return reader_delivery.export_snapshot(self.conn, self.data, self.snapshot(), self.status())
 
     def backup(self, dest):
         return reader_delivery.backup(dest, self.conn, self.data, self.state)
@@ -90,8 +93,12 @@ class Reader:
         os.fchmod(fd, 0o600)
         os.close(fd)
         self.catalog = Catalog(db)
-        self.conn.executescript(SCHEMA)
-        self.conn.execute("INSERT OR IGNORE INTO meta VALUES ('dispatch_count','0')")
+        try:
+            self.catalog.initialize()
+        except BaseException:
+            self.catalog.close()
+            raise
+        self.revisions = ReadingRevisions(self.catalog, self.stages, self.snapshot, self.chunk_chars, self.clock)
         return self
 
 
@@ -104,7 +111,7 @@ class Reader:
             fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
             with self.transaction():
                 self.conn.execute("UPDATE jobs SET state=CASE WHEN attempts>=max_attempts THEN 'failed' ELSE 'pending' END, error_code='worker_interrupted',available=? WHERE state='running'", (self.clock(),))
-                self.conn.execute("UPDATE documents SET state='queued' WHERE state='running'")
+                self.conn.execute("UPDATE reading_runs SET state='queued' WHERE state='running'")
                 self._refresh_failures()
             self.reconcile_operations()
             self.reconcile_intake()
@@ -112,17 +119,13 @@ class Reader:
         finally:
             os.close(fd)
 
-    def doc(self, doc_id):
-        row = self.conn.execute("SELECT * FROM documents WHERE doc_id=?", (doc_id,)).fetchone()
-        if row is None:
-            raise ValueError("unknown doc_id")
-        return dict(row)
+    def doc(self, doc_id, revision_id=None):
+        return self.catalog.reading(doc_id, revision_id)
 
     def _refresh_failures(self, doc_id=None):
-        rows = self.conn.execute("SELECT doc_id,state,error_code FROM jobs WHERE state IN ('blocked','failed') AND (? IS NULL OR doc_id=?) ORDER BY CASE state WHEN 'blocked' THEN 1 ELSE 0 END", (doc_id, doc_id)).fetchall()
+        rows = self.conn.execute("SELECT revision_id,state,error_code FROM jobs WHERE state IN ('blocked','failed') AND (? IS NULL OR doc_id=?) ORDER BY CASE state WHEN 'blocked' THEN 1 ELSE 0 END", (doc_id, doc_id)).fetchall()
         for row in rows:
-            self.conn.execute("UPDATE documents SET state=?,error_code=? WHERE doc_id=?", (row["state"], row["error_code"], row["doc_id"]))
-
+            self.conn.execute("UPDATE reading_runs SET state=?,error_code=? WHERE revision_id=?", (row["state"], row["error_code"], row["revision_id"]))
 
     def snapshot(self):
         out = {"graph_version": None, "questions_version": None, "objects": [], "questions": []}
@@ -141,9 +144,7 @@ class Reader:
         return out
 
     def _enqueue(self, doc, stage, chunk=0):
-        key = "%s:%s:%s:%s" % (doc["doc_id"], stage, chunk, doc["recipe"])
-        self.conn.execute("INSERT OR IGNORE INTO jobs(job_id,doc_id,stage,chunk,available,created) VALUES(?,?,?,?,?,?)",
-                          (key, doc["doc_id"], stage, chunk, self.clock(), self.clock()))
+        self.catalog.enqueue(doc, stage, self.clock(), chunk)
 
     def _register(self, source, rel, sig):
         # Stage the bytes first, then verify source metadata before archiving them.
@@ -180,23 +181,18 @@ class Reader:
             else:
                 durable_rename(tmp, target)
                 os.chmod(target, 0o400)
-            snapshot = self.snapshot() if not existing else None
-            recipe = digest_bytes(encoded({"version": RECIPE_VERSION, "model": self.model.identity,
-                                            "chunk_chars": self.chunk_chars, "snapshot": snapshot["snapshot_hash"] if snapshot else None}).encode())[:24]
-            if not existing:
-                atomic_json(self.artifact_path(doc_id, "context.json"), snapshot)
-                atomic_json(self.artifact_path(doc_id, "recipe.json"), {"recipe": recipe, "version": RECIPE_VERSION,
-                            "model": self.model.identity, "chunk_chars": self.chunk_chars})
             with self.transaction():
-                self.conn.execute("INSERT OR IGNORE INTO documents(doc_id,sha256,original_name,original_rel,suffix,size_bytes,recipe,created,updated) VALUES(?,?,?,?,?,?,?,?,?)",
-                                  (doc_id, sha, source.name, orig_rel, source.suffix.lower(), target.stat().st_size, recipe, self.clock(), self.clock()))
+                self.conn.execute("INSERT OR IGNORE INTO documents(doc_id,sha256,original_name,original_rel,suffix,size_bytes,created) VALUES(?,?,?,?,?,?,?)",
+                                  (doc_id, sha, source.name, orig_rel, source.suffix.lower(), target.stat().st_size, self.clock()))
+                if not existing:
+                    identity = dict(self.conn.execute('SELECT * FROM documents WHERE doc_id=?',(doc_id,)).fetchone())
+                    self.revisions.create(identity)
                 prior = self.conn.execute("SELECT * FROM sources WHERE source_key=? ORDER BY version_seq DESC LIMIT 1", (rel,)).fetchone()
                 if not prior or prior["signature"] != sig:
                     self.conn.execute("INSERT INTO sources(source_key,doc_id,version_seq,previous_doc_id,signature,received) VALUES(?,?,?,?,?,?)",
                                       (rel, doc_id, prior["version_seq"] + 1 if prior else 1, prior["doc_id"] if prior else None, sig, self.clock()))
                 self.conn.execute("UPDATE observations SET registered_signature=? WHERE source_key=?", (sig, rel))
-                self._enqueue(self.doc(doc_id), "extract")
-                if existing and existing["report_rel"] and existing["library_rel"]:
+                if existing and self.doc(doc_id)["report_rel"] and existing["library_rel"]:
                     self._queue_receipts(self.doc(doc_id))
             return not bool(existing)
         finally:
@@ -241,7 +237,7 @@ class Reader:
 
 
     def _link_target(self, doc):
-        report = read_json(self.artifact_path(doc["doc_id"], "report.json"))
+        report = read_json(self.stages.artifact_path(doc, "report.json"))
         cls = report["classification"]
         module = cls["module_id"] if cls["module_id"] in MODULES else "_unmapped"
         name = "_".join(clean_name(cls.get(k), n) for k, n in (("year", 8), ("org", 25), ("title", 55)))
@@ -268,7 +264,7 @@ class Reader:
             raise IntegrityError()
         with self.transaction():
             self.conn.execute("UPDATE operations SET state='committed',updated=? WHERE operation_id=?", (self.clock(), operation["operation_id"]))
-            self.conn.execute("UPDATE documents SET library_rel=?,updated=? WHERE doc_id=?", (operation["target_rel"], self.clock(), operation["doc_id"]))
+            self.conn.execute("UPDATE documents SET library_rel=? WHERE doc_id=?", (operation["target_rel"], operation["doc_id"]))
 
     def _organize(self, doc):
         relative = self._link_target(doc)
@@ -292,7 +288,7 @@ class Reader:
                 self._apply_link(dict(row))
             except (OSError, ReaderError):
                 self.conn.execute("UPDATE operations SET state='needs_review',updated=? WHERE operation_id=?", (self.clock(), row["operation_id"]))
-                self.conn.execute("UPDATE documents SET state='blocked',error_code='organize_recovery_requires_review' WHERE doc_id=?", (row["doc_id"],))
+                self.conn.execute("UPDATE reading_runs SET state='blocked',error_code='organize_recovery_requires_review' WHERE doc_id=? AND base_revision_id IS NULL", (row["doc_id"],))
                 self.conn.execute("UPDATE jobs SET state='blocked',error_code='organize_recovery_requires_review' WHERE doc_id=? AND stage='organize'", (row["doc_id"],))
 
     def rollback(self, doc_id):
@@ -308,10 +304,11 @@ class Reader:
                 raise UnsafePath()
             with self.transaction():
                 self.conn.execute("UPDATE operations SET state='rolled_back',updated=? WHERE operation_id=?", (self.clock(), row["operation_id"]))
-                self.conn.execute("UPDATE documents SET library_rel=NULL,updated=? WHERE doc_id=?", (self.clock(), doc_id))
+                self.conn.execute("UPDATE documents SET library_rel=NULL WHERE doc_id=?", (doc_id,))
         return {"doc_id": doc_id, "view_rolled_back": True, "source_preserved": safe_path(self.data, doc["original_rel"]).exists()}
 
     def _queue_receipts(self, doc):
+        doc = dict(self.conn.execute('SELECT * FROM execution_readings WHERE doc_id=? AND base_revision_id IS NULL',(doc['doc_id'],)).fetchone())
         for row in self.conn.execute("SELECT id FROM sources WHERE doc_id=?", (doc["doc_id"],)).fetchall():
             self._enqueue(doc, "receipt", row["id"])
 
@@ -390,7 +387,7 @@ class Reader:
                 self._apply_receipt(dict(row))
             except (OSError, ReaderError):
                 # Keep all bytes and the operation for an explicit retry/review.
-                self.conn.execute("UPDATE documents SET state='blocked',error_code='intake_recovery_requires_review' WHERE doc_id=?", (row["doc_id"],))
+                self.conn.execute("UPDATE reading_runs SET state='blocked',error_code='intake_recovery_requires_review' WHERE doc_id=? AND base_revision_id IS NULL", (row["doc_id"],))
                 self.conn.execute("UPDATE jobs SET state='blocked',error_code='intake_recovery_requires_review' WHERE doc_id=? AND stage='receipt' AND chunk=?", (row["doc_id"], row["source_id"]))
 
     def claim(self):
@@ -398,54 +395,61 @@ class Reader:
             n = int(self.conn.execute("SELECT value FROM meta WHERE key='dispatch_count'").fetchone()[0])
             # Every fourth dispatch serves the oldest eligible job, independently of new priorities.
             order = "j.created,j.doc_id,j.chunk,j.job_id" if n % 4 == 0 else "d.priority DESC,j.created,j.doc_id,j.chunk,j.job_id"
-            row = self.conn.execute("SELECT j.* FROM jobs j JOIN documents d USING(doc_id) WHERE j.state='pending' AND j.available<=? AND d.state NOT IN ('blocked','failed') ORDER BY " + order + " LIMIT 1", (self.clock(),)).fetchone()
+            row = self.conn.execute("SELECT j.* FROM jobs j JOIN reading_runs d ON d.revision_id=j.revision_id WHERE j.state='pending' AND j.available<=? AND d.state NOT IN ('blocked','failed') ORDER BY " + order + " LIMIT 1", (self.clock(),)).fetchone()
             if not row:
                 return None
             self.conn.execute("UPDATE jobs SET state='running',attempts=attempts+1,started=?,error_code=NULL WHERE job_id=?", (self.clock(), row["job_id"]))
-            self.conn.execute("UPDATE documents SET state='running',phase=?,updated=? WHERE doc_id=?", (row["stage"], self.clock(), row["doc_id"]))
+            self.conn.execute("UPDATE reading_runs SET state='running',phase=?,updated=? WHERE revision_id=?", (row["stage"], self.clock(), row["revision_id"]))
             self.conn.execute("UPDATE meta SET value=? WHERE key='dispatch_count'", (str(n + 1),))
             return dict(self.conn.execute("SELECT * FROM jobs WHERE job_id=?", (row["job_id"],)).fetchone())
 
     def _finish(self, job, result):
-        doc = self.doc(job["doc_id"])
+        doc = self.doc(job["doc_id"], job["revision_id"])
         stage = job["stage"]
         with self.transaction():
             cur = self.conn.execute("UPDATE jobs SET state='succeeded',finished=? WHERE job_id=? AND state='running' AND attempts=?", (self.clock(), job["job_id"], job["attempts"]))
             if cur.rowcount != 1:
                 raise IntegrityError()
-            self.conn.execute("UPDATE documents SET state='queued',error_code=NULL,updated=? WHERE doc_id=?", (self.clock(), doc["doc_id"]))
+            self.conn.execute("UPDATE reading_runs SET state='queued',error_code=NULL,updated=? WHERE revision_id=?", (self.clock(), doc["revision_id"]))
             if stage == "extract":
-                self.conn.execute("UPDATE documents SET pages_total=?,chunks_total=? WHERE doc_id=?", (result["pages_total"], result["chunks_total"], doc["doc_id"]))
+                self.conn.execute("UPDATE reading_runs SET pages_total=?,chunks_total=? WHERE revision_id=?", (result["pages_total"], result["chunks_total"], doc["revision_id"]))
                 self._enqueue(doc, "triage")
             elif stage == "triage":
-                self.conn.execute("UPDATE documents SET priority=? WHERE doc_id=?", (result["importance"], doc["doc_id"]))
+                self.conn.execute("UPDATE reading_runs SET priority=? WHERE revision_id=?", (result["importance"], doc["revision_id"]))
                 for i in range(doc["chunks_total"]):
                     self._enqueue(doc, "read", i)
             elif stage == "read":
-                done = self.conn.execute("SELECT COUNT(*) FROM jobs WHERE doc_id=? AND stage='read' AND state='succeeded'", (doc["doc_id"],)).fetchone()[0]
-                self.conn.execute("UPDATE documents SET chunks_read=? WHERE doc_id=?", (done, doc["doc_id"]))
+                done = self.conn.execute("SELECT COUNT(*) FROM jobs WHERE revision_id=? AND stage='read' AND state='succeeded'", (doc["revision_id"],)).fetchone()[0]
+                self.conn.execute("UPDATE reading_runs SET chunks_read=? WHERE revision_id=?", (done, doc["revision_id"]))
                 if done == doc["chunks_total"]:
                     self._enqueue(doc, "synthesize")
             elif stage == "synthesize":
-                self.conn.execute("UPDATE documents SET report_rel=? WHERE doc_id=?", ("artifacts/%s/report.json" % doc["doc_id"], doc["doc_id"]))
-                self._enqueue(doc, "organize")
+                seal = result['_seal']
+                self.conn.execute("UPDATE reading_runs SET report_rel=?,report_sha256=?,manifest_sha256=? WHERE revision_id=?",
+                                  (seal['report_rel'],seal['report_sha256'],seal['manifest_sha256'],doc['revision_id']))
+                if doc['base_revision_id'] is None:
+                    self.conn.execute('UPDATE documents SET current_revision_id=? WHERE doc_id=? AND current_revision_id IS NULL',(doc['revision_id'],doc['doc_id']))
+                    self.conn.execute("UPDATE reading_runs SET activated=?,review_json=? WHERE revision_id=?",(self.clock(),encoded({'kind':'initial_candidate_not_C3'}),doc['revision_id']))
+                    self._enqueue(doc, "organize")
+                else:
+                    self.conn.execute("UPDATE reading_runs SET state='ready',phase='review' WHERE revision_id=?",(doc['revision_id'],))
             elif stage == "organize":
                 self._queue_receipts(doc)
             elif stage == "receipt":
-                remaining = self.conn.execute("SELECT COUNT(*) FROM jobs WHERE doc_id=? AND stage='receipt' AND state!='succeeded'", (doc["doc_id"],)).fetchone()[0]
+                remaining = self.conn.execute("SELECT COUNT(*) FROM jobs WHERE revision_id=? AND stage='receipt' AND state!='succeeded'", (doc["revision_id"],)).fetchone()[0]
                 if not remaining:
-                    self.conn.execute("UPDATE documents SET state='complete',phase='complete' WHERE doc_id=?", (doc["doc_id"],))
+                    self.conn.execute("UPDATE reading_runs SET state='complete',phase='complete' WHERE revision_id=?", (doc["revision_id"],))
             self._refresh_failures(doc["doc_id"])
 
     def process(self, job):
-        doc = self.doc(job["doc_id"])
+        doc = self.doc(job["doc_id"], job["revision_id"])
         # No silent backend/model change during a document's frozen execution recipe.
         try:
-            recipe = read_json(self.artifact_path(doc["doc_id"], "recipe.json"))
+            recipe = read_json(self.stages.artifact_path(doc, "recipe.json"))
             # OCR availability may be added on retry; the actual OCR models are
             # captured per page. The configured reading identity stays frozen.
             identity = models.reading_identity
-            if identity(recipe["model"]) != identity(self.model.identity) or recipe["version"] != RECIPE_VERSION:
+            if job["stage"] not in {"organize", "receipt"} and (identity(recipe["model"]) != identity(self.model.identity) or recipe["version"] != RECIPE_VERSION):
                 raise Blocked("execution_model_changed_requires_new_recipe")
             funcs = {"extract": self.stages._extract, "triage": self.stages._triage, "synthesize": self.stages._synthesize, "organize": self._organize}
             if job["stage"] == "read":
@@ -454,6 +458,8 @@ class Reader:
                 result = self._receipt(doc, job["chunk"])
             else:
                 result = funcs[job["stage"]](doc)
+            if job["stage"] == "synthesize":
+                result = {**result, "_seal": self.stages.seal(doc)}
             self._finish(job, result)
             self.write_status()
             return "succeeded"
@@ -466,7 +472,7 @@ class Reader:
                                         (self.clock() + self.ocr_defer_seconds, code, job["job_id"], job["attempts"]))
                 if cur.rowcount != 1:
                     raise IntegrityError()
-                self.conn.execute("UPDATE documents SET state='queued',priority=?,error_code=?,updated=? WHERE doc_id=?", (OCR_DEFERRED_PRIORITY, code, self.clock(), doc["doc_id"]))
+                self.conn.execute("UPDATE reading_runs SET state='queued',priority=?,error_code=?,updated=? WHERE revision_id=?", (OCR_DEFERRED_PRIORITY, code, self.clock(), doc["revision_id"]))
             self.write_status()
             return "deferred"
         blocked = isinstance(error, (Blocked, UnsafePath, IntegrityError))
@@ -478,32 +484,33 @@ class Reader:
                                     (state, self.clock() + delay, self.clock() if terminal else None, code, job["job_id"], job["attempts"]))
             if cur.rowcount != 1:
                 raise IntegrityError()
-            self.conn.execute("UPDATE documents SET state=?,error_code=?,updated=? WHERE doc_id=?", ("blocked" if blocked else ("failed" if terminal else "queued"), code, self.clock(), doc["doc_id"]))
+            self.conn.execute("UPDATE reading_runs SET state=?,error_code=?,updated=? WHERE revision_id=?", ("blocked" if blocked else ("failed" if terminal else "queued"), code, self.clock(), doc["revision_id"]))
             self._refresh_failures(doc["doc_id"])
         self.write_status()
         return state
 
-    def retry(self, doc_id=None):
+    def retry(self, doc_id=None, revision_id=None):
         if doc_id:
-            self.doc(doc_id)
+            self.doc(doc_id, revision_id)
         with self.transaction():
-            rows = self.conn.execute("SELECT DISTINCT doc_id FROM jobs WHERE state IN ('failed','blocked') AND (? IS NULL OR doc_id=?)", (doc_id, doc_id)).fetchall()
-            cur = self.conn.execute("UPDATE jobs SET state='pending',attempts=0,available=?,error_code=NULL WHERE state IN ('failed','blocked') AND (? IS NULL OR doc_id=?)", (self.clock(), doc_id, doc_id))
+            rows = self.conn.execute("SELECT DISTINCT doc_id,revision_id FROM jobs WHERE state IN ('failed','blocked') AND (? IS NULL OR doc_id=?) AND (? IS NULL OR revision_id=?)", (doc_id,doc_id,revision_id,revision_id)).fetchall()
+            cur = self.conn.execute("UPDATE jobs SET state='pending',attempts=0,available=?,error_code=NULL WHERE state IN ('failed','blocked') AND (? IS NULL OR doc_id=?) AND (? IS NULL OR revision_id=?)", (self.clock(),doc_id,doc_id,revision_id,revision_id))
             for row in rows:
-                self.conn.execute("UPDATE documents SET state='queued',error_code=NULL WHERE doc_id=?", (row[0],))
-                self.conn.execute("UPDATE intake_operations SET state='prepared',error_code=NULL WHERE doc_id=? AND state='needs_review'", (row[0],))
+                self.conn.execute("UPDATE reading_runs SET state='queued',error_code=NULL WHERE revision_id=?",(row['revision_id'],))
+                self.conn.execute("UPDATE intake_operations SET state='prepared',error_code=NULL WHERE doc_id=? AND state='needs_review'",(row['doc_id'],))
         return {"retried": cur.rowcount}
 
     def status(self):
-        counts = {row[0]: row[1] for row in self.conn.execute("SELECT state,COUNT(*) FROM documents GROUP BY state")}
+        counts = {row[0]: row[1] for row in self.conn.execute("SELECT state,COUNT(*) FROM current_readings GROUP BY state")}
         stages = [{"stage": r[0], "state": r[1], "count": r[2]} for r in self.conn.execute("SELECT stage,state,COUNT(*) FROM jobs GROUP BY stage,state ORDER BY stage,state")]
-        failures = [dict(r) for r in self.conn.execute("SELECT doc_id,original_name,phase,error_code FROM documents WHERE error_code IS NOT NULL ORDER BY updated DESC LIMIT 20")]
+        failures = [dict(r) for r in self.conn.execute("SELECT doc_id,revision_id,original_name,phase,error_code FROM execution_readings WHERE error_code IS NOT NULL AND state!='rejected' ORDER BY updated DESC LIMIT 20")]
         pending = self.conn.execute("SELECT MIN(created) FROM jobs WHERE state='pending'").fetchone()[0]
         active = self.conn.execute("SELECT COUNT(*) FROM jobs WHERE state='running'").fetchone()[0]
         last_scan = self.conn.execute("SELECT value FROM meta WHERE key='last_scan'").fetchone()
         scan = json.loads(last_scan[0]) if last_scan else {}
         return {"schema_version": 1, "generated": now_iso(), "status": "degraded" if failures or scan.get("errors") else ("running" if active else "idle"),
                 "counts": counts, "documents_total": sum(counts.values()),
+                "reading_revisions": {r[0]:r[1] for r in self.conn.execute("SELECT state,COUNT(*) FROM reading_runs WHERE base_revision_id IS NOT NULL GROUP BY state")},
                 "sources_total": self.conn.execute("SELECT COUNT(*) FROM sources").fetchone()[0],
                 "stage_counts": stages, "oldest_pending_seconds": max(0, self.clock() - pending) if pending is not None else None,
                 "oldest_pending": datetime.fromtimestamp(pending, timezone.utc).isoformat() if pending is not None else None,

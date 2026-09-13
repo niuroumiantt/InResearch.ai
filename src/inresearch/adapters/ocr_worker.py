@@ -23,8 +23,8 @@ def run(args, timeout=300, input=None):
 def remote_candidates(limit):
     code = """import sqlite3,json
 c=sqlite3.connect('/home/spark/.local/share/inresearch.ai/catalog/catalog.sqlite')
-for r in c.execute(\"select doc_id,sha256,original_rel,original_name from documents where state='blocked' and suffix='.pdf' and error_code in ('ocr_page_unreadable','ocr_numbers_disagree','scanned_page_requires_ocr') order by updated limit ?\",(%d,)):
- print(json.dumps(dict(zip(('doc_id','sha256','original_rel','original_name'),r))))""" % limit
+for r in c.execute(\"select doc_id,sha256,original_rel,original_name,revision_id from execution_readings where state='blocked' and suffix='.pdf' and error_code in ('ocr_page_unreadable','ocr_numbers_disagree','scanned_page_requires_ocr') order by updated limit ?\",(%d,)):
+ print(json.dumps(dict(zip(('doc_id','sha256','original_rel','original_name','revision_id'),r))))""" % limit
     # ssh joins argument strings into a remote shell command; encode the
     # multiline query so it cannot be split or interpreted by that shell.
     encoded = base64.b64encode(code.encode()).decode()
@@ -34,7 +34,7 @@ for r in c.execute(\"select doc_id,sha256,original_rel,original_name from docume
     return [json.loads(line) for line in result.stdout.splitlines() if line.strip()]
 
 def claim(doc):
-    target = DATA + '/offload/m4/claims/' + doc['doc_id']
+    target = DATA + '/offload/m4/claims/' + doc['revision_id']
     parent = DATA + '/offload/m4/claims'
     result = run(['ssh', '-o', 'BatchMode=yes', REMOTE, 'mkdir', '-p', parent, '&&', 'mkdir', target], 30)
     return result.returncode == 0
@@ -75,7 +75,7 @@ def process(doc):
         if mkdir.returncode: raise RuntimeError('result_directory_failed')
         put=run(['scp','-q']+[str(p) for p in sorted(output.glob('*.json'))]+[REMOTE+':'+target+'/'],600)
         if put.returncode: raise RuntimeError('result_upload_failed')
-    retry=run(['ssh','-o','BatchMode=yes',REMOTE,'python3',DATA.replace('/.local/share/inresearch.ai','/code/inresearch.ai')+'/manage.py','reader','retry','--doc-id',doc['doc_id']],60)
+    retry=run(['ssh','-o','BatchMode=yes',REMOTE,'python3',DATA.replace('/.local/share/inresearch.ai','/code/inresearch.ai')+'/manage.py','reader','retry','--doc-id',doc['doc_id'],'--revision-id',doc['revision_id']],60)
     if retry.returncode: raise RuntimeError('spark_retry_failed')
 
 def main():
@@ -87,7 +87,7 @@ def main():
         except Exception as exc:
             # Claim directories are intentionally empty.  Remove only our own
             # empty claim on failure so the next scheduled run can retry.
-            run(['ssh','-o','BatchMode=yes',REMOTE,'rmdir',DATA+'/offload/m4/claims/'+doc['doc_id']],30)
+            run(['ssh','-o','BatchMode=yes',REMOTE,'rmdir',DATA+'/offload/m4/claims/'+doc['revision_id']],30)
             print(json.dumps({'doc_id':doc['doc_id'],'outcome':'failed','error':str(exc)[:160]}))
         return
     print(json.dumps({'outcome':'idle'}))

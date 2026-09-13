@@ -5,6 +5,15 @@ from pathlib import Path
 from inresearch.materials.reader_contracts import UnsafePath, IntegrityError
 from inresearch.materials.artifacts import now_iso, digest_file, private_dir, safe_path, atomic_bytes, atomic_json, read_json, signature, is_partial
 
+def read_report(data, doc):
+    if not doc['report_rel']:
+        return {}
+    path = safe_path(data, doc['report_rel'])
+    if not doc['report_sha256'] or digest_file(path) != doc['report_sha256']:
+        raise IntegrityError()
+    return read_json(path)
+
+
 def export(dest, conn, data, registry, status):
     dest = Path(dest).expanduser().resolve()
     for protected in ("originals", "catalog", "raw-materials", "library", "artifacts", "extracted", "intake-receipts"):
@@ -19,10 +28,10 @@ def export(dest, conn, data, registry, status):
         return {"exported": len(payload["knowledge"]["documents"]), "file": str(dest), "status": payload["reader"]["status"]}
     private_dir(dest)
     reports = []
-    for row in conn.execute("SELECT doc_id,report_rel FROM documents WHERE report_rel IS NOT NULL ORDER BY created"):
-        report = read_json(safe_path(data, row["report_rel"]))
-        atomic_json(safe_path(dest, row["doc_id"] + ".json"), report)
-        reports.append({"doc_id": row["doc_id"], "file": row["doc_id"] + ".json", "acceptance": "candidate"})
+    for row in conn.execute("SELECT * FROM current_readings WHERE report_rel IS NOT NULL ORDER BY created"):
+        report = read_report(data, row)
+        atomic_json(safe_path(dest, row["revision_id"] + ".json"), report)
+        reports.append({"doc_id": row["doc_id"], "file": row["revision_id"] + ".json", "reading_revision_id": row["revision_id"], "acceptance": "candidate"})
     manifest = {"generated": now_iso(), "status": status["status"], "reports": reports, "acceptance": "candidate_only"}
     atomic_json(safe_path(dest, "manifest.json"), manifest)
     atomic_json(safe_path(dest, "status.json"), status)
@@ -38,9 +47,9 @@ def export_snapshot(conn, data, registry, status):
                "question_ids": {r["id"] for r in registry["questions"] if isinstance(r, dict) and "id" in r}}
     knowledge = {"documents": [], "evidence": [], "statements": [], "answers": []}
     proposals = []
-    for row in conn.execute("SELECT * FROM documents ORDER BY created,doc_id"):
+    for row in conn.execute("SELECT * FROM current_readings ORDER BY created,doc_id"):
         doc = dict(row)
-        report = read_json(safe_path(data, doc["report_rel"])) if doc["report_rel"] else {}
+        report = read_report(data, doc)
         mapped, missing = {}, {}
         for key in allowed:
             mapped[key] = sorted(set(report.get(key, [])) & allowed[key])
@@ -55,6 +64,8 @@ def export_snapshot(conn, data, registry, status):
                  "stored_path": doc["original_rel"], "sources": sources, "library_path": doc["library_rel"],
                  "coverage": report.get("coverage", {"complete": False, "chunks_total": doc["chunks_total"], "chunks_read": doc["chunks_read"]}),
                  "read_status": doc["state"], "mapping_status": "needs_review" if needs_review else "candidate_mapped",
+                 "reading_revision_id": doc["revision_id"] if doc["report_rel"] else None,
+                 "report_sha256": doc["report_sha256"],
                  "model": report.get("model"), "status": "candidate", "acceptance": "candidate", **mapped}
         knowledge["documents"].append(entry)
         for evidence in report.get("evidence", []):

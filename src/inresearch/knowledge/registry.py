@@ -250,7 +250,7 @@ def candidate_snapshot(payload, graph, questions):
     allowed = {'id', 'doc_id', 'title', 'source_url', 'stored_path', 'coverage',
                'object_ids', 'question_ids', 'document_id', 'page_index', 'locator',
                'quote', 'text', 'kind', 'evidence_ids', 'statement_ids', 'question_id',
-               'model', 'read_status', 'mapping_status', 'content_sha256'}
+               'model', 'read_status', 'mapping_status', 'content_sha256', 'reading_revision_id', 'report_sha256'}
     for name in COLLECTIONS:
         rows = knowledge.get(name, [])
         if not isinstance(rows, list):
@@ -270,7 +270,7 @@ def candidate_snapshot(payload, graph, questions):
     # It is a derived health snapshot, never an instruction or source of authority.
     reader = {k: v for k, v in reader.items() if k in (
         'generated', 'counts', 'stage_counts', 'oldest_pending', 'recent_failures',
-        'backend', 'model', 'roots', 'status', 'release', 'acquisition')}
+        'backend', 'model', 'roots', 'status', 'release', 'acquisition', 'reading_revisions')}
     return dict(graph_version=graph['version'], questions_version=questions['version'], generated=generated,
                 received_at=datetime.now(timezone.utc).isoformat(), knowledge=result, reader=reader)
 

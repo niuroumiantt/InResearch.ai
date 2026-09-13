@@ -76,6 +76,24 @@ class ResearchTests(unittest.TestCase):
         self.assertNotIn('review', snapshot['knowledge']['answers'][0])
         self.assertEqual(set(), research.completed_questions(snapshot['knowledge']))
 
+    def test_reading_revision_survives_receipt_without_replacing_adopted_evidence(self):
+        curated=adopted_knowledge()
+        candidate=copy.deepcopy(curated)
+        candidate['documents'][0].update(reading_revision_id='rev-new',report_sha256='b'*64)
+        candidate['evidence'][0].update(id='rev-new:ev:1',reading_revision_id='rev-new')
+        candidate['statements']=[];candidate['answers']=[]
+        payload=dict(generated=datetime.now(timezone.utc).isoformat(),graph_version=self.graph['version'],
+                     questions_version=self.questions['version'],knowledge=candidate)
+        normalized=research.candidate_snapshot(payload,self.graph,self.questions)['knowledge']
+        self.assertEqual(normalized['documents'][0]['reading_revision_id'],'rev-new')
+        self.assertEqual(normalized['evidence'][0]['reading_revision_id'],'rev-new')
+        self.assertEqual(normalized['evidence'][0]['status'],'candidate')
+        merged=research.merge_knowledge(curated,normalized)
+        self.assertEqual(merged['evidence'][0],curated['evidence'][0])
+        self.assertEqual(merged['answers'],curated['answers'])
+        self.assertEqual(len(merged['documents']),1)
+        self.assertEqual(len(merged['evidence']),2)
+
     def test_dangling_source_and_unknown_mapping_rejected(self):
         payload = self.candidate()
         payload['knowledge']['evidence'][0]['document_id'] = 'missing'

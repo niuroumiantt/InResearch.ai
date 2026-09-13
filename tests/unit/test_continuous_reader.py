@@ -55,7 +55,7 @@ class Model:
                                "evidence": [{"quote": "FABRICATED QUOTE" if self.bad_quote else payload["text"].strip()[:70]}]}]}
         else:
             out = {"summary": "综合所有章节的候选摘要", "key_points": ["尚未经过采用审阅"]}
-        return {**out, "_model": {"backend": "injected_test", "actual": cr.MODEL, "requested": cr.MODEL}}
+        return {**out, "_model": {"backend": "injected_test", "actual": self.identity["model"], "requested": self.identity["model"]}}
 
 
 class ReaderTests(unittest.TestCase):
@@ -81,7 +81,7 @@ class ReaderTests(unittest.TestCase):
         return p
 
     def first_doc(self):
-        return dict(self.reader.conn.execute("SELECT * FROM documents ORDER BY created,doc_id LIMIT 1").fetchone())
+        return dict(self.reader.conn.execute("SELECT * FROM current_readings ORDER BY created,doc_id LIMIT 1").fetchone())
 
     def run_reader(self, **kwargs):
         with contextlib.redirect_stdout(io.StringIO()):
@@ -271,7 +271,7 @@ class ReaderTests(unittest.TestCase):
         self.run_reader(max_jobs=2)
         job = self.reader.claim()
         self.reader.conn.execute("UPDATE jobs SET state='failed',error_code='test_failure' WHERE job_id=?", (job["job_id"],))
-        self.reader.conn.execute("UPDATE documents SET state='running' WHERE doc_id=?", (job["doc_id"],))
+        self.reader.conn.execute("UPDATE reading_runs SET state='running' WHERE doc_id=?", (job["doc_id"],))
         with self.reader.worker_session():
             self.assertIsNone(self.reader.claim())
         self.assertEqual(self.first_doc()["state"], "failed")
@@ -283,7 +283,7 @@ class ReaderTests(unittest.TestCase):
             return "Pages: 1\n" if args[0] == "pdfinfo" else ""
         with mock.patch.object(cr.shutil, "which", return_value="/fake/tool"), mock.patch.object(self.reader.stages, "_command", side_effect=fake_command):
             self.run_reader()
-        docs = list(self.reader.conn.execute("SELECT * FROM documents"))
+        docs = list(self.reader.conn.execute("SELECT * FROM current_readings"))
         self.assertEqual({d["error_code"] for d in docs}, {"scanned_page_requires_ocr", "unsupported_format_docx"})
         self.assertTrue(all(d["report_rel"] is None for d in docs))
         self.assertEqual(self.model.calls, [])
@@ -304,7 +304,7 @@ class ReaderTests(unittest.TestCase):
             self.run_reader()
         self.assertEqual(self.first_doc()["state"], "complete")
         self.assertEqual(self.model.ocr.call_count, 2)
-        page = artifacts.read_json(self.reader.data / "extracted" / self.first_doc()["doc_id"] / "pages/000001.json")
+        page = artifacts.read_json(self.reader.data / self.first_doc()["extracted_rel"] / "pages/000001.json")
         self.assertEqual(page["text_second_pass"], "扫描正文 300 W")
 
     def ocr_ready(self, **ocr_kwargs):
@@ -323,7 +323,7 @@ class ReaderTests(unittest.TestCase):
             return "Pages: 1\n" if args[0] == "pdfinfo" else ""
         with mock.patch.object(cr.shutil, "which", return_value="/fake/tool"), mock.patch.object(self.reader.stages, "_command", side_effect=fake_command):
             self.run_reader()
-            docs = {d["suffix"]: dict(d) for d in self.reader.conn.execute("SELECT * FROM documents")}
+            docs = {d["suffix"]: dict(d) for d in self.reader.conn.execute("SELECT * FROM current_readings")}
             self.assertEqual(docs[".txt"]["state"], "complete")
             self.assertEqual((docs[".pdf"]["state"], docs[".pdf"]["error_code"], docs[".pdf"]["priority"]),
                              ("queued", "ocr_deferred_behind_text_documents", reader_contracts.OCR_DEFERRED_PRIORITY))
@@ -331,7 +331,7 @@ class ReaderTests(unittest.TestCase):
             self.assertEqual(tuple(job), (0, "pending"))
             self.clock.advance(reader_contracts.OCR_DEFER_SECONDS + 1)
             self.run_reader()
-        docs = {d["suffix"]: dict(d) for d in self.reader.conn.execute("SELECT * FROM documents")}
+        docs = {d["suffix"]: dict(d) for d in self.reader.conn.execute("SELECT * FROM current_readings")}
         self.assertEqual(docs[".pdf"]["state"], "complete")
         self.assertEqual(self.model.ocr.call_count, 2)
 
@@ -353,7 +353,7 @@ class ReaderTests(unittest.TestCase):
     def test_large_format_page_blocks_before_any_ocr(self):
         self.ocr_ready()
         doc = self.register("drawing.pdf", "%PDF-test-a1-drawing")
-        self.reader.conn.execute("UPDATE documents SET priority=?", (reader_contracts.OCR_DEFERRED_PRIORITY,))
+        self.reader.conn.execute("UPDATE reading_runs SET priority=?", (reader_contracts.OCR_DEFERRED_PRIORITY,))
         self.reader.conn.commit()
         def fake_command(args, timeout):
             if args[0] == "pdfinfo" and "-f" in args:
@@ -368,7 +368,7 @@ class ReaderTests(unittest.TestCase):
     def test_ocr_invalid_output_blocks_once_instead_of_three_retries(self):
         self.ocr_ready(side_effect=reader_contracts.ModelOutputError())
         self.register("scan.pdf", "%PDF-test-scanned-page")
-        self.reader.conn.execute("UPDATE documents SET priority=?", (reader_contracts.OCR_DEFERRED_PRIORITY,))
+        self.reader.conn.execute("UPDATE reading_runs SET priority=?", (reader_contracts.OCR_DEFERRED_PRIORITY,))
         self.reader.conn.commit()
         def fake_command(args, timeout):
             return "Pages: 1\n" if args[0] == "pdfinfo" else ""
@@ -622,8 +622,8 @@ class ReaderTests(unittest.TestCase):
         for n in range(5):
             self.put("new%d.txt" % n, "新资料 %d" % n)
         self.reader.scan()
-        self.reader.conn.execute("UPDATE documents SET priority=9 WHERE doc_id!=?", (old,))
-        self.reader.conn.execute("UPDATE documents SET priority=1 WHERE doc_id=?", (old,))
+        self.reader.conn.execute("UPDATE reading_runs SET priority=9 WHERE doc_id!=?", (old,))
+        self.reader.conn.execute("UPDATE reading_runs SET priority=1 WHERE doc_id=?", (old,))
         self.reader.conn.execute("UPDATE meta SET value='1' WHERE key='dispatch_count'")
         first = [self.reader.claim()["doc_id"] for _ in range(4)]
         self.assertNotIn(old, first[:3])
@@ -661,7 +661,7 @@ class ReaderTests(unittest.TestCase):
         doc = self.first_doc()
         self.assertEqual(doc["state"], "complete")
         self.assertEqual(self.model.ocr.call_count, 0)
-        page = artifacts.read_json(self.reader.data / "extracted" / doc["doc_id"] / "pages/000001.json")
+        page = artifacts.read_json(self.reader.data / doc["extracted_rel"] / "pages/000001.json")
         self.assertEqual((page["method"], page["text"]), ("m4_vision_ocr_double_pass", "M4 读出 300 W"))
 
     def test_m4_offload_result_bound_to_content_hash_and_agreement(self):
@@ -709,7 +709,7 @@ class WorkerThreadTests(ReaderTests):
         for i in range(6):
             self.put("paper-%d.txt" % i, "服务器功率为 %d0 W。\n这是完整正文与注释。\n" % (i + 3))
         result = self.run_reader(workers=4)
-        states = [row[0] for row in self.reader.conn.execute("SELECT state FROM documents")]
+        states = [row[0] for row in self.reader.conn.execute("SELECT state FROM current_readings")]
         self.assertEqual(states, ["complete"] * 6)
         jobs = list(self.reader.conn.execute("SELECT state,attempts FROM jobs"))
         self.assertTrue(all(job["state"] == "succeeded" for job in jobs))
