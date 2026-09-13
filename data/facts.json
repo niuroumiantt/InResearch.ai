@@ -43552,6 +43552,1208 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "12h = 720 分钟；储存时间原则上不应低于当地应急水车抵达时间。 国标 2017-05-04 发布、2018-01-01 实施。"
+    },
+    {
+      "fact_id": "cucc-idc-std-rack-power-4kw",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 4.0,
+      "unit": "kW/架",
+      "caliber": {
+        "basis": "设计取值",
+        "scope": "单柜上限",
+        "region": "CN"
+      },
+      "as_of": "2013",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 5 页 1.3 数据中心功率密度选择：「建设机架功率密度按照 4kW/机架考虑，需要具备向 6kW/机架发展的条件；单栋 15000 平方米 IDC 终期功耗按照功率密度可按 70% 4kW/机架，30% 6kW/机架规划」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "初期按 4kW/架建设，预留 6kW/架；终期按 70% 4kW + 30% 6kW 规划（加权 4.6kW/架，未单列）。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-floorload-idc-lower",
+      "metric_id": "room_floor_load",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 11.0,
+      "unit": "kN/㎡",
+      "caliber": {
+        "room_type": "主机房",
+        "basis": "规范最低（运营商企标）",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "新建"
+      },
+      "as_of": "2013",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 11 页 表 5.2「设计活荷载标准值（单位：kN/m2）」：「IDC 机房 11-13.0」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "区间下界；表注：不包括隔墙、吊顶、吊挂、架空地板荷载。本标准适用于大型基地新建工程，各等级通用。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-floorload-idc-upper",
+      "metric_id": "room_floor_load",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 13.0,
+      "unit": "kN/㎡",
+      "caliber": {
+        "room_type": "主机房",
+        "basis": "规范最低（运营商企标）",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "新建"
+      },
+      "as_of": "2013",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 11 页 表 5.2「设计活荷载标准值（单位：kN/m2）」：「IDC 机房 11-13.0」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "区间上界。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-floorload-battery",
+      "metric_id": "room_floor_load",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 16.0,
+      "unit": "kN/㎡",
+      "caliber": {
+        "room_type": "电池室",
+        "basis": "规范最低（运营商企标）",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "新建"
+      },
+      "as_of": "2013",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 11 页 表 5.2「设计活荷载标准值（单位：kN/m2）」：「电池室 16.0」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "表中另有电力机房 16.0、变配电机房 10.0（room_type 无对应取值，未录）。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-clearheight-process",
+      "metric_id": "room_clear_height",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 3.2,
+      "unit": "m",
+      "caliber": {
+        "measure": "架空地板面至吊顶净高",
+        "room_type": "主机房",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "新建"
+      },
+      "as_of": "2013",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 11 页 5.3 工艺净高需求：「工艺生产要求的净高为通信及配套设备和三层走线架的高度要求，但不包括活动地板高度。工艺净高不小于 3.2m。不包括空调管道、消防管道、照明灯具等土建设施需要占用的空间高度」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "**口径是「工艺净高」**：架空地板面以上、到设备与三层走线架所需高度，**不含空调/消防管道与灯具占用空间**——比梁下净高或吊顶净高都更严格地只算工艺空间；measure 取最接近的「架空地板面至吊顶净高」，不可与梁下净高直接比较。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-price-transformer-2500kva",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 350000.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "变压器",
+        "spec": "干式变压器（10/0.4）2500kVA",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "估算",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "数量未给"
+      },
+      "as_of": "2013",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 10-11 页 表 4.9「相关造价及费率」（单价单位：万元）：「干式变压器（10/0.4） 2500kVA 35 台」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 备注：普通干式变压器，如用非晶应适当增加投资。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-price-transformer-2000kva",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 300000.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "变压器",
+        "spec": "干式变压器（10/0.4）2000kVA",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "估算",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "数量未给"
+      },
+      "as_of": "2013",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 10-11 页 表 4.9「相关造价及费率」（单价单位：万元）：「干式变压器（10/0.4） 2000kVA 30 台」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 备注：普通干式变压器，如用非晶应适当增加投资。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-price-transformer-1600kva",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 250000.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "变压器",
+        "spec": "干式变压器（10/0.4）1600kVA",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "估算",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "数量未给"
+      },
+      "as_of": "2013",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 10-11 页 表 4.9「相关造价及费率」（单价单位：万元）：「干式变压器（10/0.4） 1600kVA 25 台」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 备注：普通干式变压器，如用非晶应适当增加投资。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-price-genset-2000kw-10kv-lower",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 4000000.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "柴发机组",
+        "spec": "柴油发电机组（10KV）2000kW",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "估算",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "数量未给"
+      },
+      "as_of": "2013",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 10-11 页 表 4.9「相关造价及费率」（单价单位：万元）：「柴油发电机组（10KV） 2000kW 400~450 台」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 区间下界。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-price-genset-2000kw-10kv-upper",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 4500000.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "柴发机组",
+        "spec": "柴油发电机组（10KV）2000kW",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "估算",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "数量未给"
+      },
+      "as_of": "2013",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 10-11 页 表 4.9「相关造价及费率」（单价单位：万元）：「柴油发电机组（10KV） 2000kW 400~450 台」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 区间上界。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-price-genset-2000kw-380v-lower",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 3800000.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "柴发机组",
+        "spec": "柴油发电机组（380V）2000kW",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "估算",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "数量未给"
+      },
+      "as_of": "2013",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 10-11 页 表 4.9「相关造价及费率」（单价单位：万元）：「柴油发电机组（380V） 2000kW 380~430 台」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 区间下界。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-price-genset-2000kw-380v-upper",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 4300000.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "柴发机组",
+        "spec": "柴油发电机组（380V）2000kW",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "估算",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "数量未给"
+      },
+      "as_of": "2013",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 10-11 页 表 4.9「相关造价及费率」（单价单位：万元）：「柴油发电机组（380V） 2000kW 380~430 台」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 区间上界。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-price-hv-incoming-lower",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 80000.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "spec": "高压进线柜(10KV)",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "估算",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "数量未给"
+      },
+      "as_of": "2013",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 10-11 页 表 4.9「相关造价及费率」（单价单位：万元）：「高压进线柜(10KV) 8~15 台」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 区间下界。 备注：根据系统容量、设备配置选择。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-price-hv-incoming-upper",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 150000.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "spec": "高压进线柜(10KV)",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "估算",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "数量未给"
+      },
+      "as_of": "2013",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 10-11 页 表 4.9「相关造价及费率」（单价单位：万元）：「高压进线柜(10KV) 8~15 台」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 区间上界。 备注：根据系统容量、设备配置选择。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-price-hv-metering-lower",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 70000.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "spec": "高压计量柜(10KV)",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "估算",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "数量未给"
+      },
+      "as_of": "2013",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 10-11 页 表 4.9「相关造价及费率」（单价单位：万元）：「高压计量柜(10KV) 7~13 台」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 区间下界。 备注：根据系统容量、设备配置选择。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-price-hv-metering-upper",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 130000.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "spec": "高压计量柜(10KV)",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "估算",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "数量未给"
+      },
+      "as_of": "2013",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 10-11 页 表 4.9「相关造价及费率」（单价单位：万元）：「高压计量柜(10KV) 7~13 台」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 区间上界。 备注：根据系统容量、设备配置选择。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-price-hv-outgoing-lower",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 80000.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "spec": "高压出线(10KV)",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "估算",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "数量未给"
+      },
+      "as_of": "2013",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 10-11 页 表 4.9「相关造价及费率」（单价单位：万元）：「高压出线(10KV) 8~13 台」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 区间下界。 备注：根据系统容量、设备配置选择。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-price-hv-outgoing-upper",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 130000.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "spec": "高压出线(10KV)",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "估算",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "数量未给"
+      },
+      "as_of": "2013",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 10-11 页 表 4.9「相关造价及费率」（单价单位：万元）：「高压出线(10KV) 8~13 台」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 区间上界。 备注：根据系统容量、设备配置选择。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-price-hv-tie-lower",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 80000.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "spec": "高压联络(10KV)",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "估算",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "数量未给"
+      },
+      "as_of": "2013",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 10-11 页 表 4.9「相关造价及费率」（单价单位：万元）：「高压联络(10KV) 8~15 台」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 区间下界。 备注：根据系统容量、设备配置选择。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-price-hv-tie-upper",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 150000.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "spec": "高压联络(10KV)",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "估算",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "数量未给"
+      },
+      "as_of": "2013",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 10-11 页 表 4.9「相关造价及费率」（单价单位：万元）：「高压联络(10KV) 8~15 台」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 区间上界。 备注：根据系统容量、设备配置选择。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-price-hv-transfer-lower",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 60000.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "spec": "高压转接(10KV)",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "估算",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "数量未给"
+      },
+      "as_of": "2013",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 10-11 页 表 4.9「相关造价及费率」（单价单位：万元）：「高压转接(10KV) 6~9 台」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 区间下界。 备注：根据系统容量、设备配置选择。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-price-hv-transfer-upper",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 90000.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "spec": "高压转接(10KV)",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "估算",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "数量未给"
+      },
+      "as_of": "2013",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 10-11 页 表 4.9「相关造价及费率」（单价单位：万元）：「高压转接(10KV) 6~9 台」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 区间上界。 备注：根据系统容量、设备配置选择。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-price-rmu-in",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 80000.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "spec": "环网柜(10KV)进线",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "估算",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "数量未给"
+      },
+      "as_of": "2013",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 10-11 页 表 4.9「相关造价及费率」（单价单位：万元）：「环网柜(10KV)进线 8 台」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-price-rmu-out",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 80000.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "spec": "环网柜(10KV)出线",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "估算",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "数量未给"
+      },
+      "as_of": "2013",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 10-11 页 表 4.9「相关造价及费率」（单价单位：万元）：「环网柜(10KV)出线 8 台」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-price-lv-incoming-lower",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 80000.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "spec": "低压配电设备进线",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "估算",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "数量未给"
+      },
+      "as_of": "2013",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 10-11 页 表 4.9「相关造价及费率」（单价单位：万元）：「低压配电设备进线 8~15 台」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 区间下界。 备注：根据系统容量、设备配置选择。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-price-lv-incoming-upper",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 150000.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "spec": "低压配电设备进线",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "估算",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "数量未给"
+      },
+      "as_of": "2013",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 10-11 页 表 4.9「相关造价及费率」（单价单位：万元）：「低压配电设备进线 8~15 台」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 区间上界。 备注：根据系统容量、设备配置选择。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-price-lv-feeder-lower",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 60000.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "spec": "低压配电设备馈电",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "估算",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "数量未给"
+      },
+      "as_of": "2013",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 10-11 页 表 4.9「相关造价及费率」（单价单位：万元）：「低压配电设备馈电 6~15 台」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 区间下界。 备注：根据系统容量、设备配置选择。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-price-lv-feeder-upper",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 150000.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "spec": "低压配电设备馈电",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "估算",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "数量未给"
+      },
+      "as_of": "2013",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 10-11 页 表 4.9「相关造价及费率」（单价单位：万元）：「低压配电设备馈电 6~15 台」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 区间上界。 备注：根据系统容量、设备配置选择。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-price-lv-capacitor-lower",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 60000.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "spec": "低压配电设备电容器",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "估算",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "数量未给"
+      },
+      "as_of": "2013",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 10-11 页 表 4.9「相关造价及费率」（单价单位：万元）：「低压配电设备电容器 6~15 台」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 区间下界。 备注：根据系统容量、设备配置选择。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-price-lv-capacitor-upper",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 150000.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "spec": "低压配电设备电容器",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "估算",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "数量未给"
+      },
+      "as_of": "2013",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 10-11 页 表 4.9「相关造价及费率」（单价单位：万元）：「低压配电设备电容器 6~15 台」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 区间上界。 备注：根据系统容量、设备配置选择。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-price-lv-ats-lower",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 100000.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "spec": "低压配电设备 ATS",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "估算",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "数量未给"
+      },
+      "as_of": "2013",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 10-11 页 表 4.9「相关造价及费率」（单价单位：万元）：「低压配电设备 ATS 10~40 台」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 区间下界。 备注：根据系统容量、设备配置选择。如采用带旁路的设备则适当增加投资。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-price-lv-ats-upper",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 400000.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "spec": "低压配电设备 ATS",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "估算",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "数量未给"
+      },
+      "as_of": "2013",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 10-11 页 表 4.9「相关造价及费率」（单价单位：万元）：「低压配电设备 ATS 10~40 台」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 区间上界。 备注：根据系统容量、设备配置选择。如采用带旁路的设备则适当增加投资。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-price-lv-tie-lower",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 80000.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "spec": "低压配电设备联络",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "估算",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "数量未给"
+      },
+      "as_of": "2013",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 10-11 页 表 4.9「相关造价及费率」（单价单位：万元）：「低压配电设备联络 8~15 台」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 区间下界。 备注：根据系统容量、设备配置选择。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
+    },
+    {
+      "fact_id": "cucc-idc-std-price-lv-tie-upper",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "policy",
+        "id": "cucc-idc-construction-standard",
+        "label": "中国联通互联网数据中心（IDC）建设标准（企业内部）"
+      },
+      "value": 150000.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "高低压开关柜",
+        "spec": "低压配电设备联络",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "估算",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "数量未给"
+      },
+      "as_of": "2013",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "7a9f18934e667060f1b9296bd3309baf27b4ed8b92b53cf6ecc459dd80b1190c",
+        "local_file": "中国联通数据中心建设标准.pdf",
+        "locator": "第 10-11 页 表 4.9「相关造价及费率」（单价单位：万元）：「低压配电设备联络 8~15 台」",
+        "grade": "S2",
+        "originator": "中国联通计划管理部（中讯邮电咨询设计院编制）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "sensitive": true,
+      "corroboration": "待交叉验证",
+      "notes": "估算参考单价；表注：仅用于估算投资时的取费参考，需按项目与地区调整。同表费率：安装工程费＝设备费×20%、业务加成＝设备费×3.31%，故本价为设备费、不含安装。 区间上界。 备注：根据系统容量、设备配置选择。 编制年份原文未写：引用 GB 50174-2008、建设期贷款利率取 6.15%（2012-07 至 2014-11 的五年以上贷款基准利率），推断 2012-2014 年间，as_of 取 2013。原文标注「企业内部资料，要求各单位严格保密」，sensitive 置 true。"
     }
   ]
 }
