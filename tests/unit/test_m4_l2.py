@@ -1813,7 +1813,8 @@ class M05M09MenuTests(unittest.TestCase):
         # 回填当天的那批一律「未注明」；之后读进来的可以按原文填具体值——
         # AIDC 机房白皮书那两条就是明写「新建」智算机房的承重要求。
         # 这里钉的是「回填没有凭空编出档位」，不是「这两维永远不许有值」。
-        later = ('aidc-wp-',)
+        # GB 50174 与联通建设标准同样原文分了新建/改建。
+        later = ('aidc-wp-', 'gb50174-2017-', 'cucc-idc-std-')
         for f in rows:
             if f['fact_id'].startswith(later):
                 self.assertIn(f['caliber']['tier'], self.dim(f['metric_id'], 'tier')['values'], f['fact_id'])
