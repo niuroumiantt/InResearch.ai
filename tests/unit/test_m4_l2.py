@@ -1301,10 +1301,10 @@ class SkipTests(unittest.TestCase):
         self.assertIn(L1_ROW['rel'], listing)
         self.assertIn('"open_gaps": 1', listing)
 
-    def test_a_malformed_line_does_not_take_the_ledger_down(self):
+    def test_an_incomplete_tail_does_not_take_the_ledger_down(self):
         self.skip(['缺 x86'])
         with L2.GAPS.open('a', encoding='utf-8') as fh:
-            fh.write('{ 半行\n')
+            fh.write('{ 半行')
         self.assertEqual(len(L2.open_gaps()), 1)
 
 
@@ -1894,10 +1894,10 @@ class TextFingerprintTests(unittest.TestCase):
         self.read.add('a' * 64)
         self.assertEqual(L2.already_read_with_same_text('b' * 64, None), [])
 
-    def test_a_malformed_line_does_not_take_the_ledger_down(self):
+    def test_an_incomplete_tail_does_not_take_the_ledger_down(self):
         L2.remember_fingerprint('a' * 64, 'deadbeef')
         with L2.TEXT_MD5.open('a', encoding='utf-8') as fh:
-            fh.write('{ 半行\n')
+            fh.write('{ 半行')
         self.assertEqual(L2.fingerprints(), {'a' * 64: 'deadbeef'})
 
     # -- 开包了但还没读的副本 ---------------------------------------------
@@ -1928,6 +1928,25 @@ class TextFingerprintTests(unittest.TestCase):
         L2.remember_fingerprint('a' * 64, 'old')
         L2.remember_fingerprint('a' * 64, 'new')
         self.assertEqual(L2.fingerprints()['a' * 64], 'new')
+
+
+class DeepReadJournalTests(unittest.TestCase):
+    def test_committed_corruption_fails_and_torn_tail_is_read_only(self):
+        with tempfile.TemporaryDirectory() as d:
+            path = Path(d)/'journal.jsonl'
+            row = {'sha256': 'a' * 64, 'text_md5': 'ab', 'sketch': ['ab'], 'gap_id': 'g'}
+            data = (json.dumps(row) + '\n').encode()
+            for attr, reader in [('READ_LOG', L2.read_documents), ('TEXT_MD5', L2.fingerprints),
+                                 ('TEXT_MD5', L2.sketches), ('GAPS', L2.open_gaps)]:
+                with self.subTest(reader=reader.__name__), patch.object(L2, attr, path):
+                    path.write_bytes(data)
+                    expected = reader()
+                    path.write_bytes(data + b'{unfinished')
+                    self.assertEqual(expected, reader())
+                    self.assertEqual(data + b'{unfinished', path.read_bytes())
+                    path.write_bytes(data + b'{broken}\n' + data)
+                    with self.assertRaisesRegex(ValueError, 'invalid JSON record'):
+                        reader()
 
 
 class TextIdentityPackTests(unittest.TestCase):

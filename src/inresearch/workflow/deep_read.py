@@ -27,7 +27,7 @@ from __future__ import annotations
 
 from inresearch.materials.artifacts import verified_content
 from inresearch.paths import project_root
-from inresearch.storage.jsonl import append_record
+from inresearch.storage.jsonl import append_record, read_rows
 from inresearch.materials.records import commit_result, result_revision, current_results
 from inresearch.storage.files import locked, write_json
 from functools import wraps
@@ -112,13 +112,7 @@ def all_results() -> dict:
 
 def read_documents() -> set:
     """Documents already given a full read, so pack advances instead of looping."""
-    done = set()
-    if READ_LOG.exists():
-        with READ_LOG.open(encoding='utf-8') as fh:
-            for line in fh:
-                try: done.add(json.loads(line)['sha256'])
-                except (ValueError, KeyError): continue
-    return done
+    return {row['sha256'] for row in read_rows(READ_LOG) if row.get('sha256')}
 
 
 # Our own output is not a source.  A summary this project wrote was derived
@@ -291,15 +285,8 @@ def text_fingerprint(text: str, meta: dict) -> str | None:
 
 def fingerprints() -> dict:
     """sha256 -> text_md5, last write wins."""
-    seen = {}
-    if TEXT_MD5.exists():
-        with TEXT_MD5.open(encoding='utf-8') as fh:
-            for line in fh:
-                try: row = json.loads(line)
-                except ValueError: continue
-                if row.get('sha256') and row.get('text_md5'):
-                    seen[row['sha256']] = row['text_md5']
-    return seen
+    return {row['sha256']: row['text_md5'] for row in read_rows(TEXT_MD5)
+            if row.get('sha256') and row.get('text_md5')}
 
 
 def remember_fingerprint(sha: str, text_md5: str,
@@ -405,15 +392,8 @@ def sketch_overlap(a: list[str], b: list[str]) -> float:
 
 def sketches() -> dict:
     """sha256 -> sketch, last write wins.  Same ledger as the fingerprints."""
-    seen = {}
-    if TEXT_MD5.exists():
-        with TEXT_MD5.open(encoding='utf-8') as fh:
-            for line in fh:
-                try: row = json.loads(line)
-                except ValueError: continue
-                if row.get('sha256') and row.get('sketch'):
-                    seen[row['sha256']] = row['sketch']
-    return seen
+    return {row['sha256']: row['sketch'] for row in read_rows(TEXT_MD5)
+            if row.get('sha256') and row.get('sketch')}
 
 
 def near_twins(sha: str, sketch: list[str]) -> list[dict]:
@@ -760,14 +740,7 @@ def cmd_queue(a):
 
 def open_gaps() -> list[dict]:
     """Menu gaps recorded by skip and not yet marked filled."""
-    rows = []
-    if GAPS.exists():
-        with GAPS.open(encoding='utf-8') as fh:
-            for line in fh:
-                try: row = json.loads(line)
-                except ValueError: continue
-                if row.get('gap_id'):
-                    rows.append(row)
+    rows = [row for row in read_rows(GAPS) if row.get('gap_id')]
     latest = {}
     for row in rows:            # append-and-supersede, same as every other ledger
         latest[row['gap_id']] = row
@@ -873,17 +846,11 @@ def cache_key_to_sha(keys: set) -> dict:
     if not want:
         return {}
     hits = {}
-    with MOVES.open(encoding='utf-8') as fh:
-        for line in fh:
-            for name in want:
-                if name in line:
-                    try:
-                        row = json.loads(line)
-                    except ValueError:
-                        continue
-                    sha = row.get('sha256')
-                    if sha:
-                        hits.setdefault(name, set()).add(sha)
+    for row in read_rows(MOVES):
+        line = json.dumps(row, ensure_ascii=False)
+        for name in want:
+            if name in line and row.get('sha256'):
+                hits.setdefault(name, set()).add(row['sha256'])
     out = {}
     for name, shas in hits.items():
         if len(shas) != 1:

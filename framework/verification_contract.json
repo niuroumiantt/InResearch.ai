@@ -41,7 +41,7 @@
     "tests/unit/test_file_moves.py": "1f9ba746f06885b6d48ee2d73b5da8bc4364ca1ad54e85b5d6fe23cdbf1edf9a",
     "tests/unit/test_governance.py": "ee59b285f13ea82d6df0426d0fbd519b7b8f9e7695fde569708c0dac10d71f39",
     "tests/unit/test_intake.py": "752b45e1bec8938738ea28b827dcdcc9031bce772cc9030d7ded1d7be9176c10",
-    "tests/unit/test_m4_l2.py": "02fa2f818af4ce458872f36dadf21822d85d8b59bd6bd6246b620e96dd5cbe91",
+    "tests/unit/test_m4_l2.py": "6b3f927ea6a74739496891bb1d8199e9f482726906af42645e5ceb9112822e0c",
     "tests/unit/test_m4_office_text.py": "7c9ca244f5e3746ca61f3032030cc6260a4312f2ad5ddf9b5b7c011d831525c3",
     "tests/unit/test_m4_triage.py": "028d627d24c321632410f7845856f94953dfa6d9eb82569a206c042d378f7949",
     "tests/unit/test_m4_triage_local.py": "1bfd549d038cd1e0b8b5d79bca4b9ca9528a56d9008f73265cf9750dfce0e6d2",
@@ -215,7 +215,8 @@
         "tests/unit/test_file_moves.py::MoveRecoveryTests.test_crash_after_unlink_recovers_missing_commit",
         "tests/unit/test_m4_l2.py::TextIdentityPackTests.test_same_extracted_text_different_bytes_still_gets_its_own_packet",
         "tests/unit/test_m4_office_text.py::XlsxCellTests.test_huge_merged_range_is_rejected_before_expanding",
-        "tests/unit/test_m4_office_text.py::XlsxCellTests.test_merge_budget_is_cumulative_and_invalid_ranges_fail"
+        "tests/unit/test_m4_office_text.py::XlsxCellTests.test_merge_budget_is_cumulative_and_invalid_ranges_fail",
+        "tests/unit/test_m4_l2.py::DeepReadJournalTests.test_committed_corruption_fails_and_torn_tail_is_read_only"
       ],
       "not_verified": [
         "真实 M4 50 份当前模型小样及新版执行未验；Spark apply-triage catalog 桥未实现。"

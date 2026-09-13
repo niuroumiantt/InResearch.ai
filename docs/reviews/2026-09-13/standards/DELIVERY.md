@@ -1,6 +1,6 @@
 # 现行标准复审交付：尚不能宣布全项目审阅结束
 
-最新集成：已保留主分支 bdc1352 的并行 M4 工作，Python 回归更新为 878 项；下文 856 项及原始统计属于 b40f41f 阶段。最终消费者、统计和验证分别见 integrated-consumers-after.csv、integrated-statistics.json、integrated-verification.json。新增两个修复和边界见 INTEGRATION_PLAN.md。
+最新集成：已保留主分支 bdc1352 的并行 M4 工作，Python 回归更新为 879 项；下文 856 项及原始统计属于 b40f41f 阶段。最终消费者、统计和验证分别见 integrated-consumers-after.csv、integrated-statistics.json、integrated-verification.json。新增两个修复和边界见 INTEGRATION_PLAN.md。
 
 基线 main `64bef5a`，修改前证据提交 `ce0434d`；现行规范登记版本更新为 `2026.09.13.4`。本轮没有移动生产资料、改写历史事实或修改账号密码。此报告是日期快照，当前规则仍从 framework/CURRENT.md 进入。
 
@@ -53,3 +53,5 @@ statistics.json 分别统计自有源码、测试、文档、数据/配置、第
 PR 初次 CI 在主分支自动合并结果上发现映射的测试文件已变化，正确阻断；检查没有被放宽。复核 `git diff 64bef5a..bdc1352` 所涉及的已发布源码与测试后，补充 Office 合并单元格展开预算测试、同提取文本不同 SHA 可正常开包测试、半年期间测试映射，重新审定摘要。当前 1,247 条事实、267 个指标中，38 条历史哈希缺口与27 个来源登记缺口仍保留。新增记录的原文语义不是本轮审阅的已验证结果。
 
 退出 deep_read 的文本指纹自动阻挡；指纹、近似摘要和人工 skip 入口保留，作为辅助核对与明确操作。近似匹配不推断少的是版权页，不授予复用证据或替代内容身份的资格。Office 超预算时明确失败，不分配数十亿格、不把剩余内容记为完整阅读。两处变化的公共消费者在 integrated-consumers-after.csv 完整列出。
+
+深读的已读、指纹、近似摘要、缺口和移动日志读取统一到 storage.jsonl.read_rows；完整行损坏报错，未完成尾行只读忽略且不改文件。旧测试中带换行的损坏记录不再被当作正常可跳过输入。实际 M4 历史日志未在本轮扫描或修复。

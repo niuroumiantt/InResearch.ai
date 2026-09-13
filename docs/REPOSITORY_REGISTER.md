@@ -192,7 +192,7 @@
 | `docs/reviews/2026-09-13/standards/consumers-before.json` | interfaces.governance | 2 |
 | `docs/reviews/2026-09-13/standards/dependencies.json` | cycles | 0 |
 | `docs/reviews/2026-09-13/standards/file-changes.csv` | rows | 42 |
-| `docs/reviews/2026-09-13/standards/integrated-consumers-after.csv` | rows | 93 |
+| `docs/reviews/2026-09-13/standards/integrated-consumers-after.csv` | rows | 114 |
 | `docs/reviews/2026-09-13/standards/integrated-dependencies.json` | cycles | 0 |
 | `docs/reviews/2026-09-13/standards/integrated-file-changes.csv` | rows | 53 |
 | `framework/bom.json` | layers | 5 |
