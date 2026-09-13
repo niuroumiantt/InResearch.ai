@@ -31,6 +31,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 import m4_office_text
 import m4_paths
+from m4_records import current_results
 import m4_triage_l1 as L1
 
 REPO = Path(__file__).resolve().parent.parent
@@ -106,15 +107,8 @@ def load_facts() -> dict:
 # --------------------------------------------------------------------------
 
 def all_results() -> dict:
-    """Newest verdict per file: record appends, so the last row wins."""
-    rows = {}
-    if L1.RESULTS.exists():
-        with L1.RESULTS.open(encoding='utf-8') as fh:
-            for line in fh:
-                try: r = json.loads(line)
-                except ValueError: continue
-                if 'sha256' in r: rows[r['sha256']] = r
-    return rows
+    """Use the same effective reading as classification, moves and exports."""
+    return current_results(L1.RESULTS)
 
 
 def read_documents() -> set:

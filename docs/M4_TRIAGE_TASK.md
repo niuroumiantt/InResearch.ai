@@ -98,7 +98,7 @@ python3 pipeline/m4_triage.py summary
 
 清单唯一写入格式为 `schema_version, sha256, size_bytes, suffix, original_rel, original_name, l0_bucket, route, mtime_ns, ctime_ns, device, inode, hashed_at`。持锁追加，未变化的文件续跑跳过，变化与失败路径重新读取；每路径取最新观察，旧观察留在日志中。符号链接不跟随。尾部断行先保留副本再恢复，中间损坏拒绝继续。
 
-旧 `rel/size` 格式在统一读取边界兼容；继续清点前执行 `migrate-inventory`，完整备份后原子转换，不混写格式。旧 `m4_inventory.py` 仅转到同一写入器。summary、分类、移动、导出与进度共同使用归一后的集合；一次失败不覆盖已有成功判定，失败文件仍算待处理。
+旧 `rel/size` 格式在统一读取边界兼容；继续清点前执行 `migrate-inventory`，完整备份后原子转换，不混写格式。旧 `m4_inventory.py` 仅转到同一写入器。summary、分类、L2 深读队列、移动、导出与进度共同使用归一后的集合；一次失败不覆盖已有成功判定，尚无成功结果的文件仍算待处理。L2 通过 `m4_records.current_results` 读取有效判定，不能另外按日志末行决定是否可深读。
 
 哈希在线程池里跑，`--workers` 默认 8、上限 16。251 GB 的一次性全量估计 1–2 小时，取决于磁盘。
 

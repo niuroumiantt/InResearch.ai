@@ -15,6 +15,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import m4_l2 as L2
@@ -417,6 +418,30 @@ L1_ROW = {
     'category': 'M10', 'org': '未知', 'year': '未知', 'title': '机柜功率密度测算',
     'keep_original_name': False, 'size': 4096,
 }
+
+
+class EffectiveResultTests(unittest.TestCase):
+    def test_failed_retry_does_not_remove_a_document_from_the_deep_read_queue(self):
+        with tempfile.TemporaryDirectory(prefix='m4-l2-effective-') as directory:
+            path = Path(directory) / 'results.jsonl'
+            path.write_text('\n'.join(json.dumps(row) for row in [
+                L1_ROW, {'sha256': L1_ROW['sha256'], 'status': 'error',
+                         'error': 'model_timeout'}]) + '\n')
+            with patch.object(L2.L1, 'RESULTS', path), \
+                    patch.object(L2, 'read_documents', return_value=set()), \
+                    patch.object(L2, 'load_metrics', return_value=METRICS), \
+                    patch.object(L2, 'load_facts', return_value={'records': []}):
+                self.assertEqual([row['sha256'] for row in L2.eligible()],
+                                 [L1_ROW['sha256']])
+
+    def test_successful_reassessment_still_replaces_the_previous_score(self):
+        with tempfile.TemporaryDirectory(prefix='m4-l2-effective-') as directory:
+            path = Path(directory) / 'results.jsonl'
+            path.write_text('\n'.join(json.dumps(row) for row in [
+                L1_ROW, {**L1_ROW, 'score': 7},
+                {'sha256': L1_ROW['sha256'], 'status': 'error'}]) + '\n')
+            with patch.object(L2.L1, 'RESULTS', path):
+                self.assertEqual(L2.all_results()[L1_ROW['sha256']]['score'], 7)
 
 
 class AttributionTests(unittest.TestCase):

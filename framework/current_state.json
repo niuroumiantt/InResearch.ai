@@ -1,6 +1,6 @@
 {
-  "version": "2026.09.12.6",
-  "effective_at": "2026-09-12",
+  "version": "2026.09.13.1",
+  "effective_at": "2026-09-13",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
     {
@@ -381,6 +381,8 @@
         "pipeline/m4_triage_l1.py",
         "pipeline/m4_triage_local.py",
         "pipeline/m4_triage_pack.py",
+        "pipeline/m4_l2.py",
+        "pipeline/test_m4_l2.py",
         "pipeline/m4_records.py",
         "pipeline/jsonl_store.py",
         "pipeline/file_moves.py",
@@ -394,7 +396,7 @@
       "supersedes": [
         "reading-m4-triage-20260909"
       ],
-      "reason": "统一模型配置和有效记录；清单只用一套写入/读取规则，物理移动增加哈希、持久日志、互斥及恢复，导出保留副本身份与模型来源；原件操作范围不扩大。"
+      "reason": "统一模型配置和有效记录；清单只用一套写入/读取规则，物理移动增加哈希、持久日志、互斥及恢复，导出保留副本身份与模型来源；2026-09-13 补齐 L2 深读队列遗漏的有效结果读取，失败重试不得遮住已成功结果；原件操作范围不扩大。"
     },
     {
       "id": "model-execution-20260912",
