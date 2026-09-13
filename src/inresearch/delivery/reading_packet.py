@@ -103,20 +103,20 @@ def question_menu(module: str, questions: dict, limit=25) -> str:
 ATTRIBUTION_ASK = """## 这份文件的出处，L1 没认出来
 
 当前记录：机构「{org}」，年份「{year}」。L1 判的时候只看到 {preview} 字预览，
-你看到的是全文——顺手把出处找回来。通常写在这些地方之一：封面、页眉页脚、
+请从本次正文找回出处；若标明截断，须补看完整原件。通常写在这些地方之一：封面、页眉页脚、
 版权页、免责声明、图表下方的「数据来源 / Source」、末页联系方式。
 
 找到了：
 
 ```
-python3 manage.py deep-read attribute --sha {sha16} --org "IDC" --year 2024 \\
+python3 manage.py deep-read attribute --sha {sha16} --expected-revision {revision} --org "IDC" --year 2024 \\
     --evidence "封面右下：IDC China, March 2024"
 ```
 
 全文翻完确实没有：
 
 ```
-python3 manage.py deep-read attribute --sha {sha16} --unrecoverable \\
+python3 manage.py deep-read attribute --sha {sha16} --expected-revision {revision} --unrecoverable \\
     --evidence "封面/页眉页脚/版权页/图表来源/末页均无机构名"
 ```
 
@@ -145,6 +145,7 @@ sha256：{sha}
 ```json
 {{
   "fact_id": "小写连字符，全库唯一",
+  "asserter": "最初断言这个数的机构短名；不是转述者，确实不可追溯填未注明",
   "metric_id": "必须是下面菜单里的某一个",
   "entity": {{"type": "project|company|region|component|market", "id": "...", "label": "..."}},
   "value": 4406.0,
@@ -162,6 +163,10 @@ sha256：{sha}
   "notes": "口径的例外、加总方式、被减项"
 }}
 ```
+
+断言者（asserter）与材料 SHA 分开。转述 IDC 的数仍写 IDC。已有同年同口径记录时，
+不同断言者须用 disputes 列出已有 fact_id，双方保留供 C3 A 档审核；同一断言者修订实绩，
+用 as_of 的 @版本与 supersedes 指向旧事实。不同时间的预测可并列，不自动替代。
 
 ## 五条纪律
 
@@ -192,3 +197,41 @@ sha256：{sha}
 
 {questions}
 """
+
+
+def publish(root, row, text, meta, metrics, questions, missing, revision, preview=6000):
+    """Publish one complete, independently named terminal packet; never overwrite."""
+    import hashlib
+    import json
+    import os
+    import uuid
+    from inresearch.storage.files import atomic_write, make_directory, sync_directory
+
+    module = row.get('category') or row.get('module') or 'unknown'
+    attribution = ATTRIBUTION_ASK.format(org=row.get('org') or '未知', year=row.get('year') or '未知',
+                    preview=preview, sha16=row['sha256'][:16], revision=revision) if missing else ''
+    brief = PACKET_HEAD.format(attribution=attribution, name=Path(row.get('rel', '')).name,
+        sha=row['sha256'], module=module, score=row.get('score'), kb=round(row.get('size', 0)/1024),
+        pages='    页数：%s' % meta['pages'] if meta.get('pages') else '',
+        n_chunks=len(chunks(text)), chars=len(text),
+        truncated='\n\n**注意：正文被字数上限截断；这不是全文，不能据此宣称完整覆盖。不要把最后一行当作表格的最后一行。**' if meta.get('truncated') else '',
+        metrics=metric_menu(module, metrics), others=other_modules_index(module, metrics),
+        questions=question_menu(module, questions))
+    brief += '\n\nL1 判定版本：`%s`。归属/限制修改须传 `--expected-revision %s`；冲突后重新查看当前判定。\n' % (revision, revision)
+    parent = Path(root) / row['sha256']; make_directory(parent)
+    packet_id = uuid.uuid4().hex
+    staging, target = parent / ('.'+packet_id+'.pending'), parent / packet_id
+    make_directory(staging)
+    manifest = dict(sha256=row['sha256'], result_revision=revision, packet_id=packet_id,
+                    text_sha256=hashlib.sha256(text.encode()).hexdigest(),
+                    brief_sha256=hashlib.sha256(brief.encode()).hexdigest(), chars=len(text),
+                    extraction=meta)
+    atomic_write(staging/'text.md', text.encode())
+    atomic_write(staging/'brief.md', brief.encode())
+    atomic_write(staging/'manifest.json', (json.dumps(manifest,ensure_ascii=False,indent=2)+'\n').encode())
+    os.rename(staging, target)
+    sync_directory(parent)
+    return dict(sha256=row['sha256'], module=module, score=row.get('score'), chars=len(text),
+                chunks=len(chunks(text)), result_revision=revision, packet_id=packet_id,
+                unattributed=missing or None, brief=str(target/'brief.md'), text=str(target/'text.md'),
+                manifest=str(target/'manifest.json'), **{k:v for k,v in meta.items() if k!='extract_error'})

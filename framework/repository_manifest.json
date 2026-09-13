@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.13.5",
+  "version": "2026.09.13.6",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -141,15 +141,15 @@
       "collections": [
         {
           "name": "records",
-          "count": 1694
+          "count": 1991
         }
       ]
     },
     {
       "path": "data/metric_gaps.jsonl",
       "role": "source_record",
-      "bytes": 277509,
-      "sha256": "c5235bc81f4f2abaaa90b0ef0de0a3ed1e0ba051a2590798a369ef017c76aeed",
+      "bytes": 290922,
+      "sha256": "c6bec0f4003bffbb3aac7ba82f12cc2fb6844fcc3cf6d8e7c0c59778083a2610",
       "collections": []
     },
     {
@@ -560,8 +560,8 @@
     {
       "path": "docs/M4_TRIAGE_TASK.md",
       "role": "normative",
-      "bytes": 13389,
-      "sha256": "63a14d14af9256cea7ede5c99571785b8a59bfeb672766c7a839e8e55d947cd7",
+      "bytes": 15174,
+      "sha256": "7aec5f854d5a1034029206cf71fd52b4544073aefa4bed0adf90f8da87a36c12",
       "collections": []
     },
     {
@@ -4210,15 +4210,15 @@
     {
       "path": "framework/09_software_contracts.md",
       "role": "normative",
-      "bytes": 5668,
-      "sha256": "92f20ed5e2b4df454b2a5990eb3aa58b16390d0fa26fbf69ca5c471d53f8b6bf",
+      "bytes": 9318,
+      "sha256": "c70392aa95188b01f4d9121082f4a2d5bc9717c282ea9e967018ff2ea4eaa335",
       "collections": []
     },
     {
       "path": "framework/CURRENT.md",
       "role": "normative",
       "bytes": 5288,
-      "sha256": "735c0b61e3a06ec0751d15b6fd03b911a77fd0de3ea09cb7ed6cbcb13163f074",
+      "sha256": "ec01fd9e4ae4abe1b77a0b593fbb8269c9396ab89a878f8cae6c42e6df7f05b2",
       "collections": []
     },
     {
@@ -4240,8 +4240,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 22444,
-      "sha256": "a71b16f3e90c67b863aa0322ef47a95bd5d73d2e14bef20f8af4c0ea20608db4",
+      "bytes": 22868,
+      "sha256": "a3957b925d04c8cc03826c1b70dfc3c8dae61685730b1175f01d7dc3c2d396c0",
       "collections": [
         {
           "name": "policies",
@@ -4805,8 +4805,8 @@
     {
       "path": "src/inresearch/README.md",
       "role": "supporting_document",
-      "bytes": 3352,
-      "sha256": "aa07faa46ef8f758580000a61d8c0052f0583876265a538faaaf3b81d0f35439",
+      "bytes": 3621,
+      "sha256": "da28a061e859a10d3d4e95fc0236d65e872c3995ca5ef568e28f884b97f5df72",
       "collections": []
     },
     {
@@ -5008,8 +5008,8 @@
     {
       "path": "src/inresearch/delivery/reading_packet.py",
       "role": "implementation",
-      "bytes": 8286,
-      "sha256": "50dcacfc9fcd6c9e7863bbbfa0df0f7adef9996b1f7bee899ff0d29cfa6fe0a3",
+      "bytes": 11407,
+      "sha256": "ca63ee1f6fb386d0eaf16234bb62a3e28a9fa2ae449ed0ab02facff120432e15",
       "collections": []
     },
     {
@@ -5036,8 +5036,15 @@
     {
       "path": "src/inresearch/interfaces/cli.py",
       "role": "implementation",
-      "bytes": 4252,
-      "sha256": "8591ab7ef478ef5802db4fb00dc64ad6129bc3f7100ad04d070203723970c2c5",
+      "bytes": 4254,
+      "sha256": "57c7232698c0dbf60c46581b68d8ccd1ac95f5462e910a12f0d65f3e4e5ac81a",
+      "collections": []
+    },
+    {
+      "path": "src/inresearch/interfaces/deep_read.py",
+      "role": "implementation",
+      "bytes": 10157,
+      "sha256": "cdd2e9a311d18fa1501512157093e1aa0ac58ee442dc07a4dea41e893d395728",
       "collections": []
     },
     {
@@ -5153,6 +5160,13 @@
       "collections": []
     },
     {
+      "path": "src/inresearch/knowledge/provenance.py",
+      "role": "implementation",
+      "bytes": 3886,
+      "sha256": "7cc6e8b9ff6f7d5ab12b321c67ea531b9c125c7691dcadc678fa9bb56e556f02",
+      "collections": []
+    },
+    {
       "path": "src/inresearch/knowledge/registry.py",
       "role": "implementation",
       "bytes": 29456,
@@ -5251,6 +5265,13 @@
       "collections": []
     },
     {
+      "path": "src/inresearch/materials/reading_policy.py",
+      "role": "implementation",
+      "bytes": 3731,
+      "sha256": "4cf8b96a4e26e946de5eec76e8c157ba076f246d60a033ac85e46dfb7a649b66",
+      "collections": []
+    },
+    {
       "path": "src/inresearch/materials/receive.py",
       "role": "implementation",
       "bytes": 3459,
@@ -5276,6 +5297,13 @@
       "role": "implementation",
       "bytes": 2088,
       "sha256": "9a71f2733141ec9675871d5570935d8bf2c7a0908ea79f3b52f75cd72e4ca3fc",
+      "collections": []
+    },
+    {
+      "path": "src/inresearch/materials/text_similarity.py",
+      "role": "implementation",
+      "bytes": 3164,
+      "sha256": "79611cc435c5981062bf1f386f97c7f71abeeefe5b0e279c7e27c399a0a4c7ac",
       "collections": []
     },
     {
@@ -5351,8 +5379,8 @@
     {
       "path": "src/inresearch/workflow/deep_read.py",
       "role": "implementation",
-      "bytes": 55503,
-      "sha256": "cd94ebde7b74c478aa933263c46010957f78dc7ebca28b9dc0a45499d7580de6",
+      "bytes": 17844,
+      "sha256": "2a23527c890135aa4a900f1b9fa5f8dd284ae3a60ce79b4ceeb11463158a1bff",
       "collections": []
     },
     {
@@ -5367,6 +5395,13 @@
       "role": "implementation",
       "bytes": 36876,
       "sha256": "9012e96456416dd49107b2e2c297d48a16d62c74d2c8c9ef90d3dc94e81a96df",
+      "collections": []
+    },
+    {
+      "path": "src/inresearch/workflow/reading_gaps.py",
+      "role": "implementation",
+      "bytes": 2676,
+      "sha256": "48f069b42b345810a9d4c3c42efc4f14e5ea2fc720d59e1952c2b8b404d0e2f4",
       "collections": []
     },
     {
@@ -5489,6 +5524,13 @@
       "collections": []
     },
     {
+      "path": "tests/unit/deep_read_fixtures.py",
+      "role": "test",
+      "bytes": 4176,
+      "sha256": "a05ce5b320efe0358e4563f8430ab872d907063455f06f7b4793b93d97014636",
+      "collections": []
+    },
+    {
       "path": "tests/unit/test_acquisition.py",
       "role": "test",
       "bytes": 5565,
@@ -5538,10 +5580,31 @@
       "collections": []
     },
     {
+      "path": "tests/unit/test_deep_read.py",
+      "role": "test",
+      "bytes": 47228,
+      "sha256": "e41a2b21f77b7ae4f0dfa57e7bee22c77590ef5133cf8c5e628ba2d5de43a22b",
+      "collections": []
+    },
+    {
+      "path": "tests/unit/test_deep_read_transactions.py",
+      "role": "test",
+      "bytes": 20529,
+      "sha256": "8dbc032fa92ecaff99d208380714f630a5aec8a728c13d01a5879c68e7f42813",
+      "collections": []
+    },
+    {
       "path": "tests/unit/test_display_regressions.py",
       "role": "test",
       "bytes": 8704,
       "sha256": "22c778fe01b42915da6b5d1c2aa9292db8f481a135400c63307d4e9c6ddfeb20",
+      "collections": []
+    },
+    {
+      "path": "tests/unit/test_fact_contract.py",
+      "role": "test",
+      "bytes": 132488,
+      "sha256": "36eeacfa1d43ba37ba241542f93f4b5051a39c2c6fb37ce065ec8636a345d9d7",
       "collections": []
     },
     {
@@ -5577,13 +5640,6 @@
       "role": "test",
       "bytes": 3198,
       "sha256": "8370a4c48fd3c09971872ed17e334b5ea694c53edf44e5b74d3caf4879a63b74",
-      "collections": []
-    },
-    {
-      "path": "tests/unit/test_m4_l2.py",
-      "role": "test",
-      "bytes": 190591,
-      "sha256": "47827d559aee173e1e171b75ec8786b62a79ea2837beee7a7972b81e96ebaf90",
       "collections": []
     },
     {
@@ -5731,6 +5787,13 @@
       "role": "test",
       "bytes": 2247,
       "sha256": "b793b11cf00ce96e2501d8c192cad34ec1381fb4cac58964fdd54369013108a2",
+      "collections": []
+    },
+    {
+      "path": "tests/unit/test_text_similarity.py",
+      "role": "test",
+      "bytes": 9648,
+      "sha256": "4e24065bfcc56cb264977928be50bf448a4feda3c24b82a0a56c36d045caab9c",
       "collections": []
     },
     {
@@ -6330,6 +6393,6 @@
     "retired_entrypoint": 3,
     "source_record": 26,
     "supporting_document": 35,
-    "test": 46
+    "test": 50
   }
 }
