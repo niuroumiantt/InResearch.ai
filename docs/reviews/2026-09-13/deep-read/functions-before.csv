@@ -1,0 +1,39 @@
+symbol,line,lines,target
+now,83,2,workflow.deep_read.DeepRead
+load_metrics,87,4,workflow.deep_read.DeepRead
+load_questions,93,5,workflow.deep_read.DeepRead
+load_facts,100,2,workflow.deep_read.DeepRead
+all_results,108,3,workflow.deep_read.DeepRead
+read_documents,113,4,workflow.deep_read.DeepRead
+self_authored,128,4,materials.reading_policy
+restricted,150,10,materials.reading_policy
+unattributed,162,18,materials.reading_policy
+gap_label,182,13,materials.reading_policy
+document_year,200,12,materials.reading_policy
+eligible,214,30,workflow.deep_read.DeepRead
+text_fingerprint,264,21,materials.text_similarity
+fingerprints,287,4,materials.text_similarity
+remember_fingerprint,293,5,materials.text_similarity
+already_read_with_same_text,300,7,materials.text_similarity
+packed_not_read_with_same_text,309,20,materials.text_similarity
+text_sketch,354,20,materials.text_similarity
+sketch_overlap,376,16,materials.text_similarity
+sketches,394,4,materials.text_similarity
+near_twins,400,20,materials.text_similarity
+cmd_pack,422,77,interfaces.deep_read + explicit use case
+fact_write,506,6,removed; explicit transaction inside use case
+resolve_document,514,23,workflow.deep_read.DeepRead
+cmd_record,540,69,interfaces.deep_read + explicit use case
+cmd_attribute,611,42,interfaces.deep_read + explicit use case
+matches,655,6,materials.reading_policy
+cmd_flag,663,31,interfaces.deep_read + explicit use case
+cmd_queue,696,44,interfaces.deep_read + explicit use case
+open_gaps,742,7,workflow.deep_read.DeepRead
+cmd_skip,751,34,interfaces.deep_read + explicit use case
+cmd_gaps,787,21,interfaces.deep_read + explicit use case
+cache_key_to_sha,820,43,knowledge.provenance
+owing_provenance,865,2,knowledge.provenance
+sources_index,869,10,knowledge.provenance
+cmd_backfill_provenance,882,99,interfaces.deep_read + explicit use case
+cmd_status,983,21,interfaces.deep_read + explicit use case
+main,1006,48,interfaces.deep_read + explicit use case
