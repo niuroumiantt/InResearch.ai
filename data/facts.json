@@ -77139,6 +77139,38 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "统计口径含通用算力中心与智算中心（2023 年智算占 2%、2024E 3%）；原文未说明 IT 还是设施口径。报告发布月份未写，@ 记 2024。"
+    },
+    {
+      "fact_id": "caict2024-idc-cn-dc-service-market-2027e",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-dc-service-market",
+        "label": "中国算力中心服务市场"
+      },
+      "asserter": "IDC",
+      "value": 3075.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "未注明",
+        "operator_type": "全市场",
+        "region": "CN",
+        "basis": "预测",
+        "currency": "人民币"
+      },
+      "as_of": "2027E@2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "118f42e26e92815cb3ecc6593e48a50086a84f1a45e2dca29d332fe9975a2ab9",
+        "local_file": "2024中国算力中心服务商分析报告.pdf",
+        "locator": "第 4 页：「据国际咨询机构 IDC 预计，未来五年，中国算力中心服务市场将以 18.9%的复合增速持续增长，预计 2027 年市场规模达 3075 亿元人民币」",
+        "grade": "S3",
+        "originator": "IDC（经中国信通院云计算与大数据研究所《中国算力中心服务商分析报告（2024 年）》2024-07 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「算力中心服务市场」口径原文未定义，service_scope 记未注明；五年 CAGR 18.9%。IDC 该预测的发布时点原文未写，@ 只能确定为 2024 年或更早。同报告第 3 页信通院 2023 年在用机架 810 万、算力 230 EFLOPS 库内已有。"
     }
   ]
 }
