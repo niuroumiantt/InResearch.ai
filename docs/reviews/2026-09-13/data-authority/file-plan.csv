@@ -1,10 +1,10 @@
 path,action,target,reason
 .claude/launch.json,retain,.claude/launch.json,published source or historical record retained
 .claude/settings.local.json,retain,.claude/settings.local.json,published source or historical record retained
-.dockerignore,retain,.dockerignore,published source or historical record retained
+.dockerignore,update,.dockerignore,exclude private runtime material and run real container boundary verification
 .gitattributes,retain,.gitattributes,published source or historical record retained
 .github/CODEOWNERS,retain,.github/CODEOWNERS,published source or historical record retained
-.github/workflows/validate.yml,retain,.github/workflows/validate.yml,published source or historical record retained
+.github/workflows/validate.yml,update,.github/workflows/validate.yml,exclude private runtime material and run real container boundary verification
 .gitignore,retain,.gitignore,published source or historical record retained
 AGENTS.md,retain,AGENTS.md,published source or historical record retained
 CLAUDE.md,retain,CLAUDE.md,published source or historical record retained
@@ -521,6 +521,7 @@ src/inresearch/workflow/terminal_batch.py,retain,src/inresearch/workflow/termina
 src/inresearch/workflow/triage.py,retain,src/inresearch/workflow/triage.py,published source or historical record retained
 src/inresearch/workflow/workorders.py,modify,src/inresearch/workflow/workorders.py,explicit runtime consumer / policy
 tests/auth_appearance.cjs,retain,tests/auth_appearance.cjs,published source or historical record retained
+tests/container_storage.py,new,tests/container_storage.py,isolated Docker read-only root and release replacement/retry verification
 tests/datacenter_news.cjs,retain,tests/datacenter_news.cjs,published source or historical record retained
 tests/hardware_ecosystems.cjs,retain,tests/hardware_ecosystems.cjs,published source or historical record retained
 tests/object_network.cjs,retain,tests/object_network.cjs,published source or historical record retained
