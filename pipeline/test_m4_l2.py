@@ -1789,6 +1789,29 @@ class TextFingerprintTests(unittest.TestCase):
             fh.write('{ 半行\n')
         self.assertEqual(L2.fingerprints(), {'a' * 64: 'deadbeef'})
 
+    # -- 开包了但还没读的副本 ---------------------------------------------
+    def test_a_packed_but_unread_copy_is_reported(self):
+        """第三对副本就是这么漏的：两份同一轮开包，都还没读，什么都没响。"""
+        L2.remember_fingerprint('a' * 64, 'deadbeef')
+        self.assertEqual(
+            L2.packed_not_read_with_same_text('b' * 64, 'deadbeef'), ['a' * 64])
+
+    def test_a_read_copy_is_not_reported_here(self):
+        """已读的那条路由 already_read_with_same_text 管，两边不重复报。"""
+        L2.remember_fingerprint('a' * 64, 'deadbeef')
+        self.read.add('a' * 64)
+        self.assertEqual(
+            L2.packed_not_read_with_same_text('b' * 64, 'deadbeef'), [])
+
+    def test_a_document_is_never_its_own_open_twin(self):
+        L2.remember_fingerprint('a' * 64, 'deadbeef')
+        self.assertEqual(
+            L2.packed_not_read_with_same_text('a' * 64, 'deadbeef'), [])
+
+    def test_no_fingerprint_means_no_open_twin_check(self):
+        L2.remember_fingerprint('a' * 64, 'deadbeef')
+        self.assertEqual(L2.packed_not_read_with_same_text('b' * 64, None), [])
+
     def test_the_last_write_wins(self):
         """重抽一遍得到不同的正文（抽取器修好了），以新的为准。"""
         L2.remember_fingerprint('a' * 64, 'old')
