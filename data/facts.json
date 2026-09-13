@@ -42744,6 +42744,132 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "「小于 1.2」按上界记。表源《IDC圈：2023年中国智算中心项目盘点•企业自建篇》，西南证券整理。"
+    },
+    {
+      "fact_id": "sensetime-wp-idc-cn-ai-compute-2022",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "value": 259.9,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "FP16",
+        "area": "全国",
+        "status": "未注明",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e31ccc7eb970f9f8e5a0d888d060595882cadc90990a59bec3a905f1ce6d5bca",
+        "local_file": "20240108-商汤科技&智算联盟：2023新一代人工智能基础设施白皮书(65页).pdf",
+        "locator": "第 16-17 页：「IDC 预测，2022 年中国智能算力规模达 259.9 EFLOPS，2023 年将达到 414.1 EFLOPS，预计到 2027 年将达到 1117.4 EFLOPS（见图 6）」；图 6 标题「中国智能算力规模及预测，2020-2027，基于 FP16 计算，EFLOPS」",
+        "grade": "S3",
+        "originator": "IDC《中国人工智能计算力发展评估报告，2023-2024》（2023-12，经商汤等《新一代人工智能基础设施白皮书》转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "FP16 口径（图 6 标题明写）。2022-2027 CAGR 33.9%，同期通用算力 CAGR 16.6%。"
+    },
+    {
+      "fact_id": "sensetime-wp-idc-cn-ai-compute-2023e",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "value": 414.1,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "FP16",
+        "area": "全国",
+        "status": "未注明",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2023E@2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e31ccc7eb970f9f8e5a0d888d060595882cadc90990a59bec3a905f1ce6d5bca",
+        "local_file": "20240108-商汤科技&智算联盟：2023新一代人工智能基础设施白皮书(65页).pdf",
+        "locator": "第 16-17 页：「IDC 预测，2022 年中国智能算力规模达 259.9 EFLOPS，2023 年将达到 414.1 EFLOPS，预计到 2027 年将达到 1117.4 EFLOPS（见图 6）」；图 6 标题「中国智能算力规模及预测，2020-2027，基于 FP16 计算，EFLOPS」",
+        "grade": "S3",
+        "originator": "IDC《中国人工智能计算力发展评估报告，2023-2024》（2023-12，经商汤等《新一代人工智能基础设施白皮书》转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "FP16。IDC 2023-12 报告对当年的预测值。"
+    },
+    {
+      "fact_id": "sensetime-wp-idc-cn-ai-compute-2027e",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "value": 1117.4,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "FP16",
+        "area": "全国",
+        "status": "未注明",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2027E@2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e31ccc7eb970f9f8e5a0d888d060595882cadc90990a59bec3a905f1ce6d5bca",
+        "local_file": "20240108-商汤科技&智算联盟：2023新一代人工智能基础设施白皮书(65页).pdf",
+        "locator": "第 16-17 页：「IDC 预测，2022 年中国智能算力规模达 259.9 EFLOPS，2023 年将达到 414.1 EFLOPS，预计到 2027 年将达到 1117.4 EFLOPS（见图 6）」；图 6 标题「中国智能算力规模及预测，2020-2027，基于 FP16 计算，EFLOPS」",
+        "grade": "S3",
+        "originator": "IDC《中国人工智能计算力发展评估报告，2023-2024》（2023-12，经商汤等《新一代人工智能基础设施白皮书》转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "FP16。注意西南证券 2023-08 转引的 IDC 早一版预测 2026E 1271.4 EFLOPS（未注明精度）高于本版 2027E——两版 IDC 报告口径或假设不同。"
+    },
+    {
+      "fact_id": "sensetime-lingang-aidc-gpus-2023q4",
+      "metric_id": "cluster_gpu_count",
+      "entity": {
+        "type": "project",
+        "id": "sensetime-lingang-aidc",
+        "label": "商汤上海临港 AIDC（人工智能计算中心）"
+      },
+      "value": 30000.0,
+      "unit": "颗",
+      "caliber": {
+        "scope": "单站点合计",
+        "accelerator": "GPU（未注明型号）",
+        "region": "CN",
+        "basis": "公司披露"
+      },
+      "as_of": "2023-Q4",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e31ccc7eb970f9f8e5a0d888d060595882cadc90990a59bec3a905f1ce6d5bca",
+        "local_file": "20240108-商汤科技&智算联盟：2023新一代人工智能基础设施白皮书(65页).pdf",
+        "locator": "第 45 页：「商汤建设的上海临港 AIDC……截止 2023 年 Q4，已经上架的 GPU 数量 30,000 张，总体算力规模达到了 6,800P」",
+        "grade": "S2",
+        "originator": "商汤科技（白皮书主编单位之一）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "已上架 GPU 数；同站点总算力 6,800P（精度未注明，项目级算力无指标）。2023 年以来超 1,000 个大模型在大装置上完成训练。"
     }
   ]
 }
