@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.13.10。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.13.11。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：689。
+在册文件：702。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,7 +15,7 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 12 |
-| 历史快照 | 170 |
+| 历史快照 | 182 |
 | 运行代码 | 137 |
 | 现行规范 | 13 |
 | 项目配置 | 36 |
@@ -23,7 +23,7 @@
 | 已退役入口 | 3 |
 | 在册数据/索引 | 26 |
 | 配套说明 | 35 |
-| 测试 | 53 |
+| 测试 | 54 |
 
 ## 在册记录集合
 
@@ -234,6 +234,12 @@
 | `docs/reviews/2026-09-13/reading-revisions/file-results.csv` | rows | 591 |
 | `docs/reviews/2026-09-13/reading-revisions/public-contracts.csv` | rows | 10 |
 | `docs/reviews/2026-09-13/reading-revisions/real-flow.json` | model | 1 |
+| `docs/reviews/2026-09-13/research-summary/consumers-before.csv` | rows | 31 |
+| `docs/reviews/2026-09-13/research-summary/file-plan.csv` | rows | 690 |
+| `docs/reviews/2026-09-13/research-summary/file-results.csv` | rows | 702 |
+| `docs/reviews/2026-09-13/research-summary/legacy-removal.csv` | rows | 6 |
+| `docs/reviews/2026-09-13/research-summary/public-consumers.csv` | rows | 78 |
+| `docs/reviews/2026-09-13/research-summary/scope.json` | changed | 14 |
 | `docs/reviews/2026-09-13/scene-interaction/consumers-before.csv` | rows | 80 |
 | `docs/reviews/2026-09-13/scene-interaction/file-plan.csv` | rows | 676 |
 | `docs/reviews/2026-09-13/scene-interaction/file-results.csv` | rows | 689 |
@@ -659,6 +665,18 @@
 | `docs/reviews/2026-09-13/reading-revisions/statistics-after.json` | 历史快照 |
 | `docs/reviews/2026-09-13/reading-revisions/statistics-before.json` | 历史快照 |
 | `docs/reviews/2026-09-13/reading-revisions/verification.json` | 历史快照 |
+| [docs/reviews/2026-09-13/research-summary/DELIVERY.md](reviews/2026-09-13/research-summary/DELIVERY.md) | 历史快照 |
+| [docs/reviews/2026-09-13/research-summary/PLAN.md](reviews/2026-09-13/research-summary/PLAN.md) | 历史快照 |
+| `docs/reviews/2026-09-13/research-summary/audit.py` | 历史快照 |
+| [docs/reviews/2026-09-13/research-summary/consumers-before.csv](reviews/2026-09-13/research-summary/consumers-before.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/research-summary/file-plan.csv](reviews/2026-09-13/research-summary/file-plan.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/research-summary/file-results.csv](reviews/2026-09-13/research-summary/file-results.csv) | 历史快照 |
+| [docs/reviews/2026-09-13/research-summary/legacy-removal.csv](reviews/2026-09-13/research-summary/legacy-removal.csv) | 历史快照 |
+| `docs/reviews/2026-09-13/research-summary/payload-evidence.json` | 历史快照 |
+| [docs/reviews/2026-09-13/research-summary/public-consumers.csv](reviews/2026-09-13/research-summary/public-consumers.csv) | 历史快照 |
+| `docs/reviews/2026-09-13/research-summary/scope.json` | 历史快照 |
+| `docs/reviews/2026-09-13/research-summary/statistics-after.json` | 历史快照 |
+| `docs/reviews/2026-09-13/research-summary/statistics-before.json` | 历史快照 |
 | [docs/reviews/2026-09-13/scene-interaction/DELIVERY.md](reviews/2026-09-13/scene-interaction/DELIVERY.md) | 历史快照 |
 | [docs/reviews/2026-09-13/scene-interaction/PLAN.md](reviews/2026-09-13/scene-interaction/PLAN.md) | 历史快照 |
 | `docs/reviews/2026-09-13/scene-interaction/audit.py` | 历史快照 |
@@ -867,6 +885,7 @@
 | `tests/part_dossier.cjs` | 测试 |
 | `tests/product_node_hover.cjs` | 测试 |
 | `tests/research_delivery.cjs` | 测试 |
+| `tests/research_summary.cjs` | 测试 |
 | `tests/run_browser.cjs` | 测试 |
 | `tests/ui_skin.cjs` | 测试 |
 | `tests/unit/deep_read_fixtures.py` | 测试 |

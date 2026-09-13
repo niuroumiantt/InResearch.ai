@@ -530,20 +530,50 @@ def build_news(root=ROOT):
                 reader={key: reader[key] for key in ('status', 'received_at', 'stale') if key in reader})
 
 
-def build_snapshot(root=ROOT):
+def _research_state(root):
+    """Shared current research state before consumer-specific serialization."""
     graph, questions, curated, knowledge, runtime = _snapshot_inputs(root)
+    closed = completed_questions(curated)
+    for question in questions['records']:
+        question['status'] = 'answered' if question['id'] in closed else 'open'
+    return dict(graph=graph, questions=questions, knowledge=knowledge,
+                tasks=current_tasks(root, questions, curated), reader=_reader_state(runtime))
+
+
+def build_research_summary(root=ROOT):
+    """Association-only input to the same JS index used by the full workbench."""
+    state = _research_state(root)
+    # Keep every identity/reference form consumed by buildResearchIndex.forNode.
+    # Counts are still selected there; this projection does not duplicate that rule.
+    refs = ('id', 'document_id', 'doc_id', 'source_id', 'evidence_id', 'statement_id',
+            'answer_id', 'task_id', 'wid', 'object_ids', 'object_id', 'node_id', 'node_ids',
+            'subject_id', 'target_object_id', 'question_id', 'question_ids',
+            'statement_ids', 'evidence_ids')
+    def project(rows, keys):
+        return [{key: row[key] for key in keys if key in row} for row in rows]
+    return dict(schema_version=1,
+                graph=dict(objects=project(state['graph']['objects'],
+                    ('id', 'name', 'kind', 'views', 'navigation_hidden', 'redirect_to')),
+                    relations=project(state['graph']['relations'],
+                    ('id', 'source', 'target', 'type', 'views', 'view_ids', 'view', 'evidence_id', 'evidence_ids'))),
+                questions=project(state['questions']['records'], refs),
+                knowledge={key: project(state['knowledge'][key], refs)
+                           for key in ('evidence', 'statements', 'answers')},
+                tasks=project(state['tasks'], refs),
+                reader={key: state['reader'][key] for key in ('status', 'stale', 'received_at')
+                        if key in state['reader']})
+
+
+def build_snapshot(root=ROOT):
+    state = _research_state(root)
     # Legacy metadata is explicitly not proof of reading or source availability.
     for source in read_json(root / 'data/sources.json', {'records': []})['records']:
-        knowledge['documents'].append(dict(id='legacy:' + source['source_id'], title=source['title'],
+        state['knowledge']['documents'].append(dict(id='legacy:' + source['source_id'], title=source['title'],
             source_url=source.get('url'), stored_path=source.get('local_file'),
             status='legacy_metadata', acceptance='unverified', coverage={'complete': False},
             object_ids=[], question_ids=[], read_status='unverified'))
-    closed = completed_questions(curated)
-    for q in questions['records']:
-        q['status'] = 'answered' if q['id'] in closed else 'open'
-    tasks = current_tasks(root, questions, curated)
-    return dict(graph=graph, questions=questions, knowledge=knowledge, tasks=tasks, reader=_reader_state(runtime),
-                catalog=build_catalog(root, graph))
+    state['catalog'] = build_catalog(root, state['graph'])
+    return state
 
 
 def main():

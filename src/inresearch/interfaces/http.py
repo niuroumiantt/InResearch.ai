@@ -267,6 +267,11 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(200, research.build_news(ROOT))
             except (ValueError, TypeError, KeyError, OSError):
                 return self._json(503, {'ok': False, 'error': '新闻暂不可用，请稍后重试'})
+        if urlsplit(self.path).path == '/api/research-summary':
+            try:
+                return self._json(200, research.build_research_summary(ROOT))
+            except (ValueError, TypeError, KeyError, OSError):
+                return self._json(503, {'ok': False, 'error': '研究摘要暂不可用，请稍后重试'})
         if urlsplit(self.path).path == "/api/research":
             try:
                 return self._json(200, research.build_snapshot(ROOT))

@@ -456,6 +456,10 @@ class ReaderSnapshotHTTPTests(unittest.TestCase):
                 self.assertEqual(code, 200)
                 self.assertIsNone(news['feed'])
                 self.assertEqual(news['reader']['status'], view['reader']['status'])
+                code, summary = self.request('GET', '/api/research-summary')
+                self.assertEqual(code, 200)
+                self.assertEqual(summary['reader']['status'], view['reader']['status'])
+                self.assertEqual([e['id'] for e in summary['knowledge']['evidence']], [e['id'] for e in curated['evidence']])
 
     def test_news_projection_uses_validated_input_without_catalog_tasks_or_private_metadata(self):
         payload = self.payload()
@@ -512,6 +516,63 @@ class ReaderSnapshotHTTPTests(unittest.TestCase):
             self.assertEqual(code, 503)
             self.assertFalse(news['ok'])
             self.assertEqual(self.snapshot_path.read_bytes(), before)
+
+
+    def test_summary_obeys_research_auth_boundary_before_building_state(self):
+        with patch.object(serve, 'AUTH_ON', True), \
+                patch.object(research, 'build_research_summary', side_effect=AssertionError('unauthorized read')):
+            self.assertEqual(self.request('GET', '/api/research-summary')[0], 401)
+            with patch.object(serve.auth, 'session_user', return_value='intern'), \
+                    patch.object(serve.auth, 'user_role', return_value='intern'):
+                connection = http.client.HTTPConnection(*self.server.server_address, timeout=4)
+                try:
+                    connection.request('GET', '/api/research-summary')
+                    response = connection.getresponse()
+                    self.assertEqual(response.status, 403)
+                    response.read()  # The existing role gate returns its forbidden HTML page.
+                finally:
+                    connection.close()
+
+    def test_research_summary_shares_state_but_omits_content_catalog_and_reader_payload(self):
+        payload = self.payload()
+        payload['reader']['private_large_state'] = 'PRIVATE_MARKER' * 10000
+        payload['knowledge']['documents'][0]['stored_path'] = '/private/originals/PRIVATE_MARKER.pdf'
+        self.assertEqual(self.post(payload)[0], 200)
+        before = self.snapshot_path.read_bytes()
+        code, full = self.request('GET', '/api/research')
+        self.assertEqual(code, 200)
+        with patch.object(research, 'build_catalog', side_effect=AssertionError('unneeded catalog')):
+            code, summary = self.request('GET', '/api/research-summary')
+        self.assertEqual(code, 200)
+        self.assertNotIn('catalog', summary)
+        self.assertNotIn('documents', summary['knowledge'])
+        self.assertNotIn('PRIVATE_MARKER', json.dumps(summary))
+        self.assertNotIn('quote', summary['knowledge']['evidence'][0])
+        self.assertEqual([q['id'] for q in full['questions']['records']], [q['id'] for q in summary['questions']])
+        for key in ('evidence', 'statements', 'answers'):
+            self.assertEqual([row['id'] for row in full['knowledge'][key]], [row['id'] for row in summary['knowledge'][key]])
+        self.assertEqual([row['wid'] for row in full['tasks']], [row['wid'] for row in summary['tasks']])
+        self.assertEqual([row['id'] for row in full['graph']['objects']], [row['id'] for row in summary['graph']['objects']])
+        self.assertEqual(self.snapshot_path.read_bytes(), before)
+
+    def test_summary_new_snapshot_replaces_associations_and_failed_retry_keeps_authority(self):
+        first = self.payload(seconds=1)
+        self.assertEqual(self.post(first)[0], 200)
+        code, old = self.request('GET', '/api/research-summary')
+        self.assertEqual(code, 200)
+        replacement = self.payload(seconds=2)
+        replacement['knowledge']['answers'][0]['question_id'] = 'M02-Q01'
+        self.assertEqual(self.post(replacement)[0], 200)
+        current = self.snapshot_path.read_bytes()
+        for payload in (first, replacement):
+            self.assertEqual(self.post(payload)[0], 409)
+        with patch.object(research, 'current_tasks', side_effect=OSError('temporary read failure')):
+            self.assertEqual(self.request('GET', '/api/research-summary')[0], 503)
+        code, new = self.request('GET', '/api/research-summary')
+        self.assertEqual(code, 200)
+        self.assertEqual(old['knowledge']['answers'][0]['question_id'], 'M01-Q01')
+        self.assertEqual(new['knowledge']['answers'][0]['question_id'], 'M02-Q01')
+        self.assertEqual(self.snapshot_path.read_bytes(), current)
 
 
 if __name__ == '__main__':

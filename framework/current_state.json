@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.13.10",
+  "version": "2026.09.13.11",
   "effective_at": "2026-09-13",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -299,13 +299,16 @@
         "src/inresearch/interfaces/static.py",
         "web/components/scene-picking.js",
         "web/components/scene-motion.js",
-        "tests/part_dossier.cjs"
+        "tests/part_dossier.cjs",
+        "tests/research_summary.cjs",
+        "tests/unit/test_research.py",
+        "src/inresearch/knowledge/registry.py"
       ],
       "supersedes": [
         "interface-legacy"
       ],
-      "reason": "2026-09-13：两场景共用 canvas 拾取与单写者动画；高亮/领域淡化不改共享原材质，迟到帧不得覆盖新操作。几何/renderer/资产加载仍保留，未宣称全部 3D 拆分完成。",
-      "implementation_revision": "2026.09.13.10"
+      "reason": "2026-09-13：3D 档案改用同权威关联字段投影，仍共用完整工作台的节点关联算法；研究面板就绪、失败重试和挂载/请求替换成为明确验收。既有输入/材质所有权保持，renderer/资产生命周期仍未全面收敛。",
+      "implementation_revision": "2026.09.13.11"
     },
     {
       "id": "acquisition-legacy",

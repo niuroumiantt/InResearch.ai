@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.13.10",
+  "version": "2026.09.13.11",
   "reviewed_at": "2026-09-13",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -19,20 +19,20 @@
     "framework/02_knowledge_format.md": "049e0010977b11fb6161c0fca15fe210c96be74124e70195e23d3028258a82ff",
     "framework/03_bom_and_collaboration.md": "e276393ec9f555984f07047a8d3de21daf208c5693be0ce86788dfff50ad75ed",
     "framework/04_reading_scoring_standard.md": "23f1e2a4086ac2d77e81d4239dfc739b038668d4f9558e31a720969fbe8934c5",
-    "framework/05_interface_system.md": "386701d7e1f844d94088cd2ff7d462048462a907768fa943105de75efe2a394c",
+    "framework/05_interface_system.md": "e11529a7909f984175a5edbc8230f8665583a0183cb715284df9d0bd61ee1526",
     "framework/06_acquisition.md": "d05a9da1c558d5882443ded1b2508e72c8a8c35eb486b9bc1cd2644305149270",
     "framework/07_product_ecosystems.md": "a6239c5cb221120394ec706cf3ded786dd6b1cf34cc526b167dc157d50bd3fce",
     "framework/08_model_execution.md": "6c1be72c11c0948ae349cba63bf6704e1c6cb5544eb2a0c5605386d65b2a7be9",
     "framework/09_software_contracts.md": "fd0bcad00e27e7b97fefb00e9f9d32bde77c0a1bb8cc0868c8cdf155cf0f6a58",
-    "framework/CURRENT.md": "13639da6e8e0aea647107c2d9b3770bf201803c1c1a1b8cac70d0a720998280c",
+    "framework/CURRENT.md": "9dcb9a2d7cbbea530df04add6a2ed98aaa79dd37e87a76a2981639a38fb45e60",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "tests/auth_appearance.cjs": "40f4e5feb30d2cec89bcf7cb90b89e780862a30580a4708e7dcb4dee1b9b8142",
     "tests/hardware_ecosystems.cjs": "4317d7b56ae541c1537d4a22ac6538d8faa96a66b545cfc5f1c146c86c84e80d",
     "tests/object_network.cjs": "5524edb7f522285a68ad6e9a81dd8a5e0525f8fd716478987e22a8a36df0d0a3",
-    "tests/part_dossier.cjs": "701b79d65acaae0508d2a4914ea2818a224b5b9912435c561e927b2275fa0822",
+    "tests/part_dossier.cjs": "ad7574cb3dcad224ab168080a4e59bd425f0ab6be2e9bc604c2ebb91d5e52d13",
     "tests/product_node_hover.cjs": "720258d27a7c69d4926ff1b711c7c57ce1e7ae83264e4d48a2dad370a0ba4779",
     "tests/research_delivery.cjs": "4514c88bc0b8d79a54884ce3b2dda0a6afeeae79c0416b4533d4b44b7629d9e9",
-    "tests/run_browser.cjs": "9a6dde1e1618169be60ee433e28d0ba6c5bad13917538f71909f179fa6732f39",
+    "tests/run_browser.cjs": "613f589c22e900e943a8d36984f265182822ebe663941c90756d04e928be8a93",
     "tests/ui_skin.cjs": "f3a1fa6223715cacb0c72a04102dde38e5cad3b8c43117be54bcccdab1be22fa",
     "tests/unit/deep_read_fixtures.py": "e748d51107427c48684ebedfa8286a8a515b36a0b3c8bc7d0fefa7d9ba713df1",
     "tests/unit/test_acquisition.py": "9df70bf9f5f2453e45a9f5af50baf9d4bc8cccae0afe3a76555b00c6b5099110",
@@ -56,7 +56,7 @@
     "tests/unit/test_reading_results.py": "40e5b2b52876f421fe9e42ee6270062137d15642f33c04bbfe002e778ccddfed",
     "tests/unit/test_reading_revisions.py": "11159514736025f8532fde946401a726cd1c7fb08fb731d5c3195e34707f1c93",
     "tests/unit/test_report_model.py": "1e02a56bbe7a75ee68d2ce2463d989e673d9e32d0cf66de09051cf5a39e0f7b2",
-    "tests/unit/test_research.py": "1987412a64f3b43f53e840f8a298dffd9a1241f0718abd11c83bff37e572b53a",
+    "tests/unit/test_research.py": "bbccc6e3b6ac2457c80a71b5802313fe749b3d16d5aa945e4d86916085978c70",
     "tests/unit/test_research_navigation.py": "8edaecdc3a3a3050000746453cb41e1c38b4a699f14037e4d9b0eac84429ac44",
     "tests/unit/test_text_similarity.py": "428e0d72f97461a57a4bf4ec1c459abdeea8e3847638787a893881bfba621dcd",
     "tests/unit/test_verification_contract.py": "2c1c2611dd2fb1973acf336e4b297f37ad7b06f4d5147574d99f3324fcc69232",
@@ -65,7 +65,8 @@
     "docs/local_setup/README.md": "6d8bfab5e0cfed2bc8dc098fa1308e63e9106407e3d3feb2409de06cc9352752",
     "tests/unit/test_storage_layout.py": "6a1e204df0028c1fe3cd3c824022d0f7caa173083545a7933b8eec9b286fbd8c",
     "tests/container_storage.py": "a8574a75275460d2a50c0eab7f524857eccd8a32cf2f9e8bb01009ec12dd5ba0",
-    "tests/datacenter_news.cjs": "7eb0a2b32d4e1f02ba91c485b63bd60524d5b1164658c3ac9b3ceec7e1d6faa5"
+    "tests/datacenter_news.cjs": "7eb0a2b32d4e1f02ba91c485b63bd60524d5b1164658c3ac9b3ceec7e1d6faa5",
+    "tests/research_summary.cjs": "d8bb777aec3b9fd7a6958bcb2028a4e578ba5cc0dae9f8b755424e1ef179b17c"
   },
   "policies": [
     {
@@ -195,13 +196,17 @@
       "policy": "interface-20260906",
       "scope": "project",
       "source": "framework/05_interface_system.md",
-      "checked_requirement": "13 页皮肤/明暗/宽度、认证外观、状态保持与安全链接；主画布手势边界、共享原材质保留、领域恢复、动画取代/迟到拒写/手动接管",
+      "checked_requirement": "13 页皮肤/明暗/宽度、认证外观、状态保持与安全链接；主画布手势边界、共享原材质保留、领域恢复、动画取代/迟到拒写/手动接管；研究摘要与完整视图全对象关联一致、页面研究就绪、挂载/缓存替换及失败重试",
       "tests": [
         "tests/ui_skin.cjs",
         "tests/auth_appearance.cjs",
         "tests/url_rendering.cjs",
         "tests/research_delivery.cjs",
-        "tests/part_dossier.cjs"
+        "tests/part_dossier.cjs",
+        "tests/research_summary.cjs",
+        "tests/unit/test_research.py::ReaderSnapshotHTTPTests.test_research_summary_shares_state_but_omits_content_catalog_and_reader_payload",
+        "tests/unit/test_research.py::ReaderSnapshotHTTPTests.test_summary_new_snapshot_replaces_associations_and_failed_retry_keeps_authority",
+        "tests/unit/test_research.py::ReaderSnapshotHTTPTests.test_summary_obeys_research_auth_boundary_before_building_state"
       ],
       "not_verified": [
         "截图矩阵不证明逐像素设计质量、屏幕阅读器体验或真实 3D 帧率；未修改页面的全站设计仍需持续人工体验验收。",
