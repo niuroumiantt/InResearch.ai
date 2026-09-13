@@ -69,7 +69,14 @@ def matches(row: dict, needle: str | None) -> bool:
     return needle.lower() in hay.lower()
 
 
-def resolve_document(rows, prefix, what='sha', allow_unregistered=True):
+def resolve_document(rows, prefix, what='sha', allow_unregistered=False):
+    """A sha or prefix -> the one judged document it names.
+
+    allow_unregistered 默认关掉（2026-09-13）：完整哈希原来免检，理由是「已读台账
+    认哈希不认判定」。代价出现了——手打错一位的 64 位哈希照样通过，record 收下事实
+    并往已读台账里写了一行不对应任何文件的记录。**自证的前提是那串东西真的指向什么**：
+    一个不在判定里的完整哈希既进不了队列、也标不了任何文件为已读，只会留一行垃圾。
+    """
     if not isinstance(prefix, str) or not prefix or not re.fullmatch(r'[0-9a-f]{1,64}', prefix):
         raise ValueError('%s 要给出小写十六进制 SHA 或前缀' % what)
     matches = [row for sha, row in rows.items() if sha.startswith(prefix)]
@@ -77,7 +84,12 @@ def resolve_document(rows, prefix, what='sha', allow_unregistered=True):
         return matches[0]
     if not matches and allow_unregistered and FULL_SHA.fullmatch(prefix):
         return {'sha256': prefix}
-    raise ValueError('%s 前缀「%s」匹配到 %d 份判定，要正好一份' % (what, prefix, len(matches)))
+    raise ValueError('%s「%s」匹配到 %d 份判定，要正好一份%s' % (
+        what, prefix, len(matches),
+        '。给长一点的前缀' if matches else
+        ('。这是个完整哈希，但库里没有这份文件——抄错了一位，还是这份还没进判定？'
+         if FULL_SHA.fullmatch(prefix) else
+         '。这个前缀不在 L1 判定里——抄错了，或者这份还没进判定')))
 
 
 def admission_problems(row):

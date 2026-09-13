@@ -26,13 +26,18 @@ class RecordTests(unittest.TestCase):
         self.facts = base / 'facts.json'
         self.facts.write_text(json.dumps(
             {'version': '0.1', 'records': []}, ensure_ascii=False), encoding='utf-8')
-        self._saved = (L2.facts_path, L2.read_log, L2.load_metrics)
+        self._saved = (L2.facts_path, L2.read_log, L2.load_metrics, L2.all_results)
         L2.facts_path = self.facts
         L2.read_log = base / 'l2_read.jsonl'
         L2.load_metrics = lambda: METRICS
+        # --doc 的完整哈希也要解得出一份判定（手打错一位的哈希不该通过），
+        # 所以夹具把这几个 sha 注册进判定表。
+        registered = {sha: {'sha256': sha, 'rel': '夹具.pdf', 'score': 9, 'status': 'ok'}
+                      for sha in (SHA, 'b' * 64, 'c' * 64)}
+        L2.all_results = lambda: registered
 
     def tearDown(self):
-        (L2.facts_path, L2.read_log, L2.load_metrics) = self._saved
+        (L2.facts_path, L2.read_log, L2.load_metrics, L2.all_results) = self._saved
         self.temp.cleanup()
 
     def record(self, facts, **flags):
@@ -140,11 +145,18 @@ class RecordTests(unittest.TestCase):
                 self.record([fact()], doc=SHA[:12])
         self.assertEqual(json.loads(self.facts.read_text(encoding='utf-8'))['records'], [])
 
-    def test_a_full_hash_needs_no_judgement_row(self):
-        """完整哈希自证：已读台账认哈希，不认判定。"""
+    def test_a_full_hash_that_names_no_document_is_refused(self):
+        """手打错一位的 64 位哈希曾照样通过，还往已读台账写了一行垃圾。
+
+        自证的前提是那串东西真的指向什么：不在判定里的完整哈希既进不了队列、
+        也标不了任何文件为已读。
+        """
         with self.resolving({}):
-            self.record([fact()], doc=SHA)
-        self.assertIn(SHA, L2.read_log.read_text(encoding='utf-8'))
+            with self.assertRaises(ValueError) as caught:
+                self.record([fact()], doc=SHA)
+        self.assertIn('完整哈希', str(caught.exception))
+        self.assertEqual(json.loads(self.facts.read_text(encoding='utf-8'))['records'], [])
+        self.assertFalse(L2.read_log.exists())
 
 
 class EffectiveResultTests(unittest.TestCase):
@@ -407,11 +419,14 @@ class EmptyBatchTests(unittest.TestCase):
         self.facts = base / 'facts.json'
         self.facts.write_text(json.dumps({'version': '0.1', 'records': []}),
                               encoding='utf-8')
-        self._saved = (L2.facts_path, L2.read_log, L2.load_metrics)
+        self._saved = (L2.facts_path, L2.read_log, L2.load_metrics, L2.all_results)
         L2.facts_path, L2.read_log, L2.load_metrics = self.facts, base / 'read.jsonl', lambda: METRICS
+        # --doc 的完整哈希也要解得出一份判定
+        L2.all_results = lambda: {'e' * 64: {'sha256': 'e' * 64, 'rel': '空批次.pdf',
+                                             'score': 9, 'status': 'ok'}}
 
     def tearDown(self):
-        (L2.facts_path, L2.read_log, L2.load_metrics) = self._saved
+        (L2.facts_path, L2.read_log, L2.load_metrics, L2.all_results) = self._saved
         self.temp.cleanup()
 
     def record(self, incoming, doc=None):
@@ -956,16 +971,40 @@ class DisputeRecordTests(unittest.TestCase):
         report, _ = self.record([fact(fact_id='caict-2021', value=111.6,
                                       asserter='中国信通院', disputes=['miit-2021'])])
         self.assertEqual(report['accepted'], 1)
-        self.assertEqual(report['disputes_pending_a'], 1)
+        self.assertEqual(report['disputes_recorded'], 1)
         stored = {f['fact_id']: f for f in
                   json.loads(self.facts.read_text(encoding='utf-8'))['records']}
         self.assertEqual(stored['miit-2021']['disputed_by'], ['caict-2021'])
 
+    # -- A 档分诊 --------------------------------------------------------
+    # 一份文献综述里十几个估计两两相连是几十对「争议」，全送进 A 档就把 A 档
+    # 淹掉，而淹掉比没有更糟：它让真正要人看的那几条排在第二十位。
+    def test_a_spread_within_method_noise_does_not_queue_for_the_owner(self):
+        """94 与 111.6 差 18%，是两家估计的离散，不是有人错了一个数量级。"""
+        report, tail = self.record([fact(fact_id='caict-2021', value=111.6,
+                                         asserter='中国信通院', disputes=['miit-2021'])])
+        self.assertEqual(report['disputes_pending_a'], 0)
+        self.assertEqual(report['disputes'][0]['kind'], FC.METHOD_DISPERSION)
+        self.assertIn('方法离散', tail)
+
+    def test_an_order_of_magnitude_gap_does_queue_for_the_owner(self):
+        """1,103 对 94 差 11.7 倍，必有一方口径不同或算错，要人看。"""
+        report, tail = self.record([fact(fact_id='ictresearch-2021', value=1103.43,
+                                         asserter='ICTresearch', disputes=['miit-2021'])])
+        self.assertEqual(report['disputes_pending_a'], 1)
+        self.assertEqual(report['disputes'][0]['kind'], FC.ORDER_OF_MAGNITUDE)
+        self.assertIn('C3 A 档待审', tail)
+
     def test_both_values_are_printed_side_by_side_for_the_owner(self):
-        _, tail = self.record([fact(fact_id='caict-2021', value=111.6,
-                                    asserter='中国信通院', disputes=['miit-2021'])])
+        _, tail = self.record([fact(fact_id='ictresearch-2021', value=1103.43,
+                                    asserter='ICTresearch', disputes=['miit-2021'])])
         self.assertIn('C3 A 档待审', tail)
         self.assertIn('工信部', tail)
-        self.assertIn('中国信通院', tail)
+        self.assertIn('ICTresearch', tail)
         self.assertIn('94', tail)
-        self.assertIn('111.6', tail)
+        self.assertIn('1103.43', tail)
+
+    def test_a_withheld_side_is_treated_as_needing_the_owner(self):
+        """看不见的差距不能假定它小。"""
+        self.assertEqual(FC.dispute_kind(None), FC.ORDER_OF_MAGNITUDE)
+        self.assertIsNone(FC.value_spread([{'value': None}, {'value': 94.0}]))

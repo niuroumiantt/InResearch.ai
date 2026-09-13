@@ -10,6 +10,9 @@ import unittest
 from unittest.mock import patch
 from inresearch.interfaces import deep_read as CLI
 from inresearch.knowledge import fact_contract as FC, provenance as PROV
+from inresearch.paths import project_root as _project_root
+
+FC_ROOT = _project_root()
 from inresearch.materials import reading_policy as POLICY, text_similarity as SIM
 from inresearch.delivery import reading_packet as PACKET
 from inresearch.storage import jsonl as JSONL
@@ -2448,6 +2451,62 @@ class FifthRoundGapTests(unittest.TestCase):
             self.assertNotIn(gid, open_ids, gid)
 
 
+
+
+class NatureDimTests(unittest.TestCase):
+    """「我们多信它」不进「同一个问题」的键，「测的是什么」必须留在里面。
+
+    2026-08-17 那条规则写了却没人执行：basis 在几乎每个指标里当口径维，于是
+    伯恩斯坦记「券商测算」113 TWh 与信通院记「实测」130 TWh 不在同一个键上，
+    两家对同一年差 15% 一声不响。而按维度名一刀切又会造出反向的错——
+    gas_turbine_backlog_years 的 basis 是分母，5.00 与 6.54 本来就是一件事的两个口径。
+    """
+
+    NATURE = {'metric_id': 'x', 'unit': 'TWh',
+              'caliber_dims': [{'id': 'region', 'values': ['CN']},
+                               {'id': 'basis', 'values': ['实测', '券商测算'],
+                                'nature': True}]}
+    MEASURED = {'metric_id': 'y', 'unit': '年',
+                'caliber_dims': [{'id': 'region', 'values': ['Global']},
+                                 {'id': 'basis',
+                                  'values': ['在手订单/年产能', '在手订单/年交付']}]}
+
+    def row(self, basis, metric_id='x', region='CN', **over):
+        return {'metric_id': metric_id, 'entity': {'id': 'e'}, 'as_of': '2022',
+                'caliber': {'region': region, 'basis': basis}, 'bound': 'point', **over}
+
+    def test_a_declared_nature_dim_drops_out_of_the_question(self):
+        a, b = self.row('实测'), self.row('券商测算')
+        self.assertEqual(FC.claim_identity(a, self.NATURE),
+                         FC.claim_identity(b, self.NATURE))
+
+    def test_an_undeclared_dim_keeps_the_two_apart(self):
+        """分母不是「我们多信它」：摘掉它会让一件事的两个口径互相报冲突。"""
+        a = self.row('在手订单/年产能', metric_id='y', region='Global')
+        b = self.row('在手订单/年交付', metric_id='y', region='Global')
+        self.assertNotEqual(FC.claim_identity(a, self.MEASURED),
+                            FC.claim_identity(b, self.MEASURED))
+
+    def test_without_the_metric_nothing_is_dropped(self):
+        """默认不摘：漏报一个冲突可以后补，凭空造一个假冲突会让人删真数据。"""
+        a, b = self.row('实测'), self.row('券商测算')
+        self.assertNotEqual(FC.claim_identity(a), FC.claim_identity(b))
+
+    def test_dedup_still_sees_the_whole_caliber(self):
+        """去重键不受声明影响，两条记录照样共存。"""
+        a, b = self.row('实测'), self.row('券商测算')
+        self.assertNotEqual(FC.claim_key({**a, 'asserter': '同一家'}),
+                            FC.claim_key({**b, 'asserter': '同一家'}))
+
+    def test_the_live_menu_keeps_the_overloaded_ones_in(self):
+        """库内这 11 个指标的 basis 记的是测的是什么，不能带 nature。"""
+        metrics = {m['metric_id']: m for m in json.loads(
+            (FC_ROOT / 'framework/metrics.json').read_text(encoding='utf-8'))['metrics']}
+        for mid in ('gas_turbine_backlog_years', 'transformer_lead_time',
+                    'cowos_capacity_wpm', 'bank_loan_share', 'sqm_per_rack'):
+            self.assertNotIn('basis', FC.nature_dims(metrics[mid]), mid)
+        # 而典型的数值性质维要带上，否则那条 15% 的分歧又被藏起来
+        self.assertIn('basis', FC.nature_dims(metrics['dc_electricity_consumption']))
 
 
 class AsserterTests(unittest.TestCase):

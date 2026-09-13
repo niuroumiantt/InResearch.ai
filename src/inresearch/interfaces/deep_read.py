@@ -27,7 +27,9 @@ def cmd_record(app, a):
         for problem in row['problems']:
             print('     - ' + problem)
     for pair in report.get('disputes', []):
-        print('  ⚖ C3 A 档待审：' + pair['about'])
+        mark = '⚖ C3 A 档待审' if pair.get('needs_owner') else '· 已登记（方法离散，不占 A 档）'
+        spread = ('极差 %.2fx' % pair['spread']) if pair.get('spread') else '极差未知'
+        print('  %s：%s（%s）' % (mark, pair['about'], spread))
         for side in pair['sides']:
             print('     %s %s %s [%s]\n        %s' % (
                 side['asserter'], side['value'], side['unit'], side['fact_id'], side['locator']))
