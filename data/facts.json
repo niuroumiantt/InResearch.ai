@@ -42110,6 +42110,482 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "WUE = 连续 12 个月内总水资源消耗量 ÷ 同期信息设备电能（附录 C），「水资源消耗量」未区分取水与消耗性水耗，water_basis 记未注明。评分到 0.6 L/kWh 封顶 100 分。不分缺水/丰水区。推荐性国标。"
+    },
+    {
+      "fact_id": "sa-mdc-google-ai-campus-power-202409",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "project",
+        "id": "google-ai-training-campus-sa-2024",
+        "label": "谷歌某 AI 训练园区（SemiAnalysis 2024-09 配图，原文未点名）"
+      },
+      "value": 300.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "US"
+      },
+      "as_of": "2024-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b9e581052410213d1689db01060d3c69a9cd0931e1b5b1e27a3b3e9b807cee61",
+        "local_file": "Multi-Datacenter Training_ OpenAI's Ambitious Plan To Beat Google's Infrastructure.pdf",
+        "locator": "第 3 页：「The AI Training campus shown above already has a power capacity close to 300MW and will ramp up to 500MW next year」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（Dylan Patel 等，2024-09-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「close to 300MW」「power capacity」未说明 IT 还是设施口径，capacity_type 记未披露。园区名称只在配图里，正文未点名；地域按谷歌美国园区上下文记 US（同段说依据谷歌环境报告 PUE 1.1）。**第三方卫星/模型推算，非谷歌披露。**同园区冷却系统可排热近 200MW。"
+    },
+    {
+      "fact_id": "sa-mdc-google-ai-campus-power-2025e",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "project",
+        "id": "google-ai-training-campus-sa-2024",
+        "label": "谷歌某 AI 训练园区（SemiAnalysis 2024-09 配图，原文未点名）"
+      },
+      "value": 500.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L6",
+        "region": "US"
+      },
+      "as_of": "2025E@2024-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b9e581052410213d1689db01060d3c69a9cd0931e1b5b1e27a3b3e9b807cee61",
+        "local_file": "Multi-Datacenter Training_ OpenAI's Ambitious Plan To Beat Google's Infrastructure.pdf",
+        "locator": "第 3 页：「…will ramp up to 500MW next year」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（Dylan Patel 等，2024-09-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「next year」＝2025（报告 2024-09-04）。status 记 L6：扩容部分在建，原文未给施工阶段。"
+    },
+    {
+      "fact_id": "sa-mdc-google-council-bluffs-west-it-202409",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "project",
+        "id": "google-council-bluffs-ia",
+        "label": "谷歌 Council Bluffs（爱荷华）园区西区"
+      },
+      "value": 300.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "as_of": "2024-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b9e581052410213d1689db01060d3c69a9cd0931e1b5b1e27a3b3e9b807cee61",
+        "local_file": "Multi-Datacenter Training_ OpenAI's Ambitious Plan To Beat Google's Infrastructure.pdf",
+        "locator": "第 6 页：「Google’s Council Bluffs Iowa site… with close to 300MW of IT capacity on the western portion despite being numerous years old」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（Dylan Patel 等，2024-09-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "仅西区；东区扩建未计。原文「close to」。第三方模型推算。"
+    },
+    {
+      "fact_id": "sa-mdc-google-omaha-region-2023",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "google-omaha-council-bluffs-region",
+        "label": "谷歌 Omaha / Council Bluffs 周边园区合计（含 Papillion）"
+      },
+      "value": 500.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "US"
+      },
+      "as_of": "2023",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "b9e581052410213d1689db01060d3c69a9cd0931e1b5b1e27a3b3e9b807cee61",
+        "local_file": "Multi-Datacenter Training_ OpenAI's Ambitious Plan To Beat Google's Infrastructure.pdf",
+        "locator": "第 7 页：「The Papillion campus shown below adds >250MW of capacity to Google’s operations around Omaha and Council Bluffs, which combined with the above totals north of 500MW of capacity in 2023, of which a large portion is allocated to TPUs」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（Dylan Patel 等，2024-09-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「north of 500MW」按下界记。Papillion 园区 >250MW 与 Council Bluffs 西区近 300MW（IT 口径）合计；本条原文只说 capacity，未写口径。四园区（另含 Omaha、Lincoln）2026 年将形成 GW 级训练集群。"
+    },
+    {
+      "fact_id": "sa-mdc-google-papillion-2023",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "project",
+        "id": "google-papillion-ne",
+        "label": "谷歌 Papillion 园区"
+      },
+      "value": 250.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "US"
+      },
+      "as_of": "2023",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "b9e581052410213d1689db01060d3c69a9cd0931e1b5b1e27a3b3e9b807cee61",
+        "local_file": "Multi-Datacenter Training_ OpenAI's Ambitious Plan To Beat Google's Infrastructure.pdf",
+        "locator": "第 7 页：「The Papillion campus shown below adds >250MW of capacity」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（Dylan Patel 等，2024-09-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「>250MW」按下界记；时点按同句「in 2023」。原文把 Papillion 写作 Iowa，实为内布拉斯加州。"
+    },
+    {
+      "fact_id": "sa-mdc-google-columbus-2025e",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "google-columbus-oh-cluster",
+        "label": "谷歌 Columbus（俄亥俄）三园区集群"
+      },
+      "value": 1000.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L6",
+        "region": "US"
+      },
+      "as_of": "2025E@2024-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b9e581052410213d1689db01060d3c69a9cd0931e1b5b1e27a3b3e9b807cee61",
+        "local_file": "Multi-Datacenter Training_ OpenAI's Ambitious Plan To Beat Google's Infrastructure.pdf",
+        "locator": "第 8 页：「Another upcoming GW-scale cluster is located around Columbus, Ohio… three campuses being developed and summing up to 1 Gigawatt by the end of 2025!」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（Dylan Patel 等，2024-09-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "三园区合计，2025 年底目标约 1GW；status 记 L6（being developed）。"
+    },
+    {
+      "fact_id": "sa-mdc-google-fleet-pue-2023",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "company",
+        "id": "google",
+        "label": "谷歌"
+      },
+      "value": 1.1,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "Global"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b9e581052410213d1689db01060d3c69a9cd0931e1b5b1e27a3b3e9b807cee61",
+        "local_file": "Multi-Datacenter Training_ OpenAI's Ambitious Plan To Beat Google's Infrastructure.pdf",
+        "locator": "第 3 页：「This system allows Google to run most of the year without using chillers, enabling a 1.1 PUE… in 2023, as per the latest environmental report」",
+        "grade": "S3",
+        "originator": "谷歌环境报告（经 SemiAnalysis 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "SemiAnalysis 转引谷歌环境报告。原文放在某 AI 园区段落里，但谷歌环境报告的 1.10 是全机队年均口径，故 entity 记谷歌、scale 未分档、region Global。"
+    },
+    {
+      "fact_id": "sa-mdc-msft-az-cluster-pue",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "microsoft-largest-training-cluster-az",
+        "label": "微软当前最大训练集群（亚利桑那，SemiAnalysis 2024-09）"
+      },
+      "value": 1.223,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "US"
+      },
+      "as_of": "2024-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b9e581052410213d1689db01060d3c69a9cd0931e1b5b1e27a3b3e9b807cee61",
+        "local_file": "Multi-Datacenter Training_ OpenAI's Ambitious Plan To Beat Google's Infrastructure.pdf",
+        "locator": "第 4 页：「Published data reveals a PUE of 1.223, but PUE calculation is advantageous to air-cooled systems as Fan Power inside the servers are not properly accounted for」",
+        "grade": "S3",
+        "originator": "微软公开数据（经 SemiAnalysis 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "风冷集群；SemiAnalysis 指出服务器内风扇功耗（风冷 H100 占服务器功耗 15%+，DLC <5%）不计入 PUE，故每瓦芯片功率微软实需额外约 45%+，谷歌约 15%。as_of 按报告时点，所引「published data」年份原文未写。"
+    },
+    {
+      "fact_id": "sa-mdc-msft-az-cluster-wue",
+      "metric_id": "dc_wue_limit",
+      "entity": {
+        "type": "project",
+        "id": "microsoft-largest-training-cluster-az",
+        "label": "微软当前最大训练集群（亚利桑那，SemiAnalysis 2024-09）"
+      },
+      "value": 2.24,
+      "unit": "L/kWh",
+      "caliber": {
+        "water_zone": "未划分",
+        "limit_type": "实测均值",
+        "region": "US",
+        "cooling_tech": "未注明",
+        "water_basis": "未注明",
+        "duty_window": "年均"
+      },
+      "as_of": "2024-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b9e581052410213d1689db01060d3c69a9cd0931e1b5b1e27a3b3e9b807cee61",
+        "local_file": "Multi-Datacenter Training_ OpenAI's Ambitious Plan To Beat Google's Infrastructure.pdf",
+        "locator": "第 5 页：「Microsoft requires a lot of water – showing a 2.24 Water Usage Effectiveness ratio (L/kWh), way above the group average of 0.49 and Google’s average slightly above 1」",
+        "grade": "S3",
+        "originator": "微软公开数据（经 SemiAnalysis 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "沙漠（亚利桑那）站点，单站点值。因用水引发负面报道，该园区后续数据中心改用风冷冷水机组，用水降但 PUE 升。"
+    },
+    {
+      "fact_id": "sa-mdc-msft-group-wue",
+      "metric_id": "dc_wue_limit",
+      "entity": {
+        "type": "company",
+        "id": "microsoft",
+        "label": "微软"
+      },
+      "value": 0.49,
+      "unit": "L/kWh",
+      "caliber": {
+        "water_zone": "未划分",
+        "limit_type": "实测均值",
+        "region": "Global",
+        "cooling_tech": "未注明",
+        "water_basis": "未注明",
+        "duty_window": "年均"
+      },
+      "as_of": "2024-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b9e581052410213d1689db01060d3c69a9cd0931e1b5b1e27a3b3e9b807cee61",
+        "local_file": "Multi-Datacenter Training_ OpenAI's Ambitious Plan To Beat Google's Infrastructure.pdf",
+        "locator": "第 5 页：「…way above the group average of 0.49」",
+        "grade": "S3",
+        "originator": "微软公开数据（经 SemiAnalysis 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "微软全集团平均。"
+    },
+    {
+      "fact_id": "sa-mdc-google-avg-wue",
+      "metric_id": "dc_wue_limit",
+      "entity": {
+        "type": "company",
+        "id": "google",
+        "label": "谷歌"
+      },
+      "value": 1.0,
+      "unit": "L/kWh",
+      "caliber": {
+        "water_zone": "未划分",
+        "limit_type": "实测均值",
+        "region": "Global",
+        "cooling_tech": "未注明",
+        "water_basis": "未注明",
+        "duty_window": "年均"
+      },
+      "as_of": "2024-09",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "b9e581052410213d1689db01060d3c69a9cd0931e1b5b1e27a3b3e9b807cee61",
+        "local_file": "Multi-Datacenter Training_ OpenAI's Ambitious Plan To Beat Google's Infrastructure.pdf",
+        "locator": "第 5 页：「…and Google’s average slightly above 1」",
+        "grade": "S3",
+        "originator": "谷歌公开数据（经 SemiAnalysis 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「slightly above 1」按下界记。"
+    },
+    {
+      "fact_id": "sa-mdc-core-scientific-contracted-power",
+      "metric_id": "contracted_power_capacity",
+      "entity": {
+        "type": "company",
+        "id": "core-scientific",
+        "label": "Core Scientific"
+      },
+      "value": 1.2,
+      "unit": "GW",
+      "caliber": {
+        "capacity_type": "合同锁定电力",
+        "basis": "合同约定",
+        "region": "US"
+      },
+      "as_of": "2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b9e581052410213d1689db01060d3c69a9cd0931e1b5b1e27a3b3e9b807cee61",
+        "local_file": "Multi-Datacenter Training_ OpenAI's Ambitious Plan To Beat Google's Infrastructure.pdf",
+        "locator": "第 46 页：「data from Core Scientific’s 10-K, showing 1.2GW of contracted capacity across multiple sites」",
+        "grade": "S3",
+        "originator": "Core Scientific 10-K（经 SemiAnalysis 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "出自 Core Scientific 10-K（原文未写财年，报告 2024-09 时最新为 FY2023，as_of 记 2023-12）。比特币矿企多站点合同电力，正转向 AI 托管。"
+    },
+    {
+      "fact_id": "sa-mdc-core-scientific-coreweave-382mw",
+      "metric_id": "contracted_capacity_mw",
+      "entity": {
+        "type": "company",
+        "id": "core-scientific",
+        "label": "Core Scientific"
+      },
+      "value": 382.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "含客户订单",
+        "region": "US"
+      },
+      "as_of": "2024-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b9e581052410213d1689db01060d3c69a9cd0931e1b5b1e27a3b3e9b807cee61",
+        "local_file": "Multi-Datacenter Training_ OpenAI's Ambitious Plan To Beat Google's Infrastructure.pdf",
+        "locator": "第 46 页：「struck a large deal with CoreWeave, covering 382MW of IT Power with a relatively short delivery timeline. CoreWeave will acquire the GB200 GPUs and rent them to Microsoft for OpenAI’s usage」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（Dylan Patel 等，2024-09-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "客户 CoreWeave，IT 功率口径；最终用户微软/OpenAI。签约日期原文未写，as_of 取报告时点。"
+    },
+    {
+      "fact_id": "sa-mdc-denton-gas-plant-225mw",
+      "metric_id": "btm_operational_mw",
+      "entity": {
+        "type": "project",
+        "id": "core-scientific-denton-tx",
+        "label": "Core Scientific Denton（得克萨斯）矿场改 AI 数据中心"
+      },
+      "value": 225.0,
+      "unit": "MW",
+      "caliber": {
+        "power_type": "燃气",
+        "status": "L8",
+        "region": "US"
+      },
+      "as_of": "2024-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b9e581052410213d1689db01060d3c69a9cd0931e1b5b1e27a3b3e9b807cee61",
+        "local_file": "Multi-Datacenter Training_ OpenAI's Ambitious Plan To Beat Google's Infrastructure.pdf",
+        "locator": "第 47 页：「The site has a 225MW natural power plant sitting in the middle of all the crypto mines」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（Dylan Patel 等，2024-09-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「natural power plant」应为 natural gas（天然气）电厂之漏字。SemiAnalysis 称改造后 PUE 仍将高于 1.3。"
+    },
+    {
+      "fact_id": "sa-mdc-frontier-cluster-2024",
+      "metric_id": "cluster_gpu_count",
+      "entity": {
+        "type": "market",
+        "id": "frontier-ai-training-clusters",
+        "label": "领先前沿 AI 训练集群（未点名）"
+      },
+      "value": 100000.0,
+      "unit": "颗",
+      "caliber": {
+        "scope": "单集群实际部署",
+        "accelerator": "GPU（未注明型号）",
+        "region": "Global",
+        "basis": "第三方估算"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b9e581052410213d1689db01060d3c69a9cd0931e1b5b1e27a3b3e9b807cee61",
+        "local_file": "Multi-Datacenter Training_ OpenAI's Ambitious Plan To Beat Google's Infrastructure.pdf",
+        "locator": "第 1 页：「The leading frontier AI model training clusters have scaled to 100,000 GPUs this year, with 300,000+ GPUs clusters in the works for 2025」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（Dylan Patel 等，2024-09-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "行业概括，未点名；2025 年 30 万+ 见下一条。"
+    },
+    {
+      "fact_id": "sa-mdc-frontier-cluster-2025e",
+      "metric_id": "cluster_gpu_count",
+      "entity": {
+        "type": "market",
+        "id": "frontier-ai-training-clusters",
+        "label": "领先前沿 AI 训练集群（未点名）"
+      },
+      "value": 300000.0,
+      "unit": "颗",
+      "caliber": {
+        "scope": "单集群实际部署",
+        "accelerator": "GPU（未注明型号）",
+        "region": "Global",
+        "basis": "第三方估算"
+      },
+      "as_of": "2025E@2024-09",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "b9e581052410213d1689db01060d3c69a9cd0931e1b5b1e27a3b3e9b807cee61",
+        "local_file": "Multi-Datacenter Training_ OpenAI's Ambitious Plan To Beat Google's Infrastructure.pdf",
+        "locator": "第 1 页：「…with 300,000+ GPUs clusters in the works for 2025」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（Dylan Patel 等，2024-09-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「300,000+」按下界记；在建。"
     }
   ]
 }
