@@ -40716,6 +40716,156 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "单位换算：1,660 亿 kWh = 166 TWh。**约占全社会用电量 1.68%**。原文口径是「算力中心」。**上一轮这份报告读时指标不存在、只记了缺口，这次按新菜单补录**。对照同机构 2024 年报告：2021 年 111.6、2022 年 130 TWh（caict-lc2024-cn-dc-electricity-*）——2022→2024 两年 +28%。"
+    },
+    {
+      "fact_id": "caimi-lc-wp-cn-dc-electricity-2022",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心/算力中心（合计）"
+      },
+      "value": 100.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2022",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "94afd959f1c3bec4dfdd2a114744dee580d61f185d8850ecc394c460b737b685",
+        "local_file": "中国计量科学研究院数据中心冷板式液冷测试验证技术白皮书.pdf",
+        "locator": "第 2 页前言、第 12 页正文：「2022 年总用电量突破 1000 亿千瓦时」",
+        "grade": "S3",
+        "originator": "工业和信息化部（经白皮书转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「突破 1000 亿千瓦时」= 超过 100 TWh，按下界记。转引工信部。信通院 2024 液冷报告同年记 130 TWh。"
+    },
+    {
+      "fact_id": "caimi-lc-wp-cn-rack-total-2022",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "value": 650.0,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2022",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "94afd959f1c3bec4dfdd2a114744dee580d61f185d8850ecc394c460b737b685",
+        "local_file": "中国计量科学研究院数据中心冷板式液冷测试验证技术白皮书.pdf",
+        "locator": "第 12 页正文：「《数字中国发展报告（2022 年）》，报告显示，我国数据中心机架总规模超过 650 万标准机架，近 5 年年均增速超过 30%」",
+        "grade": "S3",
+        "originator": "国家互联网信息办公室《数字中国发展报告（2022 年）》（经白皮书转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「超过 650 万标准机架」按下界记；时点为《数字中国发展报告（2022 年）》所述 2022 年末口径（2023 年 4 月网信办发布），原文未写具体月份。"
+    },
+    {
+      "fact_id": "caimi-lc-wp-cn-compute-2022",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "value": 180.0,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "总算力",
+        "precision": "混合/未注明",
+        "area": "全国",
+        "status": "在用",
+        "region": "CN",
+        "basis": "官方统计"
+      },
+      "as_of": "2022",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "94afd959f1c3bec4dfdd2a114744dee580d61f185d8850ecc394c460b737b685",
+        "local_file": "中国计量科学研究院数据中心冷板式液冷测试验证技术白皮书.pdf",
+        "locator": "第 12 页正文：「在用数据中心算力总规模超 180EFLOPS，位居世界第二」",
+        "grade": "S3",
+        "originator": "国家互联网信息办公室《数字中国发展报告（2022 年）》（经白皮书转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「超 180EFLOPS」按下界记；未注明精度。出自网信办《数字中国发展报告（2022 年）》，经白皮书转引。"
+    },
+    {
+      "fact_id": "caimi-lc-wp-case-rack-power-32kw",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "project",
+        "id": "caimi-lc-wp-case-coldplate-dc",
+        "label": "白皮书测试验证案例：某冷板式液冷数据中心（2 个液冷机房 × 100 架）"
+      },
+      "value": 32.0,
+      "unit": "kW/架",
+      "caliber": {
+        "basis": "设计取值",
+        "scope": "单柜上限",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "94afd959f1c3bec4dfdd2a114744dee580d61f185d8850ecc394c460b737b685",
+        "local_file": "中国计量科学研究院数据中心冷板式液冷测试验证技术白皮书.pdf",
+        "locator": "第 97 页（七）冷板式液冷项目测试验证案例分享：「每个液冷机房设计 100 架机柜，单机架设计功率为 32kW（液冷部分负荷功率为 22kW）」",
+        "grade": "S3",
+        "originator": "中国通信工业协会数据中心委员会、中国计量科学研究院（冷板式液冷测试验证技术白皮书，约 2023 年）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单机架设计功率 32kW，其中液冷部分 22kW（约 69%，其余由风墙冷却）。项目匿名，原文未写地点，按白皮书为国内测试单位案例记 CN；as_of 取白皮书成文年份（项目年份未写）。scope 记单柜上限＝每架设计功率，原文未区分平均与上限。"
+    },
+    {
+      "fact_id": "caimi-lc-wp-coldplate-supply-40c",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "component",
+        "id": "coldplate-secondary-loop-typical",
+        "label": "全液冷却冷板式系统二次侧（典型值）"
+      },
+      "value": 40.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "供水",
+        "design_basis": "未注明",
+        "cooling_tech": "冷板液冷",
+        "region": "CN",
+        "basis": "工程测算"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "94afd959f1c3bec4dfdd2a114744dee580d61f185d8850ecc394c460b737b685",
+        "local_file": "中国计量科学研究院数据中心冷板式液冷测试验证技术白皮书.pdf",
+        "locator": "第 103 页（CLF 分析段）：「全液冷却的冷板式液冷系统二次侧的冷却液供液温度在 40℃左右，所需一次侧冷却水供水温度为冷却液供液温度减去趋近温度（3-10℃）」",
+        "grade": "S3",
+        "originator": "中国通信工业协会数据中心委员会、中国计量科学研究院（冷板式液冷测试验证技术白皮书，约 2023 年）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「40℃左右」，为行业典型值表述而非某一项目实测。一次侧供水＝40℃减趋近温度 3-10℃，全国大部分地区冷却塔即可供给、无需压缩机；对比混合冷却模式风冷部分需 20℃以下冷液。"
     }
   ]
 }
