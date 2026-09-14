@@ -119974,6 +119974,38 @@
         "originator": "腾讯（ODCC 绿色设计优秀案例，经开放数据中心委员会（ODCC）《数据中心绿色设计白皮书》ODCC-2023-02001（2023-06））"
       },
       "notes": "年平均设计 PUE「控制在 1.25 以下」按上界记；HVDC+市电直供供电效率 98%；年完全自然冷却时间 64.3%，全年平均 CLF 0.1125。as_of 取白皮书发布月。"
+    },
+    {
+      "fact_id": "lingyi2022-sinnet-operating-racks-2021",
+      "metric_id": "operator_rack_capacity",
+      "asserter": "光环新网",
+      "entity": {
+        "type": "company",
+        "id": "sinnet",
+        "label": "光环新网"
+      },
+      "value": 4.4,
+      "unit": "万架",
+      "bound": "point",
+      "as_of": "2021-12",
+      "caliber": {
+        "status": "在运营",
+        "city_tier": "合计",
+        "subregion": "全国",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "evidence": {
+        "sha256": "a26f4ed657e3984cc5593f8dd1e3cf127d5fb80ebba69f6b738e4fbd35e89fda",
+        "local_file": "5C_2025_2025_零壹智库光环新网V_未署名.pdf",
+        "locator": "第 2 页 一、（一）：「截至 2021 年末，光环新网的机柜数量约为证通电子的 2.5 倍，其中，光环新网的已投产的机柜数量约 44000 个，证通电子的机柜数量约 17500 个」",
+        "grade": "S3",
+        "originator": "光环新网年报（经零壹智库《光环新网 VS 证通电子：“数据中心+云计算”厂商的全面比拼》（2022-07）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "约 44,000 个已投产机柜 = 4.4 万架，「约」按点值记；原文未说是物理机柜还是标准机架折算。证通电子约 17,500 个（注：按 4.4kW 标准机折算），原文未说已投产还是含在建，status 无法落，未录。"
     }
   ]
 }
