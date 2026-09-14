@@ -113500,6 +113500,1946 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "美元；前值 250 亿。**甲骨文 FY2026 为 2025-06 至 2026-05**。库内西南证券转引的 FY26Q2 业绩会指引为 500 亿（swsc-capex-guide-oracle-2026），是后一个时点的判断。**做出时点按该公司 2025Q2 业绩发布月记**（原文只写「公司预计」，未写日期；美股四家在 2025-07 末、甲骨文 FY26Q1 在 2025-09 发布），[未核]。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-sa-global-dc-additions-2025e",
+      "metric_id": "dc_capacity_additions_annual",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 13.8,
+      "unit": "GW/年",
+      "caliber": {
+        "power_scope": "IT 负载",
+        "facility_type": "数据中心整体",
+        "scenario": "单一情景",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 9 页 1.1.2：「根据SemiAnalysis数据，2025年全球数据中心新增装机约为13.8GW，其中AIDC累计新增装机10.9GW，到2025年AIDC累计新增装机占全球数据中心新增装机比例预计提升至79%。2023-2028年全球数据中心新增装机CAGR为24.5%，其中传统数据中心的增速略有下降，而AIDC的CAGR将会高达40.4%」；图注「核心IT电力需求是指给服务器供电所计算的电力消耗，不包括制冷等其他设备电力消耗」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "「约」按点值记；图注说明口径为核心 IT 电力需求（不含制冷等）。其中 AIDC 10.9GW（配对条目），占 79%；2023-2028 CAGR 全部 24.5%、AIDC 40.4%。**原始预测做出时点原文未写**，as_of 不带 @（不取转述报告时点）。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-sa-global-aidc-additions-2025e",
+      "metric_id": "dc_capacity_additions_annual",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "industry",
+        "id": "global-aidc",
+        "label": "全球 AI 数据中心"
+      },
+      "value": 10.9,
+      "unit": "GW/年",
+      "caliber": {
+        "power_scope": "IT 负载",
+        "facility_type": "智算中心",
+        "scenario": "单一情景",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 9 页 1.1.2：「根据SemiAnalysis数据，2025年全球数据中心新增装机约为13.8GW，其中AIDC累计新增装机10.9GW，到2025年AIDC累计新增装机占全球数据中心新增装机比例预计提升至79%。2023-2028年全球数据中心新增装机CAGR为24.5%，其中传统数据中心的增速略有下降，而AIDC的CAGR将会高达40.4%」；图注「核心IT电力需求是指给服务器供电所计算的电力消耗，不包括制冷等其他设备电力消耗」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "原文写「AIDC累计新增装机10.9GW」，「累计」与同句「2025年…新增装机」并用，按 2025 年新增理解（10.9 ÷ 13.8 = 79%，与原文占比一致）。facility_type 记智算中心（AIDC）。**原始预测做出时点原文未写**，as_of 不带 @（不取转述报告时点）。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-dcbyte-global-dc-supply-2018",
+      "metric_id": "global_dc_it_load",
+      "asserter": "DCbyte",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 17.2,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "未注明",
+        "scenario": "单一情景",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2018-12",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 9 页 1.1.2：「根据DCbyte数据，2018年末全球数据中心的总存量供应约为17.2GW，2023年末规模已激增至37GW，2018-2023年CAGR高达16.6%。且以2023年末为基准，待建数据中心（包括在建和已规划项目）的总规划供应量高达37.8GW」",
+        "grade": "S3",
+        "originator": "DCbyte（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "原文「总存量供应」，未说 IT 负载还是设施容量（同页图注的「核心IT电力需求」说明挂在 SemiAnalysis 那组数上），power_scope 记未注明。2018-2023 CAGR 16.6%。以 2023 年末为基准的待建（在建+规划）37.8GW 跨阶段，未录。库内 SemiAnalysis 2023 全球 IT 负载 49GW（global-it-load-2023）口径不同。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-dcbyte-global-dc-supply-2023",
+      "metric_id": "global_dc_it_load",
+      "asserter": "DCbyte",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 37.0,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "未注明",
+        "scenario": "单一情景",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2023-12",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 9 页 1.1.2：「根据DCbyte数据，2018年末全球数据中心的总存量供应约为17.2GW，2023年末规模已激增至37GW，2018-2023年CAGR高达16.6%。且以2023年末为基准，待建数据中心（包括在建和已规划项目）的总规划供应量高达37.8GW」",
+        "grade": "S3",
+        "originator": "DCbyte（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "原文「总存量供应」，未说 IT 负载还是设施容量（同页图注的「核心IT电力需求」说明挂在 SemiAnalysis 那组数上），power_scope 记未注明。2018-2023 CAGR 16.6%。以 2023 年末为基准的待建（在建+规划）37.8GW 跨阶段，未录。库内 SemiAnalysis 2023 全球 IT 负载 49GW（global-it-load-2023）口径不同。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-idc-global-aidc-it-energy-2025e",
+      "metric_id": "dc_electricity_consumption",
+      "asserter": "IDC",
+      "entity": {
+        "type": "industry",
+        "id": "global-aidc",
+        "label": "全球 AI 数据中心"
+      },
+      "value": 77.7,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "仅 AI 数据中心",
+        "energy_scope": "IT 设备能耗",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 10 页 1.1.2 趋势三：「根据IDC，2025年人工智能数据中心IT能耗（含服务器、存储系统和网络）增至77.7TWh，是2023年的两倍，2027年增长至146.2TWh，2022-2027年CAGR为44.8%」",
+        "grade": "S3",
+        "originator": "IDC（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "IT 能耗含服务器、存储与网络，不含制冷等设施能耗；2025 年为 2023 年两倍，2022-2027 CAGR 44.8%。**原始预测做出时点原文未写**，as_of 不带 @（不取转述报告时点）。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-idc-global-aidc-it-energy-2027e",
+      "metric_id": "dc_electricity_consumption",
+      "asserter": "IDC",
+      "entity": {
+        "type": "industry",
+        "id": "global-aidc",
+        "label": "全球 AI 数据中心"
+      },
+      "value": 146.2,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "仅 AI 数据中心",
+        "energy_scope": "IT 设备能耗",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2027E",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 10 页 1.1.2 趋势三：「根据IDC，2025年人工智能数据中心IT能耗（含服务器、存储系统和网络）增至77.7TWh，是2023年的两倍，2027年增长至146.2TWh，2022-2027年CAGR为44.8%」",
+        "grade": "S3",
+        "originator": "IDC（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "IT 能耗含服务器、存储与网络，不含制冷等设施能耗；2025 年为 2023 年两倍，2022-2027 CAGR 44.8%。**原始预测做出时点原文未写**，as_of 不带 @（不取转述报告时点）。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-sa-us-dc-electricity-2023",
+      "metric_id": "dc_electricity_consumption",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心"
+      },
+      "value": 196.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 13 页 1.1.5：「根据SemiAnalysis预测，美国数据中心用电量有望从2023年的196TWh增加至2028年的672TWh，用电占比从4.5%增长至14.6%」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "SemiAnalysis 模型给的 2023 年值（非统计上报），basis 记模型输出。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-sa-us-dc-electricity-2028e",
+      "metric_id": "dc_electricity_consumption",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心"
+      },
+      "value": 672.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "US",
+        "basis": "预测"
+      },
+      "as_of": "2028E",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 13 页 1.1.5：「根据SemiAnalysis预测，美国数据中心用电量有望从2023年的196TWh增加至2028年的672TWh，用电占比从4.5%增长至14.6%」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "库内 LBNL 2028 区间 325-580 TWh（rand-lbnl-*），SemiAnalysis 672 高于其上端。**原始预测做出时点原文未写**，as_of 不带 @（不取转述报告时点）。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-sa-us-dc-power-share-2023",
+      "metric_id": "dc_power_share_of_grid",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心"
+      },
+      "value": 4.5,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "basis": "第三方跟踪",
+        "region": "US"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 13 页 1.1.5：「根据SemiAnalysis预测，美国数据中心用电量有望从2023年的196TWh增加至2028年的672TWh，用电占比从4.5%增长至14.6%」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "「用电占比」按占全美用电量理解，原文未写分母。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-sa-us-dc-power-share-2028e",
+      "metric_id": "dc_power_share_of_grid",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心"
+      },
+      "value": 14.6,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "basis": "预测",
+        "region": "US"
+      },
+      "as_of": "2028E",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 13 页 1.1.5：「根据SemiAnalysis预测，美国数据中心用电量有望从2023年的196TWh增加至2028年的672TWh，用电占比从4.5%增长至14.6%」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "「用电占比」按占全美用电量理解，原文未写分母。**原始预测做出时点原文未写**，as_of 不带 @（不取转述报告时点）。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-jll-us-under-construction-2023h2",
+      "metric_id": "dc_capacity_mw",
+      "asserter": "JLL",
+      "entity": {
+        "type": "region",
+        "id": "us-dc-market",
+        "label": "美国数据中心市场"
+      },
+      "value": 5300.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L6",
+        "region": "US"
+      },
+      "as_of": "2023-H2",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 13 页 1.1.5：「根据JLL Research数据，2023年下半年美国在建的数据中心规模为5.3GW，其中约82%在一线市场」",
+        "grade": "S3",
+        "originator": "JLL（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "5.3 GW = 5,300 MW；约 82% 在一线市场。原文未说 IT 还是设施口径。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-sa-google-operating-capacity-2022",
+      "metric_id": "dc_capacity_mw",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "company",
+        "id": "google",
+        "label": "谷歌"
+      },
+      "value": 3000.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "Global"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 11 页 1.1.3：「根据SemiAnalysis，全球头部云厂商Google/Microsoft/Amazon2022年经营性数据中心产能分别为3/2.2/2.5GW，预计未来三家产能可分别达5.9/5.5/5GW」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "「经营性数据中心产能」记 L8；原文未说 IT 还是设施口径。原文另给「未来」可达 5.9 GW，无年份，未录。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-sa-microsoft-operating-capacity-2022",
+      "metric_id": "dc_capacity_mw",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "company",
+        "id": "microsoft",
+        "label": "微软"
+      },
+      "value": 2200.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "Global"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 11 页 1.1.3：「根据SemiAnalysis，全球头部云厂商Google/Microsoft/Amazon2022年经营性数据中心产能分别为3/2.2/2.5GW，预计未来三家产能可分别达5.9/5.5/5GW」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "「经营性数据中心产能」记 L8；原文未说 IT 还是设施口径。原文另给「未来」可达 5.5 GW，无年份，未录。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-sa-amazon-operating-capacity-2022",
+      "metric_id": "dc_capacity_mw",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "company",
+        "id": "amazon",
+        "label": "亚马逊"
+      },
+      "value": 2500.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "Global"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 11 页 1.1.3：「根据SemiAnalysis，全球头部云厂商Google/Microsoft/Amazon2022年经营性数据中心产能分别为3/2.2/2.5GW，预计未来三家产能可分别达5.9/5.5/5GW」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "「经营性数据中心产能」记 L8；原文未说 IT 还是设施口径。原文另给「未来」可达 5.0 GW，无年份，未录。"
+    },
+    {
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-woodmac-us-transformer-lead-avg-2021",
+      "metric_id": "transformer_lead_time",
+      "asserter": "Wood Mackenzie",
+      "entity": {
+        "type": "industry",
+        "id": "us-power-transformers",
+        "label": "美国电力变压器"
+      },
+      "value": 11.54,
+      "unit": "月",
+      "derivation": "50 周 × 12 ÷ 52 = 11.54 月",
+      "caliber": {
+        "basis": "未披露",
+        "voltage": "未披露",
+        "region": "US"
+      },
+      "as_of": "2021",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 37 页 3.2：「根据Wood Mackenzie，美国的电力变压器订单平均交付周期已经从2021年的50周延长至2024年的120周，容量较大的主变压器（变电站及升压变压器），交货时间为80到210周」",
+        "grade": "S3",
+        "originator": "Wood Mackenzie（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "原文单位为周：订单平均交付周期 50 周。电压等级原文未写；主变压器那组是「容量较大」的一类，与平均值不是同一样本，但 voltage 维无法据此落档。"
+    },
+    {
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-woodmac-us-transformer-lead-avg-2024",
+      "metric_id": "transformer_lead_time",
+      "asserter": "Wood Mackenzie",
+      "entity": {
+        "type": "industry",
+        "id": "us-power-transformers",
+        "label": "美国电力变压器"
+      },
+      "value": 27.69,
+      "unit": "月",
+      "derivation": "120 周 × 12 ÷ 52 = 27.69 月",
+      "caliber": {
+        "basis": "未披露",
+        "voltage": "未披露",
+        "region": "US"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 37 页 3.2：「根据Wood Mackenzie，美国的电力变压器订单平均交付周期已经从2021年的50周延长至2024年的120周，容量较大的主变压器（变电站及升压变压器），交货时间为80到210周」",
+        "grade": "S3",
+        "originator": "Wood Mackenzie（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "原文单位为周：订单平均交付周期 120 周。电压等级原文未写；主变压器那组是「容量较大」的一类，与平均值不是同一样本，但 voltage 维无法据此落档。"
+    },
+    {
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "bound": "lower",
+      "fact_id": "ghzq2506-woodmac-us-transformer-lead-large-2024-lower",
+      "metric_id": "transformer_lead_time",
+      "asserter": "Wood Mackenzie",
+      "entity": {
+        "type": "industry",
+        "id": "us-power-transformers",
+        "label": "美国电力变压器"
+      },
+      "value": 18.46,
+      "unit": "月",
+      "derivation": "80 周 × 12 ÷ 52 = 18.46 月",
+      "caliber": {
+        "basis": "未披露",
+        "voltage": "未披露",
+        "region": "US"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 37 页 3.2：「根据Wood Mackenzie，美国的电力变压器订单平均交付周期已经从2021年的50周延长至2024年的120周，容量较大的主变压器（变电站及升压变压器），交货时间为80到210周」",
+        "grade": "S3",
+        "originator": "Wood Mackenzie（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "原文单位为周：容量较大的主变压器（变电站及升压变压器）交货时间区间下端 80 周。电压等级原文未写；主变压器那组是「容量较大」的一类，与平均值不是同一样本，但 voltage 维无法据此落档。"
+    },
+    {
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "bound": "upper",
+      "fact_id": "ghzq2506-woodmac-us-transformer-lead-large-2024-upper",
+      "metric_id": "transformer_lead_time",
+      "asserter": "Wood Mackenzie",
+      "entity": {
+        "type": "industry",
+        "id": "us-power-transformers",
+        "label": "美国电力变压器"
+      },
+      "value": 48.46,
+      "unit": "月",
+      "derivation": "210 周 × 12 ÷ 52 = 48.46 月",
+      "caliber": {
+        "basis": "未披露",
+        "voltage": "未披露",
+        "region": "US"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 37 页 3.2：「根据Wood Mackenzie，美国的电力变压器订单平均交付周期已经从2021年的50周延长至2024年的120周，容量较大的主变压器（变电站及升压变压器），交货时间为80到210周」",
+        "grade": "S3",
+        "originator": "Wood Mackenzie（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "原文单位为周：容量较大的主变压器（变电站及升压变压器）交货时间区间上端 210 周。电压等级原文未写；主变压器那组是「容量较大」的一类，与平均值不是同一样本，但 voltage 维无法据此落档。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-china-mobile-capex-plan-2025",
+      "metric_id": "hyperscaler_capex_total",
+      "asserter": "中国移动",
+      "entity": {
+        "type": "company",
+        "id": "china-mobile",
+        "label": "中国移动"
+      },
+      "value": 1512.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "单一公司",
+        "capex_scope": "全部 capex",
+        "basis": "厂商指引",
+        "vintage": "其他快照",
+        "region": "CN",
+        "currency": "人民币"
+      },
+      "as_of": "2025E@2025-03",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 12 页「表：全球核心运营商/云厂商资本开支计划」：中国移动「2025年资本开支1512亿元，其中算力开支373亿元，占比提升至25%」",
+        "grade": "S3",
+        "originator": "中国移动（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "其中算力开支 373 亿元、占 25%（capex_scope 无「算力」取值，未另录）。 **做出时点按各公司年报/业绩会发布月记，[未核]**；表格文字层行列交错，公司与数值的对应按版面读出。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-china-telecom-capex-plan-2025",
+      "metric_id": "hyperscaler_capex_total",
+      "asserter": "中国电信",
+      "entity": {
+        "type": "company",
+        "id": "china-telecom",
+        "label": "中国电信"
+      },
+      "value": 836.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "单一公司",
+        "capex_scope": "全部 capex",
+        "basis": "厂商指引",
+        "vintage": "其他快照",
+        "region": "CN",
+        "currency": "人民币"
+      },
+      "as_of": "2025E@2025-03",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 12 页「表：全球核心运营商/云厂商资本开支计划」：中国电信「2025年资本开支836亿元，其中算力相关资本开支同比增长超……（百分比在表格文字层中错位，未录）」",
+        "grade": "S3",
+        "originator": "中国电信（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": " **做出时点按各公司年报/业绩会发布月记，[未核]**；表格文字层行列交错，公司与数值的对应按版面读出。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-china-unicom-capex-plan-2025",
+      "metric_id": "hyperscaler_capex_total",
+      "asserter": "中国联通",
+      "entity": {
+        "type": "company",
+        "id": "china-unicom",
+        "label": "中国联通"
+      },
+      "value": 550.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "单一公司",
+        "capex_scope": "全部 capex",
+        "basis": "厂商指引",
+        "vintage": "其他快照",
+        "region": "CN",
+        "currency": "人民币"
+      },
+      "as_of": "2025E@2025-03",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 12 页「表：全球核心运营商/云厂商资本开支计划」：中国联通「2025年预计固定资产投资约550亿元，其中算力投资同比增长……（百分比在表格文字层中错位，未录）」",
+        "grade": "S3",
+        "originator": "中国联通（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "原文作「固定资产投资」，按资本开支记。 **做出时点按各公司年报/业绩会发布月记，[未核]**；表格文字层行列交错，公司与数值的对应按版面读出。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-amazon-capex-plan-2025",
+      "metric_id": "hyperscaler_capex_total",
+      "asserter": "亚马逊",
+      "entity": {
+        "type": "company",
+        "id": "amazon",
+        "label": "亚马逊"
+      },
+      "value": 1000.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "单一公司",
+        "capex_scope": "全部 capex",
+        "basis": "厂商指引",
+        "vintage": "其他快照",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025E@2025-02",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 12 页「表：全球核心运营商/云厂商资本开支计划」：亚马逊「计划在2025年投入1000亿美元，主要用于云计算业务（AWS）和AI技术的研发」",
+        "grade": "S3",
+        "originator": "亚马逊（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": " **做出时点按各公司年报/业绩会发布月记，[未核]**；表格文字层行列交错，公司与数值的对应按版面读出。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-microsoft-capex-plan-2025",
+      "metric_id": "hyperscaler_capex_total",
+      "asserter": "微软",
+      "entity": {
+        "type": "company",
+        "id": "microsoft",
+        "label": "微软"
+      },
+      "value": 800.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "单一公司",
+        "capex_scope": "全部 capex",
+        "basis": "厂商指引",
+        "vintage": "其他快照",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025E@2025-01",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 12 页「表：全球核心运营商/云厂商资本开支计划」：微软「计划在2025年投入800亿美元，用于扩建数据中心和AI模型训练」",
+        "grade": "S3",
+        "originator": "微软（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "微软这 800 亿美元为 FY2025（至 2025-06），原文写作 2025 年。 **做出时点按各公司年报/业绩会发布月记，[未核]**；表格文字层行列交错，公司与数值的对应按版面读出。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-google-capex-plan-2025",
+      "metric_id": "hyperscaler_capex_total",
+      "asserter": "谷歌",
+      "entity": {
+        "type": "company",
+        "id": "google",
+        "label": "谷歌"
+      },
+      "value": 750.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "单一公司",
+        "capex_scope": "全部 capex",
+        "basis": "厂商指引",
+        "vintage": "其他快照",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025E@2025-02",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 12 页「表：全球核心运营商/云厂商资本开支计划」：谷歌「计划在2025年投入750亿美元，主要用于服务器和数据中心投资」",
+        "grade": "S3",
+        "originator": "谷歌（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "库内后续时点的指引：850 亿（@2025-07）、910-930 亿（@2025-10），并列。 **做出时点按各公司年报/业绩会发布月记，[未核]**；表格文字层行列交错，公司与数值的对应按版面读出。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-us-big4-capex-2024",
+      "metric_id": "hyperscaler_capex_total",
+      "asserter": "国海证券",
+      "entity": {
+        "type": "industry",
+        "id": "us-big4-cloud",
+        "label": "北美四大云厂商（合计）"
+      },
+      "value": 2248.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "北美四家",
+        "capex_scope": "未注明",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 12 页 1.1.4：「2024年美国四大云厂商资本支出高达2248亿美元……2024年，四家厂商合计资本开支同比增加57%」",
+        "grade": "S3",
+        "originator": "国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）"
+      },
+      "notes": "亚马逊、微软、谷歌、Meta 四家合计，同比 +57%；国海按各家财报加总，断言者记国海。同页阿里巴巴+腾讯 2024 年合计 1526 亿元（+169%），scope 无「两家」取值，未录。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-kezhi-sea6-dc-it-capacity-2023",
+      "metric_id": "global_dc_it_load",
+      "asserter": "科智咨询",
+      "entity": {
+        "type": "region",
+        "id": "sea-6-countries",
+        "label": "东南亚六国数据中心（科智口径）"
+      },
+      "value": 1.7,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "IT 负载",
+        "scenario": "单一情景",
+        "region": "APAC",
+        "basis": "实测"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 15 页 1.1.5：「根据科智咨询数据，2023年下图中东南亚六国数据中心IT容量合计1.7GW，同比增长8.2%……预计下图中东南亚六国2023-2028年数据中心规模CAGR有望为17.1%，至2028年达到3.8GW」",
+        "grade": "S3",
+        "originator": "科智咨询（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "「东南亚六国」指原图中的六国，名单文字层未给出。2023 同比 +8.2%，2023-2028 CAGR 17.1%。库内 BCG 东南亚 2023 年 1.69GW（bcg2024-sea-capacity-2023）国家范围与口径可能不同。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-kezhi-sea6-dc-it-capacity-2028e",
+      "metric_id": "global_dc_it_load",
+      "asserter": "科智咨询",
+      "entity": {
+        "type": "region",
+        "id": "sea-6-countries",
+        "label": "东南亚六国数据中心（科智口径）"
+      },
+      "value": 3.8,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "IT 负载",
+        "scenario": "单一情景",
+        "region": "APAC",
+        "basis": "预测"
+      },
+      "as_of": "2028E",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 15 页 1.1.5：「根据科智咨询数据，2023年下图中东南亚六国数据中心IT容量合计1.7GW，同比增长8.2%……预计下图中东南亚六国2023-2028年数据中心规模CAGR有望为17.1%，至2028年达到3.8GW」",
+        "grade": "S3",
+        "originator": "科智咨询（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "「东南亚六国」指原图中的六国，名单文字层未给出。2023 同比 +8.2%，2023-2028 CAGR 17.1%。库内 BCG 东南亚 2023 年 1.69GW（bcg2024-sea-capacity-2023）国家范围与口径可能不同。**原始预测做出时点原文未写**，as_of 不带 @（不取转述报告时点）。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-kezhi-cn-liquid-cooling-dc-market-2022",
+      "metric_id": "liquid_cooling_market_size",
+      "asserter": "科智咨询",
+      "entity": {
+        "type": "market",
+        "id": "cn-liquid-cooling-dc",
+        "label": "中国液冷数据中心市场"
+      },
+      "value": 100.5,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "全国液冷",
+        "currency": "人民币",
+        "cooling_route": "未注明",
+        "basis": "第三方跟踪",
+        "region": "CN"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 69 页 5.2：「据科智咨询数据，2022年中国液冷数据中心市场规模达到100.5亿元，同比增长47.2%，其中液冷服务器市场规模80.3亿元，同比增长45.5%」",
+        "grade": "S3",
+        "originator": "科智咨询（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "同比 +47.2%；**含液冷服务器 80.3 亿元**（另记于 ai_compute_market_size），不是纯液冷设备市场。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-kezhi-cn-liquid-cooled-server-market-2022",
+      "metric_id": "ai_compute_market_size",
+      "asserter": "科智咨询",
+      "entity": {
+        "type": "market",
+        "id": "cn-liquid-cooled-servers",
+        "label": "中国液冷服务器市场"
+      },
+      "value": 80.3,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "液冷服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 69 页 5.2：「据科智咨询数据，2022年中国液冷数据中心市场规模达到100.5亿元，同比增长47.2%，其中液冷服务器市场规模80.3亿元，同比增长45.5%」",
+        "grade": "S3",
+        "originator": "科智咨询（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "同比 +45.5%；是液冷数据中心市场 100.5 亿元的一部分。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-gmi-global-dc-transformer-2023",
+      "metric_id": "dc_power_equipment_market_size",
+      "asserter": "Global Market Insights",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-transformer",
+        "label": "全球数据中心变压器市场"
+      },
+      "value": 92.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "变压器",
+        "service_scope": "未注明",
+        "facility_type": "数据中心整体",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 36 页 3.2：「根据Global Market Insights数据，2023年全球数据中心变压器市场规模为92亿美元，预计2032年市场规模将达到168亿美元，2023-2032年CAGR为6.9%」",
+        "grade": "S3",
+        "originator": "Global Market Insights（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "2023-2032 CAGR 6.9%。 是否含安装服务原文未说。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-gmi-global-dc-transformer-2032e",
+      "metric_id": "dc_power_equipment_market_size",
+      "asserter": "Global Market Insights",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-transformer",
+        "label": "全球数据中心变压器市场"
+      },
+      "value": 168.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "变压器",
+        "service_scope": "未注明",
+        "facility_type": "数据中心整体",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2032E",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 36 页 3.2：「根据Global Market Insights数据，2023年全球数据中心变压器市场规模为92亿美元，预计2032年市场规模将达到168亿美元，2023-2032年CAGR为6.9%」",
+        "grade": "S3",
+        "originator": "Global Market Insights（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "**原始预测做出时点原文未写**，as_of 不带 @（不取转述报告时点）。 是否含安装服务原文未说。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-gmi-us-dc-transformer-2023",
+      "metric_id": "dc_power_equipment_market_size",
+      "asserter": "Global Market Insights",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-transformer",
+        "label": "美国数据中心变压器市场"
+      },
+      "value": 31.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "变压器",
+        "service_scope": "未注明",
+        "facility_type": "数据中心整体",
+        "currency": "美元",
+        "region": "US",
+        "basis": "行业机构"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 37 页 3.2：「根据Global Market Insights，2023年美国数据中心变压器规模为31亿美元，全球占比34%」",
+        "grade": "S3",
+        "originator": "Global Market Insights（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "全球占比 34%（31 ÷ 92 = 33.7%，一致）。 是否含安装服务原文未说。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-gmi-global-dc-ups-2022",
+      "metric_id": "dc_power_equipment_market_size",
+      "asserter": "Global Market Insights",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-ups",
+        "label": "全球数据中心UPS市场"
+      },
+      "value": 42.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "UPS",
+        "service_scope": "未注明",
+        "facility_type": "数据中心整体",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 43 页 4.1.1：「根据Global Market Insights数据……驱动全球数据中心UPS市场规模从2022年的42亿美元，以5.5%的复合增长率增长至2032年的73亿美元」",
+        "grade": "S3",
+        "originator": "Global Market Insights（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "CAGR 5.5%。 是否含安装服务原文未说。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-gmi-global-dc-ups-2032e",
+      "metric_id": "dc_power_equipment_market_size",
+      "asserter": "Global Market Insights",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-ups",
+        "label": "全球数据中心UPS市场"
+      },
+      "value": 73.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "UPS",
+        "service_scope": "未注明",
+        "facility_type": "数据中心整体",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2032E",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 43 页 4.1.1：「……全球数据中心UPS市场规模从2022年的42亿美元，以5.5%的复合增长率增长至2032年的73亿美元」",
+        "grade": "S3",
+        "originator": "Global Market Insights（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "**原始预测做出时点原文未写**，as_of 不带 @（不取转述报告时点）。 是否含安装服务原文未说。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-gmi-global-dc-ats-switchgear-2024",
+      "metric_id": "dc_power_infra_market_size",
+      "asserter": "Global Market Insights",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-ats-switchgear",
+        "label": "全球数据中心 ATS 及开关柜市场"
+      },
+      "value": 3700.0,
+      "unit": "百万美元",
+      "caliber": {
+        "dc_type": "全部类型",
+        "component": "开关设备",
+        "measure": "市场规模金额",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 39 页 3.3：「根据Global Market Insights，全球数据中心ATS及开关柜市场有望从2024年的37亿美元增长至2034年的99亿美元，CAGR为10.3%，市场整体竞争较为激烈，头部ABB、维谛、施耐德、伊顿等企业CR7为35%」",
+        "grade": "S3",
+        "originator": "Global Market Insights（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "37 亿美元 = 3,700 百万美元。component 记开关设备，原文含 ATS（自动转换开关）。头部 ABB、维谛、施耐德、伊顿等 CR7 为 35%。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-gmi-global-dc-ats-switchgear-2034e",
+      "metric_id": "dc_power_infra_market_size",
+      "asserter": "Global Market Insights",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-ats-switchgear",
+        "label": "全球数据中心 ATS 及开关柜市场"
+      },
+      "value": 9900.0,
+      "unit": "百万美元",
+      "caliber": {
+        "dc_type": "全部类型",
+        "component": "开关设备",
+        "measure": "市场规模金额",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2034E",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 39 页 3.3：「根据Global Market Insights，全球数据中心ATS及开关柜市场有望从2024年的37亿美元增长至2034年的99亿美元，CAGR为10.3%，市场整体竞争较为激烈，头部ABB、维谛、施耐德、伊顿等企业CR7为35%」",
+        "grade": "S3",
+        "originator": "Global Market Insights（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
+      },
+      "notes": "37 亿美元 = 3,700 百万美元。component 记开关设备，原文含 ATS（自动转换开关）。2024-2034 CAGR 10.3%。**原始预测做出时点原文未写**，as_of 不带 @（不取转述报告时点）。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-model-cn-aidc-ups-market-2023",
+      "metric_id": "dc_power_equipment_market_size",
+      "asserter": "国海证券",
+      "entity": {
+        "type": "market",
+        "id": "cn-aidc-ups",
+        "label": "中国AI 数据中心 UPS 市场空间（国海测算）"
+      },
+      "value": 5.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "UPS",
+        "service_scope": "未注明",
+        "facility_type": "智算中心",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 46 页「表：全球及中国HVDC及UPS市场空间测算」，UPS国内市场空间（亿元） 行 2023 列 = 5",
+        "grade": "S3",
+        "originator": "国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）"
+      },
+      "notes": "国海自己的测算：AI 数据中心装机容量 × 国内/海外占比 × UPS/HVDC 冗余度（2023-2025 为 2，2026 起 1.9）× 渗透率 × 单价（国内 2023 年 UPS 0.53 元/W、HVDC 高 25%；海外 UPS 1.1 元/W、HVDC 1.4 元/W）。HVDC 渗透率假设国内 15%→30%、海外 5%→60%。**口径是 AI 数据中心新增装机带来的设备空间**，不是存量市场；「全球」= 国内 + 海外。2023 年亦为国海估算。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-model-cn-aidc-ups-market-2024e",
+      "metric_id": "dc_power_equipment_market_size",
+      "asserter": "国海证券",
+      "entity": {
+        "type": "market",
+        "id": "cn-aidc-ups",
+        "label": "中国AI 数据中心 UPS 市场空间（国海测算）"
+      },
+      "value": 14.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "UPS",
+        "service_scope": "未注明",
+        "facility_type": "智算中心",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2024E@2025-06",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 46 页「表：全球及中国HVDC及UPS市场空间测算」，UPS国内市场空间（亿元） 行 2024E 列 = 14",
+        "grade": "S3",
+        "originator": "国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）"
+      },
+      "notes": "国海自己的测算：AI 数据中心装机容量 × 国内/海外占比 × UPS/HVDC 冗余度（2023-2025 为 2，2026 起 1.9）× 渗透率 × 单价（国内 2023 年 UPS 0.53 元/W、HVDC 高 25%；海外 UPS 1.1 元/W、HVDC 1.4 元/W）。HVDC 渗透率假设国内 15%→30%、海外 5%→60%。**口径是 AI 数据中心新增装机带来的设备空间**，不是存量市场；「全球」= 国内 + 海外。2023 年亦为国海估算。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-model-cn-aidc-ups-market-2025e",
+      "metric_id": "dc_power_equipment_market_size",
+      "asserter": "国海证券",
+      "entity": {
+        "type": "market",
+        "id": "cn-aidc-ups",
+        "label": "中国AI 数据中心 UPS 市场空间（国海测算）"
+      },
+      "value": 24.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "UPS",
+        "service_scope": "未注明",
+        "facility_type": "智算中心",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2025E@2025-06",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 46 页「表：全球及中国HVDC及UPS市场空间测算」，UPS国内市场空间（亿元） 行 2025E 列 = 24",
+        "grade": "S3",
+        "originator": "国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）"
+      },
+      "notes": "国海自己的测算：AI 数据中心装机容量 × 国内/海外占比 × UPS/HVDC 冗余度（2023-2025 为 2，2026 起 1.9）× 渗透率 × 单价（国内 2023 年 UPS 0.53 元/W、HVDC 高 25%；海外 UPS 1.1 元/W、HVDC 1.4 元/W）。HVDC 渗透率假设国内 15%→30%、海外 5%→60%。**口径是 AI 数据中心新增装机带来的设备空间**，不是存量市场；「全球」= 国内 + 海外。2023 年亦为国海估算。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-model-cn-aidc-ups-market-2026e",
+      "metric_id": "dc_power_equipment_market_size",
+      "asserter": "国海证券",
+      "entity": {
+        "type": "market",
+        "id": "cn-aidc-ups",
+        "label": "中国AI 数据中心 UPS 市场空间（国海测算）"
+      },
+      "value": 37.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "UPS",
+        "service_scope": "未注明",
+        "facility_type": "智算中心",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2025-06",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 46 页「表：全球及中国HVDC及UPS市场空间测算」，UPS国内市场空间（亿元） 行 2026E 列 = 37",
+        "grade": "S3",
+        "originator": "国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）"
+      },
+      "notes": "国海自己的测算：AI 数据中心装机容量 × 国内/海外占比 × UPS/HVDC 冗余度（2023-2025 为 2，2026 起 1.9）× 渗透率 × 单价（国内 2023 年 UPS 0.53 元/W、HVDC 高 25%；海外 UPS 1.1 元/W、HVDC 1.4 元/W）。HVDC 渗透率假设国内 15%→30%、海外 5%→60%。**口径是 AI 数据中心新增装机带来的设备空间**，不是存量市场；「全球」= 国内 + 海外。2023 年亦为国海估算。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-model-cn-aidc-ups-market-2027e",
+      "metric_id": "dc_power_equipment_market_size",
+      "asserter": "国海证券",
+      "entity": {
+        "type": "market",
+        "id": "cn-aidc-ups",
+        "label": "中国AI 数据中心 UPS 市场空间（国海测算）"
+      },
+      "value": 52.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "UPS",
+        "service_scope": "未注明",
+        "facility_type": "智算中心",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2027E@2025-06",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 46 页「表：全球及中国HVDC及UPS市场空间测算」，UPS国内市场空间（亿元） 行 2027E 列 = 52",
+        "grade": "S3",
+        "originator": "国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）"
+      },
+      "notes": "国海自己的测算：AI 数据中心装机容量 × 国内/海外占比 × UPS/HVDC 冗余度（2023-2025 为 2，2026 起 1.9）× 渗透率 × 单价（国内 2023 年 UPS 0.53 元/W、HVDC 高 25%；海外 UPS 1.1 元/W、HVDC 1.4 元/W）。HVDC 渗透率假设国内 15%→30%、海外 5%→60%。**口径是 AI 数据中心新增装机带来的设备空间**，不是存量市场；「全球」= 国内 + 海外。2023 年亦为国海估算。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-model-cn-aidc-ups-market-2028e",
+      "metric_id": "dc_power_equipment_market_size",
+      "asserter": "国海证券",
+      "entity": {
+        "type": "market",
+        "id": "cn-aidc-ups",
+        "label": "中国AI 数据中心 UPS 市场空间（国海测算）"
+      },
+      "value": 60.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "UPS",
+        "service_scope": "未注明",
+        "facility_type": "智算中心",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2028E@2025-06",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 46 页「表：全球及中国HVDC及UPS市场空间测算」，UPS国内市场空间（亿元） 行 2028E 列 = 60",
+        "grade": "S3",
+        "originator": "国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）"
+      },
+      "notes": "国海自己的测算：AI 数据中心装机容量 × 国内/海外占比 × UPS/HVDC 冗余度（2023-2025 为 2，2026 起 1.9）× 渗透率 × 单价（国内 2023 年 UPS 0.53 元/W、HVDC 高 25%；海外 UPS 1.1 元/W、HVDC 1.4 元/W）。HVDC 渗透率假设国内 15%→30%、海外 5%→60%。**口径是 AI 数据中心新增装机带来的设备空间**，不是存量市场；「全球」= 国内 + 海外。2023 年亦为国海估算。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-model-cn-aidc-hvdc-market-2023",
+      "metric_id": "dc_power_equipment_market_size",
+      "asserter": "国海证券",
+      "entity": {
+        "type": "market",
+        "id": "cn-aidc-hvdc",
+        "label": "中国AI 数据中心 HVDC 市场空间（国海测算）"
+      },
+      "value": 1.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "HVDC",
+        "service_scope": "未注明",
+        "facility_type": "智算中心",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 46 页「表：全球及中国HVDC及UPS市场空间测算」，HVDC国内市场空间（亿元） 行 2023 列 = 1",
+        "grade": "S3",
+        "originator": "国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）"
+      },
+      "notes": "国海自己的测算：AI 数据中心装机容量 × 国内/海外占比 × UPS/HVDC 冗余度（2023-2025 为 2，2026 起 1.9）× 渗透率 × 单价（国内 2023 年 UPS 0.53 元/W、HVDC 高 25%；海外 UPS 1.1 元/W、HVDC 1.4 元/W）。HVDC 渗透率假设国内 15%→30%、海外 5%→60%。**口径是 AI 数据中心新增装机带来的设备空间**，不是存量市场；「全球」= 国内 + 海外。2023 年亦为国海估算。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-model-cn-aidc-hvdc-market-2024e",
+      "metric_id": "dc_power_equipment_market_size",
+      "asserter": "国海证券",
+      "entity": {
+        "type": "market",
+        "id": "cn-aidc-hvdc",
+        "label": "中国AI 数据中心 HVDC 市场空间（国海测算）"
+      },
+      "value": 4.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "HVDC",
+        "service_scope": "未注明",
+        "facility_type": "智算中心",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2024E@2025-06",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 46 页「表：全球及中国HVDC及UPS市场空间测算」，HVDC国内市场空间（亿元） 行 2024E 列 = 4",
+        "grade": "S3",
+        "originator": "国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）"
+      },
+      "notes": "国海自己的测算：AI 数据中心装机容量 × 国内/海外占比 × UPS/HVDC 冗余度（2023-2025 为 2，2026 起 1.9）× 渗透率 × 单价（国内 2023 年 UPS 0.53 元/W、HVDC 高 25%；海外 UPS 1.1 元/W、HVDC 1.4 元/W）。HVDC 渗透率假设国内 15%→30%、海外 5%→60%。**口径是 AI 数据中心新增装机带来的设备空间**，不是存量市场；「全球」= 国内 + 海外。2023 年亦为国海估算。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-model-cn-aidc-hvdc-market-2025e",
+      "metric_id": "dc_power_equipment_market_size",
+      "asserter": "国海证券",
+      "entity": {
+        "type": "market",
+        "id": "cn-aidc-hvdc",
+        "label": "中国AI 数据中心 HVDC 市场空间（国海测算）"
+      },
+      "value": 7.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "HVDC",
+        "service_scope": "未注明",
+        "facility_type": "智算中心",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2025E@2025-06",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 46 页「表：全球及中国HVDC及UPS市场空间测算」，HVDC国内市场空间（亿元） 行 2025E 列 = 7",
+        "grade": "S3",
+        "originator": "国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）"
+      },
+      "notes": "国海自己的测算：AI 数据中心装机容量 × 国内/海外占比 × UPS/HVDC 冗余度（2023-2025 为 2，2026 起 1.9）× 渗透率 × 单价（国内 2023 年 UPS 0.53 元/W、HVDC 高 25%；海外 UPS 1.1 元/W、HVDC 1.4 元/W）。HVDC 渗透率假设国内 15%→30%、海外 5%→60%。**口径是 AI 数据中心新增装机带来的设备空间**，不是存量市场；「全球」= 国内 + 海外。2023 年亦为国海估算。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-model-cn-aidc-hvdc-market-2026e",
+      "metric_id": "dc_power_equipment_market_size",
+      "asserter": "国海证券",
+      "entity": {
+        "type": "market",
+        "id": "cn-aidc-hvdc",
+        "label": "中国AI 数据中心 HVDC 市场空间（国海测算）"
+      },
+      "value": 14.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "HVDC",
+        "service_scope": "未注明",
+        "facility_type": "智算中心",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2025-06",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 46 页「表：全球及中国HVDC及UPS市场空间测算」，HVDC国内市场空间（亿元） 行 2026E 列 = 14",
+        "grade": "S3",
+        "originator": "国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）"
+      },
+      "notes": "国海自己的测算：AI 数据中心装机容量 × 国内/海外占比 × UPS/HVDC 冗余度（2023-2025 为 2，2026 起 1.9）× 渗透率 × 单价（国内 2023 年 UPS 0.53 元/W、HVDC 高 25%；海外 UPS 1.1 元/W、HVDC 1.4 元/W）。HVDC 渗透率假设国内 15%→30%、海外 5%→60%。**口径是 AI 数据中心新增装机带来的设备空间**，不是存量市场；「全球」= 国内 + 海外。2023 年亦为国海估算。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-model-cn-aidc-hvdc-market-2027e",
+      "metric_id": "dc_power_equipment_market_size",
+      "asserter": "国海证券",
+      "entity": {
+        "type": "market",
+        "id": "cn-aidc-hvdc",
+        "label": "中国AI 数据中心 HVDC 市场空间（国海测算）"
+      },
+      "value": 22.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "HVDC",
+        "service_scope": "未注明",
+        "facility_type": "智算中心",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2027E@2025-06",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 46 页「表：全球及中国HVDC及UPS市场空间测算」，HVDC国内市场空间（亿元） 行 2027E 列 = 22",
+        "grade": "S3",
+        "originator": "国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）"
+      },
+      "notes": "国海自己的测算：AI 数据中心装机容量 × 国内/海外占比 × UPS/HVDC 冗余度（2023-2025 为 2，2026 起 1.9）× 渗透率 × 单价（国内 2023 年 UPS 0.53 元/W、HVDC 高 25%；海外 UPS 1.1 元/W、HVDC 1.4 元/W）。HVDC 渗透率假设国内 15%→30%、海外 5%→60%。**口径是 AI 数据中心新增装机带来的设备空间**，不是存量市场；「全球」= 国内 + 海外。2023 年亦为国海估算。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-model-cn-aidc-hvdc-market-2028e",
+      "metric_id": "dc_power_equipment_market_size",
+      "asserter": "国海证券",
+      "entity": {
+        "type": "market",
+        "id": "cn-aidc-hvdc",
+        "label": "中国AI 数据中心 HVDC 市场空间（国海测算）"
+      },
+      "value": 32.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "HVDC",
+        "service_scope": "未注明",
+        "facility_type": "智算中心",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2028E@2025-06",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 46 页「表：全球及中国HVDC及UPS市场空间测算」，HVDC国内市场空间（亿元） 行 2028E 列 = 32",
+        "grade": "S3",
+        "originator": "国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）"
+      },
+      "notes": "国海自己的测算：AI 数据中心装机容量 × 国内/海外占比 × UPS/HVDC 冗余度（2023-2025 为 2，2026 起 1.9）× 渗透率 × 单价（国内 2023 年 UPS 0.53 元/W、HVDC 高 25%；海外 UPS 1.1 元/W、HVDC 1.4 元/W）。HVDC 渗透率假设国内 15%→30%、海外 5%→60%。**口径是 AI 数据中心新增装机带来的设备空间**，不是存量市场；「全球」= 国内 + 海外。2023 年亦为国海估算。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-model-global-aidc-ups-market-2023",
+      "metric_id": "dc_power_equipment_market_size",
+      "asserter": "国海证券",
+      "entity": {
+        "type": "market",
+        "id": "global-aidc-ups",
+        "label": "全球AI 数据中心 UPS 市场空间（国海测算）"
+      },
+      "value": 59.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "UPS",
+        "service_scope": "未注明",
+        "facility_type": "智算中心",
+        "currency": "人民币",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 46 页「表：全球及中国HVDC及UPS市场空间测算」，全球UPS合计市场空间（亿元） 行 2023 列 = 59",
+        "grade": "S3",
+        "originator": "国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）"
+      },
+      "notes": "国海自己的测算：AI 数据中心装机容量 × 国内/海外占比 × UPS/HVDC 冗余度（2023-2025 为 2，2026 起 1.9）× 渗透率 × 单价（国内 2023 年 UPS 0.53 元/W、HVDC 高 25%；海外 UPS 1.1 元/W、HVDC 1.4 元/W）。HVDC 渗透率假设国内 15%→30%、海外 5%→60%。**口径是 AI 数据中心新增装机带来的设备空间**，不是存量市场；「全球」= 国内 + 海外。2023 年亦为国海估算。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-model-global-aidc-ups-market-2024e",
+      "metric_id": "dc_power_equipment_market_size",
+      "asserter": "国海证券",
+      "entity": {
+        "type": "market",
+        "id": "global-aidc-ups",
+        "label": "全球AI 数据中心 UPS 市场空间（国海测算）"
+      },
+      "value": 141.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "UPS",
+        "service_scope": "未注明",
+        "facility_type": "智算中心",
+        "currency": "人民币",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2024E@2025-06",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 46 页「表：全球及中国HVDC及UPS市场空间测算」，全球UPS合计市场空间（亿元） 行 2024E 列 = 141",
+        "grade": "S3",
+        "originator": "国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）"
+      },
+      "notes": "国海自己的测算：AI 数据中心装机容量 × 国内/海外占比 × UPS/HVDC 冗余度（2023-2025 为 2，2026 起 1.9）× 渗透率 × 单价（国内 2023 年 UPS 0.53 元/W、HVDC 高 25%；海外 UPS 1.1 元/W、HVDC 1.4 元/W）。HVDC 渗透率假设国内 15%→30%、海外 5%→60%。**口径是 AI 数据中心新增装机带来的设备空间**，不是存量市场；「全球」= 国内 + 海外。2023 年亦为国海估算。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-model-global-aidc-ups-market-2025e",
+      "metric_id": "dc_power_equipment_market_size",
+      "asserter": "国海证券",
+      "entity": {
+        "type": "market",
+        "id": "global-aidc-ups",
+        "label": "全球AI 数据中心 UPS 市场空间（国海测算）"
+      },
+      "value": 182.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "UPS",
+        "service_scope": "未注明",
+        "facility_type": "智算中心",
+        "currency": "人民币",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2025E@2025-06",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 46 页「表：全球及中国HVDC及UPS市场空间测算」，全球UPS合计市场空间（亿元） 行 2025E 列 = 182",
+        "grade": "S3",
+        "originator": "国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）"
+      },
+      "notes": "国海自己的测算：AI 数据中心装机容量 × 国内/海外占比 × UPS/HVDC 冗余度（2023-2025 为 2，2026 起 1.9）× 渗透率 × 单价（国内 2023 年 UPS 0.53 元/W、HVDC 高 25%；海外 UPS 1.1 元/W、HVDC 1.4 元/W）。HVDC 渗透率假设国内 15%→30%、海外 5%→60%。**口径是 AI 数据中心新增装机带来的设备空间**，不是存量市场；「全球」= 国内 + 海外。2023 年亦为国海估算。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-model-global-aidc-ups-market-2026e",
+      "metric_id": "dc_power_equipment_market_size",
+      "asserter": "国海证券",
+      "entity": {
+        "type": "market",
+        "id": "global-aidc-ups",
+        "label": "全球AI 数据中心 UPS 市场空间（国海测算）"
+      },
+      "value": 195.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "UPS",
+        "service_scope": "未注明",
+        "facility_type": "智算中心",
+        "currency": "人民币",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2025-06",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 46 页「表：全球及中国HVDC及UPS市场空间测算」，全球UPS合计市场空间（亿元） 行 2026E 列 = 195",
+        "grade": "S3",
+        "originator": "国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）"
+      },
+      "notes": "国海自己的测算：AI 数据中心装机容量 × 国内/海外占比 × UPS/HVDC 冗余度（2023-2025 为 2，2026 起 1.9）× 渗透率 × 单价（国内 2023 年 UPS 0.53 元/W、HVDC 高 25%；海外 UPS 1.1 元/W、HVDC 1.4 元/W）。HVDC 渗透率假设国内 15%→30%、海外 5%→60%。**口径是 AI 数据中心新增装机带来的设备空间**，不是存量市场；「全球」= 国内 + 海外。2023 年亦为国海估算。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-model-global-aidc-ups-market-2027e",
+      "metric_id": "dc_power_equipment_market_size",
+      "asserter": "国海证券",
+      "entity": {
+        "type": "market",
+        "id": "global-aidc-ups",
+        "label": "全球AI 数据中心 UPS 市场空间（国海测算）"
+      },
+      "value": 187.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "UPS",
+        "service_scope": "未注明",
+        "facility_type": "智算中心",
+        "currency": "人民币",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2027E@2025-06",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 46 页「表：全球及中国HVDC及UPS市场空间测算」，全球UPS合计市场空间（亿元） 行 2027E 列 = 187",
+        "grade": "S3",
+        "originator": "国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）"
+      },
+      "notes": "国海自己的测算：AI 数据中心装机容量 × 国内/海外占比 × UPS/HVDC 冗余度（2023-2025 为 2，2026 起 1.9）× 渗透率 × 单价（国内 2023 年 UPS 0.53 元/W、HVDC 高 25%；海外 UPS 1.1 元/W、HVDC 1.4 元/W）。HVDC 渗透率假设国内 15%→30%、海外 5%→60%。**口径是 AI 数据中心新增装机带来的设备空间**，不是存量市场；「全球」= 国内 + 海外。2023 年亦为国海估算。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-model-global-aidc-ups-market-2028e",
+      "metric_id": "dc_power_equipment_market_size",
+      "asserter": "国海证券",
+      "entity": {
+        "type": "market",
+        "id": "global-aidc-ups",
+        "label": "全球AI 数据中心 UPS 市场空间（国海测算）"
+      },
+      "value": 198.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "UPS",
+        "service_scope": "未注明",
+        "facility_type": "智算中心",
+        "currency": "人民币",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2028E@2025-06",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 46 页「表：全球及中国HVDC及UPS市场空间测算」，全球UPS合计市场空间（亿元） 行 2028E 列 = 198",
+        "grade": "S3",
+        "originator": "国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）"
+      },
+      "notes": "国海自己的测算：AI 数据中心装机容量 × 国内/海外占比 × UPS/HVDC 冗余度（2023-2025 为 2，2026 起 1.9）× 渗透率 × 单价（国内 2023 年 UPS 0.53 元/W、HVDC 高 25%；海外 UPS 1.1 元/W、HVDC 1.4 元/W）。HVDC 渗透率假设国内 15%→30%、海外 5%→60%。**口径是 AI 数据中心新增装机带来的设备空间**，不是存量市场；「全球」= 国内 + 海外。2023 年亦为国海估算。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-model-global-aidc-hvdc-market-2023",
+      "metric_id": "dc_power_equipment_market_size",
+      "asserter": "国海证券",
+      "entity": {
+        "type": "market",
+        "id": "global-aidc-hvdc",
+        "label": "全球AI 数据中心 HVDC 市场空间（国海测算）"
+      },
+      "value": 5.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "HVDC",
+        "service_scope": "未注明",
+        "facility_type": "智算中心",
+        "currency": "人民币",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 46 页「表：全球及中国HVDC及UPS市场空间测算」，全球HVDC合计市场空间（亿元） 行 2023 列 = 5",
+        "grade": "S3",
+        "originator": "国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）"
+      },
+      "notes": "国海自己的测算：AI 数据中心装机容量 × 国内/海外占比 × UPS/HVDC 冗余度（2023-2025 为 2，2026 起 1.9）× 渗透率 × 单价（国内 2023 年 UPS 0.53 元/W、HVDC 高 25%；海外 UPS 1.1 元/W、HVDC 1.4 元/W）。HVDC 渗透率假设国内 15%→30%、海外 5%→60%。**口径是 AI 数据中心新增装机带来的设备空间**，不是存量市场；「全球」= 国内 + 海外。2023 年亦为国海估算。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-model-global-aidc-hvdc-market-2024e",
+      "metric_id": "dc_power_equipment_market_size",
+      "asserter": "国海证券",
+      "entity": {
+        "type": "market",
+        "id": "global-aidc-hvdc",
+        "label": "全球AI 数据中心 HVDC 市场空间（国海测算）"
+      },
+      "value": 22.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "HVDC",
+        "service_scope": "未注明",
+        "facility_type": "智算中心",
+        "currency": "人民币",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2024E@2025-06",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 46 页「表：全球及中国HVDC及UPS市场空间测算」，全球HVDC合计市场空间（亿元） 行 2024E 列 = 22",
+        "grade": "S3",
+        "originator": "国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）"
+      },
+      "notes": "国海自己的测算：AI 数据中心装机容量 × 国内/海外占比 × UPS/HVDC 冗余度（2023-2025 为 2，2026 起 1.9）× 渗透率 × 单价（国内 2023 年 UPS 0.53 元/W、HVDC 高 25%；海外 UPS 1.1 元/W、HVDC 1.4 元/W）。HVDC 渗透率假设国内 15%→30%、海外 5%→60%。**口径是 AI 数据中心新增装机带来的设备空间**，不是存量市场；「全球」= 国内 + 海外。2023 年亦为国海估算。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-model-global-aidc-hvdc-market-2025e",
+      "metric_id": "dc_power_equipment_market_size",
+      "asserter": "国海证券",
+      "entity": {
+        "type": "market",
+        "id": "global-aidc-hvdc",
+        "label": "全球AI 数据中心 HVDC 市场空间（国海测算）"
+      },
+      "value": 58.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "HVDC",
+        "service_scope": "未注明",
+        "facility_type": "智算中心",
+        "currency": "人民币",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2025E@2025-06",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 46 页「表：全球及中国HVDC及UPS市场空间测算」，全球HVDC合计市场空间（亿元） 行 2025E 列 = 58",
+        "grade": "S3",
+        "originator": "国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）"
+      },
+      "notes": "国海自己的测算：AI 数据中心装机容量 × 国内/海外占比 × UPS/HVDC 冗余度（2023-2025 为 2，2026 起 1.9）× 渗透率 × 单价（国内 2023 年 UPS 0.53 元/W、HVDC 高 25%；海外 UPS 1.1 元/W、HVDC 1.4 元/W）。HVDC 渗透率假设国内 15%→30%、海外 5%→60%。**口径是 AI 数据中心新增装机带来的设备空间**，不是存量市场；「全球」= 国内 + 海外。2023 年亦为国海估算。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-model-global-aidc-hvdc-market-2026e",
+      "metric_id": "dc_power_equipment_market_size",
+      "asserter": "国海证券",
+      "entity": {
+        "type": "market",
+        "id": "global-aidc-hvdc",
+        "label": "全球AI 数据中心 HVDC 市场空间（国海测算）"
+      },
+      "value": 102.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "HVDC",
+        "service_scope": "未注明",
+        "facility_type": "智算中心",
+        "currency": "人民币",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2025-06",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 46 页「表：全球及中国HVDC及UPS市场空间测算」，全球HVDC合计市场空间（亿元） 行 2026E 列 = 102",
+        "grade": "S3",
+        "originator": "国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）"
+      },
+      "notes": "国海自己的测算：AI 数据中心装机容量 × 国内/海外占比 × UPS/HVDC 冗余度（2023-2025 为 2，2026 起 1.9）× 渗透率 × 单价（国内 2023 年 UPS 0.53 元/W、HVDC 高 25%；海外 UPS 1.1 元/W、HVDC 1.4 元/W）。HVDC 渗透率假设国内 15%→30%、海外 5%→60%。**口径是 AI 数据中心新增装机带来的设备空间**，不是存量市场；「全球」= 国内 + 海外。2023 年亦为国海估算。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-model-global-aidc-hvdc-market-2027e",
+      "metric_id": "dc_power_equipment_market_size",
+      "asserter": "国海证券",
+      "entity": {
+        "type": "market",
+        "id": "global-aidc-hvdc",
+        "label": "全球AI 数据中心 HVDC 市场空间（国海测算）"
+      },
+      "value": 198.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "HVDC",
+        "service_scope": "未注明",
+        "facility_type": "智算中心",
+        "currency": "人民币",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2027E@2025-06",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 46 页「表：全球及中国HVDC及UPS市场空间测算」，全球HVDC合计市场空间（亿元） 行 2027E 列 = 198",
+        "grade": "S3",
+        "originator": "国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）"
+      },
+      "notes": "国海自己的测算：AI 数据中心装机容量 × 国内/海外占比 × UPS/HVDC 冗余度（2023-2025 为 2，2026 起 1.9）× 渗透率 × 单价（国内 2023 年 UPS 0.53 元/W、HVDC 高 25%；海外 UPS 1.1 元/W、HVDC 1.4 元/W）。HVDC 渗透率假设国内 15%→30%、海外 5%→60%。**口径是 AI 数据中心新增装机带来的设备空间**，不是存量市场；「全球」= 国内 + 海外。2023 年亦为国海估算。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "ghzq2506-model-global-aidc-hvdc-market-2028e",
+      "metric_id": "dc_power_equipment_market_size",
+      "asserter": "国海证券",
+      "entity": {
+        "type": "market",
+        "id": "global-aidc-hvdc",
+        "label": "全球AI 数据中心 HVDC 市场空间（国海测算）"
+      },
+      "value": 281.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "HVDC",
+        "service_scope": "未注明",
+        "facility_type": "智算中心",
+        "currency": "人民币",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2028E@2025-06",
+      "evidence": {
+        "sha256": "c946164848fec25b1e7bb3d2000d9742f52fc182b0a6cfae141fda7b8987ea77",
+        "local_file": "AIDC深度报告_智能算力需求兴起_把握核心环节技术迭代契机_85页_6mb.pdf",
+        "locator": "第 46 页「表：全球及中国HVDC及UPS市场空间测算」，全球HVDC合计市场空间（亿元） 行 2028E 列 = 281",
+        "grade": "S3",
+        "originator": "国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）"
+      },
+      "notes": "国海自己的测算：AI 数据中心装机容量 × 国内/海外占比 × UPS/HVDC 冗余度（2023-2025 为 2，2026 起 1.9）× 渗透率 × 单价（国内 2023 年 UPS 0.53 元/W、HVDC 高 25%；海外 UPS 1.1 元/W、HVDC 1.4 元/W）。HVDC 渗透率假设国内 15%→30%、海外 5%→60%。**口径是 AI 数据中心新增装机带来的设备空间**，不是存量市场；「全球」= 国内 + 海外。2023 年亦为国海估算。"
     }
   ]
 }
