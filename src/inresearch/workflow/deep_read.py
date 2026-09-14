@@ -98,6 +98,53 @@ class DeepRead:
     def current(self, sha):
         return self.readings.current(sha)
 
+    BARREN_COHORT = 3
+
+    def cohort(self, row):
+        """同一家、同一年、同一体裁的一批材料。
+
+        粗筛分的是「这份材料讲的事重不重要」，答对了 OCP 2025 的会议胶片确实是 7 分；
+        它答不了的是「这份材料里有没有可录的数」。一次会议的九份胶片与讨论环节，
+        分数一样、产出全是 0，却按分数排在前面，每轮吃掉一半名额。
+        """
+        return ((row.get('org') or '').strip(),
+                str(row.get('year') or '').strip(),
+                (row.get('doc_type') or '').strip())
+
+    UNNAMED = ('', '未知', 'unknown', 'other', '未注明')
+
+    def is_cohort(self, key):
+        """三项都得是实名的，否则这不是一个批次。
+
+        粗筛认不出机构或年份时填的是「未知」，不是空字符串。照字面分组的话，
+        全库出处不明的材料会被归成同一个「未知/未知」堆，一起压到队尾——
+        它们彼此之间毫无关系，其中一份出不了数说明不了另一份。
+        """
+        return all(part and part not in self.UNNAMED for part in key)
+
+    def barren_cohorts(self):
+        """已读够 BARREN_COHORT 份、且一条事实都没出的那些批次。
+
+        判据只用已经发生的事：读过哪些、出了几条。不预先给任何体裁降权——
+        真正带数的规格书和胶片不该因为体裁被压住，压住它们的只能是同批次的空手而归。
+        一旦这批里有一份出了数，这个批次立刻不再算空——所以这是可以自己纠正的降权，
+        不是黑名单。
+        """
+        produced = {(f.get('evidence') or {}).get('sha256')
+                    for f in self.load_facts()['records']}
+        rows, seen, barren = self.all_results(), {}, {}
+        for sha in self.processed_documents():
+            row = rows.get(sha)
+            if not row:
+                continue
+            key = self.cohort(row)
+            read, yielded = seen.get(key, (0, 0))
+            seen[key] = (read + 1, yielded + (sha in produced))
+        for key, (read, yielded) in seen.items():
+            if read >= self.BARREN_COHORT and not yielded and self.is_cohort(key):
+                barren[key] = read
+        return barren
+
     def eligible(self, min_score=policy.MIN_SCORE, include_processed=False, since=0):
         done, covered = self.processed_documents(), self.coverage()
         rows = [r for r in self.all_results().values()
@@ -105,7 +152,10 @@ class DeepRead:
                 and (include_processed or r['sha256'] not in done)
                 and not policy.admission_problems(r)
                 and (not since or policy.document_year(r) >= since)]
+        barren = self.barren_cohorts()
+        # 空手而归的批次排在同覆盖度组的最后，仍然在队列里，只是不再挤占前排。
         return sorted(rows, key=lambda r: (covered.get(r.get('category'), 0),
+                      self.cohort(r) in barren,
                       -(r.get('score') or 0), -policy.document_year(r), r.get('rel', '')))
 
     def pack(self, sha=None, min_score=policy.MIN_SCORE, again=False, since=0):
