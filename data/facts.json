@@ -82536,6 +82536,72 @@
         "originator": "谷歌（Pankaj Makhija，Hot Chips 2025 教程，2025-08-24）"
       },
       "notes": "原文未直接写总颗数，只给每 Superpod 144 柜、每柜 64 颗，相乘得 9,216。Superpod 之间走 NIC（第 5 页），Superpod 是 ICI 纵向扩展域的上限，不是整个 max-scale cluster。"
+    },
+    {
+      "fact_id": "guosen2025-tencent-capex-2024q3",
+      "metric_id": "hyperscaler_capex_total",
+      "asserter": "腾讯",
+      "entity": {
+        "type": "company",
+        "id": "tencent",
+        "label": "腾讯"
+      },
+      "value": 170.94,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "单一公司",
+        "capex_scope": "全部 capex",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN",
+        "currency": "人民币"
+      },
+      "as_of": "2024-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "64bc579cf5398ba563556bacb7ee53dd133154211e77f24dbfbfe68bdabb3865",
+        "local_file": "20250103-国信证券-人工智能行业专题：IDC建设周期在即，关注国产算力机遇(19页).pdf",
+        "locator": "第 11 页：「复盘腾讯资本开支情况，资本开支于2024年同比显著提升，并在24Q3达峰值170.94亿人民币，同比+113.54%，环比+95.83」（图 9，资料来源：公司财报，国信证券经济研究所整理）",
+        "grade": "S3",
+        "originator": "腾讯季度财报（经国信证券《IDC建设周期在即，关注国产算力机遇》2025-01-02 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "人民币；同比 +113.54%，环比 +95.83（原文未写百分号）。24Q3 按自然季（7-9 月）记。capex_scope 按公司财报口径记全部 capex，原文未拆 AI 部分。"
+    },
+    {
+      "fact_id": "guosen2025-alibaba-capex-2024q3",
+      "metric_id": "hyperscaler_capex_total",
+      "asserter": "阿里巴巴",
+      "entity": {
+        "type": "company",
+        "id": "alibaba",
+        "label": "阿里巴巴"
+      },
+      "value": 174.91,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "单一公司",
+        "capex_scope": "全部 capex",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN",
+        "currency": "人民币"
+      },
+      "as_of": "2024-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "64bc579cf5398ba563556bacb7ee53dd133154211e77f24dbfbfe68bdabb3865",
+        "local_file": "20250103-国信证券-人工智能行业专题：IDC建设周期在即，关注国产算力机遇(19页).pdf",
+        "locator": "第 12 页：「阿里巴巴资本开支同样于2024年同比高增，并在24Q3达到峰值174.91亿元，同比+239.63%，环比+44.63%」（图 10，资料来源：公司财报，国信证券经济研究所整理）",
+        "grade": "S3",
+        "originator": "阿里巴巴季度财报（经国信证券《IDC建设周期在即，关注国产算力机遇》2025-01-02 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "人民币；同比 +239.63%，环比 +44.63%。24Q3 按自然季（7-9 月）记，对应阿里财年 FY2025 Q2。capex_scope 按公司财报口径记全部 capex，原文未拆 AI 部分。"
     }
   ]
 }
