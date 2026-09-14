@@ -127386,6 +127386,286 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "行名写「全年实际」但内容是「预计到年底达到」，按预测记；与第 7 行区间 1200-1500 万同表并列。"
+    },
+    {
+      "fact_id": "sa2403-global-critical-it-demand-2023",
+      "metric_id": "global_dc_it_load",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "industry",
+        "id": "global-dc",
+        "label": "全球数据中心"
+      },
+      "value": 49.0,
+      "unit": "GW",
+      "bound": "point",
+      "as_of": "2023",
+      "caliber": {
+        "power_scope": "IT 负载",
+        "scenario": "单一情景",
+        "basis": "模型输出",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "27261afa8839f0ba997672fce3499d7ee496ea01276b07ae86aebe249ad361d8",
+        "local_file": "AI Datacenter Energy Dilemma - Race for AI Datacenter Space.pdf",
+        "locator": "第 6 页：「Global Datacenter Critical IT power demand will surge from 49 Gigawatts (GW) in 2023 to 96 GW by 2026, of which AI will consume ~40 GW」；第 15 页复述「total Datacenter Critical IT Power demand will double from about 49 GW in 2023 to 96 GW by 2026, with 90% of the growth coming from AI-related demand」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《AI Datacenter Energy Dilemma - Race for AI Datacenter Space》（Dylan Patel 等，2024-03-14）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原始出处**：库内 global-it-load-2023（国信证券《盛弘股份》2025-02 转引，basis 记作「实测」）即本文此数。本文说明是由 AI 加速器出货模型推出的 Critical IT Power「需求」，不是实测在运负载，basis 按「模型输出」记。Critical IT Power 不含制冷与配电损耗。"
+    },
+    {
+      "fact_id": "sa2403-global-critical-it-demand-2026e",
+      "metric_id": "global_dc_it_load",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "industry",
+        "id": "global-dc",
+        "label": "全球数据中心"
+      },
+      "value": 96.0,
+      "unit": "GW",
+      "bound": "point",
+      "as_of": "2026E@2024-03",
+      "caliber": {
+        "power_scope": "IT 负载",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "27261afa8839f0ba997672fce3499d7ee496ea01276b07ae86aebe249ad361d8",
+        "local_file": "AI Datacenter Energy Dilemma - Race for AI Datacenter Space.pdf",
+        "locator": "第 6 页：「Global Datacenter Critical IT power demand will surge from 49 Gigawatts (GW) in 2023 to 96 GW by 2026, of which AI will consume ~40 GW」；第 15 页复述「total Datacenter Critical IT Power demand will double from about 49 GW in 2023 to 96 GW by 2026, with 90% of the growth coming from AI-related demand」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《AI Datacenter Energy Dilemma - Race for AI Datacenter Space》（Dylan Patel 等，2024-03-14）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "其中 AI 约 40 GW、增量的 90% 来自 AI——本指标无 AI 子口径，未单录。国信转引的「2028 年超 140 GW」不在本文中。"
+    },
+    {
+      "fact_id": "sa2403-us-critical-it-demand-2023",
+      "metric_id": "global_dc_it_load",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "industry",
+        "id": "us-dc",
+        "label": "美国数据中心"
+      },
+      "value": 23.0,
+      "unit": "GW",
+      "bound": "point",
+      "as_of": "2023",
+      "caliber": {
+        "power_scope": "IT 负载",
+        "scenario": "单一情景",
+        "basis": "模型输出",
+        "region": "US"
+      },
+      "evidence": {
+        "sha256": "27261afa8839f0ba997672fce3499d7ee496ea01276b07ae86aebe249ad361d8",
+        "local_file": "AI Datacenter Energy Dilemma - Race for AI Datacenter Space.pdf",
+        "locator": "第 48 页：「We believe that the AI boom will drive total Critical IT Power demand in the US from 23 GW in 2023 to 52 GW by 2026, which will drastically increase power consumption of Datacenters from 4.5% of total US power generation to nearly 10% by 2026」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《AI Datacenter Energy Dilemma - Race for AI Datacenter Space》（Dylan Patel 等，2024-03-14）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美国 Critical IT Power 需求。第 15 页另称美国 Critical IT 容量需在 2023-2027 年间翻三倍。"
+    },
+    {
+      "fact_id": "sa2403-us-critical-it-demand-2026e",
+      "metric_id": "global_dc_it_load",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "industry",
+        "id": "us-dc",
+        "label": "美国数据中心"
+      },
+      "value": 52.0,
+      "unit": "GW",
+      "bound": "point",
+      "as_of": "2026E@2024-03",
+      "caliber": {
+        "power_scope": "IT 负载",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "US"
+      },
+      "evidence": {
+        "sha256": "27261afa8839f0ba997672fce3499d7ee496ea01276b07ae86aebe249ad361d8",
+        "local_file": "AI Datacenter Energy Dilemma - Race for AI Datacenter Space.pdf",
+        "locator": "第 48 页：「We believe that the AI boom will drive total Critical IT Power demand in the US from 23 GW in 2023 to 52 GW by 2026, which will drastically increase power consumption of Datacenters from 4.5% of total US power generation to nearly 10% by 2026」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《AI Datacenter Energy Dilemma - Race for AI Datacenter Space》（Dylan Patel 等，2024-03-14）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "同句「数据中心用电占美国总发电量由 4.5% 升至近 10%」分母是发电量，未录（见缺口）。"
+    },
+    {
+      "fact_id": "sa2403-colo-rack-power-12kw",
+      "metric_id": "rack_density_shipping",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "industry",
+        "id": "colocation-dc",
+        "label": "托管数据中心"
+      },
+      "value": 12.0,
+      "unit": "kW/机柜",
+      "bound": "point",
+      "as_of": "2024-03",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "市场普遍水平",
+        "era": "当期",
+        "power_basis": "设计功率",
+        "region": "未披露"
+      },
+      "evidence": {
+        "sha256": "27261afa8839f0ba997672fce3499d7ee496ea01276b07ae86aebe249ad361d8",
+        "local_file": "AI Datacenter Energy Dilemma - Race for AI Datacenter Space.pdf",
+        "locator": "第 10 页：「While the DGX H100 server requires 10.2 kilowatts (kW) of IT Power, most colocation datacenters can still only support a power capacity of ~12 kW per rack」；第 13 页「the limits of 12-15kW power in traditional colocation」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《AI Datacenter Energy Dilemma - Race for AI Datacenter Space》（Dylan Patel 等，2024-03-14）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「~12 kW」是多数托管数据中心单柜可支持的供电能力，不是实际负载；第 13 页另写 12-15 kW，第 13 页「Most existing colocation datacenters are not ready for rack densities above 20kW」。地域原文未明说（全文以北美 1,100 座数据中心为样本），填未披露。"
+    },
+    {
+      "fact_id": "sa2403-us-dc-co2-2026e",
+      "metric_id": "dc_carbon_footprint",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "industry",
+        "id": "us-dc",
+        "label": "美国数据中心"
+      },
+      "value": 155.0,
+      "unit": "百万吨 CO₂e",
+      "bound": "point",
+      "as_of": "2026E@2024-03",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "未注明",
+        "region": "US",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "27261afa8839f0ba997672fce3499d7ee496ea01276b07ae86aebe249ad361d8",
+        "local_file": "AI Datacenter Energy Dilemma - Race for AI Datacenter Space.pdf",
+        "locator": "第 34 页：「We calculate that all US-based datacenters will generate 155 million metric tons of CO2 emissions by 2026, the equivalent of the annual emissions of 33.7M passenger vehicles」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《AI Datacenter Energy Dilemma - Race for AI Datacenter Space》（Dylan Patel 等，2024-03-14）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文写「CO2」未写 CO2e；计算方法未说明（文中美国电网平均强度取 0.387 kg/kWh）。"
+    },
+    {
+      "fact_id": "sa2403-dgx-h100-server-power",
+      "metric_id": "server_power_and_training_time",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-dgx-h100",
+        "label": "NVIDIA DGX H100"
+      },
+      "value": 10.2,
+      "unit": "数值（见 parameter）",
+      "bound": "point",
+      "as_of": "2024-03",
+      "caliber": {
+        "chip": "DGX H100",
+        "parameter": "单机算力功耗(kW)",
+        "pue_included": "不含",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "evidence": {
+        "sha256": "27261afa8839f0ba997672fce3499d7ee496ea01276b07ae86aebe249ad361d8",
+        "local_file": "AI Datacenter Energy Dilemma - Race for AI Datacenter Space.pdf",
+        "locator": "第 7 页 Datacenter Math：「The expected average power (EAP) from normal operation per DGX H100 server is ~10,200 W, which works out to be 1,275W for each of the 8 GPUs per server」；「effective power requirement of 11,112W per DGX server or 1,389W per H100 GPU」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《AI Datacenter Energy Dilemma - Race for AI Datacenter Space》（Dylan Patel 等，2024-03-14）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「预期平均功率」10.2 kW/台（每卡 1,275 W，含 700 W TDP 与每卡分摊约 575 W 的 CPU、内存、NVSwitch、网卡等）；计入存储、管理服务器与交换机分摊后 11.112 kW/台、1,389 W/卡，未单录。不含 PUE。"
+    },
+    {
+      "fact_id": "sa2403-singapore-critical-it-mw",
+      "metric_id": "dc_capacity_mw",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "region",
+        "id": "singapore",
+        "label": "新加坡"
+      },
+      "value": 900.0,
+      "unit": "MW",
+      "bound": "point",
+      "as_of": "2024-03",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "SG"
+      },
+      "evidence": {
+        "sha256": "27261afa8839f0ba997672fce3499d7ee496ea01276b07ae86aebe249ad361d8",
+        "local_file": "AI Datacenter Energy Dilemma - Race for AI Datacenter Space.pdf",
+        "locator": "第 24 页：「The 900MW of Critical IT Power that Singapore hosts is large relative to its power generation capacity and consumes over 10% of Singapore’s national power generation」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《AI Datacenter Energy Dilemma - Race for AI Datacenter Space》（Dylan Patel 等，2024-03-14）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "新加坡在运 Critical IT 容量（全国合计，非单一项目）；同页新加坡 2023 年 7 月解除暂停后仅批 80 MW 新容量、柔佛新山开发管道「up to 1,000 MW」未录（前者是审批额、后者状态混杂）。"
+    },
+    {
+      "fact_id": "sa2403-acp-us-corporate-ppa-cum-2022",
+      "metric_id": "corporate_ppa_capacity",
+      "asserter": "American Clean Power",
+      "entity": {
+        "type": "industry",
+        "id": "us-corporate-ppa",
+        "label": "美国企业可再生能源采购"
+      },
+      "value": 77.0,
+      "unit": "GW",
+      "bound": "point",
+      "as_of": "2022",
+      "caliber": {
+        "status": "合计",
+        "buyer_scope": "全部企业",
+        "region": "US",
+        "basis": "实测"
+      },
+      "evidence": {
+        "sha256": "27261afa8839f0ba997672fce3499d7ee496ea01276b07ae86aebe249ad361d8",
+        "local_file": "AI Datacenter Energy Dilemma - Race for AI Datacenter Space.pdf",
+        "locator": "第 36 页：「Solar … accounting for 45 GW or 58% of the 77 GW procured cumulatively through 2022 and 14.4 GW, or 78% of the 18.7 GW of renewable capacity procured in 2022」（图源 Cleanpower.org – Clean Energy Powers American Business）",
+        "grade": "S3",
+        "originator": "American Clean Power（Cleanpower.org，经 SemiAnalysis 2024-03-14 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "截至 2022 年企业累计采购可再生装机 77 GW（其中光伏 45 GW、58%）；2022 年当年 18.7 GW（光伏 14.4 GW）是年度流量，本指标无窗口维未录。「procured」含已投运与在建，status 记合计。地域按图源《Clean Energy Powers American Business》记 US，正文未明写。"
     }
   ]
 }
