@@ -116,6 +116,7 @@ function fit(model, defaultHeight) {
 
 export function mountSceneModels({scene, page, defaultHeight, replacement=null}) {
   const originalVisibility = replacement?.visible;
+  let currentObjects = [];
   const slot = createModelLoad({host:document.body, label:'可选模型',
     load:async signal => {
       const response = await fetch('/api/model-assets?page=' + page, {signal, cache:'no-store'});
@@ -137,10 +138,12 @@ export function mountSceneModels({scene, page, defaultHeight, replacement=null})
     },
     commit:batch => {
       batch.models.forEach(model => scene.add(model.root));
+      currentObjects = batch.models.map(model => model.root);
       if (replacement) replacement.visible = originalVisibility && !batch.models.some(model => model.entry.hideRack);
     }});
   slot.element.classList.add('rg-scene-model-status');
-  return {reload:slot.reload, ready:slot.ready, dispose() {
+  return {reload:slot.reload, ready:slot.ready, objects:() => currentObjects.slice(), dispose() {
+    currentObjects = [];
     slot.dispose(); if (replacement) replacement.visible = originalVisibility;
   }};
 }

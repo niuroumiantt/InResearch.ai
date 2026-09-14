@@ -119,6 +119,7 @@
   <div class="dchip" id="covChip" style="margin-top:8px" title="类别索引丰富度：公司/产品/序列/指标四维；不代表节点证据或现场核实">📊 类别索引热图</div>
   <div id="covLegend"><span><i style="background:#ef4444"></i>0/4</span><span><i style="background:#f59e0b"></i>1</span><span><i style="background:#eab308"></i>2</span><span><i style="background:#84cc16"></i>3</span><span><i style="background:#22c55e"></i>4 类</span></div>
   <div id="domainParts"></div>
+  <button id="fit-view" type="button">适配视图</button>
   <button id="play">▶ 自动拆解</button>
   <a href="rack3d.html"><button style="background:transparent;border:1px solid var(--line);color:var(--text);font-weight:500">🔬 进入机柜拆解台 →</button></a>
 </div></details>
@@ -141,6 +142,7 @@ import { RenderPass } from "./assets/vendor/RenderPass.js";
 import { UnrealBloomPass } from "./assets/vendor/UnrealBloomPass.js";
 import { OutputPass } from "./assets/vendor/OutputPass.js";
 import { EXRLoader } from "./assets/vendor/EXRLoader.js";
+import {mountSceneView} from "/assets/scene-view.js";
 import {mountSceneModels} from "/assets/model-assets.js";
 
 import {loadSceneData} from "/assets/scene-data.js";
@@ -190,6 +192,7 @@ function syncSceneAppearance() {
 window.addEventListener('inresearch:appearance', syncSceneAppearance);
 syncSceneAppearance();
 
+let sceneView;
 const camera = new THREE.PerspectiveCamera(44, 1, 0.1, 600);
 camera.position.set(46, 30, 52);
 const controls = new OrbitControls(camera, canvas);
@@ -880,6 +883,7 @@ DOMAINS.forEach(d => d.parts = BOM.parts.filter(p => d.mods.includes(p.module)))
 
 const cameraMotion = createSceneMotion();
 function flyTo(cam, tgt, duration = 1100) {
+  sceneView?.takeControl();
   controls.autoRotate = false;
   const fromCamera = camera.position.clone(), fromTarget = controls.target.clone();
   const toCamera = new THREE.Vector3(...cam), toTarget = new THREE.Vector3(...tgt);
@@ -976,14 +980,18 @@ dossierEl.addEventListener("pointermove", e => {
 });
 dossierEl.addEventListener("pointerleave", () => { if (tip.textContent.includes("｜")) tip.style.display = "none"; });
 
-function resize() {
-  renderer.setSize(innerWidth, innerHeight);
-  composer.setSize(innerWidth, innerHeight);
-  camera.aspect = innerWidth / innerHeight;
-  camera.zoom = Math.min(1, Math.max(0.35, camera.aspect / 0.9));
-  camera.updateProjectionMatrix();
-}
-addEventListener("resize", resize); resize();
+// The published adoption registry owns optional model selection.
+const sceneModels = mountSceneModels({scene, page:"bom3d", defaultHeight:4.6});
+const framingObjects = () => [...pickables.filter(mesh => mesh.userData.part !== "land"), ...sceneModels.objects()];
+sceneView = mountSceneView({canvas, camera, controls, fog:scene.fog,
+  objects:framingObjects,
+  headers:[document.getElementById("ui-skinbar"), document.querySelector(".topbar")],
+  button:document.getElementById("fit-view"),
+  resize:(width, height) => {renderer.setSize(width, height, false);composer.setSize(width, height);},
+  beforeFit:() => cameraMotion.cancel(),
+});
+sceneModels.ready.then(() => sceneView.refresh());
+window.addEventListener("pagehide", event => {if (!event.persisted) {sceneView.dispose();sceneModels.dispose();inspector.dispose();}});
 (function loop() { requestAnimationFrame(loop); controls.update(); composer.render(); inspector.tick(); })();
 
 // ?d=<domain> / ?p=<part> 深链：其他页面可直接链进领域视角或部件档案（放最后：依赖上面全部初始化完成）
@@ -995,9 +1003,7 @@ addEventListener("resize", resize); resize();
   if (p) { controls.autoRotate = false; showDossier(p); }
   if (q.get("cov") === "1" && !covOn) { controls.autoRotate = false; covToggle(); } }
 
-// The published adoption registry owns optional model selection.
-const sceneModels = mountSceneModels({scene, page:"bom3d", defaultHeight:4.6});
-window.addEventListener('pagehide', event => {if (!event.persisted) sceneModels.dispose();});
+
 
 /* ── 下钻链条：一份配置驱动，加设备只需改 assets/levels.json ── */
 fetch("assets/levels.json?t=" + Date.now()).then(r => r.ok ? r.json() : null).then(cfg => {

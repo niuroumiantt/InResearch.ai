@@ -101,6 +101,7 @@
   <div class="m rg-concept-note">概念示意 · 现场安装与尺寸未知 · 点击节点追溯证据</div>
   <input aria-label="爆炸拆解进度" type="range" id="explode" min="0" max="100" value="0">
   <div class="stage" id="stage">整柜：一台 AI 机柜（ORV3 形态示意）</div>
+  <button id="fit-view" type="button">适配视图</button>
   <button id="play">▶ 自动拆解</button>
   <a href="bom3d.html?d=compute"><button class="ghost">← 返回数据中心全景</button></a>
 </div></details>
@@ -122,6 +123,7 @@ import { RenderPass } from "./assets/vendor/RenderPass.js";
 import { UnrealBloomPass } from "./assets/vendor/UnrealBloomPass.js";
 import { OutputPass } from "./assets/vendor/OutputPass.js";
 import { EXRLoader } from "./assets/vendor/EXRLoader.js";
+import {mountSceneView} from "/assets/scene-view.js";
 import {mountSceneModels} from "/assets/model-assets.js";
 
 import {loadSceneData} from "/assets/scene-data.js";
@@ -158,6 +160,7 @@ function syncSceneAppearance() {
 window.addEventListener('inresearch:appearance', syncSceneAppearance);
 syncSceneAppearance();
 
+let sceneView;
 const camera = new THREE.PerspectiveCamera(40, 1, 0.05, 300);
 camera.position.set(13, 8.5, 16);
 const controls = new OrbitControls(camera, canvas);
@@ -695,14 +698,17 @@ createScenePicking({THREE, canvas, camera, pickables, tip,
   select: object => showDossier(PART[object.userData.part])});
 
 /* ─────────── 主循环：渲染 + 风扇旋转 + LED 呼吸 ─────────── */
-function resize() {
-  renderer.setSize(innerWidth, innerHeight);
-  composer.setSize(innerWidth, innerHeight);
-  camera.aspect = innerWidth / innerHeight;
-  camera.zoom = Math.min(1, Math.max(0.35, camera.aspect / 0.9));
-  camera.updateProjectionMatrix();
-}
-addEventListener("resize", resize); resize();
+// The published adoption registry owns optional model selection.
+const sceneModels = mountSceneModels({scene, page:"rack3d", defaultHeight:RH + 0.7, replacement:rack});
+const framingObjects = () => [...pickables, ...sceneModels.objects()];
+sceneView = mountSceneView({canvas, camera, controls,
+  objects:framingObjects,
+  headers:[document.getElementById("ui-skinbar"), document.querySelector(".topbar")],
+  button:document.getElementById("fit-view"),
+  resize:(width, height) => {renderer.setSize(width, height, false);composer.setSize(width, height);},
+});
+sceneModels.ready.then(() => sceneView.refresh());
+window.addEventListener("pagehide", event => {if (!event.persisted) {sceneView.dispose();sceneModels.dispose();inspector.dispose();}});
 const clock = new THREE.Clock();
 (function loop() {
   requestAnimationFrame(loop);
@@ -719,9 +725,7 @@ const clock = new THREE.Clock();
   const pid = (q.get("node") || "").replace(/^part:/, "") || location.hash.slice(1);
   if (PART[pid]) { controls.autoRotate = false; showDossier(PART[pid]); } }
 
-// The published adoption registry owns optional model selection.
-const sceneModels = mountSceneModels({scene, page:"rack3d", defaultHeight:RH + 0.7, replacement:rack});
-window.addEventListener('pagehide', event => {if (!event.persisted) sceneModels.dispose();});
+
 
 /* ── 下钻链条：一份配置驱动，加设备只需改 assets/levels.json ── */
 fetch("assets/levels.json?t=" + Date.now()).then(r => r.ok ? r.json() : null).then(cfg => {

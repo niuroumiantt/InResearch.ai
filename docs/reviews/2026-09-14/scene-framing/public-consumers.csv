@@ -1,0 +1,110 @@
+implementation,consumer,line,reference,migration_result
+inspector.,docs/REPOSITORY_REGISTER.md,1062,| `web/components/part-inspector.js` | 运行代码 |,current rule/operational reference
+scene-view,docs/REPOSITORY_REGISTER.md,1067,| `web/components/scene-view.js` | 运行代码 |,current rule/operational reference
+scene-view,framework/05_interface_system.md,107,scene-view 是园区、机柜、比较台和部件查看器的共享视口/适配实现。画布以实际 CSS 尺寸设置相机比例和渲染缓冲，仅尺寸改变时重设；主场景画布避开页面明确提供的固定导航。页面明确主体集合：园区以建筑/设备聚焦，land 底板保留拾取与研究档案但作为场地背景；机柜包含全部研究网格。主体与当前已采用模型提供世界坐标边界，灯光、标签及不可见祖先不扩张边界。相机距离按包围球与较窄的视场角计算，旋转预览仍完整；空/非有限边界不能移动相机。雾化范围随适配视距更新，不允许正确投影的模型被旧雾区完全遮没。,current rule/operational reference
+scene-view,framework/09_software_contracts.md,102,scene-view 只持有画布尺寸观察、可见几何边界、透视适配及自动/用户镜头所有权；页面提供 renderer/composer 的尺寸回调、研究对象集合、固定导航与领域动作。model-assets 持有采用模型及加载代次，只读 objects 不复制登记或让消费者释放模型。part-inspector 独占预览 renderer 和克隆材质、借用原几何，退出清理观察与独占资源。比较台退出逐帧 setSize；主页面退出窗口尺寸/zoom 猜测，两种预览退出 rad×2.9 距离常数。此边界不表示全部 renderer、HDR、面板纹理或领域几何已统一。,current rule/operational reference
+inspector.,framework/current_state.json,305,"""web/components/part-inspector.js"",",current rule/operational reference
+scene-view,framework/current_state.json,323,"""web/components/scene-view.js"",",current rule/operational reference
+scene-view,framework/current_state.json,575,"""web/components/scene-view.js"",",current rule/operational reference
+inspector.,framework/current_state.json,576,"""web/components/part-inspector.js"",",current rule/operational reference
+sceneModels,tests/model_assets.cjs,36,"const tail='globalThis.__assetsTest={scene,sceneModels'+(new URL(r.request().url()).pathname.includes('rack')?',rack':'')+'};\n</script>\n</body>';",actual regression consumer; execution separately recorded
+sceneModels,tests/model_assets.cjs,46,response='fail';await page.evaluate(()=>__assetsTest.sceneModels.reload());,actual regression consumer; execution separately recorded
+sceneModels,tests/model_assets.cjs,78,"response=[entry('b.glb',scene),entry('bad.glb',scene)];await page.evaluate(()=>__assetsTest.sceneModels.reload());",actual regression consumer; execution separately recorded
+sceneModels,tests/model_assets.cjs,81,"response=[entry('texture.glb',scene)];await page.evaluate(()=>__assetsTest.sceneModels.reload());",actual regression consumer; execution separately recorded
+sceneModels,tests/model_assets.cjs,83,"response=[entry('b.glb',scene)];await page.evaluate(()=>__assetsTest.sceneModels.reload());",actual regression consumer; execution separately recorded
+sceneModels,tests/model_assets.cjs,87,response=[];await page.evaluate(()=>__assetsTest.sceneModels.reload());,actual regression consumer; execution separately recorded
+inspector.,tests/part_dossier.cjs,1,/* Real scene deep links exercise the shared dossier and WebGL inspector. */,actual regression consumer; execution separately recorded
+createPartInspector,tests/part_dossier.cjs,80,const {createPartInspector} = await import('/assets/part-inspector.js');,actual regression consumer; execution separately recorded
+inspector.,tests/part_dossier.cjs,80,const {createPartInspector} = await import('/assets/part-inspector.js');,actual regression consumer; execution separately recorded
+createPartInspector,tests/part_dossier.cjs,126,"const inspector = createPartInspector({THREE:{...THREE,WebGLRenderer:CaptureRenderer},",actual regression consumer; execution separately recorded
+inspector.,tests/part_dossier.cjs,128,"document.body.append(inspector.canvas);check(inspector.show('part'),'inspector failed');inspector.tick();",actual regression consumer; execution separately recorded
+inspector.,tests/part_dossier.cjs,131,"let disposed=false;cloned.addEventListener('dispose',()=>disposed=true);inspector.show('part');",actual regression consumer; execution separately recorded
+inspector.,tests/part_dossier.cjs,133,"inspector.hide();inspector.dispose();check(!disposedGeometry,'inspector dispose released borrowed geometry');inspector.canvas.remove();dim.dispose();original.dispose();",actual regression consumer; execution separately recorded
+inspector.,tests/scene_framing.cjs,11,"await page.route('**/assets/part-inspector.js',async r=>{",actual regression consumer; execution separately recorded
+sceneView,tests/scene_framing.cjs,17,"const body=source.replace('</script>\n</body>','globalThis.__framing={scene,camera,controls,canvas,sceneView,framingObjects,pickables,sceneModels,inspector,showDossier,PART};\n</script>\n</body>');",actual regression consumer; execution separately recorded
+sceneModels,tests/scene_framing.cjs,17,"const body=source.replace('</script>\n</body>','globalThis.__framing={scene,camera,controls,canvas,sceneView,framingObjects,pickables,sceneModels,inspector,showDossier,PART};\n</script>\n</body>');",actual regression consumer; execution separately recorded
+inspector.,tests/scene_framing.cjs,28,"const data=view==='main'?{...__framing,objects:__framing.framingObjects()}:view==='inspector'?__framing.inspector.viewForTest():__compareView;",actual regression consumer; execution separately recorded
+sceneView,tests/scene_framing.cjs,71,"await page.evaluate(()=>{const v=__framing;v.controls.autoRotate=false;v.sceneView.takeControl();v.camera.position.x+=3;v.controls.target.x+=3;globalThis.__ownedCamera={position:v.camera.position.toArray(),target:v.controls.target.toArray()};});",actual regression consumer; execution separately recorded
+sceneView,tests/scene_framing.cjs,74,await page.evaluate(async()=>{await __framing.sceneModels.reload();__framing.sceneView.refresh();});,actual regression consumer; execution separately recorded
+sceneModels,tests/scene_framing.cjs,74,await page.evaluate(async()=>{await __framing.sceneModels.reload();__framing.sceneView.refresh();});,actual regression consumer; execution separately recorded
+sceneView,tests/scene_framing.cjs,80,await page.evaluate(async()=>{await __framing.sceneModels.reload();__framing.sceneView.refresh();});,actual regression consumer; execution separately recorded
+sceneModels,tests/scene_framing.cjs,80,await page.evaluate(async()=>{await __framing.sceneModels.reload();__framing.sceneView.refresh();});,actual regression consumer; execution separately recorded
+sceneModels,tests/scene_framing.cjs,81,"assert.ok(await page.evaluate(()=>{const roots=__framing.sceneModels.objects();const length=roots.length;roots.pop();return length===1 && __framing.sceneModels.objects().length===1;}),'current model query must return a defensive list');",actual regression consumer; execution separately recorded
+sceneModels,tests/scene_framing.cjs,85,await page.evaluate(()=>__framing.sceneModels.reload());,actual regression consumer; execution separately recorded
+inspector.,tests/scene_framing.cjs,90,await page.waitForFunction(()=>{const v=__framing.inspector.viewForTest();return Math.abs(v.camera.aspect-v.canvas.clientWidth/v.canvas.clientHeight)<.005;});,actual regression consumer; execution separately recorded
+sceneView,tests/scene_framing.cjs,101,"await page.setViewportSize({width:1000,height:900});await page.evaluate(()=>__framing.sceneView.refresh());",actual regression consumer; execution separately recorded
+scene-view,tests/scene_framing.cjs,118,"const THREE=await import('three'),{visibleBounds,fitPerspective,createViewport,mountSceneView}=await import('/assets/scene-view.js');",actual regression consumer; execution separately recorded
+visibleBounds,tests/scene_framing.cjs,118,"const THREE=await import('three'),{visibleBounds,fitPerspective,createViewport,mountSceneView}=await import('/assets/scene-view.js');",actual regression consumer; execution separately recorded
+fitPerspective,tests/scene_framing.cjs,118,"const THREE=await import('three'),{visibleBounds,fitPerspective,createViewport,mountSceneView}=await import('/assets/scene-view.js');",actual regression consumer; execution separately recorded
+createViewport,tests/scene_framing.cjs,118,"const THREE=await import('three'),{visibleBounds,fitPerspective,createViewport,mountSceneView}=await import('/assets/scene-view.js');",actual regression consumer; execution separately recorded
+mountSceneView,tests/scene_framing.cjs,118,"const THREE=await import('three'),{visibleBounds,fitPerspective,createViewport,mountSceneView}=await import('/assets/scene-view.js');",actual regression consumer; execution separately recorded
+fitPerspective,tests/scene_framing.cjs,121,"check(!fitPerspective({camera,bounds:new THREE.Box3()}),'empty geometry cannot fit');",actual regression consumer; execution separately recorded
+fitPerspective,tests/scene_framing.cjs,123,"check(!fitPerspective({camera,bounds:new THREE.Box3(new THREE.Vector3(-1e200,-1e200,-1e200),new THREE.Vector3(1e200,1e200,1e200))}),'overflowing bounds poisoned camera');",actual regression consumer; execution separately recorded
+visibleBounds,tests/scene_framing.cjs,125,"check(visibleBounds([mesh]).isEmpty(),'invisible parent changed bounds');parent.visible=true;parent.position.set(70,20,-40);",actual regression consumer; execution separately recorded
+visibleBounds,tests/scene_framing.cjs,126,"const bounds=visibleBounds([mesh]);check(bounds.getCenter(new THREE.Vector3()).x===70,'world transform ignored');",actual regression consumer; execution separately recorded
+fitPerspective,tests/scene_framing.cjs,127,"camera.aspect=0;check(!fitPerspective({camera,bounds}),'zero aspect accepted');camera.aspect=.2;",actual regression consumer; execution separately recorded
+fitPerspective,tests/scene_framing.cjs,128,"check(fitPerspective({camera,bounds}),'valid portrait fit rejected');",actual regression consumer; execution separately recorded
+createViewport,tests/scene_framing.cjs,130,"let sizes=0;const viewport=createViewport({canvas,camera,resize:()=>sizes++});viewport.sync();viewport.sync();check(sizes===1,'same size repeatedly resized buffer');",actual regression consumer; execution separately recorded
+mountSceneView,tests/scene_framing.cjs,134,"const view=mountSceneView({canvas,camera,controls,objects:()=>[mesh],resize:()=>{},headers:[],button});",actual regression consumer; execution separately recorded
+objects:(),tests/scene_framing.cjs,134,"const view=mountSceneView({canvas,camera,controls,objects:()=>[mesh],resize:()=>{},headers:[],button});",actual regression consumer; execution separately recorded
+objects:(),web/components/model-assets.js,145,"return {reload:slot.reload, ready:slot.ready, objects:() => currentObjects.slice(), dispose() {",migrated shared view/ownership consumer
+inspector.,web/components/part-dossier.js,1,/* One dossier owns its DOM; the scene supplies data and its inspector. */,migrated shared view/ownership consumer
+inspector.,web/components/part-dossier.js,23,"close.addEventListener(""click"", () => { el.style.display = ""none""; inspector.hide(); });",migrated shared view/ownership consumer
+inspector.,web/components/part-dossier.js,71,"if (inspector.show(p.id)) { slot.style.display = ""block""; slot.insertBefore(inspector.canvas, slot.firstChild); }",migrated shared view/ownership consumer
+scene-view,web/components/part-inspector.js,2,"import {createViewport, visibleBounds, fitPerspective} from './scene-view.js';",migrated shared view/ownership consumer
+visibleBounds,web/components/part-inspector.js,2,"import {createViewport, visibleBounds, fitPerspective} from './scene-view.js';",migrated shared view/ownership consumer
+fitPerspective,web/components/part-inspector.js,2,"import {createViewport, visibleBounds, fitPerspective} from './scene-view.js';",migrated shared view/ownership consumer
+createViewport,web/components/part-inspector.js,2,"import {createViewport, visibleBounds, fitPerspective} from './scene-view.js';",migrated shared view/ownership consumer
+createPartInspector,web/components/part-inspector.js,3,"export function createPartInspector({THREE, environment, meshesFor, materialFor = mesh => mesh.material}) {",migrated shared view/ownership consumer
+fitPerspective,web/components/part-inspector.js,6,"const fit = () => {if (bounds) fitPerspective({camera:iCam, bounds, direction:new THREE.Vector3(0, 0.45, 2.9)});};",migrated shared view/ownership consumer
+createViewport,web/components/part-inspector.js,17,"viewport = createViewport({canvas:iCv, camera:iCam, resize:(w,h)=>iRen.setSize(w,h,false), onResize:fit});",migrated shared view/ownership consumer
+visibleBounds,web/components/part-inspector.js,60,bounds = visibleBounds([iGroup]);,migrated shared view/ownership consumer
+visibleBounds,web/components/scene-view.js,4,export function visibleBounds(objects) {,migrated shared view/ownership consumer
+fitPerspective,web/components/scene-view.js,23,"export function fitPerspective({camera, bounds, target, direction, padding=1.12}) {",migrated shared view/ownership consumer
+createViewport,web/components/scene-view.js,45,"export function createViewport({canvas, camera, resize, headers=[], onResize=()=>{}}) {",migrated shared view/ownership consumer
+mountSceneView,web/components/scene-view.js,66,"export function mountSceneView({canvas, camera, controls, objects, resize, headers, button, fog=null, beforeFit=()=>{}}) {",migrated shared view/ownership consumer
+visibleBounds,web/components/scene-view.js,70,const bounds = visibleBounds(objects());,migrated shared view/ownership consumer
+fitPerspective,web/components/scene-view.js,71,"const fitted = fitPerspective({camera, bounds, target:controls.target});",migrated shared view/ownership consumer
+createViewport,web/components/scene-view.js,83,"const viewport = createViewport({canvas, camera, resize, headers, onResize:refresh});",migrated shared view/ownership consumer
+createPartInspector,web/pages/bom3d.html,136,"import {createPartInspector} from ""/assets/part-inspector.js"";",migrated shared view/ownership consumer
+inspector.,web/pages/bom3d.html,136,"import {createPartInspector} from ""/assets/part-inspector.js"";",migrated shared view/ownership consumer
+scene-view,web/pages/bom3d.html,145,"import {mountSceneView} from ""/assets/scene-view.js"";",migrated shared view/ownership consumer
+mountSceneView,web/pages/bom3d.html,145,"import {mountSceneView} from ""/assets/scene-view.js"";",migrated shared view/ownership consumer
+sceneView,web/pages/bom3d.html,195,let sceneView;,migrated shared view/ownership consumer
+sceneView,web/pages/bom3d.html,886,sceneView?.takeControl();,migrated shared view/ownership consumer
+createPartInspector,web/pages/bom3d.html,958,"const inspector = createPartInspector({THREE, environment: () => scene.environment, meshesFor: pid => PARTMESH[pid],",migrated shared view/ownership consumer
+sceneModels,web/pages/bom3d.html,984,"const sceneModels = mountSceneModels({scene, page:""bom3d"", defaultHeight:4.6});",migrated shared view/ownership consumer
+sceneModels,web/pages/bom3d.html,985,"const framingObjects = () => [...pickables.filter(mesh => mesh.userData.part !== ""land""), ...sceneModels.objects()];",migrated shared view/ownership consumer
+mountSceneView,web/pages/bom3d.html,986,"sceneView = mountSceneView({canvas, camera, controls, fog:scene.fog,",migrated shared view/ownership consumer
+sceneView,web/pages/bom3d.html,986,"sceneView = mountSceneView({canvas, camera, controls, fog:scene.fog,",migrated shared view/ownership consumer
+sceneView,web/pages/bom3d.html,993,sceneModels.ready.then(() => sceneView.refresh());,migrated shared view/ownership consumer
+sceneModels,web/pages/bom3d.html,993,sceneModels.ready.then(() => sceneView.refresh());,migrated shared view/ownership consumer
+sceneView,web/pages/bom3d.html,994,"window.addEventListener(""pagehide"", event => {if (!event.persisted) {sceneView.dispose();sceneModels.dispose();inspector.dispose();}});",migrated shared view/ownership consumer
+sceneModels,web/pages/bom3d.html,994,"window.addEventListener(""pagehide"", event => {if (!event.persisted) {sceneView.dispose();sceneModels.dispose();inspector.dispose();}});",migrated shared view/ownership consumer
+inspector.,web/pages/bom3d.html,994,"window.addEventListener(""pagehide"", event => {if (!event.persisted) {sceneView.dispose();sceneModels.dispose();inspector.dispose();}});",migrated shared view/ownership consumer
+inspector.,web/pages/bom3d.html,995,(function loop() { requestAnimationFrame(loop); controls.update(); composer.render(); inspector.tick(); })();,migrated shared view/ownership consumer
+scene-view,web/pages/compare.html,54,"import {createViewport, visibleBounds, fitPerspective} from ""/assets/scene-view.js"";",migrated shared view/ownership consumer
+visibleBounds,web/pages/compare.html,54,"import {createViewport, visibleBounds, fitPerspective} from ""/assets/scene-view.js"";",migrated shared view/ownership consumer
+fitPerspective,web/pages/compare.html,54,"import {createViewport, visibleBounds, fitPerspective} from ""/assets/scene-view.js"";",migrated shared view/ownership consumer
+createViewport,web/pages/compare.html,54,"import {createViewport, visibleBounds, fitPerspective} from ""/assets/scene-view.js"";",migrated shared view/ownership consumer
+fitPerspective,web/pages/compare.html,116,"const fit = () => {if (bounds) fitPerspective({camera:cam, bounds, direction:new THREE.Vector3(0, .35, 2.9)});};",migrated shared view/ownership consumer
+createViewport,web/pages/compare.html,117,"const viewport = createViewport({canvas:cv, camera:cam, resize:(w,h)=>ren.setSize(w,h,false), onResize:fit});",migrated shared view/ownership consumer
+visibleBounds,web/pages/compare.html,143,bounds = visibleBounds([o]);,migrated shared view/ownership consumer
+createPartInspector,web/pages/rack3d.html,118,"import {createPartInspector} from ""/assets/part-inspector.js"";",migrated shared view/ownership consumer
+inspector.,web/pages/rack3d.html,118,"import {createPartInspector} from ""/assets/part-inspector.js"";",migrated shared view/ownership consumer
+scene-view,web/pages/rack3d.html,126,"import {mountSceneView} from ""/assets/scene-view.js"";",migrated shared view/ownership consumer
+mountSceneView,web/pages/rack3d.html,126,"import {mountSceneView} from ""/assets/scene-view.js"";",migrated shared view/ownership consumer
+sceneView,web/pages/rack3d.html,163,let sceneView;,migrated shared view/ownership consumer
+createPartInspector,web/pages/rack3d.html,689,"const inspector = createPartInspector({THREE, environment: () => scene.environment, meshesFor: pid => PARTMESH[pid]});",migrated shared view/ownership consumer
+sceneModels,web/pages/rack3d.html,702,"const sceneModels = mountSceneModels({scene, page:""rack3d"", defaultHeight:RH + 0.7, replacement:rack});",migrated shared view/ownership consumer
+sceneModels,web/pages/rack3d.html,703,"const framingObjects = () => [...pickables, ...sceneModels.objects()];",migrated shared view/ownership consumer
+mountSceneView,web/pages/rack3d.html,704,"sceneView = mountSceneView({canvas, camera, controls,",migrated shared view/ownership consumer
+sceneView,web/pages/rack3d.html,704,"sceneView = mountSceneView({canvas, camera, controls,",migrated shared view/ownership consumer
+sceneView,web/pages/rack3d.html,710,sceneModels.ready.then(() => sceneView.refresh());,migrated shared view/ownership consumer
+sceneModels,web/pages/rack3d.html,710,sceneModels.ready.then(() => sceneView.refresh());,migrated shared view/ownership consumer
+sceneView,web/pages/rack3d.html,711,"window.addEventListener(""pagehide"", event => {if (!event.persisted) {sceneView.dispose();sceneModels.dispose();inspector.dispose();}});",migrated shared view/ownership consumer
+sceneModels,web/pages/rack3d.html,711,"window.addEventListener(""pagehide"", event => {if (!event.persisted) {sceneView.dispose();sceneModels.dispose();inspector.dispose();}});",migrated shared view/ownership consumer
+inspector.,web/pages/rack3d.html,711,"window.addEventListener(""pagehide"", event => {if (!event.persisted) {sceneView.dispose();sceneModels.dispose();inspector.dispose();}});",migrated shared view/ownership consumer
+inspector.,web/pages/rack3d.html,720,inspector.tick();,migrated shared view/ownership consumer
+inspector.,web/routes.json,73,"""/assets/part-inspector.js"": ""web/components/part-inspector.js"",",migrated shared view/ownership consumer
+scene-view,web/routes.json,82,"""/assets/scene-view.js"": ""web/components/scene-view.js""",migrated shared view/ownership consumer

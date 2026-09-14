@@ -1,0 +1,8 @@
+public_implementation,all_internal_consumers,migration_result,retained_boundary
+scene-view.visibleBounds,scene-view.mountSceneView; compare.html; part-inspector.js; scene_framing.cjs,world-space visible mesh boundary; hidden ancestors excluded,does not infer physical relationships or evidence
+scene-view.fitPerspective,scene-view.mountSceneView; compare.html; part-inspector.js; scene_framing.cjs,one narrower-FOV/sphere distance and clipping rule,authored domain positions retained outside automatic fit
+scene-view.createViewport,scene-view.mountSceneView; compare.html; part-inspector.js; scene_framing.cjs,actual CSS dimensions and idempotent resize; observation disposed,render buffers remain owned by supplied renderer/composer
+scene-view.mountSceneView,bom3d.html; rack3d.html; scene_framing.cjs,initial/explicit fit; controls.start and flyTo take ownership; pagehide cleanup,not all overlay occlusion or authored domain composition
+mountSceneModels.objects,bom3d.html; rack3d.html; scene_framing.cjs,read-only current root list; old roots exit on replacement/dispose,existing ready/reload/dispose consumers in model_assets.cjs preserved
+createPartInspector.show/tick/hide/dispose,part-dossier.js; bom3d.html; rack3d.html; part_dossier.cjs; scene_framing.cjs,"one preview resets pivot, fits actual aspect; pagehide releases owned resources",source geometry/textures remain borrowed; existing dossier contract retained
+run_browser default/core/model_assets,validate.yml; framework/05_interface_system.md; local validation commands,new scene_framing included in default/core; model_assets remains three bounded scenarios,CI timeout and original assertions preserved
