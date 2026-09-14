@@ -132755,6 +132755,39 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "满足美国数据中心用电需求到 2030 年需新增约 82 GW 发电容量（此前 72 GW），其中约 60% 需新建；图 14 称 51% 来自天然气调峰、27% 来自光伏。库内 RAND 转述的高盛 47 GW（rand-goldman-us-incremental-2030，@2025-01）是更早的版本，同一断言者不同时点的预测并列，不是接替。"
+    },
+    {
+      "fact_id": "siemens2511-iea-cn-dc-electricity-2024",
+      "metric_id": "dc_electricity_consumption",
+      "asserter": "IEA",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc",
+        "label": "中国数据中心"
+      },
+      "value": 102.0,
+      "unit": "TWh",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "CN",
+        "basis": "第三方估算"
+      },
+      "evidence": {
+        "sha256": "e862ffcbb01387f36a74b30a834fb35957adcd3f7453e904a93496b53086bbb1",
+        "local_file": "20251113-西门子：2025面向未来的中国数据中心：绿色低碳与高可靠性白皮书(19页).pdf",
+        "locator": "第 6 页「用电量跃升」：「国际能源署（IEA）数据显示，2024 年中国数据中心用电量约为 102TWh，同比大幅增长 21%，显著高于全国全社会用电量 6.8% 的年度增速」；同页「2024 年中国数据中心用电量已占全球数据中心用电总量的 25%，仅次于美国」",
+        "grade": "S3",
+        "originator": "IEA（经西门子能源《面向未来的中国数据中心：绿色低碳与高可靠性》白皮书（2025-11）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "约 102 TWh、同比 +21%，占全球数据中心用电 25%（IEA 全球 415 TWh）。**与信通院 166 TWh、伯恩斯坦 178 TWh 同年相差 60% 以上**，IEA 口径只算数据中心本身（参见国金周报引 IEA 对 1000-1500 亿 kWh 与更高测算差异的解释）。同页「综合多家机构」2030 年 400-600 TWh、负荷约 1 亿千瓦、占比升至 6% 断言者不明，未录。"
     }
   ]
 }
