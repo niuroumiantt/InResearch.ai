@@ -140,11 +140,13 @@ class CommandDispatch(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             for command in cli.COMMANDS:
                 with self.subTest(command=command), patch.object(cli.importlib, 'import_module') as load, \
-                     patch('sys.stderr', io.StringIO()) as errors:
+                     patch.object(cli.argparse.ArgumentParser, 'error', side_effect=SystemExit(2)) as error_call:
                     with self.assertRaises(SystemExit) as error:
                         cli.main(['--root', directory, command])
                     self.assertEqual(error.exception.code, 2)
-                    self.assertIn('global --root applies only to add-price, assign, receive-snapshot', errors.getvalue())
+                    message = error_call.call_args.args[0]
+                    self.assertIn('global --root applies only to add-price, assign, receive-snapshot', message)
+                    self.assertIn('use directory options supported by ' + command, message)
                     load.assert_not_called()
                     self.assertIs(sys.argv, original)
             self.assertEqual(list(Path(directory).iterdir()), [])
