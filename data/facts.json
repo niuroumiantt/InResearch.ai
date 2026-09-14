@@ -120006,6 +120006,70 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "约 44,000 个已投产机柜 = 4.4 万架，「约」按点值记；原文未说是物理机柜还是标准机架折算。证通电子约 17,500 个（注：按 4.4kW 标准机折算），原文未说已投产还是含在建，status 无法落，未录。"
+    },
+    {
+      "fact_id": "lingyi2022-athub-racks-2021",
+      "metric_id": "operator_rack_capacity",
+      "asserter": "数据港",
+      "entity": {
+        "type": "company",
+        "id": "athub",
+        "label": "数据港"
+      },
+      "value": 7.0544,
+      "unit": "万架",
+      "bound": "point",
+      "as_of": "2021-12",
+      "caliber": {
+        "status": "在运营",
+        "city_tier": "合计",
+        "subregion": "全国",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "evidence": {
+        "sha256": "93d2b02ed16058f6e08fdc40fa2cc7eefdc24e70ac8e647984570f9dc5da731e",
+        "local_file": "5C_2025_2025_零壹智库数据港奥飞_未署名.pdf",
+        "locator": "第 3 页 一、（一）：「截至 2021 年末，数据港累计已建成及已运营数据中心 33 个，折算成 5 千瓦（KW）标准机柜约 70,544 个；奥飞数据拥有 12 个自建自营的数据中心，可用机柜约为 19,900 个」",
+        "grade": "S3",
+        "originator": "数据港年报（经零壹智库《数据港、奥飞数据比拼：谁是 A 股最强专营数据中心运营商？》（2022-06）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "约 70,544 个 = 7.0544 万架，**按 5kW 标准机柜折算**；原文「累计已建成及已运营」33 个数据中心，按在运营记。2019-2021 机柜数 CAGR 58.16%。"
+    },
+    {
+      "fact_id": "lingyi2022-ofidc-racks-2021",
+      "metric_id": "operator_rack_capacity",
+      "asserter": "奥飞数据",
+      "entity": {
+        "type": "company",
+        "id": "ofidc",
+        "label": "奥飞数据"
+      },
+      "value": 1.99,
+      "unit": "万架",
+      "bound": "point",
+      "as_of": "2021-12",
+      "caliber": {
+        "status": "在运营",
+        "city_tier": "合计",
+        "subregion": "全国",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "evidence": {
+        "sha256": "93d2b02ed16058f6e08fdc40fa2cc7eefdc24e70ac8e647984570f9dc5da731e",
+        "local_file": "5C_2025_2025_零壹智库数据港奥飞_未署名.pdf",
+        "locator": "第 3 页 一、（一）：「截至 2021 年末，数据港累计已建成及已运营数据中心 33 个，折算成 5 千瓦（KW）标准机柜约 70,544 个；奥飞数据拥有 12 个自建自营的数据中心，可用机柜约为 19,900 个」",
+        "grade": "S3",
+        "originator": "奥飞数据年报（经零壹智库《数据港、奥飞数据比拼：谁是 A 股最强专营数据中心运营商？》（2022-06）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「可用机柜约 19,900 个」= 1.99 万架，12 个自建自营数据中心；未说明是否标准机柜折算，**与数据港 5kW 折算口径不一定可比**。2019-2021 机柜数 CAGR 66.24%。"
     }
   ]
 }
