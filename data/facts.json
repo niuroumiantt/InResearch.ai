@@ -126954,6 +126954,105 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "37720 百万美元 = 377.20 亿美元。季度营收，不可乘 4 外推年度。原表「Total Foundry Revenue」，含 Others。"
+    },
+    {
+      "fact_id": "tia942a-room-temp-max",
+      "metric_id": "room_air_temperature",
+      "asserter": "美国电信产业协会",
+      "entity": {
+        "type": "policy",
+        "id": "tia-942-a",
+        "label": "TIA-942-A 数据中心电信基础设施标准"
+      },
+      "value": 27.0,
+      "unit": "℃",
+      "bound": "upper",
+      "as_of": "2012",
+      "caliber": {
+        "parameter": "未注明",
+        "tier": "未注明",
+        "bound_sense": "不大于",
+        "region": "US",
+        "basis": "规范要求"
+      },
+      "evidence": {
+        "sha256": "14b28e38cb59fdb74d9dd8afd108ea8f94fc38af297404239c5e7e6bc016d75a",
+        "local_file": "TIA-942《数据中心电信基础设施标准》（中文版）.pdf",
+        "locator": "第 112 页《新版数据中心布线标准 TIA 942-A 的简单介绍》：「机房的建议温度/湿度已经和 ASHRAE(美国采暖、制冷与空调工程师学会)保持一致。允许的最高机房温度是 27°C。……建议的最低温度是 18°C。允许最大的相对湿度是 60%，最大的露点是 15°C」",
+        "grade": "S3",
+        "originator": "美国电信产业协会 TIA-942-A（经《UPS 应用》杂志 upschina.cn 刊载的介绍文章转述；文件为 TIA-942 中文译本连载合订本）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 TIA-942-A 发布年 2012：文章只说「初版 2005 年颁布……现在新的版本终于颁布了」，发布年为库外知识，待核",
+      "corroboration": "待交叉验证",
+      "notes": "「允许的最高机房温度是 27°C」。942-A 改与 ASHRAE 一致；初版 TIA-942 为推荐区间 20-25℃（tia942-room-temp-lower/-upper），界限方向不同，不是同一条的修订。原文未说是进风温度还是室温，参数填未注明。"
+    },
+    {
+      "fact_id": "tia942a-room-temp-min",
+      "metric_id": "room_air_temperature",
+      "asserter": "美国电信产业协会",
+      "entity": {
+        "type": "policy",
+        "id": "tia-942-a",
+        "label": "TIA-942-A 数据中心电信基础设施标准"
+      },
+      "value": 18.0,
+      "unit": "℃",
+      "bound": "lower",
+      "as_of": "2012",
+      "caliber": {
+        "parameter": "未注明",
+        "tier": "未注明",
+        "bound_sense": "推荐区间下界",
+        "region": "US",
+        "basis": "规范要求"
+      },
+      "evidence": {
+        "sha256": "14b28e38cb59fdb74d9dd8afd108ea8f94fc38af297404239c5e7e6bc016d75a",
+        "local_file": "TIA-942《数据中心电信基础设施标准》（中文版）.pdf",
+        "locator": "第 112 页《新版数据中心布线标准 TIA 942-A 的简单介绍》：「机房的建议温度/湿度已经和 ASHRAE(美国采暖、制冷与空调工程师学会)保持一致。允许的最高机房温度是 27°C。……建议的最低温度是 18°C。允许最大的相对湿度是 60%，最大的露点是 15°C」",
+        "grade": "S3",
+        "originator": "美国电信产业协会 TIA-942-A（经《UPS 应用》杂志 upschina.cn 刊载的介绍文章转述；文件为 TIA-942 中文译本连载合订本）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 TIA-942-A 发布年 2012：文章只说「初版 2005 年颁布……现在新的版本终于颁布了」，发布年为库外知识，待核",
+      "corroboration": "待交叉验证",
+      "notes": "「建议的最低温度是 18°C」。"
+    },
+    {
+      "fact_id": "tia942a-dewpoint-max",
+      "metric_id": "room_air_temperature",
+      "asserter": "美国电信产业协会",
+      "entity": {
+        "type": "policy",
+        "id": "tia-942-a",
+        "label": "TIA-942-A 数据中心电信基础设施标准"
+      },
+      "value": 15.0,
+      "unit": "℃",
+      "bound": "upper",
+      "as_of": "2012",
+      "caliber": {
+        "parameter": "露点温度",
+        "tier": "未注明",
+        "bound_sense": "不大于",
+        "region": "US",
+        "basis": "规范要求"
+      },
+      "evidence": {
+        "sha256": "14b28e38cb59fdb74d9dd8afd108ea8f94fc38af297404239c5e7e6bc016d75a",
+        "local_file": "TIA-942《数据中心电信基础设施标准》（中文版）.pdf",
+        "locator": "第 112 页《新版数据中心布线标准 TIA 942-A 的简单介绍》：「机房的建议温度/湿度已经和 ASHRAE(美国采暖、制冷与空调工程师学会)保持一致。允许的最高机房温度是 27°C。……建议的最低温度是 18°C。允许最大的相对湿度是 60%，最大的露点是 15°C」",
+        "grade": "S3",
+        "originator": "美国电信产业协会 TIA-942-A（经《UPS 应用》杂志 upschina.cn 刊载的介绍文章转述；文件为 TIA-942 中文译本连载合订本）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 TIA-942-A 发布年 2012：文章只说「初版 2005 年颁布……现在新的版本终于颁布了」，发布年为库外知识，待核",
+      "corroboration": "待交叉验证",
+      "notes": "「最大的露点是 15°C」；初版 TIA-942 为 21℃（tia942-dewpoint-max）。同文最大相对湿度 60% 不是温度，未录。"
     }
   ]
 }
