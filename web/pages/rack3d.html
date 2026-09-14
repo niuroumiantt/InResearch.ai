@@ -125,6 +125,7 @@ import { OutputPass } from "./assets/vendor/OutputPass.js";
 import { EXRLoader } from "./assets/vendor/EXRLoader.js";
 import {mountSceneView} from "/assets/scene-view.js";
 import {mountSceneModels} from "/assets/model-assets.js";
+import {createSceneEnvironment, createTexturePool} from "/assets/scene-resources.js";
 
 import {loadSceneData} from "/assets/scene-data.js";
 const [BOM, companies, prices, inds, reg] = await loadSceneData([
@@ -150,6 +151,7 @@ renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.0;
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+const texturePool = createTexturePool({THREE});
 
 const scene = new THREE.Scene();
 // Appearance changes preserve the current camera, selected object and materials.
@@ -191,16 +193,10 @@ function proceduralEnv() {
   panel(30, 12, -28, 12, 0, 0xbfd6ff, 3.2, Math.PI / 2);
   panel(30, 12, 28, 9, 0, 0xffe0b8, 2.4, -Math.PI / 2);
   panel(40, 10, 0, 11, -28, 0x9db8e8, 2.4, 0);
-  const pmrem = new THREE.PMREMGenerator(renderer);
-  scene.environment = pmrem.fromScene(env, 0.04).texture;
-  pmrem.dispose();
+  return env;
 }
-new EXRLoader().load("assets/hdri/studio.exr", tex => {
-  tex.mapping = THREE.EquirectangularReflectionMapping;
-  const pmrem = new THREE.PMREMGenerator(renderer);
-  scene.environment = pmrem.fromEquirectangular(tex).texture;
-  pmrem.dispose(); tex.dispose();
-}, undefined, () => proceduralEnv());
+const sceneEnvironment = createSceneEnvironment({THREE, EXRLoader, renderer, scene,
+  url:"assets/hdri/studio.exr", fallback:proceduralEnv});
 // Background is supplied by the shared appearance palette; lighting remains physical.
 
 scene.add(new THREE.HemisphereLight(0x8fa8cc, 0x0a0e15, 0.7));
@@ -216,14 +212,7 @@ const rim = new THREE.DirectionalLight(0x6f9fff, 0.9); rim.position.set(-16, 12,
 const fill = new THREE.DirectionalLight(0xcfe0ff, 0.55); fill.position.set(6, 6, 18); scene.add(fill);
 
 /* ─────────── 程序化纹理 ─────────── */
-function ctex(w, h, draw, repX = 1, repY = 1) {
-  const cv = document.createElement("canvas"); cv.width = w; cv.height = h;
-  draw(cv.getContext("2d"), w, h);
-  const t = new THREE.CanvasTexture(cv);
-  t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
-  if (repX !== 1 || repY !== 1) { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(repX, repY); }
-  return t;
-}
+const ctex = texturePool.canvas;
 const rnd = (() => { let s = 7; return () => (s = s * 16807 % 2147483647) / 2147483647; })();
 const TEX = {
   post: ctex(32, 256, (g, w, h) => {           // 机柜立柱：EIA 孔带
@@ -329,16 +318,22 @@ const spinners = [];   // 旋转风扇叶
 const pulsers = [];    // 呼吸 LED
 /* 真实设备面板贴图（NetBox devicetype-library，CC0；来源见 assets/panels/README.md）
    加载失败自动退回程序化面板，不阻塞渲染 */
-const texLoader = new THREE.TextureLoader();
-function panel(name, fallback) {
-  const t = texLoader.load(`assets/panels/${name}.png`, undefined, undefined,
-    () => console.warn(`[面板] ${name}.png 缺失，用程序化面板兜底`));
-  t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
-  return t;
+function panel(name, accent) {
+  return texturePool.image({url:`assets/panels/${name}.png`, width:256, height:64,
+    drawFallback:(g, w, h) => {
+      g.fillStyle = "#111827"; g.fillRect(0, 0, w, h);
+      g.fillStyle = "#334155"; g.fillRect(4, 6, 12, h - 12); g.fillRect(w - 16, 6, 12, h - 12);
+      for (let x = 24; x < w - 52; x += 20) {
+        g.fillStyle = "#080c13"; g.fillRect(x, 10, 15, h - 20);
+        g.fillStyle = accent; g.fillRect(x + 11, h - 17, 3, 3);
+      }
+      g.fillStyle = accent; g.fillRect(w - 39, 12, 20, 5);
+    }});
 }
 const PANEL = {
-  server: panel("server_nvme"), hero: panel("server_gpu"),
-  storage: panel("server_storage"), tor: panel("switch_tor"), ib: panel("switch_ib"),
+  server: panel("server_nvme", "#22c55e"), hero: panel("server_gpu", "#60a5fa"),
+  storage: panel("server_storage", "#f59e0b"), tor: panel("switch_tor", "#38bdf8"),
+  ib: panel("switch_ib", "#a78bfa"),
 };
 
 function M(color, opt = {}) {
@@ -498,8 +493,8 @@ for (let i = 0; i < 2; i++) {
   sw.position.set(0, uy(21 + i * 1.2), 0.3);
   sw.add(new THREE.Mesh(B(RW - 0.7, u * 0.95, RD - 2.2),
     [M(0x1d4ed8, { roughness: .4 }), M(0x1d4ed8, { roughness: .4 }), M(0x16327f), M(0x16327f),
-     new THREE.MeshStandardMaterial({ map: i === 0 ? PANEL.tor : PANEL.ib, roughness: .5, metalness: .15,
-       emissive: 0xffffff, emissiveMap: i === 0 ? PANEL.tor : PANEL.ib, emissiveIntensity: .28 }),
+     new THREE.MeshStandardMaterial({ map: i === 0 ? PANEL.tor.texture : PANEL.ib.texture, roughness: .5, metalness: .15,
+       emissive: 0xffffff, emissiveMap: i === 0 ? PANEL.tor.texture : PANEL.ib.texture, emissiveIntensity: .28 }),
      M(0x16327f)]));
   tag(sw, "network-switch");
   explode(sw, 0, 2.6 + i * 0.9, 1.2, 0.2, 0.34);
@@ -516,8 +511,8 @@ for (let i = 0; i < 8; i++) {
   const chassis = new THREE.Mesh(B(RW - 0.7, u * 1.75, RD - 2.0),
     [M(0x2b3852, { metalness: .5, roughness: .38 }), M(0x2b3852, { metalness: .5, roughness: .38 }),
      M(0x232e45, { metalness: .5, roughness: .4 }), M(0x1c2536),
-     new THREE.MeshStandardMaterial({ map: hero ? PANEL.hero : (i === 7 ? PANEL.storage : PANEL.server), roughness: .55, metalness: .15,
-       emissive: 0xffffff, emissiveMap: hero ? PANEL.hero : (i === 7 ? PANEL.storage : PANEL.server), emissiveIntensity: .2 }),
+     new THREE.MeshStandardMaterial({ map: (hero ? PANEL.hero : (i === 7 ? PANEL.storage : PANEL.server)).texture, roughness: .55, metalness: .15,
+       emissive: 0xffffff, emissiveMap: (hero ? PANEL.hero : (i === 7 ? PANEL.storage : PANEL.server)).texture, emissiveIntensity: .2 }),
      M(0x1c2536)]);
   sled.userData.chassis = chassis;
   sled.add(chassis);
@@ -708,10 +703,20 @@ sceneView = mountSceneView({canvas, camera, controls,
   resize:(width, height) => {renderer.setSize(width, height, false);composer.setSize(width, height);},
 });
 sceneModels.ready.then(() => sceneView.refresh());
-window.addEventListener("pagehide", event => {if (!event.persisted) {sceneView.dispose();sceneModels.dispose();inspector.dispose();}});
+let animationFrame = 0;
+let pageDisposed = false;
+function disposePage() {
+  if (pageDisposed) return;
+  pageDisposed = true;
+  cancelAnimationFrame(animationFrame);
+  window.removeEventListener('inresearch:appearance', syncSceneAppearance);
+  sceneView.dispose(); sceneModels.dispose(); inspector.dispose();
+  sceneEnvironment.dispose(); texturePool.dispose(); composer.dispose(); renderer.dispose();
+}
+window.addEventListener("pagehide", event => {if (!event.persisted) disposePage();}, {once:true});
 const clock = new THREE.Clock();
 (function loop() {
-  requestAnimationFrame(loop);
+  animationFrame = requestAnimationFrame(loop);
   const dt = clock.getDelta(), t = clock.elapsedTime;
   spinners.forEach(r => r.rotation.z += dt * 9);
   pulsers.forEach(({ m, ph }) => m.material.emissiveIntensity = 1.1 + Math.sin(t * 2.4 + ph) * 0.7);

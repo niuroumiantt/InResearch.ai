@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.14.4。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.14.5。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：773。
+在册文件：779。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,15 +15,15 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 12 |
-| 历史快照 | 244 |
-| 运行代码 | 142 |
+| 历史快照 | 248 |
+| 运行代码 | 143 |
 | 现行规范 | 13 |
 | 项目配置 | 36 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 26 |
 | 配套说明 | 35 |
-| 测试 | 58 |
+| 测试 | 59 |
 
 ## 在册记录集合
 
@@ -297,8 +297,10 @@
 | `docs/reviews/2026-09-14/scene-framing/public-contracts.csv` | rows | 10 |
 | `docs/reviews/2026-09-14/scene-framing/scope.json` | changed | 21 |
 | `docs/reviews/2026-09-14/scene-framing/scope.json` | inherited | 19 |
+| `docs/reviews/2026-09-14/scene-resources/consumers-after.csv` | rows | 112 |
 | `docs/reviews/2026-09-14/scene-resources/consumers-before.csv` | rows | 75 |
 | `docs/reviews/2026-09-14/scene-resources/file-plan.csv` | rows | 772 |
+| `docs/reviews/2026-09-14/scene-resources/file-results.csv` | rows | 776 |
 | `docs/reviews/2026-09-14/scene-resources/legacy-removal.csv` | rows | 10 |
 | `docs/reviews/2026-09-14/scene-resources/scope.json` | changed | 16 |
 | `framework/bom.json` | layers | 5 |
@@ -803,13 +805,17 @@
 | `docs/reviews/2026-09-14/scene-framing/scope.json` | 历史快照 |
 | `docs/reviews/2026-09-14/scene-framing/statistics-after.json` | 历史快照 |
 | `docs/reviews/2026-09-14/scene-framing/statistics-before.json` | 历史快照 |
+| [docs/reviews/2026-09-14/scene-resources/DELIVERY.md](reviews/2026-09-14/scene-resources/DELIVERY.md) | 历史快照 |
 | [docs/reviews/2026-09-14/scene-resources/PLAN.md](reviews/2026-09-14/scene-resources/PLAN.md) | 历史快照 |
 | `docs/reviews/2026-09-14/scene-resources/audit.py` | 历史快照 |
 | `docs/reviews/2026-09-14/scene-resources/baseline.json` | 历史快照 |
+| [docs/reviews/2026-09-14/scene-resources/consumers-after.csv](reviews/2026-09-14/scene-resources/consumers-after.csv) | 历史快照 |
 | [docs/reviews/2026-09-14/scene-resources/consumers-before.csv](reviews/2026-09-14/scene-resources/consumers-before.csv) | 历史快照 |
 | [docs/reviews/2026-09-14/scene-resources/file-plan.csv](reviews/2026-09-14/scene-resources/file-plan.csv) | 历史快照 |
+| [docs/reviews/2026-09-14/scene-resources/file-results.csv](reviews/2026-09-14/scene-resources/file-results.csv) | 历史快照 |
 | [docs/reviews/2026-09-14/scene-resources/legacy-removal.csv](reviews/2026-09-14/scene-resources/legacy-removal.csv) | 历史快照 |
 | `docs/reviews/2026-09-14/scene-resources/scope.json` | 历史快照 |
+| `docs/reviews/2026-09-14/scene-resources/statistics-after.json` | 历史快照 |
 | `docs/reviews/2026-09-14/scene-resources/statistics-before.json` | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
 | `docs/source/全球数据中心行业深度研究Q&A总报告_Q1-Q35_v1.0(2).docx` | 项目配置 |
@@ -994,6 +1000,7 @@
 | `tests/run_browser.cjs` | 测试 |
 | `tests/scene_bootstrap.cjs` | 测试 |
 | `tests/scene_framing.cjs` | 测试 |
+| `tests/scene_resources.cjs` | 测试 |
 | `tests/ui_skin.cjs` | 测试 |
 | `tests/unit/deep_read_fixtures.py` | 测试 |
 | `tests/unit/test_acquisition.py` | 测试 |
@@ -1097,6 +1104,7 @@
 | `web/components/scene-data.js` | 运行代码 |
 | `web/components/scene-motion.js` | 运行代码 |
 | `web/components/scene-picking.js` | 运行代码 |
+| `web/components/scene-resources.js` | 运行代码 |
 | `web/components/scene-view.js` | 运行代码 |
 | `web/components/series-summary.js` | 运行代码 |
 | `web/components/site-shell.js` | 运行代码 |
