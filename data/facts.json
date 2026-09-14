@@ -135195,6 +135195,39 @@
       "corroboration": "待交叉验证",
       "notes": "LightCounting 预测，券商转引未注明预测发布时间，故不带 @。同句称 2027 年 CPO 端口占 800G+1.6T 出货总数近 30%（份额无对应指标，未录）；2026–2027 年开始规模上量，主要用于超大型云厂商数通短距。",
       "asserter": "LightCounting"
+    },
+    {
+      "fact_id": "sa2303-google-apollo-ocs-capex-saving",
+      "metric_id": "network_design_saving",
+      "entity": {
+        "type": "company",
+        "id": "google",
+        "label": "Google"
+      },
+      "value": 30.0,
+      "unit": "%",
+      "caliber": {
+        "design_change": "其他",
+        "cost_base": "网络设备成本",
+        "cluster_scale": "其他",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2023-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a07cbb68fa545d82f1f1d7c0939e20081515ad0a4ed05c9870f900373c035dc",
+        "local_file": "Google Apollo_ The _$3 Billion Game-Changer in Datacenter Networking.pdf",
+        "locator": "第 1 页：「Google claims their custom network improves throughput by 30%, use 40% less power, incurs 30% less Capex, reduces flow completion by 10%, and delivers 50x less downtime across their network」；第 9–10 页「Google estimates that the overall Capex of the OCS is about 70% that of standard EPS」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（Dylan Patel，2023-03-18）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文只说 Google 在过去一年的 OFC 与 SIGCOMM 上披露，未给披露日期；as_of 取 SemiAnalysis 文章日 2023-03 作最迟时点。",
+      "corroboration": "待交叉验证",
+      "notes": "方案改动为 Jupiter 网络以 Apollo 光路交换机（OCS）替代 spine 层电交换机（EPS），菜单无此档故记「其他」。Google 自称已在多数数据中心部署 5 年以上，按实测记。节省基数是网络 Capex；同时称功耗低 40%、吞吐高 30%。第 10 页 SemiAnalysis 自己推算：若 OCS 用 3 个升级周期，单台前期成本约为 EPS 的 3.5 倍，4 代则约 6 倍（推算，未录）。标题「省 30 亿美元以上」是 SemiAnalysis 估算，无对应指标。",
+      "asserter": "Google"
     }
   ]
 }
