@@ -119515,6 +119515,70 @@
         "originator": "中国通服数字基建产业研究院（华信咨询设计研究院）设计案例（经中国通服数字基建产业研究院（华信咨询设计研究院）《中国智算中心（AIDC）产业发展白皮书（2024 年）》（2024-09））"
       },
       "notes": "22.8 万平方米 = 228,000 ㎡；6 幢机楼，一期 4 幢。"
+    },
+    {
+      "fact_id": "huawei-dc2030-global-ai-compute-2030e",
+      "metric_id": "regional_compute_capacity",
+      "asserter": "华为",
+      "entity": {
+        "type": "region",
+        "id": "global",
+        "label": "全球"
+      },
+      "value": 105000.0,
+      "unit": "EFLOPS",
+      "bound": "lower",
+      "as_of": "2030E@2023",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "FP16",
+        "area": "全球",
+        "status": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3b3154fdeb79120d625696eb71bef09a72662f704adfa01e4c04c903e80bd011",
+        "local_file": "华为：数据中心2030.pdf",
+        "locator": "第 15 页 产业趋势：「华为预测，到 2030 年全球 AI 计算算力将超过 105 ZFLOPS(FP16)：AI 计算算力成为数据中心发展的最大驱动力和决定性因素」",
+        "grade": "S3",
+        "originator": "华为《数据中心 2030》（2023）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "105 ZFLOPS = 105,000 EFLOPS；「超过」按下界记。同报告引《智能世界 2030》：对比 2020 年，2030 年通用算力增长 10 倍、AI 算力增长 500 倍。报告发布月份原文未写，@ 记 2023。"
+    },
+    {
+      "fact_id": "huawei-dc2030-renewable-share-2030e",
+      "metric_id": "dc_renewable_share",
+      "asserter": "华为",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 80.0,
+      "unit": "%",
+      "bound": "point",
+      "as_of": "2030E@2023",
+      "caliber": {
+        "measure": "可再生电量占总用电",
+        "scope": "全市场",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3b3154fdeb79120d625696eb71bef09a72662f704adfa01e4c04c903e80bd011",
+        "local_file": "华为：数据中心2030.pdf",
+        "locator": "第 84 页「附：关键预测数据指标体系」零碳节能：「可再生能源占比（REF）| 可再生能源电量 / 数据中心总消耗电量 | 80%」（2030 年预测值）",
+        "grade": "S3",
+        "originator": "华为《数据中心 2030》（2023）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "指标定义为可再生能源电量 ÷ 数据中心总消耗电量；原文未说是全行业平均还是领先数据中心，按全市场记 [未核]。同表 PUE「1.0x」、WUE 0.5 L/kWh 未录。报告发布月份原文未写，@ 记 2023。"
     }
   ]
 }
