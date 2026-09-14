@@ -135228,6 +135228,66 @@
       "corroboration": "待交叉验证",
       "notes": "方案改动为 Jupiter 网络以 Apollo 光路交换机（OCS）替代 spine 层电交换机（EPS），菜单无此档故记「其他」。Google 自称已在多数数据中心部署 5 年以上，按实测记。节省基数是网络 Capex；同时称功耗低 40%、吞吐高 30%。第 10 页 SemiAnalysis 自己推算：若 OCS 用 3 个升级周期，单台前期成本约为 EPS 的 3.5 倍，4 代则约 6 倍（推算，未录）。标题「省 30 亿美元以上」是 SemiAnalysis 估算，无对应指标。",
       "asserter": "Google"
+    },
+    {
+      "fact_id": "ligent-ocp25-lc-3p2t-market-2027e",
+      "metric_id": "optics_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-3p2t",
+        "label": "全球 3.2T 光模块市场"
+      },
+      "value": 1200.0,
+      "unit": "百万美元",
+      "caliber": {
+        "speed": "3.2T",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2027E@2024-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "cc9559e864654be1d2168c027cc882b637e0e14b20fe71c40094708176f83f24",
+        "local_file": "5B_2022_7884400GOptics_未署名.pdf",
+        "locator": "第 3 页（页脚 2/12）「Market – Demands for Optical Transceivers」：「3.2T will reach 1.2Billion in 2027 and 2.8Billion in 2029」「Source: LightCounting, CLOUD DATA CENTER OPTICS JULY 2024」",
+        "grade": "S3",
+        "originator": "Ligent（J. Zhou，OCP 2025 演讲）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「1.2Billion」未写货币与计量对象，按同页「Sales of Ethernet transceivers」理解为销售额（美元）；3.2T 模块年出货不可能达十亿只量级。LightCounting《Cloud Data Center Optics》2024-07 版预测，@2024-07 取自该出处标注。页脚「Ligent Confidential」为公开峰会讲稿的通用页脚，不按受限材料处理。",
+      "asserter": "LightCounting"
+    },
+    {
+      "fact_id": "ligent-ocp25-lc-3p2t-market-2029e",
+      "metric_id": "optics_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-3p2t",
+        "label": "全球 3.2T 光模块市场"
+      },
+      "value": 2800.0,
+      "unit": "百万美元",
+      "caliber": {
+        "speed": "3.2T",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2029E@2024-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "cc9559e864654be1d2168c027cc882b637e0e14b20fe71c40094708176f83f24",
+        "local_file": "5B_2022_7884400GOptics_未署名.pdf",
+        "locator": "第 3 页（页脚 2/12）「Market – Demands for Optical Transceivers」：「3.2T will reach 1.2Billion in 2027 and 2.8Billion in 2029」「Source: LightCounting, CLOUD DATA CENTER OPTICS JULY 2024」",
+        "grade": "S3",
+        "originator": "Ligent（J. Zhou，OCP 2025 演讲）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「1.2Billion」未写货币与计量对象，按同页「Sales of Ethernet transceivers」理解为销售额（美元）；3.2T 模块年出货不可能达十亿只量级。LightCounting《Cloud Data Center Optics》2024-07 版预测，@2024-07 取自该出处标注。页脚「Ligent Confidential」为公开峰会讲稿的通用页脚，不按受限材料处理。",
+      "asserter": "LightCounting"
     }
   ]
 }
