@@ -139205,6 +139205,171 @@
       "corroboration": "待交叉验证",
       "notes": "「about 145kW」为 SemiAnalysis 对 NVL72 单柜功耗的估计，用作 CM384 对比基准；与库内 SemiAnalysis 2024 年 125kW（实际功率密度）、2025-10 设计功率 130kW 及英伟达自报满载 120kW 口径不同、时点不同，并列不替代。同文估算华为 CM384 超节点（16 柜：12 计算柜 + 4 交换柜，384 颗昇腾 910C）近 500kW，是整系统功耗而非单柜，未录；每个 CM384 用 6,912 只 400G 光模块（scale-up 5,376、scale-out 1,536），配比菜单无华为档，缺口已记。",
       "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2503-rubin-fp4-pflops-package",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "rubin-vr200",
+        "label": "Rubin (VR200)"
+      },
+      "value": 50.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "Rubin (VR200)",
+        "precision": "FP4",
+        "scope": "单卡",
+        "sparsity": "稠密",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "48d0fe336612cae9dbc59b06800bea05b61e492addd6b9ecc1f2a37a72393aa6",
+        "local_file": "NVIDIA GTC 2025 – Built For Reasoning, Vera Rubin, Kyber, CPO, Dynamo Inference, Jensen Math, Feynman – SemiAnalysis.pdf",
+        "locator": "第 8 页：「Rubin will offer an incredible 50 PFLOPs of dense FP4 compute, more than tripling generation on generation vs B300」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（2025-03-19《NVIDIA GTC 2025 – Built For Reasoning, Vera Rubin, Kyber, CPO…》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单卡指一个 GPU 封装（含两颗 3nm 计算裸片）；英伟达从 VR200 起按裸片计数，VR200 NVL144 实为 72 个封装。SemiAnalysis 同时估计 Rubin TDP 约 1,800W。GTC 发布会规格经 SemiAnalysis 转述，spec_basis 记券商转述。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2503-rubin-ultra-fp4-pflops-package",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "rubin-ultra",
+        "label": "Rubin Ultra"
+      },
+      "value": 100.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "Rubin Ultra",
+        "precision": "FP4",
+        "scope": "单卡",
+        "sparsity": "稠密",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "48d0fe336612cae9dbc59b06800bea05b61e492addd6b9ecc1f2a37a72393aa6",
+        "local_file": "NVIDIA GTC 2025 – Built For Reasoning, Vera Rubin, Kyber, CPO, Dynamo Inference, Jensen Math, Feynman – SemiAnalysis.pdf",
+        "locator": "第 11 页：「There will be a row of 4 reticle-sized GPUs flanked by 2 I/O chiplets. With double the compute area, compute doubles to 100 PFLOPs of dense FP4」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（2025-03-19《NVIDIA GTC 2025 – Built For Reasoning, Vera Rubin, Kyber, CPO…》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单卡指一个封装（4 颗接近光罩尺寸的 GPU 裸片 + 2 颗 I/O 芯粒）。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2503-rubin-hbm4-capacity-package",
+      "metric_id": "accelerator_memory_spec",
+      "entity": {
+        "type": "product",
+        "id": "rubin-vr200",
+        "label": "Rubin (VR200)"
+      },
+      "value": 288.0,
+      "unit": "GB",
+      "caliber": {
+        "product": "Rubin (VR200)",
+        "parameter": "容量",
+        "memory_type": "HBM4",
+        "scope": "单卡",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "48d0fe336612cae9dbc59b06800bea05b61e492addd6b9ecc1f2a37a72393aa6",
+        "local_file": "NVIDIA GTC 2025 – Built For Reasoning, Vera Rubin, Kyber, CPO, Dynamo Inference, Jensen Math, Feynman – SemiAnalysis.pdf",
+        "locator": "第 10 页：「Nvidia’s HBM capacity will remain the same at 288GB generation on generation but is upgraded to HBM4: 8 stacks of 12-Hi with the same 24 GB layer density」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（2025-03-19《NVIDIA GTC 2025 – Built For Reasoning, Vera Rubin, Kyber, CPO…》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 GB（容量）。8 堆叠 × 12 层；HBM4 聚合带宽 13TB/s（带宽参数单位为 TB/s，与本指标 GB 单位不合未另录）。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2503-b300-hbm3e-capacity-package",
+      "metric_id": "accelerator_memory_spec",
+      "entity": {
+        "type": "product",
+        "id": "blackwell-ultra-b300",
+        "label": "Blackwell Ultra B300"
+      },
+      "value": 288.0,
+      "unit": "GB",
+      "caliber": {
+        "product": "Blackwell Ultra B300",
+        "parameter": "容量",
+        "memory_type": "HBM3e",
+        "scope": "单卡",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "48d0fe336612cae9dbc59b06800bea05b61e492addd6b9ecc1f2a37a72393aa6",
+        "local_file": "NVIDIA GTC 2025 – Built For Reasoning, Vera Rubin, Kyber, CPO, Dynamo Inference, Jensen Math, Feynman – SemiAnalysis.pdf",
+        "locator": "第 6 页：「package (8 stacks of 12-Hi HBM3E) but with the same bandwidth of 8 TB/s」；第 10 页：「Nvidia’s HBM capacity will remain the same at 288GB generation on generation」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（2025-03-19《NVIDIA GTC 2025 – Built For Reasoning, Vera Rubin, Kyber, CPO…》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 GB（容量）。B300 为 8 堆叠 × 12 层 HBM3E；Rubin 维持 288GB 表明 B300 同为 288GB（第 10 页「generation on generation」）。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2503-rubin-ultra-hbm-capacity-package",
+      "metric_id": "accelerator_memory_spec",
+      "entity": {
+        "type": "product",
+        "id": "rubin-ultra",
+        "label": "Rubin Ultra"
+      },
+      "value": 1024.0,
+      "unit": "GB",
+      "caliber": {
+        "product": "Rubin Ultra",
+        "parameter": "容量",
+        "memory_type": "未注明",
+        "scope": "单卡",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "48d0fe336612cae9dbc59b06800bea05b61e492addd6b9ecc1f2a37a72393aa6",
+        "local_file": "NVIDIA GTC 2025 – Built For Reasoning, Vera Rubin, Kyber, CPO, Dynamo Inference, Jensen Math, Feynman – SemiAnalysis.pdf",
+        "locator": "第 11 页：「HBM capacity goes to 1024GB, more than 3.5x the capacity of vanilla Rubin……there will be 16 stacks of HBM4E with 16 layers of 32Gb DRAM core die」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（2025-03-19《NVIDIA GTC 2025 – Built For Reasoning, Vera Rubin, Kyber, CPO…》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 GB（容量）。内存为 HBM4E（16 堆叠 × 16 层 32Gb），memory_type 菜单无 HBM4E 档，记未注明。",
+      "asserter": "SemiAnalysis"
     }
   ]
 }
