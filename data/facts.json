@@ -161263,6 +161263,515 @@
       "corroboration": "待交叉验证",
       "notes": "空置率只按运营中的托管容量计算（不含超大规模自建）。戴德梁行 2025 全球对比报告 APAC 汇总（其跟踪市场合计），栏位与地区的对应按页面顺序 AMERICAS/EMEA/APAC 读取，APAC 运营容量与其 2024H1 亚太报告的约 12GW 相符。报告未写数据截止时点，as_of 记报告年份 2025。capacity_type 原文未说明 IT 还是设施容量，记未披露。",
       "asserter": "戴德梁行"
+    },
+    {
+      "fact_id": "jll2024na-northern-virginia-colo-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-northern-virginia-colo-market-jll",
+        "label": "北弗吉尼亚数据中心托管市场（JLL）"
+      },
+      "value": 4934.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2f1b4ccbcb43b3c9b5db7b82121347ea8e2de14a9aab5b8dffec7e72289c4be9",
+        "local_file": "6C_2025_2025_2024年北美数据_未署名.pdf",
+        "locator": "PDF 第 4 页「北美数据中心托管市场 H2 2024」地图各市场「现有兆瓦」标注；右栏「库存 13.6 吉瓦 / 空缺 2.6% / 2024年吸收率 4.4 GW / 2024年完成情况 2.6 吉瓦 / 建设中 6.6 吉瓦 / 计划 22.9 GW」",
+        "grade": "S3",
+        "originator": "仲量联行（JLL）《北美数据中心报告：2024 年度总结》（中文版，© 2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "JLL 北美托管市场库存（现有兆瓦，H2 2024），只含第三方托管、不含超大规模自建；地图标签按「数字在市场名之上」读取，17 个市场（含多伦多 353MW，未录）合计 13,583MW，与右栏库存 13.6GW 吻合，映射可信。capacity_type 按 JLL 惯例记 IT 容量（原文未写）。",
+      "asserter": "JLL"
+    },
+    {
+      "fact_id": "jll2024na-dallas-fort-worth-colo-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-dallas-fort-worth-colo-market-jll",
+        "label": "达拉斯-沃斯堡数据中心托管市场（JLL）"
+      },
+      "value": 1193.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2f1b4ccbcb43b3c9b5db7b82121347ea8e2de14a9aab5b8dffec7e72289c4be9",
+        "local_file": "6C_2025_2025_2024年北美数据_未署名.pdf",
+        "locator": "PDF 第 4 页「北美数据中心托管市场 H2 2024」地图各市场「现有兆瓦」标注；右栏「库存 13.6 吉瓦 / 空缺 2.6% / 2024年吸收率 4.4 GW / 2024年完成情况 2.6 吉瓦 / 建设中 6.6 吉瓦 / 计划 22.9 GW」",
+        "grade": "S3",
+        "originator": "仲量联行（JLL）《北美数据中心报告：2024 年度总结》（中文版，© 2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "JLL 北美托管市场库存（现有兆瓦，H2 2024），只含第三方托管、不含超大规模自建；地图标签按「数字在市场名之上」读取，17 个市场（含多伦多 353MW，未录）合计 13,583MW，与右栏库存 13.6GW 吻合，映射可信。capacity_type 按 JLL 惯例记 IT 容量（原文未写）。",
+      "asserter": "JLL"
+    },
+    {
+      "fact_id": "jll2024na-pacific-northwest-colo-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-pacific-northwest-colo-market-jll",
+        "label": "太平洋西北部数据中心托管市场（JLL）"
+      },
+      "value": 987.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2f1b4ccbcb43b3c9b5db7b82121347ea8e2de14a9aab5b8dffec7e72289c4be9",
+        "local_file": "6C_2025_2025_2024年北美数据_未署名.pdf",
+        "locator": "PDF 第 4 页「北美数据中心托管市场 H2 2024」地图各市场「现有兆瓦」标注；右栏「库存 13.6 吉瓦 / 空缺 2.6% / 2024年吸收率 4.4 GW / 2024年完成情况 2.6 吉瓦 / 建设中 6.6 吉瓦 / 计划 22.9 GW」",
+        "grade": "S3",
+        "originator": "仲量联行（JLL）《北美数据中心报告：2024 年度总结》（中文版，© 2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "JLL 北美托管市场库存（现有兆瓦，H2 2024），只含第三方托管、不含超大规模自建；地图标签按「数字在市场名之上」读取，17 个市场（含多伦多 353MW，未录）合计 13,583MW，与右栏库存 13.6GW 吻合，映射可信。capacity_type 按 JLL 惯例记 IT 容量（原文未写）。",
+      "asserter": "JLL"
+    },
+    {
+      "fact_id": "jll2024na-atlanta-colo-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-atlanta-colo-market-jll",
+        "label": "亚特兰大数据中心托管市场（JLL）"
+      },
+      "value": 949.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2f1b4ccbcb43b3c9b5db7b82121347ea8e2de14a9aab5b8dffec7e72289c4be9",
+        "local_file": "6C_2025_2025_2024年北美数据_未署名.pdf",
+        "locator": "PDF 第 4 页「北美数据中心托管市场 H2 2024」地图各市场「现有兆瓦」标注；右栏「库存 13.6 吉瓦 / 空缺 2.6% / 2024年吸收率 4.4 GW / 2024年完成情况 2.6 吉瓦 / 建设中 6.6 吉瓦 / 计划 22.9 GW」",
+        "grade": "S3",
+        "originator": "仲量联行（JLL）《北美数据中心报告：2024 年度总结》（中文版，© 2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "JLL 北美托管市场库存（现有兆瓦，H2 2024），只含第三方托管、不含超大规模自建；地图标签按「数字在市场名之上」读取，17 个市场（含多伦多 353MW，未录）合计 13,583MW，与右栏库存 13.6GW 吻合，映射可信。capacity_type 按 JLL 惯例记 IT 容量（原文未写）。",
+      "asserter": "JLL"
+    },
+    {
+      "fact_id": "jll2024na-chicago-colo-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-chicago-colo-market-jll",
+        "label": "芝加哥数据中心托管市场（JLL）"
+      },
+      "value": 866.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2f1b4ccbcb43b3c9b5db7b82121347ea8e2de14a9aab5b8dffec7e72289c4be9",
+        "local_file": "6C_2025_2025_2024年北美数据_未署名.pdf",
+        "locator": "PDF 第 4 页「北美数据中心托管市场 H2 2024」地图各市场「现有兆瓦」标注；右栏「库存 13.6 吉瓦 / 空缺 2.6% / 2024年吸收率 4.4 GW / 2024年完成情况 2.6 吉瓦 / 建设中 6.6 吉瓦 / 计划 22.9 GW」",
+        "grade": "S3",
+        "originator": "仲量联行（JLL）《北美数据中心报告：2024 年度总结》（中文版，© 2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "JLL 北美托管市场库存（现有兆瓦，H2 2024），只含第三方托管、不含超大规模自建；地图标签按「数字在市场名之上」读取，17 个市场（含多伦多 353MW，未录）合计 13,583MW，与右栏库存 13.6GW 吻合，映射可信。capacity_type 按 JLL 惯例记 IT 容量（原文未写）。",
+      "asserter": "JLL"
+    },
+    {
+      "fact_id": "jll2024na-northern-california-colo-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-northern-california-colo-market-jll",
+        "label": "北加州数据中心托管市场（JLL）"
+      },
+      "value": 810.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2f1b4ccbcb43b3c9b5db7b82121347ea8e2de14a9aab5b8dffec7e72289c4be9",
+        "local_file": "6C_2025_2025_2024年北美数据_未署名.pdf",
+        "locator": "PDF 第 4 页「北美数据中心托管市场 H2 2024」地图各市场「现有兆瓦」标注；右栏「库存 13.6 吉瓦 / 空缺 2.6% / 2024年吸收率 4.4 GW / 2024年完成情况 2.6 吉瓦 / 建设中 6.6 吉瓦 / 计划 22.9 GW」",
+        "grade": "S3",
+        "originator": "仲量联行（JLL）《北美数据中心报告：2024 年度总结》（中文版，© 2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "JLL 北美托管市场库存（现有兆瓦，H2 2024），只含第三方托管、不含超大规模自建；地图标签按「数字在市场名之上」读取，17 个市场（含多伦多 353MW，未录）合计 13,583MW，与右栏库存 13.6GW 吻合，映射可信。capacity_type 按 JLL 惯例记 IT 容量（原文未写）。",
+      "asserter": "JLL"
+    },
+    {
+      "fact_id": "jll2024na-phoenix-colo-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-phoenix-colo-market-jll",
+        "label": "凤凰城数据中心托管市场（JLL）"
+      },
+      "value": 804.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2f1b4ccbcb43b3c9b5db7b82121347ea8e2de14a9aab5b8dffec7e72289c4be9",
+        "local_file": "6C_2025_2025_2024年北美数据_未署名.pdf",
+        "locator": "PDF 第 4 页「北美数据中心托管市场 H2 2024」地图各市场「现有兆瓦」标注；右栏「库存 13.6 吉瓦 / 空缺 2.6% / 2024年吸收率 4.4 GW / 2024年完成情况 2.6 吉瓦 / 建设中 6.6 吉瓦 / 计划 22.9 GW」",
+        "grade": "S3",
+        "originator": "仲量联行（JLL）《北美数据中心报告：2024 年度总结》（中文版，© 2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "JLL 北美托管市场库存（现有兆瓦，H2 2024），只含第三方托管、不含超大规模自建；地图标签按「数字在市场名之上」读取，17 个市场（含多伦多 353MW，未录）合计 13,583MW，与右栏库存 13.6GW 吻合，映射可信。capacity_type 按 JLL 惯例记 IT 容量（原文未写）。",
+      "asserter": "JLL"
+    },
+    {
+      "fact_id": "jll2024na-austin-san-antonio-colo-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-austin-san-antonio-colo-market-jll",
+        "label": "奥斯汀/圣安东尼奥数据中心托管市场（JLL）"
+      },
+      "value": 646.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2f1b4ccbcb43b3c9b5db7b82121347ea8e2de14a9aab5b8dffec7e72289c4be9",
+        "local_file": "6C_2025_2025_2024年北美数据_未署名.pdf",
+        "locator": "PDF 第 4 页「北美数据中心托管市场 H2 2024」地图各市场「现有兆瓦」标注；右栏「库存 13.6 吉瓦 / 空缺 2.6% / 2024年吸收率 4.4 GW / 2024年完成情况 2.6 吉瓦 / 建设中 6.6 吉瓦 / 计划 22.9 GW」",
+        "grade": "S3",
+        "originator": "仲量联行（JLL）《北美数据中心报告：2024 年度总结》（中文版，© 2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "JLL 北美托管市场库存（现有兆瓦，H2 2024），只含第三方托管、不含超大规模自建；地图标签按「数字在市场名之上」读取，17 个市场（含多伦多 353MW，未录）合计 13,583MW，与右栏库存 13.6GW 吻合，映射可信。capacity_type 按 JLL 惯例记 IT 容量（原文未写）。",
+      "asserter": "JLL"
+    },
+    {
+      "fact_id": "jll2024na-new-jersey-colo-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-new-jersey-colo-market-jll",
+        "label": "新泽西州数据中心托管市场（JLL）"
+      },
+      "value": 605.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2f1b4ccbcb43b3c9b5db7b82121347ea8e2de14a9aab5b8dffec7e72289c4be9",
+        "local_file": "6C_2025_2025_2024年北美数据_未署名.pdf",
+        "locator": "PDF 第 4 页「北美数据中心托管市场 H2 2024」地图各市场「现有兆瓦」标注；右栏「库存 13.6 吉瓦 / 空缺 2.6% / 2024年吸收率 4.4 GW / 2024年完成情况 2.6 吉瓦 / 建设中 6.6 吉瓦 / 计划 22.9 GW」",
+        "grade": "S3",
+        "originator": "仲量联行（JLL）《北美数据中心报告：2024 年度总结》（中文版，© 2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "JLL 北美托管市场库存（现有兆瓦，H2 2024），只含第三方托管、不含超大规模自建；地图标签按「数字在市场名之上」读取，17 个市场（含多伦多 353MW，未录）合计 13,583MW，与右栏库存 13.6GW 吻合，映射可信。capacity_type 按 JLL 惯例记 IT 容量（原文未写）。",
+      "asserter": "JLL"
+    },
+    {
+      "fact_id": "jll2024na-las-vegas-reno-colo-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-las-vegas-reno-colo-market-jll",
+        "label": "拉斯维加斯/里诺数据中心托管市场（JLL）"
+      },
+      "value": 362.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2f1b4ccbcb43b3c9b5db7b82121347ea8e2de14a9aab5b8dffec7e72289c4be9",
+        "local_file": "6C_2025_2025_2024年北美数据_未署名.pdf",
+        "locator": "PDF 第 4 页「北美数据中心托管市场 H2 2024」地图各市场「现有兆瓦」标注；右栏「库存 13.6 吉瓦 / 空缺 2.6% / 2024年吸收率 4.4 GW / 2024年完成情况 2.6 吉瓦 / 建设中 6.6 吉瓦 / 计划 22.9 GW」",
+        "grade": "S3",
+        "originator": "仲量联行（JLL）《北美数据中心报告：2024 年度总结》（中文版，© 2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "JLL 北美托管市场库存（现有兆瓦，H2 2024），只含第三方托管、不含超大规模自建；地图标签按「数字在市场名之上」读取，17 个市场（含多伦多 353MW，未录）合计 13,583MW，与右栏库存 13.6GW 吻合，映射可信。capacity_type 按 JLL 惯例记 IT 容量（原文未写）。",
+      "asserter": "JLL"
+    },
+    {
+      "fact_id": "jll2024na-southern-california-colo-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-southern-california-colo-market-jll",
+        "label": "南加州数据中心托管市场（JLL）"
+      },
+      "value": 315.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2f1b4ccbcb43b3c9b5db7b82121347ea8e2de14a9aab5b8dffec7e72289c4be9",
+        "local_file": "6C_2025_2025_2024年北美数据_未署名.pdf",
+        "locator": "PDF 第 4 页「北美数据中心托管市场 H2 2024」地图各市场「现有兆瓦」标注；右栏「库存 13.6 吉瓦 / 空缺 2.6% / 2024年吸收率 4.4 GW / 2024年完成情况 2.6 吉瓦 / 建设中 6.6 吉瓦 / 计划 22.9 GW」",
+        "grade": "S3",
+        "originator": "仲量联行（JLL）《北美数据中心报告：2024 年度总结》（中文版，© 2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "JLL 北美托管市场库存（现有兆瓦，H2 2024），只含第三方托管、不含超大规模自建；地图标签按「数字在市场名之上」读取，17 个市场（含多伦多 353MW，未录）合计 13,583MW，与右栏库存 13.6GW 吻合，映射可信。capacity_type 按 JLL 惯例记 IT 容量（原文未写）。",
+      "asserter": "JLL"
+    },
+    {
+      "fact_id": "jll2024na-new-york-colo-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-new-york-colo-market-jll",
+        "label": "纽约数据中心托管市场（JLL）"
+      },
+      "value": 190.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2f1b4ccbcb43b3c9b5db7b82121347ea8e2de14a9aab5b8dffec7e72289c4be9",
+        "local_file": "6C_2025_2025_2024年北美数据_未署名.pdf",
+        "locator": "PDF 第 4 页「北美数据中心托管市场 H2 2024」地图各市场「现有兆瓦」标注；右栏「库存 13.6 吉瓦 / 空缺 2.6% / 2024年吸收率 4.4 GW / 2024年完成情况 2.6 吉瓦 / 建设中 6.6 吉瓦 / 计划 22.9 GW」",
+        "grade": "S3",
+        "originator": "仲量联行（JLL）《北美数据中心报告：2024 年度总结》（中文版，© 2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "JLL 北美托管市场库存（现有兆瓦，H2 2024），只含第三方托管、不含超大规模自建；地图标签按「数字在市场名之上」读取，17 个市场（含多伦多 353MW，未录）合计 13,583MW，与右栏库存 13.6GW 吻合，映射可信。capacity_type 按 JLL 惯例记 IT 容量（原文未写）。",
+      "asserter": "JLL"
+    },
+    {
+      "fact_id": "jll2024na-boston-colo-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-boston-colo-market-jll",
+        "label": "波士顿数据中心托管市场（JLL）"
+      },
+      "value": 160.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2f1b4ccbcb43b3c9b5db7b82121347ea8e2de14a9aab5b8dffec7e72289c4be9",
+        "local_file": "6C_2025_2025_2024年北美数据_未署名.pdf",
+        "locator": "PDF 第 4 页「北美数据中心托管市场 H2 2024」地图各市场「现有兆瓦」标注；右栏「库存 13.6 吉瓦 / 空缺 2.6% / 2024年吸收率 4.4 GW / 2024年完成情况 2.6 吉瓦 / 建设中 6.6 吉瓦 / 计划 22.9 GW」",
+        "grade": "S3",
+        "originator": "仲量联行（JLL）《北美数据中心报告：2024 年度总结》（中文版，© 2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "JLL 北美托管市场库存（现有兆瓦，H2 2024），只含第三方托管、不含超大规模自建；地图标签按「数字在市场名之上」读取，17 个市场（含多伦多 353MW，未录）合计 13,583MW，与右栏库存 13.6GW 吻合，映射可信。capacity_type 按 JLL 惯例记 IT 容量（原文未写）。",
+      "asserter": "JLL"
+    },
+    {
+      "fact_id": "jll2024na-salt-lake-city-colo-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-salt-lake-city-colo-market-jll",
+        "label": "盐湖城数据中心托管市场（JLL）"
+      },
+      "value": 157.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2f1b4ccbcb43b3c9b5db7b82121347ea8e2de14a9aab5b8dffec7e72289c4be9",
+        "local_file": "6C_2025_2025_2024年北美数据_未署名.pdf",
+        "locator": "PDF 第 4 页「北美数据中心托管市场 H2 2024」地图各市场「现有兆瓦」标注；右栏「库存 13.6 吉瓦 / 空缺 2.6% / 2024年吸收率 4.4 GW / 2024年完成情况 2.6 吉瓦 / 建设中 6.6 吉瓦 / 计划 22.9 GW」",
+        "grade": "S3",
+        "originator": "仲量联行（JLL）《北美数据中心报告：2024 年度总结》（中文版，© 2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "JLL 北美托管市场库存（现有兆瓦，H2 2024），只含第三方托管、不含超大规模自建；地图标签按「数字在市场名之上」读取，17 个市场（含多伦多 353MW，未录）合计 13,583MW，与右栏库存 13.6GW 吻合，映射可信。capacity_type 按 JLL 惯例记 IT 容量（原文未写）。",
+      "asserter": "JLL"
+    },
+    {
+      "fact_id": "jll2024na-houston-colo-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-houston-colo-market-jll",
+        "label": "休斯顿数据中心托管市场（JLL）"
+      },
+      "value": 140.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2f1b4ccbcb43b3c9b5db7b82121347ea8e2de14a9aab5b8dffec7e72289c4be9",
+        "local_file": "6C_2025_2025_2024年北美数据_未署名.pdf",
+        "locator": "PDF 第 4 页「北美数据中心托管市场 H2 2024」地图各市场「现有兆瓦」标注；右栏「库存 13.6 吉瓦 / 空缺 2.6% / 2024年吸收率 4.4 GW / 2024年完成情况 2.6 吉瓦 / 建设中 6.6 吉瓦 / 计划 22.9 GW」",
+        "grade": "S3",
+        "originator": "仲量联行（JLL）《北美数据中心报告：2024 年度总结》（中文版，© 2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "JLL 北美托管市场库存（现有兆瓦，H2 2024），只含第三方托管、不含超大规模自建；地图标签按「数字在市场名之上」读取，17 个市场（含多伦多 353MW，未录）合计 13,583MW，与右栏库存 13.6GW 吻合，映射可信。capacity_type 按 JLL 惯例记 IT 容量（原文未写）。",
+      "asserter": "JLL"
+    },
+    {
+      "fact_id": "jll2024na-denver-colo-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-denver-colo-market-jll",
+        "label": "丹佛数据中心托管市场（JLL）"
+      },
+      "value": 112.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2f1b4ccbcb43b3c9b5db7b82121347ea8e2de14a9aab5b8dffec7e72289c4be9",
+        "local_file": "6C_2025_2025_2024年北美数据_未署名.pdf",
+        "locator": "PDF 第 4 页「北美数据中心托管市场 H2 2024」地图各市场「现有兆瓦」标注；右栏「库存 13.6 吉瓦 / 空缺 2.6% / 2024年吸收率 4.4 GW / 2024年完成情况 2.6 吉瓦 / 建设中 6.6 吉瓦 / 计划 22.9 GW」",
+        "grade": "S3",
+        "originator": "仲量联行（JLL）《北美数据中心报告：2024 年度总结》（中文版，© 2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "JLL 北美托管市场库存（现有兆瓦，H2 2024），只含第三方托管、不含超大规模自建；地图标签按「数字在市场名之上」读取，17 个市场（含多伦多 353MW，未录）合计 13,583MW，与右栏库存 13.6GW 吻合，映射可信。capacity_type 按 JLL 惯例记 IT 容量（原文未写）。",
+      "asserter": "JLL"
+    },
+    {
+      "fact_id": "jll2024na-nova-vacancy-2024",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "us-northern-virginia-colo-market-jll",
+        "label": "北弗吉尼亚数据中心托管市场（JLL）"
+      },
+      "value": 0.6,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一市场",
+        "region": "US"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2f1b4ccbcb43b3c9b5db7b82121347ea8e2de14a9aab5b8dffec7e72289c4be9",
+        "local_file": "6C_2025_2025_2024年北美数据_未署名.pdf",
+        "locator": "PDF 第 5 页「空置率下降至历史新低」：「截至2024年底，北美数据中心托管空置率…降至创纪录的2.6%…在最大的全球数据中心市场——美国弗吉尼亚州北部，空置率仅为0.6%」；图「北美数据中心托管空置率」2020–2024：9.8%/8.4%/4.5%/3.7%/2.6%",
+        "grade": "S3",
+        "originator": "仲量联行（JLL）《北美数据中心报告：2024 年度总结》（中文版，© 2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "托管口径。北美整体 2.6%（2020 年 9.8%）因 region 无北美枚举未录。与高力转引 datacenterHawk「NoVA 低于 1%」（colliers2507-nova-vacancy-2024）一致。",
+      "asserter": "JLL"
     }
   ]
 }
