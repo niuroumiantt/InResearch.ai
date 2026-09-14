@@ -132788,6 +132788,66 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "约 102 TWh、同比 +21%，占全球数据中心用电 25%（IEA 全球 415 TWh）。**与信通院 166 TWh、伯恩斯坦 178 TWh 同年相差 60% 以上**，IEA 口径只算数据中心本身（参见国金周报引 IEA 对 1000-1500 亿 kWh 与更高测算差异的解释）。同页「综合多家机构」2030 年 400-600 TWh、负荷约 1 亿千瓦、占比升至 6% 断言者不明，未录。"
+    },
+    {
+      "fact_id": "gs2501-cn-dc-power-share-2023",
+      "metric_id": "dc_power_share_of_grid",
+      "asserter": "高盛",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc",
+        "label": "中国数据中心"
+      },
+      "value": 1.6,
+      "unit": "%",
+      "bound": "point",
+      "as_of": "2023",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "8474f9f0dbcdf04f84a2a26d3a9ca2155b74a8020ce91e92e41ec422a92d306c",
+        "local_file": "20250126-高盛：电网转型：从周期性过渡到结构性成长；可再生能源消纳和人工智能是两大利好因素（摘要）(36页).pdf",
+        "locator": "第 26 页「Further upside potential from AI demand」：「We expect data centers’ contribution to total power consumption will rise from 1.6% in 2023 to 5% in 2030E with AI taking up around 12% on average within data centers」；图表 38 同",
+        "grade": "S3",
+        "originator": "高盛（中国）《中国电网科技：电网转型——从周期性过渡到结构性成长》（2025-01-20）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2023 年中国数据中心占全社会用电 1.6%，与信通院 1,500 亿 kWh、占 1.6% 的口径一致（高盛未写出处）。"
+    },
+    {
+      "fact_id": "gs2501-cn-dc-power-share-2030e",
+      "metric_id": "dc_power_share_of_grid",
+      "asserter": "高盛",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc",
+        "label": "中国数据中心"
+      },
+      "value": 5.0,
+      "unit": "%",
+      "bound": "point",
+      "as_of": "2030E@2025-01",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "8474f9f0dbcdf04f84a2a26d3a9ca2155b74a8020ce91e92e41ec422a92d306c",
+        "local_file": "20250126-高盛：电网转型：从周期性过渡到结构性成长；可再生能源消纳和人工智能是两大利好因素（摘要）(36页).pdf",
+        "locator": "第 26 页「Further upside potential from AI demand」：「We expect data centers’ contribution to total power consumption will rise from 1.6% in 2023 to 5% in 2030E with AI taking up around 12% on average within data centers」；图表 38 同",
+        "grade": "S3",
+        "originator": "高盛（中国）《中国电网科技：电网转型——从周期性过渡到结构性成长》（2025-01-20）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2030 年 5%，其中 AI 平均约占数据中心用电 12%。同文全球数据中心用电 2030 年较 2023 年增 165%、占比 1-2% → 3-4% 为高盛 2024 年版全球口径（gs2501-global-dc-power-share-* 为 2025-01-12 版）。"
     }
   ]
 }
