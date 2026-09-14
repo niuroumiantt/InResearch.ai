@@ -238,3 +238,9 @@ html[data-ui-skin] .rg-scene-startup h2{font-size:16px;margin:0 0 10px;line-heig
 html[data-ui-skin] .rg-scene-startup p{color:var(--ui-secondary);font-size:14px;line-height:1.6;margin:0 0 14px}
 html[data-ui-skin] .rg-scene-startup button{width:auto;min-height:36px;padding:8px 18px;background:var(--ui-accent);color:var(--ui-on-accent);border:0;border-radius:var(--ui-control-radius);cursor:pointer}
 html[data-ui-skin] .rg-scene-startup button[hidden]{display:none}
+
+/* Optional assets never cover navigation or disable the procedural scene. */
+.rg-model-status { display:flex; align-items:center; gap:12px; padding:10px 14px; background:var(--ui-surface); color:var(--ui-body); border:1px solid var(--ui-frame); border-radius:var(--ui-radius); font-size:12px; }
+.rg-model-status[hidden], .rg-model-status button[hidden] { display:none; }
+.rg-model-status button { flex-shrink:0; min-height:36px; padding:6px 14px; background:var(--ui-accent); color:var(--ui-on-accent); border:1px solid var(--ui-accent); border-radius:var(--ui-control-radius); cursor:pointer; }
+.rg-scene-model-status { position:fixed; left:50%; transform:translateX(-50%); top:calc(var(--ui-bar-height) + 54px); z-index:30; width:max-content; max-width:calc(100vw - 28px); }

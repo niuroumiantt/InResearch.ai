@@ -4,9 +4,9 @@
 
 | 目录 | 责任与主要实现 |
 |---|---|
-| materials | `records` 为当前判读权威投影及版本提交；`triage` 为清单/预览契约；`naming` 为纯命名规则；`reading_artifacts` 共管原件、覆盖和封印校验；`reading_policy` 管 L2 准入，`text_similarity` 仅提示相似；`inbox`/`receive` 接收；`organize`/`mapping` 处理显式整理 |
+| materials | `model_assets` 统一视觉输入身份与采用状态；`records` 为当前判读权威投影及版本提交；`triage` 为清单/预览契约；`naming` 为纯命名规则；`reading_artifacts` 共管原件、覆盖和封印校验；`reading_policy` 管 L2 准入，`text_similarity` 仅提示相似；`inbox`/`receive` 接收；`organize`/`mapping` 处理显式整理 |
 | knowledge | `registry` 维护对象、证据、采用、当前任务；`fact_contract` 为唯一事实入库与审计规则；`provenance` 解析有依据的来源修复计划；`policy` 为共享价格规则；`validate` 为表间完整性 |
-| workflow | `commands` 为 HTTP/CLI 共享修改用例；`reader` 控制任务状态；`reading_stages` 执行候选判读；`reading_results` 查询唯一当前全文结果；`deep_read.DeepRead` 编排事实处理与回执；`reading_gaps` 管缺口事务；`score` 为模型批量评分 |
+| workflow | `model_assets.import_candidate` 协调视觉候选导入事务； `commands` 为 HTTP/CLI 共享修改用例；`reader` 控制任务状态；`reading_stages` 执行候选判读；`reading_results` 查询唯一当前全文结果；`deep_read.DeepRead` 编排事实处理与回执；`reading_gaps` 管缺口事务；`score` 为模型批量评分 |
 | delivery | `report` 为网页/Markdown/docx 报告模型；`reader_export` 生成候选及备份；`reading_packet` 生成终端精读包；`publish` 接收器协议适配 |
 | adapters | `models` 根据 role/profile 选推理后端；`reader_model` 声明阅读任务；`office*` 分解容器/网格/二进制和 OOXML；采集、新闻和 3D 资产由命名明确的适配器处理 |
 | interfaces | `cli` 为命令注册和 JSON 参数层，`deep_read` 承接 L2 终端协议；`http` 为身份/路由/错误层；`pages` 组合共享认证布局；`static` 只服务声明路径 |

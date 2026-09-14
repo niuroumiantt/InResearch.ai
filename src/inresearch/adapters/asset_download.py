@@ -6,7 +6,7 @@
 
 做四件事：① 查模型元数据（许可/是否可下载/作者）② 走官方下载接口取 glTF 包
 ③ 纯 Python 打包成单文件 .glb（Sketchfab 给的是散件 zip，我们的页面要 .glb）
-④ 自动写进 assets/models/manifest.json，source 与 license 从 API 原样带回——来源留痕不靠手填。
+④ 调用共享导入用例，在 web/assets/models/manifest.json 登记 candidate 与内容 SHA；不覆盖既有版本或决定。
 
 令牌哪里拿：登录 Sketchfab → 右上头像 → Settings → Password & API →「API Token」整串复制。
 它等同密码，别提交进 git；写进 ~/.zshrc 的 export 里最省事。
@@ -15,6 +15,9 @@
 """
 
 from inresearch.paths import project_root
+from pathlib import Path
+from inresearch.materials import model_assets
+from inresearch.workflow.model_assets import import_candidate
 import argparse
 import json
 import os
@@ -27,11 +30,7 @@ import urllib.request
 import zipfile
 
 ROOT = str(project_root())
-MODELS = os.path.join(ROOT, "web/assets", "models")
 API = "https://api.sketchfab.com/v3"
-MAX_MB = 10.0
-# 允许进库的许可（未知许可不进库——铁律）
-OK_LICENSE = re.compile(r"CC0|Public Domain|CC Attribution(?!.*NoDeriv)", re.I)
 
 
 def api_get(url, token=None):
@@ -53,7 +52,7 @@ def uid_from(arg):
 def gltf_to_glb(gltf_path):
     """把散件 glTF（scene.gltf + .bin + 贴图）打包成单文件 GLB。纯标准库实现。"""
     base = os.path.dirname(gltf_path)
-    g = json.load(open(gltf_path, encoding="utf-8"))
+    g = json.loads(Path(gltf_path).read_text(encoding="utf-8"))
     blob = bytearray()
 
     def append(data):
@@ -67,8 +66,10 @@ def gltf_to_glb(gltf_path):
     def read_uri(uri):
         if uri.startswith("data:"):
             return None                      # 已内嵌，不动
-        p = os.path.join(base, urllib.request.url2pathname(uri))
-        return open(p, "rb").read()
+        p = (Path(base) / urllib.request.url2pathname(uri)).resolve()
+        if not p.is_relative_to(Path(base).resolve()) or ":" in uri:
+            raise ValueError("external_gltf_resource_forbidden")
+        return p.read_bytes()
 
     # 1) 合并所有 buffer，记下每个 buffer 在合并块里的偏移
     buf_off = []
@@ -109,33 +110,13 @@ def gltf_to_glb(gltf_path):
     return bytes(out)
 
 
-def register(fname, model, page, hide_rack):
-    """写进 manifest：source 与 license 从 API 带回，不靠手填"""
-    path = os.path.join(MODELS, "manifest.json")
-    mf = json.load(open(path, encoding="utf-8"))
-    lic = (model.get("license") or {}).get("label") or "未知"
-    author = (model.get("user") or {}).get("displayName") or ""
-    entry = {
-        "file": fname,
-        "page": page,
-        "source": model.get("viewerUrl") or model.get("uri", ""),
-        "license": f"{lic}（作者：{author}）" if author else lic,
-    }
-    if hide_rack:
-        entry["hideRack"] = True
-    mf["models"] = [m for m in mf.get("models", []) if m.get("file") != fname] + [entry]
-    json.dump(mf, open(path, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
-    return entry
-
-
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("model", help="Sketchfab 模型页 URL 或 32 位 uid")
     ap.add_argument("--name", help="存成什么文件名（默认按模型名生成）")
     ap.add_argument("--page", default="rack3d", choices=["rack3d", "bom3d"])
-    ap.add_argument("--hide-rack", action="store_true", help="用它替换程序化机柜")
+    ap.add_argument("--hide-rack", action="store_true", help="记录拟替换机柜的布局；候选不会自动启用")
     ap.add_argument("--token", default=os.environ.get("SKETCHFAB_TOKEN", ""))
-    ap.add_argument("--force-license", action="store_true", help="许可不在白名单也强行入库（自担）")
     a = ap.parse_args()
 
     if not a.token:
@@ -155,9 +136,9 @@ def main():
 
     if not m.get("isDownloadable"):
         sys.exit("✗ 该模型作者未开放下载——换一个（搜索页左侧勾 Downloadable）")
-    if not OK_LICENSE.search(lic) and not a.force_license:
+    if not model_assets.permitted_license(lic):
         sys.exit(f"✗ 许可「{lic}」不在白名单（CC0 / Public Domain / CC Attribution）——"
-                 f"未知或禁改的许可不进库。\n  确认可商用可改造再加 --force-license")
+                 f"未知或禁改的许可不进库。")
 
     print("取下载链接 …")
     try:
@@ -174,6 +155,10 @@ def main():
         zp = os.path.join(tmp, "m.zip")
         urllib.request.urlretrieve(url, zp)
         with zipfile.ZipFile(zp) as z:
+            for item in z.infolist():
+                destination = (Path(tmp) / item.filename).resolve()
+                if not destination.is_relative_to(Path(tmp).resolve()) or (item.external_attr >> 16) & 0o170000 == 0o120000:
+                    raise ValueError("unsafe_model_archive_path")
             z.extractall(tmp)
         # 包里可能直接是 .glb，也可能是 scene.gltf 散件
         glb = next((os.path.join(r, f) for r, _, fs in os.walk(tmp) for f in fs if f.endswith(".glb")), None)
@@ -190,18 +175,12 @@ def main():
     slug = a.name or re.sub(r"[^a-z0-9]+", "_", (m.get("name") or uid).lower()).strip("_")[:40]
     if not slug.endswith(".glb"):
         slug += ".glb"
-    os.makedirs(MODELS, exist_ok=True)
-    out = os.path.join(MODELS, slug)
-    open(out, "wb").write(data)
-    mb = len(data) / 1048576
-    print(f"✓ 写入 assets/models/{slug}（{mb:.1f}MB）")
-    if mb > MAX_MB:
-        print(f"⚠ 超过 {MAX_MB}MB 上线（铁律 A3）——上 gltf.report 减面后替换，或换个模型")
-
-    e = register(slug, m, a.page, a.hide_rack)
-    print(f"✓ 已登记：page={e['page']} license={e['license']}")
-    print("\n下一步：\n  python3 manage.py asset-check\n"
-          "  python3 -m http.server 8000 → http://localhost:8000/rack3d.html")
+    e = import_candidate(ROOT, slug, data, page=a.page,
+        source=m.get("viewerUrl") or m.get("uri", ""),
+        license=f"{lic}（作者：{author}）", hide_rack=a.hide_rack)
+    print(f"✓ 登记：{e['file']} · {e['status']} · {len(data) / 1048576:.1f}MiB")
+    print("下一步：python3 manage.py asset-check；在 compare.html 审阅候选。"
+          "采用须在 manifest 中明确记录决定，下载不会使模型进入场景。")
 
 
 if __name__ == "__main__":

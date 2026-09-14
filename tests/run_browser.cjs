@@ -8,7 +8,7 @@ const root = resolve(__dirname, '..');
 const directory = mkdtempSync(join(tmpdir(), 'inresearch-browser-'));
 const suites = process.argv.slice(2);
 const defaults = ['ui_skin', 'datacenter_news', 'hardware_ecosystems', 'object_network',
-  'product_node_hover', 'url_rendering', 'research_delivery', 'auth_appearance', 'research_summary', 'part_dossier', 'scene_bootstrap'];
+  'product_node_hover', 'url_rendering', 'research_delivery', 'auth_appearance', 'research_summary', 'part_dossier', 'scene_bootstrap', 'model_assets'];
 const environment = {...process.env, INRESEARCH_INTAKE_ROOT: directory};
 const server = spawn(process.env.PYTHON || 'python3', ['-u', '-c',
   "import sys; sys.path.insert(0,'src'); from inresearch.interfaces import http as serve; s=serve.ThreadingHTTPServer(('127.0.0.1',0),serve.Handler); print(s.server_port,flush=True); s.serve_forever()"],
@@ -22,14 +22,20 @@ const ready = new Promise((resolve, reject) => {
 (async () => {
   try {
     const port = await ready;
-    for (const suite of suites.length ? suites : defaults) {
+    const selected=suites.length ? suites.flatMap(s=>s==='core'?defaults.filter(v=>v!=='model_assets'):[s]) : defaults;
+    for (const suite of selected) {
       if (!defaults.includes(suite)) throw Error('Unknown suite: ' + suite);
+      for(const scenario of suite==='model_assets'?['bom3d','rack3d','compare']:[null]) {
+      const label=suite+(scenario?':'+scenario:''),started=Date.now();
+      console.log('START '+label);
       await new Promise((resolve, reject) => {
-        const child = spawn(process.execPath, [join(__dirname, suite + '.cjs')], {
+        const child = spawn(process.execPath, [join(__dirname, suite + '.cjs'), ...(scenario?[scenario]:[])], {
           timeout:300000, cwd:root, env:{...environment, UI_BASE_URL:'http://127.0.0.1:' + port}, stdio:'inherit'});
         child.once('error', reject);
-        child.once('exit', (code, signal) => code === 0 ? resolve() : reject(Error(suite + ' failed: ' + (signal || code))));
+        child.once('exit', (code, signal) => code === 0 ? resolve() : reject(Error(label + ' failed after '+Math.round((Date.now()-started)/1000)+'s: ' + (signal || code))));
       });
+      console.log('DONE '+label+' '+Math.round((Date.now()-started)/1000)+'s');
+      }
     }
   } finally {
     server.kill(); lines.close(); rmSync(directory, {recursive:true, force:true});
