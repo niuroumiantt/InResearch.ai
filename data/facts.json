@@ -142124,6 +142124,389 @@
       "corroboration": "待交叉验证",
       "notes": "中国移动、中移智库《面向超万卡集群的新型智算技术白皮书（2024年）》。原文只说单柜功率上升到这一档，未写液冷；rack_type 取 AI液冷机柜 依据同节下一条「需要引入液冷方案…单机柜重量达1-2吨」。「40KW甚至60KW」拆成普遍水平 40 与峰值 60 两条。",
       "asserter": "中国移动"
+    },
+    {
+      "fact_id": "sa2412-trn2-bf16-pflops",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "aws-trainium2",
+        "label": "AWS Trainium2"
+      },
+      "value": 0.65,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "AWS Trainium2",
+        "precision": "BF16",
+        "scope": "单卡",
+        "sparsity": "稠密",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9528231425c0384d71fa1117dd94bc76dd00b06988e189b8bb7afb897ceddd27",
+        "local_file": "Amazon’s AI Self Sufficiency _ Trainium2 Architecture & Networking – SemiAnalysis.pdf",
+        "locator": "第 3 页：「a ~500W chip that has 650 TFLOP/s per chip of a dense BF16 performance with 96GByte of HBM3e memory capacity」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Amazon’s AI Self Sufficiency | Trainium2 Architecture & Networking》（Dylan Patel、Daniel Nishball、Reyk Knuhtsen，2024-12-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同一报告内自相矛盾**：第 57 页写「each Trainium chip delivers 1,300 TFLOPS of stated FP16 compute」，恰为本条 2 倍（可能一处按单个计算 chiplet、一处按封装计——每颗 Trainium2 含两个计算 chiplet，第 7 页），原文未解释。两条按 precision 分开并列，不裁决。650 TFLOPS = 0.65 PFLOPS。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-trn2-fp16-pflops",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "aws-trainium2",
+        "label": "AWS Trainium2"
+      },
+      "value": 1.3,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "AWS Trainium2",
+        "precision": "FP16",
+        "scope": "单卡",
+        "sparsity": "未注明",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9528231425c0384d71fa1117dd94bc76dd00b06988e189b8bb7afb897ceddd27",
+        "local_file": "Amazon’s AI Self Sufficiency _ Trainium2 Architecture & Networking – SemiAnalysis.pdf",
+        "locator": "第 57 页「Performance vs TCO」：「Though each Trainium chip delivers 1,300 TFLOPS of stated FP16 compute vs 1,979 TFLOPS for the H100」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Amazon’s AI Self Sufficiency | Trainium2 Architecture & Networking》（Dylan Patel、Daniel Nishball、Reyk Knuhtsen，2024-12-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「stated」算力，TCO 计算中 SemiAnalysis 假设训练有效算力为其 38%（第 58 页）。与第 3 页 BF16 650 TFLOPS 相差 2 倍，见 sa2412-trn2-bf16-pflops 备注。1,300 TFLOPS = 1.3 PFLOPS。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-trn2-hbm-capacity",
+      "metric_id": "accelerator_memory_spec",
+      "entity": {
+        "type": "product",
+        "id": "aws-trainium2",
+        "label": "AWS Trainium2"
+      },
+      "value": 96.0,
+      "unit": "GB",
+      "caliber": {
+        "product": "AWS Trainium2",
+        "parameter": "容量",
+        "memory_type": "HBM3e",
+        "scope": "单卡",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9528231425c0384d71fa1117dd94bc76dd00b06988e189b8bb7afb897ceddd27",
+        "local_file": "Amazon’s AI Self Sufficiency _ Trainium2 Architecture & Networking – SemiAnalysis.pdf",
+        "locator": "第 3 页：「with 96GByte of HBM3e memory capacity」；第 7 页：「Each Trainium2 chip consists of two compute chiplets and four stacks of HBM3e memory」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Amazon’s AI Self Sufficiency | Trainium2 Architecture & Networking》（Dylan Patel、Daniel Nishball、Reyk Knuhtsen，2024-12-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 GB（容量）。4 个 HBM3e 堆叠，每个计算 chiplet 经 CoWoS-S/R 直连相邻两个堆叠，跨半边访问有 NUMA 损失。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-trn2-tdp",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "aws-trainium2",
+        "label": "AWS Trainium2"
+      },
+      "value": 500.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "AWS Trainium2",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9528231425c0384d71fa1117dd94bc76dd00b06988e189b8bb7afb897ceddd27",
+        "local_file": "Amazon’s AI Self Sufficiency _ Trainium2 Architecture & Networking – SemiAnalysis.pdf",
+        "locator": "第 3 页：「AWS is now firmly targeting complex GenAI LLM inferencing and training workloads with a ~500W chip」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Amazon’s AI Self Sufficiency | Trainium2 Architecture & Networking》（Dylan Patel、Daniel Nishball、Reyk Knuhtsen，2024-12-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 W。原文「~500W」为约数。第 2 页提到亚马逊与 Marvell 等合作放量，但未说明设计分工，design_partner 记未注明。第 57 页另给含 CPU 头节点等分摊后的 all-in 每芯片功耗 780W（H100 HGX 为 1,340W），口径不同未录。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-trn2-neuronlinkv3-bw",
+      "metric_id": "interconnect_bandwidth_spec",
+      "entity": {
+        "type": "product",
+        "id": "aws-trainium2",
+        "label": "AWS Trainium2"
+      },
+      "value": 640.0,
+      "unit": "GB/s",
+      "caliber": {
+        "product": "AWS Trainium2",
+        "link": "其他",
+        "direction": "单向",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9528231425c0384d71fa1117dd94bc76dd00b06988e189b8bb7afb897ceddd27",
+        "local_file": "Amazon’s AI Self Sufficiency _ Trainium2 Architecture & Networking – SemiAnalysis.pdf",
+        "locator": "第 25 页：「Each chip will have 640GByte/s of unidirectional Bandwidth with up to 6 immediate neighbors」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Amazon’s AI Self Sufficiency | Trainium2 Architecture & Networking》（Dylan Patel、Daniel Nishball、Reyk Knuhtsen，2024-12-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "NeuronLinkv3（AWS 的 scale-up 互连，基于 PCIe Gen5）。Trn2-Ultra 的 3D torus 中 x/y 轴点对点 128GB/s、z 轴 64GB/s（第 28 页）。原文对比 H100 NVLink 400GB/s（第 4 页，未注明单双向）。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-trn2-neuronlinkv3-lane",
+      "metric_id": "interconnect_lane_rate",
+      "entity": {
+        "type": "product",
+        "id": "aws-trainium2-neuronlinkv3",
+        "label": "AWS Trainium2 NeuronLinkv3（机内）"
+      },
+      "value": 32.0,
+      "unit": "Gbps/通道",
+      "caliber": {
+        "product": "AWS Trainium2 NeuronLinkv3",
+        "medium": "背板/PCB 铜",
+        "reach_band": "<5m（机柜内）",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9528231425c0384d71fa1117dd94bc76dd00b06988e189b8bb7afb897ceddd27",
+        "local_file": "Amazon’s AI Self Sufficiency _ Trainium2 Architecture & Networking – SemiAnalysis.pdf",
+        "locator": "第 26 页：「NeuronLinkv3 is based on PCIe Gen 5.0 which means 32Gbit/s per lane (unidirectional). Each chip connects to other intra-server chips using 32 PCIe lanes」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Amazon’s AI Self Sufficiency | Trainium2 Architecture & Networking》（Dylan Patel、Daniel Nishball、Reyk Knuhtsen，2024-12-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "机内经无源铜背板与 JBOG 板上走线；机间（Trn2-Ultra z 轴）改用 OSFP-XD 有源铜缆 AEC（第 18、28 页）。PCIe Gen5 单通道单向 32Gbps 为标准值。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-trn2-chips-per-tray",
+      "metric_id": "rack_component_count",
+      "entity": {
+        "type": "product",
+        "id": "aws-trainium2-server",
+        "label": "AWS Trainium2 服务器（Trn2 / Trn2-Ultra）"
+      },
+      "value": 2.0,
+      "unit": "个",
+      "caliber": {
+        "product": "AWS Trainium2 服务器",
+        "component": "GPU",
+        "denominator": "每托盘",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9528231425c0384d71fa1117dd94bc76dd00b06988e189b8bb7afb897ceddd27",
+        "local_file": "Amazon’s AI Self Sufficiency _ Trainium2 Architecture & Networking – SemiAnalysis.pdf",
+        "locator": "第 12 页：「Each 2U compute tray has two Trainium chips and no CPUs」；第 11 页：一台物理服务器 = 1 个 2U CPU 头托盘 + 8 个 2U 计算托盘，占 18RU",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Amazon’s AI Self Sufficiency | Trainium2 Architecture & Networking》（Dylan Patel、Daniel Nishball、Reyk Knuhtsen，2024-12-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "component 记 GPU 是菜单里最近的「加速器」位，实为 Trainium2 ASIC。计算托盘不含 CPU（JBOG），与 GB200 NVL72 托盘内 CPU+GPU 同板不同。一台物理服务器 16 颗；Trn2 每柜 2 台，Trn2-Ultra 4 台物理服务器跨 2 柜组成 64 颗 scale-up 域（第 12 页）。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-trn2-ultra-rack-power",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "aws-trn2-ultra-rack",
+        "label": "AWS Trn2-Ultra 机柜（64 芯片服务器的半边）"
+      },
+      "value": 24.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "era": "当期",
+        "power_basis": "未披露",
+        "region": "Global"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9528231425c0384d71fa1117dd94bc76dd00b06988e189b8bb7afb897ceddd27",
+        "local_file": "Amazon’s AI Self Sufficiency _ Trainium2 Architecture & Networking – SemiAnalysis.pdf",
+        "locator": "第 21 页「Power Budget」：「We estimate the rack power of each SKU, with each of the two racks within a Trn2-Ultra 64-Chip server requiring 24kW of power (48kW per Trn2-Ultra 64-Chip server)」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Amazon’s AI Self Sufficiency | Trainium2 Architecture & Networking》（Dylan Patel、Daniel Nishball、Reyk Knuhtsen，2024-12-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "SemiAnalysis 估算的功率预算，未说明按 TDP 还是满载，power_basis 记未披露。**风冷**（第 24 页热通道烟囱式封闭），rack_type 取整机柜系统只因其为机架级 scale-up 系统（原文类比 GB200 NVL36x2）。一台 64 芯片服务器占两柜，合计 48kW。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-trn2-rack-power",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "aws-trn2-rack",
+        "label": "AWS Trn2 机柜（两台 16 芯片服务器）"
+      },
+      "value": 27.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "era": "当期",
+        "power_basis": "未披露",
+        "region": "Global"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9528231425c0384d71fa1117dd94bc76dd00b06988e189b8bb7afb897ceddd27",
+        "local_file": "Amazon’s AI Self Sufficiency _ Trainium2 Architecture & Networking – SemiAnalysis.pdf",
+        "locator": "第 22 页：「Racks used to house the normal Trn2 server will have a rack density of 27kW, but recall that there will be two 16-Chip Trn2 servers housed in one rack」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Amazon’s AI Self Sufficiency | Trainium2 Architecture & Networking》（Dylan Patel、Daniel Nishball、Reyk Knuhtsen，2024-12-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "比 Trn2-Ultra 柜高 3kW，原文归因于每芯片 800Gbit/s 横向扩展所需的更多网卡与更高 radix ToR 交换机。风冷；功率口径同上条。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-aws-indiana-rainier-ph1",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "project",
+        "id": "aws-indiana-project-rainier",
+        "label": "AWS 印第安纳园区（Project Rainier，Anthropic 40 万 Trainium2 集群）一期"
+      },
+      "value": 455.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9528231425c0384d71fa1117dd94bc76dd00b06988e189b8bb7afb897ceddd27",
+        "local_file": "Amazon’s AI Self Sufficiency _ Trainium2 Architecture & Networking – SemiAnalysis.pdf",
+        "locator": "第 23 页「Project Rainier – 400k Trainium2 Cluster」：「This campus has completed construction of its first phase and there are currently seven buildings, each with 65MW of IT power, totaling 455MWs」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Amazon’s AI Self Sufficiency | Trainium2 Architecture & Networking》（Dylan Patel、Daniel Nishball、Reyk Knuhtsen，2024-12-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "SemiAnalysis 称一期建成且正在部署 40 万颗 Trainium2 集群，据此记 L8；**非 AWS 官方披露**，原文只说「Indiana」未写具体地点。同页估计园区 PUE 约 1.10–1.15（地处印第安纳北部；dc_pue 的 period 维无「未注明」，未录）。园区同时部署 AWS 通用 CPU 服务器与 Blackwell 集群，455MW 不全是 Trainium2。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-aws-indiana-rainier-ph2",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "project",
+        "id": "aws-indiana-project-rainier-ph2",
+        "label": "AWS 印第安纳园区（Project Rainier）二期"
+      },
+      "value": 585.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L2",
+        "region": "US"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9528231425c0384d71fa1117dd94bc76dd00b06988e189b8bb7afb897ceddd27",
+        "local_file": "Amazon’s AI Self Sufficiency _ Trainium2 Architecture & Networking – SemiAnalysis.pdf",
+        "locator": "第 23 页：「Phase 2 of this Indiana AWS campus will add nine more 65MW buildings for a total of 1,040MW of power」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Amazon’s AI Self Sufficiency | Trainium2 Architecture & Networking》（Dylan Patel、Daniel Nishball、Reyk Knuhtsen，2024-12-03）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "原文给的是两期合计 1,040MW；按「分期各有状态、不与已投运加成同一当前容量」拆出二期增量 585MW = 9 栋 × 65MW（与 1,040 − 455 一致）。status 记 L2 表示规划中，但原文未引官方公告，出处是 SemiAnalysis。",
+      "asserter": "SemiAnalysis",
+      "derivation": "9 × 65MW = 585MW；校验 1,040 − 455 = 585"
+    },
+    {
+      "fact_id": "sa2412-trn2-h100-training-effective-share",
+      "metric_id": "mfu_rate",
+      "entity": {
+        "type": "market",
+        "id": "sa-4k-cluster-training-effective-flops",
+        "label": "SemiAnalysis TCO 模型：H100 训练有效算力占标称比例（Trainium2 同假设）"
+      },
+      "value": 38.0,
+      "unit": "%",
+      "caliber": {
+        "cluster_scale": "千卡",
+        "region": "未披露"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9528231425c0384d71fa1117dd94bc76dd00b06988e189b8bb7afb897ceddd27",
+        "local_file": "Amazon’s AI Self Sufficiency _ Trainium2 Architecture & Networking – SemiAnalysis.pdf",
+        "locator": "第 58 页：「Our estimate for H100 Training Effective FLOPS is calibrated by our own training runs on H100 nodes as well as by various papers from AI companies discussing their Model Flops Utilization (MFU)… we assume it stands at 38% of stated TFLOPS – the same as for the H100」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Amazon’s AI Self Sufficiency | Trainium2 Architecture & Networking》（Dylan Patel、Daniel Nishball、Reyk Knuhtsen，2024-12-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**模型假设，不是实测 MFU**：H100 的 38% 由 SemiAnalysis 自有训练与公开 MFU 论文校准，Trainium2 因无数据直接沿用。cluster_scale 取千卡因 TCO 对比按 4,096 芯片集群建模（第 54 页）。同页称 Anthropic 等深度调优用户或可达 TPU 式 60% 左右 MFU（推测，未录）。",
+      "asserter": "SemiAnalysis"
     }
   ]
 }
