@@ -213,12 +213,12 @@ tests/unit/test_commands.py,61,direct call,"self.assertEqual(cli.main(['--root',
 tests/unit/test_commands.py,85,direct call,"self.assertEqual(1, cli.main(['--root', str(self.root), 'add-price']))",common root or child-local root preserved; explicit unsupported global root rejected
 tests/unit/test_commands.py,112,direct call,status = cli.main(args),common root or child-local root preserved; explicit unsupported global root rejected
 tests/unit/test_commands.py,145,direct call,"cli.main(['--root', directory, command])",common root or child-local root preserved; explicit unsupported global root rejected
-tests/unit/test_commands.py,167,direct call,"self.assertEqual(cli.main(expected), 17)",common root or child-local root preserved; explicit unsupported global root rejected
-tests/unit/test_commands.py,170,direct call,cli.main(expected),common root or child-local root preserved; explicit unsupported global root rejected
-tests/unit/test_commands.py,175,direct call,cli.main(['inventory']),common root or child-local root preserved; explicit unsupported global root rejected
-tests/unit/test_commands.py,179,launch/command reference,"original = ['manage.py', 'asset-check']",updated parameter contract or regression
-tests/unit/test_commands.py,186,direct call,"cli.main(['inventory', '--help'])",common root or child-local root preserved; explicit unsupported global root rejected
-tests/unit/test_commands.py,187,direct call,cli.main(),common root or child-local root preserved; explicit unsupported global root rejected
+tests/unit/test_commands.py,169,direct call,"self.assertEqual(cli.main(expected), 17)",common root or child-local root preserved; explicit unsupported global root rejected
+tests/unit/test_commands.py,172,direct call,cli.main(expected),common root or child-local root preserved; explicit unsupported global root rejected
+tests/unit/test_commands.py,177,direct call,cli.main(['inventory']),common root or child-local root preserved; explicit unsupported global root rejected
+tests/unit/test_commands.py,181,launch/command reference,"original = ['manage.py', 'asset-check']",updated parameter contract or regression
+tests/unit/test_commands.py,188,direct call,"cli.main(['inventory', '--help'])",common root or child-local root preserved; explicit unsupported global root rejected
+tests/unit/test_commands.py,189,direct call,cli.main(),common root or child-local root preserved; explicit unsupported global root rejected
 tests/unit/test_m4_triage.py,16,direct import,from inresearch.interfaces import cli,unchanged invocation/reference; child-local options preserved
 tests/unit/test_m4_triage.py,225,direct call,"cli.main(['inventory', '--root', str(self.root), '--out-dir', str(self.out), 'inventory', '--workers', '1'])",common root or child-local root preserved; explicit unsupported global root rejected
 tests/unit/test_storage_layout.py,230,launch/command reference,"process = subprocess.Popen([sys.executable, str(REPO / 'manage.py'), 'serve', str(port)], env=env, stdout=log, stderr=log)",unchanged invocation/reference; child-local options preserved
