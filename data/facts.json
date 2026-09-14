@@ -135351,6 +135351,102 @@
       "corroboration": "待交叉验证",
       "notes": "口径是 Google Cloud 客户直接调用 API 的 token，不含 Gemini App、搜索等自有产品（Hot Chips 2025 的 980 万亿/月是公司全部产品口径，二者不可比）。原文为瞬时速率，折月假设全月匀速。同稿第 35 页另称累计采购 8GW 清洁能源、数据中心能耗排放降 12%（无单公司指标，未录）。",
       "asserter": "Google"
+    },
+    {
+      "fact_id": "lcleak25-idc-cn-lc-server-market-2024h1",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-lc-server-market",
+        "label": "中国液冷服务器市场"
+      },
+      "value": 12.6,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "液冷服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "美元",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2024-H1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "85042f86592663a5dc1bdc622577bae3cb77178027f9595870c6a4d4d573cd11",
+        "local_file": "5C_2025_2025_液冷系统防漏液和漏_未署名.pdf",
+        "locator": "第 3 页 1.1.2「液冷技术发展现状」：「根据 IDC 数据，中国液冷服务器市场在 2024 上半年继续保持快速增长，市场规模达到 12.6 亿美元，与 2023 年同期相比增长 98.3%，其中液冷解决方案仍以冷板式为主，占到 95%以上，预计 2028 年市场规模将达到 102 亿美元」",
+        "grade": "S3",
+        "originator": "IDC（经《液冷系统防漏液和漏液检测设计研究报告》（2025，编写机构未署名）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "半年口径，同比 2023 年上半年 +98.3%；不可与库内 IDC 2024 全年 23.7 亿美元（kysec2605-idc-cn-lc-server-market-2024）直接相减当下半年——两者出自不同转引，IDC 可能已修订。",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "lcleak25-idc-cn-lc-server-market-2028e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-lc-server-market",
+        "label": "中国液冷服务器市场"
+      },
+      "value": 102.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "液冷服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "美元",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2028E@2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "85042f86592663a5dc1bdc622577bae3cb77178027f9595870c6a4d4d573cd11",
+        "local_file": "5C_2025_2025_液冷系统防漏液和漏_未署名.pdf",
+        "locator": "第 3 页 1.1.2「液冷技术发展现状」：「根据 IDC 数据，中国液冷服务器市场在 2024 上半年继续保持快速增长，市场规模达到 12.6 亿美元，与 2023 年同期相比增长 98.3%，其中液冷解决方案仍以冷板式为主，占到 95%以上，预计 2028 年市场规模将达到 102 亿美元」",
+        "grade": "S3",
+        "originator": "IDC（经《液冷系统防漏液和漏液检测设计研究报告》（2025，编写机构未署名）转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文未写 IDC 预测发布时间；与 2024 上半年数据同句给出，推定出自 2024 年下半年发布的半年度报告，记 @2024。",
+      "corroboration": "待交叉验证",
+      "notes": "库内另有 IDC 2029E 162 亿美元（经开源证券 2026-05 转引，2024–2029 CAGR 46.8%），是较晚一版的并列预测，不是本条的替代。",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "lcleak25-idc-cn-lc-server-coldplate-share-2024h1",
+      "metric_id": "cooling_route_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-lc-server-market",
+        "label": "中国液冷服务器市场"
+      },
+      "value": 95.0,
+      "unit": "%",
+      "caliber": {
+        "cooling_route": "冷板式",
+        "denominator": "液冷市场内部",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024-H1",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "85042f86592663a5dc1bdc622577bae3cb77178027f9595870c6a4d4d573cd11",
+        "local_file": "5C_2025_2025_液冷系统防漏液和漏_未署名.pdf",
+        "locator": "第 3 页 1.1.2「液冷技术发展现状」：「根据 IDC 数据，中国液冷服务器市场在 2024 上半年继续保持快速增长，市场规模达到 12.6 亿美元，与 2023 年同期相比增长 98.3%，其中液冷解决方案仍以冷板式为主，占到 95%以上，预计 2028 年市场规模将达到 102 亿美元」",
+        "grade": "S3",
+        "originator": "IDC（经《液冷系统防漏液和漏液检测设计研究报告》（2025，编写机构未署名）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「占到 95%以上」按下界记；分母是中国液冷服务器市场（按金额推定，原文未写按金额还是台数）。",
+      "asserter": "IDC"
     }
   ]
 }
