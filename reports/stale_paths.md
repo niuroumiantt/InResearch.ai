@@ -1,0 +1,6764 @@
+# 打分表死路径报告 — 2026-09-14
+
+全表 13663 行 ｜ 路径失效 6559 行：
+唯一定位 194（干跑未改，--apply 生效）｜ 文件已不存在 6365 ｜ 同名多份需人裁 0
+
+## 唯一定位（待 --apply）
+
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_企业数据中心设计建议方案_未署名.pdf
+  → docs/library/M05_土地与区域/56_有用/6C_2022_企业数据中心设计建议方案_未署名.pdf
+- docs/library/M14_中国板块/34_存档/3C_2022_数据中心质量保证方案_未署名.doc
+  → docs/library/M00_未归模块/34_存档/3C_2022_数据中心质量保证方案_未署名.doc
+- docs/library/M14_中国板块/56_有用/5C_2022_江森自控数据中心空调节能解决_未署名.pdf
+  → docs/library/M04_电力与能源/56_有用/5C_2022_江森自控数据中心空调节能解决_未署名.pdf
+- docs/library/M14_中国板块/56_有用/6C_2022_江森自控数据中心系统解决方案_未署名.pptx
+  → docs/library/M04_电力与能源/56_有用/6C_2022_江森自控数据中心系统解决方案_未署名.pptx
+- docs/library/M14_中国板块/34_存档/3C_2022_达梦数据中心解决方案_未署名.pptx
+  → docs/library/M04_电力与能源/34_存档/3C_2022_达梦数据中心解决方案_未署名.pptx
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/4C_2022_yjkwindforce_未署名.txt
+  → docs/library/M00_未归模块/34_存档/4C_2022_yjkwindforce_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/5C_2022_yjkwindforce_未署名.txt
+  → docs/library/M00_未归模块/56_有用/5C_2022_yjkwindforce_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/施工图/3C_2022_剪力墙钢筋汇总_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_剪力墙钢筋汇总_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/施工图/3C_2022_柱钢筋统计_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_柱钢筋统计_未署名.txt
+- docs/library/07_方案与模板/01 解决方案/数据中心解决方案.pdf
+  → docs/library/M00_未归模块/34_存档/数据中心解决方案.pdf
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/SubBeam/3C_2022_SAPSS_SubBeam1_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_SAPSS_SubBeam1_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/SubBeam/中间数据/YjkSAPSS_SubBeam1/3C_2022_SAPSS_SubBeam1_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_SAPSS_SubBeam1_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/SubBeam/中间数据/YjkSAPSS_SubBeam1/3C_2022_SAPSS_SubBeam1_未署名_02.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_SAPSS_SubBeam1_未署名_02.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/SubBeam/中间数据/YjkSAPSS_SubBeam1/3C_2022_SAPSS_SubBeam1_未署名_03.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_SAPSS_SubBeam1_未署名_03.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/SubBeam/中间数据/YjkSAPSS_SubBeam1/3C_2022_SAPSS_SubBeam1_未署名_04.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_SAPSS_SubBeam1_未署名_04.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/4C_2022_feadatERR_未署名.txt
+  → docs/library/M00_未归模块/34_存档/4C_2022_feadatERR_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/3C_2022_wallmesh_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_wallmesh_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/3C_2022_上部结构工程量_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_上部结构工程量_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/中间数据/Yjkcombine/5C_2022_M0DOF_v_Node_未署名.txt
+  → docs/library/M00_未归模块/56_有用/5C_2022_M0DOF_v_Node_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/中间数据/Yjkcombine/3C_2022_M0ElemTagID_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_M0ElemTagID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/中间数据/Yjkcombine/3C_2022_M0GroupTagID_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_M0GroupTagID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/中间数据/Yjkcombine/3C_2022_M0LoadCases_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_M0LoadCases_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/中间数据/Yjkcombine/5C_2022_M0MPCData_未署名.txt
+  → docs/library/M00_未归模块/56_有用/5C_2022_M0MPCData_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/中间数据/Yjkcombine/3C_2022_M0NodeTagID_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_M0NodeTagID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/中间数据/Yjkcombine/3C_2022_M0SPC_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_M0SPC_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/中间数据/Yjkcombine/4C_2022_M0lyfr_未署名.txt
+  → docs/library/M00_未归模块/34_存档/4C_2022_M0lyfr_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/中间数据/Yjkcombine/5C_2022_MFSDOF_v_Node_未署名.txt
+  → docs/library/M00_未归模块/56_有用/5C_2022_MFSDOF_v_Node_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/中间数据/Yjkcombine/3C_2022_MFSElemTagID_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_MFSElemTagID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/中间数据/Yjkcombine/3C_2022_MFSGroupTagID_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_MFSGroupTagID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/中间数据/Yjkcombine/3C_2022_MFSLoadCases_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_MFSLoadCases_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/中间数据/Yjkcombine/5C_2022_MFSMPCData_未署名.txt
+  → docs/library/M00_未归模块/56_有用/5C_2022_MFSMPCData_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/中间数据/Yjkcombine/3C_2022_MFSNodeTagID_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_MFSNodeTagID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/中间数据/Yjkcombine/3C_2022_MFSlyfr_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_MFSlyfr_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/中间数据/Yjkcombine/5C_2022_MRFDOF_v_Node_未署名.txt
+  → docs/library/M00_未归模块/56_有用/5C_2022_MRFDOF_v_Node_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/中间数据/Yjkcombine/3C_2022_MRFElemTagID_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_MRFElemTagID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/中间数据/Yjkcombine/3C_2022_MRFGroupTagID_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_MRFGroupTagID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/中间数据/Yjkcombine/3C_2022_MRFLoadCases_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_MRFLoadCases_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/中间数据/Yjkcombine/5C_2022_MRFMPCData_未署名.txt
+  → docs/library/M00_未归模块/56_有用/5C_2022_MRFMPCData_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/中间数据/Yjkcombine/3C_2022_MRFNodeTagID_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_MRFNodeTagID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/中间数据/Yjkcombine/3C_2022_MRFSPC_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_MRFSPC_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/中间数据/Yjkcombine/4C_2022_MRFlyfr_未署名.txt
+  → docs/library/M00_未归模块/34_存档/4C_2022_MRFlyfr_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/3C_2022_Load_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_Load_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/4C_2022_CAL_MIDdatERR_未署名.txt
+  → docs/library/M00_未归模块/34_存档/4C_2022_CAL_MIDdatERR_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/4C_2022_DLGWater_MIDda_未署名.txt
+  → docs/library/M00_未归模块/34_存档/4C_2022_DLGWater_MIDda_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/4C_2022_FeaNonLCal_MID_未署名.txt
+  → docs/library/M00_未归模块/34_存档/4C_2022_FeaNonLCal_MID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/4C_2022_TXBWater_MIDda_未署名.txt
+  → docs/library/M00_未归模块/34_存档/4C_2022_TXBWater_MIDda_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/5C_2022_CAL_MIDDOF_v_N_未署名.txt
+  → docs/library/M00_未归模块/56_有用/5C_2022_CAL_MIDDOF_v_N_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/3C_2022_CAL_MIDElemTag_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_CAL_MIDElemTag_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/3C_2022_CAL_MIDGroupTa_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_CAL_MIDGroupTa_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/3C_2022_CAL_MIDLoadCas_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_CAL_MIDLoadCas_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/3C_2022_CAL_MIDNodeTag_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_CAL_MIDNodeTag_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/3C_2022_CAL_MIDlyfr_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_CAL_MIDlyfr_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkDLGWater_MID/5C_2022_DLGWater_MIDDO_未署名.txt
+  → docs/library/M00_未归模块/56_有用/5C_2022_DLGWater_MIDDO_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkDLGWater_MID/3C_2022_DLGWater_MIDEl_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_DLGWater_MIDEl_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkDLGWater_MID/3C_2022_DLGWater_MIDGr_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_DLGWater_MIDGr_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkDLGWater_MID/3C_2022_DLGWater_MIDNo_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_DLGWater_MIDNo_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkDLGWater_MID/3C_2022_DLGWater_MIDly_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_DLGWater_MIDly_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkFeaNonLCal_MID/5C_2022_FeaNonLCal_MID_未署名.txt
+  → docs/library/M00_未归模块/56_有用/5C_2022_FeaNonLCal_MID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkFeaNonLCal_MID/3C_2022_FeaNonLCal_MID_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_FeaNonLCal_MID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkFeaNonLCal_MID/3C_2022_FeaNonLCal_MID_未署名_02.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_FeaNonLCal_MID_未署名_02.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkFeaNonLCal_MID/3C_2022_FeaNonLCal_MID_未署名_03.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_FeaNonLCal_MID_未署名_03.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkFeaNonLCal_MID/3C_2022_FeaNonLCal_MID_未署名_04.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_FeaNonLCal_MID_未署名_04.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkTXBWater_MID/5C_2022_TXBWater_MIDDO_未署名.txt
+  → docs/library/M00_未归模块/56_有用/5C_2022_TXBWater_MIDDO_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkTXBWater_MID/3C_2022_TXBWater_MIDEl_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_TXBWater_MIDEl_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkTXBWater_MID/3C_2022_TXBWater_MIDGr_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_TXBWater_MIDGr_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkTXBWater_MID/3C_2022_TXBWater_MIDNo_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_TXBWater_MIDNo_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/中间数据/中间数据/YjkTXBWater_MID/3C_2022_TXBWater_MIDly_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_TXBWater_MIDly_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/3C_2022_F1datERR_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_F1datERR_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/3C_2022_F2datERR_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_F2datERR_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF1/4C_2022_F1DOF_v_Node_未署名.txt
+  → docs/library/M00_未归模块/34_存档/4C_2022_F1DOF_v_Node_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF1/3C_2022_F1ElemTagID_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_F1ElemTagID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF1/3C_2022_F1GroupTagID_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_F1GroupTagID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF1/3C_2022_F1MPCData_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_F1MPCData_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF1/3C_2022_F1NodeTagID_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_F1NodeTagID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF1/3C_2022_F1lyfr_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_F1lyfr_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF2/3C_2022_F2DOF_v_Node_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_F2DOF_v_Node_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF2/3C_2022_F2ElemTagID_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_F2ElemTagID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF2/3C_2022_F2GroupTagID_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_F2GroupTagID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF2/3C_2022_F2NodeTagID_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_F2NodeTagID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/Deflection/中间数据/YjkF2/3C_2022_F2lyfr_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_F2lyfr_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/4C_2022_连续梁WKL2第1跨挠度计算_未署名.txt
+  → docs/library/M00_未归模块/34_存档/4C_2022_连续梁WKL2第1跨挠度计算_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/3C_2022_base_stiff_fea_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_base_stiff_fea_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/4C_2022_feadatERR_未署名.txt
+  → docs/library/M00_未归模块/34_存档/4C_2022_feadatERR_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/3C_2022_上部结构工程量_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_上部结构工程量_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkbase_stiff_fea/5C_2022_MBSDOF_v_Node_未署名.txt
+  → docs/library/M00_未归模块/56_有用/5C_2022_MBSDOF_v_Node_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkbase_stiff_fea/3C_2022_MBSElemTagID_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_MBSElemTagID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkbase_stiff_fea/4C_2022_MBSGroupTagID_未署名.txt
+  → docs/library/M00_未归模块/34_存档/4C_2022_MBSGroupTagID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkbase_stiff_fea/5C_2022_MBSMPCData_未署名.txt
+  → docs/library/M00_未归模块/56_有用/5C_2022_MBSMPCData_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkbase_stiff_fea/3C_2022_MBSNodeTagID_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_MBSNodeTagID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkbase_stiff_fea/3C_2022_MBSlyfr_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_MBSlyfr_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkcombine/5C_2022_M0DOF_v_Node_未署名.txt
+  → docs/library/M00_未归模块/56_有用/5C_2022_M0DOF_v_Node_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkcombine/3C_2022_M0ElemTagID_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_M0ElemTagID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkcombine/4C_2022_M0GroupTagID_未署名.txt
+  → docs/library/M00_未归模块/34_存档/4C_2022_M0GroupTagID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkcombine/3C_2022_M0LoadCases_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_M0LoadCases_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkcombine/5C_2022_M0MPCData_未署名.txt
+  → docs/library/M00_未归模块/56_有用/5C_2022_M0MPCData_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkcombine/3C_2022_M0NodeTagID_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_M0NodeTagID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkcombine/3C_2022_M0SPC_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_M0SPC_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkcombine/5C_2022_M0lyfr_未署名.txt
+  → docs/library/M00_未归模块/56_有用/5C_2022_M0lyfr_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkcombine/5C_2022_MFSDOF_v_Node_未署名.txt
+  → docs/library/M00_未归模块/56_有用/5C_2022_MFSDOF_v_Node_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkcombine/3C_2022_MFSElemTagID_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_MFSElemTagID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkcombine/4C_2022_MFSGroupTagID_未署名.txt
+  → docs/library/M00_未归模块/34_存档/4C_2022_MFSGroupTagID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkcombine/3C_2022_MFSLoadCases_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_MFSLoadCases_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkcombine/5C_2022_MFSMPCData_未署名.txt
+  → docs/library/M00_未归模块/56_有用/5C_2022_MFSMPCData_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkcombine/3C_2022_MFSNodeTagID_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_MFSNodeTagID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkcombine/3C_2022_MFSlyfr_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_MFSlyfr_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkcombine/5C_2022_MRFDOF_v_Node_未署名.txt
+  → docs/library/M00_未归模块/56_有用/5C_2022_MRFDOF_v_Node_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkcombine/3C_2022_MRFElemTagID_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_MRFElemTagID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkcombine/4C_2022_MRFGroupTagID_未署名.txt
+  → docs/library/M00_未归模块/34_存档/4C_2022_MRFGroupTagID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkcombine/3C_2022_MRFLoadCases_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_MRFLoadCases_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkcombine/5C_2022_MRFMPCData_未署名.txt
+  → docs/library/M00_未归模块/56_有用/5C_2022_MRFMPCData_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkcombine/3C_2022_MRFNodeTagID_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_MRFNodeTagID_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkcombine/3C_2022_MRFSPC_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_MRFSPC_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/中间数据/Yjkcombine/5C_2022_MRFlyfr_未署名.txt
+  → docs/library/M00_未归模块/56_有用/5C_2022_MRFlyfr_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/3C_2022_全楼钢筋用量_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_全楼钢筋用量_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/4C_2022_CAL_MIDdatERR_未署名.txt
+  → docs/library/M00_未归模块/34_存档/4C_2022_CAL_MIDdatERR_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/4C_2022_LaLiangFixEnd__未署名.txt
+  → docs/library/M00_未归模块/34_存档/4C_2022_LaLiangFixEnd__未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/4C_2022_LaLiangHingeEn_未署名.txt
+  → docs/library/M00_未归模块/34_存档/4C_2022_LaLiangHingeEn_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/4C_2022_CAL_MIDDOF_v_N_未署名.txt
+  → docs/library/M00_未归模块/34_存档/4C_2022_CAL_MIDDOF_v_N_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/3C_2022_CAL_MIDElemTag_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_CAL_MIDElemTag_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/3C_2022_CAL_MIDGroupTa_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_CAL_MIDGroupTa_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/3C_2022_CAL_MIDLoadCas_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_CAL_MIDLoadCas_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/3C_2022_CAL_MIDMPCData_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_CAL_MIDMPCData_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/3C_2022_CAL_MIDNodeTag_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_CAL_MIDNodeTag_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkCAL_MID/3C_2022_CAL_MIDlyfr_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_CAL_MIDlyfr_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangFixEnd_MID/4C_2022_LaLiangFixEnd__未署名.txt
+  → docs/library/M00_未归模块/34_存档/4C_2022_LaLiangFixEnd__未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangFixEnd_MID/3C_2022_LaLiangFixEnd__未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_LaLiangFixEnd__未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangFixEnd_MID/3C_2022_LaLiangFixEnd__未署名_02.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_LaLiangFixEnd__未署名_02.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangFixEnd_MID/3C_2022_LaLiangFixEnd__未署名_03.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_LaLiangFixEnd__未署名_03.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangFixEnd_MID/3C_2022_LaLiangFixEnd__未署名_04.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_LaLiangFixEnd__未署名_04.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangFixEnd_MID/3C_2022_LaLiangFixEnd__未署名_05.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_LaLiangFixEnd__未署名_05.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangHingeEnd_MID/4C_2022_LaLiangHingeEn_未署名.txt
+  → docs/library/M00_未归模块/34_存档/4C_2022_LaLiangHingeEn_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangHingeEnd_MID/3C_2022_LaLiangHingeEn_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_LaLiangHingeEn_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangHingeEnd_MID/3C_2022_LaLiangHingeEn_未署名_02.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_LaLiangHingeEn_未署名_02.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangHingeEnd_MID/3C_2022_LaLiangHingeEn_未署名_03.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_LaLiangHingeEn_未署名_03.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangHingeEnd_MID/3C_2022_LaLiangHingeEn_未署名_04.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_LaLiangHingeEn_未署名_04.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/基础计算及结果输出/中间数据/中间数据/YjkLaLiangHingeEnd_MID/3C_2022_LaLiangHingeEn_未署名_05.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_LaLiangHingeEn_未署名_05.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/施工图/3C_2022_全楼梁钢筋用量_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_全楼梁钢筋用量_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/施工图/4C_2022_第1层剪力墙钢筋统计_未署名.txt
+  → docs/library/M00_未归模块/34_存档/4C_2022_第1层剪力墙钢筋统计_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/施工图/4C_2022_第2层剪力墙钢筋统计_未署名.txt
+  → docs/library/M00_未归模块/34_存档/4C_2022_第2层剪力墙钢筋统计_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/施工图/4C_2022_第3层剪力墙钢筋统计_未署名.txt
+  → docs/library/M00_未归模块/34_存档/4C_2022_第3层剪力墙钢筋统计_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/施工图/4C_2022_第4层剪力墙钢筋统计_未署名.txt
+  → docs/library/M00_未归模块/34_存档/4C_2022_第4层剪力墙钢筋统计_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/施工图/4C_2022_第5层剪力墙钢筋统计_未署名.txt
+  → docs/library/M00_未归模块/34_存档/4C_2022_第5层剪力墙钢筋统计_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/板计算数据/3C_2022_slab_feadatERR_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_slab_feadatERR_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/板计算数据/中间数据/Yjkslab_fea/5C_2022_slab_feaDOF_v__未署名.txt
+  → docs/library/M00_未归模块/56_有用/5C_2022_slab_feaDOF_v__未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/板计算数据/中间数据/Yjkslab_fea/3C_2022_slab_feaElemTa_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_slab_feaElemTa_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/板计算数据/中间数据/Yjkslab_fea/3C_2022_slab_feaGroupT_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_slab_feaGroupT_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/板计算数据/中间数据/Yjkslab_fea/3C_2022_slab_feaNodeTa_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_slab_feaNodeTa_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/板计算数据/中间数据/Yjkslab_fea/3C_2022_slab_feaReAct_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_slab_feaReAct_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/板计算数据/中间数据/Yjkslab_fea/3C_2022_slab_feadisp_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_slab_feadisp_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/板计算数据/中间数据/Yjkslab_fea/3C_2022_slab_feafPlana_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_slab_feafPlana_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/板计算数据/中间数据/Yjkslab_fea/3C_2022_slab_feafPlate_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_slab_feafPlate_未署名.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/板计算数据/中间数据/Yjkslab_fea/3C_2022_slab_feafPlate_未署名_02.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_slab_feafPlate_未署名_02.txt
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/板计算数据/中间数据/Yjkslab_fea/3C_2022_slab_fealyfr_未署名.txt
+  → docs/library/M00_未归模块/34_存档/3C_2022_slab_fealyfr_未署名.txt
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_精品重庆公安新一代数据中心解_未署名.pptx
+  → docs/library/M06_芯片与服务器/56_有用/5C_2022_精品重庆公安新一代数据中心解_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_微型数据中心解决方案_未署名__002.ppt
+  → docs/library/M06_芯片与服务器/56_有用/5C_2022_微型数据中心解决方案_未署名__002.ppt
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_数据中心解决方案2_未署名.pptx
+  → docs/library/M06_芯片与服务器/56_有用/5C_2022_数据中心解决方案2_未署名.pptx
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250807海通国际计算_未署名.pdf
+  → docs/library/M05_土地与区域/56_有用/6C_2025_20250807海通国际计算_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_BERNSTEINUS_Bi_未署名.pdf
+  → docs/library/M05_土地与区域/34_存档/3C_2022_BERNSTEINUS_Bi_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/2C_2022_JEFFChina_PRC__未署名.pdf
+  → docs/library/M05_土地与区域/34_存档/2C_2022_JEFFChina_PRC__未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_IDC数据中心动力环境监控系_未署名.pdf
+  → docs/library/M06_芯片与服务器/34_存档/3C_2022_IDC数据中心动力环境监控系_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_XX数据中心应急方案_未署名.doc
+  → docs/library/M06_芯片与服务器/56_有用/5C_2022_XX数据中心应急方案_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_云数据中心解决方案详解PPT_未署名.pptx
+  → docs/library/M06_芯片与服务器/56_有用/5C_2022_云数据中心解决方案详解PPT_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_云计算数据中心解决方案_未署名.pdf
+  → docs/library/M06_芯片与服务器/56_有用/5C_2022_云计算数据中心解决方案_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_任华华IDC液冷化正在发生的_未署名.pdf
+  → docs/library/M06_芯片与服务器/56_有用/5C_2022_任华华IDC液冷化正在发生的_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_企业云计算数据中心方案海得版_未署名.pdf
+  → docs/library/M06_芯片与服务器/56_有用/5C_2022_企业云计算数据中心方案海得版_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_企业网云数据中心解决方案_未署名.pptx
+  → docs/library/M06_芯片与服务器/56_有用/5C_2022_企业网云数据中心解决方案_未署名.pptx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_区域卫生平台数据中心方案_未署名.doc
+  → docs/library/M06_芯片与服务器/34_存档/3C_2022_区域卫生平台数据中心方案_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_华为云数据中心解决方案_未署名.ppt
+  → docs/library/M06_芯片与服务器/56_有用/5C_2022_华为云数据中心解决方案_未署名.ppt
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_华为模块化数据中心解决方案_未署名.pptx
+  → docs/library/M06_芯片与服务器/56_有用/5C_2022_华为模块化数据中心解决方案_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_南通大学超融合数据中心一期技_未署名.doc
+  → docs/library/M06_芯片与服务器/56_有用/5C_2022_南通大学超融合数据中心一期技_未署名.doc
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_双活数据中心方案_未署名.docx
+  → docs/library/M06_芯片与服务器/34_存档/3C_2022_双活数据中心方案_未署名.docx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_大型数据中心解决方案_未署名.pdf
+  → docs/library/M06_芯片与服务器/34_存档/3C_2022_大型数据中心解决方案_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_微型数据中心解决方案_未署名.ppt
+  → docs/library/M06_芯片与服务器/56_有用/5C_2022_微型数据中心解决方案_未署名.ppt
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_数据中心解决方案_未署名.pptx
+  → docs/library/M06_芯片与服务器/56_有用/5C_2022_数据中心解决方案_未署名.pptx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_数据中心供电方案设计_未署名.ppt
+  → docs/library/M06_芯片与服务器/34_存档/3C_2022_数据中心供电方案设计_未署名.ppt
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_数据中心建设方案_未署名.doc
+  → docs/library/M06_芯片与服务器/56_有用/5C_2022_数据中心建设方案_未署名.doc
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_数据中心建设方案v30_未署名.pptx
+  → docs/library/M06_芯片与服务器/34_存档/3C_2022_数据中心建设方案v30_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_数据中心节能方案分析_未署名.doc
+  → docs/library/M06_芯片与服务器/56_有用/5C_2022_数据中心节能方案分析_未署名.doc
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_数据中心解决方案_未署名.pdf
+  → docs/library/M06_芯片与服务器/34_存档/3C_2022_数据中心解决方案_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_数据中心解决方案_未署名.ppt
+  → docs/library/M06_芯片与服务器/34_存档/3C_2022_数据中心解决方案_未署名.ppt
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_数据中心解决方案之灾备方案设_未署名.docx
+  → docs/library/M06_芯片与服务器/34_存档/3C_2022_数据中心解决方案之灾备方案设_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_数据中心解决方案安全技术白皮_未署名.pdf
+  → docs/library/M06_芯片与服务器/56_有用/5C_2022_数据中心解决方案安全技术白皮_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_数据中心设备方案_未署名.doc
+  → docs/library/M06_芯片与服务器/56_有用/5C_2022_数据中心设备方案_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_数据中心设计方案模板vClo_未署名.pdf
+  → docs/library/M06_芯片与服务器/56_有用/5C_2022_数据中心设计方案模板vClo_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_数据中心项目方案_未署名.docx
+  → docs/library/M06_芯片与服务器/56_有用/5C_2022_数据中心项目方案_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_某大学云数据中心建设方案_未署名.docx
+  → docs/library/M06_芯片与服务器/56_有用/5C_2022_某大学云数据中心建设方案_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_某数据中心规划方案_未署名.doc
+  → docs/library/M06_芯片与服务器/56_有用/5C_2022_某数据中心规划方案_未署名.doc
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_栗权智维平台与数据中心运营体_未署名.pdf
+  → docs/library/M06_芯片与服务器/34_存档/3C_2022_栗权智维平台与数据中心运营体_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_模块化数据中心机房解决方案_未署名.pdf
+  → docs/library/M06_芯片与服务器/56_有用/5C_2022_模块化数据中心机房解决方案_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2022_江森自控数据中心系统解决方案_未署名.pptx
+  → docs/library/M04_电力与能源/56_有用/6C_2022_江森自控数据中心系统解决方案_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_深信服XXX数据中心项目aC_未署名.docx
+  → docs/library/M06_芯片与服务器/56_有用/5C_2022_深信服XXX数据中心项目aC_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_深信服集团数据中心方案规划模_未署名.pptx
+  → docs/library/M06_芯片与服务器/56_有用/5C_2022_深信服集团数据中心方案规划模_未署名.pptx
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_达梦数据中心解决方案_未署名.pptx
+  → docs/library/M04_电力与能源/34_存档/3C_2022_达梦数据中心解决方案_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_阿尔西数据中心专用空调系统解_未署名.pdf
+  → docs/library/M06_芯片与服务器/56_有用/5C_2022_阿尔西数据中心专用空调系统解_未署名.pdf
+
+## 零命中（库内已无此文件名——行保留，路径不动，待人工核对）
+
+- docs/library/M06_芯片与服务器/9_镇库/9B_2025_HBM市场展望_Yole.pdf
+- docs/library/M07_网络与互联/9_镇库/9A_2025_CPO共封装光学_Yole.pdf
+- docs/library/M06_芯片与服务器/9_镇库/9A_2025_HBM技术路线图_KAIST.pdf
+- docs/library/M06_芯片与服务器/9_镇库/9A_2025_生成式AI算力_Yole.pdf
+- docs/library/M06_芯片与服务器/9_镇库/9A_2024_GB200开放架构_NVIDIA.pdf
+- docs/library/M06_芯片与服务器/8_支柱/8B_2025_DRAM技术展望_TrendForce.pdf
+- docs/library/M07_网络与互联/8_支柱/8A_2025_UALink规范_UALink联盟.pdf
+- docs/library/M06_芯片与服务器/8_支柱/8A_2025_DRAM市场季报_TechInsights.pdf
+- docs/library/M06_芯片与服务器/8_支柱/8A_2025_下一代DRAM_Yole.pdf
+- docs/library/M06_芯片与服务器/8_支柱/8A_2024_AI加速器市场_AMD.pdf
+- docs/library/M06_芯片与服务器/7_重要/7A_2025_GPU直连存储_Micron.pdf
+- docs/library/M06_芯片与服务器/7_重要/7B_2025_存储十一变局_ObjectiveAnalysis.pdf
+- docs/library/M06_芯片与服务器/7_重要/7A_2025_EDSFF与液冷盘_Solidigm.pdf
+- docs/library/M06_芯片与服务器/7_重要/7A_2025_CXL内存扩展_CXL联盟.pdf
+- docs/library/M06_芯片与服务器/7_重要/7A_2023_HBM工艺解密_SKhynix.pdf
+- docs/library/M06_芯片与服务器/7_重要/7A_2024_AI内存影响_Yole.pdf
+- docs/library/M09_电气设备供应链/7_重要/7C_2025_电力基础设施市场_BIS.pdf
+- docs/library/M07_网络与互联/7_重要/7A_2024_光模块市场_Yole.pdf
+- docs/library/M06_芯片与服务器/7_重要/7A_2025_先进封装趋势_Yole.pdf
+- docs/library/M06_芯片与服务器/7_重要/7A_2024_开放AI系统_Meta.pdf
+- docs/library/M13_有效算力与软件/56_有用/6A_2023_集成电路2035战略_中科院.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_PDU与PSU市场_BIS.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2025_国产服务器OS_智算联盟.pdf
+- docs/library/M14_中国板块/9_镇库/9B_2025_华为CM384超节点_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/9_镇库/9A_2024_数据中心电气系统_SemiAnalysis.pdf
+- docs/library/M10_建设运营与人才/9_镇库/9A_2024_GPU云运营手册_SemiAnalysis.pdf
+- docs/library/M13_有效算力与软件/8_支柱/8A_2025_GPU云评级体系_SemiAnalysis.pdf
+- docs/library/M08_散热与制冷/8_支柱/8A_2025_数据中心制冷系统_SemiAnalysis.pdf
+- docs/library/M13_有效算力与软件/7_重要/7A_2023_GPU云经济学_SemiAnalysis.pdf
+- docs/library/M06_芯片与服务器/8_支柱/8A_2024_Blackwell性能TCO_SemiAnalysis.pdf
+- docs/library/M06_芯片与服务器/7_重要/7B_2024_Blackwell成本与毛利_SemiAnalysis.pdf
+- docs/library/M14_中国板块/8_支柱/8A_2025_DeepSeek成本辩论_SemiAnalysis.pdf
+- docs/library/M14_中国板块/7_重要/7B_2023_中国半导体突围_SemiAnalysis.pdf
+- docs/library/M14_中国板块/7_重要/7B_2023_英伟达中国特供芯片_SemiAnalysis.pdf
+- docs/library/M14_中国板块/56_有用/6B_2022_壁仞规避管制_SemiAnalysis.pdf
+- docs/library/M14_中国板块/56_有用/5C_2022_中芯7nm量产_SemiAnalysis.pdf
+- docs/library/M14_中国板块/8_支柱/8A_2024_华为晶圆厂网络_SemiAnalysis.pdf
+- docs/library/M06_芯片与服务器/7_重要/7A_2023_谷歌基建优势_SemiAnalysis.pdf
+- docs/library/M07_网络与互联/56_有用/6A_2023_谷歌光交换网络_SemiAnalysis.pdf
+- docs/library/M06_芯片与服务器/7_重要/7A_2023_微软自研芯片_SemiAnalysis.pdf
+- docs/library/M07_网络与互联/56_有用/5B_2022_Meta共封装光学_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/8_支柱/8A_2025_关税与设备供应链_SemiAnalysis.pdf
+- docs/library/M07_网络与互联/56_有用/6A_2024_NVL72光模块之辩_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/7_重要/7A_2023_芯片级供电竞争_SemiAnalysis.pdf
+- docs/library/M06_芯片与服务器/7_重要/7A_2024_GB300与推理经济_SemiAnalysis.pdf
+- docs/library/M06_芯片与服务器/8_支柱/8A_2025_GTC2025与黄氏算术_SemiAnalysis.pdf
+- docs/library/M13_有效算力与软件/56_有用/6A_2024_Groq推理经济性_SemiAnalysis.pdf
+- docs/library/M13_有效算力与软件/56_有用/6A_2023_推理逐底竞争_SemiAnalysis.pdf
+- docs/library/M14_中国板块/8_支柱/8A_2025_AI扩散出口管制_SemiAnalysis.pdf
+- docs/library/M10_建设运营与人才/8_支柱/8A_2024_戴尔如何击败超微_SemiAnalysis.pdf
+- docs/library/M06_芯片与服务器/7_重要/7A_2023_CoWoS与HBM产能瓶颈_SemiAnalysis.pdf
+- docs/library/M06_芯片与服务器/7_重要/7A_2023_AI服务器成本拆解_SemiAnalysis.pdf
+- docs/library/M06_芯片与服务器/7_重要/7A_2024_亚马逊Trainium2_SemiAnalysis.pdf
+- docs/library/M06_芯片与服务器/7_重要/7A_2023_博通TPU与网络业务_SemiAnalysis.pdf
+- docs/library/M06_芯片与服务器/7_重要/7A_2025_AMD二次出发_SemiAnalysis.pdf
+- docs/library/M06_芯片与服务器/7_重要/7B_2024_GB200供应链跟踪_MorganStanley.pdf
+- docs/library/M06_芯片与服务器/7_重要/7B_2024_上调Blackwell产量预测_FubonResearch.pdf
+- docs/library/M06_芯片与服务器/7_重要/7A_2024_CXL在AI时代已死_SemiAnalysis.pdf
+- docs/library/M07_网络与互联/56_有用/6A_2024_AsteraLabs与互连市场_SemiAnalysis.pdf
+- docs/library/M14_中国板块/56_有用/6A_2022_中美技术管制总览_SemiAnalysis.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2023_亚马逊投资Anthropic_SemiAnalysis.pdf
+- docs/library/M07_网络与互联/56_有用/5B_2022_AyarLabs共封装光学_SemiAnalysis.pdf
+- docs/library/M14_中国板块/34_存档/4B_2021_中国碳化硅厂算不过账_SemiAnalysis.pdf
+- docs/library/M07_网络与互联/7_重要/7A_2023_InfiniBand与以太网之争_SemiAnalysis.pdf
+- docs/library/M07_网络与互联/7_重要/7A_2023_英伟达光模块攻势_SemiAnalysis.pdf
+- docs/library/M06_芯片与服务器/7_重要/7A_2023_英伟达产能爬坡链条_SemiAnalysis.pdf
+- docs/library/M06_芯片与服务器/7_重要/7A_2024_Blackwell返工与延期_SemiAnalysis.pdf
+- docs/library/M06_芯片与服务器/7_重要/7A_2023_TPUv5e性价比_SemiAnalysis.pdf
+- docs/library/M13_有效算力与软件/7_重要/7A_2023_搜索被颠覆的推理成本_SemiAnalysis.pdf
+- docs/library/M13_有效算力与软件/7_重要/7A_2023_搜索架构与成本优化_SemiAnalysis.pdf
+- docs/library/M06_芯片与服务器/7_重要/7A_2024_内存墙与DRAM未来_SemiAnalysis.pdf
+- docs/library/M14_中国板块/7_重要/7A_2023_晶圆战争与管制门槛_SemiAnalysis.pdf
+- docs/library/M06_芯片与服务器/7_重要/7A_2024_量化与数字格式_SemiAnalysis.pdf
+- docs/library/M07_网络与互联/56_有用/6A_2023_有源电缆与铜的极限_SemiAnalysis.pdf
+- docs/library/M14_中国板块/56_有用/6A_2023_光刻管制的缺口_SemiAnalysis.pdf
+- docs/library/M15_情景与监测/56_有用/6A_2023_半导体库存周期分析_SemiAnalysis.pdf
+- docs/library/M14_中国板块/56_有用/6B_2024_英伟达中国收入_FinancialTimes.pdf
+- docs/library/M14_中国板块/56_有用/5B_2021_长江存储技术突破_SemiAnalysis.pdf
+- docs/library/M14_中国板块/56_有用/5B_2021_安谋中国失控_SemiAnalysis.pdf
+- docs/library/M14_中国板块/34_存档/4B_2021_中国房地产与芯片需求_SemiAnalysis.pdf
+- docs/library/M15_情景与监测/34_存档/4B_2021_英伟达盈利质量存疑_SemiAnalysis.pdf
+- docs/library/M07_网络与互联/7_重要/7B_2022_光模块市场与技术_Yole.pdf
+- docs/library/M06_芯片与服务器/7_重要/7B_2025_DRAM技术分析简报_TechInsights.pdf
+- docs/library/M15_情景与监测/7_重要/7B_2025_HPC与AI五个问题_Intersect360.pdf
+- docs/library/M13_有效算力与软件/7_重要/7B_2025_KV缓存存储卸载_Dell.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_全球封测市场_Technavio.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2025_新一代AI应用存储影响_SNIA.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2025_解耦式KV存储_SNIA.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2025_MLPerf存储基准分析_SNIA.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2025_公有云AI存储_IBM.pdf
+- docs/library/M10_建设运营与人才/56_有用/6B_2025_SNIA与OCP协作_SNIA.pdf
+- docs/library/M09_电气设备供应链/56_有用/6B_2025_AI工厂可持续性_Cisco.pdf
+- docs/library/M09_电气设备供应链/56_有用/5B_2025_Emerald能效规范更新_SNIA.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2025_AI存储通信性能评估_SNIA.pdf
+- docs/library/M07_网络与互联/34_存档/4B_2025_PCIe7与448G通道_SNIA.pdf
+- docs/library/M09_电气设备供应链/34_存档/4B_2025_数据中心可持续性_SNIA.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2025_超越吞吐的存储基准_SNIA.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2025_Gen6NVMe存储演进_SNIA.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2025_数据密集型推理实践_SNIA.pdf
+- docs/library/M10_建设运营与人才/56_有用/6B_2025_硬盘再生与容错运营_SNIA.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2025_存储分层与成本优化_SNIA.pdf
+- docs/library/M09_电气设备供应链/56_有用/6B_2025_开放闪存平台倡议_SNIA.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2025_RAG向量检索扩展_SNIA.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2025_云存储与RAG应用_SNIA.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2025_弹性高效训练基础设施_SNIA.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2025_AI存储协议选型_SNIA.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2025_信息银行构想_SNIA.pdf
+- docs/library/M09_电气设备供应链/56_有用/5B_2025_存储总成本与性能_SNIA.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2025_AI存储入门_SNIA.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2025_统一知识平台_SNIA.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2025_SSD虚拟化与多租户_SNIA.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2025_对象存储加速_SNIA.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2025_存储人才与未来趋势_SNIA.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2025_CDMI标准化管理_SNIA.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2025_存储缺陷分诊自动化_SNIA.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2025_存储运维实战案例_SNIA.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2025_零层存储激活_SNIA.pdf
+- docs/library/M14_中国板块/7_重要/7B_2022_长江存储232层拆解_TechInsights.pdf
+- docs/library/M14_中国板块/7_重要/7B_2024_长江存储232层量产分析_TechInsights.pdf
+- docs/library/M06_芯片与服务器/7_重要/7B_2023_半导体技术趋势与材料_TechInsights.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2025_eBPF常态化诊断_SNIA.pdf
+- docs/library/M10_建设运营与人才/34_存档/4B_2025_Swordfish存储管理规范_SNIA.pdf
+- docs/library/M10_建设运营与人才/34_存档/4B_2025_Redfish存储管理_SNIA.pdf
+- docs/library/M10_建设运营与人才/34_存档/4B_2025_Sunfish可组合基础设施管理_SNIA.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2025_OCP存储项目更新_SNIA.pdf
+- docs/library/M13_有效算力与软件/7_重要/7B_2025_搁浅内存与服务器成本_FMS2025.pdf
+- docs/library/M07_网络与互联/7_重要/7B_2025_AI网络成本与MoE瓶颈_FMS2025.pdf
+- docs/library/M07_网络与互联/7_重要/7B_2025_Blackwell互连带宽拆解_FMS2025.pdf
+- docs/library/M06_芯片与服务器/7_重要/7B_2025_存储介质TCO对照_FMS2025.pdf
+- docs/library/M06_芯片与服务器/7_重要/7B_2025_AI处理器算力增速_FMS2025.pdf
+- docs/library/M15_情景与监测/7_重要/7B_2025_存储市场预测的失准_FMS2025.pdf
+- docs/library/M13_有效算力与软件/7_重要/7B_2025_向量数据库容量换算_FMS2025.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2025_CXL对GPU利用率的影响_FMS2025.pdf
+- docs/library/M09_电气设备供应链/56_有用/6B_2025_大容量SSD功耗与散热_FMS2025.pdf
+- docs/library/M15_情景与监测/56_有用/6B_2025_AI存储市场预测_FMS2025.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2025_KV缓存命中率与LLM系统_FMS2025.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2025_训练检查点优化_FMS2025.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2025_内存利用率与分层_FMS2025.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2025_数据密集型客户方案_FMS2025.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2025_向量检索SSD实测_FMS2025.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2025_DAOS高性能存储配置_FMS2025.pdf
+- docs/library/M07_网络与互联/56_有用/6B_2025_存储结构带宽演进_FMS2025.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2025_GPU规模扩展测试_FMS2025.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2025_超大规模存储可用性_FMS2025.pdf
+- docs/library/M15_情景与监测/56_有用/5B_2025_数据分析市场增速_FMS2025.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2025_AI存储规模分档_FMS2025.pdf
+- docs/library/M07_网络与互联/56_有用/6B_2025_开放Scale-up互连_FMS2025.pdf
+- docs/library/M10_建设运营与人才/34_存档/4B_2025_半导体人才管理系统_FMS2025.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2025_数据中心SSD质量体系_FMS2025.pdf
+- docs/library/M15_情景与监测/56_有用/5B_2025_存储市场分析师观点_FMS2025.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_存储整合省电案例_FMS2025.pdf
+- docs/library/M06_芯片与服务器/7_重要/7B_2025_硬盘数据中心地位_FMS2025.pdf
+- docs/library/M07_网络与互联/34_存档/4B_2025_UCIe多厂商互操作_FMS2025.pdf
+- docs/library/M07_网络与互联/34_存档/4B_2025_UCIe管理面架构_FMS2025.pdf
+- docs/library/M15_情景与监测/56_有用/6C_2025_全球数据生成序列_FMS2025.pdf
+- docs/library/M06_芯片与服务器/7_重要/7B_2025_活跃归档容量预测_FMS2025.pdf
+- docs/library/M09_电气设备供应链/56_有用/5B_2025_磁带与硬盘能耗比_FMS2025.pdf
+- docs/library/M13_有效算力与软件/56_有用/7B_2025_闪存扩展推理实测_FMS2025.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2025_大模型检查点开销_FMS2025.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2025_存储运维AI自动化_FMS2025.pdf
+- docs/library/M13_有效算力与软件/7_重要/7B_2025_内存压缩降TCO_FMS2025.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2025_CXL优化RAG推理_FMS2025.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2025_虚拟机热迁移标准_FMS2025.pdf
+- docs/library/M06_芯片与服务器/7_重要/7B_2025_QLC功耗性能指引_FMS2025.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2025_IO虚拟化扩展上限_FMS2025.pdf
+- docs/library/M15_情景与监测/56_有用/6B_2025_HBM与资本开支放缓_FMS2025.pdf
+- docs/library/M06_芯片与服务器/7_重要/7B_2025_内存条功耗对照表_FMS2025.pdf
+- docs/library/M07_网络与互联/56_有用/5B_2025_存储介质保持机理_FMS2025.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_网络安全人力缺口_FMS2025.pdf
+- docs/library/M10_建设运营与人才/34_存档/4B_2025_存储介质销毁合规_FMS2025.pdf
+- docs/library/M09_电气设备供应链/7_重要/7B_2025_美国数据中心用电占比_FMS2025.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2025_存储栈省CPU实测_FMS2025.pdf
+- docs/library/M07_网络与互联/56_有用/6B_2025_傲腾亏损与新型存储_FMS2025.pdf
+- docs/library/M07_网络与互联/56_有用/5B_2025_阻变栅存储器件_FMS2025.pdf
+- docs/library/M07_网络与互联/56_有用/5B_2025_ReRAM车规认证_FMS2025.pdf
+- docs/library/M07_网络与互联/7_重要/7B_2025_新型存储市场天花板_FMS2025.pdf
+- docs/library/M13_有效算力与软件/34_存档/3B_2025_AI基建优化圆桌_FMS2025.pdf
+- docs/library/M06_芯片与服务器/7_重要/7B_2025_超大规模存储供需口径_FMS2025.pdf
+- docs/library/M07_网络与互联/34_存档/4B_2025_QLC编程效率改善_FMS2025.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2025_PCIe代际IOPS上限_FMS2025.pdf
+- docs/library/M09_电气设备供应链/56_有用/5B_2025_固态盘功耗规范_FMS2025.pdf
+- docs/library/M09_电气设备供应链/56_有用/6B_2025_链路功耗占比实测_FMS2025.pdf
+- docs/library/M10_建设运营与人才/56_有用/6B_2025_数据巡检重建开销_FMS2025.pdf
+- docs/library/M09_电气设备供应链/7_重要/7B_2025_数据中心能耗构成_FMS2025.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_存储阵列每TB功耗_FMS2025.pdf
+- docs/library/M09_电气设备供应链/56_有用/5B_2025_PCIe功率突增测试_FMS2025.pdf
+- docs/library/M10_建设运营与人才/34_存档/4B_2025_存储测试智能分析_FMS2025.pdf
+- docs/library/M10_建设运营与人才/56_有用/6B_2025_内存错误现场数据_FMS2025.pdf
+- docs/library/M14_中国板块/34_存档/4B_2024_国产算力半年策略_中原证券.pdf
+- docs/library/M15_情景与监测/34_存档/3B_2025_通信基金持仓统计_国泰海通.pdf
+- docs/library/M15_情景与监测/34_存档/3B_2026_海外算力周报不可提取_银河证券.pdf
+- docs/library/M09_电气设备供应链/7_重要/7B_2025_全球数据中心电力预测_高盛.pdf
+- docs/library/M15_情景与监测/34_存档/3B_2023_通信行业周报_国信证券.pdf
+- docs/library/M14_中国板块/34_存档/4B_2020_数据中心供需格局_华泰证券.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/土建/1#通信机房/pdf/3B_2024_衢州枢纽结构说明_中国移动.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3B_2024_南平枢纽海绵城市说明_中国移动.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/03给排水专业/总包-PDF/3B_2019_南方基地给排水说明_中国移动.pdf
+- docs/library/M14_中国板块/8_支柱/8B_2025_中国大陆封装产线库_半导体综研.xlsx
+- docs/library/M14_中国板块/7_重要/7B_2024_大陆先进封装产线_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/6B_2025_前道设备供应商库_半导体综研.xlsx
+- docs/library/M14_中国板块/56_有用/6B_2025_大陆测试产线库_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/5B_2024_光刻机型号参数_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/5B_2025_EDA供应商与产品_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/5B_2025_光刻胶产业链供应商_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/5B_2025_半导体IP供应商_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/5B_2025_封装设备供应商库_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/5B_2025_掩模版产业链供应商_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/5B_2025_晶圆衬底设备供应商_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/5B_2025_检测量测设备库_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/5B_2025_测试设备供应商_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/5B_2025_硅晶圆产业链供应商_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/5B_2025_碳化硅产业链供应商_半导体综研.xlsx
+- docs/library/M07_网络与互联/34_存档/4B_2025_CMP耗材供应商_半导体综研.xlsx
+- docs/library/M07_网络与互联/34_存档/4B_2025_探针卡供应商_半导体综研.xlsx
+- docs/library/M07_网络与互联/34_存档/4B_2025_晶圆厂CIM系统供应商_半导体综研.xlsx
+- docs/library/M07_网络与互联/34_存档/4B_2025_晶圆厂物流系统供应商_半导体综研.xlsx
+- docs/library/M07_网络与互联/34_存档/4B_2025_晶圆操作部件供应商_半导体综研.xlsx
+- docs/library/M07_网络与互联/34_存档/4B_2025_有机封装材料供应商_半导体综研.xlsx
+- docs/library/M07_网络与互联/34_存档/4B_2025_气路液路部件供应商_半导体综研.xlsx
+- docs/library/M07_网络与互联/34_存档/4B_2025_测试辅助设备供应商_半导体综研.xlsx
+- docs/library/M07_网络与互联/34_存档/4B_2025_湿化学品供应商_半导体综研.xlsx
+- docs/library/M07_网络与互联/34_存档/4B_2025_溅射靶材供应商_半导体综研.xlsx
+- docs/library/M07_网络与互联/34_存档/4B_2025_滤芯与密封材料供应商_半导体综研.xlsx
+- docs/library/M07_网络与互联/34_存档/4B_2025_激光打标设备供应商_半导体综研.xlsx
+- docs/library/M07_网络与互联/34_存档/4B_2025_特气与前驱体供应商_半导体综研.xlsx
+- docs/library/M07_网络与互联/34_存档/4B_2025_设备光源供应商_半导体综研.xlsx
+- docs/library/M07_网络与互联/34_存档/4B_2025_设备零部件供应商总表_半导体综研.xlsx
+- docs/library/M07_网络与互联/34_存档/4B_2025_运动平台部件供应商_半导体综研.xlsx
+- docs/library/M07_网络与互联/34_存档/4B_2025_金属封装材料供应商_半导体综研.xlsx
+- docs/library/M07_网络与互联/34_存档/4B_2025_陶瓷封装材料供应商_半导体综研.xlsx
+- docs/library/M07_网络与互联/8_支柱/8B_2024_台积电节点与应用收入_半导体综研.xlsx
+- docs/library/M14_中国板块/56_有用/6B_2024_中芯国际季度财务_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/6B_2024_台积电营收节点图表分析_半导体综研.xlsx
+- docs/library/M14_中国板块/56_有用/6B_2025_A股半导体公司图谱_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/5B_2024_ASMPT季度财务_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/5B_2024_SEMES季度财务_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/5B_2024_先进封装方案对照_半导体综研.xlsx
+- docs/library/M14_中国板块/56_有用/5B_2024_半导体进口HS码对照_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/5B_2024_库力索法季度财务_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/5B_2024_应用材料季度财务_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/5B_2024_联电季度财务_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/5B_2024_英特尔季度财务_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/5B_2025_BE Semiconductor季度财务_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/5B_2025_东京电子季度财务_半导体综研.xlsx
+- docs/library/M14_中国板块/56_有用/5B_2025_中微公司季度财务_半导体综研.xlsx
+- docs/library/M14_中国板块/56_有用/5B_2025_北方华创季度财务_半导体综研.xlsx
+- docs/library/M14_中国板块/56_有用/5B_2025_华峰测控季度财务_半导体综研.xlsx
+- docs/library/M14_中国板块/56_有用/5B_2025_华海清科季度财务_半导体综研.xlsx
+- docs/library/M14_中国板块/56_有用/5B_2025_拓荆科技季度财务_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/5B_2025_泛林集团季度财务_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/5B_2025_泰瑞达季度财务_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/5B_2025_爱德万测试季度财务_半导体综研.xlsx
+- docs/library/M14_中国板块/56_有用/5B_2025_盛美上海季度财务_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/5B_2025_科磊季度财务_半导体综研.xlsx
+- docs/library/M14_中国板块/56_有用/5B_2025_长川科技季度财务_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/5B_2025_阿斯麦季度财务_半导体综研.xlsx
+- docs/library/M07_网络与互联/34_存档/4B_2024_特气应用场景矩阵_半导体综研.xlsx
+- docs/library/M06_芯片与服务器/7_重要/7B_2024_存储三大厂季度拆分_半导体综研.xlsx
+- docs/library/M07_网络与互联/7_重要/7B_2025_全球半导体销售分地区序列_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/6B_2024_代工三方财务对照_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/6B_2025_台湾官方生产统计_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/6B_2025_设备厂营收排名_半导体综研.xlsx
+- docs/library/M07_网络与互联/56_有用/5B_2022_混合键合技术方案_半导体综研.pdf
+- docs/library/M07_网络与互联/56_有用/5B_2024_全球硅晶圆工厂分布_半导体综研.pdf
+- docs/library/M07_网络与互联/56_有用/5B_2024_硅晶圆供应商经营分析_半导体综研.pdf
+- docs/library/M07_网络与互联/56_有用/5B_2025_日本设备产值月报_半导体综研.xlsx
+- docs/library/M07_网络与互联/34_存档/4B_2023_先进封装行业初探_半导体综研.pptx
+- docs/library/M07_网络与互联/34_存档/4B_2024_EDA与IP市场规模_半导体综研.pptx
+- docs/library/M14_中国板块/34_存档/4B_2024_半导体海外并购实务_半导体综研.pdf
+- docs/library/M14_中国板块/34_存档/4B_2024_国产DFT工具科普_半导体综研.pdf
+- docs/library/M07_网络与互联/34_存档/4B_2024_景气度原理公开课_半导体综研.pdf
+- docs/library/M07_网络与互联/34_存档/4B_2024_景气度原理课件二_半导体综研.pptx
+- docs/library/M07_网络与互联/34_存档/4B_2024_晶圆厂自动化系统概览_半导体综研.pptx
+- docs/library/M07_网络与互联/34_存档/4B_2024_硅晶圆产业概览_半导体综研.pdf
+- docs/library/M07_网络与互联/34_存档/4B_2024_硅晶圆发展历程_半导体综研.pdf
+- docs/library/M07_网络与互联/34_存档/4B_2025_景气度原理课件一_半导体综研.pptx
+- docs/library/M07_网络与互联/34_存档/3B_2023_EUV光刻机简介培训版_半导体综研.pptx
+- docs/library/M07_网络与互联/34_存档/3B_2023_HBM学习笔记_半导体综研.pptx
+- docs/library/M07_网络与互联/34_存档/3B_2023_光刻原理课程_半导体综研.pptx
+- docs/library/M07_网络与互联/34_存档/3B_2023_光刻机结构原理_半导体综研.pptx
+- docs/library/M07_网络与互联/34_存档/3B_2023_制程节点命名辨析_半导体综研.pptx
+- docs/library/M07_网络与互联/34_存档/3B_2023_前道设备分类课程_半导体综研.pptx
+- docs/library/M07_网络与互联/34_存档/3B_2023_半导体产业现状简介_半导体综研.pptx
+- docs/library/M07_网络与互联/34_存档/3B_2023_台积电财务解读_半导体综研.pptx
+- docs/library/M07_网络与互联/34_存档/3B_2023_器件市场周期性研究_半导体综研.pptx
+- docs/library/M07_网络与互联/34_存档/3B_2023_器件市场景气度原理_半导体综研.pptx
+- docs/library/M07_网络与互联/34_存档/3B_2023_大硅片市场课程_半导体综研.pptx
+- docs/library/M07_网络与互联/34_存档/3B_2023_设备市场与供应商简介_半导体综研.pptx
+- docs/library/M07_网络与互联/34_存档/3B_2023_设备市场数据分析_半导体综研.pptx
+- docs/library/M07_网络与互联/34_存档/3B_2025_EUV光刻机简介VIP版_半导体综研.pptx
+- docs/library/M07_网络与互联/34_存档/3B_2025_光刻原理简介VIP版_半导体综研.pptx
+- docs/library/M07_网络与互联/34_存档/3B_2025_干法刻蚀原理_半导体综研.pptx
+- docs/library/M07_网络与互联/34_存档/3B_2025_芯片基础知识_半导体综研.pptx
+- docs/library/M07_网络与互联/56_有用/5B_2023_半导体器件分类树_半导体综研.xmind
+- docs/library/M07_网络与互联/56_有用/5B_2023_半导体工序分类树_半导体综研.xmind
+- docs/library/M07_网络与互联/56_有用/5B_2023_半导体材料分类树_半导体综研.xmind
+- docs/library/M07_网络与互联/56_有用/5B_2023_半导体设备分类树_半导体综研.xmind
+- docs/library/M07_网络与互联/34_存档/4B_2023_CIM系统分类树_半导体综研.xmind
+- docs/library/M07_网络与互联/34_存档/4B_2023_EDA工具分类树_半导体综研.xmind
+- docs/library/M07_网络与互联/34_存档/4B_2023_半导体IP分类树_半导体综研.xmind
+- docs/library/M07_网络与互联/34_存档/4B_2023_半导体业务模式分类树_半导体综研.xmind
+- docs/library/04_市场与研究/半导体与上游/4B_2024_存储行业报告合集包_半导体综研.zip
+- docs/library/M07_网络与互联/34_存档/3B_2024_课程视频-EDA科普-国产DFT-助力_半导体综研.mp4
+- docs/library/M07_网络与互联/34_存档/3B_2024_课程视频-半导体产业链概览-EDA-I_半导体综研.mp4
+- docs/library/M07_网络与互联/34_存档/3B_2024_课程视频-半导体产业链概览-自动化系统_半导体综研.mp4
+- docs/library/M07_网络与互联/34_存档/3B_2024_课程视频-半导体海外并购_韩利杰_半导体综研.mp4
+- docs/library/M07_网络与互联/34_存档/3B_2024_课程视频-特色公司成长分享_半导体综研.mp4
+- docs/library/M07_网络与互联/34_存档/3B_2024_课程视频-芯片基础知识介绍(1)_半导体综研.mp4
+- docs/library/M07_网络与互联/34_存档/3B_2025_课程视频-EUV光刻机简介01_半导体综研.mp4
+- docs/library/M07_网络与互联/34_存档/3B_2025_课程视频-EUV光刻机简介02_半导体综研.mp4
+- docs/library/M07_网络与互联/34_存档/3B_2025_课程视频-光刻原理简介_半导体综研.mp4
+- docs/library/M07_网络与互联/34_存档/3B_2025_课程视频-半导体行业景气度原理_1_半导体综研.mp4
+- docs/library/M07_网络与互联/34_存档/3B_2025_课程视频-半导体行业景气度原理_2_半导体综研.mp4
+- docs/library/M07_网络与互联/34_存档/3B_2025_课程视频-干法刻蚀原理简介_半导体综研.mp4
+- docs/library/M07_网络与互联/34_存档/3B_2025_课程视频-缺陷检测技术_半导体综研.mp4
+- docs/library/M07_网络与互联/34_存档/3B_2025_课程视频-芯片基础知识介绍(2)_半导体综研.mp4
+- docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)/1C_2025_误入库的校友访谈素材_半导体综研.zip
+- docs/library/_projects/2020.4 大数据应用工厂项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/3B_2020_其它01_工程档案.xls
+- docs/library/_projects/2020.4 大数据应用工厂项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/3B_2020_其它02_工程档案.xls
+- docs/library/_projects/2023.2 中国移动（济宁）数据中心/济宁数据中心室外工程图纸/工艺/中国移动山东公司（济宁）鲁西南数据中心进局通信管道单项工程施工图cad版/中国移动山东公司（济宁）鲁西南数据中心进局通信管道单项工程施工图cad版/3B_2023_其它01_工程档案.xlsx
+- docs/library/_projects/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/附件二：地质勘查报告/3B_2024_其它01_工程档案.docx
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/3B_2024_其它01_工程档案.doc
+- docs/library/_projects/2025.2 黄岩区大闸路以东、永丰路以北地块建设工程（电信置换项目）/3B_2025_其它01_工程档案.doc
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/3B_2025_其它01_工程档案.doc
+- docs/library/_projects/2025.7 成都华微高端集成电路研发及产业基地数据机房项目/3B_2025_其它01_工程档案.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/目录/3B_2019_分册目录01_工程档案.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/目录/3B_2019_分册目录02_工程档案.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/目录/3B_2019_分册目录03_工程档案.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/目录/3B_2019_分册目录04_工程档案.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/目录/3B_2019_分册目录05_工程档案.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/目录/3B_2019_分册目录06_工程档案.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/目录/3B_2019_分册目录07_工程档案.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/目录/3B_2019_分册目录08_工程档案.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/目录/3B_2019_分册目录09_工程档案.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/目录/3B_2019_分册目录10_工程档案.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/目录/3B_2019_分册目录11_工程档案.xlsx
+- docs/library/_projects/2018.11 长寿物联网应用示范基地机房工程/地勘报告/5B_2018_地勘报告01_工程档案.doc
+- docs/library/_projects/2018.11 长寿物联网应用示范基地机房工程/地勘报告/附表附件/5B_2018_地勘报告01_工程档案.doc
+- docs/library/_projects/2018.11 长寿物联网应用示范基地机房工程/地勘报告/附表附件/5B_2018_地勘报告02_工程档案.xls
+- docs/library/_projects/2018.11 长寿物联网应用示范基地机房工程/地勘报告/附表附件/5B_2018_地勘报告03_工程档案.xlsx
+- docs/library/_projects/2018.11 长寿物联网应用示范基地机房工程/地勘报告/附表附件/5B_2018_地勘报告04_工程档案.xls
+- docs/library/_projects/2018.11 长寿物联网应用示范基地机房工程/地勘报告/附表附件/5B_2018_地勘报告05_工程档案.doc
+- docs/library/_projects/2019.6 重庆有线水土综合枢纽基地建设项目/地勘报告/5B_2019_地勘报告01_工程档案.doc
+- docs/library/_projects/2019.7中国电信云计算重庆基地二期工程/岩土深基坑/基坑支护图纸/5B_2019_地勘报告01_工程档案.doc
+- docs/library/_projects/2019.7中国电信云计算重庆基地二期工程/岩土深基坑/基坑支护图纸/5B_2019_地勘报告02_工程档案.doc
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区2建施0805/数据区2施工图/5B_2020_地勘报告01_工程档案.doc
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区2建施0805/数据区2施工图/5B_2020_地勘报告02_工程档案.doc
+- docs/library/_projects/2021.1 六安电信信息化中心和六安电信云计算数据中心项目/六安电信信息化中心六安电信云计算数据中心岩土工程勘察报告原版/图表/5B_2021_地勘报告01_工程档案.xls
+- docs/library/_projects/2021.1 六安电信信息化中心和六安电信云计算数据中心项目/六安电信信息化中心六安电信云计算数据中心岩土工程勘察报告原版/图表/5B_2021_地勘报告02_工程档案.xls
+- docs/library/_projects/2021.1 六安电信信息化中心和六安电信云计算数据中心项目/六安电信信息化中心六安电信云计算数据中心岩土工程勘察报告原版/5B_2021_地勘报告01_工程档案.doc
+- docs/library/_projects/2021.1 六安电信信息化中心和六安电信云计算数据中心项目/六安电信信息化中心六安电信云计算数据中心岩土工程勘察报告原版/5B_2021_地勘报告02_工程档案.doc
+- docs/library/_projects/2024.8 中国电信云计算重庆基地项目（四期）土建/附件二：地质勘查报告/5B_2024_地勘报告01_工程档案.docx
+- docs/library/_projects/2025.2 黄岩区大闸路以东、永丰路以北地块建设工程（电信置换项目）/地勘/7B_2025_地勘报告01_工程档案.docx
+- docs/library/_projects/2025.2 黄岩区大闸路以东、永丰路以北地块建设工程（电信置换项目）/地勘/5B_2025_地勘报告01_工程档案.doc
+- docs/library/_projects/2025.2 黄岩区大闸路以东、永丰路以北地块建设工程（电信置换项目）/地勘/5B_2025_地勘报告02_工程档案.xls
+- docs/library/_projects/2025.2 黄岩区大闸路以东、永丰路以北地块建设工程（电信置换项目）/地勘/5B_2025_地勘报告03_工程档案.xls
+- docs/library/_projects/2025.2 黄岩区大闸路以东、永丰路以北地块建设工程（电信置换项目）/地勘/5B_2025_地勘报告04_工程档案.xls
+- docs/library/_projects/2025.2 黄岩区大闸路以东、永丰路以北地块建设工程（电信置换项目）/地勘/5B_2025_地勘报告05_工程档案.xls
+- docs/library/_projects/2019.6 重庆有线水土综合枢纽基地建设项目/景观/4B_2019_外审回复01_工程档案.doc
+- docs/library/_projects/2019.6 重庆有线水土综合枢纽基地建设项目/景观/4B_2019_外审回复02_工程档案.doc
+- docs/library/_projects/2019.6 重庆有线水土综合枢纽基地建设项目/暖通/外审意见回复/4B_2019_外审回复01_工程档案.docx
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/01设计通知单/4B_2022_外审回复01_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/01设计通知单/4B_2022_外审回复02_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/景观/景观修改苗木表及种植图原发了配置表变更未补充平面布置图本次设计补上的---20230222/4B_2022_外审回复01_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/江南数据中心-消防审查专家意见 回复20230118/建筑专业消防审查意见修改图纸/4B_2022_外审回复01_工程档案.docx
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/江南数据中心-消防审查专家意见 回复20230118/暖通专业消防审查意见修改图纸/4B_2022_外审回复01_工程档案.docx
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/江南数据中心-消防审查专家意见 回复20230118/电气专业消防审查意见修改图纸/4B_2022_外审回复01_工程档案.docx
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/江南数据中心-消防审查专家意见 回复20230118/给排水专业消防审查意见修改图纸cad/4B_2022_外审回复01_工程档案.docx
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/江南数据中心-消防审查专家意见 回复20230118/4B_2022_外审回复01_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/造价类资料（全程免费，得来不易需要完成一些小任务）1/001答疑/4B_2022_外审回复01_工程档案.doc
+- docs/library/_projects/2018.7中国移动（河北廊坊）数据中心二期工程/室外/廊坊二期数据中心（暖通）--最终版20180425/5B_2018_工程量清单01_工程档案.docx
+- docs/library/_projects/2019.7中国电信云计算重庆基地二期工程/弱电/5B_2019_工程量清单01_工程档案.xlsx
+- docs/library/_projects/2020.7福建广电网络莆田NGB业务中心（机房）/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单审核/5B_2020_工程量清单01_工程档案.doc
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/5B_2022_工程量清单01_工程档案.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外围墙工程/5B_2022_工程量清单01_工程档案.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外广场工程/5B_2022_工程量清单01_工程档案.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外排水排污工程/5B_2022_工程量清单01_工程档案.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外管线支架工程/5B_2022_工程量清单01_工程档案.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外绿化工程/5B_2022_工程量清单01_工程档案.xlsx
+- docs/library/_projects/2023.3  宁德市大数据产业园及基础配套设施项目（一期）IT云平台/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程量清单/5B_2023_工程量清单01_工程档案.xlsx
+- docs/library/_projects/2023.8中国电信浙江公司金华婺城数据中心项目/5B_2023_工程量清单01_工程档案.docx
+- docs/library/_projects/2024.2 国家工业信息安全发展研究中心•华南分中心星河东悦汇载体项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程量清单EX/5B_2024_工程量清单01_工程档案.xlsx
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/造价类资料（全程免费，得来不易需要完成一些小任务）1/发网南安市供电公司备用调度指挥数据中心预算（发布1）/5B_2025_工程量清单01_工程档案.doc
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/目录/3B_2019_幕墙计算01_工程档案.xlsx
+- docs/library/_projects/2019.7中国电信云计算重庆基地二期工程/幕墙/中国电信云计算重庆基地二期幕墙施工图(晒蓝图版)2019.8.7/重庆电信二期计算书(打印一份A4)/3B_2019_幕墙计算01_工程档案.doc
+- docs/library/_projects/2019.7中国电信云计算重庆基地二期工程/幕墙/中国电信云计算重庆基地二期幕墙施工图(晒蓝图版)2019.8.7/重庆电信二期计算书(打印一份A4)/3B_2019_幕墙计算02_工程档案.DOC
+- docs/library/_projects/2019.7中国电信云计算重庆基地二期工程/幕墙/中国电信云计算重庆基地二期幕墙施工图(晒蓝图版)2019.8.7/重庆电信二期计算书(打印一份A4)/3B_2019_幕墙计算03_工程档案.doc
+- docs/library/_projects/2021.1 六安电信信息化中心和六安电信云计算数据中心项目/室外、幕墙图纸2022.2.13整理/指挥中心幕墙/3B_2021_幕墙计算01_工程档案.doc
+- docs/library/_projects/2021.1 六安电信信息化中心和六安电信云计算数据中心项目/室外、幕墙图纸2022.2.13整理/数据中心幕墙/3B_2021_幕墙计算01_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/幕墙工程/幕墙20221226CAD/中国移动成渝（重庆）江南数据中心建设项目一期--幕墙图纸/第一分册-1#楼/设计说明/3B_2022_幕墙计算01_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/幕墙工程/幕墙20221226CAD/中国移动成渝（重庆）江南数据中心建设项目一期--幕墙图纸/第一分册-1#楼/设计说明/3B_2022_幕墙计算02_工程档案.doc
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/20241015（福建南平）延平通信枢纽楼幕墙施工图（根据审图意见修改）/3B_2024_幕墙计算01_工程档案.doc
+- docs/library/_projects/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/附件三：施工图图纸/08-幕墙/3B_2024_幕墙计算01_工程档案.rtf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/幕墙/3B_2024_幕墙计算01_工程档案.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/忠县工艺/说明/6B_2024_机房工艺01_工程档案.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/忠县工艺/说明/7B_2024_机房工艺01_工程档案.xls
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/11  海绵/20240320移动忠县项目-海绵城市施工图/20240320移动忠县项目-海绵城市施工图/3B_2024_海绵城市01_工程档案.docx
+- docs/library/_projects/2025.3 汶川县财政片区更新改造项目和阿坝州汶川县新型智慧城市建设项目(城市运营中心机房)/精装/4B_2025_照明计算01_工程档案.xlsx
+- docs/library/_projects/2016.1 中国联通湖南长沙云计算中心一期IDC机房、动力中心、动力楼、通信枢纽楼建设工程/人防图纸/结构/7月22号联通人防结构完成版/7月22号联通人防结构完成版/计算书/3B_2016_结构计算01_工程档案.doc
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/目录/3B_2019_结构计算01_工程档案.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/目录/3B_2019_结构计算02_工程档案.xlsx
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区2结施+计算书0805/数据区2结构+计算书0804/4#楼结构+计算书/4#楼计算书/3B_2020_结构计算01_工程档案.docx
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区2结施+计算书0805/数据区2结构+计算书0804/4#楼结构+计算书/4#楼计算书/3B_2020_结构计算02_工程档案.xls
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区2结施+计算书0805/数据区2结构+计算书0804/5#楼结构+计算书/5#计算书/5#楼上/基础/3B_2020_结构计算01_工程档案.xls
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区2结施+计算书0805/数据区2结构+计算书0804/5#楼结构+计算书/5#计算书/5#楼上/基础/3B_2020_结构计算02_工程档案.TXT
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区2结施+计算书0805/数据区2结构+计算书0804/6#楼结构+计算书/6#楼计算书/基础/3B_2020_结构计算01_工程档案.xls
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区2结施+计算书0805/数据区2结构+计算书0804/数据区2地下室结构+计算书/数据区2DXS计算书/3B_2020_结构计算01_工程档案.docx
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区2结施+计算书0805/数据区2结构+计算书0804/数据区2地下室结构+计算书/数据区2DXS计算书/3B_2020_结构计算02_工程档案.xls
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/示范基地结施+计算书0805/工业1-示范基地结构+计算书0804/10#楼结施+计算书/10#计算书/10#基础/3B_2020_结构计算01_工程档案.TXT
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/示范基地结施+计算书0805/工业1-示范基地结构+计算书0804/10#楼结施+计算书/10#计算书/10#基础/3B_2020_结构计算02_工程档案.txt
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/示范基地结施+计算书0805/工业1-示范基地结构+计算书0804/10#楼结施+计算书/10#计算书/10#基础/3B_2020_结构计算03_工程档案.docx
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/示范基地结施+计算书0805/工业1-示范基地结构+计算书0804/8.9#楼结构+计算书/8#楼/基础/3B_2020_结构计算01_工程档案.xls
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/基坑支护/3B_2022_结构计算01_工程档案.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/基础冲切验算/3B_2024_结构计算01_工程档案.docx
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/基础冲切验算/3B_2024_结构计算02_工程档案.docx
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/基础冲切验算/3B_2024_结构计算03_工程档案.docx
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/基础冲切验算/3B_2024_结构计算04_工程档案.docx
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/3B_2024_结构计算01_工程档案.docx
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/3B_2024_结构计算02_工程档案.docx
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/挡墙计算书/负一层~顶板挡墙/3B_2024_结构计算01_工程档案.rtf
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/挡墙计算书/负一层~顶板挡墙/3B_2024_结构计算02_工程档案.rtf
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/挡墙计算书/负一层~顶板挡墙/3B_2024_结构计算03_工程档案.rtf
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/挡墙计算书/负一层~顶板挡墙/3B_2024_结构计算04_工程档案.rtf
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/挡墙计算书/负一层~顶板挡墙/3B_2024_结构计算05_工程档案.rtf
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/挡墙计算书/负二层~负一层挡墙/3B_2024_结构计算01_工程档案.rtf
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/挡墙计算书/负二层~负一层挡墙/3B_2024_结构计算02_工程档案.rtf
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/楼梯计算书/1#/3B_2024_结构计算01_工程档案.docx
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/楼梯计算书/1#/3B_2024_结构计算02_工程档案.docx
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/楼梯计算书/1#/3B_2024_结构计算03_工程档案.docx
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/楼梯计算书/1#/3B_2024_结构计算04_工程档案.docx
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/楼梯计算书/1#/3B_2024_结构计算05_工程档案.docx
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/楼梯计算书/1#/3B_2024_结构计算06_工程档案.docx
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/楼梯计算书/3#、4#/3B_2024_结构计算01_工程档案.docx
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/08  装配式/3B_2024_结构计算01_工程档案.docx
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/08  装配式/3B_2024_结构计算02_工程档案.docx
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/12  边坡支护/3B_2024_结构计算01_工程档案.docx
+- docs/library/_projects/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/附件三：施工图图纸/00-室外工程/运维楼海绵城市/3B_2024_结构计算01_工程档案.xlsx
+- docs/library/_projects/2019.6 重庆有线水土综合枢纽基地建设项目/节能/4B_2019_节能审查01_工程档案.docx
+- docs/library/_projects/2019.6 重庆有线水土综合枢纽基地建设项目/节能/外审意见及回复/4B_2019_节能审查01_工程档案.doc
+- docs/library/_projects/2019.6 重庆有线水土综合枢纽基地建设项目/节能/外审意见及回复/4B_2019_节能审查02_工程档案.doc
+- docs/library/_projects/2019.6 重庆有线水土综合枢纽基地建设项目/节能/4B_2019_节能审查02_工程档案.doc
+- docs/library/_projects/2019.6 重庆有线水土综合枢纽基地建设项目/节能/模型及报告书/厂房模型及报告书+/4B_2019_节能审查01_工程档案.doc
+- docs/library/_projects/2019.6 重庆有线水土综合枢纽基地建设项目/节能/模型及报告书/厂房模型及报告书+/4B_2019_节能审查02_工程档案.doc
+- docs/library/_projects/2019.6 重庆有线水土综合枢纽基地建设项目/节能/模型及报告书/门卫模型及报告书+/4#/4B_2019_节能审查01_工程档案.doc
+- docs/library/_projects/2019.6 重庆有线水土综合枢纽基地建设项目/节能/模型及报告书/门卫模型及报告书+/4#/4B_2019_节能审查02_工程档案.doc
+- docs/library/_projects/2019.6 重庆有线水土综合枢纽基地建设项目/节能/模型及报告书/门卫模型及报告书+/4#/3B_2019_不可提取01_工程档案.doc
+- docs/library/_projects/2019.6 重庆有线水土综合枢纽基地建设项目/节能/模型及报告书/门卫模型及报告书+/5#/4B_2019_节能审查01_工程档案.doc
+- docs/library/_projects/2019.7中国电信云计算重庆基地二期工程/重庆二期节能/重庆二期节能-D栋/计算书/4B_2019_节能审查01_工程档案.docx
+- docs/library/_projects/2019.7中国电信云计算重庆基地二期工程/重庆二期节能/重庆二期节能-F栋/计算书/4B_2019_节能审查01_工程档案.rtf
+- docs/library/_projects/2019.7中国电信云计算重庆基地二期工程/重庆二期节能/重庆二期节能-F栋/计算书/4B_2019_节能审查02_工程档案.rtf
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/01-建筑/节能报告/4B_2019_节能审查01_工程档案.doc
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/01-建筑/节能报告/4B_2019_节能审查02_工程档案.doc
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/01-建筑/节能报告/4B_2019_节能审查03_工程档案.doc
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/05-电气/节能审查表+照明计算书/4B_2019_节能审查01_工程档案.doc
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/05-电气/节能审查表+照明计算书/4B_2019_节能审查02_工程档案.doc
+- docs/library/_projects/2021.1 六安电信信息化中心和六安电信云计算数据中心项目/室外、幕墙图纸2022.2.13整理/指挥中心幕墙/4B_2021_节能审查01_工程档案.DOC
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/4B_2022_节能审查01_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/碳排放计算书/门卫1/4B_2022_节能审查01_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/碳排放计算书/门卫1/4B_2022_节能审查02_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/碳排放计算书/门卫1/4B_2022_节能审查03_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/碳排放计算书/门卫1/4B_2022_节能审查04_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/碳排放计算书/门卫1/4B_2022_节能审查05_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/碳排放计算书/门卫2/4B_2022_节能审查01_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/1#楼/1#楼/1#楼（维护支撑用房）-节能及绿建报告书汇总/4B_2022_节能审查01_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/1#楼/1#楼/1#楼（维护支撑用房）-节能及绿建报告书汇总/4B_2022_节能审查02_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/1#楼/1#楼/1#楼（维护支撑用房）-节能及绿建报告书汇总/建筑节能附录/4B_2022_节能审查01_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/1#楼/1#楼地标验算/4B_2022_节能审查01_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/1#楼/1#楼地标验算/4B_2022_节能审查02_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/门卫2/门卫2/4B_2022_节能审查01_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/门卫2/门卫2/4B_2022_节能审查02_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/门卫2/门卫2/4B_2022_节能审查03_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/门卫2/门卫2/4B_2022_节能审查04_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/门卫2/门卫2地标验算/4B_2022_节能审查01_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/门卫2/门卫2地标验算/4B_2022_节能审查02_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 23#楼/中国移动成渝（重庆）江南数据中心建设项目一期土建工程-2#、3#楼意见回复/2#/4B_2022_节能审查01_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 23#楼/中国移动成渝（重庆）江南数据中心建设项目一期土建工程-2#、3#楼意见回复/2#/4B_2022_节能审查02_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 23#楼/中国移动成渝（重庆）江南数据中心建设项目一期土建工程-2#、3#楼意见回复/2#/4B_2022_节能审查03_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 23#楼/中国移动成渝（重庆）江南数据中心建设项目一期土建工程-2#、3#楼意见回复/2#/4B_2022_节能审查04_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 23#楼/中国移动成渝（重庆）江南数据中心建设项目一期土建工程-2#、3#楼意见回复/2#/4B_2022_节能审查05_工程档案.doc
+- docs/library/_projects/2023.1广西桂北云计算产业园一期项目通信机楼土建工程/第一册 建筑专业设计2023.01.04/节能/4B_2023_节能审查01_工程档案.docx
+- docs/library/_projects/2023.4 定兴县公安局智慧乡村、小区与指挥系统智慧化项目-机房/建筑/节能报告书/4B_2023_节能审查01_工程档案.docx
+- docs/library/_projects/2023.4 定兴县公安局智慧乡村、小区与指挥系统智慧化项目-机房/建筑/节能报告书/4B_2023_节能审查02_工程档案.docx
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/建筑节能/报告书/4B_2024_节能审查01_工程档案.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/建筑节能/报告书/4B_2024_节能审查02_工程档案.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/建筑节能/报告书/4B_2024_节能审查03_工程档案.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/建筑节能/报告书/4B_2024_节能审查04_工程档案.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/建筑节能/报告书/4B_2024_节能审查05_工程档案.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/建筑节能/报告书/4B_2024_节能审查06_工程档案.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/碳排放/中间文件/3B_2024_不可提取01_工程档案.txt
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/碳排放/中间文件/3B_2024_不可提取02_工程档案.txt
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/碳排放/中间文件/4B_2024_节能审查01_工程档案.txt
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/碳排放/中间文件/3B_2024_不可提取03_工程档案.txt
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/碳排放/中间文件/4B_2024_节能审查02_工程档案.txt
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/碳排放/中间文件/4B_2024_节能审查03_工程档案.txt
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/碳排放/报告书/4B_2024_节能审查01_工程档案.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/碳排放/报告书/4B_2024_节能审查02_工程档案.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/节能/报告书/4B_2024_节能审查01_工程档案.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/节能/报告书/4B_2024_节能审查02_工程档案.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/节能/报告书/4B_2024_节能审查03_工程档案.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/节能/报告书/4B_2024_节能审查04_工程档案.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/节能/报告书/4B_2024_节能审查05_工程档案.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-节能及绿建报告书汇总/4B_2024_节能审查01_工程档案.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-节能及绿建报告书汇总/4B_2024_节能审查02_工程档案.doc
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/10-PDF【20240918节能】-南安市供电公司备用调度指挥数据中心/3B_2025_不可提取01_工程档案.txt
+- docs/library/_projects/2019.6 重庆有线水土综合枢纽基地建设项目/3B_2019_装修材料01_工程档案.docx
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/方案效果图---20220621/效果图/3B_2022_装修材料01_工程档案.pptx
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/方案效果图---20220621/效果图/3B_2022_装修材料02_工程档案.xlsx
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/方案效果图---20220621/效果图/3B_2022_装修材料03_工程档案.xlsx
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/方案效果图---20220621/效果图/3B_2022_装修材料04_工程档案.xlsx
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/方案效果图---20220621/效果图/3B_2022_装修材料05_工程档案.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/05空调专业/计算书/4B_2019_设计说明01_工程档案.doc
+- docs/library/_projects/2019.7中国电信云计算重庆基地二期工程/4B_2019_设计说明01_工程档案.docx
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/供油专项设计/4B_2022_设计说明01_工程档案.xlsx
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地基处理/4B_2022_设计说明01_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地基处理/4B_2022_设计说明02_工程档案.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/基坑支护/4B_2022_设计说明01_工程档案.docx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/13消防专篇/4B_2022_设计说明01_工程档案.docx
+- docs/library/_projects/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/附件三：施工图图纸/02-结构/4B_2024_设计说明01_工程档案.docx
+- docs/library/_projects/2019.6 重庆有线水土综合枢纽基地建设项目/暖通/负荷、水力计算书/6B_2019_负荷计算01_工程档案.xlsx
+- docs/library/_projects/2019.6 重庆有线水土综合枢纽基地建设项目/暖通/负荷、水力计算书/6B_2019_负荷计算02_工程档案.xls
+- docs/library/_projects/2019.6 重庆有线水土综合枢纽基地建设项目/暖通/负荷、水力计算书/6B_2019_负荷计算03_工程档案.xls
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/05空调专业/计算书/7B_2019_负荷计算01_工程档案.docx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/05空调专业/计算书/附件一：逐时负荷计算书/6B_2019_负荷计算01_工程档案.doc
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/05空调专业/计算书/6B_2019_负荷计算01_工程档案.doc
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/05空调专业/计算书/6B_2019_负荷计算02_工程档案.doc
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/05空调专业/计算书/6B_2019_负荷计算03_工程档案.doc
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1暖通0805/20200803大数据工业地块数据区1 暖通/3#楼/7B_2020_负荷计算01_工程档案.xls
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1暖通0805/20200803大数据工业地块数据区1 暖通/6B_2020_负荷计算01_工程档案.xlsx
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区2暖通0805/数据区2暖通0804/6B_2020_负荷计算01_工程档案.xls
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/示范基地暖通0805/示范基地暖通0804/6B_2020_负荷计算01_工程档案.xls
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/示范基地暖通0805/示范基地暖通0804/6B_2020_负荷计算02_工程档案.xls
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/示范基地暖通0805/示范基地暖通0804/6B_2020_负荷计算03_工程档案.xls
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/通风空调工程/[20.2栋]通风空调工程/6B_2019_造价控制价01_工程档案.xlsx
+- docs/library/_projects/2020.7福建广电网络莆田NGB业务中心（机房）/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单审核/7B_2020_造价控制价01_工程档案.xlsx
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/6B_2022_造价控制价01_工程档案.xlsx
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/6B_2022_造价控制价02_工程档案.docx
+- docs/library/_projects/2023.3  宁德市大数据产业园及基础配套设施项目（一期）IT云平台/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价/6B_2023_造价控制价01_工程档案.doc
+- docs/library/_projects/2024.11 安庆高铁新区高光谱卫星数据中心及卫星制造产线项目工业厂房-1#厂房/造价类资料（全程免费，得来不易需要完成一些小任务）1/最高限价/6B_2024_造价控制价01_工程档案.doc
+- docs/library/M09_电气设备供应链/56_有用/6B_2024_热回收政策强制比例_OCP.pdf
+- docs/library/M12_需求侧经济学/56_有用/6B_2024_热回收就绪度评估清单_OCP.pdf
+- docs/library/M10_建设运营与人才/56_有用/6B_2024_机房物料搬运自动化_OCP.pdf
+- docs/library/M12_需求侧经济学/34_存档/3B_2024_DCF可持续分组进展_OCP.pdf
+- docs/library/M10_建设运营与人才/7_重要/7B_2024_超大规模绿色混凝土实测_四大厂.pdf
+- docs/library/M10_建设运营与人才/56_有用/6B_2024_机房机器人物理操作_OCP.pdf
+- docs/library/M09_电气设备供应链/7_重要/7B_2024_下一代ORv3电源规格_OCP.pdf
+- docs/library/M10_建设运营与人才/56_有用/6B_2024_满配机架随机振动测试_Google.pdf
+- docs/library/M09_电气设备供应链/7_重要/7B_2024_正负400Vdc机架供电_Google.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2024_存内计算PIM推理_SKhynix.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2024_AI系统带外错误日志_Meta.pdf
+- docs/library/M09_电气设备供应链/8_支柱/8B_2024_AI对机架与机房的指数级需求_NVIDIA-Google.pdf
+- docs/library/M09_电气设备供应链/34_存档/4B_2024_开放系统AI战略倡议_OCP.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2024_僵尸数据中心与搁浅容量_Cadence.pdf
+- docs/library/M12_需求侧经济学/7_重要/7B_2024_液冷技术碳水能三方对比_OCP.pdf
+- docs/library/M12_需求侧经济学/34_存档/4B_2024_开放固件延长硬件寿命_9elements.pdf
+- docs/library/M12_需求侧经济学/56_有用/6B_2024_数据中心范围三减碳策略_施耐德-Meta.pdf
+- docs/library/M09_电气设备供应链/56_有用/6B_2024_碳感知计算与边缘调度_Intel.pdf
+- docs/library/M12_需求侧经济学/56_有用/6B_2024_数据中心效率指标与遥测_OCP.pdf
+- docs/library/M12_需求侧经济学/34_存档/3B_2024_可持续指标应用面板_OCP.pdf
+- docs/library/M09_电气设备供应链/56_有用/6B_2024_欧盟数据中心用电与数字孪生_EU.pdf
+- docs/library/M12_需求侧经济学/56_有用/6B_2024_服务器生命周期碳效率对比_OCP.pdf
+- docs/library/M09_电气设备供应链/7_重要/7B_2024_AI负载节点级功耗实测_OCP.pdf
+- docs/library/M09_电气设备供应链/7_重要/7B_2024_AI时代数据中心可持续策略_Cato-ECL.pdf
+- docs/library/M06_芯片与服务器/7_重要/7B_2024_ICT循环性碳核算重构_OCP.pdf
+- docs/library/M12_需求侧经济学/56_有用/5B_2024_规模化退役流程_OCP.pdf
+- docs/library/M12_需求侧经济学/34_存档/3B_2024_控温15度百条规则_OCP.pdf
+- docs/library/M12_需求侧经济学/56_有用/5B_2024_数据中心设备LCA品类规则_OCP.pdf
+- docs/library/M12_需求侧经济学/34_存档/4B_2024_iMasons气候协定进展_iMasons.pdf
+- docs/library/M12_需求侧经济学/56_有用/5B_2024_范围三联合工作流成果_OCP-iMasons.pdf
+- docs/library/M12_需求侧经济学/34_存档/3B_2024_归一化碳性能指标_OCP.pdf
+- docs/library/M14_中国板块/34_存档/3B_2024_OCP在欧洲的采纳挑战_OCP.pdf
+- docs/library/M10_建设运营与人才/34_存档/4B_2024_OCP社区电商平台概念_OCP.pdf
+- docs/library/M10_建设运营与人才/56_有用/6B_2024_机架搬运安全与人体工学_Jtec.pdf
+- docs/library/M14_中国板块/56_有用/6B_2024_巴西疫苗实验室开放硬件案例_OCP.pdf
+- docs/library/M09_电气设备供应链/56_有用/6B_2024_AI时代无碳计算_OCP.pdf
+- docs/library/M14_中国板块/7_重要/7B_2024_OCP市场影响力研究_IDC.pdf
+- docs/library/M13_有效算力与软件/8_支柱/8B_2024_内存带宽墙与B200利用率_Eliyan.pdf
+- docs/library/M13_有效算力与软件/7_重要/7B_2024_CXL可组合内存与NUMA跳数_OCP.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2024_可组合内存性能基准定义_Uber.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2024_CXL交换机可组合内存实测_H3.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2024_CXL近内存计算加速_OCP.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2024_三星近内存处理CMM-DC_Samsung.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2024_可组合内存用于存储密集负载_Uber.pdf
+- docs/library/M06_芯片与服务器/7_重要/7B_2024_超大规模内存扩展需求_Meta-Microsoft.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2024_近数据处理编程实践_OCP.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2024_多主机共享统一内存_OCP.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2024_K8s编排Fabric内存_SKhynix.pdf
+- docs/library/M06_芯片与服务器/7_重要/7B_2024_CXL内存超大规模部署经济性_OCP.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2024_CXL内存优化AI推理_OCP.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2024_可组合内存接入AI与缓存服务_Meta.pdf
+- docs/library/M06_芯片与服务器/7_重要/7B_2024_AI时代大容量存储连接演进_OCP.pdf
+- docs/library/M06_芯片与服务器/7_重要/7B_2024_大容量存储技术突破_Seagate.pdf
+- docs/library/M06_芯片与服务器/7_重要/7B_2024_AI架构的Linux分布式数据标准_Hammerspace.pdf
+- docs/library/M09_电气设备供应链/7_重要/7B_2024_可持续光学与光模块功耗_Arista.pdf
+- docs/library/M10_建设运营与人才/7_重要/7B_2024_大规模算力集群网络稳定性_阿里巴巴.pdf
+- docs/library/M13_有效算力与软件/7_重要/7B_2024_AI网络遥测与掉队者定位_OCP.pdf
+- docs/library/M10_建设运营与人才/56_有用/6B_2024_大规模Fabric弹性实测_NVIDIA.pdf
+- docs/library/M10_建设运营与人才/56_有用/6B_2024_计算弹性与静默错误检测_OCP.pdf
+- docs/library/M10_建设运营与人才/56_有用/6B_2024_硬件故障管理项目进展_OCP.pdf
+- docs/library/M10_建设运营与人才/56_有用/6B_2024_超大规模加速器管理规范_OCP.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2024_崩溃与运行时遥测标准化_OCP.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2024_基于模型的数据中心生命周期工程_OCP.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2024_硬件管理项目工作流总览_HPE.pdf
+- docs/library/M10_建设运营与人才/34_存档/4B_2024_辅助管理控制器互操作要求_OCP.pdf
+- docs/library/M10_建设运营与人才/34_存档/4B_2024_OCP可管理性画像规范_OCP.pdf
+- docs/library/M10_建设运营与人才/56_有用/6B_2024_coreboot在至强6平台推进_9elements.pdf
+- docs/library/M10_建设运营与人才/56_有用/6B_2024_固件与内核更新节奏错配_OCP.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2024_无闪存服务器构建_OCP.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2024_生成式AI基础设施机架管理_OCP.pdf
+- docs/library/M10_建设运营与人才/34_存档/3B_2024_开放系统固件项目进展_OCP.pdf
+- docs/library/M10_建设运营与人才/34_存档/3B_2024_固件生命周期挑战面板_OCP.pdf
+- docs/library/M10_建设运营与人才/34_存档/3B_2024_通用开放平台愿景_OCP.pdf
+- docs/library/M10_建设运营与人才/34_存档/3B_2024_SPDM后量子密码面板_OCP.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2024_SPDM授权规范_OCP.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2024_流式启动实现进展_OCP.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2024_OpenTitan开源信任根进展_OCP.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2024_Caliptra路线图与后量子_OCP.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2024_桥接加速器侧信道防护_OCP.pdf
+- docs/library/M14_中国板块/34_存档/3B_2024_设备到云供应链溯源_OCP.pdf
+- docs/library/M10_建设运营与人才/34_存档/4B_2024_DPU机密计算扩展_OCP.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2024_精确时间能否提升AI效率_OCP.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2024_低成本白兔网卡_OCP.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2024_PTP网络安全攻击面_OCP.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2024_5G与6G承载时间同步验证_OCP.pdf
+- docs/library/M10_建设运营与人才/34_存档/4B_2024_白兔长距链路不对称补偿_OCP.pdf
+- docs/library/M10_建设运营与人才/34_存档/4B_2024_IEEE_P1588.1数据中心PTP标准_OCP.pdf
+- docs/library/M10_建设运营与人才/34_存档/4B_2024_嵌入式处理器PTM支持_OCP.pdf
+- docs/library/M10_建设运营与人才/34_存档/4B_2024_数据中心无线时间同步_OCP.pdf
+- docs/library/M10_建设运营与人才/34_存档/4B_2024_数字锁相环精密频率测量_OCP.pdf
+- docs/library/M10_建设运营与人才/34_存档/4B_2024_物联网软件无线电授时卡_OCP.pdf
+- docs/library/M15_情景与监测/7_重要/7B_2024_保险公司云回迁实证_GEICO.pdf
+- docs/library/M10_建设运营与人才/56_有用/6B_2024_液冷AI机架集群蓝图_Supermicro.pdf
+- docs/library/M14_中国板块/56_有用/5B_2024_新兴数据中心方案_和硕.pdf
+- docs/library/M09_电气设备供应链/56_有用/6B_2024_MGX加速数据中心上市_NVIDIA.pdf
+- docs/library/M09_电气设备供应链/56_有用/6B_2024_AI加速器供电密度演进_OCP.pdf
+- docs/library/M09_电气设备供应链/56_有用/6B_2024_垂直供电提升xPU性能_OCP.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2024_DPU实现可组合基础设施_OCP.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2024_SIOV_R2虚拟化框架_OCP.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2024_平台信任根模块接口设计_OCP.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2024_多租户可编程网卡架构_OCP.pdf
+- docs/library/M09_电气设备供应链/56_有用/6B_2024_MHS主板规范支持开放机架与48V_OCP.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2024_DC-SCM管理模块规范更新_OCP.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2024_DC-SCM_LTPI规范经验与挑战_OCP.pdf
+- docs/library/M09_电气设备供应链/56_有用/5B_2024_MHS项目总览与48V支持_OCP.pdf
+- docs/library/M10_建设运营与人才/34_存档/4B_2024_MHS外设带外管理演进_OCP.pdf
+- docs/library/M10_建设运营与人才/34_存档/4B_2024_MHS模块化即插即用_OCP.pdf
+- docs/library/M10_建设运营与人才/34_存档/4B_2024_开放模块化与AI系统商洞察_HPE.pdf
+- docs/library/M10_建设运营与人才/56_有用/6B_2024_开源测试与认证框架_Meta.pdf
+- docs/library/M10_建设运营与人才/56_有用/6B_2024_AI_GPU系统可调试性实践_OCP.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2024_加速器可管理性合规工具_OCP.pdf
+- docs/library/M10_建设运营与人才/34_存档/3B_2024_开放诊断采纳社区更新_OCP.pdf
+- docs/library/_projects/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/8A_2016_华为永州招标控制价总表_永州开发投资.jpg
+- docs/library/_projects/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/土建/1#数据中心/8A_2016_华为永州1号楼建筑预算_永州开发投资.xls
+- docs/library/_projects/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/土建/1#数据中心/7A_2016_华为永州1号楼装饰预算_永州开发投资.xls
+- docs/library/_projects/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/土建/7A_2016_华为永州土建控制价汇总_永州开发投资.xls
+- docs/library/_projects/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/土建/2#主门卫/5A_2016_华为永州2号门卫建筑预算_永州开发投资.xls
+- docs/library/_projects/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/土建/2#主门卫/5A_2016_华为永州2号门卫装饰预算_永州开发投资.xls
+- docs/library/_projects/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/土建/3#次门卫/5A_2016_华为永州3号门卫建筑预算_永州开发投资.xls
+- docs/library/_projects/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/土建/3#次门卫/5A_2016_华为永州3号门卫装饰预算_永州开发投资.xls
+- docs/library/_projects/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/安装/7A_2016_华为永州安装控制价汇总_永州开发投资.xls
+- docs/library/_projects/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/安装/1#安装工程/7A_2016_华为永州1号楼安装汇总_永州开发投资.xls
+- docs/library/_projects/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/安装/1#安装工程/电气安装工程/6A_2016_华为永州1号楼电气预算_永州开发投资.xls
+- docs/library/_projects/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/安装/1#安装工程/消火栓及喷淋系统、气体灭火系统/7A_2016_华为永州消防水气灭预算_永州开发投资.xls
+- docs/library/_projects/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/安装/1#安装工程/消防报警工程/6A_2016_华为永州消防报警预算_永州开发投资.xls
+- docs/library/_projects/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/安装/2#安装工程/4A_2016_华为永州2号门卫安装汇总_永州开发投资.xls
+- docs/library/_projects/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/安装/2#安装工程/电气安装工程/4A_2016_华为永州2号门卫电气预算_永州开发投资.xls
+- docs/library/_projects/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/安装/2#安装工程/给排水工程/4A_2016_华为永州2号门卫给排水预算_永州开发投资.xls
+- docs/library/_projects/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/安装/3#安装工程/4A_2016_华为永州3号门卫安装汇总_永州开发投资.xls
+- docs/library/_projects/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/安装/3#安装工程/电气安装工程/4A_2016_华为永州3号门卫电气预算_永州开发投资.xls
+- docs/library/_projects/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程预算/安装/3#安装工程/给排水工程/4A_2016_华为永州3号门卫给排水预算_永州开发投资.xls
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/通风空调工程/[20.1栋]通风空调工程/7A_2019_移动南方基地通风空调控制价_中国移动.xlsx
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/造价类资料（全程免费，得来不易需要完成一些小任务）1/001答疑/4A_2022_移动江南招标答疑结构_中国移动.doc
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼土建工程/B1通信机楼-±0.00以上土建工程/7A_2022_移动粤港澳机楼地上土建控制价_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼土建工程/B1通信机楼-±0.00以下土建工程/7A_2022_移动粤港澳机楼地下土建控制价_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼土建工程/B1通信机楼-基坑支护及土方开挖工程/6A_2022_移动粤港澳机楼基坑支护控制价_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼土建工程/B1通信机楼-外墙工程/6A_2022_移动粤港澳机楼外墙控制价_中国移动.xlsx
+- docs/library/_projects/2024.8 中国电信云计算重庆基地项目（四期）土建/造价类资料（全程免费，得来不易需要完成一些小任务）1/6A_2024_电信重庆四期设计技术要求_中国电信.pdf
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼土建工程/B1通信机楼-桩基础工程/6A_2022_移动粤港澳B1机楼桩基础_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼土建工程/7A_2022_移动粤港澳B1机楼土建汇总_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼安装工程/B1通信机楼-±0.00以下安装工程/5A_2022_移动粤港澳B1机楼地下安装_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼安装工程/B1通信机楼-抗震支吊架工程/5A_2022_移动粤港澳B1机楼抗震支吊架_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼安装工程/B1通信机楼-智能化工程/6A_2022_移动粤港澳B1机楼智能化_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼安装工程/B1通信机楼-消防报警工程/6A_2022_移动粤港澳B1机楼消防报警_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼安装工程/B1通信机楼-消防管道及设备工程/6A_2022_移动粤港澳B1机楼消防水_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼安装工程/B1通信机楼-电梯工程/5A_2022_移动粤港澳B1机楼电梯_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼安装工程/B1通信机楼-电气工程/6A_2022_移动粤港澳B1机楼电气安装_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼安装工程/B1通信机楼-给排水工程/5A_2022_移动粤港澳B1机楼给排水_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼安装工程/B1通信机楼-通风和防排烟工程/6A_2022_移动粤港澳B1机楼通风防排烟_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼安装工程/7A_2022_移动粤港澳B1机楼安装汇总_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼土建工程/B2通信机楼-±0.00以上土建工程/7A_2022_移动粤港澳B2机楼地上土建_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼土建工程/B2通信机楼-±0.00以下土建工程/6A_2022_移动粤港澳B2机楼地下土建_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼土建工程/B2通信机楼-基坑支护及土方开挖工程/5A_2022_移动粤港澳B2机楼基坑支护_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼土建工程/B2通信机楼-外墙工程/5A_2022_移动粤港澳B2机楼外墙_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼土建工程/B2通信机楼-桩基础工程/6A_2022_移动粤港澳B2机楼桩基础_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼土建工程/7A_2022_移动粤港澳B2机楼土建汇总_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼安装工程/B2通信机楼-±0.00以下安装工程/5A_2022_移动粤港澳B2机楼地下安装_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼安装工程/B2通信机楼-抗震支吊架工程/5A_2022_移动粤港澳B2机楼抗震支吊架_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼安装工程/B2通信机楼-智能化工程/6A_2022_移动粤港澳B2机楼智能化_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼安装工程/B2通信机楼-消防报警工程/6A_2022_移动粤港澳B2机楼消防报警_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼安装工程/B2通信机楼-消防管道及设备工程/6A_2022_移动粤港澳B2机楼消防水_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼安装工程/B2通信机楼-电梯工程/5A_2022_移动粤港澳B2机楼电梯_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼安装工程/B2通信机楼-电气工程/6A_2022_移动粤港澳B2机楼电气安装_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼安装工程/B2通信机楼-给排水工程/5A_2022_移动粤港澳B2机楼给排水_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼安装工程/B2通信机楼-通风和防排烟工程/6A_2022_移动粤港澳B2机楼通风防排烟_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B2通信机楼安装工程/7A_2022_移动粤港澳B2机楼安装汇总_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼土建工程/B3通信机楼-±0.00以上土建工程/7A_2022_移动粤港澳B3机楼地上土建_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼土建工程/B3通信机楼-±0.00以下土建工程/6A_2022_移动粤港澳B3机楼地下土建_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼土建工程/B3通信机楼-基坑支护及土方开挖工程/5A_2022_移动粤港澳B3机楼基坑支护_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼土建工程/B3通信机楼-外墙工程/5A_2022_移动粤港澳B3机楼外墙_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼土建工程/B3通信机楼-桩基础工程/6A_2022_移动粤港澳B3机楼桩基础_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼土建工程/7A_2022_移动粤港澳B3机楼土建汇总_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼安装工程/B3通信机楼-±0.00以下安装工程/5A_2022_移动粤港澳B3机楼地下安装_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼安装工程/B3通信机楼-抗震支吊架工程/5A_2022_移动粤港澳B3机楼抗震支吊架_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼安装工程/B3通信机楼-智能化工程/6A_2022_移动粤港澳B3机楼智能化_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼安装工程/B3通信机楼-消防报警工程/6A_2022_移动粤港澳B3机楼消防报警_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼安装工程/B3通信机楼-消防管道及设备工程/6A_2022_移动粤港澳B3机楼消防水_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼安装工程/B3通信机楼-电梯工程/5A_2022_移动粤港澳B3机楼电梯_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼安装工程/B3通信机楼-电气工程/6A_2022_移动粤港澳B3机楼电气安装_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼安装工程/B3通信机楼-给排水工程/5A_2022_移动粤港澳B3机楼给排水_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼安装工程/B3通信机楼-通风和防排烟工程/6A_2022_移动粤港澳B3机楼通风防排烟_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼安装工程/7A_2022_移动粤港澳B3机楼安装汇总_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/8A_2022_移动粤港澳项目招标控制价总表_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/8A_2022_移动粤港澳控制价编制说明_中国移动.doc
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/其他费用/临水、临电工程/5A_2022_移动粤港澳临水临电_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/其他费用/7A_2022_移动粤港澳其他费用汇总_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/其他费用/地下管线探测费/4A_2022_移动粤港澳地下管线探测费_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/其他费用/工程保险费/5A_2022_移动粤港澳工程保险费_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/其他费用/建筑信息模型（BIM）技术应用费用/5A_2022_移动粤港澳BIM技术应用费_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/其他费用/房屋鉴定费/4A_2022_移动粤港澳房屋鉴定费_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/其他费用/甲供材料保管费/5A_2022_移动粤港澳甲供材料保管费_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/其他费用/白蚁防治费/4A_2022_移动粤港澳白蚁防治费_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/其他费用/防火门检验试验费/4A_2022_移动粤港澳防火门检验费_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/其他费用/防疫费/5A_2022_移动粤港澳防疫费_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/原一期室外道路工程/4A_2022_移动粤港澳原一期道路_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/场地工程/5A_2022_移动粤港澳室外场地_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/室外围墙工程/4A_2022_移动粤港澳室外围墙_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/7A_2022_移动粤港澳室外工程汇总_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/室外广场工程/4A_2022_移动粤港澳室外广场_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/室外挡土墙工程/4A_2022_移动粤港澳室外挡土墙_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/室外油机基础工程/5A_2022_移动粤港澳室外油机基础_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/室外油管沟及散水暗沟工程/5A_2022_移动粤港澳室外油管沟_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/室外油罐土建工程/5A_2022_移动粤港澳室外油罐土建_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/室外油罐基坑支护及土方开挖工程/5A_2022_移动粤港澳室外油罐基坑支护_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/室外油罐安装工程/5A_2022_移动粤港澳室外油罐安装_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/室外电气工程/5A_2022_移动粤港澳室外电气_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/室外管线支架工程/4A_2022_移动粤港澳室外管线支架_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/室外绿化工程/4A_2022_移动粤港澳室外绿化_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/室外蓄冷罐基础工程/6A_2022_移动粤港澳室外蓄冷罐基础_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/室外道路工程/4A_2022_移动粤港澳室外道路_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/室外钢平台工程/6A_2022_移动粤港澳室外钢平台_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/市政给水工程/5A_2022_移动粤港澳市政给水_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/门卫室土建工程/4A_2022_移动粤港澳门卫室土建_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/门卫室安装工程/4A_2022_移动粤港澳门卫室安装_中国移动.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/3C_2022_移动粤港澳工程量清单计价文件_中国移动.COS
+- docs/library/M14_中国板块/8_支柱/8A_2023_芜湖联通智算中心环评_中国联通.pdf
+- docs/library/M14_中国板块/56_有用/5B_2024_智算名义下的智慧文旅初设_脱敏招标件.pdf
+- docs/library/M14_中国板块/34_存档/3C_2023_智算中心行业调研通稿_未署名.pdf
+- docs/library/M14_中国板块/34_存档/3C_2024_智算供给格局空白模板_未署名.pdf
+- docs/library/M14_中国板块/34_存档/3C_2024_智算供给格局空白模板副本_未署名.pdf
+- docs/library/M14_中国板块/34_存档/4C_2024_智算与超算中心辨析_未署名.pdf
+- docs/library/M14_中国板块/7_重要/7A_2023_智能计算中心创新发展指南_国家信息中心.pdf
+- docs/library/M13_有效算力与软件/56_有用/6B_2024_城市级智算中心技术要求团标_北京电子商会.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2024_超算中心运营管理模板课件_未署名.pdf
+- docs/library/M14_中国板块/34_存档/3C_2024_智算中心行业分析模板课件_未署名.pdf
+- docs/library/M13_有效算力与软件/7_重要/7B_2023_AI大模型智算中心网络演进_中国移动研究院.pdf
+- docs/library/M14_中国板块/56_有用/5B_2011_厦门超算中心机房与资源_美亚柏科.pdf
+- docs/library/M14_中国板块/56_有用/6B_2022_面向智算的算力原生白皮书_中国移动研究院.pdf
+- docs/library/M14_中国板块/7_重要/7C_2023_中国智算中心投建成本与格局_前瞻产业研究院.pdf
+- docs/library/M13_有效算力与软件/34_存档/4A_2022_智算中心算力资源部署专利_浪潮.pdf
+- docs/library/M14_中国板块/56_有用/5B_2023_发展新型智算中心ODCC演讲_中国移动研究院.pdf
+- docs/library/M14_中国板块/7_重要/7C_2024_智算中心分档投资与格局_未署名咨询机构.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2014_深圳超算中心运营与定价_中国电子报.pdf
+- docs/library/M14_中国板块/56_有用/6B_2023_智算赋能算网新应用白皮书_信通院腾讯云.pdf
+- docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算/2C_2020_误入库的粮食ERP营销材料_浪潮云.pdf
+- docs/library/M14_中国板块/56_有用/5B_2023_算力网络原创技术与NICC体系_中国移动.pdf
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件二：详细勘察文件/6B_2022_江南数据中心详勘报告_四川省地质工程勘察院.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件二：详细勘察文件/5B_2022_江南数据中心勘探点数据表_四川省地质工程勘察院.xls
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件二：详细勘察文件/4B_2022_江南数据中心勘察大纲_四川省地质工程勘察院.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件二：详细勘察文件/测量成果/3B_2022_江南数据中心钻孔成果表_四川省地质工程勘察院.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件五：地形图及管网图---20210805/重庆市勘测院勘察成果（光盘文件）---20210810/4B_2021_江南数据中心地下管线成果表_未署名测绘单位.xls
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件五：地形图及管网图---20210805/重庆市勘测院勘察成果（光盘文件）---20210810/4B_2021_江南地形测量与管线详查说明_未署名测绘单位.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件二：详细勘察文件/测量成果/3B_2022_江南数据中心放孔数据表_四川省地质工程勘察院.xlsx
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件一：土石方测量/土石方测算---20220926/江南数据中心红线内土方/3B_2022_江南数据中心土石方技术小结_四川省地质工程勘察院.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件一：土石方测量/土石方测算---20220926/江南数据中心西侧边坡/3B_2022_江南数据中心西侧边坡技术小结_四川省地质工程勘察院.doc
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾接入机房(含基础)/设计结果/4B_2019_来宾接入机房结构计算书_未署名设计单位.doc
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/设计结果/4B_2019_来宾地下水泵房结构计算书_未署名设计单位.doc
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/水泵房设计结果/设计结果/4B_2019_来宾地下水泵房结构计算书副本_未署名设计单位.doc
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/3B_2019_来宾基础设计送审报告_未署名设计单位.docx
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/基础计算及结果输出/3B_2019_来宾筏板基础设计送审报告_未署名设计单位.docx
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/5B_2024_衢州枢纽建筑设计说明一_中国移动设计院.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/5B_2024_衢州枢纽建筑设计说明二_中国移动设计院.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/4B_2024_衢州枢纽建筑设计说明三_中国移动设计院.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/给排水/土建给排水机房水泵房(cad+PDF)/5B_2024_衢州机房土建给排水施工图_中国移动设计院.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/总图、水池水泵房、室外工程建筑部分/PDF/4B_2024_衢州水池水泵房土建分册_中国移动设计院.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/给排水/821-衢州-室外给排水施工图（CAD+PDF）/3B_2024_衢州室外给排水图纸目录_中国移动设计院.pdf
+- docs/library/_projects/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/附件三：施工图图纸/绿建和节能/运维楼绿建施工图/绿建分析报告/3B_2024_科学城运维楼背景噪声报告_华信咨询设计院.doc
+- docs/library/_projects/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/附件三：施工图图纸/绿建和节能/运维楼绿建施工图/绿建分析报告/3B_2024_科学城运维楼构件隔声报告_华信咨询设计院.doc
+- docs/library/_projects/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/附件三：施工图图纸/绿建和节能/运维楼绿建施工图/绿建分析报告/3B_2024_科学城运维楼天然采光报告_华信咨询设计院.doc
+- docs/library/_projects/2016.1 中国联通湖南长沙云计算中心一期IDC机房、动力中心、动力楼、通信枢纽楼建设工程/人防图纸/结构/7��22����ͨ�˷��ṹ��ɰ�/7月22号联通人防结构完成版/计算书/4B_2016_长沙联通人防结构计算书_未署名设计单位.doc
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/4B_2019_南方基地BIM管线综合图纸目录_未署名设计单位.xlsx
+- docs/library/04_市场与研究/中文行业报告集/202L 数据中心新/2016.12 华为(永州)云计算数据中心设计项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/【免费路径】重要，必看！解压密码获取途径说明/1C_2016_解压密码获取途径说明_资料贩售方.txt
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/白蚁防治工程/白蚁防治工程/5A_2019_南方基地二期二阶段造价白蚁防治工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/园林工程暂估价/园林工程暂估价/6A_2019_南方基地二期二阶段造价园林工程暂估价_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/电梯工程/[20.4栋]电梯工程/5A_2019_南方基地二期二阶段造价[20.4栋]电梯工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/电梯工程/[20.2栋]电梯工程/5A_2019_南方基地二期二阶段造价[20.2栋]电梯工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/电梯工程/[20.1栋]电梯工程/5A_2019_南方基地二期二阶段造价[20.1栋]电梯工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/通风空调工程/[20.4栋]通风空调工程/6A_2019_南方基地二期二阶段造价[20.4栋]通风空调工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/通风空调工程/[地下室]通风空调工程/6A_2019_南方基地二期二阶段造价[地下室]通风空调工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/智能化工程暂估价/智能化工程暂估价/6A_2019_南方基地二期二阶段造价智能化工程暂估价_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/凌塘村排水工程及相关拆除补偿/靠凌塘村侧排水管埋设涉及到的现状拆除及补偿项目/5A_2019_南方基地二期二阶段造价靠凌塘村侧排水管埋设涉及到的现状_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/凌塘村排水工程及相关拆除补偿/凌塘村排水工程/5A_2019_南方基地二期二阶段造价凌塘村排水工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/电气工程/[地下室]电气工程/6A_2019_南方基地二期二阶段造价[地下室]电气工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/电气工程/[20.1栋]电气工程/5A_2019_南方基地二期二阶段造价[20.1栋]电气工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/电气工程/室外电气工程/5A_2019_南方基地二期二阶段造价室外电气工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/电气工程/[20.2栋]电气工程/5A_2019_南方基地二期二阶段造价[20.2栋]电气工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/电气工程/[20.4栋]电气工程/5A_2019_南方基地二期二阶段造价[20.4栋]电气工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/电气工程/[地下室]集中控制型消防应急照明和疏散指示系统/5A_2019_南方基地二期二阶段造价[地下室]集中控制型消防应急照明_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/电气工程/[20.4栋]集中控制型消防应急照明和疏散指示系统/5A_2019_南方基地二期二阶段造价[20.4栋]集中控制型消防应急_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/电气工程/[20.2栋]集中控制型消防应急照明和疏散指示系统/5A_2019_南方基地二期二阶段造价[20.2栋]集中控制型消防应急_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/电气工程/[20.1栋]集中控制型消防应急照明和疏散指示系统/5A_2019_南方基地二期二阶段造价[20.1栋]集中控制型消防应急_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/房屋鉴定/房屋鉴定/5A_2019_南方基地二期二阶段造价房屋鉴定_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/室外配套工程/门卫室安装工程/5A_2019_南方基地二期二阶段造价门卫室安装工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/室外配套工程/土方平衡/6A_2019_南方基地二期二阶段造价土方平衡_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/室外配套工程/临时围蔽工程/5A_2019_南方基地二期二阶段造价临时围蔽工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/室外配套工程/燃气工程/5A_2019_南方基地二期二阶段造价燃气工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/室外配套工程/±0.00以上土建工程-建筑工程（门房A）/5A_2019_南方基地二期二阶段造价±0.00以上土建工程-建筑工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/冷源系统工程/冷源系统工程/6A_2019_南方基地二期二阶段造价冷源系统工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/高低压配电工程/发电机房配电工程/5A_2019_南方基地二期二阶段造价发电机房配电工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/高低压配电工程/高低压配电工程/5A_2019_南方基地二期二阶段造价高低压配电工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/高低压配电工程/高低压配电-土建部分/5A_2019_南方基地二期二阶段造价高低压配电-土建部分_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/土建工程/±0.00以上土建工程-建筑工程（20.4栋）/6A_2019_南方基地二期二阶段造价±0.00以上土建工程-建筑工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/土建工程/±0.00以上土建工程-外立面工程（20.4栋）/6A_2019_南方基地二期二阶段造价±0.00以上土建工程-外立面工_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/土建工程/±0.00以下土建工程-建筑工程/6A_2019_南方基地二期二阶段造价±0.00以下土建工程-建筑工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/土建工程/±0.00以下土建工程-人防门/5A_2019_南方基地二期二阶段造价±0.00以下土建工程-人防门_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/土建工程/桩基工程/6A_2019_南方基地二期二阶段造价桩基工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/土建工程/±0.00以上土建工程-建筑工程（20.2栋）/6A_2019_南方基地二期二阶段造价±0.00以上土建工程-建筑工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/土建工程/±0.00以上土建工程-外立面工程（20.1栋）/6A_2019_南方基地二期二阶段造价±0.00以上土建工程-外立面工_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/土建工程/±0.00以下土建工程-装饰工程/6A_2019_南方基地二期二阶段造价±0.00以下土建工程-装饰工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/土建工程/基坑支护工程/6A_2019_南方基地二期二阶段造价基坑支护工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/土建工程/±0.00以上土建工程-建筑工程（20.1栋）/6A_2019_南方基地二期二阶段造价±0.00以上土建工程-建筑工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/土建工程/±0.00以上土建工程-外立面工程（20.2栋）/6A_2019_南方基地二期二阶段造价±0.00以上土建工程-外立面工_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/给排水工程/[20.1栋]给排水工程/5A_2019_南方基地二期二阶段造价[20.1栋]给排水工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/给排水工程/[20.4栋]给排水工程/5A_2019_南方基地二期二阶段造价[20.4栋]给排水工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/给排水工程/雨水回用系统工程/5A_2019_南方基地二期二阶段造价雨水回用系统工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/给排水工程/直饮水系统工程/5A_2019_南方基地二期二阶段造价直饮水系统工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/给排水工程/[20.2栋]给排水工程/5A_2019_南方基地二期二阶段造价[20.2栋]给排水工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/给排水工程/[地下室]给排水工程/5A_2019_南方基地二期二阶段造价[地下室]给排水工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/抗震支架工程/抗震支架工程/5A_2019_南方基地二期二阶段造价抗震支架工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/消防工程/[20.2栋]火灾自动报警工程/5A_2019_南方基地二期二阶段造价[20.2栋]火灾自动报警工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/消防工程/[地下室]消防水灭火系统工程/6A_2019_南方基地二期二阶段造价[地下室]消防水灭火系统工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/消防工程/[20.4栋]消防水灭火系统工程/5A_2019_南方基地二期二阶段造价[20.4栋]消防水灭火系统工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/消防工程/[20.1栋]消防水灭火系统工程/5A_2019_南方基地二期二阶段造价[20.1栋]消防水灭火系统工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/消防工程/[20.4栋]火灾自动报警工程/5A_2019_南方基地二期二阶段造价[20.4栋]火灾自动报警工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/消防工程/[20.2栋]消防水灭火系统工程/5A_2019_南方基地二期二阶段造价[20.2栋]消防水灭火系统工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/消防工程/[20.1栋]火灾自动报警工程/5A_2019_南方基地二期二阶段造价[20.1栋]火灾自动报警工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/消防工程/[地下室]火灾自动报警工程/5A_2019_南方基地二期二阶段造价[地下室]火灾自动报警工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/地下室人防工程/[地下室]人防通风工程/5A_2019_南方基地二期二阶段造价[地下室]人防通风工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/地下室人防工程/[地下室]人防电气工程/5A_2019_南方基地二期二阶段造价[地下室]人防电气工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/地下室人防工程/[地下室]人防给排水工程/5A_2019_南方基地二期二阶段造价[地下室]人防给排水工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/地下管线盲探/地下管线盲探/5A_2019_南方基地二期二阶段造价地下管线盲探_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/临时用水/临时用水/5A_2019_南方基地二期二阶段造价临时用水_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/总包管理服务费及甲供材料保管费/总包管理服务费及甲供材料保管费/6A_2019_南方基地二期二阶段造价总包管理服务费及甲供材料保管费_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/室外工程/雨水收集池土建/5A_2019_南方基地二期二阶段造价雨水收集池土建_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/室外工程/室外综合管网给排水工程/5A_2019_南方基地二期二阶段造价室外综合管网给排水工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/室外工程/消防水灭火系统工程/5A_2019_南方基地二期二阶段造价消防水灭火系统工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/室外工程/室外雨水收集系统工程/5A_2019_南方基地二期二阶段造价室外雨水收集系统工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/室外工程/园建工程/6A_2019_南方基地二期二阶段造价园建工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/室外工程/永久围墙工程/5A_2019_南方基地二期二阶段造价永久围墙工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/室外工程/发电机房柴油供油系统工程/5A_2019_南方基地二期二阶段造价发电机房柴油供油系统工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/室外工程/智能化工程/5A_2019_南方基地二期二阶段造价智能化工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/精装修工程暂估价/装修精装修工程暂估价/6A_2019_南方基地二期二阶段造价装修精装修工程暂估价_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/精装修工程暂估价/安装精装修工程暂估价/6A_2019_南方基地二期二阶段造价安装精装修工程暂估价_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/5A_2019_南方基地二期招标工程量清单总表_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/1 六安电信信息化中心项目/2 六安电信信息化中心项目：信息化中心幕墙【装饰】/6A_2022_六安电信造价信息化中心幕墙【装饰】_中国电信安徽公司.xls
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/1 六安电信信息化中心项目/3 六安电信信息化中心项目：信息化中心【安装】/6A_2022_六安电信造价信息化中心【安装】_中国电信安徽公司.xls
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/1 六安电信信息化中心项目/1 六安电信信息化中心项目：信息化中心【土建】/6A_2022_六安电信造价信息化中心【土建】_中国电信安徽公司.xls
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/1 六安电信信息化中心项目/4 六安电信信息化中心项目：大型土石方/5A_2022_六安电信造价大型土石方_中国电信安徽公司.xls
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/2 六安电信云计算数据中心项目/12 六安电信云计算数据中心项目：大型土石方/5A_2022_六安电信造价大型土石方_中国电信安徽公司.xls
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/2 六安电信云计算数据中心项目/11 六安电信云计算数据中心项目：室外给排水【市政】/5A_2022_六安电信造价室外给排水【市政】_中国电信安徽公司.xls
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/2 六安电信云计算数据中心项目/10 六安电信云计算数据中心项目：室外电气【安装】/5A_2022_六安电信造价室外电气【安装】_中国电信安徽公司.xls
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/2 六安电信云计算数据中心项目/7 六安电信云计算数据中心项目：云计算数据中心【安装】/6A_2022_六安电信造价云计算数据中心【安装】_中国电信安徽公司.xls
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/2 六安电信云计算数据中心项目/5 六安电信云计算数据中心项目：云计算数据中心【土建】/6A_2022_六安电信造价云计算数据中心【土建】_中国电信安徽公司.xls
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/2 六安电信云计算数据中心项目/8 六安电信云计算数据中心项目：室外景观【园林】/5A_2022_六安电信造价室外景观【园林】_中国电信安徽公司.xls
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/2 六安电信云计算数据中心项目/6 六安电信云计算数据中心项目：云计算数据中心幕墙【装饰】/5A_2022_六安电信造价云计算数据中心幕墙【装饰】_中国电信安徽公司.xls
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/2 六安电信云计算数据中心项目/9 六安电信云计算数据中心项目：室外绿化【园林】/5A_2022_六安电信造价室外绿化【园林】_中国电信安徽公司.xls
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B1通信机楼土建工程/B1通信机楼-±0.00以下土建工程/6A_2022_粤港澳通信机楼二期造价B1通信机楼-±0.00以下土建_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/B3通信机楼土建工程/B3通信机楼-外墙工程/6A_2022_粤港澳通信机楼二期造价B3通信机楼-外墙工程_中国移动广东公司.xlsx
+- docs/library/_projects/2024.11 安庆高铁新区高光谱卫星数据中心及卫星制造产线项目工业厂房-1#厂房/造价类资料（全程免费，得来不易需要完成一些小任务）1/最高限价/5A_2022_None造价1#厂房（专业土石方工程）_工程档案.xls
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/8A_2022_六安电信数据中心最高投标限价总说明_中国电信安徽公司.doc
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/5A_2022_六安电信最高限价通知_中国电信安徽公司.docx
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/4A_2022_六安电信工程量清单总说明_中国电信安徽公司.doc
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/3A_2022_六安电信清单封面_中国电信安徽公司.docx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/7A_2022_粤港澳通信机楼二期控制价编制说明_中国移动广东公司.doc
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/白蚁防治工程/白蚁防治工程/4A_2019_南方基地二期二阶段造价白蚁防治工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/园林工程暂估价/园林工程暂估价/3A_2019_南方基地二期二阶段造价园林工程暂估价_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/电梯工程/[20.4栋]电梯工程/4A_2019_南方基地二期二阶段造价204栋电梯工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/电梯工程/[20.2栋]电梯工程/4A_2019_南方基地二期二阶段造价202栋电梯工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/电梯工程/[20.1栋]电梯工程/4A_2019_南方基地二期二阶段造价201栋电梯工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/通风空调工程/[20.4栋]通风空调工程/4A_2019_南方基地二期二阶段造价204栋通风空调工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/通风空调工程/[20.2栋]通风空调工程/4A_2019_南方基地二期二阶段造价202栋通风空调工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/通风空调工程/[20.1栋]通风空调工程/4A_2019_南方基地二期二阶段造价201栋通风空调工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/通风空调工程/[地下室]通风空调工程/4A_2019_南方基地二期二阶段造价地下室通风空调工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/智能化工程暂估价/智能化工程暂估价/3A_2019_南方基地二期二阶段造价智能化工程暂估价_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/凌塘村排水工程及相关拆除补偿/靠凌塘村侧排水管埋设涉及到的现状拆除及补偿项目/4A_2019_南方基地二期二阶段造价靠凌塘村侧排水管埋设涉及到的_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/凌塘村排水工程及相关拆除补偿/凌塘村排水工程/4A_2019_南方基地二期二阶段造价凌塘村排水工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/电气工程/[地下室]电气工程/4A_2019_南方基地二期二阶段造价地下室电气工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/电气工程/[20.1栋]电气工程/4A_2019_南方基地二期二阶段造价201栋电气工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/电气工程/室外电气工程/4A_2019_南方基地二期二阶段造价室外电气工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/电气工程/[20.2栋]电气工程/4A_2019_南方基地二期二阶段造价202栋电气工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/电气工程/[20.4栋]电气工程/4A_2019_南方基地二期二阶段造价204栋电气工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/电气工程/[地下室]集中控制型消防应急照明和疏散指示系统/4A_2019_南方基地二期二阶段造价地下室集中控制型消防应急照明_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/电气工程/[20.4栋]集中控制型消防应急照明和疏散指示系统/4A_2019_南方基地二期二阶段造价204栋集中控制型消防应急照_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/电气工程/[20.2栋]集中控制型消防应急照明和疏散指示系统/4A_2019_南方基地二期二阶段造价202栋集中控制型消防应急照_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/电气工程/[20.1栋]集中控制型消防应急照明和疏散指示系统/4A_2019_南方基地二期二阶段造价201栋集中控制型消防应急照_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/房屋鉴定/房屋鉴定/4A_2019_南方基地二期二阶段造价房屋鉴定_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/室外配套工程/门卫室安装工程/4A_2019_南方基地二期二阶段造价门卫室安装工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/室外配套工程/±0.00以上土建工程-室内装饰工程（门房A）/3A_2019_南方基地二期二阶段造价000以上土建工程室内装饰工_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/室外配套工程/土方平衡/3A_2019_南方基地二期二阶段造价土方平衡_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/室外配套工程/临时围蔽工程/4A_2019_南方基地二期二阶段造价临时围蔽工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/室外配套工程/燃气工程/4A_2019_南方基地二期二阶段造价燃气工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/室外配套工程/±0.00以上土建工程-建筑工程（门房A）/4A_2019_南方基地二期二阶段造价000以上土建工程建筑工程门_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/冷源系统工程/冷源系统工程/4A_2019_南方基地二期二阶段造价冷源系统工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/高低压配电工程/发电机房配电工程/4A_2019_南方基地二期二阶段造价发电机房配电工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/高低压配电工程/高低压配电工程/4A_2019_南方基地二期二阶段造价高低压配电工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/高低压配电工程/高低压配电-土建部分/4A_2019_南方基地二期二阶段造价高低压配电土建部分_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/土建工程/±0.00以上土建工程-建筑工程（20.4栋）/4A_2019_南方基地二期二阶段造价000以上土建工程建筑工程2_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/土建工程/±0.00以上土建工程-外立面工程（20.4栋）/3A_2019_南方基地二期二阶段造价000以上土建工程外立面工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/土建工程/±0.00以下土建工程-建筑工程/4A_2019_南方基地二期二阶段造价000以下土建工程建筑工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/土建工程/±0.00以下土建工程-人防门/4A_2019_南方基地二期二阶段造价000以下土建工程人防门_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/土建工程/桩基工程/4A_2019_南方基地二期二阶段造价桩基工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/土建工程/±0.00以上土建工程-建筑工程（20.2栋）/4A_2019_南方基地二期二阶段造价000以上土建工程建筑工程2_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/土建工程/±0.00以上土建工程-外立面工程（20.1栋）/3A_2019_南方基地二期二阶段造价000以上土建工程外立面工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/土建工程/±0.00以下土建工程-装饰工程/4A_2019_南方基地二期二阶段造价000以下土建工程装饰工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/土建工程/基坑支护工程/4A_2019_南方基地二期二阶段造价基坑支护工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/土建工程/±0.00以上土建工程-建筑工程（20.1栋）/4A_2019_南方基地二期二阶段造价000以上土建工程建筑工程2_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/土建工程/±0.00以上土建工程-外立面工程（20.2栋）/3A_2019_南方基地二期二阶段造价000以上土建工程外立面工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/给排水工程/[20.1栋]给排水工程/4A_2019_南方基地二期二阶段造价201栋给排水工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/给排水工程/[20.4栋]给排水工程/4A_2019_南方基地二期二阶段造价204栋给排水工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/给排水工程/雨水回用系统工程/4A_2019_南方基地二期二阶段造价雨水回用系统工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/给排水工程/直饮水系统工程/4A_2019_南方基地二期二阶段造价直饮水系统工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/给排水工程/[20.2栋]给排水工程/4A_2019_南方基地二期二阶段造价202栋给排水工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/给排水工程/[地下室]给排水工程/4A_2019_南方基地二期二阶段造价地下室给排水工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/抗震支架工程/抗震支架工程/4A_2019_南方基地二期二阶段造价抗震支架工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/消防工程/[20.2栋]火灾自动报警工程/4A_2019_南方基地二期二阶段造价202栋火灾自动报警工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/消防工程/[地下室]消防水灭火系统工程/4A_2019_南方基地二期二阶段造价地下室消防水灭火系统工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/消防工程/[20.4栋]消防水灭火系统工程/4A_2019_南方基地二期二阶段造价204栋消防水灭火系统工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/消防工程/[20.1栋]消防水灭火系统工程/4A_2019_南方基地二期二阶段造价201栋消防水灭火系统工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/消防工程/[20.4栋]火灾自动报警工程/4A_2019_南方基地二期二阶段造价204栋火灾自动报警工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/消防工程/[20.2栋]消防水灭火系统工程/4A_2019_南方基地二期二阶段造价202栋消防水灭火系统工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/消防工程/[20.1栋]火灾自动报警工程/4A_2019_南方基地二期二阶段造价201栋火灾自动报警工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/消防工程/[地下室]火灾自动报警工程/4A_2019_南方基地二期二阶段造价地下室火灾自动报警工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/地下室人防工程/[地下室]人防通风工程/4A_2019_南方基地二期二阶段造价地下室人防通风工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/地下室人防工程/[地下室]人防电气工程/4A_2019_南方基地二期二阶段造价地下室人防电气工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/地下室人防工程/[地下室]人防给排水工程/4A_2019_南方基地二期二阶段造价地下室人防给排水工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/地下管线盲探/地下管线盲探/4A_2019_南方基地二期二阶段造价地下管线盲探_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/临时用水/临时用水/4A_2019_南方基地二期二阶段造价临时用水_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/总包管理服务费及甲供材料保管费/总包管理服务费及甲供材料保管费/3A_2019_南方基地二期二阶段造价总包管理服务费及甲供材料保管_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/室外工程/雨水收集池土建/4A_2019_南方基地二期二阶段造价雨水收集池土建_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/室外工程/室外综合管网给排水工程/4A_2019_南方基地二期二阶段造价室外综合管网给排水工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/室外工程/消防水灭火系统工程/4A_2019_南方基地二期二阶段造价消防水灭火系统工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/室外工程/室外雨水收集系统工程/4A_2019_南方基地二期二阶段造价室外雨水收集系统工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/室外工程/园建工程/4A_2019_南方基地二期二阶段造价园建工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/室外工程/永久围墙工程/4A_2019_南方基地二期二阶段造价永久围墙工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/室外工程/发电机房柴油供油系统工程/4A_2019_南方基地二期二阶段造价发电机房柴油供油系统工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/室外工程/智能化工程/4A_2019_南方基地二期二阶段造价智能化工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/精装修工程暂估价/装修精装修工程暂估价/3A_2019_南方基地二期二阶段造价装修精装修工程暂估价_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1工程量清单-中国移动南方基地二期工程二阶段项目施工总承包(0)/精装修工程暂估价/安装精装修工程暂估价/3A_2019_南方基地二期二阶段造价安装精装修工程暂估价_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/3A_2019_南方基地二期二阶段造价中国移动南方基地二期工程二阶_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/白蚁防治工程/3A_2019_南方基地二期二阶段造价白蚁防治工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/电梯工程/3A_2019_南方基地二期二阶段造价电梯工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/通风空调工程/3A_2019_南方基地二期二阶段造价通风空调工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/通风空调工程/[20.2栋]通风空调工程/3A_2019_南方基地二期二阶段造价202栋通风空调工程_1_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/通风空调工程/[20.2栋]通风空调工程/3A_2019_南方基地二期二阶段造价202栋通风空调工程_2_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/通风空调工程/[20.1栋]通风空调工程/3A_2019_南方基地二期二阶段造价201栋通风空调工程_1_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/通风空调工程/[20.1栋]通风空调工程/3A_2019_南方基地二期二阶段造价201栋通风空调工程_2_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/凌塘村排水工程及相关拆除补偿/3A_2019_南方基地二期二阶段造价凌塘村排水工程及相关拆除补偿_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/电气工程/3A_2019_南方基地二期二阶段造价电气工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/房屋鉴定/3A_2019_南方基地二期二阶段造价房屋鉴定_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/室外配套工程/3A_2019_南方基地二期二阶段造价室外配套工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/冷源系统工程/3A_2019_南方基地二期二阶段造价冷源系统工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/高低压配电工程/3A_2019_南方基地二期二阶段造价高低压配电工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/土建工程/3A_2019_南方基地二期二阶段造价土建工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/给排水工程/3A_2019_南方基地二期二阶段造价给排水工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/抗震支架工程/3A_2019_南方基地二期二阶段造价抗震支架工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/消防工程/3A_2019_南方基地二期二阶段造价消防工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/地下室人防工程/3A_2019_南方基地二期二阶段造价地下室人防工程_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/地下管线盲探/3A_2019_南方基地二期二阶段造价地下管线盲探_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/临时用水/3A_2019_南方基地二期二阶段造价临时用水_中国移动广东公司.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价-中国移动南方基地二期工程二阶段项目施工总承包/总包管理服务费及甲供材料保管费/3A_2019_南方基地二期二阶段造价总包管理服务费及甲供材料保管_中国移动广东公司.xlsx
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2019_来宾接入机房造价来宾综合业务接入机房工程及室_中国移动广西公司.pdf
+- docs/library/_projects/2020.4 大数据应用工厂项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2020_大数据应用工厂造价7大数据应用工厂项目施工二标_工程档案.xls
+- docs/library/_projects/2020.4 大数据应用工厂项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2020_大数据应用工厂造价重点评审清单大数据应用工厂二_工程档案.xlsx
+- docs/library/_projects/2020.4 大数据应用工厂项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2020_大数据应用工厂造价8大数据应用工厂项目施工二标_工程档案.xls
+- docs/library/_projects/2020.4 大数据应用工厂项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2020_大数据应用工厂造价6大数据应用工厂项目施工二标_工程档案.xls
+- docs/library/_projects/2020.4 大数据应用工厂项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2020_大数据应用工厂造价1大数据应用工厂项目施工二标_工程档案.xls
+- docs/library/_projects/2020.4 大数据应用工厂项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2020_大数据应用工厂造价2大数据应用工厂项目施工二标_工程档案.xls
+- docs/library/_projects/2020.4 大数据应用工厂项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2020_大数据应用工厂造价9大数据应用工厂项目施工二标_工程档案.xls
+- docs/library/_projects/2020.4 大数据应用工厂项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2020_大数据应用工厂造价5大数据应用工厂项目施工二标_工程档案.xls
+- docs/library/_projects/2020.7福建广电网络莆田NGB业务中心（机房）/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单审核/4A_2020_莆田NGB业务中心造价福建广电网络莆田NGB业务中_福建广电网络.xlsx
+- docs/library/_projects/2020.7福建广电网络莆田NGB业务中心（机房）/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单审核/3A_2020_莆田NGB业务中心造价建筑工程招标控制价编制说明_福建广电网络.doc
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/3A_2022_六安电信造价六安电信信息化中心和六安电信_中国电信安徽公司.xls
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/1 六安电信信息化中心项目/3A_2022_六安电信造价六安电信信息化中心项目_中国电信安徽公司.xls
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【控制价】/2 六安电信云计算数据中心项目/3A_2022_六安电信造价六安电信云计算数据中心项目_中国电信安徽公司.xls
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【清单】/1 六安电信信息化中心项目/2 六安电信信息化中心项目：信息化中心幕墙【装饰】/3A_2022_六安电信造价六安电信信息化中心项目信息化_中国电信安徽公司.xls
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【清单】/1 六安电信信息化中心项目/3 六安电信信息化中心项目：信息化中心【安装】/3A_2022_六安电信造价六安电信信息化中心项目信息化_中国电信安徽公司.xls
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【清单】/1 六安电信信息化中心项目/1 六安电信信息化中心项目：信息化中心【土建】/4A_2022_六安电信造价六安电信信息化中心项目信息化_中国电信安徽公司.xls
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【清单】/1 六安电信信息化中心项目/4 六安电信信息化中心项目：大型土石方/3A_2022_六安电信造价六安电信信息化中心项目大型土_中国电信安徽公司.xls
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【清单】/2 六安电信云计算数据中心项目/12 六安电信云计算数据中心项目：大型土石方/3A_2022_六安电信造价六安电信云计算数据中心项目大_中国电信安徽公司.xls
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【清单】/2 六安电信云计算数据中心项目/11 六安电信云计算数据中心项目：室外给排水【市政】/3A_2022_六安电信造价六安电信云计算数据中心项目室_中国电信安徽公司.xls
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【清单】/2 六安电信云计算数据中心项目/10 六安电信云计算数据中心项目：室外电气【安装】/3A_2022_六安电信造价六安电信云计算数据中心项目室_中国电信安徽公司.xls
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【清单】/2 六安电信云计算数据中心项目/7 六安电信云计算数据中心项目：云计算数据中心【安装】/3A_2022_六安电信造价六安电信云计算数据中心项目云_中国电信安徽公司.xls
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【清单】/2 六安电信云计算数据中心项目/5 六安电信云计算数据中心项目：云计算数据中心【土建】/4A_2022_六安电信造价六安电信云计算数据中心项目云_中国电信安徽公司.xls
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【清单】/2 六安电信云计算数据中心项目/8 六安电信云计算数据中心项目：室外景观【园林】/4A_2022_六安电信造价六安电信云计算数据中心项目室_中国电信安徽公司.xls
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【清单】/2 六安电信云计算数据中心项目/6 六安电信云计算数据中心项目：云计算数据中心幕墙【装饰】/3A_2022_六安电信造价六安电信云计算数据中心项目云_中国电信安徽公司.xls
+- docs/library/_projects/2022.1 六安电信信息化中心和六安电信云计算数据中心项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/清单控制价/六安电信信息化中心和六安电信云计算数据中心项目【清单】/2 六安电信云计算数据中心项目/9 六安电信云计算数据中心项目：室外绿化【园林】/4A_2022_六安电信造价六安电信云计算数据中心项目室_中国电信安徽公司.xls
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2022_江南数据中心一期造价工程量清单_中国移动重庆公司.pdf
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/造价类资料（全程免费，得来不易需要完成一些小任务）1/001答疑/3A_2022_江南数据中心一期造价中国移动成渝重庆江南数据中心_中国移动重庆公司.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/造价类资料（全程免费，得来不易需要完成一些小任务）1/001答疑/3A_2022_江南数据中心一期造价中国移动成渝重庆江南数据中心_中国移动重庆公司_02.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/造价类资料（全程免费，得来不易需要完成一些小任务）1/001答疑/3A_2022_江南数据中心一期造价中国移动成渝重庆江南数据中心_中国移动重庆公司_03.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/造价类资料（全程免费，得来不易需要完成一些小任务）1/001答疑/3A_2022_江南数据中心一期造价中国移动成渝重庆江南数据中心_中国移动重庆公司.docx
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/造价类资料（全程免费，得来不易需要完成一些小任务）1/001答疑/3A_2022_江南数据中心一期造价中国移动成渝重庆江南数据中心_中国移动重庆公司_04.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/造价类资料（全程免费，得来不易需要完成一些小任务）1/001答疑/3A_2022_江南数据中心一期造价中国移动成渝重庆江南数据中心_中国移动重庆公司_05.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/造价类资料（全程免费，得来不易需要完成一些小任务）1/001答疑/清单问题8补图/3A_2022_江南数据中心一期造价补充检查井结构详图_中国移动重庆公司.pdf
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/造价类资料（全程免费，得来不易需要完成一些小任务）1/001答疑/清单问题8补图/5A_2022_江南数据中心一期造价000以上土建工程室内装饰工_中国移动重庆公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/技术条件/3A_2022_粤港澳通信机楼二期造价7电梯技术说明书_中国移动广东公司.docx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/技术条件/3A_2022_粤港澳通信机楼二期造价2结构技术说明书_中国移动广东公司.docx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/技术条件/3A_2022_粤港澳通信机楼二期造价5消防通风技术说明书_中国移动广东公司.docx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/技术条件/3A_2022_粤港澳通信机楼二期造价4给排水技术说明书_中国移动广东公司.docx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/技术条件/3A_2022_粤港澳通信机楼二期造价1建筑技术说明书_中国移动广东公司.docx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/3A_2022_粤港澳通信机楼二期造价中国移动粤港澳广州通信机楼二_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B1通信机楼土建工程/B1通信机楼-基坑支护及土方开挖工程/3A_2022_粤港澳通信机楼二期造价B1通信机楼基坑支护及土方开_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B1通信机楼土建工程/B1通信机楼-±0.00以上土建工程/4A_2022_粤港澳通信机楼二期造价B1通信机楼000以上土建工_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B1通信机楼土建工程/B1通信机楼-±0.00以下土建工程/3A_2022_粤港澳通信机楼二期造价B1通信机楼000以下土建工_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B1通信机楼土建工程/B1通信机楼-桩基础工程/3A_2022_粤港澳通信机楼二期造价B1通信机楼桩基础工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B1通信机楼土建工程/B1通信机楼-外墙工程/3A_2022_粤港澳通信机楼二期造价B1通信机楼外墙工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B1通信机楼安装工程/B1通信机楼-±0.00以下安装工程/4A_2022_粤港澳通信机楼二期造价B1通信机楼000以下安装工_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B1通信机楼安装工程/B1通信机楼-给排水工程/4A_2022_粤港澳通信机楼二期造价B1通信机楼给排水工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B1通信机楼安装工程/B1通信机楼-消防管道及设备工程/4A_2022_粤港澳通信机楼二期造价B1通信机楼消防管道及设备工_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B1通信机楼安装工程/B1通信机楼-电气工程/4A_2022_粤港澳通信机楼二期造价B1通信机楼电气工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B1通信机楼安装工程/B1通信机楼-抗震支吊架工程/4A_2022_粤港澳通信机楼二期造价B1通信机楼抗震支吊架工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B1通信机楼安装工程/B1通信机楼-通风和防排烟工程/4A_2022_粤港澳通信机楼二期造价B1通信机楼通风和防排烟工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B1通信机楼安装工程/B1通信机楼-消防报警工程/4A_2022_粤港澳通信机楼二期造价B1通信机楼消防报警工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B1通信机楼安装工程/B1通信机楼-智能化工程/4A_2022_粤港澳通信机楼二期造价B1通信机楼智能化工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B1通信机楼安装工程/B1通信机楼-电梯工程/4A_2022_粤港澳通信机楼二期造价B1通信机楼电梯工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B3通信机楼安装工程/B3通信机楼-电气工程/4A_2022_粤港澳通信机楼二期造价B3通信机楼电气工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B3通信机楼安装工程/B3通信机楼-通风和防排烟工程/4A_2022_粤港澳通信机楼二期造价B3通信机楼通风和防排烟工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B3通信机楼安装工程/B3通信机楼-电梯工程/4A_2022_粤港澳通信机楼二期造价B3通信机楼电梯工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B3通信机楼安装工程/B3通信机楼-消防管道及设备工程/4A_2022_粤港澳通信机楼二期造价B3通信机楼消防管道及设备工_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B3通信机楼安装工程/B3通信机楼-智能化工程/4A_2022_粤港澳通信机楼二期造价B3通信机楼智能化工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B3通信机楼安装工程/B3通信机楼-抗震支吊架工程/4A_2022_粤港澳通信机楼二期造价B3通信机楼抗震支吊架工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B3通信机楼安装工程/B3通信机楼-消防报警工程/4A_2022_粤港澳通信机楼二期造价B3通信机楼消防报警工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B3通信机楼安装工程/B3通信机楼-±0.00以下安装工程/4A_2022_粤港澳通信机楼二期造价B3通信机楼000以下安装工_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B3通信机楼安装工程/B3通信机楼-给排水工程/4A_2022_粤港澳通信机楼二期造价B3通信机楼给排水工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B2通信机楼土建工程/B2通信机楼-外墙工程/3A_2022_粤港澳通信机楼二期造价B2通信机楼外墙工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B2通信机楼土建工程/B2通信机楼-基坑支护及土方开挖工程/3A_2022_粤港澳通信机楼二期造价B2通信机楼基坑支护及土方开_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B2通信机楼土建工程/B2通信机楼-桩基础工程/3A_2022_粤港澳通信机楼二期造价B2通信机楼桩基础工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B2通信机楼土建工程/B2通信机楼-±0.00以下土建工程/3A_2022_粤港澳通信机楼二期造价B2通信机楼000以下土建工_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B2通信机楼土建工程/B2通信机楼-±0.00以上土建工程/4A_2022_粤港澳通信机楼二期造价B2通信机楼000以上土建工_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B2通信机楼安装工程/B2通信机楼-电气工程/4A_2022_粤港澳通信机楼二期造价B2通信机楼电气工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B2通信机楼安装工程/B2通信机楼-智能化工程/4A_2022_粤港澳通信机楼二期造价B2通信机楼智能化工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B2通信机楼安装工程/B2通信机楼-消防报警工程/4A_2022_粤港澳通信机楼二期造价B2通信机楼消防报警工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B2通信机楼安装工程/B2通信机楼-电梯工程/4A_2022_粤港澳通信机楼二期造价B2通信机楼电梯工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B2通信机楼安装工程/B2通信机楼-通风和防排烟工程/4A_2022_粤港澳通信机楼二期造价B2通信机楼通风和防排烟工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B2通信机楼安装工程/B2通信机楼-给排水工程/4A_2022_粤港澳通信机楼二期造价B2通信机楼给排水工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B2通信机楼安装工程/B2通信机楼-消防管道及设备工程/4A_2022_粤港澳通信机楼二期造价B2通信机楼消防管道及设备工_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B2通信机楼安装工程/B2通信机楼-±0.00以下安装工程/4A_2022_粤港澳通信机楼二期造价B2通信机楼000以下安装工_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B2通信机楼安装工程/B2通信机楼-抗震支吊架工程/4A_2022_粤港澳通信机楼二期造价B2通信机楼抗震支吊架工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B3通信机楼土建工程/B3通信机楼-外墙工程/3A_2022_粤港澳通信机楼二期造价B3通信机楼外墙工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B3通信机楼土建工程/B3通信机楼-±0.00以下土建工程/3A_2022_粤港澳通信机楼二期造价B3通信机楼000以下土建工_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B3通信机楼土建工程/B3通信机楼-±0.00以上土建工程/4A_2022_粤港澳通信机楼二期造价B3通信机楼000以上土建工_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B3通信机楼土建工程/B3通信机楼-基坑支护及土方开挖工程/3A_2022_粤港澳通信机楼二期造价B3通信机楼基坑支护及土方开_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/B3通信机楼土建工程/B3通信机楼-桩基础工程/3A_2022_粤港澳通信机楼二期造价B3通信机楼桩基础工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外道路工程/3A_2022_粤港澳通信机楼二期造价室外道路工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外管线支架工程/3A_2022_粤港澳通信机楼二期造价室外管线支架工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外电气工程/4A_2022_粤港澳通信机楼二期造价室外电气工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/门卫室土建工程/4A_2022_粤港澳通信机楼二期造价门卫室土建工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/门卫室安装工程/4A_2022_粤港澳通信机楼二期造价门卫室安装工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外围墙工程/3A_2022_粤港澳通信机楼二期造价室外围墙工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外围墙工程/3A_2022_粤港澳通信机楼二期造价室外围墙工程_中国移动广东公司_02.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外挡土墙工程/3A_2022_粤港澳通信机楼二期造价室外挡土墙工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外油罐安装工程/4A_2022_粤港澳通信机楼二期造价室外油罐安装工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外油罐安装工程/4A_2022_粤港澳通信机楼二期造价室外油罐安装工程_中国移动广东公司_02.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外油罐土建工程/3A_2022_粤港澳通信机楼二期造价室外油罐土建工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外油罐土建工程/3A_2022_粤港澳通信机楼二期造价室外油罐土建工程_中国移动广东公司_02.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外绿化工程/3A_2022_粤港澳通信机楼二期造价室外绿化工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/市政给水工程/4A_2022_粤港澳通信机楼二期造价市政给水工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外油机基础工程/3A_2022_粤港澳通信机楼二期造价室外油机基础工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外油机基础工程/3A_2022_粤港澳通信机楼二期造价室外油机基础工程_中国移动广东公司_02.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外油管沟及散水暗沟工程/3A_2022_粤港澳通信机楼二期造价室外油管沟及散水暗沟工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外油管沟及散水暗沟工程/3A_2022_粤港澳通信机楼二期造价室外油管沟及散水暗沟工程_中国移动广东公司_02.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外钢平台工程/3A_2022_粤港澳通信机楼二期造价室外钢平台工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外排水排污工程/4A_2022_粤港澳通信机楼二期造价室外排水排污工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外广场工程/3A_2022_粤港澳通信机楼二期造价室外广场工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外油罐基坑支护及土方开挖工程/3A_2022_粤港澳通信机楼二期造价室外油罐基坑支护及土方开挖工_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外油罐基坑支护及土方开挖工程/3A_2022_粤港澳通信机楼二期造价室外油罐基坑支护及土方开挖工_中国移动广东公司_02.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/原一期室外道路工程/3A_2022_粤港澳通信机楼二期造价原一期室外道路工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/原一期室外道路工程/3A_2022_粤港澳通信机楼二期造价原一期室外道路工程_中国移动广东公司_02.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/场地工程/3A_2022_粤港澳通信机楼二期造价场地工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外蓄冷罐基础工程/3A_2022_粤港澳通信机楼二期造价室外蓄冷罐基础工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/室外工程/室外蓄冷罐基础工程/3A_2022_粤港澳通信机楼二期造价室外蓄冷罐基础工程_中国移动广东公司_02.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/其他费用/临水、临电工程/4A_2022_粤港澳通信机楼二期造价临水临电工程_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/其他费用/工程保险费/3A_2022_粤港澳通信机楼二期造价工程保险费_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/其他费用/防疫费/3A_2022_粤港澳通信机楼二期造价防疫费_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/其他费用/防火门检验试验费/3A_2022_粤港澳通信机楼二期造价防火门检验试验费_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/其他费用/房屋鉴定费/4A_2022_粤港澳通信机楼二期造价房屋鉴定费_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/其他费用/白蚁防治费/4A_2022_粤港澳通信机楼二期造价白蚁防治费_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/其他费用/甲供材料保管费/3A_2022_粤港澳通信机楼二期造价甲供材料保管费_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/其他费用/地下管线探测费/4A_2022_粤港澳通信机楼二期造价地下管线探测费_中国移动广东公司.xlsx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/工程量清单/工程量清单/中国移动粤港澳（广州）通信机楼二期工程施工总承包项目/其他费用/建筑信息模型（BIM）技术应用费用/4A_2022_粤港澳通信机楼二期造价建筑信息模型BIM技术应用费_中国移动广东公司.xlsx
+- docs/library/_projects/2023.1广西桂北云计算产业园一期项目通信机楼土建工程/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2023_桂北云计算产业园一期造价预算_工程档案.pdf
+- docs/library/_projects/2023.3  宁德市大数据产业园及基础配套设施项目（一期）IT云平台/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程量清单/3A_2023_宁德大数据产业园一期造价工程量清单编制说明1_工程档案.doc
+- docs/library/_projects/2023.3  宁德市大数据产业园及基础配套设施项目（一期）IT云平台/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价/4A_2023_宁德大数据产业园一期造价宁德市大数据产业园及基础配套_工程档案.xlsx
+- docs/library/_projects/2023.3  宁德市大数据产业园及基础配套设施项目（一期）IT云平台/造价类资料（全程免费，得来不易需要完成一些小任务）1/1控制价/3A_2023_宁德大数据产业园一期造价封面_工程档案.docx
+- docs/library/_projects/2023.4 定兴县公安局智慧乡村、小区与指挥系统智慧化项目-机房/造价类资料（全程免费，得来不易需要完成一些小任务）1/定兴县公安局智慧乡村、小区与指挥系统智慧化项目-机房/3A_2023_定兴县公安机房造价定兴县公安局智慧乡村小区与指_工程档案.xlsx
+- docs/library/_projects/2023.4 定兴县公安局智慧乡村、小区与指挥系统智慧化项目-机房/造价类资料（全程免费，得来不易需要完成一些小任务）1/定兴县公安局智慧乡村、小区与指挥系统智慧化项目-机房/定兴县公安局智慧乡村、小区与指挥系统智慧化项目/3A_2023_定兴县公安机房造价定兴县公安局智慧乡村小区与指_工程档案.xlsx
+- docs/library/_projects/2023.4 定兴县公安局智慧乡村、小区与指挥系统智慧化项目-机房/造价类资料（全程免费，得来不易需要完成一些小任务）1/定兴县公安局智慧乡村、小区与指挥系统智慧化项目-机房/定兴县公安局智慧乡村、小区与指挥系统智慧化项目/机房-土建/4A_2023_定兴县公安机房造价机房土建_工程档案.xlsx
+- docs/library/_projects/2023.4 定兴县公安局智慧乡村、小区与指挥系统智慧化项目-机房/造价类资料（全程免费，得来不易需要完成一些小任务）1/定兴县公安局智慧乡村、小区与指挥系统智慧化项目-机房/定兴县公安局智慧乡村、小区与指挥系统智慧化项目/机房-安装/4A_2023_定兴县公安机房造价机房安装_工程档案.xlsx
+- docs/library/_projects/2024.11 安庆高铁新区高光谱卫星数据中心及卫星制造产线项目工业厂房-1#厂房/造价类资料（全程免费，得来不易需要完成一些小任务）1/图纸答疑/3A_2024_安庆高光谱卫星数据中心造价设计单位回复_工程档案.docx
+- docs/library/_projects/2024.11 安庆高铁新区高光谱卫星数据中心及卫星制造产线项目工业厂房-1#厂房/造价类资料（全程免费，得来不易需要完成一些小任务）1/图纸答疑/3A_2024_安庆高光谱卫星数据中心造价建设单位回复_工程档案.docx
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/造价类资料（全程免费，得来不易需要完成一些小任务）1/计价20241202 - 副本/计价20241202 - 副本/3A_2024_南平延平通信枢纽楼造价有限空间风险源识别清单_中国移动福建公司.xlsx
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/造价类资料（全程免费，得来不易需要完成一些小任务）1/计价20241202 - 副本/计价20241202 - 副本/3A_2024_南平延平通信枢纽楼造价主要材料和设备项目与价格表_中国移动福建公司.xlsx
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/造价类资料（全程免费，得来不易需要完成一些小任务）1/计价20241202 - 副本/计价20241202 - 副本/清单/4A_2024_南平延平通信枢纽楼造价中国移动福建南平延平通信枢纽_中国移动福建公司.xlsx
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/造价类资料（全程免费，得来不易需要完成一些小任务）1/计价20241202 - 副本/计价20241202 - 副本/清单/3A_2024_南平延平通信枢纽楼造价2清单中国移动福建南平延平通_中国移动福建公司.doc
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/造价类资料（全程免费，得来不易需要完成一些小任务）1/计价20241202 - 副本/计价20241202 - 副本/1控制价/4A_2024_南平延平通信枢纽楼造价中国移动福建南平延平通信枢纽_中国移动福建公司.xlsx
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/造价类资料（全程免费，得来不易需要完成一些小任务）1/计价20241202 - 副本/计价20241202 - 副本/1控制价/3A_2024_南平延平通信枢纽楼造价2招标控制价中国移动福建南平_中国移动福建公司.doc
+- docs/library/_projects/2024.12 中国联通茂名新建通信局房项目一期（中国联通茂名5G边缘计算中心（一期））初设深度/造价类资料（全程免费，得来不易需要完成一些小任务）1/附件1-工程量清单/中国联通茂名新建通信局房项目一期（中国联通茂名5G边缘计算中心（一期））工程总承包（EPC）项目--1控制价/3A_2024_茂名联通5G边缘计算中心造价一封面及汇总表招_中国联通广东公司.xlsx
+- docs/library/_projects/2024.12 中国联通茂名新建通信局房项目一期（中国联通茂名5G边缘计算中心（一期））初设深度/造价类资料（全程免费，得来不易需要完成一些小任务）1/附件1-工程量清单/中国联通茂名新建通信局房项目一期（中国联通茂名5G边缘计算中心（一期））工程总承包（EPC）项目--1工程量清单/3A_2024_茂名联通5G边缘计算中心造价一封面及汇总表招_中国联通广东公司.xlsx
+- docs/library/_projects/2024.2 国家工业信息安全发展研究中心•华南分中心星河东悦汇载体项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程量清单EX/4A_2024_国家工信安全华南分中心造价国家工业信息安全发展研究中心_工程档案.xlsx
+- docs/library/_projects/2024.2 国家工业信息安全发展研究中心•华南分中心星河东悦汇载体项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/工程量清单EX/3A_2024_国家工信安全华南分中心造价单项工程招标控制价汇总表_工程档案.xlsx
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2024_忠县生产调度用房造价工程量清单_中国移动重庆公司.pdf
+- docs/library/_projects/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2024_科学城运维楼造价工程量清单_中国电信重庆公司.pdf
+- docs/library/_projects/2024.8 中国电信云计算重庆基地项目（四期）土建/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2024_电信重庆基地四期造价附件一技术规范书汇总0716_中国电信重庆公司.pdf
+- docs/library/_projects/2024.8 中国电信云计算重庆基地项目（四期）土建/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2024_电信重庆基地四期造价附件四主要设计技术要求1_中国电信重庆公司.pdf
+- docs/library/_projects/2024.8 中国电信云计算重庆基地项目（四期）土建/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2024_电信重庆基地四期造价附件八最高限价及安全文明施工_中国电信重庆公司.pdf
+- docs/library/_projects/2024.8 中国电信云计算重庆基地项目（四期）土建/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2024_电信重庆基地四期造价工程量清单_中国电信重庆公司.pdf
+- docs/library/_projects/2025.3 全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号/造价类资料（全程免费，得来不易需要完成一些小任务）1/全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号楼总承包（续建）项目-清单/1a#地下室/安装工程/3A_2025_山东云中心省会经济圈分中心造价安装工程_工程档案.xlsx
+- docs/library/_projects/2025.3 全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号/造价类资料（全程免费，得来不易需要完成一些小任务）1/全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号楼总承包（续建）项目-清单/1#楼/安装工程/3A_2025_山东云中心省会经济圈分中心造价安装工程_工程档案.xlsx
+- docs/library/_projects/2025.3 全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号/造价类资料（全程免费，得来不易需要完成一些小任务）1/全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号楼总承包（续建）项目-清单/1#楼/装饰工程/3A_2025_山东云中心省会经济圈分中心造价装饰工程_工程档案.xlsx
+- docs/library/_projects/2025.3 全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号/造价类资料（全程免费，得来不易需要完成一些小任务）1/全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号楼总承包（续建）项目-清单/2-B#/安装工程/3A_2025_山东云中心省会经济圈分中心造价安装工程_工程档案.xlsx
+- docs/library/_projects/2025.3 全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号/造价类资料（全程免费，得来不易需要完成一些小任务）1/全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号楼总承包（续建）项目-清单/2-B#/建筑工程/3A_2025_山东云中心省会经济圈分中心造价建筑工程_工程档案.xlsx
+- docs/library/_projects/2025.3 全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号/造价类资料（全程免费，得来不易需要完成一些小任务）1/全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号楼总承包（续建）项目-清单/2-B#/装饰工程/3A_2025_山东云中心省会经济圈分中心造价装饰工程_工程档案.xlsx
+- docs/library/_projects/2025.3 全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号/造价类资料（全程免费，得来不易需要完成一些小任务）1/全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号楼总承包（续建）项目-清单/2-A#/安装工程/3A_2025_山东云中心省会经济圈分中心造价安装工程_工程档案.xlsx
+- docs/library/_projects/2025.3 全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号/造价类资料（全程免费，得来不易需要完成一些小任务）1/全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号楼总承包（续建）项目-清单/2-A#/建筑工程/3A_2025_山东云中心省会经济圈分中心造价建筑工程_工程档案.xlsx
+- docs/library/_projects/2025.3 全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号/造价类资料（全程免费，得来不易需要完成一些小任务）1/全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号楼总承包（续建）项目-清单/2-A#/装饰工程/3A_2025_山东云中心省会经济圈分中心造价装饰工程_工程档案.xlsx
+- docs/library/_projects/2025.3 全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号/造价类资料（全程免费，得来不易需要完成一些小任务）1/全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号楼总承包（续建）项目-清单/2-A#/零星工程/3A_2025_山东云中心省会经济圈分中心造价零星工程_工程档案.xlsx
+- docs/library/_projects/2025.3 全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号/造价类资料（全程免费，得来不易需要完成一些小任务）1/全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号楼总承包（续建）项目-清单/蓄冷罐基础/建筑工程/3A_2025_山东云中心省会经济圈分中心造价建筑工程_工程档案.xlsx
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/造价类资料（全程免费，得来不易需要完成一些小任务）1/发网南安市供电公司备用调度指挥数据中心预算（发布1）/4A_2025_南安供电备用调度数据中心造价南安市供电公司备用调度指挥数_国网福建南安.xlsx
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/造价类资料（全程免费，得来不易需要完成一些小任务）1/发网南安市供电公司备用调度指挥数据中心预算（发布1）/3A_2025_南安供电备用调度数据中心造价3主要材料和设备项目与价格表_国网福建南安.xlsx
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/造价类资料（全程免费，得来不易需要完成一些小任务）1/发网南安市供电公司备用调度指挥数据中心预算（发布1）/3A_2025_南安供电备用调度数据中心造价建筑工程招标控制价编制说明南_国网福建南安.doc
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/造价类资料（全程免费，得来不易需要完成一些小任务）1/发网南安市供电公司备用调度指挥数据中心预算（发布1）/4A_2025_南安供电备用调度数据中心造价南安市供电公司备用调度指挥数_国网福建南安_02.xlsx
+- docs/library/_projects/2025.7 成都华微高端集成电路研发及产业基地数据机房项目/造价类资料（全程免费，得来不易需要完成一些小任务）1/3A_2025_成都华微数据机房造价清单_工程档案.pdf
+- docs/library/M14_中国板块/56_有用/5C_2022_定制化IDC解决方案拓展指导_未署名__002.docx
+- docs/library/M14_中国板块/56_有用/5C_2022_定制化IDC解决方案案例集_未署名__002.pptx
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_定制化IDC解决方案方案建议_未署名__002.xlsx
+- docs/library/M14_中国板块/56_有用/5C_2022_定制化IDC解决方案培训材料_未署名__002.pptx
+- docs/library/M14_中国板块/34_存档/3C_2022_IDC资质对标_未署名__003.xlsx
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_定制化IDC验收建议书_未署名__003.docx
+- docs/library/M14_中国板块/56_有用/5C_2022_IDC服务质量标准_未署名__002.docx
+- docs/library/M14_中国板块/56_有用/5C_2022_东莞创机电业数据中心项目方案_未署名.pptx
+- docs/library/M14_中国板块/56_有用/6C_2019_中国IDC行业资讯大全201_未署名.pdf
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_企业数据中心系统平台技术方案_未署名__003.docx
+- docs/library/M14_中国板块/34_存档/3C_2022_公安未来数据中心展望_未署名.pptx
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_华为云数据中心解决方案技术方_未署名.docx
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_华为双活数据中心解决方案_未署名.pptx
+- docs/library/M14_中国板块/56_有用/6C_2022_华为数据中心解决方案典型工程_未署名__002.docx
+- docs/library/M14_中国板块/56_有用/6C_2022_叶辉增效降费共建绿色数据中心_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_吕鑫云计算数据中心智能运维一_未署名__002.pdf
+- docs/library/M14_中国板块/34_存档/3C_2022_吴倩5G时代的传统企业混合云_未署名.pdf
+- docs/library/M14_中国板块/56_有用/5C_2022_定制化IDC解决方案拓展指导_未署名.docx
+- docs/library/M14_中国板块/56_有用/5C_2022_定制化IDC解决方案案例集_未署名.pptx
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_定制化IDC解决方案方案建议_未署名.xlsx
+- docs/library/M14_中国板块/56_有用/5C_2022_定制化IDC解决方案培训材料_未署名.pptx
+- docs/library/M14_中国板块/34_存档/3C_2022_IDC资质对标_未署名__002.xlsx
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_定制化IDC验收建议书_未署名__002.docx
+- docs/library/M14_中国板块/56_有用/5C_2022_IDC服务质量标准_未署名.docx
+- docs/library/M14_中国板块/56_有用/5C_2022_定制化IDC解决方案简介_未署名.pptx
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_张东来蒸发冷却技术在国际知名_未署名__002.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_数据中心基础设施解决方案_未署名__002.doc
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_数据中心网络建设方案_未署名.docx
+- docs/library/M14_中国板块/34_存档/3C_2022_数据中心运行可视化平台解决方_未署名.pptx
+- docs/library/M14_中国板块/56_有用/5C_2022_春节培训数据中心产品介绍_未署名.pptx
+- docs/library/M14_中国板块/56_有用/5C_2022_江森自控数据中心空调节能解决_未署名__002.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_艾默生数据中心机房整体解决方_未署名__002.pptx
+- docs/library/M14_中国板块/34_存档/3C_2022_薛亮资本协同的数据中心特征_未署名.pdf
+- docs/library/M14_中国板块/56_有用/5C_2022_DELL新一代模块化数据中心_未署名.pptx
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_XXX云平台数据中心设计方案_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_XX数据中心网络及安全方案建_未署名.doc
+- docs/library/M14_中国板块/56_有用/6C_2022_中国联通数据中心技术规范书_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_云数据中心解决方案技术方案_未署名.docx
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_企业数据中心系统平台技术方案_未署名__002.docx
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_公交数据中心云平台建设方案书_未署名__002.doc
+- docs/library/M14_中国板块/56_有用/5C_2022_动态绿色数据中心解决方案_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_华为IDC数据中心解决方案_未署名__002.pptx
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_华为数据中心基础设施解决方案_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_华为数据中心解决方案部署指南_未署名.pdf
+- docs/library/M14_中国板块/56_有用/6C_2022_华为数据中心解决方案典型工程_未署名.docx
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_国家云计算XX数据中心建设方_未署名.doc
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_完整的IDC机房建设方案_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_数据中心基础网络解决方案_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_数据中心基础设施解决方案_未署名.doc
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_数据中心建设整体方案_未署名.doc
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_数据中心建设方案_未署名.docx
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_数据中心整体解决方案_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_数据中心机房建设方案_未署名.docx
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_数据中心机房设计方案_未署名.doc
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_数据中心设备方案_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_数据中心运维服务方案_未署名.docx
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_智汇校园云领未来华为智慧校园_未署名__002.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_美国康普数据中心规划指南_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_艾默生数据中心机房整体解决方_未署名.pptx
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_011弱电机房工程运维方案后_未署名.docx
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_015数据中心机房建设方案_未署名.docx
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_018数据中心机房建设方案_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_020机房综合布线项目施工方_未署名.docx
+- docs/library/M14_中国板块/56_有用/5C_2022_021机房监控项目方案_未署名.doc
+- docs/library/M14_中国板块/56_有用/5C_2022_023医院机房工程解决方案_未署名.pptx
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_026数据中心机房建设方案_未署名.docx
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_07弱电机房建设方案传统机房_未署名.pptx
+- docs/library/M14_中国板块/56_有用/6C_2022_弱电系统成本_未署名.xls
+- docs/library/M14_中国板块/56_有用/6C_2022_弱电系统概算_未署名.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_包2一卡通系统工程量报价清单_未署名.xls
+- docs/library/M14_中国板块/56_有用/5C_2022_包3一音视频系统工程量报价清_未署名.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_包4一闭路电视系统工程量报价_未署名.xls
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_包7网络设备安装工程量报价清_未署名.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_包8桥架和配管安装工程量报价_未署名.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_001竣工资料封皮_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_003开工报告_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_004分包单位资格报审表_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_005A施工组织设计报审表_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_005B施工组织_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_005C施工方案_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_006技术安全交底记录_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_007竣工报告_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_008材料进场验收_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_009电气工程隐蔽验收记录_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_010线缆检验批_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_011系统检验批_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_012设备安装质量检查表_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_013视频安防监控系统_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_014住宅小区智能化Ⅱ_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_015停车场库管理系统_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_016巡更管理系统_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_017出入口控制门禁系统1_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_018分部工程验收记录_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_019分项验收记录_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_021A系统试运行记录_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_021B试运行报告_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_022技术验收_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_023资料审查_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_024验收结论汇总_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_028竣工验收报告_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_029系统交接资料_未署名.xls
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_智能化弱电集成施工组织设计方_未署名__002.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_建设工程施工劳务分包合同示范_未署名.doc
+- docs/library/M14_中国板块/56_有用/6C_2022_一个详细的计算机机房设计方案_未署名.docx
+- docs/library/M10_建设运营与人才/56_有用/6C_2016_完整的弱电施工组织方案201_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_智能化弱电集成施工组织设计方_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_智能化弱电集成施工组织设计方_未署名_02.doc
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_机房_建设系统弱电智能化20_未署名.pptx
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_某会展中心弱电工程施工组织设_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_组织机构与工作流程图_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_行政办公大楼弱电系统总体设计_未署名.doc
+- docs/library/M14_中国板块/56_有用/6C_2022_布线标识管理方案_未署名.docx
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_设备资源机房标识规范_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_弱电工程施工流程和规范_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_弱电工程施工规范表格_未署名.doc
+- docs/library/M14_中国板块/56_有用/5C_2022_弱电工程计算机机房设计规范_未署名.doc
+- docs/library/M14_中国板块/56_有用/5C_2022_弱电机房工程材料推荐_未署名.xlsx
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_10附件5技术响应DX_未署名.doc
+- docs/library/M14_中国板块/34_存档/3C_2022_10附件75资格声明格式_未署名.docx
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_13附件10实施组织方案DX_未署名.doc
+- docs/library/M14_中国板块/34_存档/3C_2022_14附件13资格声明_未署名.doc
+- docs/library/M14_中国板块/34_存档/3C_2022_14附件13资格声明_未署名.docx
+- docs/library/M14_中国板块/56_有用/5C_2022_16附件投标分项报价表DX_未署名.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_4附件1投标函_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_9附件5_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_各种弱电工程表格大全_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_弱电工程全套竣工资料_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_弱电工程施工规范表格_未署名__002.doc
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_弱电工程流程_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_弱电工程表格大全_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_弱电工程预算参考定额_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_弱电工程预算方法_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_弱电项目竣工资料定稿版_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_小工程公司组织结构部门岗位设_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_工程项目管理过程要点评估_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_工程项目财务管理_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_建筑工程财务制度_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_弱电工程项目部及主要人员职责_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_弱电系统工程工作流程_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_弱电项目施工管理流程与表格工_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_施工企业项目部财务管理制度_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_某弱电安装工程部年终总结_s_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_某项目弱电工程实施管理模式及_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_停车场系统施工规范_未署名.doc
+- docs/library/M14_中国板块/34_存档/3C_2022_如何选购对讲机_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_电子巡更系统方案_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_楼宇可视对讲系统安装与调试_未署名.doc
+- docs/library/M14_中国板块/56_有用/6C_2022_楼宇对讲基础知识培训_未署名.doc
+- docs/library/M14_中国板块/56_有用/5C_2022_楼宇对讲知识_未署名.doc
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_深入浅出安防视频监控系统_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_门禁系统安装规范及调试要点_未署名.doc
+- docs/library/M14_中国板块/56_有用/5C_2022_防盗报警系统培训资料_未署名.doc
+- docs/library/M14_中国板块/56_有用/5C_2022_防盗报警系统组成及原理介绍_未署名.doc
+- docs/library/M14_中国板块/56_有用/6C_2022_08_北美TIA942数据中_未署名.doc
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_沃德思绿色数据中心解决方案_未署名__002.ppt
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_运营商数据中心解决方案H3C_未署名.ppt
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_阿尔西数据中心空调解决方案_未署名__002.ppt
+- docs/library/M14_中国板块/34_存档/3C_2022_数据中心IT规划方案_未署名.ppt
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_沃德思绿色数据中心解决方案_未署名.ppt
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_阿尔西数据中心空调解决方案_未署名.ppt
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_014数据中心机房建设方案_未署名.ppt
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_建筑弱电安装工程量计算_未署名.ppt
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_建筑弱电工程量计算3_未署名.ppt
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_弱电系统PPT方案_未署名.ppt
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_原建筑智能化弱电项目施工流程_未署名.ppt
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_建筑智能化弱电项目施工流程第_未署名.ppt
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_弱电工程施工管理基础和实际应_未署名.ppt
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_弱电系统集成企业解决方案_未署名.ppt
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_安全防范工程设计与施工技术讲_未署名.ppt
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_安全防范工程设计与施工技术讲_未署名_02.ppt
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_安全防范工程设计与施工技术讲_未署名.ppt
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_安全防范工程设计与施工技术讲_未署名_02.ppt
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_安全防范工程设计与施工技术讲_未署名_03.ppt
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_安全防范工程设计与施工技术讲_未署名_03.ppt
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_安全防范工程设计与施工技术讲_未署名_04.ppt
+- docs/library/_projects/2016.1 中国联通湖南长沙云计算中心一期IDC机房、动力中心、动力楼、通信枢纽楼建设工程/人防图纸/结构/7��22����ͨ�˷��ṹ��ɰ�/7月22号联通人防结构完成版/计算书/3C_2022_复件封面_未署名.doc
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图彩色/5C_2022_BIM管线综合目录V10_未署名.xlsx
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/16海绵城市/中国移动南方基地二期二阶段项目海绵城市施工图审查材料/中国移动南方基地二期二阶段项目海绵城市施工图审查材料/3C_2022_中国移动南方基地二期工程二阶_未署名.doc
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/16海绵城市/中国移动南方基地二期二阶段项目海绵城市施工图审查材料/中国移动南方基地二期二阶段项目海绵城市施工图审查材料/5C_2022_海绵城市设计说明专篇_未署名.pdf
+- docs/library/_projects/2019.8 中国移动广西公司来宾综合业务接入机房工程/来宾地下水泵房（筏板基础）/施工图/5C_2022_slabcal_2_未署名.docx
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1结构1-3#楼+计算书0805/(数据区1)1~3#楼结构审图2020.08.03/(数据区1)3#楼结构审图2020.08.04/3#楼结构计算书/基础计算书/4C_2020_3楼嵌岩桩计算表202040_未署名.xls
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1结构1-3#楼+计算书0805/(数据区1)1~3#楼结构审图2020.08.03/(数据区1)3#楼结构审图2020.08.04/3#楼结构计算书/挡土墙计算书/4C_2022_DTQ1_未署名.rtf
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1结构1-3#楼+计算书0805/(数据区1)1~3#楼结构审图2020.08.03/(数据区1)3#楼结构审图2020.08.04/3#楼结构计算书/挡土墙计算书/4C_2022_DTQ2_未署名.rtf
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1结构1-3#楼+计算书0805/(数据区1)1~3#楼结构审图2020.08.03/(数据区1)3#楼结构审图2020.08.04/3#楼结构计算书/挡土墙计算书/4C_2022_DTQ3_未署名.rtf
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1结构1-3#楼+计算书0805/(数据区1)1~3#楼结构审图2020.08.03/(数据区1)3#楼结构审图2020.08.04/3#楼结构计算书/挡土墙计算书/4C_2022_DTQ4_未署名.rtf
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1结构1-3#楼+计算书0805/(数据区1)1~3#楼结构审图2020.08.03/(数据区1)3#楼结构审图2020.08.04/3#楼结构计算书/挡土墙计算书/4C_2022_DTQ5_未署名.rtf
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1结构1-3#楼+计算书0805/(数据区1)1~3#楼结构审图2020.08.03/(数据区1)3#楼结构审图2020.08.04/3#楼结构计算书/挡土墙计算书/4C_2022_DTQ6_未署名.rtf
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1结构1-3#楼+计算书0805/(数据区1)1~3#楼结构审图2020.08.03/(数据区1)3#楼结构审图2020.08.04/3#楼结构计算书/挡土墙计算书/4C_2022_SCQ_未署名.rtf
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1结构1-3#楼+计算书0805/(数据区1)1~3#楼结构审图2020.08.03/（数据区1）1.2#楼（含地下室）结构审图2020.8.3/1#楼计算书/上/楼梯计算书/5C_2022_1号楼梯板式楼梯计算书_未署名.docx
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1结构1-3#楼+计算书0805/(数据区1)1~3#楼结构审图2020.08.03/（数据区1）1.2#楼（含地下室）结构审图2020.8.3/1#楼计算书/下/楼梯计算书/5C_2022_1号楼梯板式楼梯计算书_未署名.docx
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1结构1-3#楼+计算书0805/(数据区1)1~3#楼结构审图2020.08.03/（数据区1）1.2#楼（含地下室）结构审图2020.8.3/1.2#楼地下室计算书/基础计算书/4C_2022_12楼嵌岩桩计算表_未署名.xls
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1结构1-3#楼+计算书0805/(数据区1)1~3#楼结构审图2020.08.03/（数据区1）1.2#楼（含地下室）结构审图2020.8.3/1.2#楼地下室计算书/挡土墙计算书/4C_2022_DTQ1_未署名.rtf
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1结构1-3#楼+计算书0805/(数据区1)1~3#楼结构审图2020.08.03/（数据区1）1.2#楼（含地下室）结构审图2020.8.3/1.2#楼地下室计算书/挡土墙计算书/4C_2022_DTQ2_未署名.rtf
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1结构1-3#楼+计算书0805/(数据区1)1~3#楼结构审图2020.08.03/（数据区1）1.2#楼（含地下室）结构审图2020.8.3/1.2#楼地下室计算书/挡土墙计算书/4C_2022_DTQ3_未署名.rtf
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1结构1-3#楼+计算书0805/(数据区1)1~3#楼结构审图2020.08.03/（数据区1）1.2#楼（含地下室）结构审图2020.8.3/1.2#楼地下室计算书/挡土墙计算书/4C_2022_DTQ4_未署名.rtf
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1结构1-3#楼+计算书0805/(数据区1)1~3#楼结构审图2020.08.03/（数据区1）1.2#楼（含地下室）结构审图2020.8.3/1.2#楼地下室计算书/挡土墙计算书/4C_2022_DTQ5_未署名.rtf
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1结构1-3#楼+计算书0805/(数据区1)1~3#楼结构审图2020.08.03/（数据区1）1.2#楼（含地下室）结构审图2020.8.3/1.2#楼地下室计算书/挡土墙计算书/4C_2022_DTQ6_未署名.rtf
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1结构1-3#楼+计算书0805/(数据区1)1~3#楼结构审图2020.08.03/（数据区1）1.2#楼（含地下室）结构审图2020.8.3/1.2#楼地下室计算书/挡土墙计算书/4C_2022_SCQ_未署名.rtf
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1结构1-3#楼+计算书0805/(数据区1)1~3#楼结构审图2020.08.03/（数据区1）1.2#楼（含地下室）结构审图2020.8.3/2#楼计算书/楼梯计算书/5C_2022_2号楼板式楼梯计算书_未署名.docx
+- docs/library/_projects/2021.1 六安电信信息化中心和六安电信云计算数据中心项目/室外、幕墙图纸2022.2.13整理/景施-六安电信楼2022.01/景施-六安电信楼2022.01/新增部分绿化/5C_2022_苗木表不打印_未署名.xlsx
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件二：详细勘察文件/测量成果/3C_2022_控制点成果表_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件二：详细勘察文件/测量成果/3C_2022_测量说明_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件六：装修材料封样---20220728/3C_2022_吊顶_未署名.xlsx
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件六：装修材料封样---20220728/3C_2022_地砖_未署名.xlsx
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件六：装修材料封样---20220728/3C_2022_墙面_未署名.xlsx
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件六：装修材料封样---20220728/3C_2022_踢脚_未署名.xlsx
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-节能及绿建报告书汇总_解压2/忠县移动中心-节能及绿建报告书汇总/5C_2022_围护结构内部冷凝计算报告_建_未署名.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-节能及绿建报告书汇总_解压2/忠县移动中心-节能及绿建报告书汇总/5C_2022_围护结构结露计算报告一维算法_未署名.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-节能及绿建报告书汇总_解压2/忠县移动中心-节能及绿建报告书汇总/建筑节能附录/3C_2022_外窗可开启面积占房间外墙面积_未署名.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-节能及绿建报告书汇总_解压2/忠县移动中心-节能及绿建报告书汇总/建筑节能附录/3C_2022_遮阳详细计算过程报告书_建筑_未署名.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-节能及绿建报告书汇总_解压2/忠县移动中心-节能及绿建报告书汇总/5C_2022_权衡计算报告书_建筑1_公建_未署名.doc
+- docs/library/_projects/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/附件三：施工图图纸/绿建和节能/运维楼绿建施工图/绿建分析报告/5C_2022_场地径流控制计算书_未署名.docx
+- docs/library/_projects/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/附件三：施工图图纸/绿建和节能/运维楼绿建施工图/绿建分析报告/6C_2022_室内背景噪声计算分析报告_绿_未署名.doc
+- docs/library/_projects/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/附件三：施工图图纸/绿建和节能/运维楼绿建施工图/绿建分析报告/3C_2022_房间外窗含透光门及透光幕墙有_未署名.docx
+- docs/library/_projects/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/附件三：施工图图纸/绿建和节能/运维楼绿建施工图/绿建分析报告/3C_2022_房间外窗含透光门及透光幕墙有_未署名_02.docx
+- docs/library/_projects/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/附件三：施工图图纸/绿建和节能/运维楼绿建施工图/绿建分析报告/3C_2022_抗风荷载计算书_未署名.doc
+- docs/library/_projects/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/附件三：施工图图纸/绿建和节能/运维楼绿建施工图/绿建分析报告/3C_2022_绿色建材比例计算表_未署名.doc
+- docs/library/_projects/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/附件三：施工图图纸/绿建和节能/运维楼绿建施工图/绿建分析报告/3C_2022_高强钢筋和高性能混凝土计算表_未署名.docx
+- docs/library/_projects/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/附件三：施工图图纸/绿建和节能/运维楼绿建施工图/5C_2022_节能绿色建筑施工图设计基本情_未署名.doc
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0000_目录A2ML_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0037_建筑绿色与节能_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0038_建筑绿色与节能_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/5C_2022_建施0039_建筑绿色与节能_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/5C_2022_建施0040_建筑绿色与节能_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0041_建筑绿色与节能_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0042_建筑绿色与节能_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0043_建筑绿色与节能_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/总图、水池水泵房、室外工程建筑部分/PDF/3C_2022_地下管线分册目录_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/总图、水池水泵房、室外工程建筑部分/PDF/5C_2022_室外工程景观工程分册建筑部分_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/总图、水池水泵房、室外工程建筑部分/PDF/3C_2022_海绵目录_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/给排水/土建给排水机房水泵房(cad+PDF)/3C_2022_衢州消防水泵房给排水施工图_未署名.pdf
+- docs/library/04_市场与研究/AI与算力/Z4 人工智能/赠送服务
+- docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心
+- docs/library/04_市场与研究/中文行业报告集/智算中心合集
+- docs/library/04_市场与研究/中文行业报告集/智算中心合集/智算
+- docs/library/04_市场与研究/英文机构报告/AQ458-2026年7月 Data Center IT Capex Forecast
+- docs/library/04_市场与研究/英文机构报告/BQ161-全球数据中心电力基础设施市场 Global Data Center Power Infrastructure Market 2025-2035
+- docs/library/04_市场与研究/英文机构报告/BQ179-数据中心托管市场 Data Center Colocation
+- docs/library/06_工程图纸
+- docs/library/06_工程图纸/01/02项目【华东地区 2019.6出版 无清单】xx国际信息中心机楼工程/电信5#楼邮电院校审修改版2019.08.05
+- docs/library/06_工程图纸/01/04项目【华东地区 2017出版 无清单】xx电信通信机楼项目/弱电
+- docs/library/06_工程图纸/01/04项目【华东地区 2017出版 无清单】xx电信通信机楼项目/结施汇总（1版）
+- docs/library/06_工程图纸/01/05项目【华中地区 2016出版 带清单EXCEL表格】xx联通计算中心一期工程/IDC动力中心
+- docs/library/06_工程图纸/01/05项目【华中地区 2016出版 带清单EXCEL表格】xx联通计算中心一期工程/人防图纸
+- docs/library/06_工程图纸/01/05项目【华中地区 2016出版 带清单EXCEL表格】xx联通计算中心一期工程/基坑支护
+- docs/library/06_工程图纸/01/05项目【华中地区 2016出版 带清单EXCEL表格】xx联通计算中心一期工程/枢纽楼动力中心
+- docs/library/06_工程图纸/01/05项目【华中地区 2016出版 带清单EXCEL表格】xx联通计算中心一期工程/通信枢纽楼
+- docs/library/06_工程图纸/01/07项目【华东地区 2016.5出版 无清单】x产业园数据中心/自控
+- docs/library/06_工程图纸/01/08项目【华北地区 2019.2出版 无清单】x云数据中心三期/1-建筑
+- docs/library/06_工程图纸/01/08项目【华北地区 2019.2出版 无清单】x云数据中心三期/5-电气
+- docs/library/06_工程图纸/01/08项目【华北地区 2019.2出版 无清单】x云数据中心三期/6-弱电
+- docs/library/06_工程图纸/01/08项目【华北地区 2019.2出版 无清单】x云数据中心三期/7-电源
+- docs/library/06_工程图纸/01/08项目【华北地区 2019.2出版 无清单】x云数据中心三期/9-装饰
+- docs/library/06_工程图纸/3D模型/F182、机房3D模型/02
+- docs/library/06_工程图纸/3D模型/F182、机房3D模型/03
+- docs/library/06_工程图纸/3D模型/F182、机房3D模型/04
+- docs/library/06_工程图纸/3D模型/F182、机房3D模型/08
+- docs/library/06_工程图纸/3D模型/F182、机房3D模型/attachment_1619484832215
+- docs/library/06_工程图纸/3D模型/F182、机房3D模型/attachment_1621055561371
+- docs/library/06_工程图纸/3D模型/F182、机房3D模型/attachment_1622535472978
+- docs/library/06_工程图纸/3D模型/F182、机房3D模型/attachment_1627027623062
+- docs/library/06_工程图纸/3D模型/F182、机房3D模型/attachment_1650527417482
+- docs/library/06_工程图纸/3D模型/F182、机房3D模型/attachment_1678872327666
+- docs/library/06_工程图纸/3D模型/F182、机房3D模型/attachment_1681458794832
+- docs/library/06_工程图纸/3D模型/F182、机房3D模型/zip
+- docs/library/06_工程图纸/3D模型/F182、机房3D模型/À■╬±ã¸
+- docs/library/06_工程图纸/3D模型/F182、机房3D模型/尚艺素材库2
+- docs/library/06_工程图纸/3D模型/F182、机房3D模型/尚艺素材库3
+- docs/library/06_工程图纸/3D模型/F182、机房3D模型/尚艺素材库4
+- docs/library/06_工程图纸/3D模型/F182、机房3D模型/尚艺素材库8
+- docs/library/06_工程图纸/3D模型/F182、机房3D模型/机房设备_交换机_机柜_路由器_机组  15个
+- docs/library/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程
+- docs/library/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程_解压2
+- docs/library/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/02项目【华东地区 2019.6出版 无清单】xx国际信息中心机楼工程
+- docs/library/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/02项目【华东地区 2019.6出版 无清单】xx国际信息中心机楼工程_解压2
+- docs/library/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/03项目【华西地区 2018.11出版 无清单】xx物联网基地机房工程
+- docs/library/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/03项目【华西地区 2018.11出版 无清单】xx物联网基地机房工程_解压2
+- docs/library/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/04项目【华东地区 2017出版 无清单】xx电信通信机楼项目
+- docs/library/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/04项目【华东地区 2017出版 无清单】xx电信通信机楼项目_解压2
+- docs/library/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/05项目【华中地区 2016出版 带清单EXCEL表格】xx联通计算中心一期工程
+- docs/library/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/05项目【华中地区 2016出版 带清单EXCEL表格】xx联通计算中心一期工程_解压2
+- docs/library/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/06项目【华北地区 2018.7出版 无清单】xx移动数据中心二期工程
+- docs/library/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/06项目【华北地区 2018.7出版 无清单】xx移动数据中心二期工程_解压2
+- docs/library/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/07项目【华东地区 2016.5出版 无清单】x产业园数据中心
+- docs/library/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/07项目【华东地区 2016.5出版 无清单】x产业园数据中心_解压2
+- docs/library/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/08项目【华北地区 2019.2出版 无清单】x云数据中心三期
+- docs/library/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸/08项目【华北地区 2019.2出版 无清单】x云数据中心三期_解压2
+- docs/library/06_工程图纸/机房机柜布置弱电图立面图图纸设计CAD素材图库
+- docs/library/06_工程图纸/机房机柜数据中心visio素材服务器存储网络图系统拓扑图技术架构/b01382机房机柜数据中心visio素材/服务器存储数据中心
+- docs/library/06_工程图纸/机房机柜数据中心visio素材服务器存储网络图系统拓扑图技术架构/b01382机房机柜数据中心visio素材/机房机柜
+- docs/library/07_方案与模板/01 解决方案/2019中国移动定制化IDC解决方案/4 投标
+- docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/2020年3月更新/定制化IDC解决方案
+- docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/A2021-066机房建设方案
+- docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设/智能化弱电赠品
+- docs/library/07_方案与模板/数据中心机房建设方案数据中心解决方案数据中心方案IDC数据中心/F-182：数据中心云平台解决方案/002 数据中心资料更新198份
+- docs/library/08_培训与课件/数据中心机房基础设施运维资料 培训课件 资料素材/P培训课件/P1发电机培训包480MB
+- docs/library/08_培训与课件/数据中心机房基础设施运维资料 培训课件 资料素材/P培训课件/培训课件2022.7.26更新包
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250105智算云平台发_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250106上海出台重磅_英伟达.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_报告绿色算力投资手册_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_寒武破晓算力腾飞_中国移动.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_深度报告20250303算力_阿里.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_电力设备行业深度报告高功率密_英伟达.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_北交所公司深度报告算海计划共_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_深度报告20241231深度_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_通信行业深度报告深度拆解CP_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_英特尔中国绿色数据中心创新实_ODCC.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_2024亚太区智算中心液冷应_中国电信.pdf
+- docs/library/M13_有效算力与软件/34_存档/3C_2024_2024年6G通感算智融合原_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_2024年智算中心基础设施演_华为.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_中国智算中心AIDC产业发展_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_基于光电协同的智算网络技术白_中国电信.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_绿色算力技术白皮书_ODCC.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_绿色节能液冷数据中心白皮书_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2022_金融业绿色数据中心白皮书_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_2024万卡级超大规模智算集_未署名.pptx
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_2024年AI改变能源智算如_英伟达.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_2024年人工智能快速发展背_工信部.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2024_2024年智能算法的统一运维_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_2025智算产业发展研究报告_工信部.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_报告中国信通院绿色算力发展研_信通院.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_报告中国信通院绿色算力技术创_信通院.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_报告头豹2025年中国绿色算_头豹.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_报告算力与电力协同商业模式变_英伟达.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_中国算力基础设施2024案例_联想.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_新型智算中心拉动全球电力消耗_英伟达.pptx
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_智算中心综合评价报告2024_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2023_服务器行业及招标近况更新之二_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_算力电力协同发展研究报告20_国信.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_2025中国算力基础设施案例_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2026_2026年太空算力发展研究报_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2026_2026版中国移动云终端算力_中国移动.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_中国服务器操作系统行业发展与_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_国家及各省市算力基础设施产业_中国移动.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2026_20260505算电协同从__未署名.pdf
+- docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/2026年更新/券商报告/5C_2026_20260528海外电力设备_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2026_20260608策略深度报告_东吴证券.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_全球算力共振_AIDC大时代_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_全链AI算力领军平台扬帆__未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_国产算力崛起内外双轮驱动下的_英伟达.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_国产算力调度运营的机会_英伟达.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_太空光伏专题二市场篇通信奠基_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_液冷专题报告系列1_AIDC_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2026_深度报告20260528液冷_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2026_深度报告20260528国金_未署名.pdf
+- docs/library/M14_中国板块/56_有用/6C_2025_电力设备行业2025年报及2_未署名.pdf
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_上海轨道交通大数据中心边缘计_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_从容应对数据中心PUE的政策_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_仲量联行ESG愿景塑造未来数_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_数据中心制冷技术绿道_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2022_阿里云碳效能关于阿里云数据中_阿里.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2025_2025年亚太地区数据中心建_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_SAIHEAT算能运营商引领_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_人工智能促进数据中心绿色节能_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_华为数据中心2030报告20_华为.pdf
+- docs/library/M14_中国板块/56_有用/6C_2021_广东省5G基站和数据中心总体_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_数据中心供柴油系统技术报告_ODCC.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_数据中心电力设备专题人工智能_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_数据治理平台助力国家电网全业_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_液冷龙头受益数据中心强劲热量_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_深度报告20250206功率_英伟达.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_电气设备行业AIDC电力设备_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_解耦算力发展与碳排放数据中心_阿里.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_2024版数据中心2030_华为.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20240317AI撬动数据_英伟达.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20240514高增长AI算_华为.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_2024中国绿色算力发展研究_国信.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2024_2024基于AI的金融数据中_工信部.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_2024版数据存储2030_未署名.pdf
+- docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2022_AIGC行业深度报告16液冷_英伟达.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_金融新一代数据中心基础设施能_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2024_东盟在东盟建设下一代数据中心_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2022_为智能赋能人工智能和数据中心_未署名.pdf
+- docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/04 数据中心行业分析报告（455份）/2024/6C_2022_从云计算看AI投资的ROI企_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_北交所科技新产业跟踪第十期A_英伟达.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_可持续发展助力数据中心向净零_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_数据中心产业情报周刊AI产业_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_数据中心产业情报周刊数据中心_中国电信.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_数据中心产业情报周刊数据中心_中国移动.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_数据中心智能化运维发展研究报_开放数据中心委员会.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_深度报告20240409数据_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_深度报告20240612深度_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_深度报告20240625国内_浪潮.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_深度报告20240826从数_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_深度报告20240903聚力_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_金融数据中心网络数字化能力建_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_金融数据中心能力建设指引24_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2023_中国信通院通信行业数据中心智_信通院.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2023_中国信通院数据中心智能化运维_信通院.pdf
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_关于通信机房与数据中心冷却新_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2023_北京金融科技产业联盟2023_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_新形势下数据中心冷却技术的应_工信部.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2023_高力国际2023年数据中心市_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2023_标准绿色数据中心评价规范DB_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_国家标准信息技术云计算云超算_国信.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_金融数据中心能力建设指引_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2007_GB503952007视频安_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_A级数据中心建设运营汇报方案_未署名.pptx
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_CloudEngine168_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_XX数据中心网络及安全方案建_未署名__002.doc
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_云数据中心整体规划方案_未署名.pptx
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_云计算数据中心网络技术_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_公安未来数据中心展望_未署名__002.pptx
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_华为数据中心2030_华为.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_商业银行数据中心监管指引_未署名.docx
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_大数据中心运营管理整体规划方_未署名.pptx
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_数据中心IT规划方案_未署名__002.ppt
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_数据中心建思考_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_数据中心建设整体方案_未署名__002.doc
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_数据中心建设标准_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_数据中心机房运行_未署名.docx
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_数据中心网络_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_数据中心运维服务方案_未署名__002.docx
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_数据中心机房施工方案_未署名.docx
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_数梦工厂一体化智能数据平台_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_智能弱电机房数据中心施工工艺_未署名.pptx
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_智能数据中心_中国电信.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_某公共大数据资源中心平台建设_民生.pptx
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_电力可研报告_全业务数据中心_未署名.doc
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_电子信息系统机房设计规_未署名.doc
+- docs/library/M14_中国板块/34_存档/3C_2022_秉承数据网关50_未署名.pdf
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_联奕科技数据治理数据质量管理_未署名.pdf
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_联奕科技数据治理主数据管理_未署名.pdf
+- docs/library/M14_中国板块/34_存档/4C_2022_财经商业数据中心_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_超融合数据中心网络智能运维方_华为.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_边缘数据中心管理EDCM_未署名.pdf
+- docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/数据中心/01 数据中心解决方案（283份）/6C_2022_银行数据中心项目可行性研究报_未署名.docx
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_高校大数据中心建设规划方案_未署名.docx
+- docs/library/M13_有效算力与软件/56_有用/6C_2021_2021低碳数据中心发展白皮_阿里.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2023_2023数据中心高性能网络拥_ODCC.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_2025年数据中心锂离子电池_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2023_ODCC2023数据中心制冷_ODCC.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2023_ODCC2023数据中心绿色_ODCC.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_ODCC数据中心智能热管全变_ODCC.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_ODCC数据中心运维机器人技_ODCC.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_ZG数据中心产业宁夏发展白皮_华信咨询设计研究院.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_中兴通讯云化数据中心白皮书7_中兴.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_中国信通院2022年数据中心_信通院.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_中国计量科学研究院数据中心冷_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2023_北京金融科技产业联盟2023_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_华为下一代数据中心白皮书20_华为.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2023_华为赛迪2023中小数据中心_华为.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_华信咨询中国数据中心产业宁夏_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2023_开放数据中心委员会2023浸_开放数据中心委员会.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_数据中心传感器技术应用白皮书_ODCC.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2023_数据中心冷板式液冷测试验证技_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_数据中心安全测试靶场技术白皮_ODCC.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_数据中心白皮书2022年中国_信通院.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2023_2023年243页2023云_阿里.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2023_2023年24页AI算力行业_百度.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2023_2023年28页北交所行业主_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2023_2023年40页互联网行业智_国信.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2023_2023年40页北交所新股申_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2023_2023年47页通信行业用A_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2023_2023年48页计算机行业2_百度.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2023_2023年54页智算产业发展_浪潮.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_2024年17页服务器行业及_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2024_2024年244页智算时代的_阿里.pdf
+- docs/library/04_市场与研究/中文行业报告集/智算中心合集/5C_2024_2024年32页通信行业面向_中国移动.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_2024年36页数据中心行业_中国电信.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_2024年58页计算机行业新_华为.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_2024年65页人工智能行业_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_2024年81页中国绿色算力_国信.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_2024年81页温控行业报告_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_人工智能新型智算中心改造系列_华为.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_通信液冷温控智算中心的重要保_阿里.pdf
+- docs/library/M14_中国板块/56_有用/5C_2022_通信算力需求无需担忧积极把握_中信.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250217IDC人工智_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_电力设备高功率密度智算数据中_英伟达.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20251225中国信通院智_信通院.pdf
+- docs/library/M14_中国板块/56_有用/5C_2025_20250924长城证券电子_长城证券.pdf
+- docs/library/M14_中国板块/56_有用/5C_2024_202417通信行业Open_申万.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_202442科技行业前瞻专题_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_100页WORD智算中心建设_未署名.docx
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_10页智能数据中心互联技术白_华为.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_114页PPT云数据中心整体_未署名.pptx
+- docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集/5C_2023_14页数据中心能源十大趋势白_华为.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_15页WORD数据中心运维服_未署名.docx
+- docs/library/M10_建设运营与人才/56_有用/6C_2023_175页WORDF5G全光网_未署名.docx
+- docs/library/M10_建设运营与人才/56_有用/5C_2023_21页中小数据中心基础设施可_华为.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_22页下一代数据中心白皮书2_信通院.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_22页下一代数据中心白皮书华_华为.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_238页WORD数据中心机房_未署名.docx
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_28页华为数据中心能源创新分_华为.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_28页数据中心电气应用方案_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_31页蒸发冷却技术在国际知名_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_31页WORD中国移动IDC_中国移动.docx
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_32页云计算数据中心智能运维_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_343页WORD北京某数据中_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/5C_2023_34页数据中心智能化运维发展_开放数据中心委员会.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_35页数据中心能效专项监察工_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_36页WORD数据中心节能诊_工信部.docx
+- docs/library/M13_有效算力与软件/56_有用/6C_2022_37页新一代智能间接蒸发冷却_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_38页工业数据中心的场景需求_ODCC.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_40页新一代数据中心智能融合_华为.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_40页WORD国网浙江电力可_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_47页数据中心传感器技术应用_ODCC.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2023_47页智算中心网络架构白皮书_百度.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_47页PPT云数据中心节能技_未署名.pptx
+- docs/library/M10_建设运营与人才/56_有用/5C_2021_50页数据中心自动驾驶网络技_华为.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_52页未来网络白皮书数据中心_Gartner.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2023_54页智算产业发展白皮中国电_中国电信.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_59页企业级数据治理平台助力_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_62页PPT数据中心运维管理_未署名.pptx
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_93页华为云安全白皮书华为2_华为.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2023_2023新型算力中心调研报告_益企研究院.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2023_2023智算中心网络架构白皮_百度.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2024_2024中国联通新一代智算中_中国联通.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_人工智能专题研究智算中心赋能_信通院.pdf
+- docs/library/M13_有效算力与软件/34_存档/3C_2024_2024大模型场景下智算平台_百度.pptx
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_某区智算中心建设项目初步设计_未署名.docx
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_领跑100联想算力基础设施案_联想.pdf
+- docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/4C_2022_BARCLAYSCoreWe_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_ESG愿景塑造未来数据中心1_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_ODCC数据中心抗震白皮书7_ODCC.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_新基建形式下数据中心建的思考_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_中国信通院数据中心白皮书20_信通院.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_中国大陆数据中心四大聚焦点2_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2022_华为数据中心能源白皮书新一代_华为.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_开放数据中心委员会数据中心算_开放数据中心委员会.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_数据中心白皮书2022年46_国信.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2022_数据中心节能改造与实践案例1_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_未来网络白皮书数据中心自动驾_Gartner.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250101企业数据中心_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250114开放数据中心_开放数据中心委员会.pdf
+- docs/library/M01_市场规模与增长/34_存档/3C_2025_20250117ODCC20_ODCC.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2025_20250118ODCC20_ODCC.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250121ODCC20_ODCC.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250213浸没液冷数据_ODCC.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250304中信期货De_中信.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250307COMMSC_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250307美国康普公司_美国康普公司.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2025_20250319埃森哲202_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250326盈立证券SA_盈立证券.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2025_202503282025年亚_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250402头豹研究院2_头豹.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250405数据中心的发_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2025_20250413NextG联_未署名.pdf
+- docs/library/M01_市场规模与增长/56_有用/5C_2025_20250416ODCC20_ODCC.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2025_20250418数据中心机房_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250905金科创新社2_未署名.pdf
+- docs/library/M13_有效算力与软件/34_存档/3C_2025_202509172025年中_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250919伊顿2025_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202509212025基于_Gartner.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250926ODCC20_ODCC.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250927ODCC开放_ODCC.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250927ODCC开放_ODCC_02.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2025_20250927ODCC开放_ODCC_04.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250927ODCC开放_ODCC_03.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250927ODCC开放_ODCC_04.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250927ODCC开放_ODCC_07.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250927ODCC开放_ODCC_05.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250927ODCC开放_ODCC_06.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250927国信化工数据_国信.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2025_20251002ODCC20_ODCC.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2025_202510102025年基_ODCC.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2025_20251014数据中心的电_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2025_20251017阿里云彭昔敏_阿里.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20251027施耐德电气算_施耐德.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2025_202512122025年保_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20251219中国通信工业_中国通信工业协会数据中心委员会.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2025_20251227德国和中国的_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_2025年数据中心锂离子电池_未署名__002.pdf
+- docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/6C_2025_2025年数据中心IDC标杆_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_2025年金融业新一代数据中_工信部.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_华为AI数据中心参考设计61_华为.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_数据中心运维服务系统方案85_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_数据中心锂离子电池消防安全白_未署名.pdf
+- docs/library/M14_中国板块/34_存档/3C_2022_阅读引用说明_艾瑞.txt
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20240101XX市环保云_未署名.doc
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_202403022024绿色_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2024_20240411ABB可持续_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20240412中国银河曙光_曙光.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2024_20240501东盟在东盟建_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20240523AI行业产业_华为.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20240530数据中心液冷_华为.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2024_20240605东盟能源中心_华为.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20240614智研咨询数据_中国电信.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20240702智研咨询数据_中国移动.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20240710中邮证券液冷_中邮证券.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2024_20240729北京金融科技_工信部.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_20240815ABB202_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20240922华为数据中心_华为.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20240926开放数据中心_开放数据中心委员会.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20241016益企研究院2_益企研究院.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20241121RMI202_阿里.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2024_20241210欧盟联合研究_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_20241213北京金融科技_未署名.pdf
+- docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024/6C_2024_20241229首程控股中联_国信.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_2024年数据中心供柴油系统_ODCC.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2023_ITSS数据中心业务连续性等_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2023_北京软件和信息服务协会202_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2023_华为赛迪2023中小数据中心_华为__002.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_基于AI的金融数据中心绿色节_工信部.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_数据中心行业应用方案48页_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2023_20230213上海市数据中_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2023_20230218数据中心传感_ODCC.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2023_20230226055新一代_工信部.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2023_20230228数据中心自动_Gartner.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2023_20230302数据中心智能_ODCC.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2023_20230304数据中心算力_ODCC.pdf
+- docs/library/M14_中国板块/34_存档/4C_2023_202303102022数据_未署名.pdf
+- docs/library/M14_中国板块/34_存档/4C_2023_202303122023数据_浪潮.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2023_20230331开放数据中心_开放数据中心委员会.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2023_20230413中国信通院通_信通院.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2023_20230903北京金融科技_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2023_20230922数据中心液冷_NVIDIA.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2023_20231023财信证券数据_财信证券.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2023_ODCC2023数据中心绿色_ODCC__002.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2023_ODCC2023数据中心高性_ODCC.pdf
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_上海轨道交通大数据中心边缘计_未署名__002.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2023_中国数据中心产业低碳发展实践_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_中国计量科学研究院数据中心冷_未署名__002.pdf
+- docs/library/M14_中国板块/34_存档/4C_2023_人民网舆情数据中心2023新_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2023_北京金融科技产业联盟2023_未署名__002.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_华为数据中心203092页_华为.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2023_华信咨询中国数据中心产业低碳_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_戴德梁行中国大陆数据中心四大_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_数据中心低压开关技术白皮书1_ODCC.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_数据中心智能化运维发展研究报_开放数据中心委员会__002.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_数据中心能源十大趋势白皮书1_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2026_20260117深企投202_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2026_20260226金融数据中心_未署名.pdf
+- docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2026/6C_2026_20260227绿色数据中心_英伟达.pdf
+- docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2026/6C_2026_20260430交银国际证券_交银国际证券.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2026_20260518北京理工大学_北京理工大学.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2026_20260518北京理工大学_北京理工大学_02.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2026_20260605戴德梁行20_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2026_20260613世界银行云和_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2026_202606302025年亚_未署名.pdf
+- docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2026/6C_2026_20260709电力系列研究_信通院.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2021_低碳数据中心发展白皮书202_阿里.pdf
+- docs/library/M14_中国板块/34_存档/4C_2017_报告派微博数据中心2017中_未署名.pdf
+- docs/library/M14_中国板块/34_存档/4C_2017_报告派微博数据中心2017微_艾瑞.pdf
+- docs/library/M14_中国板块/34_存档/4C_2017_报告派微博数据中心2017微_未署名.pdf
+- docs/library/M14_中国板块/34_存档/4C_2018_报告派微博数据中心2018旅_未署名.pdf
+- docs/library/M14_中国板块/34_存档/4C_2016_报告派新浪微博数据中心201_未署名.pdf
+- docs/library/M14_中国板块/34_存档/4C_2016_报告派微博数据中心2016年_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_7682Revolution_Inventec.pdf.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7625LiquidCool_Solidigm.pdf.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7597Revolution_Perstorp.pdf.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_6789EmbracingA_Auras.pdf.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7634EnvicoolFu_Envicool.pdf.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2025_6842OCPNIC2025_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_TechnicalOpera_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_HeatReuseandOt_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2022_TheRiseofAIand_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_EnergyEfficien_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_FTSSustainabil_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_DoorHeatExchan_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_European1MWrac_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_HarmonizingOpe_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_CoolingEnviron_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_ColdplateBaseS_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_Biobasedfluids_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_Totalcostofown_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_GuidelinesandB_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_TheTotalRiskof_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_DiscoverhowSca_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2026_QuantumisNotan_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_QuantumComputi_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_AdaptiveDTCLiq_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_FromFrameworkt_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_FinalBaseSpeci_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_HighSpeedInter_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_ImmersionSolut_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_Longtermtherma_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_FluidsTechnica_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_CommunityUpdat_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2026_ImmersionCooli_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_Thermochemical_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_EstablishingCl_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2022_Updatesfromthe_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_Heatreusesubpr_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_IntegratingOnP_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_AFrameworkforR_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_TheEvolvingAIF_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_DatacenterPowe_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_TheFutureofSin_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_FutureProofedD_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_7180TheImmedia_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_7892Remanufact_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_7823Autonomous_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_7773OpenRadioH_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_7333TheOpenRAN_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_7470DCStackGoo_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2022_6886Revolution_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2025_7372DeviceLoca_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2025_7786RoutingWGO_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_7787sonicvppoc_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_7767QuantumMar_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2022_7780QuantumSec_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_6902DevicetoCl_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_7464FromFlashl_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2025_780422025P4WSS_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7013Nextgenera_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_7101AVSforvend_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_7064eCoreArchi_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_7890TheImmedia_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2022_7384AIAccelera_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2022_7196CSIGConges_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2022_7463PlatformEf_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7317ProjectDes_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2022_7435ScaleoutEt_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7706WelcomeAdd_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2022_7549TowardsaUn_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7703WelcomeAdd_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2022_7381EnhancingO_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2025_OCP2025_DAYTWO_未署名_04.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2022_7815EnablingDa_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2022_7816StreamingT_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7017Operatingt_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_7012DataCenter_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_7522Accelerati_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7171DeployingM_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7761DeployingQ_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7756DataCenter_TCT.pdf.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2022_7606LeadingGre_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7683InventecIn_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7598SyntheticE_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7636MoreThanCo_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7669ExpoSessio_BrandonPetersonCoolI.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7676EnablingLi_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7599DirecttoPl_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_6825TacklingPo_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7749Integrated_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2022_6778FromConcep_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7622WhenStorag_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7645Empowering_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7667DataCenter_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7592FromFansto_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7750ExtendingC_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2022_6936AdvancingO_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_6794SpecUpdate_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_6796PanelEDSFF_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_6866OCPPlateHe_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_6932OCPCooling_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7147ColdPlateD_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7499ColdPlateS_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_6998Implicatio_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7220Turbiditya_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7087TCSFlowMan_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_6877CommunityU_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7299MegaAALCfo_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_6917AdvancedCo_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2022_7086Integratin_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7345Introducin_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7140Thelatestd_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7161TotalCosto_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7085ACSDoorHea_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7016Methodstos_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_6807CoolingEnv_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_7358TheDigital_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2022_7203TheValueof_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7887IPECStanda_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7886Enablingth_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2022_7881Opportunit_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2022_7883OpticsforA_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2022_7014PlatformMa_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_7033ManageandS_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_6855CommunityS_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7505Evaluating_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_6735EnhancingT_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7111Thermochem_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7072OCPIndustr_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_6973CommunityU_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7174EffectiveH_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_6984AbstractHi_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7363Advantagea_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7183LongTermRe_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_6934UpdatesinS_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7229ImmersionC_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_6856BreakingTh_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7502OCPAligned_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2022_7450DataCenter_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2022_7498OCPSustain_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2022_7342WaterEnerg_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2022_6784Sustainabl_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_7042Leveraging_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5B_2022_6931Empowering_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7259ClimateBas_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_6987HeatReuseS_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7219Unlockingt_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_7532MultiHeade_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_7022Benchmarki_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_6947Evaluating_未署名.pdf
+- docs/library/M08_散热与制冷/56_有用/5B_2022_7379TwoPhaseMi_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5B_2022_6718DesigningR_未署名.pdf
+- docs/library/04_市场与研究/中文行业报告集/68 智算中心解决方案行业报告白皮书智能算力超算中心建设方案可研
+- docs/library/04_市场与研究/中文行业报告集/B47 数据中心
+- docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】
+- docs/library/04_市场与研究/中文行业报告集/智算中心合集
+- docs/library/04_市场与研究/中文行业报告集/68 智算中心解决方案行业报告白皮书智能算力超算中心建设方案可研
+- docs/library/04_市场与研究/中文行业报告集/B47 数据中心
+- docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集
+- docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】
+- docs/library/04_市场与研究/中文行业报告集/智算中心合集
+- docs/library/04_市场与研究/中文行业报告集/知识星球
+- docs/library/04_市场与研究/中文行业报告集/B47 数据中心
+- docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】
+- docs/library/04_市场与研究/中文行业报告集/智算中心合集
+- docs/library/04_市场与研究/中文行业报告集/知识星球
+- docs/library/04_市场与研究/中文行业报告集/68 智算中心解决方案行业报告白皮书智能算力超算中心建设方案可研
+- docs/library/04_市场与研究/中文行业报告集/B47 数据中心
+- docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集
+- docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】
+- docs/library/04_市场与研究/中文行业报告集/智算中心合集
+- docs/library/04_市场与研究/中文行业报告集/68 智算中心解决方案行业报告白皮书智能算力超算中心建设方案可研
+- docs/library/04_市场与研究/中文行业报告集/B47 数据中心
+- docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集
+- docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】
+- docs/library/04_市场与研究/中文行业报告集/智算中心合集
+- docs/library/04_市场与研究/中文行业报告集/知识星球
+- docs/library/04_市场与研究/中文行业报告集/68 智算中心解决方案行业报告白皮书智能算力超算中心建设方案可研
+- docs/library/04_市场与研究/中文行业报告集/B47 数据中心
+- docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集
+- docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】
+- docs/library/04_市场与研究/中文行业报告集/智算中心合集
+- docs/library/04_市场与研究/中文行业报告集/B47 数据中心
+- docs/library/04_市场与研究/中文行业报告集/数据中心IDC云计算合集
+- docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】
+- docs/library/04_市场与研究/中文行业报告集/智算中心合集
+- docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/240V336V高压直流相关规范
+- docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/UPS相关规范
+- docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/供配电
+- docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/制冷相关
+- docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/国家标准
+- docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/国际标准
+- docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/弱电
+- docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/抗震
+- docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/机房环境
+- docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/柴油发电机相关
+- docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/蓄电池相关
+- docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/运营商
+- docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/通信行业（邮电类）
+- docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/防雷与接地
+- docs/library/01_标准与规范/03 最新标准/GB 50174-2017 数据中心设计规范.pdf
+- docs/library/01_标准与规范/03 最新标准/JR T0132-2015 金融业信息系统机房动力系统测评规范.pdf
+- docs/library/01_标准与规范/03 最新标准/YD 5193-2014 互联网数据中心（IDC）工程设计规范.pdf
+- docs/library/01_标准与规范/03 最新标准/YD 5194-2014 互联网数据中心（IDC）工程验收规范.pdf
+- docs/library/01_标准与规范/03 最新标准/YD T5239-2018 模块化组合式机房设计规范.pdf
+- docs/library/01_标准与规范/03 最新标准/中国信通院--2018数据中心白皮书.pdf
+- docs/library/01_标准与规范/2005_中国电信数据中心机房电源、空调环境设计规范-2005.pdf
+- docs/library/01_标准与规范/2007_中国移动机房规范(V1.0)-2007年8月.doc
+- docs/library/01_标准与规范/2008_GB50174-2008-电子信息系统机房设计规范_(GB50174-2008).pdf
+- docs/library/01_标准与规范/2008_【YDT_1821-2008，工信部发布】通讯中心机房环境条件要求.pdf
+- docs/library/01_标准与规范/2008_中国移动通信企业标准《通信用不间断电源-UPS-V1.0.0》-QB-018-2008.pdf
+- docs/library/01_标准与规范/2008_电子信息系统机房设计规GB50174-2008.doc
+- docs/library/01_标准与规范/2009_YD 5167-2009 通信用柴油发电机组消噪音工程设计暂行规定.pdf
+- docs/library/01_标准与规范/2009_【QGDW345-2009】国家电网公司信息机房评价规范.doc
+- docs/library/01_标准与规范/2011_中国电信集团文件IDC机房设计规范2011.pdf
+- docs/library/01_标准与规范/2013_YDT 2441-2013 互联网数据中心技术及分级分 类标准【报批稿】.pdf
+- docs/library/01_标准与规范/2013_YDT 2442-2013 互联网数据中心资源占用、能 效及排放技术要求和评测方法【报批稿】.pdf
+- docs/library/01_标准与规范/2013_YDT 2543-2013 电信互联网数据中心（IDC）的能 耗测评方法【报批稿】.pdf
+- docs/library/01_标准与规范/2014_YD 5193-2014 互联网数据中心（IDC）工程设计规范.pdf
+- docs/library/01_标准与规范/2014_YD 5194-2014(互联网数据中心（IDC）工程验收规范).pdf
+- docs/library/01_标准与规范/2015_【JRT0132-2015】金融业信息系统机房动力系统测评规范.pdf
+- docs/library/01_标准与规范/2022_数据中心运维管理人员职业技术技能标准（2022年版）-15页.pdf
+- docs/library/01_标准与规范/2025_2025年ETH-X-以太超节点系统运维规范-53页.pdf
+- docs/library/01_标准与规范/2025_2025年汽车低压电子电气系统用液冷散热装置标准化需求研究报告-93页.pdf
+- docs/library/01_标准与规范/2025_TIA-942《数据中心电信基础设施标准》（中文版）.pdf
+- docs/library/01_标准与规范/2025_中国移动电信级数据机房规范(v1.1).doc
+- docs/library/01_标准与规范/2025_中国联通数据中心建设标准.pdf
+- docs/library/01_标准与规范/2025_中国联通数据中心技术规范书.pdf
+- docs/library/01_标准与规范/2025_数据中心建设标准.doc
+- docs/library/01_标准与规范/2061_【YDT 2061-2009，工信部发布】通信机房用恒温恒湿空调系统.pdf
+- docs/library/02_制冷与供配电/2025_2024基于冷板式液冷的智能监控技术报告-76页.pdf
+- docs/library/02_制冷与供配电/2025_2024年数据中心供柴油系统技术报告-ODCC开放数据中心委员会-92页.pdf
+- docs/library/02_制冷与供配电/2025_2025年数据中心末端配电母线联合解决方案白皮书-26页.pdf
+- docs/library/02_制冷与供配电/2025_2025年浸没式冷却液关键电性参数标定方法研究报告-开放数据中心委员会-54页.pdf
+- docs/library/02_制冷与供配电/2025_H3C-H3C 服务器液冷技术发展.pdf
+- docs/library/02_制冷与供配电/2025_任华华：IDC液冷化-正在发生的未来.pdf
+- docs/library/02_制冷与供配电/2025_张东来：蒸发冷却技术在国际知名数据中心案例解析.pdf
+- docs/library/02_制冷与供配电/2025_数据中心供电方案设计.ppt
+- docs/library/02_制冷与供配电/2025_智算中心冷板式液冷云舱技术白皮书-24页.pdf
+- docs/library/02_制冷与供配电/2025_智算中心液冷产业全景研究报告（2025年）-46页.pdf
+- docs/library/02_制冷与供配电/2025_液冷系统防漏液和漏液检测设计研究报告-24页.pdf
+- docs/library/02_制冷与供配电/2025_绿色数据中心创新实践——冷板液冷系统设计参考白皮书-30页.pdf
+- docs/library/03_云计算/2020_IDC Cloud Infrastructure Index 2020 (2021-10-22).xlsx
+- docs/library/03_云计算/2022_J.P.摩根-美股半导体行业-TMC会议摘要：云计算数据中心5G汽车工业领域需求趋势强劲；进入23年后供应紧张-2022.5.26-24页.pdf
+- docs/library/03_云计算/2024_云计算蓝皮书（2024年）-61页.pdf
+- docs/library/03_云计算/2024_云计算蓝皮书（2024年）-中国信通院-59页.pdf
+- docs/library/03_云计算/2025_2024云计算关键领域安全指南v5-320页.pdf
+- docs/library/03_云计算/2025_2024年面向中小银行的轻量级云计算研究报告-59页.pdf
+- docs/library/03_云计算/2025_2025亚马逊云计算发展战略研究报告-90页.pdf
+- docs/library/03_云计算/2025_2025年AI商业趋势白皮书-谷歌云（Google-Cloud）-49页.pdf
+- docs/library/03_云计算/2025_2025年Cloud-Marketplace发展趋势白皮书-IDC-46页.pdf
+- docs/library/03_云计算/2025_2025年低空数字底座技术研究报告-云计算开源产业联盟&中国信通院-29页.pdf
+- docs/library/03_云计算/2025_CSA GCR_从云计算基石到可信AI生态的全球实践-13页.pdf
+- docs/library/03_云计算/2025_CloudEngine 16800系列数据中心核心交换机彩页.pdf
+- docs/library/03_云计算/2025_CloudEngine数据中心交换机高密400GE技术白皮书.pdf
+- docs/library/03_云计算/2025_Cloud_Infrastructure_1Q25_Preview_of_AWs_Microsoft_Azure_and.pdf
+- docs/library/03_云计算/2025_IBM+超越数据中心推动+IT+可持续发展：利用混合云打造低碳经济-23页.pdf
+- docs/library/03_云计算/2025_《“AI+云”时代专业服务洞察报告+第一部分：公有云技术服务》-66页.pdf
+- docs/library/03_云计算/2025_《云计算关键领域安全指南v5》-320页.pdf
+- docs/library/03_云计算/2025_中企出海云计算技术服务系列白皮书-53页.pdf
+- docs/library/03_云计算/2025_云计算关键领域安全指南v5-320页.pdf
+- docs/library/03_云计算/2025_云计算开源产业联盟_地方开源体系建设发展研究报告（2025）-51页.pdf
+- docs/library/03_云计算/2025_云计算数据中心建设方案.doc
+- docs/library/03_云计算/2025_云计算数据中心网络技术.pdf
+- docs/library/03_云计算/2025_云计算数据中心解决方案.pdf
+- docs/library/03_云计算/2025_云计算蓝皮书（2025年）-52页.pdf
+- docs/library/03_云计算/2025_云计算蓝皮书（2025年）-中国信通院-51页.pdf
+- docs/library/03_云计算/2025_亚开行-利用人工智能和云计算加速亚太地区的增长（英）-2025.9-8页.pdf
+- docs/library/03_云计算/2025_从云计算到能动智能：下一个万亿美元服务浪潮（英）-72页.pdf
+- docs/library/03_云计算/2025_从云计算基石到可信AI生态的全球实践-13页.pdf
+- docs/library/03_云计算/2025_企业云计算数据中心方案（海得版）-V2(1).pdf
+- docs/library/03_云计算/2025_传统数据中心向云计算数据中心升级的方案.docx
+- docs/library/03_云计算/2025_华为CloudEngine 5800数据中心交换机详版彩页.docx
+- docs/library/03_云计算/2025_吕鑫：云计算数据中心智能运维一体化实——.pdf
+- docs/library/03_云计算/2025_国家云计算XX数据中心建设方案.doc
+- docs/library/03_云计算/2025_数据中心设计方案模板 (vCloud Suite NSX vSAN SRM Horizon Log.pdf
+- docs/library/03_云计算/2025_深信服XXX数据中心项目aCloud企业级云技术建议书.docx
+- docs/library/03_云计算/2025_零壹智库-光环新网VS证通电子：“数据中心 云计算”厂商的全面比拼-11页.pdf
+- docs/library/04_市场与研究/2019_刘淼：新一代智能云数据中心的发展趋势和应对策略 v20191217 2.0——.pdf
+- docs/library/04_市场与研究/2020_中国电子学会-中国数据中心可再生能源应用发展报告-2020.12-24页.pdf
+- docs/library/04_市场与研究/2020_巴克莱-美股通信基础设施行业：2020年Q4数据中心排名-2021.3.3-24页.pdf
+- docs/library/04_市场与研究/2020_新基建系列之2020年中国城市数据中心发展指数报告-36Kr-2021.4-45页.pdf
+- docs/library/04_市场与研究/2021_2021低碳数据中心发展白皮书-DC TECH-2021.5-24页.pdf
+- docs/library/04_市场与研究/2021_全球科技行业产业年度展望1：国内数据中心IDC市场年度展望，配置正当时-20210802-中信证券-72页.pdf
+- docs/library/04_市场与研究/2021_华信咨询-2021年边缘数据中心研究报告-2021.3-22页.pdf
+- docs/library/04_市场与研究/2021_巴克莱-欧洲投资策略-绿色数据中心：超越零净值-2021.9.7-107页.pdf
+- docs/library/04_市场与研究/2021_巴克莱-美股通信基础设施行业-数据中心整合：前景和基本原理-2021.7.16-26页.pdf
+- docs/library/04_市场与研究/2021_瑞信-亚太地区科技行业-台北国际电脑展2021：数据中心、边缘计算与汽车长期驱动-2021.6.9-70页.pdf
+- docs/library/04_市场与研究/2021_瑞银-中国电信通讯行业-中国互联网数据中心2021：供需仍处于平衡状态，有关碳中性的争论仍在发展-2021.3.10-36页.pdf
+- docs/library/04_市场与研究/2021_美国2021年第2季度家庭债务报告（英）-微观经济数据中心-2021-47页.pdf
+- docs/library/04_市场与研究/2022_J.P. 摩根-美股半导体行业-2022年展望：积极增长、周期性趋势之关注云数据中心、5G、定制ASIC-2021.12.16-39页.pdf
+- docs/library/04_市场与研究/2022_东数西算数据中心基础架构设计方案白皮书（2022年）-43页.pdf
+- docs/library/04_市场与研究/2022_中国第三方数据中心运营商分析报告（2022年）-41页.pdf
+- docs/library/04_市场与研究/2022_瑞银-中国电信行业-中国互联网数据中心行业：可见的长期增长-2022.4.29-47页.pdf
+- docs/library/04_市场与研究/2024_《智算中心综合评价报告（2024年）》-53页.pdf
+- docs/library/04_市场与研究/2024_【IDC】2024工业企业数字化的两种路径研究报告.pdf
+- docs/library/04_市场与研究/2024_云服务行业动态及热点研究月报2024年12月-29页.pdf
+- docs/library/04_市场与研究/2024_人工智能如何塑造未来的行业2024-IDC-11页.pdf
+- docs/library/04_市场与研究/2025_12 XX电力可研报告_全业务数据中心数据中台试点建设-实施项目.doc
+- docs/library/04_市场与研究/2025_2021数据中心BIM技术白皮书.pdf
+- docs/library/04_市场与研究/2025_2022中国云数据中心考察报告-108页.pdf
+- docs/library/04_市场与研究/2025_2022年东南亚数据中心行业研究报告-16页.pdf
+- docs/library/04_市场与研究/2025_2024年中国企业多云战略白皮书-火山引擎&IDC -57页.pdf
+- docs/library/04_市场与研究/2025_2024年北美数据中心地产市场年终报告：容量创新高与电力供应挑战并存（英文版）-25页.pdf
+- docs/library/04_市场与研究/2025_2024年基础云服务行业发展洞察报告-29页.pdf
+- docs/library/04_市场与研究/2025_2024年数据中心行业分析报告-伊顿-（EATON）-12页.pdf
+- docs/library/04_市场与研究/2025_2024数据中心电能路由器应用技术报告-42页.pdf
+- docs/library/04_市场与研究/2025_2025制造行业智慧文印解决方案白皮书-IDC-18页.pdf
+- docs/library/04_市场与研究/2025_2025年AIDC机房参考设计白皮书-14页.pdf
+- docs/library/04_市场与研究/2025_2025年ETH-X-Scale-Up-协议测试报告-36页.pdf
+- docs/library/04_市场与研究/2025_2025年ETH-X-Scale-Up互联协议白皮书V1.0-99页.pdf
+- docs/library/04_市场与研究/2025_2025年UPN512技术架构白皮书V1.0-阿里云-25页.pdf
+- docs/library/04_市场与研究/2025_2025年上海咖啡消费趋势报告-第一财经商业数据中心-26页.pdf
+- docs/library/04_市场与研究/2025_2025年中国基础云服务行业数据报告-10页.pdf
+- docs/library/04_市场与研究/2025_2025年中小银行多活数据中心网络架构研究与应用报告-14页.pdf
+- docs/library/04_市场与研究/2025_2025年人人懂AI之从机器学习到大模型报告-阿里云-98页.pdf
+- docs/library/04_市场与研究/2025_2025年操作系统停服应用指南报告-阿里云-66页.pdf
+- docs/library/04_市场与研究/2025_2025年数字政府新进阶白皮书-IDC-46页.pdf
+- docs/library/04_市场与研究/2025_2025年数据中心空气治理白皮书-18页.pdf
+- docs/library/04_市场与研究/2025_2025年数据中心行业简析报告-嘉世咨询-17页.pdf
+- docs/library/04_市场与研究/2025_2025年金融行业数字化转型白皮书（英文版）-德勤阿里云-92页.pdf
+- docs/library/04_市场与研究/2025_2025年阿里云AI辅助编码探索与实践报告-阿里云-30页.pdf
+- docs/library/04_市场与研究/2025_2025数据中心市场平衡机遇与风险-54页.pdf
+- docs/library/04_市场与研究/2025_2025智算中心行业研究报告-49页.pdf
+- docs/library/04_市场与研究/2025_2025智算中心行业研究报告.pdf
+- docs/library/04_市场与研究/2025_2025智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期-深企投产业研究院-50页.pdf
+- docs/library/04_市场与研究/2025_2025海内外云厂商算力建设现状、自研芯片布局与进展分析报告-44页.pdf
+- docs/library/04_市场与研究/2025_2025海参滋补趋势洞察报告-第一财经商业数据中心&上品堂-2025-29页.pdf
+- docs/library/04_市场与研究/2025_2025阿里云百炼安全白皮书-57页.pdf
+- docs/library/04_市场与研究/2025_2025面向未来的中国数据中心：绿色低碳与高可靠性白皮书-19页.pdf
+- docs/library/04_市场与研究/2025_CIC灼识咨询-中国算力中心行业白皮书-2025-55页.pdf
+- docs/library/04_市场与研究/2025_H3C EVI 2.0数据中心互联解决方案技术白皮书.pdf
+- docs/library/04_市场与研究/2025_UNDP-《巴黎协定》土地利用、土地利用的变化和林业与国家数据中心工具：季度全球报告2025年6月（英）-33页.pdf
+- docs/library/04_市场与研究/2025_XX大数据中心项目可行性研究报告.docx
+- docs/library/04_市场与研究/2025_【精品】SAP创新驱动，烟草行业新一代大数据中心建设方案.pdf
+- docs/library/04_市场与研究/2025_中国通信院-数据中心产业图谱研究报告-41页.pdf
+- docs/library/04_市场与研究/2025_人工智能数据中心：规模扩展与架构演进白皮书-27页.pdf
+- docs/library/04_市场与研究/2025_公安未来数据中心展望.pptx
+- docs/library/04_市场与研究/2025_基于AI大模型的金融数据中心智能网络运维应用研究报告-48页.pdf
+- docs/library/04_市场与研究/2025_基于AI大模型的金融数据中心智能网络运维应用研究报告-50页.pdf
+- docs/library/04_市场与研究/2025_工商银行金融科技研究院：绿色数据中心建设运营指引-25页.pdf
+- docs/library/04_市场与研究/2025_工商银行金融科技研究院：银行数据中心发展趋势展望-30页.pdf
+- docs/library/04_市场与研究/2025_政府行业数据中心方案.docx
+- docs/library/04_市场与研究/2025_数据中心智算化升级改造白皮书-41页.pdf
+- docs/library/04_市场与研究/2025_数据中心白皮书-46页(3).pdf
+- docs/library/04_市场与研究/2025_数据中心白皮书-46页.pdf
+- docs/library/04_市场与研究/2025_数据中心的发展趋势-50页.pdf
+- docs/library/04_市场与研究/2025_数据中心能源趋势白皮书-27页.pdf.pdf
+- docs/library/04_市场与研究/2025_数据中心解决方案安全技术白皮书.pdf
+- docs/library/04_市场与研究/2025_数据中心锂离子电池消防安全白皮书-93页.pdf
+- docs/library/04_市场与研究/2025_数据中心项目建设可行性研究报告.doc
+- docs/library/04_市场与研究/2025_智汇校园，云领未来-华为智慧校园云数据中心解决方案白皮书.pdf
+- docs/library/04_市场与研究/2025_服务器行业深度报告：AI和“东数西算”双轮驱动，服务器再起航.pdf
+- docs/library/04_市场与研究/2025_第一财经商业数据中心-Z世代男性美颜趋势报告.pdf-29页.pdf
+- docs/library/04_市场与研究/2025_算力中心创新融资研究报告（2025年）-42页.pdf
+- docs/library/04_市场与研究/2025_美国研究报告：2025数据中心市场+平衡前所未有的机会与战略风险-54页.pdf
+- docs/library/04_市场与研究/2025_英文【莱坊】数据中心：2025年EMEA报告-13页.pdf
+- docs/library/04_市场与研究/2025_超节点发展报告-30页.pdf
+- docs/library/04_市场与研究/2025_阿里云：银发族数字化产品适老化研究-80页.pdf
+- docs/library/04_市场与研究/AI与算力/Z4 人工智能
+- docs/library/04_市场与研究/AI与算力/智猩猩50场大模型讲座、公开课及研讨会全套课件
+- docs/library/04_市场与研究/SemiAnalysis合集/合集
+- docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】
+- docs/library/04_市场与研究/半导体与上游/2024存储报告
+- docs/library/04_市场与研究/半导体与上游/FMS2025
+- docs/library/04_市场与研究/半导体与上游/半导体综研 VIP(8)
+- docs/library/04_市场与研究/英文机构报告/BQ161-全球数据中心电力基础设施市场 Global Data Center Power Infrastructure Market 2025-2035
+- docs/library/04_市场与研究/英文机构报告/TechInsights-17篇合集
+- docs/library/04_市场与研究/英文机构报告/Yole
+- docs/library/05_数据中心设施/2013_上海建规-数据中心基础设施设计规程-DGTJ08-2125-2013【】.pdf
+- docs/library/05_数据中心设施/2013_华为数据中心容灾备份解决方案.pptx
+- docs/library/05_数据中心设施/2015_数据中心解决方案2015.pptx
+- docs/library/05_数据中心设施/2018_数据中心实施方案V2.1-ACI-20180320.doc
+- docs/library/05_数据中心设施/2019_【精品】2019年模块化集装箱数据中心研发v2.ppt
+- docs/library/05_数据中心设施/2019_【精品】模块化数据中心（MDC）_秦旭_20190929.ppt
+- docs/library/05_数据中心设施/2019_【精品】港铁AFC云数据中心项目技术方案及实施、培训方案 20191018.docx
+- docs/library/05_数据中心设施/2019_华为数据中心能源创新分享-20190307.pdf
+- docs/library/05_数据中心设施/2019_联想车载超高清视频数据中心_20190927.pptx
+- docs/library/05_数据中心设施/2021_中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战-绿色和平&中华环保联合会-2021-56页.pdf
+- docs/library/05_数据中心设施/2021_仲量联行-数据中心，崛起的新增长极-2021.3-20页.pdf
+- docs/library/05_数据中心设施/2022_戴德梁行+中国数据中心：2022年需要注意的四个问题-48页.pdf
+- docs/library/05_数据中心设施/2022_戴德梁行-中国大陆数据中心—四大聚焦点2022快速发展-48页.pdf
+- docs/library/05_数据中心设施/2025_091数据中心设计方案.docx
+- docs/library/05_数据中心设施/2025_2-云时代，数据中心需求和挑战-万国叶雷霖.pdf
+- docs/library/05_数据中心设施/2025_20180320ACI数据中心实施方案V2.1.doc
+- docs/library/05_数据中心设施/2025_2019年集装箱式数据中心 中讯邮电咨询设计院建筑设计部.ppt
+- docs/library/05_数据中心设施/2025_2020开放数据中心峰会合作方案.pdf
+- docs/library/05_数据中心设施/2025_2025年金融业新一代数据中心创新发展案例集-142页.pdf
+- docs/library/05_数据中心设施/2025_AD双活数据中心解决方案.pdf
+- docs/library/05_数据中心设施/2025_AIDC_智算中心建设项目解决方案-43页.pdf
+- docs/library/05_数据中心设施/2025_DELL新一代模块化数据中心解决方案.pptx
+- docs/library/05_数据中心设施/2025_EMC双活数据中心解决方案-V4.0.doc
+- docs/library/05_数据中心设施/2025_ESG愿景：塑造未来数据中心-15页.pdf
+- docs/library/05_数据中心设施/2025_Emerson数据中心基础设施管理解决方案.pptx
+- docs/library/05_数据中心设施/2025_F5双活数据中心解决方案.pdf
+- docs/library/05_数据中心设施/2025_F5双活数据中心解决方案.pptx
+- docs/library/05_数据中心设施/2025_F8系统服务监控系统数据中心.pdf
+- docs/library/05_数据中心设施/2025_H3C 运营商数据中心解决方案.ppt
+- docs/library/05_数据中心设施/2025_H3C数据中心Overlay解决方案汇报.pptx
+- docs/library/05_数据中心设施/2025_H3C数据中心网络解决方案.pptx
+- docs/library/05_数据中心设施/2025_H3C数据中心解决方案.doc
+- docs/library/05_数据中心设施/2025_H3C运营商数据中心解决方案.ppt
+- docs/library/05_数据中心设施/2025_HDS双活数据中心解决方案.pptx
+- docs/library/05_数据中心设施/2025_Huawei Rack for State Grid _华为整机柜数据中心单元v2-3.pdf
+- docs/library/05_数据中心设施/2025_IDC数据中心动力环境监控系统解决方案.pdf
+- docs/library/05_数据中心设施/2025_IDC数据中心运营建设方案.doc
+- docs/library/05_数据中心设施/2025_IFIF-美国需要数据中心，数据中心需要能源，但这不一定是问题（英）-2025.11-36页.pdf
+- docs/library/05_数据中心设施/2025_Mandala_数据中心作为使能基础设施-48页.pdf
+- docs/library/05_数据中心设施/2025_NIA-推动英国数据繁荣-英国数据中心能源危机的核解决方案（英）-2025.12-28页.pdf
+- docs/library/05_数据中心设施/2025_ODCC开放数据中心峰会 简介.pdf
+- docs/library/05_数据中心设施/2025_XXX云平台数据中心设计方案.pdf
+- docs/library/05_数据中心设施/2025_XX市卫生局数据中心建设方案——.doc
+- docs/library/05_数据中心设施/2025_XX市政府数据中心建设项目实施方案——.docx
+- docs/library/05_数据中心设施/2025_XX数据中心应急方案.doc
+- docs/library/05_数据中心设施/2025_XX数据中心网络及安全方案建议书.doc
+- docs/library/05_数据中心设施/2025_XX高校数据中心整体建设方案建议书-v2.0.docx
+- docs/library/05_数据中心设施/2025_《华为人》381期-华为发布全球最强算力超节点和集群-68页.pdf
+- docs/library/05_数据中心设施/2025_【精品】A-XX集团数据中心建设方案.docx
+- docs/library/05_数据中心设施/2025_【精品】XXX市智慧城市大数据中心-需求规格说明书（终稿）.doc
+- docs/library/05_数据中心设施/2025_【精品】思科下一代企业云数据中心网络架构.pdf
+- docs/library/05_数据中心设施/2025_【精品】数据中心 总部分支两级云解决方案.pptx
+- docs/library/05_数据中心设施/2025_【精品】数据中心机房建设体会精华版.ppt
+- docs/library/05_数据中心设施/2025_【精品】数据中心机房建设方案.docx
+- docs/library/05_数据中心设施/2025_【精品】港铁AFC云数据中心项目技术方案及实施、培训方案.docx
+- docs/library/05_数据中心设施/2025_【精品】重庆公安新一代数据中心解决方案.pptx
+- docs/library/05_数据中心设施/2025_【精品】重庆公安新一代数据中心解决方案_1.pptx
+- docs/library/05_数据中心设施/2025_东莞创机电业数据中心项目方案设计.pptx
+- docs/library/05_数据中心设施/2025_东莞创机电业数据中心项目方案设计V2.3版本.pptx
+- docs/library/05_数据中心设施/2025_云数据中心建设方案.docx
+- docs/library/05_数据中心设施/2025_云数据中心解决方案技术方案.docx
+- docs/library/05_数据中心设施/2025_云数据中心解决方案详解PPT.pptx
+- docs/library/05_数据中心设施/2025_人工智能数据中心：扩大规模与拓展规模-27页.pdf
+- docs/library/05_数据中心设施/2025_从矿产到兆瓦：增强电动汽车、数据中心和电网的韧性（英）-39页.pdf
+- docs/library/05_数据中心设施/2025_企业数据中心系统平台技术方案建议书.docx
+- docs/library/05_数据中心设施/2025_企业数据中心设计建议方案.pdf
+- docs/library/05_数据中心设施/2025_企业网云数据中心解决方案.pptx
+- docs/library/05_数据中心设施/2025_公交数据中心云平台建设方案书.doc
+- docs/library/05_数据中心设施/2025_动态绿色数据中心解决方案.pdf
+- docs/library/05_数据中心设施/2025_北京理工大学_数据中心综合能耗及其多元灵活性价值挖掘与实现-17页.pdf
+- docs/library/05_数据中心设施/2025_区域卫生平台数据中心方案.doc
+- docs/library/05_数据中心设施/2025_华为-IDC数据中心解决方案.pptx
+- docs/library/05_数据中心设施/2025_华为-云数据中心解决方案.ppt
+- docs/library/05_数据中心设施/2025_华为AI Fabric，面向AI时代的智能无损数据中心网络.pdf
+- docs/library/05_数据中心设施/2025_华为AI数据中心参考设计-61页.pdf
+- docs/library/05_数据中心设施/2025_华为云数据中心解决方案技术方案.docx
+- docs/library/05_数据中心设施/2025_华为数据中心基础设施解决方案介绍.pdf
+- docs/library/05_数据中心设施/2025_华为数据中心解决方案-部署指南.pdf
+- docs/library/05_数据中心设施/2025_华为数据中心解决方案典型工程案例.docx
+- docs/library/05_数据中心设施/2025_华为数据中心解决方案典型工程案例介绍.docx
+- docs/library/05_数据中心设施/2025_华为模块化数据中心解决方案.pptx
+- docs/library/05_数据中心设施/2025_南方基金新数据中心一期介绍-屈磊.pdf
+- docs/library/05_数据中心设施/2025_历史数据中心.mht
+- docs/library/05_数据中心设施/2025_双活数据中心方案.docx
+- docs/library/05_数据中心设施/2025_双活数据中心解决方案-通用.pptx
+- docs/library/05_数据中心设施/2025_双活数据中心解决方案.pdf
+- docs/library/05_数据中心设施/2025_叶辉：增效降费、共建绿色数据中心.pdf
+- docs/library/05_数据中心设施/2025_商业银行数据中心监管指引.docx
+- docs/library/05_数据中心设施/2025_基于DPU的新一代存算分离存储架构：重构数据中心存储范式-71页.pdf
+- docs/library/05_数据中心设施/2025_基于云的数据中心解决方案.pptx
+- docs/library/05_数据中心设施/2025_大型数据中心解决方案.pdf
+- docs/library/05_数据中心设施/2025_大学数据中心安全防护解决方.docx
+- docs/library/05_数据中心设施/2025_大数据中心.pdf
+- docs/library/05_数据中心设施/2025_大数据中心建设方案.docx
+- docs/library/05_数据中心设施/2025_大数据中心机房规划设计方案.doc
+- docs/library/05_数据中心设施/2025_完整的IDC数据中心建设方案.doc
+- docs/library/05_数据中心设施/2025_完整的IDC机房建设方案.pdf
+- docs/library/05_数据中心设施/2025_微型数据中心解决方案.ppt
+- docs/library/05_数据中心设施/2025_德国和中国的数据中心灵活性（英）-41页.pdf
+- docs/library/05_数据中心设施/2025_怡德_云的数据中心解决方案.pptx
+- docs/library/05_数据中心设施/2025_怡德_云的数据中心解决方案_Rob.pptx
+- docs/library/05_数据中心设施/2025_政务数据中心V1.2——.pdf
+- docs/library/05_数据中心设施/2025_数据中心IT规划方案.ppt
+- docs/library/05_数据中心设施/2025_数据中心Overlay解决方案汇报-H3C.pptx
+- docs/library/05_数据中心设施/2025_数据中心Overlay解决方案汇报.pptx
+- docs/library/05_数据中心设施/2025_数据中心一方案.doc
+- docs/library/05_数据中心设施/2025_数据中心信息安全解决方案.doc
+- docs/library/05_数据中心设施/2025_数据中心地理共享服务平台.pdf
+- docs/library/05_数据中心设施/2025_数据中心基础网络解决方案.pdf
+- docs/library/05_数据中心设施/2025_数据中心基础设施管理解决方案Emerson.pptx
+- docs/library/05_数据中心设施/2025_数据中心基础设施解决方案.doc
+- docs/library/05_数据中心设施/2025_数据中心大脑解决方案.docx
+- docs/library/05_数据中心设施/2025_数据中心安全解决方案.pptx
+- docs/library/05_数据中心设施/2025_数据中心建思考.pdf
+- docs/library/05_数据中心设施/2025_数据中心建设思路与方案.pptx
+- docs/library/05_数据中心设施/2025_数据中心建设整体方案.doc
+- docs/library/05_数据中心设施/2025_数据中心建设方案.doc
+- docs/library/05_数据中心设施/2025_数据中心建设方案.docx
+- docs/library/05_数据中心设施/2025_数据中心建设方案_1.doc
+- docs/library/05_数据中心设施/2025_数据中心建设方案v3.0.pptx
+- docs/library/05_数据中心设施/2025_数据中心总体网络设计方案.pdf
+- docs/library/05_数据中心设施/2025_数据中心技术方案.docx
+- docs/library/05_数据中心设施/2025_数据中心整体解决方案.pdf
+- docs/library/05_数据中心设施/2025_数据中心方案设计V2.0.doc
+- docs/library/05_数据中心设施/2025_数据中心机房.ppt
+- docs/library/05_数据中心设施/2025_数据中心机房建设方案.docx
+- docs/library/05_数据中心设施/2025_数据中心机房建设方案.pdf
+- docs/library/05_数据中心设施/2025_数据中心机房方案.docx
+- docs/library/05_数据中心设施/2025_数据中心机房规划方案.docx
+- docs/library/05_数据中心设施/2025_数据中心机房设计方案.doc
+- docs/library/05_数据中心设施/2025_数据中心机房设计方案_1.doc
+- docs/library/05_数据中心设施/2025_数据中心机房运行.docx
+- docs/library/05_数据中心设施/2025_数据中心的数字化运行态管理体系构建.pdf
+- docs/library/05_数据中心设施/2025_数据中心的综合布线.ppt
+- docs/library/05_数据中心设施/2025_数据中心碳核算指南-26页.pdf
+- docs/library/05_数据中心设施/2025_数据中心综合解决方案V1.0---视频动环综合监控.pptx
+- docs/library/05_数据中心设施/2025_数据中心网络 整体规划设计.pptx
+- docs/library/05_数据中心设施/2025_数据中心网络.pdf
+- docs/library/05_数据中心设施/2025_数据中心网络和安全.xlsx
+- docs/library/05_数据中心设施/2025_数据中心网络建设方案.docx
+- docs/library/05_数据中心设施/2025_数据中心网络规划设计.pptx
+- docs/library/05_数据中心设施/2025_数据中心网络设计.pptx
+- docs/library/05_数据中心设施/2025_数据中心节能方案分析.doc
+- docs/library/05_数据中心设施/2025_数据中心解决方案 (2).pptx
+- docs/library/05_数据中心设施/2025_数据中心解决方案.docx
+- docs/library/05_数据中心设施/2025_数据中心解决方案.pdf
+- docs/library/05_数据中心设施/2025_数据中心解决方案.ppt
+- docs/library/05_数据中心设施/2025_数据中心解决方案.pptx
+- docs/library/05_数据中心设施/2025_数据中心解决方案之灾备方案设计.docx
+- docs/library/05_数据中心设施/2025_数据中心设备方案.doc
+- docs/library/05_数据中心设施/2025_数据中心质量保证方案.doc
+- docs/library/05_数据中心设施/2025_数据中心运维服务方案.docx
+- docs/library/05_数据中心设施/2025_数据中心运维服务系统方案（85页）.pdf
+- docs/library/05_数据中心设施/2025_数据中心运行可视化平台解决方案v2.0.pptx
+- docs/library/05_数据中心设施/2025_数据中心项目方案.docx
+- docs/library/05_数据中心设施/2025_数据中心高可靠性方案.pdf
+- docs/library/05_数据中心设施/2025_数据中心（机房）施工方案.docx
+- docs/library/05_数据中心设施/2025_数据中心：崛起的新增长极.pdf
+- docs/library/05_数据中心设施/2025_整机柜数据中心单元v2.pdf
+- docs/library/05_数据中心设施/2025_新一代数据中心解决方案.pptx
+- docs/library/05_数据中心设施/2025_新华三应用驱动数据中心AD-DC解决方案主打胶片.pdf
+- docs/library/05_数据中心设施/2025_新华三应用驱动数据中心AD-DC解决方案彩页.pdf
+- docs/library/05_数据中心设施/2025_春节培训-数据中心产品介绍.pptx
+- docs/library/05_数据中心设施/2025_普天天纪微模块数据中心.pptx
+- docs/library/05_数据中心设施/2025_智算无界：AIDC的超越和重构-37页.pdf
+- docs/library/05_数据中心设施/2025_智维平台与数据中心运营体系结合.pdf
+- docs/library/05_数据中心设施/2025_智能数据中心.pdf
+- docs/library/05_数据中心设施/2025_智能无损数据中心网络开启AI新时代.pdf
+- docs/library/05_数据中心设施/2025_智能计算，助力数据中心打破计算边界.pdf
+- docs/library/05_数据中心设施/2025_曼谷数据中心崛起：资本、技术与政策驱动（英）-11页.pdf
+- docs/library/05_数据中心设施/2025_某大学云数据中心建设方案.docx
+- docs/library/05_数据中心设施/2025_某大学云数据中心建设方案_1.docx
+- docs/library/05_数据中心设施/2025_某数据中心规划方案.doc
+- docs/library/05_数据中心设施/2025_模块化数据中心机房解决方案.pdf
+- docs/library/05_数据中心设施/2025_江森自控数据中心空调节能解决方案.pdf
+- docs/library/05_数据中心设施/2025_江森自控数据中心系统解决方案.pptx
+- docs/library/05_数据中心设施/2025_沃德思绿色数据中心解决方案.ppt
+- docs/library/05_数据中心设施/2025_活数据中心解决方案.pptx
+- docs/library/05_数据中心设施/2025_浪潮云海OS.云数据中心管理平台.ppt
+- docs/library/05_数据中心设施/2025_深信服集团数据中心方案规划模板.pptx
+- docs/library/05_数据中心设施/2025_清华同方数据中心综合布线方案.ppt
+- docs/library/05_数据中心设施/2025_用电大户数据中心推动电力需求-9页.pdf
+- docs/library/05_数据中心设施/2025_电子信息系统机房设计规.doc
+- docs/library/05_数据中心设施/2025_畅途网云数据中心建设方案-v1.1.doc
+- docs/library/05_数据中心设施/2025_破界-迭代-内生 阿里云网络稳定性进化之道-11页.pdf
+- docs/library/05_数据中心设施/2025_科大数据中心扩容方案.docx
+- docs/library/05_数据中心设施/2025_科研数据中心.docx
+- docs/library/05_数据中心设施/2025_网络计算及DPU在数据中心和边缘云上的应用.pdf
+- docs/library/05_数据中心设施/2025_美国ASHRAE数据中心热处理(翻译).doc
+- docs/library/05_数据中心设施/2025_美国康普数据中心规划指南.pdf
+- docs/library/05_数据中心设施/2025_美国的AI数据中心分布.xlsx
+- docs/library/05_数据中心设施/2025_艾默生数据中心机房整体解决方案.pptx
+- docs/library/05_数据中心设施/2025_英文【奥雅纳（Arup）】数据中心的循环思维-28页.pdf
+- docs/library/05_数据中心设施/2025_英特尔_NVMe固态盘在百度数据中心的使用 - V6.pdf
+- docs/library/05_数据中心设施/2025_薛亮：资本协同的数据中心特征.pdf
+- docs/library/05_数据中心设施/2025_虚拟化绿色数据中心方案.ppt
+- docs/library/05_数据中心设施/2025_财经商业数据中心.pdf
+- docs/library/05_数据中心设施/2025_超融合数据中心网络智能运维方案.pdf
+- docs/library/05_数据中心设施/2025_轻松应对数据中心难题.pdf
+- docs/library/05_数据中心设施/2025_边缘数据中心管理 EDCM.pdf
+- docs/library/05_数据中心设施/2025_达梦数据中心解决方案.pptx
+- docs/library/05_数据中心设施/2025_运营商数据中心解决方案-H3C.ppt
+- docs/library/05_数据中心设施/2025_金祺创数据中心建设 - 公开V1.0.pdf
+- docs/library/05_数据中心设施/2025_钱伯斯(Baker McKenzie)_数据中心解锁：什么是新的，什么是重要的-45页.pdf
+- docs/library/05_数据中心设施/2025_阿尔西数据中心专用空调系统解决方案.pdf
+- docs/library/05_数据中心设施/2025_阿尔西数据中心空调解决方案.ppt
+- docs/library/05_数据中心设施/2025_零壹智库-数据港、奥飞数据比拼：谁是A股最强专营数据中心运营商？-13页.pdf
+- docs/library/05_数据中心设施/2025_面向5G的边缘数据中心基础设施.pdf
+- docs/library/05_数据中心设施/2025_麦肯锡-什么是数据中心？（英）-2025-9页.pdf
+- docs/library/05_数据中心设施/会议_OCP2024/2024 OCP Global Summit
+- docs/library/05_数据中心设施/会议_OCP2025/2025 OCP Global Summit
+- docs/library/05_数据中心设施/会议_OCP2026EMEA/2026 OCP EMEA Summit
+- docs/library/06_工程图纸/01/01项目【华南地区 2019.8出版 带清单EXCEL表格】xx移动综合业务接入机房工程
+- docs/library/06_工程图纸/01/02项目【华东地区 2019.6出版 无清单】xx国际信息中心机楼工程
+- docs/library/06_工程图纸/01/03项目【华西地区 2018.11出版 无清单】xx物联网基地机房工程
+- docs/library/06_工程图纸/01/04项目【华东地区 2017出版 无清单】xx电信通信机楼项目
+- docs/library/06_工程图纸/01/05项目【华中地区 2016出版 带清单EXCEL表格】xx联通计算中心一期工程
+- docs/library/06_工程图纸/01/07项目【华东地区 2016.5出版 无清单】x产业园数据中心
+- docs/library/06_工程图纸/01/08项目【华北地区 2019.2出版 无清单】x云数据中心三期
+- docs/library/06_工程图纸/3D模型/F182、机房3D模型
+- docs/library/06_工程图纸/3D模型/b02569数据中心机房动图mht源文件
+- docs/library/06_工程图纸/3D模型/数据中心机房动图mht源文件暖通空调断路器电流整定制冷原理液冷
+- docs/library/06_工程图纸/IDC机房/jz316.IDC机房机楼数据中心建筑结构水电暖通部分含工艺CAD图纸
+- docs/library/06_工程图纸/机房机柜数据中心visio素材服务器存储网络图系统拓扑图技术架构/b01382机房机柜数据中心visio素材
+- docs/library/07_方案与模板/01 解决方案/2015数据中心机房建设改造项目 竞争性谈判文件(工程).doc
+- docs/library/07_方案与模板/01 解决方案/2019中国移动定制化IDC解决方案
+- docs/library/07_方案与模板/01 解决方案/2019年模块化集装箱数据中心研发v2建筑设计部.ppt
+- docs/library/07_方案与模板/01 解决方案/2019年集装箱式数据中心中讯邮电咨询设计院建筑设计部.ppt
+- docs/library/07_方案与模板/01 解决方案/A-XX集团数据中心建设方案(非常完整超过1000页的精品文档) 202002.docx
+- docs/library/07_方案与模板/01 解决方案/ACI数据中心实施方案V2.1.doc
+- docs/library/07_方案与模板/01 解决方案/DELL新一代模块化数据中心解决方案.pptx
+- docs/library/07_方案与模板/01 解决方案/EMC双活数据中心解决方案-V4.0.doc
+- docs/library/07_方案与模板/01 解决方案/Emerson数据中心基础设施管理解决方案.pptx
+- docs/library/07_方案与模板/01 解决方案/F5双活数据中心解决方案.pdf
+- docs/library/07_方案与模板/01 解决方案/F5双活数据中心解决方案.pptx
+- docs/library/07_方案与模板/01 解决方案/H3C数据中心Overlay解决方案汇报.pptx
+- docs/library/07_方案与模板/01 解决方案/H3C数据中心网络解决方案.pptx
+- docs/library/07_方案与模板/01 解决方案/H3C数据中心解决方案.doc
+- docs/library/07_方案与模板/01 解决方案/H3C运营商数据中心解决方案.ppt
+- docs/library/07_方案与模板/01 解决方案/HDS双活数据中心解决方案.pptx
+- docs/library/07_方案与模板/01 解决方案/IDC数据中心动力环境监控系统解决方案.pdf
+- docs/library/07_方案与模板/01 解决方案/IDC数据中心运营建设方案.doc
+- docs/library/07_方案与模板/01 解决方案/SAP创新驱动，烟草行业新一代大数据中心建设方案.pdf
+- docs/library/07_方案与模板/01 解决方案/XXX云平台数据中心设计方案.pdf
+- docs/library/07_方案与模板/01 解决方案/XX市卫生局数据中心建设方案.doc
+- docs/library/07_方案与模板/01 解决方案/XX市政府数据中心建设项目实施方案.docx
+- docs/library/07_方案与模板/01 解决方案/XX数据中心应急方案.doc
+- docs/library/07_方案与模板/01 解决方案/XX数据中心网络及安全方案建议书.doc
+- docs/library/07_方案与模板/01 解决方案/XX高校数据中心整体建设方案建议书-v2.0.docx
+- docs/library/07_方案与模板/01 解决方案/【精品】数据中心可视化管理平台解决方案.pdf
+- docs/library/07_方案与模板/01 解决方案/【精品】智慧医院BI运维决策与CDR临床数据中心建设-杨波.pdf
+- docs/library/07_方案与模板/01 解决方案/东莞创机电业数据中心项目方案设计V2.3版本.pptx
+- docs/library/07_方案与模板/01 解决方案/中国IDC行业资讯大全2019年版完整电子版.pdf
+- docs/library/07_方案与模板/01 解决方案/中国联通数据中心建设标准.pdf
+- docs/library/07_方案与模板/01 解决方案/中国联通数据中心技术规范书.pdf
+- docs/library/07_方案与模板/01 解决方案/云数据中心解决方案技术方案.docx
+- docs/library/07_方案与模板/01 解决方案/云数据中心解决方案详解PPT.pptx
+- docs/library/07_方案与模板/01 解决方案/云计算数据中心建设方案.doc
+- docs/library/07_方案与模板/01 解决方案/云计算数据中心解决方案.pdf
+- docs/library/07_方案与模板/01 解决方案/互联网数据中心安全管控方案.docx
+- docs/library/07_方案与模板/01 解决方案/任华华：IDC液冷化-正在发生的未来.pdf
+- docs/library/07_方案与模板/01 解决方案/企业云计算数据中心方案（海得版）-V2.pdf
+- docs/library/07_方案与模板/01 解决方案/企业数据中心系统平台技术方案建议书.docx
+- docs/library/07_方案与模板/01 解决方案/企业数据中心设计建议方案.pdf
+- docs/library/07_方案与模板/01 解决方案/企业级数据治理平台助力国家电网全业务数据中心建设.pdf
+- docs/library/07_方案与模板/01 解决方案/企业网云数据中心解决方案.pptx
+- docs/library/07_方案与模板/01 解决方案/全域旅游大数据中心一站式服务方案.pdf
+- docs/library/07_方案与模板/01 解决方案/全媒体融合数据中心实验室建设方案.doc
+- docs/library/07_方案与模板/01 解决方案/公交数据中心云平台建设方案书.doc
+- docs/library/07_方案与模板/01 解决方案/公安未来数据中心展望.pptx
+- docs/library/07_方案与模板/01 解决方案/兰贝数据中心基础设施解决方案产品手册.pdf
+- docs/library/07_方案与模板/01 解决方案/内网区域--内网数据中心安全加固解决方案模板v1.0.docx
+- docs/library/07_方案与模板/01 解决方案/刘淼：新一代智能云数据中心的发展趋势和应对策略 v201912.pdf
+- docs/library/07_方案与模板/01 解决方案/创新驱动，新一代大数据中心建设方案.pdf
+- docs/library/07_方案与模板/01 解决方案/动态绿色数据中心解决方案.pdf
+- docs/library/07_方案与模板/01 解决方案/北京市测绘设计研究院九州公司-唐晓旭-空间数据与业务数据融合的房管数据中心建设.pdf
+- docs/library/07_方案与模板/01 解决方案/北京某数据中心投标施工组织设计.doc
+- docs/library/07_方案与模板/01 解决方案/区域卫生平台数据中心方案.doc
+- docs/library/07_方案与模板/01 解决方案/华为-IDC数据中心解决方案.pptx
+- docs/library/07_方案与模板/01 解决方案/华为-云数据中心解决方案.ppt
+- docs/library/07_方案与模板/01 解决方案/华为云数据中心解决方案技术方案.docx
+- docs/library/07_方案与模板/01 解决方案/华为双活数据中心解决方案.pptx
+- docs/library/07_方案与模板/01 解决方案/华为数据中心基础设施解决方案介绍.pdf
+- docs/library/07_方案与模板/01 解决方案/华为数据中心能源创新分享-201903.pdf
+- docs/library/07_方案与模板/01 解决方案/华为数据中心解决方案-部署指南.pdf
+- docs/library/07_方案与模板/01 解决方案/华为数据中心解决方案典型工程案例.docx
+- docs/library/07_方案与模板/01 解决方案/华为数据中心解决方案典型工程案例介绍.docx
+- docs/library/07_方案与模板/01 解决方案/华为模块化数据中心解决方案.pptx
+- docs/library/07_方案与模板/01 解决方案/南方基金新数据中心一期介绍-屈磊.pdf
+- docs/library/07_方案与模板/01 解决方案/南通大学超融合数据中心一期技术方案.doc
+- docs/library/07_方案与模板/01 解决方案/双活数据中心方案.docx
+- docs/library/07_方案与模板/01 解决方案/双活数据中心解决方案-通用.pptx
+- docs/library/07_方案与模板/01 解决方案/双活数据中心解决方案.pdf
+- docs/library/07_方案与模板/01 解决方案/叶辉：增效降费、共建绿色数据中心.pdf
+- docs/library/07_方案与模板/01 解决方案/吕鑫：云计算数据中心智能运维一体化.pdf
+- docs/library/07_方案与模板/01 解决方案/吴倩：5G时代的传统企业混合云实践.pdf
+- docs/library/07_方案与模板/01 解决方案/国家云计算XX数据中心建设方案.doc
+- docs/library/07_方案与模板/01 解决方案/大型数据中心解决方案.pdf
+- docs/library/07_方案与模板/01 解决方案/大数据中心机房规划设计方案.doc
+- docs/library/07_方案与模板/01 解决方案/完整的IDC数据中心建设方案.doc
+- docs/library/07_方案与模板/01 解决方案/完整的IDC机房建设方案.pdf
+- docs/library/07_方案与模板/01 解决方案/定制化IDC解决方案简介.pptx
+- docs/library/07_方案与模板/01 解决方案/张东来：蒸发冷却技术在国际知名数据中心案例解析.pdf
+- docs/library/07_方案与模板/01 解决方案/微型数据中心解决方案.ppt
+- docs/library/07_方案与模板/01 解决方案/思科下一代企业云数据中心网络架构.pdf
+- docs/library/07_方案与模板/01 解决方案/政务数据中心V1.2.pdf
+- docs/library/07_方案与模板/01 解决方案/数字化转型中的中国 数据中心创新.pdf
+- docs/library/07_方案与模板/01 解决方案/数据中心--医疗影像云云安全解决方案模板v1.1.doc
+- docs/library/07_方案与模板/01 解决方案/数据中心--构建医院安全大脑解决方案模板v1.0.docx
+- docs/library/07_方案与模板/01 解决方案/数据中心--解决方案.pptx
+- docs/library/07_方案与模板/01 解决方案/数据中心IT规划方案.ppt
+- docs/library/07_方案与模板/01 解决方案/数据中心Overlay解决方案汇报.pptx
+- docs/library/07_方案与模板/01 解决方案/数据中心供电方案设计.ppt
+- docs/library/07_方案与模板/01 解决方案/数据中心信息安全解决方案.doc
+- docs/library/07_方案与模板/01 解决方案/数据中心动环监控可视化管理方案.pdf
+- docs/library/07_方案与模板/01 解决方案/数据中心可视化技术白皮书.doc
+- docs/library/07_方案与模板/01 解决方案/数据中心可视化管理平台解决方案V1.0.pdf
+- docs/library/07_方案与模板/01 解决方案/数据中心基础网络解决方案.pdf
+- docs/library/07_方案与模板/01 解决方案/数据中心基础设施解决方案.doc
+- docs/library/07_方案与模板/01 解决方案/数据中心安全解决方案.pptx
+- docs/library/07_方案与模板/01 解决方案/数据中心建设思路与方案.pptx
+- docs/library/07_方案与模板/01 解决方案/数据中心建设整体方案.doc
+- docs/library/07_方案与模板/01 解决方案/数据中心建设方案.doc
+- docs/library/07_方案与模板/01 解决方案/数据中心建设方案.docx
+- docs/library/07_方案与模板/01 解决方案/数据中心建设方案v3.0.pptx
+- docs/library/07_方案与模板/01 解决方案/数据中心总体网络设计方案.pdf
+- docs/library/07_方案与模板/01 解决方案/数据中心报告合辑
+- docs/library/07_方案与模板/01 解决方案/数据中心整体解决方案.pdf
+- docs/library/07_方案与模板/01 解决方案/数据中心方案设计V2.0.doc
+- docs/library/07_方案与模板/01 解决方案/数据中心机房--工程整体设计方案.doc
+- docs/library/07_方案与模板/01 解决方案/数据中心机房--建设体会精华版.ppt
+- docs/library/07_方案与模板/01 解决方案/数据中心机房--建设技术投标方案.docx
+- docs/library/07_方案与模板/01 解决方案/数据中心机房--建设方案201012.doc
+- docs/library/07_方案与模板/01 解决方案/数据中心机房--建设方案201210.docx
+- docs/library/07_方案与模板/01 解决方案/数据中心机房--建设规划方案202010.pptx
+- docs/library/07_方案与模板/01 解决方案/数据中心机房--改造设计方.docx
+- docs/library/07_方案与模板/01 解决方案/数据中心机房--模块化技术方案书.docx
+- docs/library/07_方案与模板/01 解决方案/数据中心机房--清华同方综合布线.ppt
+- docs/library/07_方案与模板/01 解决方案/数据中心机房--线缆敷设与理线.doc
+- docs/library/07_方案与模板/01 解决方案/数据中心机房--规划方案201411.docx
+- docs/library/07_方案与模板/01 解决方案/数据中心机房--设备标签规范建议.doc
+- docs/library/07_方案与模板/01 解决方案/数据中心机房--设计与施工方案.docx
+- docs/library/07_方案与模板/01 解决方案/数据中心机房--设计方案201411.ppt
+- docs/library/07_方案与模板/01 解决方案/数据中心机房建设体会精华版.ppt
+- docs/library/07_方案与模板/01 解决方案/数据中心机房建设方案.docx
+- docs/library/07_方案与模板/01 解决方案/数据中心机房建设项目技术投标书.docx
+- docs/library/07_方案与模板/01 解决方案/数据中心机房规划方案.docx
+- docs/library/07_方案与模板/01 解决方案/数据中心机房设备标签规范建议.pdf
+- docs/library/07_方案与模板/01 解决方案/数据中心机房设计与施工方案（238页） (1).docx
+- docs/library/07_方案与模板/01 解决方案/数据中心机房设计方案.doc
+- docs/library/07_方案与模板/01 解决方案/数据中心机柜系统技术白皮书.docx
+- docs/library/07_方案与模板/01 解决方案/数据中心的数字化运行态管理体系构建v2.6.pdf
+- docs/library/07_方案与模板/01 解决方案/数据中心的综合布线.ppt
+- docs/library/07_方案与模板/01 解决方案/数据中心空调系统节能技术白皮书.doc
+- docs/library/07_方案与模板/01 解决方案/数据中心综合监控系统工程技术标准.pdf
+- docs/library/07_方案与模板/01 解决方案/数据中心综合解决方案V1.0---视频动环综合监控.pptx
+- docs/library/07_方案与模板/01 解决方案/数据中心节能方案分析.doc
+- docs/library/07_方案与模板/01 解决方案/数据中心解决方案.docx
+- docs/library/07_方案与模板/01 解决方案/数据中心解决方案.ppt
+- docs/library/07_方案与模板/01 解决方案/数据中心解决方案.pptx
+- docs/library/07_方案与模板/01 解决方案/数据中心解决方案2016.pptx
+- docs/library/07_方案与模板/01 解决方案/数据中心解决方案之灾备方案设计.docx
+- docs/library/07_方案与模板/01 解决方案/数据中心解决方案安全技术白皮书.pdf
+- docs/library/07_方案与模板/01 解决方案/数据中心设备方案.doc
+- docs/library/07_方案与模板/01 解决方案/数据中心设计方案模板 (vCloud Suite）.pdf
+- docs/library/07_方案与模板/01 解决方案/数据中心质量保证方案.doc
+- docs/library/07_方案与模板/01 解决方案/数据中心运维服务方案.docx
+- docs/library/07_方案与模板/01 解决方案/数据中心运行可视化平台解决方案(uEarth uDCV uITV)v2.0.pptx
+- docs/library/07_方案与模板/01 解决方案/数据中心运行可视化平台解决方案v2.0.pptx
+- docs/library/07_方案与模板/01 解决方案/数据中心项目建设可行性研究报告.doc
+- docs/library/07_方案与模板/01 解决方案/数据中心项目方案.docx
+- docs/library/07_方案与模板/01 解决方案/数据中心高可靠性方案.pdf
+- docs/library/07_方案与模板/01 解决方案/新一代数据中心解决方案.pptx
+- docs/library/07_方案与模板/01 解决方案/春节培训-数据中心产品介绍.pptx
+- docs/library/07_方案与模板/01 解决方案/普天天纪微模块数据中心201806.pptx
+- docs/library/07_方案与模板/01 解决方案/智慧城市数据中心建设方案.doc
+- docs/library/07_方案与模板/01 解决方案/智汇校园，云领未来-华为智慧校园云数据中心解决方案白皮书.pdf
+- docs/library/07_方案与模板/01 解决方案/林清民：携手IDC全生命周期共赢新产业.pdf
+- docs/library/07_方案与模板/01 解决方案/某大学云数据中心建设方案.docx
+- docs/library/07_方案与模板/01 解决方案/某数据中心规划方案.doc
+- docs/library/07_方案与模板/01 解决方案/栗权：智维平台与数据中心运营体系结合.pdf
+- docs/library/07_方案与模板/01 解决方案/模块化数据中心机房解决方案.pdf
+- docs/library/07_方案与模板/01 解决方案/模块化数据中心（MDC）_秦旭_201909.ppt
+- docs/library/07_方案与模板/01 解决方案/江森自控数据中心空调节能解决方案.pdf
+- docs/library/07_方案与模板/01 解决方案/江森自控数据中心系统解决方案.pptx
+- docs/library/07_方案与模板/01 解决方案/江西水利数据中心地理共享服务平台.pdf
+- docs/library/07_方案与模板/01 解决方案/沃德思绿色数据中心解决方案.ppt
+- docs/library/07_方案与模板/01 解决方案/浪潮云海OS.云数据中心管理平台.ppt
+- docs/library/07_方案与模板/01 解决方案/深信服XXX数据中心项目aCloud企业级云技术建议书.docx
+- docs/library/07_方案与模板/01 解决方案/深信服集团数据中心方案规划模板.pptx
+- docs/library/07_方案与模板/01 解决方案/深信服高校数据中心整体建设方案建议书-v2.0.docx
+- docs/library/07_方案与模板/01 解决方案/清华同方数据中心综合布线方案.ppt
+- docs/library/07_方案与模板/01 解决方案/港铁AFC云数据中心项目技术方案及实施、培训方案 201910.docx
+- docs/library/07_方案与模板/01 解决方案/畅途网云数据中心建设方案-v1.1.doc
+- docs/library/07_方案与模板/01 解决方案/省级政务大数据中心建设-国云魔镜大数据智能分析平台解决方案--V1——.docx
+- docs/library/07_方案与模板/01 解决方案/精品数据中心机房建设方案.docx
+- docs/library/07_方案与模板/01 解决方案/美国康普数据中心规划指南.pdf
+- docs/library/07_方案与模板/01 解决方案/联想车载超高清视频数据中心_201909.pptx
+- docs/library/07_方案与模板/01 解决方案/艾默生数据中心机房整体解决方案.pptx
+- docs/library/07_方案与模板/01 解决方案/虚拟化绿色数据中心方案.ppt
+- docs/library/07_方案与模板/01 解决方案/资本协同的数据中心特征.pdf
+- docs/library/07_方案与模板/01 解决方案/达梦数据中心解决方案.pptx
+- docs/library/07_方案与模板/01 解决方案/重庆公安新一代数据中心解决方案.pptx
+- docs/library/07_方案与模板/01 解决方案/金祺创数据中心建设 - 公开V1.0.pdf
+- docs/library/07_方案与模板/01 解决方案/阿尔西数据中心专用空调系统解决方案.pdf
+- docs/library/07_方案与模板/01 解决方案/阿尔西数据中心空调解决方案.ppt
+- docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/2020年3月更新
+- docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/F5双活数据中心解决方案.pdf
+- docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/F5双活数据中心解决方案.pptx
+- docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/H3C 运营商数据中心解决方案.ppt
+- docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/H3C数据中心网络解决方案.pptx
+- docs/library/07_方案与模板/H173 数据中心解决方案数据中心机房建设方案数据中心方案IDC数据中心/H3C数据中心解决方案.doc
+- docs/library/07_方案与模板/PPT方案/2020年数据中心建设与方案.ppt
+- docs/library/07_方案与模板/PPT方案/2021年低碳数据中心发展白皮书.pdf
+- docs/library/07_方案与模板/PPT方案/2021年数据中心产业发展指数.pdf
+- docs/library/07_方案与模板/PPT方案/2021年超融合数据中心网络白皮书.pdf
+- docs/library/07_方案与模板/PPT方案/5G+物联网数字农村、智慧农业大数据中心项目建设方案.pdf
+- docs/library/07_方案与模板/PPT方案/5G+物联网数字农村、智慧农业大数据中心项目建设方案.pptx
+- docs/library/07_方案与模板/PPT方案/IDC全闪存数据中心白皮书.pdf
+- docs/library/07_方案与模板/PPT方案/T5601 新基建 2020年中国城市数据中心发展指数报告.pdf
+- docs/library/07_方案与模板/PPT方案/【T3502】企业级数据治理平台助力国家电网全业务数据中心建设.pdf
+- docs/library/07_方案与模板/PPT方案/中国液冷数据中心发展白皮书.pdf
+- docs/library/07_方案与模板/PPT方案/华为模块化数据中心解决方案.pptx
+- docs/library/07_方案与模板/PPT方案/城市大数据中心建设方案.pptx
+- docs/library/07_方案与模板/PPT方案/市大数据中心大数据资源平台概要设计方案.pptx
+- docs/library/07_方案与模板/PPT方案/数据中心 智慧机房解决方案.pptx
+- docs/library/07_方案与模板/PPT方案/数据中心智能无损网络白皮书.pdf
+- docs/library/07_方案与模板/PPT方案/数据中心机房规划方案.docx
+- docs/library/07_方案与模板/PPT方案/数据中心算力白皮书.pdf
+- docs/library/07_方案与模板/PPT方案/未来网络白皮书——数据中心自动驾驶网络技术白皮书.pdf
+- docs/library/07_方案与模板/PPT方案/某大型集团数据中心建设方案(非常完整超过1000页的精品文档) 202002.docx
+- docs/library/07_方案与模板/PPT方案/港铁AFC云数据中心项目技术方案及实施、培训方案 20191018.docx
+- docs/library/07_方案与模板/PPT方案/粤港澳数据中心新基建发展白皮书.pdf
+- docs/library/07_方案与模板/R066新选30个机房建设方案弱电数据中心机房布线物联解决方案设计素材/机房建设
+- docs/library/07_方案与模板/TB147- IDC数据中心机房建设运维解决方案故障处理管理制度应急预案/Y IDC数据中心机房建设运维解决方案故障处理安全管理制度应急预案
+- docs/library/07_方案与模板/数据中心机房建设方案数据中心解决方案数据中心方案IDC数据中心/F-182：数据中心云平台解决方案
+- docs/library/08_培训与课件/数据中心机房基础设施运维资料 培训课件 资料素材/P培训课件
+- docs/library/90_待分类/2022_Computing and AI technologies for data center 2022.pdf
+- docs/library/90_待分类/2022_Computing and AI technologies for data center 2022.pptx
+- docs/library/90_待分类/2022_YINTR22257_Computing_and_AI_for_Data_Center_2022.pdf
+- docs/library/90_待分类/2022_YINTR22257_Computing_and_AI_for_Data_Center_2022.pptx
+- docs/library/90_待分类/2024_Air_cooling_datacenter_2024_RS400240222.pdf
+- docs/library/90_待分类/2025_2025年零门槛AIGC应用实战：Serverless-AI-轻松玩转高频AIGC场景-287页.pdf
+- docs/library/90_待分类/2025_Co-packaged Optics for Data Centers 2025.pdf
+- docs/library/90_待分类/2025_Co-packaged Optics for Data Centers 2025.pptx
+- docs/library/90_待分类/2025_Colliers_The digital backbone Data center growth prospects in India.pdf
+- docs/library/90_待分类/2025_Datacenter Anatomy Part 1_ Electrical Systems.pdf
+- docs/library/90_待分类/2025_Generative AI 2025 Computing AI Data Center.pdf
+- docs/library/90_待分类/2025_Microsoft’s Datacenter Freeze – 1.5GW Self-Build Slowdown & Lease Cancellation Misconceptions – SemiAnalysis.pdf
+- docs/library/90_待分类/2025_云大厂服务能力全面升级.pdf
+- docs/library/90_待分类/2025_英文【谷歌云】谷歌云技术指南：打造智能AI代理系统-64页.pdf
+- docs/library/90_待分类/2025_谷歌云技术指南：打造智能AI代理系统（英）-64页.pdf
+- docs/library/90_待分类/2025_阿里云实时计算Flink AI能力解读-57页.pdf
+- docs/library/90_待分类/2025_阿里超节点 2025.09.29.pptx
+- docs/library/M09_电气设备供应链/56_有用/6A_2022_GoingVertical__SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2025_ASMLTheSemicon_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2007_2007_中国移动机房规范V_标准规范.doc
+- docs/library/M09_电气设备供应链/34_存档/4A_2022_MediaTekOffici_SemiAnalysis.pdf
+- docs/library/M10_建设运营与人才/56_有用/5A_2009_2009_YD5167200_标准规范.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_PackagingDevel_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_DieSizeAndReti_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2025_2025_中国移动电信级数据_标准规范.doc
+- docs/library/M09_电气设备供应链/56_有用/5A_2008_2008_YDT_18212_标准规范.pdf
+- docs/library/M09_电气设备供应链/56_有用/6A_2025_MarvellsVision_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2022_AppleM2DieShot_SemiAnalysis.pdf
+- docs/library/M10_建设运营与人才/56_有用/6A_2003_GB109432003电力变_标准规范.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2022_AppleCPUGainsG_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/6A_2024_JefferiesLLC_T_SemiAnalysis.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_JEFFLAM_Resear_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_TheFutureOfMil_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_OpenAIIsDoomed_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2014_2014_YD5193201_标准规范.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_NvidiaInTheHot_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_ShortReport_Nv_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/34_存档/3A_2022_IntelGrosslyEx_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2007_中国移动机房规范V10200_标准规范.doc
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_OnDeviceAIDoub_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_SiliconCarbide_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_IntelsTrojanHo_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2022_GPTModelTraini_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/6B_2025_Vertiv一季度订单与积压_Jefferies.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2022_AppleA15DieSho_SemiAnalysis.pdf
+- docs/library/M13_有效算力与软件/56_有用/6A_2012_JGJ2842012金融建筑_标准规范.pdf
+- docs/library/M10_建设运营与人才/34_存档/3A_2014_2014_YD5194201_标准规范.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2022_WhyAmericaWill_SemiAnalysis.pdf
+- docs/library/M13_有效算力与软件/56_有用/5A_2013_2013_YDT254320_标准规范.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2022_ArmChangesBusi_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_TheHistoryAndT_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_AMDAISoftwareS_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2013_YDT24422013互联网_标准规范.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2022_AdaLovelaceGPU_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_MeetNETINT_The_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_TheTransformat_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_ASMLDilemma_Hi_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_VentanaRISCVCP_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_AMDGenoaDetail_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_NOMURAZTE_Corp_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2025_QualcommRFFEUp_SemiAnalysis.pdf
+- docs/library/M13_有效算力与软件/56_有用/6A_2008_中国移动通信企业标准通信用不_标准规范.pdf
+- docs/library/M10_建设运营与人才/56_有用/5A_2021_QualcommMWC202_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/6A_2017_GB501742017数据中_标准规范.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_HighNAisHerefo_SemiAnalysis.pdf
+- docs/library/M10_建设运营与人才/34_存档/3A_2022_2022_数据中心运维管理人_标准规范.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_MSSemiconducto_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5A_2022_AustriasSilent_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2022_TheFutureOfPac_SemiAnalysis.pdf
+- docs/library/M13_有效算力与软件/56_有用/5A_2013_YDT24412013互联网_标准规范.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_IndiasSemicond_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_GoogleNewCusto_SemiAnalysis.pdf
+- docs/library/M10_建设运营与人才/56_有用/5A_2022_SemiconductorR_SemiAnalysis.pdf
+- docs/library/M10_建设运营与人才/56_有用/6A_2004_GB503432004建筑物_标准规范.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_BeyondAdvanced_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_AdvancedPackag_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_AdvancedPackag_SemiAnalysis_02.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_中国移动电信级数据机房规范v_标准规范.doc
+- docs/library/M09_电气设备供应链/56_有用/6A_2009_中国电信QCT2171200_标准规范.pdf
+- docs/library/M09_电气设备供应链/56_有用/6A_2025_2025_2025年汽车低压_标准规范.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_SeparatingReal_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2005_2005_中国电信数据中心机_标准规范.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_TSMCN2NextGenS_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2022_FungibleDPUsAr_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_IntelIsThrowin_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_EmbracingChaos_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2022_LithographyInt_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_MorganStanleyJ_SemiAnalysis.pdf
+- docs/library/M10_建设运营与人才/56_有用/6A_2005_GBT109442005电力_标准规范.pdf
+- docs/library/M09_电气设备供应链/34_存档/3A_2022_CaliptraFirstO_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_ArmandaLeg_Arm_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/6A_2022_TSMC3nmFinFlex_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_CerebrasWaferS_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_AdvancedPackag_SemiAnalysis_03.pdf
+- docs/library/M10_建设运营与人才/56_有用/5A_2004_GB503432004建筑物_标准规范.pdf
+- docs/library/M09_电气设备供应链/56_有用/6A_2022_DeepSeek辩论中国在成_SemiAnalysis.pdf
+- docs/library/M10_建设运营与人才/56_有用/6A_2022_GB5021794电力工程电_标准规范.doc
+- docs/library/M09_电气设备供应链/56_有用/6A_2011_2011_中国电信集团文件I_标准规范.pdf
+- docs/library/M09_电气设备供应链/34_存档/3A_2022_RivosInc_AChip_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/6A_2022_NvidiaAdaLovel_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2023_TSMC3nmWaferSh_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2024_SamsungFoundry_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/6A_2011_中国电信集团文件IDC机房设_标准规范.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_CXLDeepDiveFut_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2022_RockleyPhotoni_SemiAnalysis.pdf
+- docs/library/M13_有效算力与软件/56_有用/6A_2008_2008_中国移动通信企业标_标准规范.pdf
+- docs/library/M10_建设运营与人才/56_有用/5A_2004_GB503432004建筑物_标准规范_02.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2022_TurningTheTita_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/6A_2023_IntelGenAIForY_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_IntelEmeraldRa_SemiAnalysis.pdf
+- docs/library/M10_建设运营与人才/34_存档/3A_2010_YD50542010通信建筑_标准规范.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2010_YD50602010通信设备_标准规范.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_Q3Semiconducto_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_AMDToInfinityA_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2022_Intels14AMagic_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/6A_2022_美国ASHRAE数据中心热处_标准规范.doc
+- docs/library/M09_电气设备供应链/34_存档/4A_2022_TheDarkSideOfT_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_MarvellAcquire_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_SemiconductorR_SemiAnalysis_02.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_SamsungElectro_SemiAnalysis.pdf
+- docs/library/01_标准与规范/03 最新标准/6A_2018_中国信通院2018数据中心白_标准规范.pdf
+- docs/library/M09_电气设备供应链/56_有用/6A_2022_TSMCs3nmConund_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2021_Nvidias2021Bub_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_AsteraLabsIsFi_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_GlobalFoundrie_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/6A_2018_YDT52392018模块化_标准规范.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2022_NvidiaHackedAN_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/6A_2022_Q3Semiconducto_SemiAnalysis.pdf
+- docs/library/M10_建设运营与人才/56_有用/6A_2000_GB500571994200_标准规范.pdf
+- docs/library/M10_建设运营与人才/34_存档/3A_2014_YD51942014互联网数_标准规范.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2022_AmazonWebServi_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/6A_2022_TIA942数据中心电信基础_标准规范.pdf
+- docs/library/M10_建设运营与人才/34_存档/3A_2013_建筑工程施工质量验收统一标准_标准规范.doc
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_IsAmpereComput_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_GraphcoreAnnou_SemiAnalysis.pdf
+- docs/library/M10_建设运营与人才/56_有用/5A_2009_YD51672009通信用柴_标准规范.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_NvidiaIllumina_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2009_2009_QGDW34520_标准规范.doc
+- docs/library/M09_电气设备供应链/56_有用/6A_2022_EUVRequirement_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/6A_2022_MI300XvsH100vs_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_TheFutureofthe_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_SemiconductorR_SemiAnalysis_03.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_MSWistron_Corp_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_HSBCTE_Connect_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6A_2008_2008_GB5017420_标准规范.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2023_TSMCSaysTheyWi_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/6A_2022_Zen4c_AMDsResp_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2022_MicrosoftSwall_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2014_YD51932014互联网数_标准规范.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_TSMCWantsToMak_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2022_MemoryOligopol_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/6A_2022_ACenturyofMoor_SemiAnalysis.pdf
+- docs/library/M10_建设运营与人才/56_有用/5A_2022_KulickeSoffaIn_SemiAnalysis_02.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2025_2025_2025年ETHX_标准规范.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_JPMUSTR_301_im_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5A_2022_GlobalFoundrie_SemiAnalysis_02.pdf
+- docs/library/M09_电气设备供应链/56_有用/6A_2008_2008_电子信息系统机房设_标准规范.doc
+- docs/library/M14_中国板块/56_有用/5A_2022_GB500571994_2k_标准规范.pdf
+- docs/library/M13_有效算力与软件/56_有用/5A_2013_2013_YDT244120_标准规范.pdf
+- docs/library/M10_建设运营与人才/56_有用/6A_2009_LEED_2009NC中文版_标准规范.pdf
+- docs/library/M09_电气设备供应链/56_有用/6A_2022_2022NANDProces_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_TenstorrentBla_SemiAnalysis.pdf
+- docs/library/M13_有效算力与软件/56_有用/5A_2022_RebuildingInte_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2022_Q3EarningsEnds_SemiAnalysis.pdf
+- docs/library/M13_有效算力与软件/56_有用/5A_2013_YDT25432013电信互_标准规范.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_SoundTheSiyrn__SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_SamsungBacksta_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/6A_2008_电子信息系统机房设计规GB5_标准规范.doc
+- docs/library/M09_电气设备供应链/34_存档/3A_2022_JensenHuangsVi_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/6A_2007_GB503112007综合布_标准规范.doc
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_HSBCCH_Inspur__未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_MSClean_Techs__未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2022_SiFivePowersGo_SemiAnalysis.pdf
+- docs/library/M10_建设运营与人才/34_存档/3A_2000_CECS1152000干式电_标准规范.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_IsIntelShippin_SemiAnalysis.pdf
+- docs/library/M10_建设运营与人才/56_有用/6A_2002_GBT12706142002_标准规范.doc
+- docs/library/M09_电气设备供应链/56_有用/6A_2022_IsIntelBack_Fo_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2009_YDB0322009通信用后_标准规范.pdf
+- docs/library/M13_有效算力与软件/56_有用/5A_2015_2智能建筑设计标准2015w_标准规范.doc
+- docs/library/M10_建设运营与人才/56_有用/5A_2022_ISemiconductor_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2022_Qualcomm_Media_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2022_CaughtintheCro_SemiAnalysis.pdf
+- docs/library/M10_建设运营与人才/56_有用/5A_2022_NANDFlashMonop_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2013_YDT25562013通信用_标准规范.pdf
+- docs/library/M09_电气设备供应链/56_有用/6A_2025_Semianalysis最新_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_TeslaDojoUniqu_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_AMDMI300RampGP_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_UBSZhongii_Inn_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2009_QGDW3452009国家电_标准规范.doc
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_HowNvidiasEmpi_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_QualcommHitsaH_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/6A_2009_2061_YDT206120_标准规范.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2008_YDT_18212008工信_标准规范.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2013_2013_YDT244220_标准规范.pdf
+- docs/library/M09_电气设备供应链/34_存档/3A_2022_HowOntoInnovat_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2022_AehrMultiWafer_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_CanYouTrustSem_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/34_存档/3A_2022_AChipOffTheOld_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_DISCOCorporati_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2022_GraphcoreLooks_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_IntelontheBrin_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/34_存档/3A_2022_LAMResearchLRC_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/6A_2009_YDT20612009工信部_标准规范.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2022_AMDMI300Perfor_SemiAnalysis.pdf
+- docs/library/M10_建设运营与人才/56_有用/5A_2022_LamResearchIsO_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_LamResearchTok_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2022_IsArmDesperate_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2025_QualcommRFFEBu_SemiAnalysis.pdf
+- docs/library/M10_建设运营与人才/34_存档/3A_2022_SemiSupplyChai_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/6A_2022_MeteorLakeDieS_SemiAnalysis.pdf
+- docs/library/M10_建设运营与人才/56_有用/5A_2022_SemiconductorR_SemiAnalysis_04.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_MSSeagate_Tech_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2011_YDT23782011通信用_标准规范.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_TenstorrentWor_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_GlobalFoundrie_SemiAnalysis_03.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_TeslaAIDaySupe_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/6A_2009_中国电信2009553号数据_标准规范.pdf
+- docs/library/M07_网络与互联/56_有用/6C_2022_JPMVertiv_Copi_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_MetaCustomSili_SemiAnalysis.pdf
+- docs/library/M10_建设运营与人才/56_有用/6A_2009_YD50392009通信工程_标准规范.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_AsMooresLawSlo_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2005_中国电信数据中心机房电源空调_标准规范.pdf
+- docs/library/M09_电气设备供应链/56_有用/5A_2022_MarvellsDSPDil_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/34_存档/4A_2022_ArmsNuclearOpt_SemiAnalysis.pdf
+- docs/library/M09_电气设备供应链/56_有用/6A_2025_2025_TIA942数据中_标准规范.pdf
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/1#楼/1#楼/1#楼（维护支撑用房）-节能及绿建报告书汇总/4B_2022_节能审查01_工程档案.doc
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/造价类资料（全程免费，得来不易需要完成一些小任务）2/1控制价/1控制价 定稿/室外工程/室外排水排污工程/5A_2022_移动粤港澳室外排水排污_中国移动.xlsx
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-节能及绿建报告书汇总_解压2/忠县移动中心-节能及绿建报告书汇总/4B_2024_忠县机房楼能耗碳排放报告_四川华威设计.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-节能及绿建报告书汇总_解压2/忠县移动中心-节能及绿建报告书汇总/3B_2024_忠县节能规定性指标地标版_四川华威设计.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-节能及绿建报告书汇总_解压2/忠县移动中心-节能及绿建报告书汇总/3B_2024_忠县节能规定性指标国标版_四川华威设计.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-节能及绿建报告书汇总_解压2/忠县移动中心-节能及绿建报告书汇总/3B_2024_忠县围护结构内表面温度报告_四川华威设计.doc
+- docs/library/_projects/2023.2 中国移动（济宁）数据中心/济宁数据中心室外工程图纸/工艺/中国移动山东公司（济宁）鲁西南数据中心进局通信管道单项工程施工图cad版_解压2/中国移动山东公司（济宁）鲁西南数据中心进局通信管道单项工程施工图cad版/5B_2023_济宁数据中心进局管道投资估算_中国移动山东公司.xlsx
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_2024基于冷板式_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_2025_2024年数据中心_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_2025年数据中心_未署名__002.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_2025年浸没式冷_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_H3CH3C服务器_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_任华华IDC液冷化_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2025_2025_张东来蒸发冷却技术_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_2025_数据中心供电方案设_未署名.ppt
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_智算中心冷板式液冷_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_智算中心液冷产业全_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_液冷系统防漏液和漏_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_绿色数据中心创新实_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2020_2020_IDCCloudI_未署名.xlsx
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_2022_JP摩根美股半导体_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_2024云计算关键_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2025_2025_2024年面向中小_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_2025亚马逊云计_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_2025_CloudEngi_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_IBM超越数据中心_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_2025_AI云时代专业服务_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_云计算关键领域安全_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_云计算关键领域安全_未署名_02.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_云计算数据中心网络_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_云计算数据中心解决_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_2025_从云计算到能动智能_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_企业云计算数据中心_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_2025_传统数据中心向云计_未署名.docx
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_2025_吕鑫云计算数据中心_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_国家云计算XX数据_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_数据中心设计方案模_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_深信服XXX数据中_未署名.docx
+- docs/library/M09_电气设备供应链/34_存档/3C_2019_2019_刘淼新一代智能云数_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2021_2021_2021低碳数据中_未署名.pdf
+- docs/library/M07_网络与互联/56_有用/6C_2021_2021_巴克莱欧洲投资策略_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_2022_JP摩根美股半导体_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_2022_东数西算数据中心基_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_2024_智算中心综合评价报_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2025_2025_12XX电力可研报_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_2025_2021数据中心B_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_2022中国云数据_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_2025_2024年中国企业_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_2025年AIDC_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_2025年ETHX_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_2025年ETHX_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_2025年UPN5_未署名.pdf
+- docs/library/M13_有效算力与软件/34_存档/3C_2025_2025_2025年中小银行_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_2025年操作系统_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_2025年数字政府_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_2025年数据中心_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_2025年数据中心_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_2025_2025年金融行业_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_2025智算中心行_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_2025智算中心行_未署名_02.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_2025智算中心行_未署名_03.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_2025海内外云厂_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_2025阿里云百炼_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_2025面向未来的_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_CIC灼识咨询中国_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_XX大数据中心项目_未署名.docx
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_2025_人工智能数据中心规_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2025_2025_公安未来数据中心展_未署名.pptx
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_2025_基于AI大模型的金_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_2025_基于AI大模型的金_未署名_02.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2025_2025_工商银行金融科技研_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_2025_工商银行金融科技研_未署名_02.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_2025_政府行业数据中心方_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_数据中心智算化升级_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_数据中心白皮书46_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_数据中心白皮书46_未署名_02.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_数据中心的发展趋势_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_2025_数据中心能源趋势白_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_数据中心解决方案安_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_2025_数据中心锂离子电池_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2025_2025_智汇校园云领未来华_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_服务器行业深度报告_未署名.pdf
+- docs/library/04_市场与研究/5C_2025_2025_算力中心创新融资研_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_超节点发展报告30_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2017_20171112天风证券人工_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2017_报告派IT耳朵IT桔子201_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2018_IT桔子IT桔子2018年中_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2018_人工智能发展白皮书技术架构篇_未署名__002.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2018_人工智能行业深度学习技术选型_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2018_报告派前瞻研究院2018年中_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2018_赛迪顾问2018年中国人工智_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2019_20190826东兴证券景嘉_未署名.pdf
+- docs/library/M14_中国板块/56_有用/6C_2019_20191231中国银河拓尔_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2019_2019年中国人工智能产业发_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2019_2019年中国人工智能芯片行_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2019_2019年人工智能发展白皮书_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2018_报告派浪潮20182019年_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2019_沙利文2019年中美人工智能_未署名.pdf
+- docs/library/M14_中国板块/34_存档/4C_2019_通信行业电信网络诈骗治理与人_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2018_2018AI产业投融资全报告_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2020_20200220中国医疗行业_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2020_20200220人工智能产业_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2020_2020年中国人工智能产业发_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2020_2020年人工智能安防行业研_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2020_2020年人工智能十大技术进_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2018_AMiner2018自动驾驶_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_AMiner人工智能芯片研究_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_AMiner无人驾驶汽车与人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_Accenture人工智能助_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_人工智能新基建发展白皮书发布_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_全球人工智能产业地图PPT2_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_人工智能芯片技术白皮书46页_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_人工智能芯片行业点评TPU能_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_全球人工智能产业地图V10发_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2020_全球人工智能基础设施战略与政_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_手机人工智能技术与应用白皮书_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_报告派中投证券战略性看好人工_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_报告派人工智能证券日报算力智_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2019_报告派亿欧智库2019中国人_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2017_报告派今日头条2017人工智_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_报告派埃森哲人工智能助力中国_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_报告派埃森哲人工智能经济发展_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_报告派斯坦福年度AI报告人工_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2018_报告派易观中国人工智能产业生_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2019_报告派易观中国人工智能产业生_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_报告派清华经管学院中国人工智_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_报告派腾讯研究院中美两国人工_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_报告派英国政府发布人工智能报_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_计算机行业深度报告人工智能研_未署名__002.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_赛迪顾问人工智能产业发展与创_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_赛迪顾问人工智能科创板首发潜_未署名.pdf
+- docs/library/M14_中国板块/34_存档/4C_2022_零壹财经中信银行人工智能布局_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_零壹财经华夏银行人工智能布局_未署名.pdf
+- docs/library/M14_中国板块/34_存档/4C_2022_零壹财经民生银行人工智能布局_未署名.pdf
+- docs/library/M14_中国板块/34_存档/4C_2022_零壹财经浙商银行人工智能布局_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2021_2021年12月中国人工智能_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2021_2021年中国人工智能基础层_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2021_AI加速键2021上海人工智_未署名.pdf
+- docs/library/M14_中国板块/34_存档/4C_2022_中国洞察虚拟客服技术的价值使_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_人工智能专题研究之一巨头崛起_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_人工智能及监控行业聚焦机器视_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2018_人工智能发展白皮书技术架构篇_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2021_人工智能基础设施发展态势报告_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_人工智能月报寒武纪芯片受关注_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_人工智能核心技术产业白皮书深_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_人工智能系列报告华为全球首款_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_人工智能系列报告百度云ABC_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_人工智能芯片行业深度报告谁会_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_人工智能芯片行业深度研究人工_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2021_企业服务定期信息汇编2021_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_半导体电子通信行业人工智能无_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_半导体行业深度研究人工智能芯_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_半导体人工智能芯片高热度揭示_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_智能制造行业系列报告二人工智_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2021_艾瑞咨询2021年中国人工智_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_计算机行业专题报告百度人工智_未署名.pdf
+- docs/library/M14_中国板块/34_存档/4C_2022_计算机行业周观点世界人工智能_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2018_计算机行业深度分析2018人_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_计算机行业深度报告人工智能研_未署名.pdf
+- docs/library/M14_中国板块/56_有用/5C_2022_计算机行业人工智能助推法院信_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_计算机行业人工智能系列报告之_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_计算机行业人工智能系列报告看_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_计算机行业人工智能芯片弯道超_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_计算机行业人工智能芯片报告4_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_计算机人工智能时代AI赋能世_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_走进芯时代系列之十二行业趋势_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2018_2018新一代人工智能白皮书_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2019_2019中国人工智能20城合_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2020_20202021中国人工智能_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2020_2020中国新一代人工智能科_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2020_2020北京人工智能发展报告_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2021_20212022中国人工智能_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2021_20212022年中国人工智_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2021_20212022年度智源人工_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2021_2021人工智能发展白皮书1_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_2022年全球最具影响力人工_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_202201022021年人_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_20220527东吴证券国际_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_20220623中信证券全球_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_20220913财通证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_20221127百度人工智能_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_2022中国人工智能芯片行业_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_2022爱分析人工智能厂商全_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_IDC专业化医疗人工智能平台_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2021_IT桔子20212022年中_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_IT桔子中国人工智能产业创投_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_世界经济论坛赋能人工智能领导_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_中国信通院可信人工智能产业生_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_人工智能20城苏州篇36页_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_人工智能之图数据库93页_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_人工智能发展报告32页_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_人工智能发展现状与展望及其在_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2019_人工智能安全标准化白皮书20_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2021_人工智能标准化白皮书2021_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_人工智能核心技术产业白皮书4_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_人工智能白皮书2022年42_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2018_人工智能芯片技术白皮书201_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_人工智能驱动的中国经济数字化_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_全球中小学人工智能教育支撑环_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2020_全球人工智能战略与政策观察2_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_制造业人工智能创新应用发展报_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_华为的人工智能野望安信证券3_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_可信人工智能产业生态发展报告_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_尚普研究院2022年全球人工_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_报告派爱分析2022爱分析人_未署名.pdf
+- docs/library/M14_中国板块/34_存档/4C_2022_报告派赛迪中美人工智能研究比_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_白玉兰开源中国人工智能软件基_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_盖雅工场人工智能AI在劳动力_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_美国人工智能战略与政策研究1_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2020_艾媒咨询2020中国人工智能_未署名.pdf
+- docs/library/M14_中国板块/34_存档/4C_2022_虚拟客服技术的价值使用人工智_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_赛迪译丛在自动驾驶中采用人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_通信人工智能赋能自智网络白皮_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_青源会2022年人工智能重要_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2023_202301012022中国_未署名_02.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2023_202301012022年人_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_202301012022年中_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2023_20230101McKins_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2023_20230101Starto_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2023_20230102中国信通院2_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2023_202301132023中国_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2023_20230204IT桔子20_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2023_20230212信息技术通信_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2023_20230221花旗生成式人_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_20230315信达证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2023_20230320华西证券AG_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2023_20230320计算机行业开_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_20230322国金证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_20230329W00020_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2023_20230330浙商证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2023_20230401中原证券人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2023_20230411国泰君安证券_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_20230414中原证券人工_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_20230421国联证券电子_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2023_20230422建筑装饰行业_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_20230505天风证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2023_20230509万联证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_20230521信达证券信达_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_20230522华金证券瑞芯_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_20230606万联证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_20230630国金证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2023_20230718万联证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_20230727西南证券人工_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_20230804西南证券AI_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_20230811中国银河人工_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2023_20230822万联证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2023_20230822西南证券人工_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2023_20230829万联证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_20230905北京金融科技_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_20230912中国银河8月_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_20230913浙商证券人工_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2023_20230919万联证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_20231106中国银河人工_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2023_20231205中国银河人工_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2023_20231222中国移动研究_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2023_20231222毕马威人工智_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2023_2023世界人工智能大会生成_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2023_2023年全球生成式AI产业_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_Capgemini利用生成人_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_IIC工业物联网人工智能框架_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2023_NISA2023年能源人工智_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_stateofai2022人_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2023_上海市人工智能行业协会202_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_世界经济论坛赋予人工智能领导_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_中国新一代人工智能发展战略研_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_中国移动研究院体系化人工智能_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_人工智能企业研究报告138页_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2023_人工智能全域变革图景展望跃迁_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_人工智能大模型产业创新价值研_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_人工智能政策分析与展望202_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_人工智能行业AI重构终端创新_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2021_亿欧智库AI加速键2021上_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_亿欧智库中国人工智能芯片行业_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_元保分子实验室人工智能大模型_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2023_元保分子实验室2023人工智_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_北京师范大学全球中小学人工智_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_华东政法大学人工智能通用大模_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_南财智库2023生成式人工智_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_国泰君安人工智能行业AI算力_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_报告中国先进的人工智能研究英_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2023_施耐德电气2023人工智能带_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_智能财务研究院人工智能技术财_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2023_智谱AI清华大学中国工程院2_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2023_毕马威2023年人工智能全域_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2023_电子五所人工智能与类脑计算产_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2023_红旗新能源2023人工智能在_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_红旗新能源人工智能在自动驾驶_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_西南证券人工智能专题研究光芯_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_超益集伦人工智能一体机加速深_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_速途网大模型之家人工智能大模_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_释放制造业中人工智能的价值2_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2023_领英2023未来就业报告人工_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_香港人工智能产业发展研究39_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_麦肯锡全球人工智能最新调研A_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_麦肯锡生成式人工智能的经济潜_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_202401012023年人_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240101AI专题从特_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240101人工智能Ch_未署名_02.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240101人工智能国内_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240101人工智能谷歌_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240101人工智能十年_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_20240101人工智能十年_未署名_02.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240101人工智能大模_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240101人工智能行业_未署名_03.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2024_20240101华东政法大学_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_20240101国海证券人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_20240101通信人工智能_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_20240108GEP202_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2024_20240122德勤生成式人_未署名.pdf
+- docs/library/M14_中国板块/34_存档/4C_2024_20240123万联证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240205中国银河1月_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240220源达信息人工_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240223中原证券人工_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240301植德人工智能_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240307中原证券人工_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240307中国银河2月_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240312西南证券人工_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240314人工智能行业_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_20240316国金证券前瞻_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240319CNCF20_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_20240322CLOUDN_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_20240328中国银河数字_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_20240329中国银河数字_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240401国家信息中心_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2024_20240401国际清算银行_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_20240401科图人工智能_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_20240403美国防部数据_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20240408世界经济论坛_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_20240409毕马威生成式_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20240415CSIAC2_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2024_20240418cluste_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20240419经合组织OE_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240425人工智能行业_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_202405012024德勤_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2024_20240507北京市科学技_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_20240508高盛人工智能_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2024_20240510中国移动研究_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240510中国银河证券_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_20240511AIGC人工_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240515人工智能北美_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2024_20240516腾讯研究院人_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2024_20240520中国移动研究_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20240523NISA20_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2024_20240525西湖论剑数字_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240528麦肯锡生成式_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2024_20240529摩根士丹利2_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240529计算机人工智_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_20240605中国银河5月_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20240605波士顿咨询人_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2024_20240613CSA人工智_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20240617IMF人工智_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240618北京韬联科技_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240620甲子光年20_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240621甲子光年20_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240626OCTC20_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20240627人工智能行业_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20240702世界经济论坛_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240702中国软件评测_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240702智研咨询人工_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20240705WTTCam_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20240705美国能源部2_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20240708WTTC微软_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20240708世界经济论坛_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20240708新美国安全中_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_20240709埃森哲202_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20240719凯捷2024_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240724山西证券通信_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_20240724欧晰析咨询O_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20240724量子P022_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_20240802中国银河7月_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240802人工智能行业_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2024_20240807亚马逊科技白_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_20240808Dealro_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_20240809WEF安永微_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240809亿欧智库人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_20240812MMAPun_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_20240812富士通202_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20240813Dealro_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20240813新加坡经发局_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20240813能源人工智能_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20240815影响人工智能_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_202408162024年人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20240816联合国系统人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_20240819IMA202_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20240823BSI202_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240823中国人工智能_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2024_20240823硅谷银行20_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20240824Rand兰德_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20240824埃森哲202_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20240824花旗银行20_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240825甬兴证券人工_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20240826OpenAI_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240828gfk202_未署名.pdf
+- docs/library/M13_有效算力与软件/34_存档/3C_2024_20240830艾昆纬202_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240904伽马数据20_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240904甬兴证券电子_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_202409082024生成_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240910全国网络安全_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2024_20240913人工智能基础_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240918香港生产力促_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2024_20240920腾讯云202_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240922人工智能安全_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_20240922塔塔咨询服务_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2024_20240923腾讯云人工智_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20240924麦肯锡202_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_202409252024香港_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240925智研咨询人工_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2024_20240928麦肯锡数据领_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240930浪潮信息中国_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20241001智研咨询人工_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20241005北京银行金融_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20241007IMF人工智_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20241007中国信通院人_未署名.pdf
+- docs/library/M14_中国板块/34_存档/4C_2024_20241009LexisN_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20241010UNESCO_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_20241014stateo_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_20241014世界经济论坛_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20241016路透社变革中_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20241016鼎雄咨询全球_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20241017物联网展AG_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20241018PitchB_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20241019华为人工智能_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20241019麻省理工学院_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20241020世界经济论坛_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20241020世界银行生成_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_20241020毕马威202_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20241022智研咨询人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_202410232024年人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_20241023TCS人工智_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20241026世界经济论坛_未署名_02.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20241026世界经济论坛_未署名_03.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20241029国信证券人工_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2024_20241030Capgem_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20241030Capgem_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20241031Cylind_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20241101Capgem_未署名.pdf
+- docs/library/M07_网络与互联/56_有用/6C_2024_20241101普平数据20_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20241101静悄悄的革命_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_20241102美国教育技术_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20241107Capgem_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_20241107艾昆纬医疗保_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20241108凯捷2024_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20241109国信证券人工_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20241110伽马数据20_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20241110新经济思想研_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2024_20241111抓住机遇共创_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_20241112艾昆纬202_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_202411132024年人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20241115Thomas_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20241115源达信息计算_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20241116人工智能的价_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20241116安永无锡人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_202411172024专业_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20241119天津市人工智_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20241119甬兴证券人工_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20241120Wevolv_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_20241120人工智能安全_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20241121云安全联盟C_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_202411232024年人_未署名_02.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20241125普华永道AS_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20241127UNDP可持_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20241128智能交易人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20241130RAND人工_未署名.pdf
+- docs/library/M04_电力与能源/56_有用/5C_2024_20241203西班牙Ban_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_20241204中国互联网络_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20241205K12生成式_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20241205天津市人工智_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_20241206CNNIC生_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20241206关键基础设施_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_20241208中国互联网络_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20241209WTO智能交_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20241209国信证券科技_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20241210Micros_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_20241211Bridge_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_20241211Needha_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_20241211asean东_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20241212微软中国Az_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20241212甲子光年万千_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20241213甲子光年20_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20241215世界经济论坛_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20241215人工智能行业_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20241215美国国家科学_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20241218中国信通院中_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20241218伽马数据20_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20241219伽马数据20_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20241219科技周期探索_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20241220中原证券计算_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20241220德勤2025_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20241222波士顿咨询2_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20241223为生成式人工_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20241224CosnCG_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20241224Linux基_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_20241225麦肯锡202_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2024_20241226Capgem_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20241226FLI人工智_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20241228美国联邦众议_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_202412292024代理_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20241230IBM202_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20241230人工智能行业_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20241230奥纬咨询20_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2024_20241231世界经济论坛_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20241231源达信息人工_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2024_20241231联合国AI高_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_2024代理型AI生成式人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_2024年人工智能和未来的工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_2024年人工智能在并购中的_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_2024年人工智能新媒体内容_未署名.pdf
+- docs/library/M07_网络与互联/56_有用/6C_2024_2024年数据中心状况报告电_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_2024年生成式人工智能解锁_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_CNNIC生成式人工智能应用_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_LSEGoogleLSE全球_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_NetAPP2024年云复杂_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_OliverWyman生成式_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_Trellix从首席安全官的_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_人工智能时代公共云发展模式与_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_世界经济论坛2024年生成人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_世界经济论坛利用生成式人工智_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_世界经济论坛生成性人工智能与_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_中国新一代人工智能发展战略研_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_人工智能专题研究二Sora发_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_人工智能基础与应用初探人工智_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_人工智能开源大模型生态体系研_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_人工智能行业在AI调动的未来_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_人工智能赋能行业发展高质量建_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_亿欧智库2024人工智能开启_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_伽马数据2024年10月人工_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_伽马数据2024年7月人工智_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_伽马数据2024年第三季度人_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2024_北京市科学技术委员会2024_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2023_商汤科技智算联盟2023新一_未署名.pdf
+- docs/library/M14_中国板块/34_存档/4C_2022_律商联讯法律专业人士对生成式_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_微软AzureOpenAI生_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_德勤咨询2024年第二季度生_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_德勤咨询2024年美国生成式_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_德勤2025技术趋势报告空间_未署名.pdf
+- docs/library/M14_中国板块/56_有用/5C_2024_浙江大学2024大学生生成式_未署名.pdf
+- docs/library/04_市场与研究/AI与算力/Z4 人工智能/2024/5C_2024_浪潮信息中国信通院2024人_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_甲子光年2024人工智能开源_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_联合国AI高级别咨询机构20_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_联想高性能计算和人工智能医疗_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_联想2024高性能计算和人工_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_腾讯云人工智能与制造业的融合_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_计算机行业人工智能系列报告一_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_香港生产力促进局2024香港_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2023_2023人工智能伦理指南17_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_2024AI杰作人工智能商业_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_2024人工智能产业30条判_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_2024关键基础设施中人工智_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_2024回溯过往锚定未来大型_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2024_2024如何衡量生成式人工智_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_2024工作中的人工智能未来_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_2024生成式人工智能圣经大_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_2024美国众议院关于人工智_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2024_2024驾驭人工智能前沿人工_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025Deepseek技术_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025人工智能行业发展蓝皮_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_2025未来全球劳动力报告职_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250103中安网Sea_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250103国信证券人工_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250103源达信息人工_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2025_20250104世界经济论坛_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250104人工智能和机_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250105Micros_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250105中国信通院人_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250105为国民可信的_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250105人工智能行业_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250105甲子光年智库_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250106Cognit_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250106ISG202_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250106OECD20_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2025_202501072024年驾_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2025_20250109FeroLa_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250109SGAnal_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250109英国制造商组_未署名.pdf
+- docs/library/M13_有效算力与软件/34_存档/3C_2025_20250113TechTa_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250113凯捷Capg_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250114英特尔工业人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250115Capgem_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250115智能交易人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250116Altery_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250116英特尔工业人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250119网络安全文化_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250121上海兆言网络_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250122北京金融科技_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250122国际隐私专业_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250122国际隐私专业_未署名_02.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2025_20250125IBM让人工_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250126高等教育中的_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250207联合国AI高_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_202502082023中国_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250208世界银行低收_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250209人工智能对劳_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250209扩展的东盟人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250210世界经济论坛_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250210世界经济论坛_未署名_02.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250210人工智能行业_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250210甫瀚Prot_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_20250210赛迪译丛20_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250213Capgem_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250213可解释人工智_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250214国际清算银行_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250216工作场所的超_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250217IDC浪潮信_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250218国际数据20_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_202502192025技术_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250220工业人工智能_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250221Wavest_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250221人工智能专题_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250221国海证券计算_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250221用新一代人工_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250224人工智能系列_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250225世界银行中低_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250225英伟达Cos_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250226通用人工智能_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_202502272025年人_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_20250301源达信息人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250301美联储骚动研_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250302人工智能招聘_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250302国信证券数据_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_20250303为人类治理人_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250305Statwo_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250308IBV202_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250308电信人工智能_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202503102025关于_未署名.pdf
+- docs/library/M07_网络与互联/56_有用/6C_2025_202503102025年全_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250311人工智能安全_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_202503122024人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202503122024物流_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202503122025生成_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250313国信证券人工_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250313赛迪智库网络_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_202503162025年科_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_202503172024年生_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2025_20250317Movewo_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202503192025人工_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2025_20250319GTI202_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250319国际贸易中心_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250320印孚瑟斯20_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202503212024年塑_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2025_20250321SmithI_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250321人工智能的现_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202503222025年国_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250322人工智能在卡_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250322人工智能安全_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250322国信证券人工_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250323天津大学自然_未署名.pdf
+- docs/library/M14_中国板块/34_存档/3C_2025_202503262025年人_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2025_20250326广西工信厅2_未署名.pdf
+- docs/library/M07_网络与互联/56_有用/6C_2025_20250326混合计算提供_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250327东方证券人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250327毕马威智慧银_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_20250329主动安全智御_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250330毕马威202_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_202503312025中国_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250331AFLHyp_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250331毕马威智慧银_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250401人工智能行业_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250402人工智能机器_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250403OReill_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250403国际电信联盟_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250404SSCBlu_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250405东方证券人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250406经合组织20_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250408源达证券人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250408谷歌Goog_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250410多伦多都市大_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202504112024年G_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250412人工智能数据_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250412皮尤研究中心_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_202504132025生成_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250413世界卫生组织_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250413微软Micr_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250413欧盟委员会2_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250414欧盟委员会2_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250416赛迪2025_未署名_02.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250418依隆大学依隆_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2025_20250418引领人工智能_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250418西藏大学20_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_20250418香港数字政策_未署名_02.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250419浙江大学人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250419香港数字政策_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202504222024智能_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250422澎湃热潮冷却_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250423Capgem_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250424IAPPCr_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250424IFF国际金_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250424天风证券人工_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250425国际能源署能_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250426SSON20_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250426中信建投人工_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250427中国信通院新_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250428中国信通院新_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250429上海交大泰安_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250429关于人工智能_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250429国际劳工组织_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2025_202505022025人工_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_202505042025年第_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250504兰德2024_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_202505092025Q1_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250509BirdBi_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2025_20250509InData_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250509埃森哲Acc_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2025_20250509经济学人智库_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_202505112025年技_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250511微软亚洲研究_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250511浙江大学人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250512GEP英文为_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250512中国海关采用_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250512安永EY20_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250514深企投产业研_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250514牛津经济研究_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250514行行查202_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_202505152025年人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250516新加坡经发局_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250517世界经济论坛_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250517牛津经济研究_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202505192025年人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202505192025年新_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250521国信证券人工_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250521电子信息研究_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250521通过学术开创_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250523剑桥手册人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250524奥纬咨询使用_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250524毕马威202_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_202505252025人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250525人工智能和自_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250525国信证券人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250526GEP英文面_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2025_20250526Workda_未署名.pdf
+- docs/library/M13_有效算力与软件/34_存档/3C_2025_20250526人工智能技术_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202505272025企业_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250527天风证券产业_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250528Capgem_未署名.pdf
+- docs/library/M14_中国板块/34_存档/4C_2025_20250529特赞范凌20_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250530SCBX20_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2025_20250531Hexawa_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250531人工智能在行_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250531毕马威202_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250531波士顿咨询B_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250531波士顿咨询B_未署名_02.pdf
+- docs/library/M07_网络与互联/56_有用/6C_2025_202506022024年数_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250602瑞银证券台湾_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202506032025年营_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250605思科毕马威2_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_202506062025年人_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250606思科毕马威2_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250607世界银行高等_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250608Darwin_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250608世界银行从黑_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250608互联网女皇3_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250608从深度学习到_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2025_20250608安永Elas_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250609AINow研_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250609普华永道Pw_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250609智能保险以人_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_202506112025年人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250611自动驾驶汽车_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250611量子经济发展_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250612世界银行WB_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250613ORF202_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250613毕马威KPM_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_202506142025重写_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202506142025驾驭_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250614世界银行20_未署名.pdf
+- docs/library/M14_中国板块/34_存档/4C_2025_20250614内容人工智能_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250614摩根士丹利美_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250615GEP英文数_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250615世界经济论坛_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250615国泰海通证券_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250615摩根士丹利摩_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202506182025年上_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250618CEPR金融_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250618科大讯飞科大_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202506212024工作_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250621世界银行20_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250621世界银行高等_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250621人工智能驱动_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250621安永EY20_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250622世界银行WB_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250623Jeffer_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250624凯捷Capg_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202506252025年人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250625未来职业东亚_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250626AI赋能数字_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250626Capgem_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_202506272025年A_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202506272025年企_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2025_20250627Jeffer_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250627国家信息中心_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250627国家信息中心_未署名_02.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2025_20250627埃森哲为可持_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250627花旗集团中国_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250628世界经济论坛_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_202506292025年人_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250629AICITY_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250629MaryMe_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250629德勤Delo_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_202506302025年发_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_202507012025年科_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_202507016G网络人工_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_202507016G网络原生_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_202507026GANA6_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250702Capgem_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250702Capgem_未署名_02.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250705CCWDig_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250705CheckP_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250705凯捷2025_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250705凯捷2025_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250705联合国西亚经_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_202507062025年人_未署名_02.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_202507062025年放_未署名.pdf
+- docs/library/M14_中国板块/34_存档/3C_2025_20250706Hexawa_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250706世界银行设计_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202507072025年人_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250707中国教育网络_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250708GEP英文人_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250708华创证券多行_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2025_20250708埃森哲英文为_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202507092025年美_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250709AICITY_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202507102024关键_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202507122024年迎_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250712Adecco_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202507132025年商_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250713中信建投人工_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250714人工智能与大_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250716国际电信联盟_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250717Capgem_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250717京师人工智能_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202507182025年人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250719人工智能如何_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250719面向全民的人_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250720招商证券央国_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250721联合国贸发会_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250722纽约市经济发_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202507252025年从_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250726Public_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250727德勤2025_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202507282025年未_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2025_202507282025年面_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250729中国联通人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250729奥雅纳Aru_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250729金元证券电子_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250730Capgem_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2025_20250730Capgem_未署名_02.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250731金元证券电子_未署名.pdf
+- docs/library/M07_网络与互联/56_有用/5C_2025_202508012025年人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250801Lakera_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250801德意志银行2_未署名.pdf
+- docs/library/M07_网络与互联/56_有用/5C_2025_20250801毕马威202_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250801艾昆纬在医疗_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250802北京大学20_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250802美联储十字路_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202508032025年全_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250803世界银行从理_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250804中国矿业大学_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250804人工智能20_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250804华信咨询设计_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250804国际电信联盟_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250805中国联通人工_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_202508062025中国_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2025_20250807RootsA_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250808人工智能20_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250809中国银河证券_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250810GEP从混乱_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250810华创证券AI_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_202508132024生成_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_202508132025生成_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250813人工智能20_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_202508142025世界_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202508142025年前_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250814Strate_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250814安远AI20_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_20250814算力核芯20_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_202508162025年第_未署名.pdf
+- docs/library/M14_中国板块/34_存档/3C_2025_20250816Meltwa_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2025_20250818中国移动九天_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250818安远AI20_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250818德勤2025_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250818爱建证券人工_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_20250818算力核芯20_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250819国信证券TM_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250821北京大学20_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250821北京大学20_未署名_02.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250821北京大学20_未署名_03.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2025_202508232025年人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202508232025年人_未署名_02.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250826美国白宫20_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2025_20250826谷歌云202_未署名_02.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_202508272025年赋_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250827绿色和平20_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250828艾昆纬IQV_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250829人工智能的宏_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250830上海交大行研_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2025_20250830人工智能自动_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250830网络安全20_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2025_202508312025人工_未署名.pdf
+- docs/library/04_市场与研究/AI与算力/Z4 人工智能/2025/6C_2025_202508312025年中_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250831爱建证券人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250831生成式AI鸿_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202509012024AI_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250901GEP英文人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250901埃森哲英文学_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250901金元证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_202509022025De_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_202509022025年人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202509042024年沙_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202509042024年营_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202509042025年人_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2025_202509042025年威_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202509042025年面_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250904中邮证券人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250905MMAGlo_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250905赛迪前瞻20_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202509072025年主_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250907SREB20_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250907浙江省住建厅_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250910人工智能一份_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_202509112025人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250911艾昆纬生命科_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202509122025年人_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_202509122025年初_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250912中国联通研究_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250912北大国发院2_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202509132025年现_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202509132025年驾_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250913人工智能促进_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202509162025年智_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202509162025年智_未署名_02.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250916凯捷研究院利_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2025_202509172025年人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250917Capgem_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250917凯捷研究院发_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250917毕马威202_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250918Record_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250918谷歌2025_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202509192025年中_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250919发挥人工智能_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_202509212025年公_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_202509212030年人_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20250921EpochA_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_202509222025年总_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2025_202509222025年构_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250923天津市人工智_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202509242025全球_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250924Capgem_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250924Record_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250924人工智能与先_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20250924从试验到价值_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_202509252025年营_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250925sas202_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250925北京至顶信息_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202509272024年生_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202509272025动态_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250927大中华区半导_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202509282025智能_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250928中国人工智能_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_202509292025人工_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_20250929头豹研究院2_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250930人工智能战略_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250930美国安全与新_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20251002IMF老龄化_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20251007类经济指数报_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202510102024人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202510102024年人_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_202510102025年一_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202510102025推进_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_202510102025科学_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202510102025科学_未署名_02.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20251010中邮证券中邮_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20251010推进负责任的_未署名.pdf
+- docs/library/M13_有效算力与软件/34_存档/3C_2025_20251012Capgem_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20251012ITU国际电_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20251012ITU国际电_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20251012中邮证券人工_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20251012爱建证券电子_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202510142024年人_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_202510142025年中_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20251014ZeroHe_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20251014人工智能成与_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20251014大中华区科技_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20251015腾讯云腾讯研_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20251016美联储生成型_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20251017QECon2_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20251017复旦大学人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20251017毕马威202_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_202510182025人工_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_202510192025年人_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20251019复旦大学晶上_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202510202025人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202510202025年南_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20251020深圳市人工智_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20251020电子设备英伟_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20251021华创证券多行_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202510232025年人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202510252025年人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20251025dataca_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202510262025人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202510262025人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202510262025全球_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20251026OECD人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20251026企业数据与人_未署名.pdf
+- docs/library/M07_网络与互联/56_有用/5C_2025_20251026学生参与度与_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20251027赛迪译丛20_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2025_20251027迈向模型原生_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20251029Capgem_未署名_02.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20251029dataca_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20251102国际清算银行_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20251102国际清算银行_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202511032025年人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20251103世界经济论坛_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20251103世界经济论坛_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20251103迈向人工智能_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20251103鼎惟咨询人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20251104Capgem_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20251104引领未来生成_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20251104美国安全与新_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202511052025协调_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20251110中移智库中国_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202511112024全球_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20251111中信建投人工_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20251111中信建投通信_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20251111大中华区科技_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20251112企业中的人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202511132025年人_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20251115中文版全球人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202511162025年人_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_202511162025年人_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20251118数字化转型和_未署名.pdf
+- docs/library/04_市场与研究/AI与算力/Z4 人工智能/2025/6C_2025_20251119华源证券北交_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202511212025年下_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20251121Visier_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20251121奥雅纳Aru_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202511262025年人_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2025_202511282025年人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202511292025年人_未署名_02.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202511292025年人_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20251203摩根士丹利人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202512042026年人_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20251204人工智能的能_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20251206中信建投人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20251207worldb_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20251207人工智能引领_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20251207甲子光年张一_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20251207韩国央行人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202512092025年人_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20251209世界银行保加_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20251210MIT202_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20251211AI吞噬世界_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2025_20251211GEP采购增_未署名.pdf
+- docs/library/04_市场与研究/AI与算力/Z4 人工智能/2025/5C_2025_20251211国信证券人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202512122025年中_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20251212Market_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20251212算力是人工智_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20251212谷歌2025_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202512142025人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_202512142025年让_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_202512152025全球_未署名.pdf
+- docs/library/M14_中国板块/34_存档/3C_2025_20251215生成式人工智_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20251216新一轮大分化_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20251217长城证券长城_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_202512192025年企_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_20251219GEP修复采_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20251219中国电信20_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20251221操纵思维人工_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_202512222025年从_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_202512252025年中_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_202512252025年前_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_20251225Capgem_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20251230新经济技能构_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_2025WAIC全球人工智能_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025人工智能行业发展蓝皮_未署名_02.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025世界人工智能大会全量_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025中国人工智能安全全景_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_2025中国人工智能应用全景_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_2025中国学界对大语言模型_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2025_2025人工智能自动化与数字_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_2025人工智能与生化武器交_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_2025人工智能产业30条判_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_2025人工智能助力基础设施_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025人工智能发展白皮书1_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_2025人工智能手机产业研究_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_2025人工智能治理的未来阿_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2025_2025人工智能算法进展及近_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_2025人工智能自主宣言67_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_2025人工智能驱动的未来城_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_2025人工智能AI时代保持_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_2025代理型AI优势开启人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_2025企业数字与人工智能就_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_2025关于人工智能研究未来_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025年DeepSeek洞_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025年中国人工智能计算力_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_2025年人工智能20时代的_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_2025年人工智能与职场趋势_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_2025年人工智能人才报告4_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_2025年人工智能发展前景报_未署名.pdf
+- docs/library/M14_中国板块/34_存档/3C_2025_2025年人工智能在社交媒体_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_2025年人工智能技术发展与_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_2025年人工智能权力格局研_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_2025年人工智能治理专业报_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025年人工智能趋势报告3_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_2025年人工智能AI基础设_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_2025年人类发展报告人工智_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025年代理型人工智能AI_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_2025年企业级人工智能五大_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_2025年全球人工智能准备度_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_2025年全球人工智能展望报_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025年全球人工智能竞争力_未署名.pdf
+- docs/library/M14_中国板块/34_存档/4C_2025_2025年内容人工智能品牌增_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025年初人工智能格局报告_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_2025年发展可持续生成式人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_2025年商业领袖研究报告在_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_2025年技术与创新报告以包_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025年第一季度中国人工智_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025年第二季度全球人工智_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_2025年金融业人工智能应用_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025新一代人工智能技术发_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025智算中心行业研究新一_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_2025汽车行业的人工智能A_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_2025生成式人工智能发展报_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025生成式人工智能在语义_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2025_2025生成式人工智能AI赋_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_2025美国人工智能领域创新_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025重写全球能力中心GC_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_2025高等教育中的人工智能_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_AICITY发展研究报告人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_AI赋能数字融合用人工智能助_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_人工智能成与不成的争论将在多_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_人工智能与先进计算融合创新关_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_人工智能与先进计算融合发展路_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_人工智能发展报告智算云时代的_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_人工智能和机器学习对网络安全_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_人工智能安全报告298页_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_人工智能安全趋势研究报告20_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_人工智能技术与应用演讲61页_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_人工智能技术金融应用发展报告_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_人工智能治理案例集AI联盟4_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_人工智能算力基础设施赋能研究_未署名.pdf
+- docs/library/04_市场与研究/AI与算力/Z4 人工智能/2025/5C_2022_人工智能行业专题海外大厂云周_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_人工智能行业2025年人工智_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_人工智能计算中心发展白皮书2_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_人工智能赋能基础教育应用蓝皮_未署名.pdf
+- docs/library/M14_中国板块/34_存档/3C_2022_人工智能赋能教育高质量发展7_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_人工智能赋能系统研制试验与鉴_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_人工智能驱动人才管理变革15_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_人工智能一份自主宣言67页_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_从深度学习到大语言模型量化投_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_企业中的人工智能25页_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_保护人工智能模型权重防止盗窃_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_信息化与软件产业研究2025_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_健康与安全的变革人工智能和数_未署名.pdf
+- docs/library/M14_中国板块/34_存档/4C_2022_内容人工智能驱动商业增长12_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_利用人工智能于社会保障用例治_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_可解释人工智能综合指南从经典_未署名.pdf
+- docs/library/M07_网络与互联/56_有用/6C_2022_可解释人工智能XAI从内在可_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_大中华区科技硬件人工智能科技_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_大语言模型和生成式人工智能技_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_工业人工智能白皮书2025年_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_成都市智能建造人工智能AI应_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_数据中心电力设备专题人工智能_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_新型人工智能存储研究报告20_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_无源物联网白皮书人工智能篇3_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_晶上系统赋能人工智能与先进计_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_深企投产业研究院2025智算_未署名.pdf
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_物流人工智能技术80页_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2023_生成式人工智能突破智慧边际创_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_生成式人工智能与虚假信息最新_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_生成式人工智能时代的劳动力需_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_生成式人工智能高教应用提示词_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_用新一代人工智能重塑企业运营_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_算力网络人工智能模型推理算力_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2028_网络安全2028打造面向人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_自动驾驶汽车人工智能与学习算_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2025_赛迪译丛2025年第36期总_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_超级智能机构赋能人们释放人工_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_通用人工智能AGI的大型语言_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_面向全民的人工智能推动亚太地_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_20222026年中国人工智_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2026_202601012025年人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2026_20260101guidew_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2026_202601022025年拉_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2026_20260102Willo2_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2026_20260102韩国央行人工_未署名.pdf
+- docs/library/M14_中国板块/34_存档/3C_2026_20260107人工智能赋能_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2026_20260107联合国贸易发_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2026_202601092025年营_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2026_20260109推进负责任的_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260109爱建证券人工_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2026_202601132026年人_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2026_202601132026年第_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2026_20260113Seriou_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2026_20260113人工智能历史_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260115AI思享家2_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2026_20260115GEP代理人_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260116AI思享家2_未署名.pdf
+- docs/library/04_市场与研究/AI与算力/Z4 人工智能/2026/5C_2026_20260117伯恩斯坦亚洲_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2026_20260119人类优势人工_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2026_20260119摩根士丹利O_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2026_20260119新经济下就业_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2026_202601212025年人_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2026_20260122全国网络安全_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2026_20260122职业教育人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2026_20260123Capgem_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2026_20260123艾昆纬从纸张_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2026_20260123重塑资产生态_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2026_20260124亿欧智库人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2026_20260124韩国央行人工_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2026_202601252026年数_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2026_202601262026年走_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2026_20260126世界经济论坛_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2026_20260126全球展望贸易_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260126爱建证券人工_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2026_20260201Capgem_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2026_20260201Capgem_未署名_02.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2026_20260202中国智慧教育_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2026_202602032025人工_未署名.pdf
+- docs/library/M14_中国板块/34_存档/3C_2026_20260203融资商业计划_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2026_20260206AI素养白皮_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2026_20260208摩根士丹利人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2026_20260212GEP利用人_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2026_202602132025释放_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2026_202602222025年人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2026_20260222NGMN人工_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2026_202602242025年人_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2026_20260226Global_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2026_20260302美国安全与新_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2026_202603032026年知_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2026_20260303Intern_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2026_202603042026年国_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2026_20260304Yoshua_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2026_20260304全球新经济下_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2026_20260307GWI202_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2026_20260307NGMN20_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260307国信证券国信_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2026_20260307解决AIRO_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2026_20260308中信科移动2_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260308国信证券人工_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260309国信证券人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2026_20260310SAP牛津经_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2026_20260311Bernst_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2026_202603182026年O_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2026_20260318OECD经合_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2026_20260318Statwo_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2026_20260318中国信通院人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2026_20260318摩根士丹利人_未署名.pdf
+- docs/library/04_市场与研究/AI与算力/Z4 人工智能/2026/6C_2026_20260319PitchB_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2026_20260319中国信通院新_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2026_20260321Darwin_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260321信通院人工智_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2026_20260323人工智能对劳_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2026_202603242030年人_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2026_20260325GEP供应链_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2026_20260325Willia_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2026_20260326WEF人工智_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2026_20260326埃森哲人工智_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2026_2026032702889H_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2026_20260329CitiIn_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260330BCDTra_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2026_20260409腾讯人工智能_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2026_20260414甲子光年人工_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2026_20260415中信建投人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2026_20260415中国人工智能_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260416赛迪译丛20_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260421应用现代化推_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2026_20260423安泰经管学院_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2026_20260424上海交通大学_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260429中国人工智能_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260430中国人工智能_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2026_20260503中信建投人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2026_20260505国际劳工组织_未署名.pdf
+- docs/library/04_市场与研究/AI与算力/Z4 人工智能/2026/4C_2026_20260507国信证券人工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2026_20260512粤开证券人工_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260526招商证券招商_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2026_20260529Mavvri_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2026_20260529上海人工智能_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2026_20260531OECD人工_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260604BCG工作场_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2026_20260605Willia_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260605波士顿咨询工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2026_20260607摩根士丹利2_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260608国元国际人工_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260608国元国际控股_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2026_202606142026年未_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2026_20260616怡安企业服务_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2026_20260617WEFAI助_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2026_20260618北大国发院2_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2026_202606192026年全_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260619中国移动20_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260619中央广播电视_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2026_20260619加速人工智能_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2026_20260619华创证券资产_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2026_20260620从自动化到人_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2026_20260622国泰海通证券_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2026_20260627韩国央行人工_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2026_2026人工智能行业发展蓝皮_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2026_中国教师生成式人工智能应用报_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_人工智能历史现在和未来73页_未署名.pdf
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_人工智能赋能可信数据空间发展_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2026_全球人工智能企业科技创新指数_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_医院通用人工智能平台技术白皮_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_央国企动态系列报告之64央国_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_未来城市顾问展望2025人工_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_火石星览产业招商智能体人工智_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_生成式人工智能行业网络数据安_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_腾讯云运营商行业人工智能解决_未署名.pdf
+- docs/library/M14_中国板块/34_存档/3C_2022_阅读引用说明_未署名.txt
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_智猩猩AI新青年讲座大型语言_未署名_03.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_智猩猩AI新青年讲座第224_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_智东西公开课NVIDIAAI_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_智东西公开课NVIDIAAI_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_智东西公开课NVIDIAAI_未署名_02.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_智猩猩大型语言模型技术公开课_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_智猩猩大模型微调与推理部署线_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_智猩猩大模型微调与推理部署线_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_智猩猩大模型微调与推理部署线_未署名_02.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_智猩猩大模型稀疏性及优化设计_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_智猩猩大模型稀疏性及优化设计_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_智猩猩大模型系列直播课03大_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_智猩猩大模型系列直播课04大_未署名.pdf
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_智猩猩大规模视觉基础模型在线_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_新华三百业灵犀私域大模型的构_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_智猩猩StableDiffu_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_百度云自动驾驶在线研讨会大模_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_智猩猩边缘计算加速大模型落地_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_智猩猩阿里云加速AIGC技术_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_智猩猩阿里云加速AIGC技术_未署名_02.pdf
+- docs/library/_projects/2019.6 重庆有线水土综合枢纽基地建设项目/节能/模型及报告书/门卫模型及报告书+/4#/3C_2022_公共建筑规定性指标计算报告书_未署名.doc
+- docs/library/_projects/2019.6 重庆有线水土综合枢纽基地建设项目/节能/模型及报告书/门卫模型及报告书+/4#/3C_2022_外窗或幕墙可开启面积比例计算_未署名.doc
+- docs/library/_projects/2019.6 重庆有线水土综合枢纽基地建设项目/节能/模型及报告书/门卫模型及报告书+/5#/3C_2022_公共建筑规定性指标计算报告书_未署名.doc
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/01建筑专业/PDF/节能/审查表-A3单面/3C_2022_4审查表201_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/01建筑专业/PDF/节能/审查表-A3单面/3C_2022_5审查表202_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/01建筑专业/PDF/节能/审查表-A3单面/3C_2022_6审查表204_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/01建筑专业/PDF/节能/计算书-A4单面/3C_2022_1建筑节能设计报告书201_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/01建筑专业/PDF/节能/计算书-A4单面/3C_2022_2建筑节能设计报告书202_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/01建筑专业/PDF/节能/计算书-A4单面/3C_2022_3建筑节能设计报告书204_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/01建筑专业/PDF/节能/隔热计算书-A4单面/3C_2022_7隔热检查计算书201_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/01建筑专业/PDF/节能/隔热计算书-A4单面/3C_2022_8隔热检查计算书202_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/01建筑专业/PDF/节能/隔热计算书-A4单面/3C_2022_9隔热检查计算书204_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/03给排水专业/总包-PDF/3C_2022_SS501七氟丙烷气体灭火系_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/03给排水专业/总包-PDF/3C_2022_SS502七氟丙烷气体灭火平_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/05空调专业/计算书/附件一：逐时负荷计算书/3C_2022_逐时负荷计算报表_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/07装修专业/PDF-盖章/3C_2022_02SM0105设计施工技术_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/07装修专业/PDF-盖章/3C_2022_02SM0105设计施工技术_未署名_02.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/07装修专业/PDF-盖章/3C_2022_02SM0105设计施工技术_未署名_03.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/07装修专业/PDF-盖章/3C_2022_02SM0105设计施工技术_未署名_04.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/07装修专业/PDF-盖章/3C_2022_02SM0105设计施工技术_未署名_05.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/07装修专业/PDF-盖章/3C_2019_03CL0103材料表201_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/07装修专业/PDF-盖章/3C_2019_03CL0103材料表201_未署名_02.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/07装修专业/PDF-盖章/3C_2019_03CL0103材料表201_未署名_03.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/07装修专业/PDF-盖章/访客大厅（由“总包”负责）/3C_2022_00WCD01卫生间通用大样_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/07装修专业/PDF-盖章/访客大厅（由“总包”负责）/3C_2022_01VHP01E03访客大厅_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/07装修专业/PDF-盖章/访客大厅（由“总包”负责）/3C_2022_01VHP01E03访客大厅_未署名_02.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/07装修专业/PDF-盖章/访客大厅（由“总包”负责）/3C_2022_01VHP01E03访客大厅_未署名_03.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/07装修专业/PDF-盖章/访客大厅（由“总包”负责）/3C_2022_01VHP01E03访客大厅_未署名_04.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/07装修专业/PDF-盖章/访客大厅（由“总包”负责）/3C_2022_01VHP01E03访客大厅_未署名_05.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/07装修专业/PDF-盖章/访客大厅（由“总包”负责）/3C_2022_02VHDG01服务台大样图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/07装修专业/PDF-盖章/访客大厅（由“总包”负责）/3C_2022_02VHDG01服务台大样图_未署名_02.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/07装修专业/PDF-盖章/访客大厅（由“总包”负责）/3C_2022_02VHDG01服务台大样图_未署名_03.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/08人防专业/PDF（加电子出图章)/PDF/人防建筑/预案/3C_2022_1封面和目录A3_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/08人防专业/PDF（加电子出图章)/PDF/人防建筑/预案/3C_2022_2平战转换预案水电风_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/14抗震支架（2020.01.13版）/PDF/分册1 抗震支吊架设计说明、节点大样/3C_2022_中国移动南方基地二期工程二阶_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/14抗震支架（2020.01.13版）/PDF/分册2 地下室抗震支吊架图纸目录、布置图、节点大样图/3C_2022_地下室负一层管综抗震支吊架图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/14抗震支架（2020.01.13版）/PDF/分册2 地下室抗震支吊架图纸目录、布置图、节点大样图/3C_2022_地下室负二层管综抗震支吊架图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/14抗震支架（2020.01.13版）/PDF/分册4 20.2栋抗震支吊架布置图/3C_2022_2F管综平面图Model1_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/14抗震支架（2020.01.13版）/PDF/分册4 20.2栋抗震支吊架布置图/3C_2022_3F管综平面图Model1_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/14抗震支架（2020.01.13版）/PDF/分册4 20.2栋抗震支吊架布置图/3C_2022_4F管综平面图Model1_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/14抗震支架（2020.01.13版）/PDF/分册4 20.2栋抗震支吊架布置图/3C_2022_6F管综平面图Model1_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/14抗震支架（2020.01.13版）/PDF/分册4 20.2栋抗震支吊架布置图/3C_2022_7F管综平面图Model1_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/14抗震支架（2020.01.13版）/PDF/分册5 20.4栋抗震支吊架布置图/3C_2022_楼层平面1F管综Model1_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/喷淋/3C_2022_1_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/喷淋/3C_2022_2_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/喷淋/3C_2022_3_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/喷淋/3C_2022_4_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/喷淋/3C_2022_5_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/喷淋/3C_2022_6_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/喷淋/3C_2022_7_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/喷淋/3C_2022_8_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/弱电/3C_2022_2_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/弱电/3C_2022_3_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/弱电/3C_2022_4_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/弱电/3C_2022_6_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/强电/3C_2022_2_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/强电/3C_2022_3_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/强电/3C_2022_4_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/强电/3C_2022_5_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/强电/3C_2022_6_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/强电/3C_2022_7_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/强电/3C_2022_8_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/暖通水/3C_2022_1_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/暖通水/3C_2022_2_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/暖通水/3C_2022_3_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/暖通水/3C_2022_4_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/暖通水/3C_2022_5_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/暖通水/3C_2022_6_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/暖通水/3C_2022_7_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/消火栓/3C_2022_1_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/消火栓/3C_2022_6_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/消火栓/3C_2022_7_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/照明一/3C_2022_2_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/照明一/3C_2022_3_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/照明二/3C_2022_2_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/照明二/3C_2022_3_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/空调通风/3C_2022_1_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/空调通风/3C_2022_2_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/空调通风/3C_2022_3_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/空调通风/3C_2022_4_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/空调通风/3C_2022_5_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/空调通风/3C_2022_6_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/空调通风/3C_2022_7_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/防排烟/3C_2022_4_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.1栋出图/防排烟/3C_2022_7_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/20.2栋净空分析平面图/3C_2022_1_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/20.2栋净空分析平面图/3C_2022_2_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/厨房风管平面图/3C_2022_1_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/厨房风管平面图/3C_2022_2_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/厨房风管平面图/3C_2022_3_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/喷淋平面图/3C_2022_1_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/喷淋平面图/3C_2022_2_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/喷淋平面图/3C_2022_3_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/喷淋平面图/3C_2022_4_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/喷淋平面图/3C_2022_5_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/喷淋平面图/3C_2022_6_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/喷淋平面图/3C_2022_7_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/喷淋平面图/3C_2022_8_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/天然气/3C_2022_1F天然气平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/天然气/3C_2022_2F天然气平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/弱电/3C_2022_1F弱电桥架平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/弱电/3C_2022_2F弱电桥架平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/弱电/3C_2022_3F弱电桥架平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/弱电/3C_2022_4F弱电桥架平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/弱电/3C_2022_5F弱电桥架平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/弱电/3C_2022_6F弱电桥架平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/弱电/3C_2022_7F弱电桥架平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/弱电/3C_2022_RF弱电桥架平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/强电/3C_2022_1F强电桥架平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/强电/3C_2022_2F强电桥架平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/强电/3C_2022_3F强电桥架平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/强电/3C_2022_4F强电桥架平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/强电/3C_2022_5F强电桥架平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/强电/3C_2022_6F强电桥架平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/强电/3C_2022_7F强电桥架平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/暖通风平面图/3C_2022_1_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/暖通风平面图/3C_2022_2_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/暖通风平面图/3C_2022_3_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/暖通风平面图/3C_2022_4_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/暖通风平面图/3C_2022_5_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/暖通风平面图/3C_2022_6_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/暖通风平面图/3C_2022_7_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/暖通风平面图/3C_2022_8_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/消火栓/3C_2022_1F消火栓平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/消火栓/3C_2022_2F消火栓平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/消火栓/3C_2022_3F消火栓平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/消火栓/3C_2022_4F消火栓平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/消火栓/3C_2022_5F消火栓平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/消火栓/3C_2022_6F消火栓平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/消火栓/3C_2022_7F消火栓平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/消火栓/3C_2022_RF消火栓平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/照明/3C_2022_1F照明桥架平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/照明/3C_2022_2F照明桥架平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/照明/3C_2022_3F照明桥架平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/照明/3C_2022_4F照明桥架平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/照明/3C_2022_5F照明桥架平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/照明/3C_2022_6F照明桥架平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/照明/3C_2022_7F照明桥架平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/空调水平面图/3C_2022_1_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/空调水平面图/3C_2022_2_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/空调水平面图/3C_2022_3_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/空调水平面图/3C_2022_4_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/空调水平面图/3C_2022_5_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/空调水平面图/3C_2022_6_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/空调水平面图/3C_2022_7_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/空调水平面图/3C_2022_8_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/管综平面图/3C_2022_1_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/管综平面图/3C_2022_2_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/管综平面图/3C_2022_3_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/管综平面图/3C_2022_4_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/管综平面图/3C_2022_5_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/管综平面图/3C_2022_6_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/管综平面图/3C_2022_7_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/给排水平面图/3C_2022_1_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/给排水平面图/3C_2022_2_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/给排水平面图/3C_2022_3_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/给排水平面图/3C_2022_4_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/给排水平面图/3C_2022_5_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/给排水平面图/3C_2022_6_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/给排水平面图/3C_2022_7_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.2栋出图/给排水平面图/3C_2022_8_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.4栋出图/净空分析PDF/3C_2022_204栋1F净空分析平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.4栋出图/净空分析PDF/3C_2022_204栋2F净空分析平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.4栋出图/净空分析PDF/3C_2022_204栋3F净空分析平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.4栋出图/净空分析PDF/3C_2022_204栋4F净空分析平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.4栋出图/净空分析PDF/3C_2022_204栋5F净空分析平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.4栋出图/净空分析PDF/3C_2022_204栋6F净空分析平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.4栋出图/净空分析PDF/3C_2022_204栋7F净空分析平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.4栋出图/喷淋PDF/3C_2022_204栋1F喷淋平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.4栋出图/喷淋PDF/3C_2022_204栋2F喷淋平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.4栋出图/喷淋PDF/3C_2022_204栋3F喷淋平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.4栋出图/喷淋PDF/3C_2022_204栋4F喷淋平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.4栋出图/喷淋PDF/3C_2022_204栋5F喷淋平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.4栋出图/喷淋PDF/3C_2022_204栋6F喷淋平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.4栋出图/喷淋PDF/3C_2022_204栋7F喷淋平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.4栋出图/空调风管PDF/3C_2022_204栋1F空调风管平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地20.4栋出图/管综PDF/3C_2022_204栋首层管综平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/4C_2022_B1净空分析_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/3C_2022_B2净空分析_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/人防电/3C_2022_负一层人防战时电平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/人防电/3C_2022_负二层人防战时电平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/人防风/3C_2022_负一层人防战时通风平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/人防风/3C_2022_负一层人防风管平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/人防风/3C_2022_负二层人防战时通风平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/动力/3C_2022_负一层A区动力配电图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/动力/3C_2022_负一层B区动力配电图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/动力/3C_2022_负一层C区动力配电图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/动力/3C_2022_负二层A区动力配电图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/动力/3C_2022_负二层B区动力配电图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/动力/3C_2022_负二层C区动力配电图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/喷淋/3C_2022_负一层A区喷淋平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/喷淋/3C_2022_负一层B区喷淋平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/喷淋/3C_2022_负一层C区喷淋平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/喷淋/3C_2022_负二层A区喷淋平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/喷淋/3C_2022_负二层B区喷淋平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/喷淋/3C_2022_负二层C区喷淋平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/弱电/3C_2022_负一层A区弱电平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/弱电/3C_2022_负一层B区弱电平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/弱电/3C_2022_负一层C区弱电平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/弱电/3C_2022_负二层A区弱电平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/弱电/3C_2022_负二层C区弱电平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/暖通/3C_2022_负一层A区空调风管平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/暖通/3C_2022_负一层B区空调风管平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/暖通/3C_2022_负一层C区空调风管平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/暖通/3C_2022_负二层A区空调风管平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/暖通/3C_2022_负二层B区空调风管平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/暖通/3C_2022_负二层C区空调风管平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/消火栓/3C_2022_负一层B区消火栓平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/消火栓/3C_2022_负一层C区消火栓平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/消火栓/3C_2022_负二层A区消火栓平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/消火栓/3C_2022_负二层B区消火栓平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/消火栓/3C_2022_负二层C区消火栓平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/照明（二）/3C_2022_负一层A区照明配电平面图二_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/照明（二）/3C_2022_负一层B区照明配电平面图二_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/照明（二）/3C_2022_负一层C区照明配电平面图二_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/照明（二）/3C_2022_负二层A区照明配电平面图二_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/照明（二）/3C_2022_负二层B区照明配电平面图二_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/照明（二）/3C_2022_负二层C区照明配电平面图二_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/空调水/3C_2022_负一层B区空调水平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/空调水/3C_2022_负一层C区空调水平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/给排水/3C_2022_负一层A区给排水平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/给排水/3C_2022_负一层B区给排水平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/给排水/3C_2022_负一层C区给排水平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/给排水/3C_2022_负二层A区给排水平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/给排水/3C_2022_负二层B区给排水平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/给排水/3C_2022_负二层C区给排水平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/3C_2022_负一层管线综合平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/15管线综合/中国移动南方基地汇总（CAD+PDF）/南方基地出图PDF/南方基地地下室出图/3C_2022_负二层管线综合平面图_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/17绿建/计算书(本项目)/3C_2022_中国移动南方基地二期二阶段项_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/17绿建/计算书(本项目)/3C_2022_中移动照明功率密度计算书_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/17绿建/计算书(本项目)/3C_2022_公共交通站点分布说明_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/17绿建/计算书(本项目)/3C_2022_公共服务配套设施说明_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/17绿建/计算书(本项目)/3C_2022_地下空间利用计算书_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/17绿建/计算书(本项目)/3C_2022_室内背景噪声计算书_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/17绿建/计算书(本项目)/3C_2022_室内自然采光模拟分析报告_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/17绿建/计算书(本项目)/3C_2022_室内风环境模拟分析报告_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/17绿建/计算书(本项目)/3C_2022_室外风环境模拟分析报告_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/17绿建/计算书(本项目)/3C_2022_建筑形体规则性判定报告_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/17绿建/计算书(本项目)/3C_2022_构件隔声性能分析报告_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/17绿建/计算书(本项目)/3C_2022_水系统利用方案及非传统水源利_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/17绿建/计算书(本项目)/3C_2022_空调冷热水系统循环水泵的耗电_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/17绿建/计算书(本项目)/3C_2022_空调冷热源设备能效指标计算书_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/17绿建/计算书(本项目)/3C_2022_空调风机单位风量耗功率计算书_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/17绿建/计算书(本项目)/3C_2022_高强度钢筋用量比例计算书_未署名.pdf
+- docs/library/_projects/2019.7 中国移动南方基地二期工程二阶段项目/17绿建/6C_2014_附件2广州市绿色建筑设计说明_未署名.pdf
+- docs/library/_projects/2019.7中国电信云计算重庆基地二期工程/重庆二期节能/重庆二期节能-D栋/计算书/3C_2022_公共建筑规定性指标计算报告书_未署名.rtf
+- docs/library/_projects/2019.7中国电信云计算重庆基地二期工程/重庆二期节能/重庆二期节能-D栋/计算书/3C_2022_公建内表面温度计算书_未署名.rtf
+- docs/library/_projects/2019.7中国电信云计算重庆基地二期工程/重庆二期节能/重庆二期节能-D栋/计算书/3C_2022_外窗或幕墙与房间地板轴线面积_未署名.rtf
+- docs/library/_projects/2019.7中国电信云计算重庆基地二期工程/重庆二期节能/重庆二期节能-D栋/计算书/3C_2022_外窗或幕墙可开启面积比例计算_未署名.rtf
+- docs/library/_projects/2019.7中国电信云计算重庆基地二期工程/重庆二期节能/重庆二期节能-D栋/计算书/3C_2022_重庆公共建筑权衡计算报告书_未署名.rtf
+- docs/library/_projects/2019.7中国电信云计算重庆基地二期工程/重庆二期节能/重庆二期节能-D栋/计算书/3C_2017_重庆公建2017基本情况表_未署名.rtf
+- docs/library/_projects/2019.7中国电信云计算重庆基地二期工程/重庆二期节能/重庆二期节能-E栋/计算书/3C_2022_公共建筑规定性指标计算报告书_未署名.rtf
+- docs/library/_projects/2019.7中国电信云计算重庆基地二期工程/重庆二期节能/重庆二期节能-E栋/计算书/3C_2022_公建内表面温度计算书_未署名.rtf
+- docs/library/_projects/2019.7中国电信云计算重庆基地二期工程/重庆二期节能/重庆二期节能-E栋/计算书/3C_2022_外窗或幕墙与房间地板轴线面积_未署名.rtf
+- docs/library/_projects/2019.7中国电信云计算重庆基地二期工程/重庆二期节能/重庆二期节能-E栋/计算书/3C_2022_外窗或幕墙可开启面积比例计算_未署名.rtf
+- docs/library/_projects/2019.7中国电信云计算重庆基地二期工程/重庆二期节能/重庆二期节能-E栋/计算书/3C_2022_重庆公共建筑权衡计算报告书_未署名.rtf
+- docs/library/_projects/2019.7中国电信云计算重庆基地二期工程/重庆二期节能/重庆二期节能-E栋/计算书/3C_2017_重庆公建2017基本情况表_未署名.rtf
+- docs/library/_projects/2019.7中国电信云计算重庆基地二期工程/重庆二期节能/重庆二期节能-F栋/计算书/3C_2022_公共建筑规定性指标计算报告书_未署名.rtf
+- docs/library/_projects/2019.7中国电信云计算重庆基地二期工程/重庆二期节能/重庆二期节能-F栋/计算书/3C_2022_公建内表面温度计算书_未署名.rtf
+- docs/library/_projects/2019.7中国电信云计算重庆基地二期工程/重庆二期节能/重庆二期节能-F栋/计算书/3C_2022_外窗或幕墙与房间地板轴线面积_未署名.rtf
+- docs/library/_projects/2019.7中国电信云计算重庆基地二期工程/重庆二期节能/重庆二期节能-F栋/计算书/3C_2022_外窗或幕墙可开启面积比例计算_未署名.rtf
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1暖通0805/20200803大数据工业地块数据区1 暖通/1#楼/3C_2022_1楼_冷负荷计算书_未署名.xls
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1暖通0805/20200803大数据工业地块数据区1 暖通/2#楼/3C_2022_2楼_冷负荷计算书_未署名.xls
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1结构1-3#楼+计算书0805/(数据区1)1~3#楼结构审图2020.08.03/(数据区1)3#楼结构审图2020.08.04/3#楼结构计算书/楼梯计算书/4C_2022_AT1_未署名.rtf
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1结构1-3#楼+计算书0805/(数据区1)1~3#楼结构审图2020.08.03/(数据区1)3#楼结构审图2020.08.04/3#楼结构计算书/楼梯计算书/4C_2022_AT2_未署名.rtf
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区1结构1-3#楼+计算书0805/(数据区1)1~3#楼结构审图2020.08.03/(数据区1)3#楼结构审图2020.08.04/3#楼结构计算书/楼梯计算书/4C_2022_AT3_未署名.rtf
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区2暖通0805/数据区2暖通0804/3C_2022_2地块地下通风防排烟计算书_未署名.xls
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区2结施+计算书0805/数据区2结构+计算书0804/5#楼结构+计算书/5#计算书/5#楼下/基础/3C_2022_局部承压_桩_未署名.TXT
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区2结施+计算书0805/数据区2结构+计算书0804/5#楼结构+计算书/5#计算书/5#楼中/基础/3C_2022_局部承压_桩_未署名.TXT
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/数据区2结施+计算书0805/数据区2结构+计算书0804/7#楼结构+计算书/7#楼计算书/基础/3C_2022_7楼桩计算_未署名.xls
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/示范基地暖通0805/示范基地暖通0804/3C_2022_10楼冷负荷计算书_未署名.xls
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/示范基地暖通0805/示范基地暖通0804/3C_2022_89楼地上通风防排烟计算书_未署名.xls
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/示范基地结施+计算书0805/工业1-示范基地结构+计算书0804/10#楼结施+计算书/10#计算书/10#基础/3C_2022_局部承压_桩_未署名.TXT
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/示范基地结施+计算书0805/工业1-示范基地结构+计算书0804/8.9#楼结构+计算书/8#楼/基础/3C_2022_局部承压_柱_未署名.TXT
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/示范基地结施+计算书0805/工业1-示范基地结构+计算书0804/8.9#楼结构+计算书/9#楼/基础/3C_2022_局部承压_柱_未署名.TXT
+- docs/library/_projects/2020.5 大数据安全产业示范基地及国家大数据安全靶场（数据区）/示范基地结施+计算书0805/工业1-示范基地结构+计算书0804/产业示范基地地下室结构+计算书/产业示范基地DXS计算书/3C_2022_3地块地下室桩承载力计算_未署名.xls
+- docs/library/_projects/2021.1 六安电信信息化中心和六安电信云计算数据中心项目/3C_2022_信息化中心安徽省民用建筑节能_未署名.pdf
+- docs/library/_projects/2021.1 六安电信信息化中心和六安电信云计算数据中心项目/3C_2022_信息化中心规定性指标计算报告_未署名.pdf
+- docs/library/_projects/2021.1 六安电信信息化中心和六安电信云计算数据中心项目/3C_2022_六安电信信息化中心项目和六安_未署名.pdf
+- docs/library/_projects/2021.1 六安电信信息化中心和六安电信云计算数据中心项目/3C_2022_六安电信信息化建设结构计算书_未署名.pdf
+- docs/library/_projects/2021.1 六安电信信息化中心和六安电信云计算数据中心项目/3C_2022_六安电信应急演练地下配套设施_未署名.pdf
+- docs/library/_projects/2021.1 六安电信信息化中心和六安电信云计算数据中心项目/3C_2022_安徽省民用建筑节能审查备案登_未署名.pdf
+- docs/library/_projects/2021.1 六安电信信息化中心和六安电信云计算数据中心项目/3C_2022_数据中心公共建筑节能计算书_未署名.pdf
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/室外工程/室外工程 结构/3C_2022_室外工程结构计算书_未署名.pdf
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/第一册 1#楼和门卫/第二分册：结构/3C_2022_1楼结构计算书_未署名.pdf
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/第一册 1#楼和门卫/第二分册：结构/3C_2022_门卫1计算书_未署名.pdf
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/第一册 1#楼和门卫/第二分册：结构/3C_2022_门卫2计算书_未署名.pdf
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/第三册 3#楼/第二分册：结构/3C_2022_2楼3楼结构计算书_未署名.pdf
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/第四册 4#楼/第二分册：结构/3C_2022_4楼结构计算书_未署名.pdf
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/碳排放计算书/1#楼（维护支撑用房）/3C_2022_建筑能耗可再生能源利用及建筑_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/碳排放计算书/门卫1/3C_2022_建筑能耗可再生能源利用及建筑_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/1#楼/1#楼/1#楼（维护支撑用房）-节能及绿建报告书汇总/3C_2022_规定性指标计算报告书_1楼维_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/1#楼/1#楼地标验算/3C_2022_重庆市公建建筑节能围护结构提_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/门卫1/门卫1/3C_2022_围护结构内部冷凝计算报告_门_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/门卫1/门卫1/3C_2022_围护结构结露计算报告一维算法_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/门卫1/门卫1/3C_2022_围护结构隔热性能计算报告_门_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/门卫1/门卫1/3C_2022_规定性指标计算报告书_门卫1_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/门卫1/门卫1地标验算/3C_2022_外窗可开启面积占房间外墙面积_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/门卫1/门卫1地标验算/3C_2022_规定性指标计算报告书_门卫1_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/门卫1/门卫1地标验算/3C_2022_重庆市公建建筑节能围护结构提_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 1#楼门卫/节能模型及计算书/节能计算书/门卫2/门卫2地标验算/3C_2022_规定性指标计算报告书_门卫2_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 23#楼/中国移动成渝（重庆）江南数据中心建设项目一期土建工程-2#、3#楼意见回复/3#/3C_2022_围护结构内部冷凝计算报告_3_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 23#楼/中国移动成渝（重庆）江南数据中心建设项目一期土建工程-2#、3#楼意见回复/3#/3C_2022_围护结构结露计算报告一维算法_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 23#楼/中国移动成渝（重庆）江南数据中心建设项目一期土建工程-2#、3#楼意见回复/3#/3C_2022_围护结构隔热性能计算报告_3_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 23#楼/中国移动成渝（重庆）江南数据中心建设项目一期土建工程-2#、3#楼意见回复/3#/3C_2022_工业建筑节能设计备案表_3楼_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/土建施工图/节能专篇/节能模型 专篇报告 23#楼/中国移动成渝（重庆）江南数据中心建设项目一期土建工程-2#、3#楼意见回复/3#/3C_2022_规定性指标计算报告书_3楼数_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件二：详细勘察文件/动探/3C_2022_ZX163重型触探N635_未署名.xls
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件二：详细勘察文件/动探/3C_2022_ZX166重型触探N635_未署名.xls
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件二：详细勘察文件/动探/3C_2022_ZX180重型触探N635_未署名.xls
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件二：详细勘察文件/动探/3C_2022_ZX185重型触探N635_未署名.xls
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件二：详细勘察文件/动探/3C_2022_ZX189重型触探N635_未署名.xls
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件二：详细勘察文件/动探/3C_2022_ZX194重型触探N635_未署名.xls
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件二：详细勘察文件/动探/3C_2022_ZX1重型触探N635_未署名.xls
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件二：详细勘察文件/动探/3C_2022_ZX200重型触探N635_未署名.xls
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件二：详细勘察文件/动探/3C_2022_ZX205重型触探N635_未署名.xls
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/地勘等资料/附件二：详细勘察文件/动探/3C_2022_ZX270重型触探N635_未署名.xls
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/幕墙工程/幕墙20221226CAD/中国移动成渝（重庆）江南数据中心建设项目一期--幕墙图纸/第一分册-1#楼/设计说明/3C_2022_设计说明10_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/幕墙工程/幕墙20221226CAD/中国移动成渝（重庆）江南数据中心建设项目一期--幕墙图纸/第一分册-1#楼/设计说明/3C_2022_设计说明2_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/幕墙工程/幕墙20221226CAD/中国移动成渝（重庆）江南数据中心建设项目一期--幕墙图纸/第一分册-1#楼/设计说明/3C_2022_设计说明3_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/幕墙工程/幕墙20221226CAD/中国移动成渝（重庆）江南数据中心建设项目一期--幕墙图纸/第一分册-1#楼/设计说明/3C_2022_设计说明4_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/幕墙工程/幕墙20221226CAD/中国移动成渝（重庆）江南数据中心建设项目一期--幕墙图纸/第一分册-1#楼/设计说明/3C_2022_设计说明5_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/幕墙工程/幕墙20221226CAD/中国移动成渝（重庆）江南数据中心建设项目一期--幕墙图纸/第一分册-1#楼/设计说明/3C_2022_设计说明6_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/幕墙工程/幕墙20221226CAD/中国移动成渝（重庆）江南数据中心建设项目一期--幕墙图纸/第一分册-1#楼/设计说明/3C_2022_设计说明7_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/幕墙工程/幕墙20221226CAD/中国移动成渝（重庆）江南数据中心建设项目一期--幕墙图纸/第一分册-1#楼/设计说明/3C_2022_设计说明8_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/幕墙工程/幕墙20221226CAD/中国移动成渝（重庆）江南数据中心建设项目一期--幕墙图纸/第一分册-1#楼/设计说明/3C_2022_设计说明9_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/幕墙工程/幕墙20221226CAD/中国移动成渝（重庆）江南数据中心建设项目一期--幕墙图纸/第三分册-3#楼/设计说明/3C_2022_设计说明5_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/幕墙工程/幕墙20221226CAD/中国移动成渝（重庆）江南数据中心建设项目一期--幕墙图纸/第三分册-3#楼/设计说明/3C_2022_设计说明8_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/幕墙工程/幕墙20221226CAD/中国移动成渝（重庆）江南数据中心建设项目一期--幕墙图纸/第三分册-3#楼/设计说明/3C_2022_设计说明总无图框_未署名.doc
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/景观/景观20221226CAD/3C_2022_LTD02_景观苗木表_未署名.pdf
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/景观/景观修改苗木表及种植图原发了配置表变更未补充平面布置图本次设计补上的---20230222/景观修改苗木表及种植图/PDF/3C_2022_LTD011_种植设计说明一_未署名.pdf
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/景观/景观修改苗木表及种植图原发了配置表变更未补充平面布置图本次设计补上的---20230222/景观修改苗木表及种植图/PDF/3C_2022_LTD02_景观苗木表_未署名.pdf
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/景观/景观修改苗木表及种植图原发了配置表变更未补充平面布置图本次设计补上的---20230222/景观修改苗木表及种植图/PDF/3C_2022_LTD03_景观绿化种植平面_未署名.pdf
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/景观/景观修改苗木表及种植图原发了配置表变更未补充平面布置图本次设计补上的---20230222/景观修改苗木表及种植图/PDF/3C_2022_LTD04_景观乔灌木种植平_未署名.pdf
+- docs/library/_projects/2022.11 中国移动（重庆）江南数据中心建设项目（一期）/景观/景观修改苗木表及种植图原发了配置表变更未补充平面布置图本次设计补上的---20230222/景观修改苗木表及种植图/PDF/3C_2022_LTD05_景观地被篱种植平_未署名.pdf
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/12技术规格书/3C_2021_1建筑技术说明书202112_未署名.docx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/12技术规格书/3C_2021_20211209电梯技术规范_未署名.docx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/12技术规格书/3C_2022_2结构技术说明书_未署名.docx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/12技术规格书/3C_2022_3电气技术说明书广州移动二期_未署名.docx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/12技术规格书/3C_2022_4给排水技术规格书_未署名.docx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/12技术规格书/3C_2022_5消防通风广州移动二期技术规_未署名.docx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/12技术规格书/3C_2022_6智能化技术规范书广州移动二_未署名.docx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/14海绵城市设计/3C_2022_海绵城市设计专篇202201_未署名.docx
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/PDF/01建筑/B1~B3/3C_2022_B1建筑专业图纸_未署名.pdf
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/PDF/01建筑/B1~B3/3C_2022_B2建筑专业图纸_未署名.pdf
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/PDF/01建筑/B1~B3/3C_2022_B3建筑专业图纸_未署名.pdf
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/PDF/02结构/室外工程结构施工图-施工招标版/3C_2022_室外工程第五册第七分册结构设_未署名.pdf
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/PDF/02结构/室外工程结构施工图-施工招标版/3C_2022_室外工程第五册第四分册结构设_未署名.pdf
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/PDF/02结构/广州移动二期通信机楼结构施工图-施工招标版/PDF/3C_2022_B1栋结构施工图施工招标版_未署名.pdf
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/PDF/02结构/广州移动二期通信机楼结构施工图-施工招标版/PDF/3C_2022_B2栋结构施工图施工招标版_未署名.pdf
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/PDF/02结构/广州移动二期通信机楼结构施工图-施工招标版/PDF/3C_2022_B3栋结构施工图施工招标版_未署名.pdf
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/PDF/02结构/门卫室结构图-施工招标版/3C_2022_门卫室结构图施工招标版_未署名.pdf
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/PDF/03暖通/3C_2021_广州移动二期项目B1消防通风_未署名.pdf
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/PDF/03暖通/3C_2021_广州移动二期项目B2消防通风_未署名.pdf
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/PDF/03暖通/3C_2021_广州移动二期项目B3消防通风_未署名.pdf
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/PDF/08智能化/3C_2021_B1智能化20211231_未署名.pdf
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/PDF/08智能化/3C_2021_B2智能化20211231_未署名.pdf
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/PDF/08智能化/3C_2021_B3智能化20211231_未署名.pdf
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/PDF/08智能化/3C_2021_第四册门卫室第四分册建筑智能_未署名.pdf
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/PDF/10抗震支架/3C_2021_广州移动二期抗震支架设计20_未署名.pdf
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/PDF/11基坑支护/B1~B3栋基坑支护-施工招标版/PDF/3C_2022_B1栋基坑支护施工招标版_未署名.pdf
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/PDF/11基坑支护/B1~B3栋基坑支护-施工招标版/PDF/3C_2022_B2栋基坑支护施工招标版_未署名.pdf
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/PDF/11基坑支护/B1~B3栋基坑支护-施工招标版/PDF/3C_2022_B3栋基坑支护施工招标版_未署名.pdf
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/PDF/11基坑支护/室外工程-基坑支护-施工招标版/3C_2022_室外工程第五册第五分册基坑支_未署名.pdf
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/PDF/13消防专篇/3C_2021_中国移动粤港澳广州通信机楼二_未署名.pdf
+- docs/library/_projects/2022.1中国移动粤港澳（广州）通信机楼二期工程/PDF/14海绵城市设计/3C_2022_海绵城市设计专篇202201_未署名.pdf
+- docs/library/_projects/2023.1广西桂北云计算产业园一期项目通信机楼土建工程/第一册 建筑专业设计2023.01.04/节能/3C_2022_建筑节能设计报告书_未署名.docx
+- docs/library/_projects/2023.1广西桂北云计算产业园一期项目通信机楼土建工程/第一册 建筑专业设计2023.01.04/节能/3C_2022_隔热检查计算书_未署名.docx
+- docs/library/_projects/2023.2 中国移动（济宁）数据中心/3C_2023_____中国移动济宁数据中心_未署名.pdf
+- docs/library/_projects/2023.2 中国移动（济宁）数据中心/中国移动(济宁)数据中心A栋机房楼/建筑/3C_2023_20230518济宁数据中心_未署名.pdf
+- docs/library/_projects/2023.2 中国移动（济宁）数据中心/中国移动(济宁)数据中心A栋机房楼/电气/3C_2022_RDX101_未署名.pdf
+- docs/library/_projects/2023.2 中国移动（济宁）数据中心/中国移动(济宁)数据中心A栋机房楼/电气/3C_2022_RDX102_未署名.pdf
+- docs/library/_projects/2023.2 中国移动（济宁）数据中心/中国移动(济宁)数据中心A栋机房楼/电气/3C_2022_RDX103_未署名.pdf
+- docs/library/_projects/2023.2 中国移动（济宁）数据中心/中国移动(济宁)数据中心A栋机房楼/电气/3C_2022_中国移动济宁数据中心A栋机房_未署名.pdf
+- docs/library/_projects/2023.2 中国移动（济宁）数据中心/中国移动(济宁)数据中心附属用房/电气/3C_2022_中国移动济宁数据中心附属用房_未署名.pdf
+- docs/library/_projects/2023.2 中国移动（济宁）数据中心/济宁数据中心室外工程图纸/建筑/3C_2023_20230313济宁室外工程_未署名.pdf
+- docs/library/_projects/2023.2 中国移动（济宁）数据中心/济宁数据中心室外工程图纸/电气/3C_2022_济宁室外电气_未署名.pdf
+- docs/library/_projects/2023.4 定兴县公安局智慧乡村、小区与指挥系统智慧化项目-机房/建筑/CAD/PDF/3C_2022_011建施_未署名.pdf
+- docs/library/_projects/2023.4 定兴县公安局智慧乡村、小区与指挥系统智慧化项目-机房/建筑/CAD/PDF/3C_2022_建施01封面说明修改0822_未署名.pdf
+- docs/library/_projects/2023.4 定兴县公安局智慧乡村、小区与指挥系统智慧化项目-机房/建筑/PDF/3C_2022_封面说明修改0822Mode_未署名.pdf
+- docs/library/_projects/2023.4 定兴县公安局智慧乡村、小区与指挥系统智慧化项目-机房/结施/PDF/3C_2022_00_目录_A3_未署名.pdf
+- docs/library/_projects/2023.4 定兴县公安局智慧乡村、小区与指挥系统智慧化项目-机房/结施/3C_2022_结构计算书_未署名.pdf
+- docs/library/_projects/2024.11 计算科学与大数据产业园建设项目（二期）DF/计算科学与大数据产业园建设项目（二期）施工图PDF 2024.10.31/抗震支架图纸/暖通抗震支架图纸/3C_2022_地上层暖通图纸_未署名.pdf
+- docs/library/_projects/2024.11 计算科学与大数据产业园建设项目（二期）DF/计算科学与大数据产业园建设项目（二期）施工图PDF 2024.10.31/抗震支架图纸/暖通抗震支架图纸/3C_2022_地下层暖通图纸_未署名.pdf
+- docs/library/_projects/2024.11 计算科学与大数据产业园建设项目（二期）DF/计算科学与大数据产业园建设项目（二期）施工图PDF 2024.10.31/抗震支架图纸/消防抗震支架图纸/3C_2022_地上层消防图纸_未署名.pdf
+- docs/library/_projects/2024.11 计算科学与大数据产业园建设项目（二期）DF/计算科学与大数据产业园建设项目（二期）施工图PDF 2024.10.31/抗震支架图纸/消防抗震支架图纸/3C_2022_地下层消防图纸_未署名.pdf
+- docs/library/_projects/2024.11 计算科学与大数据产业园建设项目（二期）DF/计算科学与大数据产业园建设项目（二期）施工图PDF 2024.10.31/机电图/暖通图/3C_2022_计算科学与大数据产业园建设项_未署名.pdf
+- docs/library/_projects/2024.11 计算科学与大数据产业园建设项目（二期）DF/计算科学与大数据产业园建设项目（二期）施工图PDF 2024.10.31/机电图/暖通图/3C_2022_计算科学与大数据产业园建设项_未署名_02.pdf
+- docs/library/_projects/2024.11 计算科学与大数据产业园建设项目（二期）DF/计算科学与大数据产业园建设项目（二期）施工图PDF 2024.10.31/机电图/消防图/计算科学与大数据产业园建设项目（二期）地上层消防图纸/3C_2022_消防电气_未署名.pdf
+- docs/library/_projects/2024.11 计算科学与大数据产业园建设项目（二期）DF/计算科学与大数据产业园建设项目（二期）施工图PDF 2024.10.31/机电图/消防图/计算科学与大数据产业园建设项目（二期）地上层消防图纸/3C_2022_消防给水_未署名.pdf
+- docs/library/_projects/2024.11 计算科学与大数据产业园建设项目（二期）DF/计算科学与大数据产业园建设项目（二期）施工图PDF 2024.10.31/机电图/消防图/计算科学与大数据产业园建设项目（二期）地上层消防图纸/3C_2022_消防通风_未署名.pdf
+- docs/library/_projects/2024.11 计算科学与大数据产业园建设项目（二期）DF/计算科学与大数据产业园建设项目（二期）施工图PDF 2024.10.31/机电图/消防图/计算科学与大数据产业园建设项目（二期）地下层消防图纸/3C_2022_消防电气_未署名.pdf
+- docs/library/_projects/2024.11 计算科学与大数据产业园建设项目（二期）DF/计算科学与大数据产业园建设项目（二期）施工图PDF 2024.10.31/机电图/消防图/计算科学与大数据产业园建设项目（二期）地下层消防图纸/3C_2022_消防给水_未署名.pdf
+- docs/library/_projects/2024.11 计算科学与大数据产业园建设项目（二期）DF/计算科学与大数据产业园建设项目（二期）施工图PDF 2024.10.31/机电图/消防图/计算科学与大数据产业园建设项目（二期）地下层消防图纸/3C_2022_消防通风_未署名.pdf
+- docs/library/_projects/2024.11 计算科学与大数据产业园建设项目（二期）DF/计算科学与大数据产业园建设项目（二期）施工图PDF 2024.10.31/机电图/电气图/3C_2022_计算科学与大数据产业园建设项_未署名.pdf
+- docs/library/_projects/2024.11 计算科学与大数据产业园建设项目（二期）DF/计算科学与大数据产业园建设项目（二期）施工图PDF 2024.10.31/机电图/电气图/3C_2022_计算科学与大数据产业园建设项_未署名_02.pdf
+- docs/library/_projects/2024.11 计算科学与大数据产业园建设项目（二期）DF/计算科学与大数据产业园建设项目（二期）施工图PDF 2024.10.31/机电图/给排水图/3C_2024_计算科学与大数据产业园建设项_未署名.pdf
+- docs/library/_projects/2024.11 计算科学与大数据产业园建设项目（二期）DF/计算科学与大数据产业园建设项目（二期）施工图PDF 2024.10.31/装饰施工图/3C_2022_计算科学与大数据产业园建设项_未署名.pdf
+- docs/library/_projects/2024.11 计算科学与大数据产业园建设项目（二期）DF/计算科学与大数据产业园建设项目（二期）施工图PDF 2024.10.31/装饰施工图/3C_2022_计算科学与大数据产业园建设项_未署名_02.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_02.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_03.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_04.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_05.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_06.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_07.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_08.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_09.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_10.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_11.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_12.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_13.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_14.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_15.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_16.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_17.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_18.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_19.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_20.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_21.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_22.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_23.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_24.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_25.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_26.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_27.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_28.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_29.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_30.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_31.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_32.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_33.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_34.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/幕墙施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_35.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/建筑施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/建筑施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_02.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/建筑施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_03.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/建筑施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_04.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/建筑施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_05.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/建筑施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_06.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/建筑施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_07.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/建筑施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_08.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/建筑施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_09.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/建筑施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_10.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/暖通施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/暖通施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_02.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/暖通施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_03.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/暖通施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_04.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/暖通施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_05.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/暖通施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_06.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/暖通施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_07.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/暖通施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_08.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/暖通施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_09.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/暖通施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_10.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/暖通施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_11.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/暖通施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_12.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/暖通施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_13.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/暖通施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_14.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/暖通施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_15.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/结构施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/结构施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_02.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/结构施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_03.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/结构施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_04.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/结构施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_05.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/结构施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_06.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/结构施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_07.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/结构施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_08.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/结构施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_09.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/结构施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_10.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/结构施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_11.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/结构施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_12.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/结构施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_13.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/结构施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_14.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/结构施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_15.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/结构施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_16.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/结构施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_17.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/结构施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_18.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/结构施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_19.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水/南平气灭 计算书  管道穿梁350/3C_2022_变配电室11_未署名.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水/南平气灭 计算书  管道穿梁350/3C_2022_机房21_未署名.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水/南平气灭 计算书  管道穿梁350/3C_2022_机房31_未署名.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水/南平气灭 计算书  管道穿梁350/3C_2022_机房41_未署名.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水/南平气灭 计算书  管道穿梁350/3C_2022_电力用房21_未署名.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水/南平气灭 计算书  管道穿梁350/3C_2022_电力用房31_未署名.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水/南平气灭 计算书  管道穿梁350/3C_2022_电力用房41_未署名.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_02.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_03.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_04.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_05.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_06.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_07.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_08.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_09.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_10.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_11.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_12.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_13.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_14.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_15.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_16.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_17.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_18.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_19.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_20.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_21.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_22.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_23.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_24.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_25.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_26.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_27.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_28.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_29.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_30.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_31.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_32.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_33.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_34.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_35.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_36.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_37.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_38.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_39.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_40.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_41.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_42.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_43.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_44.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_45.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_46.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_47.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_48.pdf
+- docs/library/_projects/2024.12 中国移动（福建南平）延平通信枢纽楼/给排水施工图/3C_2022_中国移动福建南平延平通信枢纽_未署名_49.pdf
+- docs/library/_projects/2024.2 国家工业信息安全发展研究中心•华南分中心星河东悦汇载体项目/3C_2022_00星河东悦汇载体项目材料表_未署名.pdf
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/基础冲切验算/3C_2022_DJ2基础验算_未署名.docx
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/基础冲切验算/3C_2022_DJ3b基础验算_未署名.docx
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/基础冲切验算/3C_2022_DJ6基础验算_未署名.docx
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/3C_2022_忠县调度楼地基基础计算书55_未署名.docx
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/挡墙计算书/负一层~顶板挡墙/3C_2022_DQ5挡土侧_未署名.rtf
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/挡墙计算书/负一层~顶板挡墙/3C_2022_DQ6_未署名.rtf
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/挡墙计算书/负一层~顶板挡墙/3C_2022_DQ7_未署名.rtf
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/挡墙计算书/负一层~顶板挡墙/3C_2022_DQ8_未署名.rtf
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/挡墙计算书/负二层~负一层挡墙/3C_2022_DQ1_未署名.rtf
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/挡墙计算书/负二层~负一层挡墙/3C_2022_DQ1a_未署名.rtf
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/挡墙计算书/负二层~负一层挡墙/3C_2022_DQ3_未署名.rtf
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/楼梯计算书/1#/3C_2022_ATb2_未署名.docx
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/楼梯计算书/1#/3C_2022_BTb2_未署名.docx
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/楼梯计算书/2#/3C_2022_AT1_未署名.docx
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/楼梯计算书/2#/3C_2022_ATb2_未署名.docx
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/02 结构/计算书/楼梯计算书/2#/3C_2022_BTb1_未署名.docx
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/07  绿建/10、装饰性构件造价比例计算书/3C_2022_重庆移动忠县分公司生产调度楼_未署名.pdf
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/07  绿建/12、室内背景噪声计算报告/3C_2022_室内背景噪声计算分析报告_未署名.pdf
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/07  绿建/14、不规则判断/3C_2022_重庆移动忠县分公司生产调度用_未署名.pdf
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/07  绿建/16、外窗可开启面积占房间外墙面积的比例计算书/3C_2022_外窗可开启面积占房间外墙面积_未署名.pdf
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/07  绿建/17、照度及照明功率密度值计算书/3C_2022_忠县照度计算书_未署名.pdf
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/07  绿建/2、绿色建筑基本情况表/3C_2022_绿色建筑基本情况表公共建筑_未署名.pdf
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/07  绿建/3、围护结构与构件隔声性能分析报告/3C_2022_重庆移动忠县分公司生产调度用_未署名.pdf
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/07  绿建/4、室外风环境模拟分析报告/3C_2022_重庆移动忠县分公司生产调度楼_未署名.pdf
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/07  绿建/5、场地热环境模拟报告/3C_2022_重庆移动忠县分公司生产调度楼_未署名.pdf
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/07  绿建/6、室外噪声分析报告/3C_2022_重庆移动忠县分公司生产调度楼_未署名.pdf
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/07  绿建/7、室内天然采光模拟分析报告/3C_2022_重庆移动忠县分公司生产调度楼_未署名.pdf
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/07  绿建/8、绿色建材应用比例计算表/3C_2022_公建绿色建材应用比例表_未署名.pdf
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/07  绿建/9、高强度钢筋用量比例计算表/3C_2022_重庆移动忠县分公司生产调度楼_未署名.pdf
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/08  装配式/20240119重庆忠县生产调度用房建设项目-生产调度楼装配式专项设计CAD+DWF/20240119重庆忠县生产调度用房建设项目-生产调度楼装配式专项设计CAD+DWF/3C_2022_重庆忠县生产调度用房建设项目_未署名.docx
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/建筑节能/报告书/3C_2022_公共建筑节能设计备案表_未署名.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/建筑节能/报告书/3C_2022_权衡计算报告书_建筑1_公建_未署名.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/建筑节能/报告书/3C_2022_西向立面外遮阳系数分析报告__未署名.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/建筑节能/报告书/3C_2022_规定性指标计算报告书_建筑1_未署名.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/建筑节能/报告书/3C_2022_重庆市公建建筑节能围护结构提_未署名.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/碳排放/报告书/3C_2022_建筑全生命周期碳排放计算专篇_未署名.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/碳排放/报告书/3C_2022_建筑能耗可再生能源利用及建筑_未署名.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/碳排放/报告书/3C_2022_附录公建_未署名.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-工程文件/建筑1单体分析/节能/报告书/3C_2022_重庆市公建建筑节能围护结构提_未署名.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-节能及绿建报告书汇总/3C_2022_围护结构内部冷凝计算报告_建_未署名.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-节能及绿建报告书汇总/3C_2022_围护结构结露计算报告一维算法_未署名.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-节能及绿建报告书汇总/3C_2022_围护结构隔热性能计算报告_建_未署名.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-节能及绿建报告书汇总/3C_2022_建筑能耗可再生能源利用及建筑_未署名.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-节能及绿建报告书汇总/建筑节能附录/3C_2022_外窗可开启面积占房间外墙面积_未署名.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-节能及绿建报告书汇总/建筑节能附录/3C_2022_遮阳详细计算过程报告书_建筑_未署名.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/09  节能/忠县移动中心/忠县移动中心-节能及绿建报告书汇总/3C_2022_权衡计算报告书_建筑1_公建_未署名.doc
+- docs/library/_projects/2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼/12  边坡支护/3C_2022_0设计说明_未署名.doc
+- docs/library/_projects/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/附件三：施工图图纸/00-室外工程/总图施工图/3C_2022_总施_未署名.pdf
+- docs/library/_projects/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/附件三：施工图图纸/07-景观工程/PDF/3C_2022_01目录及说明_未署名.pdf
+- docs/library/_projects/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/附件三：施工图图纸/07-景观工程/PDF/3C_2022_02ZT0106景观园建图_未署名.pdf
+- docs/library/_projects/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/附件三：施工图图纸/07-景观工程/PDF/3C_2022_03景观详图_未署名.pdf
+- docs/library/_projects/2024.7 中国电信重庆公司科学城数据中心运维楼土建项目/附件三：施工图图纸/07-景观工程/PDF/3C_2022_04屋顶景观_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/幕墙/PDF/3C_2022_中国移动衢州双港通信枢纽建设_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0004_建筑装修做法表_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0005_建筑装修做法表_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0006_建筑节能设计说_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0007_门窗表门窗详图_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0008_一层平面图A0_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0009_二层平面图A0_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0010_三层平面图A0_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0011_四层平面图A0_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0012_屋顶层平面图A_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0013_屋顶平面图A0_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0014_17轴立面图7_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0015_AF轴立面图F_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0016_11剖面图22_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0017_墙身大样一墙身_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0018_墙身大样三A0_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0019_墙身大样四节点_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0020_LT1详图一A_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0021_LT1详图二A_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0022_LT2详图一A_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0023_LT2详图二A_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0024_DT1详图DT_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0025_制冷站详图A0_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0026_油机房详图A0_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0027_工艺进线间详图_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0028_电缆进线井详图_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0029_节点详图A1_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0030_防静电架空地板_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0031_防火封堵详图一_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0032_防火封堵详图二_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0033_一层疏散平面图_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0034_二层疏散平面图_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0035_三层疏散平面图_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/CAD+PDF/PDF/3C_2022_建施0036_四层疏散平面图_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/总图、水池水泵房、室外工程建筑部分/PDF/5C_2022_土建工程总图分册_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/景观报规图纸/pdf/3C_2022_衢州总图含指标_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/建筑/景观报规图纸/pdf/3C_2022_覆土厚度详图_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022__园施0013A2_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022__园施0014A2_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022__园施0015A2_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022__园施0016A2_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022__园施0017A2_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022__园施0018A2_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022__园施0019A2_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022__园施0020A2_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022__园施0021A2_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022__园施0022A2_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022__园施0023A2_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022__园施0024A2_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022__园施0025A2_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022__园施0026A2_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022__园施0027A2_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022__园施0028A2_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022_园施0002_设计说明二A1_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022_园施0003_景观总平面及索_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022_园施0006_景观放线平面图_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022_园施0007_景观铺装索引平_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022_园施0008_景观竖向平面图_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022_园施0009_景观设施布置平_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022_园施0010_景观布品选型图_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022_园施0011_景观定位平面图_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022_园施0012_景观网格定位平_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022_植施0001_植物种植设计说_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022_植施0002_植物种植设计说_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022_植施0003_植物苗木表A1_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022_植施0004_植物总平面图A_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022_植施0005_乔灌木平面图A_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022_植施0006_地被篱种植平面_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022_水施0001_灌溉设计施工说_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022_水施0002_景观浇灌设计平_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022_水施0003_入口水景给排水_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022_水施0004_入口水景给排水_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022_电气0002_室外电气说明二_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022_电气0005_灯具设备安装示_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022_电气0006_景观电气照明平_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022_电气0007_配电箱系统图A_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/景观/PDF/3C_2022_电气0008_景观灯具选型图_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/暖通/3C_2022_衢州土建暖通图纸_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/暖通/3C_2022_衢州室外暖通图纸_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/土建/1#通信机房/pdf/3C_2022_结施0000_目录A2ML_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/土建/1#通信机房/pdf/3C_2022_结施0002_结构设计总说明_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/土建/1#通信机房/pdf/3C_2022_结施0003_桩基设计说明A_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/土建/1#通信机房/pdf/3C_2022_结施0004_桩位平面布置图_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/土建/1#通信机房/pdf/3C_2022_结施0005_基础平面布置图_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/土建/1#通信机房/pdf/3C_2022_结施0006_标高0900m_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/土建/1#通信机房/pdf/3C_2022_结施0007_标高0900m_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/土建/1#通信机房/pdf/3C_2022_结施0008_基础顶1160_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/土建/1#通信机房/pdf/3C_2022_结施0009_1160017_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/土建/1#通信机房/pdf/3C_2022_结施0010_17000屋顶_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/土建/1#通信机房/pdf/3C_2022_结施0011_屋顶27300_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/土建/1#通信机房/pdf/3C_2022_结施0012_一层顶板梁配筋_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/土建/1#通信机房/pdf/3C_2022_结施0013_一层顶板配筋图_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/土建/1#通信机房/pdf/3C_2022_结施0014_二层顶板梁配筋_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/土建/1#通信机房/pdf/3C_2022_结施0015_二层顶板配筋图_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/土建/1#通信机房/pdf/3C_2022_结施0016_三层顶板梁配筋_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/土建/1#通信机房/pdf/3C_2022_结施0017_三层顶版配筋图_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/土建/1#通信机房/pdf/3C_2022_结施0018_屋顶层顶板梁配_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/土建/1#通信机房/pdf/3C_2022_结施0019_屋顶层顶板配筋_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/土建/1#通信机房/pdf/3C_2022_结施0020_出屋面层顶板梁_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/土建/1#通信机房/pdf/3C_2022_结施0021_出屋面层顶板配_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/土建/1#通信机房/pdf/3C_2022_结施0022_LT1结构图A_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/土建/1#通信机房/pdf/3C_2022_结施0023_LT2结构图A_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/土建/水池水泵房/pdf/3C_2022_结施0000_目录A2ML_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/土建/水池水泵房/pdf/3C_2022_结施0001_结构设计说明A_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/土建/水池水泵房/pdf/3C_2022_结施0002_水池水泵房基础_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/土建/水池水泵房/pdf/3C_2022_结施0003_水池水泵房顶板_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/室外/pdf/3C_2022_结施0000_目录A2ML_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/室外/pdf/3C_2022_结施0001_室外工程结构设_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/结构/室外/pdf/3C_2022_结施0002_蓄冷罐基础图A_未署名.pdf
+- docs/library/_projects/2024.9 中国移动衢州双港通信枢纽建设项目（一期）/给排水/821-衢州-室外给排水施工图（CAD+PDF）/3C_2022_给排水消防单张图纸_未署名.pdf
+- docs/library/_projects/2025.2 中国联通（怀来）大数据创新产业园项目（DC4、DC5土建新建工程）/建筑专业/第二册  5#数据中心DC5/3C_2022_怀来DC5建施图_未署名.pdf
+- docs/library/_projects/2025.2 中国联通（怀来）大数据创新产业园项目（DC4、DC5土建新建工程）/建筑专业/第八册  室外工程（电缆隧道）/3C_2022_DC45电缆隧道_未署名.pdf
+- docs/library/_projects/2025.2 中国联通（怀来）大数据创新产业园项目（DC4、DC5土建新建工程）/建筑专业/第八册  室外工程（电缆隧道）/3C_2022_总图_未署名.pdf
+- docs/library/_projects/2025.2 中国联通（怀来）大数据创新产业园项目（DC4、DC5土建新建工程）/电气专业/第一册 4#数据中心DC4/3C_2022_怀来DC4智能化_未署名.pdf
+- docs/library/_projects/2025.2 中国联通（怀来）大数据创新产业园项目（DC4、DC5土建新建工程）/电气专业/第二册  5#数据中心DC5/3C_2022_怀来DC5智能化_未署名.pdf
+- docs/library/_projects/2025.2 中国联通（怀来）大数据创新产业园项目（DC4、DC5土建新建工程）/电气专业/第八册  室外工程/3C_2022_室外工程验收电源走向平面图_未署名.pdf
+- docs/library/_projects/2025.2 中国联通（怀来）大数据创新产业园项目（DC4、DC5土建新建工程）/电气专业/第四册  室外油机钢平台/3C_2022_油机平台照明_未署名.pdf
+- docs/library/_projects/2025.2 中国联通（怀来）大数据创新产业园项目（DC4、DC5土建新建工程）/结构专业/第五册 空调补水池/3C_2025_DC45地下应急补水池结构图_未署名.pdf
+- docs/library/_projects/2025.3 全国一体化工业大数据山东云中心省会经济圈区域分中心项目1号楼、1a地下室、2-A号楼、2-B号/1a地下室/结构/3C_2022_1a地下室结构计算书2022_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/00-合格证和报告书/3C_2022_幕墙合格书南安市供电公司备用_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/00-合格证和报告书/3C_2022_幕墙报告书南安市供电公司备用_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/00-合格证和报告书/3C_2022_施工图合格书南安市供电公司备_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/00-合格证和报告书/3C_2022_施工图报告书南安市供电公司备_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/00-合格证和报告书/3C_2022_门窗合格书南安市供电公司备用_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/00-合格证和报告书/3C_2022_门窗报告书南安市供电公司备用_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/00-合格证和报告书/基坑支护工程设计/3C_2022_审查合格证1_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/00-合格证和报告书/基坑支护工程设计/3C_2022_审查报告书1_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/00-合格证和报告书/边坡支护工程设计/3C_2022_审查合格证_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/00-合格证和报告书/边坡支护工程设计/3C_2022_审查报告书_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G01_结构_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G02_结构_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G03_结构_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G04_危险_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G05_基础_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G06_地下_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G07_地下_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G08_地下_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G09_地下_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G10_地下_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G11_一层_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G12_二层_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G13_三层_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G14_五层_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G15_地下_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G16_二层_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G17_四层_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G18_六层_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G19_地下_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G20_二层_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G21_四层_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G22_六层_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G23_地下_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G24_二层_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G25_四层_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G26_六层_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G27_楼梯_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G28_楼梯_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G29_节点_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/02-PDF【20240918结构】-南安市供电公司备用调度指挥数据中心/3C_2022_调度指挥数据中心G30_岗亭_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/03-PDF【20240918给排水】-南安市供电公司备用调度指挥数据中心/3C_2022_南安电力节水三同时报审表2_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_02.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_03.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_04.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_05.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_06.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_07.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_08.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_09.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_10.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_11.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_12.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_13.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_14.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_15.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_16.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_17.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_18.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_19.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_20.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_21.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_22.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_23.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_24.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_25.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_26.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_27.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_28.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_29.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/05-PDF【20240918暖通】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_30.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/06-PDF【20240918智能化】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/06-PDF【20240918智能化】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_02.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/06-PDF【20240918智能化】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_03.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/06-PDF【20240918智能化】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_04.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/06-PDF【20240918智能化】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_05.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/06-PDF【20240918智能化】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_06.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/06-PDF【20240918智能化】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_07.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/06-PDF【20240918智能化】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_08.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/06-PDF【20240918智能化】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_09.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/06-PDF【20240918智能化】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_10.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/06-PDF【20240918智能化】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_11.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/06-PDF【20240918智能化】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_12.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/06-PDF【20240918智能化】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_13.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/06-PDF【20240918智能化】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_14.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/06-PDF【20240918智能化】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_15.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/06-PDF【20240918智能化】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_16.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/06-PDF【20240918智能化】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_17.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/06-PDF【20240918智能化】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_18.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/06-PDF【20240918智能化】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_19.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/06-PDF【20240918智能化】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_20.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/06-PDF【20240918智能化】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_21.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/06-PDF【20240918智能化】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_22.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/06-PDF【20240918智能化】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_23.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/06-PDF【20240918智能化】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_24.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/06-PDF【20240918智能化】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_25.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/06-PDF【20240918智能化】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_26.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/06-PDF【20240918智能化】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_27.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/06-PDF【20240918智能化】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_28.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_02.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_03.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_04.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_05.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_06.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_07.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_08.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_09.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_10.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_11.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_12.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_13.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_14.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_15.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_16.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_17.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_18.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_19.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_20.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_21.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_22.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_23.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_24.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_25.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_26.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_27.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_28.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_29.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_30.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_31.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_32.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_33.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/07-PDF【20240918景施】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_34.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/08-PDF【20240918装配式】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/08-PDF【20240918装配式】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_02.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/08-PDF【20240918装配式】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_03.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/08-PDF【20240918装配式】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_04.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/08-PDF【20240918装配式】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_05.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/08-PDF【20240918装配式】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_06.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/08-PDF【20240918装配式】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_07.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/08-PDF【20240918装配式】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_08.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/08-PDF【20240918装配式】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_09.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/08-PDF【20240918装配式】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_10.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/08-PDF【20240918装配式】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_11.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/08-PDF【20240918装配式】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_12.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/08-PDF【20240918装配式】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_13.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/08-PDF【20240918装配式】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_14.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/08-PDF【20240918装配式】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_15.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/09-PDF【20240918海绵】-南安市供电公司备用调度指挥数据中心/3C_2022_海绵01海绵城市设计说明专篇_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/09-PDF【20240918海绵】-南安市供电公司备用调度指挥数据中心/3C_2022_海绵02汇水分区图_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/09-PDF【20240918海绵】-南安市供电公司备用调度指挥数据中心/3C_2022_海绵03海绵城市平面布置图_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/09-PDF【20240918海绵】-南安市供电公司备用调度指挥数据中心/3C_2022_海绵04海绵城市竖向布置图_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/09-PDF【20240918海绵】-南安市供电公司备用调度指挥数据中心/3C_2022_海绵05海绵设施管道布置图_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/09-PDF【20240918海绵】-南安市供电公司备用调度指挥数据中心/3C_2022_海绵06海绵设施定位图_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/09-PDF【20240918海绵】-南安市供电公司备用调度指挥数据中心/3C_2022_海绵07海绵设施大样图_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/11-PDF【20240918绿建】-南安市供电公司备用调度指挥数据中心/3C_2022_1_LJ00目录_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_02.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_03.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_04.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_05.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_06.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_07.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_08.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_09.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_10.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_11.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_12.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_13.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_14.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_15.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_16.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_17.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_18.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_19.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_20.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_21.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_22.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_23.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_24.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_25.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_26.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_27.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_28.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_29.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_30.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_31.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_32.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_33.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_34.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_35.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_36.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/12-PDF【20240918门窗】-南安市供电公司备用调度指挥数据中心/3C_2022_南安市供电公司备用调度指挥数_未署名_37.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/14-PDF【20250225边坡基坑】-南安市供电公司备用调度指挥数据中心/南安项目边坡支护设计-盖审图章/3C_2022_南安电力边坡支护设计_15_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/14-PDF【20250225边坡基坑】-南安市供电公司备用调度指挥数据中心/南安项目边坡支护设计-盖审图章/3C_2022_南安电力边坡支护设计_610_未署名.pdf
+- docs/library/_projects/2025.4 南安市供电公司备用调度指挥数据中心DF/PDF南安市供电公司备用调度指挥数据中心审图通过合格证书及图纸汇总-20250321（含边坡基坑）/3C_2022_南安市供电公司备用调度指挥数_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_云化架构超算中心设计方案71_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_数字化转型云计算基础设施算力_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_智慧算力枢纽中心建设方案47_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_20230521浙商证券超算_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2023_20230823首创证券恒润_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_20231027浙商证券润泽_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2023_20231108首创证券神州_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2023_20231123上海证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2023_20231124中国银河通信_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_20231227上海证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2024_20240221国盛证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240330民生证券中贝_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240421天风证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240426浙商证券算力_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240515上海证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240728开源证券北交_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_中国AI算力中心深度研究算出_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2023_人工智能行业专题研究智算中心_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_深度报告20240812天风_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_计算机行业半年度策略AI推动_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_计算机行业AI兴起智能算力浪_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2018_20180511天风证券FY_未署名.pdf
+- docs/library/M14_中国板块/34_存档/2C_2018_20180704第一财经商业_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2018_20180818天风证券FY_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2020_20200421东方证券通信_未署名.pdf
+- docs/library/M14_中国板块/34_存档/3C_2022_报告派微博数据中心微博家庭用_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_20220922开源证券曙光_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_IDC数据中心网络自动驾驶指_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_碳达峰碳中和背景下数据中心绿_未署名__002.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_掘金数据中心系列深度报告一I_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_探索与实践东数西算数据中心建_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_银行数据中心发展趋势展望30_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2023_20230216数据中心白皮_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2023_20230227探索与实践东_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2023_20230311碳达峰碳中和_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2023_20230614电子行业AM_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2023_20230705数字政府大数_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_20231016万联证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2023_20231123中国银河计算_未署名.pdf
+- docs/library/M14_中国板块/34_存档/2C_2023_20231228第一财经商业_未署名_02.pdf
+- docs/library/M13_有效算力与软件/34_存档/3C_2023_华为数字能源2023数据中心_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240101XX大数据中_未署名.docx
+- docs/library/M10_建设运营与人才/56_有用/6C_2024_20240101东台市智慧城_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_20240107德邦证券朗科_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_20240114中泰证券AI_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_20240419曙光数创87_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_20240514山西证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240801中泰证券中泰_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_20240826天风证券智微_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240827万联证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240830中泰证券中泰_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240902中信建投英伟_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240904中泰证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240914通信光模块行_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240916甬兴证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240925华安证券沪电_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20241030中泰证券中泰_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_20241030招商证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20241031数据中心建设_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20241105云数据中心网_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20241106中泰证券电子_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2024_20241114埃森哲XX集_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2024_20241118市大数据中心_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20241223东海证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_AI行业深度跟踪报告二铜互联_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2023_ITSS数据中心业务连续性等_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2023_中国通信工业协会数据中心委员_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2024_华为2024年金融数据中心存_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_埃森哲XX集团IT基础设施咨_未署名.pdf
+- docs/library/M14_中国板块/34_存档/2C_2024_第一财经商业数据中心SKG2_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2024_罗森伯格2024面向AI智算_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250102招商证券电力_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_20250108云计算数据中_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_20250109IDC云数据_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250109大数据中心建_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250206开源证券电力_未署名__002.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250208开源证券电力_未署名.pdf
+- docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/4C_2025_20250219国信证券盛弘_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250312国信证券数据_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250313国泰君安电气_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250315国信证券数据_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250323国信证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250409天风证券光子_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250411天风证券光子_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250513西部证券AI_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250514国信证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250515广发证券房地_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250526国信证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_202506022024AI_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250604东海证券电子_未署名.pdf
+- docs/library/M14_中国板块/56_有用/5C_2025_20250615国信证券AI_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250711广发证券建筑_未署名.pdf
+- docs/library/M11_资本与金融/7_重要/7B_2025_南方润泽数据中心REIT申购价值分析_申万宏源.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250806国联民生证券_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250806国联民生证券_未署名.pdf
+- docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/5C_2025_20250824国信证券数据_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250825国信证券数据_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2025_20250906信达证券产业_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250906广发证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250907天风证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250908天风证券公用_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250909天风证券公用_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250914国海证券液冷_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250918天风证券公用_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250925国信证券国信_未署名.pdf
+- docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025/5C_2025_20250926申万宏源万国_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250928国海证券液冷_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_20250929国信证券国信_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250929国信证券国信_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20251002国信证券数据_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20251003国信证券行业_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20251009信达证券Nv_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20251012招商证券招商_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20251017国信证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20251022招商证券电力_未署名.pdf
+- docs/library/M14_中国板块/56_有用/6C_2025_20251102国金证券电力_未署名.pdf
+- docs/library/M14_中国板块/56_有用/6C_2025_20251109中泰证券中泰_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20251114维谛技术数据_未署名.pdf
+- docs/library/M14_中国板块/56_有用/6C_2025_20251119中泰证券电力_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20251202金元证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20251221招商证券招商_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20251229华创证券华创_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20251230招商证券AI_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_AIDC行业专题报告数据中心_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_天风证券公用事业行业深度研究_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_浸没液冷数据中心规范129页_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_自智化AI数据中心网络整体解_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2026_20260101华创证券数据_未署名.pdf
+- docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2026/6C_2026_20260304东吴证券美国_未署名.pdf
+- docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2026/6C_2026_20260314中泰证券中泰_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260618东兴证券东兴_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260618东兴证券光通_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260622招商证券招商_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2026_20260624东方财富证券_未署名.pdf
+- docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2026/5C_2026_20260625光大证券光大_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260705招商证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_1190页WORD某集团基础_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_16页华为数据中心基础设施解_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_16页双活数据中心解决方案_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_16页PPT云数据中心建设方_未署名.pptx
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_18页PPT智慧校园网络中心_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_20页兰贝数据中心基础设施解_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_21页WORD模块化数据中心_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_22页VMware私有云数据_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_22页PPT安全数据中心协作_未署名.pptx
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_22页WORD数据中心信息安_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_23页PPT定制化IDC解决_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_243页WORD省级政务大数_未署名.docx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_25页PPT华为双活数据中心_未署名.pptx
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_25页PPT深信服智慧校园云_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_29页模块化数据中心机房解决_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_30页数据中心专用空调系统解_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_31页PPTIDC智能机房整_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_31页WORD某大学云数据中_未署名.docx
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_32页PPT医院住院楼公共安_未署名.pptx
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_32页PPT智慧医院住院楼公_未署名.pptx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_35页机房监控SCADA系统_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_35页PPT智慧安全政务云数_未署名.pptx
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_35页PPT智慧安全政务云数_未署名_02.pptx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_35页PPT机房环境综合监控_未署名.pptx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_36页PPT弱电机房搬迁项目_未署名.pptx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_36页PPT机房搬迁整体解决_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_38页华为数据中心解决方案部_未署名.pdf
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_38页工业数据中心的场景需求_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_406页WORD林业局信息化_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_40页WORD畅途网云数据中_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_41页金祺创数据中心建设方案_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_429页WORD某集团数据中_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_42页PPT数据中心解决方案_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_44页PPT定制化IDC解决_未署名.pptx
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_46页人大金仓政务数据中心解_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_46页探索与实践东数西算数据_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_49页PPT机房一体化产品解_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_50页动态绿色数据中心解决方_未署名.pdf
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_51页WORD企业数据中心系_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_54页WORD深信服高校数据_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_55页WORDIDC数据中心_未署名.doc
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_56页PPT数据中心运行可视_未署名.pptx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_58页碳达峰碳中和背景下数据_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2021_58页PPT数据中心建设与方_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_59页完整的IDC机房建设方_未署名.pdf
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_60页PPT市大数据中心大数_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_62页PPT数据中心容灾备份_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_62页PPT数据中心灾备解决_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_62页WORD大数据中心建设_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_65页PPT云数据中心建设解_未署名.pptx
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_67页WORD深信服云计算实_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_69页PPT数据中心整体解决_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_69页PPT数据中心智慧机房_未署名.pptx
+- docs/library/M13_有效算力与软件/56_有用/6C_2022_70页WORD华为数据中心解_未署名.docx
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_70页WORD某县大数据中心_未署名.docx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_73页WORD中心机房建设项_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_75页PPT数据中心整体解决_未署名.pptx
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_78页PPT机房建设整体解决_未署名.pptx
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_78页PPT模块化机房系统建_未署名.pptx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_84页PPT数据中心机房智能_未署名.pptx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_84页PPT数据中心机房智能_未署名_02.pptx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_85页WORD数据中心与大数_未署名.docx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_8页PPT定制化IDC解决方_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_96页云计算数据中心解决方案_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2026_20260426_DeepS_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2026_20260518通信行业投资_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2026_20260521通信行业投资_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260523通信行业点评_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2026_20260525行业专题研究_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2026_20260527开源晨会05_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2026_20260531_兴证计算机_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2026_20260605润泽科技30_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_国防军工行业太空算力专题构建_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2026_深度报告20260519摩尔_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2026_深度报告20260607浙商_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_电子行业专题研究算力瓶颈加速_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_先进计算暨算力发展指数蓝皮书_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_2022东数西算数据中心建设_未署名.pdf
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_2022区级政府大数据中心数_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_AD双活数据中心解决方案_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_B级数据中心机房建设规划设计_未署名.pptx
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_DELL新一代模块化数据中心_未署名__002.pptx
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_EMC双活数据中心解决方案V_未署名__002.doc
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_H3C数据中心网络解决方案_未署名__003.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_H3C数据中心解决方案_未署名__003.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_XX集团IT基础设施咨询规划_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_精品数据中心总部分支两级云解_未署名.pptx
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_精品数据中心机房建设方案_未署名__002.docx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_精品港铁AFC云数据中心项目_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_云数据中心解决方案技术方案_未署名__002.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_云数据中心解决方案详解PPT_未署名__002.pptx
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_云计算大数据中心IDC机房基_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_企业云数据中心解决方案_未署名.pdf
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_企业数据中心系统平台技术方案_未署名__004.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_企业网云数据中心解决方案_未署名__002.pptx
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_公交数据中心云平台建设方案书_未署名__003.doc
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_公安新一代数据中心解决方案_未署名.pptx
+- docs/library/M13_有效算力与软件/56_有用/6C_2022_利用低碳解决方案为数据中心繁_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_华为IDC数据中心解决方案_未署名__003.pptx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_华为云数据中心解决方案技术方_未署名__002.docx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_华为双活数据中心解决方案_未署名__002.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_华为数据中心容灾备份解决方案_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_华为数据中心解决方案典型工程_未署名__003.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_华为模块化数据中心解决方案_未署名__003.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_国家云计算XX数据中心建设方_未署名__002.doc
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_大型集团大数据中心总体建设方_未署名.pptx
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_大型集团数据中心IT基础设施_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_大数据中心建设方案_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_大数据中心建设方案_36页__未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_大数据安全运营中心建设方案_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_大数据实验室建设方案能源大数_未署名.docx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_完整的IDC数据中心建设方案_未署名__002.doc
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_定制化IDC解决方案简介_未署名__002.pptx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_探索与实践东数西算数据中心建_未署名.pptx
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_数据中心信息安全解决方案_未署名__002.doc
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_数据中心基础设施解决方案_未署名__002.doc
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_数据中心建设方案_未署名__002.docx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_数据中心建设方案v30_未署名__002.pptx
+- docs/library/M14_中国板块/34_存档/3C_2022_数据中心技术方案_未署名.docx
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_数据中心机房建设方案_未署名__003.docx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_数据中心机房智能化系统建设方_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_数据中心机房设计方案_未署名__004.doc
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_数据中心网络建设方案_未署名.docx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_数据中心解决方案3_未署名.pptx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_数据中心解决方案_未署名__002.ppt
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_数据中心解决方案_未署名.pptx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_数据中心解决方案之灾备方案设_未署名__002.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_数据中心设计方案_未署名.docx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_数据中心运行可视化平台解决方_未署名__002.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_新一代云上数据中心解决方案_未署名.docx
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_新一代数据中心解决方案_未署名__002.pptx
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_新华三应用驱动数据中心ADD_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_智慧云服务平台数据中心建设方_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_智慧城市云计算大数据中心项目_未署名.docx
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_智慧安全政务云数据中心整体解_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_某区教育数据中心基础设施安全_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_某大型云计算大数据中心项目建_未署名.docx
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_某数据中心IDC机房改造项目_未署名.docx
+- docs/library/M07_网络与互联/56_有用/6C_2022_沃德思绿色数据中心解决方案_未署名__002.ppt
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_深信服数据库管理平台DMP标_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_深度报告20240523数据_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2024_罗格朗数据中心解决方案助力广_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_艾默生数据中心机房整体解决方_未署名__002.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_阿尔西数据中心空调解决方案_未署名__002.ppt
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_亚太区智算中心液冷应用现状与_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_数据中心传感器技术应用白皮书_未署名.pptx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_面向5G的边缘数据中心基础设_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_面向5G的边缘数据中心基础设_未署名.pptx
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_政策贯彻落实碳达峰碳中和目标_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_2022年中国液冷数据中心行_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_碳达峰碳中和背景下数据中心绿_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_华为国家信息中心碳达峰碳中和_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_新一代能量阀及数据中心解决方_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2023_ABB绿色数据中心行业解决方_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_民生证券通信行业点评从IDC_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_聚焦双碳共筑未来谷轮绿色数据_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2023_20231229中国银河计算_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240121硅光子技术有_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240304英伟达B10_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240724通信_数据中_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240724通信行业事件_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2024_20240729数据中心建设_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240731中泰电子_A_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240807半导体行业A_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20240811算力电力协同_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240826关注绿色低碳_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20241030AI全视角科_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20241105上调数据中心_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_20241124通信_数据中_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20241204数据中心高景_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_DataFunSummit非_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_DataFunSummit非_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/6C_2023_电子行业AMD数据中心和AI_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_电子行业专题报告ScaleO_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_电子英伟达FY25Q2业绩点_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_证券研究报告行业点评报告数据_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_通信行业专题研究铜连接拨开A_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250104通信行业周报_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250622东吴证券电子_未署名.pdf
+- docs/library/M11_资本与金融/56_有用/6B_2025_南方润泽REIT超百倍认购与定价_天风证券.pdf
+- docs/library/M11_资本与金融/56_有用/6B_2025_两单数据中心REIT公众认购比例_天风证券.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_AI数据中心行业专题报告AI_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_数据治理平台助力国家电网全业_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_电子行业开放计算峰会OCP2_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_超算智算及数据中心行业报告算_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_通信数据中心液冷行业点评Ve_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2024_2024金融行业智算解决方案_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_AI大模型智算运营运维服务建_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_AI大模型训练大规模智算中心_未署名.docx
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_数据中心的基础知识培训PPT_未署名.pptx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_普惠AI浪潮下腾讯云智算解决_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_智慧医疗数字化场景DeepS_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_智算中心暨电力大模型创新平台_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_智算中心解决方案26页PPT_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_智算中心项目建设方案_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_AIDC行业专题报告国内智算_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2024_智算产业发展研究报告2024_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250218大模型点评__未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250220通信行业20_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250223算力Cape_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250224环保_垃圾焚_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250303运营商业务承_未署名.pdf
+- docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心/04 智算中心券商报告（330份）/2025/6C_2026_中信建投证券电力设备行业20_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_国盛证券AIDC电源管理终极_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_计算机行业半年度策略_持续掘_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_通信行业周报20250203_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_通信行业周报20250217_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2018_2018年21页计算机行业专_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2018_2018年30页中科曙光60_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2019_2019年19页超算行业专题_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2021_2021年2页信息服务行业中_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_2023年10页北交所新股申_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2023_2023年12页算力行业双周_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_2023年12页通信行业周报_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_2023年14页计算机行业周_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_2023年16页计算机行业人_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_2023年18页海外TMT行_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_2023年18页科技与互联网_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_2023年18页科技行业专题_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_2023年18页通信行业周报_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_2023年23页中科曙光60_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2023_2023年24页AI算力行业_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2023_2023年24页云赛智联60_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2023_2023年26页分布式异构智_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2023_2023年26页通信行业周报_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_2023年28页通信行业周报_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_2023年30页通信行业周报_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2023_2023年31页中科曙光60_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_2023年32页浪潮信息00_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2023_2023年32页超算智算及数_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2023_2023年37页计算机行业A_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2023_2023年43页人工智能行业_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2023_2023年53页电子行业20_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2023_2023年53页电子行业20_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_20240422长江证券软件_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_202413恒为科技6034_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_2024年11页计算机行业周_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_2024年11页计算机行业周_未署名_02.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_202402计算机行业点评特_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_202403润建股份0029_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2024_202403紫光股份0009_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_202403通信行业点评报告_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_202404胜宏科技3004_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_202406计算机行业海外A_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2024_202408计算机行业双周报_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_202413计算机行业周报O_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_202421电子行业开放计算_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_202426弘信电子3006_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_2024432025年TMT_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_202449电子行业2025_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_2024年12页电子行业周观_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_2024年12页计算机行业点_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_2024年13页云赛智联60_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2024_2024年13页云赛智联60_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_2024年13页云赛智联60_未署名.pdf
+- docs/library/M14_中国板块/56_有用/5C_2024_2024年15页通信行业周报_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_2024年19页通信行业专题_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_2024年23页广电运通00_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_2024年23页通信行业周报_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_2024年27页并行科技83_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_2024年28页润泽科技30_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_2024年2页通信行业动态点_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_2024年2页通信行业点评算_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_2024年3页算力行业点评报_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2024_2024年3页算力行业点评报_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_2024年3页计算机行业点评_未署名.pdf
+- docs/library/04_市场与研究/中文行业报告集/智算中心合集/4C_2024_2024年3页通信行业海外科_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_2024年46页通信行业专题_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_2024年4页中兴通讯000_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_2024年4页润建股份002_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_2024年4页润泽科技300_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_2024年4页润泽科技300_未署名_02.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_2024年4页计算机行业点评_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_2024年5页恒为科技603_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_2024年5页润泽科技300_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2024_2024年5页通信设备行业北_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2024_2024年66页科技行业专题_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_2024年6页恒为科技603_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_2024年6页紫光股份000_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_2024年8页通信行业国产算_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2024_2024年9页通信行业周专题_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250706国投证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250713开源证券通信_未署名.pdf
+- docs/library/04_市场与研究/中文行业报告集/智算中心合集/2025.10/4C_2025_20250713申万宏源电子_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250715首创证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250719东吴证券半导_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250720民生证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250721长城证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250723天风证券消费_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250724浙商证券盛天_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250727华泰证券科技_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250727国信证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_20250727浙商证券三人_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250728甬兴证券AI_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250728金元证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_20250729招商证券道氏_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250729海通国际中国_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250801国泰海通证券_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250801招商证券智微_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250802东方证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250803华西证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250803国盛证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250804华鑫证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250805东莞证券沪电_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250805招商证券全球_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250810兴业证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250811兴业证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250812天风证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250813广发证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250814红塔证券TM_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250815东吴证券AI_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250816国海证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250816国金证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250817开源证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250820东吴证券AI_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250822国盛证券工业_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250823华金证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250823国盛证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250824国信证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250824国金证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250824开源证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250824民生证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250828海通国际中国_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250830金元证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250901东海证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250904国盛证券协创_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250905国投证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250907广发证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250907开源证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250909国盛证券浪潮_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250910海通国际中国_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250912广发证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250914兴业证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250914国泰海通证券_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250914国泰海通证券_未署名_02.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250914开源证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250915国海证券海光_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250915国盛证券东阳_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250915天风证券全球_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250917万联证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250917国海证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250917招商证券紫光_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250919招商证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250921东吴证券半导_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250921兴业证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250921兴业证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250921国盛证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250921国盛证券量化_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250921天风证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250921广发证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250921开源证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250922东方证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250926东莞证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250926华源证券中兴_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250927国盛证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250928国金证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250928开源证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250928甬兴证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250928西部证券液冷_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250929国信证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250930上海证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20251007东吴证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20251008东吴证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20251008兴业证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20251008国信证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20251009上海证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20251009华鑫证券寒武_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20251009国信证券中兴_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20251011上海证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20251011华金证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20251110招商证券中科_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20251117申万宏源注册_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20251119中信建投中科_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20251208中银国际策略_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250206开源证券电力_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_20250206开源证券电力_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250209民生证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250211方正证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250218浙商证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_智微智能001339智算赋能_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_计算机国产化智算一体机助力政_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_通信行业2025年年度投资策_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250620中原证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20250628国金证券液冷_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20250629开源证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250709长城证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250711国海证券工业_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250717东兴证券莲花_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20250723国泰海通证券_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20251212AIDC智算_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20251218第一上海人工_未署名.pdf
+- docs/library/04_市场与研究/中文行业报告集/智算中心合集/2026.1/5C_2025_20251219申万宏源锐捷_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20251221太平洋证券机_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_20251222天风证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20251222开源证券国防_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_20251223长江证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_20251226银河证券首都_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2026_20260203国海证券电力_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260308华源证券并行_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260308国盛证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2026_20260313华源证券智微_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260313国泰海通证券_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2026_20260313银河证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2026_20260314国金证券东阳_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2026_20260314国金证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2026_20260314银河证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2026_20260315国泰海通证券_未署名_02.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2026_20260315国联民生证券_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260316山西证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2026_20260316申万宏源计算_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2026_20260316第一上海科技_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2026_20260317中银国际电子_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2026_20260317华鑫证券AI_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2026_20260317大同证券TM_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2026_20260317广发证券计算_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260318国泰海通证券_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2026_20260318申万宏源半导_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2026_20260319兴业证券电力_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2026_20260319国海证券协创_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2026_20260319环球富盛伟仕_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2026_20260326山西证券协创_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2026_20260405开源证券电子_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2026_20260406国泰海通证券_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2026_20260406国海证券芯原_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260410华泰证券通信_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2026_20260506太平洋证券东_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2026_20260512太平洋证券智_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2026_20260626国海证券壁仞_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2026_20260630亿欧智库汽车_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2026_20260708国投证券国际_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_TMTAI算力产业链跟踪报告_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_TMTAI算力产业链跟踪报告_未署名_02.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_中兴通讯000063三季度业_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2015_协鑫能科002015加快算力_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_奥雅股份300949全面进军_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_并行科技839493算海计划_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_广电运通002152智算数据_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_恒润股份603985切入算力_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2023_服务器行业及招标近况更新之二_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_润泽科技300442AIDC_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_电子行业周报地方政府加强数据_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_电子行业周观点上交所召开集成_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2024_紫光股份0009382024_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_英维克002837业绩快速增_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_计算机行业半年度策略AI推动_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_计算机行业双周报北美四大云厂_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_计算机行业周报算力需求强劲互_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_通信行业周报AI算力的波动与_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_通信行业周报DCIAI算力基_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_通信设备国产算力大单点评7月_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2025_GSGS_Morninq_R_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2022_HSBCGoertek_00_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2022_JEFFLowes_Cos_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2022_JPMDycom_Indus_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/2C_2022_JPMEuropean_In_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/2C_2022_JPMPaiges_Prev_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/2C_2022_JPMU_S_Most_Re_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2022_JPMVRT_top_pic_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/2C_2022_MSChina_Online_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/2C_2022_MSGlobal_Macro_未署名_02.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2022_MSGlobal_Valua_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2022_MSInvestor_Pre_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2022_MSNetflix_Inc__未署名.pdf
+- docs/library/M07_网络与互联/34_存档/2C_2022_MSShenzhen_Env_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/2C_2022_MSUS_Equity_St_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/2C_2022_UBSChina_Solar_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2022_UBSChina_Unico_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/2C_2022_GSGS_CHINA_WAT_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_GSGS_TMT_TODAY_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/2C_2022_GSUS_Equities__未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2022_GSUS_Equity_Vi_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2022_HSBCAtt_Inc_T__未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/2C_2022_HSBCFaraday_Te_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2022_HSBCOnline_pla_未署名.pdf
+- docs/library/M13_有效算力与软件/34_存档/2C_2022_HSBCServiceNow_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/2C_2022_HSBCTaiwan_Equ_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2022_HSBCTesla_Inc__未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2022_JEFFAgnico_Eag_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2022_JEFFBread_Fina_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_JEFFCheck_Poin_未署名.pdf
+- docs/library/M07_网络与互联/34_存档/2C_2022_JEFFEnvicool_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2022_JEFFLockheed_M_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2022_JEFFNewmont_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2022_JEFFOld_Domini_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2022_JEFFSteel_Dyna_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2022_JEFFTexas_Inst_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_JEFFUSA_LAeros_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2022_JEFFUSA_TAirli_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2022_JEFFVital_Farm_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/2C_2022_JPMNumerator_T_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/2C_2022_JPMAP_Technolo_未署名.pdf
+- docs/library/M07_网络与互联/34_存档/2C_2025_JPMAsia_Pacifi_未署名.pdf
+- docs/library/M07_网络与互联/34_存档/3C_2025_JPMAsia_Pacifi_未署名.pdf
+- docs/library/M07_网络与互联/34_存档/2C_2022_JPMEnvicool__A_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2022_JPMJoshua_Meye_未署名.pdf
+- docs/library/M07_网络与互联/34_存档/2C_2022_JPMKazakh_vs_O_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/2C_2025_JPMNorth_Ameri_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2022_JPMSoftware_Th_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2022_MSAtt_Inc_Nort_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/2C_2022_MSChina__Senti_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_MSGlobal_Macro_未署名_02.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_MSGlobal_Macro_未署名_03.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_MSGreater_Chin_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_MSGreater_Chin_未署名_02.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_MSGreater_Chin_未署名_03.pdf
+- docs/library/M09_电气设备供应链/34_存档/2C_2022_MSIBM_North_Am_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/2C_2022_MSIT_Hardware__未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2022_MSOld_Dominion_未署名.pdf
+- docs/library/M07_网络与互联/34_存档/2C_2022_MSShenzhen_Env_未署名__002.pdf
+- docs/library/M09_电气设备供应链/34_存档/2C_2022_MSUMC_Asia_Pac_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2022_MSUS_Public_Po_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2022_NOMURAJapan_SP_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2022_NOMURANomura_T_未署名.pdf
+- docs/library/04_市场与研究/中文行业报告集/知识星球/20250428/2C_2022_UBSChina_equit_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/2C_2022_UBSGoba_O_Tech_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/2C_2022_UBSShennan_Cir_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/2C_2022_UBScker_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2013_2013_上海建规数据中心基_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2013_2013_华为数据中心容灾备_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2015_2015_数据中心解决方案2_未署名.pptx
+- docs/library/M09_电气设备供应链/34_存档/3C_2019_2019_精品2019年模块_未署名.ppt
+- docs/library/M09_电气设备供应链/56_有用/5C_2019_2019_精品模块化数据中心_未署名.ppt
+- docs/library/M09_电气设备供应链/56_有用/6C_2019_2019_精品港铁AFC云数_未署名.docx
+- docs/library/M09_电气设备供应链/34_存档/4C_2019_2019_联想车载超高清视频_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_2022_戴德梁行中国大陆数_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_091数据中心设计_未署名.docx
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_2025_2019年集装箱式_未署名.ppt
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_2025_2020开放数据中_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_2025_2025年金融业新_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_AD双活数据中心解_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_AIDC_智算中心_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_2025_DELL新一代模块_未署名.pptx
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_2025_EMC双活数据中心_未署名.doc
+- docs/library/M13_有效算力与软件/56_有用/5C_2025_2025_ESG愿景塑造未来_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_H3C运营商数据中_未署名.ppt
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_H3C数据中心网络_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_H3C数据中心解决_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_H3C运营商数据中_未署名_02.ppt
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_2025_IDC数据中心动力_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_IDC数据中心运营_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_XXX云平台数据中_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_XX市卫生局数据中_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_XX市政府数据中心_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_XX数据中心应急方_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_XX数据中心网络及_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_XX高校数据中心整_未署名.docx
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_2025_精品AXX集团数据_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_精品思科下一代企业_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_2025_精品数据中心总部分_未署名.pptx
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_2025_精品数据中心机房建_未署名.ppt
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_2025_精品数据中心机房建_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_精品港铁AFC云数_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_精品重庆公安新一代_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_精品重庆公安新一代_未署名_02.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_云数据中心建设方案_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_云数据中心解决方案_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_云数据中心解决方案_未署名.pptx
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_2025_人工智能数据中心扩_未署名.pdf
+- docs/library/M13_有效算力与软件/34_存档/3C_2025_2025_企业数据中心系统平_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_企业网云数据中心解_未署名.pptx
+- docs/library/M13_有效算力与软件/56_有用/5C_2025_2025_公交数据中心云平台_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_动态绿色数据中心解_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_北京理工大学_数据_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_2025_区域卫生平台数据中_未署名.doc
+- docs/library/M13_有效算力与软件/56_有用/5C_2025_2025_华为IDC数据中心_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_华为云数据中心解决_未署名.ppt
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_华为AIFabri_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_华为云数据中心解决_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_华为数据中心基础设_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_华为数据中心解决方_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_华为数据中心解决方_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_华为数据中心解决方_未署名_02.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_华为模块化数据中心_未署名.pptx
+- docs/library/M14_中国板块/34_存档/3C_2025_2025_南方基金新数据中心_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_2025_双活数据中心方案_未署名.docx
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_2025_双活数据中心解决方_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_叶辉增效降费共建绿_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2025_2025_商业银行数据中心监_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_基于DPU的新一代_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_2025_大型数据中心解决方_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_2025_大学数据中心安全防_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_大数据中心建设方案_未署名.docx
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_2025_完整的IDC数据中_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_完整的IDC机房建_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_微型数据中心解决方_未署名.ppt
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_2025_德国和中国的数据中_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_2025_怡德_云的数据中心_未署名.pptx
+- docs/library/M10_建设运营与人才/34_存档/3C_2025_2025_政务数据中心V12_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2025_2025_数据中心IT规划方_未署名.ppt
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_数据中心一方案_未署名.doc
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_2025_数据中心信息安全解_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2025_2025_数据中心地理共享服_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_数据中心基础网络解_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_数据中心基础设施解_未署名.doc
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_2025_数据中心大脑解决方_未署名.docx
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_2025_数据中心建思考_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_2025_数据中心建设思路与_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_数据中心建设整体方_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_数据中心建设方案_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_数据中心建设方案_未署名.docx
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_2025_数据中心建设方案v_未署名.pptx
+- docs/library/M14_中国板块/34_存档/3C_2025_2025_数据中心技术方案_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_数据中心整体解决方_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_数据中心机房_未署名.ppt
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_2025_数据中心机房建设方_未署名.docx
+- docs/library/M10_建设运营与人才/56_有用/6C_2025_2025_数据中心机房建设方_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_数据中心机房方案_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_数据中心机房规划方_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_数据中心机房设计方_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_数据中心机房设计方_未署名_02.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2025_2025_数据中心机房运行_未署名.docx
+- docs/library/M10_建设运营与人才/34_存档/3C_2025_2025_数据中心的数字化运_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_2025_数据中心网络整体规_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_数据中心网络_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_数据中心网络和安全_未署名.xlsx
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_数据中心网络建设方_未署名.docx
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_2025_数据中心网络规划设_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_数据中心节能方案分_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_数据中心解决方案2_未署名.pptx
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_2025_数据中心解决方案_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_2025_数据中心解决方案_未署名.ppt
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_数据中心解决方案_未署名.pptx
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_2025_数据中心解决方案之_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_数据中心设备方案_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2025_2025_数据中心运维服务方_未署名.docx
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_2025_数据中心运维服务系_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_2025_数据中心运行可视化_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_数据中心项目方案_未署名.docx
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_2025_数据中心机房施工方_未署名.docx
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_2025_新一代数据中心解决_未署名.pptx
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_2025_新华三应用驱动数据_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_2025_新华三应用驱动数据_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_2025_春节培训数据中心产_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_智算无界AIDC的_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_2025_智维平台与数据中心_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2025_2025_智能数据中心_未署名.pdf
+- docs/library/M13_有效算力与软件/34_存档/3C_2025_2025_智能无损数据中心网_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_2025_智能计算助力数据中_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_某大学云数据中心建_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_某大学云数据中心建_未署名_02.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_某数据中心规划方案_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_模块化数据中心机房_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2025_2025_江森自控数据中心系_未署名.pptx
+- docs/library/M07_网络与互联/56_有用/6C_2025_2025_沃德思绿色数据中心_未署名.ppt
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_2025_活数据中心解决方案_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_深信服集团数据中心_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_电子信息系统机房设_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_畅途网云数据中心建_未署名.doc
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_2025_科大数据中心扩容方_未署名.docx
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_2025_网络计算及DPU在_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_美国ASHRAE数_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_美国康普数据中心规_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_2025_美国的AI数据中心_未署名.xlsx
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_艾默生数据中心机房_未署名.pptx
+- docs/library/M14_中国板块/34_存档/4C_2025_2025_财经商业数据中心_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_2025_超融合数据中心网络_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2025_2025_轻松应对数据中心难_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2025_2025_边缘数据中心管理E_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2025_2025_达梦数据中心解决方_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_运营商数据中心解决_未署名.ppt
+- docs/library/M10_建设运营与人才/34_存档/3C_2025_2025_金祺创数据中心建设_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_阿尔西数据中心专用_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_阿尔西数据中心空调_未署名.ppt
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_面向5G的边缘数据_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_来宾综合业务接入机房工程及室_未署名__003.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_金华二期弱电概算0718_未署名__003.xlsx
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_计算书_未署名__003.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_1中国联通湖南长沙云数据中心_未署名__003.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_2中国联通湖南长沙云计算中心_未署名__003.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_111中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_112中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_113中国联通湖南长沙云计算_未署名__006.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_114中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_115中国联通湖南长沙云计算_未署名__006.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_116中国联通湖南长沙云计算_未署名__006.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_117中国联通湖南长沙云计算_未署名__006.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_121中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_122中国联通湖南长沙云计算_未署名__006.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_123中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_124中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_125中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_131中国联通湖南长沙云计算_未署名__006.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_132中国联通湖南长沙云计算_未署名__006.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_141中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_142中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_143中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_151中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_152中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_111中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_112中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_113中国联通湖南长沙云计算_未署名__005.xls
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_114中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_115中国联通湖南长沙云计算_未署名__005.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_116中国联通湖南长沙云计算_未署名__005.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_117中国联通湖南长沙云计算_未署名__005.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_121中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_122中国联通湖南长沙云计算_未署名__005.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_123中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_124中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_131中国联通湖南长沙云计算_未署名__005.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_132中国联通湖南长沙云计算_未署名__005.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_133中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_134中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_135中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_141中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_142中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_143中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_144中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_招标控制价确认表_未署名__003.xls
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_乌兰察布华为云三期电气_未署名__003.xlsx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_乌兰察布华为运输局中心三期一_未署名__003.xlsx
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_MAXFILES_未署名.TXT
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_设计送审报告_未署名__005.doc
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_设计送审报告_未署名__006.doc
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_设计送审报告_未署名__004.doc
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_来宾综合业务接入机房工程及室_未署名__002.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_设计送审报告_未署名__002.doc
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_设计送审报告_未署名__003.doc
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_设计送审报告_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_来宾综合业务接入机房工程及室_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_勘察报告最终版_未署名__002.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_勘察纲要_未署名__002.doc
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_勘察报告最终版_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_勘察纲要_未署名.doc
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_金华二期弱电概算0718_未署名__002.xlsx
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_金华二期弱电概算0718_未署名.xlsx
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_计算书_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_1中国联通湖南长沙云数据中心_未署名.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_2中国联通湖南长沙云计算中心_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_111中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_112中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_113中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_114中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_115中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_116中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_117中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_121中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_122中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_123中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_124中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_125中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_131中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_132中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_141中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_142中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_143中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_151中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_152中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_111中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_112中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_113中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_114中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_115中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_116中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_117中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_121中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_122中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_123中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_124中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_131中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_132中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_133中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_134中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_135中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_141中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_142中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_143中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_144中国联通湖南长沙云计算_未署名.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_招标控制价确认表_未署名.xls
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_计算书_未署名__002.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_1中国联通湖南长沙云数据中心_未署名__002.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_2中国联通湖南长沙云计算中心_未署名__002.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_111中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_112中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_113中国联通湖南长沙云计算_未署名__004.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_114中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_115中国联通湖南长沙云计算_未署名__004.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_116中国联通湖南长沙云计算_未署名__004.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_117中国联通湖南长沙云计算_未署名__004.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_121中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_122中国联通湖南长沙云计算_未署名__004.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_123中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_124中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_125中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_131中国联通湖南长沙云计算_未署名__004.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_132中国联通湖南长沙云计算_未署名__004.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_141中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_142中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_143中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_151中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_152中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_111中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_112中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_113中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_114中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_115中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_116中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_117中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_121中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_122中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_123中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_124中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_131中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_132中国联通湖南长沙云计算_未署名__003.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_133中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_134中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_135中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_141中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_142中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_143中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_144中国联通湖南长沙云计算_未署名__002.xls
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_招标控制价确认表_未署名__002.xls
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_乌兰察布华为云三期电气_未署名__002.xlsx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_乌兰察布华为运输局中心三期一_未署名__002.xlsx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_乌兰察布华为云三期电气_未署名.xlsx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_乌兰察布华为运输局中心三期一_未署名.xlsx
+- docs/library/M10_建设运营与人才/56_有用/5C_2015_2015数据中心机房建设改造_未署名.doc
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_定制化IDC解决方案案例集_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_定制化IDC解决方案方案建议_未署名.xlsx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_定制化IDC解决方案培训材料_未署名.pptx
+- docs/library/M14_中国板块/34_存档/3C_2022_IDC资质对标_未署名.xlsx
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_定制化IDC验收建议书_未署名.docx
+- docs/library/M10_建设运营与人才/56_有用/5C_2019_中国移动IDC服务质量标准2_未署名.docx
+- docs/library/M09_电气设备供应链/34_存档/3C_2019_2019年模块化集装箱数据中_未署名.ppt
+- docs/library/M09_电气设备供应链/34_存档/3C_2019_2019年集装箱式数据中心中_未署名.ppt
+- docs/library/M10_建设运营与人才/56_有用/6C_2020_AXX集团数据中心建设方案非_未署名.docx
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_DELL新一代模块化数据中心_未署名.pptx
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_EMC双活数据中心解决方案V_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_H3C数据中心网络解决方案_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_H3C数据中心解决方案_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_H3C运营商数据中心解决方案_未署名.ppt
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_IDC数据中心运营建设方案_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_XXX云平台数据中心设计方案_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_XX市卫生局数据中心建设方案_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_XX市政府数据中心建设项目实_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_XX数据中心网络及安全方案建_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_XX高校数据中心整体建设方案_未署名.docx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_精品数据中心可视化管理平台解_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_精品智慧医院BI运维决策与C_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2019_中国IDC行业资讯大全201_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_云数据中心解决方案技术方案_未署名.docx
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_企业数据中心系统平台技术方案_未署名.docx
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_企业级数据治理平台助力国家电_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_全域旅游大数据中心一站式服务_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_公交数据中心云平台建设方案书_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_公安未来数据中心展望_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_兰贝数据中心基础设施解决方案_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_内网区域内网数据中心安全加固_未署名.docx
+- docs/library/M09_电气设备供应链/34_存档/3C_2019_刘淼新一代智能云数据中心的发_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_动态绿色数据中心解决方案_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_北京某数据中心投标施工组织设_未署名.doc
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_华为IDC数据中心解决方案_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_华为云数据中心解决方案技术方_未署名.docx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_华为双活数据中心解决方案_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_华为数据中心基础设施解决方案_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_华为数据中心解决方案部署指南_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_华为数据中心解决方案典型工程_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_华为数据中心解决方案典型工程_未署名_02.docx
+- docs/library/M14_中国板块/34_存档/3C_2022_南方基金新数据中心一期介绍屈_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_双活数据中心解决方案_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_叶辉增效降费共建绿色数据中心_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_吕鑫云计算数据中心智能运维一_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_吴倩5G时代的传统企业混合云_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_国家云计算XX数据中心建设方_未署名.doc
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_完整的IDC数据中心建设方案_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_完整的IDC机房建设方案_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_定制化IDC解决方案简介_未署名.pptx
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_张东来蒸发冷却技术在国际知名_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_思科下一代企业云数据中心网络_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_政务数据中心V12_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_数据中心医疗影像云云安全解决_未署名.doc
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_数据中心构建医院安全大脑解决_未署名.docx
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_数据中心IT规划方案_未署名.ppt
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_数据中心信息安全解决方案_未署名.doc
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_数据中心可视化技术白皮书_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_数据中心基础网络解决方案_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_数据中心基础设施解决方案_未署名.doc
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_数据中心建设思路与方案_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_数据中心建设整体方案_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_数据中心建设方案_未署名.docx
+- docs/library/M10_建设运营与人才/56_有用/5C_2018_2018年中国电子学会数据中_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2019_2019年1月全国信息安全标_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2019_2019年中国信通院数据基础_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2021_2021年4月华中科技大学数_未署名.PDF
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_2022年11月ODCC数据_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/6C_2022_2022年12月万国数据20_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_2022年12月工信部数据中_未署名.docx
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_2022年7月中国算力大会中_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_2022年9月信通院算力时代_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_2022年9月中国算力服务市_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_2022年国家东数西算工程背_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_数据中心整体解决方案_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_数据中心机房建设体会精华版_未署名.ppt
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_数据中心机房建设技术投标方案_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_数据中心机房改造设计方_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_数据中心机房模块化技术方案书_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_数据中心机房线缆敷设与理线_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/6C_2014_数据中心机房规划方案2014_未署名.docx
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_数据中心机房设备标签规范建议_未署名.doc
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_数据中心机房设计与施工方案_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/6C_2014_数据中心机房设计方案2014_未署名.ppt
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_数据中心机房建设体会精华版_未署名_02.ppt
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_数据中心机房建设方案_未署名.docx
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_数据中心机房建设项目技术投标_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_数据中心机房规划方案_未署名.docx
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_数据中心机房设备标签规范建议_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_数据中心机房设计与施工方案2_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_数据中心机房设计方案_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_数据中心机柜系统技术白皮书_未署名.docx
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_数据中心的数字化运行态管理体_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_数据中心空调系统节能技术白皮_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_数据中心综合监控系统工程技术_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_数据中心解决方案_未署名_02.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2016_数据中心解决方案2016_未署名.pptx
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_数据中心运维服务方案_未署名.docx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_数据中心运行可视化平台解决方_未署名.pptx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_数据中心运行可视化平台解决方_未署名_02.pptx
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_新一代数据中心解决方案_未署名.pptx
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_春节培训数据中心产品介绍_未署名.pptx
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_智汇校园云领未来华为智慧校园_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2019_模块化数据中心MDC_秦旭__未署名.ppt
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_江西水利数据中心地理共享服务_未署名.pdf
+- docs/library/M07_网络与互联/56_有用/6C_2022_沃德思绿色数据中心解决方案_未署名.ppt
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_深信服高校数据中心整体建设方_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/6C_2019_港铁AFC云数据中心项目技术_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_畅途网云数据中心建设方案v1_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_省级政务大数据中心建设国云魔_未署名.docx
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_精品数据中心机房建设方案_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_美国康普数据中心规划指南_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2019_联想车载超高清视频数据中心__未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_艾默生数据中心机房整体解决方_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_重庆公安新一代数据中心解决方_未署名.pptx
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_金祺创数据中心建设公开V10_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_阿尔西数据中心空调解决方案_未署名.ppt
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_H3C运营商数据中心解决方案_未署名__003.ppt
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_H3C数据中心网络解决方案_未署名__002.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_H3C数据中心解决方案_未署名__002.doc
+- docs/library/M09_电气设备供应链/56_有用/5C_2020_2020年数据中心建设与方案_未署名.ppt
+- docs/library/M13_有效算力与软件/56_有用/6C_2021_2021年低碳数据中心发展白_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2021_2021年超融合数据中心网络_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_T3502企业级数据治理平台_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_华为模块化数据中心解决方案_未署名__002.pptx
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_市大数据中心大数据资源平台概_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_数据中心智慧机房解决方案_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_数据中心智能无损网络白皮书_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_数据中心机房规划方案_未署名__002.docx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_数据中心算力白皮书_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_未来网络白皮书数据中心自动驾_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2020_某大型集团数据中心建设方案非_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/6C_2019_港铁AFC云数据中心项目技术_未署名__002.docx
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_安全防范工程设计与施工技术讲_未署名.ppt
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_安全防范工程设计与施工技术讲_未署名_02.ppt
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_安全防范工程设计与施工技术讲_未署名_03.ppt
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_安全防范工程设计与施工技术讲_未署名_04.ppt
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_安全防范工程设计与施工技术讲_未署名_05.ppt
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_安全防范工程设计与施工技术讲_未署名_06.ppt
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_安全防范工程设计与施工技术讲_未署名.ppt
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_安全防范工程设计与施工技术讲_未署名.ppt
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_安全防范工程设计与施工技术讲_未署名_07.ppt
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_门禁常用电锁种类安装_未署名.ppt
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_报警系统培训教程_未署名.ppt
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_IDC中心机房预防措施及应急_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_IDC数据中心机房工程验收记_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_IDC数据中心机房工程验收记_未署名_02.doc
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_IDC数据中心机房建设方案_未署名.doc
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_IDC数据机房运维方案_未署名.docx
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_IDC机房信息安全管理制度规_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_IDC机房安全管理制度_未署名.docx
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_IDC机房工程设计方案_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_IDC机房建设方案PPT_未署名.ppt
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_IDC机房建设要求_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_IDC机房数据中心施工现场安_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_IDC机房施工规范_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_IDC机房服务标准_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_IDC机房管理制度_未署名.docx
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_IDC机房运维解决方案_未署名.pptx
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_IDC机房配电设计_未署名.ppt
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_云数据中心机房建设_未署名.ppt
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_云机房IDC服务方案_未署名.docx
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_互联网数据机房安全管理制度规_未署名.docx
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_数据中心巡检机器人解决方案_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_数据中心建设投资估算表预算表_未署名.xlsx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_数据中心建设方案详细_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_数据中心暖通空调工程施工方案_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_数据中心机房学习资料_未署名.ppt
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_数据中心机房搬迁实用指南_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_数据机房介绍ppt_未署名.ppt
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_机房经理任职能力举证表_未署名.xls
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_机房设备巡检规范_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_机房运维工程师培训教材_未署名.pptx
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_集装箱数据中心方案_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_云数据中心建设方案_未署名.docx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_数据中心网络规划设计_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_H3C运营商数据中心解决方案_未署名__002.ppt
+- docs/library/M09_电气设备供应链/34_存档/3C_2019_精品2019年模块化集装箱数_未署名.ppt
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_华为数据中心解决方案典型工程_未署名__002.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_数据中心建设方案_未署名__002.doc
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_数据中心机房建设方案_未署名__002.docx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_数据中心机房设计方案_未署名__002.doc
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_某大学云数据中心建设方案_未署名__002.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_运营商数据中心解决方案H3C_未署名.ppt
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_数据中心机房设计方案_未署名__003.doc
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_CITECDENCO空调培训_未署名.ppt
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_IDC能效管理系统_未署名.ppt
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_P12IDC列头柜配电知识培_未署名.pptx
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_P16UPS203NXL原理_未署名.pdf
+- docs/library/M14_中国板块/56_有用/5C_2022_应急柴油发电机组运行培训基础_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_柴油发电机组操检查手册_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_P24柴油发电机组操作手册_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_P29服务与安全规则_未署名.ppt
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_P2弱电整体介绍_未署名.ppt
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_P30环境动力监控_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_P33江森产品及系统介绍_未署名.ppt
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_P36楼宇自控系统讲义_未署名.ppt
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_P40数据中心标准规范及应用_未署名.ppt
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_P41数据中心建设与管理_未署名.ppt
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_P42数据中心运维管理_未署名.ppt
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_P45网络监控培训_未署名.ppt
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_P5防入侵系统k_未署名.doc
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_P6捷诺安防综合平台用户使用_未署名.doc
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_P7楼控BAS系统软件操作说_未署名.doc
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_二次回路图识会与安装_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_光电式转速仪_未署名.ppt
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_1KP水泵产品初级培训_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_CyberMate模块化冷冻_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_FIAMM阀控式密封铅酸蓄电_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_Galaxy7000客户培训_未署名.pdf
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_图形符号_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_提高冷源温度的新型末端方式_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_数据中心IDC机房冷冻泵冷却_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_数据中心4P断路器的应用_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_数据中心动环门禁及视频系统运_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_数据中心空调暖通设备运维管理_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_数据中心综合布线技术基础培训_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_数据中心运维管理PPT_未署名.pdf
+- docs/library/M06_芯片与服务器/56_有用/6C_2022_最完整的变频器培训教程书签版_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_空调系统成本经济分析_未署名.pdf
+- docs/library/M07_网络与互联/34_存档/3C_2022_空调系统的自动控制方法_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_联想数据中心管理服务_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_腾讯MDC驻场服务需求说明书_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_腾讯合建IDC测试验证流程V_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2016_腾讯合建数据中心设计需求书V_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_腾讯数据中心PDU技术要求V_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2016_腾讯数据中心标识标志要求V0_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_附件1AIS阿里巴巴IDC机_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_附件104AISIDC阿里巴_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_附件202阿里巴巴集团IDC_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_EPS培训课件_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_SCA模块系列EC用户手册依_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_UPS后备时间计算_未署名.xlsx
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_UPS放电时间计算公式_未署名.doc
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_Uptime报告减少能源耗用_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_综合布线系统培训课件V10_未署名.ppt
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_不同类型的UPS系统_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_中国金茂机电节点及工艺工法图_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_中国金茂机电节点及工艺工法图_未署名_02.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_中国金茂机电节点及工艺工法图_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_事件问题变更分级分类_未署名.xlsx
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_全时自然冷列间空调_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_冰蓄冷系统设计总结手册1_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_卓越消防系统维护管理_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_如何评估数据中心的碳足迹_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_巡检手册_未署名.docx
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_巡检手册1_未署名.docx
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_带冷源组合式空气处理机安装使_未署名.doc
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_序35弱电应急指导手册V10_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_微模块240V电源系统DUM_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2020_接维客观风险说明202092_未署名.doc
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_数据中心供电和__制冷容量管_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_数据中心巡检操作手册V01_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_数据中心或网络机房内降低___未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_数据中心物理基础设施_未署名.pdf
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_数据中心物理基础设施管理___未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_数据中心的WUE_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_数据中心的电力效率测量_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_数据中心自控系统技术要求_未署名.docx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_数据中心节能技术与应用pdf_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_数据中心运维培训_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_数据中心配电架构比较_未署名.pdf
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_数据中心项目__系统规划_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_新安全生产法解析及安全生产法_未署名.pptx
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_有效管理高密度机柜内__空间_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_机房建设培训_未署名.ppt
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_楼宇自控系统基础培训资料_未署名.ppt
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_气体灭火泄压口设计与安装使用_未署名.pdf
+- docs/library/M13_有效算力与软件/56_有用/5C_2022_活塞式制冷压缩机变工况下容积_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2022_用于数据中心的各种制冷技术_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_电气0101概预算知识_未署名.ppT
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_电气0201各类规范和强制性_未署名.ppT
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_电气0801常用负荷计算_未署名.ppT
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_电气1001供配电设计基础_未署名.ppT
+- docs/library/M14_中国板块/34_存档/4C_2022_电气1801防雷接地及常用计_未署名.ppT
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_网络与通信基础_未署名.ppT
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_阿里云数据中心暖通高级运维工_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_阿里巴巴数据中心铅酸蓄电池在_未署名.pptx
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_尘埃粒子计数仪培训课件1_未署名.ppt
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_工作票填写规定_未署名.ppt
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_楼宇自控系统简介_未署名.ppt
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_激光测距仪课件_未署名.ppt
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_焊锡枪课件_未署名.ppt
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_电工识图_未署名.ppt
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_电气设计施工图纸绘制基本知识_未署名.ppt
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_电气课件1主接线图_未署名.ppt
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_看二次回路图_未署名.ppt
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_第1章_电气图基础知识_未署名.ppt
+- docs/library/M09_电气设备供应链/34_存档/4C_2022_第9章_电气制图_未署名.ppt
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_红外测温仪课件_未署名.ppt
+- docs/library/M10_建设运营与人才/56_有用/5C_2022_维修电工培训第四章低压动力和_未署名.ppt
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_钳形电流表课件_未署名.ppt
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_风量罩_未署名.ppt
+- docs/library/M10_建设运营与人才/56_有用/6C_2022_高低压成套电气设备一次二次安_未署名.doc
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_2022_Computing_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_2022_Computing_未署名.pptx
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_2022_YINTR2225_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2022_2022_YINTR2225_未署名.pptx
+- docs/library/M07_网络与互联/56_有用/5C_2024_2024_Air_cooli_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_2025年零门槛A_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_Copackage_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/6C_2025_2025_Copackage_未署名.pptx
+- docs/library/M06_芯片与服务器/56_有用/6C_2025_2025_Datacente_未署名.pdf
+- docs/library/90_待分类/6C_2025_2025_Generativ_未署名.pdf
+- docs/library/M09_电气设备供应链/56_有用/5C_2025_2025_云大厂服务能力全面_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_2025_英文谷歌云谷歌云技_未署名.pdf
+- docs/library/M10_建设运营与人才/56_有用/5C_2025_2025_谷歌云技术指南打造_未署名.pdf
+- docs/library/M10_建设运营与人才/34_存档/3C_2025_2025_阿里云实时计算Fl_未署名.pdf
+- docs/library/M09_电气设备供应链/34_存档/3C_2025_2025_阿里超节点2025_未署名.pptx
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_D19图解冷却大全_未署名.mht
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_D20图解自然冷却大全_未署名.mht
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_D46图解机房空调原理_未署名.mht
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_D48图解空调末端_未署名.mht
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_D50图解雷击案例_未署名.mht
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_D64图解数据中心案例_未署名.mht
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_D7图解动态双冷源空调原理和_未署名.mht
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_D83图解液冷技术_未署名.mht
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_D8图解数据中心基础设施简图_未署名.mht
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_D9图解数据中心空调原理大全_未署名.mht
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_设备断零事故二_未署名.mht
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_图解OVH数据中心冷却方式_未署名.mht
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_节能减排_未署名.mht
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_D19Ôõ¾½_未署名.mht
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_D20ÔÎÈõ¾½_未署名.mht
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_D46ÔÀıÁÈÝ_未署名.mht
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_D48ÔıÁÂ_未署名.mht
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_D50ÔÎ²_未署名.mht
+- docs/library/M10_建设运营与人才/34_存档/3C_2022_D64Ô²Íðð²_未署名.mht
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_D7ÔÂ¼½õÈıÁÈÝ_未署名.mht
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_D83ÔÊõ_未署名.mht
+- docs/library/M09_电气设备供应链/34_存档/3C_2022_D8Ô²ÍððíÞ_未署名.mht
+- docs/library/M13_有效算力与软件/34_存档/3C_2022_D9Ô²ÍððıÁÈÝ¾½_未署名.mht
+- docs/library/01_标准与规范/02 史上最全，数据中心机房标准及规范汇总/供配电/电力变压器系列
+- docs/library/04_市场与研究/AI与算力/Z4 人工智能/2019
+- docs/library/04_市场与研究/AI与算力/Z4 人工智能/2020
+- docs/library/04_市场与研究/AI与算力/Z4 人工智能/2021
+- docs/library/04_市场与研究/AI与算力/Z4 人工智能/2022
+- docs/library/04_市场与研究/AI与算力/Z4 人工智能/2023
+- docs/library/04_市场与研究/AI与算力/Z4 人工智能/2024
+- docs/library/04_市场与研究/AI与算力/Z4 人工智能/2025
+- docs/library/04_市场与研究/AI与算力/Z4 人工智能/2026
+- docs/library/04_市场与研究/中文行业报告集/68 智算中心解决方案行业报告白皮书智能算力超算中心建设方案可研/01解决方案
+- docs/library/04_市场与研究/中文行业报告集/68 智算中心解决方案行业报告白皮书智能算力超算中心建设方案可研/02行业报告
+- docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2017
+- docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2020
+- docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2021
+- docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2022
+- docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2023
+- docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2024
+- docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2025
+- docs/library/04_市场与研究/中文行业报告集/B47 数据中心/2026
+- docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/2026年更新
+- docs/library/04_市场与研究/中文行业报告集/数据中心智算中心方案报告合集1610份-（2026年6月更新）持续更新认准【精选资料小站】/智算中心
+- docs/library/04_市场与研究/中文行业报告集/智算中心合集/2024年12月
+- docs/library/04_市场与研究/中文行业报告集/智算中心合集/2025.10
+- docs/library/04_市场与研究/中文行业报告集/智算中心合集/2025.7
+- docs/library/04_市场与研究/中文行业报告集/知识星球/20250428
+- docs/library/04_市场与研究/半导体与上游/2024存储报告/存储市场
+- docs/library/05_数据中心设施/会议_OCP2025/2025 OCP Global Summit/Keynotes
+- docs/library/05_数据中心设施/会议_OCP2026EMEA/2026 OCP EMEA Summit/AI Open Data Center
+- docs/library/05_数据中心设施/会议_OCP2026EMEA/2026 OCP EMEA Summit/FTS AI_HPC
+- docs/library/05_数据中心设施/会议_OCP2026EMEA/2026 OCP EMEA Summit/FTS Quantum
+- docs/library/05_数据中心设施/会议_OCP2026EMEA/2026 OCP EMEA Summit/Keynotes
+- docs/library/05_数据中心设施/会议_OCP2026EMEA/2026 OCP EMEA Summit/Security
+- docs/library/08_培训与课件/数据中心机房基础设施运维资料 培训课件 资料素材/P培训课件/培训2022.10.31更新包
+- docs/library/M11_资本与金融/8_支柱/8A_2025_算力中心创新融资研究报告_中国信通院.pdf
+- docs/library/M11_资本与金融/7_重要/7B_2025_海外大厂云周期复盘及现金流分析_国信证券.pdf
+- docs/library/M11_资本与金融/56_有用/6B_2024_数据中心行业投资与价值洞察_首程控股中联基金戴德梁行.pdf
+

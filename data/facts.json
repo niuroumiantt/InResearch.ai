@@ -128027,6 +128027,67 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "美国数据中心 2023 年用电 176 TWh，为 LBNL 模型估算。同页 2028 年 325-580 TWh 已在库（rand-lbnl-us-dc-consumption-2028-low/-high），未重录。"
+    },
+    {
+      "fact_id": "meta26-hyperion-capacity-2028e",
+      "metric_id": "dc_capacity_mw",
+      "asserter": "Meta",
+      "entity": {
+        "type": "project",
+        "id": "meta-louisiana-dc",
+        "label": "Meta 路易斯安那数据中心"
+      },
+      "value": 5000.0,
+      "unit": "MW",
+      "bound": "upper",
+      "as_of": "2028E@2026",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L2",
+        "region": "US"
+      },
+      "evidence": {
+        "sha256": "a6cfa4b2de81b87cad5e7d385a3b37fbe9c55c95381dd388b3bb1caf24b72a58",
+        "local_file": "5B_2022_GPUCommunicati_未署名.pdf",
+        "locator": "第 2 页「Meta’s AI Clusters Getting Big」：「1GW Prometheus New Albany, Ohio」「Up to 5GW, ETA 2028 Hyperion Richland Parish, Louisiana」「1GW, Announced 2026 Lebanon, Indiana」",
+        "grade": "S2",
+        "originator": "Meta（James Hongyi Zeng《GPU Communication Library in Meta-Scale AI Clusters》，OCP 会议演讲，未写日期，页内有「Announced 2026」）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "演讲未写日期；页内写 Lebanon 园区「Announced 2026」，做出时点取 2026 年",
+      "corroboration": "待交叉验证",
+      "notes": "Hyperion（Richland Parish, Louisiana）「Up to 5GW, ETA 2028」按上界记；GW 未说明是 IT 还是设施口径。库内 SemiAnalysis 2024-12 称该园区 2026 年 2 GW（sa-scaling-meta-louisiana-2gw-2026），时点与口径不同，不是同一断言。"
+    },
+    {
+      "fact_id": "meta26-lebanon-indiana-capacity",
+      "metric_id": "dc_capacity_mw",
+      "asserter": "Meta",
+      "entity": {
+        "type": "project",
+        "id": "meta-lebanon-indiana",
+        "label": "Meta Lebanon, Indiana AI 集群"
+      },
+      "value": 1000.0,
+      "unit": "MW",
+      "bound": "point",
+      "as_of": "2026",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L2",
+        "region": "US"
+      },
+      "evidence": {
+        "sha256": "a6cfa4b2de81b87cad5e7d385a3b37fbe9c55c95381dd388b3bb1caf24b72a58",
+        "local_file": "5B_2022_GPUCommunicati_未署名.pdf",
+        "locator": "第 2 页「Meta’s AI Clusters Getting Big」：「1GW Prometheus New Albany, Ohio」「Up to 5GW, ETA 2028 Hyperion Richland Parish, Louisiana」「1GW, Announced 2026 Lebanon, Indiana」",
+        "grade": "S2",
+        "originator": "Meta（James Hongyi Zeng《GPU Communication Library in Meta-Scale AI Clusters》，OCP 会议演讲，未写日期，页内有「Announced 2026」）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「1GW, Announced 2026」——2026 年宣布的规划容量，状态按官方规划 L2；口径未说明。同页 Prometheus 1 GW 已在库（meta-prometheus-cluster-2026e），未重录。"
     }
   ]
 }
