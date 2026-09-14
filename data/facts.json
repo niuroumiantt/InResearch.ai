@@ -139143,6 +139143,36 @@
       "corroboration": "待交叉验证",
       "notes": "2024 年 360 万颗已入库（ai-asic-units-2024）。原文 CAGR 区间写作 23-29，与 2024→2030 起止不一致，照录。",
       "asserter": "Yole"
+    },
+    {
+      "fact_id": "gszq2512-nand-demand-ai-2025e",
+      "metric_id": "nand_demand_ai",
+      "entity": {
+        "type": "market",
+        "id": "global-nand-ai",
+        "label": "全球 AI 负载 NAND 需求"
+      },
+      "value": 285.0,
+      "unit": "EB",
+      "caliber": {
+        "workload": "仅推理",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5428d6d75e4e83309beb03dd67f1bbc1ecfe5bafe684fddfcf363561371fd200",
+        "local_file": "20251209-国信证券-国信证券-计算机行业人工智能存储系列报告一：AI拉动需求增长，存储大周期方兴未艾(91页).pdf",
+        "locator": "第 78 页图 179「全球NAND供求情况预测」：「AI对NAND总需求（EB）」2025(E) = 285.0、2026(E) = 593.5；「ChatGPT NAND总需求（EB）」199.5 / 385.8",
+        "grade": "S3",
+        "originator": "国信证券经济研究所（熊莉、艾宪，2025-12-09）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "国信自建模型：ChatGPT 月活 11.4 亿、单用户每月上传 1GB，RAG NAND 需求 139.7EB 占总 NAND 70%，ChatGPT 占 AI NAND 需求 70% → 2025 年 285.0EB。2026E 593.5EB 已入库（nand-demand-inference-2026e）。同表 NAND 总需求（仅计 AI 拉动增量）2025/2026 = 1,035.9/1,344.4EB，对 IDC 供给 875.6/1,014.7EB 为 118%/132%。",
+      "asserter": "国信证券"
     }
   ]
 }
