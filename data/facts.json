@@ -138036,6 +138036,158 @@
       "corroboration": "待交叉验证",
       "notes": "公司季报披露的整体产能利用率，原表为小数 0.855，折百分比 85.5%；同季月产能折 8 英寸约 947,625 片。",
       "asserter": "中芯国际"
+    },
+    {
+      "fact_id": "idc2101-hdd-top2-share-units-2020q3",
+      "metric_id": "hdd_top2_share",
+      "entity": {
+        "type": "market",
+        "id": "global-hdd",
+        "label": "全球 HDD 市场"
+      },
+      "value": 77.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "出货量",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ff39ffc418d971cf495457df595dded8904bb559abba4bed18d771f83c7500ed",
+        "local_file": "IDC 202101 Preliminary 4Q 2020 HDD Shipment Results.xlsx",
+        "locator": "工作表「Prelim HDD Units and Share」第 72–81 行 Class: All，3Q 2020 Actual：Seagate 0.4076、Toshiba 0.2298、WD 0.3625（Total 63,365.5 千台）",
+        "grade": "S3",
+        "originator": "IDC《Preliminary 4Q 2020 Worldwide HDD Shipments》（2021-01-08）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "前两大为 Seagate 40.76% + WD 36.25% = 77.0%（原表只给各家份额，未给前两大合计）。",
+      "corroboration": "待交叉验证",
+      "notes": "IDC hddbyseg 4Q20.0 初步版，按出货台数（units）；4Q20 为初步估计，IDC 注明 4–6 周后以终版替代。东芝 22.98%。",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "idc2101-hdd-top2-share-units-2020q4-prelim",
+      "metric_id": "hdd_top2_share",
+      "entity": {
+        "type": "market",
+        "id": "global-hdd",
+        "label": "全球 HDD 市场"
+      },
+      "value": 79.2,
+      "unit": "%",
+      "caliber": {
+        "measure": "出货量",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2020-Q4",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ff39ffc418d971cf495457df595dded8904bb559abba4bed18d771f83c7500ed",
+        "local_file": "IDC 202101 Preliminary 4Q 2020 HDD Shipment Results.xlsx",
+        "locator": "工作表「Prelim HDD Units and Share」第 72–81 行 Class: All，4Q 2020 Preliminary：Seagate 0.4281、Toshiba 0.2078、WD 0.3641（Total 66,800 - 70,800 千台）",
+        "grade": "S3",
+        "originator": "IDC《Preliminary 4Q 2020 Worldwide HDD Shipments》（2021-01-08）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "前两大为 Seagate 42.81% + WD 36.41% = 79.2%。",
+      "corroboration": "待交叉验证",
+      "notes": "IDC hddbyseg 4Q20.0 初步版，按出货台数（units）；4Q20 为初步估计，IDC 注明 4–6 周后以终版替代。东芝 20.78%。初步数，终版可能修订。",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "idc2101-hdd-units-yoy-2020q3",
+      "metric_id": "hdd_market_size_growth",
+      "entity": {
+        "type": "market",
+        "id": "global-hdd",
+        "label": "全球 HDD 市场"
+      },
+      "value": -23.7,
+      "unit": "%",
+      "caliber": {
+        "measure": "出货量",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ff39ffc418d971cf495457df595dded8904bb559abba4bed18d771f83c7500ed",
+        "local_file": "IDC 202101 Preliminary 4Q 2020 HDD Shipment Results.xlsx",
+        "locator": "工作表「Prelim HDD Units and Share」第 84 行「Year/Year」3Q 2020 Actual = -0.2367；第 83 行 QTR/QTR change = 0.0774",
+        "grade": "S3",
+        "originator": "IDC《Preliminary 4Q 2020 Worldwide HDD Shipments》（2021-01-08）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "IDC hddbyseg 4Q20.0 初步版，按出货台数（units）；4Q20 为初步估计，IDC 注明 4–6 周后以终版替代。3Q20 全球 HDD 出货 6,336.6 万台，环比 +7.7%。",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "idc2101-hdd-units-yoy-2020q4-prelim-lower",
+      "metric_id": "hdd_market_size_growth",
+      "entity": {
+        "type": "market",
+        "id": "global-hdd",
+        "label": "全球 HDD 市场"
+      },
+      "value": -15.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "出货量",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2020-Q4",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "ff39ffc418d971cf495457df595dded8904bb559abba4bed18d771f83c7500ed",
+        "local_file": "IDC 202101 Preliminary 4Q 2020 HDD Shipment Results.xlsx",
+        "locator": "工作表「Prelim HDD Units and Share」第 84 行「Year/Year」4Q 2020 Preliminary = 「-15% to -10%」",
+        "grade": "S3",
+        "originator": "IDC《Preliminary 4Q 2020 Worldwide HDD Shipments》（2021-01-08）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "IDC hddbyseg 4Q20.0 初步版，按出货台数（units）；4Q20 为初步估计，IDC 注明 4–6 周后以终版替代。原文区间 -15% 至 -10% 的下界；上界见 idc2101-hdd-units-yoy-2020q4-prelim-upper。环比 +5% 至 +12%，出货 6,680–7,080 万台。",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "idc2101-hdd-units-yoy-2020q4-prelim-upper",
+      "metric_id": "hdd_market_size_growth",
+      "entity": {
+        "type": "market",
+        "id": "global-hdd",
+        "label": "全球 HDD 市场"
+      },
+      "value": -10.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "出货量",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2020-Q4",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "ff39ffc418d971cf495457df595dded8904bb559abba4bed18d771f83c7500ed",
+        "local_file": "IDC 202101 Preliminary 4Q 2020 HDD Shipment Results.xlsx",
+        "locator": "工作表「Prelim HDD Units and Share」第 84 行「Year/Year」4Q 2020 Preliminary = 「-15% to -10%」",
+        "grade": "S3",
+        "originator": "IDC《Preliminary 4Q 2020 Worldwide HDD Shipments》（2021-01-08）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "IDC hddbyseg 4Q20.0 初步版，按出货台数（units）；4Q20 为初步估计，IDC 注明 4–6 周后以终版替代。原文区间上界。",
+      "asserter": "IDC"
     }
   ]
 }
