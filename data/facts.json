@@ -134170,6 +134170,100 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "「3800 亿千瓦时左右」，碳排放增长超 300%。同一家 2023-06 版同值（odcc2023-cn-dc-electricity-2030e），两个时点的预测并列。"
+    },
+    {
+      "fact_id": "sic2205-omdia-global-dc-power-share-2020",
+      "metric_id": "dc_power_share_of_grid",
+      "asserter": "Omdia",
+      "entity": {
+        "type": "industry",
+        "id": "global-dc",
+        "label": "全球数据中心"
+      },
+      "value": 2.0,
+      "unit": "%",
+      "bound": "point",
+      "as_of": "2020",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "666b2c2b5bd1ce6f03e61cb29a0ce3827d0a4dbf5276baccc1c7566fe9864995",
+        "local_file": "【2022年5月】“碳达峰、碳中和”背景下数据中心绿色高质量发展研究报告.pdf",
+        "locator": "PDF 第 10 页 1.3：「在包括中国在内的全球数据中心的耗电量占社会耗电总量预计从 2020 年的 2% 增长到 2025 年 4% 左右 ( 来源：Omdia，2020)」",
+        "grade": "S3",
+        "originator": "Omdia 2020（经国家信息中心、贵州省大数据发展管理局、华为、粤港澳大湾区大数据研究院《“碳达峰、碳中和”背景下数据中心绿色高质量发展研究报告》（2022-05）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「包括中国在内的全球数据中心」2020 年占社会耗电约 2%。"
+    },
+    {
+      "fact_id": "sic2205-omdia-global-dc-power-share-2025e",
+      "metric_id": "dc_power_share_of_grid",
+      "asserter": "Omdia",
+      "entity": {
+        "type": "industry",
+        "id": "global-dc",
+        "label": "全球数据中心"
+      },
+      "value": 4.0,
+      "unit": "%",
+      "bound": "point",
+      "as_of": "2025E@2020",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "666b2c2b5bd1ce6f03e61cb29a0ce3827d0a4dbf5276baccc1c7566fe9864995",
+        "local_file": "【2022年5月】“碳达峰、碳中和”背景下数据中心绿色高质量发展研究报告.pdf",
+        "locator": "PDF 第 10 页 1.3：「在包括中国在内的全球数据中心的耗电量占社会耗电总量预计从 2020 年的 2% 增长到 2025 年 4% 左右 ( 来源：Omdia，2020)」",
+        "grade": "S3",
+        "originator": "Omdia 2020（经国家信息中心、贵州省大数据发展管理局、华为、粤港澳大湾区大数据研究院《“碳达峰、碳中和”背景下数据中心绿色高质量发展研究报告》（2022-05）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「2025 年 4% 左右」；做出时点只知来源标注 2020 年。"
+    },
+    {
+      "fact_id": "sic2205-cdcc-cn-avg-pue-2021",
+      "metric_id": "dc_pue",
+      "asserter": "CDCC",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc",
+        "label": "中国数据中心"
+      },
+      "value": 1.49,
+      "unit": "比值",
+      "bound": "point",
+      "as_of": "2021",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "evidence": {
+        "sha256": "666b2c2b5bd1ce6f03e61cb29a0ce3827d0a4dbf5276baccc1c7566fe9864995",
+        "local_file": "【2022年5月】“碳达峰、碳中和”背景下数据中心绿色高质量发展研究报告.pdf",
+        "locator": "PDF 第 24 页 3.1.1：「2021 年度全国数据中心平均 PUE 为 1.49，并且有相当数量的数据中心 PUE 超过 1.8 甚至 2.0（来源 CDCC，2021）」",
+        "grade": "S3",
+        "originator": "CDCC 中国数据中心工作组（经国家信息中心、贵州省大数据发展管理局、华为、粤港澳大湾区大数据研究院《“碳达峰、碳中和”背景下数据中心绿色高质量发展研究报告》（2022-05）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2021 年度全国数据中心平均 PUE 1.49，相当数量超过 1.8 甚至 2.0。CDCC 统计口径（样本范围）原文未写。"
     }
   ]
 }
