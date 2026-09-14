@@ -135288,6 +135288,37 @@
       "corroboration": "待交叉验证",
       "notes": "原文「1.2Billion」未写货币与计量对象，按同页「Sales of Ethernet transceivers」理解为销售额（美元）；3.2T 模块年出货不可能达十亿只量级。LightCounting《Cloud Data Center Optics》2024-07 版预测，@2024-07 取自该出处标注。页脚「Ligent Confidential」为公开峰会讲稿的通用页脚，不按受限材料处理。",
       "asserter": "LightCounting"
+    },
+    {
+      "fact_id": "accelsius-ocp25-1p-d2c-cooling-capex-per-mw",
+      "metric_id": "cooling_capex_per_mw",
+      "entity": {
+        "type": "design",
+        "id": "jacobs-10mw-1p-d2c-reference",
+        "label": "Jacobs 10MW 单相冷板液冷参考设计（Austin, TX）"
+      },
+      "value": 1.039,
+      "unit": "$M/MW",
+      "caliber": {
+        "scope": "含冷源",
+        "cooling_type": "混合",
+        "region": "US"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "97e9b820dba6cc660d26158153f33c95734a3b540213d117452f32aa3c11e3ec",
+        "local_file": "5B_2022_7639Optimizing_未署名.pdf",
+        "locator": "第 2 页「Scope & Methodology」：「Jacobs Engineering created two, 10MW reference designs of 1P & 2P D2C facilities」「10MW of ITE – 64 x 136 kW racks」「78% liquid cooled, 22% air cooled」；第 5 页表：Single-Phase D2C「CapEx $10,385,576」、Two-Phase D2C「$10,381,534」",
+        "grade": "S2",
+        "originator": "Accelsius（OCP 2025 演讲）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "单相冷板方案 chip-to-chiller CapEx 10,385,576 美元 ÷ 10 MW IT 负载 = 1.039 百万美元/MW；as_of 取 L1 登记的讲稿年份 2025，原文未写日期。",
+      "corroboration": "待交叉验证",
+      "notes": "口径是「chip-to-chiller」冷却基础设施（含高温冷水机组、风机，建筑与电气保持不变），故 scope 记含冷源；设计为 78% 液冷 + 22% 风冷，cooling_type 记混合。每柜 136kW、共 64 柜。两相冷板方案 CapEx 10,381,534 美元（≈同值，0% 差），但年 OpEx 低 35%、5 年 TCO 低 12%（13,774,735 vs 15,604,571 美元）——两相方案 cooling_type 无法与单相区分，未另录。演讲方 Accelsius 为两相冷板厂商，成本含第三方维保与管材来源。",
+      "asserter": "Accelsius"
     }
   ]
 }
