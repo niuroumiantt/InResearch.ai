@@ -297,7 +297,7 @@
 | `docs/reviews/2026-09-14/scene-framing/public-contracts.csv` | rows | 10 |
 | `docs/reviews/2026-09-14/scene-framing/scope.json` | changed | 21 |
 | `docs/reviews/2026-09-14/scene-framing/scope.json` | inherited | 19 |
-| `docs/reviews/2026-09-14/scene-resources/consumers-after.csv` | rows | 124 |
+| `docs/reviews/2026-09-14/scene-resources/consumers-after.csv` | rows | 127 |
 | `docs/reviews/2026-09-14/scene-resources/consumers-before.csv` | rows | 75 |
 | `docs/reviews/2026-09-14/scene-resources/file-plan.csv` | rows | 772 |
 | `docs/reviews/2026-09-14/scene-resources/file-results.csv` | rows | 780 |
