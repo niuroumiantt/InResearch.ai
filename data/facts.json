@@ -171619,6 +171619,66 @@
       "corroboration": "待交叉验证",
       "notes": "1–5MW 批发档租金区间上界；原表单位写作「$/kWh/mo」，按 JLL 惯例为美元/kW/月（kWh 为笔误），原文未说明是否含电费。市场名按报告市场页顺序（与 H2 2023 年报相同的字母序）对应，页内文字线索（如亚特兰大页提及 Georgia、里诺、犹他）与库存数值连续性相符。",
       "asserter": "JLL"
+    },
+    {
+      "fact_id": "dcbyte2024-apac-live-supply-2023",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "apac-dc-live-supply-dcbyte",
+        "label": "亚太数据中心 Live Supply（DC Byte）"
+      },
+      "value": 11100.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "APAC"
+      },
+      "as_of": "2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4bdf99366ab012b27c833c2465ccd4d9c18394d609098e18720c632fec714efb",
+        "local_file": "20250330-DCByte：2024年全球数据中心指数报告(37页).pdf",
+        "locator": "PDF 第 14 页 Live Supply Projections：「Based on the historical CAGR, APAC is positioned to grow from 11.1GW in 2023 to 26.7GW in 2028. Actual growth is likely to outperform forecasted figures」；第 8 页「APAC experienced the strongest growth at 19.1% CAGR from 2018 to 2023…the 6.5GW of regional Live Supply growth over this period」",
+        "grade": "S3",
+        "originator": "DC Byte《Global Data Centre Index 2024》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2023 年末 11.1GW；2018–2023 年亚太 CAGR 19.1%、五年净增 6.5GW。 DC Byte 的 Live Supply（已投运 IT 容量），与其 2025 版（2024 年末 13.2GW、2029E 32.8GW）同一口径不同版次。",
+      "asserter": "DC Byte"
+    },
+    {
+      "fact_id": "dcbyte2024-apac-live-supply-2028e",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "apac-dc-live-supply-dcbyte",
+        "label": "亚太数据中心 Live Supply（DC Byte）"
+      },
+      "value": 26700.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "APAC"
+      },
+      "as_of": "2028E@2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4bdf99366ab012b27c833c2465ccd4d9c18394d609098e18720c632fec714efb",
+        "local_file": "20250330-DCByte：2024年全球数据中心指数报告(37页).pdf",
+        "locator": "PDF 第 14 页 Live Supply Projections：「Based on the historical CAGR, APAC is positioned to grow from 11.1GW in 2023 to 26.7GW in 2028. Actual growth is likely to outperform forecasted figures」；第 8 页「APAC experienced the strongest growth at 19.1% CAGR from 2018 to 2023…the 6.5GW of regional Live Supply growth over this period」",
+        "grade": "S3",
+        "originator": "DC Byte《Global Data Centre Index 2024》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "按历史 CAGR 外推的 2028 年预测；报告发布月份未印，vintage 记 @2024。 DC Byte 的 Live Supply（已投运 IT 容量），与其 2025 版（2024 年末 13.2GW、2029E 32.8GW）同一口径不同版次。",
+      "asserter": "DC Byte"
     }
   ]
 }
