@@ -14,7 +14,7 @@ bom3d 与 rack3d 是环境和 CanvasTexture 的全部交互页面消费者；rac
 
 共享资源测试 8 秒通过；场景构图/用户镜头 25 秒通过；三个真实 GLB 模型失败、重试、整批替换与回收场景分别 20/14/2 秒通过。测试只修改浏览器请求，不写生产或仓库业务数据。
 
-全量浏览器、Python 单元、governance、strict、registry、asset-check、CI、合并、生产 HTTPS/登录/精确版本仍待执行；完成后在同一批证据中更新，不用本地相关测试冒充上线。
+与最新 main 合并并冻结文件后，1023 项 Python 单元测试通过（22.376 秒）；浏览器 core 的 13 个既有套件加新资源套件全部通过，模型资产三个独立场景通过。governance 2026.09.14.5、strict（0 warnings）、registry（118 objects / 449 questions）和 asset-check 通过。CI、合并、生产 HTTPS/登录/精确版本仍待执行；完成后在同一批证据中更新，不用本地全绿冒充上线。
 
 ## 未完成
 
