@@ -132446,6 +132446,254 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原文 16–23% 上界。"
+    },
+    {
+      "fact_id": "gs2501-global-genai-workload-2025q1",
+      "metric_id": "global_dc_it_load",
+      "asserter": "高盛",
+      "entity": {
+        "type": "industry",
+        "id": "global-dc",
+        "label": "全球数据中心"
+      },
+      "value": 7.7,
+      "unit": "GW",
+      "bound": "point",
+      "as_of": "2025-Q1",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "AI 负载",
+        "scenario": "基准",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "62a2d0733c684d80ef5e988a92b0806db55a674d5d97d30ed01968f57dbb7fbe",
+        "local_file": "20250723-AI_数据中心全球电力激增：推动上涨_下跌的五个因素以及可靠性投资的助力(28页).pdf",
+        "locator": "PDF 第 14 页（原报告页码 13）：「our Telecom Infrastructure team expects to grow from 9% of workloads (7.7 GW) in 1Q25 to 31% (35 GW) by 4Q2030. Overall DC workload demand is estimated to be 110 GW by 2030. Nonetheless, our Telecom Infrastructure team expects DC supply will meet these needs and that by the end of 2030 there will be 122 GW of capacity online」",
+        "grade": "S3",
+        "originator": "高盛《AI/data centers' global power surge》（Global Investment Research，2025-01-12；本文件为删节版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "生成式 AI 占全部工作负载 9%。原文「workloads」未说明是 IT 负载还是设施功率。"
+    },
+    {
+      "fact_id": "gs2501-global-genai-workload-2030q4e",
+      "metric_id": "global_dc_it_load",
+      "asserter": "高盛",
+      "entity": {
+        "type": "industry",
+        "id": "global-dc",
+        "label": "全球数据中心"
+      },
+      "value": 35.0,
+      "unit": "GW",
+      "bound": "point",
+      "as_of": "2030-Q4E@2025-01",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "AI 负载",
+        "scenario": "基准",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "62a2d0733c684d80ef5e988a92b0806db55a674d5d97d30ed01968f57dbb7fbe",
+        "local_file": "20250723-AI_数据中心全球电力激增：推动上涨_下跌的五个因素以及可靠性投资的助力(28页).pdf",
+        "locator": "PDF 第 14 页（原报告页码 13）：「our Telecom Infrastructure team expects to grow from 9% of workloads (7.7 GW) in 1Q25 to 31% (35 GW) by 4Q2030. Overall DC workload demand is estimated to be 110 GW by 2030. Nonetheless, our Telecom Infrastructure team expects DC supply will meet these needs and that by the end of 2030 there will be 122 GW of capacity online」",
+        "grade": "S3",
+        "originator": "高盛《AI/data centers' global power surge》（Global Investment Research，2025-01-12；本文件为删节版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "生成式 AI 占 31%；是 2030 年全部 110 GW（gs2501-global-dc-workload-2030e）的子集，不可相加。"
+    },
+    {
+      "fact_id": "gs2501-global-dc-workload-2030e",
+      "metric_id": "global_dc_it_load",
+      "asserter": "高盛",
+      "entity": {
+        "type": "industry",
+        "id": "global-dc",
+        "label": "全球数据中心"
+      },
+      "value": 110.0,
+      "unit": "GW",
+      "bound": "point",
+      "as_of": "2030E@2025-01",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "基准",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "62a2d0733c684d80ef5e988a92b0806db55a674d5d97d30ed01968f57dbb7fbe",
+        "local_file": "20250723-AI_数据中心全球电力激增：推动上涨_下跌的五个因素以及可靠性投资的助力(28页).pdf",
+        "locator": "PDF 第 14 页（原报告页码 13）：「our Telecom Infrastructure team expects to grow from 9% of workloads (7.7 GW) in 1Q25 to 31% (35 GW) by 4Q2030. Overall DC workload demand is estimated to be 110 GW by 2030. Nonetheless, our Telecom Infrastructure team expects DC supply will meet these needs and that by the end of 2030 there will be 122 GW of capacity online」",
+        "grade": "S3",
+        "originator": "高盛《AI/data centers' global power surge》（Global Investment Research，2025-01-12；本文件为删节版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「Overall DC workload demand」110 GW；团队称需求与基准可有至多 25 GW 偏差。同段供给侧 2030 年底在线容量 122 GW（6 年 CAGR 13%）口径未说明，未录。"
+    },
+    {
+      "fact_id": "gs2501-global-dc-power-share-2023-lower",
+      "metric_id": "dc_power_share_of_grid",
+      "asserter": "高盛",
+      "entity": {
+        "type": "industry",
+        "id": "global-dc",
+        "label": "全球数据中心"
+      },
+      "value": 1.0,
+      "unit": "%",
+      "bound": "lower",
+      "as_of": "2023",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "62a2d0733c684d80ef5e988a92b0806db55a674d5d97d30ed01968f57dbb7fbe",
+        "local_file": "20250723-AI_数据中心全球电力激增：推动上涨_下跌的五个因素以及可靠性投资的助力(28页).pdf",
+        "locator": "PDF 第 6 页（原报告页码 5）：「Our base case implies data center power demand moves from 1%-2% of overall global power demand to 3%-4% by 2030. In the US, the pace of mix increase is even greater, more than doubling by 2030 from 4% in 2023」",
+        "grade": "S3",
+        "originator": "高盛《AI/data centers' global power surge》（Global Investment Research，2025-01-12；本文件为删节版）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "原文「1%-2%」下界；上界见 gs2501-global-dc-power-share-2023-upper。原文未写「from」的年份，按同段「vs. 2023 levels」读作 2023。",
+      "derivation": "原文「moves from 1%-2%」未写年份，按同段比较基准「vs. 2023 levels」取 2023"
+    },
+    {
+      "fact_id": "gs2501-global-dc-power-share-2023-upper",
+      "metric_id": "dc_power_share_of_grid",
+      "asserter": "高盛",
+      "entity": {
+        "type": "industry",
+        "id": "global-dc",
+        "label": "全球数据中心"
+      },
+      "value": 2.0,
+      "unit": "%",
+      "bound": "upper",
+      "as_of": "2023",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "62a2d0733c684d80ef5e988a92b0806db55a674d5d97d30ed01968f57dbb7fbe",
+        "local_file": "20250723-AI_数据中心全球电力激增：推动上涨_下跌的五个因素以及可靠性投资的助力(28页).pdf",
+        "locator": "PDF 第 6 页（原报告页码 5）：「Our base case implies data center power demand moves from 1%-2% of overall global power demand to 3%-4% by 2030. In the US, the pace of mix increase is even greater, more than doubling by 2030 from 4% in 2023」",
+        "grade": "S3",
+        "originator": "高盛《AI/data centers' global power surge》（Global Investment Research，2025-01-12；本文件为删节版）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "原文「1%-2%」上界。",
+      "derivation": "原文「moves from 1%-2%」未写年份，按同段比较基准「vs. 2023 levels」取 2023"
+    },
+    {
+      "fact_id": "gs2501-global-dc-power-share-2030e-lower",
+      "metric_id": "dc_power_share_of_grid",
+      "asserter": "高盛",
+      "entity": {
+        "type": "industry",
+        "id": "global-dc",
+        "label": "全球数据中心"
+      },
+      "value": 3.0,
+      "unit": "%",
+      "bound": "lower",
+      "as_of": "2030E@2025-01",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "62a2d0733c684d80ef5e988a92b0806db55a674d5d97d30ed01968f57dbb7fbe",
+        "local_file": "20250723-AI_数据中心全球电力激增：推动上涨_下跌的五个因素以及可靠性投资的助力(28页).pdf",
+        "locator": "PDF 第 6 页（原报告页码 5）：「Our base case implies data center power demand moves from 1%-2% of overall global power demand to 3%-4% by 2030. In the US, the pace of mix increase is even greater, more than doubling by 2030 from 4% in 2023」",
+        "grade": "S3",
+        "originator": "高盛《AI/data centers' global power surge》（Global Investment Research，2025-01-12；本文件为删节版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "基准情景「3%-4% by 2030」下界；上界见 gs2501-global-dc-power-share-2030e-upper。数据中心用电 2030 年较 2023 年增 160%-165%。"
+    },
+    {
+      "fact_id": "gs2501-global-dc-power-share-2030e-upper",
+      "metric_id": "dc_power_share_of_grid",
+      "asserter": "高盛",
+      "entity": {
+        "type": "industry",
+        "id": "global-dc",
+        "label": "全球数据中心"
+      },
+      "value": 4.0,
+      "unit": "%",
+      "bound": "upper",
+      "as_of": "2030E@2025-01",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "62a2d0733c684d80ef5e988a92b0806db55a674d5d97d30ed01968f57dbb7fbe",
+        "local_file": "20250723-AI_数据中心全球电力激增：推动上涨_下跌的五个因素以及可靠性投资的助力(28页).pdf",
+        "locator": "PDF 第 6 页（原报告页码 5）：「Our base case implies data center power demand moves from 1%-2% of overall global power demand to 3%-4% by 2030. In the US, the pace of mix increase is even greater, more than doubling by 2030 from 4% in 2023」",
+        "grade": "S3",
+        "originator": "高盛《AI/data centers' global power surge》（Global Investment Research，2025-01-12；本文件为删节版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "基准情景 3%-4% 上界。"
+    },
+    {
+      "fact_id": "gs2501-us-dc-power-share-2023",
+      "metric_id": "dc_power_share_of_grid",
+      "asserter": "高盛",
+      "entity": {
+        "type": "industry",
+        "id": "us-dc",
+        "label": "美国数据中心"
+      },
+      "value": 4.0,
+      "unit": "%",
+      "bound": "point",
+      "as_of": "2023",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "US",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "62a2d0733c684d80ef5e988a92b0806db55a674d5d97d30ed01968f57dbb7fbe",
+        "local_file": "20250723-AI_数据中心全球电力激增：推动上涨_下跌的五个因素以及可靠性投资的助力(28页).pdf",
+        "locator": "PDF 第 6 页（原报告页码 5）：「Our base case implies data center power demand moves from 1%-2% of overall global power demand to 3%-4% by 2030. In the US, the pace of mix increase is even greater, more than doubling by 2030 from 4% in 2023」",
+        "grade": "S3",
+        "originator": "高盛《AI/data centers' global power surge》（Global Investment Research，2025-01-12；本文件为删节版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「from 4% in 2023」；到 2030 年「more than doubling」无具体数，未录。"
     }
   ]
 }
