@@ -53,7 +53,7 @@
   .spark-wrap .sname { font-size: 10.5px; color: var(--muted); display: flex; justify-content: space-between; }
   .spark-wrap .sname b { color: var(--text); }
   /* 下钻链条：数据中心 › 机柜 › GPU 服务器 ›…（配置见 assets/levels.json）*/
-  .drill { position: fixed; top: 54px; left: 50%; transform: translateX(-50%); z-index: 25;
+  .drill { position: fixed; top: calc(var(--ui-bar-height) + 56px); left: 50%; transform: translateX(-50%); z-index: 25;
     display: flex; align-items: center; gap: 2px; background: var(--ui-surface);
     border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 4px 6px;
     backdrop-filter: blur(8px); box-shadow: 0 6px 22px rgba(0,0,0,.4); font-size: 12px; }
@@ -76,7 +76,6 @@
     .topbar .tab { font-size: 11px; padding: 12px 9px; }
     .hud { left: 10px; right: 10px; bottom: 10px; width: auto; padding: 10px 12px; max-height: 37dvh; }
     .hud h1 { font-size: 13px; }
-    #domainParts { max-height: 15dvh; }
     #dossier { left: 10px; right: 10px; top: 55px; bottom: 10px; width: auto; padding: 14px; z-index: 28; }
     .insp canvas { height: 160px; }
   }

@@ -249,8 +249,7 @@ function show(pid) {
     if (i) rows.push(`<div class="kv"><span>${i.name}</span><b>${i.value != null ? i.value.toLocaleString() + " " + i.unit : '<span class="empty">待录入</span>'}</b></div>`);
   });
   h += `<div class="sec"><h3>数据与指标</h3>${rows.join("") || '<div class="empty">该部件的量化序列待建——这就是下一个数据采集点</div>'}</div>`;
-  h += `<div class="sec"><h3>资料</h3><a class="chip" href="doc.html?f=docs/LIBRARY_INDEX.md">研报库检索</a>
-        <a class="chip" href="doc.html?f=docs/LIBRARY_SCORES.csv">研报库打分表</a>
+  h += `<div class="sec"><h3>资料</h3><a class="chip" href="doc.html?f=docs/LIBRARY_SCORES.csv">研报库打分表</a>
         <a class="chip" href="doc.html?f=docs/LIBRARY_REPORT.md">全库通读报告</a></div>`;
   document.getElementById("dossier").innerHTML = h;
 }

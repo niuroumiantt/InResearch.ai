@@ -1,4 +1,4 @@
-# Datacenter Hub —— 零依赖，所以镜像也该是零依赖的。
+# inresearch.ai —— 零依赖，所以镜像也该是零依赖的。
 # 不装任何 pip 包：本项目是Python 标准库包 + 显式页面与共享组件。
 # 镜像里出现 requirements.txt 或 pip install，说明有人破坏了那条铁律。
 FROM python:3.12-slim

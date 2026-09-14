@@ -8,8 +8,8 @@ report cannot disagree with the ledger:
   l1_results.jsonl  one line per judged or auto-filed document
   moves.jsonl       one line per rename/move, written before the move happens
 
-  report            print once
-  report --every N  print every N seconds until stopped
+  manage.py progress            print once
+  manage.py progress --every N  print every N seconds until stopped
 
 The rate counts only the minutes work actually ran.  Dividing by wall clock
 since the first row counts every hour the machine sat idle and made an earlier

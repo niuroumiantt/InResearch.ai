@@ -55,7 +55,7 @@ def extract(path: Path, limit: int = MAX_CHARS) -> tuple[str, dict]:
             if 'workbook' in names or 'book' in names:
                 return xls_text(raw, limit)
             if 'powerpoint document' in names:
-                return ppt_text(raw)
+                return ppt_text(raw, limit)
             # A Visio binary carries no text stream at all.  Callers decide
             # whether to re-read a file later, and that decision must not rest
             # on matching the prose below - hence the flag.

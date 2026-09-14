@@ -11,16 +11,16 @@
   `data/.hub_secret`（同样不进 git）。无服务端会话表——重启不踢人，签名自足验证。
   有效期 7 天；改密码不会使已发会话失效（要踢人就删用户或换 `.hub_secret`）。
 - **限速**：同一 IP 在 5 分钟内失败 5 次即拒绝 5 分钟。IP 取 X-Forwarded-For **末项**
-  ——首项是客户端可以随便填的，末项才是最近一跳可信反代（Caddy）看到的真实来源；
-  Caddyfile 里同时把该头重写为 CF-Connecting-IP，双保险。表有上界防内存耗尽。
+  ——首项是客户端可以随便填的，末项才是最近一跳可信反代（Caddy）看到的真实来源。
+  表有上界防内存耗尽。
   内存态，重启清零——够用，这是内部工具不是银行。
 - **何时启用**：绑 127.0.0.1（本地单人用法）不启用，行为与从前完全一样；
   绑其它地址（容器里 HUB_HOST=0.0.0.0）强制启用。可用 HUB_AUTH=on/off 显式覆盖。
 
 零依赖。
 """
-# macOS 系统 /usr/bin/python3 是 3.9：`str | None` 标注在 3.10 前不能求值，
-# 本机 launchd 常驻就靠系统 Python 跑，这行让标注延迟求值以兼容
+# Spark 的系统 Python 为 3.9（见 docs/local_reader/SPARK_OPERATIONS.md）：
+# `str | None` 标注在 3.10 前不能求值，这行让标注延迟求值以兼容
 from __future__ import annotations
 
 from inresearch.paths import project_root
@@ -316,6 +316,3 @@ def record_fail(ip: str):
             del _fails[min(_fails, key=lambda k: max(_fails[k]))]
     # 每 IP 只留最近 FAIL_LIMIT 条就够判限速——列表同样不许无界长
     _fails[ip] = (_fails.get(ip, []) + [now])[-FAIL_LIMIT:]
-
-
-# ── 登录页 ──────────────────────────────────────────────────

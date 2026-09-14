@@ -18,8 +18,6 @@ ATTR = re.compile(r'(\w+)="([^"]*)"')
 
 V = re.compile(r'<v[^>]*>(.*?)</v>', re.S)
 
-ROW_NUM = re.compile(r'(\d+)')
-
 NUM_FMT = re.compile(r'<numFmt[^>]*\bnumFmtId="(\d+)"[^>]*\bformatCode="([^"]*)"')
 
 CELL_XFS = re.compile(r'<cellXfs\b[^>]*>(.*?)</cellXfs>', re.S)
@@ -229,7 +227,9 @@ def xlsx_text(path: Path, limit: int = MAX_CHARS) -> tuple[str, dict]:
         # No addressable cells - a chart-only sheet, or a shape holding the
         # text.  Fall back to the labels rather than returning nothing.
         parts.extend(s for s in (t.strip() for t in strings) if s)
-    return '\n'.join(parts)[:limit], meta
+    text = '\n'.join(parts)
+    meta['truncated'] = meta.get('truncated', False) or len(text) > limit
+    return text[:limit], meta
 
 def ooxml_text(path: Path, limit: int = MAX_CHARS) -> tuple[str, dict]:
     """Route a zip container by what is inside it, not by its suffix."""

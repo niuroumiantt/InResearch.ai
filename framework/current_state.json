@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.14.6",
+  "version": "2026.09.14.7",
   "effective_at": "2026-09-14",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -204,7 +204,6 @@
       "source": "docs/local_reader/SPARK_OPERATIONS.md",
       "implementations": [
         "docs/local_setup/sync.sh",
-        "docs/local_setup/setup.sh",
         "src/inresearch/delivery/publish.py",
         "deploy/spark-reader/inresearch-reader.service",
         "docs/local_setup/README.md",
@@ -222,8 +221,8 @@
       "supersedes": [
         "operations-legacy"
       ],
-      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。",
-      "implementation_revision": "2026.09.13.7"
+      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-14 代码审阅：退役桩 setup.sh 不再列为现行实现，禁用的 start.sh 与 2026-08 部署手册/Caddyfile/compose 退出活动路径（归档至 docs/archive/2026-09-14），deploy/ 只保留 Dockerfile、models.json 与 spark-reader。",
+      "implementation_revision": "2026.09.14.7"
     },
     {
       "id": "change_management-legacy",

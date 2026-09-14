@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.14.6。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.14.7。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：794。
+在册文件：795。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,13 +15,13 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 12 |
-| 历史快照 | 249 |
-| 运行代码 | 147 |
+| 历史快照 | 258 |
+| 运行代码 | 143 |
 | 现行规范 | 13 |
-| 项目配置 | 38 |
+| 项目配置 | 35 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
-| 在册数据/索引 | 27 |
+| 在册数据/索引 | 26 |
 | 配套说明 | 41 |
 | 测试 | 60 |
 
@@ -360,7 +360,6 @@
 | 路径 | 身份 |
 |---|---|
 | `.claude/launch.json` | 项目配置 |
-| `.claude/settings.local.json` | 项目配置 |
 | `.dockerignore` | 项目配置 |
 | `.gitattributes` | 项目配置 |
 | `.github/CODEOWNERS` | 项目配置 |
@@ -392,10 +391,8 @@
 | `data/schema/source.schema.json` | 在册数据/索引 |
 | `data/schema/submission.schema.json` | 在册数据/索引 |
 | `data/sources.json` | 在册数据/索引 |
-| `deploy/Caddyfile` | 项目配置 |
 | `deploy/Dockerfile` | 项目配置 |
 | [deploy/README.md](../deploy/README.md) | 配套说明 |
-| `deploy/docker-compose.yml` | 项目配置 |
 | `deploy/models.json` | 项目配置 |
 | `deploy/spark-reader/inresearch-material-intake.service` | 项目配置 |
 | `deploy/spark-reader/inresearch-material-intake.timer` | 项目配置 |
@@ -409,7 +406,6 @@
 | [docs/CN_PROJECT_ARCHIVES.csv](CN_PROJECT_ARCHIVES.csv) | 在册数据/索引 |
 | [docs/DATA_SOURCING.md](DATA_SOURCING.md) | 配套说明 |
 | [docs/DECISIONS.md](DECISIONS.md) | 现行入口 |
-| [docs/LIBRARY_INDEX.md](LIBRARY_INDEX.md) | 在册数据/索引 |
 | [docs/LIBRARY_REPORT.md](LIBRARY_REPORT.md) | 在册数据/索引 |
 | [docs/LIBRARY_SCORES.csv](LIBRARY_SCORES.csv) | 在册数据/索引 |
 | [docs/M4_TRIAGE_TASK.md](M4_TRIAGE_TASK.md) | 现行规范 |
@@ -433,6 +429,10 @@
 | [docs/archive/2026-09-12/docs__M4_TRIAGE_TASK.md](archive/2026-09-12/docs__M4_TRIAGE_TASK.md) | 历史快照 |
 | [docs/archive/2026-09-12/docs__local_reader__M4_TRIAGE_RUNBOOK.md](archive/2026-09-12/docs__local_reader__M4_TRIAGE_RUNBOOK.md) | 历史快照 |
 | [docs/archive/2026-09-12/framework__04_reading_scoring_standard.md](archive/2026-09-12/framework__04_reading_scoring_standard.md) | 历史快照 |
+| [docs/archive/2026-09-14/deploy__Caddyfile.md](archive/2026-09-14/deploy__Caddyfile.md) | 历史快照 |
+| [docs/archive/2026-09-14/deploy__README.md](archive/2026-09-14/deploy__README.md) | 历史快照 |
+| [docs/archive/2026-09-14/deploy__docker-compose.yml.md](archive/2026-09-14/deploy__docker-compose.yml.md) | 历史快照 |
+| [docs/archive/2026-09-14/docs__LIBRARY_INDEX.md](archive/2026-09-14/docs__LIBRARY_INDEX.md) | 历史快照 |
 | [docs/inbox/PHASE2_REPORT.md](inbox/PHASE2_REPORT.md) | 候选与外部输入 |
 | [docs/inbox/README.md](inbox/README.md) | 候选与外部输入 |
 | [docs/inbox/digest_drafts/7B_人工智能算力高质量发展评估体系_浪潮信息中国信通院.md](inbox/digest_drafts/7B_人工智能算力高质量发展评估体系_浪潮信息中国信通院.md) | 候选与外部输入 |
@@ -591,7 +591,6 @@
 | [docs/local_reader/PROJECT_BRIEF.md](local_reader/PROJECT_BRIEF.md) | 配套说明 |
 | [docs/local_reader/RUN_TO_COMPLETION.md](local_reader/RUN_TO_COMPLETION.md) | 配套说明 |
 | [docs/local_reader/SPARK_OPERATIONS.md](local_reader/SPARK_OPERATIONS.md) | 现行规范 |
-| `docs/local_reader/start.sh` | 运行代码 |
 | [docs/local_setup/ADD_3D_MODEL.md](local_setup/ADD_3D_MODEL.md) | 配套说明 |
 | [docs/local_setup/PRODUCT_LIBRARY.md](local_setup/PRODUCT_LIBRARY.md) | 配套说明 |
 | [docs/local_setup/README.md](local_setup/README.md) | 配套说明 |
@@ -781,6 +780,11 @@
 | `docs/reviews/2026-09-14/cli-root/scope.json` | 历史快照 |
 | `docs/reviews/2026-09-14/cli-root/statistics-after.json` | 历史快照 |
 | `docs/reviews/2026-09-14/cli-root/statistics-before.json` | 历史快照 |
+| [docs/reviews/2026-09-14/code-review/REVIEW.md](reviews/2026-09-14/code-review/REVIEW.md) | 历史快照 |
+| `docs/reviews/2026-09-14/code-review/screenshots/bom3d-folk-light-1440-drill-hidden.png` | 历史快照 |
+| `docs/reviews/2026-09-14/code-review/screenshots/materials-skinbar-72px.png` | 历史快照 |
+| `docs/reviews/2026-09-14/code-review/screenshots/ops-member-folk-light-1440.png` | 历史快照 |
+| `docs/reviews/2026-09-14/code-review/screenshots/rack3d-gpu-dossier-black-preview.png` | 历史快照 |
 | [docs/reviews/2026-09-14/model-assets/DELIVERY.md](reviews/2026-09-14/model-assets/DELIVERY.md) | 历史快照 |
 | [docs/reviews/2026-09-14/model-assets/INTEGRATION.md](reviews/2026-09-14/model-assets/INTEGRATION.md) | 历史快照 |
 | [docs/reviews/2026-09-14/model-assets/PLAN.md](reviews/2026-09-14/model-assets/PLAN.md) | 历史快照 |
@@ -930,7 +934,6 @@
 | `src/inresearch/delivery/acquisition_status.py` | 运行代码 |
 | `src/inresearch/delivery/backup.py` | 运行代码 |
 | `src/inresearch/delivery/export.py` | 运行代码 |
-| `src/inresearch/delivery/library_index.py` | 运行代码 |
 | `src/inresearch/delivery/map.py` | 运行代码 |
 | `src/inresearch/delivery/publish.py` | 运行代码 |
 | `src/inresearch/delivery/reader_export.py` | 运行代码 |
@@ -977,8 +980,6 @@
 | `src/inresearch/materials/reading_policy.py` | 运行代码 |
 | `src/inresearch/materials/receive.py` | 运行代码 |
 | `src/inresearch/materials/records.py` | 运行代码 |
-| `src/inresearch/materials/repair_paths.py` | 运行代码 |
-| `src/inresearch/materials/scan_candidates.py` | 运行代码 |
 | `src/inresearch/materials/text_similarity.py` | 运行代码 |
 | `src/inresearch/materials/triage.py` | 运行代码 |
 | `src/inresearch/paths.py` | 运行代码 |

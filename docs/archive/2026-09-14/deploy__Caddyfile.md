@@ -1,3 +1,5 @@
+> HISTORICAL — 已被替代。保存于 2026-09-14；下文是历史原文（原路径 deploy/Caddyfile），不构成当前指令、授权或服务状态。现网 Caddy 配置在 niuroumiantt/infra 的 `inresearch-host/Caddyfile`。现行入口：[当前基准](../../../framework/CURRENT.md)。
+
 # ⚠️ 历史参考——现网 Caddy 配置在 niuroumiantt/infra 仓库的 inresearch-host/Caddyfile
 # （无 Cloudflare 前置，XFF 重写用 {remote_host}）。改现网去改那边，别改这份。
 #

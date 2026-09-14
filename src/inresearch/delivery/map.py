@@ -123,14 +123,14 @@ def main():
   .legend i {{ display:inline-block; width:10px; height:10px; border-radius:50%; vertical-align:-1px; margin:0 3px 0 10px; }}
 </style></head><body>
 <h1>全球最大数据中心园区 Top {n} — 布局与用电量</h1>
-<div class="sub">Datacenter Hub 按需输出 ｜ 数据快照 {today} ｜ 范围：项目库单一物理园区（组合型记录不参与排名）｜ 容量口径：IT 负载 MW（各状态合计）</div>
+<div class="sub">inresearch.ai 按需输出 ｜ 数据快照 {today} ｜ 范围：项目库单一物理园区（组合型记录不参与排名）｜ 容量口径：IT 负载 MW（各状态合计）</div>
 <svg viewBox="0 0 {W} {H:.0f}" xmlns="http://www.w3.org/2000/svg">{land}{"".join(dots)}</svg>
 <div class="legend">主导状态：<i style="background:{COLORS['op']}"></i>运营 (L8+)<i style="background:{COLORS['bu']}"></i>在建 (L6–7)<i style="background:{COLORS['pl']}"></i>规划 (L1–5)　·　圆面积 ∝ 容量</div>
 <table><tr><th></th><th>园区</th><th class="num">合计容量 (MW)</th><th class="num">运营 / 在建 / 规划 (MW)</th><th class="num">满载年耗电估算 (TWh)</th></tr>{table}</table>
 <div class="note">⚖ 口径提醒：容量为各状态合计——多数园区大部分容量仍在建/规划中，<b>不得解读为已投运规模</b>；
 用电量为满载推算：IT 容量 × PUE 1.2 × 利用率 90% × 8760h（S5 级推算，非实测/非公司披露）；
 排名基于本项目库（{len(sites)} 个有容量记录的园区，核验日期见各记录），不代表全球普查。
-生成：src/inresearch/delivery/map.py ｜ 数据：data/projects.json ｜ © Datacenter Hub</div>
+生成：src/inresearch/delivery/map.py ｜ 数据：data/projects.json ｜ © inresearch.ai</div>
 </body></html>"""
 
     OUT.mkdir(parents=True, exist_ok=True)

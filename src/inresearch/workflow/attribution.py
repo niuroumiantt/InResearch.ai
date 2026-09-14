@@ -182,7 +182,7 @@ def cmd_run(a):
 def cmd_pack(a):
     scored = L1.done_keys(); out = []; seen = set()
     files = digest_files()
-    if not files: sys.exit('no digests yet: run `extract run` first')
+    if not files: sys.exit('no digests yet: run `manage.py attribution run` first')
     for path in files:
         for line in path.open(encoding='utf-8'):
             try: d = json.loads(line)

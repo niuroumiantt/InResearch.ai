@@ -34,11 +34,9 @@ ROOT = project_root()
 FACTS = ROOT / "data" / "facts.json"
 METRICS = ROOT / "framework" / "metrics.json"
 
-from inresearch.knowledge.fact_contract import (check_fact, DEPTHS, CORROBORATION,
+from inresearch.knowledge.fact_contract import (check_fact,
                                                 forecast_outliers,
                                                 UNSTATED_ASSERTER as UNSTATED)
-FACT_DEPTHS = set(DEPTHS)
-CORROB = set(CORROBORATION)
 BOUND_SIGN = {"upper": "<", "lower": ">", "point": " "}
 
 errors = []

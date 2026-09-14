@@ -261,6 +261,17 @@ class PptTests(unittest.TestCase):
         text, _ = office_ppt.ppt_text(raw)
         self.assertEqual(text, '')
 
+    def test_the_caller_budget_is_honoured_and_a_cut_is_reported(self):
+        """L2 asks for far more than the L1 preview; a silent 20 000-char cut
+        would be read as though the deck ended there."""
+        raw = self.deck([ppt_atom(office_ppt.TEXT_BYTES_ATOM, b'x' * 999)] * 30)
+        text, meta = office_ppt.ppt_text(raw, 600000)
+        self.assertEqual(len(text), 30 * 999 + 29)
+        self.assertFalse(meta['truncated'])
+        text, meta = office_ppt.ppt_text(raw, 5000)
+        self.assertEqual(len(text), 5000)
+        self.assertTrue(meta['truncated'])
+
 
 class XlsxTests(unittest.TestCase):
     def make(self, shared=None, inline_sheet=None, sheets=('Sheet1',)):

@@ -116,7 +116,7 @@ def classify(path, state):
         return 'candidate'
     if path.startswith('reports/'):
         return 'generated'
-    if path.startswith('data/') or path.endswith('.csv') or path in ('docs/LIBRARY_INDEX.md', 'docs/LIBRARY_REPORT.md'):
+    if path.startswith('data/') or path.endswith('.csv') or path == 'docs/LIBRARY_REPORT.md':
         return 'source_record'
     if path.startswith('tests/') or Path(path).name.startswith('test_'):
         return 'test'

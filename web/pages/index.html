@@ -375,7 +375,7 @@ try {
       <td class="num">${c.value_usd_b ?? "—"}</td><td>${c.circular_flag ? "⚠️" : "—"}</td></tr>`).join("") + `</table>
     <div class="note">合同批量入库在路线图第二阶段</div>`]);
 
-  // ── 研究工作台速览（brief.json 由 collect.py 每日生成）
+  // ── 研究工作台速览（brief.json 由 historical-brief 生成）
   if (brief?.verify) {
     const res = brief.research || {};
     const totF = Object.values(res).reduce((s, m) => s + (m.findings || 0), 0);
@@ -391,7 +391,7 @@ try {
         <div><b style="font-size:20px">${totF}</b> <span style="font-size:11px;color:var(--gray)">研究结论（15 模块）</span></div>
         <div><b style="font-size:20px;color:${totNR ? "var(--yellow)" : "var(--green)"}">${totNR}</b> <span style="font-size:11px;color:var(--gray)">待复核 ${nrMods}</span></div>
       </div>${qi}
-      <div class="note">核验队列 verify.py ｜ 精读队列 reading_queue.py ｜ 简报 ${brief.date || ""}</div>`]);
+      <div class="note">核验队列 ｜ 精读队列 ｜ 简报 ${brief.date || ""}</div>`]);
   }
 
   // ── 研究核心 · 事实层与工单（新机制的仪表盘出口；机制看不见就等于不存在）

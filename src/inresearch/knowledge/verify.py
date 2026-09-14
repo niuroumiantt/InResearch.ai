@@ -2,7 +2,7 @@
 """核验队列生成器：扫描六张表，按优先级列出"今天该核验什么"。
 
 这是核验工作的固定入口（与 validate.py 分工：validate 管"数据合不合规"，
-verify 管"数据该不该重新查证"）。零依赖。collect.py 复用本模块的 build_queue()。
+verify 管"数据该不该重新查证"）。零依赖。historical_brief 复用本模块的 build_queue()。
 
 用法：
     python3 manage.py verify              # 生成队列 → reports/verify_queue.md + stdout 摘要

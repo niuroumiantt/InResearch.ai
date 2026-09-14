@@ -16,7 +16,6 @@ from datetime import date
 from pathlib import Path
 
 ROOT = project_root()
-TODAY = date.today().isoformat()
 
 
 def load(name, root):
@@ -49,6 +48,7 @@ def refresh(root=ROOT):
 
 
 def _refresh(root):
+    today = date.today().isoformat()
     projects = [p for p in load("projects", root) if "portfolio" not in p["site_id"]]
     prices = load("prices", root)
     contracts = load("contracts", root)
@@ -57,7 +57,7 @@ def _refresh(root):
     computed = {}
 
     # M01 全球投运容量（项目库 L8+ 聚合，GW）
-    computed["global_operational_gw"] = (round(op / 1000, 2), TODAY, "projects 表 L8+ 聚合（库内口径，非全球普查）")
+    computed["global_operational_gw"] = (round(op / 1000, 2), today, "projects 表 L8+ 聚合（库内口径，非全球普查）")
     # 价格序列直通指标
     for ind_id, series in [
         ("transformer_lead_time", "transformer-lead-time"),
@@ -73,17 +73,17 @@ def _refresh(root):
     deals = [r["value"] for r in prices if r.get("category") == "asset-deal"]
     if deals:
         import statistics
-        computed["price_per_mw_operational"] = (round(statistics.median(deals), 1), TODAY,
+        computed["price_per_mw_operational"] = (round(statistics.median(deals), 1), today,
                                                 f"prices 表 asset-deal 类 {len(deals)} 笔中位数")
     # M03 循环交易占比（金额加权）
     vals = [c for c in contracts if c.get("value_usd_b")]
     if vals:
         circ = sum(c["value_usd_b"] for c in vals if c.get("circular_flag"))
         computed["circular_deal_exposure"] = (round(circ / sum(c["value_usd_b"] for c in vals) * 100, 1),
-                                              TODAY, "contracts 表金额加权（样本小，仅示意）")
+                                              today, "contracts 表金额加权（样本小，仅示意）")
     # M03 大额合同余额
     if vals:
-        computed["mega_contract_backlog"] = (round(sum(c["value_usd_b"] for c in vals), 1), TODAY,
+        computed["mega_contract_backlog"] = (round(sum(c["value_usd_b"] for c in vals), 1), today,
                                              "contracts 表合计（种子样本）")
 
     p = workspace_path("framework/indicators.json", root)
@@ -95,7 +95,7 @@ def _refresh(root):
             ind["value"], ind["as_of"] = v, asof
             ind["auto_note"] = note
             n += 1
-    doc["updated"] = TODAY
+    doc["updated"] = today
     write_json(p, doc)
     return {"count": n, "indicators": list(computed)}
 

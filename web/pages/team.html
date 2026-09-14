@@ -118,7 +118,7 @@ async function load() {
     const b = document.getElementById("banner");
     b.style.display = "";
     b.innerHTML = "只读模式：没连上本地服务器，派工无法写回。"
-      + "跑 <code>python3 inresearch.py serve</code> 后从 http://localhost:8000/team.html 打开即可派工。";
+      + "跑 <code>python3 manage.py serve</code> 后从 http://localhost:8000/team.html 打开即可派工。";
   }
   const whos = [...new Set(Object.values(ASSIGN).map(a => a.assignee).filter(Boolean))].sort();
   document.getElementById("fwho").innerHTML =
@@ -239,7 +239,7 @@ document.getElementById("d-ok").onclick = async () => {
   el.addEventListener(id === "q" ? "input" : "change", draw);
 });
 load().catch(e => document.getElementById("sub").textContent =
-  "加载失败：" + e.message + "（先跑 python3 inresearch.py workorders 生成队列，再用 python3 -m http.server 或 src/inresearch/interfaces/http.py 打开）");
+  "加载失败：" + e.message + "（先跑 python3 manage.py workorders 生成队列，再用 python3 manage.py serve 打开）");
 </script>
 </body>
 </html>

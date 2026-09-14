@@ -129,8 +129,11 @@ export function createTexturePool({THREE, document: documentRef = document,
           images.delete(request); active = null;
           if (disposed || token !== generation) return resolve({status: "superseded"});
           const element = texture.image, context = element.getContext("2d");
-          element.width = request.naturalWidth || request.width || width;
-          element.height = request.naturalHeight || request.height || height;
+          const nextWidth = request.naturalWidth || request.width || width;
+          const nextHeight = request.naturalHeight || request.height || height;
+          // GPU storage was allocated at the fallback size; a resized canvas needs a fresh upload.
+          if (nextWidth !== element.width || nextHeight !== element.height) texture.dispose();
+          element.width = nextWidth; element.height = nextHeight;
           context.clearRect(0, 0, element.width, element.height);
           context.drawImage(request, 0, 0, element.width, element.height);
           texture.needsUpdate = true; state = "ready"; settle = null; resolve({status: state});
