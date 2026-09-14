@@ -139143,6 +139143,4628 @@
       "corroboration": "待交叉验证",
       "notes": "2024 年 360 万颗已入库（ai-asic-units-2024）。原文 CAGR 区间写作 23-29，与 2024→2030 起止不一致，照录。",
       "asserter": "Yole"
+    },
+    {
+      "fact_id": "gszq2512-nand-demand-ai-2025e",
+      "metric_id": "nand_demand_ai",
+      "entity": {
+        "type": "market",
+        "id": "global-nand-ai",
+        "label": "全球 AI 负载 NAND 需求"
+      },
+      "value": 285.0,
+      "unit": "EB",
+      "caliber": {
+        "workload": "仅推理",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5428d6d75e4e83309beb03dd67f1bbc1ecfe5bafe684fddfcf363561371fd200",
+        "local_file": "20251209-国信证券-国信证券-计算机行业人工智能存储系列报告一：AI拉动需求增长，存储大周期方兴未艾(91页).pdf",
+        "locator": "第 78 页图 179「全球NAND供求情况预测」：「AI对NAND总需求（EB）」2025(E) = 285.0、2026(E) = 593.5；「ChatGPT NAND总需求（EB）」199.5 / 385.8",
+        "grade": "S3",
+        "originator": "国信证券经济研究所（熊莉、艾宪，2025-12-09）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "国信自建模型：ChatGPT 月活 11.4 亿、单用户每月上传 1GB，RAG NAND 需求 139.7EB 占总 NAND 70%，ChatGPT 占 AI NAND 需求 70% → 2025 年 285.0EB。2026E 593.5EB 已入库（nand-demand-inference-2026e）。同表 NAND 总需求（仅计 AI 拉动增量）2025/2026 = 1,035.9/1,344.4EB，对 IDC 供给 875.6/1,014.7EB 为 118%/132%。",
+      "asserter": "国信证券"
+    },
+    {
+      "fact_id": "sa2504-gb200-nvl72-rack-power-145kw",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "gb200-nvl72",
+        "label": "英伟达 GB200 NVL72 机柜"
+      },
+      "value": 145.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "era": "当期",
+        "power_basis": "实际满载",
+        "region": "Global"
+      },
+      "as_of": "2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9f4737e440e13480dcb7548a501bf3772708ec56894c66e4c724e035a3c9bfbc",
+        "local_file": "Huawei_AI_CloudMatrix_384_–_China’s_Answer_to_Nvidia_GB200_NVL72_–_SemiAnalysis.pdf",
+        "locator": "第 13–14 页「System-level Power Budget」：「We estimate that one CM384 supernode draws close to 500kW of power – more than 4 times that of Nvidia’s GB200 NVL72 rack, which consumes about 145kW」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（2025-04-16《Huawei AI CloudMatrix 384 – China’s Answer to Nvidia GB200 NVL72》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「about 145kW」为 SemiAnalysis 对 NVL72 单柜功耗的估计，用作 CM384 对比基准；与库内 SemiAnalysis 2024 年 125kW（实际功率密度）、2025-10 设计功率 130kW 及英伟达自报满载 120kW 口径不同、时点不同，并列不替代。同文估算华为 CM384 超节点（16 柜：12 计算柜 + 4 交换柜，384 颗昇腾 910C）近 500kW，是整系统功耗而非单柜，未录；每个 CM384 用 6,912 只 400G 光模块（scale-up 5,376、scale-out 1,536），配比菜单无华为档，缺口已记。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2503-rubin-fp4-pflops-package",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "rubin-vr200",
+        "label": "Rubin (VR200)"
+      },
+      "value": 50.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "Rubin (VR200)",
+        "precision": "FP4",
+        "scope": "单卡",
+        "sparsity": "稠密",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "48d0fe336612cae9dbc59b06800bea05b61e492addd6b9ecc1f2a37a72393aa6",
+        "local_file": "NVIDIA GTC 2025 – Built For Reasoning, Vera Rubin, Kyber, CPO, Dynamo Inference, Jensen Math, Feynman – SemiAnalysis.pdf",
+        "locator": "第 8 页：「Rubin will offer an incredible 50 PFLOPs of dense FP4 compute, more than tripling generation on generation vs B300」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（2025-03-19《NVIDIA GTC 2025 – Built For Reasoning, Vera Rubin, Kyber, CPO…》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单卡指一个 GPU 封装（含两颗 3nm 计算裸片）；英伟达从 VR200 起按裸片计数，VR200 NVL144 实为 72 个封装。SemiAnalysis 同时估计 Rubin TDP 约 1,800W。GTC 发布会规格经 SemiAnalysis 转述，spec_basis 记券商转述。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2503-rubin-ultra-fp4-pflops-package",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "rubin-ultra",
+        "label": "Rubin Ultra"
+      },
+      "value": 100.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "Rubin Ultra",
+        "precision": "FP4",
+        "scope": "单卡",
+        "sparsity": "稠密",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "48d0fe336612cae9dbc59b06800bea05b61e492addd6b9ecc1f2a37a72393aa6",
+        "local_file": "NVIDIA GTC 2025 – Built For Reasoning, Vera Rubin, Kyber, CPO, Dynamo Inference, Jensen Math, Feynman – SemiAnalysis.pdf",
+        "locator": "第 11 页：「There will be a row of 4 reticle-sized GPUs flanked by 2 I/O chiplets. With double the compute area, compute doubles to 100 PFLOPs of dense FP4」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（2025-03-19《NVIDIA GTC 2025 – Built For Reasoning, Vera Rubin, Kyber, CPO…》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单卡指一个封装（4 颗接近光罩尺寸的 GPU 裸片 + 2 颗 I/O 芯粒）。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2503-rubin-hbm4-capacity-package",
+      "metric_id": "accelerator_memory_spec",
+      "entity": {
+        "type": "product",
+        "id": "rubin-vr200",
+        "label": "Rubin (VR200)"
+      },
+      "value": 288.0,
+      "unit": "GB",
+      "caliber": {
+        "product": "Rubin (VR200)",
+        "parameter": "容量",
+        "memory_type": "HBM4",
+        "scope": "单卡",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "48d0fe336612cae9dbc59b06800bea05b61e492addd6b9ecc1f2a37a72393aa6",
+        "local_file": "NVIDIA GTC 2025 – Built For Reasoning, Vera Rubin, Kyber, CPO, Dynamo Inference, Jensen Math, Feynman – SemiAnalysis.pdf",
+        "locator": "第 10 页：「Nvidia’s HBM capacity will remain the same at 288GB generation on generation but is upgraded to HBM4: 8 stacks of 12-Hi with the same 24 GB layer density」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（2025-03-19《NVIDIA GTC 2025 – Built For Reasoning, Vera Rubin, Kyber, CPO…》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 GB（容量）。8 堆叠 × 12 层；HBM4 聚合带宽 13TB/s（带宽参数单位为 TB/s，与本指标 GB 单位不合未另录）。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2503-b300-hbm3e-capacity-package",
+      "metric_id": "accelerator_memory_spec",
+      "entity": {
+        "type": "product",
+        "id": "blackwell-ultra-b300",
+        "label": "Blackwell Ultra B300"
+      },
+      "value": 288.0,
+      "unit": "GB",
+      "caliber": {
+        "product": "Blackwell Ultra B300",
+        "parameter": "容量",
+        "memory_type": "HBM3e",
+        "scope": "单卡",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "48d0fe336612cae9dbc59b06800bea05b61e492addd6b9ecc1f2a37a72393aa6",
+        "local_file": "NVIDIA GTC 2025 – Built For Reasoning, Vera Rubin, Kyber, CPO, Dynamo Inference, Jensen Math, Feynman – SemiAnalysis.pdf",
+        "locator": "第 6 页：「package (8 stacks of 12-Hi HBM3E) but with the same bandwidth of 8 TB/s」；第 10 页：「Nvidia’s HBM capacity will remain the same at 288GB generation on generation」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（2025-03-19《NVIDIA GTC 2025 – Built For Reasoning, Vera Rubin, Kyber, CPO…》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 GB（容量）。B300 为 8 堆叠 × 12 层 HBM3E；Rubin 维持 288GB 表明 B300 同为 288GB（第 10 页「generation on generation」）。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2503-rubin-ultra-hbm-capacity-package",
+      "metric_id": "accelerator_memory_spec",
+      "entity": {
+        "type": "product",
+        "id": "rubin-ultra",
+        "label": "Rubin Ultra"
+      },
+      "value": 1024.0,
+      "unit": "GB",
+      "caliber": {
+        "product": "Rubin Ultra",
+        "parameter": "容量",
+        "memory_type": "未注明",
+        "scope": "单卡",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "48d0fe336612cae9dbc59b06800bea05b61e492addd6b9ecc1f2a37a72393aa6",
+        "local_file": "NVIDIA GTC 2025 – Built For Reasoning, Vera Rubin, Kyber, CPO, Dynamo Inference, Jensen Math, Feynman – SemiAnalysis.pdf",
+        "locator": "第 11 页：「HBM capacity goes to 1024GB, more than 3.5x the capacity of vanilla Rubin……there will be 16 stacks of HBM4E with 16 layers of 32Gb DRAM core die」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（2025-03-19《NVIDIA GTC 2025 – Built For Reasoning, Vera Rubin, Kyber, CPO…》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 GB（容量）。内存为 HBM4E（16 堆叠 × 16 层 32Gb），memory_type 菜单无 HBM4E 档，记未注明。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "yole2503-hbm-revenue-2024",
+      "metric_id": "hbm_demand_value",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 170.0,
+      "unit": "亿美元",
+      "caliber": {
+        "generation": "合计",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2c0132081283addfd566e20fba15f9ffe96a7bfce0588d4c061d24e2b78be4c2",
+        "local_file": "Next-Generation DRAM 2025 Focus on HBM and 3D DRAM.pdf",
+        "locator": "第 15 页「NEXT-GENERATION DRAM – MARKET OVERVIEW」：「Global HBM revenue is projected to increase from $17B in 2024 to $98B by 2030, reflecting a 33% CAGR. Consequently, HBM’s revenue share within the DRAM market is expected to increase from 18% in 2024 to 50% by 2030」",
+        "grade": "S3",
+        "originator": "Yole Group《Next-Generation DRAM 2025 – Focus on HBM and 3D DRAM》（2025-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "170 亿美元 = $17B。同年 HBM 占 DRAM 营收 18%，DRAM 总营收 970 亿美元（常规 DRAM 800 亿）。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2503-hbm-revenue-2025e",
+      "metric_id": "hbm_demand_value",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 340.0,
+      "unit": "亿美元",
+      "caliber": {
+        "generation": "合计",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2c0132081283addfd566e20fba15f9ffe96a7bfce0588d4c061d24e2b78be4c2",
+        "local_file": "Next-Generation DRAM 2025 Focus on HBM and 3D DRAM.pdf",
+        "locator": "第 15 页「NEXT-GENERATION DRAM – MARKET OVERVIEW」：「The market will see another significant inflection point in 2025, with HBM revenues projected to double to ~$34B」",
+        "grade": "S3",
+        "originator": "Yole Group《Next-Generation DRAM 2025 – Focus on HBM and 3D DRAM》（2025-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「~$34B」按点值记，约为 2024 年两倍。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2503-hbm-revenue-2030e",
+      "metric_id": "hbm_demand_value",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 980.0,
+      "unit": "亿美元",
+      "caliber": {
+        "generation": "合计",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2c0132081283addfd566e20fba15f9ffe96a7bfce0588d4c061d24e2b78be4c2",
+        "local_file": "Next-Generation DRAM 2025 Focus on HBM and 3D DRAM.pdf",
+        "locator": "第 15 页「NEXT-GENERATION DRAM – MARKET OVERVIEW」：「Global HBM revenue is projected to increase from $17B in 2024 to $98B by 2030, reflecting a 33% CAGR」",
+        "grade": "S3",
+        "originator": "Yole Group《Next-Generation DRAM 2025 – Focus on HBM and 3D DRAM》（2025-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2024–2030 年 CAGR 33%；届时占 DRAM 营收 50%，DRAM 总营收 1,945 亿美元。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2503-hbm-bit-growth-2023",
+      "metric_id": "hbm_bit_shipment_growth",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 187.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "位出货量",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2c0132081283addfd566e20fba15f9ffe96a7bfce0588d4c061d24e2b78be4c2",
+        "local_file": "Next-Generation DRAM 2025 Focus on HBM and 3D DRAM.pdf",
+        "locator": "第 15 页「NEXT-GENERATION DRAM – MARKET OVERVIEW」：「resulted in an unprecedented 187% year-over-year (YoY) increase in HBM bit shipments in 2023, followed by an additional 193% surge in 2024」",
+        "grade": "S3",
+        "originator": "Yole Group《Next-Generation DRAM 2025 – Focus on HBM and 3D DRAM》（2025-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "同比增速；Yole 预测 2024–2030 年位出货 CAGR 31%。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2503-hbm-bit-growth-2024",
+      "metric_id": "hbm_bit_shipment_growth",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 193.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "位出货量",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2c0132081283addfd566e20fba15f9ffe96a7bfce0588d4c061d24e2b78be4c2",
+        "local_file": "Next-Generation DRAM 2025 Focus on HBM and 3D DRAM.pdf",
+        "locator": "第 15 页「NEXT-GENERATION DRAM – MARKET OVERVIEW」：「followed by an additional 193% surge in 2024」",
+        "grade": "S3",
+        "originator": "Yole Group《Next-Generation DRAM 2025 – Focus on HBM and 3D DRAM》（2025-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "同比增速。同页标题写「over 190% YoY growth in 2024」。2024 年 HBM 晶圆投片约 21.6 万片/月，同比 +150% 以上。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2503-hbm-bit-volume-2024",
+      "metric_id": "hbm_demand_volume",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 14.88,
+      "unit": "亿 GB",
+      "caliber": {
+        "measure": "位容量",
+        "generation": "合计",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2c0132081283addfd566e20fba15f9ffe96a7bfce0588d4c061d24e2b78be4c2",
+        "local_file": "Next-Generation DRAM 2025 Focus on HBM and 3D DRAM.pdf",
+        "locator": "第 15 页「NEXT-GENERATION DRAM – MARKET OVERVIEW」：「HBM represented 5% of total DRAM bits in 2024, equivalent to 11.9Eb (1.49M GB) out of 254Eb (31.7M GB), and is projected to reach 9% by 2030」",
+        "grade": "S3",
+        "originator": "Yole Group《Next-Generation DRAM 2025 – Focus on HBM and 3D DRAM》（2025-03）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**原文括注「1.49M GB」单位有误**：11.9Eb = 1.4875EB = 14.88 亿 GB，而非 149 万 GB（254Eb 同理应为 317.5 亿 GB）。按 Eb 数值换算入库。与库内 hbmstat-demand-total-2024（10.772 亿 GB，出处未注明）口径与来源不同，并列。",
+      "asserter": "Yole",
+      "derivation": "11.9 Eb ÷ 8 = 1.4875 EB；1 EB = 10^9 GB → 14.875 亿 GB，取 14.88。"
+    },
+    {
+      "fact_id": "sa2404-b100-fp16-pflops",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "b100-fp16-pflops",
+        "label": "B100"
+      },
+      "value": 1.75,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "B100",
+        "precision": "FP16",
+        "scope": "单卡",
+        "sparsity": "未注明",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c6de90d0a6802076e91f76b713ff2970cb5c03b0ab8f4a213d30730e7cc9aa38",
+        "local_file": "Nvidia Blackwell Perf TCO Analysis - B100 vs B200 vs GB200NVL72.pdf",
+        "locator": "第 3 页「Specifications – More Than Meets The Eye」：「The air-cooled 700W B100 will be the first to ship and will deliver 1,750 TFLOPS of FP16/BF16 compute……the B200 will come to market at a higher power and faster clock speed, delivering 2,250 TFLOPS of FP16/BF16 compute……the use of liquid cooling in the GB200 NVL72 will allow the Blackwell GPU to run at even higher power levels……delivering 2,500 TFLOPS of FP16/BF16 compute – a 153% improvement over the H100 and H200」（图源注 Source: Nvidia, SemiAnalysis）",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia Blackwell Perf TCO Analysis – B100 vs B200 vs GB200NVL72》（打印日期 2024-04-10）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文单位 TFLOPS，÷1000 折 PFLOPS；as_of 原文无发布日期，取页眉打印日期 2024-04-10 所在月。",
+      "corroboration": "待交叉验证",
+      "notes": "原文「FP16/BF16」同一数，precision 记 FP16；未写稠密或稀疏。B100 为风冷 700W，沿用 HGX H100 基板，降频运行。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2404-b200-fp16-pflops",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "b200-fp16-pflops",
+        "label": "B200"
+      },
+      "value": 2.25,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "B200",
+        "precision": "FP16",
+        "scope": "单卡",
+        "sparsity": "未注明",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c6de90d0a6802076e91f76b713ff2970cb5c03b0ab8f4a213d30730e7cc9aa38",
+        "local_file": "Nvidia Blackwell Perf TCO Analysis - B100 vs B200 vs GB200NVL72.pdf",
+        "locator": "第 3 页「Specifications – More Than Meets The Eye」：「The air-cooled 700W B100 will be the first to ship and will deliver 1,750 TFLOPS of FP16/BF16 compute……the B200 will come to market at a higher power and faster clock speed, delivering 2,250 TFLOPS of FP16/BF16 compute……the use of liquid cooling in the GB200 NVL72 will allow the Blackwell GPU to run at even higher power levels……delivering 2,500 TFLOPS of FP16/BF16 compute – a 153% improvement over the H100 and H200」（图源注 Source: Nvidia, SemiAnalysis）",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia Blackwell Perf TCO Analysis – B100 vs B200 vs GB200NVL72》（打印日期 2024-04-10）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文单位 TFLOPS，÷1000 折 PFLOPS；as_of 原文无发布日期，取页眉打印日期 2024-04-10 所在月。",
+      "corroboration": "待交叉验证",
+      "notes": "原文「FP16/BF16」同一数，precision 记 FP16；未写稠密或稀疏。B200 为更高功耗与主频的版本；原文另提 1,200W B200 未列入。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2404-gb200-nvl72-gpu-fp16-pflops",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "gb200-nvl72-gpu-fp16-pflops",
+        "label": "Blackwell GPU（GB200 NVL72 液冷）"
+      },
+      "value": 2.5,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "Blackwell GPU（GB200 NVL72 液冷）",
+        "precision": "FP16",
+        "scope": "单卡",
+        "sparsity": "未注明",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c6de90d0a6802076e91f76b713ff2970cb5c03b0ab8f4a213d30730e7cc9aa38",
+        "local_file": "Nvidia Blackwell Perf TCO Analysis - B100 vs B200 vs GB200NVL72.pdf",
+        "locator": "第 3 页「Specifications – More Than Meets The Eye」：「The air-cooled 700W B100 will be the first to ship and will deliver 1,750 TFLOPS of FP16/BF16 compute……the B200 will come to market at a higher power and faster clock speed, delivering 2,250 TFLOPS of FP16/BF16 compute……the use of liquid cooling in the GB200 NVL72 will allow the Blackwell GPU to run at even higher power levels……delivering 2,500 TFLOPS of FP16/BF16 compute – a 153% improvement over the H100 and H200」（图源注 Source: Nvidia, SemiAnalysis）",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia Blackwell Perf TCO Analysis – B100 vs B200 vs GB200NVL72》（打印日期 2024-04-10）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文单位 TFLOPS，÷1000 折 PFLOPS；as_of 原文无发布日期，取页眉打印日期 2024-04-10 所在月。",
+      "corroboration": "待交叉验证",
+      "notes": "原文「FP16/BF16」同一数，precision 记 FP16；未写稠密或稀疏。液冷使同一 Blackwell GPU 功耗更高；较 H100/H200 +153%。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-tco-per-gpu-hour-h100-neocloud",
+      "metric_id": "gpu_hourly_tco",
+      "entity": {
+        "type": "segment",
+        "id": "neocloud-giant-gpu-deployment",
+        "label": "Neocloud 巨头自建 GPU 集群"
+      },
+      "value": 1.65,
+      "unit": "美元/GPU 小时",
+      "caliber": {
+        "cost_scope": "全规模集群 TCO",
+        "asset": "H100",
+        "scale": "单集群",
+        "region": "未披露",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ff62d4c6ebd82c5400e4675f1206696226359079053828acd7ce7cce552dde76",
+        "local_file": "MI300X vs H100 vs H200 Benchmark Part 1_ Training – CUDA Moat Still Alive – SemiAnalysis.pdf",
+        "locator": "第 55 页：「Putting everything together, a Neocloud Giant can deploy the MI300X for a much lower total cost per hour of $1.23 vs $1.65 for the H100 and $1.66 for the H200, while a Hyperscaler can deploy the MI300X for $1.09 per hour vs $1.50 for the H100 and $1.51 for the H200」",
+        "grade": "S3",
+        "originator": "SemiAnalysis AI TCO Model（2024-12-22《MI300X vs H100 vs H200 Benchmark Part 1: Training》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "部署方类型（Neocloud 巨头 vs 超大规模云）区分在 entity，二者议价与网络成本不同：Neocloud 集群网络 BoM 约 520 万美元（每台 8 卡服务器 40,705 美元），超大规模云网络 capex 每台约 18,677 美元。含服务器、网络、托管与资本成本的全成本每 GPU 小时；原文未写部署地域，region 记未披露。按训练有效算力折算后 MI300X 成本优势消失（Neocloud $2.47/hr per effective PFLOP/s，超大规模云 $2.10，H200 $1.85），该单位无对应指标未录。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-tco-per-gpu-hour-h200-neocloud",
+      "metric_id": "gpu_hourly_tco",
+      "entity": {
+        "type": "segment",
+        "id": "neocloud-giant-gpu-deployment",
+        "label": "Neocloud 巨头自建 GPU 集群"
+      },
+      "value": 1.66,
+      "unit": "美元/GPU 小时",
+      "caliber": {
+        "cost_scope": "全规模集群 TCO",
+        "asset": "H200",
+        "scale": "单集群",
+        "region": "未披露",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ff62d4c6ebd82c5400e4675f1206696226359079053828acd7ce7cce552dde76",
+        "local_file": "MI300X vs H100 vs H200 Benchmark Part 1_ Training – CUDA Moat Still Alive – SemiAnalysis.pdf",
+        "locator": "第 55 页：「Putting everything together, a Neocloud Giant can deploy the MI300X for a much lower total cost per hour of $1.23 vs $1.65 for the H100 and $1.66 for the H200, while a Hyperscaler can deploy the MI300X for $1.09 per hour vs $1.50 for the H100 and $1.51 for the H200」",
+        "grade": "S3",
+        "originator": "SemiAnalysis AI TCO Model（2024-12-22《MI300X vs H100 vs H200 Benchmark Part 1: Training》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "部署方类型（Neocloud 巨头 vs 超大规模云）区分在 entity，二者议价与网络成本不同：Neocloud 集群网络 BoM 约 520 万美元（每台 8 卡服务器 40,705 美元），超大规模云网络 capex 每台约 18,677 美元。含服务器、网络、托管与资本成本的全成本每 GPU 小时；原文未写部署地域，region 记未披露。按训练有效算力折算后 MI300X 成本优势消失（Neocloud $2.47/hr per effective PFLOP/s，超大规模云 $2.10，H200 $1.85），该单位无对应指标未录。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-tco-per-gpu-hour-mi300x-neocloud",
+      "metric_id": "gpu_hourly_tco",
+      "entity": {
+        "type": "segment",
+        "id": "neocloud-giant-gpu-deployment",
+        "label": "Neocloud 巨头自建 GPU 集群"
+      },
+      "value": 1.23,
+      "unit": "美元/GPU 小时",
+      "caliber": {
+        "cost_scope": "全规模集群 TCO",
+        "asset": "其他",
+        "scale": "单集群",
+        "region": "未披露",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ff62d4c6ebd82c5400e4675f1206696226359079053828acd7ce7cce552dde76",
+        "local_file": "MI300X vs H100 vs H200 Benchmark Part 1_ Training – CUDA Moat Still Alive – SemiAnalysis.pdf",
+        "locator": "第 55 页：「Putting everything together, a Neocloud Giant can deploy the MI300X for a much lower total cost per hour of $1.23 vs $1.65 for the H100 and $1.66 for the H200, while a Hyperscaler can deploy the MI300X for $1.09 per hour vs $1.50 for the H100 and $1.51 for the H200」",
+        "grade": "S3",
+        "originator": "SemiAnalysis AI TCO Model（2024-12-22《MI300X vs H100 vs H200 Benchmark Part 1: Training》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "MI300X 不在 asset 菜单，记其他。部署方类型（Neocloud 巨头 vs 超大规模云）区分在 entity，二者议价与网络成本不同：Neocloud 集群网络 BoM 约 520 万美元（每台 8 卡服务器 40,705 美元），超大规模云网络 capex 每台约 18,677 美元。含服务器、网络、托管与资本成本的全成本每 GPU 小时；原文未写部署地域，region 记未披露。按训练有效算力折算后 MI300X 成本优势消失（Neocloud $2.47/hr per effective PFLOP/s，超大规模云 $2.10，H200 $1.85），该单位无对应指标未录。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-tco-per-gpu-hour-h100-hyperscaler",
+      "metric_id": "gpu_hourly_tco",
+      "entity": {
+        "type": "segment",
+        "id": "hyperscaler-gpu-deployment",
+        "label": "超大规模云厂商自建 GPU 集群"
+      },
+      "value": 1.5,
+      "unit": "美元/GPU 小时",
+      "caliber": {
+        "cost_scope": "全规模集群 TCO",
+        "asset": "H100",
+        "scale": "单集群",
+        "region": "未披露",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ff62d4c6ebd82c5400e4675f1206696226359079053828acd7ce7cce552dde76",
+        "local_file": "MI300X vs H100 vs H200 Benchmark Part 1_ Training – CUDA Moat Still Alive – SemiAnalysis.pdf",
+        "locator": "第 55 页：「Putting everything together, a Neocloud Giant can deploy the MI300X for a much lower total cost per hour of $1.23 vs $1.65 for the H100 and $1.66 for the H200, while a Hyperscaler can deploy the MI300X for $1.09 per hour vs $1.50 for the H100 and $1.51 for the H200」",
+        "grade": "S3",
+        "originator": "SemiAnalysis AI TCO Model（2024-12-22《MI300X vs H100 vs H200 Benchmark Part 1: Training》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "部署方类型（Neocloud 巨头 vs 超大规模云）区分在 entity，二者议价与网络成本不同：Neocloud 集群网络 BoM 约 520 万美元（每台 8 卡服务器 40,705 美元），超大规模云网络 capex 每台约 18,677 美元。含服务器、网络、托管与资本成本的全成本每 GPU 小时；原文未写部署地域，region 记未披露。按训练有效算力折算后 MI300X 成本优势消失（Neocloud $2.47/hr per effective PFLOP/s，超大规模云 $2.10，H200 $1.85），该单位无对应指标未录。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-tco-per-gpu-hour-h200-hyperscaler",
+      "metric_id": "gpu_hourly_tco",
+      "entity": {
+        "type": "segment",
+        "id": "hyperscaler-gpu-deployment",
+        "label": "超大规模云厂商自建 GPU 集群"
+      },
+      "value": 1.51,
+      "unit": "美元/GPU 小时",
+      "caliber": {
+        "cost_scope": "全规模集群 TCO",
+        "asset": "H200",
+        "scale": "单集群",
+        "region": "未披露",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ff62d4c6ebd82c5400e4675f1206696226359079053828acd7ce7cce552dde76",
+        "local_file": "MI300X vs H100 vs H200 Benchmark Part 1_ Training – CUDA Moat Still Alive – SemiAnalysis.pdf",
+        "locator": "第 55 页：「Putting everything together, a Neocloud Giant can deploy the MI300X for a much lower total cost per hour of $1.23 vs $1.65 for the H100 and $1.66 for the H200, while a Hyperscaler can deploy the MI300X for $1.09 per hour vs $1.50 for the H100 and $1.51 for the H200」",
+        "grade": "S3",
+        "originator": "SemiAnalysis AI TCO Model（2024-12-22《MI300X vs H100 vs H200 Benchmark Part 1: Training》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "部署方类型（Neocloud 巨头 vs 超大规模云）区分在 entity，二者议价与网络成本不同：Neocloud 集群网络 BoM 约 520 万美元（每台 8 卡服务器 40,705 美元），超大规模云网络 capex 每台约 18,677 美元。含服务器、网络、托管与资本成本的全成本每 GPU 小时；原文未写部署地域，region 记未披露。按训练有效算力折算后 MI300X 成本优势消失（Neocloud $2.47/hr per effective PFLOP/s，超大规模云 $2.10，H200 $1.85），该单位无对应指标未录。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-tco-per-gpu-hour-mi300x-hyperscaler",
+      "metric_id": "gpu_hourly_tco",
+      "entity": {
+        "type": "segment",
+        "id": "hyperscaler-gpu-deployment",
+        "label": "超大规模云厂商自建 GPU 集群"
+      },
+      "value": 1.09,
+      "unit": "美元/GPU 小时",
+      "caliber": {
+        "cost_scope": "全规模集群 TCO",
+        "asset": "其他",
+        "scale": "单集群",
+        "region": "未披露",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ff62d4c6ebd82c5400e4675f1206696226359079053828acd7ce7cce552dde76",
+        "local_file": "MI300X vs H100 vs H200 Benchmark Part 1_ Training – CUDA Moat Still Alive – SemiAnalysis.pdf",
+        "locator": "第 55 页：「Putting everything together, a Neocloud Giant can deploy the MI300X for a much lower total cost per hour of $1.23 vs $1.65 for the H100 and $1.66 for the H200, while a Hyperscaler can deploy the MI300X for $1.09 per hour vs $1.50 for the H100 and $1.51 for the H200」",
+        "grade": "S3",
+        "originator": "SemiAnalysis AI TCO Model（2024-12-22《MI300X vs H100 vs H200 Benchmark Part 1: Training》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "MI300X 不在 asset 菜单，记其他。部署方类型（Neocloud 巨头 vs 超大规模云）区分在 entity，二者议价与网络成本不同：Neocloud 集群网络 BoM 约 520 万美元（每台 8 卡服务器 40,705 美元），超大规模云网络 capex 每台约 18,677 美元。含服务器、网络、托管与资本成本的全成本每 GPU 小时；原文未写部署地域，region 记未披露。按训练有效算力折算后 MI300X 成本优势消失（Neocloud $2.47/hr per effective PFLOP/s，超大规模云 $2.10，H200 $1.85），该单位无对应指标未录。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "gtja2307-caict-compute-share-us-2021",
+      "metric_id": "region_compute_share",
+      "entity": {
+        "type": "region",
+        "id": "us-compute",
+        "label": "美国算力规模"
+      },
+      "value": 34.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "算力规模",
+        "denominator": "全球总量",
+        "region": "US",
+        "basis": "行业机构"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6bc2a5af4de8be45e8012585015f007d7b17ef0785ceb3a6b97e796087f3de13",
+        "local_file": "20230716-国泰君安-人工智能行业AI算力报告：穿越AI的基石，算力基建的起始(100页).pdf",
+        "locator": "第 10 页 1.2：「根据信通院算力白皮书，2021年全球算力增速超过40%……美国、中国、欧洲、日本在全球算力规模中的份额分别为 34%、33%、14%和 5%，其中全球基础算力美国份额达37%，中国以 26%份额排名第二;智能算力方面，中国、美国分别占比为 45%和 28%；美国、日本、中国在超级计算综合性能指标方面份额分别为48%、22%、18%」",
+        "grade": "S3",
+        "originator": "国泰君安证券研究（2023-07-16《AI 算力报告：穿越 AI 的基石》）转引中国信通院算力白皮书"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文段首注明「根据信通院算力白皮书，2021年全球算力增速……」，份额句未单列年份，按同段 2021 年数据推定 as_of=2021。",
+      "corroboration": "待交叉验证",
+      "notes": "全部算力口径（基础+智能+超算）占全球份额；日本 5%（region 菜单无 JP 未录）。同段分项份额——基础算力美 37%/中 26%，智能算力中 45%/美 28%，超算美 48%/日 22%/中 18%——measure 无算力类型维，与总份额同口径键冲突未录。库内说明提到中商口径中国 2021 年亦为 33%。",
+      "asserter": "中国信通院"
+    },
+    {
+      "fact_id": "gtja2307-caict-compute-share-cn-2021",
+      "metric_id": "region_compute_share",
+      "entity": {
+        "type": "region",
+        "id": "cn-compute",
+        "label": "中国算力规模"
+      },
+      "value": 33.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "算力规模",
+        "denominator": "全球总量",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6bc2a5af4de8be45e8012585015f007d7b17ef0785ceb3a6b97e796087f3de13",
+        "local_file": "20230716-国泰君安-人工智能行业AI算力报告：穿越AI的基石，算力基建的起始(100页).pdf",
+        "locator": "第 10 页 1.2：「根据信通院算力白皮书，2021年全球算力增速超过40%……美国、中国、欧洲、日本在全球算力规模中的份额分别为 34%、33%、14%和 5%，其中全球基础算力美国份额达37%，中国以 26%份额排名第二;智能算力方面，中国、美国分别占比为 45%和 28%；美国、日本、中国在超级计算综合性能指标方面份额分别为48%、22%、18%」",
+        "grade": "S3",
+        "originator": "国泰君安证券研究（2023-07-16《AI 算力报告：穿越 AI 的基石》）转引中国信通院算力白皮书"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文段首注明「根据信通院算力白皮书，2021年全球算力增速……」，份额句未单列年份，按同段 2021 年数据推定 as_of=2021。",
+      "corroboration": "待交叉验证",
+      "notes": "全部算力口径（基础+智能+超算）占全球份额；日本 5%（region 菜单无 JP 未录）。同段分项份额——基础算力美 37%/中 26%，智能算力中 45%/美 28%，超算美 48%/日 22%/中 18%——measure 无算力类型维，与总份额同口径键冲突未录。库内说明提到中商口径中国 2021 年亦为 33%。",
+      "asserter": "中国信通院"
+    },
+    {
+      "fact_id": "gtja2307-caict-compute-share-eu-2021",
+      "metric_id": "region_compute_share",
+      "entity": {
+        "type": "region",
+        "id": "eu-compute",
+        "label": "欧洲算力规模"
+      },
+      "value": 14.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "算力规模",
+        "denominator": "全球总量",
+        "region": "EU",
+        "basis": "行业机构"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6bc2a5af4de8be45e8012585015f007d7b17ef0785ceb3a6b97e796087f3de13",
+        "local_file": "20230716-国泰君安-人工智能行业AI算力报告：穿越AI的基石，算力基建的起始(100页).pdf",
+        "locator": "第 10 页 1.2：「根据信通院算力白皮书，2021年全球算力增速超过40%……美国、中国、欧洲、日本在全球算力规模中的份额分别为 34%、33%、14%和 5%，其中全球基础算力美国份额达37%，中国以 26%份额排名第二;智能算力方面，中国、美国分别占比为 45%和 28%；美国、日本、中国在超级计算综合性能指标方面份额分别为48%、22%、18%」",
+        "grade": "S3",
+        "originator": "国泰君安证券研究（2023-07-16《AI 算力报告：穿越 AI 的基石》）转引中国信通院算力白皮书"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文段首注明「根据信通院算力白皮书，2021年全球算力增速……」，份额句未单列年份，按同段 2021 年数据推定 as_of=2021。",
+      "corroboration": "待交叉验证",
+      "notes": "全部算力口径（基础+智能+超算）占全球份额；日本 5%（region 菜单无 JP 未录）。同段分项份额——基础算力美 37%/中 26%，智能算力中 45%/美 28%，超算美 48%/日 22%/中 18%——measure 无算力类型维，与总份额同口径键冲突未录。库内说明提到中商口径中国 2021 年亦为 33%。",
+      "asserter": "中国信通院"
+    },
+    {
+      "fact_id": "sia2606-wsts-dc-logic-chip-market-2022",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "dc-logic-chips",
+        "label": "数据中心逻辑芯片（以 AI 加速器为主）"
+      },
+      "value": 300.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 计算芯片市场规模",
+        "chip_type": "不分类型",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "80aa31ef0a6870fd2f1e6674d976afc976939ce9cbacbe2e5ccf9e2d78574730",
+        "local_file": "20260702-驱动人工智能：支撑数据中心的半导体生态系统.pdf",
+        "locator": "第 31 页「IV. The AI growth curve: Market view」：「The market for data center logic chips (primarily AI Accelerators) was approximately $30 billion in 2022, expanded to $70 billion in 2024, and is projected by WSTS to reach $190 billion by 2026」",
+        "grade": "S3",
+        "originator": "SIA 与 Deloitte《Powering AI: The Semiconductor Ecosystem at the Foundation of Data Centers》（2026-06）转引 WSTS"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "WSTS 数据中心逻辑芯片口径（主要为 AI 加速器，含 CPU 等逻辑芯片，不含存储），原文「approximately」按点值记。2026 年为 WSTS 预测，原文未写预测发布时间，不带 @。与库内 Yole 数据中心 GPU 营收（2024 年 1,012 亿美元）口径不同：WSTS 2024 年逻辑芯片总额反而更低，不可互相替代。",
+      "asserter": "WSTS"
+    },
+    {
+      "fact_id": "sia2606-wsts-dc-logic-chip-market-2024",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "dc-logic-chips",
+        "label": "数据中心逻辑芯片（以 AI 加速器为主）"
+      },
+      "value": 700.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 计算芯片市场规模",
+        "chip_type": "不分类型",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "80aa31ef0a6870fd2f1e6674d976afc976939ce9cbacbe2e5ccf9e2d78574730",
+        "local_file": "20260702-驱动人工智能：支撑数据中心的半导体生态系统.pdf",
+        "locator": "第 31 页「IV. The AI growth curve: Market view」：「The market for data center logic chips (primarily AI Accelerators) was approximately $30 billion in 2022, expanded to $70 billion in 2024, and is projected by WSTS to reach $190 billion by 2026」",
+        "grade": "S3",
+        "originator": "SIA 与 Deloitte《Powering AI: The Semiconductor Ecosystem at the Foundation of Data Centers》（2026-06）转引 WSTS"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "WSTS 数据中心逻辑芯片口径（主要为 AI 加速器，含 CPU 等逻辑芯片，不含存储），原文「approximately」按点值记。2026 年为 WSTS 预测，原文未写预测发布时间，不带 @。与库内 Yole 数据中心 GPU 营收（2024 年 1,012 亿美元）口径不同：WSTS 2024 年逻辑芯片总额反而更低，不可互相替代。",
+      "asserter": "WSTS"
+    },
+    {
+      "fact_id": "sia2606-wsts-dc-logic-chip-market-2026e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "dc-logic-chips",
+        "label": "数据中心逻辑芯片（以 AI 加速器为主）"
+      },
+      "value": 1900.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 计算芯片市场规模",
+        "chip_type": "不分类型",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2026E",
+      "bound": "point",
+      "evidence": {
+        "sha256": "80aa31ef0a6870fd2f1e6674d976afc976939ce9cbacbe2e5ccf9e2d78574730",
+        "local_file": "20260702-驱动人工智能：支撑数据中心的半导体生态系统.pdf",
+        "locator": "第 31 页「IV. The AI growth curve: Market view」：「The market for data center logic chips (primarily AI Accelerators) was approximately $30 billion in 2022, expanded to $70 billion in 2024, and is projected by WSTS to reach $190 billion by 2026」",
+        "grade": "S3",
+        "originator": "SIA 与 Deloitte《Powering AI: The Semiconductor Ecosystem at the Foundation of Data Centers》（2026-06）转引 WSTS"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "WSTS 数据中心逻辑芯片口径（主要为 AI 加速器，含 CPU 等逻辑芯片，不含存储），原文「approximately」按点值记。2026 年为 WSTS 预测，原文未写预测发布时间，不带 @。与库内 Yole 数据中心 GPU 营收（2024 年 1,012 亿美元）口径不同：WSTS 2024 年逻辑芯片总额反而更低，不可互相替代。同页 Deloitte 另估 AI 数据中心服务器全部半导体营收 2024e 1,230 亿、2026f 6,700 亿、2028f 乐观 1.2 万亿/保守 8,860 亿美元，情景维与口径不合未录。",
+      "asserter": "WSTS"
+    },
+    {
+      "fact_id": "ms2601-cowos-allocation-nvidia-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "entity": {
+        "type": "market",
+        "id": "tsmc-cowos-2026",
+        "label": "2026 年 CoWoS 产能分配"
+      },
+      "value": 725.0,
+      "unit": "千片",
+      "caliber": {
+        "customer": "NVIDIA",
+        "measure": "已分配产能",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 31 页「HBM Consumption in 2026e – Up to 32bn Gb」表「CoWoS capacity allocation (k wafers)」列（AI GPU 2026e / AI ASIC 2026e）：B300 390、Rubin R200 260、H200 75；MI300 3、MI350/375 7、MI400 65；TPU v7p 145、TPU v7e 80、TPU v8 30；Trainium 2.5 20、Trainium 3 80；xAI 10；Maia 200 4、Maia 300 5；MTIA 3 15；Nexus (Titan 1) 10；Total 1,434",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "大摩按芯片设计方/客户的 2026 年 CoWoS 产能分配估计（千片晶圆）。与库内 ms-cowos-demand-*（大摩较早版次的「需求」口径，未注版次）并列，不替代。",
+      "asserter": "摩根士丹利",
+      "derivation": "按原表分产品相加：B300 390 + Rubin R200 260 + H200 75 = 725。"
+    },
+    {
+      "fact_id": "ms2601-cowos-allocation-amd-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "entity": {
+        "type": "market",
+        "id": "tsmc-cowos-2026",
+        "label": "2026 年 CoWoS 产能分配"
+      },
+      "value": 75.0,
+      "unit": "千片",
+      "caliber": {
+        "customer": "AMD",
+        "measure": "已分配产能",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 31 页「HBM Consumption in 2026e – Up to 32bn Gb」表「CoWoS capacity allocation (k wafers)」列（AI GPU 2026e / AI ASIC 2026e）：B300 390、Rubin R200 260、H200 75；MI300 3、MI350/375 7、MI400 65；TPU v7p 145、TPU v7e 80、TPU v8 30；Trainium 2.5 20、Trainium 3 80；xAI 10；Maia 200 4、Maia 300 5；MTIA 3 15；Nexus (Titan 1) 10；Total 1,434",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "大摩按芯片设计方/客户的 2026 年 CoWoS 产能分配估计（千片晶圆）。与库内 ms-cowos-demand-*（大摩较早版次的「需求」口径，未注版次）并列，不替代。",
+      "asserter": "摩根士丹利",
+      "derivation": "按原表分产品相加：MI300 3 + MI350/375 7 + MI400 65 = 75。"
+    },
+    {
+      "fact_id": "ms2601-cowos-allocation-google-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "entity": {
+        "type": "market",
+        "id": "tsmc-cowos-2026",
+        "label": "2026 年 CoWoS 产能分配"
+      },
+      "value": 255.0,
+      "unit": "千片",
+      "caliber": {
+        "customer": "Google",
+        "measure": "已分配产能",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 31 页「HBM Consumption in 2026e – Up to 32bn Gb」表「CoWoS capacity allocation (k wafers)」列（AI GPU 2026e / AI ASIC 2026e）：B300 390、Rubin R200 260、H200 75；MI300 3、MI350/375 7、MI400 65；TPU v7p 145、TPU v7e 80、TPU v8 30；Trainium 2.5 20、Trainium 3 80；xAI 10；Maia 200 4、Maia 300 5；MTIA 3 15；Nexus (Titan 1) 10；Total 1,434",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "大摩按芯片设计方/客户的 2026 年 CoWoS 产能分配估计（千片晶圆）。与库内 ms-cowos-demand-*（大摩较早版次的「需求」口径，未注版次）并列，不替代。 Google 各代 TPU 经博通/联发科设计。",
+      "asserter": "摩根士丹利",
+      "derivation": "按原表分产品相加：TPU v7p 145 + TPU v7e 80 + TPU v8 30 = 255。"
+    },
+    {
+      "fact_id": "ms2601-cowos-allocation-aws-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "entity": {
+        "type": "market",
+        "id": "tsmc-cowos-2026",
+        "label": "2026 年 CoWoS 产能分配"
+      },
+      "value": 100.0,
+      "unit": "千片",
+      "caliber": {
+        "customer": "AWS",
+        "measure": "已分配产能",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 31 页「HBM Consumption in 2026e – Up to 32bn Gb」表「CoWoS capacity allocation (k wafers)」列（AI GPU 2026e / AI ASIC 2026e）：B300 390、Rubin R200 260、H200 75；MI300 3、MI350/375 7、MI400 65；TPU v7p 145、TPU v7e 80、TPU v8 30；Trainium 2.5 20、Trainium 3 80；xAI 10；Maia 200 4、Maia 300 5；MTIA 3 15；Nexus (Titan 1) 10；Total 1,434",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "大摩按芯片设计方/客户的 2026 年 CoWoS 产能分配估计（千片晶圆）。与库内 ms-cowos-demand-*（大摩较早版次的「需求」口径，未注版次）并列，不替代。",
+      "asserter": "摩根士丹利",
+      "derivation": "按原表分产品相加：Trainium 2.5 20 + Trainium 3 80 = 100。"
+    },
+    {
+      "fact_id": "ms2601-cowos-allocation-xai-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "entity": {
+        "type": "market",
+        "id": "tsmc-cowos-2026",
+        "label": "2026 年 CoWoS 产能分配"
+      },
+      "value": 10.0,
+      "unit": "千片",
+      "caliber": {
+        "customer": "xAI",
+        "measure": "已分配产能",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 31 页「HBM Consumption in 2026e – Up to 32bn Gb」表「CoWoS capacity allocation (k wafers)」列（AI GPU 2026e / AI ASIC 2026e）：B300 390、Rubin R200 260、H200 75；MI300 3、MI350/375 7、MI400 65；TPU v7p 145、TPU v7e 80、TPU v8 30；Trainium 2.5 20、Trainium 3 80；xAI 10；Maia 200 4、Maia 300 5；MTIA 3 15；Nexus (Titan 1) 10；Total 1,434",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "大摩按芯片设计方/客户的 2026 年 CoWoS 产能分配估计（千片晶圆）。与库内 ms-cowos-demand-*（大摩较早版次的「需求」口径，未注版次）并列，不替代。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2601-cowos-allocation-microsoft-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "entity": {
+        "type": "market",
+        "id": "tsmc-cowos-2026",
+        "label": "2026 年 CoWoS 产能分配"
+      },
+      "value": 9.0,
+      "unit": "千片",
+      "caliber": {
+        "customer": "Microsoft",
+        "measure": "已分配产能",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 31 页「HBM Consumption in 2026e – Up to 32bn Gb」表「CoWoS capacity allocation (k wafers)」列（AI GPU 2026e / AI ASIC 2026e）：B300 390、Rubin R200 260、H200 75；MI300 3、MI350/375 7、MI400 65；TPU v7p 145、TPU v7e 80、TPU v8 30；Trainium 2.5 20、Trainium 3 80；xAI 10；Maia 200 4、Maia 300 5；MTIA 3 15；Nexus (Titan 1) 10；Total 1,434",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "大摩按芯片设计方/客户的 2026 年 CoWoS 产能分配估计（千片晶圆）。与库内 ms-cowos-demand-*（大摩较早版次的「需求」口径，未注版次）并列，不替代。",
+      "asserter": "摩根士丹利",
+      "derivation": "按原表分产品相加：Maia 200 4 + Maia 300 5 = 9。"
+    },
+    {
+      "fact_id": "ms2601-cowos-allocation-meta-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "entity": {
+        "type": "market",
+        "id": "tsmc-cowos-2026",
+        "label": "2026 年 CoWoS 产能分配"
+      },
+      "value": 15.0,
+      "unit": "千片",
+      "caliber": {
+        "customer": "Meta",
+        "measure": "已分配产能",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 31 页「HBM Consumption in 2026e – Up to 32bn Gb」表「CoWoS capacity allocation (k wafers)」列（AI GPU 2026e / AI ASIC 2026e）：B300 390、Rubin R200 260、H200 75；MI300 3、MI350/375 7、MI400 65；TPU v7p 145、TPU v7e 80、TPU v8 30；Trainium 2.5 20、Trainium 3 80；xAI 10；Maia 200 4、Maia 300 5；MTIA 3 15；Nexus (Titan 1) 10；Total 1,434",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "大摩按芯片设计方/客户的 2026 年 CoWoS 产能分配估计（千片晶圆）。与库内 ms-cowos-demand-*（大摩较早版次的「需求」口径，未注版次）并列，不替代。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2601-cowos-allocation-openai-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "entity": {
+        "type": "market",
+        "id": "tsmc-cowos-2026",
+        "label": "2026 年 CoWoS 产能分配"
+      },
+      "value": 10.0,
+      "unit": "千片",
+      "caliber": {
+        "customer": "OpenAI",
+        "measure": "已分配产能",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 31 页「HBM Consumption in 2026e – Up to 32bn Gb」表「CoWoS capacity allocation (k wafers)」列（AI GPU 2026e / AI ASIC 2026e）：B300 390、Rubin R200 260、H200 75；MI300 3、MI350/375 7、MI400 65；TPU v7p 145、TPU v7e 80、TPU v8 30；Trainium 2.5 20、Trainium 3 80；xAI 10；Maia 200 4、Maia 300 5；MTIA 3 15；Nexus (Titan 1) 10；Total 1,434",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "大摩按芯片设计方/客户的 2026 年 CoWoS 产能分配估计（千片晶圆）。与库内 ms-cowos-demand-*（大摩较早版次的「需求」口径，未注版次）并列，不替代。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2601-cowos-allocation-total-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "entity": {
+        "type": "market",
+        "id": "tsmc-cowos-2026",
+        "label": "2026 年 CoWoS 产能分配"
+      },
+      "value": 1434.0,
+      "unit": "千片",
+      "caliber": {
+        "customer": "全部客户",
+        "measure": "已分配产能",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 31 页「HBM Consumption in 2026e – Up to 32bn Gb」表「CoWoS capacity allocation (k wafers)」列（AI GPU 2026e / AI ASIC 2026e）：B300 390、Rubin R200 260、H200 75；MI300 3、MI350/375 7、MI400 65；TPU v7p 145、TPU v7e 80、TPU v8 30；Trainium 2.5 20、Trainium 3 80；xAI 10；Maia 200 4、Maia 300 5；MTIA 3 15；Nexus (Titan 1) 10；Total 1,434",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "大摩按芯片设计方/客户的 2026 年 CoWoS 产能分配估计（千片晶圆）。与库内 ms-cowos-demand-*（大摩较早版次的「需求」口径，未注版次）并列，不替代。 合计即原表 Total。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2601-hbm-demand-volume-2026e",
+      "metric_id": "hbm_demand_volume",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 39.43,
+      "unit": "亿 GB",
+      "caliber": {
+        "measure": "位容量",
+        "generation": "合计",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 31 页同表「Total HBM demand (k GB)」Total = 3,942,725；「Total HBM demand (mn Gb)」= 31,542",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "3,942,725 千 GB = 39.43 亿 GB（原表另给 31,542 百万 Gb，÷8 = 39.43 亿 GB，两者一致）。",
+      "corroboration": "待交叉验证",
+      "notes": "按各芯片出货 × 每颗 HBM 容量加总；标题「Up to 32bn Gb」。与库内 hbmstat-demand-total-2026e 31.70 亿 GB（出处未注明）及 ms-2025e-hbm-demand-total 口径与版次不同，并列。NVIDIA 三款占 24.6 亿 GB。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2601-ai-asic-units-2026e",
+      "metric_id": "ai_asic_shipment_units",
+      "entity": {
+        "type": "industry",
+        "id": "ai-asic",
+        "label": "AI ASIC 市场"
+      },
+      "value": 6.21,
+      "unit": "百万颗",
+      "caliber": {
+        "counting": "封装后芯片",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2026E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 31 页同表 AI ASIC (2026e)「Implied chip shipments (k)」：TPU v7p 2,320、TPU v7e 960、TPU v8 600、Trainium 2.5 320、Trainium 3 1,360、xAI 200、Maia 200 116、Maia 300 55、MTIA 3 150、Nexus (Titan 1) 130",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "AI ASIC 各产品隐含出货相加 = 6,211 千颗 = 6.21 百万颗（原表未给 ASIC 小计）。",
+      "corroboration": "待交叉验证",
+      "notes": "由 CoWoS 分配 × 每片晶圆芯片数推出的隐含出货，只含表中列出的 ASIC；同表 AI GPU 隐含出货 B300 546 万、Rubin 208 万、H200 202.5 万颗等。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2601-tsmc-cowos-capacity-2026e",
+      "metric_id": "cowos_capacity_wpm",
+      "entity": {
+        "type": "company",
+        "id": "tsmc",
+        "label": "台积电"
+      },
+      "value": 12.5,
+      "unit": "万片/月",
+      "caliber": {
+        "package_type": "全部CoWoS",
+        "basis": "第三方推算"
+      },
+      "as_of": "2026E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 28 页标题：「TSMC May Expand CoWoS Capacity to 125kwpm By 2026 Given Continual Strong AI Demand」",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "125 kwpm = 12.5 万片/月，指台积电 2026 年底月产能（大摩估计）。与库内未注明来源的 2026E 10 万片/月（@2025-07）并列。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2601-vr-nvl144-rack-power",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "vr-nvl144-rack-power",
+        "label": "Vera Rubin NVL144"
+      },
+      "value": 220.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "era": "路线图目标",
+        "power_basis": "设计功率",
+        "region": "Global"
+      },
+      "as_of": "2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 23 页「Calculating power project deployment demand for TSMC CoWoS capacity and wafer capacity」表：NVIDIA (Open AI) 10GW / Vera Rubin NVL144 / 220kW / 45k 架；AMD (Open AI) 6GW / Helios / 260kW / 23k 架；Broadcom (Anthropic) 1GW / TPU / 60kW / 17k 架",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "大摩用于把已公布 GW 级项目折算机柜与 CoWoS 需求的单柜功耗假设。OpenAI 10GW 项目按每柜 220kW 折 4.5 万架。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2601-amd-helios-rack-power",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "amd-helios-rack-power",
+        "label": "AMD Helios"
+      },
+      "value": 260.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "era": "路线图目标",
+        "power_basis": "设计功率",
+        "region": "Global"
+      },
+      "as_of": "2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 23 页「Calculating power project deployment demand for TSMC CoWoS capacity and wafer capacity」表：NVIDIA (Open AI) 10GW / Vera Rubin NVL144 / 220kW / 45k 架；AMD (Open AI) 6GW / Helios / 260kW / 23k 架；Broadcom (Anthropic) 1GW / TPU / 60kW / 17k 架",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "大摩用于把已公布 GW 级项目折算机柜与 CoWoS 需求的单柜功耗假设。OpenAI 6GW 项目按每柜 260kW 折 2.3 万架。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2601-google-tpu-rack-power",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "google-tpu-rack-power",
+        "label": "Google TPU（Ironwood）机柜"
+      },
+      "value": 60.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "主流机型",
+        "era": "路线图目标",
+        "power_basis": "设计功率",
+        "region": "Global"
+      },
+      "as_of": "2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 23 页「Calculating power project deployment demand for TSMC CoWoS capacity and wafer capacity」表：NVIDIA (Open AI) 10GW / Vera Rubin NVL144 / 220kW / 45k 架；AMD (Open AI) 6GW / Helios / 260kW / 23k 架；Broadcom (Anthropic) 1GW / TPU / 60kW / 17k 架",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "大摩用于把已公布 GW 级项目折算机柜与 CoWoS 需求的单柜功耗假设。Anthropic 1GW 项目按每柜 60kW 折 1.7 万架；TPU 机柜不是 NVL 类整柜系统。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2601-gb200-nvl72-rack-ship-2025",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "gb200-nvl72",
+        "label": "英伟达 GB200 NVL72 机柜"
+      },
+      "value": 30000.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "GB200 NVL72",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 27 页「NVIDIA GB200/300 Rack Output Estimates」：「TSMC expected to produce 5.1mn chips in 2025, with full-year GB200 NVL72 shipments expected to reach 30k」；注：「we include Wistron's computing tray (L10) rack equivalent number」",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "大摩全年估计，含纬创 L10 计算托盘折合的机柜当量，实际交付给终端客户的整柜数偏低（原注）。库内杰富瑞 2025E NVL72 27k 为较早版次预测，并列。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "amd-ocp25-dc-ai-accel-tam-2023",
+      "metric_id": "ai_asic_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "dc-ai-accelerator",
+        "label": "数据中心 AI 加速器（GPU+ASIC 等）"
+      },
+      "value": 45.0,
+      "unit": "十亿美元",
+      "caliber": {
+        "scope": "全部加速芯片",
+        "basis": "厂商指引",
+        "region": "Global"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "572688d43c8b9ec714d8d4162f378660ccc10f8a2692222aca869a3ad3f1a9c6",
+        "local_file": "OCP2025_DAY ONE MONDAY - 5.AMD.pdf",
+        "locator": "第 3 页「Data Center AI Accelerator TAM – Inference Growing at >80% CAGR」：柱图 2023 年「$45B」、2028 年「>$500B」，训练「>60% CAGR」，注「Source: AMD Internal Data 2024」",
+        "grade": "S2",
+        "originator": "AMD（Mark Papermaster，OCP Global Summit 2025 主题演讲）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "AMD 口径的数据中心 AI 加速器 TAM（含 GPU 与 ASIC），不是 AI ASIC 单项；与库内 Yole/联发科 AI ASIC 数不可比。",
+      "asserter": "AMD"
+    },
+    {
+      "fact_id": "amd-ocp25-dc-ai-accel-tam-2028e",
+      "metric_id": "ai_asic_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "dc-ai-accelerator",
+        "label": "数据中心 AI 加速器（GPU+ASIC 等）"
+      },
+      "value": 500.0,
+      "unit": "十亿美元",
+      "caliber": {
+        "scope": "全部加速芯片",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2028E@2024",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "572688d43c8b9ec714d8d4162f378660ccc10f8a2692222aca869a3ad3f1a9c6",
+        "local_file": "OCP2025_DAY ONE MONDAY - 5.AMD.pdf",
+        "locator": "第 3 页「Data Center AI Accelerator TAM – Inference Growing at >80% CAGR」：柱图 2023 年「$45B」、2028 年「>$500B」，训练「>60% CAGR」，注「Source: AMD Internal Data 2024」",
+        "grade": "S2",
+        "originator": "AMD（Mark Papermaster，OCP Global Summit 2025 主题演讲）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「>$500B」按下界记；图注数据来源为 AMD 2024 年内部数据，vintage 记 @2024。推理增速 >80% CAGR、训练 >60% CAGR。",
+      "asserter": "AMD"
+    },
+    {
+      "fact_id": "intel-ocp25-gartner-inference-share-2028e",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "industry",
+        "id": "global-ai-compute",
+        "label": "全球 AI 算力"
+      },
+      "value": 80.0,
+      "unit": "%",
+      "caliber": {
+        "workload": "推理",
+        "denominator": "AI 算力总量",
+        "region": "未披露",
+        "basis": "预测"
+      },
+      "as_of": "2028E@2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c6577dc413691d8d99e8217cc833c646c1d94ff4a37221fea002b52727d82441",
+        "local_file": "OCP2025_DAY TWO TUESDAY - 7.Intel.pdf",
+        "locator": "第 5 页：「~80% of AI compute cycles in inference by 2028*」，脚注「*Source: Gartner, published 08/2024」",
+        "grade": "S3",
+        "originator": "英特尔 OCP Global Summit 2025 主题演讲转引 Gartner"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「AI compute cycles」按 AI 算力总量为分母记；原文「~80%」按点值记。Gartner 2024-08 发布，vintage @2024-08。原文未写地域范围，region 记未披露（Gartner 此类预测通常为全球，但页面未明说，不猜）。同稿第 6 页转引 Google token 处理量 9.7Tr→1400Tr（2025），未写时间单位，未录。",
+      "asserter": "Gartner"
+    },
+    {
+      "fact_id": "swhy2504-na-big4-capex-2023",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "segment",
+        "id": "na-big4-hyperscalers",
+        "label": "北美四大云厂（谷歌、微软、亚马逊、Meta）"
+      },
+      "value": 1534.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "北美四家",
+        "capex_scope": "全部 capex",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e433cceba370889824c4b8af00a5710bd2180bcf4c2ff0ecee7ec343a55525d0",
+        "local_file": "20250401-人工智能行业GenAI系列报告之五十四：AI云计算新范式规模效应+AIInfra+ASIC芯片(60页).pdf",
+        "locator": "第 7 页表「AI云相对传统云」：「2023年海外大型云/互联网巨头Capex总和为1534亿美元」「2024年海外大型云/互联网巨头Capex总和为2504亿美元」",
+        "grade": "S3",
+        "originator": "申万宏源研究（2025-04-01《AI 云计算新范式：规模效应+AI Infra+ASIC 芯片》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文写「海外大型云/互联网巨头」，与第 10 页 2024 年四家同组对比，按北美四家记。含融资租赁与否原文未说明。",
+      "asserter": "申万宏源"
+    },
+    {
+      "fact_id": "swhy2504-na-big4-capex-2024",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "segment",
+        "id": "na-big4-hyperscalers",
+        "label": "北美四大云厂（谷歌、微软、亚马逊、Meta）"
+      },
+      "value": 2504.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "北美四家",
+        "capex_scope": "全部 capex",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e433cceba370889824c4b8af00a5710bd2180bcf4c2ff0ecee7ec343a55525d0",
+        "local_file": "20250401-人工智能行业GenAI系列报告之五十四：AI云计算新范式规模效应+AIInfra+ASIC芯片(60页).pdf",
+        "locator": "第 10 页 2.1：「根据各企业指引，2024年谷歌、微软、亚马逊、META的Capex总计2504亿美元；若假设2025年（即FY25Q3-FY26Q2）微软保持FY25Q2的资本开支水平，则四家巨头的Capex预计将接近3400亿美元，同比增速有望达到35%」",
+        "grade": "S3",
+        "originator": "申万宏源研究（2025-04-01《AI 云计算新范式：规模效应+AI Infra+ASIC 芯片》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "谷歌+微软+亚马逊+Meta 合计；微软按日历年折算口径原文未细说。与库内国海证券 2024 年 2,248 亿美元口径不同（差 256 亿，疑为是否含融资租赁或微软财年对齐差异），并列。",
+      "asserter": "申万宏源"
+    },
+    {
+      "fact_id": "swhy2504-na-big4-capex-2025e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "segment",
+        "id": "na-big4-hyperscalers",
+        "label": "北美四大云厂（谷歌、微软、亚马逊、Meta）"
+      },
+      "value": 3400.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "北美四家",
+        "capex_scope": "全部 capex",
+        "basis": "券商测算",
+        "vintage": "其他快照",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e433cceba370889824c4b8af00a5710bd2180bcf4c2ff0ecee7ec343a55525d0",
+        "local_file": "20250401-人工智能行业GenAI系列报告之五十四：AI云计算新范式规模效应+AIInfra+ASIC芯片(60页).pdf",
+        "locator": "第 10 页 2.1：「根据各企业指引，2024年谷歌、微软、亚马逊、META的Capex总计2504亿美元；若假设2025年（即FY25Q3-FY26Q2）微软保持FY25Q2的资本开支水平，则四家巨头的Capex预计将接近3400亿美元，同比增速有望达到35%」",
+        "grade": "S3",
+        "originator": "申万宏源研究（2025-04-01《AI 云计算新范式：规模效应+AI Infra+ASIC 芯片》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「接近3400亿美元」按点值记，同比约 +35%；假设微软 FY25Q3–FY26Q2 保持 FY25Q2 水平。",
+      "asserter": "申万宏源"
+    },
+    {
+      "fact_id": "ms2506-cloud-ai-asic-market-2030e",
+      "metric_id": "ai_asic_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "cloud-ai-asic",
+        "label": "云端 AI ASIC 市场"
+      },
+      "value": 50.0,
+      "unit": "十亿美元",
+      "caliber": {
+        "scope": "AI ASIC",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2030E@2025-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8842f8bc233b037b7ee433da4d68c9fde445e6bc1838d0cf240eeaf78b9c6c86",
+        "local_file": "20250622-摩根士丹利：人工智能供应链：人工智能专用集成电路（AI ASIC）动态：Trainium和TPU(28页).pdf",
+        "locator": "第 5 页：「我们估计人工智能半导体市场规模在2030年将达到4800亿美元，几乎占全球半导体收入的半数。这4800亿美元的营收由3400亿美元的云人工智能半导体和1200亿美元的边缘人工智能半导体……组成。我们预计云人工智能ASIC市场规模可能增长到500亿美元，占2030年云人工智能半导体收入的15%」",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区半导体团队《AI 供应链：AI ASIC 动态——Trainium 与 TPU》（2025-06-16，中文译本）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "仅云端 AI ASIC；同句 AI 半导体合计 4,800 亿（云 3,400 亿 + 边缘 1,200 亿）、全球半导体 2030 年约 1 万亿美元，无对应口径未录。原文「3400亿」与「15%」相乘为 510 亿，与 500 亿基本一致。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2506-ai-server-tam-2025e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "global-ai-server",
+        "label": "全球 AI 服务器潜在市场"
+      },
+      "value": 1990.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2025-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8842f8bc233b037b7ee433da4d68c9fde445e6bc1838d0cf240eeaf78b9c6c86",
+        "local_file": "20250622-摩根士丹利：人工智能供应链：人工智能专用集成电路（AI ASIC）动态：Trainium和TPU(28页).pdf",
+        "locator": "第 6 页「全球人工智能资本支出潜在市场规模分析」：「从全球云CSP近期的财报电话会议来看，总资本支出3970亿美元中50%的份额，可以作为2025年AI服务器潜在市场规模的良好指标（大约1990亿美元）」",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区半导体团队《AI 供应链：AI ASIC 动态——Trainium 与 TPU》（2025-06-16，中文译本）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "大摩以全球云 CSP 2025 年 capex 3,970 亿美元的 50% 作为 AI 服务器潜在市场规模指标，属拇指法则式估算而非出货跟踪；原文「大约1990亿美元」按点值记。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2509-tsmc-cowos-capacity-2026e",
+      "metric_id": "cowos_capacity_wpm",
+      "entity": {
+        "type": "company",
+        "id": "tsmc",
+        "label": "台积电"
+      },
+      "value": 9.3,
+      "unit": "万片/月",
+      "caliber": {
+        "package_type": "全部CoWoS",
+        "basis": "第三方推算"
+      },
+      "as_of": "2026E@2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "cc776492b5cbf684d4310f4d9bb42bbeb937598300c83ffc23d4bcddeb21f0a3",
+        "local_file": "20250927-大中华区半导体全球人工智能供应链；亚洲半导体的关键机遇(57页).pdf",
+        "locator": "第 30 页CoWoS 章节页标题：「TSMC May Expand CoWoS Capacity to 93kwpm By 2026, Given the NVL72 Server Rack Bottleneck」",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《Greater China Semiconductors: Global AI Supply Chain》（2025-09-17 定价，中文文件名）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "93 kwpm = 9.3 万片/月（2026 年底）。同行 2026-01 版上调至 125 kwpm（ms2601-tsmc-cowos-capacity-2026e），两版预测并列不替代。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2509-gb200-nvl72-rack-ship-2025e",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "gb200-nvl72",
+        "label": "英伟达 GB200 NVL72 机柜"
+      },
+      "value": 30000.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "GB200 NVL72",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "cc776492b5cbf684d4310f4d9bb42bbeb937598300c83ffc23d4bcddeb21f0a3",
+        "local_file": "20250927-大中华区半导体全球人工智能供应链；亚洲半导体的关键机遇(57页).pdf",
+        "locator": "第 29 页「NVIDIA GB200/300 Rack Output Estimates」页：「TSMC expected to produce 5.1mn chips in 2025, with full-year GB200 NVL72 shipments expected to reach 30k」",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《Greater China Semiconductors: Global AI Supply Chain》（2025-09-17 定价，中文文件名）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2025-09 时点的全年预测（含纬创 L10 托盘折合机柜当量）；2026-01 版同值 30k 已按全年估计入库（ms2601-gb200-nvl72-rack-ship-2025）。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2510-rack-ship-rackscale-total-2025e",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "rackscale-total",
+        "label": "NVIDIA 机架级合计"
+      },
+      "value": 27600.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "NVIDIA 机架级合计",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2025-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "09bbe4373bccbe3406f8c7611705bad2047aece5cb070ec2fa6181a19ba6b20d",
+        "local_file": "20251014-大中华区科技硬件：人工智能科技硬件全面升级(48页).pdf",
+        "locator": "第 11 页「NVIDIA AI Server Unit Assumptions」（k units，2023/2024/2025/2026/2027）：Rack-scale 0.0/27.6/63.4/54.8（对 2024–2027）；GB200 NVL72 23.2/0.3/0.0；GB300 NVL72 4.4/57.1/0.0；VR200 NVL144 0.0/6.0/51.3；VR300 NVL576 0.0/0.0/3.5（对 2025–2027）",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区科技硬件团队（2025-10-07，中英对照版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表单位千架，27.6 千架 = 27600 架。表中列对齐错位：Rack-scale 行 4 个数对应 2024–2027，机型行对应 2025–2027，按与合计相加一致（2025：23.2+4.4=27.6；2026：0.3+57.1+6.0=63.4；2027：51.3+3.5=54.8）判定。**不同平台一架的 GPU 数不同（NVL144/NVL576 按裸片计），机架级合计跨平台相加只是架数口径**。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2510-rack-ship-rackscale-total-2026e",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "rackscale-total",
+        "label": "NVIDIA 机架级合计"
+      },
+      "value": 63400.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "NVIDIA 机架级合计",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2025-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "09bbe4373bccbe3406f8c7611705bad2047aece5cb070ec2fa6181a19ba6b20d",
+        "local_file": "20251014-大中华区科技硬件：人工智能科技硬件全面升级(48页).pdf",
+        "locator": "第 11 页「NVIDIA AI Server Unit Assumptions」（k units，2023/2024/2025/2026/2027）：Rack-scale 0.0/27.6/63.4/54.8（对 2024–2027）；GB200 NVL72 23.2/0.3/0.0；GB300 NVL72 4.4/57.1/0.0；VR200 NVL144 0.0/6.0/51.3；VR300 NVL576 0.0/0.0/3.5（对 2025–2027）",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区科技硬件团队（2025-10-07，中英对照版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表单位千架，63.4 千架 = 63400 架。表中列对齐错位：Rack-scale 行 4 个数对应 2024–2027，机型行对应 2025–2027，按与合计相加一致（2025：23.2+4.4=27.6；2026：0.3+57.1+6.0=63.4；2027：51.3+3.5=54.8）判定。**不同平台一架的 GPU 数不同（NVL144/NVL576 按裸片计），机架级合计跨平台相加只是架数口径**。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2510-rack-ship-rackscale-total-2027e",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "rackscale-total",
+        "label": "NVIDIA 机架级合计"
+      },
+      "value": 54800.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "NVIDIA 机架级合计",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2027E@2025-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "09bbe4373bccbe3406f8c7611705bad2047aece5cb070ec2fa6181a19ba6b20d",
+        "local_file": "20251014-大中华区科技硬件：人工智能科技硬件全面升级(48页).pdf",
+        "locator": "第 11 页「NVIDIA AI Server Unit Assumptions」（k units，2023/2024/2025/2026/2027）：Rack-scale 0.0/27.6/63.4/54.8（对 2024–2027）；GB200 NVL72 23.2/0.3/0.0；GB300 NVL72 4.4/57.1/0.0；VR200 NVL144 0.0/6.0/51.3；VR300 NVL576 0.0/0.0/3.5（对 2025–2027）",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区科技硬件团队（2025-10-07，中英对照版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表单位千架，54.8 千架 = 54800 架。表中列对齐错位：Rack-scale 行 4 个数对应 2024–2027，机型行对应 2025–2027，按与合计相加一致（2025：23.2+4.4=27.6；2026：0.3+57.1+6.0=63.4；2027：51.3+3.5=54.8）判定。**不同平台一架的 GPU 数不同（NVL144/NVL576 按裸片计），机架级合计跨平台相加只是架数口径**。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2510-rack-ship-gb200-nvl72-2025e",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "gb200-nvl72",
+        "label": "GB200 NVL72"
+      },
+      "value": 23200.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "GB200 NVL72",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2025-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "09bbe4373bccbe3406f8c7611705bad2047aece5cb070ec2fa6181a19ba6b20d",
+        "local_file": "20251014-大中华区科技硬件：人工智能科技硬件全面升级(48页).pdf",
+        "locator": "第 11 页「NVIDIA AI Server Unit Assumptions」（k units，2023/2024/2025/2026/2027）：Rack-scale 0.0/27.6/63.4/54.8（对 2024–2027）；GB200 NVL72 23.2/0.3/0.0；GB300 NVL72 4.4/57.1/0.0；VR200 NVL144 0.0/6.0/51.3；VR300 NVL576 0.0/0.0/3.5（对 2025–2027）",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区科技硬件团队（2025-10-07，中英对照版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表单位千架，23.2 千架 = 23200 架。表中列对齐错位：Rack-scale 行 4 个数对应 2024–2027，机型行对应 2025–2027，按与合计相加一致（2025：23.2+4.4=27.6；2026：0.3+57.1+6.0=63.4；2027：51.3+3.5=54.8）判定。**不同平台一架的 GPU 数不同（NVL144/NVL576 按裸片计），机架级合计跨平台相加只是架数口径**。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2510-rack-ship-gb200-nvl72-2026e",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "gb200-nvl72",
+        "label": "GB200 NVL72"
+      },
+      "value": 300.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "GB200 NVL72",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2025-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "09bbe4373bccbe3406f8c7611705bad2047aece5cb070ec2fa6181a19ba6b20d",
+        "local_file": "20251014-大中华区科技硬件：人工智能科技硬件全面升级(48页).pdf",
+        "locator": "第 11 页「NVIDIA AI Server Unit Assumptions」（k units，2023/2024/2025/2026/2027）：Rack-scale 0.0/27.6/63.4/54.8（对 2024–2027）；GB200 NVL72 23.2/0.3/0.0；GB300 NVL72 4.4/57.1/0.0；VR200 NVL144 0.0/6.0/51.3；VR300 NVL576 0.0/0.0/3.5（对 2025–2027）",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区科技硬件团队（2025-10-07，中英对照版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表单位千架，0.3 千架 = 300 架。表中列对齐错位：Rack-scale 行 4 个数对应 2024–2027，机型行对应 2025–2027，按与合计相加一致（2025：23.2+4.4=27.6；2026：0.3+57.1+6.0=63.4；2027：51.3+3.5=54.8）判定。**不同平台一架的 GPU 数不同（NVL144/NVL576 按裸片计），机架级合计跨平台相加只是架数口径**。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2510-rack-ship-gb300-nvl72-2025e",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "gb300-nvl72",
+        "label": "GB300 NVL72"
+      },
+      "value": 4400.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "GB300 NVL72",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2025-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "09bbe4373bccbe3406f8c7611705bad2047aece5cb070ec2fa6181a19ba6b20d",
+        "local_file": "20251014-大中华区科技硬件：人工智能科技硬件全面升级(48页).pdf",
+        "locator": "第 11 页「NVIDIA AI Server Unit Assumptions」（k units，2023/2024/2025/2026/2027）：Rack-scale 0.0/27.6/63.4/54.8（对 2024–2027）；GB200 NVL72 23.2/0.3/0.0；GB300 NVL72 4.4/57.1/0.0；VR200 NVL144 0.0/6.0/51.3；VR300 NVL576 0.0/0.0/3.5（对 2025–2027）",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区科技硬件团队（2025-10-07，中英对照版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表单位千架，4.4 千架 = 4400 架。表中列对齐错位：Rack-scale 行 4 个数对应 2024–2027，机型行对应 2025–2027，按与合计相加一致（2025：23.2+4.4=27.6；2026：0.3+57.1+6.0=63.4；2027：51.3+3.5=54.8）判定。**不同平台一架的 GPU 数不同（NVL144/NVL576 按裸片计），机架级合计跨平台相加只是架数口径**。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2510-rack-ship-gb300-nvl72-2026e",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "gb300-nvl72",
+        "label": "GB300 NVL72"
+      },
+      "value": 57100.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "GB300 NVL72",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2025-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "09bbe4373bccbe3406f8c7611705bad2047aece5cb070ec2fa6181a19ba6b20d",
+        "local_file": "20251014-大中华区科技硬件：人工智能科技硬件全面升级(48页).pdf",
+        "locator": "第 11 页「NVIDIA AI Server Unit Assumptions」（k units，2023/2024/2025/2026/2027）：Rack-scale 0.0/27.6/63.4/54.8（对 2024–2027）；GB200 NVL72 23.2/0.3/0.0；GB300 NVL72 4.4/57.1/0.0；VR200 NVL144 0.0/6.0/51.3；VR300 NVL576 0.0/0.0/3.5（对 2025–2027）",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区科技硬件团队（2025-10-07，中英对照版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表单位千架，57.1 千架 = 57100 架。表中列对齐错位：Rack-scale 行 4 个数对应 2024–2027，机型行对应 2025–2027，按与合计相加一致（2025：23.2+4.4=27.6；2026：0.3+57.1+6.0=63.4；2027：51.3+3.5=54.8）判定。**不同平台一架的 GPU 数不同（NVL144/NVL576 按裸片计），机架级合计跨平台相加只是架数口径**。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2510-rack-ship-vr200-nvl144-2026e",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "vr200-nvl144",
+        "label": "VR200 NVL144"
+      },
+      "value": 6000.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "VR200 NVL144",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2025-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "09bbe4373bccbe3406f8c7611705bad2047aece5cb070ec2fa6181a19ba6b20d",
+        "local_file": "20251014-大中华区科技硬件：人工智能科技硬件全面升级(48页).pdf",
+        "locator": "第 11 页「NVIDIA AI Server Unit Assumptions」（k units，2023/2024/2025/2026/2027）：Rack-scale 0.0/27.6/63.4/54.8（对 2024–2027）；GB200 NVL72 23.2/0.3/0.0；GB300 NVL72 4.4/57.1/0.0；VR200 NVL144 0.0/6.0/51.3；VR300 NVL576 0.0/0.0/3.5（对 2025–2027）",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区科技硬件团队（2025-10-07，中英对照版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表单位千架，6.0 千架 = 6000 架。表中列对齐错位：Rack-scale 行 4 个数对应 2024–2027，机型行对应 2025–2027，按与合计相加一致（2025：23.2+4.4=27.6；2026：0.3+57.1+6.0=63.4；2027：51.3+3.5=54.8）判定。**不同平台一架的 GPU 数不同（NVL144/NVL576 按裸片计），机架级合计跨平台相加只是架数口径**。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2510-rack-ship-vr200-nvl144-2027e",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "vr200-nvl144",
+        "label": "VR200 NVL144"
+      },
+      "value": 51300.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "VR200 NVL144",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2027E@2025-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "09bbe4373bccbe3406f8c7611705bad2047aece5cb070ec2fa6181a19ba6b20d",
+        "local_file": "20251014-大中华区科技硬件：人工智能科技硬件全面升级(48页).pdf",
+        "locator": "第 11 页「NVIDIA AI Server Unit Assumptions」（k units，2023/2024/2025/2026/2027）：Rack-scale 0.0/27.6/63.4/54.8（对 2024–2027）；GB200 NVL72 23.2/0.3/0.0；GB300 NVL72 4.4/57.1/0.0；VR200 NVL144 0.0/6.0/51.3；VR300 NVL576 0.0/0.0/3.5（对 2025–2027）",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区科技硬件团队（2025-10-07，中英对照版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表单位千架，51.3 千架 = 51300 架。表中列对齐错位：Rack-scale 行 4 个数对应 2024–2027，机型行对应 2025–2027，按与合计相加一致（2025：23.2+4.4=27.6；2026：0.3+57.1+6.0=63.4；2027：51.3+3.5=54.8）判定。**不同平台一架的 GPU 数不同（NVL144/NVL576 按裸片计），机架级合计跨平台相加只是架数口径**。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2510-rack-ship-vr300-nvl576-2027e",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "vr300-nvl576",
+        "label": "VR300 NVL576"
+      },
+      "value": 3500.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "VR300 NVL576",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2027E@2025-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "09bbe4373bccbe3406f8c7611705bad2047aece5cb070ec2fa6181a19ba6b20d",
+        "local_file": "20251014-大中华区科技硬件：人工智能科技硬件全面升级(48页).pdf",
+        "locator": "第 11 页「NVIDIA AI Server Unit Assumptions」（k units，2023/2024/2025/2026/2027）：Rack-scale 0.0/27.6/63.4/54.8（对 2024–2027）；GB200 NVL72 23.2/0.3/0.0；GB300 NVL72 4.4/57.1/0.0；VR200 NVL144 0.0/6.0/51.3；VR300 NVL576 0.0/0.0/3.5（对 2025–2027）",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区科技硬件团队（2025-10-07，中英对照版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表单位千架，3.5 千架 = 3500 架。表中列对齐错位：Rack-scale 行 4 个数对应 2024–2027，机型行对应 2025–2027，按与合计相加一致（2025：23.2+4.4=27.6；2026：0.3+57.1+6.0=63.4；2027：51.3+3.5=54.8）判定。**不同平台一架的 GPU 数不同（NVL144/NVL576 按裸片计），机架级合计跨平台相加只是架数口径**。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2510-rack-output-gb200-300-2025q3e-lower",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "gb200-gb300-nvl72",
+        "label": "GB200/300 NVL72 当量"
+      },
+      "value": 8000.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "GB200/300 NVL72 等效",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025-Q3E@2025-10",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "09bbe4373bccbe3406f8c7611705bad2047aece5cb070ec2fa6181a19ba6b20d",
+        "local_file": "20251014-大中华区科技硬件：人工智能科技硬件全面升级(48页).pdf",
+        "locator": "第 7 页「NVIDIA GPU Roadmap – Recent updates」：「We forecast ~27.6k racks for 2025 and at least 60k racks for 2026」「We believe 3Q25 rack output is on track to reach 8-9k」",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区科技硬件团队（2025-10-07，中英对照版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「8-9k」区间的下界；为机柜产出（output）口径，大摩按 NVL72 当量计。同页称 2026 年至少 6 万架（表中 6.34 万架）。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2510-rack-output-gb200-300-2025q3e-upper",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "gb200-gb300-nvl72",
+        "label": "GB200/300 NVL72 当量"
+      },
+      "value": 9000.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "GB200/300 NVL72 等效",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025-Q3E@2025-10",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "09bbe4373bccbe3406f8c7611705bad2047aece5cb070ec2fa6181a19ba6b20d",
+        "local_file": "20251014-大中华区科技硬件：人工智能科技硬件全面升级(48页).pdf",
+        "locator": "第 7 页「NVIDIA GPU Roadmap – Recent updates」：「We forecast ~27.6k racks for 2025 and at least 60k racks for 2026」「We believe 3Q25 rack output is on track to reach 8-9k」",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区科技硬件团队（2025-10-07，中英对照版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「8-9k」区间的上界；为机柜产出（output）口径，大摩按 NVL72 当量计。同页称 2026 年至少 6 万架（表中 6.34 万架）。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2511-rack-ship-gb200-300-2025e",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "gb200-gb300-nvl72",
+        "label": "GB200/300 NVL72 当量"
+      },
+      "value": 28000.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "GB200/300 NVL72 等效",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2025-11",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4103d035bf470008d64b59336219eba955cad8fe3f09d9ea4cd8bd641c0ecfaf",
+        "local_file": "20251111-大中华区科技硬件：2026年人工智能科技硬件之年(56页).pdf",
+        "locator": "「NVIDIA GPU Roadmap」页 Recent updates：「Forecast ~28k racks for 2025 and at least 60k racks for 2026」「Believe 4Q25 rack output will continue to ramp smoothly」「GB300 rack production has kicked off」",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区科技硬件团队（2025-11-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「~28k」按点值记；较 2025-10 版 2.76 万架略上调，两版并列。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2511-rack-ship-nvidia-2026e-lower",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "gb200-gb300-nvl72",
+        "label": "GB200/300 NVL72 当量"
+      },
+      "value": 60000.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "GB200/300 NVL72 等效",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2025-11",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "4103d035bf470008d64b59336219eba955cad8fe3f09d9ea4cd8bd641c0ecfaf",
+        "local_file": "20251111-大中华区科技硬件：2026年人工智能科技硬件之年(56页).pdf",
+        "locator": "「NVIDIA GPU Roadmap」页 Recent updates：「Forecast ~28k racks for 2025 and at least 60k racks for 2026」「Believe 4Q25 rack output will continue to ramp smoothly」「GB300 rack production has kicked off」",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区科技硬件团队（2025-11-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「at least 60k」按下界记，平台口径沿用同句 2025 年 NVL72 当量。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "tf2508-hbm-bits-2023",
+      "metric_id": "hbm_demand_volume",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 3.94,
+      "unit": "亿 GB",
+      "caliber": {
+        "measure": "位容量",
+        "generation": "合计",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9619f76ac40ed415deb0f4b399f31110a7b6acf9cb1708d86393d8c9fcea71f6",
+        "local_file": "20250805_BMKT-102-1_Ellie-Wang.pdf",
+        "locator": "第 5 页「HBM Shipment Bits and Annual Growth Rate」（unit: million Gb）：2023 3,150（YoY 109%）、2024 12,200（287%）、2025F 23,700（94%）、2026F 30,000（27%）；Source: TrendForce",
+        "grade": "S3",
+        "originator": "TrendForce（Ellie Wang，FMS 2025 Future of Memory and Storage 演讲 BMKT-102-1，2025-08-05）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "3,150 百万 Gb ÷ 8 = 393.8 百万 GB = 3.94 亿 GB。",
+      "corroboration": "待交叉验证",
+      "notes": "TrendForce HBM 出货位元（供给侧三家合计估计）。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf2508-hbm-bit-growth-2023",
+      "metric_id": "hbm_bit_shipment_growth",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 109.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "位出货量",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9619f76ac40ed415deb0f4b399f31110a7b6acf9cb1708d86393d8c9fcea71f6",
+        "local_file": "20250805_BMKT-102-1_Ellie-Wang.pdf",
+        "locator": "第 5 页「HBM Shipment Bits and Annual Growth Rate」（unit: million Gb）：2023 3,150（YoY 109%）、2024 12,200（287%）、2025F 23,700（94%）、2026F 30,000（27%）；Source: TrendForce",
+        "grade": "S3",
+        "originator": "TrendForce（Ellie Wang，FMS 2025 Future of Memory and Storage 演讲 BMKT-102-1，2025-08-05）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "同比增速。与 Yole 2023 +187%/2024 +193% 口径不同、差距大，并列。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf2508-hbm-bits-2024",
+      "metric_id": "hbm_demand_volume",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 15.25,
+      "unit": "亿 GB",
+      "caliber": {
+        "measure": "位容量",
+        "generation": "合计",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9619f76ac40ed415deb0f4b399f31110a7b6acf9cb1708d86393d8c9fcea71f6",
+        "local_file": "20250805_BMKT-102-1_Ellie-Wang.pdf",
+        "locator": "第 5 页「HBM Shipment Bits and Annual Growth Rate」（unit: million Gb）：2023 3,150（YoY 109%）、2024 12,200（287%）、2025F 23,700（94%）、2026F 30,000（27%）；Source: TrendForce",
+        "grade": "S3",
+        "originator": "TrendForce（Ellie Wang，FMS 2025 Future of Memory and Storage 演讲 BMKT-102-1，2025-08-05）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "12,200 百万 Gb ÷ 8 = 1,525.0 百万 GB = 15.25 亿 GB。",
+      "corroboration": "待交叉验证",
+      "notes": "TrendForce HBM 出货位元（供给侧三家合计估计）。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf2508-hbm-bit-growth-2024",
+      "metric_id": "hbm_bit_shipment_growth",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 287.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "位出货量",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9619f76ac40ed415deb0f4b399f31110a7b6acf9cb1708d86393d8c9fcea71f6",
+        "local_file": "20250805_BMKT-102-1_Ellie-Wang.pdf",
+        "locator": "第 5 页「HBM Shipment Bits and Annual Growth Rate」（unit: million Gb）：2023 3,150（YoY 109%）、2024 12,200（287%）、2025F 23,700（94%）、2026F 30,000（27%）；Source: TrendForce",
+        "grade": "S3",
+        "originator": "TrendForce（Ellie Wang，FMS 2025 Future of Memory and Storage 演讲 BMKT-102-1，2025-08-05）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "同比增速。与 Yole 2023 +187%/2024 +193% 口径不同、差距大，并列。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf2508-hbm-bits-2025f",
+      "metric_id": "hbm_demand_volume",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 29.62,
+      "unit": "亿 GB",
+      "caliber": {
+        "measure": "位容量",
+        "generation": "合计",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9619f76ac40ed415deb0f4b399f31110a7b6acf9cb1708d86393d8c9fcea71f6",
+        "local_file": "20250805_BMKT-102-1_Ellie-Wang.pdf",
+        "locator": "第 5 页「HBM Shipment Bits and Annual Growth Rate」（unit: million Gb）：2023 3,150（YoY 109%）、2024 12,200（287%）、2025F 23,700（94%）、2026F 30,000（27%）；Source: TrendForce",
+        "grade": "S3",
+        "originator": "TrendForce（Ellie Wang，FMS 2025 Future of Memory and Storage 演讲 BMKT-102-1，2025-08-05）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "23,700 百万 Gb ÷ 8 = 2,962.5 百万 GB = 29.62 亿 GB。",
+      "corroboration": "待交叉验证",
+      "notes": "TrendForce HBM 出货位元（供给侧三家合计估计）。三星 HBM3e 认证延迟，TrendForce 已下修 2025 年初的预测。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf2508-hbm-bit-growth-2025f",
+      "metric_id": "hbm_bit_shipment_growth",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 94.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "位出货量",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9619f76ac40ed415deb0f4b399f31110a7b6acf9cb1708d86393d8c9fcea71f6",
+        "local_file": "20250805_BMKT-102-1_Ellie-Wang.pdf",
+        "locator": "第 5 页「HBM Shipment Bits and Annual Growth Rate」（unit: million Gb）：2023 3,150（YoY 109%）、2024 12,200（287%）、2025F 23,700（94%）、2026F 30,000（27%）；Source: TrendForce",
+        "grade": "S3",
+        "originator": "TrendForce（Ellie Wang，FMS 2025 Future of Memory and Storage 演讲 BMKT-102-1，2025-08-05）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "同比增速。与 Yole 2023 +187%/2024 +193% 口径不同、差距大，并列。同页称 2025、2026 年增速放缓。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf2508-hbm-bits-2026f",
+      "metric_id": "hbm_demand_volume",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 37.5,
+      "unit": "亿 GB",
+      "caliber": {
+        "measure": "位容量",
+        "generation": "合计",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9619f76ac40ed415deb0f4b399f31110a7b6acf9cb1708d86393d8c9fcea71f6",
+        "local_file": "20250805_BMKT-102-1_Ellie-Wang.pdf",
+        "locator": "第 5 页「HBM Shipment Bits and Annual Growth Rate」（unit: million Gb）：2023 3,150（YoY 109%）、2024 12,200（287%）、2025F 23,700（94%）、2026F 30,000（27%）；Source: TrendForce",
+        "grade": "S3",
+        "originator": "TrendForce（Ellie Wang，FMS 2025 Future of Memory and Storage 演讲 BMKT-102-1，2025-08-05）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "30,000 百万 Gb ÷ 8 = 3,750.0 百万 GB = 37.5 亿 GB。",
+      "corroboration": "待交叉验证",
+      "notes": "TrendForce HBM 出货位元（供给侧三家合计估计）。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf2508-hbm-bit-growth-2026f",
+      "metric_id": "hbm_bit_shipment_growth",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 27.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "位出货量",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9619f76ac40ed415deb0f4b399f31110a7b6acf9cb1708d86393d8c9fcea71f6",
+        "local_file": "20250805_BMKT-102-1_Ellie-Wang.pdf",
+        "locator": "第 5 页「HBM Shipment Bits and Annual Growth Rate」（unit: million Gb）：2023 3,150（YoY 109%）、2024 12,200（287%）、2025F 23,700（94%）、2026F 30,000（27%）；Source: TrendForce",
+        "grade": "S3",
+        "originator": "TrendForce（Ellie Wang，FMS 2025 Future of Memory and Storage 演讲 BMKT-102-1，2025-08-05）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "同比增速。与 Yole 2023 +187%/2024 +193% 口径不同、差距大，并列。同页称 2025、2026 年增速放缓。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "ubs2504-tsmc-cowos-capacity-end2025e",
+      "metric_id": "cowos_capacity_wpm",
+      "entity": {
+        "type": "company",
+        "id": "tsmc",
+        "label": "台积电"
+      },
+      "value": 7.0,
+      "unit": "万片/月",
+      "caliber": {
+        "package_type": "全部CoWoS",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "25b6b53a6d2a6001a89d7f7fb44582db9b257e37055d75548d6cad2255f0532b",
+        "local_file": "[UBS]Asia_Semiconductor_Insight_CoWoS_expansion_slowdown_underway.pdf",
+        "locator": "第 1 页：「We have lowered TSMC's CoWoS capacity to 70kwpm/100kwpm by end-2025/2026. We believe moderation in orders is occurring. TSMC appears to be delaying equipment orders from selective vendors for Oct-Nov 2025 at AP08 (Innolux fab) installations」",
+        "grade": "S3",
+        "originator": "瑞银 Asia Semiconductors（Randy Abrams 等，2025-04-23《CoWoS expansion slowdown underway》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "70 kwpm = 7.0 万片/月，指 2025 年底台积电 CoWoS 月产能；瑞银下调后的数（因台积电推迟 AP08 设备订单）。与库内未注明来源 2025 年 6.5–7.5 万片/月区间一致。",
+      "asserter": "瑞银"
+    },
+    {
+      "fact_id": "ubs2504-tsmc-cowos-capacity-end2026e",
+      "metric_id": "cowos_capacity_wpm",
+      "entity": {
+        "type": "company",
+        "id": "tsmc",
+        "label": "台积电"
+      },
+      "value": 10.0,
+      "unit": "万片/月",
+      "caliber": {
+        "package_type": "全部CoWoS",
+        "basis": "第三方推算"
+      },
+      "as_of": "2026E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "25b6b53a6d2a6001a89d7f7fb44582db9b257e37055d75548d6cad2255f0532b",
+        "local_file": "[UBS]Asia_Semiconductor_Insight_CoWoS_expansion_slowdown_underway.pdf",
+        "locator": "第 1 页：「We have lowered TSMC's CoWoS capacity to 70kwpm/100kwpm by end-2025/2026. We believe moderation in orders is occurring. TSMC appears to be delaying equipment orders from selective vendors for Oct-Nov 2025 at AP08 (Innolux fab) installations」",
+        "grade": "S3",
+        "originator": "瑞银 Asia Semiconductors（Randy Abrams 等，2025-04-23《CoWoS expansion slowdown underway》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "100 kwpm = 10 万片/月（2026 年底）。与大摩 2025-09 版 9.3、2026-01 版 12.5 万片/月为不同机构不同时点的并列预测。同文称 SoIC 产能 2025 年底由 4 kwpm 扩至 8–10 kwpm（SoIC 单列无对应档，未录）。",
+      "asserter": "瑞银"
+    },
+    {
+      "fact_id": "ocp25lt-kyber-nvl576-rack-power",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-kyber-nvl576",
+        "label": "Kyber NVL576"
+      },
+      "value": 600.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "era": "路线图目标",
+        "power_basis": "未披露",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4e3b131d4c7b786c613a6dddf5c149f77449cf85afccbf4af5056fcf60f04758",
+        "local_file": "5B_2022_7719AIHPCLight_未署名.pdf",
+        "locator": "第 10 页「AI rack power is exploding」柱图（Rack Power (kW)）标注「Kyber NVL576 (600 kW)」",
+        "grade": "S3",
+        "originator": "Shrikanth Venkateshappa（OCP AI/HPC Lightning Talks《How Multi-Voltage Systems Reshape Cost, Efficiency & Sustainability》，胶片未注明所属公司）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 未印在胶片上：取 L1 登记年份 2025，与第 10 页引用 Kyber NVL576（英伟达 2025-03 GTC 首次公布）一致；文件名前缀 5B_2022 是目录编号，与内容年代不符，不采用",
+      "corroboration": "待交叉验证",
+      "notes": "图上标签原文「Kyber NVL576 (600 kW)」，未说明是设计功率还是满载，power_basis 记未披露。演讲者未给出处，数值应源自英伟达路线图，**不是独立测量**。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "Shrikanth Venkateshappa"
+    },
+    {
+      "fact_id": "ocp25lt-rubin-rack-power",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-rubin-rack",
+        "label": "Rubin 机柜"
+      },
+      "value": 180.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "era": "路线图目标",
+        "power_basis": "未披露",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4e3b131d4c7b786c613a6dddf5c149f77449cf85afccbf4af5056fcf60f04758",
+        "local_file": "5B_2022_7719AIHPCLight_未署名.pdf",
+        "locator": "第 10 页「AI rack power is exploding」柱图（Rack Power (kW)）标注「Rubin (180 kW)」",
+        "grade": "S3",
+        "originator": "Shrikanth Venkateshappa（OCP AI/HPC Lightning Talks《How Multi-Voltage Systems Reshape Cost, Efficiency & Sustainability》，胶片未注明所属公司）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 未印在胶片上：取 L1 登记年份 2025，与第 10 页引用 Kyber NVL576（英伟达 2025-03 GTC 首次公布）一致；文件名前缀 5B_2022 是目录编号，与内容年代不符，不采用",
+      "corroboration": "待交叉验证",
+      "notes": "图上仅写「Rubin」，未写 NVL144 等机柜型号；与摩根士丹利 2026-01 的 Vera Rubin NVL144 220kW（ms2601-vr-nvl144-rack-power）口径未必相同，不可直接比成分歧。derived 只因 as_of 为推定。",
+      "asserter": "Shrikanth Venkateshappa"
+    },
+    {
+      "fact_id": "ocp25lt-gb200-nvl72-rack-power",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200-nvl72",
+        "label": "GB200 NVL72"
+      },
+      "value": 120.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "era": "当期",
+        "power_basis": "未披露",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4e3b131d4c7b786c613a6dddf5c149f77449cf85afccbf4af5056fcf60f04758",
+        "local_file": "5B_2022_7719AIHPCLight_未署名.pdf",
+        "locator": "第 10 页「AI rack power is exploding」柱图（Rack Power (kW)）标注「GB200 NVL72 (120 kW)」",
+        "grade": "S3",
+        "originator": "Shrikanth Venkateshappa（OCP AI/HPC Lightning Talks《How Multi-Voltage Systems Reshape Cost, Efficiency & Sustainability》，胶片未注明所属公司）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 未印在胶片上：取 L1 登记年份 2025，与第 10 页引用 Kyber NVL576（英伟达 2025-03 GTC 首次公布）一致；文件名前缀 5B_2022 是目录编号，与内容年代不符，不采用",
+      "corroboration": "待交叉验证",
+      "notes": "与英伟达参数表 120kW（实际满载）同值，但本页未说明功率口径，power_basis 记未披露；属转述，不构成独立佐证。derived 只因 as_of 为推定。",
+      "asserter": "Shrikanth Venkateshappa"
+    },
+    {
+      "fact_id": "ocp25lt-ai-rack-exceed-1mw",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "component",
+        "id": "ai-compute-rack-future",
+        "label": "未来 AI 计算机柜"
+      },
+      "value": 1000.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "峰值",
+        "era": "路线图目标",
+        "power_basis": "架构宣称",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "4e3b131d4c7b786c613a6dddf5c149f77449cf85afccbf4af5056fcf60f04758",
+        "local_file": "5B_2022_7719AIHPCLight_未署名.pdf",
+        "locator": "第 10 页正文：「Modern AI compute racks will exceed 1 MW each, far above legacy design expectations.」",
+        "grade": "S3",
+        "originator": "Shrikanth Venkateshappa（OCP AI/HPC Lightning Talks《How Multi-Voltage Systems Reshape Cost, Efficiency & Sustainability》，胶片未注明所属公司）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 未印在胶片上：取 L1 登记年份 2025，与第 10 页引用 Kyber NVL576（英伟达 2025-03 GTC 首次公布）一致；文件名前缀 5B_2022 是目录编号，与内容年代不符，不采用",
+      "corroboration": "待交叉验证",
+      "notes": "「exceed 1 MW」是下界表述，未给时点。derived 只因 as_of 为推定。",
+      "asserter": "Shrikanth Venkateshappa"
+    },
+    {
+      "fact_id": "ocp25lt-copper-per-mw-48v",
+      "metric_id": "electrical_material_intensity",
+      "entity": {
+        "type": "component",
+        "id": "dc-busway-48v",
+        "label": "±48 V 低压直流配电"
+      },
+      "value": 3000.0,
+      "unit": "量/MW 或 量/机柜",
+      "caliber": {
+        "material": "铜",
+        "system": "供配电",
+        "uom": "kg",
+        "denominator": "每 MW",
+        "voltage_level": "直流",
+        "region": "Global",
+        "basis": "架构宣称"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4e3b131d4c7b786c613a6dddf5c149f77449cf85afccbf4af5056fcf60f04758",
+        "local_file": "5B_2022_7719AIHPCLight_未署名.pdf",
+        "locator": "第 10 页正文「At 48 V, delivering 1 MW requires 20,833 A, forcing ~3 tonnes of copper per MW」；第 13 页「Measured Impact (per MW) • Copper: 3000 kg @ 48 V → 240 kg @ ±1000 V」",
+        "grade": "S3",
+        "originator": "Shrikanth Venkateshappa（OCP AI/HPC Lightning Talks《How Multi-Voltage Systems Reshape Cost, Efficiency & Sustainability》，胶片未注明所属公司）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 未印在胶片上：取 L1 登记年份 2025，与第 10 页引用 Kyber NVL576（英伟达 2025-03 GTC 首次公布）一致；文件名前缀 5B_2022 是目录编号，与内容年代不符，不采用",
+      "corroboration": "待交叉验证",
+      "notes": "48V 与 ±1000V 两档都是直流，voltage_level 维只有「直流」一值，靠 entity 分开。第 13 页标题写「Measured Impact」，但同页讲的是 ±1000V 入机房的可行性，未给测试条件或项目，basis 按架构宣称录，不记实测。",
+      "asserter": "Shrikanth Venkateshappa"
+    },
+    {
+      "fact_id": "ocp25lt-copper-per-mw-1000v",
+      "metric_id": "electrical_material_intensity",
+      "entity": {
+        "type": "component",
+        "id": "dc-busway-pm1000v",
+        "label": "±1000 V 直流配电"
+      },
+      "value": 240.0,
+      "unit": "量/MW 或 量/机柜",
+      "caliber": {
+        "material": "铜",
+        "system": "供配电",
+        "uom": "kg",
+        "denominator": "每 MW",
+        "voltage_level": "直流",
+        "region": "Global",
+        "basis": "架构宣称"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4e3b131d4c7b786c613a6dddf5c149f77449cf85afccbf4af5056fcf60f04758",
+        "local_file": "5B_2022_7719AIHPCLight_未署名.pdf",
+        "locator": "第 11 页「±1000 V → ~84% less (240 kg/MW)」；第 13 页「Copper: 3000 kg @ 48 V → 240 kg @ ±1000 V」",
+        "grade": "S3",
+        "originator": "Shrikanth Venkateshappa（OCP AI/HPC Lightning Talks《How Multi-Voltage Systems Reshape Cost, Efficiency & Sustainability》，胶片未注明所属公司）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 未印在胶片上：取 L1 登记年份 2025，与第 10 页引用 Kyber NVL576（英伟达 2025-03 GTC 首次公布）一致；文件名前缀 5B_2022 是目录编号，与内容年代不符，不采用",
+      "corroboration": "待交叉验证",
+      "notes": "第 11 页另列 ±400V 约省铜 70%、±800V 约省 80%（相对 ±48V 的比例，未给 kg，未录）。basis 理由同 48V 那条。",
+      "asserter": "Shrikanth Venkateshappa"
+    },
+    {
+      "fact_id": "arm-agi-cpu-cores",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "arm-agi-cpu",
+        "label": "Arm AGI CPU"
+      },
+      "value": 136.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "Arm AGI CPU",
+        "parameter": "核数",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ced1280bdcbb471bbb5d2f9356576fd0268f5eaa7d17275cb9cfff5839c0151c",
+        "local_file": "5B_2022_ScalingAIInfra_未署名.pdf",
+        "locator": "第 8 页 Arm AGI CPU 规格页「Up to 136 Arm Neoverse V3 cores」",
+        "grade": "S2",
+        "originator": "Arm（Eddie Ramirez，Vice President of Marketing, Cloud AI，OCP 演讲《Scaling AI Infrastructure with Open Systems and Arm-Based Silicon》）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 2 页 GitHub stars 曲线横轴画到 2026 并标出 OpenClaw，第 3 页智能体数量以 2026 为起点，推定为 2026 年材料；L1 登记年份 2025 与此不符，不采用；文件名前缀 5B_2022 是目录编号",
+      "corroboration": "待交叉验证",
+      "notes": "本条单位：核。原文为「Up to」上限配置。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "Arm"
+    },
+    {
+      "fact_id": "arm-agi-cpu-tdp",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "arm-agi-cpu",
+        "label": "Arm AGI CPU"
+      },
+      "value": 300.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "Arm AGI CPU",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ced1280bdcbb471bbb5d2f9356576fd0268f5eaa7d17275cb9cfff5839c0151c",
+        "local_file": "5B_2022_ScalingAIInfra_未署名.pdf",
+        "locator": "第 8 页 Arm AGI CPU 规格页「300 watt TDP」",
+        "grade": "S2",
+        "originator": "Arm（Eddie Ramirez，Vice President of Marketing, Cloud AI，OCP 演讲《Scaling AI Infrastructure with Open Systems and Arm-Based Silicon》）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 2 页 GitHub stars 曲线横轴画到 2026 并标出 OpenClaw，第 3 页智能体数量以 2026 为起点，推定为 2026 年材料；L1 登记年份 2025 与此不符，不采用；文件名前缀 5B_2022 是目录编号",
+      "corroboration": "待交叉验证",
+      "notes": "本条单位：W。同页另有 96 条 PCIe Gen6 通道、每核 2MB L2 缓存、最高 3.7GHz、DDR5-8800、单芯片 6TB 内存（不在参数枚举内，未录）。derived 只因 as_of 为推定。",
+      "asserter": "Arm"
+    },
+    {
+      "fact_id": "arm-agi-cpu-node",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "arm-agi-cpu",
+        "label": "Arm AGI CPU"
+      },
+      "value": 3.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "Arm AGI CPU",
+        "parameter": "制程(nm)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ced1280bdcbb471bbb5d2f9356576fd0268f5eaa7d17275cb9cfff5839c0151c",
+        "local_file": "5B_2022_ScalingAIInfra_未署名.pdf",
+        "locator": "第 8 页 Arm AGI CPU 规格页「Incredible 3nm efficiency」；「Dual chiplet design」",
+        "grade": "S2",
+        "originator": "Arm（Eddie Ramirez，Vice President of Marketing, Cloud AI，OCP 演讲《Scaling AI Infrastructure with Open Systems and Arm-Based Silicon》）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 2 页 GitHub stars 曲线横轴画到 2026 并标出 OpenClaw，第 3 页智能体数量以 2026 为起点，推定为 2026 年材料；L1 登记年份 2025 与此不符，不采用；文件名前缀 5B_2022 是目录编号",
+      "corroboration": "待交叉验证",
+      "notes": "本条单位：nm。原文未写代工厂。双 chiplet 设计。derived 只因 as_of 为推定。",
+      "asserter": "Arm"
+    },
+    {
+      "fact_id": "arm-agi-cpu-orv3-air-36kw",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "component",
+        "id": "arm-agi-cpu-orv3-air",
+        "label": "Arm AGI CPU 风冷 Open Rack V3 参考机柜"
+      },
+      "value": 36.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "主流机型",
+        "era": "当期",
+        "power_basis": "设计功率",
+        "region": "Global"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ced1280bdcbb471bbb5d2f9356576fd0268f5eaa7d17275cb9cfff5839c0151c",
+        "local_file": "5B_2022_ScalingAIInfra_未署名.pdf",
+        "locator": "第 10 页左栏「Air cooled / 36kW Open Rack V3 / 30x 2 node 1U servers / 8,160 performant CPU cores / 180TB+ low latency memory」",
+        "grade": "S2",
+        "originator": "Arm（Eddie Ramirez，Vice President of Marketing, Cloud AI，OCP 演讲《Scaling AI Infrastructure with Open Systems and Arm-Based Silicon》）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 2 页 GitHub stars 曲线横轴画到 2026 并标出 OpenClaw，第 3 页智能体数量以 2026 为起点，推定为 2026 年材料；L1 登记年份 2025 与此不符，不采用；文件名前缀 5B_2022 是目录编号",
+      "corroboration": "待交叉验证",
+      "notes": "**纯 CPU 机柜**（用于智能体编排），不是加速器机柜；rack_type 取传统风冷只表示风冷形态，与 GPU 整机柜不可比。是参考配置，不是出货统计。8,160 核 = 30 台 × 2 节点 × 136 核，与第 8 页规格自洽。derived 只因 as_of 为推定。",
+      "asserter": "Arm"
+    },
+    {
+      "fact_id": "arm-agi-cpu-orw-liquid-200kw",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "component",
+        "id": "arm-agi-cpu-orw-liquid",
+        "label": "Arm AGI CPU 液冷 Open Rack Wide 参考机柜"
+      },
+      "value": 200.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "主流机型",
+        "era": "当期",
+        "power_basis": "设计功率",
+        "region": "Global"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ced1280bdcbb471bbb5d2f9356576fd0268f5eaa7d17275cb9cfff5839c0151c",
+        "local_file": "5B_2022_ScalingAIInfra_未署名.pdf",
+        "locator": "第 10 页右栏「Liquid cooled / 200kW Open Rack Wide / 42x 8 node 1U servers / 45,696 performant CPU cores / 1PB+ low latency memory」",
+        "grade": "S2",
+        "originator": "Arm（Eddie Ramirez，Vice President of Marketing, Cloud AI，OCP 演讲《Scaling AI Infrastructure with Open Systems and Arm-Based Silicon》）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 2 页 GitHub stars 曲线横轴画到 2026 并标出 OpenClaw，第 3 页智能体数量以 2026 为起点，推定为 2026 年材料；L1 登记年份 2025 与此不符，不采用；文件名前缀 5B_2022 是目录编号",
+      "corroboration": "待交叉验证",
+      "notes": "**纯 CPU 液冷机柜**，不含加速器；放在 AI液冷机柜 是因为定位为智能体 AI 编排，读数时不要与 GPU 机柜功率序列混排。45,696 核 = 42 台 × 8 节点 × 136 核，自洽。参考配置，不是出货统计。derived 只因 as_of 为推定。",
+      "asserter": "Arm"
+    },
+    {
+      "fact_id": "cmcc-wanka-rack-legacy-lower",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "component",
+        "id": "cmcc-wanka-rack-legacy",
+        "label": "传统 IDC 云数据中心单柜功率（超万卡白皮书对照）"
+      },
+      "value": 7.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "市场普遍水平",
+        "era": "未注明",
+        "power_basis": "未披露",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "d372fc0b21574e8247ded115c2ca0d2dc8350add612d8bbe5ac37cf326eccc00",
+        "local_file": "2024年32页-通信行业：面向超万卡集群的新型智算技术白皮书（2024年）.pdf",
+        "locator": "PDF 第 9 页（页脚 6）「2.5 高能耗高密度机房设计的挑战」：「在供电方面，当芯片TDP设计功率上升至400~700W，单柜功率从原先的7~8KW上升至40KW甚至60KW，集群整体功耗将攀升至数十~上百MW」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "中国移动、中移智库《面向超万卡集群的新型智算技术白皮书（2024年）》。原文「原先」未给年代，era 记未注明。原文 7~8KW，下界。",
+      "asserter": "中国移动"
+    },
+    {
+      "fact_id": "cmcc-wanka-rack-legacy-upper",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "component",
+        "id": "cmcc-wanka-rack-legacy",
+        "label": "传统 IDC 云数据中心单柜功率（超万卡白皮书对照）"
+      },
+      "value": 8.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "市场普遍水平",
+        "era": "未注明",
+        "power_basis": "未披露",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "d372fc0b21574e8247ded115c2ca0d2dc8350add612d8bbe5ac37cf326eccc00",
+        "local_file": "2024年32页-通信行业：面向超万卡集群的新型智算技术白皮书（2024年）.pdf",
+        "locator": "PDF 第 9 页（页脚 6）「2.5 高能耗高密度机房设计的挑战」：「在供电方面，当芯片TDP设计功率上升至400~700W，单柜功率从原先的7~8KW上升至40KW甚至60KW，集群整体功耗将攀升至数十~上百MW」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "中国移动、中移智库《面向超万卡集群的新型智算技术白皮书（2024年）》。原文「原先」未给年代，era 记未注明。原文 7~8KW，上界。",
+      "asserter": "中国移动"
+    },
+    {
+      "fact_id": "cmcc-wanka-rack-ai-40kw",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "component",
+        "id": "cmcc-wanka-rack-ai",
+        "label": "超万卡集群智算机柜单柜功率"
+      },
+      "value": 40.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "市场普遍水平",
+        "era": "当期",
+        "power_basis": "未披露",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d372fc0b21574e8247ded115c2ca0d2dc8350add612d8bbe5ac37cf326eccc00",
+        "local_file": "2024年32页-通信行业：面向超万卡集群的新型智算技术白皮书（2024年）.pdf",
+        "locator": "PDF 第 9 页（页脚 6）「2.5 高能耗高密度机房设计的挑战」：「在供电方面，当芯片TDP设计功率上升至400~700W，单柜功率从原先的7~8KW上升至40KW甚至60KW，集群整体功耗将攀升至数十~上百MW」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "中国移动、中移智库《面向超万卡集群的新型智算技术白皮书（2024年）》。原文只说单柜功率上升到这一档，未写液冷；rack_type 取 AI液冷机柜 依据同节下一条「需要引入液冷方案…单机柜重量达1-2吨」。「40KW甚至60KW」拆成普遍水平 40 与峰值 60 两条。",
+      "asserter": "中国移动"
+    },
+    {
+      "fact_id": "cmcc-wanka-rack-ai-60kw",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "component",
+        "id": "cmcc-wanka-rack-ai-peak",
+        "label": "超万卡集群智算机柜单柜功率（高档）"
+      },
+      "value": 60.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "峰值",
+        "era": "当期",
+        "power_basis": "未披露",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d372fc0b21574e8247ded115c2ca0d2dc8350add612d8bbe5ac37cf326eccc00",
+        "local_file": "2024年32页-通信行业：面向超万卡集群的新型智算技术白皮书（2024年）.pdf",
+        "locator": "PDF 第 9 页（页脚 6）「2.5 高能耗高密度机房设计的挑战」：「在供电方面，当芯片TDP设计功率上升至400~700W，单柜功率从原先的7~8KW上升至40KW甚至60KW，集群整体功耗将攀升至数十~上百MW」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "中国移动、中移智库《面向超万卡集群的新型智算技术白皮书（2024年）》。原文只说单柜功率上升到这一档，未写液冷；rack_type 取 AI液冷机柜 依据同节下一条「需要引入液冷方案…单机柜重量达1-2吨」。「40KW甚至60KW」拆成普遍水平 40 与峰值 60 两条。",
+      "asserter": "中国移动"
+    },
+    {
+      "fact_id": "sa2412-trn2-bf16-pflops",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "aws-trainium2",
+        "label": "AWS Trainium2"
+      },
+      "value": 0.65,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "AWS Trainium2",
+        "precision": "BF16",
+        "scope": "单卡",
+        "sparsity": "稠密",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9528231425c0384d71fa1117dd94bc76dd00b06988e189b8bb7afb897ceddd27",
+        "local_file": "Amazon’s AI Self Sufficiency _ Trainium2 Architecture & Networking – SemiAnalysis.pdf",
+        "locator": "第 3 页：「a ~500W chip that has 650 TFLOP/s per chip of a dense BF16 performance with 96GByte of HBM3e memory capacity」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Amazon’s AI Self Sufficiency | Trainium2 Architecture & Networking》（Dylan Patel、Daniel Nishball、Reyk Knuhtsen，2024-12-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同一报告内自相矛盾**：第 57 页写「each Trainium chip delivers 1,300 TFLOPS of stated FP16 compute」，恰为本条 2 倍（可能一处按单个计算 chiplet、一处按封装计——每颗 Trainium2 含两个计算 chiplet，第 7 页），原文未解释。两条按 precision 分开并列，不裁决。650 TFLOPS = 0.65 PFLOPS。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-trn2-fp16-pflops",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "aws-trainium2",
+        "label": "AWS Trainium2"
+      },
+      "value": 1.3,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "AWS Trainium2",
+        "precision": "FP16",
+        "scope": "单卡",
+        "sparsity": "未注明",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9528231425c0384d71fa1117dd94bc76dd00b06988e189b8bb7afb897ceddd27",
+        "local_file": "Amazon’s AI Self Sufficiency _ Trainium2 Architecture & Networking – SemiAnalysis.pdf",
+        "locator": "第 57 页「Performance vs TCO」：「Though each Trainium chip delivers 1,300 TFLOPS of stated FP16 compute vs 1,979 TFLOPS for the H100」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Amazon’s AI Self Sufficiency | Trainium2 Architecture & Networking》（Dylan Patel、Daniel Nishball、Reyk Knuhtsen，2024-12-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「stated」算力，TCO 计算中 SemiAnalysis 假设训练有效算力为其 38%（第 58 页）。与第 3 页 BF16 650 TFLOPS 相差 2 倍，见 sa2412-trn2-bf16-pflops 备注。1,300 TFLOPS = 1.3 PFLOPS。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-trn2-hbm-capacity",
+      "metric_id": "accelerator_memory_spec",
+      "entity": {
+        "type": "product",
+        "id": "aws-trainium2",
+        "label": "AWS Trainium2"
+      },
+      "value": 96.0,
+      "unit": "GB",
+      "caliber": {
+        "product": "AWS Trainium2",
+        "parameter": "容量",
+        "memory_type": "HBM3e",
+        "scope": "单卡",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9528231425c0384d71fa1117dd94bc76dd00b06988e189b8bb7afb897ceddd27",
+        "local_file": "Amazon’s AI Self Sufficiency _ Trainium2 Architecture & Networking – SemiAnalysis.pdf",
+        "locator": "第 3 页：「with 96GByte of HBM3e memory capacity」；第 7 页：「Each Trainium2 chip consists of two compute chiplets and four stacks of HBM3e memory」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Amazon’s AI Self Sufficiency | Trainium2 Architecture & Networking》（Dylan Patel、Daniel Nishball、Reyk Knuhtsen，2024-12-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 GB（容量）。4 个 HBM3e 堆叠，每个计算 chiplet 经 CoWoS-S/R 直连相邻两个堆叠，跨半边访问有 NUMA 损失。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-trn2-tdp",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "aws-trainium2",
+        "label": "AWS Trainium2"
+      },
+      "value": 500.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "AWS Trainium2",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9528231425c0384d71fa1117dd94bc76dd00b06988e189b8bb7afb897ceddd27",
+        "local_file": "Amazon’s AI Self Sufficiency _ Trainium2 Architecture & Networking – SemiAnalysis.pdf",
+        "locator": "第 3 页：「AWS is now firmly targeting complex GenAI LLM inferencing and training workloads with a ~500W chip」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Amazon’s AI Self Sufficiency | Trainium2 Architecture & Networking》（Dylan Patel、Daniel Nishball、Reyk Knuhtsen，2024-12-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 W。原文「~500W」为约数。第 2 页提到亚马逊与 Marvell 等合作放量，但未说明设计分工，design_partner 记未注明。第 57 页另给含 CPU 头节点等分摊后的 all-in 每芯片功耗 780W（H100 HGX 为 1,340W），口径不同未录。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-trn2-neuronlinkv3-bw",
+      "metric_id": "interconnect_bandwidth_spec",
+      "entity": {
+        "type": "product",
+        "id": "aws-trainium2",
+        "label": "AWS Trainium2"
+      },
+      "value": 640.0,
+      "unit": "GB/s",
+      "caliber": {
+        "product": "AWS Trainium2",
+        "link": "其他",
+        "direction": "单向",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9528231425c0384d71fa1117dd94bc76dd00b06988e189b8bb7afb897ceddd27",
+        "local_file": "Amazon’s AI Self Sufficiency _ Trainium2 Architecture & Networking – SemiAnalysis.pdf",
+        "locator": "第 25 页：「Each chip will have 640GByte/s of unidirectional Bandwidth with up to 6 immediate neighbors」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Amazon’s AI Self Sufficiency | Trainium2 Architecture & Networking》（Dylan Patel、Daniel Nishball、Reyk Knuhtsen，2024-12-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "NeuronLinkv3（AWS 的 scale-up 互连，基于 PCIe Gen5）。Trn2-Ultra 的 3D torus 中 x/y 轴点对点 128GB/s、z 轴 64GB/s（第 28 页）。原文对比 H100 NVLink 400GB/s（第 4 页，未注明单双向）。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-trn2-neuronlinkv3-lane",
+      "metric_id": "interconnect_lane_rate",
+      "entity": {
+        "type": "product",
+        "id": "aws-trainium2-neuronlinkv3",
+        "label": "AWS Trainium2 NeuronLinkv3（机内）"
+      },
+      "value": 32.0,
+      "unit": "Gbps/通道",
+      "caliber": {
+        "product": "AWS Trainium2 NeuronLinkv3",
+        "medium": "背板/PCB 铜",
+        "reach_band": "<5m（机柜内）",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9528231425c0384d71fa1117dd94bc76dd00b06988e189b8bb7afb897ceddd27",
+        "local_file": "Amazon’s AI Self Sufficiency _ Trainium2 Architecture & Networking – SemiAnalysis.pdf",
+        "locator": "第 26 页：「NeuronLinkv3 is based on PCIe Gen 5.0 which means 32Gbit/s per lane (unidirectional). Each chip connects to other intra-server chips using 32 PCIe lanes」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Amazon’s AI Self Sufficiency | Trainium2 Architecture & Networking》（Dylan Patel、Daniel Nishball、Reyk Knuhtsen，2024-12-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "机内经无源铜背板与 JBOG 板上走线；机间（Trn2-Ultra z 轴）改用 OSFP-XD 有源铜缆 AEC（第 18、28 页）。PCIe Gen5 单通道单向 32Gbps 为标准值。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-trn2-chips-per-tray",
+      "metric_id": "rack_component_count",
+      "entity": {
+        "type": "product",
+        "id": "aws-trainium2-server",
+        "label": "AWS Trainium2 服务器（Trn2 / Trn2-Ultra）"
+      },
+      "value": 2.0,
+      "unit": "个",
+      "caliber": {
+        "product": "AWS Trainium2 服务器",
+        "component": "GPU",
+        "denominator": "每托盘",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9528231425c0384d71fa1117dd94bc76dd00b06988e189b8bb7afb897ceddd27",
+        "local_file": "Amazon’s AI Self Sufficiency _ Trainium2 Architecture & Networking – SemiAnalysis.pdf",
+        "locator": "第 12 页：「Each 2U compute tray has two Trainium chips and no CPUs」；第 11 页：一台物理服务器 = 1 个 2U CPU 头托盘 + 8 个 2U 计算托盘，占 18RU",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Amazon’s AI Self Sufficiency | Trainium2 Architecture & Networking》（Dylan Patel、Daniel Nishball、Reyk Knuhtsen，2024-12-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "component 记 GPU 是菜单里最近的「加速器」位，实为 Trainium2 ASIC。计算托盘不含 CPU（JBOG），与 GB200 NVL72 托盘内 CPU+GPU 同板不同。一台物理服务器 16 颗；Trn2 每柜 2 台，Trn2-Ultra 4 台物理服务器跨 2 柜组成 64 颗 scale-up 域（第 12 页）。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-trn2-ultra-rack-power",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "aws-trn2-ultra-rack",
+        "label": "AWS Trn2-Ultra 机柜（64 芯片服务器的半边）"
+      },
+      "value": 24.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "era": "当期",
+        "power_basis": "未披露",
+        "region": "Global"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9528231425c0384d71fa1117dd94bc76dd00b06988e189b8bb7afb897ceddd27",
+        "local_file": "Amazon’s AI Self Sufficiency _ Trainium2 Architecture & Networking – SemiAnalysis.pdf",
+        "locator": "第 21 页「Power Budget」：「We estimate the rack power of each SKU, with each of the two racks within a Trn2-Ultra 64-Chip server requiring 24kW of power (48kW per Trn2-Ultra 64-Chip server)」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Amazon’s AI Self Sufficiency | Trainium2 Architecture & Networking》（Dylan Patel、Daniel Nishball、Reyk Knuhtsen，2024-12-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "SemiAnalysis 估算的功率预算，未说明按 TDP 还是满载，power_basis 记未披露。**风冷**（第 24 页热通道烟囱式封闭），rack_type 取整机柜系统只因其为机架级 scale-up 系统（原文类比 GB200 NVL36x2）。一台 64 芯片服务器占两柜，合计 48kW。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-trn2-rack-power",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "aws-trn2-rack",
+        "label": "AWS Trn2 机柜（两台 16 芯片服务器）"
+      },
+      "value": 27.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "era": "当期",
+        "power_basis": "未披露",
+        "region": "Global"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9528231425c0384d71fa1117dd94bc76dd00b06988e189b8bb7afb897ceddd27",
+        "local_file": "Amazon’s AI Self Sufficiency _ Trainium2 Architecture & Networking – SemiAnalysis.pdf",
+        "locator": "第 22 页：「Racks used to house the normal Trn2 server will have a rack density of 27kW, but recall that there will be two 16-Chip Trn2 servers housed in one rack」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Amazon’s AI Self Sufficiency | Trainium2 Architecture & Networking》（Dylan Patel、Daniel Nishball、Reyk Knuhtsen，2024-12-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "比 Trn2-Ultra 柜高 3kW，原文归因于每芯片 800Gbit/s 横向扩展所需的更多网卡与更高 radix ToR 交换机。风冷；功率口径同上条。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-aws-indiana-rainier-ph1",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "project",
+        "id": "aws-indiana-project-rainier",
+        "label": "AWS 印第安纳园区（Project Rainier，Anthropic 40 万 Trainium2 集群）一期"
+      },
+      "value": 455.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9528231425c0384d71fa1117dd94bc76dd00b06988e189b8bb7afb897ceddd27",
+        "local_file": "Amazon’s AI Self Sufficiency _ Trainium2 Architecture & Networking – SemiAnalysis.pdf",
+        "locator": "第 23 页「Project Rainier – 400k Trainium2 Cluster」：「This campus has completed construction of its first phase and there are currently seven buildings, each with 65MW of IT power, totaling 455MWs」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Amazon’s AI Self Sufficiency | Trainium2 Architecture & Networking》（Dylan Patel、Daniel Nishball、Reyk Knuhtsen，2024-12-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "SemiAnalysis 称一期建成且正在部署 40 万颗 Trainium2 集群，据此记 L8；**非 AWS 官方披露**，原文只说「Indiana」未写具体地点。同页估计园区 PUE 约 1.10–1.15（地处印第安纳北部；dc_pue 的 period 维无「未注明」，未录）。园区同时部署 AWS 通用 CPU 服务器与 Blackwell 集群，455MW 不全是 Trainium2。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-aws-indiana-rainier-ph2",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "project",
+        "id": "aws-indiana-project-rainier-ph2",
+        "label": "AWS 印第安纳园区（Project Rainier）二期"
+      },
+      "value": 585.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L2",
+        "region": "US"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9528231425c0384d71fa1117dd94bc76dd00b06988e189b8bb7afb897ceddd27",
+        "local_file": "Amazon’s AI Self Sufficiency _ Trainium2 Architecture & Networking – SemiAnalysis.pdf",
+        "locator": "第 23 页：「Phase 2 of this Indiana AWS campus will add nine more 65MW buildings for a total of 1,040MW of power」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Amazon’s AI Self Sufficiency | Trainium2 Architecture & Networking》（Dylan Patel、Daniel Nishball、Reyk Knuhtsen，2024-12-03）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "原文给的是两期合计 1,040MW；按「分期各有状态、不与已投运加成同一当前容量」拆出二期增量 585MW = 9 栋 × 65MW（与 1,040 − 455 一致）。status 记 L2 表示规划中，但原文未引官方公告，出处是 SemiAnalysis。",
+      "asserter": "SemiAnalysis",
+      "derivation": "9 × 65MW = 585MW；校验 1,040 − 455 = 585"
+    },
+    {
+      "fact_id": "sa2412-trn2-h100-training-effective-share",
+      "metric_id": "mfu_rate",
+      "entity": {
+        "type": "market",
+        "id": "sa-4k-cluster-training-effective-flops",
+        "label": "SemiAnalysis TCO 模型：H100 训练有效算力占标称比例（Trainium2 同假设）"
+      },
+      "value": 38.0,
+      "unit": "%",
+      "caliber": {
+        "cluster_scale": "千卡",
+        "region": "未披露"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9528231425c0384d71fa1117dd94bc76dd00b06988e189b8bb7afb897ceddd27",
+        "local_file": "Amazon’s AI Self Sufficiency _ Trainium2 Architecture & Networking – SemiAnalysis.pdf",
+        "locator": "第 58 页：「Our estimate for H100 Training Effective FLOPS is calibrated by our own training runs on H100 nodes as well as by various papers from AI companies discussing their Model Flops Utilization (MFU)… we assume it stands at 38% of stated TFLOPS – the same as for the H100」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Amazon’s AI Self Sufficiency | Trainium2 Architecture & Networking》（Dylan Patel、Daniel Nishball、Reyk Knuhtsen，2024-12-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**模型假设，不是实测 MFU**：H100 的 38% 由 SemiAnalysis 自有训练与公开 MFU 论文校准，Trainium2 因无数据直接沿用。cluster_scale 取千卡因 TCO 对比按 4,096 芯片集群建模（第 54 页）。同页称 Anthropic 等深度调优用户或可达 TPU 式 60% 左右 MFU（推测，未录）。region 记未披露：原文是 SemiAnalysis 通用 TCO 模型假设，未限定地域。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2403-b100-tdp",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-b100",
+        "label": "NVIDIA B100（Umbriel）"
+      },
+      "value": 700.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "NVIDIA B100",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "40399d9d82921fcdea4508b50b10db572f1c9096593596b5ec4e08de2876d2c3",
+        "local_file": "Nvidia B100, B200, GB200 - COGS, Pricing, Margins, Ramp - Oberon, Umbriel, Miranda.pdf",
+        "locator": "第 3 页：「The first version of Blackwell, codename Umbriel, is for time to market, it keeps PCIe Gen 5, 400G networking, etc. In fact, the B100 air-cooled 700W can even slide into existing servers that accept the H100 and H200 baseboards」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia B100, B200, GB200 - COGS, Pricing, Margins, Ramp - Oberon, Umbriel, Miranda》（Dylan Patel、Myron Xie、Chaolien Tseng，2024-03-18，GTC 2024 发布会当天发文）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 W。风冷，可直接装入 H100/H200 基板的现有服务器。发文于英伟达 GTC 2024 正式发布之前数小时，属发布前的供应链口径，与后续官方规格可能不同（B100 这一型号后来未按此名称出货）。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2403-b200-tdp",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-b200",
+        "label": "NVIDIA B200"
+      },
+      "value": 1000.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "NVIDIA B200",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "40399d9d82921fcdea4508b50b10db572f1c9096593596b5ec4e08de2876d2c3",
+        "local_file": "Nvidia B100, B200, GB200 - COGS, Pricing, Margins, Ramp - Oberon, Umbriel, Miranda.pdf",
+        "locator": "第 3 页：「The B200 will follow shortly after, with a higher power limit of 1,000W. This version requires a redesign of servers… the 1,000W version can still be air-cooled」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia B100, B200, GB200 - COGS, Pricing, Margins, Ramp - Oberon, Umbriel, Miranda》（Dylan Patel、Myron Xie、Chaolien Tseng，2024-03-18，GTC 2024 发布会当天发文）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 W。原文用词为「power limit」。风冷可行的判断来自 SemiAnalysis 台湾分析师渠道调研。发文于英伟达 GTC 2024 正式发布之前数小时，属发布前的供应链口径，与后续官方规格可能不同（B100 这一型号后来未按此名称出货）。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2403-blackwell-node",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-blackwell-gpu",
+        "label": "NVIDIA Blackwell GPU（B100/B200）"
+      },
+      "value": 4.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "NVIDIA Blackwell GPU（B100/B200）",
+        "parameter": "制程(nm)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "40399d9d82921fcdea4508b50b10db572f1c9096593596b5ec4e08de2876d2c3",
+        "local_file": "Nvidia B100, B200, GB200 - COGS, Pricing, Margins, Ramp - Oberon, Umbriel, Miranda.pdf",
+        "locator": "第 2 页：「Blackwell will have 2 reticle-sized GPU dies. The GPU compute dies will remain on 4nm like Hopper… This is due to issues with TSMC’s original 3nm, N3B」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia B100, B200, GB200 - COGS, Pricing, Margins, Ramp - Oberon, Umbriel, Miranda》（Dylan Patel、Myron Xie、Chaolien Tseng，2024-03-18，GTC 2024 发布会当天发文）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 nm。两颗接近光罩尺寸的计算裸片，首个大批量采用 CoWoS-L 的产品。发文于英伟达 GTC 2024 正式发布之前数小时，属发布前的供应链口径，与后续官方规格可能不同（B100 这一型号后来未按此名称出货）。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2403-b100-hbm-capacity",
+      "metric_id": "accelerator_memory_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-b100",
+        "label": "NVIDIA B100"
+      },
+      "value": 192.0,
+      "unit": "GB",
+      "caliber": {
+        "product": "NVIDIA B100",
+        "parameter": "容量",
+        "memory_type": "HBM3e",
+        "scope": "单卡",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "40399d9d82921fcdea4508b50b10db572f1c9096593596b5ec4e08de2876d2c3",
+        "local_file": "Nvidia B100, B200, GB200 - COGS, Pricing, Margins, Ramp - Oberon, Umbriel, Miranda.pdf",
+        "locator": "第 2 页：「In addition, there will be up to 8 stacks of 8-hi HBM3E with up to 192GB capacity. Both SK Hynix and Micron are suppliers with the vast majority being SK Hynix」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia B100, B200, GB200 - COGS, Pricing, Margins, Ramp - Oberon, Umbriel, Miranda》（Dylan Patel、Myron Xie、Chaolien Tseng，2024-03-18，GTC 2024 发布会当天发文）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 GB（容量），原文为「up to」上限。第 4 页称 Miranda 路线图同为 192GB，但英伟达已包下 36GB HBM 供应，可能刷新到每 GPU 288GB（推测，未录）。发文于英伟达 GTC 2024 正式发布之前数小时，属发布前的供应链口径，与后续官方规格可能不同（B100 这一型号后来未按此名称出货）。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2403-gb200-nvl72-rack-power",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200-nvl72-sa2403",
+        "label": "GB200 NVL72（Oberon）"
+      },
+      "value": 120.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "era": "路线图目标",
+        "power_basis": "未披露",
+        "region": "Global"
+      },
+      "as_of": "2024-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "40399d9d82921fcdea4508b50b10db572f1c9096593596b5ec4e08de2876d2c3",
+        "local_file": "Nvidia B100, B200, GB200 - COGS, Pricing, Margins, Ramp - Oberon, Umbriel, Miranda.pdf",
+        "locator": "第 5 页：「There are two versions of the rack here. One is 120kW, which is an incredible amount of power for 72 GPUs. It has 10 compute trays on top, 9 NVSwitch trays in the middle, and 8 compute trays on the bottom… This version is actually later though.」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia B100, B200, GB200 - COGS, Pricing, Margins, Ramp - Oberon, Umbriel, Miranda》（Dylan Patel、Myron Xie、Chaolien Tseng，2024-03-18，GTC 2024 发布会当天发文）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "发布前口径，原文说 72 GPU 版「actually later」，era 记路线图目标。另一版为 36 GPU / 9 计算托盘的低功率机柜，可跨两柜 NVLink 互连，未给功率。与 SemiAnalysis 2024 年另一份的 125kW（实际功率密度）口径不同，不构成同一出处的改口。发文于英伟达 GTC 2024 正式发布之前数小时，属发布前的供应链口径，与后续官方规格可能不同（B100 这一型号后来未按此名称出货）。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2408-gb200a-nvl36-rack-power",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-mgx-gb200a-nvl36",
+        "label": "MGX GB200A NVL36"
+      },
+      "value": 40.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "era": "路线图目标",
+        "power_basis": "未披露",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3d4af472137e5cc411380bbffd6111bc1a7339fc4f5544f06a0ac1c937a43f43",
+        "local_file": "Nvidia's Blackwell Reworked - Shipment Delays & G.pdf",
+        "locator": "第 7 页：「The MGX GB200A NVL36 SKU is a fully air cooled 40kW/rack server that would have 36 GPUs fully interconnected together with NVLink」；第 15 页：「We estimate that at 700W per GPU, the GB200A NVL36 will most likely be around 40kW per rack. The 2U compute trays will require about 4kW of power」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia's Blackwell Reworked - Shipment Delays & GB200A Reworked Platforms》（Dylan Patel、Wega Chu、Daniel Nishball 等，2024-08-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**全风冷**，面向无法支持 ~125kW 液冷 GB200 NVL72 的机房（用冷通道封闭+隔排部署）。SemiAnalysis 按每 GPU 700W 估算，power_basis 记未披露。第 18–19 页估计 40kW 中 15%–17% 为机箱风扇功耗（HGX H100 仅 6%–8%）。当时尚未出货的改款平台。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2408-neocloud-hopper-rack-density",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "neocloud-hopper-deployments",
+        "label": "Neocloud 现有 Hopper 部署"
+      },
+      "value": 20.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "市场普遍水平",
+        "era": "当期",
+        "power_basis": "未披露",
+        "region": "未披露"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3d4af472137e5cc411380bbffd6111bc1a7339fc4f5544f06a0ac1c937a43f43",
+        "local_file": "Nvidia's Blackwell Reworked - Shipment Delays & G.pdf",
+        "locator": "第 7 页：「Currently most neocloud deployments are for Hopper and are at a power density of 20kW/rack」；第 10 页：「Although most datacenters and current H100 deployments are only 20kW/rack, it is not uncommon to have 40kW/rack H100 deployments too」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia's Blackwell Reworked - Shipment Delays & GB200A Reworked Platforms》（Dylan Patel、Wega Chu、Daniel Nishball 等，2024-08-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "region 未披露：原文未限定地域。rack_type 取传统风冷表示风冷 H100/H200 部署形态，不是非 AI 负载。40kW H100 部署靠隔排与冷热通道封闭实现，属少数，未另录。与同文「大多数数据中心 ~12–20kW」（traditional-rack-density-2024）是两个对象：本条专指 neocloud 的 Hopper 部署。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2408-gb200a-nvl64-proposed-60kw",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200a-nvl64",
+        "label": "GB200A NVL64（英伟达提议方案，已取消）"
+      },
+      "value": 60.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "设计目标",
+        "era": "路线图目标",
+        "power_basis": "设计功率",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3d4af472137e5cc411380bbffd6111bc1a7339fc4f5544f06a0ac1c937a43f43",
+        "local_file": "Nvidia's Blackwell Reworked - Shipment Delays & G.pdf",
+        "locator": "第 19 页：「This fully air cooled 60kW rack would have had 64 GPUs fully interconnected together with NVLink」；第 21 页：「Although the proposed design from Nvidia said that the NVL64 would be a 60kW rack」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia's Blackwell Reworked - Shipment Delays & GB200A Reworked Platforms》（Dylan Patel、Wega Chu、Daniel Nishball 等，2024-08-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "60kW 出自英伟达未公开的提议设计，经 SemiAnalysis 转述，asserter 记英伟达。SemiAnalysis 判断该 SKU 不可行、不会出货（风冷 60–70kW 需背板换热器，每 1U 交换托盘 4 颗 28.8T ASIC 近 1,500W，64 个 800G 端口与 Q3400 的 72 口不匹配，热备后仅 60 GPU 可用）。配置：16 个计算托盘 + 4 个 NVSwitch 托盘。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "sa2408-gb200a-nvl64-estimate-70kw",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200a-nvl64-sa-estimate",
+        "label": "GB200A NVL64（SemiAnalysis 功率预算估算）"
+      },
+      "value": 70.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "设计目标",
+        "era": "路线图目标",
+        "power_basis": "未披露",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "3d4af472137e5cc411380bbffd6111bc1a7339fc4f5544f06a0ac1c937a43f43",
+        "local_file": "Nvidia's Blackwell Reworked - Shipment Delays & G.pdf",
+        "locator": "第 21 页：「we have estimated the power budget and think the lower bound is closer to 70kW per rack」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia's Blackwell Reworked - Shipment Delays & GB200A Reworked Platforms》（Dylan Patel、Wega Chu、Daniel Nishball 等，2024-08-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "SemiAnalysis 自行估算的下界，与英伟达提议的 60kW（sa2408-gb200a-nvl64-proposed-60kw）并列，不裁决。该方案已取消。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2408-gb200a-nvl36-compute-trays",
+      "metric_id": "rack_component_count",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-mgx-gb200a-nvl36",
+        "label": "MGX GB200A NVL36"
+      },
+      "value": 9.0,
+      "unit": "个",
+      "caliber": {
+        "product": "MGX GB200A NVL36",
+        "component": "计算托盘",
+        "denominator": "每机架",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3d4af472137e5cc411380bbffd6111bc1a7339fc4f5544f06a0ac1c937a43f43",
+        "local_file": "Nvidia's Blackwell Reworked - Shipment Delays & G.pdf",
+        "locator": "第 7–8 页：「Per rack, there will be nine compute trays and nine NVSwitch trays. Each compute tray is 2U and contain one Grace CPU and four 700W B200A Blackwell GPUs」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia's Blackwell Reworked - Shipment Delays & GB200A Reworked Platforms》（Dylan Patel、Wega Chu、Daniel Nishball 等，2024-08-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "36 GPU / 柜。可留 1 个计算托盘热备（第 24 页）。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2408-gb200a-nvl36-switch-trays",
+      "metric_id": "rack_component_count",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-mgx-gb200a-nvl36",
+        "label": "MGX GB200A NVL36"
+      },
+      "value": 9.0,
+      "unit": "个",
+      "caliber": {
+        "product": "MGX GB200A NVL36",
+        "component": "NVSwitch 托盘",
+        "denominator": "每机架",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3d4af472137e5cc411380bbffd6111bc1a7339fc4f5544f06a0ac1c937a43f43",
+        "local_file": "Nvidia's Blackwell Reworked - Shipment Delays & G.pdf",
+        "locator": "第 7–8 页：「Per rack, there will be nine compute trays and nine NVSwitch trays」；第 8 页：「each 1U NVSwitch Tray will just have one switch ASIC, with each switch ASIC having a bandwidth of 28.8Tbit/s」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia's Blackwell Reworked - Shipment Delays & GB200A Reworked Platforms》（Dylan Patel、Wega Chu、Daniel Nishball 等，2024-08-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "每个 1U 交换托盘仅 1 颗 NVSwitch ASIC（GB200 NVL72 为 2 颗），单层交换即可无阻塞互连 36 GPU，便于风冷。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2408-gb200a-nvl36-gpu-per-tray",
+      "metric_id": "rack_component_count",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-mgx-gb200a-nvl36",
+        "label": "MGX GB200A NVL36"
+      },
+      "value": 4.0,
+      "unit": "个",
+      "caliber": {
+        "product": "MGX GB200A NVL36",
+        "component": "GPU",
+        "denominator": "每托盘",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3d4af472137e5cc411380bbffd6111bc1a7339fc4f5544f06a0ac1c937a43f43",
+        "local_file": "Nvidia's Blackwell Reworked - Shipment Delays & G.pdf",
+        "locator": "第 8 页：「Each compute tray is 2U and contain one Grace CPU and four 700W B200A Blackwell GPUs, compared to the GB200 NVL72 / 36x2, which has two Grace CPUs and four 1200W Blackwell GPUs」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia's Blackwell Reworked - Shipment Delays & GB200A Reworked Platforms》（Dylan Patel、Wega Chu、Daniel Nishball 等，2024-08-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "4 颗 GPU 分装在两块 2-GPU 板上，CPU 在独立主板（第 12–13 页）。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2408-gb200a-nvl36-cpu-per-tray",
+      "metric_id": "rack_component_count",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-mgx-gb200a-nvl36",
+        "label": "MGX GB200A NVL36"
+      },
+      "value": 1.0,
+      "unit": "个",
+      "caliber": {
+        "product": "MGX GB200A NVL36",
+        "component": "CPU",
+        "denominator": "每托盘",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3d4af472137e5cc411380bbffd6111bc1a7339fc4f5544f06a0ac1c937a43f43",
+        "local_file": "Nvidia's Blackwell Reworked - Shipment Delays & G.pdf",
+        "locator": "第 8 页：「The MGX NVL36 design only has a 1:4 ratio of CPU to GPUs compared to 2:4 ratio in GB200 NVL72 / 36x2」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia's Blackwell Reworked - Shipment Delays & GB200A Reworked Platforms》（Dylan Patel、Wega Chu、Daniel Nishball 等，2024-08-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "CPU 与 GPU 无 C2C 直连，经 ConnectX-8 内置 PCIe 交换互通；每张后端网卡服务两颗 GPU，每 GPU 后端带宽 400G（GB200 NVL72 配 CX-8 为 800G）。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2408-b200a-tdp-mgx",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-b200a",
+        "label": "NVIDIA B200A（B102 裸片）"
+      },
+      "value": 700.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "NVIDIA B200A（MGX NVL36 配置）",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3d4af472137e5cc411380bbffd6111bc1a7339fc4f5544f06a0ac1c937a43f43",
+        "local_file": "Nvidia's Blackwell Reworked - Shipment Delays & G.pdf",
+        "locator": "第 5 页：「It will come in a 700W and 1000W HGX form factor with up to 144GB of HBM3E」；第 8 页 MGX NVL36 计算托盘「four 700W B200A Blackwell GPUs」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia's Blackwell Reworked - Shipment Delays & GB200A Reworked Platforms》（Dylan Patel、Wega Chu、Daniel Nishball 等，2024-08-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 W，取 MGX NVL36 所用 700W 档；HGX 形态另有 1000W 档（同一芯片不同功率配置，未另录）。B200A 基于单片 B102 裸片、4 个 HBM 堆叠，可用 CoWoS-S 封装，也用于中国版 B20。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2408-gb200-blackwell-tdp",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-b200-gb200",
+        "label": "NVIDIA Blackwell GPU（GB200 NVL72 / 36x2 计算托盘内）"
+      },
+      "value": 1200.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "NVIDIA Blackwell GPU（GB200 NVL72 / 36x2 配置）",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3d4af472137e5cc411380bbffd6111bc1a7339fc4f5544f06a0ac1c937a43f43",
+        "local_file": "Nvidia's Blackwell Reworked - Shipment Delays & G.pdf",
+        "locator": "第 8 页：「the GB200 NVL72 / 36x2, which has two Grace CPUs and four 1200W Blackwell GPUs」；第 11 页：「two Grace CPU and four 1200W Blackwell GPUs in total per compute tray」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia's Blackwell Reworked - Shipment Delays & GB200A Reworked Platforms》（Dylan Patel、Wega Chu、Daniel Nishball 等，2024-08-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 W。与 SemiAnalysis 2024-03 发布前口径的 B200「power limit 1,000W」（sa2403-b200-tdp，HGX 形态）配置不同，不是改口。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2408-b200a-hbm-capacity",
+      "metric_id": "accelerator_memory_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-b200a",
+        "label": "NVIDIA B200A"
+      },
+      "value": 144.0,
+      "unit": "GB",
+      "caliber": {
+        "product": "NVIDIA B200A",
+        "parameter": "容量",
+        "memory_type": "HBM3e",
+        "scope": "单卡",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3d4af472137e5cc411380bbffd6111bc1a7339fc4f5544f06a0ac1c937a43f43",
+        "local_file": "Nvidia's Blackwell Reworked - Shipment Delays & G.pdf",
+        "locator": "第 5 页：「with up to 144GB of HBM3E and up to 4 TB/s of memory bandwidth. Notably this is less memory bandwidth than H200」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia's Blackwell Reworked - Shipment Delays & GB200A Reworked Platforms》（Dylan Patel、Wega Chu、Daniel Nishball 等，2024-08-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 GB（容量），「up to」上限。内存带宽 4TB/s 单位与本指标 GB 不合，未另录。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2408-b210-hbm-capacity",
+      "metric_id": "accelerator_memory_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-b210",
+        "label": "NVIDIA Blackwell Ultra（B210 / B200 Ultra）"
+      },
+      "value": 288.0,
+      "unit": "GB",
+      "caliber": {
+        "product": "NVIDIA Blackwell Ultra（B210 / B200 Ultra）",
+        "parameter": "容量",
+        "memory_type": "HBM3e",
+        "scope": "单卡",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3d4af472137e5cc411380bbffd6111bc1a7339fc4f5544f06a0ac1c937a43f43",
+        "local_file": "Nvidia's Blackwell Reworked - Shipment Delays & G.pdf",
+        "locator": "第 5 页：「Blackwell Ultra contains both a memory refresh going to up to 288GB of 12 Hi HBM3E and a performance enhancement in FLOPS, up to 50%」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia's Blackwell Reworked - Shipment Delays & GB200A Reworked Platforms》（Dylan Patel、Wega Chu、Daniel Nishball 等，2024-08-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 GB（容量），12 层堆叠 HBM3e，「up to」上限；路线图口径。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2408-gb200a-nvl36-nvlink-bw",
+      "metric_id": "interconnect_bandwidth_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-mgx-gb200a-nvl36",
+        "label": "MGX GB200A NVL36"
+      },
+      "value": 900.0,
+      "unit": "GB/s",
+      "caliber": {
+        "product": "MGX GB200A NVL36",
+        "link": "NVLink（单卡）",
+        "direction": "单向",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3d4af472137e5cc411380bbffd6111bc1a7339fc4f5544f06a0ac1c937a43f43",
+        "local_file": "Nvidia's Blackwell Reworked - Shipment Delays & G.pdf",
+        "locator": "第 13 页：「The NVLink bandwidth per GPU will be 900Gbyte/s per direction which is the same as GB200 NVL72 / 36x2」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia's Blackwell Reworked - Shipment Delays & GB200A Reworked Platforms》（Dylan Patel、Wega Chu、Daniel Nishball 等，2024-08-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "每 GPU 每方向 900GB/s，与 GB200 NVL72 相同；按每 FLOP 计 GPU 间带宽大幅提高。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-gb300-gpu-tdp",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-b300-gb300",
+        "label": "NVIDIA Blackwell GPU（GB300 配置）"
+      },
+      "value": 1400.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "NVIDIA Blackwell GPU（GB300 配置）",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "96a8e4d19519653bfa87f4da8a148c86590fabb4a7122f63af03e87560c9c2dc",
+        "local_file": "Nvidia’s Christmas Present_ GB300 & B300 – Reasoning Inference, Amazon, Memory, Supply Chain – SemiAnalysis.pdf",
+        "locator": "第 2 页「B300 & GB300 – Not Just An Incremental Upgrade」：「Some of this performance gain will come from 200W additional power with TDP going to 1.4KW and 1.2KW for the GB300 and B300 HGX respectively (compared to 1.2KW and 1KW for GB200 and B200)」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia’s Christmas Present: GB300 & B300 – Reasoning Inference, Amazon, Memory, Supply Chain》（Dylan Patel、Myron Xie、Daniel Nishball，2024-12-25）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 W。比 GB200 配置的 1,200W（sa2408-gb200-blackwell-tdp）高 200W；原文称 B300 相对 B200 产品级算力 +50%，部分来自功耗提升，部分来自架构与 CPU/GPU 功率调度（power sloshing）。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-b300-hgx-tdp",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-b300-hgx",
+        "label": "NVIDIA B300（HGX 配置）"
+      },
+      "value": 1200.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "NVIDIA B300（HGX 配置）",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "96a8e4d19519653bfa87f4da8a148c86590fabb4a7122f63af03e87560c9c2dc",
+        "local_file": "Nvidia’s Christmas Present_ GB300 & B300 – Reasoning Inference, Amazon, Memory, Supply Chain – SemiAnalysis.pdf",
+        "locator": "第 2 页「B300 & GB300 – Not Just An Incremental Upgrade」：「Some of this performance gain will come from 200W additional power with TDP going to 1.4KW and 1.2KW for the GB300 and B300 HGX respectively (compared to 1.2KW and 1KW for GB200 and B200)」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia’s Christmas Present: GB300 & B300 – Reasoning Inference, Amazon, Memory, Supply Chain》（Dylan Patel、Myron Xie、Daniel Nishball，2024-12-25）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 W。对照 B200 HGX 1,000W。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-b300-node",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-b300",
+        "label": "NVIDIA B300"
+      },
+      "value": 4.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "NVIDIA B300",
+        "parameter": "制程(nm)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "96a8e4d19519653bfa87f4da8a148c86590fabb4a7122f63af03e87560c9c2dc",
+        "local_file": "Nvidia’s Christmas Present_ GB300 & B300 – Reasoning Inference, Amazon, Memory, Supply Chain – SemiAnalysis.pdf",
+        "locator": "第 2 页「B300 & GB300 – Not Just An Incremental Upgrade」：「The B300 GPU is a brand-new tape out on the TSMC 4NP process node, IE it is a tweaked design, for the compute die」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia’s Christmas Present: GB300 & B300 – Reasoning Inference, Amazon, Memory, Supply Chain》（Dylan Patel、Myron Xie、Daniel Nishball，2024-12-25）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 nm，原文工艺名为台积电 4NP（4nm 家族改良版），全新流片。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-b300-hbm-capacity",
+      "metric_id": "accelerator_memory_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-b300",
+        "label": "NVIDIA B300 / GB300"
+      },
+      "value": 288.0,
+      "unit": "GB",
+      "caliber": {
+        "product": "NVIDIA B300 / GB300",
+        "parameter": "容量",
+        "memory_type": "HBM3e",
+        "scope": "单卡",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "96a8e4d19519653bfa87f4da8a148c86590fabb4a7122f63af03e87560c9c2dc",
+        "local_file": "Nvidia’s Christmas Present_ GB300 & B300 – Reasoning Inference, Amazon, Memory, Supply Chain – SemiAnalysis.pdf",
+        "locator": "第 2 页「B300 & GB300 – Not Just An Incremental Upgrade」：「the memory is upgraded to 12-Hi HBM3E from 8-Hi growing the HBM capacity per GPU to 288GB. However, the pin speed will remain the same so memory bandwidth is still 8TB/s per GPU」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia’s Christmas Present: GB300 & B300 – Reasoning Inference, Amazon, Memory, Supply Chain》（Dylan Patel、Myron Xie、Daniel Nishball，2024-12-25）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 GB（容量）。内存带宽仍为每 GPU 8TB/s（单位不合未另录）。SemiAnalysis 2024-08 称 Blackwell Ultra（B210）up to 288GB（sa2408-b210-hbm-capacity），2025-03 GTC 文又记 B300 288GB，三处同值，均为同一出处的不同时点，不构成独立佐证。原文称三星至少 9 个月内进不了 GB200/GB300 供应。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "nv-hc24-blackwell-fp4-pflops",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-blackwell-gpu",
+        "label": "NVIDIA Blackwell GPU"
+      },
+      "value": 20.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "NVIDIA Blackwell GPU",
+        "precision": "FP4",
+        "scope": "单卡",
+        "sparsity": "未注明",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 10 页「NVIDIA Blackwell GPU」：「208B transistors in TSMC 4NP • 20 PetaFLOPS FP4 AI • 8 TB/s Memory Bandwidth | 8-site HBM3e • 1.8 TB/s Bidirectional NVLink bandwidth」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08",
+      "corroboration": "待交叉验证",
+      "notes": "英伟达官方口径。与 SemiAnalysis 2024-04 按 FP16 算的 B200 2.25 PFLOPS（sa2404-b200-fp16-pflops）精度不同，不可直接比。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-gb200-superchip-fp4-pflops",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200-superchip",
+        "label": "NVIDIA GB200 Grace Blackwell Superchip"
+      },
+      "value": 40.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "NVIDIA GB200 Grace Blackwell Superchip",
+        "precision": "FP4",
+        "scope": "单节点/托盘",
+        "sparsity": "未注明",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 13 页「NVIDIA GB200 Grace Blackwell Superchip」：「1 Grace CPU and 2 Blackwell GPUs • NVLink-C2C interconnect • 40 PetaFLOPS FP4 | 20 PetaFLOPS FP8」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08",
+      "corroboration": "待交叉验证",
+      "notes": "scope 取单节点/托盘指 Superchip 板级（1 Grace + 2 Blackwell），不是整个计算托盘（托盘为 2 Grace + 4 Blackwell）。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-gb200-superchip-fp8-pflops",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200-superchip",
+        "label": "NVIDIA GB200 Grace Blackwell Superchip"
+      },
+      "value": 20.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "NVIDIA GB200 Grace Blackwell Superchip",
+        "precision": "FP8",
+        "scope": "单节点/托盘",
+        "sparsity": "未注明",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 13 页：「40 PetaFLOPS FP4 | 20 PetaFLOPS FP8」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08",
+      "corroboration": "待交叉验证",
+      "notes": "同上，FP8 口径。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-gb200-nvl72-training-pflops",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200-nvl72",
+        "label": "NVIDIA GB200 NVL72"
+      },
+      "value": 720.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "NVIDIA GB200 NVL72",
+        "precision": "FP8",
+        "scope": "整机柜",
+        "sparsity": "未注明",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 25 页「GB200 NVL72 & NVL36」表：「Training 720 PFLOPs / Inference 1,440 PFLOPs / NVL Model Size 27 Trillion params / Multi-Node Bandwidth 130 TB/s / Multi-Node All-Reduce 260 TB/s」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08；precision 由 720 = 36 × 20（第 13 页 Superchip FP8）反推，原表未标",
+      "corroboration": "待交叉验证",
+      "notes": "**原表只写「Training」未写精度**；按第 13 页 Superchip FP8 20 PFLOPS × 36 = 720 吻合，precision 记 FP8。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-gb200-nvl72-inference-pflops",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200-nvl72",
+        "label": "NVIDIA GB200 NVL72"
+      },
+      "value": 1440.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "NVIDIA GB200 NVL72",
+        "precision": "FP4",
+        "scope": "整机柜",
+        "sparsity": "未注明",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 25 页「GB200 NVL72 & NVL36」表：「Training 720 PFLOPs / Inference 1,440 PFLOPs」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08；precision 由 1,440 = 72 × 20（第 10 页单 GPU FP4）反推，原表未标",
+      "corroboration": "待交叉验证",
+      "notes": "**原表只写「Inference」未写精度**；按第 10 页单 GPU FP4 20 PFLOPS × 72 = 1,440 吻合，precision 记 FP4。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-blackwell-nvlink5-bw",
+      "metric_id": "interconnect_bandwidth_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-blackwell-gpu",
+        "label": "NVIDIA Blackwell GPU（NVLink5）"
+      },
+      "value": 1800.0,
+      "unit": "GB/s",
+      "caliber": {
+        "product": "NVIDIA Blackwell GPU",
+        "link": "NVLink（单卡）",
+        "direction": "双向",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 22 页「World-Class NVLink PHY Performance」：「Ampere | NVLink3 12 NVLinks | 50GB/s each x4@50Gbps-NRZ 600GB/s total；Hopper | NVLink4 18 NVLinks | 50GB/s each x2@100Gbps-PAM4 900GB/s total；Blackwell | NVLink5 18 NVLinks | 100GB/s each x2@200Gbps-PAM4 1800GB/s total」；第 10 页「1.8 TB/s Bidirectional NVLink bandwidth」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08",
+      "corroboration": "待交叉验证",
+      "notes": "18 条 NVLink × 100GB/s。与 SemiAnalysis「每 GPU 每方向 900GB/s」（sa2408-gb200a-nvl36-nvlink-bw）是同一带宽的单/双向两种写法，不是分歧。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-hopper-nvlink4-bw",
+      "metric_id": "interconnect_bandwidth_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-hopper-gpu",
+        "label": "NVIDIA Hopper GPU（NVLink4）"
+      },
+      "value": 900.0,
+      "unit": "GB/s",
+      "caliber": {
+        "product": "NVIDIA Hopper GPU",
+        "link": "NVLink（单卡）",
+        "direction": "双向",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 22 页「World-Class NVLink PHY Performance」：「Ampere | NVLink3 12 NVLinks | 50GB/s each x4@50Gbps-NRZ 600GB/s total；Hopper | NVLink4 18 NVLinks | 50GB/s each x2@100Gbps-PAM4 900GB/s total；Blackwell | NVLink5 18 NVLinks | 100GB/s each x2@200Gbps-PAM4 1800GB/s total」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08",
+      "corroboration": "待交叉验证",
+      "notes": "18 条 NVLink × 50GB/s。第 22 页未写单双向，按第 10 页 Blackwell 同表口径「Bidirectional」记双向。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-ampere-nvlink3-bw",
+      "metric_id": "interconnect_bandwidth_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-ampere-gpu",
+        "label": "NVIDIA Ampere GPU（NVLink3）"
+      },
+      "value": 600.0,
+      "unit": "GB/s",
+      "caliber": {
+        "product": "NVIDIA Ampere GPU",
+        "link": "NVLink（单卡）",
+        "direction": "双向",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 22 页「World-Class NVLink PHY Performance」：「Ampere | NVLink3 12 NVLinks | 50GB/s each x4@50Gbps-NRZ 600GB/s total；Hopper | NVLink4 18 NVLinks | 50GB/s each x2@100Gbps-PAM4 900GB/s total；Blackwell | NVLink5 18 NVLinks | 100GB/s each x2@200Gbps-PAM4 1800GB/s total」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08",
+      "corroboration": "待交叉验证",
+      "notes": "12 条 NVLink × 50GB/s。单双向判断同 Hopper 那条。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-nvswitch4-chip-bw",
+      "metric_id": "interconnect_bandwidth_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-nvlink-switch-chip-gen4",
+        "label": "NVIDIA 第 4 代 NVLink Switch 芯片"
+      },
+      "value": 7200.0,
+      "unit": "GB/s",
+      "caliber": {
+        "product": "NVIDIA 第 4 代 NVLink Switch 芯片",
+        "link": "其他",
+        "direction": "双向",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 23 页「4th Generation NVLink Switch Chip and NVLink Switch Tray」：「>800 mm2 in TSMC 4NP • Extends NVLink to 72 GPUs on GB200 NVL72 • 7.2 TB/s full all-to-all bidirectional BW over 72 ports • SHARP In-Network Compute — 3.6 TFLOPS」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08",
+      "corroboration": "待交叉验证",
+      "notes": "7.2 TB/s = 7,200 GB/s，72 个端口。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-nvswitch-tray-bw",
+      "metric_id": "interconnect_bandwidth_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-nvlink-switch-tray",
+        "label": "NVIDIA NVLink Switch Tray（GB200 NVL72）"
+      },
+      "value": 14400.0,
+      "unit": "GB/s",
+      "caliber": {
+        "product": "NVIDIA NVLink Switch Tray",
+        "link": "其他",
+        "direction": "未注明",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 23 页：「NVLink Switch Tray • 2x NVLink Switch chips • 14.4 TB/s total bandwidth」；第 27 页「2x NVLink Switch chip | 14.4 TB/s total bandwidth … 1U liquid cooled | 9 Per rack」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08",
+      "corroboration": "待交叉验证",
+      "notes": "托盘总带宽 = 2 颗芯片 × 7.2 TB/s，原文「total」未写单双向。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-gb200-nvl72-multinode-bw",
+      "metric_id": "interconnect_bandwidth_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200-nvl72",
+        "label": "NVIDIA GB200 NVL72"
+      },
+      "value": 130000.0,
+      "unit": "GB/s",
+      "caliber": {
+        "product": "NVIDIA GB200 NVL72",
+        "link": "NVLink（整柜）",
+        "direction": "未注明",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 25 页「GB200 NVL72 & NVL36」表：「Multi-Node Bandwidth 130 TB/s / Multi-Node All-Reduce 260 TB/s」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08",
+      "corroboration": "待交叉验证",
+      "notes": "130 TB/s = 130,000 GB/s，按 72 × 1.8 TB/s = 129.6 TB/s 取整。同表 All-Reduce 260 TB/s 是另一种算法带宽口径，未另录。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-nvlink5-lane",
+      "metric_id": "interconnect_lane_rate",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-nvlink5",
+        "label": "NVIDIA NVLink5 PHY"
+      },
+      "value": 200.0,
+      "unit": "Gbps/通道",
+      "caliber": {
+        "product": "NVIDIA NVLink5",
+        "medium": "未注明",
+        "reach_band": "未注明",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 22 页「World-Class NVLink PHY Performance」：「Ampere | NVLink3 12 NVLinks | 50GB/s each x4@50Gbps-NRZ 600GB/s total；Hopper | NVLink4 18 NVLinks | 50GB/s each x2@100Gbps-PAM4 900GB/s total；Blackwell | NVLink5 18 NVLinks | 100GB/s each x2@200Gbps-PAM4 1800GB/s total」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08",
+      "corroboration": "待交叉验证",
+      "notes": "每条 NVLink x2 通道 @200Gbps PAM4。原文未写传输介质与距离（GB200 NVL72 机内为铜背板，本页未说），medium 与 reach 记未注明。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-nvlink4-lane",
+      "metric_id": "interconnect_lane_rate",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-nvlink4",
+        "label": "NVIDIA NVLink4 PHY"
+      },
+      "value": 100.0,
+      "unit": "Gbps/通道",
+      "caliber": {
+        "product": "NVIDIA NVLink4",
+        "medium": "未注明",
+        "reach_band": "未注明",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 22 页「World-Class NVLink PHY Performance」：「Ampere | NVLink3 12 NVLinks | 50GB/s each x4@50Gbps-NRZ 600GB/s total；Hopper | NVLink4 18 NVLinks | 50GB/s each x2@100Gbps-PAM4 900GB/s total；Blackwell | NVLink5 18 NVLinks | 100GB/s each x2@200Gbps-PAM4 1800GB/s total」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08",
+      "corroboration": "待交叉验证",
+      "notes": "每条 NVLink x2 通道 @100Gbps PAM4。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-nvlink3-lane",
+      "metric_id": "interconnect_lane_rate",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-nvlink3",
+        "label": "NVIDIA NVLink3 PHY"
+      },
+      "value": 50.0,
+      "unit": "Gbps/通道",
+      "caliber": {
+        "product": "NVIDIA NVLink3",
+        "medium": "未注明",
+        "reach_band": "未注明",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 22 页「World-Class NVLink PHY Performance」：「Ampere | NVLink3 12 NVLinks | 50GB/s each x4@50Gbps-NRZ 600GB/s total；Hopper | NVLink4 18 NVLinks | 50GB/s each x2@100Gbps-PAM4 900GB/s total；Blackwell | NVLink5 18 NVLinks | 100GB/s each x2@200Gbps-PAM4 1800GB/s total」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08",
+      "corroboration": "待交叉验证",
+      "notes": "每条 NVLink x4 通道 @50Gbps NRZ。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-blackwell-node",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-blackwell-gpu",
+        "label": "NVIDIA Blackwell GPU"
+      },
+      "value": 4.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "NVIDIA Blackwell GPU",
+        "parameter": "制程(nm)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 11 页「Highest AI Compute in a Single GPU」表：Volta >21B 晶体管 815mm² TSMC 12nm FFN；Ampere >54B 826mm² TSMC N7；Hopper >80B 814mm² TSMC 4N；Blackwell >208B >1600mm² TSMC 4NP",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08",
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 nm，原文工艺名 TSMC 4NP；两颗光罩极限裸片经 NV-HBI（10 TB/s 双向）合成一颗 GPU，总面积 >1600mm²。与 SemiAnalysis 2024-03 发布前说法「4nm」一致（sa2403-blackwell-node）。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-gb200-nvl72-moe-inference-ratio",
+      "metric_id": "generation_ratio",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200-nvl72",
+        "label": "NVIDIA GB200 NVL72"
+      },
+      "value": 30.0,
+      "unit": "x",
+      "caliber": {
+        "parameter": "性能",
+        "baseline_generation": "Hopper",
+        "region": "Global",
+        "basis": "架构宣称"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 27 页：「GB200 NVL72 Enabling Trillion Parameter AI … 30x real-time MoE inference, 25x improved energy efficiency」；脚注「Projected performance subject to change … GPT-MoE-1.8T: FTL = 5s; input sequence length = 32,768, output sequence length = 1,024, 8 HGX H100 air-cooled … per GPU performance comparison」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08",
+      "corroboration": "待交叉验证",
+      "notes": "**预测性能**（原文注明 subject to change），每 GPU 对比，基线为风冷 HGX H100，负载 GPT-MoE-1.8T、TTL 50ms 实时推理。同页 GPT-3 175B 为 6x。25x 能效提升无对应 parameter，未录。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "英伟达"
     }
   ]
 }
