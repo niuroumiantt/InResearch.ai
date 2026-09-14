@@ -159844,6 +159844,68 @@
       "corroboration": "待交叉验证",
       "notes": "沙利文「中国数据中心市场规模（按营收）」，原文未界定是否含云服务与增值服务，service_scope 记未注明；2021–2025 CAGR 17.7%，2026–2035 CAGR 30.6%。正文称 2035 年「有望突破 4 万亿元」，图表标签 43,927.0 亿元，取图表值。",
       "asserter": "沙利文"
+    },
+    {
+      "fact_id": "jll2501-global-dc-energy-demand-2029e",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 100.0,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2029E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "509bdbd239928f53b9a81aa76e320b3cd990a009b3b3c40aa9125eaaa42ee867",
+        "local_file": "20250208-2025年全球数据中心展望报告：塑造未来的数字基础设施(23页).pdf",
+        "locator": "PDF 第 9 页：「预测估计全球数据中心能源需求将在未来五年翻倍，达到100GW」；图「全球数据中心能源需求（GW）」横轴 2020–2029，标注「未来五年全球数据中心能源需求将翻倍，达到100GW」；同页「新加坡的数据中心占总用电量的约7%。在爱尔兰，它们占总用电量的21%。而在美国，它们占弗吉尼亚州总用电量的约26%」",
+        "grade": "S3",
+        "originator": "仲量联行（JLL）《2025 年全球数据中心展望：塑造明日数字基础设施》（2025-01，中文版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文称「能源需求」但单位为 GW（功率），未说明是 IT 负载还是设施总功率，power_scope 记未注明；「未来五年翻倍」按图横轴终点记 2029 年。与高盛 2030E 110GW（gs2501-global-dc-workload-2030e）、汇丰 2030E 205GW（IT 负载）口径不同。",
+      "asserter": "JLL"
+    },
+    {
+      "fact_id": "jll2501-virginia-dc-power-share",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "virginia-datacenters",
+        "label": "美国弗吉尼亚州数据中心（合计）"
+      },
+      "value": 26.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "某地区用电量",
+        "region": "US",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "509bdbd239928f53b9a81aa76e320b3cd990a009b3b3c40aa9125eaaa42ee867",
+        "local_file": "20250208-2025年全球数据中心展望报告：塑造未来的数字基础设施(23页).pdf",
+        "locator": "PDF 第 9 页：「预测估计全球数据中心能源需求将在未来五年翻倍，达到100GW」；图「全球数据中心能源需求（GW）」横轴 2020–2029，标注「未来五年全球数据中心能源需求将翻倍，达到100GW」；同页「新加坡的数据中心占总用电量的约7%。在爱尔兰，它们占总用电量的21%。而在美国，它们占弗吉尼亚州总用电量的约26%」",
+        "grade": "S3",
+        "originator": "仲量联行（JLL）《2025 年全球数据中心展望：塑造明日数字基础设施》（2025-01，中文版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「约 26%」，未注明数据年份与原始出处，as_of 记报告发布月。同句新加坡约 7%、爱尔兰 21%：新加坡与库内通讯及新闻部 2020 年 7% 同值、爱尔兰与中央统计局序列口径相同但未标年份，均未另录。",
+      "asserter": "JLL"
     }
   ]
 }
