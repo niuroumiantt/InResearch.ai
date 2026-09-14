@@ -118372,6 +118372,270 @@
         "originator": "中国移动(福建南平)延平通信枢纽楼工程招标控制价（造价咨询人未署名，编制时间 2024-09-23）"
       },
       "notes": "附表 13「主要材料和设备项目与价格表」基准单价（招标控制价取定），不含安装。数量 274.659 m。 **本行「基期综合信息价格」为 6.47/7.5 元，与基准单价 509.735/576.001 相差近 80 倍**，信息价疑为按 kg 或其他单位，原表未说明；equipment 无「接地母线」取值，记其他。"
+    },
+    {
+      "asserter": "中国移动",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-chongqing-zhongxian-dispatch-building",
+        "label": "重庆移动忠县分公司生产调度用房（机房楼）"
+      },
+      "as_of": "2024-03",
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取资料目录名「2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼」；原表本身无日期",
+      "corroboration": "待交叉验证",
+      "fact_id": "cq-zhongxian-floorload-comm-room",
+      "metric_id": "room_floor_load",
+      "value": 10.0,
+      "unit": "kN/㎡",
+      "bound": "point",
+      "caliber": {
+        "room_type": "主机房",
+        "basis": "设计取值",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "新建"
+      },
+      "evidence": {
+        "sha256": "6154700638bf294703eef9639d505cd6361b1ce4f4d6135d913f1eaa269c2078",
+        "local_file": "重庆忠县生产调度用房建设项目通信机房工艺对土建要求表.xls",
+        "locator": "工作表「土建要求」第 9 行：二层通信机房 地面标准荷载 10 kN/m2",
+        "grade": "S2",
+        "originator": "重庆移动忠县分公司生产调度用房建设项目通信机房工艺对土建要求表（编制单位未署名）"
+      },
+      "notes": "表注 2：「地面标准载荷指“板”的均布活荷载值」。二层通信机房与数据机房（第 13 行）均为 10，三层预留通信机房亦为 10。 同表高低压配电室 10 kN/m2（room_type 无配电室，未录），油机机房写「基础按机组重量(4吨/台)」无 kN 值。"
+    },
+    {
+      "asserter": "中国移动",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-chongqing-zhongxian-dispatch-building",
+        "label": "重庆移动忠县分公司生产调度用房（机房楼）"
+      },
+      "as_of": "2024-03",
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取资料目录名「2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼」；原表本身无日期",
+      "corroboration": "待交叉验证",
+      "fact_id": "cq-zhongxian-floorload-battery",
+      "metric_id": "room_floor_load",
+      "value": 16.0,
+      "unit": "kN/㎡",
+      "bound": "point",
+      "caliber": {
+        "room_type": "电池室",
+        "basis": "设计取值",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "新建"
+      },
+      "evidence": {
+        "sha256": "6154700638bf294703eef9639d505cd6361b1ce4f4d6135d913f1eaa269c2078",
+        "local_file": "重庆忠县生产调度用房建设项目通信机房工艺对土建要求表.xls",
+        "locator": "工作表「土建要求」第 11 行：二层电力电池室 地面标准荷载 16 kN/m2",
+        "grade": "S2",
+        "originator": "重庆移动忠县分公司生产调度用房建设项目通信机房工艺对土建要求表（编制单位未署名）"
+      },
+      "notes": "表注 2：「地面标准载荷指“板”的均布活荷载值」。三层预留电力电池室亦为 16。 同表高低压配电室 10 kN/m2（room_type 无配电室，未录），油机机房写「基础按机组重量(4吨/台)」无 kN 值。"
+    },
+    {
+      "asserter": "中国移动",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-chongqing-zhongxian-dispatch-building",
+        "label": "重庆移动忠县分公司生产调度用房（机房楼）"
+      },
+      "as_of": "2024-03",
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取资料目录名「2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼」；原表本身无日期",
+      "corroboration": "待交叉验证",
+      "fact_id": "cq-zhongxian-height-comm-floor",
+      "metric_id": "room_clear_height",
+      "value": 4.8,
+      "unit": "m",
+      "bound": "lower",
+      "caliber": {
+        "measure": "层高",
+        "room_type": "主机房",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "新建"
+      },
+      "evidence": {
+        "sha256": "6154700638bf294703eef9639d505cd6361b1ce4f4d6135d913f1eaa269c2078",
+        "local_file": "重庆忠县生产调度用房建设项目通信机房工艺对土建要求表.xls",
+        "locator": "工作表「土建要求」第 13 行：二层数据机房 标准层高 ≥4.8 米（通信机房同）",
+        "grade": "S2",
+        "originator": "重庆移动忠县分公司生产调度用房建设项目通信机房工艺对土建要求表（编制单位未署名）"
+      },
+      "notes": "「≥」按下界记。表注 1：「工艺净高是指梁下或风管下至地面的高度，为保障通信机房走线架的安装需求，该高度区域类不能有任何障碍物。梁下净高建议不低于3.8米」；表注 3 机房设备全按上走线。"
+    },
+    {
+      "asserter": "中国移动",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-chongqing-zhongxian-dispatch-building",
+        "label": "重庆移动忠县分公司生产调度用房（机房楼）"
+      },
+      "as_of": "2024-03",
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取资料目录名「2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼」；原表本身无日期",
+      "corroboration": "待交叉验证",
+      "fact_id": "cq-zhongxian-height-comm-clear",
+      "metric_id": "room_clear_height",
+      "value": 3.8,
+      "unit": "m",
+      "bound": "lower",
+      "caliber": {
+        "measure": "梁下净高",
+        "room_type": "主机房",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "新建"
+      },
+      "evidence": {
+        "sha256": "6154700638bf294703eef9639d505cd6361b1ce4f4d6135d913f1eaa269c2078",
+        "local_file": "重庆忠县生产调度用房建设项目通信机房工艺对土建要求表.xls",
+        "locator": "工作表「土建要求」第 13 行：二层数据机房 工艺净高 ≥3.8 米",
+        "grade": "S2",
+        "originator": "重庆移动忠县分公司生产调度用房建设项目通信机房工艺对土建要求表（编制单位未署名）"
+      },
+      "notes": "「≥」按下界记。表注 1：「工艺净高是指梁下或风管下至地面的高度，为保障通信机房走线架的安装需求，该高度区域类不能有任何障碍物。梁下净高建议不低于3.8米」；表注 3 机房设备全按上走线。"
+    },
+    {
+      "asserter": "中国移动",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-chongqing-zhongxian-dispatch-building",
+        "label": "重庆移动忠县分公司生产调度用房（机房楼）"
+      },
+      "as_of": "2024-03",
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取资料目录名「2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼」；原表本身无日期",
+      "corroboration": "待交叉验证",
+      "fact_id": "cq-zhongxian-height-battery-floor",
+      "metric_id": "room_clear_height",
+      "value": 4.8,
+      "unit": "m",
+      "bound": "lower",
+      "caliber": {
+        "measure": "层高",
+        "room_type": "电池室",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "新建"
+      },
+      "evidence": {
+        "sha256": "6154700638bf294703eef9639d505cd6361b1ce4f4d6135d913f1eaa269c2078",
+        "local_file": "重庆忠县生产调度用房建设项目通信机房工艺对土建要求表.xls",
+        "locator": "工作表「土建要求」第 11 行：二层电力电池室 标准层高 ≥4.8 米",
+        "grade": "S2",
+        "originator": "重庆移动忠县分公司生产调度用房建设项目通信机房工艺对土建要求表（编制单位未署名）"
+      },
+      "notes": "「≥」按下界记。表注 1：「工艺净高是指梁下或风管下至地面的高度，为保障通信机房走线架的安装需求，该高度区域类不能有任何障碍物。梁下净高建议不低于3.8米」；表注 3 机房设备全按上走线。"
+    },
+    {
+      "asserter": "中国移动",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-chongqing-zhongxian-dispatch-building",
+        "label": "重庆移动忠县分公司生产调度用房（机房楼）"
+      },
+      "as_of": "2024-03",
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取资料目录名「2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼」；原表本身无日期",
+      "corroboration": "待交叉验证",
+      "fact_id": "cq-zhongxian-height-battery-clear",
+      "metric_id": "room_clear_height",
+      "value": 3.8,
+      "unit": "m",
+      "bound": "lower",
+      "caliber": {
+        "measure": "梁下净高",
+        "room_type": "电池室",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "新建"
+      },
+      "evidence": {
+        "sha256": "6154700638bf294703eef9639d505cd6361b1ce4f4d6135d913f1eaa269c2078",
+        "local_file": "重庆忠县生产调度用房建设项目通信机房工艺对土建要求表.xls",
+        "locator": "工作表「土建要求」第 11 行：二层电力电池室 工艺净高 ≥3.8 米",
+        "grade": "S2",
+        "originator": "重庆移动忠县分公司生产调度用房建设项目通信机房工艺对土建要求表（编制单位未署名）"
+      },
+      "notes": "「≥」按下界记。表注 1：「工艺净高是指梁下或风管下至地面的高度，为保障通信机房走线架的安装需求，该高度区域类不能有任何障碍物。梁下净高建议不低于3.8米」；表注 3 机房设备全按上走线。"
+    },
+    {
+      "asserter": "中国移动",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-chongqing-zhongxian-dispatch-building",
+        "label": "重庆移动忠县分公司生产调度用房（机房楼）"
+      },
+      "as_of": "2024-03",
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取资料目录名「2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼」；原表本身无日期",
+      "corroboration": "待交叉验证",
+      "fact_id": "cq-zhongxian-height-genset-floor",
+      "metric_id": "room_clear_height",
+      "value": 5.1,
+      "unit": "m",
+      "bound": "lower",
+      "caliber": {
+        "measure": "层高",
+        "room_type": "柴发机房",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "新建"
+      },
+      "evidence": {
+        "sha256": "6154700638bf294703eef9639d505cd6361b1ce4f4d6135d913f1eaa269c2078",
+        "local_file": "重庆忠县生产调度用房建设项目通信机房工艺对土建要求表.xls",
+        "locator": "工作表「土建要求」第 5 行：一层油机机房 标准层高 ≥5.1 米",
+        "grade": "S2",
+        "originator": "重庆移动忠县分公司生产调度用房建设项目通信机房工艺对土建要求表（编制单位未署名）"
+      },
+      "notes": "「≥」按下界记。表注 1：「工艺净高是指梁下或风管下至地面的高度，为保障通信机房走线架的安装需求，该高度区域类不能有任何障碍物。梁下净高建议不低于3.8米」；表注 3 机房设备全按上走线。"
+    },
+    {
+      "asserter": "中国移动",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-chongqing-zhongxian-dispatch-building",
+        "label": "重庆移动忠县分公司生产调度用房（机房楼）"
+      },
+      "as_of": "2024-03",
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取资料目录名「2024.3 重庆移动忠县分公司生产调度用房建设项目 机房楼」；原表本身无日期",
+      "corroboration": "待交叉验证",
+      "fact_id": "cq-zhongxian-height-genset-clear",
+      "metric_id": "room_clear_height",
+      "value": 3.6,
+      "unit": "m",
+      "bound": "lower",
+      "caliber": {
+        "measure": "梁下净高",
+        "room_type": "柴发机房",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "新建"
+      },
+      "evidence": {
+        "sha256": "6154700638bf294703eef9639d505cd6361b1ce4f4d6135d913f1eaa269c2078",
+        "local_file": "重庆忠县生产调度用房建设项目通信机房工艺对土建要求表.xls",
+        "locator": "工作表「土建要求」第 5 行：一层油机机房 工艺净高 ≥3.6 米",
+        "grade": "S2",
+        "originator": "重庆移动忠县分公司生产调度用房建设项目通信机房工艺对土建要求表（编制单位未署名）"
+      },
+      "notes": "「≥」按下界记。表注 1：「工艺净高是指梁下或风管下至地面的高度，为保障通信机房走线架的安装需求，该高度区域类不能有任何障碍物。梁下净高建议不低于3.8米」；表注 3 机房设备全按上走线。"
     }
   ]
 }
