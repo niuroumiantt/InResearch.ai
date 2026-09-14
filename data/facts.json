@@ -140812,6 +140812,67 @@
       "corroboration": "待交叉验证",
       "notes": "大摩以全球云 CSP 2025 年 capex 3,970 亿美元的 50% 作为 AI 服务器潜在市场规模指标，属拇指法则式估算而非出货跟踪；原文「大约1990亿美元」按点值记。",
       "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2509-tsmc-cowos-capacity-2026e",
+      "metric_id": "cowos_capacity_wpm",
+      "entity": {
+        "type": "company",
+        "id": "tsmc",
+        "label": "台积电"
+      },
+      "value": 9.3,
+      "unit": "万片/月",
+      "caliber": {
+        "package_type": "全部CoWoS",
+        "basis": "第三方推算"
+      },
+      "as_of": "2026E@2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "cc776492b5cbf684d4310f4d9bb42bbeb937598300c83ffc23d4bcddeb21f0a3",
+        "local_file": "20250927-大中华区半导体全球人工智能供应链；亚洲半导体的关键机遇(57页).pdf",
+        "locator": "第 30 页CoWoS 章节页标题：「TSMC May Expand CoWoS Capacity to 93kwpm By 2026, Given the NVL72 Server Rack Bottleneck」",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《Greater China Semiconductors: Global AI Supply Chain》（2025-09-17 定价，中文文件名）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "93 kwpm = 9.3 万片/月（2026 年底）。同行 2026-01 版上调至 125 kwpm（ms2601-tsmc-cowos-capacity-2026e），两版预测并列不替代。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2509-gb200-nvl72-rack-ship-2025e",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "gb200-nvl72",
+        "label": "英伟达 GB200 NVL72 机柜"
+      },
+      "value": 30000.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "GB200 NVL72",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "cc776492b5cbf684d4310f4d9bb42bbeb937598300c83ffc23d4bcddeb21f0a3",
+        "local_file": "20250927-大中华区半导体全球人工智能供应链；亚洲半导体的关键机遇(57页).pdf",
+        "locator": "第 29 页「NVIDIA GB200/300 Rack Output Estimates」页：「TSMC expected to produce 5.1mn chips in 2025, with full-year GB200 NVL72 shipments expected to reach 30k」",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《Greater China Semiconductors: Global AI Supply Chain》（2025-09-17 定价，中文文件名）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2025-09 时点的全年预测（含纬创 L10 托盘折合机柜当量）；2026-01 版同值 30k 已按全年估计入库（ms2601-gb200-nvl72-rack-ship-2025）。",
+      "asserter": "摩根士丹利"
     }
   ]
 }
