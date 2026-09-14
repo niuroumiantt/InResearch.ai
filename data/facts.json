@@ -136179,6 +136179,2970 @@
       "corroboration": "待交叉验证",
       "notes": "口径是数据中心服务商收入，只含基础设施相关收入，不含云服务，企业自用数据中心不计；故 service_scope 记 IDC 服务而非含云服务。柱值与增速逐年自洽（如 679.3÷618.7=1.098）。",
       "asserter": "中国信通院"
+    },
+    {
+      "fact_id": "denvr-ocp25-immersion-annualized-pue-partial",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "site",
+        "id": "denvr-immersion-modular-dc",
+        "label": "Denvr Dataworks 浸没式模块化 GPU 数据中心"
+      },
+      "value": 1.037,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "浸没液冷",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "未披露"
+      },
+      "as_of": "2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "161c6fbd04bd19750c5ec68d1f4758882e82a2ab50f65baad6fb68091fb2a2ec",
+        "local_file": "5B_2022_7229ImmersionC_未署名.pdf",
+        "locator": "第 7 页「Excellent PUE that Improves with Utilization & TDP」图「Annualized Power Usage Effectiveness (PUE)」（横轴 Sep-24 至 Aug-25）：「1.037 Denvr immersion PUE – at partial utilization」「<1.03 Denvr immersion PUE – at full utilization」；同图 Uptime 基准「1.58 Global average」「1.47 Capacity-weighted global average」",
+        "grade": "S2",
+        "originator": "Denvr Dataworks（Amy Short）与 Lubrizol，OCP 演讲《Immersion Cooling in AI: Data & Insights From a Multi-Year Deployment》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "运营方自报的年化运行 PUE，部分负载工况；满载时称 <1.03（按上界另可记，未录以免与部分负载值混读）。as_of 取图中数据窗口末月 2025-08。原文未写站点所在地，region 记未披露——Denvr 总部在加拿大，但模块化数据中心部署地原文未说明，不猜。同图 Uptime 全球均值 1.58、按容量加权 1.47 未注明调查年份，未录。",
+      "asserter": "Denvr Dataworks"
+    },
+    {
+      "fact_id": "alfalaval-ocp25-start-campus-sines-it-capacity",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "site",
+        "id": "start-campus-sines",
+        "label": "Start Campus Sines 园区（葡萄牙）"
+      },
+      "value": 1200.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L5",
+        "region": "EU"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "014c2ad43c5a0298d13e6ccbb92313c920aac67f20a548e819133785526683d6",
+        "local_file": "5B_2022_7502OCPAligned_未署名.pdf",
+        "locator": "第 13 页「Potential site example: Start Campus」：「1.2 GW IT capacity over 6 buildings, the largest colocation site in Europe with fully secured grid access」「2024 September SIN01 RFS date (12 MW), with +2 MW in Nov’24 and expansion to 31 MW by YE-25」「€8.5 billion equity total project investment by 2030」「1.1 PUE」「0 WUE」",
+        "grade": "S2",
+        "originator": "Alfa Laval（Gemma Reeves 等，OCP 演讲《OCP-Aligned Seawater Cooling and Heat Reuse》）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文未写讲稿日期；页面把「+2 MW in Nov’24」写成已发生、「31 MW by YE-25」写成将来，推定为 2025 年内材料，as_of 记 2025。",
+      "corroboration": "待交叉验证",
+      "notes": "6 栋楼合计 1.2GW IT 容量，原文称电网接入已全部落实（fully secured grid access），按 L5 电力确定记；这是园区规划总量，已投运的只有 SIN01 一期（见 alfalaval-ocp25-start-campus-sin01-rfs）。项目总投资至 2030 年 85 亿欧元（股权口径，无对应指标）。PUE 1.1、WUE 0（海水冷却只取用不消耗）为运营方宣称，未写年均或设计工况，dc_pue.period 无未注明未录。",
+      "asserter": "Start Campus"
+    },
+    {
+      "fact_id": "alfalaval-ocp25-start-campus-sin01-rfs",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "site",
+        "id": "start-campus-sines-sin01",
+        "label": "Start Campus Sines SIN01 一期"
+      },
+      "value": 12.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "EU"
+      },
+      "as_of": "2024-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "014c2ad43c5a0298d13e6ccbb92313c920aac67f20a548e819133785526683d6",
+        "local_file": "5B_2022_7502OCPAligned_未署名.pdf",
+        "locator": "第 13 页「Potential site example: Start Campus」：「1.2 GW IT capacity over 6 buildings, the largest colocation site in Europe with fully secured grid access」「2024 September SIN01 RFS date (12 MW), with +2 MW in Nov’24 and expansion to 31 MW by YE-25」「€8.5 billion equity total project investment by 2030」「1.1 PUE」「0 WUE」",
+        "grade": "S2",
+        "originator": "Alfa Laval（Gemma Reeves 等，OCP 演讲《OCP-Aligned Seawater Cooling and Heat Reuse》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "SIN01 于 2024-09 交付可用（RFS）12MW，2024-11 再增 2MW，计划 2025 年底扩至 31MW（目标未录）。MW 未注明 IT 还是设施口径。",
+      "asserter": "Start Campus"
+    },
+    {
+      "fact_id": "rnm6098020-global-lc-market-2024",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "market",
+        "id": "global-lc-market-rnm-6098020",
+        "label": "全球液冷市场（Research and Markets 报告 6098020 口径）"
+      },
+      "value": 53.8,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "未注明",
+        "currency": "美元",
+        "cooling_route": "未注明",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "aec248fd34e0c0e862dec9da517c295801391c075733a767d47968655fb5f721",
+        "local_file": "5B_2022_7592FromFansto_未署名.pdf",
+        "locator": "第 8 页「Revenue Market Forecast」：「$5.38B」（2024）「$17.77B」（2030）「Market forecast to grow at a CAGR of 21.6%」，出处「https://www.researchandmarkets.com/reports/6098020」",
+        "grade": "S3",
+        "originator": "OCP 液冷专场演讲《From Fans to Fluid: The Critical Need For Liquid Cooling》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "53.8 亿美元 = 5.38B。Research and Markets 报告 6098020 的液冷市场收入，演讲页未说明是数据中心液冷还是全行业液冷、也未说明含哪些产品，market_scope 记未注明；与库内其他液冷市场规模数不可比。2024→2030 年 CAGR 21.6%（5.38×1.216^6≈17.6，与 17.77 基本吻合）。报告发布时间页上未写，2030E 不带 @。",
+      "asserter": "Research and Markets"
+    },
+    {
+      "fact_id": "rnm6098020-global-lc-market-2030e",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "market",
+        "id": "global-lc-market-rnm-6098020",
+        "label": "全球液冷市场（Research and Markets 报告 6098020 口径）"
+      },
+      "value": 177.7,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "未注明",
+        "currency": "美元",
+        "cooling_route": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2030E",
+      "bound": "point",
+      "evidence": {
+        "sha256": "aec248fd34e0c0e862dec9da517c295801391c075733a767d47968655fb5f721",
+        "local_file": "5B_2022_7592FromFansto_未署名.pdf",
+        "locator": "第 8 页「Revenue Market Forecast」：「$5.38B」（2024）「$17.77B」（2030）「Market forecast to grow at a CAGR of 21.6%」，出处「https://www.researchandmarkets.com/reports/6098020」",
+        "grade": "S3",
+        "originator": "OCP 液冷专场演讲《From Fans to Fluid: The Critical Need For Liquid Cooling》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "177.7 亿美元 = 17.77B。Research and Markets 报告 6098020 的液冷市场收入，演讲页未说明是数据中心液冷还是全行业液冷、也未说明含哪些产品，market_scope 记未注明；与库内其他液冷市场规模数不可比。2024→2030 年 CAGR 21.6%（5.38×1.216^6≈17.6，与 17.77 基本吻合）。报告发布时间页上未写，2030E 不带 @。",
+      "asserter": "Research and Markets"
+    },
+    {
+      "fact_id": "promersion-ocp26-global-coldplate-market-2025-lower",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "market",
+        "id": "global-coldplate-liquid-cooling",
+        "label": "全球冷板液冷市场（Promersion 口径）"
+      },
+      "value": 50.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "某一路线",
+        "currency": "美元",
+        "cooling_route": "冷板式",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "e0ef05b77128e733c7c708bae4d640586d31ba4231a3d519d21b8d9131ce120b",
+        "local_file": "5B_2022_CoolingEnviron_未署名.pdf",
+        "locator": "第 13 页「GLOBAL LIQUID COOLING MARKET FORECAST (IN BILLIONS OF US$)」（© Promersion B.V. 2026）标注：「2025 Cold plate break through $5B」「Cold plate market quadrupled compared to 2023」「2024 Q3: Cold Plate Inflection point hits hard with NVIDIA GPUs」",
+        "grade": "S3",
+        "originator": "Promersion（Rolf Brink）于 OCP 液冷专场《Cooling Environments: Industry Analytics, Project Progress and Cold Plate Developments》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「break through $5B」按下界记 50 亿美元；称较 2023 年翻了两番。同页「Immersion reach $0.8B」因抽取文本版面错位无法确定对应年份，未录。同稿第 4 页 Promersion 全球数据中心市场规模 2025–2035 CAGR 15.7%，柱值为图形未抽出。",
+      "asserter": "Promersion"
+    },
+    {
+      "fact_id": "ms2508-smic-capacity-8inch-1q25",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际"
+      },
+      "value": 340.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "中芯国际（8 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2025-Q1@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「SMIC各个晶圆厂情况」第 11 行「8\" Total」1Q25 列 = 340（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。大摩 2025-08-27 版估计，中芯国际不按厂披露产能。2023–2024 年各季与 2025-06 版逐项相同未重复登记。同一季度 2025-06 版为 335，本版修订为 340，按新版次替代。",
+      "asserter": "摩根士丹利",
+      "supersedes": "ms-smic-capacity-8inch-1q25"
+    },
+    {
+      "fact_id": "ms2508-smic-capacity-8inch-2q25",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际"
+      },
+      "value": 335.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "中芯国际（8 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2025-Q2",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「SMIC各个晶圆厂情况」第 11 行「8\" Total」2Q25 列 = 335（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。大摩 2025-08-27 版估计，中芯国际不按厂披露产能。2023–2024 年各季与 2025-06 版逐项相同未重复登记。2Q25 在本版已为实际估计值（2025-06 版同季为预测 @2025-06，二者并列）。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-smic-capacity-8inch-3q25e",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际"
+      },
+      "value": 333.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "中芯国际（8 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2025-Q3E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「SMIC各个晶圆厂情况」第 11 行「8\" Total」3Q25E 列 = 333（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。大摩 2025-08-27 版估计，中芯国际不按厂披露产能。2023–2024 年各季与 2025-06 版逐项相同未重复登记。预测值，@ 取工作表日期 2025-08；与 2025-06 版同季预测并列，不互相替代。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-smic-capacity-8inch-4q25f",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际"
+      },
+      "value": 317.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "中芯国际（8 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2025-Q4E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「SMIC各个晶圆厂情况」第 11 行「8\" Total」4Q25F 列 = 317（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。大摩 2025-08-27 版估计，中芯国际不按厂披露产能。2023–2024 年各季与 2025-06 版逐项相同未重复登记。预测值，@ 取工作表日期 2025-08；与 2025-06 版同季预测并列，不互相替代。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-smic-capacity-8inch-1q26f",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际"
+      },
+      "value": 306.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "中芯国际（8 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2026-Q1E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「SMIC各个晶圆厂情况」第 11 行「8\" Total」1Q26F 列 = 306（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。大摩 2025-08-27 版估计，中芯国际不按厂披露产能。2023–2024 年各季与 2025-06 版逐项相同未重复登记。预测值，@ 取工作表日期 2025-08；与 2025-06 版同季预测并列，不互相替代。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-smic-capacity-8inch-2q26f",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际"
+      },
+      "value": 330.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "中芯国际（8 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2026-Q2E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「SMIC各个晶圆厂情况」第 11 行「8\" Total」2Q26F 列 = 330（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。大摩 2025-08-27 版估计，中芯国际不按厂披露产能。2023–2024 年各季与 2025-06 版逐项相同未重复登记。预测值，@ 取工作表日期 2025-08；与 2025-06 版同季预测并列，不互相替代。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-smic-capacity-8inch-3q26f",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际"
+      },
+      "value": 333.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "中芯国际（8 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2026-Q3E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「SMIC各个晶圆厂情况」第 11 行「8\" Total」3Q26F 列 = 333（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。大摩 2025-08-27 版估计，中芯国际不按厂披露产能。2023–2024 年各季与 2025-06 版逐项相同未重复登记。预测值，@ 取工作表日期 2025-08；与 2025-06 版同季预测并列，不互相替代。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-smic-capacity-8inch-4q26f",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际"
+      },
+      "value": 309.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "中芯国际（8 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2026-Q4E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「SMIC各个晶圆厂情况」第 11 行「8\" Total」4Q26F 列 = 309（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。大摩 2025-08-27 版估计，中芯国际不按厂披露产能。2023–2024 年各季与 2025-06 版逐项相同未重复登记。预测值，@ 取工作表日期 2025-08；与 2025-06 版同季预测并列，不互相替代。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-smic-capacity-12inch-1q25",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际"
+      },
+      "value": 227.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "中芯国际（12 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2025-Q1@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「SMIC各个晶圆厂情况」第 12 行「12\" Total」1Q25 列 = 227（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。大摩 2025-08-27 版估计，中芯国际不按厂披露产能。2023–2024 年各季与 2025-06 版逐项相同未重复登记。同一季度 2025-06 版为 226，本版修订为 227，按新版次替代。",
+      "asserter": "摩根士丹利",
+      "supersedes": "ms-smic-capacity-12inch-1q25"
+    },
+    {
+      "fact_id": "ms2508-smic-capacity-12inch-2q25",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际"
+      },
+      "value": 234.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "中芯国际（12 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2025-Q2",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「SMIC各个晶圆厂情况」第 12 行「12\" Total」2Q25 列 = 234（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。大摩 2025-08-27 版估计，中芯国际不按厂披露产能。2023–2024 年各季与 2025-06 版逐项相同未重复登记。2Q25 在本版已为实际估计值（2025-06 版同季为预测 @2025-06，二者并列）。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-smic-capacity-12inch-3q25e",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际"
+      },
+      "value": 236.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "中芯国际（12 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2025-Q3E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「SMIC各个晶圆厂情况」第 12 行「12\" Total」3Q25E 列 = 236（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。大摩 2025-08-27 版估计，中芯国际不按厂披露产能。2023–2024 年各季与 2025-06 版逐项相同未重复登记。预测值，@ 取工作表日期 2025-08；与 2025-06 版同季预测并列，不互相替代。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-smic-capacity-12inch-4q25f",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际"
+      },
+      "value": 241.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "中芯国际（12 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2025-Q4E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「SMIC各个晶圆厂情况」第 12 行「12\" Total」4Q25F 列 = 241（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。大摩 2025-08-27 版估计，中芯国际不按厂披露产能。2023–2024 年各季与 2025-06 版逐项相同未重复登记。预测值，@ 取工作表日期 2025-08；与 2025-06 版同季预测并列，不互相替代。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-smic-capacity-12inch-1q26f",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际"
+      },
+      "value": 253.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "中芯国际（12 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2026-Q1E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「SMIC各个晶圆厂情况」第 12 行「12\" Total」1Q26F 列 = 253（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。大摩 2025-08-27 版估计，中芯国际不按厂披露产能。2023–2024 年各季与 2025-06 版逐项相同未重复登记。预测值，@ 取工作表日期 2025-08；与 2025-06 版同季预测并列，不互相替代。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-smic-capacity-12inch-2q26f",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际"
+      },
+      "value": 273.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "中芯国际（12 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2026-Q2E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「SMIC各个晶圆厂情况」第 12 行「12\" Total」2Q26F 列 = 273（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。大摩 2025-08-27 版估计，中芯国际不按厂披露产能。2023–2024 年各季与 2025-06 版逐项相同未重复登记。预测值，@ 取工作表日期 2025-08；与 2025-06 版同季预测并列，不互相替代。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-smic-capacity-12inch-3q26f",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际"
+      },
+      "value": 277.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "中芯国际（12 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2026-Q3E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「SMIC各个晶圆厂情况」第 12 行「12\" Total」3Q26F 列 = 277（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。大摩 2025-08-27 版估计，中芯国际不按厂披露产能。2023–2024 年各季与 2025-06 版逐项相同未重复登记。预测值，@ 取工作表日期 2025-08；与 2025-06 版同季预测并列，不互相替代。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-smic-capacity-12inch-4q26f",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际"
+      },
+      "value": 260.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "中芯国际（12 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2026-Q4E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「SMIC各个晶圆厂情况」第 12 行「12\" Total」4Q26F 列 = 260（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。大摩 2025-08-27 版估计，中芯国际不按厂披露产能。2023–2024 年各季与 2025-06 版逐项相同未重复登记。预测值，@ 取工作表日期 2025-08；与 2025-06 版同季预测并列，不互相替代。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-huahong-capacity-8inch-1q24",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "huahong-group",
+        "label": "华虹集团（华虹宏力 + 上海华力）"
+      },
+      "value": 176.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "华虹集团（8 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2024-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「华宏各晶圆厂情况」第 12 行「Total 8\"」1Q24 列 = 176（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。集团合计含华虹宏力（上海 Fab1&2、Fab3 为 8 英寸，无锡 Fab7、Fab9 为 12 英寸）与上海华力（Fab5/6/8 上海、Fab10 成都，均 12 英寸）；工作表名写「华宏」。同表「12\" 等效」（8 英寸按面积折算后合计）未录。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-huahong-capacity-8inch-2q24",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "huahong-group",
+        "label": "华虹集团（华虹宏力 + 上海华力）"
+      },
+      "value": 181.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "华虹集团（8 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2024-Q2",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「华宏各晶圆厂情况」第 12 行「Total 8\"」2Q24 列 = 181（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。集团合计含华虹宏力（上海 Fab1&2、Fab3 为 8 英寸，无锡 Fab7、Fab9 为 12 英寸）与上海华力（Fab5/6/8 上海、Fab10 成都，均 12 英寸）；工作表名写「华宏」。同表「12\" 等效」（8 英寸按面积折算后合计）未录。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-huahong-capacity-8inch-3q24",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "huahong-group",
+        "label": "华虹集团（华虹宏力 + 上海华力）"
+      },
+      "value": 174.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "华虹集团（8 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2024-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「华宏各晶圆厂情况」第 12 行「Total 8\"」3Q24 列 = 174（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。集团合计含华虹宏力（上海 Fab1&2、Fab3 为 8 英寸，无锡 Fab7、Fab9 为 12 英寸）与上海华力（Fab5/6/8 上海、Fab10 成都，均 12 英寸）；工作表名写「华宏」。同表「12\" 等效」（8 英寸按面积折算后合计）未录。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-huahong-capacity-8inch-4q24",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "huahong-group",
+        "label": "华虹集团（华虹宏力 + 上海华力）"
+      },
+      "value": 181.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "华虹集团（8 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2024-Q4",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「华宏各晶圆厂情况」第 12 行「Total 8\"」4Q24 列 = 181（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。集团合计含华虹宏力（上海 Fab1&2、Fab3 为 8 英寸，无锡 Fab7、Fab9 为 12 英寸）与上海华力（Fab5/6/8 上海、Fab10 成都，均 12 英寸）；工作表名写「华宏」。同表「12\" 等效」（8 英寸按面积折算后合计）未录。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-huahong-capacity-8inch-1q25",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "huahong-group",
+        "label": "华虹集团（华虹宏力 + 上海华力）"
+      },
+      "value": 182.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "华虹集团（8 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2025-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「华宏各晶圆厂情况」第 12 行「Total 8\"」1Q25 列 = 182（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。集团合计含华虹宏力（上海 Fab1&2、Fab3 为 8 英寸，无锡 Fab7、Fab9 为 12 英寸）与上海华力（Fab5/6/8 上海、Fab10 成都，均 12 英寸）；工作表名写「华宏」。同表「12\" 等效」（8 英寸按面积折算后合计）未录。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-huahong-capacity-8inch-2q25",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "huahong-group",
+        "label": "华虹集团（华虹宏力 + 上海华力）"
+      },
+      "value": 188.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "华虹集团（8 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2025-Q2",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「华宏各晶圆厂情况」第 12 行「Total 8\"」2Q25 列 = 188（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。集团合计含华虹宏力（上海 Fab1&2、Fab3 为 8 英寸，无锡 Fab7、Fab9 为 12 英寸）与上海华力（Fab5/6/8 上海、Fab10 成都，均 12 英寸）；工作表名写「华宏」。同表「12\" 等效」（8 英寸按面积折算后合计）未录。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-huahong-capacity-8inch-3q25e",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "huahong-group",
+        "label": "华虹集团（华虹宏力 + 上海华力）"
+      },
+      "value": 190.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "华虹集团（8 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2025-Q3E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「华宏各晶圆厂情况」第 12 行「Total 8\"」3Q25E 列 = 190（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。集团合计含华虹宏力（上海 Fab1&2、Fab3 为 8 英寸，无锡 Fab7、Fab9 为 12 英寸）与上海华力（Fab5/6/8 上海、Fab10 成都，均 12 英寸）；工作表名写「华宏」。同表「12\" 等效」（8 英寸按面积折算后合计）未录。预测值，@ 取工作表日期 2025-08。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-huahong-capacity-8inch-4q25f",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "huahong-group",
+        "label": "华虹集团（华虹宏力 + 上海华力）"
+      },
+      "value": 184.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "华虹集团（8 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2025-Q4E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「华宏各晶圆厂情况」第 12 行「Total 8\"」4Q25F 列 = 184（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。集团合计含华虹宏力（上海 Fab1&2、Fab3 为 8 英寸，无锡 Fab7、Fab9 为 12 英寸）与上海华力（Fab5/6/8 上海、Fab10 成都，均 12 英寸）；工作表名写「华宏」。同表「12\" 等效」（8 英寸按面积折算后合计）未录。预测值，@ 取工作表日期 2025-08。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-huahong-capacity-8inch-1q26f",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "huahong-group",
+        "label": "华虹集团（华虹宏力 + 上海华力）"
+      },
+      "value": 190.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "华虹集团（8 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2026-Q1E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「华宏各晶圆厂情况」第 12 行「Total 8\"」1Q26F 列 = 190（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。集团合计含华虹宏力（上海 Fab1&2、Fab3 为 8 英寸，无锡 Fab7、Fab9 为 12 英寸）与上海华力（Fab5/6/8 上海、Fab10 成都，均 12 英寸）；工作表名写「华宏」。同表「12\" 等效」（8 英寸按面积折算后合计）未录。预测值，@ 取工作表日期 2025-08。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-huahong-capacity-8inch-2q26f",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "huahong-group",
+        "label": "华虹集团（华虹宏力 + 上海华力）"
+      },
+      "value": 190.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "华虹集团（8 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2026-Q2E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「华宏各晶圆厂情况」第 12 行「Total 8\"」2Q26F 列 = 190（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。集团合计含华虹宏力（上海 Fab1&2、Fab3 为 8 英寸，无锡 Fab7、Fab9 为 12 英寸）与上海华力（Fab5/6/8 上海、Fab10 成都，均 12 英寸）；工作表名写「华宏」。同表「12\" 等效」（8 英寸按面积折算后合计）未录。预测值，@ 取工作表日期 2025-08。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-huahong-capacity-8inch-3q26f",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "huahong-group",
+        "label": "华虹集团（华虹宏力 + 上海华力）"
+      },
+      "value": 190.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "华虹集团（8 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2026-Q3E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「华宏各晶圆厂情况」第 12 行「Total 8\"」3Q26F 列 = 190（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。集团合计含华虹宏力（上海 Fab1&2、Fab3 为 8 英寸，无锡 Fab7、Fab9 为 12 英寸）与上海华力（Fab5/6/8 上海、Fab10 成都，均 12 英寸）；工作表名写「华宏」。同表「12\" 等效」（8 英寸按面积折算后合计）未录。预测值，@ 取工作表日期 2025-08。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-huahong-capacity-8inch-4q26f",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "huahong-group",
+        "label": "华虹集团（华虹宏力 + 上海华力）"
+      },
+      "value": 183.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "华虹集团（8 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2026-Q4E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「华宏各晶圆厂情况」第 12 行「Total 8\"」4Q26F 列 = 183（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。集团合计含华虹宏力（上海 Fab1&2、Fab3 为 8 英寸，无锡 Fab7、Fab9 为 12 英寸）与上海华力（Fab5/6/8 上海、Fab10 成都，均 12 英寸）；工作表名写「华宏」。同表「12\" 等效」（8 英寸按面积折算后合计）未录。预测值，@ 取工作表日期 2025-08。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-huahong-capacity-12inch-1q24",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "huahong-group",
+        "label": "华虹集团（华虹宏力 + 上海华力）"
+      },
+      "value": 145.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "华虹集团（12 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2024-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「华宏各晶圆厂情况」第 13 行「Total 12\"」1Q24 列 = 145（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。集团合计含华虹宏力（上海 Fab1&2、Fab3 为 8 英寸，无锡 Fab7、Fab9 为 12 英寸）与上海华力（Fab5/6/8 上海、Fab10 成都，均 12 英寸）；工作表名写「华宏」。同表「12\" 等效」（8 英寸按面积折算后合计）未录。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-huahong-capacity-12inch-2q24",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "huahong-group",
+        "label": "华虹集团（华虹宏力 + 上海华力）"
+      },
+      "value": 155.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "华虹集团（12 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2024-Q2",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「华宏各晶圆厂情况」第 13 行「Total 12\"」2Q24 列 = 155（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。集团合计含华虹宏力（上海 Fab1&2、Fab3 为 8 英寸，无锡 Fab7、Fab9 为 12 英寸）与上海华力（Fab5/6/8 上海、Fab10 成都，均 12 英寸）；工作表名写「华宏」。同表「12\" 等效」（8 英寸按面积折算后合计）未录。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-huahong-capacity-12inch-3q24",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "huahong-group",
+        "label": "华虹集团（华虹宏力 + 上海华力）"
+      },
+      "value": 163.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "华虹集团（12 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2024-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「华宏各晶圆厂情况」第 13 行「Total 12\"」3Q24 列 = 163（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。集团合计含华虹宏力（上海 Fab1&2、Fab3 为 8 英寸，无锡 Fab7、Fab9 为 12 英寸）与上海华力（Fab5/6/8 上海、Fab10 成都，均 12 英寸）；工作表名写「华宏」。同表「12\" 等效」（8 英寸按面积折算后合计）未录。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-huahong-capacity-12inch-4q24",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "huahong-group",
+        "label": "华虹集团（华虹宏力 + 上海华力）"
+      },
+      "value": 160.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "华虹集团（12 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2024-Q4",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「华宏各晶圆厂情况」第 13 行「Total 12\"」4Q24 列 = 160（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。集团合计含华虹宏力（上海 Fab1&2、Fab3 为 8 英寸，无锡 Fab7、Fab9 为 12 英寸）与上海华力（Fab5/6/8 上海、Fab10 成都，均 12 英寸）；工作表名写「华宏」。同表「12\" 等效」（8 英寸按面积折算后合计）未录。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-huahong-capacity-12inch-1q25",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "huahong-group",
+        "label": "华虹集团（华虹宏力 + 上海华力）"
+      },
+      "value": 169.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "华虹集团（12 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2025-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「华宏各晶圆厂情况」第 13 行「Total 12\"」1Q25 列 = 169（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。集团合计含华虹宏力（上海 Fab1&2、Fab3 为 8 英寸，无锡 Fab7、Fab9 为 12 英寸）与上海华力（Fab5/6/8 上海、Fab10 成都，均 12 英寸）；工作表名写「华宏」。同表「12\" 等效」（8 英寸按面积折算后合计）未录。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-huahong-capacity-12inch-2q25",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "huahong-group",
+        "label": "华虹集团（华虹宏力 + 上海华力）"
+      },
+      "value": 183.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "华虹集团（12 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2025-Q2",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「华宏各晶圆厂情况」第 13 行「Total 12\"」2Q25 列 = 183（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。集团合计含华虹宏力（上海 Fab1&2、Fab3 为 8 英寸，无锡 Fab7、Fab9 为 12 英寸）与上海华力（Fab5/6/8 上海、Fab10 成都，均 12 英寸）；工作表名写「华宏」。同表「12\" 等效」（8 英寸按面积折算后合计）未录。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-huahong-capacity-12inch-3q25e",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "huahong-group",
+        "label": "华虹集团（华虹宏力 + 上海华力）"
+      },
+      "value": 192.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "华虹集团（12 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2025-Q3E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「华宏各晶圆厂情况」第 13 行「Total 12\"」3Q25E 列 = 192（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。集团合计含华虹宏力（上海 Fab1&2、Fab3 为 8 英寸，无锡 Fab7、Fab9 为 12 英寸）与上海华力（Fab5/6/8 上海、Fab10 成都，均 12 英寸）；工作表名写「华宏」。同表「12\" 等效」（8 英寸按面积折算后合计）未录。预测值，@ 取工作表日期 2025-08。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-huahong-capacity-12inch-4q25f",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "huahong-group",
+        "label": "华虹集团（华虹宏力 + 上海华力）"
+      },
+      "value": 196.5,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "华虹集团（12 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2025-Q4E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「华宏各晶圆厂情况」第 13 行「Total 12\"」4Q25F 列 = 196.5（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。集团合计含华虹宏力（上海 Fab1&2、Fab3 为 8 英寸，无锡 Fab7、Fab9 为 12 英寸）与上海华力（Fab5/6/8 上海、Fab10 成都，均 12 英寸）；工作表名写「华宏」。同表「12\" 等效」（8 英寸按面积折算后合计）未录。预测值，@ 取工作表日期 2025-08。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-huahong-capacity-12inch-1q26f",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "huahong-group",
+        "label": "华虹集团（华虹宏力 + 上海华力）"
+      },
+      "value": 208.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "华虹集团（12 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2026-Q1E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「华宏各晶圆厂情况」第 13 行「Total 12\"」1Q26F 列 = 208（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。集团合计含华虹宏力（上海 Fab1&2、Fab3 为 8 英寸，无锡 Fab7、Fab9 为 12 英寸）与上海华力（Fab5/6/8 上海、Fab10 成都，均 12 英寸）；工作表名写「华宏」。同表「12\" 等效」（8 英寸按面积折算后合计）未录。预测值，@ 取工作表日期 2025-08。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-huahong-capacity-12inch-2q26f",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "huahong-group",
+        "label": "华虹集团（华虹宏力 + 上海华力）"
+      },
+      "value": 224.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "华虹集团（12 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2026-Q2E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「华宏各晶圆厂情况」第 13 行「Total 12\"」2Q26F 列 = 224（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。集团合计含华虹宏力（上海 Fab1&2、Fab3 为 8 英寸，无锡 Fab7、Fab9 为 12 英寸）与上海华力（Fab5/6/8 上海、Fab10 成都，均 12 英寸）；工作表名写「华宏」。同表「12\" 等效」（8 英寸按面积折算后合计）未录。预测值，@ 取工作表日期 2025-08。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-huahong-capacity-12inch-3q26f",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "huahong-group",
+        "label": "华虹集团（华虹宏力 + 上海华力）"
+      },
+      "value": 242.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "华虹集团（12 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2026-Q3E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「华宏各晶圆厂情况」第 13 行「Total 12\"」3Q26F 列 = 242（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。集团合计含华虹宏力（上海 Fab1&2、Fab3 为 8 英寸，无锡 Fab7、Fab9 为 12 英寸）与上海华力（Fab5/6/8 上海、Fab10 成都，均 12 英寸）；工作表名写「华宏」。同表「12\" 等效」（8 英寸按面积折算后合计）未录。预测值，@ 取工作表日期 2025-08。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2508-huahong-capacity-12inch-4q26f",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "huahong-group",
+        "label": "华虹集团（华虹宏力 + 上海华力）"
+      },
+      "value": 245.0,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "华虹集团（12 英寸产线合计）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2026-Q4E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "659cf162c5d104b22265a3a3e0985b092fadd578c067713abd2eb075fec48248",
+        "local_file": "晶圆厂信息统计2025.08.27.xlsx",
+        "locator": "工作表「华宏各晶圆厂情况」第 13 行「Total 12\"」4Q26F 列 = 245（单位：Unit：KWPM；Source：大摩；Date:2025.08.27）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表标注 Source：大摩；汇编文件未署名，工作表 Date:2025.08.27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "KWPM = 千片/月。集团合计含华虹宏力（上海 Fab1&2、Fab3 为 8 英寸，无锡 Fab7、Fab9 为 12 英寸）与上海华力（Fab5/6/8 上海、Fab10 成都，均 12 英寸）；工作表名写「华宏」。同表「12\" 等效」（8 英寸按面积折算后合计）未录。预测值，@ 取工作表日期 2025-08。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "smic-ir-utilization-2022q1",
+      "metric_id": "foundry_utilization",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际"
+      },
+      "value": 100.4,
+      "unit": "%",
+      "caliber": {
+        "foundry": "中芯国际",
+        "node": "合计",
+        "wafer_size": "合计",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2022-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "cbbadb419b2ad9f95a2dfe2023b10cab393f19aa81142d9d2dbf50b6e8bf2d07",
+        "local_file": "SMIC财务数据_2024Q4.xlsx",
+        "locator": "工作表「Financial Presentation」第 81 行 2022 Q1「Utilization」列 = 1.004（同行 Capacity (8\") = 649125）",
+        "grade": "S2",
+        "originator": "中芯国际季度业绩报告（经未署名汇编表《SMIC财务数据_2024Q4》整理）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "公司季报披露的整体产能利用率，原表为小数 1.004，折百分比 100.4%；同季月产能折 8 英寸约 649,125 片。利用率超过 100% 是公司口径（按标准产能计）如实照录。",
+      "asserter": "中芯国际"
+    },
+    {
+      "fact_id": "smic-ir-utilization-2022q2",
+      "metric_id": "foundry_utilization",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际"
+      },
+      "value": 97.1,
+      "unit": "%",
+      "caliber": {
+        "foundry": "中芯国际",
+        "node": "合计",
+        "wafer_size": "合计",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2022-Q2",
+      "bound": "point",
+      "evidence": {
+        "sha256": "cbbadb419b2ad9f95a2dfe2023b10cab393f19aa81142d9d2dbf50b6e8bf2d07",
+        "local_file": "SMIC财务数据_2024Q4.xlsx",
+        "locator": "工作表「Financial Presentation」第 82 行 2022 Q2「Utilization」列 = 0.971（同行 Capacity (8\") = 673750）",
+        "grade": "S2",
+        "originator": "中芯国际季度业绩报告（经未署名汇编表《SMIC财务数据_2024Q4》整理）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "公司季报披露的整体产能利用率，原表为小数 0.971，折百分比 97.1%；同季月产能折 8 英寸约 673,750 片。",
+      "asserter": "中芯国际"
+    },
+    {
+      "fact_id": "smic-ir-utilization-2022q3",
+      "metric_id": "foundry_utilization",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际"
+      },
+      "value": 92.1,
+      "unit": "%",
+      "caliber": {
+        "foundry": "中芯国际",
+        "node": "合计",
+        "wafer_size": "合计",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2022-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "cbbadb419b2ad9f95a2dfe2023b10cab393f19aa81142d9d2dbf50b6e8bf2d07",
+        "local_file": "SMIC财务数据_2024Q4.xlsx",
+        "locator": "工作表「Financial Presentation」第 83 行 2022 Q3「Utilization」列 = 0.921（同行 Capacity (8\") = 706000）",
+        "grade": "S2",
+        "originator": "中芯国际季度业绩报告（经未署名汇编表《SMIC财务数据_2024Q4》整理）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "公司季报披露的整体产能利用率，原表为小数 0.921，折百分比 92.1%；同季月产能折 8 英寸约 706,000 片。",
+      "asserter": "中芯国际"
+    },
+    {
+      "fact_id": "smic-ir-utilization-2022q4",
+      "metric_id": "foundry_utilization",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际"
+      },
+      "value": 79.5,
+      "unit": "%",
+      "caliber": {
+        "foundry": "中芯国际",
+        "node": "合计",
+        "wafer_size": "合计",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2022-Q4",
+      "bound": "point",
+      "evidence": {
+        "sha256": "cbbadb419b2ad9f95a2dfe2023b10cab393f19aa81142d9d2dbf50b6e8bf2d07",
+        "local_file": "SMIC财务数据_2024Q4.xlsx",
+        "locator": "工作表「Financial Presentation」第 84 行 2022 Q4「Utilization」列 = 0.795（同行 Capacity (8\") = 714000）",
+        "grade": "S2",
+        "originator": "中芯国际季度业绩报告（经未署名汇编表《SMIC财务数据_2024Q4》整理）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "公司季报披露的整体产能利用率，原表为小数 0.795，折百分比 79.5%；同季月产能折 8 英寸约 714,000 片。",
+      "asserter": "中芯国际"
+    },
+    {
+      "fact_id": "smic-ir-utilization-2023q1",
+      "metric_id": "foundry_utilization",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际"
+      },
+      "value": 68.1,
+      "unit": "%",
+      "caliber": {
+        "foundry": "中芯国际",
+        "node": "合计",
+        "wafer_size": "合计",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2023-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "cbbadb419b2ad9f95a2dfe2023b10cab393f19aa81142d9d2dbf50b6e8bf2d07",
+        "local_file": "SMIC财务数据_2024Q4.xlsx",
+        "locator": "工作表「Financial Presentation」第 85 行 2023 Q1「Utilization」列 = 0.681（同行 Capacity (8\") = 732250）",
+        "grade": "S2",
+        "originator": "中芯国际季度业绩报告（经未署名汇编表《SMIC财务数据_2024Q4》整理）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "公司季报披露的整体产能利用率，原表为小数 0.681，折百分比 68.1%；同季月产能折 8 英寸约 732,250 片。",
+      "asserter": "中芯国际"
+    },
+    {
+      "fact_id": "smic-ir-utilization-2023q2",
+      "metric_id": "foundry_utilization",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际"
+      },
+      "value": 78.3,
+      "unit": "%",
+      "caliber": {
+        "foundry": "中芯国际",
+        "node": "合计",
+        "wafer_size": "合计",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2023-Q2",
+      "bound": "point",
+      "evidence": {
+        "sha256": "cbbadb419b2ad9f95a2dfe2023b10cab393f19aa81142d9d2dbf50b6e8bf2d07",
+        "local_file": "SMIC财务数据_2024Q4.xlsx",
+        "locator": "工作表「Financial Presentation」第 86 行 2023 Q2「Utilization」列 = 0.783（同行 Capacity (8\") = 754250）",
+        "grade": "S2",
+        "originator": "中芯国际季度业绩报告（经未署名汇编表《SMIC财务数据_2024Q4》整理）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "公司季报披露的整体产能利用率，原表为小数 0.783，折百分比 78.3%；同季月产能折 8 英寸约 754,250 片。",
+      "asserter": "中芯国际"
+    },
+    {
+      "fact_id": "smic-ir-utilization-2023q3",
+      "metric_id": "foundry_utilization",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际"
+      },
+      "value": 77.1,
+      "unit": "%",
+      "caliber": {
+        "foundry": "中芯国际",
+        "node": "合计",
+        "wafer_size": "合计",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2023-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "cbbadb419b2ad9f95a2dfe2023b10cab393f19aa81142d9d2dbf50b6e8bf2d07",
+        "local_file": "SMIC财务数据_2024Q4.xlsx",
+        "locator": "工作表「Financial Presentation」第 87 行 2023 Q3「Utilization」列 = 0.771（同行 Capacity (8\") = 795750）",
+        "grade": "S2",
+        "originator": "中芯国际季度业绩报告（经未署名汇编表《SMIC财务数据_2024Q4》整理）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "公司季报披露的整体产能利用率，原表为小数 0.771，折百分比 77.1%；同季月产能折 8 英寸约 795,750 片。",
+      "asserter": "中芯国际"
+    },
+    {
+      "fact_id": "smic-ir-utilization-2023q4",
+      "metric_id": "foundry_utilization",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际"
+      },
+      "value": 76.8,
+      "unit": "%",
+      "caliber": {
+        "foundry": "中芯国际",
+        "node": "合计",
+        "wafer_size": "合计",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2023-Q4",
+      "bound": "point",
+      "evidence": {
+        "sha256": "cbbadb419b2ad9f95a2dfe2023b10cab393f19aa81142d9d2dbf50b6e8bf2d07",
+        "local_file": "SMIC财务数据_2024Q4.xlsx",
+        "locator": "工作表「Financial Presentation」第 88 行 2023 Q4「Utilization」列 = 0.768（同行 Capacity (8\") = 805500）",
+        "grade": "S2",
+        "originator": "中芯国际季度业绩报告（经未署名汇编表《SMIC财务数据_2024Q4》整理）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "公司季报披露的整体产能利用率，原表为小数 0.768，折百分比 76.8%；同季月产能折 8 英寸约 805,500 片。",
+      "asserter": "中芯国际"
+    },
+    {
+      "fact_id": "smic-ir-utilization-2024q1",
+      "metric_id": "foundry_utilization",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际"
+      },
+      "value": 80.8,
+      "unit": "%",
+      "caliber": {
+        "foundry": "中芯国际",
+        "node": "合计",
+        "wafer_size": "合计",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2024-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "cbbadb419b2ad9f95a2dfe2023b10cab393f19aa81142d9d2dbf50b6e8bf2d07",
+        "local_file": "SMIC财务数据_2024Q4.xlsx",
+        "locator": "工作表「Financial Presentation」第 89 行 2024 Q1「Utilization」列 = 0.808（同行 Capacity (8\") = 814500）",
+        "grade": "S2",
+        "originator": "中芯国际季度业绩报告（经未署名汇编表《SMIC财务数据_2024Q4》整理）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "公司季报披露的整体产能利用率，原表为小数 0.808，折百分比 80.8%；同季月产能折 8 英寸约 814,500 片。",
+      "asserter": "中芯国际"
+    },
+    {
+      "fact_id": "smic-ir-utilization-2024q2",
+      "metric_id": "foundry_utilization",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际"
+      },
+      "value": 85.2,
+      "unit": "%",
+      "caliber": {
+        "foundry": "中芯国际",
+        "node": "合计",
+        "wafer_size": "合计",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2024-Q2",
+      "bound": "point",
+      "evidence": {
+        "sha256": "cbbadb419b2ad9f95a2dfe2023b10cab393f19aa81142d9d2dbf50b6e8bf2d07",
+        "local_file": "SMIC财务数据_2024Q4.xlsx",
+        "locator": "工作表「Financial Presentation」第 90 行 2024 Q2「Utilization」列 = 0.852（同行 Capacity (8\") = 837000）",
+        "grade": "S2",
+        "originator": "中芯国际季度业绩报告（经未署名汇编表《SMIC财务数据_2024Q4》整理）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "公司季报披露的整体产能利用率，原表为小数 0.852，折百分比 85.2%；同季月产能折 8 英寸约 837,000 片。",
+      "asserter": "中芯国际"
+    },
+    {
+      "fact_id": "smic-ir-utilization-2024q3",
+      "metric_id": "foundry_utilization",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际"
+      },
+      "value": 90.4,
+      "unit": "%",
+      "caliber": {
+        "foundry": "中芯国际",
+        "node": "合计",
+        "wafer_size": "合计",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2024-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "cbbadb419b2ad9f95a2dfe2023b10cab393f19aa81142d9d2dbf50b6e8bf2d07",
+        "local_file": "SMIC财务数据_2024Q4.xlsx",
+        "locator": "工作表「Financial Presentation」第 91 行 2024 Q3「Utilization」列 = 0.904（同行 Capacity (8\") = 884250）",
+        "grade": "S2",
+        "originator": "中芯国际季度业绩报告（经未署名汇编表《SMIC财务数据_2024Q4》整理）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "公司季报披露的整体产能利用率，原表为小数 0.904，折百分比 90.4%；同季月产能折 8 英寸约 884,250 片。",
+      "asserter": "中芯国际"
+    },
+    {
+      "fact_id": "smic-ir-utilization-2024q4",
+      "metric_id": "foundry_utilization",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际"
+      },
+      "value": 85.5,
+      "unit": "%",
+      "caliber": {
+        "foundry": "中芯国际",
+        "node": "合计",
+        "wafer_size": "合计",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2024-Q4",
+      "bound": "point",
+      "evidence": {
+        "sha256": "cbbadb419b2ad9f95a2dfe2023b10cab393f19aa81142d9d2dbf50b6e8bf2d07",
+        "local_file": "SMIC财务数据_2024Q4.xlsx",
+        "locator": "工作表「Financial Presentation」第 92 行 2024 Q4「Utilization」列 = 0.855（同行 Capacity (8\") = 947625）",
+        "grade": "S2",
+        "originator": "中芯国际季度业绩报告（经未署名汇编表《SMIC财务数据_2024Q4》整理）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "公司季报披露的整体产能利用率，原表为小数 0.855，折百分比 85.5%；同季月产能折 8 英寸约 947,625 片。",
+      "asserter": "中芯国际"
+    },
+    {
+      "fact_id": "idc2101-hdd-top2-share-units-2020q3",
+      "metric_id": "hdd_top2_share",
+      "entity": {
+        "type": "market",
+        "id": "global-hdd",
+        "label": "全球 HDD 市场"
+      },
+      "value": 77.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "出货量",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ff39ffc418d971cf495457df595dded8904bb559abba4bed18d771f83c7500ed",
+        "local_file": "IDC 202101 Preliminary 4Q 2020 HDD Shipment Results.xlsx",
+        "locator": "工作表「Prelim HDD Units and Share」第 72–81 行 Class: All，3Q 2020 Actual：Seagate 0.4076、Toshiba 0.2298、WD 0.3625（Total 63,365.5 千台）",
+        "grade": "S3",
+        "originator": "IDC《Preliminary 4Q 2020 Worldwide HDD Shipments》（2021-01-08）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "前两大为 Seagate 40.76% + WD 36.25% = 77.0%（原表只给各家份额，未给前两大合计）。",
+      "corroboration": "待交叉验证",
+      "notes": "IDC hddbyseg 4Q20.0 初步版，按出货台数（units）；4Q20 为初步估计，IDC 注明 4–6 周后以终版替代。东芝 22.98%。",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "idc2101-hdd-top2-share-units-2020q4-prelim",
+      "metric_id": "hdd_top2_share",
+      "entity": {
+        "type": "market",
+        "id": "global-hdd",
+        "label": "全球 HDD 市场"
+      },
+      "value": 79.2,
+      "unit": "%",
+      "caliber": {
+        "measure": "出货量",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2020-Q4",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ff39ffc418d971cf495457df595dded8904bb559abba4bed18d771f83c7500ed",
+        "local_file": "IDC 202101 Preliminary 4Q 2020 HDD Shipment Results.xlsx",
+        "locator": "工作表「Prelim HDD Units and Share」第 72–81 行 Class: All，4Q 2020 Preliminary：Seagate 0.4281、Toshiba 0.2078、WD 0.3641（Total 66,800 - 70,800 千台）",
+        "grade": "S3",
+        "originator": "IDC《Preliminary 4Q 2020 Worldwide HDD Shipments》（2021-01-08）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "前两大为 Seagate 42.81% + WD 36.41% = 79.2%。",
+      "corroboration": "待交叉验证",
+      "notes": "IDC hddbyseg 4Q20.0 初步版，按出货台数（units）；4Q20 为初步估计，IDC 注明 4–6 周后以终版替代。东芝 20.78%。初步数，终版可能修订。",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "idc2101-hdd-units-yoy-2020q3",
+      "metric_id": "hdd_market_size_growth",
+      "entity": {
+        "type": "market",
+        "id": "global-hdd",
+        "label": "全球 HDD 市场"
+      },
+      "value": -23.7,
+      "unit": "%",
+      "caliber": {
+        "measure": "出货量",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ff39ffc418d971cf495457df595dded8904bb559abba4bed18d771f83c7500ed",
+        "local_file": "IDC 202101 Preliminary 4Q 2020 HDD Shipment Results.xlsx",
+        "locator": "工作表「Prelim HDD Units and Share」第 84 行「Year/Year」3Q 2020 Actual = -0.2367；第 83 行 QTR/QTR change = 0.0774",
+        "grade": "S3",
+        "originator": "IDC《Preliminary 4Q 2020 Worldwide HDD Shipments》（2021-01-08）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "IDC hddbyseg 4Q20.0 初步版，按出货台数（units）；4Q20 为初步估计，IDC 注明 4–6 周后以终版替代。3Q20 全球 HDD 出货 6,336.6 万台，环比 +7.7%。",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "idc2101-hdd-units-yoy-2020q4-prelim-lower",
+      "metric_id": "hdd_market_size_growth",
+      "entity": {
+        "type": "market",
+        "id": "global-hdd",
+        "label": "全球 HDD 市场"
+      },
+      "value": -15.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "出货量",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2020-Q4",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "ff39ffc418d971cf495457df595dded8904bb559abba4bed18d771f83c7500ed",
+        "local_file": "IDC 202101 Preliminary 4Q 2020 HDD Shipment Results.xlsx",
+        "locator": "工作表「Prelim HDD Units and Share」第 84 行「Year/Year」4Q 2020 Preliminary = 「-15% to -10%」",
+        "grade": "S3",
+        "originator": "IDC《Preliminary 4Q 2020 Worldwide HDD Shipments》（2021-01-08）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "IDC hddbyseg 4Q20.0 初步版，按出货台数（units）；4Q20 为初步估计，IDC 注明 4–6 周后以终版替代。原文区间 -15% 至 -10% 的下界；上界见 idc2101-hdd-units-yoy-2020q4-prelim-upper。环比 +5% 至 +12%，出货 6,680–7,080 万台。",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "idc2101-hdd-units-yoy-2020q4-prelim-upper",
+      "metric_id": "hdd_market_size_growth",
+      "entity": {
+        "type": "market",
+        "id": "global-hdd",
+        "label": "全球 HDD 市场"
+      },
+      "value": -10.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "出货量",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2020-Q4",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "ff39ffc418d971cf495457df595dded8904bb559abba4bed18d771f83c7500ed",
+        "local_file": "IDC 202101 Preliminary 4Q 2020 HDD Shipment Results.xlsx",
+        "locator": "工作表「Prelim HDD Units and Share」第 84 行「Year/Year」4Q 2020 Preliminary = 「-15% to -10%」",
+        "grade": "S3",
+        "originator": "IDC《Preliminary 4Q 2020 Worldwide HDD Shipments》（2021-01-08）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "IDC hddbyseg 4Q20.0 初步版，按出货台数（units）；4Q20 为初步估计，IDC 注明 4–6 周后以终版替代。原文区间上界。",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "idc1902-hdd-units-yoy-cy2018",
+      "metric_id": "hdd_market_size_growth",
+      "entity": {
+        "type": "market",
+        "id": "global-hdd",
+        "label": "全球 HDD 市场"
+      },
+      "value": -7.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "出货量",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "40dad734905b1516adad7ab783459120a9c7724abf271e7353a55b1c21544c0b",
+        "local_file": "IDC 4Q18 Final WW HDD Shipment Results Pivot Table and Forecast Update.xls",
+        "locator": "工作表「WW HDD Shipments」第 184–195 行 Class: All，CY18 Total = 375,833.8 千台，Year/Year = -0.0698",
+        "grade": "S3",
+        "originator": "IDC《Worldwide 4Q18 HDD Shipments and 4-Quarter Outlook by HDD Segment》（2019-02-11）"
+      },
+      "derived": false,
+      "notes": "IDC hddbyseg/Revbyseg 4Q18.0 终版（actuals），CY19e 为同期发布的四季度展望。IDC 注明按其分类口径，与厂商自报可能不同。2018 年全球 HDD 出货 3.758 亿台。",
+      "depth": "精读",
+      "corroboration": "待交叉验证",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "idc1902-hdd-units-yoy-cy2019e",
+      "metric_id": "hdd_market_size_growth",
+      "entity": {
+        "type": "market",
+        "id": "global-hdd",
+        "label": "全球 HDD 市场"
+      },
+      "value": -11.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "出货量",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2019E@2019-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "40dad734905b1516adad7ab783459120a9c7724abf271e7353a55b1c21544c0b",
+        "local_file": "IDC 4Q18 Final WW HDD Shipment Results Pivot Table and Forecast Update.xls",
+        "locator": "工作表「WW HDD Shipments」第 192–195 行 Class: All，CY19e Total = 334,522.3 千台，Year/Year = -0.1099",
+        "grade": "S3",
+        "originator": "IDC《Worldwide 4Q18 HDD Shipments and 4-Quarter Outlook by HDD Segment》（2019-02-11）"
+      },
+      "derived": false,
+      "notes": "IDC hddbyseg/Revbyseg 4Q18.0 终版（actuals），CY19e 为同期发布的四季度展望。IDC 注明按其分类口径，与厂商自报可能不同。2019 年预测出货 3.345 亿台。",
+      "depth": "精读",
+      "corroboration": "待交叉验证",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "idc1902-hdd-revenue-yoy-cy2018",
+      "metric_id": "hdd_market_size_growth",
+      "entity": {
+        "type": "market",
+        "id": "global-hdd",
+        "label": "全球 HDD 市场"
+      },
+      "value": 0.5,
+      "unit": "%",
+      "caliber": {
+        "measure": "金额",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "40dad734905b1516adad7ab783459120a9c7724abf271e7353a55b1c21544c0b",
+        "local_file": "IDC 4Q18 Final WW HDD Shipment Results Pivot Table and Forecast Update.xls",
+        "locator": "工作表「WW HDD Revenue」第 180–191 行 Class: All，CY18 Total = 24,402.1 百万美元，Year/Year = 0.0049",
+        "grade": "S3",
+        "originator": "IDC《Worldwide 4Q18 HDD Shipments and 4-Quarter Outlook by HDD Segment》（2019-02-11）"
+      },
+      "derived": false,
+      "notes": "IDC hddbyseg/Revbyseg 4Q18.0 终版（actuals），CY19e 为同期发布的四季度展望。IDC 注明按其分类口径，与厂商自报可能不同。2018 年 HDD 营收 244.0 亿美元，台数 -7.0% 而金额 +0.5%，量价背离。",
+      "depth": "精读",
+      "corroboration": "待交叉验证",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "idc1902-hdd-revenue-yoy-cy2019e",
+      "metric_id": "hdd_market_size_growth",
+      "entity": {
+        "type": "market",
+        "id": "global-hdd",
+        "label": "全球 HDD 市场"
+      },
+      "value": -2.4,
+      "unit": "%",
+      "caliber": {
+        "measure": "金额",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2019E@2019-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "40dad734905b1516adad7ab783459120a9c7724abf271e7353a55b1c21544c0b",
+        "local_file": "IDC 4Q18 Final WW HDD Shipment Results Pivot Table and Forecast Update.xls",
+        "locator": "工作表「WW HDD Revenue」第 188–191 行 Class: All，CY19e Total = 23,827.9 百万美元，Year/Year = -0.0235",
+        "grade": "S3",
+        "originator": "IDC《Worldwide 4Q18 HDD Shipments and 4-Quarter Outlook by HDD Segment》（2019-02-11）"
+      },
+      "derived": false,
+      "notes": "IDC hddbyseg/Revbyseg 4Q18.0 终版（actuals），CY19e 为同期发布的四季度展望。IDC 注明按其分类口径，与厂商自报可能不同。",
+      "depth": "精读",
+      "corroboration": "待交叉验证",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "idc1902-hdd-top2-share-units-cy2018",
+      "metric_id": "hdd_top2_share",
+      "entity": {
+        "type": "market",
+        "id": "global-hdd",
+        "label": "全球 HDD 市场"
+      },
+      "value": 77.2,
+      "unit": "%",
+      "caliber": {
+        "measure": "出货量",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "40dad734905b1516adad7ab783459120a9c7724abf271e7353a55b1c21544c0b",
+        "local_file": "IDC 4Q18 Final WW HDD Shipment Results Pivot Table and Forecast Update.xls",
+        "locator": "工作表「WW HDD Shipments」第 197–206 行 Class: All 份额，CY18：Seagate 0.3999、Toshiba 0.2279、WD 0.3722",
+        "grade": "S3",
+        "originator": "IDC《Worldwide 4Q18 HDD Shipments and 4-Quarter Outlook by HDD Segment》（2019-02-11）"
+      },
+      "derived": true,
+      "derivation": "前两大 Seagate 39.99% + WD 37.22% = 77.2%。",
+      "notes": "IDC hddbyseg/Revbyseg 4Q18.0 终版（actuals），CY19e 为同期发布的四季度展望。IDC 注明按其分类口径，与厂商自报可能不同。东芝 22.79%。",
+      "depth": "精读",
+      "corroboration": "待交叉验证",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "idc1902-hdd-top2-share-revenue-cy2018",
+      "metric_id": "hdd_top2_share",
+      "entity": {
+        "type": "market",
+        "id": "global-hdd",
+        "label": "全球 HDD 市场"
+      },
+      "value": 83.3,
+      "unit": "%",
+      "caliber": {
+        "measure": "金额",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "40dad734905b1516adad7ab783459120a9c7724abf271e7353a55b1c21544c0b",
+        "local_file": "IDC 4Q18 Final WW HDD Shipment Results Pivot Table and Forecast Update.xls",
+        "locator": "工作表「WW HDD Revenue」第 193–201 行 Class: All 份额，CY18：Seagate 0.4315、Toshiba 0.1671、WD 0.4015",
+        "grade": "S3",
+        "originator": "IDC《Worldwide 4Q18 HDD Shipments and 4-Quarter Outlook by HDD Segment》（2019-02-11）"
+      },
+      "derived": true,
+      "derivation": "前两大 Seagate 43.15% + WD 40.15% = 83.3%。",
+      "notes": "IDC hddbyseg/Revbyseg 4Q18.0 终版（actuals），CY19e 为同期发布的四季度展望。IDC 注明按其分类口径，与厂商自报可能不同。东芝 16.71%；按金额的集中度比按台数高 6 个百分点。",
+      "depth": "精读",
+      "corroboration": "待交叉验证",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "bern2601-hbm-bit-growth-2027e",
+      "metric_id": "hbm_bit_shipment_growth",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 35.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "位出货量",
+        "basis": "模型输出",
+        "region": "Global"
+      },
+      "as_of": "2027E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3ac891df97dc7c809fdc6609222aaf1d9d37d30e4acf562d8a137a8528c7ed0e",
+        "local_file": "20260117-伯恩斯坦：亚洲半导体与全球存储器：2026年仍以人工智能为核心(50页).pdf",
+        "locator": "第 19 页：「我们现将HBM位出货量增长模型设定为2026年增长100%，2027年再增长35%（参见图表26）……尽管我们仍假设HBM3E平均售价在2026年将下降20%……总体而言，我们预测2025至2026年HBM均价将温和下跌5%，HBM总市场规模（TAM）将在2026年增长至750亿美元（图示27）」",
+        "grade": "S3",
+        "originator": "伯恩斯坦（Bernstein 亚洲半导体团队，2026-01-17，中文译本）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "伯恩斯坦自建 HBM 模型：2026 年位出货 +100%（已入库 hbm-bit-growth-2026e）后，2027 年再 +35%。译本原文作「35%0/0」，为排版残字。",
+      "asserter": "伯恩斯坦"
+    },
+    {
+      "fact_id": "bern2601-hbm-tam-2026e",
+      "metric_id": "hbm_demand_value",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 750.0,
+      "unit": "亿美元",
+      "caliber": {
+        "generation": "合计",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3ac891df97dc7c809fdc6609222aaf1d9d37d30e4acf562d8a137a8528c7ed0e",
+        "local_file": "20260117-伯恩斯坦：亚洲半导体与全球存储器：2026年仍以人工智能为核心(50页).pdf",
+        "locator": "第 19 页：「我们现将HBM位出货量增长模型设定为2026年增长100%，2027年再增长35%（参见图表26）……尽管我们仍假设HBM3E平均售价在2026年将下降20%……总体而言，我们预测2025至2026年HBM均价将温和下跌5%，HBM总市场规模（TAM）将在2026年增长至750亿美元（图示27）」",
+        "grade": "S3",
+        "originator": "伯恩斯坦（Bernstein 亚洲半导体团队，2026-01-17，中文译本）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "HBM 总市场规模（TAM）2026 年 750 亿美元，基于位出货 +100%、均价 -5% 的模型假设；HBM3E 均价假设 2026 年 -20%，HBM4 上半年量产带来溢价。",
+      "asserter": "伯恩斯坦"
+    },
+    {
+      "fact_id": "bern2601-hbm-asp-yoy-2026e",
+      "metric_id": "dram_asp_change",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": -5.0,
+      "unit": "%",
+      "caliber": {
+        "period_basis": "同比 YoY",
+        "product": "HBM",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2026E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3ac891df97dc7c809fdc6609222aaf1d9d37d30e4acf562d8a137a8528c7ed0e",
+        "local_file": "20260117-伯恩斯坦：亚洲半导体与全球存储器：2026年仍以人工智能为核心(50页).pdf",
+        "locator": "第 19 页：「我们现将HBM位出货量增长模型设定为2026年增长100%，2027年再增长35%（参见图表26）……尽管我们仍假设HBM3E平均售价在2026年将下降20%……总体而言，我们预测2025至2026年HBM均价将温和下跌5%，HBM总市场规模（TAM）将在2026年增长至750亿美元（图示27）」",
+        "grade": "S3",
+        "originator": "伯恩斯坦（Bernstein 亚洲半导体团队，2026-01-17，中文译本）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "HBM 整体均价 2025→2026 年温和下跌约 5%（HBM3E 单独假设 -20%，HBM4 溢价抵消部分）；原文「温和下跌5%」按点值记。",
+      "asserter": "伯恩斯坦"
+    },
+    {
+      "fact_id": "yole2504-ai-asic-revenue-2020",
+      "metric_id": "ai_asic_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "ai-asic",
+        "label": "AI ASIC 市场"
+      },
+      "value": 0.5,
+      "unit": "十亿美元",
+      "caliber": {
+        "scope": "AI ASIC",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f9cccfd95405b5b3cbafa91c0b55c63debe68d34018d4720a49c8e6606642ce6",
+        "local_file": "yintr25487-generative_ai_2025_computing_and_ai_for_data_center.pdf",
+        "locator": "第 10 页「GPU & AI ASIC revenue forecast 2024 vs 2025 ($B)」表「AI ASIC - new 2025 forecast」2020 列 = $0.5",
+        "grade": "S3",
+        "originator": "Yole Group《Generative AI 2025 – Computing and AI for Data Center》（YINTR25487，2025-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2025 版按新 ASP 方法重算的数据中心 AI ASIC 营收（2024 年 90 亿美元已入库 ai-asic-market-size-2024）。**同图 2024 版旧预测按旧方法口径高得多（2023 年 118 亿 vs 新版 35 亿）**，Yole 称差异来自访谈新信息与 ASP 新算法，旧版未入库。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2504-ai-asic-revenue-2021",
+      "metric_id": "ai_asic_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "ai-asic",
+        "label": "AI ASIC 市场"
+      },
+      "value": 0.7,
+      "unit": "十亿美元",
+      "caliber": {
+        "scope": "AI ASIC",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f9cccfd95405b5b3cbafa91c0b55c63debe68d34018d4720a49c8e6606642ce6",
+        "local_file": "yintr25487-generative_ai_2025_computing_and_ai_for_data_center.pdf",
+        "locator": "第 10 页「GPU & AI ASIC revenue forecast 2024 vs 2025 ($B)」表「AI ASIC - new 2025 forecast」2021 列 = $0.7",
+        "grade": "S3",
+        "originator": "Yole Group《Generative AI 2025 – Computing and AI for Data Center》（YINTR25487，2025-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2025 版按新 ASP 方法重算的数据中心 AI ASIC 营收（2024 年 90 亿美元已入库 ai-asic-market-size-2024）。**同图 2024 版旧预测按旧方法口径高得多（2023 年 118 亿 vs 新版 35 亿）**，Yole 称差异来自访谈新信息与 ASP 新算法，旧版未入库。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2504-ai-asic-revenue-2022",
+      "metric_id": "ai_asic_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "ai-asic",
+        "label": "AI ASIC 市场"
+      },
+      "value": 1.6,
+      "unit": "十亿美元",
+      "caliber": {
+        "scope": "AI ASIC",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f9cccfd95405b5b3cbafa91c0b55c63debe68d34018d4720a49c8e6606642ce6",
+        "local_file": "yintr25487-generative_ai_2025_computing_and_ai_for_data_center.pdf",
+        "locator": "第 10 页「GPU & AI ASIC revenue forecast 2024 vs 2025 ($B)」表「AI ASIC - new 2025 forecast」2022 列 = $1.6",
+        "grade": "S3",
+        "originator": "Yole Group《Generative AI 2025 – Computing and AI for Data Center》（YINTR25487，2025-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2025 版按新 ASP 方法重算的数据中心 AI ASIC 营收（2024 年 90 亿美元已入库 ai-asic-market-size-2024）。**同图 2024 版旧预测按旧方法口径高得多（2023 年 118 亿 vs 新版 35 亿）**，Yole 称差异来自访谈新信息与 ASP 新算法，旧版未入库。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2504-ai-asic-revenue-2023",
+      "metric_id": "ai_asic_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "ai-asic",
+        "label": "AI ASIC 市场"
+      },
+      "value": 3.5,
+      "unit": "十亿美元",
+      "caliber": {
+        "scope": "AI ASIC",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f9cccfd95405b5b3cbafa91c0b55c63debe68d34018d4720a49c8e6606642ce6",
+        "local_file": "yintr25487-generative_ai_2025_computing_and_ai_for_data_center.pdf",
+        "locator": "第 10 页「GPU & AI ASIC revenue forecast 2024 vs 2025 ($B)」表「AI ASIC - new 2025 forecast」2023 列 = $3.5",
+        "grade": "S3",
+        "originator": "Yole Group《Generative AI 2025 – Computing and AI for Data Center》（YINTR25487，2025-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2025 版按新 ASP 方法重算的数据中心 AI ASIC 营收（2024 年 90 亿美元已入库 ai-asic-market-size-2024）。**同图 2024 版旧预测按旧方法口径高得多（2023 年 118 亿 vs 新版 35 亿）**，Yole 称差异来自访谈新信息与 ASP 新算法，旧版未入库。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2504-ai-asic-revenue-2025e",
+      "metric_id": "ai_asic_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "ai-asic",
+        "label": "AI ASIC 市场"
+      },
+      "value": 14.2,
+      "unit": "十亿美元",
+      "caliber": {
+        "scope": "AI ASIC",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f9cccfd95405b5b3cbafa91c0b55c63debe68d34018d4720a49c8e6606642ce6",
+        "local_file": "yintr25487-generative_ai_2025_computing_and_ai_for_data_center.pdf",
+        "locator": "第 10 页「GPU & AI ASIC revenue forecast 2024 vs 2025 ($B)」表「AI ASIC - new 2025 forecast」2025 列 = $14.2",
+        "grade": "S3",
+        "originator": "Yole Group《Generative AI 2025 – Computing and AI for Data Center》（YINTR25487，2025-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2025 版按新 ASP 方法重算的数据中心 AI ASIC 营收（2024 年 90 亿美元已入库 ai-asic-market-size-2024）。**同图 2024 版旧预测按旧方法口径高得多（2023 年 118 亿 vs 新版 35 亿）**，Yole 称差异来自访谈新信息与 ASP 新算法，旧版未入库。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2504-ai-asic-revenue-2026e",
+      "metric_id": "ai_asic_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "ai-asic",
+        "label": "AI ASIC 市场"
+      },
+      "value": 23.0,
+      "unit": "十亿美元",
+      "caliber": {
+        "scope": "AI ASIC",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2026E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f9cccfd95405b5b3cbafa91c0b55c63debe68d34018d4720a49c8e6606642ce6",
+        "local_file": "yintr25487-generative_ai_2025_computing_and_ai_for_data_center.pdf",
+        "locator": "第 10 页「GPU & AI ASIC revenue forecast 2024 vs 2025 ($B)」表「AI ASIC - new 2025 forecast」2026 列 = $23.0",
+        "grade": "S3",
+        "originator": "Yole Group《Generative AI 2025 – Computing and AI for Data Center》（YINTR25487，2025-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2025 版按新 ASP 方法重算的数据中心 AI ASIC 营收（2024 年 90 亿美元已入库 ai-asic-market-size-2024）。**同图 2024 版旧预测按旧方法口径高得多（2023 年 118 亿 vs 新版 35 亿）**，Yole 称差异来自访谈新信息与 ASP 新算法，旧版未入库。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2504-ai-asic-revenue-2027e",
+      "metric_id": "ai_asic_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "ai-asic",
+        "label": "AI ASIC 市场"
+      },
+      "value": 33.4,
+      "unit": "十亿美元",
+      "caliber": {
+        "scope": "AI ASIC",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2027E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f9cccfd95405b5b3cbafa91c0b55c63debe68d34018d4720a49c8e6606642ce6",
+        "local_file": "yintr25487-generative_ai_2025_computing_and_ai_for_data_center.pdf",
+        "locator": "第 10 页「GPU & AI ASIC revenue forecast 2024 vs 2025 ($B)」表「AI ASIC - new 2025 forecast」2027 列 = $33.4",
+        "grade": "S3",
+        "originator": "Yole Group《Generative AI 2025 – Computing and AI for Data Center》（YINTR25487，2025-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2025 版按新 ASP 方法重算的数据中心 AI ASIC 营收（2024 年 90 亿美元已入库 ai-asic-market-size-2024）。**同图 2024 版旧预测按旧方法口径高得多（2023 年 118 亿 vs 新版 35 亿）**，Yole 称差异来自访谈新信息与 ASP 新算法，旧版未入库。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2504-ai-asic-revenue-2028e",
+      "metric_id": "ai_asic_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "ai-asic",
+        "label": "AI ASIC 市场"
+      },
+      "value": 58.0,
+      "unit": "十亿美元",
+      "caliber": {
+        "scope": "AI ASIC",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2028E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f9cccfd95405b5b3cbafa91c0b55c63debe68d34018d4720a49c8e6606642ce6",
+        "local_file": "yintr25487-generative_ai_2025_computing_and_ai_for_data_center.pdf",
+        "locator": "第 10 页「GPU & AI ASIC revenue forecast 2024 vs 2025 ($B)」表「AI ASIC - new 2025 forecast」2028 列 = $58.0",
+        "grade": "S3",
+        "originator": "Yole Group《Generative AI 2025 – Computing and AI for Data Center》（YINTR25487，2025-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2025 版按新 ASP 方法重算的数据中心 AI ASIC 营收（2024 年 90 亿美元已入库 ai-asic-market-size-2024）。**同图 2024 版旧预测按旧方法口径高得多（2023 年 118 亿 vs 新版 35 亿）**，Yole 称差异来自访谈新信息与 ASP 新算法，旧版未入库。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2504-ai-asic-revenue-2029e",
+      "metric_id": "ai_asic_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "ai-asic",
+        "label": "AI ASIC 市场"
+      },
+      "value": 74.5,
+      "unit": "十亿美元",
+      "caliber": {
+        "scope": "AI ASIC",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2029E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f9cccfd95405b5b3cbafa91c0b55c63debe68d34018d4720a49c8e6606642ce6",
+        "local_file": "yintr25487-generative_ai_2025_computing_and_ai_for_data_center.pdf",
+        "locator": "第 10 页「GPU & AI ASIC revenue forecast 2024 vs 2025 ($B)」表「AI ASIC - new 2025 forecast」2029 列 = $74.5",
+        "grade": "S3",
+        "originator": "Yole Group《Generative AI 2025 – Computing and AI for Data Center》（YINTR25487，2025-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2025 版按新 ASP 方法重算的数据中心 AI ASIC 营收（2024 年 90 亿美元已入库 ai-asic-market-size-2024）。**同图 2024 版旧预测按旧方法口径高得多（2023 年 118 亿 vs 新版 35 亿）**，Yole 称差异来自访谈新信息与 ASP 新算法，旧版未入库。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2504-ai-asic-revenue-2030e",
+      "metric_id": "ai_asic_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "ai-asic",
+        "label": "AI ASIC 市场"
+      },
+      "value": 84.6,
+      "unit": "十亿美元",
+      "caliber": {
+        "scope": "AI ASIC",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2030E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f9cccfd95405b5b3cbafa91c0b55c63debe68d34018d4720a49c8e6606642ce6",
+        "local_file": "yintr25487-generative_ai_2025_computing_and_ai_for_data_center.pdf",
+        "locator": "第 10 页「GPU & AI ASIC revenue forecast 2024 vs 2025 ($B)」表「AI ASIC - new 2025 forecast」2030 列 = $84.6",
+        "grade": "S3",
+        "originator": "Yole Group《Generative AI 2025 – Computing and AI for Data Center》（YINTR25487，2025-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2025 版按新 ASP 方法重算的数据中心 AI ASIC 营收（2024 年 90 亿美元已入库 ai-asic-market-size-2024）。**同图 2024 版旧预测按旧方法口径高得多（2023 年 118 亿 vs 新版 35 亿）**，Yole 称差异来自访谈新信息与 ASP 新算法，旧版未入库。第 12 页正文写 2030 年 845 亿美元，图表为 846 亿，取图表值。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2504-dc-gpu-revenue-2020",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "dc-gpu",
+        "label": "数据中心 GPU 市场"
+      },
+      "value": 54.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 计算芯片市场规模",
+        "chip_type": "GPU",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f9cccfd95405b5b3cbafa91c0b55c63debe68d34018d4720a49c8e6606642ce6",
+        "local_file": "yintr25487-generative_ai_2025_computing_and_ai_for_data_center.pdf",
+        "locator": "第 10 页「GPU & AI ASIC revenue forecast 2024 vs 2025 ($B)」表「GPU - new 2025 forecast」2020 列 = $5.4",
+        "grade": "S3",
+        "originator": "Yole Group《Generative AI 2025 – Computing and AI for Data Center》（YINTR25487，2025-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "5.4 十亿美元 = 54.0 亿美元。Yole 口径为数据中心 GPU 营收（旗舰 AI GPU 占 2024 年数据中心 GPU 出货 69%），不含 AI ASIC。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2504-dc-gpu-revenue-2021",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "dc-gpu",
+        "label": "数据中心 GPU 市场"
+      },
+      "value": 84.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 计算芯片市场规模",
+        "chip_type": "GPU",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f9cccfd95405b5b3cbafa91c0b55c63debe68d34018d4720a49c8e6606642ce6",
+        "local_file": "yintr25487-generative_ai_2025_computing_and_ai_for_data_center.pdf",
+        "locator": "第 10 页「GPU & AI ASIC revenue forecast 2024 vs 2025 ($B)」表「GPU - new 2025 forecast」2021 列 = $8.4",
+        "grade": "S3",
+        "originator": "Yole Group《Generative AI 2025 – Computing and AI for Data Center》（YINTR25487，2025-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "8.4 十亿美元 = 84.0 亿美元。Yole 口径为数据中心 GPU 营收（旗舰 AI GPU 占 2024 年数据中心 GPU 出货 69%），不含 AI ASIC。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2504-dc-gpu-revenue-2022",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "dc-gpu",
+        "label": "数据中心 GPU 市场"
+      },
+      "value": 125.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 计算芯片市场规模",
+        "chip_type": "GPU",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f9cccfd95405b5b3cbafa91c0b55c63debe68d34018d4720a49c8e6606642ce6",
+        "local_file": "yintr25487-generative_ai_2025_computing_and_ai_for_data_center.pdf",
+        "locator": "第 10 页「GPU & AI ASIC revenue forecast 2024 vs 2025 ($B)」表「GPU - new 2025 forecast」2022 列 = $12.5",
+        "grade": "S3",
+        "originator": "Yole Group《Generative AI 2025 – Computing and AI for Data Center》（YINTR25487，2025-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "12.5 十亿美元 = 125.0 亿美元。Yole 口径为数据中心 GPU 营收（旗舰 AI GPU 占 2024 年数据中心 GPU 出货 69%），不含 AI ASIC。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2504-dc-gpu-revenue-2023",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "dc-gpu",
+        "label": "数据中心 GPU 市场"
+      },
+      "value": 380.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 计算芯片市场规模",
+        "chip_type": "GPU",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f9cccfd95405b5b3cbafa91c0b55c63debe68d34018d4720a49c8e6606642ce6",
+        "local_file": "yintr25487-generative_ai_2025_computing_and_ai_for_data_center.pdf",
+        "locator": "第 10 页「GPU & AI ASIC revenue forecast 2024 vs 2025 ($B)」表「GPU - new 2025 forecast」2023 列 = $38.0",
+        "grade": "S3",
+        "originator": "Yole Group《Generative AI 2025 – Computing and AI for Data Center》（YINTR25487，2025-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "38.0 十亿美元 = 380.0 亿美元。Yole 口径为数据中心 GPU 营收（旗舰 AI GPU 占 2024 年数据中心 GPU 出货 69%），不含 AI ASIC。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2504-dc-gpu-revenue-2024",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "dc-gpu",
+        "label": "数据中心 GPU 市场"
+      },
+      "value": 1012.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 计算芯片市场规模",
+        "chip_type": "GPU",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f9cccfd95405b5b3cbafa91c0b55c63debe68d34018d4720a49c8e6606642ce6",
+        "local_file": "yintr25487-generative_ai_2025_computing_and_ai_for_data_center.pdf",
+        "locator": "第 10 页「GPU & AI ASIC revenue forecast 2024 vs 2025 ($B)」表「GPU - new 2025 forecast」2024 列 = $101.2",
+        "grade": "S3",
+        "originator": "Yole Group《Generative AI 2025 – Computing and AI for Data Center》（YINTR25487，2025-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "101.2 十亿美元 = 1012.0 亿美元。Yole 口径为数据中心 GPU 营收（旗舰 AI GPU 占 2024 年数据中心 GPU 出货 69%），不含 AI ASIC。2024 年同比 +166%。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2504-dc-gpu-revenue-2025e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "dc-gpu",
+        "label": "数据中心 GPU 市场"
+      },
+      "value": 1918.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 计算芯片市场规模",
+        "chip_type": "GPU",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f9cccfd95405b5b3cbafa91c0b55c63debe68d34018d4720a49c8e6606642ce6",
+        "local_file": "yintr25487-generative_ai_2025_computing_and_ai_for_data_center.pdf",
+        "locator": "第 10 页「GPU & AI ASIC revenue forecast 2024 vs 2025 ($B)」表「GPU - new 2025 forecast」2025 列 = $191.8",
+        "grade": "S3",
+        "originator": "Yole Group《Generative AI 2025 – Computing and AI for Data Center》（YINTR25487，2025-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "191.8 十亿美元 = 1918.0 亿美元。Yole 口径为数据中心 GPU 营收（旗舰 AI GPU 占 2024 年数据中心 GPU 出货 69%），不含 AI ASIC。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2504-dc-gpu-revenue-2026e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "dc-gpu",
+        "label": "数据中心 GPU 市场"
+      },
+      "value": 2210.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 计算芯片市场规模",
+        "chip_type": "GPU",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f9cccfd95405b5b3cbafa91c0b55c63debe68d34018d4720a49c8e6606642ce6",
+        "local_file": "yintr25487-generative_ai_2025_computing_and_ai_for_data_center.pdf",
+        "locator": "第 10 页「GPU & AI ASIC revenue forecast 2024 vs 2025 ($B)」表「GPU - new 2025 forecast」2026 列 = $221.0",
+        "grade": "S3",
+        "originator": "Yole Group《Generative AI 2025 – Computing and AI for Data Center》（YINTR25487，2025-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "221.0 十亿美元 = 2210.0 亿美元。Yole 口径为数据中心 GPU 营收（旗舰 AI GPU 占 2024 年数据中心 GPU 出货 69%），不含 AI ASIC。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2504-dc-gpu-revenue-2027e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "dc-gpu",
+        "label": "数据中心 GPU 市场"
+      },
+      "value": 2365.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 计算芯片市场规模",
+        "chip_type": "GPU",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2027E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f9cccfd95405b5b3cbafa91c0b55c63debe68d34018d4720a49c8e6606642ce6",
+        "local_file": "yintr25487-generative_ai_2025_computing_and_ai_for_data_center.pdf",
+        "locator": "第 10 页「GPU & AI ASIC revenue forecast 2024 vs 2025 ($B)」表「GPU - new 2025 forecast」2027 列 = $236.5",
+        "grade": "S3",
+        "originator": "Yole Group《Generative AI 2025 – Computing and AI for Data Center》（YINTR25487，2025-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "236.5 十亿美元 = 2365.0 亿美元。Yole 口径为数据中心 GPU 营收（旗舰 AI GPU 占 2024 年数据中心 GPU 出货 69%），不含 AI ASIC。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2504-dc-gpu-revenue-2028e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "dc-gpu",
+        "label": "数据中心 GPU 市场"
+      },
+      "value": 2476.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 计算芯片市场规模",
+        "chip_type": "GPU",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2028E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f9cccfd95405b5b3cbafa91c0b55c63debe68d34018d4720a49c8e6606642ce6",
+        "local_file": "yintr25487-generative_ai_2025_computing_and_ai_for_data_center.pdf",
+        "locator": "第 10 页「GPU & AI ASIC revenue forecast 2024 vs 2025 ($B)」表「GPU - new 2025 forecast」2028 列 = $247.6",
+        "grade": "S3",
+        "originator": "Yole Group《Generative AI 2025 – Computing and AI for Data Center》（YINTR25487，2025-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "247.6 十亿美元 = 2476.0 亿美元。Yole 口径为数据中心 GPU 营收（旗舰 AI GPU 占 2024 年数据中心 GPU 出货 69%），不含 AI ASIC。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2504-dc-gpu-revenue-2029e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "dc-gpu",
+        "label": "数据中心 GPU 市场"
+      },
+      "value": 2360.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 计算芯片市场规模",
+        "chip_type": "GPU",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2029E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f9cccfd95405b5b3cbafa91c0b55c63debe68d34018d4720a49c8e6606642ce6",
+        "local_file": "yintr25487-generative_ai_2025_computing_and_ai_for_data_center.pdf",
+        "locator": "第 10 页「GPU & AI ASIC revenue forecast 2024 vs 2025 ($B)」表「GPU - new 2025 forecast」2029 列 = $236.0",
+        "grade": "S3",
+        "originator": "Yole Group《Generative AI 2025 – Computing and AI for Data Center》（YINTR25487，2025-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "236.0 十亿美元 = 2360.0 亿美元。Yole 口径为数据中心 GPU 营收（旗舰 AI GPU 占 2024 年数据中心 GPU 出货 69%），不含 AI ASIC。Yole 预测 2029–2030 年回落，认为高增长不可持续。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2504-dc-gpu-revenue-2030e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "dc-gpu",
+        "label": "数据中心 GPU 市场"
+      },
+      "value": 2287.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 计算芯片市场规模",
+        "chip_type": "GPU",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f9cccfd95405b5b3cbafa91c0b55c63debe68d34018d4720a49c8e6606642ce6",
+        "local_file": "yintr25487-generative_ai_2025_computing_and_ai_for_data_center.pdf",
+        "locator": "第 10 页「GPU & AI ASIC revenue forecast 2024 vs 2025 ($B)」表「GPU - new 2025 forecast」2030 列 = $228.7",
+        "grade": "S3",
+        "originator": "Yole Group《Generative AI 2025 – Computing and AI for Data Center》（YINTR25487，2025-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "228.7 十亿美元 = 2287.0 亿美元。Yole 口径为数据中心 GPU 营收（旗舰 AI GPU 占 2024 年数据中心 GPU 出货 69%），不含 AI ASIC。Yole 预测 2029–2030 年回落，认为高增长不可持续。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2504-ai-asic-units-2030e",
+      "metric_id": "ai_asic_shipment_units",
+      "entity": {
+        "type": "industry",
+        "id": "ai-asic",
+        "label": "AI ASIC 市场"
+      },
+      "value": 11.0,
+      "unit": "百万颗",
+      "caliber": {
+        "counting": "未披露",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2030E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f9cccfd95405b5b3cbafa91c0b55c63debe68d34018d4720a49c8e6606642ce6",
+        "local_file": "yintr25487-generative_ai_2025_computing_and_ai_for_data_center.pdf",
+        "locator": "第 12 页「PROCESSORS FOR DATA CENTERS - MARKET SUMMARY」：「AI ASICs are also growing strongly, from 3.6 Munits in 2024 up to 11 Munits by 2030, which represents a CAGR23-29 of 20.5%」",
+        "grade": "S3",
+        "originator": "Yole Group《Generative AI 2025 – Computing and AI for Data Center》（YINTR25487，2025-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2024 年 360 万颗已入库（ai-asic-units-2024）。原文 CAGR 区间写作 23-29，与 2024→2030 起止不一致，照录。",
+      "asserter": "Yole"
     }
   ]
 }
