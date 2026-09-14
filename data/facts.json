@@ -135095,6 +135095,1090 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "「典型功耗<9W」按上界记。硅光发射机芯片方案（规范第二章为硅光芯片设计规范）。是行业规范要求，basis 枚举无「规范要求」，按厂商指引记；腾讯参与编写。"
+    },
+    {
+      "fact_id": "eridu-high-radix-switch-cost-saving",
+      "metric_id": "network_design_saving",
+      "entity": {
+        "type": "market",
+        "id": "ai-cluster-networking",
+        "label": "AI 集群组网"
+      },
+      "value": 40.0,
+      "unit": "%",
+      "caliber": {
+        "design_change": "其他",
+        "cost_base": "未注明",
+        "cluster_scale": "其他",
+        "region": "未披露",
+        "basis": "厂商指引"
+      },
+      "as_of": "2026-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "993efcb0003f4912b297a06fcd015db10e3eeca06bae955c97e6001889103c13",
+        "local_file": "5B_2022_Breakingthroug_未署名.pdf",
+        "locator": "第 5 页「Order of Magnitude in Radix = Massive Improvements in Performance, Cost & Power」：「40% reduction in cost」",
+        "grade": "S2",
+        "originator": "Eridu"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Eridu（Mike Capuano，OCP 2026-04-29 演讲）为自家高 radix 交换机做的宣传：十倍 radix 以一台替代 30 台交换机，称省 40% 成本、70% 功耗。**是厂商宣传且对象为假想的 1P 交换机**，未说明节省基数（网络成本还是集群成本）和集群规模，故 cost_base 记未注明；第 6 页示例（Vera Rubin NVL72、约 13–14 万 GPU）交换机数从 6,112 台降到 352 台。 region 记未披露：宣传页没有说明节省率针对哪个地域的部署或价格，不猜 Global。",
+      "asserter": "Eridu"
+    },
+    {
+      "fact_id": "kysec2412-lc-cpo-ports-2023",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "industry",
+        "id": "global-cpo-ports",
+        "label": "全球 CPO 端口"
+      },
+      "value": 5.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "交换机端口",
+        "product_form": "光引擎",
+        "speed": "合计",
+        "shipment_basis": "厂商出货",
+        "basis": "实测",
+        "region": "Global",
+        "customer": "未拆分"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fb4eaa5bcff6f3ce5e46fe6639796bbdf3e72156abadd0c06ce32f17e954c774",
+        "local_file": "深度报告-20241231-深度拆解CPO_AI智算中心光互联演进方向之一_56页_8mb.pdf",
+        "locator": "第 50 页（页脚 50/56）：「根据 Lightcounting 预计……全球 CPO 端口的销售量将从 2023 年的 5 万增长到 2027 年的 450 万」",
+        "grade": "S3",
+        "originator": "开源证券（蒋颖，2024-12-31《深度拆解 CPO》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "按端口计的 CPO 销售量，不是模块只数；LightCounting 称出货从 800G/1.6T 端口开始，故 speed 记合计（全部 CPO 端口）。2023 年值为预测起点，券商未注明 LightCounting 报告版本日期。 product_form 记光引擎：CPO 是与交换芯片共封装的光引擎，不是可插拔光模块。",
+      "asserter": "LightCounting"
+    },
+    {
+      "fact_id": "kysec2412-lc-cpo-ports-2027e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "industry",
+        "id": "global-cpo-ports",
+        "label": "全球 CPO 端口"
+      },
+      "value": 450.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "交换机端口",
+        "product_form": "光引擎",
+        "speed": "合计",
+        "shipment_basis": "厂商出货",
+        "basis": "预测",
+        "region": "Global",
+        "customer": "未拆分"
+      },
+      "as_of": "2027E",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fb4eaa5bcff6f3ce5e46fe6639796bbdf3e72156abadd0c06ce32f17e954c774",
+        "local_file": "深度报告-20241231-深度拆解CPO_AI智算中心光互联演进方向之一_56页_8mb.pdf",
+        "locator": "第 50 页（页脚 50/56）：「全球 CPO 端口的销售量将从 2023 年的 5 万增长到 2027 年的 450 万。2027 年，CPO 端口在 800G 和 1.6T 出货总数中占比接近 30%」",
+        "grade": "S3",
+        "originator": "开源证券（蒋颖，2024-12-31《深度拆解 CPO》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "LightCounting 预测，券商转引未注明预测发布时间，故不带 @。同句称 2027 年 CPO 端口占 800G+1.6T 出货总数近 30%（份额无对应指标，未录）；2026–2027 年开始规模上量，主要用于超大型云厂商数通短距。 product_form 记光引擎：CPO 是与交换芯片共封装的光引擎，不是可插拔光模块。",
+      "asserter": "LightCounting"
+    },
+    {
+      "fact_id": "sa2303-google-apollo-ocs-capex-saving",
+      "metric_id": "network_design_saving",
+      "entity": {
+        "type": "company",
+        "id": "google",
+        "label": "Google"
+      },
+      "value": 30.0,
+      "unit": "%",
+      "caliber": {
+        "design_change": "其他",
+        "cost_base": "网络设备成本",
+        "cluster_scale": "其他",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2023-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a07cbb68fa545d82f1f1d7c0939e20081515ad0a4ed05c9870f900373c035dc",
+        "local_file": "Google Apollo_ The _$3 Billion Game-Changer in Datacenter Networking.pdf",
+        "locator": "第 1 页：「Google claims their custom network improves throughput by 30%, use 40% less power, incurs 30% less Capex, reduces flow completion by 10%, and delivers 50x less downtime across their network」；第 9–10 页「Google estimates that the overall Capex of the OCS is about 70% that of standard EPS」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（Dylan Patel，2023-03-18）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文只说 Google 在过去一年的 OFC 与 SIGCOMM 上披露，未给披露日期；as_of 取 SemiAnalysis 文章日 2023-03 作最迟时点。",
+      "corroboration": "待交叉验证",
+      "notes": "方案改动为 Jupiter 网络以 Apollo 光路交换机（OCS）替代 spine 层电交换机（EPS），菜单无此档故记「其他」。Google 自称已在多数数据中心部署 5 年以上，按实测记。节省基数是网络 Capex；同时称功耗低 40%、吞吐高 30%。第 10 页 SemiAnalysis 自己推算：若 OCS 用 3 个升级周期，单台前期成本约为 EPS 的 3.5 倍，4 代则约 6 倍（推算，未录）。标题「省 30 亿美元以上」是 SemiAnalysis 估算，无对应指标。",
+      "asserter": "Google"
+    },
+    {
+      "fact_id": "ligent-ocp25-lc-3p2t-market-2027e",
+      "metric_id": "optics_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-3p2t",
+        "label": "全球 3.2T 光模块市场"
+      },
+      "value": 1200.0,
+      "unit": "百万美元",
+      "caliber": {
+        "speed": "3.2T",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2027E@2024-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "cc9559e864654be1d2168c027cc882b637e0e14b20fe71c40094708176f83f24",
+        "local_file": "5B_2022_7884400GOptics_未署名.pdf",
+        "locator": "第 3 页（页脚 2/12）「Market – Demands for Optical Transceivers」：「3.2T will reach 1.2Billion in 2027 and 2.8Billion in 2029」「Source: LightCounting, CLOUD DATA CENTER OPTICS JULY 2024」",
+        "grade": "S3",
+        "originator": "Ligent（J. Zhou，OCP 2025 演讲）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「1.2Billion」未写货币与计量对象，按同页「Sales of Ethernet transceivers」理解为销售额（美元）；3.2T 模块年出货不可能达十亿只量级。LightCounting《Cloud Data Center Optics》2024-07 版预测，@2024-07 取自该出处标注。页脚「Ligent Confidential」为公开峰会讲稿的通用页脚，不按受限材料处理。",
+      "asserter": "LightCounting"
+    },
+    {
+      "fact_id": "ligent-ocp25-lc-3p2t-market-2029e",
+      "metric_id": "optics_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-3p2t",
+        "label": "全球 3.2T 光模块市场"
+      },
+      "value": 2800.0,
+      "unit": "百万美元",
+      "caliber": {
+        "speed": "3.2T",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2029E@2024-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "cc9559e864654be1d2168c027cc882b637e0e14b20fe71c40094708176f83f24",
+        "local_file": "5B_2022_7884400GOptics_未署名.pdf",
+        "locator": "第 3 页（页脚 2/12）「Market – Demands for Optical Transceivers」：「3.2T will reach 1.2Billion in 2027 and 2.8Billion in 2029」「Source: LightCounting, CLOUD DATA CENTER OPTICS JULY 2024」",
+        "grade": "S3",
+        "originator": "Ligent（J. Zhou，OCP 2025 演讲）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「1.2Billion」未写货币与计量对象，按同页「Sales of Ethernet transceivers」理解为销售额（美元）；3.2T 模块年出货不可能达十亿只量级。LightCounting《Cloud Data Center Optics》2024-07 版预测，@2024-07 取自该出处标注。页脚「Ligent Confidential」为公开峰会讲稿的通用页脚，不按受限材料处理。",
+      "asserter": "LightCounting"
+    },
+    {
+      "fact_id": "accelsius-ocp25-1p-d2c-cooling-capex-per-mw",
+      "metric_id": "cooling_capex_per_mw",
+      "entity": {
+        "type": "design",
+        "id": "jacobs-10mw-1p-d2c-reference",
+        "label": "Jacobs 10MW 单相冷板液冷参考设计（Austin, TX）"
+      },
+      "value": 1.039,
+      "unit": "$M/MW",
+      "caliber": {
+        "scope": "含冷源",
+        "cooling_type": "混合",
+        "region": "US"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "97e9b820dba6cc660d26158153f33c95734a3b540213d117452f32aa3c11e3ec",
+        "local_file": "5B_2022_7639Optimizing_未署名.pdf",
+        "locator": "第 2 页「Scope & Methodology」：「Jacobs Engineering created two, 10MW reference designs of 1P & 2P D2C facilities」「10MW of ITE – 64 x 136 kW racks」「78% liquid cooled, 22% air cooled」；第 5 页表：Single-Phase D2C「CapEx $10,385,576」、Two-Phase D2C「$10,381,534」",
+        "grade": "S2",
+        "originator": "Accelsius（OCP 2025 演讲）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "单相冷板方案 chip-to-chiller CapEx 10,385,576 美元 ÷ 10 MW IT 负载 = 1.039 百万美元/MW；as_of 取 L1 登记的讲稿年份 2025，原文未写日期。",
+      "corroboration": "待交叉验证",
+      "notes": "口径是「chip-to-chiller」冷却基础设施（含高温冷水机组、风机，建筑与电气保持不变），故 scope 记含冷源；设计为 78% 液冷 + 22% 风冷，cooling_type 记混合。每柜 136kW、共 64 柜。两相冷板方案 CapEx 10,381,534 美元（≈同值，0% 差），但年 OpEx 低 35%、5 年 TCO 低 12%（13,774,735 vs 15,604,571 美元）——两相方案 cooling_type 无法与单相区分，未另录。演讲方 Accelsius 为两相冷板厂商，成本含第三方维保与管材来源。",
+      "asserter": "Accelsius"
+    },
+    {
+      "fact_id": "google-ocp26-api-tokens-per-month-lower",
+      "metric_id": "ai_token_volume",
+      "entity": {
+        "type": "company",
+        "id": "google",
+        "label": "Google"
+      },
+      "value": 691.2,
+      "unit": "万亿 token/月",
+      "caliber": {
+        "scope": "单一 API",
+        "token_basis": "未注明",
+        "region": "Global",
+        "basis": "公司披露"
+      },
+      "as_of": "2026-04",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "e158c4a64f2388acf4d9141a95436ab24ae9dd791de4ffd43a6f6d3dc001be71",
+        "local_file": "5B_2022_TheFungibleDat_未署名.pdf",
+        "locator": "第 2 页「AI model compute demand」：「>16 billion tokens/min via direct API use by our customers」",
+        "grade": "S2",
+        "originator": "Google（Amber Huffman，OCP 演讲《The Fungible Data Center》）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文为每分钟 >160 亿 token，按 30 天 43,200 分钟折月：1.6×10^10 × 43,200 = 6.912×10^14 = 691.2 万亿 token/月（下界）；as_of 原文未写日期，按本稿时间线已列「Q2 2026 Google contributes 1.0 specification」及同批 OCP EMEA 讲稿 2026-04-29/30 推定为 2026-04。",
+      "corroboration": "待交叉验证",
+      "notes": "口径是 Google Cloud 客户直接调用 API 的 token，不含 Gemini App、搜索等自有产品（Hot Chips 2025 的 980 万亿/月是公司全部产品口径，二者不可比）。原文为瞬时速率，折月假设全月匀速。同稿第 35 页另称累计采购 8GW 清洁能源、数据中心能耗排放降 12%（无单公司指标，未录）。",
+      "asserter": "Google"
+    },
+    {
+      "fact_id": "lcleak25-idc-cn-lc-server-market-2024h1",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-lc-server-market",
+        "label": "中国液冷服务器市场"
+      },
+      "value": 12.6,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "液冷服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "美元",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2024-H1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "85042f86592663a5dc1bdc622577bae3cb77178027f9595870c6a4d4d573cd11",
+        "local_file": "5C_2025_2025_液冷系统防漏液和漏_未署名.pdf",
+        "locator": "第 3 页 1.1.2「液冷技术发展现状」：「根据 IDC 数据，中国液冷服务器市场在 2024 上半年继续保持快速增长，市场规模达到 12.6 亿美元，与 2023 年同期相比增长 98.3%，其中液冷解决方案仍以冷板式为主，占到 95%以上，预计 2028 年市场规模将达到 102 亿美元」",
+        "grade": "S3",
+        "originator": "IDC（经《液冷系统防漏液和漏液检测设计研究报告》（2025，编写机构未署名）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "半年口径，同比 2023 年上半年 +98.3%；不可与库内 IDC 2024 全年 23.7 亿美元（kysec2605-idc-cn-lc-server-market-2024）直接相减当下半年——两者出自不同转引，IDC 可能已修订。",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "lcleak25-idc-cn-lc-server-market-2028e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-lc-server-market",
+        "label": "中国液冷服务器市场"
+      },
+      "value": 102.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "液冷服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "美元",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2028E@2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "85042f86592663a5dc1bdc622577bae3cb77178027f9595870c6a4d4d573cd11",
+        "local_file": "5C_2025_2025_液冷系统防漏液和漏_未署名.pdf",
+        "locator": "第 3 页 1.1.2「液冷技术发展现状」：「根据 IDC 数据，中国液冷服务器市场在 2024 上半年继续保持快速增长，市场规模达到 12.6 亿美元，与 2023 年同期相比增长 98.3%，其中液冷解决方案仍以冷板式为主，占到 95%以上，预计 2028 年市场规模将达到 102 亿美元」",
+        "grade": "S3",
+        "originator": "IDC（经《液冷系统防漏液和漏液检测设计研究报告》（2025，编写机构未署名）转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文未写 IDC 预测发布时间；与 2024 上半年数据同句给出，推定出自 2024 年下半年发布的半年度报告，记 @2024。",
+      "corroboration": "待交叉验证",
+      "notes": "库内另有 IDC 2029E 162 亿美元（经开源证券 2026-05 转引，2024–2029 CAGR 46.8%），是较晚一版的并列预测，不是本条的替代。",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "lcleak25-idc-cn-lc-server-coldplate-share-2024h1",
+      "metric_id": "cooling_route_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-lc-server-market",
+        "label": "中国液冷服务器市场"
+      },
+      "value": 95.0,
+      "unit": "%",
+      "caliber": {
+        "cooling_route": "冷板式",
+        "denominator": "液冷市场内部",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024-H1",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "85042f86592663a5dc1bdc622577bae3cb77178027f9595870c6a4d4d573cd11",
+        "local_file": "5C_2025_2025_液冷系统防漏液和漏_未署名.pdf",
+        "locator": "第 3 页 1.1.2「液冷技术发展现状」：「根据 IDC 数据，中国液冷服务器市场在 2024 上半年继续保持快速增长，市场规模达到 12.6 亿美元，与 2023 年同期相比增长 98.3%，其中液冷解决方案仍以冷板式为主，占到 95%以上，预计 2028 年市场规模将达到 102 亿美元」",
+        "grade": "S3",
+        "originator": "IDC（经《液冷系统防漏液和漏液检测设计研究报告》（2025，编写机构未署名）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「占到 95%以上」按下界记；分母是中国液冷服务器市场（按金额推定，原文未写按金额还是台数）。",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "ctg2412-cw-apac-operational-2024h1",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "apac-dc-market-cw-tracked",
+        "label": "亚太数据中心市场（戴德梁行跟踪的 14 个市场合计）"
+      },
+      "value": 12000.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "APAC"
+      },
+      "as_of": "2024-H1",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "93b24d85782138cf5515fff33966ebd66b6cfc85e854e321e51026334324a195",
+        "local_file": "亚太区智算中心液冷应用现状与技术演进白皮书.pdf",
+        "locator": "第 16 页 2.1：「根据咨询机构 CUSHMAN&WAKEFIELD 的市场调研报告《Asia Pacific Data Centre Update 2024-H1》披露：2024 年上半年，亚太地区数据中心市场的运营容量已接近 12GW，新增供应量约 1.3GW，创下近年来的最大增幅。同时，整个地区在建的开发项目总量为 4.2GW，规划阶段的项目总量为 12.0GW，自 2023 年下半年末以来增加了 2.8GW」",
+        "grade": "S3",
+        "originator": "中国电信国际（CTG）等《亚太区智算中心液冷应用现状与技术演进白皮书》（2024-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「已接近 12GW」按上界记；上半年新增供应约 1.3GW（无对应指标）。戴德梁行《Asia Pacific Data Centre Update 2024-H1》亚太 14 个市场合计。capacity_type 原文未写 IT 还是设施口径，记未披露（库内 cw2024gc-* 同机构 2023-Q4 分市场数为 IT 容量，版本不同未互相替代）。同页另给分市场数（中国大陆 4.2GW、日本 1.4GW、印度 1.4GW、澳大利亚 1.2GW、新加坡 0.98GW、马来西亚 2.1GW、香港 0.58GW），未说明是运营还是含在建/规划（马来西亚 2.1GW 远超其 2023-Q4 运营 189MW），状态不明未录。",
+      "asserter": "戴德梁行"
+    },
+    {
+      "fact_id": "ctg2412-cw-apac-under-construction-2024h1",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "apac-dc-market-cw-tracked",
+        "label": "亚太数据中心市场（戴德梁行跟踪的 14 个市场合计）"
+      },
+      "value": 4200.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L6",
+        "region": "APAC"
+      },
+      "as_of": "2024-H1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "93b24d85782138cf5515fff33966ebd66b6cfc85e854e321e51026334324a195",
+        "local_file": "亚太区智算中心液冷应用现状与技术演进白皮书.pdf",
+        "locator": "第 16 页 2.1：「根据咨询机构 CUSHMAN&WAKEFIELD 的市场调研报告《Asia Pacific Data Centre Update 2024-H1》披露：2024 年上半年，亚太地区数据中心市场的运营容量已接近 12GW，新增供应量约 1.3GW，创下近年来的最大增幅。同时，整个地区在建的开发项目总量为 4.2GW，规划阶段的项目总量为 12.0GW，自 2023 年下半年末以来增加了 2.8GW」",
+        "grade": "S3",
+        "originator": "中国电信国际（CTG）等《亚太区智算中心液冷应用现状与技术演进白皮书》（2024-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "在建开发项目总量。戴德梁行《Asia Pacific Data Centre Update 2024-H1》亚太 14 个市场合计。capacity_type 原文未写 IT 还是设施口径，记未披露（库内 cw2024gc-* 同机构 2023-Q4 分市场数为 IT 容量，版本不同未互相替代）。同页另给分市场数（中国大陆 4.2GW、日本 1.4GW、印度 1.4GW、澳大利亚 1.2GW、新加坡 0.98GW、马来西亚 2.1GW、香港 0.58GW），未说明是运营还是含在建/规划（马来西亚 2.1GW 远超其 2023-Q4 运营 189MW），状态不明未录。",
+      "asserter": "戴德梁行"
+    },
+    {
+      "fact_id": "ctg2412-cw-apac-planned-2024h1",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "apac-dc-market-cw-tracked",
+        "label": "亚太数据中心市场（戴德梁行跟踪的 14 个市场合计）"
+      },
+      "value": 12000.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L2",
+        "region": "APAC"
+      },
+      "as_of": "2024-H1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "93b24d85782138cf5515fff33966ebd66b6cfc85e854e321e51026334324a195",
+        "local_file": "亚太区智算中心液冷应用现状与技术演进白皮书.pdf",
+        "locator": "第 16 页 2.1：「根据咨询机构 CUSHMAN&WAKEFIELD 的市场调研报告《Asia Pacific Data Centre Update 2024-H1》披露：2024 年上半年，亚太地区数据中心市场的运营容量已接近 12GW，新增供应量约 1.3GW，创下近年来的最大增幅。同时，整个地区在建的开发项目总量为 4.2GW，规划阶段的项目总量为 12.0GW，自 2023 年下半年末以来增加了 2.8GW」",
+        "grade": "S3",
+        "originator": "中国电信国际（CTG）等《亚太区智算中心液冷应用现状与技术演进白皮书》（2024-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "规划阶段项目总量，较 2023 年下半年末增加 2.8GW；规划阶段按 L2 官方规划记，原文未区分意向与规划。戴德梁行《Asia Pacific Data Centre Update 2024-H1》亚太 14 个市场合计。capacity_type 原文未写 IT 还是设施口径，记未披露（库内 cw2024gc-* 同机构 2023-Q4 分市场数为 IT 容量，版本不同未互相替代）。同页另给分市场数（中国大陆 4.2GW、日本 1.4GW、印度 1.4GW、澳大利亚 1.2GW、新加坡 0.98GW、马来西亚 2.1GW、香港 0.58GW），未说明是运营还是含在建/规划（马来西亚 2.1GW 远超其 2023-Q4 运营 189MW），状态不明未录。",
+      "asserter": "戴德梁行"
+    },
+    {
+      "fact_id": "ctg2412-sr-johor-batam-planned-2024",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "johor-batam-dc-cluster",
+        "label": "柔佛–巴淡岛数据中心集群"
+      },
+      "value": 2153.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L2",
+        "region": "APAC"
+      },
+      "as_of": "2024-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "93b24d85782138cf5515fff33966ebd66b6cfc85e854e321e51026334324a195",
+        "local_file": "亚太区智算中心液冷应用现状与技术演进白皮书.pdf",
+        "locator": "第 18 页：「根据 STRCTURE RESEARCH 在 2024 年 4 月的报告《DCI REPORT SERIES MARTET:JOHOR & BATAM》披露的数据（见图 2-3）：柔佛和巴淡岛地区 2024 年计划建设的数据中心数量达到 82 个，总容量达到 2,153MW」",
+        "grade": "S3",
+        "originator": "中国电信国际（CTG）等《亚太区智算中心液冷应用现状与技术演进白皮书》（2024-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "82 个计划建设的数据中心合计，跨马来西亚柔佛与印尼巴淡岛两国；白皮书原文把机构名与报告名拼错（STRCTURE / MARTET），按 Structure Research 记。",
+      "asserter": "Structure Research"
+    },
+    {
+      "fact_id": "ctg2412-pub-sg-wue-median-2021",
+      "metric_id": "dc_wue_limit",
+      "entity": {
+        "type": "market",
+        "id": "sg-water-intensive-dc",
+        "label": "新加坡大用水量数据中心（年净用水 ≥60,000 m³）"
+      },
+      "value": 2.2,
+      "unit": "L/kWh",
+      "caliber": {
+        "water_zone": "未划分",
+        "limit_type": "实测中位",
+        "region": "SG",
+        "cooling_tech": "未注明",
+        "water_basis": "未注明",
+        "duty_window": "年均"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "93b24d85782138cf5515fff33966ebd66b6cfc85e854e321e51026334324a195",
+        "local_file": "亚太区智算中心液冷应用现状与技术演进白皮书.pdf",
+        "locator": "第 13 页 1.4：「以亚太地区典型市场新加坡为例，2021 年，新加坡用水量较大的数据中心（即上一年净用水量至少为 60,000 m³）的 WUE 中位值为 2.2m3/MWh。据此数据，新加坡公共事业局（PUB）提出，帮助新建和现有数据中心降低 WUE 到 2.0m3/MWh」",
+        "grade": "S3",
+        "originator": "中国电信国际（CTG）等《亚太区智算中心液冷应用现状与技术演进白皮书》（2024-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2.2 m³/MWh = 2.2 L/kWh，单位等价无需换算。样本限于上一年净用水 ≥60,000 m³ 的数据中心；「净用水」未定义为取水或消耗，water_basis 记未注明。PUB 目标降至 2.0 m³/MWh，原文未写目标年份，未另录。",
+      "asserter": "新加坡公共事业局"
+    },
+    {
+      "fact_id": "ctg2412-ccid-cn-lc-dc-market-2023",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-liquid-cooling-dc",
+        "label": "中国液冷数据中心市场"
+      },
+      "value": 86.3,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "全国液冷",
+        "currency": "人民币",
+        "cooling_route": "未注明",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "93b24d85782138cf5515fff33966ebd66b6cfc85e854e321e51026334324a195",
+        "local_file": "亚太区智算中心液冷应用现状与技术演进白皮书.pdf",
+        "locator": "第 63 页：「根据赛迪顾问发布的《2023-2024 年中国液冷数据中心市场研究年度报告》显示 2023 年液冷市场规模为 86.3 亿元，相比上一年同比增长达 26.2%，高于全球 2 个百分点，连续三年保持 20%以上的高速增长。预计到 2026 年，中国液冷数据中心市场规模将达到 180.1 亿元，同比增长将达 29.1%」",
+        "grade": "S3",
+        "originator": "中国电信国际（CTG）等《亚太区智算中心液冷应用现状与技术演进白皮书》（2024-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "同比 +26.2%。与库内科智咨询 2022 年 100.5 亿元口径不同（赛迪 2023 年反而更小），不可拼成序列。",
+      "asserter": "赛迪顾问"
+    },
+    {
+      "fact_id": "ctg2412-ccid-cn-lc-dc-market-2026e",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-liquid-cooling-dc",
+        "label": "中国液冷数据中心市场"
+      },
+      "value": 180.1,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "全国液冷",
+        "currency": "人民币",
+        "cooling_route": "未注明",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "93b24d85782138cf5515fff33966ebd66b6cfc85e854e321e51026334324a195",
+        "local_file": "亚太区智算中心液冷应用现状与技术演进白皮书.pdf",
+        "locator": "第 63 页：「预计到 2026 年，中国液冷数据中心市场规模将达到 180.1 亿元，同比增长将达 29.1%」（出自赛迪顾问《2023-2024 年中国液冷数据中心市场研究年度报告》）",
+        "grade": "S3",
+        "originator": "中国电信国际（CTG）等《亚太区智算中心液冷应用现状与技术演进白皮书》（2024-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2026 年同比 +29.1%。报告名为 2023-2024 年度，只知年份，vintage 记 @2024。",
+      "asserter": "赛迪顾问"
+    },
+    {
+      "fact_id": "ocp24-meta-amd-tcs-coolant-30c",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "standard",
+        "id": "ocp-tcs-coolant-temperature-target",
+        "label": "OCP 芯片冷却液温度目标（TCS 回路）"
+      },
+      "value": 30.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "供水",
+        "loop": "二次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "region": "Global",
+        "basis": "厂商参考设计"
+      },
+      "as_of": "2024-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "64f8bc39457c6a151891aba0a33c894f4d5b25fc3fa0427c0cbee249f623fd49",
+        "local_file": "5228 - Roadmap For A Durable Chip Coolant Temperature.pdf",
+        "locator": "第 7 页「Why 30C?」：「Coolant Temperature at the component (TCS Loop)」「Alignment with ASHRAE recommendations」「30C is an inflection point in DC efficiency」；第 11 页「The 30℃ coolant temperature target is not intended to discourage development of a wide range of future solutions」",
+        "grade": "S2",
+        "originator": "Meta（Chris Malone）与 AMD（Paul Artman），OCP Global Summit 2024 液冷专场"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文未写日期；文件归档于「2024 OCP Global Summit」目录，该峰会为 2024-10 在 San Jose 举行，as_of 取 2024-10。",
+      "corroboration": "待交叉验证",
+      "notes": "是 Meta 与 AMD 在 OCP 推动的「芯片处冷却液温度」长期对齐目标，指 TCS（技术冷却系统，即二次侧）进入部件处的供液温度，不是某台产品的规格上限；原文称部分芯片仍需低于 30℃，但主流芯片按 30℃ 优化，HBM 界面规格也按 30℃ 设。与库内英伟达 VR NVL144 CPX 最高进液 45℃（上限）口径不同：一个是对齐目标，一个是产品容许上限。",
+      "asserter": "Meta"
+    },
+    {
+      "fact_id": "kezhi2312-cn-coldplate-lc-dc-market-2022",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-coldplate-liquid-cooling-dc",
+        "label": "中国冷板式液冷数据中心市场"
+      },
+      "value": 90.5,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "某一路线",
+        "currency": "人民币",
+        "cooling_route": "冷板式",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "60b009a7bfed5c0b6b20341beed2a569527bbd094a08ed28ea946a5caf5d75ec",
+        "local_file": "20240804-智科咨询：中国液冷数据中心市场深度研究报告2023-210003(94页).pdf",
+        "locator": "第 31 页（页脚 25）：「根据科智咨询，2022 年，冷板式数据中心市场规模达到 90.5 亿元，同比增长 45.4%，占整体数据中心市场规模比例达到 90%」",
+        "grade": "S3",
+        "originator": "科智咨询《中国液冷数据中心市场深度研究报告》（2023-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "同比 +45.4%，占液冷数据中心整体 90%（原文「整体数据中心市场」应指液冷数据中心整体 100.5 亿元）。统计维度含冷板式液冷服务器与基础设施。",
+      "asserter": "科智咨询"
+    },
+    {
+      "fact_id": "kezhi2312-cn-lc-dc-infra-market-2022",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-lc-dc-infrastructure",
+        "label": "中国液冷数据中心基础设施市场"
+      },
+      "value": 20.2,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "液冷设备与方案",
+        "currency": "人民币",
+        "cooling_route": "未注明",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "60b009a7bfed5c0b6b20341beed2a569527bbd094a08ed28ea946a5caf5d75ec",
+        "local_file": "20240804-智科咨询：中国液冷数据中心市场深度研究报告2023-210003(94页).pdf",
+        "locator": "第 33 页（页脚 27）：「2022 年，中国液冷数据中心基础设施市场规模为 20.2 亿元，同比增长 54.5%」；图表 18 注：「基础设施市场规模统计维度为当年新增的液冷数据中心基础设施部署规模」",
+        "grade": "S3",
+        "originator": "科智咨询《中国液冷数据中心市场深度研究报告》（2023-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "不含液冷服务器，按当年新增部署计；同比 +54.5%。科智口径：液冷数据中心市场 = 液冷服务器 + 液冷数据中心基础设施；2022 年 80.3+20.2=100.5、2023E 121.8+32.2=154、2027E 832.8+187.2=1020，三处都能对上。2022 年整体 100.5 亿元与液冷服务器 80.3 亿元已由国海证券转引入库（ghzq2506-kezhi-*），本份原报告不重复登记。",
+      "asserter": "科智咨询"
+    },
+    {
+      "fact_id": "kezhi2312-cn-lc-dc-market-2023e",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-liquid-cooling-dc",
+        "label": "中国液冷数据中心市场"
+      },
+      "value": 154.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "全国液冷",
+        "currency": "人民币",
+        "cooling_route": "未注明",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2023E@2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "60b009a7bfed5c0b6b20341beed2a569527bbd094a08ed28ea946a5caf5d75ec",
+        "local_file": "20240804-智科咨询：中国液冷数据中心市场深度研究报告2023-210003(94页).pdf",
+        "locator": "第 78 页（页脚 72）：「根据科智咨询，2023 年中国液冷数据中心市场将实现 53.2%的高速增长，市场规模将达到 154 亿元」",
+        "grade": "S3",
+        "originator": "科智咨询《中国液冷数据中心市场深度研究报告》（2023-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "报告 2023-12 发布，2023 年仍按预测记。科智口径：液冷数据中心市场 = 液冷服务器 + 液冷数据中心基础设施；2022 年 80.3+20.2=100.5、2023E 121.8+32.2=154、2027E 832.8+187.2=1020，三处都能对上。2022 年整体 100.5 亿元与液冷服务器 80.3 亿元已由国海证券转引入库（ghzq2506-kezhi-*），本份原报告不重复登记。",
+      "asserter": "科智咨询"
+    },
+    {
+      "fact_id": "kezhi2312-cn-lc-dc-market-2027e",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-liquid-cooling-dc",
+        "label": "中国液冷数据中心市场"
+      },
+      "value": 1020.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "全国液冷",
+        "currency": "人民币",
+        "cooling_route": "未注明",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2027E@2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "60b009a7bfed5c0b6b20341beed2a569527bbd094a08ed28ea946a5caf5d75ec",
+        "local_file": "20240804-智科咨询：中国液冷数据中心市场深度研究报告2023-210003(94页).pdf",
+        "locator": "第 78 页（页脚 72）：「未来五年中国液冷数据中心市场将以 59%的复合增长率持续发展。预计到 2027 年……市场规模将出现较大幅度增长，有望达到 1020 亿元」",
+        "grade": "S3",
+        "originator": "科智咨询《中国液冷数据中心市场深度研究报告》（2023-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "五年 CAGR 59%。科智口径：液冷数据中心市场 = 液冷服务器 + 液冷数据中心基础设施；2022 年 80.3+20.2=100.5、2023E 121.8+32.2=154、2027E 832.8+187.2=1020，三处都能对上。2022 年整体 100.5 亿元与液冷服务器 80.3 亿元已由国海证券转引入库（ghzq2506-kezhi-*），本份原报告不重复登记。",
+      "asserter": "科智咨询"
+    },
+    {
+      "fact_id": "kezhi2312-cn-coldplate-lc-dc-market-2027e",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-coldplate-liquid-cooling-dc",
+        "label": "中国冷板式液冷数据中心市场"
+      },
+      "value": 903.2,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "某一路线",
+        "currency": "人民币",
+        "cooling_route": "冷板式",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2027E@2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "60b009a7bfed5c0b6b20341beed2a569527bbd094a08ed28ea946a5caf5d75ec",
+        "local_file": "20240804-智科咨询：中国液冷数据中心市场深度研究报告2023-210003(94页).pdf",
+        "locator": "第 79 页（页脚 73）：「预计到 2027 年，中国冷板式液冷数据中心市场规模将达到 903.2 亿元，五年复合增长率达到 58.4%」",
+        "grade": "S3",
+        "originator": "科智咨询《中国液冷数据中心市场深度研究报告》（2023-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "五年 CAGR 58.4%，约占 2027E 液冷数据中心整体 1020 亿元的 89%。",
+      "asserter": "科智咨询"
+    },
+    {
+      "fact_id": "kezhi2312-cn-lc-server-market-2023e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-lc-server-market",
+        "label": "中国液冷服务器市场"
+      },
+      "value": 121.8,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "液冷服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2023E@2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "60b009a7bfed5c0b6b20341beed2a569527bbd094a08ed28ea946a5caf5d75ec",
+        "local_file": "20240804-智科咨询：中国液冷数据中心市场深度研究报告2023-210003(94页).pdf",
+        "locator": "第 80 页（页脚 74）：「科智咨询预计 2023 年中国液冷服务器市场规模将保持 51.7%的快速增长，达到 121.8 亿元。未来五年市场规模将以 59.6%的复合增长率，2027 年市场规模将达 832.8 亿元」",
+        "grade": "S3",
+        "originator": "科智咨询《中国液冷数据中心市场深度研究报告》（2023-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "口径为当年终端用户液冷服务器应用规模（图表 17 注），人民币；与库内 IDC 美元口径（2024H1 12.6 亿美元等）统计方法不同，不可互换。科智口径：液冷数据中心市场 = 液冷服务器 + 液冷数据中心基础设施；2022 年 80.3+20.2=100.5、2023E 121.8+32.2=154、2027E 832.8+187.2=1020，三处都能对上。2022 年整体 100.5 亿元与液冷服务器 80.3 亿元已由国海证券转引入库（ghzq2506-kezhi-*），本份原报告不重复登记。",
+      "asserter": "科智咨询"
+    },
+    {
+      "fact_id": "kezhi2312-cn-lc-server-market-2027e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-lc-server-market",
+        "label": "中国液冷服务器市场"
+      },
+      "value": 832.8,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "液冷服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2027E@2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "60b009a7bfed5c0b6b20341beed2a569527bbd094a08ed28ea946a5caf5d75ec",
+        "local_file": "20240804-智科咨询：中国液冷数据中心市场深度研究报告2023-210003(94页).pdf",
+        "locator": "第 80 页（页脚 74）：「未来五年市场规模将以 59.6%的复合增长率，2027 年市场规模将达 832.8 亿元」",
+        "grade": "S3",
+        "originator": "科智咨询《中国液冷数据中心市场深度研究报告》（2023-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "五年 CAGR 59.6%。科智口径：液冷数据中心市场 = 液冷服务器 + 液冷数据中心基础设施；2022 年 80.3+20.2=100.5、2023E 121.8+32.2=154、2027E 832.8+187.2=1020，三处都能对上。2022 年整体 100.5 亿元与液冷服务器 80.3 亿元已由国海证券转引入库（ghzq2506-kezhi-*），本份原报告不重复登记。",
+      "asserter": "科智咨询"
+    },
+    {
+      "fact_id": "kezhi2312-cn-lc-dc-infra-market-2023e",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-lc-dc-infrastructure",
+        "label": "中国液冷数据中心基础设施市场"
+      },
+      "value": 32.2,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "液冷设备与方案",
+        "currency": "人民币",
+        "cooling_route": "未注明",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2023E@2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "60b009a7bfed5c0b6b20341beed2a569527bbd094a08ed28ea946a5caf5d75ec",
+        "local_file": "20240804-智科咨询：中国液冷数据中心市场深度研究报告2023-210003(94页).pdf",
+        "locator": "第 82 页（页脚 76）：「科智咨询预测液冷基础设施市场保持较快增长态势，2023 年市场规模将达到 32.2 亿元，预计未来五年复合增长率为 56.1%，到 2027 年液冷基础设施市场规模将达到 187.2 亿元」",
+        "grade": "S3",
+        "originator": "科智咨询《中国液冷数据中心市场深度研究报告》（2023-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "不含液冷服务器。科智口径：液冷数据中心市场 = 液冷服务器 + 液冷数据中心基础设施；2022 年 80.3+20.2=100.5、2023E 121.8+32.2=154、2027E 832.8+187.2=1020，三处都能对上。2022 年整体 100.5 亿元与液冷服务器 80.3 亿元已由国海证券转引入库（ghzq2506-kezhi-*），本份原报告不重复登记。",
+      "asserter": "科智咨询"
+    },
+    {
+      "fact_id": "kezhi2312-cn-lc-dc-infra-market-2027e",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-lc-dc-infrastructure",
+        "label": "中国液冷数据中心基础设施市场"
+      },
+      "value": 187.2,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "液冷设备与方案",
+        "currency": "人民币",
+        "cooling_route": "未注明",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2027E@2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "60b009a7bfed5c0b6b20341beed2a569527bbd094a08ed28ea946a5caf5d75ec",
+        "local_file": "20240804-智科咨询：中国液冷数据中心市场深度研究报告2023-210003(94页).pdf",
+        "locator": "第 82 页（页脚 76）：「到 2027 年液冷基础设施市场规模将达到 187.2 亿元」",
+        "grade": "S3",
+        "originator": "科智咨询《中国液冷数据中心市场深度研究报告》（2023-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "五年 CAGR 56.1%。科智口径：液冷数据中心市场 = 液冷服务器 + 液冷数据中心基础设施；2022 年 80.3+20.2=100.5、2023E 121.8+32.2=154、2027E 832.8+187.2=1020，三处都能对上。2022 年整体 100.5 亿元与液冷服务器 80.3 亿元已由国海证券转引入库（ghzq2506-kezhi-*），本份原报告不重复登记。",
+      "asserter": "科智咨询"
+    },
+    {
+      "fact_id": "kezhi2312-cn-dc-electricity-2022",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "market",
+        "id": "cn-datacenters",
+        "label": "中国数据中心"
+      },
+      "value": 84.52,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "CN",
+        "basis": "第三方估算"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "60b009a7bfed5c0b6b20341beed2a569527bbd094a08ed28ea946a5caf5d75ec",
+        "local_file": "20240804-智科咨询：中国液冷数据中心市场深度研究报告2023-210003(94页).pdf",
+        "locator": "第 9 页（页脚 3）：「根据科智咨询统计，2022 年全年用电量达到 845.2 亿千瓦时，占全社会用电量约 1%」",
+        "grade": "S3",
+        "originator": "科智咨询《中国液冷数据中心市场深度研究报告》（2023-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "845.2 亿千瓦时 = 84.52 TWh（1 亿 kWh = 0.1 TWh）。同年库内信通院 130 TWh、工信部 100 TWh、伯恩斯坦 113 TWh、国家能源局 270 TWh，口径各异，科智为最低一档。",
+      "asserter": "科智咨询"
+    },
+    {
+      "fact_id": "niisa2023-caict-global-dc-service-revenue-2017",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-service-market",
+        "label": "全球数据中心服务市场（服务商收入）"
+      },
+      "value": 465.5,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "IDC 服务（含托管与增值）",
+        "operator_type": "全市场",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "currency": "美元"
+      },
+      "as_of": "2017",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ce86b4a21a1ea8ce9de2c2f5bca81fa59f8add50d1af7f8344f77c4451b55f62",
+        "local_file": "绿色节能液冷数据中心白皮书.pdf",
+        "locator": "第 7 页 1.1 图 1.1「全球数据中心市场规模」：柱值 2017–2021 年 465.5 / 513.3 / 566.6 / 618.7 / 679.3（亿美元），增速 10.3% / 10.4% / 9.2% / 9.8%；正文「据中国信息通信研究院《数据中心白皮书（2022）》所述……2021 年全球数据中心市场规模超过 679 亿美元，较 2020 年增长 9.8%」；脚注：「全球数据中心市场收入来自于数据中心服务商的收入统计，仅包括数据中心基础设施相关收入，不包括云服务等收入……企业自用数据中心不产生相关收入」",
+        "grade": "S3",
+        "originator": "国家互联网数据中心产业技术创新战略联盟（NIISA）与曙光《绿色节能液冷数据中心白皮书（2023）》，转引信通院《数据中心白皮书（2022）》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "口径是数据中心服务商收入，只含基础设施相关收入，不含云服务，企业自用数据中心不计；故 service_scope 记 IDC 服务而非含云服务。柱值与增速逐年自洽（如 679.3÷618.7=1.098）。",
+      "asserter": "中国信通院"
+    },
+    {
+      "fact_id": "niisa2023-caict-global-dc-service-revenue-2018",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-service-market",
+        "label": "全球数据中心服务市场（服务商收入）"
+      },
+      "value": 513.3,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "IDC 服务（含托管与增值）",
+        "operator_type": "全市场",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "currency": "美元"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ce86b4a21a1ea8ce9de2c2f5bca81fa59f8add50d1af7f8344f77c4451b55f62",
+        "local_file": "绿色节能液冷数据中心白皮书.pdf",
+        "locator": "第 7 页 1.1 图 1.1「全球数据中心市场规模」：柱值 2017–2021 年 465.5 / 513.3 / 566.6 / 618.7 / 679.3（亿美元），增速 10.3% / 10.4% / 9.2% / 9.8%；正文「据中国信息通信研究院《数据中心白皮书（2022）》所述……2021 年全球数据中心市场规模超过 679 亿美元，较 2020 年增长 9.8%」；脚注：「全球数据中心市场收入来自于数据中心服务商的收入统计，仅包括数据中心基础设施相关收入，不包括云服务等收入……企业自用数据中心不产生相关收入」",
+        "grade": "S3",
+        "originator": "国家互联网数据中心产业技术创新战略联盟（NIISA）与曙光《绿色节能液冷数据中心白皮书（2023）》，转引信通院《数据中心白皮书（2022）》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "口径是数据中心服务商收入，只含基础设施相关收入，不含云服务，企业自用数据中心不计；故 service_scope 记 IDC 服务而非含云服务。柱值与增速逐年自洽（如 679.3÷618.7=1.098）。",
+      "asserter": "中国信通院"
+    },
+    {
+      "fact_id": "niisa2023-caict-global-dc-service-revenue-2019",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-service-market",
+        "label": "全球数据中心服务市场（服务商收入）"
+      },
+      "value": 566.6,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "IDC 服务（含托管与增值）",
+        "operator_type": "全市场",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "currency": "美元"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ce86b4a21a1ea8ce9de2c2f5bca81fa59f8add50d1af7f8344f77c4451b55f62",
+        "local_file": "绿色节能液冷数据中心白皮书.pdf",
+        "locator": "第 7 页 1.1 图 1.1「全球数据中心市场规模」：柱值 2017–2021 年 465.5 / 513.3 / 566.6 / 618.7 / 679.3（亿美元），增速 10.3% / 10.4% / 9.2% / 9.8%；正文「据中国信息通信研究院《数据中心白皮书（2022）》所述……2021 年全球数据中心市场规模超过 679 亿美元，较 2020 年增长 9.8%」；脚注：「全球数据中心市场收入来自于数据中心服务商的收入统计，仅包括数据中心基础设施相关收入，不包括云服务等收入……企业自用数据中心不产生相关收入」",
+        "grade": "S3",
+        "originator": "国家互联网数据中心产业技术创新战略联盟（NIISA）与曙光《绿色节能液冷数据中心白皮书（2023）》，转引信通院《数据中心白皮书（2022）》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "口径是数据中心服务商收入，只含基础设施相关收入，不含云服务，企业自用数据中心不计；故 service_scope 记 IDC 服务而非含云服务。柱值与增速逐年自洽（如 679.3÷618.7=1.098）。",
+      "asserter": "中国信通院"
+    },
+    {
+      "fact_id": "niisa2023-caict-global-dc-service-revenue-2020",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-service-market",
+        "label": "全球数据中心服务市场（服务商收入）"
+      },
+      "value": 618.7,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "IDC 服务（含托管与增值）",
+        "operator_type": "全市场",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "currency": "美元"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ce86b4a21a1ea8ce9de2c2f5bca81fa59f8add50d1af7f8344f77c4451b55f62",
+        "local_file": "绿色节能液冷数据中心白皮书.pdf",
+        "locator": "第 7 页 1.1 图 1.1「全球数据中心市场规模」：柱值 2017–2021 年 465.5 / 513.3 / 566.6 / 618.7 / 679.3（亿美元），增速 10.3% / 10.4% / 9.2% / 9.8%；正文「据中国信息通信研究院《数据中心白皮书（2022）》所述……2021 年全球数据中心市场规模超过 679 亿美元，较 2020 年增长 9.8%」；脚注：「全球数据中心市场收入来自于数据中心服务商的收入统计，仅包括数据中心基础设施相关收入，不包括云服务等收入……企业自用数据中心不产生相关收入」",
+        "grade": "S3",
+        "originator": "国家互联网数据中心产业技术创新战略联盟（NIISA）与曙光《绿色节能液冷数据中心白皮书（2023）》，转引信通院《数据中心白皮书（2022）》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "口径是数据中心服务商收入，只含基础设施相关收入，不含云服务，企业自用数据中心不计；故 service_scope 记 IDC 服务而非含云服务。柱值与增速逐年自洽（如 679.3÷618.7=1.098）。",
+      "asserter": "中国信通院"
+    },
+    {
+      "fact_id": "niisa2023-caict-global-dc-service-revenue-2021",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-service-market",
+        "label": "全球数据中心服务市场（服务商收入）"
+      },
+      "value": 679.3,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "IDC 服务（含托管与增值）",
+        "operator_type": "全市场",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "currency": "美元"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ce86b4a21a1ea8ce9de2c2f5bca81fa59f8add50d1af7f8344f77c4451b55f62",
+        "local_file": "绿色节能液冷数据中心白皮书.pdf",
+        "locator": "第 7 页 1.1 图 1.1「全球数据中心市场规模」：柱值 2017–2021 年 465.5 / 513.3 / 566.6 / 618.7 / 679.3（亿美元），增速 10.3% / 10.4% / 9.2% / 9.8%；正文「据中国信息通信研究院《数据中心白皮书（2022）》所述……2021 年全球数据中心市场规模超过 679 亿美元，较 2020 年增长 9.8%」；脚注：「全球数据中心市场收入来自于数据中心服务商的收入统计，仅包括数据中心基础设施相关收入，不包括云服务等收入……企业自用数据中心不产生相关收入」",
+        "grade": "S3",
+        "originator": "国家互联网数据中心产业技术创新战略联盟（NIISA）与曙光《绿色节能液冷数据中心白皮书（2023）》，转引信通院《数据中心白皮书（2022）》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "口径是数据中心服务商收入，只含基础设施相关收入，不含云服务，企业自用数据中心不计；故 service_scope 记 IDC 服务而非含云服务。柱值与增速逐年自洽（如 679.3÷618.7=1.098）。",
+      "asserter": "中国信通院"
     }
   ]
 }
