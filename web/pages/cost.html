@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light">
+<head>
+<script src="/assets/theme-state.js"></script>
+<script src="/assets/site-skin.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="数据中心全成本边界与单位成本交互计算器">
+<title>数据中心成本计算 — inresearch.ai</title>
+<link rel="stylesheet" href="/assets/datacenter-cost.css">
+<link rel="stylesheet" href="/assets/site-skin.css">
+<script defer src="/assets/datacenter-cost.js"></script>
+</head>
+<body>
+<inresearch-shell data-section="research"></inresearch-shell>
+<nav class="cost-topbar" aria-label="成本研究导航">
+  <a href="/index.html">行业总览</a>
+  <a href="/bom.html">物理爆炸图</a>
+  <a class="on" href="/cost.html" aria-current="page">成本计算</a>
+  <span></span>
+  <a href="/research/datacenter-cost-study.md">研究正文 ↗</a>
+</nav>
+
+<main class="cost-shell" id="cost-app" aria-busy="true">
+  <header class="cost-hero">
+    <div>
+      <p class="eyebrow">DATA CENTER ECONOMICS · RESEARCH MODEL 2026.09</p>
+      <h1>数据中心成本，不能只看“每兆瓦”</h1>
+      <p class="lede">从资源进入、设施交付、设备安装，到任务完成与资本回收。先确定边界，再比较数字。</p>
+    </div>
+    <div class="hero-actions">
+      <button type="button" class="primary" id="reset-model">恢复研究基准</button>
+      <a class="button" href="/research/datacenter-cost-model.xlsx">下载 Excel 模型</a>
+    </div>
+  </header>
+
+  <section class="boundary" aria-label="成本边界">
+    <div><b>01</b><strong>资源进入</strong><small>电力 · 土地 · 水 · 接入</small></div>
+    <div><b>02</b><strong>设施交付</strong><small>建筑 · 供配电 · 冷却</small></div>
+    <div><b>03</b><strong>设备安装</strong><small>服务器 · 网络 · 存储</small></div>
+    <div><b>04</b><strong>任务完成</strong><small>利用率 · PUE · 软件效率</small></div>
+    <div><b>05</b><strong>资本回收</strong><small>寿命 · 资本成本 · 延期</small></div>
+  </section>
+
+  <div class="cost-layout">
+    <aside class="control-panel" aria-label="模型输入">
+      <div class="panel-head"><div><p class="eyebrow">INPUTS</p><h2>研究假设</h2></div><span id="model-date"></span></div>
+      <div class="presets" id="presets" aria-label="情景预设"></div>
+      <form id="cost-inputs"></form>
+      <p class="model-caution">所有参数均为可修改的研究假设，不是报价、预算承诺或投资建议。</p>
+    </aside>
+
+    <div class="results">
+      <section class="result-hero" aria-live="polite">
+        <div class="result-title"><p class="eyebrow">ALL-IN ANNUALIZED COST</p><h2 id="cost-total">—</h2><small>每年 · 美元</small></div>
+        <div class="unit-cost"><span>每有效设备小时</span><strong id="cost-per-hour">—</strong><small>同一参考硬件配置内比较</small></div>
+        <div class="result-delta" id="cost-delta">研究基准</div>
+      </section>
+
+      <section class="metric-grid" aria-label="核心指标">
+        <article><small>项目总 CapEx</small><strong id="metric-capex">—</strong><span>设施 + 接入 + 土地 + IT</span></article>
+        <article><small>全年用电</small><strong id="metric-energy">—</strong><span id="metric-power">—</span></article>
+        <article><small>有效设备时间</small><strong id="metric-hours">—</strong><span>设备数 × 8,760h × 有效占比</span></article>
+        <article><small>现场耗水</small><strong id="metric-water">—</strong><span>基于现场 WUE 假设</span></article>
+      </section>
+
+      <section class="analysis-grid">
+        <article class="card cost-stack-card">
+          <div class="card-head"><div><p class="eyebrow">COST STACK</p><h2>年化成本构成</h2></div><span>同一边界内加总</span></div>
+          <div id="cost-stack" class="cost-stack"></div>
+          <div id="cost-bars" class="cost-bars"></div>
+        </article>
+        <article class="card account-card">
+          <div class="card-head"><div><p class="eyebrow">TWO ACCOUNTS</p><h2>两个成本账户</h2></div></div>
+          <div class="account-compare">
+            <div><small>IT 系统资本年化</small><strong id="account-it">—</strong><span id="account-it-share">—</span></div>
+            <div><small>设施侧可见账户</small><strong id="account-facility">—</strong><span>含设施运维分摊</span></div>
+          </div>
+          <p>设施账与全项目账回答不同问题。设施运维分摊用于观察设施账户，已包含在“其他运营支出”中，<b>不再次加入全项目总成本</b>。</p>
+        </article>
+      </section>
+
+      <section class="card matrix-card">
+        <div class="card-head"><div><p class="eyebrow">SENSITIVITY MAP</p><h2>电价 × 有效设备时间</h2></div><span>美元 / 有效设备小时</span></div>
+        <div id="sensitivity-matrix" class="matrix-wrap"></div>
+        <p class="footnote">矩阵保持当前其他参数不变。颜色表示相对区间，不代表行业评级；不同 GPU、模型与任务之间不能直接视为等效算力。</p>
+      </section>
+
+      <section class="card formula-card">
+        <div class="card-head"><div><p class="eyebrow">RECONCILIATION</p><h2>模型如何从 MW 走到单位成本</h2></div></div>
+        <ol>
+          <li><b>IT 用电</b><span>IT容量 × 平均负载 × 8,760</span><strong id="formula-it-energy">—</strong></li>
+          <li><b>设施用电</b><span>IT用电 × PUE</span><strong id="formula-facility-energy">—</strong></li>
+          <li><b>资本年化</b><span>按资产寿命与资本成本率计算资本回收因子</span><strong id="formula-capital">—</strong></li>
+          <li><b>年度全成本</b><span>资本年化 + 电量/需量 + 水 + 其他运营</span><strong id="formula-total">—</strong></li>
+          <li><b>单位成本</b><span>年度全成本 ÷ 有效设备小时</span><strong id="formula-unit">—</strong></li>
+        </ol>
+      </section>
+    </div>
+  </div>
+
+  <footer class="cost-footer">
+    <div><b>口径说明</b><p id="model-note"></p></div>
+    <div><b>研究依据</b><p>完整叙事、来源核验、Bernstein 与 SemiAnalysis 材料审阅均保存在本仓库的研究档案中。</p></div>
+  </footer>
+  <div class="load-error" id="cost-error" hidden></div>
+</main>
+</body>
+</html>

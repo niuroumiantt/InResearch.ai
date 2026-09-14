@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.14.5",
+  "version": "2026.09.14.6",
   "reviewed_at": "2026-09-14",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -19,12 +19,12 @@
     "framework/02_knowledge_format.md": "049e0010977b11fb6161c0fca15fe210c96be74124e70195e23d3028258a82ff",
     "framework/03_bom_and_collaboration.md": "d28badc67d564142cb34fedfa83ab601a2e3a25a61fec06788090befcdcebb90",
     "framework/04_reading_scoring_standard.md": "23f1e2a4086ac2d77e81d4239dfc739b038668d4f9558e31a720969fbe8934c5",
-    "framework/05_interface_system.md": "7ae93f3f378c0966afdee0bcbaddcfb2f6988d6cf6a7b14a48e8b4d4fd64306d",
+    "framework/05_interface_system.md": "be0c87e8bbb672127b83a7c4699bd878ec33aa8fa1353c210b9d7c58c1a1cd3e",
     "framework/06_acquisition.md": "d05a9da1c558d5882443ded1b2508e72c8a8c35eb486b9bc1cd2644305149270",
     "framework/07_product_ecosystems.md": "a6239c5cb221120394ec706cf3ded786dd6b1cf34cc526b167dc157d50bd3fce",
     "framework/08_model_execution.md": "6c1be72c11c0948ae349cba63bf6704e1c6cb5544eb2a0c5605386d65b2a7be9",
     "framework/09_software_contracts.md": "afaddcb39d12ad24a408d95c70ca3e30017f3be0df2574b99109ad556fd7b8b0",
-    "framework/CURRENT.md": "cbc1ea62d495750ea836e2bb1fe6386bfa269d061f4bc30e23e6acae864a2bb5",
+    "framework/CURRENT.md": "e9bd89a7cf51ab014c415c05a3bac7a35c1d2766648e173be8379d1fa9a36624",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "tests/auth_appearance.cjs": "40f4e5feb30d2cec89bcf7cb90b89e780862a30580a4708e7dcb4dee1b9b8142",
     "tests/hardware_ecosystems.cjs": "4317d7b56ae541c1537d4a22ac6538d8faa96a66b545cfc5f1c146c86c84e80d",
@@ -32,7 +32,7 @@
     "tests/part_dossier.cjs": "160f3777c5c85d4a93cd9ea73fb4771e6c3591d4c027dc50f3201ca70c7e089d",
     "tests/product_node_hover.cjs": "720258d27a7c69d4926ff1b711c7c57ce1e7ae83264e4d48a2dad370a0ba4779",
     "tests/research_delivery.cjs": "4514c88bc0b8d79a54884ce3b2dda0a6afeeae79c0416b4533d4b44b7629d9e9",
-    "tests/run_browser.cjs": "4608b68a6bc24efb2a9f3c1e122c9b184300fb3d6b1c49c0de70e22050ce337d",
+    "tests/run_browser.cjs": "1b591dac0199461ec4b17c28a9664fa270ff5f91d481b8530a151eed4e45f7ae",
     "tests/scene_resources.cjs": "f514a7b25dc47f1d5f4befe96d840f6361ade7df3b78d828b8948e7a9679d3e2",
     "tests/ui_skin.cjs": "f3a1fa6223715cacb0c72a04102dde38e5cad3b8c43117be54bcccdab1be22fa",
     "tests/unit/deep_read_fixtures.py": "e748d51107427c48684ebedfa8286a8a515b36a0b3c8bc7d0fefa7d9ba713df1",
@@ -72,7 +72,8 @@
     "docs/local_setup/ADD_3D_MODEL.md": "82ce43079ba62fa0e3626435667029efbedf8930e80a2e80dd27e733056cb987",
     "tests/model_assets.cjs": "4b35173513874da2b146404cde1dfe3ab0aaafd340f44741ec03bbac2b1dfaaa",
     "tests/unit/test_model_assets.py": "243b694e858a87efcbd2212e1a8924080119d63415d7065ccd5812a0b46402c5",
-    "tests/scene_framing.cjs": "a5d6c37a9f7aa43ab194ac0175a785a71d2af9b318211e7e139c7349046cb1c0"
+    "tests/scene_framing.cjs": "a5d6c37a9f7aa43ab194ac0175a785a71d2af9b318211e7e139c7349046cb1c0",
+    "tests/datacenter_cost.cjs": "e9e3c31dcd7914c02020688cd040be671d61bd4d8d2e5da8e96b7f589d6c63c9"
   },
   "policies": [
     {
@@ -226,7 +227,7 @@
       "policy": "interface-20260906",
       "scope": "project",
       "source": "framework/05_interface_system.md",
-      "checked_requirement": "13 页皮肤/明暗/宽度、认证外观、状态保持与安全链接；主画布手势边界、共享原材质保留、领域恢复、动画取代/迟到拒写/手动接管；研究摘要与完整视图全对象关联一致、页面研究就绪、挂载/缓存替换及失败重试；必需定义 HTTP/集合失败与超时可恢复，整批取消、旧批迟到、重复重试和控制状态恢复；GLB 已采用筛选、SHA/解析/贴图失败可重试、整批替换保留旧状态、迟到回收及独占资源释放；比较身份/空集合/纯文本；实际视口/可见几何/透视 fit、旋转重开和 resize/失败/替换后的镜头所有权；两场景 HDR/面板失败回退、代次替换及页面资源幂等释放",
+      "checked_requirement": "14 页皮肤/明暗/宽度、认证外观、状态保持与安全链接；主画布手势边界、共享原材质保留、领域恢复、动画取代/迟到拒写/手动接管；研究摘要与完整视图全对象关联一致、页面研究就绪、挂载/缓存替换及失败重试；必需定义 HTTP/集合失败与超时可恢复，整批取消、旧批迟到、重复重试和控制状态恢复；GLB 已采用筛选、SHA/解析/贴图失败可重试、整批替换保留旧状态、迟到回收及独占资源释放；比较身份/空集合/纯文本；实际视口/可见几何/透视 fit、旋转重开和 resize/失败/替换后的镜头所有权；两场景 HDR/面板失败回退、代次替换及页面资源幂等释放；成本模型基准对账、输入重算、恢复与窄屏边界",
       "tests": [
         "tests/ui_skin.cjs",
         "tests/auth_appearance.cjs",
@@ -240,11 +241,13 @@
         "tests/scene_bootstrap.cjs",
         "tests/model_assets.cjs",
         "tests/scene_framing.cjs",
-        "tests/scene_resources.cjs"
+        "tests/scene_resources.cjs",
+        "tests/datacenter_cost.cjs"
       ],
       "not_verified": [
         "截图矩阵不证明逐像素设计质量、屏幕阅读器体验或真实 3D 帧率；未修改页面的全站设计仍需持续人工体验验收。",
-        "交互场景 HDR/面板纹理及页面退出已共享；离线 bake、比较台环境和下钻加载仍分别保留，全部 GPU/触摸设备与帧率未验。"
+        "交互场景 HDR/面板纹理及页面退出已共享；离线 bake、比较台环境和下钻加载仍分别保留，全部 GPU/触摸设备与帧率未验。",
+        "交互计算器验证公式一致性与页面状态，不证明研究假设代表任何具体项目报价，也不证明不同硬件、模型和任务具有可直接比较的有效设备小时。"
       ]
     },
     {

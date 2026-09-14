@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.14.5。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.14.6。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：780。
+在册文件：794。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 12 |
 | 历史快照 | 249 |
-| 运行代码 | 143 |
+| 运行代码 | 147 |
 | 现行规范 | 13 |
-| 项目配置 | 36 |
+| 项目配置 | 38 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
-| 在册数据/索引 | 26 |
-| 配套说明 | 35 |
-| 测试 | 59 |
+| 在册数据/索引 | 27 |
+| 配套说明 | 41 |
+| 测试 | 60 |
 
 ## 在册记录集合
 
@@ -36,6 +36,7 @@
 | `data/brief.json` | review_marked | 23 |
 | `data/companies.json` | records | 248 |
 | `data/contracts.json` | records | 2 |
+| `data/datacenter_cost_model.json` | groups | 4 |
 | `data/facts.json` | records | 3680 |
 | `data/policies.json` | records | 2 |
 | `data/prices.json` | records | 207 |
@@ -159,6 +160,11 @@
 | `docs/inbox/scored_batches/batch_20260817_72.csv` | rows | 1 |
 | `docs/inbox/submissions/_selftest/submission.json` | items | 2 |
 | `docs/inbox/submissions/_template/submission.json` | items | 1 |
+| `docs/research/2026-09-14/datacenter-cost/model-results.json` | sensitivity | 14 |
+| `docs/research/2026-09-14/datacenter-cost/model-results.json` | matrix | 18 |
+| `docs/research/2026-09-14/datacenter-cost/model-results.json` | delay | 5 |
+| `docs/research/2026-09-14/datacenter-cost/model-results.json` | apac | 7 |
+| `docs/research/2026-09-14/datacenter-cost/model-results.json` | epoch | 10 |
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | public_ranges | 4 |
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | public_precision | 3 |
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | collect_steps | 3 |
@@ -316,7 +322,7 @@
 | `framework/data_contract.json` | current_supply_statuses | 2 |
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
-| `framework/interface_manifest.json` | static_pages | 13 |
+| `framework/interface_manifest.json` | static_pages | 14 |
 | `framework/interface_manifest.json` | template_fragments | 4 |
 | `framework/metrics.json` | metrics | 308 |
 | `framework/modules.json` | modules | 15 |
@@ -367,6 +373,7 @@
 | `data/brief.json` | 在册数据/索引 |
 | `data/companies.json` | 在册数据/索引 |
 | `data/contracts.json` | 在册数据/索引 |
+| `data/datacenter_cost_model.json` | 在册数据/索引 |
 | `data/facts.json` | 在册数据/索引 |
 | `data/metric_gaps.jsonl` | 在册数据/索引 |
 | `data/policies.json` | 在册数据/索引 |
@@ -590,6 +597,15 @@
 | [docs/local_setup/README.md](local_setup/README.md) | 配套说明 |
 | `docs/local_setup/setup.sh` | 已退役入口 |
 | `docs/local_setup/sync.sh` | 运行代码 |
+| [docs/research/2026-09-14/datacenter-cost/README.md](research/2026-09-14/datacenter-cost/README.md) | 配套说明 |
+| [docs/research/2026-09-14/datacenter-cost/article.md](research/2026-09-14/datacenter-cost/article.md) | 配套说明 |
+| [docs/research/2026-09-14/datacenter-cost/bernstein-report-trace.md](research/2026-09-14/datacenter-cost/bernstein-report-trace.md) | 配套说明 |
+| `docs/research/2026-09-14/datacenter-cost/datacenter-cost-model.xlsx` | 项目配置 |
+| [docs/research/2026-09-14/datacenter-cost/m4-materials-review.md](research/2026-09-14/datacenter-cost/m4-materials-review.md) | 配套说明 |
+| `docs/research/2026-09-14/datacenter-cost/model-results.json` | 项目配置 |
+| `docs/research/2026-09-14/datacenter-cost/model.py` | 运行代码 |
+| [docs/research/2026-09-14/datacenter-cost/semianalysis-materials-review.md](research/2026-09-14/datacenter-cost/semianalysis-materials-review.md) | 配套说明 |
+| [docs/research/2026-09-14/datacenter-cost/sources.md](research/2026-09-14/datacenter-cost/sources.md) | 配套说明 |
 | [docs/reviews/2026-09-06/CURRENT_BASELINE_ALIGNMENT.md](reviews/2026-09-06/CURRENT_BASELINE_ALIGNMENT.md) | 历史快照 |
 | [docs/reviews/2026-09-06/IMPLEMENTATION.md](reviews/2026-09-06/IMPLEMENTATION.md) | 历史快照 |
 | [docs/reviews/2026-09-06/RESEARCH_ARCHITECTURE_V2.md](reviews/2026-09-06/RESEARCH_ARCHITECTURE_V2.md) | 已采用设计依据 |
@@ -991,6 +1007,7 @@
 | `src/inresearch/workflow/workorders.py` | 运行代码 |
 | `tests/auth_appearance.cjs` | 测试 |
 | `tests/container_storage.py` | 测试 |
+| `tests/datacenter_cost.cjs` | 测试 |
 | `tests/datacenter_news.cjs` | 测试 |
 | `tests/hardware_ecosystems.cjs` | 测试 |
 | `tests/model_assets.cjs` | 测试 |
@@ -1096,6 +1113,7 @@
 | `web/assets/world.geo.json` | 静态资源 |
 | `web/components/auth-form.js` | 运行代码 |
 | `web/components/auth.css` | 运行代码 |
+| `web/components/datacenter-cost.js` | 运行代码 |
 | `web/components/datacenter-news.js` | 运行代码 |
 | `web/components/markdown-inline.js` | 运行代码 |
 | `web/components/model-assets.js` | 运行代码 |
@@ -1120,6 +1138,7 @@
 | `web/pages/bom3d.html` | 运行代码 |
 | `web/pages/company.html` | 运行代码 |
 | `web/pages/compare.html` | 运行代码 |
+| `web/pages/cost.html` | 运行代码 |
 | `web/pages/doc.html` | 运行代码 |
 | `web/pages/framework_poster.html` | 运行代码 |
 | `web/pages/index.html` | 运行代码 |
@@ -1131,5 +1150,6 @@
 | `web/pages/research.html` | 运行代码 |
 | `web/pages/team.html` | 运行代码 |
 | `web/routes.json` | 项目配置 |
+| `web/themes/datacenter-cost.css` | 运行代码 |
 | `web/themes/preference.js` | 运行代码 |
 | `web/themes/site-skin.css` | 运行代码 |
