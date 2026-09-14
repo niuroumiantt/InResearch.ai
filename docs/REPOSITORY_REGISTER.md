@@ -287,7 +287,7 @@
 | `docs/reviews/2026-09-14/scene-framing/legacy-removal.csv` | rows | 6 |
 | `docs/reviews/2026-09-14/scene-framing/public-consumers.csv` | rows | 109 |
 | `docs/reviews/2026-09-14/scene-framing/public-contracts.csv` | rows | 7 |
-| `docs/reviews/2026-09-14/scene-framing/scope.json` | changed | 19 |
+| `docs/reviews/2026-09-14/scene-framing/scope.json` | changed | 21 |
 | `docs/reviews/2026-09-14/scene-framing/scope.json` | inherited | 12 |
 | `framework/bom.json` | layers | 5 |
 | `framework/bom.json` | parts | 46 |

@@ -29,10 +29,14 @@ def main():
         for number,line in enumerate(lines,1):
             for term in terms:
                 if term not in line:continue
-                if term=='atomic_write' and p!='src/inresearch/materials/model_assets.py':
-                    result='existing consumer keeps two-argument replacement semantics; full unit suite required'
-                elif p.startswith('tests/'):
+                if p.startswith('tests/'):
                     result='regression consumer; real execution recorded in DELIVERY/local run evidence'
+                elif term=='atomic_write' and p=='src/inresearch/workflow/model_assets.py':
+                    result='candidate import explicitly uses exclusive=True; existing model bytes cannot be overwritten'
+                elif term=='atomic_write' and p=='src/inresearch/storage/files.py':
+                    result='shared primitive adds explicit exclusive creation; default replacement semantics retained'
+                elif term=='atomic_write':
+                    result='existing consumer keeps two-argument replacement semantics; full unit suite required'
                 elif p.startswith(('docs/','framework/')):
                     result='current operational/specification consumer; old automatic adoption text retired where in scope'
                 else:result='shared visual-input authority or lifecycle consumer; source location retained'

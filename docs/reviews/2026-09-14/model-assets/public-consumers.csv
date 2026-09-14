@@ -105,16 +105,16 @@ permitted_license,src/inresearch/materials/model_assets.py,40,"if source.scheme 
 permitted_license,src/inresearch/materials/model_assets.py,41,raise ValueError('model_source_and_permitted_license_required'),shared visual-input authority or lifecycle consumer; source location retained
 read_manifest,src/inresearch/materials/model_assets.py,100,"def read_manifest(root=None, *, verify_files=False):",shared visual-input authority or lifecycle consumer; source location retained
 read_manifest,src/inresearch/materials/model_assets.py,123,manifest = read_manifest(root),shared visual-input authority or lifecycle consumer; source location retained
-atomic_write,src/inresearch/storage/files.py,47,"def atomic_write(path, data, *, exclusive=False):",existing consumer keeps two-argument replacement semantics; full unit suite required
-atomic_write,src/inresearch/storage/files.py,74,"atomic_write(path, (json.dumps(value, ensure_ascii=False, allow_nan=False,",existing consumer keeps two-argument replacement semantics; full unit suite required
+atomic_write,src/inresearch/storage/files.py,47,"def atomic_write(path, data, *, exclusive=False):",shared primitive adds explicit exclusive creation; default replacement semantics retained
+atomic_write,src/inresearch/storage/files.py,74,"atomic_write(path, (json.dumps(value, ensure_ascii=False, allow_nan=False,",shared primitive adds explicit exclusive creation; default replacement semantics retained
 atomic_write,src/inresearch/storage/jsonl.py,9,"from inresearch.storage.files import atomic_write as atomic_write, sync_directory as sync_directory, make_directory as make_directory, locked",existing consumer keeps two-argument replacement semantics; full unit suite required
 atomic_write,src/inresearch/storage/layout.py,14,"from inresearch.storage.files import atomic_write, locked, make_directory, write_json",existing consumer keeps two-argument replacement semantics; full unit suite required
 atomic_write,src/inresearch/storage/layout.py,166,"atomic_write(target, body)",existing consumer keeps two-argument replacement semantics; full unit suite required
 model_assets,src/inresearch/workflow/model_assets.py,2,from inresearch.materials import model_assets as assets,shared visual-input authority or lifecycle consumer; source location retained
-atomic_write,src/inresearch/workflow/model_assets.py,3,"from inresearch.storage.files import atomic_write, locked, write_json",existing consumer keeps two-argument replacement semantics; full unit suite required
+atomic_write,src/inresearch/workflow/model_assets.py,3,"from inresearch.storage.files import atomic_write, locked, write_json",candidate import explicitly uses exclusive=True; existing model bytes cannot be overwritten
 import_candidate,src/inresearch/workflow/model_assets.py,6,"def import_candidate(root, filename, data, *, page, source, license, hide_rack=False):",shared visual-input authority or lifecycle consumer; source location retained
 read_manifest,src/inresearch/workflow/model_assets.py,13,"manifest = assets.read_manifest(root, verify_files=True)",shared visual-input authority or lifecycle consumer; source location retained
-atomic_write,src/inresearch/workflow/model_assets.py,26,"atomic_write(target, data, exclusive=True)",existing consumer keeps two-argument replacement semantics; full unit suite required
+atomic_write,src/inresearch/workflow/model_assets.py,26,"atomic_write(target, data, exclusive=True)",candidate import explicitly uses exclusive=True; existing model bytes cannot be overwritten
 atomic_write,src/inresearch/workflow/reading_gaps.py,5,from inresearch.storage.files import atomic_write,existing consumer keeps two-argument replacement semantics; full unit suite required
 atomic_write,src/inresearch/workflow/reading_gaps.py,25,"atomic_write(self.path, old + addition.encode('utf-8'))",existing consumer keeps two-argument replacement semantics; full unit suite required
 atomic_write,src/inresearch/workflow/reading_queue.py,10,from inresearch.storage.files import atomic_write,existing consumer keeps two-argument replacement semantics; full unit suite required
@@ -140,9 +140,9 @@ model_assets,tests/run_browser.cjs,28,"for(const scenario of suite==='model_asse
 loadSceneData,tests/scene_bootstrap.cjs,41,const {loadSceneData}=await import('/assets/scene-data.js');,regression consumer; real execution recorded in DELIVERY/local run evidence
 loadSceneData,tests/scene_bootstrap.cjs,50,"const result=loadSceneData(sources,{controls:[control]});",regression consumer; real execution recorded in DELIVERY/local run evidence
 loadSceneData,tests/scene_bootstrap.cjs,63,"const timeout=loadSceneData([sources[0]],{controls:[control],timeoutMs:30});",regression consumer; real execution recorded in DELIVERY/local run evidence
-atomic_write,tests/unit/test_deep_read_transactions.py,178,"with patch('inresearch.workflow.reading_gaps.atomic_write',side_effect=OSError('disk')):",existing consumer keeps two-argument replacement semantics; full unit suite required
-atomic_write,tests/unit/test_deep_read_transactions.py,186,"files.atomic_write(path,data)",existing consumer keeps two-argument replacement semantics; full unit suite required
-atomic_write,tests/unit/test_deep_read_transactions.py,188,"with patch('inresearch.workflow.reading_gaps.atomic_write',side_effect=replace_then_fail):",existing consumer keeps two-argument replacement semantics; full unit suite required
+atomic_write,tests/unit/test_deep_read_transactions.py,178,"with patch('inresearch.workflow.reading_gaps.atomic_write',side_effect=OSError('disk')):",regression consumer; real execution recorded in DELIVERY/local run evidence
+atomic_write,tests/unit/test_deep_read_transactions.py,186,"files.atomic_write(path,data)",regression consumer; real execution recorded in DELIVERY/local run evidence
+atomic_write,tests/unit/test_deep_read_transactions.py,188,"with patch('inresearch.workflow.reading_gaps.atomic_write',side_effect=replace_then_fail):",regression consumer; real execution recorded in DELIVERY/local run evidence
 model_assets,tests/unit/test_model_assets.py,17,from inresearch.materials import model_assets as assets,regression consumer; real execution recorded in DELIVERY/local run evidence
 model_assets,tests/unit/test_model_assets.py,19,from inresearch.workflow import model_assets as imports,regression consumer; real execution recorded in DELIVERY/local run evidence
 import_candidate,tests/unit/test_model_assets.py,40,"return imports.import_candidate(self.root, name, data or self.data, page='rack3d',",regression consumer; real execution recorded in DELIVERY/local run evidence
@@ -152,7 +152,7 @@ import_candidate,tests/unit/test_model_assets.py,68,"code = ""from pathlib impor
 read_manifest,tests/unit/test_model_assets.py,74,"self.assertEqual({'same.glb','a.glb','b.glb','c.glb'}, {m['file'] for m in assets.read_manifest(self.root, verify_files=True)['models']})",regression consumer; real execution recorded in DELIVERY/local run evidence
 read_manifest,tests/unit/test_model_assets.py,83,"self.assertEqual(1, len(assets.read_manifest(self.root, verify_files=True)['models']))",regression consumer; real execution recorded in DELIVERY/local run evidence
 read_manifest,tests/unit/test_model_assets.py,91,"self.assertEqual(1, len(assets.read_manifest(self.root)['models']))",regression consumer; real execution recorded in DELIVERY/local run evidence
-atomic_write,tests/unit/test_model_assets.py,103,"with self.assertRaises(FileExistsError): files.atomic_write(target,b'replacement',exclusive=True)",existing consumer keeps two-argument replacement semantics; full unit suite required
+atomic_write,tests/unit/test_model_assets.py,103,"with self.assertRaises(FileExistsError): files.atomic_write(target,b'replacement',exclusive=True)",regression consumer; real execution recorded in DELIVERY/local run evidence
 read_manifest,tests/unit/test_model_assets.py,121,"with self.assertRaisesRegex(ValueError,'content_changed'): assets.read_manifest(self.root,verify_files=True)",regression consumer; real execution recorded in DELIVERY/local run evidence
 read_manifest,tests/unit/test_model_assets.py,123,valid=assets.read_manifest(self.root); row=valid['models'][0],regression consumer; real execution recorded in DELIVERY/local run evidence
 read_manifest,tests/unit/test_model_assets.py,131,"with self.assertRaisesRegex(ValueError,'duplicate'):assets.read_manifest(self.root)",regression consumer; real execution recorded in DELIVERY/local run evidence
@@ -171,13 +171,13 @@ model-assets,tests/unit/test_model_assets.py,185,"user.return_value=None;self.as
 /api/model-assets,tests/unit/test_model_assets.py,185,"user.return_value=None;self.assertEqual(401,get('/api/model-assets')[0])",regression consumer; real execution recorded in DELIVERY/local run evidence
 model-assets,tests/unit/test_model_assets.py,186,"user.return_value='intern';role.return_value='intern';self.assertEqual(403,get('/api/model-assets')[0])",regression consumer; real execution recorded in DELIVERY/local run evidence
 /api/model-assets,tests/unit/test_model_assets.py,186,"user.return_value='intern';role.return_value='intern';self.assertEqual(403,get('/api/model-assets')[0])",regression consumer; real execution recorded in DELIVERY/local run evidence
-atomic_write,tests/unit/test_storage_layout.py,21,"from inresearch.storage.files import atomic_write, locked",existing consumer keeps two-argument replacement semantics; full unit suite required
-atomic_write,tests/unit/test_storage_layout.py,33,"atomic_write(index, b'{""records"": []}')",existing consumer keeps two-argument replacement semantics; full unit suite required
-atomic_write,tests/unit/test_storage_layout.py,37,"atomic_write(plan, b'library update')",existing consumer keeps two-argument replacement semantics; full unit suite required
-atomic_write,tests/unit/test_storage_layout.py,80,commit = layout.atomic_write,existing consumer keeps two-argument replacement semantics; full unit suite required
-atomic_write,tests/unit/test_storage_layout.py,85,"with patch.object(layout, 'atomic_write', side_effect=fail):",existing consumer keeps two-argument replacement semantics; full unit suite required
-atomic_write,tests/unit/test_storage_layout.py,93,"with patch.object(layout, 'atomic_write', side_effect=OSError('failure')):",existing consumer keeps two-argument replacement semantics; full unit suite required
-atomic_write,tests/unit/test_storage_layout.py,195,"with locked(price): atomic_write(price, b'second runtime write')",existing consumer keeps two-argument replacement semantics; full unit suite required
+atomic_write,tests/unit/test_storage_layout.py,21,"from inresearch.storage.files import atomic_write, locked",regression consumer; real execution recorded in DELIVERY/local run evidence
+atomic_write,tests/unit/test_storage_layout.py,33,"atomic_write(index, b'{""records"": []}')",regression consumer; real execution recorded in DELIVERY/local run evidence
+atomic_write,tests/unit/test_storage_layout.py,37,"atomic_write(plan, b'library update')",regression consumer; real execution recorded in DELIVERY/local run evidence
+atomic_write,tests/unit/test_storage_layout.py,80,commit = layout.atomic_write,regression consumer; real execution recorded in DELIVERY/local run evidence
+atomic_write,tests/unit/test_storage_layout.py,85,"with patch.object(layout, 'atomic_write', side_effect=fail):",regression consumer; real execution recorded in DELIVERY/local run evidence
+atomic_write,tests/unit/test_storage_layout.py,93,"with patch.object(layout, 'atomic_write', side_effect=OSError('failure')):",regression consumer; real execution recorded in DELIVERY/local run evidence
+atomic_write,tests/unit/test_storage_layout.py,195,"with locked(price): atomic_write(price, b'second runtime write')",regression consumer; real execution recorded in DELIVERY/local run evidence
 loadModel,web/components/model-assets.js,31,"export async function loadModel(entry, signal) {",shared visual-input authority or lifecycle consumer; source location retained
 createModelLoad,web/components/model-assets.js,53,"export function createModelLoad({host, label, load, commit, timeoutMs=15000}) {",shared visual-input authority or lifecycle consumer; source location retained
 mountSceneModels,web/components/model-assets.js,117,"export function mountSceneModels({scene, page, defaultHeight, replacement=null}) {",shared visual-input authority or lifecycle consumer; source location retained
