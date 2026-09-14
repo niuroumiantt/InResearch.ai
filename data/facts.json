@@ -156260,6 +156260,372 @@
       "corroboration": "待交叉验证",
       "notes": "本条单位：核（单颗处理器）。结构：12 个 Intel 18A E-core 计算 chiplet + 3 个 Intel 3 基底 chiplet + 2 个 Intel 7 I/O chiplet（Foveros Direct 3D）；每模块 4 核。双路平台内存带宽 1,300GB/s、3TB 内存、2×96 条 PCIe Gen5，均为 2025-08 架构预估。制程为 Intel 18A，不按纳米数折算，未录制程参数。",
       "asserter": "英特尔"
+    },
+    {
+      "fact_id": "hw-ascend-960-fp8-pflops",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "huawei-ascend-960",
+        "label": "昇腾 960"
+      },
+      "value": 2.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "昇腾 960",
+        "precision": "FP8",
+        "scope": "单卡",
+        "sparsity": "未注明",
+        "spec_basis": "券商转述",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5e974d79cca85a4c2c3a9f2fe53d84decd6bdc7f60f224473adc42db673b5ef4",
+        "local_file": "华为昇腾Roadmap、技术和市场细节.pptx",
+        "locator": "「昇腾 Roadmap / Cloud Matrix 384 供应链弹性测算」页：「950DT（Decode & Training）预计于 26Q4 推出…互联带宽达 2 TB/s…采用自研 HBM HiZQ 2.0，容量达 144GB，带宽达 4 TB/s；昇腾 960：预计 27Q4 推出…可提供 2X 算力（2 PFLOPS FP8）、2X 内存容量（288GB）、2X 内存带宽（9.6 TB/s）、2X 互联接口数（40 ports）…；昇腾 970：预计 28Q4 推出…互联带宽高达 4 TB/s，FP8 算力高达 4 PFLOPS，内存容量 288GB，内存带宽 14.4 TB/s」",
+        "grade": "S4",
+        "originator": "Global Semi Research（知识星球）直播胶片《华为昇腾 Roadmap、技术和市场细节》转述华为发布的昇腾路线图"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "胶片未印日期：取 L1 登记年份 2025，内容把 950PR 写作「预计于 26Q1 推出」、960「预计 27Q4」，与 2025 年发布的路线图口径一致",
+      "corroboration": "待交叉验证",
+      "notes": "原文「2X 算力（2 PFLOPS FP8）」，相对 950 系列翻倍，预计 27Q4 推出。 路线图产品，发布时尚未上市；derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "hw-ascend-970-fp8-pflops",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "huawei-ascend-970",
+        "label": "昇腾 970"
+      },
+      "value": 4.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "昇腾 970",
+        "precision": "FP8",
+        "scope": "单卡",
+        "sparsity": "未注明",
+        "spec_basis": "券商转述",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5e974d79cca85a4c2c3a9f2fe53d84decd6bdc7f60f224473adc42db673b5ef4",
+        "local_file": "华为昇腾Roadmap、技术和市场细节.pptx",
+        "locator": "「昇腾 Roadmap / Cloud Matrix 384 供应链弹性测算」页：「950DT（Decode & Training）预计于 26Q4 推出…互联带宽达 2 TB/s…采用自研 HBM HiZQ 2.0，容量达 144GB，带宽达 4 TB/s；昇腾 960：预计 27Q4 推出…可提供 2X 算力（2 PFLOPS FP8）、2X 内存容量（288GB）、2X 内存带宽（9.6 TB/s）、2X 互联接口数（40 ports）…；昇腾 970：预计 28Q4 推出…互联带宽高达 4 TB/s，FP8 算力高达 4 PFLOPS，内存容量 288GB，内存带宽 14.4 TB/s」",
+        "grade": "S4",
+        "originator": "Global Semi Research（知识星球）直播胶片《华为昇腾 Roadmap、技术和市场细节》转述华为发布的昇腾路线图"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "胶片未印日期：取 L1 登记年份 2025，内容把 950PR 写作「预计于 26Q1 推出」、960「预计 27Q4」，与 2025 年发布的路线图口径一致",
+      "corroboration": "待交叉验证",
+      "notes": "原文「FP8 算力高达 4 PFLOPS」，预计 28Q4 推出。 路线图产品，发布时尚未上市；derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "hw-ascend-950dt-mem",
+      "metric_id": "accelerator_memory_spec",
+      "entity": {
+        "type": "product",
+        "id": "huawei-ascend-950dt",
+        "label": "昇腾 950DT"
+      },
+      "value": 144.0,
+      "unit": "GB",
+      "caliber": {
+        "product": "昇腾 950DT",
+        "parameter": "容量",
+        "memory_type": "未注明",
+        "scope": "单卡",
+        "spec_basis": "券商转述",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5e974d79cca85a4c2c3a9f2fe53d84decd6bdc7f60f224473adc42db673b5ef4",
+        "local_file": "华为昇腾Roadmap、技术和市场细节.pptx",
+        "locator": "「昇腾 Roadmap / Cloud Matrix 384 供应链弹性测算」页：「950DT（Decode & Training）预计于 26Q4 推出…互联带宽达 2 TB/s…采用自研 HBM HiZQ 2.0，容量达 144GB，带宽达 4 TB/s；昇腾 960：预计 27Q4 推出…可提供 2X 算力（2 PFLOPS FP8）、2X 内存容量（288GB）、2X 内存带宽（9.6 TB/s）、2X 互联接口数（40 ports）…；昇腾 970：预计 28Q4 推出…互联带宽高达 4 TB/s，FP8 算力高达 4 PFLOPS，内存容量 288GB，内存带宽 14.4 TB/s」",
+        "grade": "S4",
+        "originator": "Global Semi Research（知识星球）直播胶片《华为昇腾 Roadmap、技术和市场细节》转述华为发布的昇腾路线图"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "胶片未印日期：取 L1 登记年份 2025，内容把 950PR 写作「预计于 26Q1 推出」、960「预计 27Q4」，与 2025 年发布的路线图口径一致",
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 GB（容量）。华为自研 HBM「HiZQ 2.0」，不在显存类型枚举内，memory_type 记未注明；内存带宽 4 TB/s（单位不合未录）。950PR 用自研 HiBL 1.0，未给容量。 路线图产品，发布时尚未上市；derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "hw-ascend-960-mem",
+      "metric_id": "accelerator_memory_spec",
+      "entity": {
+        "type": "product",
+        "id": "huawei-ascend-960",
+        "label": "昇腾 960"
+      },
+      "value": 288.0,
+      "unit": "GB",
+      "caliber": {
+        "product": "昇腾 960",
+        "parameter": "容量",
+        "memory_type": "未注明",
+        "scope": "单卡",
+        "spec_basis": "券商转述",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5e974d79cca85a4c2c3a9f2fe53d84decd6bdc7f60f224473adc42db673b5ef4",
+        "local_file": "华为昇腾Roadmap、技术和市场细节.pptx",
+        "locator": "「昇腾 Roadmap / Cloud Matrix 384 供应链弹性测算」页：「950DT（Decode & Training）预计于 26Q4 推出…互联带宽达 2 TB/s…采用自研 HBM HiZQ 2.0，容量达 144GB，带宽达 4 TB/s；昇腾 960：预计 27Q4 推出…可提供 2X 算力（2 PFLOPS FP8）、2X 内存容量（288GB）、2X 内存带宽（9.6 TB/s）、2X 互联接口数（40 ports）…；昇腾 970：预计 28Q4 推出…互联带宽高达 4 TB/s，FP8 算力高达 4 PFLOPS，内存容量 288GB，内存带宽 14.4 TB/s」",
+        "grade": "S4",
+        "originator": "Global Semi Research（知识星球）直播胶片《华为昇腾 Roadmap、技术和市场细节》转述华为发布的昇腾路线图"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "胶片未印日期：取 L1 登记年份 2025，内容把 950PR 写作「预计于 26Q1 推出」、960「预计 27Q4」，与 2025 年发布的路线图口径一致",
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 GB（容量），自研 HBM，内存带宽 9.6 TB/s（未录）。 路线图产品，发布时尚未上市；derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "hw-ascend-970-mem",
+      "metric_id": "accelerator_memory_spec",
+      "entity": {
+        "type": "product",
+        "id": "huawei-ascend-970",
+        "label": "昇腾 970"
+      },
+      "value": 288.0,
+      "unit": "GB",
+      "caliber": {
+        "product": "昇腾 970",
+        "parameter": "容量",
+        "memory_type": "未注明",
+        "scope": "单卡",
+        "spec_basis": "券商转述",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5e974d79cca85a4c2c3a9f2fe53d84decd6bdc7f60f224473adc42db673b5ef4",
+        "local_file": "华为昇腾Roadmap、技术和市场细节.pptx",
+        "locator": "「昇腾 Roadmap / Cloud Matrix 384 供应链弹性测算」页：「950DT（Decode & Training）预计于 26Q4 推出…互联带宽达 2 TB/s…采用自研 HBM HiZQ 2.0，容量达 144GB，带宽达 4 TB/s；昇腾 960：预计 27Q4 推出…可提供 2X 算力（2 PFLOPS FP8）、2X 内存容量（288GB）、2X 内存带宽（9.6 TB/s）、2X 互联接口数（40 ports）…；昇腾 970：预计 28Q4 推出…互联带宽高达 4 TB/s，FP8 算力高达 4 PFLOPS，内存容量 288GB，内存带宽 14.4 TB/s」",
+        "grade": "S4",
+        "originator": "Global Semi Research（知识星球）直播胶片《华为昇腾 Roadmap、技术和市场细节》转述华为发布的昇腾路线图"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "胶片未印日期：取 L1 登记年份 2025，内容把 950PR 写作「预计于 26Q1 推出」、960「预计 27Q4」，与 2025 年发布的路线图口径一致",
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 GB（容量），内存带宽 14.4 TB/s（未录）。 路线图产品，发布时尚未上市；derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "hw-ascend-950dt-interconnect",
+      "metric_id": "interconnect_bandwidth_spec",
+      "entity": {
+        "type": "product",
+        "id": "huawei-ascend-950dt",
+        "label": "昇腾 950DT"
+      },
+      "value": 2000.0,
+      "unit": "GB/s",
+      "caliber": {
+        "product": "昇腾 950DT",
+        "link": "其他",
+        "direction": "未注明",
+        "spec_basis": "券商转述",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5e974d79cca85a4c2c3a9f2fe53d84decd6bdc7f60f224473adc42db673b5ef4",
+        "local_file": "华为昇腾Roadmap、技术和市场细节.pptx",
+        "locator": "「昇腾 Roadmap / Cloud Matrix 384 供应链弹性测算」页：「950DT（Decode & Training）预计于 26Q4 推出…互联带宽达 2 TB/s…采用自研 HBM HiZQ 2.0，容量达 144GB，带宽达 4 TB/s；昇腾 960：预计 27Q4 推出…可提供 2X 算力（2 PFLOPS FP8）、2X 内存容量（288GB）、2X 内存带宽（9.6 TB/s）、2X 互联接口数（40 ports）…；昇腾 970：预计 28Q4 推出…互联带宽高达 4 TB/s，FP8 算力高达 4 PFLOPS，内存容量 288GB，内存带宽 14.4 TB/s」",
+        "grade": "S4",
+        "originator": "Global Semi Research（知识星球）直播胶片《华为昇腾 Roadmap、技术和市场细节》转述华为发布的昇腾路线图"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "胶片未印日期：取 L1 登记年份 2025，内容把 950PR 写作「预计于 26Q1 推出」、960「预计 27Q4」，与 2025 年发布的路线图口径一致",
+      "corroboration": "待交叉验证",
+      "notes": "互联带宽 2 TB/s = 2,000 GB/s，原文未写单双向。同页开头引 NVLink 5.0 双向约 1.8 TB/s 作对比。 路线图产品，发布时尚未上市；derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "hw-ascend-970-interconnect",
+      "metric_id": "interconnect_bandwidth_spec",
+      "entity": {
+        "type": "product",
+        "id": "huawei-ascend-970",
+        "label": "昇腾 970"
+      },
+      "value": 4000.0,
+      "unit": "GB/s",
+      "caliber": {
+        "product": "昇腾 970",
+        "link": "其他",
+        "direction": "未注明",
+        "spec_basis": "券商转述",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5e974d79cca85a4c2c3a9f2fe53d84decd6bdc7f60f224473adc42db673b5ef4",
+        "local_file": "华为昇腾Roadmap、技术和市场细节.pptx",
+        "locator": "「昇腾 Roadmap / Cloud Matrix 384 供应链弹性测算」页：「950DT（Decode & Training）预计于 26Q4 推出…互联带宽达 2 TB/s…采用自研 HBM HiZQ 2.0，容量达 144GB，带宽达 4 TB/s；昇腾 960：预计 27Q4 推出…可提供 2X 算力（2 PFLOPS FP8）、2X 内存容量（288GB）、2X 内存带宽（9.6 TB/s）、2X 互联接口数（40 ports）…；昇腾 970：预计 28Q4 推出…互联带宽高达 4 TB/s，FP8 算力高达 4 PFLOPS，内存容量 288GB，内存带宽 14.4 TB/s」",
+        "grade": "S4",
+        "originator": "Global Semi Research（知识星球）直播胶片《华为昇腾 Roadmap、技术和市场细节》转述华为发布的昇腾路线图"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "胶片未印日期：取 L1 登记年份 2025，内容把 950PR 写作「预计于 26Q1 推出」、960「预计 27Q4」，与 2025 年发布的路线图口径一致",
+      "corroboration": "待交叉验证",
+      "notes": "互联带宽 4 TB/s = 4,000 GB/s，原文未写单双向。 路线图产品，发布时尚未上市；derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "hw-atlas950-superpod-size",
+      "metric_id": "cluster_gpu_count",
+      "entity": {
+        "type": "product",
+        "id": "huawei-atlas-950-superpod",
+        "label": "Atlas 950 SuperPoD"
+      },
+      "value": 8192.0,
+      "unit": "颗",
+      "caliber": {
+        "scope": "单集群可扩展上限",
+        "accelerator": "昇腾 950",
+        "region": "CN",
+        "basis": "公司披露"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5e974d79cca85a4c2c3a9f2fe53d84decd6bdc7f60f224473adc42db673b5ef4",
+        "local_file": "华为昇腾Roadmap、技术和市场细节.pptx",
+        "locator": "「超节点」页：「Atlas 950/960 SuperPoD 可提供 8192/15448 卡方案…最大可实现 8192 卡无收敛全互联，单柜 64 个 NPU，单柜功率 100kW」",
+        "grade": "S4",
+        "originator": "Global Semi Research（知识星球）直播胶片《华为昇腾 Roadmap、技术和市场细节》转述华为发布的昇腾路线图"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "胶片未印日期：取 L1 登记年份 2025，内容把 950PR 写作「预计于 26Q1 推出」、960「预计 27Q4」，与 2025 年发布的路线图口径一致",
+      "corroboration": "待交叉验证",
+      "notes": "UB-Mesh 递归直连拓扑，以 64 卡为步长扩展，最大 8192 卡无收敛全互联；全液冷。经 Global Semi Research 转述。 路线图产品，发布时尚未上市；derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "hw-atlas960-superpod-size",
+      "metric_id": "cluster_gpu_count",
+      "entity": {
+        "type": "product",
+        "id": "huawei-atlas-960-superpod",
+        "label": "Atlas 960 SuperPoD"
+      },
+      "value": 15448.0,
+      "unit": "颗",
+      "caliber": {
+        "scope": "单集群可扩展上限",
+        "accelerator": "昇腾 960",
+        "region": "CN",
+        "basis": "公司披露"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5e974d79cca85a4c2c3a9f2fe53d84decd6bdc7f60f224473adc42db673b5ef4",
+        "local_file": "华为昇腾Roadmap、技术和市场细节.pptx",
+        "locator": "「超节点」页：「Atlas 950/960 SuperPoD 可提供 8192/15448 卡方案…最大可实现 8192 卡无收敛全互联，单柜 64 个 NPU，单柜功率 100kW」",
+        "grade": "S4",
+        "originator": "Global Semi Research（知识星球）直播胶片《华为昇腾 Roadmap、技术和市场细节》转述华为发布的昇腾路线图"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "胶片未印日期：取 L1 登记年份 2025，内容把 950PR 写作「预计于 26Q1 推出」、960「预计 27Q4」，与 2025 年发布的路线图口径一致",
+      "corroboration": "待交叉验证",
+      "notes": "原文写「8192/15448 卡方案」，照录 15448；8192 的 64 卡步长下 15448 不是 64 的整数倍，存疑待交叉验证。 路线图产品，发布时尚未上市；derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "hw-atlas950-rack-power",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "component",
+        "id": "huawei-atlas-950-superpod-rack",
+        "label": "Atlas 950 SuperPoD 机柜"
+      },
+      "value": 100.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "主流机型",
+        "era": "路线图目标",
+        "power_basis": "未披露",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5e974d79cca85a4c2c3a9f2fe53d84decd6bdc7f60f224473adc42db673b5ef4",
+        "local_file": "华为昇腾Roadmap、技术和市场细节.pptx",
+        "locator": "「超节点」页：「Atlas 950/960 SuperPoD 可提供 8192/15448 卡方案…最大可实现 8192 卡无收敛全互联，单柜 64 个 NPU，单柜功率 100kW」",
+        "grade": "S4",
+        "originator": "Global Semi Research（知识星球）直播胶片《华为昇腾 Roadmap、技术和市场细节》转述华为发布的昇腾路线图"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "胶片未印日期：取 L1 登记年份 2025，内容把 950PR 写作「预计于 26Q1 推出」、960「预计 27Q4」，与 2025 年发布的路线图口径一致",
+      "corroboration": "待交叉验证",
+      "notes": "全液冷，单柜 64 个 NPU，原文未说明功率口径。 路线图产品，发布时尚未上市；derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "hw-atlas950-npu-per-rack",
+      "metric_id": "rack_component_count",
+      "entity": {
+        "type": "component",
+        "id": "huawei-atlas-950-superpod-rack",
+        "label": "Atlas 950 SuperPoD 机柜"
+      },
+      "value": 64.0,
+      "unit": "个",
+      "caliber": {
+        "product": "Atlas 950 SuperPoD",
+        "component": "GPU",
+        "denominator": "每机架",
+        "spec_basis": "券商转述",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5e974d79cca85a4c2c3a9f2fe53d84decd6bdc7f60f224473adc42db673b5ef4",
+        "local_file": "华为昇腾Roadmap、技术和市场细节.pptx",
+        "locator": "「超节点」页：「Atlas 950/960 SuperPoD 可提供 8192/15448 卡方案…最大可实现 8192 卡无收敛全互联，单柜 64 个 NPU，单柜功率 100kW」",
+        "grade": "S4",
+        "originator": "Global Semi Research（知识星球）直播胶片《华为昇腾 Roadmap、技术和市场细节》转述华为发布的昇腾路线图"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "胶片未印日期：取 L1 登记年份 2025，内容把 950PR 写作「预计于 26Q1 推出」、960「预计 27Q4」，与 2025 年发布的路线图口径一致",
+      "corroboration": "待交叉验证",
+      "notes": "component 记 GPU 是菜单里最近的加速器位，实为昇腾 NPU。 路线图产品，发布时尚未上市；derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "华为"
     }
   ]
 }
