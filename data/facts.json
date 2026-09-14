@@ -131291,6 +131291,402 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "同句英国 0.235、爱尔兰 0.211 地域枚举无对应未录。价格由 SemiAnalysis 汇编自 EIA 及各国电力机构，原始发布方不止一家。"
+    },
+    {
+      "fact_id": "tia942-annexg-clearheight-tier1",
+      "metric_id": "room_clear_height",
+      "asserter": "美国电信产业协会",
+      "entity": {
+        "type": "policy",
+        "id": "tia-942",
+        "label": "TIA-942 数据中心电信基础设施标准"
+      },
+      "value": 2.6,
+      "unit": "m",
+      "bound": "lower",
+      "as_of": "2005",
+      "caliber": {
+        "measure": "梁下净高",
+        "room_type": "主机房",
+        "region": "US",
+        "tier": "TIA Tier 1",
+        "build_type": "未注明"
+      },
+      "evidence": {
+        "sha256": "14b28e38cb59fdb74d9dd8afd108ea8f94fc38af297404239c5e7e6bc016d75a",
+        "local_file": "TIA-942《数据中心电信基础设施标准》（中文版）.pdf",
+        "locator": "第 96 页 表9 分级参考指南（建筑）「计算机房区域的天花板｜天花板高度｜级别1 最少2.6米（8.5 英尺）｜级别2 最少2.7米（9.0 英尺）｜级别3 最少3米（10 英尺），距设备的最高部分不小于 460 毫米（18 英寸）｜级别4 最少3米（10 英尺），距设备的最高部分不小于 600 毫米（24 英寸）」",
+        "grade": "S2",
+        "originator": "美国电信产业协会 TIA-942（2005）附件 G 表 9「分级参考指南（建筑）」（中国计算机用户协会 UPS 分会中文译本连载合订本）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 TIA-942 首版发布年 2005；译本本身无日期，库外知识，待核",
+      "corroboration": "待交叉验证",
+      "notes": "级别 1 计算机房天花板高度下限 2.6 m。附件 G 为资料性附录（942-A 已删改），不是强制条款。正文 5.3.4 的 2.6 m 见 tia942-clearheight-computer-room-min。"
+    },
+    {
+      "fact_id": "tia942-annexg-clearheight-tier2",
+      "metric_id": "room_clear_height",
+      "asserter": "美国电信产业协会",
+      "entity": {
+        "type": "policy",
+        "id": "tia-942",
+        "label": "TIA-942 数据中心电信基础设施标准"
+      },
+      "value": 2.7,
+      "unit": "m",
+      "bound": "lower",
+      "as_of": "2005",
+      "caliber": {
+        "measure": "梁下净高",
+        "room_type": "主机房",
+        "region": "US",
+        "tier": "TIA Tier 2",
+        "build_type": "未注明"
+      },
+      "evidence": {
+        "sha256": "14b28e38cb59fdb74d9dd8afd108ea8f94fc38af297404239c5e7e6bc016d75a",
+        "local_file": "TIA-942《数据中心电信基础设施标准》（中文版）.pdf",
+        "locator": "第 96 页 表9 分级参考指南（建筑）「计算机房区域的天花板｜天花板高度｜级别1 最少2.6米（8.5 英尺）｜级别2 最少2.7米（9.0 英尺）｜级别3 最少3米（10 英尺），距设备的最高部分不小于 460 毫米（18 英寸）｜级别4 最少3米（10 英尺），距设备的最高部分不小于 600 毫米（24 英寸）」",
+        "grade": "S2",
+        "originator": "美国电信产业协会 TIA-942（2005）附件 G 表 9「分级参考指南（建筑）」（中国计算机用户协会 UPS 分会中文译本连载合订本）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 TIA-942 首版发布年 2005；译本本身无日期，库外知识，待核",
+      "corroboration": "待交叉验证",
+      "notes": "级别 2 计算机房天花板高度下限 2.7 m。附件 G 为资料性附录（942-A 已删改），不是强制条款。正文 5.3.4 的 2.6 m 见 tia942-clearheight-computer-room-min。"
+    },
+    {
+      "fact_id": "tia942-annexg-clearheight-tier3",
+      "metric_id": "room_clear_height",
+      "asserter": "美国电信产业协会",
+      "entity": {
+        "type": "policy",
+        "id": "tia-942",
+        "label": "TIA-942 数据中心电信基础设施标准"
+      },
+      "value": 3.0,
+      "unit": "m",
+      "bound": "lower",
+      "as_of": "2005",
+      "caliber": {
+        "measure": "梁下净高",
+        "room_type": "主机房",
+        "region": "US",
+        "tier": "TIA Tier 3",
+        "build_type": "未注明"
+      },
+      "evidence": {
+        "sha256": "14b28e38cb59fdb74d9dd8afd108ea8f94fc38af297404239c5e7e6bc016d75a",
+        "local_file": "TIA-942《数据中心电信基础设施标准》（中文版）.pdf",
+        "locator": "第 96 页 表9 分级参考指南（建筑）「计算机房区域的天花板｜天花板高度｜级别1 最少2.6米（8.5 英尺）｜级别2 最少2.7米（9.0 英尺）｜级别3 最少3米（10 英尺），距设备的最高部分不小于 460 毫米（18 英寸）｜级别4 最少3米（10 英尺），距设备的最高部分不小于 600 毫米（24 英寸）」",
+        "grade": "S2",
+        "originator": "美国电信产业协会 TIA-942（2005）附件 G 表 9「分级参考指南（建筑）」（中国计算机用户协会 UPS 分会中文译本连载合订本）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 TIA-942 首版发布年 2005；译本本身无日期，库外知识，待核",
+      "corroboration": "待交叉验证",
+      "notes": "级别 3 计算机房天花板高度下限 3.0 m。另要求距设备最高部分不小于 460 mm。附件 G 为资料性附录（942-A 已删改），不是强制条款。正文 5.3.4 的 2.6 m 见 tia942-clearheight-computer-room-min。"
+    },
+    {
+      "fact_id": "tia942-annexg-clearheight-tier4",
+      "metric_id": "room_clear_height",
+      "asserter": "美国电信产业协会",
+      "entity": {
+        "type": "policy",
+        "id": "tia-942",
+        "label": "TIA-942 数据中心电信基础设施标准"
+      },
+      "value": 3.0,
+      "unit": "m",
+      "bound": "lower",
+      "as_of": "2005",
+      "caliber": {
+        "measure": "梁下净高",
+        "room_type": "主机房",
+        "region": "US",
+        "tier": "TIA Tier 4",
+        "build_type": "未注明"
+      },
+      "evidence": {
+        "sha256": "14b28e38cb59fdb74d9dd8afd108ea8f94fc38af297404239c5e7e6bc016d75a",
+        "local_file": "TIA-942《数据中心电信基础设施标准》（中文版）.pdf",
+        "locator": "第 96 页 表9 分级参考指南（建筑）「计算机房区域的天花板｜天花板高度｜级别1 最少2.6米（8.5 英尺）｜级别2 最少2.7米（9.0 英尺）｜级别3 最少3米（10 英尺），距设备的最高部分不小于 460 毫米（18 英寸）｜级别4 最少3米（10 英尺），距设备的最高部分不小于 600 毫米（24 英寸）」",
+        "grade": "S2",
+        "originator": "美国电信产业协会 TIA-942（2005）附件 G 表 9「分级参考指南（建筑）」（中国计算机用户协会 UPS 分会中文译本连载合订本）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 TIA-942 首版发布年 2005；译本本身无日期，库外知识，待核",
+      "corroboration": "待交叉验证",
+      "notes": "级别 4 计算机房天花板高度下限 3.0 m。另要求距设备最高部分不小于 600 mm。附件 G 为资料性附录（942-A 已删改），不是强制条款。正文 5.3.4 的 2.6 m 见 tia942-clearheight-computer-room-min。"
+    },
+    {
+      "fact_id": "tia942-annexg-floorload-tier1",
+      "metric_id": "room_floor_load",
+      "asserter": "美国电信产业协会",
+      "entity": {
+        "type": "policy",
+        "id": "tia-942",
+        "label": "TIA-942 数据中心电信基础设施标准"
+      },
+      "value": 7.2,
+      "unit": "kN/㎡",
+      "bound": "lower",
+      "as_of": "2005",
+      "caliber": {
+        "room_type": "主机房",
+        "basis": "规范最低",
+        "region": "US",
+        "tier": "TIA Tier 1",
+        "build_type": "未注明"
+      },
+      "evidence": {
+        "sha256": "14b28e38cb59fdb74d9dd8afd108ea8f94fc38af297404239c5e7e6bc016d75a",
+        "local_file": "TIA-942《数据中心电信基础设施标准》（中文版）.pdf",
+        "locator": "第 99 页 表9 分级参考指南（建筑）「地板层实况荷载能力｜级别1-4 均 7.2KPa (150lbf/sqft)」；「从下部附加的悬挂负荷能力｜级别1 1.2KPa (25lbf/sqft)｜级别2 1.2KPa｜级别3 2.4KPa (50lbf/sqft)｜级别4 2.4KPa」",
+        "grade": "S2",
+        "originator": "美国电信产业协会 TIA-942（2005）附件 G 表 9「分级参考指南（建筑）」（中国计算机用户协会 UPS 分会中文译本连载合订本）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 TIA-942 首版发布年 2005；译本本身无日期，库外知识，待核",
+      "corroboration": "待交叉验证",
+      "notes": "级别 1 地板实况荷载能力下限 7.2 kPa（=kN/㎡），四个级别相同。资料性附录。"
+    },
+    {
+      "fact_id": "tia942-annexg-hanging-tier1",
+      "metric_id": "room_floor_load",
+      "asserter": "美国电信产业协会",
+      "entity": {
+        "type": "policy",
+        "id": "tia-942",
+        "label": "TIA-942 数据中心电信基础设施标准"
+      },
+      "value": 1.2,
+      "unit": "kN/㎡",
+      "bound": "lower",
+      "as_of": "2005",
+      "caliber": {
+        "room_type": "主机房吊挂荷载",
+        "basis": "规范最低",
+        "region": "US",
+        "tier": "TIA Tier 1",
+        "build_type": "未注明"
+      },
+      "evidence": {
+        "sha256": "14b28e38cb59fdb74d9dd8afd108ea8f94fc38af297404239c5e7e6bc016d75a",
+        "local_file": "TIA-942《数据中心电信基础设施标准》（中文版）.pdf",
+        "locator": "第 99 页 表9 分级参考指南（建筑）「地板层实况荷载能力｜级别1-4 均 7.2KPa (150lbf/sqft)」；「从下部附加的悬挂负荷能力｜级别1 1.2KPa (25lbf/sqft)｜级别2 1.2KPa｜级别3 2.4KPa (50lbf/sqft)｜级别4 2.4KPa」",
+        "grade": "S2",
+        "originator": "美国电信产业协会 TIA-942（2005）附件 G 表 9「分级参考指南（建筑）」（中国计算机用户协会 UPS 分会中文译本连载合订本）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 TIA-942 首版发布年 2005；译本本身无日期，库外知识，待核",
+      "corroboration": "待交叉验证",
+      "notes": "级别 1 从下部附加的悬挂负荷能力下限 1.2 kPa。表格排版错位，按 25/25/50/50 lbf/sqft 的顺序读。资料性附录。"
+    },
+    {
+      "fact_id": "tia942-annexg-floorload-tier2",
+      "metric_id": "room_floor_load",
+      "asserter": "美国电信产业协会",
+      "entity": {
+        "type": "policy",
+        "id": "tia-942",
+        "label": "TIA-942 数据中心电信基础设施标准"
+      },
+      "value": 7.2,
+      "unit": "kN/㎡",
+      "bound": "lower",
+      "as_of": "2005",
+      "caliber": {
+        "room_type": "主机房",
+        "basis": "规范最低",
+        "region": "US",
+        "tier": "TIA Tier 2",
+        "build_type": "未注明"
+      },
+      "evidence": {
+        "sha256": "14b28e38cb59fdb74d9dd8afd108ea8f94fc38af297404239c5e7e6bc016d75a",
+        "local_file": "TIA-942《数据中心电信基础设施标准》（中文版）.pdf",
+        "locator": "第 99 页 表9 分级参考指南（建筑）「地板层实况荷载能力｜级别1-4 均 7.2KPa (150lbf/sqft)」；「从下部附加的悬挂负荷能力｜级别1 1.2KPa (25lbf/sqft)｜级别2 1.2KPa｜级别3 2.4KPa (50lbf/sqft)｜级别4 2.4KPa」",
+        "grade": "S2",
+        "originator": "美国电信产业协会 TIA-942（2005）附件 G 表 9「分级参考指南（建筑）」（中国计算机用户协会 UPS 分会中文译本连载合订本）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 TIA-942 首版发布年 2005；译本本身无日期，库外知识，待核",
+      "corroboration": "待交叉验证",
+      "notes": "级别 2 地板实况荷载能力下限 7.2 kPa（=kN/㎡），四个级别相同。资料性附录。"
+    },
+    {
+      "fact_id": "tia942-annexg-hanging-tier2",
+      "metric_id": "room_floor_load",
+      "asserter": "美国电信产业协会",
+      "entity": {
+        "type": "policy",
+        "id": "tia-942",
+        "label": "TIA-942 数据中心电信基础设施标准"
+      },
+      "value": 1.2,
+      "unit": "kN/㎡",
+      "bound": "lower",
+      "as_of": "2005",
+      "caliber": {
+        "room_type": "主机房吊挂荷载",
+        "basis": "规范最低",
+        "region": "US",
+        "tier": "TIA Tier 2",
+        "build_type": "未注明"
+      },
+      "evidence": {
+        "sha256": "14b28e38cb59fdb74d9dd8afd108ea8f94fc38af297404239c5e7e6bc016d75a",
+        "local_file": "TIA-942《数据中心电信基础设施标准》（中文版）.pdf",
+        "locator": "第 99 页 表9 分级参考指南（建筑）「地板层实况荷载能力｜级别1-4 均 7.2KPa (150lbf/sqft)」；「从下部附加的悬挂负荷能力｜级别1 1.2KPa (25lbf/sqft)｜级别2 1.2KPa｜级别3 2.4KPa (50lbf/sqft)｜级别4 2.4KPa」",
+        "grade": "S2",
+        "originator": "美国电信产业协会 TIA-942（2005）附件 G 表 9「分级参考指南（建筑）」（中国计算机用户协会 UPS 分会中文译本连载合订本）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 TIA-942 首版发布年 2005；译本本身无日期，库外知识，待核",
+      "corroboration": "待交叉验证",
+      "notes": "级别 2 从下部附加的悬挂负荷能力下限 1.2 kPa。表格排版错位，按 25/25/50/50 lbf/sqft 的顺序读。资料性附录。"
+    },
+    {
+      "fact_id": "tia942-annexg-floorload-tier3",
+      "metric_id": "room_floor_load",
+      "asserter": "美国电信产业协会",
+      "entity": {
+        "type": "policy",
+        "id": "tia-942",
+        "label": "TIA-942 数据中心电信基础设施标准"
+      },
+      "value": 7.2,
+      "unit": "kN/㎡",
+      "bound": "lower",
+      "as_of": "2005",
+      "caliber": {
+        "room_type": "主机房",
+        "basis": "规范最低",
+        "region": "US",
+        "tier": "TIA Tier 3",
+        "build_type": "未注明"
+      },
+      "evidence": {
+        "sha256": "14b28e38cb59fdb74d9dd8afd108ea8f94fc38af297404239c5e7e6bc016d75a",
+        "local_file": "TIA-942《数据中心电信基础设施标准》（中文版）.pdf",
+        "locator": "第 99 页 表9 分级参考指南（建筑）「地板层实况荷载能力｜级别1-4 均 7.2KPa (150lbf/sqft)」；「从下部附加的悬挂负荷能力｜级别1 1.2KPa (25lbf/sqft)｜级别2 1.2KPa｜级别3 2.4KPa (50lbf/sqft)｜级别4 2.4KPa」",
+        "grade": "S2",
+        "originator": "美国电信产业协会 TIA-942（2005）附件 G 表 9「分级参考指南（建筑）」（中国计算机用户协会 UPS 分会中文译本连载合订本）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 TIA-942 首版发布年 2005；译本本身无日期，库外知识，待核",
+      "corroboration": "待交叉验证",
+      "notes": "级别 3 地板实况荷载能力下限 7.2 kPa（=kN/㎡），四个级别相同。资料性附录。"
+    },
+    {
+      "fact_id": "tia942-annexg-hanging-tier3",
+      "metric_id": "room_floor_load",
+      "asserter": "美国电信产业协会",
+      "entity": {
+        "type": "policy",
+        "id": "tia-942",
+        "label": "TIA-942 数据中心电信基础设施标准"
+      },
+      "value": 2.4,
+      "unit": "kN/㎡",
+      "bound": "lower",
+      "as_of": "2005",
+      "caliber": {
+        "room_type": "主机房吊挂荷载",
+        "basis": "规范最低",
+        "region": "US",
+        "tier": "TIA Tier 3",
+        "build_type": "未注明"
+      },
+      "evidence": {
+        "sha256": "14b28e38cb59fdb74d9dd8afd108ea8f94fc38af297404239c5e7e6bc016d75a",
+        "local_file": "TIA-942《数据中心电信基础设施标准》（中文版）.pdf",
+        "locator": "第 99 页 表9 分级参考指南（建筑）「地板层实况荷载能力｜级别1-4 均 7.2KPa (150lbf/sqft)」；「从下部附加的悬挂负荷能力｜级别1 1.2KPa (25lbf/sqft)｜级别2 1.2KPa｜级别3 2.4KPa (50lbf/sqft)｜级别4 2.4KPa」",
+        "grade": "S2",
+        "originator": "美国电信产业协会 TIA-942（2005）附件 G 表 9「分级参考指南（建筑）」（中国计算机用户协会 UPS 分会中文译本连载合订本）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 TIA-942 首版发布年 2005；译本本身无日期，库外知识，待核",
+      "corroboration": "待交叉验证",
+      "notes": "级别 3 从下部附加的悬挂负荷能力下限 2.4 kPa。表格排版错位，按 25/25/50/50 lbf/sqft 的顺序读。资料性附录。"
+    },
+    {
+      "fact_id": "tia942-annexg-floorload-tier4",
+      "metric_id": "room_floor_load",
+      "asserter": "美国电信产业协会",
+      "entity": {
+        "type": "policy",
+        "id": "tia-942",
+        "label": "TIA-942 数据中心电信基础设施标准"
+      },
+      "value": 7.2,
+      "unit": "kN/㎡",
+      "bound": "lower",
+      "as_of": "2005",
+      "caliber": {
+        "room_type": "主机房",
+        "basis": "规范最低",
+        "region": "US",
+        "tier": "TIA Tier 4",
+        "build_type": "未注明"
+      },
+      "evidence": {
+        "sha256": "14b28e38cb59fdb74d9dd8afd108ea8f94fc38af297404239c5e7e6bc016d75a",
+        "local_file": "TIA-942《数据中心电信基础设施标准》（中文版）.pdf",
+        "locator": "第 99 页 表9 分级参考指南（建筑）「地板层实况荷载能力｜级别1-4 均 7.2KPa (150lbf/sqft)」；「从下部附加的悬挂负荷能力｜级别1 1.2KPa (25lbf/sqft)｜级别2 1.2KPa｜级别3 2.4KPa (50lbf/sqft)｜级别4 2.4KPa」",
+        "grade": "S2",
+        "originator": "美国电信产业协会 TIA-942（2005）附件 G 表 9「分级参考指南（建筑）」（中国计算机用户协会 UPS 分会中文译本连载合订本）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 TIA-942 首版发布年 2005；译本本身无日期，库外知识，待核",
+      "corroboration": "待交叉验证",
+      "notes": "级别 4 地板实况荷载能力下限 7.2 kPa（=kN/㎡），四个级别相同。资料性附录。"
+    },
+    {
+      "fact_id": "tia942-annexg-hanging-tier4",
+      "metric_id": "room_floor_load",
+      "asserter": "美国电信产业协会",
+      "entity": {
+        "type": "policy",
+        "id": "tia-942",
+        "label": "TIA-942 数据中心电信基础设施标准"
+      },
+      "value": 2.4,
+      "unit": "kN/㎡",
+      "bound": "lower",
+      "as_of": "2005",
+      "caliber": {
+        "room_type": "主机房吊挂荷载",
+        "basis": "规范最低",
+        "region": "US",
+        "tier": "TIA Tier 4",
+        "build_type": "未注明"
+      },
+      "evidence": {
+        "sha256": "14b28e38cb59fdb74d9dd8afd108ea8f94fc38af297404239c5e7e6bc016d75a",
+        "local_file": "TIA-942《数据中心电信基础设施标准》（中文版）.pdf",
+        "locator": "第 99 页 表9 分级参考指南（建筑）「地板层实况荷载能力｜级别1-4 均 7.2KPa (150lbf/sqft)」；「从下部附加的悬挂负荷能力｜级别1 1.2KPa (25lbf/sqft)｜级别2 1.2KPa｜级别3 2.4KPa (50lbf/sqft)｜级别4 2.4KPa」",
+        "grade": "S2",
+        "originator": "美国电信产业协会 TIA-942（2005）附件 G 表 9「分级参考指南（建筑）」（中国计算机用户协会 UPS 分会中文译本连载合订本）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 TIA-942 首版发布年 2005；译本本身无日期，库外知识，待核",
+      "corroboration": "待交叉验证",
+      "notes": "级别 4 从下部附加的悬挂负荷能力下限 2.4 kPa。表格排版错位，按 25/25/50/50 lbf/sqft 的顺序读。资料性附录。"
     }
   ]
 }
