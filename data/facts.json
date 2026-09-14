@@ -141257,6 +141257,70 @@
       "corroboration": "待交叉验证",
       "notes": "原文「8-9k」区间的上界；为机柜产出（output）口径，大摩按 NVL72 当量计。同页称 2026 年至少 6 万架（表中 6.34 万架）。",
       "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2511-rack-ship-gb200-300-2025e",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "gb200-gb300-nvl72",
+        "label": "GB200/300 NVL72 当量"
+      },
+      "value": 28000.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "GB200/300 NVL72 等效",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2025-11",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4103d035bf470008d64b59336219eba955cad8fe3f09d9ea4cd8bd641c0ecfaf",
+        "local_file": "20251111-大中华区科技硬件：2026年人工智能科技硬件之年(56页).pdf",
+        "locator": "「NVIDIA GPU Roadmap」页 Recent updates：「Forecast ~28k racks for 2025 and at least 60k racks for 2026」「Believe 4Q25 rack output will continue to ramp smoothly」「GB300 rack production has kicked off」",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区科技硬件团队（2025-11-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「~28k」按点值记；较 2025-10 版 2.76 万架略上调，两版并列。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2511-rack-ship-nvidia-2026e-lower",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "gb200-gb300-nvl72",
+        "label": "GB200/300 NVL72 当量"
+      },
+      "value": 60000.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "GB200/300 NVL72 等效",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2025-11",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "4103d035bf470008d64b59336219eba955cad8fe3f09d9ea4cd8bd641c0ecfaf",
+        "local_file": "20251111-大中华区科技硬件：2026年人工智能科技硬件之年(56页).pdf",
+        "locator": "「NVIDIA GPU Roadmap」页 Recent updates：「Forecast ~28k racks for 2025 and at least 60k racks for 2026」「Believe 4Q25 rack output will continue to ramp smoothly」「GB300 rack production has kicked off」",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区科技硬件团队（2025-11-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「at least 60k」按下界记，平台口径沿用同句 2025 年 NVL72 当量。",
+      "asserter": "摩根士丹利"
     }
   ]
 }
