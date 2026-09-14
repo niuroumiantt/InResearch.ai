@@ -168583,6 +168583,130 @@
       "corroboration": "待交叉验证",
       "notes": "**阿里只宣布了「2032 年比 2022 年提升 10 倍」的倍数，1.5GW 起点与 15GW 终点是国信证券按服务器台数×平均功率×利用率的测算**，asserter 记国信证券；「能耗规模」以 GW 表示，按功率口径记设施容量。同测算十年累计 capex 约 1.5 万亿元（未录）。vintage 按报告写作不早于 2025-10（引用 2025-10-09 事件）。",
       "asserter": "国信证券"
+    },
+    {
+      "fact_id": "sa2312-h100-allin-cost-simple",
+      "metric_id": "gpu_hourly_tco",
+      "entity": {
+        "type": "market",
+        "id": "h100-gpu-cloud-tco-simple-sa2312",
+        "label": "H100 GPU 云（SemiAnalysis 简化模型：较差运营商、13% 债务成本）"
+      },
+      "value": 1.525,
+      "unit": "美元/GPU 小时",
+      "caliber": {
+        "cost_scope": "未注明",
+        "asset": "H100",
+        "scale": "未注明",
+        "region": "未披露",
+        "basis": "模型输出"
+      },
+      "as_of": "2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4cbd9072a3a67b8d0c9ebf2f22ac5b121a9a70b5768a7050b8ce0dc4a3ee4a6f",
+        "local_file": "GPU Cloud Economics Explained – The Hidden Truth.pdf",
+        "locator": "PDF 第 4 页：「A relatively poor datacenter operator can buy an Nvidia HGX H100 server with 13% interest rate debt and still come away with an all-in cost per hour of $1.525…even the most favorable GPU cloud deals are around $2 an hour per H100, and we have even seen desperate folks get fleeced for more than $3 an hour」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《GPU Cloud Economics Explained – The Hidden Truth》（2023-12-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "服务器级 all-in 每 GPU 小时成本（含资本成本与托管），第 3 页称 GPU 服务器月资本成本 7,025 美元 vs 托管成本 1,871 美元；原文未写地域与集群规模。SemiAnalysis 随后称表中若干假设（如 6 年寿命、120 美元/kW 托管价）不现实。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2312-h100-breakeven-incremental",
+      "metric_id": "gpu_hourly_tco",
+      "entity": {
+        "type": "market",
+        "id": "h100-gpu-cloud-breakeven-sa2312",
+        "label": "H100 GPU 云（SemiAnalysis 修正假设：新增装机盈亏平衡）"
+      },
+      "value": 2.2,
+      "unit": "美元/GPU 小时",
+      "caliber": {
+        "cost_scope": "未注明",
+        "asset": "H100",
+        "scale": "未注明",
+        "region": "未披露",
+        "basis": "模型输出"
+      },
+      "as_of": "2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4cbd9072a3a67b8d0c9ebf2f22ac5b121a9a70b5768a7050b8ce0dc4a3ee4a6f",
+        "local_file": "GPU Cloud Economics Explained – The Hidden Truth.pdf",
+        "locator": "PDF 第 6 页：「Stacking it all together, the true breakeven cost of a GPU cloud installing incremental H100’s today is $2.20 an hour under this simplified TCO model, with 80% of this cost from capital cost. Many GPU cloud deals are being done well below $2.20 an hour」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《GPU Cloud Economics Explained – The Hidden Truth》（2023-12-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "按更现实假设（约 4 年寿命、更高托管价与资本成本）的新增 H100 盈亏平衡成本，80% 为资本成本；与同文 1.525 美元简化模型不是分歧，是假设不同的两档。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2312-h100-rental-favorable-deals",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "market",
+        "id": "h100-gpu-cloud-favorable-deals-sa2312",
+        "label": "H100 GPU 云租赁（最优惠成交）"
+      },
+      "value": 2.0,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "实际成交",
+        "unit": "单卡",
+        "region": "未披露"
+      },
+      "as_of": "2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4cbd9072a3a67b8d0c9ebf2f22ac5b121a9a70b5768a7050b8ce0dc4a3ee4a6f",
+        "local_file": "GPU Cloud Economics Explained – The Hidden Truth.pdf",
+        "locator": "PDF 第 4 页：「A relatively poor datacenter operator can buy an Nvidia HGX H100 server with 13% interest rate debt and still come away with an all-in cost per hour of $1.525…even the most favorable GPU cloud deals are around $2 an hour per H100, and we have even seen desperate folks get fleeced for more than $3 an hour」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《GPU Cloud Economics Explained – The Hidden Truth》（2023-12-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「most favorable GPU cloud deals are around $2 an hour per H100」；第 6 页又称许多成交远低于 2.20 美元。region 未披露：原文未写地域。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2312-h100-rental-overpaid",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "market",
+        "id": "h100-gpu-cloud-overpaid-deals-sa2312",
+        "label": "H100 GPU 云租赁（高价成交个案）"
+      },
+      "value": 3.0,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "实际成交",
+        "unit": "单卡",
+        "region": "未披露"
+      },
+      "as_of": "2023-12",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "4cbd9072a3a67b8d0c9ebf2f22ac5b121a9a70b5768a7050b8ce0dc4a3ee4a6f",
+        "local_file": "GPU Cloud Economics Explained – The Hidden Truth.pdf",
+        "locator": "PDF 第 4 页：「A relatively poor datacenter operator can buy an Nvidia HGX H100 server with 13% interest rate debt and still come away with an all-in cost per hour of $1.525…even the most favorable GPU cloud deals are around $2 an hour per H100, and we have even seen desperate folks get fleeced for more than $3 an hour」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《GPU Cloud Economics Explained – The Hidden Truth》（2023-12-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「more than $3 an hour」为下界，指急需算力的买方被高价收取的个案。region 未披露：原文未写地域。",
+      "asserter": "SemiAnalysis"
     }
   ]
 }
