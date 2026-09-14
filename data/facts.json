@@ -135319,6 +135319,38 @@
       "corroboration": "待交叉验证",
       "notes": "口径是「chip-to-chiller」冷却基础设施（含高温冷水机组、风机，建筑与电气保持不变），故 scope 记含冷源；设计为 78% 液冷 + 22% 风冷，cooling_type 记混合。每柜 136kW、共 64 柜。两相冷板方案 CapEx 10,381,534 美元（≈同值，0% 差），但年 OpEx 低 35%、5 年 TCO 低 12%（13,774,735 vs 15,604,571 美元）——两相方案 cooling_type 无法与单相区分，未另录。演讲方 Accelsius 为两相冷板厂商，成本含第三方维保与管材来源。",
       "asserter": "Accelsius"
+    },
+    {
+      "fact_id": "google-ocp26-api-tokens-per-month-lower",
+      "metric_id": "ai_token_volume",
+      "entity": {
+        "type": "company",
+        "id": "google",
+        "label": "Google"
+      },
+      "value": 691.2,
+      "unit": "万亿 token/月",
+      "caliber": {
+        "scope": "单一 API",
+        "token_basis": "未注明",
+        "region": "Global",
+        "basis": "公司披露"
+      },
+      "as_of": "2026-04",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "e158c4a64f2388acf4d9141a95436ab24ae9dd791de4ffd43a6f6d3dc001be71",
+        "local_file": "5B_2022_TheFungibleDat_未署名.pdf",
+        "locator": "第 2 页「AI model compute demand」：「>16 billion tokens/min via direct API use by our customers」",
+        "grade": "S2",
+        "originator": "Google（Amber Huffman，OCP 演讲《The Fungible Data Center》）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文为每分钟 >160 亿 token，按 30 天 43,200 分钟折月：1.6×10^10 × 43,200 = 6.912×10^14 = 691.2 万亿 token/月（下界）；as_of 原文未写日期，按本稿时间线已列「Q2 2026 Google contributes 1.0 specification」及同批 OCP EMEA 讲稿 2026-04-29/30 推定为 2026-04。",
+      "corroboration": "待交叉验证",
+      "notes": "口径是 Google Cloud 客户直接调用 API 的 token，不含 Gemini App、搜索等自有产品（Hot Chips 2025 的 980 万亿/月是公司全部产品口径，二者不可比）。原文为瞬时速率，折月假设全月匀速。同稿第 35 页另称累计采购 8GW 清洁能源、数据中心能耗排放降 12%（无单公司指标，未录）。",
+      "asserter": "Google"
     }
   ]
 }
