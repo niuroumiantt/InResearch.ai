@@ -13,7 +13,7 @@ data/assignments.json,retain,data/assignments.json,outside this bounded change; 
 data/brief.json,retain,data/brief.json,outside this bounded change; preserve
 data/companies.json,retain,data/companies.json,outside this bounded change; preserve
 data/contracts.json,retain,data/contracts.json,outside this bounded change; preserve
-data/facts.json,retain,data/facts.json,outside this bounded change; preserve
+data/facts.json,integrate,data/facts.json,preserve parallel PR 180 scope; implementation and semantic limits separately attributed
 data/metric_gaps.jsonl,retain,data/metric_gaps.jsonl,outside this bounded change; preserve
 data/policies.json,retain,data/policies.json,outside this bounded change; preserve
 data/prices.json,retain,data/prices.json,outside this bounded change; preserve
@@ -444,9 +444,9 @@ framework/CURRENT.md,modify,framework/CURRENT.md,framing responsibility/consumer
 framework/bom.json,retain,framework/bom.json,outside this bounded change; preserve
 framework/current_state.json,modify,framework/current_state.json,framing responsibility/consumer/test or current governance
 framework/data_contract.json,retain,framework/data_contract.json,outside this bounded change; preserve
-framework/indicators.json,retain,framework/indicators.json,outside this bounded change; preserve
+framework/indicators.json,integrate,framework/indicators.json,preserve parallel PR 180 scope; implementation and semantic limits separately attributed
 framework/interface_manifest.json,retain,framework/interface_manifest.json,outside this bounded change; preserve
-framework/metrics.json,retain,framework/metrics.json,outside this bounded change; preserve
+framework/metrics.json,integrate,framework/metrics.json,preserve parallel PR 180 scope; implementation and semantic limits separately attributed
 framework/modules.json,retain,framework/modules.json,outside this bounded change; preserve
 framework/modules/M01_市场规模与增长.md,retain,framework/modules/M01_市场规模与增长.md,outside this bounded change; preserve
 framework/modules/M02_供给格局.md,retain,framework/modules/M02_供给格局.md,outside this bounded change; preserve
@@ -476,7 +476,7 @@ reports/daily_brief.md,retain,reports/daily_brief.md,outside this bounded change
 reports/intake_review.md,retain,reports/intake_review.md,outside this bounded change; preserve
 reports/reading_queue.md,retain,reports/reading_queue.md,outside this bounded change; preserve
 reports/templates/README.md,retain,reports/templates/README.md,outside this bounded change; preserve
-reports/verify_queue.md,retain,reports/verify_queue.md,outside this bounded change; preserve
+reports/verify_queue.md,integrate,reports/verify_queue.md,preserve parallel PR 180 scope; implementation and semantic limits separately attributed
 reports/workorders.json,retain,reports/workorders.json,outside this bounded change; preserve
 reports/workorders.md,retain,reports/workorders.md,outside this bounded change; preserve
 research/M01.md,retain,research/M01.md,outside this bounded change; preserve
@@ -530,7 +530,7 @@ src/inresearch/delivery/report.py,retain,src/inresearch/delivery/report.py,outsi
 src/inresearch/interfaces/__init__.py,retain,src/inresearch/interfaces/__init__.py,outside this bounded change; preserve
 src/inresearch/interfaces/auth.py,retain,src/inresearch/interfaces/auth.py,outside this bounded change; preserve
 src/inresearch/interfaces/cli.py,retain,src/inresearch/interfaces/cli.py,outside this bounded change; preserve
-src/inresearch/interfaces/deep_read.py,retain,src/inresearch/interfaces/deep_read.py,outside this bounded change; preserve
+src/inresearch/interfaces/deep_read.py,integrate,src/inresearch/interfaces/deep_read.py,preserve parallel PR 180 scope; implementation and semantic limits separately attributed
 src/inresearch/interfaces/governance.py,retain,src/inresearch/interfaces/governance.py,outside this bounded change; preserve
 src/inresearch/interfaces/http.py,retain,src/inresearch/interfaces/http.py,outside this bounded change; preserve
 src/inresearch/interfaces/pages.py,retain,src/inresearch/interfaces/pages.py,outside this bounded change; preserve
@@ -581,7 +581,7 @@ src/inresearch/storage/moves.py,retain,src/inresearch/storage/moves.py,outside t
 src/inresearch/workflow/__init__.py,retain,src/inresearch/workflow/__init__.py,outside this bounded change; preserve
 src/inresearch/workflow/attribution.py,retain,src/inresearch/workflow/attribution.py,outside this bounded change; preserve
 src/inresearch/workflow/commands.py,retain,src/inresearch/workflow/commands.py,outside this bounded change; preserve
-src/inresearch/workflow/deep_read.py,retain,src/inresearch/workflow/deep_read.py,outside this bounded change; preserve
+src/inresearch/workflow/deep_read.py,integrate,src/inresearch/workflow/deep_read.py,preserve parallel PR 180 scope; implementation and semantic limits separately attributed
 src/inresearch/workflow/model_assets.py,retain,src/inresearch/workflow/model_assets.py,outside this bounded change; preserve
 src/inresearch/workflow/progress.py,retain,src/inresearch/workflow/progress.py,outside this bounded change; preserve
 src/inresearch/workflow/reader.py,retain,src/inresearch/workflow/reader.py,outside this bounded change; preserve
@@ -616,7 +616,7 @@ tests/unit/test_catalog_migration.py,retain,tests/unit/test_catalog_migration.py
 tests/unit/test_commands.py,retain,tests/unit/test_commands.py,outside this bounded change; preserve
 tests/unit/test_continuous_reader.py,retain,tests/unit/test_continuous_reader.py,outside this bounded change; preserve
 tests/unit/test_datacenter_news.py,retain,tests/unit/test_datacenter_news.py,outside this bounded change; preserve
-tests/unit/test_deep_read.py,retain,tests/unit/test_deep_read.py,outside this bounded change; preserve
+tests/unit/test_deep_read.py,integrate,tests/unit/test_deep_read.py,preserve parallel PR 180 scope; implementation and semantic limits separately attributed
 tests/unit/test_deep_read_transactions.py,retain,tests/unit/test_deep_read_transactions.py,outside this bounded change; preserve
 tests/unit/test_display_regressions.py,retain,tests/unit/test_display_regressions.py,outside this bounded change; preserve
 tests/unit/test_fact_contract.py,retain,tests/unit/test_fact_contract.py,outside this bounded change; preserve
