@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：735。
+在册文件：736。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,7 +15,7 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 12 |
-| 历史快照 | 208 |
+| 历史快照 | 209 |
 | 运行代码 | 141 |
 | 现行规范 | 13 |
 | 项目配置 | 36 |
@@ -36,7 +36,7 @@
 | `data/brief.json` | review_marked | 23 |
 | `data/companies.json` | records | 248 |
 | `data/contracts.json` | records | 2 |
-| `data/facts.json` | records | 2373 |
+| `data/facts.json` | records | 2435 |
 | `data/policies.json` | records | 2 |
 | `data/prices.json` | records | 207 |
 | `data/product_docs_plan.csv` | rows | 801 |
@@ -264,7 +264,7 @@
 | `docs/reviews/2026-09-14/model-assets/baseline.json` | rejected_sample_requests | 1 |
 | `docs/reviews/2026-09-14/model-assets/consumers-before.csv` | rows | 77 |
 | `docs/reviews/2026-09-14/model-assets/file-plan.csv` | rows | 722 |
-| `docs/reviews/2026-09-14/model-assets/file-results.csv` | rows | 735 |
+| `docs/reviews/2026-09-14/model-assets/file-results.csv` | rows | 736 |
 | `docs/reviews/2026-09-14/model-assets/legacy-removal.csv` | rows | 7 |
 | `docs/reviews/2026-09-14/model-assets/public-consumers.csv` | rows | 202 |
 | `docs/reviews/2026-09-14/model-assets/public-contracts.csv` | rows | 17 |
@@ -725,6 +725,7 @@
 | `docs/reviews/2026-09-13/standards/verification.json` | 历史快照 |
 | [docs/reviews/2026-09-13/verification-map-repair.md](reviews/2026-09-13/verification-map-repair.md) | 历史快照 |
 | [docs/reviews/2026-09-14/model-assets/DELIVERY.md](reviews/2026-09-14/model-assets/DELIVERY.md) | 历史快照 |
+| [docs/reviews/2026-09-14/model-assets/INTEGRATION.md](reviews/2026-09-14/model-assets/INTEGRATION.md) | 历史快照 |
 | [docs/reviews/2026-09-14/model-assets/PLAN.md](reviews/2026-09-14/model-assets/PLAN.md) | 历史快照 |
 | `docs/reviews/2026-09-14/model-assets/audit.py` | 历史快照 |
 | `docs/reviews/2026-09-14/model-assets/baseline.json` | 历史快照 |
