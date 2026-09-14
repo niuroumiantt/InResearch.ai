@@ -173615,6 +173615,68 @@
       },
       "bound": "upper",
       "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间上界；原文未说明是否含电费。"
+    },
+    {
+      "fact_id": "jll2103-apac-hyperscale-colo-rent-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "apac-hyperscale-colo-rent-jll",
+        "label": "亚太区超大型数据中心主机托管费用（JLL）"
+      },
+      "value": 100.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "APAC",
+        "currency": "美元"
+      },
+      "as_of": "2021-03",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "bc04e089e62ddcc319d23df435a584312aa879a66a06755cf2be0d87b781ddb1",
+        "local_file": "【2021年3月】【JLL】《数据中心：崛起的新增长极》.pdf",
+        "locator": "PDF 第 15 页「09 主机托管与合作入市」：「超大型数据中心的主机托管费用相对较为统一，根据市场、容量和租期等条件的差异，价格区间为每月100-180美元/千瓦。中国大陆、印度和澳大利亚的供应渠道较为广泛，所以指示性费率处于这个区间的较低范围。而印度尼西亚、新加坡、中国香港和日本…会向较高区间范围倾斜（图6）」",
+        "grade": "S3",
+        "originator": "仲量联行（JLL）亚太区《数据中心：崛起的新增长极》（2021-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "亚太区超大型（超大规模批发）主机托管指示性费率，美元/kW/月，区间下界；中国大陆、印度、澳大利亚偏低，印尼、新加坡、中国香港、日本偏高。原文未说明是否含电费。",
+      "asserter": "JLL"
+    },
+    {
+      "fact_id": "jll2103-apac-hyperscale-colo-rent-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "apac-hyperscale-colo-rent-jll",
+        "label": "亚太区超大型数据中心主机托管费用（JLL）"
+      },
+      "value": 180.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "APAC",
+        "currency": "美元"
+      },
+      "as_of": "2021-03",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "bc04e089e62ddcc319d23df435a584312aa879a66a06755cf2be0d87b781ddb1",
+        "local_file": "【2021年3月】【JLL】《数据中心：崛起的新增长极》.pdf",
+        "locator": "PDF 第 15 页「09 主机托管与合作入市」：「超大型数据中心的主机托管费用相对较为统一，根据市场、容量和租期等条件的差异，价格区间为每月100-180美元/千瓦。中国大陆、印度和澳大利亚的供应渠道较为广泛，所以指示性费率处于这个区间的较低范围。而印度尼西亚、新加坡、中国香港和日本…会向较高区间范围倾斜（图6）」",
+        "grade": "S3",
+        "originator": "仲量联行（JLL）亚太区《数据中心：崛起的新增长极》（2021-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "亚太区超大型（超大规模批发）主机托管指示性费率，美元/kW/月，区间上界；中国大陆、印度、澳大利亚偏低，印尼、新加坡、中国香港、日本偏高。原文未说明是否含电费。",
+      "asserter": "JLL"
     }
   ]
 }
