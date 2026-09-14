@@ -140873,6 +140873,390 @@
       "corroboration": "待交叉验证",
       "notes": "2025-09 时点的全年预测（含纬创 L10 托盘折合机柜当量）；2026-01 版同值 30k 已按全年估计入库（ms2601-gb200-nvl72-rack-ship-2025）。",
       "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2510-rack-ship-rackscale-total-2025e",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "rackscale-total",
+        "label": "NVIDIA 机架级合计"
+      },
+      "value": 27600.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "NVIDIA 机架级合计",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2025-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "09bbe4373bccbe3406f8c7611705bad2047aece5cb070ec2fa6181a19ba6b20d",
+        "local_file": "20251014-大中华区科技硬件：人工智能科技硬件全面升级(48页).pdf",
+        "locator": "第 11 页「NVIDIA AI Server Unit Assumptions」（k units，2023/2024/2025/2026/2027）：Rack-scale 0.0/27.6/63.4/54.8（对 2024–2027）；GB200 NVL72 23.2/0.3/0.0；GB300 NVL72 4.4/57.1/0.0；VR200 NVL144 0.0/6.0/51.3；VR300 NVL576 0.0/0.0/3.5（对 2025–2027）",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区科技硬件团队（2025-10-07，中英对照版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表单位千架，27.6 千架 = 27600 架。表中列对齐错位：Rack-scale 行 4 个数对应 2024–2027，机型行对应 2025–2027，按与合计相加一致（2025：23.2+4.4=27.6；2026：0.3+57.1+6.0=63.4；2027：51.3+3.5=54.8）判定。**不同平台一架的 GPU 数不同（NVL144/NVL576 按裸片计），机架级合计跨平台相加只是架数口径**。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2510-rack-ship-rackscale-total-2026e",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "rackscale-total",
+        "label": "NVIDIA 机架级合计"
+      },
+      "value": 63400.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "NVIDIA 机架级合计",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2025-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "09bbe4373bccbe3406f8c7611705bad2047aece5cb070ec2fa6181a19ba6b20d",
+        "local_file": "20251014-大中华区科技硬件：人工智能科技硬件全面升级(48页).pdf",
+        "locator": "第 11 页「NVIDIA AI Server Unit Assumptions」（k units，2023/2024/2025/2026/2027）：Rack-scale 0.0/27.6/63.4/54.8（对 2024–2027）；GB200 NVL72 23.2/0.3/0.0；GB300 NVL72 4.4/57.1/0.0；VR200 NVL144 0.0/6.0/51.3；VR300 NVL576 0.0/0.0/3.5（对 2025–2027）",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区科技硬件团队（2025-10-07，中英对照版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表单位千架，63.4 千架 = 63400 架。表中列对齐错位：Rack-scale 行 4 个数对应 2024–2027，机型行对应 2025–2027，按与合计相加一致（2025：23.2+4.4=27.6；2026：0.3+57.1+6.0=63.4；2027：51.3+3.5=54.8）判定。**不同平台一架的 GPU 数不同（NVL144/NVL576 按裸片计），机架级合计跨平台相加只是架数口径**。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2510-rack-ship-rackscale-total-2027e",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "rackscale-total",
+        "label": "NVIDIA 机架级合计"
+      },
+      "value": 54800.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "NVIDIA 机架级合计",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2027E@2025-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "09bbe4373bccbe3406f8c7611705bad2047aece5cb070ec2fa6181a19ba6b20d",
+        "local_file": "20251014-大中华区科技硬件：人工智能科技硬件全面升级(48页).pdf",
+        "locator": "第 11 页「NVIDIA AI Server Unit Assumptions」（k units，2023/2024/2025/2026/2027）：Rack-scale 0.0/27.6/63.4/54.8（对 2024–2027）；GB200 NVL72 23.2/0.3/0.0；GB300 NVL72 4.4/57.1/0.0；VR200 NVL144 0.0/6.0/51.3；VR300 NVL576 0.0/0.0/3.5（对 2025–2027）",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区科技硬件团队（2025-10-07，中英对照版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表单位千架，54.8 千架 = 54800 架。表中列对齐错位：Rack-scale 行 4 个数对应 2024–2027，机型行对应 2025–2027，按与合计相加一致（2025：23.2+4.4=27.6；2026：0.3+57.1+6.0=63.4；2027：51.3+3.5=54.8）判定。**不同平台一架的 GPU 数不同（NVL144/NVL576 按裸片计），机架级合计跨平台相加只是架数口径**。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2510-rack-ship-gb200-nvl72-2025e",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "gb200-nvl72",
+        "label": "GB200 NVL72"
+      },
+      "value": 23200.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "GB200 NVL72",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2025-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "09bbe4373bccbe3406f8c7611705bad2047aece5cb070ec2fa6181a19ba6b20d",
+        "local_file": "20251014-大中华区科技硬件：人工智能科技硬件全面升级(48页).pdf",
+        "locator": "第 11 页「NVIDIA AI Server Unit Assumptions」（k units，2023/2024/2025/2026/2027）：Rack-scale 0.0/27.6/63.4/54.8（对 2024–2027）；GB200 NVL72 23.2/0.3/0.0；GB300 NVL72 4.4/57.1/0.0；VR200 NVL144 0.0/6.0/51.3；VR300 NVL576 0.0/0.0/3.5（对 2025–2027）",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区科技硬件团队（2025-10-07，中英对照版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表单位千架，23.2 千架 = 23200 架。表中列对齐错位：Rack-scale 行 4 个数对应 2024–2027，机型行对应 2025–2027，按与合计相加一致（2025：23.2+4.4=27.6；2026：0.3+57.1+6.0=63.4；2027：51.3+3.5=54.8）判定。**不同平台一架的 GPU 数不同（NVL144/NVL576 按裸片计），机架级合计跨平台相加只是架数口径**。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2510-rack-ship-gb200-nvl72-2026e",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "gb200-nvl72",
+        "label": "GB200 NVL72"
+      },
+      "value": 300.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "GB200 NVL72",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2025-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "09bbe4373bccbe3406f8c7611705bad2047aece5cb070ec2fa6181a19ba6b20d",
+        "local_file": "20251014-大中华区科技硬件：人工智能科技硬件全面升级(48页).pdf",
+        "locator": "第 11 页「NVIDIA AI Server Unit Assumptions」（k units，2023/2024/2025/2026/2027）：Rack-scale 0.0/27.6/63.4/54.8（对 2024–2027）；GB200 NVL72 23.2/0.3/0.0；GB300 NVL72 4.4/57.1/0.0；VR200 NVL144 0.0/6.0/51.3；VR300 NVL576 0.0/0.0/3.5（对 2025–2027）",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区科技硬件团队（2025-10-07，中英对照版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表单位千架，0.3 千架 = 300 架。表中列对齐错位：Rack-scale 行 4 个数对应 2024–2027，机型行对应 2025–2027，按与合计相加一致（2025：23.2+4.4=27.6；2026：0.3+57.1+6.0=63.4；2027：51.3+3.5=54.8）判定。**不同平台一架的 GPU 数不同（NVL144/NVL576 按裸片计），机架级合计跨平台相加只是架数口径**。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2510-rack-ship-gb300-nvl72-2025e",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "gb300-nvl72",
+        "label": "GB300 NVL72"
+      },
+      "value": 4400.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "GB300 NVL72",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2025-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "09bbe4373bccbe3406f8c7611705bad2047aece5cb070ec2fa6181a19ba6b20d",
+        "local_file": "20251014-大中华区科技硬件：人工智能科技硬件全面升级(48页).pdf",
+        "locator": "第 11 页「NVIDIA AI Server Unit Assumptions」（k units，2023/2024/2025/2026/2027）：Rack-scale 0.0/27.6/63.4/54.8（对 2024–2027）；GB200 NVL72 23.2/0.3/0.0；GB300 NVL72 4.4/57.1/0.0；VR200 NVL144 0.0/6.0/51.3；VR300 NVL576 0.0/0.0/3.5（对 2025–2027）",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区科技硬件团队（2025-10-07，中英对照版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表单位千架，4.4 千架 = 4400 架。表中列对齐错位：Rack-scale 行 4 个数对应 2024–2027，机型行对应 2025–2027，按与合计相加一致（2025：23.2+4.4=27.6；2026：0.3+57.1+6.0=63.4；2027：51.3+3.5=54.8）判定。**不同平台一架的 GPU 数不同（NVL144/NVL576 按裸片计），机架级合计跨平台相加只是架数口径**。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2510-rack-ship-gb300-nvl72-2026e",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "gb300-nvl72",
+        "label": "GB300 NVL72"
+      },
+      "value": 57100.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "GB300 NVL72",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2025-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "09bbe4373bccbe3406f8c7611705bad2047aece5cb070ec2fa6181a19ba6b20d",
+        "local_file": "20251014-大中华区科技硬件：人工智能科技硬件全面升级(48页).pdf",
+        "locator": "第 11 页「NVIDIA AI Server Unit Assumptions」（k units，2023/2024/2025/2026/2027）：Rack-scale 0.0/27.6/63.4/54.8（对 2024–2027）；GB200 NVL72 23.2/0.3/0.0；GB300 NVL72 4.4/57.1/0.0；VR200 NVL144 0.0/6.0/51.3；VR300 NVL576 0.0/0.0/3.5（对 2025–2027）",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区科技硬件团队（2025-10-07，中英对照版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表单位千架，57.1 千架 = 57100 架。表中列对齐错位：Rack-scale 行 4 个数对应 2024–2027，机型行对应 2025–2027，按与合计相加一致（2025：23.2+4.4=27.6；2026：0.3+57.1+6.0=63.4；2027：51.3+3.5=54.8）判定。**不同平台一架的 GPU 数不同（NVL144/NVL576 按裸片计），机架级合计跨平台相加只是架数口径**。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2510-rack-ship-vr200-nvl144-2026e",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "vr200-nvl144",
+        "label": "VR200 NVL144"
+      },
+      "value": 6000.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "VR200 NVL144",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2025-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "09bbe4373bccbe3406f8c7611705bad2047aece5cb070ec2fa6181a19ba6b20d",
+        "local_file": "20251014-大中华区科技硬件：人工智能科技硬件全面升级(48页).pdf",
+        "locator": "第 11 页「NVIDIA AI Server Unit Assumptions」（k units，2023/2024/2025/2026/2027）：Rack-scale 0.0/27.6/63.4/54.8（对 2024–2027）；GB200 NVL72 23.2/0.3/0.0；GB300 NVL72 4.4/57.1/0.0；VR200 NVL144 0.0/6.0/51.3；VR300 NVL576 0.0/0.0/3.5（对 2025–2027）",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区科技硬件团队（2025-10-07，中英对照版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表单位千架，6.0 千架 = 6000 架。表中列对齐错位：Rack-scale 行 4 个数对应 2024–2027，机型行对应 2025–2027，按与合计相加一致（2025：23.2+4.4=27.6；2026：0.3+57.1+6.0=63.4；2027：51.3+3.5=54.8）判定。**不同平台一架的 GPU 数不同（NVL144/NVL576 按裸片计），机架级合计跨平台相加只是架数口径**。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2510-rack-ship-vr200-nvl144-2027e",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "vr200-nvl144",
+        "label": "VR200 NVL144"
+      },
+      "value": 51300.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "VR200 NVL144",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2027E@2025-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "09bbe4373bccbe3406f8c7611705bad2047aece5cb070ec2fa6181a19ba6b20d",
+        "local_file": "20251014-大中华区科技硬件：人工智能科技硬件全面升级(48页).pdf",
+        "locator": "第 11 页「NVIDIA AI Server Unit Assumptions」（k units，2023/2024/2025/2026/2027）：Rack-scale 0.0/27.6/63.4/54.8（对 2024–2027）；GB200 NVL72 23.2/0.3/0.0；GB300 NVL72 4.4/57.1/0.0；VR200 NVL144 0.0/6.0/51.3；VR300 NVL576 0.0/0.0/3.5（对 2025–2027）",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区科技硬件团队（2025-10-07，中英对照版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表单位千架，51.3 千架 = 51300 架。表中列对齐错位：Rack-scale 行 4 个数对应 2024–2027，机型行对应 2025–2027，按与合计相加一致（2025：23.2+4.4=27.6；2026：0.3+57.1+6.0=63.4；2027：51.3+3.5=54.8）判定。**不同平台一架的 GPU 数不同（NVL144/NVL576 按裸片计），机架级合计跨平台相加只是架数口径**。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2510-rack-ship-vr300-nvl576-2027e",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "vr300-nvl576",
+        "label": "VR300 NVL576"
+      },
+      "value": 3500.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "VR300 NVL576",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2027E@2025-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "09bbe4373bccbe3406f8c7611705bad2047aece5cb070ec2fa6181a19ba6b20d",
+        "local_file": "20251014-大中华区科技硬件：人工智能科技硬件全面升级(48页).pdf",
+        "locator": "第 11 页「NVIDIA AI Server Unit Assumptions」（k units，2023/2024/2025/2026/2027）：Rack-scale 0.0/27.6/63.4/54.8（对 2024–2027）；GB200 NVL72 23.2/0.3/0.0；GB300 NVL72 4.4/57.1/0.0；VR200 NVL144 0.0/6.0/51.3；VR300 NVL576 0.0/0.0/3.5（对 2025–2027）",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区科技硬件团队（2025-10-07，中英对照版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原表单位千架，3.5 千架 = 3500 架。表中列对齐错位：Rack-scale 行 4 个数对应 2024–2027，机型行对应 2025–2027，按与合计相加一致（2025：23.2+4.4=27.6；2026：0.3+57.1+6.0=63.4；2027：51.3+3.5=54.8）判定。**不同平台一架的 GPU 数不同（NVL144/NVL576 按裸片计），机架级合计跨平台相加只是架数口径**。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2510-rack-output-gb200-300-2025q3e-lower",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "gb200-gb300-nvl72",
+        "label": "GB200/300 NVL72 当量"
+      },
+      "value": 8000.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "GB200/300 NVL72 等效",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025-Q3E@2025-10",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "09bbe4373bccbe3406f8c7611705bad2047aece5cb070ec2fa6181a19ba6b20d",
+        "local_file": "20251014-大中华区科技硬件：人工智能科技硬件全面升级(48页).pdf",
+        "locator": "第 7 页「NVIDIA GPU Roadmap – Recent updates」：「We forecast ~27.6k racks for 2025 and at least 60k racks for 2026」「We believe 3Q25 rack output is on track to reach 8-9k」",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区科技硬件团队（2025-10-07，中英对照版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「8-9k」区间的下界；为机柜产出（output）口径，大摩按 NVL72 当量计。同页称 2026 年至少 6 万架（表中 6.34 万架）。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2510-rack-output-gb200-300-2025q3e-upper",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "gb200-gb300-nvl72",
+        "label": "GB200/300 NVL72 当量"
+      },
+      "value": 9000.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "GB200/300 NVL72 等效",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025-Q3E@2025-10",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "09bbe4373bccbe3406f8c7611705bad2047aece5cb070ec2fa6181a19ba6b20d",
+        "local_file": "20251014-大中华区科技硬件：人工智能科技硬件全面升级(48页).pdf",
+        "locator": "第 7 页「NVIDIA GPU Roadmap – Recent updates」：「We forecast ~27.6k racks for 2025 and at least 60k racks for 2026」「We believe 3Q25 rack output is on track to reach 8-9k」",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区科技硬件团队（2025-10-07，中英对照版）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「8-9k」区间的上界；为机柜产出（output）口径，大摩按 NVL72 当量计。同页称 2026 年至少 6 万架（表中 6.34 万架）。",
+      "asserter": "摩根士丹利"
     }
   ]
 }
