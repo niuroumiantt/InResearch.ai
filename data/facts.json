@@ -119579,6 +119579,401 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "指标定义为可再生能源电量 ÷ 数据中心总消耗电量；原文未说是全行业平均还是领先数据中心，按全市场记 [未核]。同表 PUE「1.0x」、WUE 0.5 L/kWh 未录。报告发布月份原文未写，@ 记 2023。"
+    },
+    {
+      "asserter": "开放数据中心委员会",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "odcc2023-cn-pue-inuse-hyperscale-2022",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 1.36,
+      "unit": "比值",
+      "bound": "point",
+      "as_of": "2022-12",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "超大型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "evidence": {
+        "sha256": "e72432b59cd2e428c10b437b17bf9dedc78ef67115d971dbbb265a68a8f71611",
+        "local_file": "ODCC2023数据中心绿色设计白皮书36页.pdf",
+        "locator": "第 11 页 1.2)：「截至 2022 年底，全国在用超大型数据中心平均 PUE 为 1.36，大型数据中心平均 PUE 为 1.42，最优水平达到 1.02。全国规划在建数据中心平均设计 PUE 为 1.32 左右，超大型、大型数据中心的平均设计 PUE 分别为 1.28、1.29」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会（ODCC）《数据中心绿色设计白皮书》ODCC-2023-02001（2023-06）"
+      },
+      "notes": "在用超大型数据中心平均。 运行值的统计窗口原文未写，按年均记 [未核]。原文「据统计」未注出处（ODCC 为中国信通院牵头的组织，数字多与信通院口径一致），断言者记 ODCC。"
+    },
+    {
+      "asserter": "开放数据中心委员会",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "odcc2023-cn-pue-inuse-large-2022",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 1.42,
+      "unit": "比值",
+      "bound": "point",
+      "as_of": "2022-12",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "大型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "evidence": {
+        "sha256": "e72432b59cd2e428c10b437b17bf9dedc78ef67115d971dbbb265a68a8f71611",
+        "local_file": "ODCC2023数据中心绿色设计白皮书36页.pdf",
+        "locator": "第 11 页 1.2)：「截至 2022 年底，全国在用超大型数据中心平均 PUE 为 1.36，大型数据中心平均 PUE 为 1.42，最优水平达到 1.02。全国规划在建数据中心平均设计 PUE 为 1.32 左右，超大型、大型数据中心的平均设计 PUE 分别为 1.28、1.29」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会（ODCC）《数据中心绿色设计白皮书》ODCC-2023-02001（2023-06）"
+      },
+      "notes": "在用大型数据中心平均。 运行值的统计窗口原文未写，按年均记 [未核]。原文「据统计」未注出处（ODCC 为中国信通院牵头的组织，数字多与信通院口径一致），断言者记 ODCC。"
+    },
+    {
+      "asserter": "开放数据中心委员会",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "odcc2023-cn-pue-best-2022",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 1.02,
+      "unit": "比值",
+      "bound": "point",
+      "as_of": "2022-12",
+      "caliber": {
+        "basis": "最优水平",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "evidence": {
+        "sha256": "e72432b59cd2e428c10b437b17bf9dedc78ef67115d971dbbb265a68a8f71611",
+        "local_file": "ODCC2023数据中心绿色设计白皮书36页.pdf",
+        "locator": "第 11 页 1.2)：「截至 2022 年底，全国在用超大型数据中心平均 PUE 为 1.36，大型数据中心平均 PUE 为 1.42，最优水平达到 1.02。全国规划在建数据中心平均设计 PUE 为 1.32 左右，超大型、大型数据中心的平均设计 PUE 分别为 1.28、1.29」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会（ODCC）《数据中心绿色设计白皮书》ODCC-2023-02001（2023-06）"
+      },
+      "notes": "在用数据中心最优水平。 运行值的统计窗口原文未写，按年均记 [未核]。原文「据统计」未注出处（ODCC 为中国信通院牵头的组织，数字多与信通院口径一致），断言者记 ODCC。"
+    },
+    {
+      "asserter": "开放数据中心委员会",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "odcc2023-cn-pue-planned-design-avg-2022",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 1.32,
+      "unit": "比值",
+      "bound": "point",
+      "as_of": "2022-12",
+      "caliber": {
+        "basis": "设计值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "设计工况",
+        "region": "CN"
+      },
+      "evidence": {
+        "sha256": "e72432b59cd2e428c10b437b17bf9dedc78ef67115d971dbbb265a68a8f71611",
+        "local_file": "ODCC2023数据中心绿色设计白皮书36页.pdf",
+        "locator": "第 11 页 1.2)：「截至 2022 年底，全国在用超大型数据中心平均 PUE 为 1.36，大型数据中心平均 PUE 为 1.42，最优水平达到 1.02。全国规划在建数据中心平均设计 PUE 为 1.32 左右，超大型、大型数据中心的平均设计 PUE 分别为 1.28、1.29」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会（ODCC）《数据中心绿色设计白皮书》ODCC-2023-02001（2023-06）"
+      },
+      "notes": "规划在建数据中心平均设计 PUE，「左右」按点值记。 原文「据统计」未注出处（ODCC 为中国信通院牵头的组织，数字多与信通院口径一致），断言者记 ODCC。"
+    },
+    {
+      "asserter": "开放数据中心委员会",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "odcc2023-cn-pue-planned-design-hyperscale-2022",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 1.28,
+      "unit": "比值",
+      "bound": "point",
+      "as_of": "2022-12",
+      "caliber": {
+        "basis": "设计值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "超大型",
+        "period": "设计工况",
+        "region": "CN"
+      },
+      "evidence": {
+        "sha256": "e72432b59cd2e428c10b437b17bf9dedc78ef67115d971dbbb265a68a8f71611",
+        "local_file": "ODCC2023数据中心绿色设计白皮书36页.pdf",
+        "locator": "第 11 页 1.2)：「截至 2022 年底，全国在用超大型数据中心平均 PUE 为 1.36，大型数据中心平均 PUE 为 1.42，最优水平达到 1.02。全国规划在建数据中心平均设计 PUE 为 1.32 左右，超大型、大型数据中心的平均设计 PUE 分别为 1.28、1.29」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会（ODCC）《数据中心绿色设计白皮书》ODCC-2023-02001（2023-06）"
+      },
+      "notes": "规划在建超大型数据中心平均设计 PUE。 原文「据统计」未注出处（ODCC 为中国信通院牵头的组织，数字多与信通院口径一致），断言者记 ODCC。"
+    },
+    {
+      "asserter": "开放数据中心委员会",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "odcc2023-cn-pue-planned-design-large-2022",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 1.29,
+      "unit": "比值",
+      "bound": "point",
+      "as_of": "2022-12",
+      "caliber": {
+        "basis": "设计值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "大型",
+        "period": "设计工况",
+        "region": "CN"
+      },
+      "evidence": {
+        "sha256": "e72432b59cd2e428c10b437b17bf9dedc78ef67115d971dbbb265a68a8f71611",
+        "local_file": "ODCC2023数据中心绿色设计白皮书36页.pdf",
+        "locator": "第 11 页 1.2)：「截至 2022 年底，全国在用超大型数据中心平均 PUE 为 1.36，大型数据中心平均 PUE 为 1.42，最优水平达到 1.02。全国规划在建数据中心平均设计 PUE 为 1.32 左右，超大型、大型数据中心的平均设计 PUE 分别为 1.28、1.29」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会（ODCC）《数据中心绿色设计白皮书》ODCC-2023-02001（2023-06）"
+      },
+      "notes": "规划在建大型数据中心平均设计 PUE。 原文「据统计」未注出处（ODCC 为中国信通院牵头的组织，数字多与信通院口径一致），断言者记 ODCC。"
+    },
+    {
+      "asserter": "开放数据中心委员会",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "odcc2023-cn-dc-electricity-2021",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 111.6,
+      "unit": "TWh",
+      "bound": "point",
+      "as_of": "2021",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "CN",
+        "basis": "第三方估算"
+      },
+      "evidence": {
+        "sha256": "e72432b59cd2e428c10b437b17bf9dedc78ef67115d971dbbb265a68a8f71611",
+        "local_file": "ODCC2023数据中心绿色设计白皮书36页.pdf",
+        "locator": "第 12 页 1.2)：「2021 年我国数据中心能耗总量为 1116 亿千瓦时，碳排放量超过 7000 万吨。2022 年我国数据中心能耗总量 1300 亿千瓦时，同比增长 16%，预计到 2030 年，能耗总量将达到约 3800 亿千瓦时。若不使用绿色能源，碳排放总量将突破 2 亿吨，约占全国总碳排放量的 2%」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会（ODCC）《数据中心绿色设计白皮书》ODCC-2023-02001（2023-06）"
+      },
+      "notes": "1116 亿千瓦时 = 111.6 TWh。碳排放超过 7,000 万吨。 原文「据统计」未注出处（ODCC 为中国信通院牵头的组织，数字多与信通院口径一致），断言者记 ODCC。"
+    },
+    {
+      "asserter": "开放数据中心委员会",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "odcc2023-cn-dc-electricity-2022",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 130.0,
+      "unit": "TWh",
+      "bound": "point",
+      "as_of": "2022",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "CN",
+        "basis": "第三方估算"
+      },
+      "evidence": {
+        "sha256": "e72432b59cd2e428c10b437b17bf9dedc78ef67115d971dbbb265a68a8f71611",
+        "local_file": "ODCC2023数据中心绿色设计白皮书36页.pdf",
+        "locator": "第 12 页 1.2)：「2021 年我国数据中心能耗总量为 1116 亿千瓦时，碳排放量超过 7000 万吨。2022 年我国数据中心能耗总量 1300 亿千瓦时，同比增长 16%，预计到 2030 年，能耗总量将达到约 3800 亿千瓦时。若不使用绿色能源，碳排放总量将突破 2 亿吨，约占全国总碳排放量的 2%」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会（ODCC）《数据中心绿色设计白皮书》ODCC-2023-02001（2023-06）"
+      },
+      "notes": "1300 亿千瓦时 = 130.0 TWh。同比 +16%。 原文「据统计」未注出处（ODCC 为中国信通院牵头的组织，数字多与信通院口径一致），断言者记 ODCC。"
+    },
+    {
+      "asserter": "开放数据中心委员会",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "odcc2023-cn-dc-electricity-2030e",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 380.0,
+      "unit": "TWh",
+      "bound": "point",
+      "as_of": "2030E@2023-06",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "e72432b59cd2e428c10b437b17bf9dedc78ef67115d971dbbb265a68a8f71611",
+        "local_file": "ODCC2023数据中心绿色设计白皮书36页.pdf",
+        "locator": "第 12 页 1.2)：「2021 年我国数据中心能耗总量为 1116 亿千瓦时，碳排放量超过 7000 万吨。2022 年我国数据中心能耗总量 1300 亿千瓦时，同比增长 16%，预计到 2030 年，能耗总量将达到约 3800 亿千瓦时。若不使用绿色能源，碳排放总量将突破 2 亿吨，约占全国总碳排放量的 2%」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会（ODCC）《数据中心绿色设计白皮书》ODCC-2023-02001（2023-06）"
+      },
+      "notes": "3800 亿千瓦时 = 380.0 TWh。「约」按点值记；不使用绿色能源时碳排放将突破 2 亿吨，约占全国 2%。库内信通院 2024-05 同一预测 380 TWh（caict-lc2024-cn-dc-electricity-2030）数值相同。 原文「据统计」未注出处（ODCC 为中国信通院牵头的组织，数字多与信通院口径一致），断言者记 ODCC。"
+    },
+    {
+      "asserter": "开放数据中心委员会",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "odcc2023-cn-rack-total-2022",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 650.0,
+      "unit": "万标准机架",
+      "bound": "lower",
+      "as_of": "2022-12",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "evidence": {
+        "sha256": "e72432b59cd2e428c10b437b17bf9dedc78ef67115d971dbbb265a68a8f71611",
+        "local_file": "ODCC2023数据中心绿色设计白皮书36页.pdf",
+        "locator": "第 10 页 1.2)：「截至到 2022 年底，我国在用数据中心机架总规模超过 650 万架，近 5 年年均复合增速超过 30%，算力总规模为 180EFLOPS（FP32）……其中，大型以上数据中心机架规模增长较快，按照标准机架 2.5kW 统计，机架规模超 540 万架，占比超 80%」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会（ODCC）《数据中心绿色设计白皮书》ODCC-2023-02001（2023-06）"
+      },
+      "notes": "「超过」按下界记；同段写明按标准机架 2.5kW 统计。近 5 年年均复合增速超 30%。原文「据统计」未注出处（ODCC 为中国信通院牵头的组织，数字多与信通院口径一致），断言者记 ODCC。"
+    },
+    {
+      "asserter": "开放数据中心委员会",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "odcc2023-cn-rack-large-plus-2022",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters-large-plus",
+        "label": "中国大型及以上数据中心"
+      },
+      "value": 540.0,
+      "unit": "万标准机架",
+      "bound": "lower",
+      "as_of": "2022-12",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "evidence": {
+        "sha256": "e72432b59cd2e428c10b437b17bf9dedc78ef67115d971dbbb265a68a8f71611",
+        "local_file": "ODCC2023数据中心绿色设计白皮书36页.pdf",
+        "locator": "第 10 页 1.2)：「截至到 2022 年底，我国在用数据中心机架总规模超过 650 万架，近 5 年年均复合增速超过 30%，算力总规模为 180EFLOPS（FP32）……其中，大型以上数据中心机架规模增长较快，按照标准机架 2.5kW 统计，机架规模超 540 万架，占比超 80%」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会（ODCC）《数据中心绿色设计白皮书》ODCC-2023-02001（2023-06）"
+      },
+      "notes": "大型以上数据中心，「超 540 万架」按下界记，占全部在用机架超 80%。原文「据统计」未注出处（ODCC 为中国信通院牵头的组织，数字多与信通院口径一致），断言者记 ODCC。"
+    },
+    {
+      "asserter": "腾讯",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "odcc2023-tencent-yizheng-design-pue",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "tencent-yizheng-dc",
+        "label": "腾讯仪征数据中心"
+      },
+      "value": 1.25,
+      "unit": "比值",
+      "bound": "upper",
+      "as_of": "2023-06",
+      "caliber": {
+        "basis": "设计值",
+        "cooling_tech": "间接蒸发冷却",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "CN"
+      },
+      "evidence": {
+        "sha256": "e72432b59cd2e428c10b437b17bf9dedc78ef67115d971dbbb265a68a8f71611",
+        "local_file": "ODCC2023数据中心绿色设计白皮书36页.pdf",
+        "locator": "第 34 页 四、1：「将数据中心年平均设计 PUE 控制在 1.25 以下……末端供电形式采用 HVDC 高压直流+市电直供的供电架构……系统综合供电效率可达 98%……采用间接蒸发制冷空调方案……年完全自然冷却时间占比可达 64.3%。全年平均 CLF 低至 0.1125」",
+        "grade": "S3",
+        "originator": "腾讯（ODCC 绿色设计优秀案例，经开放数据中心委员会（ODCC）《数据中心绿色设计白皮书》ODCC-2023-02001（2023-06））"
+      },
+      "notes": "年平均设计 PUE「控制在 1.25 以下」按上界记；HVDC+市电直供供电效率 98%；年完全自然冷却时间 64.3%，全年平均 CLF 0.1125。as_of 取白皮书发布月。"
     }
   ]
 }
