@@ -170,6 +170,40 @@ console.log(JSON.stringify(counts));
         self.assertTrue(json.loads(result.stdout))
 
 
+class SplitAsserterTests(unittest.TestCase):
+    """同一家写两种名字就是两家——踩过三次了。
+
+    asserter 进 claim_key，所以两种写法之间的重复、修订、争议**互相看不见**：
+    不撞键、也不会被争议分诊捞出来，只会安静地把一家的序列劈成两半。
+    """
+
+    def rows(self, *pairs):
+        return [{'asserter': name} for name, count in pairs for _ in range(count)]
+
+    def test_two_spellings_of_one_house_are_reported(self):
+        found = facts.split_asserters(self.rows(('NVIDIA', 26), ('英伟达', 22)))
+        self.assertEqual(found, [('英伟达', [('NVIDIA', 26), ('英伟达', 22)])])
+
+    def test_one_spelling_alone_is_not_a_split(self):
+        """只用别名、没有并存，键就没劈开——报它只会变成噪音。"""
+        self.assertEqual(facts.split_asserters(self.rows(('NVIDIA', 26))), [])
+        self.assertEqual(facts.split_asserters(self.rows(('英伟达', 26))), [])
+
+    def test_unrelated_houses_are_not_merged(self):
+        """别名表只收同一法人的不同写法，不收同集团的不同主体。"""
+        found = facts.split_asserters(self.rows(('中国移动', 5), ('中移动信息', 3)))
+        self.assertEqual(found, [])
+
+    def test_the_worst_split_is_reported_first(self):
+        found = facts.split_asserters(
+            self.rows(('Google', 2), ('谷歌', 3), ('NVIDIA', 26), ('英伟达', 22)))
+        self.assertEqual([canon for canon, _ in found], ['英伟达', '谷歌'])
+
+    def test_the_live_store_has_no_split_left(self):
+        stored, _ = facts.load()
+        self.assertEqual(facts.split_asserters(stored), [])
+
+
 class BuriedAsserterTests(unittest.TestCase):
     """「据 X 统计」的 X 就是断言者，别让它留在 locator 的引号里。
 

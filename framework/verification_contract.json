@@ -43,7 +43,7 @@
     "tests/unit/test_continuous_reader.py": "6c36c298912077a7ab480e43f4a54fbfbb08978624c6e6efb3ac9f47657f4238",
     "tests/unit/test_deep_read.py": "f4399a1287d9fd7ced79059d351c6edd08a48ca0c3a752dbf94bc4964705d4f9",
     "tests/unit/test_deep_read_transactions.py": "e44abfc65c4550106aa009041a92271a8e5d3c880bd56b680147baaefe633317",
-    "tests/unit/test_display_regressions.py": "2602913be97a4e6a9b1bd60e30be5ef35853bc799efa797f71d517df22085d51",
+    "tests/unit/test_display_regressions.py": "b3461db2c0648d4ca88f6d8dd646edbcb8c8242df4aeeb43be7a6182d8d94cbe",
     "tests/unit/test_fact_contract.py": "4e739f6e3a3a9cae74057824615db912e38c2acc20f91ae109a2efb0c08f3dd7",
     "tests/unit/test_file_moves.py": "1f9ba746f06885b6d48ee2d73b5da8bc4364ca1ad54e85b5d6fe23cdbf1edf9a",
     "tests/unit/test_governance.py": "ee59b285f13ea82d6df0426d0fbd519b7b8f9e7695fde569708c0dac10d71f39",
@@ -141,7 +141,10 @@
         "tests/unit/test_deep_read.py::ResketchTests.test_every_file_needing_a_reread_is_listed",
         "tests/unit/test_deep_read.py::MhtReaderTests.test_script_and_style_never_reach_the_text",
         "tests/unit/test_deep_read.py::MhtReaderTests.test_paragraphs_stay_separated_for_chunking",
-        "tests/unit/test_deep_read.py::MhtReaderTests.test_a_file_with_no_text_part_says_so"
+        "tests/unit/test_deep_read.py::MhtReaderTests.test_a_file_with_no_text_part_says_so",
+        "tests/unit/test_display_regressions.py::SplitAsserterTests.test_two_spellings_of_one_house_are_reported",
+        "tests/unit/test_display_regressions.py::SplitAsserterTests.test_one_spelling_alone_is_not_a_split",
+        "tests/unit/test_display_regressions.py::SplitAsserterTests.test_the_live_store_has_no_split_left"
       ],
       "not_verified": [
         "38 条存量事实缺内容 SHA；27 条历史来源未登记；B 审核质量与语义冲突识别不能由机检代替。",
@@ -161,7 +164,9 @@
         "旧格式 l2/<前16位>/text.md 的任务包没有 manifest，正文与材料的绑定只有目录名，resketch 用它补出的 sketch 无法再核对；报告里按 packet_legacy16 单列，不与其它来源混计。",
         "企业密级定级与泛用机密页脚的区分由人判断，测试不覆盖：RESTRICTIONS 只说明该怎么分，标记仍须逐份由人决定并说明在哪儿看到的。",
         "新增必填口径维后的回填按原文就近判断（workload 取「全部负载」除非原文明说只讲 AI，loop/wafer_size 判不出即填「未注明」）：这一步没有逐条回原件核对，判错只会让该条与别条不可比，不会改值。",
-        ".mht 读取器只取 text/html 与 text/plain 段；原网页靠 CSS 或脚本渲染的内容取不到，取到的文字顺序按 MIME 段序而非视觉顺序，表格结构不保留。"
+        ".mht 读取器只取 text/html 与 text/plain 段；原网页靠 CSS 或脚本渲染的内容取不到，取到的文字顺序按 MIME 段序而非视觉顺序，表格结构不保留。",
+        "ASSERTER_ALIASES 是人工维护的表，只覆盖已知的写法分裂：表里没有的公司分裂检测不出来，而表里若错收了两个不同法人，split_asserters 会把它们报成一家（只报不改，所以不会真的并错，但提示是错的）。",
+        "分发受限与个人信息的三处边界判定（公开会议胶片不挡、自相矛盾的客户限制按紧的算、逐订阅户水印件挡 confidential 不挡 pii）由人判断，测试不覆盖；RESTRICTIONS 的说明只记下判据，每份仍须逐一决定。"
       ]
     },
     {
