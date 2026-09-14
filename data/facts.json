@@ -132881,6 +132881,105 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "AI 数据中心 2030 年 612 TWh，本十年增长超 10 倍。图 1 另有低端/基准/高端三情景曲线，正文 612 未标明对应哪条，scenario 按单一情景记，不当 Base Case。同页冷却用淡水 30.2 亿立方米、AI 碳排或占全球 3.4%（十年 11 倍）；第 11 页 AI 占全球用电 2024 年 0.2% → 2030 年 1.9%（CAGR 48%）——dc_power_share_of_grid 无 AI 子口径，未录。"
+    },
+    {
+      "fact_id": "oeko2505-global-dc-electricity-all-incl-crypto-2023",
+      "metric_id": "dc_electricity_consumption",
+      "asserter": "Öko-Institut",
+      "entity": {
+        "type": "industry",
+        "id": "global-dc",
+        "label": "全球数据中心"
+      },
+      "value": 487.0,
+      "unit": "TWh",
+      "bound": "point",
+      "as_of": "2023",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "含加密货币挖矿",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "第三方估算"
+      },
+      "evidence": {
+        "sha256": "34ddede6780a2e8da07b5d1c9d6aee499f147e096fdadd36b279609e588be843",
+        "local_file": "20250827-绿色和平：2025年人工智能的环境影响研究报告(55页).pdf",
+        "locator": "第 19-21 页 2.1 Energy：「In our study, we have assumed that consumption of all data centres in 2023 will be 487 TWh including data centres for cryptocurrencies as the base value」；「The electricity consumption of AI-specific data centres will rise from 50 TWh in the year 2023 to 554 TWh in 2030」；「The energy consumption of traditional data centres (bottom bar) will increase … from 311 to 633 TWh/a by 2030」",
+        "grade": "S3",
+        "originator": "Öko-Institut（Gröger 等，受绿色和平德国委托《Environmental Impacts of Artificial Intelligence》，2025-05）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "全部数据中心（含加密货币）2023 年基准值 487 TWh，由 IEA 2025 的 361 TWh（不含加密货币）加 IEA 加密货币 126 TWh 得出，作为全部预测的起点。三者之和 = 487。2030 年预测按平均/低/高三情景给出，scenario 枚举无对应，未录（见缺口）。"
+    },
+    {
+      "fact_id": "oeko2505-global-dc-electricity-ai-specific-2023",
+      "metric_id": "dc_electricity_consumption",
+      "asserter": "Öko-Institut",
+      "entity": {
+        "type": "industry",
+        "id": "global-dc",
+        "label": "全球数据中心"
+      },
+      "value": 50.0,
+      "unit": "TWh",
+      "bound": "point",
+      "as_of": "2023",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "仅 AI 数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "第三方估算"
+      },
+      "evidence": {
+        "sha256": "34ddede6780a2e8da07b5d1c9d6aee499f147e096fdadd36b279609e588be843",
+        "local_file": "20250827-绿色和平：2025年人工智能的环境影响研究报告(55页).pdf",
+        "locator": "第 19-21 页 2.1 Energy：「In our study, we have assumed that consumption of all data centres in 2023 will be 487 TWh including data centres for cryptocurrencies as the base value」；「The electricity consumption of AI-specific data centres will rise from 50 TWh in the year 2023 to 554 TWh in 2030」；「The energy consumption of traditional data centres (bottom bar) will increase … from 311 to 633 TWh/a by 2030」",
+        "grade": "S3",
+        "originator": "Öko-Institut（Gröger 等，受绿色和平德国委托《Environmental Impacts of Artificial Intelligence》，2025-05）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "AI 专用数据中心 2023 年 50 TWh，按图 1-2「AI 专用占全球数据中心用电比例」（2023 年约 14%）拆出。三者之和 = 487。2030 年预测按平均/低/高三情景给出，scenario 枚举无对应，未录（见缺口）。"
+    },
+    {
+      "fact_id": "oeko2505-global-dc-electricity-traditional-2023",
+      "metric_id": "dc_electricity_consumption",
+      "asserter": "Öko-Institut",
+      "entity": {
+        "type": "industry",
+        "id": "global-dc",
+        "label": "全球数据中心"
+      },
+      "value": 311.0,
+      "unit": "TWh",
+      "bound": "point",
+      "as_of": "2023",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "仅传统数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "第三方估算"
+      },
+      "evidence": {
+        "sha256": "34ddede6780a2e8da07b5d1c9d6aee499f147e096fdadd36b279609e588be843",
+        "local_file": "20250827-绿色和平：2025年人工智能的环境影响研究报告(55页).pdf",
+        "locator": "第 19-21 页 2.1 Energy：「In our study, we have assumed that consumption of all data centres in 2023 will be 487 TWh including data centres for cryptocurrencies as the base value」；「The electricity consumption of AI-specific data centres will rise from 50 TWh in the year 2023 to 554 TWh in 2030」；「The energy consumption of traditional data centres (bottom bar) will increase … from 311 to 633 TWh/a by 2030」",
+        "grade": "S3",
+        "originator": "Öko-Institut（Gröger 等，受绿色和平德国委托《Environmental Impacts of Artificial Intelligence》，2025-05）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "传统数据中心 2023 年 311 TWh（487 − 50 − 126）。三者之和 = 487。2030 年预测按平均/低/高三情景给出，scenario 枚举无对应，未录（见缺口）。"
     }
   ]
 }
