@@ -157668,6 +157668,485 @@
       "corroboration": "待交叉验证",
       "notes": "YTL 2022 年宣布的总功率口径（total power），capacity_type 记设施容量；经 SemiAnalysis 转述，asserter 记 YTL。锚定租户 Sea Ltd 36MW；另与英伟达有 43 亿美元合作用于 AI Neocloud。",
       "asserter": "YTL"
+    },
+    {
+      "fact_id": "cic2025-wholesale-supply-national-2024",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "cn-3p-wholesale-supply-national",
+        "label": "中国第三方算力中心定制批发市场供给：全国"
+      },
+      "value": 12300.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "CN"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c377a87f0b9900eab1843ba9f5cd6f3758c84c5739c964863d00232d3b6bd7d",
+        "local_file": "5C_2025_2025_CIC灼识咨询中国_未署名.pdf",
+        "locator": "第 36 页：「2024年末，全国第三方算力中心定制批发市场需求总量达 8.5GW，供给总量为 12.3GW，整体上架率为 69%…截止 2024 年末，全国存量第三方算力中心定制批发市场总需求（不含运营商）为 8.5GW。其中环京（含内蒙）为 4.8GW、长三角 1.8GW、粤港澳 0.85GW、西南及其他地区为 1.1GW。…总供给（不含运营商）为 12.3GW。其中环京（含内蒙）为 6.0GW、长三角 2.8GW、粤港澳 1.6GW、西南及其他地区为 1.8GW」；注「第三方算力中心定制批发市场统计的供需数据不包含运营商；环京地区包括内蒙古；西南及其他地区包括山西省」",
+        "grade": "S3",
+        "originator": "灼识咨询（CIC）《中国算力中心行业白皮书》（2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "供给=存量 IT 容量（报告第 33 页图题「IT容量供给变化–存量口径」），已建成可供出租，status 记 L8。口径：第三方算力中心**定制批发**业务，**不含三大运营商**，环京含内蒙古、西南及其他含山西；由灼识对 20 家第三方服务商与 15 家需求方建模，非全行业统计。",
+      "asserter": "灼识咨询"
+    },
+    {
+      "fact_id": "cic2025-wholesale-demand-national-2024",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "cn-3p-wholesale-demand-national",
+        "label": "中国第三方算力中心定制批发市场需求：全国"
+      },
+      "value": 8500.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "签约容量",
+        "status": "L8",
+        "region": "CN"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c377a87f0b9900eab1843ba9f5cd6f3758c84c5739c964863d00232d3b6bd7d",
+        "local_file": "5C_2025_2025_CIC灼识咨询中国_未署名.pdf",
+        "locator": "第 36 页：「2024年末，全国第三方算力中心定制批发市场需求总量达 8.5GW，供给总量为 12.3GW，整体上架率为 69%…截止 2024 年末，全国存量第三方算力中心定制批发市场总需求（不含运营商）为 8.5GW。其中环京（含内蒙）为 4.8GW、长三角 1.8GW、粤港澳 0.85GW、西南及其他地区为 1.1GW。…总供给（不含运营商）为 12.3GW。其中环京（含内蒙）为 6.0GW、长三角 2.8GW、粤港澳 1.6GW、西南及其他地区为 1.8GW」；注「第三方算力中心定制批发市场统计的供需数据不包含运营商；环京地区包括内蒙古；西南及其他地区包括山西省」",
+        "grade": "S3",
+        "originator": "灼识咨询（CIC）《中国算力中心行业白皮书》（2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "需求=存量已使用 IT 容量（第 32 页图题「IT容量需求变化–存量口径」，上架率=存量需求/存量供给），capacity_type 记签约容量表示客户占用口径，不是建成容量。口径：第三方算力中心**定制批发**业务，**不含三大运营商**，环京含内蒙古、西南及其他含山西；由灼识对 20 家第三方服务商与 15 家需求方建模，非全行业统计。",
+      "asserter": "灼识咨询"
+    },
+    {
+      "fact_id": "cic2025-wholesale-supply-jingjin-nm-2024",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "cn-3p-wholesale-supply-jingjin-nm",
+        "label": "中国第三方算力中心定制批发市场供给：环京（含内蒙古）"
+      },
+      "value": 6000.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "CN"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c377a87f0b9900eab1843ba9f5cd6f3758c84c5739c964863d00232d3b6bd7d",
+        "local_file": "5C_2025_2025_CIC灼识咨询中国_未署名.pdf",
+        "locator": "第 36 页：「2024年末，全国第三方算力中心定制批发市场需求总量达 8.5GW，供给总量为 12.3GW，整体上架率为 69%…截止 2024 年末，全国存量第三方算力中心定制批发市场总需求（不含运营商）为 8.5GW。其中环京（含内蒙）为 4.8GW、长三角 1.8GW、粤港澳 0.85GW、西南及其他地区为 1.1GW。…总供给（不含运营商）为 12.3GW。其中环京（含内蒙）为 6.0GW、长三角 2.8GW、粤港澳 1.6GW、西南及其他地区为 1.8GW」；注「第三方算力中心定制批发市场统计的供需数据不包含运营商；环京地区包括内蒙古；西南及其他地区包括山西省」",
+        "grade": "S3",
+        "originator": "灼识咨询（CIC）《中国算力中心行业白皮书》（2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "供给=存量 IT 容量（报告第 33 页图题「IT容量供给变化–存量口径」），已建成可供出租，status 记 L8。口径：第三方算力中心**定制批发**业务，**不含三大运营商**，环京含内蒙古、西南及其他含山西；由灼识对 20 家第三方服务商与 15 家需求方建模，非全行业统计。",
+      "asserter": "灼识咨询"
+    },
+    {
+      "fact_id": "cic2025-wholesale-demand-jingjin-nm-2024",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "cn-3p-wholesale-demand-jingjin-nm",
+        "label": "中国第三方算力中心定制批发市场需求：环京（含内蒙古）"
+      },
+      "value": 4800.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "签约容量",
+        "status": "L8",
+        "region": "CN"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c377a87f0b9900eab1843ba9f5cd6f3758c84c5739c964863d00232d3b6bd7d",
+        "local_file": "5C_2025_2025_CIC灼识咨询中国_未署名.pdf",
+        "locator": "第 36 页：「2024年末，全国第三方算力中心定制批发市场需求总量达 8.5GW，供给总量为 12.3GW，整体上架率为 69%…截止 2024 年末，全国存量第三方算力中心定制批发市场总需求（不含运营商）为 8.5GW。其中环京（含内蒙）为 4.8GW、长三角 1.8GW、粤港澳 0.85GW、西南及其他地区为 1.1GW。…总供给（不含运营商）为 12.3GW。其中环京（含内蒙）为 6.0GW、长三角 2.8GW、粤港澳 1.6GW、西南及其他地区为 1.8GW」；注「第三方算力中心定制批发市场统计的供需数据不包含运营商；环京地区包括内蒙古；西南及其他地区包括山西省」",
+        "grade": "S3",
+        "originator": "灼识咨询（CIC）《中国算力中心行业白皮书》（2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "需求=存量已使用 IT 容量（第 32 页图题「IT容量需求变化–存量口径」，上架率=存量需求/存量供给），capacity_type 记签约容量表示客户占用口径，不是建成容量。口径：第三方算力中心**定制批发**业务，**不含三大运营商**，环京含内蒙古、西南及其他含山西；由灼识对 20 家第三方服务商与 15 家需求方建模，非全行业统计。",
+      "asserter": "灼识咨询"
+    },
+    {
+      "fact_id": "cic2025-wholesale-supply-yrd-2024",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "cn-3p-wholesale-supply-yrd",
+        "label": "中国第三方算力中心定制批发市场供给：长三角"
+      },
+      "value": 2800.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "CN"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c377a87f0b9900eab1843ba9f5cd6f3758c84c5739c964863d00232d3b6bd7d",
+        "local_file": "5C_2025_2025_CIC灼识咨询中国_未署名.pdf",
+        "locator": "第 36 页：「2024年末，全国第三方算力中心定制批发市场需求总量达 8.5GW，供给总量为 12.3GW，整体上架率为 69%…截止 2024 年末，全国存量第三方算力中心定制批发市场总需求（不含运营商）为 8.5GW。其中环京（含内蒙）为 4.8GW、长三角 1.8GW、粤港澳 0.85GW、西南及其他地区为 1.1GW。…总供给（不含运营商）为 12.3GW。其中环京（含内蒙）为 6.0GW、长三角 2.8GW、粤港澳 1.6GW、西南及其他地区为 1.8GW」；注「第三方算力中心定制批发市场统计的供需数据不包含运营商；环京地区包括内蒙古；西南及其他地区包括山西省」",
+        "grade": "S3",
+        "originator": "灼识咨询（CIC）《中国算力中心行业白皮书》（2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "供给=存量 IT 容量（报告第 33 页图题「IT容量供给变化–存量口径」），已建成可供出租，status 记 L8。口径：第三方算力中心**定制批发**业务，**不含三大运营商**，环京含内蒙古、西南及其他含山西；由灼识对 20 家第三方服务商与 15 家需求方建模，非全行业统计。",
+      "asserter": "灼识咨询"
+    },
+    {
+      "fact_id": "cic2025-wholesale-demand-yrd-2024",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "cn-3p-wholesale-demand-yrd",
+        "label": "中国第三方算力中心定制批发市场需求：长三角"
+      },
+      "value": 1800.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "签约容量",
+        "status": "L8",
+        "region": "CN"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c377a87f0b9900eab1843ba9f5cd6f3758c84c5739c964863d00232d3b6bd7d",
+        "local_file": "5C_2025_2025_CIC灼识咨询中国_未署名.pdf",
+        "locator": "第 36 页：「2024年末，全国第三方算力中心定制批发市场需求总量达 8.5GW，供给总量为 12.3GW，整体上架率为 69%…截止 2024 年末，全国存量第三方算力中心定制批发市场总需求（不含运营商）为 8.5GW。其中环京（含内蒙）为 4.8GW、长三角 1.8GW、粤港澳 0.85GW、西南及其他地区为 1.1GW。…总供给（不含运营商）为 12.3GW。其中环京（含内蒙）为 6.0GW、长三角 2.8GW、粤港澳 1.6GW、西南及其他地区为 1.8GW」；注「第三方算力中心定制批发市场统计的供需数据不包含运营商；环京地区包括内蒙古；西南及其他地区包括山西省」",
+        "grade": "S3",
+        "originator": "灼识咨询（CIC）《中国算力中心行业白皮书》（2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "需求=存量已使用 IT 容量（第 32 页图题「IT容量需求变化–存量口径」，上架率=存量需求/存量供给），capacity_type 记签约容量表示客户占用口径，不是建成容量。口径：第三方算力中心**定制批发**业务，**不含三大运营商**，环京含内蒙古、西南及其他含山西；由灼识对 20 家第三方服务商与 15 家需求方建模，非全行业统计。",
+      "asserter": "灼识咨询"
+    },
+    {
+      "fact_id": "cic2025-wholesale-supply-gba-2024",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "cn-3p-wholesale-supply-gba",
+        "label": "中国第三方算力中心定制批发市场供给：粤港澳"
+      },
+      "value": 1600.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "CN"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c377a87f0b9900eab1843ba9f5cd6f3758c84c5739c964863d00232d3b6bd7d",
+        "local_file": "5C_2025_2025_CIC灼识咨询中国_未署名.pdf",
+        "locator": "第 36 页：「2024年末，全国第三方算力中心定制批发市场需求总量达 8.5GW，供给总量为 12.3GW，整体上架率为 69%…截止 2024 年末，全国存量第三方算力中心定制批发市场总需求（不含运营商）为 8.5GW。其中环京（含内蒙）为 4.8GW、长三角 1.8GW、粤港澳 0.85GW、西南及其他地区为 1.1GW。…总供给（不含运营商）为 12.3GW。其中环京（含内蒙）为 6.0GW、长三角 2.8GW、粤港澳 1.6GW、西南及其他地区为 1.8GW」；注「第三方算力中心定制批发市场统计的供需数据不包含运营商；环京地区包括内蒙古；西南及其他地区包括山西省」",
+        "grade": "S3",
+        "originator": "灼识咨询（CIC）《中国算力中心行业白皮书》（2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "供给=存量 IT 容量（报告第 33 页图题「IT容量供给变化–存量口径」），已建成可供出租，status 记 L8。口径：第三方算力中心**定制批发**业务，**不含三大运营商**，环京含内蒙古、西南及其他含山西；由灼识对 20 家第三方服务商与 15 家需求方建模，非全行业统计。",
+      "asserter": "灼识咨询"
+    },
+    {
+      "fact_id": "cic2025-wholesale-demand-gba-2024",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "cn-3p-wholesale-demand-gba",
+        "label": "中国第三方算力中心定制批发市场需求：粤港澳"
+      },
+      "value": 850.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "签约容量",
+        "status": "L8",
+        "region": "CN"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c377a87f0b9900eab1843ba9f5cd6f3758c84c5739c964863d00232d3b6bd7d",
+        "local_file": "5C_2025_2025_CIC灼识咨询中国_未署名.pdf",
+        "locator": "第 36 页：「2024年末，全国第三方算力中心定制批发市场需求总量达 8.5GW，供给总量为 12.3GW，整体上架率为 69%…截止 2024 年末，全国存量第三方算力中心定制批发市场总需求（不含运营商）为 8.5GW。其中环京（含内蒙）为 4.8GW、长三角 1.8GW、粤港澳 0.85GW、西南及其他地区为 1.1GW。…总供给（不含运营商）为 12.3GW。其中环京（含内蒙）为 6.0GW、长三角 2.8GW、粤港澳 1.6GW、西南及其他地区为 1.8GW」；注「第三方算力中心定制批发市场统计的供需数据不包含运营商；环京地区包括内蒙古；西南及其他地区包括山西省」",
+        "grade": "S3",
+        "originator": "灼识咨询（CIC）《中国算力中心行业白皮书》（2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "需求=存量已使用 IT 容量（第 32 页图题「IT容量需求变化–存量口径」，上架率=存量需求/存量供给），capacity_type 记签约容量表示客户占用口径，不是建成容量。口径：第三方算力中心**定制批发**业务，**不含三大运营商**，环京含内蒙古、西南及其他含山西；由灼识对 20 家第三方服务商与 15 家需求方建模，非全行业统计。",
+      "asserter": "灼识咨询"
+    },
+    {
+      "fact_id": "cic2025-wholesale-supply-sw-other-2024",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "cn-3p-wholesale-supply-sw-other",
+        "label": "中国第三方算力中心定制批发市场供给：西南及其他（含山西）"
+      },
+      "value": 1800.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "CN"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c377a87f0b9900eab1843ba9f5cd6f3758c84c5739c964863d00232d3b6bd7d",
+        "local_file": "5C_2025_2025_CIC灼识咨询中国_未署名.pdf",
+        "locator": "第 36 页：「2024年末，全国第三方算力中心定制批发市场需求总量达 8.5GW，供给总量为 12.3GW，整体上架率为 69%…截止 2024 年末，全国存量第三方算力中心定制批发市场总需求（不含运营商）为 8.5GW。其中环京（含内蒙）为 4.8GW、长三角 1.8GW、粤港澳 0.85GW、西南及其他地区为 1.1GW。…总供给（不含运营商）为 12.3GW。其中环京（含内蒙）为 6.0GW、长三角 2.8GW、粤港澳 1.6GW、西南及其他地区为 1.8GW」；注「第三方算力中心定制批发市场统计的供需数据不包含运营商；环京地区包括内蒙古；西南及其他地区包括山西省」",
+        "grade": "S3",
+        "originator": "灼识咨询（CIC）《中国算力中心行业白皮书》（2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "供给=存量 IT 容量（报告第 33 页图题「IT容量供给变化–存量口径」），已建成可供出租，status 记 L8。口径：第三方算力中心**定制批发**业务，**不含三大运营商**，环京含内蒙古、西南及其他含山西；由灼识对 20 家第三方服务商与 15 家需求方建模，非全行业统计。",
+      "asserter": "灼识咨询"
+    },
+    {
+      "fact_id": "cic2025-wholesale-demand-sw-other-2024",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "cn-3p-wholesale-demand-sw-other",
+        "label": "中国第三方算力中心定制批发市场需求：西南及其他（含山西）"
+      },
+      "value": 1100.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "签约容量",
+        "status": "L8",
+        "region": "CN"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c377a87f0b9900eab1843ba9f5cd6f3758c84c5739c964863d00232d3b6bd7d",
+        "local_file": "5C_2025_2025_CIC灼识咨询中国_未署名.pdf",
+        "locator": "第 36 页：「2024年末，全国第三方算力中心定制批发市场需求总量达 8.5GW，供给总量为 12.3GW，整体上架率为 69%…截止 2024 年末，全国存量第三方算力中心定制批发市场总需求（不含运营商）为 8.5GW。其中环京（含内蒙）为 4.8GW、长三角 1.8GW、粤港澳 0.85GW、西南及其他地区为 1.1GW。…总供给（不含运营商）为 12.3GW。其中环京（含内蒙）为 6.0GW、长三角 2.8GW、粤港澳 1.6GW、西南及其他地区为 1.8GW」；注「第三方算力中心定制批发市场统计的供需数据不包含运营商；环京地区包括内蒙古；西南及其他地区包括山西省」",
+        "grade": "S3",
+        "originator": "灼识咨询（CIC）《中国算力中心行业白皮书》（2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "需求=存量已使用 IT 容量（第 32 页图题「IT容量需求变化–存量口径」，上架率=存量需求/存量供给），capacity_type 记签约容量表示客户占用口径，不是建成容量。口径：第三方算力中心**定制批发**业务，**不含三大运营商**，环京含内蒙古、西南及其他含山西；由灼识对 20 家第三方服务商与 15 家需求方建模，非全行业统计。",
+      "asserter": "灼识咨询"
+    },
+    {
+      "fact_id": "cic2025-wholesale-demand-national-2028e",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "cn-3p-wholesale-demand-national",
+        "label": "中国第三方算力中心定制批发市场需求：全国"
+      },
+      "value": 22000.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "签约容量",
+        "status": "L8",
+        "region": "CN"
+      },
+      "as_of": "2028E@2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "0c377a87f0b9900eab1843ba9f5cd6f3758c84c5739c964863d00232d3b6bd7d",
+        "local_file": "5C_2025_2025_CIC灼识咨询中国_未署名.pdf",
+        "locator": "第 24 页：「未来五年，第三方算力中心定制批发需求将实现近30%的增长，28年将突破22GW」",
+        "grade": "S3",
+        "originator": "灼识咨询（CIC）《中国算力中心行业白皮书》（2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "需求=存量已使用 IT 容量（第 32 页图题「IT容量需求变化–存量口径」，上架率=存量需求/存量供给），capacity_type 记签约容量表示客户占用口径，不是建成容量。口径：第三方算力中心**定制批发**业务，**不含三大运营商**，环京含内蒙古、西南及其他含山西；由灼识对 20 家第三方服务商与 15 家需求方建模，非全行业统计。「突破 22GW」为下界。报告发布月份未印，vintage 记 @2025。",
+      "asserter": "灼识咨询"
+    },
+    {
+      "fact_id": "cic2025-wholesale-supply-national-2028e",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "cn-3p-wholesale-supply-national",
+        "label": "中国第三方算力中心定制批发市场供给：全国"
+      },
+      "value": 25000.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "CN"
+      },
+      "as_of": "2028E@2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "0c377a87f0b9900eab1843ba9f5cd6f3758c84c5739c964863d00232d3b6bd7d",
+        "local_file": "5C_2025_2025_CIC灼识咨询中国_未署名.pdf",
+        "locator": "第 33 页：「预计至2028年，中国第三方算力中心定制批发业务的供给资源持续快速增长，2028年有望超过25GW」",
+        "grade": "S3",
+        "originator": "灼识咨询（CIC）《中国算力中心行业白皮书》（2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "供给=存量 IT 容量（报告第 33 页图题「IT容量供给变化–存量口径」），已建成可供出租，status 记 L8。口径：第三方算力中心**定制批发**业务，**不含三大运营商**，环京含内蒙古、西南及其他含山西；由灼识对 20 家第三方服务商与 15 家需求方建模，非全行业统计。「有望超过 25GW」为下界。第 37 页另称 2025–2028 年累计新增需求约 13.5GW、新增供给约 13.9GW。",
+      "asserter": "灼识咨询"
+    },
+    {
+      "fact_id": "cic2025-operator-external-capacity-ct-2024e",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "company",
+        "id": "operator-ct-external-dc",
+        "label": "中国电信（对外提供算力中心服务的运营容量）"
+      },
+      "value": 3000.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "CN"
+      },
+      "as_of": "2024E@2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c377a87f0b9900eab1843ba9f5cd6f3758c84c5739c964863d00232d3b6bd7d",
+        "local_file": "5C_2025_2025_CIC灼识咨询中国_未署名.pdf",
+        "locator": "第 52 页：「中国电信正积极推进智算中心布局进程，至24年底预计能够对外提供算力中心服务的运营容量将达到3GW」",
+        "grade": "S3",
+        "originator": "灼识咨询（CIC）《中国算力中心行业白皮书》（2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "灼识对运营商 2024 年底对外可提供算力中心服务运营容量的预计值（原文「预计」），未说明 IT 容量还是设施容量，capacity_type 记未披露；不含在上文第三方定制批发供需口径内。报告发布月份未印，vintage 记 @2025。",
+      "asserter": "灼识咨询"
+    },
+    {
+      "fact_id": "cic2025-operator-external-capacity-cm-2024e",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "company",
+        "id": "operator-cm-external-dc",
+        "label": "中国移动（对外提供算力中心服务的运营容量）"
+      },
+      "value": 2200.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "CN"
+      },
+      "as_of": "2024E@2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c377a87f0b9900eab1843ba9f5cd6f3758c84c5739c964863d00232d3b6bd7d",
+        "local_file": "5C_2025_2025_CIC灼识咨询中国_未署名.pdf",
+        "locator": "第 53 页：「中国移动至24年底预计能够对外提供算力中心服务的运营容量将达到2.2GW，未来年均增量超过500MW」",
+        "grade": "S3",
+        "originator": "灼识咨询（CIC）《中国算力中心行业白皮书》（2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "灼识对运营商 2024 年底对外可提供算力中心服务运营容量的预计值（原文「预计」），未说明 IT 容量还是设施容量，capacity_type 记未披露；不含在上文第三方定制批发供需口径内。报告发布月份未印，vintage 记 @2025。",
+      "asserter": "灼识咨询"
+    },
+    {
+      "fact_id": "cic2025-operator-external-capacity-cu-2024e",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "company",
+        "id": "operator-cu-external-dc",
+        "label": "中国联通（对外提供算力中心服务的运营容量）"
+      },
+      "value": 1500.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "CN"
+      },
+      "as_of": "2024E@2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c377a87f0b9900eab1843ba9f5cd6f3758c84c5739c964863d00232d3b6bd7d",
+        "local_file": "5C_2025_2025_CIC灼识咨询中国_未署名.pdf",
+        "locator": "第 54 页：「中国联通至24年底预计能够对外提供算力中心服务的运营容量将达到1.5GW…预计2025-2026年实现规划产能的大规模投产上架」",
+        "grade": "S3",
+        "originator": "灼识咨询（CIC）《中国算力中心行业白皮书》（2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "灼识对运营商 2024 年底对外可提供算力中心服务运营容量的预计值（原文「预计」），未说明 IT 容量还是设施容量，capacity_type 记未披露；不含在上文第三方定制批发供需口径内。报告发布月份未印，vintage 记 @2025。",
+      "asserter": "灼识咨询"
+    },
+    {
+      "fact_id": "cic2025-wholesale-occupancy-national-2024",
+      "metric_id": "dc_occupancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "cn-3p-wholesale-market",
+        "label": "中国第三方算力中心定制批发市场"
+      },
+      "value": 69.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "全国",
+        "region": "CN"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0c377a87f0b9900eab1843ba9f5cd6f3758c84c5739c964863d00232d3b6bd7d",
+        "local_file": "5C_2025_2025_CIC灼识咨询中国_未署名.pdf",
+        "locator": "第 36 页：「2024年末，全国第三方算力中心定制批发市场需求总量达 8.5GW，供给总量为 12.3GW，整体上架率为 69%…截止 2024 年末，全国存量第三方算力中心定制批发市场总需求（不含运营商）为 8.5GW。其中环京（含内蒙）为 4.8GW、长三角 1.8GW、粤港澳 0.85GW、西南及其他地区为 1.1GW。…总供给（不含运营商）为 12.3GW。其中环京（含内蒙）为 6.0GW、长三角 2.8GW、粤港澳 1.6GW、西南及其他地区为 1.8GW」；注「第三方算力中心定制批发市场统计的供需数据不包含运营商；环京地区包括内蒙古；西南及其他地区包括山西省」",
+        "grade": "S3",
+        "originator": "灼识咨询（CIC）《中国算力中心行业白皮书》（2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "上架率=存量需求/存量供给（第 37 页图题「分地区上架率（使用率，存量需求/存量供给，%）」），按 IT 容量计，与按机架数的上架率分母不同。8.5/12.3 = 69.1% 与原文一致。口径：第三方算力中心**定制批发**业务，**不含三大运营商**，环京含内蒙古、西南及其他含山西；由灼识对 20 家第三方服务商与 15 家需求方建模，非全行业统计。分地区上架率在图中（约 79%/65%/58%/52%）但标签与地区对应关系在抽取文本中错位，未录。",
+      "asserter": "灼识咨询"
     }
   ]
 }
