@@ -157042,6 +157042,512 @@
       "corroboration": "待交叉验证",
       "notes": "原文「据称 2024 年末规模达到 100E」，是转引的传闻目标，不是投运规模。 白皮书未给各中心的精度口径与出处，也未区分已投运与在建（原文「建成或正在建设」），precision 与 status 记未注明；E=EFLOPS 按 1E = 1,000 PFLOPS 折算。",
       "asserter": "中国移动"
+    },
+    {
+      "fact_id": "policy-2024-970-national-avg-pue-2025",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "ndrc-2024-970-dc-green-action-plan",
+        "label": "《数据中心绿色低碳发展专项行动计划》（发改环资〔2024〕970 号）：全国平均"
+      },
+      "value": 1.5,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2024-07",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f371c4db86fa50b6f0d7b8677c46e79cfdeb53659fdf750a9e8840fde5f9ebe5",
+        "local_file": "国家及各省市算力基础设施产业相关政策汇编（2024年6月至2025年12月）.pdf",
+        "locator": "第 39 页 1.2.26《数据中心绿色低碳发展专项行动计划》（发改环资〔2024〕970 号，2024-07-03，国家发展改革委、工业和信息化部、国家能源局、国家数据局）：「到 2025 年底，全国数据中心布局更加合理，整体上架率不低于 60%，平均电能利用效率降至 1.5 以下，可再生能源利用率年均增长 10%」",
+        "grade": "S1",
+        "originator": "《国家及各省市算力基础设施产业相关政策汇编（2024 年 6 月至 2025 年 12 月）》（汇编者未署名，逐条摘录政策原文并附发文链接）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2025 年底全国平均目标，是存量与新建合计的平均值，不是单项目准入线。同文整体上架率不低于 60%（全国目标，未录为准入门槛）。 原文未写统计期的，按政策 PUE 年均考核口径记年均。",
+      "asserter": "国家发展改革委"
+    },
+    {
+      "fact_id": "policy-2024-970-new-large-pue-2025",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "ndrc-2024-970-dc-green-action-plan-new-large",
+        "label": "《数据中心绿色低碳发展专项行动计划》（发改环资〔2024〕970 号）：新建及改扩建大型/超大型"
+      },
+      "value": 1.25,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "大型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2024-07",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f371c4db86fa50b6f0d7b8677c46e79cfdeb53659fdf750a9e8840fde5f9ebe5",
+        "local_file": "国家及各省市算力基础设施产业相关政策汇编（2024年6月至2025年12月）.pdf",
+        "locator": "第 39 页 1.2.26《数据中心绿色低碳发展专项行动计划》（发改环资〔2024〕970 号，2024-07-03，国家发展改革委、工业和信息化部、国家能源局、国家数据局）：「到 2025 年底，新建及改扩建大型和超大型数据中心电能利用效率降至 1.25 以内，国家枢纽节点数据中心项目电能利用效率不得高于 1.2」",
+        "grade": "S1",
+        "originator": "《国家及各省市算力基础设施产业相关政策汇编（2024 年 6 月至 2025 年 12 月）》（汇编者未署名，逐条摘录政策原文并附发文链接）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文对象为「新建及改扩建大型和超大型」，build_type 记新建（含改扩建），scale 记大型（含超大型）。 原文未写统计期的，按政策 PUE 年均考核口径记年均。",
+      "asserter": "国家发展改革委"
+    },
+    {
+      "fact_id": "policy-2024-970-hub-node-pue-2025",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "ndrc-2024-970-dc-green-action-plan-hub",
+        "label": "《数据中心绿色低碳发展专项行动计划》（发改环资〔2024〕970 号）：国家枢纽节点项目"
+      },
+      "value": 1.2,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2024-07",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f371c4db86fa50b6f0d7b8677c46e79cfdeb53659fdf750a9e8840fde5f9ebe5",
+        "local_file": "国家及各省市算力基础设施产业相关政策汇编（2024年6月至2025年12月）.pdf",
+        "locator": "第 39 页 1.2.26《数据中心绿色低碳发展专项行动计划》（发改环资〔2024〕970 号，2024-07-03，国家发展改革委、工业和信息化部、国家能源局、国家数据局）：「国家枢纽节点数据中心项目电能利用效率不得高于 1.2」",
+        "grade": "S1",
+        "originator": "《国家及各省市算力基础设施产业相关政策汇编（2024 年 6 月至 2025 年 12 月）》（汇编者未署名，逐条摘录政策原文并附发文链接）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "比 2022 年「东数西算」枢纽节点复函的 1.25（cn-policy-pue-hub-nodes-2022）收紧。 原文未写统计期的，按政策 PUE 年均考核口径记年均。",
+      "asserter": "国家发展改革委"
+    },
+    {
+      "fact_id": "policy-2024-beijing-stock-dc-pue-2027",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "beijing-2024-62-stock-dc-optimization",
+        "label": "《北京市存量数据中心优化工作方案（2024-2027 年）》（京经信发〔2024〕62 号）"
+      },
+      "value": 1.35,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2024-11",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f371c4db86fa50b6f0d7b8677c46e79cfdeb53659fdf750a9e8840fde5f9ebe5",
+        "local_file": "国家及各省市算力基础设施产业相关政策汇编（2024年6月至2025年12月）.pdf",
+        "locator": "第 59 页 2.1.7（2024-11-15，北京市经济和信息化局等）：「自 2026 年起，北京将对 PUE 值高于 1.35 的数据中心征收差别电价…到 2027 年实现本市数据中心能效水平全面达到地方标准，年均 PUE 值降低至 1.35 以下」",
+        "grade": "S1",
+        "originator": "《国家及各省市算力基础设施产业相关政策汇编（2024 年 6 月至 2025 年 12 月）》（汇编者未署名，逐条摘录政策原文并附发文链接）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "存量数据中心：2026 年起 PUE >1.35 征收差别电价，2027 年年均目标 ≤1.35。 原文未写统计期的，按政策 PUE 年均考核口径记年均。",
+      "asserter": "北京市经济和信息化局"
+    },
+    {
+      "fact_id": "policy-2024-songjiang-aicc-subsidy-pue",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "songjiang-2024-323-aicc-opinions",
+        "label": "《松江区关于加快智算产业发展的若干意见》（松发改字〔2024〕323 号）：建设支持资格"
+      },
+      "value": 1.25,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2024-09",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f371c4db86fa50b6f0d7b8677c46e79cfdeb53659fdf750a9e8840fde5f9ebe5",
+        "local_file": "国家及各省市算力基础设施产业相关政策汇编（2024年6月至2025年12月）.pdf",
+        "locator": "第 70 页 2.3.13（2024-09-30，上海市松江区发改委等）：「对于绿电使用比例≥10%，且 PUE<1.25，算力（集群）规模达到 20000PFlops，算力设备总投资达到 30 亿元以上的智算中心，将参照规定给予最高 2 亿元的建设支持」；改造补贴同样要求「PUE<1.25」",
+        "grade": "S1",
+        "originator": "《国家及各省市算力基础设施产业相关政策汇编（2024 年 6 月至 2025 年 12 月）》（汇编者未署名，逐条摘录政策原文并附发文链接）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "补贴资格线，非强制准入；原文为严格小于 1.25。 原文未写统计期的，按政策 PUE 年均考核口径记年均。",
+      "asserter": "上海市松江区发展和改革委员会"
+    },
+    {
+      "fact_id": "policy-2024-sichuan-569-avg-pue-2027",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "sichuan-2024-569-compute-infra-action",
+        "label": "《四川省算力基础设施高质量发展行动方案（2024—2027 年）》（川发改数据〔2024〕569 号）"
+      },
+      "value": 1.3,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2024-11",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f371c4db86fa50b6f0d7b8677c46e79cfdeb53659fdf750a9e8840fde5f9ebe5",
+        "local_file": "国家及各省市算力基础设施产业相关政策汇编（2024年6月至2025年12月）.pdf",
+        "locator": "第 87 页 2.9.6（2024-11-21，四川省发改委等）：「到 2027 年，计算力方面，算力总规模达到 40EFLOPS，其中智能算力占比不低于 60%，大规模智能计算中心达到 15 个左右，数据中心平均 PUE 降低到 1.3 以下」",
+        "grade": "S1",
+        "originator": "《国家及各省市算力基础设施产业相关政策汇编（2024 年 6 月至 2025 年 12 月）》（汇编者未署名，逐条摘录政策原文并附发文链接）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2027 年全省数据中心平均目标。同文：建成 1 年以上、整体上架率低于 50% 的市州原则上不再规划新数据中心。 原文未写统计期的，按政策 PUE 年均考核口径记年均。",
+      "asserter": "四川省发展和改革委员会"
+    },
+    {
+      "fact_id": "policy-2024-neimenggu-llm-new-dc-pue",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "neimenggu-2024-llm-industry-opinions",
+        "label": "内蒙古自治区《关于加快大模型产业高质量发展的指导意见》：新建"
+      },
+      "value": 1.2,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2024-06",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f371c4db86fa50b6f0d7b8677c46e79cfdeb53659fdf750a9e8840fde5f9ebe5",
+        "local_file": "国家及各省市算力基础设施产业相关政策汇编（2024年6月至2025年12月）.pdf",
+        "locator": "第 92 页 2.11.3（2024-06-21，内蒙古自治区人民政府办公厅）：「加强存量数据中心绿色化改造，有序腾退年均 PUE 值高于 1.5 的落后数据中心，新建数据中心 PUE 值严格控制在 1.2 以下」",
+        "grade": "S1",
+        "originator": "《国家及各省市算力基础设施产业相关政策汇编（2024 年 6 月至 2025 年 12 月）》（汇编者未署名，逐条摘录政策原文并附发文链接）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "新建项目上限 1.2；存量年均 PUE 高于 1.5 的有序腾退（另录）。 原文未写统计期的，按政策 PUE 年均考核口径记年均。",
+      "asserter": "内蒙古自治区人民政府办公厅"
+    },
+    {
+      "fact_id": "policy-2024-neimenggu-llm-stock-exit-pue",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "neimenggu-2024-llm-industry-opinions-exit",
+        "label": "内蒙古自治区《关于加快大模型产业高质量发展的指导意见》：存量腾退线"
+      },
+      "value": 1.5,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2024-06",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f371c4db86fa50b6f0d7b8677c46e79cfdeb53659fdf750a9e8840fde5f9ebe5",
+        "local_file": "国家及各省市算力基础设施产业相关政策汇编（2024年6月至2025年12月）.pdf",
+        "locator": "第 92 页 2.11.3：「有序腾退年均 PUE 值高于 1.5 的落后数据中心」",
+        "grade": "S1",
+        "originator": "《国家及各省市算力基础设施产业相关政策汇编（2024 年 6 月至 2025 年 12 月）》（汇编者未署名，逐条摘录政策原文并附发文链接）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "存量腾退线：年均 PUE 高于 1.5 即列入腾退。 原文未写统计期的，按政策 PUE 年均考核口径记年均。",
+      "asserter": "内蒙古自治区人民政府办公厅"
+    },
+    {
+      "fact_id": "policy-2025-hunan-aicc-avg-pue",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "hunan-2025-53-green-computing-plan",
+        "label": "《湖南省绿色智能计算产业高质量发展规划（2025—2030 年）》（湘工信信软〔2025〕53 号）：智算中心平均"
+      },
+      "value": 1.4,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2025-02",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f371c4db86fa50b6f0d7b8677c46e79cfdeb53659fdf750a9e8840fde5f9ebe5",
+        "local_file": "国家及各省市算力基础设施产业相关政策汇编（2024年6月至2025年12月）.pdf",
+        "locator": "第 97 页 2.15.2（2025-02-23，湖南省工业和信息化厅）：「全省智算中心平均 PUE 控制在 1.4 以内。2030 年，全省智能算力规模达 12EFlops」",
+        "grade": "S1",
+        "originator": "《国家及各省市算力基础设施产业相关政策汇编（2024 年 6 月至 2025 年 12 月）》（汇编者未署名，逐条摘录政策原文并附发文链接）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "全省智算中心平均目标，原文该句所属年份未在摘录中写明。 原文未写统计期的，按政策 PUE 年均考核口径记年均。",
+      "asserter": "湖南省工业和信息化厅"
+    },
+    {
+      "fact_id": "policy-2025-henan-green-dc-award-new-pue",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "henan-2025-168-green-dc-award",
+        "label": "《河南省 2024 年度绿色数据中心建设奖励资金申报通知》（豫发改数科〔2025〕168 号）：新建成"
+      },
+      "value": 1.3,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2025-03",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f371c4db86fa50b6f0d7b8677c46e79cfdeb53659fdf750a9e8840fde5f9ebe5",
+        "local_file": "国家及各省市算力基础设施产业相关政策汇编（2024年6月至2025年12月）.pdf",
+        "locator": "第 104 页 2.17.5（2025-03-18，河南省发改委、财政厅）：「（一）2024 年新建成、PUE（电源使用效率）低于 1.3 的数据中心；（二）2024 年以前建成、实测 PUE 值低于 1.5 且较上一年降低 0.01 以上（或等效节约用电 150 万千瓦时以上）的数据中心」",
+        "grade": "S1",
+        "originator": "《国家及各省市算力基础设施产业相关政策汇编（2024 年 6 月至 2025 年 12 月）》（汇编者未署名，逐条摘录政策原文并附发文链接）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "奖励资格线：2024 年新建成须 PUE <1.3。 原文未写统计期的，按政策 PUE 年均考核口径记年均。",
+      "asserter": "河南省发展和改革委员会"
+    },
+    {
+      "fact_id": "policy-2025-henan-green-dc-award-stock-pue",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "henan-2025-168-green-dc-award-stock",
+        "label": "《河南省 2024 年度绿色数据中心建设奖励资金申报通知》（豫发改数科〔2025〕168 号）：存量"
+      },
+      "value": 1.5,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2025-03",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f371c4db86fa50b6f0d7b8677c46e79cfdeb53659fdf750a9e8840fde5f9ebe5",
+        "local_file": "国家及各省市算力基础设施产业相关政策汇编（2024年6月至2025年12月）.pdf",
+        "locator": "第 104 页 2.17.5：「（二）2024 年以前建成、实测 PUE 值低于 1.5 且较上一年降低 0.01 以上（或等效节约用电 150 万千瓦时以上）的数据中心」",
+        "grade": "S1",
+        "originator": "《国家及各省市算力基础设施产业相关政策汇编（2024 年 6 月至 2025 年 12 月）》（汇编者未署名，逐条摘录政策原文并附发文链接）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "奖励资格线：存量须实测 PUE <1.5 且同比降低 ≥0.01。 原文未写统计期的，按政策 PUE 年均考核口径记年均。",
+      "asserter": "河南省发展和改革委员会"
+    },
+    {
+      "fact_id": "policy-2024-zhengzhou-city-pue-2026",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "zhengzhou-2024-44-city-compute-network",
+        "label": "《郑州市城市算力网建设三年行动计划（2024—2026 年）》（郑政办〔2024〕44 号）"
+      },
+      "value": 1.3,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2024-09",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f371c4db86fa50b6f0d7b8677c46e79cfdeb53659fdf750a9e8840fde5f9ebe5",
+        "local_file": "国家及各省市算力基础设施产业相关政策汇编（2024年6月至2025年12月）.pdf",
+        "locator": "第 105 页 2.17.7（2024-09-13，郑州市人民政府办公室）：「…新型绿色低碳数据中心，全市数据中心电能利用率（PUE 值）不高于 1.3」",
+        "grade": "S1",
+        "originator": "《国家及各省市算力基础设施产业相关政策汇编（2024 年 6 月至 2025 年 12 月）》（汇编者未署名，逐条摘录政策原文并附发文链接）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "全市数据中心目标（2026 年行动期），原文未区分新建与存量。 原文未写统计期的，按政策 PUE 年均考核口径记年均。",
+      "asserter": "郑州市人民政府办公室"
+    },
+    {
+      "fact_id": "policy-2024-shanxi-subsidy-pue",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "shanxi-2024-compute-ai-measures",
+        "label": "《山西省促进先进算力与人工智能融合发展的若干措施》：绿色数据中心补贴资格"
+      },
+      "value": 1.18,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2024-06",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f371c4db86fa50b6f0d7b8677c46e79cfdeb53659fdf750a9e8840fde5f9ebe5",
+        "local_file": "国家及各省市算力基础设施产业相关政策汇编（2024年6月至2025年12月）.pdf",
+        "locator": "PDF 第 117 页（页脚 101） 2.22.3（2024-06-26，山西省人民政府办公厅）：「对新建或改造升级后的数据中心，实测年均电能利用效率（PUE）首次低于 1.18 的，按照每个物理机架最高 1000 元，给予每户企业最高不超过 500 万元的一次性补贴」",
+        "grade": "S1",
+        "originator": "《国家及各省市算力基础设施产业相关政策汇编（2024 年 6 月至 2025 年 12 月）》（汇编者未署名，逐条摘录政策原文并附发文链接）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "补贴资格线，按实测年均 PUE，新建或改造均适用。 原文未写统计期的，按政策 PUE 年均考核口径记年均。",
+      "asserter": "山西省人民政府办公厅"
+    },
+    {
+      "fact_id": "policy-2025-jiangxi-ai-plus-new-pue",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "jiangxi-2025-ai-plus-action",
+        "label": "《江西省「人工智能+」行动方案》：新建及改扩建算力设施"
+      },
+      "value": 1.25,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2025-12",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f371c4db86fa50b6f0d7b8677c46e79cfdeb53659fdf750a9e8840fde5f9ebe5",
+        "local_file": "国家及各省市算力基础设施产业相关政策汇编（2024年6月至2025年12月）.pdf",
+        "locator": "PDF 第 120 页（页脚 103） 2.25.1（2025-12-18，江西省人民政府）：「全省新建及改扩建算力基础设施电能利用效率低于 1.25」",
+        "grade": "S1",
+        "originator": "《国家及各省市算力基础设施产业相关政策汇编（2024 年 6 月至 2025 年 12 月）》（汇编者未署名，逐条摘录政策原文并附发文链接）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "新建及改扩建，build_type 记新建。 原文未写统计期的，按政策 PUE 年均考核口径记年均。",
+      "asserter": "江西省人民政府"
+    },
+    {
+      "fact_id": "policy-2024-sichuan-569-occupancy-new-dc",
+      "metric_id": "occupancy_policy_threshold",
+      "entity": {
+        "type": "policy",
+        "id": "sichuan-2024-569-compute-infra-action-occupancy",
+        "label": "《四川省算力基础设施高质量发展行动方案（2024—2027 年）》：市州新建数据中心规划前置条件"
+      },
+      "value": 50.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "区域内平均",
+        "policy_type": "准入门槛",
+        "region": "CN"
+      },
+      "as_of": "2024-11",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "f371c4db86fa50b6f0d7b8677c46e79cfdeb53659fdf750a9e8840fde5f9ebe5",
+        "local_file": "国家及各省市算力基础设施产业相关政策汇编（2024年6月至2025年12月）.pdf",
+        "locator": "PDF 第 88 页 2.9.6《四川省算力基础设施高质量发展行动方案（2024—2027 年）》（川发改数据〔2024〕569 号，2024-11-21）：「各市（州）已有建成投用 1 年以上数据中心，且整体上架率低于 50%的，原则上不再规划建设新的数据中心项目」",
+        "grade": "S1",
+        "originator": "《国家及各省市算力基础设施产业相关政策汇编（2024 年 6 月至 2025 年 12 月）》（汇编者未署名）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "门槛按市（州）已投用 1 年以上数据中心的整体上架率计，低于 50% 则该市州原则上不再规划新数据中心，是区域准入前置条件而非单项目要求。与库内四川省数据中心规划 60%（sichuan-occupancy-threshold-2025，全省目标口径）不同。",
+      "asserter": "四川省发展和改革委员会"
     }
   ]
 }
