@@ -131006,6 +131006,102 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "液冷换热单元 CDU 室外一次侧设计进水温度下限「不宜低于 35℃」；二次侧供液下限 40℃ 见 cbdi2507-coldplate-secondary-supply-min。设计院的工程设计要点，是推荐下限不是项目实测。"
+    },
+    {
+      "fact_id": "ch2507-optics-capacity-2026e",
+      "metric_id": "optics_production_capacity",
+      "asserter": "未注明",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-capacity",
+        "label": "全球光模块产能"
+      },
+      "value": 3000.0,
+      "unit": "万只",
+      "bound": "lower",
+      "as_of": "2026E@2025-07",
+      "caliber": {
+        "capacity_basis": "未注明",
+        "vendor": "全行业",
+        "speed": "未注明",
+        "basis": "专家访谈/渠道调研",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "93cafc25eccad6c751c64762c2218eecb7bb9f71aeb1ee3dac5d2ea939e7919a",
+        "local_file": "光模块调研纪要.xlsx",
+        "locator": "工作表「20250721」第 11 行「2026 年产能增长（全球）｜产能增长速度约为每年翻一倍，预计达到 3000 万至 4000 万个。」",
+        "grade": "S4",
+        "originator": "未注明（工作表「20250721」标注「Source：本营」，渠道调研纪要，出处机构不可考）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文区间 3000-4000 万个下界；上界见 ch2507-optics-capacity-2026e-upper。速率未写（上下文为 800G/1.6T）。同表第 9 行判断 2026 年产能增速快于需求、将出现产能过剩。"
+    },
+    {
+      "fact_id": "ch2507-optics-capacity-2026e-upper",
+      "metric_id": "optics_production_capacity",
+      "asserter": "未注明",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-capacity",
+        "label": "全球光模块产能"
+      },
+      "value": 4000.0,
+      "unit": "万只",
+      "bound": "upper",
+      "as_of": "2026E@2025-07",
+      "caliber": {
+        "capacity_basis": "未注明",
+        "vendor": "全行业",
+        "speed": "未注明",
+        "basis": "专家访谈/渠道调研",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "93cafc25eccad6c751c64762c2218eecb7bb9f71aeb1ee3dac5d2ea939e7919a",
+        "local_file": "光模块调研纪要.xlsx",
+        "locator": "工作表「20250721」第 11 行「2026 年产能增长（全球）｜产能增长速度约为每年翻一倍，预计达到 3000 万至 4000 万个。」",
+        "grade": "S4",
+        "originator": "未注明（工作表「20250721」标注「Source：本营」，渠道调研纪要，出处机构不可考）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文区间 3000-4000 万个上界。"
+    },
+    {
+      "fact_id": "ch2507-innolight-capacity-2024",
+      "metric_id": "optics_production_capacity",
+      "asserter": "未注明",
+      "entity": {
+        "type": "company",
+        "id": "innolight",
+        "label": "中际旭创"
+      },
+      "value": 2000.0,
+      "unit": "万只",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "capacity_basis": "名义产能",
+        "vendor": "中际旭创",
+        "speed": "合计",
+        "basis": "专家访谈/渠道调研",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "93cafc25eccad6c751c64762c2218eecb7bb9f71aeb1ee3dac5d2ea939e7919a",
+        "local_file": "光模块调研纪要.xlsx",
+        "locator": "工作表「20250721」第 12 行「2024 年旭创年产能｜旭创去年年报产能为 2000 万，但数据包含了不同规格的产品。」",
+        "grade": "S4",
+        "originator": "未注明（工作表「20250721」标注「Source：本营」，渠道调研纪要，出处机构不可考）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文称出自旭创年报，但本条是调研纪要的转述，未回到年报核对；「包含不同规格」按合计档记。"
     }
   ]
 }
