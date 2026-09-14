@@ -84078,6 +84078,936 @@
         "originator": "戴德梁行大中华区研究部《大中华区数据中心：2024年三大聚焦点》（2024-02）"
       },
       "notes": "「目前」按报告数据期 2023-Q4 记。2,955 MW 是全部在建与计划交付后的累计值，原文没有时点，未录。二级市场的市场名单原文未列（亚太成熟度指数覆盖 30 个市场）。"
+    },
+    {
+      "asserter": "BCG",
+      "metric_id": "global_dc_it_load",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "unit": "GW",
+      "fact_id": "bcg2024-sea-capacity-2014",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc",
+        "label": "东南亚数据中心（合计）"
+      },
+      "value": 0.36,
+      "as_of": "2014",
+      "bound": "point",
+      "caliber": {
+        "power_scope": "未披露",
+        "scenario": "单一情景",
+        "basis": "实测",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 4 页 Exhibit 1「SEA DC capacity growth (GW)」：2014 0.36",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "notes": "历史容量由 BCG 汇编（Exhibit 1 注 Source: DC Byte, Structure Research, CBRE, Channel Asia），原文只写 GW，未说 IT 还是设施口径。"
+    },
+    {
+      "asserter": "BCG",
+      "metric_id": "global_dc_it_load",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "unit": "GW",
+      "fact_id": "bcg2024-sea-capacity-2019",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc",
+        "label": "东南亚数据中心（合计）"
+      },
+      "value": 0.79,
+      "as_of": "2019",
+      "bound": "point",
+      "caliber": {
+        "power_scope": "未披露",
+        "scenario": "单一情景",
+        "basis": "实测",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 4 页 Exhibit 1：2019 0.79；正文「capacity more than doubling from ~0.8 gigawatts (GW) in 2019 to ~1.7 GW in 2023」",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "notes": "历史容量由 BCG 汇编（Exhibit 1 注 Source: DC Byte, Structure Research, CBRE, Channel Asia），原文只写 GW，未说 IT 还是设施口径。 **Exhibit 1 标题写「~0.7GW in 2019」，与图中 0.79、正文「~0.8 GW」不一致**，照图录 0.79。"
+    },
+    {
+      "asserter": "BCG",
+      "metric_id": "global_dc_it_load",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "unit": "GW",
+      "fact_id": "bcg2024-sea-capacity-2023",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc",
+        "label": "东南亚数据中心（合计）"
+      },
+      "value": 1.69,
+      "as_of": "2023",
+      "bound": "point",
+      "caliber": {
+        "power_scope": "未披露",
+        "scenario": "单一情景",
+        "basis": "实测",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 4 页 Exhibit 1：2023 1.69；正文「~1.7 GW in 2023」",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "notes": "历史容量由 BCG 汇编（Exhibit 1 注 Source: DC Byte, Structure Research, CBRE, Channel Asia），原文只写 GW，未说 IT 还是设施口径。 2019-2023 各国 CAGR（图中）：新加坡/柔佛/巴淡 26%、印尼 21%、马来西亚 9%、泰国 12%、菲律宾 20%、越南 9%（标签对位按图例顺序读出，未录）。"
+    },
+    {
+      "asserter": "BCG",
+      "metric_id": "global_dc_it_load",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "unit": "GW",
+      "fact_id": "bcg2024-sea-demand-2030e-lower",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc",
+        "label": "东南亚数据中心（合计）"
+      },
+      "value": 5.2,
+      "as_of": "2030E@2024-10",
+      "bound": "lower",
+      "caliber": {
+        "power_scope": "未披露",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 6 页正文「We project that DC demand will triple to reach between 5.2 GW and 6.5 GW by 2030」；Exhibit 2「5.2 - 6.5」",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "notes": "BCG 自身预测（Source: BCG analysis）。**原文「demand」与「capacity」混用**：第 6 页称需求 5.2-6.5 GW，第 14 页称「5.2 GW to 6.5 GW DC capacity expected by 2030」。口径未说 IT 还是设施。 区间下端，上端见配对条目。"
+    },
+    {
+      "asserter": "BCG",
+      "metric_id": "global_dc_it_load",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "unit": "GW",
+      "fact_id": "bcg2024-sea-demand-2030e-upper",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc",
+        "label": "东南亚数据中心（合计）"
+      },
+      "value": 6.5,
+      "as_of": "2030E@2024-10",
+      "bound": "upper",
+      "caliber": {
+        "power_scope": "未披露",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 6 页正文「We project that DC demand will triple to reach between 5.2 GW and 6.5 GW by 2030」；Exhibit 2「5.2 - 6.5」",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "notes": "BCG 自身预测（Source: BCG analysis）。**原文「demand」与「capacity」混用**：第 6 页称需求 5.2-6.5 GW，第 14 页称「5.2 GW to 6.5 GW DC capacity expected by 2030」。口径未说 IT 还是设施。 区间上端，下端见配对条目。"
+    },
+    {
+      "asserter": "BCG",
+      "metric_id": "global_dc_it_load",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "unit": "GW",
+      "fact_id": "bcg2024-sea-ai-demand-2030e-lower",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc-ai-compute",
+        "label": "东南亚数据中心需求：AI 算力部分"
+      },
+      "value": 1.2,
+      "as_of": "2030E@2024-10",
+      "bound": "lower",
+      "caliber": {
+        "power_scope": "未披露",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 6 页 Exhibit 2：AI compute 2030E 1.2 - 2.0（~10x）；第 7 页正文「demand expected to rise to between 1.2 GW and 2.0 GW」",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "notes": "BCG 自身预测（Source: BCG analysis）。**原文「demand」与「capacity」混用**：第 6 页称需求 5.2-6.5 GW，第 14 页称「5.2 GW to 6.5 GW DC capacity expected by 2030」。口径未说 IT 还是设施。 AI 算力约 10 倍增长，其中推理约 25 倍、训练约 3 倍（第 8 页）。 区间下端，上端见配对条目。"
+    },
+    {
+      "asserter": "BCG",
+      "metric_id": "global_dc_it_load",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "unit": "GW",
+      "fact_id": "bcg2024-sea-ai-demand-2030e-upper",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc-ai-compute",
+        "label": "东南亚数据中心需求：AI 算力部分"
+      },
+      "value": 2.0,
+      "as_of": "2030E@2024-10",
+      "bound": "upper",
+      "caliber": {
+        "power_scope": "未披露",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 6 页 Exhibit 2：AI compute 2030E 1.2 - 2.0（~10x）；第 7 页正文「demand expected to rise to between 1.2 GW and 2.0 GW」",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "notes": "BCG 自身预测（Source: BCG analysis）。**原文「demand」与「capacity」混用**：第 6 页称需求 5.2-6.5 GW，第 14 页称「5.2 GW to 6.5 GW DC capacity expected by 2030」。口径未说 IT 还是设施。 AI 算力约 10 倍增长，其中推理约 25 倍、训练约 3 倍（第 8 页）。 区间上端，下端见配对条目。"
+    },
+    {
+      "asserter": "BCG",
+      "metric_id": "global_dc_it_load",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "unit": "GW",
+      "fact_id": "bcg2024-sea-ai-demand-2023-lower",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc-ai-compute",
+        "label": "东南亚数据中心需求：AI 算力部分"
+      },
+      "value": 0.1,
+      "as_of": "2023",
+      "bound": "lower",
+      "caliber": {
+        "power_scope": "未披露",
+        "scenario": "单一情景",
+        "basis": "实测",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 6 页 Exhibit 2：AI compute 2023 0.1 – 0.2",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "notes": "BCG 对 2023 年分项的估计区间下端，上端见配对条目；**2023 合计图中为 1.69 GW，分项区间之和 1.8-2.4 与之不严格对应**。"
+    },
+    {
+      "asserter": "BCG",
+      "metric_id": "global_dc_it_load",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "unit": "GW",
+      "fact_id": "bcg2024-sea-ai-demand-2023-upper",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc-ai-compute",
+        "label": "东南亚数据中心需求：AI 算力部分"
+      },
+      "value": 0.2,
+      "as_of": "2023",
+      "bound": "upper",
+      "caliber": {
+        "power_scope": "未披露",
+        "scenario": "单一情景",
+        "basis": "实测",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 6 页 Exhibit 2：AI compute 2023 0.1 – 0.2",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "notes": "BCG 对 2023 年分项的估计区间上端，下端见配对条目；**2023 合计图中为 1.69 GW，分项区间之和 1.8-2.4 与之不严格对应**。"
+    },
+    {
+      "asserter": "BCG",
+      "metric_id": "global_dc_it_load",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "unit": "GW",
+      "fact_id": "bcg2024-sea-traditional-demand-2030e-lower",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc-traditional-compute",
+        "label": "东南亚数据中心需求：传统业务计算/存储部分"
+      },
+      "value": 4.0,
+      "as_of": "2030E@2024-10",
+      "bound": "lower",
+      "caliber": {
+        "power_scope": "未披露",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 6 页 Exhibit 2：Traditional business compute/storage 2030E 4.0 - 4.5（~2x）；第 7 页正文「demand doubling from 2023 to reach 4.0 GW to 4.5 GW」",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "notes": "BCG 自身预测（Source: BCG analysis）。**原文「demand」与「capacity」混用**：第 6 页称需求 5.2-6.5 GW，第 14 页称「5.2 GW to 6.5 GW DC capacity expected by 2030」。口径未说 IT 还是设施。 区间下端，上端见配对条目。"
+    },
+    {
+      "asserter": "BCG",
+      "metric_id": "global_dc_it_load",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "unit": "GW",
+      "fact_id": "bcg2024-sea-traditional-demand-2030e-upper",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc-traditional-compute",
+        "label": "东南亚数据中心需求：传统业务计算/存储部分"
+      },
+      "value": 4.5,
+      "as_of": "2030E@2024-10",
+      "bound": "upper",
+      "caliber": {
+        "power_scope": "未披露",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 6 页 Exhibit 2：Traditional business compute/storage 2030E 4.0 - 4.5（~2x）；第 7 页正文「demand doubling from 2023 to reach 4.0 GW to 4.5 GW」",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "notes": "BCG 自身预测（Source: BCG analysis）。**原文「demand」与「capacity」混用**：第 6 页称需求 5.2-6.5 GW，第 14 页称「5.2 GW to 6.5 GW DC capacity expected by 2030」。口径未说 IT 还是设施。 区间上端，下端见配对条目。"
+    },
+    {
+      "asserter": "BCG",
+      "metric_id": "global_dc_it_load",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "unit": "GW",
+      "fact_id": "bcg2024-sea-traditional-demand-2023-lower",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc-traditional-compute",
+        "label": "东南亚数据中心需求：传统业务计算/存储部分"
+      },
+      "value": 1.7,
+      "as_of": "2023",
+      "bound": "lower",
+      "caliber": {
+        "power_scope": "未披露",
+        "scenario": "单一情景",
+        "basis": "实测",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 6 页 Exhibit 2：Traditional compute 2023 1.7 - 2.2",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "notes": "BCG 对 2023 年分项的估计区间下端，上端见配对条目；**2023 合计图中为 1.69 GW，分项区间之和 1.8-2.4 与之不严格对应**。"
+    },
+    {
+      "asserter": "BCG",
+      "metric_id": "global_dc_it_load",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "unit": "GW",
+      "fact_id": "bcg2024-sea-traditional-demand-2023-upper",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc-traditional-compute",
+        "label": "东南亚数据中心需求：传统业务计算/存储部分"
+      },
+      "value": 2.2,
+      "as_of": "2023",
+      "bound": "upper",
+      "caliber": {
+        "power_scope": "未披露",
+        "scenario": "单一情景",
+        "basis": "实测",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 6 页 Exhibit 2：Traditional compute 2023 1.7 - 2.2",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "notes": "BCG 对 2023 年分项的估计区间上端，下端见配对条目；**2023 合计图中为 1.69 GW，分项区间之和 1.8-2.4 与之不严格对应**。"
+    },
+    {
+      "asserter": "BCG",
+      "metric_id": "global_dc_it_load",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "unit": "GW",
+      "fact_id": "bcg2024-sea-singapore-capacity-2030e-lower",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc-singapore",
+        "label": "新加坡数据中心"
+      },
+      "value": 1.5,
+      "as_of": "2030E@2024-10",
+      "bound": "lower",
+      "caliber": {
+        "power_scope": "未披露",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 12 页：「This will contribute to Singapore DC capacity growing to an estimated 1.5 GW to 1.7 GW by 2030」；第 8 页「Singapore accounting for 1.5 GW to 1.7 GW」",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间下端，上端见配对条目。"
+    },
+    {
+      "asserter": "BCG",
+      "metric_id": "global_dc_it_load",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "unit": "GW",
+      "fact_id": "bcg2024-sea-singapore-capacity-2030e-upper",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc-singapore",
+        "label": "新加坡数据中心"
+      },
+      "value": 1.7,
+      "as_of": "2030E@2024-10",
+      "bound": "upper",
+      "caliber": {
+        "power_scope": "未披露",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 12 页：「This will contribute to Singapore DC capacity growing to an estimated 1.5 GW to 1.7 GW by 2030」；第 8 页「Singapore accounting for 1.5 GW to 1.7 GW」",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间上端，下端见配对条目。"
+    },
+    {
+      "asserter": "BCG",
+      "metric_id": "global_dc_it_load",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "unit": "GW",
+      "fact_id": "bcg2024-sea-johor-capacity-2030e-lower",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc-johor",
+        "label": "马来西亚柔佛数据中心"
+      },
+      "value": 1.1,
+      "as_of": "2030E@2024-10",
+      "bound": "lower",
+      "caliber": {
+        "power_scope": "未披露",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 8 页：「Johor accounting for 1.1 GW to 1.5 GW」",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间下端，上端见配对条目。"
+    },
+    {
+      "asserter": "BCG",
+      "metric_id": "global_dc_it_load",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "unit": "GW",
+      "fact_id": "bcg2024-sea-johor-capacity-2030e-upper",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc-johor",
+        "label": "马来西亚柔佛数据中心"
+      },
+      "value": 1.5,
+      "as_of": "2030E@2024-10",
+      "bound": "upper",
+      "caliber": {
+        "power_scope": "未披露",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 8 页：「Johor accounting for 1.1 GW to 1.5 GW」",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间上端，下端见配对条目。"
+    },
+    {
+      "asserter": "BCG",
+      "metric_id": "global_dc_it_load",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "unit": "GW",
+      "fact_id": "bcg2024-sea-batam-capacity-2030e-lower",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc-batam",
+        "label": "印尼巴淡数据中心"
+      },
+      "value": 0.2,
+      "as_of": "2030E@2024-10",
+      "bound": "lower",
+      "caliber": {
+        "power_scope": "未披露",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 8 页：「Batam accounting for between 0.2 GW to 0.3 GW」",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间下端，上端见配对条目。"
+    },
+    {
+      "asserter": "BCG",
+      "metric_id": "global_dc_it_load",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "unit": "GW",
+      "fact_id": "bcg2024-sea-batam-capacity-2030e-upper",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc-batam",
+        "label": "印尼巴淡数据中心"
+      },
+      "value": 0.3,
+      "as_of": "2030E@2024-10",
+      "bound": "upper",
+      "caliber": {
+        "power_scope": "未披露",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 8 页：「Batam accounting for between 0.2 GW to 0.3 GW」",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间上端，下端见配对条目。"
+    },
+    {
+      "asserter": "BCG",
+      "metric_id": "global_dc_it_load",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "unit": "GW",
+      "fact_id": "bcg2024-sea-indonesia-ex-batam-capacity-2030e-lower",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc-indonesia-ex-batam",
+        "label": "印度尼西亚（不含巴淡）数据中心"
+      },
+      "value": 1.2,
+      "as_of": "2030E@2024-10",
+      "bound": "lower",
+      "caliber": {
+        "power_scope": "未披露",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 12 页：「Indonesia (excluding Batam) will see even more significant growth, expanding to between 1.2 GW and 1.6 GW by 2030」",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间下端，上端见配对条目。"
+    },
+    {
+      "asserter": "BCG",
+      "metric_id": "global_dc_it_load",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "unit": "GW",
+      "fact_id": "bcg2024-sea-indonesia-ex-batam-capacity-2030e-upper",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc-indonesia-ex-batam",
+        "label": "印度尼西亚（不含巴淡）数据中心"
+      },
+      "value": 1.6,
+      "as_of": "2030E@2024-10",
+      "bound": "upper",
+      "caliber": {
+        "power_scope": "未披露",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 12 页：「Indonesia (excluding Batam) will see even more significant growth, expanding to between 1.2 GW and 1.6 GW by 2030」",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间上端，下端见配对条目。"
+    },
+    {
+      "asserter": "BCG",
+      "metric_id": "global_dc_it_load",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "unit": "GW",
+      "fact_id": "bcg2024-sea-thailand-capacity-2030e-lower",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc-thailand",
+        "label": "泰国数据中心"
+      },
+      "value": 0.2,
+      "as_of": "2030E@2024-10",
+      "bound": "lower",
+      "caliber": {
+        "power_scope": "未披露",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 12 页：「Thailand ... capacity expanding to between 0.2 GW and 0.4 GW by 2030」",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间下端，上端见配对条目。"
+    },
+    {
+      "asserter": "BCG",
+      "metric_id": "global_dc_it_load",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "unit": "GW",
+      "fact_id": "bcg2024-sea-thailand-capacity-2030e-upper",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc-thailand",
+        "label": "泰国数据中心"
+      },
+      "value": 0.4,
+      "as_of": "2030E@2024-10",
+      "bound": "upper",
+      "caliber": {
+        "power_scope": "未披露",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 12 页：「Thailand ... capacity expanding to between 0.2 GW and 0.4 GW by 2030」",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间上端，下端见配对条目。"
+    },
+    {
+      "asserter": "BCG",
+      "metric_id": "global_dc_it_load",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "unit": "GW",
+      "fact_id": "bcg2024-sea-malaysia-ex-johor-capacity-2030e",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc-malaysia-ex-johor",
+        "label": "马来西亚（不含柔佛）数据中心"
+      },
+      "value": 0.3,
+      "as_of": "2030E@2024-10",
+      "bound": "point",
+      "caliber": {
+        "power_scope": "未披露",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 12 页：「Malaysia (excluding Johor) is expected to more than double capacity to around 0.3 GW by 2030」",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 「around」按点值记。"
+    },
+    {
+      "asserter": "BCG",
+      "metric_id": "global_dc_it_load",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "unit": "GW",
+      "fact_id": "bcg2024-sea-vietnam-capacity-2030e",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc-vietnam",
+        "label": "越南数据中心"
+      },
+      "value": 0.1,
+      "as_of": "2030E@2024-10",
+      "bound": "point",
+      "caliber": {
+        "power_scope": "未披露",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 12 页：「Vietnam and the Philippines ... estimated to grow to 0.1 GW and 0.2 GW in-country capacity respectively by 2030」",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 「estimated」按点值记；Exhibit 8 地图标 Hanoi 0.11 - 0.14。"
+    },
+    {
+      "asserter": "BCG",
+      "metric_id": "global_dc_it_load",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "unit": "GW",
+      "fact_id": "bcg2024-sea-philippines-capacity-2030e",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc-philippines",
+        "label": "菲律宾数据中心"
+      },
+      "value": 0.2,
+      "as_of": "2030E@2024-10",
+      "bound": "point",
+      "caliber": {
+        "power_scope": "未披露",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 12 页：「Vietnam and the Philippines ... estimated to grow to 0.1 GW and 0.2 GW in-country capacity respectively by 2030」",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 「estimated」按点值记；Exhibit 8 地图标 Manila 0.15 - 0.24。"
+    },
+    {
+      "fact_id": "bcg2024-sea-ai-training-share-2023",
+      "metric_id": "compute_demand_by_workload_share",
+      "asserter": "BCG",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc-ai-compute",
+        "label": "东南亚数据中心需求：AI 算力部分"
+      },
+      "value": 85.0,
+      "unit": "%",
+      "bound": "point",
+      "as_of": "2023",
+      "caliber": {
+        "workload": "训练",
+        "customer_scope": "全市场",
+        "basis": "第三方推算",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 8 页 Exhibit 4「Training poised to grow ~3x, whilst inferencing on track to grow to the tune of ~25x — Share of compute demand by training & inferencing (estimated)」；正文「Training represents a large share of existing AI compute, with demand expected to triple from 2023 to 2030 ... inferencing ... grow at a staggering 25x」",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**图中行列文字层错位，按原文增速反推对位**：文字层读出「2023 40% 60% / 2030E 85% 15%」列头 Training Inferencing，但正文说 2023 训练占大头、训练 ~3x、推理 ~25x。若 2023 训练 85%/推理 15%，则 2030 训练占 3×85/(3×85+25×15) = 40%，与图中另一行 40%/60% 吻合；反过来对位则得不出图中数。故 2023 训练 85%、推理 15%，2030E 训练 40%、推理 60%。建议有图时核一眼。"
+    },
+    {
+      "fact_id": "bcg2024-sea-ai-inference-share-2023",
+      "metric_id": "compute_demand_by_workload_share",
+      "asserter": "BCG",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc-ai-compute",
+        "label": "东南亚数据中心需求：AI 算力部分"
+      },
+      "value": 15.0,
+      "unit": "%",
+      "bound": "point",
+      "as_of": "2023",
+      "caliber": {
+        "workload": "推理",
+        "customer_scope": "全市场",
+        "basis": "第三方推算",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 8 页 Exhibit 4「Training poised to grow ~3x, whilst inferencing on track to grow to the tune of ~25x — Share of compute demand by training & inferencing (estimated)」；正文「Training represents a large share of existing AI compute, with demand expected to triple from 2023 to 2030 ... inferencing ... grow at a staggering 25x」",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**图中行列文字层错位，按原文增速反推对位**：文字层读出「2023 40% 60% / 2030E 85% 15%」列头 Training Inferencing，但正文说 2023 训练占大头、训练 ~3x、推理 ~25x。若 2023 训练 85%/推理 15%，则 2030 训练占 3×85/(3×85+25×15) = 40%，与图中另一行 40%/60% 吻合；反过来对位则得不出图中数。故 2023 训练 85%、推理 15%，2030E 训练 40%、推理 60%。建议有图时核一眼。"
+    },
+    {
+      "fact_id": "bcg2024-sea-ai-training-share-2030e",
+      "metric_id": "compute_demand_by_workload_share",
+      "asserter": "BCG",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc-ai-compute",
+        "label": "东南亚数据中心需求：AI 算力部分"
+      },
+      "value": 40.0,
+      "unit": "%",
+      "bound": "point",
+      "as_of": "2030E@2024-10",
+      "caliber": {
+        "workload": "训练",
+        "customer_scope": "全市场",
+        "basis": "预测",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 8 页 Exhibit 4「Training poised to grow ~3x, whilst inferencing on track to grow to the tune of ~25x — Share of compute demand by training & inferencing (estimated)」；正文「Training represents a large share of existing AI compute, with demand expected to triple from 2023 to 2030 ... inferencing ... grow at a staggering 25x」",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**图中行列文字层错位，按原文增速反推对位**：文字层读出「2023 40% 60% / 2030E 85% 15%」列头 Training Inferencing，但正文说 2023 训练占大头、训练 ~3x、推理 ~25x。若 2023 训练 85%/推理 15%，则 2030 训练占 3×85/(3×85+25×15) = 40%，与图中另一行 40%/60% 吻合；反过来对位则得不出图中数。故 2023 训练 85%、推理 15%，2030E 训练 40%、推理 60%。建议有图时核一眼。"
+    },
+    {
+      "fact_id": "bcg2024-sea-ai-inference-share-2030e",
+      "metric_id": "compute_demand_by_workload_share",
+      "asserter": "BCG",
+      "entity": {
+        "type": "region",
+        "id": "sea-dc-ai-compute",
+        "label": "东南亚数据中心需求：AI 算力部分"
+      },
+      "value": 60.0,
+      "unit": "%",
+      "bound": "point",
+      "as_of": "2030E@2024-10",
+      "caliber": {
+        "workload": "推理",
+        "customer_scope": "全市场",
+        "basis": "预测",
+        "region": "APAC"
+      },
+      "evidence": {
+        "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
+        "local_file": "20241105-BCG：2024年东南亚数据中心市场发展报告算力需求激增驱动数据中心迅猛增长(17页).pdf",
+        "locator": "第 8 页 Exhibit 4「Training poised to grow ~3x, whilst inferencing on track to grow to the tune of ~25x — Share of compute demand by training & inferencing (estimated)」；正文「Training represents a large share of existing AI compute, with demand expected to triple from 2023 to 2030 ... inferencing ... grow at a staggering 25x」",
+        "grade": "S3",
+        "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**图中行列文字层错位，按原文增速反推对位**：文字层读出「2023 40% 60% / 2030E 85% 15%」列头 Training Inferencing，但正文说 2023 训练占大头、训练 ~3x、推理 ~25x。若 2023 训练 85%/推理 15%，则 2030 训练占 3×85/(3×85+25×15) = 40%，与图中另一行 40%/60% 吻合；反过来对位则得不出图中数。故 2023 训练 85%、推理 15%，2030E 训练 40%、推理 60%。建议有图时核一眼。"
     }
   ]
 }
