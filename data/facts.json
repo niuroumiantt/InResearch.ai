@@ -140038,6 +140038,528 @@
       "corroboration": "待交叉验证",
       "notes": "WSTS 数据中心逻辑芯片口径（主要为 AI 加速器，含 CPU 等逻辑芯片，不含存储），原文「approximately」按点值记。2026 年为 WSTS 预测，原文未写预测发布时间，不带 @。与库内 Yole 数据中心 GPU 营收（2024 年 1,012 亿美元）口径不同：WSTS 2024 年逻辑芯片总额反而更低，不可互相替代。同页 Deloitte 另估 AI 数据中心服务器全部半导体营收 2024e 1,230 亿、2026f 6,700 亿、2028f 乐观 1.2 万亿/保守 8,860 亿美元，情景维与口径不合未录。",
       "asserter": "WSTS"
+    },
+    {
+      "fact_id": "ms2601-cowos-allocation-nvidia-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "entity": {
+        "type": "market",
+        "id": "tsmc-cowos-2026",
+        "label": "2026 年 CoWoS 产能分配"
+      },
+      "value": 725.0,
+      "unit": "千片",
+      "caliber": {
+        "customer": "NVIDIA",
+        "measure": "已分配产能",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 31 页「HBM Consumption in 2026e – Up to 32bn Gb」表「CoWoS capacity allocation (k wafers)」列（AI GPU 2026e / AI ASIC 2026e）：B300 390、Rubin R200 260、H200 75；MI300 3、MI350/375 7、MI400 65；TPU v7p 145、TPU v7e 80、TPU v8 30；Trainium 2.5 20、Trainium 3 80；xAI 10；Maia 200 4、Maia 300 5；MTIA 3 15；Nexus (Titan 1) 10；Total 1,434",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "大摩按芯片设计方/客户的 2026 年 CoWoS 产能分配估计（千片晶圆）。与库内 ms-cowos-demand-*（大摩较早版次的「需求」口径，未注版次）并列，不替代。",
+      "asserter": "摩根士丹利",
+      "derivation": "按原表分产品相加：B300 390 + Rubin R200 260 + H200 75 = 725。"
+    },
+    {
+      "fact_id": "ms2601-cowos-allocation-amd-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "entity": {
+        "type": "market",
+        "id": "tsmc-cowos-2026",
+        "label": "2026 年 CoWoS 产能分配"
+      },
+      "value": 75.0,
+      "unit": "千片",
+      "caliber": {
+        "customer": "AMD",
+        "measure": "已分配产能",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 31 页「HBM Consumption in 2026e – Up to 32bn Gb」表「CoWoS capacity allocation (k wafers)」列（AI GPU 2026e / AI ASIC 2026e）：B300 390、Rubin R200 260、H200 75；MI300 3、MI350/375 7、MI400 65；TPU v7p 145、TPU v7e 80、TPU v8 30；Trainium 2.5 20、Trainium 3 80；xAI 10；Maia 200 4、Maia 300 5；MTIA 3 15；Nexus (Titan 1) 10；Total 1,434",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "大摩按芯片设计方/客户的 2026 年 CoWoS 产能分配估计（千片晶圆）。与库内 ms-cowos-demand-*（大摩较早版次的「需求」口径，未注版次）并列，不替代。",
+      "asserter": "摩根士丹利",
+      "derivation": "按原表分产品相加：MI300 3 + MI350/375 7 + MI400 65 = 75。"
+    },
+    {
+      "fact_id": "ms2601-cowos-allocation-google-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "entity": {
+        "type": "market",
+        "id": "tsmc-cowos-2026",
+        "label": "2026 年 CoWoS 产能分配"
+      },
+      "value": 255.0,
+      "unit": "千片",
+      "caliber": {
+        "customer": "Google",
+        "measure": "已分配产能",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 31 页「HBM Consumption in 2026e – Up to 32bn Gb」表「CoWoS capacity allocation (k wafers)」列（AI GPU 2026e / AI ASIC 2026e）：B300 390、Rubin R200 260、H200 75；MI300 3、MI350/375 7、MI400 65；TPU v7p 145、TPU v7e 80、TPU v8 30；Trainium 2.5 20、Trainium 3 80；xAI 10；Maia 200 4、Maia 300 5；MTIA 3 15；Nexus (Titan 1) 10；Total 1,434",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "大摩按芯片设计方/客户的 2026 年 CoWoS 产能分配估计（千片晶圆）。与库内 ms-cowos-demand-*（大摩较早版次的「需求」口径，未注版次）并列，不替代。 Google 各代 TPU 经博通/联发科设计。",
+      "asserter": "摩根士丹利",
+      "derivation": "按原表分产品相加：TPU v7p 145 + TPU v7e 80 + TPU v8 30 = 255。"
+    },
+    {
+      "fact_id": "ms2601-cowos-allocation-aws-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "entity": {
+        "type": "market",
+        "id": "tsmc-cowos-2026",
+        "label": "2026 年 CoWoS 产能分配"
+      },
+      "value": 100.0,
+      "unit": "千片",
+      "caliber": {
+        "customer": "AWS",
+        "measure": "已分配产能",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 31 页「HBM Consumption in 2026e – Up to 32bn Gb」表「CoWoS capacity allocation (k wafers)」列（AI GPU 2026e / AI ASIC 2026e）：B300 390、Rubin R200 260、H200 75；MI300 3、MI350/375 7、MI400 65；TPU v7p 145、TPU v7e 80、TPU v8 30；Trainium 2.5 20、Trainium 3 80；xAI 10；Maia 200 4、Maia 300 5；MTIA 3 15；Nexus (Titan 1) 10；Total 1,434",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "大摩按芯片设计方/客户的 2026 年 CoWoS 产能分配估计（千片晶圆）。与库内 ms-cowos-demand-*（大摩较早版次的「需求」口径，未注版次）并列，不替代。",
+      "asserter": "摩根士丹利",
+      "derivation": "按原表分产品相加：Trainium 2.5 20 + Trainium 3 80 = 100。"
+    },
+    {
+      "fact_id": "ms2601-cowos-allocation-xai-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "entity": {
+        "type": "market",
+        "id": "tsmc-cowos-2026",
+        "label": "2026 年 CoWoS 产能分配"
+      },
+      "value": 10.0,
+      "unit": "千片",
+      "caliber": {
+        "customer": "xAI",
+        "measure": "已分配产能",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 31 页「HBM Consumption in 2026e – Up to 32bn Gb」表「CoWoS capacity allocation (k wafers)」列（AI GPU 2026e / AI ASIC 2026e）：B300 390、Rubin R200 260、H200 75；MI300 3、MI350/375 7、MI400 65；TPU v7p 145、TPU v7e 80、TPU v8 30；Trainium 2.5 20、Trainium 3 80；xAI 10；Maia 200 4、Maia 300 5；MTIA 3 15；Nexus (Titan 1) 10；Total 1,434",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "大摩按芯片设计方/客户的 2026 年 CoWoS 产能分配估计（千片晶圆）。与库内 ms-cowos-demand-*（大摩较早版次的「需求」口径，未注版次）并列，不替代。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2601-cowos-allocation-microsoft-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "entity": {
+        "type": "market",
+        "id": "tsmc-cowos-2026",
+        "label": "2026 年 CoWoS 产能分配"
+      },
+      "value": 9.0,
+      "unit": "千片",
+      "caliber": {
+        "customer": "Microsoft",
+        "measure": "已分配产能",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 31 页「HBM Consumption in 2026e – Up to 32bn Gb」表「CoWoS capacity allocation (k wafers)」列（AI GPU 2026e / AI ASIC 2026e）：B300 390、Rubin R200 260、H200 75；MI300 3、MI350/375 7、MI400 65；TPU v7p 145、TPU v7e 80、TPU v8 30；Trainium 2.5 20、Trainium 3 80；xAI 10；Maia 200 4、Maia 300 5；MTIA 3 15；Nexus (Titan 1) 10；Total 1,434",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "大摩按芯片设计方/客户的 2026 年 CoWoS 产能分配估计（千片晶圆）。与库内 ms-cowos-demand-*（大摩较早版次的「需求」口径，未注版次）并列，不替代。",
+      "asserter": "摩根士丹利",
+      "derivation": "按原表分产品相加：Maia 200 4 + Maia 300 5 = 9。"
+    },
+    {
+      "fact_id": "ms2601-cowos-allocation-meta-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "entity": {
+        "type": "market",
+        "id": "tsmc-cowos-2026",
+        "label": "2026 年 CoWoS 产能分配"
+      },
+      "value": 15.0,
+      "unit": "千片",
+      "caliber": {
+        "customer": "Meta",
+        "measure": "已分配产能",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 31 页「HBM Consumption in 2026e – Up to 32bn Gb」表「CoWoS capacity allocation (k wafers)」列（AI GPU 2026e / AI ASIC 2026e）：B300 390、Rubin R200 260、H200 75；MI300 3、MI350/375 7、MI400 65；TPU v7p 145、TPU v7e 80、TPU v8 30；Trainium 2.5 20、Trainium 3 80；xAI 10；Maia 200 4、Maia 300 5；MTIA 3 15；Nexus (Titan 1) 10；Total 1,434",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "大摩按芯片设计方/客户的 2026 年 CoWoS 产能分配估计（千片晶圆）。与库内 ms-cowos-demand-*（大摩较早版次的「需求」口径，未注版次）并列，不替代。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2601-cowos-allocation-openai-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "entity": {
+        "type": "market",
+        "id": "tsmc-cowos-2026",
+        "label": "2026 年 CoWoS 产能分配"
+      },
+      "value": 10.0,
+      "unit": "千片",
+      "caliber": {
+        "customer": "OpenAI",
+        "measure": "已分配产能",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 31 页「HBM Consumption in 2026e – Up to 32bn Gb」表「CoWoS capacity allocation (k wafers)」列（AI GPU 2026e / AI ASIC 2026e）：B300 390、Rubin R200 260、H200 75；MI300 3、MI350/375 7、MI400 65；TPU v7p 145、TPU v7e 80、TPU v8 30；Trainium 2.5 20、Trainium 3 80；xAI 10；Maia 200 4、Maia 300 5；MTIA 3 15；Nexus (Titan 1) 10；Total 1,434",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "大摩按芯片设计方/客户的 2026 年 CoWoS 产能分配估计（千片晶圆）。与库内 ms-cowos-demand-*（大摩较早版次的「需求」口径，未注版次）并列，不替代。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2601-cowos-allocation-total-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "entity": {
+        "type": "market",
+        "id": "tsmc-cowos-2026",
+        "label": "2026 年 CoWoS 产能分配"
+      },
+      "value": 1434.0,
+      "unit": "千片",
+      "caliber": {
+        "customer": "全部客户",
+        "measure": "已分配产能",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 31 页「HBM Consumption in 2026e – Up to 32bn Gb」表「CoWoS capacity allocation (k wafers)」列（AI GPU 2026e / AI ASIC 2026e）：B300 390、Rubin R200 260、H200 75；MI300 3、MI350/375 7、MI400 65；TPU v7p 145、TPU v7e 80、TPU v8 30；Trainium 2.5 20、Trainium 3 80；xAI 10；Maia 200 4、Maia 300 5；MTIA 3 15；Nexus (Titan 1) 10；Total 1,434",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "大摩按芯片设计方/客户的 2026 年 CoWoS 产能分配估计（千片晶圆）。与库内 ms-cowos-demand-*（大摩较早版次的「需求」口径，未注版次）并列，不替代。 合计即原表 Total。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2601-hbm-demand-volume-2026e",
+      "metric_id": "hbm_demand_volume",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 39.43,
+      "unit": "亿 GB",
+      "caliber": {
+        "measure": "位容量",
+        "generation": "合计",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 31 页同表「Total HBM demand (k GB)」Total = 3,942,725；「Total HBM demand (mn Gb)」= 31,542",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "3,942,725 千 GB = 39.43 亿 GB（原表另给 31,542 百万 Gb，÷8 = 39.43 亿 GB，两者一致）。",
+      "corroboration": "待交叉验证",
+      "notes": "按各芯片出货 × 每颗 HBM 容量加总；标题「Up to 32bn Gb」。与库内 hbmstat-demand-total-2026e 31.70 亿 GB（出处未注明）及 ms-2025e-hbm-demand-total 口径与版次不同，并列。NVIDIA 三款占 24.6 亿 GB。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2601-ai-asic-units-2026e",
+      "metric_id": "ai_asic_shipment_units",
+      "entity": {
+        "type": "industry",
+        "id": "ai-asic",
+        "label": "AI ASIC 市场"
+      },
+      "value": 6.21,
+      "unit": "百万颗",
+      "caliber": {
+        "counting": "封装后芯片",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2026E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 31 页同表 AI ASIC (2026e)「Implied chip shipments (k)」：TPU v7p 2,320、TPU v7e 960、TPU v8 600、Trainium 2.5 320、Trainium 3 1,360、xAI 200、Maia 200 116、Maia 300 55、MTIA 3 150、Nexus (Titan 1) 130",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "AI ASIC 各产品隐含出货相加 = 6,211 千颗 = 6.21 百万颗（原表未给 ASIC 小计）。",
+      "corroboration": "待交叉验证",
+      "notes": "由 CoWoS 分配 × 每片晶圆芯片数推出的隐含出货，只含表中列出的 ASIC；同表 AI GPU 隐含出货 B300 546 万、Rubin 208 万、H200 202.5 万颗等。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2601-tsmc-cowos-capacity-2026e",
+      "metric_id": "cowos_capacity_wpm",
+      "entity": {
+        "type": "company",
+        "id": "tsmc",
+        "label": "台积电"
+      },
+      "value": 12.5,
+      "unit": "万片/月",
+      "caliber": {
+        "package_type": "全部CoWoS",
+        "basis": "第三方推算"
+      },
+      "as_of": "2026E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 28 页标题：「TSMC May Expand CoWoS Capacity to 125kwpm By 2026 Given Continual Strong AI Demand」",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "125 kwpm = 12.5 万片/月，指台积电 2026 年底月产能（大摩估计）。与库内未注明来源的 2026E 10 万片/月（@2025-07）并列。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2601-vr-nvl144-rack-power",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "vr-nvl144-rack-power",
+        "label": "Vera Rubin NVL144"
+      },
+      "value": 220.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "era": "路线图目标",
+        "power_basis": "设计功率",
+        "region": "Global"
+      },
+      "as_of": "2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 23 页「Calculating power project deployment demand for TSMC CoWoS capacity and wafer capacity」表：NVIDIA (Open AI) 10GW / Vera Rubin NVL144 / 220kW / 45k 架；AMD (Open AI) 6GW / Helios / 260kW / 23k 架；Broadcom (Anthropic) 1GW / TPU / 60kW / 17k 架",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "大摩用于把已公布 GW 级项目折算机柜与 CoWoS 需求的单柜功耗假设。OpenAI 10GW 项目按每柜 220kW 折 4.5 万架。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2601-amd-helios-rack-power",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "amd-helios-rack-power",
+        "label": "AMD Helios"
+      },
+      "value": 260.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "era": "路线图目标",
+        "power_basis": "设计功率",
+        "region": "Global"
+      },
+      "as_of": "2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 23 页「Calculating power project deployment demand for TSMC CoWoS capacity and wafer capacity」表：NVIDIA (Open AI) 10GW / Vera Rubin NVL144 / 220kW / 45k 架；AMD (Open AI) 6GW / Helios / 260kW / 23k 架；Broadcom (Anthropic) 1GW / TPU / 60kW / 17k 架",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "大摩用于把已公布 GW 级项目折算机柜与 CoWoS 需求的单柜功耗假设。OpenAI 6GW 项目按每柜 260kW 折 2.3 万架。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2601-google-tpu-rack-power",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "google-tpu-rack-power",
+        "label": "Google TPU（Ironwood）机柜"
+      },
+      "value": 60.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "主流机型",
+        "era": "路线图目标",
+        "power_basis": "设计功率",
+        "region": "Global"
+      },
+      "as_of": "2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 23 页「Calculating power project deployment demand for TSMC CoWoS capacity and wafer capacity」表：NVIDIA (Open AI) 10GW / Vera Rubin NVL144 / 220kW / 45k 架；AMD (Open AI) 6GW / Helios / 260kW / 23k 架；Broadcom (Anthropic) 1GW / TPU / 60kW / 17k 架",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "大摩用于把已公布 GW 级项目折算机柜与 CoWoS 需求的单柜功耗假设。Anthropic 1GW 项目按每柜 60kW 折 1.7 万架；TPU 机柜不是 NVL 类整柜系统。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2601-gb200-nvl72-rack-ship-2025",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "product",
+        "id": "gb200-nvl72",
+        "label": "英伟达 GB200 NVL72 机柜"
+      },
+      "value": 30000.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "GB200 NVL72",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dd465f44dcc1309a284bea97083f946d0dcd7a25a6ad5f155b875e817a1caf7f",
+        "local_file": "20260208-摩根士丹利：人工智能半导体：TPU、GPU和内存的进一步增强(53页).pdf",
+        "locator": "第 27 页「NVIDIA GB200/300 Rack Output Estimates」：「TSMC expected to produce 5.1mn chips in 2025, with full-year GB200 NVL72 shipments expected to reach 30k」；注：「we include Wistron's computing tray (L10) rack equivalent number」",
+        "grade": "S3",
+        "originator": "摩根士丹利亚太科技团队《AI Semi: Further Strength in TPU, GPU and Memory》（Investor Presentation，2026-01-29）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "大摩全年估计，含纬创 L10 计算托盘折合的机柜当量，实际交付给终端客户的整柜数偏低（原注）。库内杰富瑞 2025E NVL72 27k 为较早版次预测，并列。",
+      "asserter": "摩根士丹利"
     }
   ]
 }
