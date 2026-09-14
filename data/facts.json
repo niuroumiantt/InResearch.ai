@@ -123330,6 +123330,347 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "Q3 计划交付量。"
+    },
+    {
+      "fact_id": "hbmstat-demand-total-2024",
+      "metric_id": "hbm_demand_volume",
+      "asserter": "未注明",
+      "entity": {
+        "type": "market",
+        "id": "hbm-global",
+        "label": "全球 HBM 需求"
+      },
+      "value": 10.772,
+      "unit": "亿 GB",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "measure": "位容量",
+        "generation": "合计",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "ceab045d617cc284ab55e8b8df4e32d97e92e40a0a0ee30c615556be3bd6ebff",
+        "local_file": "HBM市场统计.xlsx",
+        "locator": "工作表「Sheet1」第 71 行「Total HBM Demand ('000 GB)」2024 列 1077195；第 72 行同列 8.62 bn Gb",
+        "grade": "S4",
+        "originator": "未注明（全表无出处、无日期；按厂商×产品×季度列 HBM 容量需求）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "1,077,195 千 GB = 10.7720 亿 GB；与第 72 行 8.62 bn Gb（吉比特，×8）互相印证。合计为英伟达、AMD、谷歌、亚马逊、英特尔、微软、Meta、其他八组相加；分客户数本指标无客户维，未录。"
+    },
+    {
+      "fact_id": "hbmstat-demand-total-1q25",
+      "metric_id": "hbm_demand_volume",
+      "asserter": "未注明",
+      "entity": {
+        "type": "market",
+        "id": "hbm-global",
+        "label": "全球 HBM 需求"
+      },
+      "value": 4.4751,
+      "unit": "亿 GB",
+      "bound": "point",
+      "as_of": "2025-Q1",
+      "caliber": {
+        "measure": "位容量",
+        "generation": "合计",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "ceab045d617cc284ab55e8b8df4e32d97e92e40a0a0ee30c615556be3bd6ebff",
+        "local_file": "HBM市场统计.xlsx",
+        "locator": "工作表「Sheet1」第 71 行「Total HBM Demand ('000 GB)」1Q25 列 447506；第 72 行同列 3.58 bn Gb",
+        "grade": "S4",
+        "originator": "未注明（全表无出处、无日期；按厂商×产品×季度列 HBM 容量需求）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "447,506 千 GB = 4.4751 亿 GB；与第 72 行 3.58 bn Gb（吉比特，×8）互相印证。全表无日期，2Q25 起标 E、1Q25 未标，做出时点约在 2025 年二季度但原文未写，as_of 不带 @。合计为英伟达、AMD、谷歌、亚马逊、英特尔、微软、Meta、其他八组相加；分客户数本指标无客户维，未录。"
+    },
+    {
+      "fact_id": "hbmstat-demand-total-2q25e",
+      "metric_id": "hbm_demand_volume",
+      "asserter": "未注明",
+      "entity": {
+        "type": "market",
+        "id": "hbm-global",
+        "label": "全球 HBM 需求"
+      },
+      "value": 4.4663,
+      "unit": "亿 GB",
+      "bound": "point",
+      "as_of": "2025-Q2E",
+      "caliber": {
+        "measure": "位容量",
+        "generation": "合计",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "ceab045d617cc284ab55e8b8df4e32d97e92e40a0a0ee30c615556be3bd6ebff",
+        "local_file": "HBM市场统计.xlsx",
+        "locator": "工作表「Sheet1」第 71 行「Total HBM Demand ('000 GB)」2Q25E 列 446628；第 72 行同列 3.57 bn Gb",
+        "grade": "S4",
+        "originator": "未注明（全表无出处、无日期；按厂商×产品×季度列 HBM 容量需求）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "446,628 千 GB = 4.4663 亿 GB；与第 72 行 3.57 bn Gb（吉比特，×8）互相印证。全表无日期，2Q25 起标 E、1Q25 未标，做出时点约在 2025 年二季度但原文未写，as_of 不带 @。合计为英伟达、AMD、谷歌、亚马逊、英特尔、微软、Meta、其他八组相加；分客户数本指标无客户维，未录。"
+    },
+    {
+      "fact_id": "hbmstat-demand-total-3q25e",
+      "metric_id": "hbm_demand_volume",
+      "asserter": "未注明",
+      "entity": {
+        "type": "market",
+        "id": "hbm-global",
+        "label": "全球 HBM 需求"
+      },
+      "value": 5.2935,
+      "unit": "亿 GB",
+      "bound": "point",
+      "as_of": "2025-Q3E",
+      "caliber": {
+        "measure": "位容量",
+        "generation": "合计",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "ceab045d617cc284ab55e8b8df4e32d97e92e40a0a0ee30c615556be3bd6ebff",
+        "local_file": "HBM市场统计.xlsx",
+        "locator": "工作表「Sheet1」第 71 行「Total HBM Demand ('000 GB)」3Q25E 列 529349；第 72 行同列 4.23 bn Gb",
+        "grade": "S4",
+        "originator": "未注明（全表无出处、无日期；按厂商×产品×季度列 HBM 容量需求）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "529,349 千 GB = 5.2935 亿 GB；与第 72 行 4.23 bn Gb（吉比特，×8）互相印证。全表无日期，2Q25 起标 E、1Q25 未标，做出时点约在 2025 年二季度但原文未写，as_of 不带 @。合计为英伟达、AMD、谷歌、亚马逊、英特尔、微软、Meta、其他八组相加；分客户数本指标无客户维，未录。"
+    },
+    {
+      "fact_id": "hbmstat-demand-total-4q25e",
+      "metric_id": "hbm_demand_volume",
+      "asserter": "未注明",
+      "entity": {
+        "type": "market",
+        "id": "hbm-global",
+        "label": "全球 HBM 需求"
+      },
+      "value": 6.1585,
+      "unit": "亿 GB",
+      "bound": "point",
+      "as_of": "2025-Q4E",
+      "caliber": {
+        "measure": "位容量",
+        "generation": "合计",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "ceab045d617cc284ab55e8b8df4e32d97e92e40a0a0ee30c615556be3bd6ebff",
+        "local_file": "HBM市场统计.xlsx",
+        "locator": "工作表「Sheet1」第 71 行「Total HBM Demand ('000 GB)」4Q25E 列 615853；第 72 行同列 4.93 bn Gb",
+        "grade": "S4",
+        "originator": "未注明（全表无出处、无日期；按厂商×产品×季度列 HBM 容量需求）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "615,853 千 GB = 6.1585 亿 GB；与第 72 行 4.93 bn Gb（吉比特，×8）互相印证。全表无日期，2Q25 起标 E、1Q25 未标，做出时点约在 2025 年二季度但原文未写，as_of 不带 @。合计为英伟达、AMD、谷歌、亚马逊、英特尔、微软、Meta、其他八组相加；分客户数本指标无客户维，未录。"
+    },
+    {
+      "fact_id": "hbmstat-demand-total-2025e",
+      "metric_id": "hbm_demand_volume",
+      "asserter": "未注明",
+      "entity": {
+        "type": "market",
+        "id": "hbm-global",
+        "label": "全球 HBM 需求"
+      },
+      "value": 20.3934,
+      "unit": "亿 GB",
+      "bound": "point",
+      "as_of": "2025E",
+      "caliber": {
+        "measure": "位容量",
+        "generation": "合计",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "ceab045d617cc284ab55e8b8df4e32d97e92e40a0a0ee30c615556be3bd6ebff",
+        "local_file": "HBM市场统计.xlsx",
+        "locator": "工作表「Sheet1」第 71 行「Total HBM Demand ('000 GB)」2025E 列 2039337；第 72 行同列 16.31 bn Gb",
+        "grade": "S4",
+        "originator": "未注明（全表无出处、无日期；按厂商×产品×季度列 HBM 容量需求）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2,039,337 千 GB = 20.3934 亿 GB；与第 72 行 16.31 bn Gb（吉比特，×8）互相印证。全表无日期，2Q25 起标 E、1Q25 未标，做出时点约在 2025 年二季度但原文未写，as_of 不带 @。合计为英伟达、AMD、谷歌、亚马逊、英特尔、微软、Meta、其他八组相加；分客户数本指标无客户维，未录。"
+    },
+    {
+      "fact_id": "hbmstat-demand-total-1q26e",
+      "metric_id": "hbm_demand_volume",
+      "asserter": "未注明",
+      "entity": {
+        "type": "market",
+        "id": "hbm-global",
+        "label": "全球 HBM 需求"
+      },
+      "value": 7.2689,
+      "unit": "亿 GB",
+      "bound": "point",
+      "as_of": "2026-Q1E",
+      "caliber": {
+        "measure": "位容量",
+        "generation": "合计",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "ceab045d617cc284ab55e8b8df4e32d97e92e40a0a0ee30c615556be3bd6ebff",
+        "local_file": "HBM市场统计.xlsx",
+        "locator": "工作表「Sheet1」第 71 行「Total HBM Demand ('000 GB)」1Q26E 列 726887；第 72 行同列 5.82 bn Gb",
+        "grade": "S4",
+        "originator": "未注明（全表无出处、无日期；按厂商×产品×季度列 HBM 容量需求）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "726,887 千 GB = 7.2689 亿 GB；与第 72 行 5.82 bn Gb（吉比特，×8）互相印证。全表无日期，2Q25 起标 E、1Q25 未标，做出时点约在 2025 年二季度但原文未写，as_of 不带 @。合计为英伟达、AMD、谷歌、亚马逊、英特尔、微软、Meta、其他八组相加；分客户数本指标无客户维，未录。"
+    },
+    {
+      "fact_id": "hbmstat-demand-total-2q26e",
+      "metric_id": "hbm_demand_volume",
+      "asserter": "未注明",
+      "entity": {
+        "type": "market",
+        "id": "hbm-global",
+        "label": "全球 HBM 需求"
+      },
+      "value": 7.6869,
+      "unit": "亿 GB",
+      "bound": "point",
+      "as_of": "2026-Q2E",
+      "caliber": {
+        "measure": "位容量",
+        "generation": "合计",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "ceab045d617cc284ab55e8b8df4e32d97e92e40a0a0ee30c615556be3bd6ebff",
+        "local_file": "HBM市场统计.xlsx",
+        "locator": "工作表「Sheet1」第 71 行「Total HBM Demand ('000 GB)」2Q26E 列 768691；第 72 行同列 6.15 bn Gb",
+        "grade": "S4",
+        "originator": "未注明（全表无出处、无日期；按厂商×产品×季度列 HBM 容量需求）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "768,691 千 GB = 7.6869 亿 GB；与第 72 行 6.15 bn Gb（吉比特，×8）互相印证。全表无日期，2Q25 起标 E、1Q25 未标，做出时点约在 2025 年二季度但原文未写，as_of 不带 @。合计为英伟达、AMD、谷歌、亚马逊、英特尔、微软、Meta、其他八组相加；分客户数本指标无客户维，未录。"
+    },
+    {
+      "fact_id": "hbmstat-demand-total-3q26e",
+      "metric_id": "hbm_demand_volume",
+      "asserter": "未注明",
+      "entity": {
+        "type": "market",
+        "id": "hbm-global",
+        "label": "全球 HBM 需求"
+      },
+      "value": 7.7942,
+      "unit": "亿 GB",
+      "bound": "point",
+      "as_of": "2026-Q3E",
+      "caliber": {
+        "measure": "位容量",
+        "generation": "合计",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "ceab045d617cc284ab55e8b8df4e32d97e92e40a0a0ee30c615556be3bd6ebff",
+        "local_file": "HBM市场统计.xlsx",
+        "locator": "工作表「Sheet1」第 71 行「Total HBM Demand ('000 GB)」3Q26E 列 779416；第 72 行同列 6.24 bn Gb",
+        "grade": "S4",
+        "originator": "未注明（全表无出处、无日期；按厂商×产品×季度列 HBM 容量需求）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "779,416 千 GB = 7.7942 亿 GB；与第 72 行 6.24 bn Gb（吉比特，×8）互相印证。全表无日期，2Q25 起标 E、1Q25 未标，做出时点约在 2025 年二季度但原文未写，as_of 不带 @。合计为英伟达、AMD、谷歌、亚马逊、英特尔、微软、Meta、其他八组相加；分客户数本指标无客户维，未录。"
+    },
+    {
+      "fact_id": "hbmstat-demand-total-4q26e",
+      "metric_id": "hbm_demand_volume",
+      "asserter": "未注明",
+      "entity": {
+        "type": "market",
+        "id": "hbm-global",
+        "label": "全球 HBM 需求"
+      },
+      "value": 8.9472,
+      "unit": "亿 GB",
+      "bound": "point",
+      "as_of": "2026-Q4E",
+      "caliber": {
+        "measure": "位容量",
+        "generation": "合计",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "ceab045d617cc284ab55e8b8df4e32d97e92e40a0a0ee30c615556be3bd6ebff",
+        "local_file": "HBM市场统计.xlsx",
+        "locator": "工作表「Sheet1」第 71 行「Total HBM Demand ('000 GB)」4Q26E 列 894724；第 72 行同列 7.16 bn Gb",
+        "grade": "S4",
+        "originator": "未注明（全表无出处、无日期；按厂商×产品×季度列 HBM 容量需求）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "894,724 千 GB = 8.9472 亿 GB；与第 72 行 7.16 bn Gb（吉比特，×8）互相印证。全表无日期，2Q25 起标 E、1Q25 未标，做出时点约在 2025 年二季度但原文未写，as_of 不带 @。合计为英伟达、AMD、谷歌、亚马逊、英特尔、微软、Meta、其他八组相加；分客户数本指标无客户维，未录。"
+    },
+    {
+      "fact_id": "hbmstat-demand-total-2026e",
+      "metric_id": "hbm_demand_volume",
+      "asserter": "未注明",
+      "entity": {
+        "type": "market",
+        "id": "hbm-global",
+        "label": "全球 HBM 需求"
+      },
+      "value": 31.6972,
+      "unit": "亿 GB",
+      "bound": "point",
+      "as_of": "2026E",
+      "caliber": {
+        "measure": "位容量",
+        "generation": "合计",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "ceab045d617cc284ab55e8b8df4e32d97e92e40a0a0ee30c615556be3bd6ebff",
+        "local_file": "HBM市场统计.xlsx",
+        "locator": "工作表「Sheet1」第 71 行「Total HBM Demand ('000 GB)」2026E 列 3169717；第 72 行同列 25.36 bn Gb",
+        "grade": "S4",
+        "originator": "未注明（全表无出处、无日期；按厂商×产品×季度列 HBM 容量需求）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "3,169,717 千 GB = 31.6972 亿 GB；与第 72 行 25.36 bn Gb（吉比特，×8）互相印证。全表无日期，2Q25 起标 E、1Q25 未标，做出时点约在 2025 年二季度但原文未写，as_of 不带 @。合计为英伟达、AMD、谷歌、亚马逊、英特尔、微软、Meta、其他八组相加；分客户数本指标无客户维，未录。"
     }
   ]
 }
