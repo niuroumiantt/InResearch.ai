@@ -141569,6 +141569,64 @@
       "corroboration": "待交叉验证",
       "notes": "同比增速。与 Yole 2023 +187%/2024 +193% 口径不同、差距大，并列。同页称 2025、2026 年增速放缓。",
       "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "ubs2504-tsmc-cowos-capacity-end2025e",
+      "metric_id": "cowos_capacity_wpm",
+      "entity": {
+        "type": "company",
+        "id": "tsmc",
+        "label": "台积电"
+      },
+      "value": 7.0,
+      "unit": "万片/月",
+      "caliber": {
+        "package_type": "全部CoWoS",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "25b6b53a6d2a6001a89d7f7fb44582db9b257e37055d75548d6cad2255f0532b",
+        "local_file": "[UBS]Asia_Semiconductor_Insight_CoWoS_expansion_slowdown_underway.pdf",
+        "locator": "第 1 页：「We have lowered TSMC's CoWoS capacity to 70kwpm/100kwpm by end-2025/2026. We believe moderation in orders is occurring. TSMC appears to be delaying equipment orders from selective vendors for Oct-Nov 2025 at AP08 (Innolux fab) installations」",
+        "grade": "S3",
+        "originator": "瑞银 Asia Semiconductors（Randy Abrams 等，2025-04-23《CoWoS expansion slowdown underway》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "70 kwpm = 7.0 万片/月，指 2025 年底台积电 CoWoS 月产能；瑞银下调后的数（因台积电推迟 AP08 设备订单）。与库内未注明来源 2025 年 6.5–7.5 万片/月区间一致。",
+      "asserter": "瑞银"
+    },
+    {
+      "fact_id": "ubs2504-tsmc-cowos-capacity-end2026e",
+      "metric_id": "cowos_capacity_wpm",
+      "entity": {
+        "type": "company",
+        "id": "tsmc",
+        "label": "台积电"
+      },
+      "value": 10.0,
+      "unit": "万片/月",
+      "caliber": {
+        "package_type": "全部CoWoS",
+        "basis": "第三方推算"
+      },
+      "as_of": "2026E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "25b6b53a6d2a6001a89d7f7fb44582db9b257e37055d75548d6cad2255f0532b",
+        "local_file": "[UBS]Asia_Semiconductor_Insight_CoWoS_expansion_slowdown_underway.pdf",
+        "locator": "第 1 页：「We have lowered TSMC's CoWoS capacity to 70kwpm/100kwpm by end-2025/2026. We believe moderation in orders is occurring. TSMC appears to be delaying equipment orders from selective vendors for Oct-Nov 2025 at AP08 (Innolux fab) installations」",
+        "grade": "S3",
+        "originator": "瑞银 Asia Semiconductors（Randy Abrams 等，2025-04-23《CoWoS expansion slowdown underway》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "100 kwpm = 10 万片/月（2026 年底）。与大摩 2025-09 版 9.3、2026-01 版 12.5 万片/月为不同机构不同时点的并列预测。同文称 SoIC 产能 2025 年底由 4 kwpm 扩至 8–10 kwpm（SoIC 单列无对应档，未录）。",
+      "asserter": "瑞银"
     }
   ]
 }
