@@ -156626,6 +156626,422 @@
       "corroboration": "待交叉验证",
       "notes": "component 记 GPU 是菜单里最近的加速器位，实为昇腾 NPU。 路线图产品，发布时尚未上市；derived 只因 as_of 为推定，数值本身是原文。",
       "asserter": "华为"
+    },
+    {
+      "fact_id": "cmcc-nicc23-wuhan-aicc",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "wuhan-aicc",
+        "label": "武汉人工智能计算中心"
+      },
+      "value": 200.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "未注明",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "31f30a659122c7b23722f76fd49c4c46104ccaaaadd679e05b25f8563757112b",
+        "local_file": "54页-NICC新型智算中心技术体系白皮书（中国移动2023-8）.pdf",
+        "locator": "第 7 页 1.1 节：「国内智算中心建设热潮始于 2020 年，目前已有 40+ 城市建成或正在建设智算中心（如图 1-2），包括武汉人工智算计算中心（200P）、南京智能计算中心（800P）、合肥先进计算中心（12P）、鹏城云脑 II（1E）等…阿里在张北和乌兰察布建设的总规模达 15E 的智算中心…百度在山西阳泉建设规模 4E 的智算中心…商汤…投资 56 亿在上海临港建设人工智能计算中心，规模超 4E」",
+        "grade": "S2",
+        "originator": "中国移动《NICC 新型智算中心技术体系白皮书》（2023-08）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "与中国信通院 2025-11 记的 400P（caict-aiinfra2025-wuhan-aicc-compute）时点不同，可能为扩容后规模。 白皮书未给各中心的精度口径与出处，也未区分已投运与在建（原文「建成或正在建设」），precision 与 status 记未注明；E=EFLOPS 按 1E = 1,000 PFLOPS 折算。",
+      "asserter": "中国移动"
+    },
+    {
+      "fact_id": "cmcc-nicc23-nanjing-icc",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "nanjing-intelligent-computing-center",
+        "label": "南京智能计算中心"
+      },
+      "value": 800.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "未注明",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "31f30a659122c7b23722f76fd49c4c46104ccaaaadd679e05b25f8563757112b",
+        "local_file": "54页-NICC新型智算中心技术体系白皮书（中国移动2023-8）.pdf",
+        "locator": "第 7 页 1.1 节：「国内智算中心建设热潮始于 2020 年，目前已有 40+ 城市建成或正在建设智算中心（如图 1-2），包括武汉人工智算计算中心（200P）、南京智能计算中心（800P）、合肥先进计算中心（12P）、鹏城云脑 II（1E）等…阿里在张北和乌兰察布建设的总规模达 15E 的智算中心…百度在山西阳泉建设规模 4E 的智算中心…商汤…投资 56 亿在上海临港建设人工智能计算中心，规模超 4E」",
+        "grade": "S2",
+        "originator": "中国移动《NICC 新型智算中心技术体系白皮书》（2023-08）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "与中国通服 2024-09 记的 400P（ccs-aidc2024-project-nanjing-intelligent-computing-center-total）不一致，时点不同，待交叉验证。 白皮书未给各中心的精度口径与出处，也未区分已投运与在建（原文「建成或正在建设」），precision 与 status 记未注明；E=EFLOPS 按 1E = 1,000 PFLOPS 折算。",
+      "asserter": "中国移动"
+    },
+    {
+      "fact_id": "cmcc-nicc23-hefei-acc",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "hefei-advanced-computing-center",
+        "label": "合肥先进计算中心"
+      },
+      "value": 12.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "未注明",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "31f30a659122c7b23722f76fd49c4c46104ccaaaadd679e05b25f8563757112b",
+        "local_file": "54页-NICC新型智算中心技术体系白皮书（中国移动2023-8）.pdf",
+        "locator": "第 7 页 1.1 节：「国内智算中心建设热潮始于 2020 年，目前已有 40+ 城市建成或正在建设智算中心（如图 1-2），包括武汉人工智算计算中心（200P）、南京智能计算中心（800P）、合肥先进计算中心（12P）、鹏城云脑 II（1E）等…阿里在张北和乌兰察布建设的总规模达 15E 的智算中心…百度在山西阳泉建设规模 4E 的智算中心…商汤…投资 56 亿在上海临港建设人工智能计算中心，规模超 4E」",
+        "grade": "S2",
+        "originator": "中国移动《NICC 新型智算中心技术体系白皮书》（2023-08）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": " 白皮书未给各中心的精度口径与出处，也未区分已投运与在建（原文「建成或正在建设」），precision 与 status 记未注明；E=EFLOPS 按 1E = 1,000 PFLOPS 折算。",
+      "asserter": "中国移动"
+    },
+    {
+      "fact_id": "cmcc-nicc23-pengcheng-cloudbrain2",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "pengcheng-cloud-brain-2",
+        "label": "鹏城云脑 II"
+      },
+      "value": 1000.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "未注明",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "31f30a659122c7b23722f76fd49c4c46104ccaaaadd679e05b25f8563757112b",
+        "local_file": "54页-NICC新型智算中心技术体系白皮书（中国移动2023-8）.pdf",
+        "locator": "第 7 页 1.1 节：「国内智算中心建设热潮始于 2020 年，目前已有 40+ 城市建成或正在建设智算中心（如图 1-2），包括武汉人工智算计算中心（200P）、南京智能计算中心（800P）、合肥先进计算中心（12P）、鹏城云脑 II（1E）等…阿里在张北和乌兰察布建设的总规模达 15E 的智算中心…百度在山西阳泉建设规模 4E 的智算中心…商汤…投资 56 亿在上海临港建设人工智能计算中心，规模超 4E」",
+        "grade": "S2",
+        "originator": "中国移动《NICC 新型智算中心技术体系白皮书》（2023-08）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「1E」。 白皮书未给各中心的精度口径与出处，也未区分已投运与在建（原文「建成或正在建设」），precision 与 status 记未注明；E=EFLOPS 按 1E = 1,000 PFLOPS 折算。",
+      "asserter": "中国移动"
+    },
+    {
+      "fact_id": "cmcc-nicc23-alibaba-zhangbei-ulanqab",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "alibaba-zhangbei-ulanqab-aidc",
+        "label": "阿里巴巴张北与乌兰察布智算中心（合计）"
+      },
+      "value": 15000.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "未注明",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "31f30a659122c7b23722f76fd49c4c46104ccaaaadd679e05b25f8563757112b",
+        "local_file": "54页-NICC新型智算中心技术体系白皮书（中国移动2023-8）.pdf",
+        "locator": "第 7 页 1.1 节：「国内智算中心建设热潮始于 2020 年，目前已有 40+ 城市建成或正在建设智算中心（如图 1-2），包括武汉人工智算计算中心（200P）、南京智能计算中心（800P）、合肥先进计算中心（12P）、鹏城云脑 II（1E）等…阿里在张北和乌兰察布建设的总规模达 15E 的智算中心…百度在山西阳泉建设规模 4E 的智算中心…商汤…投资 56 亿在上海临港建设人工智能计算中心，规模超 4E」",
+        "grade": "S2",
+        "originator": "中国移动《NICC 新型智算中心技术体系白皮书》（2023-08）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文为两地合计「总规模达 15E」。 白皮书未给各中心的精度口径与出处，也未区分已投运与在建（原文「建成或正在建设」），precision 与 status 记未注明；E=EFLOPS 按 1E = 1,000 PFLOPS 折算。",
+      "asserter": "中国移动"
+    },
+    {
+      "fact_id": "cmcc-nicc23-baidu-yangquan",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "baidu-yangquan-aidc",
+        "label": "百度山西阳泉智算中心"
+      },
+      "value": 4000.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "未注明",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "31f30a659122c7b23722f76fd49c4c46104ccaaaadd679e05b25f8563757112b",
+        "local_file": "54页-NICC新型智算中心技术体系白皮书（中国移动2023-8）.pdf",
+        "locator": "第 7 页 1.1 节：「国内智算中心建设热潮始于 2020 年，目前已有 40+ 城市建成或正在建设智算中心（如图 1-2），包括武汉人工智算计算中心（200P）、南京智能计算中心（800P）、合肥先进计算中心（12P）、鹏城云脑 II（1E）等…阿里在张北和乌兰察布建设的总规模达 15E 的智算中心…百度在山西阳泉建设规模 4E 的智算中心…商汤…投资 56 亿在上海临港建设人工智能计算中心，规模超 4E」",
+        "grade": "S2",
+        "originator": "中国移动《NICC 新型智算中心技术体系白皮书》（2023-08）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「4E」。 白皮书未给各中心的精度口径与出处，也未区分已投运与在建（原文「建成或正在建设」），precision 与 status 记未注明；E=EFLOPS 按 1E = 1,000 PFLOPS 折算。",
+      "asserter": "中国移动"
+    },
+    {
+      "fact_id": "cmcc-nicc23-sensetime-lingang",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "sensetime-lingang-aidc",
+        "label": "商汤上海临港 AIDC（人工智能计算中心）"
+      },
+      "value": 4000.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "未注明",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023-08",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "31f30a659122c7b23722f76fd49c4c46104ccaaaadd679e05b25f8563757112b",
+        "local_file": "54页-NICC新型智算中心技术体系白皮书（中国移动2023-8）.pdf",
+        "locator": "第 7 页 1.1 节：「国内智算中心建设热潮始于 2020 年，目前已有 40+ 城市建成或正在建设智算中心（如图 1-2），包括武汉人工智算计算中心（200P）、南京智能计算中心（800P）、合肥先进计算中心（12P）、鹏城云脑 II（1E）等…阿里在张北和乌兰察布建设的总规模达 15E 的智算中心…百度在山西阳泉建设规模 4E 的智算中心…商汤…投资 56 亿在上海临港建设人工智能计算中心，规模超 4E」",
+        "grade": "S2",
+        "originator": "中国移动《NICC 新型智算中心技术体系白皮书》（2023-08）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「规模超 4E」为下界；投资 56 亿元。商汤 2022-01 披露的规划口径为 3,740P（cms2023-sensetime-lingang-compute-full-build）。 白皮书未给各中心的精度口径与出处，也未区分已投运与在建（原文「建成或正在建设」），precision 与 status 记未注明；E=EFLOPS 按 1E = 1,000 PFLOPS 折算。",
+      "asserter": "中国移动"
+    },
+    {
+      "fact_id": "cmcc-nicc23-ornl-summit",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "ornl-summit",
+        "label": "橡树岭国家实验室 Summit"
+      },
+      "value": 3400.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "未注明",
+        "phase": "整体",
+        "region": "US",
+        "basis": "行业机构"
+      },
+      "as_of": "2023-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "31f30a659122c7b23722f76fd49c4c46104ccaaaadd679e05b25f8563757112b",
+        "local_file": "54页-NICC新型智算中心技术体系白皮书（中国移动2023-8）.pdf",
+        "locator": "第 6 页 1.1 节：「橡树岭国家实验室的 Summit（3.4E），阿贡国家实验室的 Polaris 和 Aurora（约 10E），劳伦斯伯克利实验室的 Perlmutter（3.8E）等…谷歌的开放机器学习中心（9E），特斯拉 Dojo 集群（据称 2024 年末规模达到 100E），Meta AI 超级计算机（9.9E）」",
+        "grade": "S2",
+        "originator": "中国移动《NICC 新型智算中心技术体系白皮书》（2023-08）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「3.4E」，美国能源部智能超算中心。 白皮书未给各中心的精度口径与出处，也未区分已投运与在建（原文「建成或正在建设」），precision 与 status 记未注明；E=EFLOPS 按 1E = 1,000 PFLOPS 折算。",
+      "asserter": "中国移动"
+    },
+    {
+      "fact_id": "cmcc-nicc23-anl-polaris-aurora",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "anl-polaris-aurora",
+        "label": "阿贡国家实验室 Polaris 与 Aurora（合计）"
+      },
+      "value": 10000.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "未注明",
+        "phase": "整体",
+        "region": "US",
+        "basis": "行业机构"
+      },
+      "as_of": "2023-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "31f30a659122c7b23722f76fd49c4c46104ccaaaadd679e05b25f8563757112b",
+        "local_file": "54页-NICC新型智算中心技术体系白皮书（中国移动2023-8）.pdf",
+        "locator": "第 6 页 1.1 节：「橡树岭国家实验室的 Summit（3.4E），阿贡国家实验室的 Polaris 和 Aurora（约 10E），劳伦斯伯克利实验室的 Perlmutter（3.8E）等…谷歌的开放机器学习中心（9E），特斯拉 Dojo 集群（据称 2024 年末规模达到 100E），Meta AI 超级计算机（9.9E）」",
+        "grade": "S2",
+        "originator": "中国移动《NICC 新型智算中心技术体系白皮书》（2023-08）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「Polaris 和 Aurora（约 10E）」为两台合计约数，未拆分。 白皮书未给各中心的精度口径与出处，也未区分已投运与在建（原文「建成或正在建设」），precision 与 status 记未注明；E=EFLOPS 按 1E = 1,000 PFLOPS 折算。",
+      "asserter": "中国移动"
+    },
+    {
+      "fact_id": "cmcc-nicc23-lbnl-perlmutter",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "lbnl-perlmutter",
+        "label": "劳伦斯伯克利国家实验室 Perlmutter"
+      },
+      "value": 3800.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "未注明",
+        "phase": "整体",
+        "region": "US",
+        "basis": "行业机构"
+      },
+      "as_of": "2023-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "31f30a659122c7b23722f76fd49c4c46104ccaaaadd679e05b25f8563757112b",
+        "local_file": "54页-NICC新型智算中心技术体系白皮书（中国移动2023-8）.pdf",
+        "locator": "第 6 页 1.1 节：「橡树岭国家实验室的 Summit（3.4E），阿贡国家实验室的 Polaris 和 Aurora（约 10E），劳伦斯伯克利实验室的 Perlmutter（3.8E）等…谷歌的开放机器学习中心（9E），特斯拉 Dojo 集群（据称 2024 年末规模达到 100E），Meta AI 超级计算机（9.9E）」",
+        "grade": "S2",
+        "originator": "中国移动《NICC 新型智算中心技术体系白皮书》（2023-08）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「3.8E」。 白皮书未给各中心的精度口径与出处，也未区分已投运与在建（原文「建成或正在建设」），precision 与 status 记未注明；E=EFLOPS 按 1E = 1,000 PFLOPS 折算。",
+      "asserter": "中国移动"
+    },
+    {
+      "fact_id": "cmcc-nicc23-google-ml-center",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "google-open-ml-center",
+        "label": "谷歌开放机器学习中心"
+      },
+      "value": 9000.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "未注明",
+        "phase": "整体",
+        "region": "US",
+        "basis": "行业机构"
+      },
+      "as_of": "2023-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "31f30a659122c7b23722f76fd49c4c46104ccaaaadd679e05b25f8563757112b",
+        "local_file": "54页-NICC新型智算中心技术体系白皮书（中国移动2023-8）.pdf",
+        "locator": "第 6 页 1.1 节：「橡树岭国家实验室的 Summit（3.4E），阿贡国家实验室的 Polaris 和 Aurora（约 10E），劳伦斯伯克利实验室的 Perlmutter（3.8E）等…谷歌的开放机器学习中心（9E），特斯拉 Dojo 集群（据称 2024 年末规模达到 100E），Meta AI 超级计算机（9.9E）」",
+        "grade": "S2",
+        "originator": "中国移动《NICC 新型智算中心技术体系白皮书》（2023-08）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「9E」。 白皮书未给各中心的精度口径与出处，也未区分已投运与在建（原文「建成或正在建设」），precision 与 status 记未注明；E=EFLOPS 按 1E = 1,000 PFLOPS 折算。",
+      "asserter": "中国移动"
+    },
+    {
+      "fact_id": "cmcc-nicc23-meta-rsc",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "meta-ai-research-supercluster",
+        "label": "Meta AI 超级计算机"
+      },
+      "value": 9900.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "未注明",
+        "phase": "整体",
+        "region": "US",
+        "basis": "行业机构"
+      },
+      "as_of": "2023-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "31f30a659122c7b23722f76fd49c4c46104ccaaaadd679e05b25f8563757112b",
+        "local_file": "54页-NICC新型智算中心技术体系白皮书（中国移动2023-8）.pdf",
+        "locator": "第 6 页 1.1 节：「橡树岭国家实验室的 Summit（3.4E），阿贡国家实验室的 Polaris 和 Aurora（约 10E），劳伦斯伯克利实验室的 Perlmutter（3.8E）等…谷歌的开放机器学习中心（9E），特斯拉 Dojo 集群（据称 2024 年末规模达到 100E），Meta AI 超级计算机（9.9E）」",
+        "grade": "S2",
+        "originator": "中国移动《NICC 新型智算中心技术体系白皮书》（2023-08）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「9.9E」。 白皮书未给各中心的精度口径与出处，也未区分已投运与在建（原文「建成或正在建设」），precision 与 status 记未注明；E=EFLOPS 按 1E = 1,000 PFLOPS 折算。",
+      "asserter": "中国移动"
+    },
+    {
+      "fact_id": "cmcc-nicc23-tesla-dojo-2024",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "tesla-dojo",
+        "label": "特斯拉 Dojo 集群"
+      },
+      "value": 100000.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "规划",
+        "phase": "整体",
+        "region": "US",
+        "basis": "行业机构"
+      },
+      "as_of": "2024E@2023-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "31f30a659122c7b23722f76fd49c4c46104ccaaaadd679e05b25f8563757112b",
+        "local_file": "54页-NICC新型智算中心技术体系白皮书（中国移动2023-8）.pdf",
+        "locator": "第 6 页 1.1 节：「橡树岭国家实验室的 Summit（3.4E），阿贡国家实验室的 Polaris 和 Aurora（约 10E），劳伦斯伯克利实验室的 Perlmutter（3.8E）等…谷歌的开放机器学习中心（9E），特斯拉 Dojo 集群（据称 2024 年末规模达到 100E），Meta AI 超级计算机（9.9E）」",
+        "grade": "S2",
+        "originator": "中国移动《NICC 新型智算中心技术体系白皮书》（2023-08）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「据称 2024 年末规模达到 100E」，是转引的传闻目标，不是投运规模。 白皮书未给各中心的精度口径与出处，也未区分已投运与在建（原文「建成或正在建设」），precision 与 status 记未注明；E=EFLOPS 按 1E = 1,000 PFLOPS 折算。",
+      "asserter": "中国移动"
     }
   ]
 }
