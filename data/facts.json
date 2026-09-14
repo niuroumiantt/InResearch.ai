@@ -135063,6 +135063,38 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "1.5%-2% 上界。"
+    },
+    {
+      "fact_id": "odcc2509-400g-br4-siph-power",
+      "metric_id": "optics_module_power",
+      "asserter": "开放数据中心委员会",
+      "entity": {
+        "type": "product",
+        "id": "odcc-400ge-br4",
+        "label": "400GE BR4 硅光收发模块（ODCC 规范）"
+      },
+      "value": 9.0,
+      "unit": "W",
+      "bound": "upper",
+      "as_of": "2025-09",
+      "caliber": {
+        "speed": "400G",
+        "optical_scheme": "SiPh",
+        "power_stat": "典型值",
+        "basis": "厂商指引",
+        "region": "CN"
+      },
+      "evidence": {
+        "sha256": "b4b1ddde7ca62926c94da6cf8cf7899c447ab7b67e530f4b2b5545fb026691d8",
+        "local_file": "20250927-ODCC开放数据中心委员会：2025年400G BR4光模块技术规范(37页).pdf",
+        "locator": "三（二）基本规格：「BR4 模块兼顾低功耗与高效散热，模块功耗低于 9W」；「功耗控制：典型功耗<9W，支持高密度部署场景」",
+        "grade": "S2",
+        "originator": "开放数据中心委员会《400GE BR4 光收发模块技术规范》（ODCC-2025-03008，2025-09）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「典型功耗<9W」按上界记。硅光发射机芯片方案（规范第二章为硅光芯片设计规范）。是行业规范要求，basis 枚举无「规范要求」，按厂商指引记；腾讯参与编写。"
     }
   ]
 }
