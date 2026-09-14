@@ -116023,6 +116023,72 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "8 台 4U 服务器 × 每台 8 颗 H100 = 64，与原文一致；每柜另配 1 台 Supermicro CDU。ServeTheHome 为现场参观报道，spec_basis 记第三方实测。"
+    },
+    {
+      "fact_id": "zhisuanwujie-caict-global-general-compute-2023",
+      "metric_id": "regional_compute_capacity",
+      "asserter": "中国信通院",
+      "entity": {
+        "type": "region",
+        "id": "global",
+        "label": "全球"
+      },
+      "value": 497.0,
+      "unit": "EFLOPS",
+      "bound": "point",
+      "as_of": "2023",
+      "caliber": {
+        "compute_type": "通用算力",
+        "precision": "混合/未注明",
+        "area": "全球",
+        "status": "未注明",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "evidence": {
+        "sha256": "ae3cea8983a4d27d66ddf09911d93f005b65376edd0ecdfdd190db4e72f9f03a",
+        "local_file": "5C_2025_2025_智算无界AIDC的_未署名.pdf",
+        "locator": "第 4 页 1.1：「据中国信通院测算，2023年全球计算设备算力总规模为1397EFlops，其中通用算力为497EFlops，智能算力（换算为FP32）为875EFlops，占总算力比例为63%」",
+        "grade": "S3",
+        "originator": "中国信通院（经未署名白皮书《智算无界：AIDC 的超越和重构》转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "通用算力精度原文未写。 与库内同源总量 1397 EFLOPS（sqt2025-caict-global-compute-2023）同一组数：497 + 875 = 1372，与 1397 差 25，原文未说明差额（可能是超算算力）。"
+    },
+    {
+      "fact_id": "zhisuanwujie-caict-global-intelligent-compute-2023",
+      "metric_id": "regional_compute_capacity",
+      "asserter": "中国信通院",
+      "entity": {
+        "type": "region",
+        "id": "global",
+        "label": "全球"
+      },
+      "value": 875.0,
+      "unit": "EFLOPS",
+      "bound": "point",
+      "as_of": "2023",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "FP32",
+        "area": "全球",
+        "status": "未注明",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "evidence": {
+        "sha256": "ae3cea8983a4d27d66ddf09911d93f005b65376edd0ecdfdd190db4e72f9f03a",
+        "local_file": "5C_2025_2025_智算无界AIDC的_未署名.pdf",
+        "locator": "第 4 页 1.1：「据中国信通院测算，2023年全球计算设备算力总规模为1397EFlops，其中通用算力为497EFlops，智能算力（换算为FP32）为875EFlops，占总算力比例为63%」",
+        "grade": "S3",
+        "originator": "中国信通院（经未署名白皮书《智算无界：AIDC 的超越和重构》转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文注「换算为FP32」，占总算力 63%。 与库内同源总量 1397 EFLOPS（sqt2025-caict-global-compute-2023）同一组数：497 + 875 = 1372，与 1397 差 25，原文未说明差额（可能是超算算力）。"
     }
   ]
 }
