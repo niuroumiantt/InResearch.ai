@@ -139370,6 +139370,188 @@
       "corroboration": "待交叉验证",
       "notes": "本条单位 GB（容量）。内存为 HBM4E（16 堆叠 × 16 层 32Gb），memory_type 菜单无 HBM4E 档，记未注明。",
       "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "yole2503-hbm-revenue-2024",
+      "metric_id": "hbm_demand_value",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 170.0,
+      "unit": "亿美元",
+      "caliber": {
+        "generation": "合计",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2c0132081283addfd566e20fba15f9ffe96a7bfce0588d4c061d24e2b78be4c2",
+        "local_file": "Next-Generation DRAM 2025 Focus on HBM and 3D DRAM.pdf",
+        "locator": "第 15 页「NEXT-GENERATION DRAM – MARKET OVERVIEW」：「Global HBM revenue is projected to increase from $17B in 2024 to $98B by 2030, reflecting a 33% CAGR. Consequently, HBM’s revenue share within the DRAM market is expected to increase from 18% in 2024 to 50% by 2030」",
+        "grade": "S3",
+        "originator": "Yole Group《Next-Generation DRAM 2025 – Focus on HBM and 3D DRAM》（2025-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "170 亿美元 = $17B。同年 HBM 占 DRAM 营收 18%，DRAM 总营收 970 亿美元（常规 DRAM 800 亿）。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2503-hbm-revenue-2025e",
+      "metric_id": "hbm_demand_value",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 340.0,
+      "unit": "亿美元",
+      "caliber": {
+        "generation": "合计",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2c0132081283addfd566e20fba15f9ffe96a7bfce0588d4c061d24e2b78be4c2",
+        "local_file": "Next-Generation DRAM 2025 Focus on HBM and 3D DRAM.pdf",
+        "locator": "第 15 页「NEXT-GENERATION DRAM – MARKET OVERVIEW」：「The market will see another significant inflection point in 2025, with HBM revenues projected to double to ~$34B」",
+        "grade": "S3",
+        "originator": "Yole Group《Next-Generation DRAM 2025 – Focus on HBM and 3D DRAM》（2025-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「~$34B」按点值记，约为 2024 年两倍。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2503-hbm-revenue-2030e",
+      "metric_id": "hbm_demand_value",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 980.0,
+      "unit": "亿美元",
+      "caliber": {
+        "generation": "合计",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2c0132081283addfd566e20fba15f9ffe96a7bfce0588d4c061d24e2b78be4c2",
+        "local_file": "Next-Generation DRAM 2025 Focus on HBM and 3D DRAM.pdf",
+        "locator": "第 15 页「NEXT-GENERATION DRAM – MARKET OVERVIEW」：「Global HBM revenue is projected to increase from $17B in 2024 to $98B by 2030, reflecting a 33% CAGR」",
+        "grade": "S3",
+        "originator": "Yole Group《Next-Generation DRAM 2025 – Focus on HBM and 3D DRAM》（2025-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2024–2030 年 CAGR 33%；届时占 DRAM 营收 50%，DRAM 总营收 1,945 亿美元。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2503-hbm-bit-growth-2023",
+      "metric_id": "hbm_bit_shipment_growth",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 187.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "位出货量",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2c0132081283addfd566e20fba15f9ffe96a7bfce0588d4c061d24e2b78be4c2",
+        "local_file": "Next-Generation DRAM 2025 Focus on HBM and 3D DRAM.pdf",
+        "locator": "第 15 页「NEXT-GENERATION DRAM – MARKET OVERVIEW」：「resulted in an unprecedented 187% year-over-year (YoY) increase in HBM bit shipments in 2023, followed by an additional 193% surge in 2024」",
+        "grade": "S3",
+        "originator": "Yole Group《Next-Generation DRAM 2025 – Focus on HBM and 3D DRAM》（2025-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "同比增速；Yole 预测 2024–2030 年位出货 CAGR 31%。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2503-hbm-bit-growth-2024",
+      "metric_id": "hbm_bit_shipment_growth",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 193.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "位出货量",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2c0132081283addfd566e20fba15f9ffe96a7bfce0588d4c061d24e2b78be4c2",
+        "local_file": "Next-Generation DRAM 2025 Focus on HBM and 3D DRAM.pdf",
+        "locator": "第 15 页「NEXT-GENERATION DRAM – MARKET OVERVIEW」：「followed by an additional 193% surge in 2024」",
+        "grade": "S3",
+        "originator": "Yole Group《Next-Generation DRAM 2025 – Focus on HBM and 3D DRAM》（2025-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "同比增速。同页标题写「over 190% YoY growth in 2024」。2024 年 HBM 晶圆投片约 21.6 万片/月，同比 +150% 以上。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2503-hbm-bit-volume-2024",
+      "metric_id": "hbm_demand_volume",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 14.88,
+      "unit": "亿 GB",
+      "caliber": {
+        "measure": "位容量",
+        "generation": "合计",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2c0132081283addfd566e20fba15f9ffe96a7bfce0588d4c061d24e2b78be4c2",
+        "local_file": "Next-Generation DRAM 2025 Focus on HBM and 3D DRAM.pdf",
+        "locator": "第 15 页「NEXT-GENERATION DRAM – MARKET OVERVIEW」：「HBM represented 5% of total DRAM bits in 2024, equivalent to 11.9Eb (1.49M GB) out of 254Eb (31.7M GB), and is projected to reach 9% by 2030」",
+        "grade": "S3",
+        "originator": "Yole Group《Next-Generation DRAM 2025 – Focus on HBM and 3D DRAM》（2025-03）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**原文括注「1.49M GB」单位有误**：11.9Eb = 1.4875EB = 14.88 亿 GB，而非 149 万 GB（254Eb 同理应为 317.5 亿 GB）。按 Eb 数值换算入库。与库内 hbmstat-demand-total-2024（10.772 亿 GB，出处未注明）口径与来源不同，并列。",
+      "asserter": "Yole",
+      "derivation": "11.9 Eb ÷ 8 = 1.4875 EB；1 EB = 10^9 GB → 14.875 亿 GB，取 14.88。"
     }
   ]
 }
