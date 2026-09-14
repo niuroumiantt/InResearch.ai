@@ -82280,6 +82280,134 @@
         "originator": "戴尔（Ihab Tarazi，OCP Global Summit 2025「Scaling Data Center Infrastructure」）"
       },
       "notes": "原文为 12 台 3OU 服务器节点，按计算托盘记。"
+    },
+    {
+      "fact_id": "nvidia-hc2025-gb200-nvl72-compute-trays",
+      "metric_id": "rack_component_count",
+      "asserter": "英伟达",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200-gb300-nvl72",
+        "label": "NVIDIA GB200/GB300 NVL72（MGX 机架）"
+      },
+      "value": 18.0,
+      "unit": "个",
+      "caliber": {
+        "product": "NVIDIA GB200/GB300 NVL72（MGX 机架）",
+        "component": "计算托盘",
+        "denominator": "每机架",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "36d06abe2c0831acfaf9f283c9cb0c7794be550676e58862d44fba33f494d55a",
+        "local_file": "HC2025.T1DCRacks.S5.Norton.pdf",
+        "locator": "第 5 页「GB200/300 System View」机架布局：10 Compute Trays（上）+ 8 Compute Trays（下）",
+        "grade": "S2",
+        "originator": "英伟达（John Norton，Hot Chips 2025 数据中心机柜教程「Case Study: NVIDIA GB200/300」，2025-08-24）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文分上下两组 10 + 8 = 18，加总只是计数。 同页机柜另注 1400A 母线、MGX 机架 600mm 宽 × 1068mm 深 × 2236mm 高（含扩展框 132mm，未录）。"
+    },
+    {
+      "fact_id": "nvidia-hc2025-gb200-nvl72-switch-trays",
+      "metric_id": "rack_component_count",
+      "asserter": "英伟达",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200-gb300-nvl72",
+        "label": "NVIDIA GB200/GB300 NVL72（MGX 机架）"
+      },
+      "value": 9.0,
+      "unit": "个",
+      "caliber": {
+        "product": "NVIDIA GB200/GB300 NVL72（MGX 机架）",
+        "component": "NVSwitch 托盘",
+        "denominator": "每机架",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "36d06abe2c0831acfaf9f283c9cb0c7794be550676e58862d44fba33f494d55a",
+        "local_file": "HC2025.T1DCRacks.S5.Norton.pdf",
+        "locator": "第 5 页「GB200/300 System View」机架布局：9 Switch Trays",
+        "grade": "S2",
+        "originator": "英伟达（John Norton，Hot Chips 2025 数据中心机柜教程「Case Study: NVIDIA GB200/300」，2025-08-24）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "同页机柜另注 1400A 母线、MGX 机架 600mm 宽 × 1068mm 深 × 2236mm 高（含扩展框 132mm，未录）。"
+    },
+    {
+      "fact_id": "nvidia-hc2025-gb200-nvl72-gpu-per-tray",
+      "metric_id": "rack_component_count",
+      "asserter": "英伟达",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200-gb300-nvl72",
+        "label": "NVIDIA GB200/GB300 NVL72（MGX 机架）"
+      },
+      "value": 4.0,
+      "unit": "个",
+      "caliber": {
+        "product": "NVIDIA GB200/GB300 NVL72（MGX 机架）",
+        "component": "GPU",
+        "denominator": "每托盘",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "36d06abe2c0831acfaf9f283c9cb0c7794be550676e58862d44fba33f494d55a",
+        "local_file": "HC2025.T1DCRacks.S5.Norton.pdf",
+        "locator": "第 9 页「GB200/300 NVL Compute Tray — 2P:4GPU compute tray PCIe topology」",
+        "grade": "S2",
+        "originator": "英伟达（John Norton，Hot Chips 2025 数据中心机柜教程「Case Study: NVIDIA GB200/300」，2025-08-24）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2 颗 Grace 对 4 颗 Blackwell。18 托盘 × 4 = 72 GPU，与 NVL72 命名一致。 同页机柜另注 1400A 母线、MGX 机架 600mm 宽 × 1068mm 深 × 2236mm 高（含扩展框 132mm，未录）。"
+    },
+    {
+      "fact_id": "nvidia-hc2025-gb200-nvl72-cpu-per-tray",
+      "metric_id": "rack_component_count",
+      "asserter": "英伟达",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200-gb300-nvl72",
+        "label": "NVIDIA GB200/GB300 NVL72（MGX 机架）"
+      },
+      "value": 2.0,
+      "unit": "个",
+      "caliber": {
+        "product": "NVIDIA GB200/GB300 NVL72（MGX 机架）",
+        "component": "CPU",
+        "denominator": "每托盘",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "36d06abe2c0831acfaf9f283c9cb0c7794be550676e58862d44fba33f494d55a",
+        "local_file": "HC2025.T1DCRacks.S5.Norton.pdf",
+        "locator": "第 9 页「GB200/300 NVL Compute Tray — 2P:4GPU compute tray PCIe topology」",
+        "grade": "S2",
+        "originator": "英伟达（John Norton，Hot Chips 2025 数据中心机柜教程「Case Study: NVIDIA GB200/300」，2025-08-24）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Grace CPU。 同页机柜另注 1400A 母线、MGX 机架 600mm 宽 × 1068mm 深 × 2236mm 高（含扩展框 132mm，未录）。"
     }
   ]
 }
