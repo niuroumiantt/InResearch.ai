@@ -142507,6 +142507,173 @@
       "corroboration": "待交叉验证",
       "notes": "**模型假设，不是实测 MFU**：H100 的 38% 由 SemiAnalysis 自有训练与公开 MFU 论文校准，Trainium2 因无数据直接沿用。cluster_scale 取千卡因 TCO 对比按 4,096 芯片集群建模（第 54 页）。同页称 Anthropic 等深度调优用户或可达 TPU 式 60% 左右 MFU（推测，未录）。",
       "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2403-b100-tdp",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-b100",
+        "label": "NVIDIA B100（Umbriel）"
+      },
+      "value": 700.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "NVIDIA B100",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "40399d9d82921fcdea4508b50b10db572f1c9096593596b5ec4e08de2876d2c3",
+        "local_file": "Nvidia B100, B200, GB200 - COGS, Pricing, Margins, Ramp - Oberon, Umbriel, Miranda.pdf",
+        "locator": "第 3 页：「The first version of Blackwell, codename Umbriel, is for time to market, it keeps PCIe Gen 5, 400G networking, etc. In fact, the B100 air-cooled 700W can even slide into existing servers that accept the H100 and H200 baseboards」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia B100, B200, GB200 - COGS, Pricing, Margins, Ramp - Oberon, Umbriel, Miranda》（Dylan Patel、Myron Xie、Chaolien Tseng，2024-03-18，GTC 2024 发布会当天发文）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 W。风冷，可直接装入 H100/H200 基板的现有服务器。发文于英伟达 GTC 2024 正式发布之前数小时，属发布前的供应链口径，与后续官方规格可能不同（B100 这一型号后来未按此名称出货）。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2403-b200-tdp",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-b200",
+        "label": "NVIDIA B200"
+      },
+      "value": 1000.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "NVIDIA B200",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "40399d9d82921fcdea4508b50b10db572f1c9096593596b5ec4e08de2876d2c3",
+        "local_file": "Nvidia B100, B200, GB200 - COGS, Pricing, Margins, Ramp - Oberon, Umbriel, Miranda.pdf",
+        "locator": "第 3 页：「The B200 will follow shortly after, with a higher power limit of 1,000W. This version requires a redesign of servers… the 1,000W version can still be air-cooled」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia B100, B200, GB200 - COGS, Pricing, Margins, Ramp - Oberon, Umbriel, Miranda》（Dylan Patel、Myron Xie、Chaolien Tseng，2024-03-18，GTC 2024 发布会当天发文）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 W。原文用词为「power limit」。风冷可行的判断来自 SemiAnalysis 台湾分析师渠道调研。发文于英伟达 GTC 2024 正式发布之前数小时，属发布前的供应链口径，与后续官方规格可能不同（B100 这一型号后来未按此名称出货）。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2403-blackwell-node",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-blackwell-gpu",
+        "label": "NVIDIA Blackwell GPU（B100/B200）"
+      },
+      "value": 4.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "NVIDIA Blackwell GPU（B100/B200）",
+        "parameter": "制程(nm)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "40399d9d82921fcdea4508b50b10db572f1c9096593596b5ec4e08de2876d2c3",
+        "local_file": "Nvidia B100, B200, GB200 - COGS, Pricing, Margins, Ramp - Oberon, Umbriel, Miranda.pdf",
+        "locator": "第 2 页：「Blackwell will have 2 reticle-sized GPU dies. The GPU compute dies will remain on 4nm like Hopper… This is due to issues with TSMC’s original 3nm, N3B」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia B100, B200, GB200 - COGS, Pricing, Margins, Ramp - Oberon, Umbriel, Miranda》（Dylan Patel、Myron Xie、Chaolien Tseng，2024-03-18，GTC 2024 发布会当天发文）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 nm。两颗接近光罩尺寸的计算裸片，首个大批量采用 CoWoS-L 的产品。发文于英伟达 GTC 2024 正式发布之前数小时，属发布前的供应链口径，与后续官方规格可能不同（B100 这一型号后来未按此名称出货）。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2403-b100-hbm-capacity",
+      "metric_id": "accelerator_memory_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-b100",
+        "label": "NVIDIA B100"
+      },
+      "value": 192.0,
+      "unit": "GB",
+      "caliber": {
+        "product": "NVIDIA B100",
+        "parameter": "容量",
+        "memory_type": "HBM3e",
+        "scope": "单卡",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "40399d9d82921fcdea4508b50b10db572f1c9096593596b5ec4e08de2876d2c3",
+        "local_file": "Nvidia B100, B200, GB200 - COGS, Pricing, Margins, Ramp - Oberon, Umbriel, Miranda.pdf",
+        "locator": "第 2 页：「In addition, there will be up to 8 stacks of 8-hi HBM3E with up to 192GB capacity. Both SK Hynix and Micron are suppliers with the vast majority being SK Hynix」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia B100, B200, GB200 - COGS, Pricing, Margins, Ramp - Oberon, Umbriel, Miranda》（Dylan Patel、Myron Xie、Chaolien Tseng，2024-03-18，GTC 2024 发布会当天发文）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 GB（容量），原文为「up to」上限。第 4 页称 Miranda 路线图同为 192GB，但英伟达已包下 36GB HBM 供应，可能刷新到每 GPU 288GB（推测，未录）。发文于英伟达 GTC 2024 正式发布之前数小时，属发布前的供应链口径，与后续官方规格可能不同（B100 这一型号后来未按此名称出货）。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2403-gb200-nvl72-rack-power",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200-nvl72-sa2403",
+        "label": "GB200 NVL72（Oberon）"
+      },
+      "value": 120.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "era": "路线图目标",
+        "power_basis": "未披露",
+        "region": "Global"
+      },
+      "as_of": "2024-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "40399d9d82921fcdea4508b50b10db572f1c9096593596b5ec4e08de2876d2c3",
+        "local_file": "Nvidia B100, B200, GB200 - COGS, Pricing, Margins, Ramp - Oberon, Umbriel, Miranda.pdf",
+        "locator": "第 5 页：「There are two versions of the rack here. One is 120kW, which is an incredible amount of power for 72 GPUs. It has 10 compute trays on top, 9 NVSwitch trays in the middle, and 8 compute trays on the bottom… This version is actually later though.」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia B100, B200, GB200 - COGS, Pricing, Margins, Ramp - Oberon, Umbriel, Miranda》（Dylan Patel、Myron Xie、Chaolien Tseng，2024-03-18，GTC 2024 发布会当天发文）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "发布前口径，原文说 72 GPU 版「actually later」，era 记路线图目标。另一版为 36 GPU / 9 计算托盘的低功率机柜，可跨两柜 NVLink 互连，未给功率。与 SemiAnalysis 2024 年另一份的 125kW（实际功率密度）口径不同，不构成同一出处的改口。发文于英伟达 GTC 2024 正式发布之前数小时，属发布前的供应链口径，与后续官方规格可能不同（B100 这一型号后来未按此名称出货）。",
+      "asserter": "SemiAnalysis"
     }
   ]
 }
