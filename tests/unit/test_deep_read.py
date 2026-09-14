@@ -593,6 +593,71 @@ class EmptyBatchTests(unittest.TestCase):
         self.assertNotIn('pack --again', report['note'])
 
 
+class MhtReaderTests(unittest.TestCase):
+    """.mht 是「网页另存为单个文件」：一封 MIME 邮件，正文那段是 HTML。
+
+    此前没有读取器，这类文件一律报 no reader，整份材料连出处都判不出来。
+    """
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix='m4-mht-')
+        self.base = Path(self.temp.name)
+
+    def tearDown(self):
+        self.temp.cleanup()
+
+    def save(self, html, plain='纯文本兜底', name='page.mht'):
+        import email.message, email.policy
+        msg = email.message.EmailMessage(policy=email.policy.default)
+        msg['Subject'] = 'saved'
+        msg.set_content(plain, subtype='plain')
+        if html is not None:
+            msg.add_alternative(html, subtype='html')
+        path = self.base / name
+        path.write_bytes(msg.as_bytes())
+        return path
+
+    def test_the_html_body_comes_out_as_text(self):
+        path = self.save('<html><body><h1>供配电</h1><p>变压器 142.6 亿元</p></body></html>')
+        text, meta = PACKET.full_text(path, '.mht')
+        self.assertIn('变压器 142.6 亿元', text)
+        self.assertIn('text/html', meta['mht_kinds'])
+
+    def test_script_and_style_never_reach_the_text(self):
+        """把脚本喂进正文，下游会把它当内容读，还会污染近似比对的块。"""
+        path = self.save('<html><head><style>p{color:red}</style>'
+                         '<script>var secret=1;</script></head>'
+                         '<body><p>柴发 73.6 亿元</p></body></html>')
+        text, _ = PACKET.full_text(path, '.mht')
+        self.assertIn('柴发 73.6 亿元', text)
+        self.assertNotIn('var secret', text)
+        self.assertNotIn('color:red', text)
+
+    def test_entities_are_unescaped(self):
+        path = self.save('<html><body><p>A &amp; B &lt;1.3&gt;</p></body></html>')
+        text, _ = PACKET.full_text(path, '.mht')
+        self.assertIn('A & B <1.3>', text)
+
+    def test_paragraphs_stay_separated_for_chunking(self):
+        """chunks() 按空行切块；只给换行的话整份会糊成一个巨块。"""
+        body = ''.join('<p>第 %d 段，这里放一些正文字数把段落撑开。</p>' % i for i in range(6))
+        path = self.save('<html><body>' + body + '</body></html>', plain='')
+        text, _ = PACKET.full_text(path, '.mht')
+        self.assertIn('\n\n', text, '块级标签收尾要给空行，不能只给换行')
+        self.assertGreater(len(PACKET.chunks(text, 60)), 1)
+
+    def test_a_file_with_no_text_part_says_so(self):
+        import email.message, email.policy
+        msg = email.message.EmailMessage(policy=email.policy.default)
+        msg['Subject'] = 'images only'
+        msg.set_content(b'\x89PNG', maintype='image', subtype='png')
+        path = self.base / 'imgs.mht'
+        path.write_bytes(msg.as_bytes())
+        text, meta = PACKET.full_text(path, '.mht')
+        self.assertEqual(text, '')
+        self.assertIn('extract_error', meta)
+
+
 class PackAgainTests(unittest.TestCase):
     """A document marked read by accident could never be packed again."""
 
