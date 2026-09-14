@@ -2,6 +2,8 @@
 import io
 import json
 import multiprocessing
+import sys
+from types import SimpleNamespace
 from pathlib import Path
 import tempfile
 import unittest
@@ -90,6 +92,101 @@ class CommandFlows(unittest.TestCase):
                 status, body = call()
             self.assertEqual(503, status)
             self.assertEqual('visible_durability_unconfirmed', body['commit_state'])
+
+
+    def test_common_root_keeps_assignment_and_snapshot_versions_in_selected_workspace(self):
+        from inresearch.knowledge import registry
+        from test_research import complete_document
+        for name in ('research_graph.json', 'research_questions.json'):
+            file_store.write_json(self.root/'framework'/name,
+                                  registry.read_json(registry.ROOT/'framework'/name))
+        knowledge = {key: [] for key in registry.COLLECTIONS}
+        file_store.write_json(self.root/'data/research_knowledge.json', knowledge)
+        file_store.write_json(self.root/'data/assignments.json', {'records': []})
+        task = registry.current_tasks(self.root)[0]['wid']
+        def invoke(command, payload, explicit=True):
+            output = io.StringIO()
+            args = ['--root', str(self.root), command] if explicit else [command]
+            with patch('sys.stdin', io.StringIO(json.dumps(payload))), patch('sys.stdout', output), \
+                 patch.object(cli, 'ROOT', self.root):
+                status = cli.main(args)
+            return status, json.loads(output.getvalue())
+        self.assertEqual(invoke('assign', {'workorder_id': task, 'assignee': 'fixture', 'status': '已派'})[0], 0)
+        self.assertEqual(invoke('assign', {'workorder_id': task, 'status': '进行中'}, explicit=False)[0], 0)
+        assignment = registry.read_json(self.root/'data/assignments.json')['records'][0]
+        self.assertEqual((assignment['assignee'], assignment['status'], assignment['by']),
+                         ('fixture', '进行中', 'local-cli'))
+        payload = dict(generated='2026-09-14T00:00:00+00:00', knowledge=knowledge,
+                       graph_version=registry.read_json(self.root/'framework/research_graph.json')['version'],
+                       questions_version=registry.read_json(self.root/'framework/research_questions.json')['version'])
+        self.assertEqual(invoke('receive-snapshot', payload)[0], 0)
+        destination = self.root/'data/research_runtime.json'
+        first = destination.read_bytes()
+        self.assertEqual(invoke('receive-snapshot', payload)[1]['status'], 409)
+        self.assertEqual(destination.read_bytes(), first)
+        newer = {**payload, 'generated': '2026-09-14T00:00:01+00:00',
+                 'knowledge': {**knowledge, 'documents': [complete_document()]}}
+        self.assertEqual(invoke('receive-snapshot', newer, explicit=False)[0], 0)
+        second = destination.read_bytes()
+        self.assertEqual(invoke('receive-snapshot', payload)[1]['status'], 409)
+        self.assertEqual(destination.read_bytes(), second)
+        self.assertEqual(registry.read_json(destination)['knowledge']['documents'][0]['status'], 'candidate')
+        self.assertEqual(registry.read_json(self.root/'data/research_knowledge.json'), knowledge)
+
+
+class CommandDispatch(unittest.TestCase):
+    def test_global_root_is_rejected_before_import_for_every_delegated_command(self):
+        original = sys.argv
+        with tempfile.TemporaryDirectory() as directory:
+            for command in cli.COMMANDS:
+                with self.subTest(command=command), patch.object(cli.importlib, 'import_module') as load, \
+                     patch('sys.stderr', io.StringIO()) as errors:
+                    with self.assertRaises(SystemExit) as error:
+                        cli.main(['--root', directory, command])
+                    self.assertEqual(error.exception.code, 2)
+                    self.assertIn('global --root applies only to add-price, assign, receive-snapshot', errors.getvalue())
+                    load.assert_not_called()
+                    self.assertIs(sys.argv, original)
+            self.assertEqual(list(Path(directory).iterdir()), [])
+
+    def test_child_arguments_are_forwarded_and_argv_restored_after_success_and_failure(self):
+        original = sys.argv
+        expected = ['inventory', '--root', '/fixture/source', '--out-dir', '/fixture/index', 'inventory']
+        def child():
+            self.assertEqual(sys.argv, expected)
+            return 17
+        for failure in (None, RuntimeError('child failed'), SystemExit(2)):
+            with self.subTest(failure=failure):
+                def run():
+                    result = child()
+                    if failure is not None:
+                        raise failure
+                    return result
+                with patch.object(cli.importlib, 'import_module', return_value=SimpleNamespace(main=run)) as load:
+                    if failure is None:
+                        self.assertEqual(cli.main(expected), 17)
+                    else:
+                        with self.assertRaises(type(failure)):
+                            cli.main(expected)
+                    load.assert_called_once_with('inresearch.materials.inventory')
+                self.assertIs(sys.argv, original)
+        with patch.object(cli.importlib, 'import_module', side_effect=ImportError('unavailable')):
+            with self.assertRaises(ImportError):
+                cli.main(['inventory'])
+        self.assertIs(sys.argv, original)
+
+    def test_default_invocation_does_not_reuse_a_previous_child_command(self):
+        original = ['manage.py', 'asset-check']
+        seen = []
+        def child():
+            seen.append(list(sys.argv))
+            return 0
+        with patch('sys.argv', original), \
+             patch.object(cli.importlib, 'import_module', return_value=SimpleNamespace(main=child)):
+            cli.main(['inventory', '--help'])
+            cli.main()
+            self.assertIs(sys.argv, original)
+        self.assertEqual(seen, [['inventory', '--help'], ['asset-check']])
 
 
 if __name__ == '__main__':

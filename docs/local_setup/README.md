@@ -6,6 +6,17 @@
 
 在仓库运行 `python3 manage.py serve 8000`，浏览器打开 `http://127.0.0.1:8000`。研究工作台需要该 API 服务，单纯静态 HTTP 服务不提供研究数据。是否安装本机 launchd 应检查实际服务；文档不假定任何电脑已有三项常驻任务。
 
+## 命令目录参数
+
+`python3 manage.py --help` 显示一级入口；`python3 manage.py <命令> --help` 显示该命令的选项。
+命令名前的 `--root` 只支持 add-price、assign、receive-snapshot；例如
+`python3 manage.py --root /path/to/workspace add-price --input price.json`。它仍受运行数据布局配置约束，
+不能代替 INRESEARCH_RUNTIME_ROOT 来隔离网站状态。对其他命令使用全局 --root 会明确报错，不再静默忽略。
+
+子命令的目录参数写在命令名之后：例如 `python3 manage.py inventory --root /path/to/originals --out-dir /path/to/index inventory`，
+或 `python3 manage.py reader --data-root /path/to/reader current --sha <SHA>`。参数是否可用以该子命令帮助为准；
+不存在把所有命令的目录自动换成同一个路径的约定。Python 模块入口的语义相同。
+
 ## 同步
 
 `bash docs/local_setup/sync.sh` 仅在 main 且工作区干净时取远端并快进。存在未提交内容或分叉就停止；脚本不自动提交、暂存或解决冲突。带 `--push` 时只校验并推送已提交内容。新工作先在独立分支审核与提交，完成本地检查和 GitHub 检查后再合并。
