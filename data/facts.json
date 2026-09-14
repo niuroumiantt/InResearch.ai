@@ -135127,6 +135127,74 @@
       "corroboration": "待交叉验证",
       "notes": "Eridu（Mike Capuano，OCP 2026-04-29 演讲）为自家高 radix 交换机做的宣传：十倍 radix 以一台替代 30 台交换机，称省 40% 成本、70% 功耗。**是厂商宣传且对象为假想的 1P 交换机**，未说明节省基数（网络成本还是集群成本）和集群规模，故 cost_base 记未注明；第 6 页示例（Vera Rubin NVL72、约 13–14 万 GPU）交换机数从 6,112 台降到 352 台。 region 记未披露：宣传页没有说明节省率针对哪个地域的部署或价格，不猜 Global。",
       "asserter": "Eridu"
+    },
+    {
+      "fact_id": "kysec2412-lc-cpo-ports-2023",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "industry",
+        "id": "global-cpo-ports",
+        "label": "全球 CPO 端口"
+      },
+      "value": 5.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "交换机端口",
+        "product_form": "光引擎",
+        "speed": "合计",
+        "shipment_basis": "厂商出货",
+        "basis": "实测",
+        "region": "Global",
+        "customer": "未拆分"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fb4eaa5bcff6f3ce5e46fe6639796bbdf3e72156abadd0c06ce32f17e954c774",
+        "local_file": "深度报告-20241231-深度拆解CPO_AI智算中心光互联演进方向之一_56页_8mb.pdf",
+        "locator": "第 50 页（页脚 50/56）：「根据 Lightcounting 预计……全球 CPO 端口的销售量将从 2023 年的 5 万增长到 2027 年的 450 万」",
+        "grade": "S3",
+        "originator": "开源证券（蒋颖，2024-12-31《深度拆解 CPO》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "按端口计的 CPO 销售量，不是模块只数；LightCounting 称出货从 800G/1.6T 端口开始，故 speed 记合计（全部 CPO 端口）。2023 年值为预测起点，券商未注明 LightCounting 报告版本日期。",
+      "asserter": "LightCounting"
+    },
+    {
+      "fact_id": "kysec2412-lc-cpo-ports-2027e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "industry",
+        "id": "global-cpo-ports",
+        "label": "全球 CPO 端口"
+      },
+      "value": 450.0,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "交换机端口",
+        "product_form": "光引擎",
+        "speed": "合计",
+        "shipment_basis": "厂商出货",
+        "basis": "预测",
+        "region": "Global",
+        "customer": "未拆分"
+      },
+      "as_of": "2027E",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fb4eaa5bcff6f3ce5e46fe6639796bbdf3e72156abadd0c06ce32f17e954c774",
+        "local_file": "深度报告-20241231-深度拆解CPO_AI智算中心光互联演进方向之一_56页_8mb.pdf",
+        "locator": "第 50 页（页脚 50/56）：「全球 CPO 端口的销售量将从 2023 年的 5 万增长到 2027 年的 450 万。2027 年，CPO 端口在 800G 和 1.6T 出货总数中占比接近 30%」",
+        "grade": "S3",
+        "originator": "开源证券（蒋颖，2024-12-31《深度拆解 CPO》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "LightCounting 预测，券商转引未注明预测发布时间，故不带 @。同句称 2027 年 CPO 端口占 800G+1.6T 出货总数近 30%（份额无对应指标，未录）；2026–2027 年开始规模上量，主要用于超大型云厂商数通短距。",
+      "asserter": "LightCounting"
     }
   ]
 }
