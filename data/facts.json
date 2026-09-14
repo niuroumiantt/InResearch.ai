@@ -127802,6 +127802,66 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "2029 年预测 4,380 亿美元；图注「Source: IDC, 2025」，做出时点只知年份，as_of 带 @2025。同页 x86 服务器序列图中 $552B 标签未写年份与系列对应，未录。"
+    },
+    {
+      "fact_id": "mtk2510-custom-ai-accel-tam-2023",
+      "metric_id": "ai_asic_market_size",
+      "asserter": "联发科",
+      "entity": {
+        "type": "market",
+        "id": "custom-ai-accelerator-tam",
+        "label": "定制 AI 加速器 TAM"
+      },
+      "value": 6.1,
+      "unit": "十亿美元",
+      "bound": "point",
+      "as_of": "2023",
+      "caliber": {
+        "scope": "AI ASIC",
+        "basis": "厂商指引",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "a282475be7f9b8badcfe6b4c3ae7e95fff74d08646b24e46d1233270f936add8",
+        "local_file": "5B_2022_7623DrivingInn_MediaTek.pdf.pdf",
+        "locator": "第 3 页「Custom Silicon a Key Enabler of Accelerated Computing」图「CUSTOM AI ACCELERATOR TAM ($BN)」：2023 年 6.1、2028 年 >40，CAGR >46%（Source: MediaTek Strategic Marketing）",
+        "grade": "S3",
+        "originator": "联发科 Strategic Marketing（OCP Global Summit 2025 演讲《Driving Innovation in Data Center Computing and ASIC Technologies》，C.K. Peng）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「Custom AI Accelerator TAM」= 定制 AI 加速器（ASIC）可服务市场，61 亿美元。联发科自己是 ASIC 供应商，属厂商口径。"
+    },
+    {
+      "fact_id": "mtk2510-custom-ai-accel-tam-2028e",
+      "metric_id": "ai_asic_market_size",
+      "asserter": "联发科",
+      "entity": {
+        "type": "market",
+        "id": "custom-ai-accelerator-tam",
+        "label": "定制 AI 加速器 TAM"
+      },
+      "value": 40.0,
+      "unit": "十亿美元",
+      "bound": "lower",
+      "as_of": "2028E@2025-10",
+      "caliber": {
+        "scope": "AI ASIC",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "a282475be7f9b8badcfe6b4c3ae7e95fff74d08646b24e46d1233270f936add8",
+        "local_file": "5B_2022_7623DrivingInn_MediaTek.pdf.pdf",
+        "locator": "第 3 页「Custom Silicon a Key Enabler of Accelerated Computing」图「CUSTOM AI ACCELERATOR TAM ($BN)」：2023 年 6.1、2028 年 >40，CAGR >46%（Source: MediaTek Strategic Marketing）",
+        "grade": "S3",
+        "originator": "联发科 Strategic Marketing（OCP Global Summit 2025 演讲《Driving Innovation in Data Center Computing and ASIC Technologies》，C.K. Peng）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「>40」按下界记；2023-2028 CAGR >46%。做出时点取 OCP Global Summit 2025（2025 年 10 月）。"
     }
   ]
 }
