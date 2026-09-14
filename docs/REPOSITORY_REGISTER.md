@@ -264,7 +264,7 @@
 | `docs/reviews/2026-09-14/cli-root/baseline.json` | temporary_root_files | 0 |
 | `docs/reviews/2026-09-14/cli-root/consumers-before.csv` | rows | 214 |
 | `docs/reviews/2026-09-14/cli-root/dispatch.csv` | rows | 44 |
-| `docs/reviews/2026-09-14/cli-root/file-plan.csv` | rows | 759 |
+| `docs/reviews/2026-09-14/cli-root/file-plan.csv` | rows | 761 |
 | `docs/reviews/2026-09-14/cli-root/legacy-removal.csv` | rows | 6 |
 | `docs/reviews/2026-09-14/cli-root/scope.json` | changed | 10 |
 | `docs/reviews/2026-09-14/model-assets/baseline.json` | rejected_sample_requests | 1 |
