@@ -132260,6 +132260,192 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "2,700 亿 kWh = 270 TWh，约占全社会 3%。**与信通院等 2022 年约 130 TWh 相差一倍多**：同页引 IEA《Electricity 2025》解释——1,000-1,500 亿 kWh 的测算只算数据中心本身，更高的数可能含数据传输网络（尤其 5G）用电；IEA 估 2023 年中国电信网络耗电 900-1,100 亿 kWh（5G 约 300 亿、3G/4G 约 350 亿）。本条统计边界原文未写，scope 填未注明；basis 按「统计上报」记，国家能源局原始发布未回查。"
+    },
+    {
+      "fact_id": "acn2503-us-dc-electricity-2030e-lower",
+      "metric_id": "dc_electricity_consumption",
+      "asserter": "埃森哲",
+      "entity": {
+        "type": "industry",
+        "id": "us-dc",
+        "label": "美国数据中心"
+      },
+      "value": 413.0,
+      "unit": "TWh",
+      "bound": "lower",
+      "as_of": "2030E@2025-03",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "US",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "2fcb62f733c6d7744c05a96011a242cd007c7cbbf8b5f02cb8ccf9f6277975c9",
+        "local_file": "20250319-埃森哲：2025赋能美国数据中心的未来电力供应商突破瓶颈与加速增长路径研究报告(28页).pdf",
+        "locator": "第 8 页：「In 2023 alone, US data centers consumed 176 terawatt hours (TWh) of electricity and this could increase to between 413 and 509 TWh by 2030.6」（尾注 6：Accenture Research modeling）",
+        "grade": "S3",
+        "originator": "埃森哲《Powering the future of US data centers》（2025-03，Accenture Research modeling，尾注 6）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文区间 413-509 TWh 下界；上界见 acn2503-us-dc-electricity-2030e-upper。同句 2023 年 176 TWh 与 LBNL 同值（lbnl2412-us-dc-electricity-2023），未重录。同页称先进 AI 或占需求增量 70%、生成式 AI 至 2030 年约 40%。"
+    },
+    {
+      "fact_id": "acn2503-us-dc-electricity-2030e-upper",
+      "metric_id": "dc_electricity_consumption",
+      "asserter": "埃森哲",
+      "entity": {
+        "type": "industry",
+        "id": "us-dc",
+        "label": "美国数据中心"
+      },
+      "value": 509.0,
+      "unit": "TWh",
+      "bound": "upper",
+      "as_of": "2030E@2025-03",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "US",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "2fcb62f733c6d7744c05a96011a242cd007c7cbbf8b5f02cb8ccf9f6277975c9",
+        "local_file": "20250319-埃森哲：2025赋能美国数据中心的未来电力供应商突破瓶颈与加速增长路径研究报告(28页).pdf",
+        "locator": "第 8 页：「In 2023 alone, US data centers consumed 176 terawatt hours (TWh) of electricity and this could increase to between 413 and 509 TWh by 2030.6」（尾注 6：Accenture Research modeling）",
+        "grade": "S3",
+        "originator": "埃森哲《Powering the future of US data centers》（2025-03，Accenture Research modeling，尾注 6）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文区间 413-509 TWh 上界。"
+    },
+    {
+      "fact_id": "acn2503-us-dc-power-share-2024",
+      "metric_id": "dc_power_share_of_grid",
+      "asserter": "埃森哲",
+      "entity": {
+        "type": "industry",
+        "id": "us-dc",
+        "label": "美国数据中心"
+      },
+      "value": 5.0,
+      "unit": "%",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "US",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "2fcb62f733c6d7744c05a96011a242cd007c7cbbf8b5f02cb8ccf9f6277975c9",
+        "local_file": "20250319-埃森哲：2025赋能美国数据中心的未来电力供应商突破瓶颈与加速增长路径研究报告(28页).pdf",
+        "locator": "第 8 页：「According to our research, power consumption by data centers could surge to over 7% of total US electricity by 2028 and increase to 16–23% by 2033. Compared with 5% power consumption in 2024」",
+        "grade": "S3",
+        "originator": "埃森哲《Powering the future of US data centers》（2025-03，Accenture Research modeling，尾注 6）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「Compared with 5% power consumption in 2024」。原文未注出处。"
+    },
+    {
+      "fact_id": "acn2503-us-dc-power-share-2028e",
+      "metric_id": "dc_power_share_of_grid",
+      "asserter": "埃森哲",
+      "entity": {
+        "type": "industry",
+        "id": "us-dc",
+        "label": "美国数据中心"
+      },
+      "value": 7.0,
+      "unit": "%",
+      "bound": "lower",
+      "as_of": "2028E@2025-03",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "US",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "2fcb62f733c6d7744c05a96011a242cd007c7cbbf8b5f02cb8ccf9f6277975c9",
+        "local_file": "20250319-埃森哲：2025赋能美国数据中心的未来电力供应商突破瓶颈与加速增长路径研究报告(28页).pdf",
+        "locator": "第 8 页：「According to our research, power consumption by data centers could surge to over 7% of total US electricity by 2028 and increase to 16–23% by 2033. Compared with 5% power consumption in 2024」",
+        "grade": "S3",
+        "originator": "埃森哲《Powering the future of US data centers》（2025-03，Accenture Research modeling，尾注 6）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「over 7% of total US electricity by 2028」按下界记。"
+    },
+    {
+      "fact_id": "acn2503-us-dc-power-share-2033e-lower",
+      "metric_id": "dc_power_share_of_grid",
+      "asserter": "埃森哲",
+      "entity": {
+        "type": "industry",
+        "id": "us-dc",
+        "label": "美国数据中心"
+      },
+      "value": 16.0,
+      "unit": "%",
+      "bound": "lower",
+      "as_of": "2033E@2025-03",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "US",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "2fcb62f733c6d7744c05a96011a242cd007c7cbbf8b5f02cb8ccf9f6277975c9",
+        "local_file": "20250319-埃森哲：2025赋能美国数据中心的未来电力供应商突破瓶颈与加速增长路径研究报告(28页).pdf",
+        "locator": "第 8 页：「According to our research, power consumption by data centers could surge to over 7% of total US electricity by 2028 and increase to 16–23% by 2033. Compared with 5% power consumption in 2024」",
+        "grade": "S3",
+        "originator": "埃森哲《Powering the future of US data centers》（2025-03，Accenture Research modeling，尾注 6）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文 16–23% 下界；上界见 acn2503-us-dc-power-share-2033e-upper。"
+    },
+    {
+      "fact_id": "acn2503-us-dc-power-share-2033e-upper",
+      "metric_id": "dc_power_share_of_grid",
+      "asserter": "埃森哲",
+      "entity": {
+        "type": "industry",
+        "id": "us-dc",
+        "label": "美国数据中心"
+      },
+      "value": 23.0,
+      "unit": "%",
+      "bound": "upper",
+      "as_of": "2033E@2025-03",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "US",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "2fcb62f733c6d7744c05a96011a242cd007c7cbbf8b5f02cb8ccf9f6277975c9",
+        "local_file": "20250319-埃森哲：2025赋能美国数据中心的未来电力供应商突破瓶颈与加速增长路径研究报告(28页).pdf",
+        "locator": "第 8 页：「According to our research, power consumption by data centers could surge to over 7% of total US electricity by 2028 and increase to 16–23% by 2033. Compared with 5% power consumption in 2024」",
+        "grade": "S3",
+        "originator": "埃森哲《Powering the future of US data centers》（2025-03，Accenture Research modeling，尾注 6）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文 16–23% 上界。"
     }
   ]
 }
