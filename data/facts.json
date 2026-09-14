@@ -82408,6 +82408,134 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "Grace CPU。 同页机柜另注 1400A 母线、MGX 机架 600mm 宽 × 1068mm 深 × 2236mm 高（含扩展框 132mm，未录）。"
+    },
+    {
+      "asserter": "谷歌",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "as_of": "2025-08",
+      "fact_id": "google-hc2025-ironwood-tpu-per-rack",
+      "metric_id": "rack_component_count",
+      "entity": {
+        "type": "product",
+        "id": "google-ironwood-tpu-rack",
+        "label": "Google Ironwood TPU 机柜"
+      },
+      "value": 64.0,
+      "unit": "个",
+      "caliber": {
+        "product": "Google Ironwood TPU 机柜",
+        "component": "其他",
+        "denominator": "每机架",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "f15d4e6effc3a66139002dc0ed31ab5ce193e2aa776b150f0f2cb0cb566b84af",
+        "local_file": "HC2025.T1DCRacks.S7.Pankaj.pdf",
+        "locator": "第 6 页「The Suite of Racks in a Superpod」：64x Ironwood SoC / 16x Ironwood PCBA / Ironwood TPU Rack；第 8 页「4x4x4 building block over ICI that fits in a single Google TPU rack」",
+        "grade": "S2",
+        "originator": "谷歌（Pankaj Makhija，Hot Chips 2025 教程，2025-08-24）"
+      },
+      "notes": "component 原文为 Ironwood TPU SoC，枚举无「非 GPU 加速器」记「其他」。4×4×4 = 64，与第 6 页 64x 一致。"
+    },
+    {
+      "asserter": "谷歌",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "as_of": "2025-08",
+      "fact_id": "google-hc2025-ironwood-tpu-trays-per-rack",
+      "metric_id": "rack_component_count",
+      "entity": {
+        "type": "product",
+        "id": "google-ironwood-tpu-rack",
+        "label": "Google Ironwood TPU 机柜"
+      },
+      "value": 16.0,
+      "unit": "个",
+      "caliber": {
+        "product": "Google Ironwood TPU 机柜",
+        "component": "计算托盘",
+        "denominator": "每机架",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "f15d4e6effc3a66139002dc0ed31ab5ce193e2aa776b150f0f2cb0cb566b84af",
+        "local_file": "HC2025.T1DCRacks.S7.Pankaj.pdf",
+        "locator": "第 6 页「The Suite of Racks in a Superpod」：16x Ironwood PCBA；第 9 页 Rack Subsystems 标 TPU Tray",
+        "grade": "S2",
+        "originator": "谷歌（Pankaj Makhija，Hot Chips 2025 教程，2025-08-24）"
+      },
+      "notes": "原文为 Ironwood PCBA（第 9 页称 TPU Tray），64 SoC ÷ 16 = 每板 4 颗。"
+    },
+    {
+      "asserter": "谷歌",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "as_of": "2025-08",
+      "fact_id": "google-hc2025-ironwood-ici-copper-per-rack",
+      "metric_id": "rack_component_count",
+      "entity": {
+        "type": "product",
+        "id": "google-ironwood-tpu-rack",
+        "label": "Google Ironwood TPU 机柜"
+      },
+      "value": 80.0,
+      "unit": "个",
+      "caliber": {
+        "product": "Google Ironwood TPU 机柜",
+        "component": "铜缆",
+        "denominator": "每机架",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "f15d4e6effc3a66139002dc0ed31ab5ce193e2aa776b150f0f2cb0cb566b84af",
+        "local_file": "HC2025.T1DCRacks.S7.Pankaj.pdf",
+        "locator": "第 8 页：「ICI connections: 96 Optical fiber, 80 Copper cables & 64 pcb traces」",
+        "grade": "S2",
+        "originator": "谷歌（Pankaj Makhija，Hot Chips 2025 教程，2025-08-24）"
+      },
+      "notes": "仅 ICI 互连的铜缆数；同句另有 96 根光纤、64 条 PCB 走线（光纤无对应 component 取值，「其他」已被 TPU 占用，未录）。立方体 6 面 × 16 链路 = 96，恰为光纤数。"
+    },
+    {
+      "asserter": "谷歌",
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "as_of": "2025-08",
+      "fact_id": "google-hc2025-ironwood-superpod-tpus",
+      "metric_id": "cluster_gpu_count",
+      "derivation": "144 机柜 × 64 TPU/机柜 = 9,216",
+      "entity": {
+        "type": "product",
+        "id": "google-ironwood-superpod",
+        "label": "Google Ironwood Superpod"
+      },
+      "value": 9216.0,
+      "unit": "颗",
+      "caliber": {
+        "scope": "单集群可扩展上限",
+        "accelerator": "Ironwood TPU",
+        "region": "Global",
+        "basis": "架构宣称"
+      },
+      "evidence": {
+        "sha256": "f15d4e6effc3a66139002dc0ed31ab5ce193e2aa776b150f0f2cb0cb566b84af",
+        "local_file": "HC2025.T1DCRacks.S7.Pankaj.pdf",
+        "locator": "第 6 页「The Suite of Racks in a Superpod」：144x Ironwood TPU Rack 组成一个 Superpod（ICI Scale-Up Network），每柜 64x Ironwood SoC",
+        "grade": "S2",
+        "originator": "谷歌（Pankaj Makhija，Hot Chips 2025 教程，2025-08-24）"
+      },
+      "notes": "原文未直接写总颗数，只给每 Superpod 144 柜、每柜 64 颗，相乘得 9,216。Superpod 之间走 NIC（第 5 页），Superpod 是 ICI 纵向扩展域的上限，不是整个 max-scale cluster。"
     }
   ]
 }
