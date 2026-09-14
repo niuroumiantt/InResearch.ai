@@ -121803,6 +121803,204 @@
         "originator": "未注明（工作表标注「Source：本营」「Date：2025.07.26」，渠道调研纪要，出处机构不可考）"
       },
       "notes": "「100K 左右」= 10 万片/月，按点值记。同表客户 2026 年分配：博通 18 万片（原计划 12 万）、AWS（Marvell/Alchip）11-12 万、英伟达约 50 万（420K-580K 多种说法）、AMD 约 7 万、联发科 1.5-2 万片/年（按客户分配无指标，未录）。"
+    },
+    {
+      "asserter": "美国电信产业协会",
+      "entity": {
+        "type": "policy",
+        "id": "tia-942",
+        "label": "TIA-942 数据中心电信基础设施标准"
+      },
+      "as_of": "2005",
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 TIA-942 首版发布年 2005；中文译本本身无日期（文件归档年 2010），库外知识，待核",
+      "corroboration": "待交叉验证",
+      "fact_id": "tia942-floorload-computer-room-min",
+      "metric_id": "room_floor_load",
+      "value": 7.2,
+      "unit": "kN/㎡",
+      "bound": "lower",
+      "caliber": {
+        "room_type": "主机房",
+        "basis": "规范最低",
+        "region": "US",
+        "tier": "未注明",
+        "build_type": "未注明"
+      },
+      "evidence": {
+        "sha256": "64521fa0eb906633fea98c8a0254e818ec2a5c271c0e9bc094a9f5bc1fae243a",
+        "local_file": "数据中心建设标准.doc",
+        "locator": "5.3.4 建筑设计（正文第 479-480 段）：「最小的底板载重能力必须是7.2 KPa(150 lbf/ft2)。推荐的底板载重能力是12 KPa(250 lbf/ft2)。底板还必须有一个最小1.2 KPa(25 lbf/ft2)的悬挂能力……推荐的地板悬挂能力是2.4 KPa(50 lbf/ft2)」",
+        "grade": "S2",
+        "originator": "美国电信产业协会 TIA-942《数据中心电信基础设施标准》（中文译本，文件题《EIA-942数据中心电信基础设施标准》）"
+      },
+      "notes": "7.2 kPa = 7.2 kN/㎡（150 lbf/ft²），最低要求；推荐值 12 kPa（250 lbf/ft²）未另录。"
+    },
+    {
+      "asserter": "美国电信产业协会",
+      "entity": {
+        "type": "policy",
+        "id": "tia-942",
+        "label": "TIA-942 数据中心电信基础设施标准"
+      },
+      "as_of": "2005",
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 TIA-942 首版发布年 2005；中文译本本身无日期（文件归档年 2010），库外知识，待核",
+      "corroboration": "待交叉验证",
+      "fact_id": "tia942-floorload-computer-room-hanging-min",
+      "metric_id": "room_floor_load",
+      "value": 1.2,
+      "unit": "kN/㎡",
+      "bound": "lower",
+      "caliber": {
+        "room_type": "主机房吊挂荷载",
+        "basis": "规范最低",
+        "region": "US",
+        "tier": "未注明",
+        "build_type": "未注明"
+      },
+      "evidence": {
+        "sha256": "64521fa0eb906633fea98c8a0254e818ec2a5c271c0e9bc094a9f5bc1fae243a",
+        "local_file": "数据中心建设标准.doc",
+        "locator": "5.3.4 建筑设计（正文第 479-480 段）：「最小的底板载重能力必须是7.2 KPa(150 lbf/ft2)。推荐的底板载重能力是12 KPa(250 lbf/ft2)。底板还必须有一个最小1.2 KPa(25 lbf/ft2)的悬挂能力……推荐的地板悬挂能力是2.4 KPa(50 lbf/ft2)」",
+        "grade": "S2",
+        "originator": "美国电信产业协会 TIA-942《数据中心电信基础设施标准》（中文译本，文件题《EIA-942数据中心电信基础设施标准》）"
+      },
+      "notes": "地板悬挂能力最低 1.2 kPa（25 lbf/ft²），推荐 2.4 kPa（50 lbf/ft²）未另录。"
+    },
+    {
+      "asserter": "美国电信产业协会",
+      "entity": {
+        "type": "policy",
+        "id": "tia-942",
+        "label": "TIA-942 数据中心电信基础设施标准"
+      },
+      "as_of": "2005",
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 TIA-942 首版发布年 2005；中文译本本身无日期（文件归档年 2010），库外知识，待核",
+      "corroboration": "待交叉验证",
+      "fact_id": "tia942-clearheight-computer-room-min",
+      "metric_id": "room_clear_height",
+      "value": 2.6,
+      "unit": "m",
+      "bound": "lower",
+      "caliber": {
+        "measure": "梁下净高",
+        "room_type": "主机房",
+        "region": "US",
+        "tier": "未注明",
+        "build_type": "未注明"
+      },
+      "evidence": {
+        "sha256": "64521fa0eb906633fea98c8a0254e818ec2a5c271c0e9bc094a9f5bc1fae243a",
+        "local_file": "数据中心建设标准.doc",
+        "locator": "5.3.4 建筑设计：「计算机房最小高度，从完成的地面到任何障碍物（如：洒水装置、照明固定设备、或摄像头）必须是2.6米（8.5英尺）。冷却要求或机架/机柜高于2.13米（7英尺）时，要求更高的天花板高度」",
+        "grade": "S2",
+        "originator": "美国电信产业协会 TIA-942《数据中心电信基础设施标准》（中文译本，文件题《EIA-942数据中心电信基础设施标准》）"
+      },
+      "notes": "原文是「完成地面到任何障碍物（洒水头、灯具、摄像头）」的最小净空 2.6m，按梁下净高记 [未核]；机柜高于 2.13m 时要求更高；洒水头到天花板至少 460mm。"
+    },
+    {
+      "asserter": "美国电信产业协会",
+      "entity": {
+        "type": "policy",
+        "id": "tia-942",
+        "label": "TIA-942 数据中心电信基础设施标准"
+      },
+      "as_of": "2005",
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 TIA-942 首版发布年 2005；中文译本本身无日期（文件归档年 2010），库外知识，待核",
+      "corroboration": "待交叉验证",
+      "fact_id": "tia942-room-temp-lower",
+      "metric_id": "room_air_temperature",
+      "value": 20.0,
+      "unit": "℃",
+      "bound": "lower",
+      "caliber": {
+        "parameter": "未注明",
+        "tier": "未注明",
+        "bound_sense": "推荐区间下界",
+        "region": "US",
+        "basis": "规范要求"
+      },
+      "evidence": {
+        "sha256": "64521fa0eb906633fea98c8a0254e818ec2a5c271c0e9bc094a9f5bc1fae243a",
+        "local_file": "数据中心建设标准.doc",
+        "locator": "5.3.5 环境设计·运行参数：「干球温度计：20℃（68。F）至25℃（77。F）；相对湿度：40%至55%；最大露点：21℃（69.8。F）；最大变化速度：每小时5℃（9。F）」",
+        "grade": "S2",
+        "originator": "美国电信产业协会 TIA-942《数据中心电信基础设施标准》（中文译本，文件题《EIA-942数据中心电信基础设施标准》）"
+      },
+      "notes": "「干球温度 20℃ 至 25℃」，原文未说测点是进风还是室内平均，parameter 记未注明；相对湿度 40%-55%，最大变化速度每小时 5℃。"
+    },
+    {
+      "asserter": "美国电信产业协会",
+      "entity": {
+        "type": "policy",
+        "id": "tia-942",
+        "label": "TIA-942 数据中心电信基础设施标准"
+      },
+      "as_of": "2005",
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 TIA-942 首版发布年 2005；中文译本本身无日期（文件归档年 2010），库外知识，待核",
+      "corroboration": "待交叉验证",
+      "fact_id": "tia942-room-temp-upper",
+      "metric_id": "room_air_temperature",
+      "value": 25.0,
+      "unit": "℃",
+      "bound": "upper",
+      "caliber": {
+        "parameter": "未注明",
+        "tier": "未注明",
+        "bound_sense": "推荐区间上界",
+        "region": "US",
+        "basis": "规范要求"
+      },
+      "evidence": {
+        "sha256": "64521fa0eb906633fea98c8a0254e818ec2a5c271c0e9bc094a9f5bc1fae243a",
+        "local_file": "数据中心建设标准.doc",
+        "locator": "5.3.5 环境设计·运行参数：「干球温度计：20℃（68。F）至25℃（77。F）；相对湿度：40%至55%；最大露点：21℃（69.8。F）；最大变化速度：每小时5℃（9。F）」",
+        "grade": "S2",
+        "originator": "美国电信产业协会 TIA-942《数据中心电信基础设施标准》（中文译本，文件题《EIA-942数据中心电信基础设施标准》）"
+      },
+      "notes": "干球温度区间上端。"
+    },
+    {
+      "asserter": "美国电信产业协会",
+      "entity": {
+        "type": "policy",
+        "id": "tia-942",
+        "label": "TIA-942 数据中心电信基础设施标准"
+      },
+      "as_of": "2005",
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 TIA-942 首版发布年 2005；中文译本本身无日期（文件归档年 2010），库外知识，待核",
+      "corroboration": "待交叉验证",
+      "fact_id": "tia942-dewpoint-max",
+      "metric_id": "room_air_temperature",
+      "value": 21.0,
+      "unit": "℃",
+      "bound": "upper",
+      "caliber": {
+        "parameter": "露点温度",
+        "tier": "未注明",
+        "bound_sense": "不大于",
+        "region": "US",
+        "basis": "规范要求"
+      },
+      "evidence": {
+        "sha256": "64521fa0eb906633fea98c8a0254e818ec2a5c271c0e9bc094a9f5bc1fae243a",
+        "local_file": "数据中心建设标准.doc",
+        "locator": "5.3.5 环境设计·运行参数：「干球温度计：20℃（68。F）至25℃（77。F）；相对湿度：40%至55%；最大露点：21℃（69.8。F）；最大变化速度：每小时5℃（9。F）」",
+        "grade": "S2",
+        "originator": "美国电信产业协会 TIA-942《数据中心电信基础设施标准》（中文译本，文件题《EIA-942数据中心电信基础设施标准》）"
+      },
+      "notes": "最大露点 21℃（69.8°F）。"
     }
   ]
 }
