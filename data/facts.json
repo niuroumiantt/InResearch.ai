@@ -140750,6 +140750,68 @@
       "corroboration": "待交叉验证",
       "notes": "原文「接近3400亿美元」按点值记，同比约 +35%；假设微软 FY25Q3–FY26Q2 保持 FY25Q2 水平。",
       "asserter": "申万宏源"
+    },
+    {
+      "fact_id": "ms2506-cloud-ai-asic-market-2030e",
+      "metric_id": "ai_asic_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "cloud-ai-asic",
+        "label": "云端 AI ASIC 市场"
+      },
+      "value": 50.0,
+      "unit": "十亿美元",
+      "caliber": {
+        "scope": "AI ASIC",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2030E@2025-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8842f8bc233b037b7ee433da4d68c9fde445e6bc1838d0cf240eeaf78b9c6c86",
+        "local_file": "20250622-摩根士丹利：人工智能供应链：人工智能专用集成电路（AI ASIC）动态：Trainium和TPU(28页).pdf",
+        "locator": "第 5 页：「我们估计人工智能半导体市场规模在2030年将达到4800亿美元，几乎占全球半导体收入的半数。这4800亿美元的营收由3400亿美元的云人工智能半导体和1200亿美元的边缘人工智能半导体……组成。我们预计云人工智能ASIC市场规模可能增长到500亿美元，占2030年云人工智能半导体收入的15%」",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区半导体团队《AI 供应链：AI ASIC 动态——Trainium 与 TPU》（2025-06-16，中文译本）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "仅云端 AI ASIC；同句 AI 半导体合计 4,800 亿（云 3,400 亿 + 边缘 1,200 亿）、全球半导体 2030 年约 1 万亿美元，无对应口径未录。原文「3400亿」与「15%」相乘为 510 亿，与 500 亿基本一致。",
+      "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "ms2506-ai-server-tam-2025e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "global-ai-server",
+        "label": "全球 AI 服务器潜在市场"
+      },
+      "value": 1990.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2025-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8842f8bc233b037b7ee433da4d68c9fde445e6bc1838d0cf240eeaf78b9c6c86",
+        "local_file": "20250622-摩根士丹利：人工智能供应链：人工智能专用集成电路（AI ASIC）动态：Trainium和TPU(28页).pdf",
+        "locator": "第 6 页「全球人工智能资本支出潜在市场规模分析」：「从全球云CSP近期的财报电话会议来看，总资本支出3970亿美元中50%的份额，可以作为2025年AI服务器潜在市场规模的良好指标（大约1990亿美元）」",
+        "grade": "S3",
+        "originator": "摩根士丹利大中华区半导体团队《AI 供应链：AI ASIC 动态——Trainium 与 TPU》（2025-06-16，中文译本）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "大摩以全球云 CSP 2025 年 capex 3,970 亿美元的 50% 作为 AI 服务器潜在市场规模指标，属拇指法则式估算而非出货跟踪；原文「大约1990亿美元」按点值记。",
+      "asserter": "摩根士丹利"
     }
   ]
 }
