@@ -153416,6 +153416,265 @@
       "corroboration": "待交叉验证",
       "notes": "30,489 百万美元 = 304.89 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。**是当季前十名之和，不是全行业**，入榜厂商逐季变化，前后季不完全可比。2018 年各季原表无合计。",
       "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "google-hc2025-ironwood-fp8-pflops",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "google-ironwood-tpu",
+        "label": "Ironwood TPU"
+      },
+      "value": 4.614,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "Ironwood TPU",
+        "precision": "FP8",
+        "scope": "单卡",
+        "sparsity": "未注明",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b8f1ebeb68b29599772e90c6f40fdef8c11ded880563ea1afe7e7852523fda49",
+        "local_file": "61_Google_Ironwood-Final.pdf",
+        "locator": "第 14 页「Ironwood Chip」：「First dual compute die TPU, 4614 TFLOPS of FP8 ○ >10x compute compared to TPU v5p … 8 stacks of HBM3E, peak BW 7.3 TB/s, capacity 192 GiB … 1.2 TBps I/O to gluelessly scale-up to 9216 chips」",
+        "grade": "S2",
+        "originator": "谷歌（Norman P. Jouppi、Sridhar Lakshmanamurthy，《Ironwood: Delivering Best in Class perf, perf/TCO and perf/Watt for Reasoning Model Training and Serving》，Hot Chips 2025-08-26）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "4614 TFLOPS = 4.614 PFLOPS。首款双计算裸片 TPU。与 SemiAnalysis 2023 年转述的 TPUv4 BF16 0.275 PFLOPS（sa2304-tpuv4-bf16-pflops）精度不同，不可直接比。",
+      "asserter": "谷歌"
+    },
+    {
+      "fact_id": "google-hc2025-ironwood-superpod-fp8",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "google-ironwood-superpod",
+        "label": "Ironwood SuperPod（9216 颗）"
+      },
+      "value": 42500.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "Ironwood SuperPod",
+        "precision": "FP8",
+        "scope": "SuperPod",
+        "sparsity": "未注明",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b8f1ebeb68b29599772e90c6f40fdef8c11ded880563ea1afe7e7852523fda49",
+        "local_file": "61_Google_Ironwood-Final.pdf",
+        "locator": "第 2 页「Breakthrough Innovations in Ironwood TPU Systems」：「9216 Ironwood chips use optical circuit switches (OCS) to share memory ● Directly addressable shared HBM memory capacity of 1.77 PB ● 42.5 Exaflops of ML Compute using FP8 precision」；第 7 页标题同",
+        "grade": "S2",
+        "originator": "谷歌（Norman P. Jouppi、Sridhar Lakshmanamurthy，《Ironwood: Delivering Best in Class perf, perf/TCO and perf/Watt for Reasoning Model Training and Serving》，Hot Chips 2025-08-26）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "42.5 EFLOPS = 42,500 PFLOPS，约等于 9216 × 4.614 PFLOPS = 42,522。",
+      "asserter": "谷歌"
+    },
+    {
+      "fact_id": "google-hc2025-ironwood-hbm-capacity",
+      "metric_id": "accelerator_memory_spec",
+      "entity": {
+        "type": "product",
+        "id": "google-ironwood-tpu",
+        "label": "Ironwood TPU"
+      },
+      "value": 206.16,
+      "unit": "GB",
+      "caliber": {
+        "product": "Ironwood TPU",
+        "parameter": "容量",
+        "memory_type": "HBM3e",
+        "scope": "单卡",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b8f1ebeb68b29599772e90c6f40fdef8c11ded880563ea1afe7e7852523fda49",
+        "local_file": "61_Google_Ironwood-Final.pdf",
+        "locator": "第 14 页「Ironwood Chip」：「First dual compute die TPU, 4614 TFLOPS of FP8 ○ >10x compute compared to TPU v5p … 8 stacks of HBM3E, peak BW 7.3 TB/s, capacity 192 GiB … 1.2 TBps I/O to gluelessly scale-up to 9216 chips」",
+        "grade": "S2",
+        "originator": "谷歌（Norman P. Jouppi、Sridhar Lakshmanamurthy，《Ironwood: Delivering Best in Class perf, perf/TCO and perf/Watt for Reasoning Model Training and Serving》，Hot Chips 2025-08-26）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**原文单位是 GiB（192 GiB）**，按 1 GiB = 1.073741824 GB 换成 206.16 GB 以对齐本指标单位；与其他厂商按 GB 标的 192GB 不是同一个数。8 个 HBM3E 堆叠，峰值带宽 7.3 TB/s（单位不合未录）。第 2 页 SuperPod 共享 HBM「1.77 PB」恰为 9216 × 192 GiB 的二进制换算，实际约 1.90 PB（十进制），未另录。",
+      "asserter": "谷歌",
+      "derivation": "192 GiB × 1.073741824 = 206.16 GB"
+    },
+    {
+      "fact_id": "google-hc2025-ironwood-ici-bw",
+      "metric_id": "interconnect_bandwidth_spec",
+      "entity": {
+        "type": "product",
+        "id": "google-ironwood-tpu",
+        "label": "Ironwood TPU"
+      },
+      "value": 1200.0,
+      "unit": "GB/s",
+      "caliber": {
+        "product": "Ironwood TPU",
+        "link": "其他",
+        "direction": "未注明",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b8f1ebeb68b29599772e90c6f40fdef8c11ded880563ea1afe7e7852523fda49",
+        "local_file": "61_Google_Ironwood-Final.pdf",
+        "locator": "第 14 页「Ironwood Chip」：「First dual compute die TPU, 4614 TFLOPS of FP8 ○ >10x compute compared to TPU v5p … 8 stacks of HBM3E, peak BW 7.3 TB/s, capacity 192 GiB … 1.2 TBps I/O to gluelessly scale-up to 9216 chips」；第 15 页架构图 ICI「6× Link stack」「6×112G SerDes octals + PCS」",
+        "grade": "S2",
+        "originator": "谷歌（Norman P. Jouppi、Sridhar Lakshmanamurthy，《Ironwood: Delivering Best in Class perf, perf/TCO and perf/Watt for Reasoning Model Training and Serving》，Hot Chips 2025-08-26）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "ICI（芯片间互连）I/O 带宽 1.2 TBps = 1,200 GB/s，原文未写单双向。机柜内铜缆、机柜间经 OCS 光交换（第 5、23 页）。",
+      "asserter": "谷歌"
+    },
+    {
+      "fact_id": "google-hc2025-ironwood-ici-lane",
+      "metric_id": "interconnect_lane_rate",
+      "entity": {
+        "type": "product",
+        "id": "google-ironwood-ici",
+        "label": "Ironwood ICI SerDes"
+      },
+      "value": 112.0,
+      "unit": "Gbps/通道",
+      "caliber": {
+        "product": "Ironwood ICI",
+        "medium": "未注明",
+        "reach_band": "未注明",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b8f1ebeb68b29599772e90c6f40fdef8c11ded880563ea1afe7e7852523fda49",
+        "local_file": "61_Google_Ironwood-Final.pdf",
+        "locator": "第 15–19 页「Ironwood Architecture」图 ICI 模块：「6× Link stack」「6×112G SerDes octals + PCS」",
+        "grade": "S2",
+        "originator": "谷歌（Norman P. Jouppi、Sridhar Lakshmanamurthy，《Ironwood: Delivering Best in Class perf, perf/TCO and perf/Watt for Reasoning Model Training and Serving》，Hot Chips 2025-08-26）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "6 组 × 8 通道（octal）× 112G；原图未写同一通道在机内走铜、机间走光的分配，medium 与 reach 记未注明。",
+      "asserter": "谷歌"
+    },
+    {
+      "fact_id": "google-hc2025-ironwood-tpu-per-tray",
+      "metric_id": "rack_component_count",
+      "entity": {
+        "type": "product",
+        "id": "google-ironwood-rack",
+        "label": "Google Ironwood 机柜"
+      },
+      "value": 4.0,
+      "unit": "个",
+      "caliber": {
+        "product": "Google Ironwood 机柜",
+        "component": "GPU",
+        "denominator": "每托盘",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b8f1ebeb68b29599772e90c6f40fdef8c11ded880563ea1afe7e7852523fda49",
+        "local_file": "61_Google_Ironwood-Final.pdf",
+        "locator": "第 22 页「Ironwood Tray」：「4 Ironwood TPUs per tray ● Liquid cooled ○ 4 chips and VRs with parallel water flow … ● 18 OSFP connectors for off-board interconnect ○ 16 on top side shown in photo」",
+        "grade": "S2",
+        "originator": "谷歌（Norman P. Jouppi、Sridhar Lakshmanamurthy，《Ironwood: Delivering Best in Class perf, perf/TCO and perf/Watt for Reasoning Model Training and Serving》，Hot Chips 2025-08-26）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "component 记 GPU 是菜单里最近的加速器位，实为 TPU。与同场 Hot Chips 另一讲（HC2025.T1DCRacks.S7.Pankaj）的每柜 64 颗、16 托盘（google-hc2025-ironwood-tpu-per-rack / -trays-per-rack）自洽：16 × 4 = 64。",
+      "asserter": "谷歌"
+    },
+    {
+      "fact_id": "google-hc2025-ironwood-osfp-per-tray",
+      "metric_id": "rack_component_count",
+      "entity": {
+        "type": "product",
+        "id": "google-ironwood-rack",
+        "label": "Google Ironwood 机柜"
+      },
+      "value": 18.0,
+      "unit": "个",
+      "caliber": {
+        "product": "Google Ironwood 机柜",
+        "component": "光模块插槽",
+        "denominator": "每托盘",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b8f1ebeb68b29599772e90c6f40fdef8c11ded880563ea1afe7e7852523fda49",
+        "local_file": "61_Google_Ironwood-Final.pdf",
+        "locator": "第 22 页「Ironwood Tray」：「18 OSFP connectors for off-board interconnect ○ 16 on top side shown in photo」",
+        "grade": "S2",
+        "originator": "谷歌（Norman P. Jouppi、Sridhar Lakshmanamurthy，《Ironwood: Delivering Best in Class perf, perf/TCO and perf/Watt for Reasoning Model Training and Serving》，Hot Chips 2025-08-26）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "OSFP 连接器用于托盘外互连，原文未说全部插光模块（机柜内走铜，第 23 页），component 取光模块插槽指接口位。",
+      "asserter": "谷歌"
+    },
+    {
+      "fact_id": "google-hc2025-ironwood-vs-v5p-compute",
+      "metric_id": "generation_ratio",
+      "entity": {
+        "type": "product",
+        "id": "google-ironwood-tpu",
+        "label": "Ironwood TPU"
+      },
+      "value": 10.0,
+      "unit": "x",
+      "caliber": {
+        "parameter": "性能",
+        "baseline_generation": "自定起点",
+        "region": "Global",
+        "basis": "架构宣称"
+      },
+      "as_of": "2025-08",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "b8f1ebeb68b29599772e90c6f40fdef8c11ded880563ea1afe7e7852523fda49",
+        "local_file": "61_Google_Ironwood-Final.pdf",
+        "locator": "第 14 页「Ironwood Chip」：「First dual compute die TPU, 4614 TFLOPS of FP8 ○ >10x compute compared to TPU v5p … 8 stacks of HBM3E, peak BW 7.3 TB/s, capacity 192 GiB … 1.2 TBps I/O to gluelessly scale-up to 9216 chips」",
+        "grade": "S2",
+        "originator": "谷歌（Norman P. Jouppi、Sridhar Lakshmanamurthy，《Ironwood: Delivering Best in Class perf, perf/TCO and perf/Watt for Reasoning Model Training and Serving》，Hot Chips 2025-08-26）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「>10x compute compared to TPU v5p」，下界表述；基线为 TPU v5p（非紧邻上一代 Trillium），baseline 记自定起点。第 2 页另称能效为上一代 2 倍（parameter 无能效项，未录）。",
+      "asserter": "谷歌"
     }
   ]
 }
