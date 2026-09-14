@@ -142674,6 +142674,428 @@
       "corroboration": "待交叉验证",
       "notes": "发布前口径，原文说 72 GPU 版「actually later」，era 记路线图目标。另一版为 36 GPU / 9 计算托盘的低功率机柜，可跨两柜 NVLink 互连，未给功率。与 SemiAnalysis 2024 年另一份的 125kW（实际功率密度）口径不同，不构成同一出处的改口。发文于英伟达 GTC 2024 正式发布之前数小时，属发布前的供应链口径，与后续官方规格可能不同（B100 这一型号后来未按此名称出货）。",
       "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2408-gb200a-nvl36-rack-power",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-mgx-gb200a-nvl36",
+        "label": "MGX GB200A NVL36"
+      },
+      "value": 40.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "era": "路线图目标",
+        "power_basis": "未披露",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3d4af472137e5cc411380bbffd6111bc1a7339fc4f5544f06a0ac1c937a43f43",
+        "local_file": "Nvidia's Blackwell Reworked - Shipment Delays & G.pdf",
+        "locator": "第 7 页：「The MGX GB200A NVL36 SKU is a fully air cooled 40kW/rack server that would have 36 GPUs fully interconnected together with NVLink」；第 15 页：「We estimate that at 700W per GPU, the GB200A NVL36 will most likely be around 40kW per rack. The 2U compute trays will require about 4kW of power」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia's Blackwell Reworked - Shipment Delays & GB200A Reworked Platforms》（Dylan Patel、Wega Chu、Daniel Nishball 等，2024-08-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**全风冷**，面向无法支持 ~125kW 液冷 GB200 NVL72 的机房（用冷通道封闭+隔排部署）。SemiAnalysis 按每 GPU 700W 估算，power_basis 记未披露。第 18–19 页估计 40kW 中 15%–17% 为机箱风扇功耗（HGX H100 仅 6%–8%）。当时尚未出货的改款平台。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2408-neocloud-hopper-rack-density",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "neocloud-hopper-deployments",
+        "label": "Neocloud 现有 Hopper 部署"
+      },
+      "value": 20.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "市场普遍水平",
+        "era": "当期",
+        "power_basis": "未披露",
+        "region": "未披露"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3d4af472137e5cc411380bbffd6111bc1a7339fc4f5544f06a0ac1c937a43f43",
+        "local_file": "Nvidia's Blackwell Reworked - Shipment Delays & G.pdf",
+        "locator": "第 7 页：「Currently most neocloud deployments are for Hopper and are at a power density of 20kW/rack」；第 10 页：「Although most datacenters and current H100 deployments are only 20kW/rack, it is not uncommon to have 40kW/rack H100 deployments too」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia's Blackwell Reworked - Shipment Delays & GB200A Reworked Platforms》（Dylan Patel、Wega Chu、Daniel Nishball 等，2024-08-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "region 未披露：原文未限定地域。rack_type 取传统风冷表示风冷 H100/H200 部署形态，不是非 AI 负载。40kW H100 部署靠隔排与冷热通道封闭实现，属少数，未另录。与同文「大多数数据中心 ~12–20kW」（traditional-rack-density-2024）是两个对象：本条专指 neocloud 的 Hopper 部署。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2408-gb200a-nvl64-proposed-60kw",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200a-nvl64",
+        "label": "GB200A NVL64（英伟达提议方案，已取消）"
+      },
+      "value": 60.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "设计目标",
+        "era": "路线图目标",
+        "power_basis": "设计功率",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3d4af472137e5cc411380bbffd6111bc1a7339fc4f5544f06a0ac1c937a43f43",
+        "local_file": "Nvidia's Blackwell Reworked - Shipment Delays & G.pdf",
+        "locator": "第 19 页：「This fully air cooled 60kW rack would have had 64 GPUs fully interconnected together with NVLink」；第 21 页：「Although the proposed design from Nvidia said that the NVL64 would be a 60kW rack」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia's Blackwell Reworked - Shipment Delays & GB200A Reworked Platforms》（Dylan Patel、Wega Chu、Daniel Nishball 等，2024-08-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "60kW 出自英伟达未公开的提议设计，经 SemiAnalysis 转述，asserter 记英伟达。SemiAnalysis 判断该 SKU 不可行、不会出货（风冷 60–70kW 需背板换热器，每 1U 交换托盘 4 颗 28.8T ASIC 近 1,500W，64 个 800G 端口与 Q3400 的 72 口不匹配，热备后仅 60 GPU 可用）。配置：16 个计算托盘 + 4 个 NVSwitch 托盘。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "sa2408-gb200a-nvl64-estimate-70kw",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200a-nvl64-sa-estimate",
+        "label": "GB200A NVL64（SemiAnalysis 功率预算估算）"
+      },
+      "value": 70.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "设计目标",
+        "era": "路线图目标",
+        "power_basis": "未披露",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "3d4af472137e5cc411380bbffd6111bc1a7339fc4f5544f06a0ac1c937a43f43",
+        "local_file": "Nvidia's Blackwell Reworked - Shipment Delays & G.pdf",
+        "locator": "第 21 页：「we have estimated the power budget and think the lower bound is closer to 70kW per rack」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia's Blackwell Reworked - Shipment Delays & GB200A Reworked Platforms》（Dylan Patel、Wega Chu、Daniel Nishball 等，2024-08-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "SemiAnalysis 自行估算的下界，与英伟达提议的 60kW（sa2408-gb200a-nvl64-proposed-60kw）并列，不裁决。该方案已取消。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2408-gb200a-nvl36-compute-trays",
+      "metric_id": "rack_component_count",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-mgx-gb200a-nvl36",
+        "label": "MGX GB200A NVL36"
+      },
+      "value": 9.0,
+      "unit": "个",
+      "caliber": {
+        "product": "MGX GB200A NVL36",
+        "component": "计算托盘",
+        "denominator": "每机架",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3d4af472137e5cc411380bbffd6111bc1a7339fc4f5544f06a0ac1c937a43f43",
+        "local_file": "Nvidia's Blackwell Reworked - Shipment Delays & G.pdf",
+        "locator": "第 7–8 页：「Per rack, there will be nine compute trays and nine NVSwitch trays. Each compute tray is 2U and contain one Grace CPU and four 700W B200A Blackwell GPUs」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia's Blackwell Reworked - Shipment Delays & GB200A Reworked Platforms》（Dylan Patel、Wega Chu、Daniel Nishball 等，2024-08-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "36 GPU / 柜。可留 1 个计算托盘热备（第 24 页）。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2408-gb200a-nvl36-switch-trays",
+      "metric_id": "rack_component_count",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-mgx-gb200a-nvl36",
+        "label": "MGX GB200A NVL36"
+      },
+      "value": 9.0,
+      "unit": "个",
+      "caliber": {
+        "product": "MGX GB200A NVL36",
+        "component": "NVSwitch 托盘",
+        "denominator": "每机架",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3d4af472137e5cc411380bbffd6111bc1a7339fc4f5544f06a0ac1c937a43f43",
+        "local_file": "Nvidia's Blackwell Reworked - Shipment Delays & G.pdf",
+        "locator": "第 7–8 页：「Per rack, there will be nine compute trays and nine NVSwitch trays」；第 8 页：「each 1U NVSwitch Tray will just have one switch ASIC, with each switch ASIC having a bandwidth of 28.8Tbit/s」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia's Blackwell Reworked - Shipment Delays & GB200A Reworked Platforms》（Dylan Patel、Wega Chu、Daniel Nishball 等，2024-08-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "每个 1U 交换托盘仅 1 颗 NVSwitch ASIC（GB200 NVL72 为 2 颗），单层交换即可无阻塞互连 36 GPU，便于风冷。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2408-gb200a-nvl36-gpu-per-tray",
+      "metric_id": "rack_component_count",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-mgx-gb200a-nvl36",
+        "label": "MGX GB200A NVL36"
+      },
+      "value": 4.0,
+      "unit": "个",
+      "caliber": {
+        "product": "MGX GB200A NVL36",
+        "component": "GPU",
+        "denominator": "每托盘",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3d4af472137e5cc411380bbffd6111bc1a7339fc4f5544f06a0ac1c937a43f43",
+        "local_file": "Nvidia's Blackwell Reworked - Shipment Delays & G.pdf",
+        "locator": "第 8 页：「Each compute tray is 2U and contain one Grace CPU and four 700W B200A Blackwell GPUs, compared to the GB200 NVL72 / 36x2, which has two Grace CPUs and four 1200W Blackwell GPUs」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia's Blackwell Reworked - Shipment Delays & GB200A Reworked Platforms》（Dylan Patel、Wega Chu、Daniel Nishball 等，2024-08-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "4 颗 GPU 分装在两块 2-GPU 板上，CPU 在独立主板（第 12–13 页）。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2408-gb200a-nvl36-cpu-per-tray",
+      "metric_id": "rack_component_count",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-mgx-gb200a-nvl36",
+        "label": "MGX GB200A NVL36"
+      },
+      "value": 1.0,
+      "unit": "个",
+      "caliber": {
+        "product": "MGX GB200A NVL36",
+        "component": "CPU",
+        "denominator": "每托盘",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3d4af472137e5cc411380bbffd6111bc1a7339fc4f5544f06a0ac1c937a43f43",
+        "local_file": "Nvidia's Blackwell Reworked - Shipment Delays & G.pdf",
+        "locator": "第 8 页：「The MGX NVL36 design only has a 1:4 ratio of CPU to GPUs compared to 2:4 ratio in GB200 NVL72 / 36x2」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia's Blackwell Reworked - Shipment Delays & GB200A Reworked Platforms》（Dylan Patel、Wega Chu、Daniel Nishball 等，2024-08-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "CPU 与 GPU 无 C2C 直连，经 ConnectX-8 内置 PCIe 交换互通；每张后端网卡服务两颗 GPU，每 GPU 后端带宽 400G（GB200 NVL72 配 CX-8 为 800G）。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2408-b200a-tdp-mgx",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-b200a",
+        "label": "NVIDIA B200A（B102 裸片）"
+      },
+      "value": 700.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "NVIDIA B200A（MGX NVL36 配置）",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3d4af472137e5cc411380bbffd6111bc1a7339fc4f5544f06a0ac1c937a43f43",
+        "local_file": "Nvidia's Blackwell Reworked - Shipment Delays & G.pdf",
+        "locator": "第 5 页：「It will come in a 700W and 1000W HGX form factor with up to 144GB of HBM3E」；第 8 页 MGX NVL36 计算托盘「four 700W B200A Blackwell GPUs」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia's Blackwell Reworked - Shipment Delays & GB200A Reworked Platforms》（Dylan Patel、Wega Chu、Daniel Nishball 等，2024-08-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 W，取 MGX NVL36 所用 700W 档；HGX 形态另有 1000W 档（同一芯片不同功率配置，未另录）。B200A 基于单片 B102 裸片、4 个 HBM 堆叠，可用 CoWoS-S 封装，也用于中国版 B20。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2408-gb200-blackwell-tdp",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-b200-gb200",
+        "label": "NVIDIA Blackwell GPU（GB200 NVL72 / 36x2 计算托盘内）"
+      },
+      "value": 1200.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "NVIDIA Blackwell GPU（GB200 NVL72 / 36x2 配置）",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3d4af472137e5cc411380bbffd6111bc1a7339fc4f5544f06a0ac1c937a43f43",
+        "local_file": "Nvidia's Blackwell Reworked - Shipment Delays & G.pdf",
+        "locator": "第 8 页：「the GB200 NVL72 / 36x2, which has two Grace CPUs and four 1200W Blackwell GPUs」；第 11 页：「two Grace CPU and four 1200W Blackwell GPUs in total per compute tray」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia's Blackwell Reworked - Shipment Delays & GB200A Reworked Platforms》（Dylan Patel、Wega Chu、Daniel Nishball 等，2024-08-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 W。与 SemiAnalysis 2024-03 发布前口径的 B200「power limit 1,000W」（sa2403-b200-tdp，HGX 形态）配置不同，不是改口。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2408-b200a-hbm-capacity",
+      "metric_id": "accelerator_memory_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-b200a",
+        "label": "NVIDIA B200A"
+      },
+      "value": 144.0,
+      "unit": "GB",
+      "caliber": {
+        "product": "NVIDIA B200A",
+        "parameter": "容量",
+        "memory_type": "HBM3e",
+        "scope": "单卡",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3d4af472137e5cc411380bbffd6111bc1a7339fc4f5544f06a0ac1c937a43f43",
+        "local_file": "Nvidia's Blackwell Reworked - Shipment Delays & G.pdf",
+        "locator": "第 5 页：「with up to 144GB of HBM3E and up to 4 TB/s of memory bandwidth. Notably this is less memory bandwidth than H200」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia's Blackwell Reworked - Shipment Delays & GB200A Reworked Platforms》（Dylan Patel、Wega Chu、Daniel Nishball 等，2024-08-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 GB（容量），「up to」上限。内存带宽 4TB/s 单位与本指标 GB 不合，未另录。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2408-b210-hbm-capacity",
+      "metric_id": "accelerator_memory_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-b210",
+        "label": "NVIDIA Blackwell Ultra（B210 / B200 Ultra）"
+      },
+      "value": 288.0,
+      "unit": "GB",
+      "caliber": {
+        "product": "NVIDIA Blackwell Ultra（B210 / B200 Ultra）",
+        "parameter": "容量",
+        "memory_type": "HBM3e",
+        "scope": "单卡",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3d4af472137e5cc411380bbffd6111bc1a7339fc4f5544f06a0ac1c937a43f43",
+        "local_file": "Nvidia's Blackwell Reworked - Shipment Delays & G.pdf",
+        "locator": "第 5 页：「Blackwell Ultra contains both a memory refresh going to up to 288GB of 12 Hi HBM3E and a performance enhancement in FLOPS, up to 50%」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia's Blackwell Reworked - Shipment Delays & GB200A Reworked Platforms》（Dylan Patel、Wega Chu、Daniel Nishball 等，2024-08-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 GB（容量），12 层堆叠 HBM3e，「up to」上限；路线图口径。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2408-gb200a-nvl36-nvlink-bw",
+      "metric_id": "interconnect_bandwidth_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-mgx-gb200a-nvl36",
+        "label": "MGX GB200A NVL36"
+      },
+      "value": 900.0,
+      "unit": "GB/s",
+      "caliber": {
+        "product": "MGX GB200A NVL36",
+        "link": "NVLink（单卡）",
+        "direction": "单向",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3d4af472137e5cc411380bbffd6111bc1a7339fc4f5544f06a0ac1c937a43f43",
+        "local_file": "Nvidia's Blackwell Reworked - Shipment Delays & G.pdf",
+        "locator": "第 13 页：「The NVLink bandwidth per GPU will be 900Gbyte/s per direction which is the same as GB200 NVL72 / 36x2」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia's Blackwell Reworked - Shipment Delays & GB200A Reworked Platforms》（Dylan Patel、Wega Chu、Daniel Nishball 等，2024-08-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "每 GPU 每方向 900GB/s，与 GB200 NVL72 相同；按每 FLOP 计 GPU 间带宽大幅提高。",
+      "asserter": "SemiAnalysis"
     }
   ]
 }
