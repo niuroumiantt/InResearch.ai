@@ -136179,6 +136179,40 @@
       "corroboration": "待交叉验证",
       "notes": "口径是数据中心服务商收入，只含基础设施相关收入，不含云服务，企业自用数据中心不计；故 service_scope 记 IDC 服务而非含云服务。柱值与增速逐年自洽（如 679.3÷618.7=1.098）。",
       "asserter": "中国信通院"
+    },
+    {
+      "fact_id": "denvr-ocp25-immersion-annualized-pue-partial",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "site",
+        "id": "denvr-immersion-modular-dc",
+        "label": "Denvr Dataworks 浸没式模块化 GPU 数据中心"
+      },
+      "value": 1.037,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "浸没液冷",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "未披露"
+      },
+      "as_of": "2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "161c6fbd04bd19750c5ec68d1f4758882e82a2ab50f65baad6fb68091fb2a2ec",
+        "local_file": "5B_2022_7229ImmersionC_未署名.pdf",
+        "locator": "第 7 页「Excellent PUE that Improves with Utilization & TDP」图「Annualized Power Usage Effectiveness (PUE)」（横轴 Sep-24 至 Aug-25）：「1.037 Denvr immersion PUE – at partial utilization」「<1.03 Denvr immersion PUE – at full utilization」；同图 Uptime 基准「1.58 Global average」「1.47 Capacity-weighted global average」",
+        "grade": "S2",
+        "originator": "Denvr Dataworks（Amy Short）与 Lubrizol，OCP 演讲《Immersion Cooling in AI: Data & Insights From a Multi-Year Deployment》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "运营方自报的年化运行 PUE，部分负载工况；满载时称 <1.03（按上界另可记，未录以免与部分负载值混读）。as_of 取图中数据窗口末月 2025-08。原文未写站点所在地，region 记未披露——Denvr 总部在加拿大，但模块化数据中心部署地原文未说明，不猜。同图 Uptime 全球均值 1.58、按容量加权 1.47 未注明调查年份，未录。",
+      "asserter": "Denvr Dataworks"
     }
   ]
 }
