@@ -132098,6 +132098,135 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "「FY28-30 预计年产能提升至 30GW 以上」按 FY30 下界记；做出时点未写。"
+    },
+    {
+      "fact_id": "xyzq2603-kezhi-cn-aidc-scale-2021",
+      "metric_id": "global_dc_it_load",
+      "asserter": "科智咨询",
+      "entity": {
+        "type": "industry",
+        "id": "cn-aidc",
+        "label": "中国智算中心"
+      },
+      "value": 0.33,
+      "unit": "GW",
+      "bound": "point",
+      "as_of": "2021",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "AI 负载",
+        "scenario": "单一情景",
+        "basis": "实测",
+        "region": "CN"
+      },
+      "evidence": {
+        "sha256": "33087f799bf9271ba96bf3f0348238eeb043abbdac13f62a18223db0f4b47da8",
+        "local_file": "20260319-兴业证券-电力设备行业算电协同：算力时代的能源重构，新能源需求出现新增长极.pdf",
+        "locator": "第 4 页：「中国智算中心规模从2021年的约 0.33GW增长至2024年的2GW以上，预计到2028年将达到13GW左右」（图「中国算智中心规模（GW）」资料来源：科智咨询，兴业证券经济与金融研究院整理）",
+        "grade": "S3",
+        "originator": "科智咨询（经兴业证券《电力设备行业算电协同：算力时代的能源重构，新能源需求出现新增长极》（2026-03-19）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「约 0.33GW」。「智算中心规模」未说明是 IT 负载还是设施功率。库内同一家 2023 年 1.2055 GW、2026E ≥3 GW（kezhi-cn-aidc-it-load-*）记为 IT 负载、workload「全部负载」，与本条 AI 负载口径不一致，请核。"
+    },
+    {
+      "fact_id": "xyzq2603-kezhi-cn-aidc-scale-2024",
+      "metric_id": "global_dc_it_load",
+      "asserter": "科智咨询",
+      "entity": {
+        "type": "industry",
+        "id": "cn-aidc",
+        "label": "中国智算中心"
+      },
+      "value": 2.0,
+      "unit": "GW",
+      "bound": "lower",
+      "as_of": "2024",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "AI 负载",
+        "scenario": "单一情景",
+        "basis": "实测",
+        "region": "CN"
+      },
+      "evidence": {
+        "sha256": "33087f799bf9271ba96bf3f0348238eeb043abbdac13f62a18223db0f4b47da8",
+        "local_file": "20260319-兴业证券-电力设备行业算电协同：算力时代的能源重构，新能源需求出现新增长极.pdf",
+        "locator": "第 4 页：「中国智算中心规模从2021年的约 0.33GW增长至2024年的2GW以上，预计到2028年将达到13GW左右」（图「中国算智中心规模（GW）」资料来源：科智咨询，兴业证券经济与金融研究院整理）",
+        "grade": "S3",
+        "originator": "科智咨询（经兴业证券《电力设备行业算电协同：算力时代的能源重构，新能源需求出现新增长极》（2026-03-19）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「2GW以上」按下界记。「智算中心规模」未说明是 IT 负载还是设施功率。库内同一家 2023 年 1.2055 GW、2026E ≥3 GW（kezhi-cn-aidc-it-load-*）记为 IT 负载、workload「全部负载」，与本条 AI 负载口径不一致，请核。"
+    },
+    {
+      "fact_id": "xyzq2603-kezhi-cn-aidc-scale-2028e",
+      "metric_id": "global_dc_it_load",
+      "asserter": "科智咨询",
+      "entity": {
+        "type": "industry",
+        "id": "cn-aidc",
+        "label": "中国智算中心"
+      },
+      "value": 13.0,
+      "unit": "GW",
+      "bound": "point",
+      "as_of": "2028E",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "AI 负载",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "CN"
+      },
+      "evidence": {
+        "sha256": "33087f799bf9271ba96bf3f0348238eeb043abbdac13f62a18223db0f4b47da8",
+        "local_file": "20260319-兴业证券-电力设备行业算电协同：算力时代的能源重构，新能源需求出现新增长极.pdf",
+        "locator": "第 4 页：「中国智算中心规模从2021年的约 0.33GW增长至2024年的2GW以上，预计到2028年将达到13GW左右」（图「中国算智中心规模（GW）」资料来源：科智咨询，兴业证券经济与金融研究院整理）",
+        "grade": "S3",
+        "originator": "科智咨询（经兴业证券《电力设备行业算电协同：算力时代的能源重构，新能源需求出现新增长极》（2026-03-19）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「13GW左右」；科智做出时点未写，as_of 不带 @。「智算中心规模」未说明是 IT 负载还是设施功率。库内同一家 2023 年 1.2055 GW、2026E ≥3 GW（kezhi-cn-aidc-it-load-*）记为 IT 负载、workload「全部负载」，与本条 AI 负载口径不一致，请核。"
+    },
+    {
+      "fact_id": "xyzq2603-cn-dc-electricity-2028e",
+      "metric_id": "dc_electricity_consumption",
+      "asserter": "兴业证券",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc",
+        "label": "中国数据中心"
+      },
+      "value": 370.0,
+      "unit": "TWh",
+      "bound": "lower",
+      "as_of": "2028E@2026-03",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "evidence": {
+        "sha256": "33087f799bf9271ba96bf3f0348238eeb043abbdac13f62a18223db0f4b47da8",
+        "local_file": "20260319-兴业证券-电力设备行业算电协同：算力时代的能源重构，新能源需求出现新增长极.pdf",
+        "locator": "第 4 页：「假设数据中心年均用电量增长率为20%，社会用电量增长率不变的情况下，我国数据中心用电量将从2019年的824亿千瓦时增长至2028年的3700亿千瓦时以上，其在全社会用电中的占比也将由1.14%提升至约3%」；摘要「行业测算显示……2028年的约3700亿千瓦时」",
+        "grade": "S3",
+        "originator": "兴业证券《电力设备行业算电协同：算力时代的能源重构，新能源需求出现新增长极》（2026-03-19）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "3,700 亿 kWh 以上 = 370 TWh，按下界记。**是假设推出来的**：以 2019 年 824 亿 kWh 为基、年均增长 20% 外推 9 年（824×1.2^9≈4,250，与原文 3,700 不完全吻合，原文未给逐年值），占全社会用电约 3%。"
     }
   ]
 }
