@@ -954,6 +954,79 @@ class SketchBlindSpotTests(unittest.TestCase):
         self.assertEqual(idx.unsketched(), set())
 
 
+class ResketchTests(unittest.TestCase):
+    """补 sketch 得能在没有 reader catalog 的机器上跑起来。
+
+    近似比对的盲区是「这份材料没进过比对」，补它要的只是那份正文；正文除了 readings
+    那份唯一当前结果，还躺在它自己发出去过的任务包里。没 catalog 就一条也补不了，
+    等于把修复锁在一台机器上。
+    """
+
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix='m4-resketch-')
+        self.base = Path(self.temp.name)
+        self.app = make_app()
+        self.app.packet_dir = self.base / 'l2'
+        self.app.similarity = SIM.SimilarityIndex(self.base / 'md5.jsonl')
+        self.app.readings = type('R', (), {
+            'current': staticmethod(lambda sha, include_text=False: {'status': 'missing'})})()
+
+    def tearDown(self):
+        self.temp.cleanup()
+
+    def body(self, seed=5):
+        words = ['数据中心', '供配电', '液冷', '机柜', '变压器', '柴发', 'PUE', '机房']
+        rng = random.Random(seed)
+        return ''.join(rng.choice(words) for _ in range(9000))
+
+    def blind(self, sha):
+        self.app.similarity.remember(sha, 'fingerprint-' + sha[:8])
+
+    def write_packet(self, sha, text, legacy=False):
+        folder = (self.app.packet_dir / sha[:16]) if legacy else \
+                 (self.app.packet_dir / sha / 'packet-1')
+        folder.mkdir(parents=True, exist_ok=True)
+        (folder / 'text.md').write_text(text, encoding='utf-8')
+        if not legacy:
+            (folder / 'manifest.json').write_text(json.dumps(
+                {'sha256': sha, 'text_sha256': hashlib.sha256(text.encode()).hexdigest()}),
+                encoding='utf-8')
+
+    def test_the_old_sixteen_char_packet_is_accepted(self):
+        """读表侧那批旧精读正是这个目录格式。"""
+        sha = 'a' * 64
+        self.blind(sha)
+        self.write_packet(sha, self.body(), legacy=True)
+        report = self.app.resketch()
+        self.assertEqual(report['filled'], 1)
+        self.assertEqual(report['filled_from'], {'packet_legacy16': 1})
+        self.assertEqual(self.app.similarity.unsketched(), set())
+
+    def test_a_current_packet_is_accepted_and_verified(self):
+        sha = 'b' * 64
+        self.blind(sha)
+        self.write_packet(sha, self.body())
+        self.assertEqual(self.app.resketch()['filled_from'], {'packet': 1})
+
+    def test_a_packet_whose_text_does_not_match_its_manifest_is_refused(self):
+        """正文被改过就不认——凑出来的 sketch 会给出它没做过的保证。"""
+        sha = 'c' * 64
+        self.blind(sha)
+        self.write_packet(sha, self.body())
+        (self.app.packet_dir / sha / 'packet-1' / 'text.md').write_text(
+            self.body(99), encoding='utf-8')
+        report = self.app.resketch()
+        self.assertEqual(report['filled'], 0)
+        self.assertEqual(report['still_unsketched'], 1)
+
+    def test_every_file_needing_a_reread_is_listed(self):
+        """列表不截断——它决定的是下一步要排多少工作，看着像 20 就会照 20 排。"""
+        for i in range(25):
+            self.blind('%064x' % i)
+        report = self.app.resketch()
+        self.assertEqual(len(report['needs_reread']), 25)
+
+
 class TextTwinRoutingTests(unittest.TestCase):
     """Equal extracted text is a review hint, not original identity or full coverage."""
 

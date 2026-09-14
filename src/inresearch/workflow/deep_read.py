@@ -5,6 +5,7 @@ syntax and presentation belong to interfaces.deep_read; C3 remains separate.
 """
 from __future__ import annotations
 import copy
+import hashlib
 import json
 import time
 from collections import Counter
@@ -98,25 +99,68 @@ class DeepRead:
     def current(self, sha):
         return self.readings.current(sha)
 
-    def resketch(self, limit=0):
-        """给只有 text_md5 的旧记录补上 sketch，用它们已有的全文阅读结果。
+    def packet_text(self, sha):
+        """这份材料已经发出去的任务包正文，新旧两种目录都找。
 
-        不重新抽取正文：只认 readings 里那份「唯一当前结果」。取不到的照实报出来，
-        不拿别的文本凑——凑出来的 sketch 会让近似比对给出它其实没做过的保证。
+        新包是 l2/<完整 sha>/<packet_id>/text.md，带 manifest，能核对正文哈希；
+        更早的是 l2/<前 16 位>/text.md，没有 manifest，只有目录名把它和这份材料绑在
+        一起。两种都用，但**把用了哪一种报出来**——旧格式那条绑定弱，日后要追得回来。
+        """
+        parent = self.packet_dir / sha
+        if parent.is_dir():
+            for packet in sorted(parent.iterdir(), reverse=True):
+                body = packet / 'text.md'
+                if not body.is_file():
+                    continue
+                text = body.read_text(encoding='utf-8', errors='replace')
+                manifest = packet / 'manifest.json'
+                if manifest.is_file():
+                    try:
+                        recorded = json.loads(manifest.read_text(encoding='utf-8'))
+                    except ValueError:
+                        recorded = {}
+                    if recorded.get('sha256') not in (None, sha):
+                        continue
+                    if recorded.get('text_sha256') and recorded['text_sha256'] != \
+                            hashlib.sha256(text.encode()).hexdigest():
+                        continue
+                return text, 'packet'
+        legacy = self.packet_dir / sha[:16] / 'text.md'
+        if legacy.is_file():
+            return legacy.read_text(encoding='utf-8', errors='replace'), 'packet_legacy16'
+        return None, None
+
+    def resketch(self, limit=0):
+        """给只有 text_md5 的旧记录补上 sketch，让它们参与近似副本比对。
+
+        取正文的次序：readings 那份「唯一当前结果」优先；没有 catalog 的机器上取不到，
+        就退回这份材料自己发出去过的任务包正文。**不重新抽取、不拿别的文本凑**——
+        凑出来的 sketch 会让近似比对给出它其实没做过的保证。
+
+        每条都记下正文是从哪儿来的；取不到的全部列出来，不截断：
+        截断会让「还剩多少要重读」这个数看着像 20，而它决定的是下一步要排多少工作。
         """
         blind, filled, missing = sorted(self.similarity.unsketched()), [], []
+        sources = Counter()
         for sha in (blind[:limit] if limit else blind):
             current = self.readings.current(sha, include_text=True)
             text = current.get('text') if current.get('status') == 'available' else None
+            source = 'reader_current_result' if text else None
+            if not text:
+                text, source = self.packet_text(sha)
             sketch = text_sketch(text) if text else []
             if not sketch:
-                missing.append({'sha256': sha, 'reason': current.get('status') or '无当前结果'})
+                missing.append({'sha256': sha,
+                                'reason': current.get('status') or '无当前结果',
+                                'packet_text': '无' if source is None else '有但抽不出块'})
                 continue
             self.similarity.remember(sha, self.similarity.fingerprints().get(sha), sketch)
+            sources[source] += 1
             filled.append(sha)
         return dict(unsketched_before=len(blind), filled=len(filled),
+                    filled_from=dict(sources) or None,
                     still_unsketched=len(blind) - len(filled),
-                    needs_reread=missing[:20] or None)
+                    needs_reread=missing or None)
 
     BARREN_COHORT = 3
 
