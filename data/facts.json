@@ -143096,6 +143096,141 @@
       "corroboration": "待交叉验证",
       "notes": "每 GPU 每方向 900GB/s，与 GB200 NVL72 相同；按每 FLOP 计 GPU 间带宽大幅提高。",
       "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-gb300-gpu-tdp",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-b300-gb300",
+        "label": "NVIDIA Blackwell GPU（GB300 配置）"
+      },
+      "value": 1400.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "NVIDIA Blackwell GPU（GB300 配置）",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "96a8e4d19519653bfa87f4da8a148c86590fabb4a7122f63af03e87560c9c2dc",
+        "local_file": "Nvidia’s Christmas Present_ GB300 & B300 – Reasoning Inference, Amazon, Memory, Supply Chain – SemiAnalysis.pdf",
+        "locator": "第 2 页「B300 & GB300 – Not Just An Incremental Upgrade」：「Some of this performance gain will come from 200W additional power with TDP going to 1.4KW and 1.2KW for the GB300 and B300 HGX respectively (compared to 1.2KW and 1KW for GB200 and B200)」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia’s Christmas Present: GB300 & B300 – Reasoning Inference, Amazon, Memory, Supply Chain》（Dylan Patel、Myron Xie、Daniel Nishball，2024-12-25）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 W。比 GB200 配置的 1,200W（sa2408-gb200-blackwell-tdp）高 200W；原文称 B300 相对 B200 产品级算力 +50%，部分来自功耗提升，部分来自架构与 CPU/GPU 功率调度（power sloshing）。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-b300-hgx-tdp",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-b300-hgx",
+        "label": "NVIDIA B300（HGX 配置）"
+      },
+      "value": 1200.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "NVIDIA B300（HGX 配置）",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "96a8e4d19519653bfa87f4da8a148c86590fabb4a7122f63af03e87560c9c2dc",
+        "local_file": "Nvidia’s Christmas Present_ GB300 & B300 – Reasoning Inference, Amazon, Memory, Supply Chain – SemiAnalysis.pdf",
+        "locator": "第 2 页「B300 & GB300 – Not Just An Incremental Upgrade」：「Some of this performance gain will come from 200W additional power with TDP going to 1.4KW and 1.2KW for the GB300 and B300 HGX respectively (compared to 1.2KW and 1KW for GB200 and B200)」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia’s Christmas Present: GB300 & B300 – Reasoning Inference, Amazon, Memory, Supply Chain》（Dylan Patel、Myron Xie、Daniel Nishball，2024-12-25）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 W。对照 B200 HGX 1,000W。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-b300-node",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-b300",
+        "label": "NVIDIA B300"
+      },
+      "value": 4.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "NVIDIA B300",
+        "parameter": "制程(nm)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "96a8e4d19519653bfa87f4da8a148c86590fabb4a7122f63af03e87560c9c2dc",
+        "local_file": "Nvidia’s Christmas Present_ GB300 & B300 – Reasoning Inference, Amazon, Memory, Supply Chain – SemiAnalysis.pdf",
+        "locator": "第 2 页「B300 & GB300 – Not Just An Incremental Upgrade」：「The B300 GPU is a brand-new tape out on the TSMC 4NP process node, IE it is a tweaked design, for the compute die」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia’s Christmas Present: GB300 & B300 – Reasoning Inference, Amazon, Memory, Supply Chain》（Dylan Patel、Myron Xie、Daniel Nishball，2024-12-25）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 nm，原文工艺名为台积电 4NP（4nm 家族改良版），全新流片。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-b300-hbm-capacity",
+      "metric_id": "accelerator_memory_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-b300",
+        "label": "NVIDIA B300 / GB300"
+      },
+      "value": 288.0,
+      "unit": "GB",
+      "caliber": {
+        "product": "NVIDIA B300 / GB300",
+        "parameter": "容量",
+        "memory_type": "HBM3e",
+        "scope": "单卡",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "96a8e4d19519653bfa87f4da8a148c86590fabb4a7122f63af03e87560c9c2dc",
+        "local_file": "Nvidia’s Christmas Present_ GB300 & B300 – Reasoning Inference, Amazon, Memory, Supply Chain – SemiAnalysis.pdf",
+        "locator": "第 2 页「B300 & GB300 – Not Just An Incremental Upgrade」：「the memory is upgraded to 12-Hi HBM3E from 8-Hi growing the HBM capacity per GPU to 288GB. However, the pin speed will remain the same so memory bandwidth is still 8TB/s per GPU」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia’s Christmas Present: GB300 & B300 – Reasoning Inference, Amazon, Memory, Supply Chain》（Dylan Patel、Myron Xie、Daniel Nishball，2024-12-25）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 GB（容量）。内存带宽仍为每 GPU 8TB/s（单位不合未另录）。SemiAnalysis 2024-08 称 Blackwell Ultra（B210）up to 288GB（sa2408-b210-hbm-capacity），2025-03 GTC 文又记 B300 288GB，三处同值，均为同一出处的不同时点，不构成独立佐证。原文称三星至少 9 个月内进不了 GB200/GB300 供应。",
+      "asserter": "SemiAnalysis"
     }
   ]
 }
