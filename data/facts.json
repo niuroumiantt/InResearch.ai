@@ -171679,6 +171679,1942 @@
       "corroboration": "待交叉验证",
       "notes": "按历史 CAGR 外推的 2028 年预测；报告发布月份未印，vintage 记 @2024。 DC Byte 的 Live Supply（已投运 IT 容量），与其 2025 版（2024 年末 13.2GW、2029E 32.8GW）同一口径不同版次。",
       "asserter": "DC Byte"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 1: H1 2022 Wholesale Primary Market Fundamentals「Northern Virginia 1,908.1 MW … 35.6 MW / 1.9% … Rental Rates (kW/mo) $95-$130」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-northern-virginia-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-northern-virginia-wholesale-colo-cbre",
+        "label": "北弗吉尼亚批发托管数据中心市场（CBRE）"
+      },
+      "value": 1908.1,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "CBRE 批发托管库存（一级市场，H1 2022），不含零售与自建；按 CBRE 惯例记 IT 容量。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 1: H1 2022 Wholesale Primary Market Fundamentals「Northern Virginia 1,908.1 MW … 35.6 MW / 1.9% … Rental Rates (kW/mo) $95-$130」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-northern-virginia-vacancy",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "us-northern-virginia-wholesale-colo-cbre",
+        "label": "北弗吉尼亚批发托管数据中心市场（CBRE）"
+      },
+      "value": 1.9,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一市场",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "原表直接给出可用 35.6 MW / 空置率 1.9%（批发托管口径）。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 1: H1 2022 Wholesale Primary Market Fundamentals「Northern Virginia 1,908.1 MW … 35.6 MW / 1.9% … Rental Rates (kW/mo) $95-$130」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-northern-virginia-rent-250kw-plus-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-northern-virginia-wholesale-colo-cbre-rent",
+        "label": "北弗吉尼亚批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 95.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "lower",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间下界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 1: H1 2022 Wholesale Primary Market Fundamentals「Northern Virginia 1,908.1 MW … 35.6 MW / 1.9% … Rental Rates (kW/mo) $95-$130」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-northern-virginia-rent-250kw-plus-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-northern-virginia-wholesale-colo-cbre-rent",
+        "label": "北弗吉尼亚批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 130.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "upper",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间上界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 1: H1 2022 Wholesale Primary Market Fundamentals「Dallas/Ft. Worth 375.8 MW … 25.8 MW / 6.9% … Rental Rates (kW/mo) $110-$150」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-dallas-fort-worth-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-dallas-fort-worth-wholesale-colo-cbre",
+        "label": "达拉斯-沃斯堡批发托管数据中心市场（CBRE）"
+      },
+      "value": 375.8,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "CBRE 批发托管库存（一级市场，H1 2022），不含零售与自建；按 CBRE 惯例记 IT 容量。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 1: H1 2022 Wholesale Primary Market Fundamentals「Dallas/Ft. Worth 375.8 MW … 25.8 MW / 6.9% … Rental Rates (kW/mo) $110-$150」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-dallas-fort-worth-vacancy",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "us-dallas-fort-worth-wholesale-colo-cbre",
+        "label": "达拉斯-沃斯堡批发托管数据中心市场（CBRE）"
+      },
+      "value": 6.9,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一市场",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "原表直接给出可用 25.8 MW / 空置率 6.9%（批发托管口径）。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 1: H1 2022 Wholesale Primary Market Fundamentals「Dallas/Ft. Worth 375.8 MW … 25.8 MW / 6.9% … Rental Rates (kW/mo) $110-$150」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-dallas-fort-worth-rent-250kw-plus-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-dallas-fort-worth-wholesale-colo-cbre-rent",
+        "label": "达拉斯-沃斯堡批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 110.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "lower",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间下界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 1: H1 2022 Wholesale Primary Market Fundamentals「Dallas/Ft. Worth 375.8 MW … 25.8 MW / 6.9% … Rental Rates (kW/mo) $110-$150」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-dallas-fort-worth-rent-250kw-plus-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-dallas-fort-worth-wholesale-colo-cbre-rent",
+        "label": "达拉斯-沃斯堡批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 150.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "upper",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间上界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 1: H1 2022 Wholesale Primary Market Fundamentals「Silicon Valley 369.6 MW … 4.8 MW / 1.3% … Rental Rates (kW/mo) $150-$175」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-silicon-valley-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-silicon-valley-wholesale-colo-cbre",
+        "label": "硅谷批发托管数据中心市场（CBRE）"
+      },
+      "value": 369.6,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "CBRE 批发托管库存（一级市场，H1 2022），不含零售与自建；按 CBRE 惯例记 IT 容量。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 1: H1 2022 Wholesale Primary Market Fundamentals「Silicon Valley 369.6 MW … 4.8 MW / 1.3% … Rental Rates (kW/mo) $150-$175」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-silicon-valley-vacancy",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "us-silicon-valley-wholesale-colo-cbre",
+        "label": "硅谷批发托管数据中心市场（CBRE）"
+      },
+      "value": 1.3,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一市场",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "原表直接给出可用 4.8 MW / 空置率 1.3%（批发托管口径）。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 1: H1 2022 Wholesale Primary Market Fundamentals「Silicon Valley 369.6 MW … 4.8 MW / 1.3% … Rental Rates (kW/mo) $150-$175」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-silicon-valley-rent-250kw-plus-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-silicon-valley-wholesale-colo-cbre-rent",
+        "label": "硅谷批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 150.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "lower",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间下界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 1: H1 2022 Wholesale Primary Market Fundamentals「Silicon Valley 369.6 MW … 4.8 MW / 1.3% … Rental Rates (kW/mo) $150-$175」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-silicon-valley-rent-250kw-plus-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-silicon-valley-wholesale-colo-cbre-rent",
+        "label": "硅谷批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 175.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "upper",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间上界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 1: H1 2022 Wholesale Primary Market Fundamentals「Chicago 306.0 MW … 23.0 MW / 7.5% … Rental Rates (kW/mo) $110-$125」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-chicago-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-chicago-wholesale-colo-cbre",
+        "label": "芝加哥批发托管数据中心市场（CBRE）"
+      },
+      "value": 306.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "CBRE 批发托管库存（一级市场，H1 2022），不含零售与自建；按 CBRE 惯例记 IT 容量。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 1: H1 2022 Wholesale Primary Market Fundamentals「Chicago 306.0 MW … 23.0 MW / 7.5% … Rental Rates (kW/mo) $110-$125」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-chicago-vacancy",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "us-chicago-wholesale-colo-cbre",
+        "label": "芝加哥批发托管数据中心市场（CBRE）"
+      },
+      "value": 7.5,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一市场",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "原表直接给出可用 23.0 MW / 空置率 7.5%（批发托管口径）。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 1: H1 2022 Wholesale Primary Market Fundamentals「Chicago 306.0 MW … 23.0 MW / 7.5% … Rental Rates (kW/mo) $110-$125」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-chicago-rent-250kw-plus-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-chicago-wholesale-colo-cbre-rent",
+        "label": "芝加哥批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 110.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "lower",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间下界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 1: H1 2022 Wholesale Primary Market Fundamentals「Chicago 306.0 MW … 23.0 MW / 7.5% … Rental Rates (kW/mo) $110-$125」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-chicago-rent-250kw-plus-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-chicago-wholesale-colo-cbre-rent",
+        "label": "芝加哥批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 125.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "upper",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间上界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 1: H1 2022 Wholesale Primary Market Fundamentals「Phoenix 324.5 MW … 25.5 MW / 7.8% … Rental Rates (kW/mo) $115-$130」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-phoenix-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-phoenix-wholesale-colo-cbre",
+        "label": "凤凰城批发托管数据中心市场（CBRE）"
+      },
+      "value": 324.5,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "CBRE 批发托管库存（一级市场，H1 2022），不含零售与自建；按 CBRE 惯例记 IT 容量。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 1: H1 2022 Wholesale Primary Market Fundamentals「Phoenix 324.5 MW … 25.5 MW / 7.8% … Rental Rates (kW/mo) $115-$130」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-phoenix-vacancy",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "us-phoenix-wholesale-colo-cbre",
+        "label": "凤凰城批发托管数据中心市场（CBRE）"
+      },
+      "value": 7.8,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一市场",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "原表直接给出可用 25.5 MW / 空置率 7.8%（批发托管口径）。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 1: H1 2022 Wholesale Primary Market Fundamentals「Phoenix 324.5 MW … 25.5 MW / 7.8% … Rental Rates (kW/mo) $115-$130」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-phoenix-rent-250kw-plus-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-phoenix-wholesale-colo-cbre-rent",
+        "label": "凤凰城批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 115.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "lower",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间下界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 1: H1 2022 Wholesale Primary Market Fundamentals「Phoenix 324.5 MW … 25.5 MW / 7.8% … Rental Rates (kW/mo) $115-$130」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-phoenix-rent-250kw-plus-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-phoenix-wholesale-colo-cbre-rent",
+        "label": "凤凰城批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 130.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "upper",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间上界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 1: H1 2022 Wholesale Primary Market Fundamentals「New York Tri-State 177.5 MW … 15.9 MW / 9.0% … Rental Rates (kW/mo) $125-$135」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-new-york-tri-state-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-new-york-tri-state-wholesale-colo-cbre",
+        "label": "纽约三州地区批发托管数据中心市场（CBRE）"
+      },
+      "value": 177.5,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "CBRE 批发托管库存（一级市场，H1 2022），不含零售与自建；按 CBRE 惯例记 IT 容量。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 1: H1 2022 Wholesale Primary Market Fundamentals「New York Tri-State 177.5 MW … 15.9 MW / 9.0% … Rental Rates (kW/mo) $125-$135」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-new-york-tri-state-vacancy",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "us-new-york-tri-state-wholesale-colo-cbre",
+        "label": "纽约三州地区批发托管数据中心市场（CBRE）"
+      },
+      "value": 9.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一市场",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "原表直接给出可用 15.9 MW / 空置率 9.0%（批发托管口径）。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 1: H1 2022 Wholesale Primary Market Fundamentals「New York Tri-State 177.5 MW … 15.9 MW / 9.0% … Rental Rates (kW/mo) $125-$135」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-new-york-tri-state-rent-250kw-plus-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-new-york-tri-state-wholesale-colo-cbre-rent",
+        "label": "纽约三州地区批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 125.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "lower",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间下界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 1: H1 2022 Wholesale Primary Market Fundamentals「New York Tri-State 177.5 MW … 15.9 MW / 9.0% … Rental Rates (kW/mo) $125-$135」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-new-york-tri-state-rent-250kw-plus-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-new-york-tri-state-wholesale-colo-cbre-rent",
+        "label": "纽约三州地区批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 135.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "upper",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间上界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 1: H1 2022 Wholesale Primary Market Fundamentals「Atlanta 249.5 MW … 9.1 MW / 3.6% … Rental Rates (kW/mo) $110-$125」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-atlanta-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-atlanta-wholesale-colo-cbre",
+        "label": "亚特兰大批发托管数据中心市场（CBRE）"
+      },
+      "value": 249.5,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "CBRE 批发托管库存（一级市场，H1 2022），不含零售与自建；按 CBRE 惯例记 IT 容量。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 1: H1 2022 Wholesale Primary Market Fundamentals「Atlanta 249.5 MW … 9.1 MW / 3.6% … Rental Rates (kW/mo) $110-$125」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-atlanta-vacancy",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "us-atlanta-wholesale-colo-cbre",
+        "label": "亚特兰大批发托管数据中心市场（CBRE）"
+      },
+      "value": 3.6,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一市场",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "原表直接给出可用 9.1 MW / 空置率 3.6%（批发托管口径）。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 1: H1 2022 Wholesale Primary Market Fundamentals「Atlanta 249.5 MW … 9.1 MW / 3.6% … Rental Rates (kW/mo) $110-$125」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-atlanta-rent-250kw-plus-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-atlanta-wholesale-colo-cbre-rent",
+        "label": "亚特兰大批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 110.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "lower",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间下界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 1: H1 2022 Wholesale Primary Market Fundamentals「Atlanta 249.5 MW … 9.1 MW / 3.6% … Rental Rates (kW/mo) $110-$125」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-atlanta-rent-250kw-plus-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-atlanta-wholesale-colo-cbre-rent",
+        "label": "亚特兰大批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 125.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "upper",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间上界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Austin/San Antonio 153.6 MW … 2.0 MW / 1.3% … Rental Rates (kW/mo) $130-$145」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-austin-san-antonio-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-austin-san-antonio-wholesale-colo-cbre",
+        "label": "奥斯汀/圣安东尼奥批发托管数据中心市场（CBRE）"
+      },
+      "value": 153.6,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "CBRE 批发托管库存（二级市场，H1 2022），不含零售与自建；按 CBRE 惯例记 IT 容量。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Austin/San Antonio 153.6 MW … 2.0 MW / 1.3% … Rental Rates (kW/mo) $130-$145」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-austin-san-antonio-vacancy",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "us-austin-san-antonio-wholesale-colo-cbre",
+        "label": "奥斯汀/圣安东尼奥批发托管数据中心市场（CBRE）"
+      },
+      "value": 1.3,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一市场",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "原表直接给出可用 2.0 MW / 空置率 1.3%（批发托管口径）。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Austin/San Antonio 153.6 MW … 2.0 MW / 1.3% … Rental Rates (kW/mo) $130-$145」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-austin-san-antonio-rent-250kw-plus-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-austin-san-antonio-wholesale-colo-cbre-rent",
+        "label": "奥斯汀/圣安东尼奥批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 130.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "lower",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间下界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Austin/San Antonio 153.6 MW … 2.0 MW / 1.3% … Rental Rates (kW/mo) $130-$145」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-austin-san-antonio-rent-250kw-plus-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-austin-san-antonio-wholesale-colo-cbre-rent",
+        "label": "奥斯汀/圣安东尼奥批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 145.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "upper",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间上界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Houston 133.5 MW … 37.9 MW / 28.4% … Rental Rates (kW/mo) $120-$140」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-houston-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-houston-wholesale-colo-cbre",
+        "label": "休斯顿批发托管数据中心市场（CBRE）"
+      },
+      "value": 133.5,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "CBRE 批发托管库存（二级市场，H1 2022），不含零售与自建；按 CBRE 惯例记 IT 容量。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Houston 133.5 MW … 37.9 MW / 28.4% … Rental Rates (kW/mo) $120-$140」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-houston-vacancy",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "us-houston-wholesale-colo-cbre",
+        "label": "休斯顿批发托管数据中心市场（CBRE）"
+      },
+      "value": 28.4,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一市场",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "原表直接给出可用 37.9 MW / 空置率 28.4%（批发托管口径）。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Houston 133.5 MW … 37.9 MW / 28.4% … Rental Rates (kW/mo) $120-$140」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-houston-rent-250kw-plus-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-houston-wholesale-colo-cbre-rent",
+        "label": "休斯顿批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 120.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "lower",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间下界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Houston 133.5 MW … 37.9 MW / 28.4% … Rental Rates (kW/mo) $120-$140」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-houston-rent-250kw-plus-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-houston-wholesale-colo-cbre-rent",
+        "label": "休斯顿批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 140.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "upper",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间上界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Southern California 139.1 MW … 26.3 MW / 18.9% … Rental Rates (kW/mo) $125-$155」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-southern-california-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-southern-california-wholesale-colo-cbre",
+        "label": "南加州批发托管数据中心市场（CBRE）"
+      },
+      "value": 139.1,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "CBRE 批发托管库存（二级市场，H1 2022），不含零售与自建；按 CBRE 惯例记 IT 容量。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Southern California 139.1 MW … 26.3 MW / 18.9% … Rental Rates (kW/mo) $125-$155」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-southern-california-vacancy",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "us-southern-california-wholesale-colo-cbre",
+        "label": "南加州批发托管数据中心市场（CBRE）"
+      },
+      "value": 18.9,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一市场",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "原表直接给出可用 26.3 MW / 空置率 18.9%（批发托管口径）。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Southern California 139.1 MW … 26.3 MW / 18.9% … Rental Rates (kW/mo) $125-$155」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-southern-california-rent-250kw-plus-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-southern-california-wholesale-colo-cbre-rent",
+        "label": "南加州批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 125.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "lower",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间下界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Southern California 139.1 MW … 26.3 MW / 18.9% … Rental Rates (kW/mo) $125-$155」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-southern-california-rent-250kw-plus-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-southern-california-wholesale-colo-cbre-rent",
+        "label": "南加州批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 155.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "upper",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间上界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Seattle 140.1 MW … 21.1 MW / 15.1% … Rental Rates (kW/mo) $120-$130」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-seattle-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-seattle-wholesale-colo-cbre",
+        "label": "西雅图批发托管数据中心市场（CBRE）"
+      },
+      "value": 140.1,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "CBRE 批发托管库存（二级市场，H1 2022），不含零售与自建；按 CBRE 惯例记 IT 容量。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Seattle 140.1 MW … 21.1 MW / 15.1% … Rental Rates (kW/mo) $120-$130」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-seattle-vacancy",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "us-seattle-wholesale-colo-cbre",
+        "label": "西雅图批发托管数据中心市场（CBRE）"
+      },
+      "value": 15.1,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一市场",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "原表直接给出可用 21.1 MW / 空置率 15.1%（批发托管口径）。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Seattle 140.1 MW … 21.1 MW / 15.1% … Rental Rates (kW/mo) $120-$130」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-seattle-rent-250kw-plus-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-seattle-wholesale-colo-cbre-rent",
+        "label": "西雅图批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 120.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "lower",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间下界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Seattle 140.1 MW … 21.1 MW / 15.1% … Rental Rates (kW/mo) $120-$130」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-seattle-rent-250kw-plus-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-seattle-wholesale-colo-cbre-rent",
+        "label": "西雅图批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 130.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "upper",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间上界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Denver 86.3 MW … 15.7 MW / 18.2% … Rental Rates (kW/mo) $125-$140」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-denver-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-denver-wholesale-colo-cbre",
+        "label": "丹佛批发托管数据中心市场（CBRE）"
+      },
+      "value": 86.3,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "CBRE 批发托管库存（二级市场，H1 2022），不含零售与自建；按 CBRE 惯例记 IT 容量。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Denver 86.3 MW … 15.7 MW / 18.2% … Rental Rates (kW/mo) $125-$140」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-denver-vacancy",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "us-denver-wholesale-colo-cbre",
+        "label": "丹佛批发托管数据中心市场（CBRE）"
+      },
+      "value": 18.2,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一市场",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "原表直接给出可用 15.7 MW / 空置率 18.2%（批发托管口径）。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Denver 86.3 MW … 15.7 MW / 18.2% … Rental Rates (kW/mo) $125-$140」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-denver-rent-250kw-plus-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-denver-wholesale-colo-cbre-rent",
+        "label": "丹佛批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 125.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "lower",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间下界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Denver 86.3 MW … 15.7 MW / 18.2% … Rental Rates (kW/mo) $125-$140」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-denver-rent-250kw-plus-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-denver-wholesale-colo-cbre-rent",
+        "label": "丹佛批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 140.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "upper",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间上界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Charlotte/Raleigh 58.5 MW … 11.4 MW / 19.5% … Rental Rates (kW/mo) $115-$130」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-charlotte-raleigh-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-charlotte-raleigh-wholesale-colo-cbre",
+        "label": "夏洛特/罗利批发托管数据中心市场（CBRE）"
+      },
+      "value": 58.5,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "CBRE 批发托管库存（二级市场，H1 2022），不含零售与自建；按 CBRE 惯例记 IT 容量。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Charlotte/Raleigh 58.5 MW … 11.4 MW / 19.5% … Rental Rates (kW/mo) $115-$130」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-charlotte-raleigh-vacancy",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "us-charlotte-raleigh-wholesale-colo-cbre",
+        "label": "夏洛特/罗利批发托管数据中心市场（CBRE）"
+      },
+      "value": 19.5,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一市场",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "原表直接给出可用 11.4 MW / 空置率 19.5%（批发托管口径）。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Charlotte/Raleigh 58.5 MW … 11.4 MW / 19.5% … Rental Rates (kW/mo) $115-$130」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-charlotte-raleigh-rent-250kw-plus-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-charlotte-raleigh-wholesale-colo-cbre-rent",
+        "label": "夏洛特/罗利批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 115.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "lower",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间下界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Charlotte/Raleigh 58.5 MW … 11.4 MW / 19.5% … Rental Rates (kW/mo) $115-$130」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-charlotte-raleigh-rent-250kw-plus-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-charlotte-raleigh-wholesale-colo-cbre-rent",
+        "label": "夏洛特/罗利批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 130.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "upper",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间上界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Minneapolis 58.6 MW … 14.6 MW / 24.9% … Rental Rates (kW/mo) $115-$170」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-minneapolis-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-minneapolis-wholesale-colo-cbre",
+        "label": "明尼阿波利斯批发托管数据中心市场（CBRE）"
+      },
+      "value": 58.6,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "CBRE 批发托管库存（二级市场，H1 2022），不含零售与自建；按 CBRE 惯例记 IT 容量。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Minneapolis 58.6 MW … 14.6 MW / 24.9% … Rental Rates (kW/mo) $115-$170」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-minneapolis-vacancy",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "us-minneapolis-wholesale-colo-cbre",
+        "label": "明尼阿波利斯批发托管数据中心市场（CBRE）"
+      },
+      "value": 24.9,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一市场",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "原表直接给出可用 14.6 MW / 空置率 24.9%（批发托管口径）。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Minneapolis 58.6 MW … 14.6 MW / 24.9% … Rental Rates (kW/mo) $115-$170」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-minneapolis-rent-250kw-plus-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-minneapolis-wholesale-colo-cbre-rent",
+        "label": "明尼阿波利斯批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 115.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "lower",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间下界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Minneapolis 58.6 MW … 14.6 MW / 24.9% … Rental Rates (kW/mo) $115-$170」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-minneapolis-rent-250kw-plus-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-minneapolis-wholesale-colo-cbre-rent",
+        "label": "明尼阿波利斯批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 170.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "upper",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间上界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Hillsboro 139.4 MW … 9.8 MW / 7.0% … Rental Rates (kW/mo) $105-$125」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-hillsboro-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-hillsboro-wholesale-colo-cbre",
+        "label": "希尔斯伯勒批发托管数据中心市场（CBRE）"
+      },
+      "value": 139.4,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "CBRE 批发托管库存（二级市场，H1 2022），不含零售与自建；按 CBRE 惯例记 IT 容量。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Hillsboro 139.4 MW … 9.8 MW / 7.0% … Rental Rates (kW/mo) $105-$125」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-hillsboro-vacancy",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "us-hillsboro-wholesale-colo-cbre",
+        "label": "希尔斯伯勒批发托管数据中心市场（CBRE）"
+      },
+      "value": 7.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一市场",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "原表直接给出可用 9.8 MW / 空置率 7.0%（批发托管口径）。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Hillsboro 139.4 MW … 9.8 MW / 7.0% … Rental Rates (kW/mo) $105-$125」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-hillsboro-rent-250kw-plus-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-hillsboro-wholesale-colo-cbre-rent",
+        "label": "希尔斯伯勒批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 105.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "lower",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间下界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Hillsboro 139.4 MW … 9.8 MW / 7.0% … Rental Rates (kW/mo) $105-$125」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-hillsboro-rent-250kw-plus-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-hillsboro-wholesale-colo-cbre-rent",
+        "label": "希尔斯伯勒批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 125.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "upper",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间上界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Central Washington 146.0 MW … 11.6 MW / 8.0% … Rental Rates (kW/mo) $120-$130」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-central-washington-inventory",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-central-washington-wholesale-colo-cbre",
+        "label": "华盛顿州中部批发托管数据中心市场（CBRE）"
+      },
+      "value": 146.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "CBRE 批发托管库存（二级市场，H1 2022），不含零售与自建；按 CBRE 惯例记 IT 容量。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Central Washington 146.0 MW … 11.6 MW / 8.0% … Rental Rates (kW/mo) $120-$130」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-central-washington-vacancy",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "us-central-washington-wholesale-colo-cbre",
+        "label": "华盛顿州中部批发托管数据中心市场（CBRE）"
+      },
+      "value": 8.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一市场",
+        "region": "US"
+      },
+      "bound": "point",
+      "notes": "原表直接给出可用 11.6 MW / 空置率 8.0%（批发托管口径）。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Central Washington 146.0 MW … 11.6 MW / 8.0% … Rental Rates (kW/mo) $120-$130」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-central-washington-rent-250kw-plus-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-central-washington-wholesale-colo-cbre-rent",
+        "label": "华盛顿州中部批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 120.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "lower",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间下界；原文未说明是否含电费。"
+    },
+    {
+      "evidence": {
+        "sha256": "fb5cba4443ef37c00f221c30755ebf52048c75a6d289b2446cd9ec01dc9aa946",
+        "local_file": "2022上半年北美数据中心趋势报告(43页).pdf",
+        "locator": "PDF 第 7 页 FIGURE 2: H1 2022 Wholesale Secondary Market Fundamentals「Central Washington 146.0 MW … 11.6 MW / 8.0% … Rental Rates (kW/mo) $120-$130」；表注「Rental rates are quoted asking rates for 250+ kW at N+1/Tier III requirements. Source: CBRE Research, CBRE Data Center Solutions, H1 2022」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE）《North America Data Center Trends H1 2022》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "as_of": "2022-06",
+      "fact_id": "cbre22h1-central-washington-rent-250kw-plus-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-central-washington-wholesale-colo-cbre-rent",
+        "label": "华盛顿州中部批发托管租金：250kW 以上 N+1/Tier III（CBRE）"
+      },
+      "value": 130.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "bound": "upper",
+      "notes": "美元/kW/月要价（asking rates），250kW 以上、N+1/Tier III 规格，区间上界；原文未说明是否含电费。"
     }
   ]
 }
