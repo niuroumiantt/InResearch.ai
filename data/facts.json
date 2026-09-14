@@ -134843,6 +134843,40 @@
       "derivation": "演讲未写日期，as_of 取 OCP Global Summit 2025 召开月 2025-10",
       "corroboration": "待交叉验证",
       "notes": "「45˚C Max. Inlet Temp」按上界记，是计算托盘液冷入口温度（二次侧供液）上限。100% 液冷。页 4 另称 45°C 为参考设计冷却条件。"
+    },
+    {
+      "fact_id": "yole2025-cpo-oe-shipments-datacom-2024",
+      "metric_id": "optics_module_shipment",
+      "asserter": "Yole",
+      "entity": {
+        "type": "industry",
+        "id": "global-cpo-oe",
+        "label": "全球数据通信 CPO 光引擎"
+      },
+      "value": 3.0569,
+      "unit": "万只",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "rate_target": "单模块",
+        "product_form": "光引擎",
+        "speed": "合计",
+        "shipment_basis": "厂商出货",
+        "basis": "实测",
+        "region": "Global",
+        "customer": "未拆分"
+      },
+      "evidence": {
+        "sha256": "9ceceb4736dac9d886c580a094dae5b5f2d350fa6807ec9d693b7e07e5e90f28",
+        "local_file": "Co-packaged Optics for Data Centers 2025.pdf",
+        "locator": "PDF 第 54 页 Market forecasts（Scenario 1）表「TOTAL｜2024 30 569｜2025 72 255｜2026 254 182……」；注「The OE shipments in the datacom segment are expected to grow from ~30 Kunits in 2024 to 13.4 Munits in 2030」",
+        "grade": "S2",
+        "originator": "Yole Group《Co-packaged Optics for Data Centers 2025》（YINTR25486）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2024 年数据通信 CPO 光引擎出货 30,569 只（≈3.06 万只）。2025 年起按两种 scale-up 情景分叉（情景 1：2030 年 1,340 万只、市场 81 亿美元；情景 2：830 万只、54 亿美元），本指标无情景维，未录预测。 basis 枚举无第三方跟踪，按实测记（Yole 的出货统计）。"
     }
   ]
 }
