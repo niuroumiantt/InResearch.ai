@@ -159906,6 +159906,1116 @@
       "corroboration": "待交叉验证",
       "notes": "原文「约 26%」，未注明数据年份与原始出处，as_of 记报告发布月。同句新加坡约 7%、爱尔兰 21%：新加坡与库内通讯及新闻部 2020 年 7% 同值、爱尔兰与中央统计局序列口径相同但未标年份，均未另录。",
       "asserter": "JLL"
+    },
+    {
+      "fact_id": "colliers2507-atlanta-wholesale-rent-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-atlanta-dc-wholesale",
+        "label": "亚特兰大数据中心市场：批发/超大规模（>500kW，不含电费）"
+      },
+      "value": 110.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 25 页 Atlanta, GA「Market Rent Snapshot」：「$110 - $160 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$185 - $315 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间下界。**不含电费**（Net of Electrical），单笔 >500kW 的批发/超大规模租赁；与同页零售价（含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-atlanta-wholesale-rent-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-atlanta-dc-wholesale",
+        "label": "亚特兰大数据中心市场：批发/超大规模（>500kW，不含电费）"
+      },
+      "value": 160.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 25 页 Atlanta, GA「Market Rent Snapshot」：「$110 - $160 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$185 - $315 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间上界。**不含电费**（Net of Electrical），单笔 >500kW 的批发/超大规模租赁；与同页零售价（含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-atlanta-retail-rent-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-atlanta-dc-retail",
+        "label": "亚特兰大数据中心市场：零售（<500kW，含电费）"
+      },
+      "value": 185.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "零售托管市场",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 25 页 Atlanta, GA「Market Rent Snapshot」：「$110 - $160 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$185 - $315 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间下界。**含电费**（Including Electrical），单笔 <500kW 零售托管；与同页批发价（不含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-atlanta-retail-rent-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-atlanta-dc-retail",
+        "label": "亚特兰大数据中心市场：零售（<500kW，含电费）"
+      },
+      "value": 315.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "零售托管市场",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 25 页 Atlanta, GA「Market Rent Snapshot」：「$110 - $160 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$185 - $315 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间上界。**含电费**（Including Electrical），单笔 <500kW 零售托管；与同页批发价（不含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-chicago-wholesale-rent-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-chicago-dc-wholesale",
+        "label": "芝加哥数据中心市场：批发/超大规模（>500kW，不含电费）"
+      },
+      "value": 130.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 27 页 Chicago, IL「Market Rent Snapshot」：「$130 - $175 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$250 - $375 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间下界。**不含电费**（Net of Electrical），单笔 >500kW 的批发/超大规模租赁；与同页零售价（含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-chicago-wholesale-rent-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-chicago-dc-wholesale",
+        "label": "芝加哥数据中心市场：批发/超大规模（>500kW，不含电费）"
+      },
+      "value": 175.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 27 页 Chicago, IL「Market Rent Snapshot」：「$130 - $175 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$250 - $375 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间上界。**不含电费**（Net of Electrical），单笔 >500kW 的批发/超大规模租赁；与同页零售价（含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-chicago-retail-rent-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-chicago-dc-retail",
+        "label": "芝加哥数据中心市场：零售（<500kW，含电费）"
+      },
+      "value": 250.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "零售托管市场",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 27 页 Chicago, IL「Market Rent Snapshot」：「$130 - $175 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$250 - $375 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间下界。**含电费**（Including Electrical），单笔 <500kW 零售托管；与同页批发价（不含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-chicago-retail-rent-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-chicago-dc-retail",
+        "label": "芝加哥数据中心市场：零售（<500kW，含电费）"
+      },
+      "value": 375.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "零售托管市场",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 27 页 Chicago, IL「Market Rent Snapshot」：「$130 - $175 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$250 - $375 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间上界。**含电费**（Including Electrical），单笔 <500kW 零售托管；与同页批发价（不含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-dallas-wholesale-rent-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-dallas-dc-wholesale",
+        "label": "达拉斯数据中心市场：批发/超大规模（>500kW，不含电费）"
+      },
+      "value": 135.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 29 页 Dallas, TX「Market Rent Snapshot」：「$135 - $170 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$200 - $315 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间下界。**不含电费**（Net of Electrical），单笔 >500kW 的批发/超大规模租赁；与同页零售价（含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-dallas-wholesale-rent-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-dallas-dc-wholesale",
+        "label": "达拉斯数据中心市场：批发/超大规模（>500kW，不含电费）"
+      },
+      "value": 170.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 29 页 Dallas, TX「Market Rent Snapshot」：「$135 - $170 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$200 - $315 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间上界。**不含电费**（Net of Electrical），单笔 >500kW 的批发/超大规模租赁；与同页零售价（含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-dallas-retail-rent-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-dallas-dc-retail",
+        "label": "达拉斯数据中心市场：零售（<500kW，含电费）"
+      },
+      "value": 200.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "零售托管市场",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 29 页 Dallas, TX「Market Rent Snapshot」：「$135 - $170 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$200 - $315 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间下界。**含电费**（Including Electrical），单笔 <500kW 零售托管；与同页批发价（不含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-dallas-retail-rent-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-dallas-dc-retail",
+        "label": "达拉斯数据中心市场：零售（<500kW，含电费）"
+      },
+      "value": 315.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "零售托管市场",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 29 页 Dallas, TX「Market Rent Snapshot」：「$135 - $170 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$200 - $315 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间上界。**含电费**（Including Electrical），单笔 <500kW 零售托管；与同页批发价（不含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-hillsboro-wholesale-rent-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-hillsboro-dc-wholesale",
+        "label": "希尔斯伯勒数据中心市场：批发/超大规模（>500kW，不含电费）"
+      },
+      "value": 135.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 31 页 Hillsboro, OR「Market Rent Snapshot」：「$135 - $170 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$200 - $300 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间下界。**不含电费**（Net of Electrical），单笔 >500kW 的批发/超大规模租赁；与同页零售价（含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-hillsboro-wholesale-rent-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-hillsboro-dc-wholesale",
+        "label": "希尔斯伯勒数据中心市场：批发/超大规模（>500kW，不含电费）"
+      },
+      "value": 170.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 31 页 Hillsboro, OR「Market Rent Snapshot」：「$135 - $170 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$200 - $300 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间上界。**不含电费**（Net of Electrical），单笔 >500kW 的批发/超大规模租赁；与同页零售价（含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-hillsboro-retail-rent-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-hillsboro-dc-retail",
+        "label": "希尔斯伯勒数据中心市场：零售（<500kW，含电费）"
+      },
+      "value": 200.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "零售托管市场",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 31 页 Hillsboro, OR「Market Rent Snapshot」：「$135 - $170 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$200 - $300 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间下界。**含电费**（Including Electrical），单笔 <500kW 零售托管；与同页批发价（不含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-hillsboro-retail-rent-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-hillsboro-dc-retail",
+        "label": "希尔斯伯勒数据中心市场：零售（<500kW，含电费）"
+      },
+      "value": 300.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "零售托管市场",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 31 页 Hillsboro, OR「Market Rent Snapshot」：「$135 - $170 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$200 - $300 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间上界。**含电费**（Including Electrical），单笔 <500kW 零售托管；与同页批发价（不含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-los-angeles-wholesale-rent-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-los-angeles-dc-wholesale",
+        "label": "洛杉矶数据中心市场：批发/超大规模（>500kW，不含电费）"
+      },
+      "value": 170.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 33 页 Los Angeles, CA「Market Rent Snapshot」：「$170 - $190 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$275 - $350 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间下界。**不含电费**（Net of Electrical），单笔 >500kW 的批发/超大规模租赁；与同页零售价（含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-los-angeles-wholesale-rent-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-los-angeles-dc-wholesale",
+        "label": "洛杉矶数据中心市场：批发/超大规模（>500kW，不含电费）"
+      },
+      "value": 190.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 33 页 Los Angeles, CA「Market Rent Snapshot」：「$170 - $190 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$275 - $350 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间上界。**不含电费**（Net of Electrical），单笔 >500kW 的批发/超大规模租赁；与同页零售价（含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-los-angeles-retail-rent-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-los-angeles-dc-retail",
+        "label": "洛杉矶数据中心市场：零售（<500kW，含电费）"
+      },
+      "value": 275.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "零售托管市场",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 33 页 Los Angeles, CA「Market Rent Snapshot」：「$170 - $190 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$275 - $350 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间下界。**含电费**（Including Electrical），单笔 <500kW 零售托管；与同页批发价（不含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-los-angeles-retail-rent-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-los-angeles-dc-retail",
+        "label": "洛杉矶数据中心市场：零售（<500kW，含电费）"
+      },
+      "value": 350.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "零售托管市场",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 33 页 Los Angeles, CA「Market Rent Snapshot」：「$170 - $190 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$275 - $350 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间上界。**含电费**（Including Electrical），单笔 <500kW 零售托管；与同页批发价（不含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-northern-california-wholesale-rent-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-northern-california-dc-wholesale",
+        "label": "北加州数据中心市场：批发/超大规模（>500kW，不含电费）"
+      },
+      "value": 175.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 35 页 Northern California「Market Rent Snapshot」：「$175 - $215 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$250 - $375 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间下界。**不含电费**（Net of Electrical），单笔 >500kW 的批发/超大规模租赁；与同页零售价（含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-northern-california-wholesale-rent-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-northern-california-dc-wholesale",
+        "label": "北加州数据中心市场：批发/超大规模（>500kW，不含电费）"
+      },
+      "value": 215.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 35 页 Northern California「Market Rent Snapshot」：「$175 - $215 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$250 - $375 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间上界。**不含电费**（Net of Electrical），单笔 >500kW 的批发/超大规模租赁；与同页零售价（含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-northern-california-retail-rent-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-northern-california-dc-retail",
+        "label": "北加州数据中心市场：零售（<500kW，含电费）"
+      },
+      "value": 250.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "零售托管市场",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 35 页 Northern California「Market Rent Snapshot」：「$175 - $215 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$250 - $375 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间下界。**含电费**（Including Electrical），单笔 <500kW 零售托管；与同页批发价（不含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-northern-california-retail-rent-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-northern-california-dc-retail",
+        "label": "北加州数据中心市场：零售（<500kW，含电费）"
+      },
+      "value": 375.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "零售托管市场",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 35 页 Northern California「Market Rent Snapshot」：「$175 - $215 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$250 - $375 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间上界。**含电费**（Including Electrical），单笔 <500kW 零售托管；与同页批发价（不含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-northern-virginia-wholesale-rent-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-northern-virginia-dc-wholesale",
+        "label": "北弗吉尼亚数据中心市场：批发/超大规模（>500kW，不含电费）"
+      },
+      "value": 170.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 37 页 Northern Virginia「Market Rent Snapshot」：「$170 - $190 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$275 - $350 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间下界。**不含电费**（Net of Electrical），单笔 >500kW 的批发/超大规模租赁；与同页零售价（含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-northern-virginia-wholesale-rent-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-northern-virginia-dc-wholesale",
+        "label": "北弗吉尼亚数据中心市场：批发/超大规模（>500kW，不含电费）"
+      },
+      "value": 190.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 37 页 Northern Virginia「Market Rent Snapshot」：「$170 - $190 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$275 - $350 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间上界。**不含电费**（Net of Electrical），单笔 >500kW 的批发/超大规模租赁；与同页零售价（含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-northern-virginia-retail-rent-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-northern-virginia-dc-retail",
+        "label": "北弗吉尼亚数据中心市场：零售（<500kW，含电费）"
+      },
+      "value": 275.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "零售托管市场",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 37 页 Northern Virginia「Market Rent Snapshot」：「$170 - $190 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$275 - $350 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间下界。**含电费**（Including Electrical），单笔 <500kW 零售托管；与同页批发价（不含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-northern-virginia-retail-rent-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-northern-virginia-dc-retail",
+        "label": "北弗吉尼亚数据中心市场：零售（<500kW，含电费）"
+      },
+      "value": 350.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "零售托管市场",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 37 页 Northern Virginia「Market Rent Snapshot」：「$170 - $190 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$275 - $350 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间上界。**含电费**（Including Electrical），单笔 <500kW 零售托管；与同页批发价（不含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-phoenix-wholesale-rent-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-phoenix-dc-wholesale",
+        "label": "凤凰城数据中心市场：批发/超大规模（>500kW，不含电费）"
+      },
+      "value": 130.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 39 页 Phoenix, AZ「Market Rent Snapshot」：「$130 - $170 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$175 - $350 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间下界。**不含电费**（Net of Electrical），单笔 >500kW 的批发/超大规模租赁；与同页零售价（含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-phoenix-wholesale-rent-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-phoenix-dc-wholesale",
+        "label": "凤凰城数据中心市场：批发/超大规模（>500kW，不含电费）"
+      },
+      "value": 170.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 39 页 Phoenix, AZ「Market Rent Snapshot」：「$130 - $170 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$175 - $350 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间上界。**不含电费**（Net of Electrical），单笔 >500kW 的批发/超大规模租赁；与同页零售价（含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-phoenix-retail-rent-low",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-phoenix-dc-retail",
+        "label": "凤凰城数据中心市场：零售（<500kW，含电费）"
+      },
+      "value": 175.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "零售托管市场",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 39 页 Phoenix, AZ「Market Rent Snapshot」：「$130 - $170 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$175 - $350 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间下界。**含电费**（Including Electrical），单笔 <500kW 零售托管；与同页批发价（不含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-phoenix-retail-rent-high",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-phoenix-dc-retail",
+        "label": "凤凰城数据中心市场：零售（<500kW，含电费）"
+      },
+      "value": 350.0,
+      "unit": "原币/月/计价单位",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "零售托管市场",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-07",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 39 页 Phoenix, AZ「Market Rent Snapshot」：「$130 - $170 $/kW/mo Net of Electrical Wholesale/Hyperscale (Deals >500kW)」「$175 - $350 $/kW/mo Including Electrical Retail (Deals <500kW)」；Sources: Colliers U.S. Research, Green Street",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07），租金来源注 Colliers U.S. Research, Green Street"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美元/kW/月，区间上界。**含电费**（Including Electrical），单笔 <500kW 零售托管；与同页批发价（不含电费）不可直接比。报告发布于 2025-07，快照时点未单独标注。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-us-national-vacancy-2024",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-market-colliers",
+        "label": "美国数据中心市场（全国平均）"
+      },
+      "value": 2.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "区域合计",
+        "region": "US"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 5 页：「New developments are being rapidly pre-leased, with datacenterHawk reporting that more than 1.4GW of the 1.5GW absorbed in Northern Virginia in 2024 was pre-leased, pushing the vacancy rate below 1%. Across the country, we estimate that at least 70% of new product is pre-leased, contributing to a national average vacancy rate of just 2%」",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "高力估计的全国平均空置率，同句估计至少 70% 新建产品预租；时点按正文所述 2024 年记。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-nova-vacancy-2024",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "us-northern-virginia-dc",
+        "label": "北弗吉尼亚数据中心市场"
+      },
+      "value": 1.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一市场",
+        "region": "US"
+      },
+      "as_of": "2024-12",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 5 页：「New developments are being rapidly pre-leased, with datacenterHawk reporting that more than 1.4GW of the 1.5GW absorbed in Northern Virginia in 2024 was pre-leased, pushing the vacancy rate below 1%. Across the country, we estimate that at least 70% of new product is pre-leased, contributing to a national average vacancy rate of just 2%」",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「below 1%」为上界，出自 datacenterHawk 报告（2024 年 NoVA 吸纳 1.5GW 中超过 1.4GW 为预租），asserter 记 datacenterHawk。",
+      "asserter": "datacenterHawk"
+    },
+    {
+      "fact_id": "colliers2507-chicago-vacancy",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "us-chicago-dc",
+        "label": "芝加哥数据中心市场"
+      },
+      "value": 3.42,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一市场",
+        "region": "US"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 26 页 Chicago, IL：「In 2024, Chicago’s colocation data center inventory surpassed the 1GW mark after a remarkable 63% growth in commissioned capacity, reaching a total market size of 1.29GW. The vacancy rate has steadily declined since Q1 2019, to 3.42% now, well below the five-year average of just over 7.5%」",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "托管市场口径，「now」按报告写作时点记 2024 年末；五年均值略高于 7.5%。零售价（<500kW）接近历史高位约 400 美元/kW。",
+      "asserter": "高力国际"
+    },
+    {
+      "fact_id": "colliers2507-us-build-cost-per-mw",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-build-cost-colliers",
+        "label": "美国数据中心建设成本（高力）"
+      },
+      "value": 11.0,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "未注明",
+        "stage": "实际投入",
+        "region": "US",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f5507070f7f197d8840b1de4efa26b743743455fdfea5d2376058569e67acee6",
+        "local_file": "20250722-高力国际-美国研究报告：2025数据中心市场-(英)(54页).pdf",
+        "locator": "PDF 第 6 页 Investment Activity：「Not too long ago 50MW would have been considered a large campus, but now 100MW-plus campuses are common. With construction costs averaging $11 million per MW, a campus can now require a billion-dollar investment」（脚注 2 注出处）",
+        "grade": "S3",
+        "originator": "高力国际（Colliers）《2025 Data Center Marketplace》U.S. Research Report（2025-07）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「averaging」为均值，成本范围未说明（是否含 IT 设备），cost_scope 记未注明；Atlanta 页另称 2021 年以来建设成本上涨 20%。",
+      "asserter": "高力国际"
     }
   ]
 }
