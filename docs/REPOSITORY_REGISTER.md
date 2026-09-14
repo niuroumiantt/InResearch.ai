@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：780。
+在册文件：784。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,7 +15,7 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 12 |
-| 历史快照 | 249 |
+| 历史快照 | 253 |
 | 运行代码 | 143 |
 | 现行规范 | 13 |
 | 项目配置 | 36 |
@@ -304,6 +304,8 @@
 | `docs/reviews/2026-09-14/scene-resources/legacy-removal.csv` | rows | 10 |
 | `docs/reviews/2026-09-14/scene-resources/scope.json` | inherited | 6 |
 | `docs/reviews/2026-09-14/scene-resources/scope.json` | changed | 16 |
+| `docs/reviews/2026-09-14/terminal-boundaries/file-plan.csv` | rows | 789 |
+| `docs/reviews/2026-09-14/terminal-boundaries/scope.json` | changed | 35 |
 | `framework/bom.json` | layers | 5 |
 | `framework/bom.json` | parts | 46 |
 | `framework/current_state.json` | policies | 24 |
@@ -819,6 +821,10 @@
 | `docs/reviews/2026-09-14/scene-resources/scope.json` | 历史快照 |
 | `docs/reviews/2026-09-14/scene-resources/statistics-after.json` | 历史快照 |
 | `docs/reviews/2026-09-14/scene-resources/statistics-before.json` | 历史快照 |
+| [docs/reviews/2026-09-14/terminal-boundaries/PLAN.md](reviews/2026-09-14/terminal-boundaries/PLAN.md) | 历史快照 |
+| `docs/reviews/2026-09-14/terminal-boundaries/audit.py` | 历史快照 |
+| [docs/reviews/2026-09-14/terminal-boundaries/file-plan.csv](reviews/2026-09-14/terminal-boundaries/file-plan.csv) | 历史快照 |
+| `docs/reviews/2026-09-14/terminal-boundaries/scope.json` | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
 | `docs/source/全球数据中心行业深度研究Q&A总报告_Q1-Q35_v1.0(2).docx` | 项目配置 |
 | `docs/source/全球数据中心行业现状_参考初稿版式v0.2_信源追溯版_2026-07-23.docx` | 项目配置 |
