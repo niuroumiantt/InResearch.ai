@@ -161016,6 +161016,70 @@
       "corroboration": "待交叉验证",
       "notes": "原文「averaging」为均值，成本范围未说明（是否含 IT 设备），cost_scope 记未注明；Atlanta 页另称 2021 年以来建设成本上涨 20%。",
       "asserter": "高力国际"
+    },
+    {
+      "fact_id": "bis2025-global-colo-market-2024",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-colocation-market-bis",
+        "label": "全球数据中心托管市场（BIS Research）"
+      },
+      "value": 1302.2,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "仅机柜托管",
+        "operator_type": "全市场",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "currency": "美元"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dce0252deb0d2b3b76447a89c5ec49d2edd4a1158c7ef6e805d266dd16484491",
+        "local_file": "Data Center Colocation Market.pdf",
+        "locator": "PDF 第 13 页「Mega and Macro Trends」Table 1 Market Snapshot：「Realistic $130.22 Billion (2024) $569.58 Billion (2034) 14.06%」；Optimistic $136.68B→$879.31B（19.96%）、Pessimistic $118.64B→$292.05B（9.03%）；Source: BIS Research Analysis",
+        "grade": "S3",
+        "originator": "BIS Research《Data Center Colocation Market - A Global and Regional Analysis, Analysis and Forecast: 2025-2034》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "130.22 十亿美元 = 1,302.2 亿美元，取 Realistic 情景（dc_service_revenue 无情景维，乐观/悲观两档未录）；三个情景的 2024 年基数本身也不同（118.64–136.68），原表如此。service_scope 记仅机柜托管指托管服务市场。页脚有「Downloaded by cn-uibe-emis…EMIS. Unauthorized Distribution Prohibited」订阅方下载水印。",
+      "asserter": "BIS Research"
+    },
+    {
+      "fact_id": "bis2025-global-colo-market-2034e",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-colocation-market-bis",
+        "label": "全球数据中心托管市场（BIS Research）"
+      },
+      "value": 5695.8,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "仅机柜托管",
+        "operator_type": "全市场",
+        "region": "Global",
+        "basis": "预测",
+        "currency": "美元"
+      },
+      "as_of": "2034E@2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dce0252deb0d2b3b76447a89c5ec49d2edd4a1158c7ef6e805d266dd16484491",
+        "local_file": "Data Center Colocation Market.pdf",
+        "locator": "PDF 第 13 页 Table 1 Market Snapshot：「Realistic $130.22 Billion (2024) $569.58 Billion (2034) 14.06%」",
+        "grade": "S3",
+        "originator": "BIS Research《Data Center Colocation Market - A Global and Regional Analysis, Analysis and Forecast: 2025-2034》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "569.58 十亿美元 = 5,695.8 亿美元，Realistic 情景，2024–2034 CAGR 14.06%；乐观 8,793.1 亿、悲观 2,920.5 亿未录。报告发布月份未印（预测期 2025–2034，下载水印 2025-09），vintage 记 @2025。",
+      "asserter": "BIS Research"
     }
   ]
 }
