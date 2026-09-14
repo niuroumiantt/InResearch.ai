@@ -53,12 +53,12 @@ if '--before' in sys.argv:
 else:
     after = current(); refs = references(after)
     table('consumers-after.csv', ['implementation', 'consumer', 'line', 'reference', 'migration_result'], refs)
-    planned = set(SCOPE['changed']); audit_prefix = str(OUT.relative_to(ROOT))
+    planned = set(SCOPE['changed']); inherited = set(SCOPE.get('inherited', [])); audit_prefix = str(OUT.relative_to(ROOT))
     changed = [path for path in sorted(set(before) | set(after)) if before.get(path) != after.get(path)]
-    unplanned = [path for path in changed if path not in planned and not path.startswith(audit_prefix)]
+    unplanned = [path for path in changed if path not in planned and path not in inherited and not path.startswith(audit_prefix)]
     table('file-results.csv', ['path', 'action', 'destination', 'result'], [
         [path, 'removed' if path not in after else 'added' if path not in before else 'modified' if path in changed else 'retained', path,
-         'changed within declared scope' if path in changed else 'unchanged bytes'] for path in sorted(set(before) | set(after))])
+         'changed within declared scope' if path in changed and path in planned else 'inherited from integrated main; preserved' if path in changed and path in inherited else 'changed dated audit evidence' if path in changed else 'unchanged bytes'] for path in sorted(set(before) | set(after))])
     (OUT / 'statistics-after.json').write_text(json.dumps({'baseline': SCOPE['baseline'], 'before': stats(before), 'after': stats(after), 'note': 'Physical lines; source/tests/docs/data/audit separated. Private/runtime/original files excluded.'}, ensure_ascii=False, indent=2) + '\n')
     print(json.dumps({'reference_sites': len(refs), 'unplanned': unplanned}))
     if unplanned: raise SystemExit(1)

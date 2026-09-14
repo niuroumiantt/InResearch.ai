@@ -1,9 +1,9 @@
 implementation,consumer,line,reference,migration_result
 CanvasTexture,docs/DECISIONS.md,11,先登记 765 文件、75 处资源引用和旧实现退出清单（7443588），再把 bom3d/rack3d 重复的 HDR/PMREM、CanvasTexture 与页面退出职责迁到共享所有者。HDR 失败与超时使用页面配方；迟到/旧代不能覆盖新环境，target 替换及退出明确释放。机柜图片失败保留真实程序化 CanvasTexture，退出原来只打印兜底文案的空纹理实现。页面停止 animation frame 后释放环境、纹理、composer 和 renderer。bake 与 compare 的不同生命周期仍保留待审；整体架构和全部 GPU 性能不因此完成。,"route, source record or operational reference"
-scene-resources,docs/REPOSITORY_REGISTER.md,300,| `docs/reviews/2026-09-14/scene-resources/consumers-after.csv` | rows | 112 |,"route, source record or operational reference"
+scene-resources,docs/REPOSITORY_REGISTER.md,300,| `docs/reviews/2026-09-14/scene-resources/consumers-after.csv` | rows | 124 |,"route, source record or operational reference"
 scene-resources,docs/REPOSITORY_REGISTER.md,301,| `docs/reviews/2026-09-14/scene-resources/consumers-before.csv` | rows | 75 |,"route, source record or operational reference"
 scene-resources,docs/REPOSITORY_REGISTER.md,302,| `docs/reviews/2026-09-14/scene-resources/file-plan.csv` | rows | 772 |,"route, source record or operational reference"
-scene-resources,docs/REPOSITORY_REGISTER.md,303,| `docs/reviews/2026-09-14/scene-resources/file-results.csv` | rows | 776 |,"route, source record or operational reference"
+scene-resources,docs/REPOSITORY_REGISTER.md,303,| `docs/reviews/2026-09-14/scene-resources/file-results.csv` | rows | 779 |,"route, source record or operational reference"
 scene-resources,docs/REPOSITORY_REGISTER.md,304,| `docs/reviews/2026-09-14/scene-resources/legacy-removal.csv` | rows | 10 |,"route, source record or operational reference"
 scene-resources,docs/REPOSITORY_REGISTER.md,305,| `docs/reviews/2026-09-14/scene-resources/scope.json` | changed | 16 |,"route, source record or operational reference"
 scene-resources,docs/REPOSITORY_REGISTER.md,808,| [docs/reviews/2026-09-14/scene-resources/DELIVERY.md](reviews/2026-09-14/scene-resources/DELIVERY.md) | 历史快照 |,"route, source record or operational reference"
