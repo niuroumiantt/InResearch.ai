@@ -118906,6 +118906,73 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "29 k 颗 = 0.029 百万颗。**是由 CoWoS 产能分配 × 每片封装颗数推出的「隐含出货」**（1 k 片 × 29 颗/片 = 29 k，与原表一致），不是厂商披露。counting 按 CoWoS 封装后芯片记。**原始测算时点未写**，as_of 不带 @。"
+    },
+    {
+      "fact_id": "ccia-dcupgrade2024-cn-dc-electricity-2030e",
+      "metric_id": "dc_electricity_consumption",
+      "asserter": "中国通信工业协会数据中心委员会",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 150.0,
+      "unit": "TWh",
+      "bound": "point",
+      "as_of": "2030E@2024-12",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3941c1b8871ea3da802a40cb5f480eaf65e1afc23b953fbe2d7bd226c79f8c27",
+        "local_file": "数据中心智算化升级改造白皮书（2024年）_41页_1mb.pdf",
+        "locator": "第 12 页 2.1：「根据国家能源局、国家统计局、工信部统计数据显示并测算，至 2030 年全国数据中心用电量、碳排放量与 PUE 测算值如下图所示，全国数据中心以 2025 年为界，2025 年之前平均 PUE 为 1.4，2025 年开始，平均 PUE 将降至 1.3 以下。此外，到 2030 年，中国数据中心用电量将达 1500 亿度」",
+        "grade": "S3",
+        "originator": "中国通信工业协会数据中心委员会等《数据中心智算化升级改造白皮书（2024 年）》（2024-12，据国家能源局、国家统计局、工信部数据测算）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "1500 亿度 = 150 TWh。白皮书编写方据官方统计「测算」，断言者记牵头编写单位。**明显低于库内其他 2030 年预测**：信通院 380 TWh（@2024-05）、伯恩斯坦 371（@2025-09）、埃森哲 400-600、CESI 411.53——相差 2.5 倍以上，原文图未给测算口径（是否只含统计上报的规模以上数据中心），待核。"
+    },
+    {
+      "fact_id": "ccia-dcupgrade2024-cn-avg-pue-2025e-upper",
+      "metric_id": "dc_pue",
+      "asserter": "中国通信工业协会数据中心委员会",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 1.3,
+      "unit": "比值",
+      "bound": "upper",
+      "as_of": "2025E@2024-12",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "evidence": {
+        "sha256": "3941c1b8871ea3da802a40cb5f480eaf65e1afc23b953fbe2d7bd226c79f8c27",
+        "local_file": "数据中心智算化升级改造白皮书（2024年）_41页_1mb.pdf",
+        "locator": "第 12 页 2.1：「根据国家能源局、国家统计局、工信部统计数据显示并测算，至 2030 年全国数据中心用电量、碳排放量与 PUE 测算值如下图所示，全国数据中心以 2025 年为界，2025 年之前平均 PUE 为 1.4，2025 年开始，平均 PUE 将降至 1.3 以下。此外，到 2030 年，中国数据中心用电量将达 1500 亿度」",
+        "grade": "S3",
+        "originator": "中国通信工业协会数据中心委员会等《数据中心智算化升级改造白皮书（2024 年）》（2024-12，据国家能源局、国家统计局、工信部数据测算）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「2025 年开始，平均 PUE 将降至 1.3 以下」按上界记；period 原文未写，全国平均 PUE 按年均记 [未核]。同句「2025 年之前平均 PUE 为 1.4」未写具体年份，未录。"
     }
   ]
 }
