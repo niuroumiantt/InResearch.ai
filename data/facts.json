@@ -135664,6 +135664,40 @@
       "corroboration": "待交叉验证",
       "notes": "2026 年同比 +29.1%。报告名为 2023-2024 年度，只知年份，vintage 记 @2024。",
       "asserter": "赛迪顾问"
+    },
+    {
+      "fact_id": "ocp24-meta-amd-tcs-coolant-30c",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "standard",
+        "id": "ocp-tcs-coolant-temperature-target",
+        "label": "OCP 芯片冷却液温度目标（TCS 回路）"
+      },
+      "value": 30.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "供水",
+        "loop": "二次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "region": "Global",
+        "basis": "厂商参考设计"
+      },
+      "as_of": "2024-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "64f8bc39457c6a151891aba0a33c894f4d5b25fc3fa0427c0cbee249f623fd49",
+        "local_file": "5228 - Roadmap For A Durable Chip Coolant Temperature.pdf",
+        "locator": "第 7 页「Why 30C?」：「Coolant Temperature at the component (TCS Loop)」「Alignment with ASHRAE recommendations」「30C is an inflection point in DC efficiency」；第 11 页「The 30℃ coolant temperature target is not intended to discourage development of a wide range of future solutions」",
+        "grade": "S2",
+        "originator": "Meta（Chris Malone）与 AMD（Paul Artman），OCP Global Summit 2024 液冷专场"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文未写日期；文件归档于「2024 OCP Global Summit」目录，该峰会为 2024-10 在 San Jose 举行，as_of 取 2024-10。",
+      "corroboration": "待交叉验证",
+      "notes": "是 Meta 与 AMD 在 OCP 推动的「芯片处冷却液温度」长期对齐目标，指 TCS（技术冷却系统，即二次侧）进入部件处的供液温度，不是某台产品的规格上限；原文称部分芯片仍需低于 30℃，但主流芯片按 30℃ 优化，HBM 界面规格也按 30℃ 设。与库内英伟达 VR NVL144 CPX 最高进液 45℃（上限）口径不同：一个是对齐目标，一个是产品容许上限。",
+      "asserter": "Meta"
     }
   ]
 }
