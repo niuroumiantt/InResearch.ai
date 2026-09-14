@@ -139654,6 +139654,198 @@
       "corroboration": "待交叉验证",
       "notes": "原文「FP16/BF16」同一数，precision 记 FP16；未写稠密或稀疏。液冷使同一 Blackwell GPU 功耗更高；较 H100/H200 +153%。",
       "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-tco-per-gpu-hour-h100-neocloud",
+      "metric_id": "gpu_hourly_tco",
+      "entity": {
+        "type": "segment",
+        "id": "neocloud-giant-gpu-deployment",
+        "label": "Neocloud 巨头自建 GPU 集群"
+      },
+      "value": 1.65,
+      "unit": "美元/GPU 小时",
+      "caliber": {
+        "cost_scope": "全规模集群 TCO",
+        "asset": "H100",
+        "scale": "单集群",
+        "region": "未披露",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ff62d4c6ebd82c5400e4675f1206696226359079053828acd7ce7cce552dde76",
+        "local_file": "MI300X vs H100 vs H200 Benchmark Part 1_ Training – CUDA Moat Still Alive – SemiAnalysis.pdf",
+        "locator": "第 55 页：「Putting everything together, a Neocloud Giant can deploy the MI300X for a much lower total cost per hour of $1.23 vs $1.65 for the H100 and $1.66 for the H200, while a Hyperscaler can deploy the MI300X for $1.09 per hour vs $1.50 for the H100 and $1.51 for the H200」",
+        "grade": "S3",
+        "originator": "SemiAnalysis AI TCO Model（2024-12-22《MI300X vs H100 vs H200 Benchmark Part 1: Training》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "部署方类型（Neocloud 巨头 vs 超大规模云）区分在 entity，二者议价与网络成本不同：Neocloud 集群网络 BoM 约 520 万美元（每台 8 卡服务器 40,705 美元），超大规模云网络 capex 每台约 18,677 美元。含服务器、网络、托管与资本成本的全成本每 GPU 小时；原文未写部署地域，region 记未披露。按训练有效算力折算后 MI300X 成本优势消失（Neocloud $2.47/hr per effective PFLOP/s，超大规模云 $2.10，H200 $1.85），该单位无对应指标未录。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-tco-per-gpu-hour-h200-neocloud",
+      "metric_id": "gpu_hourly_tco",
+      "entity": {
+        "type": "segment",
+        "id": "neocloud-giant-gpu-deployment",
+        "label": "Neocloud 巨头自建 GPU 集群"
+      },
+      "value": 1.66,
+      "unit": "美元/GPU 小时",
+      "caliber": {
+        "cost_scope": "全规模集群 TCO",
+        "asset": "H200",
+        "scale": "单集群",
+        "region": "未披露",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ff62d4c6ebd82c5400e4675f1206696226359079053828acd7ce7cce552dde76",
+        "local_file": "MI300X vs H100 vs H200 Benchmark Part 1_ Training – CUDA Moat Still Alive – SemiAnalysis.pdf",
+        "locator": "第 55 页：「Putting everything together, a Neocloud Giant can deploy the MI300X for a much lower total cost per hour of $1.23 vs $1.65 for the H100 and $1.66 for the H200, while a Hyperscaler can deploy the MI300X for $1.09 per hour vs $1.50 for the H100 and $1.51 for the H200」",
+        "grade": "S3",
+        "originator": "SemiAnalysis AI TCO Model（2024-12-22《MI300X vs H100 vs H200 Benchmark Part 1: Training》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "部署方类型（Neocloud 巨头 vs 超大规模云）区分在 entity，二者议价与网络成本不同：Neocloud 集群网络 BoM 约 520 万美元（每台 8 卡服务器 40,705 美元），超大规模云网络 capex 每台约 18,677 美元。含服务器、网络、托管与资本成本的全成本每 GPU 小时；原文未写部署地域，region 记未披露。按训练有效算力折算后 MI300X 成本优势消失（Neocloud $2.47/hr per effective PFLOP/s，超大规模云 $2.10，H200 $1.85），该单位无对应指标未录。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-tco-per-gpu-hour-mi300x-neocloud",
+      "metric_id": "gpu_hourly_tco",
+      "entity": {
+        "type": "segment",
+        "id": "neocloud-giant-gpu-deployment",
+        "label": "Neocloud 巨头自建 GPU 集群"
+      },
+      "value": 1.23,
+      "unit": "美元/GPU 小时",
+      "caliber": {
+        "cost_scope": "全规模集群 TCO",
+        "asset": "其他",
+        "scale": "单集群",
+        "region": "未披露",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ff62d4c6ebd82c5400e4675f1206696226359079053828acd7ce7cce552dde76",
+        "local_file": "MI300X vs H100 vs H200 Benchmark Part 1_ Training – CUDA Moat Still Alive – SemiAnalysis.pdf",
+        "locator": "第 55 页：「Putting everything together, a Neocloud Giant can deploy the MI300X for a much lower total cost per hour of $1.23 vs $1.65 for the H100 and $1.66 for the H200, while a Hyperscaler can deploy the MI300X for $1.09 per hour vs $1.50 for the H100 and $1.51 for the H200」",
+        "grade": "S3",
+        "originator": "SemiAnalysis AI TCO Model（2024-12-22《MI300X vs H100 vs H200 Benchmark Part 1: Training》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "MI300X 不在 asset 菜单，记其他。部署方类型（Neocloud 巨头 vs 超大规模云）区分在 entity，二者议价与网络成本不同：Neocloud 集群网络 BoM 约 520 万美元（每台 8 卡服务器 40,705 美元），超大规模云网络 capex 每台约 18,677 美元。含服务器、网络、托管与资本成本的全成本每 GPU 小时；原文未写部署地域，region 记未披露。按训练有效算力折算后 MI300X 成本优势消失（Neocloud $2.47/hr per effective PFLOP/s，超大规模云 $2.10，H200 $1.85），该单位无对应指标未录。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-tco-per-gpu-hour-h100-hyperscaler",
+      "metric_id": "gpu_hourly_tco",
+      "entity": {
+        "type": "segment",
+        "id": "hyperscaler-gpu-deployment",
+        "label": "超大规模云厂商自建 GPU 集群"
+      },
+      "value": 1.5,
+      "unit": "美元/GPU 小时",
+      "caliber": {
+        "cost_scope": "全规模集群 TCO",
+        "asset": "H100",
+        "scale": "单集群",
+        "region": "未披露",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ff62d4c6ebd82c5400e4675f1206696226359079053828acd7ce7cce552dde76",
+        "local_file": "MI300X vs H100 vs H200 Benchmark Part 1_ Training – CUDA Moat Still Alive – SemiAnalysis.pdf",
+        "locator": "第 55 页：「Putting everything together, a Neocloud Giant can deploy the MI300X for a much lower total cost per hour of $1.23 vs $1.65 for the H100 and $1.66 for the H200, while a Hyperscaler can deploy the MI300X for $1.09 per hour vs $1.50 for the H100 and $1.51 for the H200」",
+        "grade": "S3",
+        "originator": "SemiAnalysis AI TCO Model（2024-12-22《MI300X vs H100 vs H200 Benchmark Part 1: Training》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "部署方类型（Neocloud 巨头 vs 超大规模云）区分在 entity，二者议价与网络成本不同：Neocloud 集群网络 BoM 约 520 万美元（每台 8 卡服务器 40,705 美元），超大规模云网络 capex 每台约 18,677 美元。含服务器、网络、托管与资本成本的全成本每 GPU 小时；原文未写部署地域，region 记未披露。按训练有效算力折算后 MI300X 成本优势消失（Neocloud $2.47/hr per effective PFLOP/s，超大规模云 $2.10，H200 $1.85），该单位无对应指标未录。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-tco-per-gpu-hour-h200-hyperscaler",
+      "metric_id": "gpu_hourly_tco",
+      "entity": {
+        "type": "segment",
+        "id": "hyperscaler-gpu-deployment",
+        "label": "超大规模云厂商自建 GPU 集群"
+      },
+      "value": 1.51,
+      "unit": "美元/GPU 小时",
+      "caliber": {
+        "cost_scope": "全规模集群 TCO",
+        "asset": "H200",
+        "scale": "单集群",
+        "region": "未披露",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ff62d4c6ebd82c5400e4675f1206696226359079053828acd7ce7cce552dde76",
+        "local_file": "MI300X vs H100 vs H200 Benchmark Part 1_ Training – CUDA Moat Still Alive – SemiAnalysis.pdf",
+        "locator": "第 55 页：「Putting everything together, a Neocloud Giant can deploy the MI300X for a much lower total cost per hour of $1.23 vs $1.65 for the H100 and $1.66 for the H200, while a Hyperscaler can deploy the MI300X for $1.09 per hour vs $1.50 for the H100 and $1.51 for the H200」",
+        "grade": "S3",
+        "originator": "SemiAnalysis AI TCO Model（2024-12-22《MI300X vs H100 vs H200 Benchmark Part 1: Training》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "部署方类型（Neocloud 巨头 vs 超大规模云）区分在 entity，二者议价与网络成本不同：Neocloud 集群网络 BoM 约 520 万美元（每台 8 卡服务器 40,705 美元），超大规模云网络 capex 每台约 18,677 美元。含服务器、网络、托管与资本成本的全成本每 GPU 小时；原文未写部署地域，region 记未披露。按训练有效算力折算后 MI300X 成本优势消失（Neocloud $2.47/hr per effective PFLOP/s，超大规模云 $2.10，H200 $1.85），该单位无对应指标未录。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2412-tco-per-gpu-hour-mi300x-hyperscaler",
+      "metric_id": "gpu_hourly_tco",
+      "entity": {
+        "type": "segment",
+        "id": "hyperscaler-gpu-deployment",
+        "label": "超大规模云厂商自建 GPU 集群"
+      },
+      "value": 1.09,
+      "unit": "美元/GPU 小时",
+      "caliber": {
+        "cost_scope": "全规模集群 TCO",
+        "asset": "其他",
+        "scale": "单集群",
+        "region": "未披露",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ff62d4c6ebd82c5400e4675f1206696226359079053828acd7ce7cce552dde76",
+        "local_file": "MI300X vs H100 vs H200 Benchmark Part 1_ Training – CUDA Moat Still Alive – SemiAnalysis.pdf",
+        "locator": "第 55 页：「Putting everything together, a Neocloud Giant can deploy the MI300X for a much lower total cost per hour of $1.23 vs $1.65 for the H100 and $1.66 for the H200, while a Hyperscaler can deploy the MI300X for $1.09 per hour vs $1.50 for the H100 and $1.51 for the H200」",
+        "grade": "S3",
+        "originator": "SemiAnalysis AI TCO Model（2024-12-22《MI300X vs H100 vs H200 Benchmark Part 1: Training》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "MI300X 不在 asset 菜单，记其他。部署方类型（Neocloud 巨头 vs 超大规模云）区分在 entity，二者议价与网络成本不同：Neocloud 集群网络 BoM 约 520 万美元（每台 8 卡服务器 40,705 美元），超大规模云网络 capex 每台约 18,677 美元。含服务器、网络、托管与资本成本的全成本每 GPU 小时；原文未写部署地域，region 记未披露。按训练有效算力折算后 MI300X 成本优势消失（Neocloud $2.47/hr per effective PFLOP/s，超大规模云 $2.10，H200 $1.85），该单位无对应指标未录。",
+      "asserter": "SemiAnalysis"
     }
   ]
 }
