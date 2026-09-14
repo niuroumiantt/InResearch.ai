@@ -134421,6 +134421,394 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "由 2018 年数据中心使用火电约 1,171.81 亿 kWh 折算的 CO₂ 9,855 万吨；只算火电部分，可再生能源使用率 23%。"
+    },
+    {
+      "fact_id": "kysec2605-china-mobile-capex-2025",
+      "metric_id": "hyperscaler_capex_total",
+      "asserter": "中国移动",
+      "entity": {
+        "type": "company",
+        "id": "china-mobile",
+        "label": "中国移动"
+      },
+      "value": 1509.0,
+      "unit": "亿（原币）",
+      "bound": "point",
+      "as_of": "2025",
+      "caliber": {
+        "scope": "单一公司",
+        "capex_scope": "全部 capex",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN",
+        "currency": "人民币"
+      },
+      "evidence": {
+        "sha256": "9f66a9085f33e0395ecfdffc88020add835e6375a4fd4f5d7bc870b3e4464a91",
+        "local_file": "20260518-通信行业投资策略_光与液冷齐舞_空天地AIDC算力共振_77页_6mb.pdf",
+        "locator": "第 13 页 2.3：「（1）2025 年全年，中国移动实现资本开支 1509 亿元，较去年同比下降 8%……2026 年……总资本计划开支 1366 亿元，其中通信网络 792 亿元、算力网络 378 亿元、智能网络 89 亿元」「（2）2025 年全年，中国电信实现资本开支 804 亿元，其中算力基础设施投资 202 亿元……预计 2026 年资本开支为 730 亿元，其中算力基础设施计划投资 255 亿元」「（3）2025 年全年，中国联通实现资本开支 542 亿元，预计 2026 年资本开支投资约为 500 亿元，其中算力投资占比 35%」",
+        "grade": "S3",
+        "originator": "中国移动（年报/业绩会，经开源证券《通信行业投资策略：光与液冷齐舞，空天地 AIDC 算力共振》（2026-05-18）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "同比 -8%，略低于计划 1,512 亿元（ghzq2506-china-mobile-capex-plan-2025）。"
+    },
+    {
+      "fact_id": "kysec2605-china-mobile-capex-plan-2026",
+      "metric_id": "hyperscaler_capex_total",
+      "asserter": "中国移动",
+      "entity": {
+        "type": "company",
+        "id": "china-mobile",
+        "label": "中国移动"
+      },
+      "value": 1366.0,
+      "unit": "亿（原币）",
+      "bound": "point",
+      "as_of": "2026E@2026-03",
+      "caliber": {
+        "scope": "单一公司",
+        "capex_scope": "全部 capex",
+        "basis": "厂商指引",
+        "vintage": "其他快照",
+        "region": "CN",
+        "currency": "人民币"
+      },
+      "evidence": {
+        "sha256": "9f66a9085f33e0395ecfdffc88020add835e6375a4fd4f5d7bc870b3e4464a91",
+        "local_file": "20260518-通信行业投资策略_光与液冷齐舞_空天地AIDC算力共振_77页_6mb.pdf",
+        "locator": "第 13 页 2.3：「（1）2025 年全年，中国移动实现资本开支 1509 亿元，较去年同比下降 8%……2026 年……总资本计划开支 1366 亿元，其中通信网络 792 亿元、算力网络 378 亿元、智能网络 89 亿元」「（2）2025 年全年，中国电信实现资本开支 804 亿元，其中算力基础设施投资 202 亿元……预计 2026 年资本开支为 730 亿元，其中算力基础设施计划投资 255 亿元」「（3）2025 年全年，中国联通实现资本开支 542 亿元，预计 2026 年资本开支投资约为 500 亿元，其中算力投资占比 35%」",
+        "grade": "S3",
+        "originator": "中国移动（年报/业绩会，经开源证券《通信行业投资策略：光与液冷齐舞，空天地 AIDC 算力共振》（2026-05-18）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "其中通信网络 792、算力网络 378、智能网络 89 亿元。做出时点按年报业绩会惯例取 2026-03。"
+    },
+    {
+      "fact_id": "kysec2605-china-telecom-capex-2025",
+      "metric_id": "hyperscaler_capex_total",
+      "asserter": "中国电信",
+      "entity": {
+        "type": "company",
+        "id": "china-telecom",
+        "label": "中国电信"
+      },
+      "value": 804.0,
+      "unit": "亿（原币）",
+      "bound": "point",
+      "as_of": "2025",
+      "caliber": {
+        "scope": "单一公司",
+        "capex_scope": "全部 capex",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN",
+        "currency": "人民币"
+      },
+      "evidence": {
+        "sha256": "9f66a9085f33e0395ecfdffc88020add835e6375a4fd4f5d7bc870b3e4464a91",
+        "local_file": "20260518-通信行业投资策略_光与液冷齐舞_空天地AIDC算力共振_77页_6mb.pdf",
+        "locator": "第 13 页 2.3：「（1）2025 年全年，中国移动实现资本开支 1509 亿元，较去年同比下降 8%……2026 年……总资本计划开支 1366 亿元，其中通信网络 792 亿元、算力网络 378 亿元、智能网络 89 亿元」「（2）2025 年全年，中国电信实现资本开支 804 亿元，其中算力基础设施投资 202 亿元……预计 2026 年资本开支为 730 亿元，其中算力基础设施计划投资 255 亿元」「（3）2025 年全年，中国联通实现资本开支 542 亿元，预计 2026 年资本开支投资约为 500 亿元，其中算力投资占比 35%」",
+        "grade": "S3",
+        "originator": "中国电信（年报/业绩会，经开源证券《通信行业投资策略：光与液冷齐舞，空天地 AIDC 算力共振》（2026-05-18）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "其中算力基础设施 202 亿元（25.1%）、网络基础设施 407 亿元；年初计划 836 亿元。"
+    },
+    {
+      "fact_id": "kysec2605-china-telecom-capex-plan-2026",
+      "metric_id": "hyperscaler_capex_total",
+      "asserter": "中国电信",
+      "entity": {
+        "type": "company",
+        "id": "china-telecom",
+        "label": "中国电信"
+      },
+      "value": 730.0,
+      "unit": "亿（原币）",
+      "bound": "point",
+      "as_of": "2026E@2026-03",
+      "caliber": {
+        "scope": "单一公司",
+        "capex_scope": "全部 capex",
+        "basis": "厂商指引",
+        "vintage": "其他快照",
+        "region": "CN",
+        "currency": "人民币"
+      },
+      "evidence": {
+        "sha256": "9f66a9085f33e0395ecfdffc88020add835e6375a4fd4f5d7bc870b3e4464a91",
+        "local_file": "20260518-通信行业投资策略_光与液冷齐舞_空天地AIDC算力共振_77页_6mb.pdf",
+        "locator": "第 13 页 2.3：「（1）2025 年全年，中国移动实现资本开支 1509 亿元，较去年同比下降 8%……2026 年……总资本计划开支 1366 亿元，其中通信网络 792 亿元、算力网络 378 亿元、智能网络 89 亿元」「（2）2025 年全年，中国电信实现资本开支 804 亿元，其中算力基础设施投资 202 亿元……预计 2026 年资本开支为 730 亿元，其中算力基础设施计划投资 255 亿元」「（3）2025 年全年，中国联通实现资本开支 542 亿元，预计 2026 年资本开支投资约为 500 亿元，其中算力投资占比 35%」",
+        "grade": "S3",
+        "originator": "中国电信（年报/业绩会，经开源证券《通信行业投资策略：光与液冷齐舞，空天地 AIDC 算力共振》（2026-05-18）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "其中算力基础设施 255 亿元（同比 +26%，约 35%）。做出时点按年报业绩会惯例取 2026-03。"
+    },
+    {
+      "fact_id": "kysec2605-china-unicom-capex-2025",
+      "metric_id": "hyperscaler_capex_total",
+      "asserter": "中国联通",
+      "entity": {
+        "type": "company",
+        "id": "china-unicom",
+        "label": "中国联通"
+      },
+      "value": 542.0,
+      "unit": "亿（原币）",
+      "bound": "point",
+      "as_of": "2025",
+      "caliber": {
+        "scope": "单一公司",
+        "capex_scope": "全部 capex",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN",
+        "currency": "人民币"
+      },
+      "evidence": {
+        "sha256": "9f66a9085f33e0395ecfdffc88020add835e6375a4fd4f5d7bc870b3e4464a91",
+        "local_file": "20260518-通信行业投资策略_光与液冷齐舞_空天地AIDC算力共振_77页_6mb.pdf",
+        "locator": "第 13 页 2.3：「（1）2025 年全年，中国移动实现资本开支 1509 亿元，较去年同比下降 8%……2026 年……总资本计划开支 1366 亿元，其中通信网络 792 亿元、算力网络 378 亿元、智能网络 89 亿元」「（2）2025 年全年，中国电信实现资本开支 804 亿元，其中算力基础设施投资 202 亿元……预计 2026 年资本开支为 730 亿元，其中算力基础设施计划投资 255 亿元」「（3）2025 年全年，中国联通实现资本开支 542 亿元，预计 2026 年资本开支投资约为 500 亿元，其中算力投资占比 35%」",
+        "grade": "S3",
+        "originator": "中国联通（年报/业绩会，经开源证券《通信行业投资策略：光与液冷齐舞，空天地 AIDC 算力共振》（2026-05-18）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "年初计划 550 亿元。"
+    },
+    {
+      "fact_id": "kysec2605-china-unicom-capex-plan-2026",
+      "metric_id": "hyperscaler_capex_total",
+      "asserter": "中国联通",
+      "entity": {
+        "type": "company",
+        "id": "china-unicom",
+        "label": "中国联通"
+      },
+      "value": 500.0,
+      "unit": "亿（原币）",
+      "bound": "point",
+      "as_of": "2026E@2026-03",
+      "caliber": {
+        "scope": "单一公司",
+        "capex_scope": "全部 capex",
+        "basis": "厂商指引",
+        "vintage": "其他快照",
+        "region": "CN",
+        "currency": "人民币"
+      },
+      "evidence": {
+        "sha256": "9f66a9085f33e0395ecfdffc88020add835e6375a4fd4f5d7bc870b3e4464a91",
+        "local_file": "20260518-通信行业投资策略_光与液冷齐舞_空天地AIDC算力共振_77页_6mb.pdf",
+        "locator": "第 13 页 2.3：「（1）2025 年全年，中国移动实现资本开支 1509 亿元，较去年同比下降 8%……2026 年……总资本计划开支 1366 亿元，其中通信网络 792 亿元、算力网络 378 亿元、智能网络 89 亿元」「（2）2025 年全年，中国电信实现资本开支 804 亿元，其中算力基础设施投资 202 亿元……预计 2026 年资本开支为 730 亿元，其中算力基础设施计划投资 255 亿元」「（3）2025 年全年，中国联通实现资本开支 542 亿元，预计 2026 年资本开支投资约为 500 亿元，其中算力投资占比 35%」",
+        "grade": "S3",
+        "originator": "中国联通（年报/业绩会，经开源证券《通信行业投资策略：光与液冷齐舞，空天地 AIDC 算力共振》（2026-05-18）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「约为 500 亿元」，算力投资占 35%。做出时点按年报业绩会惯例取 2026-03。"
+    },
+    {
+      "fact_id": "kysec2605-cru-fiber-demand-global-2027e",
+      "metric_id": "fiber_cable_demand",
+      "asserter": "CRU",
+      "entity": {
+        "type": "market",
+        "id": "fiber-demand-global",
+        "label": "全球光纤光缆需求"
+      },
+      "value": 88000.0,
+      "unit": "万芯公里",
+      "bound": "point",
+      "as_of": "2027E",
+      "caliber": {
+        "segment": "合计",
+        "fiber_type": "合计",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "9f66a9085f33e0395ecfdffc88020add835e6375a4fd4f5d7bc870b3e4464a91",
+        "local_file": "20260518-通信行业投资策略_光与液冷齐舞_空天地AIDC算力共振_77页_6mb.pdf",
+        "locator": "第 36 页 3.5：「据英国商品研究所（CRU）数据，2025 年全球光纤光缆需求同比增长 4.1%，其中数据中心光纤光缆需求同比增长 75.9%，预计 2027 年全球光纤需求会攀升至 8.8 亿芯公里。价格方面，中国 G652.D 裸光纤现货价格在 2026 年 3 月达 83.40 元人每芯公里，较 1 月环比增长 165%，同比增长 418%」",
+        "grade": "S3",
+        "originator": "CRU（经开源证券《通信行业投资策略：光与液冷齐舞，空天地 AIDC 算力共振》（2026-05-18）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "8.8 亿芯公里；2025 年全球需求 +4.1%、数据中心光纤光缆需求 +75.9%。CRU 做出时点未写。"
+    },
+    {
+      "fact_id": "kysec2605-cru-g652d-spot-price-2026-03",
+      "metric_id": "fiber_cable_price",
+      "asserter": "CRU",
+      "entity": {
+        "type": "market",
+        "id": "fiber-price-g652d",
+        "label": "G.652.D 单模光纤价格"
+      },
+      "value": 83.4,
+      "unit": "元/芯公里",
+      "bound": "point",
+      "as_of": "2026-03",
+      "caliber": {
+        "fiber_type": "G.652",
+        "price_basis": "市场现货价",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "9f66a9085f33e0395ecfdffc88020add835e6375a4fd4f5d7bc870b3e4464a91",
+        "local_file": "20260518-通信行业投资策略_光与液冷齐舞_空天地AIDC算力共振_77页_6mb.pdf",
+        "locator": "第 36 页 3.5：「据英国商品研究所（CRU）数据，2025 年全球光纤光缆需求同比增长 4.1%，其中数据中心光纤光缆需求同比增长 75.9%，预计 2027 年全球光纤需求会攀升至 8.8 亿芯公里。价格方面，中国 G652.D 裸光纤现货价格在 2026 年 3 月达 83.40 元人每芯公里，较 1 月环比增长 165%，同比增长 418%」",
+        "grade": "S3",
+        "originator": "CRU（经开源证券《通信行业投资策略：光与液冷齐舞，空天地 AIDC 算力共振》（2026-05-18）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "中国 G.652.D 裸光纤现货 83.40 元/芯公里，较 1 月 +165%、同比 +418%，2025-05 以来累计涨超 400%，突破前周期高点 78.80。欧洲同类产品较 1 月 +136%、同比 +159%。库内光纤在线 2026-03-04 报价 85-120 元/公里是另一家、另一口径。"
+    },
+    {
+      "fact_id": "kysec2605-caict-cn-aidc-lc-market-2024",
+      "metric_id": "liquid_cooling_market_size",
+      "asserter": "中国信通院",
+      "entity": {
+        "type": "market",
+        "id": "cn-aidc-lc-market",
+        "label": "中国智算中心液冷市场"
+      },
+      "value": 184.0,
+      "unit": "亿（原币）",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "market_scope": "智算中心液冷",
+        "currency": "人民币",
+        "cooling_route": "未注明",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "9f66a9085f33e0395ecfdffc88020add835e6375a4fd4f5d7bc870b3e4464a91",
+        "local_file": "20260518-通信行业投资策略_光与液冷齐舞_空天地AIDC算力共振_77页_6mb.pdf",
+        "locator": "第 41 页 4.2：「据 IDC 数据，2024 年中国液冷服务器市场保持快速增长，市场规模达到 23.7 亿美元，同比增长 67.0%，全年出货量超 23 万台……IDC 预计，2024-2029 年，中国液冷服务器市场年复合增长率将达到 46.8%，2029 年市场规模将达到 162 亿美元。据信通院测算，2024 年我国智算中心液冷市场规模达 184 亿元，同比增长 66.1%，预计到 2029 年我国智算中心液冷市场将达到约 1300 亿元」",
+        "grade": "S3",
+        "originator": "中国信通院（经开源证券《通信行业投资策略：光与液冷齐舞，空天地 AIDC 算力共振》（2026-05-18）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "184 亿元，同比 +66.1%。"
+    },
+    {
+      "fact_id": "kysec2605-caict-cn-aidc-lc-market-2029e",
+      "metric_id": "liquid_cooling_market_size",
+      "asserter": "中国信通院",
+      "entity": {
+        "type": "market",
+        "id": "cn-aidc-lc-market",
+        "label": "中国智算中心液冷市场"
+      },
+      "value": 1300.0,
+      "unit": "亿（原币）",
+      "bound": "point",
+      "as_of": "2029E",
+      "caliber": {
+        "market_scope": "智算中心液冷",
+        "currency": "人民币",
+        "cooling_route": "未注明",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "9f66a9085f33e0395ecfdffc88020add835e6375a4fd4f5d7bc870b3e4464a91",
+        "local_file": "20260518-通信行业投资策略_光与液冷齐舞_空天地AIDC算力共振_77页_6mb.pdf",
+        "locator": "第 41 页 4.2：「据 IDC 数据，2024 年中国液冷服务器市场保持快速增长，市场规模达到 23.7 亿美元，同比增长 67.0%，全年出货量超 23 万台……IDC 预计，2024-2029 年，中国液冷服务器市场年复合增长率将达到 46.8%，2029 年市场规模将达到 162 亿美元。据信通院测算，2024 年我国智算中心液冷市场规模达 184 亿元，同比增长 66.1%，预计到 2029 年我国智算中心液冷市场将达到约 1300 亿元」",
+        "grade": "S3",
+        "originator": "中国信通院（经开源证券《通信行业投资策略：光与液冷齐舞，空天地 AIDC 算力共振》（2026-05-18）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「约 1300 亿元」；信通院做出时点未写，as_of 不带 @。"
+    },
+    {
+      "fact_id": "kysec2605-idc-cn-lc-server-market-2024",
+      "metric_id": "ai_compute_market_size",
+      "asserter": "IDC",
+      "entity": {
+        "type": "market",
+        "id": "cn-lc-server-market",
+        "label": "中国液冷服务器市场"
+      },
+      "value": 23.7,
+      "unit": "亿（原币）",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "measure": "液冷服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "美元",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "evidence": {
+        "sha256": "9f66a9085f33e0395ecfdffc88020add835e6375a4fd4f5d7bc870b3e4464a91",
+        "local_file": "20260518-通信行业投资策略_光与液冷齐舞_空天地AIDC算力共振_77页_6mb.pdf",
+        "locator": "第 41 页 4.2：「据 IDC 数据，2024 年中国液冷服务器市场保持快速增长，市场规模达到 23.7 亿美元，同比增长 67.0%，全年出货量超 23 万台……IDC 预计，2024-2029 年，中国液冷服务器市场年复合增长率将达到 46.8%，2029 年市场规模将达到 162 亿美元。据信通院测算，2024 年我国智算中心液冷市场规模达 184 亿元，同比增长 66.1%，预计到 2029 年我国智算中心液冷市场将达到约 1300 亿元」",
+        "grade": "S3",
+        "originator": "IDC（经开源证券《通信行业投资策略：光与液冷齐舞，空天地 AIDC 算力共振》（2026-05-18）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "23.7 亿美元，同比 +67.0%，出货超 23 万台。"
+    },
+    {
+      "fact_id": "kysec2605-idc-cn-lc-server-market-2029e",
+      "metric_id": "ai_compute_market_size",
+      "asserter": "IDC",
+      "entity": {
+        "type": "market",
+        "id": "cn-lc-server-market",
+        "label": "中国液冷服务器市场"
+      },
+      "value": 162.0,
+      "unit": "亿（原币）",
+      "bound": "point",
+      "as_of": "2029E",
+      "caliber": {
+        "measure": "液冷服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "美元",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "9f66a9085f33e0395ecfdffc88020add835e6375a4fd4f5d7bc870b3e4464a91",
+        "local_file": "20260518-通信行业投资策略_光与液冷齐舞_空天地AIDC算力共振_77页_6mb.pdf",
+        "locator": "第 41 页 4.2：「据 IDC 数据，2024 年中国液冷服务器市场保持快速增长，市场规模达到 23.7 亿美元，同比增长 67.0%，全年出货量超 23 万台……IDC 预计，2024-2029 年，中国液冷服务器市场年复合增长率将达到 46.8%，2029 年市场规模将达到 162 亿美元。据信通院测算，2024 年我国智算中心液冷市场规模达 184 亿元，同比增长 66.1%，预计到 2029 年我国智算中心液冷市场将达到约 1300 亿元」",
+        "grade": "S3",
+        "originator": "IDC（经开源证券《通信行业投资策略：光与液冷齐舞，空天地 AIDC 算力共振》（2026-05-18）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "162 亿美元，2024-2029 CAGR 46.8%；IDC 做出时点未写。"
     }
   ]
 }
