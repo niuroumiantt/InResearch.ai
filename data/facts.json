@@ -139173,6 +139173,38 @@
       "corroboration": "待交叉验证",
       "notes": "国信自建模型：ChatGPT 月活 11.4 亿、单用户每月上传 1GB，RAG NAND 需求 139.7EB 占总 NAND 70%，ChatGPT 占 AI NAND 需求 70% → 2025 年 285.0EB。2026E 593.5EB 已入库（nand-demand-inference-2026e）。同表 NAND 总需求（仅计 AI 拉动增量）2025/2026 = 1,035.9/1,344.4EB，对 IDC 供给 875.6/1,014.7EB 为 118%/132%。",
       "asserter": "国信证券"
+    },
+    {
+      "fact_id": "sa2504-gb200-nvl72-rack-power-145kw",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "gb200-nvl72",
+        "label": "英伟达 GB200 NVL72 机柜"
+      },
+      "value": 145.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "era": "当期",
+        "power_basis": "实际满载",
+        "region": "Global"
+      },
+      "as_of": "2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9f4737e440e13480dcb7548a501bf3772708ec56894c66e4c724e035a3c9bfbc",
+        "local_file": "Huawei_AI_CloudMatrix_384_–_China’s_Answer_to_Nvidia_GB200_NVL72_–_SemiAnalysis.pdf",
+        "locator": "第 13–14 页「System-level Power Budget」：「We estimate that one CM384 supernode draws close to 500kW of power – more than 4 times that of Nvidia’s GB200 NVL72 rack, which consumes about 145kW」",
+        "grade": "S3",
+        "originator": "SemiAnalysis（2025-04-16《Huawei AI CloudMatrix 384 – China’s Answer to Nvidia GB200 NVL72》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「about 145kW」为 SemiAnalysis 对 NVL72 单柜功耗的估计，用作 CM384 对比基准；与库内 SemiAnalysis 2024 年 125kW（实际功率密度）、2025-10 设计功率 130kW 及英伟达自报满载 120kW 口径不同、时点不同，并列不替代。同文估算华为 CM384 超节点（16 柜：12 计算柜 + 4 交换柜，384 颗昇腾 910C）近 500kW，是整系统功耗而非单柜，未录；每个 CM384 用 6,912 只 400G 光模块（scale-up 5,376、scale-out 1,536），配比菜单无华为档，缺口已记。",
+      "asserter": "SemiAnalysis"
     }
   ]
 }
