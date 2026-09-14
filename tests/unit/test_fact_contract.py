@@ -2232,12 +2232,27 @@ class FifthRoundGapTests(unittest.TestCase):
                              '%s 与 %s 撞了 claim_key' % (f['fact_id'], seen.get(key)))
             seen[key] = f['fact_id']
 
+    #: 这三条是全市场合计，不是某一家。按 fact_id 钉住，不钉总数——
+    #: vendor 维的注释明确要求把分厂商的 22 个数录进来，录进来总数就会涨，
+    #: 而「总数必须是 3」会把**照着菜单做的事**判成回归。快照断言只该钉它当初
+    #: 真正验的那几条。
+    MARKET_WIDE_CHIP_DEMAND = ('cn-ai-chip-demand-2025-preban',
+                               'bern-cn-ai-accel-market-2024',
+                               'bern-cn-ai-accel-market-2025e')
+
     def test_the_chip_demand_rows_say_which_vendor(self):
-        """三条都是全市场口径：两条是十一家逐行相加，一条是报告的整体预测。"""
+        """每条都得说清是哪家的数，而合计与分厂商不能混在一起加。"""
         rows = [f for f in self.facts if f['metric_id'] == 'cn_ai_chip_demand']
-        self.assertEqual(len(rows), 3)
+        by_id = {f['fact_id']: f for f in rows}
+        for fact_id in self.MARKET_WIDE_CHIP_DEMAND:
+            self.assertIn(fact_id, by_id)
+            self.assertEqual(by_id[fact_id]['caliber']['vendor'], '全市场', fact_id)
         for f in rows:
-            self.assertEqual(f['caliber']['vendor'], '全市场', f['fact_id'])
+            vendor = f['caliber'].get('vendor')
+            self.assertTrue(vendor and vendor.strip(), '%s 没说是哪家' % f['fact_id'])
+            self.assertEqual(vendor == '全市场',
+                             f['fact_id'] in self.MARKET_WIDE_CHIP_DEMAND,
+                             '%s：合计与分厂商必须分得清，否则会被加到一起' % f['fact_id'])
 
     def test_the_projection_rows_say_which_scenario(self):
         """RAND 的 158-253 是一个留存率参数的区间，不是两个情景——故填「单一情景」。

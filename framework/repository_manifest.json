@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.14.5",
+  "version": "2026.09.14.6",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -130,6 +130,18 @@
         {
           "name": "records",
           "count": 2
+        }
+      ]
+    },
+    {
+      "path": "data/datacenter_cost_model.json",
+      "role": "source_record",
+      "bytes": 3755,
+      "sha256": "64481380499e5094359f7152239635bc3fc3c42a285b1868bdb16593fd8a2935",
+      "collections": [
+        {
+          "name": "groups",
+          "count": 4
         }
       ]
     },
@@ -515,8 +527,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 45585,
-      "sha256": "bbca2e9c9e283b3928bc2191210056d33e5dba9373cfa26680d3930e536c7646",
+      "bytes": 50088,
+      "sha256": "8cbe8af689562972cd9414f2d153d5702d9651938b53f0af5256e2661ac6c586",
       "collections": []
     },
     {
@@ -3264,6 +3276,90 @@
       "role": "implementation",
       "bytes": 617,
       "sha256": "36679ccc448893c8a7d990231879512d9df02cc470a3c7436f94cad71b5ea9c0",
+      "collections": []
+    },
+    {
+      "path": "docs/research/2026-09-14/datacenter-cost/README.md",
+      "role": "supporting_document",
+      "bytes": 1052,
+      "sha256": "c4ec975b534ae9aa54f3e6b0e399dc7832cc085c6e74b203abb9686dc87221e7",
+      "collections": []
+    },
+    {
+      "path": "docs/research/2026-09-14/datacenter-cost/article.md",
+      "role": "supporting_document",
+      "bytes": 75173,
+      "sha256": "da3fcc24555e72285afdd7a74af2ac38ff11a8f88623029204e12e60727fc005",
+      "collections": []
+    },
+    {
+      "path": "docs/research/2026-09-14/datacenter-cost/bernstein-report-trace.md",
+      "role": "supporting_document",
+      "bytes": 5686,
+      "sha256": "69426826babcb0b71431efdafd0a7edb1786e02316b30daf71e5ad7b967013a4",
+      "collections": []
+    },
+    {
+      "path": "docs/research/2026-09-14/datacenter-cost/datacenter-cost-model.xlsx",
+      "role": "project_config",
+      "bytes": 43702,
+      "sha256": "79b9e243672ad8b2b630ec3dba38a8738d86e96c4e1416ab55d612d2c2a55bbb",
+      "collections": []
+    },
+    {
+      "path": "docs/research/2026-09-14/datacenter-cost/m4-materials-review.md",
+      "role": "supporting_document",
+      "bytes": 5266,
+      "sha256": "613317ad719dc6dc5b8b718e6c34815ff13c9af4928467b80a3ff311845f4354",
+      "collections": []
+    },
+    {
+      "path": "docs/research/2026-09-14/datacenter-cost/model-results.json",
+      "role": "project_config",
+      "bytes": 7697,
+      "sha256": "337f1c396eb175cc586c985e40e9ecc818076512173ab509858c9909b5b863b6",
+      "collections": [
+        {
+          "name": "sensitivity",
+          "count": 14
+        },
+        {
+          "name": "matrix",
+          "count": 18
+        },
+        {
+          "name": "delay",
+          "count": 5
+        },
+        {
+          "name": "apac",
+          "count": 7
+        },
+        {
+          "name": "epoch",
+          "count": 10
+        }
+      ]
+    },
+    {
+      "path": "docs/research/2026-09-14/datacenter-cost/model.py",
+      "role": "implementation",
+      "bytes": 5101,
+      "sha256": "3f2ad6fc9fd95b58b46fac21c61bf3ce4fdcf5f342257bf95f1ff9fccf025934",
+      "collections": []
+    },
+    {
+      "path": "docs/research/2026-09-14/datacenter-cost/semianalysis-materials-review.md",
+      "role": "supporting_document",
+      "bytes": 7990,
+      "sha256": "9ca083fab82b899cfabc692ad8e7ff10b973c392a7d3debc03d45f58aab8e1fd",
+      "collections": []
+    },
+    {
+      "path": "docs/research/2026-09-14/datacenter-cost/sources.md",
+      "role": "supporting_document",
+      "bytes": 18749,
+      "sha256": "ec4309d073431df61fe813ebf27ebfb958178317e47a103fe6f0ddff2cc833a8",
       "collections": []
     },
     {
@@ -6167,8 +6263,8 @@
     {
       "path": "framework/05_interface_system.md",
       "role": "normative",
-      "bytes": 14607,
-      "sha256": "7ae93f3f378c0966afdee0bcbaddcfb2f6988d6cf6a7b14a48e8b4d4fd64306d",
+      "bytes": 15495,
+      "sha256": "be0c87e8bbb672127b83a7c4699bd878ec33aa8fa1353c210b9d7c58c1a1cd3e",
       "collections": []
     },
     {
@@ -6210,7 +6306,7 @@
       "path": "framework/CURRENT.md",
       "role": "normative",
       "bytes": 5375,
-      "sha256": "cbc1ea62d495750ea836e2bb1fe6386bfa269d061f4bc30e23e6acae864a2bb5",
+      "sha256": "e9bd89a7cf51ab014c415c05a3bac7a35c1d2766648e173be8379d1fa9a36624",
       "collections": []
     },
     {
@@ -6232,8 +6328,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 27135,
-      "sha256": "e0a9f6a01e75ab98d5cd23193bfafa3eb8d8a7f85638f0c1f8873962121e45cb",
+      "bytes": 27508,
+      "sha256": "0d984728245e460f221488881636b427ba2941d5805c5a0a2b76c42357c279d8",
       "collections": [
         {
           "name": "policies",
@@ -6296,12 +6392,12 @@
     {
       "path": "framework/interface_manifest.json",
       "role": "project_config",
-      "bytes": 1551,
-      "sha256": "5433b4fde1537a4930e1106e176f0924bc4fbb0c3daff4e302700d7079d5a3b0",
+      "bytes": 1608,
+      "sha256": "4bac65d0f3a3457a86ad6c6f6412120f0b5f23aba7acc9d30090cfc616bb43c7",
       "collections": [
         {
           "name": "static_pages",
-          "count": 13
+          "count": 14
         },
         {
           "name": "template_fragments",
@@ -6312,12 +6408,12 @@
     {
       "path": "framework/metrics.json",
       "role": "project_config",
-      "bytes": 719360,
-      "sha256": "db9985afd0c8f1d85582e845553817c3a48b1f4296c9578e29165e7095ad5a7c",
+      "bytes": 734722,
+      "sha256": "69cfb4bbfac778b30b7fa7c8fe04c3dab379549bbf09b09c34d63bacd1b767ea",
       "collections": [
         {
           "name": "metrics",
-          "count": 298
+          "count": 308
         }
       ]
     },
@@ -6496,8 +6592,8 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 40550,
-      "sha256": "e11e4d33fd5262b26302bc4760b953be425201ab069bc53a9b40ae155d941465",
+      "bytes": 41699,
+      "sha256": "332b35b367756223e92731c723f5e75a160f2e4d25db728daba1983300790e44",
       "collections": [
         {
           "name": "policies",
@@ -7280,8 +7376,8 @@
     {
       "path": "src/inresearch/materials/reading_policy.py",
       "role": "implementation",
-      "bytes": 4585,
-      "sha256": "c583e581ca16efa3048d5e0924fdb9dd7349b69cd52456748c1d72ee3f604442",
+      "bytes": 5226,
+      "sha256": "c7be23f53dc51dbf61349fd43ec5a80128dcae8274ac9116b477a08dbf000216",
       "collections": []
     },
     {
@@ -7399,8 +7495,8 @@
     {
       "path": "src/inresearch/workflow/deep_read.py",
       "role": "implementation",
-      "bytes": 24982,
-      "sha256": "93d8d960d9273f0a3c4bfadb0c5ee03f6f9666d024e893ef5e5bee733fff4c79",
+      "bytes": 27265,
+      "sha256": "93a971ba078c3487cee9ea30ffaaf0095e13025ca0b17507a10b62f5725844a5",
       "collections": []
     },
     {
@@ -7509,6 +7605,13 @@
       "collections": []
     },
     {
+      "path": "tests/datacenter_cost.cjs",
+      "role": "test",
+      "bytes": 1852,
+      "sha256": "e9e3c31dcd7914c02020688cd040be671d61bd4d8d2e5da8e96b7f589d6c63c9",
+      "collections": []
+    },
+    {
       "path": "tests/datacenter_news.cjs",
       "role": "test",
       "bytes": 5483,
@@ -7567,8 +7670,8 @@
     {
       "path": "tests/run_browser.cjs",
       "role": "test",
-      "bytes": 2716,
-      "sha256": "4608b68a6bc24efb2a9f3c1e122c9b184300fb3d6b1c49c0de70e22050ce337d",
+      "bytes": 2735,
+      "sha256": "1b591dac0199461ec4b17c28a9664fa270ff5f91d481b8530a151eed4e45f7ae",
       "collections": []
     },
     {
@@ -7658,8 +7761,8 @@
     {
       "path": "tests/unit/test_deep_read.py",
       "role": "test",
-      "bytes": 61907,
-      "sha256": "7b1edd1f306352d7db860f5c0c35ae2c2d7775e35c1e634b6b5049ffaf34cd2e",
+      "bytes": 65159,
+      "sha256": "de3c653ce625df7049b1e9535ecd38f87b2a2b30012e66526c162bf6bfae068b",
       "collections": []
     },
     {
@@ -7679,8 +7782,8 @@
     {
       "path": "tests/unit/test_fact_contract.py",
       "role": "test",
-      "bytes": 143627,
-      "sha256": "d2d59b7b65de9709e2c0c1f1a372d06309954119622255330a1582b90a84aa73",
+      "bytes": 144636,
+      "sha256": "ec9d39a557253733bb9e3ba22e926f9e4bc69f8801556e4788647e231466704a",
       "collections": []
     },
     {
@@ -8259,6 +8362,13 @@
       "collections": []
     },
     {
+      "path": "web/components/datacenter-cost.js",
+      "role": "implementation",
+      "bytes": 7439,
+      "sha256": "8c2029fda6b565938742bbd2c1810896d1343728b7314fa851ee658beb7e978a",
+      "collections": []
+    },
+    {
       "path": "web/components/datacenter-news.js",
       "role": "implementation",
       "bytes": 4160,
@@ -8427,6 +8537,13 @@
       "collections": []
     },
     {
+      "path": "web/pages/cost.html",
+      "role": "implementation",
+      "bytes": 6536,
+      "sha256": "9d320bbfb24b1a3eb31b77cc2003eb987ead1c5991162aa2155368a3d882ed68",
+      "collections": []
+    },
+    {
       "path": "web/pages/doc.html",
       "role": "implementation",
       "bytes": 18314,
@@ -8443,8 +8560,8 @@
     {
       "path": "web/pages/index.html",
       "role": "implementation",
-      "bytes": 30542,
-      "sha256": "6a164f68a01bce9b3645a9fa4ebc849e76d281857f7ac1dedfe2f10101a0fb6d",
+      "bytes": 30704,
+      "sha256": "b88e8edde4ce00edb26d092e0f8f54654958e0dc5196c48de10ca72f51b490d8",
       "collections": []
     },
     {
@@ -8499,8 +8616,15 @@
     {
       "path": "web/routes.json",
       "role": "project_config",
-      "bytes": 4990,
-      "sha256": "a8713956706fda8acedfecd64296078de0d83fdf771f288d21389497eb27a9b4",
+      "bytes": 5446,
+      "sha256": "75a6ea8a4567717f5af2c3ea577fc827eff94629c99de3f7943478a9ae804a52",
+      "collections": []
+    },
+    {
+      "path": "web/themes/datacenter-cost.css",
+      "role": "implementation",
+      "bytes": 8409,
+      "sha256": "26a3b262339d374f5f11f19ff9e493758c7cdf0232b577a36a36c2895d29f6f5",
       "collections": []
     },
     {
@@ -8525,13 +8649,13 @@
     "entrypoint": 4,
     "generated": 12,
     "historical": 249,
-    "implementation": 143,
+    "implementation": 147,
     "normative": 13,
-    "project_config": 36,
+    "project_config": 38,
     "research_record": 16,
     "retired_entrypoint": 3,
-    "source_record": 26,
-    "supporting_document": 35,
-    "test": 59
+    "source_record": 27,
+    "supporting_document": 41,
+    "test": 60
   }
 }
