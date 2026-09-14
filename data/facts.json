@@ -161080,6 +161080,70 @@
       "corroboration": "待交叉验证",
       "notes": "569.58 十亿美元 = 5,695.8 亿美元，Realistic 情景，2024–2034 CAGR 14.06%；乐观 8,793.1 亿、悲观 2,920.5 亿未录。报告发布月份未印（预测期 2025–2034，下载水印 2025-09），vintage 记 @2025。",
       "asserter": "BIS Research"
+    },
+    {
+      "fact_id": "bis2025-global-pdu-psu-market-2025e",
+      "metric_id": "dc_power_infra_market_size",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-pdu-psu-market-bis",
+        "label": "全球数据中心 PDU+PSU 市场（BIS Research）"
+      },
+      "value": 10822.09,
+      "unit": "百万美元",
+      "caliber": {
+        "dc_type": "全部类型",
+        "component": "其他",
+        "measure": "市场规模金额",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "95b58b3f68734da21bd2067d19c369bb694ac00d3163ead164950eec9eab76ba",
+        "local_file": "Data Center Power Distribution Units And Power Supply Units Market - 全球数据中心 PDU+PSU 市场报告.pdf",
+        "locator": "PDF 第 17 页 Table 1 Market Snapshot：「Realistic $10,822.09 Million (2025) $73,376.51 Million (2035) 21.09%」「The market is forecasted to reach $10.82 billion in 2025 and $73.38 billion by 2035」；Optimistic $13,652.76M→$943,714.71M（52.74%）、Pessimistic $9,465.91M→$17,069.41M（6.07%）",
+        "grade": "S3",
+        "originator": "BIS Research《Data Center Power Distribution Units and Power Supply Units Market》（预测期至 2035）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "PDU（机柜配电单元）与 PSU（服务器电源）合并口径，component 无对应枚举记其他。取 Realistic 情景（本指标无情景维）；2025 年为报告基年预测值。**乐观情景 2035 年 9,437 亿美元、CAGR 52.74% 明显离谱**（超过整个数据中心托管市场规模），未录。页脚有订阅方下载水印（EMIS，2025-09-01）。vintage 记 @2025。",
+      "asserter": "BIS Research"
+    },
+    {
+      "fact_id": "bis2025-global-pdu-psu-market-2035e",
+      "metric_id": "dc_power_infra_market_size",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-pdu-psu-market-bis",
+        "label": "全球数据中心 PDU+PSU 市场（BIS Research）"
+      },
+      "value": 73376.51,
+      "unit": "百万美元",
+      "caliber": {
+        "dc_type": "全部类型",
+        "component": "其他",
+        "measure": "市场规模金额",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2035E@2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "95b58b3f68734da21bd2067d19c369bb694ac00d3163ead164950eec9eab76ba",
+        "local_file": "Data Center Power Distribution Units And Power Supply Units Market - 全球数据中心 PDU+PSU 市场报告.pdf",
+        "locator": "PDF 第 17 页 Table 1 Market Snapshot：「Realistic $10,822.09 Million (2025) $73,376.51 Million (2035) 21.09%」",
+        "grade": "S3",
+        "originator": "BIS Research《Data Center Power Distribution Units and Power Supply Units Market》（预测期至 2035）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Realistic 情景，2025–2035 CAGR 21.09%。PDU+PSU 合并口径。竞争格局份额（施耐德 18–22%、维谛 14–17%、伊顿 11–14%、西门子 9–13%、Legrand 7–11%，第 1176 行附近）因 vendor_market_share 产品线无 PDU/PSU 未录。",
+      "asserter": "BIS Research"
     }
   ]
 }
