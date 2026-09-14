@@ -135698,6 +135698,327 @@
       "corroboration": "待交叉验证",
       "notes": "是 Meta 与 AMD 在 OCP 推动的「芯片处冷却液温度」长期对齐目标，指 TCS（技术冷却系统，即二次侧）进入部件处的供液温度，不是某台产品的规格上限；原文称部分芯片仍需低于 30℃，但主流芯片按 30℃ 优化，HBM 界面规格也按 30℃ 设。与库内英伟达 VR NVL144 CPX 最高进液 45℃（上限）口径不同：一个是对齐目标，一个是产品容许上限。",
       "asserter": "Meta"
+    },
+    {
+      "fact_id": "kezhi2312-cn-coldplate-lc-dc-market-2022",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-coldplate-liquid-cooling-dc",
+        "label": "中国冷板式液冷数据中心市场"
+      },
+      "value": 90.5,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "某一路线",
+        "currency": "人民币",
+        "cooling_route": "冷板式",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "60b009a7bfed5c0b6b20341beed2a569527bbd094a08ed28ea946a5caf5d75ec",
+        "local_file": "20240804-智科咨询：中国液冷数据中心市场深度研究报告2023-210003(94页).pdf",
+        "locator": "第 31 页（页脚 25）：「根据科智咨询，2022 年，冷板式数据中心市场规模达到 90.5 亿元，同比增长 45.4%，占整体数据中心市场规模比例达到 90%」",
+        "grade": "S3",
+        "originator": "科智咨询《中国液冷数据中心市场深度研究报告》（2023-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "同比 +45.4%，占液冷数据中心整体 90%（原文「整体数据中心市场」应指液冷数据中心整体 100.5 亿元）。统计维度含冷板式液冷服务器与基础设施。",
+      "asserter": "科智咨询"
+    },
+    {
+      "fact_id": "kezhi2312-cn-lc-dc-infra-market-2022",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-lc-dc-infrastructure",
+        "label": "中国液冷数据中心基础设施市场"
+      },
+      "value": 20.2,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "液冷设备与方案",
+        "currency": "人民币",
+        "cooling_route": "未注明",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "60b009a7bfed5c0b6b20341beed2a569527bbd094a08ed28ea946a5caf5d75ec",
+        "local_file": "20240804-智科咨询：中国液冷数据中心市场深度研究报告2023-210003(94页).pdf",
+        "locator": "第 33 页（页脚 27）：「2022 年，中国液冷数据中心基础设施市场规模为 20.2 亿元，同比增长 54.5%」；图表 18 注：「基础设施市场规模统计维度为当年新增的液冷数据中心基础设施部署规模」",
+        "grade": "S3",
+        "originator": "科智咨询《中国液冷数据中心市场深度研究报告》（2023-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "不含液冷服务器，按当年新增部署计；同比 +54.5%。科智口径：液冷数据中心市场 = 液冷服务器 + 液冷数据中心基础设施；2022 年 80.3+20.2=100.5、2023E 121.8+32.2=154、2027E 832.8+187.2=1020，三处都能对上。2022 年整体 100.5 亿元与液冷服务器 80.3 亿元已由国海证券转引入库（ghzq2506-kezhi-*），本份原报告不重复登记。",
+      "asserter": "科智咨询"
+    },
+    {
+      "fact_id": "kezhi2312-cn-lc-dc-market-2023e",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-liquid-cooling-dc",
+        "label": "中国液冷数据中心市场"
+      },
+      "value": 154.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "全国液冷",
+        "currency": "人民币",
+        "cooling_route": "未注明",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2023E@2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "60b009a7bfed5c0b6b20341beed2a569527bbd094a08ed28ea946a5caf5d75ec",
+        "local_file": "20240804-智科咨询：中国液冷数据中心市场深度研究报告2023-210003(94页).pdf",
+        "locator": "第 78 页（页脚 72）：「根据科智咨询，2023 年中国液冷数据中心市场将实现 53.2%的高速增长，市场规模将达到 154 亿元」",
+        "grade": "S3",
+        "originator": "科智咨询《中国液冷数据中心市场深度研究报告》（2023-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "报告 2023-12 发布，2023 年仍按预测记。科智口径：液冷数据中心市场 = 液冷服务器 + 液冷数据中心基础设施；2022 年 80.3+20.2=100.5、2023E 121.8+32.2=154、2027E 832.8+187.2=1020，三处都能对上。2022 年整体 100.5 亿元与液冷服务器 80.3 亿元已由国海证券转引入库（ghzq2506-kezhi-*），本份原报告不重复登记。",
+      "asserter": "科智咨询"
+    },
+    {
+      "fact_id": "kezhi2312-cn-lc-dc-market-2027e",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-liquid-cooling-dc",
+        "label": "中国液冷数据中心市场"
+      },
+      "value": 1020.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "全国液冷",
+        "currency": "人民币",
+        "cooling_route": "未注明",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2027E@2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "60b009a7bfed5c0b6b20341beed2a569527bbd094a08ed28ea946a5caf5d75ec",
+        "local_file": "20240804-智科咨询：中国液冷数据中心市场深度研究报告2023-210003(94页).pdf",
+        "locator": "第 78 页（页脚 72）：「未来五年中国液冷数据中心市场将以 59%的复合增长率持续发展。预计到 2027 年……市场规模将出现较大幅度增长，有望达到 1020 亿元」",
+        "grade": "S3",
+        "originator": "科智咨询《中国液冷数据中心市场深度研究报告》（2023-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "五年 CAGR 59%。科智口径：液冷数据中心市场 = 液冷服务器 + 液冷数据中心基础设施；2022 年 80.3+20.2=100.5、2023E 121.8+32.2=154、2027E 832.8+187.2=1020，三处都能对上。2022 年整体 100.5 亿元与液冷服务器 80.3 亿元已由国海证券转引入库（ghzq2506-kezhi-*），本份原报告不重复登记。",
+      "asserter": "科智咨询"
+    },
+    {
+      "fact_id": "kezhi2312-cn-coldplate-lc-dc-market-2027e",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-coldplate-liquid-cooling-dc",
+        "label": "中国冷板式液冷数据中心市场"
+      },
+      "value": 903.2,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "某一路线",
+        "currency": "人民币",
+        "cooling_route": "冷板式",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2027E@2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "60b009a7bfed5c0b6b20341beed2a569527bbd094a08ed28ea946a5caf5d75ec",
+        "local_file": "20240804-智科咨询：中国液冷数据中心市场深度研究报告2023-210003(94页).pdf",
+        "locator": "第 79 页（页脚 73）：「预计到 2027 年，中国冷板式液冷数据中心市场规模将达到 903.2 亿元，五年复合增长率达到 58.4%」",
+        "grade": "S3",
+        "originator": "科智咨询《中国液冷数据中心市场深度研究报告》（2023-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "五年 CAGR 58.4%，约占 2027E 液冷数据中心整体 1020 亿元的 89%。",
+      "asserter": "科智咨询"
+    },
+    {
+      "fact_id": "kezhi2312-cn-lc-server-market-2023e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-lc-server-market",
+        "label": "中国液冷服务器市场"
+      },
+      "value": 121.8,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "液冷服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2023E@2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "60b009a7bfed5c0b6b20341beed2a569527bbd094a08ed28ea946a5caf5d75ec",
+        "local_file": "20240804-智科咨询：中国液冷数据中心市场深度研究报告2023-210003(94页).pdf",
+        "locator": "第 80 页（页脚 74）：「科智咨询预计 2023 年中国液冷服务器市场规模将保持 51.7%的快速增长，达到 121.8 亿元。未来五年市场规模将以 59.6%的复合增长率，2027 年市场规模将达 832.8 亿元」",
+        "grade": "S3",
+        "originator": "科智咨询《中国液冷数据中心市场深度研究报告》（2023-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "口径为当年终端用户液冷服务器应用规模（图表 17 注），人民币；与库内 IDC 美元口径（2024H1 12.6 亿美元等）统计方法不同，不可互换。科智口径：液冷数据中心市场 = 液冷服务器 + 液冷数据中心基础设施；2022 年 80.3+20.2=100.5、2023E 121.8+32.2=154、2027E 832.8+187.2=1020，三处都能对上。2022 年整体 100.5 亿元与液冷服务器 80.3 亿元已由国海证券转引入库（ghzq2506-kezhi-*），本份原报告不重复登记。",
+      "asserter": "科智咨询"
+    },
+    {
+      "fact_id": "kezhi2312-cn-lc-server-market-2027e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-lc-server-market",
+        "label": "中国液冷服务器市场"
+      },
+      "value": 832.8,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "液冷服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2027E@2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "60b009a7bfed5c0b6b20341beed2a569527bbd094a08ed28ea946a5caf5d75ec",
+        "local_file": "20240804-智科咨询：中国液冷数据中心市场深度研究报告2023-210003(94页).pdf",
+        "locator": "第 80 页（页脚 74）：「未来五年市场规模将以 59.6%的复合增长率，2027 年市场规模将达 832.8 亿元」",
+        "grade": "S3",
+        "originator": "科智咨询《中国液冷数据中心市场深度研究报告》（2023-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "五年 CAGR 59.6%。科智口径：液冷数据中心市场 = 液冷服务器 + 液冷数据中心基础设施；2022 年 80.3+20.2=100.5、2023E 121.8+32.2=154、2027E 832.8+187.2=1020，三处都能对上。2022 年整体 100.5 亿元与液冷服务器 80.3 亿元已由国海证券转引入库（ghzq2506-kezhi-*），本份原报告不重复登记。",
+      "asserter": "科智咨询"
+    },
+    {
+      "fact_id": "kezhi2312-cn-lc-dc-infra-market-2023e",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-lc-dc-infrastructure",
+        "label": "中国液冷数据中心基础设施市场"
+      },
+      "value": 32.2,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "液冷设备与方案",
+        "currency": "人民币",
+        "cooling_route": "未注明",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2023E@2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "60b009a7bfed5c0b6b20341beed2a569527bbd094a08ed28ea946a5caf5d75ec",
+        "local_file": "20240804-智科咨询：中国液冷数据中心市场深度研究报告2023-210003(94页).pdf",
+        "locator": "第 82 页（页脚 76）：「科智咨询预测液冷基础设施市场保持较快增长态势，2023 年市场规模将达到 32.2 亿元，预计未来五年复合增长率为 56.1%，到 2027 年液冷基础设施市场规模将达到 187.2 亿元」",
+        "grade": "S3",
+        "originator": "科智咨询《中国液冷数据中心市场深度研究报告》（2023-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "不含液冷服务器。科智口径：液冷数据中心市场 = 液冷服务器 + 液冷数据中心基础设施；2022 年 80.3+20.2=100.5、2023E 121.8+32.2=154、2027E 832.8+187.2=1020，三处都能对上。2022 年整体 100.5 亿元与液冷服务器 80.3 亿元已由国海证券转引入库（ghzq2506-kezhi-*），本份原报告不重复登记。",
+      "asserter": "科智咨询"
+    },
+    {
+      "fact_id": "kezhi2312-cn-lc-dc-infra-market-2027e",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-lc-dc-infrastructure",
+        "label": "中国液冷数据中心基础设施市场"
+      },
+      "value": 187.2,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "液冷设备与方案",
+        "currency": "人民币",
+        "cooling_route": "未注明",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2027E@2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "60b009a7bfed5c0b6b20341beed2a569527bbd094a08ed28ea946a5caf5d75ec",
+        "local_file": "20240804-智科咨询：中国液冷数据中心市场深度研究报告2023-210003(94页).pdf",
+        "locator": "第 82 页（页脚 76）：「到 2027 年液冷基础设施市场规模将达到 187.2 亿元」",
+        "grade": "S3",
+        "originator": "科智咨询《中国液冷数据中心市场深度研究报告》（2023-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "五年 CAGR 56.1%。科智口径：液冷数据中心市场 = 液冷服务器 + 液冷数据中心基础设施；2022 年 80.3+20.2=100.5、2023E 121.8+32.2=154、2027E 832.8+187.2=1020，三处都能对上。2022 年整体 100.5 亿元与液冷服务器 80.3 亿元已由国海证券转引入库（ghzq2506-kezhi-*），本份原报告不重复登记。",
+      "asserter": "科智咨询"
+    },
+    {
+      "fact_id": "kezhi2312-cn-dc-electricity-2022",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "market",
+        "id": "cn-datacenters",
+        "label": "中国数据中心"
+      },
+      "value": 84.52,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "CN",
+        "basis": "第三方估算"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "60b009a7bfed5c0b6b20341beed2a569527bbd094a08ed28ea946a5caf5d75ec",
+        "local_file": "20240804-智科咨询：中国液冷数据中心市场深度研究报告2023-210003(94页).pdf",
+        "locator": "第 9 页（页脚 3）：「根据科智咨询统计，2022 年全年用电量达到 845.2 亿千瓦时，占全社会用电量约 1%」",
+        "grade": "S3",
+        "originator": "科智咨询《中国液冷数据中心市场深度研究报告》（2023-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "845.2 亿千瓦时 = 84.52 TWh（1 亿 kWh = 0.1 TWh）。同年库内信通院 130 TWh、工信部 100 TWh、伯恩斯坦 113 TWh、国家能源局 270 TWh，口径各异，科智为最低一档。",
+      "asserter": "科智咨询"
     }
   ]
 }
