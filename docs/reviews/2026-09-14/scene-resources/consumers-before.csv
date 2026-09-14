@@ -1,0 +1,76 @@
+implementation,consumer,line,reference,migration_result
+EXRLoader,docs/REPOSITORY_REGISTER.md,1061,| `web/assets/vendor/EXRLoader.js` | 静态资源 |,"route, source record or operational reference"
+EXRLoader,framework/repository_manifest.json,7974,"""path"": ""web/assets/vendor/EXRLoader.js"",","route, source record or operational reference"
+proceduralEnv,web/assets/hdri/README.md,12,- 加载失败时页面自动回退程序化摄影棚环境（proceduralEnv），不会黑屏。,"route, source record or operational reference"
+EXRLoader,web/assets/hdri/README.md,13,- 换新 HDR：放文件进本目录 + 改页面里 EXRLoader 的路径 + 在本表登记来源。,"route, source record or operational reference"
+EXRLoader,web/pages/bake.html,18,"import { EXRLoader } from ""./assets/vendor/EXRLoader.js"";",retained separate lifetime
+ctex(,web/pages/bake.html,44,"function ctex(w, h, draw, repX = 1, repY = 1) {",retained separate lifetime
+CanvasTexture,web/pages/bake.html,47,const t = new THREE.CanvasTexture(cv);,retained separate lifetime
+ctex(,web/pages/bake.html,54,"copperFins: ctex(256, 128, (g, w, h) => {",retained separate lifetime
+ctex(,web/pages/bake.html,61,"pcb: ctex(512, 512, (g, w, h) => {",retained separate lifetime
+ctex(,web/pages/bake.html,76,"die: ctex(256, 256, (g, w, h) => {",retained separate lifetime
+ctex(,web/pages/bake.html,84,"dimm: ctex(256, 48, (g, w, h) => {",retained separate lifetime
+ctex(,web/pages/bake.html,90,"perf: ctex(128, 128, (g, w, h) => {",retained separate lifetime
+ctex(,web/pages/bake.html,97,"sledFace: ctex(512, 96, (g, w, h) => {",retained separate lifetime
+ctex(,web/pages/bake.html,109,"fanFrame: ctex(128, 128, (g, w, h) => {",retained separate lifetime
+ctex(,web/pages/bake.html,114,"ports: ctex(512, 64, (g, w, h) => {",retained separate lifetime
+EXRLoader,web/pages/bake.html,315,"new EXRLoader().load(""assets/hdri/studio.exr"", tex => {",retained separate lifetime
+PMREMGenerator,web/pages/bake.html,317,const pmrem = new THREE.PMREMGenerator(renderer);,retained separate lifetime
+scene.environment,web/pages/bake.html,318,scene.environment = pmrem.fromEquirectangular(tex).texture;,retained separate lifetime
+EXRLoader,web/pages/bom3d.html,144,"import { EXRLoader } from ""./assets/vendor/EXRLoader.js"";",planned shared owner consumer
+proceduralEnv,web/pages/bom3d.html,211,function proceduralEnv() {,planned shared owner consumer
+PMREMGenerator,web/pages/bom3d.html,224,const pmrem = new THREE.PMREMGenerator(renderer);,planned shared owner consumer
+scene.environment,web/pages/bom3d.html,225,"scene.environment = pmrem.fromScene(env, 0.04).texture;",planned shared owner consumer
+EXRLoader,web/pages/bom3d.html,228,"new EXRLoader().load(""assets/hdri/warehouse.exr"", tex => {",planned shared owner consumer
+PMREMGenerator,web/pages/bom3d.html,230,const pmrem = new THREE.PMREMGenerator(renderer);,planned shared owner consumer
+scene.environment,web/pages/bom3d.html,231,scene.environment = pmrem.fromEquirectangular(tex).texture;,planned shared owner consumer
+proceduralEnv,web/pages/bom3d.html,233,"}, undefined, () => proceduralEnv());",planned shared owner consumer
+ctex(,web/pages/bom3d.html,247,"function ctex(w, h, draw, repX = 1, repY = 1) {",planned shared owner consumer
+CanvasTexture,web/pages/bom3d.html,250,const t = new THREE.CanvasTexture(cv);,planned shared owner consumer
+ctex(,web/pages/bom3d.html,258,"rackFront: hero => ctex(128, 256, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,270,"rackSide: ctex(64, 128, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,276,"sled: ctex(128, 32, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,283,"ports: ctex(128, 32, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,291,"perf: ctex(64, 64, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,298,"fins: ctex(128, 64, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,305,"copperFins: ctex(128, 64, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,312,"pcb: ctex(128, 128, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,325,"die: ctex(64, 64, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,332,"fan: ctex(128, 128, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,344,"louvre: ctex(64, 64, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,351,"glass: ctex(256, 128, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,358,"roof: ctex(256, 192, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,366,"ground: ctex(512, 384, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,376,"concrete: ctex(128, 128, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,383,"cab: ctex(96, 128, (g, w, h) => {",planned shared owner consumer
+CanvasTexture,web/pages/bom3d.html,488,const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4;,planned shared owner consumer
+scene.environment,web/pages/bom3d.html,958,"const inspector = createPartInspector({THREE, environment: () => scene.environment, meshesFor: pid => PARTMESH[pid],",planned shared owner consumer
+pagehide,web/pages/bom3d.html,994,"window.addEventListener(""pagehide"", event => {if (!event.persisted) {sceneView.dispose();sceneModels.dispose();inspector.dispose();}});",planned shared owner consumer
+pagehide,web/pages/compare.html,67,"window.addEventListener('pagehide', event => {if (!event.persisted) previews.forEach(dispose => dispose());});",retained separate lifetime
+PMREMGenerator,web/pages/compare.html,107,const pm = new THREE.PMREMGenerator(ren);,retained separate lifetime
+EXRLoader,web/pages/rack3d.html,125,"import { EXRLoader } from ""./assets/vendor/EXRLoader.js"";",planned shared owner consumer
+proceduralEnv,web/pages/rack3d.html,181,function proceduralEnv() {,planned shared owner consumer
+PMREMGenerator,web/pages/rack3d.html,194,const pmrem = new THREE.PMREMGenerator(renderer);,planned shared owner consumer
+scene.environment,web/pages/rack3d.html,195,"scene.environment = pmrem.fromScene(env, 0.04).texture;",planned shared owner consumer
+EXRLoader,web/pages/rack3d.html,198,"new EXRLoader().load(""assets/hdri/studio.exr"", tex => {",planned shared owner consumer
+PMREMGenerator,web/pages/rack3d.html,200,const pmrem = new THREE.PMREMGenerator(renderer);,planned shared owner consumer
+scene.environment,web/pages/rack3d.html,201,scene.environment = pmrem.fromEquirectangular(tex).texture;,planned shared owner consumer
+proceduralEnv,web/pages/rack3d.html,203,"}, undefined, () => proceduralEnv());",planned shared owner consumer
+ctex(,web/pages/rack3d.html,219,"function ctex(w, h, draw, repX = 1, repY = 1) {",planned shared owner consumer
+CanvasTexture,web/pages/rack3d.html,222,const t = new THREE.CanvasTexture(cv);,planned shared owner consumer
+ctex(,web/pages/rack3d.html,229,"post: ctex(32, 256, (g, w, h) => {           // 机柜立柱：EIA 孔带",planned shared owner consumer
+ctex(,web/pages/rack3d.html,234,"doorPerf: ctex(128, 256, (g, w, h) => {      // 前后门：六角穿孔网",planned shared owner consumer
+ctex(,web/pages/rack3d.html,243,"sledFace: hero => ctex(256, 48, (g, w, h) => {   // 服务器前脸：把手+盘位+LED",planned shared owner consumer
+ctex(,web/pages/rack3d.html,257,"ports: ctex(256, 32, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/rack3d.html,265,"perf: ctex(64, 64, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/rack3d.html,272,"pcb: ctex(256, 256, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/rack3d.html,287,"die: ctex(128, 128, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/rack3d.html,295,"copperFins: ctex(128, 64, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/rack3d.html,302,"dimm: ctex(128, 24, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/rack3d.html,308,"floorTx: ctex(512, 512, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/rack3d.html,318,"fanFrame: ctex(64, 64, (g, w, h) => {",planned shared owner consumer
+TextureLoader,web/pages/rack3d.html,332,const texLoader = new THREE.TextureLoader();,planned shared owner consumer
+CanvasTexture,web/pages/rack3d.html,399,const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace;,planned shared owner consumer
+scene.environment,web/pages/rack3d.html,689,"const inspector = createPartInspector({THREE, environment: () => scene.environment, meshesFor: pid => PARTMESH[pid]});",planned shared owner consumer
+pagehide,web/pages/rack3d.html,711,"window.addEventListener(""pagehide"", event => {if (!event.persisted) {sceneView.dispose();sceneModels.dispose();inspector.dispose();}});",planned shared owner consumer
+EXRLoader,web/routes.json,39,"""/assets/vendor/EXRLoader.js"": ""web/assets/vendor/EXRLoader.js"",","route, source record or operational reference"
