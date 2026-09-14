@@ -134877,6 +134877,192 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "2024 年数据通信 CPO 光引擎出货 30,569 只（≈3.06 万只）。2025 年起按两种 scale-up 情景分叉（情景 1：2030 年 1,340 万只、市场 81 亿美元；情景 2：830 万只、54 亿美元），本指标无情景维，未录预测。 basis 枚举无第三方跟踪，按实测记（Yole 的出货统计）。"
+    },
+    {
+      "fact_id": "cie2012-cn-dc-electricity-2019-lower",
+      "metric_id": "dc_electricity_consumption",
+      "asserter": "中国电子学会",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc",
+        "label": "中国数据中心"
+      },
+      "value": 60.0,
+      "unit": "TWh",
+      "bound": "lower",
+      "as_of": "2019",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "CN",
+        "basis": "第三方估算"
+      },
+      "evidence": {
+        "sha256": "f0510643459f6097f58a20235c436c1a5738806c5b1128795a4a031f080a9a8f",
+        "local_file": "6C_2020_2020_中国电子学会中国数_未署名.pdf",
+        "locator": "第 2 页前言：「2019 年，全国数据中心行业耗电总量约为 600 亿 -700 亿千瓦时左右，约占全国全社会用电量的 0.8% ～ 1%。随着信息化时代的深入，初步估计 2030 年中国数据中心的总能源消耗量预计将在 2019 年基础上翻一番，达到社会总用电量的 1.5% 到 2% 左右」",
+        "grade": "S3",
+        "originator": "中国电子学会《中国数据中心可再生能源应用发展报告（2020）》（2020-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「约为 600 亿-700 亿千瓦时」下界；上界见 cie2012-cn-dc-electricity-2019-upper。明显低于同年其他估算（华北电力大学 2018 年 160.9 TWh、信通院 2020 年 93.9 TWh）。"
+    },
+    {
+      "fact_id": "cie2012-cn-dc-electricity-2019-upper",
+      "metric_id": "dc_electricity_consumption",
+      "asserter": "中国电子学会",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc",
+        "label": "中国数据中心"
+      },
+      "value": 70.0,
+      "unit": "TWh",
+      "bound": "upper",
+      "as_of": "2019",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "CN",
+        "basis": "第三方估算"
+      },
+      "evidence": {
+        "sha256": "f0510643459f6097f58a20235c436c1a5738806c5b1128795a4a031f080a9a8f",
+        "local_file": "6C_2020_2020_中国电子学会中国数_未署名.pdf",
+        "locator": "第 2 页前言：「2019 年，全国数据中心行业耗电总量约为 600 亿 -700 亿千瓦时左右，约占全国全社会用电量的 0.8% ～ 1%。随着信息化时代的深入，初步估计 2030 年中国数据中心的总能源消耗量预计将在 2019 年基础上翻一番，达到社会总用电量的 1.5% 到 2% 左右」",
+        "grade": "S3",
+        "originator": "中国电子学会《中国数据中心可再生能源应用发展报告（2020）》（2020-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「约为 600 亿-700 亿千瓦时」上界。"
+    },
+    {
+      "fact_id": "cie2012-cn-dc-power-share-2019-lower",
+      "metric_id": "dc_power_share_of_grid",
+      "asserter": "中国电子学会",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc",
+        "label": "中国数据中心"
+      },
+      "value": 0.8,
+      "unit": "%",
+      "bound": "lower",
+      "as_of": "2019",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "f0510643459f6097f58a20235c436c1a5738806c5b1128795a4a031f080a9a8f",
+        "local_file": "6C_2020_2020_中国电子学会中国数_未署名.pdf",
+        "locator": "第 2 页前言：「2019 年，全国数据中心行业耗电总量约为 600 亿 -700 亿千瓦时左右，约占全国全社会用电量的 0.8% ～ 1%。随着信息化时代的深入，初步估计 2030 年中国数据中心的总能源消耗量预计将在 2019 年基础上翻一番，达到社会总用电量的 1.5% 到 2% 左右」",
+        "grade": "S3",
+        "originator": "中国电子学会《中国数据中心可再生能源应用发展报告（2020）》（2020-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「0.8%～1%」下界；上界见 cie2012-cn-dc-power-share-2019-upper。"
+    },
+    {
+      "fact_id": "cie2012-cn-dc-power-share-2019-upper",
+      "metric_id": "dc_power_share_of_grid",
+      "asserter": "中国电子学会",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc",
+        "label": "中国数据中心"
+      },
+      "value": 1.0,
+      "unit": "%",
+      "bound": "upper",
+      "as_of": "2019",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "f0510643459f6097f58a20235c436c1a5738806c5b1128795a4a031f080a9a8f",
+        "local_file": "6C_2020_2020_中国电子学会中国数_未署名.pdf",
+        "locator": "第 2 页前言：「2019 年，全国数据中心行业耗电总量约为 600 亿 -700 亿千瓦时左右，约占全国全社会用电量的 0.8% ～ 1%。随着信息化时代的深入，初步估计 2030 年中国数据中心的总能源消耗量预计将在 2019 年基础上翻一番，达到社会总用电量的 1.5% 到 2% 左右」",
+        "grade": "S3",
+        "originator": "中国电子学会《中国数据中心可再生能源应用发展报告（2020）》（2020-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「0.8%～1%」上界。"
+    },
+    {
+      "fact_id": "cie2012-cn-dc-power-share-2030e-lower",
+      "metric_id": "dc_power_share_of_grid",
+      "asserter": "中国电子学会",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc",
+        "label": "中国数据中心"
+      },
+      "value": 1.5,
+      "unit": "%",
+      "bound": "lower",
+      "as_of": "2030E@2020-12",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "f0510643459f6097f58a20235c436c1a5738806c5b1128795a4a031f080a9a8f",
+        "local_file": "6C_2020_2020_中国电子学会中国数_未署名.pdf",
+        "locator": "第 2 页前言：「2019 年，全国数据中心行业耗电总量约为 600 亿 -700 亿千瓦时左右，约占全国全社会用电量的 0.8% ～ 1%。随着信息化时代的深入，初步估计 2030 年中国数据中心的总能源消耗量预计将在 2019 年基础上翻一番，达到社会总用电量的 1.5% 到 2% 左右」",
+        "grade": "S3",
+        "originator": "中国电子学会《中国数据中心可再生能源应用发展报告（2020）》（2020-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「初步估计」2030 年用电较 2019 年翻一番、占社会总用电 1.5% 到 2%，下界；上界见 cie2012-cn-dc-power-share-2030e-upper。"
+    },
+    {
+      "fact_id": "cie2012-cn-dc-power-share-2030e-upper",
+      "metric_id": "dc_power_share_of_grid",
+      "asserter": "中国电子学会",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc",
+        "label": "中国数据中心"
+      },
+      "value": 2.0,
+      "unit": "%",
+      "bound": "upper",
+      "as_of": "2030E@2020-12",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "f0510643459f6097f58a20235c436c1a5738806c5b1128795a4a031f080a9a8f",
+        "local_file": "6C_2020_2020_中国电子学会中国数_未署名.pdf",
+        "locator": "第 2 页前言：「2019 年，全国数据中心行业耗电总量约为 600 亿 -700 亿千瓦时左右，约占全国全社会用电量的 0.8% ～ 1%。随着信息化时代的深入，初步估计 2030 年中国数据中心的总能源消耗量预计将在 2019 年基础上翻一番，达到社会总用电量的 1.5% 到 2% 左右」",
+        "grade": "S3",
+        "originator": "中国电子学会《中国数据中心可再生能源应用发展报告（2020）》（2020-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "1.5%-2% 上界。"
     }
   ]
 }
