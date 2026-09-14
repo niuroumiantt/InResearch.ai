@@ -128088,6 +128088,1524 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "「1GW, Announced 2026」——2026 年宣布的规划容量，状态按官方规划 L2；口径未说明。同页 Prometheus 1 GW 已在库（meta-prometheus-cluster-2026e），未重录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-nvidia-2023",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-nvidia",
+        "label": "CoWoS 需求：NVIDIA"
+      },
+      "value": 53.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2023",
+      "caliber": {
+        "customer": "NVIDIA",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 2 行「NVIDIA」2023 列 = 53（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "53 千片/年。客户名照抄原表。英伟达 2025e/2026e 内含 CoWoS-L 390/550、-S 20/0、-R 15/30 千片，按封装类型的拆分本指标无维度，未单录。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-nvidia-2024",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-nvidia",
+        "label": "CoWoS 需求：NVIDIA"
+      },
+      "value": 200.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "customer": "NVIDIA",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 2 行「NVIDIA」2024 列 = 200（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "200 千片/年。客户名照抄原表。英伟达 2025e/2026e 内含 CoWoS-L 390/550、-S 20/0、-R 15/30 千片，按封装类型的拆分本指标无维度，未单录。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-nvidia-2025e",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-nvidia",
+        "label": "CoWoS 需求：NVIDIA"
+      },
+      "value": 425.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2025E",
+      "caliber": {
+        "customer": "NVIDIA",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 2 行「NVIDIA」2025e 列 = 425（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "425 千片/年。客户名照抄原表。原表无日期，预测年不带 @。英伟达 2025e/2026e 内含 CoWoS-L 390/550、-S 20/0、-R 15/30 千片，按封装类型的拆分本指标无维度，未单录。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-nvidia-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-nvidia",
+        "label": "CoWoS 需求：NVIDIA"
+      },
+      "value": 580.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2026E",
+      "caliber": {
+        "customer": "NVIDIA",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 2 行「NVIDIA」2026e 列 = 580（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "580 千片/年。客户名照抄原表。原表无日期，预测年不带 @。英伟达 2025e/2026e 内含 CoWoS-L 390/550、-S 20/0、-R 15/30 千片，按封装类型的拆分本指标无维度，未单录。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-broadcom-2023",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-broadcom",
+        "label": "CoWoS 需求：Broadcom"
+      },
+      "value": 23.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2023",
+      "caliber": {
+        "customer": "Broadcom",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 6 行「Broadcom」2023 列 = 23（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "23 千片/年。客户名照抄原表。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-broadcom-2024",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-broadcom",
+        "label": "CoWoS 需求：Broadcom"
+      },
+      "value": 68.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "customer": "Broadcom",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 6 行「Broadcom」2024 列 = 68（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "68 千片/年。客户名照抄原表。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-broadcom-2025e",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-broadcom",
+        "label": "CoWoS 需求：Broadcom"
+      },
+      "value": 85.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2025E",
+      "caliber": {
+        "customer": "Broadcom",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 6 行「Broadcom」2025e 列 = 85（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "85 千片/年。客户名照抄原表。原表无日期，预测年不带 @。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-broadcom-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-broadcom",
+        "label": "CoWoS 需求：Broadcom"
+      },
+      "value": 110.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2026E",
+      "caliber": {
+        "customer": "Broadcom",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 6 行「Broadcom」2026e 列 = 110（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "110 千片/年。客户名照抄原表。原表无日期，预测年不带 @。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-amd-2023",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-amd",
+        "label": "CoWoS 需求：AMD"
+      },
+      "value": 7.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2023",
+      "caliber": {
+        "customer": "AMD",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 7 行「AMD」2023 列 = 7（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "7 千片/年。客户名照抄原表。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-amd-2024",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-amd",
+        "label": "CoWoS 需求：AMD"
+      },
+      "value": 40.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "customer": "AMD",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 7 行「AMD」2024 列 = 40（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "40 千片/年。客户名照抄原表。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-amd-2025e",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-amd",
+        "label": "CoWoS 需求：AMD"
+      },
+      "value": 50.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2025E",
+      "caliber": {
+        "customer": "AMD",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 7 行「AMD」2025e 列 = 50（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "50 千片/年。客户名照抄原表。原表无日期，预测年不带 @。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-amd-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-amd",
+        "label": "CoWoS 需求：AMD"
+      },
+      "value": 59.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2026E",
+      "caliber": {
+        "customer": "AMD",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 7 行「AMD」2026e 列 = 59（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "59 千片/年。客户名照抄原表。原表无日期，预测年不带 @。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-xilinx-2023",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-xilinx",
+        "label": "CoWoS 需求：Xilinx"
+      },
+      "value": 3.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2023",
+      "caliber": {
+        "customer": "Xilinx",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 8 行「Xilinx」2023 列 = 3（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "3 千片/年。客户名照抄原表。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-xilinx-2024",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-xilinx",
+        "label": "CoWoS 需求：Xilinx"
+      },
+      "value": 10.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "customer": "Xilinx",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 8 行「Xilinx」2024 列 = 10（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "10 千片/年。客户名照抄原表。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-xilinx-2025e",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-xilinx",
+        "label": "CoWoS 需求：Xilinx"
+      },
+      "value": 10.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2025E",
+      "caliber": {
+        "customer": "Xilinx",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 8 行「Xilinx」2025e 列 = 10（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "10 千片/年。客户名照抄原表。原表无日期，预测年不带 @。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-xilinx-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-xilinx",
+        "label": "CoWoS 需求：Xilinx"
+      },
+      "value": 10.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2026E",
+      "caliber": {
+        "customer": "Xilinx",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 8 行「Xilinx」2026e 列 = 10（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "10 千片/年。客户名照抄原表。原表无日期，预测年不带 @。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-mediatek-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-mediatek",
+        "label": "CoWoS 需求：MediaTek"
+      },
+      "value": 25.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2026E",
+      "caliber": {
+        "customer": "MediaTek",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 9 行「MediaTek」2026e 列 = 25（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "25 千片/年。客户名照抄原表。原表无日期，预测年不带 @。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-aws-alchip-2023",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-aws-alchip",
+        "label": "CoWoS 需求：AWS + Alchip"
+      },
+      "value": 9.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2023",
+      "caliber": {
+        "customer": "AWS + Alchip",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 10 行「AWS + Alchip」2023 列 = 9（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "9 千片/年。客户名照抄原表。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-aws-alchip-2024",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-aws-alchip",
+        "label": "CoWoS 需求：AWS + Alchip"
+      },
+      "value": 16.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "customer": "AWS + Alchip",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 10 行「AWS + Alchip」2024 列 = 16（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "16 千片/年。客户名照抄原表。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-aws-alchip-2025e",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-aws-alchip",
+        "label": "CoWoS 需求：AWS + Alchip"
+      },
+      "value": 5.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2025E",
+      "caliber": {
+        "customer": "AWS + Alchip",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 10 行「AWS + Alchip」2025e 列 = 5（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "5 千片/年。客户名照抄原表。原表无日期，预测年不带 @。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-aws-alchip-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-aws-alchip",
+        "label": "CoWoS 需求：AWS + Alchip"
+      },
+      "value": 40.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2026E",
+      "caliber": {
+        "customer": "AWS + Alchip",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 10 行「AWS + Alchip」2026e 列 = 40（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "40 千片/年。客户名照抄原表。原表无日期，预测年不带 @。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-intel-habana-2023",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-intel-habana",
+        "label": "CoWoS 需求：Intel Habana"
+      },
+      "value": 0.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2023",
+      "caliber": {
+        "customer": "Intel Habana",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 11 行「Intel Habana」2023 列 = 0（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "0 千片/年。客户名照抄原表。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-intel-habana-2024",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-intel-habana",
+        "label": "CoWoS 需求：Intel Habana"
+      },
+      "value": 7.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "customer": "Intel Habana",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 11 行「Intel Habana」2024 列 = 7（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "7 千片/年。客户名照抄原表。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-intel-habana-2025e",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-intel-habana",
+        "label": "CoWoS 需求：Intel Habana"
+      },
+      "value": 9.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2025E",
+      "caliber": {
+        "customer": "Intel Habana",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 11 行「Intel Habana」2025e 列 = 9（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "9 千片/年。客户名照抄原表。原表无日期，预测年不带 @。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-intel-habana-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-intel-habana",
+        "label": "CoWoS 需求：Intel Habana"
+      },
+      "value": 2.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2026E",
+      "caliber": {
+        "customer": "Intel Habana",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 11 行「Intel Habana」2026e 列 = 2（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2 千片/年。客户名照抄原表。原表无日期，预测年不带 @。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-marvell-2023",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-marvell",
+        "label": "CoWoS 需求：Marvell"
+      },
+      "value": 1.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2023",
+      "caliber": {
+        "customer": "Marvell",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 12 行「Marvell」2023 列 = 1（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "1 千片/年。客户名照抄原表。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-marvell-2024",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-marvell",
+        "label": "CoWoS 需求：Marvell"
+      },
+      "value": 18.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "customer": "Marvell",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 12 行「Marvell」2024 列 = 18（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "18 千片/年。客户名照抄原表。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-marvell-2025e",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-marvell",
+        "label": "CoWoS 需求：Marvell"
+      },
+      "value": 65.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2025E",
+      "caliber": {
+        "customer": "Marvell",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 12 行「Marvell」2025e 列 = 65（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "65 千片/年。客户名照抄原表。原表无日期，预测年不带 @。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-marvell-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-marvell",
+        "label": "CoWoS 需求：Marvell"
+      },
+      "value": 25.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2026E",
+      "caliber": {
+        "customer": "Marvell",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 12 行「Marvell」2026e 列 = 25（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "25 千片/年。客户名照抄原表。原表无日期，预测年不带 @。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-guc-2023",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-guc",
+        "label": "CoWoS 需求：GUC"
+      },
+      "value": 1.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2023",
+      "caliber": {
+        "customer": "GUC",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 13 行「GUC」2023 列 = 1（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "1 千片/年。客户名照抄原表。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-guc-2024",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-guc",
+        "label": "CoWoS 需求：GUC"
+      },
+      "value": 1.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "customer": "GUC",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 13 行「GUC」2024 列 = 1（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "1 千片/年。客户名照抄原表。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-guc-2025e",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-guc",
+        "label": "CoWoS 需求：GUC"
+      },
+      "value": 1.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2025E",
+      "caliber": {
+        "customer": "GUC",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 13 行「GUC」2025e 列 = 1（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "1 千片/年。客户名照抄原表。原表无日期，预测年不带 @。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-guc-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-guc",
+        "label": "CoWoS 需求：GUC"
+      },
+      "value": 1.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2026E",
+      "caliber": {
+        "customer": "GUC",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 13 行「GUC」2026e 列 = 1（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "1 千片/年。客户名照抄原表。原表无日期，预测年不带 @。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-others-2023",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-others",
+        "label": "CoWoS 需求：Others"
+      },
+      "value": 20.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2023",
+      "caliber": {
+        "customer": "Others",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 14 行「Others」2023 列 = 20（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "20 千片/年。客户名照抄原表。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-others-2024",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-others",
+        "label": "CoWoS 需求：Others"
+      },
+      "value": 10.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "customer": "Others",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 14 行「Others」2024 列 = 10（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "10 千片/年。客户名照抄原表。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-others-2025e",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-others",
+        "label": "CoWoS 需求：Others"
+      },
+      "value": 19.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2025E",
+      "caliber": {
+        "customer": "Others",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 14 行「Others」2025e 列 = 19（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "19 千片/年。客户名照抄原表。原表无日期，预测年不带 @。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-others-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-others",
+        "label": "CoWoS 需求：Others"
+      },
+      "value": 25.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2026E",
+      "caliber": {
+        "customer": "Others",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 14 行「Others」2026e 列 = 25（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "25 千片/年。客户名照抄原表。原表无日期，预测年不带 @。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-total-demand-2023",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-total-demand",
+        "label": "CoWoS 需求：全部客户"
+      },
+      "value": 117.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2023",
+      "caliber": {
+        "customer": "全部客户",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 15 行「Total demand」2023 列 = 117（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "117 千片/年。原表「Total demand」。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-total-demand-2024",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-total-demand",
+        "label": "CoWoS 需求：全部客户"
+      },
+      "value": 370.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "customer": "全部客户",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 15 行「Total demand」2024 列 = 370（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "370 千片/年。原表「Total demand」。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-total-demand-2025e",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-total-demand",
+        "label": "CoWoS 需求：全部客户"
+      },
+      "value": 669.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2025E",
+      "caliber": {
+        "customer": "全部客户",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 15 行「Total demand」2025e 列 = 669（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "669 千片/年。原表「Total demand」。原表无日期，预测年不带 @。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "ms-cowos-demand-total-demand-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "cowos-demand-total-demand",
+        "label": "CoWoS 需求：全部客户"
+      },
+      "value": 877.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2026E",
+      "caliber": {
+        "customer": "全部客户",
+        "measure": "需求",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「Global CoWoS demand breakdown」第 15 行「Total demand」2026e 列 = 877（表头「(k wafer)」；表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（工作表表注 Source: MS；汇编文件未署名、无日期）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "877 千片/年。原表「Total demand」。原表无日期，预测年不带 @。同表右半为占比，由本列除以合计得出，未录。"
+    },
+    {
+      "fact_id": "gtr2507-cowos-alloc-nvidia-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "Global Technology Research",
+      "entity": {
+        "type": "market",
+        "id": "cowos-alloc-英伟达",
+        "label": "CoWoS 分配：英伟达"
+      },
+      "value": 480.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2026E@2025-07",
+      "caliber": {
+        "customer": "英伟达",
+        "measure": "已分配产能",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「CoWos产能分配」（Source: Global Technology Research，Date: 2025.07.25）第 5 行「英伟达｜48 万片｜42 万片 CoWoS-L（用于 Blackwell & Rubin GPUs）；6 万片 CoWoS-R（用于 Vera CPU）」",
+        "grade": "S4",
+        "originator": "Global Technology Research（工作表标注 Source 与 Date 2025.07.25；汇编文件未署名）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「总 CoWoS 晶圆分配量」按 2026 年全年记，480 千片。估算 2026 年产出约 500 万颗 GPGPU；另在 Amkor 为 Vera CPU 预留近 5 万片 CoWoS-R。供给方原文未写（表内另提 Amkor、ASE 预留），填未注明。"
+    },
+    {
+      "fact_id": "gtr2507-cowos-alloc-amd-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "Global Technology Research",
+      "entity": {
+        "type": "market",
+        "id": "cowos-alloc-AMD",
+        "label": "CoWoS 分配：AMD"
+      },
+      "value": 61.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2026E@2025-07",
+      "caliber": {
+        "customer": "AMD",
+        "measure": "已分配产能",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「CoWos产能分配」（Source: Global Technology Research，Date: 2025.07.25）第 6 行「AMD｜6.1 万片｜5.5 万片 CoWoS-S（用于 MI350 和 MI400 系列 GPGPUs）；0.6 万片 CoWoS-L（用于 Venice CPU）」",
+        "grade": "S4",
+        "originator": "Global Technology Research（工作表标注 Source 与 Date 2025.07.25；汇编文件未署名）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「总 CoWoS 晶圆分配量」按 2026 年全年记，61 千片。估 70 万颗 GPGPU；另在 ASE 为 Venice CPU 预留近 3 万片。供给方原文未写（表内另提 Amkor、ASE 预留），填未注明。"
+    },
+    {
+      "fact_id": "gtr2507-cowos-alloc-aws-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "Global Technology Research",
+      "entity": {
+        "type": "market",
+        "id": "cowos-alloc-AWS",
+        "label": "CoWoS 分配：AWS"
+      },
+      "value": 120.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2026E@2025-07",
+      "caliber": {
+        "customer": "AWS",
+        "measure": "已分配产能",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「CoWos产能分配」（Source: Global Technology Research，Date: 2025.07.25）第 7 行「AWS｜12 万片｜用于 Tranium 2.5 和 Tranium 3 ASIC 芯片」",
+        "grade": "S4",
+        "originator": "Global Technology Research（工作表标注 Source 与 Date 2025.07.25；汇编文件未署名）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「总 CoWoS 晶圆分配量」按 2026 年全年记，120 千片。估 240 万张 Trainium 加速卡。供给方原文未写（表内另提 Amkor、ASE 预留），填未注明。"
+    },
+    {
+      "fact_id": "gtr2507-cowos-alloc-marvell-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "Global Technology Research",
+      "entity": {
+        "type": "market",
+        "id": "cowos-alloc-Marvell",
+        "label": "CoWoS 分配：Marvell"
+      },
+      "value": 150.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2026E@2025-07",
+      "caliber": {
+        "customer": "Marvell",
+        "measure": "已分配产能",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「CoWos产能分配」（Source: Global Technology Research，Date: 2025.07.25）第 8 行「Marvell｜15 万片｜用于微软 MAIA2 ASIC 芯片」",
+        "grade": "S4",
+        "originator": "Global Technology Research（工作表标注 Source 与 Date 2025.07.25；汇编文件未署名）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「总 CoWoS 晶圆分配量」按 2026 年全年记，150 千片。估 24 万张 MAIA2 加速卡。原表 Marvell 分配量高于 AMD 与博通，照录。供给方原文未写（表内另提 Amkor、ASE 预留），填未注明。"
+    },
+    {
+      "fact_id": "gtr2507-cowos-alloc-broadcom-2026e",
+      "metric_id": "cowos_customer_allocation",
+      "asserter": "Global Technology Research",
+      "entity": {
+        "type": "market",
+        "id": "cowos-alloc-博通",
+        "label": "CoWoS 分配：博通"
+      },
+      "value": 140.0,
+      "unit": "千片",
+      "bound": "point",
+      "as_of": "2026E@2025-07",
+      "caliber": {
+        "customer": "博通",
+        "measure": "已分配产能",
+        "period": "年",
+        "supplier": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3306cd4980e55d82f2c30c637f301be8f0b07d339b272f676679b74754157d38",
+        "local_file": "CoWos产能分配.xlsx",
+        "locator": "工作表「CoWos产能分配」（Source: Global Technology Research，Date: 2025.07.25）第 9 行「博通｜14 万片｜10.7 万片 CoWoS-S（用于 TPU V6P 和 TPU V7P）；3.3 万片 CoWoS-L（用于 MTIA2）」",
+        "grade": "S4",
+        "originator": "Global Technology Research（工作表标注 Source 与 Date 2025.07.25；汇编文件未署名）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「总 CoWoS 晶圆分配量」按 2026 年全年记，140 千片。估 170 万张 TPU + 46 万张 MTIA2；若联发科原分配的 29 万片转给博通，谷歌 TPU 可达 220 万张。供给方原文未写（表内另提 Amkor、ASE 预留），填未注明。"
     }
   ]
 }
