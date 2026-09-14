@@ -158252,6 +158252,39 @@
       "corroboration": "待交叉验证",
       "notes": "ODCC 调研预测，原文「将达到近 200 亿元」，按上界记。市场集中度：华为、维谛、科华、山特、科士达五家合计份额超过 50%。vintage 按报告编号记 2024-05。",
       "asserter": "ODCC"
+    },
+    {
+      "fact_id": "caict2409-aidc-eval-cn-ai-compute-2023",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-national-compute",
+        "label": "中国算力规模（全国）"
+      },
+      "value": 70.0,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "混合/未注明",
+        "area": "全国",
+        "status": "在用",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6e1d5a3f40cc3200d38fa07672477df857c8afec40640708fbb7bf4970552fe7",
+        "local_file": "6C_2024_2024_智算中心综合评价报_未署名.pdf",
+        "locator": "PDF 第 11–12 页（页脚 5）：「截至 2023 年底，我国智能算力规模达到 70EFLOPS，增速超过 70%，智能算力占算力总规模比重超过 30%」",
+        "grade": "S3",
+        "originator": "中国信息通信研究院云计算与大数据研究所《智算中心综合评价报告（2024 年）》（2024-09）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "信通院口径，原文未注明精度。**与 IDC 同年 FP16 口径 416.7 EFLOPS（idc2025-cn-ai-compute-fp16-2023）差约 6 倍**，精度与统计范围不同（信通院按在用设备折算，IDC 按 FP16 计），不可直接比。同文：智能算力占总算力比重超过 30%，与信通院 2023 年总算力 230 EFLOPS（sqt2025-caict-cn-compute-total-2023）自洽。",
+      "asserter": "中国信通院"
     }
   ]
 }
