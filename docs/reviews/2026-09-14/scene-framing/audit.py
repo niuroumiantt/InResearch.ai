@@ -18,7 +18,7 @@ def main():
     after={p:(ROOT/p).read_bytes() for p in paths if (ROOT/p).is_file()}
     inherited=set(SCOPE.get('inherited',[])); planned=set(SCOPE['changed'])
     refs=[]
-    terms=['scene-view','visibleBounds','fitPerspective','createViewport','mountSceneView','sceneView','sceneModels','createPartInspector','inspector.','objects:()']
+    terms=['scene-view','visibleBounds','fitPerspective','createViewport','mountSceneView','sceneView','sceneModels','createPartInspector','inspector.','objects:()','barren_cohorts','.cohort(','.is_cohort(']
     for p,body in sorted(after.items()):
         if p.startswith(('docs/reviews/','docs/archive/','web/assets/vendor/')) or p=='framework/repository_manifest.json':continue
         try:lines=body.decode().splitlines()
@@ -27,6 +27,7 @@ def main():
             for term in terms:
                 if term in line:
                     result='migrated shared view/ownership consumer' if p.startswith('web/') else 'actual regression consumer; execution separately recorded' if p.startswith('tests/') else 'current rule/operational reference'
+                    if term in ['barren_cohorts','.cohort(','.is_cohort(']:result='inherited PR 180 numeric-processing queue consumer; original behavior retained, not framing verification'
                     refs.append([term,p,n,line.strip()[:800],result])
     table('public-consumers.csv',['implementation','consumer','line','reference','migration_result'],refs)
     table('file-results.csv',['path','action','target','reason'],[[p,'removed' if p not in after else 'added' if p not in before else 'modified' if before[p]!=after[p] else 'retained',p,'framing responsibility or verification migrated' if p in planned else 'inherited upstream change; preserved' if p in inherited else 'dated audit evidence' if p.startswith(str(OUT.relative_to(ROOT))) else 'outside bounded change; preserved'] for p in sorted(set(before)|set(after))])

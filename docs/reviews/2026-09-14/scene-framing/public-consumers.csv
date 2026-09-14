@@ -1,4 +1,5 @@
 implementation,consumer,line,reference,migration_result
+barren_cohorts,docs/DECISIONS.md,330,最后（`barren_cohorts`），`queue` 里报出来。,"inherited PR 180 numeric-processing queue consumer; original behavior retained, not framing verification"
 inspector.,docs/REPOSITORY_REGISTER.md,1062,| `web/components/part-inspector.js` | 运行代码 |,current rule/operational reference
 scene-view,docs/REPOSITORY_REGISTER.md,1067,| `web/components/scene-view.js` | 运行代码 |,current rule/operational reference
 scene-view,framework/05_interface_system.md,107,scene-view 是园区、机柜、比较台和部件查看器的共享视口/适配实现。画布以实际 CSS 尺寸设置相机比例和渲染缓冲，仅尺寸改变时重设；主场景画布避开页面明确提供的固定导航。页面明确主体集合：园区以建筑/设备聚焦，land 底板保留拾取与研究档案但作为场地背景；机柜包含全部研究网格。主体与当前已采用模型提供世界坐标边界，灯光、标签及不可见祖先不扩张边界。相机距离按包围球与较窄的视场角计算，旋转预览仍完整；空/非有限边界不能移动相机。雾化范围随适配视距更新，不允许正确投影的模型被旧雾区完全遮没。,current rule/operational reference
@@ -7,6 +8,13 @@ inspector.,framework/current_state.json,305,"""web/components/part-inspector.js"
 scene-view,framework/current_state.json,323,"""web/components/scene-view.js"",",current rule/operational reference
 scene-view,framework/current_state.json,575,"""web/components/scene-view.js"",",current rule/operational reference
 inspector.,framework/current_state.json,576,"""web/components/part-inspector.js"",",current rule/operational reference
+barren_cohorts,src/inresearch/interfaces/deep_read.py,112,barren = app.barren_cohorts(),"inherited PR 180 numeric-processing queue consumer; original behavior retained, not framing verification"
+.cohort(,src/inresearch/interfaces/deep_read.py,114,"waiting = sum(1 for r in pool if app.cohort(r) == (org, year, doc_type))","inherited PR 180 numeric-processing queue consumer; original behavior retained, not framing verification"
+barren_cohorts,src/inresearch/workflow/deep_read.py,125,def barren_cohorts(self):,"inherited PR 180 numeric-processing queue consumer; original behavior retained, not framing verification"
+.cohort(,src/inresearch/workflow/deep_read.py,140,key = self.cohort(row),"inherited PR 180 numeric-processing queue consumer; original behavior retained, not framing verification"
+.is_cohort(,src/inresearch/workflow/deep_read.py,144,if read >= self.BARREN_COHORT and not yielded and self.is_cohort(key):,"inherited PR 180 numeric-processing queue consumer; original behavior retained, not framing verification"
+barren_cohorts,src/inresearch/workflow/deep_read.py,155,barren = self.barren_cohorts(),"inherited PR 180 numeric-processing queue consumer; original behavior retained, not framing verification"
+.cohort(,src/inresearch/workflow/deep_read.py,158,"self.cohort(r) in barren,","inherited PR 180 numeric-processing queue consumer; original behavior retained, not framing verification"
 sceneModels,tests/model_assets.cjs,36,"const tail='globalThis.__assetsTest={scene,sceneModels'+(new URL(r.request().url()).pathname.includes('rack')?',rack':'')+'};\n</script>\n</body>';",actual regression consumer; execution separately recorded
 sceneModels,tests/model_assets.cjs,46,response='fail';await page.evaluate(()=>__assetsTest.sceneModels.reload());,actual regression consumer; execution separately recorded
 sceneModels,tests/model_assets.cjs,78,"response=[entry('b.glb',scene),entry('bad.glb',scene)];await page.evaluate(()=>__assetsTest.sceneModels.reload());",actual regression consumer; execution separately recorded
@@ -47,6 +55,11 @@ fitPerspective,tests/scene_framing.cjs,128,"check(fitPerspective({camera,bounds}
 createViewport,tests/scene_framing.cjs,130,"let sizes=0;const viewport=createViewport({canvas,camera,resize:()=>sizes++});viewport.sync();viewport.sync();check(sizes===1,'same size repeatedly resized buffer');",actual regression consumer; execution separately recorded
 mountSceneView,tests/scene_framing.cjs,134,"const view=mountSceneView({canvas,camera,controls,objects:()=>[mesh],resize:()=>{},headers:[],button});",actual regression consumer; execution separately recorded
 objects:(),tests/scene_framing.cjs,134,"const view=mountSceneView({canvas,camera,controls,objects:()=>[mesh],resize:()=>{},headers:[],button});",actual regression consumer; execution separately recorded
+barren_cohorts,tests/unit/test_deep_read.py,439,"self.assertEqual(list(app.barren_cohorts()), [('OCP', '2025', 'presentation')])","inherited PR 180 numeric-processing queue consumer; original behavior retained, not framing verification"
+barren_cohorts,tests/unit/test_deep_read.py,444,"self.assertEqual(app.barren_cohorts(), {})","inherited PR 180 numeric-processing queue consumer; original behavior retained, not framing verification"
+barren_cohorts,tests/unit/test_deep_read.py,451,"self.assertEqual(app.barren_cohorts(), {})","inherited PR 180 numeric-processing queue consumer; original behavior retained, not framing verification"
+barren_cohorts,tests/unit/test_deep_read.py,467,"self.assertEqual(app.barren_cohorts(), {})","inherited PR 180 numeric-processing queue consumer; original behavior retained, not framing verification"
+barren_cohorts,tests/unit/test_deep_read.py,473,"self.assertNotIn(('OCP', '2024', 'presentation'), app.barren_cohorts())","inherited PR 180 numeric-processing queue consumer; original behavior retained, not framing verification"
 objects:(),web/components/model-assets.js,145,"return {reload:slot.reload, ready:slot.ready, objects:() => currentObjects.slice(), dispose() {",migrated shared view/ownership consumer
 inspector.,web/components/part-dossier.js,1,/* One dossier owns its DOM; the scene supplies data and its inspector. */,migrated shared view/ownership consumer
 inspector.,web/components/part-dossier.js,23,"close.addEventListener(""click"", () => { el.style.display = ""none""; inspector.hide(); });",migrated shared view/ownership consumer

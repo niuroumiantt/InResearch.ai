@@ -19,3 +19,7 @@
 - src/inresearch/interfaces/deep_read.py
 - src/inresearch/workflow/deep_read.py
 - tests/unit/test_deep_read.py
+
+整合时仅生成清单有冲突：从本分支清单结构重建，再按合并后的全部文件/记录重新刷新，非生成文件的上游字节保留。公共方法消费者补记在本批 CSV，测试按整合后的完整代码重跑。
+
+第一次整合全量测试在运行期间恰逢本任务拆分公共消费者 CSV 行，触发源码不变校验失败；已核对其前后 SHA 恰为 public-contracts.csv 的 staged/working 版本。该次不记通过。冻结全部工作树编辑并刷新清单后重跑，结果另记。

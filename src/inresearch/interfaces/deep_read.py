@@ -109,6 +109,11 @@ def cmd_queue(app, a):
                                                  and policy.restricted(r)),
                       'mb': round(sum(r.get('size', 0) for r in pool) / 1e6)},
                      ensure_ascii=False))
+    barren = app.barren_cohorts()
+    for (org, year, doc_type), read in sorted(barren.items(), key=lambda kv: -kv[1]):
+        waiting = sum(1 for r in pool if app.cohort(r) == (org, year, doc_type))
+        print('  ↓ 已降权：%s %s %s——读过 %d 份一条未出，队列里还有 %d 份排在同组之后'
+              % (org, year, doc_type, read, waiting))
     for module, n in by_module.most_common():
         print('  %-8s 待处理 %-4d 已有事实 %d' % (module, n, covered.get(module, 0)))
     if a.grep:

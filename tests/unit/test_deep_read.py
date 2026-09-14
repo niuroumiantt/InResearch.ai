@@ -3,6 +3,7 @@ import hashlib
 import json
 import random
 import re
+from collections import Counter
 from contextlib import redirect_stdout, ExitStack
 from pathlib import Path
 import tempfile
@@ -403,6 +404,73 @@ class QueueOutputTests(unittest.TestCase):
         report = json.loads(self.queue([L1_ROW]).splitlines()[0])
         self.assertEqual(report['unattributed'], 1)
         self.assertEqual(report['eligible_unprocessed'], 1)
+
+
+class BarrenCohortTests(unittest.TestCase):
+    """分数答的是「这事重不重要」，答不了「这份里有没有数」。
+
+    一次 OCP 2025 会议的九份胶片与讨论环节粗筛都是 7 分，读完全是 0 条，
+    却因为分数高排在前面，每轮吃掉一半名额。降权的判据只能是已经发生的事：
+    同一家、同一年、同一体裁读过几份、出了几条。
+    """
+
+    def rows(self, *specs):
+        out = {}
+        for i, (org, year, doc_type) in enumerate(specs):
+            sha = '%064x' % i
+            out[sha] = {**L1_ROW, 'sha256': sha, 'org': org, 'year': year,
+                        'doc_type': doc_type, 'score': 7, 'status': 'ok',
+                        'rel': '%s-%d.pdf' % (org, i)}
+        return out
+
+    def app(self, rows, processed=(), produced=()):
+        app = make_app()
+        app.all_results = lambda: rows
+        app.processed_documents = lambda: set(processed)
+        app.load_facts = lambda: {'records': [
+            {'evidence': {'sha256': sha}} for sha in produced]}
+        app.coverage = lambda: Counter()
+        return app
+
+    def test_three_barren_siblings_demote_the_rest(self):
+        rows = self.rows(*[('OCP', '2025', 'presentation')] * 5)
+        shas = list(rows)
+        app = self.app(rows, processed=shas[:3])
+        self.assertEqual(list(app.barren_cohorts()), [('OCP', '2025', 'presentation')])
+
+    def test_two_are_not_yet_a_pattern(self):
+        rows = self.rows(*[('OCP', '2025', 'presentation')] * 5)
+        app = self.app(rows, processed=list(rows)[:2])
+        self.assertEqual(app.barren_cohorts(), {})
+
+    def test_one_yield_clears_the_whole_cohort(self):
+        """降权要能自己纠正——出了一条数，这批就不再算空。"""
+        rows = self.rows(*[('OCP', '2025', 'presentation')] * 5)
+        shas = list(rows)
+        app = self.app(rows, processed=shas[:3], produced=[shas[0]])
+        self.assertEqual(app.barren_cohorts(), {})
+
+    def test_a_demoted_row_is_still_in_the_queue_just_last(self):
+        rows = self.rows(*([('OCP', '2025', 'presentation')] * 4
+                           + [('科智咨询', '2025', 'report')]))
+        shas = list(rows)
+        app = self.app(rows, processed=shas[:3])
+        order = app.eligible(min_score=0)
+        self.assertEqual(len(order), 2, '降权不是剔除，两条都还在队列里')
+        self.assertEqual(order[0]['org'], '科智咨询')
+        self.assertEqual(order[-1]['org'], 'OCP')
+
+    def test_a_cohort_missing_org_or_year_is_never_demoted(self):
+        """出处未知的材料凑不成一个批次，不能拿「未知」把它们归成一堆压掉。"""
+        rows = self.rows(*[('未知', '未知', 'presentation')] * 5)
+        app = self.app(rows, processed=list(rows)[:3])
+        self.assertEqual(app.barren_cohorts(), {})
+
+    def test_another_year_of_the_same_house_is_untouched(self):
+        rows = self.rows(*([('OCP', '2025', 'presentation')] * 4
+                           + [('OCP', '2024', 'presentation')]))
+        app = self.app(rows, processed=list(rows)[:3])
+        self.assertNotIn(('OCP', '2024', 'presentation'), app.barren_cohorts())
 
 
 class EmptyBatchTests(unittest.TestCase):

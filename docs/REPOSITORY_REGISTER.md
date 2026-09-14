@@ -285,10 +285,10 @@
 | `docs/reviews/2026-09-14/scene-framing/file-plan.csv` | rows | 738 |
 | `docs/reviews/2026-09-14/scene-framing/file-results.csv` | rows | 752 |
 | `docs/reviews/2026-09-14/scene-framing/legacy-removal.csv` | rows | 6 |
-| `docs/reviews/2026-09-14/scene-framing/public-consumers.csv` | rows | 109 |
-| `docs/reviews/2026-09-14/scene-framing/public-contracts.csv` | rows | 7 |
+| `docs/reviews/2026-09-14/scene-framing/public-consumers.csv` | rows | 122 |
+| `docs/reviews/2026-09-14/scene-framing/public-contracts.csv` | rows | 10 |
 | `docs/reviews/2026-09-14/scene-framing/scope.json` | changed | 21 |
-| `docs/reviews/2026-09-14/scene-framing/scope.json` | inherited | 12 |
+| `docs/reviews/2026-09-14/scene-framing/scope.json` | inherited | 19 |
 | `framework/bom.json` | layers | 5 |
 | `framework/bom.json` | parts | 46 |
 | `framework/current_state.json` | policies | 24 |
@@ -303,7 +303,7 @@
 | `framework/indicators.json` | indicators | 44 |
 | `framework/interface_manifest.json` | static_pages | 13 |
 | `framework/interface_manifest.json` | template_fragments | 4 |
-| `framework/metrics.json` | metrics | 297 |
+| `framework/metrics.json` | metrics | 298 |
 | `framework/modules.json` | modules | 15 |
 | `framework/research_graph.json` | views | 5 |
 | `framework/research_graph.json` | objects | 118 |
