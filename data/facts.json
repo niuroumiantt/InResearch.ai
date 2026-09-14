@@ -134809,6 +134809,40 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "162 亿美元，2024-2029 CAGR 46.8%；IDC 做出时点未写。"
+    },
+    {
+      "fact_id": "nv2510-vr-nvl144-cpx-max-inlet-temp",
+      "metric_id": "dlc_water_temperature",
+      "asserter": "英伟达",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-vr-nvl144-cpx-tray",
+        "label": "NVIDIA Vera Rubin NVL144 CPX 计算托盘"
+      },
+      "value": 45.0,
+      "unit": "°C",
+      "bound": "upper",
+      "as_of": "2025-10",
+      "caliber": {
+        "position": "供水",
+        "loop": "二次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "region": "Global",
+        "basis": "厂商参考设计"
+      },
+      "evidence": {
+        "sha256": "b434a2174487f0b9da63171082465650fe6af958b4cf5e79c9317289116d709b",
+        "local_file": "OCP2025_DAY ONE MONDAY - 3.NVIDIA.pdf",
+        "locator": "PDF 第 9 页「VR NVL144 CPX Compute Tray」：「OCP MGX Compute Tray｜100% Liquid Cooled｜45˚C Max. Inlet Temp」",
+        "grade": "S2",
+        "originator": "英伟达（Ian Buck《Shaping the Future of Open Infrastructure for AI》，OCP Global Summit 2025 主题演讲）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "演讲未写日期，as_of 取 OCP Global Summit 2025 召开月 2025-10",
+      "corroboration": "待交叉验证",
+      "notes": "「45˚C Max. Inlet Temp」按上界记，是计算托盘液冷入口温度（二次侧供液）上限。100% 液冷。页 4 另称 45°C 为参考设计冷却条件。"
     }
   ]
 }
