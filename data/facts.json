@@ -133403,6 +133403,100 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "3 年 CAGR 约 19%。是否含加密货币原文未写。国金据此在谨慎/中性/乐观三情景下预测 2035 年 1,544.38/2,321.05/3,911.11 TWh，scenario 枚举无对应，未录。"
+    },
+    {
+      "fact_id": "caict-gc2025-miit-racks-inuse-2024",
+      "metric_id": "dc_rack_total",
+      "asserter": "工信部",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc",
+        "label": "中国数据中心"
+      },
+      "value": 900.0,
+      "unit": "万标准机架",
+      "bound": "lower",
+      "as_of": "2024-12",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "evidence": {
+        "sha256": "59947f86430a799f8fd7aaab79387bc96aad825fa7a7c9e480bc7954feb20e88",
+        "local_file": "【报告】中国信通院：绿色算力发展研究报告（2025年）.pdf",
+        "locator": "PDF 第 30 页（报告页码 23）：「截至2024 年底，全国在用数据中心标准机架数超过 900 万，算力规模达到 280EFLOPS……21，位居全球前列。全国数据中心平均电能利用效率（PUE）降至 1.46，超 140 个数据中心绿色低碳等级达到 4A 级以上22」；脚注 21、22「数据来源：工业和信息化部」",
+        "grade": "S3",
+        "originator": "工信部（经中国信通院产业与规划研究所、内蒙古和林格尔新区管委会《绿色算力发展研究报告（2025 年）》（2025-07）转引，脚注 21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「超过 900 万」按下界记。库内同一断言者 miit-racks-inuse-2024 为「超过 880 万」（同为 2024 年底），两处取整不同，未核哪次发布；此处不视为修订也不视为争议，请核。"
+    },
+    {
+      "fact_id": "caict-gc2025-miit-cn-avg-pue-2024",
+      "metric_id": "dc_pue",
+      "asserter": "工信部",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc",
+        "label": "中国数据中心"
+      },
+      "value": 1.46,
+      "unit": "比值",
+      "bound": "point",
+      "as_of": "2024-12",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "evidence": {
+        "sha256": "59947f86430a799f8fd7aaab79387bc96aad825fa7a7c9e480bc7954feb20e88",
+        "local_file": "【报告】中国信通院：绿色算力发展研究报告（2025年）.pdf",
+        "locator": "PDF 第 30 页（报告页码 23）：「截至2024 年底，全国在用数据中心标准机架数超过 900 万，算力规模达到 280EFLOPS……21，位居全球前列。全国数据中心平均电能利用效率（PUE）降至 1.46，超 140 个数据中心绿色低碳等级达到 4A 级以上22」；脚注 21、22「数据来源：工业和信息化部」",
+        "grade": "S3",
+        "originator": "工信部（经中国信通院产业与规划研究所、内蒙古和林格尔新区管委会《绿色算力发展研究报告（2025 年）》（2025-07）转引，脚注 22）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "全国（在用）数据中心平均 PUE 1.46。库内伯恩斯坦 2024 年 1.46（bern2025-cn-avg-pue-2024，第三方推算）同值，可能同源。同段 246 座国家绿色数据中心平均 PUE 约 1.2 未录。"
+    },
+    {
+      "fact_id": "caict-gc2025-cn-dc-co2-2024",
+      "metric_id": "dc_carbon_footprint",
+      "asserter": "中国信通院",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc",
+        "label": "中国数据中心"
+      },
+      "value": 85.9,
+      "unit": "百万吨 CO₂e",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "未注明",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "evidence": {
+        "sha256": "59947f86430a799f8fd7aaab79387bc96aad825fa7a7c9e480bc7954feb20e88",
+        "local_file": "【报告】中国信通院：绿色算力发展研究报告（2025年）.pdf",
+        "locator": "PDF 第 39 页（报告页码 32）：「单位算力电力消耗约为 5.9 kWh/EFLOPS，数据中心碳排放总量为 0.859 亿吨25」；脚注 25「数据来源：中国信息通信研究院测算」",
+        "grade": "S2",
+        "originator": "中国信通院产业与规划研究所、内蒙古和林格尔新区管委会《绿色算力发展研究报告（2025 年）》（2025-07）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "0.859 亿吨 = 85.9 百万吨。原文写「碳排放总量」未写 CO₂ 还是 CO₂e，也未写排放因子。"
     }
   ]
 }
