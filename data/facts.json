@@ -136213,6 +136213,67 @@
       "corroboration": "待交叉验证",
       "notes": "运营方自报的年化运行 PUE，部分负载工况；满载时称 <1.03（按上界另可记，未录以免与部分负载值混读）。as_of 取图中数据窗口末月 2025-08。原文未写站点所在地，region 记未披露——Denvr 总部在加拿大，但模块化数据中心部署地原文未说明，不猜。同图 Uptime 全球均值 1.58、按容量加权 1.47 未注明调查年份，未录。",
       "asserter": "Denvr Dataworks"
+    },
+    {
+      "fact_id": "alfalaval-ocp25-start-campus-sines-it-capacity",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "site",
+        "id": "start-campus-sines",
+        "label": "Start Campus Sines 园区（葡萄牙）"
+      },
+      "value": 1200.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L5",
+        "region": "EU"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "014c2ad43c5a0298d13e6ccbb92313c920aac67f20a548e819133785526683d6",
+        "local_file": "5B_2022_7502OCPAligned_未署名.pdf",
+        "locator": "第 13 页「Potential site example: Start Campus」：「1.2 GW IT capacity over 6 buildings, the largest colocation site in Europe with fully secured grid access」「2024 September SIN01 RFS date (12 MW), with +2 MW in Nov’24 and expansion to 31 MW by YE-25」「€8.5 billion equity total project investment by 2030」「1.1 PUE」「0 WUE」",
+        "grade": "S2",
+        "originator": "Alfa Laval（Gemma Reeves 等，OCP 演讲《OCP-Aligned Seawater Cooling and Heat Reuse》）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文未写讲稿日期；页面把「+2 MW in Nov’24」写成已发生、「31 MW by YE-25」写成将来，推定为 2025 年内材料，as_of 记 2025。",
+      "corroboration": "待交叉验证",
+      "notes": "6 栋楼合计 1.2GW IT 容量，原文称电网接入已全部落实（fully secured grid access），按 L5 电力确定记；这是园区规划总量，已投运的只有 SIN01 一期（见 alfalaval-ocp25-start-campus-sin01-rfs）。项目总投资至 2030 年 85 亿欧元（股权口径，无对应指标）。PUE 1.1、WUE 0（海水冷却只取用不消耗）为运营方宣称，未写年均或设计工况，dc_pue.period 无未注明未录。",
+      "asserter": "Start Campus"
+    },
+    {
+      "fact_id": "alfalaval-ocp25-start-campus-sin01-rfs",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "site",
+        "id": "start-campus-sines-sin01",
+        "label": "Start Campus Sines SIN01 一期"
+      },
+      "value": 12.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "EU"
+      },
+      "as_of": "2024-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "014c2ad43c5a0298d13e6ccbb92313c920aac67f20a548e819133785526683d6",
+        "local_file": "5B_2022_7502OCPAligned_未署名.pdf",
+        "locator": "第 13 页「Potential site example: Start Campus」：「1.2 GW IT capacity over 6 buildings, the largest colocation site in Europe with fully secured grid access」「2024 September SIN01 RFS date (12 MW), with +2 MW in Nov’24 and expansion to 31 MW by YE-25」「€8.5 billion equity total project investment by 2030」「1.1 PUE」「0 WUE」",
+        "grade": "S2",
+        "originator": "Alfa Laval（Gemma Reeves 等，OCP 演讲《OCP-Aligned Seawater Cooling and Heat Reuse》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "SIN01 于 2024-09 交付可用（RFS）12MW，2024-11 再增 2MW，计划 2025 年底扩至 31MW（目标未录）。MW 未注明 IT 还是设施口径。",
+      "asserter": "Start Campus"
     }
   ]
 }
