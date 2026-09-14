@@ -136274,6 +136274,70 @@
       "corroboration": "待交叉验证",
       "notes": "SIN01 于 2024-09 交付可用（RFS）12MW，2024-11 再增 2MW，计划 2025 年底扩至 31MW（目标未录）。MW 未注明 IT 还是设施口径。",
       "asserter": "Start Campus"
+    },
+    {
+      "fact_id": "rnm6098020-global-lc-market-2024",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "market",
+        "id": "global-lc-market-rnm-6098020",
+        "label": "全球液冷市场（Research and Markets 报告 6098020 口径）"
+      },
+      "value": 53.8,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "未注明",
+        "currency": "美元",
+        "cooling_route": "未注明",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "aec248fd34e0c0e862dec9da517c295801391c075733a767d47968655fb5f721",
+        "local_file": "5B_2022_7592FromFansto_未署名.pdf",
+        "locator": "第 8 页「Revenue Market Forecast」：「$5.38B」（2024）「$17.77B」（2030）「Market forecast to grow at a CAGR of 21.6%」，出处「https://www.researchandmarkets.com/reports/6098020」",
+        "grade": "S3",
+        "originator": "OCP 液冷专场演讲《From Fans to Fluid: The Critical Need For Liquid Cooling》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "53.8 亿美元 = 5.38B。Research and Markets 报告 6098020 的液冷市场收入，演讲页未说明是数据中心液冷还是全行业液冷、也未说明含哪些产品，market_scope 记未注明；与库内其他液冷市场规模数不可比。2024→2030 年 CAGR 21.6%（5.38×1.216^6≈17.6，与 17.77 基本吻合）。报告发布时间页上未写，2030E 不带 @。",
+      "asserter": "Research and Markets"
+    },
+    {
+      "fact_id": "rnm6098020-global-lc-market-2030e",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "market",
+        "id": "global-lc-market-rnm-6098020",
+        "label": "全球液冷市场（Research and Markets 报告 6098020 口径）"
+      },
+      "value": 177.7,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "未注明",
+        "currency": "美元",
+        "cooling_route": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2030E",
+      "bound": "point",
+      "evidence": {
+        "sha256": "aec248fd34e0c0e862dec9da517c295801391c075733a767d47968655fb5f721",
+        "local_file": "5B_2022_7592FromFansto_未署名.pdf",
+        "locator": "第 8 页「Revenue Market Forecast」：「$5.38B」（2024）「$17.77B」（2030）「Market forecast to grow at a CAGR of 21.6%」，出处「https://www.researchandmarkets.com/reports/6098020」",
+        "grade": "S3",
+        "originator": "OCP 液冷专场演讲《From Fans to Fluid: The Critical Need For Liquid Cooling》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "177.7 亿美元 = 17.77B。Research and Markets 报告 6098020 的液冷市场收入，演讲页未说明是数据中心液冷还是全行业液冷、也未说明含哪些产品，market_scope 记未注明；与库内其他液冷市场规模数不可比。2024→2030 年 CAGR 21.6%（5.38×1.216^6≈17.6，与 17.77 基本吻合）。报告发布时间页上未写，2030E 不带 @。",
+      "asserter": "Research and Markets"
     }
   ]
 }
