@@ -136338,6 +136338,38 @@
       "corroboration": "待交叉验证",
       "notes": "177.7 亿美元 = 17.77B。Research and Markets 报告 6098020 的液冷市场收入，演讲页未说明是数据中心液冷还是全行业液冷、也未说明含哪些产品，market_scope 记未注明；与库内其他液冷市场规模数不可比。2024→2030 年 CAGR 21.6%（5.38×1.216^6≈17.6，与 17.77 基本吻合）。报告发布时间页上未写，2030E 不带 @。",
       "asserter": "Research and Markets"
+    },
+    {
+      "fact_id": "promersion-ocp26-global-coldplate-market-2025-lower",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "market",
+        "id": "global-coldplate-liquid-cooling",
+        "label": "全球冷板液冷市场（Promersion 口径）"
+      },
+      "value": 50.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "某一路线",
+        "currency": "美元",
+        "cooling_route": "冷板式",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "e0ef05b77128e733c7c708bae4d640586d31ba4231a3d519d21b8d9131ce120b",
+        "local_file": "5B_2022_CoolingEnviron_未署名.pdf",
+        "locator": "第 13 页「GLOBAL LIQUID COOLING MARKET FORECAST (IN BILLIONS OF US$)」（© Promersion B.V. 2026）标注：「2025 Cold plate break through $5B」「Cold plate market quadrupled compared to 2023」「2024 Q3: Cold Plate Inflection point hits hard with NVIDIA GPUs」",
+        "grade": "S3",
+        "originator": "Promersion（Rolf Brink）于 OCP 液冷专场《Cooling Environments: Industry Analytics, Project Progress and Cold Plate Developments》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「break through $5B」按下界记 50 亿美元；称较 2023 年翻了两番。同页「Immersion reach $0.8B」因抽取文本版面错位无法确定对应年份，未录。同稿第 4 页 Promersion 全球数据中心市场规模 2025–2035 CAGR 15.7%，柱值为图形未抽出。",
+      "asserter": "Promersion"
     }
   ]
 }
