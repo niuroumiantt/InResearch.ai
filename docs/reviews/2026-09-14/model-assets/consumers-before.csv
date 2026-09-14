@@ -1,0 +1,78 @@
+path,line,reference,plan
+docs/REPOSITORY_REGISTER.md,5,现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。,migrate
+docs/REPOSITORY_REGISTER.md,283,| `framework/interface_manifest.json` | static_pages | 13 |,migrate
+docs/REPOSITORY_REGISTER.md,284,| `framework/interface_manifest.json` | template_fragments | 4 |,migrate
+docs/REPOSITORY_REGISTER.md,313,| `web/assets/models/manifest.json` | models | 1 |,migrate
+docs/REPOSITORY_REGISTER.md,752,| `framework/interface_manifest.json` | 项目配置 |,migrate
+docs/REPOSITORY_REGISTER.md,770,| `framework/repository_manifest.json` | 生成物 |,migrate
+docs/REPOSITORY_REGISTER.md,808,| `src/inresearch/adapters/asset_check.py` | 运行代码 |,migrate
+docs/REPOSITORY_REGISTER.md,809,| `src/inresearch/adapters/asset_compare.py` | 运行代码 |,migrate
+docs/REPOSITORY_REGISTER.md,810,| `src/inresearch/adapters/asset_download.py` | 运行代码 |,migrate
+docs/REPOSITORY_REGISTER.md,965,| `web/assets/models/manifest.json` | 静态资源 |,migrate
+docs/REPOSITORY_REGISTER.md,988,| `web/assets/vendor/GLTFLoader.js` | 静态资源 |,migrate
+docs/local_reader/M4_PREFLIGHT.md,7,- `manifest.jsonl` / `manifest.csv`：逐文件的类型、路由、优先级和理由；,retain unrelated manifest / CLI / historical diagnostic
+docs/local_setup/ADD_3D_MODEL.md,43,"编辑 `assets/models/manifest.json`，把 `""models"": []` 改成：",migrate
+docs/local_setup/ADD_3D_MODEL.md,52,"""hideRack"": true,",migrate
+docs/local_setup/ADD_3D_MODEL.md,66,| `hideRack` | `true` = 用这个模型替换我程序化搭的机柜；不想替换就删掉这行 |,migrate
+docs/local_setup/ADD_3D_MODEL.md,80,python3 manage.py asset-check,migrate
+docs/local_setup/ADD_3D_MODEL.md,107,"""file"": ""server_rack.glb"", ""page"": ""rack3d"", ""hideRack"": true,",migrate
+docs/local_setup/ADD_3D_MODEL.md,110,"""fitHeight"": 8,               // 想让它矮一点/高一点（默认≈11 = 整柜高）",migrate
+docs/local_setup/ADD_3D_MODEL.md,161,`src/inresearch/adapters/asset_download.py` 走官方 API，一条命令完成下载+转格式+登记，,migrate
+docs/local_setup/ADD_3D_MODEL.md,166,"python3 manage.py asset-download ""https://sketchfab.com/3d-models/xxx-<uid>"" --hide-rack",migrate
+framework/05_interface_system.md,36,[界面清单](interface_manifest.json)列出全部应用页面和明确例外：13 个交互页面以及登录、改密、无权限页面接入共享外观。海报/打印交付物、开发烘焙工具、未采用提案原件保留各自用途；打印报告隐藏换肤栏并使用浅色纸张样式。,migrate
+framework/CURRENT.md,15,| 全站界面与换肤 | [05 界面规范](05_interface_system.md) | web/components/site-shell.js、web/themes、interface_manifest.json |,migrate
+framework/CURRENT.md,21,| 规则替代与在册管理 | 本页 | current_state.json、repository_manifest.json、inresearch.interfaces.governance |,migrate
+framework/current_state.json,274,"""framework/interface_manifest.json"",",migrate
+src/inresearch/adapters/asset_check.py,4,python3 manage.py asset-check,migrate
+src/inresearch/adapters/asset_check.py,18,"MANIFEST = os.path.join(MODELS, ""manifest.json"")",migrate
+src/inresearch/adapters/asset_check.py,25,"print(""✗ 找不到 assets/models/manifest.json"")",migrate
+src/inresearch/adapters/asset_check.py,30,"print(f""✗ manifest.json 不是合法 JSON：第 {e.lineno} 行 {e.msg}"")",migrate
+src/inresearch/adapters/asset_check.py,81,"extra = ""，并隐藏程序化机柜"" if m.get(""hideRack"") else """"",migrate
+src/inresearch/adapters/asset_compare.py,121,"print(""\n下一步：选定后把它移进 assets/models/ 并登记，或直接 python3 manage.py asset-check"")",migrate
+src/inresearch/adapters/asset_download.py,5,python3 manage.py asset-download <模型URL或uid> [--name 文件名] [--page rack3d] [--hide-rack],migrate
+src/inresearch/adapters/asset_download.py,9,④ 自动写进 assets/models/manifest.json，source 与 license 从 API 原样带回——来源留痕不靠手填。,migrate
+src/inresearch/adapters/asset_download.py,114,"path = os.path.join(MODELS, ""manifest.json"")",migrate
+src/inresearch/adapters/asset_download.py,125,"entry[""hideRack""] = True",migrate
+src/inresearch/adapters/asset_download.py,203,"print(""\n下一步：\n  python3 manage.py asset-check\n""",migrate
+src/inresearch/delivery/backup.py,27,"(dest/'manifest.json').write_text(json.dumps({'files':files},indent=2)+'\n');marker.unlink()",retain unrelated manifest / CLI / historical diagnostic
+src/inresearch/delivery/reader_export.py,36,"atomic_json(safe_path(dest, ""manifest.json""), manifest)",retain unrelated manifest / CLI / historical diagnostic
+src/inresearch/delivery/reader_export.py,144,"atomic_json(dest / ""manifest.json"", {""schema_version"": 1, ""completed"": now_iso(), ""catalog_sha256"": digest_file(bdb),",retain unrelated manifest / CLI / historical diagnostic
+src/inresearch/delivery/reading_packet.py,237,"atomic_write(staging/'manifest.json', (json.dumps(manifest,ensure_ascii=False,indent=2)+'\n').encode())",retain unrelated manifest / CLI / historical diagnostic
+src/inresearch/delivery/reading_packet.py,243,"manifest=str(target/'manifest.json'), reading_result=reading_result,",retain unrelated manifest / CLI / historical diagnostic
+src/inresearch/interfaces/cli.py,26,"'asset-check': 'inresearch.adapters.asset_check', 'asset-compare': 'inresearch.adapters.asset_compare', 'asset-download': 'inresearch.adapters.asset_download',",retain unrelated manifest / CLI / historical diagnostic
+src/inresearch/interfaces/governance.py,22,MANIFEST = 'framework/repository_manifest.json',retain unrelated manifest / CLI / historical diagnostic
+src/inresearch/interfaces/governance.py,184,"'', '现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。',",retain unrelated manifest / CLI / historical diagnostic
+src/inresearch/materials/preflight.py,83,"with (run / ""manifest.jsonl"").open(""w"", encoding=""utf-8"") as f:",retain unrelated manifest / CLI / historical diagnostic
+src/inresearch/materials/reading_artifacts.py,71,"manifest_path = self.artifact_path(doc, 'manifest.json')",retain unrelated manifest / CLI / historical diagnostic
+src/inresearch/materials/reading_artifacts.py,94,"manifest_path = self.artifact_path(doc, 'manifest.json')",retain unrelated manifest / CLI / historical diagnostic
+tests/ui_skin.cjs,11,const manifest = require('../framework/interface_manifest.json');,retain unrelated manifest / CLI / historical diagnostic
+tests/unit/test_continuous_reader.py,469,"manifest = artifacts.read_json(dest / ""manifest.json"")",retain unrelated manifest / CLI / historical diagnostic
+tests/unit/test_continuous_reader.py,557,"for row in artifacts.read_json(backup / ""manifest.json"")[""files""]:",retain unrelated manifest / CLI / historical diagnostic
+tests/unit/test_interface_system.py,17,manifest = json.loads((ROOT/'framework/interface_manifest.json').read_text()),retain unrelated manifest / CLI / historical diagnostic
+tests/unit/test_reading_revisions.py,212,self.r.export(destination);before=read_json(destination/'manifest.json')['reports'][0],retain unrelated manifest / CLI / historical diagnostic
+tests/unit/test_reading_revisions.py,215,after=read_json(destination/'manifest.json')['reports'][0],retain unrelated manifest / CLI / historical diagnostic
+web/assets/models/README.md,3,A3 批复（2026-08-18，方案①）：允许 .glb 模型进 git；**每个模型必须在 manifest.json 登记,migrate
+web/assets/models/README.md,11,3. 在 `manifest.json` 的 `models` 数组登记，例如：,migrate
+web/assets/models/README.md,20,"""hideRack"": true,",migrate
+web/assets/models/README.md,26,4. 刷新页面即生效（GLTFLoader 自动装载；`hideRack: true` 时隐藏程序化机柜用模型替身）。,migrate
+web/assets/models/manifest.json,2,"""note"": ""GLB 模型登记表（A3 批复方案①）。把 .glb 放进本目录、在此登记一条，rack3d/bom3d 自动加载。必填：file 文件名 | page（rack3d 或 bom3d）| source 下载页 URL | license 许可。选填：scale（留空=自动适配尺寸，推荐）| fitHeight 目标高度 | position [x,y,z] 微调偏移 | rotationY 弧度 | hideRack true 时用模型替换程序化机柜（仅 rack3d）。放完先跑 python3 manage.py asset-check 自检。详细步骤见 docs/local_setup/ADD_3D_MODEL.md"",",migrate
+web/assets/models/manifest.json,14,"""fitHeight"": 10.4,",migrate
+web/pages/bom3d.html,144,"import { GLTFLoader } from ""./assets/vendor/GLTFLoader.js"";",migrate
+web/pages/bom3d.html,998,/* GLB 模型槽（A3 方案①）：assets/models/manifest.json 登记的模型自动装载,migrate
+web/pages/bom3d.html,999,"scale 省略或写 ""auto"" 时自动适配：按包围盒缩放到 fitHeight（默认单机柜高 4.6），并落地居中 */",migrate
+web/pages/bom3d.html,1000,"fetch(""assets/models/manifest.json?t="" + Date.now()).then(r => r.ok ? r.json() : null).then(mf => {",migrate
+web/pages/bom3d.html,1002,"new GLTFLoader().load(""assets/models/"" + m.file, g => {",migrate
+web/pages/bom3d.html,1010,const target = m.fitHeight || 4.6;                 // 默认与场内单个机柜等高,migrate
+web/pages/compare.html,55,"import { GLTFLoader } from ""./assets/vendor/GLTFLoader.js"";",migrate
+web/pages/compare.html,61,"const mf = await (await fetch(""assets/models/manifest.json?t="" + Date.now())).json();",migrate
+web/pages/compare.html,118,"new GLTFLoader().load(""assets/models/"" + file, g => {",migrate
+web/pages/doc.html,272,"const response = await fetch(""framework/repository_manifest.json"", {cache: ""no-store""});",retain unrelated manifest / CLI / historical diagnostic
+web/pages/rack3d.html,125,"import { GLTFLoader } from ""./assets/vendor/GLTFLoader.js"";",migrate
+web/pages/rack3d.html,722,/* GLB 模型槽（A3 方案①）：assets/models/manifest.json 登记的模型自动装载,migrate
+web/pages/rack3d.html,723,"scale 省略或写 ""auto"" 时自动适配：按包围盒缩放到 fitHeight（默认整柜高），并落地居中 */",migrate
+web/pages/rack3d.html,724,"fetch(""assets/models/manifest.json?t="" + Date.now()).then(r => r.ok ? r.json() : null).then(mf => {",migrate
+web/pages/rack3d.html,726,"new GLTFLoader().load(""assets/models/"" + m.file, g => {",migrate
+web/pages/rack3d.html,735,const target = m.fitHeight || (RH + 0.7);         // 默认与整柜等高,migrate
+web/pages/rack3d.html,748,if (m.hideRack) rack.visible = false;,migrate
+web/routes.json,15,"""/assets/models/manifest.json"": ""web/assets/models/manifest.json"",",migrate
+web/routes.json,42,"""/assets/vendor/GLTFLoader.js"": ""web/assets/vendor/GLTFLoader.js"",",migrate

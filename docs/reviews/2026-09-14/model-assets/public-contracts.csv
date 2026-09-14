@@ -1,0 +1,18 @@
+implementation,consumers,migration_result
+materials.model_assets.permitted_license,validate_entry; adapters.asset_download; unit model assets,single declared license-label eligibility; no download bypass
+materials.model_assets.validate_entry,read_manifest; import_candidate; unit model assets,single state identity and transform validation
+materials.model_assets.validate_glb,read_manifest verify_files; import_candidate; unit model assets,single self-contained GLB structure size and hash validation
+materials.model_assets.model_directory,read_manifest; import_candidate; adapters.asset_check; unit model assets,one published directory; rejects symlinked directory
+materials.model_assets.read_manifest,import_candidate; snapshot; adapters.asset_check; interfaces.static; unit model assets,one manifest parser and validator; no duplicate runtime registry
+materials.model_assets.snapshot,interfaces.http /api/model-assets; unit model assets,all statuses for comparison; adopted only for explicit scene
+workflow.model_assets.import_candidate,adapters.asset_download main; unit model assets,register and overwrite code removed; locked candidate import preserves prior decisions
+storage.files.atomic_write,all matching rows in public-consumers.csv including existing consumers; model_assets.import_candidate,existing two-argument behavior preserved; exclusive branch used only for new model files
+model-assets.js loadModel,mountSceneModels; compare.html; model_assets browser,shared transport/hash/parse and owned resource disposal
+model-assets.js createModelLoad,mountSceneModels; compare.html; model_assets browser,shared retry/timeout/generation/current value ownership
+model-assets.js mountSceneModels,bom3d.html; rack3d.html; model_assets browser,both duplicated GLB blocks removed; whole-group commit and explicit disposal
+scene-data.js loadSceneData,bom3d.html; rack3d.html; compare.html; scene_bootstrap browser; model_assets browser,unchanged shared required-collection lifecycle also used for comparison catalog
+/api/model-assets,model-assets.js scene loader; compare.html; HTTP unit tests; model_assets browser,authentication before projection; empty/failed/adopted states distinct
+static.source_path models branch,HTTP static serving; model_assets unit tests; three pages through loadModel,same manifest declares filenames; hardcoded GLB route removed; unregistered names denied
+asset-check CLI,interfaces.cli; validate workflow; model guide; models README,same authority and file verification; no unconditional success output
+asset-download CLI,interfaces.cli; model guide; model asset unit tests,downloads are candidates; no automatic publish or licensing bypass
+asset-compare CLI,interfaces.cli; local optional inspection,retained format diagnostics; mesh heuristics explicitly do not prove physical disassembly

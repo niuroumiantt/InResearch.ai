@@ -141,7 +141,7 @@ import { RenderPass } from "./assets/vendor/RenderPass.js";
 import { UnrealBloomPass } from "./assets/vendor/UnrealBloomPass.js";
 import { OutputPass } from "./assets/vendor/OutputPass.js";
 import { EXRLoader } from "./assets/vendor/EXRLoader.js";
-import { GLTFLoader } from "./assets/vendor/GLTFLoader.js";
+import {mountSceneModels} from "/assets/model-assets.js";
 
 import {loadSceneData} from "/assets/scene-data.js";
 const [BOM, companies, prices, inds, reg, products] = await loadSceneData([
@@ -995,34 +995,9 @@ addEventListener("resize", resize); resize();
   if (p) { controls.autoRotate = false; showDossier(p); }
   if (q.get("cov") === "1" && !covOn) { controls.autoRotate = false; covToggle(); } }
 
-/* GLB 模型槽（A3 方案①）：assets/models/manifest.json 登记的模型自动装载
-   scale 省略或写 "auto" 时自动适配：按包围盒缩放到 fitHeight（默认单机柜高 4.6），并落地居中 */
-fetch("assets/models/manifest.json?t=" + Date.now()).then(r => r.ok ? r.json() : null).then(mf => {
-  (mf?.models || []).filter(m => m.page === "bom3d" && m.file).forEach(m => {
-    new GLTFLoader().load("assets/models/" + m.file, g => {
-      const o = g.scene;
-      o.traverse(x => { if (x.isMesh) { x.castShadow = x.receiveShadow = true; } });
-      o.rotation.y = m.rotationY || 0;
-      const auto = (m.scale === undefined || m.scale === null || m.scale === "auto");
-      if (auto) {
-        const bb = new THREE.Box3().setFromObject(o);
-        const size = bb.getSize(new THREE.Vector3());
-        const target = m.fitHeight || 4.6;                 // 默认与场内单个机柜等高
-        const k = size.y > 1e-6 ? target / size.y : 1;
-        o.scale.setScalar(k);
-        const bb2 = new THREE.Box3().setFromObject(o);
-        const c2 = bb2.getCenter(new THREE.Vector3());
-        o.position.set(-c2.x, -bb2.min.y, -c2.z);
-        if (m.position) o.position.add(new THREE.Vector3(...m.position));
-        console.info(`[模型] ${m.file} 自动适配：原高 ${size.y.toFixed(2)} → 缩放 ${k.toFixed(4)}`);
-      } else {
-        o.scale.setScalar(m.scale);
-        o.position.set(...(m.position || [0, 0, 0]));
-      }
-      scene.add(o);
-    }, undefined, err => console.error(`[模型] ${m.file} 加载失败`, err));
-  });
-}).catch(() => {});
+// The published adoption registry owns optional model selection.
+const sceneModels = mountSceneModels({scene, page:"bom3d", defaultHeight:4.6});
+window.addEventListener('pagehide', event => {if (!event.persisted) sceneModels.dispose();});
 
 /* ── 下钻链条：一份配置驱动，加设备只需改 assets/levels.json ── */
 fetch("assets/levels.json?t=" + Date.now()).then(r => r.ok ? r.json() : null).then(cfg => {

@@ -14,6 +14,8 @@ jobs:
         run: python3 manage.py governance --check
       - name: 口径与数据校验
         run: python3 manage.py validate --strict
+      - name: Visual model identity and adoption contract
+        run: python3 manage.py asset-check
       - name: 核验队列可生成
         run: python3 manage.py verify
       - name: 指标回填可运行
@@ -23,6 +25,10 @@ jobs:
           python3 manage.py registry
           PYTHONPATH=src python3 -m unittest discover -s tests/unit -p "test_*.py"
   browser:
+    strategy:
+      fail-fast: false
+      matrix:
+        suites: [core, model_assets]
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -34,7 +40,7 @@ jobs:
           npm install --prefix "$RUNNER_TEMP/browser-tests" --no-package-lock --no-save playwright@1.62.1
           "$RUNNER_TEMP/browser-tests/node_modules/.bin/playwright" install --with-deps chromium
       - name: Full browser regression suite
-        run: NODE_PATH="$RUNNER_TEMP/browser-tests/node_modules" node tests/run_browser.cjs
+        run: NODE_PATH="$RUNNER_TEMP/browser-tests/node_modules" node tests/run_browser.cjs ${{ matrix.suites }}
   storage-container:
     runs-on: ubuntu-latest
     steps:

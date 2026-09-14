@@ -1,9 +1,9 @@
 {
-  "version": "2026.09.14.1",
+  "version": "2026.09.14.2",
   "reviewed_at": "2026-09-14",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
-    ".github/workflows/validate.yml": "47274dbc03056fd44eaf4cefd471251482ed8462e423e8b07479f311440b6ecb",
+    ".github/workflows/validate.yml": "1424142306d608e4834d92f6ac17c7ee4275e70daed27b1fe87bbe2e0ef3b0ff",
     "AGENTS.md": "724d29fbab3a097c490eeb294f71724625d045e20ec080c6a9a252dadc72e22b",
     "CLAUDE.md": "322b8e598f53f516c60307f53781c0da4c8f49c7a639362b51b468967e91a9de",
     "data/schema/submission.schema.json": "b0d0b8a1b9150f585ede35da218149772d77ba33f898f0d2718c48f323e83fe8",
@@ -17,14 +17,14 @@
     "framework/00_overview.md": "75f2d2f14c3f2b3f3cd9f4949cc4e7c788710764871e1368a7dac023f7371226",
     "framework/01_data_standards.md": "77caca1fff5e86e4b5307492199558d21a9de610093c5ea3bcb2896f06b6e51f",
     "framework/02_knowledge_format.md": "049e0010977b11fb6161c0fca15fe210c96be74124e70195e23d3028258a82ff",
-    "framework/03_bom_and_collaboration.md": "e276393ec9f555984f07047a8d3de21daf208c5693be0ce86788dfff50ad75ed",
+    "framework/03_bom_and_collaboration.md": "d28badc67d564142cb34fedfa83ab601a2e3a25a61fec06788090befcdcebb90",
     "framework/04_reading_scoring_standard.md": "23f1e2a4086ac2d77e81d4239dfc739b038668d4f9558e31a720969fbe8934c5",
-    "framework/05_interface_system.md": "7a55187257220f78ac05f4fae7c94e797611d0cfb5adb4be5eb45d4d5e96da09",
+    "framework/05_interface_system.md": "bd8b0bd1548c3bf58215535fe0ba647e5a0eb502907ae5092902e22c9fa6621d",
     "framework/06_acquisition.md": "d05a9da1c558d5882443ded1b2508e72c8a8c35eb486b9bc1cd2644305149270",
     "framework/07_product_ecosystems.md": "a6239c5cb221120394ec706cf3ded786dd6b1cf34cc526b167dc157d50bd3fce",
     "framework/08_model_execution.md": "6c1be72c11c0948ae349cba63bf6704e1c6cb5544eb2a0c5605386d65b2a7be9",
-    "framework/09_software_contracts.md": "fd0bcad00e27e7b97fefb00e9f9d32bde77c0a1bb8cc0868c8cdf155cf0f6a58",
-    "framework/CURRENT.md": "6b7a8f2707e456ec1e3016a946a25f227c94bc044d725512a763dbf2a2f49e35",
+    "framework/09_software_contracts.md": "aa1373357e1cc7cff0c1bb7a737f14a7d607d8ba268199a9fd5a890e5dc71e1c",
+    "framework/CURRENT.md": "cb7144a09051ba2e319cbf7b215f4c898ab692abe3aaefec1a7cdf8fc509db75",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "tests/auth_appearance.cjs": "40f4e5feb30d2cec89bcf7cb90b89e780862a30580a4708e7dcb4dee1b9b8142",
     "tests/hardware_ecosystems.cjs": "4317d7b56ae541c1537d4a22ac6538d8faa96a66b545cfc5f1c146c86c84e80d",
@@ -32,7 +32,7 @@
     "tests/part_dossier.cjs": "3c34c28b1d7bd204e1167e91fd9a8c913dbe4cca5d1674f9ef76e92efc73cec6",
     "tests/product_node_hover.cjs": "720258d27a7c69d4926ff1b711c7c57ce1e7ae83264e4d48a2dad370a0ba4779",
     "tests/research_delivery.cjs": "4514c88bc0b8d79a54884ce3b2dda0a6afeeae79c0416b4533d4b44b7629d9e9",
-    "tests/run_browser.cjs": "56c09f6c753d150860627e0980e48a036cc9de87c417002be91c0a4ea434949e",
+    "tests/run_browser.cjs": "9216c82188b7eed3bde14d7f40cd11fe85090daabc4e63393fba612724b4f2b9",
     "tests/ui_skin.cjs": "f3a1fa6223715cacb0c72a04102dde38e5cad3b8c43117be54bcccdab1be22fa",
     "tests/unit/deep_read_fixtures.py": "e748d51107427c48684ebedfa8286a8a515b36a0b3c8bc7d0fefa7d9ba713df1",
     "tests/unit/test_acquisition.py": "9df70bf9f5f2453e45a9f5af50baf9d4bc8cccae0afe3a76555b00c6b5099110",
@@ -67,7 +67,10 @@
     "tests/container_storage.py": "a8574a75275460d2a50c0eab7f524857eccd8a32cf2f9e8bb01009ec12dd5ba0",
     "tests/datacenter_news.cjs": "7eb0a2b32d4e1f02ba91c485b63bd60524d5b1164658c3ac9b3ceec7e1d6faa5",
     "tests/research_summary.cjs": "d8bb777aec3b9fd7a6958bcb2028a4e578ba5cc0dae9f8b755424e1ef179b17c",
-    "tests/scene_bootstrap.cjs": "37654d946e5acb9a52b35ecbfac8a42e14be077d5d556ac996966c8ab9ee1a21"
+    "tests/scene_bootstrap.cjs": "37654d946e5acb9a52b35ecbfac8a42e14be077d5d556ac996966c8ab9ee1a21",
+    "docs/local_setup/ADD_3D_MODEL.md": "82ce43079ba62fa0e3626435667029efbedf8930e80a2e80dd27e733056cb987",
+    "tests/model_assets.cjs": "4b35173513874da2b146404cde1dfe3ab0aaafd340f44741ec03bbac2b1dfaaa",
+    "tests/unit/test_model_assets.py": "243b694e858a87efcbd2212e1a8924080119d63415d7065ccd5812a0b46402c5"
   },
   "policies": [
     {
@@ -156,10 +159,13 @@
       "policy": "products-20260906",
       "scope": "project",
       "source": "framework/03_bom_and_collaboration.md",
-      "checked_requirement": "产品显式映射、稳定身份、任务来源共用",
+      "checked_requirement": "产品显式映射、稳定身份、任务来源共用；视觉资产内容身份、候选/采用/拒绝、版本冲突、HTTP 及静态发布共同登记",
       "tests": [
         "tests/unit/test_catalog_bridge.py::CatalogBridgeTests.test_explicit_multiple_bom_parts_and_no_module_inference",
-        "tests/unit/test_research.py::MutationTests.test_new_question_is_assignable_without_regenerating_legacy_projection"
+        "tests/unit/test_research.py::MutationTests.test_new_question_is_assignable_without_regenerating_legacy_projection",
+        "tests/unit/test_model_assets.py::ModelAssetTests.test_candidate_review_rejection_and_version_replacement_have_one_authority",
+        "tests/unit/test_model_assets.py::ModelAssetTests.test_static_projection_is_manifest_driven_and_does_not_create_missing_files",
+        "tests/unit/test_model_assets.py::ModelAssetTests.test_http_identity_boundary_failure_and_valid_scene_selection"
       ],
       "not_verified": [
         "真实资产几何与来源许可逐件核对、厂商具体型号规格语义验证未全部完成。"
@@ -203,7 +209,7 @@
       "policy": "interface-20260906",
       "scope": "project",
       "source": "framework/05_interface_system.md",
-      "checked_requirement": "13 页皮肤/明暗/宽度、认证外观、状态保持与安全链接；主画布手势边界、共享原材质保留、领域恢复、动画取代/迟到拒写/手动接管；研究摘要与完整视图全对象关联一致、页面研究就绪、挂载/缓存替换及失败重试；必需定义 HTTP/集合失败与超时可恢复，整批取消、旧批迟到、重复重试和控制状态恢复",
+      "checked_requirement": "13 页皮肤/明暗/宽度、认证外观、状态保持与安全链接；主画布手势边界、共享原材质保留、领域恢复、动画取代/迟到拒写/手动接管；研究摘要与完整视图全对象关联一致、页面研究就绪、挂载/缓存替换及失败重试；必需定义 HTTP/集合失败与超时可恢复，整批取消、旧批迟到、重复重试和控制状态恢复；GLB 已采用筛选、SHA/解析/贴图失败可重试、整批替换保留旧状态、迟到回收及独占资源释放；比较身份/空集合/纯文本",
       "tests": [
         "tests/ui_skin.cjs",
         "tests/auth_appearance.cjs",
@@ -214,11 +220,12 @@
         "tests/unit/test_research.py::ReaderSnapshotHTTPTests.test_research_summary_shares_state_but_omits_content_catalog_and_reader_payload",
         "tests/unit/test_research.py::ReaderSnapshotHTTPTests.test_summary_new_snapshot_replaces_associations_and_failed_retry_keeps_authority",
         "tests/unit/test_research.py::ReaderSnapshotHTTPTests.test_summary_obeys_research_auth_boundary_before_building_state",
-        "tests/scene_bootstrap.cjs"
+        "tests/scene_bootstrap.cjs",
+        "tests/model_assets.cjs"
       ],
       "not_verified": [
         "截图矩阵不证明逐像素设计质量、屏幕阅读器体验或真实 3D 帧率；未修改页面的全站设计仍需持续人工体验验收。",
-        "Renderer/纹理/GLB 与下钻加载仍有重复；全部 GPU/触摸设备与帧率未验。"
+        "Renderer/HDR/面板纹理与下钻加载仍有重复；全部 GPU/触摸设备与帧率未验。"
       ]
     },
     {
@@ -334,7 +341,7 @@
       "policy": "software-contracts-20260913",
       "scope": "project",
       "source": "framework/09_software_contracts.md",
-      "checked_requirement": "统一写入、跨进程并发、提交前失败与提交后不确定、重放去重; catalog revision authority, atomic activation and consistent export snapshot；L2 用例/CLI 分离、缺口主提交及回执重放、来源计划替换；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界; published/runtime authority, initialization recovery and concurrent writers, immutable source, HTTP/CLI, release rollback",
+      "checked_requirement": "统一写入、跨进程并发、提交前失败与提交后不确定、重放去重; catalog revision authority, atomic activation and consistent export snapshot；L2 用例/CLI 分离、缺口主提交及回执重放、来源计划替换；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界; published/runtime authority, initialization recovery and concurrent writers, immutable source, HTTP/CLI, release rollback；视觉资产独占创建和登记主提交，中断重放、跨进程并发、同名不覆盖与采用决定保留",
       "tests": [
         "tests/unit/test_commands.py::CommandFlows.test_independent_processes_do_not_lose_records",
         "tests/unit/test_commands.py::CommandFlows.test_exception_and_failed_replace_keep_old_bytes",
@@ -373,7 +380,11 @@
         "tests/unit/test_storage_layout.py::StorageLayoutTests.test_private_roots_traversal_and_symlink_escape_never_become_static_routes",
         "tests/unit/test_storage_layout.py::StorageLayoutTests.test_two_release_roots_and_rollback_keep_runtime_writes_current",
         "tests/unit/test_storage_layout.py::RuntimeHTTPTests.test_http_cli_and_generated_outputs_share_runtime_without_changing_source",
-        "tests/unit/test_storage_layout.py::StorageLayoutTests.test_runtime_cannot_be_inside_or_above_the_published_source"
+        "tests/unit/test_storage_layout.py::StorageLayoutTests.test_runtime_cannot_be_inside_or_above_the_published_source",
+        "tests/unit/test_model_assets.py::ModelAssetTests.test_independent_processes_import_without_lost_updates_or_duplicate_entries",
+        "tests/unit/test_model_assets.py::ModelAssetTests.test_failed_manifest_commit_keeps_complete_file_and_replay_registers_once",
+        "tests/unit/test_model_assets.py::ModelAssetTests.test_uncertain_manifest_commit_is_visible_and_retry_preserves_decision",
+        "tests/unit/test_model_assets.py::ModelAssetTests.test_exclusive_file_publication_is_atomic_and_never_overwrites"
       ],
       "not_verified": [
         "L2 已拆开参数/用例/准入/相似度/缺口/来源职责；两个 3D 场景仍需收敛。并非其他所有多文件流程均已逐阶段验收。",

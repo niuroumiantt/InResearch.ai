@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.14.1",
+  "version": "2026.09.14.2",
   "effective_at": "2026-09-14",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -120,18 +120,28 @@
       "topic": "products",
       "status": "current",
       "scope": "project",
-      "effective_at": "2026-09-13",
+      "effective_at": "2026-09-14",
       "source": "framework/03_bom_and_collaboration.md",
       "implementations": [
         "src/inresearch/knowledge/registry.py",
         "web/pages/admin/product/index.html",
         "web/pages/bom3d.html",
-        "web/pages/rack3d.html"
+        "web/pages/rack3d.html",
+        "src/inresearch/materials/model_assets.py",
+        "src/inresearch/adapters/asset_download.py",
+        "src/inresearch/adapters/asset_check.py",
+        "src/inresearch/adapters/asset_compare.py",
+        "web/assets/models/manifest.json",
+        "docs/local_setup/ADD_3D_MODEL.md",
+        "web/pages/compare.html",
+        "tests/unit/test_model_assets.py",
+        "src/inresearch/workflow/model_assets.py"
       ],
       "supersedes": [
         "products-legacy"
       ],
-      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。"
+      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。",
+      "implementation_revision": "2026.09.14.2"
     },
     {
       "id": "reading-legacy",
@@ -304,13 +314,18 @@
         "tests/unit/test_research.py",
         "src/inresearch/knowledge/registry.py",
         "web/components/scene-data.js",
-        "tests/scene_bootstrap.cjs"
+        "tests/scene_bootstrap.cjs",
+        "web/components/model-assets.js",
+        "web/pages/bom3d.html",
+        "web/pages/rack3d.html",
+        "web/pages/compare.html",
+        "tests/model_assets.cjs"
       ],
       "supersedes": [
         "interface-legacy"
       ],
-      "reason": "2026-09-13：3D 档案改用同权威关联字段投影，仍共用完整工作台的节点关联算法；研究面板就绪、失败重试和挂载/请求替换成为明确验收。既有输入/材质所有权保持，renderer/资产生命周期仍未全面收敛。；2026-09-14 两场景必需定义改用统一加载/结构检查/取消/重试，恢复显式控件状态，不扩大为可选资产就绪。",
-      "implementation_revision": "2026.09.13.11"
+      "reason": "2026-09-13：3D 档案改用同权威关联字段投影，仍共用完整工作台的节点关联算法；研究面板就绪、失败重试和挂载/请求替换成为明确验收。既有输入/材质所有权保持，renderer/资产生命周期仍未全面收敛。；2026-09-14 两场景必需定义改用统一加载/结构检查/取消/重试，恢复显式控件状态，不扩大为可选资产就绪。；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。",
+      "implementation_revision": "2026.09.14.2"
     },
     {
       "id": "acquisition-legacy",
@@ -508,9 +523,9 @@
       "status": "current",
       "scope": "project",
       "source": "framework/09_software_contracts.md",
-      "effective_at": "2026-09-13",
+      "effective_at": "2026-09-14",
       "supersedes": [],
-      "reason": "Published Git research and persistent runtime state have separate authority; explicit initialization, recovery and read-only deployment replace whole-directory shadowing. Historical brief proposes review without changing formal findings; existing research and originals scope remain.",
+      "reason": "Published Git research and persistent runtime state have separate authority; explicit initialization, recovery and read-only deployment replace whole-directory shadowing. Historical brief proposes review without changing formal findings; existing research and originals scope remain.；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。",
       "implementations": [
         "src/inresearch/workflow/commands.py",
         "src/inresearch/storage/files.py",
@@ -551,9 +566,12 @@
         "framework/storage_contract.json",
         "src/inresearch/storage/layout.py",
         "tests/unit/test_storage_layout.py",
-        "tests/container_storage.py"
+        "tests/container_storage.py",
+        "src/inresearch/materials/model_assets.py",
+        "tests/unit/test_model_assets.py",
+        "src/inresearch/workflow/model_assets.py"
       ],
-      "implementation_revision": "2026.09.13.8"
+      "implementation_revision": "2026.09.14.2"
     }
   ],
   "entrypoints": [
@@ -588,6 +606,7 @@
     "docs/local_reader/PROJECT_BRIEF.md",
     "docs/local_reader/ACQUISITION_OPERATIONS.md",
     "docs/local_reader/M4_PREFLIGHT.md",
-    "docs/local_setup/README.md"
+    "docs/local_setup/README.md",
+    "docs/local_setup/ADD_3D_MODEL.md"
   ]
 }

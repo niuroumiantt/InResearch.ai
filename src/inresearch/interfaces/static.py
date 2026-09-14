@@ -4,12 +4,20 @@ from pathlib import Path
 
 from inresearch.paths import project_root
 from inresearch.storage.layout import workspace_path, LayoutError
+from inresearch.materials import model_assets
 
 
 def source_path(url_path, root=None):
     root = Path(root or project_root()).resolve()
     routes = json.loads((root / 'web/routes.json').read_text())
     relative = routes.get(url_path)
+    if url_path.startswith('/assets/models/') and url_path.endswith('.glb'):
+        try:
+            registered = model_assets.read_manifest(root)['models']
+            relative = next(('web/assets/models/' + m['file'] for m in registered
+                             if url_path == '/assets/models/' + m['file']), None)
+        except (ValueError, TypeError, KeyError, OSError):
+            return root / '.not-served'
     if relative is None:
         parts = Path(url_path.lstrip('/')).parts
         allowed = {'data', 'framework', 'docs', 'reports', 'research'}
