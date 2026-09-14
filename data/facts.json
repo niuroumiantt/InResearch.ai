@@ -127736,6 +127736,358 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "截至 2022 年企业累计采购可再生装机 77 GW（其中光伏 45 GW、58%）；2022 年当年 18.7 GW（光伏 14.4 GW）是年度流量，本指标无窗口维未录。「procured」含已投运与在建，status 记合计。地域按图源《Clean Energy Powers American Business》记 US，正文未明写。"
+    },
+    {
+      "fact_id": "idc2604-nonx86-server-rev-2025",
+      "metric_id": "server_mfg_revenue",
+      "asserter": "IDC",
+      "entity": {
+        "type": "market",
+        "id": "global-server-market",
+        "label": "全球服务器市场"
+      },
+      "value": 1380.0,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2025",
+      "caliber": {
+        "server_class": "非x86",
+        "region": "Total",
+        "storage_scope": "不适用（非存储口径）",
+        "product_category": "不适用（非存储口径）",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分"
+      },
+      "evidence": {
+        "sha256": "50a5135ea55ecf7eecc10a43c2f687128bd3862536a780f54b4d801c7fa37dbc",
+        "local_file": "5B_2022_Understandingt_未署名.pdf",
+        "locator": "第 8 页「Investments in GPU-accelerated AI servers…」：「revenue from non-x86 server sales predicted to reach $438 billion by 2029, up from $138 billion in 2025」「revenue from the sale of non-x86 servers more than doubled in 2025, compared with 2024」（Source: IDC, 2025, Enterprise Infrastructure Server Tracker, 2020–2029）",
+        "grade": "S3",
+        "originator": "IDC Enterprise Infrastructure Server Tracker（经 IDC《Understanding the EMEA Adoption of OCP Designs》Market Impact Study 2026，Chris Drake，2026-04-29，OCP 会议演讲转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "全球非 x86 服务器销售收入 1,380 亿美元，较 2024 年翻倍以上（主要是超大规模与云厂商采购 GPU 加速服务器）。图注数据来源标「IDC, 2025」，2025 年值在出图时可能仍含估计。"
+    },
+    {
+      "fact_id": "idc2604-nonx86-server-rev-2029e",
+      "metric_id": "server_mfg_revenue",
+      "asserter": "IDC",
+      "entity": {
+        "type": "market",
+        "id": "global-server-market",
+        "label": "全球服务器市场"
+      },
+      "value": 4380.0,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2029E@2025",
+      "caliber": {
+        "server_class": "非x86",
+        "region": "Total",
+        "storage_scope": "不适用（非存储口径）",
+        "product_category": "不适用（非存储口径）",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分"
+      },
+      "evidence": {
+        "sha256": "50a5135ea55ecf7eecc10a43c2f687128bd3862536a780f54b4d801c7fa37dbc",
+        "local_file": "5B_2022_Understandingt_未署名.pdf",
+        "locator": "第 8 页「Investments in GPU-accelerated AI servers…」：「revenue from non-x86 server sales predicted to reach $438 billion by 2029, up from $138 billion in 2025」「revenue from the sale of non-x86 servers more than doubled in 2025, compared with 2024」（Source: IDC, 2025, Enterprise Infrastructure Server Tracker, 2020–2029）",
+        "grade": "S3",
+        "originator": "IDC Enterprise Infrastructure Server Tracker（经 IDC《Understanding the EMEA Adoption of OCP Designs》Market Impact Study 2026，Chris Drake，2026-04-29，OCP 会议演讲转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2029 年预测 4,380 亿美元；图注「Source: IDC, 2025」，做出时点只知年份，as_of 带 @2025。同页 x86 服务器序列图中 $552B 标签未写年份与系列对应，未录。"
+    },
+    {
+      "fact_id": "mtk2510-custom-ai-accel-tam-2023",
+      "metric_id": "ai_asic_market_size",
+      "asserter": "联发科",
+      "entity": {
+        "type": "market",
+        "id": "custom-ai-accelerator-tam",
+        "label": "定制 AI 加速器 TAM"
+      },
+      "value": 6.1,
+      "unit": "十亿美元",
+      "bound": "point",
+      "as_of": "2023",
+      "caliber": {
+        "scope": "AI ASIC",
+        "basis": "厂商指引",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "a282475be7f9b8badcfe6b4c3ae7e95fff74d08646b24e46d1233270f936add8",
+        "local_file": "5B_2022_7623DrivingInn_MediaTek.pdf.pdf",
+        "locator": "第 3 页「Custom Silicon a Key Enabler of Accelerated Computing」图「CUSTOM AI ACCELERATOR TAM ($BN)」：2023 年 6.1、2028 年 >40，CAGR >46%（Source: MediaTek Strategic Marketing）",
+        "grade": "S3",
+        "originator": "联发科 Strategic Marketing（OCP Global Summit 2025 演讲《Driving Innovation in Data Center Computing and ASIC Technologies》，C.K. Peng）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「Custom AI Accelerator TAM」= 定制 AI 加速器（ASIC）可服务市场，61 亿美元。联发科自己是 ASIC 供应商，属厂商口径。"
+    },
+    {
+      "fact_id": "mtk2510-custom-ai-accel-tam-2028e",
+      "metric_id": "ai_asic_market_size",
+      "asserter": "联发科",
+      "entity": {
+        "type": "market",
+        "id": "custom-ai-accelerator-tam",
+        "label": "定制 AI 加速器 TAM"
+      },
+      "value": 40.0,
+      "unit": "十亿美元",
+      "bound": "lower",
+      "as_of": "2028E@2025-10",
+      "caliber": {
+        "scope": "AI ASIC",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "a282475be7f9b8badcfe6b4c3ae7e95fff74d08646b24e46d1233270f936add8",
+        "local_file": "5B_2022_7623DrivingInn_MediaTek.pdf.pdf",
+        "locator": "第 3 页「Custom Silicon a Key Enabler of Accelerated Computing」图「CUSTOM AI ACCELERATOR TAM ($BN)」：2023 年 6.1、2028 年 >40，CAGR >46%（Source: MediaTek Strategic Marketing）",
+        "grade": "S3",
+        "originator": "联发科 Strategic Marketing（OCP Global Summit 2025 演讲《Driving Innovation in Data Center Computing and ASIC Technologies》，C.K. Peng）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「>40」按下界记；2023-2028 CAGR >46%。做出时点取 OCP Global Summit 2025（2025 年 10 月）。"
+    },
+    {
+      "fact_id": "sa2510-traditional-rack-density-lower",
+      "metric_id": "rack_density_shipping",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "industry",
+        "id": "traditional-rack",
+        "label": "传统机柜"
+      },
+      "value": 5.0,
+      "unit": "kW/机柜",
+      "bound": "lower",
+      "as_of": "2025-10",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "市场普遍水平",
+        "era": "当期",
+        "power_basis": "未披露",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "d212df7f6933363b77e913bf89f2cb31d887cc6da010b32ead983d72b87911b0",
+        "local_file": "5B_2022_7803SemiAnalys_未署名.pdf",
+        "locator": "第 19 页「5. The Datacenter is Undergoing a Power and Cooling Revolution」：「Traditional rack power density of 5-20kW is being dwarfed by new AI systems. An Nvidia GB200 NVL72 rack requires 130kW, and future systems are projected to exceed 1,000kW (1MW) per rack.」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《State of the Market》（Daniel Nishball、Jordan Nanos，OCP Global Summit 2025 演讲）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "演讲未写日期，as_of 取 OCP Global Summit 2025 召开月 2025-10",
+      "corroboration": "待交叉验证",
+      "notes": "原文区间 5-20 kW 的下界；上界见 sa2510-traditional-rack-density-upper。地域未写，全球行业叙述按 Global。"
+    },
+    {
+      "fact_id": "sa2510-traditional-rack-density-upper",
+      "metric_id": "rack_density_shipping",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "industry",
+        "id": "traditional-rack",
+        "label": "传统机柜"
+      },
+      "value": 20.0,
+      "unit": "kW/机柜",
+      "bound": "upper",
+      "as_of": "2025-10",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "市场普遍水平",
+        "era": "当期",
+        "power_basis": "未披露",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "d212df7f6933363b77e913bf89f2cb31d887cc6da010b32ead983d72b87911b0",
+        "local_file": "5B_2022_7803SemiAnalys_未署名.pdf",
+        "locator": "第 19 页「5. The Datacenter is Undergoing a Power and Cooling Revolution」：「Traditional rack power density of 5-20kW is being dwarfed by new AI systems. An Nvidia GB200 NVL72 rack requires 130kW, and future systems are projected to exceed 1,000kW (1MW) per rack.」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《State of the Market》（Daniel Nishball、Jordan Nanos，OCP Global Summit 2025 演讲）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "演讲未写日期，as_of 取 OCP Global Summit 2025 召开月 2025-10",
+      "corroboration": "待交叉验证",
+      "notes": "原文区间 5-20 kW 的上界。"
+    },
+    {
+      "fact_id": "sa2510-gb200-nvl72-rack-power",
+      "metric_id": "rack_density_shipping",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200-nvl72",
+        "label": "NVIDIA GB200 NVL72 机柜"
+      },
+      "value": 130.0,
+      "unit": "kW/机柜",
+      "bound": "point",
+      "as_of": "2025-10",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "era": "当期",
+        "power_basis": "设计功率",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "d212df7f6933363b77e913bf89f2cb31d887cc6da010b32ead983d72b87911b0",
+        "local_file": "5B_2022_7803SemiAnalys_未署名.pdf",
+        "locator": "第 19 页「5. The Datacenter is Undergoing a Power and Cooling Revolution」：「Traditional rack power density of 5-20kW is being dwarfed by new AI systems. An Nvidia GB200 NVL72 rack requires 130kW, and future systems are projected to exceed 1,000kW (1MW) per rack.」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《State of the Market》（Daniel Nishball、Jordan Nanos，OCP Global Summit 2025 演讲）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "演讲未写日期，as_of 取 OCP Global Summit 2025 召开月 2025-10",
+      "corroboration": "待交叉验证",
+      "notes": "「requires 130kW」。库内同一家 2024 年给过 125 kW（gb200-nvl72-power-density-2024，实际功率密度口径）。"
+    },
+    {
+      "fact_id": "sa2510-future-rack-power-1mw",
+      "metric_id": "rack_density_shipping",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "industry",
+        "id": "future-ai-rack",
+        "label": "未来 AI 整机柜"
+      },
+      "value": 1000.0,
+      "unit": "kW/机柜",
+      "bound": "lower",
+      "as_of": "2025-10",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "峰值",
+        "era": "路线图目标",
+        "power_basis": "架构宣称",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "d212df7f6933363b77e913bf89f2cb31d887cc6da010b32ead983d72b87911b0",
+        "local_file": "5B_2022_7803SemiAnalys_未署名.pdf",
+        "locator": "第 19 页「5. The Datacenter is Undergoing a Power and Cooling Revolution」：「Traditional rack power density of 5-20kW is being dwarfed by new AI systems. An Nvidia GB200 NVL72 rack requires 130kW, and future systems are projected to exceed 1,000kW (1MW) per rack.」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《State of the Market》（Daniel Nishball、Jordan Nanos，OCP Global Summit 2025 演讲）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "演讲未写日期，as_of 取 OCP Global Summit 2025 召开月 2025-10",
+      "corroboration": "待交叉验证",
+      "notes": "「future systems are projected to exceed 1,000kW (1MW) per rack」，按下界记，未写年份与平台。"
+    },
+    {
+      "fact_id": "lbnl2412-us-dc-electricity-2023",
+      "metric_id": "dc_electricity_consumption",
+      "asserter": "LBNL",
+      "entity": {
+        "type": "industry",
+        "id": "us-dc",
+        "label": "美国数据中心"
+      },
+      "value": 176.0,
+      "unit": "TWh",
+      "bound": "point",
+      "as_of": "2023",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "evidence": {
+        "sha256": "4a61ff34052bf6fae36e10bc86fb12d89550f2778465c6a540649583cc603820",
+        "local_file": "5B_2022_7849FederalEne_未署名.pdf",
+        "locator": "第 15 页「Data Center Energy Usage Update」（Sarah Smith & Arman Shehabi）「2024 Report Total Data Center Estimates：Total electricity use 176 TWh in 2023; modeled range 325-580 TWh in 2028」",
+        "grade": "S2",
+        "originator": "LBNL《2024 United States Data Center Energy Usage Report》（作者本人在 OCP 2025「Federal Energy R&D for Data Centers」座谈会 2025-10-15 复述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美国数据中心 2023 年用电 176 TWh，为 LBNL 模型估算。同页 2028 年 325-580 TWh 已在库（rand-lbnl-us-dc-consumption-2028-low/-high），未重录。"
+    },
+    {
+      "fact_id": "meta26-hyperion-capacity-2028e",
+      "metric_id": "dc_capacity_mw",
+      "asserter": "Meta",
+      "entity": {
+        "type": "project",
+        "id": "meta-louisiana-dc",
+        "label": "Meta 路易斯安那数据中心"
+      },
+      "value": 5000.0,
+      "unit": "MW",
+      "bound": "upper",
+      "as_of": "2028E@2026",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L2",
+        "region": "US"
+      },
+      "evidence": {
+        "sha256": "a6cfa4b2de81b87cad5e7d385a3b37fbe9c55c95381dd388b3bb1caf24b72a58",
+        "local_file": "5B_2022_GPUCommunicati_未署名.pdf",
+        "locator": "第 2 页「Meta’s AI Clusters Getting Big」：「1GW Prometheus New Albany, Ohio」「Up to 5GW, ETA 2028 Hyperion Richland Parish, Louisiana」「1GW, Announced 2026 Lebanon, Indiana」",
+        "grade": "S2",
+        "originator": "Meta（James Hongyi Zeng《GPU Communication Library in Meta-Scale AI Clusters》，OCP 会议演讲，未写日期，页内有「Announced 2026」）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "演讲未写日期；页内写 Lebanon 园区「Announced 2026」，做出时点取 2026 年",
+      "corroboration": "待交叉验证",
+      "notes": "Hyperion（Richland Parish, Louisiana）「Up to 5GW, ETA 2028」按上界记；GW 未说明是 IT 还是设施口径。库内 SemiAnalysis 2024-12 称该园区 2026 年 2 GW（sa-scaling-meta-louisiana-2gw-2026），时点与口径不同，不是同一断言。"
+    },
+    {
+      "fact_id": "meta26-lebanon-indiana-capacity",
+      "metric_id": "dc_capacity_mw",
+      "asserter": "Meta",
+      "entity": {
+        "type": "project",
+        "id": "meta-lebanon-indiana",
+        "label": "Meta Lebanon, Indiana AI 集群"
+      },
+      "value": 1000.0,
+      "unit": "MW",
+      "bound": "point",
+      "as_of": "2026",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L2",
+        "region": "US"
+      },
+      "evidence": {
+        "sha256": "a6cfa4b2de81b87cad5e7d385a3b37fbe9c55c95381dd388b3bb1caf24b72a58",
+        "local_file": "5B_2022_GPUCommunicati_未署名.pdf",
+        "locator": "第 2 页「Meta’s AI Clusters Getting Big」：「1GW Prometheus New Albany, Ohio」「Up to 5GW, ETA 2028 Hyperion Richland Parish, Louisiana」「1GW, Announced 2026 Lebanon, Indiana」",
+        "grade": "S2",
+        "originator": "Meta（James Hongyi Zeng《GPU Communication Library in Meta-Scale AI Clusters》，OCP 会议演讲，未写日期，页内有「Announced 2026」）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「1GW, Announced 2026」——2026 年宣布的规划容量，状态按官方规划 L2；口径未说明。同页 Prometheus 1 GW 已在库（meta-prometheus-cluster-2026e），未重录。"
     }
   ]
 }

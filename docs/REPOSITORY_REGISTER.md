@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：795。
+在册文件：796。
 
 | 身份 | 文件数 |
 |---|---|
@@ -14,7 +14,7 @@
 | 候选与外部输入 | 144 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
-| 生成物 | 12 |
+| 生成物 | 13 |
 | 历史快照 | 258 |
 | 运行代码 | 143 |
 | 现行规范 | 13 |
@@ -37,7 +37,7 @@
 | `data/companies.json` | records | 248 |
 | `data/contracts.json` | records | 2 |
 | `data/datacenter_cost_model.json` | groups | 4 |
-| `data/facts.json` | records | 3918 |
+| `data/facts.json` | records | 3929 |
 | `data/policies.json` | records | 2 |
 | `data/prices.json` | records | 207 |
 | `data/product_docs_plan.csv` | rows | 801 |
@@ -889,6 +889,7 @@
 | [reports/daily_brief.md](../reports/daily_brief.md) | 生成物 |
 | [reports/intake_review.md](../reports/intake_review.md) | 生成物 |
 | [reports/reading_queue.md](../reports/reading_queue.md) | 生成物 |
+| [reports/stale_paths.md](../reports/stale_paths.md) | 生成物 |
 | [reports/templates/README.md](../reports/templates/README.md) | 生成物 |
 | [reports/verify_queue.md](../reports/verify_queue.md) | 生成物 |
 | `reports/workorders.json` | 生成物 |
