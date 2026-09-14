@@ -37,7 +37,7 @@
 | `data/companies.json` | records | 248 |
 | `data/contracts.json` | records | 2 |
 | `data/datacenter_cost_model.json` | groups | 4 |
-| `data/facts.json` | records | 4354 |
+| `data/facts.json` | records | 4360 |
 | `data/policies.json` | records | 2 |
 | `data/prices.json` | records | 207 |
 | `data/product_docs_plan.csv` | rows | 801 |
