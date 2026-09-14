@@ -118973,6 +118973,548 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "「2025 年开始，平均 PUE 将降至 1.3 以下」按上界记；period 原文未写，全国平均 PUE 按年均记 [未核]。同句「2025 年之前平均 PUE 为 1.4」未写具体年份，未录。"
+    },
+    {
+      "asserter": "中国通服数字基建产业研究院",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "ccs-aidc2024-cn-aidc-operational-compute-2023",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "region",
+        "id": "cn-aidc",
+        "label": "中国智算中心（华信统计口径）"
+      },
+      "value": 152.0,
+      "unit": "EFLOPS",
+      "bound": "point",
+      "as_of": "2023-12",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "FP16",
+        "area": "全国（智算中心）",
+        "status": "在用",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "evidence": {
+        "sha256": "afd9cf9e506ff2e1df287cd8a987621cb1aac7e3a4b5d6c4292abb2153ad2014",
+        "local_file": "中国智算中心（AIDC）产业发展白皮书（2024年）.pdf",
+        "locator": "第 70 页 （三）1：「据不完全统计，截至 2023 年底，全国投运/在建/拟建的智算中心共计 86 个，总建设规模超过 679 EFLOPS（换算为 FP16，下同），其中已投运、在建、拟建的智算中心分别达 27 个、40 个、19 个，已投运智算中心算力规模近 152 EFLOPS，在建及拟建智算中心算力规模超 770 EFLOPS」",
+        "grade": "S3",
+        "originator": "中国通服数字基建产业研究院（华信咨询设计研究院）《中国智算中心（AIDC）产业发展白皮书（2024 年）》（2024-09）"
+      },
+      "notes": "「据不完全统计」；只统计智算中心形态的智能算力（FP16），不含传统数据中心、终端，超算未纳入（脚注 6）。**原文自相矛盾**：总建设规模「超过 679」，而已投运 152 + 在建及拟建「超 770」= 922 以上，未录总数与在建拟建数。2024 年上半年有规模披露的项目 36 个、总规模超 271、已投运近 60.9 EFLOPS（统计窗口不清，未录）。"
+    },
+    {
+      "asserter": "中国通服数字基建产业研究院",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "ccs-aidc2024-project-chongqing-aicc-total",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "chongqing-aicc",
+        "label": "重庆人工智能创新中心（重庆）"
+      },
+      "value": 400.0,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "as_of": "2024-09",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "已投运",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "evidence": {
+        "sha256": "afd9cf9e506ff2e1df287cd8a987621cb1aac7e3a4b5d6c4292abb2153ad2014",
+        "local_file": "中国智算中心（AIDC）产业发展白皮书（2024年）.pdf",
+        "locator": "第 72-73 页 表 12「全国已投运及规划建设的智算中心（部分）」：重庆人工智能创新中心 | 重庆 | 400 PFlops | 数据来源：中国通服数字基建产业研究院（华信咨询设计研究院）",
+        "grade": "S3",
+        "originator": "中国通服数字基建产业研究院（华信咨询设计研究院）《中国智算中心（AIDC）产业发展白皮书（2024 年）》（2024-09）"
+      },
+      "notes": "表 12 注「外部统计数据，仅供参考」。建设主体：政府；国产芯片：华为-昇腾。"
+    },
+    {
+      "asserter": "中国通服数字基建产业研究院",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "ccs-aidc2024-project-tianjin-aicc-total",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "tianjin-aicc",
+        "label": "天津市人工智能计算中心（天津）"
+      },
+      "value": 300.0,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "as_of": "2024-09",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "在建",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "evidence": {
+        "sha256": "afd9cf9e506ff2e1df287cd8a987621cb1aac7e3a4b5d6c4292abb2153ad2014",
+        "local_file": "中国智算中心（AIDC）产业发展白皮书（2024年）.pdf",
+        "locator": "第 72-73 页 表 12「全国已投运及规划建设的智算中心（部分）」：天津市人工智能计算中心 | 天津 | 300 PFlops | 数据来源：中国通服数字基建产业研究院（华信咨询设计研究院）",
+        "grade": "S3",
+        "originator": "中国通服数字基建产业研究院（华信咨询设计研究院）《中国智算中心（AIDC）产业发展白皮书（2024 年）》（2024-09）"
+      },
+      "notes": "表 12 注「外部统计数据，仅供参考」。建设主体：政府；国产芯片：华为-昇腾。"
+    },
+    {
+      "asserter": "中国通服数字基建产业研究院",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "ccs-aidc2024-project-hebei-aicc-phase1",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "hebei-aicc",
+        "label": "河北人工智能计算中心一期（廊坊）"
+      },
+      "value": 100.0,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "as_of": "2024-09",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "在建",
+        "phase": "一期",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "evidence": {
+        "sha256": "afd9cf9e506ff2e1df287cd8a987621cb1aac7e3a4b5d6c4292abb2153ad2014",
+        "local_file": "中国智算中心（AIDC）产业发展白皮书（2024年）.pdf",
+        "locator": "第 72-73 页 表 12「全国已投运及规划建设的智算中心（部分）」：河北人工智能计算中心一期 | 廊坊 | 100 PFlops | 数据来源：中国通服数字基建产业研究院（华信咨询设计研究院）",
+        "grade": "S3",
+        "originator": "中国通服数字基建产业研究院（华信咨询设计研究院）《中国智算中心（AIDC）产业发展白皮书（2024 年）》（2024-09）"
+      },
+      "notes": "表 12 注「外部统计数据，仅供参考」。建设主体：政府；国产芯片：华为-昇腾。"
+    },
+    {
+      "asserter": "中国通服数字基建产业研究院",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "ccs-aidc2024-project-wuhu-integrated-aidc-total",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "wuhu-integrated-aidc",
+        "label": "芜湖一体化智算中心（芜湖）"
+      },
+      "value": 160.0,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "as_of": "2024-09",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "在建",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "evidence": {
+        "sha256": "afd9cf9e506ff2e1df287cd8a987621cb1aac7e3a4b5d6c4292abb2153ad2014",
+        "local_file": "中国智算中心（AIDC）产业发展白皮书（2024年）.pdf",
+        "locator": "第 72-73 页 表 12「全国已投运及规划建设的智算中心（部分）」：芜湖一体化智算中心 | 芜湖 | 160 PFlops | 数据来源：中国通服数字基建产业研究院（华信咨询设计研究院）",
+        "grade": "S3",
+        "originator": "中国通服数字基建产业研究院（华信咨询设计研究院）《中国智算中心（AIDC）产业发展白皮书（2024 年）》（2024-09）"
+      },
+      "notes": "表 12 注「外部统计数据，仅供参考」。建设主体：政府；国产芯片：中科曙光。"
+    },
+    {
+      "asserter": "中国通服数字基建产业研究院",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "ccs-aidc2024-project-chengdu-aicc-phase1",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "chengdu-aicc",
+        "label": "成都人工智能计算中心（成都）"
+      },
+      "value": 300.0,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "as_of": "2024-09",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "已投运",
+        "phase": "一期",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "evidence": {
+        "sha256": "afd9cf9e506ff2e1df287cd8a987621cb1aac7e3a4b5d6c4292abb2153ad2014",
+        "local_file": "中国智算中心（AIDC）产业发展白皮书（2024年）.pdf",
+        "locator": "第 72-73 页 表 12「全国已投运及规划建设的智算中心（部分）」：成都人工智能计算中心 | 成都 | 300 PFlops | 数据来源：中国通服数字基建产业研究院（华信咨询设计研究院）",
+        "grade": "S3",
+        "originator": "中国通服数字基建产业研究院（华信咨询设计研究院）《中国智算中心（AIDC）产业发展白皮书（2024 年）》（2024-09）"
+      },
+      "notes": "表 12 注「外部统计数据，仅供参考」。建设主体：政府；国产芯片：华为-昇腾。 原表进度写「一期投运，拟扩容」，300P 按一期已投运记 [未核]。"
+    },
+    {
+      "asserter": "中国通服数字基建产业研究院",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "ccs-aidc2024-project-hangzhou-aicc-phase1",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "hangzhou-aicc",
+        "label": "杭州人工智能计算中心（杭州）"
+      },
+      "value": 40.0,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "as_of": "2024-09",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "已投运",
+        "phase": "一期",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "evidence": {
+        "sha256": "afd9cf9e506ff2e1df287cd8a987621cb1aac7e3a4b5d6c4292abb2153ad2014",
+        "local_file": "中国智算中心（AIDC）产业发展白皮书（2024年）.pdf",
+        "locator": "第 72-73 页 表 12「全国已投运及规划建设的智算中心（部分）」：杭州人工智能计算中心 | 杭州 | 40 PFlops | 数据来源：中国通服数字基建产业研究院（华信咨询设计研究院）",
+        "grade": "S3",
+        "originator": "中国通服数字基建产业研究院（华信咨询设计研究院）《中国智算中心（AIDC）产业发展白皮书（2024 年）》（2024-09）"
+      },
+      "notes": "表 12 注「外部统计数据，仅供参考」。建设主体：政府；国产芯片：华为-昇腾。 原表「一期 40、二期 100」，「一期投运，二期在建」，分两条记。"
+    },
+    {
+      "asserter": "中国通服数字基建产业研究院",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "ccs-aidc2024-project-hangzhou-aicc-phase2",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "hangzhou-aicc",
+        "label": "杭州人工智能计算中心（杭州）"
+      },
+      "value": 100.0,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "as_of": "2024-09",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "在建",
+        "phase": "二期",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "evidence": {
+        "sha256": "afd9cf9e506ff2e1df287cd8a987621cb1aac7e3a4b5d6c4292abb2153ad2014",
+        "local_file": "中国智算中心（AIDC）产业发展白皮书（2024年）.pdf",
+        "locator": "第 72-73 页 表 12「全国已投运及规划建设的智算中心（部分）」：杭州人工智能计算中心 | 杭州 | 100 PFlops | 数据来源：中国通服数字基建产业研究院（华信咨询设计研究院）",
+        "grade": "S3",
+        "originator": "中国通服数字基建产业研究院（华信咨询设计研究院）《中国智算中心（AIDC）产业发展白皮书（2024 年）》（2024-09）"
+      },
+      "notes": "表 12 注「外部统计数据，仅供参考」。建设主体：政府；国产芯片：华为-昇腾。 原表「一期 40、二期 100」，「一期投运，二期在建」，分两条记。"
+    },
+    {
+      "asserter": "中国通服数字基建产业研究院",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "ccs-aidc2024-project-ningbo-ai-supercomputing-phase1",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "ningbo-ai-supercomputing",
+        "label": "宁波市人工智能超算中心（宁波）"
+      },
+      "value": 100.0,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "as_of": "2024-09",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "已投运",
+        "phase": "一期",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "evidence": {
+        "sha256": "afd9cf9e506ff2e1df287cd8a987621cb1aac7e3a4b5d6c4292abb2153ad2014",
+        "local_file": "中国智算中心（AIDC）产业发展白皮书（2024年）.pdf",
+        "locator": "第 72-73 页 表 12「全国已投运及规划建设的智算中心（部分）」：宁波市人工智能超算中心 | 宁波 | 100 PFlops | 数据来源：中国通服数字基建产业研究院（华信咨询设计研究院）",
+        "grade": "S3",
+        "originator": "中国通服数字基建产业研究院（华信咨询设计研究院）《中国智算中心（AIDC）产业发展白皮书（2024 年）》（2024-09）"
+      },
+      "notes": "表 12 注「外部统计数据，仅供参考」。建设主体：政府；国产芯片：中科曙光。 原表「一期 100」「一期投运，二期拟建」。"
+    },
+    {
+      "asserter": "中国通服数字基建产业研究院",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "ccs-aidc2024-project-cmcc-nanjing-aidc-total",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanjing-aidc",
+        "label": "中国移动南京 AI 智算中心（南京）"
+      },
+      "value": 278.0,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "as_of": "2024-09",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "在建",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "evidence": {
+        "sha256": "afd9cf9e506ff2e1df287cd8a987621cb1aac7e3a4b5d6c4292abb2153ad2014",
+        "local_file": "中国智算中心（AIDC）产业发展白皮书（2024年）.pdf",
+        "locator": "第 72-73 页 表 12「全国已投运及规划建设的智算中心（部分）」：中国移动南京 AI 智算中心 | 南京 | 278 PFlops | 数据来源：中国通服数字基建产业研究院（华信咨询设计研究院）",
+        "grade": "S3",
+        "originator": "中国通服数字基建产业研究院（华信咨询设计研究院）《中国智算中心（AIDC）产业发展白皮书（2024 年）》（2024-09）"
+      },
+      "notes": "表 12 注「外部统计数据，仅供参考」。建设主体：企业；国产芯片：寒武纪-思元。"
+    },
+    {
+      "asserter": "中国通服数字基建产业研究院",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "ccs-aidc2024-project-paratera-inner-mongolia-total",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "paratera-inner-mongolia",
+        "label": "并行科技内蒙古新型算力基地（呼和浩特）"
+      },
+      "value": 70.0,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "as_of": "2024-09",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "规划",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "evidence": {
+        "sha256": "afd9cf9e506ff2e1df287cd8a987621cb1aac7e3a4b5d6c4292abb2153ad2014",
+        "local_file": "中国智算中心（AIDC）产业发展白皮书（2024年）.pdf",
+        "locator": "第 72-73 页 表 12「全国已投运及规划建设的智算中心（部分）」：并行科技内蒙古新型算力基地 | 呼和浩特 | 70 PFlops | 数据来源：中国通服数字基建产业研究院（华信咨询设计研究院）",
+        "grade": "S3",
+        "originator": "中国通服数字基建产业研究院（华信咨询设计研究院）《中国智算中心（AIDC）产业发展白皮书（2024 年）》（2024-09）"
+      },
+      "notes": "表 12 注「外部统计数据，仅供参考」。建设主体：企业；国产芯片：-。"
+    },
+    {
+      "asserter": "中国通服数字基建产业研究院",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "ccs-aidc2024-project-yiwu-belt-road-idc-total",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "yiwu-belt-road-idc",
+        "label": "“一带一路”国际数据中心（义乌）"
+      },
+      "value": 50.0,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "as_of": "2024-09",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "规划",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "evidence": {
+        "sha256": "afd9cf9e506ff2e1df287cd8a987621cb1aac7e3a4b5d6c4292abb2153ad2014",
+        "local_file": "中国智算中心（AIDC）产业发展白皮书（2024年）.pdf",
+        "locator": "第 72-73 页 表 12「全国已投运及规划建设的智算中心（部分）」：“一带一路”国际数据中心 | 义乌 | 50 PFlops | 数据来源：中国通服数字基建产业研究院（华信咨询设计研究院）",
+        "grade": "S3",
+        "originator": "中国通服数字基建产业研究院（华信咨询设计研究院）《中国智算中心（AIDC）产业发展白皮书（2024 年）》（2024-09）"
+      },
+      "notes": "表 12 注「外部统计数据，仅供参考」。建设主体：企业；国产芯片：-。"
+    },
+    {
+      "asserter": "中国通服数字基建产业研究院",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "ccs-aidc2024-project-qingdao-haizhixin-aicc-total",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "qingdao-haizhixin-aicc",
+        "label": "青岛“海之心”人工智能计算中心（青岛）"
+      },
+      "value": 250.0,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "as_of": "2024-09",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "在建",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "evidence": {
+        "sha256": "afd9cf9e506ff2e1df287cd8a987621cb1aac7e3a4b5d6c4292abb2153ad2014",
+        "local_file": "中国智算中心（AIDC）产业发展白皮书（2024年）.pdf",
+        "locator": "第 72-73 页 表 12「全国已投运及规划建设的智算中心（部分）」：青岛“海之心”人工智能计算中心 | 青岛 | 250 PFlops | 数据来源：中国通服数字基建产业研究院（华信咨询设计研究院）",
+        "grade": "S3",
+        "originator": "中国通服数字基建产业研究院（华信咨询设计研究院）《中国智算中心（AIDC）产业发展白皮书（2024 年）》（2024-09）"
+      },
+      "notes": "表 12 注「外部统计数据，仅供参考」。建设主体：政企合建；国产芯片：中科曙光。"
+    },
+    {
+      "asserter": "中国通服数字基建产业研究院",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "ccs-aidc2024-project-nanjing-intelligent-computing-center-total",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "nanjing-intelligent-computing-center",
+        "label": "南京智能计算中心（南京）"
+      },
+      "value": 400.0,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "as_of": "2024-09",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "未注明",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "evidence": {
+        "sha256": "afd9cf9e506ff2e1df287cd8a987621cb1aac7e3a4b5d6c4292abb2153ad2014",
+        "local_file": "中国智算中心（AIDC）产业发展白皮书（2024年）.pdf",
+        "locator": "第 72-73 页 表 12「全国已投运及规划建设的智算中心（部分）」：南京智能计算中心 | 南京 | 400 PFlops | 数据来源：中国通服数字基建产业研究院（华信咨询设计研究院）",
+        "grade": "S3",
+        "originator": "中国通服数字基建产业研究院（华信咨询设计研究院）《中国智算中心（AIDC）产业发展白皮书（2024 年）》（2024-09）"
+      },
+      "notes": "表 12 注「外部统计数据，仅供参考」。建设主体：政企合建；国产芯片：华为-鲲鹏、昇腾。 原表进度写「一期投运，二期在建」，400P 未分期，status 记未注明。"
+    },
+    {
+      "asserter": "中国通服数字基建产业研究院",
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "fact_id": "ccs-aidc2024-ctyun-wuhu-aidc-planned",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "ctyun-anhui-wuhu-aidc",
+        "label": "中国电信天翼云安徽芜湖智算中心（改造）"
+      },
+      "value": 2000.0,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "as_of": "2024-09",
+      "derivation": "风冷型智算机房终局 800P + 液冷型智算机房终局 1200P = 2000P",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "规划",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "evidence": {
+        "sha256": "afd9cf9e506ff2e1df287cd8a987621cb1aac7e3a4b5d6c4292abb2153ad2014",
+        "local_file": "中国智算中心（AIDC）产业发展白皮书（2024年）.pdf",
+        "locator": "第 101 页 表 16 典型案例 1：「规划同时采用风冷、液冷两种制冷形式。其中，风冷型智算机房终局提供 800P 算力，液冷型智算机房终局提供 1200P 算力；本项目按国标 A 级数据机房标准设计」",
+        "grade": "S3",
+        "originator": "中国通服数字基建产业研究院（华信咨询设计研究院）设计案例（经中国通服数字基建产业研究院（华信咨询设计研究院）《中国智算中心（AIDC）产业发展白皮书（2024 年）》（2024-09））"
+      },
+      "notes": "华信设计案例，利用既有数据中心预留机房改造：二层改风冷智算（原规划 780 架/层 6kW 标准机柜，风冷智算机柜平均 12kW/架），四层改液冷智算（液冷机柜 48kW，冷却水系统承担 70% 负荷）。园区自建 110kV 变电站 50,000kVA。表 12 另有「芜湖一体化智算中心」160P（政府主导），与本项目不是同一个。"
+    },
+    {
+      "asserter": "中国通服数字基建产业研究院",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "ccs-aidc2024-ctyun-hangzhou-dc1-floor-area",
+      "metric_id": "dc_gross_floor_area",
+      "entity": {
+        "type": "project",
+        "id": "ctyun-hangzhou-bigdata-base",
+        "label": "中国电信天翼云杭州大数据基地（萧山）"
+      },
+      "value": 19820.0,
+      "unit": "㎡",
+      "bound": "point",
+      "as_of": "2024-09",
+      "caliber": {
+        "area_scope": "主机房楼单体",
+        "stage": "设计",
+        "region": "CN"
+      },
+      "evidence": {
+        "sha256": "afd9cf9e506ff2e1df287cd8a987621cb1aac7e3a4b5d6c4292abb2153ad2014",
+        "local_file": "中国智算中心（AIDC）产业发展白皮书（2024年）.pdf",
+        "locator": "第 89 页 智算案例：「总规划建筑面积 22.8 万平方米，共规划 6 幢机楼（1 期 4 幢），1#数据中心建筑面积 19820 ㎡，建筑高度 23.9m，地上 4 层。规划 4 个算力机房，单个风冷算力柜为 12kW、液冷算力机柜为 48kW、单个网络机柜为 15kW，近期可支持千 P 以上的算力规模」",
+        "grade": "S3",
+        "originator": "中国通服数字基建产业研究院（华信咨询设计研究院）设计案例（经中国通服数字基建产业研究院（华信咨询设计研究院）《中国智算中心（AIDC）产业发展白皮书（2024 年）》（2024-09））"
+      },
+      "notes": "1# 数据中心单体；园区占地约 168 亩。机柜设计功率（风冷 12kW、液冷 48kW、网络 15kW）因 rack_power_design 缺机柜类型维未录。"
+    },
+    {
+      "asserter": "中国通服数字基建产业研究院",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "ccs-aidc2024-ctyun-hangzhou-campus-floor-area",
+      "metric_id": "dc_gross_floor_area",
+      "entity": {
+        "type": "project",
+        "id": "ctyun-hangzhou-bigdata-base",
+        "label": "中国电信天翼云杭州大数据基地（萧山）"
+      },
+      "value": 228000.0,
+      "unit": "㎡",
+      "bound": "point",
+      "as_of": "2024-09",
+      "caliber": {
+        "area_scope": "总建筑面积",
+        "stage": "规划",
+        "region": "CN"
+      },
+      "evidence": {
+        "sha256": "afd9cf9e506ff2e1df287cd8a987621cb1aac7e3a4b5d6c4292abb2153ad2014",
+        "local_file": "中国智算中心（AIDC）产业发展白皮书（2024年）.pdf",
+        "locator": "第 89 页 智算案例：「占地面积约 168 亩，总规划建筑面积 22.8 万平方米，共规划 6 幢机楼（1 期 4 幢）」",
+        "grade": "S3",
+        "originator": "中国通服数字基建产业研究院（华信咨询设计研究院）设计案例（经中国通服数字基建产业研究院（华信咨询设计研究院）《中国智算中心（AIDC）产业发展白皮书（2024 年）》（2024-09））"
+      },
+      "notes": "22.8 万平方米 = 228,000 ㎡；6 幢机楼，一期 4 幢。"
     }
   ]
 }
