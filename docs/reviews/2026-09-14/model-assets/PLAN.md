@@ -41,3 +41,7 @@ model_assets 由 asset-download、asset-check、HTTP 与新单元测试消费；
 ## 最终职责复审与迁移修正（先于移动）
 
 09 的既有边界要求用例组合领域判断与存储。初版把 import_candidate 与领域校验放在 materials.model_assets，不够统一；现在明确将这一个导入事务迁到 workflow.model_assets，不保留旧反向导出。materials 只保留读取/校验/只读投影，workflow 持锁并协调独占落盘与登记主提交，adapter 只下载/转换然后调用 workflow。下载器、测试、规范与全部消费者表同步改指向；没有新增目录，不重写已经通过的事务语义。
+
+## CI 实测后的验收编排补充（先于代码）
+
+34791196008 在 model_assets 开始后的整 300 秒由测试进程上限终止；前十一套通过，bom3d 段耗时约 168 秒，rack3d 尚在执行，比较台未开始。该次为失败，不能计通过。现有 tests/model_assets.cjs 将按 bom3d、rack3d、compare 三个独立进程执行，同一份测试和所有断言保留，各自保留五分钟上限；tests/run_browser.cjs 的默认入口仍覆盖全部，单项 model_assets 展开全部三段。CI 将 core 与 model_assets 分成两个独立 browser job，各自保留 15 分钟上限，失败不会取消另一组。此为验收执行边界整改，不宣称生产渲染性能改善。公共入口消费者为 CI、操作指南中的默认命令和本批本机验收；旧将所有资产场景塞进一个五分钟子进程的方式退出。涉及文件均已在全文件计划中，无新增源码文件。
