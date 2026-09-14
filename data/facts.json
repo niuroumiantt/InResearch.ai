@@ -132694,6 +132694,67 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "「from 4% in 2023」；到 2030 年「more than doubling」无具体数，未录。"
+    },
+    {
+      "fact_id": "gs2510-us-dc-power-share-2030e",
+      "metric_id": "dc_power_share_of_grid",
+      "asserter": "高盛",
+      "entity": {
+        "type": "industry",
+        "id": "us-dc",
+        "label": "美国数据中心"
+      },
+      "value": 11.0,
+      "unit": "%",
+      "bound": "point",
+      "as_of": "2030E@2025-10",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "US",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "6f35dc725da928dca0655e8a1ca0e788ba2d65829508a85a23b561c3b0bb8a87",
+        "local_file": "20251020-高盛：数据中心电力需求：推动增长的六大因素与制约因素(20页).pdf",
+        "locator": "第 15-16 页「美国电力需求增长的影响」：「目前，数据中心电力需求预计将在2030年占美国总电力需求的约11%，而此前这一比例仅为10%。根据美国能源部的昀新数据，2023年数据中心仅占总电力需求的约4%」「要满足数据中心的用电需求，总共需要约82吉瓦的新增容量，而此前这一数字为72吉瓦」；附件 21「到2030年，新增的发电能力将达到约82吉瓦」",
+        "grade": "S3",
+        "originator": "高盛 GS Sustain《数据中心电力需求：推动增长的六大因素与制约因素》（中文译本，文件日期 2025-10-20；文中引 TMT 团队 2025 年 10 月报告）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「约11%」，此前预测 10%；2030 年数据中心用电中 AI 约 39%（此前 32%）。高盛全球数据中心用电 2030 年较 2023 年增 175%（此前 165%）。做出时点按文件日期与文中「2025年10月」取 2025-10。"
+    },
+    {
+      "fact_id": "gs2510-us-dc-incremental-generation-2030",
+      "metric_id": "model_projected_generation_need",
+      "asserter": "高盛",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心"
+      },
+      "value": 82.0,
+      "unit": "GW",
+      "bound": "point",
+      "as_of": "2030E@2025-10",
+      "caliber": {
+        "model_source": "券商",
+        "horizon": "2030",
+        "region": "US",
+        "scenario": "单一情景"
+      },
+      "evidence": {
+        "sha256": "6f35dc725da928dca0655e8a1ca0e788ba2d65829508a85a23b561c3b0bb8a87",
+        "local_file": "20251020-高盛：数据中心电力需求：推动增长的六大因素与制约因素(20页).pdf",
+        "locator": "第 15-16 页「美国电力需求增长的影响」：「目前，数据中心电力需求预计将在2030年占美国总电力需求的约11%，而此前这一比例仅为10%。根据美国能源部的昀新数据，2023年数据中心仅占总电力需求的约4%」「要满足数据中心的用电需求，总共需要约82吉瓦的新增容量，而此前这一数字为72吉瓦」；附件 21「到2030年，新增的发电能力将达到约82吉瓦」",
+        "grade": "S3",
+        "originator": "高盛 GS Sustain《数据中心电力需求：推动增长的六大因素与制约因素》（中文译本，文件日期 2025-10-20；文中引 TMT 团队 2025 年 10 月报告）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "满足美国数据中心用电需求到 2030 年需新增约 82 GW 发电容量（此前 72 GW），其中约 60% 需新建；图 14 称 51% 来自天然气调峰、27% 来自光伏。库内 RAND 转述的高盛 47 GW（rand-goldman-us-incremental-2030，@2025-01）是更早的版本，同一断言者不同时点的预测并列，不是接替。"
     }
   ]
 }
