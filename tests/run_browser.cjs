@@ -22,14 +22,20 @@ const ready = new Promise((resolve, reject) => {
 (async () => {
   try {
     const port = await ready;
-    for (const suite of suites.length ? suites : defaults) {
+    const selected=suites.length ? suites.flatMap(s=>s==='core'?defaults.filter(v=>v!=='model_assets'):[s]) : defaults;
+    for (const suite of selected) {
       if (!defaults.includes(suite)) throw Error('Unknown suite: ' + suite);
+      for(const scenario of suite==='model_assets'?['bom3d','rack3d','compare']:[null]) {
+      const label=suite+(scenario?':'+scenario:''),started=Date.now();
+      console.log('START '+label);
       await new Promise((resolve, reject) => {
-        const child = spawn(process.execPath, [join(__dirname, suite + '.cjs')], {
+        const child = spawn(process.execPath, [join(__dirname, suite + '.cjs'), ...(scenario?[scenario]:[])], {
           timeout:300000, cwd:root, env:{...environment, UI_BASE_URL:'http://127.0.0.1:' + port}, stdio:'inherit'});
         child.once('error', reject);
-        child.once('exit', (code, signal) => code === 0 ? resolve() : reject(Error(suite + ' failed: ' + (signal || code))));
+        child.once('exit', (code, signal) => code === 0 ? resolve() : reject(Error(label + ' failed after '+Math.round((Date.now()-started)/1000)+'s: ' + (signal || code))));
       });
+      console.log('DONE '+label+' '+Math.round((Date.now()-started)/1000)+'s');
+      }
     }
   } finally {
     server.kill(); lines.close(); rmSync(directory, {recursive:true, force:true});
