@@ -120328,6 +120328,626 @@
         "originator": "上海市工程建设规范 DGTJ08-2125-2013《数据中心基础设施设计规程》"
       },
       "notes": "上海地方规范对数据中心 PUE 的上限；period 原文未写，按年均记 [未核]。库内上海 2019 导则新建 PUE 1.3（shanghai-2019-idc-guideline-pue-new）为后来收紧的要求。"
+    },
+    {
+      "fact_id": "bern-cn-ai-accel-market-nvidia-2024",
+      "metric_id": "cn_ai_chip_demand",
+      "asserter": "伯恩斯坦",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-accelerator-market",
+        "label": "中国 AI 加速器市场"
+      },
+      "value": 136.84,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "scenario": "禁令后实际",
+        "basis": "测算",
+        "region": "CN",
+        "vendor": "Nvidia"
+      },
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「国产GPU出货量」第 6 行「China AI Accelerator Market in 2024/2025E by Vendors (USD mn)」：Nvidia | 2024 13684 | 2025E 20875",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "厂商名照抄原表「Nvidia」。中国 AI 加速器市场分厂商金额，13684 百万美元 = 136.84 亿美元。 与库内全市场合计（bern-cn-ai-accel-market-2024/-2025e，十一家相加）同源。"
+    },
+    {
+      "fact_id": "bern-cn-ai-accel-market-nvidia-2025e",
+      "metric_id": "cn_ai_chip_demand",
+      "asserter": "伯恩斯坦",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-accelerator-market",
+        "label": "中国 AI 加速器市场"
+      },
+      "value": 208.75,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2025E@2025-07",
+      "caliber": {
+        "scenario": "禁令后实际",
+        "basis": "预测",
+        "region": "CN",
+        "vendor": "Nvidia"
+      },
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「国产GPU出货量」第 6 行「China AI Accelerator Market in 2024/2025E by Vendors (USD mn)」：Nvidia | 2024 13684 | 2025E 20875",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "厂商名照抄原表「Nvidia」。中国 AI 加速器市场分厂商金额，20875 百万美元 = 208.75 亿美元。 与库内全市场合计（bern-cn-ai-accel-market-2024/-2025e，十一家相加）同源。"
+    },
+    {
+      "fact_id": "bern-cn-ai-accel-market-amd-2024",
+      "metric_id": "cn_ai_chip_demand",
+      "asserter": "伯恩斯坦",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-accelerator-market",
+        "label": "中国 AI 加速器市场"
+      },
+      "value": 10.0,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "scenario": "禁令后实际",
+        "basis": "测算",
+        "region": "CN",
+        "vendor": "AMD"
+      },
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「国产GPU出货量」第 7 行「China AI Accelerator Market in 2024/2025E by Vendors (USD mn)」：AMD | 2024 1000 | 2025E 1500",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "厂商名照抄原表「AMD」。中国 AI 加速器市场分厂商金额，1000 百万美元 = 10.0 亿美元。 与库内全市场合计（bern-cn-ai-accel-market-2024/-2025e，十一家相加）同源。"
+    },
+    {
+      "fact_id": "bern-cn-ai-accel-market-amd-2025e",
+      "metric_id": "cn_ai_chip_demand",
+      "asserter": "伯恩斯坦",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-accelerator-market",
+        "label": "中国 AI 加速器市场"
+      },
+      "value": 15.0,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2025E@2025-07",
+      "caliber": {
+        "scenario": "禁令后实际",
+        "basis": "预测",
+        "region": "CN",
+        "vendor": "AMD"
+      },
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「国产GPU出货量」第 7 行「China AI Accelerator Market in 2024/2025E by Vendors (USD mn)」：AMD | 2024 1000 | 2025E 1500",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "厂商名照抄原表「AMD」。中国 AI 加速器市场分厂商金额，1500 百万美元 = 15.0 亿美元。 与库内全市场合计（bern-cn-ai-accel-market-2024/-2025e，十一家相加）同源。"
+    },
+    {
+      "fact_id": "bern-cn-ai-accel-market-huawei-2024",
+      "metric_id": "cn_ai_chip_demand",
+      "asserter": "伯恩斯坦",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-accelerator-market",
+        "label": "中国 AI 加速器市场"
+      },
+      "value": 48.61,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "scenario": "禁令后实际",
+        "basis": "测算",
+        "region": "CN",
+        "vendor": "Huawei"
+      },
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「国产GPU出货量」第 8 行「China AI Accelerator Market in 2024/2025E by Vendors (USD mn)」：Huawei | 2024 4861 | 2025E 10694",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "厂商名照抄原表「Huawei」。中国 AI 加速器市场分厂商金额，4861 百万美元 = 48.61 亿美元。 与库内全市场合计（bern-cn-ai-accel-market-2024/-2025e，十一家相加）同源。"
+    },
+    {
+      "fact_id": "bern-cn-ai-accel-market-huawei-2025e",
+      "metric_id": "cn_ai_chip_demand",
+      "asserter": "伯恩斯坦",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-accelerator-market",
+        "label": "中国 AI 加速器市场"
+      },
+      "value": 106.94,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2025E@2025-07",
+      "caliber": {
+        "scenario": "禁令后实际",
+        "basis": "预测",
+        "region": "CN",
+        "vendor": "Huawei"
+      },
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「国产GPU出货量」第 8 行「China AI Accelerator Market in 2024/2025E by Vendors (USD mn)」：Huawei | 2024 4861 | 2025E 10694",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "厂商名照抄原表「Huawei」。中国 AI 加速器市场分厂商金额，10694 百万美元 = 106.94 亿美元。 与库内全市场合计（bern-cn-ai-accel-market-2024/-2025e，十一家相加）同源。"
+    },
+    {
+      "fact_id": "bern-cn-ai-accel-market-cambricon-2024",
+      "metric_id": "cn_ai_chip_demand",
+      "asserter": "伯恩斯坦",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-accelerator-market",
+        "label": "中国 AI 加速器市场"
+      },
+      "value": 2.22,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "scenario": "禁令后实际",
+        "basis": "测算",
+        "region": "CN",
+        "vendor": "Cambricon"
+      },
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「国产GPU出货量」第 9 行「China AI Accelerator Market in 2024/2025E by Vendors (USD mn)」：Cambricon | 2024 222 | 2025E 1467",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "厂商名照抄原表「Cambricon」。中国 AI 加速器市场分厂商金额，222 百万美元 = 2.22 亿美元。 与库内全市场合计（bern-cn-ai-accel-market-2024/-2025e，十一家相加）同源。"
+    },
+    {
+      "fact_id": "bern-cn-ai-accel-market-cambricon-2025e",
+      "metric_id": "cn_ai_chip_demand",
+      "asserter": "伯恩斯坦",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-accelerator-market",
+        "label": "中国 AI 加速器市场"
+      },
+      "value": 14.67,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2025E@2025-07",
+      "caliber": {
+        "scenario": "禁令后实际",
+        "basis": "预测",
+        "region": "CN",
+        "vendor": "Cambricon"
+      },
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「国产GPU出货量」第 9 行「China AI Accelerator Market in 2024/2025E by Vendors (USD mn)」：Cambricon | 2024 222 | 2025E 1467",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "厂商名照抄原表「Cambricon」。中国 AI 加速器市场分厂商金额，1467 百万美元 = 14.67 亿美元。 与库内全市场合计（bern-cn-ai-accel-market-2024/-2025e，十一家相加）同源。"
+    },
+    {
+      "fact_id": "bern-cn-ai-accel-market-hygon-2025e",
+      "metric_id": "cn_ai_chip_demand",
+      "asserter": "伯恩斯坦",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-accelerator-market",
+        "label": "中国 AI 加速器市场"
+      },
+      "value": 10.69,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2025E@2025-07",
+      "caliber": {
+        "scenario": "禁令后实际",
+        "basis": "预测",
+        "region": "CN",
+        "vendor": "Hygon"
+      },
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「国产GPU出货量」第 10 行「China AI Accelerator Market in 2024/2025E by Vendors (USD mn)」：Hygon | 2024 - | 2025E 1069",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "厂商名照抄原表「Hygon」。中国 AI 加速器市场分厂商金额，1069 百万美元 = 10.69 亿美元。 2024 原表为「-」，未录（是未统计还是为零原表未说明）。 与库内全市场合计（bern-cn-ai-accel-market-2024/-2025e，十一家相加）同源。"
+    },
+    {
+      "fact_id": "bern-cn-ai-accel-market-metax-2024",
+      "metric_id": "cn_ai_chip_demand",
+      "asserter": "伯恩斯坦",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-accelerator-market",
+        "label": "中国 AI 加速器市场"
+      },
+      "value": 0.92,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "scenario": "禁令后实际",
+        "basis": "测算",
+        "region": "CN",
+        "vendor": "MetaX"
+      },
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「国产GPU出货量」第 11 行「China AI Accelerator Market in 2024/2025E by Vendors (USD mn)」：MetaX | 2024 92 | 2025E 224",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "厂商名照抄原表「MetaX」。中国 AI 加速器市场分厂商金额，92 百万美元 = 0.92 亿美元。 与库内全市场合计（bern-cn-ai-accel-market-2024/-2025e，十一家相加）同源。"
+    },
+    {
+      "fact_id": "bern-cn-ai-accel-market-metax-2025e",
+      "metric_id": "cn_ai_chip_demand",
+      "asserter": "伯恩斯坦",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-accelerator-market",
+        "label": "中国 AI 加速器市场"
+      },
+      "value": 2.24,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2025E@2025-07",
+      "caliber": {
+        "scenario": "禁令后实际",
+        "basis": "预测",
+        "region": "CN",
+        "vendor": "MetaX"
+      },
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「国产GPU出货量」第 11 行「China AI Accelerator Market in 2024/2025E by Vendors (USD mn)」：MetaX | 2024 92 | 2025E 224",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "厂商名照抄原表「MetaX」。中国 AI 加速器市场分厂商金额，224 百万美元 = 2.24 亿美元。 与库内全市场合计（bern-cn-ai-accel-market-2024/-2025e，十一家相加）同源。"
+    },
+    {
+      "fact_id": "bern-cn-ai-accel-market-moore-threads-2024",
+      "metric_id": "cn_ai_chip_demand",
+      "asserter": "伯恩斯坦",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-accelerator-market",
+        "label": "中国 AI 加速器市场"
+      },
+      "value": 0.46,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "scenario": "禁令后实际",
+        "basis": "测算",
+        "region": "CN",
+        "vendor": "Moore Threads"
+      },
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「国产GPU出货量」第 12 行「China AI Accelerator Market in 2024/2025E by Vendors (USD mn)」：Moore Threads | 2024 46 | 2025E 61",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "厂商名照抄原表「Moore Threads」。中国 AI 加速器市场分厂商金额，46 百万美元 = 0.46 亿美元。 与库内全市场合计（bern-cn-ai-accel-market-2024/-2025e，十一家相加）同源。"
+    },
+    {
+      "fact_id": "bern-cn-ai-accel-market-moore-threads-2025e",
+      "metric_id": "cn_ai_chip_demand",
+      "asserter": "伯恩斯坦",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-accelerator-market",
+        "label": "中国 AI 加速器市场"
+      },
+      "value": 0.61,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2025E@2025-07",
+      "caliber": {
+        "scenario": "禁令后实际",
+        "basis": "预测",
+        "region": "CN",
+        "vendor": "Moore Threads"
+      },
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「国产GPU出货量」第 12 行「China AI Accelerator Market in 2024/2025E by Vendors (USD mn)」：Moore Threads | 2024 46 | 2025E 61",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "厂商名照抄原表「Moore Threads」。中国 AI 加速器市场分厂商金额，61 百万美元 = 0.61 亿美元。 与库内全市场合计（bern-cn-ai-accel-market-2024/-2025e，十一家相加）同源。"
+    },
+    {
+      "fact_id": "bern-cn-ai-accel-market-kunlun-2024",
+      "metric_id": "cn_ai_chip_demand",
+      "asserter": "伯恩斯坦",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-accelerator-market",
+        "label": "中国 AI 加速器市场"
+      },
+      "value": 1.32,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "scenario": "禁令后实际",
+        "basis": "测算",
+        "region": "CN",
+        "vendor": "Kunlun"
+      },
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「国产GPU出货量」第 13 行「China AI Accelerator Market in 2024/2025E by Vendors (USD mn)」：Kunlun | 2024 132 | 2025E 363",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "厂商名照抄原表「Kunlun」。中国 AI 加速器市场分厂商金额，132 百万美元 = 1.32 亿美元。 与库内全市场合计（bern-cn-ai-accel-market-2024/-2025e，十一家相加）同源。"
+    },
+    {
+      "fact_id": "bern-cn-ai-accel-market-kunlun-2025e",
+      "metric_id": "cn_ai_chip_demand",
+      "asserter": "伯恩斯坦",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-accelerator-market",
+        "label": "中国 AI 加速器市场"
+      },
+      "value": 3.63,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2025E@2025-07",
+      "caliber": {
+        "scenario": "禁令后实际",
+        "basis": "预测",
+        "region": "CN",
+        "vendor": "Kunlun"
+      },
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「国产GPU出货量」第 13 行「China AI Accelerator Market in 2024/2025E by Vendors (USD mn)」：Kunlun | 2024 132 | 2025E 363",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "厂商名照抄原表「Kunlun」。中国 AI 加速器市场分厂商金额，363 百万美元 = 3.63 亿美元。 与库内全市场合计（bern-cn-ai-accel-market-2024/-2025e，十一家相加）同源。"
+    },
+    {
+      "fact_id": "bern-cn-ai-accel-market-zixiao-2024",
+      "metric_id": "cn_ai_chip_demand",
+      "asserter": "伯恩斯坦",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-accelerator-market",
+        "label": "中国 AI 加速器市场"
+      },
+      "value": 1.1,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "scenario": "禁令后实际",
+        "basis": "测算",
+        "region": "CN",
+        "vendor": "Zixiao"
+      },
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「国产GPU出货量」第 14 行「China AI Accelerator Market in 2024/2025E by Vendors (USD mn)」：Zixiao | 2024 110 | 2025E -",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "厂商名照抄原表「Zixiao」。中国 AI 加速器市场分厂商金额，110 百万美元 = 1.1 亿美元。 **Zixiao（紫霄）是腾讯的 AI 推理芯片**，不是壁仞；本指标 vendor 维 note 把它写成「壁仞」有误，请核。2025E 原表为「-」，未录。 与库内全市场合计（bern-cn-ai-accel-market-2024/-2025e，十一家相加）同源。"
+    },
+    {
+      "fact_id": "bern-cn-ai-accel-market-t-head-2024",
+      "metric_id": "cn_ai_chip_demand",
+      "asserter": "伯恩斯坦",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-accelerator-market",
+        "label": "中国 AI 加速器市场"
+      },
+      "value": 2.6,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "scenario": "禁令后实际",
+        "basis": "测算",
+        "region": "CN",
+        "vendor": "T-head"
+      },
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「国产GPU出货量」第 15 行「China AI Accelerator Market in 2024/2025E by Vendors (USD mn)」：T-head | 2024 260 | 2025E 955",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "厂商名照抄原表「T-head」。中国 AI 加速器市场分厂商金额，260 百万美元 = 2.6 亿美元。 **T-head 是阿里平头哥**，不是天数智芯；本指标 vendor 维 note 把它写成「天数」有误，请核。 与库内全市场合计（bern-cn-ai-accel-market-2024/-2025e，十一家相加）同源。"
+    },
+    {
+      "fact_id": "bern-cn-ai-accel-market-t-head-2025e",
+      "metric_id": "cn_ai_chip_demand",
+      "asserter": "伯恩斯坦",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-accelerator-market",
+        "label": "中国 AI 加速器市场"
+      },
+      "value": 9.55,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2025E@2025-07",
+      "caliber": {
+        "scenario": "禁令后实际",
+        "basis": "预测",
+        "region": "CN",
+        "vendor": "T-head"
+      },
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「国产GPU出货量」第 15 行「China AI Accelerator Market in 2024/2025E by Vendors (USD mn)」：T-head | 2024 260 | 2025E 955",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "厂商名照抄原表「T-head」。中国 AI 加速器市场分厂商金额，955 百万美元 = 9.55 亿美元。 **T-head 是阿里平头哥**，不是天数智芯；本指标 vendor 维 note 把它写成「天数」有误，请核。 与库内全市场合计（bern-cn-ai-accel-market-2024/-2025e，十一家相加）同源。"
+    },
+    {
+      "fact_id": "bern-cn-ai-accel-market-others-2024",
+      "metric_id": "cn_ai_chip_demand",
+      "asserter": "伯恩斯坦",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-accelerator-market",
+        "label": "中国 AI 加速器市场"
+      },
+      "value": 4.86,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "scenario": "禁令后实际",
+        "basis": "测算",
+        "region": "CN",
+        "vendor": "Others"
+      },
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「国产GPU出货量」第 16 行「China AI Accelerator Market in 2024/2025E by Vendors (USD mn)」：Others | 2024 486 | 2025E 1069",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "厂商名照抄原表「Others」。中国 AI 加速器市场分厂商金额，486 百万美元 = 4.86 亿美元。 与库内全市场合计（bern-cn-ai-accel-market-2024/-2025e，十一家相加）同源。"
+    },
+    {
+      "fact_id": "bern-cn-ai-accel-market-others-2025e",
+      "metric_id": "cn_ai_chip_demand",
+      "asserter": "伯恩斯坦",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-accelerator-market",
+        "label": "中国 AI 加速器市场"
+      },
+      "value": 10.69,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2025E@2025-07",
+      "caliber": {
+        "scenario": "禁令后实际",
+        "basis": "预测",
+        "region": "CN",
+        "vendor": "Others"
+      },
+      "evidence": {
+        "sha256": "68ef35cb8a446ead80a8591c9be88148818702c8635233a6f4a4dec635475af1",
+        "local_file": "国产 GPU 出货量与厂商明细（Bernstein，2025-07-21）.xlsx",
+        "locator": "工作表「国产GPU出货量」第 16 行「China AI Accelerator Market in 2024/2025E by Vendors (USD mn)」：Others | 2024 486 | 2025E 1069",
+        "grade": "S3",
+        "originator": "Bernstein（工作表标注 Source：Bernstein / Date: 2025.07.21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "厂商名照抄原表「Others」。中国 AI 加速器市场分厂商金额，1069 百万美元 = 10.69 亿美元。 与库内全市场合计（bern-cn-ai-accel-market-2024/-2025e，十一家相加）同源。"
     }
   ]
 }
