@@ -120230,6 +120230,104 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "「可为 1.2kN/m2」，未分级。同表电力电池室一栏 OCR 乱码（原表注「电池组四层双列摆放」），未录。改造 IDC 应按 GB50367 加固。"
+    },
+    {
+      "asserter": "上海市建筑建材业市场管理总站",
+      "entity": {
+        "type": "policy",
+        "id": "dgtj08-2125-2013",
+        "label": "上海 DGTJ08-2125-2013 数据中心基础设施设计规程"
+      },
+      "as_of": "2013",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "dgtj08-2125-2013-floorload-min",
+      "metric_id": "room_floor_load",
+      "value": 6.0,
+      "unit": "kN/㎡",
+      "bound": "lower",
+      "caliber": {
+        "room_type": "主机房",
+        "basis": "规范最低",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "未注明"
+      },
+      "evidence": {
+        "sha256": "6b299a3299c839ab3a8e6304a08d1bcffe46e2ea4724c7d9ba5b5429d32f4d4c",
+        "local_file": "上海建规-数据中心基础设施设计规程-DGTJ08-2125-2013.pdf",
+        "locator": "第 21 页 5.2.4：「数据中心楼层动荷载不应小于 6kN/m2；电源电池室等机房的楼面动荷载应符合设备荷载要求」",
+        "grade": "S1",
+        "originator": "上海市工程建设规范 DGTJ08-2125-2013《数据中心基础设施设计规程》"
+      },
+      "notes": "原文「数据中心楼层动荷载」，未单指主机房，按主机房记 [未核]；电池室等按设备荷载，无数值。上海地方工程建设规范，断言者按目录归属记管理总站。"
+    },
+    {
+      "asserter": "上海市建筑建材业市场管理总站",
+      "entity": {
+        "type": "policy",
+        "id": "dgtj08-2125-2013",
+        "label": "上海 DGTJ08-2125-2013 数据中心基础设施设计规程"
+      },
+      "as_of": "2013",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "dgtj08-2125-2013-clearheight-mainroom",
+      "metric_id": "room_clear_height",
+      "value": 3.3,
+      "unit": "m",
+      "bound": "point",
+      "caliber": {
+        "measure": "梁下净高",
+        "room_type": "主机房",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "新建"
+      },
+      "evidence": {
+        "sha256": "6b299a3299c839ab3a8e6304a08d1bcffe46e2ea4724c7d9ba5b5429d32f4d4c",
+        "local_file": "上海建规-数据中心基础设施设计规程-DGTJ08-2125-2013.pdf",
+        "locator": "第 22 页 表 5.2.6「新建数据中心的机房净高指标推荐表」：主机房和辅助房 净高 3.3m（注：含架空地板高度）",
+        "grade": "S1",
+        "originator": "上海市工程建设规范 DGTJ08-2125-2013《数据中心基础设施设计规程》"
+      },
+      "notes": "「推荐」值，含架空地板高度；measure 按梁下净高记 [未核]（原表只写「净高」）。配线室按总配线架高度 ≤3.1m 取 3.5m、≤3.75m 取 4.2m；走道净高不应低于 3m。"
+    },
+    {
+      "asserter": "上海市建筑建材业市场管理总站",
+      "entity": {
+        "type": "policy",
+        "id": "dgtj08-2125-2013",
+        "label": "上海 DGTJ08-2125-2013 数据中心基础设施设计规程"
+      },
+      "as_of": "2013",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "dgtj08-2125-2013-pue-max",
+      "metric_id": "dc_pue",
+      "value": 2.0,
+      "unit": "比值",
+      "bound": "upper",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "evidence": {
+        "sha256": "6b299a3299c839ab3a8e6304a08d1bcffe46e2ea4724c7d9ba5b5429d32f4d4c",
+        "local_file": "上海建规-数据中心基础设施设计规程-DGTJ08-2125-2013.pdf",
+        "locator": "第 24 页 6.1.4：「数据中心能源效率指标（PUE）应不大于 2」",
+        "grade": "S1",
+        "originator": "上海市工程建设规范 DGTJ08-2125-2013《数据中心基础设施设计规程》"
+      },
+      "notes": "上海地方规范对数据中心 PUE 的上限；period 原文未写，按年均记 [未核]。库内上海 2019 导则新建 PUE 1.3（shanghai-2019-idc-guideline-pue-new）为后来收紧的要求。"
     }
   ]
 }
