@@ -158450,6 +158450,449 @@
       "corroboration": "待交叉验证",
       "notes": "区域内建成投用 1 年以上数据中心整体上架率低于 50% 的，不支持规划新集群、不支持新建大型和超大型项目。同文西部数据中心利用率目标由 30% 提高到 50% 以上（2025 年，未录）。文件未印发文机关，asserter 记未注明。derived 只因 as_of 为推定。",
       "asserter": "未注明"
+    },
+    {
+      "fact_id": "gd-dcplan-2019-avg-pue-operating",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "market",
+        "id": "gd-dc-operating",
+        "label": "广东省已投产数据中心（全省平均）"
+      },
+      "value": 1.77,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2019-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3195fbaed90b0ba65dac775c63dad14569855eded9c78f82ecea23535263a8ee",
+        "local_file": "广东省5G基站和数据中心总体布局规划（2021—2025年）_45页_561kb.pdf",
+        "locator": "PDF 第 10 页 表 2 与 (3) 能耗水平情况：「全省已投产使用的数据中心平均 PUE 值为 1.77…全省规划在建的数据中心设计 PUE 值平均低于 1.45，扩容改建的数据中心设计 PUE 值平均低于 1.48」",
+        "grade": "S1",
+        "originator": "《广东省 5G 基站和数据中心总体布局规划（2021—2025 年）》（现状数据注明来源于各地市工业和信息化局统计）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "截至 2019 年底全省已投产使用数据中心平均 PUE，数据来自各地市工信局统计。第 12 页另称 64% 以上数据中心 PUE 高于 1.5。原文未写统计期，按年均口径记。",
+      "asserter": "广东省工业和信息化厅"
+    },
+    {
+      "fact_id": "gd-dcplan-2019-design-pue-new",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "market",
+        "id": "gd-dc-planned-new",
+        "label": "广东省规划在建数据中心（设计 PUE 平均）"
+      },
+      "value": 1.45,
+      "unit": "比值",
+      "caliber": {
+        "basis": "设计值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2019-12",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "3195fbaed90b0ba65dac775c63dad14569855eded9c78f82ecea23535263a8ee",
+        "local_file": "广东省5G基站和数据中心总体布局规划（2021—2025年）_45页_561kb.pdf",
+        "locator": "PDF 第 10 页 表 2 与 (3) 能耗水平情况：「全省已投产使用的数据中心平均 PUE 值为 1.77…全省规划在建的数据中心设计 PUE 值平均低于 1.45，扩容改建的数据中心设计 PUE 值平均低于 1.48」",
+        "grade": "S1",
+        "originator": "《广东省 5G 基站和数据中心总体布局规划（2021—2025 年）》（现状数据注明来源于各地市工业和信息化局统计）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「平均低于 1.45」为上界。原文未写统计期，按年均口径记。",
+      "asserter": "广东省工业和信息化厅"
+    },
+    {
+      "fact_id": "gd-dcplan-2019-design-pue-retrofit",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "market",
+        "id": "gd-dc-retrofit",
+        "label": "广东省扩容改建数据中心（设计 PUE 平均）"
+      },
+      "value": 1.48,
+      "unit": "比值",
+      "caliber": {
+        "basis": "设计值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "改造",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2019-12",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "3195fbaed90b0ba65dac775c63dad14569855eded9c78f82ecea23535263a8ee",
+        "local_file": "广东省5G基站和数据中心总体布局规划（2021—2025年）_45页_561kb.pdf",
+        "locator": "PDF 第 10 页 表 2 与 (3) 能耗水平情况：「全省已投产使用的数据中心平均 PUE 值为 1.77…全省规划在建的数据中心设计 PUE 值平均低于 1.45，扩容改建的数据中心设计 PUE 值平均低于 1.48」",
+        "grade": "S1",
+        "originator": "《广东省 5G 基站和数据中心总体布局规划（2021—2025 年）》（现状数据注明来源于各地市工业和信息化局统计）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「平均低于 1.48」为上界。原文未写统计期，按年均口径记。",
+      "asserter": "广东省工业和信息化厅"
+    },
+    {
+      "fact_id": "gd-dcplan-policy-pue-new-expand",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "gd-dcplan-policy-pue-new",
+        "label": "《广东省 5G 基站和数据中心总体布局规划（2021—2025 年）》：新建扩建准入"
+      },
+      "value": 1.3,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "3195fbaed90b0ba65dac775c63dad14569855eded9c78f82ecea23535263a8ee",
+        "local_file": "广东省5G基站和数据中心总体布局规划（2021—2025年）_45页_561kb.pdf",
+        "locator": "PDF 第 33 页（页脚 30）能耗指标：「PUE≤1.25：优先支持新建和扩建。1.25＜PUE≤1.3：支持新建和扩建。1.3＜PUE≤1.5：严控改建，不支持新建、扩建。PUE＞1.5：禁止新建、扩建和改建」",
+        "grade": "S1",
+        "originator": "《广东省 5G 基站和数据中心总体布局规划（2021—2025 年）》（现状数据注明来源于各地市工业和信息化局统计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "PUE ≤1.3 方支持新建和扩建（≤1.25 优先支持）；1.3–1.5 不支持新建扩建、严控改建。原文未写统计期，按年均口径记。",
+      "asserter": "广东省工业和信息化厅",
+      "derivation": "规划未印发布日期：规划期 2021—2025 年、现状数据截至 2019 年底，推定 2020 年编制发布"
+    },
+    {
+      "fact_id": "gd-dcplan-policy-pue-any-build",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "gd-dcplan-policy-pue-prohibit",
+        "label": "《广东省 5G 基站和数据中心总体布局规划（2021—2025 年）》：新建扩建改建禁止线"
+      },
+      "value": 1.5,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "改造",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "3195fbaed90b0ba65dac775c63dad14569855eded9c78f82ecea23535263a8ee",
+        "local_file": "广东省5G基站和数据中心总体布局规划（2021—2025年）_45页_561kb.pdf",
+        "locator": "PDF 第 33 页（页脚 30）能耗指标：「PUE≤1.25：优先支持新建和扩建。1.25＜PUE≤1.3：支持新建和扩建。1.3＜PUE≤1.5：严控改建，不支持新建、扩建。PUE＞1.5：禁止新建、扩建和改建」",
+        "grade": "S1",
+        "originator": "《广东省 5G 基站和数据中心总体布局规划（2021—2025 年）》（现状数据注明来源于各地市工业和信息化局统计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "PUE >1.5 禁止新建、扩建和改建；build_type 记改造表示连改建也受此线约束。原文未写统计期，按年均口径记。",
+      "asserter": "广东省工业和信息化厅",
+      "derivation": "规划未印发布日期：规划期 2021—2025 年、现状数据截至 2019 年底，推定 2020 年编制发布"
+    },
+    {
+      "fact_id": "gd-dcplan-target-design-pue-2025",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "gd-dcplan-target-design-pue",
+        "label": "《广东省 5G 基站和数据中心总体布局规划（2021—2025 年）》：全省设计 PUE 目标"
+      },
+      "value": 1.25,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "3195fbaed90b0ba65dac775c63dad14569855eded9c78f82ecea23535263a8ee",
+        "local_file": "广东省5G基站和数据中心总体布局规划（2021—2025年）_45页_561kb.pdf",
+        "locator": "PDF 第 14 页 2. 数据中心发展目标：「到 2022 年底…全省累计折合标准机架数约 47 万个…平均上架率达到 65%，设计 PUE 值平均小于 1.3…到 2025 年底…全省累计折合标准机架数约 100 万个…平均上架率达到 75%，设计 PUE 值平均小于 1.25」",
+        "grade": "S1",
+        "originator": "《广东省 5G 基站和数据中心总体布局规划（2021—2025 年）》（现状数据注明来源于各地市工业和信息化局统计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "2025 年底全省设计 PUE 平均小于 1.25（2022 年底目标 1.3）。原文未写统计期，按年均口径记。",
+      "asserter": "广东省工业和信息化厅",
+      "derivation": "规划未印发布日期：规划期 2021—2025 年、现状数据截至 2019 年底，推定 2020 年编制发布"
+    },
+    {
+      "fact_id": "gd-dcplan-policy-occupancy-expand",
+      "metric_id": "occupancy_policy_threshold",
+      "entity": {
+        "type": "policy",
+        "id": "gd-dcplan-policy-occupancy",
+        "label": "《广东省 5G 基站和数据中心总体布局规划（2021—2025 年）》：扩容新建前置条件"
+      },
+      "value": 60.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "单项目",
+        "policy_type": "准入门槛",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "3195fbaed90b0ba65dac775c63dad14569855eded9c78f82ecea23535263a8ee",
+        "local_file": "广东省5G基站和数据中心总体布局规划（2021—2025年）_45页_561kb.pdf",
+        "locator": "PDF 第 35 页（三）规划建设：「按照『先提后扩』的建设思路，先提高上架率，后扩容和新增，单个数据中心项目上架率达到 60%，方可申请扩容和新建项目」",
+        "grade": "S1",
+        "originator": "《广东省 5G 基站和数据中心总体布局规划（2021—2025 年）》（现状数据注明来源于各地市工业和信息化局统计）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "单个数据中心项目上架率达到 60% 方可申请扩容和新建（先提后扩）。全省平均上架率目标：2022 年 65%、2025 年 75%（未另录）。",
+      "asserter": "广东省工业和信息化厅",
+      "derivation": "规划未印发布日期：规划期 2021—2025 年、现状数据截至 2019 年底，推定 2020 年编制发布"
+    },
+    {
+      "fact_id": "gd-dcplan-2019-occupancy-province",
+      "metric_id": "dc_occupancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "gd-dc-market",
+        "label": "广东省数据中心（全省）"
+      },
+      "value": 61.8,
+      "unit": "%",
+      "caliber": {
+        "scope": "区域市场",
+        "region": "CN"
+      },
+      "as_of": "2019-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3195fbaed90b0ba65dac775c63dad14569855eded9c78f82ecea23535263a8ee",
+        "local_file": "广东省5G基站和数据中心总体布局规划（2021—2025年）_45页_561kb.pdf",
+        "locator": "PDF 第 9 页 一（二）2.(1)：「截至 2019 年底，全省已投产使用的数据中心数量约 160 个…已投产的机架数量约 11.6 万个（折合标准机架数 21.8 万个，合计功率 545 兆瓦），在用的机架数量约 7.2 万个（折合标准机架数 13.5 万个，合计功率 337 兆瓦）」；(2)：「全省上架率约 61.8%，珠三角地区 63.3%，粤东粤西粤北地区 55.1%。其中，广州、深圳分别为 63.2%和 69.0%」；脚注 8「上架率 = 在用的标准机架数 / 已投产的标准机架数」",
+        "grade": "S1",
+        "originator": "《广东省 5G 基站和数据中心总体布局规划（2021—2025 年）》（现状数据注明来源于各地市工业和信息化局统计）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "上架率 = 在用标准机架数 / 已投产标准机架数（13.5 万 / 21.8 万 = 61.9%，与原文约 61.8% 一致）。",
+      "asserter": "广东省工业和信息化厅"
+    },
+    {
+      "fact_id": "gd-dcplan-2019-occupancy-prd",
+      "metric_id": "dc_occupancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "gd-dc-market-prd",
+        "label": "广东省数据中心（珠三角地区）"
+      },
+      "value": 63.3,
+      "unit": "%",
+      "caliber": {
+        "scope": "区域市场",
+        "region": "CN"
+      },
+      "as_of": "2019-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3195fbaed90b0ba65dac775c63dad14569855eded9c78f82ecea23535263a8ee",
+        "local_file": "广东省5G基站和数据中心总体布局规划（2021—2025年）_45页_561kb.pdf",
+        "locator": "PDF 第 9 页 一（二）2.(1)：「截至 2019 年底，全省已投产使用的数据中心数量约 160 个…已投产的机架数量约 11.6 万个（折合标准机架数 21.8 万个，合计功率 545 兆瓦），在用的机架数量约 7.2 万个（折合标准机架数 13.5 万个，合计功率 337 兆瓦）」；(2)：「全省上架率约 61.8%，珠三角地区 63.3%，粤东粤西粤北地区 55.1%。其中，广州、深圳分别为 63.2%和 69.0%」；脚注 8「上架率 = 在用的标准机架数 / 已投产的标准机架数」",
+        "grade": "S1",
+        "originator": "《广东省 5G 基站和数据中心总体布局规划（2021—2025 年）》（现状数据注明来源于各地市工业和信息化局统计）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "上架率按标准机架数计。",
+      "asserter": "广东省工业和信息化厅"
+    },
+    {
+      "fact_id": "gd-dcplan-2019-occupancy-non-prd",
+      "metric_id": "dc_occupancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "gd-dc-market-non-prd",
+        "label": "广东省数据中心（粤东粤西粤北地区）"
+      },
+      "value": 55.1,
+      "unit": "%",
+      "caliber": {
+        "scope": "区域市场",
+        "region": "CN"
+      },
+      "as_of": "2019-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3195fbaed90b0ba65dac775c63dad14569855eded9c78f82ecea23535263a8ee",
+        "local_file": "广东省5G基站和数据中心总体布局规划（2021—2025年）_45页_561kb.pdf",
+        "locator": "PDF 第 9 页 一（二）2.(1)：「截至 2019 年底，全省已投产使用的数据中心数量约 160 个…已投产的机架数量约 11.6 万个（折合标准机架数 21.8 万个，合计功率 545 兆瓦），在用的机架数量约 7.2 万个（折合标准机架数 13.5 万个，合计功率 337 兆瓦）」；(2)：「全省上架率约 61.8%，珠三角地区 63.3%，粤东粤西粤北地区 55.1%。其中，广州、深圳分别为 63.2%和 69.0%」；脚注 8「上架率 = 在用的标准机架数 / 已投产的标准机架数」",
+        "grade": "S1",
+        "originator": "《广东省 5G 基站和数据中心总体布局规划（2021—2025 年）》（现状数据注明来源于各地市工业和信息化局统计）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "上架率按标准机架数计。",
+      "asserter": "广东省工业和信息化厅"
+    },
+    {
+      "fact_id": "gd-dcplan-2019-occupancy-guangzhou",
+      "metric_id": "dc_occupancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "gd-dc-market-guangzhou",
+        "label": "广州市数据中心"
+      },
+      "value": 63.21,
+      "unit": "%",
+      "caliber": {
+        "scope": "区域市场",
+        "region": "CN"
+      },
+      "as_of": "2019-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3195fbaed90b0ba65dac775c63dad14569855eded9c78f82ecea23535263a8ee",
+        "local_file": "广东省5G基站和数据中心总体布局规划（2021—2025年）_45页_561kb.pdf",
+        "locator": "PDF 第 9 页 一（二）2.(1)：「截至 2019 年底，全省已投产使用的数据中心数量约 160 个…已投产的机架数量约 11.6 万个（折合标准机架数 21.8 万个，合计功率 545 兆瓦），在用的机架数量约 7.2 万个（折合标准机架数 13.5 万个，合计功率 337 兆瓦）」；(2)：「全省上架率约 61.8%，珠三角地区 63.3%，粤东粤西粤北地区 55.1%。其中，广州、深圳分别为 63.2%和 69.0%」；脚注 8「上架率 = 在用的标准机架数 / 已投产的标准机架数」；PDF 第 10 页表 2「广州 34676 1 63.21% 7」",
+        "grade": "S1",
+        "originator": "《广东省 5G 基站和数据中心总体布局规划（2021—2025 年）》（现状数据注明来源于各地市工业和信息化局统计）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "表 2 精确值 63.21%，现有机架 34,676（全省第 1）。",
+      "asserter": "广东省工业和信息化厅"
+    },
+    {
+      "fact_id": "gd-dcplan-2019-occupancy-shenzhen",
+      "metric_id": "dc_occupancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "gd-dc-market-shenzhen",
+        "label": "深圳市数据中心"
+      },
+      "value": 69.01,
+      "unit": "%",
+      "caliber": {
+        "scope": "区域市场",
+        "region": "CN"
+      },
+      "as_of": "2019-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3195fbaed90b0ba65dac775c63dad14569855eded9c78f82ecea23535263a8ee",
+        "local_file": "广东省5G基站和数据中心总体布局规划（2021—2025年）_45页_561kb.pdf",
+        "locator": "PDF 第 9 页 一（二）2.(1)：「截至 2019 年底，全省已投产使用的数据中心数量约 160 个…已投产的机架数量约 11.6 万个（折合标准机架数 21.8 万个，合计功率 545 兆瓦），在用的机架数量约 7.2 万个（折合标准机架数 13.5 万个，合计功率 337 兆瓦）」；(2)：「全省上架率约 61.8%，珠三角地区 63.3%，粤东粤西粤北地区 55.1%。其中，广州、深圳分别为 63.2%和 69.0%」；脚注 8「上架率 = 在用的标准机架数 / 已投产的标准机架数」；PDF 第 10 页表 2「深圳 25213 2 69.01% 6」",
+        "grade": "S1",
+        "originator": "《广东省 5G 基站和数据中心总体布局规划（2021—2025 年）》（现状数据注明来源于各地市工业和信息化局统计）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "表 2 精确值 69.01%，现有机架 25,213（全省第 2）。",
+      "asserter": "广东省工业和信息化厅"
+    },
+    {
+      "fact_id": "gd-dcplan-2019-capacity-operational",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "gd-dc-market",
+        "label": "广东省数据中心（全省已投产）"
+      },
+      "value": 545.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "CN"
+      },
+      "as_of": "2019-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3195fbaed90b0ba65dac775c63dad14569855eded9c78f82ecea23535263a8ee",
+        "local_file": "广东省5G基站和数据中心总体布局规划（2021—2025年）_45页_561kb.pdf",
+        "locator": "PDF 第 9 页 一（二）2.(1)：「截至 2019 年底，全省已投产使用的数据中心数量约 160 个…已投产的机架数量约 11.6 万个（折合标准机架数 21.8 万个，合计功率 545 兆瓦），在用的机架数量约 7.2 万个（折合标准机架数 13.5 万个，合计功率 337 兆瓦）」；(2)：「全省上架率约 61.8%，珠三角地区 63.3%，粤东粤西粤北地区 55.1%。其中，广州、深圳分别为 63.2%和 69.0%」；脚注 8「上架率 = 在用的标准机架数 / 已投产的标准机架数」",
+        "grade": "S1",
+        "originator": "《广东省 5G 基站和数据中心总体布局规划（2021—2025 年）》（现状数据注明来源于各地市工业和信息化局统计）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "已投产折合标准机架 21.8 万个 × 每标准机架 2.5kW = 545MW（规划按标准机架功率折算，第 10 页脚注给出能耗电量公式按 2.5kW/架），不是实测 IT 负载。",
+      "asserter": "广东省工业和信息化厅"
+    },
+    {
+      "fact_id": "gd-dcplan-2019-capacity-in-use",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "gd-dc-market-in-use",
+        "label": "广东省数据中心（全省在用）"
+      },
+      "value": 337.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "签约容量",
+        "status": "L9",
+        "region": "CN"
+      },
+      "as_of": "2019-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3195fbaed90b0ba65dac775c63dad14569855eded9c78f82ecea23535263a8ee",
+        "local_file": "广东省5G基站和数据中心总体布局规划（2021—2025年）_45页_561kb.pdf",
+        "locator": "PDF 第 9 页 一（二）2.(1)：「截至 2019 年底，全省已投产使用的数据中心数量约 160 个…已投产的机架数量约 11.6 万个（折合标准机架数 21.8 万个，合计功率 545 兆瓦），在用的机架数量约 7.2 万个（折合标准机架数 13.5 万个，合计功率 337 兆瓦）」；(2)：「全省上架率约 61.8%，珠三角地区 63.3%，粤东粤西粤北地区 55.1%。其中，广州、深圳分别为 63.2%和 69.0%」；脚注 8「上架率 = 在用的标准机架数 / 已投产的标准机架数」",
+        "grade": "S1",
+        "originator": "《广东省 5G 基站和数据中心总体布局规划（2021—2025 年）》（现状数据注明来源于各地市工业和信息化局统计）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "在用折合标准机架 13.5 万个 × 2.5kW = 337MW；capacity_type 记签约容量表示已被客户使用的部分，status 记 L9 表示在用，均为按标准机架折算。",
+      "asserter": "广东省工业和信息化厅"
     }
   ]
 }
