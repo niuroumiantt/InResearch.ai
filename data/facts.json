@@ -124167,6 +124167,37 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "平台照原文写「NVL72 等效」。同表 GB300 四季度「数千台」无具体数，未录。"
+    },
+    {
+      "fact_id": "ms-2025e-hbm-demand-total",
+      "metric_id": "hbm_demand_volume",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "hbm-global",
+        "label": "全球 HBM 需求"
+      },
+      "value": 20.45422,
+      "unit": "亿 GB",
+      "bound": "point",
+      "as_of": "2025E",
+      "caliber": {
+        "measure": "位容量",
+        "generation": "合计",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "evidence": {
+        "sha256": "8a95ad5c42bf319b9528bd511b14760e525007ed1460e6802464f4cc0dc58dfd",
+        "local_file": "AI芯片wafer和HBM comsumption.xlsx",
+        "locator": "工作表「HBM consumption in 2025e」第 23 行「Total … Total HBM demand (k GB) 2045422」；第 24 行「Total HBM demand (mn Gb) 16363」（表注 Source: MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（表注 Source: MS；文件未署名整理者）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2,045,422 千 GB = 20.45 亿 GB；第 24 行 16,363 mn Gb 即 ×8 的吉比特口径，互相印证。**自下而上算出的**：按各产品 CoWoS 分配（合计 663 k wafers）× 每片芯片数 × 每颗 HBM 容量逐行相加，只覆盖表内 18 个产品（Tesla FSD 为 NA 未计）。表内无日期，as_of 不带 @。库内 hbmstat-demand-total-2025e（出处未注明）为 20.39 亿 GB，量级相近但口径不同，不作印证。"
     }
   ]
 }
