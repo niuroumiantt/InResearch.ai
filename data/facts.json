@@ -115440,6 +115440,73 @@
         "originator": "国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）"
       },
       "notes": "国海自己的测算：AI 数据中心装机容量 × 国内/海外占比 × UPS/HVDC 冗余度（2023-2025 为 2，2026 起 1.9）× 渗透率 × 单价（国内 2023 年 UPS 0.53 元/W、HVDC 高 25%；海外 UPS 1.1 元/W、HVDC 1.4 元/W）。HVDC 渗透率假设国内 15%→30%、海外 5%→60%。**口径是 AI 数据中心新增装机带来的设备空间**，不是存量市场；「全球」= 国内 + 海外。2023 年亦为国海估算。"
+    },
+    {
+      "fact_id": "caict-aiops2025-cn-avg-pue-202506",
+      "metric_id": "dc_pue",
+      "asserter": "中国信通院",
+      "entity": {
+        "type": "region",
+        "id": "cn-computing-centers",
+        "label": "中国在用算力中心（合计）"
+      },
+      "value": 1.42,
+      "unit": "比值",
+      "bound": "point",
+      "as_of": "2025-06",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "evidence": {
+        "sha256": "5ba7fd0ff2c65104cec0bca3dff859b4267f4f3778be95550ca41ddc35aa37b7",
+        "local_file": "20251225-中国信通院-智算运维产业发展研究报告（2025）.pdf",
+        "locator": "第 7 页 一、2：「2025中国算力大会上公布的最新数据，截至2025年6月底，我国在用算力中心标准机架达1085万架，智能算力规模达788EFLOPS（FP16），算力中心平均PUE（电能利用效率）降至1.42」（文字层有水印噪声）",
+        "grade": "S2",
+        "originator": "中国信通院《2025 综合算力指数》（2025 中国算力大会发布，经中国信通院、中国通信标准化协会 TC628《智算运维产业发展研究报告（2025）》（2025-12）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "全国在用算力中心平均 PUE。断言者按同一组数（1085 万标准机架、788 EFLOPS）在库内另一份信通院报告里的脚注出处记中国信通院（caict-aiinfra2025-cn-ai-compute-202506）。**period 原文未写统计窗口，按年均记 [未核]**；build_type 按「在用」记存量。"
+    },
+    {
+      "fact_id": "caict-aiops2025-shanghai-ai-compute-target-2027",
+      "metric_id": "regional_compute_capacity",
+      "asserter": "上海市经信委",
+      "entity": {
+        "type": "region",
+        "id": "cn-shanghai",
+        "label": "上海市"
+      },
+      "value": 200.0,
+      "unit": "EFLOPS",
+      "bound": "point",
+      "as_of": "2027目标",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "混合/未注明",
+        "area": "上海",
+        "status": "规划目标",
+        "region": "CN",
+        "basis": "政策目标"
+      },
+      "evidence": {
+        "sha256": "5ba7fd0ff2c65104cec0bca3dff859b4267f4f3778be95550ca41ddc35aa37b7",
+        "local_file": "20251225-中国信通院-智算运维产业发展研究报告（2025）.pdf",
+        "locator": "第 6 页 一、1：「2025年3月，上海市经济和信息化委员会印发《上海市关于促进智算云产业创新发展的实施意见（2025-2027年）》，提出到2027年，本市智算规模力争达到200EFLOPS，其中自主可控算力占比超70%」",
+        "grade": "S2",
+        "originator": "上海市经济和信息化委员会（经中国信通院、中国通信标准化协会 TC628《智算运维产业发展研究报告（2025）》（2025-12）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「力争达到」按点值记；其中自主可控算力占比超 70%（无对应指标，未录）。精度原文未写。"
     }
   ]
 }
