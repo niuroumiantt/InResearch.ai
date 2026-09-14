@@ -127182,6 +127182,210 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "「一二次设计供回水/液温差不宜低于 10℃」，一次侧与二次侧同一要求。设计院的工程设计要点，是推荐下限不是项目实测。"
+    },
+    {
+      "fact_id": "ch2507-800g-demand-2026e",
+      "metric_id": "optics_module_shipment",
+      "asserter": "未注明",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-800g",
+        "label": "全球 800G 光模块市场"
+      },
+      "value": 3500.0,
+      "unit": "万只",
+      "bound": "lower",
+      "as_of": "2026E@2025-07",
+      "caliber": {
+        "rate_target": "单模块",
+        "product_form": "光模块",
+        "speed": "800G",
+        "shipment_basis": "市场需求",
+        "basis": "专家访谈/渠道调研",
+        "region": "Global",
+        "customer": "未拆分"
+      },
+      "evidence": {
+        "sha256": "93cafc25eccad6c751c64762c2218eecb7bb9f71aeb1ee3dac5d2ea939e7919a",
+        "local_file": "光模块调研纪要.xlsx",
+        "locator": "工作表「20250721」第 4 行「2026 年光模块需求（800G）｜预计需求为 3500 万到 4000 万个，但存在虚假需求成分。」",
+        "grade": "S4",
+        "originator": "未注明（工作表「20250721」标注「Source：本营」，渠道调研纪要，出处机构不可考）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文区间 3500-4000 万个的下界；上界见 ch2507-800g-demand-2026e-upper。**原文自注「存在虚假需求成分」**，同表第 5/10 行按 capex 推算 2026 年 800G+1.6T（CSP）需求仅 2,400-2,500 万个，两者口径相差很大。地域原文未写，800G 全球市场按 Global 记。"
+    },
+    {
+      "fact_id": "ch2507-800g-demand-2026e-upper",
+      "metric_id": "optics_module_shipment",
+      "asserter": "未注明",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-800g",
+        "label": "全球 800G 光模块市场"
+      },
+      "value": 4000.0,
+      "unit": "万只",
+      "bound": "upper",
+      "as_of": "2026E@2025-07",
+      "caliber": {
+        "rate_target": "单模块",
+        "product_form": "光模块",
+        "speed": "800G",
+        "shipment_basis": "市场需求",
+        "basis": "专家访谈/渠道调研",
+        "region": "Global",
+        "customer": "未拆分"
+      },
+      "evidence": {
+        "sha256": "93cafc25eccad6c751c64762c2218eecb7bb9f71aeb1ee3dac5d2ea939e7919a",
+        "local_file": "光模块调研纪要.xlsx",
+        "locator": "工作表「20250721」第 4 行「2026 年光模块需求（800G）｜预计需求为 3500 万到 4000 万个，但存在虚假需求成分。」",
+        "grade": "S4",
+        "originator": "未注明（工作表「20250721」标注「Source：本营」，渠道调研纪要，出处机构不可考）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文区间 3500-4000 万个的上界；下界见 ch2507-800g-demand-2026e。原文自注「存在虚假需求成分」。"
+    },
+    {
+      "fact_id": "ch2507-800g-ship-2025h1",
+      "metric_id": "optics_module_shipment",
+      "asserter": "未注明",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-800g",
+        "label": "全球 800G 光模块市场"
+      },
+      "value": 500.0,
+      "unit": "万只",
+      "bound": "point",
+      "as_of": "2025-H1",
+      "caliber": {
+        "rate_target": "单模块",
+        "product_form": "光模块",
+        "speed": "800G",
+        "shipment_basis": "厂商出货",
+        "basis": "专家访谈/渠道调研",
+        "region": "Global",
+        "customer": "未拆分"
+      },
+      "evidence": {
+        "sha256": "93cafc25eccad6c751c64762c2218eecb7bb9f71aeb1ee3dac5d2ea939e7919a",
+        "local_file": "光模块调研纪要.xlsx",
+        "locator": "工作表「20250721」第 6 行「2025 年 800G 发货量（上半年）｜约 500 万个」",
+        "grade": "S4",
+        "originator": "未注明（工作表「20250721」标注「Source：本营」，渠道调研纪要，出处机构不可考）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「约 500 万个」，调研日 2025-07-21，上半年已结束。"
+    },
+    {
+      "fact_id": "ch2507-800g-ship-2025e",
+      "metric_id": "optics_module_shipment",
+      "asserter": "未注明",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-800g",
+        "label": "全球 800G 光模块市场"
+      },
+      "value": 1200.0,
+      "unit": "万只",
+      "bound": "lower",
+      "as_of": "2025E@2025-07",
+      "caliber": {
+        "rate_target": "单模块",
+        "product_form": "光模块",
+        "speed": "800G",
+        "shipment_basis": "厂商出货",
+        "basis": "专家访谈/渠道调研",
+        "region": "Global",
+        "customer": "未拆分"
+      },
+      "evidence": {
+        "sha256": "93cafc25eccad6c751c64762c2218eecb7bb9f71aeb1ee3dac5d2ea939e7919a",
+        "local_file": "光模块调研纪要.xlsx",
+        "locator": "工作表「20250721」第 7 行「2025 年 800G 发货量（全年预测）｜预计为 1200 万到 1500 万个，最可能为 1300 万到 1400 万个。」",
+        "grade": "S4",
+        "originator": "未注明（工作表「20250721」标注「Source：本营」，渠道调研纪要，出处机构不可考）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文区间 1200-1500 万个的下界；上界见 ch2507-800g-ship-2025e-upper。原文另给「最可能为 1300 万到 1400 万个」，与本区间同一断言同一时点，未另录。第 8 行「全年实际｜预计到年底达到 1400 万个」见 ch2507-800g-ship-2025e-point。"
+    },
+    {
+      "fact_id": "ch2507-800g-ship-2025e-upper",
+      "metric_id": "optics_module_shipment",
+      "asserter": "未注明",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-800g",
+        "label": "全球 800G 光模块市场"
+      },
+      "value": 1500.0,
+      "unit": "万只",
+      "bound": "upper",
+      "as_of": "2025E@2025-07",
+      "caliber": {
+        "rate_target": "单模块",
+        "product_form": "光模块",
+        "speed": "800G",
+        "shipment_basis": "厂商出货",
+        "basis": "专家访谈/渠道调研",
+        "region": "Global",
+        "customer": "未拆分"
+      },
+      "evidence": {
+        "sha256": "93cafc25eccad6c751c64762c2218eecb7bb9f71aeb1ee3dac5d2ea939e7919a",
+        "local_file": "光模块调研纪要.xlsx",
+        "locator": "工作表「20250721」第 7 行「2025 年 800G 发货量（全年预测）｜预计为 1200 万到 1500 万个，最可能为 1300 万到 1400 万个。」",
+        "grade": "S4",
+        "originator": "未注明（工作表「20250721」标注「Source：本营」，渠道调研纪要，出处机构不可考）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文区间 1200-1500 万个的上界；下界见 ch2507-800g-ship-2025e。"
+    },
+    {
+      "fact_id": "ch2507-800g-ship-2025e-point",
+      "metric_id": "optics_module_shipment",
+      "asserter": "未注明",
+      "entity": {
+        "type": "industry",
+        "id": "global-optics-800g",
+        "label": "全球 800G 光模块市场"
+      },
+      "value": 1400.0,
+      "unit": "万只",
+      "bound": "point",
+      "as_of": "2025E@2025-07",
+      "caliber": {
+        "rate_target": "单模块",
+        "product_form": "光模块",
+        "speed": "800G",
+        "shipment_basis": "厂商出货",
+        "basis": "专家访谈/渠道调研",
+        "region": "Global",
+        "customer": "未拆分"
+      },
+      "evidence": {
+        "sha256": "93cafc25eccad6c751c64762c2218eecb7bb9f71aeb1ee3dac5d2ea939e7919a",
+        "local_file": "光模块调研纪要.xlsx",
+        "locator": "工作表「20250721」第 8 行「2025 年 800G 发货量（全年实际）｜预计到年底达到 1400 万个，产能正处于扩展阶段。」",
+        "grade": "S4",
+        "originator": "未注明（工作表「20250721」标注「Source：本营」，渠道调研纪要，出处机构不可考）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "行名写「全年实际」但内容是「预计到年底达到」，按预测记；与第 7 行区间 1200-1500 万同表并列。"
     }
   ]
 }
