@@ -120070,6 +120070,166 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "「可用机柜约 19,900 个」= 1.99 万架，12 个自建自营数据中心；未说明是否标准机柜折算，**与数据港 5kW 折算口径不一定可比**。2019-2021 机柜数 CAGR 66.24%。"
+    },
+    {
+      "fact_id": "yd5193-2014-floorload-a-lower",
+      "metric_id": "room_floor_load",
+      "asserter": "工信部",
+      "entity": {
+        "type": "policy",
+        "id": "yd5193-2014",
+        "label": "YD 5193-2014 互联网数据中心（IDC）工程设计规范"
+      },
+      "value": 10.0,
+      "unit": "kN/㎡",
+      "bound": "lower",
+      "as_of": "2014",
+      "caliber": {
+        "room_type": "主机房",
+        "basis": "规范最低",
+        "region": "CN",
+        "tier": "A 级",
+        "build_type": "未注明"
+      },
+      "evidence": {
+        "sha256": "36a5680e52f94f31a9134c9a6b9f209c8dda039e1f3ec960571e1e15c6603f70",
+        "local_file": "YD 5193-2014 互联网数据中心（IDC）工程设计规范.pdf",
+        "locator": "第 15 页 6.1.6 表 6.1.6「楼面均布活荷载要求」：主机房区（kN/m2）A 级 10～12、B 级 8～10；「IDC 主机房区的楼板吊挂荷载可为 1.2kN/m2」（全角 OCR 文字层）",
+        "grade": "S1",
+        "originator": "工业和信息化部 YD 5193-2014《互联网数据中心（IDC）工程设计规范》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "行业标准给的区间，下 端。同表电力电池室一栏 OCR 乱码（原表注「电池组四层双列摆放」），未录。改造 IDC 应按 GB50367 加固。"
+    },
+    {
+      "fact_id": "yd5193-2014-floorload-a-upper",
+      "metric_id": "room_floor_load",
+      "asserter": "工信部",
+      "entity": {
+        "type": "policy",
+        "id": "yd5193-2014",
+        "label": "YD 5193-2014 互联网数据中心（IDC）工程设计规范"
+      },
+      "value": 12.0,
+      "unit": "kN/㎡",
+      "bound": "upper",
+      "as_of": "2014",
+      "caliber": {
+        "room_type": "主机房",
+        "basis": "规范最低",
+        "region": "CN",
+        "tier": "A 级",
+        "build_type": "未注明"
+      },
+      "evidence": {
+        "sha256": "36a5680e52f94f31a9134c9a6b9f209c8dda039e1f3ec960571e1e15c6603f70",
+        "local_file": "YD 5193-2014 互联网数据中心（IDC）工程设计规范.pdf",
+        "locator": "第 15 页 6.1.6 表 6.1.6「楼面均布活荷载要求」：主机房区（kN/m2）A 级 10～12、B 级 8～10；「IDC 主机房区的楼板吊挂荷载可为 1.2kN/m2」（全角 OCR 文字层）",
+        "grade": "S1",
+        "originator": "工业和信息化部 YD 5193-2014《互联网数据中心（IDC）工程设计规范》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "行业标准给的区间，上 端。同表电力电池室一栏 OCR 乱码（原表注「电池组四层双列摆放」），未录。改造 IDC 应按 GB50367 加固。"
+    },
+    {
+      "fact_id": "yd5193-2014-floorload-b-lower",
+      "metric_id": "room_floor_load",
+      "asserter": "工信部",
+      "entity": {
+        "type": "policy",
+        "id": "yd5193-2014",
+        "label": "YD 5193-2014 互联网数据中心（IDC）工程设计规范"
+      },
+      "value": 8.0,
+      "unit": "kN/㎡",
+      "bound": "lower",
+      "as_of": "2014",
+      "caliber": {
+        "room_type": "主机房",
+        "basis": "规范最低",
+        "region": "CN",
+        "tier": "B 级",
+        "build_type": "未注明"
+      },
+      "evidence": {
+        "sha256": "36a5680e52f94f31a9134c9a6b9f209c8dda039e1f3ec960571e1e15c6603f70",
+        "local_file": "YD 5193-2014 互联网数据中心（IDC）工程设计规范.pdf",
+        "locator": "第 15 页 6.1.6 表 6.1.6「楼面均布活荷载要求」：主机房区（kN/m2）A 级 10～12、B 级 8～10；「IDC 主机房区的楼板吊挂荷载可为 1.2kN/m2」（全角 OCR 文字层）",
+        "grade": "S1",
+        "originator": "工业和信息化部 YD 5193-2014《互联网数据中心（IDC）工程设计规范》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "行业标准给的区间，下 端。同表电力电池室一栏 OCR 乱码（原表注「电池组四层双列摆放」），未录。改造 IDC 应按 GB50367 加固。"
+    },
+    {
+      "fact_id": "yd5193-2014-floorload-b-upper",
+      "metric_id": "room_floor_load",
+      "asserter": "工信部",
+      "entity": {
+        "type": "policy",
+        "id": "yd5193-2014",
+        "label": "YD 5193-2014 互联网数据中心（IDC）工程设计规范"
+      },
+      "value": 10.0,
+      "unit": "kN/㎡",
+      "bound": "upper",
+      "as_of": "2014",
+      "caliber": {
+        "room_type": "主机房",
+        "basis": "规范最低",
+        "region": "CN",
+        "tier": "B 级",
+        "build_type": "未注明"
+      },
+      "evidence": {
+        "sha256": "36a5680e52f94f31a9134c9a6b9f209c8dda039e1f3ec960571e1e15c6603f70",
+        "local_file": "YD 5193-2014 互联网数据中心（IDC）工程设计规范.pdf",
+        "locator": "第 15 页 6.1.6 表 6.1.6「楼面均布活荷载要求」：主机房区（kN/m2）A 级 10～12、B 级 8～10；「IDC 主机房区的楼板吊挂荷载可为 1.2kN/m2」（全角 OCR 文字层）",
+        "grade": "S1",
+        "originator": "工业和信息化部 YD 5193-2014《互联网数据中心（IDC）工程设计规范》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "行业标准给的区间，上 端。同表电力电池室一栏 OCR 乱码（原表注「电池组四层双列摆放」），未录。改造 IDC 应按 GB50367 加固。"
+    },
+    {
+      "fact_id": "yd5193-2014-floorload-hanging",
+      "metric_id": "room_floor_load",
+      "asserter": "工信部",
+      "entity": {
+        "type": "policy",
+        "id": "yd5193-2014",
+        "label": "YD 5193-2014 互联网数据中心（IDC）工程设计规范"
+      },
+      "value": 1.2,
+      "unit": "kN/㎡",
+      "bound": "point",
+      "as_of": "2014",
+      "caliber": {
+        "room_type": "主机房吊挂荷载",
+        "basis": "规范最低",
+        "region": "CN",
+        "tier": "A/B/C 通用",
+        "build_type": "未注明"
+      },
+      "evidence": {
+        "sha256": "36a5680e52f94f31a9134c9a6b9f209c8dda039e1f3ec960571e1e15c6603f70",
+        "local_file": "YD 5193-2014 互联网数据中心（IDC）工程设计规范.pdf",
+        "locator": "第 15 页 6.1.6 表 6.1.6「楼面均布活荷载要求」：主机房区（kN/m2）A 级 10～12、B 级 8～10；「IDC 主机房区的楼板吊挂荷载可为 1.2kN/m2」（全角 OCR 文字层）",
+        "grade": "S1",
+        "originator": "工业和信息化部 YD 5193-2014《互联网数据中心（IDC）工程设计规范》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「可为 1.2kN/m2」，未分级。同表电力电池室一栏 OCR 乱码（原表注「电池组四层双列摆放」），未录。改造 IDC 应按 GB50367 加固。"
     }
   ]
 }
