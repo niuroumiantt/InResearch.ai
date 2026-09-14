@@ -123113,6 +123113,223 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "「约 450 亿日元」按点值记，千叶新建光纤电缆工厂；同报告：藤仓 FY2025 capex 266.41 亿日元（+33.57%），2025 年产出约 3,400 万芯公里光纤、2026 年预计 4,000 万芯公里，预计 2028 年才形成新增产能。"
+    },
+    {
+      "fact_id": "channel2507-aec-aws-400g-2025",
+      "metric_id": "aec_shipment",
+      "asserter": "未注明",
+      "entity": {
+        "type": "market",
+        "id": "aec-aws-400g",
+        "label": "AWS 采购的 AEC"
+      },
+      "value": 150.0,
+      "unit": "万只",
+      "bound": "point",
+      "as_of": "2025E@2025-07",
+      "caliber": {
+        "speed": "400G",
+        "basis": "专家访谈/渠道调研",
+        "customer": "AWS",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "d0a1f12f264b627da20bff0c9fbed288de98e2eddaa194e85f0934e6ffb7459c",
+        "local_file": "AEC价格 订单量信息.xlsx",
+        "locator": "工作表「主要客户订单及产品情况」第 6 行 亚马逊：「400G AEC（8×50G），总出货 150 万条；800G AEC 送样测试」「上半年 400G 需求 70-80 万条，之后切换至 800G AEC；800G 大规模交付预计年中开始」",
+        "grade": "S4",
+        "originator": "未注明（工作表标注「Source: 本营」「Date：2025.07」，渠道调研纪要，出处机构不可考；供应链表显示亚马逊以太网 AEC 供应商为 Credo）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "150 万条；备注「公司占据该产品 100% 市场份额」。亚马逊采购价 400G AEC 180 美元、2×200G AEC 230 美元（占比 75%/25%），800G AEC 未来 480-500 美元。"
+    },
+    {
+      "fact_id": "channel2507-aec-aws-400g-2026h1-lower",
+      "metric_id": "aec_shipment",
+      "asserter": "未注明",
+      "entity": {
+        "type": "market",
+        "id": "aec-aws-400g-2026h1",
+        "label": "AWS 采购的 AEC"
+      },
+      "value": 70.0,
+      "unit": "万只",
+      "bound": "lower",
+      "as_of": "2026-H1E@2025-07",
+      "caliber": {
+        "speed": "400G",
+        "basis": "专家访谈/渠道调研",
+        "customer": "AWS",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "d0a1f12f264b627da20bff0c9fbed288de98e2eddaa194e85f0934e6ffb7459c",
+        "local_file": "AEC价格 订单量信息.xlsx",
+        "locator": "工作表「主要客户订单及产品情况」第 6 行 亚马逊：「400G AEC（8×50G），总出货 150 万条；800G AEC 送样测试」「上半年 400G 需求 70-80 万条，之后切换至 800G AEC；800G 大规模交付预计年中开始」",
+        "grade": "S4",
+        "originator": "未注明（工作表标注「Source: 本营」「Date：2025.07」，渠道调研纪要，出处机构不可考；供应链表显示亚马逊以太网 AEC 供应商为 Credo）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2026 年上半年 400G 需求 70-80 万条，区间下端；之后切换 800G。"
+    },
+    {
+      "fact_id": "channel2507-aec-aws-400g-2026h1-upper",
+      "metric_id": "aec_shipment",
+      "asserter": "未注明",
+      "entity": {
+        "type": "market",
+        "id": "aec-aws-400g-2026h1",
+        "label": "AWS 采购的 AEC"
+      },
+      "value": 80.0,
+      "unit": "万只",
+      "bound": "upper",
+      "as_of": "2026-H1E@2025-07",
+      "caliber": {
+        "speed": "400G",
+        "basis": "专家访谈/渠道调研",
+        "customer": "AWS",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "d0a1f12f264b627da20bff0c9fbed288de98e2eddaa194e85f0934e6ffb7459c",
+        "local_file": "AEC价格 订单量信息.xlsx",
+        "locator": "工作表「主要客户订单及产品情况」第 6 行 亚马逊：「400G AEC（8×50G），总出货 150 万条；800G AEC 送样测试」「上半年 400G 需求 70-80 万条，之后切换至 800G AEC；800G 大规模交付预计年中开始」",
+        "grade": "S4",
+        "originator": "未注明（工作表标注「Source: 本营」「Date：2025.07」，渠道调研纪要，出处机构不可考；供应链表显示亚马逊以太网 AEC 供应商为 Credo）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上端。"
+    },
+    {
+      "fact_id": "channel2507-aec-msft-100g-2025",
+      "metric_id": "aec_shipment",
+      "asserter": "未注明",
+      "entity": {
+        "type": "market",
+        "id": "aec-msft-100g",
+        "label": "微软 采购的 AEC"
+      },
+      "value": 80.0,
+      "unit": "万只",
+      "bound": "point",
+      "as_of": "2025E@2025-07",
+      "caliber": {
+        "speed": "其他",
+        "basis": "专家访谈/渠道调研",
+        "customer": "微软",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "d0a1f12f264b627da20bff0c9fbed288de98e2eddaa194e85f0934e6ffb7459c",
+        "local_file": "AEC价格 订单量信息.xlsx",
+        "locator": "工作表「主要客户订单及产品情况」第 7 行 微软：「100G 定制 AEC（传统云计算），80 万根，金额 1 亿美元」",
+        "grade": "S4",
+        "originator": "未注明（工作表标注「Source: 本营」「Date：2025.07」，渠道调研纪要，出处机构不可考；供应链表显示亚马逊以太网 AEC 供应商为 Credo）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "100G 定制 AEC（speed 无 100G 取值记其他），金额 1 亿美元，折约 125 美元/根。800G AEC 已完成测试。"
+    },
+    {
+      "fact_id": "channel2507-aec-xai-800g-2026-lower",
+      "metric_id": "aec_shipment",
+      "asserter": "未注明",
+      "entity": {
+        "type": "market",
+        "id": "aec-xai-800g-2026",
+        "label": "xAI 采购的 AEC"
+      },
+      "value": 20.0,
+      "unit": "万只",
+      "bound": "lower",
+      "as_of": "2026E@2025-07",
+      "caliber": {
+        "speed": "800G",
+        "basis": "专家访谈/渠道调研",
+        "customer": "xAI",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "d0a1f12f264b627da20bff0c9fbed288de98e2eddaa194e85f0934e6ffb7459c",
+        "local_file": "AEC价格 订单量信息.xlsx",
+        "locator": "工作表「主要客户订单及产品情况」第 8 行 X.AI：「800G AEC，Q2-Q3 合计 10 万条」「预计 20-25 万条」",
+        "grade": "S4",
+        "originator": "未注明（工作表标注「Source: 本营」「Date：2025.07」，渠道调研纪要，出处机构不可考；供应链表显示亚马逊以太网 AEC 供应商为 Credo）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2026 年 20-25 万条，区间下端；2025 年 Q2-Q3 合计 10 万条（两季合计，未录）。"
+    },
+    {
+      "fact_id": "channel2507-aec-xai-800g-2026-upper",
+      "metric_id": "aec_shipment",
+      "asserter": "未注明",
+      "entity": {
+        "type": "market",
+        "id": "aec-xai-800g-2026",
+        "label": "xAI 采购的 AEC"
+      },
+      "value": 25.0,
+      "unit": "万只",
+      "bound": "upper",
+      "as_of": "2026E@2025-07",
+      "caliber": {
+        "speed": "800G",
+        "basis": "专家访谈/渠道调研",
+        "customer": "xAI",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "d0a1f12f264b627da20bff0c9fbed288de98e2eddaa194e85f0934e6ffb7459c",
+        "local_file": "AEC价格 订单量信息.xlsx",
+        "locator": "工作表「主要客户订单及产品情况」第 8 行 X.AI：「预计 20-25 万条」",
+        "grade": "S4",
+        "originator": "未注明（工作表标注「Source: 本营」「Date：2025.07」，渠道调研纪要，出处机构不可考；供应链表显示亚马逊以太网 AEC 供应商为 Credo）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上端。"
+    },
+    {
+      "fact_id": "channel2507-aec-meta-800g-2025q3",
+      "metric_id": "aec_shipment",
+      "asserter": "未注明",
+      "entity": {
+        "type": "market",
+        "id": "aec-meta-800g",
+        "label": "Meta 采购的 AEC"
+      },
+      "value": 7.0,
+      "unit": "万只",
+      "bound": "point",
+      "as_of": "2025-Q3E@2025-07",
+      "caliber": {
+        "speed": "800G",
+        "basis": "专家访谈/渠道调研",
+        "customer": "Meta",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "d0a1f12f264b627da20bff0c9fbed288de98e2eddaa194e85f0934e6ffb7459c",
+        "local_file": "AEC价格 订单量信息.xlsx",
+        "locator": "工作表「主要客户订单及产品情况」第 9 行 Meta：「800G AEC，Q3 计划交付 7 万条」「订单量待定，取决于 GB200/GB300 交付节奏」「1 个月前刚下订单，目前独家供应」",
+        "grade": "S4",
+        "originator": "未注明（工作表标注「Source: 本营」「Date：2025.07」，渠道调研纪要，出处机构不可考；供应链表显示亚马逊以太网 AEC 供应商为 Credo）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Q3 计划交付量。"
     }
   ]
 }
