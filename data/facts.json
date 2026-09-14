@@ -140651,6 +140651,105 @@
       "corroboration": "待交叉验证",
       "notes": "「AI compute cycles」按 AI 算力总量为分母记；原文「~80%」按点值记。Gartner 2024-08 发布，vintage @2024-08。原文未写地域范围，region 记未披露（Gartner 此类预测通常为全球，但页面未明说，不猜）。同稿第 6 页转引 Google token 处理量 9.7Tr→1400Tr（2025），未写时间单位，未录。",
       "asserter": "Gartner"
+    },
+    {
+      "fact_id": "swhy2504-na-big4-capex-2023",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "segment",
+        "id": "na-big4-hyperscalers",
+        "label": "北美四大云厂（谷歌、微软、亚马逊、Meta）"
+      },
+      "value": 1534.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "北美四家",
+        "capex_scope": "全部 capex",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e433cceba370889824c4b8af00a5710bd2180bcf4c2ff0ecee7ec343a55525d0",
+        "local_file": "20250401-人工智能行业GenAI系列报告之五十四：AI云计算新范式规模效应+AIInfra+ASIC芯片(60页).pdf",
+        "locator": "第 7 页表「AI云相对传统云」：「2023年海外大型云/互联网巨头Capex总和为1534亿美元」「2024年海外大型云/互联网巨头Capex总和为2504亿美元」",
+        "grade": "S3",
+        "originator": "申万宏源研究（2025-04-01《AI 云计算新范式：规模效应+AI Infra+ASIC 芯片》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文写「海外大型云/互联网巨头」，与第 10 页 2024 年四家同组对比，按北美四家记。含融资租赁与否原文未说明。",
+      "asserter": "申万宏源"
+    },
+    {
+      "fact_id": "swhy2504-na-big4-capex-2024",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "segment",
+        "id": "na-big4-hyperscalers",
+        "label": "北美四大云厂（谷歌、微软、亚马逊、Meta）"
+      },
+      "value": 2504.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "北美四家",
+        "capex_scope": "全部 capex",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e433cceba370889824c4b8af00a5710bd2180bcf4c2ff0ecee7ec343a55525d0",
+        "local_file": "20250401-人工智能行业GenAI系列报告之五十四：AI云计算新范式规模效应+AIInfra+ASIC芯片(60页).pdf",
+        "locator": "第 10 页 2.1：「根据各企业指引，2024年谷歌、微软、亚马逊、META的Capex总计2504亿美元；若假设2025年（即FY25Q3-FY26Q2）微软保持FY25Q2的资本开支水平，则四家巨头的Capex预计将接近3400亿美元，同比增速有望达到35%」",
+        "grade": "S3",
+        "originator": "申万宏源研究（2025-04-01《AI 云计算新范式：规模效应+AI Infra+ASIC 芯片》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "谷歌+微软+亚马逊+Meta 合计；微软按日历年折算口径原文未细说。与库内国海证券 2024 年 2,248 亿美元口径不同（差 256 亿，疑为是否含融资租赁或微软财年对齐差异），并列。",
+      "asserter": "申万宏源"
+    },
+    {
+      "fact_id": "swhy2504-na-big4-capex-2025e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "segment",
+        "id": "na-big4-hyperscalers",
+        "label": "北美四大云厂（谷歌、微软、亚马逊、Meta）"
+      },
+      "value": 3400.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "北美四家",
+        "capex_scope": "全部 capex",
+        "basis": "券商测算",
+        "vintage": "其他快照",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e433cceba370889824c4b8af00a5710bd2180bcf4c2ff0ecee7ec343a55525d0",
+        "local_file": "20250401-人工智能行业GenAI系列报告之五十四：AI云计算新范式规模效应+AIInfra+ASIC芯片(60页).pdf",
+        "locator": "第 10 页 2.1：「根据各企业指引，2024年谷歌、微软、亚马逊、META的Capex总计2504亿美元；若假设2025年（即FY25Q3-FY26Q2）微软保持FY25Q2的资本开支水平，则四家巨头的Capex预计将接近3400亿美元，同比增速有望达到35%」",
+        "grade": "S3",
+        "originator": "申万宏源研究（2025-04-01《AI 云计算新范式：规模效应+AI Infra+ASIC 芯片》）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「接近3400亿美元」按点值记，同比约 +35%；假设微软 FY25Q3–FY26Q2 保持 FY25Q2 水平。",
+      "asserter": "申万宏源"
     }
   ]
 }
