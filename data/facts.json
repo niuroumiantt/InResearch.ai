@@ -115960,6 +115960,69 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "维谛财年与自然年一致。原文未写 book-to-bill 的分子是新增订单还是在手订单，按行业惯例（当季新签订单 ÷ 当季收入）记新增订单 [未核]。同句另有 TTM 订单增速 20%、全年收入增速指引中值由 16% 上调至 18%（无对应指标，未录）。"
+    },
+    {
+      "fact_id": "afl2024-xai-colossus-gpu-count",
+      "metric_id": "cluster_gpu_count",
+      "asserter": "xAI",
+      "entity": {
+        "type": "project",
+        "id": "xai-colossus-memphis",
+        "label": "xAI Colossus（孟菲斯）"
+      },
+      "value": 100000.0,
+      "unit": "颗",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "scope": "单集群实际部署",
+        "accelerator": "NVIDIA H100",
+        "region": "US",
+        "basis": "公司披露"
+      },
+      "evidence": {
+        "sha256": "b7cd26e0fd9af97ebd94b946d3f49ba0426c03bdc2e2ba9c8d4c6142e0357c05",
+        "local_file": "4C_2025_2025_人工智能数据中心扩_未署名.pdf",
+        "locator": "第 19 页：「xAI 巨型超级计算机 在孟菲斯，美国建造的该系统是一个价值数十亿美元的超大型系统实例，由10万个NVIDIA H100 GPU组成。Supermicro液冷机架构成了Colossus架构的基础。每个机架包含八个4U服务器，每个服务器容纳八个NVIDIA H100 GPU，每个机架总计64个GPU。一个完整的GPU计算机架由八个GPU服务器、一个Supermicro冷却剂分配单元（CDU）和必要的相关硬件组成」",
+        "grade": "S3",
+        "originator": "xAI（经 AFL《人工智能数据中心：扩大规模与拓展规模》（Alan Keizer、Ben Atherton，© 2024 AFL，中文版未署名）转引，脚注 29 出处 ServeTheHome）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "10 万颗 H100。时点原文未写，按 AFL 版权年 2024 记（Colossus 首期于 2024 年建成）[未核]。库内 xAI Colossus 1 其他条目见 xai-colossus1-*。"
+    },
+    {
+      "fact_id": "afl2024-xai-colossus-supermicro-rack-gpus",
+      "metric_id": "rack_component_count",
+      "asserter": "ServeTheHome",
+      "entity": {
+        "type": "product",
+        "id": "xai-colossus-supermicro-lc-rack",
+        "label": "xAI Colossus Supermicro 液冷 GPU 机架"
+      },
+      "value": 64.0,
+      "unit": "个",
+      "bound": "point",
+      "as_of": "2024",
+      "caliber": {
+        "product": "xAI Colossus Supermicro 液冷 GPU 机架（8 × 4U HGX H100 服务器）",
+        "component": "GPU",
+        "denominator": "每机架",
+        "spec_basis": "第三方实测",
+        "region": "US"
+      },
+      "evidence": {
+        "sha256": "b7cd26e0fd9af97ebd94b946d3f49ba0426c03bdc2e2ba9c8d4c6142e0357c05",
+        "local_file": "4C_2025_2025_人工智能数据中心扩_未署名.pdf",
+        "locator": "第 19 页：「xAI 巨型超级计算机 在孟菲斯，美国建造的该系统是一个价值数十亿美元的超大型系统实例，由10万个NVIDIA H100 GPU组成。Supermicro液冷机架构成了Colossus架构的基础。每个机架包含八个4U服务器，每个服务器容纳八个NVIDIA H100 GPU，每个机架总计64个GPU。一个完整的GPU计算机架由八个GPU服务器、一个Supermicro冷却剂分配单元（CDU）和必要的相关硬件组成」",
+        "grade": "S3",
+        "originator": "ServeTheHome（经 AFL《人工智能数据中心：扩大规模与拓展规模》（Alan Keizer、Ben Atherton，© 2024 AFL，中文版未署名）转引，脚注 29 出处 ServeTheHome）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "8 台 4U 服务器 × 每台 8 颗 H100 = 64，与原文一致；每柜另配 1 台 Supermicro CDU。ServeTheHome 为现场参观报道，spec_basis 记第三方实测。"
     }
   ]
 }
