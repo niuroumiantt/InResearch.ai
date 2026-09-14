@@ -141829,6 +141829,177 @@
       "corroboration": "待交叉验证",
       "notes": "第 11 页另列 ±400V 约省铜 70%、±800V 约省 80%（相对 ±48V 的比例，未给 kg，未录）。basis 理由同 48V 那条。",
       "asserter": "Shrikanth Venkateshappa"
+    },
+    {
+      "fact_id": "arm-agi-cpu-cores",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "arm-agi-cpu",
+        "label": "Arm AGI CPU"
+      },
+      "value": 136.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "Arm AGI CPU",
+        "parameter": "核数",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ced1280bdcbb471bbb5d2f9356576fd0268f5eaa7d17275cb9cfff5839c0151c",
+        "local_file": "5B_2022_ScalingAIInfra_未署名.pdf",
+        "locator": "第 8 页 Arm AGI CPU 规格页「Up to 136 Arm Neoverse V3 cores」",
+        "grade": "S2",
+        "originator": "Arm（Eddie Ramirez，Vice President of Marketing, Cloud AI，OCP 演讲《Scaling AI Infrastructure with Open Systems and Arm-Based Silicon》）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 2 页 GitHub stars 曲线横轴画到 2026 并标出 OpenClaw，第 3 页智能体数量以 2026 为起点，推定为 2026 年材料；L1 登记年份 2025 与此不符，不采用；文件名前缀 5B_2022 是目录编号",
+      "corroboration": "待交叉验证",
+      "notes": "本条单位：核。原文为「Up to」上限配置。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "Arm"
+    },
+    {
+      "fact_id": "arm-agi-cpu-tdp",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "arm-agi-cpu",
+        "label": "Arm AGI CPU"
+      },
+      "value": 300.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "Arm AGI CPU",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ced1280bdcbb471bbb5d2f9356576fd0268f5eaa7d17275cb9cfff5839c0151c",
+        "local_file": "5B_2022_ScalingAIInfra_未署名.pdf",
+        "locator": "第 8 页 Arm AGI CPU 规格页「300 watt TDP」",
+        "grade": "S2",
+        "originator": "Arm（Eddie Ramirez，Vice President of Marketing, Cloud AI，OCP 演讲《Scaling AI Infrastructure with Open Systems and Arm-Based Silicon》）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 2 页 GitHub stars 曲线横轴画到 2026 并标出 OpenClaw，第 3 页智能体数量以 2026 为起点，推定为 2026 年材料；L1 登记年份 2025 与此不符，不采用；文件名前缀 5B_2022 是目录编号",
+      "corroboration": "待交叉验证",
+      "notes": "本条单位：W。同页另有 96 条 PCIe Gen6 通道、每核 2MB L2 缓存、最高 3.7GHz、DDR5-8800、单芯片 6TB 内存（不在参数枚举内，未录）。derived 只因 as_of 为推定。",
+      "asserter": "Arm"
+    },
+    {
+      "fact_id": "arm-agi-cpu-node",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "arm-agi-cpu",
+        "label": "Arm AGI CPU"
+      },
+      "value": 3.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "Arm AGI CPU",
+        "parameter": "制程(nm)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ced1280bdcbb471bbb5d2f9356576fd0268f5eaa7d17275cb9cfff5839c0151c",
+        "local_file": "5B_2022_ScalingAIInfra_未署名.pdf",
+        "locator": "第 8 页 Arm AGI CPU 规格页「Incredible 3nm efficiency」；「Dual chiplet design」",
+        "grade": "S2",
+        "originator": "Arm（Eddie Ramirez，Vice President of Marketing, Cloud AI，OCP 演讲《Scaling AI Infrastructure with Open Systems and Arm-Based Silicon》）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 2 页 GitHub stars 曲线横轴画到 2026 并标出 OpenClaw，第 3 页智能体数量以 2026 为起点，推定为 2026 年材料；L1 登记年份 2025 与此不符，不采用；文件名前缀 5B_2022 是目录编号",
+      "corroboration": "待交叉验证",
+      "notes": "本条单位：nm。原文未写代工厂。双 chiplet 设计。derived 只因 as_of 为推定。",
+      "asserter": "Arm"
+    },
+    {
+      "fact_id": "arm-agi-cpu-orv3-air-36kw",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "component",
+        "id": "arm-agi-cpu-orv3-air",
+        "label": "Arm AGI CPU 风冷 Open Rack V3 参考机柜"
+      },
+      "value": 36.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "主流机型",
+        "era": "当期",
+        "power_basis": "设计功率",
+        "region": "Global"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ced1280bdcbb471bbb5d2f9356576fd0268f5eaa7d17275cb9cfff5839c0151c",
+        "local_file": "5B_2022_ScalingAIInfra_未署名.pdf",
+        "locator": "第 10 页左栏「Air cooled / 36kW Open Rack V3 / 30x 2 node 1U servers / 8,160 performant CPU cores / 180TB+ low latency memory」",
+        "grade": "S2",
+        "originator": "Arm（Eddie Ramirez，Vice President of Marketing, Cloud AI，OCP 演讲《Scaling AI Infrastructure with Open Systems and Arm-Based Silicon》）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 2 页 GitHub stars 曲线横轴画到 2026 并标出 OpenClaw，第 3 页智能体数量以 2026 为起点，推定为 2026 年材料；L1 登记年份 2025 与此不符，不采用；文件名前缀 5B_2022 是目录编号",
+      "corroboration": "待交叉验证",
+      "notes": "**纯 CPU 机柜**（用于智能体编排），不是加速器机柜；rack_type 取传统风冷只表示风冷形态，与 GPU 整机柜不可比。是参考配置，不是出货统计。8,160 核 = 30 台 × 2 节点 × 136 核，与第 8 页规格自洽。derived 只因 as_of 为推定。",
+      "asserter": "Arm"
+    },
+    {
+      "fact_id": "arm-agi-cpu-orw-liquid-200kw",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "component",
+        "id": "arm-agi-cpu-orw-liquid",
+        "label": "Arm AGI CPU 液冷 Open Rack Wide 参考机柜"
+      },
+      "value": 200.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "主流机型",
+        "era": "当期",
+        "power_basis": "设计功率",
+        "region": "Global"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ced1280bdcbb471bbb5d2f9356576fd0268f5eaa7d17275cb9cfff5839c0151c",
+        "local_file": "5B_2022_ScalingAIInfra_未署名.pdf",
+        "locator": "第 10 页右栏「Liquid cooled / 200kW Open Rack Wide / 42x 8 node 1U servers / 45,696 performant CPU cores / 1PB+ low latency memory」",
+        "grade": "S2",
+        "originator": "Arm（Eddie Ramirez，Vice President of Marketing, Cloud AI，OCP 演讲《Scaling AI Infrastructure with Open Systems and Arm-Based Silicon》）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 2 页 GitHub stars 曲线横轴画到 2026 并标出 OpenClaw，第 3 页智能体数量以 2026 为起点，推定为 2026 年材料；L1 登记年份 2025 与此不符，不采用；文件名前缀 5B_2022 是目录编号",
+      "corroboration": "待交叉验证",
+      "notes": "**纯 CPU 液冷机柜**，不含加速器；放在 AI液冷机柜 是因为定位为智能体 AI 编排，读数时不要与 GPU 机柜功率序列混排。45,696 核 = 42 台 × 8 节点 × 136 核，自洽。参考配置，不是出货统计。derived 只因 as_of 为推定。",
+      "asserter": "Arm"
     }
   ]
 }
