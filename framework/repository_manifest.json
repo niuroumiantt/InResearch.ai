@@ -5579,10 +5579,63 @@
       "collections": []
     },
     {
+      "path": "docs/reviews/2026-09-14/scene-framing/PLAN.md",
+      "role": "historical",
+      "bytes": 3479,
+      "sha256": "b1ef84178ccc5e091c8960e5199c3e2703bb8271b845d2c0f62b80d8caeda175",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-09-14/scene-framing/baseline.json",
+      "role": "historical",
+      "bytes": 1295,
+      "sha256": "a3bc543da369409ec11fa2e301e82adfb07e9da046e1e9e5750c51134ffcd109",
+      "collections": [
+        {
+          "name": "camera",
+          "count": 3
+        },
+        {
+          "name": "target",
+          "count": 3
+        },
+        {
+          "name": "box",
+          "count": 2
+        },
+        {
+          "name": "projected",
+          "count": 8
+        },
+        {
+          "name": "renderer",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-14/scene-framing/consumers-before.csv",
+      "role": "historical",
+      "bytes": 5365,
+      "sha256": "d933a3bc3aa640c8a7163a86fadc8a879887d65156faed19bdec2cff5b39fc0e",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 48,
+          "fields": [
+            "path",
+            "line",
+            "reference",
+            "disposition"
+          ]
+        }
+      ]
+    },
+    {
       "path": "docs/reviews/2026-09-14/scene-framing/file-plan.csv",
       "role": "historical",
-      "bytes": 105979,
-      "sha256": "ecd87539b00e23773a8c871bf36185a5ae9e4d07f28f55fbc2acd155b008c887",
+      "bytes": 96713,
+      "sha256": "2654e2601d0c81a907d77d2c72809226e170f63b1fc7de2bf0b6f197c8f7ba94",
       "collections": [
         {
           "name": "rows",
@@ -5592,6 +5645,24 @@
             "planned_action",
             "target",
             "reason"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-14/scene-framing/legacy-removal.csv",
+      "role": "historical",
+      "bytes": 972,
+      "sha256": "265ca1ab0a31a285035a01c43e0ebb65396ace897b968c815699ec320b4ab711",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 6,
+          "fields": [
+            "old_implementation",
+            "consumers",
+            "target",
+            "exit_condition"
           ]
         }
       ]
@@ -5607,6 +5678,13 @@
           "count": 19
         }
       ]
+    },
+    {
+      "path": "docs/reviews/2026-09-14/scene-framing/statistics-before.json",
+      "role": "historical",
+      "bytes": 673,
+      "sha256": "bf7dbaaef89efe27656507bddfcd4ae07c1182692dd23b794c3bd68e193de992",
+      "collections": []
     },
     {
       "path": "docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx",
@@ -8003,7 +8081,7 @@
     "design_reference": 1,
     "entrypoint": 4,
     "generated": 12,
-    "historical": 211,
+    "historical": 216,
     "implementation": 141,
     "normative": 13,
     "project_config": 36,

@@ -1,0 +1,49 @@
+path,line,reference,disposition
+tests/model_assets.cjs,34,"const tail='globalThis.__assetsTest={scene,sceneModels'+(new URL(r.request().url()).pathname.includes('rack')?',rack':'')+'};\n</script>\n</body>';",retain and review boundary
+tests/model_assets.cjs,44,response='fail';await page.evaluate(()=>__assetsTest.sceneModels.reload());,retain and review boundary
+tests/model_assets.cjs,76,"response=[entry('b.glb',scene),entry('bad.glb',scene)];await page.evaluate(()=>__assetsTest.sceneModels.reload());",retain and review boundary
+tests/model_assets.cjs,79,"response=[entry('texture.glb',scene)];await page.evaluate(()=>__assetsTest.sceneModels.reload());",retain and review boundary
+tests/model_assets.cjs,81,"response=[entry('b.glb',scene)];await page.evaluate(()=>__assetsTest.sceneModels.reload());",retain and review boundary
+tests/model_assets.cjs,85,response=[];await page.evaluate(()=>__assetsTest.sceneModels.reload());,retain and review boundary
+tests/part_dossier.cjs,80,const {createPartInspector} = await import('/assets/part-inspector.js');,migrate
+tests/part_dossier.cjs,100,"const camera = new THREE.PerspectiveCamera(45,1,.1,100); camera.position.z=5;",migrate
+tests/part_dossier.cjs,123,setPixelRatio() {} setSize() {},migrate
+tests/part_dossier.cjs,126,"const inspector = createPartInspector({THREE:{...THREE,WebGLRenderer:CaptureRenderer},",migrate
+web/components/model-assets.js,117,"export function mountSceneModels({scene, page, defaultHeight, replacement=null}) {",migrate
+web/components/part-inspector.js,2,"export function createPartInspector({THREE, environment, meshesFor, materialFor = mesh => mesh.material}) {",migrate
+web/components/part-inspector.js,5,"let iRen = null, iScene, iCam, iPivot, iGroup, iSpin = true, iRotX = -0.35, iRotY = 0.7, iVisible = false;",migrate
+web/components/part-inspector.js,12,"iRen.setSize(604, 380, false);",migrate
+web/components/part-inspector.js,15,"iCam = new THREE.PerspectiveCamera(36, 604 / 380, 0.01, 200);",migrate
+web/components/part-inspector.js,60,"iCam.position.set(0, rad * 0.45, rad * 2.9);",migrate
+web/components/part-inspector.js,61,"iCam.lookAt(0, 0, 0);",migrate
+web/components/part-inspector.js,71,"iRen.render(iScene, iCam);",migrate
+web/pages/bake.html,31,"const camera = new THREE.PerspectiveCamera(32, 1, 0.01, 200);",retain and review boundary
+web/pages/bake.html,323,"renderer.setSize(innerWidth, innerHeight);",retain and review boundary
+web/pages/bake.html,324,camera.aspect = innerWidth / innerHeight;,retain and review boundary
+web/pages/bom3d.html,135,"import {createPartInspector} from ""/assets/part-inspector.js"";",migrate
+web/pages/bom3d.html,144,"import {mountSceneModels} from ""/assets/model-assets.js"";",migrate
+web/pages/bom3d.html,193,"const camera = new THREE.PerspectiveCamera(44, 1, 0.1, 600);",migrate
+web/pages/bom3d.html,882,"function flyTo(cam, tgt, duration = 1100) {",migrate
+web/pages/bom3d.html,920,"if (activeDomain === d.key) { clearDomain(); flyTo([46, 30, 52], [0, 6, 0]); return; }",migrate
+web/pages/bom3d.html,928,"flyTo(d.cam, d.tgt);",migrate
+web/pages/bom3d.html,937,"flyTo([wp.x + 9, wp.y + 6, wp.z + 9], [wp.x, wp.y, wp.z], 900);",migrate
+web/pages/bom3d.html,948,"if (e.key === ""0"" || e.key === ""Escape"") { clearDomain(); flyTo([46, 30, 52], [0, 6, 0]); }",migrate
+web/pages/bom3d.html,954,"const inspector = createPartInspector({THREE, environment: () => scene.environment, meshesFor: pid => PARTMESH[pid],",migrate
+web/pages/bom3d.html,980,"renderer.setSize(innerWidth, innerHeight);",migrate
+web/pages/bom3d.html,981,"composer.setSize(innerWidth, innerHeight);",migrate
+web/pages/bom3d.html,982,camera.aspect = innerWidth / innerHeight;,migrate
+web/pages/bom3d.html,983,"camera.zoom = Math.min(1, Math.max(0.35, camera.aspect / 0.9));",migrate
+web/pages/bom3d.html,999,"const sceneModels = mountSceneModels({scene, page:""bom3d"", defaultHeight:4.6});",migrate
+web/pages/bom3d.html,1000,"window.addEventListener('pagehide', event => {if (!event.persisted) sceneModels.dispose();});",migrate
+web/pages/compare.html,111,"const cam = new THREE.PerspectiveCamera(34, 1, .01, 200);",migrate
+web/pages/compare.html,157,"function resize() { const w = cv.clientWidth, h = cv.clientHeight; ren.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix(); }",migrate
+web/pages/rack3d.html,117,"import {createPartInspector} from ""/assets/part-inspector.js"";",migrate
+web/pages/rack3d.html,125,"import {mountSceneModels} from ""/assets/model-assets.js"";",migrate
+web/pages/rack3d.html,161,"const camera = new THREE.PerspectiveCamera(40, 1, 0.05, 300);",migrate
+web/pages/rack3d.html,686,"const inspector = createPartInspector({THREE, environment: () => scene.environment, meshesFor: pid => PARTMESH[pid]});",migrate
+web/pages/rack3d.html,699,"renderer.setSize(innerWidth, innerHeight);",migrate
+web/pages/rack3d.html,700,"composer.setSize(innerWidth, innerHeight);",migrate
+web/pages/rack3d.html,701,camera.aspect = innerWidth / innerHeight;,migrate
+web/pages/rack3d.html,702,"camera.zoom = Math.min(1, Math.max(0.35, camera.aspect / 0.9));",migrate
+web/pages/rack3d.html,723,"const sceneModels = mountSceneModels({scene, page:""rack3d"", defaultHeight:RH + 0.7, replacement:rack});",migrate
+web/pages/rack3d.html,724,"window.addEventListener('pagehide', event => {if (!event.persisted) sceneModels.dispose();});",migrate

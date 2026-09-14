@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：738。
+在册文件：743。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,7 +15,7 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 12 |
-| 历史快照 | 211 |
+| 历史快照 | 216 |
 | 运行代码 | 141 |
 | 现行规范 | 13 |
 | 项目配置 | 36 |
@@ -276,7 +276,14 @@
 | `docs/reviews/2026-09-14/scene-bootstrap/legacy-removal.csv` | rows | 4 |
 | `docs/reviews/2026-09-14/scene-bootstrap/public-consumers.csv` | rows | 32 |
 | `docs/reviews/2026-09-14/scene-bootstrap/scope.json` | changed | 15 |
+| `docs/reviews/2026-09-14/scene-framing/baseline.json` | camera | 3 |
+| `docs/reviews/2026-09-14/scene-framing/baseline.json` | target | 3 |
+| `docs/reviews/2026-09-14/scene-framing/baseline.json` | box | 2 |
+| `docs/reviews/2026-09-14/scene-framing/baseline.json` | projected | 8 |
+| `docs/reviews/2026-09-14/scene-framing/baseline.json` | renderer | 2 |
+| `docs/reviews/2026-09-14/scene-framing/consumers-before.csv` | rows | 48 |
 | `docs/reviews/2026-09-14/scene-framing/file-plan.csv` | rows | 738 |
+| `docs/reviews/2026-09-14/scene-framing/legacy-removal.csv` | rows | 6 |
 | `docs/reviews/2026-09-14/scene-framing/scope.json` | changed | 19 |
 | `framework/bom.json` | layers | 5 |
 | `framework/bom.json` | parts | 46 |
@@ -753,8 +760,13 @@
 | `docs/reviews/2026-09-14/scene-bootstrap/scope.json` | 历史快照 |
 | `docs/reviews/2026-09-14/scene-bootstrap/statistics-after.json` | 历史快照 |
 | `docs/reviews/2026-09-14/scene-bootstrap/statistics-before.json` | 历史快照 |
+| [docs/reviews/2026-09-14/scene-framing/PLAN.md](reviews/2026-09-14/scene-framing/PLAN.md) | 历史快照 |
+| `docs/reviews/2026-09-14/scene-framing/baseline.json` | 历史快照 |
+| [docs/reviews/2026-09-14/scene-framing/consumers-before.csv](reviews/2026-09-14/scene-framing/consumers-before.csv) | 历史快照 |
 | [docs/reviews/2026-09-14/scene-framing/file-plan.csv](reviews/2026-09-14/scene-framing/file-plan.csv) | 历史快照 |
+| [docs/reviews/2026-09-14/scene-framing/legacy-removal.csv](reviews/2026-09-14/scene-framing/legacy-removal.csv) | 历史快照 |
 | `docs/reviews/2026-09-14/scene-framing/scope.json` | 历史快照 |
+| `docs/reviews/2026-09-14/scene-framing/statistics-before.json` | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
 | `docs/source/全球数据中心行业深度研究Q&A总报告_Q1-Q35_v1.0(2).docx` | 项目配置 |
 | `docs/source/全球数据中心行业现状_参考初稿版式v0.2_信源追溯版_2026-07-23.docx` | 项目配置 |

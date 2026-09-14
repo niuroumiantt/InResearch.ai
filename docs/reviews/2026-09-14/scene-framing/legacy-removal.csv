@@ -1,0 +1,7 @@
+old_implementation,consumers,target,exit_condition
+window-sized canvas and aspect-based zoom heuristic,bom3d.html; rack3d.html,scene-view viewport and fit,both deleted; actual canvas below headers; bounds inside desktop/phone
+rad*2.9 fixed distance,compare.html; part-inspector.js,scene-view perspective fitting,both deleted; rotation and reopening remain in frame
+comparison resize every animation frame,compare.html,scene-view actual element size,size only updated when actual dimensions change
+inspector fixed aspect and previous pivot transform,part-inspector.js,actual canvas aspect and reset pivot before centering,reopen different translated mesh then rotate without cropping
+authored domain camera targets,bom3d.html,retain intentional domain viewpoint,explicit intent owns camera; late model or resize cannot override
+poster/bake cameras and HDR/renderer ownership,tools; pages; asset adapters,retain outside this scope,separate future work; not claimed migrated
