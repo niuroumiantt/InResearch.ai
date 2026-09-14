@@ -141321,6 +141321,254 @@
       "corroboration": "待交叉验证",
       "notes": "原文「at least 60k」按下界记，平台口径沿用同句 2025 年 NVL72 当量。",
       "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "tf2508-hbm-bits-2023",
+      "metric_id": "hbm_demand_volume",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 3.94,
+      "unit": "亿 GB",
+      "caliber": {
+        "measure": "位容量",
+        "generation": "合计",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9619f76ac40ed415deb0f4b399f31110a7b6acf9cb1708d86393d8c9fcea71f6",
+        "local_file": "20250805_BMKT-102-1_Ellie-Wang.pdf",
+        "locator": "第 5 页「HBM Shipment Bits and Annual Growth Rate」（unit: million Gb）：2023 3,150（YoY 109%）、2024 12,200（287%）、2025F 23,700（94%）、2026F 30,000（27%）；Source: TrendForce",
+        "grade": "S3",
+        "originator": "TrendForce（Ellie Wang，FMS 2025 Future of Memory and Storage 演讲 BMKT-102-1，2025-08-05）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "3,150 百万 Gb ÷ 8 = 393.8 百万 GB = 3.94 亿 GB。",
+      "corroboration": "待交叉验证",
+      "notes": "TrendForce HBM 出货位元（供给侧三家合计估计）。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf2508-hbm-bit-growth-2023",
+      "metric_id": "hbm_bit_shipment_growth",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 109.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "位出货量",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9619f76ac40ed415deb0f4b399f31110a7b6acf9cb1708d86393d8c9fcea71f6",
+        "local_file": "20250805_BMKT-102-1_Ellie-Wang.pdf",
+        "locator": "第 5 页「HBM Shipment Bits and Annual Growth Rate」（unit: million Gb）：2023 3,150（YoY 109%）、2024 12,200（287%）、2025F 23,700（94%）、2026F 30,000（27%）；Source: TrendForce",
+        "grade": "S3",
+        "originator": "TrendForce（Ellie Wang，FMS 2025 Future of Memory and Storage 演讲 BMKT-102-1，2025-08-05）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "同比增速。与 Yole 2023 +187%/2024 +193% 口径不同、差距大，并列。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf2508-hbm-bits-2024",
+      "metric_id": "hbm_demand_volume",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 15.25,
+      "unit": "亿 GB",
+      "caliber": {
+        "measure": "位容量",
+        "generation": "合计",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9619f76ac40ed415deb0f4b399f31110a7b6acf9cb1708d86393d8c9fcea71f6",
+        "local_file": "20250805_BMKT-102-1_Ellie-Wang.pdf",
+        "locator": "第 5 页「HBM Shipment Bits and Annual Growth Rate」（unit: million Gb）：2023 3,150（YoY 109%）、2024 12,200（287%）、2025F 23,700（94%）、2026F 30,000（27%）；Source: TrendForce",
+        "grade": "S3",
+        "originator": "TrendForce（Ellie Wang，FMS 2025 Future of Memory and Storage 演讲 BMKT-102-1，2025-08-05）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "12,200 百万 Gb ÷ 8 = 1,525.0 百万 GB = 15.25 亿 GB。",
+      "corroboration": "待交叉验证",
+      "notes": "TrendForce HBM 出货位元（供给侧三家合计估计）。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf2508-hbm-bit-growth-2024",
+      "metric_id": "hbm_bit_shipment_growth",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 287.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "位出货量",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9619f76ac40ed415deb0f4b399f31110a7b6acf9cb1708d86393d8c9fcea71f6",
+        "local_file": "20250805_BMKT-102-1_Ellie-Wang.pdf",
+        "locator": "第 5 页「HBM Shipment Bits and Annual Growth Rate」（unit: million Gb）：2023 3,150（YoY 109%）、2024 12,200（287%）、2025F 23,700（94%）、2026F 30,000（27%）；Source: TrendForce",
+        "grade": "S3",
+        "originator": "TrendForce（Ellie Wang，FMS 2025 Future of Memory and Storage 演讲 BMKT-102-1，2025-08-05）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "同比增速。与 Yole 2023 +187%/2024 +193% 口径不同、差距大，并列。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf2508-hbm-bits-2025f",
+      "metric_id": "hbm_demand_volume",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 29.62,
+      "unit": "亿 GB",
+      "caliber": {
+        "measure": "位容量",
+        "generation": "合计",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9619f76ac40ed415deb0f4b399f31110a7b6acf9cb1708d86393d8c9fcea71f6",
+        "local_file": "20250805_BMKT-102-1_Ellie-Wang.pdf",
+        "locator": "第 5 页「HBM Shipment Bits and Annual Growth Rate」（unit: million Gb）：2023 3,150（YoY 109%）、2024 12,200（287%）、2025F 23,700（94%）、2026F 30,000（27%）；Source: TrendForce",
+        "grade": "S3",
+        "originator": "TrendForce（Ellie Wang，FMS 2025 Future of Memory and Storage 演讲 BMKT-102-1，2025-08-05）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "23,700 百万 Gb ÷ 8 = 2,962.5 百万 GB = 29.62 亿 GB。",
+      "corroboration": "待交叉验证",
+      "notes": "TrendForce HBM 出货位元（供给侧三家合计估计）。三星 HBM3e 认证延迟，TrendForce 已下修 2025 年初的预测。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf2508-hbm-bit-growth-2025f",
+      "metric_id": "hbm_bit_shipment_growth",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 94.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "位出货量",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9619f76ac40ed415deb0f4b399f31110a7b6acf9cb1708d86393d8c9fcea71f6",
+        "local_file": "20250805_BMKT-102-1_Ellie-Wang.pdf",
+        "locator": "第 5 页「HBM Shipment Bits and Annual Growth Rate」（unit: million Gb）：2023 3,150（YoY 109%）、2024 12,200（287%）、2025F 23,700（94%）、2026F 30,000（27%）；Source: TrendForce",
+        "grade": "S3",
+        "originator": "TrendForce（Ellie Wang，FMS 2025 Future of Memory and Storage 演讲 BMKT-102-1，2025-08-05）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "同比增速。与 Yole 2023 +187%/2024 +193% 口径不同、差距大，并列。同页称 2025、2026 年增速放缓。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf2508-hbm-bits-2026f",
+      "metric_id": "hbm_demand_volume",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 37.5,
+      "unit": "亿 GB",
+      "caliber": {
+        "measure": "位容量",
+        "generation": "合计",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9619f76ac40ed415deb0f4b399f31110a7b6acf9cb1708d86393d8c9fcea71f6",
+        "local_file": "20250805_BMKT-102-1_Ellie-Wang.pdf",
+        "locator": "第 5 页「HBM Shipment Bits and Annual Growth Rate」（unit: million Gb）：2023 3,150（YoY 109%）、2024 12,200（287%）、2025F 23,700（94%）、2026F 30,000（27%）；Source: TrendForce",
+        "grade": "S3",
+        "originator": "TrendForce（Ellie Wang，FMS 2025 Future of Memory and Storage 演讲 BMKT-102-1，2025-08-05）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "30,000 百万 Gb ÷ 8 = 3,750.0 百万 GB = 37.5 亿 GB。",
+      "corroboration": "待交叉验证",
+      "notes": "TrendForce HBM 出货位元（供给侧三家合计估计）。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf2508-hbm-bit-growth-2026f",
+      "metric_id": "hbm_bit_shipment_growth",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 27.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "位出货量",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9619f76ac40ed415deb0f4b399f31110a7b6acf9cb1708d86393d8c9fcea71f6",
+        "local_file": "20250805_BMKT-102-1_Ellie-Wang.pdf",
+        "locator": "第 5 页「HBM Shipment Bits and Annual Growth Rate」（unit: million Gb）：2023 3,150（YoY 109%）、2024 12,200（287%）、2025F 23,700（94%）、2026F 30,000（27%）；Source: TrendForce",
+        "grade": "S3",
+        "originator": "TrendForce（Ellie Wang，FMS 2025 Future of Memory and Storage 演讲 BMKT-102-1，2025-08-05）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "同比增速。与 Yole 2023 +187%/2024 +193% 口径不同、差距大，并列。同页称 2025、2026 年增速放缓。",
+      "asserter": "TrendForce"
     }
   ]
 }
