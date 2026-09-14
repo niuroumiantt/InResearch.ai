@@ -14,7 +14,13 @@ RESTRICTIONS = {
     # gain.  This flag is for an explicit restriction naming a recipient:
     # "Confidential for X Corp. / Not to be distributed".  Nothing sets it
     # automatically; a person decides, per file, and says where they saw it.
-    'confidential': '文件写明限定收件方且不得分发——不是泛用的机密页脚',
+    # 企业自己的**定级**算，泛用页脚不算。两者的区别是「这份文件被单独判过」：
+    # 联通企标封面的「企业内部资料，要求各单位严格保密」、阿里企业文件上的
+    # 「B2 密级／商业秘密」，都是该公司按自己的密级体系给这一份定的等级；
+    # 而厂商胶片角上印的 Confidential 是模板，一整套材料都带。
+    # 定级要挡，页脚不挡——挡了页脚等于把大半个库排除掉，换不来任何东西。
+    'confidential': '文件写明限定收件方且不得分发，或带企业密级定级'
+                    '（如「内部资料，严格保密」「B2 密级/商业秘密」）——不是泛用的机密页脚',
     'pii': '含个人信息（姓名、电话、邮箱、职级）或内网地址，'
            '这些不该出现在任何被引用的产物里',
 }
