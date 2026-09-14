@@ -157548,6 +157548,126 @@
       "corroboration": "待交叉验证",
       "notes": "门槛按市（州）已投用 1 年以上数据中心的整体上架率计，低于 50% 则该市州原则上不再规划新数据中心，是区域准入前置条件而非单项目要求。与库内四川省数据中心规划 60%（sichuan-occupancy-threshold-2025，全省目标口径）不同。",
       "asserter": "四川省发展和改革委员会"
+    },
+    {
+      "fact_id": "sa2501-malaysia-critical-it-2024",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "malaysia-dc-market-sa",
+        "label": "马来西亚数据中心市场（SemiAnalysis 逐站跟踪）"
+      },
+      "value": 800.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "APAC"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1dd122ad6472c18973c556a1261a0129e6d7d675d54bd3abd30159a04618e78e",
+        "local_file": "2025 AI Diffusion Export Controls – Microsoft Regulatory Capture, Oracle Tears, Impacts Quantified, Model Restrictions – SemiAnalysis.pdf",
+        "locator": "第 25 页「Datacenter Winners and Losers」：「In Malaysia we see a critical IT power of nearly 800MW exiting 2024, forecasting growth to 1,798 MW by 2025, and 3,240 MW by 2027. We believe that AI Accelerator deployments represent close to half of the total estimated 2027 capacity, almost all of which is earmarked for very high rack densities of up to 130kW per rack」；第 3 页「in just Malaysia alone…there is ~3 Gigawatts of Critical IT capacity of datacenters being built in just a few years」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《2025 AI Diffusion Export Controls – Microsoft Regulatory Capture, Oracle Tears, Impacts Quantified, Model Restrictions》（2025-01-15），SemiAnalysis Datacenter Model"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「nearly 800MW exiting 2024」为约数；critical IT power 即 IT 容量，exiting 2024 按已投运计 L8。与戴德梁行 2023Q4 马来西亚在运 189MW（cw2024gc-capacity-malaysia-operational）口径与时点均不同，SemiAnalysis 为自建逐站模型。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2501-malaysia-critical-it-2025e",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "malaysia-dc-market-sa",
+        "label": "马来西亚数据中心市场（SemiAnalysis 逐站跟踪）"
+      },
+      "value": 1798.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "APAC"
+      },
+      "as_of": "2025E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1dd122ad6472c18973c556a1261a0129e6d7d675d54bd3abd30159a04618e78e",
+        "local_file": "2025 AI Diffusion Export Controls – Microsoft Regulatory Capture, Oracle Tears, Impacts Quantified, Model Restrictions – SemiAnalysis.pdf",
+        "locator": "第 25 页「Datacenter Winners and Losers」：「In Malaysia we see a critical IT power of nearly 800MW exiting 2024, forecasting growth to 1,798 MW by 2025, and 3,240 MW by 2027. We believe that AI Accelerator deployments represent close to half of the total estimated 2027 capacity, almost all of which is earmarked for very high rack densities of up to 130kW per rack」；第 3 页「in just Malaysia alone…there is ~3 Gigawatts of Critical IT capacity of datacenters being built in just a few years」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《2025 AI Diffusion Export Controls – Microsoft Regulatory Capture, Oracle Tears, Impacts Quantified, Model Restrictions》（2025-01-15），SemiAnalysis Datacenter Model"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "预测 2025 年底 critical IT 容量，status 记 L8 表示预测的在运口径。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2501-malaysia-critical-it-2027e",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "malaysia-dc-market-sa",
+        "label": "马来西亚数据中心市场（SemiAnalysis 逐站跟踪）"
+      },
+      "value": 3240.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "APAC"
+      },
+      "as_of": "2027E@2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1dd122ad6472c18973c556a1261a0129e6d7d675d54bd3abd30159a04618e78e",
+        "local_file": "2025 AI Diffusion Export Controls – Microsoft Regulatory Capture, Oracle Tears, Impacts Quantified, Model Restrictions – SemiAnalysis.pdf",
+        "locator": "第 25 页「Datacenter Winners and Losers」：「In Malaysia we see a critical IT power of nearly 800MW exiting 2024, forecasting growth to 1,798 MW by 2025, and 3,240 MW by 2027. We believe that AI Accelerator deployments represent close to half of the total estimated 2027 capacity, almost all of which is earmarked for very high rack densities of up to 130kW per rack」；第 3 页「in just Malaysia alone…there is ~3 Gigawatts of Critical IT capacity of datacenters being built in just a few years」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《2025 AI Diffusion Export Controls – Microsoft Regulatory Capture, Oracle Tears, Impacts Quantified, Model Restrictions》（2025-01-15），SemiAnalysis Datacenter Model"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "预测 2027 年 critical IT 容量；SemiAnalysis 认为其中近一半为 AI 加速器部署，几乎全部按最高 130kW/柜的高密度规划。第 3 页「~3 Gigawatts…being built in just a few years」为同一预测的约数说法。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2501-ytl-johor-green-dc-500mw",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "project",
+        "id": "ytl-johor-green-dc-park",
+        "label": "YTL 柔佛绿色数据中心园区"
+      },
+      "value": 500.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "设施容量",
+        "status": "L2",
+        "region": "APAC"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1dd122ad6472c18973c556a1261a0129e6d7d675d54bd3abd30159a04618e78e",
+        "local_file": "2025 AI Diffusion Export Controls – Microsoft Regulatory Capture, Oracle Tears, Impacts Quantified, Model Restrictions – SemiAnalysis.pdf",
+        "locator": "第 26 页「YTL and Malaysia Neocloud Ecosystem」：「They first made their big entrance into the datacenter market in 2022, where they announced a 500MW total power datacenter powered by entirely green energy…Sea Ltd would be the anchor tenant with 36MW」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《2025 AI Diffusion Export Controls – Microsoft Regulatory Capture, Oracle Tears, Impacts Quantified, Model Restrictions》（2025-01-15），SemiAnalysis Datacenter Model"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "YTL 2022 年宣布的总功率口径（total power），capacity_type 记设施容量；经 SemiAnalysis 转述，asserter 记 YTL。锚定租户 Sea Ltd 36MW；另与英伟达有 43 亿美元合作用于 AI Neocloud。",
+      "asserter": "YTL"
     }
   ]
 }
