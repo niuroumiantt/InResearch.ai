@@ -141627,6 +141627,208 @@
       "corroboration": "待交叉验证",
       "notes": "100 kwpm = 10 万片/月（2026 年底）。与大摩 2025-09 版 9.3、2026-01 版 12.5 万片/月为不同机构不同时点的并列预测。同文称 SoIC 产能 2025 年底由 4 kwpm 扩至 8–10 kwpm（SoIC 单列无对应档，未录）。",
       "asserter": "瑞银"
+    },
+    {
+      "fact_id": "ocp25lt-kyber-nvl576-rack-power",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-kyber-nvl576",
+        "label": "Kyber NVL576"
+      },
+      "value": 600.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "era": "路线图目标",
+        "power_basis": "未披露",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4e3b131d4c7b786c613a6dddf5c149f77449cf85afccbf4af5056fcf60f04758",
+        "local_file": "5B_2022_7719AIHPCLight_未署名.pdf",
+        "locator": "第 10 页「AI rack power is exploding」柱图（Rack Power (kW)）标注「Kyber NVL576 (600 kW)」",
+        "grade": "S3",
+        "originator": "Shrikanth Venkateshappa（OCP AI/HPC Lightning Talks《How Multi-Voltage Systems Reshape Cost, Efficiency & Sustainability》，胶片未注明所属公司）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 未印在胶片上：取 L1 登记年份 2025，与第 10 页引用 Kyber NVL576（英伟达 2025-03 GTC 首次公布）一致；文件名前缀 5B_2022 是目录编号，与内容年代不符，不采用",
+      "corroboration": "待交叉验证",
+      "notes": "图上标签原文「Kyber NVL576 (600 kW)」，未说明是设计功率还是满载，power_basis 记未披露。演讲者未给出处，数值应源自英伟达路线图，**不是独立测量**。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "Shrikanth Venkateshappa"
+    },
+    {
+      "fact_id": "ocp25lt-rubin-rack-power",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-rubin-rack",
+        "label": "Rubin 机柜"
+      },
+      "value": 180.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "era": "路线图目标",
+        "power_basis": "未披露",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4e3b131d4c7b786c613a6dddf5c149f77449cf85afccbf4af5056fcf60f04758",
+        "local_file": "5B_2022_7719AIHPCLight_未署名.pdf",
+        "locator": "第 10 页「AI rack power is exploding」柱图（Rack Power (kW)）标注「Rubin (180 kW)」",
+        "grade": "S3",
+        "originator": "Shrikanth Venkateshappa（OCP AI/HPC Lightning Talks《How Multi-Voltage Systems Reshape Cost, Efficiency & Sustainability》，胶片未注明所属公司）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 未印在胶片上：取 L1 登记年份 2025，与第 10 页引用 Kyber NVL576（英伟达 2025-03 GTC 首次公布）一致；文件名前缀 5B_2022 是目录编号，与内容年代不符，不采用",
+      "corroboration": "待交叉验证",
+      "notes": "图上仅写「Rubin」，未写 NVL144 等机柜型号；与摩根士丹利 2026-01 的 Vera Rubin NVL144 220kW（ms2601-vr-nvl144-rack-power）口径未必相同，不可直接比成分歧。derived 只因 as_of 为推定。",
+      "asserter": "Shrikanth Venkateshappa"
+    },
+    {
+      "fact_id": "ocp25lt-gb200-nvl72-rack-power",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200-nvl72",
+        "label": "GB200 NVL72"
+      },
+      "value": 120.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "era": "当期",
+        "power_basis": "未披露",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4e3b131d4c7b786c613a6dddf5c149f77449cf85afccbf4af5056fcf60f04758",
+        "local_file": "5B_2022_7719AIHPCLight_未署名.pdf",
+        "locator": "第 10 页「AI rack power is exploding」柱图（Rack Power (kW)）标注「GB200 NVL72 (120 kW)」",
+        "grade": "S3",
+        "originator": "Shrikanth Venkateshappa（OCP AI/HPC Lightning Talks《How Multi-Voltage Systems Reshape Cost, Efficiency & Sustainability》，胶片未注明所属公司）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 未印在胶片上：取 L1 登记年份 2025，与第 10 页引用 Kyber NVL576（英伟达 2025-03 GTC 首次公布）一致；文件名前缀 5B_2022 是目录编号，与内容年代不符，不采用",
+      "corroboration": "待交叉验证",
+      "notes": "与英伟达参数表 120kW（实际满载）同值，但本页未说明功率口径，power_basis 记未披露；属转述，不构成独立佐证。derived 只因 as_of 为推定。",
+      "asserter": "Shrikanth Venkateshappa"
+    },
+    {
+      "fact_id": "ocp25lt-ai-rack-exceed-1mw",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "component",
+        "id": "ai-compute-rack-future",
+        "label": "未来 AI 计算机柜"
+      },
+      "value": 1000.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "峰值",
+        "era": "路线图目标",
+        "power_basis": "架构宣称",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "4e3b131d4c7b786c613a6dddf5c149f77449cf85afccbf4af5056fcf60f04758",
+        "local_file": "5B_2022_7719AIHPCLight_未署名.pdf",
+        "locator": "第 10 页正文：「Modern AI compute racks will exceed 1 MW each, far above legacy design expectations.」",
+        "grade": "S3",
+        "originator": "Shrikanth Venkateshappa（OCP AI/HPC Lightning Talks《How Multi-Voltage Systems Reshape Cost, Efficiency & Sustainability》，胶片未注明所属公司）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 未印在胶片上：取 L1 登记年份 2025，与第 10 页引用 Kyber NVL576（英伟达 2025-03 GTC 首次公布）一致；文件名前缀 5B_2022 是目录编号，与内容年代不符，不采用",
+      "corroboration": "待交叉验证",
+      "notes": "「exceed 1 MW」是下界表述，未给时点。derived 只因 as_of 为推定。",
+      "asserter": "Shrikanth Venkateshappa"
+    },
+    {
+      "fact_id": "ocp25lt-copper-per-mw-48v",
+      "metric_id": "electrical_material_intensity",
+      "entity": {
+        "type": "component",
+        "id": "dc-busway-48v",
+        "label": "±48 V 低压直流配电"
+      },
+      "value": 3000.0,
+      "unit": "量/MW 或 量/机柜",
+      "caliber": {
+        "material": "铜",
+        "system": "供配电",
+        "uom": "kg",
+        "denominator": "每 MW",
+        "voltage_level": "直流",
+        "region": "Global",
+        "basis": "架构宣称"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4e3b131d4c7b786c613a6dddf5c149f77449cf85afccbf4af5056fcf60f04758",
+        "local_file": "5B_2022_7719AIHPCLight_未署名.pdf",
+        "locator": "第 10 页正文「At 48 V, delivering 1 MW requires 20,833 A, forcing ~3 tonnes of copper per MW」；第 13 页「Measured Impact (per MW) • Copper: 3000 kg @ 48 V → 240 kg @ ±1000 V」",
+        "grade": "S3",
+        "originator": "Shrikanth Venkateshappa（OCP AI/HPC Lightning Talks《How Multi-Voltage Systems Reshape Cost, Efficiency & Sustainability》，胶片未注明所属公司）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 未印在胶片上：取 L1 登记年份 2025，与第 10 页引用 Kyber NVL576（英伟达 2025-03 GTC 首次公布）一致；文件名前缀 5B_2022 是目录编号，与内容年代不符，不采用",
+      "corroboration": "待交叉验证",
+      "notes": "48V 与 ±1000V 两档都是直流，voltage_level 维只有「直流」一值，靠 entity 分开。第 13 页标题写「Measured Impact」，但同页讲的是 ±1000V 入机房的可行性，未给测试条件或项目，basis 按架构宣称录，不记实测。",
+      "asserter": "Shrikanth Venkateshappa"
+    },
+    {
+      "fact_id": "ocp25lt-copper-per-mw-1000v",
+      "metric_id": "electrical_material_intensity",
+      "entity": {
+        "type": "component",
+        "id": "dc-busway-pm1000v",
+        "label": "±1000 V 直流配电"
+      },
+      "value": 240.0,
+      "unit": "量/MW 或 量/机柜",
+      "caliber": {
+        "material": "铜",
+        "system": "供配电",
+        "uom": "kg",
+        "denominator": "每 MW",
+        "voltage_level": "直流",
+        "region": "Global",
+        "basis": "架构宣称"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4e3b131d4c7b786c613a6dddf5c149f77449cf85afccbf4af5056fcf60f04758",
+        "local_file": "5B_2022_7719AIHPCLight_未署名.pdf",
+        "locator": "第 11 页「±1000 V → ~84% less (240 kg/MW)」；第 13 页「Copper: 3000 kg @ 48 V → 240 kg @ ±1000 V」",
+        "grade": "S3",
+        "originator": "Shrikanth Venkateshappa（OCP AI/HPC Lightning Talks《How Multi-Voltage Systems Reshape Cost, Efficiency & Sustainability》，胶片未注明所属公司）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 未印在胶片上：取 L1 登记年份 2025，与第 10 页引用 Kyber NVL576（英伟达 2025-03 GTC 首次公布）一致；文件名前缀 5B_2022 是目录编号，与内容年代不符，不采用",
+      "corroboration": "待交叉验证",
+      "notes": "第 11 页另列 ±400V 约省铜 70%、±800V 约省 80%（相对 ±48V 的比例，未给 kg，未录）。basis 理由同 48V 那条。",
+      "asserter": "Shrikanth Venkateshappa"
     }
   ]
 }
