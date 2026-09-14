@@ -123671,6 +123671,502 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "3,169,717 千 GB = 31.6972 亿 GB；与第 72 行 25.36 bn Gb（吉比特，×8）互相印证。全表无日期，2Q25 起标 E、1Q25 未标，做出时点约在 2025 年二季度但原文未写，as_of 不带 @。合计为英伟达、AMD、谷歌、亚马逊、英特尔、微软、Meta、其他八组相加；分客户数本指标无客户维，未录。"
+    },
+    {
+      "fact_id": "ms2507-gb200-rack-ship-2025-06",
+      "metric_id": "ai_rack_shipment",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "ai-rack-gb200",
+        "label": "GB200 机架"
+      },
+      "value": 2500.0,
+      "unit": "架",
+      "bound": "point",
+      "as_of": "2025-06@2025-07",
+      "caliber": {
+        "platform": "GB200",
+        "customer": "全市场",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
+        "local_file": "AI芯片行业数据统计（出货量  wafer消耗 HBM消耗）.xlsx",
+        "locator": "工作表「GB200出货量  MS」第 32-37 行（Data: 2025.07.08）「6月出货量｜出货量：约 2.5k（5 月为 2 - 2.5k ）」",
+        "grade": "S3",
+        "originator": "摩根士丹利（汇编表工作表标「Source: MS」「Data: 2025.07.08」；本文件为第三方汇编，非原报告）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「约 2.5k」。未区分 NVL72/NVL36。同表「二季度｜产量：约 6k」是产量不是出货量，未录。"
+    },
+    {
+      "fact_id": "ms2507-gb200-rack-ship-2025-05",
+      "metric_id": "ai_rack_shipment",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "ai-rack-gb200",
+        "label": "GB200 机架"
+      },
+      "value": 2000.0,
+      "unit": "架",
+      "bound": "lower",
+      "as_of": "2025-05@2025-07",
+      "caliber": {
+        "platform": "GB200",
+        "customer": "全市场",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
+        "local_file": "AI芯片行业数据统计（出货量  wafer消耗 HBM消耗）.xlsx",
+        "locator": "工作表「GB200出货量  MS」第 32-37 行（Data: 2025.07.08）「6月出货量｜出货量：约 2.5k（5 月为 2 - 2.5k ）」",
+        "grade": "S3",
+        "originator": "摩根士丹利（汇编表工作表标「Source: MS」「Data: 2025.07.08」；本文件为第三方汇编，非原报告）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文区间 2 - 2.5k 的下界；上界见 ms2507-gb200-rack-ship-2025-05-upper。同一家 2025-05 的文字稿把 5 月 2,000-2,500 台写作 NVL72「产量」，本条按 07 表「出货量」记。"
+    },
+    {
+      "fact_id": "ms2507-gb200-rack-ship-2025-05-upper",
+      "metric_id": "ai_rack_shipment",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "ai-rack-gb200",
+        "label": "GB200 机架"
+      },
+      "value": 2500.0,
+      "unit": "架",
+      "bound": "upper",
+      "as_of": "2025-05@2025-07",
+      "caliber": {
+        "platform": "GB200",
+        "customer": "全市场",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
+        "local_file": "AI芯片行业数据统计（出货量  wafer消耗 HBM消耗）.xlsx",
+        "locator": "工作表「GB200出货量  MS」第 32-37 行（Data: 2025.07.08）「6月出货量｜出货量：约 2.5k（5 月为 2 - 2.5k ）」",
+        "grade": "S3",
+        "originator": "摩根士丹利（汇编表工作表标「Source: MS」「Data: 2025.07.08」；本文件为第三方汇编，非原报告）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文区间 2 - 2.5k 的上界；下界见 ms2507-gb200-rack-ship-2025-05。"
+    },
+    {
+      "fact_id": "ms2507-gb200-rack-ship-2025q3e",
+      "metric_id": "ai_rack_shipment",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "ai-rack-gb200",
+        "label": "GB200 机架"
+      },
+      "value": 10000.0,
+      "unit": "架",
+      "bound": "lower",
+      "as_of": "2025-Q3E@2025-07",
+      "caliber": {
+        "platform": "GB200",
+        "customer": "全市场",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
+        "local_file": "AI芯片行业数据统计（出货量  wafer消耗 HBM消耗）.xlsx",
+        "locator": "工作表「GB200出货量  MS」第 32-37 行（Data: 2025.07.08）「三季度出货量（预估）｜出货量：预计达 10 - 11k」",
+        "grade": "S3",
+        "originator": "摩根士丹利（汇编表工作表标「Source: MS」「Data: 2025.07.08」；本文件为第三方汇编，非原报告）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文区间 10 - 11k 的下界；上界见 ms2507-gb200-rack-ship-2025q3e-upper。"
+    },
+    {
+      "fact_id": "ms2507-gb200-rack-ship-2025q3e-upper",
+      "metric_id": "ai_rack_shipment",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "market",
+        "id": "ai-rack-gb200",
+        "label": "GB200 机架"
+      },
+      "value": 11000.0,
+      "unit": "架",
+      "bound": "upper",
+      "as_of": "2025-Q3E@2025-07",
+      "caliber": {
+        "platform": "GB200",
+        "customer": "全市场",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
+        "local_file": "AI芯片行业数据统计（出货量  wafer消耗 HBM消耗）.xlsx",
+        "locator": "工作表「GB200出货量  MS」第 32-37 行（Data: 2025.07.08）「三季度出货量（预估）｜出货量：预计达 10 - 11k」",
+        "grade": "S3",
+        "originator": "摩根士丹利（汇编表工作表标「Source: MS」「Data: 2025.07.08」；本文件为第三方汇编，非原报告）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文区间 10 - 11k 的上界；下界见 ms2507-gb200-rack-ship-2025q3e。"
+    },
+    {
+      "fact_id": "jef2506-gb200-rack-ship-2025q1",
+      "metric_id": "ai_rack_shipment",
+      "asserter": "杰富瑞",
+      "entity": {
+        "type": "market",
+        "id": "ai-rack-gb200",
+        "label": "GB200 机架"
+      },
+      "value": 1500.0,
+      "unit": "架",
+      "bound": "point",
+      "as_of": "2025-Q1",
+      "caliber": {
+        "platform": "GB200",
+        "customer": "全市场",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
+        "local_file": "AI芯片行业数据统计（出货量  wafer消耗 HBM消耗）.xlsx",
+        "locator": "工作表「GB200出货量 Jeff」第 5 行「2025 年第一季度总出货量｜1.5k｜其中：广达（2382 TT）700 台、鸿海（2317 TT）500 台、纬创（3231 TT）300 台」",
+        "grade": "S3",
+        "originator": "杰富瑞（汇编表工作表标「Source: Jefferies 2025.06.27」；本文件为第三方汇编，非原报告）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "季度已结束的出货量。按 ODM 拆分本指标无制造商维，未录。Jefferies 季度数（1.5k+7.2k+10.8k+12.5k=32k）与同表全年 NVL72 27k + NVL36 10k = 37k 对不上，原表未说明季度数的机型口径，平台按「GB200」记、不替原文调和。"
+    },
+    {
+      "fact_id": "jef2506-gb200-rack-ship-2025q2e",
+      "metric_id": "ai_rack_shipment",
+      "asserter": "杰富瑞",
+      "entity": {
+        "type": "market",
+        "id": "ai-rack-gb200",
+        "label": "GB200 机架"
+      },
+      "value": 7200.0,
+      "unit": "架",
+      "bound": "point",
+      "as_of": "2025-Q2E@2025-06",
+      "caliber": {
+        "platform": "GB200",
+        "customer": "全市场",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
+        "local_file": "AI芯片行业数据统计（出货量  wafer消耗 HBM消耗）.xlsx",
+        "locator": "工作表「GB200出货量 Jeff」第 6 行「2025 年第二季度出货量｜调整后总量｜7.2k｜原预估 6k，上调至 7.2k」",
+        "grade": "S3",
+        "originator": "杰富瑞（汇编表工作表标「Source: Jefferies 2025.06.27」；本文件为第三方汇编，非原报告）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "报告日 2025-06-27，二季度未结束，按预测记。原预估 6k 未单录。广达 2.8k / 鸿海 2k / 纬创 2.4k 按 ODM 拆分无维度未录。Jefferies 季度数（1.5k+7.2k+10.8k+12.5k=32k）与同表全年 NVL72 27k + NVL36 10k = 37k 对不上，原表未说明季度数的机型口径，平台按「GB200」记、不替原文调和。"
+    },
+    {
+      "fact_id": "jef2506-gb200-rack-ship-2025-04",
+      "metric_id": "ai_rack_shipment",
+      "asserter": "杰富瑞",
+      "entity": {
+        "type": "market",
+        "id": "ai-rack-gb200",
+        "label": "GB200 机架"
+      },
+      "value": 1500.0,
+      "unit": "架",
+      "bound": "point",
+      "as_of": "2025-04",
+      "caliber": {
+        "platform": "GB200",
+        "customer": "全市场",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
+        "local_file": "AI芯片行业数据统计（出货量  wafer消耗 HBM消耗）.xlsx",
+        "locator": "工作表「GB200出货量 Jeff」第 10 行「4 月｜1.5k｜按月份细分」",
+        "grade": "S3",
+        "originator": "杰富瑞（汇编表工作表标「Source: Jefferies 2025.06.27」；本文件为第三方汇编，非原报告）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "二季度按月细分。"
+    },
+    {
+      "fact_id": "jef2506-gb200-rack-ship-2025-05",
+      "metric_id": "ai_rack_shipment",
+      "asserter": "杰富瑞",
+      "entity": {
+        "type": "market",
+        "id": "ai-rack-gb200",
+        "label": "GB200 机架"
+      },
+      "value": 2500.0,
+      "unit": "架",
+      "bound": "point",
+      "as_of": "2025-05",
+      "caliber": {
+        "platform": "GB200",
+        "customer": "全市场",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
+        "local_file": "AI芯片行业数据统计（出货量  wafer消耗 HBM消耗）.xlsx",
+        "locator": "工作表「GB200出货量 Jeff」第 11 行「5 月｜2.5k」",
+        "grade": "S3",
+        "originator": "杰富瑞（汇编表工作表标「Source: Jefferies 2025.06.27」；本文件为第三方汇编，非原报告）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "二季度按月细分。"
+    },
+    {
+      "fact_id": "jef2506-gb200-rack-ship-2025-06e",
+      "metric_id": "ai_rack_shipment",
+      "asserter": "杰富瑞",
+      "entity": {
+        "type": "market",
+        "id": "ai-rack-gb200",
+        "label": "GB200 机架"
+      },
+      "value": 3200.0,
+      "unit": "架",
+      "bound": "point",
+      "as_of": "2025-06E@2025-06",
+      "caliber": {
+        "platform": "GB200",
+        "customer": "全市场",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
+        "local_file": "AI芯片行业数据统计（出货量  wafer消耗 HBM消耗）.xlsx",
+        "locator": "工作表「GB200出货量 Jeff」第 12 行「6 月｜3.2k」",
+        "grade": "S3",
+        "originator": "杰富瑞（汇编表工作表标「Source: Jefferies 2025.06.27」；本文件为第三方汇编，非原报告）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "报告日 2025-06-27，6 月未结束，按预测记。"
+    },
+    {
+      "fact_id": "jef2506-gb200-rack-ship-2025q3e",
+      "metric_id": "ai_rack_shipment",
+      "asserter": "杰富瑞",
+      "entity": {
+        "type": "market",
+        "id": "ai-rack-gb200",
+        "label": "GB200 机架"
+      },
+      "value": 10800.0,
+      "unit": "架",
+      "bound": "point",
+      "as_of": "2025-Q3E@2025-06",
+      "caliber": {
+        "platform": "GB200",
+        "customer": "全市场",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
+        "local_file": "AI芯片行业数据统计（出货量  wafer消耗 HBM消耗）.xlsx",
+        "locator": "工作表「GB200出货量 Jeff」第 13 行「2025 年第三季度出货量｜调整后总量｜10.8k｜上调后数据」",
+        "grade": "S3",
+        "originator": "杰富瑞（汇编表工作表标「Source: Jefferies 2025.06.27」；本文件为第三方汇编，非原报告）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "上调后数据。Jefferies 季度数（1.5k+7.2k+10.8k+12.5k=32k）与同表全年 NVL72 27k + NVL36 10k = 37k 对不上，原表未说明季度数的机型口径，平台按「GB200」记、不替原文调和。"
+    },
+    {
+      "fact_id": "jef2506-gb200-rack-ship-2025q4e",
+      "metric_id": "ai_rack_shipment",
+      "asserter": "杰富瑞",
+      "entity": {
+        "type": "market",
+        "id": "ai-rack-gb200",
+        "label": "GB200 机架"
+      },
+      "value": 12500.0,
+      "unit": "架",
+      "bound": "point",
+      "as_of": "2025-Q4E@2025-06",
+      "caliber": {
+        "platform": "GB200",
+        "customer": "全市场",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
+        "local_file": "AI芯片行业数据统计（出货量  wafer消耗 HBM消耗）.xlsx",
+        "locator": "工作表「GB200出货量 Jeff」第 14 行「2025 年第四季度出货量｜维持预估总量｜12.5k｜未调整」",
+        "grade": "S3",
+        "originator": "杰富瑞（汇编表工作表标「Source: Jefferies 2025.06.27」；本文件为第三方汇编，非原报告）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "维持原预估。Jefferies 季度数（1.5k+7.2k+10.8k+12.5k=32k）与同表全年 NVL72 27k + NVL36 10k = 37k 对不上，原表未说明季度数的机型口径，平台按「GB200」记、不替原文调和。"
+    },
+    {
+      "fact_id": "jef2506-gb200-nvl72-rack-ship-2025e",
+      "metric_id": "ai_rack_shipment",
+      "asserter": "杰富瑞",
+      "entity": {
+        "type": "market",
+        "id": "ai-rack-gb200-nvl72",
+        "label": "GB200 NVL72 机架"
+      },
+      "value": 27000.0,
+      "unit": "架",
+      "bound": "point",
+      "as_of": "2025E@2025-06",
+      "caliber": {
+        "platform": "GB200 NVL72",
+        "customer": "全市场",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
+        "local_file": "AI芯片行业数据统计（出货量  wafer消耗 HBM消耗）.xlsx",
+        "locator": "工作表「GB200出货量 Jeff」第 15 行「2025 年 GB200 总出货量｜NVL72 型号｜27k｜最新预估」",
+        "grade": "S3",
+        "originator": "杰富瑞（汇编表工作表标「Source: Jefferies 2025.06.27」；本文件为第三方汇编，非原报告）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "NVL72 与 NVL36 每架芯片数不同，两条不可相加。Jefferies 季度数（1.5k+7.2k+10.8k+12.5k=32k）与同表全年 NVL72 27k + NVL36 10k = 37k 对不上，原表未说明季度数的机型口径，平台按「GB200」记、不替原文调和。"
+    },
+    {
+      "fact_id": "jef2506-gb200-nvl36-rack-ship-2025e",
+      "metric_id": "ai_rack_shipment",
+      "asserter": "杰富瑞",
+      "entity": {
+        "type": "market",
+        "id": "ai-rack-gb200-nvl36",
+        "label": "GB200 NVL36 机架"
+      },
+      "value": 10000.0,
+      "unit": "架",
+      "bound": "point",
+      "as_of": "2025E@2025-06",
+      "caliber": {
+        "platform": "GB200 NVL36",
+        "customer": "全市场",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
+        "local_file": "AI芯片行业数据统计（出货量  wafer消耗 HBM消耗）.xlsx",
+        "locator": "工作表「GB200出货量 Jeff」第 16 行「NVL36 型号｜10k｜最新预估」",
+        "grade": "S3",
+        "originator": "杰富瑞（汇编表工作表标「Source: Jefferies 2025.06.27」；本文件为第三方汇编，非原报告）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "NVL72 与 NVL36 每架芯片数不同，两条不可相加。Jefferies 季度数（1.5k+7.2k+10.8k+12.5k=32k）与同表全年 NVL72 27k + NVL36 10k = 37k 对不上，原表未说明季度数的机型口径，平台按「GB200」记、不替原文调和。"
+    },
+    {
+      "fact_id": "bern2507-gb200-rack-ship-2025q2e",
+      "metric_id": "ai_rack_shipment",
+      "asserter": "伯恩斯坦",
+      "entity": {
+        "type": "market",
+        "id": "ai-rack-gb200-nvl72-等效",
+        "label": "GB200 NVL72 等效 机架"
+      },
+      "value": 7000.0,
+      "unit": "架",
+      "bound": "point",
+      "as_of": "2025-Q2E@2025-07",
+      "caliber": {
+        "platform": "GB200 NVL72 等效",
+        "customer": "全市场",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
+        "local_file": "AI芯片行业数据统计（出货量  wafer消耗 HBM消耗）.xlsx",
+        "locator": "工作表「GB200 出货量 Bernstein」第 4 行「GB200 机架（NVL72 等效）｜2025 年第二季度｜出货量预计大幅增长至约 7000 台」",
+        "grade": "S3",
+        "originator": "伯恩斯坦（汇编表工作表标「Source： Bernstein 2025.07.08」；本文件为第三方汇编，非原报告）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「约 7000」「预计」，按预测记。平台照原文写「NVL72 等效」，与未注明机型的 GB200 架数不可直接比。"
+    },
+    {
+      "fact_id": "bern2507-gb200-rack-ship-2025q3e",
+      "metric_id": "ai_rack_shipment",
+      "asserter": "伯恩斯坦",
+      "entity": {
+        "type": "market",
+        "id": "ai-rack-gb200-nvl72-等效",
+        "label": "GB200 NVL72 等效 机架"
+      },
+      "value": 10000.0,
+      "unit": "架",
+      "bound": "point",
+      "as_of": "2025-Q3E@2025-07",
+      "caliber": {
+        "platform": "GB200 NVL72 等效",
+        "customer": "全市场",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
+        "local_file": "AI芯片行业数据统计（出货量  wafer消耗 HBM消耗）.xlsx",
+        "locator": "工作表「GB200 出货量 Bernstein」第 5 行「2025 年第三季度｜出货量预计达到 10000 台」",
+        "grade": "S3",
+        "originator": "伯恩斯坦（汇编表工作表标「Source： Bernstein 2025.07.08」；本文件为第三方汇编，非原报告）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "平台照原文写「NVL72 等效」。同表 GB300 四季度「数千台」无具体数，未录。"
     }
   ]
 }
