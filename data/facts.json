@@ -127862,6 +127862,138 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原文「>40」按下界记；2023-2028 CAGR >46%。做出时点取 OCP Global Summit 2025（2025 年 10 月）。"
+    },
+    {
+      "fact_id": "sa2510-traditional-rack-density-lower",
+      "metric_id": "rack_density_shipping",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "industry",
+        "id": "traditional-rack",
+        "label": "传统机柜"
+      },
+      "value": 5.0,
+      "unit": "kW/机柜",
+      "bound": "lower",
+      "as_of": "2025-10",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "市场普遍水平",
+        "era": "当期",
+        "power_basis": "未披露",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "d212df7f6933363b77e913bf89f2cb31d887cc6da010b32ead983d72b87911b0",
+        "local_file": "5B_2022_7803SemiAnalys_未署名.pdf",
+        "locator": "第 19 页「5. The Datacenter is Undergoing a Power and Cooling Revolution」：「Traditional rack power density of 5-20kW is being dwarfed by new AI systems. An Nvidia GB200 NVL72 rack requires 130kW, and future systems are projected to exceed 1,000kW (1MW) per rack.」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《State of the Market》（Daniel Nishball、Jordan Nanos，OCP Global Summit 2025 演讲）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "演讲未写日期，as_of 取 OCP Global Summit 2025 召开月 2025-10",
+      "corroboration": "待交叉验证",
+      "notes": "原文区间 5-20 kW 的下界；上界见 sa2510-traditional-rack-density-upper。地域未写，全球行业叙述按 Global。"
+    },
+    {
+      "fact_id": "sa2510-traditional-rack-density-upper",
+      "metric_id": "rack_density_shipping",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "industry",
+        "id": "traditional-rack",
+        "label": "传统机柜"
+      },
+      "value": 20.0,
+      "unit": "kW/机柜",
+      "bound": "upper",
+      "as_of": "2025-10",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "市场普遍水平",
+        "era": "当期",
+        "power_basis": "未披露",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "d212df7f6933363b77e913bf89f2cb31d887cc6da010b32ead983d72b87911b0",
+        "local_file": "5B_2022_7803SemiAnalys_未署名.pdf",
+        "locator": "第 19 页「5. The Datacenter is Undergoing a Power and Cooling Revolution」：「Traditional rack power density of 5-20kW is being dwarfed by new AI systems. An Nvidia GB200 NVL72 rack requires 130kW, and future systems are projected to exceed 1,000kW (1MW) per rack.」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《State of the Market》（Daniel Nishball、Jordan Nanos，OCP Global Summit 2025 演讲）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "演讲未写日期，as_of 取 OCP Global Summit 2025 召开月 2025-10",
+      "corroboration": "待交叉验证",
+      "notes": "原文区间 5-20 kW 的上界。"
+    },
+    {
+      "fact_id": "sa2510-gb200-nvl72-rack-power",
+      "metric_id": "rack_density_shipping",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200-nvl72",
+        "label": "NVIDIA GB200 NVL72 机柜"
+      },
+      "value": 130.0,
+      "unit": "kW/机柜",
+      "bound": "point",
+      "as_of": "2025-10",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "era": "当期",
+        "power_basis": "设计功率",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "d212df7f6933363b77e913bf89f2cb31d887cc6da010b32ead983d72b87911b0",
+        "local_file": "5B_2022_7803SemiAnalys_未署名.pdf",
+        "locator": "第 19 页「5. The Datacenter is Undergoing a Power and Cooling Revolution」：「Traditional rack power density of 5-20kW is being dwarfed by new AI systems. An Nvidia GB200 NVL72 rack requires 130kW, and future systems are projected to exceed 1,000kW (1MW) per rack.」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《State of the Market》（Daniel Nishball、Jordan Nanos，OCP Global Summit 2025 演讲）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "演讲未写日期，as_of 取 OCP Global Summit 2025 召开月 2025-10",
+      "corroboration": "待交叉验证",
+      "notes": "「requires 130kW」。库内同一家 2024 年给过 125 kW（gb200-nvl72-power-density-2024，实际功率密度口径）。"
+    },
+    {
+      "fact_id": "sa2510-future-rack-power-1mw",
+      "metric_id": "rack_density_shipping",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "industry",
+        "id": "future-ai-rack",
+        "label": "未来 AI 整机柜"
+      },
+      "value": 1000.0,
+      "unit": "kW/机柜",
+      "bound": "lower",
+      "as_of": "2025-10",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "峰值",
+        "era": "路线图目标",
+        "power_basis": "架构宣称",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "d212df7f6933363b77e913bf89f2cb31d887cc6da010b32ead983d72b87911b0",
+        "local_file": "5B_2022_7803SemiAnalys_未署名.pdf",
+        "locator": "第 19 页「5. The Datacenter is Undergoing a Power and Cooling Revolution」：「Traditional rack power density of 5-20kW is being dwarfed by new AI systems. An Nvidia GB200 NVL72 rack requires 130kW, and future systems are projected to exceed 1,000kW (1MW) per rack.」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《State of the Market》（Daniel Nishball、Jordan Nanos，OCP Global Summit 2025 演讲）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "演讲未写日期，as_of 取 OCP Global Summit 2025 召开月 2025-10",
+      "corroboration": "待交叉验证",
+      "notes": "「future systems are projected to exceed 1,000kW (1MW) per rack」，按下界记，未写年份与平台。"
     }
   ]
 }
