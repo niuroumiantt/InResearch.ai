@@ -127202,7 +127202,7 @@
         "cooling_tech": "冷板液冷",
         "region": "CN",
         "basis": "工程测算",
-        "loop": "未注明"
+        "loop": "二次侧"
       },
       "evidence": {
         "sha256": "e9c87cd8f92a1a5a7ffc2eac785b2434e95bdf1e1b6bd63932dfd7b1ccb65f9b",
@@ -127214,7 +127214,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "二次侧（CDU 至机柜）设计供液温度下限「不宜低于 40℃」。同句一次侧进水不宜低于 35℃ 本指标无一次/二次侧维，与本条同为「供水」会撞 claim_key，未录，记缺口。设计院的工程设计要点，是推荐下限不是项目实测。\n\n**（2026-09-14）补 loop=未注明**：新增该口径维，本条按原文回填——原文未写清是一次侧还是二次侧，不替它判——「未注明」与两个具体值都不可比。"
+      "notes": "二次侧（CDU 至机柜）设计供液温度下限「不宜低于 40℃」。同句一次侧进水不宜低于 35℃ 见 cbdi2507-coldplate-primary-supply-min。设计院的工程设计要点，是推荐下限不是项目实测。\n\n**（2026-09-14）补 loop=未注明**：新增该口径维，本条按原文回填——原文未写清是一次侧还是二次侧，不替它判——「未注明」与两个具体值都不可比。"
     },
     {
       "fact_id": "cbdi2507-coldplate-deltat-min",
@@ -130973,6 +130973,39 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原文「预计交付～3k」，按预测记；同一家 2025-05 给的是 3000-4000。"
+    },
+    {
+      "fact_id": "cbdi2507-coldplate-primary-supply-min",
+      "metric_id": "dlc_water_temperature",
+      "asserter": "中讯邮电咨询设计院",
+      "entity": {
+        "type": "policy",
+        "id": "cbdi-coldplate-cabin-wp-2025",
+        "label": "中讯邮电冷板式液冷云舱技术白皮书设计要点"
+      },
+      "value": 35.0,
+      "unit": "°C",
+      "bound": "lower",
+      "as_of": "2025-07",
+      "caliber": {
+        "position": "供水",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "region": "CN",
+        "basis": "工程测算",
+        "loop": "一次侧"
+      },
+      "evidence": {
+        "sha256": "e9c87cd8f92a1a5a7ffc2eac785b2434e95bdf1e1b6bd63932dfd7b1ccb65f9b",
+        "local_file": "2025年智算中心冷板式液冷云舱技术白皮书-.pdf",
+        "locator": "第 21 页 五、3.设计要求 1）液冷冷源：「在保障液冷服务器用冷安全的前提下，液冷换热单元 CDU 室外一次侧设计进水温度不宜低于 35℃，室内二次侧设计供液温度不宜低于 40℃，一二次设计供回水/液温差不宜低于 10℃」",
+        "grade": "S3",
+        "originator": "中讯邮电咨询设计院《智算中心冷板式液冷云舱技术白皮书》（2025-07）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "液冷换热单元 CDU 室外一次侧设计进水温度下限「不宜低于 35℃」；二次侧供液下限 40℃ 见 cbdi2507-coldplate-secondary-supply-min。设计院的工程设计要点，是推荐下限不是项目实测。"
     }
   ]
 }
