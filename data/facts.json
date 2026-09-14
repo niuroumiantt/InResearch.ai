@@ -138370,6 +138370,97 @@
       "depth": "精读",
       "corroboration": "待交叉验证",
       "asserter": "IDC"
+    },
+    {
+      "fact_id": "bern2601-hbm-bit-growth-2027e",
+      "metric_id": "hbm_bit_shipment_growth",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 35.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "位出货量",
+        "basis": "模型输出",
+        "region": "Global"
+      },
+      "as_of": "2027E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3ac891df97dc7c809fdc6609222aaf1d9d37d30e4acf562d8a137a8528c7ed0e",
+        "local_file": "20260117-伯恩斯坦：亚洲半导体与全球存储器：2026年仍以人工智能为核心(50页).pdf",
+        "locator": "第 19 页：「我们现将HBM位出货量增长模型设定为2026年增长100%，2027年再增长35%（参见图表26）……尽管我们仍假设HBM3E平均售价在2026年将下降20%……总体而言，我们预测2025至2026年HBM均价将温和下跌5%，HBM总市场规模（TAM）将在2026年增长至750亿美元（图示27）」",
+        "grade": "S3",
+        "originator": "伯恩斯坦（Bernstein 亚洲半导体团队，2026-01-17，中文译本）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "伯恩斯坦自建 HBM 模型：2026 年位出货 +100%（已入库 hbm-bit-growth-2026e）后，2027 年再 +35%。译本原文作「35%0/0」，为排版残字。",
+      "asserter": "伯恩斯坦"
+    },
+    {
+      "fact_id": "bern2601-hbm-tam-2026e",
+      "metric_id": "hbm_demand_value",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 750.0,
+      "unit": "亿美元",
+      "caliber": {
+        "generation": "合计",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3ac891df97dc7c809fdc6609222aaf1d9d37d30e4acf562d8a137a8528c7ed0e",
+        "local_file": "20260117-伯恩斯坦：亚洲半导体与全球存储器：2026年仍以人工智能为核心(50页).pdf",
+        "locator": "第 19 页：「我们现将HBM位出货量增长模型设定为2026年增长100%，2027年再增长35%（参见图表26）……尽管我们仍假设HBM3E平均售价在2026年将下降20%……总体而言，我们预测2025至2026年HBM均价将温和下跌5%，HBM总市场规模（TAM）将在2026年增长至750亿美元（图示27）」",
+        "grade": "S3",
+        "originator": "伯恩斯坦（Bernstein 亚洲半导体团队，2026-01-17，中文译本）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "HBM 总市场规模（TAM）2026 年 750 亿美元，基于位出货 +100%、均价 -5% 的模型假设；HBM3E 均价假设 2026 年 -20%，HBM4 上半年量产带来溢价。",
+      "asserter": "伯恩斯坦"
+    },
+    {
+      "fact_id": "bern2601-hbm-asp-yoy-2026e",
+      "metric_id": "dram_asp_change",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": -5.0,
+      "unit": "%",
+      "caliber": {
+        "period_basis": "同比 YoY",
+        "product": "HBM",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2026E@2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3ac891df97dc7c809fdc6609222aaf1d9d37d30e4acf562d8a137a8528c7ed0e",
+        "local_file": "20260117-伯恩斯坦：亚洲半导体与全球存储器：2026年仍以人工智能为核心(50页).pdf",
+        "locator": "第 19 页：「我们现将HBM位出货量增长模型设定为2026年增长100%，2027年再增长35%（参见图表26）……尽管我们仍假设HBM3E平均售价在2026年将下降20%……总体而言，我们预测2025至2026年HBM均价将温和下跌5%，HBM总市场规模（TAM）将在2026年增长至750亿美元（图示27）」",
+        "grade": "S3",
+        "originator": "伯恩斯坦（Bernstein 亚洲半导体团队，2026-01-17，中文译本）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "HBM 整体均价 2025→2026 年温和下跌约 5%（HBM3E 单独假设 -20%，HBM4 溢价抵消部分）；原文「温和下跌5%」按点值记。",
+      "asserter": "伯恩斯坦"
     }
   ]
 }
