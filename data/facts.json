@@ -134073,6 +134073,103 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "约 7,290 万吨二氧化碳 = 72.9 百万吨（原文为 CO₂）。蓝皮书由两家联合发布，asserter 取中国投资协会能源投资专业委员会，另一家见 originator。"
+    },
+    {
+      "fact_id": "odcc2210-cn-dc-electricity-2020",
+      "metric_id": "dc_electricity_consumption",
+      "asserter": "开放数据中心委员会",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc",
+        "label": "中国数据中心"
+      },
+      "value": 93.9,
+      "unit": "TWh",
+      "bound": "point",
+      "as_of": "2020",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "CN",
+        "basis": "第三方估算"
+      },
+      "evidence": {
+        "sha256": "3c0fc9a87027fdcb6bc1181fb367e2de34b95092898bed3842a3a8f6b8ab2423",
+        "local_file": "【2022年11月】【ODCC】数据中心算力碳效白皮书.pdf",
+        "locator": "前言（PDF 第 3 页）：「开放数据中心委员会 ODCC 测算数据显示，2020 年中国数据中心能耗总量为 939 亿千瓦时，碳排放量为 6464 万吨。预计到 2030 年，中国数据中心能耗总量将达到 3800 亿千瓦时左右，碳排放增长率将超过 300%」",
+        "grade": "S2",
+        "originator": "开放数据中心委员会《数据中心算力碳效白皮书》（ODCC-2022-0500A，2022-10）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "939 亿 kWh = 93.9 TWh，与库内信通院 2020 年 93.9 同值（ODCC 秘书处设在信通院，疑同源）。"
+    },
+    {
+      "fact_id": "odcc2210-cn-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "asserter": "开放数据中心委员会",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc",
+        "label": "中国数据中心"
+      },
+      "value": 64.64,
+      "unit": "百万吨 CO₂e",
+      "bound": "point",
+      "as_of": "2020",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "未注明",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "evidence": {
+        "sha256": "3c0fc9a87027fdcb6bc1181fb367e2de34b95092898bed3842a3a8f6b8ab2423",
+        "local_file": "【2022年11月】【ODCC】数据中心算力碳效白皮书.pdf",
+        "locator": "前言（PDF 第 3 页）：「开放数据中心委员会 ODCC 测算数据显示，2020 年中国数据中心能耗总量为 939 亿千瓦时，碳排放量为 6464 万吨。预计到 2030 年，中国数据中心能耗总量将达到 3800 亿千瓦时左右，碳排放增长率将超过 300%」",
+        "grade": "S2",
+        "originator": "开放数据中心委员会《数据中心算力碳效白皮书》（ODCC-2022-0500A，2022-10）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "6,464 万吨 = 64.64 百万吨；未写 CO₂ 还是 CO₂e。同年《零碳中国·数据中心》蓝皮书为 72.9（odcc2309-zcc-cn-dc-co2-2020）。"
+    },
+    {
+      "fact_id": "odcc2210-cn-dc-electricity-2030e",
+      "metric_id": "dc_electricity_consumption",
+      "asserter": "开放数据中心委员会",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc",
+        "label": "中国数据中心"
+      },
+      "value": 380.0,
+      "unit": "TWh",
+      "bound": "point",
+      "as_of": "2030E@2022-10",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "3c0fc9a87027fdcb6bc1181fb367e2de34b95092898bed3842a3a8f6b8ab2423",
+        "local_file": "【2022年11月】【ODCC】数据中心算力碳效白皮书.pdf",
+        "locator": "前言（PDF 第 3 页）：「开放数据中心委员会 ODCC 测算数据显示，2020 年中国数据中心能耗总量为 939 亿千瓦时，碳排放量为 6464 万吨。预计到 2030 年，中国数据中心能耗总量将达到 3800 亿千瓦时左右，碳排放增长率将超过 300%」",
+        "grade": "S2",
+        "originator": "开放数据中心委员会《数据中心算力碳效白皮书》（ODCC-2022-0500A，2022-10）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「3800 亿千瓦时左右」，碳排放增长超 300%。同一家 2023-06 版同值（odcc2023-cn-dc-electricity-2030e），两个时点的预测并列。"
     }
   ]
 }
