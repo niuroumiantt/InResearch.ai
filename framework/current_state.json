@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.14.2",
+  "version": "2026.09.14.3",
   "effective_at": "2026-09-14",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -319,13 +319,15 @@
         "web/pages/bom3d.html",
         "web/pages/rack3d.html",
         "web/pages/compare.html",
-        "tests/model_assets.cjs"
+        "tests/model_assets.cjs",
+        "web/components/scene-view.js",
+        "tests/scene_framing.cjs"
       ],
       "supersedes": [
         "interface-legacy"
       ],
-      "reason": "2026-09-13：3D 档案改用同权威关联字段投影，仍共用完整工作台的节点关联算法；研究面板就绪、失败重试和挂载/请求替换成为明确验收。既有输入/材质所有权保持，renderer/资产生命周期仍未全面收敛。；2026-09-14 两场景必需定义改用统一加载/结构检查/取消/重试，恢复显式控件状态，不扩大为可选资产就绪。；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。",
-      "implementation_revision": "2026.09.14.2"
+      "reason": "2026-09-13：3D 档案改用同权威关联字段投影，仍共用完整工作台的节点关联算法；研究面板就绪、失败重试和挂载/请求替换成为明确验收。既有输入/材质所有权保持，renderer/资产生命周期仍未全面收敛。；2026-09-14 两场景必需定义改用统一加载/结构检查/取消/重试，恢复显式控件状态，不扩大为可选资产就绪。；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；2026-09-14 统一实际画布、几何适配和用户镜头所有权，退出固定缩放/距离，补齐雾化反例；完整视觉与 GPU 验收仍有限。",
+      "implementation_revision": "2026.09.14.3"
     },
     {
       "id": "acquisition-legacy",
@@ -525,7 +527,7 @@
       "source": "framework/09_software_contracts.md",
       "effective_at": "2026-09-14",
       "supersedes": [],
-      "reason": "Published Git research and persistent runtime state have separate authority; explicit initialization, recovery and read-only deployment replace whole-directory shadowing. Historical brief proposes review without changing formal findings; existing research and originals scope remain.；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。",
+      "reason": "Published Git research and persistent runtime state have separate authority; explicit initialization, recovery and read-only deployment replace whole-directory shadowing. Historical brief proposes review without changing formal findings; existing research and originals scope remain.；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；可见画布、几何适配与用户镜头所有权收敛；renderer/HDR/纹理仍未全部迁移。",
       "implementations": [
         "src/inresearch/workflow/commands.py",
         "src/inresearch/storage/files.py",
@@ -569,9 +571,16 @@
         "tests/container_storage.py",
         "src/inresearch/materials/model_assets.py",
         "tests/unit/test_model_assets.py",
-        "src/inresearch/workflow/model_assets.py"
+        "src/inresearch/workflow/model_assets.py",
+        "web/components/scene-view.js",
+        "web/components/part-inspector.js",
+        "web/components/model-assets.js",
+        "web/pages/bom3d.html",
+        "web/pages/rack3d.html",
+        "web/pages/compare.html",
+        "tests/scene_framing.cjs"
       ],
-      "implementation_revision": "2026.09.14.2"
+      "implementation_revision": "2026.09.14.3"
     }
   ],
   "entrypoints": [

@@ -120,7 +120,7 @@ const {chromium} = require('playwright');
       const dim = original.clone();dim.opacity=.1;dim.transparent=true;a.material=dim;
       let cloned = null;
       class CaptureRenderer {
-        setPixelRatio() {} setSize() {}
+        setPixelRatio() {} setSize() {} dispose() {}
         render(scene) {scene.traverse(object=>{if(object.isMesh) cloned=object.material;});}
       }
       const inspector = createPartInspector({THREE:{...THREE,WebGLRenderer:CaptureRenderer},
@@ -130,7 +130,7 @@ const {chromium} = require('playwright');
       check(a.material===dim && dim.opacity===.1,'inspector changed main scene');
       let disposed=false;cloned.addEventListener('dispose',()=>disposed=true);inspector.show('part');
       check(disposed && !disposedGeometry,'inspector released shared geometry or leaked old clone');
-      inspector.hide();inspector.canvas.remove();dim.dispose();original.dispose();
+      inspector.hide();inspector.dispose();check(!disposedGeometry,'inspector dispose released borrowed geometry');inspector.canvas.remove();dim.dispose();original.dispose();
       geometry.dispose();material.dispose();
       return true;
     });

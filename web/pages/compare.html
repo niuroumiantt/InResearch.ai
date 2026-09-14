@@ -51,6 +51,7 @@
 <script type="module">
 import * as THREE from "three";
 import {createModelLoad, loadModel} from "/assets/model-assets.js";
+import {createViewport, visibleBounds, fitPerspective} from "/assets/scene-view.js";
 import {loadSceneData} from "/assets/scene-data.js";
 
 const grid = document.getElementById("grid");
@@ -111,7 +112,10 @@ for (const entry of entries) {
   const cam = new THREE.PerspectiveCamera(34, 1, .01, 200);
   const pivot = new THREE.Group(); sc.add(pivot);
 
-  let rotX = -.3, rotY = .7, spin = true, drag = null;
+  let bounds;
+  const fit = () => {if (bounds) fitPerspective({camera:cam, bounds, direction:new THREE.Vector3(0, .35, 2.9)});};
+  const viewport = createViewport({canvas:cv, camera:cam, resize:(w,h)=>ren.setSize(w,h,false), onResize:fit});
+  let rotX = -.3, rotY = .7, spin = !matchMedia('(prefers-reduced-motion: reduce)').matches, drag = null;
   cv.addEventListener("pointerdown", e => { drag = [e.clientX, e.clientY]; spin = false; cv.setPointerCapture(e.pointerId); });
   cv.addEventListener("pointermove", e => {
     if (!drag) return;
@@ -124,6 +128,7 @@ for (const entry of entries) {
   const slot = createModelLoad({host:card.querySelector('.meta'), label:'模型',
     load:signal => loadModel(entry, signal), commit:model => {
     const o = model.root;
+    pivot.rotation.set(0, 0, 0);
     pivot.add(o);
     let tris = 0, meshes = 0, mats = new Set(), named = [];
     o.traverse(x => {
@@ -135,10 +140,10 @@ for (const entry of entries) {
       }
       if (PART.test(x.name || "")) named.push(x.name);
     });
-    const bb = new THREE.Box3().setFromObject(o), sz = bb.getSize(new THREE.Vector3()), c = bb.getCenter(new THREE.Vector3());
-    o.position.sub(c);
-    const rad = Math.max(sz.x, sz.y, sz.z) * .5 || 1;
-    cam.position.set(0, rad * .35, rad * 2.9); cam.lookAt(0, 0, 0);
+    bounds = visibleBounds([o]);
+    const sz = bounds.getSize(new THREE.Vector3()), center = bounds.getCenter(new THREE.Vector3());
+    o.position.sub(center); bounds.translate(center.negate());
+    viewport.sync(); fit();
 
     const rows = card.querySelector('.rows'); rows.replaceChildren();
     const values = [
@@ -154,15 +159,15 @@ for (const entry of entries) {
     }
   }});
 
-  function resize() { const w = cv.clientWidth, h = cv.clientHeight; ren.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix(); }
+
   let frame;
   (function loop() {
     frame = requestAnimationFrame(loop);
     if (spin) rotY += .005;
     pivot.rotation.set(rotX, rotY, 0);
-    resize(); ren.render(sc, cam);
+    ren.render(sc, cam);
   })();
-  previews.push(() => {cancelAnimationFrame(frame);slot.dispose();environment.dispose();ren.dispose();});
+  previews.push(() => {cancelAnimationFrame(frame);viewport.dispose();slot.dispose();environment.dispose();ren.dispose();});
 }
 env.traverse(object => {object.geometry?.dispose();object.material?.dispose();});
 </script>
