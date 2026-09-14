@@ -133817,6 +133817,105 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "对应 2030 年 23,000 亿 kWh 上沿。原文写「碳排放」「亿吨」，未区分 CO₂ 与 CO₂e。"
+    },
+    {
+      "fact_id": "caict-gc2024-cn-dc-co2-2023",
+      "metric_id": "dc_carbon_footprint",
+      "asserter": "中国信通院",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc",
+        "label": "中国数据中心"
+      },
+      "value": 84.0,
+      "unit": "百万吨 CO₂e",
+      "bound": "point",
+      "as_of": "2023",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "未注明",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "evidence": {
+        "sha256": "dcf8caa66f1f3fd0c427e43ca9630f3d944f7a019cb35dc8c86844e8c79a04e2",
+        "local_file": "2024中国绿色算力发展研究报告.pdf",
+        "locator": "PDF 第 37 页（报告页码 29）：「据中国信息通信研究院测算，截至 2023 年底，我国数据中心 810 万在用标准机架总耗电量达到 1500 亿 KWh……数据中心碳排放总量为 0.84 亿吨……据测算，2023 年我国数据中心平均电能利用效率（PUE）为 1.48，与 2022 年的 1.54 相比有进一步提升。其中，东北、华北……平均 PUE 分别为 1.40 与 1.39，远低于华南、华中等南部地区平均 PUE1.53 与 1.54」",
+        "grade": "S2",
+        "originator": "中国信通院产业与规划研究所、内蒙古和林格尔新区《中国绿色算力发展研究报告（2024 年）》（2024-06）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "0.84 亿吨 = 84 百万吨，对应 2023 年用电 1,500 亿 kWh（810 万标准机架，占全社会 1.6%）。同一家 2025 年版给 2024 年 85.9 百万吨（caict-gc2025-cn-dc-co2-2024）。"
+    },
+    {
+      "fact_id": "caict-gc2024-cn-avg-pue-2023",
+      "metric_id": "dc_pue",
+      "asserter": "中国信通院",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc",
+        "label": "中国数据中心"
+      },
+      "value": 1.48,
+      "unit": "比值",
+      "bound": "point",
+      "as_of": "2023",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "evidence": {
+        "sha256": "dcf8caa66f1f3fd0c427e43ca9630f3d944f7a019cb35dc8c86844e8c79a04e2",
+        "local_file": "2024中国绿色算力发展研究报告.pdf",
+        "locator": "PDF 第 37 页（报告页码 29）：「据中国信息通信研究院测算，截至 2023 年底，我国数据中心 810 万在用标准机架总耗电量达到 1500 亿 KWh……数据中心碳排放总量为 0.84 亿吨……据测算，2023 年我国数据中心平均电能利用效率（PUE）为 1.48，与 2022 年的 1.54 相比有进一步提升。其中，东北、华北……平均 PUE 分别为 1.40 与 1.39，远低于华南、华中等南部地区平均 PUE1.53 与 1.54」",
+        "grade": "S2",
+        "originator": "中国信通院产业与规划研究所、内蒙古和林格尔新区《中国绿色算力发展研究报告（2024 年）》（2024-06）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「据测算」全国数据中心平均 PUE 1.48；分区东北 1.40、华北 1.39、华南 1.53、华中 1.54（按地理大区，不是气候分区，未单录）。库内伯恩斯坦 2023 年 1.48 同值。"
+    },
+    {
+      "fact_id": "caict-gc2024-cn-avg-pue-2022",
+      "metric_id": "dc_pue",
+      "asserter": "中国信通院",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc",
+        "label": "中国数据中心"
+      },
+      "value": 1.54,
+      "unit": "比值",
+      "bound": "point",
+      "as_of": "2022",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "evidence": {
+        "sha256": "dcf8caa66f1f3fd0c427e43ca9630f3d944f7a019cb35dc8c86844e8c79a04e2",
+        "local_file": "2024中国绿色算力发展研究报告.pdf",
+        "locator": "PDF 第 37 页（报告页码 29）：「据中国信息通信研究院测算，截至 2023 年底，我国数据中心 810 万在用标准机架总耗电量达到 1500 亿 KWh……数据中心碳排放总量为 0.84 亿吨……据测算，2023 年我国数据中心平均电能利用效率（PUE）为 1.48，与 2022 年的 1.54 相比有进一步提升。其中，东北、华北……平均 PUE 分别为 1.40 与 1.39，远低于华南、华中等南部地区平均 PUE1.53 与 1.54」",
+        "grade": "S2",
+        "originator": "中国信通院产业与规划研究所、内蒙古和林格尔新区《中国绿色算力发展研究报告（2024 年）》（2024-06）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2022 年 1.54。库内伯恩斯坦 2022 年为 1.52（bern2025-cn-avg-pue-2022），相差 0.02。"
     }
   ]
 }
