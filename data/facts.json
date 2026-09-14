@@ -143765,6 +143765,366 @@
       "corroboration": "待交叉验证",
       "notes": "**预测性能**（原文注明 subject to change），每 GPU 对比，基线为风冷 HGX H100，负载 GPT-MoE-1.8T、TTL 50ms 实时推理。同页 GPT-3 175B 为 6x。25x 能效提升无对应 parameter，未录。derived 只因 as_of 为推定，数值本身是原文。",
       "asserter": "英伟达"
+    },
+    {
+      "fact_id": "ningde-it-virt-server-ci",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "project",
+        "id": "ningde-bigdata-park-ph1-it-cloud",
+        "label": "宁德市大数据产业园一期 IT 云平台（招标控制价）"
+      },
+      "value": 124116.38,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "通用服务器",
+        "spec": "虚拟化服务器：≤2U 机架式，2 颗 x86 处理器（每颗 ≥26 核，≥2.2GHz），≥768GB DDR4-3200，2×480GB SSD，≥6 万兆光口 + 2 口 16G FC",
+        "uom": "台",
+        "price_scope": "综合单价（含安装调试）",
+        "stage": "招标控制价",
+        "tax": "含税",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "已同记数量"
+      },
+      "as_of": "2023-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1d1d29d5098d29ac71226dbc68eb5debea014cb8bb0c1765f6c59aa69b5012d2",
+        "local_file": "（招标控制价）宁德市大数据产业园及基础配套设施项目（一期）IT云平台.xlsx",
+        "locator": "工作表「分部分项工程量清单与计价表」序号 35「互联网区虚拟化服务器」综合单价 124,116.38 元/台 × 12 台 = 1,489,396.56 元；序号 39「公共区虚拟化服务器」同价 × 8 台",
+        "grade": "S2",
+        "originator": "未具名招标人/造价咨询人（宁德市大数据产业园及基础配套设施项目（一期）IT云平台招标控制价，编制时间 2023-09-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "数量：互联网区 12 台 + 公共区 8 台（同价）；商务云区序号 75「虚拟化服务器」124,115.29 元 × 5 台（差 1.09 元，未另录）。tax=含税：综合单价分析表的组成列含「税金」。 **stage=招标控制价**：招标方上限价，不是中标价或结算价，不可当作实际成交价。全项目控制价 26,845,285 元（安装工程 26,045,285 + 暂列金 800,000）。",
+      "asserter": "未注明"
+    },
+    {
+      "fact_id": "ningde-it-virt-server-eq",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "project",
+        "id": "ningde-bigdata-park-ph1-it-cloud",
+        "label": "宁德市大数据产业园一期 IT 云平台（招标控制价）"
+      },
+      "value": 113735.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "通用服务器",
+        "spec": "虚拟化服务器：≤2U 机架式，2 颗 x86 处理器（每颗 ≥26 核，≥2.2GHz），≥768GB DDR4-3200，2×480GB SSD，≥6 万兆光口 + 2 口 16G FC",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "招标控制价",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "已同记数量"
+      },
+      "as_of": "2023-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1d1d29d5098d29ac71226dbc68eb5debea014cb8bb0c1765f6c59aa69b5012d2",
+        "local_file": "（招标控制价）宁德市大数据产业园及基础配套设施项目（一期）IT云平台.xlsx",
+        "locator": "工作表「人工、材料设备、机械汇总表」设备部分第 43、44 项「互联网区虚拟化服务器」「公共区虚拟化服务器」单价 113,735 元/台，数量 12、8 台",
+        "grade": "S2",
+        "originator": "未具名招标人/造价咨询人（宁德市大数据产业园及基础配套设施项目（一期）IT云平台招标控制价，编制时间 2023-09-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "同一型号设备价，综合单价见 ningde-it-virt-server-ci。tax 未注明：汇总表未标含税与否；该价 × 1.09 与综合单价接近，推测为不含税设备价，但原表未写，不作认定。 **stage=招标控制价**：招标方上限价，不是中标价或结算价，不可当作实际成交价。全项目控制价 26,845,285 元（安装工程 26,045,285 + 暂列金 800,000）。",
+      "asserter": "未注明"
+    },
+    {
+      "fact_id": "ningde-it-db-server-ci",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "project",
+        "id": "ningde-bigdata-park-ph1-it-cloud",
+        "label": "宁德市大数据产业园一期 IT 云平台（招标控制价）"
+      },
+      "value": 177309.69,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "通用服务器",
+        "spec": "数据库服务器：≤4U 机架式，4 颗 x86 处理器（每颗 ≥24 核，≥2.4GHz，支持 AVX-512），≥1024GB DDR4-3200，2×480GB SSD，≥4 万兆光口 + 2 口 16G FC",
+        "uom": "台",
+        "price_scope": "综合单价（含安装调试）",
+        "stage": "招标控制价",
+        "tax": "含税",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "已同记数量"
+      },
+      "as_of": "2023-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1d1d29d5098d29ac71226dbc68eb5debea014cb8bb0c1765f6c59aa69b5012d2",
+        "local_file": "（招标控制价）宁德市大数据产业园及基础配套设施项目（一期）IT云平台.xlsx",
+        "locator": "工作表「分部分项工程量清单与计价表」序号 36「互联网区数据库服务器」、序号 41「公共区数据库服务器」综合单价 177,309.69 元/台，各 2 台（合价各 354,619.38 元）",
+        "grade": "S2",
+        "originator": "未具名招标人/造价咨询人（宁德市大数据产业园及基础配套设施项目（一期）IT云平台招标控制价，编制时间 2023-09-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "数量 2 + 2 台。tax=含税：综合单价分析表的组成列含「税金」。 **stage=招标控制价**：招标方上限价，不是中标价或结算价，不可当作实际成交价。全项目控制价 26,845,285 元（安装工程 26,045,285 + 暂列金 800,000）。",
+      "asserter": "未注明"
+    },
+    {
+      "fact_id": "ningde-it-db-server-eq",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "project",
+        "id": "ningde-bigdata-park-ph1-it-cloud",
+        "label": "宁德市大数据产业园一期 IT 云平台（招标控制价）"
+      },
+      "value": 162478.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "通用服务器",
+        "spec": "数据库服务器：≤4U 机架式，4 颗 x86 处理器（每颗 ≥24 核，≥2.4GHz，支持 AVX-512），≥1024GB DDR4-3200，2×480GB SSD，≥4 万兆光口 + 2 口 16G FC",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "招标控制价",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "已同记数量"
+      },
+      "as_of": "2023-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1d1d29d5098d29ac71226dbc68eb5debea014cb8bb0c1765f6c59aa69b5012d2",
+        "local_file": "（招标控制价）宁德市大数据产业园及基础配套设施项目（一期）IT云平台.xlsx",
+        "locator": "工作表「人工、材料设备、机械汇总表」设备部分第 45、50 项「互联网区数据库服务器」「公共区数据库服务器」单价 162,478 元/台，各 2 台",
+        "grade": "S2",
+        "originator": "未具名招标人/造价咨询人（宁德市大数据产业园及基础配套设施项目（一期）IT云平台招标控制价，编制时间 2023-09-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "tax 未注明：汇总表未标含税与否；该价 × 1.09 与综合单价接近，推测为不含税设备价，但原表未写，不作认定。 **stage=招标控制价**：招标方上限价，不是中标价或结算价，不可当作实际成交价。全项目控制价 26,845,285 元（安装工程 26,045,285 + 暂列金 800,000）。",
+      "asserter": "未注明"
+    },
+    {
+      "fact_id": "ningde-it-domestic-server-ci",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "project",
+        "id": "ningde-bigdata-park-ph1-it-cloud",
+        "label": "宁德市大数据产业园一期 IT 云平台（招标控制价）"
+      },
+      "value": 132970.45,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "通用服务器",
+        "spec": "国产化服务器：≤2U 机架式，2 颗国产化处理器（每颗 ≥24 核，≥2.2GHz），≥768GB DDR4-3200，2×480GB SSD",
+        "uom": "台",
+        "price_scope": "综合单价（含安装调试）",
+        "stage": "招标控制价",
+        "tax": "含税",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "已同记数量"
+      },
+      "as_of": "2023-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1d1d29d5098d29ac71226dbc68eb5debea014cb8bb0c1765f6c59aa69b5012d2",
+        "local_file": "（招标控制价）宁德市大数据产业园及基础配套设施项目（一期）IT云平台.xlsx",
+        "locator": "工作表「分部分项工程量清单与计价表」序号 40「公共区国产化服务器」综合单价 132,970.45 元/台 × 5 台 = 664,852.25 元",
+        "grade": "S2",
+        "originator": "未具名招标人/造价咨询人（宁德市大数据产业园及基础配套设施项目（一期）IT云平台招标控制价，编制时间 2023-09-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**国产 CPU 服务器与 x86 同档配置的价差**：同表序号 50「云平台管理服务器」（x86，2×≥24 核）也是 132,970.45 元/台 × 5 台，两者控制价相同。tax=含税：综合单价分析表的组成列含「税金」。 **stage=招标控制价**：招标方上限价，不是中标价或结算价，不可当作实际成交价。全项目控制价 26,845,285 元（安装工程 26,045,285 + 暂列金 800,000）。",
+      "asserter": "未注明"
+    },
+    {
+      "fact_id": "ningde-it-domestic-server-eq",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "project",
+        "id": "ningde-bigdata-park-ph1-it-cloud",
+        "label": "宁德市大数据产业园一期 IT 云平台（招标控制价）"
+      },
+      "value": 121858.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "通用服务器",
+        "spec": "国产化服务器：≤2U 机架式，2 颗国产化处理器（每颗 ≥24 核，≥2.2GHz），≥768GB DDR4-3200，2×480GB SSD",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "招标控制价",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "已同记数量"
+      },
+      "as_of": "2023-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1d1d29d5098d29ac71226dbc68eb5debea014cb8bb0c1765f6c59aa69b5012d2",
+        "local_file": "（招标控制价）宁德市大数据产业园及基础配套设施项目（一期）IT云平台.xlsx",
+        "locator": "工作表「人工、材料设备、机械汇总表」设备部分第 46 项「公共区国产化服务器」单价 121,858 元/台 × 5 台；第 35 项「云平台管理服务器」同价 × 5 台",
+        "grade": "S2",
+        "originator": "未具名招标人/造价咨询人（宁德市大数据产业园及基础配套设施项目（一期）IT云平台招标控制价，编制时间 2023-09-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "tax 未注明：汇总表未标含税与否；该价 × 1.09 与综合单价接近，推测为不含税设备价，但原表未写，不作认定。 **stage=招标控制价**：招标方上限价，不是中标价或结算价，不可当作实际成交价。全项目控制价 26,845,285 元（安装工程 26,045,285 + 暂列金 800,000）。",
+      "asserter": "未注明"
+    },
+    {
+      "fact_id": "ningde-it-storage-server-ci",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "project",
+        "id": "ningde-bigdata-park-ph1-it-cloud",
+        "label": "宁德市大数据产业园一期 IT 云平台（招标控制价）"
+      },
+      "value": 115261.22,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "通用服务器",
+        "spec": "分布式存储服务器：≤2U 机架式，2 颗 x86 处理器（每颗 ≥16 核，≥2.4GHz），≥256GB DDR4-3200，2×960GB SSD + 2×1.92T NVMe + 10×12T HDD，≥6 万兆光口",
+        "uom": "台",
+        "price_scope": "综合单价（含安装调试）",
+        "stage": "招标控制价",
+        "tax": "含税",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "已同记数量"
+      },
+      "as_of": "2023-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1d1d29d5098d29ac71226dbc68eb5debea014cb8bb0c1765f6c59aa69b5012d2",
+        "local_file": "（招标控制价）宁德市大数据产业园及基础配套设施项目（一期）IT云平台.xlsx",
+        "locator": "工作表「分部分项工程量清单与计价表」序号 44/45/46「分布式块/文件/对象存储服务器」与序号 52「公共组件承载服务器」综合单价均为 115,261.22 元/台，各 4 台（合价各 461,044.88 元）",
+        "grade": "S2",
+        "originator": "未具名招标人/造价咨询人（宁德市大数据产业园及基础配套设施项目（一期）IT云平台招标控制价，编制时间 2023-09-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "数量：块、文件、对象存储服务器与公共组件承载服务器各 4 台，共 16 台同价。tax=含税：综合单价分析表的组成列含「税金」。 **stage=招标控制价**：招标方上限价，不是中标价或结算价，不可当作实际成交价。全项目控制价 26,845,285 元（安装工程 26,045,285 + 暂列金 800,000）。",
+      "asserter": "未注明"
+    },
+    {
+      "fact_id": "ningde-it-storage-server-eq",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "project",
+        "id": "ningde-bigdata-park-ph1-it-cloud",
+        "label": "宁德市大数据产业园一期 IT 云平台（招标控制价）"
+      },
+      "value": 105611.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "通用服务器",
+        "spec": "分布式存储服务器：≤2U 机架式，2 颗 x86 处理器（每颗 ≥16 核，≥2.4GHz），≥256GB DDR4-3200，2×960GB SSD + 2×1.92T NVMe + 10×12T HDD，≥6 万兆光口",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "招标控制价",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "已同记数量"
+      },
+      "as_of": "2023-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1d1d29d5098d29ac71226dbc68eb5debea014cb8bb0c1765f6c59aa69b5012d2",
+        "local_file": "（招标控制价）宁德市大数据产业园及基础配套设施项目（一期）IT云平台.xlsx",
+        "locator": "工作表「人工、材料设备、机械汇总表」设备部分第 47/48/49 项「分布式块/文件/对象存储服务器」、第 37 项「公共组件承载服务器」单价 105,611 元/台，各 4 台",
+        "grade": "S2",
+        "originator": "未具名招标人/造价咨询人（宁德市大数据产业园及基础配套设施项目（一期）IT云平台招标控制价，编制时间 2023-09-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "tax 未注明：汇总表未标含税与否；该价 × 1.09 与综合单价接近，推测为不含税设备价，但原表未写，不作认定。 **stage=招标控制价**：招标方上限价，不是中标价或结算价，不可当作实际成交价。全项目控制价 26,845,285 元（安装工程 26,045,285 + 暂列金 800,000）。",
+      "asserter": "未注明"
+    },
+    {
+      "fact_id": "ningde-it-mgmt-server-ci",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "project",
+        "id": "ningde-bigdata-park-ph1-it-cloud",
+        "label": "宁德市大数据产业园一期 IT 云平台（招标控制价）"
+      },
+      "value": 53275.1,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "通用服务器",
+        "spec": "虚拟化管理服务器：≤2U 机架式，2 颗 x86 处理器（每颗 ≥12 核，≥2.1GHz），≥128GB DDR4-3200，4×600GB SAS",
+        "uom": "台",
+        "price_scope": "综合单价（含安装调试）",
+        "stage": "招标控制价",
+        "tax": "含税",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "已同记数量"
+      },
+      "as_of": "2023-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1d1d29d5098d29ac71226dbc68eb5debea014cb8bb0c1765f6c59aa69b5012d2",
+        "local_file": "（招标控制价）宁德市大数据产业园及基础配套设施项目（一期）IT云平台.xlsx",
+        "locator": "工作表「分部分项工程量清单与计价表」序号 80「虚拟化管理服务器」综合单价 53,275.1 元/台 × 2 台 = 106,550.2 元",
+        "grade": "S2",
+        "originator": "未具名招标人/造价咨询人（宁德市大数据产业园及基础配套设施项目（一期）IT云平台招标控制价，编制时间 2023-09-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "tax=含税：综合单价分析表的组成列含「税金」。 **stage=招标控制价**：招标方上限价，不是中标价或结算价，不可当作实际成交价。全项目控制价 26,845,285 元（安装工程 26,045,285 + 暂列金 800,000）。",
+      "asserter": "未注明"
+    },
+    {
+      "fact_id": "ningde-it-mgmt-server-eq",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "project",
+        "id": "ningde-bigdata-park-ph1-it-cloud",
+        "label": "宁德市大数据产业园一期 IT 云平台（招标控制价）"
+      },
+      "value": 48743.0,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "通用服务器",
+        "spec": "虚拟化管理服务器：≤2U 机架式，2 颗 x86 处理器（每颗 ≥12 核，≥2.1GHz），≥128GB DDR4-3200，4×600GB SAS",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "招标控制价",
+        "tax": "未注明",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "已同记数量"
+      },
+      "as_of": "2023-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1d1d29d5098d29ac71226dbc68eb5debea014cb8bb0c1765f6c59aa69b5012d2",
+        "local_file": "（招标控制价）宁德市大数据产业园及基础配套设施项目（一期）IT云平台.xlsx",
+        "locator": "工作表「人工、材料设备、机械汇总表」设备部分第 42 项「虚拟化管理服务器」单价 48,743 元/台 × 2 台",
+        "grade": "S2",
+        "originator": "未具名招标人/造价咨询人（宁德市大数据产业园及基础配套设施项目（一期）IT云平台招标控制价，编制时间 2023-09-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "tax 未注明：汇总表未标含税与否；该价 × 1.09 与综合单价接近，推测为不含税设备价，但原表未写，不作认定。 **stage=招标控制价**：招标方上限价，不是中标价或结算价，不可当作实际成交价。全项目控制价 26,845,285 元（安装工程 26,045,285 + 暂列金 800,000）。",
+      "asserter": "未注明"
     }
   ]
 }
