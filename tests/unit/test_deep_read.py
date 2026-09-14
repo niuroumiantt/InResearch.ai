@@ -416,11 +416,13 @@ class BarrenCohortTests(unittest.TestCase):
 
     def rows(self, *specs):
         out = {}
-        for i, (org, year, doc_type) in enumerate(specs):
+        for i, spec in enumerate(specs):
+            org, year, doc_type = spec[:3]
+            folder = spec[3] if len(spec) > 3 else '%s/%d' % (org, i)
             sha = '%064x' % i
             out[sha] = {**L1_ROW, 'sha256': sha, 'org': org, 'year': year,
                         'doc_type': doc_type, 'score': 7, 'status': 'ok',
-                        'rel': '%s-%d.pdf' % (org, i)}
+                        'rel': '%s/%s-%d.pdf' % (folder, org, i)}
         return out
 
     def app(self, rows, processed=(), produced=()):
@@ -436,7 +438,7 @@ class BarrenCohortTests(unittest.TestCase):
         rows = self.rows(*[('OCP', '2025', 'presentation')] * 5)
         shas = list(rows)
         app = self.app(rows, processed=shas[:3])
-        self.assertEqual(list(app.barren_cohorts()), [('OCP', '2025', 'presentation')])
+        self.assertIn(('org', 'OCP', '2025', 'presentation'), app.barren_cohorts())
 
     def test_two_are_not_yet_a_pattern(self):
         rows = self.rows(*[('OCP', '2025', 'presentation')] * 5)
@@ -470,7 +472,74 @@ class BarrenCohortTests(unittest.TestCase):
         rows = self.rows(*([('OCP', '2025', 'presentation')] * 4
                            + [('OCP', '2024', 'presentation')]))
         app = self.app(rows, processed=list(rows)[:3])
-        self.assertNotIn(('OCP', '2024', 'presentation'), app.barren_cohorts())
+        self.assertNotIn(('org', 'OCP', '2024', 'presentation'), app.barren_cohorts())
+
+
+class DirectoryCohortTests(unittest.TestCase):
+    """成批躺在一个目录里的东西，机构键分不到一起。
+
+    造价案例集那一摞「项目概况.txt」四份全缺口径，联通长沙一期的气体消防清单三份
+    都是未计价工程量。它们挂在「未知」和「中国联通」名下、体裁也不统一，按机构×年份
+    ×体裁分不到一批——可它们本来就是一批，因为它们是一起被拆出来的。目录就是那个
+    「一起」的名字。
+    """
+
+    def rows(self, *specs):
+        out = {}
+        for i, (org, year, doc_type, folder) in enumerate(specs):
+            sha = '%064x' % i
+            out[sha] = {**L1_ROW, 'sha256': sha, 'org': org, 'year': year,
+                        'doc_type': doc_type, 'score': 7, 'status': 'ok',
+                        'rel': '%s/f-%d.txt' % (folder, i)}
+        return out
+
+    def app(self, rows, processed=(), produced=()):
+        app = make_app()
+        app.all_results = lambda: rows
+        app.processed_documents = lambda: set(processed)
+        app.load_facts = lambda: {'records': [
+            {'evidence': {'sha256': sha}} for sha in produced]}
+        app.coverage = lambda: Counter()
+        return app
+
+    def test_one_folder_of_mixed_orgs_still_forms_a_batch(self):
+        """四份「项目概况.txt」出处不一、体裁不一，但同在一个案例集目录里。"""
+        rows = self.rows(('未知', '未知', 'other', '造价案例集'),
+                         ('未知', '2021', 'report', '造价案例集'),
+                         ('某院', '未知', 'other', '造价案例集'),
+                         ('未知', '未知', 'other', '造价案例集'))
+        app = self.app(rows, processed=list(rows)[:3])
+        self.assertIn(('dir', '造价案例集'), app.barren_cohorts())
+
+    def test_the_untouched_fourth_file_is_demoted(self):
+        rows = self.rows(*([('未知', '未知', 'other', '造价案例集')] * 4
+                           + [('科智咨询', '2025', 'report', '智算中心')]))
+        app = self.app(rows, processed=list(rows)[:3])
+        order = app.eligible(min_score=0)
+        self.assertEqual(len(order), 2)
+        self.assertEqual(order[0]['org'], '科智咨询')
+
+    def test_a_sibling_folder_is_untouched(self):
+        rows = self.rows(*([('未知', '未知', 'other', '造价案例集/一期')] * 4
+                           + [('未知', '未知', 'other', '造价案例集/二期')]))
+        app = self.app(rows, processed=list(rows)[:3])
+        barren = app.barren_cohorts()
+        self.assertIn(('dir', '造价案例集/一期'), barren)
+        self.assertNotIn(('dir', '造价案例集/二期'), barren)
+
+    def test_a_folder_that_produced_something_is_not_barren(self):
+        """同目录里有一份出了数，这个目录就不算空——降权能自己纠正。"""
+        rows = self.rows(*[('OCP', '2025', 'presentation', 'OCP2025')] * 4)
+        shas = list(rows)
+        app = self.app(rows, processed=shas[:3], produced=[shas[0]])
+        self.assertNotIn(('dir', 'OCP2025'), app.barren_cohorts())
+
+    def test_an_unnamed_org_no_longer_blocks_the_directory_batch(self):
+        """机构是「未知」时机构键不成批，但目录键照样成批——这正是上一版漏掉的。"""
+        rows = self.rows(*[('未知', '未知', 'presentation', '联通长沙一期')] * 4)
+        app = self.app(rows, processed=list(rows)[:3])
+        keys = app.barren_cohorts()
+        self.assertEqual(list(keys), [('dir', '联通长沙一期')])
 
 
 class EmptyBatchTests(unittest.TestCase):
@@ -799,6 +868,90 @@ class DeepReadJournalTests(unittest.TestCase):
                     path.write_bytes(data + b'{broken}\n' + data)
                     with self.assertRaisesRegex(ValueError, 'invalid JSON record'):
                         reader()
+
+
+class SketchBlindSpotTests(unittest.TestCase):
+    """sketch 是后加的，更早入库的精读只留了 text_md5。
+
+    这些文件在近似比对里根本不参与——不是「比过了、不像」，是压根没被比。
+    而 near_twins 返回空列表读起来正好像前者，于是 6b1a9d03 与 d01da12707d7
+    （54,397 对 54,905 字，只差约 500 字）一声不响地各录了一遍。
+    沉默的盲区比报错更贵。
+    """
+
+    def index(self, rows):
+        self.temp = tempfile.TemporaryDirectory(prefix='m4-sketch-')
+        path = Path(self.temp.name) / 'similarity.jsonl'
+        with path.open('w', encoding='utf-8') as fh:
+            for row in rows:
+                fh.write(json.dumps(row, ensure_ascii=False) + '\n')
+        return SIM.SimilarityIndex(path)
+
+    def tearDown(self):
+        if getattr(self, 'temp', None):
+            self.temp.cleanup()
+
+    def test_a_fingerprint_only_row_is_counted_as_unseen(self):
+        idx = self.index([{'sha256': 'a' * 64, 'text_md5': 'x'},
+                          {'sha256': 'b' * 64, 'text_md5': 'y', 'sketch': ['1' * 12]}])
+        self.assertEqual(idx.unsketched(), {'a' * 64})
+
+    def prose(self, n, seed):
+        words = ['数据中心', '供配电', '液冷', '机柜', '变压器', '柴发', 'PUE', '机房',
+                 '负载', '冗余', '蓄电池', '母线', '配电柜', '设计', '验收', '标准']
+        rng = random.Random(seed)
+        return ''.join(rng.choice(words) for _ in range(n))
+
+    def test_an_identical_twin_hides_behind_a_missing_sketch(self):
+        """这就是漏掉那一对的机制：near_twins 不报，不代表不像。
+
+        用完全相同的文本，把相似度那一侧的不确定性排除掉——**连一模一样都报不出来**，
+        就只能是「它不在比对范围里」，而不是「重合度不够」。
+        """
+        body = self.prose(20000, 7)
+        sketch = SIM.text_sketch(body)
+        self.assertEqual(SIM.sketch_overlap(sketch, sketch), 1.0)
+        idx = self.index([{'sha256': 'a' * 64, 'text_md5': 'x'}])
+        self.assertEqual(idx.near_twins('c' * 64, sketch, set()), [],
+                         '那一份没有 sketch，比对看不见它——哪怕文本一模一样')
+        self.assertEqual(idx.unsketched(), {'a' * 64},
+                         '所以必须能数出来，让调用方说「没比到」而不是「不像」')
+        filled = self.index([{'sha256': 'a' * 64, 'text_md5': 'x', 'sketch': sketch}])
+        self.assertEqual([r['sha256'] for r in
+                          filled.near_twins('c' * 64, sketch, set())], ['a' * 64],
+                         '补上 sketch 之后，同一对立刻报得出来')
+
+    def test_the_bottom_k_sketch_is_a_lossy_proxy(self):
+        """记下第二个成因：sketch 本身是有损的，0.8 这道线会漏掉真副本。
+
+        实测（同一构造 40 次，约 0.9% 的文字差异）：sketch 的真实 Jaccard 中位数只有
+        0.809、最低 0.429，有 17/40 落在 0.8 以下——`sketch_overlap` 忠实反映了它，
+        偏差不在估计上，在「保留最小的 64 个块哈希」这个代表本身。
+        所以近似比对给空结果**从来不等于没有副本**。不在这里调阈值：调低会把大量
+        套话相同的材料判成副本，那个代价更大。要真解决得换更细的表示，是另一件事。
+        """
+        body = self.prose(20000, 3)
+        twin = body[:27000] + self.prose(180, 7) + body[27000:]
+        a, b = set(SIM.text_sketch(body)), set(SIM.text_sketch(twin))
+        self.assertLess(len(a & b) / len(a | b), 1.0,
+                        '0.9% 的差异已经让块集合明显不同——这是表示的损失，不是估计误差')
+
+    def test_a_wholly_repetitive_document_sketches_to_one_chunk(self):
+        """记下这个边角：整篇重复的文本塌成一个块哈希，两份这样的文件重合度算作 0。
+
+        内容定义分块靠内容本身找边界，内容一直重复就找不出第二个边界。真实报告不长
+        这样（这条是写上面那个用例时拿全重复文本当样例才撞见的），所以不改算法——
+        改成强行切块会把「都是套话」的两份判成副本，那个代价更大。记在这里，
+        不让它下次再冒充成「比过了、不像」。
+        """
+        body = '数据中心供配电系统的设计要求与验收标准。' * 400
+        self.assertEqual(len(SIM.text_sketch(body)), 1)
+        self.assertEqual(SIM.sketch_overlap(SIM.text_sketch(body),
+                                            SIM.text_sketch(body + '附录。' * 20)), 0.0)
+
+    def test_a_fully_sketched_index_reports_no_blind_spot(self):
+        idx = self.index([{'sha256': 'a' * 64, 'text_md5': 'x', 'sketch': ['1' * 12]}])
+        self.assertEqual(idx.unsketched(), set())
 
 
 class TextTwinRoutingTests(unittest.TestCase):

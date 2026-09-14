@@ -41,10 +41,10 @@
     "tests/unit/test_catalog_migration.py": "463ffb034bd7d1f5b2cd2f8c221e07734ac287dd0df95a7fda127a2f2d69de48",
     "tests/unit/test_commands.py": "0eda9d7ee92eadb0b187f8e83901ae42c016c783fcdcfeec1d0e74b89dbb15a7",
     "tests/unit/test_continuous_reader.py": "6c36c298912077a7ab480e43f4a54fbfbb08978624c6e6efb3ac9f47657f4238",
-    "tests/unit/test_deep_read.py": "4241011f14d476378eb05ce7c4e8b5892170644d78703614e3ec89540368d05e",
+    "tests/unit/test_deep_read.py": "7b1edd1f306352d7db860f5c0c35ae2c2d7775e35c1e634b6b5049ffaf34cd2e",
     "tests/unit/test_deep_read_transactions.py": "e44abfc65c4550106aa009041a92271a8e5d3c880bd56b680147baaefe633317",
     "tests/unit/test_display_regressions.py": "2602913be97a4e6a9b1bd60e30be5ef35853bc799efa797f71d517df22085d51",
-    "tests/unit/test_fact_contract.py": "9529b7f8b43ac8a3203db9b0dc77a9b4e39cf990a9379a5ac62f345d9f31804f",
+    "tests/unit/test_fact_contract.py": "d2d59b7b65de9709e2c0c1f1a372d06309954119622255330a1582b90a84aa73",
     "tests/unit/test_file_moves.py": "1f9ba746f06885b6d48ee2d73b5da8bc4364ca1ad54e85b5d6fe23cdbf1edf9a",
     "tests/unit/test_governance.py": "ee59b285f13ea82d6df0426d0fbd519b7b8f9e7695fde569708c0dac10d71f39",
     "tests/unit/test_intake.py": "752b45e1bec8938738ea28b827dcdcc9031bce772cc9030d7ded1d7be9176c10",
@@ -125,7 +125,15 @@
         "tests/unit/test_deep_read.py::BarrenCohortTests.test_three_barren_siblings_demote_the_rest",
         "tests/unit/test_deep_read.py::BarrenCohortTests.test_one_yield_clears_the_whole_cohort",
         "tests/unit/test_deep_read.py::BarrenCohortTests.test_a_demoted_row_is_still_in_the_queue_just_last",
-        "tests/unit/test_deep_read.py::BarrenCohortTests.test_a_cohort_missing_org_or_year_is_never_demoted"
+        "tests/unit/test_deep_read.py::BarrenCohortTests.test_a_cohort_missing_org_or_year_is_never_demoted",
+        "tests/unit/test_deep_read.py::DirectoryCohortTests.test_one_folder_of_mixed_orgs_still_forms_a_batch",
+        "tests/unit/test_deep_read.py::DirectoryCohortTests.test_an_unnamed_org_no_longer_blocks_the_directory_batch",
+        "tests/unit/test_deep_read.py::DirectoryCohortTests.test_a_folder_that_produced_something_is_not_barren",
+        "tests/unit/test_deep_read.py::SketchBlindSpotTests.test_an_identical_twin_hides_behind_a_missing_sketch",
+        "tests/unit/test_deep_read.py::SketchBlindSpotTests.test_the_bottom_k_sketch_is_a_lossy_proxy",
+        "tests/unit/test_fact_contract.py::ForecastOutlierTests.test_the_odd_one_out_is_reported",
+        "tests/unit/test_fact_contract.py::ForecastOutlierTests.test_they_are_not_turned_into_a_dispute",
+        "tests/unit/test_fact_contract.py::ForecastOutlierTests.test_one_house_across_three_vintages_is_still_one_house"
       ],
       "not_verified": [
         "38 条存量事实缺内容 SHA；27 条历史来源未登记；B 审核质量与语义冲突识别不能由机检代替。",
@@ -139,7 +147,9 @@
         "分发受限这一类由人判断原件有无分发限制：2026-09-13 所有者取消了 3 条招标控制价的标记（招标控制价依法公开），现存 34 条全部来自中国联通企标那一份原件。机检只保证受限条目不外泄，不判断某份材料该不该被标记。",
         "修订链只检查「有没有接上链」，不检查接得对不对：版本序按 as_of 的 @ 文本排序，两版同月或版本写法不一致时序关系判不出来，要人看原件。buried_asserters 是提示不是判定：locator 里点的名可能是转引链上更远的一环，asserter 究竟写谁仍须翻原件。",
         "队列降权只看「读过几份、出了几条」，不看材料里实际有没有数：一批材料恰好前 3 份无数、第 4 份有数时，第 4 份会被压到队尾（仍在队列里，且该批一旦出数即解除）。",
-        "科智两版判为整体重估依据的是比值一致，不是拿到了科智的口径说明；若日后原文给出口径定义且与此相悖，按口径拆指标重录。"
+        "科智两版判为整体重估依据的是比值一致，不是拿到了科智的口径说明；若日后原文给出口径定义且与此相悖，按口径拆指标重录。",
+        "近似副本比对的 sketch 是有损表示：实测约 0.9% 的文字差异下，sketch 的真实 Jaccard 中位数 0.809、最低 0.429，17/40 落在 0.8 阈值以下；整篇重复的文本塌成一个块哈希，两份这样的文件重合度算作 0。因此 near_twins 给空结果不等于没有副本，本轮不调阈值也不换表示。",
+        "forecast_outliers 只比同一目标年份且至少三家给出预测的组；两家、同一家多个时点、以及口径任一维不同的，都不比——漏报是刻意的，宁可不报也不制造假的同行。"
       ]
     },
     {

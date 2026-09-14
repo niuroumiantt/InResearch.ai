@@ -9,7 +9,7 @@ import json
 import time
 from collections import Counter
 from contextlib import ExitStack
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 
 from inresearch.paths import project_root
 from inresearch.materials import paths, triage
@@ -98,18 +98,52 @@ class DeepRead:
     def current(self, sha):
         return self.readings.current(sha)
 
+    def resketch(self, limit=0):
+        """给只有 text_md5 的旧记录补上 sketch，用它们已有的全文阅读结果。
+
+        不重新抽取正文：只认 readings 里那份「唯一当前结果」。取不到的照实报出来，
+        不拿别的文本凑——凑出来的 sketch 会让近似比对给出它其实没做过的保证。
+        """
+        blind, filled, missing = sorted(self.similarity.unsketched()), [], []
+        for sha in (blind[:limit] if limit else blind):
+            current = self.readings.current(sha, include_text=True)
+            text = current.get('text') if current.get('status') == 'available' else None
+            sketch = text_sketch(text) if text else []
+            if not sketch:
+                missing.append({'sha256': sha, 'reason': current.get('status') or '无当前结果'})
+                continue
+            self.similarity.remember(sha, self.similarity.fingerprints().get(sha), sketch)
+            filled.append(sha)
+        return dict(unsketched_before=len(blind), filled=len(filled),
+                    still_unsketched=len(blind) - len(filled),
+                    needs_reread=missing[:20] or None)
+
     BARREN_COHORT = 3
 
-    def cohort(self, row):
-        """同一家、同一年、同一体裁的一批材料。
+    def cohorts(self, row):
+        """这一份属于哪几个批次——按机构，也按它待的那个目录。
 
         粗筛分的是「这份材料讲的事重不重要」，答对了 OCP 2025 的会议胶片确实是 7 分；
-        它答不了的是「这份材料里有没有可录的数」。一次会议的九份胶片与讨论环节，
-        分数一样、产出全是 0，却按分数排在前面，每轮吃掉一半名额。
+        它答不了的是「这份材料里有没有可录的数」。
+
+        只按机构×年份×体裁分批，漏掉的是**成批躺在一个目录里的东西**：造价案例集
+        那一摞「项目概况.txt」四份全缺口径，同目录还有；联通长沙一期的气体消防清单
+        三份都是未计价工程量，同批还有别的专业。它们挂在「未知」和「中国联通」名下、
+        体裁也不统一，机构键分不到一起——可它们本来就是一批，因为它们是一起被拆出来的。
+        目录就是这个「一起」的名字。
+
+        两种批次取并集：任一个空手而归就降权。一份材料同时属于两个批次很正常，
+        它只需要在其中一个批次里显出产出，就不再被压。
         """
-        return ((row.get('org') or '').strip(),
-                str(row.get('year') or '').strip(),
-                (row.get('doc_type') or '').strip())
+        keys = []
+        org = ((row.get('org') or '').strip(), str(row.get('year') or '').strip(),
+               (row.get('doc_type') or '').strip())
+        if self.is_cohort(org):
+            keys.append(('org',) + org)
+        folder = PurePosixPath(str(row.get('rel') or '')).parent
+        if str(folder) not in ('.', '/', ''):
+            keys.append(('dir', str(folder)))
+        return keys
 
     UNNAMED = ('', '未知', 'unknown', 'other', '未注明')
 
@@ -137,11 +171,11 @@ class DeepRead:
             row = rows.get(sha)
             if not row:
                 continue
-            key = self.cohort(row)
-            read, yielded = seen.get(key, (0, 0))
-            seen[key] = (read + 1, yielded + (sha in produced))
+            for key in self.cohorts(row):
+                read, yielded = seen.get(key, (0, 0))
+                seen[key] = (read + 1, yielded + (sha in produced))
         for key, (read, yielded) in seen.items():
-            if read >= self.BARREN_COHORT and not yielded and self.is_cohort(key):
+            if read >= self.BARREN_COHORT and not yielded:
                 barren[key] = read
         return barren
 
@@ -155,7 +189,7 @@ class DeepRead:
         barren = self.barren_cohorts()
         # 空手而归的批次排在同覆盖度组的最后，仍然在队列里，只是不再挤占前排。
         return sorted(rows, key=lambda r: (covered.get(r.get('category'), 0),
-                      self.cohort(r) in barren,
+                      any(key in barren for key in self.cohorts(r)),
                       -(r.get('score') or 0), -policy.document_year(r), r.get('rel', '')))
 
     def pack(self, sha=None, min_score=policy.MIN_SCORE, again=False, since=0):
@@ -185,6 +219,9 @@ class DeepRead:
         twins = self.similarity.same_text(row['sha256'], fingerprint, done, processed=True) if fingerprint else []
         opened = self.similarity.same_text(row['sha256'], fingerprint, done, processed=False) if fingerprint else []
         near = self.similarity.near_twins(row['sha256'], sketch, done)
+        # 更早入库的精读只留了 text_md5，没有 sketch，近似比对根本看不见它们。
+        # near_twins 给空列表读起来像「比过了、不像」，实际是「有一批压根没比」。
+        blind = sorted(self.similarity.unsketched() & done)
         reference = {k: v for k, v in current.items() if k != 'report'}
         report = packet.publish(self.packet_dir, row, text, meta, self.load_metrics(), self.load_questions(),
                                 policy.unattributed(row), result_revision(row), self.materials.MAX_PREVIEW_CHARS,
@@ -195,6 +232,10 @@ class DeepRead:
                 'read_from': 'reader_current_result' if current['status'] == 'available' else 'library' if from_library else 'source',
                 'text_md5': fingerprint, 'same_text_already_processed': twins or None,
                 'same_text_packed_not_processed': opened or None, 'near_twins': near or None,
+                'near_twin_blind_spot': len(blind) or None,
+                'near_twin_blind_note': ('已读的 %d 份只有 text_md5、没有 sketch，'
+                                         '不参与近似比对——上面这条「没有近似副本」只覆盖其余部分。'
+                                         '跑 manage.py deep-read resketch 补齐。' % len(blind)) if blind else None,
                 'same_text_note': '提取文本相同；SHA 不同，图表和脚注可能不同；不自动跳读。' if twins or opened else None,
                 'near_twin_note': '文本高度重合；须核对图表、脚注和版本，相似度不能证明差异仅是版权页。' if near else None,
                 'again': True if again and row['sha256'] in done else None}

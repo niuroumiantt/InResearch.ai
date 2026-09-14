@@ -2653,3 +2653,61 @@ class RevisionChainTests(unittest.TestCase):
                          value=99.0, asserter='IDC')]
         self.assertEqual(FC.relink_revisions(appended, stored), [])
         self.assertIsNone(stored[0].get('supersedes'))
+
+
+class ForecastOutlierTests(unittest.TestCase):
+    """同年预测永远不互相指认，所以离群的那条得另外扫出来。
+
+    claim_identity 特意带上 @vintage：两个时点做出的预测是两个都还活着的判断，
+    合并会把同一家改口记成自己跟自己吵架。代价是中国通信工业协会给的 2030 年
+    150 TWh 静静躺在 371–600 那一片旁边，争议分诊一声不响。
+    """
+
+    def forecast(self, fid, value, asserter, as_of='2030E@2024-12'):
+        return fact(fact_id=fid, value=value, asserter=asserter, as_of=as_of)
+
+    def test_the_odd_one_out_is_reported(self):
+        rows = [self.forecast('a', 150.0, '中国通信工业协会'),
+                self.forecast('b', 371.0, '伯恩斯坦', '2030E@2025-09'),
+                self.forecast('c', 380.0, '中国信通院', '2030E@2024-05'),
+                self.forecast('d', 400.0, '埃森哲', '2030E@2025')]
+        found = FC.forecast_outliers(rows)
+        self.assertEqual([r['fact_id'] for r in found], ['a'])
+        self.assertEqual(found[0]['peer_median'], 375.5)
+
+    def test_they_are_not_turned_into_a_dispute(self):
+        """扫出来归扫出来，claim_identity 不许因此把两个时点并到一起。"""
+        early = self.forecast('a', 150.0, '甲', '2030E@2024-12')
+        late = self.forecast('b', 380.0, '乙', '2030E@2025-09')
+        self.assertNotEqual(FC.claim_identity(early), FC.claim_identity(late))
+
+    def test_two_houses_are_not_enough_to_call_anyone_odd(self):
+        rows = [self.forecast('a', 150.0, '甲'), self.forecast('b', 400.0, '乙')]
+        self.assertEqual(FC.forecast_outliers(rows), [])
+
+    def test_one_house_across_three_vintages_is_still_one_house(self):
+        """同一家自己的三个时点不构成三家——不然谁改口谁就被自己举报。"""
+        rows = [self.forecast('a', 150.0, '甲', '2030E@2023'),
+                self.forecast('b', 380.0, '甲', '2030E@2024'),
+                self.forecast('c', 400.0, '甲', '2030E@2025')]
+        self.assertEqual(FC.forecast_outliers(rows), [])
+
+    def test_actuals_are_left_alone(self):
+        """实绩之间本来就会互相指认，走争议那条路，不重复报。"""
+        rows = [fact(fact_id=f, value=v, asserter=a, as_of='2023')
+                for f, v, a in (('a', 150.0, '甲'), ('b', 380.0, '乙'), ('c', 400.0, '丙'))]
+        self.assertEqual(FC.forecast_outliers(rows), [])
+
+    def test_a_different_target_year_is_a_different_group(self):
+        rows = [self.forecast('a', 150.0, '甲', '2030E@2024'),
+                self.forecast('b', 380.0, '乙', '2035E@2024'),
+                self.forecast('c', 400.0, '丙', '2035E@2024')]
+        self.assertEqual(FC.forecast_outliers(rows), [])
+
+    def test_the_live_store_has_exactly_the_one_we_know_about(self):
+        store = json.loads((FC_ROOT / 'data' / 'facts.json').read_text(encoding='utf-8'))
+        menu = {m['metric_id']: m for m in json.loads(
+            (FC_ROOT / 'framework' / 'metrics.json').read_text(encoding='utf-8'))['metrics']}
+        found = FC.forecast_outliers(store['records'], menu)
+        self.assertEqual([r['fact_id'] for r in found],
+                         ['ccia-dcupgrade2024-cn-dc-electricity-2030e'])

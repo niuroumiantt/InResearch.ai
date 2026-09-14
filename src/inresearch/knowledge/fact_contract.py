@@ -485,6 +485,53 @@ ORDER_OF_MAGNITUDE = '量级分歧'
 SPREAD_ESCALATION = 2.0
 
 
+def forecast_outliers(records: list[dict], metrics: dict | None = None,
+                      ratio: float = SPREAD_ESCALATION) -> list[dict]:
+    """同一个目标年份上，离同行中位数太远的那些预测。
+
+    这不是争议，也不能做成争议。两个时点做出的预测是两个都还活着的判断，
+    claim_identity 特意带上 @vintage 把它们分开——否则同一家改口会被记成自己跟自己
+    吵架。代价是：**对同一年份的预测永远不会互相指认**，于是中国通信工业协会给的
+    2030 年 150 TWh 就静静躺在 371–600 TWh 那一片旁边，谁也不报。
+    一条差 2.5 倍的预测正是该有人看一眼的东西，所以这里单独扫一遍，只提示、不判定。
+
+    只在**至少三家**给出同一年份的预测时才比：两家谁也说不清谁偏，而同一家自己的
+    两个时点根本不算两家。基准用中位数不用均值——离群值自己会把均值拽过去。
+    """
+    groups = {}
+    for fact in records:
+        as_of = str(fact.get('as_of') or '')
+        if 'E' not in as_of or fact.get('value') in (None, 0):
+            continue
+        metric = (metrics or {}).get(fact.get('metric_id'))
+        key = ('forecast-peers', fact.get('metric_id'),
+               (fact.get('entity') or {}).get('id'), as_of.split('@')[0],
+               _dims(fact, nature_dims(metric)), fact.get('bound') or 'point')
+        groups.setdefault(key, []).append(fact)
+    found = []
+    for key, peers in groups.items():
+        if len({asserter_of(f) for f in peers}) < 3:
+            continue
+        values = sorted(float(f['value']) for f in peers)
+        mid = len(values) // 2
+        median = values[mid] if len(values) % 2 else (values[mid - 1] + values[mid]) / 2
+        if not median:
+            continue
+        for fact in peers:
+            value = float(fact['value'])
+            off = max(value / median, median / value)
+            if off >= ratio:
+                found.append({'fact_id': fact.get('fact_id'),
+                              'asserter': asserter_of(fact),
+                              'about': '%s / %s / %s' % (fact.get('metric_id'),
+                                  (fact.get('entity') or {}).get('id') or '—',
+                                  key[3]),
+                              'value': value, 'unit': fact.get('unit'),
+                              'peer_median': median, 'off_by': round(off, 2),
+                              'peers': len(peers)})
+    return sorted(found, key=lambda row: -row['off_by'])
+
+
 def value_spread(facts: list[dict]) -> float | None:
     """最大值 / 最小值；有一侧未披露或为零就给不出，返回 None。"""
     values = []

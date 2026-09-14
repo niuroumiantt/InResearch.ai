@@ -35,6 +35,7 @@ FACTS = ROOT / "data" / "facts.json"
 METRICS = ROOT / "framework" / "metrics.json"
 
 from inresearch.knowledge.fact_contract import (check_fact, DEPTHS, CORROBORATION,
+                                                forecast_outliers,
                                                 UNSTATED_ASSERTER as UNSTATED)
 FACT_DEPTHS = set(DEPTHS)
 CORROB = set(CORROBORATION)
@@ -259,6 +260,17 @@ def main():
         facts, _ = load()
         for line in asserter_listing(facts):
             print(line)
+        return 0
+    if "--outliers" in args:
+        facts, metrics = load()
+        rows = forecast_outliers(facts, metrics)
+        print("同一目标年份上离同行中位数 2 倍以上的预测：%d 条" % len(rows))
+        print("（只提示不判定。预测按 @vintage 分开是对的——同一家改口不该记成自己跟自己吵，"
+              "代价就是同年预测永远不互相指认，这一扫是补那个口子。）")
+        for row in rows:
+            print("  %s  %s %s（同行中位 %s，偏离 %.2fx，共 %d 家）\n     %s"
+                  % (row["about"], row["value"], row["unit"], row["peer_median"],
+                     row["off_by"], row["peers"], row["fact_id"] + " ← " + row["asserter"]))
         return 0
     only = next((a for a in args if not a.startswith("-")), None)
     facts, metrics = load()
