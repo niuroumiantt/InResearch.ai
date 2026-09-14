@@ -140560,6 +140560,66 @@
       "corroboration": "待交叉验证",
       "notes": "大摩全年估计，含纬创 L10 计算托盘折合的机柜当量，实际交付给终端客户的整柜数偏低（原注）。库内杰富瑞 2025E NVL72 27k 为较早版次预测，并列。",
       "asserter": "摩根士丹利"
+    },
+    {
+      "fact_id": "amd-ocp25-dc-ai-accel-tam-2023",
+      "metric_id": "ai_asic_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "dc-ai-accelerator",
+        "label": "数据中心 AI 加速器（GPU+ASIC 等）"
+      },
+      "value": 45.0,
+      "unit": "十亿美元",
+      "caliber": {
+        "scope": "全部加速芯片",
+        "basis": "厂商指引",
+        "region": "Global"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "572688d43c8b9ec714d8d4162f378660ccc10f8a2692222aca869a3ad3f1a9c6",
+        "local_file": "OCP2025_DAY ONE MONDAY - 5.AMD.pdf",
+        "locator": "第 3 页「Data Center AI Accelerator TAM – Inference Growing at >80% CAGR」：柱图 2023 年「$45B」、2028 年「>$500B」，训练「>60% CAGR」，注「Source: AMD Internal Data 2024」",
+        "grade": "S2",
+        "originator": "AMD（Mark Papermaster，OCP Global Summit 2025 主题演讲）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "AMD 口径的数据中心 AI 加速器 TAM（含 GPU 与 ASIC），不是 AI ASIC 单项；与库内 Yole/联发科 AI ASIC 数不可比。",
+      "asserter": "AMD"
+    },
+    {
+      "fact_id": "amd-ocp25-dc-ai-accel-tam-2028e",
+      "metric_id": "ai_asic_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "dc-ai-accelerator",
+        "label": "数据中心 AI 加速器（GPU+ASIC 等）"
+      },
+      "value": 500.0,
+      "unit": "十亿美元",
+      "caliber": {
+        "scope": "全部加速芯片",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2028E@2024",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "572688d43c8b9ec714d8d4162f378660ccc10f8a2692222aca869a3ad3f1a9c6",
+        "local_file": "OCP2025_DAY ONE MONDAY - 5.AMD.pdf",
+        "locator": "第 3 页「Data Center AI Accelerator TAM – Inference Growing at >80% CAGR」：柱图 2023 年「$45B」、2028 年「>$500B」，训练「>60% CAGR」，注「Source: AMD Internal Data 2024」",
+        "grade": "S2",
+        "originator": "AMD（Mark Papermaster，OCP Global Summit 2025 主题演讲）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「>$500B」按下界记；图注数据来源为 AMD 2024 年内部数据，vintage 记 @2024。推理增速 >80% CAGR、训练 >60% CAGR。",
+      "asserter": "AMD"
     }
   ]
 }
