@@ -144,6 +144,7 @@ import { OutputPass } from "./assets/vendor/OutputPass.js";
 import { EXRLoader } from "./assets/vendor/EXRLoader.js";
 import {mountSceneView} from "/assets/scene-view.js";
 import {mountSceneModels} from "/assets/model-assets.js";
+import {createSceneEnvironment, createTexturePool} from "/assets/scene-resources.js";
 
 import {loadSceneData} from "/assets/scene-data.js";
 const [BOM, companies, prices, inds, reg, products] = await loadSceneData([
@@ -180,6 +181,7 @@ renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.12;
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+const texturePool = createTexturePool({THREE});
 
 const scene = new THREE.Scene();
 
@@ -221,16 +223,10 @@ function proceduralEnv() {
   panel(30, 10, -28, 12, 0, 0xbfd6ff, 3, Math.PI / 2);           // 左冷光
   panel(30, 10, 28, 8, 0, 0xffe0b8, 2, -Math.PI / 2);            // 右暖光
   panel(40, 8, 0, 10, -28, 0x9db8e8, 2.2, 0);                    // 背部补光
-  const pmrem = new THREE.PMREMGenerator(renderer);
-  scene.environment = pmrem.fromScene(env, 0.04).texture;
-  pmrem.dispose();
+  return env;
 }
-new EXRLoader().load("assets/hdri/warehouse.exr", tex => {
-  tex.mapping = THREE.EquirectangularReflectionMapping;
-  const pmrem = new THREE.PMREMGenerator(renderer);
-  scene.environment = pmrem.fromEquirectangular(tex).texture;
-  pmrem.dispose(); tex.dispose();
-}, undefined, () => proceduralEnv());
+const sceneEnvironment = createSceneEnvironment({THREE, EXRLoader, renderer, scene,
+  url:"assets/hdri/warehouse.exr", fallback:proceduralEnv});
 
 scene.add(new THREE.HemisphereLight(0x8fa8cc, 0x0e131c, 0.55));
 const dl = new THREE.DirectionalLight(0xfff2e0, 2.2);
@@ -244,14 +240,7 @@ scene.add(dl);
 const rim = new THREE.DirectionalLight(0x6f9fff, 0.7); rim.position.set(-40, 26, -34); scene.add(rim);
 
 /* ─────────── 程序化纹理（零二进制：全部 canvas 现画）─────────── */
-function ctex(w, h, draw, repX = 1, repY = 1) {
-  const cv = document.createElement("canvas"); cv.width = w; cv.height = h;
-  draw(cv.getContext("2d"), w, h);
-  const t = new THREE.CanvasTexture(cv);
-  t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
-  if (repX !== 1 || repY !== 1) { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(repX, repY); }
-  return t;
-}
+const ctex = texturePool.canvas;
 const rnd = (() => { let s = 42; return () => (s = s * 16807 % 2147483647) / 2147483647; })();
 
 const TEX = {
@@ -991,8 +980,18 @@ sceneView = mountSceneView({canvas, camera, controls, fog:scene.fog,
   beforeFit:() => cameraMotion.cancel(),
 });
 sceneModels.ready.then(() => sceneView.refresh());
-window.addEventListener("pagehide", event => {if (!event.persisted) {sceneView.dispose();sceneModels.dispose();inspector.dispose();}});
-(function loop() { requestAnimationFrame(loop); controls.update(); composer.render(); inspector.tick(); })();
+let animationFrame = 0;
+let pageDisposed = false;
+function disposePage() {
+  if (pageDisposed) return;
+  pageDisposed = true;
+  cancelAnimationFrame(animationFrame);
+  window.removeEventListener('inresearch:appearance', syncSceneAppearance);
+  sceneView.dispose(); sceneModels.dispose(); inspector.dispose();
+  sceneEnvironment.dispose(); texturePool.dispose(); composer.dispose(); renderer.dispose();
+}
+window.addEventListener("pagehide", event => {if (!event.persisted) disposePage();}, {once:true});
+(function loop() { animationFrame = requestAnimationFrame(loop); controls.update(); composer.render(); inspector.tick(); })();
 
 // ?d=<domain> / ?p=<part> 深链：其他页面可直接链进领域视角或部件档案（放最后：依赖上面全部初始化完成）
 { const q = new URLSearchParams(location.search);

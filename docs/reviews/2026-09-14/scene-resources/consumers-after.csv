@@ -1,0 +1,128 @@
+implementation,consumer,line,reference,migration_result
+CanvasTexture,docs/DECISIONS.md,11,先登记 765 文件、75 处资源引用和旧实现退出清单（7443588），再把 bom3d/rack3d 重复的 HDR/PMREM、CanvasTexture 与页面退出职责迁到共享所有者。HDR 失败与超时使用页面配方；迟到/旧代不能覆盖新环境，target 替换及退出明确释放。机柜图片失败保留真实程序化 CanvasTexture，退出原来只打印兜底文案的空纹理实现。页面停止 animation frame 后释放环境、纹理、composer 和 renderer。bake 与 compare 的不同生命周期仍保留待审；整体架构和全部 GPU 性能不因此完成。,"route, source record or operational reference"
+scene-resources,docs/REPOSITORY_REGISTER.md,300,| `docs/reviews/2026-09-14/scene-resources/consumers-after.csv` | rows | 124 |,"route, source record or operational reference"
+scene-resources,docs/REPOSITORY_REGISTER.md,301,| `docs/reviews/2026-09-14/scene-resources/consumers-before.csv` | rows | 75 |,"route, source record or operational reference"
+scene-resources,docs/REPOSITORY_REGISTER.md,302,| `docs/reviews/2026-09-14/scene-resources/file-plan.csv` | rows | 772 |,"route, source record or operational reference"
+scene-resources,docs/REPOSITORY_REGISTER.md,303,| `docs/reviews/2026-09-14/scene-resources/file-results.csv` | rows | 780 |,"route, source record or operational reference"
+scene-resources,docs/REPOSITORY_REGISTER.md,304,| `docs/reviews/2026-09-14/scene-resources/legacy-removal.csv` | rows | 10 |,"route, source record or operational reference"
+scene-resources,docs/REPOSITORY_REGISTER.md,305,| `docs/reviews/2026-09-14/scene-resources/scope.json` | inherited | 6 |,"route, source record or operational reference"
+scene-resources,docs/REPOSITORY_REGISTER.md,306,| `docs/reviews/2026-09-14/scene-resources/scope.json` | changed | 16 |,"route, source record or operational reference"
+scene-resources,docs/REPOSITORY_REGISTER.md,809,| [docs/reviews/2026-09-14/scene-resources/DELIVERY.md](reviews/2026-09-14/scene-resources/DELIVERY.md) | 历史快照 |,"route, source record or operational reference"
+scene-resources,docs/REPOSITORY_REGISTER.md,810,| [docs/reviews/2026-09-14/scene-resources/INTEGRATION.md](reviews/2026-09-14/scene-resources/INTEGRATION.md) | 历史快照 |,"route, source record or operational reference"
+scene-resources,docs/REPOSITORY_REGISTER.md,811,| [docs/reviews/2026-09-14/scene-resources/PLAN.md](reviews/2026-09-14/scene-resources/PLAN.md) | 历史快照 |,"route, source record or operational reference"
+scene-resources,docs/REPOSITORY_REGISTER.md,812,| `docs/reviews/2026-09-14/scene-resources/audit.py` | 历史快照 |,"route, source record or operational reference"
+scene-resources,docs/REPOSITORY_REGISTER.md,813,| `docs/reviews/2026-09-14/scene-resources/baseline.json` | 历史快照 |,"route, source record or operational reference"
+scene-resources,docs/REPOSITORY_REGISTER.md,814,| [docs/reviews/2026-09-14/scene-resources/consumers-after.csv](reviews/2026-09-14/scene-resources/consumers-after.csv) | 历史快照 |,"route, source record or operational reference"
+scene-resources,docs/REPOSITORY_REGISTER.md,815,| [docs/reviews/2026-09-14/scene-resources/consumers-before.csv](reviews/2026-09-14/scene-resources/consumers-before.csv) | 历史快照 |,"route, source record or operational reference"
+scene-resources,docs/REPOSITORY_REGISTER.md,816,| [docs/reviews/2026-09-14/scene-resources/file-plan.csv](reviews/2026-09-14/scene-resources/file-plan.csv) | 历史快照 |,"route, source record or operational reference"
+scene-resources,docs/REPOSITORY_REGISTER.md,817,| [docs/reviews/2026-09-14/scene-resources/file-results.csv](reviews/2026-09-14/scene-resources/file-results.csv) | 历史快照 |,"route, source record or operational reference"
+scene-resources,docs/REPOSITORY_REGISTER.md,818,| [docs/reviews/2026-09-14/scene-resources/legacy-removal.csv](reviews/2026-09-14/scene-resources/legacy-removal.csv) | 历史快照 |,"route, source record or operational reference"
+scene-resources,docs/REPOSITORY_REGISTER.md,819,| `docs/reviews/2026-09-14/scene-resources/scope.json` | 历史快照 |,"route, source record or operational reference"
+scene-resources,docs/REPOSITORY_REGISTER.md,820,| `docs/reviews/2026-09-14/scene-resources/statistics-after.json` | 历史快照 |,"route, source record or operational reference"
+scene-resources,docs/REPOSITORY_REGISTER.md,821,| `docs/reviews/2026-09-14/scene-resources/statistics-before.json` | 历史快照 |,"route, source record or operational reference"
+EXRLoader,docs/REPOSITORY_REGISTER.md,1082,| `web/assets/vendor/EXRLoader.js` | 静态资源 |,"route, source record or operational reference"
+scene-resources,docs/REPOSITORY_REGISTER.md,1109,| `web/components/scene-resources.js` | 运行代码 |,"route, source record or operational reference"
+CanvasTexture,framework/05_interface_system.md,40,两交互场景的 HDR、PMREM target 与 CanvasTexture 由 `scene-resources.js` 统一持有。页面只声明环境配方和纹理绘制内容；失败或超时保留程序化视觉，旧加载不能在重试或退出后夺回环境。替换释放旧 target，pagehide 停止渲染并释放环境、纹理池、composer 和 renderer。离线 bake 工具与比较台的短生命周期另行保留，不冒充已迁移。,"route, source record or operational reference"
+pagehide,framework/05_interface_system.md,40,两交互场景的 HDR、PMREM target 与 CanvasTexture 由 `scene-resources.js` 统一持有。页面只声明环境配方和纹理绘制内容；失败或超时保留程序化视觉，旧加载不能在重试或退出后夺回环境。替换释放旧 target，pagehide 停止渲染并释放环境、纹理池、composer 和 renderer。离线 bake 工具与比较台的短生命周期另行保留，不冒充已迁移。,"route, source record or operational reference"
+scene-resources,framework/05_interface_system.md,40,两交互场景的 HDR、PMREM target 与 CanvasTexture 由 `scene-resources.js` 统一持有。页面只声明环境配方和纹理绘制内容；失败或超时保留程序化视觉，旧加载不能在重试或退出后夺回环境。替换释放旧 target，pagehide 停止渲染并释放环境、纹理池、composer 和 renderer。离线 bake 工具与比较台的短生命周期另行保留，不冒充已迁移。,"route, source record or operational reference"
+CanvasTexture,framework/09_software_contracts.md,69,交互场景资源与场景语义分开：`scene-resources.js` 拥有异步 HDR 代次、超时/失败回退、PMREM target 替换及 CanvasTexture 池；bom3d/rack3d 只提供程序化环境和纹理配方。每次 retry 取新代，旧代迟到输入只释放不提交；新 target 提交后才释放旧 target。图片失败沿用同一个已有程序化 CanvasTexture，不把空加载对象称为兜底。dispose 幂等，清空仍由自己持有的 environment，停止页面渲染后释放 composer/renderer；它不释放外部可选模型或把来源许可变成运行判断。,"route, source record or operational reference"
+scene-resources,framework/09_software_contracts.md,69,交互场景资源与场景语义分开：`scene-resources.js` 拥有异步 HDR 代次、超时/失败回退、PMREM target 替换及 CanvasTexture 池；bom3d/rack3d 只提供程序化环境和纹理配方。每次 retry 取新代，旧代迟到输入只释放不提交；新 target 提交后才释放旧 target。图片失败沿用同一个已有程序化 CanvasTexture，不把空加载对象称为兜底。dispose 幂等，清空仍由自己持有的 environment，停止页面渲染后释放 composer/renderer；它不释放外部可选模型或把来源许可变成运行判断。,"route, source record or operational reference"
+scene-resources,framework/current_state.json,325,"""web/components/scene-resources.js"",","route, source record or operational reference"
+CanvasTexture,framework/current_state.json,331,"""reason"": ""2026-09-13：3D 档案改用同权威关联字段投影，仍共用完整工作台的节点关联算法；研究面板就绪、失败重试和挂载/请求替换成为明确验收。既有输入/材质所有权保持，renderer/资产生命周期仍未全面收敛。；2026-09-14 两场景必需定义改用统一加载/结构检查/取消/重试，恢复显式控件状态，不扩大为可选资产就绪。；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；2026-09-14 统一实际画布、几何适配和用户镜头所有权，退出固定缩放/距离，补齐雾化反例；完整视觉与 GPU 验收仍有限。；2026-09-14 两场景共用 HDR/PMREM 与 CanvasTexture 所有者，面板失败保留真实程序化纹理，迟到/替换/退出释放资源；bake、compare 与场景几何仍分别待审。"",","route, source record or operational reference"
+scene-resources,framework/current_state.json,586,"""web/components/scene-resources.js"",","route, source record or operational reference"
+scene-resources,framework/repository_manifest.json,5948,"""path"": ""docs/reviews/2026-09-14/scene-resources/DELIVERY.md"",","route, source record or operational reference"
+scene-resources,framework/repository_manifest.json,5955,"""path"": ""docs/reviews/2026-09-14/scene-resources/INTEGRATION.md"",","route, source record or operational reference"
+scene-resources,framework/repository_manifest.json,5962,"""path"": ""docs/reviews/2026-09-14/scene-resources/PLAN.md"",","route, source record or operational reference"
+scene-resources,framework/repository_manifest.json,5969,"""path"": ""docs/reviews/2026-09-14/scene-resources/audit.py"",","route, source record or operational reference"
+scene-resources,framework/repository_manifest.json,5976,"""path"": ""docs/reviews/2026-09-14/scene-resources/baseline.json"",","route, source record or operational reference"
+scene-resources,framework/repository_manifest.json,5983,"""path"": ""docs/reviews/2026-09-14/scene-resources/consumers-after.csv"",","route, source record or operational reference"
+scene-resources,framework/repository_manifest.json,6002,"""path"": ""docs/reviews/2026-09-14/scene-resources/consumers-before.csv"",","route, source record or operational reference"
+scene-resources,framework/repository_manifest.json,6021,"""path"": ""docs/reviews/2026-09-14/scene-resources/file-plan.csv"",","route, source record or operational reference"
+scene-resources,framework/repository_manifest.json,6039,"""path"": ""docs/reviews/2026-09-14/scene-resources/file-results.csv"",","route, source record or operational reference"
+scene-resources,framework/repository_manifest.json,6057,"""path"": ""docs/reviews/2026-09-14/scene-resources/legacy-removal.csv"",","route, source record or operational reference"
+scene-resources,framework/repository_manifest.json,6075,"""path"": ""docs/reviews/2026-09-14/scene-resources/scope.json"",","route, source record or operational reference"
+scene-resources,framework/repository_manifest.json,6091,"""path"": ""docs/reviews/2026-09-14/scene-resources/statistics-after.json"",","route, source record or operational reference"
+scene-resources,framework/repository_manifest.json,6098,"""path"": ""docs/reviews/2026-09-14/scene-resources/statistics-before.json"",","route, source record or operational reference"
+EXRLoader,framework/repository_manifest.json,8138,"""path"": ""web/assets/vendor/EXRLoader.js"",","route, source record or operational reference"
+scene-resources,framework/repository_manifest.json,8332,"""path"": ""web/components/scene-resources.js"",","route, source record or operational reference"
+scene-resources,tests/scene_resources.cjs,10,"const {createSceneEnvironment, createTexturePool} = await import('/assets/scene-resources.js');",direct contract regression
+EXRLoader,tests/scene_resources.cjs,32,"const environment = createSceneEnvironment({THREE, EXRLoader:Loader, renderer:{}, scene,",direct contract regression
+scene.environment,tests/scene_resources.cjs,37,"equal(scene.environment.name, 'hdr', 'initial environment'); equal(first.disposed, 1, 'source disposal');",direct contract regression
+scene.environment,tests/scene_resources.cjs,41,"equal(scene.environment.name, 'fallback', 'fallback environment'); equal(targets[0].disposed, 1, 'old target disposal');",direct contract regression
+scene.environment,tests/scene_resources.cjs,45,"equal(stale.disposed, 1, 'stale source disposal'); equal(scene.environment.name, 'fallback', 'stale attempt cannot publish');",direct contract regression
+scene.environment,tests/scene_resources.cjs,48,"equal(final.disposed, 1, 'latest source disposal'); equal(scene.environment.name, 'hdr', 'latest target published');",direct contract regression
+scene.environment,tests/scene_resources.cjs,50,"equal(targets[2].disposed, 1, 'final target disposal'); equal(scene.environment, null, 'environment cleared');",direct contract regression
+EXRLoader,tests/scene_resources.cjs,54,"const timed = createSceneEnvironment({THREE, EXRLoader:TimeoutLoader, renderer:{}, scene:timeoutScene,",direct contract regression
+scene-resources,web/assets/hdri/README.md,12,- 交互场景由 `scene-resources.js` 统一加载；失败或超时回退页面提供的程序化摄影棚。迟到结果不覆盖新一代，替换与退出释放 PMREM target 和输入纹理。,"route, source record or operational reference"
+CanvasTexture,web/assets/panels/README.md,18,交互场景用 `scene-resources.js` 把图片画入稳定 CanvasTexture；网络、解码失败或重试期间保留机柜页声明的程序化设备前脸，材质不会收到空 Texture。页面退出时由纹理池统一释放。,"route, source record or operational reference"
+scene-resources,web/assets/panels/README.md,18,交互场景用 `scene-resources.js` 把图片画入稳定 CanvasTexture；网络、解码失败或重试期间保留机柜页声明的程序化设备前脸，材质不会收到空 Texture。页面退出时由纹理池统一释放。,"route, source record or operational reference"
+scene.environment,web/components/scene-resources.js,12,"/** Own one scene.environment across load, fallback, retry, replacement and exit. */","route, source record or operational reference"
+EXRLoader,web/components/scene-resources.js,13,"export function createSceneEnvironment({THREE, EXRLoader, renderer, scene, url, fallback,","route, source record or operational reference"
+PMREMGenerator,web/components/scene-resources.js,16,createPMREM = value => new THREE.PMREMGenerator(value)}) {,"route, source record or operational reference"
+EXRLoader,web/components/scene-resources.js,17,"if (!THREE || !EXRLoader || !renderer || !scene || !url || typeof fallback !== ""function"") {","route, source record or operational reference"
+scene.environment,web/components/scene-resources.js,28,scene.environment = target.texture;,"route, source record or operational reference"
+EXRLoader,web/components/scene-resources.js,69,"new EXRLoader().load(url,","route, source record or operational reference"
+scene.environment,web/components/scene-resources.js,88,if (scene.environment === current?.texture) scene.environment = null;,"route, source record or operational reference"
+CanvasTexture,web/components/scene-resources.js,96,/** Own page-created CanvasTextures and image attempts without changing texture identity. */,"route, source record or operational reference"
+CanvasTexture,web/components/scene-resources.js,107,const texture = new THREE.CanvasTexture(element);,"route, source record or operational reference"
+EXRLoader,web/pages/bake.html,18,"import { EXRLoader } from ""./assets/vendor/EXRLoader.js"";",retained separate lifetime
+ctex(,web/pages/bake.html,44,"function ctex(w, h, draw, repX = 1, repY = 1) {",retained separate lifetime
+CanvasTexture,web/pages/bake.html,47,const t = new THREE.CanvasTexture(cv);,retained separate lifetime
+ctex(,web/pages/bake.html,54,"copperFins: ctex(256, 128, (g, w, h) => {",retained separate lifetime
+ctex(,web/pages/bake.html,61,"pcb: ctex(512, 512, (g, w, h) => {",retained separate lifetime
+ctex(,web/pages/bake.html,76,"die: ctex(256, 256, (g, w, h) => {",retained separate lifetime
+ctex(,web/pages/bake.html,84,"dimm: ctex(256, 48, (g, w, h) => {",retained separate lifetime
+ctex(,web/pages/bake.html,90,"perf: ctex(128, 128, (g, w, h) => {",retained separate lifetime
+ctex(,web/pages/bake.html,97,"sledFace: ctex(512, 96, (g, w, h) => {",retained separate lifetime
+ctex(,web/pages/bake.html,109,"fanFrame: ctex(128, 128, (g, w, h) => {",retained separate lifetime
+ctex(,web/pages/bake.html,114,"ports: ctex(512, 64, (g, w, h) => {",retained separate lifetime
+EXRLoader,web/pages/bake.html,315,"new EXRLoader().load(""assets/hdri/studio.exr"", tex => {",retained separate lifetime
+PMREMGenerator,web/pages/bake.html,317,const pmrem = new THREE.PMREMGenerator(renderer);,retained separate lifetime
+scene.environment,web/pages/bake.html,318,scene.environment = pmrem.fromEquirectangular(tex).texture;,retained separate lifetime
+EXRLoader,web/pages/bom3d.html,144,"import { EXRLoader } from ""./assets/vendor/EXRLoader.js"";",planned shared owner consumer
+scene-resources,web/pages/bom3d.html,147,"import {createSceneEnvironment, createTexturePool} from ""/assets/scene-resources.js"";",planned shared owner consumer
+proceduralEnv,web/pages/bom3d.html,213,function proceduralEnv() {,planned shared owner consumer
+EXRLoader,web/pages/bom3d.html,228,"const sceneEnvironment = createSceneEnvironment({THREE, EXRLoader, renderer, scene,",planned shared owner consumer
+proceduralEnv,web/pages/bom3d.html,229,"url:""assets/hdri/warehouse.exr"", fallback:proceduralEnv});",planned shared owner consumer
+ctex(,web/pages/bom3d.html,247,"rackFront: hero => ctex(128, 256, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,259,"rackSide: ctex(64, 128, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,265,"sled: ctex(128, 32, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,272,"ports: ctex(128, 32, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,280,"perf: ctex(64, 64, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,287,"fins: ctex(128, 64, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,294,"copperFins: ctex(128, 64, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,301,"pcb: ctex(128, 128, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,314,"die: ctex(64, 64, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,321,"fan: ctex(128, 128, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,333,"louvre: ctex(64, 64, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,340,"glass: ctex(256, 128, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,347,"roof: ctex(256, 192, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,355,"ground: ctex(512, 384, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,365,"concrete: ctex(128, 128, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/bom3d.html,372,"cab: ctex(96, 128, (g, w, h) => {",planned shared owner consumer
+CanvasTexture,web/pages/bom3d.html,477,const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4;,planned shared owner consumer
+scene.environment,web/pages/bom3d.html,947,"const inspector = createPartInspector({THREE, environment: () => scene.environment, meshesFor: pid => PARTMESH[pid],",planned shared owner consumer
+pagehide,web/pages/bom3d.html,993,"window.addEventListener(""pagehide"", event => {if (!event.persisted) disposePage();}, {once:true});",planned shared owner consumer
+pagehide,web/pages/compare.html,67,"window.addEventListener('pagehide', event => {if (!event.persisted) previews.forEach(dispose => dispose());});",retained separate lifetime
+PMREMGenerator,web/pages/compare.html,107,const pm = new THREE.PMREMGenerator(ren);,retained separate lifetime
+EXRLoader,web/pages/rack3d.html,125,"import { EXRLoader } from ""./assets/vendor/EXRLoader.js"";",planned shared owner consumer
+scene-resources,web/pages/rack3d.html,128,"import {createSceneEnvironment, createTexturePool} from ""/assets/scene-resources.js"";",planned shared owner consumer
+proceduralEnv,web/pages/rack3d.html,183,function proceduralEnv() {,planned shared owner consumer
+EXRLoader,web/pages/rack3d.html,198,"const sceneEnvironment = createSceneEnvironment({THREE, EXRLoader, renderer, scene,",planned shared owner consumer
+proceduralEnv,web/pages/rack3d.html,199,"url:""assets/hdri/studio.exr"", fallback:proceduralEnv});",planned shared owner consumer
+ctex(,web/pages/rack3d.html,218,"post: ctex(32, 256, (g, w, h) => {           // 机柜立柱：EIA 孔带",planned shared owner consumer
+ctex(,web/pages/rack3d.html,223,"doorPerf: ctex(128, 256, (g, w, h) => {      // 前后门：六角穿孔网",planned shared owner consumer
+ctex(,web/pages/rack3d.html,232,"sledFace: hero => ctex(256, 48, (g, w, h) => {   // 服务器前脸：把手+盘位+LED",planned shared owner consumer
+ctex(,web/pages/rack3d.html,246,"ports: ctex(256, 32, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/rack3d.html,254,"perf: ctex(64, 64, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/rack3d.html,261,"pcb: ctex(256, 256, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/rack3d.html,276,"die: ctex(128, 128, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/rack3d.html,284,"copperFins: ctex(128, 64, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/rack3d.html,291,"dimm: ctex(128, 24, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/rack3d.html,297,"floorTx: ctex(512, 512, (g, w, h) => {",planned shared owner consumer
+ctex(,web/pages/rack3d.html,307,"fanFrame: ctex(64, 64, (g, w, h) => {",planned shared owner consumer
+CanvasTexture,web/pages/rack3d.html,394,const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace;,planned shared owner consumer
+scene.environment,web/pages/rack3d.html,684,"const inspector = createPartInspector({THREE, environment: () => scene.environment, meshesFor: pid => PARTMESH[pid]});",planned shared owner consumer
+pagehide,web/pages/rack3d.html,716,"window.addEventListener(""pagehide"", event => {if (!event.persisted) disposePage();}, {once:true});",planned shared owner consumer
+EXRLoader,web/routes.json,39,"""/assets/vendor/EXRLoader.js"": ""web/assets/vendor/EXRLoader.js"",","route, source record or operational reference"
+scene-resources,web/routes.json,83,"""/assets/scene-resources.js"": ""web/components/scene-resources.js""","route, source record or operational reference"

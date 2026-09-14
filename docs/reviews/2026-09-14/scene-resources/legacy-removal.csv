@@ -1,0 +1,11 @@
+old_implementation,target,status,reason
+"two page-local EXR/PMREM commit paths","scene-resources environment owner","planned exit","one generation and disposal contract"
+"PMREM target texture retained without target handle","owned render target","planned exit","release GPU allocation on replacement and exit"
+"late HDR callback may rewrite disposed/fallback scene","generation-gated commit","planned exit","old attempt cannot regain authority"
+"two page-local ctex helpers","shared texture pool canvas()","planned exit","one texture creation/disposal owner"
+"panel(name fallback) ignores fallback and returns failed Texture","stable canvas image with programmatic pixels","planned exit","failure state remains visibly useful"
+"pagehide omits environment/textures/composer/renderer","explicit page resource disposal","planned exit","release page-owned GPU resources"
+"procedural lighting and texture drawings","page-provided recipes","retain/move call sites","visual domain content remains page responsibility"
+"bake.html offline resource code","unchanged","retain","offline output tool has a different lifetime; separately review"
+"compare local RoomEnvironment","unchanged","retain","single preview already owns and disposes its target/renderer"
+"scene geometry, research mappings, selection and camera","unchanged","retain","outside resource-loading responsibility"
