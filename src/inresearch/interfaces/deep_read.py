@@ -15,6 +15,10 @@ def emit(value):
     print(json.dumps(value, ensure_ascii=False))
 
 
+def cmd_resketch(app, a):
+    emit(app.resketch(a.limit))
+
+
 def cmd_pack(app, a):
     emit(app.pack(a.sha, a.min_score, a.again, getattr(a, 'since', 0)))
 
@@ -110,10 +114,11 @@ def cmd_queue(app, a):
                       'mb': round(sum(r.get('size', 0) for r in pool) / 1e6)},
                      ensure_ascii=False))
     barren = app.barren_cohorts()
-    for (org, year, doc_type), read in sorted(barren.items(), key=lambda kv: -kv[1]):
-        waiting = sum(1 for r in pool if app.cohort(r) == (org, year, doc_type))
-        print('  ↓ 已降权：%s %s %s——读过 %d 份一条未出，队列里还有 %d 份排在同组之后'
-              % (org, year, doc_type, read, waiting))
+    for key, read in sorted(barren.items(), key=lambda kv: -kv[1]):
+        waiting = sum(1 for r in pool if key in app.cohorts(r))
+        name = ('%s %s %s' % key[1:]) if key[0] == 'org' else '目录 %s' % key[1]
+        print('  ↓ 已降权：%s——读过 %d 份一条未出，队列里还有 %d 份排在同组之后'
+              % (name, read, waiting))
     for module, n in by_module.most_common():
         print('  %-8s 待处理 %-4d 已有事实 %d' % (module, n, covered.get(module, 0)))
     if a.grep:
@@ -177,6 +182,9 @@ def main(argv=None, app=None):
     bp.add_argument('--expected-plan', help='干跑给出的来源修复计划 SHA')
     bp.add_argument('--commit', action='store_true', help='真写；不给就是干跑')
     bp.add_argument('--show', type=int, default=10)
+    rs = sub.add_parser('resketch',
+        help='给只有 text_md5 的旧记录补 sketch，让它们参与近似副本比对')
+    rs.add_argument('--limit', type=int, default=0)
     sub.add_parser('status')
     a = ap.parse_args(argv)
     app = app if app is not None else DeepRead(reader_data_root=a.reader_data_root)
@@ -187,7 +195,7 @@ def main(argv=None, app=None):
         return {'queue': cmd_queue, 'pack': cmd_pack, 'record': cmd_record,
          'attribute': cmd_attribute, 'flag': cmd_flag, 'skip': cmd_skip,
          'gaps': cmd_gaps, 'backfill-provenance': cmd_backfill_provenance,
-         'status': cmd_status}[a.cmd](app, a)
+         'resketch': cmd_resketch, 'status': cmd_status}[a.cmd](app, a)
     except CompletionPending as exc:
         emit(dict(ok=False, error=str(exc), commit_state=exc.authority+'_committed_receipt_pending'))
         return 1

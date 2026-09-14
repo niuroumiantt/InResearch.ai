@@ -62,6 +62,25 @@ class SimilarityIndex:
         return {r['sha256']: r['sketch'] for r in read_rows(self.path)
                 if r.get('sha256') and r.get('sketch')}
 
+    def unsketched(self):
+        """记了指纹却没记 sketch 的那些文件。
+
+        sketch 是后加的：更早入库的精读只留下 text_md5。这些文件在近似副本比对里
+        **根本不参与**——不是「比过了、不像」，是压根没被比。而 near_twins 返回空
+        列表时读起来正好像前者，于是 6b1a9d03 与 d01da12707d7（54,397 对 54,905 字，
+        只差约 500 字）一声不响地各录了一遍。
+        沉默的盲区比报错更贵，所以把它数出来，让调用方能说「没比到」而不是「不像」。
+        """
+        sketched, seen = set(), set()
+        for row in read_rows(self.path):
+            sha = row.get('sha256')
+            if not sha:
+                continue
+            seen.add(sha)
+            if row.get('sketch'):
+                sketched.add(sha)
+        return seen - sketched
+
     def remember(self, sha, fingerprint, sketch=None):
         append_record(self.path, {'sha256': sha, 'text_md5': fingerprint,
                       'at': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
