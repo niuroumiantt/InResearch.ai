@@ -158986,6 +158986,96 @@
       "corroboration": "待交叉验证",
       "notes": "原文「as much as $17 million per MW」为上限；Soben 指出规模效应并未带来预期降本。 Soben 自身成本研究，原文未说明成本范围（是否含 IT 设备、是否含土地）与地域，cost_scope 记未注明、region 记未披露；stage 记实际投入表示「currently cost」的已发生项目口径。报告发布于 2026-01（文件名日期 20260104）。",
       "asserter": "Soben"
+    },
+    {
+      "fact_id": "dcbyte2025-apac-live-supply-2024",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "apac-dc-live-supply-dcbyte",
+        "label": "亚太数据中心 Live Supply（DC Byte）"
+      },
+      "value": 13200.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "APAC"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "47a183f64abe7e67f7115701bca21b4e86258d5a5cbd6cf7017d942f8c5940f6",
+        "local_file": "20260202-2025年全球数据中心市场发展报告(31页).pdf",
+        "locator": "PDF 第 21 页 Live Supply Projections：「APAC is positioned to grow from 13.2GW in 2024 to 32.8GW in 2029, with a lower bound of 28.4GW. Actual growth is likely to outperform forecasted figures」；第 20 页方法说明「minimum growth estimates are indicated to proxy for when these constraints impact Live Supply delivery」",
+        "grade": "S3",
+        "originator": "DC Byte《Global Data Centre Index 2025》（© DC Byte 2025，跟踪约 7,500 个数据中心项目）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2024 年末 13.2GW。 DC Byte 的 Live Supply（已投运 IT 容量），按其逐项目跟踪统计；APAC 口径由 DC Byte 定义。",
+      "asserter": "DC Byte"
+    },
+    {
+      "fact_id": "dcbyte2025-apac-live-supply-2029e",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "apac-dc-live-supply-dcbyte",
+        "label": "亚太数据中心 Live Supply（DC Byte）"
+      },
+      "value": 32800.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "APAC"
+      },
+      "as_of": "2029E@2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "47a183f64abe7e67f7115701bca21b4e86258d5a5cbd6cf7017d942f8c5940f6",
+        "local_file": "20260202-2025年全球数据中心市场发展报告(31页).pdf",
+        "locator": "PDF 第 21 页 Live Supply Projections：「APAC is positioned to grow from 13.2GW in 2024 to 32.8GW in 2029, with a lower bound of 28.4GW. Actual growth is likely to outperform forecasted figures」；第 20 页方法说明「minimum growth estimates are indicated to proxy for when these constraints impact Live Supply delivery」",
+        "grade": "S3",
+        "originator": "DC Byte《Global Data Centre Index 2025》（© DC Byte 2025，跟踪约 7,500 个数据中心项目）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2029 年预测 32.8GW，按过往增速外推；报告发布月份未印，vintage 记 @2025。 DC Byte 的 Live Supply（已投运 IT 容量），按其逐项目跟踪统计；APAC 口径由 DC Byte 定义。",
+      "asserter": "DC Byte"
+    },
+    {
+      "fact_id": "dcbyte2025-apac-live-supply-2029e-min",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "apac-dc-live-supply-dcbyte",
+        "label": "亚太数据中心 Live Supply（DC Byte）"
+      },
+      "value": 28400.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "APAC"
+      },
+      "as_of": "2029E@2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "47a183f64abe7e67f7115701bca21b4e86258d5a5cbd6cf7017d942f8c5940f6",
+        "local_file": "20260202-2025年全球数据中心市场发展报告(31页).pdf",
+        "locator": "PDF 第 21 页 Live Supply Projections：「APAC is positioned to grow from 13.2GW in 2024 to 32.8GW in 2029, with a lower bound of 28.4GW. Actual growth is likely to outperform forecasted figures」；第 20 页方法说明「minimum growth estimates are indicated to proxy for when these constraints impact Live Supply delivery」",
+        "grade": "S3",
+        "originator": "DC Byte《Global Data Centre Index 2025》（© DC Byte 2025，跟踪约 7,500 个数据中心项目）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2029 年最低估计 28.4GW，用于代表供给瓶颈（电力等）影响交付时的保守情景，不是另一家的数。 DC Byte 的 Live Supply（已投运 IT 容量），按其逐项目跟踪统计；APAC 口径由 DC Byte 定义。",
+      "asserter": "DC Byte"
     }
   ]
 }
