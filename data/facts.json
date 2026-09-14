@@ -131102,6 +131102,195 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原文称出自旭创年报，但本条是调研纪要的转述，未回到年报核对；「包含不同规格」按合计档记。"
+    },
+    {
+      "fact_id": "sa2403-global-ai-critical-it-demand-2026e",
+      "metric_id": "global_dc_it_load",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "industry",
+        "id": "global-dc",
+        "label": "全球数据中心"
+      },
+      "value": 40.0,
+      "unit": "GW",
+      "bound": "point",
+      "as_of": "2026E@2024-03",
+      "caliber": {
+        "power_scope": "IT 负载",
+        "workload": "AI 负载",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "27261afa8839f0ba997672fce3499d7ee496ea01276b07ae86aebe249ad361d8",
+        "local_file": "AI Datacenter Energy Dilemma - Race for AI Datacenter Space.pdf",
+        "locator": "第 6 页：「Global Datacenter Critical IT power demand will surge from 49 Gigawatts (GW) in 2023 to 96 GW by 2026, of which AI will consume ~40 GW」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《AI Datacenter Energy Dilemma - Race for AI Datacenter Space》（Dylan Patel 等，2024-03-14）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「~40 GW」，是 2026 年全部 96 GW（sa2403-global-critical-it-demand-2026e）中的 AI 部分，**是子集不是并列项**，两条不可相加。"
+    },
+    {
+      "fact_id": "sa2403-global-dc-facility-capex-2023",
+      "metric_id": "dc_facility_capex_annual",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "industry",
+        "id": "global-dc",
+        "label": "全球数据中心"
+      },
+      "value": 490.0,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2023",
+      "caliber": {
+        "scope": "设施（不含 IT 设备）",
+        "owner_type": "全行业",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "evidence": {
+        "sha256": "27261afa8839f0ba997672fce3499d7ee496ea01276b07ae86aebe249ad361d8",
+        "local_file": "AI Datacenter Energy Dilemma - Race for AI Datacenter Space.pdf",
+        "locator": "第 32-33 页：「we estimate datacenter capex (for just the facilities and not including IT equipment like servers and networking) will grow from 49B in 2023 to 167B by 2026 – assuming all of the above constraints can be solved. Of this spend, the lion’s share will be on power systems (40-45%) … as well as cooling (30%)」（图源 SemiAnalysis, Schneider Electric）",
+        "grade": "S3",
+        "originator": "SemiAnalysis《AI Datacenter Energy Dilemma - Race for AI Datacenter Space》（Dylan Patel 等，2024-03-14）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「49B」按美元读作 490 亿美元，只含设施、不含服务器与网络。由加速器模型推算的年度需求，作者注明实际 capex 会更「成块」。"
+    },
+    {
+      "fact_id": "sa2403-global-dc-facility-capex-2026e",
+      "metric_id": "dc_facility_capex_annual",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "industry",
+        "id": "global-dc",
+        "label": "全球数据中心"
+      },
+      "value": 1670.0,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2026E@2024-03",
+      "caliber": {
+        "scope": "设施（不含 IT 设备）",
+        "owner_type": "全行业",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "27261afa8839f0ba997672fce3499d7ee496ea01276b07ae86aebe249ad361d8",
+        "local_file": "AI Datacenter Energy Dilemma - Race for AI Datacenter Space.pdf",
+        "locator": "第 32-33 页：「we estimate datacenter capex (for just the facilities and not including IT equipment like servers and networking) will grow from 49B in 2023 to 167B by 2026 – assuming all of the above constraints can be solved. Of this spend, the lion’s share will be on power systems (40-45%) … as well as cooling (30%)」（图源 SemiAnalysis, Schneider Electric）",
+        "grade": "S3",
+        "originator": "SemiAnalysis《AI Datacenter Energy Dilemma - Race for AI Datacenter Space》（Dylan Patel 等，2024-03-14）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "1,670 亿美元，前提是电网、变压器等约束都能解决。其中电力系统 40-45%、制冷 30%，构成比例无指标未录。"
+    },
+    {
+      "fact_id": "sa2403-industrial-power-price-us-2022",
+      "metric_id": "industrial_power_price",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "market",
+        "id": "industrial-power-us",
+        "label": "US 工业电价"
+      },
+      "value": 0.083,
+      "unit": "美元/kWh",
+      "bound": "point",
+      "as_of": "2022",
+      "caliber": {
+        "price_type": "工业平均",
+        "currency_basis": "原文即美元",
+        "region": "US",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "27261afa8839f0ba997672fce3499d7ee496ea01276b07ae86aebe249ad361d8",
+        "local_file": "AI Datacenter Energy Dilemma - Race for AI Datacenter Space.pdf",
+        "locator": "第 21-23 页「Electricity Tariffs, Power Mix, and Carbon Intensity」（图源 US EIA, Various National and Regional Electrical Distribution Organizations）：「the US has among the lowest power prices in the world at $0.083 USD/kWh on average」；第 23 页「resulting in average industrial electricity tariffs of $0.152 USD/kWh in 2022, 82% higher than the US at $0.083 USD/kWh」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《AI Datacenter Energy Dilemma - Race for AI Datacenter Space》（Dylan Patel 等，2024-03-14）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "第 47 页另写 2022 年美国工业平均 0.0832 美元/kWh。价格由 SemiAnalysis 汇编自 EIA 及各国电力机构，原始发布方不止一家。"
+    },
+    {
+      "fact_id": "sa2403-industrial-power-price-jp-2022",
+      "metric_id": "industrial_power_price",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "market",
+        "id": "industrial-power-jp",
+        "label": "JP 工业电价"
+      },
+      "value": 0.152,
+      "unit": "美元/kWh",
+      "bound": "point",
+      "as_of": "2022",
+      "caliber": {
+        "price_type": "工业平均",
+        "currency_basis": "原文即美元",
+        "region": "JP",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "27261afa8839f0ba997672fce3499d7ee496ea01276b07ae86aebe249ad361d8",
+        "local_file": "AI Datacenter Energy Dilemma - Race for AI Datacenter Space.pdf",
+        "locator": "第 21-23 页「Electricity Tariffs, Power Mix, and Carbon Intensity」（图源 US EIA, Various National and Regional Electrical Distribution Organizations）：「Japan’s power mix … resulting in average industrial electricity tariffs of $0.152 USD/kWh in 2022, 82% higher than the US at $0.083 USD/kWh」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《AI Datacenter Energy Dilemma - Race for AI Datacenter Space》（Dylan Patel 等，2024-03-14）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "日本进口燃料为主（天然气 35%、煤 34%）。价格由 SemiAnalysis 汇编自 EIA 及各国电力机构，原始发布方不止一家。"
+    },
+    {
+      "fact_id": "sa2403-industrial-power-price-eu-2022",
+      "metric_id": "industrial_power_price",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "market",
+        "id": "industrial-power-eu",
+        "label": "EU 工业电价"
+      },
+      "value": 0.18,
+      "unit": "美元/kWh",
+      "bound": "point",
+      "as_of": "2022",
+      "caliber": {
+        "price_type": "工业平均",
+        "currency_basis": "原文即美元",
+        "region": "EU",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "27261afa8839f0ba997672fce3499d7ee496ea01276b07ae86aebe249ad361d8",
+        "local_file": "AI Datacenter Energy Dilemma - Race for AI Datacenter Space.pdf",
+        "locator": "第 21-23 页「Electricity Tariffs, Power Mix, and Carbon Intensity」（图源 US EIA, Various National and Regional Electrical Distribution Organizations）第 27 页：「the EU average industrial tariff reached $0.18 USD/kWh in 2022, with the UK at $0.235 USD/kWh and datacenter heavyweight Ireland at $0.211 USD/kWh」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《AI Datacenter Energy Dilemma - Race for AI Datacenter Space》（Dylan Patel 等，2024-03-14）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "同句英国 0.235、爱尔兰 0.211 地域枚举无对应未录。价格由 SemiAnalysis 汇编自 EIA 及各国电力机构，原始发布方不止一家。"
     }
   ]
 }
