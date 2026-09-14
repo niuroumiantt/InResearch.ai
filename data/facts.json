@@ -118636,6 +118636,276 @@
         "originator": "重庆移动忠县分公司生产调度用房建设项目通信机房工艺对土建要求表（编制单位未署名）"
       },
       "notes": "「≥」按下界记。表注 1：「工艺净高是指梁下或风管下至地面的高度，为保障通信机房走线架的安装需求，该高度区域类不能有任何障碍物。梁下净高建议不低于3.8米」；表注 3 机房设备全按上走线。"
+    },
+    {
+      "fact_id": "ms-2025e-asic-shipments-google-tpu-v5-training-v5p",
+      "metric_id": "ai_asic_shipment_units",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "product",
+        "id": "google-tpu-v5-training-v5p",
+        "label": "Google TPU v5 training (v5p)"
+      },
+      "value": 0.25,
+      "unit": "百万颗",
+      "bound": "point",
+      "as_of": "2025E",
+      "caliber": {
+        "counting": "封装后芯片",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "8a95ad5c42bf319b9528bd511b14760e525007ed1460e6802464f4cc0dc58dfd",
+        "local_file": "AI芯片wafer和HBM comsumption.xlsx",
+        "locator": "工作表「AI computing wafer consumption」第 12 行：Google | TPU v5 training (v5p) | CoWoS capacity allocation 10 k wafers | Chips per CoWoS wafer 25 | Implied shipments 250 k（表注 Source：MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（表注 Source: MS；文件未署名整理者）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "250 k 颗 = 0.25 百万颗。**是由 CoWoS 产能分配 × 每片封装颗数推出的「隐含出货」**（10 k 片 × 25 颗/片 = 250 k，与原表一致），不是厂商披露。counting 按 CoWoS 封装后芯片记。**原始测算时点未写**，as_of 不带 @。"
+    },
+    {
+      "fact_id": "ms-2025e-asic-shipments-google-tpu-v6-inferencing-v6e",
+      "metric_id": "ai_asic_shipment_units",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "product",
+        "id": "google-tpu-v6-inferencing-v6e",
+        "label": "Google TPU v6 inferencing (v6e)"
+      },
+      "value": 1.8,
+      "unit": "百万颗",
+      "bound": "point",
+      "as_of": "2025E",
+      "caliber": {
+        "counting": "封装后芯片",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "8a95ad5c42bf319b9528bd511b14760e525007ed1460e6802464f4cc0dc58dfd",
+        "local_file": "AI芯片wafer和HBM comsumption.xlsx",
+        "locator": "工作表「AI computing wafer consumption」第 13 行：Google | TPU v6 inferencing (v6e) | CoWoS capacity allocation 60 k wafers | Chips per CoWoS wafer 30 | Implied shipments 1800 k（表注 Source：MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（表注 Source: MS；文件未署名整理者）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "1800 k 颗 = 1.8 百万颗。**是由 CoWoS 产能分配 × 每片封装颗数推出的「隐含出货」**（60 k 片 × 30 颗/片 = 1800 k，与原表一致），不是厂商披露。counting 按 CoWoS 封装后芯片记。**原始测算时点未写**，as_of 不带 @。"
+    },
+    {
+      "fact_id": "ms-2025e-asic-shipments-google-tpu-v6-training-v6p",
+      "metric_id": "ai_asic_shipment_units",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "product",
+        "id": "google-tpu-v6-training-v6p",
+        "label": "Google TPU v6 training (v6p)"
+      },
+      "value": 0.3,
+      "unit": "百万颗",
+      "bound": "point",
+      "as_of": "2025E",
+      "caliber": {
+        "counting": "封装后芯片",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "8a95ad5c42bf319b9528bd511b14760e525007ed1460e6802464f4cc0dc58dfd",
+        "local_file": "AI芯片wafer和HBM comsumption.xlsx",
+        "locator": "工作表「AI computing wafer consumption」第 14 行：Google | TPU v6 training (v6p) | CoWoS capacity allocation 15 k wafers | Chips per CoWoS wafer 20 | Implied shipments 300 k（表注 Source：MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（表注 Source: MS；文件未署名整理者）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "300 k 颗 = 0.3 百万颗。**是由 CoWoS 产能分配 × 每片封装颗数推出的「隐含出货」**（15 k 片 × 20 颗/片 = 300 k，与原表一致），不是厂商披露。counting 按 CoWoS 封装后芯片记。**原始测算时点未写**，as_of 不带 @。"
+    },
+    {
+      "fact_id": "ms-2025e-asic-shipments-aws-trainium-2",
+      "metric_id": "ai_asic_shipment_units",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "product",
+        "id": "aws-trainium-2",
+        "label": "AWS Trainium 2"
+      },
+      "value": 0.64,
+      "unit": "百万颗",
+      "bound": "point",
+      "as_of": "2025E",
+      "caliber": {
+        "counting": "封装后芯片",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "8a95ad5c42bf319b9528bd511b14760e525007ed1460e6802464f4cc0dc58dfd",
+        "local_file": "AI芯片wafer和HBM comsumption.xlsx",
+        "locator": "工作表「AI computing wafer consumption」第 15 行：AWS | Trainium 2 | CoWoS capacity allocation 40 k wafers | Chips per CoWoS wafer 16 | Implied shipments 640 k（表注 Source：MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（表注 Source: MS；文件未署名整理者）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "640 k 颗 = 0.64 百万颗。**是由 CoWoS 产能分配 × 每片封装颗数推出的「隐含出货」**（40 k 片 × 16 颗/片 = 640 k，与原表一致），不是厂商披露。counting 按 CoWoS 封装后芯片记。**原始测算时点未写**，as_of 不带 @。"
+    },
+    {
+      "fact_id": "ms-2025e-asic-shipments-aws-trainium-2-5",
+      "metric_id": "ai_asic_shipment_units",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "product",
+        "id": "aws-trainium-2-5",
+        "label": "AWS Trainium 2.5"
+      },
+      "value": 0.4,
+      "unit": "百万颗",
+      "bound": "point",
+      "as_of": "2025E",
+      "caliber": {
+        "counting": "封装后芯片",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "8a95ad5c42bf319b9528bd511b14760e525007ed1460e6802464f4cc0dc58dfd",
+        "local_file": "AI芯片wafer和HBM comsumption.xlsx",
+        "locator": "工作表「AI computing wafer consumption」第 16 行：AWS | Trainium 2.5 | CoWoS capacity allocation 25 k wafers | Chips per CoWoS wafer 16 | Implied shipments 400 k（表注 Source：MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（表注 Source: MS；文件未署名整理者）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "400 k 颗 = 0.4 百万颗。**是由 CoWoS 产能分配 × 每片封装颗数推出的「隐含出货」**（25 k 片 × 16 颗/片 = 400 k，与原表一致），不是厂商披露。counting 按 CoWoS 封装后芯片记。**原始测算时点未写**，as_of 不带 @。"
+    },
+    {
+      "fact_id": "ms-2025e-asic-shipments-aws-trainium-3",
+      "metric_id": "ai_asic_shipment_units",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "product",
+        "id": "aws-trainium-3",
+        "label": "AWS Trainium 3"
+      },
+      "value": 0.085,
+      "unit": "百万颗",
+      "bound": "point",
+      "as_of": "2025E",
+      "caliber": {
+        "counting": "封装后芯片",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "8a95ad5c42bf319b9528bd511b14760e525007ed1460e6802464f4cc0dc58dfd",
+        "local_file": "AI芯片wafer和HBM comsumption.xlsx",
+        "locator": "工作表「AI computing wafer consumption」第 17 行：AWS | Trainium 3 | CoWoS capacity allocation 5 k wafers | Chips per CoWoS wafer 17 | Implied shipments 85 k（表注 Source：MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（表注 Source: MS；文件未署名整理者）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "85 k 颗 = 0.085 百万颗。**是由 CoWoS 产能分配 × 每片封装颗数推出的「隐含出货」**（5 k 片 × 17 颗/片 = 85 k，与原表一致），不是厂商披露。counting 按 CoWoS 封装后芯片记。**原始测算时点未写**，as_of 不带 @。"
+    },
+    {
+      "fact_id": "ms-2025e-asic-shipments-tesla-dojo-1",
+      "metric_id": "ai_asic_shipment_units",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "product",
+        "id": "tesla-dojo-1",
+        "label": "Tesla Dojo 1"
+      },
+      "value": 0.2,
+      "unit": "百万颗",
+      "bound": "point",
+      "as_of": "2025E",
+      "caliber": {
+        "counting": "封装后芯片",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "8a95ad5c42bf319b9528bd511b14760e525007ed1460e6802464f4cc0dc58dfd",
+        "local_file": "AI芯片wafer和HBM comsumption.xlsx",
+        "locator": "工作表「AI computing wafer consumption」第 18 行：Tesla | Dojo 1 | CoWoS capacity allocation NA k wafers | Chips per CoWoS wafer NA | Implied shipments 200 k（表注 Source：MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（表注 Source: MS；文件未署名整理者）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "200 k 颗 = 0.2 百万颗。**是由 CoWoS 产能分配 × 每片封装颗数推出的「隐含出货」**，不是厂商披露。counting 按 CoWoS 封装后芯片记。**原始测算时点未写**，as_of 不带 @。 Dojo 1 的 CoWoS 分配与每片颗数为 NA，200k 为直接给出。"
+    },
+    {
+      "fact_id": "ms-2025e-asic-shipments-microsoft-maia-200",
+      "metric_id": "ai_asic_shipment_units",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "product",
+        "id": "microsoft-maia-200",
+        "label": "Microsoft Maia 200"
+      },
+      "value": 0.058,
+      "unit": "百万颗",
+      "bound": "point",
+      "as_of": "2025E",
+      "caliber": {
+        "counting": "封装后芯片",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "8a95ad5c42bf319b9528bd511b14760e525007ed1460e6802464f4cc0dc58dfd",
+        "local_file": "AI芯片wafer和HBM comsumption.xlsx",
+        "locator": "工作表「AI computing wafer consumption」第 20 行：Microsoft | Maia 200 | CoWoS capacity allocation 2 k wafers | Chips per CoWoS wafer 29 | Implied shipments 58 k（表注 Source：MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（表注 Source: MS；文件未署名整理者）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "58 k 颗 = 0.058 百万颗。**是由 CoWoS 产能分配 × 每片封装颗数推出的「隐含出货」**（2 k 片 × 29 颗/片 = 58 k，与原表一致），不是厂商披露。counting 按 CoWoS 封装后芯片记。**原始测算时点未写**，as_of 不带 @。"
+    },
+    {
+      "fact_id": "ms-2025e-asic-shipments-microsoft-maia-200-enhancement",
+      "metric_id": "ai_asic_shipment_units",
+      "asserter": "摩根士丹利",
+      "entity": {
+        "type": "product",
+        "id": "microsoft-maia-200-enhancement",
+        "label": "Microsoft Maia 200 Enhancement"
+      },
+      "value": 0.029,
+      "unit": "百万颗",
+      "bound": "point",
+      "as_of": "2025E",
+      "caliber": {
+        "counting": "封装后芯片",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "8a95ad5c42bf319b9528bd511b14760e525007ed1460e6802464f4cc0dc58dfd",
+        "local_file": "AI芯片wafer和HBM comsumption.xlsx",
+        "locator": "工作表「AI computing wafer consumption」第 21 行：Microsoft | Maia 200 Enhancement | CoWoS capacity allocation 1 k wafers | Chips per CoWoS wafer 29 | Implied shipments 29 k（表注 Source：MS）",
+        "grade": "S3",
+        "originator": "摩根士丹利（表注 Source: MS；文件未署名整理者）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "29 k 颗 = 0.029 百万颗。**是由 CoWoS 产能分配 × 每片封装颗数推出的「隐含出货」**（1 k 片 × 29 颗/片 = 29 k，与原表一致），不是厂商披露。counting 按 CoWoS 封装后芯片记。**原始测算时点未写**，as_of 不带 @。"
     }
   ]
 }
