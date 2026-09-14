@@ -82088,6 +82088,198 @@
         "originator": "南安市供电公司备用调度指挥数据中心招标控制价附表 13（造价咨询人未署名）"
       },
       "notes": "原文品名「预拌泵送普通混凝土 泵送100m以下 C40(42.5) 碎石31.5mm 塌落度160-200mm」。本行基期综合信息价格与基准单价相同（不含税 409.71 / 含税 422）。**同表 C30、C35、C20、C45 各有泵送/非泵送/抗渗多个品种，单价不同，grade 维装不下，已记缺口未录**；本条是该强度等级在表中唯一一个品种。"
+    },
+    {
+      "asserter": "戴尔",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "as_of": "2025-10",
+      "fact_id": "dell-ir7000-rack-480kw",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "dell-ir7000",
+        "label": "Dell Integrated Rack 7000（ORv3 44OU/50OU）"
+      },
+      "value": 480.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "架构上限",
+        "era": "未注明",
+        "power_basis": "架构宣称",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "c2f694f154fe70fef06ab3df110a9c578f9e6975d5750adc699818459f5e50e8",
+        "local_file": "OCP2025_DAY TWO TUESDAY - 4.Dell.pdf",
+        "locator": "第 6 页「High flow rates to enable 480kW per rack」；第 9 页 Dell Integrated Rack 7000「Future-ready design: Support 480kW per rack」",
+        "grade": "S2",
+        "originator": "戴尔（Ihab Tarazi，OCP Global Summit 2025「Scaling Data Center Infrastructure」）"
+      },
+      "notes": "机柜基础设施（盲插歧管 UQDB06、高载流母线）的**支持上限**，不是某一配置的实际功率；第 9 页把它放在「Future-ready design」下，时点未注明。同一胶片第 6 页另写「Enabling 10 kW per OU」（按 OU 计，未录）。"
+    },
+    {
+      "asserter": "戴尔",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "as_of": "2025-10",
+      "fact_id": "dell-ocp2025-nvl4-gpu-per-rack",
+      "metric_id": "rack_component_count",
+      "entity": {
+        "type": "product",
+        "id": "dell-ir7000-nvl4",
+        "label": "Dell IR7000 · NVIDIA NVL4（2 Grace CPU + 4 B200 GPU）"
+      },
+      "value": 144.0,
+      "unit": "个",
+      "caliber": {
+        "product": "Dell IR7000 · NVIDIA NVL4（2 Grace CPU + 4 B200 GPU）",
+        "component": "GPU",
+        "denominator": "每机架",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "c2f694f154fe70fef06ab3df110a9c578f9e6975d5750adc699818459f5e50e8",
+        "local_file": "OCP2025_DAY TWO TUESDAY - 4.Dell.pdf",
+        "locator": "第 10 页「OCP Advanced Dense Compute/HPC Platforms」：Nvidia NVL4 2 Grace CPU + 4 B200 GPUs；页底「480kW Rack / 27k cores per rack / 144 GB200 GPUs」",
+        "grade": "S2",
+        "originator": "戴尔（Ihab Tarazi，OCP Global Summit 2025「Scaling Data Center Infrastructure」）"
+      },
+      "notes": "**原文同页前写「4 B200 GPUs」、页底写「144 GB200 GPUs」，型号写法不一致，照录不改。**页底三个数「480kW Rack、27k cores per rack、144 GB200 GPUs」分属同页 AMD EPYC 密集计算与 NVL4 两种配置，144 GPU 对应 NVL4。"
+    },
+    {
+      "asserter": "戴尔",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "as_of": "2025-10",
+      "fact_id": "dell-ocp2025-mi355x-gpu-per-rack",
+      "metric_id": "rack_component_count",
+      "entity": {
+        "type": "product",
+        "id": "dell-ir7000-mi355x",
+        "label": "Dell IR7000 · AMD Mi355x 8-way（2 AMD Turin CPU + 8 Mi355x GPU，3OU）"
+      },
+      "value": 96.0,
+      "unit": "个",
+      "caliber": {
+        "product": "Dell IR7000 · AMD Mi355x 8-way（2 AMD Turin CPU + 8 Mi355x GPU，3OU）",
+        "component": "GPU",
+        "denominator": "每机架",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "c2f694f154fe70fef06ab3df110a9c578f9e6975d5750adc699818459f5e50e8",
+        "local_file": "OCP2025_DAY TWO TUESDAY - 4.Dell.pdf",
+        "locator": "第 11 页「OCP Advanced AI Platforms」左栏：3OU server, 12 nodes per rack；页底「12 per rack / 96 Mi355x GPUs / 480kW Rack」",
+        "grade": "S2",
+        "originator": "戴尔（Ihab Tarazi，OCP Global Summit 2025「Scaling Data Center Infrastructure」）"
+      },
+      "notes": "12 台 × 8 GPU = 96，与原文一致。"
+    },
+    {
+      "asserter": "戴尔",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "as_of": "2025-10",
+      "fact_id": "dell-ocp2025-mi355x-node-per-rack",
+      "metric_id": "rack_component_count",
+      "entity": {
+        "type": "product",
+        "id": "dell-ir7000-mi355x",
+        "label": "Dell IR7000 · AMD Mi355x 8-way（2 AMD Turin CPU + 8 Mi355x GPU，3OU）"
+      },
+      "value": 12.0,
+      "unit": "个",
+      "caliber": {
+        "product": "Dell IR7000 · AMD Mi355x 8-way（2 AMD Turin CPU + 8 Mi355x GPU，3OU）",
+        "component": "计算托盘",
+        "denominator": "每机架",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "c2f694f154fe70fef06ab3df110a9c578f9e6975d5750adc699818459f5e50e8",
+        "local_file": "OCP2025_DAY TWO TUESDAY - 4.Dell.pdf",
+        "locator": "第 11 页「OCP Advanced AI Platforms」左栏：「3OU server, 12 nodes per rack」",
+        "grade": "S2",
+        "originator": "戴尔（Ihab Tarazi，OCP Global Summit 2025「Scaling Data Center Infrastructure」）"
+      },
+      "notes": "原文为 12 台 3OU 服务器节点，按计算托盘记。"
+    },
+    {
+      "asserter": "戴尔",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "as_of": "2025-10",
+      "fact_id": "dell-ocp2025-b300-gpu-per-rack",
+      "metric_id": "rack_component_count",
+      "entity": {
+        "type": "product",
+        "id": "dell-ir7000-b300",
+        "label": "Dell IR7000 · NVIDIA HGX-B300（2 AMD Turin 或 2 Intel GNR CPU + 8 B300 GPU，3OU）"
+      },
+      "value": 96.0,
+      "unit": "个",
+      "caliber": {
+        "product": "Dell IR7000 · NVIDIA HGX-B300（2 AMD Turin 或 2 Intel GNR CPU + 8 B300 GPU，3OU）",
+        "component": "GPU",
+        "denominator": "每机架",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "c2f694f154fe70fef06ab3df110a9c578f9e6975d5750adc699818459f5e50e8",
+        "local_file": "OCP2025_DAY TWO TUESDAY - 4.Dell.pdf",
+        "locator": "第 11 页「OCP Advanced AI Platforms」右栏：3OU server, 12 nodes per rack；页底「12 per rack / 96 B300 GPUs」",
+        "grade": "S2",
+        "originator": "戴尔（Ihab Tarazi，OCP Global Summit 2025「Scaling Data Center Infrastructure」）"
+      },
+      "notes": "12 台 × 8 GPU = 96，与原文一致。"
+    },
+    {
+      "asserter": "戴尔",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "as_of": "2025-10",
+      "fact_id": "dell-ocp2025-b300-node-per-rack",
+      "metric_id": "rack_component_count",
+      "entity": {
+        "type": "product",
+        "id": "dell-ir7000-b300",
+        "label": "Dell IR7000 · NVIDIA HGX-B300（2 AMD Turin 或 2 Intel GNR CPU + 8 B300 GPU，3OU）"
+      },
+      "value": 12.0,
+      "unit": "个",
+      "caliber": {
+        "product": "Dell IR7000 · NVIDIA HGX-B300（2 AMD Turin 或 2 Intel GNR CPU + 8 B300 GPU，3OU）",
+        "component": "计算托盘",
+        "denominator": "每机架",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "evidence": {
+        "sha256": "c2f694f154fe70fef06ab3df110a9c578f9e6975d5750adc699818459f5e50e8",
+        "local_file": "OCP2025_DAY TWO TUESDAY - 4.Dell.pdf",
+        "locator": "第 11 页「OCP Advanced AI Platforms」右栏：「3OU server, 12 nodes per rack」",
+        "grade": "S2",
+        "originator": "戴尔（Ihab Tarazi，OCP Global Summit 2025「Scaling Data Center Infrastructure」）"
+      },
+      "notes": "原文为 12 台 3OU 服务器节点，按计算托盘记。"
     }
   ]
 }
