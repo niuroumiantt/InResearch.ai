@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：752。
+在册文件：761。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,7 +15,7 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 12 |
-| 历史快照 | 223 |
+| 历史快照 | 232 |
 | 运行代码 | 142 |
 | 现行规范 | 13 |
 | 项目配置 | 36 |
@@ -261,6 +261,12 @@
 | `docs/reviews/2026-09-13/standards/integrated-consumers-after.csv` | rows | 114 |
 | `docs/reviews/2026-09-13/standards/integrated-dependencies.json` | cycles | 0 |
 | `docs/reviews/2026-09-13/standards/integrated-file-changes.csv` | rows | 53 |
+| `docs/reviews/2026-09-14/cli-root/baseline.json` | temporary_root_files | 0 |
+| `docs/reviews/2026-09-14/cli-root/consumers-before.csv` | rows | 214 |
+| `docs/reviews/2026-09-14/cli-root/dispatch.csv` | rows | 44 |
+| `docs/reviews/2026-09-14/cli-root/file-plan.csv` | rows | 759 |
+| `docs/reviews/2026-09-14/cli-root/legacy-removal.csv` | rows | 6 |
+| `docs/reviews/2026-09-14/cli-root/scope.json` | changed | 10 |
 | `docs/reviews/2026-09-14/model-assets/baseline.json` | rejected_sample_requests | 1 |
 | `docs/reviews/2026-09-14/model-assets/consumers-before.csv` | rows | 77 |
 | `docs/reviews/2026-09-14/model-assets/file-plan.csv` | rows | 722 |
@@ -737,6 +743,15 @@
 | `docs/reviews/2026-09-13/standards/statistics.json` | 历史快照 |
 | `docs/reviews/2026-09-13/standards/verification.json` | 历史快照 |
 | [docs/reviews/2026-09-13/verification-map-repair.md](reviews/2026-09-13/verification-map-repair.md) | 历史快照 |
+| [docs/reviews/2026-09-14/cli-root/PLAN.md](reviews/2026-09-14/cli-root/PLAN.md) | 历史快照 |
+| `docs/reviews/2026-09-14/cli-root/audit.py` | 历史快照 |
+| `docs/reviews/2026-09-14/cli-root/baseline.json` | 历史快照 |
+| [docs/reviews/2026-09-14/cli-root/consumers-before.csv](reviews/2026-09-14/cli-root/consumers-before.csv) | 历史快照 |
+| [docs/reviews/2026-09-14/cli-root/dispatch.csv](reviews/2026-09-14/cli-root/dispatch.csv) | 历史快照 |
+| [docs/reviews/2026-09-14/cli-root/file-plan.csv](reviews/2026-09-14/cli-root/file-plan.csv) | 历史快照 |
+| [docs/reviews/2026-09-14/cli-root/legacy-removal.csv](reviews/2026-09-14/cli-root/legacy-removal.csv) | 历史快照 |
+| `docs/reviews/2026-09-14/cli-root/scope.json` | 历史快照 |
+| `docs/reviews/2026-09-14/cli-root/statistics-before.json` | 历史快照 |
 | [docs/reviews/2026-09-14/model-assets/DELIVERY.md](reviews/2026-09-14/model-assets/DELIVERY.md) | 历史快照 |
 | [docs/reviews/2026-09-14/model-assets/INTEGRATION.md](reviews/2026-09-14/model-assets/INTEGRATION.md) | 历史快照 |
 | [docs/reviews/2026-09-14/model-assets/PLAN.md](reviews/2026-09-14/model-assets/PLAN.md) | 历史快照 |
