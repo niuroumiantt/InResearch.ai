@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.14.3",
+  "version": "2026.09.14.4",
   "reviewed_at": "2026-09-14",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -23,8 +23,8 @@
     "framework/06_acquisition.md": "d05a9da1c558d5882443ded1b2508e72c8a8c35eb486b9bc1cd2644305149270",
     "framework/07_product_ecosystems.md": "a6239c5cb221120394ec706cf3ded786dd6b1cf34cc526b167dc157d50bd3fce",
     "framework/08_model_execution.md": "6c1be72c11c0948ae349cba63bf6704e1c6cb5544eb2a0c5605386d65b2a7be9",
-    "framework/09_software_contracts.md": "8443393230b9fa93a0d2c442e5bb51cca8a1d12bac507d0ce9de22d4cc9b7c78",
-    "framework/CURRENT.md": "7735dfd8604caa32f03c877275ed8c7b3273fdecb41068c9c3795cf798d8ea1d",
+    "framework/09_software_contracts.md": "4ed8255355105cb608c50c47d0be8e581c1c12583060794ac982cc9831c1709b",
+    "framework/CURRENT.md": "d2c1d43c0dd82a168dfe8df9959aa6bba1b46f1288870c3a8e2b2b033879ce8c",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "tests/auth_appearance.cjs": "40f4e5feb30d2cec89bcf7cb90b89e780862a30580a4708e7dcb4dee1b9b8142",
     "tests/hardware_ecosystems.cjs": "4317d7b56ae541c1537d4a22ac6538d8faa96a66b545cfc5f1c146c86c84e80d",
@@ -38,7 +38,7 @@
     "tests/unit/test_acquisition.py": "9df70bf9f5f2453e45a9f5af50baf9d4bc8cccae0afe3a76555b00c6b5099110",
     "tests/unit/test_catalog_bridge.py": "47ed253f19bd29eeff4221e07215084526b1b7fae85e58b4aab051d4b6ac8405",
     "tests/unit/test_catalog_migration.py": "463ffb034bd7d1f5b2cd2f8c221e07734ac287dd0df95a7fda127a2f2d69de48",
-    "tests/unit/test_commands.py": "03265020c3aba7de0dfe056467ef678193c0e139859c917666c0ed216095b6d4",
+    "tests/unit/test_commands.py": "a785eadad958d34ba7b6640a281e5510379c7b9474f5068d3fe65e5780dbd431",
     "tests/unit/test_continuous_reader.py": "6c36c298912077a7ab480e43f4a54fbfbb08978624c6e6efb3ac9f47657f4238",
     "tests/unit/test_deep_read.py": "4241011f14d476378eb05ce7c4e8b5892170644d78703614e3ec89540368d05e",
     "tests/unit/test_deep_read_transactions.py": "e44abfc65c4550106aa009041a92271a8e5d3c880bd56b680147baaefe633317",
@@ -62,7 +62,7 @@
     "tests/unit/test_verification_contract.py": "2c1c2611dd2fb1973acf336e4b297f37ad7b06f4d5147574d99f3324fcc69232",
     "tests/url_rendering.cjs": "b463695816e72417012ef814ebbb4d382f256e61f46017fe54c9167abfdb953d",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
-    "docs/local_setup/README.md": "6d8bfab5e0cfed2bc8dc098fa1308e63e9106407e3d3feb2409de06cc9352752",
+    "docs/local_setup/README.md": "c3cae64b4144a04acd93eb91f40fb7e7f4cb756434fa3af1ea2d098bef3ce31d",
     "tests/unit/test_storage_layout.py": "6a1e204df0028c1fe3cd3c824022d0f7caa173083545a7933b8eec9b286fbd8c",
     "tests/container_storage.py": "a8574a75275460d2a50c0eab7f524857eccd8a32cf2f9e8bb01009ec12dd5ba0",
     "tests/datacenter_news.cjs": "7eb0a2b32d4e1f02ba91c485b63bd60524d5b1164658c3ac9b3ceec7e1d6faa5",
@@ -343,7 +343,7 @@
       "policy": "software-contracts-20260913",
       "scope": "project",
       "source": "framework/09_software_contracts.md",
-      "checked_requirement": "统一写入、跨进程并发、提交前失败与提交后不确定、重放去重; catalog revision authority, atomic activation and consistent export snapshot；L2 用例/CLI 分离、缺口主提交及回执重放、来源计划替换；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界; published/runtime authority, initialization recovery and concurrent writers, immutable source, HTTP/CLI, release rollback；视觉资产独占创建和登记主提交，中断重放、跨进程并发、同名不覆盖与采用决定保留；实际视口/可见几何/透视 fit、旋转重开和 resize/失败/替换后的镜头所有权",
+      "checked_requirement": "统一写入、跨进程并发、提交前失败与提交后不确定、重放去重; catalog revision authority, atomic activation and consistent export snapshot；L2 用例/CLI 分离、缺口主提交及回执重放、来源计划替换；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界; published/runtime authority, initialization recovery and concurrent writers, immutable source, HTTP/CLI, release rollback；视觉资产独占创建和登记主提交，中断重放、跨进程并发、同名不覆盖与采用决定保留；实际视口/可见几何/透视 fit、旋转重开和 resize/失败/替换后的镜头所有权；CLI 全局/子接口目录所有权，失败前拒绝、顺序委派参数恢复及真实派工/候选版本重放",
       "tests": [
         "tests/unit/test_commands.py::CommandFlows.test_independent_processes_do_not_lose_records",
         "tests/unit/test_commands.py::CommandFlows.test_exception_and_failed_replace_keep_old_bytes",
@@ -387,12 +387,17 @@
         "tests/unit/test_model_assets.py::ModelAssetTests.test_failed_manifest_commit_keeps_complete_file_and_replay_registers_once",
         "tests/unit/test_model_assets.py::ModelAssetTests.test_uncertain_manifest_commit_is_visible_and_retry_preserves_decision",
         "tests/unit/test_model_assets.py::ModelAssetTests.test_exclusive_file_publication_is_atomic_and_never_overwrites",
-        "tests/scene_framing.cjs"
+        "tests/scene_framing.cjs",
+        "tests/unit/test_commands.py::CommandDispatch.test_global_root_is_rejected_before_import_for_every_delegated_command",
+        "tests/unit/test_commands.py::CommandDispatch.test_child_arguments_are_forwarded_and_argv_restored_after_success_and_failure",
+        "tests/unit/test_commands.py::CommandDispatch.test_default_invocation_does_not_reuse_a_previous_child_command",
+        "tests/unit/test_commands.py::CommandFlows.test_common_root_keeps_assignment_and_snapshot_versions_in_selected_workspace"
       ],
       "not_verified": [
         "L2 已拆开参数/用例/准入/相似度/缺口/来源职责；两个 3D 场景仍需收敛。并非其他所有多文件流程均已逐阶段验收。",
         "来源计划验证是身份解析与提交保护，不证明 38 条历史缺口已经补齐；M4/Spark 实机资料连接与历史完整结果导入未验；本机 shared catalog 不代表跨机器同步已完成。",
-        "Runtime layout 1 has no generic mapping migration tool: incompatible layouts must be restored or explicitly migrated. Historical volume copies are retained but no longer current consumers; private data is outside Git inventory."
+        "Runtime layout 1 has no generic mapping migration tool: incompatible layouts must be restored or explicitly migrated. Historical volume copies are retained but no longer current consumers; private data is outside Git inventory.",
+        "CLI 恢复进程参数只保证顺序调用，不支持线程同时委派；各子命令历史目录策略仍分别保留，不代表全命令数据权威已收敛。"
       ]
     }
   ]

@@ -22,7 +22,9 @@ def references(files):
         for n,line in enumerate(lines,1):
             if any(term in line for term in ('manage.py','interfaces.cli','interfaces import cli','-m inresearch')):
                 kind='launch/command reference' if 'manage.py' in line or '-m inresearch' in line else 'direct import'
-                rows.append([p,n,kind,line.strip()[:900],'retained invocation; local options belong after command'])
+                result = 'updated parameter contract or regression' if p in SCOPE['changed'] else 'unchanged invocation/reference; child-local options preserved'
+                if p == 'src/inresearch/interfaces/cli.py': result = 'entrypoint implementation owner; scope and argv restoration updated'
+                rows.append([p,n,kind,line.strip()[:900],result])
             elif p in ('tests/unit/test_commands.py','tests/unit/test_m4_triage.py') and 'cli.main(' in line:
                 rows.append([p,n,'direct call',line.strip()[:900],'common root or child-local root preserved; explicit unsupported global root rejected'])
     return rows

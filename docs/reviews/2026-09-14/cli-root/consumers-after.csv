@@ -1,0 +1,228 @@
+path,line,kind,reference,migration_result
+.claude/launch.json,8,launch/command reference,"""manage.py"",",unchanged invocation/reference; child-local options preserved
+.github/workflows/validate.yml,14,launch/command reference,run: python3 manage.py governance --check,unchanged invocation/reference; child-local options preserved
+.github/workflows/validate.yml,16,launch/command reference,run: python3 manage.py validate --strict,unchanged invocation/reference; child-local options preserved
+.github/workflows/validate.yml,18,launch/command reference,run: python3 manage.py asset-check,unchanged invocation/reference; child-local options preserved
+.github/workflows/validate.yml,20,launch/command reference,run: python3 manage.py verify,unchanged invocation/reference; child-local options preserved
+.github/workflows/validate.yml,22,launch/command reference,run: python3 manage.py indicators,unchanged invocation/reference; child-local options preserved
+.github/workflows/validate.yml,25,launch/command reference,python3 manage.py registry,unchanged invocation/reference; child-local options preserved
+AGENTS.md,14,launch/command reference,4. 规范、在册操作指南或验收测试改变时，先审阅并更新 `framework/verification_contract.json` 的要求、实际测试、摘要与未覆盖项；不能自动重算摘要代替审阅。修改后运行 `python3 manage.py governance --refresh` 更新全部在册路径、内容摘要和记录集合清单；运行 `python3 manage.py governance --check`、严格数据校验及与改动相关的测试。提交中同时包含实现、规范、替代记录和清单，不能只改单侧。,unchanged invocation/reference; child-local options preserved
+AGENTS.md,21,launch/command reference,核心运行使用 Python 标准库；文档构建环境独立。3D 资产按已有许可/来源规则登记。数据修改须通过 `python3 manage.py validate --strict`；对象/证据修改须通过 `python3 manage.py registry`。需要的测试运行后据结果修正，不能将历史快照或生成文件存在当作上线成功。,unchanged invocation/reference; child-local options preserved
+README.md,27,launch/command reference,python3 manage.py models --probe,unchanged invocation/reference; child-local options preserved
+README.md,28,launch/command reference,python3 manage.py serve,unchanged invocation/reference; child-local options preserved
+README.md,58,launch/command reference,python3 manage.py governance --refresh,unchanged invocation/reference; child-local options preserved
+README.md,59,launch/command reference,python3 manage.py governance --check,unchanged invocation/reference; child-local options preserved
+README.md,60,launch/command reference,python3 manage.py validate --strict,unchanged invocation/reference; child-local options preserved
+README.md,61,launch/command reference,python3 manage.py registry,unchanged invocation/reference; child-local options preserved
+data/schema/submission.schema.json,28,launch/command reference,"""description"": ""当前任务集合中的 wid，来自 manage.py workorders 或研究任务界面。留空为自主发现；中分候选等待匹配，不自动降分。""",unchanged invocation/reference; child-local options preserved
+deploy/Dockerfile,22,launch/command reference,"CMD [""python3"", ""manage.py"", ""serve"", ""8000""]",unchanged invocation/reference; child-local options preserved
+deploy/README.md,60,launch/command reference,sudo docker exec inresearch-host-inresearch-1 python3 manage.py users add admin            # 首个用户自动 admin,unchanged invocation/reference; child-local options preserved
+deploy/README.md,61,launch/command reference,sudo docker exec inresearch-host-inresearch-1 python3 manage.py users add intern-zhang     # 之后默认 intern,unchanged invocation/reference; child-local options preserved
+deploy/README.md,62,launch/command reference,sudo docker exec inresearch-host-inresearch-1 python3 manage.py users add lao --role member,unchanged invocation/reference; child-local options preserved
+deploy/README.md,63,launch/command reference,sudo docker exec inresearch-host-inresearch-1 python3 manage.py users role <用户名> <角色>  # 改角色（最后一个 admin 不可降级）,unchanged invocation/reference; child-local options preserved
+deploy/README.md,64,launch/command reference,sudo docker exec inresearch-host-inresearch-1 python3 manage.py users list,unchanged invocation/reference; child-local options preserved
+deploy/README.md,65,launch/command reference,sudo docker exec inresearch-host-inresearch-1 python3 manage.py users passwd <用户名>,unchanged invocation/reference; child-local options preserved
+deploy/README.md,66,launch/command reference,sudo docker exec inresearch-host-inresearch-1 python3 manage.py users remove <用户名>       # 立即踢掉其会话,unchanged invocation/reference; child-local options preserved
+deploy/README.md,118,launch/command reference,docker compose -f deploy/docker-compose.yml exec hub python3 manage.py validate --strict,unchanged invocation/reference; child-local options preserved
+deploy/spark-reader/inresearch-material-intake.service,6,launch/command reference,ExecStart=/usr/bin/python3 %h/code/inresearch.ai/manage.py receive,unchanged invocation/reference; child-local options preserved
+deploy/spark-reader/inresearch-news.service,10,launch/command reference,ExecStart=/usr/bin/python3 %h/code/inresearch.ai/manage.py news-sync,unchanged invocation/reference; child-local options preserved
+deploy/spark-reader/inresearch-reader-publish.service,11,launch/command reference,ExecStart=/usr/bin/python3 %h/code/inresearch.ai/manage.py publish,unchanged invocation/reference; child-local options preserved
+deploy/spark-reader/inresearch-reader.service,14,launch/command reference,ExecStart=/usr/bin/python3 %h/code/inresearch.ai/manage.py reader run,unchanged invocation/reference; child-local options preserved
+deploy/spark-reader/install.sh,8,launch/command reference,"if [[ ! -f ""$reader_repo/manage.py"" ]]; then",unchanged invocation/reference; child-local options preserved
+deploy/spark-reader/install.sh,20,launch/command reference,"python3 ""$reader_repo/manage.py"" reader init",unchanged invocation/reference; child-local options preserved
+docs/DECISIONS.md,299,launch/command reference,全库 claim_key 无撞键。这一扫做成常设提示（`manage.py facts --asserters` 末尾），,updated parameter contract or regression
+docs/LIBRARY_INDEX.md,5,launch/command reference,> 重建须在**本机**执行（库本体不进 git）：`python3 manage.py library-index`，,unchanged invocation/reference; child-local options preserved
+docs/LIBRARY_INDEX.md,631,launch/command reference,共 17843 份 / 88.6GB ｜ 生成 2026-08-15 ｜ 重建：python3 manage.py library-index,unchanged invocation/reference; child-local options preserved
+docs/M4_TRIAGE_TASK.md,93,launch/command reference,python3 manage.py inventory inventory --workers 8,unchanged invocation/reference; child-local options preserved
+docs/M4_TRIAGE_TASK.md,94,launch/command reference,python3 manage.py inventory summary,unchanged invocation/reference; child-local options preserved
+docs/M4_TRIAGE_TASK.md,101,launch/command reference,旧 `rel/size` 格式在统一读取边界兼容；继续清点前执行 `migrate-inventory`，完整备份后原子转换，不混写格式。旧 `m4_inventory.py` 独立入口已删除，清点统一用 `python3 manage.py inventory`。summary、分类、L2 深读队列、移动、导出与进度共同使用归一后的集合；一次失败不覆盖已有成功判定，尚无成功结果的文件仍算待处理。L2 通过 `inresearch.materials.records.current_results` 读取有效判定，不能另外按日志末行决定是否可深读。,unchanged invocation/reference; child-local options preserved
+docs/M4_TRIAGE_TASK.md,107,launch/command reference,"`python3 manage.py mapping export` 原子写入 `mapping.jsonl`。首行登记版本、生成时间、源/目标根、数据集与文件数；之后每个物理文件一行 `sha256, from, to, size, stage`，正式保留副本携带当前判定、模型/执行者及来源信息。内容相同的额外副本仍各占一行，避免只按 SHA 合并时漏掉路径。以移动日志回放结果导出，不依赖已移动路径继续出现在最新清单。",unchanged invocation/reference; child-local options preserved
+docs/M4_TRIAGE_TASK.md,160,launch/command reference,`python3 manage.py deep-read --reader-data-root /实际reader数据根 current --sha 完整SHA` 与 `reader --data-root 同一根 current --sha 完整SHA` 返回同一当前全文报告；亦可共用 READER_DATA_ROOT。未指定时均为 ~/.local/share/inresearch.ai，不能把 M4 的 dataset 子目录误当成已存在的 reader 库。查询不调用模型、改写库或移动原件。,unchanged invocation/reference; child-local options preserved
+docs/REPOSITORY_REGISTER.md,3,launch/command reference,> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.14.4。,updated parameter contract or regression
+docs/REPOSITORY_REGISTER.md,845,launch/command reference,| `manage.py` | 运行代码 |,updated parameter contract or regression
+docs/inbox/facts_candidates/README.md,7,launch/command reference,`python3 manage.py deep-read record` 是受校验的录入入口；`python3 manage.py facts` 只审计既有事实，不负责自动映射或写入。Claude CLI、Spark 与其他终端调用同一录入契约。,unchanged invocation/reference; child-local options preserved
+docs/inbox/submissions/README.md,7,launch/command reference,运行 `python3 manage.py submissions [投递目录]`：验证字段类型、M01–M15、年份整数、自评分 1–9、来源等级及不少于 200 字的摘要。自评 ≥5 须附 key_numbers 或 key_statements；每个数字需单位和原文定位，每个非数字陈述需类型、原文引文与定位。没有数字不构成拒收理由。,unchanged invocation/reference; child-local options preserved
+docs/local_reader/ACQUISITION_OPERATIONS.md,8,launch/command reference,python3 manage.py acquisition status,unchanged invocation/reference; child-local options preserved
+docs/local_reader/ACQUISITION_OPERATIONS.md,9,launch/command reference,python3 manage.py acquisition news --input /明确路径/inews-research-export.json,unchanged invocation/reference; child-local options preserved
+docs/local_reader/ACQUISITION_OPERATIONS.md,10,launch/command reference,python3 manage.py acquisition sec --company nvidia --limit 1,unchanged invocation/reference; child-local options preserved
+docs/local_reader/ACQUISITION_OPERATIONS.md,11,launch/command reference,python3 manage.py acquisition gpu --gpu 'H100 SXM',unchanged invocation/reference; child-local options preserved
+docs/local_reader/ACQUISITION_OPERATIONS.md,16,launch/command reference,inews 导出：在能只读访问正式新闻数据库的运维环境运行 `python3 manage.py acquisition export-news --db /实际新闻数据库路径 --days 7 --limit 2000`，将标准输出保存为私有 JSON 后传入 Spark。只投影文章字段，不打包含账号/会话的数据库。Node-only 容器可运行本仓库 `scripts/export_inews_research.cjs`，使用容器已有数据库路径配置。,unchanged invocation/reference; child-local options preserved
+docs/local_reader/ACQUISITION_OPERATIONS.md,22,launch/command reference,`acquisition/catalog.sqlite` 与 `acquisition/blobs` 应纳入异机备份方案。第一阶段不会改动现有 reader 的数据库备份规则，因此原有 reader 备份并不自动覆盖新采集目录；新闻定时上线前使用 `python3 manage.py backup --dest /新的备份目录` 在线备份台账与引用原件，校验 SQLite 与 SHA256，再复制至异机并复核清单。此工具不删除旧备份；异机长期轮转与统一备份调度仍须落实。,unchanged invocation/reference; child-local options preserved
+docs/local_reader/ACQUISITION_OPERATIONS.md,28,launch/command reference,`python3 manage.py news-sync` 可手动重试。失败记录在 acquisition runs，旧窗口保持；不触碰用户仍在传输的 raw-materials 隐藏目录。首页的同步时间代表完整窗口抓取时间，不能用网页刷新时间冒充。,unchanged invocation/reference; child-local options preserved
+docs/local_reader/M4_LOCAL_READER.md,5,launch/command reference,通过 `python3 manage.py inventory` 清点，`python3 manage.py triage` / `python3 manage.py score` 判读，`python3 manage.py batch` 打包并接收终端结果。命令参数见各自 `--help`。已有 m4-local-reader 日志保留为历史证据，不自动换算、不删除、不冒充现行有效判读。,unchanged invocation/reference; child-local options preserved
+docs/local_reader/M4_PREFLIGHT.md,13,launch/command reference,python3 ~/code/inresearch.ai/manage.py preflight,unchanged invocation/reference; child-local options preserved
+docs/local_reader/M4_TRIAGE_RUNBOOK.md,13,launch/command reference,python3 manage.py inventory inventory --workers 4 --limit 20,unchanged invocation/reference; child-local options preserved
+docs/local_reader/M4_TRIAGE_RUNBOOK.md,14,launch/command reference,python3 manage.py inventory summary,unchanged invocation/reference; child-local options preserved
+docs/local_reader/M4_TRIAGE_RUNBOOK.md,22,launch/command reference,python3 manage.py inventory migrate-inventory,unchanged invocation/reference; child-local options preserved
+docs/local_reader/M4_TRIAGE_RUNBOOK.md,30,launch/command reference,python3 manage.py triage preview --limit 20 --text-only,unchanged invocation/reference; child-local options preserved
+docs/local_reader/M4_TRIAGE_RUNBOOK.md,31,launch/command reference,python3 manage.py models --probe,unchanged invocation/reference; child-local options preserved
+docs/local_reader/M4_TRIAGE_RUNBOOK.md,32,launch/command reference,python3 manage.py triage sample --limit 50,unchanged invocation/reference; child-local options preserved
+docs/local_reader/M4_TRIAGE_RUNBOOK.md,38,launch/command reference,python3 manage.py triage run --workers 2,unchanged invocation/reference; child-local options preserved
+docs/local_reader/M4_TRIAGE_RUNBOOK.md,39,launch/command reference,python3 manage.py progress,unchanged invocation/reference; child-local options preserved
+docs/local_reader/M4_TRIAGE_RUNBOOK.md,45,launch/command reference,python3 manage.py batch pack --limit 20,unchanged invocation/reference; child-local options preserved
+docs/local_reader/M4_TRIAGE_RUNBOOK.md,46,launch/command reference,python3 manage.py batch record --verdicts /path/to/verdicts.txt --executor claude-code --model ACTUAL_MODEL,unchanged invocation/reference; child-local options preserved
+docs/local_reader/M4_TRIAGE_RUNBOOK.md,56,launch/command reference,python3 manage.py organize duplicates plan,unchanged invocation/reference; child-local options preserved
+docs/local_reader/M4_TRIAGE_RUNBOOK.md,57,launch/command reference,python3 manage.py organize duplicates apply,unchanged invocation/reference; child-local options preserved
+docs/local_reader/M4_TRIAGE_RUNBOOK.md,58,launch/command reference,python3 manage.py organize library plan,unchanged invocation/reference; child-local options preserved
+docs/local_reader/M4_TRIAGE_RUNBOOK.md,59,launch/command reference,python3 manage.py organize library apply,unchanged invocation/reference; child-local options preserved
+docs/local_reader/M4_TRIAGE_RUNBOOK.md,65,launch/command reference,python3 manage.py organize restage plan,unchanged invocation/reference; child-local options preserved
+docs/local_reader/M4_TRIAGE_RUNBOOK.md,66,launch/command reference,python3 manage.py organize restage apply,unchanged invocation/reference; child-local options preserved
+docs/local_reader/M4_TRIAGE_RUNBOOK.md,67,launch/command reference,python3 manage.py organize restage revert,unchanged invocation/reference; child-local options preserved
+docs/local_reader/M4_TRIAGE_RUNBOOK.md,68,launch/command reference,python3 manage.py organize library revert,unchanged invocation/reference; child-local options preserved
+docs/local_reader/M4_TRIAGE_RUNBOOK.md,69,launch/command reference,python3 manage.py organize duplicates revert,unchanged invocation/reference; child-local options preserved
+docs/local_reader/M4_TRIAGE_RUNBOOK.md,77,launch/command reference,python3 manage.py mapping export --out /path/to/mapping.jsonl,unchanged invocation/reference; child-local options preserved
+docs/local_reader/M4_TRIAGE_RUNBOOK.md,78,launch/command reference,python3 manage.py mapping verify --mapping /path/to/mapping.jsonl,unchanged invocation/reference; child-local options preserved
+docs/local_reader/SPARK_OPERATIONS.md,87,launch/command reference,python3 ~/code/inresearch.ai/manage.py reader init,unchanged invocation/reference; child-local options preserved
+docs/local_reader/SPARK_OPERATIONS.md,97,launch/command reference,python3 ~/code/inresearch.ai/manage.py reader \,unchanged invocation/reference; child-local options preserved
+docs/local_reader/SPARK_OPERATIONS.md,102,launch/command reference,python3 ~/code/inresearch.ai/manage.py reader \,unchanged invocation/reference; child-local options preserved
+docs/local_reader/SPARK_OPERATIONS.md,105,launch/command reference,python3 ~/code/inresearch.ai/manage.py reader \,unchanged invocation/reference; child-local options preserved
+docs/local_reader/SPARK_OPERATIONS.md,118,launch/command reference,M4 上的共享入口也读取 `INRESEARCH_MODEL_CONFIG`。暂用 Claude CLI 时，在 M4 本机验证 CLI 登录、代理环境及 `python3 manage.py models --probe`。后续切换 Spark 档案时，将 `profile.url` 设为实际可达的 Spark 推理地址或本机到 Spark 的转发地址；`127.0.0.1` 只指执行机器本身。此代码变更不会自动建立网络转发或开放端口。,unchanged invocation/reference; child-local options preserved
+docs/local_reader/SPARK_OPERATIONS.md,129,launch/command reference,python3 ~/code/inresearch.ai/manage.py reader status,unchanged invocation/reference; child-local options preserved
+docs/local_reader/SPARK_OPERATIONS.md,142,launch/command reference,python3 ~/code/inresearch.ai/manage.py reader retry --doc-id doc-完整哈希,unchanged invocation/reference; child-local options preserved
+docs/local_reader/SPARK_OPERATIONS.md,143,launch/command reference,python3 ~/code/inresearch.ai/manage.py reader rollback --doc-id doc-完整哈希,unchanged invocation/reference; child-local options preserved
+docs/local_reader/SPARK_OPERATIONS.md,158,launch/command reference,python3 manage.py reader revisions --doc-id doc-完整内容哈希,unchanged invocation/reference; child-local options preserved
+docs/local_reader/SPARK_OPERATIONS.md,159,launch/command reference,python3 manage.py reader reread --doc-id doc-完整内容哈希 --expected-current rev-当前版本 --request-id 本次稳定请求键 --reason '重新核对完整材料',unchanged invocation/reference; child-local options preserved
+docs/local_reader/SPARK_OPERATIONS.md,160,launch/command reference,python3 manage.py reader inspect-revision --revision-id rev-新版本,unchanged invocation/reference; child-local options preserved
+docs/local_reader/SPARK_OPERATIONS.md,161,launch/command reference,python3 manage.py reader activate-revision --revision-id rev-新版本 --expected-current rev-开始时旧版本 --expected-report-sha256 已审阅报告完整SHA --reviewer 审阅者 --reason '核对正文、尾段、引用与理解质量的结论',unchanged invocation/reference; child-local options preserved
+docs/local_reader/SPARK_OPERATIONS.md,162,launch/command reference,python3 manage.py reader reject-revision --revision-id rev-新版本 --reviewer 审阅者 --reason '具体未通过原因',unchanged invocation/reference; child-local options preserved
+docs/local_reader/SPARK_OPERATIONS.md,195,launch/command reference,python3 ~/code/inresearch.ai/manage.py reader backup --dest /已准备好的独立存储/reader-20260906,unchanged invocation/reference; child-local options preserved
+docs/local_reader/SPARK_OPERATIONS.md,230,launch/command reference,python3 manage.py reader --data-root /实际数据根 current --sha 完整SHA,unchanged invocation/reference; child-local options preserved
+docs/local_reader/SPARK_OPERATIONS.md,231,launch/command reference,python3 manage.py deep-read --reader-data-root /同一数据根 current --sha 完整SHA,unchanged invocation/reference; child-local options preserved
+docs/local_reader/SPARK_OPERATIONS.md,232,launch/command reference,python3 manage.py deep-read --reader-data-root /同一数据根 pack --sha 完整SHA,unchanged invocation/reference; child-local options preserved
+docs/local_setup/ADD_3D_MODEL.md,22,launch/command reference,python3 manage.py asset-download '模型来源页 URL' --name rack_reference --page rack3d,unchanged invocation/reference; child-local options preserved
+docs/local_setup/ADD_3D_MODEL.md,23,launch/command reference,python3 manage.py asset-check,unchanged invocation/reference; child-local options preserved
+docs/local_setup/ADD_3D_MODEL.md,51,launch/command reference,python3 manage.py serve --help,unchanged invocation/reference; child-local options preserved
+docs/local_setup/ADD_3D_MODEL.md,52,launch/command reference,python3 manage.py serve,unchanged invocation/reference; child-local options preserved
+docs/local_setup/PRODUCT_LIBRARY.md,5,launch/command reference,已有 `src/inresearch/materials/library.py` 的 plan/fetch/adopt/status 保留给登记产品库使用。先运行 `python3 manage.py library --help` 和 `status --verify` 核对实际参数与文件；只有明确存在的库或外置卷才能作为目标。文档中的历史 Mac mini 路径不证明文件目前存在，不调用旧 setup.sh 搬工作区。,unchanged invocation/reference; child-local options preserved
+docs/local_setup/README.md,7,launch/command reference,在仓库运行 `python3 manage.py serve 8000`，浏览器打开 `http://127.0.0.1:8000`。研究工作台需要该 API 服务，单纯静态 HTTP 服务不提供研究数据。是否安装本机 launchd 应检查实际服务；文档不假定任何电脑已有三项常驻任务。,updated parameter contract or regression
+docs/local_setup/README.md,11,launch/command reference,`python3 manage.py --help` 显示一级入口；`python3 manage.py <命令> --help` 显示该命令的选项。,updated parameter contract or regression
+docs/local_setup/README.md,13,launch/command reference,`python3 manage.py --root /path/to/workspace add-price --input price.json`。它仍受运行数据布局配置约束，,updated parameter contract or regression
+docs/local_setup/README.md,16,launch/command reference,子命令的目录参数写在命令名之后：例如 `python3 manage.py inventory --root /path/to/originals --out-dir /path/to/index inventory`，,updated parameter contract or regression
+docs/local_setup/README.md,17,launch/command reference,或 `python3 manage.py reader --data-root /path/to/reader current --sha <SHA>`。参数是否可用以该子命令帮助为准；,updated parameter contract or regression
+docs/local_setup/README.md,24,launch/command reference,修改规范、源码或在册数据后，更新相应现行定义和替代记录，运行 `python3 manage.py governance --refresh` 刷新清单，再运行 `python3 manage.py governance --check` 与相关测试。清单只描述 Git 在册内容，不把本地唯一资料算成代码缓存。,updated parameter contract or regression
+docs/local_setup/README.md,40,launch/command reference,`python3 manage.py storage initialize`；检查使用 `python3 manage.py storage check`，只读且不创建数据。,updated parameter contract or regression
+docs/local_setup/sync.sh,14,launch/command reference,python3 manage.py governance --check,unchanged invocation/reference; child-local options preserved
+docs/local_setup/sync.sh,15,launch/command reference,python3 manage.py validate --strict,unchanged invocation/reference; child-local options preserved
+docs/local_setup/sync.sh,16,launch/command reference,python3 manage.py registry,unchanged invocation/reference; child-local options preserved
+framework/06_acquisition.md,156,launch/command reference,接收服务 deploy/spark-reader/inresearch-material-intake.* 从 Spark 的同版源码包执行 `python3 ~/code/inresearch.ai/manage.py receive`；不再安装两个独立 Python 文件。更新源码包和重启实际服务须核对部署版本，不能仅凭 unit 文件存在声称 Spark 已换版。,unchanged invocation/reference; child-local options preserved
+framework/08_model_execution.md,35,launch/command reference,`python3 manage.py models --probe` 通过所选配置发送一条无研究材料的真实 JSON 请求，核对结构和实际模型；配置校验或交互式 CLI 登录成功不能代替这项检查。CLI 参数依据本机 `claude --help` 及 [官方非交互文档](https://code.claude.com/docs/en/headless)。,unchanged invocation/reference; child-local options preserved
+framework/09_software_contracts.md,15,launch/command reference,`manage.py` 与 `python -m inresearch` 共用 interfaces.cli。命令名前的全局 `--root` 只用于,updated parameter contract or regression
+framework/CURRENT.md,38,launch/command reference,`python3 manage.py governance --check` 检查在册路径/内容摘要、主题单一生效、替代链、规范引用、历史边界及已知失效表述。还检查 [规范验收映射](verification_contract.json) 的已审阅源文件/操作指南/测试内容摘要、13 条政策的适用 scope 和测试入口。修改规范、指南或所映射测试后，必须实际复审对应要求、实现及未覆盖项，再显式更新映射；`--refresh` 只更新文件清单，不能自动批准映射变化。映射列举选定要求并明确剩余缺口，不是所有自然语言条款的穷尽证明。它不能自动证明所有自然语言都没有语义冲突；任何规则变更仍须审阅关联实现和记录。新文件或修改后的在册内容没有刷新清单会使 CI 失败。,updated parameter contract or regression
+framework/current_state.json,535,launch/command reference,"""manage.py"",",updated parameter contract or regression
+framework/verification_contract.json,136,launch/command reference,"""asserter 的拼写分裂（谷歌/Google 这类中英对照）机检挡不住，只能靠 manage.py facts --asserters 人工对照。"",",updated parameter contract or regression
+manage.py,7,direct import,from inresearch.interfaces.cli import main,unchanged invocation/reference; child-local options preserved
+reports/HOW_TO_OUTPUT.md,9,launch/command reference,| `python3 manage.py export --docx` | 全量研究报告（执行摘要 + 15 章，md + Word） |,unchanged invocation/reference; child-local options preserved
+reports/HOW_TO_OUTPUT.md,10,launch/command reference,"| `python3 manage.py export M08 M09 --docx --title ""散热与电力设备专题""` | 任选模块组合的专题报告 |",unchanged invocation/reference; child-local options preserved
+reports/HOW_TO_OUTPUT.md,11,launch/command reference,| `python3 manage.py map` | 全球 Top 10 数据中心园区地图（HTML + PDF，标注容量与用电量估算） |,unchanged invocation/reference; child-local options preserved
+reports/HOW_TO_OUTPUT.md,12,launch/command reference,| `python3 manage.py map 15` | Top 15 版本 |,unchanged invocation/reference; child-local options preserved
+reports/verify_queue.md,5,launch/command reference,流程：打开来源链接核对 → 有变化改数据+来源，无变化只改 verified_date → `python3 manage.py validate`,unchanged invocation/reference; child-local options preserved
+reports/workorders.json,252,launch/command reference,"""action"": ""跑 `python3 manage.py verify` 取核验队列，按触发器找新证据复核。"",",unchanged invocation/reference; child-local options preserved
+reports/workorders.json,626,launch/command reference,"""action"": ""跑 `python3 manage.py verify` 取核验队列，按触发器找新证据复核。"",",unchanged invocation/reference; child-local options preserved
+reports/workorders.json,725,launch/command reference,"""action"": ""跑 `python3 manage.py verify` 取核验队列，按触发器找新证据复核。"",",unchanged invocation/reference; child-local options preserved
+reports/workorders.json,868,launch/command reference,"""action"": ""跑 `python3 manage.py verify` 取核验队列，按触发器找新证据复核。"",",unchanged invocation/reference; child-local options preserved
+reports/workorders.json,978,launch/command reference,"""action"": ""跑 `python3 manage.py verify` 取核验队列，按触发器找新证据复核。"",",unchanged invocation/reference; child-local options preserved
+reports/workorders.json,1220,launch/command reference,"""action"": ""跑 `python3 manage.py verify` 取核验队列，按触发器找新证据复核。"",",unchanged invocation/reference; child-local options preserved
+reports/workorders.json,1385,launch/command reference,"""action"": ""跑 `python3 manage.py verify` 取核验队列，按触发器找新证据复核。"",",unchanged invocation/reference; child-local options preserved
+reports/workorders.json,1638,launch/command reference,"""action"": ""跑 `python3 manage.py verify` 取核验队列，按触发器找新证据复核。"",",unchanged invocation/reference; child-local options preserved
+reports/workorders.md,7,launch/command reference,> 改工单的正确做法是改声明或改现状，然后重跑 `python3 manage.py workorders`。,unchanged invocation/reference; child-local options preserved
+reports/workorders.md,273,launch/command reference,**动作**：跑 `python3 manage.py verify` 取核验队列，按触发器找新证据复核。,unchanged invocation/reference; child-local options preserved
+reports/workorders.md,1313,launch/command reference,**动作**：跑 `python3 manage.py verify` 取核验队列，按触发器找新证据复核。,unchanged invocation/reference; child-local options preserved
+reports/workorders.md,1651,launch/command reference,**动作**：跑 `python3 manage.py verify` 取核验队列，按触发器找新证据复核。,unchanged invocation/reference; child-local options preserved
+reports/workorders.md,2103,launch/command reference,**动作**：跑 `python3 manage.py verify` 取核验队列，按触发器找新证据复核。,unchanged invocation/reference; child-local options preserved
+reports/workorders.md,2447,launch/command reference,**动作**：跑 `python3 manage.py verify` 取核验队列，按触发器找新证据复核。,unchanged invocation/reference; child-local options preserved
+reports/workorders.md,2823,launch/command reference,**动作**：跑 `python3 manage.py verify` 取核验队列，按触发器找新证据复核。,unchanged invocation/reference; child-local options preserved
+reports/workorders.md,3199,launch/command reference,**动作**：跑 `python3 manage.py verify` 取核验队列，按触发器找新证据复核。,unchanged invocation/reference; child-local options preserved
+reports/workorders.md,3443,launch/command reference,**动作**：跑 `python3 manage.py verify` 取核验队列，按触发器找新证据复核。,unchanged invocation/reference; child-local options preserved
+src/inresearch/README.md,3,launch/command reference,核心仅依赖 Python 标准库。仓库根目录运行 `python3 manage.py <command>`；部署也可设 `PYTHONPATH=src` 后运行 `python3 -m inresearch`。不要直接执行包内部文件。,unchanged invocation/reference; child-local options preserved
+src/inresearch/__main__.py,1,direct import,from inresearch.interfaces.cli import main,unchanged invocation/reference; child-local options preserved
+src/inresearch/adapters/asset_compare.py,4,launch/command reference,python3 manage.py asset-compare                 # 比 assets/models/ 里所有 .glb,unchanged invocation/reference; child-local options preserved
+src/inresearch/adapters/asset_compare.py,5,launch/command reference,python3 manage.py asset-compare ~/Downloads     # 比某个目录（选型阶段用这个）,unchanged invocation/reference; child-local options preserved
+src/inresearch/adapters/asset_compare.py,121,launch/command reference,"print(""\n下一步：选定后把它按 docs/local_setup/ADD_3D_MODEL.md 登记候选到 web/assets/models/，或直接 python3 manage.py asset-check"")",unchanged invocation/reference; child-local options preserved
+src/inresearch/adapters/asset_download.py,5,launch/command reference,python3 manage.py asset-download <模型URL或uid> [--name 文件名] [--page rack3d] [--hide-rack],unchanged invocation/reference; child-local options preserved
+src/inresearch/adapters/asset_download.py,182,launch/command reference,"print(""下一步：python3 manage.py asset-check；在 compare.html 审阅候选。""",unchanged invocation/reference; child-local options preserved
+src/inresearch/adapters/historical_brief.py,125,launch/command reference,"run_step(""②b 指标回填"", [""manage.py"", ""indicators""], timeout=30)",unchanged invocation/reference; child-local options preserved
+src/inresearch/adapters/ocr_worker.py,78,launch/command reference,"retry=run(['ssh','-o','BatchMode=yes',REMOTE,'python3',DATA.replace('/.local/share/inresearch.ai','/code/inresearch.ai')+'/manage.py','reader','retry','--doc-id',doc['doc_id'],'--revision-id',doc['revision_id']],60)",unchanged invocation/reference; child-local options preserved
+src/inresearch/delivery/export.py,4,launch/command reference,python3 manage.py export                    # 全部模块 → 全量研究报告,unchanged invocation/reference; child-local options preserved
+src/inresearch/delivery/export.py,5,launch/command reference,python3 manage.py export M08 M09            # 指定模块 → 专题报告,unchanged invocation/reference; child-local options preserved
+src/inresearch/delivery/export.py,6,launch/command reference,python3 manage.py export --docx             # 同时产出 Word（需 python-docx，可选）,unchanged invocation/reference; child-local options preserved
+src/inresearch/delivery/export.py,7,launch/command reference,"python3 manage.py export --title ""散热专题"" M08",unchanged invocation/reference; child-local options preserved
+src/inresearch/delivery/library_index.py,71,launch/command reference,"lines.append(f""共 {total_n} 份 / {total_g:.1f}GB ｜ 生成 {date.today().isoformat()} ｜ 重建：python3 manage.py library-index"")",unchanged invocation/reference; child-local options preserved
+src/inresearch/delivery/map.py,4,launch/command reference,python3 manage.py map           # Top 10，生成 HTML + PDF（reports/output/）,unchanged invocation/reference; child-local options preserved
+src/inresearch/delivery/map.py,5,launch/command reference,python3 manage.py map 15        # Top 15,unchanged invocation/reference; child-local options preserved
+src/inresearch/delivery/reading_packet.py,112,launch/command reference,"python3 manage.py deep-read attribute --sha {sha16} --expected-revision {revision} --org ""IDC"" --year 2024 \\",unchanged invocation/reference; child-local options preserved
+src/inresearch/delivery/reading_packet.py,119,launch/command reference,python3 manage.py deep-read attribute --sha {sha16} --expected-revision {revision} --unrecoverable \\,unchanged invocation/reference; child-local options preserved
+src/inresearch/interfaces/governance.py,183,launch/command reference,"lines = ['# 在册源码与记录清单', '', '> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：'+manifest['version']+'。',",unchanged invocation/reference; child-local options preserved
+src/inresearch/interfaces/http.py,36,launch/command reference,"""collect"":    (""兼容历史简报"", [""manage.py"", ""historical-brief"", ""--offline""], 600),",unchanged invocation/reference; child-local options preserved
+src/inresearch/interfaces/http.py,37,launch/command reference,"""news"":       (""inews 采集状态"", [""manage.py"", ""acquisition-status"", ""inews""], 30),",unchanged invocation/reference; child-local options preserved
+src/inresearch/interfaces/http.py,38,launch/command reference,"""sec"":        (""SEC 采集状态"", [""manage.py"", ""acquisition-status"", ""sec""], 30),",unchanged invocation/reference; child-local options preserved
+src/inresearch/interfaces/http.py,39,launch/command reference,"""gpu"":        (""GPU 采集状态"", [""manage.py"", ""acquisition-status"", ""gpu""], 30),",unchanged invocation/reference; child-local options preserved
+src/inresearch/interfaces/http.py,40,launch/command reference,"""indicators"": (""指标回填"", [""manage.py"", ""indicators""], 30),",unchanged invocation/reference; child-local options preserved
+src/inresearch/interfaces/http.py,41,launch/command reference,"""verify"":     (""生成核验队列"", [""manage.py"", ""verify""], 30),",unchanged invocation/reference; child-local options preserved
+src/inresearch/interfaces/http.py,42,launch/command reference,"""validate"":   (""数据校验"", [""manage.py"", ""validate""], 30),",unchanged invocation/reference; child-local options preserved
+src/inresearch/interfaces/http.py,43,launch/command reference,"""export"":     (""导出全量报告（md+docx）"", [""manage.py"", ""export"", ""--docx""], 120),",unchanged invocation/reference; child-local options preserved
+src/inresearch/interfaces/http.py,44,launch/command reference,"""map"":        (""Top10 地图（html+pdf）"", [""manage.py"", ""map""], 90),",unchanged invocation/reference; child-local options preserved
+src/inresearch/interfaces/http.py,45,launch/command reference,"""inbox"":      (""扫描收件箱（docs/inbox）"", [""manage.py"", ""scan-candidates""], 30),",unchanged invocation/reference; child-local options preserved
+src/inresearch/interfaces/http.py,46,launch/command reference,"""reader"":     (""Spark 常驻阅读状态"", [""manage.py"", ""reader-status""], 30),",unchanged invocation/reference; child-local options preserved
+src/inresearch/interfaces/http.py,47,launch/command reference,"""queue"":      (""生成精读队列"", [""manage.py"", ""reading-queue""], 30),",unchanged invocation/reference; child-local options preserved
+src/inresearch/interfaces/http.py,48,launch/command reference,"""workorder"":  (""生成工单队列"", [""manage.py"", ""workorders""], 60),",unchanged invocation/reference; child-local options preserved
+src/inresearch/interfaces/http.py,49,launch/command reference,"""blindspot"":  (""盲区体检"", [""manage.py"", ""coverage""], 60),",unchanged invocation/reference; child-local options preserved
+src/inresearch/interfaces/http.py,50,launch/command reference,"""intake"":     (""成员投递机检与分流"", [""manage.py"", ""submissions""], 60),",unchanged invocation/reference; child-local options preserved
+src/inresearch/interfaces/http.py,51,launch/command reference,"""facts"":      (""事实层校验与可比性"", [""manage.py"", ""facts""], 30),",unchanged invocation/reference; child-local options preserved
+src/inresearch/interfaces/http.py,165,launch/command reference,"""`docker compose exec dchub python3 manage.py users add <用户名>`""})",unchanged invocation/reference; child-local options preserved
+src/inresearch/interfaces/http.py,507,launch/command reference,"print(""⚠️  认证已开但还没有用户——先跑 `python3 manage.py users add <用户名>`"")",unchanged invocation/reference; child-local options preserved
+src/inresearch/interfaces/users.py,7,launch/command reference,sudo docker exec inresearch-host-inresearch-1 python3 manage.py users add admin,unchanged invocation/reference; child-local options preserved
+src/inresearch/interfaces/users.py,8,launch/command reference,sudo docker exec inresearch-host-inresearch-1 python3 manage.py users passwd admin,unchanged invocation/reference; child-local options preserved
+src/inresearch/interfaces/users.py,9,launch/command reference,sudo docker exec inresearch-host-inresearch-1 python3 manage.py users rename old-name new-name,unchanged invocation/reference; child-local options preserved
+src/inresearch/interfaces/users.py,10,launch/command reference,sudo docker exec inresearch-host-inresearch-1 python3 manage.py users role <用户名> <角色>,unchanged invocation/reference; child-local options preserved
+src/inresearch/interfaces/users.py,11,launch/command reference,sudo docker exec inresearch-host-inresearch-1 python3 manage.py users list / remove <用户名>,unchanged invocation/reference; child-local options preserved
+src/inresearch/knowledge/company_ids.py,8,launch/command reference,用法：python3 manage.py company-ids [--dry-run],unchanged invocation/reference; child-local options preserved
+src/inresearch/knowledge/coverage.py,20,launch/command reference,用法：python3 manage.py coverage         # → reports/blindspot.md + stdout,unchanged invocation/reference; child-local options preserved
+src/inresearch/knowledge/coverage.py,21,launch/command reference,python3 manage.py coverage M11     # 只看某模块，并列出样本,unchanged invocation/reference; child-local options preserved
+src/inresearch/knowledge/facts.py,20,launch/command reference,python3 manage.py facts                                  # 校验 + 全指标可比性分组,unchanged invocation/reference; child-local options preserved
+src/inresearch/knowledge/facts.py,21,launch/command reference,python3 manage.py facts dc_construction_cost_per_sqm     # 只看某指标,unchanged invocation/reference; child-local options preserved
+src/inresearch/knowledge/facts.py,22,launch/command reference,python3 manage.py facts --public                         # 对外口径预览（区间+时效）,unchanged invocation/reference; child-local options preserved
+src/inresearch/knowledge/facts.py,213,launch/command reference,`manage.py facts --asserters` 看一眼现有写法，比事后扫库便宜得多。,unchanged invocation/reference; child-local options preserved
+src/inresearch/knowledge/indicators.py,4,launch/command reference,python3 manage.py indicators,unchanged invocation/reference; child-local options preserved
+src/inresearch/knowledge/validate.py,5,launch/command reference,python3 manage.py validate            # 校验全部，退出码非 0 表示有 ERROR,unchanged invocation/reference; child-local options preserved
+src/inresearch/knowledge/validate.py,6,launch/command reference,python3 manage.py validate --strict   # WARN 也算失败,unchanged invocation/reference; child-local options preserved
+src/inresearch/knowledge/verify.py,8,launch/command reference,python3 manage.py verify              # 生成队列 → reports/verify_queue.md + stdout 摘要,unchanged invocation/reference; child-local options preserved
+src/inresearch/knowledge/verify.py,9,launch/command reference,python3 manage.py verify --all        # 包含 P3（未到期但临近的记录）,unchanged invocation/reference; child-local options preserved
+src/inresearch/knowledge/verify.py,19,launch/command reference,3. 保存后运行 python3 manage.py validate 把关,unchanged invocation/reference; child-local options preserved
+src/inresearch/knowledge/verify.py,129,launch/command reference,"""流程：打开来源链接核对 → 有变化改数据+来源，无变化只改 verified_date → `python3 manage.py validate`"",",unchanged invocation/reference; child-local options preserved
+src/inresearch/materials/library.py,13,launch/command reference,python3 manage.py library setup --path ~/code/inresearch.ai/product   # 内置盘,unchanged invocation/reference; child-local options preserved
+src/inresearch/materials/library.py,14,launch/command reference,"python3 manage.py library setup --volume ""外置卷名""                     # 外置卷（做软链）",unchanged invocation/reference; child-local options preserved
+src/inresearch/materials/library.py,15,launch/command reference,"python3 manage.py library plan  [--priority P0,P1]     # 生成/刷新作业计划（不覆盖已填 URL）",unchanged invocation/reference; child-local options preserved
+src/inresearch/materials/library.py,16,launch/command reference,python3 manage.py library fetch [--dry-run] [--limit N] [--priority P0] [--retry],unchanged invocation/reference; child-local options preserved
+src/inresearch/materials/library.py,17,launch/command reference,python3 manage.py library adopt [--row KEY --file 路径]  # 人工下的文件归位,unchanged invocation/reference; child-local options preserved
+src/inresearch/materials/library.py,18,launch/command reference,python3 manage.py library status [--verify],unchanged invocation/reference; child-local options preserved
+src/inresearch/materials/library.py,78,launch/command reference,"sys.exit(f""没有 {LINK} —— 先跑：python3 manage.py library setup --volume \""卷名\"""")",unchanged invocation/reference; child-local options preserved
+src/inresearch/materials/library.py,423,launch/command reference,"print(""  python3 manage.py library adopt """,unchanged invocation/reference; child-local options preserved
+src/inresearch/materials/repair_paths.py,4,launch/command reference,python3 manage.py repair-paths            # 干跑：只出报告，不改表,unchanged invocation/reference; child-local options preserved
+src/inresearch/materials/repair_paths.py,5,launch/command reference,python3 manage.py repair-paths --apply    # 唯一匹配的行改写 new_path（原子写）,unchanged invocation/reference; child-local options preserved
+src/inresearch/materials/repair_paths.py,15,launch/command reference,- 报告落 reports/stale_paths.md；--apply 后必须跑 python3 manage.py validate。,unchanged invocation/reference; child-local options preserved
+src/inresearch/materials/repair_paths.py,90,launch/command reference,"print(f""已改写 {len(fixed)} 行 → 记得跑 python3 manage.py validate"")",unchanged invocation/reference; child-local options preserved
+src/inresearch/workflow/deep_read.py,297,launch/command reference,"result_revision=committed['result_revision'], renamed_by='改名另走 manage.py organize restage plan / apply')",unchanged invocation/reference; child-local options preserved
+src/inresearch/workflow/submissions.py,8,launch/command reference,用法：python3 manage.py submissions [投递目录] [--accept | --selftest],unchanged invocation/reference; child-local options preserved
+src/inresearch/workflow/workorders.py,21,launch/command reference,用法：python3 manage.py workorders            # → reports/workorders.md + stdout 摘要,unchanged invocation/reference; child-local options preserved
+src/inresearch/workflow/workorders.py,22,launch/command reference,python3 manage.py workorders M11        # 只看某模块,unchanged invocation/reference; child-local options preserved
+src/inresearch/workflow/workorders.py,324,launch/command reference,"""跑 `python3 manage.py verify` 取核验队列，按触发器找新证据复核。"", key=""鲜度"",",unchanged invocation/reference; child-local options preserved
+src/inresearch/workflow/workorders.py,354,launch/command reference,"""> 改工单的正确做法是改声明或改现状，然后重跑 `python3 manage.py workorders`。"",",unchanged invocation/reference; child-local options preserved
+tests/ui_skin.cjs,1,launch/command reference,/* Browser regression. Start: python3 manage.py serve 8878,unchanged invocation/reference; child-local options preserved
+tests/unit/test_commands.py,13,direct import,from inresearch.interfaces import cli as cli,updated parameter contract or regression
+tests/unit/test_commands.py,61,direct call,"self.assertEqual(cli.main(['--root', str(self.root), 'add-price']), 0)",common root or child-local root preserved; explicit unsupported global root rejected
+tests/unit/test_commands.py,85,direct call,"self.assertEqual(1, cli.main(['--root', str(self.root), 'add-price']))",common root or child-local root preserved; explicit unsupported global root rejected
+tests/unit/test_commands.py,112,direct call,status = cli.main(args),common root or child-local root preserved; explicit unsupported global root rejected
+tests/unit/test_commands.py,145,direct call,"cli.main(['--root', directory, command])",common root or child-local root preserved; explicit unsupported global root rejected
+tests/unit/test_commands.py,167,direct call,"self.assertEqual(cli.main(expected), 17)",common root or child-local root preserved; explicit unsupported global root rejected
+tests/unit/test_commands.py,170,direct call,cli.main(expected),common root or child-local root preserved; explicit unsupported global root rejected
+tests/unit/test_commands.py,175,direct call,cli.main(['inventory']),common root or child-local root preserved; explicit unsupported global root rejected
+tests/unit/test_commands.py,179,launch/command reference,"original = ['manage.py', 'asset-check']",updated parameter contract or regression
+tests/unit/test_commands.py,186,direct call,"cli.main(['inventory', '--help'])",common root or child-local root preserved; explicit unsupported global root rejected
+tests/unit/test_commands.py,187,direct call,cli.main(),common root or child-local root preserved; explicit unsupported global root rejected
+tests/unit/test_m4_triage.py,16,direct import,from inresearch.interfaces import cli,unchanged invocation/reference; child-local options preserved
+tests/unit/test_m4_triage.py,225,direct call,"cli.main(['inventory', '--root', str(self.root), '--out-dir', str(self.out), 'inventory', '--workers', '1'])",common root or child-local root preserved; explicit unsupported global root rejected
+tests/unit/test_storage_layout.py,230,launch/command reference,"process = subprocess.Popen([sys.executable, str(REPO / 'manage.py'), 'serve', str(port)], env=env, stdout=log, stderr=log)",unchanged invocation/reference; child-local options preserved
+tests/unit/test_storage_layout.py,256,launch/command reference,"retry = subprocess.run([sys.executable, str(REPO / 'manage.py'), 'add-price'], input=json.dumps(price),",unchanged invocation/reference; child-local options preserved
+tests/unit/test_storage_layout.py,273,launch/command reference,"retry = subprocess.run([sys.executable, str(REPO / 'manage.py'), 'receive-snapshot'], input=json.dumps(payload),",unchanged invocation/reference; child-local options preserved
+tests/unit/test_storage_layout.py,281,launch/command reference,"run = subprocess.run([sys.executable, str(REPO / 'manage.py'), command], env=env, text=True, capture_output=True, timeout=60)",unchanged invocation/reference; child-local options preserved
+web/assets/models/README.md,11,launch/command reference,运行 `python3 manage.py asset-check` 检查同一契约。,unchanged invocation/reference; child-local options preserved

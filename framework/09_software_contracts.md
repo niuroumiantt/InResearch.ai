@@ -10,6 +10,19 @@
 
 代码按 materials、knowledge、workflow、delivery、adapters、interfaces、storage 分工。接口解析身份和参数，调用用例；用例组合领域判断及存储，适配器只转换模型/格式/外部系统协议。禁止领域依赖 HTTP。公共实现必须登记全部仓库内消费者及库外已知运行入口。移动文件后保留的反向依赖仍是未完成项。
 
+## CLI 参数所有权
+
+`manage.py` 与 `python -m inresearch` 共用 interfaces.cli。命令名前的全局 `--root` 只用于
+add-price、assign、receive-snapshot 三个统一 JSON 用例；缺省为 project_root。它选择传入用例的
+项目根，仍受既有 storage_contract / INRESEARCH_RUNTIME_ROOT 或快照目标配置约束，不是全局隔离开关。
+其他委派命令收到显式全局 --root 时，在导入和执行前退出 2 并说明用法，不能静默忽略。
+命令名之后的目录选项由子接口解析，例如 `inventory --root ...`、`reader --data-root ...`；
+不猜测统一改写为其他目录参数。源码根、网站运行根、原件/catalog 根继续分别拥有权威。
+
+入口借用 sys.argv 调用旧子接口时，成功、导入失败、执行异常均恢复原参数对象；后续顺序调用
+不继承前一次委派的参数。此适配不支持多个线程同时使用进程级 argv；并发任务使用独立进程。
+子命令退出码、JSON 形状、模型配置及事务/重放/版本规则不在此层重复实现。
+
 ## 发布研究与运行状态
 
 网站部署设置 `INRESEARCH_RUNTIME_ROOT`，`storage.layout.workspace_path` 根据

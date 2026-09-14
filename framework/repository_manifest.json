@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.14.3",
+  "version": "2026.09.14.4",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -515,8 +515,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 41233,
-      "sha256": "215e46bdd89245c840100b2c13ddf74c66ded12e889b9a3cec2ced5576832c11",
+      "bytes": 41796,
+      "sha256": "88888c924c6df08def269cf4e4c7220fa51e93d2d0ce0c89eb74a1d7ee585c84",
       "collections": []
     },
     {
@@ -3248,8 +3248,8 @@
     {
       "path": "docs/local_setup/README.md",
       "role": "supporting_document",
-      "bytes": 2877,
-      "sha256": "6d8bfab5e0cfed2bc8dc098fa1308e63e9106407e3d3feb2409de06cc9352752",
+      "bytes": 3741,
+      "sha256": "c3cae64b4144a04acd93eb91f40fb7e7f4cb756434fa3af1ea2d098bef3ce31d",
       "collections": []
     },
     {
@@ -5247,6 +5247,13 @@
       "collections": []
     },
     {
+      "path": "docs/reviews/2026-09-14/cli-root/DELIVERY.md",
+      "role": "historical",
+      "bytes": 2558,
+      "sha256": "a062c9ddec8a9da9fc00ace0c10de9d8bb41f911d75c4ff0f07a77fb99275ae5",
+      "collections": []
+    },
+    {
       "path": "docs/reviews/2026-09-14/cli-root/PLAN.md",
       "role": "historical",
       "bytes": 3173,
@@ -5256,8 +5263,8 @@
     {
       "path": "docs/reviews/2026-09-14/cli-root/audit.py",
       "role": "historical",
-      "bytes": 5105,
-      "sha256": "2a529998486e67c9eb2341231bbf2bc07e103363e577a406b993d00e3bee060f",
+      "bytes": 5355,
+      "sha256": "d6604402c0da4039744577caebe4d9ae3ed9f7441c436cbcba6478f398991da4",
       "collections": []
     },
     {
@@ -5269,6 +5276,25 @@
         {
           "name": "temporary_root_files",
           "count": 0
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-14/cli-root/consumers-after.csv",
+      "role": "historical",
+      "bytes": 50936,
+      "sha256": "4cc907bdfa6c4495dd1ed247c8794f5db55596cecc4c9c8f5d1bbd0dc32001d8",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 227,
+          "fields": [
+            "path",
+            "line",
+            "kind",
+            "reference",
+            "migration_result"
+          ]
         }
       ]
     },
@@ -5330,6 +5356,24 @@
       ]
     },
     {
+      "path": "docs/reviews/2026-09-14/cli-root/file-results.csv",
+      "role": "historical",
+      "bytes": 85331,
+      "sha256": "919a8bbf00742f98d251e98035363a97c3900d29c1f81cc73b931ef3a0fca8a8",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 765,
+          "fields": [
+            "path",
+            "action",
+            "destination",
+            "result"
+          ]
+        }
+      ]
+    },
+    {
       "path": "docs/reviews/2026-09-14/cli-root/legacy-removal.csv",
       "role": "historical",
       "bytes": 865,
@@ -5358,6 +5402,13 @@
           "count": 10
         }
       ]
+    },
+    {
+      "path": "docs/reviews/2026-09-14/cli-root/statistics-after.json",
+      "role": "historical",
+      "bytes": 1638,
+      "sha256": "8b5e09d165204ee789f0a207d4b14354f494484b5d2d5a02df60ddaa6242fac1",
+      "collections": []
     },
     {
       "path": "docs/reviews/2026-09-14/cli-root/statistics-before.json",
@@ -5994,15 +6045,15 @@
     {
       "path": "framework/09_software_contracts.md",
       "role": "normative",
-      "bytes": 15190,
-      "sha256": "8443393230b9fa93a0d2c442e5bb51cca8a1d12bac507d0ce9de22d4cc9b7c78",
+      "bytes": 16274,
+      "sha256": "4ed8255355105cb608c50c47d0be8e581c1c12583060794ac982cc9831c1709b",
       "collections": []
     },
     {
       "path": "framework/CURRENT.md",
       "role": "normative",
       "bytes": 5375,
-      "sha256": "7735dfd8604caa32f03c877275ed8c7b3273fdecb41068c9c3795cf798d8ea1d",
+      "sha256": "d2c1d43c0dd82a168dfe8df9959aa6bba1b46f1288870c3a8e2b2b033879ce8c",
       "collections": []
     },
     {
@@ -6024,8 +6075,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 26416,
-      "sha256": "8cf62d852213b73a2d0ca89fab0c3f28ab8bd54121d4a7abe3e750d5d4e5d49a",
+      "bytes": 26649,
+      "sha256": "277099ddc8f15069e32f2319b161ace7f4b9ddc2b61e7097979f7dfdfe5e3879",
       "collections": [
         {
           "name": "policies",
@@ -6288,8 +6339,8 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 37658,
-      "sha256": "b6709482d8de80582af8f20ffb0120e223c0c7725ce65dc024d388b771a2bdeb",
+      "bytes": 38466,
+      "sha256": "e4608dbd60aeb3cec4a9d15e654650eab0ad28ac05648045fe99ea1b64cc875e",
       "collections": [
         {
           "name": "policies",
@@ -6827,8 +6878,8 @@
     {
       "path": "src/inresearch/interfaces/cli.py",
       "role": "implementation",
-      "bytes": 4298,
-      "sha256": "6ecca2f9114c02757210324d8f098b2581ddde62c67296bcc9afedd43d6a8f87",
+      "bytes": 4756,
+      "sha256": "c9428a1139701384cfd13c6415322f0332bf3fe5459b67f209ade55d789c9a78",
       "collections": []
     },
     {
@@ -7422,8 +7473,8 @@
     {
       "path": "tests/unit/test_commands.py",
       "role": "test",
-      "bytes": 4802,
-      "sha256": "03265020c3aba7de0dfe056467ef678193c0e139859c917666c0ed216095b6d4",
+      "bytes": 10506,
+      "sha256": "a785eadad958d34ba7b6640a281e5510379c7b9474f5068d3fe65e5780dbd431",
       "collections": []
     },
     {
@@ -8302,7 +8353,7 @@
     "design_reference": 1,
     "entrypoint": 4,
     "generated": 12,
-    "historical": 232,
+    "historical": 236,
     "implementation": 142,
     "normative": 13,
     "project_config": 36,
