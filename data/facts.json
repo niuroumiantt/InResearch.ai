@@ -144125,6 +144125,133 @@
       "corroboration": "待交叉验证",
       "notes": "tax 未注明：汇总表未标含税与否；该价 × 1.09 与综合单价接近，推测为不含税设备价，但原表未写，不作认定。 **stage=招标控制价**：招标方上限价，不是中标价或结算价，不可当作实际成交价。全项目控制价 26,845,285 元（安装工程 26,045,285 + 暂列金 800,000）。",
       "asserter": "未注明"
+    },
+    {
+      "fact_id": "sa2304-tpuv4-bf16-pflops",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "google-tpu-v4",
+        "label": "Google TPU v4"
+      },
+      "value": 0.275,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "Google TPU v4",
+        "precision": "BF16",
+        "scope": "单卡",
+        "sparsity": "未注明",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2023-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d5a9e6318ba5160ff856cd516a603e79dd960f7ff7f28806d9a30006effacf5f",
+        "local_file": "Google AI Infrastructure Supremacy_ Systems Matter More Than Microarchitecture (1).pdf",
+        "locator": "第 19 页「Google’s TPU Architecture」：「The TPU v4 boasts 160MB SRAM for the scratchpad along with 2 TensorCores… They support 275 TFLOPS of BF16 and also support INT8 data types. The memory bandwidth of the TPU v4 is 1200GB/s. The Inter Chip Interconnect (ICI) provides a data transfer rate of 300GB/s via six 50GB/s links」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Google AI Infrastructure Supremacy: Systems Matter More Than Microarchitecture》（Dylan Patel、George Cozma、Gerald Wong，2023-04-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "275 TFLOPS = 0.275 PFLOPS。SemiAnalysis 转述谷歌 TPU 论文口径；同页内存带宽 1,200GB/s（带宽参数单位与 accelerator_memory_spec 的 GB 不合，未录）。第 24 页称 A100 在 LLM 训练上比 TPUv4 有 31% 性能优势。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2304-tpuv4-ici-bw",
+      "metric_id": "interconnect_bandwidth_spec",
+      "entity": {
+        "type": "product",
+        "id": "google-tpu-v4",
+        "label": "Google TPU v4"
+      },
+      "value": 300.0,
+      "unit": "GB/s",
+      "caliber": {
+        "product": "Google TPU v4",
+        "link": "其他",
+        "direction": "未注明",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2023-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d5a9e6318ba5160ff856cd516a603e79dd960f7ff7f28806d9a30006effacf5f",
+        "local_file": "Google AI Infrastructure Supremacy_ Systems Matter More Than Microarchitecture (1).pdf",
+        "locator": "第 19 页「Google’s TPU Architecture」：「The TPU v4 boasts 160MB SRAM for the scratchpad along with 2 TensorCores… They support 275 TFLOPS of BF16 and also support INT8 data types. The memory bandwidth of the TPU v4 is 1200GB/s. The Inter Chip Interconnect (ICI) provides a data transfer rate of 300GB/s via six 50GB/s links」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Google AI Infrastructure Supremacy: Systems Matter More Than Microarchitecture》（Dylan Patel、George Cozma、Gerald Wong，2023-04-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "ICI（谷歌芯片间互连）6 条 × 50GB/s，原文未写单双向。64 颗一个 4×4×4 立方体切片内用直连铜缆，切片之间走 OCS 光交换（第 5–7 页）。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2304-tpuv4-pod-size",
+      "metric_id": "cluster_gpu_count",
+      "entity": {
+        "type": "product",
+        "id": "google-tpu-v4-pod",
+        "label": "Google TPU v4 Pod"
+      },
+      "value": 4096.0,
+      "unit": "颗",
+      "caliber": {
+        "scope": "单集群可扩展上限",
+        "accelerator": "Google TPU v4",
+        "region": "Global",
+        "basis": "架构宣称"
+      },
+      "as_of": "2023-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d5a9e6318ba5160ff856cd516a603e79dd960f7ff7f28806d9a30006effacf5f",
+        "local_file": "Google AI Infrastructure Supremacy_ Systems Matter More Than Microarchitecture (1).pdf",
+        "locator": "第 4 页：「Google’s TPUv2 could scale to 256 TPU chips, the same number as Nvidia’s current generation H100 GPU. They increased this number to 1024 with TPUv3 and to 4096 with TPUv4」；第 6 页「16 times smaller than the 2020 TPUv4 pod of 4096 chips」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Google AI Infrastructure Supremacy: Systems Matter More Than Microarchitecture》（Dylan Patel、George Cozma、Gerald Wong，2023-04-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "ICI 直连、不经以太网的单 pod 上限；谷歌公开的架构规格经 SemiAnalysis 转述，asserter 记谷歌。TPUv2 256、TPUv3 1,024（未另录）。48 台 OCS 即可连通 4,096 颗，同规模英伟达 SuperPod 方案约需 568 台 InfiniBand 交换机（第 7 页）。",
+      "asserter": "谷歌"
+    },
+    {
+      "fact_id": "sa2304-tpuv5-pod-size-assumed",
+      "metric_id": "cluster_gpu_count",
+      "entity": {
+        "type": "product",
+        "id": "google-tpu-v5-pod",
+        "label": "Google TPU v5 Pod（SemiAnalysis 按趋势推测）"
+      },
+      "value": 16384.0,
+      "unit": "颗",
+      "caliber": {
+        "scope": "单集群可扩展上限",
+        "accelerator": "Google TPU v5",
+        "region": "Global",
+        "basis": "第三方估算"
+      },
+      "as_of": "2023-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d5a9e6318ba5160ff856cd516a603e79dd960f7ff7f28806d9a30006effacf5f",
+        "local_file": "Google AI Infrastructure Supremacy_ Systems Matter More Than Microarchitecture (1).pdf",
+        "locator": "第 4–5 页：「We would assume that the current generation TPUv5 can scale up to 16,384 chips without going through inefficient ethernet based on the trendline」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Google AI Infrastructure Supremacy: Systems Matter More Than Microarchitecture》（Dylan Patel、George Cozma、Gerald Wong，2023-04-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**按 256→1,024→4,096 每代 ×4 的趋势外推的假设**，不是谷歌披露。",
+      "asserter": "SemiAnalysis"
     }
   ]
 }
