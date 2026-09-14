@@ -135095,6 +135095,38 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "「典型功耗<9W」按上界记。硅光发射机芯片方案（规范第二章为硅光芯片设计规范）。是行业规范要求，basis 枚举无「规范要求」，按厂商指引记；腾讯参与编写。"
+    },
+    {
+      "fact_id": "eridu-high-radix-switch-cost-saving",
+      "metric_id": "network_design_saving",
+      "entity": {
+        "type": "market",
+        "id": "ai-cluster-networking",
+        "label": "AI 集群组网"
+      },
+      "value": 40.0,
+      "unit": "%",
+      "caliber": {
+        "design_change": "其他",
+        "cost_base": "未注明",
+        "cluster_scale": "其他",
+        "region": "未披露",
+        "basis": "厂商指引"
+      },
+      "as_of": "2026-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "993efcb0003f4912b297a06fcd015db10e3eeca06bae955c97e6001889103c13",
+        "local_file": "5B_2022_Breakingthroug_未署名.pdf",
+        "locator": "第 5 页「Order of Magnitude in Radix = Massive Improvements in Performance, Cost & Power」：「40% reduction in cost」",
+        "grade": "S2",
+        "originator": "Eridu"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Eridu（Mike Capuano，OCP 2026-04-29 演讲）为自家高 radix 交换机做的宣传：十倍 radix 以一台替代 30 台交换机，称省 40% 成本、70% 功耗。**是厂商宣传且对象为假想的 1P 交换机**，未说明节省基数（网络成本还是集群成本）和集群规模，故 cost_base 记未注明；第 6 页示例（Vera Rubin NVL72、约 13–14 万 GPU）交换机数从 6,112 台降到 352 台。",
+      "asserter": "Eridu"
     }
   ]
 }
