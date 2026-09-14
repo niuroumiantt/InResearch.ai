@@ -140620,6 +140620,37 @@
       "corroboration": "待交叉验证",
       "notes": "原文「>$500B」按下界记；图注数据来源为 AMD 2024 年内部数据，vintage 记 @2024。推理增速 >80% CAGR、训练 >60% CAGR。",
       "asserter": "AMD"
+    },
+    {
+      "fact_id": "intel-ocp25-gartner-inference-share-2028e",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "industry",
+        "id": "global-ai-compute",
+        "label": "全球 AI 算力"
+      },
+      "value": 80.0,
+      "unit": "%",
+      "caliber": {
+        "workload": "推理",
+        "denominator": "AI 算力总量",
+        "region": "未披露",
+        "basis": "预测"
+      },
+      "as_of": "2028E@2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c6577dc413691d8d99e8217cc833c646c1d94ff4a37221fea002b52727d82441",
+        "local_file": "OCP2025_DAY TWO TUESDAY - 7.Intel.pdf",
+        "locator": "第 5 页：「~80% of AI compute cycles in inference by 2028*」，脚注「*Source: Gartner, published 08/2024」",
+        "grade": "S3",
+        "originator": "英特尔 OCP Global Summit 2025 主题演讲转引 Gartner"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「AI compute cycles」按 AI 算力总量为分母记；原文「~80%」按点值记。Gartner 2024-08 发布，vintage @2024-08。原文未写地域范围，region 记未披露（Gartner 此类预测通常为全球，但页面未明说，不猜）。同稿第 6 页转引 Google token 处理量 9.7Tr→1400Tr（2025），未写时间单位，未录。",
+      "asserter": "Gartner"
     }
   ]
 }
