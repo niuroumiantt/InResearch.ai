@@ -132848,6 +132848,39 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "2030 年 5%，其中 AI 平均约占数据中心用电 12%。同文全球数据中心用电 2030 年较 2023 年增 165%、占比 1-2% → 3-4% 为高盛 2024 年版全球口径（gs2501-global-dc-power-share-* 为 2025-01-12 版）。"
+    },
+    {
+      "fact_id": "acn2506-global-ai-dc-electricity-2030e",
+      "metric_id": "dc_electricity_consumption",
+      "asserter": "埃森哲",
+      "entity": {
+        "type": "industry",
+        "id": "global-ai-dc",
+        "label": "全球 AI 数据中心"
+      },
+      "value": 612.0,
+      "unit": "TWh",
+      "bound": "point",
+      "as_of": "2030E@2025-06",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "仅 AI 数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "cb0d3d9f2673daf4cd8ea1f63febfd71f86216e041e4051134f52d1777f191c5",
+        "local_file": "20250627-埃森哲：为可持续的人工智能提供动力(29页).pdf",
+        "locator": "第 6 页：「By 2030, the data centers that power AI are on track to consume 612 terawatt-hours of energy per year—equivalent to Canada’s total annual electricity consumption (Figure 1)」；侧栏「Power use in AI data centers is expected to grow over 10x by the end of the decade, reaching 612 terawatt-hours (TWh)」；图 1 注「Source: Accenture Research estimates based on data from various sources」",
+        "grade": "S3",
+        "originator": "埃森哲《Powering sustainable AI》（Accenture Research，2025-06）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "AI 数据中心 2030 年 612 TWh，本十年增长超 10 倍。图 1 另有低端/基准/高端三情景曲线，正文 612 未标明对应哪条，scenario 按单一情景记，不当 Base Case。同页冷却用淡水 30.2 亿立方米、AI 碳排或占全球 3.4%（十年 11 倍）；第 11 页 AI 占全球用电 2024 年 0.2% → 2030 年 1.9%（CAGR 48%）——dc_power_share_of_grid 无 AI 子口径，未录。"
     }
   ]
 }
