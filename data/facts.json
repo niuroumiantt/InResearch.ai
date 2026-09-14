@@ -143231,6 +143231,540 @@
       "corroboration": "待交叉验证",
       "notes": "本条单位 GB（容量）。内存带宽仍为每 GPU 8TB/s（单位不合未另录）。SemiAnalysis 2024-08 称 Blackwell Ultra（B210）up to 288GB（sa2408-b210-hbm-capacity），2025-03 GTC 文又记 B300 288GB，三处同值，均为同一出处的不同时点，不构成独立佐证。原文称三星至少 9 个月内进不了 GB200/GB300 供应。",
       "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "nv-hc24-blackwell-fp4-pflops",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-blackwell-gpu",
+        "label": "NVIDIA Blackwell GPU"
+      },
+      "value": 20.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "NVIDIA Blackwell GPU",
+        "precision": "FP4",
+        "scope": "单卡",
+        "sparsity": "未注明",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 10 页「NVIDIA Blackwell GPU」：「208B transistors in TSMC 4NP • 20 PetaFLOPS FP4 AI • 8 TB/s Memory Bandwidth | 8-site HBM3e • 1.8 TB/s Bidirectional NVLink bandwidth」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08",
+      "corroboration": "待交叉验证",
+      "notes": "英伟达官方口径。与 SemiAnalysis 2024-04 按 FP16 算的 B200 2.25 PFLOPS（sa2404-b200-fp16-pflops）精度不同，不可直接比。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-gb200-superchip-fp4-pflops",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200-superchip",
+        "label": "NVIDIA GB200 Grace Blackwell Superchip"
+      },
+      "value": 40.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "NVIDIA GB200 Grace Blackwell Superchip",
+        "precision": "FP4",
+        "scope": "单节点/托盘",
+        "sparsity": "未注明",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 13 页「NVIDIA GB200 Grace Blackwell Superchip」：「1 Grace CPU and 2 Blackwell GPUs • NVLink-C2C interconnect • 40 PetaFLOPS FP4 | 20 PetaFLOPS FP8」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08",
+      "corroboration": "待交叉验证",
+      "notes": "scope 取单节点/托盘指 Superchip 板级（1 Grace + 2 Blackwell），不是整个计算托盘（托盘为 2 Grace + 4 Blackwell）。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-gb200-superchip-fp8-pflops",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200-superchip",
+        "label": "NVIDIA GB200 Grace Blackwell Superchip"
+      },
+      "value": 20.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "NVIDIA GB200 Grace Blackwell Superchip",
+        "precision": "FP8",
+        "scope": "单节点/托盘",
+        "sparsity": "未注明",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 13 页：「40 PetaFLOPS FP4 | 20 PetaFLOPS FP8」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08",
+      "corroboration": "待交叉验证",
+      "notes": "同上，FP8 口径。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-gb200-nvl72-training-pflops",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200-nvl72",
+        "label": "NVIDIA GB200 NVL72"
+      },
+      "value": 720.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "NVIDIA GB200 NVL72",
+        "precision": "FP8",
+        "scope": "整机柜",
+        "sparsity": "未注明",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 25 页「GB200 NVL72 & NVL36」表：「Training 720 PFLOPs / Inference 1,440 PFLOPs / NVL Model Size 27 Trillion params / Multi-Node Bandwidth 130 TB/s / Multi-Node All-Reduce 260 TB/s」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08；precision 由 720 = 36 × 20（第 13 页 Superchip FP8）反推，原表未标",
+      "corroboration": "待交叉验证",
+      "notes": "**原表只写「Training」未写精度**；按第 13 页 Superchip FP8 20 PFLOPS × 36 = 720 吻合，precision 记 FP8。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-gb200-nvl72-inference-pflops",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200-nvl72",
+        "label": "NVIDIA GB200 NVL72"
+      },
+      "value": 1440.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "NVIDIA GB200 NVL72",
+        "precision": "FP4",
+        "scope": "整机柜",
+        "sparsity": "未注明",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 25 页「GB200 NVL72 & NVL36」表：「Training 720 PFLOPs / Inference 1,440 PFLOPs」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08；precision 由 1,440 = 72 × 20（第 10 页单 GPU FP4）反推，原表未标",
+      "corroboration": "待交叉验证",
+      "notes": "**原表只写「Inference」未写精度**；按第 10 页单 GPU FP4 20 PFLOPS × 72 = 1,440 吻合，precision 记 FP4。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-blackwell-nvlink5-bw",
+      "metric_id": "interconnect_bandwidth_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-blackwell-gpu",
+        "label": "NVIDIA Blackwell GPU（NVLink5）"
+      },
+      "value": 1800.0,
+      "unit": "GB/s",
+      "caliber": {
+        "product": "NVIDIA Blackwell GPU",
+        "link": "NVLink（单卡）",
+        "direction": "双向",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 22 页「World-Class NVLink PHY Performance」：「Ampere | NVLink3 12 NVLinks | 50GB/s each x4@50Gbps-NRZ 600GB/s total；Hopper | NVLink4 18 NVLinks | 50GB/s each x2@100Gbps-PAM4 900GB/s total；Blackwell | NVLink5 18 NVLinks | 100GB/s each x2@200Gbps-PAM4 1800GB/s total」；第 10 页「1.8 TB/s Bidirectional NVLink bandwidth」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08",
+      "corroboration": "待交叉验证",
+      "notes": "18 条 NVLink × 100GB/s。与 SemiAnalysis「每 GPU 每方向 900GB/s」（sa2408-gb200a-nvl36-nvlink-bw）是同一带宽的单/双向两种写法，不是分歧。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-hopper-nvlink4-bw",
+      "metric_id": "interconnect_bandwidth_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-hopper-gpu",
+        "label": "NVIDIA Hopper GPU（NVLink4）"
+      },
+      "value": 900.0,
+      "unit": "GB/s",
+      "caliber": {
+        "product": "NVIDIA Hopper GPU",
+        "link": "NVLink（单卡）",
+        "direction": "双向",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 22 页「World-Class NVLink PHY Performance」：「Ampere | NVLink3 12 NVLinks | 50GB/s each x4@50Gbps-NRZ 600GB/s total；Hopper | NVLink4 18 NVLinks | 50GB/s each x2@100Gbps-PAM4 900GB/s total；Blackwell | NVLink5 18 NVLinks | 100GB/s each x2@200Gbps-PAM4 1800GB/s total」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08",
+      "corroboration": "待交叉验证",
+      "notes": "18 条 NVLink × 50GB/s。第 22 页未写单双向，按第 10 页 Blackwell 同表口径「Bidirectional」记双向。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-ampere-nvlink3-bw",
+      "metric_id": "interconnect_bandwidth_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-ampere-gpu",
+        "label": "NVIDIA Ampere GPU（NVLink3）"
+      },
+      "value": 600.0,
+      "unit": "GB/s",
+      "caliber": {
+        "product": "NVIDIA Ampere GPU",
+        "link": "NVLink（单卡）",
+        "direction": "双向",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 22 页「World-Class NVLink PHY Performance」：「Ampere | NVLink3 12 NVLinks | 50GB/s each x4@50Gbps-NRZ 600GB/s total；Hopper | NVLink4 18 NVLinks | 50GB/s each x2@100Gbps-PAM4 900GB/s total；Blackwell | NVLink5 18 NVLinks | 100GB/s each x2@200Gbps-PAM4 1800GB/s total」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08",
+      "corroboration": "待交叉验证",
+      "notes": "12 条 NVLink × 50GB/s。单双向判断同 Hopper 那条。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-nvswitch4-chip-bw",
+      "metric_id": "interconnect_bandwidth_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-nvlink-switch-chip-gen4",
+        "label": "NVIDIA 第 4 代 NVLink Switch 芯片"
+      },
+      "value": 7200.0,
+      "unit": "GB/s",
+      "caliber": {
+        "product": "NVIDIA 第 4 代 NVLink Switch 芯片",
+        "link": "其他",
+        "direction": "双向",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 23 页「4th Generation NVLink Switch Chip and NVLink Switch Tray」：「>800 mm2 in TSMC 4NP • Extends NVLink to 72 GPUs on GB200 NVL72 • 7.2 TB/s full all-to-all bidirectional BW over 72 ports • SHARP In-Network Compute — 3.6 TFLOPS」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08",
+      "corroboration": "待交叉验证",
+      "notes": "7.2 TB/s = 7,200 GB/s，72 个端口。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-nvswitch-tray-bw",
+      "metric_id": "interconnect_bandwidth_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-nvlink-switch-tray",
+        "label": "NVIDIA NVLink Switch Tray（GB200 NVL72）"
+      },
+      "value": 14400.0,
+      "unit": "GB/s",
+      "caliber": {
+        "product": "NVIDIA NVLink Switch Tray",
+        "link": "其他",
+        "direction": "未注明",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 23 页：「NVLink Switch Tray • 2x NVLink Switch chips • 14.4 TB/s total bandwidth」；第 27 页「2x NVLink Switch chip | 14.4 TB/s total bandwidth … 1U liquid cooled | 9 Per rack」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08",
+      "corroboration": "待交叉验证",
+      "notes": "托盘总带宽 = 2 颗芯片 × 7.2 TB/s，原文「total」未写单双向。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-gb200-nvl72-multinode-bw",
+      "metric_id": "interconnect_bandwidth_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200-nvl72",
+        "label": "NVIDIA GB200 NVL72"
+      },
+      "value": 130000.0,
+      "unit": "GB/s",
+      "caliber": {
+        "product": "NVIDIA GB200 NVL72",
+        "link": "NVLink（整柜）",
+        "direction": "未注明",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 25 页「GB200 NVL72 & NVL36」表：「Multi-Node Bandwidth 130 TB/s / Multi-Node All-Reduce 260 TB/s」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08",
+      "corroboration": "待交叉验证",
+      "notes": "130 TB/s = 130,000 GB/s，按 72 × 1.8 TB/s = 129.6 TB/s 取整。同表 All-Reduce 260 TB/s 是另一种算法带宽口径，未另录。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-nvlink5-lane",
+      "metric_id": "interconnect_lane_rate",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-nvlink5",
+        "label": "NVIDIA NVLink5 PHY"
+      },
+      "value": 200.0,
+      "unit": "Gbps/通道",
+      "caliber": {
+        "product": "NVIDIA NVLink5",
+        "medium": "未注明",
+        "reach_band": "未注明",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 22 页「World-Class NVLink PHY Performance」：「Ampere | NVLink3 12 NVLinks | 50GB/s each x4@50Gbps-NRZ 600GB/s total；Hopper | NVLink4 18 NVLinks | 50GB/s each x2@100Gbps-PAM4 900GB/s total；Blackwell | NVLink5 18 NVLinks | 100GB/s each x2@200Gbps-PAM4 1800GB/s total」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08",
+      "corroboration": "待交叉验证",
+      "notes": "每条 NVLink x2 通道 @200Gbps PAM4。原文未写传输介质与距离（GB200 NVL72 机内为铜背板，本页未说），medium 与 reach 记未注明。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-nvlink4-lane",
+      "metric_id": "interconnect_lane_rate",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-nvlink4",
+        "label": "NVIDIA NVLink4 PHY"
+      },
+      "value": 100.0,
+      "unit": "Gbps/通道",
+      "caliber": {
+        "product": "NVIDIA NVLink4",
+        "medium": "未注明",
+        "reach_band": "未注明",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 22 页「World-Class NVLink PHY Performance」：「Ampere | NVLink3 12 NVLinks | 50GB/s each x4@50Gbps-NRZ 600GB/s total；Hopper | NVLink4 18 NVLinks | 50GB/s each x2@100Gbps-PAM4 900GB/s total；Blackwell | NVLink5 18 NVLinks | 100GB/s each x2@200Gbps-PAM4 1800GB/s total」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08",
+      "corroboration": "待交叉验证",
+      "notes": "每条 NVLink x2 通道 @100Gbps PAM4。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-nvlink3-lane",
+      "metric_id": "interconnect_lane_rate",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-nvlink3",
+        "label": "NVIDIA NVLink3 PHY"
+      },
+      "value": 50.0,
+      "unit": "Gbps/通道",
+      "caliber": {
+        "product": "NVIDIA NVLink3",
+        "medium": "未注明",
+        "reach_band": "未注明",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 22 页「World-Class NVLink PHY Performance」：「Ampere | NVLink3 12 NVLinks | 50GB/s each x4@50Gbps-NRZ 600GB/s total；Hopper | NVLink4 18 NVLinks | 50GB/s each x2@100Gbps-PAM4 900GB/s total；Blackwell | NVLink5 18 NVLinks | 100GB/s each x2@200Gbps-PAM4 1800GB/s total」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08",
+      "corroboration": "待交叉验证",
+      "notes": "每条 NVLink x4 通道 @50Gbps NRZ。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-blackwell-node",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-blackwell-gpu",
+        "label": "NVIDIA Blackwell GPU"
+      },
+      "value": 4.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "NVIDIA Blackwell GPU",
+        "parameter": "制程(nm)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 11 页「Highest AI Compute in a Single GPU」表：Volta >21B 晶体管 815mm² TSMC 12nm FFN；Ampere >54B 826mm² TSMC N7；Hopper >80B 814mm² TSMC 4N；Blackwell >208B >1600mm² TSMC 4NP",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08",
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 nm，原文工艺名 TSMC 4NP；两颗光罩极限裸片经 NV-HBI（10 TB/s 双向）合成一颗 GPU，总面积 >1600mm²。与 SemiAnalysis 2024-03 发布前说法「4nm」一致（sa2403-blackwell-node）。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "nv-hc24-gb200-nvl72-moe-inference-ratio",
+      "metric_id": "generation_ratio",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200-nvl72",
+        "label": "NVIDIA GB200 NVL72"
+      },
+      "value": 30.0,
+      "unit": "x",
+      "caliber": {
+        "parameter": "性能",
+        "baseline_generation": "Hopper",
+        "region": "Global",
+        "basis": "架构宣称"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "139402058773a8b546ed267ed4f08c7dcd69b43b24e6202e5669ca2e35cfbc7b",
+        "local_file": "【英伟达】NVIDIA Blackwell Platform Advancing Generative AI and Accelerated Computing - 英伟达Blackwell平台介绍 支持生成式AI和加速计算.pdf",
+        "locator": "第 27 页：「GB200 NVL72 Enabling Trillion Parameter AI … 30x real-time MoE inference, 25x improved energy efficiency」；脚注「Projected performance subject to change … GPT-MoE-1.8T: FTL = 5s; input sequence length = 32,768, output sequence length = 1,024, 8 HGX H100 air-cooled … per GPU performance comparison」",
+        "grade": "S2",
+        "originator": "英伟达（Ajay Tirumala、Raymond Wong，《NVIDIA Blackwell Platform: Advancing Generative AI and Accelerated Computing》，Hot Chips 2024）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 胶片未印日期：第 21 页引用 Llama 3.1 405B（2024-07 发布），第 32 页路线图把 Blackwell 标在 2024、Blackwell Ultra 在 2025，与 Hot Chips 2024（2024-08）同名演讲一致，推定 2024-08",
+      "corroboration": "待交叉验证",
+      "notes": "**预测性能**（原文注明 subject to change），每 GPU 对比，基线为风冷 HGX H100，负载 GPT-MoE-1.8T、TTL 50ms 实时推理。同页 GPT-3 175B 为 6x。25x 能效提升无对应 parameter，未录。derived 只因 as_of 为推定，数值本身是原文。",
+      "asserter": "英伟达"
     }
   ]
 }
