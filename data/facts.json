@@ -127736,6 +127736,72 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "截至 2022 年企业累计采购可再生装机 77 GW（其中光伏 45 GW、58%）；2022 年当年 18.7 GW（光伏 14.4 GW）是年度流量，本指标无窗口维未录。「procured」含已投运与在建，status 记合计。地域按图源《Clean Energy Powers American Business》记 US，正文未明写。"
+    },
+    {
+      "fact_id": "idc2604-nonx86-server-rev-2025",
+      "metric_id": "server_mfg_revenue",
+      "asserter": "IDC",
+      "entity": {
+        "type": "market",
+        "id": "global-server-market",
+        "label": "全球服务器市场"
+      },
+      "value": 1380.0,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2025",
+      "caliber": {
+        "server_class": "非x86",
+        "region": "Total",
+        "storage_scope": "不适用（非存储口径）",
+        "product_category": "不适用（非存储口径）",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分"
+      },
+      "evidence": {
+        "sha256": "50a5135ea55ecf7eecc10a43c2f687128bd3862536a780f54b4d801c7fa37dbc",
+        "local_file": "5B_2022_Understandingt_未署名.pdf",
+        "locator": "第 8 页「Investments in GPU-accelerated AI servers…」：「revenue from non-x86 server sales predicted to reach $438 billion by 2029, up from $138 billion in 2025」「revenue from the sale of non-x86 servers more than doubled in 2025, compared with 2024」（Source: IDC, 2025, Enterprise Infrastructure Server Tracker, 2020–2029）",
+        "grade": "S3",
+        "originator": "IDC Enterprise Infrastructure Server Tracker（经 IDC《Understanding the EMEA Adoption of OCP Designs》Market Impact Study 2026，Chris Drake，2026-04-29，OCP 会议演讲转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "全球非 x86 服务器销售收入 1,380 亿美元，较 2024 年翻倍以上（主要是超大规模与云厂商采购 GPU 加速服务器）。图注数据来源标「IDC, 2025」，2025 年值在出图时可能仍含估计。"
+    },
+    {
+      "fact_id": "idc2604-nonx86-server-rev-2029e",
+      "metric_id": "server_mfg_revenue",
+      "asserter": "IDC",
+      "entity": {
+        "type": "market",
+        "id": "global-server-market",
+        "label": "全球服务器市场"
+      },
+      "value": 4380.0,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2029E@2025",
+      "caliber": {
+        "server_class": "非x86",
+        "region": "Total",
+        "storage_scope": "不适用（非存储口径）",
+        "product_category": "不适用（非存储口径）",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分"
+      },
+      "evidence": {
+        "sha256": "50a5135ea55ecf7eecc10a43c2f687128bd3862536a780f54b4d801c7fa37dbc",
+        "local_file": "5B_2022_Understandingt_未署名.pdf",
+        "locator": "第 8 页「Investments in GPU-accelerated AI servers…」：「revenue from non-x86 server sales predicted to reach $438 billion by 2029, up from $138 billion in 2025」「revenue from the sale of non-x86 servers more than doubled in 2025, compared with 2024」（Source: IDC, 2025, Enterprise Infrastructure Server Tracker, 2020–2029）",
+        "grade": "S3",
+        "originator": "IDC Enterprise Infrastructure Server Tracker（经 IDC《Understanding the EMEA Adoption of OCP Designs》Market Impact Study 2026，Chris Drake，2026-04-29，OCP 会议演讲转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2029 年预测 4,380 亿美元；图注「Source: IDC, 2025」，做出时点只知年份，as_of 带 @2025。同页 x86 服务器序列图中 $552B 标签未写年份与系列对应，未录。"
     }
   ]
 }
