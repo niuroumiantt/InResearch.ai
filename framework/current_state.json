@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.14.3",
+  "version": "2026.09.14.4",
   "effective_at": "2026-09-14",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -527,7 +527,7 @@
       "source": "framework/09_software_contracts.md",
       "effective_at": "2026-09-14",
       "supersedes": [],
-      "reason": "Published Git research and persistent runtime state have separate authority; explicit initialization, recovery and read-only deployment replace whole-directory shadowing. Historical brief proposes review without changing formal findings; existing research and originals scope remain.；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；可见画布、几何适配与用户镜头所有权收敛；renderer/HDR/纹理仍未全部迁移。",
+      "reason": "Published Git research and persistent runtime state have separate authority; explicit initialization, recovery and read-only deployment replace whole-directory shadowing. Historical brief proposes review without changing formal findings; existing research and originals scope remain.；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；可见画布、几何适配与用户镜头所有权收敛；renderer/HDR/纹理仍未全部迁移。；2026-09-14 CLI 全局目录仅用于三个统一 JSON 用例，其他命令显式拒绝；子接口参数保留，委派成功/失败恢复进程参数。",
       "implementations": [
         "src/inresearch/workflow/commands.py",
         "src/inresearch/storage/files.py",
@@ -578,9 +578,11 @@
         "web/pages/bom3d.html",
         "web/pages/rack3d.html",
         "web/pages/compare.html",
-        "tests/scene_framing.cjs"
+        "tests/scene_framing.cjs",
+        "src/inresearch/__main__.py",
+        "docs/local_setup/README.md"
       ],
-      "implementation_revision": "2026.09.14.3"
+      "implementation_revision": "2026.09.14.4"
     }
   ],
   "entrypoints": [

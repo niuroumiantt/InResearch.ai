@@ -9,6 +9,7 @@ from pathlib import Path
 from inresearch.storage.files import CommitUncertain
 
 ROOT = project_root()
+JSON_COMMANDS = ('add-price', 'assign', 'receive-snapshot')
 COMMANDS = {
     'storage': 'inresearch.storage.layout',
     'models': 'inresearch.adapters.models',
@@ -33,14 +34,23 @@ COMMANDS = {
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument('--root', type=Path, default=ROOT, help='business data root for command mutations')
-    ap.add_argument('command', choices=sorted([*COMMANDS, 'add-price', 'assign', 'receive-snapshot']))
+    ap.add_argument('--root', type=Path,
+                    help='project root for ' + ', '.join(JSON_COMMANDS) + ' only; runtime layout still applies')
+    ap.add_argument('command', choices=sorted([*COMMANDS, *JSON_COMMANDS]))
     ap.add_argument('args', nargs=argparse.REMAINDER)
     args = ap.parse_args(argv)
     if args.command in COMMANDS:
-        sys.argv = [args.command, *args.args]
-        module = importlib.import_module(COMMANDS[args.command])
-        return module.main()
+        if args.root is not None:
+            ap.error('global --root applies only to ' + ', '.join(JSON_COMMANDS) +
+                     '; use directory options supported by ' + args.command + ' after its command name')
+        previous_argv = sys.argv
+        try:
+            sys.argv = [args.command, *args.args]
+            module = importlib.import_module(COMMANDS[args.command])
+            return module.main()
+        finally:
+            sys.argv = previous_argv
+    root = args.root if args.root is not None else ROOT
     from inresearch.workflow import commands as commands
     command = argparse.ArgumentParser(prog='inresearch ' + args.command)
     command.add_argument('--input', type=Path, help='JSON file; otherwise read stdin')
@@ -51,11 +61,11 @@ def main(argv=None):
         if not isinstance(payload, dict):
             raise ValueError('JSON object required')
         if args.command == 'add-price':
-            reply = commands.add_price(args.root, payload)
+            reply = commands.add_price(root, payload)
         elif args.command == 'assign':
-            reply = commands.assign(args.root, payload, by=options.actor)
+            reply = commands.assign(root, payload, by=options.actor)
         else:
-            reply = commands.receive_snapshot(args.root, payload)
+            reply = commands.receive_snapshot(root, payload)
         print(json.dumps(reply, ensure_ascii=False))
         return 0
     except CommitUncertain as exc:

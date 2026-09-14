@@ -1,0 +1,45 @@
+command,module,path,main_line,directory_options,migration_result
+acquisition,inresearch.adapters.acquisition,src/inresearch/adapters/acquisition.py,234,"p=argparse.ArgumentParser(description=__doc__);p.add_argument('--data-root',type=Path,default=data_root());sub=p.add_subparsers(dest='command',required=True)",retain child-local arguments; reject explicit global root before dispatch
+acquisition-status,inresearch.delivery.acquisition_status,src/inresearch/delivery/acquisition_status.py,7,,retain child-local arguments; reject explicit global root before dispatch
+asset-check,inresearch.adapters.asset_check,src/inresearch/adapters/asset_check.py,6,,retain child-local arguments; reject explicit global root before dispatch
+asset-compare,inresearch.adapters.asset_compare,src/inresearch/adapters/asset_compare.py,94,,retain child-local arguments; reject explicit global root before dispatch
+asset-download,inresearch.adapters.asset_download,src/inresearch/adapters/asset_download.py,113,,retain child-local arguments; reject explicit global root before dispatch
+attribution,inresearch.workflow.attribution,src/inresearch/workflow/attribution.py,208,,retain child-local arguments; reject explicit global root before dispatch
+backup,inresearch.delivery.backup,src/inresearch/delivery/backup.py,30,"p=argparse.ArgumentParser(description=__doc__);p.add_argument('--data-root',type=Path,default=data_root());p.add_argument('--dest',type=Path,required=True);a=p.parse_args()",retain child-local arguments; reject explicit global root before dispatch
+batch,inresearch.workflow.terminal_batch,src/inresearch/workflow/terminal_batch.py,600,,retain child-local arguments; reject explicit global root before dispatch
+company-ids,inresearch.knowledge.company_ids,src/inresearch/knowledge/company_ids.py,23,,retain child-local arguments; reject explicit global root before dispatch
+coverage,inresearch.knowledge.coverage,src/inresearch/knowledge/coverage.py,136,,retain child-local arguments; reject explicit global root before dispatch
+deep-read,inresearch.interfaces.deep_read,src/inresearch/interfaces/deep_read.py,130,"ap.add_argument('--reader-data-root', help='共享 reader 数据根；缺省使用 READER_DATA_ROOT 或项目默认数据目录')",retain child-local arguments; reject explicit global root before dispatch
+export,inresearch.delivery.export,src/inresearch/delivery/export.py,29,,retain child-local arguments; reject explicit global root before dispatch
+facts,inresearch.knowledge.facts,src/inresearch/knowledge/facts.py,255,,retain child-local arguments; reject explicit global root before dispatch
+governance,inresearch.interfaces.governance,src/inresearch/interfaces/governance.py,201,,retain child-local arguments; reject explicit global root before dispatch
+historical-brief,inresearch.adapters.historical_brief,src/inresearch/adapters/historical_brief.py,119,,retain child-local arguments; reject explicit global root before dispatch
+indicators,inresearch.knowledge.indicators,src/inresearch/knowledge/indicators.py,103,,retain child-local arguments; reject explicit global root before dispatch
+inventory,inresearch.materials.inventory,src/inresearch/materials/inventory.py,172,"ap.add_argument(""--root"", default=os.environ.get(""M4_TRIAGE_ROOT"", str(m4_paths.source()))) | ap.add_argument(""--out-dir"", default=os.environ.get(""M4_TRIAGE_OUT"", str(m4_paths.data())))",retain child-local arguments; reject explicit global root before dispatch
+library,inresearch.materials.library,src/inresearch/materials/library.py,542,"s.add_argument(""--path"", help=""直接指定目录，如 ~/code/inresearch.ai/product"") | s.add_argument(""--dir"", default=""inresearch-product"", help=""卷内目录名（配 --volume 用）"")",retain child-local arguments; reject explicit global root before dispatch
+library-index,inresearch.delivery.library_index,src/inresearch/delivery/library_index.py,43,,retain child-local arguments; reject explicit global root before dispatch
+map,inresearch.delivery.map,src/inresearch/delivery/map.py,76,,retain child-local arguments; reject explicit global root before dispatch
+mapping,inresearch.materials.mapping,src/inresearch/materials/mapping.py,205,,retain child-local arguments; reject explicit global root before dispatch
+models,inresearch.adapters.models,src/inresearch/adapters/models.py,295,,retain child-local arguments; reject explicit global root before dispatch
+news-sync,inresearch.adapters.news_sync,src/inresearch/adapters/news_sync.py,98,,retain child-local arguments; reject explicit global root before dispatch
+ocr-worker,inresearch.adapters.ocr_worker,src/inresearch/adapters/ocr_worker.py,81,,retain child-local arguments; reject explicit global root before dispatch
+organize,inresearch.materials.organize,src/inresearch/materials/organize.py,256,,retain child-local arguments; reject explicit global root before dispatch
+preflight,inresearch.materials.preflight,src/inresearch/materials/preflight.py,99,,retain child-local arguments; reject explicit global root before dispatch
+progress,inresearch.workflow.progress,src/inresearch/workflow/progress.py,114,,retain child-local arguments; reject explicit global root before dispatch
+publish,inresearch.delivery.publish,src/inresearch/delivery/publish.py,22,,retain child-local arguments; reject explicit global root before dispatch
+reader,inresearch.interfaces.reader,src/inresearch/interfaces/reader.py,9,"ap.add_argument(""--data-root"", default=os.environ.get(""READER_DATA_ROOT"")) | ap.add_argument(""--state-root"", default=os.environ.get(""READER_STATE_ROOT"")) | ap.add_argument(""--repo-root"", default=os.environ.get(""READER_REPO_ROOT""))",retain child-local arguments; reject explicit global root before dispatch
+reader-status,inresearch.delivery.reader_status,src/inresearch/delivery/reader_status.py,7,,retain child-local arguments; reject explicit global root before dispatch
+reading-queue,inresearch.workflow.reading_queue,src/inresearch/workflow/reading_queue.py,40,,retain child-local arguments; reject explicit global root before dispatch
+receive,inresearch.materials.receive,src/inresearch/materials/receive.py,16,,retain child-local arguments; reject explicit global root before dispatch
+registry,inresearch.knowledge.registry,src/inresearch/knowledge/registry.py,579,,retain child-local arguments; reject explicit global root before dispatch
+repair-paths,inresearch.materials.repair_paths,src/inresearch/materials/repair_paths.py,33,,retain child-local arguments; reject explicit global root before dispatch
+scan-candidates,inresearch.materials.scan_candidates,src/inresearch/materials/scan_candidates.py,23,,retain child-local arguments; reject explicit global root before dispatch
+score,inresearch.workflow.score,src/inresearch/workflow/score.py,143,,retain child-local arguments; reject explicit global root before dispatch
+serve,inresearch.interfaces.http,src/inresearch/interfaces/http.py,490,,retain child-local arguments; reject explicit global root before dispatch
+storage,inresearch.storage.layout,src/inresearch/storage/layout.py,172,"ap.add_argument('--runtime-root', type=Path)",retain child-local arguments; reject explicit global root before dispatch
+submissions,inresearch.workflow.submissions,src/inresearch/workflow/submissions.py,315,,retain child-local arguments; reject explicit global root before dispatch
+triage,inresearch.workflow.triage,src/inresearch/workflow/triage.py,150,,retain child-local arguments; reject explicit global root before dispatch
+users,inresearch.interfaces.users,src/inresearch/interfaces/users.py,31,,retain child-local arguments; reject explicit global root before dispatch
+validate,inresearch.knowledge.validate,src/inresearch/knowledge/validate.py,80,,retain child-local arguments; reject explicit global root before dispatch
+verify,inresearch.knowledge.verify,src/inresearch/knowledge/verify.py,148,,retain child-local arguments; reject explicit global root before dispatch
+workorders,inresearch.workflow.workorders,src/inresearch/workflow/workorders.py,383,,retain child-local arguments; reject explicit global root before dispatch
