@@ -127053,6 +127053,39 @@
       "derivation": "as_of 取 TIA-942-A 发布年 2012：文章只说「初版 2005 年颁布……现在新的版本终于颁布了」，发布年为库外知识，待核",
       "corroboration": "待交叉验证",
       "notes": "「最大的露点是 15°C」；初版 TIA-942 为 21℃（tia942-dewpoint-max）。同文最大相对湿度 60% 不是温度，未录。"
+    },
+    {
+      "fact_id": "eaton2509-qyr-global-dc-market-cagr-2024-2028e",
+      "metric_id": "dc_market_growth",
+      "asserter": "QYResearch",
+      "entity": {
+        "type": "market",
+        "id": "dc-market-global",
+        "label": "全球数据中心市场"
+      },
+      "value": 11.0,
+      "unit": "%",
+      "bound": "point",
+      "as_of": "2028E",
+      "caliber": {
+        "measure": "按市场收入",
+        "dc_type": "全部类型",
+        "period_basis": "复合年均",
+        "operator_type": "全市场",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "4f398dfd866be723791aa60479a86bcaec4da17e06af250e269a2910ef8bd05a",
+        "local_file": "20250919-伊顿：2025年数据中心空气治理白皮书(18页).pdf",
+        "locator": "第 2 页图注：「根据 QYResearch 调研数据，全球数据中心市场呈现稳定增长态势，2024 年突破 1871.4 亿美元。预计 2028 年将达到 2840 亿美元，年复合增长率约 11.0%」",
+        "grade": "S3",
+        "originator": "QYResearch（经伊顿《数据中心空气治理白皮书》（2025-09-19）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "窗口 2024→2028E 四年复合，原文「约 11.0%」（1871.4→2840 亿美元按四年复合为 11.0%，与原文一致）。QYResearch 做出预测的时点原文未写，as_of 不带 @。「市场规模」未说明是收入还是投资口径，measure 按「按市场收入」记，待核。"
     }
   ]
 }
