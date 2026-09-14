@@ -290,7 +290,7 @@
 | `framework/indicators.json` | indicators | 44 |
 | `framework/interface_manifest.json` | static_pages | 13 |
 | `framework/interface_manifest.json` | template_fragments | 4 |
-| `framework/metrics.json` | metrics | 297 |
+| `framework/metrics.json` | metrics | 298 |
 | `framework/modules.json` | modules | 15 |
 | `framework/research_graph.json` | views | 5 |
 | `framework/research_graph.json` | objects | 118 |
