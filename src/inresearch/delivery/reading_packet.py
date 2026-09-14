@@ -23,6 +23,57 @@ def pdf_text(path: Path) -> tuple[str, dict]:
     text = '\n'.join('\n[p.%d]\n%s' % (i + 1, part) for i, part in enumerate(parts) if part.strip())
     return text, {'pages': pages}
 
+def mht_text(path: Path) -> tuple[str, dict]:
+    """MHTML 存档：一封 MIME 邮件，正文那一部分是 HTML。
+
+    .mht 是「网页另存为单个文件」的产物，整份是 MIME 多部分消息，HTML 正文与图片、
+    样式各占一段。此前没有读取器，这类文件一律报「no reader」，于是整份材料连
+    出处都判不出来。
+
+    只取 text/html（没有就退回 text/plain）那些段，其余段（图片、CSS）跳过——
+    **不把附件段的字节当正文**，那会喂给下游一堆 base64。段的编码按它自己的声明解，
+    声明不可信时退回 utf-8 忽略错误，宁可缺几个字也不整份失败。
+    """
+    import email
+    from email import policy
+    message = email.message_from_bytes(path.read_bytes(), policy=policy.default)
+    parts, kinds = [], []
+    for part in message.walk():
+        kind = part.get_content_type()
+        if kind not in ('text/html', 'text/plain'):
+            continue
+        payload = part.get_payload(decode=True)
+        if not payload:
+            continue
+        charset = part.get_content_charset() or 'utf-8'
+        try:
+            body = payload.decode(charset, 'replace')
+        except LookupError:
+            body = payload.decode('utf-8', 'ignore')
+        parts.append(strip_markup(body) if kind == 'text/html' else body)
+        kinds.append(kind)
+    if not parts:
+        return '', {'extract_error': 'mht: no text/html or text/plain part'}
+    return '\n\n'.join(parts), {'mht_parts': len(parts), 'mht_kinds': sorted(set(kinds))}
+
+
+def strip_markup(html: str) -> str:
+    """标签去掉、script 与 style 整段丢掉、实体还原，段落之间留空行。
+
+    留空行是给 chunks() 用的——它按空行切块，全糊成一行的话整份会变成一个巨块。
+    """
+    import html as html_module
+    text = re.sub(r'(?is)<(script|style)\b.*?</\1>', ' ', html)
+    text = re.sub(r'(?i)<br\s*/?>', '\n', text)
+    # 块级标签收尾给一个空行，不是一个换行：chunks() 按空行切块，只给换行的话
+    # 整份会糊成一个巨块，既超字数上限又让引用定位不到段。
+    text = re.sub(r'(?i)</(p|div|tr|li|h[1-6]|table|section|article)>', '\n\n', text)
+    text = re.sub(r'(?s)<[^>]+>', ' ', text)
+    text = html_module.unescape(text)
+    text = re.sub(r'[ \t\xa0]+', ' ', text)
+    return re.sub(r'\n\s*\n\s*\n+', '\n\n', text).strip()
+
+
 def full_text(path: Path, suffix: str) -> tuple[str, dict]:
     try:
         if suffix == '.pdf':
@@ -37,6 +88,8 @@ def full_text(path: Path, suffix: str) -> tuple[str, dict]:
                 try: return raw.decode(enc), {}
                 except UnicodeDecodeError: continue
             return raw.decode('utf-8', 'ignore'), {}
+        if suffix in {'.mht', '.mhtml'}:
+            return mht_text(path)
         if suffix in {'.doc', '.rtf'}:
             return run(['textutil', '-convert', 'txt', '-stdout', str(path)],
                        300).stdout.decode('utf-8', 'ignore'), {}

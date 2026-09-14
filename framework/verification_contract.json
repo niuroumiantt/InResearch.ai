@@ -41,7 +41,7 @@
     "tests/unit/test_catalog_migration.py": "463ffb034bd7d1f5b2cd2f8c221e07734ac287dd0df95a7fda127a2f2d69de48",
     "tests/unit/test_commands.py": "0eda9d7ee92eadb0b187f8e83901ae42c016c783fcdcfeec1d0e74b89dbb15a7",
     "tests/unit/test_continuous_reader.py": "6c36c298912077a7ab480e43f4a54fbfbb08978624c6e6efb3ac9f47657f4238",
-    "tests/unit/test_deep_read.py": "de3c653ce625df7049b1e9535ecd38f87b2a2b30012e66526c162bf6bfae068b",
+    "tests/unit/test_deep_read.py": "f05acc087bf712e3b6545353ad42c573bc1b5f92a8c78d36699869d591a3f180",
     "tests/unit/test_deep_read_transactions.py": "e44abfc65c4550106aa009041a92271a8e5d3c880bd56b680147baaefe633317",
     "tests/unit/test_display_regressions.py": "2602913be97a4e6a9b1bd60e30be5ef35853bc799efa797f71d517df22085d51",
     "tests/unit/test_fact_contract.py": "ec9d39a557253733bb9e3ba22e926f9e4bc69f8801556e4788647e231466704a",
@@ -137,7 +137,10 @@
         "tests/unit/test_fact_contract.py::ForecastOutlierTests.test_one_house_across_three_vintages_is_still_one_house",
         "tests/unit/test_deep_read.py::ResketchTests.test_the_old_sixteen_char_packet_is_accepted",
         "tests/unit/test_deep_read.py::ResketchTests.test_a_packet_whose_text_does_not_match_its_manifest_is_refused",
-        "tests/unit/test_deep_read.py::ResketchTests.test_every_file_needing_a_reread_is_listed"
+        "tests/unit/test_deep_read.py::ResketchTests.test_every_file_needing_a_reread_is_listed",
+        "tests/unit/test_deep_read.py::MhtReaderTests.test_script_and_style_never_reach_the_text",
+        "tests/unit/test_deep_read.py::MhtReaderTests.test_paragraphs_stay_separated_for_chunking",
+        "tests/unit/test_deep_read.py::MhtReaderTests.test_a_file_with_no_text_part_says_so"
       ],
       "not_verified": [
         "38 条存量事实缺内容 SHA；27 条历史来源未登记；B 审核质量与语义冲突识别不能由机检代替。",
@@ -155,7 +158,9 @@
         "近似副本比对的 sketch 是有损表示：实测约 0.9% 的文字差异下，sketch 的真实 Jaccard 中位数 0.809、最低 0.429，17/40 落在 0.8 阈值以下；整篇重复的文本塌成一个块哈希，两份这样的文件重合度算作 0。因此 near_twins 给空结果不等于没有副本，本轮不调阈值也不换表示。",
         "forecast_outliers 只比同一目标年份且至少三家给出预测的组；两家、同一家多个时点、以及口径任一维不同的，都不比——漏报是刻意的，宁可不报也不制造假的同行。",
         "旧格式 l2/<前16位>/text.md 的任务包没有 manifest，正文与材料的绑定只有目录名，resketch 用它补出的 sketch 无法再核对；报告里按 packet_legacy16 单列，不与其它来源混计。",
-        "企业密级定级与泛用机密页脚的区分由人判断，测试不覆盖：RESTRICTIONS 只说明该怎么分，标记仍须逐份由人决定并说明在哪儿看到的。"
+        "企业密级定级与泛用机密页脚的区分由人判断，测试不覆盖：RESTRICTIONS 只说明该怎么分，标记仍须逐份由人决定并说明在哪儿看到的。",
+        "新增必填口径维后的回填按原文就近判断（workload 取「全部负载」除非原文明说只讲 AI，loop/wafer_size 判不出即填「未注明」）：这一步没有逐条回原件核对，判错只会让该条与别条不可比，不会改值。",
+        ".mht 读取器只取 text/html 与 text/plain 段；原网页靠 CSS 或脚本渲染的内容取不到，取到的文字顺序按 MIME 段序而非视觉顺序，表格结构不保留。"
       ]
     },
     {

@@ -2410,9 +2410,10 @@
       "unit": "GW",
       "caliber": {
         "power_scope": "IT 负载",
-        "basis": "实测",
+        "basis": "模型输出",
         "region": "Global",
-        "scenario": "未注明"
+        "scenario": "未注明",
+        "workload": "全部负载"
       },
       "bound": "point",
       "as_of": "2023",
@@ -2424,9 +2425,10 @@
         "sha256": "83867b949569eaa93ba3dc11e9fae74b3cc84843189987cae0293316274f7c07"
       },
       "depth": "精读",
-      "notes": "**「IT 负载」是 IT 侧功率口径，不等于数据中心总用电功率（需乘 PUE），也不等于并网容量**——与本库 M04 的电源/电网侧 GW（如美国 2025 年负荷 432GW、PJM 队列 252GW）**不可直接比较或相加**。同一预测序列的其余点位：2026 年 96GW、2028 年超 140GW（下界），CAGR 23%-25%。「90% 增长来自 AI」为**增量口径不是存量口径**。**本条为转引，正式引用应回到 Semi Analysis 原报告。**region=Global。",
+      "notes": "**「IT 负载」是 IT 侧功率口径，不等于数据中心总用电功率（需乘 PUE），也不等于并网容量**——与本库 M04 的电源/电网侧 GW（如美国 2025 年负荷 432GW、PJM 队列 252GW）**不可直接比较或相加**。同一预测序列的其余点位：2026 年 96GW、2028 年超 140GW（下界），CAGR 23%-25%。「90% 增长来自 AI」为**增量口径不是存量口径**。**本条为转引，正式引用应回到 Semi Analysis 原报告。**region=Global。\n\n**（2026-09-14 更正）basis 由「实测」改为「模型输出」，并标同源转述。**原件已入库（sa2403-global-critical-it-demand-2023，SemiAnalysis《AI Datacenter Energy Dilemma》）：这 49GW 是由 AI 加速器出货模型推出的 Critical IT Power **需求**，不是实测在运负载。**「实测」是这条数最贵的一个错**——它进的是 basis 这一维，而 basis 声明为数值性质、不进 claim_identity，所以标错了既不会撞键也不会被争议分诊捞出来，只会让一个模型估计在读的人眼里变成已经发生的事实。本条是国信证券的转引，**不构成对原件的独立印证**；要引用请用原件那条。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。",
       "value": 49.0,
-      "asserter": "SemiAnalysis"
+      "asserter": "SemiAnalysis",
+      "corroboration": "同源转述"
     },
     {
       "fact_id": "low-vacancy-markets-2026",
@@ -11253,7 +11255,8 @@
         "capacity_basis": "名义产能",
         "speed": "合计",
         "basis": "专家访谈/渠道调研",
-        "region": "Global"
+        "region": "Global",
+        "vendor": "中际旭创"
       },
       "as_of": "2026E@2025-09",
       "bound": "point",
@@ -11267,7 +11270,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "**名义产能与可生产数量是两个数**：原表并列给出，旭创 1500 万只产能 × 利用率 0.8 = 1200 万只可生产。 **原文另给一条换算规则：出货量需备 1.3 倍产能**（出货 300 万只需备 400 万只产能）——即产能数不能直接当出货预期读。  **编制方与信源是两回事**：表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」，未具名，故 grade=S5。",
+      "notes": "**名义产能与可生产数量是两个数**：原表并列给出，旭创 1500 万只产能 × 利用率 0.8 = 1200 万只可生产。 **原文另给一条换算规则：出货量需备 1.3 倍产能**（出货 300 万只需备 400 万只产能）——即产能数不能直接当出货预期读。  **编制方与信源是两回事**：表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」，未具名，故 grade=S5。\n\n**（2026-09-14）补 vendor=中际旭创**：新增厂商维，按本条 entity 回填。",
       "asserter": "未具名业内专家"
     },
     {
@@ -11284,7 +11287,8 @@
         "capacity_basis": "名义产能",
         "speed": "合计",
         "basis": "专家访谈/渠道调研",
-        "region": "Global"
+        "region": "Global",
+        "vendor": "新易盛"
       },
       "as_of": "2026E@2025-09",
       "bound": "lower",
@@ -11298,7 +11302,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "**名义产能与可生产数量是两个数**：原表并列给出，旭创 1500 万只产能 × 利用率 0.8 = 1200 万只可生产。 **原文另给一条换算规则：出货量需备 1.3 倍产能**（出货 300 万只需备 400 万只产能）——即产能数不能直接当出货预期读。 原文「800-900」是区间，本条是下界。 **编制方与信源是两回事**：表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」，未具名，故 grade=S5。",
+      "notes": "**名义产能与可生产数量是两个数**：原表并列给出，旭创 1500 万只产能 × 利用率 0.8 = 1200 万只可生产。 **原文另给一条换算规则：出货量需备 1.3 倍产能**（出货 300 万只需备 400 万只产能）——即产能数不能直接当出货预期读。 原文「800-900」是区间，本条是下界。 **编制方与信源是两回事**：表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」，未具名，故 grade=S5。\n\n**（2026-09-14）补 vendor=新易盛**：新增厂商维，按本条 entity 回填。",
       "asserter": "未具名业内专家"
     },
     {
@@ -11315,7 +11319,8 @@
         "capacity_basis": "名义产能",
         "speed": "合计",
         "basis": "专家访谈/渠道调研",
-        "region": "Global"
+        "region": "Global",
+        "vendor": "新易盛"
       },
       "as_of": "2026E@2025-09",
       "bound": "upper",
@@ -11329,7 +11334,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "**名义产能与可生产数量是两个数**：原表并列给出，旭创 1500 万只产能 × 利用率 0.8 = 1200 万只可生产。 **原文另给一条换算规则：出货量需备 1.3 倍产能**（出货 300 万只需备 400 万只产能）——即产能数不能直接当出货预期读。 原文「800-900」是区间，本条是上界。 **编制方与信源是两回事**：表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」，未具名，故 grade=S5。",
+      "notes": "**名义产能与可生产数量是两个数**：原表并列给出，旭创 1500 万只产能 × 利用率 0.8 = 1200 万只可生产。 **原文另给一条换算规则：出货量需备 1.3 倍产能**（出货 300 万只需备 400 万只产能）——即产能数不能直接当出货预期读。 原文「800-900」是区间，本条是上界。 **编制方与信源是两回事**：表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」，未具名，故 grade=S5。\n\n**（2026-09-14）补 vendor=新易盛**：新增厂商维，按本条 entity 回填。",
       "asserter": "未具名业内专家"
     },
     {
@@ -11346,7 +11351,8 @@
         "capacity_basis": "名义产能",
         "speed": "合计",
         "basis": "专家访谈/渠道调研",
-        "region": "Global"
+        "region": "Global",
+        "vendor": "Coherent（菲尼萨）"
       },
       "as_of": "2026E@2025-09",
       "bound": "lower",
@@ -11360,7 +11366,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "**名义产能与可生产数量是两个数**：原表并列给出，旭创 1500 万只产能 × 利用率 0.8 = 1200 万只可生产。 **原文另给一条换算规则：出货量需备 1.3 倍产能**（出货 300 万只需备 400 万只产能）——即产能数不能直接当出货预期读。 原文「1000-1200」是区间，本条是下界。 **编制方与信源是两回事**：表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」，未具名，故 grade=S5。",
+      "notes": "**名义产能与可生产数量是两个数**：原表并列给出，旭创 1500 万只产能 × 利用率 0.8 = 1200 万只可生产。 **原文另给一条换算规则：出货量需备 1.3 倍产能**（出货 300 万只需备 400 万只产能）——即产能数不能直接当出货预期读。 原文「1000-1200」是区间，本条是下界。 **编制方与信源是两回事**：表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」，未具名，故 grade=S5。\n\n**（2026-09-14）补 vendor=Coherent（菲尼萨）**：新增厂商维，按本条 entity 回填。",
       "asserter": "未具名业内专家"
     },
     {
@@ -11377,7 +11383,8 @@
         "capacity_basis": "名义产能",
         "speed": "合计",
         "basis": "专家访谈/渠道调研",
-        "region": "Global"
+        "region": "Global",
+        "vendor": "Coherent（菲尼萨）"
       },
       "as_of": "2026E@2025-09",
       "bound": "upper",
@@ -11391,7 +11398,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "**名义产能与可生产数量是两个数**：原表并列给出，旭创 1500 万只产能 × 利用率 0.8 = 1200 万只可生产。 **原文另给一条换算规则：出货量需备 1.3 倍产能**（出货 300 万只需备 400 万只产能）——即产能数不能直接当出货预期读。 原文「1000-1200」是区间，本条是上界。 **编制方与信源是两回事**：表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」，未具名，故 grade=S5。",
+      "notes": "**名义产能与可生产数量是两个数**：原表并列给出，旭创 1500 万只产能 × 利用率 0.8 = 1200 万只可生产。 **原文另给一条换算规则：出货量需备 1.3 倍产能**（出货 300 万只需备 400 万只产能）——即产能数不能直接当出货预期读。 原文「1000-1200」是区间，本条是上界。 **编制方与信源是两回事**：表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」，未具名，故 grade=S5。\n\n**（2026-09-14）补 vendor=Coherent（菲尼萨）**：新增厂商维，按本条 entity 回填。",
       "asserter": "未具名业内专家"
     },
     {
@@ -11408,7 +11415,8 @@
         "capacity_basis": "名义产能",
         "speed": "合计",
         "basis": "专家访谈/渠道调研",
-        "region": "Global"
+        "region": "Global",
+        "vendor": "头部三家合计"
       },
       "as_of": "2026E@2025-09",
       "bound": "lower",
@@ -11422,7 +11430,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "**名义产能与可生产数量是两个数**：原表并列给出，旭创 1500 万只产能 × 利用率 0.8 = 1200 万只可生产。 **原文另给一条换算规则：出货量需备 1.3 倍产能**（出货 300 万只需备 400 万只产能）——即产能数不能直接当出货预期读。 原文「3500-4000」是区间，本条是下界。 **编制方与信源是两回事**：表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」，未具名，故 grade=S5。",
+      "notes": "**名义产能与可生产数量是两个数**：原表并列给出，旭创 1500 万只产能 × 利用率 0.8 = 1200 万只可生产。 **原文另给一条换算规则：出货量需备 1.3 倍产能**（出货 300 万只需备 400 万只产能）——即产能数不能直接当出货预期读。 原文「3500-4000」是区间，本条是下界。 **编制方与信源是两回事**：表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」，未具名，故 grade=S5。\n\n**（2026-09-14）补 vendor=头部三家合计**：新增厂商维，按本条 entity 回填。",
       "asserter": "未具名业内专家"
     },
     {
@@ -11439,7 +11447,8 @@
         "capacity_basis": "名义产能",
         "speed": "合计",
         "basis": "专家访谈/渠道调研",
-        "region": "Global"
+        "region": "Global",
+        "vendor": "头部三家合计"
       },
       "as_of": "2026E@2025-09",
       "bound": "upper",
@@ -11453,7 +11462,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "**名义产能与可生产数量是两个数**：原表并列给出，旭创 1500 万只产能 × 利用率 0.8 = 1200 万只可生产。 **原文另给一条换算规则：出货量需备 1.3 倍产能**（出货 300 万只需备 400 万只产能）——即产能数不能直接当出货预期读。 原文「3500-4000」是区间，本条是上界。 **编制方与信源是两回事**：表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」，未具名，故 grade=S5。",
+      "notes": "**名义产能与可生产数量是两个数**：原表并列给出，旭创 1500 万只产能 × 利用率 0.8 = 1200 万只可生产。 **原文另给一条换算规则：出货量需备 1.3 倍产能**（出货 300 万只需备 400 万只产能）——即产能数不能直接当出货预期读。 原文「3500-4000」是区间，本条是上界。 **编制方与信源是两回事**：表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」，未具名，故 grade=S5。\n\n**（2026-09-14）补 vendor=头部三家合计**：新增厂商维，按本条 entity 回填。",
       "asserter": "未具名业内专家"
     },
     {
@@ -11470,7 +11479,8 @@
         "capacity_basis": "有效产出",
         "speed": "合计",
         "basis": "专家访谈/渠道调研",
-        "region": "Global"
+        "region": "Global",
+        "vendor": "中际旭创"
       },
       "as_of": "2026E@2025-09",
       "bound": "point",
@@ -11484,7 +11494,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "**名义产能与可生产数量是两个数**：原表并列给出，旭创 1500 万只产能 × 利用率 0.8 = 1200 万只可生产。 **原文另给一条换算规则：出货量需备 1.3 倍产能**（出货 300 万只需备 400 万只产能）——即产能数不能直接当出货预期读。  **编制方与信源是两回事**：表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」，未具名，故 grade=S5。",
+      "notes": "**名义产能与可生产数量是两个数**：原表并列给出，旭创 1500 万只产能 × 利用率 0.8 = 1200 万只可生产。 **原文另给一条换算规则：出货量需备 1.3 倍产能**（出货 300 万只需备 400 万只产能）——即产能数不能直接当出货预期读。  **编制方与信源是两回事**：表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」，未具名，故 grade=S5。\n\n**（2026-09-14）补 vendor=中际旭创**：新增厂商维，按本条 entity 回填。",
       "asserter": "未具名业内专家"
     },
     {
@@ -11501,7 +11511,8 @@
         "capacity_basis": "有效产出",
         "speed": "合计",
         "basis": "专家访谈/渠道调研",
-        "region": "Global"
+        "region": "Global",
+        "vendor": "新易盛"
       },
       "as_of": "2026E@2025-09",
       "bound": "lower",
@@ -11515,7 +11526,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "**名义产能与可生产数量是两个数**：原表并列给出，旭创 1500 万只产能 × 利用率 0.8 = 1200 万只可生产。 **原文另给一条换算规则：出货量需备 1.3 倍产能**（出货 300 万只需备 400 万只产能）——即产能数不能直接当出货预期读。 原文「700+」是区间，本条是下界。 **编制方与信源是两回事**：表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」，未具名，故 grade=S5。",
+      "notes": "**名义产能与可生产数量是两个数**：原表并列给出，旭创 1500 万只产能 × 利用率 0.8 = 1200 万只可生产。 **原文另给一条换算规则：出货量需备 1.3 倍产能**（出货 300 万只需备 400 万只产能）——即产能数不能直接当出货预期读。 原文「700+」是区间，本条是下界。 **编制方与信源是两回事**：表由知识星球「Global Semi Research」编制（五张表各嵌同一水印文本框），原始信源是工作表 ImportantDisclosures 写的「Source: 业内专家电话，Date: 2025.09.18」，未具名，故 grade=S5。\n\n**（2026-09-14）补 vendor=新易盛**：新增厂商维，按本条 entity 回填。",
       "asserter": "未具名业内专家"
     },
     {
@@ -39151,7 +39162,8 @@
         "power_scope": "IT 负载",
         "basis": "实测",
         "region": "CN",
-        "scenario": "未注明"
+        "scenario": "未注明",
+        "workload": "全部负载"
       },
       "as_of": "2023",
       "bound": "point",
@@ -39165,7 +39177,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "单位换算：1,205.5 MW = 1.2055 GW。**只是智算中心**，不是全部数据中心；同比 +41.6%。**basis=实测是就近归类**，科智咨询的统计口径原文未说明。",
+      "notes": "单位换算：1,205.5 MW = 1.2055 GW。**只是智算中心**，不是全部数据中心；同比 +41.6%。**basis=实测是就近归类**，科智咨询的统计口径原文未说明。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。",
       "asserter": "科智咨询"
     },
     {
@@ -39182,7 +39194,8 @@
         "power_scope": "IT 负载",
         "basis": "预测",
         "region": "CN",
-        "scenario": "未注明"
+        "scenario": "未注明",
+        "workload": "全部负载"
       },
       "as_of": "2026E@2025-04",
       "bound": "lower",
@@ -39196,7 +39209,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "**原文「超」按下界记**。2023→2026 年复合增速 36%（1.2055×1.36³ ≈ 3.03 GW，与「超 3,000MW」一致）。做出时点按转述报告月记，科智原始发布时间未给。",
+      "notes": "**原文「超」按下界记**。2023→2026 年复合增速 36%（1.2055×1.36³ ≈ 3.03 GW，与「超 3,000MW」一致）。做出时点按转述报告月记，科智原始发布时间未给。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。",
       "asserter": "科智咨询"
     },
     {
@@ -42380,7 +42393,8 @@
         "design_basis": "未注明",
         "cooling_tech": "冷板液冷",
         "region": "CN",
-        "basis": "工程测算"
+        "basis": "工程测算",
+        "loop": "未注明"
       },
       "as_of": "2023",
       "bound": "point",
@@ -42394,7 +42408,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "原文「40℃左右」，为行业典型值表述而非某一项目实测。一次侧供水＝40℃减趋近温度 3-10℃，全国大部分地区冷却塔即可供给、无需压缩机；对比混合冷却模式风冷部分需 20℃以下冷液。",
+      "notes": "原文「40℃左右」，为行业典型值表述而非某一项目实测。一次侧供水＝40℃减趋近温度 3-10℃，全国大部分地区冷却塔即可供给、无需压缩机；对比混合冷却模式风冷部分需 20℃以下冷液。\n\n**（2026-09-14）补 loop=未注明**：新增该口径维，本条按原文回填——原文未写清是一次侧还是二次侧，不替它判——「未注明」与两个具体值都不可比。",
       "asserter": "未注明"
     },
     {
@@ -48256,7 +48270,8 @@
         "power_scope": "未披露",
         "basis": "预测",
         "region": "Global",
-        "scenario": "未注明"
+        "scenario": "未注明",
+        "workload": "AI 负载"
       },
       "as_of": "2030E@2025-05",
       "bound": "lower",
@@ -48270,7 +48285,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "「capacity demand」未说明 IT 负载还是设施口径，power_scope 记未披露。区间 171–219 GW 对应 2023–2030 年均增长 19%–22%；另有乐观情景 27%/年、约 298 GW（与 219 同为上界，缺情景维未录）。AI 负载约占未来容量需求 70%、生成式 AI 约 40%。原文未注明出处（该组数与麦肯锡公开数字一致，但本文件未写，不补）。报告页脚：经 EMIS 下载，禁止未授权分发。",
+      "notes": "「capacity demand」未说明 IT 负载还是设施口径，power_scope 记未披露。区间 171–219 GW 对应 2023–2030 年均增长 19%–22%；另有乐观情景 27%/年、约 298 GW（与 219 同为上界，缺情景维未录）。AI 负载约占未来容量需求 70%、生成式 AI 约 40%。原文未注明出处（该组数与麦肯锡公开数字一致，但本文件未写，不补）。报告页脚：经 EMIS 下载，禁止未授权分发。\n\n**（2026-09-14）补 workload=AI 负载**：新增该口径维，本条按原文回填——原文明确只讲 AI 那一块。",
       "asserter": "BIS Research"
     },
     {
@@ -48287,7 +48302,8 @@
         "power_scope": "未披露",
         "basis": "预测",
         "region": "Global",
-        "scenario": "未注明"
+        "scenario": "未注明",
+        "workload": "AI 负载"
       },
       "as_of": "2030E@2025-05",
       "bound": "upper",
@@ -48301,7 +48317,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "「capacity demand」未说明 IT 负载还是设施口径，power_scope 记未披露。区间 171–219 GW 对应 2023–2030 年均增长 19%–22%；另有乐观情景 27%/年、约 298 GW（与 219 同为上界，缺情景维未录）。AI 负载约占未来容量需求 70%、生成式 AI 约 40%。原文未注明出处（该组数与麦肯锡公开数字一致，但本文件未写，不补）。报告页脚：经 EMIS 下载，禁止未授权分发。",
+      "notes": "「capacity demand」未说明 IT 负载还是设施口径，power_scope 记未披露。区间 171–219 GW 对应 2023–2030 年均增长 19%–22%；另有乐观情景 27%/年、约 298 GW（与 219 同为上界，缺情景维未录）。AI 负载约占未来容量需求 70%、生成式 AI 约 40%。原文未注明出处（该组数与麦肯锡公开数字一致，但本文件未写，不补）。报告页脚：经 EMIS 下载，禁止未授权分发。\n\n**（2026-09-14）补 workload=AI 负载**：新增该口径维，本条按原文回填——原文明确只讲 AI 那一块。",
       "asserter": "BIS Research"
     },
     {
@@ -78983,7 +78999,8 @@
         "power_scope": "IT 负载",
         "basis": "券商测算",
         "region": "Global",
-        "scenario": "未注明"
+        "scenario": "未注明",
+        "workload": "全部负载"
       },
       "as_of": "2025",
       "bound": "point",
@@ -78997,7 +79014,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "原文「IT工作量」「约 95GW」，按 IT 负载记；汇丰估算。"
+      "notes": "原文「IT工作量」「约 95GW」，按 IT 负载记；汇丰估算。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "fact_id": "hsbc2026-global-it-load-2030e",
@@ -79014,7 +79031,8 @@
         "power_scope": "IT 负载",
         "basis": "预测",
         "region": "Global",
-        "scenario": "未注明"
+        "scenario": "未注明",
+        "workload": "全部负载"
       },
       "as_of": "2030E@2026-03",
       "bound": "point",
@@ -79028,7 +79046,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "原文「约 205GW」；2025-2030 年约增 1.2 倍。"
+      "notes": "原文「约 205GW」；2025-2030 年约增 1.2 倍。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "fact_id": "hsbc2026-bnef-mvlv-transformer-lead-time-lower",
@@ -84099,7 +84117,8 @@
         "power_scope": "未披露",
         "scenario": "单一情景",
         "basis": "实测",
-        "region": "APAC"
+        "region": "APAC",
+        "workload": "全部负载"
       },
       "evidence": {
         "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
@@ -84108,7 +84127,7 @@
         "grade": "S3",
         "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
       },
-      "notes": "历史容量由 BCG 汇编（Exhibit 1 注 Source: DC Byte, Structure Research, CBRE, Channel Asia），原文只写 GW，未说 IT 还是设施口径。"
+      "notes": "历史容量由 BCG 汇编（Exhibit 1 注 Source: DC Byte, Structure Research, CBRE, Channel Asia），原文只写 GW，未说 IT 还是设施口径。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "asserter": "BCG",
@@ -84130,7 +84149,8 @@
         "power_scope": "未披露",
         "scenario": "单一情景",
         "basis": "实测",
-        "region": "APAC"
+        "region": "APAC",
+        "workload": "全部负载"
       },
       "evidence": {
         "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
@@ -84139,7 +84159,7 @@
         "grade": "S3",
         "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
       },
-      "notes": "历史容量由 BCG 汇编（Exhibit 1 注 Source: DC Byte, Structure Research, CBRE, Channel Asia），原文只写 GW，未说 IT 还是设施口径。 **Exhibit 1 标题写「~0.7GW in 2019」，与图中 0.79、正文「~0.8 GW」不一致**，照图录 0.79。"
+      "notes": "历史容量由 BCG 汇编（Exhibit 1 注 Source: DC Byte, Structure Research, CBRE, Channel Asia），原文只写 GW，未说 IT 还是设施口径。 **Exhibit 1 标题写「~0.7GW in 2019」，与图中 0.79、正文「~0.8 GW」不一致**，照图录 0.79。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "asserter": "BCG",
@@ -84161,7 +84181,8 @@
         "power_scope": "未披露",
         "scenario": "单一情景",
         "basis": "实测",
-        "region": "APAC"
+        "region": "APAC",
+        "workload": "全部负载"
       },
       "evidence": {
         "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
@@ -84170,7 +84191,7 @@
         "grade": "S3",
         "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
       },
-      "notes": "历史容量由 BCG 汇编（Exhibit 1 注 Source: DC Byte, Structure Research, CBRE, Channel Asia），原文只写 GW，未说 IT 还是设施口径。 2019-2023 各国 CAGR（图中）：新加坡/柔佛/巴淡 26%、印尼 21%、马来西亚 9%、泰国 12%、菲律宾 20%、越南 9%（标签对位按图例顺序读出，未录）。"
+      "notes": "历史容量由 BCG 汇编（Exhibit 1 注 Source: DC Byte, Structure Research, CBRE, Channel Asia），原文只写 GW，未说 IT 还是设施口径。 2019-2023 各国 CAGR（图中）：新加坡/柔佛/巴淡 26%、印尼 21%、马来西亚 9%、泰国 12%、菲律宾 20%、越南 9%（标签对位按图例顺序读出，未录）。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "asserter": "BCG",
@@ -84192,7 +84213,8 @@
         "power_scope": "未披露",
         "scenario": "单一情景",
         "basis": "预测",
-        "region": "APAC"
+        "region": "APAC",
+        "workload": "全部负载"
       },
       "evidence": {
         "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
@@ -84201,7 +84223,7 @@
         "grade": "S3",
         "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
       },
-      "notes": "BCG 自身预测（Source: BCG analysis）。**原文「demand」与「capacity」混用**：第 6 页称需求 5.2-6.5 GW，第 14 页称「5.2 GW to 6.5 GW DC capacity expected by 2030」。口径未说 IT 还是设施。 区间下端，上端见配对条目。"
+      "notes": "BCG 自身预测（Source: BCG analysis）。**原文「demand」与「capacity」混用**：第 6 页称需求 5.2-6.5 GW，第 14 页称「5.2 GW to 6.5 GW DC capacity expected by 2030」。口径未说 IT 还是设施。 区间下端，上端见配对条目。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "asserter": "BCG",
@@ -84223,7 +84245,8 @@
         "power_scope": "未披露",
         "scenario": "单一情景",
         "basis": "预测",
-        "region": "APAC"
+        "region": "APAC",
+        "workload": "全部负载"
       },
       "evidence": {
         "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
@@ -84232,7 +84255,7 @@
         "grade": "S3",
         "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
       },
-      "notes": "BCG 自身预测（Source: BCG analysis）。**原文「demand」与「capacity」混用**：第 6 页称需求 5.2-6.5 GW，第 14 页称「5.2 GW to 6.5 GW DC capacity expected by 2030」。口径未说 IT 还是设施。 区间上端，下端见配对条目。"
+      "notes": "BCG 自身预测（Source: BCG analysis）。**原文「demand」与「capacity」混用**：第 6 页称需求 5.2-6.5 GW，第 14 页称「5.2 GW to 6.5 GW DC capacity expected by 2030」。口径未说 IT 还是设施。 区间上端，下端见配对条目。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "asserter": "BCG",
@@ -84254,7 +84277,8 @@
         "power_scope": "未披露",
         "scenario": "单一情景",
         "basis": "预测",
-        "region": "APAC"
+        "region": "APAC",
+        "workload": "全部负载"
       },
       "evidence": {
         "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
@@ -84263,7 +84287,7 @@
         "grade": "S3",
         "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
       },
-      "notes": "BCG 自身预测（Source: BCG analysis）。**原文「demand」与「capacity」混用**：第 6 页称需求 5.2-6.5 GW，第 14 页称「5.2 GW to 6.5 GW DC capacity expected by 2030」。口径未说 IT 还是设施。 AI 算力约 10 倍增长，其中推理约 25 倍、训练约 3 倍（第 8 页）。 区间下端，上端见配对条目。"
+      "notes": "BCG 自身预测（Source: BCG analysis）。**原文「demand」与「capacity」混用**：第 6 页称需求 5.2-6.5 GW，第 14 页称「5.2 GW to 6.5 GW DC capacity expected by 2030」。口径未说 IT 还是设施。 AI 算力约 10 倍增长，其中推理约 25 倍、训练约 3 倍（第 8 页）。 区间下端，上端见配对条目。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "asserter": "BCG",
@@ -84285,7 +84309,8 @@
         "power_scope": "未披露",
         "scenario": "单一情景",
         "basis": "预测",
-        "region": "APAC"
+        "region": "APAC",
+        "workload": "全部负载"
       },
       "evidence": {
         "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
@@ -84294,7 +84319,7 @@
         "grade": "S3",
         "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
       },
-      "notes": "BCG 自身预测（Source: BCG analysis）。**原文「demand」与「capacity」混用**：第 6 页称需求 5.2-6.5 GW，第 14 页称「5.2 GW to 6.5 GW DC capacity expected by 2030」。口径未说 IT 还是设施。 AI 算力约 10 倍增长，其中推理约 25 倍、训练约 3 倍（第 8 页）。 区间上端，下端见配对条目。"
+      "notes": "BCG 自身预测（Source: BCG analysis）。**原文「demand」与「capacity」混用**：第 6 页称需求 5.2-6.5 GW，第 14 页称「5.2 GW to 6.5 GW DC capacity expected by 2030」。口径未说 IT 还是设施。 AI 算力约 10 倍增长，其中推理约 25 倍、训练约 3 倍（第 8 页）。 区间上端，下端见配对条目。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "asserter": "BCG",
@@ -84316,7 +84341,8 @@
         "power_scope": "未披露",
         "scenario": "单一情景",
         "basis": "实测",
-        "region": "APAC"
+        "region": "APAC",
+        "workload": "AI 负载"
       },
       "evidence": {
         "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
@@ -84325,7 +84351,7 @@
         "grade": "S3",
         "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
       },
-      "notes": "BCG 对 2023 年分项的估计区间下端，上端见配对条目；**2023 合计图中为 1.69 GW，分项区间之和 1.8-2.4 与之不严格对应**。"
+      "notes": "BCG 对 2023 年分项的估计区间下端，上端见配对条目；**2023 合计图中为 1.69 GW，分项区间之和 1.8-2.4 与之不严格对应**。\n\n**（2026-09-14）补 workload=AI 负载**：新增该口径维，本条按原文回填——原文明确只讲 AI 那一块。"
     },
     {
       "asserter": "BCG",
@@ -84347,7 +84373,8 @@
         "power_scope": "未披露",
         "scenario": "单一情景",
         "basis": "实测",
-        "region": "APAC"
+        "region": "APAC",
+        "workload": "AI 负载"
       },
       "evidence": {
         "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
@@ -84356,7 +84383,7 @@
         "grade": "S3",
         "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
       },
-      "notes": "BCG 对 2023 年分项的估计区间上端，下端见配对条目；**2023 合计图中为 1.69 GW，分项区间之和 1.8-2.4 与之不严格对应**。"
+      "notes": "BCG 对 2023 年分项的估计区间上端，下端见配对条目；**2023 合计图中为 1.69 GW，分项区间之和 1.8-2.4 与之不严格对应**。\n\n**（2026-09-14）补 workload=AI 负载**：新增该口径维，本条按原文回填——原文明确只讲 AI 那一块。"
     },
     {
       "asserter": "BCG",
@@ -84378,7 +84405,8 @@
         "power_scope": "未披露",
         "scenario": "单一情景",
         "basis": "预测",
-        "region": "APAC"
+        "region": "APAC",
+        "workload": "全部负载"
       },
       "evidence": {
         "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
@@ -84387,7 +84415,7 @@
         "grade": "S3",
         "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
       },
-      "notes": "BCG 自身预测（Source: BCG analysis）。**原文「demand」与「capacity」混用**：第 6 页称需求 5.2-6.5 GW，第 14 页称「5.2 GW to 6.5 GW DC capacity expected by 2030」。口径未说 IT 还是设施。 区间下端，上端见配对条目。"
+      "notes": "BCG 自身预测（Source: BCG analysis）。**原文「demand」与「capacity」混用**：第 6 页称需求 5.2-6.5 GW，第 14 页称「5.2 GW to 6.5 GW DC capacity expected by 2030」。口径未说 IT 还是设施。 区间下端，上端见配对条目。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "asserter": "BCG",
@@ -84409,7 +84437,8 @@
         "power_scope": "未披露",
         "scenario": "单一情景",
         "basis": "预测",
-        "region": "APAC"
+        "region": "APAC",
+        "workload": "全部负载"
       },
       "evidence": {
         "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
@@ -84418,7 +84447,7 @@
         "grade": "S3",
         "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
       },
-      "notes": "BCG 自身预测（Source: BCG analysis）。**原文「demand」与「capacity」混用**：第 6 页称需求 5.2-6.5 GW，第 14 页称「5.2 GW to 6.5 GW DC capacity expected by 2030」。口径未说 IT 还是设施。 区间上端，下端见配对条目。"
+      "notes": "BCG 自身预测（Source: BCG analysis）。**原文「demand」与「capacity」混用**：第 6 页称需求 5.2-6.5 GW，第 14 页称「5.2 GW to 6.5 GW DC capacity expected by 2030」。口径未说 IT 还是设施。 区间上端，下端见配对条目。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "asserter": "BCG",
@@ -84440,7 +84469,8 @@
         "power_scope": "未披露",
         "scenario": "单一情景",
         "basis": "实测",
-        "region": "APAC"
+        "region": "APAC",
+        "workload": "全部负载"
       },
       "evidence": {
         "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
@@ -84449,7 +84479,7 @@
         "grade": "S3",
         "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
       },
-      "notes": "BCG 对 2023 年分项的估计区间下端，上端见配对条目；**2023 合计图中为 1.69 GW，分项区间之和 1.8-2.4 与之不严格对应**。"
+      "notes": "BCG 对 2023 年分项的估计区间下端，上端见配对条目；**2023 合计图中为 1.69 GW，分项区间之和 1.8-2.4 与之不严格对应**。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "asserter": "BCG",
@@ -84471,7 +84501,8 @@
         "power_scope": "未披露",
         "scenario": "单一情景",
         "basis": "实测",
-        "region": "APAC"
+        "region": "APAC",
+        "workload": "全部负载"
       },
       "evidence": {
         "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
@@ -84480,7 +84511,7 @@
         "grade": "S3",
         "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
       },
-      "notes": "BCG 对 2023 年分项的估计区间上端，下端见配对条目；**2023 合计图中为 1.69 GW，分项区间之和 1.8-2.4 与之不严格对应**。"
+      "notes": "BCG 对 2023 年分项的估计区间上端，下端见配对条目；**2023 合计图中为 1.69 GW，分项区间之和 1.8-2.4 与之不严格对应**。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "asserter": "BCG",
@@ -84502,7 +84533,8 @@
         "power_scope": "未披露",
         "scenario": "单一情景",
         "basis": "预测",
-        "region": "APAC"
+        "region": "APAC",
+        "workload": "全部负载"
       },
       "evidence": {
         "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
@@ -84511,7 +84543,7 @@
         "grade": "S3",
         "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
       },
-      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间下端，上端见配对条目。"
+      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间下端，上端见配对条目。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "asserter": "BCG",
@@ -84533,7 +84565,8 @@
         "power_scope": "未披露",
         "scenario": "单一情景",
         "basis": "预测",
-        "region": "APAC"
+        "region": "APAC",
+        "workload": "全部负载"
       },
       "evidence": {
         "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
@@ -84542,7 +84575,7 @@
         "grade": "S3",
         "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
       },
-      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间上端，下端见配对条目。"
+      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间上端，下端见配对条目。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "asserter": "BCG",
@@ -84564,7 +84597,8 @@
         "power_scope": "未披露",
         "scenario": "单一情景",
         "basis": "预测",
-        "region": "APAC"
+        "region": "APAC",
+        "workload": "全部负载"
       },
       "evidence": {
         "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
@@ -84573,7 +84607,7 @@
         "grade": "S3",
         "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
       },
-      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间下端，上端见配对条目。"
+      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间下端，上端见配对条目。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "asserter": "BCG",
@@ -84595,7 +84629,8 @@
         "power_scope": "未披露",
         "scenario": "单一情景",
         "basis": "预测",
-        "region": "APAC"
+        "region": "APAC",
+        "workload": "全部负载"
       },
       "evidence": {
         "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
@@ -84604,7 +84639,7 @@
         "grade": "S3",
         "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
       },
-      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间上端，下端见配对条目。"
+      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间上端，下端见配对条目。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "asserter": "BCG",
@@ -84626,7 +84661,8 @@
         "power_scope": "未披露",
         "scenario": "单一情景",
         "basis": "预测",
-        "region": "APAC"
+        "region": "APAC",
+        "workload": "全部负载"
       },
       "evidence": {
         "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
@@ -84635,7 +84671,7 @@
         "grade": "S3",
         "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
       },
-      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间下端，上端见配对条目。"
+      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间下端，上端见配对条目。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "asserter": "BCG",
@@ -84657,7 +84693,8 @@
         "power_scope": "未披露",
         "scenario": "单一情景",
         "basis": "预测",
-        "region": "APAC"
+        "region": "APAC",
+        "workload": "全部负载"
       },
       "evidence": {
         "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
@@ -84666,7 +84703,7 @@
         "grade": "S3",
         "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
       },
-      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间上端，下端见配对条目。"
+      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间上端，下端见配对条目。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "asserter": "BCG",
@@ -84688,7 +84725,8 @@
         "power_scope": "未披露",
         "scenario": "单一情景",
         "basis": "预测",
-        "region": "APAC"
+        "region": "APAC",
+        "workload": "全部负载"
       },
       "evidence": {
         "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
@@ -84697,7 +84735,7 @@
         "grade": "S3",
         "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
       },
-      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间下端，上端见配对条目。"
+      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间下端，上端见配对条目。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "asserter": "BCG",
@@ -84719,7 +84757,8 @@
         "power_scope": "未披露",
         "scenario": "单一情景",
         "basis": "预测",
-        "region": "APAC"
+        "region": "APAC",
+        "workload": "全部负载"
       },
       "evidence": {
         "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
@@ -84728,7 +84767,7 @@
         "grade": "S3",
         "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
       },
-      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间上端，下端见配对条目。"
+      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间上端，下端见配对条目。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "asserter": "BCG",
@@ -84750,7 +84789,8 @@
         "power_scope": "未披露",
         "scenario": "单一情景",
         "basis": "预测",
-        "region": "APAC"
+        "region": "APAC",
+        "workload": "全部负载"
       },
       "evidence": {
         "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
@@ -84759,7 +84799,7 @@
         "grade": "S3",
         "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
       },
-      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间下端，上端见配对条目。"
+      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间下端，上端见配对条目。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "asserter": "BCG",
@@ -84781,7 +84821,8 @@
         "power_scope": "未披露",
         "scenario": "单一情景",
         "basis": "预测",
-        "region": "APAC"
+        "region": "APAC",
+        "workload": "全部负载"
       },
       "evidence": {
         "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
@@ -84790,7 +84831,7 @@
         "grade": "S3",
         "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
       },
-      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间上端，下端见配对条目。"
+      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 区间上端，下端见配对条目。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "asserter": "BCG",
@@ -84812,7 +84853,8 @@
         "power_scope": "未披露",
         "scenario": "单一情景",
         "basis": "预测",
-        "region": "APAC"
+        "region": "APAC",
+        "workload": "全部负载"
       },
       "evidence": {
         "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
@@ -84821,7 +84863,7 @@
         "grade": "S3",
         "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
       },
-      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 「around」按点值记。"
+      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 「around」按点值记。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "asserter": "BCG",
@@ -84843,7 +84885,8 @@
         "power_scope": "未披露",
         "scenario": "单一情景",
         "basis": "预测",
-        "region": "APAC"
+        "region": "APAC",
+        "workload": "全部负载"
       },
       "evidence": {
         "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
@@ -84852,7 +84895,7 @@
         "grade": "S3",
         "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
       },
-      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 「estimated」按点值记；Exhibit 8 地图标 Hanoi 0.11 - 0.14。"
+      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 「estimated」按点值记；Exhibit 8 地图标 Hanoi 0.11 - 0.14。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "asserter": "BCG",
@@ -84874,7 +84917,8 @@
         "power_scope": "未披露",
         "scenario": "单一情景",
         "basis": "预测",
-        "region": "APAC"
+        "region": "APAC",
+        "workload": "全部负载"
       },
       "evidence": {
         "sha256": "bd8c66c0c030dc184034f6443c03e15a7cc4e51db9df7f1d34863129b074a0d3",
@@ -84883,7 +84927,7 @@
         "grade": "S3",
         "originator": "BCG《Accelerating compute needs underpin Southeast Asia’s rapid data center growth》（2024-10）"
       },
-      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 「estimated」按点值记；Exhibit 8 地图标 Manila 0.15 - 0.24。"
+      "notes": "BCG 预测的 2030 年数据中心容量（第 12 页正文，Source: BCG analysis），口径未说 IT 还是设施。 「estimated」按点值记；Exhibit 8 地图标 Manila 0.15 - 0.24。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "fact_id": "bcg2024-sea-ai-training-share-2023",
@@ -113584,7 +113628,8 @@
         "power_scope": "未注明",
         "scenario": "单一情景",
         "region": "Global",
-        "basis": "实测"
+        "basis": "实测",
+        "workload": "全部负载"
       },
       "as_of": "2018-12",
       "evidence": {
@@ -113594,7 +113639,7 @@
         "grade": "S3",
         "originator": "DCbyte（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
       },
-      "notes": "原文「总存量供应」，未说 IT 负载还是设施容量（同页图注的「核心IT电力需求」说明挂在 SemiAnalysis 那组数上），power_scope 记未注明。2018-2023 CAGR 16.6%。以 2023 年末为基准的待建（在建+规划）37.8GW 跨阶段，未录。库内 SemiAnalysis 2023 全球 IT 负载 49GW（global-it-load-2023）口径不同。"
+      "notes": "原文「总存量供应」，未说 IT 负载还是设施容量（同页图注的「核心IT电力需求」说明挂在 SemiAnalysis 那组数上），power_scope 记未注明。2018-2023 CAGR 16.6%。以 2023 年末为基准的待建（在建+规划）37.8GW 跨阶段，未录。库内 SemiAnalysis 2023 全球 IT 负载 49GW（global-it-load-2023）口径不同。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "depth": "精读",
@@ -113615,7 +113660,8 @@
         "power_scope": "未注明",
         "scenario": "单一情景",
         "region": "Global",
-        "basis": "实测"
+        "basis": "实测",
+        "workload": "全部负载"
       },
       "as_of": "2023-12",
       "evidence": {
@@ -113625,7 +113671,7 @@
         "grade": "S3",
         "originator": "DCbyte（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
       },
-      "notes": "原文「总存量供应」，未说 IT 负载还是设施容量（同页图注的「核心IT电力需求」说明挂在 SemiAnalysis 那组数上），power_scope 记未注明。2018-2023 CAGR 16.6%。以 2023 年末为基准的待建（在建+规划）37.8GW 跨阶段，未录。库内 SemiAnalysis 2023 全球 IT 负载 49GW（global-it-load-2023）口径不同。"
+      "notes": "原文「总存量供应」，未说 IT 负载还是设施容量（同页图注的「核心IT电力需求」说明挂在 SemiAnalysis 那组数上），power_scope 记未注明。2018-2023 CAGR 16.6%。以 2023 年末为基准的待建（在建+规划）37.8GW 跨阶段，未录。库内 SemiAnalysis 2023 全球 IT 负载 49GW（global-it-load-2023）口径不同。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "depth": "精读",
@@ -114313,7 +114359,8 @@
         "power_scope": "IT 负载",
         "scenario": "单一情景",
         "region": "APAC",
-        "basis": "实测"
+        "basis": "实测",
+        "workload": "全部负载"
       },
       "as_of": "2023",
       "evidence": {
@@ -114323,7 +114370,7 @@
         "grade": "S3",
         "originator": "科智咨询（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
       },
-      "notes": "「东南亚六国」指原图中的六国，名单文字层未给出。2023 同比 +8.2%，2023-2028 CAGR 17.1%。库内 BCG 东南亚 2023 年 1.69GW（bcg2024-sea-capacity-2023）国家范围与口径可能不同。"
+      "notes": "「东南亚六国」指原图中的六国，名单文字层未给出。2023 同比 +8.2%，2023-2028 CAGR 17.1%。库内 BCG 东南亚 2023 年 1.69GW（bcg2024-sea-capacity-2023）国家范围与口径可能不同。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "depth": "精读",
@@ -114344,7 +114391,8 @@
         "power_scope": "IT 负载",
         "scenario": "单一情景",
         "region": "APAC",
-        "basis": "预测"
+        "basis": "预测",
+        "workload": "全部负载"
       },
       "as_of": "2028E",
       "evidence": {
@@ -114354,7 +114402,7 @@
         "grade": "S3",
         "originator": "科智咨询（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
       },
-      "notes": "「东南亚六国」指原图中的六国，名单文字层未给出。2023 同比 +8.2%，2023-2028 CAGR 17.1%。库内 BCG 东南亚 2023 年 1.69GW（bcg2024-sea-capacity-2023）国家范围与口径可能不同。**原始预测做出时点原文未写**，as_of 不带 @（不取转述报告时点）。"
+      "notes": "「东南亚六国」指原图中的六国，名单文字层未给出。2023 同比 +8.2%，2023-2028 CAGR 17.1%。库内 BCG 东南亚 2023 年 1.69GW（bcg2024-sea-capacity-2023）国家范围与口径可能不同。**原始预测做出时点原文未写**，as_of 不带 @（不取转述报告时点）。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "depth": "精读",
@@ -123689,7 +123737,8 @@
         "platform": "GB200",
         "customer": "全市场",
         "region": "Global",
-        "basis": "第三方跟踪"
+        "basis": "第三方跟踪",
+        "odm": "未拆分"
       },
       "evidence": {
         "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
@@ -123701,7 +123750,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "原文「约 2.5k」。未区分 NVL72/NVL36。同表「二季度｜产量：约 6k」是产量不是出货量，未录。"
+      "notes": "原文「约 2.5k」。未区分 NVL72/NVL36。同表「二季度｜产量：约 6k」是产量不是出货量，未录。\n\n**（2026-09-14）补 odm=未拆分**：新增该口径维，本条按原文回填——原文按平台/客户给，未按代工厂拆分。"
     },
     {
       "fact_id": "ms2507-gb200-rack-ship-2025-05",
@@ -123720,7 +123769,8 @@
         "platform": "GB200",
         "customer": "全市场",
         "region": "Global",
-        "basis": "第三方跟踪"
+        "basis": "第三方跟踪",
+        "odm": "未拆分"
       },
       "evidence": {
         "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
@@ -123732,7 +123782,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "原文区间 2 - 2.5k 的下界；上界见 ms2507-gb200-rack-ship-2025-05-upper。同一家 2025-05 的文字稿把 5 月 2,000-2,500 台写作 NVL72「产量」，本条按 07 表「出货量」记。"
+      "notes": "原文区间 2 - 2.5k 的下界；上界见 ms2507-gb200-rack-ship-2025-05-upper。同一家 2025-05 的文字稿把 5 月 2,000-2,500 台写作 NVL72「产量」，本条按 07 表「出货量」记。\n\n**（2026-09-14）补 odm=未拆分**：新增该口径维，本条按原文回填——原文按平台/客户给，未按代工厂拆分。"
     },
     {
       "fact_id": "ms2507-gb200-rack-ship-2025-05-upper",
@@ -123751,7 +123801,8 @@
         "platform": "GB200",
         "customer": "全市场",
         "region": "Global",
-        "basis": "第三方跟踪"
+        "basis": "第三方跟踪",
+        "odm": "未拆分"
       },
       "evidence": {
         "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
@@ -123763,7 +123814,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "原文区间 2 - 2.5k 的上界；下界见 ms2507-gb200-rack-ship-2025-05。"
+      "notes": "原文区间 2 - 2.5k 的上界；下界见 ms2507-gb200-rack-ship-2025-05。\n\n**（2026-09-14）补 odm=未拆分**：新增该口径维，本条按原文回填——原文按平台/客户给，未按代工厂拆分。"
     },
     {
       "fact_id": "ms2507-gb200-rack-ship-2025q3e",
@@ -123782,7 +123833,8 @@
         "platform": "GB200",
         "customer": "全市场",
         "region": "Global",
-        "basis": "预测"
+        "basis": "预测",
+        "odm": "未拆分"
       },
       "evidence": {
         "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
@@ -123794,7 +123846,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "原文区间 10 - 11k 的下界；上界见 ms2507-gb200-rack-ship-2025q3e-upper。"
+      "notes": "原文区间 10 - 11k 的下界；上界见 ms2507-gb200-rack-ship-2025q3e-upper。\n\n**（2026-09-14）补 odm=未拆分**：新增该口径维，本条按原文回填——原文按平台/客户给，未按代工厂拆分。"
     },
     {
       "fact_id": "ms2507-gb200-rack-ship-2025q3e-upper",
@@ -123813,7 +123865,8 @@
         "platform": "GB200",
         "customer": "全市场",
         "region": "Global",
-        "basis": "预测"
+        "basis": "预测",
+        "odm": "未拆分"
       },
       "evidence": {
         "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
@@ -123825,7 +123878,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "原文区间 10 - 11k 的上界；下界见 ms2507-gb200-rack-ship-2025q3e。"
+      "notes": "原文区间 10 - 11k 的上界；下界见 ms2507-gb200-rack-ship-2025q3e。\n\n**（2026-09-14）补 odm=未拆分**：新增该口径维，本条按原文回填——原文按平台/客户给，未按代工厂拆分。"
     },
     {
       "fact_id": "jef2506-gb200-rack-ship-2025q1",
@@ -123844,7 +123897,8 @@
         "platform": "GB200",
         "customer": "全市场",
         "region": "Global",
-        "basis": "第三方跟踪"
+        "basis": "第三方跟踪",
+        "odm": "未拆分"
       },
       "evidence": {
         "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
@@ -123856,7 +123910,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "季度已结束的出货量。按 ODM 拆分本指标无制造商维，未录。Jefferies 季度数（1.5k+7.2k+10.8k+12.5k=32k）与同表全年 NVL72 27k + NVL36 10k = 37k 对不上，原表未说明季度数的机型口径，平台按「GB200」记、不替原文调和。"
+      "notes": "季度已结束的出货量。按 ODM 拆分本指标无制造商维，未录。Jefferies 季度数（1.5k+7.2k+10.8k+12.5k=32k）与同表全年 NVL72 27k + NVL36 10k = 37k 对不上，原表未说明季度数的机型口径，平台按「GB200」记、不替原文调和。\n\n**（2026-09-14）补 odm=未拆分**：新增该口径维，本条按原文回填——原文按平台/客户给，未按代工厂拆分。"
     },
     {
       "fact_id": "jef2506-gb200-rack-ship-2025q2e",
@@ -123875,7 +123929,8 @@
         "platform": "GB200",
         "customer": "全市场",
         "region": "Global",
-        "basis": "预测"
+        "basis": "预测",
+        "odm": "未拆分"
       },
       "evidence": {
         "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
@@ -123887,7 +123942,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "报告日 2025-06-27，二季度未结束，按预测记。原预估 6k 未单录。广达 2.8k / 鸿海 2k / 纬创 2.4k 按 ODM 拆分无维度未录。Jefferies 季度数（1.5k+7.2k+10.8k+12.5k=32k）与同表全年 NVL72 27k + NVL36 10k = 37k 对不上，原表未说明季度数的机型口径，平台按「GB200」记、不替原文调和。"
+      "notes": "报告日 2025-06-27，二季度未结束，按预测记。原预估 6k 未单录。广达 2.8k / 鸿海 2k / 纬创 2.4k 按 ODM 拆分无维度未录。Jefferies 季度数（1.5k+7.2k+10.8k+12.5k=32k）与同表全年 NVL72 27k + NVL36 10k = 37k 对不上，原表未说明季度数的机型口径，平台按「GB200」记、不替原文调和。\n\n**（2026-09-14）补 odm=未拆分**：新增该口径维，本条按原文回填——原文按平台/客户给，未按代工厂拆分。"
     },
     {
       "fact_id": "jef2506-gb200-rack-ship-2025-04",
@@ -123906,7 +123961,8 @@
         "platform": "GB200",
         "customer": "全市场",
         "region": "Global",
-        "basis": "第三方跟踪"
+        "basis": "第三方跟踪",
+        "odm": "未拆分"
       },
       "evidence": {
         "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
@@ -123918,7 +123974,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "二季度按月细分。"
+      "notes": "二季度按月细分。\n\n**（2026-09-14）补 odm=未拆分**：新增该口径维，本条按原文回填——原文按平台/客户给，未按代工厂拆分。"
     },
     {
       "fact_id": "jef2506-gb200-rack-ship-2025-05",
@@ -123937,7 +123993,8 @@
         "platform": "GB200",
         "customer": "全市场",
         "region": "Global",
-        "basis": "第三方跟踪"
+        "basis": "第三方跟踪",
+        "odm": "未拆分"
       },
       "evidence": {
         "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
@@ -123949,7 +124006,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "二季度按月细分。"
+      "notes": "二季度按月细分。\n\n**（2026-09-14）补 odm=未拆分**：新增该口径维，本条按原文回填——原文按平台/客户给，未按代工厂拆分。"
     },
     {
       "fact_id": "jef2506-gb200-rack-ship-2025-06e",
@@ -123968,7 +124025,8 @@
         "platform": "GB200",
         "customer": "全市场",
         "region": "Global",
-        "basis": "预测"
+        "basis": "预测",
+        "odm": "未拆分"
       },
       "evidence": {
         "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
@@ -123980,7 +124038,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "报告日 2025-06-27，6 月未结束，按预测记。"
+      "notes": "报告日 2025-06-27，6 月未结束，按预测记。\n\n**（2026-09-14）补 odm=未拆分**：新增该口径维，本条按原文回填——原文按平台/客户给，未按代工厂拆分。"
     },
     {
       "fact_id": "jef2506-gb200-rack-ship-2025q3e",
@@ -123999,7 +124057,8 @@
         "platform": "GB200",
         "customer": "全市场",
         "region": "Global",
-        "basis": "预测"
+        "basis": "预测",
+        "odm": "未拆分"
       },
       "evidence": {
         "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
@@ -124011,7 +124070,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "上调后数据。Jefferies 季度数（1.5k+7.2k+10.8k+12.5k=32k）与同表全年 NVL72 27k + NVL36 10k = 37k 对不上，原表未说明季度数的机型口径，平台按「GB200」记、不替原文调和。"
+      "notes": "上调后数据。Jefferies 季度数（1.5k+7.2k+10.8k+12.5k=32k）与同表全年 NVL72 27k + NVL36 10k = 37k 对不上，原表未说明季度数的机型口径，平台按「GB200」记、不替原文调和。\n\n**（2026-09-14）补 odm=未拆分**：新增该口径维，本条按原文回填——原文按平台/客户给，未按代工厂拆分。"
     },
     {
       "fact_id": "jef2506-gb200-rack-ship-2025q4e",
@@ -124030,7 +124089,8 @@
         "platform": "GB200",
         "customer": "全市场",
         "region": "Global",
-        "basis": "预测"
+        "basis": "预测",
+        "odm": "未拆分"
       },
       "evidence": {
         "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
@@ -124042,7 +124102,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "维持原预估。Jefferies 季度数（1.5k+7.2k+10.8k+12.5k=32k）与同表全年 NVL72 27k + NVL36 10k = 37k 对不上，原表未说明季度数的机型口径，平台按「GB200」记、不替原文调和。"
+      "notes": "维持原预估。Jefferies 季度数（1.5k+7.2k+10.8k+12.5k=32k）与同表全年 NVL72 27k + NVL36 10k = 37k 对不上，原表未说明季度数的机型口径，平台按「GB200」记、不替原文调和。\n\n**（2026-09-14）补 odm=未拆分**：新增该口径维，本条按原文回填——原文按平台/客户给，未按代工厂拆分。"
     },
     {
       "fact_id": "jef2506-gb200-nvl72-rack-ship-2025e",
@@ -124061,7 +124121,8 @@
         "platform": "GB200 NVL72",
         "customer": "全市场",
         "region": "Global",
-        "basis": "预测"
+        "basis": "预测",
+        "odm": "未拆分"
       },
       "evidence": {
         "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
@@ -124073,7 +124134,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "NVL72 与 NVL36 每架芯片数不同，两条不可相加。Jefferies 季度数（1.5k+7.2k+10.8k+12.5k=32k）与同表全年 NVL72 27k + NVL36 10k = 37k 对不上，原表未说明季度数的机型口径，平台按「GB200」记、不替原文调和。"
+      "notes": "NVL72 与 NVL36 每架芯片数不同，两条不可相加。Jefferies 季度数（1.5k+7.2k+10.8k+12.5k=32k）与同表全年 NVL72 27k + NVL36 10k = 37k 对不上，原表未说明季度数的机型口径，平台按「GB200」记、不替原文调和。\n\n**（2026-09-14）补 odm=未拆分**：新增该口径维，本条按原文回填——原文按平台/客户给，未按代工厂拆分。"
     },
     {
       "fact_id": "jef2506-gb200-nvl36-rack-ship-2025e",
@@ -124092,7 +124153,8 @@
         "platform": "GB200 NVL36",
         "customer": "全市场",
         "region": "Global",
-        "basis": "预测"
+        "basis": "预测",
+        "odm": "未拆分"
       },
       "evidence": {
         "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
@@ -124104,7 +124166,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "NVL72 与 NVL36 每架芯片数不同，两条不可相加。Jefferies 季度数（1.5k+7.2k+10.8k+12.5k=32k）与同表全年 NVL72 27k + NVL36 10k = 37k 对不上，原表未说明季度数的机型口径，平台按「GB200」记、不替原文调和。"
+      "notes": "NVL72 与 NVL36 每架芯片数不同，两条不可相加。Jefferies 季度数（1.5k+7.2k+10.8k+12.5k=32k）与同表全年 NVL72 27k + NVL36 10k = 37k 对不上，原表未说明季度数的机型口径，平台按「GB200」记、不替原文调和。\n\n**（2026-09-14）补 odm=未拆分**：新增该口径维，本条按原文回填——原文按平台/客户给，未按代工厂拆分。"
     },
     {
       "fact_id": "bern2507-gb200-rack-ship-2025q2e",
@@ -124123,7 +124185,8 @@
         "platform": "GB200 NVL72 等效",
         "customer": "全市场",
         "region": "Global",
-        "basis": "预测"
+        "basis": "预测",
+        "odm": "未拆分"
       },
       "evidence": {
         "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
@@ -124135,7 +124198,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "原文「约 7000」「预计」，按预测记。平台照原文写「NVL72 等效」，与未注明机型的 GB200 架数不可直接比。"
+      "notes": "原文「约 7000」「预计」，按预测记。平台照原文写「NVL72 等效」，与未注明机型的 GB200 架数不可直接比。\n\n**（2026-09-14）补 odm=未拆分**：新增该口径维，本条按原文回填——原文按平台/客户给，未按代工厂拆分。"
     },
     {
       "fact_id": "bern2507-gb200-rack-ship-2025q3e",
@@ -124154,7 +124217,8 @@
         "platform": "GB200 NVL72 等效",
         "customer": "全市场",
         "region": "Global",
-        "basis": "预测"
+        "basis": "预测",
+        "odm": "未拆分"
       },
       "evidence": {
         "sha256": "3012724673ecf2f890d8b5a3e354a3c018ee768d65252390e54e02e1c7fcc88a",
@@ -124166,7 +124230,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "平台照原文写「NVL72 等效」。同表 GB300 四季度「数千台」无具体数，未录。"
+      "notes": "平台照原文写「NVL72 等效」。同表 GB300 四季度「数千台」无具体数，未录。\n\n**（2026-09-14）补 odm=未拆分**：新增该口径维，本条按原文回填——原文按平台/客户给，未按代工厂拆分。"
     },
     {
       "fact_id": "ms-2025e-hbm-demand-total",
@@ -127137,7 +127201,8 @@
         "design_basis": "参考设计",
         "cooling_tech": "冷板液冷",
         "region": "CN",
-        "basis": "工程测算"
+        "basis": "工程测算",
+        "loop": "未注明"
       },
       "evidence": {
         "sha256": "e9c87cd8f92a1a5a7ffc2eac785b2434e95bdf1e1b6bd63932dfd7b1ccb65f9b",
@@ -127149,7 +127214,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "二次侧（CDU 至机柜）设计供液温度下限「不宜低于 40℃」。同句一次侧进水不宜低于 35℃ 本指标无一次/二次侧维，与本条同为「供水」会撞 claim_key，未录，记缺口。设计院的工程设计要点，是推荐下限不是项目实测。"
+      "notes": "二次侧（CDU 至机柜）设计供液温度下限「不宜低于 40℃」。同句一次侧进水不宜低于 35℃ 本指标无一次/二次侧维，与本条同为「供水」会撞 claim_key，未录，记缺口。设计院的工程设计要点，是推荐下限不是项目实测。\n\n**（2026-09-14）补 loop=未注明**：新增该口径维，本条按原文回填——原文未写清是一次侧还是二次侧，不替它判——「未注明」与两个具体值都不可比。"
     },
     {
       "fact_id": "cbdi2507-coldplate-deltat-min",
@@ -127169,7 +127234,8 @@
         "design_basis": "参考设计",
         "cooling_tech": "冷板液冷",
         "region": "CN",
-        "basis": "工程测算"
+        "basis": "工程测算",
+        "loop": "未注明"
       },
       "evidence": {
         "sha256": "e9c87cd8f92a1a5a7ffc2eac785b2434e95bdf1e1b6bd63932dfd7b1ccb65f9b",
@@ -127181,7 +127247,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "「一二次设计供回水/液温差不宜低于 10℃」，一次侧与二次侧同一要求。设计院的工程设计要点，是推荐下限不是项目实测。"
+      "notes": "「一二次设计供回水/液温差不宜低于 10℃」，一次侧与二次侧同一要求。设计院的工程设计要点，是推荐下限不是项目实测。\n\n**（2026-09-14）补 loop=未注明**：新增该口径维，本条按原文回填——原文未写清是一次侧还是二次侧，不替它判——「未注明」与两个具体值都不可比。"
     },
     {
       "fact_id": "ch2507-800g-demand-2026e",
@@ -127404,7 +127470,8 @@
         "power_scope": "IT 负载",
         "scenario": "单一情景",
         "basis": "模型输出",
-        "region": "Global"
+        "region": "Global",
+        "workload": "全部负载"
       },
       "evidence": {
         "sha256": "27261afa8839f0ba997672fce3499d7ee496ea01276b07ae86aebe249ad361d8",
@@ -127416,7 +127483,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "**原始出处**：库内 global-it-load-2023（国信证券《盛弘股份》2025-02 转引，basis 记作「实测」）即本文此数。本文说明是由 AI 加速器出货模型推出的 Critical IT Power「需求」，不是实测在运负载，basis 按「模型输出」记。Critical IT Power 不含制冷与配电损耗。"
+      "notes": "**原始出处**：库内 global-it-load-2023（国信证券《盛弘股份》2025-02 转引，basis 记作「实测」）即本文此数。本文说明是由 AI 加速器出货模型推出的 Critical IT Power「需求」，不是实测在运负载，basis 按「模型输出」记。Critical IT Power 不含制冷与配电损耗。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "fact_id": "sa2403-global-critical-it-demand-2026e",
@@ -127435,7 +127502,8 @@
         "power_scope": "IT 负载",
         "scenario": "单一情景",
         "basis": "预测",
-        "region": "Global"
+        "region": "Global",
+        "workload": "全部负载"
       },
       "evidence": {
         "sha256": "27261afa8839f0ba997672fce3499d7ee496ea01276b07ae86aebe249ad361d8",
@@ -127447,7 +127515,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "其中 AI 约 40 GW、增量的 90% 来自 AI——本指标无 AI 子口径，未单录。国信转引的「2028 年超 140 GW」不在本文中。"
+      "notes": "其中 AI 约 40 GW、增量的 90% 来自 AI——本指标无 AI 子口径，未单录。国信转引的「2028 年超 140 GW」不在本文中。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "fact_id": "sa2403-us-critical-it-demand-2023",
@@ -127466,7 +127534,8 @@
         "power_scope": "IT 负载",
         "scenario": "单一情景",
         "basis": "模型输出",
-        "region": "US"
+        "region": "US",
+        "workload": "全部负载"
       },
       "evidence": {
         "sha256": "27261afa8839f0ba997672fce3499d7ee496ea01276b07ae86aebe249ad361d8",
@@ -127478,7 +127547,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "美国 Critical IT Power 需求。第 15 页另称美国 Critical IT 容量需在 2023-2027 年间翻三倍。"
+      "notes": "美国 Critical IT Power 需求。第 15 页另称美国 Critical IT 容量需在 2023-2027 年间翻三倍。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "fact_id": "sa2403-us-critical-it-demand-2026e",
@@ -127497,7 +127566,8 @@
         "power_scope": "IT 负载",
         "scenario": "单一情景",
         "basis": "预测",
-        "region": "US"
+        "region": "US",
+        "workload": "全部负载"
       },
       "evidence": {
         "sha256": "27261afa8839f0ba997672fce3499d7ee496ea01276b07ae86aebe249ad361d8",
@@ -127509,7 +127579,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "同句「数据中心用电占美国总发电量由 4.5% 升至近 10%」分母是发电量，未录（见缺口）。"
+      "notes": "同句「数据中心用电占美国总发电量由 4.5% 升至近 10%」分母是发电量，未录（见缺口）。\n\n**（2026-09-14）补 workload=全部负载**：新增该口径维，本条按原文回填——原文未把 AI 与通用拆开，整句讲的就是全部负载。"
     },
     {
       "fact_id": "sa2403-colo-rack-power-12kw",
