@@ -158893,6 +158893,99 @@
       "corroboration": "待交叉验证",
       "notes": "在用折合标准机架 13.5 万个 × 2.5kW = 337MW；capacity_type 记签约容量表示已被客户使用的部分，status 记 L9 表示在用，均为按标准机架折算。",
       "asserter": "广东省工业和信息化厅"
+    },
+    {
+      "fact_id": "soben2026-cloud-dc-cost-low",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "market",
+        "id": "cloud-dc-build-cost-soben",
+        "label": "云数据中心（Soben 成本研究）"
+      },
+      "value": 8.0,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "未注明",
+        "stage": "实际投入",
+        "region": "未披露",
+        "basis": "第三方推算"
+      },
+      "as_of": "2026-01",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "6f9c183eda735ce1b8d1ced6cba3ca18f2966ccd8a5378790b6025548d91748e",
+        "local_file": "20260104-Soben：2026年数据中心行业趋势报告：全面提速(57页).pdf",
+        "locator": "PDF 第 8 页「Trend 1: The need for speed」Rising costs：「Research by Soben, part of Accenture, found that while cloud data centres currently cost between $8 million and $10 million per MW, GW+ AI data centres are costing as much as $17 million per MW. Contrary to popular belief, this signals that economies of scale are not driving the savings some would expect」；同栏「a US hyperscaler recently accepted a 25% uplift in tender price from a GC to deliver to a demanding timeline」",
+        "grade": "S3",
+        "originator": "Soben（埃森哲旗下）《Data Centre Trends Report 2026》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文 $8–10M/MW，下界。 Soben 自身成本研究，原文未说明成本范围（是否含 IT 设备、是否含土地）与地域，cost_scope 记未注明、region 记未披露；stage 记实际投入表示「currently cost」的已发生项目口径。报告发布于 2026-01（文件名日期 20260104）。",
+      "asserter": "Soben"
+    },
+    {
+      "fact_id": "soben2026-cloud-dc-cost-high",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "market",
+        "id": "cloud-dc-build-cost-soben",
+        "label": "云数据中心（Soben 成本研究）"
+      },
+      "value": 10.0,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "未注明",
+        "stage": "实际投入",
+        "region": "未披露",
+        "basis": "第三方推算"
+      },
+      "as_of": "2026-01",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "6f9c183eda735ce1b8d1ced6cba3ca18f2966ccd8a5378790b6025548d91748e",
+        "local_file": "20260104-Soben：2026年数据中心行业趋势报告：全面提速(57页).pdf",
+        "locator": "PDF 第 8 页「Trend 1: The need for speed」Rising costs：「Research by Soben, part of Accenture, found that while cloud data centres currently cost between $8 million and $10 million per MW, GW+ AI data centres are costing as much as $17 million per MW. Contrary to popular belief, this signals that economies of scale are not driving the savings some would expect」；同栏「a US hyperscaler recently accepted a 25% uplift in tender price from a GC to deliver to a demanding timeline」",
+        "grade": "S3",
+        "originator": "Soben（埃森哲旗下）《Data Centre Trends Report 2026》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文 $8–10M/MW，上界。 Soben 自身成本研究，原文未说明成本范围（是否含 IT 设备、是否含土地）与地域，cost_scope 记未注明、region 记未披露；stage 记实际投入表示「currently cost」的已发生项目口径。报告发布于 2026-01（文件名日期 20260104）。",
+      "asserter": "Soben"
+    },
+    {
+      "fact_id": "soben2026-gw-ai-dc-cost-high",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "market",
+        "id": "gw-ai-dc-build-cost-soben",
+        "label": "GW 级以上 AI 数据中心（Soben 成本研究）"
+      },
+      "value": 17.0,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "未注明",
+        "stage": "实际投入",
+        "region": "未披露",
+        "basis": "第三方推算"
+      },
+      "as_of": "2026-01",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "6f9c183eda735ce1b8d1ced6cba3ca18f2966ccd8a5378790b6025548d91748e",
+        "local_file": "20260104-Soben：2026年数据中心行业趋势报告：全面提速(57页).pdf",
+        "locator": "PDF 第 8 页「Trend 1: The need for speed」Rising costs：「Research by Soben, part of Accenture, found that while cloud data centres currently cost between $8 million and $10 million per MW, GW+ AI data centres are costing as much as $17 million per MW. Contrary to popular belief, this signals that economies of scale are not driving the savings some would expect」；同栏「a US hyperscaler recently accepted a 25% uplift in tender price from a GC to deliver to a demanding timeline」",
+        "grade": "S3",
+        "originator": "Soben（埃森哲旗下）《Data Centre Trends Report 2026》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「as much as $17 million per MW」为上限；Soben 指出规模效应并未带来预期降本。 Soben 自身成本研究，原文未说明成本范围（是否含 IT 设备、是否含土地）与地域，cost_scope 记未注明、region 记未披露；stage 记实际投入表示「currently cost」的已发生项目口径。报告发布于 2026-01（文件名日期 20260104）。",
+      "asserter": "Soben"
     }
   ]
 }
