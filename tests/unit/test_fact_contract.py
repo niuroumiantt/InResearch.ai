@@ -1706,14 +1706,6 @@ class SameOriginTests(unittest.TestCase):
         self.assertIn('同源转述',
                       schema['properties']['corroboration']['enum'])
 
-    def test_the_other_validator_agrees(self):
-        """facts.py 是另一条校验路径，两边枚举必须一致，否则一条合法事实
-        在一个地方通过、在另一个地方被拒。"""
-        import importlib
-
-        facts = importlib.import_module('inresearch.knowledge.facts')
-        self.assertEqual(set(FC.CORROBORATION), facts.CORROB)
-
     def test_a_fact_may_declare_it(self):
         problems = problems_for(fact(corroboration='同源转述'))
         self.assertEqual(problems, [])

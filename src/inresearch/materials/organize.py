@@ -127,7 +127,7 @@ def final_locations() -> dict:
 def plan_library():
     results = load_results()
     if not results:
-        sys.exit('no L1 results yet: run m4_triage_l1.py first')
+        sys.exit('no L1 results yet: run `manage.py triage run` first')
     by_sha = load_inventory(); moves = []
     for sha, res in results.items():
         rows = by_sha.get(sha)
@@ -150,7 +150,7 @@ def plan_restage():
     """
     results = load_results()
     if not results:
-        sys.exit('no L1 results yet: run m4_triage_l1.py first')
+        sys.exit('no L1 results yet: run `manage.py triage run` first')
     placed = final_locations(); by_sha = load_inventory(); moves = []
     for sha, res in results.items():
         rows = by_sha.get(sha)

@@ -33,7 +33,7 @@ ROOT = project_root()
 PY = sys.executable
 
 TASKS = {
-    "collect":    ("兼容历史简报", ["manage.py", "historical-brief", "--offline"], 600),
+    "collect":    ("兼容历史简报", ["manage.py", "historical-brief"], 600),
     "news":       ("inews 采集状态", ["manage.py", "acquisition-status", "inews"], 30),
     "sec":        ("SEC 采集状态", ["manage.py", "acquisition-status", "sec"], 30),
     "gpu":        ("GPU 采集状态", ["manage.py", "acquisition-status", "gpu"], 30),
@@ -42,7 +42,6 @@ TASKS = {
     "validate":   ("数据校验", ["manage.py", "validate"], 30),
     "export":     ("导出全量报告（md+docx）", ["manage.py", "export", "--docx"], 120),
     "map":        ("Top10 地图（html+pdf）", ["manage.py", "map"], 90),
-    "inbox":      ("扫描收件箱（docs/inbox）", ["manage.py", "scan-candidates"], 30),
     "reader":     ("Spark 常驻阅读状态", ["manage.py", "reader-status"], 30),
     "queue":      ("生成精读队列", ["manage.py", "reading-queue"], 30),
     "workorder":  ("生成工单队列", ["manage.py", "workorders"], 60),
@@ -65,6 +64,9 @@ AUTH_ON = False   # main() 按绑定地址决定；127.0.0.1 本地用法永远�
 
 
 class Handler(SimpleHTTPRequestHandler):
+    # MIME 由代码决定，不依赖运行镜像的系统 mime 表（slim 镜像没有 .woff2）。
+    extensions_map = {**SimpleHTTPRequestHandler.extensions_map, '.woff2': 'font/woff2'}
+
     def __init__(self, *a, **kw):
         super().__init__(*a, directory=str(ROOT), **kw)
 
@@ -132,9 +134,7 @@ class Handler(SimpleHTTPRequestHandler):
         if not AUTH_ON:
             return ""
         # 密钥与用户表即使登录后也永远不可经 HTTP 取到（纵深防御）。
-        # 判解码归一化后的路径（见 _norm_path），并转小写——本机 launchd 部署跑在
-        # macOS 上，文件系统大小写不敏感，/DATA/USERS.JSON 一样能取到文件。
-        low = self._norm_path().lower()
+        # 路径已解码归一并转小写：大小写不敏感的文件系统上 /DATA/USERS.JSON 一样能取到文件。
         if "/.hub_secret" in low or "/users.json" in low:
             self._json(404, {"ok": False, "error": "not found"})
             return None
@@ -161,8 +161,7 @@ class Handler(SimpleHTTPRequestHandler):
         password = payload.get("password") or ""
         if not auth.load_users():
             return self._json(503, {"ok": False, "error":
-                "尚未创建任何用户——在服务器上运行 "
-                "`docker compose exec dchub python3 manage.py users add <用户名>`"})
+                "系统尚未初始化账号，请联系管理员（服务器上运行 `python3 manage.py users add <用户名>`）"})
         if auth.verify_password(username, password):
             log_run("auth", f"登录成功 {username} @ {ip}")
             return self._login_ok(username)
@@ -501,7 +500,7 @@ def main():
         refresh(ROOT)
     srv = ThreadingHTTPServer((host, port), Handler)
     where = "http://localhost:%d" % port if host == "127.0.0.1" else f"{host}:{port}"
-    print(f"Datacenter Hub 服务运行于 {where}（静态 + 管理 API）"
+    print(f"inresearch.ai 服务运行于 {where}（静态 + 管理 API）"
           f"｜登录认证 {'开' if AUTH_ON else '关'}")
     if AUTH_ON and not auth.load_users():
         print("⚠️  认证已开但还没有用户——先跑 `python3 manage.py users add <用户名>`")

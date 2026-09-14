@@ -1,3 +1,5 @@
+> HISTORICAL — 已被替代。保存于 2026-09-14；下文是历史原文（原路径 deploy/docker-compose.yml），不构成当前指令、授权或服务状态。生产编排真源在 niuroumiantt/infra 的 `inresearch-host/`；整目录挂载 data/reports 的方式已退出，运行状态按 `INRESEARCH_RUNTIME_ROOT` 分离。现行入口：[当前基准](../../../framework/CURRENT.md)。
+
 # ⚠️ 历史，勿用（2026-08-19 六站合并迁移后作废）
 # 生产编排真源已迁到 infra 仓库 `inresearch-host/`：一台 Lightsail（us-east-1a，
 # 非本文件假设的 AWS 新加坡）上一个 Caddy 给六站分流，dchub 只是其中一个容器，

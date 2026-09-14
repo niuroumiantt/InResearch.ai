@@ -33,7 +33,7 @@ def ppt_atoms(data: bytes, depth: int = 0):
             yield rec_type, payload
         pos += rec_len
 
-def ppt_text(raw: bytes) -> tuple[str, dict]:
+def ppt_text(raw: bytes, limit: int = MAX_CHARS) -> tuple[str, dict]:
     ole = OleFile(raw)
     doc = ole.stream('PowerPoint Document', 'PP97_DUALSTORAGE')
     if not doc:
@@ -47,4 +47,4 @@ def ppt_text(raw: bytes) -> tuple[str, dict]:
         elif rec_type in (TEXT_CHARS_ATOM, CSTRING_ATOM):
             parts.append(payload.decode('utf-16-le', 'ignore'))
     text = '\n'.join(p.replace('\r', '\n') for p in parts if p.strip())
-    return text[:MAX_CHARS], {'text_atoms': len(parts)}
+    return text[:limit], {'text_atoms': len(parts), 'truncated': len(text) > limit}

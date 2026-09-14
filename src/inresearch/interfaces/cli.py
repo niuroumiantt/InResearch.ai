@@ -23,12 +23,11 @@ COMMANDS = {
     'historical-brief': 'inresearch.adapters.historical_brief',
     'acquisition-status': 'inresearch.delivery.acquisition_status', 'reader-status': 'inresearch.delivery.reader_status',
     'backup': 'inresearch.delivery.backup', 'library': 'inresearch.materials.library',
-    'library-index': 'inresearch.delivery.library_index', 'repair-paths': 'inresearch.materials.repair_paths',
     'asset-check': 'inresearch.adapters.asset_check', 'asset-compare': 'inresearch.adapters.asset_compare', 'asset-download': 'inresearch.adapters.asset_download',
     'registry': 'inresearch.knowledge.registry', 'facts': 'inresearch.knowledge.facts', 'validate': 'inresearch.knowledge.validate', 'verify': 'inresearch.knowledge.verify',
     'governance': 'inresearch.interfaces.governance', 'indicators': 'inresearch.knowledge.indicators', 'company-ids': 'inresearch.knowledge.company_ids',
     'coverage': 'inresearch.knowledge.coverage', 'reading-queue': 'inresearch.workflow.reading_queue', 'workorders': 'inresearch.workflow.workorders',
-    'submissions': 'inresearch.workflow.submissions', 'scan-candidates': 'inresearch.materials.scan_candidates', 'export': 'inresearch.delivery.export', 'map': 'inresearch.delivery.map',
+    'submissions': 'inresearch.workflow.submissions', 'export': 'inresearch.delivery.export', 'map': 'inresearch.delivery.map',
 }
 
 

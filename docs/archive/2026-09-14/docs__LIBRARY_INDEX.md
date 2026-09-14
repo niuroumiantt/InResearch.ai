@@ -1,9 +1,9 @@
+> HISTORICAL — 已被替代。保存于 2026-09-14；下文是 2026-08-15 前旧目录结构的索引快照（原路径 docs/LIBRARY_INDEX.md），其生成器 `library-index` 已退出。资料清单以 M4 清点（`manage.py inventory`）与 `docs/LIBRARY_SCORES.csv` 的 new_path 为准。现行入口：[当前基准](../../../framework/CURRENT.md)。
+
 # 第三方研报库索引 — docs/library/
 
 > ⚠️ **本索引已过期两代**（2026-08-18 卫生审计确认）：下方仍是 08-15 前的旧目录结构
 > （01–90 编号，17,843 份），库本体现已重组为 M01–M15 结构、28,759 份。
-> 重建须在**本机**执行（库本体不进 git）：`python3 manage.py library-index`，
-> 跑完本横幅自动消失。在那之前查文件请以 docs/LIBRARY_SCORES.csv 的 new_path 为准。
 
 > 二进制不进 git；本索引进 git 作全量清单。大目录（>80 文件）仅记摘要，明细可用
 > `find docs/library/<目录> -type f` 查看。精读打分清单见 docs/LIBRARY_SCORES.csv。

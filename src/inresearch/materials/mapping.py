@@ -20,7 +20,7 @@ from pathlib import Path
 
 from inresearch.materials import paths as m4_paths
 from inresearch.storage.jsonl import atomic_write, read_rows
-from inresearch.materials.records import inventory_record
+from inresearch.materials.records import commit_result, inventory_record
 from inresearch.materials import organize as APPLY
 from inresearch.materials import triage as L1
 
@@ -178,27 +178,29 @@ def cmd_apply(a):
 
 
 def cmd_import_verdicts(a):
-    """Write the exported judgements into this machine's l1_results.jsonl.
+    """Commit the exported judgements as first results of this machine's L1 ledger.
 
-    Re-judging 16,020 files would cost another 31.7 hours and would not agree
-    with the names already on disk, so the verdicts travel with the mapping.
+    Verdicts travel with the mapping instead of being re-judged; each row goes
+    through records.commit_result, so an existing success is never overwritten.
     """
     _, rows = load_mapping(Path(a.mapping))
     have = L1.done_keys()
     written = skipped = 0
     L1.RESULTS.parent.mkdir(parents=True, exist_ok=True)
-    with L1.RESULTS.open('a', encoding='utf-8') as fh:
-        for row in rows:
-            if row.get('status') is None or row['sha256'] in have:
-                skipped += 1; continue
-            record = {'sha256': row['sha256'], 'rel': row['from'],
-                      'suffix': Path(row['from']).suffix, 'size': row.get('size', 0),
-                      'imported_from': 'mapping', 'at': now()}
-            for key in ('status', 'level', 'category', *VERDICT_FIELDS):
-                if row.get(key) is not None:
-                    record[key] = row[key]
-            fh.write(json.dumps(record, ensure_ascii=False) + '\n')
-            have.add(row['sha256']); written += 1
+    for row in rows:
+        if row.get('status') is None or row['sha256'] in have:
+            skipped += 1; continue
+        record = {'sha256': row['sha256'], 'rel': row['from'],
+                  'suffix': Path(row['from']).suffix, 'size': row.get('size', 0),
+                  'imported_from': 'mapping', 'at': now()}
+        for key in ('status', 'level', 'category', *VERDICT_FIELDS):
+            if row.get(key) is not None:
+                record[key] = row[key]
+        try:
+            commit_result(L1.RESULTS, record)
+        except ValueError:
+            skipped += 1; continue
+        have.add(row['sha256']); written += 1
     print(json.dumps({'imported': written, 'already_present': skipped}, ensure_ascii=False))
 
 

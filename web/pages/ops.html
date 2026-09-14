@@ -174,8 +174,7 @@
   <div class="tablewrap"><table id="projects"></table></div>
 
   <div class="note" style="margin-top:24px">
-    本页为静态视图：<code>python3 -m http.server 8000</code> 后打开。数据文件位于 <code>data/</code>，
-    框架文件位于 <code>framework/</code>。校验：<code>python3 inresearch.py validate</code>
+    数据文件位于 <code>data/</code>，框架文件位于 <code>framework/</code>。校验：<code>python3 manage.py validate --strict</code>
   </div>
   <div id="error"></div>
 </div>
@@ -331,7 +330,7 @@ function projectCapacity(p) {
     });
     document.getElementById("indicators").innerHTML = it.join("");
 
-    // 模块卡片（研究文档状态来自 brief.research，collect.py 生成）
+    // 模块卡片（研究文档状态来自 brief.research，historical-brief 生成）
     let rstats = {};
     try { rstats = (await loadJSON("data/brief.json")).research || {}; } catch (e) {}
     const dimOf = {};
@@ -377,7 +376,6 @@ const TASKS = [
   ["validate", "数据校验", "口径规则把关"],
   ["export", "导出报告", "全量 md+docx"],
   ["map", "Top10 地图", "html+pdf（PDF 仅本机，服务器缺渲染依赖）"],
-  ["inbox", "扫描收件箱", "docs/inbox 新材料"],
   ["workorder", "工单队列", "声明−现状，每模块下一步"],
   ["blindspot", "盲区体检", "库里有但分类器看不见的材料"],
   ["intake", "投递机检", "成员投递三档分流（A 人批/B 抽查/C 自动）"],

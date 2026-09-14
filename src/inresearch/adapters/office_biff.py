@@ -238,4 +238,6 @@ def xls_text(raw: bytes, limit: int = MAX_CHARS) -> tuple[str, dict]:
         parts.append(body)
     else:
         parts.extend(strings)
-    return '\n'.join(parts)[:limit], meta
+    text = '\n'.join(parts)
+    meta['truncated'] = meta.get('truncated', False) or len(text) > limit
+    return text[:limit], meta

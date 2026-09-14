@@ -70,8 +70,8 @@ class DeepRead:
     def all_results(self):
         return current_results(self.materials.RESULTS)
 
-    def resolve_document(self, prefix, what='sha', allow_unregistered=True):
-        return policy.resolve_document(self.all_results(), prefix, what, allow_unregistered)
+    def resolve_document(self, prefix, what='sha'):
+        return policy.resolve_document(self.all_results(), prefix, what)
 
     def processed_documents(self):
         # Historical filename retained; these are processing receipts, not reports.
@@ -241,7 +241,7 @@ class DeepRead:
             raise ValueError('--again 要跟 --sha：只重开你指名的材料')
         # Resolve against all judgments before filtering eligibility. A second
         # match cannot disappear merely because its score or restriction differs.
-        selected = self.resolve_document(sha, allow_unregistered=False)['sha256'] if sha else None
+        selected = self.resolve_document(sha)['sha256'] if sha else None
         pool = self.eligible(0 if selected else min_score, include_processed=again, since=since)
         if selected:
             pool = [r for r in pool if r['sha256'] == selected]
@@ -359,7 +359,7 @@ class DeepRead:
             return report
 
     def attribute(self, sha, *, expected_revision, org=None, unrecoverable=False, year=None, title=None, evidence):
-        row = copy.deepcopy(self.resolve_document(sha, allow_unregistered=False))
+        row = copy.deepcopy(self.resolve_document(sha))
         if not expected_revision or result_revision(row) != expected_revision:
             raise ValueError('result_revision_conflict')
         if bool(org) == bool(unrecoverable):
@@ -382,7 +382,7 @@ class DeepRead:
                     result_revision=committed['result_revision'], renamed_by='改名另走 manage.py organize restage plan / apply')
 
     def flag(self, sha, *, expected_revision, names, clear=False, evidence):
-        row = copy.deepcopy(self.resolve_document(sha, allow_unregistered=False))
+        row = copy.deepcopy(self.resolve_document(sha))
         if not expected_revision or result_revision(row) != expected_revision:
             raise ValueError('result_revision_conflict')
         if not names or set(names) - set(policy.RESTRICTIONS) or not evidence.strip():

@@ -880,6 +880,13 @@ class SkipTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.skip(['随便'])
 
+    def test_an_unregistered_full_hash_is_refused_like_record(self):
+        """A mistyped 64-character hash must not open a gap or a receipt for
+        a document nobody judged; skip shares record's resolver."""
+        with self.assertRaises(ValueError):
+            self.skip(['随便'], doc='b' * 64)
+        self.assertEqual(L2.gaps.open(), [])
+
     def test_filling_a_gap_clears_it(self):
         gap_id = self.skip(['server_class 缺 x86'])['gap_ids'][0]
         self.gaps(filled=[gap_id])
