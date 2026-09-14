@@ -138188,6 +138188,188 @@
       "corroboration": "待交叉验证",
       "notes": "IDC hddbyseg 4Q20.0 初步版，按出货台数（units）；4Q20 为初步估计，IDC 注明 4–6 周后以终版替代。原文区间上界。",
       "asserter": "IDC"
+    },
+    {
+      "fact_id": "idc1902-hdd-units-yoy-cy2018",
+      "metric_id": "hdd_market_size_growth",
+      "entity": {
+        "type": "market",
+        "id": "global-hdd",
+        "label": "全球 HDD 市场"
+      },
+      "value": -7.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "出货量",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "40dad734905b1516adad7ab783459120a9c7724abf271e7353a55b1c21544c0b",
+        "local_file": "IDC 4Q18 Final WW HDD Shipment Results Pivot Table and Forecast Update.xls",
+        "locator": "工作表「WW HDD Shipments」第 184–195 行 Class: All，CY18 Total = 375,833.8 千台，Year/Year = -0.0698",
+        "grade": "S3",
+        "originator": "IDC《Worldwide 4Q18 HDD Shipments and 4-Quarter Outlook by HDD Segment》（2019-02-11）"
+      },
+      "derived": false,
+      "notes": "IDC hddbyseg/Revbyseg 4Q18.0 终版（actuals），CY19e 为同期发布的四季度展望。IDC 注明按其分类口径，与厂商自报可能不同。2018 年全球 HDD 出货 3.758 亿台。",
+      "depth": "精读",
+      "corroboration": "待交叉验证",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "idc1902-hdd-units-yoy-cy2019e",
+      "metric_id": "hdd_market_size_growth",
+      "entity": {
+        "type": "market",
+        "id": "global-hdd",
+        "label": "全球 HDD 市场"
+      },
+      "value": -11.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "出货量",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2019E@2019-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "40dad734905b1516adad7ab783459120a9c7724abf271e7353a55b1c21544c0b",
+        "local_file": "IDC 4Q18 Final WW HDD Shipment Results Pivot Table and Forecast Update.xls",
+        "locator": "工作表「WW HDD Shipments」第 192–195 行 Class: All，CY19e Total = 334,522.3 千台，Year/Year = -0.1099",
+        "grade": "S3",
+        "originator": "IDC《Worldwide 4Q18 HDD Shipments and 4-Quarter Outlook by HDD Segment》（2019-02-11）"
+      },
+      "derived": false,
+      "notes": "IDC hddbyseg/Revbyseg 4Q18.0 终版（actuals），CY19e 为同期发布的四季度展望。IDC 注明按其分类口径，与厂商自报可能不同。2019 年预测出货 3.345 亿台。",
+      "depth": "精读",
+      "corroboration": "待交叉验证",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "idc1902-hdd-revenue-yoy-cy2018",
+      "metric_id": "hdd_market_size_growth",
+      "entity": {
+        "type": "market",
+        "id": "global-hdd",
+        "label": "全球 HDD 市场"
+      },
+      "value": 0.5,
+      "unit": "%",
+      "caliber": {
+        "measure": "金额",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "40dad734905b1516adad7ab783459120a9c7724abf271e7353a55b1c21544c0b",
+        "local_file": "IDC 4Q18 Final WW HDD Shipment Results Pivot Table and Forecast Update.xls",
+        "locator": "工作表「WW HDD Revenue」第 180–191 行 Class: All，CY18 Total = 24,402.1 百万美元，Year/Year = 0.0049",
+        "grade": "S3",
+        "originator": "IDC《Worldwide 4Q18 HDD Shipments and 4-Quarter Outlook by HDD Segment》（2019-02-11）"
+      },
+      "derived": false,
+      "notes": "IDC hddbyseg/Revbyseg 4Q18.0 终版（actuals），CY19e 为同期发布的四季度展望。IDC 注明按其分类口径，与厂商自报可能不同。2018 年 HDD 营收 244.0 亿美元，台数 -7.0% 而金额 +0.5%，量价背离。",
+      "depth": "精读",
+      "corroboration": "待交叉验证",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "idc1902-hdd-revenue-yoy-cy2019e",
+      "metric_id": "hdd_market_size_growth",
+      "entity": {
+        "type": "market",
+        "id": "global-hdd",
+        "label": "全球 HDD 市场"
+      },
+      "value": -2.4,
+      "unit": "%",
+      "caliber": {
+        "measure": "金额",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2019E@2019-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "40dad734905b1516adad7ab783459120a9c7724abf271e7353a55b1c21544c0b",
+        "local_file": "IDC 4Q18 Final WW HDD Shipment Results Pivot Table and Forecast Update.xls",
+        "locator": "工作表「WW HDD Revenue」第 188–191 行 Class: All，CY19e Total = 23,827.9 百万美元，Year/Year = -0.0235",
+        "grade": "S3",
+        "originator": "IDC《Worldwide 4Q18 HDD Shipments and 4-Quarter Outlook by HDD Segment》（2019-02-11）"
+      },
+      "derived": false,
+      "notes": "IDC hddbyseg/Revbyseg 4Q18.0 终版（actuals），CY19e 为同期发布的四季度展望。IDC 注明按其分类口径，与厂商自报可能不同。",
+      "depth": "精读",
+      "corroboration": "待交叉验证",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "idc1902-hdd-top2-share-units-cy2018",
+      "metric_id": "hdd_top2_share",
+      "entity": {
+        "type": "market",
+        "id": "global-hdd",
+        "label": "全球 HDD 市场"
+      },
+      "value": 77.2,
+      "unit": "%",
+      "caliber": {
+        "measure": "出货量",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "40dad734905b1516adad7ab783459120a9c7724abf271e7353a55b1c21544c0b",
+        "local_file": "IDC 4Q18 Final WW HDD Shipment Results Pivot Table and Forecast Update.xls",
+        "locator": "工作表「WW HDD Shipments」第 197–206 行 Class: All 份额，CY18：Seagate 0.3999、Toshiba 0.2279、WD 0.3722",
+        "grade": "S3",
+        "originator": "IDC《Worldwide 4Q18 HDD Shipments and 4-Quarter Outlook by HDD Segment》（2019-02-11）"
+      },
+      "derived": true,
+      "derivation": "前两大 Seagate 39.99% + WD 37.22% = 77.2%。",
+      "notes": "IDC hddbyseg/Revbyseg 4Q18.0 终版（actuals），CY19e 为同期发布的四季度展望。IDC 注明按其分类口径，与厂商自报可能不同。东芝 22.79%。",
+      "depth": "精读",
+      "corroboration": "待交叉验证",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "idc1902-hdd-top2-share-revenue-cy2018",
+      "metric_id": "hdd_top2_share",
+      "entity": {
+        "type": "market",
+        "id": "global-hdd",
+        "label": "全球 HDD 市场"
+      },
+      "value": 83.3,
+      "unit": "%",
+      "caliber": {
+        "measure": "金额",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "40dad734905b1516adad7ab783459120a9c7724abf271e7353a55b1c21544c0b",
+        "local_file": "IDC 4Q18 Final WW HDD Shipment Results Pivot Table and Forecast Update.xls",
+        "locator": "工作表「WW HDD Revenue」第 193–201 行 Class: All 份额，CY18：Seagate 0.4315、Toshiba 0.1671、WD 0.4015",
+        "grade": "S3",
+        "originator": "IDC《Worldwide 4Q18 HDD Shipments and 4-Quarter Outlook by HDD Segment》（2019-02-11）"
+      },
+      "derived": true,
+      "derivation": "前两大 Seagate 43.15% + WD 40.15% = 83.3%。",
+      "notes": "IDC hddbyseg/Revbyseg 4Q18.0 终版（actuals），CY19e 为同期发布的四季度展望。IDC 注明按其分类口径，与厂商自报可能不同。东芝 16.71%；按金额的集中度比按台数高 6 个百分点。",
+      "depth": "精读",
+      "corroboration": "待交叉验证",
+      "asserter": "IDC"
     }
   ]
 }
