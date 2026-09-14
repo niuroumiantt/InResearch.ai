@@ -121716,6 +121716,93 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "KWPM = 千片/月。12 英寸晶圆，各厂（北京 3 条 12 英寸、天津/上海/深圳 8 英寸与 12 英寸）加总。中芯国际不按厂披露产能，本表为大摩估计。同表「12\" 等效」（8 英寸按面积折 12 英寸后合计）未录。**2Q25E/3Q25F/4Q25F 为预测**，@ 取文件名日期 2025-06。"
+    },
+    {
+      "asserter": "未注明",
+      "entity": {
+        "type": "company",
+        "id": "tsmc",
+        "label": "台积电"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "tsmc-cowos-survey-2025-wpm-lower",
+      "metric_id": "cowos_capacity_wpm",
+      "value": 6.5,
+      "unit": "万片/月",
+      "bound": "lower",
+      "as_of": "2025",
+      "caliber": {
+        "package_type": "全部CoWoS",
+        "basis": "第三方推算"
+      },
+      "evidence": {
+        "sha256": "4af709821b0c5de02d2a64ef02744582b845db3b91a70e334bfb39e00e737eff",
+        "local_file": "台积电CoWoS产能情况调研.xlsx",
+        "locator": "工作表 Sheet1 第 7 行 2025 年 整体产能情况：「月产能 65K-75K，上半年增 1 万片，下半年增 1 万片，整体变化不大」；AP8「占 CoWoS 总产能近一半，进度较慢」",
+        "grade": "S4",
+        "originator": "未注明（工作表标注「Source：本营」「Date：2025.07.26」，渠道调研纪要，出处机构不可考）"
+      },
+      "notes": "65K 片/月 = 6.5 万片/月，区间下端，上端见配对条目。渠道调研口径，未说明是名义产能还是有效产出。"
+    },
+    {
+      "asserter": "未注明",
+      "entity": {
+        "type": "company",
+        "id": "tsmc",
+        "label": "台积电"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "tsmc-cowos-survey-2025-wpm-upper",
+      "metric_id": "cowos_capacity_wpm",
+      "value": 7.5,
+      "unit": "万片/月",
+      "bound": "upper",
+      "as_of": "2025",
+      "caliber": {
+        "package_type": "全部CoWoS",
+        "basis": "第三方推算"
+      },
+      "evidence": {
+        "sha256": "4af709821b0c5de02d2a64ef02744582b845db3b91a70e334bfb39e00e737eff",
+        "local_file": "台积电CoWoS产能情况调研.xlsx",
+        "locator": "工作表 Sheet1 第 7 行 2025 年 整体产能情况：「月产能 65K-75K，上半年增 1 万片，下半年增 1 万片，整体变化不大」",
+        "grade": "S4",
+        "originator": "未注明（工作表标注「Source：本营」「Date：2025.07.26」，渠道调研纪要，出处机构不可考）"
+      },
+      "notes": "75K 片/月 = 7.5 万片/月，区间上端。"
+    },
+    {
+      "asserter": "未注明",
+      "entity": {
+        "type": "company",
+        "id": "tsmc",
+        "label": "台积电"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "fact_id": "tsmc-cowos-survey-2026e-wpm",
+      "metric_id": "cowos_capacity_wpm",
+      "value": 10.0,
+      "unit": "万片/月",
+      "bound": "point",
+      "as_of": "2026E@2025-07",
+      "caliber": {
+        "package_type": "全部CoWoS",
+        "basis": "第三方推算"
+      },
+      "evidence": {
+        "sha256": "4af709821b0c5de02d2a64ef02744582b845db3b91a70e334bfb39e00e737eff",
+        "local_file": "台积电CoWoS产能情况调研.xlsx",
+        "locator": "工作表 Sheet1 第 8 行 2026 年：「预计月产能 100K 左右，主要增量在下半年」；AP8「目标扩至满产（100K），台湾无新土地可用，后续或在美国建 AP9、AP10」",
+        "grade": "S4",
+        "originator": "未注明（工作表标注「Source：本营」「Date：2025.07.26」，渠道调研纪要，出处机构不可考）"
+      },
+      "notes": "「100K 左右」= 10 万片/月，按点值记。同表客户 2026 年分配：博通 18 万片（原计划 12 万）、AWS（Marvell/Alchip）11-12 万、英伟达约 50 万（420K-580K 多种说法）、AMD 约 7 万、联发科 1.5-2 万片/年（按客户分配无指标，未录）。"
     }
   ]
 }
