@@ -15,6 +15,8 @@ function fixture(name, brokenTexture=false) {
  return Buffer.concat([header,json,chunk,binary]);
 }
 (async()=>{
+ const scenario=process.argv[2];
+ assert.ok(['bom3d','rack3d','compare'].includes(scenario),'Select a scenario through tests/run_browser.cjs model_assets');
  const browser=await chromium.launch({headless:true,args:['--enable-unsafe-swiftshader']});
  try {
   const page=await browser.newPage({viewport:{width:1280,height:900},deviceScaleFactor:.5,reducedMotion:'reduce'});
@@ -34,7 +36,7 @@ function fixture(name, brokenTexture=false) {
    const tail='globalThis.__assetsTest={scene,sceneModels'+(new URL(r.request().url()).pathname.includes('rack')?',rack':'')+'};\n</script>\n</body>';
    await r.fulfill({response:res,body:html.replace('</script>\n</body>',tail)});
   });
-  for(const scene of ['bom3d','rack3d']) {
+  for(const scene of scenario==='compare'?[]:[scenario]) {
    console.log('Model assets: '+scene+' default selection, retry and replacement');
    response=null;failFile=null;requests.length=0;
    await page.goto(process.env.UI_BASE_URL+'/'+scene+'.html?node=part:gpu',{waitUntil:'domcontentloaded'});
@@ -86,6 +88,7 @@ function fixture(name, brokenTexture=false) {
    assert.ok(await page.evaluate(()=>!__assetsTest.scene.getObjectByName('server_b')));
    if(scene==='rack3d')assert.ok(await page.evaluate(()=>__assetsTest.rack.visible));
   }
+  if(scenario==='compare') {
   console.log('Model assets: comparison status, empty state and content integrity');
   response='fail';await page.goto(process.env.UI_BASE_URL+'/compare.html',{waitUntil:'domcontentloaded'});
   const startup=page.locator('.rg-scene-startup[data-state=error]');await startup.waitFor();
@@ -134,7 +137,8 @@ function fixture(name, brokenTexture=false) {
    const bitmap=map.source.data,close=bitmap.close.bind(bitmap);bitmap.close=()=>{image++;close()};
    model.dispose();model.dispose();check(geometry===1 && material===1 && texture===1 && image===1,'owned shared resources must release exactly once');
   },entry('a.glb'));
+  }
   assert.deepEqual(errors,[]);
-  console.log('PASS adopted-only scenes, real GLTF/SHA, complete-group replacement, rejected comparison, retry, timeout, double retry, A→B→A, late disposal and shared resource ownership');
+  console.log('PASS model assets scenario: '+scenario);
  }finally{await browser.close()}
 })().catch(e=>{console.error(e);process.exitCode=1});

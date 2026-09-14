@@ -266,7 +266,7 @@
 | `docs/reviews/2026-09-14/model-assets/file-plan.csv` | rows | 722 |
 | `docs/reviews/2026-09-14/model-assets/file-results.csv` | rows | 736 |
 | `docs/reviews/2026-09-14/model-assets/legacy-removal.csv` | rows | 7 |
-| `docs/reviews/2026-09-14/model-assets/public-consumers.csv` | rows | 202 |
+| `docs/reviews/2026-09-14/model-assets/public-consumers.csv` | rows | 207 |
 | `docs/reviews/2026-09-14/model-assets/public-contracts.csv` | rows | 17 |
 | `docs/reviews/2026-09-14/model-assets/scope.json` | changed | 32 |
 | `docs/reviews/2026-09-14/scene-bootstrap/baseline.json` | items | 2 |
