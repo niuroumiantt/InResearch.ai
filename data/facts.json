@@ -138507,7 +138507,7 @@
         "basis": "实测",
         "region": "Global"
       },
-      "as_of": "2021",
+      "as_of": "2021@2025-04",
       "bound": "point",
       "evidence": {
         "sha256": "f9cccfd95405b5b3cbafa91c0b55c63debe68d34018d4720a49c8e6606642ce6",
@@ -138520,7 +138520,8 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "2025 版按新 ASP 方法重算的数据中心 AI ASIC 营收（2024 年 90 亿美元已入库 ai-asic-market-size-2024）。**同图 2024 版旧预测按旧方法口径高得多（2023 年 118 亿 vs 新版 35 亿）**，Yole 称差异来自访谈新信息与 ASP 新算法，旧版未入库。",
-      "asserter": "Yole"
+      "asserter": "Yole",
+      "supersedes": "yole2209-ai-asic-revenue-2021"
     },
     {
       "fact_id": "yole2504-ai-asic-revenue-2022",
@@ -138811,7 +138812,7 @@
         "region": "Global",
         "basis": "行业机构"
       },
-      "as_of": "2021",
+      "as_of": "2021@2025-04",
       "bound": "point",
       "evidence": {
         "sha256": "f9cccfd95405b5b3cbafa91c0b55c63debe68d34018d4720a49c8e6606642ce6",
@@ -138824,7 +138825,8 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "8.4 十亿美元 = 84.0 亿美元。Yole 口径为数据中心 GPU 营收（旗舰 AI GPU 占 2024 年数据中心 GPU 出货 69%），不含 AI ASIC。",
-      "asserter": "Yole"
+      "asserter": "Yole",
+      "supersedes": "yole2209-dc-gpu-revenue-2021"
     },
     {
       "fact_id": "yole2504-dc-gpu-revenue-2022",
@@ -144252,6 +144254,324 @@
       "corroboration": "待交叉验证",
       "notes": "**按 256→1,024→4,096 每代 ×4 的趋势外推的假设**，不是谷歌披露。",
       "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "yole2209-dc-gpu-revenue-2021",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "dc-gpu",
+        "label": "数据中心 GPU 市场"
+      },
+      "value": 81.42,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 计算芯片市场规模",
+        "chip_type": "GPU",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2021@2022-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "970ece0880a24d432f0b5aa1c4749d0a4536f62e67e1ca08d3111f234a2affb3",
+        "local_file": "6C_2022_2022_Computing_未署名.pdf",
+        "locator": "第 74 页「GPU AND AI ACCELERATOR REVENUE FORECAST 2017 – 2027」表（$M）2021 列：HPC GPU $6,364 + Enterprise GPU $235 + Hyperscale GPU $1,543；第 21 页摘要「51% and 40% of this total will be for CPUs and GPUs, respectively, representing $54B and $43B」（2027）",
+        "grade": "S3",
+        "originator": "Yole Intelligence《Computing and AI technologies for data center 2022》（YINTR22257，图表标注 @Yole Intelligence Sept. 2022）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "按服务器类型三行相加：6364 + 235 + 1543 = 8142 百万美元 = 81.42 亿美元（原表无 GPU 小计行）",
+      "corroboration": "待交叉验证",
+      "notes": "Yole 2022 版口径：数据中心服务器用 GPGPU 营收，不含非 GPU 的 AI 加速器。**同一家后出的 2025 版把 2021 年改为 84.0 亿美元（yole2504-dc-gpu-revenue-2021），本条为较早的 2022 版数值。**",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2209-dc-gpu-revenue-2022e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "dc-gpu",
+        "label": "数据中心 GPU 市场"
+      },
+      "value": 110.43,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 计算芯片市场规模",
+        "chip_type": "GPU",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2022E@2022-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "970ece0880a24d432f0b5aa1c4749d0a4536f62e67e1ca08d3111f234a2affb3",
+        "local_file": "6C_2022_2022_Computing_未署名.pdf",
+        "locator": "第 74 页「GPU AND AI ACCELERATOR REVENUE FORECAST 2017 – 2027」表（$M）2022 列：HPC GPU $8,015 + Enterprise GPU $462 + Hyperscale GPU $2,566；第 21 页摘要「51% and 40% of this total will be for CPUs and GPUs, respectively, representing $54B and $43B」（2027）",
+        "grade": "S3",
+        "originator": "Yole Intelligence《Computing and AI technologies for data center 2022》（YINTR22257，图表标注 @Yole Intelligence Sept. 2022）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "按服务器类型三行相加：8015 + 462 + 2566 = 11043 百万美元 = 110.43 亿美元（原表无 GPU 小计行）",
+      "corroboration": "待交叉验证",
+      "notes": "Yole 2022 版口径：数据中心服务器用 GPGPU 营收，不含非 GPU 的 AI 加速器。2025 版（2025-04）对同年的预测另有记录，两个时点的预测并列，不互相替代。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2209-dc-gpu-revenue-2025e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "dc-gpu",
+        "label": "数据中心 GPU 市场"
+      },
+      "value": 229.11,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 计算芯片市场规模",
+        "chip_type": "GPU",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2022-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "970ece0880a24d432f0b5aa1c4749d0a4536f62e67e1ca08d3111f234a2affb3",
+        "local_file": "6C_2022_2022_Computing_未署名.pdf",
+        "locator": "第 74 页「GPU AND AI ACCELERATOR REVENUE FORECAST 2017 – 2027」表（$M）2025 列：HPC GPU $15,206 + Enterprise GPU $1,717 + Hyperscale GPU $5,988；第 21 页摘要「51% and 40% of this total will be for CPUs and GPUs, respectively, representing $54B and $43B」（2027）",
+        "grade": "S3",
+        "originator": "Yole Intelligence《Computing and AI technologies for data center 2022》（YINTR22257，图表标注 @Yole Intelligence Sept. 2022）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "按服务器类型三行相加：15206 + 1717 + 5988 = 22911 百万美元 = 229.11 亿美元（原表无 GPU 小计行）",
+      "corroboration": "待交叉验证",
+      "notes": "Yole 2022 版口径：数据中心服务器用 GPGPU 营收，不含非 GPU 的 AI 加速器。2025 版（2025-04）对同年的预测另有记录，两个时点的预测并列，不互相替代。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2209-dc-gpu-revenue-2027e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "dc-gpu",
+        "label": "数据中心 GPU 市场"
+      },
+      "value": 426.73,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 计算芯片市场规模",
+        "chip_type": "GPU",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2027E@2022-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "970ece0880a24d432f0b5aa1c4749d0a4536f62e67e1ca08d3111f234a2affb3",
+        "local_file": "6C_2022_2022_Computing_未署名.pdf",
+        "locator": "第 74 页「GPU AND AI ACCELERATOR REVENUE FORECAST 2017 – 2027」表（$M）2027 列：HPC GPU $26,648 + Enterprise GPU $4,156 + Hyperscale GPU $11,869；第 21 页摘要「51% and 40% of this total will be for CPUs and GPUs, respectively, representing $54B and $43B」（2027）",
+        "grade": "S3",
+        "originator": "Yole Intelligence《Computing and AI technologies for data center 2022》（YINTR22257，图表标注 @Yole Intelligence Sept. 2022）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "按服务器类型三行相加：26648 + 4156 + 11869 = 42673 百万美元 = 426.73 亿美元（原表无 GPU 小计行）",
+      "corroboration": "待交叉验证",
+      "notes": "Yole 2022 版口径：数据中心服务器用 GPGPU 营收，不含非 GPU 的 AI 加速器。2025 版（2025-04）对同年的预测另有记录，两个时点的预测并列，不互相替代。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2209-ai-asic-revenue-2021",
+      "metric_id": "ai_asic_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "ai-asic",
+        "label": "AI ASIC 市场"
+      },
+      "value": 0.768,
+      "unit": "十亿美元",
+      "caliber": {
+        "scope": "AI ASIC",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2021@2022-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "970ece0880a24d432f0b5aa1c4749d0a4536f62e67e1ca08d3111f234a2affb3",
+        "local_file": "6C_2022_2022_Computing_未署名.pdf",
+        "locator": "第 74 页「GPU AND AI ACCELERATOR REVENUE FORECAST 2017 – 2027」表（$M）2021 列：HPC AI accelerator $207 + Enterprise AI accelerator $0 + Hyperscale AI accelerator $561；第 21 页摘要「non-GPU AI accelerator revenue is expected to exceed $7B in 2027」",
+        "grade": "S3",
+        "originator": "Yole Intelligence《Computing and AI technologies for data center 2022》（YINTR22257，图表标注 @Yole Intelligence Sept. 2022）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "按服务器类型三行相加：207 + 0 + 561 = 768 百万美元 = 0.768 十亿美元（原表无小计行；Enterprise 2021 列为「$-」按 0 计）",
+      "corroboration": "待交叉验证",
+      "notes": "Yole 2022 版把「AI accelerator」定义为专用于 AI 的 ASIC（第 69 页），不含 GPU 与 SmartNIC/DPU，对应 scope=AI ASIC。**同一家 2025 版按新 ASP 方法把 2021 年改为 0.7（yole2504-ai-asic-revenue-2021），本条为较早的 2022 版数值。**",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2209-ai-asic-revenue-2022e",
+      "metric_id": "ai_asic_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "ai-asic",
+        "label": "AI ASIC 市场"
+      },
+      "value": 1.612,
+      "unit": "十亿美元",
+      "caliber": {
+        "scope": "AI ASIC",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2022E@2022-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "970ece0880a24d432f0b5aa1c4749d0a4536f62e67e1ca08d3111f234a2affb3",
+        "local_file": "6C_2022_2022_Computing_未署名.pdf",
+        "locator": "第 74 页「GPU AND AI ACCELERATOR REVENUE FORECAST 2017 – 2027」表（$M）2022 列：HPC AI accelerator $362 + Enterprise AI accelerator $11 + Hyperscale AI accelerator $1,239；第 21 页摘要「non-GPU AI accelerator revenue is expected to exceed $7B in 2027」",
+        "grade": "S3",
+        "originator": "Yole Intelligence《Computing and AI technologies for data center 2022》（YINTR22257，图表标注 @Yole Intelligence Sept. 2022）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "按服务器类型三行相加：362 + 11 + 1239 = 1612 百万美元 = 1.612 十亿美元（原表无小计行；Enterprise 2021 列为「$-」按 0 计）",
+      "corroboration": "待交叉验证",
+      "notes": "Yole 2022 版把「AI accelerator」定义为专用于 AI 的 ASIC（第 69 页），不含 GPU 与 SmartNIC/DPU，对应 scope=AI ASIC。与 2025 版同年预测并列；2025 版称旧方法口径偏高，两版方法不同。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2209-ai-asic-revenue-2025e",
+      "metric_id": "ai_asic_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "ai-asic",
+        "label": "AI ASIC 市场"
+      },
+      "value": 4.442,
+      "unit": "十亿美元",
+      "caliber": {
+        "scope": "AI ASIC",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2025E@2022-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "970ece0880a24d432f0b5aa1c4749d0a4536f62e67e1ca08d3111f234a2affb3",
+        "local_file": "6C_2022_2022_Computing_未署名.pdf",
+        "locator": "第 74 页「GPU AND AI ACCELERATOR REVENUE FORECAST 2017 – 2027」表（$M）2025 列：HPC AI accelerator $531 + Enterprise AI accelerator $73 + Hyperscale AI accelerator $3,838；第 21 页摘要「non-GPU AI accelerator revenue is expected to exceed $7B in 2027」",
+        "grade": "S3",
+        "originator": "Yole Intelligence《Computing and AI technologies for data center 2022》（YINTR22257，图表标注 @Yole Intelligence Sept. 2022）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "按服务器类型三行相加：531 + 73 + 3838 = 4442 百万美元 = 4.442 十亿美元（原表无小计行；Enterprise 2021 列为「$-」按 0 计）",
+      "corroboration": "待交叉验证",
+      "notes": "Yole 2022 版把「AI accelerator」定义为专用于 AI 的 ASIC（第 69 页），不含 GPU 与 SmartNIC/DPU，对应 scope=AI ASIC。与 2025 版同年预测并列；2025 版称旧方法口径偏高，两版方法不同。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2209-ai-asic-revenue-2027e",
+      "metric_id": "ai_asic_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "ai-asic",
+        "label": "AI ASIC 市场"
+      },
+      "value": 7.255,
+      "unit": "十亿美元",
+      "caliber": {
+        "scope": "AI ASIC",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2027E@2022-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "970ece0880a24d432f0b5aa1c4749d0a4536f62e67e1ca08d3111f234a2affb3",
+        "local_file": "6C_2022_2022_Computing_未署名.pdf",
+        "locator": "第 74 页「GPU AND AI ACCELERATOR REVENUE FORECAST 2017 – 2027」表（$M）2027 列：HPC AI accelerator $771 + Enterprise AI accelerator $154 + Hyperscale AI accelerator $6,330；第 21 页摘要「non-GPU AI accelerator revenue is expected to exceed $7B in 2027」",
+        "grade": "S3",
+        "originator": "Yole Intelligence《Computing and AI technologies for data center 2022》（YINTR22257，图表标注 @Yole Intelligence Sept. 2022）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "按服务器类型三行相加：771 + 154 + 6330 = 7255 百万美元 = 7.255 十亿美元（原表无小计行；Enterprise 2021 列为「$-」按 0 计）",
+      "corroboration": "待交叉验证",
+      "notes": "Yole 2022 版把「AI accelerator」定义为专用于 AI 的 ASIC（第 69 页），不含 GPU 与 SmartNIC/DPU，对应 scope=AI ASIC。与 2025 版同年预测并列；2025 版称旧方法口径偏高，两版方法不同。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2209-ai-asic-units-2021",
+      "metric_id": "ai_asic_shipment_units",
+      "entity": {
+        "type": "industry",
+        "id": "ai-asic",
+        "label": "AI ASIC 市场"
+      },
+      "value": 0.9,
+      "unit": "百万颗",
+      "caliber": {
+        "counting": "未披露",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2021@2022-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "970ece0880a24d432f0b5aa1c4749d0a4536f62e67e1ca08d3111f234a2affb3",
+        "local_file": "6C_2022_2022_Computing_未署名.pdf",
+        "locator": "第 72 页「GPU AND AI ACCELERATOR VOLUME FORECAST 2017 – 2027」表（Munits）2021 列：HPC AI accelerator 0.1 + Enterprise AI accelerator 0.0 + Hyperscale AI accelerator 0.8",
+        "grade": "S3",
+        "originator": "Yole Intelligence《Computing and AI technologies for data center 2022》（YINTR22257，图表标注 @Yole Intelligence Sept. 2022）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "三行相加 0.1 + 0.0 + 0.8 = 0.9 百万颗；原表数值已四舍五入到 0.1，和有舍入误差",
+      "corroboration": "待交叉验证",
+      "notes": "表中「Enterprise AI accelerator」2021 列为「-」按 0 计。原表未说明按封装芯片还是卡计数，counting 记未披露。2025 版给的是 2024 年 360 万颗、2030 年 1,100 万颗，年份不重叠。",
+      "asserter": "Yole"
+    },
+    {
+      "fact_id": "yole2209-ai-asic-units-2027e",
+      "metric_id": "ai_asic_shipment_units",
+      "entity": {
+        "type": "industry",
+        "id": "ai-asic",
+        "label": "AI ASIC 市场"
+      },
+      "value": 7.2,
+      "unit": "百万颗",
+      "caliber": {
+        "counting": "未披露",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2027E@2022-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "970ece0880a24d432f0b5aa1c4749d0a4536f62e67e1ca08d3111f234a2affb3",
+        "local_file": "6C_2022_2022_Computing_未署名.pdf",
+        "locator": "第 72 页「GPU AND AI ACCELERATOR VOLUME FORECAST 2017 – 2027」表（Munits）2027 列：HPC AI accelerator 0.2 + Enterprise AI accelerator 0.1 + Hyperscale AI accelerator 6.9",
+        "grade": "S3",
+        "originator": "Yole Intelligence《Computing and AI technologies for data center 2022》（YINTR22257，图表标注 @Yole Intelligence Sept. 2022）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "三行相加 0.2 + 0.1 + 6.9 = 7.2 百万颗；原表数值已四舍五入到 0.1，和有舍入误差",
+      "corroboration": "待交叉验证",
+      "notes": "表中「Enterprise AI accelerator」2021 列为「-」按 0 计。原表未说明按封装芯片还是卡计数，counting 记未披露。2025 版给的是 2024 年 360 万颗、2030 年 1,100 万颗，年份不重叠。",
+      "asserter": "Yole"
     }
   ]
 }
