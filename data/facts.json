@@ -114598,7 +114598,10 @@
         "grade": "S3",
         "originator": "Global Market Insights（经国海证券《AIDC深度报告：智能算力需求兴起，把握核心环节技术迭代契机》（2025-06-20）转引）"
       },
-      "notes": "CAGR 5.5%。 是否含安装服务原文未说。"
+      "notes": "CAGR 5.5%。 是否含安装服务原文未说。",
+      "disputed_by": [
+        "odcc2405-omdia-global-dc-ups-2022"
+      ]
     },
     {
       "depth": "精读",
@@ -158147,6 +158150,108 @@
       "corroboration": "待交叉验证",
       "notes": "上架率=存量需求/存量供给（第 37 页图题「分地区上架率（使用率，存量需求/存量供给，%）」），按 IT 容量计，与按机架数的上架率分母不同。8.5/12.3 = 69.1% 与原文一致。口径：第三方算力中心**定制批发**业务，**不含三大运营商**，环京含内蒙古、西南及其他含山西；由灼识对 20 家第三方服务商与 15 家需求方建模，非全行业统计。分地区上架率在图中（约 79%/65%/58%/52%）但标签与地区对应关系在抽取文本中错位，未录。",
       "asserter": "灼识咨询"
+    },
+    {
+      "fact_id": "odcc2405-omdia-global-dc-ups-2022",
+      "metric_id": "dc_power_equipment_market_size",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-ups",
+        "label": "全球数据中心UPS市场"
+      },
+      "value": 100.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "UPS",
+        "service_scope": "未注明",
+        "facility_type": "数据中心整体",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2022",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "d60fa55e0f9a3974f8ac5c8e714a6249c348452c0773c61ad42616ccb60d94d8",
+        "local_file": "2024算力设施产业图谱研究报告.pdf",
+        "locator": "PDF 第 9–10 页（页脚 4）供电系统节：「根据 Omdia 的数据显示，2022 年全球数据中心 UPS 市场规模突破 100 亿美元，受全球经济下行的影响，增速较 2021 年有所回落…预计到 2025 年全球 UPS 市场规模将超过 130 亿美元…据 ODCC 调研数据显示，预测到 2025 年我国 UPS 市场规模将达到近 200 亿元。市场竞争方面，我国 UPS 市场集中度较高。华为、维谛、科华、山特和科士达五家企业的市场份额占比超过 50%」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会 ODCC《算力设施产业图谱研究报告》（ODCC-2024-05001，中国信通院云计算与大数据研究所牵头）转引 Omdia"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「突破 100 亿美元」为下界。**与 Global Market Insights 同年 42 亿美元（ghzq2506-gmi-global-dc-ups-2022）相差一倍以上**，两家口径未说明（是否含服务、功率段、非数据中心 UPS），并列标争议，不裁决。",
+      "asserter": "Omdia",
+      "disputes": [
+        "ghzq2506-gmi-global-dc-ups-2022"
+      ]
+    },
+    {
+      "fact_id": "odcc2405-omdia-global-dc-ups-2025e",
+      "metric_id": "dc_power_equipment_market_size",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-ups",
+        "label": "全球数据中心UPS市场"
+      },
+      "value": 130.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "UPS",
+        "service_scope": "未注明",
+        "facility_type": "数据中心整体",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2024-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "d60fa55e0f9a3974f8ac5c8e714a6249c348452c0773c61ad42616ccb60d94d8",
+        "local_file": "2024算力设施产业图谱研究报告.pdf",
+        "locator": "PDF 第 9–10 页（页脚 4）供电系统节：「根据 Omdia 的数据显示，2022 年全球数据中心 UPS 市场规模突破 100 亿美元，受全球经济下行的影响，增速较 2021 年有所回落…预计到 2025 年全球 UPS 市场规模将超过 130 亿美元…据 ODCC 调研数据显示，预测到 2025 年我国 UPS 市场规模将达到近 200 亿元。市场竞争方面，我国 UPS 市场集中度较高。华为、维谛、科华、山特和科士达五家企业的市场份额占比超过 50%」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会 ODCC《算力设施产业图谱研究报告》（ODCC-2024-05001，中国信通院云计算与大数据研究所牵头）转引 Omdia"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「预计到 2025 年…将超过 130 亿美元」为下界；vintage 按报告编号 ODCC-2024-05001 记 2024-05。亚太为全球最大的数据中心 UPS 市场。",
+      "asserter": "Omdia"
+    },
+    {
+      "fact_id": "odcc2405-cn-dc-ups-2025e",
+      "metric_id": "dc_power_equipment_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-dc-ups",
+        "label": "中国数据中心UPS市场"
+      },
+      "value": 200.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "UPS",
+        "service_scope": "未注明",
+        "facility_type": "数据中心整体",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2024-05",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "d60fa55e0f9a3974f8ac5c8e714a6249c348452c0773c61ad42616ccb60d94d8",
+        "local_file": "2024算力设施产业图谱研究报告.pdf",
+        "locator": "PDF 第 9–10 页（页脚 4）供电系统节：「根据 Omdia 的数据显示，2022 年全球数据中心 UPS 市场规模突破 100 亿美元，受全球经济下行的影响，增速较 2021 年有所回落…预计到 2025 年全球 UPS 市场规模将超过 130 亿美元…据 ODCC 调研数据显示，预测到 2025 年我国 UPS 市场规模将达到近 200 亿元。市场竞争方面，我国 UPS 市场集中度较高。华为、维谛、科华、山特和科士达五家企业的市场份额占比超过 50%」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会 ODCC《算力设施产业图谱研究报告》（ODCC-2024-05001，中国信通院云计算与大数据研究所牵头）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "ODCC 调研预测，原文「将达到近 200 亿元」，按上界记。市场集中度：华为、维谛、科华、山特、科士达五家合计份额超过 50%。vintage 按报告编号记 2024-05。",
+      "asserter": "ODCC"
     }
   ]
 }
