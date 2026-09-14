@@ -139552,6 +139552,108 @@
       "notes": "**原文括注「1.49M GB」单位有误**：11.9Eb = 1.4875EB = 14.88 亿 GB，而非 149 万 GB（254Eb 同理应为 317.5 亿 GB）。按 Eb 数值换算入库。与库内 hbmstat-demand-total-2024（10.772 亿 GB，出处未注明）口径与来源不同，并列。",
       "asserter": "Yole",
       "derivation": "11.9 Eb ÷ 8 = 1.4875 EB；1 EB = 10^9 GB → 14.875 亿 GB，取 14.88。"
+    },
+    {
+      "fact_id": "sa2404-b100-fp16-pflops",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "b100-fp16-pflops",
+        "label": "B100"
+      },
+      "value": 1.75,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "B100",
+        "precision": "FP16",
+        "scope": "单卡",
+        "sparsity": "未注明",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c6de90d0a6802076e91f76b713ff2970cb5c03b0ab8f4a213d30730e7cc9aa38",
+        "local_file": "Nvidia Blackwell Perf TCO Analysis - B100 vs B200 vs GB200NVL72.pdf",
+        "locator": "第 3 页「Specifications – More Than Meets The Eye」：「The air-cooled 700W B100 will be the first to ship and will deliver 1,750 TFLOPS of FP16/BF16 compute……the B200 will come to market at a higher power and faster clock speed, delivering 2,250 TFLOPS of FP16/BF16 compute……the use of liquid cooling in the GB200 NVL72 will allow the Blackwell GPU to run at even higher power levels……delivering 2,500 TFLOPS of FP16/BF16 compute – a 153% improvement over the H100 and H200」（图源注 Source: Nvidia, SemiAnalysis）",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia Blackwell Perf TCO Analysis – B100 vs B200 vs GB200NVL72》（打印日期 2024-04-10）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文单位 TFLOPS，÷1000 折 PFLOPS；as_of 原文无发布日期，取页眉打印日期 2024-04-10 所在月。",
+      "corroboration": "待交叉验证",
+      "notes": "原文「FP16/BF16」同一数，precision 记 FP16；未写稠密或稀疏。B100 为风冷 700W，沿用 HGX H100 基板，降频运行。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2404-b200-fp16-pflops",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "b200-fp16-pflops",
+        "label": "B200"
+      },
+      "value": 2.25,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "B200",
+        "precision": "FP16",
+        "scope": "单卡",
+        "sparsity": "未注明",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c6de90d0a6802076e91f76b713ff2970cb5c03b0ab8f4a213d30730e7cc9aa38",
+        "local_file": "Nvidia Blackwell Perf TCO Analysis - B100 vs B200 vs GB200NVL72.pdf",
+        "locator": "第 3 页「Specifications – More Than Meets The Eye」：「The air-cooled 700W B100 will be the first to ship and will deliver 1,750 TFLOPS of FP16/BF16 compute……the B200 will come to market at a higher power and faster clock speed, delivering 2,250 TFLOPS of FP16/BF16 compute……the use of liquid cooling in the GB200 NVL72 will allow the Blackwell GPU to run at even higher power levels……delivering 2,500 TFLOPS of FP16/BF16 compute – a 153% improvement over the H100 and H200」（图源注 Source: Nvidia, SemiAnalysis）",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia Blackwell Perf TCO Analysis – B100 vs B200 vs GB200NVL72》（打印日期 2024-04-10）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文单位 TFLOPS，÷1000 折 PFLOPS；as_of 原文无发布日期，取页眉打印日期 2024-04-10 所在月。",
+      "corroboration": "待交叉验证",
+      "notes": "原文「FP16/BF16」同一数，precision 记 FP16；未写稠密或稀疏。B200 为更高功耗与主频的版本；原文另提 1,200W B200 未列入。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2404-gb200-nvl72-gpu-fp16-pflops",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "gb200-nvl72-gpu-fp16-pflops",
+        "label": "Blackwell GPU（GB200 NVL72 液冷）"
+      },
+      "value": 2.5,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "Blackwell GPU（GB200 NVL72 液冷）",
+        "precision": "FP16",
+        "scope": "单卡",
+        "sparsity": "未注明",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2024-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c6de90d0a6802076e91f76b713ff2970cb5c03b0ab8f4a213d30730e7cc9aa38",
+        "local_file": "Nvidia Blackwell Perf TCO Analysis - B100 vs B200 vs GB200NVL72.pdf",
+        "locator": "第 3 页「Specifications – More Than Meets The Eye」：「The air-cooled 700W B100 will be the first to ship and will deliver 1,750 TFLOPS of FP16/BF16 compute……the B200 will come to market at a higher power and faster clock speed, delivering 2,250 TFLOPS of FP16/BF16 compute……the use of liquid cooling in the GB200 NVL72 will allow the Blackwell GPU to run at even higher power levels……delivering 2,500 TFLOPS of FP16/BF16 compute – a 153% improvement over the H100 and H200」（图源注 Source: Nvidia, SemiAnalysis）",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia Blackwell Perf TCO Analysis – B100 vs B200 vs GB200NVL72》（打印日期 2024-04-10）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文单位 TFLOPS，÷1000 折 PFLOPS；as_of 原文无发布日期，取页眉打印日期 2024-04-10 所在月。",
+      "corroboration": "待交叉验证",
+      "notes": "原文「FP16/BF16」同一数，precision 记 FP16；未写稠密或稀疏。液冷使同一 Blackwell GPU 功耗更高；较 H100/H200 +153%。",
+      "asserter": "SemiAnalysis"
     }
   ]
 }
