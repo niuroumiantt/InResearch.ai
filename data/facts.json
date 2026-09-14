@@ -156225,6 +156225,41 @@
       "corroboration": "待交叉验证",
       "notes": "815,250,934.46 元 = 815.25 百万元，合并利润表营业收入。一季度报告值即单季，不可乘 4 外推年度。",
       "asserter": "长川科技"
+    },
+    {
+      "fact_id": "intel-hc2025-clearwater-forest-cores",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "intel-xeon-clearwater-forest",
+        "label": "Intel Xeon Clearwater Forest（E-core）"
+      },
+      "value": 288.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "Intel Xeon Clearwater Forest",
+        "parameter": "核数",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c6b42af22b12d99155a65bdfec5e28e4a036054f0247ff26e201178657f44493",
+        "local_file": "10_intel_soltis_v3.pdf",
+        "locator": "第 14 页「Clearwater Forest Performance」：「2x 12 channels DDR5 8000 … 2x 96 Lanes Gen 5 PCIe, 64 CXL … 144 Lanes UPI Coherency … 576 cores, 1152 MB LLC」「*2 socket」「Results are based on architectural projections as of August 2025」；第 12 页「Twelve CPU Chiplets on Intel 18A」",
+        "grade": "S2",
+        "originator": "英特尔（Don Soltis、Stephen Robinson，《Clearwater Forest: the Next Generation Intel Xeon Processor with Efficiency Cores》，Hot Chips 2025）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "第 14 页为双路平台合计 576 核（原文各项前缀「2x」并注「2 socket」），576 ÷ 2 = 每颗 288 核",
+      "corroboration": "待交叉验证",
+      "notes": "本条单位：核（单颗处理器）。结构：12 个 Intel 18A E-core 计算 chiplet + 3 个 Intel 3 基底 chiplet + 2 个 Intel 7 I/O chiplet（Foveros Direct 3D）；每模块 4 核。双路平台内存带宽 1,300GB/s、3TB 内存、2×96 条 PCIe Gen5，均为 2025-08 架构预估。制程为 Intel 18A，不按纳米数折算，未录制程参数。",
+      "asserter": "英特尔"
     }
   ]
 }
