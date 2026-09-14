@@ -161144,6 +161144,125 @@
       "corroboration": "待交叉验证",
       "notes": "Realistic 情景，2025–2035 CAGR 21.09%。PDU+PSU 合并口径。竞争格局份额（施耐德 18–22%、维谛 14–17%、伊顿 11–14%、西门子 9–13%、Legrand 7–11%，第 1176 行附近）因 vendor_market_share 产品线无 PDU/PSU 未录。",
       "asserter": "BIS Research"
+    },
+    {
+      "fact_id": "cw2025gc-apac-operational",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "apac-dc-market-cw-global",
+        "label": "亚太数据中心市场（戴德梁行全球对比报告汇总）"
+      },
+      "value": 12206.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "APAC"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "493f6c465051c6a5553957792c335ba9594c1346345bd4e00c74f3b2ef67d1a7",
+        "local_file": "2025年全球数据中心市场比较 英文.pdf",
+        "locator": "PDF 第 3 页「Regional Growth」三栏依次为 AMERICAS（3.4X）、EMEA（2.1X）、APAC（2.2X）；APAC 栏：「Operational Capacity: 12,206MW o Colocation: 10,424MW o Hyperscale: 1,782MW • Vacancy: 12.4% • Under Construction: 3,087MW o Colocation: 2,668MW o Hyperscale: 419MW • Planned: 11,252MW o Colocation: 9,784MW o Hyperscale: 1,468MW」；KEY ASSUMPTIONS「Development pipeline excludes early stage projects」「Vacancy is only calculated on Operational Colocation Capacity」",
+        "grade": "S3",
+        "originator": "戴德梁行（Cushman & Wakefield）Data Center Advisory Group《2025 Global Data Center Market Comparison》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "运营容量 12,206MW（托管 10,424MW + 超大规模自建 1,782MW）。 戴德梁行 2025 全球对比报告 APAC 汇总（其跟踪市场合计），栏位与地区的对应按页面顺序 AMERICAS/EMEA/APAC 读取，APAC 运营容量与其 2024H1 亚太报告的约 12GW 相符。报告未写数据截止时点，as_of 记报告年份 2025。capacity_type 原文未说明 IT 还是设施容量，记未披露。",
+      "asserter": "戴德梁行"
+    },
+    {
+      "fact_id": "cw2025gc-apac-under-construction",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "apac-dc-market-cw-global",
+        "label": "亚太数据中心市场（戴德梁行全球对比报告汇总）"
+      },
+      "value": 3087.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L6",
+        "region": "APAC"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "493f6c465051c6a5553957792c335ba9594c1346345bd4e00c74f3b2ef67d1a7",
+        "local_file": "2025年全球数据中心市场比较 英文.pdf",
+        "locator": "PDF 第 3 页「Regional Growth」三栏依次为 AMERICAS（3.4X）、EMEA（2.1X）、APAC（2.2X）；APAC 栏：「Operational Capacity: 12,206MW o Colocation: 10,424MW o Hyperscale: 1,782MW • Vacancy: 12.4% • Under Construction: 3,087MW o Colocation: 2,668MW o Hyperscale: 419MW • Planned: 11,252MW o Colocation: 9,784MW o Hyperscale: 1,468MW」；KEY ASSUMPTIONS「Development pipeline excludes early stage projects」「Vacancy is only calculated on Operational Colocation Capacity」",
+        "grade": "S3",
+        "originator": "戴德梁行（Cushman & Wakefield）Data Center Advisory Group《2025 Global Data Center Market Comparison》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "在建 3,087MW（托管 2,668MW + 超大规模 419MW）。 戴德梁行 2025 全球对比报告 APAC 汇总（其跟踪市场合计），栏位与地区的对应按页面顺序 AMERICAS/EMEA/APAC 读取，APAC 运营容量与其 2024H1 亚太报告的约 12GW 相符。报告未写数据截止时点，as_of 记报告年份 2025。capacity_type 原文未说明 IT 还是设施容量，记未披露。",
+      "asserter": "戴德梁行"
+    },
+    {
+      "fact_id": "cw2025gc-apac-planned",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "apac-dc-market-cw-global",
+        "label": "亚太数据中心市场（戴德梁行全球对比报告汇总）"
+      },
+      "value": 11252.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L2",
+        "region": "APAC"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "493f6c465051c6a5553957792c335ba9594c1346345bd4e00c74f3b2ef67d1a7",
+        "local_file": "2025年全球数据中心市场比较 英文.pdf",
+        "locator": "PDF 第 3 页「Regional Growth」三栏依次为 AMERICAS（3.4X）、EMEA（2.1X）、APAC（2.2X）；APAC 栏：「Operational Capacity: 12,206MW o Colocation: 10,424MW o Hyperscale: 1,782MW • Vacancy: 12.4% • Under Construction: 3,087MW o Colocation: 2,668MW o Hyperscale: 419MW • Planned: 11,252MW o Colocation: 9,784MW o Hyperscale: 1,468MW」；KEY ASSUMPTIONS「Development pipeline excludes early stage projects」「Vacancy is only calculated on Operational Colocation Capacity」",
+        "grade": "S3",
+        "originator": "戴德梁行（Cushman & Wakefield）Data Center Advisory Group《2025 Global Data Center Market Comparison》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "规划 11,252MW（托管 9,784MW + 超大规模 1,468MW），不含早期阶段项目。 戴德梁行 2025 全球对比报告 APAC 汇总（其跟踪市场合计），栏位与地区的对应按页面顺序 AMERICAS/EMEA/APAC 读取，APAC 运营容量与其 2024H1 亚太报告的约 12GW 相符。报告未写数据截止时点，as_of 记报告年份 2025。capacity_type 原文未说明 IT 还是设施容量，记未披露。",
+      "asserter": "戴德梁行"
+    },
+    {
+      "fact_id": "cw2025gc-apac-vacancy",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "apac-dc-market-cw-global",
+        "label": "亚太数据中心市场（戴德梁行全球对比报告汇总）"
+      },
+      "value": 12.4,
+      "unit": "%",
+      "caliber": {
+        "scope": "区域合计",
+        "region": "APAC"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "493f6c465051c6a5553957792c335ba9594c1346345bd4e00c74f3b2ef67d1a7",
+        "local_file": "2025年全球数据中心市场比较 英文.pdf",
+        "locator": "PDF 第 3 页「Regional Growth」三栏依次为 AMERICAS（3.4X）、EMEA（2.1X）、APAC（2.2X）；APAC 栏：「Operational Capacity: 12,206MW o Colocation: 10,424MW o Hyperscale: 1,782MW • Vacancy: 12.4% • Under Construction: 3,087MW o Colocation: 2,668MW o Hyperscale: 419MW • Planned: 11,252MW o Colocation: 9,784MW o Hyperscale: 1,468MW」；KEY ASSUMPTIONS「Development pipeline excludes early stage projects」「Vacancy is only calculated on Operational Colocation Capacity」",
+        "grade": "S3",
+        "originator": "戴德梁行（Cushman & Wakefield）Data Center Advisory Group《2025 Global Data Center Market Comparison》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "空置率只按运营中的托管容量计算（不含超大规模自建）。戴德梁行 2025 全球对比报告 APAC 汇总（其跟踪市场合计），栏位与地区的对应按页面顺序 AMERICAS/EMEA/APAC 读取，APAC 运营容量与其 2024H1 亚太报告的约 12GW 相符。报告未写数据截止时点，as_of 记报告年份 2025。capacity_type 原文未说明 IT 还是设施容量，记未披露。",
+      "asserter": "戴德梁行"
     }
   ]
 }
