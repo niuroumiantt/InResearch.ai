@@ -127994,6 +127994,39 @@
       "derivation": "演讲未写日期，as_of 取 OCP Global Summit 2025 召开月 2025-10",
       "corroboration": "待交叉验证",
       "notes": "「future systems are projected to exceed 1,000kW (1MW) per rack」，按下界记，未写年份与平台。"
+    },
+    {
+      "fact_id": "lbnl2412-us-dc-electricity-2023",
+      "metric_id": "dc_electricity_consumption",
+      "asserter": "LBNL",
+      "entity": {
+        "type": "industry",
+        "id": "us-dc",
+        "label": "美国数据中心"
+      },
+      "value": 176.0,
+      "unit": "TWh",
+      "bound": "point",
+      "as_of": "2023",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "evidence": {
+        "sha256": "4a61ff34052bf6fae36e10bc86fb12d89550f2778465c6a540649583cc603820",
+        "local_file": "5B_2022_7849FederalEne_未署名.pdf",
+        "locator": "第 15 页「Data Center Energy Usage Update」（Sarah Smith & Arman Shehabi）「2024 Report Total Data Center Estimates：Total electricity use 176 TWh in 2023; modeled range 325-580 TWh in 2028」",
+        "grade": "S2",
+        "originator": "LBNL《2024 United States Data Center Energy Usage Report》（作者本人在 OCP 2025「Federal Energy R&D for Data Centers」座谈会 2025-10-15 复述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "美国数据中心 2023 年用电 176 TWh，为 LBNL 模型估算。同页 2028 年 325-580 TWh 已在库（rand-lbnl-us-dc-consumption-2028-low/-high），未重录。"
     }
   ]
 }
