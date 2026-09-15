@@ -193747,6 +193747,67 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "84 个项目。原文未注出处。库内另一份报告 2026-04 为 99 个项目 34.05GW、2026-05 为 100 个项目 26.11GW（不完全统计），本条时点更早、项目数与装机均更小，序列上可衔接前者。乌兰察布项目本文写配套新能源 300MW、年自发自用 848GWh，库内另一来源写 34.5 万千瓦、8.5 亿 kWh（wulanchabu-green-direct-power-2026），装机口径不一致，未另录。"
+    },
+    {
+      "fact_id": "ubs2606-gansu-energy-qingyang2-direct-tariff",
+      "metric_id": "green_direct_locked_price",
+      "entity": {
+        "type": "project",
+        "id": "gansu-energy-qingyang-phase2-direct-supply",
+        "label": "甘肃能源庆阳二期 1GW 新能源直连项目"
+      },
+      "asserter": "甘肃能源",
+      "value": 0.1948,
+      "unit": "元/kWh",
+      "caliber": {
+        "basis": "实测",
+        "region_case": "其他",
+        "region": "CN"
+      },
+      "as_of": "2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e083058370c35071b1ee3a978bccea12ae78ed2c1a4875e1189fd83754590037",
+        "local_file": "20260609-瑞银证券西部人工智能数据中心建设支持中国独立发电商更快的盈利增长和ROE重估(47页).pdf",
+        "locator": "PDF 第 6 页 Figure 9 下正文：「The discount anchor is the Qingyang Phase II project disclosure, where Gansu Energy's 1 GW renewable project signed a direct-supply tariff of 0.1948 Rmb/kWh against the local Gansu mechanism tariff of 0.2375 Rmb/kWh, an 18% discount」；同页「we assume a tariff of Rmb0.257/kWh (incl. VAT)…with a 15% discount applied to reflect direct-supply contracting」",
+        "grade": "S3",
+        "originator": "甘肃能源项目披露（经瑞银证券《China Power Utilities: A new compute demand wave plus direct-supply policy unlock Western IPP returns》（2026-06-03）转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 推定：原文未给该项目披露日期，取转引研报年份 2026；数值 0.1948 为原文照录。",
+      "corroboration": "待交叉验证",
+      "notes": "已签约的直连电价（甘肃），较当地机制电价 0.2375 元/kWh 折让 18%；未写是否含税。basis「实测」指合同签约价而非测算。"
+    },
+    {
+      "fact_id": "ubs2606-western-direct-tariff-assumption",
+      "metric_id": "green_direct_locked_price",
+      "entity": {
+        "type": "industry",
+        "id": "cn-western-4-hub-direct-supply",
+        "label": "西部四省算力枢纽（蒙西、宁夏、甘肃、贵州）新能源直连电价假设"
+      },
+      "asserter": "瑞银证券",
+      "value": 0.2567,
+      "unit": "元/kWh",
+      "caliber": {
+        "basis": "模型假设",
+        "region_case": "其他",
+        "region": "CN"
+      },
+      "as_of": "2026-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e083058370c35071b1ee3a978bccea12ae78ed2c1a4875e1189fd83754590037",
+        "local_file": "20260609-瑞银证券西部人工智能数据中心建设支持中国独立发电商更快的盈利增长和ROE重估(47页).pdf",
+        "locator": "PDF 第 6 页 Figure 9 下正文：「The discount anchor is the Qingyang Phase II project disclosure, where Gansu Energy's 1 GW renewable project signed a direct-supply tariff of 0.1948 Rmb/kWh against the local Gansu mechanism tariff of 0.2375 Rmb/kWh, an 18% discount」；同页「we assume a tariff of Rmb0.257/kWh (incl. VAT)…with a 15% discount applied to reflect direct-supply contracting」；Figure 9「Tariff (incl VAT) (Rmb/kWh) 0.2567」",
+        "grade": "S3",
+        "originator": "瑞银证券《China Power Utilities: A new compute demand wave plus direct-supply policy unlock Western IPP returns》（2026-06-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "瑞银模型假设：以四省 2026 年前 5 个月电网代理购电均价打 85 折，含税；用于光伏+储能（利用率 22%/1,927 小时，股权 IRR 20.1%）与风电+储能（31%/2,716 小时，股权 IRR 20.6%）测算。不是实际执行电价。"
     }
   ]
 }
