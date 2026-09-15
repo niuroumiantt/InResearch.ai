@@ -214528,6 +214528,71 @@
       },
       "derived": false,
       "notes": "[未核] 与同段用电量（huawei2401-cn-dc-electricity-2022）成对；来源未注明。"
+    },
+    {
+      "fact_id": "eaton2306-kezhi-cn-idc-market-2021",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-idc-market-kezhi",
+        "label": "中国整体 IDC 业务市场（科智口径，含云）"
+      },
+      "asserter": "科智咨询",
+      "value": 3012.7,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "含云服务",
+        "operator_type": "全市场",
+        "region": "CN",
+        "basis": "第三方跟踪",
+        "currency": "人民币"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2089473c7188b6b376f7815020a9af57b9da4f81b31d206c04c96192b92797b2",
+        "local_file": "5C_2025_2025_2024年数据中心_未署名.pdf",
+        "locator": "PDF 第 7 页「市场规模」段：「《2021-2022 年中国 IDC 行业发展研究报告》（以下简称《IDC 报告》）指出，2021 年中国整体 IDC 业务市场总体规模突破 3,000 亿元，达到 3,012.7 亿元，同比增长 34.6%……预计到 2024 年，规模将达到 6,122.5 亿元，2022 - 2024 年复合增长率为 15.9%」",
+        "grade": "S4",
+        "originator": "科智咨询《2021-2022 年中国 IDC 行业发展研究报告》（经伊顿《数据中心行业分析报告》2023-06 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文只列报告名未写发布机构；《中国 IDC 行业发展研究报告》年度系列由科智咨询（中国 IDC 圈）发布。「整体 IDC 业务市场」含公有云等，与库内科智「传统 IDC」1,202 亿元（guosen2503-kezhi-cn-traditional-idc-market-2021）口径不同；service_scope 按「含云服务」录。"
+    },
+    {
+      "fact_id": "eaton2306-kezhi-cn-idc-market-2024e",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-idc-market-kezhi",
+        "label": "中国整体 IDC 业务市场（科智口径，含云）"
+      },
+      "asserter": "科智咨询",
+      "value": 6122.5,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "含云服务",
+        "operator_type": "全市场",
+        "region": "CN",
+        "basis": "预测",
+        "currency": "人民币"
+      },
+      "as_of": "2024E@2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2089473c7188b6b376f7815020a9af57b9da4f81b31d206c04c96192b92797b2",
+        "local_file": "5C_2025_2025_2024年数据中心_未署名.pdf",
+        "locator": "PDF 第 7 页「市场规模」段：「《2021-2022 年中国 IDC 行业发展研究报告》（以下简称《IDC 报告》）指出，2021 年中国整体 IDC 业务市场总体规模突破 3,000 亿元，达到 3,012.7 亿元，同比增长 34.6%……预计到 2024 年，规模将达到 6,122.5 亿元，2022 - 2024 年复合增长率为 15.9%」",
+        "grade": "S4",
+        "originator": "科智咨询《2021-2022 年中国 IDC 行业发展研究报告》（经伊顿《数据中心行业分析报告》2023-06 转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "原文只列报告名未写发布机构；《中国 IDC 行业发展研究报告》年度系列由科智咨询（中国 IDC 圈）发布。「整体 IDC 业务市场」含公有云等，与库内科智「传统 IDC」1,202 亿元（guosen2503-kezhi-cn-traditional-idc-market-2021）口径不同；service_scope 按「含云服务」录。",
+      "derivation": "《2021-2022 年》报告发布于 2022 年，vintage 取 @2022。"
     }
   ]
 }
