@@ -194821,6 +194821,66 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原文「数据中心电力负荷」，未写地域（按上下文为全球模型，但未明说，记未披露）也未写是否 IT 负载。"
+    },
+    {
+      "fact_id": "sweep2503-lbnl-us-dc-power-share-2028e-lower",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心"
+      },
+      "asserter": "LBNL",
+      "value": 6.7,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "US",
+        "basis": "预测"
+      },
+      "as_of": "2028E",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "1f675e889e7d0775957eeca320dfaed1be230f9b5eefb6e430260a9ff402428c",
+        "local_file": "20251014-数据中心的电力需求与清洁能源挑战(31页).pdf",
+        "locator": "PDF 第 7 页：「Currently, data centers account for about 4.5% of U.S. total electricity consumption. In its latest report to Congress, the Lawrence-Berkeley National Lab (LBL) projects significant increases… According to LBL’s research, data centers could account for 6.7-12% of total U.S. electricity use in just three years, by 2028.」",
+        "grade": "S3",
+        "originator": "劳伦斯伯克利国家实验室 LBNL 致国会报告（经 SWEEP《Data centers: Power needs and clean energy challenges》2025-03 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间下界；与库内 LBNL 同报告 2028 年用电量 325–580TWh（rand-lbnl-us-dc-consumption-2028-*）成对。LBNL 报告发布月原文未给，as_of 不带版次。SWEEP 所称「当前约 4.5%」无年份未录。"
+    },
+    {
+      "fact_id": "sweep2503-lbnl-us-dc-power-share-2028e-upper",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心"
+      },
+      "asserter": "LBNL",
+      "value": 12.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "US",
+        "basis": "预测"
+      },
+      "as_of": "2028E",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "1f675e889e7d0775957eeca320dfaed1be230f9b5eefb6e430260a9ff402428c",
+        "local_file": "20251014-数据中心的电力需求与清洁能源挑战(31页).pdf",
+        "locator": "PDF 第 7 页：「Currently, data centers account for about 4.5% of U.S. total electricity consumption. In its latest report to Congress, the Lawrence-Berkeley National Lab (LBL) projects significant increases… According to LBL’s research, data centers could account for 6.7-12% of total U.S. electricity use in just three years, by 2028.」",
+        "grade": "S3",
+        "originator": "劳伦斯伯克利国家实验室 LBNL 致国会报告（经 SWEEP《Data centers: Power needs and clean energy challenges》2025-03 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上界；与库内 LBNL 同报告 2028 年用电量 325–580TWh（rand-lbnl-us-dc-consumption-2028-*）成对。LBNL 报告发布月原文未给，as_of 不带版次。SWEEP 所称「当前约 4.5%」无年份未录。"
     }
   ]
 }
