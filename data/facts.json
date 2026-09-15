@@ -2629,9 +2629,9 @@
         "sha256": "cbb252e4b52ee6cf24196cd372701b80a8750e14ad1007e2711ed19c4b83d53c"
       },
       "depth": "精读",
-      "notes": "**Barclays 估计值不是公司披露**，原文为「over 1.7GW」，**1.7 是下界**。口径=合同锁定的电力容量（power under contract），**不是已投运容量、也不是 IT 负载**。构成参照：与 Galaxy 的合同从 133MW 增至 393MW（行权 260MW 选择权）、自 S-1 以来累计增量约 470MW、Helios 数据中心另有 133MW。region=US 为主。",
+      "notes": "**Barclays 估计值不是公司披露**，原文为「over 1.7GW」，**1.7 是下界**。口径=合同锁定的电力容量（power under contract），**不是已投运容量、也不是 IT 负载**。构成参照：与 Galaxy 的合同从 133MW 增至 393MW（行权 260MW 选择权）、自 S-1 以来累计增量约 470MW、Helios 数据中心另有 133MW。region=US 为主。 （2026-09-15 L2 精读：原文「we estimate」为巴克莱自己的估计，按 DECISIONS 断言者边界由「未注明」改为巴克莱；as_of 可精确到报告日 2025-04-23，保留原 2025。）",
       "value": 1.7,
-      "asserter": "未注明"
+      "asserter": "巴克莱"
     },
     {
       "fact_id": "ai-dc-power-lease-price-2025",
@@ -2657,11 +2657,11 @@
         "sha256": "cbb252e4b52ee6cf24196cd372701b80a8750e14ad1007e2711ed19c4b83d53c"
       },
       "depth": "精读",
-      "notes": "**计算值，且由两笔独立合同交叉验算得出同一结果**：45 亿 ÷（133MW × 15 年）= 2.256；88 亿 ÷（260MW × 15 年）= 2.256。**两者完全一致说明单价口径稳定，不是凑数**。折合约 **188 美元/kW/月**（计算值）。**⚠ 这是「电力容量租赁」单价，不含 IT 设备、可能不含运维**——**与本库 M11 已入库的「IDC 普通机柜托管服务费 1,072 元/月/kW」（廊坊，含服务）不是同一商品，不可比价**。金额为 Galaxy 侧的预期收入（即 CoreWeave 侧的支出承诺），非已支付。合同期 15 年。region=US。",
+      "notes": "**计算值，且由两笔独立合同交叉验算得出同一结果**：45 亿 ÷（133MW × 15 年）= 2.256；88 亿 ÷（260MW × 15 年）= 2.256。**两者完全一致说明单价口径稳定，不是凑数**。折合约 **188 美元/kW/月**（计算值）。**⚠ 这是「电力容量租赁」单价，不含 IT 设备、可能不含运维**——**与本库 M11 已入库的「IDC 普通机柜托管服务费 1,072 元/月/kW」（廊坊，含服务）不是同一商品，不可比价**。金额为 Galaxy 侧的预期收入（即 CoreWeave 侧的支出承诺），非已支付。合同期 15 年。region=US。 （2026-09-15 更正：两笔合同同出一份研报、同一交易双方，内部算术一致不构成交叉验证，corroboration 由「已交叉验证」改为「待交叉验证」。）",
       "value": 2.256,
       "derived": true,
       "derivation": "**计算值，且由两笔独立合同交叉验算得出同一结果**：45 亿 ÷（133MW × 15 年）= 2.256；88 亿 ÷（260MW × 15 年）= 2.256。**两者完全一致说明单价口径稳定，不是凑数**。折合约 **188 美元/kW/月**（计算值）。**⚠ 这是「电力容量租赁」单价，不含 IT 设备、可能不含运维**——**与本库 M11 已入库的「IDC 普通机柜托管服务费 1,0",
-      "corroboration": "已交叉验证",
+      "corroboration": "待交叉验证",
       "asserter": "CoreWeave"
     },
     {
@@ -195632,6 +195632,35 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "IEA 汇总的各国强制要求，政策原文未引；「2022 年达到 1.4」。 region 枚举无国家级取值，按大区记，entity 区分国家。"
+    },
+    {
+      "fact_id": "barc2504-galaxy-helios-coreweave-contracted-mw",
+      "metric_id": "contracted_capacity_mw",
+      "entity": {
+        "type": "project",
+        "id": "galaxy-helios-campus",
+        "label": "Galaxy Digital Helios 数据中心园区（租户 CoreWeave，得州）"
+      },
+      "asserter": "Galaxy Digital",
+      "value": 393.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "含客户订单",
+        "region": "US"
+      },
+      "as_of": "2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "cbb252e4b52ee6cf24196cd372701b80a8750e14ad1007e2711ed19c4b83d53c",
+        "local_file": "[BARCLAYS]CoreWeave_Inc_New_Power_Capacity_Contract.pdf",
+        "locator": "PDF 第 1 页：「Galaxy Digital Holdings (GLXY, not covered) issued a press release noting that CoreWeave has exercised its first option for additional data center capacity at the company's Helios data center campus in Texas. This brings total MW capacity between Galaxy and CoreWeave to 393MW, with today's agreement being a 260MW increase from the original deal announced on March 28th… the first 133MW expected to be ready for service in 1H26, and the second component delivered throughout 2027. Furthermore, CoreWeave retains exclusive rights to enter into a further agreement to access another 133MW」",
+        "grade": "S2",
+        "originator": "Galaxy Digital 新闻稿（经巴克莱《CoreWeave, Inc: New Power Capacity Contract》2025-04-23 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原合同 133MW（15 年，Galaxy 预计收入 45 亿美元）+ 2025-04 行权 260MW（约 88 亿美元）；首批 133MW 预计 2026 年上半年交付，其余 2027 年内交付；CoreWeave 另有 133MW 独家选择权（未计入 393）。口径为电力容量（power capacity），非 IT 负载。"
     }
   ]
 }
