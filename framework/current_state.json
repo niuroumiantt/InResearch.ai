@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.14.7",
+  "version": "2026.09.15.1",
   "effective_at": "2026-09-14",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -120,7 +120,7 @@
       "topic": "products",
       "status": "current",
       "scope": "project",
-      "effective_at": "2026-09-14",
+      "effective_at": "2026-09-15",
       "source": "framework/03_bom_and_collaboration.md",
       "implementations": [
         "src/inresearch/knowledge/registry.py",
@@ -533,7 +533,7 @@
       "source": "framework/09_software_contracts.md",
       "effective_at": "2026-09-14",
       "supersedes": [],
-      "reason": "Published Git research and persistent runtime state have separate authority; explicit initialization, recovery and read-only deployment replace whole-directory shadowing. Historical brief proposes review without changing formal findings; existing research and originals scope remain.；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；可见画布、几何适配与用户镜头所有权收敛；renderer/HDR/纹理仍未全部迁移。；2026-09-14 CLI 全局目录仅用于三个统一 JSON 用例，其他命令显式拒绝；子接口参数保留，委派成功/失败恢复进程参数。；2026-09-14 交互场景资源代次、回退、替换与释放归一；离线 bake、比较台和几何构建不在本批假定完成。",
+      "reason": "Published Git research and persistent runtime state have separate authority; explicit initialization, recovery and read-only deployment replace whole-directory shadowing. Historical brief proposes review without changing formal findings; existing research and originals scope remain.；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；可见画布、几何适配与用户镜头所有权收敛；renderer/HDR/纹理仍未全部迁移。；2026-09-14 CLI 全局目录仅用于三个统一 JSON 用例，其他命令显式拒绝；子接口参数保留，委派成功/失败恢复进程参数。；2026-09-14 交互场景资源代次、回退、替换与释放归一；离线 bake、比较台和几何构建不在本批假定完成。；2026-09-15 研究问题任务只由 current_tasks 从当前问题与采用知识生成，task_board 成为 HTTP、首页和团队页的唯一投影；静态 workorders 只保留模块缺口与统计。",
       "implementations": [
         "src/inresearch/workflow/commands.py",
         "src/inresearch/storage/files.py",
@@ -547,7 +547,12 @@
         "src/inresearch/knowledge/news_policy.py",
         "web/routes.json",
         "src/inresearch/interfaces/http.py",
+        "src/inresearch/knowledge/registry.py",
+        "src/inresearch/workflow/workorders.py",
+        "web/pages/index.html",
+        "tests/research_delivery.cjs",
         "tests/unit/test_commands.py",
+        "tests/unit/test_research.py",
         "src/inresearch/adapters/office_ooxml.py",
         "tests/unit/test_m4_office_text.py",
         "src/inresearch/workflow/deep_read.py",

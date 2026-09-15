@@ -291,6 +291,23 @@ class MutationTests(unittest.TestCase):
         task = next(task for task in research.current_tasks(self.root) if task['wid'] == wid)
         self.assertEqual('alice', task['assignment']['assignee'])
 
+    def test_task_board_keeps_questions_out_of_legacy_projection(self):
+        questions = research.read_json(research.ROOT / 'framework/research_questions.json')
+        research.atomic_json(self.root / 'framework/research_questions.json', questions)
+        question = questions['records'][-1]
+        research.atomic_json(self.root / 'reports/workorders.json', {
+            'orders': [
+                {'wid': 'old-question', 'kind': '研究问题开放'},
+                {'wid': 'module-gap', 'kind': '指标留白', 'mid': 'M01'},
+            ],
+            'module_stats': {'M01': {'ammo': 1}},
+        })
+        board = research.task_board(self.root)
+        self.assertNotIn('old-question', {task['wid'] for task in board['orders']})
+        self.assertIn('Q-' + question['id'], {task['wid'] for task in board['orders']})
+        self.assertIn('module-gap', {task['wid'] for task in board['orders']})
+        self.assertEqual({'M01': {'ammo': 1}}, board['module_stats'])
+
     def test_export_uses_real_module_files(self):
         from inresearch.delivery import export as export
         with patch.object(export, 'OUT_DIR', self.root / 'export'), patch('sys.argv', ['export.py']):

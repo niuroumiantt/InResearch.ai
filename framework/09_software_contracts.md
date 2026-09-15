@@ -10,6 +10,8 @@
 
 代码按 materials、knowledge、workflow、delivery、adapters、interfaces、storage 分工。接口解析身份和参数，调用用例；用例组合领域判断及存储，适配器只转换模型/格式/外部系统协议。禁止领域依赖 HTTP。公共实现必须登记全部仓库内消费者及库外已知运行入口。移动文件后保留的反向依赖仍是未完成项。
 
+任务视图只通过 `knowledge.registry.task_board()` 读取；接口不得把静态投影与动态任务再自行拼合。`workflow.workorders` 仅生成模块缺口投影，研究问题任务由 `current_tasks()` 从当前问题与已采用知识计算。
+
 ## CLI 参数所有权
 
 `manage.py` 与 `python -m inresearch` 共用 interfaces.cli。命令名前的全局 `--root` 只用于
