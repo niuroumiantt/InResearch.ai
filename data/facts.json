@@ -214593,6 +214593,72 @@
       "corroboration": "待交叉验证",
       "notes": "原文只列报告名未写发布机构；《中国 IDC 行业发展研究报告》年度系列由科智咨询（中国 IDC 圈）发布。「整体 IDC 业务市场」含公有云等，与库内科智「传统 IDC」1,202 亿元（guosen2503-kezhi-cn-traditional-idc-market-2021）口径不同；service_scope 按「含云服务」录。",
       "derivation": "《2021-2022 年》报告发布于 2022 年，vintage 取 @2022。"
+    },
+    {
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "industry",
+        "id": "dc-it-rack-avg-density",
+        "label": "数据中心 IT 机柜单柜平均功率"
+      },
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "市场普遍水平",
+        "era": "当期",
+        "power_basis": "未披露",
+        "region": "未披露"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "1023f32878ef18bf3a987ef77ae80a9fab958f39988f729b455e0d86065e3b8d",
+        "local_file": "20230226-055新一代数据中心智能融合电力模块技术白皮书(41页).pdf",
+        "locator": "PDF 第 7 页（页脚 8）「3.3.1 占地面积大」：「数据中心的 IT 机柜单柜平均功率从原来的 4kW，演进提升到当前的 6~8kW,并将很快提升到 12~16kW」",
+        "grade": "S2",
+        "originator": "智领 DC 计划第 301 号白皮书，联合主编：中国移动通信集团设计院、中国建筑设计研究院、北京易华录、华为数字能源"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取白皮书发布时间 2023-02（文件名日期 20230226），原文「当前」未写年份",
+      "corroboration": "待交叉验证",
+      "asserter": "中国移动设计院",
+      "fact_id": "cmdi-pm2302-rack-avg-density-lower",
+      "bound": "lower",
+      "value": 6.0,
+      "notes": "「当前的 6~8kW」按下界/上界两条记。region 未披露：原文未限定地域，白皮书语境为国内供配电行业，未明写中国。rack_type 就近记传统风冷（原文说 IT 机柜平均，未分冷却方式），[未核]。「原来 4kW」无时点、「很快 12~16kW」无目标年份，均不记。"
+    },
+    {
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "industry",
+        "id": "dc-it-rack-avg-density",
+        "label": "数据中心 IT 机柜单柜平均功率"
+      },
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "市场普遍水平",
+        "era": "当期",
+        "power_basis": "未披露",
+        "region": "未披露"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "1023f32878ef18bf3a987ef77ae80a9fab958f39988f729b455e0d86065e3b8d",
+        "local_file": "20230226-055新一代数据中心智能融合电力模块技术白皮书(41页).pdf",
+        "locator": "PDF 第 7 页（页脚 8）「3.3.1 占地面积大」：「数据中心的 IT 机柜单柜平均功率从原来的 4kW，演进提升到当前的 6~8kW,并将很快提升到 12~16kW」",
+        "grade": "S2",
+        "originator": "智领 DC 计划第 301 号白皮书，联合主编：中国移动通信集团设计院、中国建筑设计研究院、北京易华录、华为数字能源"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取白皮书发布时间 2023-02（文件名日期 20230226），原文「当前」未写年份",
+      "corroboration": "待交叉验证",
+      "asserter": "中国移动设计院",
+      "fact_id": "cmdi-pm2302-rack-avg-density-upper",
+      "bound": "upper",
+      "value": 8.0,
+      "notes": "「当前的 6~8kW」按下界/上界两条记。region 未披露：原文未限定地域，白皮书语境为国内供配电行业，未明写中国。rack_type 就近记传统风冷（原文说 IT 机柜平均，未分冷却方式），[未核]。「原来 4kW」无时点、「很快 12~16kW」无目标年份，均不记。"
     }
   ]
 }
