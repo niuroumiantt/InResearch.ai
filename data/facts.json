@@ -217102,6 +217102,166 @@
       "corroboration": "待交叉验证",
       "asserter": "住建部",
       "notes": "本条单位 %。运行维护标准（适用于已投入运行的数据中心），测点为冷通道或机柜进风区域；原文「宜保持在」按推荐值记。不分等级，tier 记未注明。注意相对湿度推荐 35%～65% 与 GB 50174—2017 设计推荐（露点 5.5～15℃且 ≤60%）口径不同。扫描件带「住房城乡建设部信息公开 浏览专用」水印（未带出）。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "as_of": "2018-12",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5239-2018",
+        "label": "YD/T 5239—2018《模块化组合式机房设计规范》"
+      },
+      "fact_id": "ydt5239-2018-clearheight-micromodule",
+      "metric_id": "room_clear_height",
+      "value": 3.5,
+      "unit": "m",
+      "caliber": {
+        "measure": "梁下净高",
+        "room_type": "主机房",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "新建"
+      },
+      "bound": "lower",
+      "evidence": {
+        "sha256": "9dee514f9534f5f13a282a4fbff1770851dc0bec424e0f572b7c8a0b765adb41",
+        "local_file": "YD T5239-2018 模块化组合式机房设计规范.pdf",
+        "locator": "PDF 第 22 页 7.3.3：「主机房净高指楼面(或地面)至结构梁的高度……新建模块化组合式机房的主机房净高宜符合表 7.3.3 的规定」；表 7.3.3「微模块机房 ≥3.5，按 3.0 m 高微模块(含天窗开启高 0.2 m、机柜高 2.2 m)、一层主走线架及消防管道考虑」",
+        "grade": "S1",
+        "originator": "工业和信息化部（2018-12-21 发布，2019-04-01 实施）"
+      },
+      "notes": "仅记微模块机房一档。同表室内集装箱模块机房按搬运设备分 ≥4.2（10 吨平衡重式叉车）/≥5.3（25 吨叉车）/≥6.0（集装箱跨运车）/≥6.5（侧面自装自卸车），本指标无机房类别/搬运设备维度，不记（缺口）。7.3.4 改建项目不做严格要求。原文「楼面至结构梁的高度」对应梁下净高。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "as_of": "2018-12",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5239-2018",
+        "label": "YD/T 5239—2018《模块化组合式机房设计规范》"
+      },
+      "fact_id": "ydt5239-2018-floorload-battery",
+      "metric_id": "room_floor_load",
+      "value": 16.0,
+      "unit": "kN/㎡",
+      "caliber": {
+        "room_type": "电池室",
+        "basis": "规范最低",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "未注明"
+      },
+      "bound": "point",
+      "evidence": {
+        "sha256": "9dee514f9534f5f13a282a4fbff1770851dc0bec424e0f572b7c8a0b765adb41",
+        "local_file": "YD T5239-2018 模块化组合式机房设计规范.pdf",
+        "locator": "PDF 第 26 页 8.2.2 表 8.2.2「楼面等效均布活荷载标准值取值表」（kN/m²，板 / 次梁 / 主梁、柱、基础）「电池、电力室 16.0 / 13.0 / 12.0」",
+        "grade": "S1",
+        "originator": "工业和信息化部（2018-12-21 发布，2019-04-01 实施）"
+      },
+      "notes": "取「板」计算用值；次梁、主梁/柱/基础取值更低，不可与其他标准的单一楼面值直接比较。注 1：电力、电池室荷载按有不间断电源考虑，蓄电池组按四层布置。「无设备重量等数据时」的参照取值；basis 记「规范最低」：YD/T 行业标准不属国标或运营商企标两个细分取值（缺口）。同表高低压配电室 8.0、监控中心 6.0 无对应 room_type；注 3 工艺吊挂荷载 1.2 kN/m² 可另选。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "as_of": "2018-12",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5239-2018",
+        "label": "YD/T 5239—2018《模块化组合式机房设计规范》"
+      },
+      "fact_id": "ydt5239-2018-floorload-main",
+      "metric_id": "room_floor_load",
+      "value": 12.0,
+      "unit": "kN/㎡",
+      "caliber": {
+        "room_type": "主机房",
+        "basis": "规范最低",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "未注明"
+      },
+      "bound": "point",
+      "evidence": {
+        "sha256": "9dee514f9534f5f13a282a4fbff1770851dc0bec424e0f572b7c8a0b765adb41",
+        "local_file": "YD T5239-2018 模块化组合式机房设计规范.pdf",
+        "locator": "PDF 第 26 页 8.2.2 表 8.2.2「楼面等效均布活荷载标准值取值表」（kN/m²，板 / 次梁 / 主梁、柱、基础）「主机房 12.0 / 9.5 / 8.5」",
+        "grade": "S1",
+        "originator": "工业和信息化部（2018-12-21 发布，2019-04-01 实施）"
+      },
+      "notes": "取「板」计算用值；次梁、主梁/柱/基础取值更低，不可与其他标准的单一楼面值直接比较。注 2：特殊机柜或机柜平均功率大于 8kW 的机房楼面按 8.2.1 条计算确定。「无设备重量等数据时」的参照取值；basis 记「规范最低」：YD/T 行业标准不属国标或运营商企标两个细分取值（缺口）。同表高低压配电室 8.0、监控中心 6.0 无对应 room_type；注 3 工艺吊挂荷载 1.2 kN/m² 可另选。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "as_of": "2018-12",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5239-2018",
+        "label": "YD/T 5239—2018《模块化组合式机房设计规范》"
+      },
+      "fact_id": "ydt5239-2018-floorload-cylinder",
+      "metric_id": "room_floor_load",
+      "value": 10.0,
+      "unit": "kN/㎡",
+      "caliber": {
+        "room_type": "钢瓶间",
+        "basis": "规范最低",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "未注明"
+      },
+      "bound": "point",
+      "evidence": {
+        "sha256": "9dee514f9534f5f13a282a4fbff1770851dc0bec424e0f572b7c8a0b765adb41",
+        "local_file": "YD T5239-2018 模块化组合式机房设计规范.pdf",
+        "locator": "PDF 第 26 页 8.2.2 表 8.2.2「楼面等效均布活荷载标准值取值表」（kN/m²，板 / 次梁 / 主梁、柱、基础）「钢瓶间 10.0 / 10.0 / 10.0」",
+        "grade": "S1",
+        "originator": "工业和信息化部（2018-12-21 发布，2019-04-01 实施）"
+      },
+      "notes": "取「板」计算用值；次梁、主梁/柱/基础取值更低，不可与其他标准的单一楼面值直接比较。「无设备重量等数据时」的参照取值；basis 记「规范最低」：YD/T 行业标准不属国标或运营商企标两个细分取值（缺口）。同表高低压配电室 8.0、监控中心 6.0 无对应 room_type；注 3 工艺吊挂荷载 1.2 kN/m² 可另选。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "as_of": "2018-12",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5239-2018",
+        "label": "YD/T 5239—2018《模块化组合式机房设计规范》"
+      },
+      "fact_id": "ydt5239-2018-cooling-water-a",
+      "metric_id": "backup_autonomy",
+      "value": 720.0,
+      "unit": "分钟",
+      "caliber": {
+        "backup_type": "蓄水池",
+        "tier": "A 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "bound": "lower",
+      "evidence": {
+        "sha256": "9dee514f9534f5f13a282a4fbff1770851dc0bec424e0f572b7c8a0b765adb41",
+        "local_file": "YD T5239-2018 模块化组合式机房设计规范.pdf",
+        "locator": "PDF 第 39 页 12.1.2：「采用水冷冷水机组的冷源系统应设置冷却水补水储存装置，储存时间不应低于当地应急水车抵达现场的时间。当不能确定应急水车抵达现场时间时，A 级模块化组合式机房可按 12 小时储水」",
+        "grade": "S1",
+        "originator": "工业和信息化部（2018-12-21 发布，2019-04-01 实施）"
+      },
+      "notes": "原文 12 小时，换算 720 分钟；前提是不能确定应急水车抵达时间。A 级为本标准引用的国标分级。"
     }
   ]
 }
