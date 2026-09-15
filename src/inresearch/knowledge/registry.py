@@ -235,6 +235,21 @@ def current_tasks(root=ROOT, questions=None, knowledge=None):
     return tasks
 
 
+def task_board(root=ROOT, questions=None, knowledge=None):
+    """One projection for every task-facing interface and page.
+
+    Module-gap statistics remain a generated workorders artifact.  Open
+    research questions never come from that artifact: they are recomputed from
+    the current adopted knowledge in ``current_tasks``.
+    """
+    projection = read_json(workspace_path('reports/workorders.json', root), {})
+    return {
+        'orders': current_tasks(root, questions, knowledge),
+        'module_stats': projection.get('module_stats', {}),
+        'generated': datetime.now().isoformat(timespec='seconds'),
+    }
+
+
 def candidate_snapshot(payload, graph, questions):
     """Normalize untrusted reader JSON; this API cannot promote a claim."""
     if not isinstance(payload, dict) or payload.get('graph_version') != graph['version']:
