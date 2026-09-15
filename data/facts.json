@@ -217354,6 +217354,38 @@
       "corroboration": "待交叉验证",
       "asserter": "字节跳动",
       "notes": "「Support max 128K GPUs」为架构可扩展上限，按上界记；部署用例页署名 ChenChen Oi（Bytedance）。原文「128K」按 128,000 记（若指 2^17=131,072 则差 2.4%，[未核]）。region 未披露。"
+    },
+    {
+      "fact_id": "ocp24-meta-2x400g-fr4-osfp-max-power",
+      "metric_id": "optics_module_power",
+      "entity": {
+        "type": "component",
+        "id": "meta-2x400g-fr4-osfp",
+        "label": "Meta 2×400G-FR4 OSFP 光模块（Minipack3 配套）"
+      },
+      "value": 16.0,
+      "unit": "W",
+      "caliber": {
+        "speed": "800G",
+        "optical_scheme": "未注明",
+        "power_stat": "最大值",
+        "basis": "厂商指引",
+        "region": "Global"
+      },
+      "as_of": "2024-10",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "004dfa51e95517135864ac52c3f76fb2fb8933a385368c7da74ed60a2ec77de9",
+        "local_file": "5802 - Meta 51.2T Ethernet Switch.pdf",
+        "locator": "第 9 页「Pluggable modules」：「Meta's 2x400G-FR4 OSFP optics modules……15-70ºC case temperature; 16W max power consumption; 3Km reach on SMF」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 OCP Global Summit 2024（2024-10）会期，文件夹「2024 OCP Global Summit」；幻灯片未写日期",
+      "corroboration": "待交叉验证",
+      "asserter": "Meta",
+      "notes": "Meta 网络硬件工程师 Rongchun Zhou 演讲给出的模块规格上限。2×400G-FR4 双端口 OSFP，合计 800G，speed 记 800G；FR4 为单模 CWDM，光学方案（EML/SiPh）未注明。basis 就近记厂商指引（Meta 自研规格）。region 记 Global（Meta 全球数据中心部署）。"
     }
   ]
 }
