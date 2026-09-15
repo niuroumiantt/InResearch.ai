@@ -194190,6 +194190,410 @@
       "derivation": "单位换算：原表 0.11 $/kWh × 1000 = 110.0 美元/MWh；as_of 取东吴转引报告月份（SemiAnalysis 原表日期未给）。",
       "corroboration": "待交叉验证",
       "notes": "原表未写燃料价、利用率等假设，燃气 LCOE 高度依赖燃料价，比较时需谨慎；表中 SOFC 0.27 $/kWh（热电联供 0.08）因 tech 维无 SOFC 取值未录。"
+    },
+    {
+      "fact_id": "gjzq2503b-thu-cn-dc-occupancy-2022",
+      "metric_id": "dc_occupancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（全国）"
+      },
+      "asserter": "清华大学全球产业研究院",
+      "value": 58.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "全国",
+        "region": "CN"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "100b637b7dfbdc8d7aa9c08bfa8a33dbeb79158998360ec572da65faff8f2827",
+        "local_file": "20250303-国金证券-公用事业及环保产业行业研究：数据中心绿电需求有多大？如何匹配供电？(19页).pdf",
+        "locator": "PDF 第 8 页图表 13「23 年在运算力增长 27.8%」（来源：清华大学全球产业研究院、国金证券研究所）：22A / 23A —— 在运算力 180000 / 230000 pFLOPS；在用机架 6520000 / 8100000 架；平均机架 PUE 1.52 / 1.48；平均上架率 58.0% / 66.0%；IDC 耗电量 1207 / 1500 亿千瓦时；IDC 用电占比 1.40% / 1.63%",
+        "grade": "S3",
+        "originator": "清华大学全球产业研究院（经国金证券《数据中心绿电需求有多大？如何匹配供电？》2025-03-03 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图表来源并列「清华大学全球产业研究院、国金证券研究所」，其中装机功率、利用小时数为推算列，本条所录为统计列；asserter 按首列来源记清华大学全球产业研究院 [未核]。 库内同年信通院 2023 年 66.7%、科智 56.4% 为其他断言者。"
+    },
+    {
+      "fact_id": "gjzq2503b-thu-cn-dc-pue-2022",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "market",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（全国）"
+      },
+      "asserter": "清华大学全球产业研究院",
+      "value": 1.52,
+      "unit": "比值",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "100b637b7dfbdc8d7aa9c08bfa8a33dbeb79158998360ec572da65faff8f2827",
+        "local_file": "20250303-国金证券-公用事业及环保产业行业研究：数据中心绿电需求有多大？如何匹配供电？(19页).pdf",
+        "locator": "PDF 第 8 页图表 13「23 年在运算力增长 27.8%」（来源：清华大学全球产业研究院、国金证券研究所）：22A / 23A —— 在运算力 180000 / 230000 pFLOPS；在用机架 6520000 / 8100000 架；平均机架 PUE 1.52 / 1.48；平均上架率 58.0% / 66.0%；IDC 耗电量 1207 / 1500 亿千瓦时；IDC 用电占比 1.40% / 1.63%",
+        "grade": "S3",
+        "originator": "清华大学全球产业研究院（经国金证券《数据中心绿电需求有多大？如何匹配供电？》2025-03-03 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图表来源并列「清华大学全球产业研究院、国金证券研究所」，其中装机功率、利用小时数为推算列，本条所录为统计列；asserter 按首列来源记清华大学全球产业研究院 [未核]。「平均机架 PUE」按年均记。"
+    },
+    {
+      "fact_id": "gjzq2503b-thu-cn-dc-racks-2022",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "market",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（全国）"
+      },
+      "asserter": "清华大学全球产业研究院",
+      "value": 652.0,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "100b637b7dfbdc8d7aa9c08bfa8a33dbeb79158998360ec572da65faff8f2827",
+        "local_file": "20250303-国金证券-公用事业及环保产业行业研究：数据中心绿电需求有多大？如何匹配供电？(19页).pdf",
+        "locator": "PDF 第 8 页图表 13「23 年在运算力增长 27.8%」（来源：清华大学全球产业研究院、国金证券研究所）：22A / 23A —— 在运算力 180000 / 230000 pFLOPS；在用机架 6520000 / 8100000 架；平均机架 PUE 1.52 / 1.48；平均上架率 58.0% / 66.0%；IDC 耗电量 1207 / 1500 亿千瓦时；IDC 用电占比 1.40% / 1.63%",
+        "grade": "S3",
+        "originator": "清华大学全球产业研究院（经国金证券《数据中心绿电需求有多大？如何匹配供电？》2025-03-03 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图表来源并列「清华大学全球产业研究院、国金证券研究所」，其中装机功率、利用小时数为推算列，本条所录为统计列；asserter 按首列来源记清华大学全球产业研究院 [未核]。标准机架 2.5kW。"
+    },
+    {
+      "fact_id": "gjzq2503b-thu-cn-dc-electricity-2022",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "market",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（全国）"
+      },
+      "asserter": "清华大学全球产业研究院",
+      "value": 120.7,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "CN",
+        "basis": "第三方估算"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "100b637b7dfbdc8d7aa9c08bfa8a33dbeb79158998360ec572da65faff8f2827",
+        "local_file": "20250303-国金证券-公用事业及环保产业行业研究：数据中心绿电需求有多大？如何匹配供电？(19页).pdf",
+        "locator": "PDF 第 8 页图表 13「23 年在运算力增长 27.8%」（来源：清华大学全球产业研究院、国金证券研究所）：22A / 23A —— 在运算力 180000 / 230000 pFLOPS；在用机架 6520000 / 8100000 架；平均机架 PUE 1.52 / 1.48；平均上架率 58.0% / 66.0%；IDC 耗电量 1207 / 1500 亿千瓦时；IDC 用电占比 1.40% / 1.63%",
+        "grade": "S3",
+        "originator": "清华大学全球产业研究院（经国金证券《数据中心绿电需求有多大？如何匹配供电？》2025-03-03 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图表来源并列「清华大学全球产业研究院、国金证券研究所」，其中装机功率、利用小时数为推算列，本条所录为统计列；asserter 按首列来源记清华大学全球产业研究院 [未核]。 1207 亿 kWh = 120.7 TWh。"
+    },
+    {
+      "fact_id": "gjzq2503b-thu-cn-dc-power-share-2022",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "market",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（全国）"
+      },
+      "asserter": "清华大学全球产业研究院",
+      "value": 1.4,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "100b637b7dfbdc8d7aa9c08bfa8a33dbeb79158998360ec572da65faff8f2827",
+        "local_file": "20250303-国金证券-公用事业及环保产业行业研究：数据中心绿电需求有多大？如何匹配供电？(19页).pdf",
+        "locator": "PDF 第 8 页图表 13「23 年在运算力增长 27.8%」（来源：清华大学全球产业研究院、国金证券研究所）：22A / 23A —— 在运算力 180000 / 230000 pFLOPS；在用机架 6520000 / 8100000 架；平均机架 PUE 1.52 / 1.48；平均上架率 58.0% / 66.0%；IDC 耗电量 1207 / 1500 亿千瓦时；IDC 用电占比 1.40% / 1.63%",
+        "grade": "S3",
+        "originator": "清华大学全球产业研究院（经国金证券《数据中心绿电需求有多大？如何匹配供电？》2025-03-03 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图表来源并列「清华大学全球产业研究院、国金证券研究所」，其中装机功率、利用小时数为推算列，本条所录为统计列；asserter 按首列来源记清华大学全球产业研究院 [未核]。 分母全社会用电 86372 亿 kWh，与同条 IDC 耗电量 gjzq2503b-thu-cn-dc-electricity-2022 成对。"
+    },
+    {
+      "fact_id": "gjzq2503b-thu-cn-dc-occupancy-2023",
+      "metric_id": "dc_occupancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（全国）"
+      },
+      "asserter": "清华大学全球产业研究院",
+      "value": 66.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "全国",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "100b637b7dfbdc8d7aa9c08bfa8a33dbeb79158998360ec572da65faff8f2827",
+        "local_file": "20250303-国金证券-公用事业及环保产业行业研究：数据中心绿电需求有多大？如何匹配供电？(19页).pdf",
+        "locator": "PDF 第 8 页图表 13「23 年在运算力增长 27.8%」（来源：清华大学全球产业研究院、国金证券研究所）：22A / 23A —— 在运算力 180000 / 230000 pFLOPS；在用机架 6520000 / 8100000 架；平均机架 PUE 1.52 / 1.48；平均上架率 58.0% / 66.0%；IDC 耗电量 1207 / 1500 亿千瓦时；IDC 用电占比 1.40% / 1.63%",
+        "grade": "S3",
+        "originator": "清华大学全球产业研究院（经国金证券《数据中心绿电需求有多大？如何匹配供电？》2025-03-03 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图表来源并列「清华大学全球产业研究院、国金证券研究所」，其中装机功率、利用小时数为推算列，本条所录为统计列；asserter 按首列来源记清华大学全球产业研究院 [未核]。 库内同年信通院 2023 年 66.7%、科智 56.4% 为其他断言者。"
+    },
+    {
+      "fact_id": "gjzq2503b-thu-cn-dc-pue-2023",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "market",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（全国）"
+      },
+      "asserter": "清华大学全球产业研究院",
+      "value": 1.48,
+      "unit": "比值",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "100b637b7dfbdc8d7aa9c08bfa8a33dbeb79158998360ec572da65faff8f2827",
+        "local_file": "20250303-国金证券-公用事业及环保产业行业研究：数据中心绿电需求有多大？如何匹配供电？(19页).pdf",
+        "locator": "PDF 第 8 页图表 13「23 年在运算力增长 27.8%」（来源：清华大学全球产业研究院、国金证券研究所）：22A / 23A —— 在运算力 180000 / 230000 pFLOPS；在用机架 6520000 / 8100000 架；平均机架 PUE 1.52 / 1.48；平均上架率 58.0% / 66.0%；IDC 耗电量 1207 / 1500 亿千瓦时；IDC 用电占比 1.40% / 1.63%",
+        "grade": "S3",
+        "originator": "清华大学全球产业研究院（经国金证券《数据中心绿电需求有多大？如何匹配供电？》2025-03-03 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图表来源并列「清华大学全球产业研究院、国金证券研究所」，其中装机功率、利用小时数为推算列，本条所录为统计列；asserter 按首列来源记清华大学全球产业研究院 [未核]。「平均机架 PUE」按年均记。"
+    },
+    {
+      "fact_id": "gjzq2503b-thu-cn-dc-racks-2023",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "market",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（全国）"
+      },
+      "asserter": "清华大学全球产业研究院",
+      "value": 810.0,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "100b637b7dfbdc8d7aa9c08bfa8a33dbeb79158998360ec572da65faff8f2827",
+        "local_file": "20250303-国金证券-公用事业及环保产业行业研究：数据中心绿电需求有多大？如何匹配供电？(19页).pdf",
+        "locator": "PDF 第 8 页图表 13「23 年在运算力增长 27.8%」（来源：清华大学全球产业研究院、国金证券研究所）：22A / 23A —— 在运算力 180000 / 230000 pFLOPS；在用机架 6520000 / 8100000 架；平均机架 PUE 1.52 / 1.48；平均上架率 58.0% / 66.0%；IDC 耗电量 1207 / 1500 亿千瓦时；IDC 用电占比 1.40% / 1.63%",
+        "grade": "S3",
+        "originator": "清华大学全球产业研究院（经国金证券《数据中心绿电需求有多大？如何匹配供电？》2025-03-03 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图表来源并列「清华大学全球产业研究院、国金证券研究所」，其中装机功率、利用小时数为推算列，本条所录为统计列；asserter 按首列来源记清华大学全球产业研究院 [未核]。标准机架 2.5kW。"
+    },
+    {
+      "fact_id": "gjzq2503b-thu-cn-dc-electricity-2023",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "market",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（全国）"
+      },
+      "asserter": "清华大学全球产业研究院",
+      "value": 150.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "CN",
+        "basis": "第三方估算"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "100b637b7dfbdc8d7aa9c08bfa8a33dbeb79158998360ec572da65faff8f2827",
+        "local_file": "20250303-国金证券-公用事业及环保产业行业研究：数据中心绿电需求有多大？如何匹配供电？(19页).pdf",
+        "locator": "PDF 第 8 页图表 13「23 年在运算力增长 27.8%」（来源：清华大学全球产业研究院、国金证券研究所）：22A / 23A —— 在运算力 180000 / 230000 pFLOPS；在用机架 6520000 / 8100000 架；平均机架 PUE 1.52 / 1.48；平均上架率 58.0% / 66.0%；IDC 耗电量 1207 / 1500 亿千瓦时；IDC 用电占比 1.40% / 1.63%",
+        "grade": "S3",
+        "originator": "清华大学全球产业研究院（经国金证券《数据中心绿电需求有多大？如何匹配供电？》2025-03-03 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图表来源并列「清华大学全球产业研究院、国金证券研究所」，其中装机功率、利用小时数为推算列，本条所录为统计列；asserter 按首列来源记清华大学全球产业研究院 [未核]。 1500 亿 kWh = 150.0 TWh。"
+    },
+    {
+      "fact_id": "gjzq2503b-thu-cn-dc-power-share-2023",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "market",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（全国）"
+      },
+      "asserter": "清华大学全球产业研究院",
+      "value": 1.63,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "100b637b7dfbdc8d7aa9c08bfa8a33dbeb79158998360ec572da65faff8f2827",
+        "local_file": "20250303-国金证券-公用事业及环保产业行业研究：数据中心绿电需求有多大？如何匹配供电？(19页).pdf",
+        "locator": "PDF 第 8 页图表 13「23 年在运算力增长 27.8%」（来源：清华大学全球产业研究院、国金证券研究所）：22A / 23A —— 在运算力 180000 / 230000 pFLOPS；在用机架 6520000 / 8100000 架；平均机架 PUE 1.52 / 1.48；平均上架率 58.0% / 66.0%；IDC 耗电量 1207 / 1500 亿千瓦时；IDC 用电占比 1.40% / 1.63%",
+        "grade": "S3",
+        "originator": "清华大学全球产业研究院（经国金证券《数据中心绿电需求有多大？如何匹配供电？》2025-03-03 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图表来源并列「清华大学全球产业研究院、国金证券研究所」，其中装机功率、利用小时数为推算列，本条所录为统计列；asserter 按首列来源记清华大学全球产业研究院 [未核]。 分母全社会用电 92241 亿 kWh，与同条 IDC 耗电量 gjzq2503b-thu-cn-dc-electricity-2023 成对。"
+    },
+    {
+      "fact_id": "gjzq2503b-model-assumed-occupancy",
+      "metric_id": "model_assumed_occupancy",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc-green-power-demand-model",
+        "label": "国金证券数据中心绿电需求测算模型"
+      },
+      "asserter": "国金证券",
+      "value": 66.0,
+      "unit": "%",
+      "caliber": {
+        "model_source": "券商",
+        "region": "CN"
+      },
+      "as_of": "2025-03",
+      "bound": "point",
+      "evidence": {
+        "sha256": "100b637b7dfbdc8d7aa9c08bfa8a33dbeb79158998360ec572da65faff8f2827",
+        "local_file": "20250303-国金证券-公用事业及环保产业行业研究：数据中心绿电需求有多大？如何匹配供电？(19页).pdf",
+        "locator": "PDF 第 7 页假设（1）：「2.5KW 标准机架算力=0.0284 pFLOPS；PUE=1.48；上架率=66%」（2）「数据中心利用小时数=7580h」（3）「国家枢纽新增算力年增速 35%…单机架算力、PUE、上架率、利用小时数维持当前水平」",
+        "grade": "S3",
+        "originator": "国金证券《数据中心绿电需求有多大？如何匹配供电？》（2025-03-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "模型结论：全国新建数据中心每年拉动增量用电 1,020 亿 kWh，存量+增量拉动增量绿电消费 991 亿 kWh（新能源 1,500h 折 66GW）。上架率取 2023 年实际值沿用。"
+    },
+    {
+      "fact_id": "gjzq2503b-thu-horinger-occupancy",
+      "metric_id": "dc_occupancy_rate",
+      "entity": {
+        "type": "region",
+        "id": "horinger-dc-cluster",
+        "label": "内蒙古和林格尔数据中心集群"
+      },
+      "asserter": "清华大学全球产业研究院",
+      "value": 60.9,
+      "unit": "%",
+      "caliber": {
+        "scope": "区域市场",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "100b637b7dfbdc8d7aa9c08bfa8a33dbeb79158998360ec572da65faff8f2827",
+        "local_file": "20250303-国金证券-公用事业及环保产业行业研究：数据中心绿电需求有多大？如何匹配供电？(19页).pdf",
+        "locator": "PDF 第 10 页图表 18「单个超大型数据中心年耗电量约 2.6 亿度（1.6 万标准机架）」和林格尔集群基本参数（来源：清华大学全球产业研究院、国金证券研究所）：数据中心数量 11 个；单个数据中心机架数 16091 架；上架率 60.9%；在用机架 107793 架；在运算力 2553 pFLOPS；平均机架 PUE 1.21；园区总功率 32.6 万千瓦；满载年耗电 29 亿千瓦时",
+        "grade": "S3",
+        "originator": "清华大学全球产业研究院（经国金证券《数据中心绿电需求有多大？如何匹配供电？》2025-03-03 转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 推定：表题无年份，同页图表 17「2023 年蒙西和林格尔数据中心可再生能源消费情况」与图表 19「23 年蒙西工商业终端电价」均为 2023 年，按 2023 年记；数值照录。",
+      "corroboration": "待交叉验证",
+      "notes": "11 个数据中心、在用机架 107,793 架。图表来源并列清华大学全球产业研究院与国金证券研究所，asserter 按首列来源记 [未核]。"
+    },
+    {
+      "fact_id": "gjzq2503b-thu-horinger-pue",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "horinger-dc-cluster",
+        "label": "内蒙古和林格尔数据中心集群"
+      },
+      "asserter": "清华大学全球产业研究院",
+      "value": 1.21,
+      "unit": "比值",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "100b637b7dfbdc8d7aa9c08bfa8a33dbeb79158998360ec572da65faff8f2827",
+        "local_file": "20250303-国金证券-公用事业及环保产业行业研究：数据中心绿电需求有多大？如何匹配供电？(19页).pdf",
+        "locator": "PDF 第 10 页图表 18「单个超大型数据中心年耗电量约 2.6 亿度（1.6 万标准机架）」和林格尔集群基本参数（来源：清华大学全球产业研究院、国金证券研究所）：数据中心数量 11 个；单个数据中心机架数 16091 架；上架率 60.9%；在用机架 107793 架；在运算力 2553 pFLOPS；平均机架 PUE 1.21；园区总功率 32.6 万千瓦；满载年耗电 29 亿千瓦时",
+        "grade": "S3",
+        "originator": "清华大学全球产业研究院（经国金证券《数据中心绿电需求有多大？如何匹配供电？》2025-03-03 转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 推定同 gjzq2503b-thu-horinger-occupancy（同页 2023 年图表）；数值照录。",
+      "corroboration": "待交叉验证",
+      "notes": "「平均机架 PUE」按年均记；原文未给气候分区，记未分区。"
     }
   ]
 }
