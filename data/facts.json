@@ -195819,6 +195819,101 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原文「超过 40 亿美元」按下界记；为 2027–2029 年产能预留的长期容量协议金额，非当年订单；客户预付款 1.65 亿美元。客户名未披露。region 记未披露：原文未写客户地域。"
+    },
+    {
+      "fact_id": "ghzq2602-global-dc-market-2024",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-market",
+        "label": "全球数据中心市场"
+      },
+      "asserter": "国海证券",
+      "value": 1086.2,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "未注明",
+        "operator_type": "全市场",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "currency": "美元"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c1a0ac3e718a1bf5c9ce9ea99db705d523d4b4ba0db46c1bea047f4dd8df43bc",
+        "local_file": "20260203-国海证券-电力设备行业AIDC 2026年度投资策略：智算风起，启航未来.pdf",
+        "locator": "PDF 第 8 页 1.1「市场空间维度」：「2024 年全球数据中心市场规模首次突破千亿美元，达到 1086.2 亿美元。…根据科智咨询预测，2027 年全球数据中心市场将达到 1632.5 亿美元，其中 AI 相关需求预计将贡献超过 60% 的新增市场增量」",
+        "grade": "S3",
+        "originator": "国海证券《AIDC 2026 年度投资策略：智算风起，启航未来》（2026-02-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文未注 2024 年值的出处（同段 2027 年预测归科智咨询），按 PR #197 边界记国海证券；「数据中心市场规模」口径未说明是否等同 IDC 服务收入，service_scope 记未注明。"
+    },
+    {
+      "fact_id": "ghzq2602-kezhi-global-dc-market-2027e",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-market",
+        "label": "全球数据中心市场"
+      },
+      "asserter": "科智咨询",
+      "value": 1632.5,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "未注明",
+        "operator_type": "全市场",
+        "region": "Global",
+        "basis": "预测",
+        "currency": "美元"
+      },
+      "as_of": "2027E",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c1a0ac3e718a1bf5c9ce9ea99db705d523d4b4ba0db46c1bea047f4dd8df43bc",
+        "local_file": "20260203-国海证券-电力设备行业AIDC 2026年度投资策略：智算风起，启航未来.pdf",
+        "locator": "PDF 第 8 页 1.1「市场空间维度」：「2024 年全球数据中心市场规模首次突破千亿美元，达到 1086.2 亿美元。…根据科智咨询预测，2027 年全球数据中心市场将达到 1632.5 亿美元，其中 AI 相关需求预计将贡献超过 60% 的新增市场增量」",
+        "grade": "S3",
+        "originator": "科智咨询（经国海证券《AIDC 2026 年度投资策略：智算风起，启航未来》（2026-02-03）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "AI 相关需求贡献超 60% 新增市场增量；科智预测发布时间原文未给。"
+    },
+    {
+      "fact_id": "ghzq2602-bloom-aep-sofc-order-2026-01",
+      "metric_id": "vendor_order_target",
+      "entity": {
+        "type": "company",
+        "id": "bloom-energy",
+        "label": "Bloom Energy（SOFC）"
+      },
+      "asserter": "Bloom Energy",
+      "value": 2.65,
+      "unit": "十亿美元",
+      "caliber": {
+        "order_basis": "新增订单",
+        "end_market": "数据中心",
+        "region": "US",
+        "basis": "实测"
+      },
+      "as_of": "2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c1a0ac3e718a1bf5c9ce9ea99db705d523d4b4ba0db46c1bea047f4dd8df43bc",
+        "local_file": "20260203-国海证券-电力设备行业AIDC 2026年度投资策略：智算风起，启航未来.pdf",
+        "locator": "PDF 第 16 页 2.1：「2026 年 1 月，美国电力公司（AEP）行使期权，向 Bloom Energy 追加采购 900 兆瓦 SOFC 系统，交易价值 26.5 亿美元」",
+        "grade": "S3",
+        "originator": "Bloom Energy/AEP 公告（经国海证券《AIDC 2026 年度投资策略：智算风起，启航未来》（2026-02-03）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "AEP 行权追加 900MW SOFC 系统，用于数据中心供电场景；容量 900MW 未另录（按 vendor_order_target 说明，容量锁定量应记入对应容量指标，库内暂无燃料电池容量指标）。"
     }
   ]
 }
