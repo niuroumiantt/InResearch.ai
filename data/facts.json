@@ -189568,6 +189568,440 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原文「功耗」，未说明是设计还是实际，power_basis 记未披露；「传统数据中心」未写年代，era 记未注明；as_of 取白皮书 PDF 创建月。同句智算中心 20～40kW、未来 40～120kW 未录（rack_type 只有传统风冷/AI液冷机柜/整机柜系统，AIDC 泛称不分风冷液冷，装不下）。"
+    },
+    {
+      "fact_id": "idc2301-cn-ai-server-inference-share-2020",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server-workload",
+        "label": "中国人工智能服务器工作负载（训练/推理切分）"
+      },
+      "asserter": "IDC",
+      "value": 51.5,
+      "unit": "%",
+      "caliber": {
+        "workload": "推理",
+        "denominator": "AI 算力支出",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a061af65e678edd8b43c9e7bbab0f7029171101e3aa6cf7ba5e2933c9e44b07",
+        "local_file": "20230113-2023中国人工智能计算力发展评估报告-IDC&浪潮(32页).pdf",
+        "locator": "PDF 第 13 页图 7「中国人工智能服务器工作负载预测，2020-2026」2020 年柱：训练 48.5 / 推理 51.5，来源「IDC，2022」；正文「2021年中国数据中心用于推理的服务器的市场份额占比已经过半，达到57.6%，预计到2026年，用于推理的工作负载将达到62.2%」",
+        "grade": "S2",
+        "originator": "IDC 与浪潮《2022-2023 中国人工智能计算力发展评估报告》（2023-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "训练+推理=100%。正文把 2021 年值称作「推理的服务器的市场份额」，分母按服务器市场金额记。图注来源「IDC，2022」，2022 年起按预测记（版次仅知年份）。"
+    },
+    {
+      "fact_id": "idc2301-cn-ai-server-inference-share-2021",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server-workload",
+        "label": "中国人工智能服务器工作负载（训练/推理切分）"
+      },
+      "asserter": "IDC",
+      "value": 57.6,
+      "unit": "%",
+      "caliber": {
+        "workload": "推理",
+        "denominator": "AI 算力支出",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a061af65e678edd8b43c9e7bbab0f7029171101e3aa6cf7ba5e2933c9e44b07",
+        "local_file": "20230113-2023中国人工智能计算力发展评估报告-IDC&浪潮(32页).pdf",
+        "locator": "PDF 第 13 页图 7「中国人工智能服务器工作负载预测，2020-2026」2021 年柱：训练 42.4 / 推理 57.6，来源「IDC，2022」；正文「2021年中国数据中心用于推理的服务器的市场份额占比已经过半，达到57.6%，预计到2026年，用于推理的工作负载将达到62.2%」",
+        "grade": "S2",
+        "originator": "IDC 与浪潮《2022-2023 中国人工智能计算力发展评估报告》（2023-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "训练+推理=100%。正文把 2021 年值称作「推理的服务器的市场份额」，分母按服务器市场金额记。图注来源「IDC，2022」，2022 年起按预测记（版次仅知年份）。"
+    },
+    {
+      "fact_id": "idc2301-cn-ai-server-inference-share-2022e",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server-workload",
+        "label": "中国人工智能服务器工作负载（训练/推理切分）"
+      },
+      "asserter": "IDC",
+      "value": 58.5,
+      "unit": "%",
+      "caliber": {
+        "workload": "推理",
+        "denominator": "AI 算力支出",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2022E@2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a061af65e678edd8b43c9e7bbab0f7029171101e3aa6cf7ba5e2933c9e44b07",
+        "local_file": "20230113-2023中国人工智能计算力发展评估报告-IDC&浪潮(32页).pdf",
+        "locator": "PDF 第 13 页图 7「中国人工智能服务器工作负载预测，2020-2026」2022 年柱：训练 41.5 / 推理 58.5，来源「IDC，2022」；正文「2021年中国数据中心用于推理的服务器的市场份额占比已经过半，达到57.6%，预计到2026年，用于推理的工作负载将达到62.2%」",
+        "grade": "S2",
+        "originator": "IDC 与浪潮《2022-2023 中国人工智能计算力发展评估报告》（2023-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "训练+推理=100%。正文把 2021 年值称作「推理的服务器的市场份额」，分母按服务器市场金额记。图注来源「IDC，2022」，2022 年起按预测记（版次仅知年份）。维谛/深知社白皮书转引 2022 年为推理 58.5%/训练 41.5%（vertiv2409-idc-*-2022），与本图一致；信通院《智算基础设施发展研究报告（2024 年）》转引时训练/推理标签颠倒（见缺口 3adaeb820346）。"
+    },
+    {
+      "fact_id": "idc2301-cn-ai-server-inference-share-2023e",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server-workload",
+        "label": "中国人工智能服务器工作负载（训练/推理切分）"
+      },
+      "asserter": "IDC",
+      "value": 59.5,
+      "unit": "%",
+      "caliber": {
+        "workload": "推理",
+        "denominator": "AI 算力支出",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2023E@2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a061af65e678edd8b43c9e7bbab0f7029171101e3aa6cf7ba5e2933c9e44b07",
+        "local_file": "20230113-2023中国人工智能计算力发展评估报告-IDC&浪潮(32页).pdf",
+        "locator": "PDF 第 13 页图 7「中国人工智能服务器工作负载预测，2020-2026」2023 年柱：训练 40.5 / 推理 59.5，来源「IDC，2022」；正文「2021年中国数据中心用于推理的服务器的市场份额占比已经过半，达到57.6%，预计到2026年，用于推理的工作负载将达到62.2%」",
+        "grade": "S2",
+        "originator": "IDC 与浪潮《2022-2023 中国人工智能计算力发展评估报告》（2023-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "训练+推理=100%。正文把 2021 年值称作「推理的服务器的市场份额」，分母按服务器市场金额记。图注来源「IDC，2022」，2022 年起按预测记（版次仅知年份）。"
+    },
+    {
+      "fact_id": "idc2301-cn-ai-server-inference-share-2024e",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server-workload",
+        "label": "中国人工智能服务器工作负载（训练/推理切分）"
+      },
+      "asserter": "IDC",
+      "value": 60.7,
+      "unit": "%",
+      "caliber": {
+        "workload": "推理",
+        "denominator": "AI 算力支出",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2024E@2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a061af65e678edd8b43c9e7bbab0f7029171101e3aa6cf7ba5e2933c9e44b07",
+        "local_file": "20230113-2023中国人工智能计算力发展评估报告-IDC&浪潮(32页).pdf",
+        "locator": "PDF 第 13 页图 7「中国人工智能服务器工作负载预测，2020-2026」2024 年柱：训练 39.3 / 推理 60.7，来源「IDC，2022」；正文「2021年中国数据中心用于推理的服务器的市场份额占比已经过半，达到57.6%，预计到2026年，用于推理的工作负载将达到62.2%」",
+        "grade": "S2",
+        "originator": "IDC 与浪潮《2022-2023 中国人工智能计算力发展评估报告》（2023-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "训练+推理=100%。正文把 2021 年值称作「推理的服务器的市场份额」，分母按服务器市场金额记。图注来源「IDC，2022」，2022 年起按预测记（版次仅知年份）。"
+    },
+    {
+      "fact_id": "idc2301-cn-ai-server-inference-share-2025e",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server-workload",
+        "label": "中国人工智能服务器工作负载（训练/推理切分）"
+      },
+      "asserter": "IDC",
+      "value": 61.8,
+      "unit": "%",
+      "caliber": {
+        "workload": "推理",
+        "denominator": "AI 算力支出",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a061af65e678edd8b43c9e7bbab0f7029171101e3aa6cf7ba5e2933c9e44b07",
+        "local_file": "20230113-2023中国人工智能计算力发展评估报告-IDC&浪潮(32页).pdf",
+        "locator": "PDF 第 13 页图 7「中国人工智能服务器工作负载预测，2020-2026」2025 年柱：训练 38.2 / 推理 61.8，来源「IDC，2022」；正文「2021年中国数据中心用于推理的服务器的市场份额占比已经过半，达到57.6%，预计到2026年，用于推理的工作负载将达到62.2%」",
+        "grade": "S2",
+        "originator": "IDC 与浪潮《2022-2023 中国人工智能计算力发展评估报告》（2023-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "训练+推理=100%。正文把 2021 年值称作「推理的服务器的市场份额」，分母按服务器市场金额记。图注来源「IDC，2022」，2022 年起按预测记（版次仅知年份）。"
+    },
+    {
+      "fact_id": "idc2301-cn-ai-server-inference-share-2026e",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server-workload",
+        "label": "中国人工智能服务器工作负载（训练/推理切分）"
+      },
+      "asserter": "IDC",
+      "value": 62.2,
+      "unit": "%",
+      "caliber": {
+        "workload": "推理",
+        "denominator": "AI 算力支出",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a061af65e678edd8b43c9e7bbab0f7029171101e3aa6cf7ba5e2933c9e44b07",
+        "local_file": "20230113-2023中国人工智能计算力发展评估报告-IDC&浪潮(32页).pdf",
+        "locator": "PDF 第 13 页图 7「中国人工智能服务器工作负载预测，2020-2026」2026 年柱：训练 37.8 / 推理 62.2，来源「IDC，2022」；正文「2021年中国数据中心用于推理的服务器的市场份额占比已经过半，达到57.6%，预计到2026年，用于推理的工作负载将达到62.2%」",
+        "grade": "S2",
+        "originator": "IDC 与浪潮《2022-2023 中国人工智能计算力发展评估报告》（2023-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "训练+推理=100%。正文把 2021 年值称作「推理的服务器的市场份额」，分母按服务器市场金额记。图注来源「IDC，2022」，2022 年起按预测记（版次仅知年份）。维谛/深知社白皮书转引 2022 年为推理 58.5%/训练 41.5%（vertiv2409-idc-*-2022），与本图一致；信通院《智算基础设施发展研究报告（2024 年）》转引时训练/推理标签颠倒（见缺口 3adaeb820346）。"
+    },
+    {
+      "fact_id": "idc2301-cn-ai-server-training-share-2020",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server-workload",
+        "label": "中国人工智能服务器工作负载（训练/推理切分）"
+      },
+      "asserter": "IDC",
+      "value": 48.5,
+      "unit": "%",
+      "caliber": {
+        "workload": "训练",
+        "denominator": "AI 算力支出",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a061af65e678edd8b43c9e7bbab0f7029171101e3aa6cf7ba5e2933c9e44b07",
+        "local_file": "20230113-2023中国人工智能计算力发展评估报告-IDC&浪潮(32页).pdf",
+        "locator": "PDF 第 13 页图 7「中国人工智能服务器工作负载预测，2020-2026」2020 年柱：训练 48.5 / 推理 51.5，来源「IDC，2022」；正文「2021年中国数据中心用于推理的服务器的市场份额占比已经过半，达到57.6%，预计到2026年，用于推理的工作负载将达到62.2%」",
+        "grade": "S2",
+        "originator": "IDC 与浪潮《2022-2023 中国人工智能计算力发展评估报告》（2023-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "训练+推理=100%。正文把 2021 年值称作「推理的服务器的市场份额」，分母按服务器市场金额记。图注来源「IDC，2022」，2022 年起按预测记（版次仅知年份）。"
+    },
+    {
+      "fact_id": "idc2301-cn-ai-server-training-share-2021",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server-workload",
+        "label": "中国人工智能服务器工作负载（训练/推理切分）"
+      },
+      "asserter": "IDC",
+      "value": 42.4,
+      "unit": "%",
+      "caliber": {
+        "workload": "训练",
+        "denominator": "AI 算力支出",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a061af65e678edd8b43c9e7bbab0f7029171101e3aa6cf7ba5e2933c9e44b07",
+        "local_file": "20230113-2023中国人工智能计算力发展评估报告-IDC&浪潮(32页).pdf",
+        "locator": "PDF 第 13 页图 7「中国人工智能服务器工作负载预测，2020-2026」2021 年柱：训练 42.4 / 推理 57.6，来源「IDC，2022」；正文「2021年中国数据中心用于推理的服务器的市场份额占比已经过半，达到57.6%，预计到2026年，用于推理的工作负载将达到62.2%」",
+        "grade": "S2",
+        "originator": "IDC 与浪潮《2022-2023 中国人工智能计算力发展评估报告》（2023-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "训练+推理=100%。正文把 2021 年值称作「推理的服务器的市场份额」，分母按服务器市场金额记。图注来源「IDC，2022」，2022 年起按预测记（版次仅知年份）。"
+    },
+    {
+      "fact_id": "idc2301-cn-ai-server-training-share-2022e",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server-workload",
+        "label": "中国人工智能服务器工作负载（训练/推理切分）"
+      },
+      "asserter": "IDC",
+      "value": 41.5,
+      "unit": "%",
+      "caliber": {
+        "workload": "训练",
+        "denominator": "AI 算力支出",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2022E@2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a061af65e678edd8b43c9e7bbab0f7029171101e3aa6cf7ba5e2933c9e44b07",
+        "local_file": "20230113-2023中国人工智能计算力发展评估报告-IDC&浪潮(32页).pdf",
+        "locator": "PDF 第 13 页图 7「中国人工智能服务器工作负载预测，2020-2026」2022 年柱：训练 41.5 / 推理 58.5，来源「IDC，2022」；正文「2021年中国数据中心用于推理的服务器的市场份额占比已经过半，达到57.6%，预计到2026年，用于推理的工作负载将达到62.2%」",
+        "grade": "S2",
+        "originator": "IDC 与浪潮《2022-2023 中国人工智能计算力发展评估报告》（2023-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "训练+推理=100%。正文把 2021 年值称作「推理的服务器的市场份额」，分母按服务器市场金额记。图注来源「IDC，2022」，2022 年起按预测记（版次仅知年份）。维谛/深知社白皮书转引 2022 年为推理 58.5%/训练 41.5%（vertiv2409-idc-*-2022），与本图一致；信通院《智算基础设施发展研究报告（2024 年）》转引时训练/推理标签颠倒（见缺口 3adaeb820346）。"
+    },
+    {
+      "fact_id": "idc2301-cn-ai-server-training-share-2023e",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server-workload",
+        "label": "中国人工智能服务器工作负载（训练/推理切分）"
+      },
+      "asserter": "IDC",
+      "value": 40.5,
+      "unit": "%",
+      "caliber": {
+        "workload": "训练",
+        "denominator": "AI 算力支出",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2023E@2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a061af65e678edd8b43c9e7bbab0f7029171101e3aa6cf7ba5e2933c9e44b07",
+        "local_file": "20230113-2023中国人工智能计算力发展评估报告-IDC&浪潮(32页).pdf",
+        "locator": "PDF 第 13 页图 7「中国人工智能服务器工作负载预测，2020-2026」2023 年柱：训练 40.5 / 推理 59.5，来源「IDC，2022」；正文「2021年中国数据中心用于推理的服务器的市场份额占比已经过半，达到57.6%，预计到2026年，用于推理的工作负载将达到62.2%」",
+        "grade": "S2",
+        "originator": "IDC 与浪潮《2022-2023 中国人工智能计算力发展评估报告》（2023-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "训练+推理=100%。正文把 2021 年值称作「推理的服务器的市场份额」，分母按服务器市场金额记。图注来源「IDC，2022」，2022 年起按预测记（版次仅知年份）。"
+    },
+    {
+      "fact_id": "idc2301-cn-ai-server-training-share-2024e",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server-workload",
+        "label": "中国人工智能服务器工作负载（训练/推理切分）"
+      },
+      "asserter": "IDC",
+      "value": 39.3,
+      "unit": "%",
+      "caliber": {
+        "workload": "训练",
+        "denominator": "AI 算力支出",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2024E@2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a061af65e678edd8b43c9e7bbab0f7029171101e3aa6cf7ba5e2933c9e44b07",
+        "local_file": "20230113-2023中国人工智能计算力发展评估报告-IDC&浪潮(32页).pdf",
+        "locator": "PDF 第 13 页图 7「中国人工智能服务器工作负载预测，2020-2026」2024 年柱：训练 39.3 / 推理 60.7，来源「IDC，2022」；正文「2021年中国数据中心用于推理的服务器的市场份额占比已经过半，达到57.6%，预计到2026年，用于推理的工作负载将达到62.2%」",
+        "grade": "S2",
+        "originator": "IDC 与浪潮《2022-2023 中国人工智能计算力发展评估报告》（2023-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "训练+推理=100%。正文把 2021 年值称作「推理的服务器的市场份额」，分母按服务器市场金额记。图注来源「IDC，2022」，2022 年起按预测记（版次仅知年份）。"
+    },
+    {
+      "fact_id": "idc2301-cn-ai-server-training-share-2025e",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server-workload",
+        "label": "中国人工智能服务器工作负载（训练/推理切分）"
+      },
+      "asserter": "IDC",
+      "value": 38.2,
+      "unit": "%",
+      "caliber": {
+        "workload": "训练",
+        "denominator": "AI 算力支出",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a061af65e678edd8b43c9e7bbab0f7029171101e3aa6cf7ba5e2933c9e44b07",
+        "local_file": "20230113-2023中国人工智能计算力发展评估报告-IDC&浪潮(32页).pdf",
+        "locator": "PDF 第 13 页图 7「中国人工智能服务器工作负载预测，2020-2026」2025 年柱：训练 38.2 / 推理 61.8，来源「IDC，2022」；正文「2021年中国数据中心用于推理的服务器的市场份额占比已经过半，达到57.6%，预计到2026年，用于推理的工作负载将达到62.2%」",
+        "grade": "S2",
+        "originator": "IDC 与浪潮《2022-2023 中国人工智能计算力发展评估报告》（2023-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "训练+推理=100%。正文把 2021 年值称作「推理的服务器的市场份额」，分母按服务器市场金额记。图注来源「IDC，2022」，2022 年起按预测记（版次仅知年份）。"
+    },
+    {
+      "fact_id": "idc2301-cn-ai-server-training-share-2026e",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server-workload",
+        "label": "中国人工智能服务器工作负载（训练/推理切分）"
+      },
+      "asserter": "IDC",
+      "value": 37.8,
+      "unit": "%",
+      "caliber": {
+        "workload": "训练",
+        "denominator": "AI 算力支出",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4a061af65e678edd8b43c9e7bbab0f7029171101e3aa6cf7ba5e2933c9e44b07",
+        "local_file": "20230113-2023中国人工智能计算力发展评估报告-IDC&浪潮(32页).pdf",
+        "locator": "PDF 第 13 页图 7「中国人工智能服务器工作负载预测，2020-2026」2026 年柱：训练 37.8 / 推理 62.2，来源「IDC，2022」；正文「2021年中国数据中心用于推理的服务器的市场份额占比已经过半，达到57.6%，预计到2026年，用于推理的工作负载将达到62.2%」",
+        "grade": "S2",
+        "originator": "IDC 与浪潮《2022-2023 中国人工智能计算力发展评估报告》（2023-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "训练+推理=100%。正文把 2021 年值称作「推理的服务器的市场份额」，分母按服务器市场金额记。图注来源「IDC，2022」，2022 年起按预测记（版次仅知年份）。维谛/深知社白皮书转引 2022 年为推理 58.5%/训练 41.5%（vertiv2409-idc-*-2022），与本图一致；信通院《智算基础设施发展研究报告（2024 年）》转引时训练/推理标签颠倒（见缺口 3adaeb820346）。"
     }
   ]
 }
