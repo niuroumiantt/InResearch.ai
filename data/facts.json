@@ -213412,6 +213412,369 @@
       "derivation": "450 千架 ÷ 10 = 45 万架；2022G 为公司指引，as_of 按报告日期取 @2022-04。",
       "corroboration": "待交叉验证",
       "notes": "对外 IDC 在用机柜；未注明是否标准机架折算。"
+    },
+    {
+      "fact_id": "nanji-p2s2-civil-share-01",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "asserter": "中国移动",
+      "value": 8.494,
+      "unit": "%",
+      "caliber": {
+        "trade": "土建",
+        "sub_trade": "土建工程·基坑支护工程",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2019-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4f4b82c4aecae875dfe636270f850d5c38797c22887334319e7b65e0c4ee412a",
+        "local_file": "土建工程.xlsx",
+        "locator": "工作表「表-03 单项工程招标控制价汇总表」（工程名称：土建工程）序号 1「基坑支护工程」金额 49480917.78 元；合计 312473967.18 元；分母为项目总控制价 582,548,992.56 元（nanji-p2s2-share-06 同源汇总表）",
+        "grade": "S2",
+        "originator": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价（编制单位未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "49480917.78 ÷ 582,548,992.56 = 8.494%；as_of 按资料目录「2019.7」取，与库内外立面分项（nanji-p2s2-facade-*）一致（原表无日期）。",
+      "corroboration": "待交叉验证",
+      "notes": "土建工程（nanji-p2s2-share-06，53.639%）的下级分项，11 项合计 312,473,967.18 元，与上级逐分一致；**分项与 share-06 合计不可同时加总**。库内 share-06 的 as_of 为 2025、外立面分项为 2019-07，时点写法待统一。"
+    },
+    {
+      "fact_id": "nanji-p2s2-civil-share-02",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "asserter": "中国移动",
+      "value": 3.272,
+      "unit": "%",
+      "caliber": {
+        "trade": "土建",
+        "sub_trade": "土建工程·桩基工程",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2019-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4f4b82c4aecae875dfe636270f850d5c38797c22887334319e7b65e0c4ee412a",
+        "local_file": "土建工程.xlsx",
+        "locator": "工作表「表-03 单项工程招标控制价汇总表」（工程名称：土建工程）序号 2「桩基工程」金额 19060620.64 元；合计 312473967.18 元；分母为项目总控制价 582,548,992.56 元（nanji-p2s2-share-06 同源汇总表）",
+        "grade": "S2",
+        "originator": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价（编制单位未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "19060620.64 ÷ 582,548,992.56 = 3.272%；as_of 按资料目录「2019.7」取，与库内外立面分项（nanji-p2s2-facade-*）一致（原表无日期）。",
+      "corroboration": "待交叉验证",
+      "notes": "土建工程（nanji-p2s2-share-06，53.639%）的下级分项，11 项合计 312,473,967.18 元，与上级逐分一致；**分项与 share-06 合计不可同时加总**。库内 share-06 的 as_of 为 2025、外立面分项为 2019-07，时点写法待统一。"
+    },
+    {
+      "fact_id": "nanji-p2s2-civil-share-03",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "asserter": "中国移动",
+      "value": 14.647,
+      "unit": "%",
+      "caliber": {
+        "trade": "土建",
+        "sub_trade": "土建工程·±0.00以下土建工程-建筑工程",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2019-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4f4b82c4aecae875dfe636270f850d5c38797c22887334319e7b65e0c4ee412a",
+        "local_file": "土建工程.xlsx",
+        "locator": "工作表「表-03 单项工程招标控制价汇总表」（工程名称：土建工程）序号 3「±0.00以下土建工程-建筑工程」金额 85323646.19 元；合计 312473967.18 元；分母为项目总控制价 582,548,992.56 元（nanji-p2s2-share-06 同源汇总表）",
+        "grade": "S2",
+        "originator": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价（编制单位未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "85323646.19 ÷ 582,548,992.56 = 14.647%；as_of 按资料目录「2019.7」取，与库内外立面分项（nanji-p2s2-facade-*）一致（原表无日期）。",
+      "corroboration": "待交叉验证",
+      "notes": "土建工程（nanji-p2s2-share-06，53.639%）的下级分项，11 项合计 312,473,967.18 元，与上级逐分一致；**分项与 share-06 合计不可同时加总**。库内 share-06 的 as_of 为 2025、外立面分项为 2019-07，时点写法待统一。"
+    },
+    {
+      "fact_id": "nanji-p2s2-civil-share-04",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "asserter": "中国移动",
+      "value": 0.657,
+      "unit": "%",
+      "caliber": {
+        "trade": "土建",
+        "sub_trade": "土建工程·±0.00以下土建工程-人防门",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2019-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4f4b82c4aecae875dfe636270f850d5c38797c22887334319e7b65e0c4ee412a",
+        "local_file": "土建工程.xlsx",
+        "locator": "工作表「表-03 单项工程招标控制价汇总表」（工程名称：土建工程）序号 4「±0.00以下土建工程-人防门」金额 3828354.14 元；合计 312473967.18 元；分母为项目总控制价 582,548,992.56 元（nanji-p2s2-share-06 同源汇总表）",
+        "grade": "S2",
+        "originator": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价（编制单位未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "3828354.14 ÷ 582,548,992.56 = 0.657%；as_of 按资料目录「2019.7」取，与库内外立面分项（nanji-p2s2-facade-*）一致（原表无日期）。",
+      "corroboration": "待交叉验证",
+      "notes": "土建工程（nanji-p2s2-share-06，53.639%）的下级分项，11 项合计 312,473,967.18 元，与上级逐分一致；**分项与 share-06 合计不可同时加总**。库内 share-06 的 as_of 为 2025、外立面分项为 2019-07，时点写法待统一。"
+    },
+    {
+      "fact_id": "nanji-p2s2-civil-share-05",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "asserter": "中国移动",
+      "value": 2.236,
+      "unit": "%",
+      "caliber": {
+        "trade": "土建",
+        "sub_trade": "土建工程·±0.00以下土建工程-装饰工程",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2019-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4f4b82c4aecae875dfe636270f850d5c38797c22887334319e7b65e0c4ee412a",
+        "local_file": "土建工程.xlsx",
+        "locator": "工作表「表-03 单项工程招标控制价汇总表」（工程名称：土建工程）序号 5「±0.00以下土建工程-装饰工程」金额 13023002.22 元；合计 312473967.18 元；分母为项目总控制价 582,548,992.56 元（nanji-p2s2-share-06 同源汇总表）",
+        "grade": "S2",
+        "originator": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价（编制单位未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "13023002.22 ÷ 582,548,992.56 = 2.236%；as_of 按资料目录「2019.7」取，与库内外立面分项（nanji-p2s2-facade-*）一致（原表无日期）。",
+      "corroboration": "待交叉验证",
+      "notes": "土建工程（nanji-p2s2-share-06，53.639%）的下级分项，11 项合计 312,473,967.18 元，与上级逐分一致；**分项与 share-06 合计不可同时加总**。库内 share-06 的 as_of 为 2025、外立面分项为 2019-07，时点写法待统一。"
+    },
+    {
+      "fact_id": "nanji-p2s2-civil-share-06",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "asserter": "中国移动",
+      "value": 5.374,
+      "unit": "%",
+      "caliber": {
+        "trade": "土建",
+        "sub_trade": "土建工程·±0.00以上土建工程-建筑工程（20.1栋）",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2019-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4f4b82c4aecae875dfe636270f850d5c38797c22887334319e7b65e0c4ee412a",
+        "local_file": "土建工程.xlsx",
+        "locator": "工作表「表-03 单项工程招标控制价汇总表」（工程名称：土建工程）序号 6「±0.00以上土建工程-建筑工程（20.1栋）」金额 31307792.7 元；合计 312473967.18 元；分母为项目总控制价 582,548,992.56 元（nanji-p2s2-share-06 同源汇总表）",
+        "grade": "S2",
+        "originator": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价（编制单位未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "31307792.7 ÷ 582,548,992.56 = 5.374%；as_of 按资料目录「2019.7」取，与库内外立面分项（nanji-p2s2-facade-*）一致（原表无日期）。",
+      "corroboration": "待交叉验证",
+      "notes": "土建工程（nanji-p2s2-share-06，53.639%）的下级分项，11 项合计 312,473,967.18 元，与上级逐分一致；**分项与 share-06 合计不可同时加总**。库内 share-06 的 as_of 为 2025、外立面分项为 2019-07，时点写法待统一。"
+    },
+    {
+      "fact_id": "nanji-p2s2-civil-share-07",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "asserter": "中国移动",
+      "value": 2.795,
+      "unit": "%",
+      "caliber": {
+        "trade": "土建",
+        "sub_trade": "土建工程·±0.00以上土建工程-外立面工程（20.1栋）",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2019-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4f4b82c4aecae875dfe636270f850d5c38797c22887334319e7b65e0c4ee412a",
+        "local_file": "土建工程.xlsx",
+        "locator": "工作表「表-03 单项工程招标控制价汇总表」（工程名称：土建工程）序号 7「±0.00以上土建工程-外立面工程（20.1栋）」金额 16282886.43 元；合计 312473967.18 元；分母为项目总控制价 582,548,992.56 元（nanji-p2s2-share-06 同源汇总表）",
+        "grade": "S2",
+        "originator": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价（编制单位未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "16282886.43 ÷ 582,548,992.56 = 2.795%；as_of 按资料目录「2019.7」取，与库内外立面分项（nanji-p2s2-facade-*）一致（原表无日期）。",
+      "corroboration": "待交叉验证",
+      "notes": "土建工程（nanji-p2s2-share-06，53.639%）的下级分项，11 项合计 312,473,967.18 元，与上级逐分一致；**分项与 share-06 合计不可同时加总**。库内 share-06 的 as_of 为 2025、外立面分项为 2019-07，时点写法待统一。"
+    },
+    {
+      "fact_id": "nanji-p2s2-civil-share-08",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "asserter": "中国移动",
+      "value": 5.309,
+      "unit": "%",
+      "caliber": {
+        "trade": "土建",
+        "sub_trade": "土建工程·±0.00以上土建工程-建筑工程（20.2栋）",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2019-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4f4b82c4aecae875dfe636270f850d5c38797c22887334319e7b65e0c4ee412a",
+        "local_file": "土建工程.xlsx",
+        "locator": "工作表「表-03 单项工程招标控制价汇总表」（工程名称：土建工程）序号 8「±0.00以上土建工程-建筑工程（20.2栋）」金额 30929974.77 元；合计 312473967.18 元；分母为项目总控制价 582,548,992.56 元（nanji-p2s2-share-06 同源汇总表）",
+        "grade": "S2",
+        "originator": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价（编制单位未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "30929974.77 ÷ 582,548,992.56 = 5.309%；as_of 按资料目录「2019.7」取，与库内外立面分项（nanji-p2s2-facade-*）一致（原表无日期）。",
+      "corroboration": "待交叉验证",
+      "notes": "土建工程（nanji-p2s2-share-06，53.639%）的下级分项，11 项合计 312,473,967.18 元，与上级逐分一致；**分项与 share-06 合计不可同时加总**。库内 share-06 的 as_of 为 2025、外立面分项为 2019-07，时点写法待统一。"
+    },
+    {
+      "fact_id": "nanji-p2s2-civil-share-09",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "asserter": "中国移动",
+      "value": 2.838,
+      "unit": "%",
+      "caliber": {
+        "trade": "土建",
+        "sub_trade": "土建工程·±0.00以上土建工程-外立面工程（20.2栋）",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2019-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4f4b82c4aecae875dfe636270f850d5c38797c22887334319e7b65e0c4ee412a",
+        "local_file": "土建工程.xlsx",
+        "locator": "工作表「表-03 单项工程招标控制价汇总表」（工程名称：土建工程）序号 9「±0.00以上土建工程-外立面工程（20.2栋）」金额 16534925.98 元；合计 312473967.18 元；分母为项目总控制价 582,548,992.56 元（nanji-p2s2-share-06 同源汇总表）",
+        "grade": "S2",
+        "originator": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价（编制单位未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "16534925.98 ÷ 582,548,992.56 = 2.838%；as_of 按资料目录「2019.7」取，与库内外立面分项（nanji-p2s2-facade-*）一致（原表无日期）。",
+      "corroboration": "待交叉验证",
+      "notes": "土建工程（nanji-p2s2-share-06，53.639%）的下级分项，11 项合计 312,473,967.18 元，与上级逐分一致；**分项与 share-06 合计不可同时加总**。库内 share-06 的 as_of 为 2025、外立面分项为 2019-07，时点写法待统一。"
+    },
+    {
+      "fact_id": "nanji-p2s2-civil-share-10",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "asserter": "中国移动",
+      "value": 6.063,
+      "unit": "%",
+      "caliber": {
+        "trade": "土建",
+        "sub_trade": "土建工程·±0.00以上土建工程-建筑工程（20.4栋）",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2019-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4f4b82c4aecae875dfe636270f850d5c38797c22887334319e7b65e0c4ee412a",
+        "local_file": "土建工程.xlsx",
+        "locator": "工作表「表-03 单项工程招标控制价汇总表」（工程名称：土建工程）序号 10「±0.00以上土建工程-建筑工程（20.4栋）」金额 35317612.84 元；合计 312473967.18 元；分母为项目总控制价 582,548,992.56 元（nanji-p2s2-share-06 同源汇总表）",
+        "grade": "S2",
+        "originator": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价（编制单位未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "35317612.84 ÷ 582,548,992.56 = 6.063%；as_of 按资料目录「2019.7」取，与库内外立面分项（nanji-p2s2-facade-*）一致（原表无日期）。",
+      "corroboration": "待交叉验证",
+      "notes": "土建工程（nanji-p2s2-share-06，53.639%）的下级分项，11 项合计 312,473,967.18 元，与上级逐分一致；**分项与 share-06 合计不可同时加总**。库内 share-06 的 as_of 为 2025、外立面分项为 2019-07，时点写法待统一。"
+    },
+    {
+      "fact_id": "nanji-p2s2-civil-share-11",
+      "metric_id": "cost_share_by_trade",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-nanji-phase2-stage2",
+        "label": "中国移动南方基地二期工程二阶段（施工总承包）"
+      },
+      "asserter": "中国移动",
+      "value": 1.954,
+      "unit": "%",
+      "caliber": {
+        "trade": "土建",
+        "sub_trade": "土建工程·±0.00以上土建工程-外立面工程（20.4栋）",
+        "denominator": "项目总造价",
+        "stage": "招标控制价",
+        "region": "CN"
+      },
+      "as_of": "2019-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4f4b82c4aecae875dfe636270f850d5c38797c22887334319e7b65e0c4ee412a",
+        "local_file": "土建工程.xlsx",
+        "locator": "工作表「表-03 单项工程招标控制价汇总表」（工程名称：土建工程）序号 11「±0.00以上土建工程-外立面工程（20.4栋）」金额 11384233.49 元；合计 312473967.18 元；分母为项目总控制价 582,548,992.56 元（nanji-p2s2-share-06 同源汇总表）",
+        "grade": "S2",
+        "originator": "中国移动南方基地二期工程二阶段项目施工总承包 招标控制价（编制单位未署名）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "11384233.49 ÷ 582,548,992.56 = 1.954%；as_of 按资料目录「2019.7」取，与库内外立面分项（nanji-p2s2-facade-*）一致（原表无日期）。",
+      "corroboration": "待交叉验证",
+      "notes": "土建工程（nanji-p2s2-share-06，53.639%）的下级分项，11 项合计 312,473,967.18 元，与上级逐分一致；**分项与 share-06 合计不可同时加总**。库内 share-06 的 as_of 为 2025、外立面分项为 2019-07，时点写法待统一。"
     }
   ]
 }
