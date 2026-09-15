@@ -198841,6 +198841,285 @@
       "corroboration": "待交叉验证",
       "notes": "柱值读自图 55 数据标签，与图中 yoy 标签相互印证（73→115 +58%、115→201 +75%、201→294 +46%、294→503 +71%、503→682 +36%）。与 IDC 美元口径（lcleak25-idc-*）、科智咨询人民币口径（kezhi2312-*）口径不同，不作比较。",
       "derivation": "中商产业研究院原预测发布时点未注明，按转引报告（2024-07）所在年份取 @2024。"
+    },
+    {
+      "fact_id": "hysec2408-corz-coreweave-contracted-2024-06",
+      "metric_id": "contracted_capacity_mw",
+      "entity": {
+        "type": "company",
+        "id": "core-scientific",
+        "label": "Core Scientific"
+      },
+      "asserter": "Core Scientific",
+      "value": 270,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "含客户订单",
+        "region": "US"
+      },
+      "as_of": "2024-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "008a228f6adca9728ddb583b9b8896e28f6a5deae07a530ef3336974651bee9a",
+        "local_file": "科技-AI缺电驱动加密挖矿电力价值重估，综合考虑电力及算力优选矿股Alpha-美股加密矿工股专题.pdf",
+        "locator": "PDF 第 20 页「CORZ与coreweave合计签订270MW的HPC托管业务」：「2024年6月25日，Core Scientific宣布与 CoreWeave 签订新合同，交付约 70 兆瓦的额外基础设施……在之前宣布的 200 兆瓦 HPC 托管基础设施的基础上，这份协议将使 Core Scientific 到 2025 年下半年为 CoreWeave 提供约 270 兆瓦的 HPC 基础设施。CoreWeave 保留进一步扩展的选择权，即在其他 Core Scientific 站点额外提供约 230 兆瓦」",
+        "grade": "S4",
+        "originator": "Core Scientific 公告（经华源证券《AI缺电驱动加密挖矿电力价值重估——美股加密矿工股专题》（2024-08-04）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "截至 2024-06-25 两份合同合计约 270 MW（6/3 约 200 MW + 6/25 约 70 MW），另有约 230 MW 选择权未计入。库内 SemiAnalysis 2024-09 为 382 MW（sa-mdc-core-scientific-coreweave-382mw），时点不同。MW 为托管 HPC 电力口径。"
+    },
+    {
+      "fact_id": "hysec2408-corz-coreweave-lease-price",
+      "metric_id": "power_capacity_lease_price",
+      "entity": {
+        "type": "contract",
+        "id": "corz-coreweave-200mw-2024",
+        "label": "Core Scientific × CoreWeave 200 MW HPC 托管合同（2024-06）"
+      },
+      "asserter": "华源证券",
+      "value": 1.45,
+      "unit": "百万美元/MW/年",
+      "caliber": {
+        "inclusion": "仅电力容量",
+        "tenor": "10-15 年",
+        "region": "US"
+      },
+      "as_of": "2024-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "008a228f6adca9728ddb583b9b8896e28f6a5deae07a530ef3336974651bee9a",
+        "local_file": "科技-AI缺电驱动加密挖矿电力价值重估，综合考虑电力及算力优选矿股Alpha-美股加密矿工股专题.pdf",
+        "locator": "PDF 第 21 页「缺电背景下，Coreweave愿意为数据中心的供电付出高溢价」：「根据coreweave和CORZ签订的协议，coreweave需要在12年内，每年支付约2.9亿美元，合计35亿美元（$17.5M/MW）」；第 22 页：「此外每年支付1.45M/MW（支付12年）」；第 23 页：「HPC托管收入145万美元/MW，毛利率80%，电力成本与公用事业费用转嫁至客户」",
+        "grade": "S3",
+        "originator": "华源证券《AI缺电驱动加密挖矿电力价值重估——美股加密矿工股专题》（2024-08-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "华源按 2.9 亿美元/年 ÷ 200 MW 计；电力与公用事业费用由 CoreWeave 另行承担，另 CoreWeave 需承担超过 1.5 M/MW 的改造 capex。与库内 Hut 8/Cipher 托管单价（1.2–1.9）同为「仅电力容量」口径。"
+    },
+    {
+      "fact_id": "hysec2408-corz-hpc-dc-cost-new-lower",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "benchmark",
+        "id": "us-tier1-hpc-dc-new",
+        "label": "美国新建 Tier 1 HPC 数据中心（Core Scientific 口径）"
+      },
+      "asserter": "Core Scientific",
+      "value": 7,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "未注明",
+        "stage": "估算",
+        "region": "US",
+        "basis": "厂商指引"
+      },
+      "as_of": "2024",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "008a228f6adca9728ddb583b9b8896e28f6a5deae07a530ef3336974651bee9a",
+        "local_file": "科技-AI缺电驱动加密挖矿电力价值重估，综合考虑电力及算力优选矿股Alpha-美股加密矿工股专题.pdf",
+        "locator": "PDF 第 21 页：「根据CORZ公告，建造一个新的一级 HPC 数据中心的成本在每兆瓦 700 万美元至 1200 万美元之间，高功率比特币挖矿数据中心改造成一级 HPC 数据中心的成本在每兆瓦 500 万美元至 800 万美元之间」",
+        "grade": "S4",
+        "originator": "Core Scientific 公告（经华源证券《AI缺电驱动加密挖矿电力价值重估——美股加密矿工股专题》（2024-08-04）转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文仅称「根据CORZ公告」，未写公告日期；上下文为 2024-06 与 CoreWeave 合同，as_of 取 2024。",
+      "corroboration": "待交叉验证",
+      "notes": "原文未说明是否含 IT 设备，按上下文（华源另以施耐德计算器估非 IT capex 约 10 M/MW）应为不含 IT，但原文未明说，cost_scope 记未注明。"
+    },
+    {
+      "fact_id": "hysec2408-corz-hpc-dc-cost-new-upper",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "benchmark",
+        "id": "us-tier1-hpc-dc-new",
+        "label": "美国新建 Tier 1 HPC 数据中心（Core Scientific 口径）"
+      },
+      "asserter": "Core Scientific",
+      "value": 12,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "未注明",
+        "stage": "估算",
+        "region": "US",
+        "basis": "厂商指引"
+      },
+      "as_of": "2024",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "008a228f6adca9728ddb583b9b8896e28f6a5deae07a530ef3336974651bee9a",
+        "local_file": "科技-AI缺电驱动加密挖矿电力价值重估，综合考虑电力及算力优选矿股Alpha-美股加密矿工股专题.pdf",
+        "locator": "PDF 第 21 页：「根据CORZ公告，建造一个新的一级 HPC 数据中心的成本在每兆瓦 700 万美元至 1200 万美元之间，高功率比特币挖矿数据中心改造成一级 HPC 数据中心的成本在每兆瓦 500 万美元至 800 万美元之间」",
+        "grade": "S4",
+        "originator": "Core Scientific 公告（经华源证券《AI缺电驱动加密挖矿电力价值重估——美股加密矿工股专题》（2024-08-04）转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文仅称「根据CORZ公告」，未写公告日期；上下文为 2024-06 与 CoreWeave 合同，as_of 取 2024。",
+      "corroboration": "待交叉验证",
+      "notes": "原文未说明是否含 IT 设备，按上下文（华源另以施耐德计算器估非 IT capex 约 10 M/MW）应为不含 IT，但原文未明说，cost_scope 记未注明。"
+    },
+    {
+      "fact_id": "hysec2408-corz-hpc-dc-cost-conversion-lower",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "benchmark",
+        "id": "us-tier1-hpc-dc-conversion",
+        "label": "美国比特币矿场改造为 Tier 1 HPC 数据中心（Core Scientific 口径）"
+      },
+      "asserter": "Core Scientific",
+      "value": 5,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "未注明",
+        "stage": "估算",
+        "region": "US",
+        "basis": "厂商指引"
+      },
+      "as_of": "2024",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "008a228f6adca9728ddb583b9b8896e28f6a5deae07a530ef3336974651bee9a",
+        "local_file": "科技-AI缺电驱动加密挖矿电力价值重估，综合考虑电力及算力优选矿股Alpha-美股加密矿工股专题.pdf",
+        "locator": "PDF 第 21 页：「根据CORZ公告，建造一个新的一级 HPC 数据中心的成本在每兆瓦 700 万美元至 1200 万美元之间，高功率比特币挖矿数据中心改造成一级 HPC 数据中心的成本在每兆瓦 500 万美元至 800 万美元之间」",
+        "grade": "S4",
+        "originator": "Core Scientific 公告（经华源证券《AI缺电驱动加密挖矿电力价值重估——美股加密矿工股专题》（2024-08-04）转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文仅称「根据CORZ公告」，未写公告日期；上下文为 2024-06 与 CoreWeave 合同，as_of 取 2024。",
+      "corroboration": "待交叉验证",
+      "notes": "原文未说明是否含 IT 设备，按上下文（华源另以施耐德计算器估非 IT capex 约 10 M/MW）应为不含 IT，但原文未明说，cost_scope 记未注明。"
+    },
+    {
+      "fact_id": "hysec2408-corz-hpc-dc-cost-conversion-upper",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "benchmark",
+        "id": "us-tier1-hpc-dc-conversion",
+        "label": "美国比特币矿场改造为 Tier 1 HPC 数据中心（Core Scientific 口径）"
+      },
+      "asserter": "Core Scientific",
+      "value": 8,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "未注明",
+        "stage": "估算",
+        "region": "US",
+        "basis": "厂商指引"
+      },
+      "as_of": "2024",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "008a228f6adca9728ddb583b9b8896e28f6a5deae07a530ef3336974651bee9a",
+        "local_file": "科技-AI缺电驱动加密挖矿电力价值重估，综合考虑电力及算力优选矿股Alpha-美股加密矿工股专题.pdf",
+        "locator": "PDF 第 21 页：「根据CORZ公告，建造一个新的一级 HPC 数据中心的成本在每兆瓦 700 万美元至 1200 万美元之间，高功率比特币挖矿数据中心改造成一级 HPC 数据中心的成本在每兆瓦 500 万美元至 800 万美元之间」",
+        "grade": "S4",
+        "originator": "Core Scientific 公告（经华源证券《AI缺电驱动加密挖矿电力价值重估——美股加密矿工股专题》（2024-08-04）转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文仅称「根据CORZ公告」，未写公告日期；上下文为 2024-06 与 CoreWeave 合同，as_of 取 2024。",
+      "corroboration": "待交叉验证",
+      "notes": "原文未说明是否含 IT 设备，按上下文（华源另以施耐德计算器估非 IT capex 约 10 M/MW）应为不含 IT，但原文未明说，cost_scope 记未注明。"
+    },
+    {
+      "fact_id": "hysec2408-sa-global-dc-critical-it-all-2023",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "region",
+        "id": "global-dc",
+        "label": "全球数据中心（关键 IT 电力）"
+      },
+      "asserter": "SemiAnalysis",
+      "value": 49000,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "Global"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "008a228f6adca9728ddb583b9b8896e28f6a5deae07a530ef3336974651bee9a",
+        "local_file": "科技-AI缺电驱动加密挖矿电力价值重估，综合考虑电力及算力优选矿股Alpha-美股加密矿工股专题.pdf",
+        "locator": "PDF 第 16 页「2.1 Semianalysis 预测2026年AI数据中心电力容量达到40GW」：「根据semianalysis预测，全球数据中心关键IT电力需求将从2023年的49GW增长至2026年的96GW，其中AI数据中心将消耗约40GW」",
+        "grade": "S4",
+        "originator": "SemiAnalysis（经华源证券《AI缺电驱动加密挖矿电力价值重估——美股加密矿工股专题》2024-08-04 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文 GW，×1000 换为 MW。SemiAnalysis 称「关键 IT 电力需求」，按其模型口径即在运关键 IT 容量；status 记 L8（通电投运）。"
+    },
+    {
+      "fact_id": "hysec2408-sa-global-dc-critical-it-all-2026e",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "region",
+        "id": "global-dc",
+        "label": "全球数据中心（关键 IT 电力）"
+      },
+      "asserter": "SemiAnalysis",
+      "value": 96000,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "Global"
+      },
+      "as_of": "2026E@2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "008a228f6adca9728ddb583b9b8896e28f6a5deae07a530ef3336974651bee9a",
+        "local_file": "科技-AI缺电驱动加密挖矿电力价值重估，综合考虑电力及算力优选矿股Alpha-美股加密矿工股专题.pdf",
+        "locator": "PDF 第 16 页「2.1 Semianalysis 预测2026年AI数据中心电力容量达到40GW」：「根据semianalysis预测，全球数据中心关键IT电力需求将从2023年的49GW增长至2026年的96GW，其中AI数据中心将消耗约40GW」",
+        "grade": "S4",
+        "originator": "SemiAnalysis（经华源证券《AI缺电驱动加密挖矿电力价值重估——美股加密矿工股专题》2024-08-04 转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "原文 GW，×1000 换为 MW。SemiAnalysis 称「关键 IT 电力需求」，按其模型口径即在运关键 IT 容量；status 记 L8（通电投运）。",
+      "derivation": "SemiAnalysis 原文发布时点未在转引中注明，按转引报告年份取 @2024。"
+    },
+    {
+      "fact_id": "hysec2408-sa-global-dc-critical-it-ai-2026e",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "region",
+        "id": "global-ai-dc",
+        "label": "全球 AI 数据中心（关键 IT 电力）"
+      },
+      "asserter": "SemiAnalysis",
+      "value": 40000,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "Global"
+      },
+      "as_of": "2026E@2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "008a228f6adca9728ddb583b9b8896e28f6a5deae07a530ef3336974651bee9a",
+        "local_file": "科技-AI缺电驱动加密挖矿电力价值重估，综合考虑电力及算力优选矿股Alpha-美股加密矿工股专题.pdf",
+        "locator": "PDF 第 16 页「2.1 Semianalysis 预测2026年AI数据中心电力容量达到40GW」：「根据semianalysis预测，全球数据中心关键IT电力需求将从2023年的49GW增长至2026年的96GW，其中AI数据中心将消耗约40GW」",
+        "grade": "S4",
+        "originator": "SemiAnalysis（经华源证券《AI缺电驱动加密挖矿电力价值重估——美股加密矿工股专题》2024-08-04 转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "原文 GW，×1000 换为 MW。SemiAnalysis 称「关键 IT 电力需求」，按其模型口径即在运关键 IT 容量；status 记 L8（通电投运）。AI 为「约 40GW」，是 96 GW 的子集，不可相加。",
+      "derivation": "SemiAnalysis 原文发布时点未在转引中注明，按转引报告年份取 @2024。"
     }
   ]
 }
