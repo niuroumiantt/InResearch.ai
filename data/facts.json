@@ -193808,6 +193808,68 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "瑞银模型假设：以四省 2026 年前 5 个月电网代理购电均价打 85 折，含税；用于光伏+储能（利用率 22%/1,927 小时，股权 IRR 20.1%）与风电+储能（31%/2,716 小时，股权 IRR 20.6%）测算。不是实际执行电价。"
+    },
+    {
+      "fact_id": "ebscn2606-mccoy-global-gt-demand-2019",
+      "metric_id": "gas_turbine_demand_annual",
+      "entity": {
+        "type": "market",
+        "id": "global-gas-turbine-power-gen",
+        "label": "全球发电用燃气轮机市场"
+      },
+      "asserter": "McCoy Power Reports",
+      "value": 36.8,
+      "unit": "GW/年",
+      "caliber": {
+        "demand_scope": "未注明",
+        "scenario": "单一情景",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "74616ea04bb857d3d05e4ed09c81eda5deeb9de8cbf9ec1c0cc010d92ba3acff",
+        "local_file": "20260625-光大证券-光大证券-数据中心发电设备行业深度报告：数据中心建设带动发电设备需求提升，燃机、柴发产业链深度受益(50页).pdf",
+        "locator": "PDF 第 14 页「2.2 三大燃气轮机龙头占据市场主导地位」：「根据 McCoy Power Reports 数据，2019-2025 年全球发电用燃气轮机需求量由 36.8GW 增长至 96.1GW，CAGR 为 17.3%；其中 2025 年全球发电用燃气轮机需求量为 96.1GW，同比增长 71.0%」（图 13 来源 McCoy Power Reports）",
+        "grade": "S3",
+        "originator": "McCoy Power Reports（经光大证券《数据中心发电设备行业深度报告》2026-06-25 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「发电用燃气轮机需求量」，未说明是否含数据中心表后机组、是否按订单统计，demand_scope 记未注明。"
+    },
+    {
+      "fact_id": "ebscn2606-mccoy-global-gt-demand-2025",
+      "metric_id": "gas_turbine_demand_annual",
+      "entity": {
+        "type": "market",
+        "id": "global-gas-turbine-power-gen",
+        "label": "全球发电用燃气轮机市场"
+      },
+      "asserter": "McCoy Power Reports",
+      "value": 96.1,
+      "unit": "GW/年",
+      "caliber": {
+        "demand_scope": "未注明",
+        "scenario": "单一情景",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "74616ea04bb857d3d05e4ed09c81eda5deeb9de8cbf9ec1c0cc010d92ba3acff",
+        "local_file": "20260625-光大证券-光大证券-数据中心发电设备行业深度报告：数据中心建设带动发电设备需求提升，燃机、柴发产业链深度受益(50页).pdf",
+        "locator": "PDF 第 14 页「2.2 三大燃气轮机龙头占据市场主导地位」：「根据 McCoy Power Reports 数据，2019-2025 年全球发电用燃气轮机需求量由 36.8GW 增长至 96.1GW，CAGR 为 17.3%；其中 2025 年全球发电用燃气轮机需求量为 96.1GW，同比增长 71.0%」（图 13 来源 McCoy Power Reports）",
+        "grade": "S3",
+        "originator": "McCoy Power Reports（经光大证券《数据中心发电设备行业深度报告》2026-06-25 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「发电用燃气轮机需求量」，未说明是否含数据中心表后机组、是否按订单统计，demand_scope 记未注明。同比 +71.0%；2019–2025 CAGR 17.3%。库内伯恩斯坦全球燃机产能 2025 年 64 GW/年（global-gas-turbine-capacity-2025），需求远超产能。"
     }
   ]
 }
