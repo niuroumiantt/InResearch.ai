@@ -190318,6 +190318,266 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "表 1 在 GW 负载表中给出，按 AI 负载电力切分，分母未写明，记未注明；训练+推理=100%。"
+    },
+    {
+      "fact_id": "sic2311-caict-cn-dc-device-compute-2022",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-national-compute",
+        "label": "中国算力规模（全国）"
+      },
+      "asserter": "中国信通院",
+      "value": 302.0,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "总算力",
+        "precision": "混合/未注明",
+        "area": "全国",
+        "status": "未注明",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "02c89306b63653475aeb73def6e191c01c177f0084ca6732d8cfac886708cde2",
+        "local_file": "20231122-国家信息中心：2023人工智能2.0时代的公共智算服务发展指南(32页).pdf",
+        "locator": "PDF 第 16 页（报告页 10）「智算服务供给量质齐升」：「截至 2022 年底，我国数据中心设备算力总规模达到 302EFlops，连续两年增速超过 50%，其中智能算力规模达到 178.5EFlops，增速达到 72%，算力占比达到 59%」，脚注 1「数据来源：中国信息通信研究院，《中国算力发展指数白皮书（2023 年）》，2023 年 9 月」",
+        "grade": "S2",
+        "originator": "中国信通院《中国算力发展指数白皮书（2023 年）》（2023-09，经国家信息中心、阿里云《人工智能 2.0 时代的公共智算服务发展指南》（2023）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文口径为「数据中心设备算力总规模」，连续两年增速超 50%。库内网信办《数字中国发展报告（2022 年）》同年「算力总规模」180 EFLOPS（caimi-lc-wp-cn-compute-2022），两者统计范围/折算不同，勿直接比较。 原件为纯图片 PDF，本条为读图录入。"
+    },
+    {
+      "fact_id": "sic2311-caict-cn-ai-compute-2022",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-national-compute",
+        "label": "中国算力规模（全国）"
+      },
+      "asserter": "中国信通院",
+      "value": 178.5,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "混合/未注明",
+        "area": "全国",
+        "status": "未注明",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "02c89306b63653475aeb73def6e191c01c177f0084ca6732d8cfac886708cde2",
+        "local_file": "20231122-国家信息中心：2023人工智能2.0时代的公共智算服务发展指南(32页).pdf",
+        "locator": "PDF 第 16 页（报告页 10）「智算服务供给量质齐升」：「截至 2022 年底，我国数据中心设备算力总规模达到 302EFlops，连续两年增速超过 50%，其中智能算力规模达到 178.5EFlops，增速达到 72%，算力占比达到 59%」，脚注 1「数据来源：中国信息通信研究院，《中国算力发展指数白皮书（2023 年）》，2023 年 9 月」",
+        "grade": "S2",
+        "originator": "中国信通院《中国算力发展指数白皮书（2023 年）》（2023-09，经国家信息中心、阿里云《人工智能 2.0 时代的公共智算服务发展指南》（2023）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "增速 72%，占数据中心设备算力 59%。 原件为纯图片 PDF，本条为读图录入。"
+    },
+    {
+      "fact_id": "sic2311-zhengweimin-cn-ai-compute-2025e",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-national-compute",
+        "label": "中国算力规模（全国）"
+      },
+      "asserter": "郑纬民",
+      "value": 1800.0,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "混合/未注明",
+        "area": "全国",
+        "status": "未注明",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2023-04",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "02c89306b63653475aeb73def6e191c01c177f0084ca6732d8cfac886708cde2",
+        "local_file": "20231122-国家信息中心：2023人工智能2.0时代的公共智算服务发展指南(32页).pdf",
+        "locator": "PDF 第 11 页（报告页 05）「人工智能发展进入 2.0 时代」：「郑纬民院士预计，到 2025 年我国智能算力总量将超过 1800EFlops、占总算力比重超过 85%」，脚注 1「数据来源：AI 算力或迎高速扩张时代 专家热议智算时代新趋势，https://it.gmw.cn/2023-04/25/content_36522153.htm」",
+        "grade": "S2",
+        "originator": "郑纬民（中国工程院院士）（经光明网 2023-04-25 报道、国家信息中心、阿里云《人工智能 2.0 时代的公共智算服务发展指南》（2023）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「超过」，按下界记；智能算力占总算力比重超过 85%。 原件为纯图片 PDF，本条为读图录入。"
+    },
+    {
+      "fact_id": "sic2311-beijing-public-ai-compute-platform",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "beijing-ai-public-compute-platform",
+        "label": "北京市人工智能公共算力平台（京东电信·京能集团共同承建）"
+      },
+      "asserter": "未注明",
+      "value": 4000.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "规划",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "02c89306b63653475aeb73def6e191c01c177f0084ca6732d8cfac886708cde2",
+        "local_file": "20231122-国家信息中心：2023人工智能2.0时代的公共智算服务发展指南(32页).pdf",
+        "locator": "PDF 第 28 页（报告页 22）案例「北京市：统筹布局突破算力制约」（2）：「北京市采用市区两级共建的方式，布局启动了“北京市人工智能公共算力平台”建设，由北京电信和京能集团共同承建，预计 2024 年一季度建成总计 4000P 公共算力」",
+        "grade": "S3",
+        "originator": "国家信息中心、阿里云《人工智能 2.0 时代的公共智算服务发展指南》（2023）实践案例"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「预计 2024 年一季度建成」，状态记规划；未写精度。 原件为纯图片 PDF，本条为读图录入；as_of 取指南发布月（另一副本文件名注 2023-10）。"
+    },
+    {
+      "fact_id": "sic2311-beijing-etdz-compute-scheduling-platform",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "beijing-etdz-compute-scheduling-platform",
+        "label": "北京经开区算力调度服务平台（统筹调度规模）"
+      },
+      "asserter": "未注明",
+      "value": 9000.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "规划",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023-10",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "02c89306b63653475aeb73def6e191c01c177f0084ca6732d8cfac886708cde2",
+        "local_file": "20231122-国家信息中心：2023人工智能2.0时代的公共智算服务发展指南(32页).pdf",
+        "locator": "PDF 第 28 页（报告页 22）（3）「打造算力调度服务平台提升一体化调度能力」：「未来计划开展异构、通算、智算、超算等超过 9000P 以上算力资源的统筹调度」",
+        "grade": "S3",
+        "originator": "国家信息中心、阿里云《人工智能 2.0 时代的公共智算服务发展指南》（2023）实践案例"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "是调度平台纳管的多方算力规模目标，不是单一智算中心自建算力；原文「超过…以上」按下界记。 原件为纯图片 PDF，本条为读图录入；as_of 取指南发布月（另一副本文件名注 2023-10）。"
+    },
+    {
+      "fact_id": "sic2311-fudan-cfff-compute",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "fudan-cfff",
+        "label": "复旦大学 CFFF 智算平台（切问一号 + 近思一号）"
+      },
+      "asserter": "复旦大学",
+      "value": 28.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "已投运",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "02c89306b63653475aeb73def6e191c01c177f0084ca6732d8cfac886708cde2",
+        "local_file": "20231122-国家信息中心：2023人工智能2.0时代的公共智算服务发展指南(32页).pdf",
+        "locator": "PDF 第 30 页（报告页 24）案例「复旦大学智算平台（CFFF）」（1）：「形成了国内高校规模最大的异构智能计算集群，算力总规模达到 28PFlops，可提供超千卡并行智能计算，千卡并行的有效算力达 92%，万卡并行有效算力达 90%」",
+        "grade": "S3",
+        "originator": "国家信息中心、阿里云《人工智能 2.0 时代的公共智算服务发展指南》（2023）实践案例"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文如此；「超千卡并行」通常对应数百 PFLOPS，28 PFLOPS 量级存疑 [未核]，勿用于推算。平台 2023-06-27 正式上线，「切问」一号托管于阿里云乌兰察布数据中心。 原件为纯图片 PDF，本条为读图录入；as_of 取指南发布月（另一副本文件名注 2023-10）。"
+    },
+    {
+      "fact_id": "sic2311-xpeng-fuyao-aidc",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "xpeng-fuyao-aidc-ulanqab",
+        "label": "小鹏汽车「扶摇」自动驾驶智算中心（阿里云乌兰察布）"
+      },
+      "asserter": "小鹏汽车",
+      "value": 600.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "已投运",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "02c89306b63653475aeb73def6e191c01c177f0084ca6732d8cfac886708cde2",
+        "local_file": "20231122-国家信息中心：2023人工智能2.0时代的公共智算服务发展指南(32页).pdf",
+        "locator": "PDF 第 31 页（报告页 25）案例「小鹏汽车：借力打造“扶摇”以更低成本实现更强算力」：「基于阿里云智算中心，建成了国内最大的自动驾驶专用智算中心“扶摇”，算力可达 600PFLOPS（每秒浮点运算 60 亿亿次）」",
+        "grade": "S3",
+        "originator": "国家信息中心、阿里云《人工智能 2.0 时代的公共智算服务发展指南》（2023）实践案例"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文称使小鹏自动驾驶核心模型训练速度提升近 170 倍。 原件为纯图片 PDF，本条为读图录入；as_of 取指南发布月（另一副本文件名注 2023-10）。"
+    },
+    {
+      "fact_id": "sic2311-hangzhou-open-compute-target-2025",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "region",
+        "id": "hangzhou",
+        "label": "杭州市"
+      },
+      "asserter": "杭州市人民政府",
+      "value": 5.0,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "未注明",
+        "precision": "FP16",
+        "area": "杭州",
+        "status": "规划目标",
+        "region": "CN",
+        "basis": "政策目标"
+      },
+      "as_of": "2025目标",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "02c89306b63653475aeb73def6e191c01c177f0084ca6732d8cfac886708cde2",
+        "local_file": "20231122-国家信息中心：2023人工智能2.0时代的公共智算服务发展指南(32页).pdf",
+        "locator": "PDF 第 29 页（报告页 23）案例「杭州市：抓住 MaaS 模式变革机遇打造模型输出源地」：「2023 年 7 月，杭州市发布《杭州市人民政府办公厅关于加快推进人工智能产业创新发展的实施意见》（杭政办函〔2023〕55 号）…根据规划，到 2025 年杭州可开放算力规模将达 5000PFLOPS（FP16）以上」",
+        "grade": "S3",
+        "originator": "杭州市人民政府办公厅（经国家信息中心、阿里云《人工智能 2.0 时代的公共智算服务发展指南》（2023）实践案例转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文 5000 PFLOPS = 5 EFLOPS，「以上」按下界记；口径为「可开放算力规模」，未区分智算/通算。原件为纯图片 PDF，本条为读图录入。"
     }
   ]
 }
