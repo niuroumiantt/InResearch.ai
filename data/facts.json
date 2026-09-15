@@ -190002,6 +190002,38 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "训练+推理=100%。正文把 2021 年值称作「推理的服务器的市场份额」，分母按服务器市场金额记。图注来源「IDC，2022」，2022 年起按预测记（版次仅知年份）。维谛/深知社白皮书转引 2022 年为推理 58.5%/训练 41.5%（vertiv2409-idc-*-2022），与本图一致；信通院《智算基础设施发展研究报告（2024 年）》转引时训练/推理标签颠倒（见缺口 3adaeb820346）。"
+    },
+    {
+      "fact_id": "nvidia-ocp2410-gb200-nvl72-nvlink-cables",
+      "metric_id": "rack_component_count",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200-nvl72",
+        "label": "NVIDIA GB200 NVL72（OCP 设计贡献）"
+      },
+      "asserter": "英伟达",
+      "value": 5000.0,
+      "unit": "个",
+      "caliber": {
+        "product": "NVIDIA GB200 NVL72（OCP 设计贡献）",
+        "component": "铜缆",
+        "denominator": "每机架",
+        "spec_basis": "厂商发布会/白皮书",
+        "region": "Global"
+      },
+      "as_of": "2024-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8223da46f5d7fc9486c925cebfb37a60a2ff85a06ea9f406ebaacc75507ba117",
+        "local_file": "2024 OCP Global Summit Keynote - NVIDIA.pdf",
+        "locator": "PDF 第 6 页「Announcing NVIDIA GB200 NVL72 OCP Design Contribution」Key Contributions：「NVLink Cable Cartridge — 5,000 NVLink cables」",
+        "grade": "S2",
+        "originator": "英伟达 Ian Buck，2024 OCP 全球峰会主题演讲《Fostering Collaboration: Designing Data Centers for Tomorrow's AI Workloads》（2024-10）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "NVLink 铜缆线槽内的线缆根数。同页：增强母排 1,400A、盲插液冷歧管 130kW 冷却能力、液冷流量 5 L/min、计算托盘 1U 液冷 4 GPU、交换托盘 1U 液冷 550 条 NVLink 通道；第 5 页 NVL 域 72 GPU、18 颗 NVSwitch——NVSwitch 芯片数与冷却能力无对应取值未录。as_of 取 OCP 2024 全球峰会月份（2024-10-15～17）。"
     }
   ]
 }
