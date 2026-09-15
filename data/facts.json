@@ -188182,6 +188182,348 @@
       "notes": "装饰部分单位工程（土建子项），不含机电与 IT 设备。直接费 3,814,885.97 = 人工 + 材料 + 机械；费用和利润 529,865.83 = 管理费 28,956.91（2.648%）+ 利润 31,581.40（2.888%）+ 总价措施 162,248.68（其中安全文明施工费 156,048，14.27%）+ 规费 307,078.84；附加税费 17,361.63（0.36%）。**总造价含其他项目费 3,509,934.04 元**＝专业工程暂估价 3,150,760（附F F.5）+ 其销项税 346,583.60 + 附加 12,590.44——暂估价不是已发生成本，占总造价 42%，比较单方造价时应剔除；表中「增值税销项」477,922.70 只含建安部分，不含暂估价的销项税。",
       "asserter": "华为",
       "derivation": "as_of 与项目名取资料目录名「2016.12 华为(永州)云计算数据中心设计项目」（本表工程名称栏未填项目名），与原表 11% 销项税率（2016-05 至 2018-04 适用）一致；原表本身无日期。数值为原表照录。"
+    },
+    {
+      "fact_id": "yongzhou-dc1-plumbing-cost-item-labor",
+      "metric_id": "cost_composition_by_item",
+      "entity": {
+        "type": "project",
+        "id": "huawei-yongzhou-dc1-plumbing",
+        "label": "华为（永州）云计算数据中心 1#安装工程·给排水工程"
+      },
+      "value": 52461.19,
+      "unit": "元",
+      "caliber": {
+        "cost_item": "人工费",
+        "stage": "招标控制价",
+        "basis_of_share": "金额",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2016-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e337c3cb2745acb10e243624c91a60007ab6b2278d8cf421425e7b3b3ec3795e",
+        "local_file": "给排水工程.xls",
+        "locator": "工作表「附E新表3-1-2 单位工程费用计算表（安装专用）（一般计税法）」 第 6 行 1.1 人工费",
+        "grade": "S2",
+        "originator": "未具名造价单位（标段：华为数据安装工程）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取资料目录名「2016.12 华为(永州)云计算数据中心设计项目」，与原表 11% 销项税率（2016-05 至 2018-04 适用）一致；原表本身无日期",
+      "corroboration": "待交叉验证",
+      "notes": "给排水专业单位工程。直接费 735,285.64 = 人工 + 材料 + 机械；费用和利润 36,248.83（管理费 1,200.26、利润 1,308.35、脚手架 928.95、规费 32,811.27）；附加税费 3,083.05（0.36%）无对应 cost_item；其他项目费为空。**本费用表表头写「用途：投标」，同文件清单与人材机表写「用途：招标」**，stage 按同项目消防报警工程先例记招标控制价 [未核]。综合人工市场价 76 元/工日。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "yongzhou-dc1-plumbing-cost-item-material",
+      "metric_id": "cost_composition_by_item",
+      "entity": {
+        "type": "project",
+        "id": "huawei-yongzhou-dc1-plumbing",
+        "label": "华为（永州）云计算数据中心 1#安装工程·给排水工程"
+      },
+      "value": 675861.74,
+      "unit": "元",
+      "caliber": {
+        "cost_item": "材料费",
+        "stage": "招标控制价",
+        "basis_of_share": "金额",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2016-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e337c3cb2745acb10e243624c91a60007ab6b2278d8cf421425e7b3b3ec3795e",
+        "local_file": "给排水工程.xls",
+        "locator": "工作表「附E新表3-1-2 单位工程费用计算表（安装专用）（一般计税法）」 第 8 行 1.2 材料费",
+        "grade": "S2",
+        "originator": "未具名造价单位（标段：华为数据安装工程）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取资料目录名「2016.12 华为(永州)云计算数据中心设计项目」，与原表 11% 销项税率（2016-05 至 2018-04 适用）一致；原表本身无日期",
+      "corroboration": "待交叉验证",
+      "notes": "给排水专业单位工程。直接费 735,285.64 = 人工 + 材料 + 机械；费用和利润 36,248.83（管理费 1,200.26、利润 1,308.35、脚手架 928.95、规费 32,811.27）；附加税费 3,083.05（0.36%）无对应 cost_item；其他项目费为空。**本费用表表头写「用途：投标」，同文件清单与人材机表写「用途：招标」**，stage 按同项目消防报警工程先例记招标控制价 [未核]。综合人工市场价 76 元/工日。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "yongzhou-dc1-plumbing-cost-item-machine",
+      "metric_id": "cost_composition_by_item",
+      "entity": {
+        "type": "project",
+        "id": "huawei-yongzhou-dc1-plumbing",
+        "label": "华为（永州）云计算数据中心 1#安装工程·给排水工程"
+      },
+      "value": 6962.71,
+      "unit": "元",
+      "caliber": {
+        "cost_item": "机械费",
+        "stage": "招标控制价",
+        "basis_of_share": "金额",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2016-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e337c3cb2745acb10e243624c91a60007ab6b2278d8cf421425e7b3b3ec3795e",
+        "local_file": "给排水工程.xls",
+        "locator": "工作表「附E新表3-1-2 单位工程费用计算表（安装专用）（一般计税法）」 第 9 行 1.3 机械费",
+        "grade": "S2",
+        "originator": "未具名造价单位（标段：华为数据安装工程）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取资料目录名「2016.12 华为(永州)云计算数据中心设计项目」，与原表 11% 销项税率（2016-05 至 2018-04 适用）一致；原表本身无日期",
+      "corroboration": "待交叉验证",
+      "notes": "给排水专业单位工程。直接费 735,285.64 = 人工 + 材料 + 机械；费用和利润 36,248.83（管理费 1,200.26、利润 1,308.35、脚手架 928.95、规费 32,811.27）；附加税费 3,083.05（0.36%）无对应 cost_item；其他项目费为空。**本费用表表头写「用途：投标」，同文件清单与人材机表写「用途：招标」**，stage 按同项目消防报警工程先例记招标控制价 [未核]。综合人工市场价 76 元/工日。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "yongzhou-dc1-plumbing-cost-item-fees",
+      "metric_id": "cost_composition_by_item",
+      "entity": {
+        "type": "project",
+        "id": "huawei-yongzhou-dc1-plumbing",
+        "label": "华为（永州）云计算数据中心 1#安装工程·给排水工程"
+      },
+      "value": 32811.27,
+      "unit": "元",
+      "caliber": {
+        "cost_item": "规费",
+        "stage": "招标控制价",
+        "basis_of_share": "金额",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2016-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e337c3cb2745acb10e243624c91a60007ab6b2278d8cf421425e7b3b3ec3795e",
+        "local_file": "给排水工程.xls",
+        "locator": "工作表「附E新表3-1-2 单位工程费用计算表（安装专用）（一般计税法）」 第 18 行 2.4 规费",
+        "grade": "S2",
+        "originator": "未具名造价单位（标段：华为数据安装工程）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取资料目录名「2016.12 华为(永州)云计算数据中心设计项目」，与原表 11% 销项税率（2016-05 至 2018-04 适用）一致；原表本身无日期",
+      "corroboration": "待交叉验证",
+      "notes": "给排水专业单位工程。直接费 735,285.64 = 人工 + 材料 + 机械；费用和利润 36,248.83（管理费 1,200.26、利润 1,308.35、脚手架 928.95、规费 32,811.27）；附加税费 3,083.05（0.36%）无对应 cost_item；其他项目费为空。**本费用表表头写「用途：投标」，同文件清单与人材机表写「用途：招标」**，stage 按同项目消防报警工程先例记招标控制价 [未核]。综合人工市场价 76 元/工日。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "yongzhou-dc1-plumbing-cost-item-pretax",
+      "metric_id": "cost_composition_by_item",
+      "entity": {
+        "type": "project",
+        "id": "huawei-yongzhou-dc1-plumbing",
+        "label": "华为（永州）云计算数据中心 1#安装工程·给排水工程"
+      },
+      "value": 771534.46,
+      "unit": "元",
+      "caliber": {
+        "cost_item": "税前工程造价",
+        "stage": "招标控制价",
+        "basis_of_share": "金额",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2016-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e337c3cb2745acb10e243624c91a60007ab6b2278d8cf421425e7b3b3ec3795e",
+        "local_file": "给排水工程.xls",
+        "locator": "工作表「附E新表3-1-2 单位工程费用计算表（安装专用）（一般计税法）」 第 24 行 3 建安费用 1+2",
+        "grade": "S2",
+        "originator": "未具名造价单位（标段：华为数据安装工程）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取资料目录名「2016.12 华为(永州)云计算数据中心设计项目」，与原表 11% 销项税率（2016-05 至 2018-04 适用）一致；原表本身无日期",
+      "corroboration": "待交叉验证",
+      "notes": "给排水专业单位工程。直接费 735,285.64 = 人工 + 材料 + 机械；费用和利润 36,248.83（管理费 1,200.26、利润 1,308.35、脚手架 928.95、规费 32,811.27）；附加税费 3,083.05（0.36%）无对应 cost_item；其他项目费为空。**本费用表表头写「用途：投标」，同文件清单与人材机表写「用途：招标」**，stage 按同项目消防报警工程先例记招标控制价 [未核]。综合人工市场价 76 元/工日。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "yongzhou-dc1-plumbing-cost-item-vat",
+      "metric_id": "cost_composition_by_item",
+      "entity": {
+        "type": "project",
+        "id": "huawei-yongzhou-dc1-plumbing",
+        "label": "华为（永州）云计算数据中心 1#安装工程·给排水工程"
+      },
+      "value": 84868.79,
+      "unit": "元",
+      "caliber": {
+        "cost_item": "增值税销项",
+        "stage": "招标控制价",
+        "basis_of_share": "金额",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2016-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e337c3cb2745acb10e243624c91a60007ab6b2278d8cf421425e7b3b3ec3795e",
+        "local_file": "给排水工程.xls",
+        "locator": "工作表「附E新表3-1-2 单位工程费用计算表（安装专用）（一般计税法）」 第 25 行 4 销项税额 3×税率 11%",
+        "grade": "S2",
+        "originator": "未具名造价单位（标段：华为数据安装工程）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取资料目录名「2016.12 华为(永州)云计算数据中心设计项目」，与原表 11% 销项税率（2016-05 至 2018-04 适用）一致；原表本身无日期",
+      "corroboration": "待交叉验证",
+      "notes": "给排水专业单位工程。直接费 735,285.64 = 人工 + 材料 + 机械；费用和利润 36,248.83（管理费 1,200.26、利润 1,308.35、脚手架 928.95、规费 32,811.27）；附加税费 3,083.05（0.36%）无对应 cost_item；其他项目费为空。**本费用表表头写「用途：投标」，同文件清单与人材机表写「用途：招标」**，stage 按同项目消防报警工程先例记招标控制价 [未核]。综合人工市场价 76 元/工日。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "yongzhou-dc1-plumbing-cost-item-total",
+      "metric_id": "cost_composition_by_item",
+      "entity": {
+        "type": "project",
+        "id": "huawei-yongzhou-dc1-plumbing",
+        "label": "华为（永州）云计算数据中心 1#安装工程·给排水工程"
+      },
+      "value": 859486.31,
+      "unit": "元",
+      "caliber": {
+        "cost_item": "总造价",
+        "stage": "招标控制价",
+        "basis_of_share": "金额",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2016-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e337c3cb2745acb10e243624c91a60007ab6b2278d8cf421425e7b3b3ec3795e",
+        "local_file": "给排水工程.xls",
+        "locator": "工作表「附E新表3-1-2 单位工程费用计算表（安装专用）（一般计税法）」 第 31 行 工程造价 3+4+5+6",
+        "grade": "S2",
+        "originator": "未具名造价单位（标段：华为数据安装工程）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取资料目录名「2016.12 华为(永州)云计算数据中心设计项目」，与原表 11% 销项税率（2016-05 至 2018-04 适用）一致；原表本身无日期",
+      "corroboration": "待交叉验证",
+      "notes": "给排水专业单位工程。直接费 735,285.64 = 人工 + 材料 + 机械；费用和利润 36,248.83（管理费 1,200.26、利润 1,308.35、脚手架 928.95、规费 32,811.27）；附加税费 3,083.05（0.36%）无对应 cost_item；其他项目费为空。**本费用表表头写「用途：投标」，同文件清单与人材机表写「用途：招标」**，stage 按同项目消防报警工程先例记招标控制价 [未核]。综合人工市场价 76 元/工日。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "yongzhou-dc1-plumbing-price-pump-production",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "project",
+        "id": "huawei-yongzhou-dc1-plumbing",
+        "label": "华为（永州）云计算数据中心 1#安装工程·给排水工程"
+      },
+      "value": 53023.18,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "水泵",
+        "spec": "立式变频生产加压泵",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "招标控制价",
+        "tax": "不含税",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "已同记数量"
+      },
+      "as_of": "2016-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e337c3cb2745acb10e243624c91a60007ab6b2278d8cf421425e7b3b3ec3795e",
+        "local_file": "给排水工程.xls",
+        "locator": "工作表「附L新表4-1 单位工程人材机用量与单价表（一般计税法）」 第 141 行：立式变频生产加压泵，台，数量 4，基期价 152000 元，市场价（除税）53023.18 元",
+        "grade": "S2",
+        "originator": "未具名造价单位（标段：华为数据安装工程）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取资料目录名「2016.12 华为(永州)云计算数据中心设计项目」，与原表 11% 销项税率（2016-05 至 2018-04 适用）一致；原表本身无日期",
+      "corroboration": "待交叉验证",
+      "notes": "补充主材市场价（除税），不含安装。基期价 152000 元，市场价仅为基期价的 34.9%，差异大，原表未说明。 stage 同本文件成本条说明（表头「投标/招标」混用）。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "yongzhou-dc1-plumbing-price-pump-domestic",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "project",
+        "id": "huawei-yongzhou-dc1-plumbing",
+        "label": "华为（永州）云计算数据中心 1#安装工程·给排水工程"
+      },
+      "value": 30360.04,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "水泵",
+        "spec": "立式变频生活加压泵",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "招标控制价",
+        "tax": "不含税",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "已同记数量"
+      },
+      "as_of": "2016-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e337c3cb2745acb10e243624c91a60007ab6b2278d8cf421425e7b3b3ec3795e",
+        "local_file": "给排水工程.xls",
+        "locator": "工作表「附L新表4-1 单位工程人材机用量与单价表（一般计税法）」 第 142 行：立式变频生活加压泵，台，数量 3，基期价 152000 元，市场价（除税）30360.04 元",
+        "grade": "S2",
+        "originator": "未具名造价单位（标段：华为数据安装工程）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取资料目录名「2016.12 华为(永州)云计算数据中心设计项目」，与原表 11% 销项税率（2016-05 至 2018-04 适用）一致；原表本身无日期",
+      "corroboration": "待交叉验证",
+      "notes": "补充主材市场价（除税），不含安装。基期价 152000 元，市场价仅为基期价的 20.0%，差异大，原表未说明。 stage 同本文件成本条说明（表头「投标/招标」混用）。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "yongzhou-dc1-plumbing-price-pump-submersible",
+      "metric_id": "equipment_unit_price",
+      "entity": {
+        "type": "project",
+        "id": "huawei-yongzhou-dc1-plumbing",
+        "label": "华为（永州）云计算数据中心 1#安装工程·给排水工程"
+      },
+      "value": 1539.38,
+      "unit": "元/计量单位",
+      "caliber": {
+        "equipment": "水泵",
+        "spec": "潜水泵 Q=10m³/h H=10m n=2900rpm N=1.5kW",
+        "uom": "台",
+        "price_scope": "仅设备",
+        "stage": "招标控制价",
+        "tax": "不含税",
+        "region": "CN",
+        "currency": "人民币",
+        "quantity_note": "已同记数量"
+      },
+      "as_of": "2016-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e337c3cb2745acb10e243624c91a60007ab6b2278d8cf421425e7b3b3ec3795e",
+        "local_file": "给排水工程.xls",
+        "locator": "工作表「附L新表4-1 单位工程人材机用量与单价表（一般计税法）」 第 140 行：潜水泵 Q=10m³/h H=10m n=2900rpm N=1.5kW，台，数量 2，基期价空，市场价（除税）1539.38 元",
+        "grade": "S2",
+        "originator": "未具名造价单位（标段：华为数据安装工程）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取资料目录名「2016.12 华为(永州)云计算数据中心设计项目」，与原表 11% 销项税率（2016-05 至 2018-04 适用）一致；原表本身无日期",
+      "corroboration": "待交叉验证",
+      "notes": "补充主材市场价（除税），不含安装。原文规格中「m?/h」为 m³/h 的编码乱码。 stage 同本文件成本条说明（表头「投标/招标」混用）。",
+      "asserter": "华为"
     }
   ]
 }
