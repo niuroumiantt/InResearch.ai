@@ -185960,6 +185960,105 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "英伟达估计 80%–90% 为推理，本条为区间上界；分母未交代。 region 记未披露：原文未写地域（谷歌一条为全球能耗口径）。"
+    },
+    {
+      "fact_id": "ademe2023-france-dc-electricity-2030e-bau",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "france-datacenters",
+        "label": "法国数据中心（合计）"
+      },
+      "asserter": "Ademe & Arcep",
+      "value": 16.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "Business-as-usual",
+        "scope": "未注明",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2023-10",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f9df4538ad22db81f7300584e4e52953fae2a82e2e4209d3e04f0720276af599",
+        "local_file": "ADEME-Arcep_2023_Etude numerique et environnement - analyse prospective 2030 et 2050 - note de synthese au gouvernement.pdf",
+        "locator": "第 8 页：「data centres could also account for a very large share by 2030 (up to 16 TWh, or 30% of the total power consumption in 2030 under the Business-as-usual scenario」",
+        "grade": "S2",
+        "originator": "ADEME–Arcep《Assessment of the digital environmental footprint in France – forward-looking analysis for 2030 and 2050》政府综述（Arcep 英文版，2023）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「up to」，按上界记；占 2030 年数字服务总用电 30%。 region 枚举无国家级取值，按欧洲记 EU，entity 区分法国。as_of 发布月取 PDF 创建日期 2023-10。"
+    },
+    {
+      "fact_id": "ademe2023-france-dc-electricity-2050e-bau",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "france-datacenters",
+        "label": "法国数据中心（合计）"
+      },
+      "asserter": "Ademe & Arcep",
+      "value": 39.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "Business-as-usual",
+        "scope": "未注明",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "预测"
+      },
+      "as_of": "2050E@2023-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f9df4538ad22db81f7300584e4e52953fae2a82e2e4209d3e04f0720276af599",
+        "local_file": "ADEME-Arcep_2023_Etude numerique et environnement - analyse prospective 2030 et 2050 - note de synthese au gouvernement.pdf",
+        "locator": "第 2 页：「power consumption in France would increase by around 80% to reach 93 TWh (of which 39 TWh can be attributed to data centres)」",
+        "grade": "S2",
+        "originator": "ADEME–Arcep《Assessment of the digital environmental footprint in France – forward-looking analysis for 2030 and 2050》政府综述（Arcep 英文版，2023）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Business-as-usual 情景下 2050 年数字服务总用电 93 TWh 中的数据中心部分。 region 枚举无国家级取值，按欧洲记 EU，entity 区分法国。as_of 发布月取 PDF 创建日期 2023-10。"
+    },
+    {
+      "fact_id": "ademe2023-france-dc-electricity-2050e-self-correction",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "france-datacenters",
+        "label": "法国数据中心（合计）"
+      },
+      "asserter": "Ademe & Arcep",
+      "value": 72.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "Self-correction wager",
+        "scope": "未注明",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "预测"
+      },
+      "as_of": "2050E@2023-10",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "f9df4538ad22db81f7300584e4e52953fae2a82e2e4209d3e04f0720276af599",
+        "local_file": "ADEME-Arcep_2023_Etude numerique et environnement - analyse prospective 2030 et 2050 - note de synthese au gouvernement.pdf",
+        "locator": "第 13 页：「Data centres could become the heaviest consumers of energy by 2050 (up to 72 TWh, or 52% of digital's total power consumption in 2050 under the “Self-correction wager” scenario)」",
+        "grade": "S2",
+        "originator": "ADEME–Arcep《Assessment of the digital environmental footprint in France – forward-looking analysis for 2030 and 2050》政府综述（Arcep 英文版，2023）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「up to」，按上界记；占 2050 年数字服务总用电 52%。Self-correction wager 即 ADEME 法文 Pari réparateur。 region 枚举无国家级取值，按欧洲记 EU，entity 区分法国。as_of 发布月取 PDF 创建日期 2023-10。"
     }
   ]
 }
