@@ -216908,6 +216908,38 @@
       "corroboration": "待交叉验证",
       "asserter": "华信咨询设计研究院",
       "notes": "华信按 30% 年增速从 315 万架外推（315 x 1.3^6 = 1520），是机械外推而非市场预测；原文「可用机架规模」，基数为工信部标准机架口径，counting 按标准机架折算记。同段「2020 年初 IT 设备运行功率约 6700MW、耗电约 587 亿度」为按 4kW x 53.2% 上架率推算的年化运行值，非统计用电量，不记。（正文页眉为「中国数据中心产业（宁夏）发展白皮书（2022 年）」，封面为《中国数据中心产业低碳发展实践研究（2023 年）》，华信咨询设计研究院 2023-01-06）"
+    },
+    {
+      "fact_id": "cmri2312-800ge-sr-module-power-test",
+      "metric_id": "optics_module_power",
+      "entity": {
+        "type": "component",
+        "id": "800ge-8x100g-sr-module",
+        "label": "800GE（8×100G）500m/2km 可插拔光模块"
+      },
+      "value": 15.0,
+      "unit": "W",
+      "caliber": {
+        "speed": "800G",
+        "optical_scheme": "未注明",
+        "power_stat": "典型值",
+        "basis": "实测",
+        "region": "CN"
+      },
+      "as_of": "2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3cdd741e560103fecc5c0d46e1c2f0b6655f3fb584586c43f0b3bcb51c072309",
+        "local_file": "B400G以太网助力智算中心光互联.pptx",
+        "locator": "第 14 页「800GE(8×100G) 500m/2km 高速接口测试」：「本次测试 800GE 短距光模块性能整体较为稳定，模块功耗在 15w 左右和工作温度在 50~60 ℃范围仍有待优化空间」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 pptx 文件元数据创建时间 2023-12-22；幻灯片第 3 页引用 IEEE P802.3df D3.1（2023-11-14），测试时点未写",
+      "corroboration": "待交叉验证",
+      "asserter": "中国移动研究院",
+      "notes": "中国移动研究院基础网络技术研究所（程伟强）实测，A/B 两家厂商 500m 与 2km 模块合并表述「15w 左右」，记典型值；未分厂商、未注明光学方案。"
     }
   ]
 }
