@@ -186089,6 +186089,66 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "SemiAnalysis 推理成本模型的输入假设（2×H100 BF16、24/7 满载），不是市场成交或挂牌价。同作者同月《GPU Cloud Economics Explained》称最优惠成交约 2 美元/小时（sa2312-h100-rental-favorable-deals）。region 未披露：原文未写地域。"
+    },
+    {
+      "fact_id": "sa2302-a100-hourly-assumed-chatgpt",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "product",
+        "id": "a100-chatgpt-inference-assumed",
+        "label": "A100 GPU 小时成本（ChatGPT 推理成本模型假设）"
+      },
+      "asserter": "SemiAnalysis",
+      "value": 1.0,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "模型隐含价",
+        "unit": "单卡",
+        "region": "未披露"
+      },
+      "as_of": "2023-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c498787d9c97cd53504340fee76d5cdafd50bc778abb14bc8a51cf1351bcad0e",
+        "local_file": "The Inference Cost Of Search Disruption – Large Language Model Cost Analysis (1).pdf",
+        "locator": "PDF 第 3 页模型假设说明：「…50% hardware utilization rates due to purely idle time, and $1 cost per GPU hour」（模型为 ~3,617 台 HGX A100）",
+        "grade": "S3",
+        "originator": "SemiAnalysis《The Inference Cost Of Search Disruption – Large Language Model Cost Analysis》（Dylan Patel、Afzal Ahmad，2023-02-09）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "SemiAnalysis ChatGPT 推理成本模型（每日 694,444 美元、每次查询 0.36 美分）的输入假设，不是市场成交或挂牌价；原文写 cost per GPU hour。 region 未披露：原文未写地域。"
+    },
+    {
+      "fact_id": "sa2302-tpuv4-hourly-assumed",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "product",
+        "id": "tpuv4-search-inference-assumed",
+        "label": "Google TPUv4 小时成本（搜索推理成本模型假设）"
+      },
+      "asserter": "SemiAnalysis",
+      "value": 0.8,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "模型隐含价",
+        "unit": "单卡",
+        "region": "未披露"
+      },
+      "as_of": "2023-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c498787d9c97cd53504340fee76d5cdafd50bc778abb14bc8a51cf1351bcad0e",
+        "local_file": "The Inference Cost Of Search Disruption – Large Language Model Cost Analysis (1).pdf",
+        "locator": "PDF 第 10 页：「TPUv4 drops the cost per query to 0.19 cents, assuming $0.80 per TPUv4 per hour」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《The Inference Cost Of Search Disruption – Large Language Model Cost Analysis》（Dylan Patel、Afzal Ahmad，2023-02-09）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "推理成本模型的输入假设，不是市场价；TPU 按单芯片计。 region 未披露：原文未写地域。"
     }
   ]
 }
