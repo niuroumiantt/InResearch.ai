@@ -217262,6 +217262,37 @@
         "originator": "工业和信息化部（2018-12-21 发布，2019-04-01 实施）"
       },
       "notes": "原文 12 小时，换算 720 分钟；前提是不能确定应急水车抵达时间。A 级为本标准引用的国标分级。"
+    },
+    {
+      "fact_id": "fms25-upscale-ai-rack-power-2027e",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "industry",
+        "id": "ai-compute-rack-frontier",
+        "label": "前沿 AI 训练机柜功率演进"
+      },
+      "value": 600.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "设计目标",
+        "era": "路线图目标",
+        "power_basis": "未披露",
+        "region": "Global"
+      },
+      "as_of": "2027E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5597d5bd6bdcc8af749cb0d41d9668e56c38a7909f45ed7241bfe6a6edbe36cf",
+        "local_file": "20250807_NETC-301-1_Thodupunoori.pdf",
+        "locator": "第 2 页「Executive Summary – AI Infrastructure Trilemma」：「Power & IO walls: racks scaling from 120 kW (2024) → 600 kW (2027) with 1 MW prototypes; requires full liquid cooling and 1.6 T / 200 G-lane SerDes」",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "UpScale AI",
+      "notes": "FMS 2025（2025-08-07）UpScale AI 工程高级总监 Santhosh Thodupunoori 演讲，未注出处，数值与英伟达 Kyber NVL576 路线图（库内 ocp25lt-kyber-nvl576-rack-power 600kW）一致，很可能同源，不算互证。「2024 年 120 kW」为当期 NVL72 级别，库内已有多条；「1 MW prototypes」未给时点，不记。第 15 页另称「loads climb beyond 300 kW per rack」为泛述。"
     }
   ]
 }
