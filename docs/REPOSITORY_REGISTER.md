@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：800。
+在册文件：801。
 
 | 身份 | 文件数 |
 |---|---|
@@ -23,7 +23,7 @@
 | 已退役入口 | 3 |
 | 在册数据/索引 | 26 |
 | 配套说明 | 41 |
-| 测试 | 60 |
+| 测试 | 61 |
 
 ## 在册记录集合
 
@@ -37,7 +37,7 @@
 | `data/companies.json` | records | 248 |
 | `data/contracts.json` | records | 2 |
 | `data/datacenter_cost_model.json` | groups | 4 |
-| `data/facts.json` | records | 5545 |
+| `data/facts.json` | records | 5549 |
 | `data/policies.json` | records | 2 |
 | `data/prices.json` | records | 207 |
 | `data/product_docs_plan.csv` | rows | 801 |
@@ -1037,6 +1037,7 @@
 | `tests/unit/test_commands.py` | 测试 |
 | `tests/unit/test_continuous_reader.py` | 测试 |
 | `tests/unit/test_datacenter_news.py` | 测试 |
+| `tests/unit/test_declared_admin.py` | 测试 |
 | `tests/unit/test_deep_read.py` | 测试 |
 | `tests/unit/test_deep_read_transactions.py` | 测试 |
 | `tests/unit/test_display_regressions.py` | 测试 |

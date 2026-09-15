@@ -495,6 +495,17 @@ def main():
         initialize_runtime(ROOT)
         from inresearch.knowledge.indicators import refresh
         refresh(ROOT)
+    if AUTH_ON:
+        # 部署声明的管理员（HUB_ADMIN_USERNAME / HUB_ADMIN_PASSWORD，见 auth.py 模块说明）：
+        # 启动即对齐账号表，声明为空则什么都不做。只记结果，永远不记密码。
+        try:
+            outcome = auth.apply_declared_admin()
+        except ValueError as error:
+            sys.exit(f"部署声明的管理员无效：{error}")
+        if outcome and outcome != "unchanged":
+            declared = auth.declared_admin()[0]
+            print(f"部署声明的管理员 {declared}：{outcome}")
+            log_run("auth", f"部署声明的管理员 {declared}：{outcome}")
     srv = ThreadingHTTPServer((host, port), Handler)
     where = "http://localhost:%d" % port if host == "127.0.0.1" else f"{host}:{port}"
     print(f"inresearch.ai 服务运行于 {where}（静态 + 管理 API）"

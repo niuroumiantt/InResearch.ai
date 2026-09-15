@@ -179319,6 +179319,137 @@
       "corroboration": "待交叉验证",
       "notes": "原文「单机架功率」，按设计取值记。总建筑面积约 26 000 ㎡（第 185 页）。 原件为扫描图片 PDF（201 页，只到印刷页 188，第 7–8 章缺页），本条为读图录入；页码写「PDF 第 n 页（印刷页 m）」。",
       "derivation": "原文未写年份，报告为 2017 年度版，as_of 推定为 2017"
+    },
+    {
+      "fact_id": "bordage2021-montevecchi2020-eu28-dc-electricity-2019",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "eu28-datacenters",
+        "label": "欧盟 28 国数据中心（合计）"
+      },
+      "asserter": "Montevecchi et al.",
+      "value": 79.98,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "预测"
+      },
+      "as_of": "2019E@2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b91f8fbbaf97f9d7df2ef0dc844ad1a556f87707e3952366b2fcfb397bc21a07",
+        "local_file": "Digital technologies in Europe - an environmental life cycle approach (Greens-EFA, 2021-12-07).pdf",
+        "locator": "第 57 页 5.4.1 Table 50「Sensitivity analysis – Energy consumption of data centres – Input data」：Base case「Borderstep (EU-28 in 2019)」Data centres electricity consumption (TWh) = 79.98；脚注 i Hintemann, R., Hinterholzer, S., Montevecchi, F., & Stickler, T. (2020)",
+        "grade": "S3",
+        "originator": "Montevecchi et al. (2020)，奥地利环境署与 Borderstep 研究所《Energy-efficient Cloud Computing Technologies and Policies for an Eco-friendly Cloud Market》（Hintemann, Hinterholzer, Montevecchi, Stickler）（经 Bordage 等《Digital technologies in Europe: an environmental life cycle approach》（GreenIT.fr 牵头，受欧洲议会绿党/欧洲自由联盟党团委托，2021-12-07）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本研究正文称该值为「Borderstep」，脚注与附录 Table 113 指向同一份 Hintemann/Montevecchi 等（2020）报告；附录第 49 页说明「Additional data have been provided by Borderstep to adapt their model to the year 2019」，即 2019 年值是 Borderstep 为本研究补算的模型输出。asserter 与库内同一报告的 2018 年值（jrc2024-montevecchi2020-eu28-dc-electricity-2018，76.8 TWh，附录 Table 113 同列 76.8）保持同一写法。同表另列最小值 39.54 TWh（ICT impact study，EU-27 2020，库内已有 VHK & Viegand Maagøe 39.5）与最大值 98 TWh（按 JRC 2015–2020 插值），见缺口。 **basis 记预测、as_of 带 @2020**：附录第 51–52 页两次写明 2019 年分项与合计「extracted from the EU-Cloud Study (2019 is forecast)」——该报告 2020 年发布、以 2018 年数据建模，2019 年值是模型外推，不是事后核算。"
+    },
+    {
+      "fact_id": "bordage2021-montevecchi2020-eu28-dc-pue-2018",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "eu28-datacenters",
+        "label": "欧盟 28 国数据中心（合计）"
+      },
+      "asserter": "Montevecchi et al.",
+      "value": 1.75,
+      "unit": "比值",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "EU"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "96e6a133efa1d3333311ca981b6aa2fd5972fc8a04fc5da8f1c50b9aa09a00c6",
+        "local_file": "Appendices - Digital technologies in Europe (Greens-EFA, 2021-12-07).pdf",
+        "locator": "附录第 48 页 Table 113「Main data provided by Borderstep Institiute, 2020 (2018 and 2020 data)」Energy 行「Average PUE = 1.75 (2018), 1.71 (2020)」",
+        "grade": "S3",
+        "originator": "Montevecchi et al. (2020)，奥地利环境署与 Borderstep 研究所《Energy-efficient Cloud Computing Technologies and Policies for an Eco-friendly Cloud Market》（Hintemann, Hinterholzer, Montevecchi, Stickler）（经 Bordage 等《Appendices of the report — Digital technologies in Europe: an environmental life cycle approach》（GreenIT.fr 牵头，受欧洲议会绿党/欧洲自由联盟党团委托，2021-12-07）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "EU-28 全部数据中心平均 PUE，Borderstep 模型（IDC 2018 设备存量 + 负载曲线 + 功耗参数）输出，不是计量值。同格 2020 年 1.71 出自同一份 2020 年报告、为预测值，dc_pue 的 basis 无预测档，未录。同表 2018 年 EU-28 数据中心用电 76.8 TWh 与库内 JRC 转引值一致。"
+    },
+    {
+      "fact_id": "bordage2021-montevecchi2020-eu28-dc-it-electricity-2019e",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "eu28-datacenters",
+        "label": "欧盟 28 国数据中心（合计）"
+      },
+      "asserter": "Montevecchi et al.",
+      "value": 46.1,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "IT 设备能耗",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "预测"
+      },
+      "as_of": "2019E@2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "96e6a133efa1d3333311ca981b6aa2fd5972fc8a04fc5da8f1c50b9aa09a00c6",
+        "local_file": "Appendices - Digital technologies in Europe (Greens-EFA, 2021-12-07).pdf",
+        "locator": "附录第 51 页 Table 115「ICT equipment – Energy consumption」Annual energy consumption TWh (2019)：Servers 33.5、Storage 9.5、Networks 3.1、TOTAL 46.1；同页「extracted from the EU-Cloud Study (2019 is forecast)」",
+        "grade": "S3",
+        "originator": "Montevecchi et al. (2020)，奥地利环境署与 Borderstep 研究所《Energy-efficient Cloud Computing Technologies and Policies for an Eco-friendly Cloud Market》（经 Bordage 等《Appendices of the report — Digital technologies in Europe》（GreenIT.fr 牵头，受欧洲议会绿党/欧洲自由联盟党团委托，2021-12-07）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "IT 设备能耗（服务器+存储+网络），不含制冷配电。同页 Table 117 非 IT 设备 33.9 TWh，46.1 + 33.9 = 80.0 ≈ 全站 79.98（bordage2021-montevecchi2020-eu28-dc-electricity-2019）。两者之比 1.73 是算出来的，原文未写，不当 PUE 录。"
+    },
+    {
+      "fact_id": "bordage2021-montevecchi2020-eu28-dc-server-base-2018",
+      "metric_id": "installed_server_base",
+      "entity": {
+        "type": "region",
+        "id": "eu28-datacenters",
+        "label": "欧盟 28 国数据中心（合计）"
+      },
+      "asserter": "Montevecchi et al.",
+      "value": 1121.9,
+      "unit": "万台",
+      "caliber": {
+        "provider_tier": "未分层",
+        "counterparty_role": "全市场（未分侧）",
+        "region": "EU",
+        "basis": "模型输出"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "96e6a133efa1d3333311ca981b6aa2fd5972fc8a04fc5da8f1c50b9aa09a00c6",
+        "local_file": "Appendices - Digital technologies in Europe (Greens-EFA, 2021-12-07).pdf",
+        "locator": "附录第 50 页 Table 114「ICT Equipment – Stock」Servers TOTAL 2018 = 11,219,000（High-end 18,000、Mid-range 453,000、Volume 10,613,000、Application specific hardware 135,000）",
+        "grade": "S3",
+        "originator": "Montevecchi et al. (2020)，奥地利环境署与 Borderstep 研究所《Energy-efficient Cloud Computing Technologies and Policies for an Eco-friendly Cloud Market》（经 Bordage 等《Appendices of the report — Digital technologies in Europe》（GreenIT.fr 牵头，受欧洲议会绿党/欧洲自由联盟党团委托，2021-12-07）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "11,219,000 台 = 1,121.9 万台，EU-28 数据中心服务器在役存量（Borderstep 以 IDC 2018 设备存量为底）。同表 2020 年 11,316,000 为报告预测、2019 年 11,267,500 为本研究取两者平均，均未录。counterparty_role 枚举无「全部数据中心」，记全市场。"
     }
   ]
 }
