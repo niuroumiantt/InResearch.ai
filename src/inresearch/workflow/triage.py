@@ -106,12 +106,6 @@ def cmd_sample(args):
     print(json.dumps({'files': count, 'errors': errors, 'conflicts': conflicts}))
 
 
-def cmd_run(args):
-    # Keep one implementation of the pending-file loop and its concurrency.
-    from inresearch.workflow import score as m4_triage_local
-    m4_triage_local.cmd_run(args)
-
-
 def cmd_collect(args):
     c = legacy_batch_client(); pending = L1.DATA / 'l1_pending'
     seen = set(); rows = []
@@ -151,10 +145,9 @@ def main():
     ap = argparse.ArgumentParser(); sub = ap.add_subparsers(dest='cmd', required=True)
     p = sub.add_parser('preview'); p.add_argument('--limit', type=int, default=20); p.add_argument('--seed', type=int, default=7); p.add_argument('--text-only', action='store_true')
     s = sub.add_parser('sample'); s.add_argument('--limit', type=int, default=50); s.add_argument('--seed', type=int, default=7); s.add_argument('--text-only', action='store_true')
-    r = sub.add_parser('run'); r.add_argument('--limit', type=int, default=0); r.add_argument('--workers', type=int, default=1)
     sub.add_parser('collect')
     a = ap.parse_args()
-    {'preview': cmd_preview, 'sample': cmd_sample, 'run': cmd_run, 'collect': cmd_collect}[a.cmd](a)
+    {'preview': cmd_preview, 'sample': cmd_sample, 'collect': cmd_collect}[a.cmd](a)
 
 if __name__ == '__main__':
     main()
