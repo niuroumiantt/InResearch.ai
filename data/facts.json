@@ -134083,7 +134083,10 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "约 7,290 万吨二氧化碳 = 72.9 百万吨（原文为 CO₂）。蓝皮书由两家联合发布，asserter 取中国投资协会能源投资专业委员会，另一家见 originator。"
+      "notes": "约 7,290 万吨二氧化碳 = 72.9 百万吨（原文为 CO₂）。蓝皮书由两家联合发布，asserter 取中国投资协会能源投资专业委员会，另一家见 originator。",
+      "disputed_by": [
+        "gp2105-cn-dc-co2-2020"
+      ]
     },
     {
       "fact_id": "odcc2210-cn-dc-electricity-2020",
@@ -134147,7 +134150,10 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "6,464 万吨 = 64.64 百万吨；未写 CO₂ 还是 CO₂e。同年《零碳中国·数据中心》蓝皮书为 72.9（odcc2309-zcc-cn-dc-co2-2020）。"
+      "notes": "6,464 万吨 = 64.64 百万吨；未写 CO₂ 还是 CO₂e。同年《零碳中国·数据中心》蓝皮书为 72.9（odcc2309-zcc-cn-dc-co2-2020）。",
+      "disputed_by": [
+        "gp2105-cn-dc-co2-2020"
+      ]
     },
     {
       "fact_id": "odcc2210-cn-dc-electricity-2030e",
@@ -199213,6 +199219,3437 @@
       "derived": true,
       "notes": "原文「300GW+」按下限录，为 105 GW 基线的 3X。第 3 页「FORECAST」原为 2030 年 200GW+、2035 年 300GW+，第 5 页「UPDATED FORECAST」提前到 2026/2030——同一报告内的修订，只录更新值，旧值见缺口。",
       "derivation": "预测发布时点取 iMasons 2024 年度报告所在年 @2024。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-cn-dc-electricity-2020",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc",
+        "label": "中国数据中心"
+      },
+      "asserter": "绿色和平",
+      "value": 150.7,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "全站用电",
+        "sector_basis": "数据中心",
+        "region": "CN",
+        "basis": "第三方估算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）：「2020 年全国数据中心机架数为 428.6 万架，通过对各分区的关键能耗影响指标分析计算得到单一地区的能耗值，根据各区域分布系数进行合理加权外推，估算出 2020 年全国数据中心能耗总量约为 1,507 亿千瓦时」",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "1,507 亿 kWh = 150.7 TWh；按六大区域 IT 负荷使用率、单机架设计功率、PUE（表 3.10，现场调研）× 在用机架外推，报告由绿色和平与电子五所计量检测中心合著。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-cn-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc",
+        "label": "中国数据中心"
+      },
+      "asserter": "绿色和平",
+      "value": 94.85,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：全国 9485；正文「2020 年全国数据中心碳排放量高达 9,485 万吨」",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "disputes": [
+        "odcc2309-zcc-cn-dc-co2-2020",
+        "odcc2210-cn-dc-co2-2020"
+      ],
+      "notes": "9,485 万吨 = 94.85 百万吨；按各省 2020 年数据中心用电 × 表 3.7 省级电网排放因子（由 2015–2018 年趋势外推）。原文单位为 CO₂（非 CO₂e）。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-beijing-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-beijing-dc",
+        "label": "北京数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 9.17,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：北京 917",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 917 万吨 CO₂ = 9.17 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-hebei-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-hebei-dc",
+        "label": "河北数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 22.75,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：河北 2275",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 2275 万吨 CO₂ = 22.75 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-tianjin-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-tianjin-dc",
+        "label": "天津数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 4.18,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：天津 418",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 418 万吨 CO₂ = 4.18 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-inner-mongolia-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-inner-mongolia-dc",
+        "label": "内蒙古数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 5.7,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：内蒙古 570",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 570 万吨 CO₂ = 5.7 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-shanghai-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-shanghai-dc",
+        "label": "上海数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 7.1,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：上海 710",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 710 万吨 CO₂ = 7.1 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-zhejiang-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-zhejiang-dc",
+        "label": "浙江数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 6.11,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：浙江 611",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 611 万吨 CO₂ = 6.11 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-jiangsu-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-jiangsu-dc",
+        "label": "江苏数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 10.43,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：江苏 1043",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 1043 万吨 CO₂ = 10.43 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-guangdong-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-guangdong-dc",
+        "label": "广东数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 6.66,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：广东 666",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 666 万吨 CO₂ = 6.66 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-fujian-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-fujian-dc",
+        "label": "福建数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 2.19,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：福建 219",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 219 万吨 CO₂ = 2.19 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-hainan-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-hainan-dc",
+        "label": "海南数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 0.23,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：海南 23",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 23 万吨 CO₂ = 0.23 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-anhui-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-anhui-dc",
+        "label": "安徽数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 0.52,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：安徽 52",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 52 万吨 CO₂ = 0.52 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-henan-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-henan-dc",
+        "label": "河南数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 1.18,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：河南 118",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 118 万吨 CO₂ = 1.18 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-hubei-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-hubei-dc",
+        "label": "湖北数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 1.32,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：湖北 132",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 132 万吨 CO₂ = 1.32 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-hunan-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-hunan-dc",
+        "label": "湖南数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 1.1,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：湖南 110",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 110 万吨 CO₂ = 1.1 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-jiangxi-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-jiangxi-dc",
+        "label": "江西数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 1.07,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：江西 107",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 107 万吨 CO₂ = 1.07 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-shanxi-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-shanxi-dc",
+        "label": "山西数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 2.25,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：山西 225",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 225 万吨 CO₂ = 2.25 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-shandong-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-shandong-dc",
+        "label": "山东数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 2.45,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：山东 245",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 245 万吨 CO₂ = 2.45 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-gansu-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-gansu-dc",
+        "label": "甘肃数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 1.29,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：甘肃 129",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 129 万吨 CO₂ = 1.29 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-guangxi-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-guangxi-dc",
+        "label": "广西数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 0.84,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：广西 84",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 84 万吨 CO₂ = 0.84 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-guizhou-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-guizhou-dc",
+        "label": "贵州数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 2.8,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：贵州 280",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 280 万吨 CO₂ = 2.8 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-ningxia-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-ningxia-dc",
+        "label": "宁夏数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 0.54,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：宁夏 54",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 54 万吨 CO₂ = 0.54 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-qinghai-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-qinghai-dc",
+        "label": "青海数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 0.01,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：青海 1",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 1 万吨 CO₂ = 0.01 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-shaanxi-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-shaanxi-dc",
+        "label": "陕西数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 0.73,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：陕西 73",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 73 万吨 CO₂ = 0.73 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-sichuan-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-sichuan-dc",
+        "label": "四川数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 0.23,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：四川 23",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 23 万吨 CO₂ = 0.23 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-tibet-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-tibet-dc",
+        "label": "西藏数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 0.06,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：西藏 6",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 6 万吨 CO₂ = 0.06 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-xinjiang-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-xinjiang-dc",
+        "label": "新疆数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 1.22,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：新疆 122",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 122 万吨 CO₂ = 1.22 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-yunnan-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-yunnan-dc",
+        "label": "云南数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 0.13,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：云南 13",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 13 万吨 CO₂ = 0.13 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-chongqing-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-chongqing-dc",
+        "label": "重庆数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 1.25,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：重庆 125",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 125 万吨 CO₂ = 1.25 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-heilongjiang-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-heilongjiang-dc",
+        "label": "黑龙江数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 0.42,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：黑龙江 42",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 42 万吨 CO₂ = 0.42 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-jilin-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-jilin-dc",
+        "label": "吉林数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 0.34,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：吉林 34",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 34 万吨 CO₂ = 0.34 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-liaoning-dc-co2-2020",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "region",
+        "id": "cn-liaoning-dc",
+        "label": "辽宁数据中心（合计）"
+      },
+      "asserter": "绿色和平",
+      "value": 0.57,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.12「2020 年全国及各地区数据中心碳排放量（万吨 CO2）」：辽宁 57",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原表 57 万吨 CO₂ = 0.57 百万吨；31 省合计 9,484 万吨，与全国 9,485 差 1 为四舍五入。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "lower",
+      "fact_id": "gp2105-cn-dc-co2-2035e-lower",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc",
+        "label": "中国数据中心"
+      },
+      "asserter": "绿色和平",
+      "value": 150.47,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2035E@2021-05",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 27 页（页码 25）「② 碳排放预测」：「综合来看，2035 年全国数据中心碳排放量约合二氧化碳排放量 15,047~19,274 万吨……在上述情景一下，2035 年全国数据中心碳排放量为 15,047~17,885 万吨。在上述情景二下，2035 年全国数据中心碳排放量为 16,216~19,274 万吨」",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "区间两端综合了两个节能技术情景（2035 年用电 4,505/4,855 亿 kWh）与 2035 年全国电力排放因子 0.334–0.397 kgCO₂/kWh；method 实为全国因子而非分省。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "upper",
+      "fact_id": "gp2105-cn-dc-co2-2035e-upper",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc",
+        "label": "中国数据中心"
+      },
+      "asserter": "绿色和平",
+      "value": 192.74,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2035E@2021-05",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 27 页（页码 25）「② 碳排放预测」：「综合来看，2035 年全国数据中心碳排放量约合二氧化碳排放量 15,047~19,274 万吨……在上述情景一下，2035 年全国数据中心碳排放量为 15,047~17,885 万吨。在上述情景二下，2035 年全国数据中心碳排放量为 16,216~19,274 万吨」",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "区间两端综合了两个节能技术情景（2035 年用电 4,505/4,855 亿 kWh）与 2035 年全国电力排放因子 0.334–0.397 kgCO₂/kWh；method 实为全国因子而非分省。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-cn-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc-racks-inuse",
+        "label": "中国在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 428.6,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」全国 428.6（数据来源：《全国数据中心应用发展指引（2020）》）；第 23 页图 3.8 同值",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "注 57：全国数据中心机架数指超大型、大型和中小型数据中心机架数总量（按标准机架分档）。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-cn-dc-racks-2016",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc-racks-inuse",
+        "label": "中国在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 124,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2016",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 23 页（页码 21）图 3.8「2016~2035 年中国数据中心机架增长情况」2016 柱标 124；图注「数据来源：2016 年 ~2020 年数据源于《全国数据中心应用发展指引》」",
+        "grade": "S4",
+        "originator": "工信部《全国数据中心应用发展指引》各年版（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "图表数据标签；原图注未分年份标注是哪一版《指引》。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-cn-dc-racks-2017",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc-racks-inuse",
+        "label": "中国在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 166,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2017",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 23 页（页码 21）图 3.8「2016~2035 年中国数据中心机架增长情况」2017 柱标 166；图注「数据来源：2016 年 ~2020 年数据源于《全国数据中心应用发展指引》」",
+        "grade": "S4",
+        "originator": "工信部《全国数据中心应用发展指引》各年版（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "图表数据标签；原图注未分年份标注是哪一版《指引》。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-cn-dc-racks-2018",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc-racks-inuse",
+        "label": "中国在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 228,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2018",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 23 页（页码 21）图 3.8「2016~2035 年中国数据中心机架增长情况」2018 柱标 228；图注「数据来源：2016 年 ~2020 年数据源于《全国数据中心应用发展指引》」",
+        "grade": "S4",
+        "originator": "工信部《全国数据中心应用发展指引》各年版（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "图表数据标签；原图注未分年份标注是哪一版《指引》。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-cn-dc-racks-2019",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc-racks-inuse",
+        "label": "中国在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 315,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2019",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 23 页（页码 21）图 3.8「2016~2035 年中国数据中心机架增长情况」2019 柱标 315；图注「数据来源：2016 年 ~2020 年数据源于《全国数据中心应用发展指引》」",
+        "grade": "S4",
+        "originator": "工信部《全国数据中心应用发展指引》各年版（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "图表数据标签；原图注未分年份标注是哪一版《指引》。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-cn-dc-racks-2025e",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc-racks-inuse",
+        "label": "中国在用数据中心机架"
+      },
+      "asserter": "绿色和平",
+      "value": 759.3,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2025E@2021-05",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 23 页（页码 21）图 3.8 2025 柱标 759.3；正文「预计至 2035 年全国数据中心总机架数约 1,491.1 万架」",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "绿色和平/电子五所预测。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-cn-dc-racks-2030e",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc-racks-inuse",
+        "label": "中国在用数据中心机架"
+      },
+      "asserter": "绿色和平",
+      "value": 1125.2,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2030E@2021-05",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 23 页（页码 21）图 3.8 2030 柱标 1125.2；正文「预计至 2035 年全国数据中心总机架数约 1,491.1 万架」",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "绿色和平/电子五所预测。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-cn-dc-racks-2035e",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc-racks-inuse",
+        "label": "中国在用数据中心机架"
+      },
+      "asserter": "绿色和平",
+      "value": 1491.1,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2035E@2021-05",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 23 页（页码 21）图 3.8 2035 柱标 1491.1；正文「预计至 2035 年全国数据中心总机架数约 1,491.1 万架」",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "绿色和平/电子五所预测。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-beijing-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-beijing-dc-racks-inuse",
+        "label": "北京在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 26.3,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」北京 26.3（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-hebei-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-hebei-dc-racks-inuse",
+        "label": "河北在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 42.7,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」河北 42.7（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-tianjin-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-tianjin-dc-racks-inuse",
+        "label": "天津在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 9.8,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」天津 9.8（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-inner-mongolia-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-inner-mongolia-dc-racks-inuse",
+        "label": "内蒙古在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 14.9,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」内蒙古 14.9（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-shanghai-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-shanghai-dc-racks-inuse",
+        "label": "上海在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 35.9,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」上海 35.9（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-zhejiang-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-zhejiang-dc-racks-inuse",
+        "label": "浙江在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 30.5,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」浙江 30.5（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-jiangsu-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-jiangsu-dc-racks-inuse",
+        "label": "江苏在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 42.5,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」江苏 42.5（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-guangdong-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-guangdong-dc-racks-inuse",
+        "label": "广东在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 43.2,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」广东 43.2（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-fujian-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-fujian-dc-racks-inuse",
+        "label": "福建在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 13.2,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」福建 13.2（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-hainan-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-hainan-dc-racks-inuse",
+        "label": "海南在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 1.6,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」海南 1.6（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-anhui-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-anhui-dc-racks-inuse",
+        "label": "安徽在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 3.2,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」安徽 3.2（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-henan-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-henan-dc-racks-inuse",
+        "label": "河南在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 7.3,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」河南 7.3（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-hubei-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-hubei-dc-racks-inuse",
+        "label": "湖北在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 15.9,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」湖北 15.9（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-hunan-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-hunan-dc-racks-inuse",
+        "label": "湖南在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 8.2,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」湖南 8.2（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-jiangxi-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-jiangxi-dc-racks-inuse",
+        "label": "江西在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 7,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」江西 7（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-shanxi-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-shanxi-dc-racks-inuse",
+        "label": "山西在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 12.5,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」山西 12.5（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-shandong-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-shandong-dc-racks-inuse",
+        "label": "山东在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 13,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」山东 13（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-gansu-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-gansu-dc-racks-inuse",
+        "label": "甘肃在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 11.4,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」甘肃 11.4（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-guangxi-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-guangxi-dc-racks-inuse",
+        "label": "广西在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 6.1,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」广西 6.1（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-guizhou-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-guizhou-dc-racks-inuse",
+        "label": "贵州在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 22.4,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」贵州 22.4（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-ningxia-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-ningxia-dc-racks-inuse",
+        "label": "宁夏在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 3.3,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」宁夏 3.3（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-qinghai-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-qinghai-dc-racks-inuse",
+        "label": "青海在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 1.5,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」青海 1.5（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-shaanxi-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-shaanxi-dc-racks-inuse",
+        "label": "陕西在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 6.3,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」陕西 6.3（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-sichuan-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-sichuan-dc-racks-inuse",
+        "label": "四川在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 12.7,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」四川 12.7（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-tibet-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-tibet-dc-racks-inuse",
+        "label": "西藏在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 3.2,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」西藏 3.2（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-xinjiang-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-xinjiang-dc-racks-inuse",
+        "label": "新疆在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 5,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」新疆 5（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-yunnan-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-yunnan-dc-racks-inuse",
+        "label": "云南在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 4.3,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」云南 4.3（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-chongqing-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-chongqing-dc-racks-inuse",
+        "label": "重庆在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 11.9,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」重庆 11.9（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-heilongjiang-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-heilongjiang-dc-racks-inuse",
+        "label": "黑龙江在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 6.3,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」黑龙江 6.3（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-jilin-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-jilin-dc-racks-inuse",
+        "label": "吉林在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 2.8,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」吉林 2.8（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-miit-liaoning-dc-racks-2020",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-liaoning-dc-racks-inuse",
+        "label": "辽宁在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 3.7,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 25 页（页码 23）表 3.11「2020 年全国及各地区数据中心机架数」辽宁 3.7（数据来源：《全国数据中心应用发展指引（2020）》）",
+        "grade": "S4",
+        "originator": "工业和信息化部信息通信发展司《全国数据中心应用发展指引（2020）》2021-02（经绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）转引）"
+      },
+      "notes": "31 省合计 428.6 万架，与全国值一致。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-cn-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-grid",
+        "label": "中国电网（全国）"
+      },
+      "asserter": "绿色和平",
+      "value": 0.56,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "全国平均",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：全国 0.560",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-beijing-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-beijing-grid",
+        "label": "北京省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.649,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：北京 0.649",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-tianjin-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-tianjin-grid",
+        "label": "天津省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.794,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：天津 0.794",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-hebei-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-hebei-grid",
+        "label": "河北省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.992,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：河北 0.992",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-shanxi-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-shanxi-grid",
+        "label": "山西省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.81,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：山西 0.810",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-inner-mongolia-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-inner-mongolia-grid",
+        "label": "内蒙古省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.713,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：内蒙古 0.713",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-liaoning-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-liaoning-grid",
+        "label": "辽宁省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.66,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：辽宁 0.660",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-jilin-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-jilin-grid",
+        "label": "吉林省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.526,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：吉林 0.526",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-heilongjiang-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-heilongjiang-grid",
+        "label": "黑龙江省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.288,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：黑龙江 0.288",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-shanghai-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-shanghai-grid",
+        "label": "上海省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.537,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：上海 0.537",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-jiangsu-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-jiangsu-grid",
+        "label": "江苏省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.666,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：江苏 0.666",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-zhejiang-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-zhejiang-grid",
+        "label": "浙江省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.543,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：浙江 0.543",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-anhui-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-anhui-grid",
+        "label": "安徽省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.735,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：安徽 0.735",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-fujian-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-fujian-grid",
+        "label": "福建省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.475,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：福建 0.475",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-jiangxi-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-jiangxi-grid",
+        "label": "江西省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.689,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：江西 0.689",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-shandong-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-shandong-grid",
+        "label": "山东省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.846,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：山东 0.846",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-henan-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-henan-grid",
+        "label": "河南省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.728,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：河南 0.728",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-hubei-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-hubei-grid",
+        "label": "湖北省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.373,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：湖北 0.373",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-hunan-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-hunan-grid",
+        "label": "湖南省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.603,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：湖南 0.603",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-guangdong-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-guangdong-grid",
+        "label": "广东省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.442,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：广东 0.442",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-guangxi-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-guangxi-grid",
+        "label": "广西省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.55,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：广西 0.550",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-hainan-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-hainan-grid",
+        "label": "海南省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.415,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：海南 0.415",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-chongqing-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-chongqing-grid",
+        "label": "重庆省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.419,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：重庆 0.419",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-sichuan-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-sichuan-grid",
+        "label": "四川省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.071,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：四川 0.071",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-guizhou-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-guizhou-grid",
+        "label": "贵州省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.497,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：贵州 0.497",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-yunnan-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-yunnan-grid",
+        "label": "云南省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.124,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：云南 0.124",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-shaanxi-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-shaanxi-grid",
+        "label": "陕西省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.461,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：陕西 0.461",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-gansu-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-gansu-grid",
+        "label": "甘肃省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.45,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：甘肃 0.450",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-qinghai-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-qinghai-grid",
+        "label": "青海省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.034,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：青海 0.034",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-ningxia-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-ningxia-grid",
+        "label": "宁夏省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.657,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：宁夏 0.657",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-xinjiang-grid-ef-2020",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-xinjiang-grid",
+        "label": "新疆省级电网"
+      },
+      "asserter": "绿色和平",
+      "value": 0.967,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "省级电网",
+        "factor_year": "2020",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 20 页（页码 18）表 3.7「2020 年全国及各地区电网排放因子（kgCO2/kWh）」：新疆 0.967",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "原文：「根据统计数据的可获得性，最新可计算得出 2018 年不同层级的电网排放因子。基于 2015~2018 年全国及各地区电网因子的变化趋势外推 2020 年」——是外推值，非官方公布；表中无西藏。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "lower",
+      "fact_id": "gp2105-cn-grid-ef-2035e-lower",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-grid",
+        "label": "中国电网（全国）"
+      },
+      "asserter": "绿色和平",
+      "value": 0.334,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "全国平均",
+        "factor_year": "2035",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2035E@2021-05",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 22 页（页码 20）：「中国 2020 年煤电和气电排放因子分别为 0.853kg CO2/kWh 和 0.405kg CO2/kWh，结合 2020 年全国电网排放因子以及 2035 年电力结构预测，分析得出 2035 年中国电力排放因子范围为 0.334~0.397 kg CO2/kWh」",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "对应 2035 年煤电占比 35–42%、气电 4–5%、非化石 53–61% 的情景区间。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "bound": "upper",
+      "fact_id": "gp2105-cn-grid-ef-2035e-upper",
+      "metric_id": "grid_emission_factor",
+      "entity": {
+        "type": "region",
+        "id": "cn-grid",
+        "label": "中国电网（全国）"
+      },
+      "asserter": "绿色和平",
+      "value": 0.397,
+      "unit": "kgCO₂/kWh",
+      "caliber": {
+        "grid_scope": "全国平均",
+        "factor_year": "2035",
+        "region": "CN",
+        "basis": "测算"
+      },
+      "as_of": "2035E@2021-05",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 22 页（页码 20）：「中国 2020 年煤电和气电排放因子分别为 0.853kg CO2/kWh 和 0.405kg CO2/kWh，结合 2020 年全国电网排放因子以及 2035 年电力结构预测，分析得出 2035 年中国电力排放因子范围为 0.334~0.397 kg CO2/kWh」",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "对应 2035 年煤电占比 35–42%、气电 4–5%、非化石 53–61% 的情景区间。"
+    },
+    {
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-beijing-area-rack-design-kw",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "region",
+        "id": "cn-beijing-area-dc",
+        "label": "北京市及其周边地区（京冀津蒙）数据中心"
+      },
+      "asserter": "绿色和平",
+      "value": 6.7,
+      "unit": "kW/架",
+      "caliber": {
+        "basis": "规划平均",
+        "scope": "全场平均",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "derivation": "表 3.10 为 2020 年能耗测算的输入，调研时点未单独注明，as_of 取测算年 2020。",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 24 页（页码 22）表 3.10「数据中心能耗计算关键指标」（现场调研）：北京市及其周边地区 平均单机架设计功率 6.7 kW",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "研究团队现场调研样本的区域平均单机架设计功率。"
+    },
+    {
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-shanghai-area-rack-design-kw",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "region",
+        "id": "cn-shanghai-area-dc",
+        "label": "上海市及其周边地区（沪浙苏）数据中心"
+      },
+      "asserter": "绿色和平",
+      "value": 5.4,
+      "unit": "kW/架",
+      "caliber": {
+        "basis": "规划平均",
+        "scope": "全场平均",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "derivation": "表 3.10 为 2020 年能耗测算的输入，调研时点未单独注明，as_of 取测算年 2020。",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 24 页（页码 22）表 3.10「数据中心能耗计算关键指标」（现场调研）：上海市及其周边地区 平均单机架设计功率 5.4 kW",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "研究团队现场调研样本的区域平均单机架设计功率。"
+    },
+    {
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-gz-sz-area-rack-design-kw",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "region",
+        "id": "cn-gz-sz-area-dc",
+        "label": "广州市、深圳市及其周边地区（粤闽琼）数据中心"
+      },
+      "asserter": "绿色和平",
+      "value": 5.6,
+      "unit": "kW/架",
+      "caliber": {
+        "basis": "规划平均",
+        "scope": "全场平均",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "derivation": "表 3.10 为 2020 年能耗测算的输入，调研时点未单独注明，as_of 取测算年 2020。",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 24 页（页码 22）表 3.10「数据中心能耗计算关键指标」（现场调研）：广州市、深圳市及其周边地区 平均单机架设计功率 5.6 kW",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "研究团队现场调研样本的区域平均单机架设计功率。"
+    },
+    {
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-central-rack-design-kw",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "region",
+        "id": "cn-central-dc",
+        "label": "中部地区（皖豫鄂湘赣晋鲁）数据中心"
+      },
+      "asserter": "绿色和平",
+      "value": 4.9,
+      "unit": "kW/架",
+      "caliber": {
+        "basis": "规划平均",
+        "scope": "全场平均",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "derivation": "表 3.10 为 2020 年能耗测算的输入，调研时点未单独注明，as_of 取测算年 2020。",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 24 页（页码 22）表 3.10「数据中心能耗计算关键指标」（现场调研）：中部地区 平均单机架设计功率 4.9 kW",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "研究团队现场调研样本的区域平均单机架设计功率。"
+    },
+    {
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-west-rack-design-kw",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "region",
+        "id": "cn-west-dc",
+        "label": "西部地区数据中心"
+      },
+      "asserter": "绿色和平",
+      "value": 5,
+      "unit": "kW/架",
+      "caliber": {
+        "basis": "规划平均",
+        "scope": "全场平均",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "derivation": "表 3.10 为 2020 年能耗测算的输入，调研时点未单独注明，as_of 取测算年 2020。",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 24 页（页码 22）表 3.10「数据中心能耗计算关键指标」（现场调研）：西部地区 平均单机架设计功率 5 kW",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "研究团队现场调研样本的区域平均单机架设计功率。"
+    },
+    {
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gp2105-northeast-rack-design-kw",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "region",
+        "id": "cn-northeast-dc",
+        "label": "东北地区数据中心"
+      },
+      "asserter": "绿色和平",
+      "value": 4.2,
+      "unit": "kW/架",
+      "caliber": {
+        "basis": "规划平均",
+        "scope": "全场平均",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "derivation": "表 3.10 为 2020 年能耗测算的输入，调研时点未单独注明，as_of 取测算年 2020。",
+      "evidence": {
+        "sha256": "0ac5ddb86a1467439ca1762a11103624476f36e13d05c6dd482b4145225045c5",
+        "local_file": "20230210-绿色和平：中国数字基建的脱碳之路：数据中心与5G减碳潜力与挑战（2020-2035）(56页).pdf",
+        "locator": "PDF 第 24 页（页码 22）表 3.10「数据中心能耗计算关键指标」（现场调研）：东北地区 平均单机架设计功率 4.2 kW",
+        "grade": "S3",
+        "originator": "绿色和平、工业和信息化部电子第五研究所计量检测中心《中国数字基建的脱碳之路：数据中心与 5G 减碳潜力与挑战（2020-2035）》（2021-05）"
+      },
+      "notes": "研究团队现场调研样本的区域平均单机架设计功率。"
     }
   ]
 }
