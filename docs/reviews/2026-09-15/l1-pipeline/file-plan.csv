@@ -1,0 +1,19 @@
+path,baseline_role,target_role,action,acceptance
+src/inresearch/workflow/l1_batch.py,absent,L1 shared use cases,add,owns selection preview commit concurrency and active-rate algorithms
+src/inresearch/workflow/terminal_batch.py,CLI plus L1 algorithms,terminal verdict CLI facade,modify,uses l1_batch and retains no shared algorithm exports
+src/inresearch/workflow/score.py,model score loop and duplicate controls,score CLI facade,modify,uses l1_batch run_model and has no worker/commit/selection rule
+src/inresearch/workflow/attribution.py,digest loop and duplicate controls,digest CLI facade,modify,uses l1_batch selection/preview/concurrency and has no duplicate worker rule
+src/inresearch/workflow/progress.py,progress reader with terminal import,progress CLI facade,modify,uses l1_batch active-rate
+src/inresearch/workflow/triage.py,legacy commands and duplicate run,preview/sample/legacy-drain CLI,modify,deletes run forwarding entry
+src/inresearch/interfaces/cli.py,registers duplicate triage run,command registry,modify,keeps triage but removes its run subcommand
+tests/unit/test_l1_batch.py,absent,shared L1 behavior tests,add,covers failure retry budget concurrency and revision replacement
+tests/unit/test_m4_triage_extract.py,terminal implementation tests,consumer migration tests,modify,imports l1_batch public functions
+tests/unit/test_m4_triage_local.py,score implementation tests,consumer migration tests,modify,uses explicit injected selectors
+tests/unit/test_m4_triage_versions.py,terminal version tests,consumer migration tests,modify,imports l1_batch version functions
+tests/unit/test_model_runtime.py,terminal helper import,consumer migration tests,modify,imports l1_batch shared functions
+docs/M4_TRIAGE_TASK.md,lists duplicate implementation paths,current L1 ownership,modify,lists single use case and CLI surfaces
+framework/09_software_contracts.md,software responsibility contract,L1 ownership contract,modify,declares authority and injection boundary
+framework/current_state.json,current rule registry,current rule registry,modify,records replacement and implementation paths
+framework/verification_contract.json,verification mapping,L1 verification mapping,modify,adds shared behavior tests and remaining limits
+framework/repository_manifest.json,generated manifest,generated manifest,refresh,governance refresh
+docs/REPOSITORY_REGISTER.md,generated register,generated register,refresh,governance refresh

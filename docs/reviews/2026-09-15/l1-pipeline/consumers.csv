@@ -1,0 +1,17 @@
+shared_implementation,consumer_before,migration_result
+pending,workflow.score,replace with l1_batch.pending
+pending,workflow.attribution,replace with l1_batch.pending
+pending,workflow.terminal_batch,replace with l1_batch.pending
+clean_preview,workflow.score,replace with l1_batch.clean_preview
+clean_preview,workflow.attribution,replace with l1_batch.clean_preview
+clean_preview,workflow.terminal_batch,replace with l1_batch.clean_preview
+working_rate,workflow.progress,replace with l1_batch.working_rate
+working_rate,workflow.terminal_batch,replace with l1_batch.working_rate
+MAX_WORKERS,workflow.score,replace with l1_batch.MAX_WORKERS
+MAX_WORKERS,workflow.attribution,replace with l1_batch.MAX_WORKERS
+MAX_WORKERS,workflow.terminal_batch,replace with l1_batch.MAX_WORKERS
+cmd_run,workflow.triage,delete duplicate forwarding command
+cmd_run,workflow.score,retain as score CLI facade over l1_batch
+cmd_pack/cmd_record/cmd_status/cmd_versions,interfaces.cli batch,retain terminal facade over l1_batch
+cmd_run/cmd_pack,interfaces.cli attribution,retain attribution facade over l1_batch
+collect,interfaces.cli triage,retain historical remote batch drain only
