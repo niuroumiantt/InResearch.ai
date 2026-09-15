@@ -187819,6 +187819,138 @@
       "derivation": "as_of 推定：本文未写时点；库内另一转引（中国信通院·TC628《智算运维产业发展研究报告（2025）》第 9 页）载明《2025 综合算力指数》数据「截至 2025 年 6 月底」，按同一指数版次取 2025-06。数值 110 为原文照录。",
       "corroboration": "待交叉验证",
       "notes": "原文「智算规模均超过 55 EFLOPS」（TOP 5 省份共用的下界），未写「在用」，status 记未注明；河北单列超过 110 EFLOPS。"
+    },
+    {
+      "fact_id": "tf2508-meta-capex-2025q1",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "meta",
+        "label": "Meta"
+      },
+      "asserter": "Meta",
+      "value": 129.41,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "单一公司",
+        "capex_scope": "全部 capex",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "604e4d1375d00bb454f077c1bb4ffc61f1602081603e4ab2d5514d2553f86e6e",
+        "local_file": "20250812-天风证券-通信行业IDC：AI算力需求注入新动能，行业或拐点将至.pdf",
+        "locator": "PDF 第 2 页摘要：「2025Q1，Meta、亚马逊Capex规模分别为129.41亿美元、242.55亿美元，同比增长102.20%、74.06%」",
+        "grade": "S3",
+        "originator": "公司公告（经天风证券《通信行业 IDC：AI 算力需求注入新动能，行业或拐点将至》（2025-08-12）转引，图表来源 Wind/公司公告）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "同比 +102.20%。原文未说明是否含融资租赁，按财报现金流口径转述记全部 capex。"
+    },
+    {
+      "fact_id": "tf2508-amazon-capex-2025q1",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "amazon",
+        "label": "亚马逊"
+      },
+      "asserter": "亚马逊",
+      "value": 242.55,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "单一公司",
+        "capex_scope": "全部 capex",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "604e4d1375d00bb454f077c1bb4ffc61f1602081603e4ab2d5514d2553f86e6e",
+        "local_file": "20250812-天风证券-通信行业IDC：AI算力需求注入新动能，行业或拐点将至.pdf",
+        "locator": "PDF 第 17 页「3.3」：「以亚马逊为例，2025Q1资本开支达242.55亿美元，同比增长74.06%…2025年1-3月，阿里资本开支为246亿元，环比下降22.54%；而腾讯资本开支达275亿元，同比增长91%」",
+        "grade": "S3",
+        "originator": "公司公告（经天风证券《通信行业 IDC：AI 算力需求注入新动能，行业或拐点将至》（2025-08-12）转引，图表来源 Wind/公司公告）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "同比 +74.06%。原文未说明是否含融资租赁，按财报现金流口径转述记全部 capex。"
+    },
+    {
+      "fact_id": "tf2508-alibaba-capex-2025q1",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "alibaba",
+        "label": "阿里巴巴"
+      },
+      "asserter": "阿里巴巴",
+      "value": 246.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "单一公司",
+        "capex_scope": "全部 capex",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN",
+        "currency": "人民币"
+      },
+      "as_of": "2025-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "604e4d1375d00bb454f077c1bb4ffc61f1602081603e4ab2d5514d2553f86e6e",
+        "local_file": "20250812-天风证券-通信行业IDC：AI算力需求注入新动能，行业或拐点将至.pdf",
+        "locator": "PDF 第 17 页「3.3」：「以亚马逊为例，2025Q1资本开支达242.55亿美元，同比增长74.06%…2025年1-3月，阿里资本开支为246亿元，环比下降22.54%；而腾讯资本开支达275亿元，同比增长91%」",
+        "grade": "S3",
+        "originator": "公司公告（经天风证券《通信行业 IDC：AI 算力需求注入新动能，行业或拐点将至》（2025-08-12）转引，图表来源 Wind/公司公告）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「2025年1-3月」，环比 -22.54%。原文未说明是否含融资租赁，按财报现金流口径转述记全部 capex。"
+    },
+    {
+      "fact_id": "tf2508-tencent-capex-2025q1",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "tencent",
+        "label": "腾讯"
+      },
+      "asserter": "腾讯",
+      "value": 275.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "单一公司",
+        "capex_scope": "全部 capex",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "CN",
+        "currency": "人民币"
+      },
+      "as_of": "2025-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "604e4d1375d00bb454f077c1bb4ffc61f1602081603e4ab2d5514d2553f86e6e",
+        "local_file": "20250812-天风证券-通信行业IDC：AI算力需求注入新动能，行业或拐点将至.pdf",
+        "locator": "PDF 第 17 页「3.3」：「以亚马逊为例，2025Q1资本开支达242.55亿美元，同比增长74.06%…2025年1-3月，阿里资本开支为246亿元，环比下降22.54%；而腾讯资本开支达275亿元，同比增长91%」",
+        "grade": "S3",
+        "originator": "公司公告（经天风证券《通信行业 IDC：AI 算力需求注入新动能，行业或拐点将至》（2025-08-12）转引，图表来源 Wind/公司公告）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「2025年1-3月」，同比 +91%。原文未说明是否含融资租赁，按财报现金流口径转述记全部 capex。"
     }
   ]
 }
