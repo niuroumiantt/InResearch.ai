@@ -195258,6 +195258,380 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "券商模型：按五大云厂 H100 等效片数×8 卡服务器 10.2kW×运营功耗 10.2kW/台 得 AI 算力中心装机，再乘燃机发电占比与 1.5 冗余度；燃机单价 3000 元/kW 对应 2025 年净增市场 564 亿元。两年假设的燃机占比不同（40%→50%），差值不全是需求增长。"
+    },
+    {
+      "fact_id": "zsgreen2508-iea-pue-2023-australia",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "australia-datacenters",
+        "label": "澳大利亚数据中心"
+      },
+      "asserter": "IEA",
+      "value": 1.44,
+      "unit": "比值",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "APAC"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3748c3573f3448676bb8ea822ad50b5d843f517619a0d361e124cdc049428c3a",
+        "local_file": "【报告】绿色算力投资手册.pdf",
+        "locator": "PDF 第 30 页表 15「主要经济体的数据中心能效政策强制要求」（资料来源：IEA，浙商证券研究所）：地区 / PUE（2023）/ PUE 强制要求 —— 澳大利亚 1.44 / 2025 年达到 1.4；中国 1.56 / 2025 年达到 1.5；法国 1.36 / 到 2030 年建筑能源使用减少 40%；德国 1.42 / 新建 2026 年达到 1.2，现有 2030 年达到 1.3；日本 1.53 / 2022 年达到 1.4；加利福尼亚（美国）1.21 / 2014 年已达到 1.5；全球 1.43",
+        "grade": "S3",
+        "originator": "IEA（经浙商证券《绿色算力投资手册》2025-08-03 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "表头只写「PUE（2023）」，按全国（地区）存量年均记。region 枚举无国家级取值，按大区记，entity 区分国家/州。"
+    },
+    {
+      "fact_id": "zsgreen2508-iea-pue-2023-china",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "china-datacenters",
+        "label": "中国数据中心"
+      },
+      "asserter": "IEA",
+      "value": 1.56,
+      "unit": "比值",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3748c3573f3448676bb8ea822ad50b5d843f517619a0d361e124cdc049428c3a",
+        "local_file": "【报告】绿色算力投资手册.pdf",
+        "locator": "PDF 第 30 页表 15「主要经济体的数据中心能效政策强制要求」（资料来源：IEA，浙商证券研究所）：地区 / PUE（2023）/ PUE 强制要求 —— 澳大利亚 1.44 / 2025 年达到 1.4；中国 1.56 / 2025 年达到 1.5；法国 1.36 / 到 2030 年建筑能源使用减少 40%；德国 1.42 / 新建 2026 年达到 1.2，现有 2030 年达到 1.3；日本 1.53 / 2022 年达到 1.4；加利福尼亚（美国）1.21 / 2014 年已达到 1.5；全球 1.43",
+        "grade": "S3",
+        "originator": "IEA（经浙商证券《绿色算力投资手册》2025-08-03 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "表头只写「PUE（2023）」，按全国（地区）存量年均记。库内伯恩斯坦/信通院中国 2023 年为 1.48，本表 IEA 为 1.56，断言者不同。"
+    },
+    {
+      "fact_id": "zsgreen2508-iea-pue-2023-france",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "france-datacenters",
+        "label": "法国数据中心"
+      },
+      "asserter": "IEA",
+      "value": 1.36,
+      "unit": "比值",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "EU"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3748c3573f3448676bb8ea822ad50b5d843f517619a0d361e124cdc049428c3a",
+        "local_file": "【报告】绿色算力投资手册.pdf",
+        "locator": "PDF 第 30 页表 15「主要经济体的数据中心能效政策强制要求」（资料来源：IEA，浙商证券研究所）：地区 / PUE（2023）/ PUE 强制要求 —— 澳大利亚 1.44 / 2025 年达到 1.4；中国 1.56 / 2025 年达到 1.5；法国 1.36 / 到 2030 年建筑能源使用减少 40%；德国 1.42 / 新建 2026 年达到 1.2，现有 2030 年达到 1.3；日本 1.53 / 2022 年达到 1.4；加利福尼亚（美国）1.21 / 2014 年已达到 1.5；全球 1.43",
+        "grade": "S3",
+        "originator": "IEA（经浙商证券《绿色算力投资手册》2025-08-03 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "表头只写「PUE（2023）」，按全国（地区）存量年均记。region 枚举无国家级取值，按大区记，entity 区分国家/州。"
+    },
+    {
+      "fact_id": "zsgreen2508-iea-pue-2023-germany",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "germany-datacenters",
+        "label": "德国数据中心"
+      },
+      "asserter": "IEA",
+      "value": 1.42,
+      "unit": "比值",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "EU"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3748c3573f3448676bb8ea822ad50b5d843f517619a0d361e124cdc049428c3a",
+        "local_file": "【报告】绿色算力投资手册.pdf",
+        "locator": "PDF 第 30 页表 15「主要经济体的数据中心能效政策强制要求」（资料来源：IEA，浙商证券研究所）：地区 / PUE（2023）/ PUE 强制要求 —— 澳大利亚 1.44 / 2025 年达到 1.4；中国 1.56 / 2025 年达到 1.5；法国 1.36 / 到 2030 年建筑能源使用减少 40%；德国 1.42 / 新建 2026 年达到 1.2，现有 2030 年达到 1.3；日本 1.53 / 2022 年达到 1.4；加利福尼亚（美国）1.21 / 2014 年已达到 1.5；全球 1.43",
+        "grade": "S3",
+        "originator": "IEA（经浙商证券《绿色算力投资手册》2025-08-03 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "表头只写「PUE（2023）」，按全国（地区）存量年均记。region 枚举无国家级取值，按大区记，entity 区分国家/州。"
+    },
+    {
+      "fact_id": "zsgreen2508-iea-pue-2023-japan",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "japan-datacenters",
+        "label": "日本数据中心"
+      },
+      "asserter": "IEA",
+      "value": 1.53,
+      "unit": "比值",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "APAC"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3748c3573f3448676bb8ea822ad50b5d843f517619a0d361e124cdc049428c3a",
+        "local_file": "【报告】绿色算力投资手册.pdf",
+        "locator": "PDF 第 30 页表 15「主要经济体的数据中心能效政策强制要求」（资料来源：IEA，浙商证券研究所）：地区 / PUE（2023）/ PUE 强制要求 —— 澳大利亚 1.44 / 2025 年达到 1.4；中国 1.56 / 2025 年达到 1.5；法国 1.36 / 到 2030 年建筑能源使用减少 40%；德国 1.42 / 新建 2026 年达到 1.2，现有 2030 年达到 1.3；日本 1.53 / 2022 年达到 1.4；加利福尼亚（美国）1.21 / 2014 年已达到 1.5；全球 1.43",
+        "grade": "S3",
+        "originator": "IEA（经浙商证券《绿色算力投资手册》2025-08-03 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "表头只写「PUE（2023）」，按全国（地区）存量年均记。region 枚举无国家级取值，按大区记，entity 区分国家/州。"
+    },
+    {
+      "fact_id": "zsgreen2508-iea-pue-2023-california",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "california-datacenters",
+        "label": "美国加利福尼亚州数据中心"
+      },
+      "asserter": "IEA",
+      "value": 1.21,
+      "unit": "比值",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "US"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3748c3573f3448676bb8ea822ad50b5d843f517619a0d361e124cdc049428c3a",
+        "local_file": "【报告】绿色算力投资手册.pdf",
+        "locator": "PDF 第 30 页表 15「主要经济体的数据中心能效政策强制要求」（资料来源：IEA，浙商证券研究所）：地区 / PUE（2023）/ PUE 强制要求 —— 澳大利亚 1.44 / 2025 年达到 1.4；中国 1.56 / 2025 年达到 1.5；法国 1.36 / 到 2030 年建筑能源使用减少 40%；德国 1.42 / 新建 2026 年达到 1.2，现有 2030 年达到 1.3；日本 1.53 / 2022 年达到 1.4；加利福尼亚（美国）1.21 / 2014 年已达到 1.5；全球 1.43",
+        "grade": "S3",
+        "originator": "IEA（经浙商证券《绿色算力投资手册》2025-08-03 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "表头只写「PUE（2023）」，按全国（地区）存量年均记。region 枚举无国家级取值，按大区记，entity 区分国家/州。"
+    },
+    {
+      "fact_id": "zsgreen2508-iea-pue-2023-global",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "global-datacenters",
+        "label": "全球数据中心"
+      },
+      "asserter": "IEA",
+      "value": 1.43,
+      "unit": "比值",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "Global"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3748c3573f3448676bb8ea822ad50b5d843f517619a0d361e124cdc049428c3a",
+        "local_file": "【报告】绿色算力投资手册.pdf",
+        "locator": "PDF 第 30 页表 15「主要经济体的数据中心能效政策强制要求」（资料来源：IEA，浙商证券研究所）：地区 / PUE（2023）/ PUE 强制要求 —— 澳大利亚 1.44 / 2025 年达到 1.4；中国 1.56 / 2025 年达到 1.5；法国 1.36 / 到 2030 年建筑能源使用减少 40%；德国 1.42 / 新建 2026 年达到 1.2，现有 2030 年达到 1.3；日本 1.53 / 2022 年达到 1.4；加利福尼亚（美国）1.21 / 2014 年已达到 1.5；全球 1.43",
+        "grade": "S3",
+        "originator": "IEA（经浙商证券《绿色算力投资手册》2025-08-03 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "表头只写「PUE（2023）」，按全国（地区）存量年均记。"
+    },
+    {
+      "fact_id": "zsgreen2508-iea-germany-new-dc-pue-limit-2026",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "germany-new-dc-pue-rule",
+        "label": "德国新建数据中心 PUE 要求"
+      },
+      "asserter": "IEA",
+      "value": 1.2,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "EU"
+      },
+      "as_of": "2026目标",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "3748c3573f3448676bb8ea822ad50b5d843f517619a0d361e124cdc049428c3a",
+        "local_file": "【报告】绿色算力投资手册.pdf",
+        "locator": "PDF 第 30 页表 15「主要经济体的数据中心能效政策强制要求」（资料来源：IEA，浙商证券研究所）：地区 / PUE（2023）/ PUE 强制要求 —— 澳大利亚 1.44 / 2025 年达到 1.4；中国 1.56 / 2025 年达到 1.5；法国 1.36 / 到 2030 年建筑能源使用减少 40%；德国 1.42 / 新建 2026 年达到 1.2，现有 2030 年达到 1.3；日本 1.53 / 2022 年达到 1.4；加利福尼亚（美国）1.21 / 2014 年已达到 1.5；全球 1.43",
+        "grade": "S3",
+        "originator": "IEA（经浙商证券《绿色算力投资手册》2025-08-03 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "IEA 汇总的各国强制要求，政策原文未引；「新建 2026 年达到 1.2」。 region 枚举无国家级取值，按大区记，entity 区分国家。"
+    },
+    {
+      "fact_id": "zsgreen2508-iea-germany-existing-dc-pue-limit-2030",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "germany-existing-dc-pue-rule",
+        "label": "德国现有数据中心 PUE 要求"
+      },
+      "asserter": "IEA",
+      "value": 1.3,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "EU"
+      },
+      "as_of": "2030目标",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "3748c3573f3448676bb8ea822ad50b5d843f517619a0d361e124cdc049428c3a",
+        "local_file": "【报告】绿色算力投资手册.pdf",
+        "locator": "PDF 第 30 页表 15「主要经济体的数据中心能效政策强制要求」（资料来源：IEA，浙商证券研究所）：地区 / PUE（2023）/ PUE 强制要求 —— 澳大利亚 1.44 / 2025 年达到 1.4；中国 1.56 / 2025 年达到 1.5；法国 1.36 / 到 2030 年建筑能源使用减少 40%；德国 1.42 / 新建 2026 年达到 1.2，现有 2030 年达到 1.3；日本 1.53 / 2022 年达到 1.4；加利福尼亚（美国）1.21 / 2014 年已达到 1.5；全球 1.43",
+        "grade": "S3",
+        "originator": "IEA（经浙商证券《绿色算力投资手册》2025-08-03 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "IEA 汇总的各国强制要求，政策原文未引；「现有 2030 年达到 1.3」。 region 枚举无国家级取值，按大区记，entity 区分国家。"
+    },
+    {
+      "fact_id": "zsgreen2508-iea-australia-dc-pue-target-2025",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "australia-dc-pue-rule",
+        "label": "澳大利亚数据中心 PUE 要求"
+      },
+      "asserter": "IEA",
+      "value": 1.4,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "APAC"
+      },
+      "as_of": "2025目标",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "3748c3573f3448676bb8ea822ad50b5d843f517619a0d361e124cdc049428c3a",
+        "local_file": "【报告】绿色算力投资手册.pdf",
+        "locator": "PDF 第 30 页表 15「主要经济体的数据中心能效政策强制要求」（资料来源：IEA，浙商证券研究所）：地区 / PUE（2023）/ PUE 强制要求 —— 澳大利亚 1.44 / 2025 年达到 1.4；中国 1.56 / 2025 年达到 1.5；法国 1.36 / 到 2030 年建筑能源使用减少 40%；德国 1.42 / 新建 2026 年达到 1.2，现有 2030 年达到 1.3；日本 1.53 / 2022 年达到 1.4；加利福尼亚（美国）1.21 / 2014 年已达到 1.5；全球 1.43",
+        "grade": "S3",
+        "originator": "IEA（经浙商证券《绿色算力投资手册》2025-08-03 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "IEA 汇总的各国强制要求，政策原文未引；「2025 年达到 1.4」。 region 枚举无国家级取值，按大区记，entity 区分国家。"
+    },
+    {
+      "fact_id": "zsgreen2508-iea-japan-dc-pue-target-2022",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "japan-dc-pue-rule",
+        "label": "日本数据中心 PUE 要求"
+      },
+      "asserter": "IEA",
+      "value": 1.4,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "APAC"
+      },
+      "as_of": "2022目标",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "3748c3573f3448676bb8ea822ad50b5d843f517619a0d361e124cdc049428c3a",
+        "local_file": "【报告】绿色算力投资手册.pdf",
+        "locator": "PDF 第 30 页表 15「主要经济体的数据中心能效政策强制要求」（资料来源：IEA，浙商证券研究所）：地区 / PUE（2023）/ PUE 强制要求 —— 澳大利亚 1.44 / 2025 年达到 1.4；中国 1.56 / 2025 年达到 1.5；法国 1.36 / 到 2030 年建筑能源使用减少 40%；德国 1.42 / 新建 2026 年达到 1.2，现有 2030 年达到 1.3；日本 1.53 / 2022 年达到 1.4；加利福尼亚（美国）1.21 / 2014 年已达到 1.5；全球 1.43",
+        "grade": "S3",
+        "originator": "IEA（经浙商证券《绿色算力投资手册》2025-08-03 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "IEA 汇总的各国强制要求，政策原文未引；「2022 年达到 1.4」。 region 枚举无国家级取值，按大区记，entity 区分国家。"
     }
   ]
 }
