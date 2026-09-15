@@ -207957,6 +207957,74 @@
       "derivation": "原文无日期；该稿为 OCP 2024 全球峰会（2024-10）Rack & Power 分会材料，as_of 取 2024-10。",
       "corroboration": "待交叉验证",
       "notes": "网络设备机柜（前/后端交换机）48VDC 侧挂母线能力，30°C 温升测试结果；非 AI 计算机柜。机柜 600×2283×1068 mm，空重 218 kg，满载运输 1,400 kg；底部 6OU 放 ORv3 PSU 与 BBU、41RU 放网络设备，用 2 路 30A AC 进线。Meta 称机柜内 BBU 可减少建筑 UPS 与现场柴发。"
+    },
+    {
+      "fact_id": "shzq2306-800g-ai-training-demand-2024e-lower",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "market",
+        "id": "global-800g-ai-training-demand",
+        "label": "全球 AI 训练直接带动的 800G 光模块需求（头部四家云厂）"
+      },
+      "asserter": "上海证券",
+      "value": 290,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "product_form": "光模块",
+        "speed": "800G",
+        "shipment_basis": "市场需求",
+        "basis": "券商测算",
+        "region": "Global",
+        "customer": "未拆分"
+      },
+      "as_of": "2024E@2023-06",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "95d37ef6552302f6330b7060a225ab6abc65518c6f818b1d614ed2cf2f4502ca",
+        "local_file": "20230602-上海证券-光模块行业研究报告：人工智能提振增长空间，光模块开启新周期(22页).pdf",
+        "locator": "PDF 第 11 页「AI模型训练带动800G光模块需求预期上升」：「结论: 2024年800G光模块出货量空间大概率在290-430万块」；测算过程（3）：「满足同时训练4个GPT-4量级的大模型的情况下出货量为290万块，满足同时训练6个GPT-4量级的大模型的情况下出货量为430万块」",
+        "grade": "S3",
+        "originator": "上海证券《光模块行业研究报告：人工智能提振增长空间，光模块开启新周期》（2023-06-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "仅 AI 模型训练直接产生的需求（头部四家云厂同时训练 4–6 个 GPT-4 量级模型、训练周期≤14 天），不含推理与通用网络；每套下一代 HGX H100 平台（127 台服务器 + 64 台交换机）2,556 个 800G 光模块。区间两端对应 4/6 个模型假设。"
+    },
+    {
+      "fact_id": "shzq2306-800g-ai-training-demand-2024e-upper",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "market",
+        "id": "global-800g-ai-training-demand",
+        "label": "全球 AI 训练直接带动的 800G 光模块需求（头部四家云厂）"
+      },
+      "asserter": "上海证券",
+      "value": 430,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "product_form": "光模块",
+        "speed": "800G",
+        "shipment_basis": "市场需求",
+        "basis": "券商测算",
+        "region": "Global",
+        "customer": "未拆分"
+      },
+      "as_of": "2024E@2023-06",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "95d37ef6552302f6330b7060a225ab6abc65518c6f818b1d614ed2cf2f4502ca",
+        "local_file": "20230602-上海证券-光模块行业研究报告：人工智能提振增长空间，光模块开启新周期(22页).pdf",
+        "locator": "PDF 第 11 页「AI模型训练带动800G光模块需求预期上升」：「结论: 2024年800G光模块出货量空间大概率在290-430万块」；测算过程（3）：「满足同时训练4个GPT-4量级的大模型的情况下出货量为290万块，满足同时训练6个GPT-4量级的大模型的情况下出货量为430万块」",
+        "grade": "S3",
+        "originator": "上海证券《光模块行业研究报告：人工智能提振增长空间，光模块开启新周期》（2023-06-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "仅 AI 模型训练直接产生的需求（头部四家云厂同时训练 4–6 个 GPT-4 量级模型、训练周期≤14 天），不含推理与通用网络；每套下一代 HGX H100 平台（127 台服务器 + 64 台交换机）2,556 个 800G 光模块。区间两端对应 4/6 个模型假设。"
     }
   ]
 }
