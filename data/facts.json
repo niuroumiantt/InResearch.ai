@@ -185803,6 +185803,39 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "「超过」按下界记。原文未写标准机架还是物理机柜、未写在运营或含在建，status 就近记在运营 [未核]。"
+    },
+    {
+      "fact_id": "inspur-caict2409-cn-computing-center-electricity-2030e",
+      "metric_id": "dc_electricity_consumption",
+      "asserter": "中国信通院",
+      "entity": {
+        "type": "industry",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 400.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "算力中心（含智算与超算）",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2024-09",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "aeb443a7eba5854442482a4d00603c3866d700c2c01fd80ca6ac2e911f21b3ca",
+        "local_file": "20240930-浪潮信息&中国信通院：2024人工智能算力高质量发展评估体系报告(46页).pdf",
+        "locator": "第 14 页 1.2.3 挑战三：「据中国信通院数据表明，截至 2023 年底，我国算力中心耗电量达 1500 亿千瓦时，预计到 2030 年将超过 4000 亿千瓦时，若不加大可再生能源利用比例，2030 年全国算力中心二氧化碳排放或将超 2 亿吨」",
+        "grade": "S3",
+        "originator": "中国信通院（经浪潮信息与中国信通院《2024 人工智能算力高质量发展评估体系报告》（2024-09）发布）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "4,000 亿千瓦时 = 400 TWh，「超过」按下界记。原文口径为「算力中心」，sector_basis 按该维注释记「算力中心（含智算与超算）」[未核]。同句 2023 年 1,500 亿千瓦时与库内信通院 2023 年 150 TWh（caict-cpsync2025-cn-dc-electricity-2023，sector_basis 数据中心）同值，但本件写「算力中心」——若确认两处同一统计，应统一 sector_basis，留待所有者按该维注释「拿原文确认后改口径」处理；本件 2023 值未重复录。与信通院 2024-05 版 2030E 380 TWh（数据中心口径）版次与口径均不同。"
     }
   ]
 }
