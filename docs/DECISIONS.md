@@ -6,6 +6,8 @@
 
 以基线 5d7104e（治理、严格校验、1049 单测与两套浏览器回归全绿；现网公开外壳资源与源码字节一致）做三组独立审阅：后端六领域、前端/测试/文档四领域、本地全站截图矩阵与现网公开面比对，每条发现经独立复核后保留 94 条，见 [审阅报告](reviews/2026-09-14/code-review/REVIEW.md)。本批直接落地经复核可安全执行的项：指标回填日期不再在导入时冻结；`deep-read skip` 与 `record` 共用同一严格 SHA 解析；二进制 .ppt 与 xls/xlsx 抽取按调用方预算并如实报告截断；`mapping import-verdicts` 改走 `records.commit_result`；登录 503 文案、启动横幅、页面与文档串中的 `inresearch.py`/`serve.py`/`dchub`/`Datacenter Hub` 等已退役名称清除；woff2 MIME 由代码声明；共享换肤栏 box-sizing、成本页令牌与顶栏偏移、下钻链条偏移、机柜面板贴图重上传、compare 页死样式修正。退出活动路径：`scan-candidates`、`repair-paths`、`library-index` 三个旧入口及其 ops 按钮，禁用的 `start.sh`，本机 `.claude/settings.local.json`；2026-08 部署手册、Caddyfile、compose 与过期两代的 `LIBRARY_INDEX.md` 归档至 `docs/archive/2026-09-14/`。删除只钉死常量的 `facts.CORROB` 自证测试，新增 skip 拒绝未登记完整哈希与 .ppt 预算截断两条测试并更新验收映射。未直接落地的结构性项（L1 管线四模块合并、两张 3D 页 274 行重复、首页每分钟 8 MB 轮询、工单双算、候选补丁覆盖正式公司表、生成投影作 seed 发布、member 角色的管理区可见性等）按优先级列于报告，作为后续批次的输入，不据此宣称架构整改完成。
 
+2026-09-15：综合本地与外部审阅，研究问题任务收敛到 `registry.current_tasks()`，`task_board()` 成为 HTTP、首页与团队页的唯一任务投影。`workorders` 不再把研究问题写入静态 JSON，避免投影与当前采用知识分叉；模块缺口和统计仍由其生成。验证覆盖未重跑投影时的新问题可派工、遗留问题行不会进入 task board、模块缺口保留，以及首页/团队/API/研究快照任务一致。
+
 ## 2026-09-14：数据中心成本研究归入 inresearch.ai
 
 数据中心成本专题的研究正文、来源核验、材料审阅和 Excel 工作簿从 `inews.today` 的渠道交付目录迁入本仓库；第三方报告原件与用户本机资料不复制。新增独立 `cost.html`，以版本化 JSON 为网页口径，复算资源、设施、设备、任务和资本回收五段成本。网页与 Excel 对齐同一基准，明确全项目账与设施观察账户、有效设备小时的适用范围以及设施运维分摊不得重复加总。`inews.today` 继续保存公众号和 X 的发布成品，不再承载计算器源码。

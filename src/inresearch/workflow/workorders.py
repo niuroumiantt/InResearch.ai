@@ -324,15 +324,6 @@ def build(only=None):
                 "跑 `python3 manage.py verify` 取核验队列，按触发器找新证据复核。", key="鲜度",
                 brief="【这条不派给实习生】内部核验任务：既有结论到期需复核。")
 
-    questions = research.read_json(ROOT / 'framework/research_questions.json')
-    knowledge = research.read_json(ROOT / 'data/research_knowledge.json')
-    names = {m['id']: m['name'] for m in mods}
-    for task in research.question_tasks(questions, knowledge):
-        if only and task['mid'] != only:
-            continue
-        task['name'] = names[task['mid']]
-        orders.append(task)
-
     return orders, ammo, high, backlog
 
 

@@ -293,10 +293,7 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(503, {'ok': False, 'error': '报告暂不可用，请稍后重试'})
         if urlsplit(self.path).path == '/api/tasks':
             try:
-                projection = research.read_json(workspace_path('reports/workorders.json', ROOT), {})
-                return self._json(200, {'orders': research.current_tasks(ROOT),
-                                       'module_stats': projection.get('module_stats', {}),
-                                       'generated': datetime.now().isoformat(timespec='seconds')})
+                return self._json(200, research.task_board(ROOT))
             except (ValueError, TypeError, KeyError, OSError):
                 return self._json(503, {'ok': False, 'error': '任务暂不可用，请稍后重试'})
         return super().do_GET()
