@@ -180939,6 +180939,132 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "莱坊口径。**正文与图对不上**：第 14、16 页正文称「运营中及在建的数据中心容量达到211MW」，而图与表中 211.2 含规划 10 与已签约 78（86+37+78+10=211）；本条只取图中分项。「已签约」78 MW 无对应项目状态，未录。"
+    },
+    {
+      "fact_id": "cbre2024au-australia-built-out-capacity-2024",
+      "metric_id": "dc_capacity_mw",
+      "asserter": "世邦魏理仕",
+      "entity": {
+        "type": "market",
+        "id": "au-dc-market-cbre",
+        "label": "澳大利亚数据中心市场（CBRE 口径）"
+      },
+      "value": 1500.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "APAC"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b582507e2fbfdcf7322d21676487557d6bb27e726a7033ab6124efacf38ea6ea",
+        "local_file": "20241020-世邦魏理仕：2024澳大利亚数据中心报告英文版(33页).pdf",
+        "locator": "第 22 页「Active Data Centres in Australia」：「CBRE Research have calculated that there is currently close to 1,500MW (i.e. 1.5 GW) of built-out capacity in Australia」；图注「Built-out capacity includes base building that is yet to be fitted out… Source: CBRE Research. As at 2024」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE Research）《Data Centres Australia — Intelligent Investment》（2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「close to」按点值记约数。**含尚未装修的基础建筑（壳体）**，不全是可交付容量，status 记 L8 沿用库内 CBRE 市场库存惯例，读数时注意。同页：悉尼占全国已建容量约 60%，墨尔本约为悉尼一半且预计五年内翻倍。原件文字层只有项目符号，本条为读图录入。"
+    },
+    {
+      "fact_id": "cbre2024au-apac-investor-survey-dc-preferred-alt-2024",
+      "metric_id": "investor_survey_share",
+      "asserter": "世邦魏理仕",
+      "entity": {
+        "type": "market",
+        "id": "cbre-apac-investor-intentions-2024-dc",
+        "label": "CBRE 亚太投资者意向调查：另类资产首选—数据中心（2024）"
+      },
+      "value": 31.0,
+      "unit": "%",
+      "caliber": {
+        "question": "首选机会类型",
+        "option": "另类资产中首选数据中心",
+        "respondent_scope": "全体受访者",
+        "region": "APAC",
+        "basis": "调查结果"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b582507e2fbfdcf7322d21676487557d6bb27e726a7033ab6124efacf38ea6ea",
+        "local_file": "20241020-世邦魏理仕：2024澳大利亚数据中心报告英文版(33页).pdf",
+        "locator": "第 27 页：「The CBRE APAC Investor Intentions survey results show Data Centres are the 2nd most preferred alternate asset for investment in 2024, with 31% of respondents said they would seek out data centre investments」；图「Investors' preferred alternate asset for investment in 2024」（Source: CBRE Research「APAC Investor Intentions Survey 2024」）",
+        "grade": "S3",
+        "originator": "世邦魏理仕《APAC Investor Intentions Survey 2024》（经世邦魏理仕（CBRE Research）《Data Centres Australia — Intelligent Investment》（2024）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "问卷分布，分母为受访者。数据中心为第二，仅次于医疗健康（约 37%，图中无标签未录）。原件文字层只有项目符号，本条为读图录入。"
+    },
+    {
+      "fact_id": "cbre2024au-construction-cost-share-electrical",
+      "metric_id": "cost_share_by_trade",
+      "asserter": "世邦魏理仕",
+      "entity": {
+        "type": "market",
+        "id": "au-dc-construction-cbre",
+        "label": "澳大利亚数据中心建设（CBRE 平均口径）"
+      },
+      "value": 44.0,
+      "unit": "%",
+      "caliber": {
+        "trade": "供配电",
+        "sub_trade": "未拆分",
+        "denominator": "项目总造价",
+        "stage": "估算",
+        "region": "APAC"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b582507e2fbfdcf7322d21676487557d6bb27e726a7033ab6124efacf38ea6ea",
+        "local_file": "20241020-世邦魏理仕：2024澳大利亚数据中心报告英文版(33页).pdf",
+        "locator": "第 30 页「Development Model」饼图「Average % of Construction costs for Data Centres」：Electrical Systems 44%（其余 Land and Shell 22%、Building fit-out 17%）",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE Research）《Data Centres Australia — Intelligent Investment》（2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "分母为数据中心平均建设成本（含「Land and Shell」22%，即含土地），denominator 取最接近的项目总造价。「Land and Shell」「Building fit-out」各 17–22% 与 trade 枚举（土建/场平等）不一一对应，未录。同页平均建设成本 A$15 million/MW 为澳元，dc_build_cost_per_mw 单位固定百万美元，不换汇未录。原件文字层只有项目符号，本条为读图录入。"
+    },
+    {
+      "fact_id": "cbre2024au-construction-cost-share-hvac",
+      "metric_id": "cost_share_by_trade",
+      "asserter": "世邦魏理仕",
+      "entity": {
+        "type": "market",
+        "id": "au-dc-construction-cbre",
+        "label": "澳大利亚数据中心建设（CBRE 平均口径）"
+      },
+      "value": 17.0,
+      "unit": "%",
+      "caliber": {
+        "trade": "暖通制冷",
+        "sub_trade": "未拆分",
+        "denominator": "项目总造价",
+        "stage": "估算",
+        "region": "APAC"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b582507e2fbfdcf7322d21676487557d6bb27e726a7033ab6124efacf38ea6ea",
+        "local_file": "20241020-世邦魏理仕：2024澳大利亚数据中心报告英文版(33页).pdf",
+        "locator": "第 30 页「Development Model」饼图「Average % of Construction costs for Data Centres」：HVAC / Mechanical 17%（其余 Land and Shell 22%、Building fit-out 17%）",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE Research）《Data Centres Australia — Intelligent Investment》（2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "分母为数据中心平均建设成本（含「Land and Shell」22%，即含土地），denominator 取最接近的项目总造价。「Land and Shell」「Building fit-out」各 17–22% 与 trade 枚举（土建/场平等）不一一对应，未录。同页平均建设成本 A$15 million/MW 为澳元，dc_build_cost_per_mw 单位固定百万美元，不换汇未录。原件文字层只有项目符号，本条为读图录入。"
     }
   ]
 }
