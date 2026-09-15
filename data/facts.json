@@ -219636,6 +219636,70 @@
         "originator": "ADEME 与 Arcep《Evaluating the digital environmental footprint in France — Third volume: forward-looking analysis up to 2030 and 2050》，Arcep 发布"
       },
       "notes": "「up to 72 TWh」按上界记；占该情景下数字行业总用电 52%。Self-correction wager 即 ADEME Transition(s) 2050 的法文情景名「Pari réparateur」，按菜单英文取值记。法国全国口径；region 无 FR 取值，记 EU 并在此注明为法国（与库内 JRC 法国条同一处理）。ADEME–Arcep 联合研究，断言者记牵头方 ADEME。"
+    },
+    {
+      "fact_id": "huawei2021-idc-mainstream-rack-power-2025e-lower",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "industry",
+        "id": "cloud-dc-mainstream-rack",
+        "label": "主流云数据中心机柜功率"
+      },
+      "value": 15.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "市场普遍水平",
+        "era": "路线图目标",
+        "power_basis": "未披露",
+        "region": "未披露"
+      },
+      "as_of": "2025E@2021",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "9dad29af472634fb2fba299c64db9bc5d6bd5bd262da5aa8ad42870f7354fad8",
+        "local_file": "5C_2025_2025_数据中心能源趋势白_未署名.pdf",
+        "locator": "PDF 第 10 页「趋势二：高密化 02. 多样化算力协同将成主流」：「未来 IDC 主流功率分布为 15~30kW/R，呈现功率为 15kW/R 的 x86、20kW/R 的 ARM，以及 30kW/R 的 GPU 芯片在数据中心并存的现象……预计到 2025 年，主流云数据中心将形成 15~30kW/ 柜混合部署形态」",
+        "grade": "S2",
+        "originator": "华为联合「智领 DC 计划」委员会《数据中心能源十大趋势白皮书》第 101 号，版权页标 © 华为技术有限公司 2021"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "华为",
+      "notes": "2021 年版十大趋势白皮书对 2025 年的预测区间，按两端记。区间内按芯片分：x86 15kW/R、ARM 20kW/R、GPU 30kW/R，本指标无芯片类型维度，不拆。rack_type 就近记传统风冷（原文未写冷却方式），region 未披露：白皮书为全球行业趋势，未限定地域。[未核]"
+    },
+    {
+      "fact_id": "huawei2021-idc-mainstream-rack-power-2025e-upper",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "industry",
+        "id": "cloud-dc-mainstream-rack",
+        "label": "主流云数据中心机柜功率"
+      },
+      "value": 30.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "市场普遍水平",
+        "era": "路线图目标",
+        "power_basis": "未披露",
+        "region": "未披露"
+      },
+      "as_of": "2025E@2021",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "9dad29af472634fb2fba299c64db9bc5d6bd5bd262da5aa8ad42870f7354fad8",
+        "local_file": "5C_2025_2025_数据中心能源趋势白_未署名.pdf",
+        "locator": "PDF 第 10 页「趋势二：高密化 02. 多样化算力协同将成主流」：「未来 IDC 主流功率分布为 15~30kW/R，呈现功率为 15kW/R 的 x86、20kW/R 的 ARM，以及 30kW/R 的 GPU 芯片在数据中心并存的现象……预计到 2025 年，主流云数据中心将形成 15~30kW/ 柜混合部署形态」",
+        "grade": "S2",
+        "originator": "华为联合「智领 DC 计划」委员会《数据中心能源十大趋势白皮书》第 101 号，版权页标 © 华为技术有限公司 2021"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "华为",
+      "notes": "2021 年版十大趋势白皮书对 2025 年的预测区间，按两端记。区间内按芯片分：x86 15kW/R、ARM 20kW/R、GPU 30kW/R，本指标无芯片类型维度，不拆。rack_type 就近记传统风冷（原文未写冷却方式），region 未披露：白皮书为全球行业趋势，未限定地域。[未核]"
     }
   ]
 }
