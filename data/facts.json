@@ -217450,6 +217450,499 @@
       "corroboration": "待交叉验证",
       "asserter": "中际旭创",
       "notes": "InnoLight（中际旭创）Rang-Chen Yu 演讲。本条为传统含 DSP/Retimer 方案；1.6T 标注 Gen 1。同页线性接口方案 800G ~8W、1.6T ~10W 未记——optics_module_power 缺「DSP/线性（LPO/LRO）」维度，两者同 caliber 会互相覆盖（缺口）。光学方案 EML/SiPh 未注明。"
+    },
+    {
+      "entity": {
+        "type": "policy",
+        "id": "gb-51195-2016",
+        "label": "GB 51195—2016《互联网数据中心工程技术规范》"
+      },
+      "as_of": "2016",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "住建部",
+      "fact_id": "gb51195-2016-pue-new",
+      "metric_id": "dc_pue",
+      "value": 1.6,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "bound": "upper",
+      "evidence": {
+        "sha256": "99c6c6b65e8f76c890c7542c018d8ac2d1a3755db274a824125a0263db6c0fc5",
+        "local_file": "GB 51195-2016 互联网数据中心工程技术规范.pdf",
+        "locator": "PDF 第 34–35 页（页码 28–29）3.13.1：「IDC 应采取充分的节能设计……新建 IDC 在年测量周期内的 PUE 平均值不宜大于 1.6，改建、扩建 IDC 在年测量周期内的 PUE 平均值不宜大于 1.8」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部"
+      },
+      "notes": "国家标准条款（「不宜大于」），basis 就近记政策限值（dc_pue 无「规范要求」取值）。扫描件带「住房城乡建设部信息公开 浏览专用」水印（未带出）。本规范分级为 R1/R2/R3，tier 无对应取值，本条为不分级条款或记未注明。"
+    },
+    {
+      "entity": {
+        "type": "policy",
+        "id": "gb-51195-2016",
+        "label": "GB 51195—2016《互联网数据中心工程技术规范》"
+      },
+      "as_of": "2016",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "住建部",
+      "fact_id": "gb51195-2016-pue-retrofit",
+      "metric_id": "dc_pue",
+      "value": 1.8,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "改造",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "bound": "upper",
+      "evidence": {
+        "sha256": "99c6c6b65e8f76c890c7542c018d8ac2d1a3755db274a824125a0263db6c0fc5",
+        "local_file": "GB 51195-2016 互联网数据中心工程技术规范.pdf",
+        "locator": "PDF 第 34–35 页（页码 28–29）3.13.1：「IDC 应采取充分的节能设计……新建 IDC 在年测量周期内的 PUE 平均值不宜大于 1.6，改建、扩建 IDC 在年测量周期内的 PUE 平均值不宜大于 1.8」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部"
+      },
+      "notes": "原文「改建、扩建」按改造记。国家标准条款（「不宜大于」），basis 就近记政策限值（dc_pue 无「规范要求」取值）。扫描件带「住房城乡建设部信息公开 浏览专用」水印（未带出）。本规范分级为 R1/R2/R3，tier 无对应取值，本条为不分级条款或记未注明。"
+    },
+    {
+      "entity": {
+        "type": "policy",
+        "id": "gb-51195-2016",
+        "label": "GB 51195—2016《互联网数据中心工程技术规范》"
+      },
+      "as_of": "2016",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "住建部",
+      "fact_id": "gb51195-2016-floorload-main",
+      "metric_id": "room_floor_load",
+      "value": 10.0,
+      "unit": "kN/㎡",
+      "caliber": {
+        "room_type": "主机房",
+        "basis": "规范最低（国标）",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "未注明"
+      },
+      "bound": "lower",
+      "evidence": {
+        "sha256": "99c6c6b65e8f76c890c7542c018d8ac2d1a3755db274a824125a0263db6c0fc5",
+        "local_file": "GB 51195-2016 互联网数据中心工程技术规范.pdf",
+        "locator": "PDF 第 16 页（页码 10）3.4.2 第 5 款：「无特殊要求时，宜按主机房区楼面等效均布活荷载大于或等于 10kN/m²、电力电池室楼面等效均布活荷载大于或等于 16kN/m² 设计」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部"
+      },
+      "notes": "「无特殊要求时」的默认设计值。扫描件带「住房城乡建设部信息公开 浏览专用」水印（未带出）。本规范分级为 R1/R2/R3，tier 无对应取值，本条为不分级条款或记未注明。"
+    },
+    {
+      "entity": {
+        "type": "policy",
+        "id": "gb-51195-2016",
+        "label": "GB 51195—2016《互联网数据中心工程技术规范》"
+      },
+      "as_of": "2016",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "住建部",
+      "fact_id": "gb51195-2016-floorload-battery",
+      "metric_id": "room_floor_load",
+      "value": 16.0,
+      "unit": "kN/㎡",
+      "caliber": {
+        "room_type": "电池室",
+        "basis": "规范最低（国标）",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "未注明"
+      },
+      "bound": "lower",
+      "evidence": {
+        "sha256": "99c6c6b65e8f76c890c7542c018d8ac2d1a3755db274a824125a0263db6c0fc5",
+        "local_file": "GB 51195-2016 互联网数据中心工程技术规范.pdf",
+        "locator": "PDF 第 16 页（页码 10）3.4.2 第 5 款：「无特殊要求时，宜按主机房区楼面等效均布活荷载大于或等于 10kN/m²、电力电池室楼面等效均布活荷载大于或等于 16kN/m² 设计」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部"
+      },
+      "notes": "原文房间名「电力电池室」。「无特殊要求时」的默认设计值。扫描件带「住房城乡建设部信息公开 浏览专用」水印（未带出）。本规范分级为 R1/R2/R3，tier 无对应取值，本条为不分级条款或记未注明。"
+    },
+    {
+      "entity": {
+        "type": "policy",
+        "id": "gb-51195-2016",
+        "label": "GB 51195—2016《互联网数据中心工程技术规范》"
+      },
+      "as_of": "2016",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "住建部",
+      "fact_id": "gb51195-2016-clearheight-main",
+      "metric_id": "room_clear_height",
+      "value": 3.4,
+      "unit": "m",
+      "caliber": {
+        "measure": "梁下净高",
+        "room_type": "主机房",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "未注明"
+      },
+      "bound": "lower",
+      "evidence": {
+        "sha256": "99c6c6b65e8f76c890c7542c018d8ac2d1a3755db274a824125a0263db6c0fc5",
+        "local_file": "GB 51195-2016 互联网数据中心工程技术规范.pdf",
+        "locator": "PDF 第 16 页（页码 10）3.4.2 第 6 款：「IDC 主机房区梁下净高应根据机房面积、机架高度、空调及通风要求确定，不宜小于 3400mm」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部"
+      },
+      "notes": "原文 3400mm = 3.4m。GB 50174—2017 新建主机房净高不宜小于 3.0m，两标准不同。扫描件带「住房城乡建设部信息公开 浏览专用」水印（未带出）。本规范分级为 R1/R2/R3，tier 无对应取值，本条为不分级条款或记未注明。"
+    },
+    {
+      "entity": {
+        "type": "policy",
+        "id": "gb-51195-2016",
+        "label": "GB 51195—2016《互联网数据中心工程技术规范》"
+      },
+      "as_of": "2016",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "住建部",
+      "fact_id": "gb51195-2016-ups-battery",
+      "metric_id": "backup_autonomy",
+      "value": 10.0,
+      "unit": "分钟",
+      "caliber": {
+        "backup_type": "UPS 蓄电池",
+        "tier": "未注明",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "bound": "lower",
+      "evidence": {
+        "sha256": "99c6c6b65e8f76c890c7542c018d8ac2d1a3755db274a824125a0263db6c0fc5",
+        "local_file": "GB 51195-2016 互联网数据中心工程技术规范.pdf",
+        "locator": "PDF 第 20 页（页码 14）表 3.4.4-3「UPS 配置」注：「UPS 电池备用时间不宜小于 10min」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部"
+      },
+      "notes": "表注对 R1–R3 各级通用。扫描件带「住房城乡建设部信息公开 浏览专用」水印（未带出）。本规范分级为 R1/R2/R3，tier 无对应取值，本条为不分级条款或记未注明。"
+    },
+    {
+      "entity": {
+        "type": "policy",
+        "id": "gb-51195-2016",
+        "label": "GB 51195—2016《互联网数据中心工程技术规范》"
+      },
+      "as_of": "2016",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "住建部",
+      "fact_id": "gb51195-2016-env-temp-rec-lo",
+      "metric_id": "room_environment_limit",
+      "value": 18.0,
+      "unit": "°C 或 %",
+      "caliber": {
+        "parameter": "温度",
+        "limit_type": "推荐值",
+        "bound": "下限",
+        "room_type": "主机房",
+        "tier": "未注明",
+        "region": "CN"
+      },
+      "bound": "lower",
+      "evidence": {
+        "sha256": "99c6c6b65e8f76c890c7542c018d8ac2d1a3755db274a824125a0263db6c0fc5",
+        "local_file": "GB 51195-2016 互联网数据中心工程技术规范.pdf",
+        "locator": "PDF 第 21 页（页码 15）3.4.5 第 2 款：「无特殊要求时，宜按机架进风区温度 18℃～27℃、露点温度 5.5℃～15℃、相对湿度 40%～70%，不得结露进行设计。当设备要求允许时，相对湿度可为 20%～80%」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部"
+      },
+      "notes": "本条单位 ℃。测点为机架进风区。「无特殊要求时，宜按」的设计区间，按推荐值记。扫描件带「住房城乡建设部信息公开 浏览专用」水印（未带出）。本规范分级为 R1/R2/R3，tier 无对应取值，本条为不分级条款或记未注明。"
+    },
+    {
+      "entity": {
+        "type": "policy",
+        "id": "gb-51195-2016",
+        "label": "GB 51195—2016《互联网数据中心工程技术规范》"
+      },
+      "as_of": "2016",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "住建部",
+      "fact_id": "gb51195-2016-env-temp-rec-hi",
+      "metric_id": "room_environment_limit",
+      "value": 27.0,
+      "unit": "°C 或 %",
+      "caliber": {
+        "parameter": "温度",
+        "limit_type": "推荐值",
+        "bound": "上限",
+        "room_type": "主机房",
+        "tier": "未注明",
+        "region": "CN"
+      },
+      "bound": "upper",
+      "evidence": {
+        "sha256": "99c6c6b65e8f76c890c7542c018d8ac2d1a3755db274a824125a0263db6c0fc5",
+        "local_file": "GB 51195-2016 互联网数据中心工程技术规范.pdf",
+        "locator": "PDF 第 21 页（页码 15）3.4.5 第 2 款：「无特殊要求时，宜按机架进风区温度 18℃～27℃、露点温度 5.5℃～15℃、相对湿度 40%～70%，不得结露进行设计。当设备要求允许时，相对湿度可为 20%～80%」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部"
+      },
+      "notes": "本条单位 ℃。测点为机架进风区。「无特殊要求时，宜按」的设计区间，按推荐值记。扫描件带「住房城乡建设部信息公开 浏览专用」水印（未带出）。本规范分级为 R1/R2/R3，tier 无对应取值，本条为不分级条款或记未注明。"
+    },
+    {
+      "entity": {
+        "type": "policy",
+        "id": "gb-51195-2016",
+        "label": "GB 51195—2016《互联网数据中心工程技术规范》"
+      },
+      "as_of": "2016",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "住建部",
+      "fact_id": "gb51195-2016-env-dew-rec-lo",
+      "metric_id": "room_environment_limit",
+      "value": 5.5,
+      "unit": "°C 或 %",
+      "caliber": {
+        "parameter": "露点温度",
+        "limit_type": "推荐值",
+        "bound": "下限",
+        "room_type": "主机房",
+        "tier": "未注明",
+        "region": "CN"
+      },
+      "bound": "lower",
+      "evidence": {
+        "sha256": "99c6c6b65e8f76c890c7542c018d8ac2d1a3755db274a824125a0263db6c0fc5",
+        "local_file": "GB 51195-2016 互联网数据中心工程技术规范.pdf",
+        "locator": "PDF 第 21 页（页码 15）3.4.5 第 2 款：「无特殊要求时，宜按机架进风区温度 18℃～27℃、露点温度 5.5℃～15℃、相对湿度 40%～70%，不得结露进行设计。当设备要求允许时，相对湿度可为 20%～80%」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部"
+      },
+      "notes": "本条单位 ℃。测点为机架进风区。「无特殊要求时，宜按」的设计区间，按推荐值记。扫描件带「住房城乡建设部信息公开 浏览专用」水印（未带出）。本规范分级为 R1/R2/R3，tier 无对应取值，本条为不分级条款或记未注明。"
+    },
+    {
+      "entity": {
+        "type": "policy",
+        "id": "gb-51195-2016",
+        "label": "GB 51195—2016《互联网数据中心工程技术规范》"
+      },
+      "as_of": "2016",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "住建部",
+      "fact_id": "gb51195-2016-env-dew-rec-hi",
+      "metric_id": "room_environment_limit",
+      "value": 15.0,
+      "unit": "°C 或 %",
+      "caliber": {
+        "parameter": "露点温度",
+        "limit_type": "推荐值",
+        "bound": "上限",
+        "room_type": "主机房",
+        "tier": "未注明",
+        "region": "CN"
+      },
+      "bound": "upper",
+      "evidence": {
+        "sha256": "99c6c6b65e8f76c890c7542c018d8ac2d1a3755db274a824125a0263db6c0fc5",
+        "local_file": "GB 51195-2016 互联网数据中心工程技术规范.pdf",
+        "locator": "PDF 第 21 页（页码 15）3.4.5 第 2 款：「无特殊要求时，宜按机架进风区温度 18℃～27℃、露点温度 5.5℃～15℃、相对湿度 40%～70%，不得结露进行设计。当设备要求允许时，相对湿度可为 20%～80%」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部"
+      },
+      "notes": "本条单位 ℃。测点为机架进风区。「无特殊要求时，宜按」的设计区间，按推荐值记。扫描件带「住房城乡建设部信息公开 浏览专用」水印（未带出）。本规范分级为 R1/R2/R3，tier 无对应取值，本条为不分级条款或记未注明。"
+    },
+    {
+      "entity": {
+        "type": "policy",
+        "id": "gb-51195-2016",
+        "label": "GB 51195—2016《互联网数据中心工程技术规范》"
+      },
+      "as_of": "2016",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "住建部",
+      "fact_id": "gb51195-2016-env-rh-rec-lo",
+      "metric_id": "room_environment_limit",
+      "value": 40.0,
+      "unit": "°C 或 %",
+      "caliber": {
+        "parameter": "相对湿度",
+        "limit_type": "推荐值",
+        "bound": "下限",
+        "room_type": "主机房",
+        "tier": "未注明",
+        "region": "CN"
+      },
+      "bound": "lower",
+      "evidence": {
+        "sha256": "99c6c6b65e8f76c890c7542c018d8ac2d1a3755db274a824125a0263db6c0fc5",
+        "local_file": "GB 51195-2016 互联网数据中心工程技术规范.pdf",
+        "locator": "PDF 第 21 页（页码 15）3.4.5 第 2 款：「无特殊要求时，宜按机架进风区温度 18℃～27℃、露点温度 5.5℃～15℃、相对湿度 40%～70%，不得结露进行设计。当设备要求允许时，相对湿度可为 20%～80%」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部"
+      },
+      "notes": "本条单位 %。测点为机架进风区。「无特殊要求时，宜按」的设计区间，按推荐值记。扫描件带「住房城乡建设部信息公开 浏览专用」水印（未带出）。本规范分级为 R1/R2/R3，tier 无对应取值，本条为不分级条款或记未注明。"
+    },
+    {
+      "entity": {
+        "type": "policy",
+        "id": "gb-51195-2016",
+        "label": "GB 51195—2016《互联网数据中心工程技术规范》"
+      },
+      "as_of": "2016",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "住建部",
+      "fact_id": "gb51195-2016-env-rh-rec-hi",
+      "metric_id": "room_environment_limit",
+      "value": 70.0,
+      "unit": "°C 或 %",
+      "caliber": {
+        "parameter": "相对湿度",
+        "limit_type": "推荐值",
+        "bound": "上限",
+        "room_type": "主机房",
+        "tier": "未注明",
+        "region": "CN"
+      },
+      "bound": "upper",
+      "evidence": {
+        "sha256": "99c6c6b65e8f76c890c7542c018d8ac2d1a3755db274a824125a0263db6c0fc5",
+        "local_file": "GB 51195-2016 互联网数据中心工程技术规范.pdf",
+        "locator": "PDF 第 21 页（页码 15）3.4.5 第 2 款：「无特殊要求时，宜按机架进风区温度 18℃～27℃、露点温度 5.5℃～15℃、相对湿度 40%～70%，不得结露进行设计。当设备要求允许时，相对湿度可为 20%～80%」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部"
+      },
+      "notes": "本条单位 %。测点为机架进风区。「无特殊要求时，宜按」的设计区间，按推荐值记。扫描件带「住房城乡建设部信息公开 浏览专用」水印（未带出）。本规范分级为 R1/R2/R3，tier 无对应取值，本条为不分级条款或记未注明。"
+    },
+    {
+      "entity": {
+        "type": "policy",
+        "id": "gb-51195-2016",
+        "label": "GB 51195—2016《互联网数据中心工程技术规范》"
+      },
+      "as_of": "2016",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "住建部",
+      "fact_id": "gb51195-2016-env-rh-allow-lo",
+      "metric_id": "room_environment_limit",
+      "value": 20.0,
+      "unit": "°C 或 %",
+      "caliber": {
+        "parameter": "相对湿度",
+        "limit_type": "允许值",
+        "bound": "下限",
+        "room_type": "主机房",
+        "tier": "未注明",
+        "region": "CN"
+      },
+      "bound": "lower",
+      "evidence": {
+        "sha256": "99c6c6b65e8f76c890c7542c018d8ac2d1a3755db274a824125a0263db6c0fc5",
+        "local_file": "GB 51195-2016 互联网数据中心工程技术规范.pdf",
+        "locator": "PDF 第 21 页（页码 15）3.4.5 第 2 款：「无特殊要求时，宜按机架进风区温度 18℃～27℃、露点温度 5.5℃～15℃、相对湿度 40%～70%，不得结露进行设计。当设备要求允许时，相对湿度可为 20%～80%」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部"
+      },
+      "notes": "本条单位 %。测点为机架进风区。「当设备要求允许时」的放宽区间，按允许值记。扫描件带「住房城乡建设部信息公开 浏览专用」水印（未带出）。本规范分级为 R1/R2/R3，tier 无对应取值，本条为不分级条款或记未注明。"
+    },
+    {
+      "entity": {
+        "type": "policy",
+        "id": "gb-51195-2016",
+        "label": "GB 51195—2016《互联网数据中心工程技术规范》"
+      },
+      "as_of": "2016",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "住建部",
+      "fact_id": "gb51195-2016-env-rh-allow-hi",
+      "metric_id": "room_environment_limit",
+      "value": 80.0,
+      "unit": "°C 或 %",
+      "caliber": {
+        "parameter": "相对湿度",
+        "limit_type": "允许值",
+        "bound": "上限",
+        "room_type": "主机房",
+        "tier": "未注明",
+        "region": "CN"
+      },
+      "bound": "upper",
+      "evidence": {
+        "sha256": "99c6c6b65e8f76c890c7542c018d8ac2d1a3755db274a824125a0263db6c0fc5",
+        "local_file": "GB 51195-2016 互联网数据中心工程技术规范.pdf",
+        "locator": "PDF 第 21 页（页码 15）3.4.5 第 2 款：「无特殊要求时，宜按机架进风区温度 18℃～27℃、露点温度 5.5℃～15℃、相对湿度 40%～70%，不得结露进行设计。当设备要求允许时，相对湿度可为 20%～80%」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部"
+      },
+      "notes": "本条单位 %。测点为机架进风区。「当设备要求允许时」的放宽区间，按允许值记。扫描件带「住房城乡建设部信息公开 浏览专用」水印（未带出）。本规范分级为 R1/R2/R3，tier 无对应取值，本条为不分级条款或记未注明。"
+    },
+    {
+      "entity": {
+        "type": "policy",
+        "id": "gb-51195-2016",
+        "label": "GB 51195—2016《互联网数据中心工程技术规范》"
+      },
+      "as_of": "2016",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "住建部",
+      "fact_id": "gb51195-2016-raised-floor-height",
+      "metric_id": "room_dimension",
+      "value": 400.0,
+      "unit": "mm",
+      "caliber": {
+        "dimension_type": "活动地板高度",
+        "purpose": "作静压箱",
+        "tier": "未注明",
+        "build_type": "未注明",
+        "bound_sense": "不小于",
+        "region": "CN"
+      },
+      "bound": "lower",
+      "evidence": {
+        "sha256": "99c6c6b65e8f76c890c7542c018d8ac2d1a3755db274a824125a0263db6c0fc5",
+        "local_file": "GB 51195-2016 互联网数据中心工程技术规范.pdf",
+        "locator": "PDF 第 22 页（页码 16）3.4.5 第 6 款 2)：「IDC 主机房宜采用下送风方式……地板高度应根据机房内机架运行功率进行计算确定，不应小于 400mm」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部"
+      },
+      "notes": "下送风架空地板作送风静压箱。同款 5) 通透式机架冷通道宜 1000–1800mm、热通道 800–1200mm；半封闭式机架列间距 800–1200mm，未记（区间且按机架形式分）。扫描件带「住房城乡建设部信息公开 浏览专用」水印（未带出）。本规范分级为 R1/R2/R3，tier 无对应取值，本条为不分级条款或记未注明。"
     }
   ]
 }
