@@ -9602,9 +9602,14 @@
             "Lift-Off",
             "High Efficiency",
             "Headwinds",
+            "Business-as-usual",
+            "Frugal generation",
+            "Territorial cooperation",
+            "Green technologies",
+            "Self-correction wager",
             "单一情景"
           ],
-          "note": "**同一个预测者对同一年份给出的几个值，不是互相矛盾的几条数据。**IEA 那份 2030 年给了四个：Base 945、Lift-Off 超 1260、High Efficiency 约 800、Headwinds 约 670 TWh。没有这一维，945 与 1260 会被读成两家打架，而它们出自同一页。\n\nbasis 维分的是「实测还是预测」，管不了这件事——四个值全是预测，差别在假设。原文只给一个数、不分情景的填「单一情景」，**不要拿它当 Base Case**：没分情景和明说是基准情景不是一回事。\n\n情景名用原文写法。别家报告的情景名不同（保守/中性/乐观之类）时，不要硬映射到这四个——那是另一套假设，映射过来就是编。遇到就当缺口报上来，另加取值。"
+          "note": "**同一个预测者对同一年份给出的几个值，不是互相矛盾的几条数据。**IEA 那份 2030 年给了四个：Base 945、Lift-Off 超 1260、High Efficiency 约 800、Headwinds 约 670 TWh。没有这一维，945 与 1260 会被读成两家打架，而它们出自同一页。\n\nbasis 维分的是「实测还是预测」，管不了这件事——四个值全是预测，差别在假设。原文只给一个数、不分情景的填「单一情景」，**不要拿它当 Base Case**：没分情景和明说是基准情景不是一回事。\n\n情景名用原文写法。别家报告的情景名不同（保守/中性/乐观之类）时，不要硬映射到这四个——那是另一套假设，映射过来就是编。遇到就当缺口报上来，另加取值。\n\n**（2026-09-15）加入 ADEME–Arcep 的一套情景名：Business-as-usual、Frugal generation、Territorial cooperation、Green technologies、Self-correction wager。**这正是上一段规定的路线——别家情景名不硬映射到 IEA 四情景，报缺口后另加取值。法国 2030 年 BAU 16 TWh、2050 年 BAU 39 TWh、2050 年 Self-correction wager 72 TWh 由此可录。\n\n**加值时按「一整套」加，不要只加手上有数的那一个。**后四个是 ADEME《Transition(s) 2050》的同一套四情景，只加 Self-correction wager 会让日后读到另外三个的人以为菜单装不下而再报一次缺口，或更糟——硬塞进「单一情景」。\n\n**并且记下同一情景的跨语言对应名，因为取值进 claim_key：同一情景两种语言就是两个口径。**本库取的是 Arcep 英文版写法；ADEME 法文原版对应为 Pari réparateur（Self-correction wager）、Génération frugale（Frugal generation）、Coopérations territoriales（Territorial cooperation）、Technologies vertes（Green technologies）、tendanciel（Business-as-usual）。**读到法文版时沿用上面的英文取值，不要新开一个法文取值。**"
         },
         {
           "id": "scope",
