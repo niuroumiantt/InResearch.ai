@@ -194757,6 +194757,70 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原文「将突破 1000 万架」，预测值，按下界记。"
+    },
+    {
+      "fact_id": "bnef2508-dc-power-load-2024",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "industry",
+        "id": "dc-power-load-bnef",
+        "label": "数据中心电力负荷（彭博新能源财经模型，未写地域）"
+      },
+      "asserter": "彭博新能源财经",
+      "value": 80.0,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "模型输出",
+        "region": "未披露"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3f8a1159b2411051fe2042c65b3ca59029096c28ffad0fc01d6226b2fb50bb13",
+        "local_file": "20250922-用电大户数据中心推动电力需求(9页).pdf",
+        "locator": "PDF 第 2 页「2. 增加清洁能源使用」：「我们的模型显示，2030 年，数据中心电力负荷将从 2024 年的 80GW 激增至 174GW…基于扩张计划和平均能效，四大互联网巨头需将对现有基础设施的绿色电力供应提高三倍至 43GW」",
+        "grade": "S2",
+        "originator": "彭博新能源财经《用电大户数据中心推动绿色电力需求》（中文版，2025-08-18）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「数据中心电力负荷」，未写地域（按上下文为全球模型，但未明说，记未披露）也未写是否 IT 负载。"
+    },
+    {
+      "fact_id": "bnef2508-dc-power-load-2030e",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "industry",
+        "id": "dc-power-load-bnef",
+        "label": "数据中心电力负荷（彭博新能源财经模型，未写地域）"
+      },
+      "asserter": "彭博新能源财经",
+      "value": 174.0,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "未披露"
+      },
+      "as_of": "2030E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3f8a1159b2411051fe2042c65b3ca59029096c28ffad0fc01d6226b2fb50bb13",
+        "local_file": "20250922-用电大户数据中心推动电力需求(9页).pdf",
+        "locator": "PDF 第 2 页「2. 增加清洁能源使用」：「我们的模型显示，2030 年，数据中心电力负荷将从 2024 年的 80GW 激增至 174GW…基于扩张计划和平均能效，四大互联网巨头需将对现有基础设施的绿色电力供应提高三倍至 43GW」",
+        "grade": "S2",
+        "originator": "彭博新能源财经《用电大户数据中心推动绿色电力需求》（中文版，2025-08-18）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「数据中心电力负荷」，未写地域（按上下文为全球模型，但未明说，记未披露）也未写是否 IT 负载。"
     }
   ]
 }
