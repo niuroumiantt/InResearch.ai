@@ -204828,6 +204828,165 @@
       },
       "derivation": "as_of 取 xlsx 文件修改时间 2022-01（原表编制时间留空）。",
       "notes": "占总造价 1.29%。"
+    },
+    {
+      "depth": "精读",
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gwsec2512-zyzx-global-aidc-800v-hvdc-market-2030e",
+      "metric_id": "dc_power_equipment_market_size",
+      "entity": {
+        "type": "market",
+        "id": "global-aidc-800v-hvdc",
+        "label": "全球 AI 数据中心 800V HVDC 市场"
+      },
+      "asserter": "智研咨询",
+      "value": 354,
+      "unit": "亿（原币）",
+      "caliber": {
+        "product_line": "HVDC",
+        "service_scope": "未注明",
+        "facility_type": "智算中心",
+        "currency": "人民币",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2025",
+      "derived": true,
+      "derivation": "智研咨询原报告发布时点未注明，按转引报告年份取 @2025。",
+      "evidence": {
+        "sha256": "299aa6bf7d0e0ab92f03218f55cd66f4375521313d743462c01ffd5a3c8c02e1",
+        "local_file": "20251217-长城证券-长城证券-人工智能行业：算力奔腾时代，重构数据中心电源及基础设施架构脉络(34页).pdf",
+        "locator": "PDF 第 13 页「8、英伟达率先开启800V HVDC革命」：「根据智研咨询报告，随着头部企业加速推进800V HVDC电源产品的研发与落地，预计到2030年，全球AI数据中心800V HVDC市场规模将达到354亿元，2026–2030年间年复合增长率高达46%」",
+        "grade": "S4",
+        "originator": "智研咨询（经长城证券《算力奔腾时代，重构数据中心电源及基础设施架构脉络》（2025-12-17）转引）"
+      },
+      "notes": "仅 800V HVDC 电源产品；CAGR 46%（2026–2030）。与库内国海证券全球智算中心 HVDC（2028E 281 亿元）口径不同（后者不限 800V）。"
+    },
+    {
+      "depth": "精读",
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gwsec2512-cbnri-cn-lc-route-share-coldplate-2024",
+      "metric_id": "cooling_route_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-liquid-cooling-tech",
+        "label": "中国液冷技术市场"
+      },
+      "asserter": "中商产业研究院",
+      "value": 65,
+      "unit": "%",
+      "caliber": {
+        "cooling_route": "冷板式",
+        "denominator": "液冷市场内部",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "derived": false,
+      "evidence": {
+        "sha256": "299aa6bf7d0e0ab92f03218f55cd66f4375521313d743462c01ffd5a3c8c02e1",
+        "local_file": "20251217-长城证券-长城证券-人工智能行业：算力奔腾时代，重构数据中心电源及基础设施架构脉络(34页).pdf",
+        "locator": "PDF 第 15 页「10、液冷散热将成为IDC散热主流方式」：「（中）商产业研究院数据，截至2024年，中国液冷技术市场占比情况为：冷板式液冷技术市场占比约为65%……浸没式液冷技术市场占比约为34%；喷淋式液冷市场占比约为1%」",
+        "grade": "S4",
+        "originator": "中商产业研究院（经长城证券《算力奔腾时代，重构数据中心电源及基础设施架构脉络》（2025-12-17）转引）"
+      },
+      "notes": "原文「约」；浸没式 34% 未分单相/相变，未录。与 IDC（2024H1 冷板 95%）、科智（2024 冷板 91%）差异大，分母口径（按金额/按项目）原文未注明。"
+    },
+    {
+      "depth": "精读",
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gwsec2512-cbnri-cn-lc-route-share-spray-2024",
+      "metric_id": "cooling_route_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-liquid-cooling-tech",
+        "label": "中国液冷技术市场"
+      },
+      "asserter": "中商产业研究院",
+      "value": 1,
+      "unit": "%",
+      "caliber": {
+        "cooling_route": "喷淋",
+        "denominator": "液冷市场内部",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "derived": false,
+      "evidence": {
+        "sha256": "299aa6bf7d0e0ab92f03218f55cd66f4375521313d743462c01ffd5a3c8c02e1",
+        "local_file": "20251217-长城证券-长城证券-人工智能行业：算力奔腾时代，重构数据中心电源及基础设施架构脉络(34页).pdf",
+        "locator": "PDF 第 15 页「10、液冷散热将成为IDC散热主流方式」：「（中）商产业研究院数据，截至2024年，中国液冷技术市场占比情况为：冷板式液冷技术市场占比约为65%……浸没式液冷技术市场占比约为34%；喷淋式液冷市场占比约为1%」",
+        "grade": "S4",
+        "originator": "中商产业研究院（经长城证券《算力奔腾时代，重构数据中心电源及基础设施架构脉络》（2025-12-17）转引）"
+      },
+      "notes": "原文「约」；浸没式 34% 未分单相/相变，未录。与 IDC（2024H1 冷板 95%）、科智（2024 冷板 91%）差异大，分母口径（按金额/按项目）原文未注明。"
+    },
+    {
+      "depth": "精读",
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gwsec2512-idc-cn-lc-server-market-2028e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-lc-server-market",
+        "label": "中国液冷服务器市场"
+      },
+      "asserter": "IDC",
+      "value": 105,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "液冷服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "美元",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2028E@2025",
+      "derived": true,
+      "derivation": "IDC 该版预测发布时点未注明，按转引报告年份取 @2025；与 lcleak25 的 2028E 102 亿美元（@2024）应为不同版本。",
+      "evidence": {
+        "sha256": "299aa6bf7d0e0ab92f03218f55cd66f4375521313d743462c01ffd5a3c8c02e1",
+        "local_file": "20251217-长城证券-长城证券-人工智能行业：算力奔腾时代，重构数据中心电源及基础设施架构脉络(34页).pdf",
+        "locator": "PDF 第 17 页「12、液冷技术有效地降低数据中心能耗」：「IDC预计2028年中国液冷服务器市场规模将达到105亿美元，2023年至2028年的复合增长率约48.3%」",
+        "grade": "S4",
+        "originator": "IDC（经长城证券《算力奔腾时代，重构数据中心电源及基础设施架构脉络》（2025-12-17）转引）"
+      },
+      "notes": "CAGR 48.3%（2023–2028）。未标 supersedes：版本先后未经原件确认。"
+    },
+    {
+      "depth": "精读",
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "gwsec2512-hexian-global-optics-market-2024",
+      "metric_id": "optics_market_size",
+      "entity": {
+        "type": "market",
+        "id": "global-optics",
+        "label": "全球光模块市场"
+      },
+      "asserter": "和弦产业研究中心",
+      "value": 14400,
+      "unit": "百万美元",
+      "caliber": {
+        "speed": "合计",
+        "basis": "实测",
+        "region": "Global"
+      },
+      "as_of": "2024",
+      "derived": false,
+      "evidence": {
+        "sha256": "299aa6bf7d0e0ab92f03218f55cd66f4375521313d743462c01ffd5a3c8c02e1",
+        "local_file": "20251217-长城证券-长城证券-人工智能行业：算力奔腾时代，重构数据中心电源及基础设施架构脉络(34页).pdf",
+        "locator": "PDF 第 22 页「16、云厂商对算力及带宽需求带动PCB、光模块向高端产品升级」：「据和弦产业研究中心数据，2024年全球光模块市场规模约为144亿美元，同比大幅增长52%」",
+        "grade": "S4",
+        "originator": "和弦产业研究中心（经长城证券《算力奔腾时代，重构数据中心电源及基础设施架构脉络》（2025-12-17）转引）"
+      },
+      "notes": "原文「约 144 亿美元」，×100 换为百万美元。"
     }
   ]
 }
