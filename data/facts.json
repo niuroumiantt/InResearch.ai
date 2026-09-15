@@ -193934,6 +193934,262 @@
       "derivation": "按原文 100MW 设施造价换算：3,400 百万美元 ÷ 100MW = 34；5,500 ÷ 100 = 55（百万美元/MW）。as_of 取埃森哲报告发布月（Alpha Matica 原文日期未给）。",
       "corroboration": "待交叉验证",
       "notes": "区间上界；原文未说明是否含 IT 设备，34–55 百万美元/MW 的量级接近库内含 IT 口径（高盛 48、汇丰 50），但不据此改口径。"
+    },
+    {
+      "fact_id": "dwzq2606-sa-lcoe-h-class-ccgt",
+      "metric_id": "baseload_lcoe",
+      "entity": {
+        "type": "industry",
+        "id": "aidc-power-option-h-class-ccgt",
+        "label": "AIDC 主电源方案 LCOE（SemiAnalysis）"
+      },
+      "asserter": "SemiAnalysis",
+      "value": 150.0,
+      "unit": "美元/MWh",
+      "caliber": {
+        "tech": "天然气",
+        "config": "H级重燃联合循环（单机 100–1000MW，效率 50%–60%，建设成本 2000–2800 $/kW）",
+        "region": "未披露",
+        "basis": "行业机构"
+      },
+      "as_of": "2026-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3ba3248a1b4fc000e1f6550822b0e9a2ea9c7301b594cdd46adec7ed9182b948",
+        "local_file": "20260606-AIDC电源系列02_SOFC主电源逻辑明朗_产业加速步入上行期_40页_2mb.pdf",
+        "locator": "PDF 第 20 页「图：现有主电源方案综合对比」（数据来源：Semianalysis，东吴证券研究所），LCOE 列「H级重燃联合循环」= 0.15$/kwh",
+        "grade": "S3",
+        "originator": "SemiAnalysis（经东吴证券《AIDC 电源系列 02：SOFC 主电源逻辑明朗》2026-06 转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "单位换算：原表 0.15 $/kWh × 1000 = 150.0 美元/MWh；as_of 取东吴转引报告月份（SemiAnalysis 原表日期未给）。",
+      "corroboration": "待交叉验证",
+      "notes": "原表未写燃料价、利用率等假设，燃气 LCOE 高度依赖燃料价，比较时需谨慎；表中 SOFC 0.27 $/kWh（热电联供 0.08）因 tech 维无 SOFC 取值未录。"
+    },
+    {
+      "fact_id": "dwzq2606-sa-lcoe-aero-ccgt-light",
+      "metric_id": "baseload_lcoe",
+      "entity": {
+        "type": "industry",
+        "id": "aidc-power-option-aero-ccgt-light",
+        "label": "AIDC 主电源方案 LCOE（SemiAnalysis）"
+      },
+      "asserter": "SemiAnalysis",
+      "value": 120.0,
+      "unit": "美元/MWh",
+      "caliber": {
+        "tech": "天然气",
+        "config": "轻型燃机联合循环（40–100MW，效率 40%–55%，1800–2500 $/kW）",
+        "region": "未披露",
+        "basis": "行业机构"
+      },
+      "as_of": "2026-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3ba3248a1b4fc000e1f6550822b0e9a2ea9c7301b594cdd46adec7ed9182b948",
+        "local_file": "20260606-AIDC电源系列02_SOFC主电源逻辑明朗_产业加速步入上行期_40页_2mb.pdf",
+        "locator": "PDF 第 20 页「图：现有主电源方案综合对比」（数据来源：Semianalysis，东吴证券研究所），LCOE 列「轻型燃机联合循环」= 0.12$/kwh",
+        "grade": "S3",
+        "originator": "SemiAnalysis（经东吴证券《AIDC 电源系列 02：SOFC 主电源逻辑明朗》2026-06 转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "单位换算：原表 0.12 $/kWh × 1000 = 120.0 美元/MWh；as_of 取东吴转引报告月份（SemiAnalysis 原表日期未给）。",
+      "corroboration": "待交叉验证",
+      "notes": "原表未写燃料价、利用率等假设，燃气 LCOE 高度依赖燃料价，比较时需谨慎；表中 SOFC 0.27 $/kWh（热电联供 0.08）因 tech 维无 SOFC 取值未录。"
+    },
+    {
+      "fact_id": "dwzq2606-sa-lcoe-light-gt",
+      "metric_id": "baseload_lcoe",
+      "entity": {
+        "type": "industry",
+        "id": "aidc-power-option-light-gt",
+        "label": "AIDC 主电源方案 LCOE（SemiAnalysis）"
+      },
+      "asserter": "SemiAnalysis",
+      "value": 90.0,
+      "unit": "美元/MWh",
+      "caliber": {
+        "tech": "天然气",
+        "config": "轻型燃气轮机（5–50MW，效率 35%–40%，1000–1300 $/kW）",
+        "region": "未披露",
+        "basis": "行业机构"
+      },
+      "as_of": "2026-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3ba3248a1b4fc000e1f6550822b0e9a2ea9c7301b594cdd46adec7ed9182b948",
+        "local_file": "20260606-AIDC电源系列02_SOFC主电源逻辑明朗_产业加速步入上行期_40页_2mb.pdf",
+        "locator": "PDF 第 20 页「图：现有主电源方案综合对比」（数据来源：Semianalysis，东吴证券研究所），LCOE 列「轻型燃气轮机」= 0.09$/kwh",
+        "grade": "S3",
+        "originator": "SemiAnalysis（经东吴证券《AIDC 电源系列 02：SOFC 主电源逻辑明朗》2026-06 转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "单位换算：原表 0.09 $/kWh × 1000 = 90.0 美元/MWh；as_of 取东吴转引报告月份（SemiAnalysis 原表日期未给）。",
+      "corroboration": "待交叉验证",
+      "notes": "原表未写燃料价、利用率等假设，燃气 LCOE 高度依赖燃料价，比较时需谨慎；表中 SOFC 0.27 $/kWh（热电联供 0.08）因 tech 维无 SOFC 取值未录。"
+    },
+    {
+      "fact_id": "dwzq2606-sa-lcoe-aeroderivative-gt",
+      "metric_id": "baseload_lcoe",
+      "entity": {
+        "type": "industry",
+        "id": "aidc-power-option-aeroderivative-gt",
+        "label": "AIDC 主电源方案 LCOE（SemiAnalysis）"
+      },
+      "asserter": "SemiAnalysis",
+      "value": 105.0,
+      "unit": "美元/MWh",
+      "caliber": {
+        "tech": "天然气",
+        "config": "航改燃气轮机（30–60MW，效率 35%–40%，1500–1800 $/kW）",
+        "region": "未披露",
+        "basis": "行业机构"
+      },
+      "as_of": "2026-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3ba3248a1b4fc000e1f6550822b0e9a2ea9c7301b594cdd46adec7ed9182b948",
+        "local_file": "20260606-AIDC电源系列02_SOFC主电源逻辑明朗_产业加速步入上行期_40页_2mb.pdf",
+        "locator": "PDF 第 20 页「图：现有主电源方案综合对比」（数据来源：Semianalysis，东吴证券研究所），LCOE 列「航改燃气轮机」= 0.105$/kwh",
+        "grade": "S3",
+        "originator": "SemiAnalysis（经东吴证券《AIDC 电源系列 02：SOFC 主电源逻辑明朗》2026-06 转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "单位换算：原表 0.105 $/kWh × 1000 = 105.0 美元/MWh；as_of 取东吴转引报告月份（SemiAnalysis 原表日期未给）。",
+      "corroboration": "待交叉验证",
+      "notes": "原表未写燃料价、利用率等假设，燃气 LCOE 高度依赖燃料价，比较时需谨慎；表中 SOFC 0.27 $/kWh（热电联供 0.08）因 tech 维无 SOFC 取值未录。"
+    },
+    {
+      "fact_id": "dwzq2606-sa-lcoe-medium-speed-recip",
+      "metric_id": "baseload_lcoe",
+      "entity": {
+        "type": "industry",
+        "id": "aidc-power-option-medium-speed-recip",
+        "label": "AIDC 主电源方案 LCOE（SemiAnalysis）"
+      },
+      "asserter": "SemiAnalysis",
+      "value": 120.0,
+      "unit": "美元/MWh",
+      "caliber": {
+        "tech": "天然气",
+        "config": "中速内燃机（5–20MW，效率 45%–50%，1700–2200 $/kW）",
+        "region": "未披露",
+        "basis": "行业机构"
+      },
+      "as_of": "2026-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3ba3248a1b4fc000e1f6550822b0e9a2ea9c7301b594cdd46adec7ed9182b948",
+        "local_file": "20260606-AIDC电源系列02_SOFC主电源逻辑明朗_产业加速步入上行期_40页_2mb.pdf",
+        "locator": "PDF 第 20 页「图：现有主电源方案综合对比」（数据来源：Semianalysis，东吴证券研究所），LCOE 列「中速内燃机」= 0.12$/kwh",
+        "grade": "S3",
+        "originator": "SemiAnalysis（经东吴证券《AIDC 电源系列 02：SOFC 主电源逻辑明朗》2026-06 转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "单位换算：原表 0.12 $/kWh × 1000 = 120.0 美元/MWh；as_of 取东吴转引报告月份（SemiAnalysis 原表日期未给）。",
+      "corroboration": "待交叉验证",
+      "notes": "原表未写燃料价、利用率等假设，燃气 LCOE 高度依赖燃料价，比较时需谨慎；表中 SOFC 0.27 $/kWh（热电联供 0.08）因 tech 维无 SOFC 取值未录。"
+    },
+    {
+      "fact_id": "dwzq2606-sa-lcoe-high-speed-recip",
+      "metric_id": "baseload_lcoe",
+      "entity": {
+        "type": "industry",
+        "id": "aidc-power-option-high-speed-recip",
+        "label": "AIDC 主电源方案 LCOE（SemiAnalysis）"
+      },
+      "asserter": "SemiAnalysis",
+      "value": 160.0,
+      "unit": "美元/MWh",
+      "caliber": {
+        "tech": "天然气",
+        "config": "高速内燃机（1–5MW，效率 40%–45%，2200–2800 $/kW）",
+        "region": "未披露",
+        "basis": "行业机构"
+      },
+      "as_of": "2026-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3ba3248a1b4fc000e1f6550822b0e9a2ea9c7301b594cdd46adec7ed9182b948",
+        "local_file": "20260606-AIDC电源系列02_SOFC主电源逻辑明朗_产业加速步入上行期_40页_2mb.pdf",
+        "locator": "PDF 第 20 页「图：现有主电源方案综合对比」（数据来源：Semianalysis，东吴证券研究所），LCOE 列「高速内燃机」= 0.16$/kwh",
+        "grade": "S3",
+        "originator": "SemiAnalysis（经东吴证券《AIDC 电源系列 02：SOFC 主电源逻辑明朗》2026-06 转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "单位换算：原表 0.16 $/kWh × 1000 = 160.0 美元/MWh；as_of 取东吴转引报告月份（SemiAnalysis 原表日期未给）。",
+      "corroboration": "待交叉验证",
+      "notes": "原表未写燃料价、利用率等假设，燃气 LCOE 高度依赖燃料价，比较时需谨慎；表中 SOFC 0.27 $/kWh（热电联供 0.08）因 tech 维无 SOFC 取值未录。"
+    },
+    {
+      "fact_id": "dwzq2606-sa-lcoe-nuclear-new-lower",
+      "metric_id": "baseload_lcoe",
+      "entity": {
+        "type": "industry",
+        "id": "aidc-power-option-nuclear-new",
+        "label": "AIDC 主电源方案 LCOE（SemiAnalysis）"
+      },
+      "asserter": "SemiAnalysis",
+      "value": 60.0,
+      "unit": "美元/MWh",
+      "caliber": {
+        "tech": "核电",
+        "config": "核电（新建，建设周期 5–15 年，6000–15000 $/kW）",
+        "region": "未披露",
+        "basis": "行业机构"
+      },
+      "as_of": "2026-06",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "3ba3248a1b4fc000e1f6550822b0e9a2ea9c7301b594cdd46adec7ed9182b948",
+        "local_file": "20260606-AIDC电源系列02_SOFC主电源逻辑明朗_产业加速步入上行期_40页_2mb.pdf",
+        "locator": "PDF 第 20 页「图：现有主电源方案综合对比」（数据来源：Semianalysis，东吴证券研究所），LCOE 列「核电」= 0.06$/kwh",
+        "grade": "S3",
+        "originator": "SemiAnalysis（经东吴证券《AIDC 电源系列 02：SOFC 主电源逻辑明朗》2026-06 转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "单位换算：原表 0.06 $/kWh × 1000 = 60.0 美元/MWh；as_of 取东吴转引报告月份（SemiAnalysis 原表日期未给）。",
+      "corroboration": "待交叉验证",
+      "notes": "原表未写燃料价、利用率等假设，燃气 LCOE 高度依赖燃料价，比较时需谨慎；表中 SOFC 0.27 $/kWh（热电联供 0.08）因 tech 维无 SOFC 取值未录。"
+    },
+    {
+      "fact_id": "dwzq2606-sa-lcoe-nuclear-new-upper",
+      "metric_id": "baseload_lcoe",
+      "entity": {
+        "type": "industry",
+        "id": "aidc-power-option-nuclear-new",
+        "label": "AIDC 主电源方案 LCOE（SemiAnalysis）"
+      },
+      "asserter": "SemiAnalysis",
+      "value": 110.0,
+      "unit": "美元/MWh",
+      "caliber": {
+        "tech": "核电",
+        "config": "核电（新建，建设周期 5–15 年，6000–15000 $/kW）",
+        "region": "未披露",
+        "basis": "行业机构"
+      },
+      "as_of": "2026-06",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "3ba3248a1b4fc000e1f6550822b0e9a2ea9c7301b594cdd46adec7ed9182b948",
+        "local_file": "20260606-AIDC电源系列02_SOFC主电源逻辑明朗_产业加速步入上行期_40页_2mb.pdf",
+        "locator": "PDF 第 20 页「图：现有主电源方案综合对比」（数据来源：Semianalysis，东吴证券研究所），LCOE 列「核电」= 0.11$/kwh",
+        "grade": "S3",
+        "originator": "SemiAnalysis（经东吴证券《AIDC 电源系列 02：SOFC 主电源逻辑明朗》2026-06 转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "单位换算：原表 0.11 $/kWh × 1000 = 110.0 美元/MWh；as_of 取东吴转引报告月份（SemiAnalysis 原表日期未给）。",
+      "corroboration": "待交叉验证",
+      "notes": "原表未写燃料价、利用率等假设，燃气 LCOE 高度依赖燃料价，比较时需谨慎；表中 SOFC 0.27 $/kWh（热电联供 0.08）因 tech 维无 SOFC 取值未录。"
     }
   ]
 }
