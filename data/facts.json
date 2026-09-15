@@ -207416,6 +207416,75 @@
       "derivation": "原文称「CRU 最新报告」，未写发布月份，按转引报告年份取 @2026。",
       "corroboration": "待交叉验证",
       "notes": "原文「1.28 亿芯公里」=12,800 万芯公里；其中 AI 应用超过 8,000 万芯公里（segment 无 AI 子项，未单录）。"
+    },
+    {
+      "fact_id": "gszq2503-lc-cpo-ports-3p2t-2029e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "market",
+        "id": "global-cpo-ports",
+        "label": "全球 CPO 端口出货"
+      },
+      "asserter": "LightCounting",
+      "value": 1000,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "交换机端口",
+        "product_form": "光引擎",
+        "speed": "3.2T",
+        "shipment_basis": "厂商出货",
+        "basis": "预测",
+        "region": "Global",
+        "customer": "未拆分"
+      },
+      "as_of": "2029E@2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "09bd9ffbad50396d5dc25c0acb60c87180a7201e197e3e57eafb0f408b1ebcf2",
+        "local_file": "20250312-国信证券-数据中心互联技术专题一：AI变革推动CPO技术商业化加速(53页).pdf",
+        "locator": "PDF 第 2 页投资摘要：「根据Lightcounting预测……预计到2029年，3.2T CPO端口出货量预计将超过1000万个（2024年CPO端口出货量不超过十万个）」；第 32 页正文同述，图「按速率划分的CPO端口出货量预测」（资料来源：LightCounting）",
+        "grade": "S4",
+        "originator": "LightCounting（经国信证券《数据中心互联技术专题一：AI 变革推动 CPO 技术商业化加速》2025-03-12 转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "LightCounting 该版预测发布时点未在转引中注明，按转引报告年份取 @2025。",
+      "corroboration": "待交叉验证",
+      "notes": "原文「超过 1000 万个」按下限录，计数单位为 CPO 端口（rate_target=交换机端口）。同处 2029 年 CPO 渗透率：800G 2.9%、1.6T 9.5%、3.2T 50.6%（无对应指标）。东兴 2026-06 转引 LightCounting 2026-04 上调 1.6T CPO 2029 年约 900 万个，为不同速率。"
+    },
+    {
+      "fact_id": "gszq2503-lc-cpo-ports-2024",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "market",
+        "id": "global-cpo-ports",
+        "label": "全球 CPO 端口出货"
+      },
+      "asserter": "LightCounting",
+      "value": 10,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "交换机端口",
+        "product_form": "光引擎",
+        "speed": "合计",
+        "shipment_basis": "厂商出货",
+        "basis": "实测",
+        "region": "Global",
+        "customer": "未拆分"
+      },
+      "as_of": "2024",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "09bd9ffbad50396d5dc25c0acb60c87180a7201e197e3e57eafb0f408b1ebcf2",
+        "local_file": "20250312-国信证券-数据中心互联技术专题一：AI变革推动CPO技术商业化加速(53页).pdf",
+        "locator": "PDF 第 2 页投资摘要：「（2024年CPO端口出货量不超过十万个）」",
+        "grade": "S4",
+        "originator": "LightCounting（经国信证券《数据中心互联技术专题一：AI 变革推动 CPO 技术商业化加速》2025-03-12 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「不超过十万个」按上限录；括注紧随 LightCounting 预测句，按同一出处归属。库内 LightCounting 2023 年 5 万个端口（kysec2412-lc-cpo-ports-2023）。"
     }
   ]
 }
