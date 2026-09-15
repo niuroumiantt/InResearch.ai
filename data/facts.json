@@ -196244,6 +196244,132 @@
       "disputes": [
         "gjzq2503b-thu-cn-dc-occupancy-2022"
       ]
+    },
+    {
+      "fact_id": "wj2408-cn-intelligent-compute-2030e",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-national-compute",
+        "label": "中国算力规模（全国）"
+      },
+      "asserter": "未尽研究",
+      "value": 2886,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "FP32",
+        "area": "全国",
+        "status": "未注明",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e1a1ec36fad0e73e98c133043efda49b6650cb86b8f8a00532e51ec7be9b7b05",
+        "local_file": "2024年AI改变能源-智算如何引领新型电力系统研究报告.pdf",
+        "locator": "PDF 第 8 页（页码 7）「中国智能算力每年增长 70%」段末：「到 2030 年，中国智算规模将达到 2886 EFLOPS」；精度见第 9 页（页码 8）：「国内主流采用 FP32 精度……按这个基准」",
+        "grade": "S3",
+        "originator": "未尽研究、环球零碳《AI 改变能源：智算如何引领新型电力系统》（2024-08）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "未尽研究与环球零碳联合测算，按 2023 年 70 EFLOPS（原文称工信部披露）起 CAGR≈70% 外推；精度取原文第 9 页声明的 FP32 基准。"
+    },
+    {
+      "fact_id": "wj2408-cn-ai-inference-share-2030e",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-aidc-workload",
+        "label": "中国智算中心算力（训练/推理切分）"
+      },
+      "asserter": "未尽研究",
+      "value": 90,
+      "unit": "%",
+      "caliber": {
+        "workload": "推理",
+        "denominator": "AI 算力总量",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e1a1ec36fad0e73e98c133043efda49b6650cb86b8f8a00532e51ec7be9b7b05",
+        "local_file": "2024年AI改变能源-智算如何引领新型电力系统研究报告.pdf",
+        "locator": "PDF 第 15 页（页码 14）「智算用电需求的动态匹配」续段：「到 2030 年，中国智算中心用于推理的算力的占比也将达到 90%」",
+        "grade": "S3",
+        "originator": "未尽研究、环球零碳《AI 改变能源：智算如何引领新型电力系统》（2024-08）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文只给推理占比，未给训练占比，不代减。同段英伟达「当前推理需求占 40%」、AWS「未来 90%」未录（分母与年份不明）。"
+    },
+    {
+      "fact_id": "wj2408-cn-aidc-co2-2030e-lower",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "industry",
+        "id": "cn-aidc",
+        "label": "中国智算中心"
+      },
+      "asserter": "未尽研究",
+      "value": 273,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "AI 工作负载",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2024-08",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "e1a1ec36fad0e73e98c133043efda49b6650cb86b8f8a00532e51ec7be9b7b05",
+        "local_file": "2024年AI改变能源-智算如何引领新型电力系统研究报告.pdf",
+        "locator": "PDF 第 15 页（页码 14）：「在各省电网碳因子持续下降的趋势下，2030 年，全国智算用电将排放约 2.73-5.89 亿吨碳当量，相当于中国 2023 年 126 亿吨碳排放（IEA 统计口径下）的 2%-5%」",
+        "grade": "S3",
+        "originator": "未尽研究、环球零碳《AI 改变能源：智算如何引领新型电力系统》（2024-08）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「约 2.73-5.89 亿吨」=273–589 百万吨；两端分别对应报告的技术乐观/技术保守情景（2030 年智算用电 0.6/1.3 万亿度），按省级电网碳因子（生态环境部及环境规划院预测）推算。"
+    },
+    {
+      "fact_id": "wj2408-cn-aidc-co2-2030e-upper",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "industry",
+        "id": "cn-aidc",
+        "label": "中国智算中心"
+      },
+      "asserter": "未尽研究",
+      "value": 589,
+      "unit": "百万吨 CO₂e",
+      "caliber": {
+        "scope": "AI 工作负载",
+        "method": "按区域电网因子推算",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2024-08",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "e1a1ec36fad0e73e98c133043efda49b6650cb86b8f8a00532e51ec7be9b7b05",
+        "local_file": "2024年AI改变能源-智算如何引领新型电力系统研究报告.pdf",
+        "locator": "PDF 第 15 页（页码 14）：「在各省电网碳因子持续下降的趋势下，2030 年，全国智算用电将排放约 2.73-5.89 亿吨碳当量，相当于中国 2023 年 126 亿吨碳排放（IEA 统计口径下）的 2%-5%」",
+        "grade": "S3",
+        "originator": "未尽研究、环球零碳《AI 改变能源：智算如何引领新型电力系统》（2024-08）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「约 2.73-5.89 亿吨」=273–589 百万吨；两端分别对应报告的技术乐观/技术保守情景（2030 年智算用电 0.6/1.3 万亿度），按省级电网碳因子（生态环境部及环境规划院预测）推算。"
     }
   ]
 }
