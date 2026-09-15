@@ -220003,6 +220003,171 @@
       "corroboration": "待交叉验证",
       "asserter": "秦淮数据",
       "notes": "口径为「新一代超大规模数据中心」风能太阳能使用比例，非全公司口径，[未核]。"
+    },
+    {
+      "entity": {
+        "type": "policy",
+        "id": "ansi-tia-942-2-2010",
+        "label": "ANSI/TIA-942-2-2010《Telecommunications Infrastructure Standard for Data Centers Addendum 2》"
+      },
+      "as_of": "2010-02",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "美国电信产业协会",
+      "fact_id": "tia942-2-2010-temp-lo",
+      "metric_id": "room_environment_limit",
+      "value": 18.0,
+      "unit": "°C 或 %",
+      "caliber": {
+        "parameter": "温度",
+        "limit_type": "允许值",
+        "bound": "下限",
+        "room_type": "主机房",
+        "tier": "未注明",
+        "region": "Global"
+      },
+      "bound": "lower",
+      "evidence": {
+        "sha256": "16ea58e2065a89c944f8345e0ad70897aea427a6ebaa4fd22e4821c9cd8bf983",
+        "local_file": "TIA_942-2_-2010-2.pdf",
+        "locator": "PDF 第 6 页 Table 1「Revised temperature and humidity requirements for data center spaces」（Computer rooms, entrance rooms, access provider spaces）：「Temperature: 18 – 27 C (64 – 81 F) dry bulb；Maximum Relative Humidity (RH): 60%；Maximum dew point: 15 C (59 F)；Minimum dew point (lower moisture limit): 5.5 C (42 F)；Maximum rate of temperature change: 5 C per hour」；第 5.3.1 条改写原 942 的 20–25℃/40–55%RH/露点上限 21℃",
+        "grade": "S1",
+        "originator": "Telecommunications Industry Association (TIA)"
+      },
+      "notes": "本条单位 ℃。连续运行允许区间（shall be controlled），故 limit_type 记允许值。TIA-942 Addendum 2（2010-02-04 批准）把原 TIA-942 的 20–25℃、40–55%RH、露点上限 21℃ 改为本条取值，与 ASHRAE 2008 推荐区间一致。tier 记未注明：本条适用于所有空间，不按 TIA Tier 分级。region 记 Global（美国标准，国际通用）。海拔 1800m 以上每 300m 降 1℃、温变率 ≤5℃/小时 无对应参数维度，未记。"
+    },
+    {
+      "entity": {
+        "type": "policy",
+        "id": "ansi-tia-942-2-2010",
+        "label": "ANSI/TIA-942-2-2010《Telecommunications Infrastructure Standard for Data Centers Addendum 2》"
+      },
+      "as_of": "2010-02",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "美国电信产业协会",
+      "fact_id": "tia942-2-2010-temp-hi",
+      "metric_id": "room_environment_limit",
+      "value": 27.0,
+      "unit": "°C 或 %",
+      "caliber": {
+        "parameter": "温度",
+        "limit_type": "允许值",
+        "bound": "上限",
+        "room_type": "主机房",
+        "tier": "未注明",
+        "region": "Global"
+      },
+      "bound": "upper",
+      "evidence": {
+        "sha256": "16ea58e2065a89c944f8345e0ad70897aea427a6ebaa4fd22e4821c9cd8bf983",
+        "local_file": "TIA_942-2_-2010-2.pdf",
+        "locator": "PDF 第 6 页 Table 1「Revised temperature and humidity requirements for data center spaces」（Computer rooms, entrance rooms, access provider spaces）：「Temperature: 18 – 27 C (64 – 81 F) dry bulb；Maximum Relative Humidity (RH): 60%；Maximum dew point: 15 C (59 F)；Minimum dew point (lower moisture limit): 5.5 C (42 F)；Maximum rate of temperature change: 5 C per hour」；第 5.3.1 条改写原 942 的 20–25℃/40–55%RH/露点上限 21℃",
+        "grade": "S1",
+        "originator": "Telecommunications Industry Association (TIA)"
+      },
+      "notes": "本条单位 ℃。连续运行允许区间（shall be controlled），故 limit_type 记允许值。TIA-942 Addendum 2（2010-02-04 批准）把原 TIA-942 的 20–25℃、40–55%RH、露点上限 21℃ 改为本条取值，与 ASHRAE 2008 推荐区间一致。tier 记未注明：本条适用于所有空间，不按 TIA Tier 分级。region 记 Global（美国标准，国际通用）。海拔 1800m 以上每 300m 降 1℃、温变率 ≤5℃/小时 无对应参数维度，未记。"
+    },
+    {
+      "entity": {
+        "type": "policy",
+        "id": "ansi-tia-942-2-2010",
+        "label": "ANSI/TIA-942-2-2010《Telecommunications Infrastructure Standard for Data Centers Addendum 2》"
+      },
+      "as_of": "2010-02",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "美国电信产业协会",
+      "fact_id": "tia942-2-2010-dew-lo",
+      "metric_id": "room_environment_limit",
+      "value": 5.5,
+      "unit": "°C 或 %",
+      "caliber": {
+        "parameter": "露点温度",
+        "limit_type": "允许值",
+        "bound": "下限",
+        "room_type": "主机房",
+        "tier": "未注明",
+        "region": "Global"
+      },
+      "bound": "lower",
+      "evidence": {
+        "sha256": "16ea58e2065a89c944f8345e0ad70897aea427a6ebaa4fd22e4821c9cd8bf983",
+        "local_file": "TIA_942-2_-2010-2.pdf",
+        "locator": "PDF 第 6 页 Table 1「Revised temperature and humidity requirements for data center spaces」（Computer rooms, entrance rooms, access provider spaces）：「Temperature: 18 – 27 C (64 – 81 F) dry bulb；Maximum Relative Humidity (RH): 60%；Maximum dew point: 15 C (59 F)；Minimum dew point (lower moisture limit): 5.5 C (42 F)；Maximum rate of temperature change: 5 C per hour」；第 5.3.1 条改写原 942 的 20–25℃/40–55%RH/露点上限 21℃",
+        "grade": "S1",
+        "originator": "Telecommunications Industry Association (TIA)"
+      },
+      "notes": "本条单位 ℃。连续运行允许区间（shall be controlled），故 limit_type 记允许值。TIA-942 Addendum 2（2010-02-04 批准）把原 TIA-942 的 20–25℃、40–55%RH、露点上限 21℃ 改为本条取值，与 ASHRAE 2008 推荐区间一致。tier 记未注明：本条适用于所有空间，不按 TIA Tier 分级。region 记 Global（美国标准，国际通用）。海拔 1800m 以上每 300m 降 1℃、温变率 ≤5℃/小时 无对应参数维度，未记。"
+    },
+    {
+      "entity": {
+        "type": "policy",
+        "id": "ansi-tia-942-2-2010",
+        "label": "ANSI/TIA-942-2-2010《Telecommunications Infrastructure Standard for Data Centers Addendum 2》"
+      },
+      "as_of": "2010-02",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "美国电信产业协会",
+      "fact_id": "tia942-2-2010-dew-hi",
+      "metric_id": "room_environment_limit",
+      "value": 15.0,
+      "unit": "°C 或 %",
+      "caliber": {
+        "parameter": "露点温度",
+        "limit_type": "允许值",
+        "bound": "上限",
+        "room_type": "主机房",
+        "tier": "未注明",
+        "region": "Global"
+      },
+      "bound": "upper",
+      "evidence": {
+        "sha256": "16ea58e2065a89c944f8345e0ad70897aea427a6ebaa4fd22e4821c9cd8bf983",
+        "local_file": "TIA_942-2_-2010-2.pdf",
+        "locator": "PDF 第 6 页 Table 1「Revised temperature and humidity requirements for data center spaces」（Computer rooms, entrance rooms, access provider spaces）：「Temperature: 18 – 27 C (64 – 81 F) dry bulb；Maximum Relative Humidity (RH): 60%；Maximum dew point: 15 C (59 F)；Minimum dew point (lower moisture limit): 5.5 C (42 F)；Maximum rate of temperature change: 5 C per hour」；第 5.3.1 条改写原 942 的 20–25℃/40–55%RH/露点上限 21℃",
+        "grade": "S1",
+        "originator": "Telecommunications Industry Association (TIA)"
+      },
+      "notes": "本条单位 ℃。连续运行允许区间（shall be controlled），故 limit_type 记允许值。TIA-942 Addendum 2（2010-02-04 批准）把原 TIA-942 的 20–25℃、40–55%RH、露点上限 21℃ 改为本条取值，与 ASHRAE 2008 推荐区间一致。tier 记未注明：本条适用于所有空间，不按 TIA Tier 分级。region 记 Global（美国标准，国际通用）。海拔 1800m 以上每 300m 降 1℃、温变率 ≤5℃/小时 无对应参数维度，未记。"
+    },
+    {
+      "entity": {
+        "type": "policy",
+        "id": "ansi-tia-942-2-2010",
+        "label": "ANSI/TIA-942-2-2010《Telecommunications Infrastructure Standard for Data Centers Addendum 2》"
+      },
+      "as_of": "2010-02",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "美国电信产业协会",
+      "fact_id": "tia942-2-2010-rh-hi",
+      "metric_id": "room_environment_limit",
+      "value": 60.0,
+      "unit": "°C 或 %",
+      "caliber": {
+        "parameter": "相对湿度",
+        "limit_type": "允许值",
+        "bound": "上限",
+        "room_type": "主机房",
+        "tier": "未注明",
+        "region": "Global"
+      },
+      "bound": "upper",
+      "evidence": {
+        "sha256": "16ea58e2065a89c944f8345e0ad70897aea427a6ebaa4fd22e4821c9cd8bf983",
+        "local_file": "TIA_942-2_-2010-2.pdf",
+        "locator": "PDF 第 6 页 Table 1「Revised temperature and humidity requirements for data center spaces」（Computer rooms, entrance rooms, access provider spaces）：「Temperature: 18 – 27 C (64 – 81 F) dry bulb；Maximum Relative Humidity (RH): 60%；Maximum dew point: 15 C (59 F)；Minimum dew point (lower moisture limit): 5.5 C (42 F)；Maximum rate of temperature change: 5 C per hour」；第 5.3.1 条改写原 942 的 20–25℃/40–55%RH/露点上限 21℃",
+        "grade": "S1",
+        "originator": "Telecommunications Industry Association (TIA)"
+      },
+      "notes": "本条单位 %。连续运行允许区间（shall be controlled），故 limit_type 记允许值。TIA-942 Addendum 2（2010-02-04 批准）把原 TIA-942 的 20–25℃、40–55%RH、露点上限 21℃ 改为本条取值，与 ASHRAE 2008 推荐区间一致。tier 记未注明：本条适用于所有空间，不按 TIA Tier 分级。region 记 Global（美国标准，国际通用）。海拔 1800m 以上每 300m 降 1℃、温变率 ≤5℃/小时 无对应参数维度，未记。"
     }
   ]
 }
