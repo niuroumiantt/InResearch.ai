@@ -175933,6 +175933,216 @@
       "corroboration": "待交叉验证",
       "notes": "38,482 百万美元 = 384.82 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。**是当季前十名之和，不是全行业**，入榜厂商逐季变化，前后季不完全可比。2018 年各季原表无合计。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
       "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "cbre24q1apac-sydney-capacity-2023",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "apac-dc-market-sydney-cbre",
+        "label": "悉尼第三方托管数据中心市场（CBRE 口径）"
+      },
+      "value": 773.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "APAC"
+      },
+      "as_of": "2023-Q4",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1b20e20de4a109e6d0c0146c1dc83f582ac30df81b54ba082e66c3509ce72c11",
+        "local_file": "20241128-世邦魏理仕：2024年第一季度亚太地区数据中心趋势报告(12页).pdf",
+        "locator": "第 4 页右下「Key Stats - Sydney」表「Total Capacity (MW) – as of end 2023」= 773（Source: CBRE Data Centre Services, CBRE Research, March 2024）",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE Research）《Asia Pacific Data Centre Trends Q1 2024》，2024-04"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "notes": "CBRE 定义（第 10 页 Definitions）：Capacity 为数据中心可用、可售的 IT 容量，含已售与未售，未售部分同时含已装修（fitted）与仅壳体（shell & core）空间——**含壳体容量，不全是已通电可交付的**；CBRE 在亚太只跟踪第三方中立托管数据中心（韩国、台湾等运营商主导市场除外）。status 记 L8 是沿用库内 CBRE 市场库存惯例，读数时注意含壳体部分。原件为图片 PDF，本条为读图录入。"
+    },
+    {
+      "fact_id": "cbre24q1apac-hong-kong-capacity-2023",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "apac-dc-market-hong-kong-cbre",
+        "label": "香港第三方托管数据中心市场（CBRE 口径）"
+      },
+      "value": 613.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "APAC"
+      },
+      "as_of": "2023-Q4",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1b20e20de4a109e6d0c0146c1dc83f582ac30df81b54ba082e66c3509ce72c11",
+        "local_file": "20241128-世邦魏理仕：2024年第一季度亚太地区数据中心趋势报告(12页).pdf",
+        "locator": "第 5 页右下「Key Stats – Hong Kong SAR」表「Total Capacity (MW) – as of end-2023」= 613（Source: CBRE Data Centre Services, CBRE Research, March 2024）",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE Research）《Asia Pacific Data Centre Trends Q1 2024》，2024-04"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "notes": "CBRE 定义（第 10 页 Definitions）：Capacity 为数据中心可用、可售的 IT 容量，含已售与未售，未售部分同时含已装修（fitted）与仅壳体（shell & core）空间——**含壳体容量，不全是已通电可交付的**；CBRE 在亚太只跟踪第三方中立托管数据中心（韩国、台湾等运营商主导市场除外）。status 记 L8 是沿用库内 CBRE 市场库存惯例，读数时注意含壳体部分。原件为图片 PDF，本条为读图录入。 与戴德梁行 2023-Q4 香港已投运 605 MW（cw2024gc-capacity-hong-kong-china-operational）口径不同（CBRE 含壳体容量、只计第三方中立托管），并列不比。"
+    },
+    {
+      "fact_id": "cbre24q1apac-greater-tokyo-capacity-2023",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "apac-dc-market-greater-tokyo-cbre",
+        "label": "大东京第三方托管数据中心市场（CBRE 口径）"
+      },
+      "value": 892.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "APAC"
+      },
+      "as_of": "2023-Q4",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1b20e20de4a109e6d0c0146c1dc83f582ac30df81b54ba082e66c3509ce72c11",
+        "local_file": "20241128-世邦魏理仕：2024年第一季度亚太地区数据中心趋势报告(12页).pdf",
+        "locator": "第 6 页右下「Key Stats – Greater Tokyo」表「Total Capacity (MW) – as of end-2023」= 892（Source: CBRE Data Centre Services, CBRE Research, March 2024）",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE Research）《Asia Pacific Data Centre Trends Q1 2024》，2024-04"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "notes": "CBRE 定义（第 10 页 Definitions）：Capacity 为数据中心可用、可售的 IT 容量，含已售与未售，未售部分同时含已装修（fitted）与仅壳体（shell & core）空间——**含壳体容量，不全是已通电可交付的**；CBRE 在亚太只跟踪第三方中立托管数据中心（韩国、台湾等运营商主导市场除外）。status 记 L8 是沿用库内 CBRE 市场库存惯例，读数时注意含壳体部分。原件为图片 PDF，本条为读图录入。"
+    },
+    {
+      "fact_id": "cbre24q1apac-singapore-capacity-2023",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "apac-dc-market-singapore-cbre",
+        "label": "新加坡第三方托管数据中心市场（CBRE 口径）"
+      },
+      "value": 718.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "SG"
+      },
+      "as_of": "2023-Q4",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1b20e20de4a109e6d0c0146c1dc83f582ac30df81b54ba082e66c3509ce72c11",
+        "local_file": "20241128-世邦魏理仕：2024年第一季度亚太地区数据中心趋势报告(12页).pdf",
+        "locator": "第 7 页右下「Key Stats - Singapore」表「Total Capacity (MW)」= 718（Source: CBRE Data Centre Services, CBRE Research, March 2024）",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE Research）《Asia Pacific Data Centre Trends Q1 2024》，2024-04"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "notes": "CBRE 定义（第 10 页 Definitions）：Capacity 为数据中心可用、可售的 IT 容量，含已售与未售，未售部分同时含已装修（fitted）与仅壳体（shell & core）空间——**含壳体容量，不全是已通电可交付的**；CBRE 在亚太只跟踪第三方中立托管数据中心（韩国、台湾等运营商主导市场除外）。status 记 L8 是沿用库内 CBRE 市场库存惯例，读数时注意含壳体部分。原件为图片 PDF，本条为读图录入。 与戴德梁行 2023-Q4 新加坡已投运 973 MW 口径不同，并列不比。",
+      "derivation": "新加坡一栏只写「Total Capacity (MW)」、未写截至时点；同页其他市场均为「as of end-2023」、全表注 Source … March 2024，as_of 按同表体例推定为 2023 年末"
+    },
+    {
+      "fact_id": "cbre24q1apac-india-capacity-2023",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "apac-dc-market-india-cbre",
+        "label": "印度第三方托管数据中心市场（CBRE 口径）"
+      },
+      "value": 950.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "APAC"
+      },
+      "as_of": "2023-Q4",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1b20e20de4a109e6d0c0146c1dc83f582ac30df81b54ba082e66c3509ce72c11",
+        "local_file": "20241128-世邦魏理仕：2024年第一季度亚太地区数据中心趋势报告(12页).pdf",
+        "locator": "第 8 页右下「Key Stats – India*」表「Total Capacity (MW) – as of end-2023」= ~950（表注 Markets included are Mumbai, Chennai, Bangalore, Delhi-NCR, Hyderabad, Pune and Kolkata；Source: CBRE Data Centre Services, CBRE Research, March 2024）",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE Research）《Asia Pacific Data Centre Trends Q1 2024》，2024-04"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "notes": "原文为约数「~950」，按点值记，读数时当约值。印度口径为七城合计（孟买/金奈/班加罗尔/德里-NCR/海得拉巴/浦那/加尔各答）。同页正文另称「Total colocation data centre capacity currently stands at 1GW」，为行文约数，不另录。CBRE 定义（第 10 页 Definitions）：Capacity 为数据中心可用、可售的 IT 容量，含已售与未售，未售部分同时含已装修（fitted）与仅壳体（shell & core）空间——**含壳体容量，不全是已通电可交付的**；CBRE 在亚太只跟踪第三方中立托管数据中心（韩国、台湾等运营商主导市场除外）。status 记 L8 是沿用库内 CBRE 市场库存惯例，读数时注意含壳体部分。原件为图片 PDF，本条为读图录入。"
+    },
+    {
+      "fact_id": "cbre24q1apac-greater-seoul-capacity-2023",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "apac-dc-market-greater-seoul-cbre",
+        "label": "大首尔第三方托管数据中心市场（CBRE 口径）"
+      },
+      "value": 531.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "KR"
+      },
+      "as_of": "2023-Q4",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1b20e20de4a109e6d0c0146c1dc83f582ac30df81b54ba082e66c3509ce72c11",
+        "local_file": "20241128-世邦魏理仕：2024年第一季度亚太地区数据中心趋势报告(12页).pdf",
+        "locator": "第 9 页右下「Key Stats – Greater Seoul」表「Total Capacity (MW) – as of end-2023」= 531（Source: CBRE Data Centre Services, CBRE Research, March 2024）",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE Research）《Asia Pacific Data Centre Trends Q1 2024》，2024-04"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "notes": "CBRE 定义（第 10 页 Definitions）：Capacity 为数据中心可用、可售的 IT 容量，含已售与未售，未售部分同时含已装修（fitted）与仅壳体（shell & core）空间——**含壳体容量，不全是已通电可交付的**；CBRE 在亚太只跟踪第三方中立托管数据中心（韩国、台湾等运营商主导市场除外）。status 记 L8 是沿用库内 CBRE 市场库存惯例，读数时注意含壳体部分。原件为图片 PDF，本条为读图录入。"
+    },
+    {
+      "fact_id": "cbre24q1apac-hong-kong-vacancy-2023",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "apac-dc-market-hong-kong-cbre",
+        "label": "香港第三方托管数据中心市场（CBRE 口径）"
+      },
+      "value": 25.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一市场",
+        "region": "APAC"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1b20e20de4a109e6d0c0146c1dc83f582ac30df81b54ba082e66c3509ce72c11",
+        "local_file": "20241128-世邦魏理仕：2024年第一季度亚太地区数据中心趋势报告(12页).pdf",
+        "locator": "第 5 页 Hong Kong SAR「Supply/ Vacancy」第 2 条：「Surplus supply has seen vacancy increase from around 25% in 2023 to ~30% in H1 2024」",
+        "grade": "S3",
+        "originator": "世邦魏理仕（CBRE Research）《Asia Pacific Data Centre Trends Q1 2024》，2024-04"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "世邦魏理仕",
+      "notes": "原文「around 25%」为约数，按点值记。同句「~30% in H1 2024」出自 2024-04 发布的报告、H1 尚未结束，是期中读数或预估，未录。region 记 APAC（地域维无香港取值，与库内戴德梁行香港条目一致）。原件为图片 PDF，本条为读图录入。"
     }
   ]
 }
