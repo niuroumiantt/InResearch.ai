@@ -214829,6 +214829,99 @@
       "corroboration": "待交叉验证",
       "asserter": "华为",
       "notes": "厂商案例宣称，客户未具名。period 记年均依据「实现全年自然冷却，达到1.15」，原文未明说是年均运行值还是设计值，[未核]。"
+    },
+    {
+      "fact_id": "cmcc-qbj017-2013-dc-battery-backup-ups-auto",
+      "metric_id": "backup_autonomy",
+      "entity": {
+        "type": "policy",
+        "id": "cmcc-qb-j-017-2013",
+        "label": "中国移动企标 QB-J-017-2013《中国移动通信电源系统工程设计规范》"
+      },
+      "value": 15.0,
+      "unit": "分钟",
+      "caliber": {
+        "backup_type": "UPS 蓄电池",
+        "tier": "未注明",
+        "bound_sense": "设计值",
+        "region": "CN",
+        "basis": "企标要求"
+      },
+      "as_of": "2013-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9aeff9b59596b23d68ff23ede36a33d1b0046f8a71b7aa0827975f1139e82d0b",
+        "local_file": "《中国移动通信电源系统工程设计规范》(QB-J-017-2013)V1-0-0-讲义版.pdf",
+        "locator": "PDF 第 23 页（页码 19）7.6.2 表7.6-1 蓄电池组后备时间要求表，「数据中心」行：「市电-市电自动转换，发电机组自启动，市电-发电机组自动转换，发电机组一次性加载能力应满足系统自动转换要求」— 高压直流 / UPS「15min」；注②（PDF 第 24 页）",
+        "grade": "S1"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "中国移动",
+      "notes": "原文写法 15min，无需换算。表中高压直流与 UPS 共用一格，分两条记。适用条件为市电与发电机组全自动转换；手动转换情形为「15min～30min」，本指标无转换方式维度，不记（缺口）。同表数据中心 -48V 直流为 0.5h，backup_type 无 -48V 直流取值，不记。本企标不分数据中心等级，tier 记未注明；bound_sense 取设计值依据「可参照下表设置」「按…配置」为配置取值而非下限。注②：UPS 系统后备时间指每个 UPS 单机最大允许负载时所需配置的蓄电池组。"
+    },
+    {
+      "fact_id": "cmcc-qbj017-2013-dc-battery-backup-hvdc-auto",
+      "metric_id": "backup_autonomy",
+      "entity": {
+        "type": "policy",
+        "id": "cmcc-qb-j-017-2013",
+        "label": "中国移动企标 QB-J-017-2013《中国移动通信电源系统工程设计规范》"
+      },
+      "value": 15.0,
+      "unit": "分钟",
+      "caliber": {
+        "backup_type": "高压直流",
+        "tier": "未注明",
+        "bound_sense": "设计值",
+        "region": "CN",
+        "basis": "企标要求"
+      },
+      "as_of": "2013-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9aeff9b59596b23d68ff23ede36a33d1b0046f8a71b7aa0827975f1139e82d0b",
+        "local_file": "《中国移动通信电源系统工程设计规范》(QB-J-017-2013)V1-0-0-讲义版.pdf",
+        "locator": "PDF 第 23 页（页码 19）7.6.2 表7.6-1 蓄电池组后备时间要求表，「数据中心」行：「市电-市电自动转换，发电机组自启动，市电-发电机组自动转换，发电机组一次性加载能力应满足系统自动转换要求」— 高压直流 / UPS「15min」；注②（PDF 第 24 页）",
+        "grade": "S1"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "中国移动",
+      "notes": "原文写法 15min，无需换算。表中高压直流与 UPS 共用一格，分两条记。适用条件为市电与发电机组全自动转换；手动转换情形为「15min～30min」，本指标无转换方式维度，不记（缺口）。同表数据中心 -48V 直流为 0.5h，backup_type 无 -48V 直流取值，不记。本企标不分数据中心等级，tier 记未注明；bound_sense 取设计值依据「可参照下表设置」「按…配置」为配置取值而非下限。注②：UPS 系统后备时间指每个 UPS 单机最大允许负载时所需配置的蓄电池组。"
+    },
+    {
+      "fact_id": "cmcc-qbj017-2013-floorload-battery",
+      "metric_id": "room_floor_load",
+      "entity": {
+        "type": "policy",
+        "id": "cmcc-qb-j-017-2013",
+        "label": "中国移动企标 QB-J-017-2013《中国移动通信电源系统工程设计规范》"
+      },
+      "value": 16.0,
+      "unit": "kN/㎡",
+      "caliber": {
+        "room_type": "电池室",
+        "basis": "规范最低（运营商企标）",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "未注明"
+      },
+      "as_of": "2013-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9aeff9b59596b23d68ff23ede36a33d1b0046f8a71b7aa0827975f1139e82d0b",
+        "local_file": "《中国移动通信电源系统工程设计规范》(QB-J-017-2013)V1-0-0-讲义版.pdf",
+        "locator": "PDF 第 38 页（页码 34）「附录 B 电力机房土建要求表」，「电池室」行「楼地面标准荷重（kN/m²）」列：16",
+        "grade": "S1"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "中国移动",
+      "notes": "同表：高压室、低压室、电力室 10，发电机控制室 8，发电机房基础外地面 6，储油间地上式 6——这些房间在 room_type 无对应取值（或非本指标房间类型），不记。企标适用于通信机楼、数据中心、基站等全部局站，不分等级，tier 记未注明；覆盖新建、扩建和改建，build_type 记未注明。「标准荷重」按规范最低口径记，原文未写「≥」，bound 记 point。"
     }
   ]
 }
