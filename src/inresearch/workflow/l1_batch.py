@@ -135,3 +135,58 @@ def digest_stamps(paths):
             except ValueError:
                 continue
     return out
+
+
+SIM_THRESHOLD = 0.45
+GRAM = 3
+COMMON_GRAM_SHARE = 0.10
+COMMON_GRAM_FLOOR = 200
+DATE_PREFIX = re.compile(r'^\s*(?:20\d{6}|20\d{2}[-_.]?\d{2}[-_.]?\d{2})[-_\s]*')
+PAGE_TAIL = re.compile(r'[\(（]\s*\d+\s*页\s*[\)）]|[\(（]\s*(?:重复版|副本|copy|\d+)\s*[\)）]', re.I)
+PUNCT = re.compile(r'[\s·・:：,，。.、\-_()（）\[\]【】/\\|"“”\'‘’&]+')
+
+
+def name_key(rel: str) -> str:
+    stem = Path(str(rel or '')).stem
+    return PUNCT.sub('', PAGE_TAIL.sub('', DATE_PREFIX.sub('', stem))).lower()
+
+
+def trigrams(text: str) -> set:
+    return {text[i:i + GRAM] for i in range(len(text) - GRAM + 1)} if len(text) > GRAM else ({text} if text else set())
+
+
+def similarity(left: set, right: set) -> float:
+    return len(left & right) / len(left | right) if left and right else 0.0
+
+
+def scored_rows():
+    return [row for row in last_results().values() if row.get('status') == 'ok']
+
+
+def version_groups(rows, min_score=0, threshold=SIM_THRESHOLD):
+    import collections
+    items = [row for row in rows if (row.get('score') or 0) >= min_score]
+    grams = [trigrams(name_key(row.get('rel'))) for row in items]
+    index = collections.defaultdict(list)
+    for position, values in enumerate(grams):
+        for gram in values: index[gram].append(position)
+    cap = max(COMMON_GRAM_FLOOR, int(len(items) * COMMON_GRAM_SHARE))
+    index = {gram: positions for gram, positions in index.items() if len(positions) <= cap}
+    parent = list(range(len(items)))
+    def find(position):
+        while parent[position] != position:
+            parent[position] = parent[parent[position]]; position = parent[position]
+        return position
+    for position, values in enumerate(grams):
+        shared = collections.Counter(other for gram in values for other in index.get(gram, ()) if other > position)
+        for other, count in shared.items():
+            if count >= max(1, int(len(values) * threshold * .5)) and similarity(values, grams[other]) >= threshold:
+                left, right = find(position), find(other)
+                if left != right: parent[right] = left
+    groups = collections.defaultdict(list)
+    for position in range(len(items)): groups[find(position)].append(position)
+    def rank(position):
+        row = items[position]; meta = row.get('meta') or {}
+        return (str(row.get('rel', '')).startswith('要删/'), -(meta.get('pages') or 0), -(row.get('size') or 0), row.get('rel') or '')
+    return sorted(({'keep': items[sorted(members, key=rank)[0]], 'extra': [items[p] for p in sorted(members, key=rank)[1:]]}
+                   for members in groups.values() if len(members) > 1), key=lambda group: -len(group['extra']))

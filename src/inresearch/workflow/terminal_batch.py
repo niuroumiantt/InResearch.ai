@@ -534,8 +534,8 @@ def version_groups(rows, min_score=0, threshold=SIM_THRESHOLD):
 
 
 def cmd_versions(a):
-    rows = scored_rows()
-    groups = version_groups(rows, a.min_score, a.threshold)
+    rows = L1B.scored_rows()
+    groups = L1B.version_groups(rows, a.min_score, a.threshold)
     extra = sum(len(g['extra']) for g in groups)
     wasted = sum(sum(m.get('size') or 0 for m in g['extra']) for g in groups)
     print(json.dumps({'judged_rows': len(rows), 'threshold': a.threshold,
@@ -613,7 +613,7 @@ def main():
     s.add_parser('status')
     v = s.add_parser('versions'); v.add_argument('--min-score', type=int, default=0)
     v.add_argument('--show', type=int, default=15, help='groups to print in full')
-    v.add_argument('--threshold', type=float, default=SIM_THRESHOLD,
+    v.add_argument('--threshold', type=float, default=L1B.SIM_THRESHOLD,
                    help='filename similarity to call two files one report (0..1)')
     a = ap.parse_args()
     {'pack': cmd_pack, 'record': cmd_record, 'status': cmd_status, 'versions': cmd_versions}[a.cmd](a)

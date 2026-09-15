@@ -7,6 +7,7 @@ import types
 import unittest
 
 from inresearch.workflow import terminal_batch as PK
+from inresearch.workflow import l1_batch as L1B
 from inresearch.materials import triage as L1
 
 # Filenames taken verbatim from a real M4 batch.
@@ -41,26 +42,26 @@ def names(group):
 
 class SimilarityTests(unittest.TestCase):
     def test_publication_date_and_page_count_are_not_part_of_the_name(self):
-        self.assertEqual(PK.name_key("报告/20250925-液冷白皮书(40页).pdf"),
-                         PK.name_key("报告/液冷白皮书.pdf"))
+        self.assertEqual(L1B.name_key("报告/20250925-液冷白皮书(40页).pdf"),
+                         L1B.name_key("报告/液冷白皮书.pdf"))
 
     def test_copies_of_one_report_score_above_the_threshold(self):
-        grams = [PK.trigrams(PK.name_key(n)) for n in LIQUID]
-        pairs = [PK.similarity(grams[i], grams[j])
+        grams = [L1B.trigrams(L1B.name_key(n)) for n in LIQUID]
+        pairs = [L1B.similarity(grams[i], grams[j])
                  for i in range(len(grams)) for j in range(i + 1, len(grams))]
-        self.assertGreaterEqual(min(pairs), PK.SIM_THRESHOLD)
+        self.assertGreaterEqual(min(pairs), L1B.SIM_THRESHOLD)
 
     def test_unrelated_reports_score_below_the_threshold(self):
-        grams = [PK.trigrams(PK.name_key(n)) for n in DISTINCT]
-        pairs = [PK.similarity(grams[i], grams[j])
+        grams = [L1B.trigrams(L1B.name_key(n)) for n in DISTINCT]
+        pairs = [L1B.similarity(grams[i], grams[j])
                  for i in range(len(grams)) for j in range(i + 1, len(grams))]
-        self.assertLess(max(pairs), PK.SIM_THRESHOLD)
+        self.assertLess(max(pairs), L1B.SIM_THRESHOLD)
 
 
 class VersionGroupTests(unittest.TestCase):
     def test_real_batch_groups_every_copy_and_splits_the_rest(self):
         rows = [row(n) for n in LIQUID + COOLING_TOWER + DISTINCT]
-        groups = PK.version_groups(rows)
+        groups = L1B.version_groups(rows)
         self.assertEqual(len(groups), 2)
         self.assertEqual(names(groups[0]), set(LIQUID))
         self.assertEqual(names(groups[1]), set(COOLING_TOWER))
@@ -68,29 +69,29 @@ class VersionGroupTests(unittest.TestCase):
     def test_a_small_set_still_finds_its_duplicates(self):
         # Regression: capping common trigrams by share alone dropped the cap to
         # two rows on a small set and discarded the identifying features.
-        groups = PK.version_groups([row(n) for n in LIQUID])
+        groups = L1B.version_groups([row(n) for n in LIQUID])
         self.assertEqual(len(groups), 1)
         self.assertEqual(len(groups[0]["extra"]), 3)
 
     def test_the_fullest_copy_is_kept(self):
         rows = [row(LIQUID[0], pages=20), row(LIQUID[2], pages=44, size=9000)]
-        self.assertEqual(Path(PK.version_groups(rows)[0]["keep"]["rel"]).name, LIQUID[2])
+        self.assertEqual(Path(L1B.version_groups(rows)[0]["keep"]["rel"]).name, LIQUID[2])
 
     def test_a_copy_under_the_excluded_tree_is_never_the_keeper(self):
         rows = [row(LIQUID[0], pages=90, folder="要删/reader"), row(LIQUID[2], pages=10)]
-        self.assertEqual(PK.version_groups(rows)[0]["keep"]["rel"], "报告/" + LIQUID[2])
+        self.assertEqual(L1B.version_groups(rows)[0]["keep"]["rel"], "报告/" + LIQUID[2])
 
     def test_a_report_seen_once_is_not_a_group(self):
-        self.assertEqual(PK.version_groups([row(LIQUID[0])]), [])
+        self.assertEqual(L1B.version_groups([row(LIQUID[0])]), [])
 
     def test_min_score_filters_before_grouping(self):
         rows = [row(n, score=2) for n in LIQUID]
-        self.assertEqual(len(PK.version_groups(rows, min_score=0)), 1)
-        self.assertEqual(PK.version_groups(rows, min_score=5), [])
+        self.assertEqual(len(L1B.version_groups(rows, min_score=0)), 1)
+        self.assertEqual(L1B.version_groups(rows, min_score=5), [])
 
     def test_a_stricter_threshold_splits_the_looser_copies(self):
         rows = [row(n) for n in LIQUID]
-        self.assertEqual(len(PK.version_groups(rows, threshold=0.99)), 0)
+        self.assertEqual(len(L1B.version_groups(rows, threshold=0.99)), 0)
 
     def test_only_judged_rows_are_read(self):
         with tempfile.TemporaryDirectory() as temp:
@@ -102,11 +103,11 @@ class VersionGroupTests(unittest.TestCase):
                 + "", encoding="utf-8")
             saved, L1.RESULTS = L1.RESULTS, path
             try:
-                self.assertEqual(len(PK.scored_rows()), 1)
+                self.assertEqual(len(L1B.scored_rows()), 1)
                 with path.open("a") as stream:
                     stream.write("not json\n")
                 with self.assertRaises(ValueError):
-                    PK.scored_rows()
+                    L1B.scored_rows()
             finally:
                 L1.RESULTS = saved
 
@@ -118,7 +119,7 @@ class VersionGroupTests(unittest.TestCase):
             saved, L1.RESULTS = L1.RESULTS, path
             try:
                 PK.cmd_versions(types.SimpleNamespace(
-                    min_score=0, show=0, threshold=PK.SIM_THRESHOLD))
+                    min_score=0, show=0, threshold=L1B.SIM_THRESHOLD))
             finally:
                 L1.RESULTS = saved
             self.assertEqual(path.read_text(encoding="utf-8"), body)
