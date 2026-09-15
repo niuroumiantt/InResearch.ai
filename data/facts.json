@@ -178214,6 +178214,141 @@
         "originator": "科智咨询整理（经中国通信工业协会数据中心委员会《中国智算中心产业发展白皮书（2024年）》（2024-12）图表 11 发布）"
       },
       "notes": "本条单位：TFLOPS。第三方机构整理的规格表，未注各型号出处；spec_basis 无「第三方整理」档，取最接近的券商转述。同表「运算能力（理论峰值）」列为 TOPS@INT8，与 FP16 列不是同一口径，未录。as_of 取白皮书发布月份，不是芯片发布时间。 原件为图片 PDF，本条为读图录入；页码为 PDF 页码，与版面页脚页码一致。"
+    },
+    {
+      "fact_id": "ces26ppt-vera-cpu-cores",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-vera-cpu",
+        "label": "英伟达 Vera CPU"
+      },
+      "value": 88.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "英伟达 Vera CPU",
+        "parameter": "核数",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2800171339cdfbf88eacf2940d44dc686587a10ced0fa516a8831015e0d578f6",
+        "local_file": "CES2026_黄仁勋演讲_PPT(1).pdf",
+        "locator": "第 49 页「VERA CPU：为AI超级计算机定制的大脑」：「88 核 / 176 线程 空间多线程技术（SPATIAL MULTITHREADING）」",
+        "grade": "S4",
+        "originator": "英伟达 CES 2026 主题演讲（黄仁勋，2026-01），经未署名中文解读胶片《CES2026_黄仁勋演讲_PPT》（71 页，分 Part 1–4「技术深度解析」）转述"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 CES 2026 演讲时间（2026-01 拉斯维加斯）；胶片本身未印日期，文件名与各 Part 封面写「英伟达CES 2026」",
+      "corroboration": "待交叉验证",
+      "notes": "本条单位：核。176 线程为空间多线程；同页「2x 每瓦性能（PERF/WATT VS. GRACE）」未录。 **转述载体质量**：本胶片为非官方中文解读稿，配图多为生成图，文字有明显转录错误（「Nemo Tron」「Evl two」「MVF P4 张量引擎」应为 NVFP4、「144x RUBIN GPUs (NVLINK 72)」），且同一项在不同页自相矛盾（晶体管增长第 44/48 页 1.6x、第 53 页 1.7x），故只录跨页一致、无歧义的规格；spec_basis 记券商转述（第三方转述档）。原件为图片 PDF，本条为读图录入。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "ces26ppt-vr-compute-tray-gpu",
+      "metric_id": "rack_component_count",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-vera-rubin-compute-tray",
+        "label": "英伟达 Vera Rubin 计算模块（托盘）"
+      },
+      "value": 4.0,
+      "unit": "个",
+      "caliber": {
+        "product": "英伟达 Vera Rubin 计算模块（托盘）",
+        "component": "GPU",
+        "denominator": "每托盘",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2800171339cdfbf88eacf2940d44dc686587a10ced0fa516a8831015e0d578f6",
+        "local_file": "CES2026_黄仁勋演讲_PPT(1).pdf",
+        "locator": "第 47 页「VERA RUBIN 计算模块剖析」图注「4× RUBIN GPU」（同图另注 8× CONNECTX-9 NIC、4× BLUEFIELD-4 DPU、「零线缆设计」）",
+        "grade": "S4",
+        "originator": "英伟达 CES 2026 主题演讲（黄仁勋，2026-01），经未署名中文解读胶片《CES2026_黄仁勋演讲_PPT》（71 页，分 Part 1–4「技术深度解析」）转述"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 CES 2026 演讲时间（2026-01 拉斯维加斯）；胶片本身未印日期，文件名与各 Part 封面写「英伟达CES 2026」",
+      "corroboration": "待交叉验证",
+      "notes": "每计算托盘 4 个 GPU。同图 8× ConnectX-9、4× BlueField-4 在 component 枚举中只能记「其他」且两者混为一类会失真，未录。 **转述载体质量**：本胶片为非官方中文解读稿，配图多为生成图，文字有明显转录错误（「Nemo Tron」「Evl two」「MVF P4 张量引擎」应为 NVFP4、「144x RUBIN GPUs (NVLINK 72)」），且同一项在不同页自相矛盾（晶体管增长第 44/48 页 1.6x、第 53 页 1.7x），故只录跨页一致、无歧义的规格；spec_basis 记券商转述（第三方转述档）。原件为图片 PDF，本条为读图录入。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "ces26ppt-vr-compute-tray-cpu",
+      "metric_id": "rack_component_count",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-vera-rubin-compute-tray",
+        "label": "英伟达 Vera Rubin 计算模块（托盘）"
+      },
+      "value": 2.0,
+      "unit": "个",
+      "caliber": {
+        "product": "英伟达 Vera Rubin 计算模块（托盘）",
+        "component": "CPU",
+        "denominator": "每托盘",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2800171339cdfbf88eacf2940d44dc686587a10ced0fa516a8831015e0d578f6",
+        "local_file": "CES2026_黄仁勋演讲_PPT(1).pdf",
+        "locator": "第 47 页「VERA RUBIN 计算模块剖析」图注「2× VERA CPU」（同图另注 8× CONNECTX-9 NIC、4× BLUEFIELD-4 DPU、「零线缆设计」）",
+        "grade": "S4",
+        "originator": "英伟达 CES 2026 主题演讲（黄仁勋，2026-01），经未署名中文解读胶片《CES2026_黄仁勋演讲_PPT》（71 页，分 Part 1–4「技术深度解析」）转述"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 CES 2026 演讲时间（2026-01 拉斯维加斯）；胶片本身未印日期，文件名与各 Part 封面写「英伟达CES 2026」",
+      "corroboration": "待交叉验证",
+      "notes": "每计算托盘 2 个 CPU。同图 8× ConnectX-9、4× BlueField-4 在 component 枚举中只能记「其他」且两者混为一类会失真，未录。 **转述载体质量**：本胶片为非官方中文解读稿，配图多为生成图，文字有明显转录错误（「Nemo Tron」「Evl two」「MVF P4 张量引擎」应为 NVFP4、「144x RUBIN GPUs (NVLINK 72)」），且同一项在不同页自相矛盾（晶体管增长第 44/48 页 1.6x、第 53 页 1.7x），故只录跨页一致、无歧义的规格；spec_basis 记券商转述（第三方转述档）。原件为图片 PDF，本条为读图录入。",
+      "asserter": "英伟达"
+    },
+    {
+      "fact_id": "ces26ppt-vr-dlc-inlet-45c",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-vera-rubin-nvl72",
+        "label": "英伟达 Vera Rubin 系统（整柜）"
+      },
+      "value": 45.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "供水",
+        "loop": "未注明",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "basis": "厂商参考设计",
+        "region": "Global"
+      },
+      "as_of": "2026-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2800171339cdfbf88eacf2940d44dc686587a10ced0fa516a8831015e0d578f6",
+        "local_file": "CES2026_黄仁勋演讲_PPT(1).pdf",
+        "locator": "第 52 页 ENERGY SPECS「冷却：100% 直接液冷（DIRECT-TO-CHIP LIQUID COOLING）· 水温：45°C 温水进水（WARM WATER INTAKE）· 数据中心无需冷水机组」；第 64 页「液冷恒温 45°C」",
+        "grade": "S4",
+        "originator": "英伟达 CES 2026 主题演讲（黄仁勋，2026-01），经未署名中文解读胶片《CES2026_黄仁勋演讲_PPT》（71 页，分 Part 1–4「技术深度解析」）转述"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 CES 2026 演讲时间（2026-01 拉斯维加斯）；胶片本身未印日期，文件名与各 Part 封面写「英伟达CES 2026」",
+      "corroboration": "待交叉验证",
+      "notes": "两页一致。与库内英伟达 2025-10 VR NVL144 CPX 托盘最高进水 45°C（nv2510-vr-nvl144-cpx-max-inlet-temp，二次侧）同值；本胶片未写一次侧/二次侧，loop 记未注明。 **转述载体质量**：本胶片为非官方中文解读稿，配图多为生成图，文字有明显转录错误（「Nemo Tron」「Evl two」「MVF P4 张量引擎」应为 NVFP4、「144x RUBIN GPUs (NVLINK 72)」），且同一项在不同页自相矛盾（晶体管增长第 44/48 页 1.6x、第 53 页 1.7x），故只录跨页一致、无歧义的规格；spec_basis 记券商转述（第三方转述档）。原件为图片 PDF，本条为读图录入。",
+      "asserter": "英伟达"
     }
   ]
 }
