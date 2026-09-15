@@ -186474,6 +186474,440 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原文「将达到」，发布于 2020 年 12 月，按当年预测记。第 11 页另称 2020 年中国人工智能基础设施市场 39.3 亿美元（同比 +26.8%）、2024 年 78.0 亿美元，服务器占 87% 以上——基础设施口径含非服务器硬件，未录。as_of 发布月取 PDF 创建日期。"
+    },
+    {
+      "fact_id": "idc1908-ai-inference-market-share-2017",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "ai-chip-workload-market",
+        "label": "人工智能（芯片）市场按训练/推理切分"
+      },
+      "asserter": "IDC",
+      "value": 18.7,
+      "unit": "%",
+      "caliber": {
+        "workload": "推理",
+        "denominator": "AI 算力支出",
+        "region": "未披露",
+        "basis": "行业机构"
+      },
+      "as_of": "2017",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0d9569909d3572cc2e7ca9a14e30d6cb04fb54c7fc3f25ba2d193d0aa8d1d3f0",
+        "local_file": "20200214-报告派-浪潮：2019-2020中国人工智能计算力发展评估报告(31页).pdf",
+        "locator": "PDF 第 8 页（报告页 9）「2.1.1」节图 2「推理和训练市场占比预测」2017 年柱：Training 81.3% / Inference 18.7%；来源「IDC，2019」",
+        "grade": "S2",
+        "originator": "IDC 与浪潮《2019-2020 中国人工智能计算力发展评估报告》（封面 2019 年 8 月）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图题「推理和训练市场占比」，位于人工智能芯片按训练/推理分类的段落下，分母按市场金额（支出）记；原文未写地域（报告主题为中国，但图未注明），记未披露。训练+推理=100%。"
+    },
+    {
+      "fact_id": "idc1908-ai-inference-market-share-2018",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "ai-chip-workload-market",
+        "label": "人工智能（芯片）市场按训练/推理切分"
+      },
+      "asserter": "IDC",
+      "value": 26.3,
+      "unit": "%",
+      "caliber": {
+        "workload": "推理",
+        "denominator": "AI 算力支出",
+        "region": "未披露",
+        "basis": "行业机构"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0d9569909d3572cc2e7ca9a14e30d6cb04fb54c7fc3f25ba2d193d0aa8d1d3f0",
+        "local_file": "20200214-报告派-浪潮：2019-2020中国人工智能计算力发展评估报告(31页).pdf",
+        "locator": "PDF 第 8 页（报告页 9）「2.1.1」节图 2「推理和训练市场占比预测」2018 年柱：Training 73.7% / Inference 26.3%；来源「IDC，2019」",
+        "grade": "S2",
+        "originator": "IDC 与浪潮《2019-2020 中国人工智能计算力发展评估报告》（封面 2019 年 8 月）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图题「推理和训练市场占比」，位于人工智能芯片按训练/推理分类的段落下，分母按市场金额（支出）记；原文未写地域（报告主题为中国，但图未注明），记未披露。训练+推理=100%。"
+    },
+    {
+      "fact_id": "idc1908-ai-inference-market-share-2019e",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "ai-chip-workload-market",
+        "label": "人工智能（芯片）市场按训练/推理切分"
+      },
+      "asserter": "IDC",
+      "value": 33.4,
+      "unit": "%",
+      "caliber": {
+        "workload": "推理",
+        "denominator": "AI 算力支出",
+        "region": "未披露",
+        "basis": "预测"
+      },
+      "as_of": "2019E@2019-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0d9569909d3572cc2e7ca9a14e30d6cb04fb54c7fc3f25ba2d193d0aa8d1d3f0",
+        "local_file": "20200214-报告派-浪潮：2019-2020中国人工智能计算力发展评估报告(31页).pdf",
+        "locator": "PDF 第 8 页（报告页 9）「2.1.1」节图 2「推理和训练市场占比预测」2019 年柱：Training 66.6% / Inference 33.4%；来源「IDC，2019」",
+        "grade": "S2",
+        "originator": "IDC 与浪潮《2019-2020 中国人工智能计算力发展评估报告》（封面 2019 年 8 月）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图题「推理和训练市场占比」，位于人工智能芯片按训练/推理分类的段落下，分母按市场金额（支出）记；原文未写地域（报告主题为中国，但图未注明），记未披露。训练+推理=100%。2019 年起按预测记（报告 2019-08 发布）。"
+    },
+    {
+      "fact_id": "idc1908-ai-inference-market-share-2020e",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "ai-chip-workload-market",
+        "label": "人工智能（芯片）市场按训练/推理切分"
+      },
+      "asserter": "IDC",
+      "value": 40.2,
+      "unit": "%",
+      "caliber": {
+        "workload": "推理",
+        "denominator": "AI 算力支出",
+        "region": "未披露",
+        "basis": "预测"
+      },
+      "as_of": "2020E@2019-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0d9569909d3572cc2e7ca9a14e30d6cb04fb54c7fc3f25ba2d193d0aa8d1d3f0",
+        "local_file": "20200214-报告派-浪潮：2019-2020中国人工智能计算力发展评估报告(31页).pdf",
+        "locator": "PDF 第 8 页（报告页 9）「2.1.1」节图 2「推理和训练市场占比预测」2020 年柱：Training 59.8% / Inference 40.2%；来源「IDC，2019」",
+        "grade": "S2",
+        "originator": "IDC 与浪潮《2019-2020 中国人工智能计算力发展评估报告》（封面 2019 年 8 月）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图题「推理和训练市场占比」，位于人工智能芯片按训练/推理分类的段落下，分母按市场金额（支出）记；原文未写地域（报告主题为中国，但图未注明），记未披露。训练+推理=100%。2019 年起按预测记（报告 2019-08 发布）。"
+    },
+    {
+      "fact_id": "idc1908-ai-inference-market-share-2021e",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "ai-chip-workload-market",
+        "label": "人工智能（芯片）市场按训练/推理切分"
+      },
+      "asserter": "IDC",
+      "value": 48.3,
+      "unit": "%",
+      "caliber": {
+        "workload": "推理",
+        "denominator": "AI 算力支出",
+        "region": "未披露",
+        "basis": "预测"
+      },
+      "as_of": "2021E@2019-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0d9569909d3572cc2e7ca9a14e30d6cb04fb54c7fc3f25ba2d193d0aa8d1d3f0",
+        "local_file": "20200214-报告派-浪潮：2019-2020中国人工智能计算力发展评估报告(31页).pdf",
+        "locator": "PDF 第 8 页（报告页 9）「2.1.1」节图 2「推理和训练市场占比预测」2021 年柱：Training 51.7% / Inference 48.3%；来源「IDC，2019」",
+        "grade": "S2",
+        "originator": "IDC 与浪潮《2019-2020 中国人工智能计算力发展评估报告》（封面 2019 年 8 月）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图题「推理和训练市场占比」，位于人工智能芯片按训练/推理分类的段落下，分母按市场金额（支出）记；原文未写地域（报告主题为中国，但图未注明），记未披露。训练+推理=100%。2019 年起按预测记（报告 2019-08 发布）。"
+    },
+    {
+      "fact_id": "idc1908-ai-inference-market-share-2022e",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "ai-chip-workload-market",
+        "label": "人工智能（芯片）市场按训练/推理切分"
+      },
+      "asserter": "IDC",
+      "value": 52.1,
+      "unit": "%",
+      "caliber": {
+        "workload": "推理",
+        "denominator": "AI 算力支出",
+        "region": "未披露",
+        "basis": "预测"
+      },
+      "as_of": "2022E@2019-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0d9569909d3572cc2e7ca9a14e30d6cb04fb54c7fc3f25ba2d193d0aa8d1d3f0",
+        "local_file": "20200214-报告派-浪潮：2019-2020中国人工智能计算力发展评估报告(31页).pdf",
+        "locator": "PDF 第 8 页（报告页 9）「2.1.1」节图 2「推理和训练市场占比预测」2022 年柱：Training 47.9% / Inference 52.1%；来源「IDC，2019」",
+        "grade": "S2",
+        "originator": "IDC 与浪潮《2019-2020 中国人工智能计算力发展评估报告》（封面 2019 年 8 月）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图题「推理和训练市场占比」，位于人工智能芯片按训练/推理分类的段落下，分母按市场金额（支出）记；原文未写地域（报告主题为中国，但图未注明），记未披露。训练+推理=100%。2019 年起按预测记（报告 2019-08 发布）。"
+    },
+    {
+      "fact_id": "idc1908-ai-inference-market-share-2023e",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "ai-chip-workload-market",
+        "label": "人工智能（芯片）市场按训练/推理切分"
+      },
+      "asserter": "IDC",
+      "value": 57.3,
+      "unit": "%",
+      "caliber": {
+        "workload": "推理",
+        "denominator": "AI 算力支出",
+        "region": "未披露",
+        "basis": "预测"
+      },
+      "as_of": "2023E@2019-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0d9569909d3572cc2e7ca9a14e30d6cb04fb54c7fc3f25ba2d193d0aa8d1d3f0",
+        "local_file": "20200214-报告派-浪潮：2019-2020中国人工智能计算力发展评估报告(31页).pdf",
+        "locator": "PDF 第 8 页（报告页 9）「2.1.1」节图 2「推理和训练市场占比预测」2023 年柱：Training 42.7% / Inference 57.3%；来源「IDC，2019」",
+        "grade": "S2",
+        "originator": "IDC 与浪潮《2019-2020 中国人工智能计算力发展评估报告》（封面 2019 年 8 月）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图题「推理和训练市场占比」，位于人工智能芯片按训练/推理分类的段落下，分母按市场金额（支出）记；原文未写地域（报告主题为中国，但图未注明），记未披露。训练+推理=100%。2019 年起按预测记（报告 2019-08 发布）。"
+    },
+    {
+      "fact_id": "idc1908-ai-training-market-share-2017",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "ai-chip-workload-market",
+        "label": "人工智能（芯片）市场按训练/推理切分"
+      },
+      "asserter": "IDC",
+      "value": 81.3,
+      "unit": "%",
+      "caliber": {
+        "workload": "训练",
+        "denominator": "AI 算力支出",
+        "region": "未披露",
+        "basis": "行业机构"
+      },
+      "as_of": "2017",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0d9569909d3572cc2e7ca9a14e30d6cb04fb54c7fc3f25ba2d193d0aa8d1d3f0",
+        "local_file": "20200214-报告派-浪潮：2019-2020中国人工智能计算力发展评估报告(31页).pdf",
+        "locator": "PDF 第 8 页（报告页 9）「2.1.1」节图 2「推理和训练市场占比预测」2017 年柱：Training 81.3% / Inference 18.7%；来源「IDC，2019」",
+        "grade": "S2",
+        "originator": "IDC 与浪潮《2019-2020 中国人工智能计算力发展评估报告》（封面 2019 年 8 月）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图题「推理和训练市场占比」，位于人工智能芯片按训练/推理分类的段落下，分母按市场金额（支出）记；原文未写地域（报告主题为中国，但图未注明），记未披露。训练+推理=100%。"
+    },
+    {
+      "fact_id": "idc1908-ai-training-market-share-2018",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "ai-chip-workload-market",
+        "label": "人工智能（芯片）市场按训练/推理切分"
+      },
+      "asserter": "IDC",
+      "value": 73.7,
+      "unit": "%",
+      "caliber": {
+        "workload": "训练",
+        "denominator": "AI 算力支出",
+        "region": "未披露",
+        "basis": "行业机构"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0d9569909d3572cc2e7ca9a14e30d6cb04fb54c7fc3f25ba2d193d0aa8d1d3f0",
+        "local_file": "20200214-报告派-浪潮：2019-2020中国人工智能计算力发展评估报告(31页).pdf",
+        "locator": "PDF 第 8 页（报告页 9）「2.1.1」节图 2「推理和训练市场占比预测」2018 年柱：Training 73.7% / Inference 26.3%；来源「IDC，2019」",
+        "grade": "S2",
+        "originator": "IDC 与浪潮《2019-2020 中国人工智能计算力发展评估报告》（封面 2019 年 8 月）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图题「推理和训练市场占比」，位于人工智能芯片按训练/推理分类的段落下，分母按市场金额（支出）记；原文未写地域（报告主题为中国，但图未注明），记未披露。训练+推理=100%。"
+    },
+    {
+      "fact_id": "idc1908-ai-training-market-share-2019e",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "ai-chip-workload-market",
+        "label": "人工智能（芯片）市场按训练/推理切分"
+      },
+      "asserter": "IDC",
+      "value": 66.6,
+      "unit": "%",
+      "caliber": {
+        "workload": "训练",
+        "denominator": "AI 算力支出",
+        "region": "未披露",
+        "basis": "预测"
+      },
+      "as_of": "2019E@2019-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0d9569909d3572cc2e7ca9a14e30d6cb04fb54c7fc3f25ba2d193d0aa8d1d3f0",
+        "local_file": "20200214-报告派-浪潮：2019-2020中国人工智能计算力发展评估报告(31页).pdf",
+        "locator": "PDF 第 8 页（报告页 9）「2.1.1」节图 2「推理和训练市场占比预测」2019 年柱：Training 66.6% / Inference 33.4%；来源「IDC，2019」",
+        "grade": "S2",
+        "originator": "IDC 与浪潮《2019-2020 中国人工智能计算力发展评估报告》（封面 2019 年 8 月）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图题「推理和训练市场占比」，位于人工智能芯片按训练/推理分类的段落下，分母按市场金额（支出）记；原文未写地域（报告主题为中国，但图未注明），记未披露。训练+推理=100%。2019 年起按预测记（报告 2019-08 发布）。"
+    },
+    {
+      "fact_id": "idc1908-ai-training-market-share-2020e",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "ai-chip-workload-market",
+        "label": "人工智能（芯片）市场按训练/推理切分"
+      },
+      "asserter": "IDC",
+      "value": 59.8,
+      "unit": "%",
+      "caliber": {
+        "workload": "训练",
+        "denominator": "AI 算力支出",
+        "region": "未披露",
+        "basis": "预测"
+      },
+      "as_of": "2020E@2019-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0d9569909d3572cc2e7ca9a14e30d6cb04fb54c7fc3f25ba2d193d0aa8d1d3f0",
+        "local_file": "20200214-报告派-浪潮：2019-2020中国人工智能计算力发展评估报告(31页).pdf",
+        "locator": "PDF 第 8 页（报告页 9）「2.1.1」节图 2「推理和训练市场占比预测」2020 年柱：Training 59.8% / Inference 40.2%；来源「IDC，2019」",
+        "grade": "S2",
+        "originator": "IDC 与浪潮《2019-2020 中国人工智能计算力发展评估报告》（封面 2019 年 8 月）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图题「推理和训练市场占比」，位于人工智能芯片按训练/推理分类的段落下，分母按市场金额（支出）记；原文未写地域（报告主题为中国，但图未注明），记未披露。训练+推理=100%。2019 年起按预测记（报告 2019-08 发布）。"
+    },
+    {
+      "fact_id": "idc1908-ai-training-market-share-2021e",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "ai-chip-workload-market",
+        "label": "人工智能（芯片）市场按训练/推理切分"
+      },
+      "asserter": "IDC",
+      "value": 51.7,
+      "unit": "%",
+      "caliber": {
+        "workload": "训练",
+        "denominator": "AI 算力支出",
+        "region": "未披露",
+        "basis": "预测"
+      },
+      "as_of": "2021E@2019-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0d9569909d3572cc2e7ca9a14e30d6cb04fb54c7fc3f25ba2d193d0aa8d1d3f0",
+        "local_file": "20200214-报告派-浪潮：2019-2020中国人工智能计算力发展评估报告(31页).pdf",
+        "locator": "PDF 第 8 页（报告页 9）「2.1.1」节图 2「推理和训练市场占比预测」2021 年柱：Training 51.7% / Inference 48.3%；来源「IDC，2019」",
+        "grade": "S2",
+        "originator": "IDC 与浪潮《2019-2020 中国人工智能计算力发展评估报告》（封面 2019 年 8 月）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图题「推理和训练市场占比」，位于人工智能芯片按训练/推理分类的段落下，分母按市场金额（支出）记；原文未写地域（报告主题为中国，但图未注明），记未披露。训练+推理=100%。2019 年起按预测记（报告 2019-08 发布）。"
+    },
+    {
+      "fact_id": "idc1908-ai-training-market-share-2022e",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "ai-chip-workload-market",
+        "label": "人工智能（芯片）市场按训练/推理切分"
+      },
+      "asserter": "IDC",
+      "value": 47.9,
+      "unit": "%",
+      "caliber": {
+        "workload": "训练",
+        "denominator": "AI 算力支出",
+        "region": "未披露",
+        "basis": "预测"
+      },
+      "as_of": "2022E@2019-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0d9569909d3572cc2e7ca9a14e30d6cb04fb54c7fc3f25ba2d193d0aa8d1d3f0",
+        "local_file": "20200214-报告派-浪潮：2019-2020中国人工智能计算力发展评估报告(31页).pdf",
+        "locator": "PDF 第 8 页（报告页 9）「2.1.1」节图 2「推理和训练市场占比预测」2022 年柱：Training 47.9% / Inference 52.1%；来源「IDC，2019」",
+        "grade": "S2",
+        "originator": "IDC 与浪潮《2019-2020 中国人工智能计算力发展评估报告》（封面 2019 年 8 月）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图题「推理和训练市场占比」，位于人工智能芯片按训练/推理分类的段落下，分母按市场金额（支出）记；原文未写地域（报告主题为中国，但图未注明），记未披露。训练+推理=100%。2019 年起按预测记（报告 2019-08 发布）。"
+    },
+    {
+      "fact_id": "idc1908-ai-training-market-share-2023e",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "ai-chip-workload-market",
+        "label": "人工智能（芯片）市场按训练/推理切分"
+      },
+      "asserter": "IDC",
+      "value": 42.7,
+      "unit": "%",
+      "caliber": {
+        "workload": "训练",
+        "denominator": "AI 算力支出",
+        "region": "未披露",
+        "basis": "预测"
+      },
+      "as_of": "2023E@2019-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0d9569909d3572cc2e7ca9a14e30d6cb04fb54c7fc3f25ba2d193d0aa8d1d3f0",
+        "local_file": "20200214-报告派-浪潮：2019-2020中国人工智能计算力发展评估报告(31页).pdf",
+        "locator": "PDF 第 8 页（报告页 9）「2.1.1」节图 2「推理和训练市场占比预测」2023 年柱：Training 42.7% / Inference 57.3%；来源「IDC，2019」",
+        "grade": "S2",
+        "originator": "IDC 与浪潮《2019-2020 中国人工智能计算力发展评估报告》（封面 2019 年 8 月）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图题「推理和训练市场占比」，位于人工智能芯片按训练/推理分类的段落下，分母按市场金额（支出）记；原文未写地域（报告主题为中国，但图未注明），记未披露。训练+推理=100%。2019 年起按预测记（报告 2019-08 发布）。"
     }
   ]
 }
