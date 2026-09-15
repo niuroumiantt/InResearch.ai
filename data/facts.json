@@ -209683,6 +209683,72 @@
       "corroboration": "待交叉验证",
       "notes": "原文「超 50 万片」按下限录；CAGR 超 35%。",
       "derivation": "SEMI 预测发布时点未在转引中注明，按转引报告年份取 @2025。"
+    },
+    {
+      "fact_id": "dfzq2604-odcc-ethx-rack-max-power",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "odcc-eth-x-supernode-rack",
+        "label": "ODCC ETH-X 超节点 AI 整机柜（设计规范）"
+      },
+      "asserter": "开放数据中心委员会",
+      "value": 132,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "架构上限",
+        "era": "当期",
+        "power_basis": "设计功率",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "c7140a7c0a02481c69d913d3353ed8f06227cba0f9518665834b6ed3f8783b63",
+        "local_file": "超节点：国产算力进攻的“矛”.pdf",
+        "locator": "PDF 第 12 页「（3）供电方面，Rack 内最多支持 4 个 Power shelf，最大功耗支持 132KW，其中 PSU 数量可根据系统最大功耗按需配置，支持 N+2 冗余，采用 Busbar 为各节点供电……有望从 3.3KW PSU 升级至 5.5KW 及以上」（数据来源：ODCC《ETH-X 超节点 AI 整机柜设计规范》）",
+        "grade": "S3",
+        "originator": "开放数据中心委员会《ETH-X 超节点 AI 整机柜设计规范》（经东方证券《超节点：国产算力进攻的「矛」》（2026-04-23）转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "规范发布年份转引未注明；ETH-X 规范系列发布于 2025 年，as_of 取 2025。",
+      "corroboration": "待交叉验证",
+      "notes": "设计规范上限，非出货机型实测；最多 4 个 Power shelf、PSU N+2 冗余。"
+    },
+    {
+      "fact_id": "dfzq2604-bytedance-dayu-rack-power-upper",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "volcengine-dayu-supernode",
+        "label": "火山引擎（字节跳动）大禹超节点服务器 44U 机柜"
+      },
+      "asserter": "字节跳动",
+      "value": 240,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "架构上限",
+        "era": "当期",
+        "power_basis": "架构宣称",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "c7140a7c0a02481c69d913d3353ed8f06227cba0f9518665834b6ed3f8783b63",
+        "local_file": "超节点：国产算力进攻的“矛”.pdf",
+        "locator": "PDF 第 21 页：「对应超节点服务器产品方面，大禹 44U 机柜中，单柜支持 120-240KW，每个 Computer tray 支持 4/8 个 GPU，可配备 64/128 卡 GPU，搭配 8-12 台 Switch tray」（数据来源：字节《GPU Scale up 互联技术白皮书》、火山引擎、益企研究院）",
+        "grade": "S3",
+        "originator": "字节跳动/火山引擎（经东方证券《超节点：国产算力进攻的「矛」》（2026-04-23）转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "产品发布年份转引未注明；字节《GPU Scale up 互联技术白皮书》发布于 2025 年，as_of 取 2025。",
+      "corroboration": "待交叉验证",
+      "notes": "原文「单柜支持 120-240KW」，区间对应 64/128 卡两种配置，此处录上限；64 卡配置对应 120 kW。"
     }
   ]
 }
