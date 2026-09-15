@@ -209749,6 +209749,101 @@
       "derivation": "产品发布年份转引未注明；字节《GPU Scale up 互联技术白皮书》发布于 2025 年，as_of 取 2025。",
       "corroboration": "待交叉验证",
       "notes": "原文「单柜支持 120-240KW」，区间对应 64/128 卡两种配置，此处录上限；64 卡配置对应 120 kW。"
+    },
+    {
+      "fact_id": "htsc2604-idc-cn-domestic-ai-chip-shipment-2025",
+      "metric_id": "domestic_gpu_shipment",
+      "entity": {
+        "type": "market",
+        "id": "cn-domestic-ai-chips",
+        "label": "中国国产 AI 芯片（合计）"
+      },
+      "asserter": "IDC",
+      "value": 165,
+      "unit": "万颗",
+      "caliber": {
+        "period": "年",
+        "counting": "未披露",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fd4713c5db362267dc7a8d244c13322e2e532fe021d18ae83380aa63f8d67ab0",
+        "local_file": "20260410-华泰证券-通信行业：超节点，26年国产算力破局之道.pdf",
+        "locator": "PDF 第 7 页「超节点空间：预计 2028 年国产超节点市场有望达 3414 亿元」：「据 IDC 数据，2024 年我国 AI 芯片出货量超过 270 万颗，其中英伟达约 190 万颗，占比约 70%；2025 年我国 AI 芯片出货量 400 万颗，其中英伟达、国产芯片分别约 220、165 万颗，占比分别为 55%、41%，出于审慎考虑，我们根据以上数据合理预估 2025 年我国国产 AI 芯片约 150 万颗」",
+        "grade": "S4",
+        "originator": "IDC（经华泰证券《超节点：26 年国产算力破局之道》（2026-04-10）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「约 165 万颗」；同年中国 AI 芯片出货 400 万颗、英伟达约 220 万颗。华泰出于审慎下调为约 150 万颗（另录）。",
+      "disputed_by": [
+        "htsc2604-cn-domestic-ai-chip-shipment-2025-estimate"
+      ]
+    },
+    {
+      "fact_id": "htsc2604-idc-cn-domestic-ai-chip-share-units-2025",
+      "metric_id": "domestic_ai_chip_share_units",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-accelerator-market",
+        "label": "中国 AI 加速芯片市场"
+      },
+      "asserter": "IDC",
+      "value": 41,
+      "unit": "%",
+      "caliber": {
+        "basis": "实测",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fd4713c5db362267dc7a8d244c13322e2e532fe021d18ae83380aa63f8d67ab0",
+        "local_file": "20260410-华泰证券-通信行业：超节点，26年国产算力破局之道.pdf",
+        "locator": "PDF 第 7 页「超节点空间：预计 2028 年国产超节点市场有望达 3414 亿元」：「据 IDC 数据，2024 年我国 AI 芯片出货量超过 270 万颗，其中英伟达约 190 万颗，占比约 70%；2025 年我国 AI 芯片出货量 400 万颗，其中英伟达、国产芯片分别约 220、165 万颗，占比分别为 55%、41%，出于审慎考虑，我们根据以上数据合理预估 2025 年我国国产 AI 芯片约 150 万颗」",
+        "grade": "S4",
+        "originator": "IDC（经华泰证券《超节点：26 年国产算力破局之道》（2026-04-10）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "165/400=41.25%；英伟达 55%。与库内 IDC 2024 年 30%、2023 年 15% 为同一序列。"
+    },
+    {
+      "fact_id": "htsc2604-cn-domestic-ai-chip-shipment-2025-estimate",
+      "metric_id": "domestic_gpu_shipment",
+      "entity": {
+        "type": "market",
+        "id": "cn-domestic-ai-chips",
+        "label": "中国国产 AI 芯片（合计）"
+      },
+      "asserter": "华泰证券",
+      "value": 150,
+      "unit": "万颗",
+      "caliber": {
+        "period": "年",
+        "counting": "未披露",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "disputes": [
+        "htsc2604-idc-cn-domestic-ai-chip-shipment-2025"
+      ],
+      "evidence": {
+        "sha256": "fd4713c5db362267dc7a8d244c13322e2e532fe021d18ae83380aa63f8d67ab0",
+        "local_file": "20260410-华泰证券-通信行业：超节点，26年国产算力破局之道.pdf",
+        "locator": "PDF 第 7 页「超节点空间：预计 2028 年国产超节点市场有望达 3414 亿元」：「据 IDC 数据，2024 年我国 AI 芯片出货量超过 270 万颗，其中英伟达约 190 万颗，占比约 70%；2025 年我国 AI 芯片出货量 400 万颗，其中英伟达、国产芯片分别约 220、165 万颗，占比分别为 55%、41%，出于审慎考虑，我们根据以上数据合理预估 2025 年我国国产 AI 芯片约 150 万颗」；图表 7「国产超节点市场规模测算」国产 AI 芯片出货量 2025 年 150.00 万颗",
+        "grade": "S3",
+        "originator": "华泰证券《超节点：26 年国产算力破局之道》（2026-04-10）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "华泰明示在 IDC 165 万颗基础上「出于审慎考虑」预估约 150 万颗，并据此预测 2026–2028 年 247.5/371.25/519.75 万颗（basis 无「预测」取值，未录）。"
     }
   ]
 }
