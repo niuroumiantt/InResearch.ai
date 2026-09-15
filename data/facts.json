@@ -207352,6 +207352,70 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "中国 = 新增机架（190→352 万架）× 标准机架 2.5 kW；全球 = 中国 + 美洲（固定 6.3 GW）+ 东南亚 + 欧洲中东非洲。未说明 IT 负载还是设施功率，记未披露。"
+    },
+    {
+      "fact_id": "dxzq2606-cru-global-dc-fiber-demand-2026e",
+      "metric_id": "fiber_cable_demand",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-fiber",
+        "label": "全球数据中心光纤需求"
+      },
+      "asserter": "CRU",
+      "value": 9160,
+      "unit": "万芯公里",
+      "caliber": {
+        "segment": "数据中心",
+        "fiber_type": "合计",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ce85074cd9c665d22b8acab1367eb0188b9e99008f57c0e08b3637b51675472a",
+        "local_file": "20260618-东兴证券-东兴证券-光通信行业2026年中期策略：Scale up成为AI数据中心网络创新方向，光互联供应链紧缺是主线(71页).pdf",
+        "locator": "PDF 第 59 页「6.1 G.657 单模光纤和多模光纤将迎来规模化应用」：「根据 CRU 最新报告，2026 年全球数据中心光纤需求预计达到 9160 万芯公里，同比增长 32%……展望 2030 年，全球数据中心光纤需求预计达到 1.28 亿芯公里，其中 AI 应用的光纤需求超过 8000 万芯公里」；图 59「全球数据中心光纤应用规模（万芯公里）」（资料来源：CRU）",
+        "grade": "S4",
+        "originator": "CRU（经东兴证券《光通信行业 2026 年中期策略》2026-06-18 转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文称「CRU 最新报告」，未写发布月份，按转引报告年份取 @2026。",
+      "corroboration": "待交叉验证",
+      "notes": "同比 +32%；含 AI 应用、非 AI 应用与 DCI。"
+    },
+    {
+      "fact_id": "dxzq2606-cru-global-dc-fiber-demand-2030e",
+      "metric_id": "fiber_cable_demand",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-fiber",
+        "label": "全球数据中心光纤需求"
+      },
+      "asserter": "CRU",
+      "value": 12800,
+      "unit": "万芯公里",
+      "caliber": {
+        "segment": "数据中心",
+        "fiber_type": "合计",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2026",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ce85074cd9c665d22b8acab1367eb0188b9e99008f57c0e08b3637b51675472a",
+        "local_file": "20260618-东兴证券-东兴证券-光通信行业2026年中期策略：Scale up成为AI数据中心网络创新方向，光互联供应链紧缺是主线(71页).pdf",
+        "locator": "PDF 第 59 页「6.1 G.657 单模光纤和多模光纤将迎来规模化应用」：「根据 CRU 最新报告，2026 年全球数据中心光纤需求预计达到 9160 万芯公里，同比增长 32%……展望 2030 年，全球数据中心光纤需求预计达到 1.28 亿芯公里，其中 AI 应用的光纤需求超过 8000 万芯公里」；图 59「全球数据中心光纤应用规模（万芯公里）」（资料来源：CRU）",
+        "grade": "S4",
+        "originator": "CRU（经东兴证券《光通信行业 2026 年中期策略》2026-06-18 转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文称「CRU 最新报告」，未写发布月份，按转引报告年份取 @2026。",
+      "corroboration": "待交叉验证",
+      "notes": "原文「1.28 亿芯公里」=12,800 万芯公里；其中 AI 应用超过 8,000 万芯公里（segment 无 AI 子项，未单录）。"
     }
   ]
 }
