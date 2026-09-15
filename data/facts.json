@@ -196370,6 +196370,315 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原文「约 2.73-5.89 亿吨」=273–589 百万吨；两端分别对应报告的技术乐观/技术保守情景（2030 年智算用电 0.6/1.3 万亿度），按省级电网碳因子（生态环境部及环境规划院预测）推算。"
+    },
+    {
+      "fact_id": "sgjb2412-langfang-dc-power-share-2019",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "langfang-dc",
+        "label": "廊坊数据中心（合计）"
+      },
+      "asserter": "国网冀北经研院",
+      "value": 5.9,
+      "unit": "%",
+      "caliber": {
+        "denominator": "某地区用电量",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c8c07f8090e29f0f3bdf991ae3c9b514f5fa5f6b62ee2aadceacc2c9c4584806",
+        "local_file": "2024年人工智能快速发展背景下算力电力协同发展的思考报告.pdf",
+        "locator": "PDF 第 11 页「算力崛起催生旺盛电力需求」正文：「廊坊数据中心用电量比重从2019年的5.9%增长至2023年的14.3%」",
+        "grade": "S3",
+        "originator": "岳昊（国网冀北电力有限公司经济技术研究院）《人工智能快速发展背景下算力电力协同发展的思考》，中国电机工程学会 2024 联合学术年会报告（2024-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "分母为廊坊全社会用电量；原文称数据中心已替代金属制品行业成为廊坊第一大用电行业。同页张家口 6.8%→20.1% 与 sgjb2408 同一断言者、同值，不重录。"
+    },
+    {
+      "fact_id": "sgjb2412-langfang-dc-power-share-2023",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "langfang-dc",
+        "label": "廊坊数据中心（合计）"
+      },
+      "asserter": "国网冀北经研院",
+      "value": 14.3,
+      "unit": "%",
+      "caliber": {
+        "denominator": "某地区用电量",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c8c07f8090e29f0f3bdf991ae3c9b514f5fa5f6b62ee2aadceacc2c9c4584806",
+        "local_file": "2024年人工智能快速发展背景下算力电力协同发展的思考报告.pdf",
+        "locator": "PDF 第 11 页「算力崛起催生旺盛电力需求」正文：「廊坊数据中心用电量比重从2019年的5.9%增长至2023年的14.3%」",
+        "grade": "S3",
+        "originator": "岳昊（国网冀北电力有限公司经济技术研究院）《人工智能快速发展背景下算力电力协同发展的思考》，中国电机工程学会 2024 联合学术年会报告（2024-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "分母为廊坊全社会用电量；原文称数据中心已替代金属制品行业成为廊坊第一大用电行业。同页张家口 6.8%→20.1% 与 sgjb2408 同一断言者、同值，不重录。"
+    },
+    {
+      "fact_id": "sgjb2412-cn-dc-electricity-2025e-lower",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc",
+        "label": "中国数据中心"
+      },
+      "asserter": "国网冀北经研院",
+      "value": 205.3,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "全站用电",
+        "sector_basis": "数据中心",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2024-12",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "c8c07f8090e29f0f3bdf991ae3c9b514f5fa5f6b62ee2aadceacc2c9c4584806",
+        "local_file": "2024年人工智能快速发展背景下算力电力协同发展的思考报告.pdf",
+        "locator": "PDF 第 12 页「人工智能将逐渐步入规模化应用阶段」正文：「按照我国对于2025年中国算力总规模将超过300EFlops、智能算力占比达到35%的发展目标，预计到2025年将达到2053亿~2412亿千瓦时，用电量年均增速约18.0%~27.9%，占全社会总用电量比重将提升至2.0%~2.3%」",
+        "grade": "S3",
+        "originator": "岳昊（国网冀北电力有限公司经济技术研究院）《人工智能快速发展背景下算力电力协同发展的思考》，中国电机工程学会 2024 联合学术年会报告（2024-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文 2053 亿~2412 亿千瓦时 = 205.3–241.2 TWh（文本层 OCR 作「干瓦时」）；未分命名情景，给的是区间，按单一情景上下限录。energy_scope 原文未写，数据中心总用电量口径按全站用电。"
+    },
+    {
+      "fact_id": "sgjb2412-cn-dc-electricity-2025e-upper",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc",
+        "label": "中国数据中心"
+      },
+      "asserter": "国网冀北经研院",
+      "value": 241.2,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "全站用电",
+        "sector_basis": "数据中心",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2024-12",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "c8c07f8090e29f0f3bdf991ae3c9b514f5fa5f6b62ee2aadceacc2c9c4584806",
+        "local_file": "2024年人工智能快速发展背景下算力电力协同发展的思考报告.pdf",
+        "locator": "PDF 第 12 页「人工智能将逐渐步入规模化应用阶段」正文：「按照我国对于2025年中国算力总规模将超过300EFlops、智能算力占比达到35%的发展目标，预计到2025年将达到2053亿~2412亿千瓦时，用电量年均增速约18.0%~27.9%，占全社会总用电量比重将提升至2.0%~2.3%」",
+        "grade": "S3",
+        "originator": "岳昊（国网冀北电力有限公司经济技术研究院）《人工智能快速发展背景下算力电力协同发展的思考》，中国电机工程学会 2024 联合学术年会报告（2024-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文 2053 亿~2412 亿千瓦时 = 205.3–241.2 TWh（文本层 OCR 作「干瓦时」）；未分命名情景，给的是区间，按单一情景上下限录。energy_scope 原文未写，数据中心总用电量口径按全站用电。"
+    },
+    {
+      "fact_id": "sgjb2412-cn-dc-power-share-2025e-lower",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc",
+        "label": "中国数据中心"
+      },
+      "asserter": "国网冀北经研院",
+      "value": 2.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2024-12",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "c8c07f8090e29f0f3bdf991ae3c9b514f5fa5f6b62ee2aadceacc2c9c4584806",
+        "local_file": "2024年人工智能快速发展背景下算力电力协同发展的思考报告.pdf",
+        "locator": "PDF 第 12 页同段：「占全社会总用电量比重将提升至2.0%~2.3%」",
+        "grade": "S3",
+        "originator": "岳昊（国网冀北电力有限公司经济技术研究院）《人工智能快速发展背景下算力电力协同发展的思考》，中国电机工程学会 2024 联合学术年会报告（2024-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "与同段用电量 205.3–241.2 TWh（sgjb2412-cn-dc-electricity-2025e-lower/upper）成对。"
+    },
+    {
+      "fact_id": "sgjb2412-cn-dc-power-share-2025e-upper",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc",
+        "label": "中国数据中心"
+      },
+      "asserter": "国网冀北经研院",
+      "value": 2.3,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2024-12",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "c8c07f8090e29f0f3bdf991ae3c9b514f5fa5f6b62ee2aadceacc2c9c4584806",
+        "local_file": "2024年人工智能快速发展背景下算力电力协同发展的思考报告.pdf",
+        "locator": "PDF 第 12 页同段：「占全社会总用电量比重将提升至2.0%~2.3%」",
+        "grade": "S3",
+        "originator": "岳昊（国网冀北电力有限公司经济技术研究院）《人工智能快速发展背景下算力电力协同发展的思考》，中国电机工程学会 2024 联合学术年会报告（2024-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "与同段用电量 205.3–241.2 TWh（sgjb2412-cn-dc-electricity-2025e-lower/upper）成对。"
+    },
+    {
+      "fact_id": "sgjb2412-bjpx-survey-dc-green-share-2023",
+      "metric_id": "dc_renewable_share",
+      "entity": {
+        "type": "market",
+        "id": "bjpx-surveyed-dcs",
+        "label": "北京电力交易中心调研的 468 家数据中心"
+      },
+      "asserter": "北京电力交易中心",
+      "value": 11,
+      "unit": "%",
+      "caliber": {
+        "measure": "绿证与绿电交易折算",
+        "scope": "全市场",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c8c07f8090e29f0f3bdf991ae3c9b514f5fa5f6b62ee2aadceacc2c9c4584806",
+        "local_file": "2024年人工智能快速发展背景下算力电力协同发展的思考报告.pdf",
+        "locator": "PDF 第 18 页「当前数据中心绿电消费占比不高」正文：「北京电力交易中心调研468家数据中心2023年绿电消费情况其中318家已入市，共有105家参与绿电交易，合计36.38亿千瓦时，36家购买绿色证书，合计15.34万张（折合1.5亿千瓦时），数据中心绿色用能合计37.88亿千瓦时占其总用电量的11%」",
+        "grade": "S3",
+        "originator": "岳昊（国网冀北电力有限公司经济技术研究院）《人工智能快速发展背景下算力电力协同发展的思考》，中国电机工程学会 2024 联合学术年会报告（2024-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "样本为北京电力交易中心调研的 468 家数据中心（非全国全部数据中心），绿色用能=绿电交易 36.38 亿 kWh + 绿证折算 1.5 亿 kWh；scope 按「全市场」录但实为调研样本。"
+    },
+    {
+      "fact_id": "sgjb2412-zhangjiakou-dc-green-share-2024q3",
+      "metric_id": "dc_renewable_share",
+      "entity": {
+        "type": "region",
+        "id": "zhangjiakou-dc",
+        "label": "张家口数据中心（合计）"
+      },
+      "asserter": "国网冀北经研院",
+      "value": 29.43,
+      "unit": "%",
+      "caliber": {
+        "measure": "未注明",
+        "scope": "全市场",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2024-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c8c07f8090e29f0f3bdf991ae3c9b514f5fa5f6b62ee2aadceacc2c9c4584806",
+        "local_file": "2024年人工智能快速发展背景下算力电力协同发展的思考报告.pdf",
+        "locator": "PDF 第 18 页同段：「冀北张家口，廊坊积极推动绿电支撑算力可持续发展，截至2024年三季度两地数据中心绿电使用率分别达29.43%、15.88%」；右图「冀北地区数据中心2024年前三季度绿电占比」",
+        "grade": "S3",
+        "originator": "岳昊（国网冀北电力有限公司经济技术研究院）《人工智能快速发展背景下算力电力协同发展的思考》，中国电机工程学会 2024 联合学术年会报告（2024-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2024 年前三季度累计口径；「绿电使用率」未说明是否含绿证折算，measure 记未注明。"
+    },
+    {
+      "fact_id": "sgjb2412-langfang-dc-green-share-2024q3",
+      "metric_id": "dc_renewable_share",
+      "entity": {
+        "type": "region",
+        "id": "langfang-dc",
+        "label": "廊坊数据中心（合计）"
+      },
+      "asserter": "国网冀北经研院",
+      "value": 15.88,
+      "unit": "%",
+      "caliber": {
+        "measure": "未注明",
+        "scope": "全市场",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2024-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c8c07f8090e29f0f3bdf991ae3c9b514f5fa5f6b62ee2aadceacc2c9c4584806",
+        "local_file": "2024年人工智能快速发展背景下算力电力协同发展的思考报告.pdf",
+        "locator": "PDF 第 18 页同段：「冀北张家口，廊坊积极推动绿电支撑算力可持续发展，截至2024年三季度两地数据中心绿电使用率分别达29.43%、15.88%」；右图「冀北地区数据中心2024年前三季度绿电占比」",
+        "grade": "S3",
+        "originator": "岳昊（国网冀北电力有限公司经济技术研究院）《人工智能快速发展背景下算力电力协同发展的思考》，中国电机工程学会 2024 联合学术年会报告（2024-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2024 年前三季度累计口径；「绿电使用率」未说明是否含绿证折算，measure 记未注明。"
+    },
+    {
+      "fact_id": "sgjb2412-jibei-dc-occupancy-survey",
+      "metric_id": "dc_occupancy_rate",
+      "entity": {
+        "type": "region",
+        "id": "jibei-dc",
+        "label": "冀北地区数据中心（调研）"
+      },
+      "asserter": "国网冀北经研院",
+      "value": 60,
+      "unit": "%",
+      "caliber": {
+        "scope": "区域市场",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "c8c07f8090e29f0f3bdf991ae3c9b514f5fa5f6b62ee2aadceacc2c9c4584806",
+        "local_file": "2024年人工智能快速发展背景下算力电力协同发展的思考报告.pdf",
+        "locator": "PDF 第 22 页「数据中心并网初期上架率较低成长周期较长」正文：「通过调研冀北地区数据中心上架率不足60%与国家要求不低于65%的规划要求仍有差距」",
+        "grade": "S3",
+        "originator": "岳昊（国网冀北电力有限公司经济技术研究院）《人工智能快速发展背景下算力电力协同发展的思考》，中国电机工程学会 2024 联合学术年会报告（2024-12）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文未写调研年份，按报告日期 2024-12 取 as_of=2024。",
+      "corroboration": "待交叉验证",
+      "notes": "原文「不足 60%」，按上限录；国家规划要求不低于 65%。"
     }
   ]
 }
