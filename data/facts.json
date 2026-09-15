@@ -209519,6 +209519,170 @@
       "corroboration": "待交叉验证",
       "notes": "原表 Kunits（千只），÷10 换为万只。仅数通（Ethernet、AOC、EOM、OBO/CPO），与合计值 entity 不同，不可相加。2021 年及以前为历史值，2022 年起为预测。",
       "derivation": "133,410 Kunits ÷ 10 = 13341.0 万只。"
+    },
+    {
+      "fact_id": "hczq2512-semi-wafer-capacity-global-total-2028e",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "market",
+        "id": "global-wafer-capacity-global",
+        "label": "全球晶圆产能（全部节点）"
+      },
+      "asserter": "SEMI",
+      "value": 11100,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "全球晶圆产能（全部节点）",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2028E@2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "88d973f4561e1f5999869ddb3d4436801698f2ed976c76a3284e50e026ddeb2d",
+        "local_file": "20251207-人工智能引领科技革命，算力需求爆发催化产业升级：电子行业2026年度投资策(40页).pdf",
+        "locator": "PDF 第 30 页：「根据 SEMI 预测，全球晶圆产能将在 2025 年实现 15% 的历史高增，并在 2024–2028 年保持 7% 的年复合增速，至 2028 年达到月产 1110 万片晶圆的产能水平」；第 31 页图表 48「2024-2028E 全球晶圆产能情况（万片/月）」",
+        "grade": "S4",
+        "originator": "SEMI（经华创证券《电子行业 2026 年度投资策略》2025-12-02 转引，原转引自证券时报网）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "原文 1,110 万片/月 = 11,100 千片/月；未注明晶圆尺寸（SEMI 惯用 200mm 当量）。2025 年增长 15%、2024–2028 CAGR 7%。",
+      "derivation": "SEMI 预测发布时点未在转引中注明，按转引报告年份取 @2025。"
+    },
+    {
+      "fact_id": "hczq2512-semi-wafer-capacity-7nm-2024",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "market",
+        "id": "global-wafer-capacity-7nm-node",
+        "label": "全球 7nm 及以下先进制程产能"
+      },
+      "asserter": "SEMI",
+      "value": 8500,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "全球 7nm 及以下先进制程产能",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "88d973f4561e1f5999869ddb3d4436801698f2ed976c76a3284e50e026ddeb2d",
+        "local_file": "20251207-人工智能引领科技革命，算力需求爆发催化产业升级：电子行业2026年度投资策(40页).pdf",
+        "locator": "PDF 第 31 页：「根据 SEMI 预测，7nm 及以下先进产能将由 2024 年的月产约 85 万片提升至 2028 年的约 140 万片，累计增长约 69%、CAGR 约 14%……其中 2nm 及以下节点将从 2025 年的月产不足 20 万片跃升至 2028 年超 50 万片」；图表 49",
+        "grade": "S4",
+        "originator": "SEMI（经华创证券《电子行业 2026 年度投资策略》2025-12-02 转引，原转引自证券时报网）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「约 85 万片」；未注明晶圆尺寸。"
+    },
+    {
+      "fact_id": "hczq2512-semi-wafer-capacity-7nm-2028e",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "market",
+        "id": "global-wafer-capacity-7nm-node",
+        "label": "全球 7nm 及以下先进制程产能"
+      },
+      "asserter": "SEMI",
+      "value": 14000,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "全球 7nm 及以下先进制程产能",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2028E@2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "88d973f4561e1f5999869ddb3d4436801698f2ed976c76a3284e50e026ddeb2d",
+        "local_file": "20251207-人工智能引领科技革命，算力需求爆发催化产业升级：电子行业2026年度投资策(40页).pdf",
+        "locator": "PDF 第 31 页：「根据 SEMI 预测，7nm 及以下先进产能将由 2024 年的月产约 85 万片提升至 2028 年的约 140 万片，累计增长约 69%、CAGR 约 14%……其中 2nm 及以下节点将从 2025 年的月产不足 20 万片跃升至 2028 年超 50 万片」；图表 49",
+        "grade": "S4",
+        "originator": "SEMI（经华创证券《电子行业 2026 年度投资策略》2025-12-02 转引，原转引自证券时报网）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "原文「约 140 万片」；CAGR 约 14%。",
+      "derivation": "SEMI 预测发布时点未在转引中注明，按转引报告年份取 @2025。"
+    },
+    {
+      "fact_id": "hczq2512-semi-wafer-capacity-2nm-2025e",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "market",
+        "id": "global-wafer-capacity-2nm-node",
+        "label": "全球 2nm 及以下先进制程产能"
+      },
+      "asserter": "SEMI",
+      "value": 2000,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "全球 2nm 及以下先进制程产能",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2025",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "88d973f4561e1f5999869ddb3d4436801698f2ed976c76a3284e50e026ddeb2d",
+        "local_file": "20251207-人工智能引领科技革命，算力需求爆发催化产业升级：电子行业2026年度投资策(40页).pdf",
+        "locator": "PDF 第 31 页：「根据 SEMI 预测，7nm 及以下先进产能将由 2024 年的月产约 85 万片提升至 2028 年的约 140 万片，累计增长约 69%、CAGR 约 14%……其中 2nm 及以下节点将从 2025 年的月产不足 20 万片跃升至 2028 年超 50 万片」；图表 49",
+        "grade": "S4",
+        "originator": "SEMI（经华创证券《电子行业 2026 年度投资策略》2025-12-02 转引，原转引自证券时报网）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "原文「不足 20 万片」按上限录。",
+      "derivation": "SEMI 预测发布时点未在转引中注明，按转引报告年份取 @2025。"
+    },
+    {
+      "fact_id": "hczq2512-semi-wafer-capacity-2nm-2028e",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "market",
+        "id": "global-wafer-capacity-2nm-node",
+        "label": "全球 2nm 及以下先进制程产能"
+      },
+      "asserter": "SEMI",
+      "value": 5000,
+      "unit": "千片/月",
+      "caliber": {
+        "foundry": "全球 2nm 及以下先进制程产能",
+        "chip": "不分型号",
+        "allocation": "总产能",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2028E@2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "88d973f4561e1f5999869ddb3d4436801698f2ed976c76a3284e50e026ddeb2d",
+        "local_file": "20251207-人工智能引领科技革命，算力需求爆发催化产业升级：电子行业2026年度投资策(40页).pdf",
+        "locator": "PDF 第 31 页：「根据 SEMI 预测，7nm 及以下先进产能将由 2024 年的月产约 85 万片提升至 2028 年的约 140 万片，累计增长约 69%、CAGR 约 14%……其中 2nm 及以下节点将从 2025 年的月产不足 20 万片跃升至 2028 年超 50 万片」；图表 49",
+        "grade": "S4",
+        "originator": "SEMI（经华创证券《电子行业 2026 年度投资策略》2025-12-02 转引，原转引自证券时报网）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "原文「超 50 万片」按下限录；CAGR 超 35%。",
+      "derivation": "SEMI 预测发布时点未在转引中注明，按转引报告年份取 @2025。"
     }
   ]
 }
