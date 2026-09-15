@@ -219700,6 +219700,309 @@
       "corroboration": "待交叉验证",
       "asserter": "华为",
       "notes": "2021 年版十大趋势白皮书对 2025 年的预测区间，按两端记。区间内按芯片分：x86 15kW/R、ARM 20kW/R、GPU 30kW/R，本指标无芯片类型维度，不拆。rack_type 就近记传统风冷（原文未写冷却方式），region 未披露：白皮书为全球行业趋势，未限定地域。[未核]"
+    },
+    {
+      "fact_id": "caict-lc2021-equinix-pue-target-us-lower",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "company",
+        "id": "equinix",
+        "label": "Equinix"
+      },
+      "value": 1.3,
+      "unit": "比值",
+      "caliber": {
+        "basis": "设计值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "US"
+      },
+      "as_of": "2021-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "32ff55fb5041db0cddd398bada3979bcd6189287aaebea1236e0b39650ed5dae",
+        "local_file": "6C_2021_2021_2021低碳数据中_未署名.pdf",
+        "locator": "PDF 第 10 页（页码 8）：「Equinix……所有新数据中心都基于能源效率进行了精细规划，针对 PUE 指标进行了区域差异化设计。基于年平均用电效率，将美洲目标定在 1.30-1.40，亚太地区（包括大洋洲）1.33-1.43，EMEA 1.29-1.42」",
+        "grade": "S2",
+        "originator": "Equinix Sustainability 报告，经中国信息通信研究院云大所《低碳数据中心发展白皮书（2021 年）》（2021 数据中心高质量发展大会，2021-05-13）转引"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取白皮书发布时间 2021-05-13；原文未写 Equinix 目标的设定年份",
+      "corroboration": "待交叉验证",
+      "asserter": "Equinix",
+      "notes": "新建数据中心按区域差异化设定的年平均 PUE 目标区间（美洲），按两端记。US 用于「美洲」、EU 用于「EMEA」——region 无这两个大区取值，就近归并，[未核]。"
+    },
+    {
+      "fact_id": "caict-lc2021-equinix-pue-target-us-upper",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "company",
+        "id": "equinix",
+        "label": "Equinix"
+      },
+      "value": 1.4,
+      "unit": "比值",
+      "caliber": {
+        "basis": "设计值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "US"
+      },
+      "as_of": "2021-05",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "32ff55fb5041db0cddd398bada3979bcd6189287aaebea1236e0b39650ed5dae",
+        "local_file": "6C_2021_2021_2021低碳数据中_未署名.pdf",
+        "locator": "PDF 第 10 页（页码 8）：「Equinix……所有新数据中心都基于能源效率进行了精细规划，针对 PUE 指标进行了区域差异化设计。基于年平均用电效率，将美洲目标定在 1.30-1.40，亚太地区（包括大洋洲）1.33-1.43，EMEA 1.29-1.42」",
+        "grade": "S2",
+        "originator": "Equinix Sustainability 报告，经中国信息通信研究院云大所《低碳数据中心发展白皮书（2021 年）》（2021 数据中心高质量发展大会，2021-05-13）转引"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取白皮书发布时间 2021-05-13；原文未写 Equinix 目标的设定年份",
+      "corroboration": "待交叉验证",
+      "asserter": "Equinix",
+      "notes": "新建数据中心按区域差异化设定的年平均 PUE 目标区间（美洲），按两端记。US 用于「美洲」、EU 用于「EMEA」——region 无这两个大区取值，就近归并，[未核]。"
+    },
+    {
+      "fact_id": "caict-lc2021-equinix-pue-target-apac-lower",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "company",
+        "id": "equinix",
+        "label": "Equinix"
+      },
+      "value": 1.33,
+      "unit": "比值",
+      "caliber": {
+        "basis": "设计值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "APAC"
+      },
+      "as_of": "2021-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "32ff55fb5041db0cddd398bada3979bcd6189287aaebea1236e0b39650ed5dae",
+        "local_file": "6C_2021_2021_2021低碳数据中_未署名.pdf",
+        "locator": "PDF 第 10 页（页码 8）：「Equinix……所有新数据中心都基于能源效率进行了精细规划，针对 PUE 指标进行了区域差异化设计。基于年平均用电效率，将美洲目标定在 1.30-1.40，亚太地区（包括大洋洲）1.33-1.43，EMEA 1.29-1.42」",
+        "grade": "S2",
+        "originator": "Equinix Sustainability 报告，经中国信息通信研究院云大所《低碳数据中心发展白皮书（2021 年）》（2021 数据中心高质量发展大会，2021-05-13）转引"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取白皮书发布时间 2021-05-13；原文未写 Equinix 目标的设定年份",
+      "corroboration": "待交叉验证",
+      "asserter": "Equinix",
+      "notes": "新建数据中心按区域差异化设定的年平均 PUE 目标区间（亚太（含大洋洲）），按两端记。US 用于「美洲」、EU 用于「EMEA」——region 无这两个大区取值，就近归并，[未核]。"
+    },
+    {
+      "fact_id": "caict-lc2021-equinix-pue-target-apac-upper",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "company",
+        "id": "equinix",
+        "label": "Equinix"
+      },
+      "value": 1.43,
+      "unit": "比值",
+      "caliber": {
+        "basis": "设计值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "APAC"
+      },
+      "as_of": "2021-05",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "32ff55fb5041db0cddd398bada3979bcd6189287aaebea1236e0b39650ed5dae",
+        "local_file": "6C_2021_2021_2021低碳数据中_未署名.pdf",
+        "locator": "PDF 第 10 页（页码 8）：「Equinix……所有新数据中心都基于能源效率进行了精细规划，针对 PUE 指标进行了区域差异化设计。基于年平均用电效率，将美洲目标定在 1.30-1.40，亚太地区（包括大洋洲）1.33-1.43，EMEA 1.29-1.42」",
+        "grade": "S2",
+        "originator": "Equinix Sustainability 报告，经中国信息通信研究院云大所《低碳数据中心发展白皮书（2021 年）》（2021 数据中心高质量发展大会，2021-05-13）转引"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取白皮书发布时间 2021-05-13；原文未写 Equinix 目标的设定年份",
+      "corroboration": "待交叉验证",
+      "asserter": "Equinix",
+      "notes": "新建数据中心按区域差异化设定的年平均 PUE 目标区间（亚太（含大洋洲）），按两端记。US 用于「美洲」、EU 用于「EMEA」——region 无这两个大区取值，就近归并，[未核]。"
+    },
+    {
+      "fact_id": "caict-lc2021-equinix-pue-target-eu-lower",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "company",
+        "id": "equinix",
+        "label": "Equinix"
+      },
+      "value": 1.29,
+      "unit": "比值",
+      "caliber": {
+        "basis": "设计值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "EU"
+      },
+      "as_of": "2021-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "32ff55fb5041db0cddd398bada3979bcd6189287aaebea1236e0b39650ed5dae",
+        "local_file": "6C_2021_2021_2021低碳数据中_未署名.pdf",
+        "locator": "PDF 第 10 页（页码 8）：「Equinix……所有新数据中心都基于能源效率进行了精细规划，针对 PUE 指标进行了区域差异化设计。基于年平均用电效率，将美洲目标定在 1.30-1.40，亚太地区（包括大洋洲）1.33-1.43，EMEA 1.29-1.42」",
+        "grade": "S2",
+        "originator": "Equinix Sustainability 报告，经中国信息通信研究院云大所《低碳数据中心发展白皮书（2021 年）》（2021 数据中心高质量发展大会，2021-05-13）转引"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取白皮书发布时间 2021-05-13；原文未写 Equinix 目标的设定年份",
+      "corroboration": "待交叉验证",
+      "asserter": "Equinix",
+      "notes": "新建数据中心按区域差异化设定的年平均 PUE 目标区间（EMEA），按两端记。US 用于「美洲」、EU 用于「EMEA」——region 无这两个大区取值，就近归并，[未核]。"
+    },
+    {
+      "fact_id": "caict-lc2021-equinix-pue-target-eu-upper",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "company",
+        "id": "equinix",
+        "label": "Equinix"
+      },
+      "value": 1.42,
+      "unit": "比值",
+      "caliber": {
+        "basis": "设计值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "EU"
+      },
+      "as_of": "2021-05",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "32ff55fb5041db0cddd398bada3979bcd6189287aaebea1236e0b39650ed5dae",
+        "local_file": "6C_2021_2021_2021低碳数据中_未署名.pdf",
+        "locator": "PDF 第 10 页（页码 8）：「Equinix……所有新数据中心都基于能源效率进行了精细规划，针对 PUE 指标进行了区域差异化设计。基于年平均用电效率，将美洲目标定在 1.30-1.40，亚太地区（包括大洋洲）1.33-1.43，EMEA 1.29-1.42」",
+        "grade": "S2",
+        "originator": "Equinix Sustainability 报告，经中国信息通信研究院云大所《低碳数据中心发展白皮书（2021 年）》（2021 数据中心高质量发展大会，2021-05-13）转引"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取白皮书发布时间 2021-05-13；原文未写 Equinix 目标的设定年份",
+      "corroboration": "待交叉验证",
+      "asserter": "Equinix",
+      "notes": "新建数据中心按区域差异化设定的年平均 PUE 目标区间（EMEA），按两端记。US 用于「美洲」、EU 用于「EMEA」——region 无这两个大区取值，就近归并，[未核]。"
+    },
+    {
+      "fact_id": "caict-lc2021-baidu-yangquan-renewable-2018",
+      "metric_id": "dc_renewable_share",
+      "entity": {
+        "type": "project",
+        "id": "baidu-yangquan-dc",
+        "label": "百度山西阳泉数据中心"
+      },
+      "value": 23.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "可再生电量占总用电",
+        "scope": "单项目",
+        "region": "CN",
+        "basis": "厂商披露"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "32ff55fb5041db0cddd398bada3979bcd6189287aaebea1236e0b39650ed5dae",
+        "local_file": "6C_2021_2021_2021低碳数据中_未署名.pdf",
+        "locator": "PDF 第 12 页（页码 10）：「百度山西阳泉数据中心在 2018 年可再生能源使用占比达到约 23%。2019 年，万国数据可再生能源采购规模为 87.3 兆瓦，占总电力容量的 24.9%。2019 年，秦淮数据集团新一代超大规模数据中心风能、太阳能等可再生能源使用比例为 37%」",
+        "grade": "S2",
+        "originator": "百度披露，经中国信息通信研究院云大所《低碳数据中心发展白皮书（2021 年）》（2021 数据中心高质量发展大会，2021-05-13）转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "百度",
+      "notes": "原文「约 23%」。"
+    },
+    {
+      "fact_id": "caict-lc2021-gds-renewable-2019",
+      "metric_id": "dc_renewable_share",
+      "entity": {
+        "type": "company",
+        "id": "gds",
+        "label": "万国数据"
+      },
+      "value": 24.9,
+      "unit": "%",
+      "caliber": {
+        "measure": "自建新能源装机占比",
+        "scope": "单一运营商",
+        "region": "CN",
+        "basis": "厂商披露"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "32ff55fb5041db0cddd398bada3979bcd6189287aaebea1236e0b39650ed5dae",
+        "local_file": "6C_2021_2021_2021低碳数据中_未署名.pdf",
+        "locator": "PDF 第 12 页（页码 10）：「百度山西阳泉数据中心在 2018 年可再生能源使用占比达到约 23%。2019 年，万国数据可再生能源采购规模为 87.3 兆瓦，占总电力容量的 24.9%。2019 年，秦淮数据集团新一代超大规模数据中心风能、太阳能等可再生能源使用比例为 37%」",
+        "grade": "S2",
+        "originator": "万国数据披露，经中国信息通信研究院云大所《低碳数据中心发展白皮书（2021 年）》（2021 数据中心高质量发展大会，2021-05-13）转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "万国数据",
+      "notes": "原文「可再生能源采购规模为 87.3 兆瓦，占总电力容量的 24.9%」——分母是电力容量（MW）而非电量，measure 记「自建新能源装机占比」以示与电量口径不同；库内 gds-esg2021-renewable-share-2020/2021（22.6%/34.3%）是电量占比，两者不可直接连成一条序列。"
+    },
+    {
+      "fact_id": "caict-lc2021-chindata-renewable-2019",
+      "metric_id": "dc_renewable_share",
+      "entity": {
+        "type": "company",
+        "id": "chindata",
+        "label": "秦淮数据"
+      },
+      "value": 37.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "可再生电量占总用电",
+        "scope": "单一运营商",
+        "region": "CN",
+        "basis": "厂商披露"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "32ff55fb5041db0cddd398bada3979bcd6189287aaebea1236e0b39650ed5dae",
+        "local_file": "6C_2021_2021_2021低碳数据中_未署名.pdf",
+        "locator": "PDF 第 12 页（页码 10）：「百度山西阳泉数据中心在 2018 年可再生能源使用占比达到约 23%。2019 年，万国数据可再生能源采购规模为 87.3 兆瓦，占总电力容量的 24.9%。2019 年，秦淮数据集团新一代超大规模数据中心风能、太阳能等可再生能源使用比例为 37%」",
+        "grade": "S2",
+        "originator": "秦淮数据集团披露，经中国信息通信研究院云大所《低碳数据中心发展白皮书（2021 年）》（2021 数据中心高质量发展大会，2021-05-13）转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "秦淮数据",
+      "notes": "口径为「新一代超大规模数据中心」风能太阳能使用比例，非全公司口径，[未核]。"
     }
   ]
 }
