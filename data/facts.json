@@ -216940,6 +216940,36 @@
       "corroboration": "待交叉验证",
       "asserter": "中国移动研究院",
       "notes": "中国移动研究院基础网络技术研究所（程伟强）实测，A/B 两家厂商 500m 与 2km 模块合并表述「15w 左右」，记典型值；未分厂商、未注明光学方案。"
+    },
+    {
+      "fact_id": "cie2018-dc-om-guide-video-retention",
+      "metric_id": "video_retention_period",
+      "entity": {
+        "type": "policy",
+        "id": "t-cie-2018-dc-facility-om-guide",
+        "label": "中国电子学会团体标准《数据中心设施运维管理指南》（T/CIE XXX—2018 报批稿）"
+      },
+      "value": 90.0,
+      "unit": "天",
+      "caliber": {
+        "bound_sense": "不小于",
+        "tier": "未注明",
+        "basis": "规范要求",
+        "region": "CN"
+      },
+      "as_of": "2018",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "92b60bac8f7f8382ef31c5f30f55b54f7dd10f724fb7f03548f28661cbaf7275",
+        "local_file": "【2018年】【中国电子学会】数据中心设施运维管理指南.pdf",
+        "locator": "PDF 第 13 页 5.5 物理安全 h) 4)：「应建立机房设施与场地环境安防监控系统，进行 24 小时连续监视，并对监视录像进行记录，监控对象包括机房空调、消防、供电系统、门禁系统等重要设施，监控记录至少保存 3 个月」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "中国电子学会",
+      "notes": "原文「至少保存 3 个月」，按 90 天换算（与库内 cmcc-idc-video-retention 同一换算）。文件为报批稿，编号与发布日期均为 XXX，正式版条文可能调整，[未核]。不分数据中心等级，tier 记未注明。"
     }
   ]
 }
