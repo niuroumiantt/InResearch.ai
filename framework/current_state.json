@@ -459,6 +459,7 @@
         "src/inresearch/adapters/ocr_worker.py",
         "src/inresearch/materials/inventory.py",
         "src/inresearch/workflow/attribution.py",
+        "src/inresearch/workflow/l1_batch.py",
         "src/inresearch/workflow/triage.py",
         "src/inresearch/workflow/score.py",
         "src/inresearch/workflow/terminal_batch.py",
@@ -493,8 +494,8 @@
       "supersedes": [
         "reading-m4-triage-20260909"
       ],
-      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。",
-      "implementation_revision": "2026.09.13.7"
+      "reason": "2026-09-15：L1 的待处理选择、预览预算、活动速率和版本候选收敛到 workflow.l1_batch；各 CLI 仅处理参数和呈现，triage 不再转发 score run。reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。",
+      "implementation_revision": "2026.09.15.2"
     },
     {
       "id": "model-execution-20260912",
