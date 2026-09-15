@@ -18,6 +18,7 @@ from pathlib import Path
 
 from inresearch.materials import triage as L1
 from inresearch.adapters import office as m4_office_text
+from inresearch.workflow import l1_batch as L1B
 
 BATCH_DIR = L1.DATA / 'batches'
 PREVIEW_CHARS = 400
@@ -25,7 +26,6 @@ PREVIEW_CHARS = 400
 # so a 400-character window can close before the first row of data.  Office
 # formats get a wider one; PDFs and plain text still lead with their title.
 OFFICE_PREVIEW_CHARS = 1200
-MAX_WORKERS = 16
 
 # Word/PowerPoint field codes and table-of-contents scaffolding carry no meaning
 # but eat most of a short preview, so they are stripped before truncation.
@@ -214,8 +214,8 @@ def cmd_pack(a):
     batch does not depend on how many threads ran."""
     workers = getattr(a, 'workers', None)
     workers = 4 if workers is None else workers
-    if not isinstance(workers, int) or not 1 <= workers <= MAX_WORKERS:
-        raise SystemExit('workers must be 1..%d' % MAX_WORKERS)
+    if not isinstance(workers, int) or not 1 <= workers <= L1B.MAX_WORKERS:
+        raise SystemExit('workers must be 1..%d' % L1B.MAX_WORKERS)
     BATCH_DIR.mkdir(parents=True, exist_ok=True)
     out = []; l0 = 0; failed = []; unchanged = 0
     cohort = getattr(a, 'cohort', None) or ('blind' if getattr(a, 'redo', False) else 'new')
@@ -223,7 +223,7 @@ def cmd_pack(a):
         raise SystemExit('cohort must be one of %s' % ' / '.join(COHORTS))
     shas = [x.strip() for x in (getattr(a, 'sha', None) or '').split(',') if x.strip()]
     base = last_results()
-    items = pending(cohort, shas)
+    items = L1B.pending(cohort, shas)
     position = 0
     while len(out) < a.limit and position < len(items):
         chunk = items[position:position + max(a.limit, 1)]
@@ -255,7 +255,7 @@ def cmd_pack(a):
                     unchanged += 1
                     continue
             budget = OFFICE_PREVIEW_CHARS if rec['suffix'] in m4_office_text.SUPPORTED else PREVIEW_CHARS
-            text = clean_preview(rec['preview'])[:budget]
+            text = L1B.clean_preview(rec['preview'])[:budget]
             out.append({'id': rec['sha256'][:12], 'path': rec['rel'], 'suffix': rec['suffix'],
                         'kb': round(rec['size'] / 1024), **({'pages': rec['meta']['pages']} if rec['meta'].get('pages') else {}),
                         'level': rec['level'], 'preview': text, 'meta': rec['meta'],
@@ -285,7 +285,7 @@ def cmd_pack(a):
                       # recomputed with the same selector: asking the plain
                       # queue how much redo work is left reports every scored
                       # file as done and lands on a negative remainder
-                      'remaining_after': len(pending(cohort, shas)) - len(out)}, ensure_ascii=False))
+                      'remaining_after': len(L1B.pending(cohort, shas)) - len(out)}, ensure_ascii=False))
     for problem in failed[:5]:
         print(json.dumps(problem, ensure_ascii=False))
 
@@ -575,7 +575,7 @@ def cmd_status(a):
         with path.open(encoding='utf-8') as fh:
             return sum(1 for _ in fh)
     total = sum(count_lines(p) for p in digests if p.exists())
-    rate = working_rate(digest_stamps(digests))
+    rate = L1B.working_rate(L1B.digest_stamps(digests))
     basis = '运行中实测'
     if rate is None:  # older digests carry no timestamp
         first = min((p.stat().st_birthtime for p in digests if p.exists()), default=time.time())
@@ -606,7 +606,7 @@ def main():
                    help='new=未判过 / blind=只看文件名判过的 / cells=在读不到单元格时判过的表格')
     p.add_argument('--sha', help='重判指定的这几份（sha 前缀，逗号分隔），不论属于哪个批次')
     p.add_argument('--workers', type=int, default=4,
-                   help='preview extractions in parallel (1..%d); local CPU work, no model' % MAX_WORKERS)
+                   help='preview extractions in parallel (1..%d); local CPU work, no model' % L1B.MAX_WORKERS)
     r = s.add_parser('record'); r.add_argument('--verdicts', required=True); r.add_argument('--batch'); r.add_argument('--digests', action='store_true')
     r.add_argument('--executor', default='terminal', help='client identity, e.g. claude-code or codex')
     r.add_argument('--model', help='actual model reported by the client; omit if unknown')

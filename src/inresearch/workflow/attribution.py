@@ -14,10 +14,9 @@ from pathlib import Path
 
 from inresearch.adapters import models as models
 from inresearch.materials import triage as L1
-from inresearch.workflow import terminal_batch as PK
-
-MAX_WORKERS = 16
+from inresearch.workflow import l1_batch as L1B
 DIGESTS = L1.DATA / 'digests.jsonl'
+BATCH_DIR = L1.DATA / 'batches'
 
 SYSTEM = """你是文档信息抽取器。给你一个文件的路径和文本预览，抽取以下字段，只输出 JSON：
 
@@ -44,7 +43,7 @@ def norm(s, n):
 
 
 def extract(rec) -> dict:
-    text = PK.clean_preview(rec['preview'])[:PK.PREVIEW_CHARS]
+    text = L1B.preview_for_model(rec)
     user = '路径：%s\n大小：%dKB\n\n预览：\n<<<\n%s\n>>>' % (rec['rel'], rec['size'] // 1024, text or '（无可提取文本）')
     v = call(user)
     quote = norm(v.get('quote'), 60)
@@ -111,8 +110,8 @@ def cmd_run(a):
     when it is started with OLLAMA_NUM_PARALLEL at least that high."""
     workers = getattr(a, 'workers', None)
     workers = 1 if workers is None else workers
-    if not isinstance(workers, int) or not 1 <= workers <= MAX_WORKERS:
-        raise SystemExit('workers must be 1..%d' % MAX_WORKERS)
+    if not isinstance(workers, int) or not 1 <= workers <= L1B.MAX_WORKERS:
+        raise SystemExit('workers must be 1..%d' % L1B.MAX_WORKERS)
     base = current_results(L1.RESULTS)
     done = done_digests(); t0 = time.time()
     DIGESTS.parent.mkdir(parents=True, exist_ok=True)
@@ -125,7 +124,7 @@ def cmd_run(a):
     out = DIGESTS if shards == 1 else DIGESTS.with_name('digests.part%d.jsonl' % shard)
     counts = {'n': 0, 'err': 0, 'dispatched': 0}
     guard = threading.Lock()
-    mine = [i for i in PK.pending()
+    mine = [i for i in L1B.pending()
             if i['sha256'] not in done
             and (shards == 1 or int(i['sha256'][:8], 16) % shards == shard)]
 
@@ -163,7 +162,7 @@ def cmd_run(a):
             d = {'sha256': rec['sha256'], 'rel': rec['rel'], 'suffix': rec['suffix'], 'size': rec['size'],
                  'level': rec['level'], 'pages': rec['meta'].get('pages'), 'error': str(exc)[:100],
                  'title': Path(rec['rel']).stem[:60], 'org': '未知', 'year': '未知', 'doc_type': 'other',
-                 'subject': '', 'quote': PK.clean_preview(rec['preview'])[:60], 'quote_verified': False,
+                 'subject': '', 'quote': L1B.preview_for_model(rec)[:60], 'quote_verified': False,
                  'has_numbers': False, 'extractor': None}
         with guard:
             append_record(out, d)
@@ -191,7 +190,7 @@ def cmd_pack(a):
             seen.add(d['sha256']); out.append(d)
             if len(out) >= a.limit: break
         if len(out) >= a.limit: break
-    path = PK.BATCH_DIR / 'digest_batch.txt'
+    path = BATCH_DIR / 'digest_batch.txt'
     path.parent.mkdir(parents=True, exist_ok=True)
     lines = ['# id|type|year|org|title|subject|pages|kb|num|quote|dir']
     for d in out:
@@ -201,7 +200,7 @@ def cmd_pack(a):
                                d['quote'].replace('|', '/')[:55],
                                str(Path(d['rel']).parent)[:45]]))
     path.write_text('\n'.join(lines), encoding='utf-8')
-    (PK.BATCH_DIR / 'digest_batch.json').write_text(json.dumps(out, ensure_ascii=False), encoding='utf-8')
+    (BATCH_DIR / 'digest_batch.json').write_text(json.dumps(out, ensure_ascii=False), encoding='utf-8')
     print(json.dumps({'packed': len(out), 'file': str(path), 'bytes': path.stat().st_size}, ensure_ascii=False))
 
 
@@ -210,7 +209,7 @@ def main():
     t = s.add_parser('test'); t.add_argument('--limit', type=int, default=12)
     r = s.add_parser('run'); r.add_argument('--limit', type=int, default=0); r.add_argument('--shard')
     r.add_argument('--workers', type=int, default=1,
-                   help='model requests in flight (1..%d); needs OLLAMA_NUM_PARALLEL >= this' % MAX_WORKERS)
+                   help='model requests in flight (1..%d); needs OLLAMA_NUM_PARALLEL >= this' % L1B.MAX_WORKERS)
     p = s.add_parser('pack'); p.add_argument('--limit', type=int, default=200)
     a = ap.parse_args()
     {'test': cmd_test, 'run': cmd_run, 'pack': cmd_pack}[a.cmd](a)

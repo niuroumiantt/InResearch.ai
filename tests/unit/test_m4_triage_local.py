@@ -10,7 +10,7 @@ import unittest
 
 from inresearch.workflow import score as LOC
 from inresearch.materials import triage as L1
-from inresearch.workflow import terminal_batch as PK
+from inresearch.workflow import l1_batch as L1B
 
 
 class RunTests(unittest.TestCase):
@@ -21,7 +21,7 @@ class RunTests(unittest.TestCase):
         self.peak = 0
         self.live = 0
         self.guard = threading.Lock()
-        self._saved = (L1.RESULTS, PK.pending, LOC.call, LOC.system_prompt,
+        self._saved = (L1.RESULTS, L1B.pending, LOC.call, LOC.system_prompt,
                        L1.prepare, L1.finalize, L1.proposed_name)
         L1.RESULTS = self.results
         LOC.system_prompt = lambda: "system"
@@ -37,7 +37,7 @@ class RunTests(unittest.TestCase):
         LOC.call = self.fake_call
 
     def tearDown(self):
-        (L1.RESULTS, PK.pending, LOC.call, LOC.system_prompt,
+        (L1.RESULTS, L1B.pending, LOC.call, LOC.system_prompt,
          L1.prepare, L1.finalize, L1.proposed_name) = self._saved
         self.temp.cleanup()
 
@@ -64,7 +64,7 @@ class RunTests(unittest.TestCase):
                  "size": 10, "needs_model": needs_model} for i in range(n)]
 
     def run_cmd(self, items, workers=1, limit=0):
-        PK.pending = lambda: list(items)
+        L1B.pending = lambda: list(items)
         LOC.cmd_run(types.SimpleNamespace(workers=workers, limit=limit))
         return [json.loads(line) for line in
                 self.results.read_text(encoding="utf-8").splitlines() if line.strip()]
@@ -125,7 +125,7 @@ class RunTests(unittest.TestCase):
             json.loads(line)  # a torn write would raise here
 
     def test_worker_count_is_bounded(self):
-        for workers in (0, -1, LOC.MAX_WORKERS + 1):
+        for workers in (0, -1, L1B.MAX_WORKERS + 1):
             with self.assertRaises(SystemExit):
                 self.run_cmd(self.items(1), workers=workers)
 
