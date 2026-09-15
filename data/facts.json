@@ -186313,7 +186313,7 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "占全球 39%，同比 +55%。"
+      "notes": "同比 +55%。中信转引写「占全球算力规模的 39%」，但 135/429=31.5%；信通院本家《人工智能基础设施发展态势报告（2021 年）》（2022-01，sha eb91cda96048）第 17 页写「全球占比约为 31%」，同一 135 EFlops 未重复录入——39% 疑为中信把全球增速 39% 误作占比。"
     },
     {
       "fact_id": "citic2206-tractica-global-ai-chip-2019e",
@@ -186378,6 +186378,70 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "Tractica 原预测发布时间原文未给。口径含终端/边缘 AI 芯片，不限数据中心。"
+    },
+    {
+      "fact_id": "caict2201-idc-global-ai-server-market-2020h1",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "global-ai-server",
+        "label": "全球 AI 服务器市场"
+      },
+      "asserter": "IDC",
+      "value": 55.9,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2020-H1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "eb91cda9604893274e5517c25e36ec7911b95f0462bcf039d5e91d3d233e9d50",
+        "local_file": "人工智能基础设施发展态势报告（2021年）(37页).pdf",
+        "locator": "PDF 第 19–20 页（报告页 14–15）：「据 IDC 数据显示，2020 年上半年全球 AI 服务器市场规模达 55.9 亿美元，其中浪潮以 16.4%的市占率位居全球第一…预计 2024 年全球市场规模将达 251 亿美元」；图 6 来源「IDC 2020H1《全球人工智能市场半年度追踪报告》」",
+        "grade": "S2",
+        "originator": "IDC《全球人工智能市场半年度追踪报告》2020H1（经中国信通院政策与经济研究所、产业与规划研究所《人工智能基础设施发展态势报告（2021 年）》（2022-01）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "半年值，不可与全年值直接比。"
+    },
+    {
+      "fact_id": "caict2201-idc-global-ai-server-market-2024e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "global-ai-server",
+        "label": "全球 AI 服务器市场"
+      },
+      "asserter": "IDC",
+      "value": 251.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2024E",
+      "bound": "point",
+      "evidence": {
+        "sha256": "eb91cda9604893274e5517c25e36ec7911b95f0462bcf039d5e91d3d233e9d50",
+        "local_file": "人工智能基础设施发展态势报告（2021年）(37页).pdf",
+        "locator": "PDF 第 19–20 页（报告页 14–15）：「据 IDC 数据显示，2020 年上半年全球 AI 服务器市场规模达 55.9 亿美元，其中浪潮以 16.4%的市占率位居全球第一…预计 2024 年全球市场规模将达 251 亿美元」；图 6 来源「IDC 2020H1《全球人工智能市场半年度追踪报告》」",
+        "grade": "S2",
+        "originator": "IDC《全球人工智能市场半年度追踪报告》2020H1（经中国信通院政策与经济研究所、产业与规划研究所《人工智能基础设施发展态势报告（2021 年）》（2022-01）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "IDC 2020H1 追踪报告口径的预测，原文未给该预测的发布月份。库内 IDC 2021 年版 2025E 为 260 亿美元（idc2021-global-ai-server-market-2025e）。"
     }
   ]
 }
