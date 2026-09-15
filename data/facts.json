@@ -180388,6 +180388,377 @@
       "derivation": "原文给 100 MW 至少 10 亿美元，÷100 得每 MW 至少 1,000 万美元；as_of 取报告文件名日期 2025-07（正文未印日期）",
       "corroboration": "待交叉验证",
       "notes": "「at least」按下界记。原文明说不含 GPU 与算力设备（另超 20 亿美元），cost_scope 记仅机电与土建；region 记未披露：原文未写地域（报告面向东南亚，但此句是泛指，不替原文归到东南亚或全球）。"
+    },
+    {
+      "fact_id": "ace2024-uptime-global-avg-pue-2007",
+      "metric_id": "dc_pue",
+      "asserter": "Uptime Institute",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 2.5,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "Global"
+      },
+      "as_of": "2007",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7b60337bcafd13da7e8ab6274cea6c22177d3a936b98012c7b8659af754238f8",
+        "local_file": "20240501-东盟：在东盟建设下一代数据中心设施(81页).pdf",
+        "locator": "PDF 第 35 页（版面页 35）Figure 2.1「Average PUE Globally」柱标 2007 = 2.5；正文「Since the first poll in 2007 by the Uptime Institute…By 2022, the average annual PUE of 1.55」（图源 [42] Statista「Data center average annual PUE worldwide 2023」）",
+        "grade": "S3",
+        "originator": "Uptime Institute 年度调查（经 Statista 与东盟能源中心（ACE）与华为《Building Next-Generation Data Center Facilities in ASEAN》（2024）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Uptime 年度调查口径（受访设施平均，大体不含超大规模厂商），非全量统计，与库内 gds-esg2021-uptime-global-avg-pue-2021 同一序列。正文字体为乱序映射，抽取文本经逐字符替换还原后核对上下文（数字与国别对应经库内同源值验证）。"
+    },
+    {
+      "fact_id": "ace2024-uptime-global-avg-pue-2018",
+      "metric_id": "dc_pue",
+      "asserter": "Uptime Institute",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 1.58,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "Global"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7b60337bcafd13da7e8ab6274cea6c22177d3a936b98012c7b8659af754238f8",
+        "local_file": "20240501-东盟：在东盟建设下一代数据中心设施(81页).pdf",
+        "locator": "PDF 第 35 页（版面页 35）Figure 2.1「Average PUE Globally」柱标 2018 = 1.58；正文「Since the first poll in 2007 by the Uptime Institute…By 2022, the average annual PUE of 1.55」（图源 [42] Statista「Data center average annual PUE worldwide 2023」）",
+        "grade": "S3",
+        "originator": "Uptime Institute 年度调查（经 Statista 与东盟能源中心（ACE）与华为《Building Next-Generation Data Center Facilities in ASEAN》（2024）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Uptime 年度调查口径（受访设施平均，大体不含超大规模厂商），非全量统计，与库内 gds-esg2021-uptime-global-avg-pue-2021 同一序列。正文字体为乱序映射，抽取文本经逐字符替换还原后核对上下文（数字与国别对应经库内同源值验证）。"
+    },
+    {
+      "fact_id": "ace2024-uptime-global-avg-pue-2019",
+      "metric_id": "dc_pue",
+      "asserter": "Uptime Institute",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 1.67,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "Global"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7b60337bcafd13da7e8ab6274cea6c22177d3a936b98012c7b8659af754238f8",
+        "local_file": "20240501-东盟：在东盟建设下一代数据中心设施(81页).pdf",
+        "locator": "PDF 第 35 页（版面页 35）Figure 2.1「Average PUE Globally」柱标 2019 = 1.67；正文「Since the first poll in 2007 by the Uptime Institute…By 2022, the average annual PUE of 1.55」（图源 [42] Statista「Data center average annual PUE worldwide 2023」）",
+        "grade": "S3",
+        "originator": "Uptime Institute 年度调查（经 Statista 与东盟能源中心（ACE）与华为《Building Next-Generation Data Center Facilities in ASEAN》（2024）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Uptime 年度调查口径（受访设施平均，大体不含超大规模厂商），非全量统计，与库内 gds-esg2021-uptime-global-avg-pue-2021 同一序列。正文字体为乱序映射，抽取文本经逐字符替换还原后核对上下文（数字与国别对应经库内同源值验证）。"
+    },
+    {
+      "fact_id": "ace2024-uptime-global-avg-pue-2020",
+      "metric_id": "dc_pue",
+      "asserter": "Uptime Institute",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 1.59,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "Global"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7b60337bcafd13da7e8ab6274cea6c22177d3a936b98012c7b8659af754238f8",
+        "local_file": "20240501-东盟：在东盟建设下一代数据中心设施(81页).pdf",
+        "locator": "PDF 第 35 页（版面页 35）Figure 2.1「Average PUE Globally」柱标 2020 = 1.59；正文「Since the first poll in 2007 by the Uptime Institute…By 2022, the average annual PUE of 1.55」（图源 [42] Statista「Data center average annual PUE worldwide 2023」）",
+        "grade": "S3",
+        "originator": "Uptime Institute 年度调查（经 Statista 与东盟能源中心（ACE）与华为《Building Next-Generation Data Center Facilities in ASEAN》（2024）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Uptime 年度调查口径（受访设施平均，大体不含超大规模厂商），非全量统计，与库内 gds-esg2021-uptime-global-avg-pue-2021 同一序列。正文字体为乱序映射，抽取文本经逐字符替换还原后核对上下文（数字与国别对应经库内同源值验证）。"
+    },
+    {
+      "fact_id": "ace2024-uptime-global-avg-pue-2022",
+      "metric_id": "dc_pue",
+      "asserter": "Uptime Institute",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 1.55,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "Global"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7b60337bcafd13da7e8ab6274cea6c22177d3a936b98012c7b8659af754238f8",
+        "local_file": "20240501-东盟：在东盟建设下一代数据中心设施(81页).pdf",
+        "locator": "PDF 第 35 页（版面页 35）Figure 2.1「Average PUE Globally」柱标 2022 = 1.55；正文「Since the first poll in 2007 by the Uptime Institute…By 2022, the average annual PUE of 1.55」（图源 [42] Statista「Data center average annual PUE worldwide 2023」）",
+        "grade": "S3",
+        "originator": "Uptime Institute 年度调查（经 Statista 与东盟能源中心（ACE）与华为《Building Next-Generation Data Center Facilities in ASEAN》（2024）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Uptime 年度调查口径（受访设施平均，大体不含超大规模厂商），非全量统计，与库内 gds-esg2021-uptime-global-avg-pue-2021 同一序列。正文字体为乱序映射，抽取文本经逐字符替换还原后核对上下文（数字与国别对应经库内同源值验证）。"
+    },
+    {
+      "fact_id": "ace2024-uptime-global-avg-pue-2023",
+      "metric_id": "dc_pue",
+      "asserter": "Uptime Institute",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 1.58,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "Global"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7b60337bcafd13da7e8ab6274cea6c22177d3a936b98012c7b8659af754238f8",
+        "local_file": "20240501-东盟：在东盟建设下一代数据中心设施(81页).pdf",
+        "locator": "PDF 第 35 页（版面页 35）Figure 2.1「Average PUE Globally」柱标 2023 = 1.58；正文「Since the first poll in 2007 by the Uptime Institute…By 2022, the average annual PUE of 1.55」（图源 [42] Statista「Data center average annual PUE worldwide 2023」）",
+        "grade": "S3",
+        "originator": "Uptime Institute 年度调查（经 Statista 与东盟能源中心（ACE）与华为《Building Next-Generation Data Center Facilities in ASEAN》（2024）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Uptime 年度调查口径（受访设施平均，大体不含超大规模厂商），非全量统计，与库内 gds-esg2021-uptime-global-avg-pue-2021 同一序列。正文字体为乱序映射，抽取文本经逐字符替换还原后核对上下文（数字与国别对应经库内同源值验证）。"
+    },
+    {
+      "fact_id": "ace2024-uptime-apac-avg-pue-2020",
+      "metric_id": "dc_pue",
+      "asserter": "Uptime Institute",
+      "entity": {
+        "type": "region",
+        "id": "uptime-survey-apac",
+        "label": "亚太地区数据中心（Uptime 调查平均）"
+      },
+      "value": 1.69,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "APAC"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7b60337bcafd13da7e8ab6274cea6c22177d3a936b98012c7b8659af754238f8",
+        "local_file": "20240501-东盟：在东盟建设下一代数据中心设施(81页).pdf",
+        "locator": "PDF 第 35–36 页 2.2 Data Center PUE Insight in ASEAN：「the average PUE of the Asia-Pacific region in 2020 was 1.69」（[43] A. Lawrence「Which regions have the most energy efficient data centers? – Uptime Institute Blog」）",
+        "grade": "S3",
+        "originator": "Uptime Institute（经东盟能源中心（ACE）与华为《Building Next-Generation Data Center Facilities in ASEAN》（2024）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Uptime 调查的地区平均。正文字体为乱序映射，抽取文本经逐字符替换还原后核对上下文（数字与国别对应经库内同源值验证）。"
+    },
+    {
+      "fact_id": "ace2024-uptime-europe-avg-pue-2020",
+      "metric_id": "dc_pue",
+      "asserter": "Uptime Institute",
+      "entity": {
+        "type": "region",
+        "id": "uptime-survey-europe",
+        "label": "欧洲数据中心（Uptime 调查平均）"
+      },
+      "value": 1.46,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "EU"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7b60337bcafd13da7e8ab6274cea6c22177d3a936b98012c7b8659af754238f8",
+        "local_file": "20240501-东盟：在东盟建设下一代数据中心设施(81页).pdf",
+        "locator": "PDF 第 35–36 页 2.2 Data Center PUE Insight in ASEAN：「Europe and North America, which had much lower average PUE values of 1.46 and 1.53, respectively, in 2020」（[43] A. Lawrence「Which regions have the most energy efficient data centers? – Uptime Institute Blog」）",
+        "grade": "S3",
+        "originator": "Uptime Institute（经东盟能源中心（ACE）与华为《Building Next-Generation Data Center Facilities in ASEAN》（2024）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「Europe」按 EU 记（地域枚举无欧洲整体）；同句北美 1.53 因 region 无北美枚举未录。正文字体为乱序映射，抽取文本经逐字符替换还原后核对上下文（数字与国别对应经库内同源值验证）。"
+    },
+    {
+      "fact_id": "ace2024-sg-mci-dc-electricity-2020",
+      "metric_id": "dc_electricity_consumption",
+      "asserter": "新加坡通讯及新闻部",
+      "entity": {
+        "type": "region",
+        "id": "singapore-datacenters",
+        "label": "新加坡数据中心（合计）"
+      },
+      "value": 3.4,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "全站用电",
+        "sector_basis": "数据中心",
+        "region": "SG",
+        "basis": "统计上报"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7b60337bcafd13da7e8ab6274cea6c22177d3a936b98012c7b8659af754238f8",
+        "local_file": "20240501-东盟：在东盟建设下一代数据中心设施(81页).pdf",
+        "locator": "PDF 第 34 页：「Singapore's data centers were responsible for approximately 7% (3.4 TWh) of the country's total electricity use in 2020 and is projected to reach 12% by 2030 [39]」；[39]「New Conditions for Data Centres in Singapore to kick in from 2022」",
+        "grade": "S3",
+        "originator": "新加坡通讯及新闻部（2021–2022 官方表态，经东盟能源中心（ACE）与华为《Building Next-Generation Data Center Facilities in ASEAN》（2024）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「approximately」按点值记约数。占全国用电 7% 与库内 jrc2024-sg-mci-dc-power-share-2020 同源；asserter 与该条保持一致。energy_scope 按「total electricity use」记全站用电。正文字体为乱序映射，抽取文本经逐字符替换还原后核对上下文（数字与国别对应经库内同源值验证）。"
+    },
+    {
+      "fact_id": "ace2024-sg-mci-dc-power-share-2030e",
+      "metric_id": "dc_power_share_of_grid",
+      "asserter": "新加坡通讯及新闻部",
+      "entity": {
+        "type": "region",
+        "id": "singapore-datacenters",
+        "label": "新加坡数据中心（合计）"
+      },
+      "value": 12.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "APAC",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7b60337bcafd13da7e8ab6274cea6c22177d3a936b98012c7b8659af754238f8",
+        "local_file": "20240501-东盟：在东盟建设下一代数据中心设施(81页).pdf",
+        "locator": "PDF 第 33–34 页：「In Singapore, data centers accounted for 7% of the total electricity consumption (3.4 TWh) in 2020 and is projected to reach 12% by 2030」（[39]）",
+        "grade": "S3",
+        "originator": "新加坡通讯及新闻部（经东盟能源中心（ACE）与华为《Building Next-Generation Data Center Facilities in ASEAN》（2024）转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "预测做出时点取所引 [39] 新加坡 2022 年新条件公告年份",
+      "corroboration": "待交叉验证",
+      "notes": "region 枚举无 SG，按库内同类记 APAC、entity 区分新加坡。正文字体为乱序映射，抽取文本经逐字符替换还原后核对上下文（数字与国别对应经库内同源值验证）。"
+    },
+    {
+      "fact_id": "ace2024-mcmc-malaysia-dc-pue-target",
+      "metric_id": "dc_pue",
+      "asserter": "马来西亚通讯及多媒体委员会",
+      "entity": {
+        "type": "region",
+        "id": "malaysia-datacenters",
+        "label": "马来西亚数据中心"
+      },
+      "value": 1.9,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "APAC"
+      },
+      "as_of": "2024",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "7b60337bcafd13da7e8ab6274cea6c22177d3a936b98012c7b8659af754238f8",
+        "local_file": "20240501-东盟：在东盟建设下一代数据中心设施(81页).pdf",
+        "locator": "PDF 第 34 页：「the ‘Specification for Green Data Centers‘ was established. The Malaysian Communications and Multimedia Commission (MCMC) recommends a PUE target of 1.9 or lower for data centers in the country [41]」；[41] MCMC「Green Data Centres」Accessed Mar. 15, 2024",
+        "grade": "S3",
+        "originator": "马来西亚通讯及多媒体委员会《Specification for Green Data Centres》（经东盟能源中心（ACE）与华为《Building Next-Generation Data Center Facilities in ASEAN》（2024）转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "规范发布年份原文未写，as_of 取引用访问日期所在年 2024",
+      "corroboration": "待交叉验证",
+      "notes": "原文是「recommends a PUE target of 1.9 or lower」——推荐目标而非强制限值，basis 取最接近的政策限值并在此说明；「or lower」按上界记。region 枚举无马来西亚，记 APAC、entity 区分。正文字体为乱序映射，抽取文本经逐字符替换还原后核对上下文（数字与国别对应经库内同源值验证）。"
     }
   ]
 }
