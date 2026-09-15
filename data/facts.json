@@ -207925,6 +207925,38 @@
       "derivation": "原表单位元，216000+51840 元 ÷ 10,000 = 26.784 万元。",
       "corroboration": "待交叉验证",
       "notes": "单价假设：高速铜缆 20 元/米、背板连接器 220 元/个、Overpass 连接器 150 元/个、外部 IO 6,000 元/套；不含普通 PCIe 与总线连接。华泰据此测 2025 年 GB200 铜连接市场 245 亿元（NVL36×2 2.5 万套、NVL72 1 万套）。分项与合计不可同时加总。"
+    },
+    {
+      "fact_id": "ocp2024-meta-orv3n-busbar-rack-power",
+      "metric_id": "product_density_coverage",
+      "entity": {
+        "type": "product",
+        "id": "meta-orv3n-network-rack",
+        "label": "Meta ORv3N（Open Rack v3 Networking）网络机柜"
+      },
+      "asserter": "Meta",
+      "value": 36,
+      "unit": "kW/机柜",
+      "caliber": {
+        "bound_sense": "上限",
+        "cooling_route": "未注明",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2024-10",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "cebdf94bb36ef39a2534f0c3f6c330d5613c78ade141643741818f5acc28602a",
+        "local_file": "5286 - Meta ORV3N -Open Rack V3 Networking- Solution.pdf",
+        "locator": "PDF 第 9 页「ORV3N Key Components」：「Busbar - 36kW Capacity」；第 17 页「Testing」：「30°C T-Rise test. Results show 36kW of busbar capability」",
+        "grade": "S2",
+        "originator": "Meta（Nhan Hoang、Dmitriy Shapiro、Shawn Blosser）《Meta ORv3N (Open Rack v3 Networking) Solution》，OCP 2024 全球峰会 Rack & Power 分会"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文无日期；该稿为 OCP 2024 全球峰会（2024-10）Rack & Power 分会材料，as_of 取 2024-10。",
+      "corroboration": "待交叉验证",
+      "notes": "网络设备机柜（前/后端交换机）48VDC 侧挂母线能力，30°C 温升测试结果；非 AI 计算机柜。机柜 600×2283×1068 mm，空重 218 kg，满载运输 1,400 kg；底部 6OU 放 ORv3 PSU 与 BBU、41RU 放网络设备，用 2 路 30A AC 进线。Meta 称机柜内 BBU 可减少建筑 UPS 与现场柴发。"
     }
   ]
 }
