@@ -195073,6 +195073,39 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原文「about 18.8 TWh」。库内 Borderstep 德国 2020–2022 年 16.3/17.0/17.9TWh、2030E 27TWh 为另一断言者。region 枚举无国家级取值，按欧洲记 EU，entity 区分德国。dena 报告 2022-03 发布（中文译本文件名注 2025-12）。"
+    },
+    {
+      "fact_id": "csc2502-cn-dc-electricity-2025e",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "market",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（全国）"
+      },
+      "asserter": "中信建投证券",
+      "value": 187.8,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2025E@2025-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "bf90b8fcc78e0013fece7a5792dc03234948831155edf7f05d32b9174a19d2a6",
+        "local_file": "20250219-中信建投：电力行业动态：人工智能应用加速落地，算力增长促进绿电消纳(14页).pdf",
+        "locator": "PDF 第 3 页投资要点：「根据中国信通院统计，2023 年我国数据中心用电规模约 1500 亿千瓦时。同时，根据 IDC 对我国算力增长的预期，到 2025 年我国通用算力和智能算力有望增长至 86EFlops（FP32 精度）和 617EFlops（FP16 精度）。在此趋势下，根据现有算力中心的能耗情况，到 2025 年用电量规模有望增长至 1878 亿千瓦时，边际贡献约 212.7 亿千瓦时」",
+        "grade": "S3",
+        "originator": "中信建投证券《电力行业动态：人工智能应用加速落地，算力增长促进绿电消纳》（2025-02-19）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "1878 亿 kWh = 187.8 TWh；券商按 IDC 算力预期与现有能耗强度推算；据此并假设枢纽占 60%、绿电 80%，推 2025 年算力对绿电消纳边际贡献约 102 亿 kWh（未录）。"
     }
   ]
 }
