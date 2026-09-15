@@ -194218,7 +194218,10 @@
       "depth": "精读",
       "derived": false,
       "corroboration": "待交叉验证",
-      "notes": "图表来源并列「清华大学全球产业研究院、国金证券研究所」，其中装机功率、利用小时数为推算列，本条所录为统计列；asserter 按首列来源记清华大学全球产业研究院 [未核]。 库内同年信通院 2023 年 66.7%、科智 56.4% 为其他断言者。"
+      "notes": "图表来源并列「清华大学全球产业研究院、国金证券研究所」，其中装机功率、利用小时数为推算列，本条所录为统计列；asserter 按首列来源记清华大学全球产业研究院 [未核]。 库内同年信通院 2023 年 66.7%、科智 56.4% 为其他断言者。",
+      "disputed_by": [
+        "caict2406-cn-dc-occupancy-2022"
+      ]
     },
     {
       "fact_id": "gjzq2503b-thu-cn-dc-pue-2022",
@@ -196209,6 +196212,38 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "销售额口径；约占全球柴发整体市场 15%（华泰测算）。与本报告华泰自测 2024 年全球数据中心柴发新增需求 232.5 亿元（htsc2508-global-dc-genset-new-demand-2024）口径、币种均不同。"
+    },
+    {
+      "fact_id": "caict2406-cn-dc-occupancy-2022",
+      "metric_id": "dc_occupancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（全国）"
+      },
+      "asserter": "中国信通院",
+      "value": 62.7,
+      "unit": "%",
+      "caliber": {
+        "scope": "全国",
+        "region": "CN"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "da2048b82746206e13e93c5dbc84fbed66b98bf8364dcd17276ab0ce8830b274",
+        "local_file": "数据中心全生命周期绿色算力指数白皮书.pdf",
+        "locator": "PDF 第 18 页第三章「安全高效性」上架率段：「据中国信通院统计，2022 年我国的平均上架率约为 62.7%」",
+        "grade": "S2",
+        "originator": "中国信通院云计算与大数据研究所、远景科技集团、合盈数据《数据中心全生命周期绿色算力指数白皮书》（2024-06）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「约」；上架率定义为已使用机柜数/已完成基础机电配置机柜数（有效利用：80% 以上可用空间安装且通电设备）。同年清华大学全球产业研究院为 58.0%（gjzq2503b-thu-cn-dc-occupancy-2022），信通院 2023 年为 66.7%（cn-dc-occupancy-2023）。",
+      "disputes": [
+        "gjzq2503b-thu-cn-dc-occupancy-2022"
+      ]
     }
   ]
 }
