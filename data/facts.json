@@ -119736,7 +119736,10 @@
         "grade": "S3",
         "originator": "开放数据中心委员会（ODCC）《数据中心绿色设计白皮书》ODCC-2023-02001（2023-06）"
       },
-      "notes": "在用数据中心最优水平。 运行值的统计窗口原文未写，按年均记 [未核]。原文「据统计」未注出处（ODCC 为中国信通院牵头的组织，数字多与信通院口径一致），断言者记 ODCC。"
+      "notes": "在用数据中心最优水平。 运行值的统计窗口原文未写，按年均记 [未核]。原文「据统计」未注出处（ODCC 为中国信通院牵头的组织，数字多与信通院口径一致），断言者记 ODCC。",
+      "disputed_by": [
+        "caict2403-cn-pue-best-2022"
+      ]
     },
     {
       "asserter": "开放数据中心委员会",
@@ -198207,6 +198210,374 @@
       "derivation": "原文未写测算时点，按报告日期 2024-12 取 as_of。",
       "corroboration": "待交叉验证",
       "notes": "原表单位亿元，×10,000 换为万元。页眉结论：「万P算力中心造价成本预计多花费34亿元，运营成本每年多花费约2亿元」——一次性三项合计 75.52 vs 41.53 亿元（差 33.99），运营 3.38 vs 1.46 亿元/年，与结论一致。「综合造价」原文带「/年」，为年化口径，不可与一次性三项相加。"
+    },
+    {
+      "fact_id": "caict2403-cn-pue-inuse-hyperscale-2022",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "asserter": "中国信通院",
+      "value": 1.36,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "超大型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2022-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6bc9c55a30b6f3a689aaf3b832104e336dfa66b6529f607504a3786663024d60",
+        "local_file": "【报告】中国信通院：绿色算力技术创新研究报告（2024年）.pdf",
+        "locator": "PDF 第 17 页「二、绿色算力设施层技术创新」导语：「截至 2022 年底，全国在用超大型数据中心平均 PUE 为 1.36，大型数据中心平均 PUE 为 1.42，最优水平达到 1.08。全国规划在建数据中心平均设计 PUE 为 1.32 左右，超大型、大型数据中心的平均设计 PUE 分别为 1.28、1.29」",
+        "grade": "S2",
+        "originator": "中国信息通信研究院云计算与大数据研究所《绿色算力技术创新研究报告（2024 年）》（2024-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "与 ODCC 2023 同口径值（odcc2023-cn-pue-*-2022）数值一致，但两者同出信通院云大所体系，不作独立印证。"
+    },
+    {
+      "fact_id": "caict2403-cn-pue-inuse-large-2022",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "asserter": "中国信通院",
+      "value": 1.42,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "大型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2022-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6bc9c55a30b6f3a689aaf3b832104e336dfa66b6529f607504a3786663024d60",
+        "local_file": "【报告】中国信通院：绿色算力技术创新研究报告（2024年）.pdf",
+        "locator": "PDF 第 17 页「二、绿色算力设施层技术创新」导语：「截至 2022 年底，全国在用超大型数据中心平均 PUE 为 1.36，大型数据中心平均 PUE 为 1.42，最优水平达到 1.08。全国规划在建数据中心平均设计 PUE 为 1.32 左右，超大型、大型数据中心的平均设计 PUE 分别为 1.28、1.29」",
+        "grade": "S2",
+        "originator": "中国信息通信研究院云计算与大数据研究所《绿色算力技术创新研究报告（2024 年）》（2024-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "与 ODCC 2023 同口径值（odcc2023-cn-pue-*-2022）数值一致，但两者同出信通院云大所体系，不作独立印证。"
+    },
+    {
+      "fact_id": "caict2403-cn-pue-best-2022",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "asserter": "中国信通院",
+      "value": 1.08,
+      "unit": "比值",
+      "caliber": {
+        "basis": "最优水平",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2022-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6bc9c55a30b6f3a689aaf3b832104e336dfa66b6529f607504a3786663024d60",
+        "local_file": "【报告】中国信通院：绿色算力技术创新研究报告（2024年）.pdf",
+        "locator": "PDF 第 17 页「二、绿色算力设施层技术创新」导语：「截至 2022 年底，全国在用超大型数据中心平均 PUE 为 1.36，大型数据中心平均 PUE 为 1.42，最优水平达到 1.08。全国规划在建数据中心平均设计 PUE 为 1.32 左右，超大型、大型数据中心的平均设计 PUE 分别为 1.28、1.29」",
+        "grade": "S2",
+        "originator": "中国信息通信研究院云计算与大数据研究所《绿色算力技术创新研究报告（2024 年）》（2024-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "与 ODCC 2023 同口径值（odcc2023-cn-pue-*-2022）数值一致，但两者同出信通院云大所体系，不作独立印证。最优水平本报告写 1.08，ODCC 2023 写 1.02，不选边。",
+      "disputes": [
+        "odcc2023-cn-pue-best-2022"
+      ]
+    },
+    {
+      "fact_id": "caict2403-cn-pue-planned-design-avg-2022",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "asserter": "中国信通院",
+      "value": 1.32,
+      "unit": "比值",
+      "caliber": {
+        "basis": "设计值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "设计工况",
+        "region": "CN"
+      },
+      "as_of": "2022-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6bc9c55a30b6f3a689aaf3b832104e336dfa66b6529f607504a3786663024d60",
+        "local_file": "【报告】中国信通院：绿色算力技术创新研究报告（2024年）.pdf",
+        "locator": "PDF 第 17 页「二、绿色算力设施层技术创新」导语：「截至 2022 年底，全国在用超大型数据中心平均 PUE 为 1.36，大型数据中心平均 PUE 为 1.42，最优水平达到 1.08。全国规划在建数据中心平均设计 PUE 为 1.32 左右，超大型、大型数据中心的平均设计 PUE 分别为 1.28、1.29」",
+        "grade": "S2",
+        "originator": "中国信息通信研究院云计算与大数据研究所《绿色算力技术创新研究报告（2024 年）》（2024-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "与 ODCC 2023 同口径值（odcc2023-cn-pue-*-2022）数值一致，但两者同出信通院云大所体系，不作独立印证。原文「1.32 左右」。"
+    },
+    {
+      "fact_id": "caict2403-cn-pue-planned-design-hyperscale-2022",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "asserter": "中国信通院",
+      "value": 1.28,
+      "unit": "比值",
+      "caliber": {
+        "basis": "设计值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "超大型",
+        "period": "设计工况",
+        "region": "CN"
+      },
+      "as_of": "2022-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6bc9c55a30b6f3a689aaf3b832104e336dfa66b6529f607504a3786663024d60",
+        "local_file": "【报告】中国信通院：绿色算力技术创新研究报告（2024年）.pdf",
+        "locator": "PDF 第 17 页「二、绿色算力设施层技术创新」导语：「截至 2022 年底，全国在用超大型数据中心平均 PUE 为 1.36，大型数据中心平均 PUE 为 1.42，最优水平达到 1.08。全国规划在建数据中心平均设计 PUE 为 1.32 左右，超大型、大型数据中心的平均设计 PUE 分别为 1.28、1.29」",
+        "grade": "S2",
+        "originator": "中国信息通信研究院云计算与大数据研究所《绿色算力技术创新研究报告（2024 年）》（2024-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "与 ODCC 2023 同口径值（odcc2023-cn-pue-*-2022）数值一致，但两者同出信通院云大所体系，不作独立印证。"
+    },
+    {
+      "fact_id": "caict2403-cn-pue-planned-design-large-2022",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "asserter": "中国信通院",
+      "value": 1.29,
+      "unit": "比值",
+      "caliber": {
+        "basis": "设计值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "大型",
+        "period": "设计工况",
+        "region": "CN"
+      },
+      "as_of": "2022-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6bc9c55a30b6f3a689aaf3b832104e336dfa66b6529f607504a3786663024d60",
+        "local_file": "【报告】中国信通院：绿色算力技术创新研究报告（2024年）.pdf",
+        "locator": "PDF 第 17 页「二、绿色算力设施层技术创新」导语：「截至 2022 年底，全国在用超大型数据中心平均 PUE 为 1.36，大型数据中心平均 PUE 为 1.42，最优水平达到 1.08。全国规划在建数据中心平均设计 PUE 为 1.32 左右，超大型、大型数据中心的平均设计 PUE 分别为 1.28、1.29」",
+        "grade": "S2",
+        "originator": "中国信息通信研究院云计算与大数据研究所《绿色算力技术创新研究报告（2024 年）》（2024-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "与 ODCC 2023 同口径值（odcc2023-cn-pue-*-2022）数值一致，但两者同出信通院云大所体系，不作独立印证。"
+    },
+    {
+      "fact_id": "caict2403-cn-dc-racks-2023-06",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc-racks-inuse",
+        "label": "中国在用数据中心机架"
+      },
+      "asserter": "中国信通院",
+      "value": 760,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2023-06",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "6bc9c55a30b6f3a689aaf3b832104e336dfa66b6529f607504a3786663024d60",
+        "local_file": "【报告】中国信通院：绿色算力技术创新研究报告（2024年）.pdf",
+        "locator": "PDF 第 8 页「绿色算力发展背景」：「截至 2023 年 6 月底，全国在用数据中心机架总规模超过 760 万标准机架，我国算力总规模达到 197EFLOPS……存储总规模超过 1080EB」；第 44 页同述「已超 760 万标准机架，近五年年均复合增速超 30%」",
+        "grade": "S2",
+        "originator": "中国信息通信研究院云计算与大数据研究所《绿色算力技术创新研究报告（2024 年）》（2024-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「超过」，按下限录；与 2023-12 的 810 万（caict-racks-inuse-2023）为同一序列不同时点。"
+    },
+    {
+      "fact_id": "caict2403-cn-compute-total-2023-06",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "中国信通院",
+      "value": 197,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "总算力",
+        "precision": "混合/未注明",
+        "area": "全国",
+        "status": "在用",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6bc9c55a30b6f3a689aaf3b832104e336dfa66b6529f607504a3786663024d60",
+        "local_file": "【报告】中国信通院：绿色算力技术创新研究报告（2024年）.pdf",
+        "locator": "PDF 第 8 页「绿色算力发展背景」：「截至 2023 年 6 月底……我国算力总规模达到 197EFLOPS（每秒 1.97 万亿亿次浮点运算）……算力总规模近五年年均增速近 30%」",
+        "grade": "S2",
+        "originator": "中国信息通信研究院云计算与大数据研究所《绿色算力技术创新研究报告（2024 年）》（2024-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2023-06 时点（年底为 230 EFLOPS，sqt2025-caict-cn-compute-total-2023）。原文未注明出处，常见为工信部 2023 年 8 月发布口径；按 PR #197 记写作者为断言者。"
+    },
+    {
+      "fact_id": "caict2403-cn-storage-2023-06",
+      "metric_id": "storage_capacity_total",
+      "entity": {
+        "type": "market",
+        "id": "cn-storage-policy-scope",
+        "label": "中国存力总规模（信通院/政策口径）"
+      },
+      "asserter": "中国信通院",
+      "value": 1080,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "utilization": "未注明",
+        "cloud": "未注明",
+        "location": "未注明",
+        "area": "全国",
+        "status": "在用",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023-06",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "6bc9c55a30b6f3a689aaf3b832104e336dfa66b6529f607504a3786663024d60",
+        "local_file": "【报告】中国信通院：绿色算力技术创新研究报告（2024年）.pdf",
+        "locator": "PDF 第 8 页同段：「存储总规模超过 1080EB（1.08 万亿吉字节）」",
+        "grade": "S2",
+        "originator": "中国信息通信研究院云计算与大数据研究所《绿色算力技术创新研究报告（2024 年）》（2024-03）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「超过」，按下限录；2023-12 为 1200 EB（sqt2025-caict-cn-storage-2023）。"
+    },
+    {
+      "fact_id": "caict2403-idc-cn-lc-server-market-2023h1",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-lc-server-market",
+        "label": "中国液冷服务器市场"
+      },
+      "asserter": "IDC",
+      "value": 6.6,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "液冷服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "美元",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023-H1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6bc9c55a30b6f3a689aaf3b832104e336dfa66b6529f607504a3786663024d60",
+        "local_file": "【报告】中国信通院：绿色算力技术创新研究报告（2024年）.pdf",
+        "locator": "PDF 第 22 页「应用自然冷却技术，突破液冷技术难点」：「据 IDC 数据显示，2023 上半年中国液冷服务器市场规模达到 6.6 亿美元，同比增长 283.3%」",
+        "grade": "S2",
+        "originator": "IDC（经中国信通院《绿色算力技术创新研究报告（2024 年）》2024-03 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "IDC《中国半年度液冷服务器市场（2023 上半年）跟踪》口径；预测发布时点按 IDC 2023 年报告取 @2023。"
+    },
+    {
+      "fact_id": "caict2403-idc-cn-lc-server-market-2023e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-lc-server-market",
+        "label": "中国液冷服务器市场"
+      },
+      "asserter": "IDC",
+      "value": 15.1,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "液冷服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "美元",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2023E@2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6bc9c55a30b6f3a689aaf3b832104e336dfa66b6529f607504a3786663024d60",
+        "local_file": "【报告】中国信通院：绿色算力技术创新研究报告（2024年）.pdf",
+        "locator": "PDF 第 22 页「应用自然冷却技术，突破液冷技术难点」：「预计 2023 年全年将达到 15.1 亿美元」",
+        "grade": "S2",
+        "originator": "IDC（经中国信通院《绿色算力技术创新研究报告（2024 年）》2024-03 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "IDC《中国半年度液冷服务器市场（2023 上半年）跟踪》口径；预测发布时点按 IDC 2023 年报告取 @2023。"
     }
   ]
 }
