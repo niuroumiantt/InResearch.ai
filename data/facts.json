@@ -187649,6 +187649,176 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原文「data center demand」，未注明是 IT 负载还是设施总功率；uSMART 其后按 90% 负载率做 2030 年情景，本条只录贝恩历史值。"
+    },
+    {
+      "fact_id": "ct2512-caict-hebei-ai-compute-inuse-2025",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "region",
+        "id": "hebei",
+        "label": "河北省"
+      },
+      "asserter": "中国信通院",
+      "value": 110.0,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "混合/未注明",
+        "area": "河北",
+        "status": "在用",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2025-06",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "7b9acd1e070046f9857fa0c099393603bb65507e387f5845e2dad99885130ba5",
+        "local_file": "20251219-中国电信：2025年人工智能发展报告-智算云时代的人工智能发展洞察(32页).pdf",
+        "locator": "PDF 第 9 页（报告页 5）：「河北省、上海市、浙江省、贵州省、内蒙古自治区作为全国智算规模 TOP 5，智算规模均超过 55 EFLOPS，其中河北在用智算规模超过 110 EFLOPS，全国占比约 14.8%」，脚注 2「2025 综合算力指数」",
+        "grade": "S2",
+        "originator": "中国信通院《2025 综合算力指数》（经中国电信科技委、中国电信研究院《2025 年人工智能发展报告——智算云时代的人工智能发展洞察》（2025-12）转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 推定：本文未写时点；库内另一转引（中国信通院·TC628《智算运维产业发展研究报告（2025）》第 9 页）载明《2025 综合算力指数》数据「截至 2025 年 6 月底」，按同一指数版次取 2025-06。数值 110 为原文照录。",
+      "corroboration": "待交叉验证",
+      "notes": "原文「超过 110 EFLOPS」，按下界记；占全国约 14.8%。上海、浙江、贵州、内蒙古「均超过 55 EFLOPS」未逐省录（同一下界不区分省份）。"
+    },
+    {
+      "fact_id": "ct2512-caict-shanghai-ai-compute-2025",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "region",
+        "id": "shanghai",
+        "label": "上海"
+      },
+      "asserter": "中国信通院",
+      "value": 55.0,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "混合/未注明",
+        "area": "上海",
+        "status": "未注明",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2025-06",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "7b9acd1e070046f9857fa0c099393603bb65507e387f5845e2dad99885130ba5",
+        "local_file": "20251219-中国电信：2025年人工智能发展报告-智算云时代的人工智能发展洞察(32页).pdf",
+        "locator": "PDF 第 9 页（报告页 5）：「河北省、上海市、浙江省、贵州省、内蒙古自治区作为全国智算规模 TOP 5，智算规模均超过 55 EFLOPS，其中河北在用智算规模超过 110 EFLOPS，全国占比约 14.8%」，脚注 2「2025 综合算力指数」",
+        "grade": "S2",
+        "originator": "中国信通院《2025 综合算力指数》（经中国电信科技委、中国电信研究院《2025 年人工智能发展报告——智算云时代的人工智能发展洞察》（2025-12）转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 推定：本文未写时点；库内另一转引（中国信通院·TC628《智算运维产业发展研究报告（2025）》第 9 页）载明《2025 综合算力指数》数据「截至 2025 年 6 月底」，按同一指数版次取 2025-06。数值 110 为原文照录。",
+      "corroboration": "待交叉验证",
+      "notes": "原文「智算规模均超过 55 EFLOPS」（TOP 5 省份共用的下界），未写「在用」，status 记未注明；河北单列超过 110 EFLOPS。"
+    },
+    {
+      "fact_id": "ct2512-caict-zhejiang-ai-compute-2025",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "region",
+        "id": "zhejiang",
+        "label": "浙江"
+      },
+      "asserter": "中国信通院",
+      "value": 55.0,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "混合/未注明",
+        "area": "浙江",
+        "status": "未注明",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2025-06",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "7b9acd1e070046f9857fa0c099393603bb65507e387f5845e2dad99885130ba5",
+        "local_file": "20251219-中国电信：2025年人工智能发展报告-智算云时代的人工智能发展洞察(32页).pdf",
+        "locator": "PDF 第 9 页（报告页 5）：「河北省、上海市、浙江省、贵州省、内蒙古自治区作为全国智算规模 TOP 5，智算规模均超过 55 EFLOPS，其中河北在用智算规模超过 110 EFLOPS，全国占比约 14.8%」，脚注 2「2025 综合算力指数」",
+        "grade": "S2",
+        "originator": "中国信通院《2025 综合算力指数》（经中国电信科技委、中国电信研究院《2025 年人工智能发展报告——智算云时代的人工智能发展洞察》（2025-12）转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 推定：本文未写时点；库内另一转引（中国信通院·TC628《智算运维产业发展研究报告（2025）》第 9 页）载明《2025 综合算力指数》数据「截至 2025 年 6 月底」，按同一指数版次取 2025-06。数值 110 为原文照录。",
+      "corroboration": "待交叉验证",
+      "notes": "原文「智算规模均超过 55 EFLOPS」（TOP 5 省份共用的下界），未写「在用」，status 记未注明；河北单列超过 110 EFLOPS。"
+    },
+    {
+      "fact_id": "ct2512-caict-guizhou-ai-compute-2025",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "region",
+        "id": "guizhou",
+        "label": "贵州"
+      },
+      "asserter": "中国信通院",
+      "value": 55.0,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "混合/未注明",
+        "area": "贵州",
+        "status": "未注明",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2025-06",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "7b9acd1e070046f9857fa0c099393603bb65507e387f5845e2dad99885130ba5",
+        "local_file": "20251219-中国电信：2025年人工智能发展报告-智算云时代的人工智能发展洞察(32页).pdf",
+        "locator": "PDF 第 9 页（报告页 5）：「河北省、上海市、浙江省、贵州省、内蒙古自治区作为全国智算规模 TOP 5，智算规模均超过 55 EFLOPS，其中河北在用智算规模超过 110 EFLOPS，全国占比约 14.8%」，脚注 2「2025 综合算力指数」",
+        "grade": "S2",
+        "originator": "中国信通院《2025 综合算力指数》（经中国电信科技委、中国电信研究院《2025 年人工智能发展报告——智算云时代的人工智能发展洞察》（2025-12）转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 推定：本文未写时点；库内另一转引（中国信通院·TC628《智算运维产业发展研究报告（2025）》第 9 页）载明《2025 综合算力指数》数据「截至 2025 年 6 月底」，按同一指数版次取 2025-06。数值 110 为原文照录。",
+      "corroboration": "待交叉验证",
+      "notes": "原文「智算规模均超过 55 EFLOPS」（TOP 5 省份共用的下界），未写「在用」，status 记未注明；河北单列超过 110 EFLOPS。"
+    },
+    {
+      "fact_id": "ct2512-caict-inner-mongolia-ai-compute-2025",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "region",
+        "id": "inner-mongolia",
+        "label": "内蒙古"
+      },
+      "asserter": "中国信通院",
+      "value": 55.0,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "混合/未注明",
+        "area": "内蒙古",
+        "status": "未注明",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2025-06",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "7b9acd1e070046f9857fa0c099393603bb65507e387f5845e2dad99885130ba5",
+        "local_file": "20251219-中国电信：2025年人工智能发展报告-智算云时代的人工智能发展洞察(32页).pdf",
+        "locator": "PDF 第 9 页（报告页 5）：「河北省、上海市、浙江省、贵州省、内蒙古自治区作为全国智算规模 TOP 5，智算规模均超过 55 EFLOPS，其中河北在用智算规模超过 110 EFLOPS，全国占比约 14.8%」，脚注 2「2025 综合算力指数」",
+        "grade": "S2",
+        "originator": "中国信通院《2025 综合算力指数》（经中国电信科技委、中国电信研究院《2025 年人工智能发展报告——智算云时代的人工智能发展洞察》（2025-12）转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 推定：本文未写时点；库内另一转引（中国信通院·TC628《智算运维产业发展研究报告（2025）》第 9 页）载明《2025 综合算力指数》数据「截至 2025 年 6 月底」，按同一指数版次取 2025-06。数值 110 为原文照录。",
+      "corroboration": "待交叉验证",
+      "notes": "原文「智算规模均超过 55 EFLOPS」（TOP 5 省份共用的下界），未写「在用」，status 记未注明；河北单列超过 110 EFLOPS。"
     }
   ]
 }
