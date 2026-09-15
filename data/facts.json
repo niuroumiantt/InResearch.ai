@@ -214922,6 +214922,933 @@
       "corroboration": "待交叉验证",
       "asserter": "中国移动",
       "notes": "同表：高压室、低压室、电力室 10，发电机控制室 8，发电机房基础外地面 6，储油间地上式 6——这些房间在 room_type 无对应取值（或非本指标房间类型），不记。企标适用于通信机楼、数据中心、基站等全部局站，不分等级，tier 记未注明；覆盖新建、扩建和改建，build_type 记未注明。「标准荷重」按规范最低口径记，原文未写「≥」，bound 记 point。"
+    },
+    {
+      "fact_id": "ydt5235-2019-setback-parking-a",
+      "metric_id": "site_hazard_setback",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5235-2019",
+        "label": "YD/T 5235—2019《数据中心基础设施工程技术规范》"
+      },
+      "value": 20.0,
+      "unit": "m",
+      "caliber": {
+        "hazard_type": "停车场",
+        "tier": "A 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2019-11",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "04f15373b7e85435666a9166311b0161ece91c6246a91f04c2871f0d594bbe65",
+        "local_file": "YD T5235-2019 数据中心基础设施工程技术规范.pdf",
+        "locator": "PDF 第 74 页（页码 61）附录 B 表 B.1「各级机房基础设施技术要求」·机房位置选择：「距离停车场」A+/A 级 不宜小于 20 m，B 级 不宜小于 10 m，C 级 —",
+        "grade": "S1",
+        "originator": "工业和信息化部（2019-11-11 发布，2020-01-01 实施）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "notes": "原文「不应小于/不宜小于」均按 不小于 记。 通信行业标准（YD/T），分级为 A+/A/B/C 四级，与 GB 50174 的 A/B/C 同名但出自不同标准、判定条款不同，不可互换。A+ 级 tier 无取值，不记（缺口）。"
+    },
+    {
+      "fact_id": "ydt5235-2019-setback-parking-b",
+      "metric_id": "site_hazard_setback",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5235-2019",
+        "label": "YD/T 5235—2019《数据中心基础设施工程技术规范》"
+      },
+      "value": 10.0,
+      "unit": "m",
+      "caliber": {
+        "hazard_type": "停车场",
+        "tier": "B 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2019-11",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "04f15373b7e85435666a9166311b0161ece91c6246a91f04c2871f0d594bbe65",
+        "local_file": "YD T5235-2019 数据中心基础设施工程技术规范.pdf",
+        "locator": "PDF 第 74 页（页码 61）附录 B 表 B.1「各级机房基础设施技术要求」·机房位置选择：「距离停车场」A+/A 级 不宜小于 20 m，B 级 不宜小于 10 m，C 级 —",
+        "grade": "S1",
+        "originator": "工业和信息化部（2019-11-11 发布，2020-01-01 实施）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "notes": "原文「不应小于/不宜小于」均按 不小于 记。 通信行业标准（YD/T），分级为 A+/A/B/C 四级，与 GB 50174 的 A/B/C 同名但出自不同标准、判定条款不同，不可互换。A+ 级 tier 无取值，不记（缺口）。"
+    },
+    {
+      "fact_id": "ydt5235-2019-setback-rail-highway-a",
+      "metric_id": "site_hazard_setback",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5235-2019",
+        "label": "YD/T 5235—2019《数据中心基础设施工程技术规范》"
+      },
+      "value": 800.0,
+      "unit": "m",
+      "caliber": {
+        "hazard_type": "铁路或高速公路",
+        "tier": "A 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2019-11",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "04f15373b7e85435666a9166311b0161ece91c6246a91f04c2871f0d594bbe65",
+        "local_file": "YD T5235-2019 数据中心基础设施工程技术规范.pdf",
+        "locator": "PDF 第 74 页（页码 61）附录 B 表 B.1「各级机房基础设施技术要求」·机房位置选择：「距离铁路或高速公路」A+/A 级 不宜小于 800 m，B 级 不宜小于 100 m，C 级 —",
+        "grade": "S1",
+        "originator": "工业和信息化部（2019-11-11 发布，2020-01-01 实施）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "notes": "原文「不应小于/不宜小于」均按 不小于 记。 通信行业标准（YD/T），分级为 A+/A/B/C 四级，与 GB 50174 的 A/B/C 同名但出自不同标准、判定条款不同，不可互换。A+ 级 tier 无取值，不记（缺口）。"
+    },
+    {
+      "fact_id": "ydt5235-2019-setback-rail-highway-b",
+      "metric_id": "site_hazard_setback",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5235-2019",
+        "label": "YD/T 5235—2019《数据中心基础设施工程技术规范》"
+      },
+      "value": 100.0,
+      "unit": "m",
+      "caliber": {
+        "hazard_type": "铁路或高速公路",
+        "tier": "B 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2019-11",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "04f15373b7e85435666a9166311b0161ece91c6246a91f04c2871f0d594bbe65",
+        "local_file": "YD T5235-2019 数据中心基础设施工程技术规范.pdf",
+        "locator": "PDF 第 74 页（页码 61）附录 B 表 B.1「各级机房基础设施技术要求」·机房位置选择：「距离铁路或高速公路」A+/A 级 不宜小于 800 m，B 级 不宜小于 100 m，C 级 —",
+        "grade": "S1",
+        "originator": "工业和信息化部（2019-11-11 发布，2020-01-01 实施）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "notes": "原文「不应小于/不宜小于」均按 不小于 记。 通信行业标准（YD/T），分级为 A+/A/B/C 四级，与 GB 50174 的 A/B/C 同名但出自不同标准、判定条款不同，不可互换。A+ 级 tier 无取值，不记（缺口）。"
+    },
+    {
+      "fact_id": "ydt5235-2019-setback-airport-a",
+      "metric_id": "site_hazard_setback",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5235-2019",
+        "label": "YD/T 5235—2019《数据中心基础设施工程技术规范》"
+      },
+      "value": 8000.0,
+      "unit": "m",
+      "caliber": {
+        "hazard_type": "机场",
+        "tier": "A 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2019-11",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "04f15373b7e85435666a9166311b0161ece91c6246a91f04c2871f0d594bbe65",
+        "local_file": "YD T5235-2019 数据中心基础设施工程技术规范.pdf",
+        "locator": "PDF 第 74 页（页码 61）附录 B 表 B.1「各级机房基础设施技术要求」·机房位置选择：「距离飞机场」A+/A 级 不宜小于 8 000 m，B 级 不宜小于 1 600 m，C 级 —",
+        "grade": "S1",
+        "originator": "工业和信息化部（2019-11-11 发布，2020-01-01 实施）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "notes": "原文「不应小于/不宜小于」均按 不小于 记。 通信行业标准（YD/T），分级为 A+/A/B/C 四级，与 GB 50174 的 A/B/C 同名但出自不同标准、判定条款不同，不可互换。A+ 级 tier 无取值，不记（缺口）。"
+    },
+    {
+      "fact_id": "ydt5235-2019-setback-airport-b",
+      "metric_id": "site_hazard_setback",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5235-2019",
+        "label": "YD/T 5235—2019《数据中心基础设施工程技术规范》"
+      },
+      "value": 1600.0,
+      "unit": "m",
+      "caliber": {
+        "hazard_type": "机场",
+        "tier": "B 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2019-11",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "04f15373b7e85435666a9166311b0161ece91c6246a91f04c2871f0d594bbe65",
+        "local_file": "YD T5235-2019 数据中心基础设施工程技术规范.pdf",
+        "locator": "PDF 第 74 页（页码 61）附录 B 表 B.1「各级机房基础设施技术要求」·机房位置选择：「距离飞机场」A+/A 级 不宜小于 8 000 m，B 级 不宜小于 1 600 m，C 级 —",
+        "grade": "S1",
+        "originator": "工业和信息化部（2019-11-11 发布，2020-01-01 实施）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "notes": "原文「不应小于/不宜小于」均按 不小于 记。 通信行业标准（YD/T），分级为 A+/A/B/C 四级，与 GB 50174 的 A/B/C 同名但出自不同标准、判定条款不同，不可互换。A+ 级 tier 无取值，不记（缺口）。"
+    },
+    {
+      "fact_id": "ydt5235-2019-setback-military-a",
+      "metric_id": "site_hazard_setback",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5235-2019",
+        "label": "YD/T 5235—2019《数据中心基础设施工程技术规范》"
+      },
+      "value": 1600.0,
+      "unit": "m",
+      "caliber": {
+        "hazard_type": "军火库",
+        "tier": "A 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2019-11",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "04f15373b7e85435666a9166311b0161ece91c6246a91f04c2871f0d594bbe65",
+        "local_file": "YD T5235-2019 数据中心基础设施工程技术规范.pdf",
+        "locator": "PDF 第 74 页（页码 61）附录 B 表 B.1「各级机房基础设施技术要求」·机房位置选择：「距离军火库」A+/A 级 不应小于 1 600 m，C 级 不宜小于 1 600 m",
+        "grade": "S1",
+        "originator": "工业和信息化部（2019-11-11 发布，2020-01-01 实施）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "notes": "原文「不应小于/不宜小于」均按 不小于 记。扫描表格 B 级格为合并单元格，与 A 级（不应小于）或 C 级（不宜小于）同为 1 600 m，数值不受合并方向影响。 通信行业标准（YD/T），分级为 A+/A/B/C 四级，与 GB 50174 的 A/B/C 同名但出自不同标准、判定条款不同，不可互换。A+ 级 tier 无取值，不记（缺口）。"
+    },
+    {
+      "fact_id": "ydt5235-2019-setback-military-b",
+      "metric_id": "site_hazard_setback",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5235-2019",
+        "label": "YD/T 5235—2019《数据中心基础设施工程技术规范》"
+      },
+      "value": 1600.0,
+      "unit": "m",
+      "caliber": {
+        "hazard_type": "军火库",
+        "tier": "B 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2019-11",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "04f15373b7e85435666a9166311b0161ece91c6246a91f04c2871f0d594bbe65",
+        "local_file": "YD T5235-2019 数据中心基础设施工程技术规范.pdf",
+        "locator": "PDF 第 74 页（页码 61）附录 B 表 B.1「各级机房基础设施技术要求」·机房位置选择：「距离军火库」A+/A 级 不应小于 1 600 m，C 级 不宜小于 1 600 m",
+        "grade": "S1",
+        "originator": "工业和信息化部（2019-11-11 发布，2020-01-01 实施）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "notes": "原文「不应小于/不宜小于」均按 不小于 记。扫描表格 B 级格为合并单元格，与 A 级（不应小于）或 C 级（不宜小于）同为 1 600 m，数值不受合并方向影响。 通信行业标准（YD/T），分级为 A+/A/B/C 四级，与 GB 50174 的 A/B/C 同名但出自不同标准、判定条款不同，不可互换。A+ 级 tier 无取值，不记（缺口）。"
+    },
+    {
+      "fact_id": "ydt5235-2019-setback-military-c",
+      "metric_id": "site_hazard_setback",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5235-2019",
+        "label": "YD/T 5235—2019《数据中心基础设施工程技术规范》"
+      },
+      "value": 1600.0,
+      "unit": "m",
+      "caliber": {
+        "hazard_type": "军火库",
+        "tier": "C 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2019-11",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "04f15373b7e85435666a9166311b0161ece91c6246a91f04c2871f0d594bbe65",
+        "local_file": "YD T5235-2019 数据中心基础设施工程技术规范.pdf",
+        "locator": "PDF 第 74 页（页码 61）附录 B 表 B.1「各级机房基础设施技术要求」·机房位置选择：「距离军火库」A+/A 级 不应小于 1 600 m，C 级 不宜小于 1 600 m",
+        "grade": "S1",
+        "originator": "工业和信息化部（2019-11-11 发布，2020-01-01 实施）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "notes": "原文「不应小于/不宜小于」均按 不小于 记。扫描表格 B 级格为合并单元格，与 A 级（不应小于）或 C 级（不宜小于）同为 1 600 m，数值不受合并方向影响。 通信行业标准（YD/T），分级为 A+/A/B/C 四级，与 GB 50174 的 A/B/C 同名但出自不同标准、判定条款不同，不可互换。A+ 级 tier 无取值，不记（缺口）。"
+    },
+    {
+      "fact_id": "ydt5235-2019-setback-nuclear-a",
+      "metric_id": "site_hazard_setback",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5235-2019",
+        "label": "YD/T 5235—2019《数据中心基础设施工程技术规范》"
+      },
+      "value": 1600.0,
+      "unit": "m",
+      "caliber": {
+        "hazard_type": "核电站",
+        "tier": "A 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2019-11",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "04f15373b7e85435666a9166311b0161ece91c6246a91f04c2871f0d594bbe65",
+        "local_file": "YD T5235-2019 数据中心基础设施工程技术规范.pdf",
+        "locator": "PDF 第 74 页（页码 61）附录 B 表 B.1「各级机房基础设施技术要求」·机房位置选择：「距离核电站的危险区域」A+/A 级 不应小于 1 600 m，C 级 不宜小于 1 600 m",
+        "grade": "S1",
+        "originator": "工业和信息化部（2019-11-11 发布，2020-01-01 实施）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "notes": "原文「不应小于/不宜小于」均按 不小于 记。扫描表格 B 级格为合并单元格，与 A 级（不应小于）或 C 级（不宜小于）同为 1 600 m，数值不受合并方向影响。注意 GB 50174—2017 同项为 40 000 m，两标准不同，不是录入差错。 通信行业标准（YD/T），分级为 A+/A/B/C 四级，与 GB 50174 的 A/B/C 同名但出自不同标准、判定条款不同，不可互换。A+ 级 tier 无取值，不记（缺口）。"
+    },
+    {
+      "fact_id": "ydt5235-2019-setback-nuclear-b",
+      "metric_id": "site_hazard_setback",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5235-2019",
+        "label": "YD/T 5235—2019《数据中心基础设施工程技术规范》"
+      },
+      "value": 1600.0,
+      "unit": "m",
+      "caliber": {
+        "hazard_type": "核电站",
+        "tier": "B 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2019-11",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "04f15373b7e85435666a9166311b0161ece91c6246a91f04c2871f0d594bbe65",
+        "local_file": "YD T5235-2019 数据中心基础设施工程技术规范.pdf",
+        "locator": "PDF 第 74 页（页码 61）附录 B 表 B.1「各级机房基础设施技术要求」·机房位置选择：「距离核电站的危险区域」A+/A 级 不应小于 1 600 m，C 级 不宜小于 1 600 m",
+        "grade": "S1",
+        "originator": "工业和信息化部（2019-11-11 发布，2020-01-01 实施）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "notes": "原文「不应小于/不宜小于」均按 不小于 记。扫描表格 B 级格为合并单元格，与 A 级（不应小于）或 C 级（不宜小于）同为 1 600 m，数值不受合并方向影响。注意 GB 50174—2017 同项为 40 000 m，两标准不同，不是录入差错。 通信行业标准（YD/T），分级为 A+/A/B/C 四级，与 GB 50174 的 A/B/C 同名但出自不同标准、判定条款不同，不可互换。A+ 级 tier 无取值，不记（缺口）。"
+    },
+    {
+      "fact_id": "ydt5235-2019-setback-nuclear-c",
+      "metric_id": "site_hazard_setback",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5235-2019",
+        "label": "YD/T 5235—2019《数据中心基础设施工程技术规范》"
+      },
+      "value": 1600.0,
+      "unit": "m",
+      "caliber": {
+        "hazard_type": "核电站",
+        "tier": "C 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2019-11",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "04f15373b7e85435666a9166311b0161ece91c6246a91f04c2871f0d594bbe65",
+        "local_file": "YD T5235-2019 数据中心基础设施工程技术规范.pdf",
+        "locator": "PDF 第 74 页（页码 61）附录 B 表 B.1「各级机房基础设施技术要求」·机房位置选择：「距离核电站的危险区域」A+/A 级 不应小于 1 600 m，C 级 不宜小于 1 600 m",
+        "grade": "S1",
+        "originator": "工业和信息化部（2019-11-11 发布，2020-01-01 实施）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "notes": "原文「不应小于/不宜小于」均按 不小于 记。扫描表格 B 级格为合并单元格，与 A 级（不应小于）或 C 级（不宜小于）同为 1 600 m，数值不受合并方向影响。注意 GB 50174—2017 同项为 40 000 m，两标准不同，不是录入差错。 通信行业标准（YD/T），分级为 A+/A/B/C 四级，与 GB 50174 的 A/B/C 同名但出自不同标准、判定条款不同，不可互换。A+ 级 tier 无取值，不记（缺口）。"
+    },
+    {
+      "fact_id": "ydt5235-2019-inlet-temp-lower",
+      "metric_id": "room_air_temperature",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5235-2019",
+        "label": "YD/T 5235—2019《数据中心基础设施工程技术规范》"
+      },
+      "value": 18.0,
+      "unit": "℃",
+      "caliber": {
+        "parameter": "冷通道或机柜进风温度",
+        "tier": "A/B/C 通用",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2019-11",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "04f15373b7e85435666a9166311b0161ece91c6246a91f04c2871f0d594bbe65",
+        "local_file": "YD T5235-2019 数据中心基础设施工程技术规范.pdf",
+        "locator": "PDF 第 75 页（页码 62）表 B.1 续表·环境要求：「机架进风温度 18～27 ℃」A+ 至 C 级通栏",
+        "grade": "S1",
+        "originator": "工业和信息化部（2019-11-11 发布，2020-01-01 实施）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "notes": "区间 18～27 ℃ 按两端记；A+ 级同值。「A/B/C 通用」指四级共用一格。 通信行业标准（YD/T），分级为 A+/A/B/C 四级，与 GB 50174 的 A/B/C 同名但出自不同标准、判定条款不同，不可互换。A+ 级 tier 无取值，不记（缺口）。"
+    },
+    {
+      "fact_id": "ydt5235-2019-inlet-temp-upper",
+      "metric_id": "room_air_temperature",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5235-2019",
+        "label": "YD/T 5235—2019《数据中心基础设施工程技术规范》"
+      },
+      "value": 27.0,
+      "unit": "℃",
+      "caliber": {
+        "parameter": "冷通道或机柜进风温度",
+        "tier": "A/B/C 通用",
+        "bound_sense": "不大于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2019-11",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "04f15373b7e85435666a9166311b0161ece91c6246a91f04c2871f0d594bbe65",
+        "local_file": "YD T5235-2019 数据中心基础设施工程技术规范.pdf",
+        "locator": "PDF 第 75 页（页码 62）表 B.1 续表·环境要求：「机架进风温度 18～27 ℃」A+ 至 C 级通栏",
+        "grade": "S1",
+        "originator": "工业和信息化部（2019-11-11 发布，2020-01-01 实施）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "notes": "区间 18～27 ℃ 按两端记；A+ 级同值。 通信行业标准（YD/T），分级为 A+/A/B/C 四级，与 GB 50174 的 A/B/C 同名但出自不同标准、判定条款不同，不可互换。A+ 级 tier 无取值，不记（缺口）。"
+    },
+    {
+      "fact_id": "ydt5235-2019-dewpoint-lower",
+      "metric_id": "room_air_temperature",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5235-2019",
+        "label": "YD/T 5235—2019《数据中心基础设施工程技术规范》"
+      },
+      "value": 5.5,
+      "unit": "℃",
+      "caliber": {
+        "parameter": "露点温度",
+        "tier": "A/B/C 通用",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2019-11",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "04f15373b7e85435666a9166311b0161ece91c6246a91f04c2871f0d594bbe65",
+        "local_file": "YD T5235-2019 数据中心基础设施工程技术规范.pdf",
+        "locator": "PDF 第 75 页（页码 62）表 B.1 续表·环境要求：「主机房相对湿度 露点温度 5.5～15 ℃且相对湿度不大于 60%」A+ 至 C 级通栏，备注「不应结露」",
+        "grade": "S1",
+        "originator": "工业和信息化部（2019-11-11 发布，2020-01-01 实施）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "notes": "露点区间按两端记。同表电力室温度 20～30 ℃、相对湿度 35%～75%，本指标无房间维度，不记。 通信行业标准（YD/T），分级为 A+/A/B/C 四级，与 GB 50174 的 A/B/C 同名但出自不同标准、判定条款不同，不可互换。A+ 级 tier 无取值，不记（缺口）。"
+    },
+    {
+      "fact_id": "ydt5235-2019-dewpoint-upper",
+      "metric_id": "room_air_temperature",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5235-2019",
+        "label": "YD/T 5235—2019《数据中心基础设施工程技术规范》"
+      },
+      "value": 15.0,
+      "unit": "℃",
+      "caliber": {
+        "parameter": "露点温度",
+        "tier": "A/B/C 通用",
+        "bound_sense": "不大于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2019-11",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "04f15373b7e85435666a9166311b0161ece91c6246a91f04c2871f0d594bbe65",
+        "local_file": "YD T5235-2019 数据中心基础设施工程技术规范.pdf",
+        "locator": "PDF 第 75 页（页码 62）表 B.1 续表·环境要求：「主机房相对湿度 露点温度 5.5～15 ℃且相对湿度不大于 60%」A+ 至 C 级通栏",
+        "grade": "S1",
+        "originator": "工业和信息化部（2019-11-11 发布，2020-01-01 实施）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "notes": "露点区间按两端记。 通信行业标准（YD/T），分级为 A+/A/B/C 四级，与 GB 50174 的 A/B/C 同名但出自不同标准、判定条款不同，不可互换。A+ 级 tier 无取值，不记（缺口）。"
+    },
+    {
+      "fact_id": "ydt5235-2019-rh-max",
+      "metric_id": "room_relative_humidity",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5235-2019",
+        "label": "YD/T 5235—2019《数据中心基础设施工程技术规范》"
+      },
+      "value": 60.0,
+      "unit": "%",
+      "caliber": {
+        "tier": "A/B/C 通用",
+        "bound_sense": "不大于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2019-11",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "04f15373b7e85435666a9166311b0161ece91c6246a91f04c2871f0d594bbe65",
+        "local_file": "YD T5235-2019 数据中心基础设施工程技术规范.pdf",
+        "locator": "PDF 第 75 页（页码 62）表 B.1 续表·环境要求：「主机房相对湿度 露点温度 5.5～15 ℃且相对湿度不大于 60%」A+ 至 C 级通栏",
+        "grade": "S1",
+        "originator": "工业和信息化部（2019-11-11 发布，2020-01-01 实施）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "notes": "主机房相对湿度上限。 通信行业标准（YD/T），分级为 A+/A/B/C 四级，与 GB 50174 的 A/B/C 同名但出自不同标准、判定条款不同，不可互换。A+ 级 tier 无取值，不记（缺口）。"
+    },
+    {
+      "fact_id": "ydt5235-2019-floorload-main",
+      "metric_id": "room_floor_load",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5235-2019",
+        "label": "YD/T 5235—2019《数据中心基础设施工程技术规范》"
+      },
+      "value": 10.0,
+      "unit": "kN/㎡",
+      "caliber": {
+        "room_type": "主机房",
+        "basis": "规范最低",
+        "region": "CN",
+        "tier": "A/B/C 通用",
+        "build_type": "未注明"
+      },
+      "as_of": "2019-11",
+      "bound": "point",
+      "evidence": {
+        "sha256": "04f15373b7e85435666a9166311b0161ece91c6246a91f04c2871f0d594bbe65",
+        "local_file": "YD T5235-2019 数据中心基础设施工程技术规范.pdf",
+        "locator": "PDF 第 76 页（页码 63）表 B.1 续表·建筑与结构：「主机房活荷载标准值（kN·m⁻²） 10」A+ 至 C 级通栏，备注「根据机柜的摆放密度确定荷载值」",
+        "grade": "S1",
+        "originator": "工业和信息化部（2019-11-11 发布，2020-01-01 实施）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "notes": "GB 50174—2017 同项为 8～12。basis 记「规范最低」：YD/T 是通信行业标准，既非国标也非运营商企标，两个细分取值都不适用（缺口）。同表高/低压配电室 10、监控中心 6（room_type 无对应取值）未记；变压器室、发电机房按设备重量确定。 通信行业标准（YD/T），分级为 A+/A/B/C 四级，与 GB 50174 的 A/B/C 同名但出自不同标准、判定条款不同，不可互换。A+ 级 tier 无取值，不记（缺口）。"
+    },
+    {
+      "fact_id": "ydt5235-2019-floorload-main-hanging",
+      "metric_id": "room_floor_load",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5235-2019",
+        "label": "YD/T 5235—2019《数据中心基础设施工程技术规范》"
+      },
+      "value": 2.0,
+      "unit": "kN/㎡",
+      "caliber": {
+        "room_type": "主机房吊挂荷载",
+        "basis": "规范最低",
+        "region": "CN",
+        "tier": "A/B/C 通用",
+        "build_type": "未注明"
+      },
+      "as_of": "2019-11",
+      "bound": "point",
+      "evidence": {
+        "sha256": "04f15373b7e85435666a9166311b0161ece91c6246a91f04c2871f0d594bbe65",
+        "local_file": "YD T5235-2019 数据中心基础设施工程技术规范.pdf",
+        "locator": "PDF 第 76 页（页码 63）表 B.1 续表·建筑与结构：「主机房吊挂活荷载标准值（kN·m⁻²） 2.0」A+ 至 C 级通栏",
+        "grade": "S1",
+        "originator": "工业和信息化部（2019-11-11 发布，2020-01-01 实施）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "notes": "吊挂荷载与楼面活荷载受力方向不同，勿与楼面值比较。basis 记「规范最低」：YD/T 是通信行业标准，既非国标也非运营商企标，两个细分取值都不适用（缺口）。同表高/低压配电室 10、监控中心 6（room_type 无对应取值）未记；变压器室、发电机房按设备重量确定。 通信行业标准（YD/T），分级为 A+/A/B/C 四级，与 GB 50174 的 A/B/C 同名但出自不同标准、判定条款不同，不可互换。A+ 级 tier 无取值，不记（缺口）。"
+    },
+    {
+      "fact_id": "ydt5235-2019-floorload-battery",
+      "metric_id": "room_floor_load",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5235-2019",
+        "label": "YD/T 5235—2019《数据中心基础设施工程技术规范》"
+      },
+      "value": 16.0,
+      "unit": "kN/㎡",
+      "caliber": {
+        "room_type": "电池室",
+        "basis": "规范最低",
+        "region": "CN",
+        "tier": "A/B/C 通用",
+        "build_type": "未注明"
+      },
+      "as_of": "2019-11",
+      "bound": "point",
+      "evidence": {
+        "sha256": "04f15373b7e85435666a9166311b0161ece91c6246a91f04c2871f0d594bbe65",
+        "local_file": "YD T5235-2019 数据中心基础设施工程技术规范.pdf",
+        "locator": "PDF 第 76 页（页码 63）表 B.1 续表·建筑与结构：「电力电池室活荷载标准值（kN·m⁻²） 16」A+ 至 C 级通栏，备注「电池四层双列摆放」",
+        "grade": "S1",
+        "originator": "工业和信息化部（2019-11-11 发布，2020-01-01 实施）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "notes": "原文房间名「电力电池室」。basis 记「规范最低」：YD/T 是通信行业标准，既非国标也非运营商企标，两个细分取值都不适用（缺口）。同表高/低压配电室 10、监控中心 6（room_type 无对应取值）未记；变压器室、发电机房按设备重量确定。 通信行业标准（YD/T），分级为 A+/A/B/C 四级，与 GB 50174 的 A/B/C 同名但出自不同标准、判定条款不同，不可互换。A+ 级 tier 无取值，不记（缺口）。"
+    },
+    {
+      "fact_id": "ydt5235-2019-floorload-cylinder",
+      "metric_id": "room_floor_load",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5235-2019",
+        "label": "YD/T 5235—2019《数据中心基础设施工程技术规范》"
+      },
+      "value": 10.0,
+      "unit": "kN/㎡",
+      "caliber": {
+        "room_type": "钢瓶间",
+        "basis": "规范最低",
+        "region": "CN",
+        "tier": "A/B/C 通用",
+        "build_type": "未注明"
+      },
+      "as_of": "2019-11",
+      "bound": "point",
+      "evidence": {
+        "sha256": "04f15373b7e85435666a9166311b0161ece91c6246a91f04c2871f0d594bbe65",
+        "local_file": "YD T5235-2019 数据中心基础设施工程技术规范.pdf",
+        "locator": "PDF 第 76 页（页码 63）表 B.1 续表·建筑与结构：「钢瓶间活荷载标准值（kN·m⁻²） 10」A+ 至 C 级通栏",
+        "grade": "S1",
+        "originator": "工业和信息化部（2019-11-11 发布，2020-01-01 实施）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "notes": "basis 记「规范最低」：YD/T 是通信行业标准，既非国标也非运营商企标，两个细分取值都不适用（缺口）。同表高/低压配电室 10、监控中心 6（room_type 无对应取值）未记；变压器室、发电机房按设备重量确定。 通信行业标准（YD/T），分级为 A+/A/B/C 四级，与 GB 50174 的 A/B/C 同名但出自不同标准、判定条款不同，不可互换。A+ 级 tier 无取值，不记（缺口）。"
+    },
+    {
+      "fact_id": "ydt5235-2019-floorload-emshield",
+      "metric_id": "room_floor_load",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5235-2019",
+        "label": "YD/T 5235—2019《数据中心基础设施工程技术规范》"
+      },
+      "value": 10.0,
+      "unit": "kN/㎡",
+      "caliber": {
+        "room_type": "电磁屏蔽室",
+        "basis": "规范最低",
+        "region": "CN",
+        "tier": "A/B/C 通用",
+        "build_type": "未注明"
+      },
+      "as_of": "2019-11",
+      "bound": "point",
+      "evidence": {
+        "sha256": "04f15373b7e85435666a9166311b0161ece91c6246a91f04c2871f0d594bbe65",
+        "local_file": "YD T5235-2019 数据中心基础设施工程技术规范.pdf",
+        "locator": "PDF 第 76 页（页码 63）表 B.1 续表·建筑与结构：「电磁屏蔽室活荷载标准值（kN·m⁻²） 10」A+ 至 C 级通栏",
+        "grade": "S1",
+        "originator": "工业和信息化部（2019-11-11 发布，2020-01-01 实施）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "notes": "basis 记「规范最低」：YD/T 是通信行业标准，既非国标也非运营商企标，两个细分取值都不适用（缺口）。同表高/低压配电室 10、监控中心 6（room_type 无对应取值）未记；变压器室、发电机房按设备重量确定。 通信行业标准（YD/T），分级为 A+/A/B/C 四级，与 GB 50174 的 A/B/C 同名但出自不同标准、判定条款不同，不可互换。A+ 级 tier 无取值，不记（缺口）。"
+    },
+    {
+      "fact_id": "ydt5235-2019-cooling-water-a",
+      "metric_id": "backup_autonomy",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5235-2019",
+        "label": "YD/T 5235—2019《数据中心基础设施工程技术规范》"
+      },
+      "value": 720.0,
+      "unit": "分钟",
+      "caliber": {
+        "backup_type": "蓄水池",
+        "tier": "A 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2019-11",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "04f15373b7e85435666a9166311b0161ece91c6246a91f04c2871f0d594bbe65",
+        "local_file": "YD T5235-2019 数据中心基础设施工程技术规范.pdf",
+        "locator": "PDF 第 77 页（页码 64）表 B.1 续表·空气调节：「冷却塔补水存储量」A+ 级 12 h，A 级 12 h，B/C 级 —；备注「当外部供水时间有保障时，存储量仅需大于外部供水时间」「应防止补水池微生物滋生」",
+        "grade": "S1",
+        "originator": "工业和信息化部（2019-11-11 发布，2020-01-01 实施）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "notes": "原文 12 h，换算 720 分钟。 通信行业标准（YD/T），分级为 A+/A/B/C 四级，与 GB 50174 的 A/B/C 同名但出自不同标准、判定条款不同，不可互换。A+ 级 tier 无取值，不记（缺口）。"
+    },
+    {
+      "fact_id": "ydt5235-2019-genset-fuel-a-lower",
+      "metric_id": "backup_autonomy",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5235-2019",
+        "label": "YD/T 5235—2019《数据中心基础设施工程技术规范》"
+      },
+      "value": 240.0,
+      "unit": "分钟",
+      "caliber": {
+        "backup_type": "柴发燃油储存",
+        "tier": "A 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2019-11",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "04f15373b7e85435666a9166311b0161ece91c6246a91f04c2871f0d594bbe65",
+        "local_file": "YD T5235-2019 数据中心基础设施工程技术规范.pdf",
+        "locator": "PDF 第 78 页（页码 65）表 B.1 续表·电气技术：「自备发电机组的燃料存储量」A+ 级 满足 12 h，并签供油协议；A 级、B 级 满足 4～8 h，并签供油协议；C 级 —",
+        "grade": "S1",
+        "originator": "工业和信息化部（2019-11-11 发布，2020-01-01 实施）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "notes": "原文「满足 4～8 h」按区间两端记（4 h = 240 分钟、8 h = 480 分钟）。注意 GB 50174—2017 A 级为 12 h，本标准 A 级仅 4～8 h，12 h 对应的是 A+ 级。 通信行业标准（YD/T），分级为 A+/A/B/C 四级，与 GB 50174 的 A/B/C 同名但出自不同标准、判定条款不同，不可互换。A+ 级 tier 无取值，不记（缺口）。"
+    },
+    {
+      "fact_id": "ydt5235-2019-genset-fuel-a-upper",
+      "metric_id": "backup_autonomy",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5235-2019",
+        "label": "YD/T 5235—2019《数据中心基础设施工程技术规范》"
+      },
+      "value": 480.0,
+      "unit": "分钟",
+      "caliber": {
+        "backup_type": "柴发燃油储存",
+        "tier": "A 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2019-11",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "04f15373b7e85435666a9166311b0161ece91c6246a91f04c2871f0d594bbe65",
+        "local_file": "YD T5235-2019 数据中心基础设施工程技术规范.pdf",
+        "locator": "PDF 第 78 页（页码 65）表 B.1 续表·电气技术：「自备发电机组的燃料存储量」A+ 级 满足 12 h，并签供油协议；A 级、B 级 满足 4～8 h，并签供油协议；C 级 —",
+        "grade": "S1",
+        "originator": "工业和信息化部（2019-11-11 发布，2020-01-01 实施）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "notes": "原文「满足 4～8 h」按区间两端记（4 h = 240 分钟、8 h = 480 分钟）。注意 GB 50174—2017 A 级为 12 h，本标准 A 级仅 4～8 h，12 h 对应的是 A+ 级。 通信行业标准（YD/T），分级为 A+/A/B/C 四级，与 GB 50174 的 A/B/C 同名但出自不同标准、判定条款不同，不可互换。A+ 级 tier 无取值，不记（缺口）。"
+    },
+    {
+      "fact_id": "ydt5235-2019-genset-fuel-b-lower",
+      "metric_id": "backup_autonomy",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5235-2019",
+        "label": "YD/T 5235—2019《数据中心基础设施工程技术规范》"
+      },
+      "value": 240.0,
+      "unit": "分钟",
+      "caliber": {
+        "backup_type": "柴发燃油储存",
+        "tier": "B 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2019-11",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "04f15373b7e85435666a9166311b0161ece91c6246a91f04c2871f0d594bbe65",
+        "local_file": "YD T5235-2019 数据中心基础设施工程技术规范.pdf",
+        "locator": "PDF 第 78 页（页码 65）表 B.1 续表·电气技术：「自备发电机组的燃料存储量」A+ 级 满足 12 h，并签供油协议；A 级、B 级 满足 4～8 h，并签供油协议；C 级 —",
+        "grade": "S1",
+        "originator": "工业和信息化部（2019-11-11 发布，2020-01-01 实施）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "notes": "原文「满足 4～8 h」按区间两端记（4 h = 240 分钟、8 h = 480 分钟）。注意 GB 50174—2017 A 级为 12 h，本标准 A 级仅 4～8 h，12 h 对应的是 A+ 级。 通信行业标准（YD/T），分级为 A+/A/B/C 四级，与 GB 50174 的 A/B/C 同名但出自不同标准、判定条款不同，不可互换。A+ 级 tier 无取值，不记（缺口）。"
+    },
+    {
+      "fact_id": "ydt5235-2019-genset-fuel-b-upper",
+      "metric_id": "backup_autonomy",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5235-2019",
+        "label": "YD/T 5235—2019《数据中心基础设施工程技术规范》"
+      },
+      "value": 480.0,
+      "unit": "分钟",
+      "caliber": {
+        "backup_type": "柴发燃油储存",
+        "tier": "B 级",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2019-11",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "04f15373b7e85435666a9166311b0161ece91c6246a91f04c2871f0d594bbe65",
+        "local_file": "YD T5235-2019 数据中心基础设施工程技术规范.pdf",
+        "locator": "PDF 第 78 页（页码 65）表 B.1 续表·电气技术：「自备发电机组的燃料存储量」A+ 级 满足 12 h，并签供油协议；A 级、B 级 满足 4～8 h，并签供油协议；C 级 —",
+        "grade": "S1",
+        "originator": "工业和信息化部（2019-11-11 发布，2020-01-01 实施）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "notes": "原文「满足 4～8 h」按区间两端记（4 h = 240 分钟、8 h = 480 分钟）。注意 GB 50174—2017 A 级为 12 h，本标准 A 级仅 4～8 h，12 h 对应的是 A+ 级。 通信行业标准（YD/T），分级为 A+/A/B/C 四级，与 GB 50174 的 A/B/C 同名但出自不同标准、判定条款不同，不可互换。A+ 级 tier 无取值，不记（缺口）。"
+    },
+    {
+      "fact_id": "ydt5235-2019-battery-backup-a",
+      "metric_id": "backup_autonomy",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5235-2019",
+        "label": "YD/T 5235—2019《数据中心基础设施工程技术规范》"
+      },
+      "value": 15.0,
+      "unit": "分钟",
+      "caliber": {
+        "backup_type": "UPS 蓄电池",
+        "tier": "A 级",
+        "bound_sense": "设计值",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2019-11",
+      "bound": "point",
+      "evidence": {
+        "sha256": "04f15373b7e85435666a9166311b0161ece91c6246a91f04c2871f0d594bbe65",
+        "local_file": "YD T5235-2019 数据中心基础设施工程技术规范.pdf",
+        "locator": "PDF 第 79 页（页码 66）表 B.1 续表·电气技术：「电池后备时间」A+ 级 15 min，A 级 15 min，B 级 15 min，C 级 根据实际要求确定",
+        "grade": "S1",
+        "originator": "工业和信息化部（2019-11-11 发布，2020-01-01 实施）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "notes": "原文 15 min 未写「不小于」，bound_sense 记设计值。该行对交流与直流不间断电源系统通用，此处按 UPS 蓄电池记。 通信行业标准（YD/T），分级为 A+/A/B/C 四级，与 GB 50174 的 A/B/C 同名但出自不同标准、判定条款不同，不可互换。A+ 级 tier 无取值，不记（缺口）。"
+    },
+    {
+      "fact_id": "ydt5235-2019-battery-backup-b",
+      "metric_id": "backup_autonomy",
+      "entity": {
+        "type": "policy",
+        "id": "yd-t-5235-2019",
+        "label": "YD/T 5235—2019《数据中心基础设施工程技术规范》"
+      },
+      "value": 15.0,
+      "unit": "分钟",
+      "caliber": {
+        "backup_type": "UPS 蓄电池",
+        "tier": "B 级",
+        "bound_sense": "设计值",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2019-11",
+      "bound": "point",
+      "evidence": {
+        "sha256": "04f15373b7e85435666a9166311b0161ece91c6246a91f04c2871f0d594bbe65",
+        "local_file": "YD T5235-2019 数据中心基础设施工程技术规范.pdf",
+        "locator": "PDF 第 79 页（页码 66）表 B.1 续表·电气技术：「电池后备时间」A+ 级 15 min，A 级 15 min，B 级 15 min，C 级 根据实际要求确定",
+        "grade": "S1",
+        "originator": "工业和信息化部（2019-11-11 发布，2020-01-01 实施）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "工信部",
+      "notes": "原文 15 min 未写「不小于」，bound_sense 记设计值。该行对交流与直流不间断电源系统通用，此处按 UPS 蓄电池记。 通信行业标准（YD/T），分级为 A+/A/B/C 四级，与 GB 50174 的 A/B/C 同名但出自不同标准、判定条款不同，不可互换。A+ 级 tier 无取值，不记（缺口）。"
     }
   ]
 }
