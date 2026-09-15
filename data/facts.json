@@ -213841,6 +213841,72 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "同比 +62%，占 2/3；与 sic2311-caict-cn-ai-compute-2022（178.5）同一序列。"
+    },
+    {
+      "fact_id": "ghzq2511-sa-us-dc-it-additions-2025e",
+      "metric_id": "dc_capacity_additions_annual",
+      "entity": {
+        "type": "region",
+        "id": "us-dc",
+        "label": "美国数据中心"
+      },
+      "asserter": "SemiAnalysis",
+      "value": 9.44,
+      "unit": "GW/年",
+      "caliber": {
+        "power_scope": "IT 负载",
+        "facility_type": "数据中心整体",
+        "scenario": "单一情景",
+        "region": "US",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "93fc798f46a66a757be860b9fe8893776a0065374599bbc42204f1883598566b",
+        "local_file": "国海证券：AIDC配储专题报告：行业需求高景气，配储趋势下提振储能新增长.pdf",
+        "locator": "PDF 第 21 页「2.4 预计2025-2030年美国数据中心机房侧配储需求CAGR达62%」：「SemiAnalysis预计美国数据中心IT侧功耗有望从2025年新增9.44GW提升至2028年16.48GW」；表「美国数据中心机房侧作为调峰功能配置储能需求测算」IT侧功耗 2025–2030：9.44/13.92/15.31/16.48/19.78/23.73 GW",
+        "grade": "S4",
+        "originator": "SemiAnalysis（经国海证券《AIDC配储专题报告》2025-11-21 转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "SemiAnalysis 预测发布时点未注明，按转引报告年份取 @2025。",
+      "corroboration": "待交叉验证",
+      "notes": "正文明示归 SemiAnalysis 的仅 2025 与 2028 两个端点；表中 2026/2027/2029/2030 值（13.92/15.31/19.78/23.73）归属（SA 或国海外推）未分，未录。与库内伯恩斯坦/国信美国新增口径不同。"
+    },
+    {
+      "fact_id": "ghzq2511-sa-us-dc-it-additions-2028e",
+      "metric_id": "dc_capacity_additions_annual",
+      "entity": {
+        "type": "region",
+        "id": "us-dc",
+        "label": "美国数据中心"
+      },
+      "asserter": "SemiAnalysis",
+      "value": 16.48,
+      "unit": "GW/年",
+      "caliber": {
+        "power_scope": "IT 负载",
+        "facility_type": "数据中心整体",
+        "scenario": "单一情景",
+        "region": "US",
+        "basis": "预测"
+      },
+      "as_of": "2028E@2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "93fc798f46a66a757be860b9fe8893776a0065374599bbc42204f1883598566b",
+        "local_file": "国海证券：AIDC配储专题报告：行业需求高景气，配储趋势下提振储能新增长.pdf",
+        "locator": "PDF 第 21 页「2.4 预计2025-2030年美国数据中心机房侧配储需求CAGR达62%」：「SemiAnalysis预计美国数据中心IT侧功耗有望从2025年新增9.44GW提升至2028年16.48GW」；表「美国数据中心机房侧作为调峰功能配置储能需求测算」IT侧功耗 2025–2030：9.44/13.92/15.31/16.48/19.78/23.73 GW",
+        "grade": "S4",
+        "originator": "SemiAnalysis（经国海证券《AIDC配储专题报告》2025-11-21 转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "SemiAnalysis 预测发布时点未注明，按转引报告年份取 @2025。",
+      "corroboration": "待交叉验证",
+      "notes": "正文明示归 SemiAnalysis 的仅 2025 与 2028 两个端点；表中 2026/2027/2029/2030 值（13.92/15.31/19.78/23.73）归属（SA 或国海外推）未分，未录。与库内伯恩斯坦/国信美国新增口径不同。"
     }
   ]
 }
