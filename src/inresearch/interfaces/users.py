@@ -12,6 +12,15 @@
 
 规则（实现全在 auth.py，此处只是壳）：首个用户强制 admin；其余默认 intern；
 最后一个 admin 不可降级/删除；密码只显示一次；data/users.json 不进 git。
+
+**必须在容器内执行**：容器带 `INRESEARCH_RUNTIME_ROOT=/runtime`，账号表解析到
+`/srv/inresearch.ai/data/users.json`（网站读的就是它）。在宿主机 `/srv/sources/inresearch.ai`
+直接跑 `python3 manage.py users ...` 写的是源码 checkout 自己的 `data/users.json`，
+网站永远读不到——改了等于没改。`users list` 会打印实际文件位置，先看再改。
+`passwd` 不带 `--password` 会生成随机密码，只打印一次；记不住就再跑一次。
+
+长期有效的管理员密码不靠这里：由容器环境 `HUB_ADMIN_USERNAME` / `HUB_ADMIN_PASSWORD`
+声明（infra `$KIT/.env.inresearch`），`serve` 启动即对齐账号表，见 auth.py 模块说明。
 零依赖。
 """
 import argparse
@@ -62,7 +71,7 @@ def main():
             return
         for name, u in sorted(users.items()):
             print(f"  {name:24} {u.get('role', 'member'):8} 创建于 {u.get('created', '?')}")
-        print(f"共 {len(users)} 人")
+        print(f"共 {len(users)} 人（文件位置：{auth.USERS_FILE}）")
 
 
 if __name__ == "__main__":
