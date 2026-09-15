@@ -78,8 +78,10 @@ class DeclaredAdminServerTests(unittest.TestCase):
     def test_serve_aligns_the_runtime_store_and_never_logs_the_value(self):
         with tempfile.TemporaryDirectory() as directory:
             runtime = Path(directory)
+            # Unbuffered so the startup line reaches server.log before terminate(); CI does not set it.
             env = dict(os.environ, INRESEARCH_RUNTIME_ROOT=str(runtime), INRESEARCH_PROJECT_ROOT=str(REPO),
-                       PYTHONPATH=str(REPO / 'src'), PYTHONDONTWRITEBYTECODE='1', HUB_AUTH='on', HUB_HOST='127.0.0.1',
+                       PYTHONPATH=str(REPO / 'src'), PYTHONDONTWRITEBYTECODE='1', PYTHONUNBUFFERED='1',
+                       HUB_AUTH='on', HUB_HOST='127.0.0.1',
                        HUB_ADMIN_USERNAME='admin', HUB_ADMIN_PASSWORD='declared-only-for-this-test-4')
             # The store already exists with a different admin password, as after a stray reset.
             stale = "from inresearch.interfaces import auth; assert auth.add_user('admin', 'stale-secret-1', 'admin')[0]"
@@ -102,6 +104,9 @@ class DeclaredAdminServerTests(unittest.TestCase):
                         if process.poll() is not None:
                             self.fail(log_path.read_text())
                         time.sleep(.05)
+                # The alignment is recorded before the server binds; task_auth.log keeps
+                # only the latest event, so read it before any login overwrites it.
+                self.assertIn('部署声明的管理员 admin：password', (runtime / 'logs/task_auth.log').read_text())
 
                 def login(password):
                     body = json.dumps({'username': 'admin', 'password': password}).encode()
@@ -121,7 +126,7 @@ class DeclaredAdminServerTests(unittest.TestCase):
             self.assertEqual(sorted(stored), ['admin'])
             self.assertEqual(stored['admin']['role'], 'admin')
             written = log_path.read_text() + (runtime / 'logs/task_auth.log').read_text()
-            self.assertIn('部署声明的管理员 admin：password', written)
+            self.assertIn('部署声明的管理员 admin：password', log_path.read_text())
             self.assertNotIn('declared-only-for-this-test-4', written)
             self.assertNotIn('declared-only-for-this-test-4', (runtime / 'data/users.json').read_text())
 
