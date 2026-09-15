@@ -25,6 +25,7 @@ from inresearch.adapters import office as OFFICE
 import inresearch.adapters.office_container as office_container
 from inresearch.materials import triage as L1
 from inresearch.workflow import terminal_batch as PK
+from inresearch.workflow import l1_batch as L1B
 
 
 def write(path, rows):
@@ -202,13 +203,13 @@ class PreviewBudgetTests(unittest.TestCase):
         base = Path(self.temp.name)
         self.results = base / 'l1_results.jsonl'
         self.results.write_text('', encoding='utf-8')
-        self._saved = (L1.RESULTS, PK.BATCH_DIR, PK.pending, L1.prepare)
+        self._saved = (L1.RESULTS, PK.BATCH_DIR, L1B.pending, L1.prepare)
         L1.RESULTS = self.results
         PK.BATCH_DIR = base / 'batches'
         L1.prepare = self.fake_prepare
 
     def tearDown(self):
-        (L1.RESULTS, PK.BATCH_DIR, PK.pending, L1.prepare) = self._saved
+        (L1.RESULTS, PK.BATCH_DIR, L1B.pending, L1.prepare) = self._saved
         self.temp.cleanup()
 
     def fake_prepare(self, item):
@@ -218,7 +219,7 @@ class PreviewBudgetTests(unittest.TestCase):
 
     def packed(self, suffix):
         items = [{'sha256': '%064x' % 1, 'rel': 'f' + suffix, 'suffix': suffix}]
-        PK.pending = lambda cohort='new', shas=None: list(items)
+        L1B.pending = lambda cohort='new', shas=None: list(items)
         out = io.StringIO()
         with redirect_stdout(out):
             PK.cmd_pack(types.SimpleNamespace(limit=1, workers=1, out=None, redo=True))
@@ -226,13 +227,13 @@ class PreviewBudgetTests(unittest.TestCase):
         return rows[0]['preview']
 
     def test_office_gets_the_wider_window(self):
-        self.assertEqual(len(self.packed('.xlsx')), PK.OFFICE_PREVIEW_CHARS)
+        self.assertEqual(len(self.packed('.xlsx')), L1B.OFFICE_PREVIEW_CHARS)
 
     def test_everything_else_keeps_the_narrow_one(self):
-        self.assertEqual(len(self.packed('.pdf')), PK.PREVIEW_CHARS)
+        self.assertEqual(len(self.packed('.pdf')), L1B.PREVIEW_CHARS)
 
     def test_the_wider_window_is_actually_wider(self):
-        self.assertGreater(PK.OFFICE_PREVIEW_CHARS, PK.PREVIEW_CHARS)
+        self.assertGreater(L1B.OFFICE_PREVIEW_CHARS, L1B.PREVIEW_CHARS)
 
 
 class MovedIndexConcurrencyTests(unittest.TestCase):

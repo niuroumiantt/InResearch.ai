@@ -219,10 +219,10 @@ def cmd_pack(a):
     BATCH_DIR.mkdir(parents=True, exist_ok=True)
     out = []; l0 = 0; failed = []; unchanged = 0
     cohort = getattr(a, 'cohort', None) or ('blind' if getattr(a, 'redo', False) else 'new')
-    if cohort not in COHORTS:
-        raise SystemExit('cohort must be one of %s' % ' / '.join(COHORTS))
+    if cohort not in L1B.COHORTS:
+        raise SystemExit('cohort must be one of %s' % ' / '.join(L1B.COHORTS))
     shas = [x.strip() for x in (getattr(a, 'sha', None) or '').split(',') if x.strip()]
-    base = last_results()
+    base = L1B.last_results()
     items = L1B.pending(cohort, shas)
     position = 0
     while len(out) < a.limit and position < len(items):
@@ -468,7 +468,7 @@ def similarity(left: set, right: set) -> float:
 
 
 def scored_rows():
-    return [row for row in last_results().values() if row.get('status') == 'ok']
+    return [row for row in L1B.last_results().values() if row.get('status') == 'ok']
 
 
 def version_groups(rows, min_score=0, threshold=SIM_THRESHOLD):
@@ -559,7 +559,7 @@ def cmd_status(a):
     # old category alongside the current ones.  773 files were re-judged in the
     # Office pass, which put six extra documents in the 8-and-above bucket that
     # no longer belong there and inflated every category the re-read moved.
-    rows = last_results()
+    rows = L1B.last_results()
     cat = collections.Counter(r.get('category') for r in rows.values())
     sc = collections.Counter(r['score'] for r in rows.values() if r.get('score') is not None)
     superseded = 0
@@ -589,9 +589,9 @@ def cmd_status(a):
                       # Three cohorts that are not "unscored" but are not done
                       # either.  Without a number here the only way to learn
                       # how much re-judging is owed is to run a pack.
-                      '待重判_只看过文件名': len(blind_scored()),
-                      '待重判_读不到单元格时判的表格': len(judged_without_cells()),
-                      '待重判_出处未知且没读过文本框': len(judged_without_drawings())},
+                      '待重判_只看过文件名': len(L1B.blind_scored()),
+                      '待重判_读不到单元格时判的表格': len(L1B.judged_without_cells()),
+                      '待重判_出处未知且没读过文本框': len(L1B.judged_without_drawings())},
                      ensure_ascii=False))
     for k, v in cat.most_common(10): print(f'  {v:7d}  {k}')
     if sc: print('分数分布: ' + json.dumps({str(k): sc[k] for k in sorted(sc, reverse=True)}))
@@ -602,7 +602,7 @@ def main():
     p = s.add_parser('pack'); p.add_argument('--limit', type=int, default=40); p.add_argument('--out')
     p.add_argument('--redo', action='store_true',
                    help='等同 --cohort blind：重排只看文件名判过、现在能打开的文件')
-    p.add_argument('--cohort', choices=sorted(COHORTS),
+    p.add_argument('--cohort', choices=sorted(L1B.COHORTS),
                    help='new=未判过 / blind=只看文件名判过的 / cells=在读不到单元格时判过的表格')
     p.add_argument('--sha', help='重判指定的这几份（sha 前缀，逗号分隔），不论属于哪个批次')
     p.add_argument('--workers', type=int, default=4,

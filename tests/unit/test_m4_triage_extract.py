@@ -391,24 +391,24 @@ class CellsCohortTests(unittest.TestCase):
 
     def test_a_workbook_judged_before_the_fix_is_in_the_cohort(self):
         self.write([self.row('a' * 64)])
-        self.assertEqual(PK.judged_without_cells(), {'a' * 64})
+        self.assertEqual(L1B.judged_without_cells(), {'a' * 64})
 
     def test_a_workbook_judged_after_the_fix_is_not(self):
         self.write([self.row('b' * 64, meta={'sheets': 1, 'cells': 0})])
-        self.assertEqual(PK.judged_without_cells(), set())
+        self.assertEqual(L1B.judged_without_cells(), set())
 
     def test_documents_that_never_lost_anything_are_left_alone(self):
         """A .pdf and a .ppt were always read whole; only spreadsheets regressed."""
         self.write([self.row('c' * 64, suffix='.pdf'),
                     self.row('d' * 64, suffix='.ppt'),
                     self.row('e' * 64, suffix='.docx')])
-        self.assertEqual(PK.judged_without_cells(), set())
+        self.assertEqual(L1B.judged_without_cells(), set())
 
     def test_the_newest_row_decides(self):
         """record appends; a file already re-judged must not come back."""
         self.write([self.row('f' * 64),
                     self.row('f' * 64, meta={'sheets': 1, 'cells': 12})])
-        self.assertEqual(PK.judged_without_cells(), set())
+        self.assertEqual(L1B.judged_without_cells(), set())
 
     # -- the queue has to drain -------------------------------------------
 
@@ -439,7 +439,7 @@ class CellsCohortTests(unittest.TestCase):
     def test_and_it_leaves_the_cohort_so_the_queue_drains(self):
         """Otherwise it sits at the head of every future pack, forever."""
         self.pack({'sheets': 1, 'cells': 0})
-        self.assertEqual(PK.judged_without_cells(), set())
+        self.assertEqual(L1B.judged_without_cells(), set())
 
     def test_the_carried_row_keeps_the_old_verdict_and_says_why(self):
         self.pack({'sheets': 1, 'cells': 0})
@@ -694,43 +694,43 @@ class DrawingsCohortTests(unittest.TestCase):
 
     def test_an_unattributed_workbook_is_in_the_cohort(self):
         self.write([self.row('a' * 64)])
-        self.assertEqual(PK.judged_without_drawings(), {'a' * 64})
+        self.assertEqual(L1B.judged_without_drawings(), {'a' * 64})
 
     def test_an_attributed_one_is_not(self):
         """水印改不了已经知道的出处——重判它只是白读一遍。"""
         self.write([self.row('b' * 64, org='IDC')])
-        self.assertEqual(PK.judged_without_drawings(), set())
+        self.assertEqual(L1B.judged_without_drawings(), set())
 
     def test_an_empty_org_counts_as_unknown(self):
         self.write([self.row('c' * 64, org='   ')])
-        self.assertEqual(PK.judged_without_drawings(), {'c' * 64})
+        self.assertEqual(L1B.judged_without_drawings(), {'c' * 64})
 
     def test_a_workbook_already_read_for_drawings_is_not(self):
         self.write([self.row('d' * 64, meta={'sheets': 1, 'cells': 5,
                                              'drawing_lines': 0})])
-        self.assertEqual(PK.judged_without_drawings(), set())
+        self.assertEqual(L1B.judged_without_drawings(), set())
 
     def test_only_spreadsheets(self):
         """.ppt 和 .docx 的文本一直是整篇读的，没丢过文本框。"""
         self.write([self.row('e' * 64, suffix='.pdf'),
                     self.row('f' * 64, suffix='.ppt'),
                     self.row('01' + 'a' * 62, suffix='.docx')])
-        self.assertEqual(PK.judged_without_drawings(), set())
+        self.assertEqual(L1B.judged_without_drawings(), set())
 
     def test_the_newest_row_decides(self):
         self.write([self.row('02' + 'b' * 62),
                     self.row('02' + 'b' * 62, org='Global Semi Research',
                              meta={'sheets': 1, 'cells': 5, 'drawing_lines': 1})])
-        self.assertEqual(PK.judged_without_drawings(), set())
+        self.assertEqual(L1B.judged_without_drawings(), set())
 
     def test_a_declared_unrecoverable_org_is_still_in_the_cohort(self):
         """翻遍全文没找到署名的那个读者，对 drawing 一样是瞎的。"""
         self.write([self.row('03' + 'c' * 62, org_unrecoverable=True)])
-        self.assertEqual(PK.judged_without_drawings(), {'03' + 'c' * 62})
+        self.assertEqual(L1B.judged_without_drawings(), {'03' + 'c' * 62})
 
     def test_it_is_a_named_cohort(self):
-        self.assertIn('drawings', PK.COHORTS)
-        self.assertIs(PK.COHORTS['drawings'], PK.judged_without_drawings)
+        self.assertIn('drawings', L1B.COHORTS)
+        self.assertIs(L1B.COHORTS['drawings'], L1B.judged_without_drawings)
 
 
 if __name__ == '__main__':
