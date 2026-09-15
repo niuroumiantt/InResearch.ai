@@ -217293,6 +217293,67 @@
       "corroboration": "待交叉验证",
       "asserter": "UpScale AI",
       "notes": "FMS 2025（2025-08-07）UpScale AI 工程高级总监 Santhosh Thodupunoori 演讲，未注出处，数值与英伟达 Kyber NVL576 路线图（库内 ocp25lt-kyber-nvl576-rack-power 600kW）一致，很可能同源，不算互证。「2024 年 120 kW」为当期 NVL72 级别，库内已有多条；「1 MW prototypes」未给时点，不记。第 15 页另称「loads climb beyond 300 kW per rack」为泛述。"
+    },
+    {
+      "fact_id": "ocp24-bytedance-scheduled-fabric-prod-1280xpu",
+      "metric_id": "cluster_gpu_count",
+      "entity": {
+        "type": "project",
+        "id": "bytedance-scheduled-ethernet-fabric-cluster1",
+        "label": "字节跳动首个生产级 Scheduled Ethernet Fabric 训练集群（Jericho2C+/Ramon）"
+      },
+      "value": 1280.0,
+      "unit": "颗",
+      "caliber": {
+        "scope": "单集群实际部署",
+        "accelerator": "xPU（未注明型号）",
+        "region": "未披露",
+        "basis": "公司披露"
+      },
+      "as_of": "2024-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "9163bc8b83a625a17d94653eea070a91ecb67be8c6cad6fcb354bed9ec0bceca",
+        "local_file": "5277 - Insights from Production - Scheduled Ethernet Fabric in Large AI Training Clusters.pdf",
+        "locator": "第 7 页「The Journey to Scheduled Fabric」：「2024 June - First Scheduled Fabric with J2C+/Ramon in Production」；第 8 页「Architecture of The 1st Scheduled Fabric in Production」：「1280 xPUs cards at a speed of 400GE」「Two-layer Architecture」「4-Rail connection」「N+2 redundancy at Spine」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "字节跳动",
+      "notes": "OCP 2024 演讲，字节跳动高级网络架构师 Pengfei Huo 与 Broadcom 联合；as_of 取投产月份 2024-06。region 未披露：原文未写集群所在地。每卡 400GE。"
+    },
+    {
+      "fact_id": "ocp24-bytedance-ai-fabric-max-128k",
+      "metric_id": "cluster_gpu_count",
+      "entity": {
+        "type": "project",
+        "id": "bytedance-large-scale-ai-fabric",
+        "label": "字节跳动大规模 AI 训练网络（三层 RoCE 多平面架构）"
+      },
+      "value": 128000.0,
+      "unit": "颗",
+      "caliber": {
+        "scope": "单集群可扩展上限",
+        "accelerator": "GPU（未注明型号）",
+        "region": "未披露",
+        "basis": "架构宣称"
+      },
+      "as_of": "2024-10",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "94f3a31b9779cc90c9b4fed966df6dd6f4497761de83e2844799bae206b2d4d2",
+        "local_file": "5271 - Optimal path utilization for multi plane fabric design.pdf",
+        "locator": "第 4 页「Deployment Usecase And Topology」「Large Scale AI Fabric」：「Support max 128K GPUs」「Three tiers for large scale cluster」「RDMA over Converged Ethernet」「Rail-optimized network」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 OCP Global Summit 2024（2024-10）会期，文件夹「2024 OCP Global Summit」；幻灯片未写日期",
+      "corroboration": "待交叉验证",
+      "asserter": "字节跳动",
+      "notes": "「Support max 128K GPUs」为架构可扩展上限，按上界记；部署用例页署名 ChenChen Oi（Bytedance）。原文「128K」按 128,000 记（若指 2^17=131,072 则差 2.4%，[未核]）。region 未披露。"
     }
   ]
 }
