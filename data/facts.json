@@ -208025,6 +208025,70 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "仅 AI 模型训练直接产生的需求（头部四家云厂同时训练 4–6 个 GPT-4 量级模型、训练周期≤14 天），不含推理与通用网络；每套下一代 HGX H100 平台（127 台服务器 + 64 台交换机）2,556 个 800G 光模块。区间两端对应 4/6 个模型假设。"
+    },
+    {
+      "fact_id": "hcie2212-miit-cn-dc-racks-2022-06",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc-racks-inuse",
+        "label": "中国在用数据中心机架"
+      },
+      "asserter": "工信部",
+      "value": 590,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2022-06",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "89875d284c0d2399630648cd54086afedde74bbf7e076a8f885ab4d2bc84ea3c",
+        "local_file": "202212数据中心超融合以太技术白皮书(2022).pdf",
+        "locator": "PDF 第 5 页「前言/概述」：「根据工信部的数据，截至今年6月底，我国在用数据中心机架总规模超过590万标准机架，服务器规模约2000万台，算力总规模超过150EFlops，位居世界第二」",
+        "grade": "S4",
+        "originator": "工信部（经中国信通院云大所·华为《数据中心超融合以太技术白皮书（2022）》2022-12 转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文「截至今年6月底」，白皮书发布于 2022-12，as_of 取 2022-06。",
+      "corroboration": "待交叉验证",
+      "notes": "原文「超过」按下限录；同句服务器规模约 2,000 万台（无服务器保有量指标）。"
+    },
+    {
+      "fact_id": "hcie2212-miit-cn-compute-total-2022-06",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "工信部",
+      "value": 150,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "总算力",
+        "precision": "混合/未注明",
+        "area": "全国",
+        "status": "在用",
+        "region": "CN",
+        "basis": "官方统计"
+      },
+      "as_of": "2022-06",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "89875d284c0d2399630648cd54086afedde74bbf7e076a8f885ab4d2bc84ea3c",
+        "local_file": "202212数据中心超融合以太技术白皮书(2022).pdf",
+        "locator": "PDF 第 5 页「前言/概述」：「根据工信部的数据，截至今年6月底，我国在用数据中心机架总规模超过590万标准机架，服务器规模约2000万台，算力总规模超过150EFlops，位居世界第二」",
+        "grade": "S4",
+        "originator": "工信部（经中国信通院云大所·华为《数据中心超融合以太技术白皮书（2022）》2022-12 转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文「截至今年6月底」，白皮书发布于 2022-12，as_of 取 2022-06。",
+      "corroboration": "待交叉验证",
+      "notes": "原文「超过」按下限录；2023-06 为 197 EFLOPS（caict2403-cn-compute-total-2023-06）。"
     }
   ]
 }
