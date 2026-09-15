@@ -179976,6 +179976,418 @@
       "derivation": "原文未写统计时点；同报告算力数据均为「截至 2021 年底」，存力章节沿用同一评价年度，as_of 推定为 2021",
       "corroboration": "待交叉验证",
       "notes": "原文五省合述「均超过 35EB」，按各自下界记。"
+    },
+    {
+      "fact_id": "deloitte2411-global-dc-electricity-2022",
+      "metric_id": "dc_electricity_consumption",
+      "asserter": "德勤",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 333.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "第三方估算"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8dbc6e9f6eb14ed9e86a0f2e1cd2ab7f44cda91e486aedd860b314538ad4b92f",
+        "local_file": "20250727-德勤：2025东南亚数据中心与人工智能基础设施的战略机遇报告(20页).pdf",
+        "locator": "第 13 页 Figure 8「Global electricity consumption by data centres (2022-2030P)」（脚注 27 Deloitte, 19 November 2024「As generative AI asks for more power, data centers seek more reliable, cleaner energy solutions」）：2022 柱 = 333 TWh",
+        "grade": "S3",
+        "originator": "德勤（2024-11-19 文章），经德勤《Southeast Asia's data centres and AI infrastructure imperative》（2025）图 8 转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2022 年为历史年份但属德勤估算，basis 记第三方估算。正文称 2025–2030 五年间全球数据中心用电「could roughly double」。"
+    },
+    {
+      "fact_id": "deloitte2411-global-dc-power-share-2022",
+      "metric_id": "dc_power_share_of_grid",
+      "asserter": "德勤",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 1.3,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8dbc6e9f6eb14ed9e86a0f2e1cd2ab7f44cda91e486aedd860b314538ad4b92f",
+        "local_file": "20250727-德勤：2025东南亚数据中心与人工智能基础设施的战略机遇报告(20页).pdf",
+        "locator": "第 13 页 Figure 8「Global electricity consumption by data centres (2022-2030P)」（脚注 27 Deloitte, 19 November 2024「As generative AI asks for more power, data centers seek more reliable, cleaner energy solutions」）：2022 折线「Percentage of global electricity consumption」= 1.3%",
+        "grade": "S3",
+        "originator": "德勤（2024-11-19 文章），经德勤《Southeast Asia's data centres and AI infrastructure imperative》（2025）图 8 转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "分母为全球总用电量。"
+    },
+    {
+      "fact_id": "deloitte2411-global-dc-electricity-2025p",
+      "metric_id": "dc_electricity_consumption",
+      "asserter": "德勤",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 536.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2024-11",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8dbc6e9f6eb14ed9e86a0f2e1cd2ab7f44cda91e486aedd860b314538ad4b92f",
+        "local_file": "20250727-德勤：2025东南亚数据中心与人工智能基础设施的战略机遇报告(20页).pdf",
+        "locator": "第 13 页 Figure 8「Global electricity consumption by data centres (2022-2030P)」（脚注 27 Deloitte, 19 November 2024「As generative AI asks for more power, data centers seek more reliable, cleaner energy solutions」）：2025P 柱 = 536 TWh",
+        "grade": "S3",
+        "originator": "德勤（2024-11-19 文章），经德勤《Southeast Asia's data centres and AI infrastructure imperative》（2025）图 8 转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图注「P denotes predicted value」；vintage 取脚注所引德勤原文日期 2024-11。正文称 2025–2030 五年间全球数据中心用电「could roughly double」。"
+    },
+    {
+      "fact_id": "deloitte2411-global-dc-power-share-2025p",
+      "metric_id": "dc_power_share_of_grid",
+      "asserter": "德勤",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 2.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2024-11",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8dbc6e9f6eb14ed9e86a0f2e1cd2ab7f44cda91e486aedd860b314538ad4b92f",
+        "local_file": "20250727-德勤：2025东南亚数据中心与人工智能基础设施的战略机遇报告(20页).pdf",
+        "locator": "第 13 页 Figure 8「Global electricity consumption by data centres (2022-2030P)」（脚注 27 Deloitte, 19 November 2024「As generative AI asks for more power, data centers seek more reliable, cleaner energy solutions」）：2025P 折线「Percentage of global electricity consumption」= 2.0%",
+        "grade": "S3",
+        "originator": "德勤（2024-11-19 文章），经德勤《Southeast Asia's data centres and AI infrastructure imperative》（2025）图 8 转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "分母为全球总用电量。vintage 取脚注所引德勤原文日期 2024-11。"
+    },
+    {
+      "fact_id": "deloitte2411-global-dc-electricity-2026p",
+      "metric_id": "dc_electricity_consumption",
+      "asserter": "德勤",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 681.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2024-11",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8dbc6e9f6eb14ed9e86a0f2e1cd2ab7f44cda91e486aedd860b314538ad4b92f",
+        "local_file": "20250727-德勤：2025东南亚数据中心与人工智能基础设施的战略机遇报告(20页).pdf",
+        "locator": "第 13 页 Figure 8「Global electricity consumption by data centres (2022-2030P)」（脚注 27 Deloitte, 19 November 2024「As generative AI asks for more power, data centers seek more reliable, cleaner energy solutions」）：2026P 柱 = 681 TWh",
+        "grade": "S3",
+        "originator": "德勤（2024-11-19 文章），经德勤《Southeast Asia's data centres and AI infrastructure imperative》（2025）图 8 转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图注「P denotes predicted value」；vintage 取脚注所引德勤原文日期 2024-11。正文称 2025–2030 五年间全球数据中心用电「could roughly double」。"
+    },
+    {
+      "fact_id": "deloitte2411-global-dc-power-share-2026p",
+      "metric_id": "dc_power_share_of_grid",
+      "asserter": "德勤",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 2.5,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2024-11",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8dbc6e9f6eb14ed9e86a0f2e1cd2ab7f44cda91e486aedd860b314538ad4b92f",
+        "local_file": "20250727-德勤：2025东南亚数据中心与人工智能基础设施的战略机遇报告(20页).pdf",
+        "locator": "第 13 页 Figure 8「Global electricity consumption by data centres (2022-2030P)」（脚注 27 Deloitte, 19 November 2024「As generative AI asks for more power, data centers seek more reliable, cleaner energy solutions」）：2026P 折线「Percentage of global electricity consumption」= 2.5%",
+        "grade": "S3",
+        "originator": "德勤（2024-11-19 文章），经德勤《Southeast Asia's data centres and AI infrastructure imperative》（2025）图 8 转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "分母为全球总用电量。vintage 取脚注所引德勤原文日期 2024-11。"
+    },
+    {
+      "fact_id": "deloitte2411-global-dc-electricity-2030p",
+      "metric_id": "dc_electricity_consumption",
+      "asserter": "德勤",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 1065.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2024-11",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8dbc6e9f6eb14ed9e86a0f2e1cd2ab7f44cda91e486aedd860b314538ad4b92f",
+        "local_file": "20250727-德勤：2025东南亚数据中心与人工智能基础设施的战略机遇报告(20页).pdf",
+        "locator": "第 13 页 Figure 8「Global electricity consumption by data centres (2022-2030P)」（脚注 27 Deloitte, 19 November 2024「As generative AI asks for more power, data centers seek more reliable, cleaner energy solutions」）：2030P 柱 = 1065 TWh",
+        "grade": "S3",
+        "originator": "德勤（2024-11-19 文章），经德勤《Southeast Asia's data centres and AI infrastructure imperative》（2025）图 8 转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "图注「P denotes predicted value」；vintage 取脚注所引德勤原文日期 2024-11。正文称 2025–2030 五年间全球数据中心用电「could roughly double」。"
+    },
+    {
+      "fact_id": "deloitte2411-global-dc-power-share-2030p",
+      "metric_id": "dc_power_share_of_grid",
+      "asserter": "德勤",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 3.7,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2024-11",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8dbc6e9f6eb14ed9e86a0f2e1cd2ab7f44cda91e486aedd860b314538ad4b92f",
+        "local_file": "20250727-德勤：2025东南亚数据中心与人工智能基础设施的战略机遇报告(20页).pdf",
+        "locator": "第 13 页 Figure 8「Global electricity consumption by data centres (2022-2030P)」（脚注 27 Deloitte, 19 November 2024「As generative AI asks for more power, data centers seek more reliable, cleaner energy solutions」）：2030P 折线「Percentage of global electricity consumption」= 3.7%",
+        "grade": "S3",
+        "originator": "德勤（2024-11-19 文章），经德勤《Southeast Asia's data centres and AI infrastructure imperative》（2025）图 8 转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "分母为全球总用电量。vintage 取脚注所引德勤原文日期 2024-11。"
+    },
+    {
+      "fact_id": "schneider2309-global-it-load-2023",
+      "metric_id": "global_dc_it_load",
+      "asserter": "施耐德电气",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 54.0,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "IT 负载",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "模型输出",
+        "region": "Global"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8dbc6e9f6eb14ed9e86a0f2e1cd2ab7f44cda91e486aedd860b314538ad4b92f",
+        "local_file": "20250727-德勤：2025东南亚数据中心与人工智能基础设施的战略机遇报告(20页).pdf",
+        "locator": "第 12 页 Figure 7「Global IT workload breakdown, GW (2023-2035)」（脚注 26 Schneider Electric, September 2023「The AI disruption, challenges and guidance for data centre design」）：2023 柱 = 54（AI workloads 占 8%）",
+        "grade": "S3",
+        "originator": "施耐德电气（2023-09 白皮书《The AI disruption》），经德勤《Southeast Asia's data centres and AI infrastructure imperative》（2025）图 7 转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "全球 IT 负载总量，其中 AI 负载占 8%。"
+    },
+    {
+      "fact_id": "schneider2309-global-it-load-2028e",
+      "metric_id": "global_dc_it_load",
+      "asserter": "施耐德电气",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 90.0,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "IT 负载",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2028E@2023-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8dbc6e9f6eb14ed9e86a0f2e1cd2ab7f44cda91e486aedd860b314538ad4b92f",
+        "local_file": "20250727-德勤：2025东南亚数据中心与人工智能基础设施的战略机遇报告(20页).pdf",
+        "locator": "第 12 页 Figure 7「Global IT workload breakdown, GW (2023-2035)」（脚注 26 Schneider Electric, September 2023「The AI disruption, challenges and guidance for data centre design」）：2028 柱 = 90（AI workloads 占 19%）",
+        "grade": "S3",
+        "originator": "施耐德电气（2023-09 白皮书《The AI disruption》），经德勤《Southeast Asia's data centres and AI infrastructure imperative》（2025）图 7 转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "全球 IT 负载总量，其中 AI 负载占 19%。vintage 取脚注所引施耐德原文日期 2023-09。"
+    },
+    {
+      "fact_id": "schneider2309-global-it-load-2035e",
+      "metric_id": "global_dc_it_load",
+      "asserter": "施耐德电气",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 238.0,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "IT 负载",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2035E@2023-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8dbc6e9f6eb14ed9e86a0f2e1cd2ab7f44cda91e486aedd860b314538ad4b92f",
+        "local_file": "20250727-德勤：2025东南亚数据中心与人工智能基础设施的战略机遇报告(20页).pdf",
+        "locator": "第 12 页 Figure 7「Global IT workload breakdown, GW (2023-2035)」（脚注 26 Schneider Electric, September 2023「The AI disruption, challenges and guidance for data centre design」）：2035 柱 = 238（AI workloads 占 40-50%）",
+        "grade": "S3",
+        "originator": "施耐德电气（2023-09 白皮书《The AI disruption》），经德勤《Southeast Asia's data centres and AI infrastructure imperative》（2025）图 7 转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "全球 IT 负载总量，其中 AI 负载占 40-50%。**2035 年一栏的归属未核**：图整体脚注指向施耐德 2023-09 白皮书，但该白皮书公开摘要只到 2028 年，2035 年一栏可能是德勤延伸；待回到施耐德原件核对。vintage 取脚注所引施耐德原文日期 2023-09。"
+    },
+    {
+      "fact_id": "schneider2309-global-ai-it-load-2028e",
+      "metric_id": "global_dc_it_load",
+      "asserter": "施耐德电气",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 16.8,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "IT 负载",
+        "workload": "AI 负载",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2028E@2023-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8dbc6e9f6eb14ed9e86a0f2e1cd2ab7f44cda91e486aedd860b314538ad4b92f",
+        "local_file": "20250727-德勤：2025东南亚数据中心与人工智能基础设施的战略机遇报告(20页).pdf",
+        "locator": "第 11 页 Figure 6「Global AI workload breakdown, GW (2028)」：合计 16.8，其中 Training 2.5（15%）、Inference 14.2（85%）（脚注 22 Schneider Electric, September 2023）",
+        "grade": "S3",
+        "originator": "施耐德电气（2023-09 白皮书《The AI disruption》），经德勤《Southeast Asia's data centres and AI infrastructure imperative》（2025）图 6 转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "AI 负载是全部 IT 负载的子集，不可与同年 90 GW 相加（90 × 19% ≈ 17.1，与 16.8 量级一致）。训练 2.5 + 推理 14.2 = 16.7，与合计 16.8 差 0.1 为取整。正文把 85% 写成「85% of global GPU demand is expected to be from AI inference」，图是 GW 口径，推理占比未录。"
+    },
+    {
+      "fact_id": "deloitte2507-ai-ready-dc-build-cost-per-mw",
+      "metric_id": "dc_build_cost_per_mw",
+      "asserter": "德勤",
+      "entity": {
+        "type": "industry",
+        "id": "ai-ready-datacenter",
+        "label": "AI-ready 数据中心（100 MW 规模）"
+      },
+      "value": 10.0,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "仅机电与土建",
+        "stage": "估算",
+        "region": "未披露",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-07",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "8dbc6e9f6eb14ed9e86a0f2e1cd2ab7f44cda91e486aedd860b314538ad4b92f",
+        "local_file": "20250727-德勤：2025东南亚数据中心与人工智能基础设施的战略机遇报告(20页).pdf",
+        "locator": "第 16 页 Investors：「Building a 100-megawatt AI-ready data centre cost at least US$1 billion; this is not to mention the more than US$2 billion worth of GPUs and associated supercomputers and connectivity that it will be housing」",
+        "grade": "S3",
+        "originator": "德勤《Southeast Asia's data centres and AI infrastructure imperative》（2025）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文给 100 MW 至少 10 亿美元，÷100 得每 MW 至少 1,000 万美元；as_of 取报告文件名日期 2025-07（正文未印日期）",
+      "corroboration": "待交叉验证",
+      "notes": "「at least」按下界记。原文明说不含 GPU 与算力设备（另超 20 亿美元），cost_scope 记仅机电与土建；region 记未披露：原文未写地域（报告面向东南亚，但此句是泛指，不替原文归到东南亚或全球）。"
     }
   ]
 }
