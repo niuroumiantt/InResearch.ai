@@ -180759,6 +180759,186 @@
       "derivation": "规范发布年份原文未写，as_of 取引用访问日期所在年 2024",
       "corroboration": "待交叉验证",
       "notes": "原文是「recommends a PUE target of 1.9 or lower」——推荐目标而非强制限值，basis 取最接近的政策限值并在此说明；「or lower」按上界记。region 枚举无马来西亚，记 APAC、entity 区分。正文字体为乱序映射，抽取文本经逐字符替换还原后核对上下文（数字与国别对应经库内同源值验证）。"
+    },
+    {
+      "fact_id": "htsc2406-knightfrank-johor-operational-2023",
+      "metric_id": "dc_capacity_mw",
+      "asserter": "莱坊",
+      "entity": {
+        "type": "market",
+        "id": "my-johor-dc-market-knightfrank",
+        "label": "柔佛州数据中心市场（莱坊口径）"
+      },
+      "value": 33.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "APAC"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6c744bff348949964539404158fcbd0cce530284dda9cfd0d77c48db26aeccea",
+        "local_file": "20240605-科技专题研究：马来西亚：半导体和数据中心行业迎来快速发展机遇(28页).pdf",
+        "locator": "第 17 页 图表 27「柔佛数据中心一览（2023年）总计容量718MW」饼图标注「33MW,运营中 / 154MW,在建 / 381MW,规划中 / 151MW,已签约」（资料来源：Knight Frank「Data Centre Research Report MALAYSIA」2023）；正文第 14 页「柔佛州虽然2023年运营中数据中心容量仅33MW」",
+        "grade": "S3",
+        "originator": "莱坊《Data Centre Research Report MALAYSIA》2023（经华泰研究《马来西亚：半导体和数据中心行业迎来快速发展机遇》（2024-06-05）图表 26–27 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "莱坊口径（第三方与自建合计，未写 IT 还是设施容量）。**正文与图对不上**：第 14、16 页正文称「运营中及在建的数据中心容量达到 718MW」，而图中 718 是运营+在建+规划+已签约合计（33+154+381+151=719）；本条只取图中分项。库内 DC Byte 2023 年柔佛在运 182 MW（gjzq2501-dcbyte-market-operational-johor-2023）差 5 倍，覆盖范围不同，并列不比。"
+    },
+    {
+      "fact_id": "htsc2406-knightfrank-johor-under-construction-2023",
+      "metric_id": "dc_capacity_mw",
+      "asserter": "莱坊",
+      "entity": {
+        "type": "market",
+        "id": "my-johor-dc-market-knightfrank",
+        "label": "柔佛州数据中心市场（莱坊口径）"
+      },
+      "value": 154.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L6",
+        "region": "APAC"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6c744bff348949964539404158fcbd0cce530284dda9cfd0d77c48db26aeccea",
+        "local_file": "20240605-科技专题研究：马来西亚：半导体和数据中心行业迎来快速发展机遇(28页).pdf",
+        "locator": "第 17 页 图表 27「柔佛数据中心一览（2023年）总计容量718MW」饼图标注「33MW,运营中 / 154MW,在建 / 381MW,规划中 / 151MW,已签约」（资料来源：Knight Frank「Data Centre Research Report MALAYSIA」2023）",
+        "grade": "S3",
+        "originator": "莱坊《Data Centre Research Report MALAYSIA》2023（经华泰研究《马来西亚：半导体和数据中心行业迎来快速发展机遇》（2024-06-05）图表 26–27 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "莱坊口径（第三方与自建合计，未写 IT 还是设施容量）。**正文与图对不上**：第 14、16 页正文称「运营中及在建的数据中心容量达到 718MW」，而图中 718 是运营+在建+规划+已签约合计（33+154+381+151=719）；本条只取图中分项。库内 DC Byte 2023 年柔佛在运 182 MW（gjzq2501-dcbyte-market-operational-johor-2023）差 5 倍，覆盖范围不同，并列不比。"
+    },
+    {
+      "fact_id": "htsc2406-knightfrank-johor-planned-2023",
+      "metric_id": "dc_capacity_mw",
+      "asserter": "莱坊",
+      "entity": {
+        "type": "market",
+        "id": "my-johor-dc-market-knightfrank",
+        "label": "柔佛州数据中心市场（莱坊口径）"
+      },
+      "value": 381.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L2",
+        "region": "APAC"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6c744bff348949964539404158fcbd0cce530284dda9cfd0d77c48db26aeccea",
+        "local_file": "20240605-科技专题研究：马来西亚：半导体和数据中心行业迎来快速发展机遇(28页).pdf",
+        "locator": "第 17 页 图表 27「柔佛数据中心一览（2023年）总计容量718MW」饼图标注「33MW,运营中 / 154MW,在建 / 381MW,规划中 / 151MW,已签约」（资料来源：Knight Frank「Data Centre Research Report MALAYSIA」2023）",
+        "grade": "S3",
+        "originator": "莱坊《Data Centre Research Report MALAYSIA》2023（经华泰研究《马来西亚：半导体和数据中心行业迎来快速发展机遇》（2024-06-05）图表 26–27 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "莱坊口径（第三方与自建合计，未写 IT 还是设施容量）。**正文与图对不上**：第 14、16 页正文称「运营中及在建的数据中心容量达到 718MW」，而图中 718 是运营+在建+规划+已签约合计（33+154+381+151=719）；本条只取图中分项。库内 DC Byte 2023 年柔佛在运 182 MW（gjzq2501-dcbyte-market-operational-johor-2023）差 5 倍，覆盖范围不同，并列不比。「已签约」151 MW 无对应项目状态，未录。"
+    },
+    {
+      "fact_id": "htsc2406-knightfrank-greater-kl-operational-2023",
+      "metric_id": "dc_capacity_mw",
+      "asserter": "莱坊",
+      "entity": {
+        "type": "market",
+        "id": "my-greater-kl-dc-market-knightfrank",
+        "label": "大吉隆坡地区数据中心市场（莱坊口径）"
+      },
+      "value": 86.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "APAC"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6c744bff348949964539404158fcbd0cce530284dda9cfd0d77c48db26aeccea",
+        "local_file": "20240605-科技专题研究：马来西亚：半导体和数据中心行业迎来快速发展机遇(28页).pdf",
+        "locator": "第 16 页 图表 26「大吉隆坡地区数据中心一览（2023年）总计容量211MW」饼图标注「10MW,规划中 / 86MW,运营中 / 78MW,已签约 / 37MW,在建」及表末「已建成+在建+已签约总容量(MW) 201.2；规划中容量(MW) 10.0；已建成+在建+已签约+规划中总产能(MW) 211.2」（资料来源：Knight Frank 2023）；正文第 14 页「大吉隆坡地区运营中的数据中心86MW」",
+        "grade": "S3",
+        "originator": "莱坊《Data Centre Research Report MALAYSIA》2023（经华泰研究《马来西亚：半导体和数据中心行业迎来快速发展机遇》（2024-06-05）图表 26–27 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "莱坊口径。**正文与图对不上**：第 14、16 页正文称「运营中及在建的数据中心容量达到211MW」，而图与表中 211.2 含规划 10 与已签约 78（86+37+78+10=211）；本条只取图中分项。"
+    },
+    {
+      "fact_id": "htsc2406-knightfrank-greater-kl-under-construction-2023",
+      "metric_id": "dc_capacity_mw",
+      "asserter": "莱坊",
+      "entity": {
+        "type": "market",
+        "id": "my-greater-kl-dc-market-knightfrank",
+        "label": "大吉隆坡地区数据中心市场（莱坊口径）"
+      },
+      "value": 37.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L6",
+        "region": "APAC"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6c744bff348949964539404158fcbd0cce530284dda9cfd0d77c48db26aeccea",
+        "local_file": "20240605-科技专题研究：马来西亚：半导体和数据中心行业迎来快速发展机遇(28页).pdf",
+        "locator": "第 16 页 图表 26「大吉隆坡地区数据中心一览（2023年）总计容量211MW」饼图标注「10MW,规划中 / 86MW,运营中 / 78MW,已签约 / 37MW,在建」及表末「已建成+在建+已签约总容量(MW) 201.2；规划中容量(MW) 10.0；已建成+在建+已签约+规划中总产能(MW) 211.2」（资料来源：Knight Frank 2023）",
+        "grade": "S3",
+        "originator": "莱坊《Data Centre Research Report MALAYSIA》2023（经华泰研究《马来西亚：半导体和数据中心行业迎来快速发展机遇》（2024-06-05）图表 26–27 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "莱坊口径。**正文与图对不上**：第 14、16 页正文称「运营中及在建的数据中心容量达到211MW」，而图与表中 211.2 含规划 10 与已签约 78（86+37+78+10=211）；本条只取图中分项。"
+    },
+    {
+      "fact_id": "htsc2406-knightfrank-greater-kl-planned-2023",
+      "metric_id": "dc_capacity_mw",
+      "asserter": "莱坊",
+      "entity": {
+        "type": "market",
+        "id": "my-greater-kl-dc-market-knightfrank",
+        "label": "大吉隆坡地区数据中心市场（莱坊口径）"
+      },
+      "value": 10.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L2",
+        "region": "APAC"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6c744bff348949964539404158fcbd0cce530284dda9cfd0d77c48db26aeccea",
+        "local_file": "20240605-科技专题研究：马来西亚：半导体和数据中心行业迎来快速发展机遇(28页).pdf",
+        "locator": "第 16 页 图表 26「大吉隆坡地区数据中心一览（2023年）总计容量211MW」饼图标注「10MW,规划中 / 86MW,运营中 / 78MW,已签约 / 37MW,在建」及表末「已建成+在建+已签约总容量(MW) 201.2；规划中容量(MW) 10.0；已建成+在建+已签约+规划中总产能(MW) 211.2」（资料来源：Knight Frank 2023）",
+        "grade": "S3",
+        "originator": "莱坊《Data Centre Research Report MALAYSIA》2023（经华泰研究《马来西亚：半导体和数据中心行业迎来快速发展机遇》（2024-06-05）图表 26–27 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "莱坊口径。**正文与图对不上**：第 14、16 页正文称「运营中及在建的数据中心容量达到211MW」，而图与表中 211.2 含规划 10 与已签约 78（86+37+78+10=211）；本条只取图中分项。「已签约」78 MW 无对应项目状态，未录。"
     }
   ]
 }
