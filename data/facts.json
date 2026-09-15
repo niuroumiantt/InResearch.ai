@@ -179450,6 +179450,138 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "11,219,000 台 = 1,121.9 万台，EU-28 数据中心服务器在役存量（Borderstep 以 IDC 2018 设备存量为底）。同表 2020 年 11,316,000 为报告预测、2019 年 11,267,500 为本研究取两者平均，均未录。counterparty_role 枚举无「全部数据中心」，记全市场。"
+    },
+    {
+      "fact_id": "huawei-dc2030v2024-global-ai-compute-2030e",
+      "metric_id": "regional_compute_capacity",
+      "asserter": "华为",
+      "entity": {
+        "type": "region",
+        "id": "global",
+        "label": "全球"
+      },
+      "value": 105000.0,
+      "unit": "EFLOPS",
+      "bound": "lower",
+      "as_of": "2030E@2024-09",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "FP16",
+        "area": "全球",
+        "status": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "440724a9aeecc0fe0555f8962ac77ebda678d95be2b994d48a994bc24ce167c6",
+        "local_file": "20240922-华为：数据中心2030报告（2024版）(90页).pdf",
+        "locator": "第 9 页（版面页 08）产业趋势「AI 驱动数据中心发生全景式革命」：「华为预测，到 2030 年全球 AI 计算算力将超过 105 ZFLOPS(FP16)」",
+        "grade": "S3",
+        "originator": "华为《数据中心 2030》（2024 版）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 版次月份按文件名日期 2024-09 推定",
+      "corroboration": "待交叉验证",
+      "notes": "105 ZFLOPS = 105,000 EFLOPS；「超过」按下界记。as_of @2024-09 取文件名与下载日期 2024-09-22（封面未印月份）；2023 版同值事实另见 huawei-dc2030-*（@2023），不同版次的预测并列，不是修订。"
+    },
+    {
+      "fact_id": "huawei-iw2030-global-general-compute-2030e",
+      "metric_id": "regional_compute_capacity",
+      "asserter": "华为",
+      "entity": {
+        "type": "region",
+        "id": "global",
+        "label": "全球"
+      },
+      "value": 3300.0,
+      "unit": "EFLOPS",
+      "bound": "point",
+      "as_of": "2030E@2021-09",
+      "caliber": {
+        "compute_type": "通用算力",
+        "precision": "FP32",
+        "area": "全球",
+        "status": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "440724a9aeecc0fe0555f8962ac77ebda678d95be2b994d48a994bc24ce167c6",
+        "local_file": "20240922-华为：数据中心2030报告（2024版）(90页).pdf",
+        "locator": "第 3 页序言与第 9 页产业趋势：「根据华为《智能世界 2030》报告预测，2030 年，人类将迎来 YB 数据时代，全球通用计算算力将达到 3.3ZFLOPS(FP32)」；第 3 页「2021 年 9 月份，华为发布了《智能世界 2030》主报告及相关系列报告」",
+        "grade": "S3",
+        "originator": "华为《智能世界 2030》（2021-09），经华为《数据中心 2030》（2024 版）转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "3.3 ZFLOPS = 3,300 EFLOPS，FP32 精度，与 AI 算力 FP16 不可相加。vintage 取《智能世界 2030》发布月 2021-09（本报告自述）。"
+    },
+    {
+      "fact_id": "huawei-iw2030-global-ai-compute-demand-2030e",
+      "metric_id": "regional_compute_capacity",
+      "asserter": "华为",
+      "entity": {
+        "type": "region",
+        "id": "global",
+        "label": "全球"
+      },
+      "value": 864000.0,
+      "unit": "EFLOPS",
+      "bound": "point",
+      "as_of": "2030E@2021-09",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "FP16",
+        "area": "全球",
+        "status": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "440724a9aeecc0fe0555f8962ac77ebda678d95be2b994d48a994bc24ce167c6",
+        "local_file": "20240922-华为：数据中心2030报告（2024版）(90页).pdf",
+        "locator": "第 3 页序言与第 9 页产业趋势：「AI 算力需求激增，2030 年将达到 864 ZFLOPS（FP16）」（出自《智能世界 2030》）",
+        "grade": "S3",
+        "originator": "华为《智能世界 2030》（2021-09），经华为《数据中心 2030》（2024 版）转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "864 ZFLOPS = 864,000 EFLOPS。**原文是「AI 算力需求」**，同一报告第 9 页华为自己的 2030 年全球 AI 计算算力预测是「超过 105 ZFLOPS」——两者同为华为、同年、同精度而差 8 倍，差在一个是 2021 年《智能世界 2030》的需求口径，一个是 2023/2024《数据中心 2030》的算力口径，vintage 不同故并列，不当争议；引用时必须带上「需求」二字与版次。"
+    },
+    {
+      "fact_id": "huawei-dc2030v2024-renewable-share-2030e",
+      "metric_id": "dc_renewable_share",
+      "asserter": "华为",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 80.0,
+      "unit": "%",
+      "bound": "point",
+      "as_of": "2030E@2024-09",
+      "caliber": {
+        "measure": "可再生电量占总用电",
+        "scope": "全市场",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "evidence": {
+        "sha256": "440724a9aeecc0fe0555f8962ac77ebda678d95be2b994d48a994bc24ce167c6",
+        "local_file": "20240922-华为：数据中心2030报告（2024版）(90页).pdf",
+        "locator": "第 79 页（版面页 78）「附：关键预测数据指标体系」零碳节能：「可再生能源占比（REF）| 可再生能源电量 / 数据中心总消耗电量 | 80%」（2030年预测值）",
+        "grade": "S3",
+        "originator": "华为《数据中心 2030》（2024 版）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 版次月份按文件名日期 2024-09 推定",
+      "corroboration": "待交叉验证",
+      "notes": "原文未说是全行业平均还是领先数据中心，按全市场记 [未核]。as_of @2024-09 取文件名与下载日期 2024-09-22（封面未印月份）；2023 版同值事实另见 huawei-dc2030-*（@2023），不同版次的预测并列，不是修订。"
     }
   ]
 }
