@@ -217386,6 +217386,70 @@
       "corroboration": "待交叉验证",
       "asserter": "Meta",
       "notes": "Meta 网络硬件工程师 Rongchun Zhou 演讲给出的模块规格上限。2×400G-FR4 双端口 OSFP，合计 800G，speed 记 800G；FR4 为单模 CWDM，光学方案（EML/SiPh）未注明。basis 就近记厂商指引（Meta 自研规格）。region 记 Global（Meta 全球数据中心部署）。"
+    },
+    {
+      "fact_id": "ocp24-innolight-dsp-module-power-800g",
+      "metric_id": "optics_module_power",
+      "entity": {
+        "type": "component",
+        "id": "dsp-optical-trx-800g",
+        "label": "800G 含 DSP/Retimer 光模块"
+      },
+      "value": 15.0,
+      "unit": "W",
+      "caliber": {
+        "speed": "800G",
+        "optical_scheme": "未注明",
+        "power_stat": "典型值",
+        "basis": "厂商指引",
+        "region": "Global"
+      },
+      "as_of": "2024-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "a51895fc0e47523d00c9dacf6ac215f147917d6b671105983705056a580ef31b",
+        "local_file": "5931 - Energy Efficient High Bandwidth Optical Interconnect Solutions For Gai.pdf",
+        "locator": "第 9 页「Power Reduction with Linear Interface Optics」：「OE Engine + DSP/Retimer：~15W @ 800Gbps；~30W @ 1.6T (Gen 1)」；「OE Engine with Enhanced BW（线性接口，DSP 嵌入 xPU/交换 ASIC）：~8W @ 800Gbps；~10W @ 1.6T」「>50% Power Reduction using Linear interface optical TRx」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 OCP Global Summit 2024（2024-10）会期；幻灯片未写日期",
+      "corroboration": "待交叉验证",
+      "asserter": "中际旭创",
+      "notes": "InnoLight（中际旭创）Rang-Chen Yu 演讲。本条为传统含 DSP/Retimer 方案；同页线性接口方案 800G ~8W、1.6T ~10W 未记——optics_module_power 缺「DSP/线性（LPO/LRO）」维度，两者同 caliber 会互相覆盖（缺口）。光学方案 EML/SiPh 未注明。"
+    },
+    {
+      "fact_id": "ocp24-innolight-dsp-module-power-16t",
+      "metric_id": "optics_module_power",
+      "entity": {
+        "type": "component",
+        "id": "dsp-optical-trx-16t",
+        "label": "1.6T 含 DSP/Retimer 光模块"
+      },
+      "value": 30.0,
+      "unit": "W",
+      "caliber": {
+        "speed": "1.6T",
+        "optical_scheme": "未注明",
+        "power_stat": "典型值",
+        "basis": "厂商指引",
+        "region": "Global"
+      },
+      "as_of": "2024-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "a51895fc0e47523d00c9dacf6ac215f147917d6b671105983705056a580ef31b",
+        "local_file": "5931 - Energy Efficient High Bandwidth Optical Interconnect Solutions For Gai.pdf",
+        "locator": "第 9 页「Power Reduction with Linear Interface Optics」：「OE Engine + DSP/Retimer：~15W @ 800Gbps；~30W @ 1.6T (Gen 1)」；「OE Engine with Enhanced BW（线性接口，DSP 嵌入 xPU/交换 ASIC）：~8W @ 800Gbps；~10W @ 1.6T」「>50% Power Reduction using Linear interface optical TRx」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 OCP Global Summit 2024（2024-10）会期；幻灯片未写日期",
+      "corroboration": "待交叉验证",
+      "asserter": "中际旭创",
+      "notes": "InnoLight（中际旭创）Rang-Chen Yu 演讲。本条为传统含 DSP/Retimer 方案；1.6T 标注 Gen 1。同页线性接口方案 800G ~8W、1.6T ~10W 未记——optics_module_power 缺「DSP/线性（LPO/LRO）」维度，两者同 caliber 会互相覆盖（缺口）。光学方案 EML/SiPh 未注明。"
     }
   ]
 }
