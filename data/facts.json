@@ -216970,6 +216970,138 @@
       "corroboration": "待交叉验证",
       "asserter": "中国电子学会",
       "notes": "原文「至少保存 3 个月」，按 90 天换算（与库内 cmcc-idc-video-retention 同一换算）。文件为报批稿，编号与发布日期均为 XXX，正式版条文可能调整，[未核]。不分数据中心等级，tier 记未注明。"
+    },
+    {
+      "fact_id": "gbt51314-2018-env-temp-rec-lo",
+      "metric_id": "room_environment_limit",
+      "entity": {
+        "type": "policy",
+        "id": "gb-t-51314-2018",
+        "label": "GB/T 51314—2018《数据中心基础设施运行维护标准》"
+      },
+      "value": 18.0,
+      "unit": "°C 或 %",
+      "caliber": {
+        "parameter": "温度",
+        "limit_type": "推荐值",
+        "bound": "下限",
+        "room_type": "主机房",
+        "tier": "未注明",
+        "region": "CN"
+      },
+      "as_of": "2018",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "94ac8e550578c57ba56b8abd0222c771620f46775fb7827ce543755528eeb631",
+        "local_file": "GB T51314-2018 数据中心基础设施运行维护标准.pdf",
+        "locator": "PDF 第 24 页（页码 19）4.6 环境参数 4.6.1：「主机房应对冷通道或机柜进风区域的温度和相对湿度进行在线监测，温度宜保持在 18℃～27℃，相对湿度宜保持在 35%～65%」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "住建部",
+      "notes": "本条单位 ℃。运行维护标准（适用于已投入运行的数据中心），测点为冷通道或机柜进风区域；原文「宜保持在」按推荐值记。不分等级，tier 记未注明。注意相对湿度推荐 35%～65% 与 GB 50174—2017 设计推荐（露点 5.5～15℃且 ≤60%）口径不同。扫描件带「住房城乡建设部信息公开 浏览专用」水印（未带出）。"
+    },
+    {
+      "fact_id": "gbt51314-2018-env-temp-rec-hi",
+      "metric_id": "room_environment_limit",
+      "entity": {
+        "type": "policy",
+        "id": "gb-t-51314-2018",
+        "label": "GB/T 51314—2018《数据中心基础设施运行维护标准》"
+      },
+      "value": 27.0,
+      "unit": "°C 或 %",
+      "caliber": {
+        "parameter": "温度",
+        "limit_type": "推荐值",
+        "bound": "上限",
+        "room_type": "主机房",
+        "tier": "未注明",
+        "region": "CN"
+      },
+      "as_of": "2018",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "94ac8e550578c57ba56b8abd0222c771620f46775fb7827ce543755528eeb631",
+        "local_file": "GB T51314-2018 数据中心基础设施运行维护标准.pdf",
+        "locator": "PDF 第 24 页（页码 19）4.6 环境参数 4.6.1：「主机房应对冷通道或机柜进风区域的温度和相对湿度进行在线监测，温度宜保持在 18℃～27℃，相对湿度宜保持在 35%～65%」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "住建部",
+      "notes": "本条单位 ℃。运行维护标准（适用于已投入运行的数据中心），测点为冷通道或机柜进风区域；原文「宜保持在」按推荐值记。不分等级，tier 记未注明。注意相对湿度推荐 35%～65% 与 GB 50174—2017 设计推荐（露点 5.5～15℃且 ≤60%）口径不同。扫描件带「住房城乡建设部信息公开 浏览专用」水印（未带出）。"
+    },
+    {
+      "fact_id": "gbt51314-2018-env-rh-rec-lo",
+      "metric_id": "room_environment_limit",
+      "entity": {
+        "type": "policy",
+        "id": "gb-t-51314-2018",
+        "label": "GB/T 51314—2018《数据中心基础设施运行维护标准》"
+      },
+      "value": 35.0,
+      "unit": "°C 或 %",
+      "caliber": {
+        "parameter": "相对湿度",
+        "limit_type": "推荐值",
+        "bound": "下限",
+        "room_type": "主机房",
+        "tier": "未注明",
+        "region": "CN"
+      },
+      "as_of": "2018",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "94ac8e550578c57ba56b8abd0222c771620f46775fb7827ce543755528eeb631",
+        "local_file": "GB T51314-2018 数据中心基础设施运行维护标准.pdf",
+        "locator": "PDF 第 24 页（页码 19）4.6 环境参数 4.6.1：「主机房应对冷通道或机柜进风区域的温度和相对湿度进行在线监测，温度宜保持在 18℃～27℃，相对湿度宜保持在 35%～65%」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "住建部",
+      "notes": "本条单位 %。运行维护标准（适用于已投入运行的数据中心），测点为冷通道或机柜进风区域；原文「宜保持在」按推荐值记。不分等级，tier 记未注明。注意相对湿度推荐 35%～65% 与 GB 50174—2017 设计推荐（露点 5.5～15℃且 ≤60%）口径不同。扫描件带「住房城乡建设部信息公开 浏览专用」水印（未带出）。"
+    },
+    {
+      "fact_id": "gbt51314-2018-env-rh-rec-hi",
+      "metric_id": "room_environment_limit",
+      "entity": {
+        "type": "policy",
+        "id": "gb-t-51314-2018",
+        "label": "GB/T 51314—2018《数据中心基础设施运行维护标准》"
+      },
+      "value": 65.0,
+      "unit": "°C 或 %",
+      "caliber": {
+        "parameter": "相对湿度",
+        "limit_type": "推荐值",
+        "bound": "上限",
+        "room_type": "主机房",
+        "tier": "未注明",
+        "region": "CN"
+      },
+      "as_of": "2018",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "94ac8e550578c57ba56b8abd0222c771620f46775fb7827ce543755528eeb631",
+        "local_file": "GB T51314-2018 数据中心基础设施运行维护标准.pdf",
+        "locator": "PDF 第 24 页（页码 19）4.6 环境参数 4.6.1：「主机房应对冷通道或机柜进风区域的温度和相对湿度进行在线监测，温度宜保持在 18℃～27℃，相对湿度宜保持在 35%～65%」",
+        "grade": "S1",
+        "originator": "住房和城乡建设部"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "住建部",
+      "notes": "本条单位 %。运行维护标准（适用于已投入运行的数据中心），测点为冷通道或机柜进风区域；原文「宜保持在」按推荐值记。不分等级，tier 记未注明。注意相对湿度推荐 35%～65% 与 GB 50174—2017 设计推荐（露点 5.5～15℃且 ≤60%）口径不同。扫描件带「住房城乡建设部信息公开 浏览专用」水印（未带出）。"
     }
   ]
 }
