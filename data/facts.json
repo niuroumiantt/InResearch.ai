@@ -186908,6 +186908,73 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "图题「推理和训练市场占比」，位于人工智能芯片按训练/推理分类的段落下，分母按市场金额（支出）记；原文未写地域（报告主题为中国，但图未注明），记未披露。训练+推理=100%。2019 年起按预测记（报告 2019-08 发布）。"
+    },
+    {
+      "fact_id": "aihist2601-china-mobile-capex-plan-2023",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "china-mobile",
+        "label": "中国移动"
+      },
+      "asserter": "中国移动",
+      "value": 1832.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "单一公司",
+        "capex_scope": "全部 capex",
+        "basis": "厂商指引",
+        "vintage": "其他快照",
+        "region": "CN",
+        "currency": "人民币"
+      },
+      "as_of": "2023E",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2ca7357a16bb35e106e62f44cc893d68c242cfa715b579ae258afbe2ead333bd",
+        "local_file": "20260113-人工智能—历史现在和未来(73页).pdf",
+        "locator": "PDF 第 27 页「算力规模3——企业层面」：「中国移动…预计2023年资本开支合计约为1832亿元」",
+        "grade": "S3",
+        "originator": "未署名讲座幻灯片《人工智能——历史、现在和未来》（封面署名 XXX，文件日期 2026-01-13）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「约」。库内伯恩斯坦 2023 年实际约 260 亿美元（bern-cn-capex-china-mobile-2023），币种与口径（指引/实际）不同。原文未给该指引的发布时间，as_of 不带版次。"
+    },
+    {
+      "fact_id": "aihist2601-china-unicom-capex-plan-2023",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "china-unicom",
+        "label": "中国联通"
+      },
+      "asserter": "中国联通",
+      "value": 769.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "单一公司",
+        "capex_scope": "全部 capex",
+        "basis": "厂商指引",
+        "vintage": "其他快照",
+        "region": "CN",
+        "currency": "人民币"
+      },
+      "as_of": "2023E",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2ca7357a16bb35e106e62f44cc893d68c242cfa715b579ae258afbe2ead333bd",
+        "local_file": "20260113-人工智能—历史现在和未来(73页).pdf",
+        "locator": "PDF 第 27 页「算力规模3——企业层面」：「中国联通资本开支重点聚焦5G、宽带、政企、算力四张精品网建设…资本开支水平达769亿元，其中算网投资占比将超过19%，同比增长超过20%」",
+        "grade": "S3",
+        "originator": "未署名讲座幻灯片《人工智能——历史、现在和未来》（封面署名 XXX，文件日期 2026-01-13）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "原文未写年份，同段移动、电信均为 2023 年，按 2023 年指引记；算网投资占比 >19%、同比 >20% 未录。原文未给该指引的发布时间，as_of 不带版次。",
+      "derivation": "as_of 推定：原文该句未写年份，同页标题下中国移动、中国电信两段均写 2023 年，按同页 2023 年口径记为 2023E；数值 769 亿元为原文照录。"
     }
   ]
 }
