@@ -2330,16 +2330,16 @@
         "region": "US-PJM"
       },
       "bound": "point",
-      "as_of": "2025",
+      "as_of": "2026",
       "evidence": {
         "source_id": "4120bf6585f6",
-        "locator": "同上报告「电力下游DOM与上游AEP区域拥堵费价差从$4.8/MWh扩至$74.2/MWh，输电瓶颈已演变为结构性定价因素」",
+        "locator": "PDF 第 12 页：「DOM 与 AEP 的拥堵费价差从 2023 年的$4.8/MWh 急剧扩大至 2026 年初的$74.2/MWh」；摘要页同述",
         "grade": "S3",
         "originator": "PJM（中泰证券整理）",
         "sha256": "d377d62f0e97b7d9d3d0cf7339cba60bf246d5c064b95d2d38c34ced3ab212b0"
       },
       "depth": "精读",
-      "notes": "**价差不是电价本身**——衡量的是同一电网内上下游因输电阻塞造成的价格分化，**从 $4.8 扩到 $74.2 即扩大约 15 倍**。**这是比「排队 4-7 年」更适合做监测指标的读数：它是市场出清价的一部分、每日可得、可证伪**，而排队时长依赖口径定义且更新缓慢。region=US-PJM，基期未标明具体年份（对应 DOM 电价的 2023-2024 基期）。",
+      "notes": "**价差不是电价本身**——衡量的是同一电网内上下游因输电阻塞造成的价格分化，**从 $4.8 扩到 $74.2 即扩大约 15 倍**。**这是比「排队 4-7 年」更适合做监测指标的读数：它是市场出清价的一部分、每日可得、可证伪**，而排队时长依赖口径定义且更新缓慢。region=US-PJM，基期未标明具体年份（对应 DOM 电价的 2023-2024 基期）。 **（2026-09-15 L2 精读更正）正文写明 74.2 为「2026 年初」值、基期 4.8 为 2023 年，as_of 由 2025 改为 2026；fact_id 保留原名。**",
       "value": 74.2,
       "asserter": "PJM"
     },
@@ -193418,6 +193418,125 @@
       "corroboration": "待交叉验证",
       "notes": "占总造价 2.26%。",
       "asserter": "中国移动"
+    },
+    {
+      "fact_id": "pjm-dom-lmp-2023",
+      "metric_id": "nodal_lmp_price",
+      "entity": {
+        "type": "industry",
+        "id": "pjm-dom",
+        "label": "PJM-DOM 区域"
+      },
+      "asserter": "PJM",
+      "value": 35.6,
+      "unit": "美元/MWh",
+      "caliber": {
+        "price_type": "LMP 含拥堵费",
+        "node": "PJM-DOM",
+        "region": "US-PJM"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d377d62f0e97b7d9d3d0cf7339cba60bf246d5c064b95d2d38c34ced3ab212b0",
+        "local_file": "20260314-中泰证券-中泰证券-传媒行业表后发电与挖矿转型加速之年：美国AI数据中心，基建缓慢，电从哪来？(25页).pdf",
+        "locator": "PDF 第 10 页「2.3 电价飙升：拥堵费成为核心推手」：「选取数据中心集中的北弗吉尼亚劳登县内 Arcola 变压器节点作为价格观测点。可以看到 Arcola 节点 2023 年与 2024 年的平均 LMP 为 35.6 与 36.8 美元/MWh，而 2025 年已经达到 59.3 美元/MWh，其中拥堵费高达 11.17 美元/MWh」（图表 13 来源 PJM）",
+        "grade": "S3",
+        "originator": "PJM（中泰证券《表后发电与挖矿转型加速之年：美国 AI 数据中心，基建缓慢，电从哪来？》2026-03-14 整理）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Arcola 变压器节点（劳登县）年平均 LMP，作为 DOM 区域价格观测点；2025 年 59.3 已在库（pjm-dom-lmp-2025）。"
+    },
+    {
+      "fact_id": "pjm-dom-lmp-2024",
+      "metric_id": "nodal_lmp_price",
+      "entity": {
+        "type": "industry",
+        "id": "pjm-dom",
+        "label": "PJM-DOM 区域"
+      },
+      "asserter": "PJM",
+      "value": 36.8,
+      "unit": "美元/MWh",
+      "caliber": {
+        "price_type": "LMP 含拥堵费",
+        "node": "PJM-DOM",
+        "region": "US-PJM"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d377d62f0e97b7d9d3d0cf7339cba60bf246d5c064b95d2d38c34ced3ab212b0",
+        "local_file": "20260314-中泰证券-中泰证券-传媒行业表后发电与挖矿转型加速之年：美国AI数据中心，基建缓慢，电从哪来？(25页).pdf",
+        "locator": "PDF 第 10 页「2.3 电价飙升：拥堵费成为核心推手」：「选取数据中心集中的北弗吉尼亚劳登县内 Arcola 变压器节点作为价格观测点。可以看到 Arcola 节点 2023 年与 2024 年的平均 LMP 为 35.6 与 36.8 美元/MWh，而 2025 年已经达到 59.3 美元/MWh，其中拥堵费高达 11.17 美元/MWh」（图表 13 来源 PJM）",
+        "grade": "S3",
+        "originator": "PJM（中泰证券《表后发电与挖矿转型加速之年：美国 AI 数据中心，基建缓慢，电从哪来？》2026-03-14 整理）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "Arcola 变压器节点（劳登县）年平均 LMP，作为 DOM 区域价格观测点；2025 年 59.3 已在库（pjm-dom-lmp-2025）。"
+    },
+    {
+      "fact_id": "pjm-dom-aep-congestion-spread-2023",
+      "metric_id": "congestion_price_spread",
+      "entity": {
+        "type": "industry",
+        "id": "pjm-dom-aep",
+        "label": "PJM DOM 对 AEP"
+      },
+      "asserter": "PJM",
+      "value": 4.8,
+      "unit": "美元/MWh",
+      "caliber": {
+        "pair": "PJM-DOM 对 PJM-AEP",
+        "region": "US-PJM"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d377d62f0e97b7d9d3d0cf7339cba60bf246d5c064b95d2d38c34ced3ab212b0",
+        "local_file": "20260314-中泰证券-中泰证券-传媒行业表后发电与挖矿转型加速之年：美国AI数据中心，基建缓慢，电从哪来？(25页).pdf",
+        "locator": "PDF 第 12 页：「DOM 与 AEP 的拥堵费价差从 2023 年的$4.8/MWh 急剧扩大至 2026 年初的$74.2/MWh。两个节点同属 PJM 电网，能量价格几乎相同，但拥堵费方向完全相反」（图表 18）",
+        "grade": "S3",
+        "originator": "PJM（中泰证券《表后发电与挖矿转型加速之年：美国 AI 数据中心，基建缓慢，电从哪来？》2026-03-14 整理）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "DOM 拥堵费为正、AEP 为负，价差为输电瓶颈的价格读数。74.2 为 2026 年初值（见 pjm-dom-aep-congestion-spread-2025，已更正 as_of）。"
+    },
+    {
+      "fact_id": "us-load-growth-concentration-2024",
+      "metric_id": "load_growth_concentration",
+      "entity": {
+        "type": "industry",
+        "id": "us-grid",
+        "label": "美国电网（全国）"
+      },
+      "asserter": "中泰证券",
+      "value": 57.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "五大电网区域",
+        "basis_type": "净增量占比",
+        "region": "US"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d377d62f0e97b7d9d3d0cf7339cba60bf246d5c064b95d2d38c34ced3ab212b0",
+        "local_file": "20260314-中泰证券-中泰证券-传媒行业表后发电与挖矿转型加速之年：美国AI数据中心，基建缓慢，电从哪来？(25页).pdf",
+        "locator": "PDF 第 5 页：「五大区域增量集中度加速上升：2024 年占全美 57%，2025 年进一步跃升至 76%。2025 年五大区域凌晨基础负载净增 10.37GW，较 2024 年的 6.53GW 增长 59%，而其余区域增量从 4.94GW 收窄至 3.28GW」（来源 EIA，中泰证券研究所）",
+        "grade": "S3",
+        "originator": "中泰证券基于 EIA 数据测算"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "口径为全美 48 州凌晨 2–4 点基础负载的年净增量；2024 年五大区域（ERCOT+PJM+MISO+SPP+NYISO）净增 6.53GW、其余 4.94GW，6.53/(6.53+4.94)=56.9%，与 57% 一致。"
     }
   ]
 }
