@@ -194594,6 +194594,169 @@
       "derivation": "as_of 推定同 gjzq2503b-thu-horinger-occupancy（同页 2023 年图表）；数值照录。",
       "corroboration": "待交叉验证",
       "notes": "「平均机架 PUE」按年均记；原文未给气候分区，记未分区。"
+    },
+    {
+      "fact_id": "tfzq2509-caict-cn-pue-hyperscale-inuse-2023",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "market",
+        "id": "cn-computing-centers",
+        "label": "中国算力中心（在用/规划）"
+      },
+      "asserter": "中国信通院",
+      "value": 1.33,
+      "unit": "比值",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "超大型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "07a3b1b6aaef4988cf35249dfdd2f23acf3dde8e8d24a9002c269bf4ffc73471",
+        "local_file": "20250918-天风证券：公用事业行业深度研究：AI带动数据中心景气向上，电力需求有多少(40页).pdf",
+        "locator": "PDF 第 12 页：「2023 年我国在用算力中心平均 PUE 为 1.48，与 2022 年的 1.52 相比有所改善，其中在用超大型算力中心平均 PUE 为 1.33，大型算力中心平均 PUE 为 1.43，规划在建算力中心平均设计 PUE 约为 1.29。2024 年全国算力中心 PUE 进一步降至 1.46。（来源：《中国算力发展报告（2024 年）》、中国信息通信研究院、内蒙古和林格尔新区管委会）」",
+        "grade": "S3",
+        "originator": "中国信通院《中国算力发展报告（2024 年）》（经天风证券《AI 带动数据中心景气向上，电力需求有多少》2025-09-18 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文口径为「算力中心」。在用超大型平均；同年全国在用平均 1.48 已在库（caict-gc2024-cn-avg-pue-2023）。"
+    },
+    {
+      "fact_id": "tfzq2509-caict-cn-pue-large-inuse-2023",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "market",
+        "id": "cn-computing-centers",
+        "label": "中国算力中心（在用/规划）"
+      },
+      "asserter": "中国信通院",
+      "value": 1.43,
+      "unit": "比值",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "大型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "07a3b1b6aaef4988cf35249dfdd2f23acf3dde8e8d24a9002c269bf4ffc73471",
+        "local_file": "20250918-天风证券：公用事业行业深度研究：AI带动数据中心景气向上，电力需求有多少(40页).pdf",
+        "locator": "PDF 第 12 页：「2023 年我国在用算力中心平均 PUE 为 1.48，与 2022 年的 1.52 相比有所改善，其中在用超大型算力中心平均 PUE 为 1.33，大型算力中心平均 PUE 为 1.43，规划在建算力中心平均设计 PUE 约为 1.29。2024 年全国算力中心 PUE 进一步降至 1.46。（来源：《中国算力发展报告（2024 年）》、中国信息通信研究院、内蒙古和林格尔新区管委会）」",
+        "grade": "S3",
+        "originator": "中国信通院《中国算力发展报告（2024 年）》（经天风证券《AI 带动数据中心景气向上，电力需求有多少》2025-09-18 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文口径为「算力中心」。在用大型平均。"
+    },
+    {
+      "fact_id": "tfzq2509-caict-cn-pue-planned-design-2023",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "market",
+        "id": "cn-computing-centers",
+        "label": "中国算力中心（在用/规划）"
+      },
+      "asserter": "中国信通院",
+      "value": 1.29,
+      "unit": "比值",
+      "caliber": {
+        "basis": "设计值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "设计工况",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "07a3b1b6aaef4988cf35249dfdd2f23acf3dde8e8d24a9002c269bf4ffc73471",
+        "local_file": "20250918-天风证券：公用事业行业深度研究：AI带动数据中心景气向上，电力需求有多少(40页).pdf",
+        "locator": "PDF 第 12 页：「2023 年我国在用算力中心平均 PUE 为 1.48，与 2022 年的 1.52 相比有所改善，其中在用超大型算力中心平均 PUE 为 1.33，大型算力中心平均 PUE 为 1.43，规划在建算力中心平均设计 PUE 约为 1.29。2024 年全国算力中心 PUE 进一步降至 1.46。（来源：《中国算力发展报告（2024 年）》、中国信息通信研究院、内蒙古和林格尔新区管委会）」",
+        "grade": "S3",
+        "originator": "中国信通院《中国算力发展报告（2024 年）》（经天风证券《AI 带动数据中心景气向上，电力需求有多少》2025-09-18 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文口径为「算力中心」。原文「规划在建算力中心平均设计 PUE 约为 1.29」；库内 ODCC 2022-12 规划大型设计 PUE 1.29（odcc2023-cn-pue-planned-design-large-2022）为另一断言者另一时点。"
+    },
+    {
+      "fact_id": "tfzq2509-dcinsight-cn-dc-market-2024e",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-dc-industry",
+        "label": "中国内地数据中心行业市场"
+      },
+      "asserter": "未注明",
+      "value": 3048.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "未注明",
+        "operator_type": "全市场",
+        "region": "CN",
+        "basis": "预测",
+        "currency": "人民币"
+      },
+      "as_of": "2024E@2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "07a3b1b6aaef4988cf35249dfdd2f23acf3dde8e8d24a9002c269bf4ffc73471",
+        "local_file": "20250918-天风证券：公用事业行业深度研究：AI带动数据中心景气向上，电力需求有多少(40页).pdf",
+        "locator": "PDF 第 8 页：「根据《数据中心行业投资与价值洞察（2024年12月）》，预计 2024 年中国内地数据中心行业市场规模预计将达到 3048 亿元、标准机架规模将突破 1000 万架，双双同比实现超过 20% 的高速增长」（图：2017-2024E 中国数据中心标准机架数/市场规模，资料来源同）",
+        "grade": "S3",
+        "originator": "《数据中心行业投资与价值洞察（2024 年 12 月）》（发布机构原文未写，经天风证券 2025-09-18 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原报告发布机构未写，asserter 记未注明；同比超过 20%。「行业市场规模」口径未说明是否等同 IDC 服务收入。"
+    },
+    {
+      "fact_id": "tfzq2509-dcinsight-cn-racks-2024e",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "market",
+        "id": "cn-dc-industry",
+        "label": "中国内地数据中心行业市场"
+      },
+      "asserter": "未注明",
+      "value": 1000.0,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2024E@2024-12",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "07a3b1b6aaef4988cf35249dfdd2f23acf3dde8e8d24a9002c269bf4ffc73471",
+        "local_file": "20250918-天风证券：公用事业行业深度研究：AI带动数据中心景气向上，电力需求有多少(40页).pdf",
+        "locator": "PDF 第 8 页：「根据《数据中心行业投资与价值洞察（2024年12月）》，预计 2024 年中国内地数据中心行业市场规模预计将达到 3048 亿元、标准机架规模将突破 1000 万架，双双同比实现超过 20% 的高速增长」（图：2017-2024E 中国数据中心标准机架数/市场规模，资料来源同）",
+        "grade": "S3",
+        "originator": "《数据中心行业投资与价值洞察（2024 年 12 月）》（发布机构原文未写，经天风证券 2025-09-18 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「将突破 1000 万架」，预测值，按下界记。"
     }
   ]
 }
