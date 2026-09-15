@@ -199120,6 +199120,99 @@
       "corroboration": "待交叉验证",
       "notes": "原文 GW，×1000 换为 MW。SemiAnalysis 称「关键 IT 电力需求」，按其模型口径即在运关键 IT 容量；status 记 L8（通电投运）。AI 为「约 40GW」，是 96 GW 的子集，不可相加。",
       "derivation": "SemiAnalysis 原文发布时点未在转引中注明，按转引报告年份取 @2024。"
+    },
+    {
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "region",
+        "id": "global-dc-imasons",
+        "label": "全球数据中心（iMasons 口径）"
+      },
+      "asserter": "Infrastructure Masons",
+      "unit": "MW",
+      "depth": "精读",
+      "corroboration": "待交叉验证",
+      "fact_id": "imasons2024-global-dc-build-capacity-2024",
+      "value": 105000,
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "Global"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "87401dd9ac41f4f96cadaa6478c5fc844a394dc74dddf0de848f164b3c80328b",
+        "local_file": "5977 - Carbon Free Compute In The AI Era.pdf",
+        "locator": "PDF 第 2 页「INDUSTRY BASELINE」：「7 MILLION DATA CENTER SITES」「105GW BUILD CAPACITY」「594TWh ANNUAL CONSUMPTION」「2.4% GLOBAL ENERGY USE」；SOURCE: Infrastructure Masons 2024 State of the Industry Report",
+        "grade": "S4",
+        "originator": "Infrastructure Masons《2024 State of the Industry Report》（经 Dean Nelson/Cato Digital 等 OCP 2024 全球峰会演讲《Carbon Free Compute in the AI Era》2024-10 转引）"
+      },
+      "derived": true,
+      "notes": "原文「105GW BUILD CAPACITY」，未说明 IT 还是设施口径，capacity_type 记未披露；「build capacity」理解为已建成容量，status 记 L8。GW×1000 换 MW。",
+      "derivation": "原文未写时点，按 iMasons 2024 年度报告取 as_of=2024。"
+    },
+    {
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "region",
+        "id": "global-dc-imasons",
+        "label": "全球数据中心（iMasons 口径）"
+      },
+      "asserter": "Infrastructure Masons",
+      "unit": "MW",
+      "depth": "精读",
+      "corroboration": "待交叉验证",
+      "fact_id": "imasons2024-global-dc-capacity-2026e-updated",
+      "value": 200000,
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "Global"
+      },
+      "as_of": "2026E@2024",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "87401dd9ac41f4f96cadaa6478c5fc844a394dc74dddf0de848f164b3c80328b",
+        "local_file": "5977 - Carbon Free Compute In The AI Era.pdf",
+        "locator": "PDF 第 5 页「UPDATED FORECAST」：「2026 2X 200GW+」「2030 3X 300GW+」；SOURCE: Infrastructure Masons 2024 State of the Industry Report",
+        "grade": "S4",
+        "originator": "Infrastructure Masons《2024 State of the Industry Report》（经 Dean Nelson/Cato Digital 等 OCP 2024 全球峰会演讲《Carbon Free Compute in the AI Era》2024-10 转引）"
+      },
+      "derived": true,
+      "notes": "原文「200GW+」按下限录，为 105 GW 基线的 2X。第 3 页「FORECAST」原为 2030 年 200GW+、2035 年 300GW+，第 5 页「UPDATED FORECAST」提前到 2026/2030——同一报告内的修订，只录更新值，旧值见缺口。",
+      "derivation": "预测发布时点取 iMasons 2024 年度报告所在年 @2024。"
+    },
+    {
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "region",
+        "id": "global-dc-imasons",
+        "label": "全球数据中心（iMasons 口径）"
+      },
+      "asserter": "Infrastructure Masons",
+      "unit": "MW",
+      "depth": "精读",
+      "corroboration": "待交叉验证",
+      "fact_id": "imasons2024-global-dc-capacity-2030e-updated",
+      "value": 300000,
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "Global"
+      },
+      "as_of": "2030E@2024",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "87401dd9ac41f4f96cadaa6478c5fc844a394dc74dddf0de848f164b3c80328b",
+        "local_file": "5977 - Carbon Free Compute In The AI Era.pdf",
+        "locator": "PDF 第 5 页「UPDATED FORECAST」：「2026 2X 200GW+」「2030 3X 300GW+」；SOURCE: Infrastructure Masons 2024 State of the Industry Report",
+        "grade": "S4",
+        "originator": "Infrastructure Masons《2024 State of the Industry Report》（经 Dean Nelson/Cato Digital 等 OCP 2024 全球峰会演讲《Carbon Free Compute in the AI Era》2024-10 转引）"
+      },
+      "derived": true,
+      "notes": "原文「300GW+」按下限录，为 105 GW 基线的 3X。第 3 页「FORECAST」原为 2030 年 200GW+、2035 年 300GW+，第 5 页「UPDATED FORECAST」提前到 2026/2030——同一报告内的修订，只录更新值，旧值见缺口。",
+      "derivation": "预测发布时点取 iMasons 2024 年度报告所在年 @2024。"
     }
   ]
 }
