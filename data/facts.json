@@ -184989,6 +184989,72 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "本条单位：百万美元。「almost」按点值记约数。另有集群运营成本 7.15 亿美元（parameter 无运营成本档，未录）；同文称 GPU 投资在公司历史上「well higher than $500M」。"
+    },
+    {
+      "fact_id": "nomura2504-google-capex-2025q1",
+      "metric_id": "hyperscaler_capex_total",
+      "asserter": "谷歌",
+      "entity": {
+        "type": "company",
+        "id": "google",
+        "label": "谷歌（Alphabet）"
+      },
+      "value": 172.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "单一公司",
+        "capex_scope": "全部 capex",
+        "basis": "实测",
+        "vintage": "实际发生",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6a6521ec9b0218b1f3392895786ce3aa6614922e86b5127f249137620722371c",
+        "local_file": "[UBS]cker.pdf",
+        "locator": "第 1 页：「In terms of capex, Alphabet spent USD17.2bn in 1Q25 (+43.2% y-y and 20.5% q-q)」",
+        "grade": "S2",
+        "originator": "谷歌母公司 Alphabet 2025 年一季度业绩（经野村证券《Global AI Trend Tracker》（2025-04-25）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "172 亿美元。文件名写 UBS 但页眉页脚均为 Nomura（野村），按内容著录。"
+    },
+    {
+      "fact_id": "nomura2504-google-capex-guide-2025",
+      "metric_id": "hyperscaler_capex_total",
+      "asserter": "谷歌",
+      "entity": {
+        "type": "company",
+        "id": "google",
+        "label": "谷歌（Alphabet）"
+      },
+      "value": 750.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "单一公司",
+        "capex_scope": "全部 capex",
+        "basis": "厂商指引",
+        "vintage": "其他快照",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6a6521ec9b0218b1f3392895786ce3aa6614922e86b5127f249137620722371c",
+        "local_file": "[UBS]cker.pdf",
+        "locator": "第 1–2 页：「management's guidance of USD75bn capex for FY25 remains unchanged」「Management maintained guidance of approximately USD75bn in capex this year」",
+        "grade": "S2",
+        "originator": "谷歌母公司 Alphabet 2025 年一季度业绩（经野村证券《Global AI Trend Tracker》（2025-04-25）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2025-04 一季度电话会维持 750 亿美元指引（与 2025-02 首次给出的同值 ghzq2506-google-capex-plan-2025 并列，vintage 不同）；后续 2025-07 上调至 850 亿、2025-10 至 910–930 亿。"
     }
   ]
 }
