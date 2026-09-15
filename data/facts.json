@@ -174481,6 +174481,1458 @@
       "corroboration": "待交叉验证",
       "notes": "13,284.0 百万美元，合并口径营业收入。英特尔财年与自然年大致对齐（财年截至 12 月最后一个周六）；每年 Q4 一行装 10-K 全年数（如 2024 Q4 = 53101），未录。季度营收，不可乘 4 外推年度。",
       "asserter": "英特尔"
+    },
+    {
+      "fact_id": "tf-foundry-rev-tsmc-q124",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-tsmc",
+        "label": "TSMC(台积电)"
+      },
+      "value": 188.47,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q1",
+      "caliber": {
+        "foundry": "TSMC(台积电)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 28 行 2024 Q1「TSMC」列 = 18847（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "18,847 百万美元 = 188.47 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-samsung-q124",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-samsung-foundry",
+        "label": "Samsung Foundry(三星)"
+      },
+      "value": 33.57,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q1",
+      "caliber": {
+        "foundry": "Samsung Foundry(三星)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 28 行 2024 Q1「Samsung」列 = 3357（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "3,357 百万美元 = 33.57 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-smic-q124",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-smic",
+        "label": "SMIC(中芯国际)"
+      },
+      "value": 17.5,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q1",
+      "caliber": {
+        "foundry": "SMIC(中芯国际)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 28 行 2024 Q1「SMIC」列 = 1750（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "1,750 百万美元 = 17.50 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-umc-q124",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-umc",
+        "label": "UMC(联华)"
+      },
+      "value": 17.37,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q1",
+      "caliber": {
+        "foundry": "UMC(联华)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 28 行 2024 Q1「UMC」列 = 1737（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "1,737 百万美元 = 17.37 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-gf-q124",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-globalfoundries",
+        "label": "GlobalFoundries(格罗方德)"
+      },
+      "value": 15.49,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q1",
+      "caliber": {
+        "foundry": "GlobalFoundries(格罗方德)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 28 行 2024 Q1「Global Foundries」列 = 1549（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "1,549 百万美元 = 15.49 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-huahong-q124",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-huahong-group",
+        "label": "HuaHong Group(华宏)"
+      },
+      "value": 6.73,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q1",
+      "caliber": {
+        "foundry": "HuaHong Group(华宏)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 28 行 2024 Q1「Huahong Group」列 = 673（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "673 百万美元 = 6.73 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。华虹集团口径（2021Q1 起由约 2 亿跳到 6 亿美元，应含华力并表口径变化，原表未注明）。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-tower-q124",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-tower",
+        "label": "Tower(塔尔)"
+      },
+      "value": 3.27,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q1",
+      "caliber": {
+        "foundry": "Tower(塔尔)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 28 行 2024 Q1「Tower」列 = 327（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "327 百万美元 = 3.27 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-vis-q124",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-vis",
+        "label": "VIS(世界先进)"
+      },
+      "value": 3.06,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q1",
+      "caliber": {
+        "foundry": "VIS(世界先进)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 28 行 2024 Q1「VIS」列 = 306（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "306 百万美元 = 3.06 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-nexchip-q124",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-nexchip",
+        "label": "Nexchip(合肥晶合)"
+      },
+      "value": 3.1,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q1",
+      "caliber": {
+        "foundry": "Nexchip(合肥晶合)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 28 行 2024 Q1「Nexchip」列 = 310（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "310 百万美元 = 3.10 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-psmc-q124",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-psmc",
+        "label": "PSMC(力积电)"
+      },
+      "value": 3.16,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q1",
+      "caliber": {
+        "foundry": "PSMC(力积电)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 28 行 2024 Q1「PSMC」列 = 316（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "316 百万美元 = 3.16 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-top10total-q124",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-top10-total-trendforce",
+        "label": "前十大合计（TrendForce 排名口径）"
+      },
+      "value": 291.72,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q1",
+      "caliber": {
+        "foundry": "前十大合计（TrendForce 排名口径）",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 28 行 2024 Q1「Total」列 = 29172（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "29,172 百万美元 = 291.72 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。**是当季前十名之和，不是全行业**，入榜厂商逐季变化，前后季不完全可比。2018 年各季原表无合计。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-tsmc-q224",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-tsmc",
+        "label": "TSMC(台积电)"
+      },
+      "value": 208.19,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q2",
+      "caliber": {
+        "foundry": "TSMC(台积电)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 29 行 2024 Q2「TSMC」列 = 20819（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "20,819 百万美元 = 208.19 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-samsung-q224",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-samsung-foundry",
+        "label": "Samsung Foundry(三星)"
+      },
+      "value": 38.33,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q2",
+      "caliber": {
+        "foundry": "Samsung Foundry(三星)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 29 行 2024 Q2「Samsung」列 = 3833（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "3,833 百万美元 = 38.33 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-smic-q224",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-smic",
+        "label": "SMIC(中芯国际)"
+      },
+      "value": 19.01,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q2",
+      "caliber": {
+        "foundry": "SMIC(中芯国际)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 29 行 2024 Q2「SMIC」列 = 1901（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "1,901 百万美元 = 19.01 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-umc-q224",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-umc",
+        "label": "UMC(联华)"
+      },
+      "value": 17.56,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q2",
+      "caliber": {
+        "foundry": "UMC(联华)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 29 行 2024 Q2「UMC」列 = 1756（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "1,756 百万美元 = 17.56 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-gf-q224",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-globalfoundries",
+        "label": "GlobalFoundries(格罗方德)"
+      },
+      "value": 16.32,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q2",
+      "caliber": {
+        "foundry": "GlobalFoundries(格罗方德)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 29 行 2024 Q2「Global Foundries」列 = 1632（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "1,632 百万美元 = 16.32 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-huahong-q224",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-huahong-group",
+        "label": "HuaHong Group(华宏)"
+      },
+      "value": 7.08,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q2",
+      "caliber": {
+        "foundry": "HuaHong Group(华宏)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 29 行 2024 Q2「Huahong Group」列 = 708（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "708 百万美元 = 7.08 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。华虹集团口径（2021Q1 起由约 2 亿跳到 6 亿美元，应含华力并表口径变化，原表未注明）。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-tower-q224",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-tower",
+        "label": "Tower(塔尔)"
+      },
+      "value": 3.51,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q2",
+      "caliber": {
+        "foundry": "Tower(塔尔)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 29 行 2024 Q2「Tower」列 = 351（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "351 百万美元 = 3.51 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-vis-q224",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-vis",
+        "label": "VIS(世界先进)"
+      },
+      "value": 3.42,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q2",
+      "caliber": {
+        "foundry": "VIS(世界先进)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 29 行 2024 Q2「VIS」列 = 342（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "342 百万美元 = 3.42 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-nexchip-q224",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-nexchip",
+        "label": "Nexchip(合肥晶合)"
+      },
+      "value": 3.0,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q2",
+      "caliber": {
+        "foundry": "Nexchip(合肥晶合)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 29 行 2024 Q2「Nexchip」列 = 300（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "300 百万美元 = 3.00 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-psmc-q224",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-psmc",
+        "label": "PSMC(力积电)"
+      },
+      "value": 3.2,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q2",
+      "caliber": {
+        "foundry": "PSMC(力积电)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 29 行 2024 Q2「PSMC」列 = 320（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "320 百万美元 = 3.20 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-top10total-q224",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-top10-total-trendforce",
+        "label": "前十大合计（TrendForce 排名口径）"
+      },
+      "value": 319.62,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q2",
+      "caliber": {
+        "foundry": "前十大合计（TrendForce 排名口径）",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 29 行 2024 Q2「Total」列 = 31962（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "31,962 百万美元 = 319.62 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。**是当季前十名之和，不是全行业**，入榜厂商逐季变化，前后季不完全可比。2018 年各季原表无合计。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-tsmc-q324",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-tsmc",
+        "label": "TSMC(台积电)"
+      },
+      "value": 235.27,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q3",
+      "caliber": {
+        "foundry": "TSMC(台积电)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 30 行 2024 Q3「TSMC」列 = 23527（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "23,527 百万美元 = 235.27 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-samsung-q324",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-samsung-foundry",
+        "label": "Samsung Foundry(三星)"
+      },
+      "value": 33.05,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q3",
+      "caliber": {
+        "foundry": "Samsung Foundry(三星)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 30 行 2024 Q3「Samsung」列 = 3305（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "3,305 百万美元 = 33.05 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-smic-q324",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-smic",
+        "label": "SMIC(中芯国际)"
+      },
+      "value": 21.71,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q3",
+      "caliber": {
+        "foundry": "SMIC(中芯国际)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 30 行 2024 Q3「SMIC」列 = 2171（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2,171 百万美元 = 21.71 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-umc-q324",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-umc",
+        "label": "UMC(联华)"
+      },
+      "value": 18.73,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q3",
+      "caliber": {
+        "foundry": "UMC(联华)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 30 行 2024 Q3「UMC」列 = 1873（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "1,873 百万美元 = 18.73 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-gf-q324",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-globalfoundries",
+        "label": "GlobalFoundries(格罗方德)"
+      },
+      "value": 17.39,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q3",
+      "caliber": {
+        "foundry": "GlobalFoundries(格罗方德)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 30 行 2024 Q3「Global Foundries」列 = 1739（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "1,739 百万美元 = 17.39 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-huahong-q324",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-huahong-group",
+        "label": "HuaHong Group(华宏)"
+      },
+      "value": 9.82,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q3",
+      "caliber": {
+        "foundry": "HuaHong Group(华宏)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 30 行 2024 Q3「Huahong Group」列 = 982（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "982 百万美元 = 9.82 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。华虹集团口径（2021Q1 起由约 2 亿跳到 6 亿美元，应含华力并表口径变化，原表未注明）。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-tower-q324",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-tower",
+        "label": "Tower(塔尔)"
+      },
+      "value": 3.71,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q3",
+      "caliber": {
+        "foundry": "Tower(塔尔)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 30 行 2024 Q3「Tower」列 = 371（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "371 百万美元 = 3.71 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-vis-q324",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-vis",
+        "label": "VIS(世界先进)"
+      },
+      "value": 3.66,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q3",
+      "caliber": {
+        "foundry": "VIS(世界先进)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 30 行 2024 Q3「VIS」列 = 366（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "366 百万美元 = 3.66 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-nexchip-q324",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-nexchip",
+        "label": "Nexchip(合肥晶合)"
+      },
+      "value": 3.32,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q3",
+      "caliber": {
+        "foundry": "Nexchip(合肥晶合)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 30 行 2024 Q3「Nexchip」列 = 332（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "332 百万美元 = 3.32 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-psmc-q324",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-psmc",
+        "label": "PSMC(力积电)"
+      },
+      "value": 3.36,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q3",
+      "caliber": {
+        "foundry": "PSMC(力积电)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 30 行 2024 Q3「PSMC」列 = 336（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "336 百万美元 = 3.36 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-top10total-q324",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-top10-total-trendforce",
+        "label": "前十大合计（TrendForce 排名口径）"
+      },
+      "value": 350.01,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q3",
+      "caliber": {
+        "foundry": "前十大合计（TrendForce 排名口径）",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 30 行 2024 Q3「Total」列 = 35001（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "35,001 百万美元 = 350.01 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。**是当季前十名之和，不是全行业**，入榜厂商逐季变化，前后季不完全可比。2018 年各季原表无合计。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-tsmc-q424",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-tsmc",
+        "label": "TSMC(台积电)"
+      },
+      "value": 268.54,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q4",
+      "caliber": {
+        "foundry": "TSMC(台积电)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 31 行 2024 Q4「TSMC」列 = 26854（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "26,854 百万美元 = 268.54 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-samsung-q424",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-samsung-foundry",
+        "label": "Samsung Foundry(三星)"
+      },
+      "value": 32.6,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q4",
+      "caliber": {
+        "foundry": "Samsung Foundry(三星)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 31 行 2024 Q4「Samsung」列 = 3260（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "3,260 百万美元 = 32.60 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-smic-q424",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-smic",
+        "label": "SMIC(中芯国际)"
+      },
+      "value": 22.07,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q4",
+      "caliber": {
+        "foundry": "SMIC(中芯国际)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 31 行 2024 Q4「SMIC」列 = 2207（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2,207 百万美元 = 22.07 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-umc-q424",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-umc",
+        "label": "UMC(联华)"
+      },
+      "value": 18.67,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q4",
+      "caliber": {
+        "foundry": "UMC(联华)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 31 行 2024 Q4「UMC」列 = 1867（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "1,867 百万美元 = 18.67 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-gf-q424",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-globalfoundries",
+        "label": "GlobalFoundries(格罗方德)"
+      },
+      "value": 18.3,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q4",
+      "caliber": {
+        "foundry": "GlobalFoundries(格罗方德)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 31 行 2024 Q4「Global Foundries」列 = 1830（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "1,830 百万美元 = 18.30 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-huahong-q424",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-huahong-group",
+        "label": "HuaHong Group(华宏)"
+      },
+      "value": 10.42,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q4",
+      "caliber": {
+        "foundry": "HuaHong Group(华宏)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 31 行 2024 Q4「Huahong Group」列 = 1042（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "1,042 百万美元 = 10.42 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。华虹集团口径（2021Q1 起由约 2 亿跳到 6 亿美元，应含华力并表口径变化，原表未注明）。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-tower-q424",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-tower",
+        "label": "Tower(塔尔)"
+      },
+      "value": 3.87,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q4",
+      "caliber": {
+        "foundry": "Tower(塔尔)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 31 行 2024 Q4「Tower」列 = 387（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "387 百万美元 = 3.87 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-vis-q424",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-vis",
+        "label": "VIS(世界先进)"
+      },
+      "value": 3.57,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q4",
+      "caliber": {
+        "foundry": "VIS(世界先进)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 31 行 2024 Q4「VIS」列 = 357（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "357 百万美元 = 3.57 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-nexchip-q424",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-nexchip",
+        "label": "Nexchip(合肥晶合)"
+      },
+      "value": 3.44,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q4",
+      "caliber": {
+        "foundry": "Nexchip(合肥晶合)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 31 行 2024 Q4「Nexchip」列 = 344（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "344 百万美元 = 3.44 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-psmc-q424",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-psmc",
+        "label": "PSMC(力积电)"
+      },
+      "value": 3.33,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q4",
+      "caliber": {
+        "foundry": "PSMC(力积电)",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 31 行 2024 Q4「PSMC」列 = 333（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "333 百万美元 = 3.33 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "tf-foundry-rev-top10total-q424",
+      "metric_id": "foundry_revenue",
+      "entity": {
+        "type": "company",
+        "id": "foundry-top10-total-trendforce",
+        "label": "前十大合计（TrendForce 排名口径）"
+      },
+      "value": 384.82,
+      "unit": "亿美元",
+      "bound": "point",
+      "as_of": "2024-Q4",
+      "caliber": {
+        "foundry": "前十大合计（TrendForce 排名口径）",
+        "node": "合计",
+        "period": "季度",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "evidence": {
+        "sha256": "fedcf904205b0f916e63373c4233e9378565b3655a94e3fad5a1f84c7e51a5b6",
+        "local_file": "半导体晶圆代工厂财务数据分析_2024Q4.xlsx",
+        "locator": "工作表「原始数据|DrameXchange」第 31 行 2024 Q4「Total」列 = 38482（单位：百万美元；数据来源：https://www.dramexchange.com/）",
+        "grade": "S3",
+        "originator": "TrendForce 集邦咨询（DRAMeXchange）；未署名汇编工作簿《半导体晶圆代工厂财务数据分析_2024Q4》转录"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "38,482 百万美元 = 384.82 亿美元。季度营收，不可乘 4 外推年度。数据来源栏写 https://www.dramexchange.com/（TrendForce 集邦旗下），为 TrendForce 全球前十大晶圆代工营收排名口径；空格表示当季未进前十，不是零。**是当季前十名之和，不是全行业**，入榜厂商逐季变化，前后季不完全可比。2018 年各季原表无合计。 2024 年四季原暂缓待定断言者归属，2026-09-15 裁定摩根士丹利转录序列留在大摩名下后补录，与 ms2506-foundry-rev-* 并列；两者在公司自报数（如台积电）上一致不构成交叉验证，在估计值（如三星代工）上的分歧才有信息量。",
+      "asserter": "TrendForce"
     }
   ]
 }
