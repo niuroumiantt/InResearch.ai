@@ -179582,6 +179582,400 @@
       "derivation": "as_of 版次月份按文件名日期 2024-09 推定",
       "corroboration": "待交叉验证",
       "notes": "原文未说是全行业平均还是领先数据中心，按全市场记 [未核]。as_of @2024-09 取文件名与下载日期 2024-09-22（封面未印月份）；2023 版同值事实另见 huawei-dc2030-*（@2023），不同版次的预测并列，不是修订。"
+    },
+    {
+      "fact_id": "cci2022-caict-cn-avg-pue-2021",
+      "metric_id": "dc_pue",
+      "asserter": "中国信通院",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc-inuse",
+        "label": "中国在用数据中心（全国平均）"
+      },
+      "value": 1.5511,
+      "unit": "比值",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "bc9a3257c7bd7d7e691911fb4034753ee0d714e41cfba6a7c368b12aafdaf6da",
+        "local_file": "【2022年7月】【中国算力大会】中国综合算力指数（2022年).pdf",
+        "locator": "PDF 第 23 页（版面页 14）图 9「我国 PUE 较低 Top10 省份」下正文：「2021 年，我国在用数据中心平均 PUE 为 1.5511」；脚注 11「数据来源：中国信息通信研究院」",
+        "grade": "S2",
+        "originator": "中国信通院（数据来源），经 2022 中国算力大会《中国综合算力指数（2022 年）》（2022-07）发布"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "全国在用数据中心平均，四位小数照录。与库内 CDCC 2021 年 1.49（sic2205-cdcc-cn-avg-pue-2021，运行值、存量）口径与样本不同，并列不比；伯恩斯坦 2021 年 1.55（bern2025-cn-avg-pue-2021）量级一致，可能转引本数，未核。"
+    },
+    {
+      "fact_id": "cci2022-caict-storage-bj-sh-gd-2021",
+      "metric_id": "storage_capacity_total",
+      "asserter": "中国信通院",
+      "entity": {
+        "type": "region",
+        "id": "cn-storage-bj-sh-gd",
+        "label": "北京、上海、广东三地合计存储总体容量"
+      },
+      "value": 230.0,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "utilization": "未注明",
+        "cloud": "不分",
+        "location": "不分位置",
+        "area": "北京、上海、广东三地合计",
+        "status": "在用",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2021",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "bc9a3257c7bd7d7e691911fb4034753ee0d714e41cfba6a7c368b12aafdaf6da",
+        "local_file": "【2022年7月】【中国算力大会】中国综合算力指数（2022年).pdf",
+        "locator": "PDF 第 27 页（版面页 18）图 13 下正文：「北上广的存储总体容量超 230EB，约占总容量的 29%」；脚注 14「数据来源：中国信息通信研究院」",
+        "grade": "S2",
+        "originator": "中国信通院（数据来源），经 2022 中国算力大会《中国综合算力指数（2022 年）》（2022-07）发布"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文未写统计时点；同报告算力数据均为「截至 2021 年底」，存力章节沿用同一评价年度，as_of 推定为 2021",
+      "corroboration": "待交叉验证",
+      "notes": "「超」按下界记；三地合计，约占全国存储总体容量 29%（由此反推全国约 790 EB 属推算，未录）。utilization 原文未说明是装机还是已用。"
+    },
+    {
+      "fact_id": "cci2022-caict-storage-beijing-2021",
+      "metric_id": "storage_capacity_total",
+      "asserter": "中国信通院",
+      "entity": {
+        "type": "region",
+        "id": "cn-storage-beijing",
+        "label": "北京市存储总体容量"
+      },
+      "value": 65.0,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "utilization": "未注明",
+        "cloud": "不分",
+        "location": "不分位置",
+        "area": "北京市",
+        "status": "在用",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2021",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "bc9a3257c7bd7d7e691911fb4034753ee0d714e41cfba6a7c368b12aafdaf6da",
+        "local_file": "【2022年7月】【中国算力大会】中国综合算力指数（2022年).pdf",
+        "locator": "PDF 第 25 页（版面页 16）6.1 存力指数：「北京市、上海市、江苏省、河北省整体实力相差不大，存力指数均在 49-54 分之间……存储总体容量均超过 65EB」；脚注 12「数据来源：中国信息通信研究院」",
+        "grade": "S2",
+        "originator": "中国信通院（数据来源），经 2022 中国算力大会《中国综合算力指数（2022 年）》（2022-07）发布"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文未写统计时点；同报告算力数据均为「截至 2021 年底」，存力章节沿用同一评价年度，as_of 推定为 2021",
+      "corroboration": "待交叉验证",
+      "notes": "原文四省合述「均超过 65EB」，按各自下界记；广东省为存力第一但本句未给其容量。"
+    },
+    {
+      "fact_id": "cci2022-caict-storage-shanghai-2021",
+      "metric_id": "storage_capacity_total",
+      "asserter": "中国信通院",
+      "entity": {
+        "type": "region",
+        "id": "cn-storage-shanghai",
+        "label": "上海市存储总体容量"
+      },
+      "value": 65.0,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "utilization": "未注明",
+        "cloud": "不分",
+        "location": "不分位置",
+        "area": "上海市",
+        "status": "在用",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2021",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "bc9a3257c7bd7d7e691911fb4034753ee0d714e41cfba6a7c368b12aafdaf6da",
+        "local_file": "【2022年7月】【中国算力大会】中国综合算力指数（2022年).pdf",
+        "locator": "PDF 第 25 页（版面页 16）6.1 存力指数：「北京市、上海市、江苏省、河北省整体实力相差不大，存力指数均在 49-54 分之间……存储总体容量均超过 65EB」；脚注 12「数据来源：中国信息通信研究院」",
+        "grade": "S2",
+        "originator": "中国信通院（数据来源），经 2022 中国算力大会《中国综合算力指数（2022 年）》（2022-07）发布"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文未写统计时点；同报告算力数据均为「截至 2021 年底」，存力章节沿用同一评价年度，as_of 推定为 2021",
+      "corroboration": "待交叉验证",
+      "notes": "原文四省合述「均超过 65EB」，按各自下界记；广东省为存力第一但本句未给其容量。"
+    },
+    {
+      "fact_id": "cci2022-caict-storage-jiangsu-2021",
+      "metric_id": "storage_capacity_total",
+      "asserter": "中国信通院",
+      "entity": {
+        "type": "region",
+        "id": "cn-storage-jiangsu",
+        "label": "江苏省存储总体容量"
+      },
+      "value": 65.0,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "utilization": "未注明",
+        "cloud": "不分",
+        "location": "不分位置",
+        "area": "江苏省",
+        "status": "在用",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2021",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "bc9a3257c7bd7d7e691911fb4034753ee0d714e41cfba6a7c368b12aafdaf6da",
+        "local_file": "【2022年7月】【中国算力大会】中国综合算力指数（2022年).pdf",
+        "locator": "PDF 第 25 页（版面页 16）6.1 存力指数：「北京市、上海市、江苏省、河北省整体实力相差不大，存力指数均在 49-54 分之间……存储总体容量均超过 65EB」；脚注 12「数据来源：中国信息通信研究院」",
+        "grade": "S2",
+        "originator": "中国信通院（数据来源），经 2022 中国算力大会《中国综合算力指数（2022 年）》（2022-07）发布"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文未写统计时点；同报告算力数据均为「截至 2021 年底」，存力章节沿用同一评价年度，as_of 推定为 2021",
+      "corroboration": "待交叉验证",
+      "notes": "原文四省合述「均超过 65EB」，按各自下界记；广东省为存力第一但本句未给其容量。"
+    },
+    {
+      "fact_id": "cci2022-caict-storage-hebei-2021",
+      "metric_id": "storage_capacity_total",
+      "asserter": "中国信通院",
+      "entity": {
+        "type": "region",
+        "id": "cn-storage-hebei",
+        "label": "河北省存储总体容量"
+      },
+      "value": 65.0,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "utilization": "未注明",
+        "cloud": "不分",
+        "location": "不分位置",
+        "area": "河北省",
+        "status": "在用",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2021",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "bc9a3257c7bd7d7e691911fb4034753ee0d714e41cfba6a7c368b12aafdaf6da",
+        "local_file": "【2022年7月】【中国算力大会】中国综合算力指数（2022年).pdf",
+        "locator": "PDF 第 25 页（版面页 16）6.1 存力指数：「北京市、上海市、江苏省、河北省整体实力相差不大，存力指数均在 49-54 分之间……存储总体容量均超过 65EB」；脚注 12「数据来源：中国信息通信研究院」",
+        "grade": "S2",
+        "originator": "中国信通院（数据来源），经 2022 中国算力大会《中国综合算力指数（2022 年）》（2022-07）发布"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文未写统计时点；同报告算力数据均为「截至 2021 年底」，存力章节沿用同一评价年度，as_of 推定为 2021",
+      "corroboration": "待交叉验证",
+      "notes": "原文四省合述「均超过 65EB」，按各自下界记；广东省为存力第一但本句未给其容量。"
+    },
+    {
+      "fact_id": "cci2022-caict-storage-zhejiang-2021",
+      "metric_id": "storage_capacity_total",
+      "asserter": "中国信通院",
+      "entity": {
+        "type": "region",
+        "id": "cn-storage-zhejiang",
+        "label": "浙江省存储总体容量"
+      },
+      "value": 35.0,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "utilization": "未注明",
+        "cloud": "不分",
+        "location": "不分位置",
+        "area": "浙江省",
+        "status": "在用",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2021",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "bc9a3257c7bd7d7e691911fb4034753ee0d714e41cfba6a7c368b12aafdaf6da",
+        "local_file": "【2022年7月】【中国算力大会】中国综合算力指数（2022年).pdf",
+        "locator": "PDF 第 25–26 页（版面页 16–17）：「浙江省、内蒙古自治区、贵州省、湖北省、天津市，存力水平低于北上广区域……存储总体容量均超过 35EB」；脚注 13「数据来源：中国信息通信研究院」",
+        "grade": "S2",
+        "originator": "中国信通院（数据来源），经 2022 中国算力大会《中国综合算力指数（2022 年）》（2022-07）发布"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文未写统计时点；同报告算力数据均为「截至 2021 年底」，存力章节沿用同一评价年度，as_of 推定为 2021",
+      "corroboration": "待交叉验证",
+      "notes": "原文五省合述「均超过 35EB」，按各自下界记。"
+    },
+    {
+      "fact_id": "cci2022-caict-storage-neimenggu-2021",
+      "metric_id": "storage_capacity_total",
+      "asserter": "中国信通院",
+      "entity": {
+        "type": "region",
+        "id": "cn-storage-neimenggu",
+        "label": "内蒙古自治区存储总体容量"
+      },
+      "value": 35.0,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "utilization": "未注明",
+        "cloud": "不分",
+        "location": "不分位置",
+        "area": "内蒙古自治区",
+        "status": "在用",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2021",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "bc9a3257c7bd7d7e691911fb4034753ee0d714e41cfba6a7c368b12aafdaf6da",
+        "local_file": "【2022年7月】【中国算力大会】中国综合算力指数（2022年).pdf",
+        "locator": "PDF 第 25–26 页（版面页 16–17）：「浙江省、内蒙古自治区、贵州省、湖北省、天津市，存力水平低于北上广区域……存储总体容量均超过 35EB」；脚注 13「数据来源：中国信息通信研究院」",
+        "grade": "S2",
+        "originator": "中国信通院（数据来源），经 2022 中国算力大会《中国综合算力指数（2022 年）》（2022-07）发布"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文未写统计时点；同报告算力数据均为「截至 2021 年底」，存力章节沿用同一评价年度，as_of 推定为 2021",
+      "corroboration": "待交叉验证",
+      "notes": "原文五省合述「均超过 35EB」，按各自下界记。"
+    },
+    {
+      "fact_id": "cci2022-caict-storage-guizhou-2021",
+      "metric_id": "storage_capacity_total",
+      "asserter": "中国信通院",
+      "entity": {
+        "type": "region",
+        "id": "cn-storage-guizhou",
+        "label": "贵州省存储总体容量"
+      },
+      "value": 35.0,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "utilization": "未注明",
+        "cloud": "不分",
+        "location": "不分位置",
+        "area": "贵州省",
+        "status": "在用",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2021",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "bc9a3257c7bd7d7e691911fb4034753ee0d714e41cfba6a7c368b12aafdaf6da",
+        "local_file": "【2022年7月】【中国算力大会】中国综合算力指数（2022年).pdf",
+        "locator": "PDF 第 25–26 页（版面页 16–17）：「浙江省、内蒙古自治区、贵州省、湖北省、天津市，存力水平低于北上广区域……存储总体容量均超过 35EB」；脚注 13「数据来源：中国信息通信研究院」",
+        "grade": "S2",
+        "originator": "中国信通院（数据来源），经 2022 中国算力大会《中国综合算力指数（2022 年）》（2022-07）发布"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文未写统计时点；同报告算力数据均为「截至 2021 年底」，存力章节沿用同一评价年度，as_of 推定为 2021",
+      "corroboration": "待交叉验证",
+      "notes": "原文五省合述「均超过 35EB」，按各自下界记。"
+    },
+    {
+      "fact_id": "cci2022-caict-storage-hubei-2021",
+      "metric_id": "storage_capacity_total",
+      "asserter": "中国信通院",
+      "entity": {
+        "type": "region",
+        "id": "cn-storage-hubei",
+        "label": "湖北省存储总体容量"
+      },
+      "value": 35.0,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "utilization": "未注明",
+        "cloud": "不分",
+        "location": "不分位置",
+        "area": "湖北省",
+        "status": "在用",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2021",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "bc9a3257c7bd7d7e691911fb4034753ee0d714e41cfba6a7c368b12aafdaf6da",
+        "local_file": "【2022年7月】【中国算力大会】中国综合算力指数（2022年).pdf",
+        "locator": "PDF 第 25–26 页（版面页 16–17）：「浙江省、内蒙古自治区、贵州省、湖北省、天津市，存力水平低于北上广区域……存储总体容量均超过 35EB」；脚注 13「数据来源：中国信息通信研究院」",
+        "grade": "S2",
+        "originator": "中国信通院（数据来源），经 2022 中国算力大会《中国综合算力指数（2022 年）》（2022-07）发布"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文未写统计时点；同报告算力数据均为「截至 2021 年底」，存力章节沿用同一评价年度，as_of 推定为 2021",
+      "corroboration": "待交叉验证",
+      "notes": "原文五省合述「均超过 35EB」，按各自下界记。"
+    },
+    {
+      "fact_id": "cci2022-caict-storage-tianjin-2021",
+      "metric_id": "storage_capacity_total",
+      "asserter": "中国信通院",
+      "entity": {
+        "type": "region",
+        "id": "cn-storage-tianjin",
+        "label": "天津市存储总体容量"
+      },
+      "value": 35.0,
+      "unit": "EB",
+      "caliber": {
+        "storage_type": "全部",
+        "utilization": "未注明",
+        "cloud": "不分",
+        "location": "不分位置",
+        "area": "天津市",
+        "status": "在用",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2021",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "bc9a3257c7bd7d7e691911fb4034753ee0d714e41cfba6a7c368b12aafdaf6da",
+        "local_file": "【2022年7月】【中国算力大会】中国综合算力指数（2022年).pdf",
+        "locator": "PDF 第 25–26 页（版面页 16–17）：「浙江省、内蒙古自治区、贵州省、湖北省、天津市，存力水平低于北上广区域……存储总体容量均超过 35EB」；脚注 13「数据来源：中国信息通信研究院」",
+        "grade": "S2",
+        "originator": "中国信通院（数据来源），经 2022 中国算力大会《中国综合算力指数（2022 年）》（2022-07）发布"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文未写统计时点；同报告算力数据均为「截至 2021 年底」，存力章节沿用同一评价年度，as_of 推定为 2021",
+      "corroboration": "待交叉验证",
+      "notes": "原文五省合述「均超过 35EB」，按各自下界记。"
     }
   ]
 }
