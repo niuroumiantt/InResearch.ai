@@ -186059,6 +186059,36 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原文「up to」，按上界记；占 2050 年数字服务总用电 52%。Self-correction wager 即 ADEME 法文 Pari réparateur。 region 枚举无国家级取值，按欧洲记 EU，entity 区分法国。as_of 发布月取 PDF 创建日期 2023-10。"
+    },
+    {
+      "fact_id": "sa2312b-h100-hourly-assumed-mixtral",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "product",
+        "id": "h100-mixtral-inference-assumed",
+        "label": "H100 GPU 小时租价（Mixtral 推理成本模型假设）"
+      },
+      "asserter": "SemiAnalysis",
+      "value": 1.95,
+      "unit": "$/hr",
+      "caliber": {
+        "price_type": "模型隐含价",
+        "unit": "单卡",
+        "region": "未披露"
+      },
+      "as_of": "2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b534e43312d95a358f61df89033940217316e53738d9869d0bd778ce37190e0f",
+        "local_file": "Inference Race To The Bottom - Make It Up On Volume_.pdf",
+        "locator": "PDF 第 3 页：「even in an extremely optimistic scenario, with 2x H100 at BF16 assumed to be always loaded 24/7, at $1.95 an hour per GPU, Mistral barely squeaks by using quite a high batch size」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Inference Race To The Bottom - Make It Up On Volume?》（2023-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "SemiAnalysis 推理成本模型的输入假设（2×H100 BF16、24/7 满载），不是市场成交或挂牌价。同作者同月《GPU Cloud Economics Explained》称最优惠成交约 2 美元/小时（sa2312-h100-rental-favorable-deals）。region 未披露：原文未写地域。"
     }
   ]
 }
