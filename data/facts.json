@@ -187585,6 +187585,70 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原文 138.8 万 PFlops = 1388 EFLOPS，「已建成」按在用记；未注明出处与精度。库内国家数据局 2025-Q1 八大枢纽总算力 215.5 EFLOPS（caict-aiinfra2025-hub-nodes-compute-2025q1），智算口径此处反而大 6 倍，精度口径可能不同，勿直接比较。"
+    },
+    {
+      "fact_id": "usmart2503-bain-global-dc-demand-2019",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-power-demand",
+        "label": "全球数据中心电力需求"
+      },
+      "asserter": "贝恩",
+      "value": 30.8,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "模型输出",
+        "region": "Global"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "701c374db9a801845667cd9aca0eab6acf6c52a30ff446dc734c0ce69ee81b4c",
+        "local_file": "20250326-混合计算提供商与能源基础设施站在人工智能加速的前沿-(英)(26页).pdf",
+        "locator": "PDF 第 9 页正文：「Global data center demand has grown from 30.8GW in 2019 to 53.0GW in 2023, according to Bain analysis」；Exhibit 9「Global Data Center Power Demand: 2019-2035E」来源「Bain & Company, uSMART Estimate」",
+        "grade": "S3",
+        "originator": "贝恩（经 uSMART Global Research《SAIHEAT (SAIH.US) 首次覆盖》（Kwok Keung Chan Winson，2025-03）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「data center demand」，未注明是 IT 负载还是设施总功率；uSMART 其后按 90% 负载率做 2030 年情景，本条只录贝恩历史值。"
+    },
+    {
+      "fact_id": "usmart2503-bain-global-dc-demand-2023",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-power-demand",
+        "label": "全球数据中心电力需求"
+      },
+      "asserter": "贝恩",
+      "value": 53.0,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "模型输出",
+        "region": "Global"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "701c374db9a801845667cd9aca0eab6acf6c52a30ff446dc734c0ce69ee81b4c",
+        "local_file": "20250326-混合计算提供商与能源基础设施站在人工智能加速的前沿-(英)(26页).pdf",
+        "locator": "PDF 第 9 页正文：「Global data center demand has grown from 30.8GW in 2019 to 53.0GW in 2023, according to Bain analysis」；Exhibit 9「Global Data Center Power Demand: 2019-2035E」来源「Bain & Company, uSMART Estimate」",
+        "grade": "S3",
+        "originator": "贝恩（经 uSMART Global Research《SAIHEAT (SAIH.US) 首次覆盖》（Kwok Keung Chan Winson，2025-03）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「data center demand」，未注明是 IT 负载还是设施总功率；uSMART 其后按 90% 负载率做 2030 年情景，本条只录贝恩历史值。"
     }
   ]
 }
