@@ -207485,6 +207485,38 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原文「不超过十万个」按上限录；括注紧随 LightCounting 预测句，按同一出处归属。库内 LightCounting 2023 年 5 万个端口（kysec2412-lc-cpo-ports-2023）。"
+    },
+    {
+      "fact_id": "spirent2504-delloro-ai-backend-port-speed-2028e",
+      "metric_id": "switch_port_speed",
+      "entity": {
+        "type": "market",
+        "id": "global-ai-backend-ethernet",
+        "label": "全球 AI 后端网络以太网交换机端口"
+      },
+      "asserter": "Dell’Oro",
+      "value": 1600,
+      "unit": "Gbps",
+      "caliber": {
+        "stat": "主流值/众数",
+        "network_scope": "AI 后端网络",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2028E@2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "f02c5087b07e4b707c23ae58ff13a61e3c2c6cb2c1f991df7e5f6da76dc254cd",
+        "local_file": "20250430-当世界交汇之时-数据中心、电信和企业网络中的高速以太网未来(27页).pdf",
+        "locator": "PDF 第 15 页「AI后端网络中的以太网交换机」图（来源：Dell 'Oro Group AI网络报告）：400 Gbps（2023）→800 Gbps（2026）→>1600 Gbps（2028），「端口出货量超过5000万」；正文：「到2025年，AI后端网络中的以太网交换机端口出货量将有一半达到800Gb/s，到2028年将达到1600Gb/s」",
+        "grade": "S4",
+        "originator": "Dell’Oro Group AI 网络报告（经思博伦 Spirent《当世界交汇之时：高速以太网未来》影响力报告 2025-04 转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "Dell’Oro 该版预测发布时点未注明，按转引报告年份取 @2025；「一半达到」理解为主流速率。",
+      "corroboration": "待交叉验证",
+      "notes": "与库内 ai-backend-port-speed-2025e（800 Gbps）同一断言者同一序列。原文同处：2028 年 AI 后端以太网交换机端口出货超过 5,000 万个（无交换机端口出货指标）。"
     }
   ]
 }
