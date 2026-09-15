@@ -189380,6 +189380,194 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原文未注出处，是案例作者引述的行业常识性说法，basis「行业调研」为就近归类 [未核]；未写地域与年份，as_of 取案例集发布月。同段「据测算」本行虚拟化后服务器平均利用率从 15–20% 提高到 80–90%（单一机构测算值，未录，见缺口）。"
+    },
+    {
+      "fact_id": "vertiv2409-idc-inference-share-2022",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "ai-compute-deployed-workload",
+        "label": "已部署智算算力按训练/推理切分"
+      },
+      "asserter": "IDC",
+      "value": 58.5,
+      "unit": "%",
+      "caliber": {
+        "workload": "推理",
+        "denominator": "AI 算力总量",
+        "region": "未披露",
+        "basis": "行业机构"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "657c40b51e5534ea6f7b016fd4c591100bd203e576f775e217f5279e2a63a5c9",
+        "local_file": "2024年智算中心基础设施演进白皮书.pdf",
+        "locator": "PDF 第 4 页「智算业务发展趋势」：「根据 IDC 的统计数据（见图1），2022年部署的智算算力里，训练算力占比为41.5%，推理算力占比达到58.5%；预计到2026年，推理算力的占比将会提升到62.2%，训练算力降低到37.8%」",
+        "grade": "S3",
+        "originator": "IDC（经维谛技术委托、深知社撰写《智算中心基础设施演进白皮书》（2024，PDF 创建 2024-09）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文未写地域（按行文为 IDC 统计，疑为中国口径但未明说），记未披露；训练+推理=100%。IDC 原预测发布时间原文未给。"
+    },
+    {
+      "fact_id": "vertiv2409-idc-training-share-2022",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "ai-compute-deployed-workload",
+        "label": "已部署智算算力按训练/推理切分"
+      },
+      "asserter": "IDC",
+      "value": 41.5,
+      "unit": "%",
+      "caliber": {
+        "workload": "训练",
+        "denominator": "AI 算力总量",
+        "region": "未披露",
+        "basis": "行业机构"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "657c40b51e5534ea6f7b016fd4c591100bd203e576f775e217f5279e2a63a5c9",
+        "local_file": "2024年智算中心基础设施演进白皮书.pdf",
+        "locator": "PDF 第 4 页「智算业务发展趋势」：「根据 IDC 的统计数据（见图1），2022年部署的智算算力里，训练算力占比为41.5%，推理算力占比达到58.5%；预计到2026年，推理算力的占比将会提升到62.2%，训练算力降低到37.8%」",
+        "grade": "S3",
+        "originator": "IDC（经维谛技术委托、深知社撰写《智算中心基础设施演进白皮书》（2024，PDF 创建 2024-09）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文未写地域（按行文为 IDC 统计，疑为中国口径但未明说），记未披露；训练+推理=100%。IDC 原预测发布时间原文未给。"
+    },
+    {
+      "fact_id": "vertiv2409-idc-inference-share-2026e",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "ai-compute-deployed-workload",
+        "label": "已部署智算算力按训练/推理切分"
+      },
+      "asserter": "IDC",
+      "value": 62.2,
+      "unit": "%",
+      "caliber": {
+        "workload": "推理",
+        "denominator": "AI 算力总量",
+        "region": "未披露",
+        "basis": "预测"
+      },
+      "as_of": "2026E",
+      "bound": "point",
+      "evidence": {
+        "sha256": "657c40b51e5534ea6f7b016fd4c591100bd203e576f775e217f5279e2a63a5c9",
+        "local_file": "2024年智算中心基础设施演进白皮书.pdf",
+        "locator": "PDF 第 4 页「智算业务发展趋势」：「根据 IDC 的统计数据（见图1），2022年部署的智算算力里，训练算力占比为41.5%，推理算力占比达到58.5%；预计到2026年，推理算力的占比将会提升到62.2%，训练算力降低到37.8%」",
+        "grade": "S3",
+        "originator": "IDC（经维谛技术委托、深知社撰写《智算中心基础设施演进白皮书》（2024，PDF 创建 2024-09）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文未写地域（按行文为 IDC 统计，疑为中国口径但未明说），记未披露；训练+推理=100%。IDC 原预测发布时间原文未给。"
+    },
+    {
+      "fact_id": "vertiv2409-idc-training-share-2026e",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "ai-compute-deployed-workload",
+        "label": "已部署智算算力按训练/推理切分"
+      },
+      "asserter": "IDC",
+      "value": 37.8,
+      "unit": "%",
+      "caliber": {
+        "workload": "训练",
+        "denominator": "AI 算力总量",
+        "region": "未披露",
+        "basis": "预测"
+      },
+      "as_of": "2026E",
+      "bound": "point",
+      "evidence": {
+        "sha256": "657c40b51e5534ea6f7b016fd4c591100bd203e576f775e217f5279e2a63a5c9",
+        "local_file": "2024年智算中心基础设施演进白皮书.pdf",
+        "locator": "PDF 第 4 页「智算业务发展趋势」：「根据 IDC 的统计数据（见图1），2022年部署的智算算力里，训练算力占比为41.5%，推理算力占比达到58.5%；预计到2026年，推理算力的占比将会提升到62.2%，训练算力降低到37.8%」",
+        "grade": "S3",
+        "originator": "IDC（经维谛技术委托、深知社撰写《智算中心基础设施演进白皮书》（2024，PDF 创建 2024-09）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文未写地域（按行文为 IDC 统计，疑为中国口径但未明说），记未披露；训练+推理=100%。IDC 原预测发布时间原文未给。"
+    },
+    {
+      "fact_id": "vertiv2409-general-dc-rack-power-lower",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "market",
+        "id": "general-purpose-dc-racks",
+        "label": "通算中心（传统数据中心）单机柜功耗"
+      },
+      "asserter": "深知社",
+      "value": 4.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "市场普遍水平",
+        "era": "未注明",
+        "power_basis": "未披露",
+        "region": "未披露"
+      },
+      "as_of": "2024-09",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "657c40b51e5534ea6f7b016fd4c591100bd203e576f775e217f5279e2a63a5c9",
+        "local_file": "2024年智算中心基础设施演进白皮书.pdf",
+        "locator": "PDF 第 6 页：「因此，单机柜功耗从通算中心（传统数据中心）的4～6KW的逐渐增加至智算中心（AIDC）的20～40kW，未来逐步发展至40～120kW甚至还要更高」",
+        "grade": "S3",
+        "originator": "维谛技术委托、深知社撰写《智算中心基础设施演进白皮书》（2024，PDF 创建 2024-09）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「功耗」，未说明是设计还是实际，power_basis 记未披露；「传统数据中心」未写年代，era 记未注明；as_of 取白皮书 PDF 创建月。同句智算中心 20～40kW、未来 40～120kW 未录（rack_type 只有传统风冷/AI液冷机柜/整机柜系统，AIDC 泛称不分风冷液冷，装不下）。"
+    },
+    {
+      "fact_id": "vertiv2409-general-dc-rack-power-upper",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "market",
+        "id": "general-purpose-dc-racks",
+        "label": "通算中心（传统数据中心）单机柜功耗"
+      },
+      "asserter": "深知社",
+      "value": 6.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "市场普遍水平",
+        "era": "未注明",
+        "power_basis": "未披露",
+        "region": "未披露"
+      },
+      "as_of": "2024-09",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "657c40b51e5534ea6f7b016fd4c591100bd203e576f775e217f5279e2a63a5c9",
+        "local_file": "2024年智算中心基础设施演进白皮书.pdf",
+        "locator": "PDF 第 6 页：「因此，单机柜功耗从通算中心（传统数据中心）的4～6KW的逐渐增加至智算中心（AIDC）的20～40kW，未来逐步发展至40～120kW甚至还要更高」",
+        "grade": "S3",
+        "originator": "维谛技术委托、深知社撰写《智算中心基础设施演进白皮书》（2024，PDF 创建 2024-09）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「功耗」，未说明是设计还是实际，power_basis 记未披露；「传统数据中心」未写年代，era 记未注明；as_of 取白皮书 PDF 创建月。同句智算中心 20～40kW、未来 40～120kW 未录（rack_type 只有传统风冷/AI液冷机柜/整机柜系统，AIDC 泛称不分风冷液冷，装不下）。"
     }
   ]
 }
