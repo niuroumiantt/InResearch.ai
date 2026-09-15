@@ -16,6 +16,13 @@
   内存态，重启清零——够用，这是内部工具不是银行。
 - **何时启用**：绑 127.0.0.1（本地单人用法）不启用，行为与从前完全一样；
   绑其它地址（容器里 HUB_HOST=0.0.0.0）强制启用。可用 HUB_AUTH=on/off 显式覆盖。
+- **部署声明的管理员**（2026-09-15）：容器环境 `HUB_ADMIN_PASSWORD` 非空时，`serve` 启动
+  即保证 `HUB_ADMIN_USERNAME`（缺省 `admin`）存在、角色为 admin、密码等于声明值——已一致
+  不写文件，不一致就重置，留空则完全不碰账号表（网页/CLI 改的密码继续有效）。值只放在
+  服务器容器环境（infra `$KIT/.env.inresearch`），不进 git、不打印、不写日志。
+  账号表的位置由 `INRESEARCH_RUNTIME_ROOT` 决定：容器里是 `/runtime/data/users.json`；
+  在宿主机源码目录直接跑 `manage.py users` 写的是源码 checkout 的 `data/users.json`，
+  网站不读那个文件。`users list` 会打印实际位置。
 
 零依赖。
 """
@@ -286,6 +293,61 @@ def reset_password(name: str, password: str | None = None):
     if not set_password(name, pw):
         return False, f"用户不存在：{name}", None
     return True, f"已重置 {name} 的密码", pw
+
+
+# ── 部署声明的管理员（容器环境 HUB_ADMIN_USERNAME / HUB_ADMIN_PASSWORD）──
+
+ADMIN_USERNAME_ENV = "HUB_ADMIN_USERNAME"
+ADMIN_PASSWORD_ENV = "HUB_ADMIN_PASSWORD"
+
+
+def declared_admin(environ=None):
+    """返回 (用户名, 密码) 或 None（密码留空即未声明）。用户名缺省 admin，非法则抛 ValueError。"""
+    environ = os.environ if environ is None else environ
+    password = environ.get(ADMIN_PASSWORD_ENV) or ""
+    if not password:
+        return None
+    name = (environ.get(ADMIN_USERNAME_ENV) or "admin").strip()
+    err = _validate_name(name)
+    if err:
+        raise ValueError(f"{ADMIN_USERNAME_ENV}：{err}")
+    return name, password
+
+
+@user_write
+def apply_declared_admin(environ=None):
+    """让账号表与部署声明一致：账号存在、角色 admin、密码等于声明值。
+
+    幂等：已一致时不写文件（盐不变、mtime 不变）；未声明时返回 None 且不碰账号表。
+    只对声明的那一个账号生效，其他账号原样保留；只升不降。
+    返回 None / 'unchanged' / 'created' / 'role' / 'password' / 'role+password'——
+    永远不返回、打印或记录密码本身。
+    """
+    from datetime import date as _d
+    declared = declared_admin(environ)
+    if declared is None:
+        return None
+    name, password = declared
+    users = load_users()
+    user = users.get(name)
+    if user is None:
+        salt = secrets.token_bytes(16).hex()
+        users[name] = {"salt": salt, "hash": hash_password(password, salt),
+                       "role": "admin", "created": _d.today().isoformat()}
+        save_users(users)
+        return "created"
+    changed = []
+    if user.get("role") != "admin":
+        user["role"] = "admin"
+        changed.append("role")
+    if not hmac.compare_digest(hash_password(password, user["salt"]), user["hash"]):
+        salt = secrets.token_bytes(16).hex()
+        user.update(salt=salt, hash=hash_password(password, salt))
+        changed.append("password")
+    if not changed:
+        return "unchanged"
+    save_users(users)
+    return "+".join(changed)
 
 
 # ── 登录限速 ────────────────────────────────────────────────
