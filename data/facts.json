@@ -184768,6 +184768,38 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原文前半句说「智算项目」、政府一项又说「整体建设规模」，分母是项目数还是建设规模不明，measure 记未注明；「约」按点值记。与白皮书科智 2024-08 按项目数/算力规模两版（ccia2412-kezhi-aidc-share-builder-*）截至时点与分类均不同，并列不比。"
+    },
+    {
+      "fact_id": "bond2505-xai-colossus-gpu-count-202411",
+      "metric_id": "cluster_gpu_count",
+      "asserter": "xAI",
+      "entity": {
+        "type": "project",
+        "id": "xai-colossus-memphis",
+        "label": "xAI Colossus（田纳西州孟菲斯）"
+      },
+      "value": 200000.0,
+      "unit": "颗",
+      "caliber": {
+        "scope": "单集群实际部署",
+        "accelerator": "未注明",
+        "region": "US",
+        "basis": "公司披露"
+      },
+      "as_of": "2024-11",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c13b595f7300977eae1d4f1d3a45df64b9fa64a0769be970ac1f984f5a5fe7fe",
+        "local_file": "20250606-2025年人工智能趋势报告(340页).pdf",
+        "locator": "第 124 页（版面页 123）「Data Center Compute (xAI Colossus as Proxy) = 0 to 200,000 GPUs in Seven Months」引 xAI 网站（5/25）：「Built in 122 days… Then we doubled it in 92 days to 200k GPUs」；注「We assume 200,000 GPUs as of 11/30/24 per xAI's disclosure」",
+        "grade": "S2",
+        "originator": "xAI 官网（2025-05），经 BOND / Mary Meeker 等《Trends – Artificial Intelligence》（2025-05）双语版转引"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "时点 2024-11-30 是 BOND 按「首跑 2024-08-30 后 92 天翻倍」推算的假设，xAI 原话未给日期",
+      "corroboration": "待交叉验证",
+      "notes": "原话「doubled it in 92 days to 200k GPUs」，未写型号（混合 H100/H200 按公开报道，原文未写，accelerator 记未注明）。与库内 xAI 2024 年 10 万颗（afl2024-xai-colossus-gpu-count）是同一集群的前后两阶段。xAI 路线图 100 万颗 GPU（Memphis Chamber of Commerce 12/24）为规划，未录。"
     }
   ]
 }
