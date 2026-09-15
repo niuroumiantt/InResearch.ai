@@ -197867,6 +197867,346 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原表单位百万美元，÷100 换为亿美元（公司收入以韩元报、订单以美元报）。现代电气财年即自然年；为较纯的高压电气装备公司，订单为全公司口径。"
+    },
+    {
+      "fact_id": "csg2412-10kp-cluster-cn-it",
+      "metric_id": "cluster_bom_cost",
+      "entity": {
+        "type": "project",
+        "id": "csg-10kp-cluster-domestic-gpu",
+        "label": "万 P 算力集群（国产某 GPU：43.33 MW、3333 台 8 卡服务器）"
+      },
+      "asserter": "南网大数据服务公司",
+      "value": 633300.0,
+      "unit": "万元",
+      "caliber": {
+        "line_item": "IT设备投资",
+        "window": "一次性",
+        "uom": "万元合计",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "模型输出"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8d87c2916bc8b4e2a791aaf864d1e0578b3868b9655d1bd1da96c5a93dccacc8",
+        "local_file": "【专家PPT】电力算力协同：需求、理念与关键技术.pdf",
+        "locator": "PDF 第 5 页（图片版，页码 5）右侧表「单位：（亿元）」第 1 行「IT设备投资」国内某GPU 列：63.33；表下「数据来源：南网大数据服务公司」",
+        "grade": "S3",
+        "originator": "马溪原、王鹏宇、钱琳、蔡田田（南网数研院研发中心、南网大数据公司）《电力算力协同：需求、理念与关键技术》（2024-12，图片版 PPT，读图）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文未写测算时点，按报告日期 2024-12 取 as_of。",
+      "corroboration": "待交叉验证",
+      "notes": "原表单位亿元，×10,000 换为万元。页眉结论：「万P算力中心造价成本预计多花费34亿元，运营成本每年多花费约2亿元」——一次性三项合计 75.52 vs 41.53 亿元（差 33.99），运营 3.38 vs 1.46 亿元/年，与结论一致。「综合造价」原文带「/年」，为年化口径，不可与一次性三项相加。"
+    },
+    {
+      "fact_id": "csg2412-10kp-cluster-cn-build",
+      "metric_id": "cluster_bom_cost",
+      "entity": {
+        "type": "project",
+        "id": "csg-10kp-cluster-domestic-gpu",
+        "label": "万 P 算力集群（国产某 GPU：43.33 MW、3333 台 8 卡服务器）"
+      },
+      "asserter": "南网大数据服务公司",
+      "value": 99400.0,
+      "unit": "万元",
+      "caliber": {
+        "line_item": "建设成本",
+        "window": "一次性",
+        "uom": "万元合计",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "模型输出"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8d87c2916bc8b4e2a791aaf864d1e0578b3868b9655d1bd1da96c5a93dccacc8",
+        "local_file": "【专家PPT】电力算力协同：需求、理念与关键技术.pdf",
+        "locator": "PDF 第 5 页（图片版，页码 5）右侧表「单位：（亿元）」第 2 行「建设成本」国内某GPU 列：9.94；表下「数据来源：南网大数据服务公司」",
+        "grade": "S3",
+        "originator": "马溪原、王鹏宇、钱琳、蔡田田（南网数研院研发中心、南网大数据公司）《电力算力协同：需求、理念与关键技术》（2024-12，图片版 PPT，读图）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文未写测算时点，按报告日期 2024-12 取 as_of。",
+      "corroboration": "待交叉验证",
+      "notes": "原表单位亿元，×10,000 换为万元。页眉结论：「万P算力中心造价成本预计多花费34亿元，运营成本每年多花费约2亿元」——一次性三项合计 75.52 vs 41.53 亿元（差 33.99），运营 3.38 vs 1.46 亿元/年，与结论一致。「综合造价」原文带「/年」，为年化口径，不可与一次性三项相加。"
+    },
+    {
+      "fact_id": "csg2412-10kp-cluster-cn-grid",
+      "metric_id": "cluster_bom_cost",
+      "entity": {
+        "type": "project",
+        "id": "csg-10kp-cluster-domestic-gpu",
+        "label": "万 P 算力集群（国产某 GPU：43.33 MW、3333 台 8 卡服务器）"
+      },
+      "asserter": "南网大数据服务公司",
+      "value": 22500.0,
+      "unit": "万元",
+      "caliber": {
+        "line_item": "配网成本",
+        "window": "一次性",
+        "uom": "万元合计",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "模型输出"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8d87c2916bc8b4e2a791aaf864d1e0578b3868b9655d1bd1da96c5a93dccacc8",
+        "local_file": "【专家PPT】电力算力协同：需求、理念与关键技术.pdf",
+        "locator": "PDF 第 5 页（图片版，页码 5）右侧表「单位：（亿元）」第 3 行「配网成本」国内某GPU 列：2.25；表下「数据来源：南网大数据服务公司」",
+        "grade": "S3",
+        "originator": "马溪原、王鹏宇、钱琳、蔡田田（南网数研院研发中心、南网大数据公司）《电力算力协同：需求、理念与关键技术》（2024-12，图片版 PPT，读图）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文未写测算时点，按报告日期 2024-12 取 as_of。",
+      "corroboration": "待交叉验证",
+      "notes": "原表单位亿元，×10,000 换为万元。页眉结论：「万P算力中心造价成本预计多花费34亿元，运营成本每年多花费约2亿元」——一次性三项合计 75.52 vs 41.53 亿元（差 33.99），运营 3.38 vs 1.46 亿元/年，与结论一致。「综合造价」原文带「/年」，为年化口径，不可与一次性三项相加。"
+    },
+    {
+      "fact_id": "csg2412-10kp-cluster-cn-opex",
+      "metric_id": "cluster_bom_cost",
+      "entity": {
+        "type": "project",
+        "id": "csg-10kp-cluster-domestic-gpu",
+        "label": "万 P 算力集群（国产某 GPU：43.33 MW、3333 台 8 卡服务器）"
+      },
+      "asserter": "南网大数据服务公司",
+      "value": 33800.0,
+      "unit": "万元",
+      "caliber": {
+        "line_item": "运营成本",
+        "window": "年度",
+        "uom": "万元合计",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "模型输出"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8d87c2916bc8b4e2a791aaf864d1e0578b3868b9655d1bd1da96c5a93dccacc8",
+        "local_file": "【专家PPT】电力算力协同：需求、理念与关键技术.pdf",
+        "locator": "PDF 第 5 页（图片版，页码 5）右侧表「单位：（亿元）」第 4 行「运营成本」国内某GPU 列：3.38/年；表下「数据来源：南网大数据服务公司」",
+        "grade": "S3",
+        "originator": "马溪原、王鹏宇、钱琳、蔡田田（南网数研院研发中心、南网大数据公司）《电力算力协同：需求、理念与关键技术》（2024-12，图片版 PPT，读图）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文未写测算时点，按报告日期 2024-12 取 as_of。",
+      "corroboration": "待交叉验证",
+      "notes": "原表单位亿元，×10,000 换为万元。页眉结论：「万P算力中心造价成本预计多花费34亿元，运营成本每年多花费约2亿元」——一次性三项合计 75.52 vs 41.53 亿元（差 33.99），运营 3.38 vs 1.46 亿元/年，与结论一致。「综合造价」原文带「/年」，为年化口径，不可与一次性三项相加。"
+    },
+    {
+      "fact_id": "csg2412-10kp-cluster-cn-total",
+      "metric_id": "cluster_bom_cost",
+      "entity": {
+        "type": "project",
+        "id": "csg-10kp-cluster-domestic-gpu",
+        "label": "万 P 算力集群（国产某 GPU：43.33 MW、3333 台 8 卡服务器）"
+      },
+      "asserter": "南网大数据服务公司",
+      "value": 171900.0,
+      "unit": "万元",
+      "caliber": {
+        "line_item": "综合造价",
+        "window": "年度",
+        "uom": "万元合计",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "模型输出"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8d87c2916bc8b4e2a791aaf864d1e0578b3868b9655d1bd1da96c5a93dccacc8",
+        "local_file": "【专家PPT】电力算力协同：需求、理念与关键技术.pdf",
+        "locator": "PDF 第 5 页（图片版，页码 5）右侧表「单位：（亿元）」第 5 行「综合造价」国内某GPU 列：17.19/年；表下「数据来源：南网大数据服务公司」",
+        "grade": "S3",
+        "originator": "马溪原、王鹏宇、钱琳、蔡田田（南网数研院研发中心、南网大数据公司）《电力算力协同：需求、理念与关键技术》（2024-12，图片版 PPT，读图）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文未写测算时点，按报告日期 2024-12 取 as_of。",
+      "corroboration": "待交叉验证",
+      "notes": "原表单位亿元，×10,000 换为万元。页眉结论：「万P算力中心造价成本预计多花费34亿元，运营成本每年多花费约2亿元」——一次性三项合计 75.52 vs 41.53 亿元（差 33.99），运营 3.38 vs 1.46 亿元/年，与结论一致。「综合造价」原文带「/年」，为年化口径，不可与一次性三项相加。"
+    },
+    {
+      "fact_id": "csg2412-10kp-cluster-h100-it",
+      "metric_id": "cluster_bom_cost",
+      "entity": {
+        "type": "project",
+        "id": "csg-10kp-cluster-h100",
+        "label": "万 P 算力集群（英伟达 H100：18.75 MW、1250 台 8 卡服务器）"
+      },
+      "asserter": "南网大数据服务公司",
+      "value": 362500.0,
+      "unit": "万元",
+      "caliber": {
+        "line_item": "IT设备投资",
+        "window": "一次性",
+        "uom": "万元合计",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "模型输出"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8d87c2916bc8b4e2a791aaf864d1e0578b3868b9655d1bd1da96c5a93dccacc8",
+        "local_file": "【专家PPT】电力算力协同：需求、理念与关键技术.pdf",
+        "locator": "PDF 第 5 页（图片版，页码 5）右侧表「单位：（亿元）」第 1 行「IT设备投资」H100 列：36.25；表下「数据来源：南网大数据服务公司」",
+        "grade": "S3",
+        "originator": "马溪原、王鹏宇、钱琳、蔡田田（南网数研院研发中心、南网大数据公司）《电力算力协同：需求、理念与关键技术》（2024-12，图片版 PPT，读图）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文未写测算时点，按报告日期 2024-12 取 as_of。",
+      "corroboration": "待交叉验证",
+      "notes": "原表单位亿元，×10,000 换为万元。页眉结论：「万P算力中心造价成本预计多花费34亿元，运营成本每年多花费约2亿元」——一次性三项合计 75.52 vs 41.53 亿元（差 33.99），运营 3.38 vs 1.46 亿元/年，与结论一致。「综合造价」原文带「/年」，为年化口径，不可与一次性三项相加。"
+    },
+    {
+      "fact_id": "csg2412-10kp-cluster-h100-build",
+      "metric_id": "cluster_bom_cost",
+      "entity": {
+        "type": "project",
+        "id": "csg-10kp-cluster-h100",
+        "label": "万 P 算力集群（英伟达 H100：18.75 MW、1250 台 8 卡服务器）"
+      },
+      "asserter": "南网大数据服务公司",
+      "value": 43000.0,
+      "unit": "万元",
+      "caliber": {
+        "line_item": "建设成本",
+        "window": "一次性",
+        "uom": "万元合计",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "模型输出"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8d87c2916bc8b4e2a791aaf864d1e0578b3868b9655d1bd1da96c5a93dccacc8",
+        "local_file": "【专家PPT】电力算力协同：需求、理念与关键技术.pdf",
+        "locator": "PDF 第 5 页（图片版，页码 5）右侧表「单位：（亿元）」第 2 行「建设成本」H100 列：4.3；表下「数据来源：南网大数据服务公司」",
+        "grade": "S3",
+        "originator": "马溪原、王鹏宇、钱琳、蔡田田（南网数研院研发中心、南网大数据公司）《电力算力协同：需求、理念与关键技术》（2024-12，图片版 PPT，读图）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文未写测算时点，按报告日期 2024-12 取 as_of。",
+      "corroboration": "待交叉验证",
+      "notes": "原表单位亿元，×10,000 换为万元。页眉结论：「万P算力中心造价成本预计多花费34亿元，运营成本每年多花费约2亿元」——一次性三项合计 75.52 vs 41.53 亿元（差 33.99），运营 3.38 vs 1.46 亿元/年，与结论一致。「综合造价」原文带「/年」，为年化口径，不可与一次性三项相加。"
+    },
+    {
+      "fact_id": "csg2412-10kp-cluster-h100-grid",
+      "metric_id": "cluster_bom_cost",
+      "entity": {
+        "type": "project",
+        "id": "csg-10kp-cluster-h100",
+        "label": "万 P 算力集群（英伟达 H100：18.75 MW、1250 台 8 卡服务器）"
+      },
+      "asserter": "南网大数据服务公司",
+      "value": 9800.0,
+      "unit": "万元",
+      "caliber": {
+        "line_item": "配网成本",
+        "window": "一次性",
+        "uom": "万元合计",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "模型输出"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8d87c2916bc8b4e2a791aaf864d1e0578b3868b9655d1bd1da96c5a93dccacc8",
+        "local_file": "【专家PPT】电力算力协同：需求、理念与关键技术.pdf",
+        "locator": "PDF 第 5 页（图片版，页码 5）右侧表「单位：（亿元）」第 3 行「配网成本」H100 列：0.98；表下「数据来源：南网大数据服务公司」",
+        "grade": "S3",
+        "originator": "马溪原、王鹏宇、钱琳、蔡田田（南网数研院研发中心、南网大数据公司）《电力算力协同：需求、理念与关键技术》（2024-12，图片版 PPT，读图）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文未写测算时点，按报告日期 2024-12 取 as_of。",
+      "corroboration": "待交叉验证",
+      "notes": "原表单位亿元，×10,000 换为万元。页眉结论：「万P算力中心造价成本预计多花费34亿元，运营成本每年多花费约2亿元」——一次性三项合计 75.52 vs 41.53 亿元（差 33.99），运营 3.38 vs 1.46 亿元/年，与结论一致。「综合造价」原文带「/年」，为年化口径，不可与一次性三项相加。"
+    },
+    {
+      "fact_id": "csg2412-10kp-cluster-h100-opex",
+      "metric_id": "cluster_bom_cost",
+      "entity": {
+        "type": "project",
+        "id": "csg-10kp-cluster-h100",
+        "label": "万 P 算力集群（英伟达 H100：18.75 MW、1250 台 8 卡服务器）"
+      },
+      "asserter": "南网大数据服务公司",
+      "value": 14600.0,
+      "unit": "万元",
+      "caliber": {
+        "line_item": "运营成本",
+        "window": "年度",
+        "uom": "万元合计",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "模型输出"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8d87c2916bc8b4e2a791aaf864d1e0578b3868b9655d1bd1da96c5a93dccacc8",
+        "local_file": "【专家PPT】电力算力协同：需求、理念与关键技术.pdf",
+        "locator": "PDF 第 5 页（图片版，页码 5）右侧表「单位：（亿元）」第 4 行「运营成本」H100 列：1.46/年；表下「数据来源：南网大数据服务公司」",
+        "grade": "S3",
+        "originator": "马溪原、王鹏宇、钱琳、蔡田田（南网数研院研发中心、南网大数据公司）《电力算力协同：需求、理念与关键技术》（2024-12，图片版 PPT，读图）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文未写测算时点，按报告日期 2024-12 取 as_of。",
+      "corroboration": "待交叉验证",
+      "notes": "原表单位亿元，×10,000 换为万元。页眉结论：「万P算力中心造价成本预计多花费34亿元，运营成本每年多花费约2亿元」——一次性三项合计 75.52 vs 41.53 亿元（差 33.99），运营 3.38 vs 1.46 亿元/年，与结论一致。「综合造价」原文带「/年」，为年化口径，不可与一次性三项相加。"
+    },
+    {
+      "fact_id": "csg2412-10kp-cluster-h100-total",
+      "metric_id": "cluster_bom_cost",
+      "entity": {
+        "type": "project",
+        "id": "csg-10kp-cluster-h100",
+        "label": "万 P 算力集群（英伟达 H100：18.75 MW、1250 台 8 卡服务器）"
+      },
+      "asserter": "南网大数据服务公司",
+      "value": 93250.0,
+      "unit": "万元",
+      "caliber": {
+        "line_item": "综合造价",
+        "window": "年度",
+        "uom": "万元合计",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "模型输出"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8d87c2916bc8b4e2a791aaf864d1e0578b3868b9655d1bd1da96c5a93dccacc8",
+        "local_file": "【专家PPT】电力算力协同：需求、理念与关键技术.pdf",
+        "locator": "PDF 第 5 页（图片版，页码 5）右侧表「单位：（亿元）」第 5 行「综合造价」H100 列：9.325/年；表下「数据来源：南网大数据服务公司」",
+        "grade": "S3",
+        "originator": "马溪原、王鹏宇、钱琳、蔡田田（南网数研院研发中心、南网大数据公司）《电力算力协同：需求、理念与关键技术》（2024-12，图片版 PPT，读图）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文未写测算时点，按报告日期 2024-12 取 as_of。",
+      "corroboration": "待交叉验证",
+      "notes": "原表单位亿元，×10,000 换为万元。页眉结论：「万P算力中心造价成本预计多花费34亿元，运营成本每年多花费约2亿元」——一次性三项合计 75.52 vs 41.53 亿元（差 33.99），运营 3.38 vs 1.46 亿元/年，与结论一致。「综合造价」原文带「/年」，为年化口径，不可与一次性三项相加。"
     }
   ]
 }
