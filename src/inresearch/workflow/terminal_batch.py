@@ -237,7 +237,7 @@ def cmd_pack(a):
             if not rec['needs_model']:
                 o = L1.finalize(rec, None, None, None); o['proposed_name'] = L1.proposed_name(o)
                 commit_result(L1.RESULTS, o, result_revision(base.get(o['sha256']))); l0 += 1; continue
-            if cohort == 'cells' and nothing_new(rec['meta']):
+            if cohort == 'cells' and L1B.nothing_new(rec['meta']):
                 # Re-read and there is still nothing to see.  Spending a
                 # judgement here buys nothing, but leaving the row alone
                 # leaves it at the head of the cohort for every future

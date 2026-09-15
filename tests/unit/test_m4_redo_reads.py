@@ -167,7 +167,7 @@ class NoTextLayerTests(unittest.TestCase):
                             'a broken container must say something')
 
     def test_a_flagged_file_leaves_the_redo_queue(self):
-        self.assertTrue(PK.opened_and_empty({'meta': {'no_text_layer': True}}))
+        self.assertTrue(L1B.opened_and_empty({'meta': {'no_text_layer': True}}))
 
     def test_the_flag_alone_decides_regardless_of_the_wording(self):
         """The verdict must not depend on matching prose in extract_error.
@@ -179,20 +179,20 @@ class NoTextLayerTests(unittest.TestCase):
         """
         reworded = {'meta': {'no_text_layer': True,
                              'extract_error': 'OLE2 container has no text stream'}}
-        self.assertTrue(PK.opened_and_empty(reworded),
+        self.assertTrue(L1B.opened_and_empty(reworded),
                         'the verdict is being read out of the error message')
 
     def test_a_file_never_opened_stays_in_the_queue(self):
-        self.assertFalse(PK.opened_and_empty({'meta': {}}))
-        self.assertFalse(PK.opened_and_empty({}))
+        self.assertFalse(L1B.opened_and_empty({'meta': {}}))
+        self.assertFalse(L1B.opened_and_empty({}))
 
     def test_a_transient_failure_stays_in_the_queue(self):
         """The stale-path bug produced exactly this, and must not be permanent."""
         stale = {'meta': {'extract_error': 'FileNotFoundError: raw/x.xlsx'}}
-        self.assertFalse(PK.opened_and_empty(stale))
+        self.assertFalse(L1B.opened_and_empty(stale))
 
     def test_a_successful_read_that_found_nothing_leaves_the_queue(self):
-        self.assertTrue(PK.opened_and_empty({'meta': {'sheets': 0, 'shared_strings': 0}}))
+        self.assertTrue(L1B.opened_and_empty({'meta': {'sheets': 0, 'shared_strings': 0}}))
 
 
 class PreviewBudgetTests(unittest.TestCase):
