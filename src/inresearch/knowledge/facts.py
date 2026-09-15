@@ -214,12 +214,63 @@ def asserter_listing(facts):
     counts = Counter(f.get("asserter") or "（缺）" for f in facts)
     lines = ["断言者 %d 家（asserter 进键，新名字先对一眼现有写法）" % len(counts)]
     lines += ["  %5d  %s" % (n, name) for name, n in counts.most_common()]
+    split = split_asserters(facts)
+    if split:
+        lines.append("")
+        lines.append("以下 %d 家在库里有两种写法——**两种写法就是两家**，先并成一个：" % len(split))
+        for canon, spellings in split:
+            lines.append("  %s  ←  %s" % (canon, '、'.join(
+                '%s（%d 条）' % (name, n) for name, n in spellings)))
     buried = buried_asserters(facts)
     if buried:
         lines.append("")
         lines.append("以下 %d 条 asserter 是「未注明」，但原文里点了名——先核一眼：" % len(buried))
         lines += ["  %-38s %s" % (fid, quote) for fid, quote in buried]
     return lines
+
+
+# 同一家写两种名字就是两家——这个坑踩过三次了（谷歌/Google、NVIDIA/英伟达，
+# 还有 T-Head 被译成天数那次）。asserter 进 claim_key，所以两种写法之间的重复、
+# 修订、争议**互相看不见**：不会撞键，也不会被争议分诊捞出来，只会安静地把
+# 一家的序列劈成两半。
+#
+# 这张表只用来**报**，不用来自动改。自动归一的代价太大：表里错一行，两家真正
+# 不同的机构就被悄悄并成一家，而那比分裂更难发现——分裂看得见两个名字，
+# 错并之后只剩一个。
+#
+# 收录标准是「同一法人的不同写法」，不是「同一集团的不同子公司」：
+# 台积电与 TSMC 是一家，中国移动与中移动信息是两家。
+ASSERTER_ALIASES = {
+    "英伟达": ("NVIDIA", "Nvidia", "NVDA"),
+    "谷歌": ("Google", "Alphabet"),
+    "微软": ("Microsoft", "MSFT"),
+    "亚马逊": ("Amazon", "AWS", "亚马逊云科技"),
+    "戴尔": ("Dell", "Dell Technologies"),
+    "英特尔": ("Intel",),
+    "台积电": ("TSMC",),
+    "三星": ("Samsung", "三星电子"),
+    "美光": ("Micron",),
+    "施耐德电气": ("Schneider", "Schneider Electric", "施耐德"),
+    "维谛": ("Vertiv", "维谛技术"),
+    "阿里平头哥": ("T-Head", "平头哥"),
+    "中国信通院": ("信通院", "中国信息通信研究院"),
+    "科智咨询": ("科智",),
+}
+
+
+def split_asserters(facts):
+    """同一家出现了两种以上写法的，连同各自条数报出来。
+
+    只报不改（见 ASSERTER_ALIASES 上面那段）。返回 [(规范名, [(写法, 条数), …]), …]，
+    按涉及条数从多到少。
+    """
+    counts = Counter(f.get("asserter") or "" for f in facts)
+    found = []
+    for canon, aliases in ASSERTER_ALIASES.items():
+        present = [(name, counts[name]) for name in (canon,) + tuple(aliases) if counts[name]]
+        if len(present) > 1:
+            found.append((canon, sorted(present, key=lambda row: -row[1])))
+    return sorted(found, key=lambda row: -sum(n for _, n in row[1]))
 
 
 # 「据 X 统计」的 X 就是断言者，而它常常只留在 locator 的原文引号里。
