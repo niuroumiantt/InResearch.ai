@@ -214369,6 +214369,165 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "巴克莱假设 Q2–Q4 平均 26 亿美元；按当年订单/次年销售 ≈1.0x 推 2026 年销售 109 亿美元。"
+    },
+    {
+      "asserter": "华为",
+      "depth": "精读",
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "huawei2401-cn-dc-electricity-2021",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 216.6,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "CN",
+        "basis": "第三方估算"
+      },
+      "as_of": "2021",
+      "evidence": {
+        "sha256": "d8d4ec1c7114dba0befde9b6490c2f83b9914637fc8d8bb84b3569925c22c969",
+        "local_file": "20240118-华为数字能源：2024数据中心能源十大趋势白皮书(26页).pdf",
+        "locator": "PDF 第 24 页趋势九「能效PUE挖潜要从关注部件高效调整为系统工程最优解」前段「数据中心是耗电大户，减排迫在眉睫」：「据2022年全年数据显示，全国数据中心的耗电量已经达到了惊人的2700亿千瓦时，占全社会用电量的约3%，较2021年的2166亿千瓦时增长了25%……预计到2025年，全国数据中心用电量占全社会用电量的比重将提升至5%。而到2030年，全国数据中心的耗电量预计将接近4000亿千瓦时」",
+        "grade": "S3",
+        "originator": "华为数字能源《2024 年数据中心能源十大趋势白皮书》（2024-01）"
+      },
+      "derived": false,
+      "notes": "2166 亿 kWh。[未核] 原文仅称「据2022年全年数据显示」未注明统计来源，按 PR #197 记写作者华为为断言者；量级明显高于信通院同年口径（2022 年 1,300 亿 kWh，caict-lc2024-cn-dc-electricity-2022）；国金证券转引同值 2,700 亿 kWh 归国家能源局（gjzq2503-nea-cn-dc-electricity-2022），出处待核，勿与信通院口径混用。"
+    },
+    {
+      "asserter": "华为",
+      "depth": "精读",
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "huawei2401-cn-dc-electricity-2022",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 270,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "CN",
+        "basis": "第三方估算"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "d8d4ec1c7114dba0befde9b6490c2f83b9914637fc8d8bb84b3569925c22c969",
+        "local_file": "20240118-华为数字能源：2024数据中心能源十大趋势白皮书(26页).pdf",
+        "locator": "PDF 第 24 页趋势九「能效PUE挖潜要从关注部件高效调整为系统工程最优解」前段「数据中心是耗电大户，减排迫在眉睫」：「据2022年全年数据显示，全国数据中心的耗电量已经达到了惊人的2700亿千瓦时，占全社会用电量的约3%，较2021年的2166亿千瓦时增长了25%……预计到2025年，全国数据中心用电量占全社会用电量的比重将提升至5%。而到2030年，全国数据中心的耗电量预计将接近4000亿千瓦时」",
+        "grade": "S3",
+        "originator": "华为数字能源《2024 年数据中心能源十大趋势白皮书》（2024-01）"
+      },
+      "derived": false,
+      "notes": "2700 亿 kWh；原文称同比 +25%。[未核] 原文仅称「据2022年全年数据显示」未注明统计来源，按 PR #197 记写作者华为为断言者；量级明显高于信通院同年口径（2022 年 1,300 亿 kWh，caict-lc2024-cn-dc-electricity-2022）；国金证券转引同值 2,700 亿 kWh 归国家能源局（gjzq2503-nea-cn-dc-electricity-2022），出处待核，勿与信通院口径混用。"
+    },
+    {
+      "asserter": "华为",
+      "depth": "精读",
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "huawei2401-cn-dc-electricity-2030e",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 400,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2024-01",
+      "evidence": {
+        "sha256": "d8d4ec1c7114dba0befde9b6490c2f83b9914637fc8d8bb84b3569925c22c969",
+        "local_file": "20240118-华为数字能源：2024数据中心能源十大趋势白皮书(26页).pdf",
+        "locator": "PDF 第 24 页趋势九「能效PUE挖潜要从关注部件高效调整为系统工程最优解」前段「数据中心是耗电大户，减排迫在眉睫」：「据2022年全年数据显示，全国数据中心的耗电量已经达到了惊人的2700亿千瓦时，占全社会用电量的约3%，较2021年的2166亿千瓦时增长了25%……预计到2025年，全国数据中心用电量占全社会用电量的比重将提升至5%。而到2030年，全国数据中心的耗电量预计将接近4000亿千瓦时」",
+        "grade": "S3",
+        "originator": "华为数字能源《2024 年数据中心能源十大趋势白皮书》（2024-01）"
+      },
+      "derived": false,
+      "notes": "原文「接近 4000 亿千瓦时」。[未核] 原文仅称「据2022年全年数据显示」未注明统计来源，按 PR #197 记写作者华为为断言者；量级明显高于信通院同年口径（2022 年 1,300 亿 kWh，caict-lc2024-cn-dc-electricity-2022）；国金证券转引同值 2,700 亿 kWh 归国家能源局（gjzq2503-nea-cn-dc-electricity-2022），出处待核，勿与信通院口径混用。"
+    },
+    {
+      "asserter": "华为",
+      "depth": "精读",
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "huawei2401-cn-dc-power-share-2022",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 3,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "CN",
+        "basis": "厂商宣称"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "d8d4ec1c7114dba0befde9b6490c2f83b9914637fc8d8bb84b3569925c22c969",
+        "local_file": "20240118-华为数字能源：2024数据中心能源十大趋势白皮书(26页).pdf",
+        "locator": "PDF 第 24 页趋势九「能效PUE挖潜要从关注部件高效调整为系统工程最优解」前段「数据中心是耗电大户，减排迫在眉睫」：「据2022年全年数据显示，全国数据中心的耗电量已经达到了惊人的2700亿千瓦时，占全社会用电量的约3%，较2021年的2166亿千瓦时增长了25%……预计到2025年，全国数据中心用电量占全社会用电量的比重将提升至5%。而到2030年，全国数据中心的耗电量预计将接近4000亿千瓦时」",
+        "grade": "S3",
+        "originator": "华为数字能源《2024 年数据中心能源十大趋势白皮书》（2024-01）"
+      },
+      "derived": false,
+      "notes": "原文「约3%」。[未核] 与同段用电量（huawei2401-cn-dc-electricity-2022）成对；来源未注明。"
+    },
+    {
+      "asserter": "华为",
+      "depth": "精读",
+      "corroboration": "待交叉验证",
+      "bound": "point",
+      "fact_id": "huawei2401-cn-dc-power-share-2025e",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 5,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2024-01",
+      "evidence": {
+        "sha256": "d8d4ec1c7114dba0befde9b6490c2f83b9914637fc8d8bb84b3569925c22c969",
+        "local_file": "20240118-华为数字能源：2024数据中心能源十大趋势白皮书(26页).pdf",
+        "locator": "PDF 第 24 页趋势九「能效PUE挖潜要从关注部件高效调整为系统工程最优解」前段「数据中心是耗电大户，减排迫在眉睫」：「据2022年全年数据显示，全国数据中心的耗电量已经达到了惊人的2700亿千瓦时，占全社会用电量的约3%，较2021年的2166亿千瓦时增长了25%……预计到2025年，全国数据中心用电量占全社会用电量的比重将提升至5%。而到2030年，全国数据中心的耗电量预计将接近4000亿千瓦时」",
+        "grade": "S3",
+        "originator": "华为数字能源《2024 年数据中心能源十大趋势白皮书》（2024-01）"
+      },
+      "derived": false,
+      "notes": "[未核] 与同段用电量（huawei2401-cn-dc-electricity-2022）成对；来源未注明。"
     }
   ]
 }
