@@ -193537,6 +193537,216 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "口径为全美 48 州凌晨 2–4 点基础负载的年净增量；2024 年五大区域（ERCOT+PJM+MISO+SPP+NYISO）净增 6.53GW、其余 4.94GW，6.53/(6.53+4.94)=56.9%，与 57% 一致。"
+    },
+    {
+      "fact_id": "huaan2604-epri-us-dc-power-share-2024-lower",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心"
+      },
+      "asserter": "EPRI",
+      "value": 4.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "US",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "2fcde4d7ee0420b4d594f67fd2ec84a2efc9c5de7bce68fac00f797fbeb1c816",
+        "local_file": "20260429-华安证券-华安证券-电力设备新能源行业：从买电到自备电，储能走向数据中心供电中枢(49页).pdf",
+        "locator": "PDF 第 7 页「1.3 数据中心总量」：「EPRI 口径下，2024 年数据中心在美国总电力需求中所占的比例为 4%-5%，预计到 2030 年该比例将达到 9%-17%。从州级层面看，到 2030 年弗吉尼亚数据中心用电占比将达到 50% 以上，同时俄勒冈州、伊利诺伊州、内华达州、亚利桑那州等 7 州 2030 年数据中心用电占比有望超过 20%」（资料来源 Cushman & Wakefield，EPRI，华安证券研究所）",
+        "grade": "S3",
+        "originator": "美国电力研究院 EPRI（经华安证券《从买电到自备电，储能走向数据中心供电中枢》2026-04-29 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间下界；EPRI 报告版次原文未给。"
+    },
+    {
+      "fact_id": "huaan2604-epri-us-dc-power-share-2024-upper",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心"
+      },
+      "asserter": "EPRI",
+      "value": 5.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "US",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "2fcde4d7ee0420b4d594f67fd2ec84a2efc9c5de7bce68fac00f797fbeb1c816",
+        "local_file": "20260429-华安证券-华安证券-电力设备新能源行业：从买电到自备电，储能走向数据中心供电中枢(49页).pdf",
+        "locator": "PDF 第 7 页「1.3 数据中心总量」：「EPRI 口径下，2024 年数据中心在美国总电力需求中所占的比例为 4%-5%，预计到 2030 年该比例将达到 9%-17%。从州级层面看，到 2030 年弗吉尼亚数据中心用电占比将达到 50% 以上，同时俄勒冈州、伊利诺伊州、内华达州、亚利桑那州等 7 州 2030 年数据中心用电占比有望超过 20%」（资料来源 Cushman & Wakefield，EPRI，华安证券研究所）",
+        "grade": "S3",
+        "originator": "美国电力研究院 EPRI（经华安证券《从买电到自备电，储能走向数据中心供电中枢》2026-04-29 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上界。"
+    },
+    {
+      "fact_id": "huaan2604-epri-us-dc-power-share-2030e-lower",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心"
+      },
+      "asserter": "EPRI",
+      "value": 9.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "US",
+        "basis": "预测"
+      },
+      "as_of": "2030E",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "2fcde4d7ee0420b4d594f67fd2ec84a2efc9c5de7bce68fac00f797fbeb1c816",
+        "local_file": "20260429-华安证券-华安证券-电力设备新能源行业：从买电到自备电，储能走向数据中心供电中枢(49页).pdf",
+        "locator": "PDF 第 7 页「1.3 数据中心总量」：「EPRI 口径下，2024 年数据中心在美国总电力需求中所占的比例为 4%-5%，预计到 2030 年该比例将达到 9%-17%。从州级层面看，到 2030 年弗吉尼亚数据中心用电占比将达到 50% 以上，同时俄勒冈州、伊利诺伊州、内华达州、亚利桑那州等 7 州 2030 年数据中心用电占比有望超过 20%」（资料来源 Cushman & Wakefield，EPRI，华安证券研究所）",
+        "grade": "S3",
+        "originator": "美国电力研究院 EPRI（经华安证券《从买电到自备电，储能走向数据中心供电中枢》2026-04-29 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间下界；EPRI 的区间通常对应不同增长情景而非不确定区间，原文未写情景名 [未核]。"
+    },
+    {
+      "fact_id": "huaan2604-epri-us-dc-power-share-2030e-upper",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心"
+      },
+      "asserter": "EPRI",
+      "value": 17.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "US",
+        "basis": "预测"
+      },
+      "as_of": "2030E",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "2fcde4d7ee0420b4d594f67fd2ec84a2efc9c5de7bce68fac00f797fbeb1c816",
+        "local_file": "20260429-华安证券-华安证券-电力设备新能源行业：从买电到自备电，储能走向数据中心供电中枢(49页).pdf",
+        "locator": "PDF 第 7 页「1.3 数据中心总量」：「EPRI 口径下，2024 年数据中心在美国总电力需求中所占的比例为 4%-5%，预计到 2030 年该比例将达到 9%-17%。从州级层面看，到 2030 年弗吉尼亚数据中心用电占比将达到 50% 以上，同时俄勒冈州、伊利诺伊州、内华达州、亚利桑那州等 7 州 2030 年数据中心用电占比有望超过 20%」（资料来源 Cushman & Wakefield，EPRI，华安证券研究所）",
+        "grade": "S3",
+        "originator": "美国电力研究院 EPRI（经华安证券《从买电到自备电，储能走向数据中心供电中枢》2026-04-29 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上界。"
+    },
+    {
+      "fact_id": "huaan2604-epri-virginia-dc-power-share-2030e",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "us-va-datacenters",
+        "label": "弗吉尼亚州数据中心"
+      },
+      "asserter": "EPRI",
+      "value": 50.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "某地区用电量",
+        "region": "US",
+        "basis": "预测"
+      },
+      "as_of": "2030E",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "2fcde4d7ee0420b4d594f67fd2ec84a2efc9c5de7bce68fac00f797fbeb1c816",
+        "local_file": "20260429-华安证券-华安证券-电力设备新能源行业：从买电到自备电，储能走向数据中心供电中枢(49页).pdf",
+        "locator": "PDF 第 7 页「1.3 数据中心总量」：「EPRI 口径下，2024 年数据中心在美国总电力需求中所占的比例为 4%-5%，预计到 2030 年该比例将达到 9%-17%。从州级层面看，到 2030 年弗吉尼亚数据中心用电占比将达到 50% 以上，同时俄勒冈州、伊利诺伊州、内华达州、亚利桑那州等 7 州 2030 年数据中心用电占比有望超过 20%」（资料来源 Cushman & Wakefield，EPRI，华安证券研究所）",
+        "grade": "S3",
+        "originator": "美国电力研究院 EPRI（经华安证券《从买电到自备电，储能走向数据中心供电中枢》2026-04-29 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「50% 以上」，分母为弗吉尼亚州用电量；库内 JLL 2025-01 弗吉尼亚 26%（jll2501-virginia-dc-power-share）为另一断言者当期值。"
+    },
+    {
+      "fact_id": "huaan2604-gridstrategies-us-dc-share-peak-growth-2030",
+      "metric_id": "dc_share_of_load_growth",
+      "entity": {
+        "type": "region",
+        "id": "us-grid",
+        "label": "美国电网（全国）"
+      },
+      "asserter": "Grid Strategies",
+      "value": 55.0,
+      "unit": "%",
+      "caliber": {
+        "window": "至2030",
+        "scenario": "单一情景",
+        "region": "US",
+        "basis": "预测"
+      },
+      "as_of": "2030E",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2fcde4d7ee0420b4d594f67fd2ec84a2efc9c5de7bce68fac00f797fbeb1c816",
+        "local_file": "20260429-华安证券-华安证券-电力设备新能源行业：从买电到自备电，储能走向数据中心供电中枢(49页).pdf",
+        "locator": "PDF 第 6 页「1.2 美国负荷现状」：「美国对 2030 年夏季峰值负荷的预测已连续多年上修。2025 年最新口径较 2022 年显著抬升，总增量达到 166GW。其中约 90GW、约 55% 的新增峰值负荷与数据中心直接相关」（资料来源 GridStrategies）",
+        "grade": "S3",
+        "originator": "Grid Strategies（经华安证券《从买电到自备电，储能走向数据中心供电中枢》2026-04-29 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "口径为 2030 年夏季**峰值负荷**增量（166GW 中约 90GW），不是用电量增量；原文「约」。本报告只给美国口径，无对应全球值可成对录（库内 IEA 美国至 2030 近一半 iea-dc-share-load-growth-us-2030 为用电量口径）。Grid Strategies 报告版次原文写「2025 年最新口径」，as_of 未带版次。"
+    },
+    {
+      "fact_id": "huaan2604-cn-green-direct-capacity-202602",
+      "metric_id": "green_direct_capacity",
+      "entity": {
+        "type": "industry",
+        "id": "cn-green-direct",
+        "label": "中国绿电直连项目（已审批）"
+      },
+      "asserter": "未注明",
+      "value": 32.59,
+      "unit": "GW",
+      "caliber": {
+        "stat_basis": "对应新能源总装机",
+        "region": "CN"
+      },
+      "as_of": "2026-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2fcde4d7ee0420b4d594f67fd2ec84a2efc9c5de7bce68fac00f797fbeb1c816",
+        "local_file": "20260429-华安证券-华安证券-电力设备新能源行业：从买电到自备电，储能走向数据中心供电中枢(49页).pdf",
+        "locator": "PDF 第 28 页「国内已形成“政策目标—制度落地—项目验证”三重闭环」段：「项目：截至 2026 年 2 月底，全国已有 84 个绿电直连项目完成审批，新能源总装机达到 32.59GW；乌兰察布建成全国首个数据中心绿电直连项目，配套新能源 300MW，年自发自用绿电 848GWh，可再生能源替代率达 38.74%」",
+        "grade": "S3",
+        "originator": "华安证券《从买电到自备电，储能走向数据中心供电中枢》（2026-04-29）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "84 个项目。原文未注出处。库内另一份报告 2026-04 为 99 个项目 34.05GW、2026-05 为 100 个项目 26.11GW（不完全统计），本条时点更早、项目数与装机均更小，序列上可衔接前者。乌兰察布项目本文写配套新能源 300MW、年自发自用 848GWh，库内另一来源写 34.5 万千瓦、8.5 亿 kWh（wulanchabu-green-direct-power-2026），装机口径不一致，未另录。"
     }
   ]
 }
