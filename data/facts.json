@@ -213775,6 +213775,72 @@
       "derivation": "11384233.49 ÷ 582,548,992.56 = 1.954%；as_of 按资料目录「2019.7」取，与库内外立面分项（nanji-p2s2-facade-*）一致（原表无日期）。",
       "corroboration": "待交叉验证",
       "notes": "土建工程（nanji-p2s2-share-06，53.639%）的下级分项，11 项合计 312,473,967.18 元，与上级逐分一致；**分项与 share-06 合计不可同时加总**。库内 share-06 的 as_of 为 2025、外立面分项为 2019-07，时点写法待统一。"
+    },
+    {
+      "fact_id": "hysec2504-caict-cn-device-compute-total-2023",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-national-compute",
+        "label": "中国算力规模（全国）"
+      },
+      "asserter": "中国信通院",
+      "value": 435,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "总算力",
+        "precision": "混合/未注明",
+        "area": "全国",
+        "status": "未注明",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "985ddbb57b39c27441ba77c2fc76f2437adb3191f3817ae75e342250614ddafd",
+        "local_file": "【报告】算力与电力协同：商业模式变革带来价值重估.pdf",
+        "locator": "PDF 第 3 页「1.1 智算引领算力需求激增，算力的尽头是电力」：「根据中国信通院数据，2023年全球算力总规模达1397EFlops，增速54%……而我国2023年算力总规模达435EFlops，其中智能算力规模达289.4EFlops，同比+62%，占比2/3」",
+        "grade": "S4",
+        "originator": "中国信通院（经华源证券《算力与电力协同，商业模式变革带来价值重估——IDC供电模式梳理》2025-04-16 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "与 sic2311-caict-cn-dc-device-compute-2022（302 EFLOPS，「数据中心设备算力」口径）同一序列；与信通院 2023 年「算力总规模 230 EFLOPS」（在用数据中心口径，sqt2025-*）口径不同，勿直接比较。"
+    },
+    {
+      "fact_id": "hysec2504-caict-cn-device-compute-ai-2023",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-national-compute",
+        "label": "中国算力规模（全国）"
+      },
+      "asserter": "中国信通院",
+      "value": 289.4,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "混合/未注明",
+        "area": "全国",
+        "status": "未注明",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "985ddbb57b39c27441ba77c2fc76f2437adb3191f3817ae75e342250614ddafd",
+        "local_file": "【报告】算力与电力协同：商业模式变革带来价值重估.pdf",
+        "locator": "PDF 第 3 页「1.1 智算引领算力需求激增，算力的尽头是电力」：「根据中国信通院数据，2023年全球算力总规模达1397EFlops，增速54%……而我国2023年算力总规模达435EFlops，其中智能算力规模达289.4EFlops，同比+62%，占比2/3」",
+        "grade": "S4",
+        "originator": "中国信通院（经华源证券《算力与电力协同，商业模式变革带来价值重估——IDC供电模式梳理》2025-04-16 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "同比 +62%，占 2/3；与 sic2311-caict-cn-ai-compute-2022（178.5）同一序列。"
     }
   ]
 }
