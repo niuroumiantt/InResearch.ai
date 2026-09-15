@@ -194881,6 +194881,165 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "区间上界；与库内 LBNL 同报告 2028 年用电量 325–580TWh（rand-lbnl-us-dc-consumption-2028-*）成对。LBNL 报告发布月原文未给，as_of 不带版次。SWEEP 所称「当前约 4.5%」无年份未录。"
+    },
+    {
+      "fact_id": "nia2512-neso-uk-dc-electricity-2023",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "uk-datacenters",
+        "label": "英国数据中心（合计）"
+      },
+      "asserter": "NESO",
+      "value": 5.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "第三方估算"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3c3d5a786c9d8b9d4d9eb9fd17019e2f60b81afe4786fe579350fdfbbe8e6c71",
+        "local_file": "20251219-NIA-推动英国数据繁荣-英国数据中心能源危机的核解决方案-2025.12(28页).pdf",
+        "locator": "PDF 第 9 页 2.3.1：「The National Energy System Operator (NESO) estimates that data centres consumed 5.0 TWh of electricity in 2023 —equivalent to 2% of total UK electricity demand and 7% of commercial sector consumption.」；PDF 第 5 页 Executive Summary：「In 2023, UK data centres consumed an estimated 5.0 terawatt hours (TWh) of electricity—around 2% of total national demand. We forecast that this will rise at least fivefold to over 26 TWh by 2030, or more than 9% of projected national electricity demand.」",
+        "grade": "S2",
+        "originator": "英国国家能源系统运营商 NESO（经牛津经济研究院（Oxford Economics）为英国核工业协会 NIA 撰写《Powering the UK's data boom》（2025-12）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "约占英国用电 2%、商业部门用电 7%。NESO 为 2024-10 起承接 National Grid ESO 职能的新公共机构，与库内 National Grid ESO 2020 年 4–7TWh（jrc2024-ngeso-uk-dc-electricity-2020-*）断言者名称不同。 region 枚举无英国，按先例记 EU，entity 区分英国。"
+    },
+    {
+      "fact_id": "nia2512-neso-uk-dc-power-share-2023",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "uk-datacenters",
+        "label": "英国数据中心（合计）"
+      },
+      "asserter": "NESO",
+      "value": 2.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "EU",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3c3d5a786c9d8b9d4d9eb9fd17019e2f60b81afe4786fe579350fdfbbe8e6c71",
+        "local_file": "20251219-NIA-推动英国数据繁荣-英国数据中心能源危机的核解决方案-2025.12(28页).pdf",
+        "locator": "PDF 第 9 页 2.3.1：「The National Energy System Operator (NESO) estimates that data centres consumed 5.0 TWh of electricity in 2023 —equivalent to 2% of total UK electricity demand and 7% of commercial sector consumption.」",
+        "grade": "S2",
+        "originator": "英国国家能源系统运营商 NESO（经牛津经济研究院（Oxford Economics）为英国核工业协会 NIA 撰写《Powering the UK's data boom》（2025-12）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "与 nia2512-neso-uk-dc-electricity-2023（5.0TWh）成对。 region 枚举无英国，按先例记 EU，entity 区分英国。"
+    },
+    {
+      "fact_id": "nia2512-oe-uk-dc-electricity-2030e",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "uk-datacenters",
+        "label": "英国数据中心（合计）"
+      },
+      "asserter": "牛津经济研究院",
+      "value": 26.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "EU",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2025-12",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "3c3d5a786c9d8b9d4d9eb9fd17019e2f60b81afe4786fe579350fdfbbe8e6c71",
+        "local_file": "20251219-NIA-推动英国数据繁荣-英国数据中心能源危机的核解决方案-2025.12(28页).pdf",
+        "locator": "PDF 第 5 页 Executive Summary：「In 2023, UK data centres consumed an estimated 5.0 terawatt hours (TWh) of electricity—around 2% of total national demand. We forecast that this will rise at least fivefold to over 26 TWh by 2030, or more than 9% of projected national electricity demand.」",
+        "grade": "S2",
+        "originator": "牛津经济研究院（Oxford Economics）为英国核工业协会 NIA 撰写《Powering the UK's data boom》（2025-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「over 26 TWh」按下界记；基于 IT 容量数据集、PUE 与利用率三要素建模（附录 1）。 region 枚举无英国，按先例记 EU，entity 区分英国。"
+    },
+    {
+      "fact_id": "nia2512-oe-uk-dc-power-share-2030e",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "uk-datacenters",
+        "label": "英国数据中心（合计）"
+      },
+      "asserter": "牛津经济研究院",
+      "value": 9.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "EU",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2025-12",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "3c3d5a786c9d8b9d4d9eb9fd17019e2f60b81afe4786fe579350fdfbbe8e6c71",
+        "local_file": "20251219-NIA-推动英国数据繁荣-英国数据中心能源危机的核解决方案-2025.12(28页).pdf",
+        "locator": "PDF 第 5 页 Executive Summary：「In 2023, UK data centres consumed an estimated 5.0 terawatt hours (TWh) of electricity—around 2% of total national demand. We forecast that this will rise at least fivefold to over 26 TWh by 2030, or more than 9% of projected national electricity demand.」",
+        "grade": "S2",
+        "originator": "牛津经济研究院（Oxford Economics）为英国核工业协会 NIA 撰写《Powering the UK's data boom》（2025-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「more than 9% of projected national electricity demand」，分母为预测的 2030 年全国用电；与 nia2512-oe-uk-dc-electricity-2030e 成对。 region 枚举无英国，按先例记 EU，entity 区分英国。"
+    },
+    {
+      "fact_id": "nia2512-oe-uk-dc-it-capacity-2025",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "region",
+        "id": "uk-datacenters",
+        "label": "英国数据中心（合计）"
+      },
+      "asserter": "牛津经济研究院",
+      "value": 2.9,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "IT 负载",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "模型输出",
+        "region": "EU"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3c3d5a786c9d8b9d4d9eb9fd17019e2f60b81afe4786fe579350fdfbbe8e6c71",
+        "local_file": "20251219-NIA-推动英国数据繁荣-英国数据中心能源危机的核解决方案-2025.12(28页).pdf",
+        "locator": "PDF 第 8 页 2.2：「We estimate that these new facilities will add 6.2 GW of IT power capacity—more than double the UK’s current capacity of 2.9 GW (Figure 3)」",
+        "grade": "S2",
+        "originator": "牛津经济研究院（Oxford Economics）为英国核工业协会 NIA 撰写《Powering the UK's data boom》（2025-12）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 推定：原文「current capacity」，报告 2025-12 发布，取 2025。",
+      "corroboration": "待交叉验证",
+      "notes": "网络抓取数据集口径的现有 IT 容量；已宣布管道新增 6.2GW（52 个数据中心、投资超 590 亿美元）未录。 region 枚举无英国，按先例记 EU，entity 区分英国。"
     }
   ]
 }
