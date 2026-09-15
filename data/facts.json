@@ -193870,6 +193870,70 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原文「发电用燃气轮机需求量」，未说明是否含数据中心表后机组、是否按订单统计，demand_scope 记未注明。同比 +71.0%；2019–2025 CAGR 17.3%。库内伯恩斯坦全球燃机产能 2025 年 64 GW/年（global-gas-turbine-capacity-2025），需求远超产能。"
+    },
+    {
+      "fact_id": "acn2607-alphamatica-100mw-cost-per-mw-lower",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "industry",
+        "id": "100mw-dc-build-cost",
+        "label": "100MW 数据中心建设成本（Alpha Matica 估算）"
+      },
+      "asserter": "Alpha Matica",
+      "value": 34.0,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "未注明",
+        "stage": "估算",
+        "region": "未披露",
+        "basis": "第三方推算"
+      },
+      "as_of": "2026-07",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "d4cba5ac3f218b99ab30b1bf203e16828f92325b8bac1c1ebef76ceee2b21643",
+        "local_file": "20260709-埃森哲电力优先：数据中心发展的新剧本.pdf",
+        "locator": "PDF 第 6 页「The cost of falling behind」：「At current build costs, a 100 MW facility runs between US$3.4 billion and US$5.5 billion.3 Without power, this is a very, very expensive building.」脚注 3「Alpha Matica, Deconstructing the data center: A look…」",
+        "grade": "S3",
+        "originator": "Alpha Matica《Deconstructing the data center》（经埃森哲《Power first: A new playbook for data center development》2026-07 转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "按原文 100MW 设施造价换算：3,400 百万美元 ÷ 100MW = 34；5,500 ÷ 100 = 55（百万美元/MW）。as_of 取埃森哲报告发布月（Alpha Matica 原文日期未给）。",
+      "corroboration": "待交叉验证",
+      "notes": "区间下界；原文未说明是否含 IT 设备，34–55 百万美元/MW 的量级接近库内含 IT 口径（高盛 48、汇丰 50），但不据此改口径。"
+    },
+    {
+      "fact_id": "acn2607-alphamatica-100mw-cost-per-mw-upper",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "industry",
+        "id": "100mw-dc-build-cost",
+        "label": "100MW 数据中心建设成本（Alpha Matica 估算）"
+      },
+      "asserter": "Alpha Matica",
+      "value": 55.0,
+      "unit": "百万美元/MW",
+      "caliber": {
+        "cost_scope": "未注明",
+        "stage": "估算",
+        "region": "未披露",
+        "basis": "第三方推算"
+      },
+      "as_of": "2026-07",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "d4cba5ac3f218b99ab30b1bf203e16828f92325b8bac1c1ebef76ceee2b21643",
+        "local_file": "20260709-埃森哲电力优先：数据中心发展的新剧本.pdf",
+        "locator": "PDF 第 6 页「The cost of falling behind」：「At current build costs, a 100 MW facility runs between US$3.4 billion and US$5.5 billion.3 Without power, this is a very, very expensive building.」脚注 3「Alpha Matica, Deconstructing the data center: A look…」",
+        "grade": "S3",
+        "originator": "Alpha Matica《Deconstructing the data center》（经埃森哲《Power first: A new playbook for data center development》2026-07 转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "按原文 100MW 设施造价换算：3,400 百万美元 ÷ 100MW = 34；5,500 ÷ 100 = 55（百万美元/MW）。as_of 取埃森哲报告发布月（Alpha Matica 原文日期未给）。",
+      "corroboration": "待交叉验证",
+      "notes": "区间上界；原文未说明是否含 IT 设备，34–55 百万美元/MW 的量级接近库内含 IT 口径（高盛 48、汇丰 50），但不据此改口径。"
     }
   ]
 }
