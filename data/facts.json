@@ -190578,6 +190578,155 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "原文 5000 PFLOPS = 5 EFLOPS，「以上」按下界记；口径为「可开放算力规模」，未区分智算/通算。原件为纯图片 PDF，本条为读图录入。"
+    },
+    {
+      "fact_id": "aidc-wp2409-mfu-1k-cluster-upper",
+      "metric_id": "mfu_rate",
+      "entity": {
+        "type": "market",
+        "id": "industry-top-千卡-cluster",
+        "label": "业界顶尖千卡智算集群"
+      },
+      "asserter": "未注明",
+      "value": 60.0,
+      "unit": "%",
+      "caliber": {
+        "cluster_scale": "千卡",
+        "region": "未披露"
+      },
+      "as_of": "2024-09",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "46a9cec9548de255fc1ada9252f4385a30363651f21e63ced29647bb93e031da",
+        "local_file": "AI+DC白皮书.pdf",
+        "locator": "PDF 第 22 页「超大规模集群…提升算力资源利用率」：「从当前业界的数据来看，即使是业界顶尖的千卡智算集群，其算力利用率不超过 60%，万卡集群不超过 55%，而十万卡集群更低，不超过 40%，这进一步说明了提高超大规模集群有效算力的重要性和紧迫性」",
+        "grade": "S3",
+        "originator": "华为《AI DC 白皮书——一份给 CIO 规划建设智算数据中心的参考》（PDF 创建 2024-09）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「算力利用率」，本白皮书附录指标表将其定义为「模型的实际计算需求与其理论最大计算能力之间的比率」，即 MFU 口径；原文称「业界的数据」未注明出处，asserter 记未注明；「不超过」按上界记；未写地域。规模越大越低：千卡 ≤60%、万卡 ≤55%、十万卡 ≤40%。库内另有未注明来源的「万卡集群 MFU 可达 40%」（cn-10k-cluster-mfu-2024），同为上界但数值不同。"
+    },
+    {
+      "fact_id": "aidc-wp2409-mfu-10k-cluster-upper",
+      "metric_id": "mfu_rate",
+      "entity": {
+        "type": "market",
+        "id": "industry-top-万卡-cluster",
+        "label": "业界顶尖万卡智算集群"
+      },
+      "asserter": "未注明",
+      "value": 55.0,
+      "unit": "%",
+      "caliber": {
+        "cluster_scale": "万卡",
+        "region": "未披露"
+      },
+      "as_of": "2024-09",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "46a9cec9548de255fc1ada9252f4385a30363651f21e63ced29647bb93e031da",
+        "local_file": "AI+DC白皮书.pdf",
+        "locator": "PDF 第 22 页「超大规模集群…提升算力资源利用率」：「从当前业界的数据来看，即使是业界顶尖的千卡智算集群，其算力利用率不超过 60%，万卡集群不超过 55%，而十万卡集群更低，不超过 40%，这进一步说明了提高超大规模集群有效算力的重要性和紧迫性」",
+        "grade": "S3",
+        "originator": "华为《AI DC 白皮书——一份给 CIO 规划建设智算数据中心的参考》（PDF 创建 2024-09）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「算力利用率」，本白皮书附录指标表将其定义为「模型的实际计算需求与其理论最大计算能力之间的比率」，即 MFU 口径；原文称「业界的数据」未注明出处，asserter 记未注明；「不超过」按上界记；未写地域。规模越大越低：千卡 ≤60%、万卡 ≤55%、十万卡 ≤40%。库内另有未注明来源的「万卡集群 MFU 可达 40%」（cn-10k-cluster-mfu-2024），同为上界但数值不同。"
+    },
+    {
+      "fact_id": "aidc-wp2409-mfu-100k-cluster-upper",
+      "metric_id": "mfu_rate",
+      "entity": {
+        "type": "market",
+        "id": "industry-top-十万卡-cluster",
+        "label": "业界顶尖十万卡智算集群"
+      },
+      "asserter": "未注明",
+      "value": 40.0,
+      "unit": "%",
+      "caliber": {
+        "cluster_scale": "超万卡",
+        "region": "未披露"
+      },
+      "as_of": "2024-09",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "46a9cec9548de255fc1ada9252f4385a30363651f21e63ced29647bb93e031da",
+        "local_file": "AI+DC白皮书.pdf",
+        "locator": "PDF 第 22 页「超大规模集群…提升算力资源利用率」：「从当前业界的数据来看，即使是业界顶尖的千卡智算集群，其算力利用率不超过 60%，万卡集群不超过 55%，而十万卡集群更低，不超过 40%，这进一步说明了提高超大规模集群有效算力的重要性和紧迫性」",
+        "grade": "S3",
+        "originator": "华为《AI DC 白皮书——一份给 CIO 规划建设智算数据中心的参考》（PDF 创建 2024-09）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「算力利用率」，本白皮书附录指标表将其定义为「模型的实际计算需求与其理论最大计算能力之间的比率」，即 MFU 口径；原文称「业界的数据」未注明出处，asserter 记未注明；「不超过」按上界记；未写地域。规模越大越低：千卡 ≤60%、万卡 ≤55%、十万卡 ≤40%。库内另有未注明来源的「万卡集群 MFU 可达 40%」（cn-10k-cluster-mfu-2024），同为上界但数值不同。 十万卡按 cluster_scale「超万卡」记。"
+    },
+    {
+      "fact_id": "aidc-wp2409-huawei-micromodule-liquid-rack-max",
+      "metric_id": "product_density_coverage",
+      "entity": {
+        "type": "product",
+        "id": "huawei-hybrid-air-liquid-micromodule",
+        "label": "华为风液混合微模块"
+      },
+      "asserter": "华为",
+      "value": 66.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "bound_sense": "上限",
+        "cooling_route": "风液兼容",
+        "region": "未披露",
+        "basis": "厂商宣称"
+      },
+      "as_of": "2024-09",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "46a9cec9548de255fc1ada9252f4385a30363651f21e63ced29647bb93e031da",
+        "local_file": "AI+DC白皮书.pdf",
+        "locator": "PDF 第 42 页（报告页 80–81）「规划建设方向四：能源高效」：「以华为微模块为例，液冷柜采用冷板式液冷 + 风冷空调散热，最高可支持 66kW/柜。风冷柜部署通算、存储、网络、安全等设备，采用风冷空调散热，最高可支持 35kW/柜」",
+        "grade": "S2",
+        "originator": "华为《AI DC 白皮书——一份给 CIO 规划建设智算数据中心的参考》（PDF 创建 2024-09）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "液冷柜（冷板式液冷 + 风冷空调散热）。 产品能力上限，不是实际出货或部署密度；支持液冷柜 0～100% 弹性部署、水温 18～35℃。as_of 取白皮书 PDF 创建月。"
+    },
+    {
+      "fact_id": "aidc-wp2409-huawei-micromodule-air-rack-max",
+      "metric_id": "product_density_coverage",
+      "entity": {
+        "type": "product",
+        "id": "huawei-hybrid-air-liquid-micromodule",
+        "label": "华为风液混合微模块"
+      },
+      "asserter": "华为",
+      "value": 35.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "bound_sense": "上限",
+        "cooling_route": "风冷",
+        "region": "未披露",
+        "basis": "厂商宣称"
+      },
+      "as_of": "2024-09",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "46a9cec9548de255fc1ada9252f4385a30363651f21e63ced29647bb93e031da",
+        "local_file": "AI+DC白皮书.pdf",
+        "locator": "PDF 第 42 页（报告页 80–81）「规划建设方向四：能源高效」：「以华为微模块为例，液冷柜采用冷板式液冷 + 风冷空调散热，最高可支持 66kW/柜。风冷柜部署通算、存储、网络、安全等设备，采用风冷空调散热，最高可支持 35kW/柜」",
+        "grade": "S2",
+        "originator": "华为《AI DC 白皮书——一份给 CIO 规划建设智算数据中心的参考》（PDF 创建 2024-09）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "风冷柜（部署通算、存储、网络、安全设备）。 产品能力上限，不是实际出货或部署密度；支持液冷柜 0～100% 弹性部署、水温 18～35℃。as_of 取白皮书 PDF 创建月。"
     }
   ]
 }
