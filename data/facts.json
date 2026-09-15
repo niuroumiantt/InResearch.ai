@@ -195691,6 +195691,103 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "ESA（电力服务协议，已签约）8GW；另有 LOA（意向书）6GW 为非约束性未录。原文未注出处，按 PR #197 边界记摩根士丹利为断言者（数应源自 Dominion 披露，原文未点名）。「cover sales to 2040」指合同覆盖至 2040 年的售电。"
+    },
+    {
+      "fact_id": "epri2405-chatgpt-request-wh",
+      "metric_id": "ai_query_energy",
+      "entity": {
+        "type": "product",
+        "id": "chatgpt-request-wh",
+        "label": "OpenAI ChatGPT"
+      },
+      "asserter": "EPRI",
+      "value": 2.9,
+      "unit": "Wh/次",
+      "caliber": {
+        "query_type": "未注明",
+        "stat": "典型值",
+        "provider": "OpenAI ChatGPT",
+        "region": "未披露",
+        "basis": "行业机构"
+      },
+      "as_of": "2024-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d9ed3956eca24db50a038aadc0e9e23a2040cb4d59ee17e26f2c51f63c618d10",
+        "local_file": "为智能赋能—人工智能和数据中心能耗分析（英）.pdf",
+        "locator": "PDF 第 2 页 Executive Summary Key Messages：「At 2.9 watt-hours per ChatGPT request, AI queries are estimated to require 10x the electricity of traditional Google queries, which use about 0.3 watt-hours each」",
+        "grade": "S2",
+        "originator": "美国电力研究院 EPRI《Powering Intelligence: Analyzing Artificial Intelligence and Data Center Energy Consumption》（2024-05 白皮书）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "ChatGPT 单次请求，未区分是否带推理。 原文「estimated」，未写测算年份与方法（正文引文献），as_of 取白皮书发布月。region 记未披露：原文未写地域。"
+    },
+    {
+      "fact_id": "epri2405-google-search-wh",
+      "metric_id": "ai_query_energy",
+      "entity": {
+        "type": "product",
+        "id": "google-search-wh",
+        "label": "Google 搜索"
+      },
+      "asserter": "EPRI",
+      "value": 0.3,
+      "unit": "Wh/次",
+      "caliber": {
+        "query_type": "传统搜索",
+        "stat": "典型值",
+        "provider": "Google 搜索",
+        "region": "未披露",
+        "basis": "行业机构"
+      },
+      "as_of": "2024-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d9ed3956eca24db50a038aadc0e9e23a2040cb4d59ee17e26f2c51f63c618d10",
+        "local_file": "为智能赋能—人工智能和数据中心能耗分析（英）.pdf",
+        "locator": "PDF 第 2 页 Executive Summary Key Messages：「At 2.9 watt-hours per ChatGPT request, AI queries are estimated to require 10x the electricity of traditional Google queries, which use about 0.3 watt-hours each」",
+        "grade": "S2",
+        "originator": "美国电力研究院 EPRI《Powering Intelligence: Analyzing Artificial Intelligence and Data Center Energy Consumption》（2024-05 白皮书）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「about 0.3 watt-hours」，与 ChatGPT 2.9Wh 成对（约 10 倍）。 原文「estimated」，未写测算年份与方法（正文引文献），as_of 取白皮书发布月。region 记未披露：原文未写地域。"
+    },
+    {
+      "fact_id": "epri2405-us-dc-electricity-2023",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心"
+      },
+      "asserter": "EPRI",
+      "value": 152.1,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "US",
+        "basis": "模型输出"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d9ed3956eca24db50a038aadc0e9e23a2040cb4d59ee17e26f2c51f63c618d10",
+        "local_file": "为智能赋能—人工智能和数据中心能耗分析（英）.pdf",
+        "locator": "PDF 第 18 页 Table 3「Forecasted load projections」：四个增长情景共同的「AVERAGE 2023 DATA CENTER LOAD (MWH)」= 152,120,846",
+        "grade": "S2",
+        "originator": "美国电力研究院 EPRI《Powering Intelligence: Analyzing Artificial Intelligence and Data Center Energy Consumption》（2024-05 白皮书）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "152,120,846 MWh = 152.1 TWh，为四个 2030 情景共同的 2023 基期；原文称约占美国发电量 4%。2030 年四情景（Low/Moderate/High/Higher Growth：196.3/214.0/296.4/403.9 TWh）因 scenario 无对应取值未录。"
     }
   ]
 }
