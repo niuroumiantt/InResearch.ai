@@ -190034,6 +190034,290 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "NVLink 铜缆线槽内的线缆根数。同页：增强母排 1,400A、盲插液冷歧管 130kW 冷却能力、液冷流量 5 L/min、计算托盘 1U 液冷 4 GPU、交换托盘 1U 液冷 550 条 NVLink 通道；第 5 页 NVL 域 72 GPU、18 颗 NVSwitch——NVSwitch 芯片数与冷却能力无对应取值未录。as_of 取 OCP 2024 全球峰会月份（2024-10-15～17）。"
+    },
+    {
+      "fact_id": "schneider2310-dc-total-load-2023",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "industry",
+        "id": "dc-load-schneider-wp110",
+        "label": "数据中心负载（施耐德 WP110 估算，未写地域）"
+      },
+      "asserter": "施耐德电气",
+      "value": 54.0,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "模型输出",
+        "region": "未披露"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0e8a6e413f52a09a2838f178a1cc787a4102eec1a02cd90fd45b7440c8d658ad",
+        "local_file": "20231014-施耐德电气：2023人工智能带来的颠覆：数据中心设计的挑战及相关指南白皮书(20页).pdf",
+        "locator": "PDF 第 2 页表 1「数据中心人工智能负载概览」（施耐德电气的估算）：2023 / 2028 —— 数据中心总负载 54 GW / 90 GW；AI 工作负载 4.3 GW / 13.5-20 GW；AI 工作占总负载的百分比 8% / 15-20%；训练与推理 AI 工作负载对比 20%训练，80%推理 / 15%训练，85%推理",
+        "grade": "S2",
+        "originator": "施耐德电气能源管理研究中心《人工智能带来的颠覆：数据中心设计的挑战及相关指南》第 110 号白皮书 版本 1.1（中文版，2023-10）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "AI 占 8%。 中文版表 1 未写地域也未写是否为 IT 负载，region/power_scope 记未披露/未注明；库内德勤转引同组数（schneider2309-global-*）记作 Global·IT 负载，两者口径标签不同故不互为重复。"
+    },
+    {
+      "fact_id": "schneider2310-dc-total-load-2028e",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "industry",
+        "id": "dc-load-schneider-wp110",
+        "label": "数据中心负载（施耐德 WP110 估算，未写地域）"
+      },
+      "asserter": "施耐德电气",
+      "value": 90.0,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "未披露"
+      },
+      "as_of": "2028E@2023-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0e8a6e413f52a09a2838f178a1cc787a4102eec1a02cd90fd45b7440c8d658ad",
+        "local_file": "20231014-施耐德电气：2023人工智能带来的颠覆：数据中心设计的挑战及相关指南白皮书(20页).pdf",
+        "locator": "PDF 第 2 页表 1「数据中心人工智能负载概览」（施耐德电气的估算）：2023 / 2028 —— 数据中心总负载 54 GW / 90 GW；AI 工作负载 4.3 GW / 13.5-20 GW；AI 工作占总负载的百分比 8% / 15-20%；训练与推理 AI 工作负载对比 20%训练，80%推理 / 15%训练，85%推理",
+        "grade": "S2",
+        "originator": "施耐德电气能源管理研究中心《人工智能带来的颠覆：数据中心设计的挑战及相关指南》第 110 号白皮书 版本 1.1（中文版，2023-10）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "总负载 CAGR 11%。 中文版表 1 未写地域也未写是否为 IT 负载，region/power_scope 记未披露/未注明；库内德勤转引同组数（schneider2309-global-*）记作 Global·IT 负载，两者口径标签不同故不互为重复。"
+    },
+    {
+      "fact_id": "schneider2310-ai-load-2023",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "industry",
+        "id": "dc-load-schneider-wp110",
+        "label": "数据中心负载（施耐德 WP110 估算，未写地域）"
+      },
+      "asserter": "施耐德电气",
+      "value": 4.3,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "AI 负载",
+        "scenario": "单一情景",
+        "basis": "模型输出",
+        "region": "未披露"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0e8a6e413f52a09a2838f178a1cc787a4102eec1a02cd90fd45b7440c8d658ad",
+        "local_file": "20231014-施耐德电气：2023人工智能带来的颠覆：数据中心设计的挑战及相关指南白皮书(20页).pdf",
+        "locator": "PDF 第 2 页表 1「数据中心人工智能负载概览」（施耐德电气的估算）：2023 / 2028 —— 数据中心总负载 54 GW / 90 GW；AI 工作负载 4.3 GW / 13.5-20 GW；AI 工作占总负载的百分比 8% / 15-20%；训练与推理 AI 工作负载对比 20%训练，80%推理 / 15%训练，85%推理",
+        "grade": "S2",
+        "originator": "施耐德电气能源管理研究中心《人工智能带来的颠覆：数据中心设计的挑战及相关指南》第 110 号白皮书 版本 1.1（中文版，2023-10）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "AI 负载是总负载的子集。 中文版表 1 未写地域也未写是否为 IT 负载，region/power_scope 记未披露/未注明；库内德勤转引同组数（schneider2309-global-*）记作 Global·IT 负载，两者口径标签不同故不互为重复。"
+    },
+    {
+      "fact_id": "schneider2310-ai-load-2028e-lower",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "industry",
+        "id": "dc-load-schneider-wp110",
+        "label": "数据中心负载（施耐德 WP110 估算，未写地域）"
+      },
+      "asserter": "施耐德电气",
+      "value": 13.5,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "AI 负载",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "未披露"
+      },
+      "as_of": "2028E@2023-10",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "0e8a6e413f52a09a2838f178a1cc787a4102eec1a02cd90fd45b7440c8d658ad",
+        "local_file": "20231014-施耐德电气：2023人工智能带来的颠覆：数据中心设计的挑战及相关指南白皮书(20页).pdf",
+        "locator": "PDF 第 2 页表 1「数据中心人工智能负载概览」（施耐德电气的估算）：2023 / 2028 —— 数据中心总负载 54 GW / 90 GW；AI 工作负载 4.3 GW / 13.5-20 GW；AI 工作占总负载的百分比 8% / 15-20%；训练与推理 AI 工作负载对比 20%训练，80%推理 / 15%训练，85%推理",
+        "grade": "S2",
+        "originator": "施耐德电气能源管理研究中心《人工智能带来的颠覆：数据中心设计的挑战及相关指南》第 110 号白皮书 版本 1.1（中文版，2023-10）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间下界，CAGR 26%–36%，占总负载 15–20%。 中文版表 1 未写地域也未写是否为 IT 负载，region/power_scope 记未披露/未注明；库内德勤转引同组数（schneider2309-global-*）记作 Global·IT 负载，两者口径标签不同故不互为重复。"
+    },
+    {
+      "fact_id": "schneider2310-ai-load-2028e-upper",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "industry",
+        "id": "dc-load-schneider-wp110",
+        "label": "数据中心负载（施耐德 WP110 估算，未写地域）"
+      },
+      "asserter": "施耐德电气",
+      "value": 20.0,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "AI 负载",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "未披露"
+      },
+      "as_of": "2028E@2023-10",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "0e8a6e413f52a09a2838f178a1cc787a4102eec1a02cd90fd45b7440c8d658ad",
+        "local_file": "20231014-施耐德电气：2023人工智能带来的颠覆：数据中心设计的挑战及相关指南白皮书(20页).pdf",
+        "locator": "PDF 第 2 页表 1「数据中心人工智能负载概览」（施耐德电气的估算）：2023 / 2028 —— 数据中心总负载 54 GW / 90 GW；AI 工作负载 4.3 GW / 13.5-20 GW；AI 工作占总负载的百分比 8% / 15-20%；训练与推理 AI 工作负载对比 20%训练，80%推理 / 15%训练，85%推理",
+        "grade": "S2",
+        "originator": "施耐德电气能源管理研究中心《人工智能带来的颠覆：数据中心设计的挑战及相关指南》第 110 号白皮书 版本 1.1（中文版，2023-10）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上界。 中文版表 1 未写地域也未写是否为 IT 负载，region/power_scope 记未披露/未注明；库内德勤转引同组数（schneider2309-global-*）记作 Global·IT 负载，两者口径标签不同故不互为重复。"
+    },
+    {
+      "fact_id": "schneider2310-inference-share-2023",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "industry",
+        "id": "ai-load-schneider-wp110",
+        "label": "AI 工作负载按训练/推理切分（施耐德 WP110）"
+      },
+      "asserter": "施耐德电气",
+      "value": 80.0,
+      "unit": "%",
+      "caliber": {
+        "workload": "推理",
+        "denominator": "未注明",
+        "region": "未披露",
+        "basis": "行业机构"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0e8a6e413f52a09a2838f178a1cc787a4102eec1a02cd90fd45b7440c8d658ad",
+        "local_file": "20231014-施耐德电气：2023人工智能带来的颠覆：数据中心设计的挑战及相关指南白皮书(20页).pdf",
+        "locator": "PDF 第 2 页表 1「数据中心人工智能负载概览」（施耐德电气的估算）：2023 / 2028 —— 数据中心总负载 54 GW / 90 GW；AI 工作负载 4.3 GW / 13.5-20 GW；AI 工作占总负载的百分比 8% / 15-20%；训练与推理 AI 工作负载对比 20%训练，80%推理 / 15%训练，85%推理",
+        "grade": "S2",
+        "originator": "施耐德电气能源管理研究中心《人工智能带来的颠覆：数据中心设计的挑战及相关指南》第 110 号白皮书 版本 1.1（中文版，2023-10）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "表 1 在 GW 负载表中给出，按 AI 负载电力切分，分母未写明，记未注明；训练+推理=100%。"
+    },
+    {
+      "fact_id": "schneider2310-training-share-2023",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "industry",
+        "id": "ai-load-schneider-wp110",
+        "label": "AI 工作负载按训练/推理切分（施耐德 WP110）"
+      },
+      "asserter": "施耐德电气",
+      "value": 20.0,
+      "unit": "%",
+      "caliber": {
+        "workload": "训练",
+        "denominator": "未注明",
+        "region": "未披露",
+        "basis": "行业机构"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0e8a6e413f52a09a2838f178a1cc787a4102eec1a02cd90fd45b7440c8d658ad",
+        "local_file": "20231014-施耐德电气：2023人工智能带来的颠覆：数据中心设计的挑战及相关指南白皮书(20页).pdf",
+        "locator": "PDF 第 2 页表 1「数据中心人工智能负载概览」（施耐德电气的估算）：2023 / 2028 —— 数据中心总负载 54 GW / 90 GW；AI 工作负载 4.3 GW / 13.5-20 GW；AI 工作占总负载的百分比 8% / 15-20%；训练与推理 AI 工作负载对比 20%训练，80%推理 / 15%训练，85%推理",
+        "grade": "S2",
+        "originator": "施耐德电气能源管理研究中心《人工智能带来的颠覆：数据中心设计的挑战及相关指南》第 110 号白皮书 版本 1.1（中文版，2023-10）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "表 1 在 GW 负载表中给出，按 AI 负载电力切分，分母未写明，记未注明；训练+推理=100%。"
+    },
+    {
+      "fact_id": "schneider2310-inference-share-2028e",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "industry",
+        "id": "ai-load-schneider-wp110",
+        "label": "AI 工作负载按训练/推理切分（施耐德 WP110）"
+      },
+      "asserter": "施耐德电气",
+      "value": 85.0,
+      "unit": "%",
+      "caliber": {
+        "workload": "推理",
+        "denominator": "未注明",
+        "region": "未披露",
+        "basis": "预测"
+      },
+      "as_of": "2028E@2023-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0e8a6e413f52a09a2838f178a1cc787a4102eec1a02cd90fd45b7440c8d658ad",
+        "local_file": "20231014-施耐德电气：2023人工智能带来的颠覆：数据中心设计的挑战及相关指南白皮书(20页).pdf",
+        "locator": "PDF 第 2 页表 1「数据中心人工智能负载概览」（施耐德电气的估算）：2023 / 2028 —— 数据中心总负载 54 GW / 90 GW；AI 工作负载 4.3 GW / 13.5-20 GW；AI 工作占总负载的百分比 8% / 15-20%；训练与推理 AI 工作负载对比 20%训练，80%推理 / 15%训练，85%推理",
+        "grade": "S2",
+        "originator": "施耐德电气能源管理研究中心《人工智能带来的颠覆：数据中心设计的挑战及相关指南》第 110 号白皮书 版本 1.1（中文版，2023-10）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "表 1 在 GW 负载表中给出，按 AI 负载电力切分，分母未写明，记未注明；训练+推理=100%。"
+    },
+    {
+      "fact_id": "schneider2310-training-share-2028e",
+      "metric_id": "inference_compute_share",
+      "entity": {
+        "type": "industry",
+        "id": "ai-load-schneider-wp110",
+        "label": "AI 工作负载按训练/推理切分（施耐德 WP110）"
+      },
+      "asserter": "施耐德电气",
+      "value": 15.0,
+      "unit": "%",
+      "caliber": {
+        "workload": "训练",
+        "denominator": "未注明",
+        "region": "未披露",
+        "basis": "预测"
+      },
+      "as_of": "2028E@2023-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0e8a6e413f52a09a2838f178a1cc787a4102eec1a02cd90fd45b7440c8d658ad",
+        "local_file": "20231014-施耐德电气：2023人工智能带来的颠覆：数据中心设计的挑战及相关指南白皮书(20页).pdf",
+        "locator": "PDF 第 2 页表 1「数据中心人工智能负载概览」（施耐德电气的估算）：2023 / 2028 —— 数据中心总负载 54 GW / 90 GW；AI 工作负载 4.3 GW / 13.5-20 GW；AI 工作占总负载的百分比 8% / 15-20%；训练与推理 AI 工作负载对比 20%训练，80%推理 / 15%训练，85%推理",
+        "grade": "S2",
+        "originator": "施耐德电气能源管理研究中心《人工智能带来的颠覆：数据中心设计的挑战及相关指南》第 110 号白皮书 版本 1.1（中文版，2023-10）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "表 1 在 GW 负载表中给出，按 AI 负载电力切分，分母未写明，记未注明；训练+推理=100%。"
     }
   ]
 }
