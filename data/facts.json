@@ -185386,6 +185386,423 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "2024-04 一季报上调后的区间；上调前 300–370 亿美元为此前快照，未录。"
+    },
+    {
+      "fact_id": "guosen2503-runjian-wuxiang-idc-irr",
+      "metric_id": "project_irr",
+      "asserter": "润建股份",
+      "entity": {
+        "type": "project",
+        "id": "cn-gx-runjian-wuxiang-cloud",
+        "label": "润建股份五象云谷云计算中心（南宁）"
+      },
+      "value": 13.28,
+      "unit": "%",
+      "caliber": {
+        "asset": "其他",
+        "contract_tenor": "未注明",
+        "price_assumption": "原文给定",
+        "region": "CN",
+        "basis": "模型输出"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "89a192c10529abc368c4a4e54a0966c5ef627b8b891ff96b8f488bf68051143f",
+        "local_file": "20250319-通信：数据中心互联技术专题二：AI变革推动AIDC服务商快速发展(66页).pdf",
+        "locator": "第 7 页「IDC项目内部收益率IRR为13%（润建股份云计算中心为例）」：「项目总投资10.98亿元……项目达产后产生年收入为5.4亿元，税后利润为2.24亿元，内部收益率为13.28%，投资回收期为7.9年」（资料来源：润建股份《2020年公开发行可转换公司债券募集说明书》）",
+        "grade": "S2",
+        "originator": "润建股份《2020年公开发行可转换公司债券募集说明书》（经国信证券《数据中心互联技术专题二：AI变革推动AIDC服务商快速发展》（2025-03-16）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "募投项目可研测算，不是实际收益。假设：6kW 机柜出租单价 7.2 万元/架·年、出租率 50%→65%→80%→90%→100%、增值服务 0.72 万元/架·年、网络接入 1.08 万元/架·年；项目总投资 10.98 亿元（建筑 2.05 亿、机电 6.6 亿）。asset 为 IDC 机柜而非 GPU，记其他。"
+    },
+    {
+      "fact_id": "guosen2503-runjian-wuxiang-idc-payback",
+      "metric_id": "dc_payback_years",
+      "asserter": "润建股份",
+      "entity": {
+        "type": "project",
+        "id": "cn-gx-runjian-wuxiang-cloud",
+        "label": "润建股份五象云谷云计算中心（南宁）"
+      },
+      "value": 7.9,
+      "unit": "年",
+      "caliber": {
+        "scope": "税后",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "89a192c10529abc368c4a4e54a0966c5ef627b8b891ff96b8f488bf68051143f",
+        "local_file": "20250319-通信：数据中心互联技术专题二：AI变革推动AIDC服务商快速发展(66页).pdf",
+        "locator": "第 7 页「IDC项目内部收益率IRR为13%（润建股份云计算中心为例）」：「项目总投资10.98亿元……项目达产后产生年收入为5.4亿元，税后利润为2.24亿元，内部收益率为13.28%，投资回收期为7.9年」（资料来源：润建股份《2020年公开发行可转换公司债券募集说明书》）",
+        "grade": "S2",
+        "originator": "润建股份《2020年公开发行可转换公司债券募集说明书》（经国信证券《数据中心互联技术专题二：AI变革推动AIDC服务商快速发展》（2025-03-16）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "募投项目可研测算。原文未写回收期是否税后、是否含建设期；同句 IRR 为税后口径，scope 就近记税后 [未核]。"
+    },
+    {
+      "fact_id": "guosen2503-sinnet-baodi-cost-share-power",
+      "metric_id": "cost_share_by_trade",
+      "asserter": "光环新网",
+      "entity": {
+        "type": "project",
+        "id": "cn-tj-sinnet-baodi-phase1",
+        "label": "光环新网天津宝坻云计算基地一期"
+      },
+      "value": 49.9,
+      "unit": "%",
+      "caliber": {
+        "trade": "供配电",
+        "sub_trade": "配电系统",
+        "denominator": "项目总造价",
+        "stage": "估算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "89a192c10529abc368c4a4e54a0966c5ef627b8b891ff96b8f488bf68051143f",
+        "local_file": "20250319-通信：数据中心互联技术专题二：AI变革推动AIDC服务商快速发展(66页).pdf",
+        "locator": "第 9 页图「数据中心建设成本比例（不包含IT设备）」与正文「根据光环新网天津宝坻云计算一期项目，不包含IT设备情况下，总投入约10.7亿元，其中配电系统占近50%，楼梯建筑/空调系统/机房配套分别占26.6%/12%/7%」（资料来源：《光环新网天津宝坻云计算基地一期项目建设可行性报告》）：图中配电系统 49.9%",
+        "grade": "S2",
+        "originator": "光环新网《天津宝坻云计算基地一期项目建设可行性报告》（经国信证券《数据中心互联技术专题二：AI变革推动AIDC服务商快速发展》（2025-03-16）转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "可研报告年份原文未写；项目为 2020 年光环新网定增募投项目，as_of 推定为 2020",
+      "corroboration": "待交叉验证",
+      "notes": "分母为不含 IT 设备的项目总投入约 10.7 亿元，denominator 取项目总造价并在此说明不含 IT。正文与图取整不同（配电「近 50%」/图 49.9%、空调「12%」/图 12.1%、机房配套「7%」/图 6.8%），取图值。弱电消防 4.6% 无单一 trade 取值未录。"
+    },
+    {
+      "fact_id": "guosen2503-sinnet-baodi-cost-share-building",
+      "metric_id": "cost_share_by_trade",
+      "asserter": "光环新网",
+      "entity": {
+        "type": "project",
+        "id": "cn-tj-sinnet-baodi-phase1",
+        "label": "光环新网天津宝坻云计算基地一期"
+      },
+      "value": 26.6,
+      "unit": "%",
+      "caliber": {
+        "trade": "土建",
+        "sub_trade": "楼体建筑",
+        "denominator": "项目总造价",
+        "stage": "估算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "89a192c10529abc368c4a4e54a0966c5ef627b8b891ff96b8f488bf68051143f",
+        "local_file": "20250319-通信：数据中心互联技术专题二：AI变革推动AIDC服务商快速发展(66页).pdf",
+        "locator": "第 9 页图「数据中心建设成本比例（不包含IT设备）」与正文「根据光环新网天津宝坻云计算一期项目，不包含IT设备情况下，总投入约10.7亿元，其中配电系统占近50%，楼梯建筑/空调系统/机房配套分别占26.6%/12%/7%」（资料来源：《光环新网天津宝坻云计算基地一期项目建设可行性报告》）：图中楼体建筑 26.6%",
+        "grade": "S2",
+        "originator": "光环新网《天津宝坻云计算基地一期项目建设可行性报告》（经国信证券《数据中心互联技术专题二：AI变革推动AIDC服务商快速发展》（2025-03-16）转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "可研报告年份原文未写；项目为 2020 年光环新网定增募投项目，as_of 推定为 2020",
+      "corroboration": "待交叉验证",
+      "notes": "分母为不含 IT 设备的项目总投入约 10.7 亿元，denominator 取项目总造价并在此说明不含 IT。正文与图取整不同（配电「近 50%」/图 49.9%、空调「12%」/图 12.1%、机房配套「7%」/图 6.8%），取图值。弱电消防 4.6% 无单一 trade 取值未录。"
+    },
+    {
+      "fact_id": "guosen2503-sinnet-baodi-cost-share-hvac",
+      "metric_id": "cost_share_by_trade",
+      "asserter": "光环新网",
+      "entity": {
+        "type": "project",
+        "id": "cn-tj-sinnet-baodi-phase1",
+        "label": "光环新网天津宝坻云计算基地一期"
+      },
+      "value": 12.1,
+      "unit": "%",
+      "caliber": {
+        "trade": "暖通制冷",
+        "sub_trade": "空调系统",
+        "denominator": "项目总造价",
+        "stage": "估算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "89a192c10529abc368c4a4e54a0966c5ef627b8b891ff96b8f488bf68051143f",
+        "local_file": "20250319-通信：数据中心互联技术专题二：AI变革推动AIDC服务商快速发展(66页).pdf",
+        "locator": "第 9 页图「数据中心建设成本比例（不包含IT设备）」与正文「根据光环新网天津宝坻云计算一期项目，不包含IT设备情况下，总投入约10.7亿元，其中配电系统占近50%，楼梯建筑/空调系统/机房配套分别占26.6%/12%/7%」（资料来源：《光环新网天津宝坻云计算基地一期项目建设可行性报告》）：图中空调系统 12.1%",
+        "grade": "S2",
+        "originator": "光环新网《天津宝坻云计算基地一期项目建设可行性报告》（经国信证券《数据中心互联技术专题二：AI变革推动AIDC服务商快速发展》（2025-03-16）转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "可研报告年份原文未写；项目为 2020 年光环新网定增募投项目，as_of 推定为 2020",
+      "corroboration": "待交叉验证",
+      "notes": "分母为不含 IT 设备的项目总投入约 10.7 亿元，denominator 取项目总造价并在此说明不含 IT。正文与图取整不同（配电「近 50%」/图 49.9%、空调「12%」/图 12.1%、机房配套「7%」/图 6.8%），取图值。弱电消防 4.6% 无单一 trade 取值未录。"
+    },
+    {
+      "fact_id": "guosen2503-sinnet-baodi-cost-share-room-fitout",
+      "metric_id": "cost_share_by_trade",
+      "asserter": "光环新网",
+      "entity": {
+        "type": "project",
+        "id": "cn-tj-sinnet-baodi-phase1",
+        "label": "光环新网天津宝坻云计算基地一期"
+      },
+      "value": 6.8,
+      "unit": "%",
+      "caliber": {
+        "trade": "其他机电分项",
+        "sub_trade": "机房配套",
+        "denominator": "项目总造价",
+        "stage": "估算",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "89a192c10529abc368c4a4e54a0966c5ef627b8b891ff96b8f488bf68051143f",
+        "local_file": "20250319-通信：数据中心互联技术专题二：AI变革推动AIDC服务商快速发展(66页).pdf",
+        "locator": "第 9 页图「数据中心建设成本比例（不包含IT设备）」与正文「根据光环新网天津宝坻云计算一期项目，不包含IT设备情况下，总投入约10.7亿元，其中配电系统占近50%，楼梯建筑/空调系统/机房配套分别占26.6%/12%/7%」（资料来源：《光环新网天津宝坻云计算基地一期项目建设可行性报告》）：图中机房配套 6.8%",
+        "grade": "S2",
+        "originator": "光环新网《天津宝坻云计算基地一期项目建设可行性报告》（经国信证券《数据中心互联技术专题二：AI变革推动AIDC服务商快速发展》（2025-03-16）转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "可研报告年份原文未写；项目为 2020 年光环新网定增募投项目，as_of 推定为 2020",
+      "corroboration": "待交叉验证",
+      "notes": "分母为不含 IT 设备的项目总投入约 10.7 亿元，denominator 取项目总造价并在此说明不含 IT。正文与图取整不同（配电「近 50%」/图 49.9%、空调「12%」/图 12.1%、机房配套「7%」/图 6.8%），取图值。弱电消防 4.6% 无单一 trade 取值未录。"
+    },
+    {
+      "fact_id": "guosen2503-kezhi-cn-traditional-idc-market-2020",
+      "metric_id": "dc_service_revenue",
+      "asserter": "科智咨询",
+      "entity": {
+        "type": "market",
+        "id": "cn-traditional-idc-market",
+        "label": "中国传统 IDC 业务市场（科智口径）"
+      },
+      "value": 994.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "IDC 服务（含托管与增值）",
+        "operator_type": "全市场",
+        "region": "CN",
+        "basis": "第三方跟踪",
+        "currency": "人民币"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "89a192c10529abc368c4a4e54a0966c5ef627b8b891ff96b8f488bf68051143f",
+        "local_file": "20250319-通信：数据中心互联技术专题二：AI变革推动AIDC服务商快速发展(66页).pdf",
+        "locator": "第 25 页 图「我国2020-2023年传统IDC业务市场规模及增速」（资料来源：科智咨询）与正文「2023年我国传统IDC市场规模为1456亿元，同比增长6%」：2020 = 994",
+        "grade": "S3",
+        "originator": "科智咨询（经国信证券《数据中心互联技术专题二：AI变革推动AIDC服务商快速发展》（2025-03-16）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「传统 IDC 业务」，与同页 AIDC 市场投资规模（2023 年 879 亿元，库内 sqt2025-kezhi-cn-aidc-investment-2023）相对照。**与科智另一口径「数据中心市场规模」2020 年 1,958 亿元（kr36-2104-kezhi-cn-dc-market-2020）不同**，entity 分开，不接成序列。"
+    },
+    {
+      "fact_id": "guosen2503-kezhi-cn-traditional-idc-market-2021",
+      "metric_id": "dc_service_revenue",
+      "asserter": "科智咨询",
+      "entity": {
+        "type": "market",
+        "id": "cn-traditional-idc-market",
+        "label": "中国传统 IDC 业务市场（科智口径）"
+      },
+      "value": 1202.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "IDC 服务（含托管与增值）",
+        "operator_type": "全市场",
+        "region": "CN",
+        "basis": "第三方跟踪",
+        "currency": "人民币"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "89a192c10529abc368c4a4e54a0966c5ef627b8b891ff96b8f488bf68051143f",
+        "local_file": "20250319-通信：数据中心互联技术专题二：AI变革推动AIDC服务商快速发展(66页).pdf",
+        "locator": "第 25 页 图「我国2020-2023年传统IDC业务市场规模及增速」（资料来源：科智咨询）与正文「2023年我国传统IDC市场规模为1456亿元，同比增长6%」：2021 = 1,202",
+        "grade": "S3",
+        "originator": "科智咨询（经国信证券《数据中心互联技术专题二：AI变革推动AIDC服务商快速发展》（2025-03-16）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「传统 IDC 业务」，与同页 AIDC 市场投资规模（2023 年 879 亿元，库内 sqt2025-kezhi-cn-aidc-investment-2023）相对照。**与科智另一口径「数据中心市场规模」2020 年 1,958 亿元（kr36-2104-kezhi-cn-dc-market-2020）不同**，entity 分开，不接成序列。"
+    },
+    {
+      "fact_id": "guosen2503-kezhi-cn-traditional-idc-market-2022",
+      "metric_id": "dc_service_revenue",
+      "asserter": "科智咨询",
+      "entity": {
+        "type": "market",
+        "id": "cn-traditional-idc-market",
+        "label": "中国传统 IDC 业务市场（科智口径）"
+      },
+      "value": 1368.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "IDC 服务（含托管与增值）",
+        "operator_type": "全市场",
+        "region": "CN",
+        "basis": "第三方跟踪",
+        "currency": "人民币"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "89a192c10529abc368c4a4e54a0966c5ef627b8b891ff96b8f488bf68051143f",
+        "local_file": "20250319-通信：数据中心互联技术专题二：AI变革推动AIDC服务商快速发展(66页).pdf",
+        "locator": "第 25 页 图「我国2020-2023年传统IDC业务市场规模及增速」（资料来源：科智咨询）与正文「2023年我国传统IDC市场规模为1456亿元，同比增长6%」：2022 = 1,368",
+        "grade": "S3",
+        "originator": "科智咨询（经国信证券《数据中心互联技术专题二：AI变革推动AIDC服务商快速发展》（2025-03-16）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「传统 IDC 业务」，与同页 AIDC 市场投资规模（2023 年 879 亿元，库内 sqt2025-kezhi-cn-aidc-investment-2023）相对照。**与科智另一口径「数据中心市场规模」2020 年 1,958 亿元（kr36-2104-kezhi-cn-dc-market-2020）不同**，entity 分开，不接成序列。"
+    },
+    {
+      "fact_id": "guosen2503-kezhi-cn-traditional-idc-market-2023",
+      "metric_id": "dc_service_revenue",
+      "asserter": "科智咨询",
+      "entity": {
+        "type": "market",
+        "id": "cn-traditional-idc-market",
+        "label": "中国传统 IDC 业务市场（科智口径）"
+      },
+      "value": 1456.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "IDC 服务（含托管与增值）",
+        "operator_type": "全市场",
+        "region": "CN",
+        "basis": "第三方跟踪",
+        "currency": "人民币"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "89a192c10529abc368c4a4e54a0966c5ef627b8b891ff96b8f488bf68051143f",
+        "local_file": "20250319-通信：数据中心互联技术专题二：AI变革推动AIDC服务商快速发展(66页).pdf",
+        "locator": "第 25 页 图「我国2020-2023年传统IDC业务市场规模及增速」（资料来源：科智咨询）与正文「2023年我国传统IDC市场规模为1456亿元，同比增长6%」：2023 = 1,456",
+        "grade": "S3",
+        "originator": "科智咨询（经国信证券《数据中心互联技术专题二：AI变革推动AIDC服务商快速发展》（2025-03-16）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「传统 IDC 业务」，与同页 AIDC 市场投资规模（2023 年 879 亿元，库内 sqt2025-kezhi-cn-aidc-investment-2023）相对照。**与科智另一口径「数据中心市场规模」2020 年 1,958 亿元（kr36-2104-kezhi-cn-dc-market-2020）不同**，entity 分开，不接成序列。"
+    },
+    {
+      "fact_id": "guosen2503-china-telecom-racks-2023h1",
+      "metric_id": "operator_rack_capacity",
+      "asserter": "中国电信",
+      "entity": {
+        "type": "company",
+        "id": "china-telecom",
+        "label": "中国电信"
+      },
+      "value": 53.4,
+      "unit": "万架",
+      "caliber": {
+        "status": "在运营",
+        "city_tier": "合计",
+        "subregion": "全国",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2023-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "89a192c10529abc368c4a4e54a0966c5ef627b8b891ff96b8f488bf68051143f",
+        "local_file": "20250319-通信：数据中心互联技术专题二：AI变革推动AIDC服务商快速发展(66页).pdf",
+        "locator": "第 43 页正文「截至2023年H1，三大运营商数据中心机架合计约140万架，较2022年底新增4.9万机架。其中中国电信53.4万架，中国移动47.8万架，中国联通超过38万架」",
+        "grade": "S3",
+        "originator": "中国电信（经国信证券《数据中心互联技术专题二：AI变革推动AIDC服务商快速发展》（2025-03-16）转引，未注具体公告）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文未写标准机架还是物理机柜、未写在运营或含在建，status 就近记在运营 [未核]。"
+    },
+    {
+      "fact_id": "guosen2503-china-mobile-racks-2023h1",
+      "metric_id": "operator_rack_capacity",
+      "asserter": "中国移动",
+      "entity": {
+        "type": "company",
+        "id": "china-mobile",
+        "label": "中国移动"
+      },
+      "value": 47.8,
+      "unit": "万架",
+      "caliber": {
+        "status": "在运营",
+        "city_tier": "合计",
+        "subregion": "全国",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2023-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "89a192c10529abc368c4a4e54a0966c5ef627b8b891ff96b8f488bf68051143f",
+        "local_file": "20250319-通信：数据中心互联技术专题二：AI变革推动AIDC服务商快速发展(66页).pdf",
+        "locator": "第 43 页正文「截至2023年H1，三大运营商数据中心机架合计约140万架，较2022年底新增4.9万机架。其中中国电信53.4万架，中国移动47.8万架，中国联通超过38万架」",
+        "grade": "S3",
+        "originator": "中国移动（经国信证券《数据中心互联技术专题二：AI变革推动AIDC服务商快速发展》（2025-03-16）转引，未注具体公告）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文未写标准机架还是物理机柜、未写在运营或含在建，status 就近记在运营 [未核]。"
+    },
+    {
+      "fact_id": "guosen2503-china-unicom-racks-2023h1",
+      "metric_id": "operator_rack_capacity",
+      "asserter": "中国联通",
+      "entity": {
+        "type": "company",
+        "id": "china-unicom",
+        "label": "中国联通"
+      },
+      "value": 38.0,
+      "unit": "万架",
+      "caliber": {
+        "status": "在运营",
+        "city_tier": "合计",
+        "subregion": "全国",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2023-06",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "89a192c10529abc368c4a4e54a0966c5ef627b8b891ff96b8f488bf68051143f",
+        "local_file": "20250319-通信：数据中心互联技术专题二：AI变革推动AIDC服务商快速发展(66页).pdf",
+        "locator": "第 43 页正文「截至2023年H1，三大运营商数据中心机架合计约140万架，较2022年底新增4.9万机架。其中中国电信53.4万架，中国移动47.8万架，中国联通超过38万架」",
+        "grade": "S3",
+        "originator": "中国联通（经国信证券《数据中心互联技术专题二：AI变革推动AIDC服务商快速发展》（2025-03-16）转引，未注具体公告）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「超过」按下界记。原文未写标准机架还是物理机柜、未写在运营或含在建，status 就近记在运营 [未核]。"
     }
   ]
 }
