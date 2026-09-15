@@ -207517,6 +207517,142 @@
       "derivation": "Dell’Oro 该版预测发布时点未注明，按转引报告年份取 @2025；「一半达到」理解为主流速率。",
       "corroboration": "待交叉验证",
       "notes": "与库内 ai-backend-port-speed-2025e（800 Gbps）同一断言者同一序列。原文同处：2028 年 AI 后端以太网交换机端口出货超过 5,000 万个（无交换机端口出货指标）。"
+    },
+    {
+      "fact_id": "gszq2508-optics-demand-800g-2025e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "market",
+        "id": "global-optics-demand",
+        "label": "全球 AI 光模块需求"
+      },
+      "asserter": "国信证券",
+      "value": 1675,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "product_form": "光模块",
+        "speed": "800G",
+        "shipment_basis": "市场需求",
+        "basis": "券商测算",
+        "region": "Global",
+        "customer": "未拆分"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "01f2e2c1e5d5ad84c563a8c20ae45361346a6e8841bdcb835f9c8cf61cb53634",
+        "local_file": "20250824-国信证券-数据中心互联技术专题四：CSP云厂AI军备竞赛加速，智算中心架构快速发展(43页).pdf",
+        "locator": "PDF 第 27 页「表：光模块市场需求测算」（单位：万只；资料来源：各公司官网，Wind，国信证券经济研究所整理）合计行：800G 2025E 1675 / 2026E 3935，1.6T 2025E 225 / 2026E 825；摘要：「我们测算明年全球800G光模块有望达4000万只，1.6T光模块有望超过700万只」",
+        "grade": "S3",
+        "originator": "国信证券《数据中心互联技术专题四：CSP 云厂 AI 军备竞赛加速，智算中心架构快速发展》（2025-08-24）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "按各 CSP 加速芯片出货 × 光模块配比测算（谷歌 TPU、英伟达 H/B、AWS Trainium、Meta MTIA、Oracle、xAI、国内 CSP）。分客户 2026E 800G 各行相加为 3,915，与合计 3,935 差 20，且谷歌 TPU5 2026E 180 万片×1.5 应为 270 而表列 375，分客户值未录，仅录合计。"
+    },
+    {
+      "fact_id": "gszq2508-optics-demand-800g-2026e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "market",
+        "id": "global-optics-demand",
+        "label": "全球 AI 光模块需求"
+      },
+      "asserter": "国信证券",
+      "value": 3935,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "product_form": "光模块",
+        "speed": "800G",
+        "shipment_basis": "市场需求",
+        "basis": "券商测算",
+        "region": "Global",
+        "customer": "未拆分"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "01f2e2c1e5d5ad84c563a8c20ae45361346a6e8841bdcb835f9c8cf61cb53634",
+        "local_file": "20250824-国信证券-数据中心互联技术专题四：CSP云厂AI军备竞赛加速，智算中心架构快速发展(43页).pdf",
+        "locator": "PDF 第 27 页「表：光模块市场需求测算」（单位：万只；资料来源：各公司官网，Wind，国信证券经济研究所整理）合计行：800G 2025E 1675 / 2026E 3935，1.6T 2025E 225 / 2026E 825；摘要：「我们测算明年全球800G光模块有望达4000万只，1.6T光模块有望超过700万只」",
+        "grade": "S3",
+        "originator": "国信证券《数据中心互联技术专题四：CSP 云厂 AI 军备竞赛加速，智算中心架构快速发展》（2025-08-24）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "按各 CSP 加速芯片出货 × 光模块配比测算（谷歌 TPU、英伟达 H/B、AWS Trainium、Meta MTIA、Oracle、xAI、国内 CSP）。分客户 2026E 800G 各行相加为 3,915，与合计 3,935 差 20，且谷歌 TPU5 2026E 180 万片×1.5 应为 270 而表列 375，分客户值未录，仅录合计。"
+    },
+    {
+      "fact_id": "gszq2508-optics-demand-1p6t-2025e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "market",
+        "id": "global-optics-demand",
+        "label": "全球 AI 光模块需求"
+      },
+      "asserter": "国信证券",
+      "value": 225,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "product_form": "光模块",
+        "speed": "1.6T",
+        "shipment_basis": "市场需求",
+        "basis": "券商测算",
+        "region": "Global",
+        "customer": "未拆分"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "01f2e2c1e5d5ad84c563a8c20ae45361346a6e8841bdcb835f9c8cf61cb53634",
+        "local_file": "20250824-国信证券-数据中心互联技术专题四：CSP云厂AI军备竞赛加速，智算中心架构快速发展(43页).pdf",
+        "locator": "PDF 第 27 页「表：光模块市场需求测算」（单位：万只；资料来源：各公司官网，Wind，国信证券经济研究所整理）合计行：800G 2025E 1675 / 2026E 3935，1.6T 2025E 225 / 2026E 825；摘要：「我们测算明年全球800G光模块有望达4000万只，1.6T光模块有望超过700万只」",
+        "grade": "S3",
+        "originator": "国信证券《数据中心互联技术专题四：CSP 云厂 AI 军备竞赛加速，智算中心架构快速发展》（2025-08-24）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "按各 CSP 加速芯片出货 × 光模块配比测算（谷歌 TPU、英伟达 H/B、AWS Trainium、Meta MTIA、Oracle、xAI、国内 CSP）。"
+    },
+    {
+      "fact_id": "gszq2508-optics-demand-1p6t-2026e",
+      "metric_id": "optics_module_shipment",
+      "entity": {
+        "type": "market",
+        "id": "global-optics-demand",
+        "label": "全球 AI 光模块需求"
+      },
+      "asserter": "国信证券",
+      "value": 825,
+      "unit": "万只",
+      "caliber": {
+        "rate_target": "单模块",
+        "product_form": "光模块",
+        "speed": "1.6T",
+        "shipment_basis": "市场需求",
+        "basis": "券商测算",
+        "region": "Global",
+        "customer": "未拆分"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "01f2e2c1e5d5ad84c563a8c20ae45361346a6e8841bdcb835f9c8cf61cb53634",
+        "local_file": "20250824-国信证券-数据中心互联技术专题四：CSP云厂AI军备竞赛加速，智算中心架构快速发展(43页).pdf",
+        "locator": "PDF 第 27 页「表：光模块市场需求测算」（单位：万只；资料来源：各公司官网，Wind，国信证券经济研究所整理）合计行：800G 2025E 1675 / 2026E 3935，1.6T 2025E 225 / 2026E 825；摘要：「我们测算明年全球800G光模块有望达4000万只，1.6T光模块有望超过700万只」",
+        "grade": "S3",
+        "originator": "国信证券《数据中心互联技术专题四：CSP 云厂 AI 军备竞赛加速，智算中心架构快速发展》（2025-08-24）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "按各 CSP 加速芯片出货 × 光模块配比测算（谷歌 TPU、英伟达 H/B、AWS Trainium、Meta MTIA、Oracle、xAI、国内 CSP）。"
     }
   ]
 }
