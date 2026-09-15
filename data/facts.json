@@ -181833,6 +181833,231 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "3,842.2 亿千瓦时 = 384.22 TWh。原始预测做出时点与具体报告未写，as_of 不带 @。"
+    },
+    {
+      "fact_id": "sh-dcguide2021-pue-large-new",
+      "metric_id": "dc_pue",
+      "asserter": "上海市经济和信息化委员会",
+      "entity": {
+        "type": "region",
+        "id": "cn-shanghai-new-dc",
+        "label": "上海市新建数据中心（政策口径）"
+      },
+      "value": 1.3,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "大型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2021-04",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "2966faaebdfbbbfe892e77cb4f63751fe86a9cf79d873a7826b27b3999717cd4",
+        "local_file": "20230213-上海市数据中心建设导则（2021 版）(40页).pdf",
+        "locator": "PDF 第 7 页 1.1 总体要求 4 设计指标：「新建大型数据中心单项目规模应不低于 3000 个标准机架……综合 PUE 严格控制不超过 1.3」",
+        "grade": "S1",
+        "originator": "《上海市数据中心建设导则（2021 版）》（2021-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "设计指标口径的综合 PUE 上限；投运后第二年运行值要求同为 1.3（另条）。 封面未印发布机关；该导则由上海市经信委于 2021-04 印发（本库上海数据中心统筹文件同一主管部门），asserter 按发布主管部门记，未在本件内核到机关名称，[未核]。"
+    },
+    {
+      "fact_id": "sh-dcguide2021-pue-edge-new",
+      "metric_id": "dc_pue",
+      "asserter": "上海市经济和信息化委员会",
+      "entity": {
+        "type": "region",
+        "id": "cn-shanghai-new-edge-dc",
+        "label": "上海市新建边缘数据中心（政策口径）"
+      },
+      "value": 1.5,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "中小型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2021-04",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "2966faaebdfbbbfe892e77cb4f63751fe86a9cf79d873a7826b27b3999717cd4",
+        "local_file": "20230213-上海市数据中心建设导则（2021 版）(40页).pdf",
+        "locator": "PDF 第 7 页 1.1 总体要求 4：「新建边缘数据中心单项目规模应控制在 100 个机架内，PUE 不应高于 1.5」；13.1.1 同",
+        "grade": "S1",
+        "originator": "《上海市数据中心建设导则（2021 版）》（2021-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "边缘数据中心（≤100 标准机架），scale 取最接近的中小型。 封面未印发布机关；该导则由上海市经信委于 2021-04 印发（本库上海数据中心统筹文件同一主管部门），asserter 按发布主管部门记，未在本件内核到机关名称，[未核]。"
+    },
+    {
+      "fact_id": "sh-dcguide2021-pue-operating-year1",
+      "metric_id": "dc_pue",
+      "asserter": "上海市经济和信息化委员会",
+      "entity": {
+        "type": "region",
+        "id": "cn-shanghai-new-dc",
+        "label": "上海市新建数据中心（政策口径）"
+      },
+      "value": 1.4,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2021-04",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "2966faaebdfbbbfe892e77cb4f63751fe86a9cf79d873a7826b27b3999717cd4",
+        "local_file": "20230213-上海市数据中心建设导则（2021 版）(40页).pdf",
+        "locator": "PDF 第 25 页 12.3 关键指标要求：「本市建设数据中心，投入运行后……PUE 综合：第一年不应高于 1.4，第二年不应高于 1.3」",
+        "grade": "S1",
+        "originator": "《上海市数据中心建设导则（2021 版）》（2021-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "投运后第一年运行 PUE 上限。entity 同为新建数据中心，与第二年值 1.3 同键不同值——**用 as_of 无法区分运行年次**，第二年值未另录，见缺口。 封面未印发布机关；该导则由上海市经信委于 2021-04 印发（本库上海数据中心统筹文件同一主管部门），asserter 按发布主管部门记，未在本件内核到机关名称，[未核]。"
+    },
+    {
+      "fact_id": "sh-dcguide2021-occupancy-year2",
+      "metric_id": "occupancy_policy_threshold",
+      "asserter": "上海市经济和信息化委员会",
+      "entity": {
+        "type": "region",
+        "id": "cn-shanghai-new-dc",
+        "label": "上海市新建数据中心（政策口径）"
+      },
+      "value": 90.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "单项目",
+        "policy_type": "准入门槛",
+        "region": "CN"
+      },
+      "as_of": "2021-04",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "2966faaebdfbbbfe892e77cb4f63751fe86a9cf79d873a7826b27b3999717cd4",
+        "local_file": "20230213-上海市数据中心建设导则（2021 版）(40页).pdf",
+        "locator": "PDF 第 25 页 12.3.1：「Rackon：半年内不应低于 50%（仅针对自用的数据中心）；一年内不应低于 70%；第二年及以后不低于 90%」",
+        "grade": "S1",
+        "originator": "《上海市数据中心建设导则（2021 版）》（2021-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "投运第二年及以后 IT 设备上架率下限（稳态要求）。半年 50%、一年 70% 为爬坡期要求，与本条同键未录，见缺口。policy_type 取准入门槛（投运后考核，最接近）。封面未印发布机关；该导则由上海市经信委于 2021-04 印发（本库上海数据中心统筹文件同一主管部门），asserter 按发布主管部门记，未在本件内核到机关名称，[未核]。"
+    },
+    {
+      "fact_id": "sh-dcguide2021-wue-year2",
+      "metric_id": "dc_wue_limit",
+      "asserter": "上海市经济和信息化委员会",
+      "entity": {
+        "type": "region",
+        "id": "cn-shanghai-new-dc",
+        "label": "上海市新建数据中心（政策口径）"
+      },
+      "value": 1.4,
+      "unit": "L/kWh",
+      "caliber": {
+        "water_zone": "未划分",
+        "limit_type": "政策限值",
+        "region": "CN",
+        "cooling_tech": "未注明",
+        "water_basis": "未注明",
+        "duty_window": "年均"
+      },
+      "as_of": "2021-04",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "2966faaebdfbbbfe892e77cb4f63751fe86a9cf79d873a7826b27b3999717cd4",
+        "local_file": "20230213-上海市数据中心建设导则（2021 版）(40页).pdf",
+        "locator": "PDF 第 25 页 12.3.4：「其他指标宜符合以下要求：WUE：第一年不高于 1.6，第二年不高于 1.4」",
+        "grade": "S1",
+        "originator": "《上海市数据中心建设导则（2021 版）》（2021-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「宜」为推荐性要求（非强制）；第二年稳态上限。第一年 1.6 同键未录。封面未印发布机关；该导则由上海市经信委于 2021-04 印发（本库上海数据中心统筹文件同一主管部门），asserter 按发布主管部门记，未在本件内核到机关名称，[未核]。"
+    },
+    {
+      "fact_id": "sh-dcguide2021-rack-kw-min",
+      "metric_id": "rack_power_design",
+      "asserter": "上海市经济和信息化委员会",
+      "entity": {
+        "type": "region",
+        "id": "cn-shanghai-new-dc",
+        "label": "上海市新建数据中心（政策口径）"
+      },
+      "value": 6.0,
+      "unit": "kW/架",
+      "caliber": {
+        "basis": "规划平均",
+        "scope": "全场平均",
+        "region": "CN"
+      },
+      "as_of": "2021-04",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "2966faaebdfbbbfe892e77cb4f63751fe86a9cf79d873a7826b27b3999717cd4",
+        "local_file": "20230213-上海市数据中心建设导则（2021 版）(40页).pdf",
+        "locator": "PDF 第 7 页 1.1 总体要求 4：「平均机架设计功率不低于 6 kW，机架设计总功率不小于 18 MW」；8.1.1「单项目规模应在 3000 个标准机架以上，单机架功率不低于 6 kW」",
+        "grade": "S1",
+        "originator": "《上海市数据中心建设导则（2021 版）》（2021-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "政策下限，不是某项目设计取值；basis 取规划平均。边缘数据中心同为 6 kW 下限。封面未印发布机关；该导则由上海市经信委于 2021-04 印发（本库上海数据中心统筹文件同一主管部门），asserter 按发布主管部门记，未在本件内核到机关名称，[未核]。"
+    },
+    {
+      "fact_id": "sh-dcguide2021-edge-sqm-per-rack-max",
+      "metric_id": "sqm_per_rack",
+      "asserter": "上海市经济和信息化委员会",
+      "entity": {
+        "type": "region",
+        "id": "cn-shanghai-new-edge-dc",
+        "label": "上海市新建边缘数据中心（政策口径）"
+      },
+      "value": 5.0,
+      "unit": "㎡/架",
+      "caliber": {
+        "basis": "规范区间",
+        "area_scope": "主机房",
+        "region": "CN"
+      },
+      "as_of": "2021-04",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "2966faaebdfbbbfe892e77cb4f63751fe86a9cf79d873a7826b27b3999717cd4",
+        "local_file": "20230213-上海市数据中心建设导则（2021 版）(40页).pdf",
+        "locator": "PDF 第 26 页 13.1.3：「新建边缘数据中心的主机房面积不宜超过（标准机架个数*5）平米」",
+        "grade": "S1",
+        "originator": "《上海市数据中心建设导则（2021 版）》（2021-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "每标准机架主机房面积上限 5 ㎡（推荐性「不宜」）。封面未印发布机关；该导则由上海市经信委于 2021-04 印发（本库上海数据中心统筹文件同一主管部门），asserter 按发布主管部门记，未在本件内核到机关名称，[未核]。"
     }
   ]
 }
