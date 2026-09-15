@@ -195106,6 +195106,96 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "1878 亿 kWh = 187.8 TWh；券商按 IDC 算力预期与现有能耗强度推算；据此并假设枢纽占 60%、绿电 80%，推 2025 年算力对绿电消纳边际贡献约 102 亿 kWh（未录）。"
+    },
+    {
+      "fact_id": "kroll2507-cso-ireland-dc-power-share-2023",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "ireland-datacenters",
+        "label": "爱尔兰数据中心（合计）"
+      },
+      "asserter": "爱尔兰中央统计局",
+      "value": 21.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "EU",
+        "basis": "实测"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "0862e986725fd69cd54e740fdd0f28c64bd58c2c219c8d80112c903438f3c5f6",
+        "local_file": "20250723-KROLL-保障低碳人工智能(10页).pdf",
+        "locator": "PDF 第 3 页「Concentrated Power Needs」：「In the UK, around 500 data centers currently consume 2.5%3 of all electricity in the UK. In Ireland (about 120 data centers), the figure is 21%4. Those figures are projected to reach 6% and 30% respectively by 2030. In the U.S., the figures are estimated to grow from 4% in 2024 to between 4.6% and 9.1%.5」；脚注 4「Data Centres Metered Electricity Consumption 2023—Central Statistics Office」，脚注 5「EPRI “Powering Intelligence” 2024 white paper」",
+        "grade": "S3",
+        "originator": "爱尔兰中央统计局《Data Centres Metered Electricity Consumption 2023》（经 Kroll《Securing low-carbon AI》2025-07 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "计量用电口径，约 120 个数据中心；接续库内 CSO 2019–2022 年序列（9/11/14/18%）。原文「30% by 2030」未注出处未录。region 枚举无国家级取值，按欧洲记 EU，entity 区分爱尔兰。"
+    },
+    {
+      "fact_id": "kroll2507-epri2024-us-dc-power-share-2030e-lower",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心"
+      },
+      "asserter": "EPRI",
+      "value": 4.6,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "US",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2024",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "0862e986725fd69cd54e740fdd0f28c64bd58c2c219c8d80112c903438f3c5f6",
+        "local_file": "20250723-KROLL-保障低碳人工智能(10页).pdf",
+        "locator": "PDF 第 3 页「Concentrated Power Needs」：「In the UK, around 500 data centers currently consume 2.5%3 of all electricity in the UK. In Ireland (about 120 data centers), the figure is 21%4. Those figures are projected to reach 6% and 30% respectively by 2030. In the U.S., the figures are estimated to grow from 4% in 2024 to between 4.6% and 9.1%.5」；脚注 4「Data Centres Metered Electricity Consumption 2023—Central Statistics Office」，脚注 5「EPRI “Powering Intelligence” 2024 white paper」",
+        "grade": "S3",
+        "originator": "EPRI《Powering Intelligence》2024 白皮书（经 Kroll《Securing low-carbon AI》2025-07 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间下界；原文未写到哪一年，同句「by 2030」承上文，按 2030 记（EPRI 2024 白皮书的情景区间）。库内华安证券转引 EPRI 2030 年 9%–17%（huaan2604-epri-us-dc-power-share-2030e-*，未带版次）应为 EPRI 更新版次，两者为同一断言者不同版次，待确认版次后补 supersedes。起点「2024 年 4%」未录。"
+    },
+    {
+      "fact_id": "kroll2507-epri2024-us-dc-power-share-2030e-upper",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "us-datacenters",
+        "label": "美国数据中心"
+      },
+      "asserter": "EPRI",
+      "value": 9.1,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "US",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2024",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "0862e986725fd69cd54e740fdd0f28c64bd58c2c219c8d80112c903438f3c5f6",
+        "local_file": "20250723-KROLL-保障低碳人工智能(10页).pdf",
+        "locator": "PDF 第 3 页「Concentrated Power Needs」：「In the UK, around 500 data centers currently consume 2.5%3 of all electricity in the UK. In Ireland (about 120 data centers), the figure is 21%4. Those figures are projected to reach 6% and 30% respectively by 2030. In the U.S., the figures are estimated to grow from 4% in 2024 to between 4.6% and 9.1%.5」；脚注 4「Data Centres Metered Electricity Consumption 2023—Central Statistics Office」，脚注 5「EPRI “Powering Intelligence” 2024 white paper」",
+        "grade": "S3",
+        "originator": "EPRI《Powering Intelligence》2024 白皮书（经 Kroll《Securing low-carbon AI》2025-07 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "区间上界；原文未写到哪一年，同句「by 2030」承上文，按 2030 记（EPRI 2024 白皮书的情景区间）。库内华安证券转引 EPRI 2030 年 9%–17%（huaan2604-epri-us-dc-power-share-2030e-*，未带版次）应为 EPRI 更新版次，两者为同一断言者不同版次，待确认版次后补 supersedes。起点「2024 年 4%」未录。"
     }
   ]
 }
