@@ -213085,6 +213085,36 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": ""
+    },
+    {
+      "fact_id": "ubs2103-cec-cn-idc-power-share-2020-jan-aug",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "asserter": "中电联",
+      "value": 0.89,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2020-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8cf25785cb7f5690a253e372ff6e18c736667a3752070c1be36e62a3aa73664c",
+        "local_file": "6C_2021_2021_瑞银中国电信通讯行_未署名.pdf",
+        "locator": "PDF 第 9 页 Figure 17「IDC electricity consumption as % of total — Jan - Aug 2020 Electricity Consumption in China」标签「IDC, 0.89%」（Source: China Electric Power Enterprise Federation）；正文：「based on data provided by China Electric Power Enterprise Federation, data centres consume about 1% of electricity in China but the rate of consumption has been growing at 60-70% per annum」",
+        "grade": "S4",
+        "originator": "中国电力企业联合会（经瑞银《Chinese Internet Data Centre Sector 2021》2021-03-10 转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2020 年 1–8 月累计口径，中电联用电分类中的「互联网数据服务（IDC）」行业，非全口径数据中心；与国网能源院 2020 年 2.7%（含数据中心+5G 或不同口径）量级不同，不可直接比较。"
     }
   ]
 }
