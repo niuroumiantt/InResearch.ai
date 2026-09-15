@@ -190727,6 +190727,105 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "风冷柜（部署通算、存储、网络、安全设备）。 产品能力上限，不是实际出货或部署密度；支持液冷柜 0～100% 弹性部署、水温 18～35℃。as_of 取白皮书 PDF 创建月。"
+    },
+    {
+      "fact_id": "odcc2023-caict-global-dc-service-revenue-2022e",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-service-market",
+        "label": "全球数据中心服务市场（服务商收入）"
+      },
+      "asserter": "中国信通院",
+      "value": 746.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "IDC 服务（含托管与增值）",
+        "operator_type": "全市场",
+        "region": "Global",
+        "basis": "预测",
+        "currency": "美元"
+      },
+      "as_of": "2022E@2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "27a30e4ea1e0bb85115c6536463869efe87fbf581fcf19fb8997ea46d9c3df97",
+        "local_file": "ODCC2023数据中心可持续发展能力提升指南39页.pdf",
+        "locator": "PDF 第 9 页：「中国信息通信研究院…发布的《数据中心白皮书（2022 年）》数据显示，2021 年全球数据中心市场规模超过 679 亿美元，较 2020 年增长 9.8%，预计 2022 年将达到 746 亿美元」",
+        "grade": "S3",
+        "originator": "中国信通院《数据中心白皮书（2022 年）》（经开放数据中心委员会 ODCC《数据中心可持续发展能力提升指南》（2023）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "service_scope 按库内同源 2021 年 679.3 亿美元条（niisa2023-caict-global-dc-service-revenue-2021，脚注明示仅数据中心服务商基础设施收入、不含云服务）沿用；版次仅知年份。"
+    },
+    {
+      "fact_id": "odcc2023-idc-cn-server-units-2020h1",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-server-market",
+        "label": "中国服务器市场"
+      },
+      "asserter": "IDC",
+      "value": 1498.9,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "All Servers",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2020-H1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "27a30e4ea1e0bb85115c6536463869efe87fbf581fcf19fb8997ea46d9c3df97",
+        "local_file": "ODCC2023数据中心可持续发展能力提升指南39页.pdf",
+        "locator": "PDF 第 11 页：「IDC《2020 年上半年度中国服务器市场跟踪报告》显示，2020 年上半年，中国服务器市场出货量 149.89 万台，同比增长 8.6%」",
+        "grade": "S3",
+        "originator": "IDC《2020 年上半年度中国服务器市场跟踪报告》（经开放数据中心委员会 ODCC《数据中心可持续发展能力提升指南》（2023）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "149.89 万台 = 1,498.9 千台；同比 +8.6%。原文「服务器市场」未限 x86，server_class 记 All Servers。库内 IDC x86 季度追踪 2020Q1 597.61 + Q2 883.25 = 1,480.86 千台（x86 口径），差额约 18 千台可能为非 x86，未核。前五厂商份额浪潮 39.5%/新华三 15.2%/华为 13.3%/戴尔 7.1%/联想 6.3% 未写按台数或金额，未录。"
+    },
+    {
+      "fact_id": "odcc2023-idc-cn-ai-server-market-2021-cny",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server",
+        "label": "中国 AI 服务器市场"
+      },
+      "asserter": "IDC",
+      "value": 350.3,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "AI 服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "27a30e4ea1e0bb85115c6536463869efe87fbf581fcf19fb8997ea46d9c3df97",
+        "local_file": "ODCC2023数据中心可持续发展能力提升指南39页.pdf",
+        "locator": "PDF 第 11 页：「IDC《中国加速计算市场（2021 年下半年）跟踪报告》显示，2021 年全年，中国 AI 服务器市场规模达 350.3 亿元，同比增长 68.6%，浪潮信息、宁畅、新华三、华为、安擎位居前五，占据了 82.6% 的市场份额」",
+        "grade": "S3",
+        "originator": "IDC《中国加速计算市场（2021 年下半年）跟踪报告》（经开放数据中心委员会 ODCC《数据中心可持续发展能力提升指南》（2023）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "人民币口径；库内 IDC 2023 版同年中国 AI 服务器市场 59.2 亿美元（idc2023-cn-ai-server-market-2021），跨币种不可比。前五合计 82.6%。"
     }
   ]
 }
