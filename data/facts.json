@@ -198578,6 +198578,269 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "IDC《中国半年度液冷服务器市场（2023 上半年）跟踪》口径；预测发布时点按 IDC 2023 年报告取 @2023。"
+    },
+    {
+      "fact_id": "gszq2407-aidc-electricity-global-2030e",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-aidc",
+        "label": "全球智算中心"
+      },
+      "asserter": "国信证券",
+      "value": 638.82,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "仅 AI 数据中心",
+        "energy_scope": "全站用电",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2030E@2024-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "278f433f4712b6bda9ef28427218fd1b0d32a145e61017373d5a2ba2edcdb4ba",
+        "local_file": "新型智算中心：拉动全球电力消耗增长 ，液冷渗透率快速提升（58页 PPT）.pptx",
+        "locator": "第 9 张幻灯片「智算中心对全球用电量的影响」：「根据华为GIV发布的《智能世界2030》预测，预计2030年全球通用算力将达到3.3ZFLOPS(FP32)，其中AI算力将超过105ZFLOPS（FP16），增长500倍。根据上文测算结果，FP16下单位petaFLOPS算力对应智算中心一年用电量为6,084kWh,则105ZFLOPS对应每年638.82太瓦时用电量……假设全球智算中心美国占比60%（对应383.29太瓦时用电），则额外带来9.6%的用电增量（以23年为基年）」",
+        "grade": "S3",
+        "originator": "国信证券《新型智算中心改造系列报告二：拉动全球电力消耗增长，液冷渗透率快速提升》（2024-07-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "算法：华为 GIV 2030 年全球 AI 算力 105 ZFLOPS（FP16）× 国信按 DGX H100（利用率 80%、PUE 1.25）测得的 6,084 kWh/PFLOPS·年。原文称相当于以 2022 年为基年全球用电 +2.4%。"
+    },
+    {
+      "fact_id": "gszq2407-aidc-electricity-us-2030e",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "us-aidc",
+        "label": "美国智算中心"
+      },
+      "asserter": "国信证券",
+      "value": 383.29,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "仅 AI 数据中心",
+        "energy_scope": "全站用电",
+        "sector_basis": "数据中心",
+        "region": "US",
+        "basis": "券商测算"
+      },
+      "as_of": "2030E@2024-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "278f433f4712b6bda9ef28427218fd1b0d32a145e61017373d5a2ba2edcdb4ba",
+        "local_file": "新型智算中心：拉动全球电力消耗增长 ，液冷渗透率快速提升（58页 PPT）.pptx",
+        "locator": "第 9 张幻灯片「智算中心对全球用电量的影响」：「根据华为GIV发布的《智能世界2030》预测，预计2030年全球通用算力将达到3.3ZFLOPS(FP32)，其中AI算力将超过105ZFLOPS（FP16），增长500倍。根据上文测算结果，FP16下单位petaFLOPS算力对应智算中心一年用电量为6,084kWh,则105ZFLOPS对应每年638.82太瓦时用电量……假设全球智算中心美国占比60%（对应383.29太瓦时用电），则额外带来9.6%的用电增量（以23年为基年）」",
+        "grade": "S3",
+        "originator": "国信证券《新型智算中心改造系列报告二：拉动全球电力消耗增长，液冷渗透率快速提升》（2024-07-04）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "假设全球智算中心 60% 在美国（原文括注 383.29 TWh，与 638.82×60% 一致）；原文称相当于以 2023 年美国用电 4,000.22 TWh 为基年 +9.6%。"
+    },
+    {
+      "fact_id": "gszq2407-cbnri-cn-lc-server-market-2022",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-lc-server-market",
+        "label": "中国液冷服务器市场"
+      },
+      "asserter": "中商产业研究院",
+      "value": 73,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "液冷服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "278f433f4712b6bda9ef28427218fd1b0d32a145e61017373d5a2ba2edcdb4ba",
+        "local_file": "新型智算中心：拉动全球电力消耗增长 ，液冷渗透率快速提升（58页 PPT）.pptx",
+        "locator": "第 33 张幻灯片「液冷：市场规模快速增长，浪潮、超聚变市占率较高」图55「预计24年中国液冷服务器市场规模达201亿人民币」（资料来源：中商产业研究院）柱值 2022/2023E/2024E/2025E/2026E/2027E = 73/115/201/294/503/682 亿元，yoy 58%/75%/46%/71%/36%；正文：「预计24年中国液冷服务器市场规模将达到201亿人民币，预计27年将增长至682亿人民币，对应24-27年CAGR为50.3%」",
+        "grade": "S4",
+        "originator": "中商产业研究院（经国信证券《新型智算中心改造系列报告二：拉动全球电力消耗增长，液冷渗透率快速提升》（2024-07-04）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "柱值读自图 55 数据标签，与图中 yoy 标签相互印证（73→115 +58%、115→201 +75%、201→294 +46%、294→503 +71%、503→682 +36%）。与 IDC 美元口径（lcleak25-idc-*）、科智咨询人民币口径（kezhi2312-*）口径不同，不作比较。"
+    },
+    {
+      "fact_id": "gszq2407-cbnri-cn-lc-server-market-2023e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-lc-server-market",
+        "label": "中国液冷服务器市场"
+      },
+      "asserter": "中商产业研究院",
+      "value": 115,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "液冷服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2023E@2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "278f433f4712b6bda9ef28427218fd1b0d32a145e61017373d5a2ba2edcdb4ba",
+        "local_file": "新型智算中心：拉动全球电力消耗增长 ，液冷渗透率快速提升（58页 PPT）.pptx",
+        "locator": "第 33 张幻灯片「液冷：市场规模快速增长，浪潮、超聚变市占率较高」图55「预计24年中国液冷服务器市场规模达201亿人民币」（资料来源：中商产业研究院）柱值 2022/2023E/2024E/2025E/2026E/2027E = 73/115/201/294/503/682 亿元，yoy 58%/75%/46%/71%/36%；正文：「预计24年中国液冷服务器市场规模将达到201亿人民币，预计27年将增长至682亿人民币，对应24-27年CAGR为50.3%」",
+        "grade": "S4",
+        "originator": "中商产业研究院（经国信证券《新型智算中心改造系列报告二：拉动全球电力消耗增长，液冷渗透率快速提升》（2024-07-04）转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "柱值读自图 55 数据标签，与图中 yoy 标签相互印证（73→115 +58%、115→201 +75%、201→294 +46%、294→503 +71%、503→682 +36%）。与 IDC 美元口径（lcleak25-idc-*）、科智咨询人民币口径（kezhi2312-*）口径不同，不作比较。",
+      "derivation": "中商产业研究院原预测发布时点未注明，按转引报告（2024-07）所在年份取 @2024。"
+    },
+    {
+      "fact_id": "gszq2407-cbnri-cn-lc-server-market-2024e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-lc-server-market",
+        "label": "中国液冷服务器市场"
+      },
+      "asserter": "中商产业研究院",
+      "value": 201,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "液冷服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2024E@2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "278f433f4712b6bda9ef28427218fd1b0d32a145e61017373d5a2ba2edcdb4ba",
+        "local_file": "新型智算中心：拉动全球电力消耗增长 ，液冷渗透率快速提升（58页 PPT）.pptx",
+        "locator": "第 33 张幻灯片「液冷：市场规模快速增长，浪潮、超聚变市占率较高」图55「预计24年中国液冷服务器市场规模达201亿人民币」（资料来源：中商产业研究院）柱值 2022/2023E/2024E/2025E/2026E/2027E = 73/115/201/294/503/682 亿元，yoy 58%/75%/46%/71%/36%；正文：「预计24年中国液冷服务器市场规模将达到201亿人民币，预计27年将增长至682亿人民币，对应24-27年CAGR为50.3%」",
+        "grade": "S4",
+        "originator": "中商产业研究院（经国信证券《新型智算中心改造系列报告二：拉动全球电力消耗增长，液冷渗透率快速提升》（2024-07-04）转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "柱值读自图 55 数据标签，与图中 yoy 标签相互印证（73→115 +58%、115→201 +75%、201→294 +46%、294→503 +71%、503→682 +36%）。与 IDC 美元口径（lcleak25-idc-*）、科智咨询人民币口径（kezhi2312-*）口径不同，不作比较。",
+      "derivation": "中商产业研究院原预测发布时点未注明，按转引报告（2024-07）所在年份取 @2024。"
+    },
+    {
+      "fact_id": "gszq2407-cbnri-cn-lc-server-market-2025e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-lc-server-market",
+        "label": "中国液冷服务器市场"
+      },
+      "asserter": "中商产业研究院",
+      "value": 294,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "液冷服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "278f433f4712b6bda9ef28427218fd1b0d32a145e61017373d5a2ba2edcdb4ba",
+        "local_file": "新型智算中心：拉动全球电力消耗增长 ，液冷渗透率快速提升（58页 PPT）.pptx",
+        "locator": "第 33 张幻灯片「液冷：市场规模快速增长，浪潮、超聚变市占率较高」图55「预计24年中国液冷服务器市场规模达201亿人民币」（资料来源：中商产业研究院）柱值 2022/2023E/2024E/2025E/2026E/2027E = 73/115/201/294/503/682 亿元，yoy 58%/75%/46%/71%/36%；正文：「预计24年中国液冷服务器市场规模将达到201亿人民币，预计27年将增长至682亿人民币，对应24-27年CAGR为50.3%」",
+        "grade": "S4",
+        "originator": "中商产业研究院（经国信证券《新型智算中心改造系列报告二：拉动全球电力消耗增长，液冷渗透率快速提升》（2024-07-04）转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "柱值读自图 55 数据标签，与图中 yoy 标签相互印证（73→115 +58%、115→201 +75%、201→294 +46%、294→503 +71%、503→682 +36%）。与 IDC 美元口径（lcleak25-idc-*）、科智咨询人民币口径（kezhi2312-*）口径不同，不作比较。",
+      "derivation": "中商产业研究院原预测发布时点未注明，按转引报告（2024-07）所在年份取 @2024。"
+    },
+    {
+      "fact_id": "gszq2407-cbnri-cn-lc-server-market-2026e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-lc-server-market",
+        "label": "中国液冷服务器市场"
+      },
+      "asserter": "中商产业研究院",
+      "value": 503,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "液冷服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "278f433f4712b6bda9ef28427218fd1b0d32a145e61017373d5a2ba2edcdb4ba",
+        "local_file": "新型智算中心：拉动全球电力消耗增长 ，液冷渗透率快速提升（58页 PPT）.pptx",
+        "locator": "第 33 张幻灯片「液冷：市场规模快速增长，浪潮、超聚变市占率较高」图55「预计24年中国液冷服务器市场规模达201亿人民币」（资料来源：中商产业研究院）柱值 2022/2023E/2024E/2025E/2026E/2027E = 73/115/201/294/503/682 亿元，yoy 58%/75%/46%/71%/36%；正文：「预计24年中国液冷服务器市场规模将达到201亿人民币，预计27年将增长至682亿人民币，对应24-27年CAGR为50.3%」",
+        "grade": "S4",
+        "originator": "中商产业研究院（经国信证券《新型智算中心改造系列报告二：拉动全球电力消耗增长，液冷渗透率快速提升》（2024-07-04）转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "柱值读自图 55 数据标签，与图中 yoy 标签相互印证（73→115 +58%、115→201 +75%、201→294 +46%、294→503 +71%、503→682 +36%）。与 IDC 美元口径（lcleak25-idc-*）、科智咨询人民币口径（kezhi2312-*）口径不同，不作比较。",
+      "derivation": "中商产业研究院原预测发布时点未注明，按转引报告（2024-07）所在年份取 @2024。"
+    },
+    {
+      "fact_id": "gszq2407-cbnri-cn-lc-server-market-2027e",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-lc-server-market",
+        "label": "中国液冷服务器市场"
+      },
+      "asserter": "中商产业研究院",
+      "value": 682,
+      "unit": "亿（原币）",
+      "caliber": {
+        "measure": "液冷服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2027E@2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "278f433f4712b6bda9ef28427218fd1b0d32a145e61017373d5a2ba2edcdb4ba",
+        "local_file": "新型智算中心：拉动全球电力消耗增长 ，液冷渗透率快速提升（58页 PPT）.pptx",
+        "locator": "第 33 张幻灯片「液冷：市场规模快速增长，浪潮、超聚变市占率较高」图55「预计24年中国液冷服务器市场规模达201亿人民币」（资料来源：中商产业研究院）柱值 2022/2023E/2024E/2025E/2026E/2027E = 73/115/201/294/503/682 亿元，yoy 58%/75%/46%/71%/36%；正文：「预计24年中国液冷服务器市场规模将达到201亿人民币，预计27年将增长至682亿人民币，对应24-27年CAGR为50.3%」",
+        "grade": "S4",
+        "originator": "中商产业研究院（经国信证券《新型智算中心改造系列报告二：拉动全球电力消耗增长，液冷渗透率快速提升》（2024-07-04）转引）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "柱值读自图 55 数据标签，与图中 yoy 标签相互印证（73→115 +58%、115→201 +75%、201→294 +46%、294→503 +71%、503→682 +36%）。与 IDC 美元口径（lcleak25-idc-*）、科智咨询人民币口径（kezhi2312-*）口径不同，不作比较。",
+      "derivation": "中商产业研究院原预测发布时点未注明，按转引报告（2024-07）所在年份取 @2024。"
     }
   ]
 }
