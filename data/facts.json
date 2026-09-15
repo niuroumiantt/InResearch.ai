@@ -178349,6 +178349,198 @@
       "corroboration": "待交叉验证",
       "notes": "两页一致。与库内英伟达 2025-10 VR NVL144 CPX 托盘最高进水 45°C（nv2510-vr-nvl144-cpx-max-inlet-temp，二次侧）同值；本胶片未写一次侧/二次侧，loop 记未注明。 **转述载体质量**：本胶片为非官方中文解读稿，配图多为生成图，文字有明显转录错误（「Nemo Tron」「Evl two」「MVF P4 张量引擎」应为 NVFP4、「144x RUBIN GPUs (NVLINK 72)」），且同一项在不同页自相矛盾（晶体管增长第 44/48 页 1.6x、第 53 页 1.7x），故只录跨页一致、无歧义的规格；spec_basis 记券商转述（第三方转述档）。原件为图片 PDF，本条为读图录入。",
       "asserter": "英伟达"
+    },
+    {
+      "fact_id": "ccia2412-kezhi-aidc-share-builder-gov-count",
+      "metric_id": "aidc_project_structure_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "科智咨询",
+      "value": 33.9,
+      "unit": "%",
+      "caliber": {
+        "grouping": "按建设主体",
+        "group": "地方政府",
+        "measure": "项目数",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d5db234ae38e17db2489bba829cecf301759914053441a1bfcf447b62aadbf9b",
+        "local_file": "2024_中国智算中心产业发展白皮书（2024年）-63页.pdf",
+        "locator": "第 24 页 图表 5「中国智算中心项目主体分布（按项目数量，截至2024年8月）」「地方政府，33.9%」（数据来源：科智咨询）",
+        "grade": "S3",
+        "originator": "科智咨询（经中国通信工业协会数据中心委员会《中国智算中心产业发展白皮书（2024年）》（2024-12）发布）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "饼图扇区标注值。四组合计 100%（项目数 33.9+19.1+17.7+29.3；算力规模 35.0+25.6+14.2+25.2）。互联网及云厂商项目数 17.7%、基础电信运营商算力规模 25.6% 两格已由深企投转引录入（sqt2025-kezhi-aidc-share-builder-*），本处不重复录。 原件为图片 PDF，本条为读图录入。"
+    },
+    {
+      "fact_id": "ccia2412-kezhi-aidc-share-builder-telco-count",
+      "metric_id": "aidc_project_structure_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "科智咨询",
+      "value": 19.1,
+      "unit": "%",
+      "caliber": {
+        "grouping": "按建设主体",
+        "group": "基础电信运营商",
+        "measure": "项目数",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d5db234ae38e17db2489bba829cecf301759914053441a1bfcf447b62aadbf9b",
+        "local_file": "2024_中国智算中心产业发展白皮书（2024年）-63页.pdf",
+        "locator": "第 24 页 图表 5「中国智算中心项目主体分布（按项目数量，截至2024年8月）」「基础电信运营商，19.1%」（数据来源：科智咨询）",
+        "grade": "S3",
+        "originator": "科智咨询（经中国通信工业协会数据中心委员会《中国智算中心产业发展白皮书（2024年）》（2024-12）发布）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "饼图扇区标注值。四组合计 100%（项目数 33.9+19.1+17.7+29.3；算力规模 35.0+25.6+14.2+25.2）。互联网及云厂商项目数 17.7%、基础电信运营商算力规模 25.6% 两格已由深企投转引录入（sqt2025-kezhi-aidc-share-builder-*），本处不重复录。 原件为图片 PDF，本条为读图录入。"
+    },
+    {
+      "fact_id": "ccia2412-kezhi-aidc-share-builder-other-count",
+      "metric_id": "aidc_project_structure_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "科智咨询",
+      "value": 29.3,
+      "unit": "%",
+      "caliber": {
+        "grouping": "按建设主体",
+        "group": "其他",
+        "measure": "项目数",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d5db234ae38e17db2489bba829cecf301759914053441a1bfcf447b62aadbf9b",
+        "local_file": "2024_中国智算中心产业发展白皮书（2024年）-63页.pdf",
+        "locator": "第 24 页 图表 5「中国智算中心项目主体分布（按项目数量，截至2024年8月）」「其他，29.3%」（数据来源：科智咨询）",
+        "grade": "S3",
+        "originator": "科智咨询（经中国通信工业协会数据中心委员会《中国智算中心产业发展白皮书（2024年）》（2024-12）发布）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "饼图扇区标注值。四组合计 100%（项目数 33.9+19.1+17.7+29.3；算力规模 35.0+25.6+14.2+25.2）。互联网及云厂商项目数 17.7%、基础电信运营商算力规模 25.6% 两格已由深企投转引录入（sqt2025-kezhi-aidc-share-builder-*），本处不重复录。 原件为图片 PDF，本条为读图录入。"
+    },
+    {
+      "fact_id": "ccia2412-kezhi-aidc-share-builder-cloud-compute-pie",
+      "metric_id": "aidc_project_structure_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "科智咨询",
+      "value": 35.0,
+      "unit": "%",
+      "caliber": {
+        "grouping": "按建设主体",
+        "group": "互联网及云厂商",
+        "measure": "算力规模",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d5db234ae38e17db2489bba829cecf301759914053441a1bfcf447b62aadbf9b",
+        "local_file": "2024_中国智算中心产业发展白皮书（2024年）-63页.pdf",
+        "locator": "第 25 页 图表 6「中国智算中心项目主体分布（按算力规模，截至2024年8月）」「互联网及云厂商，35.0%」（数据来源：科智咨询）",
+        "grade": "S3",
+        "originator": "科智咨询（经中国通信工业协会数据中心委员会《中国智算中心产业发展白皮书（2024年）》（2024-12）发布）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "饼图标注 35.0%；同页正文写「占比超过30%」，深企投转引的是正文那句（sqt2025-kezhi-aidc-share-builder-cloud-compute，下界 30），两者是同一数据的图值与文字约数，不是修订也不是争议。饼图扇区标注值。四组合计 100%（项目数 33.9+19.1+17.7+29.3；算力规模 35.0+25.6+14.2+25.2）。互联网及云厂商项目数 17.7%、基础电信运营商算力规模 25.6% 两格已由深企投转引录入（sqt2025-kezhi-aidc-share-builder-*），本处不重复录。 原件为图片 PDF，本条为读图录入。"
+    },
+    {
+      "fact_id": "ccia2412-kezhi-aidc-share-builder-gov-compute",
+      "metric_id": "aidc_project_structure_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "科智咨询",
+      "value": 14.2,
+      "unit": "%",
+      "caliber": {
+        "grouping": "按建设主体",
+        "group": "地方政府",
+        "measure": "算力规模",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d5db234ae38e17db2489bba829cecf301759914053441a1bfcf447b62aadbf9b",
+        "local_file": "2024_中国智算中心产业发展白皮书（2024年）-63页.pdf",
+        "locator": "第 25 页 图表 6「中国智算中心项目主体分布（按算力规模，截至2024年8月）」「地方政府，14.2%」（数据来源：科智咨询）",
+        "grade": "S3",
+        "originator": "科智咨询（经中国通信工业协会数据中心委员会《中国智算中心产业发展白皮书（2024年）》（2024-12）发布）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "饼图扇区标注值。四组合计 100%（项目数 33.9+19.1+17.7+29.3；算力规模 35.0+25.6+14.2+25.2）。互联网及云厂商项目数 17.7%、基础电信运营商算力规模 25.6% 两格已由深企投转引录入（sqt2025-kezhi-aidc-share-builder-*），本处不重复录。 原件为图片 PDF，本条为读图录入。"
+    },
+    {
+      "fact_id": "ccia2412-kezhi-aidc-share-builder-other-compute",
+      "metric_id": "aidc_project_structure_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "asserter": "科智咨询",
+      "value": 25.2,
+      "unit": "%",
+      "caliber": {
+        "grouping": "按建设主体",
+        "group": "其他",
+        "measure": "算力规模",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d5db234ae38e17db2489bba829cecf301759914053441a1bfcf447b62aadbf9b",
+        "local_file": "2024_中国智算中心产业发展白皮书（2024年）-63页.pdf",
+        "locator": "第 25 页 图表 6「中国智算中心项目主体分布（按算力规模，截至2024年8月）」「其他，25.2%」（数据来源：科智咨询）",
+        "grade": "S3",
+        "originator": "科智咨询（经中国通信工业协会数据中心委员会《中国智算中心产业发展白皮书（2024年）》（2024-12）发布）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "饼图扇区标注值。四组合计 100%（项目数 33.9+19.1+17.7+29.3；算力规模 35.0+25.6+14.2+25.2）。互联网及云厂商项目数 17.7%、基础电信运营商算力规模 25.6% 两格已由深企投转引录入（sqt2025-kezhi-aidc-share-builder-*），本处不重复录。 原件为图片 PDF，本条为读图录入。"
     }
   ]
 }
