@@ -2,6 +2,10 @@
 
 > CURRENT · 2026-09-06。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-15：管理员密码由部署声明，账号表位置唯一
+
+站长报告 `admin` 密码反复登录失败。核对源码与部署：密码哈希参数（PBKDF2-SHA256、200,000 轮）与账号表格式自 2026-08-18 起未变；09-13 运行布局切换前后容器读的都是 `/srv/inresearch.ai/data/users.json`；部署、初始化、回退与 reader 快照均不写账号表。失败只能来自账号表里没有这个用户名或哈希与输入不符，最常见的两种成因：在宿主机源码目录运行 `manage.py users passwd`（写进源码 checkout 自己的 `data/users.json`，网站不读），或 `passwd` 未带 `--password` 生成了随机密码；infra 手册里 `pipeline/users.py` 的命令早已失效也促成了绕路。本批：`HUB_ADMIN_USERNAME` / `HUB_ADMIN_PASSWORD` 由容器环境（infra `$KIT/.env.inresearch`）声明，`serve` 启动即幂等对齐账号表（已一致不写文件，留空不碰账号表，只升不降，其他账号原样）；`users list` 打印实际文件位置；测试覆盖创建/重置/幂等/不降级与真实 `serve` 对齐且日志不含密码。infra 侧补 `.env.inresearch` 骨架、compose `env_file`、密钥登记表、回退快照清单与手册，修正失效命令。密码值不进任何仓库。
+
 ## 2026-09-14：全仓高阶代码审阅与过期入口退出
 
 以基线 5d7104e（治理、严格校验、1049 单测与两套浏览器回归全绿；现网公开外壳资源与源码字节一致）做三组独立审阅：后端六领域、前端/测试/文档四领域、本地全站截图矩阵与现网公开面比对，每条发现经独立复核后保留 94 条，见 [审阅报告](reviews/2026-09-14/code-review/REVIEW.md)。本批直接落地经复核可安全执行的项：指标回填日期不再在导入时冻结；`deep-read skip` 与 `record` 共用同一严格 SHA 解析；二进制 .ppt 与 xls/xlsx 抽取按调用方预算并如实报告截断；`mapping import-verdicts` 改走 `records.commit_result`；登录 503 文案、启动横幅、页面与文档串中的 `inresearch.py`/`serve.py`/`dchub`/`Datacenter Hub` 等已退役名称清除；woff2 MIME 由代码声明；共享换肤栏 box-sizing、成本页令牌与顶栏偏移、下钻链条偏移、机柜面板贴图重上传、compare 页死样式修正。退出活动路径：`scan-candidates`、`repair-paths`、`library-index` 三个旧入口及其 ops 按钮，禁用的 `start.sh`，本机 `.claude/settings.local.json`；2026-08 部署手册、Caddyfile、compose 与过期两代的 `LIBRARY_INDEX.md` 归档至 `docs/archive/2026-09-14/`。删除只钉死常量的 `facts.CORROB` 自证测试，新增 skip 拒绝未登记完整哈希与 .ppt 预算截断两条测试并更新验收映射。未直接落地的结构性项（L1 管线四模块合并、两张 3D 页 274 行重复、首页每分钟 8 MB 轮询、工单双算、候选补丁覆盖正式公司表、生成投影作 seed 发布、member 角色的管理区可见性等）按优先级列于报告，作为后续批次的输入，不据此宣称架构整改完成。
