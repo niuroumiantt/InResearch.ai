@@ -214625,7 +214625,10 @@
       "fact_id": "cmdi-pm2302-rack-avg-density-lower",
       "bound": "lower",
       "value": 6.0,
-      "notes": "「当前的 6~8kW」按下界/上界两条记。region 未披露：原文未限定地域，白皮书语境为国内供配电行业，未明写中国。rack_type 就近记传统风冷（原文说 IT 机柜平均，未分冷却方式），[未核]。「原来 4kW」无时点、「很快 12~16kW」无目标年份，均不记。"
+      "notes": "「当前的 6~8kW」按下界/上界两条记。region 未披露：原文未限定地域，白皮书语境为国内供配电行业，未明写中国。rack_type 就近记传统风冷（原文说 IT 机柜平均，未分冷却方式），[未核]。「原来 4kW」无时点、「很快 12~16kW」无目标年份，均不记。",
+      "disputed_by": [
+        "huawei2303-rack-avg-density-lower"
+      ]
     },
     {
       "metric_id": "rack_density_shipping",
@@ -214658,7 +214661,174 @@
       "fact_id": "cmdi-pm2302-rack-avg-density-upper",
       "bound": "upper",
       "value": 8.0,
-      "notes": "「当前的 6~8kW」按下界/上界两条记。region 未披露：原文未限定地域，白皮书语境为国内供配电行业，未明写中国。rack_type 就近记传统风冷（原文说 IT 机柜平均，未分冷却方式），[未核]。「原来 4kW」无时点、「很快 12~16kW」无目标年份，均不记。"
+      "notes": "「当前的 6~8kW」按下界/上界两条记。region 未披露：原文未限定地域，白皮书语境为国内供配电行业，未明写中国。rack_type 就近记传统风冷（原文说 IT 机柜平均，未分冷却方式），[未核]。「原来 4kW」无时点、「很快 12~16kW」无目标年份，均不记。",
+      "disputed_by": [
+        "huawei2303-rack-avg-density-upper"
+      ]
+    },
+    {
+      "fact_id": "huawei2303-global-dc-power-share",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心"
+      },
+      "value": 2.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "Global",
+        "basis": "厂商宣称"
+      },
+      "as_of": "2023",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "b32b991bffb5c02b4aae5828ff16e00ac4796e90c3ceb777bd6a62c8b6d3feff",
+        "local_file": "14页-数据中心能源十大趋势白皮书 （华为2023）.pdf",
+        "locator": "PDF 第 5 页（页码 07-08 跨页）「趋势二：可持续发展」：「数据中心耗电量超全球社会总用电2%，备受社会关注」；前言（PDF 第 2 页）：「其耗电量约占全球总用电量的2%，且还在急剧增加」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取白皮书发布时间 2023-03（封面「2023年03月」），原文「当前」未写年份",
+      "corroboration": "待交叉验证",
+      "asserter": "华为",
+      "notes": "「超全球社会总用电2%」按下界记；前言写「约占2%」。原文未给出处与年份，[未核]。"
+    },
+    {
+      "fact_id": "huawei2303-rack-avg-density-lower",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "industry",
+        "id": "dc-it-rack-avg-density",
+        "label": "数据中心 IT 机柜单柜平均功率"
+      },
+      "value": 6.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "市场普遍水平",
+        "era": "当期",
+        "power_basis": "未披露",
+        "region": "未披露"
+      },
+      "as_of": "2023",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "b32b991bffb5c02b4aae5828ff16e00ac4796e90c3ceb777bd6a62c8b6d3feff",
+        "local_file": "14页-数据中心能源十大趋势白皮书 （华为2023）.pdf",
+        "locator": "PDF 第 7 页（页码 11-12 跨页）「趋势四：高密化」：「预计未来5年，单IT机柜功率密度将从当前的6~8kW向12~15kW演进」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取白皮书发布时间 2023-03（封面「2023年03月」），原文「当前」未写年份",
+      "corroboration": "待交叉验证",
+      "asserter": "华为",
+      "notes": "「当前的6~8kW」按下界/上界两条记。region 未披露：白皮书面向全球行业趋势，未限定地域。rack_type 就近记传统风冷（原文是 IT 机柜平均，同页称「风冷依然是主流制冷方案」），[未核]。「未来5年向12~15kW演进」目标年不明确（2027 或 2028），不记。 与中国移动设计院等《智能融合电力模块白皮书》（2023-02，华为数字能源为联合主编）同值 6~8kW，两者很可能同源，不算互证。",
+      "disputes": [
+        "cmdi-pm2302-rack-avg-density-lower"
+      ]
+    },
+    {
+      "fact_id": "huawei2303-rack-avg-density-upper",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "industry",
+        "id": "dc-it-rack-avg-density",
+        "label": "数据中心 IT 机柜单柜平均功率"
+      },
+      "value": 8.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "市场普遍水平",
+        "era": "当期",
+        "power_basis": "未披露",
+        "region": "未披露"
+      },
+      "as_of": "2023",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "b32b991bffb5c02b4aae5828ff16e00ac4796e90c3ceb777bd6a62c8b6d3feff",
+        "local_file": "14页-数据中心能源十大趋势白皮书 （华为2023）.pdf",
+        "locator": "PDF 第 7 页（页码 11-12 跨页）「趋势四：高密化」：「预计未来5年，单IT机柜功率密度将从当前的6~8kW向12~15kW演进」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取白皮书发布时间 2023-03（封面「2023年03月」），原文「当前」未写年份",
+      "corroboration": "待交叉验证",
+      "asserter": "华为",
+      "notes": "「当前的6~8kW」按下界/上界两条记。region 未披露：白皮书面向全球行业趋势，未限定地域。rack_type 就近记传统风冷（原文是 IT 机柜平均，同页称「风冷依然是主流制冷方案」），[未核]。「未来5年向12~15kW演进」目标年不明确（2027 或 2028），不记。 与中国移动设计院等《智能融合电力模块白皮书》（2023-02，华为数字能源为联合主编）同值 6~8kW，两者很可能同源，不算互证。",
+      "disputes": [
+        "cmdi-pm2302-rack-avg-density-upper"
+      ]
+    },
+    {
+      "fact_id": "huawei2303-chengdu-aicc-p1-ai-rack-46kw",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "project",
+        "id": "chengdu-aicc-phase1",
+        "label": "成都智算中心一期"
+      },
+      "value": 46.0,
+      "unit": "kW/架",
+      "caliber": {
+        "basis": "设计取值",
+        "scope": "单柜上限",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b32b991bffb5c02b4aae5828ff16e00ac4796e90c3ceb777bd6a62c8b6d3feff",
+        "local_file": "14页-数据中心能源十大趋势白皮书 （华为2023）.pdf",
+        "locator": "PDF 第 7 页（页码 11-12 跨页）「技术与应用」：「成都智算中心一期项目，最高规划AI算力支持1000P，人工智能机柜（Atlas）单柜功率密度达46kW，采用液冷技术高效制冷，机柜数量占比约5%；普通算力机柜功率密度8kW，末端采用风冷架构」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取白皮书发布时间 2023-03（封面「2023年03月」），原文「当前」未写年份",
+      "corroboration": "待交叉验证",
+      "asserter": "华为",
+      "notes": "厂商案例。46kW 是 AI 机柜（Atlas，液冷，约占机柜数 5%），全场最高一档，按单柜上限记；普通算力机柜 8kW 是另一类机柜的设计值，本指标 scope 无「分机柜类型」取值，不记（缺口）。basis「设计取值」依据原文「规划」语境，[未核]。"
+    },
+    {
+      "fact_id": "huawei2303-ireland-4000rack-iec-pue",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "ireland-4000rack-dc-huawei-fusioncol",
+        "label": "爱尔兰某 4000 柜大型数据中心（华为 FusionCol 案例）"
+      },
+      "value": 1.15,
+      "unit": "比值",
+      "caliber": {
+        "basis": "厂商宣称",
+        "cooling_tech": "间接蒸发冷却",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "EU"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b32b991bffb5c02b4aae5828ff16e00ac4796e90c3ceb777bd6a62c8b6d3feff",
+        "local_file": "14页-数据中心能源十大趋势白皮书 （华为2023）.pdf",
+        "locator": "PDF 第 11 页（页码 19-20 跨页）「趋势八：分布式制冷」技术与应用：「欧洲爱尔兰某4000柜大型数据中心，采用华为FusionCol间接蒸发冷却方案，实现全年自然冷却，达到1.15极致PUE，年省电超1400万度，节省交付周期50%以上」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取白皮书发布时间 2023-03（封面「2023年03月」），原文「当前」未写年份",
+      "corroboration": "待交叉验证",
+      "asserter": "华为",
+      "notes": "厂商案例宣称，客户未具名。period 记年均依据「实现全年自然冷却，达到1.15」，原文未明说是年均运行值还是设计值，[未核]。"
     }
   ]
 }
