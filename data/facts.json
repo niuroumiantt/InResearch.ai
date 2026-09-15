@@ -185836,6 +185836,130 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "4,000 亿千瓦时 = 400 TWh，「超过」按下界记。原文口径为「算力中心」，sector_basis 按该维注释记「算力中心（含智算与超算）」[未核]。同句 2023 年 1,500 亿千瓦时与库内信通院 2023 年 150 TWh（caict-cpsync2025-cn-dc-electricity-2023，sector_basis 数据中心）同值，但本件写「算力中心」——若确认两处同一统计，应统一 sector_basis，留待所有者按该维注释「拿原文确认后改口径」处理；本件 2023 值未重复录。与信通院 2024-05 版 2030E 380 TWh（数据中心口径）版次与口径均不同。"
+    },
+    {
+      "fact_id": "cgai2402-google-inference-share-energy",
+      "metric_id": "inference_compute_share",
+      "asserter": "谷歌",
+      "entity": {
+        "type": "company",
+        "id": "google",
+        "label": "谷歌"
+      },
+      "value": 60.0,
+      "unit": "%",
+      "caliber": {
+        "workload": "推理",
+        "denominator": "未注明",
+        "region": "未披露",
+        "basis": "行业机构"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "063da07d9785d81c0e0feb89fd248a43d91cbbd8d6f6669d7e7e3e0cc2f6423d",
+        "local_file": "20241014-OpenAI&剑桥大学：2024算力与人工智能治理研究报告(104页).pdf",
+        "locator": "第 24 页 脚注 32：「For example, Google estimated that 15% of its global energy use went toward machine learning workloads, of which 60% was for inference in 2019, 2020, and 2021 (Patterson, Gonzalez, Hölzle, et al. 2022). NVIDIA estimated 80% to 90%, and AWS estimated that 90% of its workload is inference (Patterson, Gonzalez, Le, et al. 2021)」",
+        "grade": "S3",
+        "originator": "谷歌（Patterson 等论文口径，经Sastry、Heim、Belfield 等《Computing Power and the Governance of Artificial Intelligence》（arXiv:2402.08797，2024-02-13；作者来自 OpenAI、GovAI、剑桥大学等）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**分母是机器学习工作负载的能耗**（谷歌全球能耗的 15% 用于 ML，其中 60% 为推理），不是算力量，denominator 记未注明。原文给 2019、2020、2021 三年同值，as_of 取最后一年。 region 记未披露：原文未写地域（谷歌一条为全球能耗口径）。"
+    },
+    {
+      "fact_id": "cgai2402-aws-inference-share-workload",
+      "metric_id": "inference_compute_share",
+      "asserter": "AWS",
+      "entity": {
+        "type": "company",
+        "id": "aws",
+        "label": "AWS"
+      },
+      "value": 90.0,
+      "unit": "%",
+      "caliber": {
+        "workload": "推理",
+        "denominator": "未注明",
+        "region": "未披露",
+        "basis": "行业机构"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "063da07d9785d81c0e0feb89fd248a43d91cbbd8d6f6669d7e7e3e0cc2f6423d",
+        "local_file": "20241014-OpenAI&剑桥大学：2024算力与人工智能治理研究报告(104页).pdf",
+        "locator": "第 24 页 脚注 32：「For example, Google estimated that 15% of its global energy use went toward machine learning workloads, of which 60% was for inference in 2019, 2020, and 2021 (Patterson, Gonzalez, Hölzle, et al. 2022). NVIDIA estimated 80% to 90%, and AWS estimated that 90% of its workload is inference (Patterson, Gonzalez, Le, et al. 2021)」",
+        "grade": "S3",
+        "originator": "AWS（Patterson 等论文口径，经Sastry、Heim、Belfield 等《Computing Power and the Governance of Artificial Intelligence》（arXiv:2402.08797，2024-02-13；作者来自 OpenAI、GovAI、剑桥大学等）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文「90% of its workload is inference」，分母是工作负载（未说明按算力、能耗还是实例数），denominator 记未注明。 region 记未披露：原文未写地域（谷歌一条为全球能耗口径）。"
+    },
+    {
+      "fact_id": "cgai2402-nvidia-inference-share-low",
+      "metric_id": "inference_compute_share",
+      "asserter": "英伟达",
+      "entity": {
+        "type": "company",
+        "id": "nvidia",
+        "label": "英伟达"
+      },
+      "value": 80.0,
+      "unit": "%",
+      "caliber": {
+        "workload": "推理",
+        "denominator": "未注明",
+        "region": "未披露",
+        "basis": "行业机构"
+      },
+      "as_of": "2021",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "063da07d9785d81c0e0feb89fd248a43d91cbbd8d6f6669d7e7e3e0cc2f6423d",
+        "local_file": "20241014-OpenAI&剑桥大学：2024算力与人工智能治理研究报告(104页).pdf",
+        "locator": "第 24 页 脚注 32：「For example, Google estimated that 15% of its global energy use went toward machine learning workloads, of which 60% was for inference in 2019, 2020, and 2021 (Patterson, Gonzalez, Hölzle, et al. 2022). NVIDIA estimated 80% to 90%, and AWS estimated that 90% of its workload is inference (Patterson, Gonzalez, Le, et al. 2021)」",
+        "grade": "S3",
+        "originator": "英伟达（Patterson 等论文口径，经Sastry、Heim、Belfield 等《Computing Power and the Governance of Artificial Intelligence》（arXiv:2402.08797，2024-02-13；作者来自 OpenAI、GovAI、剑桥大学等）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "英伟达估计 80%–90% 为推理，本条为区间下界；分母未交代。 region 记未披露：原文未写地域（谷歌一条为全球能耗口径）。"
+    },
+    {
+      "fact_id": "cgai2402-nvidia-inference-share-high",
+      "metric_id": "inference_compute_share",
+      "asserter": "英伟达",
+      "entity": {
+        "type": "company",
+        "id": "nvidia",
+        "label": "英伟达"
+      },
+      "value": 90.0,
+      "unit": "%",
+      "caliber": {
+        "workload": "推理",
+        "denominator": "未注明",
+        "region": "未披露",
+        "basis": "行业机构"
+      },
+      "as_of": "2021",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "063da07d9785d81c0e0feb89fd248a43d91cbbd8d6f6669d7e7e3e0cc2f6423d",
+        "local_file": "20241014-OpenAI&剑桥大学：2024算力与人工智能治理研究报告(104页).pdf",
+        "locator": "第 24 页 脚注 32：「For example, Google estimated that 15% of its global energy use went toward machine learning workloads, of which 60% was for inference in 2019, 2020, and 2021 (Patterson, Gonzalez, Hölzle, et al. 2022). NVIDIA estimated 80% to 90%, and AWS estimated that 90% of its workload is inference (Patterson, Gonzalez, Le, et al. 2021)」",
+        "grade": "S3",
+        "originator": "英伟达（Patterson 等论文口径，经Sastry、Heim、Belfield 等《Computing Power and the Governance of Artificial Intelligence》（arXiv:2402.08797，2024-02-13；作者来自 OpenAI、GovAI、剑桥大学等）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "英伟达估计 80%–90% 为推理，本条为区间上界；分母未交代。 region 记未披露：原文未写地域（谷歌一条为全球能耗口径）。"
     }
   ]
 }
