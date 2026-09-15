@@ -270,7 +270,7 @@ ASSERTER_ALIASES = {
     # 下面几家目前库内写法一致，收在这里只为**日后出现分裂时能被检出**，
     # 不意味着现在要改名（见上面那段）。
     "世邦魏理仕": ("CBRE",),
-    "DCByte": ("DC Byte", "DCbyte", "DC byte"),
+    "DC Byte": ("DCByte", "DCbyte", "DC byte"),
     "JLL": ("仲量联行",),
     "Omdia": ("欧姆迪亚",),
     "Global Market Insights": ("GMI",),
