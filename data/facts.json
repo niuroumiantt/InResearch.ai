@@ -184094,6 +184094,680 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "美元/kW ÷ 1,000 = 百万美元/MW（10,000 美元/kW）。**含土地**（CBRE 定义），cost_scope 取最接近的仅机电与土建，与不含土地的造价不可直接比。本条为读图核对（文字层版式错乱，数字经图片确认）。"
+    },
+    {
+      "fact_id": "glms2508-cn-dc-total-power-2023",
+      "metric_id": "global_dc_it_load",
+      "asserter": "国联民生证券",
+      "entity": {
+        "type": "industry",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 30.0,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "设施总功率",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "券商测算",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "774021e7856b5445952e990141168fa4f94bf454bd5f3b5f0744485d949321cd",
+        "local_file": "20250806-国联民生证券：电力设备行业深度研究：多领域需求共振加速AI数据中心建设(21页).pdf",
+        "locator": "第 7 页 图表 4「国内数据中心总功率和新增功率预测」「数据中心总功率（GW）」2023 = 30.0",
+        "grade": "S3",
+        "originator": "国联民生证券《电力设备行业深度研究：多领域需求共振加速 AI 数据中心建设》（2025-08-06）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "测算方法（同表）：标准机架数 × 2.5 kW/架 × PUE = 数据中心总功率，是券商模型值，不是统计值；2024E 起标准机架数为券商预测（2024E 980 万架，与工信部「超过 900 万」已发布值不同）。"
+    },
+    {
+      "fact_id": "glms2508-cn-dc-total-power-2024e",
+      "metric_id": "global_dc_it_load",
+      "asserter": "国联民生证券",
+      "entity": {
+        "type": "industry",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 35.5,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "设施总功率",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "券商测算",
+        "region": "CN"
+      },
+      "as_of": "2024E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "774021e7856b5445952e990141168fa4f94bf454bd5f3b5f0744485d949321cd",
+        "local_file": "20250806-国联民生证券：电力设备行业深度研究：多领域需求共振加速AI数据中心建设(21页).pdf",
+        "locator": "第 7 页 图表 4「国内数据中心总功率和新增功率预测」「数据中心总功率（GW）」2024E = 35.5",
+        "grade": "S3",
+        "originator": "国联民生证券《电力设备行业深度研究：多领域需求共振加速 AI 数据中心建设》（2025-08-06）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "测算方法（同表）：标准机架数 × 2.5 kW/架 × PUE = 数据中心总功率，是券商模型值，不是统计值；2024E 起标准机架数为券商预测（2024E 980 万架，与工信部「超过 900 万」已发布值不同）。"
+    },
+    {
+      "fact_id": "glms2508-cn-dc-total-power-2025e",
+      "metric_id": "global_dc_it_load",
+      "asserter": "国联民生证券",
+      "entity": {
+        "type": "industry",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 43.5,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "设施总功率",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "券商测算",
+        "region": "CN"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "774021e7856b5445952e990141168fa4f94bf454bd5f3b5f0744485d949321cd",
+        "local_file": "20250806-国联民生证券：电力设备行业深度研究：多领域需求共振加速AI数据中心建设(21页).pdf",
+        "locator": "第 7 页 图表 4「国内数据中心总功率和新增功率预测」「数据中心总功率（GW）」2025E = 43.5",
+        "grade": "S3",
+        "originator": "国联民生证券《电力设备行业深度研究：多领域需求共振加速 AI 数据中心建设》（2025-08-06）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "测算方法（同表）：标准机架数 × 2.5 kW/架 × PUE = 数据中心总功率，是券商模型值，不是统计值；2024E 起标准机架数为券商预测（2024E 980 万架，与工信部「超过 900 万」已发布值不同）。"
+    },
+    {
+      "fact_id": "glms2508-cn-dc-total-power-2026e",
+      "metric_id": "global_dc_it_load",
+      "asserter": "国联民生证券",
+      "entity": {
+        "type": "industry",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 54.5,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "设施总功率",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "券商测算",
+        "region": "CN"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "774021e7856b5445952e990141168fa4f94bf454bd5f3b5f0744485d949321cd",
+        "local_file": "20250806-国联民生证券：电力设备行业深度研究：多领域需求共振加速AI数据中心建设(21页).pdf",
+        "locator": "第 7 页 图表 4「国内数据中心总功率和新增功率预测」「数据中心总功率（GW）」2026E = 54.5",
+        "grade": "S3",
+        "originator": "国联民生证券《电力设备行业深度研究：多领域需求共振加速 AI 数据中心建设》（2025-08-06）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "测算方法（同表）：标准机架数 × 2.5 kW/架 × PUE = 数据中心总功率，是券商模型值，不是统计值；2024E 起标准机架数为券商预测（2024E 980 万架，与工信部「超过 900 万」已发布值不同）。"
+    },
+    {
+      "fact_id": "glms2508-cn-dc-total-power-2027e",
+      "metric_id": "global_dc_it_load",
+      "asserter": "国联民生证券",
+      "entity": {
+        "type": "industry",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 68.8,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "设施总功率",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "券商测算",
+        "region": "CN"
+      },
+      "as_of": "2027E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "774021e7856b5445952e990141168fa4f94bf454bd5f3b5f0744485d949321cd",
+        "local_file": "20250806-国联民生证券：电力设备行业深度研究：多领域需求共振加速AI数据中心建设(21页).pdf",
+        "locator": "第 7 页 图表 4「国内数据中心总功率和新增功率预测」「数据中心总功率（GW）」2027E = 68.8",
+        "grade": "S3",
+        "originator": "国联民生证券《电力设备行业深度研究：多领域需求共振加速 AI 数据中心建设》（2025-08-06）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "测算方法（同表）：标准机架数 × 2.5 kW/架 × PUE = 数据中心总功率，是券商模型值，不是统计值；2024E 起标准机架数为券商预测（2024E 980 万架，与工信部「超过 900 万」已发布值不同）。"
+    },
+    {
+      "fact_id": "glms2508-cn-dc-power-additions-2023",
+      "metric_id": "dc_capacity_additions_annual",
+      "asserter": "国联民生证券",
+      "entity": {
+        "type": "industry",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 5.3,
+      "unit": "GW/年",
+      "caliber": {
+        "power_scope": "设施总功率",
+        "facility_type": "数据中心整体",
+        "scenario": "单一情景",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "774021e7856b5445952e990141168fa4f94bf454bd5f3b5f0744485d949321cd",
+        "local_file": "20250806-国联民生证券：电力设备行业深度研究：多领域需求共振加速AI数据中心建设(21页).pdf",
+        "locator": "第 7 页 图表 4「国内数据中心总功率和新增功率预测」「数据中心新增功率（GW）」2023 = 5.3；正文「新增数据中心功率 2024-2027 年的 3 年 CAGR 为 37.0%」",
+        "grade": "S3",
+        "originator": "国联民生证券《电力设备行业深度研究：多领域需求共振加速 AI 数据中心建设》（2025-08-06）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "总功率逐年差值。测算方法（同表）：标准机架数 × 2.5 kW/架 × PUE = 数据中心总功率，是券商模型值，不是统计值；2024E 起标准机架数为券商预测（2024E 980 万架，与工信部「超过 900 万」已发布值不同）。"
+    },
+    {
+      "fact_id": "glms2508-cn-dc-power-additions-2024e",
+      "metric_id": "dc_capacity_additions_annual",
+      "asserter": "国联民生证券",
+      "entity": {
+        "type": "industry",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 5.6,
+      "unit": "GW/年",
+      "caliber": {
+        "power_scope": "设施总功率",
+        "facility_type": "数据中心整体",
+        "scenario": "单一情景",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2024E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "774021e7856b5445952e990141168fa4f94bf454bd5f3b5f0744485d949321cd",
+        "local_file": "20250806-国联民生证券：电力设备行业深度研究：多领域需求共振加速AI数据中心建设(21页).pdf",
+        "locator": "第 7 页 图表 4「国内数据中心总功率和新增功率预测」「数据中心新增功率（GW）」2024E = 5.6；正文「新增数据中心功率 2024-2027 年的 3 年 CAGR 为 37.0%」",
+        "grade": "S3",
+        "originator": "国联民生证券《电力设备行业深度研究：多领域需求共振加速 AI 数据中心建设》（2025-08-06）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "总功率逐年差值。测算方法（同表）：标准机架数 × 2.5 kW/架 × PUE = 数据中心总功率，是券商模型值，不是统计值；2024E 起标准机架数为券商预测（2024E 980 万架，与工信部「超过 900 万」已发布值不同）。"
+    },
+    {
+      "fact_id": "glms2508-cn-dc-power-additions-2025e",
+      "metric_id": "dc_capacity_additions_annual",
+      "asserter": "国联民生证券",
+      "entity": {
+        "type": "industry",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 7.9,
+      "unit": "GW/年",
+      "caliber": {
+        "power_scope": "设施总功率",
+        "facility_type": "数据中心整体",
+        "scenario": "单一情景",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "774021e7856b5445952e990141168fa4f94bf454bd5f3b5f0744485d949321cd",
+        "local_file": "20250806-国联民生证券：电力设备行业深度研究：多领域需求共振加速AI数据中心建设(21页).pdf",
+        "locator": "第 7 页 图表 4「国内数据中心总功率和新增功率预测」「数据中心新增功率（GW）」2025E = 7.9；正文「新增数据中心功率 2024-2027 年的 3 年 CAGR 为 37.0%」",
+        "grade": "S3",
+        "originator": "国联民生证券《电力设备行业深度研究：多领域需求共振加速 AI 数据中心建设》（2025-08-06）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "总功率逐年差值。测算方法（同表）：标准机架数 × 2.5 kW/架 × PUE = 数据中心总功率，是券商模型值，不是统计值；2024E 起标准机架数为券商预测（2024E 980 万架，与工信部「超过 900 万」已发布值不同）。"
+    },
+    {
+      "fact_id": "glms2508-cn-dc-power-additions-2026e",
+      "metric_id": "dc_capacity_additions_annual",
+      "asserter": "国联民生证券",
+      "entity": {
+        "type": "industry",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 11.0,
+      "unit": "GW/年",
+      "caliber": {
+        "power_scope": "设施总功率",
+        "facility_type": "数据中心整体",
+        "scenario": "单一情景",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "774021e7856b5445952e990141168fa4f94bf454bd5f3b5f0744485d949321cd",
+        "local_file": "20250806-国联民生证券：电力设备行业深度研究：多领域需求共振加速AI数据中心建设(21页).pdf",
+        "locator": "第 7 页 图表 4「国内数据中心总功率和新增功率预测」「数据中心新增功率（GW）」2026E = 11.0；正文「新增数据中心功率 2024-2027 年的 3 年 CAGR 为 37.0%」",
+        "grade": "S3",
+        "originator": "国联民生证券《电力设备行业深度研究：多领域需求共振加速 AI 数据中心建设》（2025-08-06）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "总功率逐年差值。测算方法（同表）：标准机架数 × 2.5 kW/架 × PUE = 数据中心总功率，是券商模型值，不是统计值；2024E 起标准机架数为券商预测（2024E 980 万架，与工信部「超过 900 万」已发布值不同）。"
+    },
+    {
+      "fact_id": "glms2508-cn-dc-power-additions-2027e",
+      "metric_id": "dc_capacity_additions_annual",
+      "asserter": "国联民生证券",
+      "entity": {
+        "type": "industry",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 14.3,
+      "unit": "GW/年",
+      "caliber": {
+        "power_scope": "设施总功率",
+        "facility_type": "数据中心整体",
+        "scenario": "单一情景",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2027E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "774021e7856b5445952e990141168fa4f94bf454bd5f3b5f0744485d949321cd",
+        "local_file": "20250806-国联民生证券：电力设备行业深度研究：多领域需求共振加速AI数据中心建设(21页).pdf",
+        "locator": "第 7 页 图表 4「国内数据中心总功率和新增功率预测」「数据中心新增功率（GW）」2027E = 14.3；正文「新增数据中心功率 2024-2027 年的 3 年 CAGR 为 37.0%」",
+        "grade": "S3",
+        "originator": "国联民生证券《电力设备行业深度研究：多领域需求共振加速 AI 数据中心建设》（2025-08-06）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "总功率逐年差值。测算方法（同表）：标准机架数 × 2.5 kW/架 × PUE = 数据中心总功率，是券商模型值，不是统计值；2024E 起标准机架数为券商预测（2024E 980 万架，与工信部「超过 900 万」已发布值不同）。"
+    },
+    {
+      "fact_id": "glms2508-cn-aidc-power-additions-2025e",
+      "metric_id": "dc_capacity_additions_annual",
+      "asserter": "国联民生证券",
+      "entity": {
+        "type": "industry",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 3.6,
+      "unit": "GW/年",
+      "caliber": {
+        "power_scope": "设施总功率",
+        "facility_type": "智算中心",
+        "scenario": "单一情景",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "774021e7856b5445952e990141168fa4f94bf454bd5f3b5f0744485d949321cd",
+        "local_file": "20250806-国联民生证券：电力设备行业深度研究：多领域需求共振加速AI数据中心建设(21页).pdf",
+        "locator": "首页摘要「预计 2025 年国内 AI 数据中心功率有望新增 3.6GW，同比增长 220%」",
+        "grade": "S3",
+        "originator": "国联民生证券《电力设备行业深度研究：多领域需求共振加速 AI 数据中心建设》（2025-08-06）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "AI 数据中心按智算中心记；是全部新增功率的子集（2025E 3.6 / 7.9 GW），不可相加。power_scope 按同报告总功率模型含 PUE 记设施总功率。"
+    },
+    {
+      "fact_id": "glms2508-cn-aidc-power-additions-2027e",
+      "metric_id": "dc_capacity_additions_annual",
+      "asserter": "国联民生证券",
+      "entity": {
+        "type": "industry",
+        "id": "cn-datacenters",
+        "label": "中国数据中心（合计）"
+      },
+      "value": 9.9,
+      "unit": "GW/年",
+      "caliber": {
+        "power_scope": "设施总功率",
+        "facility_type": "智算中心",
+        "scenario": "单一情景",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2027E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "774021e7856b5445952e990141168fa4f94bf454bd5f3b5f0744485d949321cd",
+        "local_file": "20250806-国联民生证券：电力设备行业深度研究：多领域需求共振加速AI数据中心建设(21页).pdf",
+        "locator": "首页摘要「2027 年 AI 数据中心功率有望新增 9.9GW」",
+        "grade": "S3",
+        "originator": "国联民生证券《电力设备行业深度研究：多领域需求共振加速 AI 数据中心建设》（2025-08-06）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "AI 数据中心按智算中心记；是全部新增功率的子集（2025E 3.6 / 7.9 GW），不可相加。power_scope 按同报告总功率模型含 PUE 记设施总功率。"
+    },
+    {
+      "fact_id": "glms2508-kezhi-cn-aidc-power-2021",
+      "metric_id": "global_dc_it_load",
+      "asserter": "科智咨询",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "value": 0.327,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "实测",
+        "region": "CN"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "774021e7856b5445952e990141168fa4f94bf454bd5f3b5f0744485d949321cd",
+        "local_file": "20250806-国联民生证券：电力设备行业深度研究：多领域需求共振加速AI数据中心建设(21页).pdf",
+        "locator": "第 10 页正文「据科智咨询，2024 年我国智算中心功率规模约 2016MW，较上一年净增长 1125MW，新增功率同比增长约 174%」；图表 14「我国智算中心资源需求规模（MW）」2021 327、2023 891（资料来源：科智咨询）",
+        "grade": "S3",
+        "originator": "科智咨询（经国联民生证券《电力设备行业深度研究：多领域需求共振加速 AI 数据中心建设》（2025-08-06）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "327 MW = 0.327 GW。原文「智算中心资源需求规模／功率规模」，未写 IT 负载还是设施功率，power_scope 记未注明；与兴业证券转引科智的同名序列（xyzq2603-kezhi-cn-aidc-scale-2021 约 0.33 GW、2024 年 2 GW 以上）一致。**与科智另一口径 2023 年投用智算中心总 IT 负载 1,205.5 MW（kezhi-cn-aidc-it-load-2023）不同**：891 MW 是「资源需求规模」，power_scope 也不同，并列不比。basis 按库内同序列记实测（科智统计，就近归类）。"
+    },
+    {
+      "fact_id": "glms2508-kezhi-cn-aidc-power-2023",
+      "metric_id": "global_dc_it_load",
+      "asserter": "科智咨询",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "value": 0.891,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "实测",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "774021e7856b5445952e990141168fa4f94bf454bd5f3b5f0744485d949321cd",
+        "local_file": "20250806-国联民生证券：电力设备行业深度研究：多领域需求共振加速AI数据中心建设(21页).pdf",
+        "locator": "第 10 页正文「据科智咨询，2024 年我国智算中心功率规模约 2016MW，较上一年净增长 1125MW，新增功率同比增长约 174%」；图表 14「我国智算中心资源需求规模（MW）」2021 327、2023 891（资料来源：科智咨询）",
+        "grade": "S3",
+        "originator": "科智咨询（经国联民生证券《电力设备行业深度研究：多领域需求共振加速 AI 数据中心建设》（2025-08-06）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "891 MW = 0.891 GW。原文「智算中心资源需求规模／功率规模」，未写 IT 负载还是设施功率，power_scope 记未注明；与兴业证券转引科智的同名序列（xyzq2603-kezhi-cn-aidc-scale-2021 约 0.33 GW、2024 年 2 GW 以上）一致。**与科智另一口径 2023 年投用智算中心总 IT 负载 1,205.5 MW（kezhi-cn-aidc-it-load-2023）不同**：891 MW 是「资源需求规模」，power_scope 也不同，并列不比。basis 按库内同序列记实测（科智统计，就近归类）。"
+    },
+    {
+      "fact_id": "glms2508-kezhi-cn-aidc-power-2024",
+      "metric_id": "global_dc_it_load",
+      "asserter": "科智咨询",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "value": 2.016,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "实测",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "774021e7856b5445952e990141168fa4f94bf454bd5f3b5f0744485d949321cd",
+        "local_file": "20250806-国联民生证券：电力设备行业深度研究：多领域需求共振加速AI数据中心建设(21页).pdf",
+        "locator": "第 10 页正文「据科智咨询，2024 年我国智算中心功率规模约 2016MW，较上一年净增长 1125MW，新增功率同比增长约 174%」；图表 14「我国智算中心资源需求规模（MW）」2021 327、2023 891（资料来源：科智咨询）",
+        "grade": "S3",
+        "originator": "科智咨询（经国联民生证券《电力设备行业深度研究：多领域需求共振加速 AI 数据中心建设》（2025-08-06）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2016 MW = 2.016 GW。原文「智算中心资源需求规模／功率规模」，未写 IT 负载还是设施功率，power_scope 记未注明；与兴业证券转引科智的同名序列（xyzq2603-kezhi-cn-aidc-scale-2021 约 0.33 GW、2024 年 2 GW 以上）一致。**与科智另一口径 2023 年投用智算中心总 IT 负载 1,205.5 MW（kezhi-cn-aidc-it-load-2023）不同**：891 MW 是「资源需求规模」，power_scope 也不同，并列不比。basis 按库内同序列记实测（科智统计，就近归类）。"
+    },
+    {
+      "fact_id": "glms2508-global-dc-power-2024",
+      "metric_id": "global_dc_it_load",
+      "asserter": "国联民生证券",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 119.0,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "774021e7856b5445952e990141168fa4f94bf454bd5f3b5f0744485d949321cd",
+        "local_file": "20250806-国联民生证券：电力设备行业深度研究：多领域需求共振加速AI数据中心建设(21页).pdf",
+        "locator": "第 9 页正文「功率规模并无官方统计数据，我们参考 Omdia 和 IDC 两个口径的平均值，2024 年全球数据中心整体功率约为 119GW，较上一年新增 19GW；预计 2028 年全球数据中心整体功率有望增长至 198GW」",
+        "grade": "S3",
+        "originator": "国联民生证券《电力设备行业深度研究：多领域需求共振加速 AI 数据中心建设》（2025-08-06）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "券商自述：取 Omdia 与 IDC 两个口径的平均值（两家原值本文未列）",
+      "corroboration": "待交叉验证",
+      "notes": "「约」按点值记。两家机构口径平均，power_scope 原文未写。2023→2024 新增 19 GW（未另录）。"
+    },
+    {
+      "fact_id": "glms2508-global-dc-power-2028e",
+      "metric_id": "global_dc_it_load",
+      "asserter": "国联民生证券",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心（合计）"
+      },
+      "value": 198.0,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "券商测算",
+        "region": "Global"
+      },
+      "as_of": "2028E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "774021e7856b5445952e990141168fa4f94bf454bd5f3b5f0744485d949321cd",
+        "local_file": "20250806-国联民生证券：电力设备行业深度研究：多领域需求共振加速AI数据中心建设(21页).pdf",
+        "locator": "第 9 页正文「功率规模并无官方统计数据，我们参考 Omdia 和 IDC 两个口径的平均值，2024 年全球数据中心整体功率约为 119GW，较上一年新增 19GW；预计 2028 年全球数据中心整体功率有望增长至 198GW」",
+        "grade": "S3",
+        "originator": "国联民生证券《电力设备行业深度研究：多领域需求共振加速 AI 数据中心建设》（2025-08-06）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "券商自述：取 Omdia 与 IDC 两个口径的平均值（两家原值本文未列）",
+      "corroboration": "待交叉验证",
+      "notes": "「约」按点值记。两家机构口径平均，power_scope 原文未写。2023→2024 新增 19 GW（未另录）。"
+    },
+    {
+      "fact_id": "glms2508-kezhi-aidc-share-builder-cloud-202410",
+      "metric_id": "aidc_project_structure_share",
+      "asserter": "科智咨询",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "value": 31.0,
+      "unit": "%",
+      "caliber": {
+        "grouping": "按建设主体",
+        "group": "互联网及云厂商",
+        "measure": "未注明",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2024-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "774021e7856b5445952e990141168fa4f94bf454bd5f3b5f0744485d949321cd",
+        "local_file": "20250806-国联民生证券：电力设备行业深度研究：多领域需求共振加速AI数据中心建设(21页).pdf",
+        "locator": "首页摘要「据科智咨询，截至 2024 年 10 月，超过 50%的智算项目由互联网及云厂商（31%）、基础电信运营商（23%）投资建设；各级政府亦牵头打造城市公共智算中心平台……占到整体建设规模的约 13%；新型算力服务商约占 7%」；第 11 页图表 15「我国智算中心投资主体分布（截至 2024 年 10 月）」",
+        "grade": "S3",
+        "originator": "科智咨询（经国联民生证券《电力设备行业深度研究：多领域需求共振加速 AI 数据中心建设》（2025-08-06）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文前半句说「智算项目」、政府一项又说「整体建设规模」，分母是项目数还是建设规模不明，measure 记未注明；「约」按点值记。与白皮书科智 2024-08 按项目数/算力规模两版（ccia2412-kezhi-aidc-share-builder-*）截至时点与分类均不同，并列不比。"
+    },
+    {
+      "fact_id": "glms2508-kezhi-aidc-share-builder-telco-202410",
+      "metric_id": "aidc_project_structure_share",
+      "asserter": "科智咨询",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "value": 23.0,
+      "unit": "%",
+      "caliber": {
+        "grouping": "按建设主体",
+        "group": "基础电信运营商",
+        "measure": "未注明",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2024-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "774021e7856b5445952e990141168fa4f94bf454bd5f3b5f0744485d949321cd",
+        "local_file": "20250806-国联民生证券：电力设备行业深度研究：多领域需求共振加速AI数据中心建设(21页).pdf",
+        "locator": "首页摘要「据科智咨询，截至 2024 年 10 月，超过 50%的智算项目由互联网及云厂商（31%）、基础电信运营商（23%）投资建设；各级政府亦牵头打造城市公共智算中心平台……占到整体建设规模的约 13%；新型算力服务商约占 7%」；第 11 页图表 15「我国智算中心投资主体分布（截至 2024 年 10 月）」",
+        "grade": "S3",
+        "originator": "科智咨询（经国联民生证券《电力设备行业深度研究：多领域需求共振加速 AI 数据中心建设》（2025-08-06）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文前半句说「智算项目」、政府一项又说「整体建设规模」，分母是项目数还是建设规模不明，measure 记未注明；「约」按点值记。与白皮书科智 2024-08 按项目数/算力规模两版（ccia2412-kezhi-aidc-share-builder-*）截至时点与分类均不同，并列不比。"
+    },
+    {
+      "fact_id": "glms2508-kezhi-aidc-share-builder-gov-202410",
+      "metric_id": "aidc_project_structure_share",
+      "asserter": "科智咨询",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "value": 13.0,
+      "unit": "%",
+      "caliber": {
+        "grouping": "按建设主体",
+        "group": "各级政府",
+        "measure": "未注明",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2024-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "774021e7856b5445952e990141168fa4f94bf454bd5f3b5f0744485d949321cd",
+        "local_file": "20250806-国联民生证券：电力设备行业深度研究：多领域需求共振加速AI数据中心建设(21页).pdf",
+        "locator": "首页摘要「据科智咨询，截至 2024 年 10 月，超过 50%的智算项目由互联网及云厂商（31%）、基础电信运营商（23%）投资建设；各级政府亦牵头打造城市公共智算中心平台……占到整体建设规模的约 13%；新型算力服务商约占 7%」；第 11 页图表 15「我国智算中心投资主体分布（截至 2024 年 10 月）」",
+        "grade": "S3",
+        "originator": "科智咨询（经国联民生证券《电力设备行业深度研究：多领域需求共振加速 AI 数据中心建设》（2025-08-06）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文前半句说「智算项目」、政府一项又说「整体建设规模」，分母是项目数还是建设规模不明，measure 记未注明；「约」按点值记。与白皮书科智 2024-08 按项目数/算力规模两版（ccia2412-kezhi-aidc-share-builder-*）截至时点与分类均不同，并列不比。"
+    },
+    {
+      "fact_id": "glms2508-kezhi-aidc-share-builder-neocloud-202410",
+      "metric_id": "aidc_project_structure_share",
+      "asserter": "科智咨询",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "value": 7.0,
+      "unit": "%",
+      "caliber": {
+        "grouping": "按建设主体",
+        "group": "新型算力服务商",
+        "measure": "未注明",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2024-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "774021e7856b5445952e990141168fa4f94bf454bd5f3b5f0744485d949321cd",
+        "local_file": "20250806-国联民生证券：电力设备行业深度研究：多领域需求共振加速AI数据中心建设(21页).pdf",
+        "locator": "首页摘要「据科智咨询，截至 2024 年 10 月，超过 50%的智算项目由互联网及云厂商（31%）、基础电信运营商（23%）投资建设；各级政府亦牵头打造城市公共智算中心平台……占到整体建设规模的约 13%；新型算力服务商约占 7%」；第 11 页图表 15「我国智算中心投资主体分布（截至 2024 年 10 月）」",
+        "grade": "S3",
+        "originator": "科智咨询（经国联民生证券《电力设备行业深度研究：多领域需求共振加速 AI 数据中心建设》（2025-08-06）转引）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文前半句说「智算项目」、政府一项又说「整体建设规模」，分母是项目数还是建设规模不明，measure 记未注明；「约」按点值记。与白皮书科智 2024-08 按项目数/算力规模两版（ccia2412-kezhi-aidc-share-builder-*）截至时点与分类均不同，并列不比。"
     }
   ]
 }
