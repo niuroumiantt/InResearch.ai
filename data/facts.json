@@ -184833,6 +184833,162 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "「approximately」按点值记；作者自述取估算区间偏高一侧，是推算起点而非统计值。交叉核对：2024 年中约 370 万 H100 当量、按 700W 满载约 23 TWh（同页 Alternative check）。"
+    },
+    {
+      "fact_id": "sa2501-deepseek-gpu-hopper-total",
+      "metric_id": "cluster_gpu_count",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "company",
+        "id": "deepseek-high-flyer",
+        "label": "DeepSeek 与幻方量化（共享算力）"
+      },
+      "value": 50000.0,
+      "unit": "颗",
+      "caliber": {
+        "scope": "未注明",
+        "accelerator": "Hopper（H800 / H100 / H20）",
+        "region": "CN",
+        "basis": "第三方估算"
+      },
+      "as_of": "2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "083b955036970cf1982de91a8adfe4cbfc5e2bca7b5c770e9295740007d51f8a",
+        "local_file": "DeepSeek Debates_ Chinese Leadership On Cost, True Training Cost, Closed Model Margin Impacts – SemiAnalysis.pdf",
+        "locator": "第 3 页 The GPU Situation：「We believe they have access to around 50,000 Hopper GPUs, which is not the same as 50,000 H100」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《DeepSeek Debates: Chinese Leadership On Cost, True Training Cost, Closed Model Margin Impacts》（Dylan Patel 等，2025-01-31）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「around」按点值记。H800 约 1 万、H100 约 1 万，其余为 H20（原文未给 H20 数）；GPU 由幻方与 DeepSeek 共享、地理上有一定分散，用于交易、推理、训练与研究，不是单一训练集群。 scope 记未注明：是公司可用 GPU 总量，既非单集群也非单站点。"
+    },
+    {
+      "fact_id": "sa2501-deepseek-gpu-h800",
+      "metric_id": "cluster_gpu_count",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "company",
+        "id": "deepseek-high-flyer",
+        "label": "DeepSeek 与幻方量化（共享算力）"
+      },
+      "value": 10000.0,
+      "unit": "颗",
+      "caliber": {
+        "scope": "未注明",
+        "accelerator": "H800",
+        "region": "CN",
+        "basis": "第三方估算"
+      },
+      "as_of": "2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "083b955036970cf1982de91a8adfe4cbfc5e2bca7b5c770e9295740007d51f8a",
+        "local_file": "DeepSeek Debates_ Chinese Leadership On Cost, True Training Cost, Closed Model Margin Impacts – SemiAnalysis.pdf",
+        "locator": "第 3 页：「We believe DeepSeek has access to around 10,000 of these H800s and about 10,000 H100s」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《DeepSeek Debates: Chinese Leadership On Cost, True Training Cost, Closed Model Margin Impacts》（Dylan Patel 等，2025-01-31）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "H800 算力同 H100、网络带宽较低。 scope 记未注明：是公司可用 GPU 总量，既非单集群也非单站点。"
+    },
+    {
+      "fact_id": "sa2501-deepseek-gpu-h100",
+      "metric_id": "cluster_gpu_count",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "company",
+        "id": "deepseek-high-flyer",
+        "label": "DeepSeek 与幻方量化（共享算力）"
+      },
+      "value": 10000.0,
+      "unit": "颗",
+      "caliber": {
+        "scope": "未注明",
+        "accelerator": "H100",
+        "region": "CN",
+        "basis": "第三方估算"
+      },
+      "as_of": "2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "083b955036970cf1982de91a8adfe4cbfc5e2bca7b5c770e9295740007d51f8a",
+        "local_file": "DeepSeek Debates_ Chinese Leadership On Cost, True Training Cost, Closed Model Margin Impacts – SemiAnalysis.pdf",
+        "locator": "第 3 页：「…and about 10,000 H100s」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《DeepSeek Debates: Chinese Leadership On Cost, True Training Cost, Closed Model Margin Impacts》（Dylan Patel 等，2025-01-31）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "「about」按点值记。 scope 记未注明：是公司可用 GPU 总量，既非单集群也非单站点。"
+    },
+    {
+      "fact_id": "sa2501-highflyer-a100-2021",
+      "metric_id": "cluster_gpu_count",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "company",
+        "id": "high-flyer",
+        "label": "幻方量化（High-Flyer）"
+      },
+      "value": 10000.0,
+      "unit": "颗",
+      "caliber": {
+        "scope": "未注明",
+        "accelerator": "A100",
+        "region": "CN",
+        "basis": "第三方估算"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "083b955036970cf1982de91a8adfe4cbfc5e2bca7b5c770e9295740007d51f8a",
+        "local_file": "DeepSeek Debates_ Chinese Leadership On Cost, True Training Cost, Closed Model Margin Impacts – SemiAnalysis.pdf",
+        "locator": "第 2 页 DeepSeek and High-Flyer：「High Flyer made an investment in 10,000 A100 GPUs in 2021 before any export restrictions」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《DeepSeek Debates: Chinese Leadership On Cost, True Training Cost, Closed Model Margin Impacts》（Dylan Patel 等，2025-01-31）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "2021 年出口管制前的采购量。"
+    },
+    {
+      "fact_id": "sa2501-deepseek-server-capex",
+      "metric_id": "cluster_hardware_investment",
+      "asserter": "SemiAnalysis",
+      "entity": {
+        "type": "company",
+        "id": "deepseek-high-flyer",
+        "label": "DeepSeek 与幻方量化（共享算力）"
+      },
+      "value": 1300.0,
+      "unit": "百万美元",
+      "caliber": {
+        "chip": "Hopper（H800 / H100 / H20）",
+        "parameter": "集群硬件投资",
+        "depreciation_years": "未注明",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2025-01",
+      "bound": "point",
+      "evidence": {
+        "sha256": "083b955036970cf1982de91a8adfe4cbfc5e2bca7b5c770e9295740007d51f8a",
+        "local_file": "DeepSeek Debates_ Chinese Leadership On Cost, True Training Cost, Closed Model Margin Impacts – SemiAnalysis.pdf",
+        "locator": "第 3 页：「Our analysis shows that the total server CapEx for DeepSeek is almost $1.3B, with a considerable cost of $715M associated with operating such clusters」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《DeepSeek Debates: Chinese Leadership On Cost, True Training Cost, Closed Model Margin Impacts》（Dylan Patel 等，2025-01-31）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位：百万美元。「almost」按点值记约数。另有集群运营成本 7.15 亿美元（parameter 无运营成本档，未录）；同文称 GPU 投资在公司历史上「well higher than $500M」。"
     }
   ]
 }
