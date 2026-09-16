@@ -224147,7 +224147,10 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "本条为区间下界，上界见 dfzq2605-aircooled-rack-design-ceiling-upper。**这是作者给出的风冷设计上限，不是出货中位数**——库内 SemiAnalysis 口径的当期典型风冷机柜为 15-20kW，二者不矛盾：一个是能做到的上限，一个是实际在跑的水平。同句的 NVL72「近 140kW」与库内已有的 140kW（TDP 口径）同值，属券商转述，不另记。region 未披露：原文未限定地域。",
-      "asserter": "东方证券"
+      "asserter": "东方证券",
+      "disputed_by": [
+        "gh2509-aircooled-rack-limit-20kw"
+      ]
     },
     {
       "fact_id": "dfzq2605-aircooled-rack-design-ceiling-upper",
@@ -224179,7 +224182,10 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "本条为区间上界，下界见 dfzq2605-aircooled-rack-design-ceiling-lower。说明同下界条。",
-      "asserter": "东方证券"
+      "asserter": "东方证券",
+      "disputed_by": [
+        "gh2509-aircooled-rack-limit-20kw"
+      ]
     },
     {
       "fact_id": "zt2605-rubin-tdp-lower",
@@ -225437,6 +225443,210 @@
       "corroboration": "待交叉验证",
       "notes": "**这是路线对比表里的代表区间，不能当某个具体机房的值引用**（basis 已标「按冷却路线典型值」）。同表还给出对流换热系数、比热容、散热密度、噪音四项，本库无对应指标，见本份缺口。**同报告第 16 页 图表 18 另给单相/两相细分的 PUE（单相冷板 1.15-1.3、两相冷板 1.10-1.15、单相浸没 1.05-1.1、两相浸没 1.02-1.05），与本表同名路线的区间并不一致；cooling_tech 枚举没有单相/两相之分，那一组暂不入库，已记缺口。**",
       "asserter": "中泰证券"
+    },
+    {
+      "fact_id": "gh2509-h20-tdp",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-h20",
+        "label": "NVIDIA H20"
+      },
+      "value": 400.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "NVIDIA H20",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "feb1a38fb4a1c48def1f21f973eca6a670048598670c7b096f221007561a8f4a",
+        "local_file": "20250914-国海证券-液冷行业深度报告：系列报告之一，数据中心带动液冷需求增长，关注上游核心冷媒材料(45页).pdf",
+        "locator": "第 7 页 图表「不同芯片架构对应参数表」「功耗」行 H20 列",
+        "grade": "S4",
+        "originator": "国海证券《液冷行业深度报告：数据中心带动液冷需求增长，关注上游核心冷媒材料——系列报告之一》（李永磊、董伯骏、仲逸涵，2025-09-14） 第 7 页 图表「不同芯片架构对应参数表」，表下资料来源为 TrendForce、EET CHINA、《数据中心液冷散热技术及应用》严劲等、国海证券研究所——逐列未标注出自哪一家"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 W。同表给出 H20 显存 96GB、架构 Hopper。**H20 是对华特供型号**，功耗与 A100 同为 400W，但架构与显存不同。同表 A100 400W、H100 700W、B100 700W、B200 1000W 与库内既有条目同值，属不同来源的相同数，不另记。",
+      "asserter": "国海证券"
+    },
+    {
+      "fact_id": "gh2509-h200-tdp",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-h200",
+        "label": "NVIDIA H200"
+      },
+      "value": 700.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "NVIDIA H200",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "feb1a38fb4a1c48def1f21f973eca6a670048598670c7b096f221007561a8f4a",
+        "local_file": "20250914-国海证券-液冷行业深度报告：系列报告之一，数据中心带动液冷需求增长，关注上游核心冷媒材料(45页).pdf",
+        "locator": "第 7 页 图表「不同芯片架构对应参数表」「功耗」行 H200 列",
+        "grade": "S4",
+        "originator": "国海证券《液冷行业深度报告：数据中心带动液冷需求增长，关注上游核心冷媒材料——系列报告之一》（李永磊、董伯骏、仲逸涵，2025-09-14） 第 7 页 图表「不同芯片架构对应参数表」，表下资料来源为 TrendForce、EET CHINA、《数据中心液冷散热技术及应用》严劲等、国海证券研究所——逐列未标注出自哪一家"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 W。同表给出 H200 显存 141GB、架构 Hopper，与 H100 同功耗（700W）、显存翻倍。",
+      "asserter": "国海证券"
+    },
+    {
+      "fact_id": "gh2509-gh200-tdp",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gh200",
+        "label": "NVIDIA GH200"
+      },
+      "value": 1000.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "NVIDIA GH200",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "feb1a38fb4a1c48def1f21f973eca6a670048598670c7b096f221007561a8f4a",
+        "local_file": "20250914-国海证券-液冷行业深度报告：系列报告之一，数据中心带动液冷需求增长，关注上游核心冷媒材料(45页).pdf",
+        "locator": "第 7 页 图表「不同芯片架构对应参数表」「功耗」行 GH200 列",
+        "grade": "S4",
+        "originator": "国海证券《液冷行业深度报告：数据中心带动液冷需求增长，关注上游核心冷媒材料——系列报告之一》（李永磊、董伯骏、仲逸涵，2025-09-14） 第 7 页 图表「不同芯片架构对应参数表」，表下资料来源为 TrendForce、EET CHINA、《数据中心液冷散热技术及应用》严劲等、国海证券研究所——逐列未标注出自哪一家"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 W。同表给出 GH200 显存 96/141GB（两种配置）、架构 Hopper。**GH200 是 Grace CPU + Hopper GPU 的超级芯片，1000W 是整颗超级芯片口径，不是单 GPU 口径**，与库内按单 GPU 记的条目不可直接比。",
+      "asserter": "国海证券"
+    },
+    {
+      "fact_id": "gh2509-gb200-superchip-tdp",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200-superchip",
+        "label": "NVIDIA GB200（超级芯片）"
+      },
+      "value": 2700.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "NVIDIA GB200（超级芯片）",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "feb1a38fb4a1c48def1f21f973eca6a670048598670c7b096f221007561a8f4a",
+        "local_file": "20250914-国海证券-液冷行业深度报告：系列报告之一，数据中心带动液冷需求增长，关注上游核心冷媒材料(45页).pdf",
+        "locator": "第 7 页 图表「不同芯片架构对应参数表」「功耗」行 GB200（超级芯片） 列",
+        "grade": "S4",
+        "originator": "国海证券《液冷行业深度报告：数据中心带动液冷需求增长，关注上游核心冷媒材料——系列报告之一》（李永磊、董伯骏、仲逸涵，2025-09-14） 第 7 页 图表「不同芯片架构对应参数表」，表下资料来源为 TrendForce、EET CHINA、《数据中心液冷散热技术及应用》严劲等、国海证券研究所——逐列未标注出自哪一家"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 W。同表给出 GB200 显存 192/384GB、架构 Blackwell。**2700W 是 1 颗 Grace CPU + 2 颗 B200 的超级芯片整体口径**；库内 SemiAnalysis 的「NVIDIA Blackwell GPU（GB200 NVL72 / 36x2 配置）」1200W 是单 GPU 口径，两者不是同一个被测对象，不构成矛盾，也不可互证。",
+      "asserter": "国海证券"
+    },
+    {
+      "fact_id": "gh2509-aircooled-rack-limit-20kw",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "industry",
+        "id": "traditional-aircooled-rack",
+        "label": "传统数据中心单机柜（风冷）"
+      },
+      "value": 20.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "架构上限",
+        "era": "未注明",
+        "power_basis": "设计功率",
+        "region": "未披露"
+      },
+      "as_of": "2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "feb1a38fb4a1c48def1f21f973eca6a670048598670c7b096f221007561a8f4a",
+        "local_file": "20250914-国海证券-液冷行业深度报告：系列报告之一，数据中心带动液冷需求增长，关注上游核心冷媒材料(45页).pdf",
+        "locator": "第 7 页正文：「传统风冷系统受数据中心建筑面积与单位运营成本等因素的影响散热上限一般为 20 kW/柜，越来越难以为继」",
+        "grade": "S4",
+        "originator": "国海证券《液冷行业深度报告：数据中心带动液冷需求增长，关注上游核心冷媒材料——系列报告之一》（李永磊、董伯骏、仲逸涵，2025-09-14）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同一个「风冷上限」，三家给出三个量级不同的数**：国海 20kW（明确说是受建筑面积与单位运营成本约束的上限，偏经济口径）、东方证券 30-40kW（「传统数据中心单机柜设计上限」）、中泰证券 40-60kW（「行业内普遍认同，考虑散热能力，已达风冷极限」，另称叠加背板换热器可解 60kW 以内）。**三者的约束条件不同——成本、设计惯例、物理散热能力——原文都没写全，无法判定谁对**，故三条并列并标争议。",
+      "asserter": "国海证券",
+      "disputes": [
+        "dfzq2605-aircooled-rack-design-ceiling-lower",
+        "dfzq2605-aircooled-rack-design-ceiling-upper"
+      ]
+    },
+    {
+      "fact_id": "gh2509-sa-global-ai-dc-capacity-2024",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "industry",
+        "id": "global-ai-datacenter",
+        "label": "全球 AI 智算中心"
+      },
+      "value": 7.0,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "未披露",
+        "workload": "AI 负载",
+        "scenario": "未注明",
+        "basis": "模型输出",
+        "region": "Global"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "feb1a38fb4a1c48def1f21f973eca6a670048598670c7b096f221007561a8f4a",
+        "local_file": "20250914-国海证券-液冷行业深度报告：系列报告之一，数据中心带动液冷需求增长，关注上游核心冷媒材料(45页).pdf",
+        "locator": "第 9 页：「据 Semianalysis，2024 年全球 AI 智算中心装机容量为 7GW，预计至 2028 年有望进一步增长」，图表「2022-2028 年全球数据中心装机容量」资料来源 Semianalysis",
+        "grade": "S4",
+        "originator": "SemiAnalysis（经国海证券《液冷行业深度报告：数据中心带动液冷需求增长，关注上游核心冷媒材料——系列报告之一》（李永磊、董伯骏、仲逸涵，2025-09-14）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**署名 SemiAnalysis，国海只是转述**。power_scope 记「未披露」：原文只写「装机容量」，没说是 IT 负载还是设施总功率——库内 SemiAnalysis 另一条 2023 年全球 49GW 是明确的 IT 负载口径、且是全部负载，两条不可直接比（一个是全球全部、一个是 AI 智算）。原文对 2028 年只说「有望进一步增长」，没给数，不记。",
+      "asserter": "SemiAnalysis"
     }
   ]
 }
