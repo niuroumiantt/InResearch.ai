@@ -245036,6 +245036,1158 @@
       },
       "depth": "精读",
       "notes": "年均运行值而非设计值；大规模应用间接蒸发冷却。[未核]"
+    },
+    {
+      "fact_id": "bern2605-build-cost-major-lower",
+      "asserter": "伯恩斯坦",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-major-metro",
+        "label": "美国 Major Metro（北美前 8-10 大市场）"
+      },
+      "value": 12.0,
+      "unit": "百万美元/MW",
+      "bound": "lower",
+      "caliber": {
+        "cost_scope": "未注明",
+        "stage": "估算",
+        "region": "US",
+        "basis": "券商测算"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 1「Comparing Tiers of Data Center Markets」（Source: Omdia, CBRE, JLL, Bernstein analysis）：Major Metro / Minor Metro / Rural 三档的 Hyperscale Pricing（$120-150 / $90-130 / $70-120）、Colo Pricing（$160-230 / $150-190 / 无）、Estimated Size Today（21.5 / 23.6 / 23.6 U.S. GW）、Estimated Planned（25.7 / 26.1 / 37.0 U.S. GW）、Build Costs per GW（$12-15B / $9-12B / $7-9B）、Hyperscale Cap Rates（4.5-6.0% / 5.5-6.75% / 6.5-8.0%）、Colo Cap Rates（5.5-6.5% / 6.0-7.25% / 7.0-9.0%）、Power Queues（4-7 / 3-5 / 1-3 years）",
+        "grade": "S2",
+        "originator": "Omdia、CBRE、JLL 与伯恩斯坦自行测算"
+      },
+      "depth": "精读",
+      "notes": "原表以 $B/GW 给出（12-15B/GW），与百万美元/MW 数值相同。**三档之间最大差近一倍**：大都会 12-15 对乡村 7-9，是「新增产能向电力富余的乡村迁移」这一判断的成本依据。原文未说明是否含 IT 设备。[未核]"
+    },
+    {
+      "fact_id": "bern2605-build-cost-major-upper",
+      "asserter": "伯恩斯坦",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-major-metro",
+        "label": "美国 Major Metro（北美前 8-10 大市场）"
+      },
+      "value": 15.0,
+      "unit": "百万美元/MW",
+      "bound": "upper",
+      "caliber": {
+        "cost_scope": "未注明",
+        "stage": "估算",
+        "region": "US",
+        "basis": "券商测算"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 1「Comparing Tiers of Data Center Markets」（Source: Omdia, CBRE, JLL, Bernstein analysis）：Major Metro / Minor Metro / Rural 三档的 Hyperscale Pricing（$120-150 / $90-130 / $70-120）、Colo Pricing（$160-230 / $150-190 / 无）、Estimated Size Today（21.5 / 23.6 / 23.6 U.S. GW）、Estimated Planned（25.7 / 26.1 / 37.0 U.S. GW）、Build Costs per GW（$12-15B / $9-12B / $7-9B）、Hyperscale Cap Rates（4.5-6.0% / 5.5-6.75% / 6.5-8.0%）、Colo Cap Rates（5.5-6.5% / 6.0-7.25% / 7.0-9.0%）、Power Queues（4-7 / 3-5 / 1-3 years）",
+        "grade": "S2",
+        "originator": "Omdia、CBRE、JLL 与伯恩斯坦自行测算"
+      },
+      "depth": "精读",
+      "notes": "原表以 $B/GW 给出（12-15B/GW），与百万美元/MW 数值相同。**三档之间最大差近一倍**：大都会 12-15 对乡村 7-9，是「新增产能向电力富余的乡村迁移」这一判断的成本依据。原文未说明是否含 IT 设备。[未核]"
+    },
+    {
+      "fact_id": "bern2605-build-cost-minor-lower",
+      "asserter": "伯恩斯坦",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-minor-metro",
+        "label": "美国 Minor Metro（二至四线城市或大都会远郊）"
+      },
+      "value": 9.0,
+      "unit": "百万美元/MW",
+      "bound": "lower",
+      "caliber": {
+        "cost_scope": "未注明",
+        "stage": "估算",
+        "region": "US",
+        "basis": "券商测算"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 1「Comparing Tiers of Data Center Markets」（Source: Omdia, CBRE, JLL, Bernstein analysis）：Major Metro / Minor Metro / Rural 三档的 Hyperscale Pricing（$120-150 / $90-130 / $70-120）、Colo Pricing（$160-230 / $150-190 / 无）、Estimated Size Today（21.5 / 23.6 / 23.6 U.S. GW）、Estimated Planned（25.7 / 26.1 / 37.0 U.S. GW）、Build Costs per GW（$12-15B / $9-12B / $7-9B）、Hyperscale Cap Rates（4.5-6.0% / 5.5-6.75% / 6.5-8.0%）、Colo Cap Rates（5.5-6.5% / 6.0-7.25% / 7.0-9.0%）、Power Queues（4-7 / 3-5 / 1-3 years）",
+        "grade": "S2",
+        "originator": "Omdia、CBRE、JLL 与伯恩斯坦自行测算"
+      },
+      "depth": "精读",
+      "notes": "原表以 $B/GW 给出（9-12B/GW），与百万美元/MW 数值相同。**三档之间最大差近一倍**：大都会 12-15 对乡村 7-9，是「新增产能向电力富余的乡村迁移」这一判断的成本依据。原文未说明是否含 IT 设备。[未核]"
+    },
+    {
+      "fact_id": "bern2605-build-cost-minor-upper",
+      "asserter": "伯恩斯坦",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-minor-metro",
+        "label": "美国 Minor Metro（二至四线城市或大都会远郊）"
+      },
+      "value": 12.0,
+      "unit": "百万美元/MW",
+      "bound": "upper",
+      "caliber": {
+        "cost_scope": "未注明",
+        "stage": "估算",
+        "region": "US",
+        "basis": "券商测算"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 1「Comparing Tiers of Data Center Markets」（Source: Omdia, CBRE, JLL, Bernstein analysis）：Major Metro / Minor Metro / Rural 三档的 Hyperscale Pricing（$120-150 / $90-130 / $70-120）、Colo Pricing（$160-230 / $150-190 / 无）、Estimated Size Today（21.5 / 23.6 / 23.6 U.S. GW）、Estimated Planned（25.7 / 26.1 / 37.0 U.S. GW）、Build Costs per GW（$12-15B / $9-12B / $7-9B）、Hyperscale Cap Rates（4.5-6.0% / 5.5-6.75% / 6.5-8.0%）、Colo Cap Rates（5.5-6.5% / 6.0-7.25% / 7.0-9.0%）、Power Queues（4-7 / 3-5 / 1-3 years）",
+        "grade": "S2",
+        "originator": "Omdia、CBRE、JLL 与伯恩斯坦自行测算"
+      },
+      "depth": "精读",
+      "notes": "原表以 $B/GW 给出（9-12B/GW），与百万美元/MW 数值相同。**三档之间最大差近一倍**：大都会 12-15 对乡村 7-9，是「新增产能向电力富余的乡村迁移」这一判断的成本依据。原文未说明是否含 IT 设备。[未核]"
+    },
+    {
+      "fact_id": "bern2605-build-cost-rural-lower",
+      "asserter": "伯恩斯坦",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-rural-metro",
+        "label": "美国 Rural（乡村市场）"
+      },
+      "value": 7.0,
+      "unit": "百万美元/MW",
+      "bound": "lower",
+      "caliber": {
+        "cost_scope": "未注明",
+        "stage": "估算",
+        "region": "US",
+        "basis": "券商测算"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 1「Comparing Tiers of Data Center Markets」（Source: Omdia, CBRE, JLL, Bernstein analysis）：Major Metro / Minor Metro / Rural 三档的 Hyperscale Pricing（$120-150 / $90-130 / $70-120）、Colo Pricing（$160-230 / $150-190 / 无）、Estimated Size Today（21.5 / 23.6 / 23.6 U.S. GW）、Estimated Planned（25.7 / 26.1 / 37.0 U.S. GW）、Build Costs per GW（$12-15B / $9-12B / $7-9B）、Hyperscale Cap Rates（4.5-6.0% / 5.5-6.75% / 6.5-8.0%）、Colo Cap Rates（5.5-6.5% / 6.0-7.25% / 7.0-9.0%）、Power Queues（4-7 / 3-5 / 1-3 years）",
+        "grade": "S2",
+        "originator": "Omdia、CBRE、JLL 与伯恩斯坦自行测算"
+      },
+      "depth": "精读",
+      "notes": "原表以 $B/GW 给出（7-9B/GW），与百万美元/MW 数值相同。**三档之间最大差近一倍**：大都会 12-15 对乡村 7-9，是「新增产能向电力富余的乡村迁移」这一判断的成本依据。原文未说明是否含 IT 设备。[未核]"
+    },
+    {
+      "fact_id": "bern2605-build-cost-rural-upper",
+      "asserter": "伯恩斯坦",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-rural-metro",
+        "label": "美国 Rural（乡村市场）"
+      },
+      "value": 9.0,
+      "unit": "百万美元/MW",
+      "bound": "upper",
+      "caliber": {
+        "cost_scope": "未注明",
+        "stage": "估算",
+        "region": "US",
+        "basis": "券商测算"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 1「Comparing Tiers of Data Center Markets」（Source: Omdia, CBRE, JLL, Bernstein analysis）：Major Metro / Minor Metro / Rural 三档的 Hyperscale Pricing（$120-150 / $90-130 / $70-120）、Colo Pricing（$160-230 / $150-190 / 无）、Estimated Size Today（21.5 / 23.6 / 23.6 U.S. GW）、Estimated Planned（25.7 / 26.1 / 37.0 U.S. GW）、Build Costs per GW（$12-15B / $9-12B / $7-9B）、Hyperscale Cap Rates（4.5-6.0% / 5.5-6.75% / 6.5-8.0%）、Colo Cap Rates（5.5-6.5% / 6.0-7.25% / 7.0-9.0%）、Power Queues（4-7 / 3-5 / 1-3 years）",
+        "grade": "S2",
+        "originator": "Omdia、CBRE、JLL 与伯恩斯坦自行测算"
+      },
+      "depth": "精读",
+      "notes": "原表以 $B/GW 给出（7-9B/GW），与百万美元/MW 数值相同。**三档之间最大差近一倍**：大都会 12-15 对乡村 7-9，是「新增产能向电力富余的乡村迁移」这一判断的成本依据。原文未说明是否含 IT 设备。[未核]"
+    },
+    {
+      "fact_id": "bern2605-hyperscale-price-major-lower",
+      "asserter": "伯恩斯坦",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-major-metro",
+        "label": "美国 Major Metro（北美前 8-10 大市场）"
+      },
+      "value": 120.0,
+      "unit": "原币/月/计价单位",
+      "bound": "lower",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 1「Comparing Tiers of Data Center Markets」（Source: Omdia, CBRE, JLL, Bernstein analysis）：Major Metro / Minor Metro / Rural 三档的 Hyperscale Pricing（$120-150 / $90-130 / $70-120）、Colo Pricing（$160-230 / $150-190 / 无）、Estimated Size Today（21.5 / 23.6 / 23.6 U.S. GW）、Estimated Planned（25.7 / 26.1 / 37.0 U.S. GW）、Build Costs per GW（$12-15B / $9-12B / $7-9B）、Hyperscale Cap Rates（4.5-6.0% / 5.5-6.75% / 6.5-8.0%）、Colo Cap Rates（5.5-6.5% / 6.0-7.25% / 7.0-9.0%）、Power Queues（4-7 / 3-5 / 1-3 years）",
+        "grade": "S2",
+        "originator": "Omdia、CBRE、JLL 与伯恩斯坦自行测算"
+      },
+      "depth": "精读",
+      "notes": "超大规模（批发）口径，单位为美元/kW/月。乡村市场的 colo 一栏原表写「-」，即基本没有零售托管业务，故该档不记。[未核]"
+    },
+    {
+      "fact_id": "bern2605-hyperscale-price-major-upper",
+      "asserter": "伯恩斯坦",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-major-metro",
+        "label": "美国 Major Metro（北美前 8-10 大市场）"
+      },
+      "value": 150.0,
+      "unit": "原币/月/计价单位",
+      "bound": "upper",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 1「Comparing Tiers of Data Center Markets」（Source: Omdia, CBRE, JLL, Bernstein analysis）：Major Metro / Minor Metro / Rural 三档的 Hyperscale Pricing（$120-150 / $90-130 / $70-120）、Colo Pricing（$160-230 / $150-190 / 无）、Estimated Size Today（21.5 / 23.6 / 23.6 U.S. GW）、Estimated Planned（25.7 / 26.1 / 37.0 U.S. GW）、Build Costs per GW（$12-15B / $9-12B / $7-9B）、Hyperscale Cap Rates（4.5-6.0% / 5.5-6.75% / 6.5-8.0%）、Colo Cap Rates（5.5-6.5% / 6.0-7.25% / 7.0-9.0%）、Power Queues（4-7 / 3-5 / 1-3 years）",
+        "grade": "S2",
+        "originator": "Omdia、CBRE、JLL 与伯恩斯坦自行测算"
+      },
+      "depth": "精读",
+      "notes": "超大规模（批发）口径，单位为美元/kW/月。乡村市场的 colo 一栏原表写「-」，即基本没有零售托管业务，故该档不记。[未核]"
+    },
+    {
+      "fact_id": "bern2605-hyperscale-price-minor-lower",
+      "asserter": "伯恩斯坦",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-minor-metro",
+        "label": "美国 Minor Metro（二至四线城市或大都会远郊）"
+      },
+      "value": 90.0,
+      "unit": "原币/月/计价单位",
+      "bound": "lower",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 1「Comparing Tiers of Data Center Markets」（Source: Omdia, CBRE, JLL, Bernstein analysis）：Major Metro / Minor Metro / Rural 三档的 Hyperscale Pricing（$120-150 / $90-130 / $70-120）、Colo Pricing（$160-230 / $150-190 / 无）、Estimated Size Today（21.5 / 23.6 / 23.6 U.S. GW）、Estimated Planned（25.7 / 26.1 / 37.0 U.S. GW）、Build Costs per GW（$12-15B / $9-12B / $7-9B）、Hyperscale Cap Rates（4.5-6.0% / 5.5-6.75% / 6.5-8.0%）、Colo Cap Rates（5.5-6.5% / 6.0-7.25% / 7.0-9.0%）、Power Queues（4-7 / 3-5 / 1-3 years）",
+        "grade": "S2",
+        "originator": "Omdia、CBRE、JLL 与伯恩斯坦自行测算"
+      },
+      "depth": "精读",
+      "notes": "超大规模（批发）口径，单位为美元/kW/月。乡村市场的 colo 一栏原表写「-」，即基本没有零售托管业务，故该档不记。[未核]"
+    },
+    {
+      "fact_id": "bern2605-hyperscale-price-minor-upper",
+      "asserter": "伯恩斯坦",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-minor-metro",
+        "label": "美国 Minor Metro（二至四线城市或大都会远郊）"
+      },
+      "value": 130.0,
+      "unit": "原币/月/计价单位",
+      "bound": "upper",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 1「Comparing Tiers of Data Center Markets」（Source: Omdia, CBRE, JLL, Bernstein analysis）：Major Metro / Minor Metro / Rural 三档的 Hyperscale Pricing（$120-150 / $90-130 / $70-120）、Colo Pricing（$160-230 / $150-190 / 无）、Estimated Size Today（21.5 / 23.6 / 23.6 U.S. GW）、Estimated Planned（25.7 / 26.1 / 37.0 U.S. GW）、Build Costs per GW（$12-15B / $9-12B / $7-9B）、Hyperscale Cap Rates（4.5-6.0% / 5.5-6.75% / 6.5-8.0%）、Colo Cap Rates（5.5-6.5% / 6.0-7.25% / 7.0-9.0%）、Power Queues（4-7 / 3-5 / 1-3 years）",
+        "grade": "S2",
+        "originator": "Omdia、CBRE、JLL 与伯恩斯坦自行测算"
+      },
+      "depth": "精读",
+      "notes": "超大规模（批发）口径，单位为美元/kW/月。乡村市场的 colo 一栏原表写「-」，即基本没有零售托管业务，故该档不记。[未核]"
+    },
+    {
+      "fact_id": "bern2605-hyperscale-price-rural-lower",
+      "asserter": "伯恩斯坦",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-rural-metro",
+        "label": "美国 Rural（乡村市场）"
+      },
+      "value": 70.0,
+      "unit": "原币/月/计价单位",
+      "bound": "lower",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 1「Comparing Tiers of Data Center Markets」（Source: Omdia, CBRE, JLL, Bernstein analysis）：Major Metro / Minor Metro / Rural 三档的 Hyperscale Pricing（$120-150 / $90-130 / $70-120）、Colo Pricing（$160-230 / $150-190 / 无）、Estimated Size Today（21.5 / 23.6 / 23.6 U.S. GW）、Estimated Planned（25.7 / 26.1 / 37.0 U.S. GW）、Build Costs per GW（$12-15B / $9-12B / $7-9B）、Hyperscale Cap Rates（4.5-6.0% / 5.5-6.75% / 6.5-8.0%）、Colo Cap Rates（5.5-6.5% / 6.0-7.25% / 7.0-9.0%）、Power Queues（4-7 / 3-5 / 1-3 years）",
+        "grade": "S2",
+        "originator": "Omdia、CBRE、JLL 与伯恩斯坦自行测算"
+      },
+      "depth": "精读",
+      "notes": "超大规模（批发）口径，单位为美元/kW/月。乡村市场的 colo 一栏原表写「-」，即基本没有零售托管业务，故该档不记。[未核]"
+    },
+    {
+      "fact_id": "bern2605-hyperscale-price-rural-upper",
+      "asserter": "伯恩斯坦",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-rural-metro",
+        "label": "美国 Rural（乡村市场）"
+      },
+      "value": 120.0,
+      "unit": "原币/月/计价单位",
+      "bound": "upper",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "批发",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 1「Comparing Tiers of Data Center Markets」（Source: Omdia, CBRE, JLL, Bernstein analysis）：Major Metro / Minor Metro / Rural 三档的 Hyperscale Pricing（$120-150 / $90-130 / $70-120）、Colo Pricing（$160-230 / $150-190 / 无）、Estimated Size Today（21.5 / 23.6 / 23.6 U.S. GW）、Estimated Planned（25.7 / 26.1 / 37.0 U.S. GW）、Build Costs per GW（$12-15B / $9-12B / $7-9B）、Hyperscale Cap Rates（4.5-6.0% / 5.5-6.75% / 6.5-8.0%）、Colo Cap Rates（5.5-6.5% / 6.0-7.25% / 7.0-9.0%）、Power Queues（4-7 / 3-5 / 1-3 years）",
+        "grade": "S2",
+        "originator": "Omdia、CBRE、JLL 与伯恩斯坦自行测算"
+      },
+      "depth": "精读",
+      "notes": "超大规模（批发）口径，单位为美元/kW/月。乡村市场的 colo 一栏原表写「-」，即基本没有零售托管业务，故该档不记。[未核]"
+    },
+    {
+      "fact_id": "bern2605-colo-price-major-lower",
+      "asserter": "伯恩斯坦",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-major-metro",
+        "label": "美国 Major Metro（北美前 8-10 大市场）"
+      },
+      "value": 160.0,
+      "unit": "原币/月/计价单位",
+      "bound": "lower",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "零售托管市场",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 1「Comparing Tiers of Data Center Markets」（Source: Omdia, CBRE, JLL, Bernstein analysis）：Major Metro / Minor Metro / Rural 三档的 Hyperscale Pricing（$120-150 / $90-130 / $70-120）、Colo Pricing（$160-230 / $150-190 / 无）、Estimated Size Today（21.5 / 23.6 / 23.6 U.S. GW）、Estimated Planned（25.7 / 26.1 / 37.0 U.S. GW）、Build Costs per GW（$12-15B / $9-12B / $7-9B）、Hyperscale Cap Rates（4.5-6.0% / 5.5-6.75% / 6.5-8.0%）、Colo Cap Rates（5.5-6.5% / 6.0-7.25% / 7.0-9.0%）、Power Queues（4-7 / 3-5 / 1-3 years）",
+        "grade": "S2",
+        "originator": "Omdia、CBRE、JLL 与伯恩斯坦自行测算"
+      },
+      "depth": "精读",
+      "notes": "零售托管（colo）口径，单位为美元/kW/月。乡村市场的 colo 一栏原表写「-」，即基本没有零售托管业务，故该档不记。[未核]"
+    },
+    {
+      "fact_id": "bern2605-colo-price-major-upper",
+      "asserter": "伯恩斯坦",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-major-metro",
+        "label": "美国 Major Metro（北美前 8-10 大市场）"
+      },
+      "value": 230.0,
+      "unit": "原币/月/计价单位",
+      "bound": "upper",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "零售托管市场",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 1「Comparing Tiers of Data Center Markets」（Source: Omdia, CBRE, JLL, Bernstein analysis）：Major Metro / Minor Metro / Rural 三档的 Hyperscale Pricing（$120-150 / $90-130 / $70-120）、Colo Pricing（$160-230 / $150-190 / 无）、Estimated Size Today（21.5 / 23.6 / 23.6 U.S. GW）、Estimated Planned（25.7 / 26.1 / 37.0 U.S. GW）、Build Costs per GW（$12-15B / $9-12B / $7-9B）、Hyperscale Cap Rates（4.5-6.0% / 5.5-6.75% / 6.5-8.0%）、Colo Cap Rates（5.5-6.5% / 6.0-7.25% / 7.0-9.0%）、Power Queues（4-7 / 3-5 / 1-3 years）",
+        "grade": "S2",
+        "originator": "Omdia、CBRE、JLL 与伯恩斯坦自行测算"
+      },
+      "depth": "精读",
+      "notes": "零售托管（colo）口径，单位为美元/kW/月。乡村市场的 colo 一栏原表写「-」，即基本没有零售托管业务，故该档不记。[未核]"
+    },
+    {
+      "fact_id": "bern2605-colo-price-minor-lower",
+      "asserter": "伯恩斯坦",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-minor-metro",
+        "label": "美国 Minor Metro（二至四线城市或大都会远郊）"
+      },
+      "value": 150.0,
+      "unit": "原币/月/计价单位",
+      "bound": "lower",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "零售托管市场",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 1「Comparing Tiers of Data Center Markets」（Source: Omdia, CBRE, JLL, Bernstein analysis）：Major Metro / Minor Metro / Rural 三档的 Hyperscale Pricing（$120-150 / $90-130 / $70-120）、Colo Pricing（$160-230 / $150-190 / 无）、Estimated Size Today（21.5 / 23.6 / 23.6 U.S. GW）、Estimated Planned（25.7 / 26.1 / 37.0 U.S. GW）、Build Costs per GW（$12-15B / $9-12B / $7-9B）、Hyperscale Cap Rates（4.5-6.0% / 5.5-6.75% / 6.5-8.0%）、Colo Cap Rates（5.5-6.5% / 6.0-7.25% / 7.0-9.0%）、Power Queues（4-7 / 3-5 / 1-3 years）",
+        "grade": "S2",
+        "originator": "Omdia、CBRE、JLL 与伯恩斯坦自行测算"
+      },
+      "depth": "精读",
+      "notes": "零售托管（colo）口径，单位为美元/kW/月。乡村市场的 colo 一栏原表写「-」，即基本没有零售托管业务，故该档不记。[未核]"
+    },
+    {
+      "fact_id": "bern2605-colo-price-minor-upper",
+      "asserter": "伯恩斯坦",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-minor-metro",
+        "label": "美国 Minor Metro（二至四线城市或大都会远郊）"
+      },
+      "value": 190.0,
+      "unit": "原币/月/计价单位",
+      "bound": "upper",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "零售托管市场",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 1「Comparing Tiers of Data Center Markets」（Source: Omdia, CBRE, JLL, Bernstein analysis）：Major Metro / Minor Metro / Rural 三档的 Hyperscale Pricing（$120-150 / $90-130 / $70-120）、Colo Pricing（$160-230 / $150-190 / 无）、Estimated Size Today（21.5 / 23.6 / 23.6 U.S. GW）、Estimated Planned（25.7 / 26.1 / 37.0 U.S. GW）、Build Costs per GW（$12-15B / $9-12B / $7-9B）、Hyperscale Cap Rates（4.5-6.0% / 5.5-6.75% / 6.5-8.0%）、Colo Cap Rates（5.5-6.5% / 6.0-7.25% / 7.0-9.0%）、Power Queues（4-7 / 3-5 / 1-3 years）",
+        "grade": "S2",
+        "originator": "Omdia、CBRE、JLL 与伯恩斯坦自行测算"
+      },
+      "depth": "精读",
+      "notes": "零售托管（colo）口径，单位为美元/kW/月。乡村市场的 colo 一栏原表写「-」，即基本没有零售托管业务，故该档不记。[未核]"
+    },
+    {
+      "fact_id": "bern2605-power-queue-major-lower",
+      "asserter": "伯恩斯坦",
+      "metric_id": "interconnection_queue_years",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-major-metro",
+        "label": "美国 Major Metro（北美前 8-10 大市场）"
+      },
+      "value": 4.0,
+      "unit": "年",
+      "bound": "lower",
+      "caliber": {
+        "stage": "未披露",
+        "region": "US"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 1「Comparing Tiers of Data Center Markets」（Source: Omdia, CBRE, JLL, Bernstein analysis）：Major Metro / Minor Metro / Rural 三档的 Hyperscale Pricing（$120-150 / $90-130 / $70-120）、Colo Pricing（$160-230 / $150-190 / 无）、Estimated Size Today（21.5 / 23.6 / 23.6 U.S. GW）、Estimated Planned（25.7 / 26.1 / 37.0 U.S. GW）、Build Costs per GW（$12-15B / $9-12B / $7-9B）、Hyperscale Cap Rates（4.5-6.0% / 5.5-6.75% / 6.5-8.0%）、Colo Cap Rates（5.5-6.5% / 6.0-7.25% / 7.0-9.0%）、Power Queues（4-7 / 3-5 / 1-3 years）",
+        "grade": "S2",
+        "originator": "Omdia、CBRE、JLL 与伯恩斯坦自行测算"
+      },
+      "depth": "精读",
+      "notes": "原表写 Power Queues，未说明是从申请到获批还是到通电，stage 记未披露。大都会 4-7 年对乡村 1-3 年，是训练负载外迁的首要原因。[未核]"
+    },
+    {
+      "fact_id": "bern2605-power-queue-major-upper",
+      "asserter": "伯恩斯坦",
+      "metric_id": "interconnection_queue_years",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-major-metro",
+        "label": "美国 Major Metro（北美前 8-10 大市场）"
+      },
+      "value": 7.0,
+      "unit": "年",
+      "bound": "upper",
+      "caliber": {
+        "stage": "未披露",
+        "region": "US"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 1「Comparing Tiers of Data Center Markets」（Source: Omdia, CBRE, JLL, Bernstein analysis）：Major Metro / Minor Metro / Rural 三档的 Hyperscale Pricing（$120-150 / $90-130 / $70-120）、Colo Pricing（$160-230 / $150-190 / 无）、Estimated Size Today（21.5 / 23.6 / 23.6 U.S. GW）、Estimated Planned（25.7 / 26.1 / 37.0 U.S. GW）、Build Costs per GW（$12-15B / $9-12B / $7-9B）、Hyperscale Cap Rates（4.5-6.0% / 5.5-6.75% / 6.5-8.0%）、Colo Cap Rates（5.5-6.5% / 6.0-7.25% / 7.0-9.0%）、Power Queues（4-7 / 3-5 / 1-3 years）",
+        "grade": "S2",
+        "originator": "Omdia、CBRE、JLL 与伯恩斯坦自行测算"
+      },
+      "depth": "精读",
+      "notes": "原表写 Power Queues，未说明是从申请到获批还是到通电，stage 记未披露。大都会 4-7 年对乡村 1-3 年，是训练负载外迁的首要原因。[未核]"
+    },
+    {
+      "fact_id": "bern2605-power-queue-minor-lower",
+      "asserter": "伯恩斯坦",
+      "metric_id": "interconnection_queue_years",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-minor-metro",
+        "label": "美国 Minor Metro（二至四线城市或大都会远郊）"
+      },
+      "value": 3.0,
+      "unit": "年",
+      "bound": "lower",
+      "caliber": {
+        "stage": "未披露",
+        "region": "US"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 1「Comparing Tiers of Data Center Markets」（Source: Omdia, CBRE, JLL, Bernstein analysis）：Major Metro / Minor Metro / Rural 三档的 Hyperscale Pricing（$120-150 / $90-130 / $70-120）、Colo Pricing（$160-230 / $150-190 / 无）、Estimated Size Today（21.5 / 23.6 / 23.6 U.S. GW）、Estimated Planned（25.7 / 26.1 / 37.0 U.S. GW）、Build Costs per GW（$12-15B / $9-12B / $7-9B）、Hyperscale Cap Rates（4.5-6.0% / 5.5-6.75% / 6.5-8.0%）、Colo Cap Rates（5.5-6.5% / 6.0-7.25% / 7.0-9.0%）、Power Queues（4-7 / 3-5 / 1-3 years）",
+        "grade": "S2",
+        "originator": "Omdia、CBRE、JLL 与伯恩斯坦自行测算"
+      },
+      "depth": "精读",
+      "notes": "原表写 Power Queues，未说明是从申请到获批还是到通电，stage 记未披露。大都会 4-7 年对乡村 1-3 年，是训练负载外迁的首要原因。[未核]"
+    },
+    {
+      "fact_id": "bern2605-power-queue-minor-upper",
+      "asserter": "伯恩斯坦",
+      "metric_id": "interconnection_queue_years",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-minor-metro",
+        "label": "美国 Minor Metro（二至四线城市或大都会远郊）"
+      },
+      "value": 5.0,
+      "unit": "年",
+      "bound": "upper",
+      "caliber": {
+        "stage": "未披露",
+        "region": "US"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 1「Comparing Tiers of Data Center Markets」（Source: Omdia, CBRE, JLL, Bernstein analysis）：Major Metro / Minor Metro / Rural 三档的 Hyperscale Pricing（$120-150 / $90-130 / $70-120）、Colo Pricing（$160-230 / $150-190 / 无）、Estimated Size Today（21.5 / 23.6 / 23.6 U.S. GW）、Estimated Planned（25.7 / 26.1 / 37.0 U.S. GW）、Build Costs per GW（$12-15B / $9-12B / $7-9B）、Hyperscale Cap Rates（4.5-6.0% / 5.5-6.75% / 6.5-8.0%）、Colo Cap Rates（5.5-6.5% / 6.0-7.25% / 7.0-9.0%）、Power Queues（4-7 / 3-5 / 1-3 years）",
+        "grade": "S2",
+        "originator": "Omdia、CBRE、JLL 与伯恩斯坦自行测算"
+      },
+      "depth": "精读",
+      "notes": "原表写 Power Queues，未说明是从申请到获批还是到通电，stage 记未披露。大都会 4-7 年对乡村 1-3 年，是训练负载外迁的首要原因。[未核]"
+    },
+    {
+      "fact_id": "bern2605-power-queue-rural-lower",
+      "asserter": "伯恩斯坦",
+      "metric_id": "interconnection_queue_years",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-rural-metro",
+        "label": "美国 Rural（乡村市场）"
+      },
+      "value": 1.0,
+      "unit": "年",
+      "bound": "lower",
+      "caliber": {
+        "stage": "未披露",
+        "region": "US"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 1「Comparing Tiers of Data Center Markets」（Source: Omdia, CBRE, JLL, Bernstein analysis）：Major Metro / Minor Metro / Rural 三档的 Hyperscale Pricing（$120-150 / $90-130 / $70-120）、Colo Pricing（$160-230 / $150-190 / 无）、Estimated Size Today（21.5 / 23.6 / 23.6 U.S. GW）、Estimated Planned（25.7 / 26.1 / 37.0 U.S. GW）、Build Costs per GW（$12-15B / $9-12B / $7-9B）、Hyperscale Cap Rates（4.5-6.0% / 5.5-6.75% / 6.5-8.0%）、Colo Cap Rates（5.5-6.5% / 6.0-7.25% / 7.0-9.0%）、Power Queues（4-7 / 3-5 / 1-3 years）",
+        "grade": "S2",
+        "originator": "Omdia、CBRE、JLL 与伯恩斯坦自行测算"
+      },
+      "depth": "精读",
+      "notes": "原表写 Power Queues，未说明是从申请到获批还是到通电，stage 记未披露。大都会 4-7 年对乡村 1-3 年，是训练负载外迁的首要原因。[未核]"
+    },
+    {
+      "fact_id": "bern2605-power-queue-rural-upper",
+      "asserter": "伯恩斯坦",
+      "metric_id": "interconnection_queue_years",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-rural-metro",
+        "label": "美国 Rural（乡村市场）"
+      },
+      "value": 3.0,
+      "unit": "年",
+      "bound": "upper",
+      "caliber": {
+        "stage": "未披露",
+        "region": "US"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 1「Comparing Tiers of Data Center Markets」（Source: Omdia, CBRE, JLL, Bernstein analysis）：Major Metro / Minor Metro / Rural 三档的 Hyperscale Pricing（$120-150 / $90-130 / $70-120）、Colo Pricing（$160-230 / $150-190 / 无）、Estimated Size Today（21.5 / 23.6 / 23.6 U.S. GW）、Estimated Planned（25.7 / 26.1 / 37.0 U.S. GW）、Build Costs per GW（$12-15B / $9-12B / $7-9B）、Hyperscale Cap Rates（4.5-6.0% / 5.5-6.75% / 6.5-8.0%）、Colo Cap Rates（5.5-6.5% / 6.0-7.25% / 7.0-9.0%）、Power Queues（4-7 / 3-5 / 1-3 years）",
+        "grade": "S2",
+        "originator": "Omdia、CBRE、JLL 与伯恩斯坦自行测算"
+      },
+      "depth": "精读",
+      "notes": "原表写 Power Queues，未说明是从申请到获批还是到通电，stage 记未披露。大都会 4-7 年对乡村 1-3 年，是训练负载外迁的首要原因。[未核]"
+    },
+    {
+      "fact_id": "bern2605-capacity-today-major",
+      "asserter": "伯恩斯坦",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-major-metro",
+        "label": "美国 Major Metro（北美前 8-10 大市场）"
+      },
+      "value": 21.5,
+      "unit": "GW",
+      "bound": "point",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "券商测算",
+        "region": "US"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 1「Comparing Tiers of Data Center Markets」（Source: Omdia, CBRE, JLL, Bernstein analysis）：Major Metro / Minor Metro / Rural 三档的 Hyperscale Pricing（$120-150 / $90-130 / $70-120）、Colo Pricing（$160-230 / $150-190 / 无）、Estimated Size Today（21.5 / 23.6 / 23.6 U.S. GW）、Estimated Planned（25.7 / 26.1 / 37.0 U.S. GW）、Build Costs per GW（$12-15B / $9-12B / $7-9B）、Hyperscale Cap Rates（4.5-6.0% / 5.5-6.75% / 6.5-8.0%）、Colo Cap Rates（5.5-6.5% / 6.0-7.25% / 7.0-9.0%）、Power Queues（4-7 / 3-5 / 1-3 years）",
+        "grade": "S2",
+        "originator": "Omdia、CBRE、JLL 与伯恩斯坦自行测算"
+      },
+      "depth": "精读",
+      "notes": "原表 Estimated Size Today（U.S. GW），未说明是 IT 负载还是设施总功率。三档合计约 68.7 GW。[未核]"
+    },
+    {
+      "fact_id": "bern2605-capacity-planned-major",
+      "asserter": "伯恩斯坦",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-major-metro",
+        "label": "美国 Major Metro（北美前 8-10 大市场）"
+      },
+      "value": 25.7,
+      "unit": "GW",
+      "bound": "point",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "US"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 1「Comparing Tiers of Data Center Markets」（Source: Omdia, CBRE, JLL, Bernstein analysis）：Major Metro / Minor Metro / Rural 三档的 Hyperscale Pricing（$120-150 / $90-130 / $70-120）、Colo Pricing（$160-230 / $150-190 / 无）、Estimated Size Today（21.5 / 23.6 / 23.6 U.S. GW）、Estimated Planned（25.7 / 26.1 / 37.0 U.S. GW）、Build Costs per GW（$12-15B / $9-12B / $7-9B）、Hyperscale Cap Rates（4.5-6.0% / 5.5-6.75% / 6.5-8.0%）、Colo Cap Rates（5.5-6.5% / 6.0-7.25% / 7.0-9.0%）、Power Queues（4-7 / 3-5 / 1-3 years）",
+        "grade": "S2",
+        "originator": "Omdia、CBRE、JLL 与伯恩斯坦自行测算"
+      },
+      "depth": "精读",
+      "notes": "原表 Estimated Planned（U.S. GW）。**乡村档的规划量 37.0 GW 明显高于另两档**（25.7 / 26.1），与「训练负载外迁」的判断一致；规划合计约 88.8 GW。[未核]"
+    },
+    {
+      "fact_id": "bern2605-capacity-today-minor",
+      "asserter": "伯恩斯坦",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-minor-metro",
+        "label": "美国 Minor Metro（二至四线城市或大都会远郊）"
+      },
+      "value": 23.6,
+      "unit": "GW",
+      "bound": "point",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "券商测算",
+        "region": "US"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 1「Comparing Tiers of Data Center Markets」（Source: Omdia, CBRE, JLL, Bernstein analysis）：Major Metro / Minor Metro / Rural 三档的 Hyperscale Pricing（$120-150 / $90-130 / $70-120）、Colo Pricing（$160-230 / $150-190 / 无）、Estimated Size Today（21.5 / 23.6 / 23.6 U.S. GW）、Estimated Planned（25.7 / 26.1 / 37.0 U.S. GW）、Build Costs per GW（$12-15B / $9-12B / $7-9B）、Hyperscale Cap Rates（4.5-6.0% / 5.5-6.75% / 6.5-8.0%）、Colo Cap Rates（5.5-6.5% / 6.0-7.25% / 7.0-9.0%）、Power Queues（4-7 / 3-5 / 1-3 years）",
+        "grade": "S2",
+        "originator": "Omdia、CBRE、JLL 与伯恩斯坦自行测算"
+      },
+      "depth": "精读",
+      "notes": "原表 Estimated Size Today（U.S. GW），未说明是 IT 负载还是设施总功率。三档合计约 68.7 GW。[未核]"
+    },
+    {
+      "fact_id": "bern2605-capacity-planned-minor",
+      "asserter": "伯恩斯坦",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-minor-metro",
+        "label": "美国 Minor Metro（二至四线城市或大都会远郊）"
+      },
+      "value": 26.1,
+      "unit": "GW",
+      "bound": "point",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "US"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 1「Comparing Tiers of Data Center Markets」（Source: Omdia, CBRE, JLL, Bernstein analysis）：Major Metro / Minor Metro / Rural 三档的 Hyperscale Pricing（$120-150 / $90-130 / $70-120）、Colo Pricing（$160-230 / $150-190 / 无）、Estimated Size Today（21.5 / 23.6 / 23.6 U.S. GW）、Estimated Planned（25.7 / 26.1 / 37.0 U.S. GW）、Build Costs per GW（$12-15B / $9-12B / $7-9B）、Hyperscale Cap Rates（4.5-6.0% / 5.5-6.75% / 6.5-8.0%）、Colo Cap Rates（5.5-6.5% / 6.0-7.25% / 7.0-9.0%）、Power Queues（4-7 / 3-5 / 1-3 years）",
+        "grade": "S2",
+        "originator": "Omdia、CBRE、JLL 与伯恩斯坦自行测算"
+      },
+      "depth": "精读",
+      "notes": "原表 Estimated Planned（U.S. GW）。**乡村档的规划量 37.0 GW 明显高于另两档**（25.7 / 26.1），与「训练负载外迁」的判断一致；规划合计约 88.8 GW。[未核]"
+    },
+    {
+      "fact_id": "bern2605-capacity-today-rural",
+      "asserter": "伯恩斯坦",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-rural-metro",
+        "label": "美国 Rural（乡村市场）"
+      },
+      "value": 23.6,
+      "unit": "GW",
+      "bound": "point",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "券商测算",
+        "region": "US"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 1「Comparing Tiers of Data Center Markets」（Source: Omdia, CBRE, JLL, Bernstein analysis）：Major Metro / Minor Metro / Rural 三档的 Hyperscale Pricing（$120-150 / $90-130 / $70-120）、Colo Pricing（$160-230 / $150-190 / 无）、Estimated Size Today（21.5 / 23.6 / 23.6 U.S. GW）、Estimated Planned（25.7 / 26.1 / 37.0 U.S. GW）、Build Costs per GW（$12-15B / $9-12B / $7-9B）、Hyperscale Cap Rates（4.5-6.0% / 5.5-6.75% / 6.5-8.0%）、Colo Cap Rates（5.5-6.5% / 6.0-7.25% / 7.0-9.0%）、Power Queues（4-7 / 3-5 / 1-3 years）",
+        "grade": "S2",
+        "originator": "Omdia、CBRE、JLL 与伯恩斯坦自行测算"
+      },
+      "depth": "精读",
+      "notes": "原表 Estimated Size Today（U.S. GW），未说明是 IT 负载还是设施总功率。三档合计约 68.7 GW。[未核]"
+    },
+    {
+      "fact_id": "bern2605-capacity-planned-rural",
+      "asserter": "伯恩斯坦",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "market",
+        "id": "us-dc-rural-metro",
+        "label": "美国 Rural（乡村市场）"
+      },
+      "value": 37.0,
+      "unit": "GW",
+      "bound": "point",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "US"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 1「Comparing Tiers of Data Center Markets」（Source: Omdia, CBRE, JLL, Bernstein analysis）：Major Metro / Minor Metro / Rural 三档的 Hyperscale Pricing（$120-150 / $90-130 / $70-120）、Colo Pricing（$160-230 / $150-190 / 无）、Estimated Size Today（21.5 / 23.6 / 23.6 U.S. GW）、Estimated Planned（25.7 / 26.1 / 37.0 U.S. GW）、Build Costs per GW（$12-15B / $9-12B / $7-9B）、Hyperscale Cap Rates（4.5-6.0% / 5.5-6.75% / 6.5-8.0%）、Colo Cap Rates（5.5-6.5% / 6.0-7.25% / 7.0-9.0%）、Power Queues（4-7 / 3-5 / 1-3 years）",
+        "grade": "S2",
+        "originator": "Omdia、CBRE、JLL 与伯恩斯坦自行测算"
+      },
+      "depth": "精读",
+      "notes": "原表 Estimated Planned（U.S. GW）。**乡村档的规划量 37.0 GW 明显高于另两档**（25.7 / 26.1），与「训练负载外迁」的判断一致；规划合计约 88.8 GW。[未核]"
+    },
+    {
+      "fact_id": "bern2605-build-cost-2026e-nova",
+      "asserter": "伯恩斯坦",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-nova-dc-market",
+        "label": "美国北弗吉尼亚（NoVa）数据中心市场"
+      },
+      "value": 13.0,
+      "unit": "百万美元/MW",
+      "bound": "point",
+      "caliber": {
+        "cost_scope": "未注明",
+        "stage": "估算",
+        "region": "US",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 15「Average Cost to Build Expected for 2026 ($M)」：NoVa $13.0、Phoenix $10.5、Atlanta $10.5（Source: JLL Global DC Outlook, Bernstein Analysis）",
+        "grade": "S2",
+        "originator": "JLL Global DC Outlook 与伯恩斯坦测算"
+      },
+      "depth": "精读",
+      "notes": "2026 年预期的单位建设成本；NoVa 比另两地贵 24%，原文归因于其更强的需求与领先地位。原表单位写 $M，按每 MW 理解（与 Exhibit 1 的 $B/GW 口径一致）。[未核]"
+    },
+    {
+      "fact_id": "bern2605-build-cost-2026e-phoenix",
+      "asserter": "伯恩斯坦",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-phoenix-dc-market",
+        "label": "美国凤凰城数据中心市场"
+      },
+      "value": 10.5,
+      "unit": "百万美元/MW",
+      "bound": "point",
+      "caliber": {
+        "cost_scope": "未注明",
+        "stage": "估算",
+        "region": "US",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 15「Average Cost to Build Expected for 2026 ($M)」：NoVa $13.0、Phoenix $10.5、Atlanta $10.5（Source: JLL Global DC Outlook, Bernstein Analysis）",
+        "grade": "S2",
+        "originator": "JLL Global DC Outlook 与伯恩斯坦测算"
+      },
+      "depth": "精读",
+      "notes": "2026 年预期的单位建设成本；NoVa 比另两地贵 24%，原文归因于其更强的需求与领先地位。原表单位写 $M，按每 MW 理解（与 Exhibit 1 的 $B/GW 口径一致）。[未核]"
+    },
+    {
+      "fact_id": "bern2605-build-cost-2026e-atlanta",
+      "asserter": "伯恩斯坦",
+      "metric_id": "dc_build_cost_per_mw",
+      "entity": {
+        "type": "market",
+        "id": "us-atlanta-dc-market",
+        "label": "美国亚特兰大数据中心市场"
+      },
+      "value": 10.5,
+      "unit": "百万美元/MW",
+      "bound": "point",
+      "caliber": {
+        "cost_scope": "未注明",
+        "stage": "估算",
+        "region": "US",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 15「Average Cost to Build Expected for 2026 ($M)」：NoVa $13.0、Phoenix $10.5、Atlanta $10.5（Source: JLL Global DC Outlook, Bernstein Analysis）",
+        "grade": "S2",
+        "originator": "JLL Global DC Outlook 与伯恩斯坦测算"
+      },
+      "depth": "精读",
+      "notes": "2026 年预期的单位建设成本；NoVa 比另两地贵 24%，原文归因于其更强的需求与领先地位。原表单位写 $M，按每 MW 理解（与 Exhibit 1 的 $B/GW 口径一致）。[未核]"
+    },
+    {
+      "fact_id": "bern2605-top-markets-vacancy-2025",
+      "asserter": "伯恩斯坦",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "us-top-dc-markets",
+        "label": "美国头部数据中心市场（北弗吉尼亚、凤凰城、亚特兰大）"
+      },
+      "value": 1.5,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "scope": "区域合计",
+        "region": "US"
+      },
+      "as_of": "2025",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 13「Vacancy rates in top markets have significantly declined due to strong demand growth, reaching notably low levels of approximately 1%–2%」（Source: CBRE North America Data Center Trends, Bernstein Analysis）",
+        "grade": "S2",
+        "originator": "CBRE North America Data Center Trends"
+      },
+      "depth": "精读",
+      "notes": "**原文给的是「大约 1%~2%」的区间，本条取中值 1.5 记点值并在此说明**——三个市场 2021-2025 的逐半年曲线在抽取文本里柱与标签无法对应，只录正文的概括值。2021 年下半年这三个市场的空置率还在 8%~12% 一档。[未核]"
+    },
+    {
+      "fact_id": "bern2605-amazon-future-capacity-lower",
+      "asserter": "伯恩斯坦",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "company",
+        "id": "amazon",
+        "label": "亚马逊（美国头部市场的规划新增容量）"
+      },
+      "value": 5.0,
+      "unit": "GW",
+      "bound": "lower",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "券商测算",
+        "region": "US"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 9 标题：「While the largest current providers are Amazon, Meta, Google, and Digital Realty, Amazon and Microsoft have the most ambitious capacity expansion plans, each with 5-6 GW slotted」（10 Largest Providers in Top Markets - Operational & Future Capacity (MW)，Source: Omdia, Bernstein analysis）",
+        "grade": "S2",
+        "originator": "Omdia 与伯恩斯坦测算"
+      },
+      "depth": "精读",
+      "notes": "**口径限于「头部市场」（Exhibit 9 的统计范围是 Top Markets），不是这两家的全球规划总量**；原文称当前最大的在运营商是亚马逊、Meta、谷歌与 Digital Realty，而规划量最大的是亚马逊与微软，各 5-6 GW。[未核]"
+    },
+    {
+      "fact_id": "bern2605-amazon-future-capacity-upper",
+      "asserter": "伯恩斯坦",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "company",
+        "id": "amazon",
+        "label": "亚马逊（美国头部市场的规划新增容量）"
+      },
+      "value": 6.0,
+      "unit": "GW",
+      "bound": "upper",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "券商测算",
+        "region": "US"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 9 标题：「While the largest current providers are Amazon, Meta, Google, and Digital Realty, Amazon and Microsoft have the most ambitious capacity expansion plans, each with 5-6 GW slotted」（10 Largest Providers in Top Markets - Operational & Future Capacity (MW)，Source: Omdia, Bernstein analysis）",
+        "grade": "S2",
+        "originator": "Omdia 与伯恩斯坦测算"
+      },
+      "depth": "精读",
+      "notes": "**口径限于「头部市场」（Exhibit 9 的统计范围是 Top Markets），不是这两家的全球规划总量**；原文称当前最大的在运营商是亚马逊、Meta、谷歌与 Digital Realty，而规划量最大的是亚马逊与微软，各 5-6 GW。[未核]"
+    },
+    {
+      "fact_id": "bern2605-microsoft-future-capacity-lower",
+      "asserter": "伯恩斯坦",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "company",
+        "id": "microsoft",
+        "label": "微软（美国头部市场的规划新增容量）"
+      },
+      "value": 5.0,
+      "unit": "GW",
+      "bound": "lower",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "券商测算",
+        "region": "US"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 9 标题：「While the largest current providers are Amazon, Meta, Google, and Digital Realty, Amazon and Microsoft have the most ambitious capacity expansion plans, each with 5-6 GW slotted」（10 Largest Providers in Top Markets - Operational & Future Capacity (MW)，Source: Omdia, Bernstein analysis）",
+        "grade": "S2",
+        "originator": "Omdia 与伯恩斯坦测算"
+      },
+      "depth": "精读",
+      "notes": "**口径限于「头部市场」（Exhibit 9 的统计范围是 Top Markets），不是这两家的全球规划总量**；原文称当前最大的在运营商是亚马逊、Meta、谷歌与 Digital Realty，而规划量最大的是亚马逊与微软，各 5-6 GW。[未核]"
+    },
+    {
+      "fact_id": "bern2605-microsoft-future-capacity-upper",
+      "asserter": "伯恩斯坦",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "company",
+        "id": "microsoft",
+        "label": "微软（美国头部市场的规划新增容量）"
+      },
+      "value": 6.0,
+      "unit": "GW",
+      "bound": "upper",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "券商测算",
+        "region": "US"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "Exhibit 9 标题：「While the largest current providers are Amazon, Meta, Google, and Digital Realty, Amazon and Microsoft have the most ambitious capacity expansion plans, each with 5-6 GW slotted」（10 Largest Providers in Top Markets - Operational & Future Capacity (MW)，Source: Omdia, Bernstein analysis）",
+        "grade": "S2",
+        "originator": "Omdia 与伯恩斯坦测算"
+      },
+      "depth": "精读",
+      "notes": "**口径限于「头部市场」（Exhibit 9 的统计范围是 Top Markets），不是这两家的全球规划总量**；原文称当前最大的在运营商是亚马逊、Meta、谷歌与 Digital Realty，而规划量最大的是亚马逊与微软，各 5-6 GW。[未核]"
+    },
+    {
+      "fact_id": "bern2605-dlr-site-capacity-lower",
+      "asserter": "伯恩斯坦",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "company",
+        "id": "digital-realty",
+        "label": "Digital Realty（单站点容量区间）"
+      },
+      "value": 20.0,
+      "unit": "MW",
+      "bound": "lower",
+      "caliber": {
+        "capacity_type": "设施容量",
+        "status": "L5",
+        "region": "US"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "正文：「DLR typically operates larger campuses and buildings often ranging from ~20 MW to 100+ MW per site... [EQIX sites] are generally smaller, denser, and more modular, often averaging ~5 MW to 25 MW per site, optimized for multi-tenant colo」",
+        "grade": "S2",
+        "originator": "Omdia 与伯恩斯坦测算"
+      },
+      "depth": "精读",
+      "notes": "原文写「~20 MW to 100+ MW per site」，上界是「100+」故本对的上界实为下探值，记 100 并在此说明；DLR 走的是大园区路线。 两家单站点规模相差 4-5 倍，对应两种商业模式（超大规模批发 vs 互联密集的零售托管）。status 维原文未给建设阶段，按已投运理解记 L5。[未核]"
+    },
+    {
+      "fact_id": "bern2605-dlr-site-capacity-upper",
+      "asserter": "伯恩斯坦",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "company",
+        "id": "digital-realty",
+        "label": "Digital Realty（单站点容量区间）"
+      },
+      "value": 100.0,
+      "unit": "MW",
+      "bound": "upper",
+      "caliber": {
+        "capacity_type": "设施容量",
+        "status": "L5",
+        "region": "US"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "正文：「DLR typically operates larger campuses and buildings often ranging from ~20 MW to 100+ MW per site... [EQIX sites] are generally smaller, denser, and more modular, often averaging ~5 MW to 25 MW per site, optimized for multi-tenant colo」",
+        "grade": "S2",
+        "originator": "Omdia 与伯恩斯坦测算"
+      },
+      "depth": "精读",
+      "notes": "原文写「~20 MW to 100+ MW per site」，上界是「100+」故本对的上界实为下探值，记 100 并在此说明；DLR 走的是大园区路线。 两家单站点规模相差 4-5 倍，对应两种商业模式（超大规模批发 vs 互联密集的零售托管）。status 维原文未给建设阶段，按已投运理解记 L5。[未核]"
+    },
+    {
+      "fact_id": "bern2605-eqix-site-capacity-lower",
+      "asserter": "伯恩斯坦",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "company",
+        "id": "equinix",
+        "label": "Equinix（单站点容量区间）"
+      },
+      "value": 5.0,
+      "unit": "MW",
+      "bound": "lower",
+      "caliber": {
+        "capacity_type": "设施容量",
+        "status": "L5",
+        "region": "US"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "正文：「DLR typically operates larger campuses and buildings often ranging from ~20 MW to 100+ MW per site... [EQIX sites] are generally smaller, denser, and more modular, often averaging ~5 MW to 25 MW per site, optimized for multi-tenant colo」",
+        "grade": "S2",
+        "originator": "Omdia 与伯恩斯坦测算"
+      },
+      "depth": "精读",
+      "notes": "原文写「~5 MW to 25 MW per site」，更小更密更模块化，面向多租户零售托管。 两家单站点规模相差 4-5 倍，对应两种商业模式（超大规模批发 vs 互联密集的零售托管）。status 维原文未给建设阶段，按已投运理解记 L5。[未核]"
+    },
+    {
+      "fact_id": "bern2605-eqix-site-capacity-upper",
+      "asserter": "伯恩斯坦",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "company",
+        "id": "equinix",
+        "label": "Equinix（单站点容量区间）"
+      },
+      "value": 25.0,
+      "unit": "MW",
+      "bound": "upper",
+      "caliber": {
+        "capacity_type": "设施容量",
+        "status": "L5",
+        "region": "US"
+      },
+      "as_of": "2026-05",
+      "evidence": {
+        "sha256": "fc79cb70632c3d561bb36275b391385eac64a2964d864b0d0504f594ab851d23",
+        "local_file": "20260605-伯恩斯坦数据中心：顶级数据中心市场的样子——包括DLR和EQIX的布局(25页).pdf",
+        "locator": "正文：「DLR typically operates larger campuses and buildings often ranging from ~20 MW to 100+ MW per site... [EQIX sites] are generally smaller, denser, and more modular, often averaging ~5 MW to 25 MW per site, optimized for multi-tenant colo」",
+        "grade": "S2",
+        "originator": "Omdia 与伯恩斯坦测算"
+      },
+      "depth": "精读",
+      "notes": "原文写「~5 MW to 25 MW per site」，更小更密更模块化，面向多租户零售托管。 两家单站点规模相差 4-5 倍，对应两种商业模式（超大规模批发 vs 互联密集的零售托管）。status 维原文未给建设阶段，按已投运理解记 L5。[未核]"
     }
   ]
 }
