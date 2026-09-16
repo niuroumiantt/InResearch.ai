@@ -39150,7 +39150,10 @@
       "derived": false,
       "corroboration": "同源转述",
       "notes": "**原文「超过」按下界记**。**口径是「算力中心」而非「数据中心」**，工信部 2024 年起改用算力中心口径，与 2023 年信通院「数据中心机架」可能不完全同口径，接成序列时要小心，标 [未核]。对照库内 cn-rack-total-2025（2025-06，1,085 万）。\n\n**（2026-09-15 核对 880 vs 900）两条都是下界，并不矛盾**：「超过 880 万」与「超过 900 万」同时为真只要求实际值 >900 万，下界不同不构成冲突。库内语料里两种说法各有出处：880 万用「算力中心机架」措辞（深企投 2025-04 引工信部；西门子 2025-11 白皮书同句，注标准机架=2.5kW、来源国家数据局），900 万用「数据中心机架」措辞（信通院《绿色算力发展研究报告（2025年）》2025-07 脚注工信部；中国通信工业协会数据中心委员会 2025-12；开源证券 2026-05 另称同比 +11%）。两者都配 280 EFLOPS，应是同一年底统计的两次公开口径（较早一次取整到 880、较晚一次到 900，或「算力中心/数据中心」措辞差），未找到工信部原始发布，不判哪次为准；按下界使用时取 900 万更紧。",
-      "asserter": "工信部"
+      "asserter": "工信部",
+      "disputed_by": [
+        "yg2508-cn-racks-2024"
+      ]
     },
     {
       "fact_id": "kezhi-cn-aidc-it-load-2023",
@@ -249252,6 +249255,184 @@
       },
       "depth": "精读",
       "notes": "**这是「专业服务」口径（人民币 155 亿元），与 IDC 的中国智算服务市场（2024 年 50 亿美元，约 360 亿元人民币）不是同一个盘子**，后者含算力租赁与 IaaS。两者不可比。[未核]"
+    },
+    {
+      "fact_id": "yg2508-cn-racks-2024",
+      "asserter": "易观分析",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "value": 830.0,
+      "unit": "万标准机架",
+      "bound": "point",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "cbc43168f6863091c34b44541ed7b109753affae99554e6945e22d06032a9255",
+        "local_file": "20250818-易观分析-2025年中国AI算力基础设施行业发展趋势洞察.pdf",
+        "locator": "第 2 页「已建成投产算力规模全球第二」：「截至 2024 年，全国在用算力中心机架总规模达 830 万标准机架。全国算力总规模超过 280 EFLOPS，居全球第二位」「智能算力规模达 90EFLOPS，占比超过 30%，比 2019 年增长近 13 倍，年均增速约 90%，占全国算力比重接近 30%」（数据来源：公开信息）",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "disputes": [
+        "miit-racks-inuse-2024"
+      ],
+      "notes": "**与库内工信部口径的 2024 年底「超过 880 万架」（另一处 900 万架）差 50-70 万架**。易观只写「数据来源：公开信息」，未注明统计口径与时点是否为年底，按 PR #197 断言者记易观。已挂 disputes。[未核]"
+    },
+    {
+      "fact_id": "yg2508-cn-compute-total-2024",
+      "asserter": "易观分析",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "value": 280.0,
+      "unit": "EFLOPS",
+      "bound": "lower",
+      "caliber": {
+        "compute_type": "总算力",
+        "precision": "混合/未注明",
+        "area": "全国",
+        "status": "在用",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "cbc43168f6863091c34b44541ed7b109753affae99554e6945e22d06032a9255",
+        "local_file": "20250818-易观分析-2025年中国AI算力基础设施行业发展趋势洞察.pdf",
+        "locator": "第 2 页「已建成投产算力规模全球第二」：「截至 2024 年，全国在用算力中心机架总规模达 830 万标准机架。全国算力总规模超过 280 EFLOPS，居全球第二位」「智能算力规模达 90EFLOPS，占比超过 30%，比 2019 年增长近 13 倍，年均增速约 90%，占全国算力比重接近 30%」（数据来源：公开信息）",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "「超过 280 EFLOPS」记下界。**这一档远低于信通院计算设备侧口径的 962 EFLOPS（2025-06）与 IDC 的 FP16 智算口径**，属「算力中心内」的窄口径；精度未注明。[未核]"
+    },
+    {
+      "fact_id": "yg2508-cn-ai-compute-2024",
+      "asserter": "易观分析",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "value": 90.0,
+      "unit": "EFLOPS",
+      "bound": "point",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "混合/未注明",
+        "area": "全国",
+        "status": "在用",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "cbc43168f6863091c34b44541ed7b109753affae99554e6945e22d06032a9255",
+        "local_file": "20250818-易观分析-2025年中国AI算力基础设施行业发展趋势洞察.pdf",
+        "locator": "第 2 页「已建成投产算力规模全球第二」：「截至 2024 年，全国在用算力中心机架总规模达 830 万标准机架。全国算力总规模超过 280 EFLOPS，居全球第二位」「智能算力规模达 90EFLOPS，占比超过 30%，比 2019 年增长近 13 倍，年均增速约 90%，占全国算力比重接近 30%」（数据来源：公开信息）",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "90/280 = 32%，与原文「占比超过 30%」自洽；比 2019 年增长近 13 倍（即 2019 年约 7 EFLOPS）、年均增速约 90%。**与库内 IDC 的 2024 年 725.3 EFLOPS（FP16）差 8 倍**，精度口径不同。[未核]"
+    },
+    {
+      "fact_id": "yg2508-cn-ai-compute-share-2024",
+      "asserter": "易观分析",
+      "metric_id": "region_compute_share",
+      "entity": {
+        "type": "region",
+        "id": "cn-intelligent-compute",
+        "label": "中国智能算力（占国内算力规模）"
+      },
+      "value": 30.0,
+      "unit": "%",
+      "bound": "lower",
+      "caliber": {
+        "measure": "算力规模",
+        "denominator": "本区域总量",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "cbc43168f6863091c34b44541ed7b109753affae99554e6945e22d06032a9255",
+        "local_file": "20250818-易观分析-2025年中国AI算力基础设施行业发展趋势洞察.pdf",
+        "locator": "第 2 页「已建成投产算力规模全球第二」：「截至 2024 年，全国在用算力中心机架总规模达 830 万标准机架。全国算力总规模超过 280 EFLOPS，居全球第二位」「智能算力规模达 90EFLOPS，占比超过 30%，比 2019 年增长近 13 倍，年均增速约 90%，占全国算力比重接近 30%」（数据来源：公开信息）",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "「占比超过 30%」「接近 30%」同段两种表述，取下界 30%。**这条把该序列的矛盾摆得更清楚**：2022 年 22.8%（信通院）、2024 年 30%（易观）、2025-06 >80%（信通院计算设备侧）——最后一档口径已换，不是同一条曲线。[未核]"
+    },
+    {
+      "fact_id": "yg2508-shanghai-compute-target-2027",
+      "asserter": "上海市人民政府",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "region",
+        "id": "shanghai-compute",
+        "label": "上海市智能算力"
+      },
+      "value": 200.0,
+      "unit": "EFLOPS",
+      "bound": "point",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "混合/未注明",
+        "area": "上海",
+        "status": "规划目标",
+        "region": "CN",
+        "basis": "政策目标"
+      },
+      "as_of": "2027目标",
+      "evidence": {
+        "sha256": "cbc43168f6863091c34b44541ed7b109753affae99554e6945e22d06032a9255",
+        "local_file": "20250818-易观分析-2025年中国AI算力基础设施行业发展趋势洞察.pdf",
+        "locator": "第 8 页「上海智算 2027 目标」：产业规模 2000 亿元、算力规模 200 EFLOPS、自主可控比例 >70%",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "库内已有上海市经信委的 2027 年 200 EFLOPS 目标（caict-aiops2025-shanghai-ai-compute-target-2027），本条为易观转述的同一目标，署名按发文层级记市政府——两条同值同年，属同一政策的两次转述，不作交叉验证。[未核]"
+    },
+    {
+      "fact_id": "yg2508-liquid-cooled-aidc-pue",
+      "asserter": "易观分析",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "industry",
+        "id": "cn-liquid-cooled-aidc",
+        "label": "采用液冷方案的大型 AI 算力中心（中国）"
+      },
+      "value": 1.2,
+      "unit": "比值",
+      "bound": "point",
+      "caliber": {
+        "basis": "按冷却路线典型值",
+        "cooling_tech": "混合",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "大型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2025-08",
+      "evidence": {
+        "sha256": "cbc43168f6863091c34b44541ed7b109753affae99554e6945e22d06032a9255",
+        "local_file": "20250818-易观分析-2025年中国AI算力基础设施行业发展趋势洞察.pdf",
+        "locator": "第 10 页：「采用液冷方案的大型 AI 算力中心平均 PUE 可低至 1.2 左右，相比传统机房的 1.5 以上大幅改善」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "按冷却路线给的典型值而非某一项目实测；对照基准是传统机房 1.5 以上。同页另称冷板散热效率提升 40%、浸没节能 30%+、新一代国产 AI 芯片单位算力能耗较上代降低 25%，三项均无对应指标。[未核]"
     }
   ]
 }
