@@ -237708,9 +237708,9 @@
       "asserter": "中国信通院",
       "metric_id": "regional_compute_capacity",
       "entity": {
-        "type": "region",
-        "id": "cn-intelligent-compute",
-        "label": "中国智能算力规模"
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
       },
       "value": 104.0,
       "unit": "EFLOPS",
@@ -237732,7 +237732,10 @@
         "originator": "中国移动《NICC 新型智算中心技术体系白皮书》（2023）转述"
       },
       "depth": "精读",
-      "notes": "原文只给白皮书名未给发布机构，《中国算力发展指数白皮书》系中国信通院出品，据此归属；原文未说明精度口径与在用/累计状态。[未核]"
+      "notes": "原文只给白皮书名未给发布机构，《中国算力发展指数白皮书》系中国信通院出品，据此归属；原文未说明精度口径与在用/累计状态。[未核] 实体按库内同族主流 id 归一到 cn-mainland，使其与 IDC 同年 155.2 EFLOPS（FP16 口径）落在同一实体下；两条精度维不同（本条未注明、IDC 为 FP16），量级差 1.5 倍，署名与精度口径都不同，已挂 disputes 待裁。",
+      "disputes": [
+        "idc2023-cn-ai-compute-fp16-2021"
+      ]
     },
     {
       "fact_id": "caict-cn-intelligent-compute-share-2021",
@@ -238197,6 +238200,933 @@
       },
       "depth": "精读",
       "notes": "中国移动白皮书正文；原文未说明是否含配套散热，按机内 IT 功耗理解记不含 PUE。同句「是通用服务器的 10 倍以上」为倍数表述，未单独入库。[未核]"
+    },
+    {
+      "fact_id": "yq2023-idc-cn-ai-server-market-2021",
+      "asserter": "IDC",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "value": 53.9,
+      "unit": "亿（原币）",
+      "bound": "point",
+      "caliber": {
+        "measure": "AI 服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "美元",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2021@2023",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "第 1 章 2 节：「据 IDC 统计，2021 年中国 AI 服务器市场规模为 53.9 亿美元」",
+        "grade": "S2",
+        "originator": "益企研究院《2023 新型算力中心调研报告》转述"
+      },
+      "depth": "精读",
+      "notes": "益企研究院转述 IDC；同句给 2021~2025 年 CAGR 17.7%，库内无市场规模 CAGR 指标，未单列。[未核] 实体归一到 cn-mainland 后与库内 idc2023-cn-ai-server-market-2021（同为 IDC、同为 2021 年中国 AI 服务器市场、59.2 亿美元）正面冲突：同一机构同一年份两个数，应是两次修订。本条经益企 2023 年报告转述、IDC 原报告时点不详，快照按转述年记 2021@2023，两条都留下并挂 disputes。",
+      "disputes": [
+        "idc2023-cn-ai-server-market-2021"
+      ]
+    },
+    {
+      "fact_id": "yq2023-idc-cn-ai-server-market-2025e",
+      "asserter": "IDC",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "value": 103.4,
+      "unit": "亿（原币）",
+      "bound": "point",
+      "caliber": {
+        "measure": "AI 服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "美元",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2023",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "第 1 章 2 节：「预计 2025 年达到 103.4 亿美元」",
+        "grade": "S2",
+        "originator": "益企研究院《2023 新型算力中心调研报告》转述"
+      },
+      "depth": "精读",
+      "notes": "IDC 预测，快照按益企报告发布年 2023 记（原文未注明 IDC 该预测的发布时点）。[未核] 实体归一到 cn-mainland；库内另有 IDC 2021 年做出的同年预测 108.6 亿美元（idc2021-cn-ai-server-market-2025e），两条是不同年份的修订，已挂 disputes。",
+      "disputes": [
+        "idc2021-cn-ai-server-market-2025e"
+      ]
+    },
+    {
+      "fact_id": "yq2023-idc-cn-ai-compute-fp16-2025e",
+      "asserter": "IDC",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "value": 922.8,
+      "unit": "EFLOPS",
+      "bound": "point",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "FP16",
+        "area": "全国",
+        "status": "未注明",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2023-01",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "第 1 章 2 节：「2021 年中国智能算力规模为 155.2EFLOPS，预计 2025 年达 922.8EFLOPS，2021~2025 年 CAGR 达 56.15%」",
+        "grade": "S2",
+        "originator": "益企研究院《2023 新型算力中心调研报告》转述"
+      },
+      "depth": "精读",
+      "notes": "原文未写精度，但同组的 2021 年 155.2 EFLOPS 与库内 IDC FP16 序列（idc2023-cn-ai-compute-fp16-2021）逐位相同，据此判定同属 IDC 的 FP16 口径；2021 年那条库内已有，不重复录。[未核] 快照改记 2023-01：该报告第 5 章重出的同一张曲线（2019 31.7 / 2020 75.0 / 2021 155.2 / 2022 268.0 / 2023 427.0 / 2024 640.7 / 2025 922.8 / 2026 1271.4）与库内 idc2023 系列（@2023-01）逐点相同，可判定同属 IDC 该版本；该图在原文标注的数据来源是《智能计算中心创新发展指南》，即指南转录了 IDC 的序列。"
+    },
+    {
+      "fact_id": "yq2023-ali-renhe-immersion-pue",
+      "asserter": "阿里巴巴",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "alibaba-renhe-liquid-dc",
+        "label": "阿里巴巴浙江云计算仁和液冷数据中心"
+      },
+      "value": 1.09,
+      "unit": "比值",
+      "bound": "point",
+      "caliber": {
+        "basis": "最优水平",
+        "cooling_tech": "浸没液冷",
+        "climate_zone": "南方",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "第 4 章：「有一栋机房楼专用于部署单相浸没式液冷服务器……根据官方提供的数据，PUE 可低至 1.09」",
+        "grade": "S2",
+        "originator": "益企研究院《2023 新型算力中心调研报告》转述"
+      },
+      "depth": "精读",
+      "notes": "「可低至」是最优值不是常年运行均值，basis 记最优水平；原文未说明统计周期，按年均理解。该数据来自阿里官方、益企研究院实地考察转述。同段「每年可节电 7000 万度」库内无对应指标，已记缺口。[未核]"
+    },
+    {
+      "fact_id": "yq2023-telecom-ctyun-revenue-2022",
+      "asserter": "中国电信",
+      "metric_id": "cloud_revenue_by_vendor",
+      "entity": {
+        "type": "company",
+        "id": "telecom-ctyun",
+        "label": "天翼云"
+      },
+      "value": 579.0,
+      "unit": "数值（见 parameter）",
+      "bound": "point",
+      "caliber": {
+        "vendor": "天翼云",
+        "parameter": "营收",
+        "service_scope": "未注明",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "第 1 章 1 节：「从中国移动、中国电信、中国联通 2022 年年报业绩来看……天翼云营收 579.0 亿元，同比增长 108%」",
+        "grade": "S2",
+        "originator": "益企研究院《2023 新型算力中心调研报告》转述"
+      },
+      "depth": "精读",
+      "notes": "数值单位为亿元人民币——本指标没有币种维，与日后可能录入的美元口径云收入会无声混列，已记缺口。原文同时给同比增速 108%，parameter 维没有增速取值，一并记在缺口里。口径取自运营商 2022 年年报，未说明是否只含 IaaS。[未核]"
+    },
+    {
+      "fact_id": "yq2023-unicom-cloud-revenue-2022",
+      "asserter": "中国联通",
+      "metric_id": "cloud_revenue_by_vendor",
+      "entity": {
+        "type": "company",
+        "id": "unicom-cloud",
+        "label": "联通云"
+      },
+      "value": 361.0,
+      "unit": "数值（见 parameter）",
+      "bound": "point",
+      "caliber": {
+        "vendor": "联通云",
+        "parameter": "营收",
+        "service_scope": "未注明",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "第 1 章 1 节：「从中国移动、中国电信、中国联通 2022 年年报业绩来看……联通云营收 361.0 亿元，同比增长 121%」",
+        "grade": "S2",
+        "originator": "益企研究院《2023 新型算力中心调研报告》转述"
+      },
+      "depth": "精读",
+      "notes": "数值单位为亿元人民币——本指标没有币种维，与日后可能录入的美元口径云收入会无声混列，已记缺口。原文同时给同比增速 121%，parameter 维没有增速取值，一并记在缺口里。口径取自运营商 2022 年年报，未说明是否只含 IaaS。[未核]"
+    },
+    {
+      "fact_id": "yq2023-cmcc-cloud-revenue-2022",
+      "asserter": "中国移动",
+      "metric_id": "cloud_revenue_by_vendor",
+      "entity": {
+        "type": "company",
+        "id": "cmcc-cloud",
+        "label": "移动云"
+      },
+      "value": 503.0,
+      "unit": "数值（见 parameter）",
+      "bound": "point",
+      "caliber": {
+        "vendor": "移动云",
+        "parameter": "营收",
+        "service_scope": "未注明",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "第 1 章 1 节：「从中国移动、中国电信、中国联通 2022 年年报业绩来看……移动云营收 503.0 亿元，同比增长 108%」",
+        "grade": "S2",
+        "originator": "益企研究院《2023 新型算力中心调研报告》转述"
+      },
+      "depth": "精读",
+      "notes": "数值单位为亿元人民币——本指标没有币种维，与日后可能录入的美元口径云收入会无声混列，已记缺口。原文同时给同比增速 108%，parameter 维没有增速取值，一并记在缺口里。口径取自运营商 2022 年年报，未说明是否只含 IaaS。[未核]"
+    },
+    {
+      "fact_id": "yq2023-sensetime-aidc-phase1-compute",
+      "asserter": "益企研究院",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "sensetime-lingang",
+        "label": "商汤上海临港人工智能计算中心（AIDC）"
+      },
+      "value": 5000.0,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "已投运",
+        "phase": "一期",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "第 1 章 2 节：「商汤上海临港人工智能计算中心（AIDC）一期……基于 2.7 万块 GPU 的并行计算系统实现了 5.0 exaFLOPS 的算力输出，可支持最多 20 个千亿参数量超大模型同时训练」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "实地考察记述，原文未注明精度。与库内 cmcc-niccwp-2023-sensetime-lingang（中国移动白皮书「规模超 4E」、phase 整体）是同一设施的两种口径：本条是一期的算力输出，那条未分期，数值反而更小，两者不可互相校验。同句「2.7 万块 GPU」库内无加速卡数量指标，已记缺口。[未核]"
+    },
+    {
+      "fact_id": "yq2023-fuyao-xpeng-compute",
+      "asserter": "益企研究院",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "fuyao-wulanchabu",
+        "label": "小鹏汽车与阿里云乌兰察布「扶摇」自动驾驶智算中心"
+      },
+      "value": 600.0,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "已投运",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "第 1 章：「小鹏汽车和阿里云共同发布在乌兰察布合建当时国内最大的自动驾驶智算中心『扶摇』……算力规模达 600PFLOPS」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "原文称发布于 2022 年数字中国万里行考察期间，as_of 记 2022；精度口径未注明。[未核]"
+    },
+    {
+      "fact_id": "yq2023-top100-internet-share-2019",
+      "asserter": "张云泉",
+      "metric_id": "compute_demand_share_by_industry",
+      "entity": {
+        "type": "market",
+        "id": "cn-hpc-top100",
+        "label": "中国高性能计算机 TOP100 榜单系统"
+      },
+      "value": 30.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "industry": "互联网",
+        "measure": "项目数",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2019",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "序（张云泉）：「2019 年发布的中国高性能计算机 TOP100 排行榜……在 TOP100 中，有 30% 的系统都来自互联网行业」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "断言者为署名作序的张云泉（TOP100 榜单主持人）；分母是榜单入围系统台数，故 measure 记项目数。同报告第 3 章给 2022 年榜单的性能份额结构（算力服务 57%、超算中心 18%、大数据 6%、云计算 4%、科学计算 4%、视频 3%），industry 维没有这些取值、measure 维也没有「性能份额」，未录，已记缺口。[未核]"
+    },
+    {
+      "fact_id": "yq2023-idc-cn-ai-compute-fp16-2019",
+      "asserter": "IDC",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "value": 31.7,
+      "unit": "EFLOPS",
+      "bound": "point",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "FP16",
+        "area": "全国",
+        "status": "未注明",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2019@2023-01",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "第 5 章「中国智能算力发展趋势」曲线（数据来源标注《智能计算中心创新发展指南》）：2019 31.7 / 2020 75.0 / 2021 155.2 / 2022 268.0 / 2023 427.0 / 2024 640.7 / 2025 922.8 / 2026 1271.4 EFLOPS",
+        "grade": "S2",
+        "originator": "益企研究院《2023 新型算力中心调研报告》转述"
+      },
+      "depth": "精读",
+      "notes": "该曲线与库内 IDC @2023-01 序列逐点相同（155.2、268.0、1271.4 三点可直接对上），判定为 IDC 同版本数据经《智能计算中心创新发展指南》转录，断言者记 IDC；原文未标精度，随该序列既有口径记 FP16。[未核]"
+    },
+    {
+      "fact_id": "yq2023-idc-cn-ai-compute-fp16-2023e",
+      "asserter": "IDC",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "value": 427.0,
+      "unit": "EFLOPS",
+      "bound": "point",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "FP16",
+        "area": "全国",
+        "status": "未注明",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2023E@2023-01",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "第 5 章「中国智能算力发展趋势」曲线（数据来源标注《智能计算中心创新发展指南》）：2019 31.7 / 2020 75.0 / 2021 155.2 / 2022 268.0 / 2023 427.0 / 2024 640.7 / 2025 922.8 / 2026 1271.4 EFLOPS",
+        "grade": "S2",
+        "originator": "益企研究院《2023 新型算力中心调研报告》转述"
+      },
+      "depth": "精读",
+      "notes": "该曲线与库内 IDC @2023-01 序列逐点相同（155.2、268.0、1271.4 三点可直接对上），判定为 IDC 同版本数据经《智能计算中心创新发展指南》转录，断言者记 IDC；原文未标精度，随该序列既有口径记 FP16。[未核]"
+    },
+    {
+      "fact_id": "yq2023-idc-cn-ai-compute-fp16-2024e",
+      "asserter": "IDC",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "value": 640.7,
+      "unit": "EFLOPS",
+      "bound": "point",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "FP16",
+        "area": "全国",
+        "status": "未注明",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2024E@2023-01",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "第 5 章「中国智能算力发展趋势」曲线（数据来源标注《智能计算中心创新发展指南》）：2019 31.7 / 2020 75.0 / 2021 155.2 / 2022 268.0 / 2023 427.0 / 2024 640.7 / 2025 922.8 / 2026 1271.4 EFLOPS",
+        "grade": "S2",
+        "originator": "益企研究院《2023 新型算力中心调研报告》转述"
+      },
+      "depth": "精读",
+      "notes": "该曲线与库内 IDC @2023-01 序列逐点相同（155.2、268.0、1271.4 三点可直接对上），判定为 IDC 同版本数据经《智能计算中心创新发展指南》转录，断言者记 IDC；原文未标精度，随该序列既有口径记 FP16。[未核]"
+    },
+    {
+      "fact_id": "yq2023-idc-global-ai-server-market-2022",
+      "asserter": "IDC",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "global-ai-server",
+        "label": "全球 AI 服务器市场"
+      },
+      "value": 202.0,
+      "unit": "亿（原币）",
+      "bound": "point",
+      "caliber": {
+        "measure": "AI 服务器市场规模",
+        "chip_type": "不分类型",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "第 5 章：「根据 IDC 数据，2022 年全球 AI 服务器市场规模达 202 亿美元，同比增长 29.8%，占服务器市场规模的比例为 16.4%」",
+        "grade": "S2",
+        "originator": "益企研究院《2023 新型算力中心调研报告》转述"
+      },
+      "depth": "精读",
+      "notes": "同句的同比增速 29.8% 与「占服务器市场 16.4%」两项，库内在本指标下都没有维度可放；后者是 AI 服务器占整体服务器市场的份额，与 capex_share_by_segment（客户分部）不是一回事，已记缺口。[未核]"
+    },
+    {
+      "fact_id": "yq2023-intel-xeon-sp-gen3-tdp",
+      "asserter": "益企研究院",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "intel-xeon-sp-gen3",
+        "label": "英特尔第三代至强可扩展处理器（Ice Lake-SP，公开款 TDP 上限）"
+      },
+      "value": 270.0,
+      "unit": "数值（见 parameter）",
+      "bound": "point",
+      "caliber": {
+        "product": "英特尔第三代至强可扩展处理器（Ice Lake-SP，公开款 TDP 上限）",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "不适用",
+        "relative_to": "绝对值",
+        "spec_basis": "厂商规格书",
+        "region": "Global"
+      },
+      "as_of": "2021",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "第 5 章：「公开款的 TDP 指标上限，也从 270 瓦（W）一跃而至 350 瓦。AMD EPYC 9004 系列处理器，最大功率可达 400W」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "服务器 CPU 侧的 TDP 上限，库内此前只有加速卡的 TDP；三条同源于益企研究院对公开规格的整理，用于说明风冷散热压力的来源。[未核]"
+    },
+    {
+      "fact_id": "yq2023-intel-xeon-sp-gen4-tdp",
+      "asserter": "益企研究院",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "intel-xeon-sp-gen4",
+        "label": "英特尔第四代至强可扩展处理器（公开款 TDP 上限）"
+      },
+      "value": 350.0,
+      "unit": "数值（见 parameter）",
+      "bound": "point",
+      "caliber": {
+        "product": "英特尔第四代至强可扩展处理器（公开款 TDP 上限）",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "不适用",
+        "relative_to": "绝对值",
+        "spec_basis": "厂商规格书",
+        "region": "Global"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "第 5 章：「公开款的 TDP 指标上限，也从 270 瓦（W）一跃而至 350 瓦。AMD EPYC 9004 系列处理器，最大功率可达 400W」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "服务器 CPU 侧的 TDP 上限，库内此前只有加速卡的 TDP；三条同源于益企研究院对公开规格的整理，用于说明风冷散热压力的来源。[未核]"
+    },
+    {
+      "fact_id": "yq2023-amd-epyc-9004-tdp",
+      "asserter": "益企研究院",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "amd-epyc-9004",
+        "label": "AMD EPYC 9004 系列（最大功率）"
+      },
+      "value": 400.0,
+      "unit": "数值（见 parameter）",
+      "bound": "point",
+      "caliber": {
+        "product": "AMD EPYC 9004 系列（最大功率）",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "不适用",
+        "relative_to": "绝对值",
+        "spec_basis": "厂商规格书",
+        "region": "Global"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "第 5 章：「公开款的 TDP 指标上限，也从 270 瓦（W）一跃而至 350 瓦。AMD EPYC 9004 系列处理器，最大功率可达 400W」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "服务器 CPU 侧的 TDP 上限，库内此前只有加速卡的 TDP；三条同源于益企研究院对公开规格的整理，用于说明风冷散热压力的来源。[未核]"
+    },
+    {
+      "fact_id": "yq2023-supermuc-pue",
+      "asserter": "联想",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "supermuc-lrz",
+        "label": "德国莱布尼茨超算中心 SuperMUC（联想 NeXtScale）"
+      },
+      "value": 1.1,
+      "unit": "比值",
+      "bound": "point",
+      "caliber": {
+        "basis": "最优水平",
+        "cooling_tech": "冷板液冷",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2016",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "第 5 章：「位于德国莱布尼茨实验室的 SuperMUC，号称首个采用温水水冷技术的 HPC 集群，联想 NeXtScale System 在该实验室部署了 9216 节点……PUE 低至 1.1」",
+        "grade": "S2",
+        "originator": "益企研究院《2023 新型算力中心调研报告》转述"
+      },
+      "depth": "精读",
+      "notes": "温水水冷即冷板式直接液冷；「低至」是最优值，原文未给统计周期，按年均理解。益企研究院 2016 ISC 期间实地参观记述，数出自部署方联想。[未核]"
+    },
+    {
+      "fact_id": "yq2023-pku-weiming-pue",
+      "asserter": "北京大学",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "pku-weiming-hpc",
+        "label": "北京大学高性能计算平台「未名一号」"
+      },
+      "value": 1.1,
+      "unit": "比值",
+      "bound": "point",
+      "caliber": {
+        "basis": "厂商宣称",
+        "cooling_tech": "冷板液冷",
+        "climate_zone": "北方",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2018",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "第 5 章：「北京大学高性能计算校级公共平台……国内第一个温水水冷的大规模超算集群，计算峰值达 3.65PFLOPS……PUE 值达到 1.1」",
+        "grade": "S2",
+        "originator": "益企研究院《2023 新型算力中心调研报告》转述"
+      },
+      "depth": "精读",
+      "notes": "原文同时给 LINPACK 效率 92.6%、存储 14PB，库内无对应指标。温水水冷按冷板液冷记。[未核]"
+    },
+    {
+      "fact_id": "yq2023-chongqing-advanced-dc-pue",
+      "asserter": "西部（重庆）科学城先进数据中心",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "chongqing-advanced-dc",
+        "label": "西部（重庆）科学城先进数据中心（曙光承建）"
+      },
+      "value": 1.144,
+      "unit": "比值",
+      "bound": "point",
+      "caliber": {
+        "basis": "厂商宣称",
+        "cooling_tech": "浸没液冷",
+        "climate_zone": "南方",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "第 5 章：「据西部（重庆）科学城先进数据中心运营中心官方数据称，采用了节能技术之后，项目年均 PUE 可达到 1.144，相比传统风冷模式年节省用电约为 14624.8 MWh，年节省标准煤 4870 吨，年减少二氧化碳排放 13149 吨」",
+        "grade": "S2",
+        "originator": "益企研究院《2023 新型算力中心调研报告》转述"
+      },
+      "depth": "精读",
+      "notes": "浸没相变液冷；「年均 PUE 可达到」按年均口径记，数出自项目运营中心官方口径。同句的年节电 14624.8 MWh、标煤 4870 吨、减碳 13149 吨，库内无节能改造节电量与减碳量指标，已记缺口。[未核]"
+    },
+    {
+      "fact_id": "yq2023-sensetime-aidc-pue",
+      "asserter": "商汤科技",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "sensetime-lingang",
+        "label": "商汤上海临港人工智能计算中心（AIDC）"
+      },
+      "value": 1.28,
+      "unit": "比值",
+      "bound": "point",
+      "caliber": {
+        "basis": "厂商宣称",
+        "cooling_tech": "混合",
+        "climate_zone": "南方",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "第 5 章：「商汤上海临港人工智能计算中心（AIDC）……年均 PUE 优化至 1.28，其综合搭配采用各项技术，包括液冷、AHU、微模块、高效变频离心机、高温冷冻水、高效供电架构及设备等」",
+        "grade": "S2",
+        "originator": "益企研究院《2023 新型算力中心调研报告》转述"
+      },
+      "depth": "精读",
+      "notes": "冷却路线是液冷 + 间接蒸发 + 高温冷冻水的组合，记混合。同段给三项分技术的年节电量（AHU 间接蒸发冷 187 万度、冷板式液冷 176 万度、高效变频离心机 1172 万度）与整体年节电 5000 多万度、年减碳约 5600 吨，库内无单项节能措施节电量指标，已记缺口。[未核]"
+    },
+    {
+      "fact_id": "yq2023-tencent-yizheng-pue",
+      "asserter": "腾讯",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "tencent-yizheng-dc",
+        "label": "腾讯云仪征东升云计算数据中心"
+      },
+      "value": 1.25,
+      "unit": "比值",
+      "bound": "upper",
+      "caliber": {
+        "basis": "厂商宣称",
+        "cooling_tech": "混合",
+        "climate_zone": "南方",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2022-09",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "第 5 章：「2022 年 9 月，数字中国万里行团队参观的腾讯云仪征东升云计算数据中心……仪征数据中心的整体 PUE 低于 1.25，符合『东数西算』要求」",
+        "grade": "S2",
+        "originator": "益企研究院《2023 新型算力中心调研报告》转述"
+      },
+      "depth": "精读",
+      "notes": "「低于 1.25」记上界；原文未展开冷却路线细节，仅提及分布式光伏与整体节能设计，cooling_tech 记混合。[未核]"
+    },
+    {
+      "fact_id": "yq2023-coldplate-return-temp",
+      "asserter": "益企研究院",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "component",
+        "id": "coldplate-loop-generic",
+        "label": "冷板式液冷二次侧回路（通用描述）"
+      },
+      "value": 45.0,
+      "unit": "°C",
+      "bound": "point",
+      "caliber": {
+        "position": "回水",
+        "loop": "二次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "region": "CN",
+        "basis": "厂商参考设计"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "第 5 章：「液体在冷板内流动把 CPU 和内存的热量带走，自身温度达到 45℃，之后经过与数据中心冷却水交换后降低到 35℃返回，继续冷却」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "通用工况描述而非某一产品的规格书取值；45℃ 为换热前的二次侧回液温度。[未核]"
+    },
+    {
+      "fact_id": "yq2023-coldplate-supply-temp",
+      "asserter": "益企研究院",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "component",
+        "id": "coldplate-loop-generic",
+        "label": "冷板式液冷二次侧回路（通用描述）"
+      },
+      "value": 35.0,
+      "unit": "°C",
+      "bound": "point",
+      "caliber": {
+        "position": "供水",
+        "loop": "二次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "region": "CN",
+        "basis": "厂商参考设计"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "第 5 章：「……之后经过与数据中心冷却水交换后降低到 35℃返回，继续冷却」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "与 45℃ 回液构成 10℃ 温差的一对；通用工况描述。[未核]"
+    },
+    {
+      "fact_id": "yq2023-supermuc-compute",
+      "asserter": "益企研究院",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "supermuc-lrz",
+        "label": "德国莱布尼茨超算中心 SuperMUC（联想 NeXtScale）"
+      },
+      "value": 2.897,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "已投运",
+        "phase": "整体",
+        "region": "EU",
+        "basis": "行业机构"
+      },
+      "as_of": "2016",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "第 5 章：「联想 NeXtScale System 在该实验室部署了 9216 节点，峰值运算速度 2,897,000 万亿次（Gflops），整机效能高达 90.95%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "原文单位写作「2,897,000 万亿次（Gflops)」，两种量纲并列自相矛盾；按 2,897,000 GFLOPS = 2.897 PFLOPS 换算，与 SuperMUC 的量级相符。超算峰值通常是 FP64，但原文未注明，精度记未注明。[未核]"
+    },
+    {
+      "fact_id": "yq2023-pku-weiming-compute",
+      "asserter": "益企研究院",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "pku-weiming-hpc",
+        "label": "北京大学高性能计算平台「未名一号」"
+      },
+      "value": 3.65,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "已投运",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2018-01",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "第 5 章：「2018 年 1 月 3 日北京大学高性能计算校级公共平台正式揭牌启用……计算峰值达 3.65PFLOPS，存储容量 14PB」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "计算峰值口径，原文未注明精度。[未核]"
+    },
+    {
+      "fact_id": "miit-green-dc-2019-pue-new-2022",
+      "asserter": "工信部",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "miit-2019-green-dc-guideline",
+        "label": "工信部等《关于加强绿色数据中心建设的指导意见》（2019）新建线"
+      },
+      "value": 1.4,
+      "unit": "比值",
+      "bound": "upper",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2022目标",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "第 5 章政策梳理：「2019 年：工信部、国管局和国家能源局发布《关于加强绿色数据中心建设的指导意见》中提到 2022 年，PUE 达到 1.4 以下，改造使电能使用效率值不高于 1.8」",
+        "grade": "S2",
+        "originator": "益企研究院《2023 新型算力中心调研报告》转述"
+      },
+      "depth": "精读",
+      "notes": "三部门联合发文（工信部、国管局、国家能源局），断言者按牵头部门记工信部；原文此处未限定规模档位，scale 记未分档。"
+    },
+    {
+      "fact_id": "miit-green-dc-2019-pue-retrofit",
+      "asserter": "工信部",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "miit-2019-green-dc-guideline-retrofit",
+        "label": "工信部等《关于加强绿色数据中心建设的指导意见》（2019）改造线"
+      },
+      "value": 1.8,
+      "unit": "比值",
+      "bound": "upper",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "改造",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2022目标",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "第 5 章政策梳理：「2019 年：工信部、国管局和国家能源局发布《关于加强绿色数据中心建设的指导意见》中提到 2022 年，PUE 达到 1.4 以下，改造使电能使用效率值不高于 1.8」",
+        "grade": "S2",
+        "originator": "益企研究院《2023 新型算力中心调研报告》转述"
+      },
+      "depth": "精读",
+      "notes": "同一文件的改造线，与新建线 1.4 成对；「不高于 1.8」记上界。"
+    },
+    {
+      "fact_id": "miit-new-dc-3yr-pue-2021",
+      "asserter": "工信部",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "cn-new-dc-3yr-plan-2021",
+        "label": "工信部《新型数据中心发展三年行动计划（2021-2023）》2021 年底新建线"
+      },
+      "value": 1.35,
+      "unit": "比值",
+      "bound": "upper",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2021目标",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "第 5 章政策梳理：「2021 年：工信部发布《新型数据中心三年行动计划（2021-2023）》中提到 2021 年底，新建数据中心 PUE 降低到 1.35 以下，到 2023 年底降低到 1.3 以下，严寒和寒冷地区力争降低到 1.25 以下」",
+        "grade": "S2",
+        "originator": "益企研究院《2023 新型算力中心调研报告》转述"
+      },
+      "depth": "精读",
+      "notes": "同一文件的 2023 年底 1.3 与严寒寒冷地区 1.25 两档库内已有（cn-policy-pue-large-dc-2021、cw2022cn-policy-pue-large-cold-2023），本条补的是 2021 年底这一档。"
+    },
+    {
+      "fact_id": "miit-industrial-efficiency-2022-pue-2025",
+      "asserter": "工信部",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "miit-2022-industrial-efficiency-plan",
+        "label": "工信部等六部门《工业能效提升行动计划》（2022）大型及超大型新建线"
+      },
+      "value": 1.3,
+      "unit": "比值",
+      "bound": "upper",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "大型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2025目标",
+      "evidence": {
+        "sha256": "72ac845ee92d92fd3ecdaa7cb1a6d0a50b099118cdd67c8363d41417330484d9",
+        "local_file": "2023新型算力中心调研报告-益企研究院.pdf",
+        "locator": "第 5 章政策梳理：「2022 年：工信部、发改委、财政部等六部门联合发布《工业能效提升行动计划》中提到 2025 年，新建大型、超大型数据中心 PUE 优于 1.3」",
+        "grade": "S2",
+        "originator": "益企研究院《2023 新型算力中心调研报告》转述"
+      },
+      "depth": "精读",
+      "notes": "六部门联合发文，断言者按牵头部门记工信部；「优于 1.3」记上界。与《实施方案》同为 2025 年 1.3 的要求，但出自不同文件，各记一条。"
     }
   ]
 }
