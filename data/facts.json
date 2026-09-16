@@ -226328,6 +226328,650 @@
       "corroboration": "待交叉验证",
       "notes": "口径同 gx2509-global-dc-market-2017。",
       "asserter": "国信证券"
+    },
+    {
+      "fact_id": "bsi2025-statista-global-dc-market",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenter-market",
+        "label": "全球数据中心市场"
+      },
+      "value": 5270.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "未注明",
+        "operator_type": "全市场",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "currency": "美元"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "50a9aed5eae3c834c412752b34f564e018b9c00e5790359629a1d2c15d4b2484",
+        "local_file": "20251212-2025年保障水安全以促进可持续的数据中心增长白皮书(22页).pdf",
+        "locator": "第 2 页 Introduction：「Already, it is projected to be worth around $527 billion1, with forecasts suggesting the market could almost double by 2030」，脚注 1 = Data Center – Worldwide, Statista, accessed October 2025",
+        "grade": "S4",
+        "originator": "Statista《Data Center – Worldwide》（accessed October 2025）（经 BSI《Thirst for Change: Safeguarding water security for sustainable data center growth》（2025） 转述，脚注标注）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**原文单位十亿美元，本指标单位「亿（原币）」+ currency 美元，已换算：$527 billion = 5,270 亿美元。****原文未写年份**，as_of 取脚注来源的时点（Statista 2025 年 10 月访问），故标 derived。service_scope 记「未注明」：原文只说 value of sector，未交代含不含云服务与自建。**各国的数出自不同市场研究机构，口径未必一致，横向比较前须核对。** 原文另称「到 2030 年市场可能翻近一倍」，但未给具体数，不记。**与库内国信转述的『2027 年全球数据中心 1632.5 亿美元』（gx2509-global-dc-market-2027e）相差三倍以上，两者口径与来源都不同（Statista vs 信通院/科智/中商），不可当成同一序列。**",
+      "asserter": "Statista",
+      "derivation": "as_of 由脚注来源时点推定：原文未写年份，Statista 该页于 2025 年 10 月访问"
+    },
+    {
+      "fact_id": "bsi2025-esgnews-india-dc-market",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "industry",
+        "id": "india-datacenter-market",
+        "label": "印度数据中心市场"
+      },
+      "value": 100.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "未注明",
+        "operator_type": "全市场",
+        "region": "APAC",
+        "basis": "第三方跟踪",
+        "currency": "美元"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "50a9aed5eae3c834c412752b34f564e018b9c00e5790359629a1d2c15d4b2484",
+        "local_file": "20251212-2025年保障水安全以促进可持续的数据中心增长白皮书(22页).pdf",
+        "locator": "第 7 页 India 栏 Value of sector：「An estimated $10billion24」，脚注 24 = India's Data Centre Industry: Powering Growth Sustainably?, ESG News, August 2025",
+        "grade": "S4",
+        "originator": "ESG News《India's Data Centre Industry: Powering Growth Sustainably?》（August 2025）（经 BSI《Thirst for Change: Safeguarding water security for sustainable data center growth》（2025） 转述，脚注标注）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**原文单位十亿美元，本指标单位「亿（原币）」+ currency 美元，已换算：$10 billion = 100 亿美元。****原文未写年份**，as_of 取脚注来源的时点（ESG News 2025 年 8 月），故标 derived。service_scope 记「未注明」：原文只说 value of sector，未交代含不含云服务与自建。**各国的数出自不同市场研究机构，口径未必一致，横向比较前须核对。** 同页另称印度数据中心容量预计 2030 年达 3,400 MW、现有数据中心数量估计 153-270 个，本库无对应指标，见缺口。",
+      "asserter": "ESG News",
+      "derivation": "as_of 由脚注来源时点推定：原文只写 An estimated $10billion，未写年份"
+    },
+    {
+      "fact_id": "bsi2025-china-dc-market-2024",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "industry",
+        "id": "cn-datacenter-market",
+        "label": "中国数据中心市场"
+      },
+      "value": 472.3,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "未注明",
+        "operator_type": "全市场",
+        "region": "CN",
+        "basis": "第三方跟踪",
+        "currency": "美元"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "50a9aed5eae3c834c412752b34f564e018b9c00e5790359629a1d2c15d4b2484",
+        "local_file": "20251212-2025年保障水安全以促进可持续的数据中心增长白皮书(22页).pdf",
+        "locator": "第 8 页 China 栏 Value of sector：「$47.23 Billion in 202432」／Future projections：「Expected to grow to $97.30 billion by 203032」，脚注 32 = Global newswire, October 2025",
+        "grade": "S4",
+        "originator": "Global newswire（October 2025）（经 BSI《Thirst for Change: Safeguarding water security for sustainable data center growth》（2025） 转述，脚注标注）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文单位十亿美元，本指标单位「亿（原币）」+ currency 美元，已换算：$47.23/97.30 billion = 472.3/973.0 亿美元。**service_scope 记「未注明」：原文只说 value of sector，未交代含不含云服务与自建。**各国的数出自不同市场研究机构，口径未必一致，横向比较前须核对。** **originator 只写「Global newswire」——这是通稿发布平台不是研究机构，原始研究方在本文中无从查证**，asserter 按文本可见的署名记。",
+      "asserter": "Global newswire"
+    },
+    {
+      "fact_id": "bsi2025-china-dc-market-2030e",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "industry",
+        "id": "cn-datacenter-market",
+        "label": "中国数据中心市场"
+      },
+      "value": 973.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "未注明",
+        "operator_type": "全市场",
+        "region": "CN",
+        "basis": "预测",
+        "currency": "美元"
+      },
+      "as_of": "2030E@2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "50a9aed5eae3c834c412752b34f564e018b9c00e5790359629a1d2c15d4b2484",
+        "local_file": "20251212-2025年保障水安全以促进可持续的数据中心增长白皮书(22页).pdf",
+        "locator": "第 8 页 China 栏 Value of sector：「$47.23 Billion in 202432」／Future projections：「Expected to grow to $97.30 billion by 203032」，脚注 32 = Global newswire, October 2025",
+        "grade": "S4",
+        "originator": "Global newswire（October 2025）（经 BSI《Thirst for Change: Safeguarding water security for sustainable data center growth》（2025） 转述，脚注标注）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文单位十亿美元，本指标单位「亿（原币）」+ currency 美元，已换算：$47.23/97.30 billion = 472.3/973.0 亿美元。**service_scope 记「未注明」：原文只说 value of sector，未交代含不含云服务与自建。**各国的数出自不同市场研究机构，口径未必一致，横向比较前须核对。** **originator 只写「Global newswire」——这是通稿发布平台不是研究机构，原始研究方在本文中无从查证**，asserter 按文本可见的署名记。原文写 Expected to grow to $97.30 billion by 2030。",
+      "asserter": "Global newswire"
+    },
+    {
+      "fact_id": "bsi2025-australia-dc-colo-market-2024",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "industry",
+        "id": "australia-datacenter-colo-market",
+        "label": "澳大利亚数据中心托管市场"
+      },
+      "value": 17.2,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "仅机柜托管",
+        "operator_type": "全市场",
+        "region": "APAC",
+        "basis": "第三方跟踪",
+        "currency": "美元"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "50a9aed5eae3c834c412752b34f564e018b9c00e5790359629a1d2c15d4b2484",
+        "local_file": "20251212-2025年保障水安全以促进可持续的数据中心增长白皮书(22页).pdf",
+        "locator": "第 9 页 Australia 栏 Value of sector：「$1.72 billion as of 202438」／Future projections：「Expected to reach $4.98 billion by 203038」，脚注 38 = Australia Data Center Colocation Market Analysis and Competition Outlook to 2030, Research and Markets, August 2025",
+        "grade": "S4",
+        "originator": "Research and Markets《Australia Data Center Colocation Market Analysis and Competition Outlook to 2030》（August 2025）（经 BSI《Thirst for Change: Safeguarding water security for sustainable data center growth》（2025） 转述，脚注标注）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文单位十亿美元，本指标单位「亿（原币）」+ currency 美元，已换算：$1.72/4.98 billion = 17.2/49.8 亿美元。****service_scope 记「仅机柜托管」——脚注来源标题明写 Colocation Market，与同一张表里其他国家的全市场口径不是一回事，并列读会低估澳大利亚。**",
+      "asserter": "Research and Markets"
+    },
+    {
+      "fact_id": "bsi2025-australia-dc-colo-market-2030e",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "industry",
+        "id": "australia-datacenter-colo-market",
+        "label": "澳大利亚数据中心托管市场"
+      },
+      "value": 49.8,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "仅机柜托管",
+        "operator_type": "全市场",
+        "region": "APAC",
+        "basis": "预测",
+        "currency": "美元"
+      },
+      "as_of": "2030E@2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "50a9aed5eae3c834c412752b34f564e018b9c00e5790359629a1d2c15d4b2484",
+        "local_file": "20251212-2025年保障水安全以促进可持续的数据中心增长白皮书(22页).pdf",
+        "locator": "第 9 页 Australia 栏 Value of sector：「$1.72 billion as of 202438」／Future projections：「Expected to reach $4.98 billion by 203038」，脚注 38 = Australia Data Center Colocation Market Analysis and Competition Outlook to 2030, Research and Markets, August 2025",
+        "grade": "S4",
+        "originator": "Research and Markets《Australia Data Center Colocation Market Analysis and Competition Outlook to 2030》（August 2025）（经 BSI《Thirst for Change: Safeguarding water security for sustainable data center growth》（2025） 转述，脚注标注）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文单位十亿美元，本指标单位「亿（原币）」+ currency 美元，已换算：$1.72/4.98 billion = 17.2/49.8 亿美元。****service_scope 记「仅机柜托管」——脚注来源标题明写 Colocation Market，与同一张表里其他国家的全市场口径不是一回事，并列读会低估澳大利亚。**",
+      "asserter": "Research and Markets"
+    },
+    {
+      "fact_id": "bsi2025-us-dc-market-2024",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "industry",
+        "id": "us-datacenter-market",
+        "label": "美国数据中心市场"
+      },
+      "value": 2080.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "未注明",
+        "operator_type": "全市场",
+        "region": "US",
+        "basis": "第三方跟踪",
+        "currency": "美元"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "50a9aed5eae3c834c412752b34f564e018b9c00e5790359629a1d2c15d4b2484",
+        "local_file": "20251212-2025年保障水安全以促进可持续的数据中心增长白皮书(22页).pdf",
+        "locator": "第 11 页 US 栏 Value of sector：「Valued at approximately $208 billion in 202445」／Future projections：「Expected to reach $308 billion by 203045」，脚注 45 = U.S. Data Center Market Landscape Report 2025-2030, Research and Markets",
+        "grade": "S4",
+        "originator": "Research and Markets《U.S. Data Center Market Landscape Report 2025-2030》（经 BSI《Thirst for Change: Safeguarding water security for sustainable data center growth》（2025） 转述，脚注标注）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文单位十亿美元，本指标单位「亿（原币）」+ currency 美元，已换算：$208/308 billion = 2,080/3,080 亿美元。**service_scope 记「未注明」：原文只说 value of sector，未交代含不含云服务与自建。**各国的数出自不同市场研究机构，口径未必一致，横向比较前须核对。** 同页另称美国数据中心数量超 5,400 个（脚注 44 Statista）。",
+      "asserter": "Research and Markets"
+    },
+    {
+      "fact_id": "bsi2025-us-dc-market-2030e",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "industry",
+        "id": "us-datacenter-market",
+        "label": "美国数据中心市场"
+      },
+      "value": 3080.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "未注明",
+        "operator_type": "全市场",
+        "region": "US",
+        "basis": "预测",
+        "currency": "美元"
+      },
+      "as_of": "2030E@2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "50a9aed5eae3c834c412752b34f564e018b9c00e5790359629a1d2c15d4b2484",
+        "local_file": "20251212-2025年保障水安全以促进可持续的数据中心增长白皮书(22页).pdf",
+        "locator": "第 11 页 US 栏 Value of sector：「Valued at approximately $208 billion in 202445」／Future projections：「Expected to reach $308 billion by 203045」，脚注 45 = U.S. Data Center Market Landscape Report 2025-2030, Research and Markets",
+        "grade": "S4",
+        "originator": "Research and Markets《U.S. Data Center Market Landscape Report 2025-2030》（经 BSI《Thirst for Change: Safeguarding water security for sustainable data center growth》（2025） 转述，脚注标注）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文单位十亿美元，本指标单位「亿（原币）」+ currency 美元，已换算：$208/308 billion = 2,080/3,080 亿美元。**service_scope 记「未注明」：原文只说 value of sector，未交代含不含云服务与自建。**各国的数出自不同市场研究机构，口径未必一致，横向比较前须核对。** 同页另称美国数据中心数量超 5,400 个（脚注 44 Statista）。",
+      "asserter": "Research and Markets"
+    },
+    {
+      "fact_id": "bsi2025-japan-dc-market-2025",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "industry",
+        "id": "japan-datacenter-market",
+        "label": "日本数据中心市场"
+      },
+      "value": 205.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "未注明",
+        "operator_type": "全市场",
+        "region": "APAC",
+        "basis": "第三方跟踪",
+        "currency": "美元"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "50a9aed5eae3c834c412752b34f564e018b9c00e5790359629a1d2c15d4b2484",
+        "local_file": "20251212-2025年保障水安全以促进可持续的数据中心增长白皮书(22页).pdf",
+        "locator": "第 12 页 Japan 栏 Value of sector：「Valued at approximately $20.5 billion56」，脚注 56 = Japan Data Center Market Assessment, Research and Markets, April 2025",
+        "grade": "S4",
+        "originator": "Research and Markets《Japan Data Center Market Assessment》（April 2025）（经 BSI《Thirst for Change: Safeguarding water security for sustainable data center growth》（2025） 转述，脚注标注）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**原文单位十亿美元，本指标单位「亿（原币）」+ currency 美元，已换算：$20.5 billion = 205 亿美元。****原文未写年份**，as_of 取脚注来源的时点（Research and Markets 2025 年 4 月），故标 derived。service_scope 记「未注明」：原文只说 value of sector，未交代含不含云服务与自建。**各国的数出自不同市场研究机构，口径未必一致，横向比较前须核对。** 原文称日本是亚洲第二大、全球第三大数据中心市场（仅次于美国与中国）。",
+      "asserter": "Research and Markets",
+      "derivation": "as_of 由脚注来源时点推定：原文写 approximately $20.5 billion 未标年份"
+    },
+    {
+      "fact_id": "bsi2025-japan-dc-market-2033e",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "industry",
+        "id": "japan-datacenter-market",
+        "label": "日本数据中心市场"
+      },
+      "value": 400.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "未注明",
+        "operator_type": "全市场",
+        "region": "APAC",
+        "basis": "预测",
+        "currency": "美元"
+      },
+      "as_of": "2033E@2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "50a9aed5eae3c834c412752b34f564e018b9c00e5790359629a1d2c15d4b2484",
+        "local_file": "20251212-2025年保障水安全以促进可持续的数据中心增长白皮书(22页).pdf",
+        "locator": "第 12 页 Japan 栏 Future projections：「Expected to grow to over $40 billion by 203356」",
+        "grade": "S4",
+        "originator": "Research and Markets《Japan Data Center Market Assessment》（April 2025）（经 BSI《Thirst for Change: Safeguarding water security for sustainable data center growth》（2025） 转述，脚注标注）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文单位十亿美元，本指标单位「亿（原币）」+ currency 美元，已换算：$40 billion = 400 亿美元。**原文写 over $40 billion，400 记为下界。**目标年份是 2033，不是本表其他国家的 2030**，不可并列比较。",
+      "asserter": "Research and Markets"
+    },
+    {
+      "fact_id": "bsi2025-netherlands-dc-market-2025",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "industry",
+        "id": "netherlands-datacenter-market",
+        "label": "荷兰数据中心市场"
+      },
+      "value": 12.2,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "未注明",
+        "operator_type": "全市场",
+        "region": "EU",
+        "basis": "第三方跟踪",
+        "currency": "美元"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "50a9aed5eae3c834c412752b34f564e018b9c00e5790359629a1d2c15d4b2484",
+        "local_file": "20251212-2025年保障水安全以促进可持续的数据中心增长白皮书(22页).pdf",
+        "locator": "第 13 页 The Netherlands 栏 Value of sector：「Valued at approximately $1.22 billion64」／Future projections：「Significant growth projections estimating a value of $3.39 billion by 203064」",
+        "grade": "S4",
+        "originator": "Research and Markets《Netherlands Data Center Market Investment Analysis & Growth Opportunities 2025-2030》（July 2025）（经 BSI《Thirst for Change: Safeguarding water security for sustainable data center growth》（2025） 转述，脚注标注）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**原文单位十亿美元，本指标单位「亿（原币）」+ currency 美元，已换算：$1.22/3.39 billion = 12.2/33.9 亿美元。**service_scope 记「未注明」：原文只说 value of sector，未交代含不含云服务与自建。**各国的数出自不同市场研究机构，口径未必一致，横向比较前须核对。** 原文另称荷兰容量约占欧洲市场 2.8%。**region 只能填 EU，国别靠 entity 区分**——本表里荷兰、法国、德国、英国四条同为 EU，相加不等于欧洲总量。",
+      "asserter": "Research and Markets",
+      "derivation": "as_of 由脚注来源时点推定：原文写 approximately $1.22 billion 未标年份"
+    },
+    {
+      "fact_id": "bsi2025-netherlands-dc-market-2030e",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "industry",
+        "id": "netherlands-datacenter-market",
+        "label": "荷兰数据中心市场"
+      },
+      "value": 33.9,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "未注明",
+        "operator_type": "全市场",
+        "region": "EU",
+        "basis": "预测",
+        "currency": "美元"
+      },
+      "as_of": "2030E@2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "50a9aed5eae3c834c412752b34f564e018b9c00e5790359629a1d2c15d4b2484",
+        "local_file": "20251212-2025年保障水安全以促进可持续的数据中心增长白皮书(22页).pdf",
+        "locator": "第 13 页 The Netherlands 栏 Value of sector：「Valued at approximately $1.22 billion64」／Future projections：「Significant growth projections estimating a value of $3.39 billion by 203064」",
+        "grade": "S4",
+        "originator": "Research and Markets《Netherlands Data Center Market Investment Analysis & Growth Opportunities 2025-2030》（July 2025）（经 BSI《Thirst for Change: Safeguarding water security for sustainable data center growth》（2025） 转述，脚注标注）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文单位十亿美元，本指标单位「亿（原币）」+ currency 美元，已换算：$1.22/3.39 billion = 12.2/33.9 亿美元。**service_scope 记「未注明」：原文只说 value of sector，未交代含不含云服务与自建。**各国的数出自不同市场研究机构，口径未必一致，横向比较前须核对。** 原文另称荷兰容量约占欧洲市场 2.8%。**region 只能填 EU，国别靠 entity 区分**——本表里荷兰、法国、德国、英国四条同为 EU，相加不等于欧洲总量。",
+      "asserter": "Research and Markets"
+    },
+    {
+      "fact_id": "bsi2025-france-dc-market-2025",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "industry",
+        "id": "france-datacenter-market",
+        "label": "法国数据中心市场"
+      },
+      "value": 88.191,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "未注明",
+        "operator_type": "全市场",
+        "region": "EU",
+        "basis": "第三方跟踪",
+        "currency": "美元"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "50a9aed5eae3c834c412752b34f564e018b9c00e5790359629a1d2c15d4b2484",
+        "local_file": "20251212-2025年保障水安全以促进可持续的数据中心增长白皮书(22页).pdf",
+        "locator": "第 14 页 France 栏 Value of sector：「Generated an estimated $8,819.1 million in 202569」，脚注 69 = France Data Center Market Size & Outlook, 2024-2030, Grandview Research",
+        "grade": "S4",
+        "originator": "Grandview Research《France Data Center Market Size & Outlook, 2024-2030》（accessed October 2025）（经 BSI《Thirst for Change: Safeguarding water security for sustainable data center growth》（2025） 转述，脚注标注）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文单位为百万美元：$8,819.1 million = 88.191 亿美元。**service_scope 记「未注明」：原文只说 value of sector，未交代含不含云服务与自建。**各国的数出自不同市场研究机构，口径未必一致，横向比较前须核对。** **同栏 Future projections 写「$14.02 million in 2030」，比 2025 年的 8,819.1 million 小三个数量级——原文此处几乎确定把 billion 写成了 million（Grandview 原报告的 2030 年预测应为 140.2 亿美元量级），但本轮不替原文改数，该预测值不录，已记缺口。**",
+      "asserter": "Grandview Research"
+    },
+    {
+      "fact_id": "bsi2025-germany-dc-market-2025",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "industry",
+        "id": "germany-datacenter-market",
+        "label": "德国数据中心市场"
+      },
+      "value": 231.3,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "未注明",
+        "operator_type": "全市场",
+        "region": "EU",
+        "basis": "第三方跟踪",
+        "currency": "美元"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "50a9aed5eae3c834c412752b34f564e018b9c00e5790359629a1d2c15d4b2484",
+        "local_file": "20251212-2025年保障水安全以促进可持续的数据中心增长白皮书(22页).pdf",
+        "locator": "第 15 页 Germany 栏 Value of sector：「The market is expected to generate $23.13 billion in 202578」／Future projections：「Expected to grow to $32.30bn by 203078」，脚注 78 = Data Center – Germany, Statista, accessed October 2025",
+        "grade": "S4",
+        "originator": "Statista《Data Center – Germany》（accessed October 2025）（经 BSI《Thirst for Change: Safeguarding water security for sustainable data center growth》（2025） 转述，脚注标注）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文单位十亿美元，本指标单位「亿（原币）」+ currency 美元，已换算：$23.13/32.30 billion = 231.3/323.0 亿美元。**service_scope 记「未注明」：原文只说 value of sector，未交代含不含云服务与自建。**各国的数出自不同市场研究机构，口径未必一致，横向比较前须核对。** 原文称德国按设施数量计为欧洲最大数据中心市场（约 529 个）。**与同表英国（Statista 同系列）口径一致，这两条可比；与法国（Grandview）、荷兰（Research and Markets）不可直接比。**",
+      "asserter": "Statista"
+    },
+    {
+      "fact_id": "bsi2025-germany-dc-market-2030e",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "industry",
+        "id": "germany-datacenter-market",
+        "label": "德国数据中心市场"
+      },
+      "value": 323.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "未注明",
+        "operator_type": "全市场",
+        "region": "EU",
+        "basis": "预测",
+        "currency": "美元"
+      },
+      "as_of": "2030E@2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "50a9aed5eae3c834c412752b34f564e018b9c00e5790359629a1d2c15d4b2484",
+        "local_file": "20251212-2025年保障水安全以促进可持续的数据中心增长白皮书(22页).pdf",
+        "locator": "第 15 页 Germany 栏 Value of sector：「The market is expected to generate $23.13 billion in 202578」／Future projections：「Expected to grow to $32.30bn by 203078」，脚注 78 = Data Center – Germany, Statista, accessed October 2025",
+        "grade": "S4",
+        "originator": "Statista《Data Center – Germany》（accessed October 2025）（经 BSI《Thirst for Change: Safeguarding water security for sustainable data center growth》（2025） 转述，脚注标注）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文单位十亿美元，本指标单位「亿（原币）」+ currency 美元，已换算：$23.13/32.30 billion = 231.3/323.0 亿美元。**service_scope 记「未注明」：原文只说 value of sector，未交代含不含云服务与自建。**各国的数出自不同市场研究机构，口径未必一致，横向比较前须核对。** 原文称德国按设施数量计为欧洲最大数据中心市场（约 529 个）。**与同表英国（Statista 同系列）口径一致，这两条可比；与法国（Grandview）、荷兰（Research and Markets）不可直接比。**",
+      "asserter": "Statista"
+    },
+    {
+      "fact_id": "bsi2025-uk-dc-market-2025",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "industry",
+        "id": "uk-datacenter-market",
+        "label": "英国数据中心市场"
+      },
+      "value": 212.6,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "未注明",
+        "operator_type": "全市场",
+        "region": "EU",
+        "basis": "第三方跟踪",
+        "currency": "美元"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "50a9aed5eae3c834c412752b34f564e018b9c00e5790359629a1d2c15d4b2484",
+        "local_file": "20251212-2025年保障水安全以促进可持续的数据中心增长白皮书(22页).pdf",
+        "locator": "第 16 页 UK 栏 Value of sector：「A sector valuation of approximately $21.26 billion in 202586」／Future projections：「Expected to reach $29.78 billion by 203086」，脚注 86 = Data Center – United Kingdom, Statista, accessed October 2025",
+        "grade": "S4",
+        "originator": "Statista《Data Center – United Kingdom》（accessed October 2025）（经 BSI《Thirst for Change: Safeguarding water security for sustainable data center growth》（2025） 转述，脚注标注）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文单位十亿美元，本指标单位「亿（原币）」+ currency 美元，已换算：$21.26/29.78 billion = 212.6/297.8 亿美元。**service_scope 记「未注明」：原文只说 value of sector，未交代含不含云服务与自建。**各国的数出自不同市场研究机构，口径未必一致，横向比较前须核对。** **region 填 EU 是枚举所限——英国已脱欧，这条不属于任何欧盟口径的加总。**",
+      "asserter": "Statista"
+    },
+    {
+      "fact_id": "bsi2025-uk-dc-market-2030e",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "industry",
+        "id": "uk-datacenter-market",
+        "label": "英国数据中心市场"
+      },
+      "value": 297.8,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "未注明",
+        "operator_type": "全市场",
+        "region": "EU",
+        "basis": "预测",
+        "currency": "美元"
+      },
+      "as_of": "2030E@2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "50a9aed5eae3c834c412752b34f564e018b9c00e5790359629a1d2c15d4b2484",
+        "local_file": "20251212-2025年保障水安全以促进可持续的数据中心增长白皮书(22页).pdf",
+        "locator": "第 16 页 UK 栏 Value of sector：「A sector valuation of approximately $21.26 billion in 202586」／Future projections：「Expected to reach $29.78 billion by 203086」，脚注 86 = Data Center – United Kingdom, Statista, accessed October 2025",
+        "grade": "S4",
+        "originator": "Statista《Data Center – United Kingdom》（accessed October 2025）（经 BSI《Thirst for Change: Safeguarding water security for sustainable data center growth》（2025） 转述，脚注标注）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文单位十亿美元，本指标单位「亿（原币）」+ currency 美元，已换算：$21.26/29.78 billion = 212.6/297.8 亿美元。**service_scope 记「未注明」：原文只说 value of sector，未交代含不含云服务与自建。**各国的数出自不同市场研究机构，口径未必一致，横向比较前须核对。** **region 填 EU 是枚举所限——英国已脱欧，这条不属于任何欧盟口径的加总。**",
+      "asserter": "Statista"
+    },
+    {
+      "fact_id": "bsi2025-acm-ai-water-withdrawal-2027e-lower",
+      "metric_id": "dc_water_footprint",
+      "entity": {
+        "type": "industry",
+        "id": "global-ai-workload",
+        "label": "全球 AI 负载"
+      },
+      "value": 4.16,
+      "unit": "万亿升",
+      "caliber": {
+        "scope": "AI 工作负载",
+        "water_basis": "取水量",
+        "method": "按全球平均强度因子推算",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2027E@2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "50a9aed5eae3c834c412752b34f564e018b9c00e5790359629a1d2c15d4b2484",
+        "local_file": "20251212-2025年保障水安全以促进可持续的数据中心增长白皮书(22页).pdf",
+        "locator": "第 5 页 Water use for AI：「By 2027, global AI demand is expected to account for 4.16-6.44 trillion liters of water withdrawal20」，脚注 20 = Making AI Less \"Thirsty\": Uncovering and Addressing the Secret Water Footprint of AI Models, Communications of the ACM, June 2025",
+        "grade": "S4",
+        "originator": "Communications of the ACM《Making AI Less \"Thirsty\"》（June 2025；即 Li 等人的 AI 水足迹研究）（经 BSI《Thirst for Change: Safeguarding water security for sustainable data center growth》（2025） 转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**water_basis 明确是 withdrawal（取水量），不是消耗量**，两者差着回排的那一部分，混用会高估 AI 的净耗水。原文单位 trillion liters 与本指标单位「万亿升」一一对应，未换算。区间另一端见配对条目。",
+      "asserter": "Communications of the ACM"
+    },
+    {
+      "fact_id": "bsi2025-acm-ai-water-withdrawal-2027e-upper",
+      "metric_id": "dc_water_footprint",
+      "entity": {
+        "type": "industry",
+        "id": "global-ai-workload",
+        "label": "全球 AI 负载"
+      },
+      "value": 6.44,
+      "unit": "万亿升",
+      "caliber": {
+        "scope": "AI 工作负载",
+        "water_basis": "取水量",
+        "method": "按全球平均强度因子推算",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2027E@2025",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "50a9aed5eae3c834c412752b34f564e018b9c00e5790359629a1d2c15d4b2484",
+        "local_file": "20251212-2025年保障水安全以促进可持续的数据中心增长白皮书(22页).pdf",
+        "locator": "第 5 页 Water use for AI：「By 2027, global AI demand is expected to account for 4.16-6.44 trillion liters of water withdrawal20」，脚注 20 = Making AI Less \"Thirsty\": Uncovering and Addressing the Secret Water Footprint of AI Models, Communications of the ACM, June 2025",
+        "grade": "S4",
+        "originator": "Communications of the ACM《Making AI Less \"Thirsty\"》（June 2025；即 Li 等人的 AI 水足迹研究）（经 BSI《Thirst for Change: Safeguarding water security for sustainable data center growth》（2025） 转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**water_basis 明确是 withdrawal（取水量），不是消耗量**，两者差着回排的那一部分，混用会高估 AI 的净耗水。原文单位 trillion liters 与本指标单位「万亿升」一一对应，未换算。区间另一端见配对条目。",
+      "asserter": "Communications of the ACM"
+    },
+    {
+      "fact_id": "bsi2025-acm-gpt3-water-per-responses",
+      "metric_id": "ai_water_footprint",
+      "entity": {
+        "type": "product",
+        "id": "openai-gpt-3",
+        "label": "GPT-3"
+      },
+      "value": 500.0,
+      "unit": "毫升",
+      "caliber": {
+        "denominator": "未注明",
+        "water_basis": "取水量",
+        "stage": "合计",
+        "region": "未披露",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "50a9aed5eae3c834c412752b34f564e018b9c00e5790359629a1d2c15d4b2484",
+        "local_file": "20251212-2025年保障水安全以促进可持续的数据中心增长白皮书(22页).pdf",
+        "locator": "第 5 页 Water use for AI：「the AI model GPT-3, an AI model, is estimated to consume 500ml of water per 10-50 responses20」",
+        "grade": "S4",
+        "originator": "Communications of the ACM《Making AI Less \"Thirsty\"》（June 2025）（经 BSI《Thirst for Change: Safeguarding water security for sustainable data center growth》（2025） 转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**分母是「每 10-50 次回复」，不是每次查询**——denominator 枚举没有这个取值，只能填「未注明」。**换算下来是每次回复 10-50 毫升，切勿把 500 毫升读成单次查询的水耗。**分母本身是个 5 倍宽的区间（原研究里随数据中心位置与时节变化）。与库内赛莱默「使用 AI 30 分钟约 616 毫升」不是同一分母，不可比。",
+      "asserter": "Communications of the ACM"
     }
   ]
 }
