@@ -221205,6 +221205,134 @@
       "corroboration": "待交叉验证",
       "asserter": "复旦大学",
       "notes": "原文直接陈述、未注出处，按 PR #197 判据由撰写方担断言者，basis 记第三方估算而非实测，[未核]。同句「预计到今年年底还会增长一个数量级」量级说法含糊（且「今年」指代不明），不记。全球口径，energy_scope 未注明。"
+    },
+    {
+      "fact_id": "cgws2508-na-big4-capex-2025e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "market",
+        "id": "us-hyperscaler-capex",
+        "label": "北美四大云厂资本开支合计"
+      },
+      "value": 3294.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "北美四家",
+        "capex_scope": "全部 capex",
+        "basis": "券商测算",
+        "vintage": "其他快照",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7c45735fee1f223dd10ae3b035c049d292ab68df6623f994f5b19c8018b11e62",
+        "local_file": "20250821-长城证券-电子行业：深度剖析HBM千亿蓝海，AI算力激战下供需新格局.pdf",
+        "locator": "PDF 第 3 页「需求侧1：CSP 厂商资本开支持续增长」：「AI 算力催化下，预计北美四大 CSP 厂商 25/26 年资本开支将同比 +52%/+19% 至 3294 亿美元/3930 亿美元」",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "长城证券",
+      "notes": "长城证券（2025-08-21）测算，同比 +52%（2025E）/+19%（2026E）。vintage 记 2025-08 快照；库内同年另有国信 3610 亿（厂商指引口径）与申万 3400 亿（2025-04 测算），口径与时点不同。"
+    },
+    {
+      "fact_id": "cgws2508-na-big4-capex-2026e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "market",
+        "id": "us-hyperscaler-capex",
+        "label": "北美四大云厂资本开支合计"
+      },
+      "value": 3930.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "北美四家",
+        "capex_scope": "全部 capex",
+        "basis": "券商测算",
+        "vintage": "其他快照",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7c45735fee1f223dd10ae3b035c049d292ab68df6623f994f5b19c8018b11e62",
+        "local_file": "20250821-长城证券-电子行业：深度剖析HBM千亿蓝海，AI算力激战下供需新格局.pdf",
+        "locator": "PDF 第 3 页「需求侧1：CSP 厂商资本开支持续增长」：「AI 算力催化下，预计北美四大 CSP 厂商 25/26 年资本开支将同比 +52%/+19% 至 3294 亿美元/3930 亿美元」",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "长城证券",
+      "notes": "长城证券（2025-08-21）测算，同比 +52%（2025E）/+19%（2026E）。vintage 记 2025-08 快照；库内同年另有国信 3610 亿（厂商指引口径）与申万 3400 亿（2025-04 测算），口径与时点不同。"
+    },
+    {
+      "fact_id": "cgws2508-yole-global-hbm-market-2026e",
+      "metric_id": "hbm_demand_value",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 460.0,
+      "unit": "亿美元",
+      "caliber": {
+        "generation": "合计",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7c45735fee1f223dd10ae3b035c049d292ab68df6623f994f5b19c8018b11e62",
+        "local_file": "20250821-长城证券-电子行业：深度剖析HBM千亿蓝海，AI算力激战下供需新格局.pdf",
+        "locator": "PDF 第 2 页「一张图看懂存储」：「Yole 预计 26 年全球 HBM 市场规模将达 460 亿美元，占 DRAM 市场比重达 35%，CAGR(24~30) 将达 33%」",
+        "grade": "S3",
+        "originator": "Yole Group 预测，经长城证券《深度剖析 HBM 千亿蓝海》2025-08-21 转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "Yole",
+      "notes": "占 DRAM 市场比重 35%，2024–2030 CAGR 33%（占比与 CAGR 无对应指标）。hbm_demand_value 口径为需求金额，与「市场规模」在本报告语境下同义，[未核]。"
+    },
+    {
+      "fact_id": "cgws2508-global-ai-server-units-2026e",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "global-ai-server-units",
+        "label": "全球 AI 服务器出货量"
+      },
+      "value": 2510.0,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "未拆分",
+        "region": "Total",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "不适用（非中国口径）"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7c45735fee1f223dd10ae3b035c049d292ab68df6623f994f5b19c8018b11e62",
+        "local_file": "20250821-长城证券-电子行业：深度剖析HBM千亿蓝海，AI算力激战下供需新格局.pdf",
+        "locator": "PDF 第 3 页与第 16 页：「2025 年 AI 服务器出货占比预计将提升至 15% 以上，预计 26 年 AI 服务器出货量将同比增长 17.2% 达 251 万台」；同页引 TrendForce「2026-2027 年全球 AI 服务器出货量将有望分别年增 17.2%/16.8%」",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "长城证券",
+      "notes": "原文 251 万台 = 2510 千台。增速 17.2% 引自 TrendForce，台数为长城证券按该增速推得，断言者记长城证券；同处 2025 年 AI 服务器占整体服务器比例 15% 以上、TrendForce 2025 年增速 24.3% 无对应指标（缺口）。"
     }
   ]
 }
