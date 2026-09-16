@@ -71,7 +71,7 @@ L1_ROW = {
     'keep_original_name': False, 'size': 4096,
 }
 
-PROVENANCE_DEBT = 38
+PROVENANCE_DEBT = 37
 
 DANGLING_SOURCE_IDS = 27
 
