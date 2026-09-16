@@ -251820,6 +251820,168 @@
       },
       "depth": "精读",
       "notes": "**这一条与库内信通院 2017 年的大型以上 82 万架、ODCC 2022 年的 540 万架构成一条序列**；分母 315 万架那条库内已有（工信部 2019 年 315 万架），本条补大型以上部分，占比超 70%。原文把 315 万架的时点写在 2019-2020 之间含糊，按上下文记 2020。[未核]"
+    },
+    {
+      "fact_id": "ccid2018-global-dc-it-market",
+      "asserter": "赛迪顾问",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-market",
+        "label": "全球数据中心 IT 市场"
+      },
+      "value": 2498.0,
+      "unit": "亿美元",
+      "bound": "point",
+      "caliber": {
+        "segment": "Total",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2018",
+      "evidence": {
+        "sha256": "334391c11160805a0cfdbf3add99e3f7991c9b7ecc6bebbb6eb88773bf5d37c4",
+        "local_file": "赛迪顾问：2018年数据中心市场数据(9页).pdf",
+        "locator": "正文：「2018 年，全球数据中心 IT 市场呈现快速增长趋势，规模达到 2498 亿美元，同比增长 10.5%」「全球数据中心 IT 硬件市场占比最大，规模达到 1066.6 亿美元，占比 42.7%；其次是 IT 服务市场 1004.2 亿美元，占比 40.2%；再次是软件市场 427.2 亿美元，占比 17.1%」「（北美）市场规模达到 1006.7 亿美元，全球占比 40.3%。欧洲……2018 年规模达到 429.7 亿美元，全球占比 17.2%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**这是「IT 市场」口径，含硬件、服务与软件三块**（1066.6 + 1004.2 + 427.2 = 2498.0，加总完全自洽），与库内 Dell'Oro 的 IT capex（只含设备）口径不同。同比 +10.5%。[未核]"
+    },
+    {
+      "fact_id": "ccid2018-global-dc-it-hardware",
+      "asserter": "赛迪顾问",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-it-hardware",
+        "label": "全球数据中心 IT 硬件市场"
+      },
+      "value": 1066.6,
+      "unit": "亿美元",
+      "bound": "point",
+      "caliber": {
+        "segment": "Total",
+        "region": "Total",
+        "technology": "Servers"
+      },
+      "as_of": "2018",
+      "evidence": {
+        "sha256": "334391c11160805a0cfdbf3add99e3f7991c9b7ecc6bebbb6eb88773bf5d37c4",
+        "local_file": "赛迪顾问：2018年数据中心市场数据(9页).pdf",
+        "locator": "正文：「2018 年，全球数据中心 IT 市场呈现快速增长趋势，规模达到 2498 亿美元，同比增长 10.5%」「全球数据中心 IT 硬件市场占比最大，规模达到 1066.6 亿美元，占比 42.7%；其次是 IT 服务市场 1004.2 亿美元，占比 40.2%；再次是软件市场 427.2 亿美元，占比 17.1%」「（北美）市场规模达到 1006.7 亿美元，全球占比 40.3%。欧洲……2018 年规模达到 429.7 亿美元，全球占比 17.2%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "占全球数据中心 IT 市场 42.7%。technology 维没有「硬件合计」取值，取最接近的 Servers 并在此写明实际含全部 IT 硬件。[未核]"
+    },
+    {
+      "fact_id": "ccid2018-na-dc-it-market",
+      "asserter": "赛迪顾问",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "na-dc-it-market",
+        "label": "北美数据中心 IT 市场"
+      },
+      "value": 1006.7,
+      "unit": "亿美元",
+      "bound": "point",
+      "caliber": {
+        "segment": "Total",
+        "region": "North America",
+        "technology": "Total"
+      },
+      "as_of": "2018",
+      "evidence": {
+        "sha256": "334391c11160805a0cfdbf3add99e3f7991c9b7ecc6bebbb6eb88773bf5d37c4",
+        "local_file": "赛迪顾问：2018年数据中心市场数据(9页).pdf",
+        "locator": "正文：「2018 年，全球数据中心 IT 市场呈现快速增长趋势，规模达到 2498 亿美元，同比增长 10.5%」「全球数据中心 IT 硬件市场占比最大，规模达到 1066.6 亿美元，占比 42.7%；其次是 IT 服务市场 1004.2 亿美元，占比 40.2%；再次是软件市场 427.2 亿美元，占比 17.1%」「（北美）市场规模达到 1006.7 亿美元，全球占比 40.3%。欧洲……2018 年规模达到 429.7 亿美元，全球占比 17.2%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "全球占比 40.3%；欧洲 429.7 亿美元占 17.2%，亚太占 26.8%（原图）。[未核]"
+    },
+    {
+      "fact_id": "ccid2018-eu-dc-it-market",
+      "asserter": "赛迪顾问",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "eu-dc-it-market",
+        "label": "欧洲数据中心 IT 市场"
+      },
+      "value": 429.7,
+      "unit": "亿美元",
+      "bound": "point",
+      "caliber": {
+        "segment": "Total",
+        "region": "EMEA",
+        "technology": "Total"
+      },
+      "as_of": "2018",
+      "evidence": {
+        "sha256": "334391c11160805a0cfdbf3add99e3f7991c9b7ecc6bebbb6eb88773bf5d37c4",
+        "local_file": "赛迪顾问：2018年数据中心市场数据(9页).pdf",
+        "locator": "正文：「2018 年，全球数据中心 IT 市场呈现快速增长趋势，规模达到 2498 亿美元，同比增长 10.5%」「全球数据中心 IT 硬件市场占比最大，规模达到 1066.6 亿美元，占比 42.7%；其次是 IT 服务市场 1004.2 亿美元，占比 40.2%；再次是软件市场 427.2 亿美元，占比 17.1%」「（北美）市场规模达到 1006.7 亿美元，全球占比 40.3%。欧洲……2018 年规模达到 429.7 亿美元，全球占比 17.2%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "全球占比 17.2%，原文称受整体经济大环境影响增长明显放缓。[未核]"
+    },
+    {
+      "fact_id": "ccid2018-cn-dc-it-investment",
+      "asserter": "赛迪顾问",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "cn-dc-it-market",
+        "label": "中国数据中心 IT 投资"
+      },
+      "value": 3257.0,
+      "unit": "亿美元",
+      "bound": "point",
+      "caliber": {
+        "segment": "Total",
+        "region": "China",
+        "technology": "Total"
+      },
+      "as_of": "2018",
+      "evidence": {
+        "sha256": "334391c11160805a0cfdbf3add99e3f7991c9b7ecc6bebbb6eb88773bf5d37c4",
+        "local_file": "赛迪顾问：2018年数据中心市场数据(9页).pdf",
+        "locator": "正文：「2018 年中国数据中心 IT 投资规模达到 3257 亿元，比 2017 年同期增长 17.8%。未来三年将保持 13.6% 的年均复合增长，到 2021 年 IT 投资将达到 4770 亿元」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**单位是人民币亿元，不是亿美元**——本指标 unit 固定为亿美元、没有币种维，这条 3257 亿元若被当成美元读会高估约 7 倍。已在 notes 标死，并记缺口。同比 +17.8%。[未核]"
+    },
+    {
+      "fact_id": "ccid2018-cn-dc-it-investment-2021e",
+      "asserter": "赛迪顾问",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "cn-dc-it-market",
+        "label": "中国数据中心 IT 投资"
+      },
+      "value": 4770.0,
+      "unit": "亿美元",
+      "bound": "point",
+      "caliber": {
+        "segment": "Total",
+        "region": "China",
+        "technology": "Total"
+      },
+      "as_of": "2021E@2019",
+      "evidence": {
+        "sha256": "334391c11160805a0cfdbf3add99e3f7991c9b7ecc6bebbb6eb88773bf5d37c4",
+        "local_file": "赛迪顾问：2018年数据中心市场数据(9页).pdf",
+        "locator": "正文：「2018 年中国数据中心 IT 投资规模达到 3257 亿元，比 2017 年同期增长 17.8%。未来三年将保持 13.6% 的年均复合增长，到 2021 年 IT 投资将达到 4770 亿元」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**同样是人民币亿元**；未来三年 CAGR 13.6%。[未核]"
     }
   ]
 }
