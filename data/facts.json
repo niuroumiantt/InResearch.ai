@@ -235665,6 +235665,66 @@
       "corroboration": "待交叉验证",
       "notes": "**自 2000 年起的长期复合年均涨幅 2.85%**，演讲者用它论证「按 $/GB 而非 TCO 做采购决策是错的」——五年累计 11.5%（原文自算）。**注意 11.5% 与 2.85% 的复利并不严格吻合**（1.0285^5 = 15.1%），原文的 11.5% 更接近单利口径或另有取整，**两个数不可同时引用**；本条只录年均值。customer_class 记「全类别」：原文说的是 US average power rates，未区分居民与工商业。",
       "asserter": "SNIA"
+    },
+    {
+      "fact_id": "sa2308-nvidia-fy24-revenue",
+      "metric_id": "company_revenue",
+      "entity": {
+        "type": "company",
+        "id": "nvidia",
+        "label": "英伟达"
+      },
+      "value": 57000.0,
+      "unit": "百万（原币）",
+      "caliber": {
+        "currency": "美元",
+        "fiscal_align": "公司财季/财年",
+        "basis": "券商测算"
+      },
+      "as_of": "2024E@2023-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "269c0c7fe952590a76bbc6293c92a9f6e94e88cba4c95fb071c47101a6bc9285",
+        "local_file": "Nvidia's Ramp – Volume, ASP, Cloud Pricing, Margins, EPS, Cashflow, China, Competition.pdf",
+        "locator": "第 4 页：「Based on our demand modelling we have fiscal 2024 revenue at $57B and fiscal 2025 at $78B. This is more than 1 million A/H100 GPUs this year and more than 2 million in next year」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia's Ramp – Volume, ASP, Cloud Pricing, Margins, EPS, Cashflow, China, Competition》（Dylan Patel、Myron Xie、Daniel Nishball，2023-08-21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**单位换算：$57B = 57,000 百万美元。****口径是英伟达财年（FY2024 截至 2024 年 1 月），不是自然年**，fiscal_align 已标。配套：该模型对应「今年 A/H100 出货超 100 万颗、明年超 200 万颗」。**这是 2023 年 8 月的预测，可与后续实际值对照看 SemiAnalysis 当时的偏差**（英伟达 FY2024 实际营收为 609 亿美元，本预测偏低约 6%）。 **as_of 写作 2024E/2025E 是格式所限——实为英伟达财年 FY2024（截至 2024-01）与 FY2025（截至 2025-01），与自然年错开约 11 个月，fiscal_align 维已标「公司财季/财年」。**",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa2308-nvidia-fy25-revenue",
+      "metric_id": "company_revenue",
+      "entity": {
+        "type": "company",
+        "id": "nvidia",
+        "label": "英伟达"
+      },
+      "value": 78000.0,
+      "unit": "百万（原币）",
+      "caliber": {
+        "currency": "美元",
+        "fiscal_align": "公司财季/财年",
+        "basis": "券商测算"
+      },
+      "as_of": "2025E@2023-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "269c0c7fe952590a76bbc6293c92a9f6e94e88cba4c95fb071c47101a6bc9285",
+        "local_file": "Nvidia's Ramp – Volume, ASP, Cloud Pricing, Margins, EPS, Cashflow, China, Competition.pdf",
+        "locator": "第 4 页：「Based on our demand modelling we have fiscal 2024 revenue at $57B and fiscal 2025 at $78B. This is more than 1 million A/H100 GPUs this year and more than 2 million in next year」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Nvidia's Ramp – Volume, ASP, Cloud Pricing, Margins, EPS, Cashflow, China, Competition》（Dylan Patel、Myron Xie、Daniel Nishball，2023-08-21）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "$78B = 78,000 百万美元，英伟达财年口径。**这条预测的偏差更大**：英伟达 FY2025 实际营收约 1,305 亿美元，本预测只有其六成——**说明 2023 年 8 月时点上，连最贴近供应链的机构也大幅低估了 AI 需求斜率**，引用历史预测时须带上这个背景。同段预测 FY2025 第三财季起出现环比下滑，实际并未发生。 **as_of 写作 2024E/2025E 是格式所限——实为英伟达财年 FY2024（截至 2024-01）与 FY2025（截至 2025-01），与自然年错开约 11 个月，fiscal_align 维已标「公司财季/财年」。**",
+      "asserter": "SemiAnalysis"
     }
   ]
 }
