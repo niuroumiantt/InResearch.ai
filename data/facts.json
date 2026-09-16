@@ -223717,6 +223717,66 @@
       "corroboration": "待交叉验证",
       "asserter": "IDC",
       "notes": "口径为「年度创建与复制数据量」（created and replicated），与库内 Data Age「数据创建量」口径不同，measure 记未注明。原文 72 ZB = 72,000 EB；同页 2005 年 <1ZB 未记。as_of 带版本 2024-05（该 DataSphere 版本）。"
+    },
+    {
+      "unit": "颗",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "阿贡国家实验室",
+      "as_of": "2025-09",
+      "evidence": {
+        "sha256": "b818c3bdcb97c508baa88e21b3b490f9b25fc95bb1bd4b2e058e31d300a184d8",
+        "local_file": "SNIA-SDC25-Zheng-Beyond-Throughput-Benchmarking-Storage.pdf",
+        "locator": "PDF 第 2 页「Argonne Leadership Computing Facility (ALCF)」：「Aurora 63,744 Intel PVC GPUs；Polaris 2240 Nvidia A100 GPU；AI testbeds: CS-2, SambaNova…」（SNIA SDC 2025，2025-09-17，Argonne National Laboratory）",
+        "grade": "S2"
+      },
+      "fact_id": "anl2509-aurora-gpu-count",
+      "metric_id": "cluster_gpu_count",
+      "entity": {
+        "type": "project",
+        "id": "anl-aurora",
+        "label": "阿贡国家实验室 Aurora 超算"
+      },
+      "value": 63744.0,
+      "caliber": {
+        "scope": "单集群实际部署",
+        "accelerator": "Intel Ponte Vecchio (PVC)",
+        "region": "US",
+        "basis": "公司披露"
+      },
+      "bound": "point",
+      "notes": "ALCF 运营方自述的在役规模；库内 cmcc-nicc23-anl-polaris-aurora 为算力（PFLOPS）口径，非卡数。"
+    },
+    {
+      "unit": "颗",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "阿贡国家实验室",
+      "as_of": "2025-09",
+      "evidence": {
+        "sha256": "b818c3bdcb97c508baa88e21b3b490f9b25fc95bb1bd4b2e058e31d300a184d8",
+        "local_file": "SNIA-SDC25-Zheng-Beyond-Throughput-Benchmarking-Storage.pdf",
+        "locator": "PDF 第 2 页「Argonne Leadership Computing Facility (ALCF)」：「Aurora 63,744 Intel PVC GPUs；Polaris 2240 Nvidia A100 GPU；AI testbeds: CS-2, SambaNova…」（SNIA SDC 2025，2025-09-17，Argonne National Laboratory）",
+        "grade": "S2"
+      },
+      "fact_id": "anl2509-polaris-gpu-count",
+      "metric_id": "cluster_gpu_count",
+      "entity": {
+        "type": "project",
+        "id": "anl-polaris",
+        "label": "阿贡国家实验室 Polaris 超算"
+      },
+      "value": 2240.0,
+      "caliber": {
+        "scope": "单集群实际部署",
+        "accelerator": "NVIDIA A100",
+        "region": "US",
+        "basis": "公司披露"
+      },
+      "bound": "point",
+      "notes": "ALCF 运营方自述的在役规模。"
     }
   ]
 }
