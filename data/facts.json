@@ -229196,6 +229196,428 @@
       "notes": "**原文写「去年」，报告成文于 2024 年，故 as_of 取 2023 并标 derived。**库内另有爱尔兰中央统计局口径 2022 年 18%（jll2024-ireland-dc-power-share-2022），本条 21% 与之构成一条连续上升序列，但本条未标出处、非官方统计口径，不作互证。region 只能填 EU（枚举无 IE）。",
       "asserter": "璞跃（Plug and Play）",
       "derivation": "as_of 由原文「last year」+ 报告成文年份 2024 推定为 2023"
+    },
+    {
+      "fact_id": "sxzq2405-sa-global-dc-load-2026e",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenter",
+        "label": "全球数据中心"
+      },
+      "value": 96.0,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "未披露",
+        "workload": "全部负载",
+        "scenario": "未注明",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2026E@2024-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4f78e80e47bcc3a021de4df0d38a84e3693a9426091f12e221f3fd4de4ae78c0",
+        "local_file": "20240514-高增长AI算力呼唤高效液冷_国产液冷全链条崛起_32页_1mb.pdf",
+        "locator": "第 5 页：「根据 SemiAnalysis 数据，2023-2026 年，全球数据中心能耗将从 49GW 增至 96GW，3 年 CAGR 超 25%，其中 AI 算力能耗将迎来结构性激增，到 2026 年将超 40GW，占数据中心总能耗超 40%」",
+        "grade": "S4",
+        "originator": "SemiAnalysis（经山西证券《数据中心液冷专题报告：高增长 AI 算力呼唤高效液冷，国产液冷全链条崛起》（高宇洋、张天，2024-05-14）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**与库内 SemiAnalysis 的 2023 年 49GW（global-it-load-2023，IT 负载口径）是同一条序列的两端**，原文写「数据中心能耗……GW」，未交代是 IT 负载还是设施总功率，故 power_scope 记「未披露」——**严格说与那条 49GW 的口径是否一致，本文没给出证据。**3 年 CAGR 原文称超 25%。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sxzq2405-sa-global-ai-load-2026e",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "industry",
+        "id": "global-ai-datacenter",
+        "label": "全球 AI 算力（数据中心内）"
+      },
+      "value": 40.0,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "未披露",
+        "workload": "AI 负载",
+        "scenario": "未注明",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2026E@2024-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "4f78e80e47bcc3a021de4df0d38a84e3693a9426091f12e221f3fd4de4ae78c0",
+        "local_file": "20240514-高增长AI算力呼唤高效液冷_国产液冷全链条崛起_32页_1mb.pdf",
+        "locator": "第 5 页：「根据 SemiAnalysis 数据，2023-2026 年，全球数据中心能耗将从 49GW 增至 96GW，3 年 CAGR 超 25%，其中 AI 算力能耗将迎来结构性激增，到 2026 年将超 40GW，占数据中心总能耗超 40%」",
+        "grade": "S4",
+        "originator": "SemiAnalysis（经山西证券《数据中心液冷专题报告：高增长 AI 算力呼唤高效液冷，国产液冷全链条崛起》（高宇洋、张天，2024-05-14）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文写「超 40GW」，记为下界；同句称其占数据中心总能耗超 40%（40 ÷ 96 = 41.7%，与同段总量自洽）。**与库内国信转述的 SemiAnalysis「2026 年 AI 数据中心新增装机 24GW」不是一回事：那是当年新增，本条是存量口径的算力能耗。**",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sxzq2405-sa-global-dc-facility-capex-2023",
+      "metric_id": "dc_facility_capex_annual",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenter",
+        "label": "全球数据中心（设施侧）"
+      },
+      "value": 490.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "设施（不含 IT 设备）",
+        "owner_type": "全行业",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4f78e80e47bcc3a021de4df0d38a84e3693a9426091f12e221f3fd4de4ae78c0",
+        "local_file": "20240514-高增长AI算力呼唤高效液冷_国产液冷全链条崛起_32页_1mb.pdf",
+        "locator": "第 8 页：「根据 SemiAnalysis 数据，从 2023 年到 2026 年，全球数据中心资本支出（不包括服务器和网络等 IT 设备）将从 490 亿美元增长至 1670 亿美元，3 年 CAGR 达 50.5%，其中，电力系统投资占比 40-45%，对应 2026 年市场规模 670-750 亿美元」",
+        "grade": "S4",
+        "originator": "SemiAnalysis（经山西证券《数据中心液冷专题报告：高增长 AI 算力呼唤高效液冷，国产液冷全链条崛起》（高宇洋、张天，2024-05-14）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**口径明确排除服务器与网络等 IT 设备**，即设施侧资本开支，与库内 dc_it_capex（IT 侧）互补、不可相加去比总投资。3 年 CAGR 原文称 50.5%；其中电力系统投资占 40-45%，对应 2026 年 670-750 亿美元。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sxzq2405-sa-global-dc-facility-capex-2026e",
+      "metric_id": "dc_facility_capex_annual",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenter",
+        "label": "全球数据中心（设施侧）"
+      },
+      "value": 1670.0,
+      "unit": "亿美元",
+      "caliber": {
+        "scope": "设施（不含 IT 设备）",
+        "owner_type": "全行业",
+        "currency": "美元",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2024-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4f78e80e47bcc3a021de4df0d38a84e3693a9426091f12e221f3fd4de4ae78c0",
+        "local_file": "20240514-高增长AI算力呼唤高效液冷_国产液冷全链条崛起_32页_1mb.pdf",
+        "locator": "第 8 页：「根据 SemiAnalysis 数据，从 2023 年到 2026 年，全球数据中心资本支出（不包括服务器和网络等 IT 设备）将从 490 亿美元增长至 1670 亿美元，3 年 CAGR 达 50.5%，其中，电力系统投资占比 40-45%，对应 2026 年市场规模 670-750 亿美元」",
+        "grade": "S4",
+        "originator": "SemiAnalysis（经山西证券《数据中心液冷专题报告：高增长 AI 算力呼唤高效液冷，国产液冷全链条崛起》（高宇洋、张天，2024-05-14）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**口径明确排除服务器与网络等 IT 设备**，即设施侧资本开支，与库内 dc_it_capex（IT 侧）互补、不可相加去比总投资。3 年 CAGR 原文称 50.5%；其中电力系统投资占 40-45%，对应 2026 年 670-750 亿美元。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sxzq2405-global-coldplate-lc-market-2028e",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "global-coldplate-liquid-cooling",
+        "label": "全球数据中心冷板式液冷市场"
+      },
+      "value": 641.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "智算中心液冷",
+        "currency": "人民币",
+        "cooling_route": "冷板式",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2028E@2024-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4f78e80e47bcc3a021de4df0d38a84e3693a9426091f12e221f3fd4de4ae78c0",
+        "local_file": "20240514-高增长AI算力呼唤高效液冷_国产液冷全链条崛起_32页_1mb.pdf",
+        "locator": "第 2 页投资要点：「我们预计，到 2028 年冷板、浸没式液冷数据中心市场空间分别可达 641、256 亿元，5 年 CAGR 分别为 45%、78%」",
+        "grade": "S4",
+        "originator": "山西证券《数据中心液冷专题报告：高增长 AI 算力呼唤高效液冷，国产液冷全链条崛起》（高宇洋、张天，2024-05-14）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**测算输入均为模型假设，不单独入库**：2028 年 CPU 出货超 3600 万片（单芯片服务器平均功耗约 290W）、GPU 出货近 1500 万片（约 1800W）、冷板/浸没渗透率 CPU 侧 25%/6%、AI 侧 55%/6%、单 kW 投资额降至 3400/9600 元。币种人民币。 5 年 CAGR 原文称 45%。按分部拆：CPU 服务器冷板约 135 亿元 + AI 服务器冷板超 500 亿元 ≈ 641 亿元。",
+      "asserter": "山西证券"
+    },
+    {
+      "fact_id": "sxzq2405-global-immersion-lc-market-2028e",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "global-immersion-liquid-cooling",
+        "label": "全球数据中心浸没式液冷市场"
+      },
+      "value": 256.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "智算中心液冷",
+        "currency": "人民币",
+        "cooling_route": "单相浸没",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2028E@2024-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4f78e80e47bcc3a021de4df0d38a84e3693a9426091f12e221f3fd4de4ae78c0",
+        "local_file": "20240514-高增长AI算力呼唤高效液冷_国产液冷全链条崛起_32页_1mb.pdf",
+        "locator": "第 2 页投资要点：「同句」",
+        "grade": "S4",
+        "originator": "山西证券《数据中心液冷专题报告：高增长 AI 算力呼唤高效液冷，国产液冷全链条崛起》（高宇洋、张天，2024-05-14）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**测算输入均为模型假设，不单独入库**：2028 年 CPU 出货超 3600 万片（单芯片服务器平均功耗约 290W）、GPU 出货近 1500 万片（约 1800W）、冷板/浸没渗透率 CPU 侧 25%/6%、AI 侧 55%/6%、单 kW 投资额降至 3400/9600 元。币种人民币。 5 年 CAGR 原文称 78%。按分部拆：CPU 服务器浸没约 95 亿元 + AI 服务器浸没超 160 亿元 ≈ 256 亿元。**cooling_route 记「单相浸没」是枚举所限——原文只写「浸没式」未分单相/相变。**",
+      "asserter": "山西证券"
+    },
+    {
+      "fact_id": "sxzq2405-lc-primary-side-market-2028e",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "global-lc-primary-side",
+        "label": "全球数据中心液冷一次侧市场"
+      },
+      "value": 580.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "智算中心液冷",
+        "currency": "人民币",
+        "cooling_route": "未注明",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2028E@2024-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "4f78e80e47bcc3a021de4df0d38a84e3693a9426091f12e221f3fd4de4ae78c0",
+        "local_file": "20240514-高增长AI算力呼唤高效液冷_国产液冷全链条崛起_32页_1mb.pdf",
+        "locator": "第 25 页：「根据 SemiAnalysis 数据，液冷数据中心建设成本中，一次侧成本比例约为 60-70%，二次侧约为 30-40%，结合前文对数据中心液冷市场空间的测算，则对应 2028 年一次侧、二次侧的市场空间分别有望超 580、310 亿元，5 年 CAGR 有望达 51%」",
+        "grade": "S4",
+        "originator": "山西证券《数据中心液冷专题报告：高增长 AI 算力呼唤高效液冷，国产液冷全链条崛起》（高宇洋、张天，2024-05-14）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文写「超 580 亿元」，记为下界。**一次侧/二次侧的拆分比例（60-70% / 30-40%）来自 SemiAnalysis，金额是山西证券结合自家市场规模测算得出**，故 asserter 记山西证券。一次侧 + 二次侧 ≈ 890 亿元，与冷板 641 + 浸没 256 = 897 亿元大致吻合（原文称「有望达 900 亿元」）。",
+      "asserter": "山西证券"
+    },
+    {
+      "fact_id": "sxzq2405-lc-secondary-side-market-2028e",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "global-lc-secondary-side",
+        "label": "全球数据中心液冷二次侧市场"
+      },
+      "value": 310.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "智算中心液冷",
+        "currency": "人民币",
+        "cooling_route": "未注明",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2028E@2024-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "4f78e80e47bcc3a021de4df0d38a84e3693a9426091f12e221f3fd4de4ae78c0",
+        "local_file": "20240514-高增长AI算力呼唤高效液冷_国产液冷全链条崛起_32页_1mb.pdf",
+        "locator": "第 25 页：「同句」",
+        "grade": "S4",
+        "originator": "山西证券《数据中心液冷专题报告：高增长 AI 算力呼唤高效液冷，国产液冷全链条崛起》（高宇洋、张天，2024-05-14）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文写「超 310 亿元」，记为下界；口径说明同一次侧条。",
+      "asserter": "山西证券"
+    },
+    {
+      "fact_id": "sxzq2405-pue-aircooled-cn2019",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "industry",
+        "id": "cooling-route-typical-pue-cn2019",
+        "label": "按冷却路线的 PUE 典型值（中国 2019 口径）"
+      },
+      "value": 1.6,
+      "unit": "比值",
+      "caliber": {
+        "basis": "按冷却路线典型值",
+        "cooling_tech": "风冷",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4f78e80e47bcc3a021de4df0d38a84e3693a9426091f12e221f3fd4de4ae78c0",
+        "local_file": "20240514-高增长AI算力呼唤高效液冷_国产液冷全链条崛起_32页_1mb.pdf",
+        "locator": "第 12 页：「根据《绿色数据中心白皮书 2019》，采用传统风冷的数据中心 PUE 平均在 1.6 左右，而冷板式液冷和浸没式液冷分别能将 PUE 降低到 1.3、1.2 以下」；同页表列「PUE（平均）1.6 / 1.3 以下 / 1.2 以下」",
+        "grade": "S4",
+        "originator": "《绿色数据中心白皮书 2019》（经山西证券《数据中心液冷专题报告：高增长 AI 算力呼唤高效液冷，国产液冷全链条崛起》（高宇洋、张天，2024-05-14）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**来源是《绿色数据中心白皮书 2019》，与库内中泰/华创/西部三家券商给的路线 PUE 区间是不同来源、不同年份**（2019 vs 2025-2026），本条更接近当年的行业平均而非当前水平；basis 记「按冷却路线典型值」。region 记 CN：白皮书为国内口径。 原文写「平均在 1.6 左右」。",
+      "asserter": "《绿色数据中心白皮书 2019》"
+    },
+    {
+      "fact_id": "sxzq2405-pue-coldplate-cn2019",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "industry",
+        "id": "cooling-route-typical-pue-cn2019",
+        "label": "按冷却路线的 PUE 典型值（中国 2019 口径）"
+      },
+      "value": 1.3,
+      "unit": "比值",
+      "caliber": {
+        "basis": "按冷却路线典型值",
+        "cooling_tech": "冷板液冷",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2019",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "4f78e80e47bcc3a021de4df0d38a84e3693a9426091f12e221f3fd4de4ae78c0",
+        "local_file": "20240514-高增长AI算力呼唤高效液冷_国产液冷全链条崛起_32页_1mb.pdf",
+        "locator": "第 12 页：「根据《绿色数据中心白皮书 2019》，采用传统风冷的数据中心 PUE 平均在 1.6 左右，而冷板式液冷和浸没式液冷分别能将 PUE 降低到 1.3、1.2 以下」；同页表列「PUE（平均）1.6 / 1.3 以下 / 1.2 以下」",
+        "grade": "S4",
+        "originator": "《绿色数据中心白皮书 2019》（经山西证券《数据中心液冷专题报告：高增长 AI 算力呼唤高效液冷，国产液冷全链条崛起》（高宇洋、张天，2024-05-14）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**来源是《绿色数据中心白皮书 2019》，与库内中泰/华创/西部三家券商给的路线 PUE 区间是不同来源、不同年份**（2019 vs 2025-2026），本条更接近当年的行业平均而非当前水平；basis 记「按冷却路线典型值」。region 记 CN：白皮书为国内口径。 原文写「降低到 1.3 以下」，故记为上界。",
+      "asserter": "《绿色数据中心白皮书 2019》"
+    },
+    {
+      "fact_id": "sxzq2405-pue-immersion-cn2019",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "industry",
+        "id": "cooling-route-typical-pue-cn2019",
+        "label": "按冷却路线的 PUE 典型值（中国 2019 口径）"
+      },
+      "value": 1.2,
+      "unit": "比值",
+      "caliber": {
+        "basis": "按冷却路线典型值",
+        "cooling_tech": "浸没液冷",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2019",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "4f78e80e47bcc3a021de4df0d38a84e3693a9426091f12e221f3fd4de4ae78c0",
+        "local_file": "20240514-高增长AI算力呼唤高效液冷_国产液冷全链条崛起_32页_1mb.pdf",
+        "locator": "第 12 页：「根据《绿色数据中心白皮书 2019》，采用传统风冷的数据中心 PUE 平均在 1.6 左右，而冷板式液冷和浸没式液冷分别能将 PUE 降低到 1.3、1.2 以下」；同页表列「PUE（平均）1.6 / 1.3 以下 / 1.2 以下」",
+        "grade": "S4",
+        "originator": "《绿色数据中心白皮书 2019》（经山西证券《数据中心液冷专题报告：高增长 AI 算力呼唤高效液冷，国产液冷全链条崛起》（高宇洋、张天，2024-05-14）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**来源是《绿色数据中心白皮书 2019》，与库内中泰/华创/西部三家券商给的路线 PUE 区间是不同来源、不同年份**（2019 vs 2025-2026），本条更接近当年的行业平均而非当前水平；basis 记「按冷却路线典型值」。region 记 CN：白皮书为国内口径。 原文写「降低到 1.2 以下」，故记为上界。",
+      "asserter": "《绿色数据中心白皮书 2019》"
+    },
+    {
+      "fact_id": "sxzq2405-supermicro-h100-rack-liquid-50kw",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "supermicro-h100-rack",
+        "label": "Supermicro H100 机柜算例"
+      },
+      "value": 50.4,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "设计目标",
+        "era": "当期",
+        "power_basis": "实际功率密度",
+        "region": "未披露"
+      },
+      "as_of": "2024-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4f78e80e47bcc3a021de4df0d38a84e3693a9426091f12e221f3fd4de4ae78c0",
+        "local_file": "20240514-高增长AI算力呼唤高效液冷_国产液冷全链条崛起_32页_1mb.pdf",
+        "locator": "第 10 页：「根据 Supermicro 数据，以 H100 为例，冷板液冷建设费用较风冷方案高约 3 万美元；由于不需要风扇，液冷条件下 GPU 服务器功耗将从 7kW 降低至 6.3kW，则液冷、风冷单机柜芯片功耗分别为 50.4kW 和 56kW，而液冷 PUE 可由风冷状态下的 1.5 将至 1.1，对应液冷、风冷单机柜总功耗分别为 55.44kW 和 84kW；假设电价为 0.12 美元/kW，则数据中心运营 3 年后，液冷方案将节省超 6 万美元」",
+        "grade": "S4",
+        "originator": "Supermicro（经山西证券《数据中心液冷专题报告：高增长 AI 算力呼唤高效液冷，国产液冷全链条崛起》（高宇洋、张天，2024-05-14）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是 Supermicro 的 H100 机柜算例，不是市场平均**：8 台 GPU 服务器/柜口径下，液冷单机柜芯片功耗 50.4kW、风冷 56kW；叠加 PUE（1.1 vs 1.5）后总功耗 55.44kW vs 84kW。电价假设 0.12 美元/kWh（原文写「美元/kW」，应为笔误）。三年节省超 6 万美元，扣除高出的约 3 万美元建设费后净省约 3 万美元。 region 未披露：原文未限定地域（电价 0.12 美元/kWh 暗示北美，但未明说）。",
+      "asserter": "Supermicro"
+    },
+    {
+      "fact_id": "sxzq2405-supermicro-h100-rack-air-56kw",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "supermicro-h100-rack",
+        "label": "Supermicro H100 机柜算例"
+      },
+      "value": 56.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "设计目标",
+        "era": "当期",
+        "power_basis": "实际功率密度",
+        "region": "未披露"
+      },
+      "as_of": "2024-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4f78e80e47bcc3a021de4df0d38a84e3693a9426091f12e221f3fd4de4ae78c0",
+        "local_file": "20240514-高增长AI算力呼唤高效液冷_国产液冷全链条崛起_32页_1mb.pdf",
+        "locator": "第 10 页：「根据 Supermicro 数据，以 H100 为例，冷板液冷建设费用较风冷方案高约 3 万美元；由于不需要风扇，液冷条件下 GPU 服务器功耗将从 7kW 降低至 6.3kW，则液冷、风冷单机柜芯片功耗分别为 50.4kW 和 56kW，而液冷 PUE 可由风冷状态下的 1.5 将至 1.1，对应液冷、风冷单机柜总功耗分别为 55.44kW 和 84kW；假设电价为 0.12 美元/kW，则数据中心运营 3 年后，液冷方案将节省超 6 万美元」",
+        "grade": "S4",
+        "originator": "Supermicro（经山西证券《数据中心液冷专题报告：高增长 AI 算力呼唤高效液冷，国产液冷全链条崛起》（高宇洋、张天，2024-05-14）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是 Supermicro 的 H100 机柜算例，不是市场平均**：8 台 GPU 服务器/柜口径下，液冷单机柜芯片功耗 50.4kW、风冷 56kW；叠加 PUE（1.1 vs 1.5）后总功耗 55.44kW vs 84kW。电价假设 0.12 美元/kWh（原文写「美元/kW」，应为笔误）。三年节省超 6 万美元，扣除高出的约 3 万美元建设费后净省约 3 万美元。 region 未披露：原文未限定地域（电价 0.12 美元/kWh 暗示北美，但未明说）。",
+      "asserter": "Supermicro"
     }
   ]
 }
