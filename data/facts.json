@@ -224149,7 +224149,9 @@
       "notes": "本条为区间下界，上界见 dfzq2605-aircooled-rack-design-ceiling-upper。**这是作者给出的风冷设计上限，不是出货中位数**——库内 SemiAnalysis 口径的当期典型风冷机柜为 15-20kW，二者不矛盾：一个是能做到的上限，一个是实际在跑的水平。同句的 NVL72「近 140kW」与库内已有的 140kW（TDP 口径）同值，属券商转述，不另记。region 未披露：原文未限定地域。",
       "asserter": "东方证券",
       "disputed_by": [
-        "gh2509-aircooled-rack-limit-20kw"
+        "gh2509-aircooled-rack-limit-20kw",
+        "gx2509-aircooled-rack-limit-lower",
+        "gx2509-aircooled-rack-limit-upper"
       ]
     },
     {
@@ -224184,7 +224186,9 @@
       "notes": "本条为区间上界，下界见 dfzq2605-aircooled-rack-design-ceiling-lower。说明同下界条。",
       "asserter": "东方证券",
       "disputed_by": [
-        "gh2509-aircooled-rack-limit-20kw"
+        "gh2509-aircooled-rack-limit-20kw",
+        "gx2509-aircooled-rack-limit-lower",
+        "gx2509-aircooled-rack-limit-upper"
       ]
     },
     {
@@ -225614,6 +225618,10 @@
       "disputes": [
         "dfzq2605-aircooled-rack-design-ceiling-lower",
         "dfzq2605-aircooled-rack-design-ceiling-upper"
+      ],
+      "disputed_by": [
+        "gx2509-aircooled-rack-limit-lower",
+        "gx2509-aircooled-rack-limit-upper"
       ]
     },
     {
@@ -225647,6 +225655,679 @@
       "corroboration": "待交叉验证",
       "notes": "**署名 SemiAnalysis，国海只是转述**。power_scope 记「未披露」：原文只写「装机容量」，没说是 IT 负载还是设施总功率——库内 SemiAnalysis 另一条 2023 年全球 49GW 是明确的 IT 负载口径、且是全部负载，两条不可直接比（一个是全球全部、一个是 AI 智算）。原文对 2028 年只说「有望进一步增长」，没给数，不记。",
       "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "gx2509-sa-ai-dc-additions-2024",
+      "metric_id": "dc_capacity_additions_annual",
+      "entity": {
+        "type": "industry",
+        "id": "global-ai-datacenter",
+        "label": "全球 AI 数据中心（新增）"
+      },
+      "value": 7.0,
+      "unit": "GW/年",
+      "caliber": {
+        "power_scope": "未披露",
+        "facility_type": "智算中心",
+        "scenario": "单一情景",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "942ad7d5312e8f25937e2094cbebcd227f31ee99f1ed0651410675eafd58e3bf",
+        "local_file": "20250925-国信证券-国信证券-化工行业·数据中心及AI服务器液冷冷却液行业分析框架(40页).pdf",
+        "locator": "第 36 页 图「全球数据中心及 AI 数据中心新增装机量（GW）」与同页表，图下资料来源 SemiAnalysis、国信证券经济研究所整理；正文：「根据 SemiAnalysis，2024 年全球 AI 数据中心新增装机量达 7GW，预计 2028 年 AI 数据中心新增装机量将达 59GW，期间复合增速高达 70%」",
+        "grade": "S4",
+        "originator": "SemiAnalysis（经国信证券《化工行业·数据中心及 AI 服务器液冷冷却液行业分析框架》（2025-09-25）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**口径是当年新增装机量，不是存量**。power_scope 记「未披露」：原文只说「新增装机量（GW）」，没交代是 IT 负载还是设施总功率。**同一个 7GW，国海证券那份写成「2024 年全球 AI 智算中心装机容量为 7GW」，已按其字面记入 global_dc_it_load（gh2509-sa-global-ai-dc-capacity-2024）——同一个 SemiAnalysis 数被两家券商分别写成「装机容量」与「新增装机量」，本条按国信的明确写法记，那条的口径疑问已记缺口。**",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "gx2509-sa-ai-dc-additions-2025e",
+      "metric_id": "dc_capacity_additions_annual",
+      "entity": {
+        "type": "industry",
+        "id": "global-ai-datacenter",
+        "label": "全球 AI 数据中心（新增）"
+      },
+      "value": 13.0,
+      "unit": "GW/年",
+      "caliber": {
+        "power_scope": "未披露",
+        "facility_type": "智算中心",
+        "scenario": "单一情景",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "942ad7d5312e8f25937e2094cbebcd227f31ee99f1ed0651410675eafd58e3bf",
+        "local_file": "20250925-国信证券-国信证券-化工行业·数据中心及AI服务器液冷冷却液行业分析框架(40页).pdf",
+        "locator": "第 36 页 图「全球数据中心及 AI 数据中心新增装机量（GW）」与同页表，图下资料来源 SemiAnalysis、国信证券经济研究所整理；正文：「根据 SemiAnalysis，2024 年全球 AI 数据中心新增装机量达 7GW，预计 2028 年 AI 数据中心新增装机量将达 59GW，期间复合增速高达 70%」",
+        "grade": "S4",
+        "originator": "SemiAnalysis（经国信证券《化工行业·数据中心及 AI 服务器液冷冷却液行业分析框架》（2025-09-25）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "口径同 gx2509-sa-ai-dc-additions-2024。报告发布于 2025-09，2025 全年仍属预测。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "gx2509-sa-ai-dc-additions-2026e",
+      "metric_id": "dc_capacity_additions_annual",
+      "entity": {
+        "type": "industry",
+        "id": "global-ai-datacenter",
+        "label": "全球 AI 数据中心（新增）"
+      },
+      "value": 24.0,
+      "unit": "GW/年",
+      "caliber": {
+        "power_scope": "未披露",
+        "facility_type": "智算中心",
+        "scenario": "单一情景",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "942ad7d5312e8f25937e2094cbebcd227f31ee99f1ed0651410675eafd58e3bf",
+        "local_file": "20250925-国信证券-国信证券-化工行业·数据中心及AI服务器液冷冷却液行业分析框架(40页).pdf",
+        "locator": "第 36 页 图「全球数据中心及 AI 数据中心新增装机量（GW）」与同页表，图下资料来源 SemiAnalysis、国信证券经济研究所整理；正文：「根据 SemiAnalysis，2024 年全球 AI 数据中心新增装机量达 7GW，预计 2028 年 AI 数据中心新增装机量将达 59GW，期间复合增速高达 70%」",
+        "grade": "S4",
+        "originator": "SemiAnalysis（经国信证券《化工行业·数据中心及 AI 服务器液冷冷却液行业分析框架》（2025-09-25）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "口径同 gx2509-sa-ai-dc-additions-2024。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "gx2509-sa-ai-dc-additions-2027e",
+      "metric_id": "dc_capacity_additions_annual",
+      "entity": {
+        "type": "industry",
+        "id": "global-ai-datacenter",
+        "label": "全球 AI 数据中心（新增）"
+      },
+      "value": 41.0,
+      "unit": "GW/年",
+      "caliber": {
+        "power_scope": "未披露",
+        "facility_type": "智算中心",
+        "scenario": "单一情景",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2027E@2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "942ad7d5312e8f25937e2094cbebcd227f31ee99f1ed0651410675eafd58e3bf",
+        "local_file": "20250925-国信证券-国信证券-化工行业·数据中心及AI服务器液冷冷却液行业分析框架(40页).pdf",
+        "locator": "第 36 页 图「全球数据中心及 AI 数据中心新增装机量（GW）」与同页表，图下资料来源 SemiAnalysis、国信证券经济研究所整理；正文：「根据 SemiAnalysis，2024 年全球 AI 数据中心新增装机量达 7GW，预计 2028 年 AI 数据中心新增装机量将达 59GW，期间复合增速高达 70%」",
+        "grade": "S4",
+        "originator": "SemiAnalysis（经国信证券《化工行业·数据中心及 AI 服务器液冷冷却液行业分析框架》（2025-09-25）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "口径同 gx2509-sa-ai-dc-additions-2024。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "gx2509-sa-ai-dc-additions-2028e",
+      "metric_id": "dc_capacity_additions_annual",
+      "entity": {
+        "type": "industry",
+        "id": "global-ai-datacenter",
+        "label": "全球 AI 数据中心（新增）"
+      },
+      "value": 59.0,
+      "unit": "GW/年",
+      "caliber": {
+        "power_scope": "未披露",
+        "facility_type": "智算中心",
+        "scenario": "单一情景",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2028E@2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "942ad7d5312e8f25937e2094cbebcd227f31ee99f1ed0651410675eafd58e3bf",
+        "local_file": "20250925-国信证券-国信证券-化工行业·数据中心及AI服务器液冷冷却液行业分析框架(40页).pdf",
+        "locator": "第 36 页 图「全球数据中心及 AI 数据中心新增装机量（GW）」与同页表，图下资料来源 SemiAnalysis、国信证券经济研究所整理；正文：「根据 SemiAnalysis，2024 年全球 AI 数据中心新增装机量达 7GW，预计 2028 年 AI 数据中心新增装机量将达 59GW，期间复合增速高达 70%」",
+        "grade": "S4",
+        "originator": "SemiAnalysis（经国信证券《化工行业·数据中心及 AI 服务器液冷冷却液行业分析框架》（2025-09-25）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "口径同 gx2509-sa-ai-dc-additions-2024。2024→2028 复合增速原文称高达 70%。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "gx2509-sa-general-dc-additions-2024",
+      "metric_id": "dc_capacity_additions_annual",
+      "entity": {
+        "type": "industry",
+        "id": "global-general-datacenter",
+        "label": "全球普通数据中心（新增）"
+      },
+      "value": 46.0,
+      "unit": "GW/年",
+      "caliber": {
+        "power_scope": "未披露",
+        "facility_type": "通用数据中心",
+        "scenario": "单一情景",
+        "region": "Global",
+        "basis": "模型输出"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "942ad7d5312e8f25937e2094cbebcd227f31ee99f1ed0651410675eafd58e3bf",
+        "local_file": "20250925-国信证券-国信证券-化工行业·数据中心及AI服务器液冷冷却液行业分析框架(40页).pdf",
+        "locator": "第 36 页 图「全球数据中心及 AI 数据中心新增装机量（GW）」与同页表，图下资料来源 SemiAnalysis、国信证券经济研究所整理；正文：「根据 SemiAnalysis，2024 年全球 AI 数据中心新增装机量达 7GW，预计 2028 年 AI 数据中心新增装机量将达 59GW，期间复合增速高达 70%」",
+        "grade": "S4",
+        "originator": "SemiAnalysis（经国信证券《化工行业·数据中心及 AI 服务器液冷冷却液行业分析框架》（2025-09-25）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是「普通数据中心」新增装机量，与同表 AI 数据中心那一行并列、不含 AI**；两行相加才是全球新增合计。power_scope 未披露，理由同 AI 行。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "gx2509-sa-general-dc-additions-2025e",
+      "metric_id": "dc_capacity_additions_annual",
+      "entity": {
+        "type": "industry",
+        "id": "global-general-datacenter",
+        "label": "全球普通数据中心（新增）"
+      },
+      "value": 50.0,
+      "unit": "GW/年",
+      "caliber": {
+        "power_scope": "未披露",
+        "facility_type": "通用数据中心",
+        "scenario": "单一情景",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "942ad7d5312e8f25937e2094cbebcd227f31ee99f1ed0651410675eafd58e3bf",
+        "local_file": "20250925-国信证券-国信证券-化工行业·数据中心及AI服务器液冷冷却液行业分析框架(40页).pdf",
+        "locator": "第 36 页 图「全球数据中心及 AI 数据中心新增装机量（GW）」与同页表，图下资料来源 SemiAnalysis、国信证券经济研究所整理；正文：「根据 SemiAnalysis，2024 年全球 AI 数据中心新增装机量达 7GW，预计 2028 年 AI 数据中心新增装机量将达 59GW，期间复合增速高达 70%」",
+        "grade": "S4",
+        "originator": "SemiAnalysis（经国信证券《化工行业·数据中心及 AI 服务器液冷冷却液行业分析框架》（2025-09-25）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是「普通数据中心」新增装机量，与同表 AI 数据中心那一行并列、不含 AI**；两行相加才是全球新增合计。power_scope 未披露，理由同 AI 行。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "gx2509-sa-general-dc-additions-2026e",
+      "metric_id": "dc_capacity_additions_annual",
+      "entity": {
+        "type": "industry",
+        "id": "global-general-datacenter",
+        "label": "全球普通数据中心（新增）"
+      },
+      "value": 55.0,
+      "unit": "GW/年",
+      "caliber": {
+        "power_scope": "未披露",
+        "facility_type": "通用数据中心",
+        "scenario": "单一情景",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "942ad7d5312e8f25937e2094cbebcd227f31ee99f1ed0651410675eafd58e3bf",
+        "local_file": "20250925-国信证券-国信证券-化工行业·数据中心及AI服务器液冷冷却液行业分析框架(40页).pdf",
+        "locator": "第 36 页 图「全球数据中心及 AI 数据中心新增装机量（GW）」与同页表，图下资料来源 SemiAnalysis、国信证券经济研究所整理；正文：「根据 SemiAnalysis，2024 年全球 AI 数据中心新增装机量达 7GW，预计 2028 年 AI 数据中心新增装机量将达 59GW，期间复合增速高达 70%」",
+        "grade": "S4",
+        "originator": "SemiAnalysis（经国信证券《化工行业·数据中心及 AI 服务器液冷冷却液行业分析框架》（2025-09-25）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是「普通数据中心」新增装机量，与同表 AI 数据中心那一行并列、不含 AI**；两行相加才是全球新增合计。power_scope 未披露，理由同 AI 行。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "gx2509-sa-general-dc-additions-2027e",
+      "metric_id": "dc_capacity_additions_annual",
+      "entity": {
+        "type": "industry",
+        "id": "global-general-datacenter",
+        "label": "全球普通数据中心（新增）"
+      },
+      "value": 59.0,
+      "unit": "GW/年",
+      "caliber": {
+        "power_scope": "未披露",
+        "facility_type": "通用数据中心",
+        "scenario": "单一情景",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2027E@2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "942ad7d5312e8f25937e2094cbebcd227f31ee99f1ed0651410675eafd58e3bf",
+        "local_file": "20250925-国信证券-国信证券-化工行业·数据中心及AI服务器液冷冷却液行业分析框架(40页).pdf",
+        "locator": "第 36 页 图「全球数据中心及 AI 数据中心新增装机量（GW）」与同页表，图下资料来源 SemiAnalysis、国信证券经济研究所整理；正文：「根据 SemiAnalysis，2024 年全球 AI 数据中心新增装机量达 7GW，预计 2028 年 AI 数据中心新增装机量将达 59GW，期间复合增速高达 70%」",
+        "grade": "S4",
+        "originator": "SemiAnalysis（经国信证券《化工行业·数据中心及 AI 服务器液冷冷却液行业分析框架》（2025-09-25）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是「普通数据中心」新增装机量，与同表 AI 数据中心那一行并列、不含 AI**；两行相加才是全球新增合计。power_scope 未披露，理由同 AI 行。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "gx2509-sa-general-dc-additions-2028e",
+      "metric_id": "dc_capacity_additions_annual",
+      "entity": {
+        "type": "industry",
+        "id": "global-general-datacenter",
+        "label": "全球普通数据中心（新增）"
+      },
+      "value": 64.0,
+      "unit": "GW/年",
+      "caliber": {
+        "power_scope": "未披露",
+        "facility_type": "通用数据中心",
+        "scenario": "单一情景",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2028E@2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "942ad7d5312e8f25937e2094cbebcd227f31ee99f1ed0651410675eafd58e3bf",
+        "local_file": "20250925-国信证券-国信证券-化工行业·数据中心及AI服务器液冷冷却液行业分析框架(40页).pdf",
+        "locator": "第 36 页 图「全球数据中心及 AI 数据中心新增装机量（GW）」与同页表，图下资料来源 SemiAnalysis、国信证券经济研究所整理；正文：「根据 SemiAnalysis，2024 年全球 AI 数据中心新增装机量达 7GW，预计 2028 年 AI 数据中心新增装机量将达 59GW，期间复合增速高达 70%」",
+        "grade": "S4",
+        "originator": "SemiAnalysis（经国信证券《化工行业·数据中心及 AI 服务器液冷冷却液行业分析框架》（2025-09-25）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是「普通数据中心」新增装机量，与同表 AI 数据中心那一行并列、不含 AI**；两行相加才是全球新增合计。power_scope 未披露，理由同 AI 行。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "gx2509-tf-ai-dc-lc-penetration-2024",
+      "metric_id": "liquid_cooling_penetration",
+      "entity": {
+        "type": "industry",
+        "id": "global-ai-datacenter",
+        "label": "全球 AI 数据中心（新增）"
+      },
+      "value": 14.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "按容量",
+        "cooling_type": "全部液冷",
+        "region": "Global"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "942ad7d5312e8f25937e2094cbebcd227f31ee99f1ed0651410675eafd58e3bf",
+        "local_file": "20250925-国信证券-国信证券-化工行业·数据中心及AI服务器液冷冷却液行业分析框架(40页).pdf",
+        "locator": "第 36 页正文：「根据 TrendForce 预计，2025 年 AI 数据中心中液冷的渗透率将从 2024 年的 14% 快速增长至 33%，2025 年将成为液冷需求启动元年」；同页表「AI 数据中心新增装机量」下「液冷渗透率」行",
+        "grade": "S4",
+        "originator": "TrendForce（经国信证券《化工行业·数据中心及 AI 服务器液冷冷却液行业分析框架》（2025-09-25）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**署名 TrendForce**，分母为当年新增 AI 数据中心装机容量。同表 2026-2028 年还有 47%/65%/85% 三格，原文正文只把 14%→33% 归给 TrendForce，后三格未标出处；同段另有一行「全浸没式渗透率 9%/18%/32%/45%/60%」，原文明写是国信自己的假设（用于冷却液用量测算），两者都不入库。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "gx2509-tf-ai-dc-lc-penetration-2025e",
+      "metric_id": "liquid_cooling_penetration",
+      "entity": {
+        "type": "industry",
+        "id": "global-ai-datacenter",
+        "label": "全球 AI 数据中心（新增）"
+      },
+      "value": 33.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "按容量",
+        "cooling_type": "全部液冷",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "942ad7d5312e8f25937e2094cbebcd227f31ee99f1ed0651410675eafd58e3bf",
+        "local_file": "20250925-国信证券-国信证券-化工行业·数据中心及AI服务器液冷冷却液行业分析框架(40页).pdf",
+        "locator": "第 36 页正文：「根据 TrendForce 预计，2025 年 AI 数据中心中液冷的渗透率将从 2024 年的 14% 快速增长至 33%，2025 年将成为液冷需求启动元年」；同页表「AI 数据中心新增装机量」下「液冷渗透率」行",
+        "grade": "S4",
+        "originator": "TrendForce（经国信证券《化工行业·数据中心及 AI 服务器液冷冷却液行业分析框架》（2025-09-25）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "说明同 gx2509-tf-ai-dc-lc-penetration-2024。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "gx2509-kezhi-cn-lc-route-coldplate-2022",
+      "metric_id": "cooling_route_share",
+      "entity": {
+        "type": "industry",
+        "id": "cn-liquid-cooling-market",
+        "label": "中国液冷数据中心市场"
+      },
+      "value": 91.0,
+      "unit": "%",
+      "caliber": {
+        "cooling_route": "冷板式",
+        "denominator": "液冷市场内部",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "942ad7d5312e8f25937e2094cbebcd227f31ee99f1ed0651410675eafd58e3bf",
+        "local_file": "20250925-国信证券-国信证券-化工行业·数据中心及AI服务器液冷冷却液行业分析框架(40页).pdf",
+        "locator": "第 9 页正文：「根据科智咨询，冷板式液冷应用更加普遍，2022 年冷板式液冷应用比例达 91%……浸没式液冷应用比例达 8%」；同页图「不同液冷技术路线应用占比」冷板式 91%／浸没式 8%／喷淋式 1%",
+        "grade": "S4",
+        "originator": "科智咨询（经国信证券《化工行业·数据中心及 AI 服务器液冷冷却液行业分析框架》（2025-09-25）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "三条同源同图，合计 100%。**与库内 ccia2412-kezhi-cn-coldplate-share 是同一个科智咨询 91%，但那条记为 2024 年、本条原文明写 2022 年——两份转述给这同一个数标了不同年份，本条按本文字面记 2022，年份冲突已记缺口，不替原文改数。**",
+      "asserter": "科智咨询"
+    },
+    {
+      "fact_id": "gx2509-kezhi-cn-lc-route-immersion-2022",
+      "metric_id": "cooling_route_share",
+      "entity": {
+        "type": "industry",
+        "id": "cn-liquid-cooling-market",
+        "label": "中国液冷数据中心市场"
+      },
+      "value": 8.0,
+      "unit": "%",
+      "caliber": {
+        "cooling_route": "单相浸没",
+        "denominator": "液冷市场内部",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "942ad7d5312e8f25937e2094cbebcd227f31ee99f1ed0651410675eafd58e3bf",
+        "local_file": "20250925-国信证券-国信证券-化工行业·数据中心及AI服务器液冷冷却液行业分析框架(40页).pdf",
+        "locator": "第 9 页正文：「根据科智咨询，冷板式液冷应用更加普遍，2022 年冷板式液冷应用比例达 91%……浸没式液冷应用比例达 8%」；同页图「不同液冷技术路线应用占比」冷板式 91%／浸没式 8%／喷淋式 1%",
+        "grade": "S4",
+        "originator": "科智咨询（经国信证券《化工行业·数据中心及 AI 服务器液冷冷却液行业分析框架》（2025-09-25）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文只写「浸没式」，未分单相/相变**；cooling_route 枚举无笼统的「浸没式」取值，本条填「单相浸没」是不得已的近似——当时国内浸没式以单相为主（阿里张北/杭州均为单相），但这仍是收录方的判断，**跨条比较时须当作「浸没式合计」读**。三条同源同图，合计 100%。**与库内 ccia2412-kezhi-cn-coldplate-share 是同一个科智咨询 91%，但那条记为 2024 年、本条原文明写 2022 年——两份转述给这同一个数标了不同年份，本条按本文字面记 2022，年份冲突已记缺口，不替原文改数。**",
+      "asserter": "科智咨询"
+    },
+    {
+      "fact_id": "gx2509-kezhi-cn-lc-route-spray-2022",
+      "metric_id": "cooling_route_share",
+      "entity": {
+        "type": "industry",
+        "id": "cn-liquid-cooling-market",
+        "label": "中国液冷数据中心市场"
+      },
+      "value": 1.0,
+      "unit": "%",
+      "caliber": {
+        "cooling_route": "喷淋",
+        "denominator": "液冷市场内部",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "942ad7d5312e8f25937e2094cbebcd227f31ee99f1ed0651410675eafd58e3bf",
+        "local_file": "20250925-国信证券-国信证券-化工行业·数据中心及AI服务器液冷冷却液行业分析框架(40页).pdf",
+        "locator": "第 9 页正文：「根据科智咨询，冷板式液冷应用更加普遍，2022 年冷板式液冷应用比例达 91%……浸没式液冷应用比例达 8%」；同页图「不同液冷技术路线应用占比」冷板式 91%／浸没式 8%／喷淋式 1%",
+        "grade": "S4",
+        "originator": "科智咨询（经国信证券《化工行业·数据中心及 AI 服务器液冷冷却液行业分析框架》（2025-09-25）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "三条同源同图，合计 100%。**与库内 ccia2412-kezhi-cn-coldplate-share 是同一个科智咨询 91%，但那条记为 2024 年、本条原文明写 2022 年——两份转述给这同一个数标了不同年份，本条按本文字面记 2022，年份冲突已记缺口，不替原文改数。**",
+      "asserter": "科智咨询"
+    },
+    {
+      "fact_id": "gx2509-aircooled-rack-limit-lower",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "industry",
+        "id": "traditional-aircooled-rack",
+        "label": "传统数据中心单机柜（风冷）"
+      },
+      "value": 30.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "架构上限",
+        "era": "未注明",
+        "power_basis": "设计功率",
+        "region": "未披露"
+      },
+      "as_of": "2025-09",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "942ad7d5312e8f25937e2094cbebcd227f31ee99f1ed0651410675eafd58e3bf",
+        "local_file": "20250925-国信证券-国信证券-化工行业·数据中心及AI服务器液冷冷却液行业分析框架(40页).pdf",
+        "locator": "第 36 页正文：「NVIDIA 的 GB200 NVL72 系统每机架热设计功耗（TDP）达到了 130-140 kW，而传统风冷的散热极限约为 30-50 kW，液冷成为必然选择」",
+        "grade": "S4",
+        "originator": "国信证券《化工行业·数据中心及 AI 服务器液冷冷却液行业分析框架》（2025-09-25）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**「传统风冷散热极限」这一问题下已有四个互不相同的数**：国信 30-50kW、国海 20kW、东方 30-40kW、中泰 40-60kW。四家给的约束条件不同（成本/设计惯例/散热能力），原文都没写全。本条与同句的 GB200 NVL72「每机架 TDP 130-140kW」并列出现，是用来论证液冷必然性的对照值。",
+      "asserter": "国信证券",
+      "disputes": [
+        "gh2509-aircooled-rack-limit-20kw",
+        "dfzq2605-aircooled-rack-design-ceiling-lower",
+        "dfzq2605-aircooled-rack-design-ceiling-upper"
+      ]
+    },
+    {
+      "fact_id": "gx2509-aircooled-rack-limit-upper",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "industry",
+        "id": "traditional-aircooled-rack",
+        "label": "传统数据中心单机柜（风冷）"
+      },
+      "value": 50.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "架构上限",
+        "era": "未注明",
+        "power_basis": "设计功率",
+        "region": "未披露"
+      },
+      "as_of": "2025-09",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "942ad7d5312e8f25937e2094cbebcd227f31ee99f1ed0651410675eafd58e3bf",
+        "local_file": "20250925-国信证券-国信证券-化工行业·数据中心及AI服务器液冷冷却液行业分析框架(40页).pdf",
+        "locator": "第 36 页正文：「NVIDIA 的 GB200 NVL72 系统每机架热设计功耗（TDP）达到了 130-140 kW，而传统风冷的散热极限约为 30-50 kW，液冷成为必然选择」",
+        "grade": "S4",
+        "originator": "国信证券《化工行业·数据中心及 AI 服务器液冷冷却液行业分析框架》（2025-09-25）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**「传统风冷散热极限」这一问题下已有四个互不相同的数**：国信 30-50kW、国海 20kW、东方 30-40kW、中泰 40-60kW。四家给的约束条件不同（成本/设计惯例/散热能力），原文都没写全。本条与同句的 GB200 NVL72「每机架 TDP 130-140kW」并列出现，是用来论证液冷必然性的对照值。",
+      "asserter": "国信证券",
+      "disputes": [
+        "gh2509-aircooled-rack-limit-20kw",
+        "dfzq2605-aircooled-rack-design-ceiling-lower",
+        "dfzq2605-aircooled-rack-design-ceiling-upper"
+      ]
+    },
+    {
+      "fact_id": "gx2509-kezhi-cn-lc-dc-market-2027e",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "cn-liquid-cooling-market",
+        "label": "中国液冷数据中心市场"
+      },
+      "value": 1000.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "全国液冷",
+        "currency": "人民币",
+        "cooling_route": "未注明",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2027E@2025-09",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "942ad7d5312e8f25937e2094cbebcd227f31ee99f1ed0651410675eafd58e3bf",
+        "local_file": "20250925-国信证券-国信证券-化工行业·数据中心及AI服务器液冷冷却液行业分析框架(40页).pdf",
+        "locator": "第 7 页：「根据科智咨询，2027 年我国液冷数据中心市场规模或突破 1000 亿元，2019-2027 年复合增速高达 51.4%」；同页图注：液冷数据中心市场规模包括液冷服务器和液冷数据中心基础设施市场规模",
+        "grade": "S4",
+        "originator": "科智咨询（经国信证券《化工行业·数据中心及 AI 服务器液冷冷却液行业分析框架》（2025-09-25）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文写「或突破 1000 亿元」，1000 记为下界。**口径含液冷服务器 + 液冷基础设施两块**（图注明确），比只算机架侧的中泰口径（2027E 215 亿元）宽得多，两者不可比。2019-2027 复合增速原文称 51.4%。",
+      "asserter": "科智咨询"
+    },
+    {
+      "fact_id": "gx2509-cn-dc-power-share-2024",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "industry",
+        "id": "cn-datacenter",
+        "label": "中国算力中心"
+      },
+      "value": 1.68,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "942ad7d5312e8f25937e2094cbebcd227f31ee99f1ed0651410675eafd58e3bf",
+        "local_file": "20250925-国信证券-国信证券-化工行业·数据中心及AI服务器液冷冷却液行业分析框架(40页).pdf",
+        "locator": "第 2 页 报告摘要：「2024 年我国算力中心总耗电量达 1660 亿 kWh，占全社会总用电量的 1.68%」",
+        "grade": "S4",
+        "originator": "国信证券《化工行业·数据中心及 AI 服务器液冷冷却液行业分析框架》（2025-09-25）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文未标出处，按「原文直接把数陈述出来即由写的人担责」记到国信证券名下**。配套的分子 1660 亿 kWh = 166 TWh，与库内中国信通院 2024 年 166 TWh（caict-lc2025-cn-dc-electricity-2024）同值，极可能同源转述，故分子不另记、本条 corroboration 不作互证。",
+      "asserter": "国信证券"
+    },
+    {
+      "fact_id": "gx2509-global-dc-market-2017",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenter-market",
+        "label": "全球数据中心市场"
+      },
+      "value": 465.5,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "未注明",
+        "operator_type": "全市场",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "currency": "美元"
+      },
+      "as_of": "2017",
+      "bound": "point",
+      "evidence": {
+        "sha256": "942ad7d5312e8f25937e2094cbebcd227f31ee99f1ed0651410675eafd58e3bf",
+        "local_file": "20250925-国信证券-国信证券-化工行业·数据中心及AI服务器液冷冷却液行业分析框架(40页).pdf",
+        "locator": "第 6 页：「根据中国信通院、中商产业研究院及科智咨询数据，2017 年全球数据中心规模为 465.5 亿美元，预计 2027 年将达到 1632.5 亿美元，期间复合增长率达 13.4%」；同页图「全球数据中心市场规模（亿美元）」",
+        "grade": "S4",
+        "originator": "中国信通院、中商产业研究院、科智咨询（三家并列，未逐数分标；经国信证券《化工行业·数据中心及 AI 服务器液冷冷却液行业分析框架》（2025-09-25）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**币种为美元，本指标单位「亿（原币）」，勿与人民币口径的数直接比。**service_scope 记「未注明」：原文只说「全球数据中心规模」，没交代含不含云服务，**这类口径差能到数倍**。**三家来源并列、未逐数分标出处，按边界规则记到转述者国信证券名下，originator 保留三家原名。**2017→2027 复合增长率原文称 13.4%。",
+      "asserter": "国信证券"
+    },
+    {
+      "fact_id": "gx2509-global-dc-market-2027e",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenter-market",
+        "label": "全球数据中心市场"
+      },
+      "value": 1632.5,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "未注明",
+        "operator_type": "全市场",
+        "region": "Global",
+        "basis": "预测",
+        "currency": "美元"
+      },
+      "as_of": "2027E@2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "942ad7d5312e8f25937e2094cbebcd227f31ee99f1ed0651410675eafd58e3bf",
+        "local_file": "20250925-国信证券-国信证券-化工行业·数据中心及AI服务器液冷冷却液行业分析框架(40页).pdf",
+        "locator": "第 6 页：「根据中国信通院、中商产业研究院及科智咨询数据，2017 年全球数据中心规模为 465.5 亿美元，预计 2027 年将达到 1632.5 亿美元，期间复合增长率达 13.4%」；同页图「全球数据中心市场规模（亿美元）」",
+        "grade": "S4",
+        "originator": "中国信通院、中商产业研究院、科智咨询（三家并列，未逐数分标；经国信证券《化工行业·数据中心及 AI 服务器液冷冷却液行业分析框架》（2025-09-25）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "口径同 gx2509-global-dc-market-2017。",
+      "asserter": "国信证券"
     }
   ]
 }
