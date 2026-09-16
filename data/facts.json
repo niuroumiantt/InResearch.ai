@@ -230390,6 +230390,40 @@
       "corroboration": "待交叉验证",
       "notes": "**同为「全球平均」口径，与 CCID 的 2025 年 25kW 构成一条预测序列**（16.5 → 25）。**但两条都是预测而非实测**：库内 SemiAnalysis 口径的当期典型风冷机柜只有 15-20kW，说明这类平均值预测偏乐观。同页另引 ASHRAE 2018 年预测：电信/通讯服务器单机架约 5kW、云计算与数据分析类普遍升至 10-15kW。",
       "asserter": "Colocation America"
+    },
+    {
+      "fact_id": "smc-ocp-cooling-tower-mpue",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "product",
+        "id": "supermicro-cooling-tower",
+        "label": "超微 1MW/5MW 冷却塔（设施侧）"
+      },
+      "value": 1.009,
+      "unit": "比值",
+      "caliber": {
+        "basis": "厂商宣称",
+        "cooling_tech": "冷板液冷",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "设计工况",
+        "region": "未披露"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c8770b3fc77e481ee8397c9846a54095c1d4dc5ef3817d5edeeeb7b208b9e6c4",
+        "local_file": "6307 - A Blueprint for Liquid-Cooled AI Rack Clusters for Modern Datacenters - Presented by Supermicro.pdf",
+        "locator": "第 8 页「1MW/5MW Supermicro Cooling Tower」：「Cooling Capacity: 1MW & 5MW；mPUE: ~ 1.009；Lifecycle: 15 years；Lead Time: 4 weeks with forecast」",
+        "grade": "S3",
+        "originator": "超微（Supermicro）《A Blueprint for Liquid-Cooled AI Rack Clusters for Modern Datacenters》（Anderson Tsai、Johnson Eung，OCP 演讲）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是 mPUE（机械制冷子系统的局部 PUE），不是整站 PUE**——只算冷却塔这一段的能耗比，1.009 意味着该设备自身耗电仅占其承担冷量的 0.9%，**绝不可与整站 PUE（1.1-1.5 那一族）并列比较**。basis 记「厂商宣称」。配套规格：冷量 1MW 与 5MW 两档、设计寿命 15 年、有预测时交期 4 周。region 未披露：原文未限定地域。",
+      "asserter": "超微"
     }
   ]
 }
