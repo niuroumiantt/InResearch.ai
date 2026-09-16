@@ -220677,6 +220677,501 @@
       "corroboration": "待交叉验证",
       "asserter": "谷歌",
       "notes": "2025 年 7 月底 2025Q2 业绩会上的全年指引（由 750 亿上调至 850 亿美元），vintage 记 2025-08 快照；库内 swsc-capex-guide-google-2025-*（910–930 亿，2025-10 快照）与 gszq-capex-google-2025-actual（915 亿实际）是后续版本，不冲突，按 vintage 区分。25Q2 实际 224 亿美元已由 guosen2510-google-capex-2025q2 入库（224.46），不重复。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "伯恩斯坦",
+      "fact_id": "bern2509-us4-hyperscaler-capex-2027e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "market",
+        "id": "us-hyperscaler-capex",
+        "label": "北美四大云厂资本开支合计"
+      },
+      "value": 4350.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "北美四家",
+        "capex_scope": "全部 capex",
+        "basis": "卖方一致预期",
+        "vintage": "其他快照",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2027E@2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "95d0a154621f8c68bfa5d3a7500210c669d9b331e72ca1de7a7e4dbe77b94dc2",
+        "local_file": "20250920-全球半导体、硬件、互联网与软件：2025年第三季度人工智能服务器与边缘人工智能动态：稳步前行(40页).pdf",
+        "locator": "PDF 第 4 页「AI CAPEX」：「the consensus adjusted up the capex estimates for the four US hyperscalers (Amazon, Meta, Microsoft, Google), and expect total capex to grow at a CAGR of 24% during 2024—27 to ~US$435B」",
+        "grade": "S3"
+      },
+      "notes": "亚马逊、Meta、微软、谷歌四家合计；2024–27 年 CAGR 24%。同句「合并 neo-cloud 与甲骨文后 26% CAGR 到 2027 年约 5000 亿美元」——scope 无「四大云厂+Neocloud+甲骨文」取值，未录（缺口）。原文称较 2025-07 的一致预期上调近 20%。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "伯恩斯坦",
+      "fact_id": "bern2509-xai-colossus1-gpus",
+      "metric_id": "cluster_gpu_count",
+      "entity": {
+        "type": "project",
+        "id": "xai-colossus-1",
+        "label": "xAI Colossus 1（孟菲斯）"
+      },
+      "value": 230000.0,
+      "unit": "颗",
+      "caliber": {
+        "scope": "单站点合计",
+        "accelerator": "混合（H100/H200/GB200）",
+        "region": "US",
+        "basis": "第三方估算"
+      },
+      "as_of": "2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "95d0a154621f8c68bfa5d3a7500210c669d9b331e72ca1de7a7e4dbe77b94dc2",
+        "local_file": "20250920-全球半导体、硬件、互联网与软件：2025年第三季度人工智能服务器与边缘人工智能动态：稳步前行(40页).pdf",
+        "locator": "PDF 第 4 页「AI CAPEX」：「xAI has built out their own supply chain and contracted with multiple assemblers to not just build the servers but completely configured server racks with CPUs, GPUs, networking and storage. Today, xAI has built 230k GPUs (H100, H200 and GB200) in supercomputer Colossus 1」",
+        "grade": "S3"
+      },
+      "notes": "原文口径为该站点已建成的 GPU 总数，混合 H100/H200/GB200 三代，不同代不可等价相加，[未核]。库内 afl2024/bond2505 的 10 万/20 万颗为 2024 年时点、口径为 xai-colossus-memphis，本条为 2025-09 时点。 伯恩斯坦供应链调研口径。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "伯恩斯坦",
+      "fact_id": "bern2509-xai-colossus2-gpus",
+      "metric_id": "cluster_gpu_count",
+      "entity": {
+        "type": "project",
+        "id": "xai-colossus-2",
+        "label": "xAI Colossus 2"
+      },
+      "value": 550000.0,
+      "unit": "颗",
+      "caliber": {
+        "scope": "单站点合计",
+        "accelerator": "GB200/GB300",
+        "region": "US",
+        "basis": "第三方估算"
+      },
+      "as_of": "2025-09",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "95d0a154621f8c68bfa5d3a7500210c669d9b331e72ca1de7a7e4dbe77b94dc2",
+        "local_file": "20250920-全球半导体、硬件、互联网与软件：2025年第三季度人工智能服务器与边缘人工智能动态：稳步前行(40页).pdf",
+        "locator": "PDF 第 4 页「AI CAPEX」：「while Colossus 2 will feature 550k+ NVIDIA Blackwell GB200 & GB300 chips (equivalent to 7K+ NVL72 rack)」",
+        "grade": "S3"
+      },
+      "notes": "「550k+」按下界记；等效 7K+ NVL72 机柜。规划/在建口径，非已部署。 伯恩斯坦供应链调研口径。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "伯恩斯坦",
+      "fact_id": "bern2509-coreweave-backlog-2025q2",
+      "metric_id": "mega_contract_backlog",
+      "entity": {
+        "type": "company",
+        "id": "coreweave",
+        "label": "CoreWeave"
+      },
+      "value": 30.0,
+      "unit": "$B",
+      "caliber": {
+        "recognition": "订单积压（backlog）",
+        "business_scope": "公司整体",
+        "region": "US"
+      },
+      "as_of": "2025-Q2",
+      "bound": "point",
+      "evidence": {
+        "sha256": "95d0a154621f8c68bfa5d3a7500210c669d9b331e72ca1de7a7e4dbe77b94dc2",
+        "local_file": "20250920-全球半导体、硬件、互联网与软件：2025年第三季度人工智能服务器与边缘人工智能动态：稳步前行(40页).pdf",
+        "locator": "PDF 第 4 页：「CoreWeave (CRWV US, not covered), are gaining traction through flexible \"build-to-order\" models. Its revenue backlog continues to climb US$4B QoQ to US$30B in 2Q25」",
+        "grade": "S3"
+      },
+      "notes": "CoreWeave 自报口径「revenue backlog」（非 RPO），环比增加 40 亿美元。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "伯恩斯坦",
+      "fact_id": "bern2509-coreweave-active-power-2025e",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "company",
+        "id": "coreweave",
+        "label": "CoreWeave"
+      },
+      "value": 900.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "未披露",
+        "status": "L8",
+        "region": "US"
+      },
+      "as_of": "2025-12E@2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "95d0a154621f8c68bfa5d3a7500210c669d9b331e72ca1de7a7e4dbe77b94dc2",
+        "local_file": "20250920-全球半导体、硬件、互联网与软件：2025年第三季度人工智能服务器与边缘人工智能动态：稳步前行(40页).pdf",
+        "locator": "PDF 第 4 页：「CoreWeave maintained capex guidance at US$20-23B this year, with total power demand expected to almost double the active power to 900 MW by the end-2025, and the total contracted power reaching 2.2GW」",
+        "grade": "S3"
+      },
+      "notes": "到 2025 年底的在运（active）电力容量预期，status 记 L8（通电投运）但属预测，as_of 带 E。capacity_type 未披露：原文 active power 未说明是 IT 还是设施口径。同句「合同锁定电力合计 2.2GW」未录——status 归类不明（合同锁定不等于电力确定 L5），且库内已有巴克莱 2025 年 1.7GW 合同锁定口径（coreweave-contracted-power-2025），口径不同不并列。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "伯恩斯坦",
+      "fact_id": "bern2509-oracle-rpo-fy26q1",
+      "metric_id": "mega_contract_backlog",
+      "entity": {
+        "type": "company",
+        "id": "oracle",
+        "label": "甲骨文"
+      },
+      "value": 455.0,
+      "unit": "$B",
+      "caliber": {
+        "recognition": "剩余履约义务(RPO)",
+        "business_scope": "公司整体",
+        "region": "Global"
+      },
+      "as_of": "2026-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "95d0a154621f8c68bfa5d3a7500210c669d9b331e72ca1de7a7e4dbe77b94dc2",
+        "local_file": "20250920-全球半导体、硬件、互联网与软件：2025年第三季度人工智能服务器与边缘人工智能动态：稳步前行(40页).pdf",
+        "locator": "PDF 第 5 页 EXHIBIT 2「Oracle RPO jumped to $455B last quarter」柱状图（ORCL – RPO and CRPO，Q1Q24–Q1Q26），Q1Q26 = 455；PDF 第 4 页正文「Oracle's last earnings which increased RPO $317B QoQ (to $455B)」",
+        "grade": "S3",
+        "originator": "甲骨文财报，经伯恩斯坦转引"
+      },
+      "notes": "甲骨文财年口径：FY26Q1（截至 2025-08），as_of 沿用库内同类写法 2026-Q1（与 gs2026-google-cloud-backlog-2026q1、gs2026-microsoft-commercial-rpo-2026q1 一致）。环比增加 3170 亿美元。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "伯恩斯坦",
+      "fact_id": "bern2509-gb200-rack-2025q1",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "market",
+        "id": "nvidia-ai-rack",
+        "label": "英伟达 AI 服务器整机柜出货"
+      },
+      "value": 6000.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "GB200 NVL72 等效",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2025-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "95d0a154621f8c68bfa5d3a7500210c669d9b331e72ca1de7a7e4dbe77b94dc2",
+        "local_file": "20250920-全球半导体、硬件、互联网与软件：2025年第三季度人工智能服务器与边缘人工智能动态：稳步前行(40页).pdf",
+        "locator": "PDF 第 7 页「NVIDIA server rack quarterly shipment (30K/56K in 2025/26)」：「we model GB200 rack shipment (NVL72-equivalent) to increase substantially from 6K in 1Q to 10K in 3Q (including 6K from Taiwan, 1.5-2K each from Quanta and Wistron), and slide to 6K in 4Q25. As GB300 components have started shipping in late 2Q/early 3Q, we model 6K of GB300 rack shipments in 4Q25……We model total rack shipment to increase from 30K this year to 56K next year」",
+        "grade": "S3"
+      },
+      "notes": "伯恩斯坦模型口径。3Q25 的 10K 中台湾出 6K、广达与纬创各 1.5–2K。合计口径为英伟达机柜整体（GB200+GB300 等），与单平台条目不可相加。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "伯恩斯坦",
+      "fact_id": "bern2509-gb200-rack-2025q3",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "market",
+        "id": "nvidia-ai-rack",
+        "label": "英伟达 AI 服务器整机柜出货"
+      },
+      "value": 10000.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "GB200 NVL72 等效",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2025-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "95d0a154621f8c68bfa5d3a7500210c669d9b331e72ca1de7a7e4dbe77b94dc2",
+        "local_file": "20250920-全球半导体、硬件、互联网与软件：2025年第三季度人工智能服务器与边缘人工智能动态：稳步前行(40页).pdf",
+        "locator": "PDF 第 7 页「NVIDIA server rack quarterly shipment (30K/56K in 2025/26)」：「we model GB200 rack shipment (NVL72-equivalent) to increase substantially from 6K in 1Q to 10K in 3Q (including 6K from Taiwan, 1.5-2K each from Quanta and Wistron), and slide to 6K in 4Q25. As GB300 components have started shipping in late 2Q/early 3Q, we model 6K of GB300 rack shipments in 4Q25……We model total rack shipment to increase from 30K this year to 56K next year」",
+        "grade": "S3"
+      },
+      "notes": "伯恩斯坦模型口径。3Q25 的 10K 中台湾出 6K、广达与纬创各 1.5–2K。合计口径为英伟达机柜整体（GB200+GB300 等），与单平台条目不可相加。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "伯恩斯坦",
+      "fact_id": "bern2509-gb200-rack-2025q4e",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "market",
+        "id": "nvidia-ai-rack",
+        "label": "英伟达 AI 服务器整机柜出货"
+      },
+      "value": 6000.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "GB200 NVL72 等效",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025-Q4E@2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "95d0a154621f8c68bfa5d3a7500210c669d9b331e72ca1de7a7e4dbe77b94dc2",
+        "local_file": "20250920-全球半导体、硬件、互联网与软件：2025年第三季度人工智能服务器与边缘人工智能动态：稳步前行(40页).pdf",
+        "locator": "PDF 第 7 页「NVIDIA server rack quarterly shipment (30K/56K in 2025/26)」：「we model GB200 rack shipment (NVL72-equivalent) to increase substantially from 6K in 1Q to 10K in 3Q (including 6K from Taiwan, 1.5-2K each from Quanta and Wistron), and slide to 6K in 4Q25. As GB300 components have started shipping in late 2Q/early 3Q, we model 6K of GB300 rack shipments in 4Q25……We model total rack shipment to increase from 30K this year to 56K next year」",
+        "grade": "S3"
+      },
+      "notes": "伯恩斯坦模型口径。3Q25 的 10K 中台湾出 6K、广达与纬创各 1.5–2K。合计口径为英伟达机柜整体（GB200+GB300 等），与单平台条目不可相加。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "伯恩斯坦",
+      "fact_id": "bern2509-gb300-rack-2025q4e",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "market",
+        "id": "nvidia-ai-rack",
+        "label": "英伟达 AI 服务器整机柜出货"
+      },
+      "value": 6000.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "GB300",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025-Q4E@2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "95d0a154621f8c68bfa5d3a7500210c669d9b331e72ca1de7a7e4dbe77b94dc2",
+        "local_file": "20250920-全球半导体、硬件、互联网与软件：2025年第三季度人工智能服务器与边缘人工智能动态：稳步前行(40页).pdf",
+        "locator": "PDF 第 7 页「NVIDIA server rack quarterly shipment (30K/56K in 2025/26)」：「we model GB200 rack shipment (NVL72-equivalent) to increase substantially from 6K in 1Q to 10K in 3Q (including 6K from Taiwan, 1.5-2K each from Quanta and Wistron), and slide to 6K in 4Q25. As GB300 components have started shipping in late 2Q/early 3Q, we model 6K of GB300 rack shipments in 4Q25……We model total rack shipment to increase from 30K this year to 56K next year」",
+        "grade": "S3"
+      },
+      "notes": "伯恩斯坦模型口径。3Q25 的 10K 中台湾出 6K、广达与纬创各 1.5–2K。合计口径为英伟达机柜整体（GB200+GB300 等），与单平台条目不可相加。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "伯恩斯坦",
+      "fact_id": "bern2509-total-rack-2025e",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "market",
+        "id": "nvidia-ai-rack",
+        "label": "英伟达 AI 服务器整机柜出货"
+      },
+      "value": 30000.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "英伟达整机柜合计",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "95d0a154621f8c68bfa5d3a7500210c669d9b331e72ca1de7a7e4dbe77b94dc2",
+        "local_file": "20250920-全球半导体、硬件、互联网与软件：2025年第三季度人工智能服务器与边缘人工智能动态：稳步前行(40页).pdf",
+        "locator": "PDF 第 7 页「NVIDIA server rack quarterly shipment (30K/56K in 2025/26)」：「we model GB200 rack shipment (NVL72-equivalent) to increase substantially from 6K in 1Q to 10K in 3Q (including 6K from Taiwan, 1.5-2K each from Quanta and Wistron), and slide to 6K in 4Q25. As GB300 components have started shipping in late 2Q/early 3Q, we model 6K of GB300 rack shipments in 4Q25……We model total rack shipment to increase from 30K this year to 56K next year」",
+        "grade": "S3"
+      },
+      "notes": "伯恩斯坦模型口径。3Q25 的 10K 中台湾出 6K、广达与纬创各 1.5–2K。合计口径为英伟达机柜整体（GB200+GB300 等），与单平台条目不可相加。"
+    },
+    {
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "伯恩斯坦",
+      "fact_id": "bern2509-total-rack-2026e",
+      "metric_id": "ai_rack_shipment",
+      "entity": {
+        "type": "market",
+        "id": "nvidia-ai-rack",
+        "label": "英伟达 AI 服务器整机柜出货"
+      },
+      "value": 56000.0,
+      "unit": "架",
+      "caliber": {
+        "platform": "英伟达整机柜合计",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "95d0a154621f8c68bfa5d3a7500210c669d9b331e72ca1de7a7e4dbe77b94dc2",
+        "local_file": "20250920-全球半导体、硬件、互联网与软件：2025年第三季度人工智能服务器与边缘人工智能动态：稳步前行(40页).pdf",
+        "locator": "PDF 第 7 页「NVIDIA server rack quarterly shipment (30K/56K in 2025/26)」：「we model GB200 rack shipment (NVL72-equivalent) to increase substantially from 6K in 1Q to 10K in 3Q (including 6K from Taiwan, 1.5-2K each from Quanta and Wistron), and slide to 6K in 4Q25. As GB300 components have started shipping in late 2Q/early 3Q, we model 6K of GB300 rack shipments in 4Q25……We model total rack shipment to increase from 30K this year to 56K next year」",
+        "grade": "S3"
+      },
+      "notes": "伯恩斯坦模型口径。3Q25 的 10K 中台湾出 6K、广达与纬创各 1.5–2K。合计口径为英伟达机柜整体（GB200+GB300 等），与单平台条目不可相加。"
+    },
+    {
+      "fact_id": "bern2509-coreweave-capex-2025e-lower",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "coreweave",
+        "label": "CoreWeave"
+      },
+      "value": 200.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "单一公司",
+        "capex_scope": "全部 capex",
+        "basis": "厂商指引",
+        "vintage": "其他快照",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025E@2025-09",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "95d0a154621f8c68bfa5d3a7500210c669d9b331e72ca1de7a7e4dbe77b94dc2",
+        "local_file": "20250920-全球半导体、硬件、互联网与软件：2025年第三季度人工智能服务器与边缘人工智能动态：稳步前行(40页).pdf",
+        "locator": "PDF 第 7 页 EXHIBIT 5「Hyperscaler and Neocloud's AI-related capex commentary」（2Q25 Capex commentary）：CoreWeave「3Q25 Capex guided to $2.9-3.4B; 2025 capex no change vs. previous plan ($20-23B), largely will fall in 4Q due to the timing of go live dates of infrastructure, on track to deliver the 900MW+ after 4Q25」；Oracle「Increased FY 2026 Capex (ending 5/31/2026) by $10B to $35B, majority for revenue-generating equipment」；Nebius「2025 Capex guidance of $2B unchanged. Power capacity target of 1GW by 2026 to sustain AI demand, with 220MW of connected power expected by year-end 2025」",
+        "grade": "S3",
+        "originator": "各公司 2025Q2 财报与指引，经伯恩斯坦《3Q25 AI Server & Edge AI Pulse》2025-09-16 汇总转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "CoreWeave",
+      "notes": "「$20-23B」按两端记，公司指引未变。 vintage 记 2025-09 快照（伯恩斯坦汇总时点）。"
+    },
+    {
+      "fact_id": "bern2509-coreweave-capex-2025e-upper",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "coreweave",
+        "label": "CoreWeave"
+      },
+      "value": 230.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "单一公司",
+        "capex_scope": "全部 capex",
+        "basis": "厂商指引",
+        "vintage": "其他快照",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025E@2025-09",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "95d0a154621f8c68bfa5d3a7500210c669d9b331e72ca1de7a7e4dbe77b94dc2",
+        "local_file": "20250920-全球半导体、硬件、互联网与软件：2025年第三季度人工智能服务器与边缘人工智能动态：稳步前行(40页).pdf",
+        "locator": "PDF 第 7 页 EXHIBIT 5「Hyperscaler and Neocloud's AI-related capex commentary」（2Q25 Capex commentary）：CoreWeave「3Q25 Capex guided to $2.9-3.4B; 2025 capex no change vs. previous plan ($20-23B), largely will fall in 4Q due to the timing of go live dates of infrastructure, on track to deliver the 900MW+ after 4Q25」；Oracle「Increased FY 2026 Capex (ending 5/31/2026) by $10B to $35B, majority for revenue-generating equipment」；Nebius「2025 Capex guidance of $2B unchanged. Power capacity target of 1GW by 2026 to sustain AI demand, with 220MW of connected power expected by year-end 2025」",
+        "grade": "S3",
+        "originator": "各公司 2025Q2 财报与指引，经伯恩斯坦《3Q25 AI Server & Edge AI Pulse》2025-09-16 汇总转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "CoreWeave",
+      "notes": "「$20-23B」按两端记。 vintage 记 2025-09 快照（伯恩斯坦汇总时点）。"
+    },
+    {
+      "fact_id": "bern2509-nebius-capex-2025e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "nebius",
+        "label": "Nebius"
+      },
+      "value": 20.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "单一公司",
+        "capex_scope": "全部 capex",
+        "basis": "厂商指引",
+        "vintage": "其他快照",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025E@2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "95d0a154621f8c68bfa5d3a7500210c669d9b331e72ca1de7a7e4dbe77b94dc2",
+        "local_file": "20250920-全球半导体、硬件、互联网与软件：2025年第三季度人工智能服务器与边缘人工智能动态：稳步前行(40页).pdf",
+        "locator": "PDF 第 7 页 EXHIBIT 5「Hyperscaler and Neocloud's AI-related capex commentary」（2Q25 Capex commentary）：CoreWeave「3Q25 Capex guided to $2.9-3.4B; 2025 capex no change vs. previous plan ($20-23B), largely will fall in 4Q due to the timing of go live dates of infrastructure, on track to deliver the 900MW+ after 4Q25」；Oracle「Increased FY 2026 Capex (ending 5/31/2026) by $10B to $35B, majority for revenue-generating equipment」；Nebius「2025 Capex guidance of $2B unchanged. Power capacity target of 1GW by 2026 to sustain AI demand, with 220MW of connected power expected by year-end 2025」",
+        "grade": "S3",
+        "originator": "各公司 2025Q2 财报与指引，经伯恩斯坦《3Q25 AI Server & Edge AI Pulse》2025-09-16 汇总转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "Nebius",
+      "notes": "Nebius 2025 年 capex 指引 20 亿美元，维持不变。 vintage 记 2025-09 快照（伯恩斯坦汇总时点）。"
+    },
+    {
+      "fact_id": "bern2509-nebius-connected-power-2025e",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "company",
+        "id": "nebius",
+        "label": "Nebius"
+      },
+      "value": 220.0,
+      "unit": "MW",
+      "caliber": {
+        "capacity_type": "并网容量",
+        "status": "L8",
+        "region": "未披露"
+      },
+      "as_of": "2025-12E@2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "95d0a154621f8c68bfa5d3a7500210c669d9b331e72ca1de7a7e4dbe77b94dc2",
+        "local_file": "20250920-全球半导体、硬件、互联网与软件：2025年第三季度人工智能服务器与边缘人工智能动态：稳步前行(40页).pdf",
+        "locator": "PDF 第 7 页 EXHIBIT 5「Hyperscaler and Neocloud's AI-related capex commentary」（2Q25 Capex commentary）：CoreWeave「3Q25 Capex guided to $2.9-3.4B; 2025 capex no change vs. previous plan ($20-23B), largely will fall in 4Q due to the timing of go live dates of infrastructure, on track to deliver the 900MW+ after 4Q25」；Oracle「Increased FY 2026 Capex (ending 5/31/2026) by $10B to $35B, majority for revenue-generating equipment」；Nebius「2025 Capex guidance of $2B unchanged. Power capacity target of 1GW by 2026 to sustain AI demand, with 220MW of connected power expected by year-end 2025」",
+        "grade": "S3",
+        "originator": "各公司 2025Q2 财报与指引，经伯恩斯坦《3Q25 AI Server & Edge AI Pulse》2025-09-16 汇总转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "Nebius",
+      "notes": "到 2025 年底预期的已并网（connected）电力容量；同处「2026 年电力容量目标 1GW」为目标值，status 归类不明（未说明是规划、电力申请还是已锁定），未录。region 未披露：原文未说明站点所在地域（Nebius 站点分布于欧美）。"
     }
   ]
 }
