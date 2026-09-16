@@ -233113,6 +233113,66 @@
       "corroboration": "待交叉验证",
       "notes": "单体总建筑面积（6 层、总高 35.6m），与同项目另一单体并列；两栋合计 25624.1 ㎡、合计总冷负荷 20286.28 kW。**area_scope 记「主机房楼单体」：这是冷负荷计算书里的楼栋总面积，含机房与辅助区，不是纯机房面积。**",
       "asserter": "四川星蓝德建筑设计有限公司"
+    },
+    {
+      "fact_id": "gysj-anquanbachang-3-cooling-load-index",
+      "metric_id": "cooling_load_index",
+      "entity": {
+        "type": "project",
+        "id": "guiyang-bigdata-security-range-3",
+        "label": "国家大数据安全靶场（数据区）3 号楼"
+      },
+      "value": 737.23,
+      "unit": "W/㎡",
+      "caliber": {
+        "basis": "设计计算",
+        "area_scope": "总建筑面积",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b0239afdeef514371dda6dc8c42cc145c5d0dbd2ffae3d857e05cf259e18775c",
+        "local_file": "3#楼_冷负荷计算书.xls",
+        "locator": "工作表「工程信息及计算依据」三.建筑信息表：「3 号楼 6 层 35.6m 总面积 12098.1 ㎡ 总冷负荷 8919.11 kW（冷负荷 8735.66 kW、新风冷负荷 183.45 kW）冷指标 737.23 W/㎡」；室外参数同项目：贵阳夏季空调室外干球 30.1℃、湿球 23℃",
+        "grade": "S2",
+        "originator": "四川星蓝德建筑设计有限公司《贵阳经济技术开发区大数据安全产业示范区 A 区建设 PPP 项目·国家大数据安全靶场（数据区）3# 楼冷负荷计算书》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同项目第三栋，与 1-1 号楼 830.71、1-2 号楼 747.73 W/㎡ 构成同设计单位、同气象条件下的三栋对照**：三栋层数（6 层）与层高（35.6m）相同，冷指标却差近 13%，说明差异来自各栋内机房与辅助区的配比。设计计算值、分母为楼栋总建筑面积。",
+      "asserter": "四川星蓝德建筑设计有限公司"
+    },
+    {
+      "fact_id": "gysj-anquanbachang-3-gfa",
+      "metric_id": "dc_gross_floor_area",
+      "entity": {
+        "type": "project",
+        "id": "guiyang-bigdata-security-range-3",
+        "label": "国家大数据安全靶场（数据区）3 号楼"
+      },
+      "value": 12098.1,
+      "unit": "㎡",
+      "caliber": {
+        "area_scope": "主机房楼单体",
+        "stage": "设计",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b0239afdeef514371dda6dc8c42cc145c5d0dbd2ffae3d857e05cf259e18775c",
+        "local_file": "3#楼_冷负荷计算书.xls",
+        "locator": "工作表「工程信息及计算依据」三.建筑信息表：「3 号楼 6 层 35.6m 总面积 12098.1 ㎡ 总冷负荷 8919.11 kW（冷负荷 8735.66 kW、新风冷负荷 183.45 kW）冷指标 737.23 W/㎡」；室外参数同项目：贵阳夏季空调室外干球 30.1℃、湿球 23℃",
+        "grade": "S2",
+        "originator": "四川星蓝德建筑设计有限公司《贵阳经济技术开发区大数据安全产业示范区 A 区建设 PPP 项目·国家大数据安全靶场（数据区）3# 楼冷负荷计算书》"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "单体总建筑面积。**项目已录三栋：1-1 号楼 13573.3 ㎡、1-2 号楼 12050.8 ㎡、3 号楼 12098.1 ㎡，合计 37722.2 ㎡，合计总冷负荷 29205.39 kW。**",
+      "asserter": "四川星蓝德建筑设计有限公司"
     }
   ]
 }
