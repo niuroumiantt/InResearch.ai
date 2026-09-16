@@ -235725,6 +235725,72 @@
       "corroboration": "待交叉验证",
       "notes": "$78B = 78,000 百万美元，英伟达财年口径。**这条预测的偏差更大**：英伟达 FY2025 实际营收约 1,305 亿美元，本预测只有其六成——**说明 2023 年 8 月时点上，连最贴近供应链的机构也大幅低估了 AI 需求斜率**，引用历史预测时须带上这个背景。同段预测 FY2025 第三财季起出现环比下滑，实际并未发生。 **as_of 写作 2024E/2025E 是格式所限——实为英伟达财年 FY2024（截至 2024-01）与 FY2025（截至 2025-01），与自然年错开约 11 个月，fiscal_align 维已标「公司财季/财年」。**",
       "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "jpm2207-cloud-capex-growth-cy22",
+      "metric_id": "capex_growth_rate",
+      "entity": {
+        "type": "industry",
+        "id": "global-cloud-datacenter-capex",
+        "label": "全球云数据中心资本开支"
+      },
+      "value": 25.0,
+      "unit": "%",
+      "caliber": {
+        "period_basis": "同比",
+        "segment": "Hyperscalers",
+        "scenario": "Base Case",
+        "region": "Global",
+        "basis": "预测",
+        "vintage_note": "见 as_of"
+      },
+      "as_of": "2022E@2022-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1b1a5254268c0ea490aec286c24e4ea62caebd98d053c01d23b9df8b04544692",
+        "local_file": "Cloud Capex_JPM_07-12-2022.pdf",
+        "locator": "第 1 页：「our J.P. Morgan hardware team reassessed their assumptions and updated their cloud datacenter capex forecasts……the trend remains strong in CY22 (up 25% Y/Y vs prior forecast of up 28% Y/Y) and into CY23 (up 14% Y/Y – see Figure 2)……Base case calls for mid-teens % Y/Y growth in CY23……Cloud spending is expected to accelerate in the 2H of the year, up 22% 2H vs 1H (vs prior forecast of up 34% in 2H)」",
+        "grade": "S3",
+        "originator": "摩根大通《Cloud Capex Solid Into 2023 Even With Recession Risks》（Harlan Sur 等，2022-07-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是云数据中心资本开支的同比增速预测，自然年（CY）口径。****同一份报告里的两组数展示了下修过程**：CY22 由此前预测的 +28% 下修到 +25%，下半年环比由 +34% 下修到 +22%——**「预测被下修」本身是事实，引用单一数值时必须带上修订方向**。CY23 的 +14% 与正文「mid-teens %」表述一致。背景：2022 年中市场担心衰退风险与数据中心建设延期（供应与人力约束、CSP 等待 Intel Sapphire Rapids）。CY22 增速（由此前的 +28% 下修而来）。 segment 记「Hyperscalers」：原文说的是 cloud datacenter capex（四大云厂为主），region 记 Global（未单列地域）。",
+      "asserter": "摩根大通"
+    },
+    {
+      "fact_id": "jpm2207-cloud-capex-growth-cy23",
+      "metric_id": "capex_growth_rate",
+      "entity": {
+        "type": "industry",
+        "id": "global-cloud-datacenter-capex",
+        "label": "全球云数据中心资本开支"
+      },
+      "value": 14.0,
+      "unit": "%",
+      "caliber": {
+        "period_basis": "同比",
+        "segment": "Hyperscalers",
+        "scenario": "Base Case",
+        "region": "Global",
+        "basis": "预测",
+        "vintage_note": "见 as_of"
+      },
+      "as_of": "2023E@2022-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1b1a5254268c0ea490aec286c24e4ea62caebd98d053c01d23b9df8b04544692",
+        "local_file": "Cloud Capex_JPM_07-12-2022.pdf",
+        "locator": "第 1 页：「our J.P. Morgan hardware team reassessed their assumptions and updated their cloud datacenter capex forecasts……the trend remains strong in CY22 (up 25% Y/Y vs prior forecast of up 28% Y/Y) and into CY23 (up 14% Y/Y – see Figure 2)……Base case calls for mid-teens % Y/Y growth in CY23……Cloud spending is expected to accelerate in the 2H of the year, up 22% 2H vs 1H (vs prior forecast of up 34% in 2H)」",
+        "grade": "S3",
+        "originator": "摩根大通《Cloud Capex Solid Into 2023 Even With Recession Risks》（Harlan Sur 等，2022-07-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是云数据中心资本开支的同比增速预测，自然年（CY）口径。****同一份报告里的两组数展示了下修过程**：CY22 由此前预测的 +28% 下修到 +25%，下半年环比由 +34% 下修到 +22%——**「预测被下修」本身是事实，引用单一数值时必须带上修订方向**。CY23 的 +14% 与正文「mid-teens %」表述一致。背景：2022 年中市场担心衰退风险与数据中心建设延期（供应与人力约束、CSP 等待 Intel Sapphire Rapids）。CY23 增速，正文另称基准情形为「mid-teens %」；并称即便计入衰退风险，云 capex 仍可增长低个位数至高个位数（四大云厂与 Meta 各自放缓）。 segment 记「Hyperscalers」：原文说的是 cloud datacenter capex（四大云厂为主），region 记 Global（未单列地域）。",
+      "asserter": "摩根大通"
     }
   ]
 }
