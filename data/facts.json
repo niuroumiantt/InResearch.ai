@@ -234601,6 +234601,66 @@
       "corroboration": "待交叉验证",
       "notes": "**20%~85% 是一个异常宽的相对湿度带**（ASHRAE 推荐 40%~60%），上限 85% 已接近结露风险区——这与该规范同时要求「热桥部位内表面温度不应低于室内空气露点温度」相呼应。属 2010 年通信机房口径，引用时须注明年代。",
       "asserter": "中国联通"
+    },
+    {
+      "fact_id": "ocp-immersion-dc-adoption-2019",
+      "metric_id": "liquid_cooling_penetration",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenter-immersion-adoption",
+        "label": "采用浸没冷却的数据中心占比"
+      },
+      "value": 1.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "按项目数",
+        "cooling_type": "浸没",
+        "region": "Global"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1d7ec2a126f61f86aac754cc3812f9fa609d136b380bfe92aded33daccb45eef",
+        "local_file": "5696 - Balancing Innovation - Performance and Safety - the Evolution of Immersion Requirements.pdf",
+        "locator": "第 4 页图注：「Graph showing the projected adoption of immersion cooling in data centers from 2019 to 2026. It illustrates the significant increase in the percentage of data centers using immersion cooling, from about 1% in 2019 to a projected 16.3% by 2026. Data sourced via Business Wire, Mordor Intelligence and Enterprise Technology News and Analysis.」",
+        "grade": "S4",
+        "originator": "Business Wire、Mordor Intelligence、Enterprise Technology News and Analysis（三家合引，经OCP《Balancing Innovation, Performance and Safety: the Evolution of Immersion Requirements》（Denvr Dataworks Amy Short、Rick Margerison）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**分母是「使用浸没冷却的数据中心占比」（按设施数计），不是按容量或新增机架**——与库内所有液冷渗透率条目（按容量/按新增 AI 容量）分母都不同，**不可放进同一条曲线**。denominator 只能填「按项目数」（枚举里最接近设施数的取值）。数据来源为 Business Wire、Mordor Intelligence 与 Enterprise Technology News and Analysis 三家合引，未逐点分标。原文写「about 1%」，为起点年。",
+      "asserter": "OCP"
+    },
+    {
+      "fact_id": "ocp-immersion-dc-adoption-2026e",
+      "metric_id": "liquid_cooling_penetration",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenter-immersion-adoption",
+        "label": "采用浸没冷却的数据中心占比"
+      },
+      "value": 16.3,
+      "unit": "%",
+      "caliber": {
+        "denominator": "按项目数",
+        "cooling_type": "浸没",
+        "region": "Global"
+      },
+      "as_of": "2026E@2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "1d7ec2a126f61f86aac754cc3812f9fa609d136b380bfe92aded33daccb45eef",
+        "local_file": "5696 - Balancing Innovation - Performance and Safety - the Evolution of Immersion Requirements.pdf",
+        "locator": "第 4 页图注：「Graph showing the projected adoption of immersion cooling in data centers from 2019 to 2026. It illustrates the significant increase in the percentage of data centers using immersion cooling, from about 1% in 2019 to a projected 16.3% by 2026. Data sourced via Business Wire, Mordor Intelligence and Enterprise Technology News and Analysis.」",
+        "grade": "S4",
+        "originator": "Business Wire、Mordor Intelligence、Enterprise Technology News and Analysis（三家合引，经OCP《Balancing Innovation, Performance and Safety: the Evolution of Immersion Requirements》（Denvr Dataworks Amy Short、Rick Margerison）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**分母是「使用浸没冷却的数据中心占比」（按设施数计），不是按容量或新增机架**——与库内所有液冷渗透率条目（按容量/按新增 AI 容量）分母都不同，**不可放进同一条曲线**。denominator 只能填「按项目数」（枚举里最接近设施数的取值）。数据来源为 Business Wire、Mordor Intelligence 与 Enterprise Technology News and Analysis 三家合引，未逐点分标。**16.3% 这个预测明显高于库内其他浸没口径**（申万宏源按新增机架给 2025 年 8%、赛迪按液冷市场内部给浸没 2025 年 38-41%），三者分母各不相同，比较前必须对齐。",
+      "asserter": "OCP"
     }
   ]
 }
