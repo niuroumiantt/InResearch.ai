@@ -246827,6 +246827,226 @@
       },
       "depth": "精读",
       "notes": "「over 40%」记下界，当前不到 25%。分母是美国数据中心总容量（按容量不是按算力，本指标的 measure 维只有算力规模一档最接近，已在此说明）。[未核]"
+    },
+    {
+      "fact_id": "kf2511-bangkok-it-capacity-live",
+      "asserter": "莱坊",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "bangkok-dc-market",
+        "label": "曼谷数据中心市场（已投运）"
+      },
+      "value": 119.0,
+      "unit": "MW",
+      "bound": "point",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "APAC"
+      },
+      "as_of": "2025-11",
+      "evidence": {
+        "sha256": "845007caeb9cc39803d99871214e1d2c13fb9b2bc805325c8af04541d78b760f",
+        "local_file": "20251116-曼谷数据中心崛起：资本、技术与政策驱动(11页).pdf",
+        "locator": "第 2 页「Breakdown of Bangkok's Total IT Capacity」：TOTAL 2587 MW，Live IT MW 119（4.6%）、Under Construction IT MW 31（1.2%）、Committed IT MW 409（15.8%）、Early Stage IT MW 2027（78.4%）",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "四档相加等于 2587，各档占比与除法结果逐位吻合（119/2587=4.6%、31/2587=1.2%、409/2587=15.8%、2027/2587=78.4%）。**只有这一档是当期供给**。 原文另称泰国是东南亚第二大数据中心市场（仅次于马来西亚），曼谷总量超过新加坡、雅加达与吉隆坡。[未核]"
+    },
+    {
+      "fact_id": "kf2511-bangkok-it-capacity-underconstruction",
+      "asserter": "莱坊",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "bangkok-dc-market",
+        "label": "曼谷数据中心市场（在建）"
+      },
+      "value": 31.0,
+      "unit": "MW",
+      "bound": "point",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L6",
+        "region": "APAC"
+      },
+      "as_of": "2025-11",
+      "evidence": {
+        "sha256": "845007caeb9cc39803d99871214e1d2c13fb9b2bc805325c8af04541d78b760f",
+        "local_file": "20251116-曼谷数据中心崛起：资本、技术与政策驱动(11页).pdf",
+        "locator": "第 2 页「Breakdown of Bangkok's Total IT Capacity」：TOTAL 2587 MW，Live IT MW 119（4.6%）、Under Construction IT MW 31（1.2%）、Committed IT MW 409（15.8%）、Early Stage IT MW 2027（78.4%）",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "在建量只有已投运的四分之一，说明曼谷的规模几乎全在更早的阶段。 原文另称泰国是东南亚第二大数据中心市场（仅次于马来西亚），曼谷总量超过新加坡、雅加达与吉隆坡。[未核]"
+    },
+    {
+      "fact_id": "kf2511-bangkok-it-capacity-committed",
+      "asserter": "莱坊",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "bangkok-dc-market",
+        "label": "曼谷数据中心市场（已承诺）"
+      },
+      "value": 409.0,
+      "unit": "MW",
+      "bound": "point",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L5",
+        "region": "APAC"
+      },
+      "as_of": "2025-11",
+      "evidence": {
+        "sha256": "845007caeb9cc39803d99871214e1d2c13fb9b2bc805325c8af04541d78b760f",
+        "local_file": "20251116-曼谷数据中心崛起：资本、技术与政策驱动(11页).pdf",
+        "locator": "第 2 页「Breakdown of Bangkok's Total IT Capacity」：TOTAL 2587 MW，Live IT MW 119（4.6%）、Under Construction IT MW 31（1.2%）、Committed IT MW 409（15.8%）、Early Stage IT MW 2027（78.4%）",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "原文的 Committed 对应已锁定但未开工，按电力确定（L5）记，映射关系已在此写明。 原文另称泰国是东南亚第二大数据中心市场（仅次于马来西亚），曼谷总量超过新加坡、雅加达与吉隆坡。[未核]"
+    },
+    {
+      "fact_id": "kf2511-bangkok-it-capacity-earlystage",
+      "asserter": "莱坊",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "bangkok-dc-market",
+        "label": "曼谷数据中心市场（早期阶段）"
+      },
+      "value": 2027.0,
+      "unit": "MW",
+      "bound": "point",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L2",
+        "region": "APAC"
+      },
+      "as_of": "2025-11",
+      "evidence": {
+        "sha256": "845007caeb9cc39803d99871214e1d2c13fb9b2bc805325c8af04541d78b760f",
+        "local_file": "20251116-曼谷数据中心崛起：资本、技术与政策驱动(11页).pdf",
+        "locator": "第 2 页「Breakdown of Bangkok's Total IT Capacity」：TOTAL 2587 MW，Live IT MW 119（4.6%）、Under Construction IT MW 31（1.2%）、Committed IT MW 409（15.8%）、Early Stage IT MW 2027（78.4%）",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**占总量 78.4% 的早期阶段量，按标准不得与投运量相加当作当前容量**；原文的 Early Stage 按官方规划（L2）记。 原文另称泰国是东南亚第二大数据中心市场（仅次于马来西亚），曼谷总量超过新加坡、雅加达与吉隆坡。[未核]"
+    },
+    {
+      "fact_id": "kf2511-bangkok-demand-share-ai-2024",
+      "asserter": "莱坊",
+      "metric_id": "compute_demand_by_workload_share",
+      "entity": {
+        "type": "market",
+        "id": "bangkok-dc-demand-ai",
+        "label": "曼谷数据中心需求（AI 需求占比）"
+      },
+      "value": 20.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "workload": "其他",
+        "customer_scope": "全市场",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "845007caeb9cc39803d99871214e1d2c13fb9b2bc805325c8af04541d78b760f",
+        "local_file": "20251116-曼谷数据中心崛起：资本、技术与政策驱动(11页).pdf",
+        "locator": "第 6 页：「In 2024, AI accounted for approximately 20% of the demand, while cloud made up about 40%. Looking ahead... In the first quarter of 2025, AI demand rose to 28%, while cloud accounted for 38%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**workload 维只有训练/推理/微调/其他，装不下「AI vs 云」这一刀**，四条都记「其他」、靠实体标签区分，是本批第四次遇到同一个缺口。一年多里 AI 从 20% 升到 28%、云从 40% 降到 38%。[未核]"
+    },
+    {
+      "fact_id": "kf2511-bangkok-demand-share-cloud-2024",
+      "asserter": "莱坊",
+      "metric_id": "compute_demand_by_workload_share",
+      "entity": {
+        "type": "market",
+        "id": "bangkok-dc-demand-cloud",
+        "label": "曼谷数据中心需求（云需求占比）"
+      },
+      "value": 40.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "workload": "其他",
+        "customer_scope": "全市场",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "845007caeb9cc39803d99871214e1d2c13fb9b2bc805325c8af04541d78b760f",
+        "local_file": "20251116-曼谷数据中心崛起：资本、技术与政策驱动(11页).pdf",
+        "locator": "第 6 页：「In 2024, AI accounted for approximately 20% of the demand, while cloud made up about 40%. Looking ahead... In the first quarter of 2025, AI demand rose to 28%, while cloud accounted for 38%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**workload 维只有训练/推理/微调/其他，装不下「AI vs 云」这一刀**，四条都记「其他」、靠实体标签区分，是本批第四次遇到同一个缺口。一年多里 AI 从 20% 升到 28%、云从 40% 降到 38%。[未核]"
+    },
+    {
+      "fact_id": "kf2511-bangkok-demand-share-ai-2025q1",
+      "asserter": "莱坊",
+      "metric_id": "compute_demand_by_workload_share",
+      "entity": {
+        "type": "market",
+        "id": "bangkok-dc-demand-ai",
+        "label": "曼谷数据中心需求（AI 需求占比）"
+      },
+      "value": 28.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "workload": "其他",
+        "customer_scope": "全市场",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-Q1",
+      "evidence": {
+        "sha256": "845007caeb9cc39803d99871214e1d2c13fb9b2bc805325c8af04541d78b760f",
+        "local_file": "20251116-曼谷数据中心崛起：资本、技术与政策驱动(11页).pdf",
+        "locator": "第 6 页：「In 2024, AI accounted for approximately 20% of the demand, while cloud made up about 40%. Looking ahead... In the first quarter of 2025, AI demand rose to 28%, while cloud accounted for 38%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**workload 维只有训练/推理/微调/其他，装不下「AI vs 云」这一刀**，四条都记「其他」、靠实体标签区分，是本批第四次遇到同一个缺口。一年多里 AI 从 20% 升到 28%、云从 40% 降到 38%。[未核]"
+    },
+    {
+      "fact_id": "kf2511-bangkok-demand-share-cloud-2025q1",
+      "asserter": "莱坊",
+      "metric_id": "compute_demand_by_workload_share",
+      "entity": {
+        "type": "market",
+        "id": "bangkok-dc-demand-cloud",
+        "label": "曼谷数据中心需求（云需求占比）"
+      },
+      "value": 38.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "workload": "其他",
+        "customer_scope": "全市场",
+        "region": "APAC",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-Q1",
+      "evidence": {
+        "sha256": "845007caeb9cc39803d99871214e1d2c13fb9b2bc805325c8af04541d78b760f",
+        "local_file": "20251116-曼谷数据中心崛起：资本、技术与政策驱动(11页).pdf",
+        "locator": "第 6 页：「In 2024, AI accounted for approximately 20% of the demand, while cloud made up about 40%. Looking ahead... In the first quarter of 2025, AI demand rose to 28%, while cloud accounted for 38%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**workload 维只有训练/推理/微调/其他，装不下「AI vs 云」这一刀**，四条都记「其他」、靠实体标签区分，是本批第四次遇到同一个缺口。一年多里 AI 从 20% 升到 28%、云从 40% 降到 38%。[未核]"
     }
   ]
 }
