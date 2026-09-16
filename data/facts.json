@@ -229747,7 +229747,10 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**这不是某颗芯片的 TDP，而是「风冷能压住的单芯片功率上限」**，借 chip_design_spec 的 TDP(W) 参数存放，product 维记「风冷散热上限（不限型号）」以免与真实型号混淆。**与库内机柜级的风冷上限（20/30-40/30-50/40-60kW 那一族）是两个层级的约束，不要混用。**region 未披露：原文未限定地域。",
-      "asserter": "华西证券"
+      "asserter": "华西证券",
+      "disputed_by": [
+        "gh2406-3dvc-aircooling-limit-1000w"
+      ]
     },
     {
       "fact_id": "hxzq2404-ai-rack-density-2025e-lower",
@@ -229812,6 +229815,174 @@
       "corroboration": "待交叉验证",
       "notes": "**这是 2024 年对 2025 年的展望，不是出货实测**；era 记「路线图目标」。与库内 NVL72 类 120-145kW 差一个数量级——原文说的是 AI 集群的普遍水平，不是旗舰整机柜。region 未披露：原文未限定地域。",
       "asserter": "华西证券"
+    },
+    {
+      "fact_id": "gh2406-idc-cn-lc-server-market-2023",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "cn-liquid-cooling-server",
+        "label": "中国液冷服务器市场"
+      },
+      "value": 15.5,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "液冷设备与方案",
+        "currency": "美元",
+        "cooling_route": "未注明",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fdece2ba7b61e0a65234c354ebd5f3d47b7e9c1e655195ceaf84b2e4ce91b39b",
+        "local_file": "AI算力“卖水人”专题系列（2）：芯片散热：从风冷到液冷，AI驱动产业革新.pdf",
+        "locator": "第 30 页 3.3 节：「据 IDC，2023 全年中国液冷服务器市场规模达到 15.5 亿美元，与 2022 年相比增长 52.6%。IDC 预计，2023-2028 年，中国液冷服务器市场年复合增长率将达到 45.8%，2028 年市场规模将达到 102 亿美元」",
+        "grade": "S4",
+        "originator": "IDC（经国海证券《AI 算力「卖水人」专题系列（2）：芯片散热：从风冷到液冷，AI 驱动产业革新》（2024）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**币种美元**，口径为「液冷服务器」（整机），不含机房侧基础设施——与库内人民币口径的中国液冷市场（信通院 2024 年 184 亿元等）既不同币种也不同口径。**与同为 IDC 口径的「2024 上半年 12.6 亿美元」（xbzq2509-idc-cn-lc-server-market-2024h1）属同一序列**：2023 全年 15.5 亿美元、2024 上半年 12.6 亿美元，半年已达上年八成，与 45.8% 的复合增速方向一致。同比增长 52.6%。",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "gh2406-idc-cn-lc-server-market-2028e",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "cn-liquid-cooling-server",
+        "label": "中国液冷服务器市场"
+      },
+      "value": 102.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "液冷设备与方案",
+        "currency": "美元",
+        "cooling_route": "未注明",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2028E@2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fdece2ba7b61e0a65234c354ebd5f3d47b7e9c1e655195ceaf84b2e4ce91b39b",
+        "local_file": "AI算力“卖水人”专题系列（2）：芯片散热：从风冷到液冷，AI驱动产业革新.pdf",
+        "locator": "第 30 页 3.3 节：「据 IDC，2023 全年中国液冷服务器市场规模达到 15.5 亿美元，与 2022 年相比增长 52.6%。IDC 预计，2023-2028 年，中国液冷服务器市场年复合增长率将达到 45.8%，2028 年市场规模将达到 102 亿美元」",
+        "grade": "S4",
+        "originator": "IDC（经国海证券《AI 算力「卖水人」专题系列（2）：芯片散热：从风冷到液冷，AI 驱动产业革新》（2024）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**币种美元**，口径为「液冷服务器」（整机），不含机房侧基础设施——与库内人民币口径的中国液冷市场（信通院 2024 年 184 亿元等）既不同币种也不同口径。**与同为 IDC 口径的「2024 上半年 12.6 亿美元」（xbzq2509-idc-cn-lc-server-market-2024h1）属同一序列**：2023 全年 15.5 亿美元、2024 上半年 12.6 亿美元，半年已达上年八成，与 45.8% 的复合增速方向一致。2023-2028 年复合增长率 45.8%。",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "gh2406-statistics-global-ai-server-shipments-2026e",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "industry",
+        "id": "global-server-market",
+        "label": "全球服务器市场"
+      },
+      "value": 2369.0,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "Total",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "不适用（非中国口径）"
+      },
+      "as_of": "2026E@2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fdece2ba7b61e0a65234c354ebd5f3d47b7e9c1e655195ceaf84b2e4ce91b39b",
+        "local_file": "AI算力“卖水人”专题系列（2）：芯片散热：从风冷到液冷，AI驱动产业革新.pdf",
+        "locator": "第 28 页：「据 Statistics，预期 2026 年全球 AI 服务器出货量达到 236.9 万台，2024-2026 年预期 CAGR 为……」；图「全球 AI 服务器出货量（万台）」",
+        "grade": "S4",
+        "originator": "Statistics（原文如此拼写，疑为 Statista；经国海证券《AI 算力「卖水人」专题系列（2）：芯片散热：从风冷到液冷，AI 驱动产业革新》（2024）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文单位万台：236.9 万台 = 2,369 千台。****与库内西部证券测算表里的「AI 服务器 2026E 2,369 千台」分毫不差**——两份报告给出同一个数，极可能同源（西部那张表也把 trendforce 等列为来源），故不作交叉验证。**originator 原文写「Statistics」，是机构名拼写存疑的一处**，照抄未改。",
+      "asserter": "Statistics"
+    },
+    {
+      "fact_id": "gh2406-3dvc-aircooling-limit-1000w",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "industry",
+        "id": "aircooling-chip-limit",
+        "label": "风冷可承受的单芯片散热功率上限"
+      },
+      "value": 1000.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "风冷散热上限（不限型号）",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "未披露"
+      },
+      "as_of": "2024",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "fdece2ba7b61e0a65234c354ebd5f3d47b7e9c1e655195ceaf84b2e4ce91b39b",
+        "local_file": "AI算力“卖水人”专题系列（2）：芯片散热：从风冷到液冷，AI驱动产业革新.pdf",
+        "locator": "第 3 页核心提要与第 10 页：「热管与 VC 的散热能力较低，3D VC 风冷散热上限扩大至 1000W，冷板式具备 1000W+ 的广阔散热范围」；「英伟达 B200 功耗超 1000W、接近风冷散热上限」",
+        "grade": "S4",
+        "originator": "国海证券《AI 算力「卖水人」专题系列（2）：芯片散热：从风冷到液冷，AI 驱动产业革新》（2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同一问题下华西证券给的是 800W（hxzq2404-aircooled-chip-limit-800w），本条 1000W，差 25%。**差异可能来自散热方案代际（本条明确指 3D VC 均热板方案，华西未限定），原文均未交代前提，已互标争议。region 未披露：原文未限定地域。",
+      "asserter": "国海证券",
+      "disputes": [
+        "hxzq2404-aircooled-chip-limit-800w"
+      ]
+    },
+    {
+      "fact_id": "gh2406-dgx-h100-server-power",
+      "metric_id": "server_power_and_training_time",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-dgx-h100",
+        "label": "NVIDIA DGX H100 服务器"
+      },
+      "value": 10.2,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "chip": "NVIDIA H100（DGX H100 整机，8 卡）",
+        "parameter": "单机算力功耗(kW)",
+        "pue_included": "不含",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fdece2ba7b61e0a65234c354ebd5f3d47b7e9c1e655195ceaf84b2e4ce91b39b",
+        "local_file": "AI算力“卖水人”专题系列（2）：芯片散热：从风冷到液冷，AI驱动产业革新.pdf",
+        "locator": "第 20 页：「AI 服务器具备『CPU+GPU』等异构结构，GPU 高功耗带动服务器功耗提升，如英伟达 H100 GPU 功耗高达 700W，DGX H100 服务器最大功耗 10.2kW，GPU 功耗预计占服务器总功耗的 55% 左右」",
+        "grade": "S4",
+        "originator": "国海证券《AI 算力「卖水人」专题系列（2）：芯片散热：从风冷到液冷，AI 驱动产业革新》（2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**本条单位 kW，是整机最大功耗（不含 PUE）**。配套：单卡 H100 700W × 8 = 5.6kW，占整机 55% 左右（原文口径），其余为 CPU、内存、风扇与供电损耗。",
+      "asserter": "国海证券"
     }
   ]
 }
