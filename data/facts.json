@@ -220541,7 +220541,10 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "asserter": "摩根士丹利",
-      "notes": "原表 14.9 mn units = 14900.0 千台。摩根士丹利（日本电子元件组，2025-06-13）投资者演示的终端市场表；同表另有 2021Q1–2025Q4e 季度序列，未逐条录。"
+      "notes": "原表 14.9 mn units = 14900.0 千台。摩根士丹利（日本电子元件组，2025-06-13）投资者演示的终端市场表；同表另有 2021Q1–2025Q4e 季度序列，未逐条录。",
+      "disputed_by": [
+        "hfzq2402-global-server-units-2022"
+      ]
     },
     {
       "fact_id": "ms2506-global-server-units-2023",
@@ -223087,6 +223090,208 @@
         "originator": "TrendForce，经国泰君安证券《存储行业报告：AI 对存储晶圆产能消耗拉动显著》（2024）转引"
       },
       "notes": "12 吋等效月产能口径（原文未写明折算口径，[未核]）。"
+    },
+    {
+      "fact_id": "hfzq2402-tf-global-ai-server-units-2023",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "global-ai-server-units",
+        "label": "全球 AI 服务器出货量"
+      },
+      "value": 1200.0,
+      "unit": "千台",
+      "caliber": {
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "未拆分",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "不适用（非中国口径）",
+        "server_class": "Accelerated/High-End",
+        "region": "Total"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4088fd1f9c448b7e0629dd619b1f9141d87d6a52eb364f211900582d4dd82894",
+        "local_file": "5C_2025_2025_服务器行业深度报告_未署名.pdf",
+        "locator": "PDF 第 7 页 1.3「AI 服务器出货量持续增长」：「2022 年全球服务器出货量增长 4.8%，达到约 1360 万台……根据 TrendForce 数据，2023 年 AI 服务器出货量逾达 120 万台，占据服务器总出货量的近 9%，年增长达 38.4%。预计 2026 年，AI 服务器出货量为 237 万台，占比达 15%，复合年增长率预计保持 25%」（华福证券《AI 和\"东数西算\"双轮驱动，服务器再起航》2024-02-19）",
+        "grade": "S3",
+        "originator": "TrendForce，经华福证券转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "TrendForce",
+      "notes": "原文 120 万台 = 1200 千台，占服务器总出货近 9%、同比 +38.4%（占比无对应指标）。"
+    },
+    {
+      "fact_id": "hfzq2402-tf-global-ai-server-units-2026e",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "global-ai-server-units",
+        "label": "全球 AI 服务器出货量"
+      },
+      "value": 2370.0,
+      "unit": "千台",
+      "caliber": {
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "未拆分",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "不适用（非中国口径）",
+        "server_class": "Accelerated/High-End",
+        "region": "Total"
+      },
+      "as_of": "2026E@2024-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4088fd1f9c448b7e0629dd619b1f9141d87d6a52eb364f211900582d4dd82894",
+        "local_file": "5C_2025_2025_服务器行业深度报告_未署名.pdf",
+        "locator": "PDF 第 7 页 1.3「AI 服务器出货量持续增长」：「2022 年全球服务器出货量增长 4.8%，达到约 1360 万台……根据 TrendForce 数据，2023 年 AI 服务器出货量逾达 120 万台，占据服务器总出货量的近 9%，年增长达 38.4%。预计 2026 年，AI 服务器出货量为 237 万台，占比达 15%，复合年增长率预计保持 25%」（华福证券《AI 和\"东数西算\"双轮驱动，服务器再起航》2024-02-19）",
+        "grade": "S3",
+        "originator": "TrendForce，经华福证券转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "TrendForce",
+      "notes": "原文 237 万台 = 2370 千台，占比 15%、2023–2026 CAGR 约 25%。库内长城证券 2026E 251 万台（cgws2508-*）为 2025-08 时点的另一次测算。"
+    },
+    {
+      "fact_id": "hfzq2402-global-server-units-2022",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "global-server-units",
+        "label": "全球服务器出货量"
+      },
+      "value": 13600.0,
+      "unit": "千台",
+      "caliber": {
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "未拆分",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "不适用（非中国口径）",
+        "server_class": "All Servers",
+        "region": "Total"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4088fd1f9c448b7e0629dd619b1f9141d87d6a52eb364f211900582d4dd82894",
+        "local_file": "5C_2025_2025_服务器行业深度报告_未署名.pdf",
+        "locator": "PDF 第 7 页 1.3「AI 服务器出货量持续增长」：「2022 年全球服务器出货量增长 4.8%，达到约 1360 万台……根据 TrendForce 数据，2023 年 AI 服务器出货量逾达 120 万台，占据服务器总出货量的近 9%，年增长达 38.4%。预计 2026 年，AI 服务器出货量为 237 万台，占比达 15%，复合年增长率预计保持 25%」（华福证券《AI 和\"东数西算\"双轮驱动，服务器再起航》2024-02-19）",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "华福证券",
+      "notes": "原文 1360 万台 = 13600 千台、同比 +4.8%；未注出处，按撰写方记断言者，[未核]。库内摩根士丹利 2022 年 14900 千台（ms2506-*）为另一断言者口径，差 8.7%。",
+      "disputes": [
+        "ms2506-global-server-units-2022"
+      ]
+    },
+    {
+      "fact_id": "hfzq2402-idc-cn-lc-server-market-2023e",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-liquid-cooling-server",
+        "label": "中国液冷服务器市场"
+      },
+      "value": 15.1,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "未注明",
+        "currency": "美元",
+        "cooling_route": "未注明",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2023E@2024-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4088fd1f9c448b7e0629dd619b1f9141d87d6a52eb364f211900582d4dd82894",
+        "local_file": "5C_2025_2025_服务器行业深度报告_未署名.pdf",
+        "locator": "PDF 第 20 页：「IDC 预计 2023 年中国液冷服务器市场规模将达到 15.1 亿美元，2027 年该数字将提升至 89 亿美元。2022-2027 CAGR+54.7%。2023 上半年中国液冷服务器市场中冷板式占据 90% 的份额」",
+        "grade": "S3",
+        "originator": "IDC，经华福证券转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "IDC",
+      "notes": "口径为「液冷服务器」整机市场（IT 侧），与库内「液冷数据中心市场」「液冷设备与方案」口径均不同，market_scope 记未注明并在此说明，[未核]。"
+    },
+    {
+      "fact_id": "hfzq2402-idc-cn-lc-server-market-2027e",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-liquid-cooling-server",
+        "label": "中国液冷服务器市场"
+      },
+      "value": 89.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "未注明",
+        "currency": "美元",
+        "cooling_route": "未注明",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2027E@2024-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4088fd1f9c448b7e0629dd619b1f9141d87d6a52eb364f211900582d4dd82894",
+        "local_file": "5C_2025_2025_服务器行业深度报告_未署名.pdf",
+        "locator": "PDF 第 20 页：「IDC 预计 2023 年中国液冷服务器市场规模将达到 15.1 亿美元，2027 年该数字将提升至 89 亿美元。2022-2027 CAGR+54.7%。2023 上半年中国液冷服务器市场中冷板式占据 90% 的份额」",
+        "grade": "S3",
+        "originator": "IDC，经华福证券转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "IDC",
+      "notes": "2022–2027 CAGR 54.7%；口径同上，为液冷服务器整机市场。"
+    },
+    {
+      "fact_id": "hfzq2402-idc-cn-lc-server-coldplate-share-2023h1",
+      "metric_id": "cooling_route_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-liquid-cooling-server",
+        "label": "中国液冷服务器市场"
+      },
+      "value": 90.0,
+      "unit": "%",
+      "caliber": {
+        "cooling_route": "冷板式",
+        "denominator": "液冷市场内部",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2023-H1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "4088fd1f9c448b7e0629dd619b1f9141d87d6a52eb364f211900582d4dd82894",
+        "local_file": "5C_2025_2025_服务器行业深度报告_未署名.pdf",
+        "locator": "PDF 第 20 页：「IDC 预计 2023 年中国液冷服务器市场规模将达到 15.1 亿美元，2027 年该数字将提升至 89 亿美元。2022-2027 CAGR+54.7%。2023 上半年中国液冷服务器市场中冷板式占据 90% 的份额」",
+        "grade": "S3",
+        "originator": "IDC，经华福证券转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "IDC",
+      "notes": "分母为中国液冷服务器市场内部（非数据中心液冷市场），[未核]；浸没式因成本与安置难度暂未普及。"
     }
   ]
 }
