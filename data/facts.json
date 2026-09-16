@@ -234410,6 +234410,197 @@
       "corroboration": "待交叉验证",
       "notes": "**单台额定制冷量（kW）**，机型：变频螺杆式冷水机组（基载）。输入功率 273 kW、COP 5.64。基载主机 1 台，满足 24:00~次日 7:00 的夜间空调需求；COP 5.64 对限值 5.32，提高 6%。**与本库另一份《SCOP 计算》附件里的 1477kW 基载螺杆机（SCOP 4.44）应为同一台机组**——那份未标项目名，本条可作为其归属线索。",
       "asserter": "广东省建筑设计研究院"
+    },
+    {
+      "fact_id": "qbcu008-room-clear-height-min",
+      "metric_id": "room_clear_height",
+      "entity": {
+        "type": "standard",
+        "id": "qbcu008-2010",
+        "label": "中国联通绿色 IDC 技术规范（QB/CU 008-2010）"
+      },
+      "value": 3.9,
+      "unit": "m",
+      "caliber": {
+        "measure": "梁下净高",
+        "room_type": "主机房",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "新建"
+      },
+      "as_of": "2010",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "46af468ae19ffc86e780f2ee277e2313c47ad5568df90af00504937d9fe55c23",
+        "local_file": "【QBCU 008-2010】中国联通绿色IDC技术规范v1.0.doc",
+        "locator": "5.2 机房布局规划原则（2）：「IDC 机房主功能区在满足消防、运输、维护方便的前提下，应尽量加大标准层的面积，其机房净高不宜低于 3.9m；机房平面应采用较大开间的矩形平面，不应采用不利于设备布置的圆形、三角形等平面」",
+        "grade": "S2",
+        "originator": "中国联通《绿色 IDC 技术规范 V1.0》（QB/CU 008-2010）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**企标要求，用词为「不宜低于」（非强制的推荐性下限）**，bound 记 lower。measure 取「梁下净高」是对「机房净高」最接近的归档，原文未进一步区分是否含吊顶。**这是运营商自有企标，与国标 GB 50174 的层高要求不是一回事，引用时须带出处。**",
+      "asserter": "中国联通"
+    },
+    {
+      "fact_id": "qbcu008-raised-floor-height-min",
+      "metric_id": "room_dimension",
+      "entity": {
+        "type": "standard",
+        "id": "qbcu008-2010",
+        "label": "中国联通绿色 IDC 技术规范（QB/CU 008-2010）"
+      },
+      "value": 400.0,
+      "unit": "mm",
+      "caliber": {
+        "dimension_type": "活动地板高度",
+        "purpose": "作静压箱",
+        "tier": "未注明",
+        "build_type": "新建",
+        "bound_sense": "不小于",
+        "region": "CN"
+      },
+      "as_of": "2010",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "46af468ae19ffc86e780f2ee277e2313c47ad5568df90af00504937d9fe55c23",
+        "local_file": "【QBCU 008-2010】中国联通绿色IDC技术规范v1.0.doc",
+        "locator": "7.5 气流组织优化（3）：「应通过计算确定架空地板的净高，确保架空地板下的送风断面风速控制在 1.5～2.5 米/秒。活动地板高度不宜小于 400mm」",
+        "grade": "S2",
+        "originator": "中国联通《绿色 IDC 技术规范 V1.0》（QB/CU 008-2010）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**用途是作静压箱（下送风）**，与「仅布线」用途的地板高度要求不同。配套硬约束：**架空地板下送风断面风速须控制在 1.5~2.5 m/s**——这条才是决定地板高度的真正依据（风速超限会导致远端送风不足），本库无「送风断面风速」指标。同规范另要求架空地板内不应布放通信线缆。",
+      "asserter": "中国联通"
+    },
+    {
+      "fact_id": "qbcu008-room-temp-lower",
+      "metric_id": "room_air_temperature",
+      "entity": {
+        "type": "standard",
+        "id": "qbcu008-2010",
+        "label": "中国联通绿色 IDC 技术规范（QB/CU 008-2010）"
+      },
+      "value": 10.0,
+      "unit": "℃",
+      "caliber": {
+        "parameter": "未注明",
+        "tier": "未注明",
+        "bound_sense": "推荐区间下界",
+        "region": "CN",
+        "basis": "企标要求"
+      },
+      "as_of": "2010",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "46af468ae19ffc86e780f2ee277e2313c47ad5568df90af00504937d9fe55c23",
+        "local_file": "【QBCU 008-2010】中国联通绿色IDC技术规范v1.0.doc",
+        "locator": "7.3 空调系统配置原则（4）：「机房设计温度应为 10～26℃，相对湿度应为 20%～85%。在满足通信设备正常工作要求的前提下，宜提高机房室内温度设定值」",
+        "grade": "S2",
+        "originator": "中国联通《绿色 IDC 技术规范 V1.0》（QB/CU 008-2010）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**联通 2010 年企标的机房设计温度区间 10~26℃，比 ASHRAE 推荐的 18~27℃ 下限低 8℃**——低温端留得很宽是当年通信机房的惯例。parameter 记「未注明」：原文只写「机房设计温度」，未指明是冷通道进风还是回风测点，**不带这一维会与按进风口径的数据混读**。规范同时提示「宜提高机房室内温度设定值」，方向与后来的高温回风节能一致。",
+      "asserter": "中国联通"
+    },
+    {
+      "fact_id": "qbcu008-room-temp-upper",
+      "metric_id": "room_air_temperature",
+      "entity": {
+        "type": "standard",
+        "id": "qbcu008-2010",
+        "label": "中国联通绿色 IDC 技术规范（QB/CU 008-2010）"
+      },
+      "value": 26.0,
+      "unit": "℃",
+      "caliber": {
+        "parameter": "未注明",
+        "tier": "未注明",
+        "bound_sense": "推荐区间上界",
+        "region": "CN",
+        "basis": "企标要求"
+      },
+      "as_of": "2010",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "46af468ae19ffc86e780f2ee277e2313c47ad5568df90af00504937d9fe55c23",
+        "local_file": "【QBCU 008-2010】中国联通绿色IDC技术规范v1.0.doc",
+        "locator": "7.3 空调系统配置原则（4）：「机房设计温度应为 10～26℃，相对湿度应为 20%～85%。在满足通信设备正常工作要求的前提下，宜提高机房室内温度设定值」",
+        "grade": "S2",
+        "originator": "中国联通《绿色 IDC 技术规范 V1.0》（QB/CU 008-2010）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**联通 2010 年企标的机房设计温度区间 10~26℃，比 ASHRAE 推荐的 18~27℃ 下限低 8℃**——低温端留得很宽是当年通信机房的惯例。parameter 记「未注明」：原文只写「机房设计温度」，未指明是冷通道进风还是回风测点，**不带这一维会与按进风口径的数据混读**。规范同时提示「宜提高机房室内温度设定值」，方向与后来的高温回风节能一致。",
+      "asserter": "中国联通"
+    },
+    {
+      "fact_id": "qbcu008-room-rh-lower",
+      "metric_id": "room_relative_humidity",
+      "entity": {
+        "type": "standard",
+        "id": "qbcu008-2010",
+        "label": "中国联通绿色 IDC 技术规范（QB/CU 008-2010）"
+      },
+      "value": 20.0,
+      "unit": "%",
+      "caliber": {
+        "tier": "未注明",
+        "bound_sense": "推荐区间下界",
+        "region": "CN",
+        "basis": "企标要求"
+      },
+      "as_of": "2010",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "46af468ae19ffc86e780f2ee277e2313c47ad5568df90af00504937d9fe55c23",
+        "local_file": "【QBCU 008-2010】中国联通绿色IDC技术规范v1.0.doc",
+        "locator": "7.3 空调系统配置原则（4）：「机房设计温度应为 10～26℃，相对湿度应为 20%～85%。在满足通信设备正常工作要求的前提下，宜提高机房室内温度设定值」",
+        "grade": "S2",
+        "originator": "中国联通《绿色 IDC 技术规范 V1.0》（QB/CU 008-2010）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**20%~85% 是一个异常宽的相对湿度带**（ASHRAE 推荐 40%~60%），上限 85% 已接近结露风险区——这与该规范同时要求「热桥部位内表面温度不应低于室内空气露点温度」相呼应。属 2010 年通信机房口径，引用时须注明年代。",
+      "asserter": "中国联通"
+    },
+    {
+      "fact_id": "qbcu008-room-rh-upper",
+      "metric_id": "room_relative_humidity",
+      "entity": {
+        "type": "standard",
+        "id": "qbcu008-2010",
+        "label": "中国联通绿色 IDC 技术规范（QB/CU 008-2010）"
+      },
+      "value": 85.0,
+      "unit": "%",
+      "caliber": {
+        "tier": "未注明",
+        "bound_sense": "推荐区间上界",
+        "region": "CN",
+        "basis": "企标要求"
+      },
+      "as_of": "2010",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "46af468ae19ffc86e780f2ee277e2313c47ad5568df90af00504937d9fe55c23",
+        "local_file": "【QBCU 008-2010】中国联通绿色IDC技术规范v1.0.doc",
+        "locator": "7.3 空调系统配置原则（4）：「机房设计温度应为 10～26℃，相对湿度应为 20%～85%。在满足通信设备正常工作要求的前提下，宜提高机房室内温度设定值」",
+        "grade": "S2",
+        "originator": "中国联通《绿色 IDC 技术规范 V1.0》（QB/CU 008-2010）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**20%~85% 是一个异常宽的相对湿度带**（ASHRAE 推荐 40%~60%），上限 85% 已接近结露风险区——这与该规范同时要求「热桥部位内表面温度不应低于室内空气露点温度」相呼应。属 2010 年通信机房口径，引用时须注明年代。",
+      "asserter": "中国联通"
     }
   ]
 }
