@@ -220644,6 +220644,39 @@
       "corroboration": "待交叉验证",
       "asserter": "摩根士丹利",
       "notes": "原表 14.2 mn units = 14200.0 千台。摩根士丹利（日本电子元件组，2025-06-13）投资者演示的终端市场表；同表另有 2021Q1–2025Q4e 季度序列，未逐条录。2025 年为预测（表头标 2025e）。"
+    },
+    {
+      "fact_id": "hcsc2508-google-capex-guide-2025e",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "company",
+        "id": "google",
+        "label": "谷歌"
+      },
+      "value": 850.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "scope": "单一公司",
+        "capex_scope": "全部 capex",
+        "basis": "厂商指引",
+        "vintage": "其他快照",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "3e9324c79a9ad18f1fffc8a5a489a36b9c3cdf08930a20ef98ef5797b79a6683",
+        "local_file": "20250810-华创证券：AI旗手：北美算力PCB——多行业联合人工智能8月报(26页).pdf",
+        "locator": "PDF 第 17–18 页「通信」与第 20 页「谷歌」：「AI 业务需求强劲，大幅上调 Capex 指引……2025 全年资本支出预期至 850 亿美元（原计划 750 亿美元）」；同处 25Q2 资本开支 224 亿美元、同比 +70%",
+        "grade": "S3",
+        "originator": "谷歌 2025Q2 财报电话会指引，经华创证券《AI 旗手：北美算力 PCB——多行业联合人工智能 8 月报》（2025-08-02）转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "谷歌",
+      "notes": "2025 年 7 月底 2025Q2 业绩会上的全年指引（由 750 亿上调至 850 亿美元），vintage 记 2025-08 快照；库内 swsc-capex-guide-google-2025-*（910–930 亿，2025-10 快照）与 gszq-capex-google-2025-actual（915 亿实际）是后续版本，不冲突，按 vintage 区分。25Q2 实际 224 亿美元已由 guosen2510-google-capex-2025q2 入库（224.46），不重复。"
     }
   ]
 }
