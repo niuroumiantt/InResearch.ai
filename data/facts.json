@@ -23938,7 +23938,10 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**power_basis 这一维决定数值差多少**：同一个 GB200 NVL72，只算 GPU 的 TDP 是 97.2kW，整柜实际满载是 120kW——**差 23kW（24%），落在 CPU、NVSwitch、网卡与损耗上**。引用时不带这一维会低估四分之一。   **GB300 比 GB200 整柜再高 5-10kW**（125-130 对 120），原表直接注明「液冷必选，空冷难以胜任」。 **出处未知**：五张工作表均无署名、无日期，内容看得出是对英伟达公开规格的整理，但无法确认整理方与依据版本，grade 记 S5。原表多处自带问号（如 NVL32 总功耗「40kw?」、GB300 的 LPDDR5X「17.3TB?」、InfiniBand「2.7TB/s?」），**即整理者自己也不确定**。\n\n**（2026-09-14）asserter 由「NVIDIA」统一为「英伟达」**：同一家在库里有两种写法，而 asserter 进 claim_key——**两种写法就是两家**，它们之间的重复、修订、争议互相看不见。库内对有通用中文名的外企一律用中文名（谷歌/微软/亚马逊/戴尔/施耐德电气/维谛/英特尔），本条按这个惯例统一。统一前后全库 claim_key 均无撞键。",
-      "asserter": "英伟达"
+      "asserter": "英伟达",
+      "disputed_by": [
+        "gth2606-gb300-nvl72-rack-power"
+      ]
     },
     {
       "fact_id": "nv-rack-power-gb300-nvl72-total-upper",
@@ -224298,7 +224301,10 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "本条单位 W。原表写「4000W+」，4000 是下界；发布年份列 2027。属路线图产品，规格可能变。",
-      "asserter": "中泰证券"
+      "asserter": "中泰证券",
+      "disputed_by": [
+        "gth2606-rubin-ultra-tdp"
+      ]
     },
     {
       "fact_id": "zt2605-feynman-tdp",
@@ -246188,6 +246194,247 @@
       },
       "depth": "精读",
       "notes": "原文写「~5 MW to 25 MW per site」，更小更密更模块化，面向多租户零售托管。 两家单站点规模相差 4-5 倍，对应两种商业模式（超大规模批发 vs 互联密集的零售托管）。status 维原文未给建设阶段，按已投运理解记 L5。[未核]"
+    },
+    {
+      "fact_id": "gth2606-gb300-nvl72-rack-power",
+      "asserter": "国泰海通证券",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "gb300-nvl72",
+        "label": "NVIDIA GB300 NVL72"
+      },
+      "value": 120.0,
+      "unit": "kW/机柜",
+      "bound": "point",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "era": "当期",
+        "power_basis": "实际功率密度",
+        "region": "Global"
+      },
+      "as_of": "2026-06",
+      "evidence": {
+        "sha256": "45504f9abb46d77ab5c52c18adc192c4ca27a43049ff4a257d50e629ea433c1d",
+        "local_file": "20260622-国泰海通证券-产业深度：生根与重构——2026年全球人工智能技术、政策、产业与投融资趋势全景洞察报告(153页).pdf",
+        "locator": "3.2 推理侧 AI 基础设施：「英伟达 GB300 NVL72 峰值功耗约 120 kW，远超传统风冷承载范围，因此 GB300 已全面转为全冷板液冷设计；下一代 Rubin Ultra 单芯片功耗预计突破 2300 W，单机柜功率密度有望超过 250 kW。字节跳动杭州余杭智算中心采用浸没+冷板复合液冷技术，利用江水自然冷却，750 台液冷机柜实现 PUE 低至 1.08；2026 年，字节跳动新建智算中心已 100% 采用液冷」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "disputes": [
+        "nv-rack-power-gb300-nvl72-total-lower"
+      ],
+      "notes": "原文写「峰值功耗约 120 kW」，而库内英伟达自己给的是 125-130 kW（nv-rack-power-gb300-nvl72-total-*）。同一机型、同一口径下券商转述比厂商值低 5-10 kW，属方法离散而非量级分歧，已挂 disputes。[未核]"
+    },
+    {
+      "fact_id": "gth2606-rubin-ultra-tdp",
+      "asserter": "国泰海通证券",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-rubin-ultra",
+        "label": "NVIDIA Rubin Ultra"
+      },
+      "value": 2300.0,
+      "unit": "数值（见 parameter）",
+      "bound": "lower",
+      "caliber": {
+        "product": "NVIDIA Rubin Ultra",
+        "parameter": "TDP(W)",
+        "memory_type": "未注明",
+        "design_partner": "不适用",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2026-06",
+      "evidence": {
+        "sha256": "45504f9abb46d77ab5c52c18adc192c4ca27a43049ff4a257d50e629ea433c1d",
+        "local_file": "20260622-国泰海通证券-产业深度：生根与重构——2026年全球人工智能技术、政策、产业与投融资趋势全景洞察报告(153页).pdf",
+        "locator": "3.2 推理侧 AI 基础设施：「英伟达 GB300 NVL72 峰值功耗约 120 kW，远超传统风冷承载范围，因此 GB300 已全面转为全冷板液冷设计；下一代 Rubin Ultra 单芯片功耗预计突破 2300 W，单机柜功率密度有望超过 250 kW。字节跳动杭州余杭智算中心采用浸没+冷板复合液冷技术，利用江水自然冷却，750 台液冷机柜实现 PUE 低至 1.08；2026 年，字节跳动新建智算中心已 100% 采用液冷」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "disputes": [
+        "zt2605-rubin-ultra-tdp"
+      ],
+      "notes": "「预计突破 2300 W」记下界。**与库内中泰证券 2026-05 的 4000 W 差 1.7 倍**，两家都在 2026 年年中、都写的是同一款未上市芯片，属量级分歧，已挂 disputes 待裁。[未核]"
+    },
+    {
+      "fact_id": "gth2606-rubin-ultra-rack-power",
+      "asserter": "国泰海通证券",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-rubin-ultra-rack",
+        "label": "NVIDIA Rubin Ultra 整机柜"
+      },
+      "value": 250.0,
+      "unit": "kW/机柜",
+      "bound": "lower",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "设计目标",
+        "era": "路线图目标",
+        "power_basis": "架构宣称",
+        "region": "Global"
+      },
+      "as_of": "2026-06",
+      "evidence": {
+        "sha256": "45504f9abb46d77ab5c52c18adc192c4ca27a43049ff4a257d50e629ea433c1d",
+        "local_file": "20260622-国泰海通证券-产业深度：生根与重构——2026年全球人工智能技术、政策、产业与投融资趋势全景洞察报告(153页).pdf",
+        "locator": "3.2 推理侧 AI 基础设施：「英伟达 GB300 NVL72 峰值功耗约 120 kW，远超传统风冷承载范围，因此 GB300 已全面转为全冷板液冷设计；下一代 Rubin Ultra 单芯片功耗预计突破 2300 W，单机柜功率密度有望超过 250 kW。字节跳动杭州余杭智算中心采用浸没+冷板复合液冷技术，利用江水自然冷却，750 台液冷机柜实现 PUE 低至 1.08；2026 年，字节跳动新建智算中心已 100% 采用液冷」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "「有望超过 250 kW」记下界、路线图目标。库内另有国海证券给 Kyber/Rubin Ultra NVL576 的 600 kW（ghzq2508），两者机柜形态不同（NVL576 是更大的机柜），未挂争议。[未核]"
+    },
+    {
+      "fact_id": "gth2606-bytedance-yuhang-pue",
+      "asserter": "国泰海通证券",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "bytedance-yuhang-aidc",
+        "label": "字节跳动杭州余杭智算中心"
+      },
+      "value": 1.08,
+      "unit": "比值",
+      "bound": "point",
+      "caliber": {
+        "basis": "最优水平",
+        "cooling_tech": "混合",
+        "climate_zone": "南方",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2026-06",
+      "evidence": {
+        "sha256": "45504f9abb46d77ab5c52c18adc192c4ca27a43049ff4a257d50e629ea433c1d",
+        "local_file": "20260622-国泰海通证券-产业深度：生根与重构——2026年全球人工智能技术、政策、产业与投融资趋势全景洞察报告(153页).pdf",
+        "locator": "3.2 推理侧 AI 基础设施：「英伟达 GB300 NVL72 峰值功耗约 120 kW，远超传统风冷承载范围，因此 GB300 已全面转为全冷板液冷设计；下一代 Rubin Ultra 单芯片功耗预计突破 2300 W，单机柜功率密度有望超过 250 kW。字节跳动杭州余杭智算中心采用浸没+冷板复合液冷技术，利用江水自然冷却，750 台液冷机柜实现 PUE 低至 1.08；2026 年，字节跳动新建智算中心已 100% 采用液冷」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "「PUE 低至 1.08」是最优值不是年均实绩；冷却路线是浸没+冷板复合并利用江水自然冷却，cooling_tech 记混合。规模为 750 台液冷机柜。[未核]"
+    },
+    {
+      "fact_id": "gth2606-bytedance-liquid-penetration-2026",
+      "asserter": "国泰海通证券",
+      "metric_id": "liquid_cooling_penetration",
+      "entity": {
+        "type": "company",
+        "id": "bytedance",
+        "label": "字节跳动新建智算中心"
+      },
+      "value": 100.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "denominator": "按项目数",
+        "cooling_type": "全部液冷",
+        "region": "CN"
+      },
+      "as_of": "2026",
+      "evidence": {
+        "sha256": "45504f9abb46d77ab5c52c18adc192c4ca27a43049ff4a257d50e629ea433c1d",
+        "local_file": "20260622-国泰海通证券-产业深度：生根与重构——2026年全球人工智能技术、政策、产业与投融资趋势全景洞察报告(153页).pdf",
+        "locator": "3.2 推理侧 AI 基础设施：「英伟达 GB300 NVL72 峰值功耗约 120 kW，远超传统风冷承载范围，因此 GB300 已全面转为全冷板液冷设计；下一代 Rubin Ultra 单芯片功耗预计突破 2300 W，单机柜功率密度有望超过 250 kW。字节跳动杭州余杭智算中心采用浸没+冷板复合液冷技术，利用江水自然冷却，750 台液冷机柜实现 PUE 低至 1.08；2026 年，字节跳动新建智算中心已 100% 采用液冷」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "「2026 年字节跳动新建智算中心已 100% 采用液冷」——分母是新建项目，不是全部存量，也不是按容量。这是国内头部互联网厂商液冷渗透率到顶的第一个明确表述。[未核]"
+    },
+    {
+      "fact_id": "gth2606-54v-limit-rack-power",
+      "asserter": "英伟达",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "component",
+        "id": "54v-power-arch-limit",
+        "label": "传统 54V 配电架构的机柜功率上限"
+      },
+      "value": 200.0,
+      "unit": "kW/机柜",
+      "bound": "upper",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "架构上限",
+        "era": "当期",
+        "power_basis": "架构宣称",
+        "region": "Global"
+      },
+      "as_of": "2026-06",
+      "evidence": {
+        "sha256": "45504f9abb46d77ab5c52c18adc192c4ca27a43049ff4a257d50e629ea433c1d",
+        "local_file": "20260622-国泰海通证券-产业深度：生根与重构——2026年全球人工智能技术、政策、产业与投融资趋势全景洞察报告(153页).pdf",
+        "locator": "3.2：「根据英伟达官方博客披露，当机架功率超过 200 kW 时，传统的 54 V 配电方式开始达到物理极限；且铜材消耗量较大（1GW 机架对应 20 万公斤铜母线）……使用 800V 总线通道并从 415V AC 切换到 800V DC，可通过相同的导体尺寸多传输 85% 的功率，将铜缆需求降低 45%。国内公司中，华为数字能源模块化 HVDC 已支持 800 V 架构，单柜功率密度可提升至 600 kW」",
+        "grade": "S2",
+        "originator": "英伟达官方博客，国泰海通转述"
+      },
+      "depth": "精读",
+      "notes": "**这是配电架构的物理上限，不是某台机器的功耗**：机架功率超过 200 kW 后 54V 配电达到极限，是转向 800V DC 的直接理由。同段给出 800V 相对 415V AC 可多传 85% 功率、铜缆需求降低 45%，以及「1GW 机架对应 20 万公斤铜母线」的铜耗基准——后三项库内无指标。[未核]"
+    },
+    {
+      "fact_id": "gth2606-huawei-hvdc-800v-rack-power",
+      "asserter": "国泰海通证券",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "component",
+        "id": "huawei-hvdc-800v",
+        "label": "华为数字能源模块化 HVDC（800V 架构）"
+      },
+      "value": 600.0,
+      "unit": "kW/机柜",
+      "bound": "upper",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "架构上限",
+        "era": "路线图目标",
+        "power_basis": "架构宣称",
+        "region": "CN"
+      },
+      "as_of": "2026-06",
+      "evidence": {
+        "sha256": "45504f9abb46d77ab5c52c18adc192c4ca27a43049ff4a257d50e629ea433c1d",
+        "local_file": "20260622-国泰海通证券-产业深度：生根与重构——2026年全球人工智能技术、政策、产业与投融资趋势全景洞察报告(153页).pdf",
+        "locator": "3.2：「根据英伟达官方博客披露，当机架功率超过 200 kW 时，传统的 54 V 配电方式开始达到物理极限；且铜材消耗量较大（1GW 机架对应 20 万公斤铜母线）……使用 800V 总线通道并从 415V AC 切换到 800V DC，可通过相同的导体尺寸多传输 85% 的功率，将铜缆需求降低 45%。国内公司中，华为数字能源模块化 HVDC 已支持 800 V 架构，单柜功率密度可提升至 600 kW」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**架构宣称不是出货事实**：「单柜功率密度可提升至 600 kW」说的是供电架构支持能力。字节跳动也在开展 800V HVDC 试点。[未核]"
+    },
+    {
+      "fact_id": "gth2606-800vdc-voltage",
+      "asserter": "英伟达",
+      "metric_id": "power_architecture_spec",
+      "entity": {
+        "type": "component",
+        "id": "800vdc-architecture",
+        "label": "800V 直流供电架构"
+      },
+      "value": 800.0,
+      "unit": "V 或 根",
+      "bound": "point",
+      "caliber": {
+        "architecture": "800 VDC",
+        "parameter": "电压等级",
+        "region": "Global",
+        "basis": "架构宣称"
+      },
+      "as_of": "2026-06",
+      "evidence": {
+        "sha256": "45504f9abb46d77ab5c52c18adc192c4ca27a43049ff4a257d50e629ea433c1d",
+        "local_file": "20260622-国泰海通证券-产业深度：生根与重构——2026年全球人工智能技术、政策、产业与投融资趋势全景洞察报告(153页).pdf",
+        "locator": "3.2：「根据英伟达官方博客披露，当机架功率超过 200 kW 时，传统的 54 V 配电方式开始达到物理极限；且铜材消耗量较大（1GW 机架对应 20 万公斤铜母线）……使用 800V 总线通道并从 415V AC 切换到 800V DC，可通过相同的导体尺寸多传输 85% 的功率，将铜缆需求降低 45%。国内公司中，华为数字能源模块化 HVDC 已支持 800 V 架构，单柜功率密度可提升至 600 kW」",
+        "grade": "S2",
+        "originator": "英伟达官方博客，国泰海通转述"
+      },
+      "depth": "精读",
+      "notes": "从 415V AC 切换到 800V DC：同样导体尺寸可多传输 85% 功率、铜缆需求降低 45%，并消除 AC 链路中重复的 AC/DC 转换损耗。[未核]"
     }
   ]
 }
