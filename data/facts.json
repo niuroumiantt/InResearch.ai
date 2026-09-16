@@ -229038,6 +229038,164 @@
       "corroboration": "待交叉验证",
       "notes": "**4kW/柜是这一代通用机房的典型密度**，与同库 AI 机柜 120-140kW 差一个半数量级——引用时注意这是 2019 年前后的存量通用数据中心，不是智算机房。scope 记「全场平均」：原文写「1500 柜，单柜密度 4kW/柜」，是全场统一取值而非单柜上限。",
       "asserter": "华为"
+    },
+    {
+      "fact_id": "pnp2024-iea-dc-crypto-ai-electricity-2022",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenter",
+        "label": "全球数据中心（含加密货币与 AI）"
+      },
+      "value": 460.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "含加密货币挖矿",
+        "energy_scope": "全站用电",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "第三方估算"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ec23c6b0d4aab5a78fa01082181d16dbd35cbcd287fd2d9adf50753efdb14f1f",
+        "local_file": "20250210-璞跃PlugandPlay：2024数据中心水和能源消耗研究报告迈向可持续未来的变革措施(24页).pdf",
+        "locator": "第 4 页：「In 2022, data centers, cryptocurrencies, and AI consumed up to 2% of global energy demand or 460TWh of electricity」，配图标注 Source: Electricity Analysis Report 2024–2026 — International Energy Agency (IEA) (2024)",
+        "grade": "S4",
+        "originator": "IEA《Electricity 2024》（经 璞跃（Plug and Play）《Revealing the Water & Energy Consumption of Data Centers》（2024 年报告，资料库归档日 2025-02-10） 转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**scope 是「数据中心 + 加密货币 + AI」三者合计，不是纯数据中心**——库内同为 IEA 口径的 2022 年「全部数据中心」只有 350 TWh（gs2024-iea-global-dc-electricity-2022），差的 110 TWh 主要是加密货币挖矿。**两条不可互换，也不构成矛盾。**原文同时称其占全球能源需求「up to 2%」，2 是上界。",
+      "asserter": "IEA"
+    },
+    {
+      "fact_id": "pnp2024-iea-ai-dc-electricity-2026e",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-ai-datacenter",
+        "label": "全球 AI 数据中心"
+      },
+      "value": 90.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "仅 AI 数据中心",
+        "energy_scope": "全站用电",
+        "sector_basis": "AI 工作负载",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ec23c6b0d4aab5a78fa01082181d16dbd35cbcd287fd2d9adf50753efdb14f1f",
+        "local_file": "20250210-璞跃PlugandPlay：2024数据中心水和能源消耗研究报告迈向可持续未来的变革措施(24页).pdf",
+        "locator": "第 4 页：「the International Energy Agency (IEA) forecasting in its recent Electricity 2024 report that AI data centers will require 90 TWh of power by 2026」",
+        "grade": "S4",
+        "originator": "IEA《Electricity 2024》（经 璞跃（Plug and Play）《Revealing the Water & Energy Consumption of Data Centers》（2024 年报告，资料库归档日 2025-02-10） 转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**只算 AI 数据中心**，与库内 IEA「全部数据中心」序列（2024 年 415 TWh、2030 年基准 945 TWh）是包含关系，不可并列成一条曲线。预测时点为 IEA 2024 年 1 月发布的 Electricity 2024。",
+      "asserter": "IEA"
+    },
+    {
+      "fact_id": "pnp2024-us-dc-power-share-2026e",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "industry",
+        "id": "us-datacenter",
+        "label": "美国数据中心"
+      },
+      "value": 6.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "US",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2026E@2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ec23c6b0d4aab5a78fa01082181d16dbd35cbcd287fd2d9adf50753efdb14f1f",
+        "local_file": "20250210-璞跃PlugandPlay：2024数据中心水和能源消耗研究报告迈向可持续未来的变革措施(24页).pdf",
+        "locator": "第 4 页：「in the U.S. alone, data center operations are expected to account for 6% of America's total electricity use within two years」",
+        "grade": "S4",
+        "originator": "璞跃（Plug and Play）《Revealing the Water & Energy Consumption of Data Centers》（2024 年报告，资料库归档日 2025-02-10）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**原文只说「两年内」，没给具体年份**——报告成文于 2024 年，故 as_of 取 2026E 并标 derived。原文未注明出处，按「原文直接把数陈述出来即由写的人担责」记到璞跃名下。**与库内高盛口径的美国 2030 年 8%（gs2024-us-dc-power-share-2030e）并不矛盾，但一个是 2026、一个是 2030。**",
+      "asserter": "璞跃（Plug and Play）",
+      "derivation": "as_of 由「within two years」+ 报告成文年份 2024 推定为 2026"
+    },
+    {
+      "fact_id": "pnp2024-virginia-dc-power-share",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "industry",
+        "id": "virginia-datacenter",
+        "label": "弗吉尼亚州数据中心"
+      },
+      "value": 25.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "某地区用电量",
+        "region": "US",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "ec23c6b0d4aab5a78fa01082181d16dbd35cbcd287fd2d9adf50753efdb14f1f",
+        "local_file": "20250210-璞跃PlugandPlay：2024数据中心水和能源消耗研究报告迈向可持续未来的变革措施(24页).pdf",
+        "locator": "第 5 页：「In certain areas, like Virginia — often referred to as 'Data Center Alley' — data centers account for more than 25% of the total electricity consumption」",
+        "grade": "S4",
+        "originator": "璞跃（Plug and Play）《Revealing the Water & Energy Consumption of Data Centers》（2024 年报告，资料库归档日 2025-02-10）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文写 more than 25%，25 记为下界。**denominator 是「某地区用电量」——弗吉尼亚一州，不是全美**，与同库美国全国口径的份额不可比。原文未标出处与年份，as_of 取报告成文年 2024。",
+      "asserter": "璞跃（Plug and Play）"
+    },
+    {
+      "fact_id": "pnp2024-ireland-dc-power-share-2023",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "industry",
+        "id": "ireland-datacenter",
+        "label": "爱尔兰数据中心"
+      },
+      "value": 21.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "EU",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ec23c6b0d4aab5a78fa01082181d16dbd35cbcd287fd2d9adf50753efdb14f1f",
+        "local_file": "20250210-璞跃PlugandPlay：2024数据中心水和能源消耗研究报告迈向可持续未来的变革措施(24页).pdf",
+        "locator": "第 5 页：「In fact, data centers consumed 21% of Ireland's electricity last year」",
+        "grade": "S4",
+        "originator": "璞跃（Plug and Play）《Revealing the Water & Energy Consumption of Data Centers》（2024 年报告，资料库归档日 2025-02-10）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "corroboration": "待交叉验证",
+      "notes": "**原文写「去年」，报告成文于 2024 年，故 as_of 取 2023 并标 derived。**库内另有爱尔兰中央统计局口径 2022 年 18%（jll2024-ireland-dc-power-share-2022），本条 21% 与之构成一条连续上升序列，但本条未标出处、非官方统计口径，不作互证。region 只能填 EU（枚举无 IE）。",
+      "asserter": "璞跃（Plug and Play）",
+      "derivation": "as_of 由原文「last year」+ 报告成文年份 2024 推定为 2023"
     }
   ]
 }
