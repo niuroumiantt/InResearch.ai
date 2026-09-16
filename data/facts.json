@@ -223531,6 +223531,122 @@
       "corroboration": "待交叉验证",
       "asserter": "SemiAnalysis",
       "notes": "「~40KW」为约数；同句称多数传统数据中心仅支持约 12kW 机柜。rack_type 记 AI液冷机柜：同文称 Maia 机柜配水冷 CDU（water-to-air），[未核]。"
+    },
+    {
+      "unit": "$/hr",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "SemiAnalysis",
+      "as_of": "2023-09",
+      "evidence": {
+        "sha256": "986bab5ffd682cf5a33d33b4cf30f37b1adc577e5c56eb62b2f90f0e5628607f",
+        "local_file": "TPUv5e_ The New Benchmark in Cost-Efficient Inference and Training for _200B Parameter Models (1).pdf",
+        "locator": "PDF 第 7 页：「Even if you assume the price paid is $1.1/hr per SXM A100, $2/hr per H100 (basically the best deal we have since shortages)……We have seen prices as low as a third of a dollar for TPUv5e vs list price of $0.4, so we use that $0.33 for TPUv5e」（SemiAnalysis，2023-09-01，付费）",
+        "grade": "S3"
+      },
+      "fact_id": "sa2309-a100-hourly-rate",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-a100-sxm",
+        "label": "NVIDIA A100 SXM"
+      },
+      "value": 1.1,
+      "caliber": {
+        "price_type": "实际成交",
+        "unit": "单卡",
+        "region": "Global"
+      },
+      "bound": "point",
+      "notes": "原文「price paid」，短缺期的较优成交价，按实际成交记。"
+    },
+    {
+      "unit": "$/hr",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "SemiAnalysis",
+      "as_of": "2023-09",
+      "evidence": {
+        "sha256": "986bab5ffd682cf5a33d33b4cf30f37b1adc577e5c56eb62b2f90f0e5628607f",
+        "local_file": "TPUv5e_ The New Benchmark in Cost-Efficient Inference and Training for _200B Parameter Models (1).pdf",
+        "locator": "PDF 第 7 页：「Even if you assume the price paid is $1.1/hr per SXM A100, $2/hr per H100 (basically the best deal we have since shortages)……We have seen prices as low as a third of a dollar for TPUv5e vs list price of $0.4, so we use that $0.33 for TPUv5e」（SemiAnalysis，2023-09-01，付费）",
+        "grade": "S3"
+      },
+      "fact_id": "sa2309-h100-hourly-rate",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-h100",
+        "label": "NVIDIA H100"
+      },
+      "value": 2.0,
+      "caliber": {
+        "price_type": "实际成交",
+        "unit": "单卡",
+        "region": "Global"
+      },
+      "bound": "point",
+      "notes": "原文「$2/hr per H100 (basically the best deal we have since shortages)」，短缺期较优成交价。"
+    },
+    {
+      "unit": "$/hr",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "SemiAnalysis",
+      "as_of": "2023-09",
+      "evidence": {
+        "sha256": "986bab5ffd682cf5a33d33b4cf30f37b1adc577e5c56eb62b2f90f0e5628607f",
+        "local_file": "TPUv5e_ The New Benchmark in Cost-Efficient Inference and Training for _200B Parameter Models (1).pdf",
+        "locator": "PDF 第 7 页：「Even if you assume the price paid is $1.1/hr per SXM A100, $2/hr per H100 (basically the best deal we have since shortages)……We have seen prices as low as a third of a dollar for TPUv5e vs list price of $0.4, so we use that $0.33 for TPUv5e」（SemiAnalysis，2023-09-01，付费）",
+        "grade": "S3"
+      },
+      "fact_id": "sa2309-tpuv5e-hourly-rate-list",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "product",
+        "id": "google-tpu-v5e",
+        "label": "Google TPU v5e"
+      },
+      "value": 0.4,
+      "caliber": {
+        "price_type": "公开挂牌",
+        "unit": "单卡",
+        "region": "Global"
+      },
+      "bound": "point",
+      "notes": "谷歌公开挂牌价；同句实际成交低至 0.33 美元/小时，另记一条。"
+    },
+    {
+      "unit": "$/hr",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "SemiAnalysis",
+      "as_of": "2023-09",
+      "evidence": {
+        "sha256": "986bab5ffd682cf5a33d33b4cf30f37b1adc577e5c56eb62b2f90f0e5628607f",
+        "local_file": "TPUv5e_ The New Benchmark in Cost-Efficient Inference and Training for _200B Parameter Models (1).pdf",
+        "locator": "PDF 第 7 页：「Even if you assume the price paid is $1.1/hr per SXM A100, $2/hr per H100 (basically the best deal we have since shortages)……We have seen prices as low as a third of a dollar for TPUv5e vs list price of $0.4, so we use that $0.33 for TPUv5e」（SemiAnalysis，2023-09-01，付费）",
+        "grade": "S3"
+      },
+      "fact_id": "sa2309-tpuv5e-hourly-rate-actual",
+      "metric_id": "gpu_hourly_rate_spot",
+      "entity": {
+        "type": "product",
+        "id": "google-tpu-v5e",
+        "label": "Google TPU v5e"
+      },
+      "value": 0.33,
+      "caliber": {
+        "price_type": "实际成交",
+        "unit": "单卡",
+        "region": "Global"
+      },
+      "bound": "point",
+      "notes": "原文「prices as low as a third of a dollar」，SemiAnalysis 在测算中采用 0.33 美元/小时。"
     }
   ]
 }
