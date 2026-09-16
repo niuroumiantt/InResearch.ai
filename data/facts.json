@@ -249823,6 +249823,254 @@
       },
       "depth": "精读",
       "notes": "**这是模块化供配电的三档典型配置（60/120/180kW）中的最小档**，按下界记；边缘站点冷量需求远小于 200kW，因此不配水冷冷水机组，空调以直接膨胀式（行级/机架式）为主，机架式空调冷量细化到 3kW/5kW。[未核]"
+    },
+    {
+      "fact_id": "jllna2024-vacancy",
+      "asserter": "JLL",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "na-colocation",
+        "label": "北美托管数据中心市场"
+      },
+      "value": 2.6,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "scope": "区域合计",
+        "region": "US"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "6d1de34e17a9748dc560890721f01bf0c574d6bb1e299fbbbd5c7d9086ad6567",
+        "local_file": "2024年北美数据中心地产市场年终报告：容量创新高与电力供应挑战并存（英文版）.pdf（JLL Research）",
+        "locator": "Leasing Dynamics 概要：「Vacancy declined to a record low of 2.6% in 2024. More than 6.6 GW of colocation capacity is under construction. Preleasing stands at 72%. Meanwhile, rents maintained an 11% compound annual growth rate (CAGR) in 2024」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "北美历史新低。与科利斯给全国 2%、伯恩斯坦给头部市场 1-2% 同期同量级，三家口径（托管市场 vs 全国 vs 头部三市场）不同，未互相挂争议。[未核]"
+    },
+    {
+      "fact_id": "jllna2024-nova-vacancy",
+      "asserter": "JLL",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "us-nova-dc-market",
+        "label": "美国北弗吉尼亚数据中心市场"
+      },
+      "value": 0.6,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "scope": "单一市场",
+        "region": "US"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "6d1de34e17a9748dc560890721f01bf0c574d6bb1e299fbbbd5c7d9086ad6567",
+        "local_file": "2024年北美数据中心地产市场年终报告：容量创新高与电力供应挑战并存（英文版）.pdf（JLL Research）",
+        "locator": "正文：「Vacancy in North America declined to a new all-time low of 2.6% amid record construction levels……very few blocks available larger than 5 MW。Vacancy in the largest global data center market, Northern Virginia, is a mere 0.6%……Nearly 6.5 GW is under construction, of which 72% is preleased」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "全球最大数据中心市场的空置率仅 0.6%；科利斯同期给「1% 以下」，两者一致。原文另称市场上几乎没有大于 5MW 的可租空间。[未核]"
+    },
+    {
+      "fact_id": "jllna2024-under-construction",
+      "asserter": "JLL",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "market",
+        "id": "na-colocation-under-construction",
+        "label": "北美在建托管数据中心容量"
+      },
+      "value": 6.6,
+      "unit": "GW",
+      "bound": "point",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "实测",
+        "region": "US"
+      },
+      "as_of": "2024-12",
+      "evidence": {
+        "sha256": "6d1de34e17a9748dc560890721f01bf0c574d6bb1e299fbbbd5c7d9086ad6567",
+        "local_file": "2024年北美数据中心地产市场年终报告：容量创新高与电力供应挑战并存（英文版）.pdf（JLL Research）",
+        "locator": "正文：「The colocation sector has been growing at a 20% CAGR since 2020. In 2024, construction was completed on more than 2.5 GW of colocation capacity. Nearly 100% was absorbed at delivery. A record-setting 6.6 GW of colocation capacity was under construction at the end of 2024. 78% of the product under construction was in primary markets」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "2024 年底在建量创纪录，其中 78% 位于一线市场；预租率 72%。**在建量不是当期供给**。原文另一处写「Nearly 6.5 GW」，同段两个数（6.6 与 6.5）指同一件事，取摘要与正文一致的 6.6。[未核]"
+    },
+    {
+      "fact_id": "jllna2024-completed",
+      "asserter": "JLL",
+      "metric_id": "annual_delivery_capacity",
+      "entity": {
+        "type": "market",
+        "id": "na-colocation",
+        "label": "北美托管数据中心市场"
+      },
+      "value": 2500.0,
+      "unit": "MW/年",
+      "bound": "lower",
+      "caliber": {
+        "scope": "全行业",
+        "basis": "实测",
+        "region": "US"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "6d1de34e17a9748dc560890721f01bf0c574d6bb1e299fbbbd5c7d9086ad6567",
+        "local_file": "2024年北美数据中心地产市场年终报告：容量创新高与电力供应挑战并存（英文版）.pdf（JLL Research）",
+        "locator": "正文：「The colocation sector has been growing at a 20% CAGR since 2020. In 2024, construction was completed on more than 2.5 GW of colocation capacity. Nearly 100% was absorbed at delivery. A record-setting 6.6 GW of colocation capacity was under construction at the end of 2024. 78% of the product under construction was in primary markets」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "「more than 2.5 GW」记下界 = 2500 MW/年；原文称交付时几乎 100% 被吸纳。托管板块自 2020 年以来保持 20% CAGR。[未核]"
+    },
+    {
+      "fact_id": "jllna2024-ai-workload-share-2024",
+      "asserter": "JLL",
+      "metric_id": "compute_demand_by_workload_share",
+      "entity": {
+        "type": "market",
+        "id": "na-dc-ai-workload",
+        "label": "北美数据中心负载中的 AI 部分"
+      },
+      "value": 15.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "workload": "其他",
+        "customer_scope": "全市场",
+        "region": "US",
+        "basis": "第三方推算"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "6d1de34e17a9748dc560890721f01bf0c574d6bb1e299fbbbd5c7d9086ad6567",
+        "local_file": "2024年北美数据中心地产市场年终报告：容量创新高与电力供应挑战并存（英文版）.pdf（JLL Research）",
+        "locator": "正文：「Data center demand is led by cloud providers (43%), technology (23%) and finance (9%)」「In 2024, AI represented about 15% of data center workloads and by 2030 it could grow to 40%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**AI vs 非 AI 这一刀 workload 维仍装不下**（第五次），记「其他」靠实体标签承载。与麦肯锡的「2030 年最高 70%」、粤港澳白皮书的「2025 年 80%」相比，JLL 这条 2030 年只给 40%——**同一问题三家的答案从 40% 到 80%，差一倍**，待裁。[未核]"
+    },
+    {
+      "fact_id": "jllna2024-ai-workload-share-2030e",
+      "asserter": "JLL",
+      "metric_id": "compute_demand_by_workload_share",
+      "entity": {
+        "type": "market",
+        "id": "na-dc-ai-workload",
+        "label": "北美数据中心负载中的 AI 部分"
+      },
+      "value": 40.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "workload": "其他",
+        "customer_scope": "全市场",
+        "region": "US",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2024",
+      "evidence": {
+        "sha256": "6d1de34e17a9748dc560890721f01bf0c574d6bb1e299fbbbd5c7d9086ad6567",
+        "local_file": "2024年北美数据中心地产市场年终报告：容量创新高与电力供应挑战并存（英文版）.pdf（JLL Research）",
+        "locator": "正文：「Data center demand is led by cloud providers (43%), technology (23%) and finance (9%)」「In 2024, AI represented about 15% of data center workloads and by 2030 it could grow to 40%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "见 2024 年那条的口径说明与三家分歧。[未核]"
+    },
+    {
+      "fact_id": "jllna2024-demand-by-industry-cloud",
+      "asserter": "JLL",
+      "metric_id": "compute_demand_share_by_industry",
+      "entity": {
+        "type": "market",
+        "id": "na-dc-demand-cloud",
+        "label": "北美数据中心需求中的云服务商部分"
+      },
+      "value": 43.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "industry": "其他",
+        "measure": "未注明",
+        "region": "US",
+        "basis": "行业机构"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "6d1de34e17a9748dc560890721f01bf0c574d6bb1e299fbbbd5c7d9086ad6567",
+        "local_file": "2024年北美数据中心地产市场年终报告：容量创新高与电力供应挑战并存（英文版）.pdf（JLL Research）",
+        "locator": "正文：「Data center demand is led by cloud providers (43%), technology (23%) and finance (9%)」「In 2024, AI represented about 15% of data center workloads and by 2030 it could grow to 40%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "industry 维没有「云服务商」与「科技企业」两个取值，记「其他」并靠实体标签承载——北美这份榜与国内按行业切的榜（金融/政府/制造）结构完全不同，正是因为云厂在北美是独立的一类需求方。 [未核]"
+    },
+    {
+      "fact_id": "jllna2024-demand-by-industry-tech",
+      "asserter": "JLL",
+      "metric_id": "compute_demand_share_by_industry",
+      "entity": {
+        "type": "market",
+        "id": "na-dc-demand-tech",
+        "label": "北美数据中心需求中的科技企业部分"
+      },
+      "value": 23.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "industry": "其他",
+        "measure": "未注明",
+        "region": "US",
+        "basis": "行业机构"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "6d1de34e17a9748dc560890721f01bf0c574d6bb1e299fbbbd5c7d9086ad6567",
+        "local_file": "2024年北美数据中心地产市场年终报告：容量创新高与电力供应挑战并存（英文版）.pdf（JLL Research）",
+        "locator": "正文：「Data center demand is led by cloud providers (43%), technology (23%) and finance (9%)」「In 2024, AI represented about 15% of data center workloads and by 2030 it could grow to 40%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "industry 维没有「云服务商」与「科技企业」两个取值，记「其他」并靠实体标签承载——北美这份榜与国内按行业切的榜（金融/政府/制造）结构完全不同，正是因为云厂在北美是独立的一类需求方。 [未核]"
+    },
+    {
+      "fact_id": "jllna2024-demand-by-industry-finance",
+      "asserter": "JLL",
+      "metric_id": "compute_demand_share_by_industry",
+      "entity": {
+        "type": "market",
+        "id": "na-dc-demand-finance",
+        "label": "北美数据中心需求中的金融业部分"
+      },
+      "value": 9.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "industry": "金融",
+        "measure": "未注明",
+        "region": "US",
+        "basis": "行业机构"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "6d1de34e17a9748dc560890721f01bf0c574d6bb1e299fbbbd5c7d9086ad6567",
+        "local_file": "2024年北美数据中心地产市场年终报告：容量创新高与电力供应挑战并存（英文版）.pdf（JLL Research）",
+        "locator": "正文：「Data center demand is led by cloud providers (43%), technology (23%) and finance (9%)」「In 2024, AI represented about 15% of data center workloads and by 2030 it could grow to 40%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "金融业占 9%，是三大需求方中唯一能对上 industry 维取值的一类。 [未核]"
     }
   ]
 }
