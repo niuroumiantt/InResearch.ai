@@ -236210,6 +236210,129 @@
       "corroboration": "待交叉验证",
       "notes": "原文写「40% 以上」，记为下界。**measure 记「算力规模」是枚举所限——原文说的是「已安装数据中心容量」（装机容量口径，非算力 FLOPS 口径）**，引用时须看本注。**这是理解「AI 主权」议题的关键数字**：美国一国占全球已装机容量四成以上，而报告同时指出许多新兴经济体仍在建立基础连接与数字基础设施。",
       "asserter": "世界经济论坛"
+    },
+    {
+      "fact_id": "caict2509-cn-intelligent-compute-2025h1",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "industry",
+        "id": "cn-intelligent-compute",
+        "label": "中国智能算力（在用）"
+      },
+      "value": 788.0,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "FP16",
+        "area": "全国",
+        "status": "在用",
+        "region": "CN",
+        "basis": "官方统计"
+      },
+      "as_of": "2025-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2089301357961932fa6bfd77f5809e6932ac8c77828240e29d55884474b7ba3e",
+        "local_file": "2025央国企智算创新实践报告（2025年）.pdf",
+        "locator": "第 4 页：「建设规模层面，截至 2025 年 6 月底，我国在用算力中心机架总规模达 1085 万标准机架，智算规模达 788 EFLOPS（FP16），算力供需呈现动态均衡态势。技术架构层面，截至 2024 年底，我国在用算力中心超 50% 连接骨干网」",
+        "grade": "S2",
+        "originator": "中国信息通信研究院云计算与大数据研究所、中石油（北京）数智研究院、中国移动云能力中心《央国企智算创新实践报告（2025 年）》（2025 年 9 月）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**精度口径为 FP16，这一维必须带**——同一批算力按 FP8 或 INT8 计会得到成倍不同的数字。与同句的机架总规模 1085 万架（与库内 cn-rack-total-2025 同值）配套读，可得每标准机架约 72.6 TFLOPS(FP16) 的平均智算密度（**这是推算值，本条不含**）。信通院口径、在用状态。",
+      "asserter": "中国信息通信研究院"
+    },
+    {
+      "fact_id": "caict2509-ccb-compute-2024",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "company",
+        "id": "china-construction-bank",
+        "label": "中国建设银行（全行算力规模）"
+      },
+      "value": 507.72,
+      "unit": "PFLOPS",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "已投运",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "官方统计"
+      },
+      "as_of": "2024-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "2089301357961932fa6bfd77f5809e6932ac8c77828240e29d55884474b7ba3e",
+        "local_file": "2025央国企智算创新实践报告（2025年）.pdf",
+        "locator": "第 5 章 中国建设银行案例：「根据《中国建设银行 2024 年年度报告》，2024 年末算力规模 507.72 PFLOPS，较上年增长 9.58%，其中图形处理器(GPU)等新型算力占比超 23.39%……位于和林格尔新区的算力中心项目……总占地面积 569 亩，规划总建筑面积约 52 万平方米，计划总投资额达 100 亿元人民币，项目全部建成后服务器装机能力可达到 30 万台」",
+        "grade": "S3",
+        "originator": "中国信息通信研究院云计算与大数据研究所、中石油（北京）数智研究院、中国移动云能力中心《央国企智算创新实践报告（2025 年）》（2025 年 9 月）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**来源是建行 2024 年年度报告（本报告转述），属企业自披露的全行算力总规模**，较上年增长 9.58%，其中 GPU 等新型算力占比超 23.39%。**precision 记「混合/未注明」：年报口径未说明按何种精度统计**，与信通院 FP16 口径的全国智算规模不可直接相除或比较。配套：建行和林格尔算力中心占地 569 亩、规划建筑面积约 52 万㎡、计划总投资 100 亿元、建成后服务器装机能力 30 万台。",
+      "asserter": "中国建设银行"
+    },
+    {
+      "fact_id": "caict2509-nicc-gpu-utilization",
+      "metric_id": "gpu_utilization_rate",
+      "entity": {
+        "type": "industry",
+        "id": "cn-aidc-traditional-mode",
+        "label": "传统模式下的智算中心（中国）"
+      },
+      "value": 30.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "行业平均",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "2089301357961932fa6bfd77f5809e6932ac8c77828240e29d55884474b7ba3e",
+        "local_file": "2025央国企智算创新实践报告（2025年）.pdf",
+        "locator": "第 19 页：「据公开数据统计，传统模式下智算中心的 GPU 利用率较低，平均数值低于 30%」，脚注 5 = 中国移动通信有限公司研究院《NICC 新型智算中心算力池化技术白皮书（2023 年）》",
+        "grade": "S4",
+        "originator": "中国移动通信有限公司研究院《NICC 新型智算中心算力池化技术白皮书（2023 年）》（经中国信息通信研究院等《央国企智算创新实践报告（2025 年）》（2025 年 9 月）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文写「平均数值低于 30%」，记为上界。**这是「传统模式」（按通用云资源方式管理、未考虑不同厂商智算芯片差异）下的 GPU 平均利用率**，是算力池化技术白皮书用来论证池化必要性的基线值。**asserter 记中国移动研究院——原文明确给了脚注出处，信通院只是转述。** scope 记「行业平均」：白皮书说的是传统模式智算中心的平均水平。",
+      "asserter": "中国移动研究院"
+    },
+    {
+      "fact_id": "caict2509-cmcc-domestic-mfu",
+      "metric_id": "mfu_rate",
+      "entity": {
+        "type": "company",
+        "id": "china-mobile",
+        "label": "中国移动（国产算力，震泽 MaaS 平台）"
+      },
+      "value": 35.0,
+      "unit": "%",
+      "caliber": {
+        "cluster_scale": "万卡",
+        "region": "CN"
+      },
+      "as_of": "2025-09",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "2089301357961932fa6bfd77f5809e6932ac8c77828240e29d55884474b7ba3e",
+        "local_file": "2025央国企智算创新实践报告（2025年）.pdf",
+        "locator": "第 5 章 中国移动案例：「依托中国移动 N+X 万卡级智算资源布局……全链路优化国产算力『数/训/推/用』性能，降低国产算力成本达 35%，MFU 算力超 35%，故障识别准确率超 85%」",
+        "grade": "S3",
+        "originator": "中国信息通信研究院等《央国企智算创新实践报告（2025 年）》（2025 年 9 月）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文写「MFU 算力超 35%」，记为下界。**这是国产算力在中国移动震泽 MaaS 平台上的 MFU（模型算力利用率）**，与传统模式 GPU 利用率 <30% 不是一个指标：**MFU 衡量的是训练时实际达到的算力占理论峰值的比例，GPU 利用率衡量的是卡被占用的时间比例**，两者绝不可互换。配套：该平台称降低国产算力成本达 35%、故障识别准确率超 85%，依托 N+X 万卡级智算资源布局。 cluster_scale 记「万卡」：原文称依托 N+X 万卡级智算资源布局。",
+      "asserter": "中国移动"
     }
   ]
 }
