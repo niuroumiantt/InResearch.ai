@@ -1,6 +1,6 @@
 {
   "version": "0.1-draft",
-  "updated": "2026-09-15",
+  "updated": "2026-09-16",
   "note": "事实层种子。只收 depth 为「精读」或「据实生成」的数——半自动与目录级的行留在 LIBRARY_SCORES.csv 里当索引，不进这张表。首批四条全部来自已立 Finding（M10-F14/F16、M14 芜湖环评），每个数都可回原文逐行核对。",
   "records": [
     {
@@ -220168,6 +220168,482 @@
         "originator": "Telecommunications Industry Association (TIA)"
       },
       "notes": "本条单位 %。连续运行允许区间（shall be controlled），故 limit_type 记允许值。TIA-942 Addendum 2（2010-02-04 批准）把原 TIA-942 的 20–25℃、40–55%RH、露点上限 21℃ 改为本条取值，与 ASHRAE 2008 推荐区间一致。tier 记未注明：本条适用于所有空间，不按 TIA Tier 分级。region 记 Global（美国标准，国际通用）。海拔 1800m 以上每 300m 降 1℃、温变率 ≤5℃/小时 无对应参数维度，未记。"
+    },
+    {
+      "fact_id": "ms2506-global-server-units-2012",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "global-server-units",
+        "label": "全球服务器出货量"
+      },
+      "value": 8700.0,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "All Servers",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "未拆分",
+        "region": "Total",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "不适用（非中国口径）"
+      },
+      "as_of": "2012",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6fe48c17abf432c83382f69c90d64d0d3285cde6ca1c3486faa0d63ffd5bfb9f",
+        "local_file": "20250615-摩根士丹利：摩根士丹利电子元件：人工智能和计算领域对增值部件的需求不断增长(58页).pdf",
+        "locator": "PDF 第 21 页「End-product Market and Major Components Market (Calendar Year)」表，(mn units) 行 Server：2012 8.7 / 2013 9.0 / 2014 9.2 / 2015 9.7 / 2016 9.6 / 2017 10.2 / 2018 11.8 / 2019 11.8 / 2020 12.7 / 2021 13.5 / 2022 14.9 / 2023 12.4 / 2024 13.9 / 2025e 14.2（含 YoY 行）",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "摩根士丹利",
+      "notes": "原表 8.7 mn units = 8700.0 千台。摩根士丹利（日本电子元件组，2025-06-13）投资者演示的终端市场表；同表另有 2021Q1–2025Q4e 季度序列，未逐条录。"
+    },
+    {
+      "fact_id": "ms2506-global-server-units-2013",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "global-server-units",
+        "label": "全球服务器出货量"
+      },
+      "value": 9000.0,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "All Servers",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "未拆分",
+        "region": "Total",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "不适用（非中国口径）"
+      },
+      "as_of": "2013",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6fe48c17abf432c83382f69c90d64d0d3285cde6ca1c3486faa0d63ffd5bfb9f",
+        "local_file": "20250615-摩根士丹利：摩根士丹利电子元件：人工智能和计算领域对增值部件的需求不断增长(58页).pdf",
+        "locator": "PDF 第 21 页「End-product Market and Major Components Market (Calendar Year)」表，(mn units) 行 Server：2012 8.7 / 2013 9.0 / 2014 9.2 / 2015 9.7 / 2016 9.6 / 2017 10.2 / 2018 11.8 / 2019 11.8 / 2020 12.7 / 2021 13.5 / 2022 14.9 / 2023 12.4 / 2024 13.9 / 2025e 14.2（含 YoY 行）",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "摩根士丹利",
+      "notes": "原表 9.0 mn units = 9000.0 千台。摩根士丹利（日本电子元件组，2025-06-13）投资者演示的终端市场表；同表另有 2021Q1–2025Q4e 季度序列，未逐条录。"
+    },
+    {
+      "fact_id": "ms2506-global-server-units-2014",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "global-server-units",
+        "label": "全球服务器出货量"
+      },
+      "value": 9200.0,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "All Servers",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "未拆分",
+        "region": "Total",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "不适用（非中国口径）"
+      },
+      "as_of": "2014",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6fe48c17abf432c83382f69c90d64d0d3285cde6ca1c3486faa0d63ffd5bfb9f",
+        "local_file": "20250615-摩根士丹利：摩根士丹利电子元件：人工智能和计算领域对增值部件的需求不断增长(58页).pdf",
+        "locator": "PDF 第 21 页「End-product Market and Major Components Market (Calendar Year)」表，(mn units) 行 Server：2012 8.7 / 2013 9.0 / 2014 9.2 / 2015 9.7 / 2016 9.6 / 2017 10.2 / 2018 11.8 / 2019 11.8 / 2020 12.7 / 2021 13.5 / 2022 14.9 / 2023 12.4 / 2024 13.9 / 2025e 14.2（含 YoY 行）",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "摩根士丹利",
+      "notes": "原表 9.2 mn units = 9200.0 千台。摩根士丹利（日本电子元件组，2025-06-13）投资者演示的终端市场表；同表另有 2021Q1–2025Q4e 季度序列，未逐条录。"
+    },
+    {
+      "fact_id": "ms2506-global-server-units-2015",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "global-server-units",
+        "label": "全球服务器出货量"
+      },
+      "value": 9700.0,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "All Servers",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "未拆分",
+        "region": "Total",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "不适用（非中国口径）"
+      },
+      "as_of": "2015",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6fe48c17abf432c83382f69c90d64d0d3285cde6ca1c3486faa0d63ffd5bfb9f",
+        "local_file": "20250615-摩根士丹利：摩根士丹利电子元件：人工智能和计算领域对增值部件的需求不断增长(58页).pdf",
+        "locator": "PDF 第 21 页「End-product Market and Major Components Market (Calendar Year)」表，(mn units) 行 Server：2012 8.7 / 2013 9.0 / 2014 9.2 / 2015 9.7 / 2016 9.6 / 2017 10.2 / 2018 11.8 / 2019 11.8 / 2020 12.7 / 2021 13.5 / 2022 14.9 / 2023 12.4 / 2024 13.9 / 2025e 14.2（含 YoY 行）",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "摩根士丹利",
+      "notes": "原表 9.7 mn units = 9700.0 千台。摩根士丹利（日本电子元件组，2025-06-13）投资者演示的终端市场表；同表另有 2021Q1–2025Q4e 季度序列，未逐条录。"
+    },
+    {
+      "fact_id": "ms2506-global-server-units-2016",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "global-server-units",
+        "label": "全球服务器出货量"
+      },
+      "value": 9600.0,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "All Servers",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "未拆分",
+        "region": "Total",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "不适用（非中国口径）"
+      },
+      "as_of": "2016",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6fe48c17abf432c83382f69c90d64d0d3285cde6ca1c3486faa0d63ffd5bfb9f",
+        "local_file": "20250615-摩根士丹利：摩根士丹利电子元件：人工智能和计算领域对增值部件的需求不断增长(58页).pdf",
+        "locator": "PDF 第 21 页「End-product Market and Major Components Market (Calendar Year)」表，(mn units) 行 Server：2012 8.7 / 2013 9.0 / 2014 9.2 / 2015 9.7 / 2016 9.6 / 2017 10.2 / 2018 11.8 / 2019 11.8 / 2020 12.7 / 2021 13.5 / 2022 14.9 / 2023 12.4 / 2024 13.9 / 2025e 14.2（含 YoY 行）",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "摩根士丹利",
+      "notes": "原表 9.6 mn units = 9600.0 千台。摩根士丹利（日本电子元件组，2025-06-13）投资者演示的终端市场表；同表另有 2021Q1–2025Q4e 季度序列，未逐条录。"
+    },
+    {
+      "fact_id": "ms2506-global-server-units-2017",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "global-server-units",
+        "label": "全球服务器出货量"
+      },
+      "value": 10200.0,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "All Servers",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "未拆分",
+        "region": "Total",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "不适用（非中国口径）"
+      },
+      "as_of": "2017",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6fe48c17abf432c83382f69c90d64d0d3285cde6ca1c3486faa0d63ffd5bfb9f",
+        "local_file": "20250615-摩根士丹利：摩根士丹利电子元件：人工智能和计算领域对增值部件的需求不断增长(58页).pdf",
+        "locator": "PDF 第 21 页「End-product Market and Major Components Market (Calendar Year)」表，(mn units) 行 Server：2012 8.7 / 2013 9.0 / 2014 9.2 / 2015 9.7 / 2016 9.6 / 2017 10.2 / 2018 11.8 / 2019 11.8 / 2020 12.7 / 2021 13.5 / 2022 14.9 / 2023 12.4 / 2024 13.9 / 2025e 14.2（含 YoY 行）",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "摩根士丹利",
+      "notes": "原表 10.2 mn units = 10200.0 千台。摩根士丹利（日本电子元件组，2025-06-13）投资者演示的终端市场表；同表另有 2021Q1–2025Q4e 季度序列，未逐条录。"
+    },
+    {
+      "fact_id": "ms2506-global-server-units-2018",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "global-server-units",
+        "label": "全球服务器出货量"
+      },
+      "value": 11800.0,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "All Servers",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "未拆分",
+        "region": "Total",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "不适用（非中国口径）"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6fe48c17abf432c83382f69c90d64d0d3285cde6ca1c3486faa0d63ffd5bfb9f",
+        "local_file": "20250615-摩根士丹利：摩根士丹利电子元件：人工智能和计算领域对增值部件的需求不断增长(58页).pdf",
+        "locator": "PDF 第 21 页「End-product Market and Major Components Market (Calendar Year)」表，(mn units) 行 Server：2012 8.7 / 2013 9.0 / 2014 9.2 / 2015 9.7 / 2016 9.6 / 2017 10.2 / 2018 11.8 / 2019 11.8 / 2020 12.7 / 2021 13.5 / 2022 14.9 / 2023 12.4 / 2024 13.9 / 2025e 14.2（含 YoY 行）",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "摩根士丹利",
+      "notes": "原表 11.8 mn units = 11800.0 千台。摩根士丹利（日本电子元件组，2025-06-13）投资者演示的终端市场表；同表另有 2021Q1–2025Q4e 季度序列，未逐条录。"
+    },
+    {
+      "fact_id": "ms2506-global-server-units-2019",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "global-server-units",
+        "label": "全球服务器出货量"
+      },
+      "value": 11800.0,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "All Servers",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "未拆分",
+        "region": "Total",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "不适用（非中国口径）"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6fe48c17abf432c83382f69c90d64d0d3285cde6ca1c3486faa0d63ffd5bfb9f",
+        "local_file": "20250615-摩根士丹利：摩根士丹利电子元件：人工智能和计算领域对增值部件的需求不断增长(58页).pdf",
+        "locator": "PDF 第 21 页「End-product Market and Major Components Market (Calendar Year)」表，(mn units) 行 Server：2012 8.7 / 2013 9.0 / 2014 9.2 / 2015 9.7 / 2016 9.6 / 2017 10.2 / 2018 11.8 / 2019 11.8 / 2020 12.7 / 2021 13.5 / 2022 14.9 / 2023 12.4 / 2024 13.9 / 2025e 14.2（含 YoY 行）",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "摩根士丹利",
+      "notes": "原表 11.8 mn units = 11800.0 千台。摩根士丹利（日本电子元件组，2025-06-13）投资者演示的终端市场表；同表另有 2021Q1–2025Q4e 季度序列，未逐条录。"
+    },
+    {
+      "fact_id": "ms2506-global-server-units-2020",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "global-server-units",
+        "label": "全球服务器出货量"
+      },
+      "value": 12700.0,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "All Servers",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "未拆分",
+        "region": "Total",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "不适用（非中国口径）"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6fe48c17abf432c83382f69c90d64d0d3285cde6ca1c3486faa0d63ffd5bfb9f",
+        "local_file": "20250615-摩根士丹利：摩根士丹利电子元件：人工智能和计算领域对增值部件的需求不断增长(58页).pdf",
+        "locator": "PDF 第 21 页「End-product Market and Major Components Market (Calendar Year)」表，(mn units) 行 Server：2012 8.7 / 2013 9.0 / 2014 9.2 / 2015 9.7 / 2016 9.6 / 2017 10.2 / 2018 11.8 / 2019 11.8 / 2020 12.7 / 2021 13.5 / 2022 14.9 / 2023 12.4 / 2024 13.9 / 2025e 14.2（含 YoY 行）",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "摩根士丹利",
+      "notes": "原表 12.7 mn units = 12700.0 千台。摩根士丹利（日本电子元件组，2025-06-13）投资者演示的终端市场表；同表另有 2021Q1–2025Q4e 季度序列，未逐条录。"
+    },
+    {
+      "fact_id": "ms2506-global-server-units-2021",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "global-server-units",
+        "label": "全球服务器出货量"
+      },
+      "value": 13500.0,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "All Servers",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "未拆分",
+        "region": "Total",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "不适用（非中国口径）"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6fe48c17abf432c83382f69c90d64d0d3285cde6ca1c3486faa0d63ffd5bfb9f",
+        "local_file": "20250615-摩根士丹利：摩根士丹利电子元件：人工智能和计算领域对增值部件的需求不断增长(58页).pdf",
+        "locator": "PDF 第 21 页「End-product Market and Major Components Market (Calendar Year)」表，(mn units) 行 Server：2012 8.7 / 2013 9.0 / 2014 9.2 / 2015 9.7 / 2016 9.6 / 2017 10.2 / 2018 11.8 / 2019 11.8 / 2020 12.7 / 2021 13.5 / 2022 14.9 / 2023 12.4 / 2024 13.9 / 2025e 14.2（含 YoY 行）",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "摩根士丹利",
+      "notes": "原表 13.5 mn units = 13500.0 千台。摩根士丹利（日本电子元件组，2025-06-13）投资者演示的终端市场表；同表另有 2021Q1–2025Q4e 季度序列，未逐条录。"
+    },
+    {
+      "fact_id": "ms2506-global-server-units-2022",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "global-server-units",
+        "label": "全球服务器出货量"
+      },
+      "value": 14900.0,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "All Servers",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "未拆分",
+        "region": "Total",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "不适用（非中国口径）"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6fe48c17abf432c83382f69c90d64d0d3285cde6ca1c3486faa0d63ffd5bfb9f",
+        "local_file": "20250615-摩根士丹利：摩根士丹利电子元件：人工智能和计算领域对增值部件的需求不断增长(58页).pdf",
+        "locator": "PDF 第 21 页「End-product Market and Major Components Market (Calendar Year)」表，(mn units) 行 Server：2012 8.7 / 2013 9.0 / 2014 9.2 / 2015 9.7 / 2016 9.6 / 2017 10.2 / 2018 11.8 / 2019 11.8 / 2020 12.7 / 2021 13.5 / 2022 14.9 / 2023 12.4 / 2024 13.9 / 2025e 14.2（含 YoY 行）",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "摩根士丹利",
+      "notes": "原表 14.9 mn units = 14900.0 千台。摩根士丹利（日本电子元件组，2025-06-13）投资者演示的终端市场表；同表另有 2021Q1–2025Q4e 季度序列，未逐条录。"
+    },
+    {
+      "fact_id": "ms2506-global-server-units-2023",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "global-server-units",
+        "label": "全球服务器出货量"
+      },
+      "value": 12400.0,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "All Servers",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "未拆分",
+        "region": "Total",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "不适用（非中国口径）"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6fe48c17abf432c83382f69c90d64d0d3285cde6ca1c3486faa0d63ffd5bfb9f",
+        "local_file": "20250615-摩根士丹利：摩根士丹利电子元件：人工智能和计算领域对增值部件的需求不断增长(58页).pdf",
+        "locator": "PDF 第 21 页「End-product Market and Major Components Market (Calendar Year)」表，(mn units) 行 Server：2012 8.7 / 2013 9.0 / 2014 9.2 / 2015 9.7 / 2016 9.6 / 2017 10.2 / 2018 11.8 / 2019 11.8 / 2020 12.7 / 2021 13.5 / 2022 14.9 / 2023 12.4 / 2024 13.9 / 2025e 14.2（含 YoY 行）",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "摩根士丹利",
+      "notes": "原表 12.4 mn units = 12400.0 千台。摩根士丹利（日本电子元件组，2025-06-13）投资者演示的终端市场表；同表另有 2021Q1–2025Q4e 季度序列，未逐条录。"
+    },
+    {
+      "fact_id": "ms2506-global-server-units-2024",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "global-server-units",
+        "label": "全球服务器出货量"
+      },
+      "value": 13900.0,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "All Servers",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "未拆分",
+        "region": "Total",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "不适用（非中国口径）"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6fe48c17abf432c83382f69c90d64d0d3285cde6ca1c3486faa0d63ffd5bfb9f",
+        "local_file": "20250615-摩根士丹利：摩根士丹利电子元件：人工智能和计算领域对增值部件的需求不断增长(58页).pdf",
+        "locator": "PDF 第 21 页「End-product Market and Major Components Market (Calendar Year)」表，(mn units) 行 Server：2012 8.7 / 2013 9.0 / 2014 9.2 / 2015 9.7 / 2016 9.6 / 2017 10.2 / 2018 11.8 / 2019 11.8 / 2020 12.7 / 2021 13.5 / 2022 14.9 / 2023 12.4 / 2024 13.9 / 2025e 14.2（含 YoY 行）",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "摩根士丹利",
+      "notes": "原表 13.9 mn units = 13900.0 千台。摩根士丹利（日本电子元件组，2025-06-13）投资者演示的终端市场表；同表另有 2021Q1–2025Q4e 季度序列，未逐条录。"
+    },
+    {
+      "fact_id": "ms2506-global-server-units-2025e",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "global-server-units",
+        "label": "全球服务器出货量"
+      },
+      "value": 14200.0,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "All Servers",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "未拆分",
+        "region": "Total",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "不适用（非中国口径）"
+      },
+      "as_of": "2025E@2025-06",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6fe48c17abf432c83382f69c90d64d0d3285cde6ca1c3486faa0d63ffd5bfb9f",
+        "local_file": "20250615-摩根士丹利：摩根士丹利电子元件：人工智能和计算领域对增值部件的需求不断增长(58页).pdf",
+        "locator": "PDF 第 21 页「End-product Market and Major Components Market (Calendar Year)」表，(mn units) 行 Server：2012 8.7 / 2013 9.0 / 2014 9.2 / 2015 9.7 / 2016 9.6 / 2017 10.2 / 2018 11.8 / 2019 11.8 / 2020 12.7 / 2021 13.5 / 2022 14.9 / 2023 12.4 / 2024 13.9 / 2025e 14.2（含 YoY 行）",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "摩根士丹利",
+      "notes": "原表 14.2 mn units = 14200.0 千台。摩根士丹利（日本电子元件组，2025-06-13）投资者演示的终端市场表；同表另有 2021Q1–2025Q4e 季度序列，未逐条录。2025 年为预测（表头标 2025e）。"
     }
   ]
 }
