@@ -225356,7 +225356,9 @@
       "notes": "**这是路线对比表里的代表区间，不能当某个具体机房的值引用**（basis 已标「按冷却路线典型值」）。同表还给出对流换热系数、比热容、散热密度、噪音四项，本库无对应指标，见本份缺口。**同报告第 16 页 图表 18 另给单相/两相细分的 PUE（单相冷板 1.15-1.3、两相冷板 1.10-1.15、单相浸没 1.05-1.1、两相浸没 1.02-1.05），与本表同名路线的区间并不一致；cooling_tech 枚举没有单相/两相之分，那一组暂不入库，已记缺口。** region 未披露：这是路线对比表的代表区间，原表未标地域。",
       "asserter": "中泰证券",
       "disputed_by": [
-        "hc2512-pue-coldplate-lower"
+        "hc2512-pue-coldplate-lower",
+        "xbzq2509-pue-single-phase-coldplate-lower",
+        "xbzq2509-pue-single-phase-coldplate-upper"
       ]
     },
     {
@@ -225393,7 +225395,9 @@
       "notes": "**这是路线对比表里的代表区间，不能当某个具体机房的值引用**（basis 已标「按冷却路线典型值」）。同表还给出对流换热系数、比热容、散热密度、噪音四项，本库无对应指标，见本份缺口。**同报告第 16 页 图表 18 另给单相/两相细分的 PUE（单相冷板 1.15-1.3、两相冷板 1.10-1.15、单相浸没 1.05-1.1、两相浸没 1.02-1.05），与本表同名路线的区间并不一致；cooling_tech 枚举没有单相/两相之分，那一组暂不入库，已记缺口。** region 未披露：同上，原表未标地域。",
       "asserter": "中泰证券",
       "disputed_by": [
-        "hc2512-pue-coldplate-upper"
+        "hc2512-pue-coldplate-upper",
+        "xbzq2509-pue-single-phase-coldplate-lower",
+        "xbzq2509-pue-single-phase-coldplate-upper"
       ]
     },
     {
@@ -227480,6 +227484,10 @@
       "asserter": "华创证券",
       "disputes": [
         "zt2605-pue-coldplate-lower"
+      ],
+      "disputed_by": [
+        "xbzq2509-pue-single-phase-coldplate-lower",
+        "xbzq2509-pue-single-phase-coldplate-upper"
       ]
     },
     {
@@ -227517,6 +227525,10 @@
       "asserter": "华创证券",
       "disputes": [
         "zt2605-pue-coldplate-upper"
+      ],
+      "disputed_by": [
+        "xbzq2509-pue-single-phase-coldplate-lower",
+        "xbzq2509-pue-single-phase-coldplate-upper"
       ]
     },
     {
@@ -228522,6 +228534,412 @@
       "corroboration": "待交叉验证",
       "notes": "**原文 400 亿美元 = 40.0 十亿美元。**这是 Marvell 自家的 TAM 口径（数据中心 TAM 940 亿美元中的定制 XPU 部分），**与库内联发科给出的同年同值 40.0（mtk2510-custom-ai-accel-tam-2028e）极可能同源**（两家都在引用同一批第三方 TAM 测算），不构成交叉验证。配套：XPU 组件 150 亿美元、CAGR 90%；Marvell 去年对同一年的 TAM 预期为 750 亿美元，本次上修 25%。",
       "asserter": "Marvell"
+    },
+    {
+      "fact_id": "xbzq2509-global-server-lc-market-2024",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "global-server-liquid-cooling",
+        "label": "全球服务器液冷产品市场"
+      },
+      "value": 286.86,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "液冷设备与方案",
+        "currency": "人民币",
+        "cooling_route": "未注明",
+        "region": "未披露",
+        "basis": "券商测算"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "329f43739151c99d394f824c0f9a8d9e3f65db983289d19aab4c307c7224f5fc",
+        "local_file": "20250928-西部证券-液冷行业专题报告：液冷新纪元，AI算力驱动下的冷却介质机遇.pdf",
+        "locator": "第 13 页 表 8「我们预测 25-27 年全球服务器液冷产品市场规模将达到 242、425、568 亿元」末行「服务器液冷市场规模合计」「2024」列",
+        "grade": "S4",
+        "originator": "西部证券《液冷行业专题报告：液冷新纪元，AI 算力驱动下的冷却介质机遇》（孙维容、王瑞健，2025-09-28）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是通用服务器 + AI 服务器两块液冷市场之和（人民币）。**测算链条：服务器出货量 × 平均功耗 → 总功耗 MW，再乘液冷渗透率与分路线单价；输入均为模型假设，不单独入库（2025-26 出货增速假设 25%、平均功耗按 ROHM 2024 年通用 600W/AI 3000W 缓增、渗透率以中商产业研究院 2024 年通用服务器口径为基数假设逐年提升、冷板单价 4000 元/kW 起逐年下降）。**报告标题写的「242、425、568 亿元」其实是表里 AI 服务器那一行，不是合计行——原文标题与自家表格口径不一致，本条记的是合计行。**region 未披露：表头写「全球服务器液冷产品」，但单价、渗透率输入均取自国内来源，实际口径介于中外之间，原文未交代。",
+      "asserter": "西部证券"
+    },
+    {
+      "fact_id": "xbzq2509-global-server-lc-market-2025e",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "global-server-liquid-cooling",
+        "label": "全球服务器液冷产品市场"
+      },
+      "value": 570.07,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "液冷设备与方案",
+        "currency": "人民币",
+        "cooling_route": "未注明",
+        "region": "未披露",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "329f43739151c99d394f824c0f9a8d9e3f65db983289d19aab4c307c7224f5fc",
+        "local_file": "20250928-西部证券-液冷行业专题报告：液冷新纪元，AI算力驱动下的冷却介质机遇.pdf",
+        "locator": "第 13 页 表 8「我们预测 25-27 年全球服务器液冷产品市场规模将达到 242、425、568 亿元」末行「服务器液冷市场规模合计」「2025E」列",
+        "grade": "S4",
+        "originator": "西部证券《液冷行业专题报告：液冷新纪元，AI 算力驱动下的冷却介质机遇》（孙维容、王瑞健，2025-09-28）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是通用服务器 + AI 服务器两块液冷市场之和（人民币）。**测算链条：服务器出货量 × 平均功耗 → 总功耗 MW，再乘液冷渗透率与分路线单价；输入均为模型假设，不单独入库（2025-26 出货增速假设 25%、平均功耗按 ROHM 2024 年通用 600W/AI 3000W 缓增、渗透率以中商产业研究院 2024 年通用服务器口径为基数假设逐年提升、冷板单价 4000 元/kW 起逐年下降）。**报告标题写的「242、425、568 亿元」其实是表里 AI 服务器那一行，不是合计行——原文标题与自家表格口径不一致，本条记的是合计行。**region 未披露：表头写「全球服务器液冷产品」，但单价、渗透率输入均取自国内来源，实际口径介于中外之间，原文未交代。",
+      "asserter": "西部证券"
+    },
+    {
+      "fact_id": "xbzq2509-global-server-lc-market-2026e",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "global-server-liquid-cooling",
+        "label": "全球服务器液冷产品市场"
+      },
+      "value": 978.32,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "液冷设备与方案",
+        "currency": "人民币",
+        "cooling_route": "未注明",
+        "region": "未披露",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "329f43739151c99d394f824c0f9a8d9e3f65db983289d19aab4c307c7224f5fc",
+        "local_file": "20250928-西部证券-液冷行业专题报告：液冷新纪元，AI算力驱动下的冷却介质机遇.pdf",
+        "locator": "第 13 页 表 8「我们预测 25-27 年全球服务器液冷产品市场规模将达到 242、425、568 亿元」末行「服务器液冷市场规模合计」「2026E」列",
+        "grade": "S4",
+        "originator": "西部证券《液冷行业专题报告：液冷新纪元，AI 算力驱动下的冷却介质机遇》（孙维容、王瑞健，2025-09-28）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是通用服务器 + AI 服务器两块液冷市场之和（人民币）。**测算链条：服务器出货量 × 平均功耗 → 总功耗 MW，再乘液冷渗透率与分路线单价；输入均为模型假设，不单独入库（2025-26 出货增速假设 25%、平均功耗按 ROHM 2024 年通用 600W/AI 3000W 缓增、渗透率以中商产业研究院 2024 年通用服务器口径为基数假设逐年提升、冷板单价 4000 元/kW 起逐年下降）。**报告标题写的「242、425、568 亿元」其实是表里 AI 服务器那一行，不是合计行——原文标题与自家表格口径不一致，本条记的是合计行。**region 未披露：表头写「全球服务器液冷产品」，但单价、渗透率输入均取自国内来源，实际口径介于中外之间，原文未交代。",
+      "asserter": "西部证券"
+    },
+    {
+      "fact_id": "xbzq2509-global-server-lc-market-2027e",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "global-server-liquid-cooling",
+        "label": "全球服务器液冷产品市场"
+      },
+      "value": 1227.75,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "液冷设备与方案",
+        "currency": "人民币",
+        "cooling_route": "未注明",
+        "region": "未披露",
+        "basis": "预测"
+      },
+      "as_of": "2027E@2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "329f43739151c99d394f824c0f9a8d9e3f65db983289d19aab4c307c7224f5fc",
+        "local_file": "20250928-西部证券-液冷行业专题报告：液冷新纪元，AI算力驱动下的冷却介质机遇.pdf",
+        "locator": "第 13 页 表 8「我们预测 25-27 年全球服务器液冷产品市场规模将达到 242、425、568 亿元」末行「服务器液冷市场规模合计」「2027E」列",
+        "grade": "S4",
+        "originator": "西部证券《液冷行业专题报告：液冷新纪元，AI 算力驱动下的冷却介质机遇》（孙维容、王瑞健，2025-09-28）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是通用服务器 + AI 服务器两块液冷市场之和（人民币）。**测算链条：服务器出货量 × 平均功耗 → 总功耗 MW，再乘液冷渗透率与分路线单价；输入均为模型假设，不单独入库（2025-26 出货增速假设 25%、平均功耗按 ROHM 2024 年通用 600W/AI 3000W 缓增、渗透率以中商产业研究院 2024 年通用服务器口径为基数假设逐年提升、冷板单价 4000 元/kW 起逐年下降）。**报告标题写的「242、425、568 亿元」其实是表里 AI 服务器那一行，不是合计行——原文标题与自家表格口径不一致，本条记的是合计行。**region 未披露：表头写「全球服务器液冷产品」，但单价、渗透率输入均取自国内来源，实际口径介于中外之间，原文未交代。",
+      "asserter": "西部证券"
+    },
+    {
+      "fact_id": "xbzq2509-global-server-lc-market-2030e",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "global-server-liquid-cooling",
+        "label": "全球服务器液冷产品市场"
+      },
+      "value": 1895.19,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "液冷设备与方案",
+        "currency": "人民币",
+        "cooling_route": "未注明",
+        "region": "未披露",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "329f43739151c99d394f824c0f9a8d9e3f65db983289d19aab4c307c7224f5fc",
+        "local_file": "20250928-西部证券-液冷行业专题报告：液冷新纪元，AI算力驱动下的冷却介质机遇.pdf",
+        "locator": "第 13 页 表 8「我们预测 25-27 年全球服务器液冷产品市场规模将达到 242、425、568 亿元」末行「服务器液冷市场规模合计」「2030E」列",
+        "grade": "S4",
+        "originator": "西部证券《液冷行业专题报告：液冷新纪元，AI 算力驱动下的冷却介质机遇》（孙维容、王瑞健，2025-09-28）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是通用服务器 + AI 服务器两块液冷市场之和（人民币）。**测算链条：服务器出货量 × 平均功耗 → 总功耗 MW，再乘液冷渗透率与分路线单价；输入均为模型假设，不单独入库（2025-26 出货增速假设 25%、平均功耗按 ROHM 2024 年通用 600W/AI 3000W 缓增、渗透率以中商产业研究院 2024 年通用服务器口径为基数假设逐年提升、冷板单价 4000 元/kW 起逐年下降）。**报告标题写的「242、425、568 亿元」其实是表里 AI 服务器那一行，不是合计行——原文标题与自家表格口径不一致，本条记的是合计行。**region 未披露：表头写「全球服务器液冷产品」，但单价、渗透率输入均取自国内来源，实际口径介于中外之间，原文未交代。",
+      "asserter": "西部证券"
+    },
+    {
+      "fact_id": "xbzq2509-ruixin-global-lc-system-market-2024",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "global-liquid-cooling-system",
+        "label": "全球液冷系统市场"
+      },
+      "value": 65.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "液冷设备与方案",
+        "currency": "美元",
+        "cooling_route": "未注明",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "329f43739151c99d394f824c0f9a8d9e3f65db983289d19aab4c307c7224f5fc",
+        "local_file": "20250928-西部证券-液冷行业专题报告：液冷新纪元，AI算力驱动下的冷却介质机遇.pdf",
+        "locator": "第 12 页：「根据睿信咨询，……2024 年全球液冷系统市场规模约为 65 亿美元，预计 2034 年将增至 130 亿美元，2025-2034 年复合增速……」",
+        "grade": "S4",
+        "originator": "睿信咨询（经西部证券《液冷行业专题报告：液冷新纪元，AI 算力驱动下的冷却介质机遇》（孙维容、王瑞健，2025-09-28）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**币种美元**，与同份报告里人民币口径的服务器液冷市场（2024 年 286.86 亿元 ≈ 40 亿美元）不是一回事：本条是「液冷系统」全球市场，含数据中心以外的应用，且 2034 年只增至 2 倍，隐含复合增速约 7%——**远低于同报告服务器液冷口径的增速，两条不可拼成一条曲线**。",
+      "asserter": "睿信咨询"
+    },
+    {
+      "fact_id": "xbzq2509-ruixin-global-lc-system-market-2034e",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "global-liquid-cooling-system",
+        "label": "全球液冷系统市场"
+      },
+      "value": 130.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "液冷设备与方案",
+        "currency": "美元",
+        "cooling_route": "未注明",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2034E@2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "329f43739151c99d394f824c0f9a8d9e3f65db983289d19aab4c307c7224f5fc",
+        "local_file": "20250928-西部证券-液冷行业专题报告：液冷新纪元，AI算力驱动下的冷却介质机遇.pdf",
+        "locator": "第 12 页：「根据睿信咨询，……2024 年全球液冷系统市场规模约为 65 亿美元，预计 2034 年将增至 130 亿美元，2025-2034 年复合增速……」",
+        "grade": "S4",
+        "originator": "睿信咨询（经西部证券《液冷行业专题报告：液冷新纪元，AI 算力驱动下的冷却介质机遇》（孙维容、王瑞健，2025-09-28）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**币种美元**，与同份报告里人民币口径的服务器液冷市场（2024 年 286.86 亿元 ≈ 40 亿美元）不是一回事：本条是「液冷系统」全球市场，含数据中心以外的应用，且 2034 年只增至 2 倍，隐含复合增速约 7%——**远低于同报告服务器液冷口径的增速，两条不可拼成一条曲线**。",
+      "asserter": "睿信咨询"
+    },
+    {
+      "fact_id": "xbzq2509-idc-cn-lc-server-market-2024h1",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "cn-liquid-cooling-server",
+        "label": "中国液冷服务器市场"
+      },
+      "value": 12.6,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "液冷设备与方案",
+        "currency": "美元",
+        "cooling_route": "未注明",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024-H1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "329f43739151c99d394f824c0f9a8d9e3f65db983289d19aab4c307c7224f5fc",
+        "local_file": "20250928-西部证券-液冷行业专题报告：液冷新纪元，AI算力驱动下的冷却介质机遇.pdf",
+        "locator": "第 2 页摘要 / 第 14 页：「据 IDC 数据，2024 年上半年中国液冷服务器市场规模达到 12.6 亿美元，其中液冷解决方案仍以冷板式为主，占比 95% 以上」",
+        "grade": "S4",
+        "originator": "IDC（经西部证券《液冷行业专题报告：液冷新纪元，AI 算力驱动下的冷却介质机遇》（孙维容、王瑞健，2025-09-28）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**币种美元、口径是半年（2024 上半年），不是全年**——与库内人民币口径的中国液冷市场年度数（如信通院 2024 年 184 亿元）既不同币种也不同期，直接比会得出错误结论。同句的「冷板式占比 95% 以上」与库内 lcleak25-idc-cn-lc-server-coldplate-share-2024h1（IDC，95%）同源同值，不另记。",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "xbzq2509-global-server-shipments-2024",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "industry",
+        "id": "global-server-market",
+        "label": "全球服务器市场"
+      },
+      "value": 13654.0,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "All Servers",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "Total",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "不适用（非中国口径）"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "329f43739151c99d394f824c0f9a8d9e3f65db983289d19aab4c307c7224f5fc",
+        "local_file": "20250928-西部证券-液冷行业专题报告：液冷新纪元，AI算力驱动下的冷却介质机遇.pdf",
+        "locator": "第 13 页 表 8：「服务器（千台）2024 = 13,654；通用服务器（千台）12,150；AI 服务器（千台）1,504」，表下资料来源 trendforce、罗姆（ROHM）、中商产业研究院等",
+        "grade": "S4",
+        "originator": "西部证券《液冷行业专题报告：液冷新纪元，AI 算力驱动下的冷却介质机遇》（孙维容、王瑞健，2025-09-28）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**单位千台（原表即千台，无需换算）。**这是西部证券测算表的 2024 年基数行，表下并列 trendforce、ROHM、中商产业研究院等来源，未逐行分标，按边界规则记到西部证券名下。通用 12,150 + AI 1,504 = 13,654，三行自洽。**与库内 2022 年三家口径（Counterpoint 13,800／华福 13,600／摩根士丹利 14,900 千台）比较时注意：那三条是 2022 年，本条是 2024 年，且本条含 AI 服务器。**",
+      "asserter": "西部证券"
+    },
+    {
+      "fact_id": "xbzq2509-global-ai-server-shipments-2024",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "industry",
+        "id": "global-server-market",
+        "label": "全球服务器市场"
+      },
+      "value": 1504.0,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "不适用（非需求侧口径）",
+        "region": "Total",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "不适用（非中国口径）"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "329f43739151c99d394f824c0f9a8d9e3f65db983289d19aab4c307c7224f5fc",
+        "local_file": "20250928-西部证券-液冷行业专题报告：液冷新纪元，AI算力驱动下的冷却介质机遇.pdf",
+        "locator": "第 13 页 表 8：「服务器（千台）2024 = 13,654；通用服务器（千台）12,150；AI 服务器（千台）1,504」，表下资料来源 trendforce、罗姆（ROHM）、中商产业研究院等",
+        "grade": "S4",
+        "originator": "西部证券《液冷行业专题报告：液冷新纪元，AI 算力驱动下的冷却介质机遇》（孙维容、王瑞健，2025-09-28）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**单位千台。**server_class 取「Accelerated/High-End」对应原表的「AI 服务器」。原表同栏给出 AI 服务器平均功耗 3000W（据 ROHM 2024 年统计），通用服务器 600W。配套预测（模型假设，不入库）：2025E 1,895／2026E 2,369／2027E 2,843／2030E 4,912 千台。",
+      "asserter": "西部证券"
+    },
+    {
+      "fact_id": "xbzq2509-pue-single-phase-coldplate-lower",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "industry",
+        "id": "cooling-route-typical-pue",
+        "label": "按冷却路线的 PUE 典型区间"
+      },
+      "value": 1.2,
+      "unit": "比值",
+      "caliber": {
+        "basis": "按冷却路线典型值",
+        "cooling_tech": "冷板液冷",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "设计工况",
+        "region": "未披露"
+      },
+      "as_of": "2025-09",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "329f43739151c99d394f824c0f9a8d9e3f65db983289d19aab4c307c7224f5fc",
+        "local_file": "20250928-西部证券-液冷行业专题报告：液冷新纪元，AI算力驱动下的冷却介质机遇.pdf",
+        "locator": "第 2 页摘要：「单相冷板液冷可将 PUE 降低至 1.20~1.25，相比风冷仍具明显优势」",
+        "grade": "S4",
+        "originator": "西部证券《液冷行业专题报告：液冷新纪元，AI 算力驱动下的冷却介质机遇》（孙维容、王瑞健，2025-09-28）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是「单相冷板」口径，比库内中泰（冷板 1.1-1.3）、华创（冷板 1.1-1.2）给的冷板区间都高**——原因可能是本条特指单相、也可能是取值保守，原文未交代，已互标争议。cooling_tech 枚举无单相/两相之分，只能记「冷板液冷」。region 未披露：原文未限定地域。",
+      "asserter": "西部证券",
+      "disputes": [
+        "zt2605-pue-coldplate-lower",
+        "zt2605-pue-coldplate-upper",
+        "hc2512-pue-coldplate-lower",
+        "hc2512-pue-coldplate-upper"
+      ]
+    },
+    {
+      "fact_id": "xbzq2509-pue-single-phase-coldplate-upper",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "industry",
+        "id": "cooling-route-typical-pue",
+        "label": "按冷却路线的 PUE 典型区间"
+      },
+      "value": 1.25,
+      "unit": "比值",
+      "caliber": {
+        "basis": "按冷却路线典型值",
+        "cooling_tech": "冷板液冷",
+        "climate_zone": "未分区",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "设计工况",
+        "region": "未披露"
+      },
+      "as_of": "2025-09",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "329f43739151c99d394f824c0f9a8d9e3f65db983289d19aab4c307c7224f5fc",
+        "local_file": "20250928-西部证券-液冷行业专题报告：液冷新纪元，AI算力驱动下的冷却介质机遇.pdf",
+        "locator": "第 2 页摘要：「单相冷板液冷可将 PUE 降低至 1.20~1.25，相比风冷仍具明显优势」",
+        "grade": "S4",
+        "originator": "西部证券《液冷行业专题报告：液冷新纪元，AI 算力驱动下的冷却介质机遇》（孙维容、王瑞健，2025-09-28）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是「单相冷板」口径，比库内中泰（冷板 1.1-1.3）、华创（冷板 1.1-1.2）给的冷板区间都高**——原因可能是本条特指单相、也可能是取值保守，原文未交代，已互标争议。cooling_tech 枚举无单相/两相之分，只能记「冷板液冷」。region 未披露：原文未限定地域。",
+      "asserter": "西部证券",
+      "disputes": [
+        "zt2605-pue-coldplate-lower",
+        "zt2605-pue-coldplate-upper",
+        "hc2512-pue-coldplate-lower",
+        "hc2512-pue-coldplate-upper"
+      ]
     }
   ]
 }
