@@ -241144,6 +241144,64 @@
       },
       "depth": "精读",
       "notes": "同一评分项的另一条路径：自建口径只要 2.5% 即可拿满分，与外购口径的 20% 相差 8 倍——两条路径二选一即可得 3 分。[未核]"
+    },
+    {
+      "fact_id": "jrt0265-2023-network-availability",
+      "asserter": "中国人民银行",
+      "metric_id": "dc_availability",
+      "entity": {
+        "type": "policy",
+        "id": "jrt0265-2023",
+        "label": "JR/T 0265—2023《金融数据中心能力建设指引》线路资源要求"
+      },
+      "value": 99.99,
+      "unit": "%",
+      "bound": "lower",
+      "caliber": {
+        "scope": "某一子系统",
+        "redundancy": "未注明",
+        "window": "年度",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2023-07",
+      "evidence": {
+        "sha256": "6b84ea669d2faf10613d56ca1fe539a0da186a52c3c5c58080a757d393d2c4a9",
+        "local_file": "金融数据中心能力建设指引.pdf",
+        "locator": "8 章网络能力：「线路资源的网络可用性应大于等于 99.99%」（同条另要求线路丢包率应小于等于 0.01%）",
+        "grade": "S1"
+      },
+      "depth": "精读",
+      "notes": "标准要求值而非实测值；口径是金融数据中心的线路资源（网络子系统），不是整站可用性——与库内按设施口径的可用性不可直接比较。原文未说明统计窗口，按年度理解。[未核]"
+    },
+    {
+      "fact_id": "jrt0265-2023-cooling-water-backup",
+      "asserter": "中国人民银行",
+      "metric_id": "backup_autonomy",
+      "entity": {
+        "type": "policy",
+        "id": "jrt0265-2023-cooling-water",
+        "label": "JR/T 0265—2023 金融数据中心冷却水补水储水要求（A/B 级）"
+      },
+      "value": 720.0,
+      "unit": "分钟",
+      "bound": "lower",
+      "caliber": {
+        "backup_type": "蓄水池",
+        "tier": "A/B/C 通用",
+        "bound_sense": "不小于",
+        "region": "CN",
+        "basis": "规范要求"
+      },
+      "as_of": "2023-07",
+      "evidence": {
+        "sha256": "6b84ea669d2faf10613d56ca1fe539a0da186a52c3c5c58080a757d393d2c4a9",
+        "local_file": "金融数据中心能力建设指引.pdf",
+        "locator": "7 章：「A 级金融数据中心、B 级金融数据中心冷却水补水储水量应满足冷却水系统 12 小时补水量」",
+        "grade": "S1"
+      },
+      "depth": "精读",
+      "notes": "12 小时 = 720 分钟；条款只约束 A 级与 B 级，C 级不在其列，tier 维没有「A/B 级」这一取值，记通用并在此说明。[未核]"
     }
   ]
 }
