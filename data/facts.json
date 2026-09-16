@@ -250839,6 +250839,170 @@
       },
       "depth": "精读",
       "notes": "**与库内信通院 2022 年全国平均 1.49（CDCC 口径为 2021 年 1.49）不同**，本条为 1.52。原文还写「较 2015 年提高了 0.19」——PUE 数值升高本应是变差，原文用「提高」表述改善，方向自相矛盾，按数值照录、不做解释。同段另给「仅 41% 的数据中心 PUE 在 1.4 以下」。[未核]"
+    },
+    {
+      "fact_id": "caict3p2023-telco-racks-2022",
+      "asserter": "工信部",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "market",
+        "id": "cn-telco-dc",
+        "label": "三大基础电信运营商对外服务的数据中心机架"
+      },
+      "value": 81.8,
+      "unit": "万标准机架",
+      "bound": "point",
+      "caliber": {
+        "counting": "物理机柜",
+        "region": "CN"
+      },
+      "as_of": "2022-12",
+      "evidence": {
+        "sha256": "1c13fbcabd5de9bc890970c8a1f84370d188875bc6cfed67568f81e697e69f34",
+        "local_file": "中国信通院中国第三方数据中心服务商分析报告2023年43页.pdf",
+        "locator": "第 1 章：「工业和信息化部数据显示，截至 2022 年底，三大基础电信运营商为公众提供服务的数据中心机架数量达到 81.8 万个，其中，中西部地区机架数占比达 21.9%，比去年同期增长 0.6%」（脚注：来源 中华人民共和国工业和信息化部 2022 年通信业信息公报）",
+        "grade": "S2",
+        "originator": "工信部 2022 年通信业信息公报"
+      },
+      "depth": "精读",
+      "notes": "**这是运营商对外服务口径，不含自用**，也不是全国总量（同期全国约 650-670 万架）。原文写「机架数量」未说明是否折标准架，按物理机柜记。中西部占比 21.9%（同比 +0.6 个百分点）。[未核]"
+    },
+    {
+      "fact_id": "caict3p2023-cn-dc-revenue-2022",
+      "asserter": "中国信通院",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-datacenter-market",
+        "label": "中国数据中心产业（市场规模）"
+      },
+      "value": 1900.0,
+      "unit": "亿（原币）",
+      "bound": "point",
+      "caliber": {
+        "service_scope": "IDC 服务（含托管与增值）",
+        "operator_type": "全市场",
+        "region": "CN",
+        "basis": "第三方跟踪",
+        "currency": "人民币"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "1c13fbcabd5de9bc890970c8a1f84370d188875bc6cfed67568f81e697e69f34",
+        "local_file": "中国信通院中国第三方数据中心服务商分析报告2023年43页.pdf",
+        "locator": "第 2 章：「据中国信通院测算，2022 年数据中心业务市场收入约达到 1900 亿元，近三年年均复合增长率为 27.2%」（图 2 来源：IDC，中国信通院云计算与大数据研究所）",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "与库内 caict2023-cn-dc-service-revenue-2022（同为信通院、同值 1900 亿元）是同一测算的两次发布，不作交叉验证。近三年 CAGR 27.2%。[未核]"
+    },
+    {
+      "fact_id": "caict3p2023-gds-contracted-area-2022",
+      "asserter": "中国信通院",
+      "metric_id": "dc_gross_floor_area",
+      "entity": {
+        "type": "company",
+        "id": "gds",
+        "label": "万国数据（数据中心总签约面积）"
+      },
+      "value": 630716.0,
+      "unit": "㎡",
+      "bound": "point",
+      "caliber": {
+        "area_scope": "主机房区域",
+        "stage": "竣工",
+        "region": "CN"
+      },
+      "as_of": "2022-12",
+      "evidence": {
+        "sha256": "1c13fbcabd5de9bc890970c8a1f84370d188875bc6cfed67568f81e697e69f34",
+        "local_file": "中国信通院中国第三方数据中心服务商分析报告2023年43页.pdf",
+        "locator": "第 3 章：「与 2021 年相比，2022 年万国数据的数据中心总签约面积增加 73,894 平方米，已达 630,716 平方米，同比增长 13.3%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**签约面积不是建筑面积**：它是已与客户签约的机房面积，介于供给与需求之间；area_scope 维没有「签约面积」取值，取最接近的主机房区域并在此写明。当年净增 73,894 ㎡。[未核]"
+    },
+    {
+      "fact_id": "caict3p2023-vnet-revenue-2022",
+      "asserter": "中国信通院",
+      "metric_id": "company_revenue",
+      "entity": {
+        "type": "company",
+        "id": "vnet",
+        "label": "世纪互联"
+      },
+      "value": 7070.0,
+      "unit": "百万（原币）",
+      "bound": "point",
+      "caliber": {
+        "currency": "人民币",
+        "fiscal_align": "自然季/自然年",
+        "basis": "实测"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "1c13fbcabd5de9bc890970c8a1f84370d188875bc6cfed67568f81e697e69f34",
+        "local_file": "中国信通院中国第三方数据中心服务商分析报告2023年43页.pdf",
+        "locator": "第 3 章：「世纪互联 2022 年公司净营收 70.7 亿元，同比增长 14.4%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "70.7 亿元 = 7070 百万元，净营收口径，同比 +14.4%。[未核]"
+    },
+    {
+      "fact_id": "caict3p2023-qinhuai-revenue-2022",
+      "asserter": "中国信通院",
+      "metric_id": "company_revenue",
+      "entity": {
+        "type": "company",
+        "id": "qinhuai-data",
+        "label": "秦淮数据"
+      },
+      "value": 4550.0,
+      "unit": "百万（原币）",
+      "bound": "point",
+      "caliber": {
+        "currency": "人民币",
+        "fiscal_align": "自然季/自然年",
+        "basis": "实测"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "1c13fbcabd5de9bc890970c8a1f84370d188875bc6cfed67568f81e697e69f34",
+        "local_file": "中国信通院中国第三方数据中心服务商分析报告2023年43页.pdf",
+        "locator": "第 3 章：「（秦淮数据）全年实现营收 45.5 亿元，同比增长 60%，净利润 6.52 亿元，增长 106%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "45.5 亿元；同比 +60%，净利润 6.52 亿元（+106%）。[未核]"
+    },
+    {
+      "fact_id": "caict3p2023-sinnet-revenue-2022",
+      "asserter": "中国信通院",
+      "metric_id": "company_revenue",
+      "entity": {
+        "type": "company",
+        "id": "aofei-data",
+        "label": "数据港"
+      },
+      "value": 1455.0,
+      "unit": "百万（原币）",
+      "bound": "point",
+      "caliber": {
+        "currency": "人民币",
+        "fiscal_align": "自然季/自然年",
+        "basis": "实测"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "1c13fbcabd5de9bc890970c8a1f84370d188875bc6cfed67568f81e697e69f34",
+        "local_file": "中国信通院中国第三方数据中心服务商分析报告2023年43页.pdf",
+        "locator": "第 3 章：「数据港承接了大量定制型数据中心项目建设和运营需求订单，实现营业收入约 14.55 亿元，同比增长 16.88%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "14.55 亿元，同比 +16.88%。实体 id 沿用库内既有命名习惯前缀，标签以原文公司名为准。[未核]"
     }
   ]
 }
