@@ -235757,7 +235757,10 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**这是云数据中心资本开支的同比增速预测，自然年（CY）口径。****同一份报告里的两组数展示了下修过程**：CY22 由此前预测的 +28% 下修到 +25%，下半年环比由 +34% 下修到 +22%——**「预测被下修」本身是事实，引用单一数值时必须带上修订方向**。CY23 的 +14% 与正文「mid-teens %」表述一致。背景：2022 年中市场担心衰退风险与数据中心建设延期（供应与人力约束、CSP 等待 Intel Sapphire Rapids）。CY22 增速（由此前的 +28% 下修而来）。 segment 记「Hyperscalers」：原文说的是 cloud datacenter capex（四大云厂为主），region 记 Global（未单列地域）。",
-      "asserter": "摩根大通"
+      "asserter": "摩根大通",
+      "disputed_by": [
+        "bofa2207-cloud-capex-growth-cy22"
+      ]
     },
     {
       "fact_id": "jpm2207-cloud-capex-growth-cy23",
@@ -235790,7 +235793,82 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "notes": "**这是云数据中心资本开支的同比增速预测，自然年（CY）口径。****同一份报告里的两组数展示了下修过程**：CY22 由此前预测的 +28% 下修到 +25%，下半年环比由 +34% 下修到 +22%——**「预测被下修」本身是事实，引用单一数值时必须带上修订方向**。CY23 的 +14% 与正文「mid-teens %」表述一致。背景：2022 年中市场担心衰退风险与数据中心建设延期（供应与人力约束、CSP 等待 Intel Sapphire Rapids）。CY23 增速，正文另称基准情形为「mid-teens %」；并称即便计入衰退风险，云 capex 仍可增长低个位数至高个位数（四大云厂与 Meta 各自放缓）。 segment 记「Hyperscalers」：原文说的是 cloud datacenter capex（四大云厂为主），region 记 Global（未单列地域）。",
-      "asserter": "摩根大通"
+      "asserter": "摩根大通",
+      "disputed_by": [
+        "bofa2207-cloud-capex-growth-cy23"
+      ]
+    },
+    {
+      "fact_id": "bofa2207-cloud-capex-growth-cy22",
+      "metric_id": "capex_growth_rate",
+      "entity": {
+        "type": "industry",
+        "id": "global-cloud-datacenter-capex",
+        "label": "全球云数据中心资本开支"
+      },
+      "value": 20.0,
+      "unit": "%",
+      "caliber": {
+        "period_basis": "同比",
+        "segment": "Hyperscalers",
+        "scenario": "Base Case",
+        "region": "Global",
+        "basis": "预测",
+        "vintage_note": "见 as_of"
+      },
+      "as_of": "2022E@2022-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fb4cd3296f3cf2f31d2fada60bd8ad9dbf06da99f52ecb6eb7e73111336b4607",
+        "local_file": "Cloud_CapEx_BofA_07-13-2022.pdf",
+        "locator": "第 1 页：「Downside risk to cons. 11% cloud capex growth for CY23. Our updated cloud capex tracker follows top…… +20%/+11% YoY growth for CY22/23……reflecting macro caution (Meta cautionary 2H outlook, BABA cloud dec……)……In prior downturns, CY15 and CY19, Super-7 capex dec…… historical 25-30% annualized growth rate」",
+        "grade": "S3",
+        "originator": "美银（BofA Global Research）《Cloud capex: next shoe to drop in rolling correction, though reset key to recovery》（2022-07-13）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**自然年（CY）口径的云资本开支同比增速，来自美银自建的 cloud capex tracker（跟踪头部云厂）。****与同期摩根大通的数（CY22 +25%、CY23 +14%，2022-07-12）构成一组对照**：两家相隔一天，CY22 分别给 20% 与 25%、CY23 给 11% 与 14%，**差距来自各自跟踪的厂商名单与口径**，已互标争议。美银同时警告 CY23 的 11% 一致预期存在下行风险，并指出前两轮下行周期（CY15、CY19）Super-7 资本开支曾从 25-30% 的历史年化增速回落。",
+      "asserter": "美银",
+      "disputes": [
+        "jpm2207-cloud-capex-growth-cy22"
+      ]
+    },
+    {
+      "fact_id": "bofa2207-cloud-capex-growth-cy23",
+      "metric_id": "capex_growth_rate",
+      "entity": {
+        "type": "industry",
+        "id": "global-cloud-datacenter-capex",
+        "label": "全球云数据中心资本开支"
+      },
+      "value": 11.0,
+      "unit": "%",
+      "caliber": {
+        "period_basis": "同比",
+        "segment": "Hyperscalers",
+        "scenario": "Base Case",
+        "region": "Global",
+        "basis": "预测",
+        "vintage_note": "见 as_of"
+      },
+      "as_of": "2023E@2022-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "fb4cd3296f3cf2f31d2fada60bd8ad9dbf06da99f52ecb6eb7e73111336b4607",
+        "local_file": "Cloud_CapEx_BofA_07-13-2022.pdf",
+        "locator": "第 1 页：「Downside risk to cons. 11% cloud capex growth for CY23. Our updated cloud capex tracker follows top…… +20%/+11% YoY growth for CY22/23……reflecting macro caution (Meta cautionary 2H outlook, BABA cloud dec……)……In prior downturns, CY15 and CY19, Super-7 capex dec…… historical 25-30% annualized growth rate」",
+        "grade": "S3",
+        "originator": "美银（BofA Global Research）《Cloud capex: next shoe to drop in rolling correction, though reset key to recovery》（2022-07-13）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**自然年（CY）口径的云资本开支同比增速，来自美银自建的 cloud capex tracker（跟踪头部云厂）。****与同期摩根大通的数（CY22 +25%、CY23 +14%，2022-07-12）构成一组对照**：两家相隔一天，CY22 分别给 20% 与 25%、CY23 给 11% 与 14%，**差距来自各自跟踪的厂商名单与口径**，已互标争议。美银同时警告 CY23 的 11% 一致预期存在下行风险，并指出前两轮下行周期（CY15、CY19）Super-7 资本开支曾从 25-30% 的历史年化增速回落。",
+      "asserter": "美银",
+      "disputes": [
+        "jpm2207-cloud-capex-growth-cy23"
+      ]
     }
   ]
 }
