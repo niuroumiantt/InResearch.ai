@@ -240578,6 +240578,454 @@
       },
       "depth": "精读",
       "notes": "客户侧的采购要求而非某个项目的设计取值，原文写「一般在……左右」，按全场平均理解。同节还记了客户的冷却偏好（拼多多倾向水冷、字节跳动与美团倾向间接蒸发冷）与美团「变压器负载率单台不高于 50%」的要求。[未核]"
+    },
+    {
+      "fact_id": "ct2411-general-rack-power-upper",
+      "asserter": "中国电信",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "component",
+        "id": "cn-general-server-rack-2024",
+        "label": "通用算力风冷机柜（中国电信口径）"
+      },
+      "value": 8.0,
+      "unit": "kW/机柜",
+      "bound": "upper",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "市场普遍水平",
+        "era": "当期",
+        "power_basis": "未披露",
+        "region": "CN"
+      },
+      "as_of": "2024-11",
+      "evidence": {
+        "sha256": "62fc64317d31b234cd8d18b592b6a4a2dc1c0b175edc9f34b44ede966711645e",
+        "local_file": "20241101-中国电信：新一代智算数据中心AIDC基础设施技术方案白皮书(29页).pdf",
+        "locator": "第 2 章：「由单机柜功率 8kW 以下风冷通用算力设备升级至 60kW 以上液冷智能算力设备」（原文页面带版权水印，引文已去除水印字符）",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "中国电信用来对比通算与智算机柜的两端之一；同句称智算设备较通算设备功率密度增加 20 倍以上。[未核]"
+    },
+    {
+      "fact_id": "ct2411-ai-liquid-rack-power-lower",
+      "asserter": "中国电信",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "component",
+        "id": "cn-ai-liquid-rack-2024",
+        "label": "智算液冷机柜（中国电信口径）"
+      },
+      "value": 60.0,
+      "unit": "kW/机柜",
+      "bound": "lower",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "市场普遍水平",
+        "era": "当期",
+        "power_basis": "未披露",
+        "region": "CN"
+      },
+      "as_of": "2024-11",
+      "evidence": {
+        "sha256": "62fc64317d31b234cd8d18b592b6a4a2dc1c0b175edc9f34b44ede966711645e",
+        "local_file": "20241101-中国电信：新一代智算数据中心AIDC基础设施技术方案白皮书(29页).pdf",
+        "locator": "第 2 章：「由单机柜功率 8kW 以下风冷通用算力设备升级至 60kW 以上液冷智能算力设备」（原文页面带版权水印，引文已去除水印字符）",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "与 8kW 以下的通算机柜构成同一句话的两端，倍数关系约 7.5 倍，原文另称功率密度增加 20 倍以上（口径不明，未录）。[未核]"
+    },
+    {
+      "fact_id": "ct2411-pure-ai-rack-power",
+      "asserter": "中国电信",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "market",
+        "id": "cn-pure-ai-workload",
+        "label": "纯智算业态（大模型训练池）机柜功率要求"
+      },
+      "value": 35.0,
+      "unit": "kW/架",
+      "bound": "lower",
+      "caliber": {
+        "basis": "规划平均",
+        "scope": "全场平均",
+        "region": "CN"
+      },
+      "as_of": "2024-11",
+      "evidence": {
+        "sha256": "62fc64317d31b234cd8d18b592b6a4a2dc1c0b175edc9f34b44ede966711645e",
+        "local_file": "20241101-中国电信：新一代智算数据中心AIDC基础设施技术方案白皮书(29页).pdf",
+        "locator": "第 2 章：「一是纯智算，面向大模型的通用训练池……机柜功率在 35kW 以上，采用全液冷形式」（原文页面带版权水印，引文已去除水印字符）",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "中国电信把客户算力形态分成三类，这是第一类的机柜功率门槛，配套全液冷。[未核]"
+    },
+    {
+      "fact_id": "ct2411-cloud-ai-rack-power-lower",
+      "asserter": "中国电信",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "market",
+        "id": "cn-cloud-ai-workload",
+        "label": "云智一体业态（训推一体）机柜功率要求"
+      },
+      "value": 8.0,
+      "unit": "kW/架",
+      "bound": "lower",
+      "caliber": {
+        "basis": "规划平均",
+        "scope": "全场平均",
+        "region": "CN"
+      },
+      "as_of": "2024-11",
+      "evidence": {
+        "sha256": "62fc64317d31b234cd8d18b592b6a4a2dc1c0b175edc9f34b44ede966711645e",
+        "local_file": "20241101-中国电信：新一代智算数据中心AIDC基础设施技术方案白皮书(29页).pdf",
+        "locator": "第 2 章：「二是云智一体，重点发展训推一体，面向公云和互联网头部企业……机柜功率在 8kW-15kW 或 35kW 以上，采用以液冷为主的风液混合形式」（原文页面带版权水印，引文已去除水印字符）",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "原文给的是「8kW-15kW 或 35kW 以上」两段式取值，本条与配对的上界记的是低段；高段与纯智算的 35kW 以上重合，未另记。[未核]"
+    },
+    {
+      "fact_id": "ct2411-cloud-ai-rack-power-upper",
+      "asserter": "中国电信",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "market",
+        "id": "cn-cloud-ai-workload",
+        "label": "云智一体业态（训推一体）机柜功率要求"
+      },
+      "value": 15.0,
+      "unit": "kW/架",
+      "bound": "upper",
+      "caliber": {
+        "basis": "规划平均",
+        "scope": "全场平均",
+        "region": "CN"
+      },
+      "as_of": "2024-11",
+      "evidence": {
+        "sha256": "62fc64317d31b234cd8d18b592b6a4a2dc1c0b175edc9f34b44ede966711645e",
+        "local_file": "20241101-中国电信：新一代智算数据中心AIDC基础设施技术方案白皮书(29页).pdf",
+        "locator": "第 2 章：「二是云智一体，重点发展训推一体，面向公云和互联网头部企业……机柜功率在 8kW-15kW 或 35kW 以上，采用以液冷为主的风液混合形式」（原文页面带版权水印，引文已去除水印字符）",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "同上，低段上界。[未核]"
+    },
+    {
+      "fact_id": "ct2411-general-ai-rack-power-lower",
+      "asserter": "中国电信",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "market",
+        "id": "cn-general-ai-workload",
+        "label": "普智一体业态（专属场景与端侧推理）机柜功率要求"
+      },
+      "value": 2.0,
+      "unit": "kW/架",
+      "bound": "lower",
+      "caliber": {
+        "basis": "规划平均",
+        "scope": "全场平均",
+        "region": "CN"
+      },
+      "as_of": "2024-11",
+      "evidence": {
+        "sha256": "62fc64317d31b234cd8d18b592b6a4a2dc1c0b175edc9f34b44ede966711645e",
+        "local_file": "20241101-中国电信：新一代智算数据中心AIDC基础设施技术方案白皮书(29页).pdf",
+        "locator": "第 2 章：「三是普智一体，主要适合数据不出域的专属场景和极低时延的端侧推理……机柜功率在 2kW-8kW 或 35kW 以上，采用全风冷，或者是风液混合形式」（原文页面带版权水印，引文已去除水印字符）",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "原文给的是「2kW-8kW 或 35kW 以上」两段式取值，本条与配对的上界记的是低段。[未核]"
+    },
+    {
+      "fact_id": "ct2411-general-ai-rack-power-upper",
+      "asserter": "中国电信",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "market",
+        "id": "cn-general-ai-workload",
+        "label": "普智一体业态（专属场景与端侧推理）机柜功率要求"
+      },
+      "value": 8.0,
+      "unit": "kW/架",
+      "bound": "upper",
+      "caliber": {
+        "basis": "规划平均",
+        "scope": "全场平均",
+        "region": "CN"
+      },
+      "as_of": "2024-11",
+      "evidence": {
+        "sha256": "62fc64317d31b234cd8d18b592b6a4a2dc1c0b175edc9f34b44ede966711645e",
+        "local_file": "20241101-中国电信：新一代智算数据中心AIDC基础设施技术方案白皮书(29页).pdf",
+        "locator": "第 2 章：「三是普智一体，主要适合数据不出域的专属场景和极低时延的端侧推理……机柜功率在 2kW-8kW 或 35kW 以上，采用全风冷，或者是风液混合形式」（原文页面带版权水印，引文已去除水印字符）",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "同上，低段上界。[未核]"
+    },
+    {
+      "fact_id": "ct2411-pod-aircooled-lower",
+      "asserter": "中国电信",
+      "metric_id": "room_design_power",
+      "entity": {
+        "type": "component",
+        "id": "ct-aidc-pod-aircooled",
+        "label": "中国电信 AIDC 全风冷弹性方舱"
+      },
+      "value": 120.0,
+      "unit": "kW",
+      "bound": "lower",
+      "caliber": {
+        "scope": "仅IT设备",
+        "basis": "设计取值",
+        "region": "CN"
+      },
+      "as_of": "2024-11",
+      "evidence": {
+        "sha256": "62fc64317d31b234cd8d18b592b6a4a2dc1c0b175edc9f34b44ede966711645e",
+        "local_file": "20241101-中国电信：新一代智算数据中心AIDC基础设施技术方案白皮书(29页).pdf",
+        "locator": "第 2 章表 1「3 种典型弹性方舱主要指标」：全风冷方舱约 120～360kW、风液混合方舱约 128～610kW（风冷 360kW＋液冷 250kW）、全液冷方舱约 460～720kW（风冷 240kW＋液冷 480kW），供电弹性范围不超过 720kW（原文页面带版权水印，引文已去除水印字符）",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "中国电信 AIDC 的「弹性方舱」是介于机柜与机房之间的基本单元，本指标按单舱 IT 设备功耗记；表中另给三型方舱的 pPUE（约 1.20~1.30 / 1.15~1.20 / 1.09~1.12），库内没有 pPUE 指标，已记缺口。配电统一采用 630A 智能小母线。[未核]"
+    },
+    {
+      "fact_id": "ct2411-pod-aircooled-upper",
+      "asserter": "中国电信",
+      "metric_id": "room_design_power",
+      "entity": {
+        "type": "component",
+        "id": "ct-aidc-pod-aircooled",
+        "label": "中国电信 AIDC 全风冷弹性方舱"
+      },
+      "value": 360.0,
+      "unit": "kW",
+      "bound": "upper",
+      "caliber": {
+        "scope": "仅IT设备",
+        "basis": "设计取值",
+        "region": "CN"
+      },
+      "as_of": "2024-11",
+      "evidence": {
+        "sha256": "62fc64317d31b234cd8d18b592b6a4a2dc1c0b175edc9f34b44ede966711645e",
+        "local_file": "20241101-中国电信：新一代智算数据中心AIDC基础设施技术方案白皮书(29页).pdf",
+        "locator": "第 2 章表 1「3 种典型弹性方舱主要指标」：全风冷方舱约 120～360kW、风液混合方舱约 128～610kW（风冷 360kW＋液冷 250kW）、全液冷方舱约 460～720kW（风冷 240kW＋液冷 480kW），供电弹性范围不超过 720kW（原文页面带版权水印，引文已去除水印字符）",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "中国电信 AIDC 的「弹性方舱」是介于机柜与机房之间的基本单元，本指标按单舱 IT 设备功耗记；表中另给三型方舱的 pPUE（约 1.20~1.30 / 1.15~1.20 / 1.09~1.12），库内没有 pPUE 指标，已记缺口。配电统一采用 630A 智能小母线。[未核]"
+    },
+    {
+      "fact_id": "ct2411-pod-hybrid-lower",
+      "asserter": "中国电信",
+      "metric_id": "room_design_power",
+      "entity": {
+        "type": "component",
+        "id": "ct-aidc-pod-hybrid",
+        "label": "中国电信 AIDC 风液混合弹性方舱"
+      },
+      "value": 128.0,
+      "unit": "kW",
+      "bound": "lower",
+      "caliber": {
+        "scope": "仅IT设备",
+        "basis": "设计取值",
+        "region": "CN"
+      },
+      "as_of": "2024-11",
+      "evidence": {
+        "sha256": "62fc64317d31b234cd8d18b592b6a4a2dc1c0b175edc9f34b44ede966711645e",
+        "local_file": "20241101-中国电信：新一代智算数据中心AIDC基础设施技术方案白皮书(29页).pdf",
+        "locator": "第 2 章表 1「3 种典型弹性方舱主要指标」：全风冷方舱约 120～360kW、风液混合方舱约 128～610kW（风冷 360kW＋液冷 250kW）、全液冷方舱约 460～720kW（风冷 240kW＋液冷 480kW），供电弹性范围不超过 720kW（原文页面带版权水印，引文已去除水印字符）",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "中国电信 AIDC 的「弹性方舱」是介于机柜与机房之间的基本单元，本指标按单舱 IT 设备功耗记；表中另给三型方舱的 pPUE（约 1.20~1.30 / 1.15~1.20 / 1.09~1.12），库内没有 pPUE 指标，已记缺口。配电统一采用 630A 智能小母线。[未核] 该型的 610kW 上限由风冷 360kW 与液冷 250kW 相加构成。"
+    },
+    {
+      "fact_id": "ct2411-pod-hybrid-upper",
+      "asserter": "中国电信",
+      "metric_id": "room_design_power",
+      "entity": {
+        "type": "component",
+        "id": "ct-aidc-pod-hybrid",
+        "label": "中国电信 AIDC 风液混合弹性方舱"
+      },
+      "value": 610.0,
+      "unit": "kW",
+      "bound": "upper",
+      "caliber": {
+        "scope": "仅IT设备",
+        "basis": "设计取值",
+        "region": "CN"
+      },
+      "as_of": "2024-11",
+      "evidence": {
+        "sha256": "62fc64317d31b234cd8d18b592b6a4a2dc1c0b175edc9f34b44ede966711645e",
+        "local_file": "20241101-中国电信：新一代智算数据中心AIDC基础设施技术方案白皮书(29页).pdf",
+        "locator": "第 2 章表 1「3 种典型弹性方舱主要指标」：全风冷方舱约 120～360kW、风液混合方舱约 128～610kW（风冷 360kW＋液冷 250kW）、全液冷方舱约 460～720kW（风冷 240kW＋液冷 480kW），供电弹性范围不超过 720kW（原文页面带版权水印，引文已去除水印字符）",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "中国电信 AIDC 的「弹性方舱」是介于机柜与机房之间的基本单元，本指标按单舱 IT 设备功耗记；表中另给三型方舱的 pPUE（约 1.20~1.30 / 1.15~1.20 / 1.09~1.12），库内没有 pPUE 指标，已记缺口。配电统一采用 630A 智能小母线。[未核] 该型的 610kW 上限由风冷 360kW 与液冷 250kW 相加构成。"
+    },
+    {
+      "fact_id": "ct2411-pod-liquid-lower",
+      "asserter": "中国电信",
+      "metric_id": "room_design_power",
+      "entity": {
+        "type": "component",
+        "id": "ct-aidc-pod-liquid",
+        "label": "中国电信 AIDC 全液冷弹性方舱"
+      },
+      "value": 460.0,
+      "unit": "kW",
+      "bound": "lower",
+      "caliber": {
+        "scope": "仅IT设备",
+        "basis": "设计取值",
+        "region": "CN"
+      },
+      "as_of": "2024-11",
+      "evidence": {
+        "sha256": "62fc64317d31b234cd8d18b592b6a4a2dc1c0b175edc9f34b44ede966711645e",
+        "local_file": "20241101-中国电信：新一代智算数据中心AIDC基础设施技术方案白皮书(29页).pdf",
+        "locator": "第 2 章表 1「3 种典型弹性方舱主要指标」：全风冷方舱约 120～360kW、风液混合方舱约 128～610kW（风冷 360kW＋液冷 250kW）、全液冷方舱约 460～720kW（风冷 240kW＋液冷 480kW），供电弹性范围不超过 720kW（原文页面带版权水印，引文已去除水印字符）",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "中国电信 AIDC 的「弹性方舱」是介于机柜与机房之间的基本单元，本指标按单舱 IT 设备功耗记；表中另给三型方舱的 pPUE（约 1.20~1.30 / 1.15~1.20 / 1.09~1.12），库内没有 pPUE 指标，已记缺口。配电统一采用 630A 智能小母线。[未核] 该型的 720kW 上限由风冷 240kW 与液冷 480kW 相加构成，也是三型共同的供电弹性上限。"
+    },
+    {
+      "fact_id": "ct2411-pod-liquid-upper",
+      "asserter": "中国电信",
+      "metric_id": "room_design_power",
+      "entity": {
+        "type": "component",
+        "id": "ct-aidc-pod-liquid",
+        "label": "中国电信 AIDC 全液冷弹性方舱"
+      },
+      "value": 720.0,
+      "unit": "kW",
+      "bound": "upper",
+      "caliber": {
+        "scope": "仅IT设备",
+        "basis": "设计取值",
+        "region": "CN"
+      },
+      "as_of": "2024-11",
+      "evidence": {
+        "sha256": "62fc64317d31b234cd8d18b592b6a4a2dc1c0b175edc9f34b44ede966711645e",
+        "local_file": "20241101-中国电信：新一代智算数据中心AIDC基础设施技术方案白皮书(29页).pdf",
+        "locator": "第 2 章表 1「3 种典型弹性方舱主要指标」：全风冷方舱约 120～360kW、风液混合方舱约 128～610kW（风冷 360kW＋液冷 250kW）、全液冷方舱约 460～720kW（风冷 240kW＋液冷 480kW），供电弹性范围不超过 720kW（原文页面带版权水印，引文已去除水印字符）",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "中国电信 AIDC 的「弹性方舱」是介于机柜与机房之间的基本单元，本指标按单舱 IT 设备功耗记；表中另给三型方舱的 pPUE（约 1.20~1.30 / 1.15~1.20 / 1.09~1.12），库内没有 pPUE 指标，已记缺口。配电统一采用 630A 智能小母线。[未核] 该型的 720kW 上限由风冷 240kW 与液冷 480kW 相加构成，也是三型共同的供电弹性上限。"
+    },
+    {
+      "fact_id": "ct2411-cn-ai-server-shipments-2021",
+      "asserter": "中国电信",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server",
+        "label": "中国 AI 服务器市场"
+      },
+      "value": 226.0,
+      "unit": "千台",
+      "bound": "point",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "未拆分",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2021",
+      "evidence": {
+        "sha256": "62fc64317d31b234cd8d18b592b6a4a2dc1c0b175edc9f34b44ede966711645e",
+        "local_file": "20241101-中国电信：新一代智算数据中心AIDC基础设施技术方案白皮书(29页).pdf",
+        "locator": "第 1 章：「截至 2021 年底，中国 AI 服务器市场的出货量已达到 22.6 万台，同比增长约 50.3%」（原文页面带版权水印，引文已去除水印字符）",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "22.6 万台 = 226 千台。原文未注明数据出处，按 PR #197 口径断言者记直接陈述的中国电信；同段另给 2022 年同比增长约 23.9%、2023 年及以后服务器总体出货量保持 6% 左右增长，增速库内无指标。[未核]"
+    },
+    {
+      "fact_id": "ct2411-cn-ai-server-shipments-2025e",
+      "asserter": "中国电信",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server",
+        "label": "中国 AI 服务器市场"
+      },
+      "value": 500.0,
+      "unit": "千台",
+      "bound": "lower",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "未拆分",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2025E@2024-11",
+      "evidence": {
+        "sha256": "62fc64317d31b234cd8d18b592b6a4a2dc1c0b175edc9f34b44ede966711645e",
+        "local_file": "20241101-中国电信：新一代智算数据中心AIDC基础设施技术方案白皮书(29页).pdf",
+        "locator": "第 1 章：「初步预测到 2025 年，中国 AI 服务器市场出货量将达到 50 万台以上，复合增长率超 20%，远高于服务器总体增速」（原文页面带版权水印，引文已去除水印字符）",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "「50 万台以上」记下界，= 500 千台。[未核]"
+    },
+    {
+      "fact_id": "ct2411-aidc-floor-load",
+      "asserter": "中国电信",
+      "metric_id": "room_floor_load",
+      "entity": {
+        "type": "component",
+        "id": "ct-aidc-building-standard",
+        "label": "中国电信 AIDC 高标准建筑方案"
+      },
+      "value": 16.0,
+      "unit": "kN/㎡",
+      "bound": "lower",
+      "caliber": {
+        "room_type": "主机房",
+        "basis": "规范最低（运营商企标）",
+        "region": "CN",
+        "tier": "未注明",
+        "build_type": "新建"
+      },
+      "as_of": "2024-11",
+      "evidence": {
+        "sha256": "62fc64317d31b234cd8d18b592b6a4a2dc1c0b175edc9f34b44ede966711645e",
+        "local_file": "20241101-中国电信：新一代智算数据中心AIDC基础设施技术方案白皮书(29页).pdf",
+        "grade": "S2",
+        "locator": "第 3 章表 3「高标准建筑方案主要指标要求」承重能力一行：「全楼统一大荷载，现阶段建议按 16kN/m² 规划建设」（原文页面带版权水印，引文已去除水印字符）"
+      },
+      "depth": "精读",
+      "notes": "「全楼统一大荷载」是液冷机柜重量上升后的建筑侧要求，按建议下限记；同表还要求外市电扩容能力不小于 30%、架空地板高度不宜小于 700mm、空调管井同时满足水冷与液冷两套系统。[未核]"
     }
   ]
 }
