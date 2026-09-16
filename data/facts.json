@@ -247799,6 +247799,604 @@
       },
       "depth": "精读",
       "notes": "**这是「前六省各自均超过 60 万架」的下界，不是六省合计**；六省合计占全国超过 50%（对应 1085 万架的一半以上）。逐省数值原文只有图，未给数字。[未核]"
+    },
+    {
+      "fact_id": "acbb2025-global-device-compute-total",
+      "asserter": "中国信通院",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "global-device-compute",
+        "label": "全球计算设备算力（已出货服务器口径）"
+      },
+      "value": 4495.0,
+      "unit": "EFLOPS",
+      "bound": "point",
+      "caliber": {
+        "compute_type": "总算力",
+        "precision": "FP32",
+        "area": "全球",
+        "status": "累计",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2025-06",
+      "evidence": {
+        "sha256": "0abceb64d085655b1ecea69f2a7802a6b0a35fa277bb72f85620e2e6567827d8",
+        "local_file": "先进计算暨算力发展指数蓝皮书（2025年）.pdf",
+        "locator": "第一章：「截至 2025 年 6 月，全球计算设备算力总规模为 4495 EFlops，同比大幅增长 117%，其中基础算力规模（FP32）为 597 EFlops；智能算力规模（换算为 FP32）为 3846 EFlops，占总算力比例达到 85%，同比增加 13 个百分点；超算算力规模（换算为 FP32）为 52 EFlops，同比增长 63%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "同比增长 117%。**口径是「计算设备侧」即全部已出货服务器的算力之和，与「算力中心内服务器」的基础设施侧口径不是一回事**——同一份蓝皮书把两种口径并列，本组属前者。 [未核]"
+    },
+    {
+      "fact_id": "acbb2025-global-device-compute-general",
+      "asserter": "中国信通院",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "global-device-compute",
+        "label": "全球计算设备算力（已出货服务器口径）"
+      },
+      "value": 597.0,
+      "unit": "EFLOPS",
+      "bound": "point",
+      "caliber": {
+        "compute_type": "通用算力",
+        "precision": "FP32",
+        "area": "全球",
+        "status": "累计",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2025-06",
+      "evidence": {
+        "sha256": "0abceb64d085655b1ecea69f2a7802a6b0a35fa277bb72f85620e2e6567827d8",
+        "local_file": "先进计算暨算力发展指数蓝皮书（2025年）.pdf",
+        "locator": "第一章：「截至 2025 年 6 月，全球计算设备算力总规模为 4495 EFlops，同比大幅增长 117%，其中基础算力规模（FP32）为 597 EFlops；智能算力规模（换算为 FP32）为 3846 EFlops，占总算力比例达到 85%，同比增加 13 个百分点；超算算力规模（换算为 FP32）为 52 EFlops，同比增长 63%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "FP32 原生口径。 [未核]"
+    },
+    {
+      "fact_id": "acbb2025-global-device-compute-ai",
+      "asserter": "中国信通院",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "global-device-compute",
+        "label": "全球计算设备算力（已出货服务器口径）"
+      },
+      "value": 3846.0,
+      "unit": "EFLOPS",
+      "bound": "point",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "FP32",
+        "area": "全球",
+        "status": "累计",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2025-06",
+      "evidence": {
+        "sha256": "0abceb64d085655b1ecea69f2a7802a6b0a35fa277bb72f85620e2e6567827d8",
+        "local_file": "先进计算暨算力发展指数蓝皮书（2025年）.pdf",
+        "locator": "第一章：「截至 2025 年 6 月，全球计算设备算力总规模为 4495 EFlops，同比大幅增长 117%，其中基础算力规模（FP32）为 597 EFlops；智能算力规模（换算为 FP32）为 3846 EFlops，占总算力比例达到 85%，同比增加 13 个百分点；超算算力规模（换算为 FP32）为 52 EFlops，同比增长 63%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**换算为 FP32 之后**的数，占总算力 85%、同比增 13 个百分点；与按 FP16 计的智算规模（同院另一处给全球 5693 EFLOPS）相差约 1.5 倍，正是精度折算差。 [未核]"
+    },
+    {
+      "fact_id": "acbb2025-global-device-compute-hpc",
+      "asserter": "中国信通院",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "global-device-compute",
+        "label": "全球计算设备算力（已出货服务器口径）"
+      },
+      "value": 52.0,
+      "unit": "EFLOPS",
+      "bound": "point",
+      "caliber": {
+        "compute_type": "超算算力",
+        "precision": "FP32",
+        "area": "全球",
+        "status": "累计",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2025-06",
+      "evidence": {
+        "sha256": "0abceb64d085655b1ecea69f2a7802a6b0a35fa277bb72f85620e2e6567827d8",
+        "local_file": "先进计算暨算力发展指数蓝皮书（2025年）.pdf",
+        "locator": "第一章：「截至 2025 年 6 月，全球计算设备算力总规模为 4495 EFlops，同比大幅增长 117%，其中基础算力规模（FP32）为 597 EFlops；智能算力规模（换算为 FP32）为 3846 EFlops，占总算力比例达到 85%，同比增加 13 个百分点；超算算力规模（换算为 FP32）为 52 EFlops，同比增长 63%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "换算为 FP32，同比增长 63%。 [未核]"
+    },
+    {
+      "fact_id": "acbb2025-cn-device-compute",
+      "asserter": "中国信通院",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-device-compute",
+        "label": "中国计算设备算力（已出货服务器口径）"
+      },
+      "value": 962.0,
+      "unit": "EFLOPS",
+      "bound": "point",
+      "caliber": {
+        "compute_type": "总算力",
+        "precision": "FP32",
+        "area": "全国",
+        "status": "累计",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2025-06",
+      "evidence": {
+        "sha256": "0abceb64d085655b1ecea69f2a7802a6b0a35fa277bb72f85620e2e6567827d8",
+        "local_file": "先进计算暨算力发展指数蓝皮书（2025年）.pdf",
+        "locator": "摘要：「从计算设备侧看（全部已出货服务器），我国计算设备算力总规模达到 962 EFlops，全球占比 21%，增速达 73%，其中智能算力稳定高速增长，增速达 96%，占全国总算力比重超过五分之四」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "962/4495 = 21.4%，与原文「全球占比 21%」自洽；增速 73%。同为计算设备侧口径。[未核]"
+    },
+    {
+      "fact_id": "acbb2025-cn-device-compute-global-share",
+      "asserter": "中国信通院",
+      "metric_id": "region_compute_share",
+      "entity": {
+        "type": "region",
+        "id": "cn-compute",
+        "label": "中国算力规模"
+      },
+      "value": 21.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "measure": "算力规模",
+        "denominator": "全球总量",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2025-06",
+      "evidence": {
+        "sha256": "0abceb64d085655b1ecea69f2a7802a6b0a35fa277bb72f85620e2e6567827d8",
+        "local_file": "先进计算暨算力发展指数蓝皮书（2025年）.pdf",
+        "locator": "摘要：「从计算设备侧看（全部已出货服务器），我国计算设备算力总规模达到 962 EFlops，全球占比 21%，增速达 73%，其中智能算力稳定高速增长，增速达 96%，占全国总算力比重超过五分之四」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "计算设备侧口径下中国占全球 21%。库内另有中国通服 2020 年的 31%（多方测算）与信通院 2021 年的 33%，口径与年份都不同，看似下降实为口径变化。[未核]"
+    },
+    {
+      "fact_id": "acbb2025-cn-ai-compute-share-202506",
+      "asserter": "中国信通院",
+      "metric_id": "region_compute_share",
+      "entity": {
+        "type": "region",
+        "id": "cn-intelligent-compute",
+        "label": "中国智能算力（占国内算力规模）"
+      },
+      "value": 80.0,
+      "unit": "%",
+      "bound": "lower",
+      "caliber": {
+        "measure": "算力规模",
+        "denominator": "本区域总量",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2025-06",
+      "evidence": {
+        "sha256": "0abceb64d085655b1ecea69f2a7802a6b0a35fa277bb72f85620e2e6567827d8",
+        "local_file": "先进计算暨算力发展指数蓝皮书（2025年）.pdf",
+        "locator": "摘要：「从计算设备侧看（全部已出货服务器），我国计算设备算力总规模达到 962 EFlops，全球占比 21%，增速达 73%，其中智能算力稳定高速增长，增速达 96%，占全国总算力比重超过五分之四」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "原文「占全国总算力比重超过五分之四」记下界 80%。**这与库内同实体的历史序列终于接上**：2016 年 3%、2021 年 21%、2022 年 22.8%、2025 年 >80%——中间那条「2021 年超 50%」与本序列仍矛盾，待裁。[未核]"
+    },
+    {
+      "fact_id": "acbb2025-global-compute-2030e",
+      "asserter": "中国信通院",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "global-device-compute",
+        "label": "全球计算设备算力（已出货服务器口径）"
+      },
+      "value": 50000.0,
+      "unit": "EFLOPS",
+      "bound": "lower",
+      "caliber": {
+        "compute_type": "总算力",
+        "precision": "FP32",
+        "area": "全球",
+        "status": "累计",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2026-03",
+      "evidence": {
+        "sha256": "0abceb64d085655b1ecea69f2a7802a6b0a35fa277bb72f85620e2e6567827d8",
+        "local_file": "先进计算暨算力发展指数蓝皮书（2025年）.pdf",
+        "locator": "第一章：「预计未来五年全球算力规模将以超过 60% 的速度增长，至 2030 年全球算力将超过 50 ZFlops，其中智能算力占比将超过 95%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "50 ZFLOPS = 50000 EFLOPS，记下界；蓝皮书发布于 2026-03。同句给未来五年增速 >60%、2030 年智算占比 >95%。[未核]"
+    },
+    {
+      "fact_id": "acbb2025-global-server-shipments-2024",
+      "asserter": "中国信通院",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "global-server",
+        "label": "全球服务器市场"
+      },
+      "value": 14460.0,
+      "unit": "千台",
+      "bound": "point",
+      "caliber": {
+        "server_class": "All Servers",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "未拆分",
+        "region": "Total",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "不适用（非中国口径）"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "0abceb64d085655b1ecea69f2a7802a6b0a35fa277bb72f85620e2e6567827d8",
+        "local_file": "先进计算暨算力发展指数蓝皮书（2025年）.pdf",
+        "locator": "第一章（四）：「2024 年，全球服务器出货量为 1446 万台，扭转去年下降态势，增长 16.9%；销售额为 2357.46 亿美元，增幅为 74.7%；单台服务器价格持续增长，较去年平均涨幅近 50%。市场份额上，戴尔、超微、HPE/新华三、浪潮、联想分居前五，分别为 9.7%、7.8%、5.9%、5.9% 和 5.2%……白牌服务器……市占比从 2023 年的 37.8% 增至 2024 年的 43.2%。芯片方面，搭载 x86 架构 CPU 的服务器市场份额由 2023 年的 86% 降至 2024 年的 79%，搭载 ARM 架构 CPU 的服务器市场份额由 10% 增至 18.9%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "1446 万台 = 14460 千台，同比 +16.9%。[未核]"
+    },
+    {
+      "fact_id": "acbb2025-global-server-revenue-2024",
+      "asserter": "中国信通院",
+      "metric_id": "server_mfg_revenue",
+      "entity": {
+        "type": "market",
+        "id": "global-server",
+        "label": "全球服务器市场"
+      },
+      "value": 2357.46,
+      "unit": "亿美元",
+      "bound": "point",
+      "caliber": {
+        "server_class": "All Servers",
+        "region": "Total",
+        "storage_scope": "不适用（非存储口径）",
+        "product_category": "不适用（非存储口径）",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "0abceb64d085655b1ecea69f2a7802a6b0a35fa277bb72f85620e2e6567827d8",
+        "local_file": "先进计算暨算力发展指数蓝皮书（2025年）.pdf",
+        "locator": "第一章（四）：「2024 年，全球服务器出货量为 1446 万台，扭转去年下降态势，增长 16.9%；销售额为 2357.46 亿美元，增幅为 74.7%；单台服务器价格持续增长，较去年平均涨幅近 50%。市场份额上，戴尔、超微、HPE/新华三、浪潮、联想分居前五，分别为 9.7%、7.8%、5.9%、5.9% 和 5.2%……白牌服务器……市占比从 2023 年的 37.8% 增至 2024 年的 43.2%。芯片方面，搭载 x86 架构 CPU 的服务器市场份额由 2023 年的 86% 降至 2024 年的 79%，搭载 ARM 架构 CPU 的服务器市场份额由 10% 增至 18.9%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "销售额同比 +74.7%，而出货量只增 16.9%——**量增 17% 而额增 75%，差额全在单价上**（原文称单台均价涨近 50%）。[未核]"
+    },
+    {
+      "fact_id": "acbb2025-global-server-share-dell",
+      "asserter": "中国信通院",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "dell",
+        "label": "戴尔（全球服务器）"
+      },
+      "value": 9.7,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "measure": "按金额",
+        "product_line": "服务器",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "0abceb64d085655b1ecea69f2a7802a6b0a35fa277bb72f85620e2e6567827d8",
+        "local_file": "先进计算暨算力发展指数蓝皮书（2025年）.pdf",
+        "locator": "第一章（四）：「2024 年，全球服务器出货量为 1446 万台，扭转去年下降态势，增长 16.9%；销售额为 2357.46 亿美元，增幅为 74.7%；单台服务器价格持续增长，较去年平均涨幅近 50%。市场份额上，戴尔、超微、HPE/新华三、浪潮、联想分居前五，分别为 9.7%、7.8%、5.9%、5.9% 和 5.2%……白牌服务器……市占比从 2023 年的 37.8% 增至 2024 年的 43.2%。芯片方面，搭载 x86 架构 CPU 的服务器市场份额由 2023 年的 86% 降至 2024 年的 79%，搭载 ARM 架构 CPU 的服务器市场份额由 10% 增至 18.9%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "按销售额计的全球份额；超微凭高价值服务器收入翻倍，超越 HPE/新华三与浪潮。 [未核]"
+    },
+    {
+      "fact_id": "acbb2025-global-server-share-supermicro",
+      "asserter": "中国信通院",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "supermicro",
+        "label": "超微（全球服务器）"
+      },
+      "value": 7.8,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "measure": "按金额",
+        "product_line": "服务器",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "0abceb64d085655b1ecea69f2a7802a6b0a35fa277bb72f85620e2e6567827d8",
+        "local_file": "先进计算暨算力发展指数蓝皮书（2025年）.pdf",
+        "locator": "第一章（四）：「2024 年，全球服务器出货量为 1446 万台，扭转去年下降态势，增长 16.9%；销售额为 2357.46 亿美元，增幅为 74.7%；单台服务器价格持续增长，较去年平均涨幅近 50%。市场份额上，戴尔、超微、HPE/新华三、浪潮、联想分居前五，分别为 9.7%、7.8%、5.9%、5.9% 和 5.2%……白牌服务器……市占比从 2023 年的 37.8% 增至 2024 年的 43.2%。芯片方面，搭载 x86 架构 CPU 的服务器市场份额由 2023 年的 86% 降至 2024 年的 79%，搭载 ARM 架构 CPU 的服务器市场份额由 10% 增至 18.9%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "按销售额计的全球份额；超微凭高价值服务器收入翻倍，超越 HPE/新华三与浪潮。 [未核]"
+    },
+    {
+      "fact_id": "acbb2025-global-server-share-hpe",
+      "asserter": "中国信通院",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "hpe",
+        "label": "HPE/新华三（全球服务器）"
+      },
+      "value": 5.9,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "measure": "按金额",
+        "product_line": "服务器",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "0abceb64d085655b1ecea69f2a7802a6b0a35fa277bb72f85620e2e6567827d8",
+        "local_file": "先进计算暨算力发展指数蓝皮书（2025年）.pdf",
+        "locator": "第一章（四）：「2024 年，全球服务器出货量为 1446 万台，扭转去年下降态势，增长 16.9%；销售额为 2357.46 亿美元，增幅为 74.7%；单台服务器价格持续增长，较去年平均涨幅近 50%。市场份额上，戴尔、超微、HPE/新华三、浪潮、联想分居前五，分别为 9.7%、7.8%、5.9%、5.9% 和 5.2%……白牌服务器……市占比从 2023 年的 37.8% 增至 2024 年的 43.2%。芯片方面，搭载 x86 架构 CPU 的服务器市场份额由 2023 年的 86% 降至 2024 年的 79%，搭载 ARM 架构 CPU 的服务器市场份额由 10% 增至 18.9%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "按销售额计的全球份额；超微凭高价值服务器收入翻倍，超越 HPE/新华三与浪潮。 [未核]"
+    },
+    {
+      "fact_id": "acbb2025-global-server-share-inspur",
+      "asserter": "中国信通院",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "inspur",
+        "label": "浪潮（全球服务器）"
+      },
+      "value": 5.9,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "measure": "按金额",
+        "product_line": "服务器",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "0abceb64d085655b1ecea69f2a7802a6b0a35fa277bb72f85620e2e6567827d8",
+        "local_file": "先进计算暨算力发展指数蓝皮书（2025年）.pdf",
+        "locator": "第一章（四）：「2024 年，全球服务器出货量为 1446 万台，扭转去年下降态势，增长 16.9%；销售额为 2357.46 亿美元，增幅为 74.7%；单台服务器价格持续增长，较去年平均涨幅近 50%。市场份额上，戴尔、超微、HPE/新华三、浪潮、联想分居前五，分别为 9.7%、7.8%、5.9%、5.9% 和 5.2%……白牌服务器……市占比从 2023 年的 37.8% 增至 2024 年的 43.2%。芯片方面，搭载 x86 架构 CPU 的服务器市场份额由 2023 年的 86% 降至 2024 年的 79%，搭载 ARM 架构 CPU 的服务器市场份额由 10% 增至 18.9%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "按销售额计的全球份额；超微凭高价值服务器收入翻倍，超越 HPE/新华三与浪潮。 [未核]"
+    },
+    {
+      "fact_id": "acbb2025-global-server-share-lenovo",
+      "asserter": "中国信通院",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "lenovo",
+        "label": "联想（全球服务器）"
+      },
+      "value": 5.2,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "measure": "按金额",
+        "product_line": "服务器",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "0abceb64d085655b1ecea69f2a7802a6b0a35fa277bb72f85620e2e6567827d8",
+        "local_file": "先进计算暨算力发展指数蓝皮书（2025年）.pdf",
+        "locator": "第一章（四）：「2024 年，全球服务器出货量为 1446 万台，扭转去年下降态势，增长 16.9%；销售额为 2357.46 亿美元，增幅为 74.7%；单台服务器价格持续增长，较去年平均涨幅近 50%。市场份额上，戴尔、超微、HPE/新华三、浪潮、联想分居前五，分别为 9.7%、7.8%、5.9%、5.9% 和 5.2%……白牌服务器……市占比从 2023 年的 37.8% 增至 2024 年的 43.2%。芯片方面，搭载 x86 架构 CPU 的服务器市场份额由 2023 年的 86% 降至 2024 年的 79%，搭载 ARM 架构 CPU 的服务器市场份额由 10% 增至 18.9%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "按销售额计的全球份额；超微凭高价值服务器收入翻倍，超越 HPE/新华三与浪潮。 [未核]"
+    },
+    {
+      "fact_id": "acbb2025-global-server-share-whitebox",
+      "asserter": "中国信通院",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "whitebox",
+        "label": "白牌服务器（全球服务器）"
+      },
+      "value": 43.2,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "measure": "按金额",
+        "product_line": "服务器",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "0abceb64d085655b1ecea69f2a7802a6b0a35fa277bb72f85620e2e6567827d8",
+        "local_file": "先进计算暨算力发展指数蓝皮书（2025年）.pdf",
+        "locator": "第一章（四）：「2024 年，全球服务器出货量为 1446 万台，扭转去年下降态势，增长 16.9%；销售额为 2357.46 亿美元，增幅为 74.7%；单台服务器价格持续增长，较去年平均涨幅近 50%。市场份额上，戴尔、超微、HPE/新华三、浪潮、联想分居前五，分别为 9.7%、7.8%、5.9%、5.9% 和 5.2%……白牌服务器……市占比从 2023 年的 37.8% 增至 2024 年的 43.2%。芯片方面，搭载 x86 架构 CPU 的服务器市场份额由 2023 年的 86% 降至 2024 年的 79%，搭载 ARM 架构 CPU 的服务器市场份额由 10% 增至 18.9%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**按销售额计**。前五合计仅 34.5%，白牌服务器一家占 43.2%（2023 年 37.8%）——白牌份额高于前五之和，是这张榜最该记住的结构。 [未核]"
+    },
+    {
+      "fact_id": "acbb2025-server-cpu-arch-share-x86-2023",
+      "asserter": "中国信通院",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "market",
+        "id": "server-cpu-x86",
+        "label": "搭载 x86 架构 CPU 的服务器"
+      },
+      "value": 86.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "measure": "按金额",
+        "product_line": "服务器",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "0abceb64d085655b1ecea69f2a7802a6b0a35fa277bb72f85620e2e6567827d8",
+        "local_file": "先进计算暨算力发展指数蓝皮书（2025年）.pdf",
+        "locator": "第一章（四）：「2024 年，全球服务器出货量为 1446 万台，扭转去年下降态势，增长 16.9%；销售额为 2357.46 亿美元，增幅为 74.7%；单台服务器价格持续增长，较去年平均涨幅近 50%。市场份额上，戴尔、超微、HPE/新华三、浪潮、联想分居前五，分别为 9.7%、7.8%、5.9%、5.9% 和 5.2%……白牌服务器……市占比从 2023 年的 37.8% 增至 2024 年的 43.2%。芯片方面，搭载 x86 架构 CPU 的服务器市场份额由 2023 年的 86% 降至 2024 年的 79%，搭载 ARM 架构 CPU 的服务器市场份额由 10% 增至 18.9%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**这是按 CPU 架构而不是按厂商的份额**，借用 vendor_market_share 记录、实体标签承载含义；一年内 x86 从 86% 降到 79%、ARM 从 10% 升到 18.9%。同段另给 x86 服务器市场中 AMD 占比超 32%（四季度 35.5%）。[未核]"
+    },
+    {
+      "fact_id": "acbb2025-server-cpu-arch-share-x86-2024",
+      "asserter": "中国信通院",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "market",
+        "id": "server-cpu-x86",
+        "label": "搭载 x86 架构 CPU 的服务器"
+      },
+      "value": 79.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "measure": "按金额",
+        "product_line": "服务器",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "0abceb64d085655b1ecea69f2a7802a6b0a35fa277bb72f85620e2e6567827d8",
+        "local_file": "先进计算暨算力发展指数蓝皮书（2025年）.pdf",
+        "locator": "第一章（四）：「2024 年，全球服务器出货量为 1446 万台，扭转去年下降态势，增长 16.9%；销售额为 2357.46 亿美元，增幅为 74.7%；单台服务器价格持续增长，较去年平均涨幅近 50%。市场份额上，戴尔、超微、HPE/新华三、浪潮、联想分居前五，分别为 9.7%、7.8%、5.9%、5.9% 和 5.2%……白牌服务器……市占比从 2023 年的 37.8% 增至 2024 年的 43.2%。芯片方面，搭载 x86 架构 CPU 的服务器市场份额由 2023 年的 86% 降至 2024 年的 79%，搭载 ARM 架构 CPU 的服务器市场份额由 10% 增至 18.9%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**这是按 CPU 架构而不是按厂商的份额**，借用 vendor_market_share 记录、实体标签承载含义；一年内 x86 从 86% 降到 79%、ARM 从 10% 升到 18.9%。同段另给 x86 服务器市场中 AMD 占比超 32%（四季度 35.5%）。[未核]"
+    },
+    {
+      "fact_id": "acbb2025-server-cpu-arch-share-arm-2023",
+      "asserter": "中国信通院",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "market",
+        "id": "server-cpu-arm",
+        "label": "搭载 ARM 架构 CPU 的服务器"
+      },
+      "value": 10.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "measure": "按金额",
+        "product_line": "服务器",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "0abceb64d085655b1ecea69f2a7802a6b0a35fa277bb72f85620e2e6567827d8",
+        "local_file": "先进计算暨算力发展指数蓝皮书（2025年）.pdf",
+        "locator": "第一章（四）：「2024 年，全球服务器出货量为 1446 万台，扭转去年下降态势，增长 16.9%；销售额为 2357.46 亿美元，增幅为 74.7%；单台服务器价格持续增长，较去年平均涨幅近 50%。市场份额上，戴尔、超微、HPE/新华三、浪潮、联想分居前五，分别为 9.7%、7.8%、5.9%、5.9% 和 5.2%……白牌服务器……市占比从 2023 年的 37.8% 增至 2024 年的 43.2%。芯片方面，搭载 x86 架构 CPU 的服务器市场份额由 2023 年的 86% 降至 2024 年的 79%，搭载 ARM 架构 CPU 的服务器市场份额由 10% 增至 18.9%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**这是按 CPU 架构而不是按厂商的份额**，借用 vendor_market_share 记录、实体标签承载含义；一年内 x86 从 86% 降到 79%、ARM 从 10% 升到 18.9%。同段另给 x86 服务器市场中 AMD 占比超 32%（四季度 35.5%）。[未核]"
+    },
+    {
+      "fact_id": "acbb2025-server-cpu-arch-share-arm-2024",
+      "asserter": "中国信通院",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "market",
+        "id": "server-cpu-arm",
+        "label": "搭载 ARM 架构 CPU 的服务器"
+      },
+      "value": 18.9,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "measure": "按金额",
+        "product_line": "服务器",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "0abceb64d085655b1ecea69f2a7802a6b0a35fa277bb72f85620e2e6567827d8",
+        "local_file": "先进计算暨算力发展指数蓝皮书（2025年）.pdf",
+        "locator": "第一章（四）：「2024 年，全球服务器出货量为 1446 万台，扭转去年下降态势，增长 16.9%；销售额为 2357.46 亿美元，增幅为 74.7%；单台服务器价格持续增长，较去年平均涨幅近 50%。市场份额上，戴尔、超微、HPE/新华三、浪潮、联想分居前五，分别为 9.7%、7.8%、5.9%、5.9% 和 5.2%……白牌服务器……市占比从 2023 年的 37.8% 增至 2024 年的 43.2%。芯片方面，搭载 x86 架构 CPU 的服务器市场份额由 2023 年的 86% 降至 2024 年的 79%，搭载 ARM 架构 CPU 的服务器市场份额由 10% 增至 18.9%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**这是按 CPU 架构而不是按厂商的份额**，借用 vendor_market_share 记录、实体标签承载含义；一年内 x86 从 86% 降到 79%、ARM 从 10% 升到 18.9%。同段另给 x86 服务器市场中 AMD 占比超 32%（四季度 35.5%）。[未核]"
     }
   ]
 }
