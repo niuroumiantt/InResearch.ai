@@ -222023,7 +222023,10 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "asserter": "Yole",
-      "notes": "Yole 2025-05 版把 2024 年 HBM 收入记为 174 亿美元，库内 yole2503-hbm-revenue-2024 为同一断言者 2025-03 版的 170 亿美元——按版本关系记 as_of 2024@2025-05 并 supersedes 旧版，旧条保留。同页 2030E HBM 980 亿美元与库内 yole2503-hbm-revenue-2030e 同值，不重复录。"
+      "notes": "Yole 2025-05 版把 2024 年 HBM 收入记为 174 亿美元，库内 yole2503-hbm-revenue-2024 为同一断言者 2025-03 版的 170 亿美元——按版本关系记 as_of 2024@2025-05 并 supersedes 旧版，旧条保留。同页 2030E HBM 980 亿美元与库内 yole2503-hbm-revenue-2030e 同值，不重复录。",
+      "disputed_by": [
+        "mordor2408-hbm-market-2024e"
+      ]
     },
     {
       "entity": {
@@ -222148,6 +222151,129 @@
         "grade": "S3"
       },
       "notes": "GB200 与 GB300 合计口径，约 2 万架；与按晶圆推算的 41.5k 架差约 52%。野村（Nomura）Asia Server 报告 2025-04-24（文件名标 UBS，实际封面与分析师均为 Nomura，[未核]）。晶圆口径推得的 41.5k GB 机柜与最终出货 20k 之间约 52% 的差异，原文归因于良率损失、产线爬坡与缓冲。"
+    },
+    {
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "unit": "亿美元",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "Mordor Intelligence",
+      "fact_id": "mordor2408-hbm-market-2023",
+      "metric_id": "hbm_demand_value",
+      "value": 20.4,
+      "caliber": {
+        "generation": "合计",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5c609cee700de9dea44506a9d372433532204e5dc91602c7ac6ea10690fefb1d",
+        "local_file": "20240825-甬兴证券：人工智能系列专题报告（二）-HBM算力卡核心组件-国内产业链有望受益(26页).pdf",
+        "locator": "PDF 第 17 页 3.1：「2023 年，全球 HBM 市场规模约为 20.4 亿美元，2028 年或将达到 63.2 亿美元，复合年增长率约为 25%。根据 Mordor Intelligence 数据……2023-2028 年或将以 25.36% 的复合年增长率增长」",
+        "grade": "S3",
+        "originator": "Mordor Intelligence，经甬兴证券《HBM 算力卡核心组件，国内产业链有望受益》（2024-08-22）转引"
+      },
+      "notes": "Mordor Intelligence 的「高带宽内存市场」口径远小于 Yole/TrendForce 的 HBM 收入口径（库内 yole2505-hbm-revenue-2024 为 174 亿美元），差约一个数量级——很可能是市场定义不同（该机构口径疑为狭义模组市场），不选边，按不同断言者并存并标 disputes。"
+    },
+    {
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "unit": "亿美元",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "Mordor Intelligence",
+      "fact_id": "mordor2408-hbm-market-2024e",
+      "metric_id": "hbm_demand_value",
+      "value": 25.2,
+      "caliber": {
+        "generation": "合计",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2024E@2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5c609cee700de9dea44506a9d372433532204e5dc91602c7ac6ea10690fefb1d",
+        "local_file": "20240825-甬兴证券：人工智能系列专题报告（二）-HBM算力卡核心组件-国内产业链有望受益(26页).pdf",
+        "locator": "PDF 第 1 页核心观点：「根据 Mordor Intelligence 预测，预计 2024 年高带宽内存市场规模为 25.2 亿美元，到 2029 年将达到 79.5 亿美元，2024-2029 年年复合增长率为 25.86%」",
+        "grade": "S3",
+        "originator": "Mordor Intelligence，经甬兴证券《HBM 算力卡核心组件，国内产业链有望受益》（2024-08-22）转引"
+      },
+      "notes": "Mordor Intelligence 的「高带宽内存市场」口径远小于 Yole/TrendForce 的 HBM 收入口径（库内 yole2505-hbm-revenue-2024 为 174 亿美元），差约一个数量级——很可能是市场定义不同（该机构口径疑为狭义模组市场），不选边，按不同断言者并存并标 disputes。",
+      "disputes": [
+        "yole2505-hbm-revenue-2024"
+      ]
+    },
+    {
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "unit": "亿美元",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "Mordor Intelligence",
+      "fact_id": "mordor2408-hbm-market-2028e",
+      "metric_id": "hbm_demand_value",
+      "value": 63.2,
+      "caliber": {
+        "generation": "合计",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2028E@2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5c609cee700de9dea44506a9d372433532204e5dc91602c7ac6ea10690fefb1d",
+        "local_file": "20240825-甬兴证券：人工智能系列专题报告（二）-HBM算力卡核心组件-国内产业链有望受益(26页).pdf",
+        "locator": "PDF 第 17 页 3.1：「2023 年，全球 HBM 市场规模约为 20.4 亿美元，2028 年或将达到 63.2 亿美元，复合年增长率约为 25%。根据 Mordor Intelligence 数据……2023-2028 年或将以 25.36% 的复合年增长率增长」",
+        "grade": "S3",
+        "originator": "Mordor Intelligence，经甬兴证券《HBM 算力卡核心组件，国内产业链有望受益》（2024-08-22）转引"
+      },
+      "notes": "Mordor Intelligence 的「高带宽内存市场」口径远小于 Yole/TrendForce 的 HBM 收入口径（库内 yole2505-hbm-revenue-2024 为 174 亿美元），差约一个数量级——很可能是市场定义不同（该机构口径疑为狭义模组市场），不选边，按不同断言者并存并标 disputes。CAGR 2023–2028 为 25.36%。"
+    },
+    {
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "unit": "亿美元",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "Mordor Intelligence",
+      "fact_id": "mordor2408-hbm-market-2029e",
+      "metric_id": "hbm_demand_value",
+      "value": 79.5,
+      "caliber": {
+        "generation": "合计",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2029E@2024-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5c609cee700de9dea44506a9d372433532204e5dc91602c7ac6ea10690fefb1d",
+        "local_file": "20240825-甬兴证券：人工智能系列专题报告（二）-HBM算力卡核心组件-国内产业链有望受益(26页).pdf",
+        "locator": "PDF 第 1 页核心观点：「根据 Mordor Intelligence 预测，预计 2024 年高带宽内存市场规模为 25.2 亿美元，到 2029 年将达到 79.5 亿美元，2024-2029 年年复合增长率为 25.86%」",
+        "grade": "S3",
+        "originator": "Mordor Intelligence，经甬兴证券《HBM 算力卡核心组件，国内产业链有望受益》（2024-08-22）转引"
+      },
+      "notes": "Mordor Intelligence 的「高带宽内存市场」口径远小于 Yole/TrendForce 的 HBM 收入口径（库内 yole2505-hbm-revenue-2024 为 174 亿美元），差约一个数量级——很可能是市场定义不同（该机构口径疑为狭义模组市场），不选边，按不同断言者并存并标 disputes。CAGR 2024–2029 为 25.86%。"
     }
   ]
 }
