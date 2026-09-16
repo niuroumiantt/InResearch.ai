@@ -229983,6 +229983,132 @@
       "corroboration": "待交叉验证",
       "notes": "**本条单位 kW，是整机最大功耗（不含 PUE）**。配套：单卡 H100 700W × 8 = 5.6kW，占整机 55% 左右（原文口径），其余为 CPU、内存、风扇与供电损耗。",
       "asserter": "国海证券"
+    },
+    {
+      "fact_id": "gxppt2407-schneider-immersion-breakeven-10kw",
+      "metric_id": "liquid_cooling_econ_threshold",
+      "entity": {
+        "type": "industry",
+        "id": "immersion-vs-air-breakeven",
+        "label": "浸没式液冷与风冷初始投资打平的机架密度"
+      },
+      "value": 10.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "tech": "浸没式",
+        "basis": "实测经济性测算",
+        "region": "未披露"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5b03e7eafb9128592d01b8003c30583b0a09d8abf9a50baf7854366bb0bd12d8",
+        "local_file": "液冷温控，智算中心的重要保障（46页 PPT）.pptx",
+        "locator": "第 26 页：「根据施耐德电气 2021 年发布的《大型数据中心浸没式液冷与风冷投资成本分析》，在一个总容量为 2 兆瓦的数据中心，当机架功率密度为 10kW 时，采用传统风冷与基于 IT 机箱的浸没式液冷相比，初始投资大致相等。……按每机架 20kW 和每机架 40kW 的方式部署液冷时的投资成本比传统风冷分别节省了 10% 和 14%」",
+        "grade": "S4",
+        "originator": "施耐德电气《大型数据中心浸没式液冷与风冷投资成本分析》（2021）（经国信证券《液冷温控——智算中心的重要保障》行业专题 PPT（马成龙，2024-07-29）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是「初始投资打平点」而非「液冷才划算的起点」**：10kW/机架时两者初始投资大致相等，高于此密度液冷开始便宜——20kW 省 10%、40kW 省 14%（这两条已由华创那份按 cooling_route_economics 记入，asserter 同为施耐德）。**算例前提是 2MW 总容量的数据中心、基于 IT 机箱的浸没式方案**，换个容量或方案结论会变。本指标 note 里的经验值是「冷板 15、浸没 40」，本条 10 明显更低，差在口径：那是「适用门槛」，这是「投资打平点」。region 未披露：原文未限定地域。",
+      "asserter": "施耐德电气"
+    },
+    {
+      "fact_id": "gxppt2407-b200-server-power",
+      "metric_id": "server_power_and_training_time",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-b200-server",
+        "label": "NVIDIA B200 服务器（8 卡）"
+      },
+      "value": 12.6,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "chip": "NVIDIA B200（8 卡服务器）",
+        "parameter": "单机算力功耗(kW)",
+        "pue_included": "不含",
+        "region": "Global",
+        "basis": "券商测算"
+      },
+      "as_of": "2024-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5b03e7eafb9128592d01b8003c30583b0a09d8abf9a50baf7854366bb0bd12d8",
+        "local_file": "液冷温控，智算中心的重要保障（46页 PPT）.pptx",
+        "locator": "第 18 页 表 6「H100/B200 服务器与单机柜功率测算」：服务器功率 H100 = 10,200W、B200 = 12,600W；GPU TDP（×8）700W×8 / 1000W×8；CPU、内存、NVLink 等其他 4,600W；存储、管理设备等 183W；交换机等 729W；机柜功率（4 台服务器）41.7 / 51.3 kW",
+        "grade": "S4",
+        "originator": "国信证券《液冷温控——智算中心的重要保障》行业专题 PPT（马成龙，2024-07-29）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**本条单位 kW，为整机设计功率（不含 PUE）**。拆解：GPU 1000W×8 = 8kW + CPU/内存/NVLink 等 4.6kW ≈ 12.6kW（表内 183W 存储与 729W 交换机计入机柜口径）。**这是券商按单卡 TDP 推算的整机功率，不是厂商规格**。同表 H100 服务器 10,200W 与库内国海口径的 DGX H100 10.2kW 同值，不另记。",
+      "asserter": "国信证券"
+    },
+    {
+      "fact_id": "gxppt2407-h100-rack-power-41kw",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-h100-rack-4server",
+        "label": "H100 标准机柜（4 台 8 卡服务器）"
+      },
+      "value": 41.7,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "设计目标",
+        "era": "当期",
+        "power_basis": "设计功率",
+        "region": "未披露"
+      },
+      "as_of": "2024-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5b03e7eafb9128592d01b8003c30583b0a09d8abf9a50baf7854366bb0bd12d8",
+        "local_file": "液冷温控，智算中心的重要保障（46页 PPT）.pptx",
+        "locator": "第 18 页：「H100 单卡 TDP 700W，对应单服务器设计功率约 10kW，以标准单机柜 4 个 AI 服务器计算，单机柜功率超过 40kW；预计 B200 单卡 TDP 将达到 1000W，对应单机柜功率有望突破 50kW」；表 6「机柜功率（4 台服务器）」H100 = 41.7kW、B200 = 51.3kW",
+        "grade": "S4",
+        "originator": "国信证券《液冷温控——智算中心的重要保障》行业专题 PPT（马成龙，2024-07-29）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是「每机柜 4 台 8 卡服务器」这一假设下的推算值，不是出货实测**——换个装机密度结论就变。**与 NVL72 类整机柜（120-145kW）不是一回事**：那是一体化机架系统，这是传统 19 英寸机柜装 4 台风冷/液冷服务器。同页另称「风冷散热所适配的单机柜功率在 4-40kW 左右，液冷的最佳适配区间在 50kW 及以上」。region 未披露：原文未限定地域。",
+      "asserter": "国信证券"
+    },
+    {
+      "fact_id": "gxppt2407-b200-rack-power-51kw",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-b200-rack-4server",
+        "label": "B200 标准机柜（4 台 8 卡服务器）"
+      },
+      "value": 51.3,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "设计目标",
+        "era": "当期",
+        "power_basis": "设计功率",
+        "region": "未披露"
+      },
+      "as_of": "2024-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "5b03e7eafb9128592d01b8003c30583b0a09d8abf9a50baf7854366bb0bd12d8",
+        "local_file": "液冷温控，智算中心的重要保障（46页 PPT）.pptx",
+        "locator": "第 18 页：「H100 单卡 TDP 700W，对应单服务器设计功率约 10kW，以标准单机柜 4 个 AI 服务器计算，单机柜功率超过 40kW；预计 B200 单卡 TDP 将达到 1000W，对应单机柜功率有望突破 50kW」；表 6「机柜功率（4 台服务器）」H100 = 41.7kW、B200 = 51.3kW",
+        "grade": "S4",
+        "originator": "国信证券《液冷温控——智算中心的重要保障》行业专题 PPT（马成龙，2024-07-29）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是「每机柜 4 台 8 卡服务器」这一假设下的推算值，不是出货实测**——换个装机密度结论就变。**与 NVL72 类整机柜（120-145kW）不是一回事**：那是一体化机架系统，这是传统 19 英寸机柜装 4 台风冷/液冷服务器。同页另称「风冷散热所适配的单机柜功率在 4-40kW 左右，液冷的最佳适配区间在 50kW 及以上」。region 未披露：原文未限定地域。",
+      "asserter": "国信证券"
     }
   ]
 }
