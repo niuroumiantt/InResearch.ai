@@ -228124,6 +228124,404 @@
       "corroboration": "待交叉验证",
       "notes": "**原表单位 TB，已换算：49.2 TB = 49,200 GB。**scope 为 SuperPod（384 颗 910C），与 NVL72 的整机柜口径不同层级——**3.6× 这个倍数来自系统规模差（384 vs 72 颗），不是单芯片显存优势**（芯片级 910C 128GB 对 GB200 192GB，只有 0.7×）。",
       "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "ghzq2508-cn-gpu-liquid-cooling-market-2026e",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "gpu-liquid-cooling-market",
+        "label": "GPU 液冷市场"
+      },
+      "value": 800.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "智算中心液冷",
+        "currency": "人民币",
+        "cooling_route": "冷板式",
+        "region": "未披露",
+        "basis": "券商测算"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "747235c5431b1aadf2e45957f2c689480a1852b8db53804d618efa52e8812040",
+        "local_file": "20250816-国海证券-计算机行业AI算力“卖水人”专题系列（6）：液冷，AI算力新一极.pdf",
+        "locator": "第 3 页 核心提要二：「按照单机柜液冷价值量 70 万元计算，假设明年出货 10-12 万个机柜，我们预计 GPU 液冷市场有望达 800 亿元」",
+        "grade": "S4",
+        "originator": "国海证券《计算机行业 AI 算力「卖水人」专题系列（6）：液冷，AI 算力新一极》（2025-08-16）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**币种人民币。**测算输入（模型假设，不单独入库）：单机柜液冷价值量 70 万元、2026 年机柜出货 10-12 万个。**与中泰证券同口径的「英伟达机柜液冷空间 2026E 631 亿元」相比高约 27%，差异主要来自机柜出货假设（中泰假设 9 万台）与单柜价值量口径**，两条同为券商测算，未互标争议（entity 不同：本条口径为「GPU 液冷市场」含非英伟达）。region 未披露：原文未限定地域，但从「单机柜 70 万元」的人民币计价看应为全球口径的人民币折算。",
+      "asserter": "国海证券"
+    },
+    {
+      "fact_id": "ghzq2508-kyber-rubin-ultra-nvl576-600kw",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-rubin-ultra-nvl576",
+        "label": "英伟达 Rubin Ultra NVL576（Kyber 机架）"
+      },
+      "value": 600.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "架构上限",
+        "era": "路线图目标",
+        "power_basis": "设计功率",
+        "region": "Global"
+      },
+      "as_of": "2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "747235c5431b1aadf2e45957f2c689480a1852b8db53804d618efa52e8812040",
+        "local_file": "20250816-国海证券-计算机行业AI算力“卖水人”专题系列（6）：液冷，AI算力新一极.pdf",
+        "locator": "第 3 页 核心提要一：「英伟达计划 2027 年推出的 Rubin Ultra NVL576（600kW 等级）Kyber 机架，将彻底摒弃风冷，实现 100% 液冷」",
+        "grade": "S4",
+        "originator": "国海证券《计算机行业 AI 算力「卖水人」专题系列（6）：液冷，AI 算力新一极》（2025-08-16）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**era 记「路线图目标」：这是 2027 年计划推出的机架，不是出货值**，与库内 NVL72 类 120-145kW 差 4-5 倍，混入出货序列会让机柜功率曲线凭空跳档。原文写「600kW 等级」，按点值记。",
+      "asserter": "国海证券"
+    },
+    {
+      "fact_id": "ghzq2508-meta-custom-ai-server-tdp-180kw",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "meta-custom-ai-server-nextgen",
+        "label": "Meta 新一代定制 AI 服务器机柜"
+      },
+      "value": 180.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "架构上限",
+        "era": "路线图目标",
+        "power_basis": "设计功率",
+        "region": "Global"
+      },
+      "as_of": "2025-08",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "747235c5431b1aadf2e45957f2c689480a1852b8db53804d618efa52e8812040",
+        "local_file": "20250816-国海证券-计算机行业AI算力“卖水人”专题系列（6）：液冷，AI算力新一极.pdf",
+        "locator": "第 12 页：「Meta 明年部署新一代定制 AI 服务器，TDP 高达 180kW 以上，液冷散热组件需求确定性高」（据超能网信息）",
+        "grade": "S4",
+        "originator": "国海证券《计算机行业 AI 算力「卖水人」专题系列（6）：液冷，AI 算力新一极》（2025-08-16）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文写「180kW 以上」，记为下界。**power_basis 是 TDP 不是实际功率密度**，两者天然不等。「明年」指 2026 年（报告发布于 2025-08）。",
+      "asserter": "国海证券"
+    },
+    {
+      "fact_id": "ghzq2508-google-liquid-cooled-tpu-availability",
+      "metric_id": "dc_availability",
+      "entity": {
+        "type": "company",
+        "id": "google",
+        "label": "谷歌液冷 TPU 集群"
+      },
+      "value": 99.999,
+      "unit": "%",
+      "caliber": {
+        "scope": "液冷机队",
+        "redundancy": "未注明",
+        "window": "自某年起累计",
+        "region": "Global",
+        "basis": "厂商宣称"
+      },
+      "as_of": "2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "747235c5431b1aadf2e45957f2c689480a1852b8db53804d618efa52e8812040",
+        "local_file": "20250816-国海证券-计算机行业AI算力“卖水人”专题系列（6）：液冷，AI算力新一极.pdf",
+        "locator": "第 3 页 核心提要三 / 第 12 页：「目前谷歌已全面采用液冷方案，其液冷 TPU 集群现已实现 GW 级运行规模，过去七年中保持了 99.999% 的高可用性」",
+        "grade": "S4",
+        "originator": "谷歌（经国海证券《计算机行业 AI 算力「卖水人」专题系列（6）：液冷，AI 算力新一极》（2025-08-16）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**window 是「过去七年累计」（约 2018-2025），不是某一年的年度可用性**；99.999% 折合年停机约 5.26 分钟。**这是厂商宣称值，口径（算不算计划内维护、以集群还是以作业计）原文未交代。**同句另称其液冷 TPU 集群已达 GW 级运行规模。",
+      "asserter": "谷歌"
+    },
+    {
+      "fact_id": "ghzq2508-google-tpu-shipment-2025e-lower",
+      "metric_id": "ai_asic_shipment_units",
+      "entity": {
+        "type": "product",
+        "id": "google-tpu",
+        "label": "谷歌 TPU（全系）"
+      },
+      "value": 1.5,
+      "unit": "百万颗",
+      "caliber": {
+        "counting": "封装后芯片",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "747235c5431b1aadf2e45957f2c689480a1852b8db53804d618efa52e8812040",
+        "local_file": "20250816-国海证券-计算机行业AI算力“卖水人”专题系列（6）：液冷，AI算力新一极.pdf",
+        "locator": "第 12 页：「据电子半导体观察公众号，预计 2025 年谷歌 TPU 的出货量将达到 150 万至 200 万颗」",
+        "grade": "S4",
+        "originator": "电子半导体观察公众号（经国海证券《计算机行业 AI 算力「卖水人」专题系列（6）：液冷，AI 算力新一极》（2025-08-16）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文单位万颗，已换算（150 万颗 = 1.5 百万颗）。**同页三家 2025-2026 年出货合计约 390-500 万颗，而库内零氪口径的「各大厂商 ASIC 2025 年合计 187 万颗」（hc2512-lingke-asic-shipment-2025）只有其零头——**两套数差 2-2.7 倍，口径（算不算自用、算 die 还是封装后芯片、年份归属）原文均未交代**，未互标争议是因为 entity 不同（分厂商 vs 合计），但引用时必须知道这个落差。",
+      "asserter": "电子半导体观察"
+    },
+    {
+      "fact_id": "ghzq2508-google-tpu-shipment-2025e-upper",
+      "metric_id": "ai_asic_shipment_units",
+      "entity": {
+        "type": "product",
+        "id": "google-tpu",
+        "label": "谷歌 TPU（全系）"
+      },
+      "value": 2.0,
+      "unit": "百万颗",
+      "caliber": {
+        "counting": "封装后芯片",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "747235c5431b1aadf2e45957f2c689480a1852b8db53804d618efa52e8812040",
+        "local_file": "20250816-国海证券-计算机行业AI算力“卖水人”专题系列（6）：液冷，AI算力新一极.pdf",
+        "locator": "第 12 页：「同句」",
+        "grade": "S4",
+        "originator": "电子半导体观察公众号（经国海证券《计算机行业 AI 算力「卖水人」专题系列（6）：液冷，AI 算力新一极》（2025-08-16）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文单位万颗，已换算（150 万颗 = 1.5 百万颗）。**同页三家 2025-2026 年出货合计约 390-500 万颗，而库内零氪口径的「各大厂商 ASIC 2025 年合计 187 万颗」（hc2512-lingke-asic-shipment-2025）只有其零头——**两套数差 2-2.7 倍，口径（算不算自用、算 die 还是封装后芯片、年份归属）原文均未交代**，未互标争议是因为 entity 不同（分厂商 vs 合计），但引用时必须知道这个落差。",
+      "asserter": "电子半导体观察"
+    },
+    {
+      "fact_id": "ghzq2508-meta-asic-shipment-2026e-lower",
+      "metric_id": "ai_asic_shipment_units",
+      "entity": {
+        "type": "product",
+        "id": "meta-ai-asic",
+        "label": "Meta 高性能 AI ASIC"
+      },
+      "value": 1.0,
+      "unit": "百万颗",
+      "caliber": {
+        "counting": "封装后芯片",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "747235c5431b1aadf2e45957f2c689480a1852b8db53804d618efa52e8812040",
+        "local_file": "20250816-国海证券-计算机行业AI算力“卖水人”专题系列（6）：液冷，AI算力新一极.pdf",
+        "locator": "第 12 页：「Meta 计划在 2025 年底至 2026 年间推出上百万颗高性能 AI ASIC 芯片（约 100 万至 150 万颗）」",
+        "grade": "S4",
+        "originator": "电子半导体观察公众号（经国海证券《计算机行业 AI 算力「卖水人」专题系列（6）：液冷，AI 算力新一极》（2025-08-16）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文单位万颗，已换算（150 万颗 = 1.5 百万颗）。**同页三家 2025-2026 年出货合计约 390-500 万颗，而库内零氪口径的「各大厂商 ASIC 2025 年合计 187 万颗」（hc2512-lingke-asic-shipment-2025）只有其零头——**两套数差 2-2.7 倍，口径（算不算自用、算 die 还是封装后芯片、年份归属）原文均未交代**，未互标争议是因为 entity 不同（分厂商 vs 合计），但引用时必须知道这个落差。 **时间跨度是「2025 年底至 2026 年间」，不是干净的 2026 全年**，as_of 取 2026E 是近似。",
+      "asserter": "电子半导体观察"
+    },
+    {
+      "fact_id": "ghzq2508-meta-asic-shipment-2026e-upper",
+      "metric_id": "ai_asic_shipment_units",
+      "entity": {
+        "type": "product",
+        "id": "meta-ai-asic",
+        "label": "Meta 高性能 AI ASIC"
+      },
+      "value": 1.5,
+      "unit": "百万颗",
+      "caliber": {
+        "counting": "封装后芯片",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2026E@2025-08",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "747235c5431b1aadf2e45957f2c689480a1852b8db53804d618efa52e8812040",
+        "local_file": "20250816-国海证券-计算机行业AI算力“卖水人”专题系列（6）：液冷，AI算力新一极.pdf",
+        "locator": "第 12 页：「同句」",
+        "grade": "S4",
+        "originator": "电子半导体观察公众号（经国海证券《计算机行业 AI 算力「卖水人」专题系列（6）：液冷，AI 算力新一极》（2025-08-16）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文单位万颗，已换算（150 万颗 = 1.5 百万颗）。**同页三家 2025-2026 年出货合计约 390-500 万颗，而库内零氪口径的「各大厂商 ASIC 2025 年合计 187 万颗」（hc2512-lingke-asic-shipment-2025）只有其零头——**两套数差 2-2.7 倍，口径（算不算自用、算 die 还是封装后芯片、年份归属）原文均未交代**，未互标争议是因为 entity 不同（分厂商 vs 合计），但引用时必须知道这个落差。",
+      "asserter": "电子半导体观察"
+    },
+    {
+      "fact_id": "ghzq2508-aws-trainium2-shipment-2025e-lower",
+      "metric_id": "ai_asic_shipment_units",
+      "entity": {
+        "type": "product",
+        "id": "aws-trainium2",
+        "label": "AWS Trainium2"
+      },
+      "value": 1.4,
+      "unit": "百万颗",
+      "caliber": {
+        "counting": "封装后芯片",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "747235c5431b1aadf2e45957f2c689480a1852b8db53804d618efa52e8812040",
+        "local_file": "20250816-国海证券-计算机行业AI算力“卖水人”专题系列（6）：液冷，AI算力新一极.pdf",
+        "locator": "第 12 页：「亚马逊 AWS 的 Trainium2 ASIC 芯片出货量将达到 140 万至 150 万颗」",
+        "grade": "S4",
+        "originator": "电子半导体观察公众号（经国海证券《计算机行业 AI 算力「卖水人」专题系列（6）：液冷，AI 算力新一极》（2025-08-16）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文单位万颗，已换算（150 万颗 = 1.5 百万颗）。**同页三家 2025-2026 年出货合计约 390-500 万颗，而库内零氪口径的「各大厂商 ASIC 2025 年合计 187 万颗」（hc2512-lingke-asic-shipment-2025）只有其零头——**两套数差 2-2.7 倍，口径（算不算自用、算 die 还是封装后芯片、年份归属）原文均未交代**，未互标争议是因为 entity 不同（分厂商 vs 合计），但引用时必须知道这个落差。",
+      "asserter": "电子半导体观察"
+    },
+    {
+      "fact_id": "ghzq2508-aws-trainium2-shipment-2025e-upper",
+      "metric_id": "ai_asic_shipment_units",
+      "entity": {
+        "type": "product",
+        "id": "aws-trainium2",
+        "label": "AWS Trainium2"
+      },
+      "value": 1.5,
+      "unit": "百万颗",
+      "caliber": {
+        "counting": "封装后芯片",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "747235c5431b1aadf2e45957f2c689480a1852b8db53804d618efa52e8812040",
+        "local_file": "20250816-国海证券-计算机行业AI算力“卖水人”专题系列（6）：液冷，AI算力新一极.pdf",
+        "locator": "第 12 页：「同句」",
+        "grade": "S4",
+        "originator": "电子半导体观察公众号（经国海证券《计算机行业 AI 算力「卖水人」专题系列（6）：液冷，AI 算力新一极》（2025-08-16）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文单位万颗，已换算（150 万颗 = 1.5 百万颗）。**同页三家 2025-2026 年出货合计约 390-500 万颗，而库内零氪口径的「各大厂商 ASIC 2025 年合计 187 万颗」（hc2512-lingke-asic-shipment-2025）只有其零头——**两套数差 2-2.7 倍，口径（算不算自用、算 die 还是封装后芯片、年份归属）原文均未交代**，未互标争议是因为 entity 不同（分厂商 vs 合计），但引用时必须知道这个落差。",
+      "asserter": "电子半导体观察"
+    },
+    {
+      "fact_id": "ghzq2508-omdia-google-tpu-revenue-2025e-lower",
+      "metric_id": "ai_asic_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "google-tpu-revenue",
+        "label": "谷歌 TPU 销售额"
+      },
+      "value": 6.0,
+      "unit": "十亿美元",
+      "caliber": {
+        "scope": "AI ASIC",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "747235c5431b1aadf2e45957f2c689480a1852b8db53804d618efa52e8812040",
+        "local_file": "20250816-国海证券-计算机行业AI算力“卖水人”专题系列（6）：液冷，AI算力新一极.pdf",
+        "locator": "第 12 页：「谷歌：2025 年推出第七代 TPU（TPU v7），Omdia 预计今年谷歌 AI 芯片 TPU 的销售额将达到 60 亿美元至 90 亿美元」",
+        "grade": "S4",
+        "originator": "Omdia（经国海证券《计算机行业 AI 算力「卖水人」专题系列（6）：液冷，AI 算力新一极》（2025-08-16）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文单位亿美元，本指标单位十亿美元，已换算：60 亿美元 = 6.0 十亿美元。**这是单一厂商（谷歌）的 TPU 销售额，不是全市场 ASIC 规模，**与库内 Yole 的全球 AI ASIC 营收序列（2025E 14.2 十亿美元）是包含关系，不可并列比较**。",
+      "asserter": "Omdia"
+    },
+    {
+      "fact_id": "ghzq2508-omdia-google-tpu-revenue-2025e-upper",
+      "metric_id": "ai_asic_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "google-tpu-revenue",
+        "label": "谷歌 TPU 销售额"
+      },
+      "value": 9.0,
+      "unit": "十亿美元",
+      "caliber": {
+        "scope": "AI ASIC",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025-08",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "747235c5431b1aadf2e45957f2c689480a1852b8db53804d618efa52e8812040",
+        "local_file": "20250816-国海证券-计算机行业AI算力“卖水人”专题系列（6）：液冷，AI算力新一极.pdf",
+        "locator": "第 12 页：「同句」",
+        "grade": "S4",
+        "originator": "Omdia（经国海证券《计算机行业 AI 算力「卖水人」专题系列（6）：液冷，AI 算力新一极》（2025-08-16）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文 90 亿美元 = 9.0 十亿美元，说明同下界条。",
+      "asserter": "Omdia"
+    },
+    {
+      "fact_id": "ghzq2508-marvell-custom-xpu-tam-2028e",
+      "metric_id": "ai_asic_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "custom-xpu-tam",
+        "label": "定制 XPU 市场（Marvell TAM 口径）"
+      },
+      "value": 40.0,
+      "unit": "十亿美元",
+      "caliber": {
+        "scope": "AI ASIC",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2028E@2025-08",
+      "bound": "point",
+      "evidence": {
+        "sha256": "747235c5431b1aadf2e45957f2c689480a1852b8db53804d618efa52e8812040",
+        "local_file": "20250816-国海证券-计算机行业AI算力“卖水人”专题系列（6）：液冷，AI算力新一极.pdf",
+        "locator": "第 13 页：「Marvell 将 2028 年数据中心潜在市场规模（TAM）的预期，从去年的 750 亿美元上修至 940 亿美元，其中定制 XPU 规模达到 400 亿美元，CAGR 为 47%，XPU 配套组件规模达到 150 亿美元，CAGR 高达 90%」",
+        "grade": "S4",
+        "originator": "Marvell（经国海证券《计算机行业 AI 算力「卖水人」专题系列（6）：液冷，AI 算力新一极》（2025-08-16）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文 400 亿美元 = 40.0 十亿美元。**这是 Marvell 自家的 TAM 口径（数据中心 TAM 940 亿美元中的定制 XPU 部分），**与库内联发科给出的同年同值 40.0（mtk2510-custom-ai-accel-tam-2028e）极可能同源**（两家都在引用同一批第三方 TAM 测算），不构成交叉验证。配套：XPU 组件 150 亿美元、CAGR 90%；Marvell 去年对同一年的 TAM 预期为 750 亿美元，本次上修 25%。",
+      "asserter": "Marvell"
     }
   ]
 }
