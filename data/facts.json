@@ -223376,6 +223376,64 @@
         "hwds2024-global-data-created-2026e"
       ],
       "notes": "原文 221 ZB = 221,000 EB，五年 CAGR 23.8%。库内华为《数据存储 2030》2026 年 236 ZB（hwds2024-global-data-created-2026e，IDC 与华为 GIV 联合预测口径），两者相差 6.8%，并列不选边。"
+    },
+    {
+      "fact_id": "nicc2308-aws-gpu-util-2018",
+      "metric_id": "gpu_utilization_rate",
+      "entity": {
+        "type": "company",
+        "id": "aws",
+        "label": "AWS"
+      },
+      "value": 20.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一云厂商",
+        "region": "Global"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "7db0d1c028d03ad24fc9feafaee7fb5c7f2d3a1856ca9ce3756a15dc07ea70eb",
+        "local_file": "33页-NICC 新型智算中心算力池化技术白皮书（中移智库2023）.pdf",
+        "locator": "PDF 第 8 页 1.1.1「GPU 资源利用率不足 30%」：「据公开数据统计，传统模式下的智算中心 GPU 利用率较低，平均数值低于 30%：AWS re:Invent 2018 公布数据：平均 GPU 利用率为 20%；Facebook 2021 年机器学习负载分析报告：平均 GPU 利用率不足 30%；英伟达 GTC2022 公布数据：Google 云平均 GPU 利用率为 25%」",
+        "grade": "S3",
+        "originator": "AWS re:Invent 2018 公布数据，经中国移动研究院《NICC 新型智算中心算力池化技术白皮书（2023）》（2023-08）转引。"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "亚马逊",
+      "notes": "平均 GPU 利用率口径未细分（训练/推理、是否含空闲），[未核]。"
+    },
+    {
+      "fact_id": "nicc2308-meta-gpu-util-2021",
+      "metric_id": "gpu_utilization_rate",
+      "entity": {
+        "type": "company",
+        "id": "meta",
+        "label": "Meta"
+      },
+      "value": 30.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "企业自用集群",
+        "region": "Global"
+      },
+      "as_of": "2021",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "7db0d1c028d03ad24fc9feafaee7fb5c7f2d3a1856ca9ce3756a15dc07ea70eb",
+        "local_file": "33页-NICC 新型智算中心算力池化技术白皮书（中移智库2023）.pdf",
+        "locator": "PDF 第 8 页 1.1.1「GPU 资源利用率不足 30%」：「据公开数据统计，传统模式下的智算中心 GPU 利用率较低，平均数值低于 30%：AWS re:Invent 2018 公布数据：平均 GPU 利用率为 20%；Facebook 2021 年机器学习负载分析报告：平均 GPU 利用率不足 30%；英伟达 GTC2022 公布数据：Google 云平均 GPU 利用率为 25%」",
+        "grade": "S3",
+        "originator": "Facebook 2021 年机器学习负载分析报告，经中国移动研究院《NICC 新型智算中心算力池化技术白皮书（2023）》（2023-08）转引。"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "Meta",
+      "notes": "原文「不足 30%」按上界记。库内另有 google-cloud-gpu-util-2022（25%，同段转引，断言者记未注明）。"
     }
   ]
 }
