@@ -220543,7 +220543,8 @@
       "asserter": "摩根士丹利",
       "notes": "原表 14.9 mn units = 14900.0 千台。摩根士丹利（日本电子元件组，2025-06-13）投资者演示的终端市场表；同表另有 2021Q1–2025Q4e 季度序列，未逐条录。",
       "disputed_by": [
-        "hfzq2402-global-server-units-2022"
+        "hfzq2402-global-server-units-2022",
+        "tfzq2305-cp-global-server-units-2022"
       ]
     },
     {
@@ -223196,6 +223197,9 @@
       "notes": "原文 1360 万台 = 13600 千台、同比 +4.8%；未注出处，按撰写方记断言者，[未核]。库内摩根士丹利 2022 年 14900 千台（ms2506-*）为另一断言者口径，差 8.7%。",
       "disputes": [
         "ms2506-global-server-units-2022"
+      ],
+      "disputed_by": [
+        "tfzq2305-cp-global-server-units-2022"
       ]
     },
     {
@@ -223292,6 +223296,45 @@
       "corroboration": "待交叉验证",
       "asserter": "IDC",
       "notes": "分母为中国液冷服务器市场内部（非数据中心液冷市场），[未核]；浸没式因成本与安置难度暂未普及。"
+    },
+    {
+      "fact_id": "tfzq2305-cp-global-server-units-2022",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "global-server-units",
+        "label": "全球服务器出货量"
+      },
+      "value": 13800.0,
+      "unit": "千台",
+      "caliber": {
+        "server_class": "All Servers",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "未拆分",
+        "region": "Total",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "不适用（非中国口径）"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "dbc4b4f7dd700a7d8596ee5d5aa709233203c8bf1e16edef7eaf33ce07a8a95a",
+        "local_file": "20230505-天风证券：通信AI系列之-人工智能之火点燃算力需求-AI服务器迎投资机遇(39页).pdf",
+        "locator": "PDF 第 5 页：「根据 Counterpoint 的全球服务器销售跟踪报告，2022 年，全球服务器出货量将同比增长 6%，达到 1380 万台。收入将同比增长 17%，达到 1117 亿美元」",
+        "grade": "S3",
+        "originator": "Counterpoint 全球服务器销售跟踪报告，经天风证券《AI 系列之：人工智能之火点燃算力需求》2023-05-01 转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "Counterpoint",
+      "disputes": [
+        "ms2506-global-server-units-2022",
+        "hfzq2402-global-server-units-2022"
+      ],
+      "notes": "原文 1380 万台 = 13800 千台，同比 +6%；同句全球服务器收入 1117 亿美元（+17%）无对应指标。三家断言者 2022 年全球服务器出货：Counterpoint 1380 万、华福 1360 万、摩根士丹利 1490 万台。"
     }
   ]
 }
