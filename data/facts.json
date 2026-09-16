@@ -233997,6 +233997,170 @@
       "corroboration": "待交叉验证",
       "notes": "**这是赛迪口径的原件（长城证券 2023 报告转述的就是这张表），口径为「液冷对传统市场的替代规模」**——分母是机房空调 + 服务器 + 数据中心基础设施三块之和（2019 年 1304.7 亿元），乘以液冷替代比例（20%-24%，由华为/阿里/曙光/联想四家观点加权）得出。**因此它衡量的是「被液冷替代掉的那部分传统市场有多大」，不是液冷产品本身的销售额**——这正是它比科智咨询口径（2019 年 36.9 亿元、2022 年 100.5 亿元）高出一个数量级的原因。币种人民币。本条为乐观档（bound=upper）。**同年另一档见配对条目，两档是同一机构给的上下界，不是两年的增长。**",
       "asserter": "赛迪顾问"
+    },
+    {
+      "fact_id": "excool-ireland-case-pue",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "excool-ireland-leased-dc",
+        "label": "EXCOOL 爱尔兰租赁机房案例"
+      },
+      "value": 1.12,
+      "unit": "比值",
+      "caliber": {
+        "basis": "厂商宣称",
+        "cooling_tech": "间接蒸发冷却",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "EU"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "bef10a619e37d49d56ec2461c9d96778aa6a445ae551bd0d87a00fb99b5f7a32",
+        "local_file": "31页-蒸发冷却技术在国际知名数据中心案例解析.pdf",
+        "locator": "第 6-7 页 爱尔兰案例：「地点：爱尔兰；类型：租赁机房；建筑层数 1 层；四栋楼、8 个模块；机房送风 25℃、回风 38℃；EXCOOL 空调 64 台、单机制冷量 300kW」「PUE：1.12；WUE：0.7；CUE：0.0625；气象条件『大连』类似」",
+        "grade": "S3",
+        "originator": "爱酷·阿尔西（EXCOOL 合资公司）《间接蒸发冷却技术在全球优秀数据中心案例解析》演讲"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**厂商案例宣称值。**项目条件：单层四栋楼 8 个模块、送风 25℃/回风 38℃、64 台 EXCOOL 空调（单机制冷量 300kW，合计 19.2MW 冷量）；演讲称当地气象与「大连」类似——**这是理解 1.12 的关键：爱尔兰全年温和，间接蒸发几乎全年可用自然冷却。**同案例 WUE 0.7、CUE 0.0625。",
+      "asserter": "爱酷·阿尔西"
+    },
+    {
+      "fact_id": "excool-ireland-case-wue",
+      "metric_id": "dc_wue_limit",
+      "entity": {
+        "type": "project",
+        "id": "excool-ireland-leased-dc",
+        "label": "EXCOOL 爱尔兰租赁机房案例"
+      },
+      "value": 0.7,
+      "unit": "L/kWh",
+      "caliber": {
+        "water_zone": "未划分",
+        "limit_type": "实测均值",
+        "region": "EU",
+        "cooling_tech": "绝热冷却",
+        "water_basis": "未注明",
+        "duty_window": "年均"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "bef10a619e37d49d56ec2461c9d96778aa6a445ae551bd0d87a00fb99b5f7a32",
+        "local_file": "31页-蒸发冷却技术在国际知名数据中心案例解析.pdf",
+        "locator": "第 6-7 页 爱尔兰案例：「地点：爱尔兰；类型：租赁机房；建筑层数 1 层；四栋楼、8 个模块；机房送风 25℃、回风 38℃；EXCOOL 空调 64 台、单机制冷量 300kW」「PUE：1.12；WUE：0.7；CUE：0.0625；气象条件『大连』类似」",
+        "grade": "S3",
+        "originator": "爱酷·阿尔西（EXCOOL 合资公司）《间接蒸发冷却技术在全球优秀数据中心案例解析》演讲"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**limit_type 记「实测均值」是枚举所限——本条为厂商案例宣称值。**与库内赛莱默口径的绝热冷却 WUE（取水 0.75、消耗 0.63）非常接近，互为旁证。同案例 PUE 1.12。",
+      "asserter": "爱酷·阿尔西"
+    },
+    {
+      "fact_id": "excool-london-case-pue",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "excool-london-leased-dc",
+        "label": "EXCOOL 伦敦租赁机房案例（12000 ㎡ / 20 MVA）"
+      },
+      "value": 1.16,
+      "unit": "比值",
+      "caliber": {
+        "basis": "厂商宣称",
+        "cooling_tech": "间接蒸发冷却",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "EU"
+      },
+      "as_of": "2023",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "bef10a619e37d49d56ec2461c9d96778aa6a445ae551bd0d87a00fb99b5f7a32",
+        "local_file": "31页-蒸发冷却技术在国际知名数据中心案例解析.pdf",
+        "locator": "第 9-14 页 伦敦案例：「地点：伦敦；类型：租赁机房；建筑层数 3 层；机房面积 12000 ㎡；配电容量 20 MVA；机房送风 24℃、回风 37℃；EXCOOL 空调 42 台、单机制冷量 400kW」「PUE：小于 1.16；WUE：0.65；CUE：0.0613；气象『威海』类似」",
+        "grade": "S3",
+        "originator": "爱酷·阿尔西（EXCOOL 合资公司）《间接蒸发冷却技术在全球优秀数据中心案例解析》演讲"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文写「小于 1.16」，记为上界。项目：3 层、12000 ㎡、配电容量 20 MVA、送风 24℃/回风 37℃、42 台 EXCOOL 空调（单机 400kW）；气象与「威海」类似。同案例 WUE 0.65、CUE 0.0613。",
+      "asserter": "爱酷·阿尔西"
+    },
+    {
+      "fact_id": "excool-london-case-wue",
+      "metric_id": "dc_wue_limit",
+      "entity": {
+        "type": "project",
+        "id": "excool-london-leased-dc",
+        "label": "EXCOOL 伦敦租赁机房案例（12000 ㎡ / 20 MVA）"
+      },
+      "value": 0.65,
+      "unit": "L/kWh",
+      "caliber": {
+        "water_zone": "未划分",
+        "limit_type": "实测均值",
+        "region": "EU",
+        "cooling_tech": "绝热冷却",
+        "water_basis": "未注明",
+        "duty_window": "年均"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "bef10a619e37d49d56ec2461c9d96778aa6a445ae551bd0d87a00fb99b5f7a32",
+        "local_file": "31页-蒸发冷却技术在国际知名数据中心案例解析.pdf",
+        "locator": "第 9-14 页 伦敦案例：「地点：伦敦；类型：租赁机房；建筑层数 3 层；机房面积 12000 ㎡；配电容量 20 MVA；机房送风 24℃、回风 37℃；EXCOOL 空调 42 台、单机制冷量 400kW」「PUE：小于 1.16；WUE：0.65；CUE：0.0613；气象『威海』类似」",
+        "grade": "S3",
+        "originator": "爱酷·阿尔西（EXCOOL 合资公司）《间接蒸发冷却技术在全球优秀数据中心案例解析》演讲"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "厂商案例宣称值（limit_type 枚举无「厂商宣称」）。**与爱尔兰案例的 0.7 一起，说明间接蒸发在温带气候下 WUE 稳定在 0.65-0.7**，远低于冷却塔路线的 1.7-2.75。",
+      "asserter": "爱酷·阿尔西"
+    },
+    {
+      "fact_id": "excool-telehouse-london-rack-power",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "project",
+        "id": "telehouse-london-docklands-dc",
+        "label": "Telehouse 东伦敦（东印度码头）数据中心"
+      },
+      "value": 4.32,
+      "unit": "kW/架",
+      "caliber": {
+        "basis": "设计取值",
+        "scope": "全场平均",
+        "region": "EU"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "bef10a619e37d49d56ec2461c9d96778aa6a445ae551bd0d87a00fb99b5f7a32",
+        "local_file": "31页-蒸发冷却技术在国际知名数据中心案例解析.pdf",
+        "locator": "第 17-22 页 Telehouse 东伦敦项目：「服务器区域每层面积 1200 ㎡；每层 528 个机柜，每个机柜 4.32kW，每层提供 2.281MW IT 负荷；服务器总负荷 13.68MW；2KW/㎡ 的高热密度需求；城市内数据中心、空气污染严重不允许新风自然冷却；PUE 必须小于 1.2；部件及系统冗余 N+2」「实际全年运行 PUE < 1.16；精细化运营 PUE 潜力 < 1.12」",
+        "grade": "S3",
+        "originator": "爱酷·阿尔西（EXCOOL 合资公司）《间接蒸发冷却技术在全球优秀数据中心案例解析》演讲"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**归属存疑，须并读**：本演讲把这个项目（每层 1200 ㎡、528 个机柜、每柜 4.32kW、每层 2.281MW、服务器总负荷 13.68MW、PUE<1.2 要求、N+2 冗余、2kW/㎡ 高热密度、城市空气污染不允许新风自然冷却）记在 EXCOOL 名下并称其中标；**而华为《新一代智能间接蒸发冷却解决方案白皮书》第 32 页的「英国某数据中心」给出完全相同的参数（每层 528 个机柜、功率密度 4.32kW、机组装在 2-7 层、PUE 1.16）**。同一个项目被两家厂商各自当作案例，本库无从判定机组究竟出自谁家，两处均按原文记录、互不覆盖。实际全年运行 PUE <1.16、精细化运营潜力 <1.12。",
+      "asserter": "爱酷·阿尔西"
     }
   ]
 }
