@@ -223023,6 +223023,70 @@
         "grade": "S3"
       },
       "notes": "较 2023 年约翻 4 倍（+287%），占 DRAM 产值 20.1%。与库内 Yole 2024 年 174 亿美元（yole2505-hbm-revenue-2024）量级一致。"
+    },
+    {
+      "unit": "千片/月",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "TrendForce",
+      "fact_id": "gtja2024-global-dram-capacity-2023",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "market",
+        "id": "global-dram-capacity",
+        "label": "全球 DRAM 晶圆产能"
+      },
+      "value": 1351.0,
+      "caliber": {
+        "foundry": "全球 DRAM 合计（三星、海力士、美光为主）",
+        "chip": "DRAM",
+        "allocation": "总产能",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8f5ce0c6485f415a93d9be4fa42e198bfbcb37dccd2f0f2185f268c89389b777",
+        "local_file": "存储行业报告：AI对存储晶圆产能消耗拉动显著.pdf",
+        "locator": "PDF 第 13 页：「根据 trendforce，截止 2023 年底 DRAM 月产能达到 1351 千片，NAND 月产能达到 1157 千片」（数据来源：TrendForce，国泰君安证券研究）；PDF 第 2 页摘要同述",
+        "grade": "S3",
+        "originator": "TrendForce，经国泰君安证券《存储行业报告：AI 对存储晶圆产能消耗拉动显著》（2024）转引"
+      },
+      "notes": "12 吋等效月产能口径（原文未写明折算口径，按存储行业惯例为 12 吋，[未核]）。foundry_capacity 本为代工产能指标，此处用于存储原厂总产能，foundry 维填「全球 DRAM 合计」。"
+    },
+    {
+      "unit": "千片/月",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "TrendForce",
+      "fact_id": "gtja2024-global-nand-capacity-2023",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "market",
+        "id": "global-nand-capacity",
+        "label": "全球 NAND 晶圆产能"
+      },
+      "value": 1157.0,
+      "caliber": {
+        "foundry": "全球 NAND 合计（三星、铠侠、海力士为主）",
+        "chip": "NAND",
+        "allocation": "总产能",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2023-12",
+      "bound": "point",
+      "evidence": {
+        "sha256": "8f5ce0c6485f415a93d9be4fa42e198bfbcb37dccd2f0f2185f268c89389b777",
+        "local_file": "存储行业报告：AI对存储晶圆产能消耗拉动显著.pdf",
+        "locator": "PDF 第 13 页：「根据 trendforce，截止 2023 年底 DRAM 月产能达到 1351 千片，NAND 月产能达到 1157 千片」（数据来源：TrendForce，国泰君安证券研究）；PDF 第 2 页摘要同述",
+        "grade": "S3",
+        "originator": "TrendForce，经国泰君安证券《存储行业报告：AI 对存储晶圆产能消耗拉动显著》（2024）转引"
+      },
+      "notes": "12 吋等效月产能口径（原文未写明折算口径，[未核]）。"
     }
   ]
 }
