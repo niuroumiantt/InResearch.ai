@@ -242466,6 +242466,354 @@
       },
       "depth": "精读",
       "notes": "「大多在……之间」是分布区间不是平均值，四条按 超大型/大型 各一对上下界记；原文同时指出各省 PUE 因气候差异显著。[未核]"
+    },
+    {
+      "fact_id": "sh2104-large-dc-pue",
+      "asserter": "上海市经济和信息化委员会",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "large-dc-pue",
+        "label": "上海市数据中心建设导则（2021）新建大型数据中心综合 PUE 上限"
+      },
+      "value": 1.3,
+      "unit": "比值",
+      "bound": "upper",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "南方",
+        "build_type": "新建",
+        "scale": "大型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2021-04",
+      "evidence": {
+        "sha256": "2024a9a9c632826e428b5589363991df9f32a30f393d3e449239c3f088fad272",
+        "local_file": "39页-上海数据中心建设导论.pdf（《上海市数据中心建设导则（2021 版）》）",
+        "locator": "1.1 总体要求 4「设计指标方面」：「新建大型数据中心单项目规模应不低于 3000 个标准机架，平均机架设计功率不低于 6 kW，机架设计总功率不小于 18 MW，综合 PUE 严格控制不超过 1.3；新建边缘数据中心单项目规模应控制在 100 个机架内，PUE 不应高于 1.5，平均机架设计功率不低于 6 kW」（8.1.1、8.1.2、13.1.1、13.1.2 重复同一组要求）",
+        "grade": "S1"
+      },
+      "depth": "精读",
+      "notes": "库内已有该委 2021-04 的「上海市新建数据中心 1.3」（sh-dcguide2021-pue-large-new），本条是同一文件同一要求的再次确认，为免重复未另立实体——保留本条是因为它与同句的 3000 机架、6kW/架、18MW 三项门槛构成一组不可拆的准入条件。[未核]"
+    },
+    {
+      "fact_id": "sh2104-edge-dc-pue",
+      "asserter": "上海市经济和信息化委员会",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "edge-dc-pue",
+        "label": "上海市数据中心建设导则（2021）新建边缘数据中心 PUE 上限"
+      },
+      "value": 1.5,
+      "unit": "比值",
+      "bound": "upper",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "南方",
+        "build_type": "新建",
+        "scale": "中小型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2021-04",
+      "evidence": {
+        "sha256": "2024a9a9c632826e428b5589363991df9f32a30f393d3e449239c3f088fad272",
+        "local_file": "39页-上海数据中心建设导论.pdf（《上海市数据中心建设导则（2021 版）》）",
+        "locator": "1.1 总体要求 4「设计指标方面」：「新建大型数据中心单项目规模应不低于 3000 个标准机架，平均机架设计功率不低于 6 kW，机架设计总功率不小于 18 MW，综合 PUE 严格控制不超过 1.3；新建边缘数据中心单项目规模应控制在 100 个机架内，PUE 不应高于 1.5，平均机架设计功率不低于 6 kW」（8.1.1、8.1.2、13.1.1、13.1.2 重复同一组要求）",
+        "grade": "S1"
+      },
+      "depth": "精读",
+      "notes": "边缘数据中心单项目不超过 100 个标准机架、平均机架设计功率仍不低于 6kW。[未核]"
+    },
+    {
+      "fact_id": "sh2104-operating-pue-year1",
+      "asserter": "上海市经济和信息化委员会",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "operating-pue-year1",
+        "label": "上海市数据中心建设导则（2021）投运第一年综合 PUE"
+      },
+      "value": 1.4,
+      "unit": "比值",
+      "bound": "upper",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "南方",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2021-04",
+      "evidence": {
+        "sha256": "2024a9a9c632826e428b5589363991df9f32a30f393d3e449239c3f088fad272",
+        "local_file": "39页-上海数据中心建设导论.pdf（《上海市数据中心建设导则（2021 版）》）",
+        "locator": "12.3 关键指标要求：「Rackon：半年内不应低于 50%（仅针对自用的数据中心）；一年内不应低于 70%；第二年及以后不低于 90%」「PUE 综合：第一年不应高于 1.4，第二年不应高于 1.3」「Prack：不应低于上架机架的平均机架设计功率的 80%」「WUE：第一年不高于 1.6，第二年不高于 1.4」",
+        "grade": "S1"
+      },
+      "depth": "精读",
+      "notes": "**投运后的达标线，与准入设计线不是一回事**：第一年 1.4、第二年起 1.3。[未核]"
+    },
+    {
+      "fact_id": "sh2104-operating-pue-year2",
+      "asserter": "上海市经济和信息化委员会",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "operating-pue-year2",
+        "label": "上海市数据中心建设导则（2021）投运第二年起综合 PUE"
+      },
+      "value": 1.3,
+      "unit": "比值",
+      "bound": "upper",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "南方",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2021-04",
+      "evidence": {
+        "sha256": "2024a9a9c632826e428b5589363991df9f32a30f393d3e449239c3f088fad272",
+        "local_file": "39页-上海数据中心建设导论.pdf（《上海市数据中心建设导则（2021 版）》）",
+        "locator": "12.3 关键指标要求：「Rackon：半年内不应低于 50%（仅针对自用的数据中心）；一年内不应低于 70%；第二年及以后不低于 90%」「PUE 综合：第一年不应高于 1.4，第二年不应高于 1.3」「Prack：不应低于上架机架的平均机架设计功率的 80%」「WUE：第一年不高于 1.6，第二年不高于 1.4」",
+        "grade": "S1"
+      },
+      "depth": "精读",
+      "notes": "第二年起的达标线，与设计准入的 1.3 相同。[未核]"
+    },
+    {
+      "fact_id": "sh2104-rackon-half-year",
+      "asserter": "上海市经济和信息化委员会",
+      "metric_id": "occupancy_policy_threshold",
+      "entity": {
+        "type": "policy",
+        "id": "sh-dcguide2021-rackon-half-year",
+        "label": "上海市数据中心建设导则（2021）上架率要求（半年内（仅自用数据中心））"
+      },
+      "value": 50.0,
+      "unit": "%",
+      "bound": "lower",
+      "caliber": {
+        "scope": "单项目",
+        "policy_type": "准入门槛",
+        "region": "CN"
+      },
+      "as_of": "2021-04",
+      "evidence": {
+        "sha256": "2024a9a9c632826e428b5589363991df9f32a30f393d3e449239c3f088fad272",
+        "local_file": "39页-上海数据中心建设导论.pdf（《上海市数据中心建设导则（2021 版）》）",
+        "locator": "12.3 关键指标要求：「Rackon：半年内不应低于 50%（仅针对自用的数据中心）；一年内不应低于 70%；第二年及以后不低于 90%」「PUE 综合：第一年不应高于 1.4，第二年不应高于 1.3」「Prack：不应低于上架机架的平均机架设计功率的 80%」「WUE：第一年不高于 1.6，第二年不高于 1.4」",
+        "grade": "S1"
+      },
+      "depth": "精读",
+      "notes": "导则把上架率（Rackon）写成投运后的硬性达标线，按时间分三档抬升：半年 50%（仅自用）、一年 70%、第二年起 90%——第三档比全国平均上架率（同期 55%~62%）高出一大截，是上海控制指标发放的主要抓手。[未核]"
+    },
+    {
+      "fact_id": "sh2104-rackon-year1",
+      "asserter": "上海市经济和信息化委员会",
+      "metric_id": "occupancy_policy_threshold",
+      "entity": {
+        "type": "policy",
+        "id": "sh-dcguide2021-rackon-year1",
+        "label": "上海市数据中心建设导则（2021）上架率要求（一年内）"
+      },
+      "value": 70.0,
+      "unit": "%",
+      "bound": "lower",
+      "caliber": {
+        "scope": "单项目",
+        "policy_type": "准入门槛",
+        "region": "CN"
+      },
+      "as_of": "2021-04",
+      "evidence": {
+        "sha256": "2024a9a9c632826e428b5589363991df9f32a30f393d3e449239c3f088fad272",
+        "local_file": "39页-上海数据中心建设导论.pdf（《上海市数据中心建设导则（2021 版）》）",
+        "locator": "12.3 关键指标要求：「Rackon：半年内不应低于 50%（仅针对自用的数据中心）；一年内不应低于 70%；第二年及以后不低于 90%」「PUE 综合：第一年不应高于 1.4，第二年不应高于 1.3」「Prack：不应低于上架机架的平均机架设计功率的 80%」「WUE：第一年不高于 1.6，第二年不高于 1.4」",
+        "grade": "S1"
+      },
+      "depth": "精读",
+      "notes": "导则把上架率（Rackon）写成投运后的硬性达标线，按时间分三档抬升：半年 50%（仅自用）、一年 70%、第二年起 90%——第三档比全国平均上架率（同期 55%~62%）高出一大截，是上海控制指标发放的主要抓手。[未核]"
+    },
+    {
+      "fact_id": "sh2104-rackon-year2",
+      "asserter": "上海市经济和信息化委员会",
+      "metric_id": "occupancy_policy_threshold",
+      "entity": {
+        "type": "policy",
+        "id": "sh-dcguide2021-rackon-year2",
+        "label": "上海市数据中心建设导则（2021）上架率要求（第二年及以后）"
+      },
+      "value": 90.0,
+      "unit": "%",
+      "bound": "lower",
+      "caliber": {
+        "scope": "单项目",
+        "policy_type": "准入门槛",
+        "region": "CN"
+      },
+      "as_of": "2021-04",
+      "evidence": {
+        "sha256": "2024a9a9c632826e428b5589363991df9f32a30f393d3e449239c3f088fad272",
+        "local_file": "39页-上海数据中心建设导论.pdf（《上海市数据中心建设导则（2021 版）》）",
+        "locator": "12.3 关键指标要求：「Rackon：半年内不应低于 50%（仅针对自用的数据中心）；一年内不应低于 70%；第二年及以后不低于 90%」「PUE 综合：第一年不应高于 1.4，第二年不应高于 1.3」「Prack：不应低于上架机架的平均机架设计功率的 80%」「WUE：第一年不高于 1.6，第二年不高于 1.4」",
+        "grade": "S1"
+      },
+      "depth": "精读",
+      "notes": "导则把上架率（Rackon）写成投运后的硬性达标线，按时间分三档抬升：半年 50%（仅自用）、一年 70%、第二年起 90%——第三档比全国平均上架率（同期 55%~62%）高出一大截，是上海控制指标发放的主要抓手。[未核]"
+    },
+    {
+      "fact_id": "sh2104-wue-year1",
+      "asserter": "上海市经济和信息化委员会",
+      "metric_id": "dc_wue_limit",
+      "entity": {
+        "type": "policy",
+        "id": "sh-dcguide2021-wue-year1",
+        "label": "上海市数据中心建设导则（2021）WUE 要求（第一年）"
+      },
+      "value": 1.6,
+      "unit": "L/kWh",
+      "bound": "upper",
+      "caliber": {
+        "water_zone": "未划分",
+        "limit_type": "政策限值",
+        "region": "CN",
+        "cooling_tech": "未注明",
+        "water_basis": "取水量",
+        "duty_window": "年均"
+      },
+      "as_of": "2021-04",
+      "evidence": {
+        "sha256": "2024a9a9c632826e428b5589363991df9f32a30f393d3e449239c3f088fad272",
+        "local_file": "39页-上海数据中心建设导论.pdf（《上海市数据中心建设导则（2021 版）》）",
+        "locator": "12.3 关键指标要求：「Rackon：半年内不应低于 50%（仅针对自用的数据中心）；一年内不应低于 70%；第二年及以后不低于 90%」「PUE 综合：第一年不应高于 1.4，第二年不应高于 1.3」「Prack：不应低于上架机架的平均机架设计功率的 80%」「WUE：第一年不高于 1.6，第二年不高于 1.4」",
+        "grade": "S1"
+      },
+      "depth": "精读",
+      "notes": "导则把 WUE 列为「宜符合」的指标（PUE 与上架率是「应符合」），严格程度低一档，已在此说明。[未核]"
+    },
+    {
+      "fact_id": "sh2104-wue-year2",
+      "asserter": "上海市经济和信息化委员会",
+      "metric_id": "dc_wue_limit",
+      "entity": {
+        "type": "policy",
+        "id": "sh-dcguide2021-wue-year2",
+        "label": "上海市数据中心建设导则（2021）WUE 要求（第二年）"
+      },
+      "value": 1.4,
+      "unit": "L/kWh",
+      "bound": "upper",
+      "caliber": {
+        "water_zone": "未划分",
+        "limit_type": "政策限值",
+        "region": "CN",
+        "cooling_tech": "未注明",
+        "water_basis": "取水量",
+        "duty_window": "年均"
+      },
+      "as_of": "2021-04",
+      "evidence": {
+        "sha256": "2024a9a9c632826e428b5589363991df9f32a30f393d3e449239c3f088fad272",
+        "local_file": "39页-上海数据中心建设导论.pdf（《上海市数据中心建设导则（2021 版）》）",
+        "locator": "12.3 关键指标要求：「Rackon：半年内不应低于 50%（仅针对自用的数据中心）；一年内不应低于 70%；第二年及以后不低于 90%」「PUE 综合：第一年不应高于 1.4，第二年不应高于 1.3」「Prack：不应低于上架机架的平均机架设计功率的 80%」「WUE：第一年不高于 1.6，第二年不高于 1.4」",
+        "grade": "S1"
+      },
+      "depth": "精读",
+      "notes": "导则把 WUE 列为「宜符合」的指标（PUE 与上架率是「应符合」），严格程度低一档，已在此说明。[未核]"
+    },
+    {
+      "fact_id": "sh2104-rack-design-power-min",
+      "asserter": "上海市经济和信息化委员会",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "policy",
+        "id": "sh-dcguide2021-rack-power",
+        "label": "上海市数据中心建设导则（2021）平均机架设计功率下限"
+      },
+      "value": 6.0,
+      "unit": "kW/架",
+      "bound": "lower",
+      "caliber": {
+        "basis": "设计取值",
+        "scope": "全场平均",
+        "region": "CN"
+      },
+      "as_of": "2021-04",
+      "evidence": {
+        "sha256": "2024a9a9c632826e428b5589363991df9f32a30f393d3e449239c3f088fad272",
+        "local_file": "39页-上海数据中心建设导论.pdf（《上海市数据中心建设导则（2021 版）》）",
+        "locator": "1.1 总体要求 4「设计指标方面」：「新建大型数据中心单项目规模应不低于 3000 个标准机架，平均机架设计功率不低于 6 kW，机架设计总功率不小于 18 MW，综合 PUE 严格控制不超过 1.3；新建边缘数据中心单项目规模应控制在 100 个机架内，PUE 不应高于 1.5，平均机架设计功率不低于 6 kW」（8.1.1、8.1.2、13.1.1、13.1.2 重复同一组要求）",
+        "grade": "S1"
+      },
+      "depth": "精读",
+      "notes": "大型与边缘数据中心同为 6kW/架 的下限；配套要求是单项目 ≥3000 个标准机架、机架设计总功率 ≥18MW（两者相除正好 6kW/架，自洽）。另有 12.3.3 要求投运后的平均机架运行功率 Prack 不低于上架机架平均设计功率的 80%。[未核]"
+    },
+    {
+      "fact_id": "sh2104-room-design-power-min",
+      "asserter": "上海市经济和信息化委员会",
+      "metric_id": "room_design_power",
+      "entity": {
+        "type": "policy",
+        "id": "sh-dcguide2021-total-power",
+        "label": "上海市数据中心建设导则（2021）新建大型数据中心机架设计总功率下限"
+      },
+      "value": 18000.0,
+      "unit": "kW",
+      "bound": "lower",
+      "caliber": {
+        "scope": "仅IT设备",
+        "basis": "设计取值",
+        "region": "CN"
+      },
+      "as_of": "2021-04",
+      "evidence": {
+        "sha256": "2024a9a9c632826e428b5589363991df9f32a30f393d3e449239c3f088fad272",
+        "local_file": "39页-上海数据中心建设导论.pdf（《上海市数据中心建设导则（2021 版）》）",
+        "locator": "1.1 总体要求 4「设计指标方面」：「新建大型数据中心单项目规模应不低于 3000 个标准机架，平均机架设计功率不低于 6 kW，机架设计总功率不小于 18 MW，综合 PUE 严格控制不超过 1.3；新建边缘数据中心单项目规模应控制在 100 个机架内，PUE 不应高于 1.5，平均机架设计功率不低于 6 kW」（8.1.1、8.1.2、13.1.1、13.1.2 重复同一组要求）",
+        "grade": "S1"
+      },
+      "depth": "精读",
+      "notes": "18 MW = 18000 kW，口径是「机架设计总功率」即 IT 侧；与 3000 机架、6kW/架 三项互相自洽。[未核]"
+    },
+    {
+      "fact_id": "sh2104-power-chain-reliability",
+      "asserter": "上海市经济和信息化委员会",
+      "metric_id": "dc_availability",
+      "entity": {
+        "type": "policy",
+        "id": "sh-dcguide2021-power-reliability",
+        "label": "上海市数据中心建设导则（2021）供配电全程可靠性要求"
+      },
+      "value": 99.999,
+      "unit": "%",
+      "bound": "lower",
+      "caliber": {
+        "scope": "某一子系统",
+        "redundancy": "未注明",
+        "window": "未注明",
+        "region": "CN",
+        "basis": "设计值"
+      },
+      "as_of": "2021-04",
+      "evidence": {
+        "sha256": "2024a9a9c632826e428b5589363991df9f32a30f393d3e449239c3f088fad272",
+        "local_file": "39页-上海数据中心建设导论.pdf（《上海市数据中心建设导则（2021 版）》）",
+        "grade": "S1",
+        "locator": "7.2.2：「UPS 供电系统（含 HVDC 等其他类型 UPS）的供电全程（从变压器输入配电设备到列头柜输入设备）可靠性不应低于 99.999%」"
+      },
+      "depth": "精读",
+      "notes": "**边界写得很清楚：从变压器输入配电设备到列头柜输入设备**，是供配电链路而非整站可用性，与库内金融行业标准的网络链路 99.99% 也不是一回事（那是网络子系统）。同节还要求油机宜无冗余设置、宜采用预制化电力模块。[未核]"
     }
   ]
 }
