@@ -235993,6 +235993,192 @@
       "corroboration": "待交叉验证",
       "notes": "**分母是全球主机托管市场，分子是亚太区——原文称「未来两年升至 40%，超过北美成为全球最大的主机托管市场」**，as_of 按报告时点后两年取 2021E。**这与本库既有的运营商/第三方份额（中国内地口径）不是同一种切分**：那是按服务商类型切，本条按地域切。asserter 记 Structured Research，JLL 只是转述。",
       "asserter": "Structured Research"
+    },
+    {
+      "fact_id": "uptime-tier-availability-tier1",
+      "metric_id": "dc_availability",
+      "entity": {
+        "type": "standard",
+        "id": "uptime-tier-tier1",
+        "label": "Uptime Institute Tier 1 可用性标准"
+      },
+      "value": 99.671,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一设施",
+        "redundancy": "N",
+        "window": "年度",
+        "region": "Global",
+        "basis": "设计值"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6b8ae89f8f6e425197ee979744eb3e9c817b375d0bba03e4d48d548ebcedb839",
+        "local_file": "资本协同的数据中心特征.pdf",
+        "locator": "第 9 页「建造质量 vs 建造成本」所附「Uptime Institute 数据中心基础设施分级认证标准」：Tier 4 可用性 99.995%、年平均故障时间不超过 25 分钟、2N+1 冗余、2 路主线、可支援 96 小时停电；Tier 3 可用性 99.982%、年均故障不超过 1.6 小时、N+1、1 主 1 备、可支援 72 小时停电；Tier 2 可用性 99.749%、年均故障不超过 22 小时、N+1、单路径；Tier 1 可用性 99.671%、年均故障不超过 28.8 小时、无冗余。资料来源：Uptime Institute",
+        "grade": "S4",
+        "originator": "Uptime Institute（经信金 IDC 基金 薛亮《资本协同的数据中心特征》（经中国 IDC 圈发布；归档年份未署名，内容事件止于 2019 年）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是 Uptime Institute 分级认证的标准定义值，不是某个设施的实测可用性**——basis 记「设计值」、window 记「年度」。**四档必须成套读**：99.671%／99.749%／99.982%／99.995% 分别对应年停机 28.8 小时／22 小时／1.6 小时／25 分钟，**从 Tier2 到 Tier3 的跨度最大（22 小时 → 1.6 小时）**，这正是国内政策与客户普遍要求 T3 及以上的原因。配套客户分层：Tier1 小型企业、Tier2 中型、Tier3 大型、Tier4 超大型尤其金融机构。单路径供电与冷却、无冗余组件，年均故障不超过 28.8 小时。",
+      "asserter": "Uptime Institute"
+    },
+    {
+      "fact_id": "uptime-tier-availability-tier2",
+      "metric_id": "dc_availability",
+      "entity": {
+        "type": "standard",
+        "id": "uptime-tier-tier2",
+        "label": "Uptime Institute Tier 2 可用性标准"
+      },
+      "value": 99.749,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一设施",
+        "redundancy": "N+1",
+        "window": "年度",
+        "region": "Global",
+        "basis": "设计值"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6b8ae89f8f6e425197ee979744eb3e9c817b375d0bba03e4d48d548ebcedb839",
+        "local_file": "资本协同的数据中心特征.pdf",
+        "locator": "第 9 页「建造质量 vs 建造成本」所附「Uptime Institute 数据中心基础设施分级认证标准」：Tier 4 可用性 99.995%、年平均故障时间不超过 25 分钟、2N+1 冗余、2 路主线、可支援 96 小时停电；Tier 3 可用性 99.982%、年均故障不超过 1.6 小时、N+1、1 主 1 备、可支援 72 小时停电；Tier 2 可用性 99.749%、年均故障不超过 22 小时、N+1、单路径；Tier 1 可用性 99.671%、年均故障不超过 28.8 小时、无冗余。资料来源：Uptime Institute",
+        "grade": "S4",
+        "originator": "Uptime Institute（经信金 IDC 基金 薛亮《资本协同的数据中心特征》（经中国 IDC 圈发布；归档年份未署名，内容事件止于 2019 年）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是 Uptime Institute 分级认证的标准定义值，不是某个设施的实测可用性**——basis 记「设计值」、window 记「年度」。**四档必须成套读**：99.671%／99.749%／99.982%／99.995% 分别对应年停机 28.8 小时／22 小时／1.6 小时／25 分钟，**从 Tier2 到 Tier3 的跨度最大（22 小时 → 1.6 小时）**，这正是国内政策与客户普遍要求 T3 及以上的原因。配套客户分层：Tier1 小型企业、Tier2 中型、Tier3 大型、Tier4 超大型尤其金融机构。单条分配路径但有 N+1 冗余组件，年均故障不超过 22 小时。",
+      "asserter": "Uptime Institute"
+    },
+    {
+      "fact_id": "uptime-tier-availability-tier3",
+      "metric_id": "dc_availability",
+      "entity": {
+        "type": "standard",
+        "id": "uptime-tier-tier3",
+        "label": "Uptime Institute Tier 3 可用性标准"
+      },
+      "value": 99.982,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一设施",
+        "redundancy": "N+1",
+        "window": "年度",
+        "region": "Global",
+        "basis": "设计值"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6b8ae89f8f6e425197ee979744eb3e9c817b375d0bba03e4d48d548ebcedb839",
+        "local_file": "资本协同的数据中心特征.pdf",
+        "locator": "第 9 页「建造质量 vs 建造成本」所附「Uptime Institute 数据中心基础设施分级认证标准」：Tier 4 可用性 99.995%、年平均故障时间不超过 25 分钟、2N+1 冗余、2 路主线、可支援 96 小时停电；Tier 3 可用性 99.982%、年均故障不超过 1.6 小时、N+1、1 主 1 备、可支援 72 小时停电；Tier 2 可用性 99.749%、年均故障不超过 22 小时、N+1、单路径；Tier 1 可用性 99.671%、年均故障不超过 28.8 小时、无冗余。资料来源：Uptime Institute",
+        "grade": "S4",
+        "originator": "Uptime Institute（经信金 IDC 基金 薛亮《资本协同的数据中心特征》（经中国 IDC 圈发布；归档年份未署名，内容事件止于 2019 年）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是 Uptime Institute 分级认证的标准定义值，不是某个设施的实测可用性**——basis 记「设计值」、window 记「年度」。**四档必须成套读**：99.671%／99.749%／99.982%／99.995% 分别对应年停机 28.8 小时／22 小时／1.6 小时／25 分钟，**从 Tier2 到 Tier3 的跨度最大（22 小时 → 1.6 小时）**，这正是国内政策与客户普遍要求 T3 及以上的原因。配套客户分层：Tier1 小型企业、Tier2 中型、Tier3 大型、Tier4 超大型尤其金融机构。1 路主线 + 1 路备用、N+1 冗余、可支援 72 小时停电，年均故障不超过 1.6 小时。",
+      "asserter": "Uptime Institute"
+    },
+    {
+      "fact_id": "uptime-tier-availability-tier4",
+      "metric_id": "dc_availability",
+      "entity": {
+        "type": "standard",
+        "id": "uptime-tier-tier4",
+        "label": "Uptime Institute Tier 4 可用性标准"
+      },
+      "value": 99.995,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一设施",
+        "redundancy": "2(N+1)",
+        "window": "年度",
+        "region": "Global",
+        "basis": "设计值"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "6b8ae89f8f6e425197ee979744eb3e9c817b375d0bba03e4d48d548ebcedb839",
+        "local_file": "资本协同的数据中心特征.pdf",
+        "locator": "第 9 页「建造质量 vs 建造成本」所附「Uptime Institute 数据中心基础设施分级认证标准」：Tier 4 可用性 99.995%、年平均故障时间不超过 25 分钟、2N+1 冗余、2 路主线、可支援 96 小时停电；Tier 3 可用性 99.982%、年均故障不超过 1.6 小时、N+1、1 主 1 备、可支援 72 小时停电；Tier 2 可用性 99.749%、年均故障不超过 22 小时、N+1、单路径；Tier 1 可用性 99.671%、年均故障不超过 28.8 小时、无冗余。资料来源：Uptime Institute",
+        "grade": "S4",
+        "originator": "Uptime Institute（经信金 IDC 基金 薛亮《资本协同的数据中心特征》（经中国 IDC 圈发布；归档年份未署名，内容事件止于 2019 年）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是 Uptime Institute 分级认证的标准定义值，不是某个设施的实测可用性**——basis 记「设计值」、window 记「年度」。**四档必须成套读**：99.671%／99.749%／99.982%／99.995% 分别对应年停机 28.8 小时／22 小时／1.6 小时／25 分钟，**从 Tier2 到 Tier3 的跨度最大（22 小时 → 1.6 小时）**，这正是国内政策与客户普遍要求 T3 及以上的原因。配套客户分层：Tier1 小型企业、Tier2 中型、Tier3 大型、Tier4 超大型尤其金融机构。2 路主线、2N+1 冗余兼具容错性、可支援 96 小时停电，年均故障不超过 25 分钟。**redundancy 记「2(N+1)」是枚举里最接近原文 2N+1 的取值。**",
+      "asserter": "Uptime Institute"
+    },
+    {
+      "fact_id": "xinjin-dc-equity-share-lower",
+      "metric_id": "bank_loan_share",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc-project-financing",
+        "label": "中国数据中心项目投融资结构"
+      },
+      "value": 50.0,
+      "unit": "%",
+      "caliber": {
+        "basis": "计划投资",
+        "region": "CN"
+      },
+      "as_of": "2019",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "6b8ae89f8f6e425197ee979744eb3e9c817b375d0bba03e4d48d548ebcedb839",
+        "local_file": "资本协同的数据中心特征.pdf",
+        "locator": "第 10 页「投融资结构」：「投资资金来源主要分为股权出资及债权出资，股权部分包括资本金及股东借款等形式，债权部分包括银行贷款及融资租赁等形式」，配图给出 30%~50% 与 50~70% 两段占比",
+        "grade": "S4",
+        "originator": "信金 IDC 基金 薛亮《资本协同的数据中心特征》（经中国 IDC 圈发布；归档年份未署名，内容事件止于 2019 年）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**债权（银行贷款与融资租赁）占总投资 50%~70%，对应股权 30%~50%**，本条记债权部分下界 50%、上界 70% 见配对条目。**注意本指标名为「银行贷款占总投资比例」，而原文的债权部分含融资租赁**，口径略宽，引用时须看本注。同页另称数据中心投资成本由土地、建筑物、机电设备及其他组成，其中机电设备占比最大。",
+      "asserter": "信金 IDC 基金"
+    },
+    {
+      "fact_id": "xinjin-dc-debt-share-upper",
+      "metric_id": "bank_loan_share",
+      "entity": {
+        "type": "industry",
+        "id": "cn-dc-project-financing",
+        "label": "中国数据中心项目投融资结构"
+      },
+      "value": 70.0,
+      "unit": "%",
+      "caliber": {
+        "basis": "计划投资",
+        "region": "CN"
+      },
+      "as_of": "2019",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "6b8ae89f8f6e425197ee979744eb3e9c817b375d0bba03e4d48d548ebcedb839",
+        "local_file": "资本协同的数据中心特征.pdf",
+        "locator": "第 10 页「投融资结构」：「投资资金来源主要分为股权出资及债权出资，股权部分包括资本金及股东借款等形式，债权部分包括银行贷款及融资租赁等形式」，配图给出 30%~50% 与 50~70% 两段占比",
+        "grade": "S4",
+        "originator": "信金 IDC 基金 薛亮《资本协同的数据中心特征》（经中国 IDC 圈发布；归档年份未署名，内容事件止于 2019 年）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "债权（银行贷款与融资租赁）占总投资的上界 70%，下界见 xinjin-dc-equity-share-lower。口径说明同下界条。",
+      "asserter": "信金 IDC 基金"
     }
   ]
 }
