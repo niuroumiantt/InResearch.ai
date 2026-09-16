@@ -247772,7 +247772,10 @@
         "grade": "S2"
       },
       "depth": "精读",
-      "notes": "在用算力中心平均值，较 2023 年降 0.02（即 2023 年为 1.48）。库内工信部 2024-12 的全国平均也是 1.46，两条同值不同署名不同时点，不作互证。[未核]"
+      "notes": "在用算力中心平均值，较 2023 年降 0.02（即 2023 年为 1.48）。库内工信部 2024-12 的全国平均也是 1.46，两条同值不同署名不同时点，不作互证。[未核]",
+      "disputes": [
+        "ctri2025-miit-cn-avg-pue-202506"
+      ]
     },
     {
       "fact_id": "bb2025-cn-top6-rack-share-202506",
@@ -249095,6 +249098,160 @@
       },
       "depth": "精读",
       "notes": "1100 万美元/MW 与伯恩斯坦按市场分层给的 7-15 百万美元/MW 区间一致（大都会 12-15、二线 9-12、乡村 7-9），本条是全国平均。原文未说明是否含 IT 设备。[未核]"
+    },
+    {
+      "fact_id": "ctri2025-miit-cn-avg-pue-202506",
+      "asserter": "工信部",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "cn-national",
+        "label": "全国数据中心（行业统计口径）"
+      },
+      "value": 1.42,
+      "unit": "比值",
+      "bound": "point",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2025-06",
+      "evidence": {
+        "sha256": "f8098665eba2634342b4cfa84f418a34fd90b331dc54f4fa9eb7ff625510de1b",
+        "local_file": "2025智算产业发展研究报告.pdf（中国电信研究院·天翼智库）",
+        "locator": "第一章：「工信部数据显示，截至 2025 年 6 月底，我国在用算力中心标准机架达 1085 万架，智能算力规模达 788EFLOPS，干线 400G 端口数量大幅增加至 14060 个，存力总规模超过 1680 EB，全国算力中心平均电能利用效率（PUE）降至 1.42」",
+        "grade": "S2",
+        "originator": "工信部数据，中国电信研究院转述"
+      },
+      "depth": "精读",
+      "notes": "**与库内同一时点、同一口径的 1.46（中国信通院《2025 综合算力指数蓝皮书》）正面冲突**：两家都说「全国在用算力中心平均 PUE」、都是 2025 年 6 月底，差 0.04。本条署工信部、那条署信通院，谁的样本与折算方式如何原文都没写，待裁。[未核]",
+      "disputes": [
+        "bb2025-cn-avg-pue-2025"
+      ]
+    },
+    {
+      "fact_id": "ctri2025-big4-capex-2024",
+      "asserter": "中国电信研究院",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "market",
+        "id": "us-big4-hyperscaler",
+        "label": "微软、谷歌、亚马逊、Meta 四家合计"
+      },
+      "value": 2460.0,
+      "unit": "亿（原币）",
+      "bound": "point",
+      "caliber": {
+        "scope": "北美四家",
+        "capex_scope": "全部 capex",
+        "basis": "券商测算",
+        "vintage": "实际发生",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "f8098665eba2634342b4cfa84f418a34fd90b331dc54f4fa9eb7ff625510de1b",
+        "local_file": "2025智算产业发展研究报告.pdf（中国电信研究院·天翼智库）",
+        "locator": "第二章：「微软、谷歌、亚马逊和 Meta 四大科技巨头 2024 年资本支出总额为 2460 亿美元，较 2023 年（1510 亿美元）大幅增长 63%」「2025 年，微软、谷歌、亚马逊和 Meta 继续扩大 AI 相关资本支出，一季度资本开支合计 765.92 亿美元，同比增长 64.3%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "原文只写「根据市场报告」未给具体机构，按 PR #197 口径断言者记直接陈述的中国电信研究院，basis 不记实测。2023 年为 1510 亿美元，同比 +63%。[未核]"
+    },
+    {
+      "fact_id": "ctri2025-big4-capex-2023",
+      "asserter": "中国电信研究院",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "market",
+        "id": "us-big4-hyperscaler",
+        "label": "微软、谷歌、亚马逊、Meta 四家合计"
+      },
+      "value": 1510.0,
+      "unit": "亿（原币）",
+      "bound": "point",
+      "caliber": {
+        "scope": "北美四家",
+        "capex_scope": "全部 capex",
+        "basis": "券商测算",
+        "vintage": "实际发生",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "f8098665eba2634342b4cfa84f418a34fd90b331dc54f4fa9eb7ff625510de1b",
+        "local_file": "2025智算产业发展研究报告.pdf（中国电信研究院·天翼智库）",
+        "locator": "第二章：「微软、谷歌、亚马逊和 Meta 四大科技巨头 2024 年资本支出总额为 2460 亿美元，较 2023 年（1510 亿美元）大幅增长 63%」「2025 年，微软、谷歌、亚马逊和 Meta 继续扩大 AI 相关资本支出，一季度资本开支合计 765.92 亿美元，同比增长 64.3%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "与 2024 年 2460 亿美元构成同比 +63% 的基数。[未核]"
+    },
+    {
+      "fact_id": "ctri2025-big4-capex-2025q1",
+      "asserter": "中国电信研究院",
+      "metric_id": "hyperscaler_capex_total",
+      "entity": {
+        "type": "market",
+        "id": "us-big4-hyperscaler",
+        "label": "微软、谷歌、亚马逊、Meta 四家合计"
+      },
+      "value": 765.92,
+      "unit": "亿（原币）",
+      "bound": "point",
+      "caliber": {
+        "scope": "北美四家",
+        "capex_scope": "全部 capex",
+        "basis": "券商测算",
+        "vintage": "实际发生",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2025-Q1",
+      "evidence": {
+        "sha256": "f8098665eba2634342b4cfa84f418a34fd90b331dc54f4fa9eb7ff625510de1b",
+        "local_file": "2025智算产业发展研究报告.pdf（中国电信研究院·天翼智库）",
+        "locator": "第二章：「微软、谷歌、亚马逊和 Meta 四大科技巨头 2024 年资本支出总额为 2460 亿美元，较 2023 年（1510 亿美元）大幅增长 63%」「2025 年，微软、谷歌、亚马逊和 Meta 继续扩大 AI 相关资本支出，一季度资本开支合计 765.92 亿美元，同比增长 64.3%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "单季口径，同比 +64.3%；与年度数不可直接比较。原文称为「AI 相关资本支出」但给的是四家资本开支合计，capex_scope 记全部 capex。[未核]"
+    },
+    {
+      "fact_id": "ctri2025-cn-ai-compute-service-market-2024",
+      "asserter": "中国电信研究院",
+      "metric_id": "ai_compute_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-professional-service",
+        "label": "中国智算专业服务市场"
+      },
+      "value": 155.0,
+      "unit": "亿（原币）",
+      "bound": "point",
+      "caliber": {
+        "measure": "智算服务市场规模",
+        "chip_type": "不分类型",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "f8098665eba2634342b4cfa84f418a34fd90b331dc54f4fa9eb7ff625510de1b",
+        "local_file": "2025智算产业发展研究报告.pdf（中国电信研究院·天翼智库）",
+        "locator": "第三章：「数据显示，2024 年我国智算专业服务整体市场规模达 155 亿元」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**这是「专业服务」口径（人民币 155 亿元），与 IDC 的中国智算服务市场（2024 年 50 亿美元，约 360 亿元人民币）不是同一个盘子**，后者含算力租赁与 IaaS。两者不可比。[未核]"
     }
   ]
 }
