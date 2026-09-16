@@ -232219,6 +232219,542 @@
       "corroboration": "待交叉验证",
       "notes": "存量老旧机房 PUE 区间上界（3.0），下界见配对条目。**PUE=3 意味着每 1 度 IT 用电要另配 2 度用于制冷与供配电**，是改造政策的直接靶子。",
       "asserter": "英特尔中国"
+    },
+    {
+      "fact_id": "hwiec2205-beijing-pue-iec",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "industry",
+        "id": "huawei-iec-model-beijing-iec",
+        "label": "华为算例：北京某数据中心（间接蒸发冷却方案）"
+      },
+      "value": 1.21,
+      "unit": "比值",
+      "caliber": {
+        "basis": "厂商宣称",
+        "cooling_tech": "间接蒸发冷却",
+        "climate_zone": "北方",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2022-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b60a53d33e7b6e6dade522f89ab8900d2d1f3ec5680ffdb8977146f42335ba12",
+        "local_file": "20220512-华为数据中心能源白皮书-新一代智能间接蒸发冷却解决方案白皮书-40页_4mb(40页).pdf",
+        "locator": "第 13 页 表 6「北京地区间接蒸发冷却系统和传统冷冻水系统的 PUE 和 WUE 对比」：机房负荷 8000kW；PUE 冷冻水方案 1.27、间接蒸发冷却方案 1.21；WUE 冷冻水方案 1.84、间接蒸发冷却方案 0.93",
+        "grade": "S3",
+        "originator": "华为《数据中心能源白皮书 401 号：新一代智能间接蒸发冷却解决方案白皮书》（2022-05-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是同一套模型算例下的对照值，不是实测**：建筑面积约 12000 ㎡、1000 个机柜、单柜 8kW、机房负荷 8000kW，电费 0.75 元/kWh、水费 8 元/吨，负载率第 1 年 30% 逐年上升、5 年满载，测算 10 年总运行费用；间接蒸发方案为 n+1 配置、50% 机械辅助制冷，冷冻水方案为变频离心机带自然冷却、供回水 20/27℃。**PUE 口径注明「供电及其他系统因子按 0.1 计算」，即制冷分项 + 0.1，与整站实测 PUE 不完全可比。****两条（间接蒸发 1.21 vs 冷冻水 1.27）必须成对读，差值 0.06 才是本白皮书要论证的东西。**cooling_tech 中冷冻水方案记「自然冷源」（原文为带自然冷却的变频离心机），枚举无「冷冻水」取值。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "hwiec2205-beijing-pue-chw",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "industry",
+        "id": "huawei-iec-model-beijing-chw",
+        "label": "华为算例：北京某数据中心（传统冷冻水方案）"
+      },
+      "value": 1.27,
+      "unit": "比值",
+      "caliber": {
+        "basis": "厂商宣称",
+        "cooling_tech": "自然冷源",
+        "climate_zone": "北方",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2022-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b60a53d33e7b6e6dade522f89ab8900d2d1f3ec5680ffdb8977146f42335ba12",
+        "local_file": "20220512-华为数据中心能源白皮书-新一代智能间接蒸发冷却解决方案白皮书-40页_4mb(40页).pdf",
+        "locator": "第 13 页 表 6「北京地区间接蒸发冷却系统和传统冷冻水系统的 PUE 和 WUE 对比」：机房负荷 8000kW；PUE 冷冻水方案 1.27、间接蒸发冷却方案 1.21；WUE 冷冻水方案 1.84、间接蒸发冷却方案 0.93",
+        "grade": "S3",
+        "originator": "华为《数据中心能源白皮书 401 号：新一代智能间接蒸发冷却解决方案白皮书》（2022-05-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是同一套模型算例下的对照值，不是实测**：建筑面积约 12000 ㎡、1000 个机柜、单柜 8kW、机房负荷 8000kW，电费 0.75 元/kWh、水费 8 元/吨，负载率第 1 年 30% 逐年上升、5 年满载，测算 10 年总运行费用；间接蒸发方案为 n+1 配置、50% 机械辅助制冷，冷冻水方案为变频离心机带自然冷却、供回水 20/27℃。**PUE 口径注明「供电及其他系统因子按 0.1 计算」，即制冷分项 + 0.1，与整站实测 PUE 不完全可比。****两条（间接蒸发 1.21 vs 冷冻水 1.27）必须成对读，差值 0.06 才是本白皮书要论证的东西。**cooling_tech 中冷冻水方案记「自然冷源」（原文为带自然冷却的变频离心机），枚举无「冷冻水」取值。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "hwiec2205-beijing-wue-iec",
+      "metric_id": "dc_wue_limit",
+      "entity": {
+        "type": "industry",
+        "id": "huawei-iec-model-beijing-iec",
+        "label": "华为算例：北京某数据中心（间接蒸发冷却方案）"
+      },
+      "value": 0.93,
+      "unit": "L/kWh",
+      "caliber": {
+        "water_zone": "未划分",
+        "limit_type": "实测均值",
+        "region": "CN",
+        "cooling_tech": "绝热冷却",
+        "water_basis": "未注明",
+        "duty_window": "年均"
+      },
+      "as_of": "2022-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b60a53d33e7b6e6dade522f89ab8900d2d1f3ec5680ffdb8977146f42335ba12",
+        "local_file": "20220512-华为数据中心能源白皮书-新一代智能间接蒸发冷却解决方案白皮书-40页_4mb(40页).pdf",
+        "locator": "第 13 页 表 6「北京地区间接蒸发冷却系统和传统冷冻水系统的 PUE 和 WUE 对比」：机房负荷 8000kW；PUE 冷冻水方案 1.27、间接蒸发冷却方案 1.21；WUE 冷冻水方案 1.84、间接蒸发冷却方案 0.93",
+        "grade": "S3",
+        "originator": "华为《数据中心能源白皮书 401 号：新一代智能间接蒸发冷却解决方案白皮书》（2022-05-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是同一套模型算例下的对照值，不是实测**：建筑面积约 12000 ㎡、1000 个机柜、单柜 8kW、机房负荷 8000kW，电费 0.75 元/kWh、水费 8 元/吨，负载率第 1 年 30% 逐年上升、5 年满载，测算 10 年总运行费用；间接蒸发方案为 n+1 配置、50% 机械辅助制冷，冷冻水方案为变频离心机带自然冷却、供回水 20/27℃。**PUE 口径注明「供电及其他系统因子按 0.1 计算」，即制冷分项 + 0.1，与整站实测 PUE 不完全可比。****limit_type 记「实测均值」是枚举所限——本条实为厂商模型测算值，不是实测，也不是政策限值。**间接蒸发 0.93 vs 冷冻水 1.84 成对读，节水约 49%。water_basis 未注明：原文未区分取水量与消耗性水耗。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "hwiec2205-beijing-wue-chw",
+      "metric_id": "dc_wue_limit",
+      "entity": {
+        "type": "industry",
+        "id": "huawei-iec-model-beijing-chw",
+        "label": "华为算例：北京某数据中心（传统冷冻水方案）"
+      },
+      "value": 1.84,
+      "unit": "L/kWh",
+      "caliber": {
+        "water_zone": "未划分",
+        "limit_type": "实测均值",
+        "region": "CN",
+        "cooling_tech": "冷却塔",
+        "water_basis": "未注明",
+        "duty_window": "年均"
+      },
+      "as_of": "2022-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b60a53d33e7b6e6dade522f89ab8900d2d1f3ec5680ffdb8977146f42335ba12",
+        "local_file": "20220512-华为数据中心能源白皮书-新一代智能间接蒸发冷却解决方案白皮书-40页_4mb(40页).pdf",
+        "locator": "第 13 页 表 6「北京地区间接蒸发冷却系统和传统冷冻水系统的 PUE 和 WUE 对比」：机房负荷 8000kW；PUE 冷冻水方案 1.27、间接蒸发冷却方案 1.21；WUE 冷冻水方案 1.84、间接蒸发冷却方案 0.93",
+        "grade": "S3",
+        "originator": "华为《数据中心能源白皮书 401 号：新一代智能间接蒸发冷却解决方案白皮书》（2022-05-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是同一套模型算例下的对照值，不是实测**：建筑面积约 12000 ㎡、1000 个机柜、单柜 8kW、机房负荷 8000kW，电费 0.75 元/kWh、水费 8 元/吨，负载率第 1 年 30% 逐年上升、5 年满载，测算 10 年总运行费用；间接蒸发方案为 n+1 配置、50% 机械辅助制冷，冷冻水方案为变频离心机带自然冷却、供回水 20/27℃。**PUE 口径注明「供电及其他系统因子按 0.1 计算」，即制冷分项 + 0.1，与整站实测 PUE 不完全可比。****limit_type 记「实测均值」是枚举所限——本条实为厂商模型测算值，不是实测，也不是政策限值。**间接蒸发 0.93 vs 冷冻水 1.84 成对读，节水约 49%。water_basis 未注明：原文未区分取水量与消耗性水耗。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "hwiec2205-shanghai-pue-iec",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "industry",
+        "id": "huawei-iec-model-shanghai-iec",
+        "label": "华为算例：上海某数据中心（间接蒸发冷却方案）"
+      },
+      "value": 1.23,
+      "unit": "比值",
+      "caliber": {
+        "basis": "厂商宣称",
+        "cooling_tech": "间接蒸发冷却",
+        "climate_zone": "南方",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2022-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b60a53d33e7b6e6dade522f89ab8900d2d1f3ec5680ffdb8977146f42335ba12",
+        "local_file": "20220512-华为数据中心能源白皮书-新一代智能间接蒸发冷却解决方案白皮书-40页_4mb(40页).pdf",
+        "locator": "第 13 页 表 7「上海地区间接蒸发冷却系统和传统冷冻水系统的 PUE 和 WUE 对比」：机房负荷 8000kW；PUE 冷冻水方案 1.30、间接蒸发冷却方案 1.23；WUE 冷冻水方案 1.87、间接蒸发冷却方案 0.89",
+        "grade": "S3",
+        "originator": "华为《数据中心能源白皮书 401 号：新一代智能间接蒸发冷却解决方案白皮书》（2022-05-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是同一套模型算例下的对照值，不是实测**：建筑面积约 12000 ㎡、1000 个机柜、单柜 8kW、机房负荷 8000kW，电费 0.75 元/kWh、水费 8 元/吨，负载率第 1 年 30% 逐年上升、5 年满载，测算 10 年总运行费用；间接蒸发方案为 n+1 配置、50% 机械辅助制冷，冷冻水方案为变频离心机带自然冷却、供回水 20/27℃。**PUE 口径注明「供电及其他系统因子按 0.1 计算」，即制冷分项 + 0.1，与整站实测 PUE 不完全可比。****两条（间接蒸发 1.23 vs 冷冻水 1.30）必须成对读，差值 0.07 才是本白皮书要论证的东西。**cooling_tech 中冷冻水方案记「自然冷源」（原文为带自然冷却的变频离心机），枚举无「冷冻水」取值。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "hwiec2205-shanghai-pue-chw",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "industry",
+        "id": "huawei-iec-model-shanghai-chw",
+        "label": "华为算例：上海某数据中心（传统冷冻水方案）"
+      },
+      "value": 1.3,
+      "unit": "比值",
+      "caliber": {
+        "basis": "厂商宣称",
+        "cooling_tech": "自然冷源",
+        "climate_zone": "南方",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2022-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b60a53d33e7b6e6dade522f89ab8900d2d1f3ec5680ffdb8977146f42335ba12",
+        "local_file": "20220512-华为数据中心能源白皮书-新一代智能间接蒸发冷却解决方案白皮书-40页_4mb(40页).pdf",
+        "locator": "第 13 页 表 7「上海地区间接蒸发冷却系统和传统冷冻水系统的 PUE 和 WUE 对比」：机房负荷 8000kW；PUE 冷冻水方案 1.30、间接蒸发冷却方案 1.23；WUE 冷冻水方案 1.87、间接蒸发冷却方案 0.89",
+        "grade": "S3",
+        "originator": "华为《数据中心能源白皮书 401 号：新一代智能间接蒸发冷却解决方案白皮书》（2022-05-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是同一套模型算例下的对照值，不是实测**：建筑面积约 12000 ㎡、1000 个机柜、单柜 8kW、机房负荷 8000kW，电费 0.75 元/kWh、水费 8 元/吨，负载率第 1 年 30% 逐年上升、5 年满载，测算 10 年总运行费用；间接蒸发方案为 n+1 配置、50% 机械辅助制冷，冷冻水方案为变频离心机带自然冷却、供回水 20/27℃。**PUE 口径注明「供电及其他系统因子按 0.1 计算」，即制冷分项 + 0.1，与整站实测 PUE 不完全可比。****两条（间接蒸发 1.23 vs 冷冻水 1.30）必须成对读，差值 0.07 才是本白皮书要论证的东西。**cooling_tech 中冷冻水方案记「自然冷源」（原文为带自然冷却的变频离心机），枚举无「冷冻水」取值。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "hwiec2205-shanghai-wue-iec",
+      "metric_id": "dc_wue_limit",
+      "entity": {
+        "type": "industry",
+        "id": "huawei-iec-model-shanghai-iec",
+        "label": "华为算例：上海某数据中心（间接蒸发冷却方案）"
+      },
+      "value": 0.89,
+      "unit": "L/kWh",
+      "caliber": {
+        "water_zone": "未划分",
+        "limit_type": "实测均值",
+        "region": "CN",
+        "cooling_tech": "绝热冷却",
+        "water_basis": "未注明",
+        "duty_window": "年均"
+      },
+      "as_of": "2022-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b60a53d33e7b6e6dade522f89ab8900d2d1f3ec5680ffdb8977146f42335ba12",
+        "local_file": "20220512-华为数据中心能源白皮书-新一代智能间接蒸发冷却解决方案白皮书-40页_4mb(40页).pdf",
+        "locator": "第 13 页 表 7「上海地区间接蒸发冷却系统和传统冷冻水系统的 PUE 和 WUE 对比」：机房负荷 8000kW；PUE 冷冻水方案 1.30、间接蒸发冷却方案 1.23；WUE 冷冻水方案 1.87、间接蒸发冷却方案 0.89",
+        "grade": "S3",
+        "originator": "华为《数据中心能源白皮书 401 号：新一代智能间接蒸发冷却解决方案白皮书》（2022-05-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是同一套模型算例下的对照值，不是实测**：建筑面积约 12000 ㎡、1000 个机柜、单柜 8kW、机房负荷 8000kW，电费 0.75 元/kWh、水费 8 元/吨，负载率第 1 年 30% 逐年上升、5 年满载，测算 10 年总运行费用；间接蒸发方案为 n+1 配置、50% 机械辅助制冷，冷冻水方案为变频离心机带自然冷却、供回水 20/27℃。**PUE 口径注明「供电及其他系统因子按 0.1 计算」，即制冷分项 + 0.1，与整站实测 PUE 不完全可比。****limit_type 记「实测均值」是枚举所限——本条实为厂商模型测算值，不是实测，也不是政策限值。**间接蒸发 0.89 vs 冷冻水 1.87 成对读，节水约 52%。water_basis 未注明：原文未区分取水量与消耗性水耗。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "hwiec2205-shanghai-wue-chw",
+      "metric_id": "dc_wue_limit",
+      "entity": {
+        "type": "industry",
+        "id": "huawei-iec-model-shanghai-chw",
+        "label": "华为算例：上海某数据中心（传统冷冻水方案）"
+      },
+      "value": 1.87,
+      "unit": "L/kWh",
+      "caliber": {
+        "water_zone": "未划分",
+        "limit_type": "实测均值",
+        "region": "CN",
+        "cooling_tech": "冷却塔",
+        "water_basis": "未注明",
+        "duty_window": "年均"
+      },
+      "as_of": "2022-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b60a53d33e7b6e6dade522f89ab8900d2d1f3ec5680ffdb8977146f42335ba12",
+        "local_file": "20220512-华为数据中心能源白皮书-新一代智能间接蒸发冷却解决方案白皮书-40页_4mb(40页).pdf",
+        "locator": "第 13 页 表 7「上海地区间接蒸发冷却系统和传统冷冻水系统的 PUE 和 WUE 对比」：机房负荷 8000kW；PUE 冷冻水方案 1.30、间接蒸发冷却方案 1.23；WUE 冷冻水方案 1.87、间接蒸发冷却方案 0.89",
+        "grade": "S3",
+        "originator": "华为《数据中心能源白皮书 401 号：新一代智能间接蒸发冷却解决方案白皮书》（2022-05-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是同一套模型算例下的对照值，不是实测**：建筑面积约 12000 ㎡、1000 个机柜、单柜 8kW、机房负荷 8000kW，电费 0.75 元/kWh、水费 8 元/吨，负载率第 1 年 30% 逐年上升、5 年满载，测算 10 年总运行费用；间接蒸发方案为 n+1 配置、50% 机械辅助制冷，冷冻水方案为变频离心机带自然冷却、供回水 20/27℃。**PUE 口径注明「供电及其他系统因子按 0.1 计算」，即制冷分项 + 0.1，与整站实测 PUE 不完全可比。****limit_type 记「实测均值」是枚举所限——本条实为厂商模型测算值，不是实测，也不是政策限值。**间接蒸发 0.89 vs 冷冻水 1.87 成对读，节水约 52%。water_basis 未注明：原文未区分取水量与消耗性水耗。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "hwiec2205-shenzhen-pue-iec",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "industry",
+        "id": "huawei-iec-model-shenzhen-iec",
+        "label": "华为算例：深圳某数据中心（间接蒸发冷却方案）"
+      },
+      "value": 1.25,
+      "unit": "比值",
+      "caliber": {
+        "basis": "厂商宣称",
+        "cooling_tech": "间接蒸发冷却",
+        "climate_zone": "夏热冬暖",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2022-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b60a53d33e7b6e6dade522f89ab8900d2d1f3ec5680ffdb8977146f42335ba12",
+        "local_file": "20220512-华为数据中心能源白皮书-新一代智能间接蒸发冷却解决方案白皮书-40页_4mb(40页).pdf",
+        "locator": "第 13 页 表 8「深圳地区间接蒸发冷却系统和传统冷冻水系统的 PUE 和 WUE 对比」：机房负荷 8000kW；PUE 冷冻水方案 1.32、间接蒸发冷却方案 1.25；WUE 冷冻水方案 1.93、间接蒸发冷却方案 1.12",
+        "grade": "S3",
+        "originator": "华为《数据中心能源白皮书 401 号：新一代智能间接蒸发冷却解决方案白皮书》（2022-05-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是同一套模型算例下的对照值，不是实测**：建筑面积约 12000 ㎡、1000 个机柜、单柜 8kW、机房负荷 8000kW，电费 0.75 元/kWh、水费 8 元/吨，负载率第 1 年 30% 逐年上升、5 年满载，测算 10 年总运行费用；间接蒸发方案为 n+1 配置、50% 机械辅助制冷，冷冻水方案为变频离心机带自然冷却、供回水 20/27℃。**PUE 口径注明「供电及其他系统因子按 0.1 计算」，即制冷分项 + 0.1，与整站实测 PUE 不完全可比。****两条（间接蒸发 1.25 vs 冷冻水 1.32）必须成对读，差值 0.07 才是本白皮书要论证的东西。**cooling_tech 中冷冻水方案记「自然冷源」（原文为带自然冷却的变频离心机），枚举无「冷冻水」取值。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "hwiec2205-shenzhen-pue-chw",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "industry",
+        "id": "huawei-iec-model-shenzhen-chw",
+        "label": "华为算例：深圳某数据中心（传统冷冻水方案）"
+      },
+      "value": 1.32,
+      "unit": "比值",
+      "caliber": {
+        "basis": "厂商宣称",
+        "cooling_tech": "自然冷源",
+        "climate_zone": "夏热冬暖",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2022-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b60a53d33e7b6e6dade522f89ab8900d2d1f3ec5680ffdb8977146f42335ba12",
+        "local_file": "20220512-华为数据中心能源白皮书-新一代智能间接蒸发冷却解决方案白皮书-40页_4mb(40页).pdf",
+        "locator": "第 13 页 表 8「深圳地区间接蒸发冷却系统和传统冷冻水系统的 PUE 和 WUE 对比」：机房负荷 8000kW；PUE 冷冻水方案 1.32、间接蒸发冷却方案 1.25；WUE 冷冻水方案 1.93、间接蒸发冷却方案 1.12",
+        "grade": "S3",
+        "originator": "华为《数据中心能源白皮书 401 号：新一代智能间接蒸发冷却解决方案白皮书》（2022-05-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是同一套模型算例下的对照值，不是实测**：建筑面积约 12000 ㎡、1000 个机柜、单柜 8kW、机房负荷 8000kW，电费 0.75 元/kWh、水费 8 元/吨，负载率第 1 年 30% 逐年上升、5 年满载，测算 10 年总运行费用；间接蒸发方案为 n+1 配置、50% 机械辅助制冷，冷冻水方案为变频离心机带自然冷却、供回水 20/27℃。**PUE 口径注明「供电及其他系统因子按 0.1 计算」，即制冷分项 + 0.1，与整站实测 PUE 不完全可比。****两条（间接蒸发 1.25 vs 冷冻水 1.32）必须成对读，差值 0.07 才是本白皮书要论证的东西。**cooling_tech 中冷冻水方案记「自然冷源」（原文为带自然冷却的变频离心机），枚举无「冷冻水」取值。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "hwiec2205-shenzhen-wue-iec",
+      "metric_id": "dc_wue_limit",
+      "entity": {
+        "type": "industry",
+        "id": "huawei-iec-model-shenzhen-iec",
+        "label": "华为算例：深圳某数据中心（间接蒸发冷却方案）"
+      },
+      "value": 1.12,
+      "unit": "L/kWh",
+      "caliber": {
+        "water_zone": "未划分",
+        "limit_type": "实测均值",
+        "region": "CN",
+        "cooling_tech": "绝热冷却",
+        "water_basis": "未注明",
+        "duty_window": "年均"
+      },
+      "as_of": "2022-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b60a53d33e7b6e6dade522f89ab8900d2d1f3ec5680ffdb8977146f42335ba12",
+        "local_file": "20220512-华为数据中心能源白皮书-新一代智能间接蒸发冷却解决方案白皮书-40页_4mb(40页).pdf",
+        "locator": "第 13 页 表 8「深圳地区间接蒸发冷却系统和传统冷冻水系统的 PUE 和 WUE 对比」：机房负荷 8000kW；PUE 冷冻水方案 1.32、间接蒸发冷却方案 1.25；WUE 冷冻水方案 1.93、间接蒸发冷却方案 1.12",
+        "grade": "S3",
+        "originator": "华为《数据中心能源白皮书 401 号：新一代智能间接蒸发冷却解决方案白皮书》（2022-05-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是同一套模型算例下的对照值，不是实测**：建筑面积约 12000 ㎡、1000 个机柜、单柜 8kW、机房负荷 8000kW，电费 0.75 元/kWh、水费 8 元/吨，负载率第 1 年 30% 逐年上升、5 年满载，测算 10 年总运行费用；间接蒸发方案为 n+1 配置、50% 机械辅助制冷，冷冻水方案为变频离心机带自然冷却、供回水 20/27℃。**PUE 口径注明「供电及其他系统因子按 0.1 计算」，即制冷分项 + 0.1，与整站实测 PUE 不完全可比。****limit_type 记「实测均值」是枚举所限——本条实为厂商模型测算值，不是实测，也不是政策限值。**间接蒸发 1.12 vs 冷冻水 1.93 成对读，节水约 42%。water_basis 未注明：原文未区分取水量与消耗性水耗。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "hwiec2205-shenzhen-wue-chw",
+      "metric_id": "dc_wue_limit",
+      "entity": {
+        "type": "industry",
+        "id": "huawei-iec-model-shenzhen-chw",
+        "label": "华为算例：深圳某数据中心（传统冷冻水方案）"
+      },
+      "value": 1.93,
+      "unit": "L/kWh",
+      "caliber": {
+        "water_zone": "未划分",
+        "limit_type": "实测均值",
+        "region": "CN",
+        "cooling_tech": "冷却塔",
+        "water_basis": "未注明",
+        "duty_window": "年均"
+      },
+      "as_of": "2022-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b60a53d33e7b6e6dade522f89ab8900d2d1f3ec5680ffdb8977146f42335ba12",
+        "local_file": "20220512-华为数据中心能源白皮书-新一代智能间接蒸发冷却解决方案白皮书-40页_4mb(40页).pdf",
+        "locator": "第 13 页 表 8「深圳地区间接蒸发冷却系统和传统冷冻水系统的 PUE 和 WUE 对比」：机房负荷 8000kW；PUE 冷冻水方案 1.32、间接蒸发冷却方案 1.25；WUE 冷冻水方案 1.93、间接蒸发冷却方案 1.12",
+        "grade": "S3",
+        "originator": "华为《数据中心能源白皮书 401 号：新一代智能间接蒸发冷却解决方案白皮书》（2022-05-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是同一套模型算例下的对照值，不是实测**：建筑面积约 12000 ㎡、1000 个机柜、单柜 8kW、机房负荷 8000kW，电费 0.75 元/kWh、水费 8 元/吨，负载率第 1 年 30% 逐年上升、5 年满载，测算 10 年总运行费用；间接蒸发方案为 n+1 配置、50% 机械辅助制冷，冷冻水方案为变频离心机带自然冷却、供回水 20/27℃。**PUE 口径注明「供电及其他系统因子按 0.1 计算」，即制冷分项 + 0.1，与整站实测 PUE 不完全可比。****limit_type 记「实测均值」是枚举所限——本条实为厂商模型测算值，不是实测，也不是政策限值。**间接蒸发 1.12 vs 冷冻水 1.93 成对读，节水约 42%。water_basis 未注明：原文未区分取水量与消耗性水耗。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "hwiec2205-case-sydney-pue",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "huawei-iec-case-sydney",
+        "label": "澳大利亚悉尼某数据中心"
+      },
+      "value": 1.27,
+      "unit": "比值",
+      "caliber": {
+        "basis": "厂商宣称",
+        "cooling_tech": "间接蒸发冷却",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "APAC"
+      },
+      "as_of": "2022-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b60a53d33e7b6e6dade522f89ab8900d2d1f3ec5680ffdb8977146f42335ba12",
+        "local_file": "20220512-华为数据中心能源白皮书-新一代智能间接蒸发冷却解决方案白皮书-40页_4mb(40页).pdf",
+        "locator": "第 31 页「3) 澳大利亚某数据中心」：「该项目位于悉尼，建设 48 个机柜，功率密度 10kW/ 柜，采用间接蒸发解决方案，实现数据中心 PUE 低至 1.27，年省电费 13.6%。……机组安装时间缩短至 1 个月内完成」",
+        "grade": "S3",
+        "originator": "华为《数据中心能源白皮书 401 号：新一代智能间接蒸发冷却解决方案白皮书》（2022-05-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**厂商案例宣称值**（未说明是设计值还是实测年均）。项目条件：48 个机柜、10kW/柜；年省电费 13.6%；机组安装 1 个月内完成。 **同一白皮书的六个海外案例 PUE 跨度 1.15-1.27，差别主要来自当地气象条件**——白皮书为每个案例都附了全年气象数据表，正说明间接蒸发方案的效果高度依赖气候。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "hwiec2205-case-london-pue",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "huawei-iec-case-london",
+        "label": "英国伦敦某多层数据中心"
+      },
+      "value": 1.16,
+      "unit": "比值",
+      "caliber": {
+        "basis": "厂商宣称",
+        "cooling_tech": "间接蒸发冷却",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "EU"
+      },
+      "as_of": "2022-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b60a53d33e7b6e6dade522f89ab8900d2d1f3ec5680ffdb8977146f42335ba12",
+        "local_file": "20220512-华为数据中心能源白皮书-新一代智能间接蒸发冷却解决方案白皮书-40页_4mb(40页).pdf",
+        "locator": "第 32 页「4) 英国某数据中心」：「该项目是一个多层数据中心，每层有 528 个机柜，功率密度 4.32kW。间接蒸发冷却机组安装在 2-7 层的建筑内部，数据中心 PUE 达到 1.16」",
+        "grade": "S3",
+        "originator": "华为《数据中心能源白皮书 401 号：新一代智能间接蒸发冷却解决方案白皮书》（2022-05-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**厂商案例宣称值**（未说明是设计值还是实测年均）。项目条件：每层 528 个机柜、4.32kW/柜；机组装在 2-7 层建筑内部。**伦敦气候凉爽是 PUE 能到 1.16 的主因，不可移植到夏热地区。** **同一白皮书的六个海外案例 PUE 跨度 1.15-1.27，差别主要来自当地气象条件**——白皮书为每个案例都附了全年气象数据表，正说明间接蒸发方案的效果高度依赖气候。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "hwiec2205-case-zurich-pue",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "huawei-iec-case-zurich",
+        "label": "瑞士苏黎世某数据中心"
+      },
+      "value": 1.15,
+      "unit": "比值",
+      "caliber": {
+        "basis": "厂商宣称",
+        "cooling_tech": "间接蒸发冷却",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "EU"
+      },
+      "as_of": "2022-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b60a53d33e7b6e6dade522f89ab8900d2d1f3ec5680ffdb8977146f42335ba12",
+        "local_file": "20220512-华为数据中心能源白皮书-新一代智能间接蒸发冷却解决方案白皮书-40页_4mb(40页).pdf",
+        "locator": "第 32 页「5) 瑞士某数据中心」：「该数据中心面积约 900 平方米，采用间接蒸发冷却解决方案，PUE 达到了 1.15，T4 等级，99.998% 的可用性」",
+        "grade": "S3",
+        "originator": "华为《数据中心能源白皮书 401 号：新一代智能间接蒸发冷却解决方案白皮书》（2022-05-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**厂商案例宣称值**（未说明是设计值还是实测年均）。项目条件：面积约 900 ㎡；T4 等级、可用性 99.998%。 **同一白皮书的六个海外案例 PUE 跨度 1.15-1.27，差别主要来自当地气象条件**——白皮书为每个案例都附了全年气象数据表，正说明间接蒸发方案的效果高度依赖气候。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "hwiec2205-case-zurich-availability",
+      "metric_id": "dc_availability",
+      "entity": {
+        "type": "project",
+        "id": "huawei-iec-case-zurich",
+        "label": "瑞士苏黎世某数据中心"
+      },
+      "value": 99.998,
+      "unit": "%",
+      "caliber": {
+        "scope": "单一设施",
+        "redundancy": "2N",
+        "window": "未注明",
+        "region": "EU",
+        "basis": "厂商宣称"
+      },
+      "as_of": "2022-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b60a53d33e7b6e6dade522f89ab8900d2d1f3ec5680ffdb8977146f42335ba12",
+        "local_file": "20220512-华为数据中心能源白皮书-新一代智能间接蒸发冷却解决方案白皮书-40页_4mb(40页).pdf",
+        "locator": "第 32 页「5) 瑞士某数据中心」：「该数据中心面积约 900 平方米，采用间接蒸发冷却解决方案，PUE 达到了 1.15，T4 等级，99.998% 的可用性」",
+        "grade": "S3",
+        "originator": "华为《数据中心能源白皮书 401 号：新一代智能间接蒸发冷却解决方案白皮书》（2022-05-12）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**99.998% 是 Uptime T4 等级对应的年可用性指标（年停机约 10.5 分钟），属等级定义值而非实测统计**；redundancy 记 2N 是 T4 等级的定义要求，原文未单独说明。**与库内谷歌液冷 TPU 集群 99.999%（七年累计）不是一个口径**：那是机队实测，这是单设施等级值。",
+      "asserter": "华为"
     }
   ]
 }
