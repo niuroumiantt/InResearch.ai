@@ -248811,6 +248811,262 @@
       },
       "depth": "精读",
       "notes": "**开工 10GW 与完工 7GW 是两个不同阶段的流量，不可相加也不可与存量并列**；对应约 1700 亿美元的资产价值需要融资。[未核]"
+    },
+    {
+      "fact_id": "col2025-na-thirdparty-supply-2023",
+      "asserter": "科利斯",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "market",
+        "id": "na-thirdparty-dc",
+        "label": "北美第三方运营商数据中心供应量"
+      },
+      "value": 12.4,
+      "unit": "GW",
+      "bound": "point",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "实测",
+        "region": "US"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "2e56378dcce9b56ac37e46348b353f94890fed6a684c767fcfcd1f797e732dee",
+        "local_file": "数据中心市场 平衡前所未有的机会与战略风险.pdf（科利斯 Colliers 美国研究报告）",
+        "locator": "正文：「北美第三方运营商供应量增长超过 40%，从 2023 年的 12.4 吉瓦增加到 2024 年的超过 18 吉瓦——还不包括另外 30 吉瓦的计划产能」（脚注：科利斯美国研究，datacenterHawk）",
+        "grade": "S2",
+        "originator": "datacenterHawk"
+      },
+      "depth": "精读",
+      "notes": "同比基数。口径是第三方运营商（不含超大规模自建），原文未说明是 IT 负载还是并网容量。[未核]"
+    },
+    {
+      "fact_id": "col2025-na-thirdparty-supply-2024",
+      "asserter": "科利斯",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "market",
+        "id": "na-thirdparty-dc",
+        "label": "北美第三方运营商数据中心供应量"
+      },
+      "value": 18.0,
+      "unit": "GW",
+      "bound": "lower",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "实测",
+        "region": "US"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "2e56378dcce9b56ac37e46348b353f94890fed6a684c767fcfcd1f797e732dee",
+        "local_file": "数据中心市场 平衡前所未有的机会与战略风险.pdf（科利斯 Colliers 美国研究报告）",
+        "locator": "正文：「北美第三方运营商供应量增长超过 40%，从 2023 年的 12.4 吉瓦增加到 2024 年的超过 18 吉瓦——还不包括另外 30 吉瓦的计划产能」（脚注：科利斯美国研究，datacenterHawk）",
+        "grade": "S2",
+        "originator": "datacenterHawk"
+      },
+      "depth": "精读",
+      "notes": "「超过 18 吉瓦」记下界，同比 +40% 以上。口径是第三方运营商（不含超大规模自建），原文未说明是 IT 负载还是并网容量。[未核]"
+    },
+    {
+      "fact_id": "col2025-na-thirdparty-supply-planned",
+      "asserter": "科利斯",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "market",
+        "id": "na-thirdparty-dc-planned",
+        "label": "北美第三方运营商数据中心供应量（计划产能）"
+      },
+      "value": 30.0,
+      "unit": "GW",
+      "bound": "lower",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "US"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "2e56378dcce9b56ac37e46348b353f94890fed6a684c767fcfcd1f797e732dee",
+        "local_file": "数据中心市场 平衡前所未有的机会与战略风险.pdf（科利斯 Colliers 美国研究报告）",
+        "locator": "正文：「北美第三方运营商供应量增长超过 40%，从 2023 年的 12.4 吉瓦增加到 2024 年的超过 18 吉瓦——还不包括另外 30 吉瓦的计划产能」（脚注：科利斯美国研究，datacenterHawk）",
+        "grade": "S2",
+        "originator": "datacenterHawk"
+      },
+      "depth": "精读",
+      "notes": "另有 30 吉瓦的计划产能，**不含在上面两档里**。口径是第三方运营商（不含超大规模自建），原文未说明是 IT 负载还是并网容量。[未核]"
+    },
+    {
+      "fact_id": "col2025-us-vacancy-2024",
+      "asserter": "科利斯",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "us-datacenter",
+        "label": "美国数据中心（全国平均）"
+      },
+      "value": 2.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "scope": "区域合计",
+        "region": "US"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "2e56378dcce9b56ac37e46348b353f94890fed6a684c767fcfcd1f797e732dee",
+        "local_file": "数据中心市场 平衡前所未有的机会与战略风险.pdf（科利斯 Colliers 美国研究报告）",
+        "locator": "正文：「2024 年北部弗吉尼亚州吸收的 1.5 吉瓦电力中超过 1.4 吉瓦已被预租赁，将空置率推至 1% 以下。在全国范围内，我们估计至少 70% 的新产品已被预租赁，这有助于将全国平均空置率维持在 2%」",
+        "grade": "S2",
+        "originator": "datacenterHawk"
+      },
+      "depth": "精读",
+      "notes": "全国平均空置率 2%，原因是至少 70% 的新产品在交付前已被预租赁。与伯恩斯坦给头部市场 1-2% 的区间一致。[未核]"
+    },
+    {
+      "fact_id": "col2025-nova-vacancy-2024",
+      "asserter": "科利斯",
+      "metric_id": "dc_vacancy_rate",
+      "entity": {
+        "type": "market",
+        "id": "us-nova-dc-market",
+        "label": "美国北弗吉尼亚数据中心市场"
+      },
+      "value": 1.0,
+      "unit": "%",
+      "bound": "upper",
+      "caliber": {
+        "scope": "单一市场",
+        "region": "US"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "2e56378dcce9b56ac37e46348b353f94890fed6a684c767fcfcd1f797e732dee",
+        "local_file": "数据中心市场 平衡前所未有的机会与战略风险.pdf（科利斯 Colliers 美国研究报告）",
+        "locator": "正文：「2024 年北部弗吉尼亚州吸收的 1.5 吉瓦电力中超过 1.4 吉瓦已被预租赁，将空置率推至 1% 以下。在全国范围内，我们估计至少 70% 的新产品已被预租赁，这有助于将全国平均空置率维持在 2%」",
+        "grade": "S2",
+        "originator": "datacenterHawk"
+      },
+      "depth": "精读",
+      "notes": "北弗吉尼亚 2024 年吸纳 1.5GW 中超过 1.4GW 在交付前已预租，空置率被压到 1% 以下。[未核]"
+    },
+    {
+      "fact_id": "col2025-us-retail-colo-price-pre-pandemic",
+      "asserter": "科利斯",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-retail-colo",
+        "label": "美国零售托管（<500kW 部署）"
+      },
+      "value": 200.0,
+      "unit": "原币/月/计价单位",
+      "bound": "upper",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "零售托管市场",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2019",
+      "evidence": {
+        "sha256": "2e56378dcce9b56ac37e46348b353f94890fed6a684c767fcfcd1f797e732dee",
+        "local_file": "数据中心市场 平衡前所未有的机会与战略风险.pdf（科利斯 Colliers 美国研究报告）",
+        "locator": "第 8 页 定价：国内租赁费率：「在疫情前，低于 500kW 的零售数据中心租赁率平均不到 200 美元/kW，包括电力，每月，但现在已飙升至超过 250 美元/kW，在北加利福尼亚等市场甚至高达 300-400 美元/kW。平均国内价格至少上涨了 20%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "疫情前的水平（<500kW 零售部署，含电费）；单位为美元/kW/月且**含电费**（原文明写 including power），与不含电费的报价不可直接比。[未核]"
+    },
+    {
+      "fact_id": "col2025-us-retail-colo-price-2024",
+      "asserter": "科利斯",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-retail-colo",
+        "label": "美国零售托管（<500kW 部署）"
+      },
+      "value": 250.0,
+      "unit": "原币/月/计价单位",
+      "bound": "lower",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "零售托管市场",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "2e56378dcce9b56ac37e46348b353f94890fed6a684c767fcfcd1f797e732dee",
+        "local_file": "数据中心市场 平衡前所未有的机会与战略风险.pdf（科利斯 Colliers 美国研究报告）",
+        "locator": "第 8 页 定价：国内租赁费率：「在疫情前，低于 500kW 的零售数据中心租赁率平均不到 200 美元/kW，包括电力，每月，但现在已飙升至超过 250 美元/kW，在北加利福尼亚等市场甚至高达 300-400 美元/kW。平均国内价格至少上涨了 20%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "2024 年已升到 250 美元/kW 以上，平均涨幅至少 20%；单位为美元/kW/月且**含电费**（原文明写 including power），与不含电费的报价不可直接比。[未核]"
+    },
+    {
+      "fact_id": "col2025-us-retail-colo-price-norcal-lower",
+      "asserter": "科利斯",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-retail-colo-norcal",
+        "label": "美国零售托管（<500kW 部署）·北加州"
+      },
+      "value": 300.0,
+      "unit": "原币/月/计价单位",
+      "bound": "lower",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "零售托管市场",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "2e56378dcce9b56ac37e46348b353f94890fed6a684c767fcfcd1f797e732dee",
+        "local_file": "数据中心市场 平衡前所未有的机会与战略风险.pdf（科利斯 Colliers 美国研究报告）",
+        "locator": "第 8 页 定价：国内租赁费率：「在疫情前，低于 500kW 的零售数据中心租赁率平均不到 200 美元/kW，包括电力，每月，但现在已飙升至超过 250 美元/kW，在北加利福尼亚等市场甚至高达 300-400 美元/kW。平均国内价格至少上涨了 20%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "北加利福尼亚等紧张市场的区间下界；单位为美元/kW/月且**含电费**（原文明写 including power），与不含电费的报价不可直接比。[未核]"
+    },
+    {
+      "fact_id": "col2025-us-retail-colo-price-norcal-upper",
+      "asserter": "科利斯",
+      "metric_id": "colo_price_per_kw",
+      "entity": {
+        "type": "market",
+        "id": "us-retail-colo-norcal",
+        "label": "美国零售托管（<500kW 部署）·北加州"
+      },
+      "value": 400.0,
+      "unit": "原币/月/计价单位",
+      "bound": "upper",
+      "caliber": {
+        "pricing_basis": "按功率",
+        "customer_type": "零售托管市场",
+        "region": "US",
+        "currency": "美元"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "2e56378dcce9b56ac37e46348b353f94890fed6a684c767fcfcd1f797e732dee",
+        "local_file": "数据中心市场 平衡前所未有的机会与战略风险.pdf（科利斯 Colliers 美国研究报告）",
+        "locator": "第 8 页 定价：国内租赁费率：「在疫情前，低于 500kW 的零售数据中心租赁率平均不到 200 美元/kW，包括电力，每月，但现在已飙升至超过 250 美元/kW，在北加利福尼亚等市场甚至高达 300-400 美元/kW。平均国内价格至少上涨了 20%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "北加利福尼亚等紧张市场的区间上界；单位为美元/kW/月且**含电费**（原文明写 including power），与不含电费的报价不可直接比。[未核]"
     }
   ]
 }
