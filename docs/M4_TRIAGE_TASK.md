@@ -9,7 +9,7 @@
 | 步骤 | 状态 | 落点 |
 |---|---|---|
 | 全量清单与重复检测 | 已实现 | `inresearch.materials.inventory` 唯一写入器；`inresearch.materials.records` 统一读取旧/新格式 |
-| L1 预览、模型打分、终端提交 | 已实现；默认改用共享研究模型 | `inresearch.workflow.triage`、`inresearch.workflow.score`、`inresearch.workflow.terminal_batch` |
+| L1 预览、模型打分、终端提交 | 已实现；默认改用共享研究模型 | `inresearch.workflow.l1_batch` 是唯一用例；`score`、`attribution`、`terminal_batch`、`progress` 仅处理各自 CLI 参数和呈现 |
 | 提取摘要与 L2 交付 | 用例已拆分并补齐准入/重放/计划冲突规则 | `inresearch.workflow.attribution`、`inresearch.workflow.deep_read.DeepRead`；CLI 为 `inresearch.interfaces.deep_read`；不是 Spark 全文流程的替代 |
 | 改名移动、日志与恢复 | 已实现并通过隔离故障测试 | `inresearch.storage.moves`、`inresearch.storage.jsonl`、`inresearch.materials.organize`；未操作生产原件 |
 | M4 对照表导出与对账 | 已有代码 | `inresearch.materials.mapping` |

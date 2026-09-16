@@ -13,6 +13,7 @@ import unittest
 
 from inresearch.workflow import attribution as EX
 from inresearch.workflow import terminal_batch as PK
+from inresearch.workflow import l1_batch as L1B
 from inresearch.materials import triage as L1
 
 
@@ -25,14 +26,14 @@ class WorkingRateTests(unittest.TestCase):
         # Two bursts of one file every 6 seconds, 20 hours apart.
         burst = [stamp("2026-09-09T01:00:00Z") + 6 * i for i in range(20)]
         later = [stamp("2026-09-09T21:00:00Z") + 6 * i for i in range(20)]
-        rate = PK.working_rate(burst + later)
+        rate = L1B.working_rate(burst + later)
         self.assertAlmostEqual(rate, 10.0, places=1)  # 6s per file is 10/min
 
     def test_too_few_or_unusable_stamps_report_nothing(self):
-        self.assertIsNone(PK.working_rate([]))
-        self.assertIsNone(PK.working_rate([stamp("2026-09-09T01:00:00Z")]))
+        self.assertIsNone(L1B.working_rate([]))
+        self.assertIsNone(L1B.working_rate([stamp("2026-09-09T01:00:00Z")]))
         far = [stamp("2026-09-09T01:00:00Z"), stamp("2026-09-09T09:00:00Z")]
-        self.assertIsNone(PK.working_rate(far))  # only an idle gap: nothing measured
+        self.assertIsNone(L1B.working_rate(far))  # only an idle gap: nothing measured
 
     def test_stamps_are_read_from_digest_rows(self):
         with tempfile.TemporaryDirectory() as temp:
@@ -43,7 +44,7 @@ class WorkingRateTests(unittest.TestCase):
                 + "not json\n"
                 + json.dumps({"sha256": "c", "at": "2026-09-09T01:00:05Z"}) + "\n",
                 encoding="utf-8")
-            self.assertEqual(len(PK.digest_stamps([path])), 2)
+            self.assertEqual(len(L1B.digest_stamps([path])), 2)
 
 
 class ExtractRunTests(unittest.TestCase):
@@ -55,7 +56,7 @@ class ExtractRunTests(unittest.TestCase):
         self.results.write_text("", encoding="utf-8")
         self.peak = self.live = 0
         self.guard = threading.Lock()
-        self._saved = (EX.DIGESTS, L1.RESULTS, PK.pending, EX.extract,
+        self._saved = (EX.DIGESTS, L1.RESULTS, L1B.pending, EX.extract,
                        EX.done_digests, L1.prepare, L1.finalize, L1.proposed_name)
         EX.DIGESTS = self.digests
         L1.RESULTS = self.results
@@ -69,7 +70,7 @@ class ExtractRunTests(unittest.TestCase):
         EX.extract = self.fake_extract
 
     def tearDown(self):
-        (EX.DIGESTS, L1.RESULTS, PK.pending, EX.extract,
+        (EX.DIGESTS, L1.RESULTS, L1B.pending, EX.extract,
          EX.done_digests, L1.prepare, L1.finalize, L1.proposed_name) = self._saved
         self.temp.cleanup()
 
@@ -95,7 +96,7 @@ class ExtractRunTests(unittest.TestCase):
         return self.digests.with_name("digests.part%d.jsonl" % index)
 
     def run_cmd(self, items, workers=1, limit=0, shard=None):
-        PK.pending = lambda cohort='new', shas=None: list(items)
+        L1B.pending = lambda cohort='new', shas=None: list(items)
         EX.cmd_run(types.SimpleNamespace(workers=workers, limit=limit, shard=shard))
         path = self.out_path(shard)
         text = path.read_text(encoding="utf-8") if path.exists() else ""
@@ -140,7 +141,7 @@ class ExtractRunTests(unittest.TestCase):
         self.assertEqual(len(written), 4)
 
     def test_worker_count_is_bounded(self):
-        for workers in (0, -1, EX.MAX_WORKERS + 1):
+        for workers in (0, -1, L1B.MAX_WORKERS + 1):
             with self.assertRaises(SystemExit):
                 self.run_cmd(self.items(1), workers=workers)
 
@@ -157,7 +158,7 @@ class PackTests(unittest.TestCase):
         self.results.write_text("", encoding="utf-8")
         self.peak = self.live = 0
         self.guard = threading.Lock()
-        self._saved = (L1.RESULTS, PK.BATCH_DIR, PK.pending, L1.prepare,
+        self._saved = (L1.RESULTS, PK.BATCH_DIR, L1B.pending, L1.prepare,
                        L1.finalize, L1.proposed_name)
         L1.RESULTS = self.results
         PK.BATCH_DIR = base / "batches"
@@ -166,7 +167,7 @@ class PackTests(unittest.TestCase):
         L1.proposed_name = lambda row: "n.pdf"
 
     def tearDown(self):
-        (L1.RESULTS, PK.BATCH_DIR, PK.pending, L1.prepare,
+        (L1.RESULTS, PK.BATCH_DIR, L1B.pending, L1.prepare,
          L1.finalize, L1.proposed_name) = self._saved
         self.temp.cleanup()
 
@@ -189,7 +190,7 @@ class PackTests(unittest.TestCase):
         return [{"sha256": "%064x" % i, "rel": "f%d.pdf" % i, **extra} for i in range(1, n + 1)]
 
     def run_pack(self, items, limit=5, workers=4):
-        PK.pending = lambda cohort='new', shas=None: list(items)
+        L1B.pending = lambda cohort='new', shas=None: list(items)
         PK.cmd_pack(types.SimpleNamespace(limit=limit, workers=workers, out=None))
         text = (PK.BATCH_DIR / "batch.txt").read_text(encoding="utf-8")
         return [line for line in text.splitlines() if line and not line.startswith("#")]
@@ -224,7 +225,7 @@ class PackTests(unittest.TestCase):
         self.assertEqual(len(written), 3)
 
     def test_worker_count_is_bounded(self):
-        for workers in (0, -1, PK.MAX_WORKERS + 1):
+        for workers in (0, -1, L1B.MAX_WORKERS + 1):
             with self.assertRaises(SystemExit):
                 self.run_pack(self.items(2), limit=1, workers=workers)
 
@@ -238,7 +239,7 @@ class PackRemainingTests(unittest.TestCase):
         base = Path(self.temp.name)
         self.results = base / "l1_results.jsonl"
         self.results.write_text("", encoding="utf-8")
-        self._saved = (L1.RESULTS, PK.BATCH_DIR, PK.pending, L1.prepare,
+        self._saved = (L1.RESULTS, PK.BATCH_DIR, L1B.pending, L1.prepare,
                        L1.finalize, L1.proposed_name)
         L1.RESULTS = self.results
         PK.BATCH_DIR = base / "batches"
@@ -249,7 +250,7 @@ class PackRemainingTests(unittest.TestCase):
         L1.proposed_name = lambda row: "n.xlsx"
 
     def tearDown(self):
-        (L1.RESULTS, PK.BATCH_DIR, PK.pending, L1.prepare,
+        (L1.RESULTS, PK.BATCH_DIR, L1B.pending, L1.prepare,
          L1.finalize, L1.proposed_name) = self._saved
         self.temp.cleanup()
 
@@ -263,26 +264,26 @@ class PackRemainingTests(unittest.TestCase):
     def test_redo_remaining_counts_the_redo_queue(self):
         """Every redo file is already scored, so the plain queue reports zero."""
         redo_items = [{"sha256": "%064x" % i, "rel": "f%d.xlsx" % i} for i in range(10)]
-        PK.pending = lambda cohort='new', shas=None: list(redo_items) if cohort == 'blind' else []
+        L1B.pending = lambda cohort='new', shas=None: list(redo_items) if cohort == 'blind' else []
         report = self.report(limit=4, cohort='blind')
         self.assertEqual(report["packed"], 4)
         self.assertEqual(report["remaining_after"], 6)
 
     def test_the_plain_queue_still_reports_its_own_remainder(self):
         items = [{"sha256": "%064x" % i, "rel": "f%d.xlsx" % i} for i in range(7)]
-        PK.pending = lambda cohort='new', shas=None: list(items) if cohort == 'new' else []
+        L1B.pending = lambda cohort='new', shas=None: list(items) if cohort == 'new' else []
         report = self.report(limit=3)
         self.assertEqual(report["remaining_after"], 4)
 
     def test_the_old_redo_flag_still_means_the_blind_cohort(self):
         """--redo predates --cohort and is still what the runbooks say."""
         items = [{"sha256": "%064x" % i, "rel": "f%d.xlsx" % i} for i in range(5)]
-        PK.pending = lambda cohort='new', shas=None: list(items) if cohort == 'blind' else []
+        L1B.pending = lambda cohort='new', shas=None: list(items) if cohort == 'blind' else []
         report = self.report(limit=2, redo=True)
         self.assertEqual((report["cohort"], report["packed"]), ('blind', 2))
 
     def test_an_unknown_cohort_is_refused_rather_than_silently_emptied(self):
-        PK.pending = lambda cohort='new', shas=None: []
+        L1B.pending = lambda cohort='new', shas=None: []
         with self.assertRaises(SystemExit):
             self.report(limit=1, cohort='typo')
 
@@ -368,13 +369,13 @@ class CellsCohortTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix='m4-cells-')
         self.results = Path(self.temp.name) / 'l1_results.jsonl'
-        self._saved = (L1.RESULTS, PK.BATCH_DIR, PK.pending, L1.prepare,
+        self._saved = (L1.RESULTS, PK.BATCH_DIR, L1B.pending, L1.prepare,
                        L1.finalize, L1.proposed_name)
         L1.RESULTS = self.results
         PK.BATCH_DIR = Path(self.temp.name) / 'batches'
 
     def tearDown(self):
-        (L1.RESULTS, PK.BATCH_DIR, PK.pending, L1.prepare,
+        (L1.RESULTS, PK.BATCH_DIR, L1B.pending, L1.prepare,
          L1.finalize, L1.proposed_name) = self._saved
         self.temp.cleanup()
 
@@ -390,24 +391,24 @@ class CellsCohortTests(unittest.TestCase):
 
     def test_a_workbook_judged_before_the_fix_is_in_the_cohort(self):
         self.write([self.row('a' * 64)])
-        self.assertEqual(PK.judged_without_cells(), {'a' * 64})
+        self.assertEqual(L1B.judged_without_cells(), {'a' * 64})
 
     def test_a_workbook_judged_after_the_fix_is_not(self):
         self.write([self.row('b' * 64, meta={'sheets': 1, 'cells': 0})])
-        self.assertEqual(PK.judged_without_cells(), set())
+        self.assertEqual(L1B.judged_without_cells(), set())
 
     def test_documents_that_never_lost_anything_are_left_alone(self):
         """A .pdf and a .ppt were always read whole; only spreadsheets regressed."""
         self.write([self.row('c' * 64, suffix='.pdf'),
                     self.row('d' * 64, suffix='.ppt'),
                     self.row('e' * 64, suffix='.docx')])
-        self.assertEqual(PK.judged_without_cells(), set())
+        self.assertEqual(L1B.judged_without_cells(), set())
 
     def test_the_newest_row_decides(self):
         """record appends; a file already re-judged must not come back."""
         self.write([self.row('f' * 64),
                     self.row('f' * 64, meta={'sheets': 1, 'cells': 12})])
-        self.assertEqual(PK.judged_without_cells(), set())
+        self.assertEqual(L1B.judged_without_cells(), set())
 
     # -- the queue has to drain -------------------------------------------
 
@@ -417,7 +418,7 @@ class CellsCohortTests(unittest.TestCase):
         L1.prepare = lambda item: {'sha256': sha, 'rel': 'a/x.xlsx', 'suffix': '.xlsx',
                                    'size': 10, 'preview': '一些表头', 'meta': meta,
                                    'level': 'p', 'needs_model': True}
-        PK.pending = lambda cohort='new', shas=None: (
+        L1B.pending = lambda cohort='new', shas=None: (
             [{'sha256': sha, 'rel': 'a/x.xlsx'}] if cohort == 'cells' else [])
         out = io.StringIO()
         with redirect_stdout(out):
@@ -438,7 +439,7 @@ class CellsCohortTests(unittest.TestCase):
     def test_and_it_leaves_the_cohort_so_the_queue_drains(self):
         """Otherwise it sits at the head of every future pack, forever."""
         self.pack({'sheets': 1, 'cells': 0})
-        self.assertEqual(PK.judged_without_cells(), set())
+        self.assertEqual(L1B.judged_without_cells(), set())
 
     def test_the_carried_row_keeps_the_old_verdict_and_says_why(self):
         self.pack({'sheets': 1, 'cells': 0})
@@ -469,7 +470,7 @@ class RepeatedPackTests(unittest.TestCase):
         base = Path(self.temp.name)
         self.results = base / 'l1_results.jsonl'
         self.results.write_text('', encoding='utf-8')
-        self._saved = (L1.RESULTS, PK.BATCH_DIR, PK.pending, L1.prepare,
+        self._saved = (L1.RESULTS, PK.BATCH_DIR, L1B.pending, L1.prepare,
                        L1.finalize, L1.proposed_name)
         L1.RESULTS = self.results
         PK.BATCH_DIR = base / 'batches'
@@ -482,10 +483,10 @@ class RepeatedPackTests(unittest.TestCase):
         # wrong.  Two earlier fixtures in this repo were bitten the same way.
         self.items = [{'sha256': '%03d' % i + 'a' * 61, 'rel': 'f%d.xlsx' % i}
                       for i in range(10)]
-        PK.pending = lambda cohort='new', shas=None: list(self.items) if cohort == 'cells' else []
+        L1B.pending = lambda cohort='new', shas=None: list(self.items) if cohort == 'cells' else []
 
     def tearDown(self):
-        (L1.RESULTS, PK.BATCH_DIR, PK.pending, L1.prepare,
+        (L1.RESULTS, PK.BATCH_DIR, L1B.pending, L1.prepare,
          L1.finalize, L1.proposed_name) = self._saved
         self.temp.cleanup()
 
@@ -693,43 +694,43 @@ class DrawingsCohortTests(unittest.TestCase):
 
     def test_an_unattributed_workbook_is_in_the_cohort(self):
         self.write([self.row('a' * 64)])
-        self.assertEqual(PK.judged_without_drawings(), {'a' * 64})
+        self.assertEqual(L1B.judged_without_drawings(), {'a' * 64})
 
     def test_an_attributed_one_is_not(self):
         """水印改不了已经知道的出处——重判它只是白读一遍。"""
         self.write([self.row('b' * 64, org='IDC')])
-        self.assertEqual(PK.judged_without_drawings(), set())
+        self.assertEqual(L1B.judged_without_drawings(), set())
 
     def test_an_empty_org_counts_as_unknown(self):
         self.write([self.row('c' * 64, org='   ')])
-        self.assertEqual(PK.judged_without_drawings(), {'c' * 64})
+        self.assertEqual(L1B.judged_without_drawings(), {'c' * 64})
 
     def test_a_workbook_already_read_for_drawings_is_not(self):
         self.write([self.row('d' * 64, meta={'sheets': 1, 'cells': 5,
                                              'drawing_lines': 0})])
-        self.assertEqual(PK.judged_without_drawings(), set())
+        self.assertEqual(L1B.judged_without_drawings(), set())
 
     def test_only_spreadsheets(self):
         """.ppt 和 .docx 的文本一直是整篇读的，没丢过文本框。"""
         self.write([self.row('e' * 64, suffix='.pdf'),
                     self.row('f' * 64, suffix='.ppt'),
                     self.row('01' + 'a' * 62, suffix='.docx')])
-        self.assertEqual(PK.judged_without_drawings(), set())
+        self.assertEqual(L1B.judged_without_drawings(), set())
 
     def test_the_newest_row_decides(self):
         self.write([self.row('02' + 'b' * 62),
                     self.row('02' + 'b' * 62, org='Global Semi Research',
                              meta={'sheets': 1, 'cells': 5, 'drawing_lines': 1})])
-        self.assertEqual(PK.judged_without_drawings(), set())
+        self.assertEqual(L1B.judged_without_drawings(), set())
 
     def test_a_declared_unrecoverable_org_is_still_in_the_cohort(self):
         """翻遍全文没找到署名的那个读者，对 drawing 一样是瞎的。"""
         self.write([self.row('03' + 'c' * 62, org_unrecoverable=True)])
-        self.assertEqual(PK.judged_without_drawings(), {'03' + 'c' * 62})
+        self.assertEqual(L1B.judged_without_drawings(), {'03' + 'c' * 62})
 
     def test_it_is_a_named_cohort(self):
-        self.assertIn('drawings', PK.COHORTS)
-        self.assertIs(PK.COHORTS['drawings'], PK.judged_without_drawings)
+        self.assertIn('drawings', L1B.COHORTS)
+        self.assertIs(L1B.COHORTS['drawings'], L1B.judged_without_drawings)
 
 
 if __name__ == '__main__':

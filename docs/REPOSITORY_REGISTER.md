@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：801。
+在册文件：805。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,8 +15,8 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 262 |
-| 运行代码 | 143 |
+| 历史快照 | 265 |
+| 运行代码 | 144 |
 | 现行规范 | 13 |
 | 项目配置 | 35 |
 | 兼容研究记录 | 16 |
@@ -310,6 +310,8 @@
 | `docs/reviews/2026-09-14/scene-resources/legacy-removal.csv` | rows | 10 |
 | `docs/reviews/2026-09-14/scene-resources/scope.json` | inherited | 6 |
 | `docs/reviews/2026-09-14/scene-resources/scope.json` | changed | 16 |
+| `docs/reviews/2026-09-15/l1-pipeline/consumers.csv` | rows | 16 |
+| `docs/reviews/2026-09-15/l1-pipeline/file-plan.csv` | rows | 18 |
 | `docs/reviews/2026-09-15/task-authority/file-plan.csv` | rows | 796 |
 | `docs/reviews/2026-09-15/task-authority/scope.json` | changed | 15 |
 | `framework/bom.json` | layers | 5 |
@@ -841,6 +843,9 @@
 | `docs/reviews/2026-09-14/scene-resources/scope.json` | 历史快照 |
 | `docs/reviews/2026-09-14/scene-resources/statistics-after.json` | 历史快照 |
 | `docs/reviews/2026-09-14/scene-resources/statistics-before.json` | 历史快照 |
+| [docs/reviews/2026-09-15/l1-pipeline/PLAN.md](reviews/2026-09-15/l1-pipeline/PLAN.md) | 历史快照 |
+| [docs/reviews/2026-09-15/l1-pipeline/consumers.csv](reviews/2026-09-15/l1-pipeline/consumers.csv) | 历史快照 |
+| [docs/reviews/2026-09-15/l1-pipeline/file-plan.csv](reviews/2026-09-15/l1-pipeline/file-plan.csv) | 历史快照 |
 | [docs/reviews/2026-09-15/task-authority/PLAN.md](reviews/2026-09-15/task-authority/PLAN.md) | 历史快照 |
 | `docs/reviews/2026-09-15/task-authority/audit.py` | 历史快照 |
 | [docs/reviews/2026-09-15/task-authority/file-plan.csv](reviews/2026-09-15/task-authority/file-plan.csv) | 历史快照 |
@@ -1000,6 +1005,7 @@
 | `src/inresearch/workflow/attribution.py` | 运行代码 |
 | `src/inresearch/workflow/commands.py` | 运行代码 |
 | `src/inresearch/workflow/deep_read.py` | 运行代码 |
+| `src/inresearch/workflow/l1_batch.py` | 运行代码 |
 | `src/inresearch/workflow/model_assets.py` | 运行代码 |
 | `src/inresearch/workflow/progress.py` | 运行代码 |
 | `src/inresearch/workflow/reader.py` | 运行代码 |

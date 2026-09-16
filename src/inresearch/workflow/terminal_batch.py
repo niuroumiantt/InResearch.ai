@@ -17,171 +17,13 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 from inresearch.materials import triage as L1
-from inresearch.adapters import office as m4_office_text
+from inresearch.workflow import l1_batch as L1B
 
 BATCH_DIR = L1.DATA / 'batches'
-PREVIEW_CHARS = 400
-# A workbook opens with its sheet names - eleven of them on a forecast model -
-# so a 400-character window can close before the first row of data.  Office
-# formats get a wider one; PDFs and plain text still lead with their title.
-OFFICE_PREVIEW_CHARS = 1200
-MAX_WORKERS = 16
-
-# Word/PowerPoint field codes and table-of-contents scaffolding carry no meaning
-# but eat most of a short preview, so they are stripped before truncation.
-NOISE = re.compile(r'(HYPERLINK|PAGEREF|TOC)\s+\\?[A-Za-z]?[^ ]*|_Toc\d+|style\.visibility|ppt_[xy]|\\[hzou]\b|EMBED [A-Za-z.0-9]+')
 
 
 def now() -> str:
     return time.strftime('%Y-%m-%dT%H:%M:%S%z')
-
-
-def clean_preview(text: str) -> str:
-    text = NOISE.sub(' ', text)
-    text = re.sub(r'[ \t]{2,}', ' ', text)
-    text = re.sub(r'(?:\s\d+\s){4,}', ' ', text)
-    return re.sub(r'\s+', ' ', text).strip()
-
-
-def priority(rel: str):
-    """Most useful material first, so partial progress is still worth having."""
-    top = rel.split('/')[0]
-    rank = {'数据中心报告购买': 0, '数据中心资料': 1, '报告': 2, 'Global半导体研究资料': 3,
-            '42套数据中心IDC机房楼机房2024 —2025': 5, '要删': 6}.get(top, 4)
-    return (rank, rel)
-
-
-def last_results() -> dict:
-    from inresearch.materials.records import current_results
-    return current_results(L1.RESULTS)
-
-
-def blind_scored() -> set:
-    """Files judged on their filename alone that can now actually be opened.
-
-    The first pass routed .xlsx / .xls / .ppt to _office_pending and never
-    opened them, so a workbook of forecast data was scored from its name while
-    its prose summary was scored from its text.  These are the ones worth
-    asking again about.
-    """
-    return {sha for sha, r in last_results().items()
-            if r.get('level') == 'n' and r.get('suffix') in m4_office_text.SUPPORTED
-            and not opened_and_empty(r)}
-
-
-# The spreadsheet half of TEXT_SUFFIXES.  A .ppt is an Office file too but its
-# reader never lost anything, so it does not belong in this cohort.
-SPREADSHEETS = {'.xlsx', '.xlsm', '.xltx', '.xls', '.et'}
-
-
-def judged_without_cells() -> set:
-    """Workbooks whose verdict was made before a cell could be read.
-
-    Both spreadsheet readers returned labels only - sheet names and the string
-    table, no values, no rows, no columns - so every score on a workbook came
-    from its headers.  A stored meta carrying no `cells` count is exactly such
-    a verdict, which makes the cohort self-describing: nothing needs to
-    remember when the extractor changed.
-    """
-    return {sha for sha, r in last_results().items()
-            if r.get('suffix') in SPREADSHEETS
-            and 'cells' not in (r.get('meta') or {})}
-
-
-def judged_without_drawings() -> set:
-    """Unattributed workbooks judged before the reader could see a text box.
-
-    A spreadsheet's publisher is often nowhere in its cells.  688d46ed carried
-    「知识星球：Global Semi Research」 as a watermark repeated across five
-    drawings; the cell reader saw none of it and the file was judged 出处未知
-    with the attribution inside it the whole time.
-
-    Narrow on purpose.  Every spreadsheet was judged without drawings, but a
-    watermark can only change the verdict where the publisher is still missing,
-    so the cohort is the unattributed ones - a few, not all 760.
-
-    org_unrecoverable is not an exemption.  It means a reader went through the
-    full text and found no byline, and that reader was as blind to the drawings
-    as the extractor was; a verdict reached without seeing part of the file is
-    exactly what a re-judge cohort is for.  The ledger appends, so if the
-    drawings hold nothing either, the second look costs a row and settles it.
-    """
-    return {sha for sha, r in last_results().items()
-            if r.get('suffix') in SPREADSHEETS
-            and 'drawing_lines' not in (r.get('meta') or {})
-            and str(r.get('org') or '未知').strip() in ('', '未知')}
-
-
-def nothing_new(meta: dict) -> bool:
-    """Re-read cleanly and still holds no cell: this preview cannot change.
-
-    A chart-only workbook is the honest case.  Distinguishing it from a failed
-    read matters, because a failure is worth retrying and this is not.
-    """
-    return meta.get('cells') == 0 and not meta.get('extract_error')
-
-
-def opened_and_empty(r: dict) -> bool:
-    """True when the extractor really ran on this file and found no text.
-
-    Empty meta means the file was never opened - the first pass routed it to
-    _office_pending, or it was read back through a stale path - so it still
-    owes us a look.  A transient failure (the file was not where the inventory
-    said) is also worth retrying.  Sheet counts, text atom counts, or a
-    permanent no-text-layer verdict all mean the answer will not change.
-    """
-    meta = r.get('meta') or {}
-    if not meta:
-        return False
-    if meta.get('no_text_layer'):
-        return True
-    # Any other error is transient - a stale path, a truncated download - and
-    # the file still owes us a look.
-    return not meta.get('extract_error')
-
-
-def named(prefixes: list[str]) -> list[dict]:
-    """The files these sha prefixes point at, whatever cohort they are in.
-
-    The way out when a later batch shows an earlier verdict was wrong: the
-    judging session caught itself calling an AMD platform 国产化 one round
-    after recording it, and nothing could reopen that one file.  Every other
-    selector here answers "what is owed"; this one answers "this one, again".
-    """
-    rows = last_results()
-    picked, missing = {}, []
-    for prefix in prefixes:
-        hits = [sha for sha in rows if sha.startswith(prefix)]
-        if len(hits) != 1:
-            missing.append('%s 匹配到 %d 条判定' % (prefix, len(hits)))
-            continue
-        picked[hits[0]] = True
-    if missing:
-        raise SystemExit('每个 --sha 前缀要正好匹配一条：' + '；'.join(missing))
-    return picked
-
-
-COHORTS = {
-    'new': None,                       # never judged
-    'blind': blind_scored,             # judged from the filename alone
-    'cells': judged_without_cells,     # judged before the reader saw a value
-    'drawings': judged_without_drawings,   # 出处未知, and the text boxes were unread
-}
-
-
-def pending(cohort='new', shas=None):
-    if shas:
-        wanted = named(shas)
-        return sorted((i for i in L1.load_inventory() if i['sha256'] in wanted),
-                      key=lambda i: priority(i['rel']))
-    select = COHORTS[cohort]
-    if select is None:
-        done = L1.done_keys()
-        items = [i for i in L1.load_inventory() if i['sha256'] not in done]
-    else:
-        wanted = select()
-        items = [i for i in L1.load_inventory() if i['sha256'] in wanted]
-    return sorted(items, key=lambda i: priority(i['rel']))
 
 
 def overlap_with_previous(batch: list[dict]) -> int:
@@ -214,16 +56,16 @@ def cmd_pack(a):
     batch does not depend on how many threads ran."""
     workers = getattr(a, 'workers', None)
     workers = 4 if workers is None else workers
-    if not isinstance(workers, int) or not 1 <= workers <= MAX_WORKERS:
-        raise SystemExit('workers must be 1..%d' % MAX_WORKERS)
+    if not isinstance(workers, int) or not 1 <= workers <= L1B.MAX_WORKERS:
+        raise SystemExit('workers must be 1..%d' % L1B.MAX_WORKERS)
     BATCH_DIR.mkdir(parents=True, exist_ok=True)
     out = []; l0 = 0; failed = []; unchanged = 0
     cohort = getattr(a, 'cohort', None) or ('blind' if getattr(a, 'redo', False) else 'new')
-    if cohort not in COHORTS:
-        raise SystemExit('cohort must be one of %s' % ' / '.join(COHORTS))
+    if cohort not in L1B.COHORTS:
+        raise SystemExit('cohort must be one of %s' % ' / '.join(L1B.COHORTS))
     shas = [x.strip() for x in (getattr(a, 'sha', None) or '').split(',') if x.strip()]
-    base = last_results()
-    items = pending(cohort, shas)
+    base = L1B.last_results()
+    items = L1B.pending(cohort, shas)
     position = 0
     while len(out) < a.limit and position < len(items):
         chunk = items[position:position + max(a.limit, 1)]
@@ -237,7 +79,7 @@ def cmd_pack(a):
             if not rec['needs_model']:
                 o = L1.finalize(rec, None, None, None); o['proposed_name'] = L1.proposed_name(o)
                 commit_result(L1.RESULTS, o, result_revision(base.get(o['sha256']))); l0 += 1; continue
-            if cohort == 'cells' and nothing_new(rec['meta']):
+            if cohort == 'cells' and L1B.nothing_new(rec['meta']):
                 # Re-read and there is still nothing to see.  Spending a
                 # judgement here buys nothing, but leaving the row alone
                 # leaves it at the head of the cohort for every future
@@ -254,8 +96,7 @@ def cmd_pack(a):
                     commit_result(L1.RESULTS, row, result_revision(prior))
                     unchanged += 1
                     continue
-            budget = OFFICE_PREVIEW_CHARS if rec['suffix'] in m4_office_text.SUPPORTED else PREVIEW_CHARS
-            text = clean_preview(rec['preview'])[:budget]
+            text = L1B.clean_preview(rec['preview'])[:L1B.preview_budget(rec['suffix'])]
             out.append({'id': rec['sha256'][:12], 'path': rec['rel'], 'suffix': rec['suffix'],
                         'kb': round(rec['size'] / 1024), **({'pages': rec['meta']['pages']} if rec['meta'].get('pages') else {}),
                         'level': rec['level'], 'preview': text, 'meta': rec['meta'],
@@ -285,7 +126,7 @@ def cmd_pack(a):
                       # recomputed with the same selector: asking the plain
                       # queue how much redo work is left reports every scored
                       # file as done and lands on a negative remainder
-                      'remaining_after': len(pending(cohort, shas)) - len(out)}, ensure_ascii=False))
+                      'remaining_after': len(L1B.pending(cohort, shas)) - len(out)}, ensure_ascii=False))
     for problem in failed[:5]:
         print(json.dumps(problem, ensure_ascii=False))
 
@@ -372,170 +213,9 @@ def cmd_record(a):
                          if short > 0 else {}),
                       'total_scored': len(L1.done_keys())}, ensure_ascii=False))
 
-
-IDLE_GAP_SECONDS = 300.0
-
-
-def working_rate(stamps, idle_gap=IDLE_GAP_SECONDS):
-    """Files per minute while extraction was actually running.
-
-    Dividing by the age of the digest file counts every hour the machine sat
-    idle between sessions, which made the ETA wrong by an order of magnitude
-    (0.7/min and 343 hours remaining, measured over a night nothing ran).  Sum
-    only the gaps between consecutive digests that look like work, and divide
-    the files that produced them.  Returns None when there is nothing to
-    measure, so the caller can say so instead of inventing a number.
-    """
-    stamps = sorted(s for s in stamps if s is not None)
-    if len(stamps) < 2:
-        return None
-    active = 0.0
-    counted = 0
-    for before, after in zip(stamps, stamps[1:]):
-        gap = after - before
-        if 0 <= gap <= idle_gap:
-            active += gap
-            counted += 1
-    if not counted or active <= 0:
-        return None
-    return counted / (active / 60)
-
-
-def digest_stamps(paths):
-    """Epoch seconds of each digest row that carries an `at` field."""
-    import calendar, time as _time
-    out = []
-    for path in paths:
-        if not path.exists():
-            continue
-        with path.open(encoding='utf-8') as fh:
-            lines = fh.readlines()
-        for line in lines:
-            try:
-                at = json.loads(line).get('at')
-            except ValueError:
-                continue
-            if not at:
-                continue
-            try:
-                out.append(calendar.timegm(_time.strptime(at, '%Y-%m-%dT%H:%M:%SZ')))
-            except ValueError:
-                continue
-    return out
-
-
-# A report issued repeatedly (weekly, a re-upload days later) lands as several
-# files with different bytes, so SHA-256 dedup never sees them.  Matching the
-# judged title exactly does not find them either: four copies of one report were
-# titled four different ways.  The filename is the stabler signal, but only
-# fuzzily -- the same report arrives as
-#   20250925-国信证券-化工行业·数据中心及AI服务器液冷冷却液行业分析框架(40页).pdf
-#   20251003-国信证券：行业分析框架：国信化工：数据中心及AI服务器液冷冷却液(40页).pdf
-# so names are compared by character-trigram overlap.  Measured on real files:
-# copies of one report score 0.48 to 0.95, unrelated files at most 0.35, so 0.45
-# sits in the gap with margin on both sides.
-SIM_THRESHOLD = 0.45
-GRAM = 3
-# A trigram in more than this share of names ("数据中心" and friends) says nothing
-# about which report a file is, and indexing it would compare everything to
-# everything.  The floor matters: on a small set the share alone drops to two or
-# three rows and discards the very features that identify a report.
-COMMON_GRAM_SHARE = 0.10
-COMMON_GRAM_FLOOR = 200
-DATE_PREFIX = re.compile(r'^\s*(?:20\d{6}|20\d{2}[-_.]?\d{2}[-_.]?\d{2})[-_\s]*')
-PAGE_TAIL = re.compile(r'[\(（]\s*\d+\s*页\s*[\)）]|[\(（]\s*(?:重复版|副本|copy|\d+)\s*[\)）]', re.I)
-PUNCT = re.compile(r'[\s·・:：,，。.、\-_()（）\[\]【】/\\|"“”\'‘’&]+')
-
-
-def name_key(rel: str) -> str:
-    """Normalise a filename to what stays the same across issues of one report."""
-    stem = Path(str(rel or '')).stem
-    stem = DATE_PREFIX.sub('', stem)
-    stem = PAGE_TAIL.sub('', stem)
-    return PUNCT.sub('', stem).lower()
-
-
-def trigrams(text: str) -> set:
-    if len(text) <= GRAM:
-        return {text} if text else set()
-    return {text[i:i + GRAM] for i in range(len(text) - GRAM + 1)}
-
-
-def similarity(left: set, right: set) -> float:
-    if not left or not right:
-        return 0.0
-    return len(left & right) / len(left | right)
-
-
-def scored_rows():
-    return [row for row in last_results().values() if row.get('status') == 'ok']
-
-
-def version_groups(rows, min_score=0, threshold=SIM_THRESHOLD):
-    """Cluster rows whose filenames say they are the same report issued twice.
-
-    Candidates come from an inverted trigram index rather than comparing every
-    pair, so this stays usable on tens of thousands of rows.  Nothing is moved
-    or deleted; this only reports.
-    """
-    import collections
-    items = [r for r in rows if (r.get('score') or 0) >= min_score]
-    names = [name_key(r.get('rel')) for r in items]
-    grams = [trigrams(n) for n in names]
-
-    index = collections.defaultdict(list)
-    for position, gset in enumerate(grams):
-        for gram in gset:
-            index[gram].append(position)
-    cap = max(COMMON_GRAM_FLOOR, int(len(items) * COMMON_GRAM_SHARE))
-    index = {gram: rows_ for gram, rows_ in index.items() if len(rows_) <= cap}
-
-    parent = list(range(len(items)))
-
-    def find(i):
-        while parent[i] != i:
-            parent[i] = parent[parent[i]]
-            i = parent[i]
-        return i
-
-    def union(i, j):
-        a, b = find(i), find(j)
-        if a != b:
-            parent[b] = a
-
-    for position, gset in enumerate(grams):
-        shared = collections.Counter()
-        for gram in gset:
-            for other in index.get(gram, ()):
-                if other > position:
-                    shared[other] += 1
-        need = max(1, int(len(gset) * threshold * 0.5))
-        for other, count in shared.items():
-            if count >= need and similarity(gset, grams[other]) >= threshold:
-                union(position, other)
-
-    def rank(position):
-        row = items[position]
-        pages = (row.get('meta') or {}).get('pages') or 0
-        excluded = 1 if str(row.get('rel', '')).startswith('要删/') else 0
-        return (excluded, -pages, -(row.get('size') or 0), row.get('rel') or '')
-
-    clusters = collections.defaultdict(list)
-    for position in range(len(items)):
-        clusters[find(position)].append(position)
-
-    out = []
-    for members in clusters.values():
-        if len(members) < 2:
-            continue
-        members = sorted(members, key=rank)
-        out.append({'keep': items[members[0]], 'extra': [items[m] for m in members[1:]]})
-    return sorted(out, key=lambda g: -len(g['extra']))
-
-
 def cmd_versions(a):
-    rows = scored_rows()
-    groups = version_groups(rows, a.min_score, a.threshold)
+    rows = L1B.scored_rows()
+    groups = L1B.version_groups(rows, a.min_score, a.threshold)
     extra = sum(len(g['extra']) for g in groups)
     wasted = sum(sum(m.get('size') or 0 for m in g['extra']) for g in groups)
     print(json.dumps({'judged_rows': len(rows), 'threshold': a.threshold,
@@ -559,7 +239,7 @@ def cmd_status(a):
     # old category alongside the current ones.  773 files were re-judged in the
     # Office pass, which put six extra documents in the 8-and-above bucket that
     # no longer belong there and inflated every category the re-read moved.
-    rows = last_results()
+    rows = L1B.last_results()
     cat = collections.Counter(r.get('category') for r in rows.values())
     sc = collections.Counter(r['score'] for r in rows.values() if r.get('score') is not None)
     superseded = 0
@@ -575,7 +255,7 @@ def cmd_status(a):
         with path.open(encoding='utf-8') as fh:
             return sum(1 for _ in fh)
     total = sum(count_lines(p) for p in digests if p.exists())
-    rate = working_rate(digest_stamps(digests))
+    rate = L1B.working_rate(L1B.digest_stamps(digests))
     basis = '运行中实测'
     if rate is None:  # older digests carry no timestamp
         first = min((p.stat().st_birthtime for p in digests if p.exists()), default=time.time())
@@ -589,9 +269,9 @@ def cmd_status(a):
                       # Three cohorts that are not "unscored" but are not done
                       # either.  Without a number here the only way to learn
                       # how much re-judging is owed is to run a pack.
-                      '待重判_只看过文件名': len(blind_scored()),
-                      '待重判_读不到单元格时判的表格': len(judged_without_cells()),
-                      '待重判_出处未知且没读过文本框': len(judged_without_drawings())},
+                      '待重判_只看过文件名': len(L1B.blind_scored()),
+                      '待重判_读不到单元格时判的表格': len(L1B.judged_without_cells()),
+                      '待重判_出处未知且没读过文本框': len(L1B.judged_without_drawings())},
                      ensure_ascii=False))
     for k, v in cat.most_common(10): print(f'  {v:7d}  {k}')
     if sc: print('分数分布: ' + json.dumps({str(k): sc[k] for k in sorted(sc, reverse=True)}))
@@ -602,18 +282,18 @@ def main():
     p = s.add_parser('pack'); p.add_argument('--limit', type=int, default=40); p.add_argument('--out')
     p.add_argument('--redo', action='store_true',
                    help='等同 --cohort blind：重排只看文件名判过、现在能打开的文件')
-    p.add_argument('--cohort', choices=sorted(COHORTS),
+    p.add_argument('--cohort', choices=sorted(L1B.COHORTS),
                    help='new=未判过 / blind=只看文件名判过的 / cells=在读不到单元格时判过的表格')
     p.add_argument('--sha', help='重判指定的这几份（sha 前缀，逗号分隔），不论属于哪个批次')
     p.add_argument('--workers', type=int, default=4,
-                   help='preview extractions in parallel (1..%d); local CPU work, no model' % MAX_WORKERS)
+                   help='preview extractions in parallel (1..%d); local CPU work, no model' % L1B.MAX_WORKERS)
     r = s.add_parser('record'); r.add_argument('--verdicts', required=True); r.add_argument('--batch'); r.add_argument('--digests', action='store_true')
     r.add_argument('--executor', default='terminal', help='client identity, e.g. claude-code or codex')
     r.add_argument('--model', help='actual model reported by the client; omit if unknown')
     s.add_parser('status')
     v = s.add_parser('versions'); v.add_argument('--min-score', type=int, default=0)
     v.add_argument('--show', type=int, default=15, help='groups to print in full')
-    v.add_argument('--threshold', type=float, default=SIM_THRESHOLD,
+    v.add_argument('--threshold', type=float, default=L1B.SIM_THRESHOLD,
                    help='filename similarity to call two files one report (0..1)')
     a = ap.parse_args()
     {'pack': cmd_pack, 'record': cmd_record, 'status': cmd_status, 'versions': cmd_versions}[a.cmd](a)

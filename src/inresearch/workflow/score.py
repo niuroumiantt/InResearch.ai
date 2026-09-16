@@ -11,9 +11,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 from inresearch.adapters import models as models
 from inresearch.materials import triage as L1
-from inresearch.workflow import terminal_batch as PK
-
-MAX_WORKERS = 16
+from inresearch.workflow import l1_batch as L1B
 
 
 def call(system: str, user: str, timeout=None) -> dict:
@@ -31,7 +29,7 @@ def system_prompt() -> str:
 
 
 def judge(rec, system):
-    text = PK.clean_preview(rec['preview'])[:PK.PREVIEW_CHARS]
+    text = L1B.preview_for_model(rec)
     value = call(system, L1.user_message(rec, text, rec['meta'], rec['level']))
     return L1.validate_judgement(value)
 
@@ -67,11 +65,11 @@ def cmd_run(a):
     only files that reach the model: a file whose preview needs no model is
     written without spending the budget, and once the budget is gone the
     remaining files are left pending rather than written half-judged."""
-    if not isinstance(a.workers, int) or not 1 <= a.workers <= MAX_WORKERS:
-        raise SystemExit('workers must be 1..%d' % MAX_WORKERS)
+    if not isinstance(a.workers, int) or not 1 <= a.workers <= L1B.MAX_WORKERS:
+        raise SystemExit('workers must be 1..%d' % L1B.MAX_WORKERS)
     system = system_prompt()
     base = current_results(L1.RESULTS)
-    items = PK.pending()
+    items = L1B.pending()
     counts = {'scored': 0, 'errors': 0, 'no_model': 0, 'dispatched': 0, 'conflicts': 0}
     guard = threading.Lock()
     t0 = time.time()
@@ -145,7 +143,7 @@ def main():
     c = s.add_parser('calibrate'); c.add_argument('--limit', type=int, default=25)
     r = s.add_parser('run'); r.add_argument('--limit', type=int, default=0)
     r.add_argument('--workers', type=int, default=1,
-                   help='model requests in flight (1..%d); needs OLLAMA_NUM_PARALLEL >= this on the server' % MAX_WORKERS)
+                   help='model requests in flight (1..%d); needs OLLAMA_NUM_PARALLEL >= this on the server' % L1B.MAX_WORKERS)
     a = ap.parse_args()
     {'calibrate': cmd_calibrate, 'run': cmd_run}[a.cmd](a)
 

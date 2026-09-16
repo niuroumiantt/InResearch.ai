@@ -141,8 +141,8 @@
     {
       "path": "data/facts.json",
       "role": "source_record",
-      "bytes": 10925407,
-      "sha256": "34d795c4ca0d6f29ce74c588ec707c7aa59cf077b79d61e3d239eb0bfde10ce1",
+      "bytes": 10925599,
+      "sha256": "4fb0a9d1f8bc239ee63968c54696ab6aeec93d43315f878f6b855958c19c1edd",
       "collections": [
         {
           "name": "records",
@@ -544,8 +544,8 @@
     {
       "path": "docs/M4_TRIAGE_TASK.md",
       "role": "normative",
-      "bytes": 16503,
-      "sha256": "e200e10f031eb30168e91c158f3c78b8ee5e08e77c855b15ccd0874fdad140a3",
+      "bytes": 16546,
+      "sha256": "a01bd60defbbdbaca8fab221384ba6b8d3d7c21ed9ae3c4180dc2d7ff21bcefc",
       "collections": []
     },
     {
@@ -6226,6 +6226,49 @@
       "collections": []
     },
     {
+      "path": "docs/reviews/2026-09-15/l1-pipeline/PLAN.md",
+      "role": "historical",
+      "bytes": 3374,
+      "sha256": "4816d3c75902e545d239a7db1641877b2de0f4ee697284e4f971bb28fab53df9",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-09-15/l1-pipeline/consumers.csv",
+      "role": "historical",
+      "bytes": 1157,
+      "sha256": "a26b31cbf748e8382bca843be31021a5c75fc0e37a4929750b953b7d204d85fb",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 16,
+          "fields": [
+            "shared_implementation",
+            "consumer_before",
+            "migration_result"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-09-15/l1-pipeline/file-plan.csv",
+      "role": "historical",
+      "bytes": 2430,
+      "sha256": "76dc92d7dab7229a2f5f19d343ef617552cc9b59d4d127c6111027da71e8b72e",
+      "collections": [
+        {
+          "name": "rows",
+          "count": 18,
+          "fields": [
+            "path",
+            "baseline_role",
+            "target_role",
+            "action",
+            "acceptance"
+          ]
+        }
+      ]
+    },
+    {
       "path": "docs/reviews/2026-09-15/task-authority/PLAN.md",
       "role": "historical",
       "bytes": 1835,
@@ -6369,8 +6412,8 @@
     {
       "path": "framework/09_software_contracts.md",
       "role": "normative",
-      "bytes": 17123,
-      "sha256": "3f7bc06dc19db44fe40da65cbbafd50fd68771e833c779ff2d31ed0adf3d1df9",
+      "bytes": 18063,
+      "sha256": "36cbf389afbb09480207f273cb0711a3e91ef6d29ea0f39c17a601164867e8bb",
       "collections": []
     },
     {
@@ -6399,8 +6442,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 28141,
-      "sha256": "a98ef5c85fe2a03f08baec3dc872a6cf37beaa9de7bc66462cf996ebd12d87fe",
+      "bytes": 28351,
+      "sha256": "6e1cf1c634c964dcc518f8824888e75a18686461016c9f14f8057d3ed773bbca",
       "collections": [
         {
           "name": "policies",
@@ -6663,8 +6706,8 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 44204,
-      "sha256": "1f2c3fb6c76e3404e2643cb5a2887e7ec9f0dfe4bd7e5bfb4585688c096a308e",
+      "bytes": 44899,
+      "sha256": "3710be656c81db434e71ef8acfb606e2b3e6e2eec943d2821890074be74f5b46",
       "collections": [
         {
           "name": "policies",
@@ -7538,8 +7581,8 @@
     {
       "path": "src/inresearch/workflow/attribution.py",
       "role": "implementation",
-      "bytes": 10432,
-      "sha256": "85f03954c5f634f5093aa72cf4ecb71f98f2ea09194382904ed302fff141551a",
+      "bytes": 10417,
+      "sha256": "cd853bfd3e33129ac41e8ffe5416947d10b554985c7dda567a320c9a2e22fc31",
       "collections": []
     },
     {
@@ -7557,6 +7600,13 @@
       "collections": []
     },
     {
+      "path": "src/inresearch/workflow/l1_batch.py",
+      "role": "implementation",
+      "bytes": 7357,
+      "sha256": "0e88f2dc53d471f386ca709b461f5269a3367ea68ff6ecd31563d97a47c55bb1",
+      "collections": []
+    },
+    {
       "path": "src/inresearch/workflow/model_assets.py",
       "role": "implementation",
       "bytes": 1555,
@@ -7566,8 +7616,8 @@
     {
       "path": "src/inresearch/workflow/progress.py",
       "role": "implementation",
-      "bytes": 5634,
-      "sha256": "3635b26376118b0647aea9d9fb8008684967e223713ad8b2a2ce072addd81682",
+      "bytes": 5630,
+      "sha256": "2b49b3be8cf2abd5a82c42e340363b3436eb1d034b2c2a506e72ba980aee7f93",
       "collections": []
     },
     {
@@ -7615,8 +7665,8 @@
     {
       "path": "src/inresearch/workflow/score.py",
       "role": "implementation",
-      "bytes": 6416,
-      "sha256": "5e8d786e087b4fbef372d5b3a1e5be043882173da1cd12c34528948879ea44e1",
+      "bytes": 6381,
+      "sha256": "6f2ae81220ab20d916288a3f9c83f89f21173fc1d10bb86614507a12e1721d34",
       "collections": []
     },
     {
@@ -7629,15 +7679,15 @@
     {
       "path": "src/inresearch/workflow/terminal_batch.py",
       "role": "implementation",
-      "bytes": 30300,
-      "sha256": "95f4efc079cc7b0304a7113ae89d586f5017b70b2b603e8385e7496c6fca0cd8",
+      "bytes": 17450,
+      "sha256": "8a5a62373bf7a6df6a81388d12b56078cafc740bab6267ea2e6318635a01b96f",
       "collections": []
     },
     {
       "path": "src/inresearch/workflow/triage.py",
       "role": "implementation",
-      "bytes": 7224,
-      "sha256": "8bddd9921b31dbd6e6e7dc9521a9add148ca6875221b5ae8fa44eb6e2a638146",
+      "bytes": 6888,
+      "sha256": "f5be9ec0b4accde530fd4afe7372fd6027a4bffa7b6132907a9a7716df2edbad",
       "collections": []
     },
     {
@@ -7902,8 +7952,8 @@
     {
       "path": "tests/unit/test_m4_redo_reads.py",
       "role": "test",
-      "bytes": 13409,
-      "sha256": "20f3a1654bcae4435177c417c1c447ded898aa7ae86273fdacab82fe7b67278e",
+      "bytes": 13470,
+      "sha256": "2b1b9f8a619afde8a8115a77f994954f7bf817d704208a9500ce40383e68ec88",
       "collections": []
     },
     {
@@ -7930,15 +7980,15 @@
     {
       "path": "tests/unit/test_m4_triage_extract.py",
       "role": "test",
-      "bytes": 33864,
-      "sha256": "2169e117077aeda0949f8d9e03c8780279067e2cde97d93a4ec3ca9901f25ecc",
+      "bytes": 33952,
+      "sha256": "f407a9713f82899a7e5c32284e360e86e772e993f086d00e435791628c049d07",
       "collections": []
     },
     {
       "path": "tests/unit/test_m4_triage_local.py",
       "role": "test",
-      "bytes": 5802,
-      "sha256": "1bfd549d038cd1e0b8b5d79bca4b9ca9528a56d9008f73265cf9750dfce0e6d2",
+      "bytes": 5800,
+      "sha256": "295cae84255354845a742f4603421bd9eb2abc5b4d11bd79e09cadc885312201",
       "collections": []
     },
     {
@@ -7951,8 +8001,8 @@
     {
       "path": "tests/unit/test_m4_triage_versions.py",
       "role": "test",
-      "bytes": 6080,
-      "sha256": "974a1cd6f3a662ced84d561c58ee9bb775318dfb831f95a1d7323fee9a390df4",
+      "bytes": 6149,
+      "sha256": "547ac78e62b5d13ffe10202e3392bf15affcdeda98125726e5abe8c2e3ccea40",
       "collections": []
     },
     {
@@ -8712,8 +8762,8 @@
     "design_reference": 1,
     "entrypoint": 4,
     "generated": 13,
-    "historical": 262,
-    "implementation": 143,
+    "historical": 265,
+    "implementation": 144,
     "normative": 13,
     "project_config": 35,
     "research_record": 16,
