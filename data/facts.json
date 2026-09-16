@@ -234661,6 +234661,131 @@
       "corroboration": "待交叉验证",
       "notes": "**分母是「使用浸没冷却的数据中心占比」（按设施数计），不是按容量或新增机架**——与库内所有液冷渗透率条目（按容量/按新增 AI 容量）分母都不同，**不可放进同一条曲线**。denominator 只能填「按项目数」（枚举里最接近设施数的取值）。数据来源为 Business Wire、Mordor Intelligence 与 Enterprise Technology News and Analysis 三家合引，未逐点分标。**16.3% 这个预测明显高于库内其他浸没口径**（申万宏源按新增机架给 2025 年 8%、赛迪按液冷市场内部给浸没 2025 年 38-41%），三者分母各不相同，比较前必须对齐。",
       "asserter": "OCP"
+    },
+    {
+      "fact_id": "zhangquan2018-dongjianghu-pue",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "dongjianghu-datacenter",
+        "label": "东江湖数据中心（湖南资兴，湖水源制冷）"
+      },
+      "value": 1.15,
+      "unit": "比值",
+      "caliber": {
+        "basis": "设计值",
+        "cooling_tech": "自然冷源",
+        "climate_zone": "南方",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d701c63a12c29aaf86e3975872771bd8d69ac24801d4fc2a09d51c302b8860e8",
+        "local_file": "数据中心节能技术与应用.pdf",
+        "locator": "第 7 章第 2 节 我国数据中心节能设计案例（东江湖数据中心，湖南资兴）：「当湖水温度≤13℃ 时，系统由湖水单独制冷……控制板换二次侧出口温度基本恒定在 15℃；湖水温度 13~18℃ 时开启混合制冷模式……监控离心式机组出水温度恒定为 15℃；湖水温度>18℃ 或湖水不能使用时……进入冷冻机组单独供冷模式」「节能性分析：1）数据中心常年采用湖水进行制冷，90% 的时间不需要进行电制冷，极大地降低了数据中心能耗，预计年均 PUE 为 1.15；2）冷冻水采用高温水，空调冷冻水供回水温度达 15℃/20℃……」「系统严格采用 T3+ 标准进行设计，更可平滑过渡至 T4 标准」",
+        "grade": "S3",
+        "originator": "张泉等编著《数据中心节能技术与应用》（机械工业出版社，2018 年 8 月第 1 版，21 世纪高等教育建筑环境与能源应用工程系列规划教材，ISBN 978-7-111-60248-4）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文用词是「预计年均 PUE 为 1.15」，属设计预期而非实测。**该项目用湖水源直接供冷：湖水 ≤13℃ 时单独供冷、13-18℃ 混合、>18℃ 转冷机，**全年约 90% 时间无需电制冷**——这是 1.15 的根本来源，不可移植到无冷水资源的场址。配套：冷冻水供回水 15℃/20℃（高温水）、水泵与主机冷却塔均变频、按 T3+ 设计并可过渡到 T4、市电中断期间靠蓄冷罐维持连续供冷。**库内 ODCC 绿色等级案例集把「云巢·东江湖数据中心」列为 2021 年运行类 AAAAA，但未给 PUE 数值**，本条可与之配对。",
+      "asserter": "张泉等《数据中心节能技术与应用》"
+    },
+    {
+      "fact_id": "zhangquan2018-high-density-room-power-density",
+      "metric_id": "it_power_density_per_area",
+      "entity": {
+        "type": "industry",
+        "id": "cn-high-density-computer-room",
+        "label": "高热密度数据机房（教材口径）"
+      },
+      "value": 1.5,
+      "unit": "kW/㎡",
+      "caliber": {
+        "area_basis": "机房面积（白空间）",
+        "power_scope": "IT 负载",
+        "region": "CN",
+        "basis": "第三方推算"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d701c63a12c29aaf86e3975872771bd8d69ac24801d4fc2a09d51c302b8860e8",
+        "local_file": "数据中心节能技术与应用.pdf",
+        "locator": "第 7 章：「由于高热密度的数据机房内的平均负荷为 1.5 kW/m² 或 4~8 kW/机柜，本案例中取每个机柜满负荷时的负荷为 4kW。该 IDC 采用地板下送风与冷通道相结合的送风方式」；同章给出 IDC 外墙、地面和屋面传热系数 0.45 W/(m²·K)",
+        "grade": "S3",
+        "originator": "张泉等编著《数据中心节能技术与应用》（机械工业出版社，2018 年 8 月第 1 版，21 世纪高等教育建筑环境与能源应用工程系列规划教材，ISBN 978-7-111-60248-4）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**教材给出的高热密度机房平均负荷取值：1.5 kW/㎡，等价表述为 4~8 kW/机柜**（两种口径在原文中并列给出，可互相换算出约 190-375 ㎡/百柜的布置密度）。**与本库液冷时代的数据对照**：施耐德算例 2kW/㎡、贵阳靶场冷指标 737-831 W/㎡（含辅助区、且是冷负荷不是 IT 负载）——**口径各不相同，比较前须先对齐分母（白空间 vs 总建筑面积）与分子（IT 负载 vs 冷负荷）**。同章另给 IDC 外墙/地面/屋面传热系数 0.45 W/(m²·K)。",
+      "asserter": "张泉等《数据中心节能技术与应用》"
+    },
+    {
+      "fact_id": "zhangquan2018-high-density-rack-power-lower",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "industry",
+        "id": "cn-high-density-computer-room",
+        "label": "高热密度数据机房（教材口径）"
+      },
+      "value": 4.0,
+      "unit": "kW/架",
+      "caliber": {
+        "basis": "规划平均",
+        "scope": "全场平均",
+        "region": "CN"
+      },
+      "as_of": "2018",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "d701c63a12c29aaf86e3975872771bd8d69ac24801d4fc2a09d51c302b8860e8",
+        "local_file": "数据中心节能技术与应用.pdf",
+        "locator": "第 7 章：「由于高热密度的数据机房内的平均负荷为 1.5 kW/m² 或 4~8 kW/机柜，本案例中取每个机柜满负荷时的负荷为 4kW。该 IDC 采用地板下送风与冷通道相结合的送风方式」；同章给出 IDC 外墙、地面和屋面传热系数 0.45 W/(m²·K)",
+        "grade": "S3",
+        "originator": "张泉等编著《数据中心节能技术与应用》（机械工业出版社，2018 年 8 月第 1 版，21 世纪高等教育建筑环境与能源应用工程系列规划教材，ISBN 978-7-111-60248-4）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**2018 年教材对「高热密度机房」的定义是 4~8 kW/机柜**——这正是理解本库那条「风冷上限」争议族的时间坐标：当年 8kW 已算高密，而 2024-2026 年的争议区间已经推到 20-60kW。案例中取每柜满负荷 4kW 计算。",
+      "asserter": "张泉等《数据中心节能技术与应用》"
+    },
+    {
+      "fact_id": "zhangquan2018-high-density-rack-power-upper",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "industry",
+        "id": "cn-high-density-computer-room",
+        "label": "高热密度数据机房（教材口径）"
+      },
+      "value": 8.0,
+      "unit": "kW/架",
+      "caliber": {
+        "basis": "规划平均",
+        "scope": "全场平均",
+        "region": "CN"
+      },
+      "as_of": "2018",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "d701c63a12c29aaf86e3975872771bd8d69ac24801d4fc2a09d51c302b8860e8",
+        "local_file": "数据中心节能技术与应用.pdf",
+        "locator": "第 7 章：「由于高热密度的数据机房内的平均负荷为 1.5 kW/m² 或 4~8 kW/机柜，本案例中取每个机柜满负荷时的负荷为 4kW。该 IDC 采用地板下送风与冷通道相结合的送风方式」；同章给出 IDC 外墙、地面和屋面传热系数 0.45 W/(m²·K)",
+        "grade": "S3",
+        "originator": "张泉等编著《数据中心节能技术与应用》（机械工业出版社，2018 年 8 月第 1 版，21 世纪高等教育建筑环境与能源应用工程系列规划教材，ISBN 978-7-111-60248-4）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**2018 年教材对「高热密度机房」的定义是 4~8 kW/机柜**——这正是理解本库那条「风冷上限」争议族的时间坐标：当年 8kW 已算高密，而 2024-2026 年的争议区间已经推到 20-60kW。案例中取每柜满负荷 4kW 计算。",
+      "asserter": "张泉等《数据中心节能技术与应用》"
     }
   ]
 }
