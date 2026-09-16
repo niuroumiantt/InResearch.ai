@@ -242814,6 +242814,231 @@
       },
       "depth": "精读",
       "notes": "**边界写得很清楚：从变压器输入配电设备到列头柜输入设备**，是供配电链路而非整站可用性，与库内金融行业标准的网络链路 99.99% 也不是一回事（那是网络子系统）。同节还要求油机宜无冗余设置、宜采用预制化电力模块。[未核]"
+    },
+    {
+      "fact_id": "gba2021-guangdong-racks-2019",
+      "asserter": "中国通信工业协会数据中心委员会",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "guangdong-dc",
+        "label": "广东省数据中心（中型及以上）"
+      },
+      "value": 21.8,
+      "unit": "万标准机架",
+      "bound": "point",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2019-12",
+      "evidence": {
+        "sha256": "1dc109442f9c39df8df1427766a9beec566b0ee0c486b0590afdfd65d7a3e160",
+        "local_file": "77页-粤港澳数据中心新基建发展白皮书.pdf",
+        "locator": "（一）广东省数据中心建设分析：「截至 2019 年底，广东省已投产使用中型及以上数据中心 160 个左右，在运营标准机架 21.8 万架，在使用标准机架 13.5 万架，上架率约为 61.8%，服务器超过 86.4 万台」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "口径是「在运营标准机架」，同句另给在使用 13.5 万架——两者相除 61.9%，与原文上架率 61.8% 基本自洽。库内工信部 2020 年广东 43.2 万架是全省全口径，本条只含中型及以上，两者不可直接比。[未核]"
+    },
+    {
+      "fact_id": "gba2021-guangdong-occupancy-2019",
+      "asserter": "中国通信工业协会数据中心委员会",
+      "metric_id": "dc_occupancy_rate",
+      "entity": {
+        "type": "region",
+        "id": "guangdong-dc",
+        "label": "广东省数据中心（中型及以上）"
+      },
+      "value": 61.8,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "scope": "区域市场",
+        "region": "CN"
+      },
+      "as_of": "2019-12",
+      "evidence": {
+        "sha256": "1dc109442f9c39df8df1427766a9beec566b0ee0c486b0590afdfd65d7a3e160",
+        "local_file": "77页-粤港澳数据中心新基建发展白皮书.pdf",
+        "locator": "（一）广东省数据中心建设分析：「截至 2019 年底，广东省已投产使用中型及以上数据中心 160 个左右，在运营标准机架 21.8 万架，在使用标准机架 13.5 万架，上架率约为 61.8%，服务器超过 86.4 万台」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "13.5/21.8 = 61.9%，与原文 61.8% 自洽。库内广东省工信厅口径 2019-12 全省 61.8%（gd-dcplan-2019-occupancy-province）与本条同值，两条应同源。[未核]"
+    },
+    {
+      "fact_id": "gba2021-guangzhou-shenzhen-rack-share-telco",
+      "asserter": "中国通信工业协会数据中心委员会",
+      "metric_id": "dc_service_revenue_share",
+      "entity": {
+        "type": "region",
+        "id": "guangzhou-shenzhen-idc",
+        "label": "广州深圳主要 IDC 市场（按投运机柜规模）"
+      },
+      "value": 29.7,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "operator_type": "基础电信运营商",
+        "service_scope": "仅机柜托管",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020-08",
+      "evidence": {
+        "sha256": "1dc109442f9c39df8df1427766a9beec566b0ee0c486b0590afdfd65d7a3e160",
+        "local_file": "77页-粤港澳数据中心新基建发展白皮书.pdf",
+        "locator": "（二）数据中心业主分析：「截至 2020 年 8 月，广州深圳主要 IDC 市场中，基础电信运营商、第三方 IDC 服务商、互联网公司投产机柜规模相当……三大运营商机柜规模仅占地区总规模的 29.7%……第三方 IDC 服务商机柜占比达 34.5%……互联网公司投运机柜数量占比为 35.8%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**这是按机柜数量的份额，不是按收入**——本指标名为「数据中心业务收入份额」，广深这一组用的是投运机柜规模，口径不同已在此标明，不可与库内 2020 年全国收入份额（运营商 54.3%、第三方 45.7%）直接比较。三项合计 100.0%。[未核]"
+    },
+    {
+      "fact_id": "gba2021-guangzhou-shenzhen-rack-share-third-party",
+      "asserter": "中国通信工业协会数据中心委员会",
+      "metric_id": "dc_service_revenue_share",
+      "entity": {
+        "type": "region",
+        "id": "guangzhou-shenzhen-idc",
+        "label": "广州深圳主要 IDC 市场（按投运机柜规模）"
+      },
+      "value": 34.5,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "operator_type": "第三方",
+        "service_scope": "仅机柜托管",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020-08",
+      "evidence": {
+        "sha256": "1dc109442f9c39df8df1427766a9beec566b0ee0c486b0590afdfd65d7a3e160",
+        "local_file": "77页-粤港澳数据中心新基建发展白皮书.pdf",
+        "locator": "（二）数据中心业主分析：「截至 2020 年 8 月，广州深圳主要 IDC 市场中，基础电信运营商、第三方 IDC 服务商、互联网公司投产机柜规模相当……三大运营商机柜规模仅占地区总规模的 29.7%……第三方 IDC 服务商机柜占比达 34.5%……互联网公司投运机柜数量占比为 35.8%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**这是按机柜数量的份额，不是按收入**——本指标名为「数据中心业务收入份额」，广深这一组用的是投运机柜规模，口径不同已在此标明，不可与库内 2020 年全国收入份额（运营商 54.3%、第三方 45.7%）直接比较。三项合计 100.0%。[未核]"
+    },
+    {
+      "fact_id": "gba2021-guangzhou-shenzhen-rack-share-internet",
+      "asserter": "中国通信工业协会数据中心委员会",
+      "metric_id": "dc_service_revenue_share",
+      "entity": {
+        "type": "region",
+        "id": "guangzhou-shenzhen-idc",
+        "label": "广州深圳主要 IDC 市场（按投运机柜规模）"
+      },
+      "value": 35.8,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "operator_type": "其他",
+        "service_scope": "仅机柜托管",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020-08",
+      "evidence": {
+        "sha256": "1dc109442f9c39df8df1427766a9beec566b0ee0c486b0590afdfd65d7a3e160",
+        "local_file": "77页-粤港澳数据中心新基建发展白皮书.pdf",
+        "locator": "（二）数据中心业主分析：「截至 2020 年 8 月，广州深圳主要 IDC 市场中，基础电信运营商、第三方 IDC 服务商、互联网公司投产机柜规模相当……三大运营商机柜规模仅占地区总规模的 29.7%……第三方 IDC 服务商机柜占比达 34.5%……互联网公司投运机柜数量占比为 35.8%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**这是按机柜数量的份额，不是按收入**——本指标名为「数据中心业务收入份额」，广深这一组用的是投运机柜规模，口径不同已在此标明，不可与库内 2020 年全国收入份额（运营商 54.3%、第三方 45.7%）直接比较。互联网自建这一类 operator_type 维没有取值，记「其他」。三项合计 100.0%。[未核]"
+    },
+    {
+      "fact_id": "shenzhen2019-pue-no-support-line",
+      "asserter": "深圳市发展和改革委员会",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "shenzhen-2019-energy-review-no-support",
+        "label": "深圳市数据中心节能审查（2019）不予支持线"
+      },
+      "value": 1.4,
+      "unit": "比值",
+      "bound": "lower",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "夏热冬暖",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2019-04",
+      "evidence": {
+        "sha256": "1dc109442f9c39df8df1427766a9beec566b0ee0c486b0590afdfd65d7a3e160",
+        "local_file": "77页-粤港澳数据中心新基建发展白皮书.pdf",
+        "locator": "第 17 页：「2019 年 4 月，深圳市发展改革委出台《关于数据中心节能审查有关事项的通知》，根据 PUE 值高低，给予新增能源消费量不同程度的支持。PUE 值在 1.4 以上的数据中心不享有支持；PUE 值低于 1.25 的数据中心可享受新增能源消费量 40% 以上的支持」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**方向与常见的 PUE 上限相反**：1.4 是「达到或超过即不予支持」的下界，故 bound 记 lower；与之配对的 1.25 是拿满额支持的上限线。这套按 PUE 分档发放能耗指标的做法是深圳控制新建数据中心的主要手段。[未核]"
+    },
+    {
+      "fact_id": "shenzhen2019-pue-full-support-line",
+      "asserter": "深圳市发展和改革委员会",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "shenzhen-2019-energy-review-full-support",
+        "label": "深圳市数据中心节能审查（2019）最高档支持线"
+      },
+      "value": 1.25,
+      "unit": "比值",
+      "bound": "upper",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "夏热冬暖",
+        "build_type": "未注明",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2019-04",
+      "evidence": {
+        "sha256": "1dc109442f9c39df8df1427766a9beec566b0ee0c486b0590afdfd65d7a3e160",
+        "local_file": "77页-粤港澳数据中心新基建发展白皮书.pdf",
+        "locator": "同上：「PUE 值低于 1.25 的数据中心可享受新增能源消费量 40% 以上的支持」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "低于 1.25 可获新增能源消费量 40% 以上的支持；与 1.4 的不予支持线成对。[未核]"
+    },
+    {
+      "fact_id": "gba2021-shenzhen-occupancy-policy-threshold",
+      "asserter": "广东省工业和信息化厅",
+      "metric_id": "occupancy_policy_threshold",
+      "entity": {
+        "type": "policy",
+        "id": "gd-dcplan-occupancy-precondition",
+        "label": "《广东省 5G 基站和数据中心总体布局规划（2021-2025 年）》「先提后扩」上架率门槛"
+      },
+      "value": 60.0,
+      "unit": "%",
+      "bound": "lower",
+      "caliber": {
+        "scope": "单项目",
+        "policy_type": "准入门槛",
+        "region": "CN"
+      },
+      "as_of": "2021",
+      "evidence": {
+        "sha256": "1dc109442f9c39df8df1427766a9beec566b0ee0c486b0590afdfd65d7a3e160",
+        "local_file": "77页-粤港澳数据中心新基建发展白皮书.pdf",
+        "locator": "第 12 页：「《广东省 5G 基站和数据中心总体布局规划(2021-2025 年)》……提出『先提后扩』的建设思路，禁止上架率低于 60% 的数据中心项目申请扩容或新建，以充分利用现有资源为基础，规划建设新项目」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "「先提后扩」：上架率不到 60% 的项目不得申请扩容或新建。断言者按发文主体记广东省工业和信息化厅（库内该规划的其它条款也署此名），不是深圳市发改委——后者是同一份白皮书里另一条按 PUE 分档给能耗指标的政策。[未核]"
     }
   ]
 }
