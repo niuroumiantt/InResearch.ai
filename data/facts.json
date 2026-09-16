@@ -223777,6 +223777,406 @@
       },
       "bound": "point",
       "notes": "ALCF 运营方自述的在役规模。"
+    },
+    {
+      "fact_id": "dfzq2605-a100-tdp",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-a100",
+        "label": "NVIDIA A100"
+      },
+      "value": 400.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "NVIDIA A100",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2026-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d34ed41bd08a32a5637868ec78ee87158e6b29012f619cd5295305990b3c9975",
+        "local_file": "AIDC冷水机组高景气_国产磁悬浮压缩机厂商迎机遇_22页_1mb.pdf",
+        "locator": "第 6 页 表 2「近年来 AI 芯片功率持续攀升」NVIDIA A100 行「TDP 热设计功耗」列",
+        "grade": "S4",
+        "originator": "东方证券《AIDC 冷水机组高景气，国产磁悬浮压缩机厂商迎机遇》（杨震、敬希癸，2026-05-09）表 2，表下注资料来源为 TrendForce、Spheron、clarifai、IT 之家、AMD 官网、南极熊 3D 打印网、英伟达官网、东方证券研究所——逐行未标注出自哪一家"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 W。原表该行发布年份列写 2020，功耗列写「约 400W」，「约」字保留在此：这是券商转述的整数近似，不是厂商规格书原值。表下资料来源为七家合列，逐行未标出自哪一家，按「原文直接把数陈述出来即由写的人担责」记到东方证券名下。",
+      "asserter": "东方证券"
+    },
+    {
+      "fact_id": "dfzq2605-h100-tdp",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-h100",
+        "label": "NVIDIA H100"
+      },
+      "value": 700.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "NVIDIA H100",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2026-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d34ed41bd08a32a5637868ec78ee87158e6b29012f619cd5295305990b3c9975",
+        "local_file": "AIDC冷水机组高景气_国产磁悬浮压缩机厂商迎机遇_22页_1mb.pdf",
+        "locator": "第 6 页 表 2「近年来 AI 芯片功率持续攀升」NVIDIA H100 行「TDP 热设计功耗」列",
+        "grade": "S4",
+        "originator": "东方证券《AIDC 冷水机组高景气，国产磁悬浮压缩机厂商迎机遇》（杨震、敬希癸，2026-05-09）表 2，表下注资料来源为 TrendForce、Spheron、clarifai、IT 之家、AMD 官网、南极熊 3D 打印网、英伟达官网、东方证券研究所——逐行未标注出自哪一家"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 W。原表发布年份列 2022。**H100 有 SXM 与 PCIe 两种形态、功耗不同（700W 为 SXM 口径）**，原表未标形态，跨条比较时注意。表下资料来源七家合列，逐行未标出自哪一家。",
+      "asserter": "东方证券"
+    },
+    {
+      "fact_id": "dfzq2605-b300-tdp",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-b300",
+        "label": "NVIDIA B300"
+      },
+      "value": 1400.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "NVIDIA B300",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2026-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d34ed41bd08a32a5637868ec78ee87158e6b29012f619cd5295305990b3c9975",
+        "local_file": "AIDC冷水机组高景气_国产磁悬浮压缩机厂商迎机遇_22页_1mb.pdf",
+        "locator": "第 6 页 表 2「近年来 AI 芯片功率持续攀升」NVIDIA B300 行「TDP 热设计功耗」列",
+        "grade": "S4",
+        "originator": "东方证券《AIDC 冷水机组高景气，国产磁悬浮压缩机厂商迎机遇》（杨震、敬希癸，2026-05-09）表 2，表下注资料来源为 TrendForce、Spheron、clarifai、IT 之家、AMD 官网、南极熊 3D 打印网、英伟达官网、东方证券研究所——逐行未标注出自哪一家"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 W，原文写「约 1400W」。**库内另有两条同名族的数：SemiAnalysis 2024-12 的「NVIDIA B300（HGX 配置）」1200W 与「NVIDIA Blackwell GPU（GB300 配置）」1400W——差别在整机形态，本条原表只写「B300」未标形态**，故单列一条，不与那两条合并，也不构成互证。",
+      "asserter": "东方证券"
+    },
+    {
+      "fact_id": "dfzq2605-rubin-tdp",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-rubin",
+        "label": "NVIDIA Rubin"
+      },
+      "value": 2000.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "NVIDIA Rubin",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2026-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "d34ed41bd08a32a5637868ec78ee87158e6b29012f619cd5295305990b3c9975",
+        "local_file": "AIDC冷水机组高景气_国产磁悬浮压缩机厂商迎机遇_22页_1mb.pdf",
+        "locator": "第 6 页 表 2「近年来 AI 芯片功率持续攀升」NVIDIA Rubin 行「TDP 热设计功耗」列",
+        "grade": "S4",
+        "originator": "东方证券《AIDC 冷水机组高景气，国产磁悬浮压缩机厂商迎机遇》（杨震、敬希癸，2026-05-09）表 2，表下注资料来源为 TrendForce、Spheron、clarifai、IT 之家、AMD 官网、南极熊 3D 打印网、英伟达官网、东方证券研究所——逐行未标注出自哪一家"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 W，原文写「超 2000W」，2000 是下界。原表发布年份列 2026，属尚未出货的路线图产品，规格可能变。",
+      "asserter": "东方证券"
+    },
+    {
+      "fact_id": "dfzq2605-mi250x-tdp-lower",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "amd-instinct-mi250x",
+        "label": "AMD Instinct MI250X"
+      },
+      "value": 500.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "AMD Instinct MI250X",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2026-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "d34ed41bd08a32a5637868ec78ee87158e6b29012f619cd5295305990b3c9975",
+        "local_file": "AIDC冷水机组高景气_国产磁悬浮压缩机厂商迎机遇_22页_1mb.pdf",
+        "locator": "第 6 页 表 2「近年来 AI 芯片功率持续攀升」AMD Instinct MI250X 行「TDP 热设计功耗」列",
+        "grade": "S4",
+        "originator": "东方证券《AIDC 冷水机组高景气，国产磁悬浮压缩机厂商迎机遇》（杨震、敬希癸，2026-05-09）表 2，表下注资料来源为 TrendForce、Spheron、clarifai、IT 之家、AMD 官网、南极熊 3D 打印网、英伟达官网、东方证券研究所——逐行未标注出自哪一家"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 W，原文写「约 500-560W」，本条为区间下界，上界见 dfzq2605-mi250x-tdp-upper。原表发布年份列 2021。",
+      "asserter": "东方证券"
+    },
+    {
+      "fact_id": "dfzq2605-mi250x-tdp-upper",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "amd-instinct-mi250x",
+        "label": "AMD Instinct MI250X"
+      },
+      "value": 560.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "AMD Instinct MI250X",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2026-05",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "d34ed41bd08a32a5637868ec78ee87158e6b29012f619cd5295305990b3c9975",
+        "local_file": "AIDC冷水机组高景气_国产磁悬浮压缩机厂商迎机遇_22页_1mb.pdf",
+        "locator": "第 6 页 表 2「近年来 AI 芯片功率持续攀升」AMD Instinct MI250X 行「TDP 热设计功耗」列",
+        "grade": "S4",
+        "originator": "东方证券《AIDC 冷水机组高景气，国产磁悬浮压缩机厂商迎机遇》（杨震、敬希癸，2026-05-09）表 2，表下注资料来源为 TrendForce、Spheron、clarifai、IT 之家、AMD 官网、南极熊 3D 打印网、英伟达官网、东方证券研究所——逐行未标注出自哪一家"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 W，原文写「约 500-560W」，本条为区间上界，下界见 dfzq2605-mi250x-tdp-lower。原表发布年份列 2021。",
+      "asserter": "东方证券"
+    },
+    {
+      "fact_id": "dfzq2605-primary-chiller-supply-lower",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "component",
+        "id": "chiller-primary-loop-supply",
+        "label": "液冷一次侧机械制冷冷源供水（中温冷冻水，行业通例）"
+      },
+      "value": 12.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "供水",
+        "loop": "一次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "未注明",
+        "region": "CN",
+        "basis": "工程测算"
+      },
+      "as_of": "2026-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "d34ed41bd08a32a5637868ec78ee87158e6b29012f619cd5295305990b3c9975",
+        "local_file": "AIDC冷水机组高景气_国产磁悬浮压缩机厂商迎机遇_22页_1mb.pdf",
+        "locator": "第 7 页 1.1 节：「机械制冷主要依赖压缩机驱动的蒸汽压缩制冷循环来主动制备冷冻水，可提供 12℃-18℃ 的中温冷冻水」",
+        "grade": "S4",
+        "originator": "东方证券《AIDC 冷水机组高景气，国产磁悬浮压缩机厂商迎机遇》（杨震、敬希癸，2026-05-09）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条为区间下界，上界见 dfzq2605-primary-chiller-supply-upper。**这是对行业通行做法的概括，不是某一个项目的设计值**，与库内单项目的一次侧供水温度（如中讯邮电 35℃ 不宜低于）不是一回事：那是液冷专用的高温一次侧，这是传统冷水机组的中温冷冻水。region 记 CN：作者与所引文献（黄翔《新形势下数据中心冷却技术的应用现状与发展趋势》）均为国内口径。",
+      "asserter": "东方证券"
+    },
+    {
+      "fact_id": "dfzq2605-primary-chiller-supply-upper",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "component",
+        "id": "chiller-primary-loop-supply",
+        "label": "液冷一次侧机械制冷冷源供水（中温冷冻水，行业通例）"
+      },
+      "value": 18.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "供水",
+        "loop": "一次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "未注明",
+        "region": "CN",
+        "basis": "工程测算"
+      },
+      "as_of": "2026-05",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "d34ed41bd08a32a5637868ec78ee87158e6b29012f619cd5295305990b3c9975",
+        "local_file": "AIDC冷水机组高景气_国产磁悬浮压缩机厂商迎机遇_22页_1mb.pdf",
+        "locator": "第 7 页 1.1 节：「同句」",
+        "grade": "S4",
+        "originator": "东方证券《AIDC 冷水机组高景气，国产磁悬浮压缩机厂商迎机遇》（杨震、敬希癸，2026-05-09）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条为区间上界，下界见 dfzq2605-primary-chiller-supply-lower。说明同下界条。",
+      "asserter": "东方证券"
+    },
+    {
+      "fact_id": "dfzq2605-primary-freecooling-supply",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "component",
+        "id": "free-cooling-primary-loop-supply",
+        "label": "液冷一次侧自然冷却冷源供水（行业通例）"
+      },
+      "value": 30.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "供水",
+        "loop": "一次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "未注明",
+        "region": "CN",
+        "basis": "工程测算"
+      },
+      "as_of": "2026-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "d34ed41bd08a32a5637868ec78ee87158e6b29012f619cd5295305990b3c9975",
+        "local_file": "AIDC冷水机组高景气_国产磁悬浮压缩机厂商迎机遇_22页_1mb.pdf",
+        "locator": "第 7 页 1.1 节：「自然冷却系统则主要依赖室外空气的冷量，可提供 30℃以上的冷却水。自然冷却系统可采用开式冷却塔、闭式冷却塔和干冷器等设备实现」",
+        "grade": "S4",
+        "originator": "东方证券《AIDC 冷水机组高景气，国产磁悬浮压缩机厂商迎机遇》（杨震、敬希癸，2026-05-09）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文写「30℃以上」，30 是下界。**自然冷却出水温度受室外湿球温度约束，是随气象条件浮动的能力上限，不是设定值**；与同文机械制冷的 12-18℃ 并列，正是作者用来说明「上调冷却水温可减少机械制冷时长」的论据。",
+      "asserter": "东方证券"
+    },
+    {
+      "fact_id": "dfzq2605-blackwell-warm-water-40c",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "component",
+        "id": "nvidia-blackwell-platform",
+        "label": "英伟达 Blackwell 架构系统（温水冷却上限）"
+      },
+      "value": 40.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "供水",
+        "loop": "二次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "region": "Global",
+        "basis": "工程测算"
+      },
+      "as_of": "2026-05",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "d34ed41bd08a32a5637868ec78ee87158e6b29012f619cd5295305990b3c9975",
+        "local_file": "AIDC冷水机组高景气_国产磁悬浮压缩机厂商迎机遇_22页_1mb.pdf",
+        "locator": "第 8 页 1.2 节：「在 Rubin 之前的架构里，Blackwell 架构支持 40℃的温水冷却，本次 Rubin 的边际变化在于将温度再往上推了 5℃」",
+        "grade": "S4",
+        "originator": "东方证券《AIDC 冷水机组高景气，国产磁悬浮压缩机厂商迎机遇》（杨震、敬希癸，2026-05-09）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是券商在对比中陈述的架构能力，不是英伟达规格书原文**，spec 性质记「参考设计」。与库内英伟达自述的 Vera Rubin 45℃（ces26ppt-vr-dlc-inlet-45c、nv2510-vr-nvl144-cpx-max-inlet-temp）配对可见代际差 5℃，但两者一为厂商口径一为券商转述，不构成互证。",
+      "asserter": "东方证券"
+    },
+    {
+      "fact_id": "dfzq2605-aircooled-rack-design-ceiling-lower",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "industry",
+        "id": "traditional-aircooled-rack",
+        "label": "传统数据中心单机柜（风冷）"
+      },
+      "value": 30.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "架构上限",
+        "era": "未注明",
+        "power_basis": "设计功率",
+        "region": "未披露"
+      },
+      "as_of": "2026-05",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "d34ed41bd08a32a5637868ec78ee87158e6b29012f619cd5295305990b3c9975",
+        "local_file": "AIDC冷水机组高景气_国产磁悬浮压缩机厂商迎机遇_22页_1mb.pdf",
+        "locator": "第 6 页 1.1 节：「NVIDIA 的 NVL72 整机柜集成 72 颗 GPU，单柜总功耗一举突破 100kW，达到近 140kW，远超传统数据中心单机柜的 30-40kW 设计上限」",
+        "grade": "S4",
+        "originator": "东方证券《AIDC 冷水机组高景气，国产磁悬浮压缩机厂商迎机遇》（杨震、敬希癸，2026-05-09）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条为区间下界，上界见 dfzq2605-aircooled-rack-design-ceiling-upper。**这是作者给出的风冷设计上限，不是出货中位数**——库内 SemiAnalysis 口径的当期典型风冷机柜为 15-20kW，二者不矛盾：一个是能做到的上限，一个是实际在跑的水平。同句的 NVL72「近 140kW」与库内已有的 140kW（TDP 口径）同值，属券商转述，不另记。region 未披露：原文未限定地域。",
+      "asserter": "东方证券"
+    },
+    {
+      "fact_id": "dfzq2605-aircooled-rack-design-ceiling-upper",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "industry",
+        "id": "traditional-aircooled-rack",
+        "label": "传统数据中心单机柜（风冷）"
+      },
+      "value": 40.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "架构上限",
+        "era": "未注明",
+        "power_basis": "设计功率",
+        "region": "未披露"
+      },
+      "as_of": "2026-05",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "d34ed41bd08a32a5637868ec78ee87158e6b29012f619cd5295305990b3c9975",
+        "local_file": "AIDC冷水机组高景气_国产磁悬浮压缩机厂商迎机遇_22页_1mb.pdf",
+        "locator": "第 6 页 1.1 节：「同句」",
+        "grade": "S4",
+        "originator": "东方证券《AIDC 冷水机组高景气，国产磁悬浮压缩机厂商迎机遇》（杨震、敬希癸，2026-05-09）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条为区间上界，下界见 dfzq2605-aircooled-rack-design-ceiling-lower。说明同下界条。",
+      "asserter": "东方证券"
     }
   ]
 }
