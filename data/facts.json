@@ -222697,7 +222697,10 @@
       "derived": false,
       "corroboration": "待交叉验证",
       "asserter": "华为",
-      "notes": "原图 236 ZB = 236000 EB（1 ZB = 1000 EB）。序列为 IDC 与华为 GIV 联合预测，断言者记发布方华为，[未核]。2024 年起为预测（本版编制于 2024 年）。正文另称 2030 年 1YB（=1000ZB）与图中 1003ZB 同量级。"
+      "notes": "原图 236 ZB = 236000 EB（1 ZB = 1000 EB）。序列为 IDC 与华为 GIV 联合预测，断言者记发布方华为，[未核]。2024 年起为预测（本版编制于 2024 年）。正文另称 2030 年 1YB（=1000ZB）与图中 1003ZB 同量级。",
+      "disputed_by": [
+        "idc2023-global-data-created-2026e"
+      ]
     },
     {
       "fact_id": "hwds2024-global-data-created-2027e",
@@ -223335,6 +223338,44 @@
         "hfzq2402-global-server-units-2022"
       ],
       "notes": "原文 1380 万台 = 13800 千台，同比 +6%；同句全球服务器收入 1117 亿美元（+17%）无对应指标。三家断言者 2022 年全球服务器出货：Counterpoint 1380 万、华福 1360 万、摩根士丹利 1490 万台。"
+    },
+    {
+      "fact_id": "idc2023-global-data-created-2026e",
+      "metric_id": "data_created_volume",
+      "entity": {
+        "type": "market",
+        "id": "global-datasphere",
+        "label": "全球每年新产生数据总量"
+      },
+      "value": 221000.0,
+      "unit": "EB",
+      "caliber": {
+        "measure": "数据创建量",
+        "segment": "合计",
+        "location": "不分位置",
+        "cloud": "不分",
+        "data_type": "不分类型",
+        "realtime": "不分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2026E@2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "16142db931c46f5452a65958cdda0d1025c98140efc0aa8a3b532d646bcc3955",
+        "local_file": "IDC记忆科技2023年SSD助力新一代数据中心高质量发展白皮书49页.pdf",
+        "locator": "PDF 第 5 页 1.1：「根据 IDC 预测，全球新产生的数据总量将在 2026 年达到 221ZB，五年年复合增长率达 23.8%」",
+        "grade": "S2",
+        "originator": "IDC，载于 IDC 与忆联（记忆科技）《SSD 助力新一代数据中心高质量发展白皮书》2023"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "IDC",
+      "disputes": [
+        "hwds2024-global-data-created-2026e"
+      ],
+      "notes": "原文 221 ZB = 221,000 EB，五年 CAGR 23.8%。库内华为《数据存储 2030》2026 年 236 ZB（hwds2024-global-data-created-2026e，IDC 与华为 GIV 联合预测口径），两者相差 6.8%，并列不选边。"
     }
   ]
 }
