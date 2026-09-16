@@ -223434,6 +223434,103 @@
       "corroboration": "待交叉验证",
       "asserter": "Meta",
       "notes": "原文「不足 30%」按上界记。库内另有 google-cloud-gpu-util-2022（25%，同段转引，断言者记未注明）。"
+    },
+    {
+      "fact_id": "sa2311-maia100-compute-int8",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "microsoft-maia-100",
+        "label": "微软 Maia 100"
+      },
+      "value": 1.6,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "Maia 100",
+        "precision": "INT8",
+        "scope": "单卡",
+        "sparsity": "未注明",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2023-11",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b9532df286e800d3443ae6499c405bb9dc7507b220a0b34a9548dda98ed980f0",
+        "local_file": "Microsoft Infrastructure - AI & CPU Custom Silicon Maia 100, Athena, Cobalt 100.pdf",
+        "locator": "正文：「Starting off with FLOPS, Maia comes with 1600 TFLOPS of MXInt8 and 3200 TFLOPS of MXFP4」；「The Maia racks seem to require ~40KW, which is more than most legacy datacenters which still only support ~12KW racks」（SemiAnalysis，2023-11-16，付费）",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文 1600 TFLOPS = 1.6 PFLOPS（本指标单位 PFLOPS）",
+      "corroboration": "待交叉验证",
+      "asserter": "SemiAnalysis",
+      "notes": "原文格式为 MXInt8（微缩放 INT8），precision 就近记 INT8，两者不完全等价，[未核]。"
+    },
+    {
+      "fact_id": "sa2311-maia100-compute-fp4",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "microsoft-maia-100",
+        "label": "微软 Maia 100"
+      },
+      "value": 3.2,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "Maia 100",
+        "precision": "FP4",
+        "scope": "单卡",
+        "sparsity": "未注明",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2023-11",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b9532df286e800d3443ae6499c405bb9dc7507b220a0b34a9548dda98ed980f0",
+        "local_file": "Microsoft Infrastructure - AI & CPU Custom Silicon Maia 100, Athena, Cobalt 100.pdf",
+        "locator": "正文：「Starting off with FLOPS, Maia comes with 1600 TFLOPS of MXInt8 and 3200 TFLOPS of MXFP4」；「The Maia racks seem to require ~40KW, which is more than most legacy datacenters which still only support ~12KW racks」（SemiAnalysis，2023-11-16，付费）",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文 3200 TFLOPS = 3.2 PFLOPS",
+      "corroboration": "待交叉验证",
+      "asserter": "SemiAnalysis",
+      "notes": "原文格式为 MXFP4（微缩放 FP4），precision 就近记 FP4，[未核]。同文 Maia 单片 1050 亿晶体管、4 层 HBM。"
+    },
+    {
+      "fact_id": "sa2311-maia-rack-power",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "microsoft-maia-rack",
+        "label": "微软 Maia 整机柜"
+      },
+      "value": 40.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "主流机型",
+        "era": "当期",
+        "power_basis": "未披露",
+        "region": "Global"
+      },
+      "as_of": "2023-11",
+      "bound": "point",
+      "evidence": {
+        "sha256": "b9532df286e800d3443ae6499c405bb9dc7507b220a0b34a9548dda98ed980f0",
+        "local_file": "Microsoft Infrastructure - AI & CPU Custom Silicon Maia 100, Athena, Cobalt 100.pdf",
+        "locator": "正文：「Starting off with FLOPS, Maia comes with 1600 TFLOPS of MXInt8 and 3200 TFLOPS of MXFP4」；「The Maia racks seem to require ~40KW, which is more than most legacy datacenters which still only support ~12KW racks」（SemiAnalysis，2023-11-16，付费）",
+        "grade": "S3"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "SemiAnalysis",
+      "notes": "「~40KW」为约数；同句称多数传统数据中心仅支持约 12kW 机柜。rack_type 记 AI液冷机柜：同文称 Maia 机柜配水冷 CDU（water-to-air），[未核]。"
     }
   ]
 }
