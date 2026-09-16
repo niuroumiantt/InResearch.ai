@@ -251521,6 +251521,125 @@
       },
       "depth": "精读",
       "notes": "**这一条的分母是「未来五年新增容量」而不是存量**，与上一条 41% 的分母不同，两条不可放在一条曲线上读。[未核]"
+    },
+    {
+      "fact_id": "caict3p2022-cn-dc-revenue-2021",
+      "asserter": "中国信通院",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-datacenter-market",
+        "label": "中国数据中心产业（市场规模）"
+      },
+      "value": 1500.0,
+      "unit": "亿（原币）",
+      "bound": "point",
+      "caliber": {
+        "service_scope": "IDC 服务（含托管与增值）",
+        "operator_type": "全市场",
+        "region": "CN",
+        "basis": "第三方跟踪",
+        "currency": "人民币"
+      },
+      "as_of": "2021",
+      "evidence": {
+        "sha256": "b9b00e2939c71ec39154adb672910b23d1211073555150ee9e315195af4161e4",
+        "local_file": "中国信通院中国第三方数据中心运营商分析报告2022年39页.pdf",
+        "locator": "第 2 章：「2021 年总市场收入已达到 1500 亿元」（图 2 2016-2021 我国数据中心业务总收入及增长率）",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "与库内 caict-2022-dc-service-revenue-2021（同为信通院、同值）是同一测算的两次发布，不作交叉验证。[未核]"
+    },
+    {
+      "fact_id": "caict3p2022-top10-revenue-share-2021",
+      "asserter": "中国信通院",
+      "metric_id": "top10_revenue_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-thirdparty-idc",
+        "label": "中国第三方数据中心运营商市场"
+      },
+      "value": 40.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "ranking_basis": "按机架规模",
+        "denominator": "第三方市场",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2021",
+      "evidence": {
+        "sha256": "b9b00e2939c71ec39154adb672910b23d1211073555150ee9e315195af4161e4",
+        "local_file": "中国信通院中国第三方数据中心运营商分析报告2022年39页.pdf",
+        "locator": "第 2 章：「2021 年，第三方数据中心运营商数据中心机架规模 Top10 企业数据中心业务收入约占第三方市场总收入 40%，该数据较上年度的 50% 有一定下滑」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**口径有个拧劲：按机架规模选出的 Top10，统计的是它们的收入占比**（不是按收入选 Top10）。一年内从 50% 降到 40%，原文归因于头部轻资产转型出售资产与新进入者增多。[未核]"
+    },
+    {
+      "fact_id": "caict3p2022-hyperscale-pue-2022",
+      "asserter": "中国信通院",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "cn-national",
+        "label": "全国数据中心（行业统计口径）"
+      },
+      "value": 1.39,
+      "unit": "比值",
+      "bound": "point",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "超大型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "b9b00e2939c71ec39154adb672910b23d1211073555150ee9e315195af4161e4",
+        "local_file": "中国信通院中国第三方数据中心运营商分析报告2022年39页.pdf",
+        "locator": "第 4 章：「据中国信通院测算，目前我国在用超大型数据中心平均 PUE 为 1.39，大型数据中心平均 PUE 为 1.5」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "库内已有同值同口径的 caict-2022-pue-hyperscale-inuse（信通院，2022-04），本条为同一测算的另一次发布；两条不作交叉验证。[未核]"
+    },
+    {
+      "fact_id": "caict3p2022-large-pue-2022",
+      "asserter": "中国信通院",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "cn-national",
+        "label": "全国数据中心（行业统计口径）"
+      },
+      "value": 1.5,
+      "unit": "比值",
+      "bound": "point",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "大型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "b9b00e2939c71ec39154adb672910b23d1211073555150ee9e315195af4161e4",
+        "local_file": "中国信通院中国第三方数据中心运营商分析报告2022年39页.pdf",
+        "locator": "同上句",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**大型 1.5 比超大型 1.39 高 0.11**，与 2017 年那一版（超大型在用 1.63、大型 1.54）方向相反——2017 年超大型因上架率低反而更差，2022 年规模效应已经转正。[未核]"
     }
   ]
 }
