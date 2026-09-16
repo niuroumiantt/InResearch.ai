@@ -236179,6 +236179,37 @@
       "corroboration": "待交叉验证",
       "notes": "债权（银行贷款与融资租赁）占总投资的上界 70%，下界见 xinjin-dc-equity-share-lower。口径说明同下界条。",
       "asserter": "信金 IDC 基金"
+    },
+    {
+      "fact_id": "wef2601-us-installed-dc-capacity-share",
+      "metric_id": "region_compute_share",
+      "entity": {
+        "type": "industry",
+        "id": "us-datacenter",
+        "label": "美国数据中心（占全球已安装容量）"
+      },
+      "value": 40.0,
+      "unit": "%",
+      "caliber": {
+        "measure": "算力规模",
+        "denominator": "全球总量",
+        "region": "US",
+        "basis": "行业机构"
+      },
+      "as_of": "2026-01",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "54ef77ff247237edf5470bf40d7b5d3ddee679e65736490dddbc313f49fb4a3e",
+        "local_file": "20260129-WEF-重新思考人工智能行业主权：通过战略投资提升竞争力的路径(英译中)(33页).pdf",
+        "locator": "第 2 章：「尽管商业模式非常整合，超大规模企业覆盖了人工智能价值链的很大一部分，但人工智能基础设施建设在全球范围内却高度分散。美国占全球已安装数据中心容量的 40% 以上」（原文脚注 11）",
+        "grade": "S4",
+        "originator": "世界经济论坛（WEF）《重新思考人工智能行业主权：通过战略投资提升竞争力的路径》（2026-01-29，中译本）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文写「40% 以上」，记为下界。**measure 记「算力规模」是枚举所限——原文说的是「已安装数据中心容量」（装机容量口径，非算力 FLOPS 口径）**，引用时须看本注。**这是理解「AI 主权」议题的关键数字**：美国一国占全球已装机容量四成以上，而报告同时指出许多新兴经济体仍在建立基础连接与数字基础设施。",
+      "asserter": "世界经济论坛"
     }
   ]
 }
