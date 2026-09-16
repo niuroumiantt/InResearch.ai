@@ -222024,6 +222024,130 @@
       "corroboration": "待交叉验证",
       "asserter": "Yole",
       "notes": "Yole 2025-05 版把 2024 年 HBM 收入记为 174 亿美元，库内 yole2503-hbm-revenue-2024 为同一断言者 2025-03 版的 170 亿美元——按版本关系记 as_of 2024@2025-05 并 supersedes 旧版，旧条保留。同页 2030E HBM 980 亿美元与库内 yole2503-hbm-revenue-2030e 同值，不重复录。"
+    },
+    {
+      "entity": {
+        "type": "market",
+        "id": "nvidia-ai-rack",
+        "label": "英伟达 AI 服务器整机柜出货"
+      },
+      "unit": "架",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "野村证券",
+      "fact_id": "nmr2504-gb200-rack-ship-2025q1",
+      "metric_id": "ai_rack_shipment",
+      "value": 1000.0,
+      "caliber": {
+        "platform": "GB200",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2025-Q1",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "57effaefde47d1715d60be37d2a139797b291a0f6380a2078d7995b7937511d4",
+        "local_file": "[UBS]Asia_Server.pdf",
+        "locator": "PDF 第 1 页正文：「the actual GB200 rack shipments were below 1,000 racks in 1Q25 (based on our supply-chain checks), lower than our original expectation of about 3,000 racks」「we estimate the final GB200/300 rack shipments will reach ~20k units in 2025F」「jump in GB200 rack shipments in 2Q25F (from <1k in 1Q25F to 5-6k in 2Q25F)」",
+        "grade": "S3"
+      },
+      "notes": "「below 1,000 racks」按上界记；原预期约 3000 架。野村（Nomura）Asia Server 报告 2025-04-24（文件名标 UBS，实际封面与分析师均为 Nomura，[未核]）。晶圆口径推得的 41.5k GB 机柜与最终出货 20k 之间约 52% 的差异，原文归因于良率损失、产线爬坡与缓冲。"
+    },
+    {
+      "entity": {
+        "type": "market",
+        "id": "nvidia-ai-rack",
+        "label": "英伟达 AI 服务器整机柜出货"
+      },
+      "unit": "架",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "野村证券",
+      "fact_id": "nmr2504-gb200-rack-ship-2025q2e-lower",
+      "metric_id": "ai_rack_shipment",
+      "value": 5000.0,
+      "caliber": {
+        "platform": "GB200",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025-Q2E@2025-04",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "57effaefde47d1715d60be37d2a139797b291a0f6380a2078d7995b7937511d4",
+        "local_file": "[UBS]Asia_Server.pdf",
+        "locator": "PDF 第 1 页正文：「the actual GB200 rack shipments were below 1,000 racks in 1Q25 (based on our supply-chain checks), lower than our original expectation of about 3,000 racks」「we estimate the final GB200/300 rack shipments will reach ~20k units in 2025F」「jump in GB200 rack shipments in 2Q25F (from <1k in 1Q25F to 5-6k in 2Q25F)」",
+        "grade": "S3"
+      },
+      "notes": "「5-6k in 2Q25F」按两端记。野村（Nomura）Asia Server 报告 2025-04-24（文件名标 UBS，实际封面与分析师均为 Nomura，[未核]）。晶圆口径推得的 41.5k GB 机柜与最终出货 20k 之间约 52% 的差异，原文归因于良率损失、产线爬坡与缓冲。"
+    },
+    {
+      "entity": {
+        "type": "market",
+        "id": "nvidia-ai-rack",
+        "label": "英伟达 AI 服务器整机柜出货"
+      },
+      "unit": "架",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "野村证券",
+      "fact_id": "nmr2504-gb200-rack-ship-2025q2e-upper",
+      "metric_id": "ai_rack_shipment",
+      "value": 6000.0,
+      "caliber": {
+        "platform": "GB200",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025-Q2E@2025-04",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "57effaefde47d1715d60be37d2a139797b291a0f6380a2078d7995b7937511d4",
+        "local_file": "[UBS]Asia_Server.pdf",
+        "locator": "PDF 第 1 页正文：「the actual GB200 rack shipments were below 1,000 racks in 1Q25 (based on our supply-chain checks), lower than our original expectation of about 3,000 racks」「we estimate the final GB200/300 rack shipments will reach ~20k units in 2025F」「jump in GB200 rack shipments in 2Q25F (from <1k in 1Q25F to 5-6k in 2Q25F)」",
+        "grade": "S3"
+      },
+      "notes": "「5-6k in 2Q25F」按两端记。野村（Nomura）Asia Server 报告 2025-04-24（文件名标 UBS，实际封面与分析师均为 Nomura，[未核]）。晶圆口径推得的 41.5k GB 机柜与最终出货 20k 之间约 52% 的差异，原文归因于良率损失、产线爬坡与缓冲。"
+    },
+    {
+      "entity": {
+        "type": "market",
+        "id": "nvidia-ai-rack",
+        "label": "英伟达 AI 服务器整机柜出货"
+      },
+      "unit": "架",
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "野村证券",
+      "fact_id": "nmr2504-gb-rack-ship-2025e",
+      "metric_id": "ai_rack_shipment",
+      "value": 20000.0,
+      "caliber": {
+        "platform": "GB200/GB300 合计",
+        "customer": "全市场",
+        "odm": "未拆分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "57effaefde47d1715d60be37d2a139797b291a0f6380a2078d7995b7937511d4",
+        "local_file": "[UBS]Asia_Server.pdf",
+        "locator": "PDF 第 1 页正文：「the actual GB200 rack shipments were below 1,000 racks in 1Q25 (based on our supply-chain checks), lower than our original expectation of about 3,000 racks」「we estimate the final GB200/300 rack shipments will reach ~20k units in 2025F」「jump in GB200 rack shipments in 2Q25F (from <1k in 1Q25F to 5-6k in 2Q25F)」",
+        "grade": "S3"
+      },
+      "notes": "GB200 与 GB300 合计口径，约 2 万架；与按晶圆推算的 41.5k 架差约 52%。野村（Nomura）Asia Server 报告 2025-04-24（文件名标 UBS，实际封面与分析师均为 Nomura，[未核]）。晶圆口径推得的 41.5k GB 机柜与最终出货 20k 之间约 52% 的差异，原文归因于良率损失、产线爬坡与缓冲。"
     }
   ]
 }
