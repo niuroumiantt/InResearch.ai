@@ -232789,6 +232789,210 @@
       "corroboration": "待交叉验证",
       "notes": "**这是「运行类」评级下的年均运行 PUE，不是设计值**——评估规则明确：有一年 PUE 数据的归运行类、没有的归设计类，本条属前者，**在本库以设计值居多的 PUE 序列里属少见的实测样本**。技术组合：集装箱式间接蒸发冷却 + 80PLUS 白金电源 + 高压直流 + 微模块；并通过当地可再生能源优先发电计划消纳风光。**全案例集 20 余个 AAAAA 项目中只有这一个给了具体 PUE 数值，其余均为定性描述。**",
       "asserter": "开放数据中心委员会"
+    },
+    {
+      "fact_id": "efc2111-alibaba-renhe-design-pue",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "alibaba-renhe-liquid-dc",
+        "label": "阿里巴巴杭州仁和液冷数据中心"
+      },
+      "value": 1.12,
+      "unit": "比值",
+      "caliber": {
+        "basis": "设计值",
+        "cooling_tech": "浸没液冷",
+        "climate_zone": "南方",
+        "build_type": "新建",
+        "scale": "超大型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2021-11",
+      "bound": "point",
+      "evidence": {
+        "sha256": "562f0c64b32ba8e88e34db9a8c986bfead0618b0539c128b89b20892698417a1",
+        "local_file": "【2021年11月】【能源基金会】数据中心节能改造与实践案例.pdf",
+        "locator": "第 12 页：「2018 年后筹建的超大型互联网数据中心 PUE 值普遍较低……如阿里巴巴杭州仁和数据中心采用的液冷自然冷源设计年均 PUE 达到 1.12，为全球规模最大的全浸没式液冷数据中心；通过采用间接蒸发自然冷却技术，字节跳动的传统数据中心 PUE 由 2018 年的 1.17、2019 年的 1.16，降低至 2020 年的 1.14」",
+        "grade": "S3",
+        "originator": "能源基金会《数据中心节能改造与实践案例》（2021-11）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**设计年均 PUE，不是运行实测**。全球规模最大的全浸没式液冷数据中心（原文口径）。**与库内乌兰察布阿里项目 1.2（IDC 口径）是两个不同项目**，不要混。国信 PPT 亦转述过同一数值（仁和设计年均 1.12、约 3 万台服务器），属同源转述。",
+      "asserter": "能源基金会"
+    },
+    {
+      "fact_id": "efc2111-bytedance-dc-pue-2018",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "company",
+        "id": "bytedance",
+        "label": "字节跳动传统数据中心"
+      },
+      "value": 1.17,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "间接蒸发冷却",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "562f0c64b32ba8e88e34db9a8c986bfead0618b0539c128b89b20892698417a1",
+        "local_file": "【2021年11月】【能源基金会】数据中心节能改造与实践案例.pdf",
+        "locator": "第 12 页：「2018 年后筹建的超大型互联网数据中心 PUE 值普遍较低……如阿里巴巴杭州仁和数据中心采用的液冷自然冷源设计年均 PUE 达到 1.12，为全球规模最大的全浸没式液冷数据中心；通过采用间接蒸发自然冷却技术，字节跳动的传统数据中心 PUE 由 2018 年的 1.17、2019 年的 1.16，降低至 2020 年的 1.14」",
+        "grade": "S3",
+        "originator": "能源基金会《数据中心节能改造与实践案例》（2021-11）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**字节跳动传统（非液冷）数据中心的年均运行 PUE 三年序列的起点**：2018 年 1.17 → 2019 年 1.16 → 2020 年 1.14，靠间接蒸发自然冷却技术逐年下降。**这是互联网厂商自有机房的实测水平，与同期全国平均 1.5+ 差距明显。**",
+      "asserter": "能源基金会"
+    },
+    {
+      "fact_id": "efc2111-bytedance-dc-pue-2019",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "company",
+        "id": "bytedance",
+        "label": "字节跳动传统数据中心"
+      },
+      "value": 1.16,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "间接蒸发冷却",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "562f0c64b32ba8e88e34db9a8c986bfead0618b0539c128b89b20892698417a1",
+        "local_file": "【2021年11月】【能源基金会】数据中心节能改造与实践案例.pdf",
+        "locator": "第 12 页：「2018 年后筹建的超大型互联网数据中心 PUE 值普遍较低……如阿里巴巴杭州仁和数据中心采用的液冷自然冷源设计年均 PUE 达到 1.12，为全球规模最大的全浸没式液冷数据中心；通过采用间接蒸发自然冷却技术，字节跳动的传统数据中心 PUE 由 2018 年的 1.17、2019 年的 1.16，降低至 2020 年的 1.14」",
+        "grade": "S3",
+        "originator": "能源基金会《数据中心节能改造与实践案例》（2021-11）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "字节跳动传统数据中心年均运行 PUE 序列的中间年（2018 年 1.17 → 2019 年 1.16 → 2020 年 1.14）。",
+      "asserter": "能源基金会"
+    },
+    {
+      "fact_id": "efc2111-bytedance-dc-pue-2020",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "company",
+        "id": "bytedance",
+        "label": "字节跳动传统数据中心"
+      },
+      "value": 1.14,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "间接蒸发冷却",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "bound": "point",
+      "evidence": {
+        "sha256": "562f0c64b32ba8e88e34db9a8c986bfead0618b0539c128b89b20892698417a1",
+        "local_file": "【2021年11月】【能源基金会】数据中心节能改造与实践案例.pdf",
+        "locator": "第 12 页：「2018 年后筹建的超大型互联网数据中心 PUE 值普遍较低……如阿里巴巴杭州仁和数据中心采用的液冷自然冷源设计年均 PUE 达到 1.12，为全球规模最大的全浸没式液冷数据中心；通过采用间接蒸发自然冷却技术，字节跳动的传统数据中心 PUE 由 2018 年的 1.17、2019 年的 1.16，降低至 2020 年的 1.14」",
+        "grade": "S3",
+        "originator": "能源基金会《数据中心节能改造与实践案例》（2021-11）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "字节跳动传统数据中心年均运行 PUE 序列的末年。**三年降 0.03 是「传统机房 + 间接蒸发改造」能达到的改善幅度**，可作为存量改造预期的参照。",
+      "asserter": "能源基金会"
+    },
+    {
+      "fact_id": "efc2111-retrofit-case-pue-before",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "efc-retrofit-case-chiller",
+        "label": "能源基金会案例：某数据中心冷水主机群控改造（改造前）"
+      },
+      "value": 1.99,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "自然冷源",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2021-11",
+      "bound": "point",
+      "evidence": {
+        "sha256": "562f0c64b32ba8e88e34db9a8c986bfead0618b0539c128b89b20892698417a1",
+        "local_file": "【2021年11月】【能源基金会】数据中心节能改造与实践案例.pdf",
+        "locator": "第 4 章案例：「该项目改造后 PUE 由 2.0 降低至 1.70，每年节电量约 1722 万 kWh，每年节省电费约 1533 万元」；表 4-2「改造前后 PUE 及节能量对比」给出逐月值，改造前平均 1.99、改造后平均 1.7",
+        "grade": "S3",
+        "originator": "能源基金会《数据中心节能改造与实践案例》（2021-11）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**改造前的逐月实测年均值 1.99（原文正文写「由 2.0 降低至 1.70」，表 4-2 的逐月平均为 1.99）**——正文取整、表格为准，两处并不矛盾。逐月区间 1.72（1 月）至 2.13（9 月），**夏季高出冬季 0.4，说明这类高 PUE 机房的季节性极强**。",
+      "asserter": "能源基金会"
+    },
+    {
+      "fact_id": "efc2111-retrofit-case-pue-after",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "efc-retrofit-case-chiller-after",
+        "label": "能源基金会案例：某数据中心冷水主机群控改造（改造后）"
+      },
+      "value": 1.7,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "自然冷源",
+        "climate_zone": "未分区",
+        "build_type": "改造",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2021-11",
+      "bound": "point",
+      "evidence": {
+        "sha256": "562f0c64b32ba8e88e34db9a8c986bfead0618b0539c128b89b20892698417a1",
+        "local_file": "【2021年11月】【能源基金会】数据中心节能改造与实践案例.pdf",
+        "locator": "第 4 章案例：「该项目改造后 PUE 由 2.0 降低至 1.70，每年节电量约 1722 万 kWh，每年节省电费约 1533 万元」；表 4-2「改造前后 PUE 及节能量对比」给出逐月值，改造前平均 1.99、改造后平均 1.7",
+        "grade": "S3",
+        "originator": "能源基金会《数据中心节能改造与实践案例》（2021-11）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**改造后年均 1.70，较改造前 1.99 降 0.29**；每年节电约 1722 万 kWh、省电费约 1533 万元（隐含电价约 0.89 元/kWh）。改造内容为冷水主机加减机群控策略优化（按供回水温度与压缩机功率判断负载率自动加减机）。**这是存量机房「只改控制策略不换设备」能拿到的幅度，可与换设备类改造对照。**",
+      "asserter": "能源基金会"
     }
   ]
 }
