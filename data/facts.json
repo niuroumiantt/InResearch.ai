@@ -249433,6 +249433,91 @@
       },
       "depth": "精读",
       "notes": "按冷却路线给的典型值而非某一项目实测；对照基准是传统机房 1.5 以上。同页另称冷板散热效率提升 40%、浸没节能 30%+、新一代国产 AI 芯片单位算力能耗较上代降低 25%，三项均无对应指标。[未核]"
+    },
+    {
+      "fact_id": "i360-2024-hyperscale-ai-capex",
+      "asserter": "Intersect360 Research",
+      "metric_id": "dc_it_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-hyperscale-ai-infra",
+        "label": "全球超大规模 AI 数据中心基础设施支出"
+      },
+      "value": 1200.0,
+      "unit": "亿美元",
+      "bound": "lower",
+      "caliber": {
+        "segment": "Hyperscalers",
+        "region": "Total",
+        "technology": "Total"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "ee589f4290bebf0f4e723991b9427453d497646ad6418c991cd72b9f19abf7f1",
+        "local_file": "SNIA-SDC25-Snell-Five-Big-Questions-for-HPC-AI.pdf（Intersect360 Research）",
+        "locator": "第 7 页「Data Center Infrastructure ($B), 2023 vs. 2024」要点：「Total data center infrastructure grew 32% year-over-year, driven entirely by accelerating computing segments」「Accelerated computing is now 50% of all data center, up 121% year-over-year」「Hyperscale AI grew 185% year-over-year, to over $120 billion」「Hyperscale (accelerated and non-accelerated) accounts for over 60% of total data center spending」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "「over $120 billion」记下界，同比 +185%。**口径是 Intersect360 的「Hyperscale AI（multi-business）」分部，只含超大规模厂的 AI 部分**，与 Dell'Oro 的 IT capex 分部口径不同。[未核]"
+    },
+    {
+      "fact_id": "i360-2024-accelerated-share",
+      "asserter": "Intersect360 Research",
+      "metric_id": "capex_share_by_segment",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-infrastructure",
+        "label": "全球数据中心基础设施支出（加速计算部分）"
+      },
+      "value": 50.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "segment": "Total",
+        "denominator": "全球数据中心 capex",
+        "scenario": "单一情景",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "ee589f4290bebf0f4e723991b9427453d497646ad6418c991cd72b9f19abf7f1",
+        "local_file": "SNIA-SDC25-Snell-Five-Big-Questions-for-HPC-AI.pdf（Intersect360 Research）",
+        "locator": "第 7 页「Data Center Infrastructure ($B), 2023 vs. 2024」要点：「Total data center infrastructure grew 32% year-over-year, driven entirely by accelerating computing segments」「Accelerated computing is now 50% of all data center, up 121% year-over-year」「Hyperscale AI grew 185% year-over-year, to over $120 billion」「Hyperscale (accelerated and non-accelerated) accounts for over 60% of total data center spending」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**这是按「是否加速计算」切的份额，不是按客户分部**——segment 维只有客户类型，记 Total 并靠实体标签承载。加速计算部分同比 +121%，一年内占到数据中心总支出的一半。[未核]"
+    },
+    {
+      "fact_id": "i360-2024-hyperscale-share",
+      "asserter": "Intersect360 Research",
+      "metric_id": "capex_share_by_segment",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-infrastructure-hyperscale",
+        "label": "全球数据中心基础设施支出（超大规模厂部分）"
+      },
+      "value": 60.0,
+      "unit": "%",
+      "bound": "lower",
+      "caliber": {
+        "segment": "Hyperscalers",
+        "denominator": "全球数据中心 capex",
+        "scenario": "单一情景",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "ee589f4290bebf0f4e723991b9427453d497646ad6418c991cd72b9f19abf7f1",
+        "local_file": "SNIA-SDC25-Snell-Five-Big-Questions-for-HPC-AI.pdf（Intersect360 Research）",
+        "locator": "第 7 页「Data Center Infrastructure ($B), 2023 vs. 2024」要点：「Total data center infrastructure grew 32% year-over-year, driven entirely by accelerating computing segments」「Accelerated computing is now 50% of all data center, up 121% year-over-year」「Hyperscale AI grew 185% year-over-year, to over $120 billion」「Hyperscale (accelerated and non-accelerated) accounts for over 60% of total data center spending」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "「over 60%」记下界，含加速与非加速两部分。整体数据中心基础设施 2024 年同比 +32%，增长「完全来自」加速计算分部。[未核]"
     }
   ]
 }
