@@ -230268,6 +230268,128 @@
       "corroboration": "待交叉验证",
       "notes": "**这是「CDU 形态对机柜密度的约束」，不是机柜自身的功率**：机柜内安装式 CDU 因体积与换热能力受限，L2A（液-气）约 40kW、L2L（液-液）约 80kW 封顶；要再高就得改用落地式 CDU（L2L 型容量 300kW 至 1MW 以上）。**与「风冷上限」争议族不同层级，不要混读。**",
       "asserter": "施耐德电气"
+    },
+    {
+      "fact_id": "gtja2024-miit-cn-large-plus-racks-2017",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "industry",
+        "id": "cn-large-plus-datacenter",
+        "label": "中国大型及以上数据中心机架"
+      },
+      "value": 83.0,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2017",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c579a99f09ae97ab095b0defd68dc8a62b78876d72850dd550df77a716e93688",
+        "local_file": "2024年81页-温控行业报告：AI算力需求高增，液冷技术加速发展.pdf",
+        "locator": "第 13 页：「工信部数据显示，截至 2023 年年底全国在用数据中心机架总规模超过 810 万标准机架，2017-2023 年 CAGR 高达 30.24%。其中大型以上数据中心成为增长主力，由 2017 年的 83 万架增长至 2022 年的 540 万架，期间 CAGR 达到 45.43%，大型规模以上占比由 50.00% 增长至 83.08%」",
+        "grade": "S4",
+        "originator": "工信部（经国泰君安《温控行业报告：AI 算力需求高增，液冷技术加速发展》（2024）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是「大型及以上」口径的起点值**，与库内 ODCC 的 2022 年 540 万架（odcc2023-cn-rack-large-plus-2022）构成同一序列的两端，五年 CAGR 45.43%。同句的 2023 年全国 810 万架与库内信通院/清华同值，不另记。大型以上占全国比重由 2017 年 50.00% 升至 2022 年 83.08%。",
+      "asserter": "工信部"
+    },
+    {
+      "fact_id": "gtja2024-cttl-cn-racks-2025e",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "industry",
+        "id": "cn-datacenter",
+        "label": "中国数据中心机架（全国在用）"
+      },
+      "value": 1400.0,
+      "unit": "万标准机架",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2025E@2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c579a99f09ae97ab095b0defd68dc8a62b78876d72850dd550df77a716e93688",
+        "local_file": "2024年81页-温控行业报告：AI算力需求高增，液冷技术加速发展.pdf",
+        "locator": "第 13 页：「据中国通服数字基建产业研究院预测，到 2025 年『十四五』规划期末，我国数据中心机架规模将增长至 1400 万架，总增量投资将达 7000 亿元」",
+        "grade": "S4",
+        "originator": "中国通服数字基建产业研究院（经国泰君安《温控行业报告：AI 算力需求高增，液冷技术加速发展》（2024）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是「十四五」期末预测，不是实测**。库内实测线为 2023 年 810 万架、2024 年 880-900 万架（工信部）、2025-06 为 1085 万架——**按实测线看 1400 万架偏高，2025 年底大概率达不到**，引用时须标明是预测。配套：总增量投资 7000 亿元（本库无对应指标）。",
+      "asserter": "中国通服数字基建产业研究院"
+    },
+    {
+      "fact_id": "gtja2024-ccid-global-avg-rack-power-2025e",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenter-rack",
+        "label": "全球数据中心单机柜（平均）"
+      },
+      "value": 25.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "均值",
+        "era": "路线图目标",
+        "power_basis": "设计功率",
+        "region": "Global"
+      },
+      "as_of": "2025E@2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c579a99f09ae97ab095b0defd68dc8a62b78876d72850dd550df77a716e93688",
+        "local_file": "2024年81页-温控行业报告：AI算力需求高增，液冷技术加速发展.pdf",
+        "locator": "第 22 页：「CCID 在《中国液冷数据中心发展白皮书》中预测，2025 年全球数据中心单机柜平均功率有望达到 25kW」；图 23「全球数据中心单机柜平均功率将达到 25kw」",
+        "grade": "S4",
+        "originator": "赛迪顾问 CCID《中国液冷数据中心发展白皮书》（2019）（经国泰君安《温控行业报告：AI 算力需求高增，液冷技术加速发展》（2024）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是 2019 年白皮书对 2025 年的预测，不是实测**（as_of 标 @2019 即预测时点）。**「平均功率」与库内旗舰机型的 120-145kW 不是一个口径**——那是 NVL72 类整机柜，这是全球全量平均。rack_type 记「传统风冷」是就其平均口径而言，原文未指定冷却方式。",
+      "asserter": "赛迪顾问"
+    },
+    {
+      "fact_id": "gtja2024-colocation-america-global-avg-rack-power-2020e",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenter-rack",
+        "label": "全球数据中心单机柜（平均）"
+      },
+      "value": 16.5,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "均值",
+        "era": "2020 年代初",
+        "power_basis": "设计功率",
+        "region": "Global"
+      },
+      "as_of": "2020E@2018",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c579a99f09ae97ab095b0defd68dc8a62b78876d72850dd550df77a716e93688",
+        "local_file": "2024年81页-温控行业报告：AI算力需求高增，液冷技术加速发展.pdf",
+        "locator": "第 22 页：「据 Colocation America 预测，2020 年全球数据中心单机柜平均功率将达 16.5kW」",
+        "grade": "S4",
+        "originator": "Colocation America（经国泰君安《温控行业报告：AI 算力需求高增，液冷技术加速发展》（2024）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**同为「全球平均」口径，与 CCID 的 2025 年 25kW 构成一条预测序列**（16.5 → 25）。**但两条都是预测而非实测**：库内 SemiAnalysis 口径的当期典型风冷机柜只有 15-20kW，说明这类平均值预测偏乐观。同页另引 ASHRAE 2018 年预测：电信/通讯服务器单机架约 5kW、云计算与数据分析类普遍升至 10-15kW。",
+      "asserter": "Colocation America"
     }
   ]
 }
