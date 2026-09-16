@@ -250626,6 +250626,219 @@
       },
       "depth": "精读",
       "notes": "521.6 亿美元占 2028 年 OCP 基础设施总支出 735.13 亿美元的 71%；服务器部分 CAGR 35.7%。[未核]"
+    },
+    {
+      "fact_id": "ccia-hq-cn-compute-total-2022",
+      "asserter": "中国通信工业协会数据中心委员会",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-device-compute",
+        "label": "中国计算设备算力（已出货服务器口径）"
+      },
+      "value": 302.0,
+      "unit": "EFLOPS",
+      "bound": "point",
+      "caliber": {
+        "compute_type": "总算力",
+        "precision": "混合/未注明",
+        "area": "全国",
+        "status": "累计",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "b0638ff5ebfddb5f99d0ea19298404fac771e9f1cd67cfb4f927d70dfb837e9b",
+        "local_file": "中国算力产业高质量发展白皮书.pdf（中国通信工业协会数据中心委员会）",
+        "locator": "第一章：「五年间，中国算力规模从 60EFlops 增长至 302EFlops，保持 50% 左右的稳步增长。2022 年中国计算设备算力总规模约 302EFlops，占到全球计算设备总算力规模的近 33%」「2022 年中国智能算力规模达 178.5EFlops，同比增长 72%，占比 59%，已经成为算力供应的主力，相关 AI 服务器出货量达到 28 万台。通用算力规模约 120EFlops，较 2021 年增长 26%，占到中国算力总规模的 40%……相关通用服务器出货量 384.6 万台，同比增长 3%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "计算设备侧口径，与信通院同口径的 2025-06 年 962 EFLOPS 衔接（三年多 3 倍）。五年从 60 增至 302 EFLOPS。[未核]"
+    },
+    {
+      "fact_id": "ccia-hq-cn-ai-compute-2022",
+      "asserter": "中国通信工业协会数据中心委员会",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-device-compute",
+        "label": "中国计算设备算力（已出货服务器口径）"
+      },
+      "value": 178.5,
+      "unit": "EFLOPS",
+      "bound": "point",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "混合/未注明",
+        "area": "全国",
+        "status": "累计",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "b0638ff5ebfddb5f99d0ea19298404fac771e9f1cd67cfb4f927d70dfb837e9b",
+        "local_file": "中国算力产业高质量发展白皮书.pdf（中国通信工业协会数据中心委员会）",
+        "locator": "第一章：「五年间，中国算力规模从 60EFlops 增长至 302EFlops，保持 50% 左右的稳步增长。2022 年中国计算设备算力总规模约 302EFlops，占到全球计算设备总算力规模的近 33%」「2022 年中国智能算力规模达 178.5EFlops，同比增长 72%，占比 59%，已经成为算力供应的主力，相关 AI 服务器出货量达到 28 万台。通用算力规模约 120EFlops，较 2021 年增长 26%，占到中国算力总规模的 40%……相关通用服务器出货量 384.6 万台，同比增长 3%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "同比 +72%，占中国算力总规模 59%。**与库内信通院 2022 年 178.5 EFLOPS（sic2311-caict-cn-ai-compute-2022）同值**——两家同数，说明本白皮书转引自信通院，不作独立交叉验证。[未核]"
+    },
+    {
+      "fact_id": "ccia-hq-cn-general-compute-2022",
+      "asserter": "中国通信工业协会数据中心委员会",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "cn-device-compute",
+        "label": "中国计算设备算力（已出货服务器口径）"
+      },
+      "value": 120.0,
+      "unit": "EFLOPS",
+      "bound": "point",
+      "caliber": {
+        "compute_type": "通用算力",
+        "precision": "混合/未注明",
+        "area": "全国",
+        "status": "累计",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "b0638ff5ebfddb5f99d0ea19298404fac771e9f1cd67cfb4f927d70dfb837e9b",
+        "local_file": "中国算力产业高质量发展白皮书.pdf（中国通信工业协会数据中心委员会）",
+        "locator": "第一章：「五年间，中国算力规模从 60EFlops 增长至 302EFlops，保持 50% 左右的稳步增长。2022 年中国计算设备算力总规模约 302EFlops，占到全球计算设备总算力规模的近 33%」「2022 年中国智能算力规模达 178.5EFlops，同比增长 72%，占比 59%，已经成为算力供应的主力，相关 AI 服务器出货量达到 28 万台。通用算力规模约 120EFlops，较 2021 年增长 26%，占到中国算力总规模的 40%……相关通用服务器出货量 384.6 万台，同比增长 3%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "较 2021 年增长 26%，占比 40%（较 2021 年下降 7 个百分点）。178.5+120 = 298.5，与总量 302 相差 3.5 EFLOPS（超算部分），基本自洽。[未核]"
+    },
+    {
+      "fact_id": "ccia-hq-cn-ai-compute-share-2022",
+      "asserter": "中国通信工业协会数据中心委员会",
+      "metric_id": "region_compute_share",
+      "entity": {
+        "type": "region",
+        "id": "cn-intelligent-compute",
+        "label": "中国智能算力（占国内算力规模）"
+      },
+      "value": 59.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "measure": "算力规模",
+        "denominator": "本区域总量",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "b0638ff5ebfddb5f99d0ea19298404fac771e9f1cd67cfb4f927d70dfb837e9b",
+        "local_file": "中国算力产业高质量发展白皮书.pdf（中国通信工业协会数据中心委员会）",
+        "locator": "第一章：「五年间，中国算力规模从 60EFlops 增长至 302EFlops，保持 50% 左右的稳步增长。2022 年中国计算设备算力总规模约 302EFlops，占到全球计算设备总算力规模的近 33%」「2022 年中国智能算力规模达 178.5EFlops，同比增长 72%，占比 59%，已经成为算力供应的主力，相关 AI 服务器出货量达到 28 万台。通用算力规模约 120EFlops，较 2021 年增长 26%，占到中国算力总规模的 40%……相关通用服务器出货量 384.6 万台，同比增长 3%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**这条把该序列的口径分歧摆到台面**：同为 2022 年，信通院蓝皮书口径是 22.8%、本白皮书（计算设备侧）是 59%，差 2.6 倍。前者分母是「算力中心内」的算力、后者是「全部已出货服务器」的算力。待裁。[未核]"
+    },
+    {
+      "fact_id": "ccia-hq-cn-ai-server-shipments-2022",
+      "asserter": "中国通信工业协会数据中心委员会",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-ai-server",
+        "label": "中国 AI 服务器市场"
+      },
+      "value": 280.0,
+      "unit": "千台",
+      "bound": "point",
+      "caliber": {
+        "server_class": "Accelerated/High-End",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "未拆分",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "b0638ff5ebfddb5f99d0ea19298404fac771e9f1cd67cfb4f927d70dfb837e9b",
+        "local_file": "中国算力产业高质量发展白皮书.pdf（中国通信工业协会数据中心委员会）",
+        "locator": "第一章：「五年间，中国算力规模从 60EFlops 增长至 302EFlops，保持 50% 左右的稳步增长。2022 年中国计算设备算力总规模约 302EFlops，占到全球计算设备总算力规模的近 33%」「2022 年中国智能算力规模达 178.5EFlops，同比增长 72%，占比 59%，已经成为算力供应的主力，相关 AI 服务器出货量达到 28 万台。通用算力规模约 120EFlops，较 2021 年增长 26%，占到中国算力总规模的 40%……相关通用服务器出货量 384.6 万台，同比增长 3%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "28 万台 = 280 千台。与库内中国电信给的 2021 年 22.6 万台衔接（一年 +24%）。[未核]"
+    },
+    {
+      "fact_id": "ccia-hq-cn-general-server-shipments-2022",
+      "asserter": "中国通信工业协会数据中心委员会",
+      "metric_id": "server_unit_shipments",
+      "entity": {
+        "type": "market",
+        "id": "cn-general-server",
+        "label": "中国通用服务器市场"
+      },
+      "value": 3846.0,
+      "unit": "千台",
+      "bound": "point",
+      "caliber": {
+        "server_class": "General-Purpose & Other",
+        "counterparty_role": "全市场（未分侧）",
+        "buyer_category": "未拆分",
+        "region": "China",
+        "form_factor": "未拆分",
+        "socket_capability": "未拆分",
+        "vertical": "未拆分",
+        "subregion": "全国"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "b0638ff5ebfddb5f99d0ea19298404fac771e9f1cd67cfb4f927d70dfb837e9b",
+        "local_file": "中国算力产业高质量发展白皮书.pdf（中国通信工业协会数据中心委员会）",
+        "locator": "第一章：「五年间，中国算力规模从 60EFlops 增长至 302EFlops，保持 50% 左右的稳步增长。2022 年中国计算设备算力总规模约 302EFlops，占到全球计算设备总算力规模的近 33%」「2022 年中国智能算力规模达 178.5EFlops，同比增长 72%，占比 59%，已经成为算力供应的主力，相关 AI 服务器出货量达到 28 万台。通用算力规模约 120EFlops，较 2021 年增长 26%，占到中国算力总规模的 40%……相关通用服务器出货量 384.6 万台，同比增长 3%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "384.6 万台 = 3846 千台，同比 +3%。**AI 服务器只占通用服务器出货量的 7%，却贡献了 59% 的算力**——这组对比是「算力集中在少数高价值机器上」最直接的证据。[未核]"
+    },
+    {
+      "fact_id": "ccia-hq-cn-avg-pue-2022",
+      "asserter": "中国通信工业协会数据中心委员会",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "cn-national",
+        "label": "全国数据中心（行业统计口径）"
+      },
+      "value": 1.52,
+      "unit": "比值",
+      "bound": "point",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "b0638ff5ebfddb5f99d0ea19298404fac771e9f1cd67cfb4f927d70dfb837e9b",
+        "local_file": "中国算力产业高质量发展白皮书.pdf（中国通信工业协会数据中心委员会）",
+        "locator": "第二章：「据统计，目前我国仅有 41% 的数据中心 PUE 在 1.4 以下」「2022 年中国在用数据中心 PUE 平均值为 1.52，较 2015 年提高了 0.19」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**与库内信通院 2022 年全国平均 1.49（CDCC 口径为 2021 年 1.49）不同**，本条为 1.52。原文还写「较 2015 年提高了 0.19」——PUE 数值升高本应是变差，原文用「提高」表述改善，方向自相矛盾，按数值照录、不做解释。同段另给「仅 41% 的数据中心 PUE 在 1.4 以下」。[未核]"
     }
   ]
 }
