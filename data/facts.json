@@ -234283,6 +234283,133 @@
       "corroboration": "待交叉验证",
       "notes": "**这是绿建评价用计算书里的项目概况，属设计阶段确定值**。同项目配套：总用地 55415 ㎡、容积率 1.83、绿地率 30.2%、机动车位 841 个。**注意这是整个二期二阶段项目的建筑面积，不是机房楼单体**——本库同项目另有冰蓄冷冷站的设备清单（制冷主机 3 台）。地下部分占总建筑面积 30.2%。",
       "asserter": "广东省建筑设计研究院"
+    },
+    {
+      "fact_id": "cmcc-southbase-p2s2-peak-cooling-load",
+      "metric_id": "cooling_load_index",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-south-base-p2s2-central-cooling",
+        "label": "中国移动南方基地二期二阶段（20.1/20.2/20.4 栋集中供冷区）"
+      },
+      "value": 171.7,
+      "unit": "W/㎡",
+      "caliber": {
+        "basis": "设计计算",
+        "area_scope": "含辅助与支持区",
+        "region": "CN"
+      },
+      "as_of": "2019-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "93cc3a0acf51d0a52160eb7b1bdad34c1050a96bfb444f0c695e2b7aa5ebf4d1",
+        "local_file": "空调冷热源设备能效指标计算书.pdf",
+        "locator": "第 4 页「2. 空调冷热源设备能效指标计算」：「本项目 20.1 栋、20.2 栋、20.4 栋采用集中供冷形式，地上建筑面积为 69896 ㎡，其中空调面积为 57071 ㎡，经计算典型设计日空调冷负荷最大值为 9799kW（2787RT），有部分为呼叫中心，夜间需要供冷，夜间最大负荷为 430RT，全日累计冷负荷约为 32749 RTH……采用盘管蓄冰冰蓄冷技术，共设置冷冻水系统 1 个、制冷机房 1 个，制冷机房设在负一层、蓄冷槽间设于负二层。基载主机：1 台 1477kW（420RT）变频螺杆式冷水机组；双工况制冷主机：2 台单机容量 900/614RT（3165/2159kW）变频双工况离心机组」",
+        "grade": "S2",
+        "originator": "广东省建筑设计研究院《中国移动南方基地二期工程二阶段项目·空调冷热源设备能效指标计算书》（2019-07-01）"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "由原文「典型设计日空调冷负荷最大值 9799kW」÷「空调面积 57071 ㎡」算得 171.7 W/㎡；原文只给绝对值与面积，未直接给冷指标",
+      "corroboration": "待交叉验证",
+      "notes": "**本条为推算值（已标 derived）**：9799 kW ÷ 57071 ㎡ = 171.7 W/㎡，分母取空调面积（地上建筑面积 69896 ㎡ 中的空调部分）。**注意这是办公与呼叫中心综合体的空调冷指标，不是机房冷指标**——与同库贵阳靶场机房楼的 737-831 W/㎡ 差 4-5 倍，正说明数据中心机房与普通办公楼的热密度不在一个量级，**两者绝不可混为一列**。配套：夜间最大负荷 430RT（呼叫中心 24 小时运行）、全日累计冷负荷约 32749 RTH。",
+      "asserter": "广东省建筑设计研究院"
+    },
+    {
+      "fact_id": "cmcc-southbase-p2s2-chiller-centrifugal-3165",
+      "metric_id": "installed_equipment_capacity",
+      "entity": {
+        "type": "product",
+        "id": "cmcc-south-base-p2s2-chiller-cf-cool",
+        "label": "南方基地二期二阶段·双工况离心机（制冷工况）"
+      },
+      "value": 3165.0,
+      "unit": "kW 或 kVA",
+      "caliber": {
+        "equipment": "冷机",
+        "capacity_basis": "单台额定",
+        "unit_kind": "kW",
+        "region": "CN",
+        "basis": "清单实配"
+      },
+      "as_of": "2019-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "93cc3a0acf51d0a52160eb7b1bdad34c1050a96bfb444f0c695e2b7aa5ebf4d1",
+        "local_file": "空调冷热源设备能效指标计算书.pdf",
+        "locator": "第 5 页「本项目制冷机组表」：离心式冷水机组（变频）制冷量 3165kW／输入功率 580kW／COP 5.45／限值 4.60／提高 18.48%；同型 2159kW／525kW／COP 5.45／限值 4.60／提高 18.48%；螺杆式冷水机组（变频）1477kW／273kW／COP 5.64／限值 5.32／提高 6%",
+        "grade": "S2",
+        "originator": "广东省建筑设计研究院《中国移动南方基地二期工程二阶段项目·空调冷热源设备能效指标计算书》（2019-07-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**单台额定制冷量（kW）**，机型：变频离心式冷水机组（双工况，900RT 档）。输入功率 580 kW、COP 5.45。双工况离心机 2 台中的制冷工况容量；COP 5.45 对限值 4.60，提高 18.48%。",
+      "asserter": "广东省建筑设计研究院"
+    },
+    {
+      "fact_id": "cmcc-southbase-p2s2-chiller-centrifugal-2159",
+      "metric_id": "installed_equipment_capacity",
+      "entity": {
+        "type": "product",
+        "id": "cmcc-south-base-p2s2-chiller-cf-ice",
+        "label": "南方基地二期二阶段·双工况离心机（制冰工况）"
+      },
+      "value": 2159.0,
+      "unit": "kW 或 kVA",
+      "caliber": {
+        "equipment": "冷机",
+        "capacity_basis": "单台额定",
+        "unit_kind": "kW",
+        "region": "CN",
+        "basis": "清单实配"
+      },
+      "as_of": "2019-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "93cc3a0acf51d0a52160eb7b1bdad34c1050a96bfb444f0c695e2b7aa5ebf4d1",
+        "local_file": "空调冷热源设备能效指标计算书.pdf",
+        "locator": "第 5 页「本项目制冷机组表」：离心式冷水机组（变频）制冷量 3165kW／输入功率 580kW／COP 5.45／限值 4.60／提高 18.48%；同型 2159kW／525kW／COP 5.45／限值 4.60／提高 18.48%；螺杆式冷水机组（变频）1477kW／273kW／COP 5.64／限值 5.32／提高 6%",
+        "grade": "S2",
+        "originator": "广东省建筑设计研究院《中国移动南方基地二期工程二阶段项目·空调冷热源设备能效指标计算书》（2019-07-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**单台额定制冷量（kW）**，机型：变频离心式冷水机组（双工况，614RT 档）。输入功率 525 kW、COP 5.45。同 2 台双工况离心机的另一工况容量（制冰工况 614RT）；COP 同为 5.45。",
+      "asserter": "广东省建筑设计研究院"
+    },
+    {
+      "fact_id": "cmcc-southbase-p2s2-chiller-screw-1477",
+      "metric_id": "installed_equipment_capacity",
+      "entity": {
+        "type": "product",
+        "id": "cmcc-south-base-p2s2-chiller-screw",
+        "label": "南方基地二期二阶段·基载变频螺杆机"
+      },
+      "value": 1477.0,
+      "unit": "kW 或 kVA",
+      "caliber": {
+        "equipment": "冷机",
+        "capacity_basis": "单台额定",
+        "unit_kind": "kW",
+        "region": "CN",
+        "basis": "清单实配"
+      },
+      "as_of": "2019-07",
+      "bound": "point",
+      "evidence": {
+        "sha256": "93cc3a0acf51d0a52160eb7b1bdad34c1050a96bfb444f0c695e2b7aa5ebf4d1",
+        "local_file": "空调冷热源设备能效指标计算书.pdf",
+        "locator": "第 5 页「本项目制冷机组表」：离心式冷水机组（变频）制冷量 3165kW／输入功率 580kW／COP 5.45／限值 4.60／提高 18.48%；同型 2159kW／525kW／COP 5.45／限值 4.60／提高 18.48%；螺杆式冷水机组（变频）1477kW／273kW／COP 5.64／限值 5.32／提高 6%",
+        "grade": "S2",
+        "originator": "广东省建筑设计研究院《中国移动南方基地二期工程二阶段项目·空调冷热源设备能效指标计算书》（2019-07-01）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**单台额定制冷量（kW）**，机型：变频螺杆式冷水机组（基载）。输入功率 273 kW、COP 5.64。基载主机 1 台，满足 24:00~次日 7:00 的夜间空调需求；COP 5.64 对限值 5.32，提高 6%。**与本库另一份《SCOP 计算》附件里的 1477kW 基载螺杆机（SCOP 4.44）应为同一台机组**——那份未标项目名，本条可作为其归属线索。",
+      "asserter": "广东省建筑设计研究院"
     }
   ]
 }
