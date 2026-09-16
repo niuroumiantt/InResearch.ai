@@ -241202,6 +241202,123 @@
       },
       "depth": "精读",
       "notes": "12 小时 = 720 分钟；条款只约束 A 级与 B 级，C 级不在其列，tier 维没有「A/B 级」这一取值，记通用并在此说明。[未核]"
+    },
+    {
+      "fact_id": "sa2309-smic-7nm-capacity",
+      "asserter": "SemiAnalysis",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际（首座 7nm 晶圆厂）"
+      },
+      "value": 30.0,
+      "unit": "千片/月",
+      "bound": "point",
+      "caliber": {
+        "foundry": "SMIC",
+        "chip": "N+2（7nm）",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024E@2023-09",
+      "evidence": {
+        "sha256": "bff43683c81378075dc7e0c7523c9cfbd81a366936955c89633fba55cbdf817c",
+        "local_file": "China AI & Semiconductors Rise_ US Sanctions Have Failed.pdf",
+        "locator": "第 8-9 页：「it does appear to be very easy for SMIC to get ramp to 30k WPM of actual production in their 7nm fab, without taking tools from other trailing edge fabs」，并称该厂 15 台 ArFi 光刻机将在 2024 年二季度末装齐、之后仍需数个季度爬坡",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "SemiAnalysis 自己的判断（30k WPM），与文中转述的中国传闻「首座厂 50k WPM」并列——后者他们认为偏大但在特定条件下（把需要 1980i 的层数降到 50 层、剂量接近 ASML 标称）可成立，未单独录。装机时点 2024Q2 末，故按 2024 年预期记、快照 2023-09。[未核]"
+    },
+    {
+      "fact_id": "sa2309-smic-7nm-yield-floor",
+      "asserter": "SemiAnalysis",
+      "metric_id": "chip_yield",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际 N+2（7nm）工艺"
+      },
+      "value": 50.0,
+      "unit": "%",
+      "bound": "lower",
+      "caliber": {
+        "chip": "SMIC N+2（7nm）",
+        "yield_stage": "晶圆良率",
+        "region": "CN",
+        "basis": "模型输出"
+      },
+      "as_of": "2023-09",
+      "evidence": {
+        "sha256": "bff43683c81378075dc7e0c7523c9cfbd81a366936955c89633fba55cbdf817c",
+        "local_file": "China AI & Semiconductors Rise_ US Sanctions Have Failed.pdf",
+        "locator": "第 9 页：「Even with 50% yields, 30,000 WPM could support over 10 million Nvidia H100 GPU ASIC dies a year」；第 8 页反驳外界流传的 10% 良率说法，称「we believe that SMIC's process has good yield」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**50% 是他们做产能换算时用的保守假设，不是实测良率**——原文明确反对外界流传的 10% 说法但没有给出自己的点估计，故记为下界并标模型输出。由此推出的「30k WPM 每年可支撑 1000 万颗 H100 级 ASIC 裸片」库内无对应指标。[未核]"
+    },
+    {
+      "fact_id": "sa2309-apple-huawei-return-impact",
+      "asserter": "SemiAnalysis",
+      "metric_id": "export_control_revenue_impact",
+      "entity": {
+        "type": "company",
+        "id": "apple",
+        "label": "苹果（华为回归情形下的 iPhone 收入风险）"
+      },
+      "value": 200.0,
+      "unit": "亿美元",
+      "bound": "lower",
+      "caliber": {
+        "measure": "销售损失",
+        "window": "自然年",
+        "vendor": "Apple",
+        "scenario": "基准测算",
+        "region": "CN",
+        "basis": "模型输出"
+      },
+      "as_of": "2023-09",
+      "evidence": {
+        "sha256": "bff43683c81378075dc7e0c7523c9cfbd81a366936955c89633fba55cbdf817c",
+        "local_file": "China AI & Semiconductors Rise_ US Sanctions Have Failed.pdf",
+        "locator": "第 3 页：「They gained between ~35 to ~45 million units of iPhone sales as a direct result from the Huawei's ban in late 2019. This is easily over $20B of annual revenue for Apple that could evaporate if Huawei is able to regain its old footing」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**方向与本指标常见用法相反**：这不是管制给美方厂商造成的损失，而是管制失效、华为回归后美方厂商可能吐出的收益，记在「销售损失」下、scenario 记基准测算。「over $20B」记下界；原文说这只算手机，平板、手表、笔记本的影响更大。[未核]"
+    },
+    {
+      "fact_id": "sa2309-mtk-qcom-huawei-return-impact",
+      "asserter": "SemiAnalysis",
+      "metric_id": "export_control_revenue_impact",
+      "entity": {
+        "type": "company",
+        "id": "mediatek-qualcomm",
+        "label": "联发科与高通（合计，华为回归情形）"
+      },
+      "value": 76.0,
+      "unit": "亿美元",
+      "bound": "point",
+      "caliber": {
+        "measure": "销售损失",
+        "window": "自然年",
+        "vendor": "MediaTek + Qualcomm",
+        "scenario": "基准测算",
+        "region": "CN",
+        "basis": "模型输出"
+      },
+      "as_of": "2023-09",
+      "evidence": {
+        "sha256": "bff43683c81378075dc7e0c7523c9cfbd81a366936955c89633fba55cbdf817c",
+        "local_file": "China AI & Semiconductors Rise_ US Sanctions Have Failed.pdf",
+        "locator": "第 3 页：「If Huawei regains its form, we calculate as much as $7.6B of revenue impact to MediaTek and Qualcomm」，背景是华为被禁后每年约 1.9 亿颗 SoC 的份额转移",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "两家合计、原文未拆分；「as much as」是上限口径的测算值，按点值记并在此说明。同段给出的 1.9 亿颗/年华为 SoC 份额，库内无对应指标。[未核]"
     }
   ]
 }
