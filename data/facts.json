@@ -249634,6 +249634,195 @@
       },
       "depth": "精读",
       "notes": "单位亿美元。**原文的顺序是「亚马逊云、微软云……分别以 1076 亿美元和 1024 亿美元」，即亚马逊 1076、微软 1024**——初录时按上一年的排序把两家写反了，已按原句更正。与库内 2023 年那一对（微软云 962.13、亚马逊云 907.57）衔接：亚马逊一年 +18.8%、微软 +6.4%，名次因此对调。同为信通院「公开资料整理」口径。[未核]"
+    },
+    {
+      "fact_id": "odcc801-edge-rack-power-common-lower",
+      "asserter": "ODCC",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "market",
+        "id": "edge-dc-common",
+        "label": "边缘数据中心高密度设备机柜"
+      },
+      "value": 5.0,
+      "unit": "kW/架",
+      "bound": "lower",
+      "caliber": {
+        "basis": "规划平均",
+        "scope": "全场平均",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "evidence": {
+        "sha256": "f88441974b2358375403563e9a7f53e310dd3df3b43ec62f40d2470351ccdccb",
+        "local_file": "5C_2025_2025_面向5G的边缘数据_未署名.pdf（《面向 5G 的边缘数据中心基础设施》数据中心能源白皮书 801 号）",
+        "locator": "第 2 章：「高密度设备机柜（功率密度 >5kW/机柜）成为常态，部分设备机柜功率密度达 15kW/机柜，这给供电带来巨大挑战」；第 3 章：「边缘机柜和 BBU 柜功率密度 4~8kW/机柜与原有功率密度 1~2kW/机柜的传输、交换设备共部署在同一站址」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "「>5kW/机柜成为常态」记下界。编写方为中国移动、中国电信、中国联通、华为、中讯邮电、信通院等联合专家组（ODCC 数据中心能源白皮书 801 号）。[未核]"
+    },
+    {
+      "fact_id": "odcc801-edge-rack-power-peak",
+      "asserter": "ODCC",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "market",
+        "id": "edge-dc-peak",
+        "label": "边缘数据中心高密度设备机柜"
+      },
+      "value": 15.0,
+      "unit": "kW/架",
+      "bound": "upper",
+      "caliber": {
+        "basis": "规划平均",
+        "scope": "全场平均",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "evidence": {
+        "sha256": "f88441974b2358375403563e9a7f53e310dd3df3b43ec62f40d2470351ccdccb",
+        "local_file": "5C_2025_2025_面向5G的边缘数据_未署名.pdf（《面向 5G 的边缘数据中心基础设施》数据中心能源白皮书 801 号）",
+        "locator": "第 2 章：「高密度设备机柜（功率密度 >5kW/机柜）成为常态，部分设备机柜功率密度达 15kW/机柜，这给供电带来巨大挑战」；第 3 章：「边缘机柜和 BBU 柜功率密度 4~8kW/机柜与原有功率密度 1~2kW/机柜的传输、交换设备共部署在同一站址」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "「部分设备机柜功率密度达 15kW/机柜」记上界。编写方为中国移动、中国电信、中国联通、华为、中讯邮电、信通院等联合专家组（ODCC 数据中心能源白皮书 801 号）。[未核]"
+    },
+    {
+      "fact_id": "odcc801-edge-rack-power-bbu-lower",
+      "asserter": "ODCC",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "market",
+        "id": "edge-dc-bbu",
+        "label": "边缘机柜与 BBU 柜"
+      },
+      "value": 4.0,
+      "unit": "kW/架",
+      "bound": "lower",
+      "caliber": {
+        "basis": "规划平均",
+        "scope": "全场平均",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "evidence": {
+        "sha256": "f88441974b2358375403563e9a7f53e310dd3df3b43ec62f40d2470351ccdccb",
+        "local_file": "5C_2025_2025_面向5G的边缘数据_未署名.pdf（《面向 5G 的边缘数据中心基础设施》数据中心能源白皮书 801 号）",
+        "locator": "第 2 章：「高密度设备机柜（功率密度 >5kW/机柜）成为常态，部分设备机柜功率密度达 15kW/机柜，这给供电带来巨大挑战」；第 3 章：「边缘机柜和 BBU 柜功率密度 4~8kW/机柜与原有功率密度 1~2kW/机柜的传输、交换设备共部署在同一站址」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "边缘机柜/BBU 柜 4~8kW 区间下界。编写方为中国移动、中国电信、中国联通、华为、中讯邮电、信通院等联合专家组（ODCC 数据中心能源白皮书 801 号）。[未核]"
+    },
+    {
+      "fact_id": "odcc801-edge-rack-power-bbu-upper",
+      "asserter": "ODCC",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "market",
+        "id": "edge-dc-bbu",
+        "label": "边缘机柜与 BBU 柜"
+      },
+      "value": 8.0,
+      "unit": "kW/架",
+      "bound": "upper",
+      "caliber": {
+        "basis": "规划平均",
+        "scope": "全场平均",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "evidence": {
+        "sha256": "f88441974b2358375403563e9a7f53e310dd3df3b43ec62f40d2470351ccdccb",
+        "local_file": "5C_2025_2025_面向5G的边缘数据_未署名.pdf（《面向 5G 的边缘数据中心基础设施》数据中心能源白皮书 801 号）",
+        "locator": "第 2 章：「高密度设备机柜（功率密度 >5kW/机柜）成为常态，部分设备机柜功率密度达 15kW/机柜，这给供电带来巨大挑战」；第 3 章：「边缘机柜和 BBU 柜功率密度 4~8kW/机柜与原有功率密度 1~2kW/机柜的传输、交换设备共部署在同一站址」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "区间上界。编写方为中国移动、中国电信、中国联通、华为、中讯邮电、信通院等联合专家组（ODCC 数据中心能源白皮书 801 号）。[未核]"
+    },
+    {
+      "fact_id": "odcc801-edge-rack-power-legacy-lower",
+      "asserter": "ODCC",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "market",
+        "id": "edge-dc-legacy",
+        "label": "站址内原有传输与交换设备机柜"
+      },
+      "value": 1.0,
+      "unit": "kW/架",
+      "bound": "lower",
+      "caliber": {
+        "basis": "规划平均",
+        "scope": "全场平均",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "evidence": {
+        "sha256": "f88441974b2358375403563e9a7f53e310dd3df3b43ec62f40d2470351ccdccb",
+        "local_file": "5C_2025_2025_面向5G的边缘数据_未署名.pdf（《面向 5G 的边缘数据中心基础设施》数据中心能源白皮书 801 号）",
+        "locator": "第 2 章：「高密度设备机柜（功率密度 >5kW/机柜）成为常态，部分设备机柜功率密度达 15kW/机柜，这给供电带来巨大挑战」；第 3 章：「边缘机柜和 BBU 柜功率密度 4~8kW/机柜与原有功率密度 1~2kW/机柜的传输、交换设备共部署在同一站址」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "原有设备 1~2kW 区间下界。编写方为中国移动、中国电信、中国联通、华为、中讯邮电、信通院等联合专家组（ODCC 数据中心能源白皮书 801 号）。[未核]"
+    },
+    {
+      "fact_id": "odcc801-edge-rack-power-legacy-upper",
+      "asserter": "ODCC",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "market",
+        "id": "edge-dc-legacy",
+        "label": "站址内原有传输与交换设备机柜"
+      },
+      "value": 2.0,
+      "unit": "kW/架",
+      "bound": "upper",
+      "caliber": {
+        "basis": "规划平均",
+        "scope": "全场平均",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "evidence": {
+        "sha256": "f88441974b2358375403563e9a7f53e310dd3df3b43ec62f40d2470351ccdccb",
+        "local_file": "5C_2025_2025_面向5G的边缘数据_未署名.pdf（《面向 5G 的边缘数据中心基础设施》数据中心能源白皮书 801 号）",
+        "locator": "第 2 章：「高密度设备机柜（功率密度 >5kW/机柜）成为常态，部分设备机柜功率密度达 15kW/机柜，这给供电带来巨大挑战」；第 3 章：「边缘机柜和 BBU 柜功率密度 4~8kW/机柜与原有功率密度 1~2kW/机柜的传输、交换设备共部署在同一站址」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "区间上界——**同一站址内新旧机柜功率密度差 4-8 倍，这正是边缘站点改造的核心矛盾**。编写方为中国移动、中国电信、中国联通、华为、中讯邮电、信通院等联合专家组（ODCC 数据中心能源白皮书 801 号）。[未核]"
+    },
+    {
+      "fact_id": "odcc801-edge-power-module-sizes",
+      "asserter": "ODCC",
+      "metric_id": "room_design_power",
+      "entity": {
+        "type": "component",
+        "id": "edge-dc-power-module",
+        "label": "边缘数据中心模块化供配电典型配置"
+      },
+      "value": 60.0,
+      "unit": "kW",
+      "bound": "lower",
+      "caliber": {
+        "scope": "机房总用电",
+        "basis": "设计取值",
+        "region": "CN"
+      },
+      "as_of": "2025",
+      "evidence": {
+        "sha256": "f88441974b2358375403563e9a7f53e310dd3df3b43ec62f40d2470351ccdccb",
+        "local_file": "5C_2025_2025_面向5G的边缘数据_未署名.pdf（《面向 5G 的边缘数据中心基础设施》数据中心能源白皮书 801 号）",
+        "locator": "第 6 章：「为支撑系统方案模块化，架构也需要实现模块化，如供配电架构，总功率匹配市电引入，规划典配如 60/120/180kW」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**这是模块化供配电的三档典型配置（60/120/180kW）中的最小档**，按下界记；边缘站点冷量需求远小于 200kW，因此不配水冷冷水机组，空调以直接膨胀式（行级/机架式）为主，机架式空调冷量细化到 3kW/5kW。[未核]"
     }
   ]
 }
