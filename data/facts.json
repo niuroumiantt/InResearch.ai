@@ -247047,6 +247047,263 @@
       },
       "depth": "精读",
       "notes": "**workload 维只有训练/推理/微调/其他，装不下「AI vs 云」这一刀**，四条都记「其他」、靠实体标签区分，是本批第四次遇到同一个缺口。一年多里 AI 从 20% 升到 28%、云从 40% 降到 38%。[未核]"
+    },
+    {
+      "fact_id": "mdl2512-au-dc-electricity",
+      "asserter": "曼陀罗",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "market",
+        "id": "australia-datacenter",
+        "label": "澳大利亚数据中心"
+      },
+      "value": 3.9,
+      "unit": "TWh",
+      "bound": "point",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "全站用电",
+        "sector_basis": "数据中心",
+        "region": "APAC",
+        "basis": "第三方估算"
+      },
+      "as_of": "2025-12",
+      "evidence": {
+        "sha256": "b7907117695a49c46d6fa5f62d33b765a1aa18d3f924ad529a7b200b420806a6",
+        "local_file": "20251219-Mandala：数据中心作为使能基础设施(48页).pdf",
+        "locator": "第 1 章：「今天，数据中心每年消耗 3.9 太瓦时（TWh）的能源，占澳大利亚年电力消费量的 2%。它们消耗的电量与澳大利亚的购物中心相当，远低于采矿和制造业等其他工业活动。预计到 2030 年，数据中心的使用量将增长至约 6%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "澳大利亚全国口径；同段称相当于全国购物中心的用电量。region 维没有 AU，记 APAC 并在此写明国别。[未核]"
+    },
+    {
+      "fact_id": "mdl2512-au-dc-power-share",
+      "asserter": "曼陀罗",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "market",
+        "id": "australia-datacenter",
+        "label": "澳大利亚数据中心"
+      },
+      "value": 2.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "APAC",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2025-12",
+      "evidence": {
+        "sha256": "b7907117695a49c46d6fa5f62d33b765a1aa18d3f924ad529a7b200b420806a6",
+        "local_file": "20251219-Mandala：数据中心作为使能基础设施(48页).pdf",
+        "locator": "第 1 章：「今天，数据中心每年消耗 3.9 太瓦时（TWh）的能源，占澳大利亚年电力消费量的 2%。它们消耗的电量与澳大利亚的购物中心相当，远低于采矿和制造业等其他工业活动。预计到 2030 年，数据中心的使用量将增长至约 6%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "与 3.9 TWh 配对（3.9/0.02 ≈ 195 TWh 的全国用电量，量级合理）。[未核]"
+    },
+    {
+      "fact_id": "mdl2512-au-dc-power-share-2030e",
+      "asserter": "曼陀罗",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "market",
+        "id": "australia-datacenter",
+        "label": "澳大利亚数据中心"
+      },
+      "value": 6.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "APAC",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2025-12",
+      "evidence": {
+        "sha256": "b7907117695a49c46d6fa5f62d33b765a1aa18d3f924ad529a7b200b420806a6",
+        "local_file": "20251219-Mandala：数据中心作为使能基础设施(48页).pdf",
+        "locator": "第 1 章：「今天，数据中心每年消耗 3.9 太瓦时（TWh）的能源，占澳大利亚年电力消费量的 2%。它们消耗的电量与澳大利亚的购物中心相当，远低于采矿和制造业等其他工业活动。预计到 2030 年，数据中心的使用量将增长至约 6%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "五年内占比翻三倍；报告另一处把同一预测表述为「到 12 太瓦时（或占国家电力市场电网供电电力的 6%）」——**两处分母不同（全国电力消费 vs 国家电力市场 NEM 供电）却给同一个 6%**，原文未解释，已记缺口。[未核]"
+    },
+    {
+      "fact_id": "mdl2512-au-dc-water-share",
+      "asserter": "曼陀罗",
+      "metric_id": "industry_water_use",
+      "entity": {
+        "type": "market",
+        "id": "australia-datacenter",
+        "label": "澳大利亚数据中心"
+      },
+      "value": 0.04,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "parameter": "占全球淡水使用比",
+        "industry_scope": "数据中心",
+        "window": "某一年",
+        "region": "APAC",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2025-12",
+      "evidence": {
+        "sha256": "b7907117695a49c46d6fa5f62d33b765a1aa18d3f924ad529a7b200b420806a6",
+        "local_file": "20251219-Mandala：数据中心作为使能基础设施(48页).pdf",
+        "locator": "第 1 章：「数据中心在全国使用 5.5 吉升（GL），占可饮用水的 0.04%。这比澳大利亚的公共游泳池年消耗量少七倍。数据中心分别消耗了悉尼和墨尔本的 0.7% 和 0.2% 的水。预计到 2030 年，悉尼和墨尔本的水消耗将分别达到 1.9% 和 0.9%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**分母是澳大利亚全国可饮用水，不是全球淡水**——parameter 维只有「占工业取水比/占全球淡水使用比/用水增长率」三档，没有「占本国饮用水比」，取最接近的一档并在此写明实际分母。绝对量 5.5 吉升（GL）库内无指标。[未核]"
+    },
+    {
+      "fact_id": "mdl2512-au-dc-water-share-sydney",
+      "asserter": "曼陀罗",
+      "metric_id": "industry_water_use",
+      "entity": {
+        "type": "market",
+        "id": "australia-dc-sydney",
+        "label": "悉尼数据中心用水占该市用水"
+      },
+      "value": 0.7,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "parameter": "占全球淡水使用比",
+        "industry_scope": "数据中心",
+        "window": "某一年",
+        "region": "APAC",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2025-12",
+      "evidence": {
+        "sha256": "b7907117695a49c46d6fa5f62d33b765a1aa18d3f924ad529a7b200b420806a6",
+        "local_file": "20251219-Mandala：数据中心作为使能基础设施(48页).pdf",
+        "locator": "第 1 章：「数据中心在全国使用 5.5 吉升（GL），占可饮用水的 0.04%。这比澳大利亚的公共游泳池年消耗量少七倍。数据中心分别消耗了悉尼和墨尔本的 0.7% 和 0.2% 的水。预计到 2030 年，悉尼和墨尔本的水消耗将分别达到 1.9% 和 0.9%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**分母是该城市的用水量**，与全国 0.04% 的分母不同；parameter 维无对应取值，同前一条的处理。悉尼到 2030 年升到 1.9%，是全国均值的近 50 倍，说明用水压力是局地问题不是全国问题。[未核]"
+    },
+    {
+      "fact_id": "mdl2512-au-dc-water-share-melbourne",
+      "asserter": "曼陀罗",
+      "metric_id": "industry_water_use",
+      "entity": {
+        "type": "market",
+        "id": "australia-dc-melbourne",
+        "label": "墨尔本数据中心用水占该市用水"
+      },
+      "value": 0.2,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "parameter": "占全球淡水使用比",
+        "industry_scope": "数据中心",
+        "window": "某一年",
+        "region": "APAC",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2025-12",
+      "evidence": {
+        "sha256": "b7907117695a49c46d6fa5f62d33b765a1aa18d3f924ad529a7b200b420806a6",
+        "local_file": "20251219-Mandala：数据中心作为使能基础设施(48页).pdf",
+        "locator": "第 1 章：「数据中心在全国使用 5.5 吉升（GL），占可饮用水的 0.04%。这比澳大利亚的公共游泳池年消耗量少七倍。数据中心分别消耗了悉尼和墨尔本的 0.7% 和 0.2% 的水。预计到 2030 年，悉尼和墨尔本的水消耗将分别达到 1.9% 和 0.9%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**分母是该城市的用水量**，与全国 0.04% 的分母不同；parameter 维无对应取值，同前一条的处理。悉尼到 2030 年升到 1.9%，是全国均值的近 50 倍，说明用水压力是局地问题不是全国问题。[未核]"
+    },
+    {
+      "fact_id": "mdl2512-au-dc-water-share-sydney-2030",
+      "asserter": "曼陀罗",
+      "metric_id": "industry_water_use",
+      "entity": {
+        "type": "market",
+        "id": "australia-dc-sydney",
+        "label": "悉尼数据中心用水占该市用水"
+      },
+      "value": 1.9,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "parameter": "占全球淡水使用比",
+        "industry_scope": "数据中心",
+        "window": "某一年",
+        "region": "APAC",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2025-12",
+      "evidence": {
+        "sha256": "b7907117695a49c46d6fa5f62d33b765a1aa18d3f924ad529a7b200b420806a6",
+        "local_file": "20251219-Mandala：数据中心作为使能基础设施(48页).pdf",
+        "locator": "第 1 章：「数据中心在全国使用 5.5 吉升（GL），占可饮用水的 0.04%。这比澳大利亚的公共游泳池年消耗量少七倍。数据中心分别消耗了悉尼和墨尔本的 0.7% 和 0.2% 的水。预计到 2030 年，悉尼和墨尔本的水消耗将分别达到 1.9% 和 0.9%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**分母是该城市的用水量**，与全国 0.04% 的分母不同；parameter 维无对应取值，同前一条的处理。悉尼到 2030 年升到 1.9%，是全国均值的近 50 倍，说明用水压力是局地问题不是全国问题。[未核]"
+    },
+    {
+      "fact_id": "mdl2512-au-dc-water-share-melbourne-2030",
+      "asserter": "曼陀罗",
+      "metric_id": "industry_water_use",
+      "entity": {
+        "type": "market",
+        "id": "australia-dc-melbourne",
+        "label": "墨尔本数据中心用水占该市用水"
+      },
+      "value": 0.9,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "parameter": "占全球淡水使用比",
+        "industry_scope": "数据中心",
+        "window": "某一年",
+        "region": "APAC",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2025-12",
+      "evidence": {
+        "sha256": "b7907117695a49c46d6fa5f62d33b765a1aa18d3f924ad529a7b200b420806a6",
+        "local_file": "20251219-Mandala：数据中心作为使能基础设施(48页).pdf",
+        "locator": "第 1 章：「数据中心在全国使用 5.5 吉升（GL），占可饮用水的 0.04%。这比澳大利亚的公共游泳池年消耗量少七倍。数据中心分别消耗了悉尼和墨尔本的 0.7% 和 0.2% 的水。预计到 2030 年，悉尼和墨尔本的水消耗将分别达到 1.9% 和 0.9%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**分母是该城市的用水量**，与全国 0.04% 的分母不同；parameter 维无对应取值，同前一条的处理。悉尼到 2030 年升到 1.9%，是全国均值的近 50 倍，说明用水压力是局地问题不是全国问题。[未核]"
+    },
+    {
+      "fact_id": "mdl2512-au-dc-renewable-share",
+      "asserter": "曼陀罗",
+      "metric_id": "dc_renewable_share",
+      "entity": {
+        "type": "market",
+        "id": "australia-datacenter",
+        "label": "澳大利亚数据中心"
+      },
+      "value": 40.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "measure": "绿证与绿电交易折算",
+        "scope": "全市场",
+        "region": "APAC",
+        "basis": "第三方核证"
+      },
+      "as_of": "2025-12",
+      "evidence": {
+        "sha256": "b7907117695a49c46d6fa5f62d33b765a1aa18d3f924ad529a7b200b420806a6",
+        "local_file": "20251219-Mandala：数据中心作为使能基础设施(48页).pdf",
+        "locator": "第 2 章：「通过电力购买协议（PPA）为新的可再生能源项目和支持场址太阳能安装提供资金，数据中心目前支持 1.5 太瓦时的可再生能源发电。这代表他们近 40% 的能源消耗，相当于每年为超过 20 万户家庭供电」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "1.5 TWh / 3.9 TWh = 38.5%，与原文「近 40%」自洽。口径是 PPA 与场址光伏支持的发电量占自身能耗，属绿电交易折算而非直连消纳。[未核]"
     }
   ]
 }
