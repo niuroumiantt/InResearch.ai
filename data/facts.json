@@ -384,16 +384,17 @@
       },
       "as_of": "2025-06",
       "evidence": {
-        "local_file": "",
-        "locator": "同上报告正文「截至2025年6月底，我国在用算力中心机架总规模达1085万标准机架，智能算力规模达788 EFLOPS(FP16)」",
-        "grade": "S2"
+        "sha256": "bdac1dc4b8646505e8482db0d95ef6818b80b537f625feccfe7120d604db7ae9",
+        "local_file": "2025综合算力指数蓝皮书.pdf",
+        "grade": "S2",
+        "locator": "第二章：「监测数据显示，截至 2025 年 6 月底，我国在用算力中心机架总规模达 1085 万标准机架，智能算力规模达 788 EFLOPS（FP16）」（机架按 2.5 kW 为一个标准机架折算）"
       },
       "depth": "精读",
       "derived": false,
       "sensitive": false,
-      "notes": "**「标准机架」是折算口径，与「机柜数」不可直接互换**。配套智能算力 788 EFLOPS 为 **FP16 精度口径**，换精度不可比。时点=2025-06 底，地域=中国大陆。",
+      "notes": "**「标准机架」是折算口径（2.5 kW 折一个），与「机柜数」不可直接互换**。配套智能算力 788 EFLOPS 为 FP16 精度口径，换精度不可比。时点=2025-06 底，地域=中国大陆。**本条原为「未注明」断言者、证据只写「同上报告正文」**；本轮读到《2025 综合算力指数蓝皮书》原文，同句逐字一致且注明「中国信通院监测数据」，据此补齐署名与证据文件，不另开一条重复记录。",
       "bound": "point",
-      "asserter": "未注明"
+      "asserter": "中国信通院"
     },
     {
       "fact_id": "h100-spot-2023",
@@ -247651,6 +247652,153 @@
       },
       "depth": "精读",
       "notes": "**92% 是数据中心 GPU 口径，与同句「AI 芯片 70-95%」不是同一分母**（后者是区间且更宽）。product_line 维没有 GPU/AI 芯片取值，记未拆分并在此写明。[未核]"
+    },
+    {
+      "fact_id": "bb2025-global-compute-general-2024",
+      "asserter": "中国信通院",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "global-compute",
+        "label": "全球算力总规模（信通院口径）"
+      },
+      "value": 628.0,
+      "unit": "EFLOPS",
+      "bound": "point",
+      "caliber": {
+        "compute_type": "通用算力",
+        "precision": "FP32",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2024-12",
+      "evidence": {
+        "sha256": "bdac1dc4b8646505e8482db0d95ef6818b80b537f625feccfe7120d604db7ae9",
+        "local_file": "2025综合算力指数蓝皮书.pdf",
+        "locator": "一、（一）：「中国信通院数据显示，截至 2024 年底，全球通算规模达 628 EFLOPS（FP32），同比增长 14.0%；智算规模达 5693 EFLOPS（FP16），同比增长 64.7%；超算规模为 20 EFLOPS（FP64）」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "同比增长 14.0%。 **这是本族里第一次三档各自标明精度**（FP32/FP16/FP64），此前多数条目只能填「混合/未注明」。[未核]"
+    },
+    {
+      "fact_id": "bb2025-global-compute-ai-2024",
+      "asserter": "中国信通院",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "global-compute",
+        "label": "全球算力总规模（信通院口径）"
+      },
+      "value": 5693.0,
+      "unit": "EFLOPS",
+      "bound": "point",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "FP16",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2024-12",
+      "evidence": {
+        "sha256": "bdac1dc4b8646505e8482db0d95ef6818b80b537f625feccfe7120d604db7ae9",
+        "local_file": "2025综合算力指数蓝皮书.pdf",
+        "locator": "一、（一）：「中国信通院数据显示，截至 2024 年底，全球通算规模达 628 EFLOPS（FP32），同比增长 14.0%；智算规模达 5693 EFLOPS（FP16），同比增长 64.7%；超算规模为 20 EFLOPS（FP64）」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "同比增长 64.7%。**这一版把全球智算规模写成 5693 EFLOPS（FP16），而库内同一机构 2022 年底的全球智算是 142 EFLOPS（未注明精度）——两年 40 倍，主要来自精度口径（FP16 vs 混合）与统计边界的改变，不是同一条曲线上的两点。** **这是本族里第一次三档各自标明精度**（FP32/FP16/FP64），此前多数条目只能填「混合/未注明」。[未核]"
+    },
+    {
+      "fact_id": "bb2025-global-compute-hpc-2024",
+      "asserter": "中国信通院",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "market",
+        "id": "global-compute",
+        "label": "全球算力总规模（信通院口径）"
+      },
+      "value": 20.0,
+      "unit": "EFLOPS",
+      "bound": "point",
+      "caliber": {
+        "compute_type": "超算算力",
+        "precision": "FP64",
+        "area": "全球",
+        "status": "在用",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2024-12",
+      "evidence": {
+        "sha256": "bdac1dc4b8646505e8482db0d95ef6818b80b537f625feccfe7120d604db7ae9",
+        "local_file": "2025综合算力指数蓝皮书.pdf",
+        "locator": "一、（一）：「中国信通院数据显示，截至 2024 年底，全球通算规模达 628 EFLOPS（FP32），同比增长 14.0%；智算规模达 5693 EFLOPS（FP16），同比增长 64.7%；超算规模为 20 EFLOPS（FP64）」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "超算按 FP64 计，与前两档精度不同，三档不可相加。 **这是本族里第一次三档各自标明精度**（FP32/FP16/FP64），此前多数条目只能填「混合/未注明」。[未核]"
+    },
+    {
+      "fact_id": "bb2025-cn-avg-pue-2025",
+      "asserter": "中国信通院",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "cn-national",
+        "label": "全国数据中心（行业统计口径）"
+      },
+      "value": 1.46,
+      "unit": "比值",
+      "bound": "point",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2025-06",
+      "evidence": {
+        "sha256": "bdac1dc4b8646505e8482db0d95ef6818b80b537f625feccfe7120d604db7ae9",
+        "local_file": "2025综合算力指数蓝皮书.pdf",
+        "locator": "第二章：「从 PUE 来看，我国在用算力中心平均 PUE 值为 1.46，较 2023 年降低 0.02」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "在用算力中心平均值，较 2023 年降 0.02（即 2023 年为 1.48）。库内工信部 2024-12 的全国平均也是 1.46，两条同值不同署名不同时点，不作互证。[未核]"
+    },
+    {
+      "fact_id": "bb2025-cn-top6-rack-share-202506",
+      "asserter": "中国信通院",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "region",
+        "id": "cn-top6-provinces",
+        "label": "在用标准机架数前六省份（河北、广东、江苏、贵州、内蒙古、上海等）"
+      },
+      "value": 60.0,
+      "unit": "万标准机架",
+      "bound": "lower",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2025-06",
+      "evidence": {
+        "sha256": "bdac1dc4b8646505e8482db0d95ef6818b80b537f625feccfe7120d604db7ae9",
+        "local_file": "2025综合算力指数蓝皮书.pdf",
+        "locator": "第二章：「我国在用标准机架数 Top10 省份为河北省、广东省、江苏省、贵州省、内蒙古自治区、上海市、浙江省、北京市、山西省、山东省……Top6 省份在用标准机架全国占比超过 50%，在用标准机架数均超过 60 万架」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**这是「前六省各自均超过 60 万架」的下界，不是六省合计**；六省合计占全国超过 50%（对应 1085 万架的一半以上）。逐省数值原文只有图，未给数字。[未核]"
     }
   ]
 }
