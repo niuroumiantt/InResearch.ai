@@ -235869,6 +235869,67 @@
       "disputes": [
         "jpm2207-cloud-capex-growth-cy23"
       ]
+    },
+    {
+      "fact_id": "cicc2101-miit-cn-idc-market-2019",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "industry",
+        "id": "cn-idc-market",
+        "label": "中国 IDC 行业市场"
+      },
+      "value": 1563.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "IDC 服务（含托管与增值）",
+        "operator_type": "全市场",
+        "region": "CN",
+        "basis": "第三方跟踪",
+        "currency": "人民币"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e6cba1e4b15e2d659a0ad6e4ccdb751702cecc2abac130ec451340143c02c926",
+        "local_file": "20210105-电信服务行业中国基础设施REITs之数据中心篇：面朝数字蓝海，静待基建花开(39页).pdf",
+        "locator": "第 1 页摘要：「我国 IDC 行业市场规模呈现逐年增长态势，据工信部统计，2019 年市场规模达 1,563 亿元，行业市场规模有望在未来 5 年增长 2 倍。核心 IDC 资源集中在北上广地区，整体上架率较高」",
+        "grade": "S4",
+        "originator": "工业和信息化部（经中金公司《电信服务行业·中国基础设施 REITs 之数据中心篇：面朝数字蓝海，静待基建花开》（2021-01-05）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**工信部统计口径的 2019 年中国 IDC 市场规模，币种人民币。**原文判断未来 5 年市场规模有望增长 2 倍（即约 4,700 亿元量级，2024 年前后）。**与本库其他中国 IDC 市场序列对照**：国泰君安转述的 2023 年 5,078.3 亿元与本条趋势自洽（四年翻 3.2 倍）；而仲量联行/信通院口径 2025 年只有 3,048 亿元——**说明「IDC 市场规模」在工信部口径与信通院口径之间存在系统性差异，合并使用前必须选定一套。**原文另称核心 IDC 资源集中在北上广、整体上架率较高。",
+      "asserter": "工业和信息化部"
+    },
+    {
+      "fact_id": "cicc2101-keppel-dc-reit-occupancy-3q20",
+      "metric_id": "dc_occupancy_rate",
+      "entity": {
+        "type": "company",
+        "id": "keppel-dc-reit",
+        "label": "Keppel DC REIT（新加坡上市 IDC REIT）"
+      },
+      "value": 96.7,
+      "unit": "%",
+      "caliber": {
+        "scope": "区域市场",
+        "region": "APAC"
+      },
+      "as_of": "2020-Q3",
+      "bound": "point",
+      "evidence": {
+        "sha256": "e6cba1e4b15e2d659a0ad6e4ccdb751702cecc2abac130ec451340143c02c926",
+        "local_file": "20210105-电信服务行业中国基础设施REITs之数据中心篇：面朝数字蓝海，静待基建花开(39页).pdf",
+        "locator": "正文 Keppel DC REIT 案例：「新加坡 Keppel DC REIT 为亚洲第一支以及唯一一支上市 IDC REITs，于 2014 年上市，截至 3Q20 共运营 18 个项目，主要分布在新加坡、德国、英国等 8 个国家，平均每年新增 3 个项目……管理资产 29 亿美元，主要提供服务器托管、定制化租赁和毛坯租赁业务，整体上架率 96.7%，平均签约年限 7.2 年，资产负债率 35.2%。每基金单位分配额 2015 年以来持续增长，从 6.51 美分增长到 2019 年的 7.71 美分」",
+        "grade": "S4",
+        "originator": "中金公司《电信服务行业·中国基础设施 REITs 之数据中心篇》（2021-01-05）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是整支 REIT 全组合（18 个项目、分布 8 国）的整体上架率，不是单项目**，scope 取「区域市场」是枚举里最接近「多项目组合」的取值，region 记 APAC 但资产实际横跨新加坡、德国、英国等。**96.7% 是本库上架率序列的上限锚**：与国内批发型 REIT 的 90%+/99%+、全国平均 58%、单项目 48.2% 对照，说明成熟 REIT 组合能把出租率维持在什么水平。配套：管理资产 29 亿美元、平均签约年限 7.2 年、资产负债率 35.2%、2014 年上市后平均每年新增 3 个项目、每基金单位分配额由 2015 年 6.51 美分增至 2019 年 7.71 美分。",
+      "asserter": "中金公司"
     }
   ]
 }
