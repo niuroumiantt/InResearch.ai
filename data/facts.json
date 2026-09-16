@@ -236426,6 +236426,234 @@
       "corroboration": "待交叉验证",
       "notes": "**原文用词是「mid-to-high single digits」（中到高个位数），本条取 5% 作为下界**——这是对模糊表述的保守落点，**上界未记，因为「high single digits」的具体数原文没给**。**关键配套判断：尽管建造成本上涨，对 GPU 云运营商的 TCO 影响不到 2%**——原因是 GPU 服务器本身基本豁免关税，而机电与土建在 GPU 云 TCO 中占比有限。",
       "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "szt2504-idc-cn-intelligent-compute-2024",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "industry",
+        "id": "cn-intelligent-compute",
+        "label": "中国智能算力"
+      },
+      "value": 725.3,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "混合/未注明",
+        "area": "全国",
+        "status": "未注明",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ad2b694a83ccf4ad428f89f2131459aec171a08b2ef47118844c31fb0a568f92",
+        "local_file": "2025智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期.pdf",
+        "locator": "第 12 页：「根据 IDC 的数据，2024 年中国智能算力规模为 725.3EFLOPS，预计 2028 年将达到 2781.9EFLOPS，2020-2028 年中国智能算力规模的复合增速为 57.1%」，资料来源 IDC《2025 年中国人工智能计算力发展评估报告》",
+        "grade": "S4",
+        "originator": "IDC《2025 年中国人工智能计算力发展评估报告》（经深企投产业研究院《2025 智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期》（2025 年 4 月）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**IDC 口径，精度未注明**——**这正是与信通院口径必须分开的原因**：信通院给 2025 年 6 月 788 EFLOPS（明确 FP16），IDC 给 2024 年 725.3 EFLOPS（精度未标）。两条时点相近、量级相近，**但若 IDC 用的是 FP16 以外的精度，二者根本不可比**；在精度确认前不要拼成一条增长曲线。2020-2028 年复合增速 57.1%。",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "szt2504-idc-cn-intelligent-compute-2028e",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "industry",
+        "id": "cn-intelligent-compute",
+        "label": "中国智能算力"
+      },
+      "value": 2781.9,
+      "unit": "EFLOPS",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "混合/未注明",
+        "area": "全国",
+        "status": "未注明",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2028E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ad2b694a83ccf4ad428f89f2131459aec171a08b2ef47118844c31fb0a568f92",
+        "local_file": "2025智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期.pdf",
+        "locator": "第 12 页：「根据 IDC 的数据，2024 年中国智能算力规模为 725.3EFLOPS，预计 2028 年将达到 2781.9EFLOPS，2020-2028 年中国智能算力规模的复合增速为 57.1%」，资料来源 IDC《2025 年中国人工智能计算力发展评估报告》",
+        "grade": "S4",
+        "originator": "IDC《2025 年中国人工智能计算力发展评估报告》（经深企投产业研究院《2025 智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期》（2025 年 4 月）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "IDC 对 2028 年中国智能算力的预测，精度口径同 2024 年条目（未注明）。四年增长 3.8 倍，隐含年增约 40%。",
+      "asserter": "IDC"
+    },
+    {
+      "fact_id": "szt2504-kezhi-cn-aidc-it-load-2023",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "industry",
+        "id": "cn-aidc",
+        "label": "中国智算中心（投用）"
+      },
+      "value": 1.2055,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "IT 负载",
+        "workload": "AI 负载",
+        "scenario": "未注明",
+        "basis": "实测",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ad2b694a83ccf4ad428f89f2131459aec171a08b2ef47118844c31fb0a568f92",
+        "local_file": "2025智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期.pdf",
+        "locator": "第 13 页：「根据科智咨询数据，2023 年，中国投用智算中心总 IT 负载达到 1205.5MW，同比增长 41.6%。预计 2026 年，中国智算中心 IT 负载规模将超 3000MW，复合年增速达到 36%」",
+        "grade": "S4",
+        "originator": "科智咨询（经深企投产业研究院《2025 智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期》（2025 年 4 月）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": [
+        "**原文单位 MW：1205.5 MW = 1.2055 GW**，同比增长 41.6%。**与库内 kezhi-cn-aidc-it-load-2023（科智咨询，1.2055 GW）完全同值**——同一机构同一数经两份不同报告转述，属同源，不构成交叉验证。"
+      ],
+      "asserter": "科智咨询"
+    },
+    {
+      "fact_id": "szt2504-kezhi-cn-aidc-it-load-2026e",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "industry",
+        "id": "cn-aidc",
+        "label": "中国智算中心（投用）"
+      },
+      "value": 3.0,
+      "unit": "GW",
+      "caliber": {
+        "power_scope": "IT 负载",
+        "workload": "AI 负载",
+        "scenario": "未注明",
+        "basis": "预测",
+        "region": "CN"
+      },
+      "as_of": "2026E@2025-04",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "ad2b694a83ccf4ad428f89f2131459aec171a08b2ef47118844c31fb0a568f92",
+        "local_file": "2025智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期.pdf",
+        "locator": "第 13 页：「根据科智咨询数据，2023 年，中国投用智算中心总 IT 负载达到 1205.5MW，同比增长 41.6%。预计 2026 年，中国智算中心 IT 负载规模将超 3000MW，复合年增速达到 36%」",
+        "grade": "S4",
+        "originator": "科智咨询（经深企投产业研究院《2025 智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期》（2025 年 4 月）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文写「将超 3000MW」，记为下界（3.0 GW），2023-2026 复合年增速 36%。**库内另有 kezhi-cn-aidc-it-load-2026e = 3.0 GW（as_of 2026E@2025-04）**，为同一机构同一预测的另一次转述，同源不互证。",
+      "asserter": "科智咨询"
+    },
+    {
+      "fact_id": "szt2504-kezhi-cn-aidc-investment-2023",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "industry",
+        "id": "cn-aidc-investment",
+        "label": "中国智算中心市场投资规模"
+      },
+      "value": 879.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "未注明",
+        "operator_type": "全市场",
+        "region": "CN",
+        "basis": "第三方跟踪",
+        "currency": "人民币"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ad2b694a83ccf4ad428f89f2131459aec171a08b2ef47118844c31fb0a568f92",
+        "local_file": "2025智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期.pdf",
+        "locator": "第 15 页：「根据科智咨询数据，2023 年中国智算中心市场投资规模达 879 亿元，同比增长 90% 以上，2024 年预计为 1014 亿元，突破千亿元大关……预计 2028 年中国智算中心市场投资规模有望达到 2886 亿元，2023-2028 年 CAGR 达 26.8%」",
+        "grade": "S4",
+        "originator": "科智咨询（经深企投产业研究院《2025 智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期》（2025 年 4 月）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**口径是「市场投资规模」（建设投资），不是运营服务收入**——service_scope 记「未注明」，**与本库其他 dc_service_revenue 条目（IDC 服务收入口径）不是同一被测对象，切勿并入同一序列**。币种人民币。同比增长 90% 以上。",
+      "asserter": "科智咨询"
+    },
+    {
+      "fact_id": "szt2504-kezhi-cn-aidc-investment-2024e",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "industry",
+        "id": "cn-aidc-investment",
+        "label": "中国智算中心市场投资规模"
+      },
+      "value": 1014.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "未注明",
+        "operator_type": "全市场",
+        "region": "CN",
+        "basis": "预测",
+        "currency": "人民币"
+      },
+      "as_of": "2024E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ad2b694a83ccf4ad428f89f2131459aec171a08b2ef47118844c31fb0a568f92",
+        "local_file": "2025智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期.pdf",
+        "locator": "第 15 页：「根据科智咨询数据，2023 年中国智算中心市场投资规模达 879 亿元，同比增长 90% 以上，2024 年预计为 1014 亿元，突破千亿元大关……预计 2028 年中国智算中心市场投资规模有望达到 2886 亿元，2023-2028 年 CAGR 达 26.8%」",
+        "grade": "S4",
+        "originator": "科智咨询（经深企投产业研究院《2025 智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期》（2025 年 4 月）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**口径是「市场投资规模」（建设投资），不是运营服务收入**——service_scope 记「未注明」，**与本库其他 dc_service_revenue 条目（IDC 服务收入口径）不是同一被测对象，切勿并入同一序列**。币种人民币。原文称「突破千亿元大关」。",
+      "asserter": "科智咨询"
+    },
+    {
+      "fact_id": "szt2504-kezhi-cn-aidc-investment-2028e",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "industry",
+        "id": "cn-aidc-investment",
+        "label": "中国智算中心市场投资规模"
+      },
+      "value": 2886.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "未注明",
+        "operator_type": "全市场",
+        "region": "CN",
+        "basis": "预测",
+        "currency": "人民币"
+      },
+      "as_of": "2028E@2025-04",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ad2b694a83ccf4ad428f89f2131459aec171a08b2ef47118844c31fb0a568f92",
+        "local_file": "2025智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期.pdf",
+        "locator": "第 15 页：「根据科智咨询数据，2023 年中国智算中心市场投资规模达 879 亿元，同比增长 90% 以上，2024 年预计为 1014 亿元，突破千亿元大关……预计 2028 年中国智算中心市场投资规模有望达到 2886 亿元，2023-2028 年 CAGR 达 26.8%」",
+        "grade": "S4",
+        "originator": "科智咨询（经深企投产业研究院《2025 智算中心行业研究：新一轮人工智能浪潮汹涌，算力底座万亿市场可期》（2025 年 4 月）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**口径是「市场投资规模」（建设投资），不是运营服务收入**——service_scope 记「未注明」，**与本库其他 dc_service_revenue 条目（IDC 服务收入口径）不是同一被测对象，切勿并入同一序列**。币种人民币。2023-2028 年 CAGR 26.8%；原文判断市场增长动力由训练切换至推理后进入平稳增长期。",
+      "asserter": "科智咨询"
     }
   ]
 }
