@@ -235634,6 +235634,37 @@
       "corroboration": "待交叉验证",
       "notes": "**币种美元、口径为全球数据中心市场规模（BCC Research）。**原文给区间 6000-7000 亿美元、年均增速约 11%。**同一年（2030）本库尚无其他来源的全球市场规模可比；但与 2025 年的口径对照可见分歧极大**：Statista 给 2025 年 5270 亿美元、Precedence Research 给 4000 亿美元——若按 Statista 的起点与 11% 增速，2030 年应远超 7000 亿，说明三家口径互不相同，不可混用。asserter 记 BCC Research：原文明确标注脚注来源，Baker McKenzie 只是转述。",
       "asserter": "BCC Research"
+    },
+    {
+      "fact_id": "snia25-us-power-rate-cagr",
+      "metric_id": "retail_power_price_change",
+      "entity": {
+        "type": "industry",
+        "id": "us-retail-power",
+        "label": "美国平均电价"
+      },
+      "value": 2.85,
+      "unit": "%",
+      "caliber": {
+        "customer_class": "全类别",
+        "period_basis": "复合年均",
+        "region": "US",
+        "basis": "第三方推算"
+      },
+      "as_of": "2025-09",
+      "bound": "point",
+      "evidence": {
+        "sha256": "08013bb1ff52eb2634ad12995528c65afd44888812b3760e5467eb8f4c832e20",
+        "local_file": "SNIA-SDC25-Banta-Shadley-Total-Cost-and-Performance.pdf",
+        "locator": "第 5 页「Paying attention to the wrong thing: Price/GB rather than Total Costs」：「Since 2000, US average power rates have increased 2.85% annually. Compounded over 5-years, that's 11.5%」",
+        "grade": "S3",
+        "originator": "SNIA Developer Conference 2025《Total Cost and Performance of SSDs》（Andy Banta, Magnition；Scott Shadley, Solidigm）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**自 2000 年起的长期复合年均涨幅 2.85%**，演讲者用它论证「按 $/GB 而非 TCO 做采购决策是错的」——五年累计 11.5%（原文自算）。**注意 11.5% 与 2.85% 的复利并不严格吻合**（1.0285^5 = 15.1%），原文的 11.5% 更接近单利口径或另有取整，**两个数不可同时引用**；本条只录年均值。customer_class 记「全类别」：原文说的是 US average power rates，未区分居民与工商业。",
+      "asserter": "SNIA"
     }
   ]
 }
