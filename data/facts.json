@@ -250268,6 +250268,256 @@
       },
       "depth": "精读",
       "notes": "**单项目口径，不是全国国产化率**：该中心部署约 2 万张 AI 加速卡、国产芯片占比超 85%。库内该指标此前多为全国或市场口径，两者不可比。[未核]"
+    },
+    {
+      "fact_id": "kezhi2024-cn-it-load-2023",
+      "asserter": "科智咨询",
+      "metric_id": "dc_capacity_mw",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国在运营 IDC（行业口径）"
+      },
+      "value": 12545.0,
+      "unit": "MW",
+      "bound": "point",
+      "caliber": {
+        "capacity_type": "IT容量",
+        "status": "L8",
+        "region": "CN"
+      },
+      "as_of": "2023-12",
+      "evidence": {
+        "sha256": "2c44391ce000aa9a5a24f5495750f9d76adff8deb23ecf1dce156577b9caee47",
+        "local_file": "2024年45页-算力行业：2024中国第三方算力中心服务商发展研究报告.pdf（科智咨询）",
+        "locator": "正文：「2023 年，中国在运营 IDC 自然机柜数量达到 270.4 万架，折合 IT 负载 12545MW，机柜数量较 2022 年同比增长 12.1%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**这是由 270.4 万自然机柜折算出的 IT 负载**（12545/270.4 万 ≈ 4.6 kW/架），库内已有同一来源的 270.4 万架（kezhi2024-cn-idc-cabinets-2023）。折算系数原文未给，此处只记结果不反推。[未核]"
+    },
+    {
+      "fact_id": "kezhi2024-cn-idc-demand-2023",
+      "asserter": "科智咨询",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "market",
+        "id": "cn-idc-demand",
+        "label": "中国 IDC 需求规模（按机柜）"
+      },
+      "value": 152.5,
+      "unit": "万标准机架",
+      "bound": "point",
+      "caliber": {
+        "counting": "物理机柜",
+        "region": "CN"
+      },
+      "as_of": "2023-12",
+      "evidence": {
+        "sha256": "2c44391ce000aa9a5a24f5495750f9d76adff8deb23ecf1dce156577b9caee47",
+        "local_file": "2024年45页-算力行业：2024中国第三方算力中心服务商发展研究报告.pdf（科智咨询）",
+        "locator": "正文：「截至 2023 年底，全国在运营 IDC 机柜规模 270.4 万架，增速比去年增长 12%；IDC 需求规模达到 152.5 万架，同比增长 10%。机房平均上架率 56.4%，整体市场存在供需失衡问题」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**这是需求侧（已被使用）的机柜数，不是供给存量**：152.5/270.4 = 56.4%，与同句的平均上架率完全吻合。dc_rack_total 没有供给/需求这一维，靠实体标签承载，已记缺口。[未核]"
+    },
+    {
+      "fact_id": "kezhi2024-aidc-resource-share-2021",
+      "asserter": "科智咨询",
+      "metric_id": "region_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-thirdparty-aidc-share",
+        "label": "中国第三方服务商资源中智算中心的占比"
+      },
+      "value": 0.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "measure": "算力规模",
+        "denominator": "本区域总量",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2021",
+      "evidence": {
+        "sha256": "2c44391ce000aa9a5a24f5495750f9d76adff8deb23ecf1dce156577b9caee47",
+        "local_file": "2024年45页-算力行业：2024中国第三方算力中心服务商发展研究报告.pdf（科智咨询）",
+        "locator": "图表 9「中国算力中心服务商资源结构（DC/AIDC）」：DC 100%/99%/98%/97%，AIDC 0%/1%/2%/3%（2021-2024E）；注：资源规模统计口径包含通用算力中心及智算中心",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**这条与各家动辄「智算占比三成八成」的说法形成强烈反差**：在第三方服务商的资源结构里，智算中心到 2024 年预计也才 3%。原因是分母不同——这里的分母是第三方服务商的机柜资源（以通用 IDC 为主），而信通院/IDC 的分母是全国算力（含自建与超算）。measure 维没有「机柜资源」取值，借算力规模记并在此写明。[未核]"
+    },
+    {
+      "fact_id": "kezhi2024-aidc-resource-share-2022",
+      "asserter": "科智咨询",
+      "metric_id": "region_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-thirdparty-aidc-share",
+        "label": "中国第三方服务商资源中智算中心的占比"
+      },
+      "value": 1.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "measure": "算力规模",
+        "denominator": "本区域总量",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "2c44391ce000aa9a5a24f5495750f9d76adff8deb23ecf1dce156577b9caee47",
+        "local_file": "2024年45页-算力行业：2024中国第三方算力中心服务商发展研究报告.pdf（科智咨询）",
+        "locator": "图表 9「中国算力中心服务商资源结构（DC/AIDC）」：DC 100%/99%/98%/97%，AIDC 0%/1%/2%/3%（2021-2024E）；注：资源规模统计口径包含通用算力中心及智算中心",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**这条与各家动辄「智算占比三成八成」的说法形成强烈反差**：在第三方服务商的资源结构里，智算中心到 2024 年预计也才 3%。原因是分母不同——这里的分母是第三方服务商的机柜资源（以通用 IDC 为主），而信通院/IDC 的分母是全国算力（含自建与超算）。measure 维没有「机柜资源」取值，借算力规模记并在此写明。[未核]"
+    },
+    {
+      "fact_id": "kezhi2024-aidc-resource-share-2023",
+      "asserter": "科智咨询",
+      "metric_id": "region_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-thirdparty-aidc-share",
+        "label": "中国第三方服务商资源中智算中心的占比"
+      },
+      "value": 2.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "measure": "算力规模",
+        "denominator": "本区域总量",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "2c44391ce000aa9a5a24f5495750f9d76adff8deb23ecf1dce156577b9caee47",
+        "local_file": "2024年45页-算力行业：2024中国第三方算力中心服务商发展研究报告.pdf（科智咨询）",
+        "locator": "图表 9「中国算力中心服务商资源结构（DC/AIDC）」：DC 100%/99%/98%/97%，AIDC 0%/1%/2%/3%（2021-2024E）；注：资源规模统计口径包含通用算力中心及智算中心",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**这条与各家动辄「智算占比三成八成」的说法形成强烈反差**：在第三方服务商的资源结构里，智算中心到 2024 年预计也才 3%。原因是分母不同——这里的分母是第三方服务商的机柜资源（以通用 IDC 为主），而信通院/IDC 的分母是全国算力（含自建与超算）。measure 维没有「机柜资源」取值，借算力规模记并在此写明。[未核]"
+    },
+    {
+      "fact_id": "kezhi2024-aidc-resource-share-2024e",
+      "asserter": "科智咨询",
+      "metric_id": "region_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-thirdparty-aidc-share",
+        "label": "中国第三方服务商资源中智算中心的占比"
+      },
+      "value": 3.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "measure": "算力规模",
+        "denominator": "本区域总量",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2024E@2024",
+      "evidence": {
+        "sha256": "2c44391ce000aa9a5a24f5495750f9d76adff8deb23ecf1dce156577b9caee47",
+        "local_file": "2024年45页-算力行业：2024中国第三方算力中心服务商发展研究报告.pdf（科智咨询）",
+        "locator": "图表 9「中国算力中心服务商资源结构（DC/AIDC）」：DC 100%/99%/98%/97%，AIDC 0%/1%/2%/3%（2021-2024E）；注：资源规模统计口径包含通用算力中心及智算中心",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**这条与各家动辄「智算占比三成八成」的说法形成强烈反差**：在第三方服务商的资源结构里，智算中心到 2024 年预计也才 3%。原因是分母不同——这里的分母是第三方服务商的机柜资源（以通用 IDC 为主），而信通院/IDC 的分母是全国算力（含自建与超算）。measure 维没有「机柜资源」取值，借算力规模记并在此写明。[未核]"
+    },
+    {
+      "fact_id": "kezhi2024-haoyun-guangzhou2-rack-power-lower",
+      "asserter": "科智咨询",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "project",
+        "id": "haoyun-guangzhou-2",
+        "label": "浩云长盛广州二号云计算基地（华南首家大规模商用液冷数据中心）"
+      },
+      "value": 8.0,
+      "unit": "kW/架",
+      "bound": "lower",
+      "caliber": {
+        "basis": "设计取值",
+        "scope": "单柜上限",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "2c44391ce000aa9a5a24f5495750f9d76adff8deb23ecf1dce156577b9caee47",
+        "local_file": "2024年45页-算力行业：2024中国第三方算力中心服务商发展研究报告.pdf（科智咨询）",
+        "locator": "正文：「广州二号云计算基地，定位为智能制造 AI 算力基地，是华南区首家大规模商用液冷数据中心，支持功率密度 8~19KW 以上，单系统 PUE1.1 以下」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "支持功率密度区间下界；上界 19kW 另记。[未核]"
+    },
+    {
+      "fact_id": "kezhi2024-haoyun-guangzhou2-rack-power-upper",
+      "asserter": "科智咨询",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "project",
+        "id": "haoyun-guangzhou-2",
+        "label": "浩云长盛广州二号云计算基地（华南首家大规模商用液冷数据中心）"
+      },
+      "value": 19.0,
+      "unit": "kW/架",
+      "bound": "upper",
+      "caliber": {
+        "basis": "设计取值",
+        "scope": "单柜上限",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "2c44391ce000aa9a5a24f5495750f9d76adff8deb23ecf1dce156577b9caee47",
+        "local_file": "2024年45页-算力行业：2024中国第三方算力中心服务商发展研究报告.pdf（科智咨询）",
+        "locator": "同上：「支持功率密度 8~19KW 以上」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "原文写「8~19KW 以上」，区间上界本身还带「以上」，取 19 记上界并在此说明这一表述的含糊。[未核]"
+    },
+    {
+      "fact_id": "kezhi2024-haoyun-guangzhou2-pue",
+      "asserter": "科智咨询",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "haoyun-guangzhou-2",
+        "label": "浩云长盛广州二号云计算基地"
+      },
+      "value": 1.1,
+      "unit": "比值",
+      "bound": "upper",
+      "caliber": {
+        "basis": "厂商宣称",
+        "cooling_tech": "冷板液冷",
+        "climate_zone": "南方",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "设计工况",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "2c44391ce000aa9a5a24f5495750f9d76adff8deb23ecf1dce156577b9caee47",
+        "local_file": "2024年45页-算力行业：2024中国第三方算力中心服务商发展研究报告.pdf（科智咨询）",
+        "locator": "同上：「单系统 PUE1.1 以下」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**「单系统 PUE」不是整站 PUE**——原文说的是液冷系统本身，接近 pPUE 的概念（pPUE 缺口已记）；按上界记并标明口径。液冷路线原文未写具体形式，按大规模商用推断为冷板，已在此注明该判断。[未核]"
     }
   ]
 }
