@@ -241910,6 +241910,386 @@
       },
       "depth": "精读",
       "notes": "与西部 1.2 成对；库内已有同值的另一处表述（署名未注明），本条给出了部门署名，两条并存。[未核]"
+    },
+    {
+      "fact_id": "yq2021-huawei-wulanchabu-aircooled-rack",
+      "asserter": "益企研究院",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "project",
+        "id": "huawei-wulanchabu-dc",
+        "label": "华为云乌兰察布数据中心（风冷机柜）"
+      },
+      "value": 8.0,
+      "unit": "kW/机柜",
+      "bound": "point",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "主流机型",
+        "era": "当期",
+        "power_basis": "实际功率密度",
+        "region": "CN"
+      },
+      "as_of": "2021",
+      "evidence": {
+        "sha256": "fb3ed434cc69d2f72ad54fef774cbadb01917c8c255f7b5d4bb5cd0bba83c260",
+        "local_file": "6C_2025_2025_2022中国云数据_未署名.pdf（益企研究院《数字中国万里行·2021 中国云数据中心考察报告》）",
+        "locator": "第三章 风冷与液冷：「华为乌兰察布云数据中心也是以 8 千瓦的风冷机柜为主，何况 20 千瓦的液冷机柜还有部分风冷（风液混合，制冷贡献大抵三七开）」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "实地考察记述的在用主流机柜功率，非设计上限。同句给出该园区液冷整机柜 20kW，且液冷机柜内风冷与液冷的制冷贡献「大抵三七开」——后者对应 cooling_capacity_ratio 已另记。[未核]"
+    },
+    {
+      "fact_id": "yq2021-huawei-fusionpod-rack",
+      "asserter": "益企研究院",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "project",
+        "id": "huawei-wulanchabu-dc",
+        "label": "华为云乌兰察布数据中心 FusionPOD 液冷整机柜"
+      },
+      "value": 20.0,
+      "unit": "kW/机柜",
+      "bound": "point",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "主流机型",
+        "era": "当期",
+        "power_basis": "实际功率密度",
+        "region": "CN"
+      },
+      "as_of": "2021",
+      "evidence": {
+        "sha256": "fb3ed434cc69d2f72ad54fef774cbadb01917c8c255f7b5d4bb5cd0bba83c260",
+        "local_file": "6C_2025_2025_2022中国云数据_未署名.pdf（益企研究院《数字中国万里行·2021 中国云数据中心考察报告》）",
+        "locator": "第三章 风冷与液冷：「以华为乌兰察布云数据中心为例，机房里部署了 20 千瓦的液冷整机柜服务器 FusionPOD」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "冷板式风液混合整机柜的在用功率。[未核]"
+    },
+    {
+      "fact_id": "yq2021-huawei-songshanhu-atlas900-rack",
+      "asserter": "益企研究院",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "project",
+        "id": "huawei-songshanhu-dc",
+        "label": "华为云东莞松山湖数据中心 Atlas 900 集群机柜"
+      },
+      "value": 53.0,
+      "unit": "kW/机柜",
+      "bound": "point",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "设计目标",
+        "era": "当期",
+        "power_basis": "实际功率密度",
+        "region": "CN"
+      },
+      "as_of": "2021",
+      "evidence": {
+        "sha256": "fb3ed434cc69d2f72ad54fef774cbadb01917c8c255f7b5d4bb5cd0bba83c260",
+        "local_file": "6C_2025_2025_2022中国云数据_未署名.pdf（益企研究院《数字中国万里行·2021 中国云数据中心考察报告》）",
+        "locator": "第三章 图注：「华为云东莞松山湖数据中心部署的 Atlas 900 集群，单机柜功率达 53 千瓦，采用风液混合技术散热」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "AI 集群机柜的实际部署功率，2021 年国内已投运项目里的高位。[未核]"
+    },
+    {
+      "fact_id": "yq2021-alibaba-zhangbei-immersion-rack",
+      "asserter": "益企研究院",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "project",
+        "id": "alibaba-zhangbei-immersion",
+        "label": "阿里巴巴张北浸没式液冷机房（54U 卧置机柜）"
+      },
+      "value": 28.0,
+      "unit": "kW/机柜",
+      "bound": "point",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "设计目标",
+        "era": "当期",
+        "power_basis": "设计功率",
+        "region": "CN"
+      },
+      "as_of": "2021",
+      "evidence": {
+        "sha256": "fb3ed434cc69d2f72ad54fef774cbadb01917c8c255f7b5d4bb5cd0bba83c260",
+        "local_file": "6C_2025_2025_2022中国云数据_未署名.pdf（益企研究院《数字中国万里行·2021 中国云数据中心考察报告》）",
+        "locator": "第三章 风冷与液冷：「阿里巴巴 2018 年在河北省张家口市张北县部署了一个浸没式液冷机房，一个卧置的 54U 机柜，部署 32 台 1U 双路服务器和 4 台 4U 的 JBOD，设计功耗 28 千瓦」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**这是设计功耗不是实测**：同句给出机柜构成（54U 卧置、32 台 1U 双路服务器 + 4 台 4U JBOD），可反推单机功耗但原文未给，不代填。[未核]"
+    },
+    {
+      "fact_id": "yq2021-fusionpod-liquid-share",
+      "asserter": "益企研究院",
+      "metric_id": "cooling_capacity_ratio",
+      "entity": {
+        "type": "project",
+        "id": "huawei-wulanchabu-dc",
+        "label": "华为云乌兰察布 FusionPOD 液冷整机柜"
+      },
+      "value": 70.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "cooling_tech": "直接液冷 DLC",
+        "denominator": "总冷量",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2021",
+      "evidence": {
+        "sha256": "fb3ed434cc69d2f72ad54fef774cbadb01917c8c255f7b5d4bb5cd0bba83c260",
+        "local_file": "6C_2025_2025_2022中国云数据_未署名.pdf（益企研究院《数字中国万里行·2021 中国云数据中心考察报告》）",
+        "locator": "第三章 风冷与液冷：「20 千瓦的液冷机柜还有部分风冷（风液混合，制冷贡献大抵三七开）」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "「三七开」按液冷 7 成、风冷 3 成理解（原文未点明哪一边是七）——这是本条唯一的判断处，若反过来则应为 30%。考察记述，非厂商规格书。[未核]"
+    },
+    {
+      "fact_id": "yq2021-huawei-wulanchabu-pue",
+      "asserter": "益企研究院",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "huawei-wulanchabu-dc",
+        "label": "华为云乌兰察布预制模块化数据中心"
+      },
+      "value": 1.15,
+      "unit": "比值",
+      "bound": "point",
+      "caliber": {
+        "basis": "厂商宣称",
+        "cooling_tech": "间接蒸发冷却",
+        "climate_zone": "北方",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2021",
+      "evidence": {
+        "sha256": "fb3ed434cc69d2f72ad54fef774cbadb01917c8c255f7b5d4bb5cd0bba83c260",
+        "local_file": "6C_2025_2025_2022中国云数据_未署名.pdf（益企研究院《数字中国万里行·2021 中国云数据中心考察报告》）",
+        "locator": "第三章：「华为云乌兰察布预制模块化数据中心送风温度 25℃，回风温度 38℃，相应的，FusionCol 间接蒸发冷却机组（AHU）在室外湿球温度小于 19℃时可以只靠风机和喷淋系统为机房供冷，不用开启压缩机补冷，一年开启压缩机的时间不到 30 天，年均 PUE 可低至 1.15」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "「可低至」是最优值；配套条件是送风 25℃/回风 38℃、湿球温度 <19℃ 时免压缩机运行、全年开压缩机不到 30 天。[未核]"
+    },
+    {
+      "fact_id": "yq2021-west-hub-cluster-pue",
+      "asserter": "益企研究院",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "cn-west-hub-clusters",
+        "label": "张家口与和林格尔数据中心集群（西部枢纽典型）"
+      },
+      "value": 1.2,
+      "unit": "比值",
+      "bound": "point",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "间接蒸发冷却",
+        "climate_zone": "寒冷地区",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2021",
+      "evidence": {
+        "sha256": "fb3ed434cc69d2f72ad54fef774cbadb01917c8c255f7b5d4bb5cd0bba83c260",
+        "local_file": "6C_2025_2025_2022中国云数据_未署名.pdf（益企研究院《数字中国万里行·2021 中国云数据中心考察报告》）",
+        "locator": "第三章：「在张家口数据中心集群、和林格尔数据中心集群的数据中心，一年有 10 个月以上的时间可以使用自然冷源，年均 PUE 可达 1.2，液冷方案的节能优势并不明显」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**这是本文件的核心论断之一**：西部枢纽靠自然冷源年均 PUE 已达 1.2，液冷的节能优势因此不明显——解释了为什么 2021 年液冷仍停留在扩大实验阶段。集群级典型值而非单项目实测。[未核]"
+    },
+    {
+      "fact_id": "yq2021-huawei-wulanchabu-supply-air",
+      "asserter": "益企研究院",
+      "metric_id": "room_air_temperature",
+      "entity": {
+        "type": "project",
+        "id": "huawei-wulanchabu-dc",
+        "label": "华为云乌兰察布预制模块化数据中心"
+      },
+      "value": 25.0,
+      "unit": "℃",
+      "bound": "point",
+      "caliber": {
+        "parameter": "冷通道或机柜进风温度",
+        "tier": "未注明",
+        "bound_sense": "标称值",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2021",
+      "evidence": {
+        "sha256": "fb3ed434cc69d2f72ad54fef774cbadb01917c8c255f7b5d4bb5cd0bba83c260",
+        "local_file": "6C_2025_2025_2022中国云数据_未署名.pdf（益企研究院《数字中国万里行·2021 中国云数据中心考察报告》）",
+        "locator": "第三章：「华为云乌兰察布预制模块化数据中心送风温度 25℃，回风温度 38℃」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "送风温度实测记述。[未核]"
+    },
+    {
+      "fact_id": "yq2021-huawei-wulanchabu-return-air",
+      "asserter": "益企研究院",
+      "metric_id": "room_air_temperature",
+      "entity": {
+        "type": "project",
+        "id": "huawei-wulanchabu-dc",
+        "label": "华为云乌兰察布预制模块化数据中心"
+      },
+      "value": 38.0,
+      "unit": "℃",
+      "bound": "point",
+      "caliber": {
+        "parameter": "回风温度",
+        "tier": "未注明",
+        "bound_sense": "标称值",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2021",
+      "evidence": {
+        "sha256": "fb3ed434cc69d2f72ad54fef774cbadb01917c8c255f7b5d4bb5cd0bba83c260",
+        "local_file": "6C_2025_2025_2022中国云数据_未署名.pdf（益企研究院《数字中国万里行·2021 中国云数据中心考察报告》）",
+        "locator": "第三章：同上句「回风温度 38℃」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "回风温度；13℃ 的送回风温差远大于传统机房。[未核]"
+    },
+    {
+      "fact_id": "yq2021-sse-jinqiao-supply-air",
+      "asserter": "益企研究院",
+      "metric_id": "room_air_temperature",
+      "entity": {
+        "type": "project",
+        "id": "sse-jinqiao-dc",
+        "label": "上海证券交易所金桥数据中心"
+      },
+      "value": 22.0,
+      "unit": "℃",
+      "bound": "point",
+      "caliber": {
+        "parameter": "冷通道或机柜进风温度",
+        "tier": "未注明",
+        "bound_sense": "标称值",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2021",
+      "evidence": {
+        "sha256": "fb3ed434cc69d2f72ad54fef774cbadb01917c8c255f7b5d4bb5cd0bba83c260",
+        "local_file": "6C_2025_2025_2022中国云数据_未署名.pdf（益企研究院《数字中国万里行·2021 中国云数据中心考察报告》）",
+        "locator": "第三章：「即使是相对传统、保守的金融数据中心，也有上海证券交易所金桥数据中心这样的『异类』：送风温度 22℃，热通道温度 35℃。要知道，同期投产的某银行数据中心，冷热通道的温度还是 20℃/25℃ 的水平」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "金融行业中的高温送风案例；原文以「某银行数据中心 20℃/25℃」作对比，后者未具名、未单独录。[未核]"
+    },
+    {
+      "fact_id": "yq2021-sse-jinqiao-return-air",
+      "asserter": "益企研究院",
+      "metric_id": "room_air_temperature",
+      "entity": {
+        "type": "project",
+        "id": "sse-jinqiao-dc",
+        "label": "上海证券交易所金桥数据中心"
+      },
+      "value": 35.0,
+      "unit": "℃",
+      "bound": "point",
+      "caliber": {
+        "parameter": "回风温度",
+        "tier": "未注明",
+        "bound_sense": "标称值",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2021",
+      "evidence": {
+        "sha256": "fb3ed434cc69d2f72ad54fef774cbadb01917c8c255f7b5d4bb5cd0bba83c260",
+        "local_file": "6C_2025_2025_2022中国云数据_未署名.pdf（益企研究院《数字中国万里行·2021 中国云数据中心考察报告》）",
+        "locator": "第三章：同上句「热通道温度 35℃」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "热通道温度按回风温度口径记。[未核]"
+    },
+    {
+      "fact_id": "yq2021-cn-hyperscale-rack-power-lower",
+      "asserter": "益企研究院",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "market",
+        "id": "cn-hyperscale-rack-2021",
+        "label": "中国超大规模数据中心在用机柜（考察口径）"
+      },
+      "value": 7.2,
+      "unit": "kW/机柜",
+      "bound": "lower",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "市场普遍水平",
+        "era": "2020 年代初",
+        "power_basis": "实际功率密度",
+        "region": "CN"
+      },
+      "as_of": "2021",
+      "evidence": {
+        "sha256": "fb3ed434cc69d2f72ad54fef774cbadb01917c8c255f7b5d4bb5cd0bba83c260",
+        "local_file": "6C_2025_2025_2022中国云数据_未署名.pdf（益企研究院《数字中国万里行·2021 中国云数据中心考察报告》）",
+        "locator": "第三章 2U 与 1U：「普遍而言，在我国的超大规模数据中心里，单柜功率 7.2～8.8 千瓦（kW）已经是比较高的水平。以近年 2U 双路服务器的平均负载，这个供电能力可以支持 16～22 台」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "四年实地考察得出的在用水平，原文说这已经算「比较高」；同句给出该供电能力可支持 16~22 台 2U 双路服务器，可与机柜 U 数（腾讯云怀来瑞北 52U、UCloud 乌兰察布 47U/54U）互相印证。[未核]"
+    },
+    {
+      "fact_id": "yq2021-cn-hyperscale-rack-power-upper",
+      "asserter": "益企研究院",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "market",
+        "id": "cn-hyperscale-rack-2021",
+        "label": "中国超大规模数据中心在用机柜（考察口径）"
+      },
+      "value": 8.8,
+      "unit": "kW/机柜",
+      "bound": "upper",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "市场普遍水平",
+        "era": "2020 年代初",
+        "power_basis": "实际功率密度",
+        "region": "CN"
+      },
+      "as_of": "2021",
+      "evidence": {
+        "sha256": "fb3ed434cc69d2f72ad54fef774cbadb01917c8c255f7b5d4bb5cd0bba83c260",
+        "local_file": "6C_2025_2025_2022中国云数据_未署名.pdf（益企研究院《数字中国万里行·2021 中国云数据中心考察报告》）",
+        "locator": "第三章 2U 与 1U：「普遍而言，在我国的超大规模数据中心里，单柜功率 7.2～8.8 千瓦（kW）已经是比较高的水平。以近年 2U 双路服务器的平均负载，这个供电能力可以支持 16～22 台」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "四年实地考察得出的在用水平，原文说这已经算「比较高」；同句给出该供电能力可支持 16~22 台 2U 双路服务器，可与机柜 U 数（腾讯云怀来瑞北 52U、UCloud 乌兰察布 47U/54U）互相印证。[未核]"
     }
   ]
 }
