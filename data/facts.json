@@ -223647,6 +223647,41 @@
       },
       "bound": "point",
       "notes": "原文「prices as low as a third of a dollar」，SemiAnalysis 在测算中采用 0.33 美元/小时。"
+    },
+    {
+      "fact_id": "idc2105-ww-ssd-capacity-shipped-2021q1",
+      "metric_id": "storage_capacity_shipped",
+      "entity": {
+        "type": "market",
+        "id": "ww-ssd-shipments",
+        "label": "全球 SSD 出货容量"
+      },
+      "value": 66800.0,
+      "unit": "PB",
+      "caliber": {
+        "storage_scope": "Total",
+        "media": "Flash-SSD",
+        "product_category": "未拆分",
+        "buyer_category": "未拆分",
+        "region": "Global",
+        "basis": "第三方跟踪",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分"
+      },
+      "as_of": "2021-Q1",
+      "bound": "point",
+      "evidence": {
+        "sha256": "11ae76eb96cbac69884b13f455ad0eab06c1b115d0809f508a3bfbecdc0d5a3f",
+        "local_file": "IDC quarterly update eHDD eSSD 2021 05.pdf",
+        "locator": "PDF 第 12 页 SSD 季度页：「cQ1 2021 SSD Capacity Shipped – 66.8EB，+16% increase Q/Q；2021 cQ1 Price/GB → $0.121，Decrease of -7.4% Q/Q」（IDC Worldwide HDD and SSD Quarterly Update，2021-05）",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "原文 66.8 EB，本指标单位 PB，1 EB = 1000 PB，故 66,800 PB",
+      "corroboration": "待交叉验证",
+      "asserter": "IDC",
+      "notes": "全球 SSD（含 Commercial/Client/Enterprise 三类）季度出货容量；环比 +16%。同页 2021Q1 SSD 均价 0.121 美元/GB（环比 −7.4%）无对应指标。"
     }
   ]
 }
