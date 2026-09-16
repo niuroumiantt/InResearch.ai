@@ -228940,6 +228940,104 @@
         "hc2512-pue-coldplate-lower",
         "hc2512-pue-coldplate-upper"
       ]
+    },
+    {
+      "fact_id": "hwpue-case-baseline-annual-pue",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "huawei-aipue-case-baseline",
+        "label": "华为 AI PUE 服务案例（优化前，某基地三期）"
+      },
+      "value": 1.42,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "改造",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ee359d2f3007c53e8fc1c5e3823d8378d680d7b757b600774c60d4ff05d5eaa6",
+        "local_file": "2025_1.一张图看懂华为数据中心Facility-AI-PUE节能优化服务（预览版）.pdf",
+        "locator": "第 4 页「成功案例」：「xx 基地三期，1500 柜，单柜密度 4kW/柜，43%IT 负载率，2N 供电系统，N+1 冷冻水系统」，配「结果对比」表：全年 PUE 无 PUE 优化服务 1.42、有 PUE 优化服务 1.304、PUE 降低 0.116（本条为读图录入，原件无文本层）",
+        "grade": "S3",
+        "originator": "华为《数据中心 Facility AI PUE 节能优化服务》宣传单页（版权页标 2019，资料库归档年份 2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "优化前基线。**案例主体被原文匿名为「xx 基地」，无法定位到具体设施**，entity 只能按「华为 AI PUE 服务案例」立。案例条件：1500 柜、单柜密度 4kW/柜、43% IT 负载率、2N 供电、N+1 冷冻水系统——**43% 的负载率偏低，PUE 在低负载下天然偏高，这组数不能与满载运行的机房比**。basis 记「运行值」：原文写「全年 PUE」，是运行结果不是设计值。**这是厂商自述的服务效果，优化前后两条的差 0.116 是其宣传口径。** as_of 取版权页年份 2019（原件未标案例年份）。冷却方式记「未注明」：只知是 N+1 冷冻水系统（即水冷冷冻水），但原文未说明末端形式。",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "hwpue-case-optimized-annual-pue",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "huawei-aipue-case-optimized",
+        "label": "华为 AI PUE 服务案例（优化后，某基地三期）"
+      },
+      "value": 1.304,
+      "unit": "比值",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "改造",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ee359d2f3007c53e8fc1c5e3823d8378d680d7b757b600774c60d4ff05d5eaa6",
+        "local_file": "2025_1.一张图看懂华为数据中心Facility-AI-PUE节能优化服务（预览版）.pdf",
+        "locator": "第 4 页「成功案例」：「xx 基地三期，1500 柜，单柜密度 4kW/柜，43%IT 负载率，2N 供电系统，N+1 冷冻水系统」，配「结果对比」表：全年 PUE 无 PUE 优化服务 1.42、有 PUE 优化服务 1.304、PUE 降低 0.116（本条为读图录入，原件无文本层）",
+        "grade": "S3",
+        "originator": "华为《数据中心 Facility AI PUE 节能优化服务》宣传单页（版权页标 2019，资料库归档年份 2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "优化后结果，较优化前降低 0.116（1.42→1.304，降幅 8.2%）。**案例主体被原文匿名为「xx 基地」，无法定位到具体设施**，entity 只能按「华为 AI PUE 服务案例」立。案例条件：1500 柜、单柜密度 4kW/柜、43% IT 负载率、2N 供电、N+1 冷冻水系统——**43% 的负载率偏低，PUE 在低负载下天然偏高，这组数不能与满载运行的机房比**。basis 记「运行值」：原文写「全年 PUE」，是运行结果不是设计值。**这是厂商自述的服务效果，优化前后两条的差 0.116 是其宣传口径。** **两条用不同 entity 分开，是因为本指标没有「有无节能服务」这一维，同一设施的前后对照否则会撞同一个 claim_key。**",
+      "asserter": "华为"
+    },
+    {
+      "fact_id": "hwpue-case-rack-power-design",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "project",
+        "id": "huawei-aipue-case-baseline",
+        "label": "华为 AI PUE 服务案例（某基地三期）"
+      },
+      "value": 4.0,
+      "unit": "kW/架",
+      "caliber": {
+        "basis": "设计取值",
+        "scope": "全场平均",
+        "region": "CN"
+      },
+      "as_of": "2019",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ee359d2f3007c53e8fc1c5e3823d8378d680d7b757b600774c60d4ff05d5eaa6",
+        "local_file": "2025_1.一张图看懂华为数据中心Facility-AI-PUE节能优化服务（预览版）.pdf",
+        "locator": "第 4 页「成功案例」：「xx 基地三期，1500 柜，单柜密度 4kW/柜，43%IT 负载率，2N 供电系统，N+1 冷冻水系统」，配「结果对比」表：全年 PUE 无 PUE 优化服务 1.42、有 PUE 优化服务 1.304、PUE 降低 0.116（本条为读图录入，原件无文本层）",
+        "grade": "S3",
+        "originator": "华为《数据中心 Facility AI PUE 节能优化服务》宣传单页（版权页标 2019，资料库归档年份 2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**4kW/柜是这一代通用机房的典型密度**，与同库 AI 机柜 120-140kW 差一个半数量级——引用时注意这是 2019 年前后的存量通用数据中心，不是智算机房。scope 记「全场平均」：原文写「1500 柜，单柜密度 4kW/柜」，是全场统一取值而非单柜上限。",
+      "asserter": "华为"
     }
   ]
 }
