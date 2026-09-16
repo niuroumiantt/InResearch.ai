@@ -221172,6 +221172,39 @@
       "corroboration": "待交叉验证",
       "asserter": "Nebius",
       "notes": "到 2025 年底预期的已并网（connected）电力容量；同处「2026 年电力容量目标 1GW」为目标值，status 归类不明（未说明是规划、电力申请还是已锁定），未录。region 未披露：原文未说明站点所在地域（Nebius 站点分布于欧美）。"
+    },
+    {
+      "fact_id": "fudan2508-global-dc-electricity-2021",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenters",
+        "label": "全球数据中心"
+      },
+      "value": 200.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "未注明",
+        "sector_basis": "数据中心",
+        "region": "Global",
+        "basis": "第三方估算"
+      },
+      "as_of": "2021",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ee8160cb252adb9e5929a705db046ff4f52fd987ec8e91ba3087cd519626c101",
+        "local_file": "20250924-人工智能与先进计算融合创新学术会议：2025人工智能与先进计算融合发展路径研究蓝皮书(38页).pdf",
+        "locator": "PDF 第 8 页「(2) 数据密集的人工智能需要新的计算范式」：「2021 年数据中心每年使用 200TWh 的能量，预计到今年年底还会增长一个数量级」",
+        "grade": "S3",
+        "originator": "复旦大学（主编单位）等《人工智能与先进计算融合发展路径研究蓝皮书》，2025-08"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "复旦大学",
+      "notes": "原文直接陈述、未注出处，按 PR #197 判据由撰写方担断言者，basis 记第三方估算而非实测，[未核]。同句「预计到今年年底还会增长一个数量级」量级说法含糊（且「今年」指代不明），不记。全球口径，energy_scope 未注明。"
     }
   ]
 }
