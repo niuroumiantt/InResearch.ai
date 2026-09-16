@@ -237407,6 +237407,96 @@
       "corroboration": "待交叉验证",
       "notes": "片区在运营算力规模（精度未注明）。**与机架规模对照可算出每万架的算力密度**：中卫 8.7 万架/1620 PFLOPS、张北 7.9 万架/1360 PFLOPS、贵安 15.3 万架/1005 PFLOPS、集宁 3.8 万架/607 PFLOPS——**贵安机架最多但算力最低，说明其以通用算力为主**。**PUE 1.2 为六片区中最低**；承接北京数据中心溢出需求、深度绑定阿里巴巴。",
       "asserter": "绿色算力指数研究报告"
+    },
+    {
+      "fact_id": "ocp-heatreuse-de-2026",
+      "metric_id": "waste_heat_reuse_policy_threshold",
+      "entity": {
+        "type": "policy",
+        "id": "de-energy-efficiency-act-2023",
+        "label": "德国《能源效率法》（2023）余热利用要求"
+      },
+      "value": 10.0,
+      "unit": "%",
+      "caliber": {
+        "policy_type": "强制线",
+        "region_scope": "全国",
+        "region": "EU"
+      },
+      "as_of": "2026E@2024",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "7814cecb1af426b755da69103b24e371483cb08f3446bde792ff9b483eb2ed97",
+        "local_file": "5393 - Policies To Accelerate Data Center Heat Reuse.pdf",
+        "locator": "第 7 页「Standards and Requirements: Germany」：「2023 Energy Efficiency Act……Mandates data centers in operation in July 2026 to have a minimum of 10% reused energy. Increases to a minimum of 15% in July 2027 and a minimum of 20% in July 2028」",
+        "grade": "S4",
+        "originator": "OCP《Policies to Accelerate Data Center Heat Reuse》工作流更新（David Gardiner and Associates、NREL Otto Van Geet、AQ Compute Jaime Comella；白皮书 2024 年 4 月发布）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**德国《能源效率法》（2023）对新建数据中心的余热利用强制门槛，按投运时点分三档**：2026 年 7 月起投运 ≥10%、2027 年 7 月起 ≥15%、2028 年 7 月起 ≥20%。**三条必须成套读**——单引一条会读成「德国要求 10%」而错过逐年收紧的节奏。该法同时对既有数据中心设立能效要求。 region 记 EU（枚举无 DE），region_scope 记「全国」指德国全国；policy_type 为强制线。",
+      "asserter": "OCP"
+    },
+    {
+      "fact_id": "ocp-heatreuse-de-2027",
+      "metric_id": "waste_heat_reuse_policy_threshold",
+      "entity": {
+        "type": "policy",
+        "id": "de-energy-efficiency-act-2023",
+        "label": "德国《能源效率法》（2023）余热利用要求"
+      },
+      "value": 15.0,
+      "unit": "%",
+      "caliber": {
+        "policy_type": "强制线",
+        "region_scope": "全国",
+        "region": "EU"
+      },
+      "as_of": "2027E@2024",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "7814cecb1af426b755da69103b24e371483cb08f3446bde792ff9b483eb2ed97",
+        "local_file": "5393 - Policies To Accelerate Data Center Heat Reuse.pdf",
+        "locator": "第 7 页「Standards and Requirements: Germany」：「2023 Energy Efficiency Act……Mandates data centers in operation in July 2026 to have a minimum of 10% reused energy. Increases to a minimum of 15% in July 2027 and a minimum of 20% in July 2028」",
+        "grade": "S4",
+        "originator": "OCP《Policies to Accelerate Data Center Heat Reuse》工作流更新（David Gardiner and Associates、NREL Otto Van Geet、AQ Compute Jaime Comella；白皮书 2024 年 4 月发布）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**德国《能源效率法》（2023）对新建数据中心的余热利用强制门槛，按投运时点分三档**：2026 年 7 月起投运 ≥10%、2027 年 7 月起 ≥15%、2028 年 7 月起 ≥20%。**三条必须成套读**——单引一条会读成「德国要求 10%」而错过逐年收紧的节奏。该法同时对既有数据中心设立能效要求。 region 记 EU（枚举无 DE），region_scope 记「全国」指德国全国；policy_type 为强制线。",
+      "asserter": "OCP"
+    },
+    {
+      "fact_id": "ocp-heatreuse-de-2028",
+      "metric_id": "waste_heat_reuse_policy_threshold",
+      "entity": {
+        "type": "policy",
+        "id": "de-energy-efficiency-act-2023",
+        "label": "德国《能源效率法》（2023）余热利用要求"
+      },
+      "value": 20.0,
+      "unit": "%",
+      "caliber": {
+        "policy_type": "强制线",
+        "region_scope": "全国",
+        "region": "EU"
+      },
+      "as_of": "2028E@2024",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "7814cecb1af426b755da69103b24e371483cb08f3446bde792ff9b483eb2ed97",
+        "local_file": "5393 - Policies To Accelerate Data Center Heat Reuse.pdf",
+        "locator": "第 7 页「Standards and Requirements: Germany」：「2023 Energy Efficiency Act……Mandates data centers in operation in July 2026 to have a minimum of 10% reused energy. Increases to a minimum of 15% in July 2027 and a minimum of 20% in July 2028」",
+        "grade": "S4",
+        "originator": "OCP《Policies to Accelerate Data Center Heat Reuse》工作流更新（David Gardiner and Associates、NREL Otto Van Geet、AQ Compute Jaime Comella；白皮书 2024 年 4 月发布）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**德国《能源效率法》（2023）对新建数据中心的余热利用强制门槛，按投运时点分三档**：2026 年 7 月起投运 ≥10%、2027 年 7 月起 ≥15%、2028 年 7 月起 ≥20%。**三条必须成套读**——单引一条会读成「德国要求 10%」而错过逐年收紧的节奏。该法同时对既有数据中心设立能效要求。 region 记 EU（枚举无 DE），region_scope 记「全国」指德国全国；policy_type 为强制线。",
+      "asserter": "OCP"
     }
   ]
 }
