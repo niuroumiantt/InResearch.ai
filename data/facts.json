@@ -221993,6 +221993,37 @@
       "corroboration": "待交叉验证",
       "asserter": "TrendForce",
       "notes": "区间按两端记，下跌记负值（原文 down X~Y% 即 −Y%~−X%）。FMS 2025（2025-08-05）TrendForce 资深副总 Avril Wu 演讲；2025Q1/Q2 视为已发生，Q3 起为预测。2026Q3 原文「mostly flat」无数值区间，不记。"
+    },
+    {
+      "fact_id": "yole2505-hbm-revenue-2024",
+      "metric_id": "hbm_demand_value",
+      "entity": {
+        "type": "market",
+        "id": "global-hbm",
+        "label": "全球 HBM 市场"
+      },
+      "value": 174.0,
+      "unit": "亿美元",
+      "caliber": {
+        "generation": "合计",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2024@2025-05",
+      "bound": "point",
+      "supersedes": "yole2503-hbm-revenue-2024",
+      "evidence": {
+        "sha256": "3ad4c3cafa41e15f1e925af6d6f926e5f969356f964aedb46a3f50498be2db09",
+        "local_file": "20250807_BMKT-301-1_Lau.pdf",
+        "locator": "PDF 第 6 页「MEMORY MARKET FORECAST (2024-2030)」：2024 年存储市场 $170B，其中 DRAM $97B（+87% YoY）内含「HBM: $17.4B」；2030 年 $302B，其中 DRAM $194B（CAGR24-30 ~12%）、HBM $98B（CAGR24-30 ~33%）。图注「©Yole Group May 2025」",
+        "grade": "S2",
+        "originator": "Yole Group（2025-05 版数据），FMS 2025（2025-08-07）Josephine Lau 演讲"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "Yole",
+      "notes": "Yole 2025-05 版把 2024 年 HBM 收入记为 174 亿美元，库内 yole2503-hbm-revenue-2024 为同一断言者 2025-03 版的 170 亿美元——按版本关系记 as_of 2024@2025-05 并 supersedes 旧版，旧条保留。同页 2030E HBM 980 亿美元与库内 yole2503-hbm-revenue-2030e 同值，不重复录。"
     }
   ]
 }
