@@ -229618,6 +229618,200 @@
       "corroboration": "待交叉验证",
       "notes": "**这是 Supermicro 的 H100 机柜算例，不是市场平均**：8 台 GPU 服务器/柜口径下，液冷单机柜芯片功耗 50.4kW、风冷 56kW；叠加 PUE（1.1 vs 1.5）后总功耗 55.44kW vs 84kW。电价假设 0.12 美元/kWh（原文写「美元/kW」，应为笔误）。三年节省超 6 万美元，扣除高出的约 3 万美元建设费后净省约 3 万美元。 region 未披露：原文未限定地域（电价 0.12 美元/kWh 暗示北美，但未明说）。",
       "asserter": "Supermicro"
+    },
+    {
+      "fact_id": "hxzq2404-cn-liquid-cooling-market-2023",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "cn-liquid-cooling-market",
+        "label": "中国液冷数据中心市场"
+      },
+      "value": 24.3,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "全国液冷",
+        "currency": "人民币",
+        "cooling_route": "未注明",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2023",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19caf98ec8cd8a334dc30cc9eaa24e932091428822f3247387620c20365b2514",
+        "local_file": "AIGC行业深度报告（16）：液冷，AI时代的下一个“光模块”.pdf",
+        "locator": "第 23 页「液冷市场规模预测」表：「液冷市场合计（亿元）2023 = 24.30、2024 = 208.17、2025 = 1700.23，同比增速 756.6%、716.8%」，资料来源栏为中国信息通信研究院、知乎、华西证券研究所",
+        "grade": "S4",
+        "originator": "华西证券《AIGC 行业深度报告（16）：液冷，AI 时代的下一个「光模块」》（2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这组数与库内所有同口径中国液冷市场规模都不在一个量级**：信通院 2024 年 184 亿元、科智咨询 2027 年才 1020 亿元、国信测算 2027 年 237.7 亿元，而本条给 2025 年 1700.23 亿元。增速 756.6%／716.8% 意味着两年 70 倍——**这是一个需要核查的离群值，不是可直接引用的市场规模**。从表可见其测算只列了「通用服务器增量液冷」一块（2025 年仅 32.38 亿元），合计 1700 亿元的其余部分（AI 服务器侧）原表未在本页展开，两张表对不上。币种人民币。渗透率假设：通用服务器 2023/2024/2025 为 5%/10%/20%，冷板式占 95%、浸没式 5%；单体价 1 万元/台（浸没 1.2 万元）。",
+      "asserter": "华西证券"
+    },
+    {
+      "fact_id": "hxzq2404-cn-liquid-cooling-market-2024e",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "cn-liquid-cooling-market",
+        "label": "中国液冷数据中心市场"
+      },
+      "value": 208.17,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "全国液冷",
+        "currency": "人民币",
+        "cooling_route": "未注明",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2024E@2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19caf98ec8cd8a334dc30cc9eaa24e932091428822f3247387620c20365b2514",
+        "local_file": "AIGC行业深度报告（16）：液冷，AI时代的下一个“光模块”.pdf",
+        "locator": "第 23 页「液冷市场规模预测」表：「液冷市场合计（亿元）2023 = 24.30、2024 = 208.17、2025 = 1700.23，同比增速 756.6%、716.8%」，资料来源栏为中国信息通信研究院、知乎、华西证券研究所",
+        "grade": "S4",
+        "originator": "华西证券《AIGC 行业深度报告（16）：液冷，AI 时代的下一个「光模块」》（2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这组数与库内所有同口径中国液冷市场规模都不在一个量级**：信通院 2024 年 184 亿元、科智咨询 2027 年才 1020 亿元、国信测算 2027 年 237.7 亿元，而本条给 2025 年 1700.23 亿元。增速 756.6%／716.8% 意味着两年 70 倍——**这是一个需要核查的离群值，不是可直接引用的市场规模**。从表可见其测算只列了「通用服务器增量液冷」一块（2025 年仅 32.38 亿元），合计 1700 亿元的其余部分（AI 服务器侧）原表未在本页展开，两张表对不上。币种人民币。渗透率假设：通用服务器 2023/2024/2025 为 5%/10%/20%，冷板式占 95%、浸没式 5%；单体价 1 万元/台（浸没 1.2 万元）。",
+      "asserter": "华西证券"
+    },
+    {
+      "fact_id": "hxzq2404-cn-liquid-cooling-market-2025e",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "industry",
+        "id": "cn-liquid-cooling-market",
+        "label": "中国液冷数据中心市场"
+      },
+      "value": 1700.23,
+      "unit": "亿（原币）",
+      "caliber": {
+        "market_scope": "全国液冷",
+        "currency": "人民币",
+        "cooling_route": "未注明",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "19caf98ec8cd8a334dc30cc9eaa24e932091428822f3247387620c20365b2514",
+        "local_file": "AIGC行业深度报告（16）：液冷，AI时代的下一个“光模块”.pdf",
+        "locator": "第 23 页「液冷市场规模预测」表：「液冷市场合计（亿元）2023 = 24.30、2024 = 208.17、2025 = 1700.23，同比增速 756.6%、716.8%」，资料来源栏为中国信息通信研究院、知乎、华西证券研究所",
+        "grade": "S4",
+        "originator": "华西证券《AIGC 行业深度报告（16）：液冷，AI 时代的下一个「光模块」》（2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这组数与库内所有同口径中国液冷市场规模都不在一个量级**：信通院 2024 年 184 亿元、科智咨询 2027 年才 1020 亿元、国信测算 2027 年 237.7 亿元，而本条给 2025 年 1700.23 亿元。增速 756.6%／716.8% 意味着两年 70 倍——**这是一个需要核查的离群值，不是可直接引用的市场规模**。从表可见其测算只列了「通用服务器增量液冷」一块（2025 年仅 32.38 亿元），合计 1700 亿元的其余部分（AI 服务器侧）原表未在本页展开，两张表对不上。币种人民币。渗透率假设：通用服务器 2023/2024/2025 为 5%/10%/20%，冷板式占 95%、浸没式 5%；单体价 1 万元/台（浸没 1.2 万元）。",
+      "asserter": "华西证券"
+    },
+    {
+      "fact_id": "hxzq2404-aircooled-chip-limit-800w",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "industry",
+        "id": "aircooling-chip-limit",
+        "label": "风冷可承受的单芯片散热功率上限"
+      },
+      "value": 800.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "风冷散热上限（不限型号）",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "未披露"
+      },
+      "as_of": "2024",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "19caf98ec8cd8a334dc30cc9eaa24e932091428822f3247387620c20365b2514",
+        "local_file": "AIGC行业深度报告（16）：液冷，AI时代的下一个“光模块”.pdf",
+        "locator": "第 2 页核心逻辑：「风冷的极限芯片散热功率是 800W，英伟达部分产品已经突破风冷能力上线，例如 GH200 以及最新款 B200、GB200」",
+        "grade": "S4",
+        "originator": "华西证券《AIGC 行业深度报告（16）：液冷，AI 时代的下一个「光模块」》（2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这不是某颗芯片的 TDP，而是「风冷能压住的单芯片功率上限」**，借 chip_design_spec 的 TDP(W) 参数存放，product 维记「风冷散热上限（不限型号）」以免与真实型号混淆。**与库内机柜级的风冷上限（20/30-40/30-50/40-60kW 那一族）是两个层级的约束，不要混用。**region 未披露：原文未限定地域。",
+      "asserter": "华西证券"
+    },
+    {
+      "fact_id": "hxzq2404-ai-rack-density-2025e-lower",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "industry",
+        "id": "cn-ai-cluster-rack",
+        "label": "AI 集群机柜（2025 年展望）"
+      },
+      "value": 20.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "市场普遍水平",
+        "era": "路线图目标",
+        "power_basis": "设计功率",
+        "region": "未披露"
+      },
+      "as_of": "2025E@2024",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "19caf98ec8cd8a334dc30cc9eaa24e932091428822f3247387620c20365b2514",
+        "local_file": "AIGC行业深度报告（16）：液冷，AI时代的下一个“光模块”.pdf",
+        "locator": "第 2 页核心逻辑：「此外单机柜密度来说，2025 年 AI 集群算力单机柜密度将有望到 20-50kW，也远远超出了风冷的上限」",
+        "grade": "S4",
+        "originator": "华西证券《AIGC 行业深度报告（16）：液冷，AI 时代的下一个「光模块」》（2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是 2024 年对 2025 年的展望，不是出货实测**；era 记「路线图目标」。与库内 NVL72 类 120-145kW 差一个数量级——原文说的是 AI 集群的普遍水平，不是旗舰整机柜。region 未披露：原文未限定地域。",
+      "asserter": "华西证券"
+    },
+    {
+      "fact_id": "hxzq2404-ai-rack-density-2025e-upper",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "industry",
+        "id": "cn-ai-cluster-rack",
+        "label": "AI 集群机柜（2025 年展望）"
+      },
+      "value": 50.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "市场普遍水平",
+        "era": "路线图目标",
+        "power_basis": "设计功率",
+        "region": "未披露"
+      },
+      "as_of": "2025E@2024",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "19caf98ec8cd8a334dc30cc9eaa24e932091428822f3247387620c20365b2514",
+        "local_file": "AIGC行业深度报告（16）：液冷，AI时代的下一个“光模块”.pdf",
+        "locator": "第 2 页核心逻辑：「此外单机柜密度来说，2025 年 AI 集群算力单机柜密度将有望到 20-50kW，也远远超出了风冷的上限」",
+        "grade": "S4",
+        "originator": "华西证券《AIGC 行业深度报告（16）：液冷，AI 时代的下一个「光模块」》（2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是 2024 年对 2025 年的展望，不是出货实测**；era 记「路线图目标」。与库内 NVL72 类 120-145kW 差一个数量级——原文说的是 AI 集群的普遍水平，不是旗舰整机柜。region 未披露：原文未限定地域。",
+      "asserter": "华西证券"
     }
   ]
 }
