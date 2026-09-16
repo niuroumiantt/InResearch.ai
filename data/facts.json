@@ -236333,6 +236333,99 @@
       "corroboration": "待交叉验证",
       "notes": "原文写「MFU 算力超 35%」，记为下界。**这是国产算力在中国移动震泽 MaaS 平台上的 MFU（模型算力利用率）**，与传统模式 GPU 利用率 <30% 不是一个指标：**MFU 衡量的是训练时实际达到的算力占理论峰值的比例，GPU 利用率衡量的是卡被占用的时间比例**，两者绝不可互换。配套：该平台称降低国产算力成本达 35%、故障识别准确率超 85%，依托 N+X 万卡级智算资源布局。 cluster_scale 记「万卡」：原文称依托 N+X 万卡级智算资源布局。",
       "asserter": "中国移动"
+    },
+    {
+      "fact_id": "sa-tariff-optics-cost-increase-lower",
+      "metric_id": "dc_build_cost_inflation",
+      "entity": {
+        "type": "industry",
+        "id": "us-optical-module-import",
+        "label": "美国进口光模块（关税影响下的成本）"
+      },
+      "value": 25.0,
+      "unit": "%",
+      "caliber": {
+        "window": "本年度预测",
+        "market": "美国进口光模块",
+        "region": "US",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "41d10832bf124a66075ffa3cc2518dd61589e7059a01e4bce957207ac18eec37",
+        "local_file": "Tariff Armageddon_ _ GPU Loopholes, Mexico Supply Chain Shift, Wafer Fab Equipment Vulnerabilities, Optical Module Pricing Surge, Datacenter Equipment – SemiAnalysis.pdf",
+        "locator": "第 1 页 On a micro level：「GPU servers are largely exempted from tariffs……Datacenter construction costs could increase by mid-to-high single digits – but the TCO impact for GPU cloud operators is likely less than 2%. Wafer fabrication equipment will be 15% higher for US fabs……Optical module costs will increase by 25-40%」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Tariff Armageddon: GPU Loopholes, Mexico Supply Chain Shift, Wafer Fab Equipment Vulnerabilities, Optical Module Pricing Surge, Datacenter Equipment》（2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是关税导致的光模块成本上升幅度（25-40%），借 dc_build_cost_inflation 存放——该指标本意是数据中心建造成本通胀，market 维为自由文本，已写明「美国进口光模块」**，引用时须看本注，勿与建造成本混读。测算基础：2025-04-02 首轮关税税率 泰国 37%、越南 46%、中国 125%、中国台湾 32%、马来西亚 24%、墨西哥 0%（净成本 50% 以上来自墨西哥时），按各地对美出口份额加权得光模块综合税率 38%（剔除中国后 27%）。**同一段还给出两个更重要的判断：数据中心建造成本涨中到高个位数、但对 GPU 云运营商的 TCO 影响不到 2%；美国晶圆厂的设备成本将高 15%。**",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa-tariff-optics-cost-increase-upper",
+      "metric_id": "dc_build_cost_inflation",
+      "entity": {
+        "type": "industry",
+        "id": "us-optical-module-import",
+        "label": "美国进口光模块（关税影响下的成本）"
+      },
+      "value": 40.0,
+      "unit": "%",
+      "caliber": {
+        "window": "本年度预测",
+        "market": "美国进口光模块",
+        "region": "US",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2025",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "41d10832bf124a66075ffa3cc2518dd61589e7059a01e4bce957207ac18eec37",
+        "local_file": "Tariff Armageddon_ _ GPU Loopholes, Mexico Supply Chain Shift, Wafer Fab Equipment Vulnerabilities, Optical Module Pricing Surge, Datacenter Equipment – SemiAnalysis.pdf",
+        "locator": "第 1 页 On a micro level：「GPU servers are largely exempted from tariffs……Datacenter construction costs could increase by mid-to-high single digits – but the TCO impact for GPU cloud operators is likely less than 2%. Wafer fabrication equipment will be 15% higher for US fabs……Optical module costs will increase by 25-40%」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Tariff Armageddon: GPU Loopholes, Mexico Supply Chain Shift, Wafer Fab Equipment Vulnerabilities, Optical Module Pricing Surge, Datacenter Equipment》（2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是关税导致的光模块成本上升幅度（25-40%），借 dc_build_cost_inflation 存放——该指标本意是数据中心建造成本通胀，market 维为自由文本，已写明「美国进口光模块」**，引用时须看本注，勿与建造成本混读。测算基础：2025-04-02 首轮关税税率 泰国 37%、越南 46%、中国 125%、中国台湾 32%、马来西亚 24%、墨西哥 0%（净成本 50% 以上来自墨西哥时），按各地对美出口份额加权得光模块综合税率 38%（剔除中国后 27%）。**同一段还给出两个更重要的判断：数据中心建造成本涨中到高个位数、但对 GPU 云运营商的 TCO 影响不到 2%；美国晶圆厂的设备成本将高 15%。**区间上界。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "sa-tariff-us-dc-construction-cost-increase",
+      "metric_id": "dc_build_cost_inflation",
+      "entity": {
+        "type": "industry",
+        "id": "us-datacenter-construction",
+        "label": "美国数据中心建造成本（关税影响）"
+      },
+      "value": 5.0,
+      "unit": "%",
+      "caliber": {
+        "window": "本年度预测",
+        "market": "美国数据中心建造",
+        "region": "US",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "41d10832bf124a66075ffa3cc2518dd61589e7059a01e4bce957207ac18eec37",
+        "local_file": "Tariff Armageddon_ _ GPU Loopholes, Mexico Supply Chain Shift, Wafer Fab Equipment Vulnerabilities, Optical Module Pricing Surge, Datacenter Equipment – SemiAnalysis.pdf",
+        "locator": "第 1 页 On a micro level：「GPU servers are largely exempted from tariffs……Datacenter construction costs could increase by mid-to-high single digits – but the TCO impact for GPU cloud operators is likely less than 2%. Wafer fabrication equipment will be 15% higher for US fabs……Optical module costs will increase by 25-40%」",
+        "grade": "S3",
+        "originator": "SemiAnalysis《Tariff Armageddon: GPU Loopholes, Mexico Supply Chain Shift, Wafer Fab Equipment Vulnerabilities, Optical Module Pricing Surge, Datacenter Equipment》（2025）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文用词是「mid-to-high single digits」（中到高个位数），本条取 5% 作为下界**——这是对模糊表述的保守落点，**上界未记，因为「high single digits」的具体数原文没给**。**关键配套判断：尽管建造成本上涨，对 GPU 云运营商的 TCO 影响不到 2%**——原因是 GPU 服务器本身基本豁免关税，而机电与土建在 GPU 云 TCO 中占比有限。",
+      "asserter": "SemiAnalysis"
     }
   ]
 }
