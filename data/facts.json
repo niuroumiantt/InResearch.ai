@@ -243867,6 +243867,610 @@
       },
       "depth": "精读",
       "notes": "在用数据中心 1641 个的总装机规模；同句另给规划在建 437 个、规划装机约 1000 万台——在建规划量与在用存量相当，是 2016-2018 年那一轮建设潮的量级注脚。[未核]"
+    },
+    {
+      "fact_id": "caict2018-global-racks-2017",
+      "asserter": "中国信通院",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "market",
+        "id": "global-datacenter-market",
+        "label": "全球数据中心（行业口径）"
+      },
+      "value": 493.3,
+      "unit": "万标准机架",
+      "bound": "point",
+      "caliber": {
+        "counting": "物理机柜",
+        "region": "Global"
+      },
+      "as_of": "2017-12",
+      "evidence": {
+        "sha256": "e23bde17284d37c168a1b2e2824dedae5dfd4507ca7abc25f4b1fe528e7170f9",
+        "local_file": "中国信通院--2018数据中心白皮书.pdf",
+        "locator": "第一章：「2017 年底全球部署机架数达到 493.3 万架，安装服务器超过 5500 万台，预计 2020 年机架数将超过 498 万，服务器超过 6200 万台」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "全球口径的机架总数，与我国同期 166 万架相比约 3 倍。原文未说明是否折算标准机架，按物理机柜记。[未核]"
+    },
+    {
+      "fact_id": "caict2018-global-racks-2020e",
+      "asserter": "中国信通院",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "market",
+        "id": "global-datacenter-market",
+        "label": "全球数据中心（行业口径）"
+      },
+      "value": 498.0,
+      "unit": "万标准机架",
+      "bound": "lower",
+      "caliber": {
+        "counting": "物理机柜",
+        "region": "Global"
+      },
+      "as_of": "2020E@2018",
+      "evidence": {
+        "sha256": "e23bde17284d37c168a1b2e2824dedae5dfd4507ca7abc25f4b1fe528e7170f9",
+        "local_file": "中国信通院--2018数据中心白皮书.pdf",
+        "locator": "第一章：「2017 年底全球部署机架数达到 493.3 万架，安装服务器超过 5500 万台，预计 2020 年机架数将超过 498 万，服务器超过 6200 万台」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "「超过 498 万」记下界。**三年只增 1%——这条预测把全球机架数看作近乎停滞**，与同期中国机架数的高速增长形成强烈反差，是 2018 年时点的判断。[未核]"
+    },
+    {
+      "fact_id": "caict2018-global-servers-2017",
+      "asserter": "中国信通院",
+      "metric_id": "installed_server_base",
+      "entity": {
+        "type": "market",
+        "id": "global-datacenter-market",
+        "label": "全球数据中心（行业口径）"
+      },
+      "value": 5500.0,
+      "unit": "万台",
+      "bound": "lower",
+      "caliber": {
+        "provider_tier": "未分层",
+        "counterparty_role": "全市场（未分侧）",
+        "region": "Global",
+        "basis": "实测"
+      },
+      "as_of": "2017-12",
+      "evidence": {
+        "sha256": "e23bde17284d37c168a1b2e2824dedae5dfd4507ca7abc25f4b1fe528e7170f9",
+        "local_file": "中国信通院--2018数据中心白皮书.pdf",
+        "locator": "第一章：「2017 年底全球部署机架数达到 493.3 万架，安装服务器超过 5500 万台，预计 2020 年机架数将超过 498 万，服务器超过 6200 万台」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "「超过 5500 万台」记下界。 [未核]"
+    },
+    {
+      "fact_id": "caict2018-global-servers-2020e",
+      "asserter": "中国信通院",
+      "metric_id": "installed_server_base",
+      "entity": {
+        "type": "market",
+        "id": "global-datacenter-market",
+        "label": "全球数据中心（行业口径）"
+      },
+      "value": 6200.0,
+      "unit": "万台",
+      "bound": "lower",
+      "caliber": {
+        "provider_tier": "未分层",
+        "counterparty_role": "全市场（未分侧）",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2020E@2018",
+      "evidence": {
+        "sha256": "e23bde17284d37c168a1b2e2824dedae5dfd4507ca7abc25f4b1fe528e7170f9",
+        "local_file": "中国信通院--2018数据中心白皮书.pdf",
+        "locator": "第一章：「2017 年底全球部署机架数达到 493.3 万架，安装服务器超过 5500 万台，预计 2020 年机架数将超过 498 万，服务器超过 6200 万台」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "「超过 6200 万台」记下界；三年增约 13%，与机架数近乎停滞的判断并不一致（单机架装机密度上升可解释一部分）。 [未核]"
+    },
+    {
+      "fact_id": "caict2018-global-dc-service-revenue-2018e",
+      "asserter": "中国信通院",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "market",
+        "id": "global-datacenter-market",
+        "label": "全球数据中心产业（市场规模）"
+      },
+      "value": 514.2,
+      "unit": "亿（原币）",
+      "bound": "point",
+      "caliber": {
+        "service_scope": "IDC 服务（含托管与增值）",
+        "operator_type": "全市场",
+        "region": "Global",
+        "basis": "预测",
+        "currency": "美元"
+      },
+      "as_of": "2018E@2018",
+      "evidence": {
+        "sha256": "e23bde17284d37c168a1b2e2824dedae5dfd4507ca7abc25f4b1fe528e7170f9",
+        "local_file": "中国信通院--2018数据中心白皮书.pdf",
+        "locator": "第一章：「2017 年全球数据中心市场规模近 465.5 亿美元（仅包括数据中心基础设施租赁收入，不包括云服务等收入），比 2016 年增长 10.7%，预计 2018 年将达到 514 亿美元」（图中标 514.2）",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**口径写得很明确：仅数据中心基础设施租赁收入，不含云服务**——这正是它比科智咨询同年全球 534.7 亿美元低的原因。库内已有同一序列的 2017 年 465.5 亿美元（niisa2023 转述），本条补 2018 年预测。[未核]"
+    },
+    {
+      "fact_id": "caict2018-cn-large-plus-racks-2017",
+      "asserter": "中国信通院",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "market",
+        "id": "cn-large-plus-dc",
+        "label": "中国大型以上数据中心"
+      },
+      "value": 82.0,
+      "unit": "万标准机架",
+      "bound": "lower",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2017-12",
+      "evidence": {
+        "sha256": "e23bde17284d37c168a1b2e2824dedae5dfd4507ca7abc25f4b1fe528e7170f9",
+        "local_file": "中国信通院--2018数据中心白皮书.pdf",
+        "locator": "第二章（一）：「到 2017 年底，我国在用数据中心机架总体规模达到 166 万架，总体数量达到 1844 个，规划在建数据中心规模 107 万架，数量 463 个。其中大型以上数据中心……机架数超过 82 万，比 2016 年增长 68%，数据中心总体规模占比近 50%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "「超过 82 万」记下界，同比 +68%，占全国总体规模近 50%。全国总体 166 万架那一条库内已有同值的工信部版本（gp2105-miit-cn-dc-racks-2017），不重复录。[未核]"
+    },
+    {
+      "fact_id": "caict2018-cn-idc-revenue-2017",
+      "asserter": "中国信通院",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-datacenter-market",
+        "label": "中国数据中心产业（市场规模）"
+      },
+      "value": 650.4,
+      "unit": "亿（原币）",
+      "bound": "point",
+      "caliber": {
+        "service_scope": "含云服务",
+        "operator_type": "全市场",
+        "region": "CN",
+        "basis": "第三方跟踪",
+        "currency": "人民币"
+      },
+      "as_of": "2017",
+      "evidence": {
+        "sha256": "e23bde17284d37c168a1b2e2824dedae5dfd4507ca7abc25f4b1fe528e7170f9",
+        "local_file": "中国信通院--2018数据中心白皮书.pdf",
+        "locator": "第二章：「2017 年我国 IDC 全行业总收入达到 650.4 亿元左右，2012-2017 年复合增长率为 32%……2017 年我国传统 IDC 业务收入为 512.8 亿元，占 IDC 全行业总收入的比重为 78.8%。云服务收入 137.6 亿元，占比 21.2%，比 2016 年提高 2.8%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "信通院口径的「IDC 全行业总收入」含云服务，2012-2017 年复合增长率 32%。**与科智咨询同年的 946.1 亿元差 295 亿**，两家对「IDC 市场」的边界划法不同（科智那条未注明口径），不可互校。[未核]"
+    },
+    {
+      "fact_id": "caict2018-cn-traditional-idc-revenue-2017",
+      "asserter": "中国信通院",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "market",
+        "id": "cn-datacenter-market",
+        "label": "中国数据中心产业（市场规模）"
+      },
+      "value": 512.8,
+      "unit": "亿（原币）",
+      "bound": "point",
+      "caliber": {
+        "service_scope": "IDC 服务（含托管与增值）",
+        "operator_type": "全市场",
+        "region": "CN",
+        "basis": "第三方跟踪",
+        "currency": "人民币"
+      },
+      "as_of": "2017",
+      "evidence": {
+        "sha256": "e23bde17284d37c168a1b2e2824dedae5dfd4507ca7abc25f4b1fe528e7170f9",
+        "local_file": "中国信通院--2018数据中心白皮书.pdf",
+        "locator": "第二章：「2017 年我国 IDC 全行业总收入达到 650.4 亿元左右，2012-2017 年复合增长率为 32%……2017 年我国传统 IDC 业务收入为 512.8 亿元，占 IDC 全行业总收入的比重为 78.8%。云服务收入 137.6 亿元，占比 21.2%，比 2016 年提高 2.8%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "传统 IDC 业务收入，占全行业 78.8%；与含云服务的 650.4 亿元构成同一年的两个口径，512.8 + 137.6（云服务）= 650.4，加总自洽。[未核]"
+    },
+    {
+      "fact_id": "caict2018-google-belgium-pue",
+      "asserter": "中国信通院",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "google-saint-ghislain",
+        "label": "谷歌比利时 Saint-Ghislain 数据中心"
+      },
+      "value": 1.11,
+      "unit": "比值",
+      "bound": "point",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "自然冷源",
+        "climate_zone": "寒冷地区",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "EU"
+      },
+      "as_of": "2018",
+      "evidence": {
+        "sha256": "e23bde17284d37c168a1b2e2824dedae5dfd4507ca7abc25f4b1fe528e7170f9",
+        "local_file": "中国信通院--2018数据中心白皮书.pdf",
+        "locator": "第一章：「谷歌公司在比利时 Saint-Ghislain 建设了利用运河水进行自然冷却的数据中心，平均每年只有 7 天气温不符合免费冷却系统的要求，全年平均 PUE 可达到 1.11」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "运河水自然冷却，全年仅约 7 天不满足免费冷却条件；信通院转述，未给出处年份，as_of 按白皮书年份记。[未核]"
+    },
+    {
+      "fact_id": "caict2018-occupancy-national-2017",
+      "asserter": "中国信通院",
+      "metric_id": "dc_occupancy_rate",
+      "entity": {
+        "type": "region",
+        "id": "cn-national",
+        "label": "全国数据中心（行业统计口径）"
+      },
+      "value": 52.84,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "scope": "全国",
+        "region": "CN"
+      },
+      "as_of": "2017-12",
+      "evidence": {
+        "sha256": "e23bde17284d37c168a1b2e2824dedae5dfd4507ca7abc25f4b1fe528e7170f9",
+        "local_file": "中国信通院--2018数据中心白皮书.pdf",
+        "locator": "第二章：「截至 2017 年底，我国超大型数据中心上架率 34.4%，大型数据中心上架率 54.87%，与 2016 年比均提高 5% 左右……全国数据中心总体平均上架率为 52.84%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "与库内工信部《指引》2016 年那组（全国 50.69%、超大型 29.01%、大型 50.16%）衔接：一年内三档同时提高约 5 个百分点，超大型仍是最低的一档。[未核]"
+    },
+    {
+      "fact_id": "caict2018-occupancy-hyperscale-2017",
+      "asserter": "中国信通院",
+      "metric_id": "dc_occupancy_rate",
+      "entity": {
+        "type": "region",
+        "id": "cn-national-hyperscale",
+        "label": "全国超大型数据中心"
+      },
+      "value": 34.4,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "scope": "全国",
+        "region": "CN"
+      },
+      "as_of": "2017-12",
+      "evidence": {
+        "sha256": "e23bde17284d37c168a1b2e2824dedae5dfd4507ca7abc25f4b1fe528e7170f9",
+        "local_file": "中国信通院--2018数据中心白皮书.pdf",
+        "locator": "第二章：「截至 2017 年底，我国超大型数据中心上架率 34.4%，大型数据中心上架率 54.87%，与 2016 年比均提高 5% 左右……全国数据中心总体平均上架率为 52.84%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "与库内工信部《指引》2016 年那组（全国 50.69%、超大型 29.01%、大型 50.16%）衔接：一年内三档同时提高约 5 个百分点，超大型仍是最低的一档。[未核]"
+    },
+    {
+      "fact_id": "caict2018-occupancy-large-2017",
+      "asserter": "中国信通院",
+      "metric_id": "dc_occupancy_rate",
+      "entity": {
+        "type": "region",
+        "id": "cn-national-large",
+        "label": "全国大型数据中心"
+      },
+      "value": 54.87,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "scope": "全国",
+        "region": "CN"
+      },
+      "as_of": "2017-12",
+      "evidence": {
+        "sha256": "e23bde17284d37c168a1b2e2824dedae5dfd4507ca7abc25f4b1fe528e7170f9",
+        "local_file": "中国信通院--2018数据中心白皮书.pdf",
+        "locator": "第二章：「截至 2017 年底，我国超大型数据中心上架率 34.4%，大型数据中心上架率 54.87%，与 2016 年比均提高 5% 左右……全国数据中心总体平均上架率为 52.84%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "与库内工信部《指引》2016 年那组（全国 50.69%、超大型 29.01%、大型 50.16%）衔接：一年内三档同时提高约 5 个百分点，超大型仍是最低的一档。[未核]"
+    },
+    {
+      "fact_id": "caict2018-pue-inuse-hyperscale-2017",
+      "asserter": "中国信通院",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "cn-national",
+        "label": "全国数据中心（行业统计口径）"
+      },
+      "value": 1.63,
+      "unit": "比值",
+      "bound": "point",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "超大型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2017-12",
+      "evidence": {
+        "sha256": "e23bde17284d37c168a1b2e2824dedae5dfd4507ca7abc25f4b1fe528e7170f9",
+        "local_file": "中国信通院--2018数据中心白皮书.pdf",
+        "locator": "第二章：「截至 2017 年底，受上架率影响，全国在用超大型数据中心平均运行 PUE 1.63；大型数据中心平均 1.54，最优水平达到 1.2 左右。2017 年在建超大型、大型数据中心平均设计 PUE 分别为 1.41、1.48」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**在用运行值，原文点明「受上架率影响」**——超大型上架率只有 34.4%，PUE 反而比大型高 0.09。 [未核]"
+    },
+    {
+      "fact_id": "caict2018-pue-inuse-large-2017",
+      "asserter": "中国信通院",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "cn-national",
+        "label": "全国数据中心（行业统计口径）"
+      },
+      "value": 1.54,
+      "unit": "比值",
+      "bound": "point",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "大型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2017-12",
+      "evidence": {
+        "sha256": "e23bde17284d37c168a1b2e2824dedae5dfd4507ca7abc25f4b1fe528e7170f9",
+        "local_file": "中国信通院--2018数据中心白皮书.pdf",
+        "locator": "第二章：「截至 2017 年底，受上架率影响，全国在用超大型数据中心平均运行 PUE 1.63；大型数据中心平均 1.54，最优水平达到 1.2 左右。2017 年在建超大型、大型数据中心平均设计 PUE 分别为 1.41、1.48」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "在用运行值；同句「最优水平达到 1.2 左右」是个别项目。 [未核]"
+    },
+    {
+      "fact_id": "caict2018-pue-design-hyperscale-2017",
+      "asserter": "中国信通院",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "cn-national",
+        "label": "全国数据中心（行业统计口径）"
+      },
+      "value": 1.41,
+      "unit": "比值",
+      "bound": "point",
+      "caliber": {
+        "basis": "设计值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "超大型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2017-12",
+      "evidence": {
+        "sha256": "e23bde17284d37c168a1b2e2824dedae5dfd4507ca7abc25f4b1fe528e7170f9",
+        "local_file": "中国信通院--2018数据中心白皮书.pdf",
+        "locator": "第二章：「截至 2017 年底，受上架率影响，全国在用超大型数据中心平均运行 PUE 1.63；大型数据中心平均 1.54，最优水平达到 1.2 左右。2017 年在建超大型、大型数据中心平均设计 PUE 分别为 1.41、1.48」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "2017 年在建项目的平均设计值，比在用运行值低 0.22——设计与运行之间的这个差正是上架率爬坡造成的。 [未核]"
+    },
+    {
+      "fact_id": "caict2018-pue-design-large-2017",
+      "asserter": "中国信通院",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "cn-national",
+        "label": "全国数据中心（行业统计口径）"
+      },
+      "value": 1.48,
+      "unit": "比值",
+      "bound": "point",
+      "caliber": {
+        "basis": "设计值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "大型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2017-12",
+      "evidence": {
+        "sha256": "e23bde17284d37c168a1b2e2824dedae5dfd4507ca7abc25f4b1fe528e7170f9",
+        "local_file": "中国信通院--2018数据中心白皮书.pdf",
+        "locator": "第二章：「截至 2017 年底，受上架率影响，全国在用超大型数据中心平均运行 PUE 1.63；大型数据中心平均 1.54，最优水平达到 1.2 左右。2017 年在建超大型、大型数据中心平均设计 PUE 分别为 1.41、1.48」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "2017 年在建项目的平均设计值。 [未核]"
+    },
+    {
+      "fact_id": "caict2018-baidu-yangquan-pue",
+      "asserter": "中国信通院",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "baidu-yangquan-dc",
+        "label": "百度云计算（阳泉）中心"
+      },
+      "value": 1.23,
+      "unit": "比值",
+      "bound": "point",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "混合",
+        "climate_zone": "北方",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2015",
+      "evidence": {
+        "sha256": "e23bde17284d37c168a1b2e2824dedae5dfd4507ca7abc25f4b1fe528e7170f9",
+        "local_file": "中国信通院--2018数据中心白皮书.pdf",
+        "locator": "第二章绿色节能案例：「2015 年，百度云计算（阳泉）中心……实现年均 PUE1.23；2016 年，阿里巴巴千岛湖数据中心……达到年均设计 PUE1.28；2017 年，腾讯青浦三联供数据中心……实现年均 PUE1.31；2018 年，阿里巴巴/张北云联数据中心……实现年均 PUE1.23」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "整机柜服务器 + 高压直流与市电直供 + 机器学习控制系统 + 高温服务器；获 TGG 与 ODCC 联合认证的 5A 级绿色数据中心。 四个案例是同一段里的年度标杆序列（2015-2018 各一），信通院转述、未注明是否第三方核证。[未核]"
+    },
+    {
+      "fact_id": "caict2018-alibaba-qiandaohu-pue",
+      "asserter": "中国信通院",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "alibaba-qiandaohu-dc",
+        "label": "阿里巴巴千岛湖数据中心"
+      },
+      "value": 1.28,
+      "unit": "比值",
+      "bound": "point",
+      "caliber": {
+        "basis": "设计值",
+        "cooling_tech": "自然冷源",
+        "climate_zone": "南方",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2016",
+      "evidence": {
+        "sha256": "e23bde17284d37c168a1b2e2824dedae5dfd4507ca7abc25f4b1fe528e7170f9",
+        "local_file": "中国信通院--2018数据中心白皮书.pdf",
+        "locator": "第二章绿色节能案例：「2015 年，百度云计算（阳泉）中心……实现年均 PUE1.23；2016 年，阿里巴巴千岛湖数据中心……达到年均设计 PUE1.28；2017 年，腾讯青浦三联供数据中心……实现年均 PUE1.31；2018 年，阿里巴巴/张北云联数据中心……实现年均 PUE1.23」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "湖水自然冷却 + 太阳能电池板 + 高压直流；原文写「年均设计 PUE」，是设计值不是运行实测。 四个案例是同一段里的年度标杆序列（2015-2018 各一），信通院转述、未注明是否第三方核证。[未核]"
+    },
+    {
+      "fact_id": "caict2018-tencent-qingpu-pue",
+      "asserter": "中国信通院",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "tencent-qingpu-dc",
+        "label": "腾讯青浦三联供数据中心"
+      },
+      "value": 1.31,
+      "unit": "比值",
+      "bound": "point",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "混合",
+        "climate_zone": "南方",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2017",
+      "evidence": {
+        "sha256": "e23bde17284d37c168a1b2e2824dedae5dfd4507ca7abc25f4b1fe528e7170f9",
+        "local_file": "中国信通院--2018数据中心白皮书.pdf",
+        "locator": "第二章绿色节能案例：「2015 年，百度云计算（阳泉）中心……实现年均 PUE1.23；2016 年，阿里巴巴千岛湖数据中心……达到年均设计 PUE1.28；2017 年，腾讯青浦三联供数据中心……实现年均 PUE1.31；2018 年，阿里巴巴/张北云联数据中心……实现年均 PUE1.23」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "天然气三联供 + 离心变频冷机 + 磁悬浮冷机。 四个案例是同一段里的年度标杆序列（2015-2018 各一），信通院转述、未注明是否第三方核证。[未核]"
+    },
+    {
+      "fact_id": "caict2018-alibaba-zhangbei-yunlian-pue",
+      "asserter": "中国信通院",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "alibaba-zhangbei-yunlian-dc",
+        "label": "阿里巴巴/张北云联数据中心"
+      },
+      "value": 1.23,
+      "unit": "比值",
+      "bound": "point",
+      "caliber": {
+        "basis": "运行值",
+        "cooling_tech": "自然冷源",
+        "climate_zone": "寒冷地区",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2018",
+      "evidence": {
+        "sha256": "e23bde17284d37c168a1b2e2824dedae5dfd4507ca7abc25f4b1fe528e7170f9",
+        "local_file": "中国信通院--2018数据中心白皮书.pdf",
+        "locator": "第二章绿色节能案例：「2015 年，百度云计算（阳泉）中心……实现年均 PUE1.23；2016 年，阿里巴巴千岛湖数据中心……达到年均设计 PUE1.28；2017 年，腾讯青浦三联供数据中心……实现年均 PUE1.31；2018 年，阿里巴巴/张北云联数据中心……实现年均 PUE1.23」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "无架空地板弥散送风 + 全自动化 BA 系统实现自然冷源最大化。 四个案例是同一段里的年度标杆序列（2015-2018 各一），信通院转述、未注明是否第三方核证。[未核]"
+    },
+    {
+      "fact_id": "caict2018-equinix-racks-2017",
+      "asserter": "中国信通院",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "company",
+        "id": "equinix",
+        "label": "Equinix（全球总机柜数）"
+      },
+      "value": 24.26,
+      "unit": "万标准机架",
+      "bound": "point",
+      "caliber": {
+        "counting": "物理机柜",
+        "region": "Global"
+      },
+      "as_of": "2017",
+      "evidence": {
+        "sha256": "e23bde17284d37c168a1b2e2824dedae5dfd4507ca7abc25f4b1fe528e7170f9",
+        "local_file": "中国信通院--2018数据中心白皮书.pdf",
+        "grade": "S2",
+        "locator": "第一章：「Equinix……2016 年以 36 亿美元完成了对 Verizon 的 29 个数据中心及运营部门的收购，2017 年完成了对英国 IO 的收购，以及西班牙和葡萄牙 Itconic 的收购。经过连续收购，2017 年公司净市值达到 68.50 亿美元（约 432 亿人民币），总机柜数达到 24.26 万个」"
+      },
+      "depth": "精读",
+      "notes": "单家公司的全球机柜数，约为同期我国全国在用机架（166 万架）的 15%。同段给出的净市值 68.50 亿美元与并购对价（Verizon 29 个数据中心 36 亿美元）库内无指标。[未核]"
     }
   ]
 }
