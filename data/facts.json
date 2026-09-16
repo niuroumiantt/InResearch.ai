@@ -237702,6 +237702,501 @@
       },
       "depth": "精读",
       "notes": "同图 2025 年预测值，2023-09 时点做出；与库内政策目标「2025 年智能算力占比 35%（另一文件 50%）」口径与量级都不同，前者是官方政策目标、这条是信通院预测，不可互相校验。[未核]"
+    },
+    {
+      "fact_id": "caict-cn-intelligent-compute-2021",
+      "asserter": "中国信通院",
+      "metric_id": "regional_compute_capacity",
+      "entity": {
+        "type": "region",
+        "id": "cn-intelligent-compute",
+        "label": "中国智能算力规模"
+      },
+      "value": 104.0,
+      "unit": "EFLOPS",
+      "bound": "point",
+      "caliber": {
+        "compute_type": "智能算力",
+        "precision": "混合/未注明",
+        "area": "全国",
+        "status": "未注明",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2021",
+      "evidence": {
+        "sha256": "9932604607ce8010af2d4998ed05cd52b836b67a1ea22c5d9e2df58ee0b3b518",
+        "local_file": "2023中国移动NICC新型智算中心技术体系白皮书.pdf",
+        "locator": "第 1 章：「据《中国算力发展指数白皮书（2022）》指出……2021 年我国智算规模已达到 104E FLOPS」",
+        "grade": "S2",
+        "originator": "中国移动《NICC 新型智算中心技术体系白皮书》（2023）转述"
+      },
+      "depth": "精读",
+      "notes": "原文只给白皮书名未给发布机构，《中国算力发展指数白皮书》系中国信通院出品，据此归属；原文未说明精度口径与在用/累计状态。[未核]"
+    },
+    {
+      "fact_id": "caict-cn-intelligent-compute-share-2021",
+      "asserter": "中国信通院",
+      "metric_id": "region_compute_share",
+      "entity": {
+        "type": "region",
+        "id": "cn-intelligent-compute",
+        "label": "中国智能算力（占国内算力规模）"
+      },
+      "value": 50.0,
+      "unit": "%",
+      "bound": "lower",
+      "caliber": {
+        "measure": "算力规模",
+        "denominator": "本区域总量",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2021",
+      "evidence": {
+        "sha256": "9932604607ce8010af2d4998ed05cd52b836b67a1ea22c5d9e2df58ee0b3b518",
+        "local_file": "2023中国移动NICC新型智算中心技术体系白皮书.pdf",
+        "locator": "第 1 章：「2021 年我国智算规模已达到 104E FLOPS，占比超过总算力的 50%」",
+        "grade": "S2",
+        "originator": "中国移动《NICC 新型智算中心技术体系白皮书》（2023）转述"
+      },
+      "depth": "精读",
+      "notes": "与库内同为中国信通院署名的另一组（2023 年 25.4%、2025E 85%，见中国移动 NICC 解读 p.2）在同一分母上不可能同时成立：2021 年已过半、2023 年反降到四分之一。两组数出自信通院不同出版物、原文均未给分母定义，口径冲突待裁，不做取舍。[未核]"
+    },
+    {
+      "fact_id": "caict-cn-intelligent-compute-share-2030e",
+      "asserter": "中国信通院",
+      "metric_id": "region_compute_share",
+      "entity": {
+        "type": "region",
+        "id": "cn-intelligent-compute",
+        "label": "中国智能算力（占国内算力规模）"
+      },
+      "value": 70.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "measure": "算力规模",
+        "denominator": "本区域总量",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2030E@2022",
+      "evidence": {
+        "sha256": "9932604607ce8010af2d4998ed05cd52b836b67a1ea22c5d9e2df58ee0b3b518",
+        "local_file": "2023中国移动NICC新型智算中心技术体系白皮书.pdf",
+        "locator": "第 1 章：「预计到 2030 年将升至 70%，成为算力的主要增长极」",
+        "grade": "S2",
+        "originator": "中国移动《NICC 新型智算中心技术体系白皮书》（2023）转述"
+      },
+      "depth": "精读",
+      "notes": "《中国算力发展指数白皮书（2022）》的 2030 年预测，快照记 2022；口径冲突见 caict-cn-intelligent-compute-share-2021 的说明。[未核]"
+    },
+    {
+      "fact_id": "cmcc-niccwp-2023-wuhan-aicc",
+      "asserter": "中国移动",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "wuhan-aicc",
+        "label": "武汉人工智能计算中心"
+      },
+      "value": 200.0,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "已投运",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "9932604607ce8010af2d4998ed05cd52b836b67a1ea22c5d9e2df58ee0b3b518",
+        "local_file": "2023中国移动NICC新型智算中心技术体系白皮书.pdf",
+        "locator": "第 1 章「图 1-1 美国智能超算中心 / 图 1-2 国内部分智算中心」正文列举",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "中国移动白皮书正文直接列举，未注明精度口径（原文一律写 E/P，未说 FP64 还是 FP16），也未给各项目的统计时点，as_of 按白皮书年份记。[未核]"
+    },
+    {
+      "fact_id": "cmcc-niccwp-2023-nanjing-icc",
+      "asserter": "中国移动",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "nanjing-icc",
+        "label": "南京智能计算中心"
+      },
+      "value": 800.0,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "已投运",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "9932604607ce8010af2d4998ed05cd52b836b67a1ea22c5d9e2df58ee0b3b518",
+        "local_file": "2023中国移动NICC新型智算中心技术体系白皮书.pdf",
+        "locator": "第 1 章「图 1-1 美国智能超算中心 / 图 1-2 国内部分智算中心」正文列举",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "中国移动白皮书正文直接列举，未注明精度口径（原文一律写 E/P，未说 FP64 还是 FP16），也未给各项目的统计时点，as_of 按白皮书年份记。[未核]"
+    },
+    {
+      "fact_id": "cmcc-niccwp-2023-hefei-advanced-cc",
+      "asserter": "中国移动",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "hefei-advanced-cc",
+        "label": "合肥先进计算中心"
+      },
+      "value": 12.0,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "已投运",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "9932604607ce8010af2d4998ed05cd52b836b67a1ea22c5d9e2df58ee0b3b518",
+        "local_file": "2023中国移动NICC新型智算中心技术体系白皮书.pdf",
+        "locator": "第 1 章「图 1-1 美国智能超算中心 / 图 1-2 国内部分智算中心」正文列举",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "中国移动白皮书正文直接列举，未注明精度口径（原文一律写 E/P，未说 FP64 还是 FP16），也未给各项目的统计时点，as_of 按白皮书年份记。[未核]"
+    },
+    {
+      "fact_id": "cmcc-niccwp-2023-pengcheng-cloudbrain-2",
+      "asserter": "中国移动",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "pengcheng-cloudbrain-2",
+        "label": "鹏城云脑 II"
+      },
+      "value": 1000.0,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "已投运",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "9932604607ce8010af2d4998ed05cd52b836b67a1ea22c5d9e2df58ee0b3b518",
+        "local_file": "2023中国移动NICC新型智算中心技术体系白皮书.pdf",
+        "locator": "第 1 章「图 1-1 美国智能超算中心 / 图 1-2 国内部分智算中心」正文列举",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "中国移动白皮书正文直接列举，未注明精度口径（原文一律写 E/P，未说 FP64 还是 FP16），也未给各项目的统计时点，as_of 按白皮书年份记。[未核]"
+    },
+    {
+      "fact_id": "cmcc-niccwp-2023-alibaba-zhangbei-wulanchabu",
+      "asserter": "中国移动",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "alibaba-zhangbei-wulanchabu",
+        "label": "阿里张北与乌兰察布智算中心（合计）"
+      },
+      "value": 15000.0,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "已投运",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "9932604607ce8010af2d4998ed05cd52b836b67a1ea22c5d9e2df58ee0b3b518",
+        "local_file": "2023中国移动NICC新型智算中心技术体系白皮书.pdf",
+        "locator": "第 1 章「图 1-1 美国智能超算中心 / 图 1-2 国内部分智算中心」正文列举",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "中国移动白皮书正文直接列举，未注明精度口径（原文一律写 E/P，未说 FP64 还是 FP16），也未给各项目的统计时点，as_of 按白皮书年份记。[未核]"
+    },
+    {
+      "fact_id": "cmcc-niccwp-2023-baidu-yangquan",
+      "asserter": "中国移动",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "baidu-yangquan",
+        "label": "百度阳泉智算中心"
+      },
+      "value": 4000.0,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "已投运",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "9932604607ce8010af2d4998ed05cd52b836b67a1ea22c5d9e2df58ee0b3b518",
+        "local_file": "2023中国移动NICC新型智算中心技术体系白皮书.pdf",
+        "locator": "第 1 章「图 1-1 美国智能超算中心 / 图 1-2 国内部分智算中心」正文列举",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "中国移动白皮书正文直接列举，未注明精度口径（原文一律写 E/P，未说 FP64 还是 FP16），也未给各项目的统计时点，as_of 按白皮书年份记。[未核]"
+    },
+    {
+      "fact_id": "cmcc-niccwp-2023-summit-ornl",
+      "asserter": "中国移动",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "summit-ornl",
+        "label": "Summit（橡树岭国家实验室）"
+      },
+      "value": 3400.0,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "已投运",
+        "phase": "整体",
+        "region": "US",
+        "basis": "行业机构"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "9932604607ce8010af2d4998ed05cd52b836b67a1ea22c5d9e2df58ee0b3b518",
+        "local_file": "2023中国移动NICC新型智算中心技术体系白皮书.pdf",
+        "locator": "第 1 章「图 1-1 美国智能超算中心 / 图 1-2 国内部分智算中心」正文列举",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "中国移动白皮书正文直接列举，未注明精度口径（原文一律写 E/P，未说 FP64 还是 FP16），也未给各项目的统计时点，as_of 按白皮书年份记。[未核]"
+    },
+    {
+      "fact_id": "cmcc-niccwp-2023-perlmutter-lbnl",
+      "asserter": "中国移动",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "perlmutter-lbnl",
+        "label": "Perlmutter（劳伦斯伯克利实验室）"
+      },
+      "value": 3800.0,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "已投运",
+        "phase": "整体",
+        "region": "US",
+        "basis": "行业机构"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "9932604607ce8010af2d4998ed05cd52b836b67a1ea22c5d9e2df58ee0b3b518",
+        "local_file": "2023中国移动NICC新型智算中心技术体系白皮书.pdf",
+        "locator": "第 1 章「图 1-1 美国智能超算中心 / 图 1-2 国内部分智算中心」正文列举",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "中国移动白皮书正文直接列举，未注明精度口径（原文一律写 E/P，未说 FP64 还是 FP16），也未给各项目的统计时点，as_of 按白皮书年份记。[未核]"
+    },
+    {
+      "fact_id": "cmcc-niccwp-2023-google-open-ml-hub",
+      "asserter": "中国移动",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "google-open-ml-hub",
+        "label": "谷歌开放机器学习中心"
+      },
+      "value": 9000.0,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "已投运",
+        "phase": "整体",
+        "region": "US",
+        "basis": "行业机构"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "9932604607ce8010af2d4998ed05cd52b836b67a1ea22c5d9e2df58ee0b3b518",
+        "local_file": "2023中国移动NICC新型智算中心技术体系白皮书.pdf",
+        "locator": "第 1 章「图 1-1 美国智能超算中心 / 图 1-2 国内部分智算中心」正文列举",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "中国移动白皮书正文直接列举，未注明精度口径（原文一律写 E/P，未说 FP64 还是 FP16），也未给各项目的统计时点，as_of 按白皮书年份记。[未核]"
+    },
+    {
+      "fact_id": "cmcc-niccwp-2023-meta-rsc",
+      "asserter": "中国移动",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "meta-rsc",
+        "label": "Meta AI 超级计算机（RSC）"
+      },
+      "value": 9900.0,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "已投运",
+        "phase": "整体",
+        "region": "US",
+        "basis": "行业机构"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "9932604607ce8010af2d4998ed05cd52b836b67a1ea22c5d9e2df58ee0b3b518",
+        "local_file": "2023中国移动NICC新型智算中心技术体系白皮书.pdf",
+        "locator": "第 1 章「图 1-1 美国智能超算中心 / 图 1-2 国内部分智算中心」正文列举",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "中国移动白皮书正文直接列举，未注明精度口径（原文一律写 E/P，未说 FP64 还是 FP16），也未给各项目的统计时点，as_of 按白皮书年份记。[未核]"
+    },
+    {
+      "fact_id": "cmcc-niccwp-2023-sensetime-lingang",
+      "asserter": "中国移动",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "sensetime-lingang",
+        "label": "商汤临港人工智能计算中心"
+      },
+      "value": 4000.0,
+      "unit": "PFLOPS",
+      "bound": "lower",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "已投运",
+        "phase": "整体",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "9932604607ce8010af2d4998ed05cd52b836b67a1ea22c5d9e2df58ee0b3b518",
+        "local_file": "2023中国移动NICC新型智算中心技术体系白皮书.pdf",
+        "locator": "第 1 章：「商汤……投资 56 亿在上海临港建设人工智能计算中心，规模超 4E」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "原文「规模超 4E」，记下界；同句给出投资 56 亿元，库内无单项目投资额指标，已另记缺口。[未核]"
+    },
+    {
+      "fact_id": "cmcc-niccwp-2023-argonne-polaris-aurora",
+      "asserter": "中国移动",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "argonne-polaris-aurora",
+        "label": "Polaris 与 Aurora（阿贡国家实验室，原文合并给数）"
+      },
+      "value": 10000.0,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "已投运",
+        "phase": "整体",
+        "region": "US",
+        "basis": "行业机构"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "9932604607ce8010af2d4998ed05cd52b836b67a1ea22c5d9e2df58ee0b3b518",
+        "local_file": "2023中国移动NICC新型智算中心技术体系白皮书.pdf",
+        "locator": "第 1 章：「阿贡国家实验室的 Polaris 和 Aurora（约 10E）」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "原文把两台机器并列后只给一个「约 10E」，无法拆到单台，entity 按原文的合并口径记；Aurora 在 2023 年尚未全面投运，status 沿用原文的既成表述。[未核]"
+    },
+    {
+      "fact_id": "cmcc-niccwp-2023-tesla-dojo-2024e",
+      "asserter": "中国移动",
+      "metric_id": "project_compute_capacity",
+      "entity": {
+        "type": "project",
+        "id": "tesla-dojo",
+        "label": "特斯拉 Dojo 集群"
+      },
+      "value": 100000.0,
+      "unit": "PFLOPS",
+      "bound": "point",
+      "caliber": {
+        "precision": "混合/未注明",
+        "status": "规划",
+        "phase": "整体",
+        "region": "US",
+        "basis": "行业机构"
+      },
+      "as_of": "2024E@2023",
+      "evidence": {
+        "sha256": "9932604607ce8010af2d4998ed05cd52b836b67a1ea22c5d9e2df58ee0b3b518",
+        "local_file": "2023中国移动NICC新型智算中心技术体系白皮书.pdf",
+        "locator": "第 1 章：「特斯拉 Dojo 集群（据称 2024 年末规模达到 100E）」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "原文写「据称」，未给出处；按 PR #197 口径，直接陈述该数的中国移动即断言者，basis 记行业机构。[未核]"
+    },
+    {
+      "fact_id": "cmcc-niccwp-2023-a800-server-power",
+      "asserter": "中国移动",
+      "metric_id": "server_power_and_training_time",
+      "entity": {
+        "type": "component",
+        "id": "a800-8card-server",
+        "label": "8 卡 A800 智算服务器"
+      },
+      "value": 6.5,
+      "unit": "数值（见 parameter）",
+      "bound": "point",
+      "caliber": {
+        "chip": "A800（8 卡整机）",
+        "parameter": "单机算力功耗(kW)",
+        "pue_included": "不含",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "9932604607ce8010af2d4998ed05cd52b836b67a1ea22c5d9e2df58ee0b3b518",
+        "local_file": "2023中国移动NICC新型智算中心技术体系白皮书.pdf",
+        "locator": "第 7 章：「一台配置了 8 卡 A800 的智算服务器功耗约为 6.5KW，是通用服务器的 10 倍以上」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "中国移动白皮书正文；原文未说明是否含配套散热，按机内 IT 功耗理解记不含 PUE。同句「是通用服务器的 10 倍以上」为倍数表述，未单独入库。[未核]"
     }
   ]
 }
