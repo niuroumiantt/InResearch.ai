@@ -235930,6 +235930,69 @@
       "corroboration": "待交叉验证",
       "notes": "**这是整支 REIT 全组合（18 个项目、分布 8 国）的整体上架率，不是单项目**，scope 取「区域市场」是枚举里最接近「多项目组合」的取值，region 记 APAC 但资产实际横跨新加坡、德国、英国等。**96.7% 是本库上架率序列的上限锚**：与国内批发型 REIT 的 90%+/99%+、全国平均 58%、单项目 48.2% 对照，说明成熟 REIT 组合能把出租率维持在什么水平。配套：管理资产 29 亿美元、平均签约年限 7.2 年、资产负债率 35.2%、2014 年上市后平均每年新增 3 个项目、每基金单位分配额由 2015 年 6.51 美分增至 2019 年 7.71 美分。",
       "asserter": "中金公司"
+    },
+    {
+      "fact_id": "jll2002-global-colo-revenue-2020e",
+      "metric_id": "dc_service_revenue",
+      "entity": {
+        "type": "industry",
+        "id": "global-colocation-market",
+        "label": "全球主机托管（Colocation）市场"
+      },
+      "value": 600.0,
+      "unit": "亿（原币）",
+      "caliber": {
+        "service_scope": "仅机柜托管",
+        "operator_type": "第三方",
+        "region": "Global",
+        "basis": "预测",
+        "currency": "美元"
+      },
+      "as_of": "2020E@2020-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "bade7e2d9d45e52847dccbdd3cac24b68819f428146ef35678f56761ba85e020",
+        "local_file": "20200227-JLL：亚太区另类资产投资的崛起—数据中心推动亚洲数字繁荣(24页).pdf",
+        "locator": "第 1 页 概述：「主机托管数据中心市场的全球收入正以 15.7% 的复合年增长率增长，预计到 2020 年将达到 600 亿美元。根据 Structured Research 显示，亚太区未来两年在全球主机托管市场的份额将升至 40%，超过北美成为全球最大的主机托管市场」",
+        "grade": "S3",
+        "originator": "仲量联行（JLL）《亚太区另类资产投资的崛起——数据中心推动亚洲数字繁荣》（2020-02-27）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**口径是「主机托管（colocation）」收入，不含自建与云服务**，service_scope 已标「仅机柜托管」——**这是本库全球市场规模序列里唯一明确的托管口径锚点**，与 Statista 的 2025 年 5,270 亿美元、Precedence 的 4,000 亿美元（含更宽业态）不是一回事。币种美元，复合年增长率 15.7%。",
+      "asserter": "JLL"
+    },
+    {
+      "fact_id": "jll2002-apac-colo-share-2021e",
+      "metric_id": "dc_service_revenue_share",
+      "entity": {
+        "type": "industry",
+        "id": "apac-colocation-market",
+        "label": "亚太区主机托管市场（占全球）"
+      },
+      "value": 40.0,
+      "unit": "%",
+      "caliber": {
+        "service_scope": "仅机柜托管",
+        "operator_type": "第三方",
+        "region": "APAC",
+        "basis": "预测"
+      },
+      "as_of": "2021E@2020-02",
+      "bound": "point",
+      "evidence": {
+        "sha256": "bade7e2d9d45e52847dccbdd3cac24b68819f428146ef35678f56761ba85e020",
+        "local_file": "20200227-JLL：亚太区另类资产投资的崛起—数据中心推动亚洲数字繁荣(24页).pdf",
+        "locator": "第 1 页 概述：「主机托管数据中心市场的全球收入正以 15.7% 的复合年增长率增长，预计到 2020 年将达到 600 亿美元。根据 Structured Research 显示，亚太区未来两年在全球主机托管市场的份额将升至 40%，超过北美成为全球最大的主机托管市场」",
+        "grade": "S4",
+        "originator": "Structured Research（经仲量联行（JLL）《亚太区另类资产投资的崛起——数据中心推动亚洲数字繁荣》（2020-02-27）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**分母是全球主机托管市场，分子是亚太区——原文称「未来两年升至 40%，超过北美成为全球最大的主机托管市场」**，as_of 按报告时点后两年取 2021E。**这与本库既有的运营商/第三方份额（中国内地口径）不是同一种切分**：那是按服务商类型切，本条按地域切。asserter 记 Structured Research，JLL 只是转述。",
+      "asserter": "Structured Research"
     }
   ]
 }
